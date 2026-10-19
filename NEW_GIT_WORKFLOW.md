@@ -78,6 +78,11 @@ Once verified, the promoter (user) promotes the candidate:
    decisions under the appropriate submission IDs. Without user paste, SUBMISSIONS.md
    cannot be updated.
 
+   **Alternative: Consensus Block Format** — If Claude outputs decisions using the
+   format from `CONSENSUS_BLOCK_FORMAT.md`, the user copies one block and pastes it
+   into SUBMISSIONS.md above each agent's end-anchor. This is the recommended workflow
+   for multi-agent sessions.
+
 **2. Verification five-line report:**
    Claude CANNOT file the verification five-line report. Per STATUS.md, "The verifying
    session files a five-line report (adopted 19 Oct, from DS): build hash · what was
@@ -91,6 +96,10 @@ Once verified, the promoter (user) promotes the candidate:
    by the user. Once a submission is pushed to Git (committed and pushed), Claude can then
    read it directly from GitHub. But until that push occurs, the user must paste the
    submission content to Claude.
+
+   **Consensus Block Format Note** — If a submission is sent using the consensus block
+   format from `CONSENSUS_BLOCK_FORMAT.md`, the user copies one block and distributes
+   sections to the appropriate agents' areas in SUBMISSIONS.md.
 
 ---
 

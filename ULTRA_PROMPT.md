@@ -89,7 +89,10 @@ If you have questions about the workflow or need clarification, refer to:
 - INTEGRATION_AUDIT_LIGHTNING.md (audit findings, corrected)
 - STATUS.md (current build state: 77bb9ed5...)
 - COLLECTIVE-PROMPT.md (standing system prompt)
+- CONSENSUS_BLOCK_FORMAT.md (optional — one-block format for multi-agent submissions:
+  if Claude uses this format, the user copies one block and distributes sections to
+  each agent's area in SUBMISSIONS.md)
 
-Your prompt has been designed to inform you of all updates and ensure you can 
-participate in Round 1 using the new Git-direct access model. All documents are 
+Your prompt has been designed to inform you of all updates and ensure you can
+participate in Round 1 using the new Git-direct access model. All documents are
 available for your review on GitHub.
