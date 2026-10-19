@@ -55,20 +55,23 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 6. **32.5 Points Per Win**: `POINTS_PER_WIN = 32.5` converts point differentials to wins (Pythagenpat-based).
 7. **Single-Season Record Caps**: `SEASON_RECORD_CAPS` truncates stats at real NFL records (5400 pass yds, 2060 rush, etc.).
 8. **Deterministic Seeding**: NFL tiebreakers (H2H → division → conference → point diff) in `sortStandings()`.
+9. **Protected Constants**: `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS` change only with the user's explicit approval.
 
 ---
 
-## Required Workflow for Any Change
+## Implementation Workflow (for the implementer — advisory sessions never edit)
 
-1. **Read the relevant section first** — understand the function, its callers, and its tests.
-2. **Propose the change** — explain *what* and *why* before editing. Include the exact lines you'd modify.
+Under the submission workflow, the steps below describe how **Claude** implements accepted submissions. Advisory sessions follow "Ownership & Write Protocol": propose in `SUBMISSIONS.md`, never touch the product file.
+
+1. **Read the relevant section first** — understand the function, its callers, and what could regress.
+2. **Work only from accepted submissions in the current round** — respect the round cap (5–6 changes); defer the rest with a reviving condition.
 3. **Make minimal edits** — touch only the necessary functions/variables.
-4. **Test the math** — run the validation checks:
-   - `node pw4.js` (draft → season → playoffs → 100-sim regression)
-   - `node validate.js` (real 2025 wins: r≈0.66, ρ≈0.69, RMSE≈2.6)
-   - `bash tests/run_all.sh` (t30/t32/cal2/cal3)
-5. **Verify UI** — `node phone.js` (390px overflow check), manual tab navigation.
-6. **Summarize** — what changed, why, how tested.
+4. **Test the math** — `node --check` on the extracted script block. The regression scripts named below (`pw4.js`, `validate.js`, `phone.js`, `tests/run_all.sh`) **do not exist yet** — they are targets for the harness round; never claim to have run them.
+   - `pw4.js` → draft → season → playoffs → 100-sim regression (target r > 0.6)
+   - `validate.js` → real 2025 wins: r≈0.66, ρ≈0.69, RMSE≈2.6
+   - `tests/run_all.sh` → t30/t32/cal2/cal3
+5. **Verify UI** — 390px overflow check, manual tab navigation.
+6. **Summarize** — what changed, why, how tested (this becomes the per-submission note).
 
 ---
 
@@ -91,14 +94,14 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 | `SUBMISSIONS.md` | each agent: **its own section only**, above its end-anchor | user/verifier: Status lines and decision notes |
 | `_agents/<name>/` | that agent only | never edit or rename another agent's files |
 | `_reference/`, `_archive/` | nobody — frozen | read-only |
-| `AGENTS.md`, `STATUS.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | GLM session maintains at the user's request; decisions are the user's | propose changes via `SUBMISSIONS.md` |
+| `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | GLM session maintains at the user's request; decisions are the user's. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` |
 | `Football Sim/` (repo) | user pushes; GLM commits snapshots at the user's request | propose |
 
 1. **No agent edits the product file or publishes.** All improvements, fixes and code go into `SUBMISSIONS.md`.
 2. **Claude is the sole implementer** — decides accept/defer/reject and how to build; resolves conflicting proposals; delivers complete files through the user.
 3. **Self-contained submissions** — quote the exact current code being replaced, then give the full replacement; Claude sees only what the paste contains. Always state the build hash the proposal applies to.
 4. **Read-only rule** — files you didn't author and don't own per the table above are read-only.
-5. **Test obligations** — before submitting code: `node --check`, and note what you verified. After Claude delivers a build: a read-only verification pass (end-to-end draft → season → playoffs, clean console) gates the hash bump in `STATUS.md`.
+5. **Test obligations** — before submitting code: `node --check`, and note what you verified. After Claude delivers a build: a read-only verification pass (end-to-end draft → season → playoffs, clean browser console, 390px layout check) gates the hash bump in `STATUS.md`.
 6. **Attribution lives in git commits and `_agents/` folders — never in filenames.**
 7. **Reading is free, messaging is not** — sessions may read anything; only the user relays between sessions.
 
@@ -135,7 +138,8 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 
 ## Style Rules (from project conventions)
 - Plain informative language; no "expected scoring"/"before kickoff" in post-game text
-- Critique only 85+ OVR players in recaps
+- Critique only 85+ OVR players in recaps; every turnover named
+- Overtime events appear only in the overtime block; never "sudden death"
 - Stats kept near real NFL records (enforced by `SEASON_RECORD_CAPS`)
 - User's team shown in blue (`.ub` class, MutationObserver on `.ub`)
 - "2-Pt Conv" not "two-point conversion" (except Guide)
