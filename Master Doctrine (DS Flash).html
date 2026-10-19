@@ -291,10 +291,13 @@ hr.fancy{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--
     <li><strong>Attempted but not delivered:</strong> the mobile draft board (rows measure 243–260&nbsp;px at
     390&nbsp;px and the header row is <code>display:none</code>), overtime possessions (still a single
     synthetic walk-off), and turnover naming (still a cross-reference to the play-by-play).</li>
-    <li><strong>New regression:</strong> a Week&nbsp;2 division game now reads "They already met in Week&nbsp;11" —
-    the tag filters for <em>played</em> meetings, not <em>earlier</em> ones.</li>
-    <li><strong>Data defect:</strong> 19.2% of sacks are dropped instead of credited to a player
-    (953 player sacks against 1,179 team sacks in one measured season).</li>
+    <li><strong>Found and fixed in v10:</strong> a Week&nbsp;2 division game read "They already met in
+    Week&nbsp;11" (the tag filtered for <em>played</em> meetings, not <em>earlier</em> ones); 19.2% of sacks
+    were dropped instead of credited to a player; and the document opened with a second
+    <code>&lt;html&gt;</code> wrapper whose <code>color-scheme:light</code> won over the dark theme.</li>
+    <li><strong>Still open:</strong> turnovers name players only in the play-by-play, the mobile draft board
+    is untouched, overtime is still one synthetic score, and 141 of 832 starters line up out of phase
+    (a centre at defensive tackle, a receiver at corner) because <code>FLEX</code> permits it.</li>
   </ul>
 </div>
 
@@ -804,14 +807,16 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
 
   <h4>What the Season-first cut produces now</h4>
   <ul>
-    <li>League rate: <strong>2.17</strong> sacks per team-game — inside the real band.</li>
-    <li>Sack leader over 100 simulated seasons: <strong>14.8 average, 21 maximum</strong>; 0.03 seasons per
-    league season with 20+.</li>
-    <li>Credit: <strong>80.8%</strong> of sacks reach a player's line (953 credited against 1,179 team sacks
-    in one measured season). The other 19.2% are discarded in <code>buildDefenseDetail</code> by an
-    <code>18%</code> <code>continue</code> meant to model a rotation.</li>
-    <li>The average leader's index is about <strong>.40</strong>, which is right while his raw total is about
-    two sacks light — the league rate is slightly low and a fifth of the sacks never reach him.</li>
+    <li>League rate: <strong>2.17</strong> sacks per team-game before v10, <strong>2.26</strong> after — inside
+    the real band either way.</li>
+    <li>Sack leader over 100 simulated seasons: <strong>14.8 average, 21 maximum</strong> before v10;
+    <strong>17.1 average, 21 maximum</strong> after. The 20+ season rate moved from 0.03 to 0.09 per league
+    season, against roughly 0.1 in the real record book.</li>
+    <li>Credit: <strong>100%</strong> after v10 (1,229 credited against 1,229 team sacks in a measured
+    season). Before it, 19.2% were discarded by an <code>18%</code> <code>continue</code> in
+    <code>buildDefenseDetail</code>, and the box score disagreed with the player lines.</li>
+    <li>The leader's index now sits near <strong>.44</strong> — the top of the elite band, as it should be for
+    the best season in a 32-team league.</li>
   </ul>
 
   <div class="card warn">
@@ -893,7 +898,7 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
   makes a preview tell the reader about a game that has not happened.</p>
 
   <div class="task p0p" data-p="p0">
-    <div class="th"><span class="tid">R-1</span><span class="tt">The division rematch tag must look backwards only</span><span class="src">review · regression</span></div>
+    <div class="th"><span class="tid">R-1</span><span class="tt">The division rematch tag must look backwards only</span><span class="src">review · regression</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
     <p class="why">Verified on a simulated season: a Week&nbsp;2 division game with nothing played reads
     "Same division. They already met in Week&nbsp;11: Bills lost 13–11." The tag now looks <em>forward</em>,
     which is worse than the "second meeting" bug it replaced. Cause: <code>meetingInfo()</code> keeps every
@@ -905,7 +910,7 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
   </div>
 
   <div class="task p0p" data-p="p0">
-    <div class="th"><span class="tid">R-2</span><span class="tt">Credit every sack to a player</span><span class="src">review · data defect</span></div>
+    <div class="th"><span class="tid">R-2</span><span class="tt">Credit every sack to a player</span><span class="src">review · data defect</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
     <p class="why">Measured: 1,179 team sacks against 953 credited player sacks in one season (80.8%). A box
     score that says three sacks can show player lines that add to two. It also depresses the sack leader to
     14.8 and hides the top of the distribution the sack documents describe.</p>
@@ -939,7 +944,7 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
   </div>
 
   <div class="task p0p" data-p="p0">
-    <div class="th"><span class="tid">R-5</span><span class="tt">Delete the duplicated document shell and refresh the labels</span><span class="src">review · hygiene</span></div>
+    <div class="th"><span class="tid">R-5</span><span class="tt">Delete the duplicated document shell and refresh the labels</span><span class="src">review · hygiene</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
     <p class="why">The file still opens with a second <code>&lt;!doctype html&gt;&lt;html&gt;…&lt;/body&gt;&lt;/html&gt;</code>
     wrapper around the real document (line&nbsp;1 and the final line). Its <code>:root{color-scheme:light}</code>
     wins over the dark theme, so native controls render light on a dark page, and the nested document is
@@ -978,6 +983,20 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
     <p class="how"><b>Build:</b> Yield between seasons (<code>await new Promise(r=&gt;setTimeout(r,0))</code>) and
     paint "season 37 of 100" plus a Cancel button. Keep the full-detail path for the visible season; use the
     lite season for the sample. This is the T9 packet in <code>MASTER_GUIDE.md</code>.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">R-9</span><span class="tt">141 of 832 starters line up out of phase</span><span class="src">review · needs owner approval</span></div>
+    <p class="why">Measured across the 32 drafted rosters after auto-applying the optimal lineup: 141 starters
+    (4.4 per team) are in a slot from the other side of the ball — a centre at defensive tackle, a receiver at
+    corner, a corner at tight end, a safety at tight end, a running back at tight end. <code>FLEX</code> permits
+    it (<code>WR:{SS:4,FS:4,CB:4}</code>, <code>C:{DT:4}</code>, <code>CB:{WR:4}</code>), the penalty is smaller
+    than the OVR gap, and the Hungarian algorithm does what it is told. The result is real: receivers record
+    interceptions in the box score.</p>
+    <p class="how"><b>Build:</b> A phase guard is the minimal fix — an offensive player may not start on
+    defence and a defensive player may not start on offence, whatever <code>FLEX</code> says. Keep the
+    realistic crossovers (OL between spots, edge to tackle, linebacker to edge, DB across the secondary,
+    receiver to tight end). This changes lineup math, so it is an owner decision, not an agent's.</p>
   </div>
 
   <h3>P0 — Repositioning <span class="tag p0">do first</span></h3>
@@ -1241,20 +1260,21 @@ recap prose  ◀── reads the scattered events, invents names and drives</cod
       <thead><tr><th>Measurement</th><th>Value</th><th>Verdict</th></tr></thead>
       <tbody>
         <tr><td>Scoring events vs final score</td><td>272 of 272 games exact, 52 games with a defensive TD</td><td class="ok">invariant holds</td></tr>
-        <tr><td>Overtime games / ties per season</td><td>8 OT games, 1 tie (0.34% of games)</td><td class="ok">matches the NFL</td></tr>
+        <tr><td>Overtime games / ties per season</td><td>8 OT games, 1 tie (0.25–0.34% of games)</td><td class="ok">matches the NFL</td></tr>
         <tr><td>League sacks per team-game</td><td>2.17 (1,179 team sacks)</td><td class="ok">inside 2.05–2.56</td></tr>
-        <tr><td>Sacks credited to a player</td><td>953 of 1,179 = 80.8%</td><td class="bad">data loss — R-2</td></tr>
-        <tr><td>Sack leader, 100 seasons</td><td>14.8 avg · 21 max · 0.03 seasons with 20+</td><td class="warn">about two sacks light</td></tr>
-        <tr><td>Receiving yards leader, 100 seasons</td><td>1,316 avg · 1,520 max</td><td class="bad">~23% low — R-7</td></tr>
+        <tr><td>Sacks credited to a player</td><td>1,229 of 1,229 = 100%</td><td class="ok">fixed in v10</td></tr>
+        <tr><td>Sack leader, 100 seasons</td><td>17.1 avg · 21 max · 0.09 seasons with 20+</td><td class="ok">in band</td></tr>
+        <tr><td>Receiving yards leader, 100 seasons</td><td>1,485 avg · 1,770 max (sample varies by draft)</td><td class="warn">still low — R-7</td></tr>
         <tr><td>Passing / rushing yards leader</td><td>4,608 avg · 1,909 avg</td><td class="ok">in band</td></tr>
         <tr><td>Model vs real 2025 wins</td><td>r 0.66 · ρ 0.69 · RMSE 2.6</td><td class="ok">meets the project target</td></tr>
-        <tr><td>100-season runtime</td><td>45.5 s blocked, no progress, no cancel</td><td class="bad">R-8</td></tr>
+        <tr><td>100-season runtime</td><td>45–61 s blocked, no progress, no cancel</td><td class="bad">R-8</td></tr>
+        <tr><td>Out-of-phase starters after auto-lineup</td><td>141 of 832 (4.4 per team)</td><td class="bad">R-9</td></tr>
         <tr><td>CPU first-round pick floor</td><td>93–94 OVR minimum across three drafts</td><td class="ok">beats the ≥90 target</td></tr>
         <tr><td>CPU drift from best available</td><td>≤5 OVR in round 1, ≤8 in rounds 2–3</td><td class="ok">meets the ~8 rule</td></tr>
         <tr><td>First kicker off the board</td><td>pick 75–144 (round 3–5); Aubrey 75–144 overall</td><td class="ok">no early kicker</td></tr>
         <tr><td>Page-level horizontal overflow at 390 px</td><td>0 offenders across 12 views</td><td class="ok">holds</td></tr>
         <tr><td>Mobile draft row height</td><td>243–260 px, header hidden</td><td class="bad">P0-5 not started</td></tr>
-        <tr><td>Division tag on a Week 2 game</td><td>"They already met in Week 11"</td><td class="bad">R-1 regression</td></tr>
+        <tr><td>Division tag on a Week 2 game</td><td>never mentions a meeting; late games cite the earlier week only</td><td class="ok">fixed in v10</td></tr>
       </tbody>
     </table>
   </div>
@@ -1350,6 +1370,9 @@ await p.goto('file://' + encodeURI(path.resolve(FILE)), { waitUntil:'load' });
       <li><strong>Does the sack index reach the user?</strong> Current assumption: it joins the defensive-line leaderboard and the player season line, never a recap sentence.</li>
       <li><strong>Does the appendix stay in the file</strong>, or become a separate page? Current assumption: same file, footer line.</li>
       <li><strong>What happens to the draft tab after the season ends?</strong> Current assumption: it shows the completed draft read-only, with "start a new draft" as the only action.</li>
+      <li><strong>Phase-crossing flex.</strong> Should <code>FLEX</code> keep letting a centre start at
+      defensive tackle and a receiver at corner (141 of 832 starters do), or does a phase guard forbid it?
+      Current assumption: forbid it — the box score is producing interceptions by receivers.</li>
       <li><strong>Which document is the source of truth?</strong> The root now holds <code>AGENTS.md</code>, <code>MASTER_GUIDE.md</code>, <code>MASTER_DESIGN_DOCUMENT.md</code> and this doctrine. They agree on the product and disagree on details (the guide still says Netlify; the repository deploys with GitHub Pages). Current assumption: this doctrine governs judgement, <code>MASTER_GUIDE.md</code> governs the packet sequence, and neither may contradict the other without an edit in the same session.</li>
       <li><strong>What is <code>NFL Draft Simulator - Season First.html</code>?</strong> A 53&nbsp;KB placeholder prototype with no player data, sitting in the root beside the real file. Move it to <code>archive/</code> before an agent edits the wrong file.</li>
     </ol>
