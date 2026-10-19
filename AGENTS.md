@@ -81,24 +81,26 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 
 ---
 
-## Ownership & Write Protocol (adopted 19 Oct — consensus of the GLM, DS and Claude-line sessions)
+## Ownership & Write Protocol (submission workflow — adopted 19 Oct, supersedes the pen model)
 
-| Path | Owner | Everyone else |
-|------|-------|---------------|
-| `NFL Draft Simulator.html` | the writer named in `STATUS.md` | read-only — deliver patches, don't edit |
-| `AGENTS.md`, `STATUS.md`, future `PRODUCT.md` | the user (agents propose) | propose via `_agents/<you>/deliveries/`; user merges |
-| `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | the GLM session (handoff system) | propose edits, don't apply |
+**Principle: agents propose, Claude implements, the user relays and publishes.**
+
+| Path | Who may write | Everyone else |
+|------|---------------|---------------|
+| `NFL Draft Simulator.html` | **Claude only** (build arrives via the user) | read-only for every agent |
+| `SUBMISSIONS.md` | each agent: **its own section only**, above its end-anchor | user/verifier: Status lines and decision notes |
 | `_agents/<name>/` | that agent only | never edit or rename another agent's files |
-| `_reference/` | nobody — read-only by definition | copy out, never edit, never rename |
-| `_archive/` | nobody — frozen record | append to its `BUILD-LOG.md` only |
-| `Football Sim/` (repo) | GLM session commits; user pushes | propose commits |
+| `_reference/`, `_archive/` | nobody — frozen | read-only |
+| `AGENTS.md`, `STATUS.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | GLM session maintains at the user's request; decisions are the user's | propose changes via `SUBMISSIONS.md` |
+| `Football Sim/` (repo) | user pushes; GLM commits snapshots at the user's request | propose |
 
-1. **One writer at a time** — the Writer line in `STATUS.md` is the lock. Claim it before touching the product file; release it after.
-2. **Read-only rule** — if a file existed before your session started and you didn't author it, it is read-only.
-3. **Patches, not edits** — deliver a diff in `_agents/<you>/deliveries/` stating the build hash (and byte size) it applies to; the pen-holder applies and tests it.
-4. **Test obligation** — no build bump in `STATUS.md` until `node --check` and one end-to-end draft → season → playoffs run pass with a clean browser console.
-5. **Attribution lives in git commits and `_agents/` folders — never in filenames.**
-6. **Reading is free, messaging is not** — sessions may read anything; only the user relays between sessions.
+1. **No agent edits the product file or publishes.** All improvements, fixes and code go into `SUBMISSIONS.md`.
+2. **Claude is the sole implementer** — decides accept/defer/reject and how to build; resolves conflicting proposals; delivers complete files through the user.
+3. **Self-contained submissions** — quote the exact current code being replaced, then give the full replacement; Claude sees only what the paste contains. Always state the build hash the proposal applies to.
+4. **Read-only rule** — files you didn't author and don't own per the table above are read-only.
+5. **Test obligations** — before submitting code: `node --check`, and note what you verified. After Claude delivers a build: a read-only verification pass (end-to-end draft → season → playoffs, clean console) gates the hash bump in `STATUS.md`.
+6. **Attribution lives in git commits and `_agents/` folders — never in filenames.**
+7. **Reading is free, messaging is not** — sessions may read anything; only the user relays between sessions.
 
 ---
 
