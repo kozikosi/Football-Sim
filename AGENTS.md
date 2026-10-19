@@ -82,7 +82,7 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 ---
 
 ## Key Files & Entry Points
-- **Canonical app**: `NFL Draft Simulator.html` at the project root. NOTE (Oct 19 ~01:48): the DS session applied its own "v20" restyle on top of the reviewed GLM baseline — treat the root file as DS work-in-progress until reconciled; the verified Season-first build is `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
+- **Canonical app**: `NFL Draft Simulator.html` at the project root — the GLM verified Season-first build + the DS session's finished patch (restyle + three fixes including the division-tag look-ahead bug), verified playable end-to-end in-browser Oct 19 ~02:05. Change log: `Deepseek Flash/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
 - **Protocol layer** (root): `AGENTS.md` (this file) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
 - **`Deepseek Flash/`**: the DS session's live workspace (Master Doctrine, Patch Notes, v20 canvas, its own backups) — do not fold into the mainline without review
 - **`archive/`**: `claude-lineage/` ((8) pure snapshot, recovered (9) (OC)), `nemo-ultra/` ((7) with its fixes + 19 patch scripts), `nemo-super/` (design doc + Season-First rewrite), `ds/` (master_plan)
