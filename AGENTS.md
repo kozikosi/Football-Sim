@@ -1,7 +1,7 @@
 # AGENTS.md — Instructions for AI Coding Agents
 
 ## Project Purpose
-This is a **Madden NFL 27 Team Power Rankings, Fantasy Draft & Season Simulator** — a single-file HTML application containing:
+This is the **NFL Draft Simulator** (Madden NFL 27 ratings, Season-first layout) — a single-file HTML application containing:
 - 1,200+ real Madden NFL 27 player ratings (`PLAYERS` array)
 - 32 team depth charts (`TEAM_DATA` object)
 - Customizable position weights (`DEFAULT_WEIGHTS`) with synergy penalties
@@ -36,12 +36,9 @@ This is a **Madden NFL 27 Team Power Rankings, Fantasy Draft & Season Simulator*
 | `optimalLineup(slotmap)` | Hungarian algorithm for max-wins slot assignment (flex-aware) |
 
 ### UI Tabs (in DOM order)
-1. **Draft Simulator** (default active) — setup, live draft board, priority chart, roster depth chart
-2. **Team Rankings** — left panel weights, right panel sortable table with detail panels
-3. **Player Browser** — searchable/sortable table with position/team filters
-4. **Position Rankings** — unit/group averages across league
-5. **Team Comparison** — side-by-side lineup + unit grades
-6. **Guide** — collapsible sections explaining every concept
+1. **Season** (default active) — the whole site lives here: onboarding, draft handoff, preseason editor, weekly sim, playoffs, Super Bowl
+2. **Draft** — setup, live draft board, priority chart, roster depth chart, results with "Play a Season" CTA
+Supplementary bottom links (below the views): **Team Rankings** (weights left, table right), **Player Browser**, **Position Rankings**, **Team Comparison**, **Guide**.
 
 ### Season Phases (state machine in `seasonState.phase`)
 `preseason` → `regular` (weeks 1–17) → `regularReview` → `playoffs` (wildcard→divisional→champ→superbowl) → `complete`
@@ -85,9 +82,10 @@ This is a **Madden NFL 27 Team Power Rankings, Fantasy Draft & Season Simulator*
 ---
 
 ## Key Files & Entry Points
-- **Only file**: `Madden NFL 27 Team Power Rankings & Draft Simulator (7).html`
-- **Validation scripts** (in `p/` folder if present): `pw4.js`, `validate.js`, `phone.js`, `mk.sh`
-- **Test runner**: `bash tests/run_all.sh`
+- **Canonical file**: `NFL Draft Simulator.html` — the older "(7)" / "(9) (OC)" copies in this folder are stale; do not edit or delete them
+- **Colleague handoff**: `MASTER_GUIDE.md` (protocol + model suggestions) and `tasks/T1…T12` (paste-ready packets for other local agents)
+- **Validation scripts** (in `p/` folder if present — absent in this checkout): `pw4.js`, `validate.js`, `phone.js`, `mk.sh`
+- **Test runner**: `bash tests/run_all.sh` (present: `tests/madden-sim.spec.js` only)
 
 ---
 

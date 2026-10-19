@@ -1,5 +1,6 @@
 # CONSOLIDATED STATE (read this first after any compaction)
-File: /mnt/user-data/outputs/nfl_power_rankings.html (single file, one <script>). Artifact https://claude.ai/artifact/JhPfstYFVqmkrm1tAiVRg8 (v16 published 10-18; user said no need to ask before publishing).
+# CURRENT (Oct 19, 2026): canonical file is now '/Users/kosi/Desktop/Football Sim/NFL Draft Simulator.html' — Season-first IA (Season tab default, Draft tab, bottom supplementary links), CTA between draft results and season, auto-optimal lineup on draft completion, CPU round-floors, OT/turnover/division-tag narrative fixes. Colleague handoff: MASTER_GUIDE.md + tasks/T1..T12.
+File: /Users/kosi/Desktop/Football Sim/NFL Draft Simulator.html (single file, one <script>). The '/mnt/user-data/outputs/nfl_power_rankings.html' pointer below is from the older artifact sessions. Artifact https://claude.ai/artifact/JhPfstYFVqmkrm1tAiVRg8 (v16 published 10-18; user said no need to ask before publishing).
 Docs artifact "Madden Sim Explained": https://claude.ai/artifact/2JQPuojuDt99JAYvxe9uGV (docs project 0a87334f-c1bf-4bcc-a116-848d59a06c82, tab 3813fe82-c0d9). Filled: words, machine, parts 1-6. Pending block ids: mbx2brpm9p7.357 (study guide) .358 (interview Q&A) .359 (rebuild blueprint) .360 (limits). Fix "rookie-style leaders" in Part 6; add flex table, new stats, returner math, overtime, validation. Send full HTML backup with SendUserFile when user says (user: "after a few more sessions"; user asked on 10-17 to send it now with doc).
 Tests: `bash mk.sh` (extract script, node --check); `node pw4.js` (draft->season->playoffs->100-sim; handles user missing playoffs); `node phone.js` (390px overflow check); `node validate.js` (real 2025 wins: r=.66, rho=.69, rmse 2.6); t30/t32/cal2/cal3; tests/run_all.sh. Patch scripts in p/.
 Style rules: plain informative language; no "expected scoring"/"before kickoff" in post-game text; critique only 85+ OVR players; stats near NFL records; 32.5 pts/win; user team shown in blue; flex is realistic (user does NOT think it's an exploit).
@@ -59,7 +60,7 @@ B. MOBILE IS TOP PRIORITY: no sideways scrolling anywhere (user complaint). Smal
 ## TIER 2
 10 Auto-save/resume (localStorage, try/catch). 11 Seeded RNG option. 12 CPU replacement floor 76 experiment + recalc each pick. 13 Extend regression/validation tests (draft value vs season sim, extreme rosters). 14 Draft board metric explanations (Wins/Value/Priority/Gone). 15 Run schedule/tiebreak/seeding checks. 16 Dark/light toggle, reset-draft button, mobile draft board. 17 Win-probability graph.
 ## DO NOT DO (user agreed)
-5-file split; multi-year/contracts/HoF; busts/progression/injuries; trades/commissioner/custom rules/rating edits; CPU scheme-fit; Web Workers/PWA/LZ-string; sounds.
+5-file split; multi-year/contracts/HoF; busts/progression/injuries; trades/commissioner/custom rules/rating edits; CPU scheme-fit; Web Workers/PWA/LZ-string. Sounds ARE allowed if ever added (never banned by the user); default to muted.
 ## OTHER OPEN
 Explained doc (.357-.360 etc), free-sharing explanation, guided tour (future), CPU draft spread stuck ~78.5-83.9 (structural; user said no busts).
 
