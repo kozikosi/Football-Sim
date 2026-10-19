@@ -81,13 +81,35 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 
 ---
 
+## Ownership & Write Protocol (adopted 19 Oct — consensus of the GLM, DS and Claude-line sessions)
+
+| Path | Owner | Everyone else |
+|------|-------|---------------|
+| `NFL Draft Simulator.html` | the writer named in `STATUS.md` | read-only — deliver patches, don't edit |
+| `AGENTS.md`, `STATUS.md`, future `PRODUCT.md` | the user (agents propose) | propose via `_agents/<you>/deliveries/`; user merges |
+| `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | the GLM session (handoff system) | propose edits, don't apply |
+| `_agents/<name>/` | that agent only | never edit or rename another agent's files |
+| `_reference/` | nobody — read-only by definition | copy out, never edit, never rename |
+| `_archive/` | nobody — frozen record | append to its `BUILD-LOG.md` only |
+| `Football Sim/` (repo) | GLM session commits; user pushes | propose commits |
+
+1. **One writer at a time** — the Writer line in `STATUS.md` is the lock. Claim it before touching the product file; release it after.
+2. **Read-only rule** — if a file existed before your session started and you didn't author it, it is read-only.
+3. **Patches, not edits** — deliver a diff in `_agents/<you>/deliveries/` stating the build hash (and byte size) it applies to; the pen-holder applies and tests it.
+4. **Test obligation** — no build bump in `STATUS.md` until `node --check` and one end-to-end draft → season → playoffs run pass with a clean browser console.
+5. **Attribution lives in git commits and `_agents/` folders — never in filenames.**
+6. **Reading is free, messaging is not** — sessions may read anything; only the user relays between sessions.
+
+---
+
 ## Key Files & Entry Points
-- **Canonical app**: `NFL Draft Simulator.html` at the project root — the GLM verified Season-first build + the DS session's finished patch (restyle + three fixes including the division-tag look-ahead bug), verified playable end-to-end in-browser Oct 19 ~02:05. Change log: `Deepseek Flash/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
-- **Protocol layer** (root): `AGENTS.md` (this file) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
-- **`Deepseek Flash/`**: the DS session's live workspace (Master Doctrine, Patch Notes, v20 canvas, its own backups) — do not fold into the mainline without review
-- **`archive/`**: `claude-lineage/` ((8) pure snapshot, recovered (9) (OC)), `nemo-ultra/` ((7) with its fixes + 19 patch scripts), `nemo-super/` (design doc + Season-First rewrite), `ds/` (master_plan)
+- **Canonical app**: `NFL Draft Simulator.html` at the project root — the GLM verified Season-first build + the DS session's finished patch (restyle + three fixes including the division-tag look-ahead bug), verified playable end-to-end in-browser Oct 19 ~02:05. Change log: `_agents/ds/deliveries/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
+- **Protocol layer** (root): `AGENTS.md` (this file) · `STATUS.md` (writer lock + build hash + parked decisions) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
+- **`_agents/`**: per-session workspaces — `glm/` (this session), `ds/` (Master Doctrine, Patch Notes, its snapshots), `nemo-super/` (design doc + Season-First rewrite), `nemo-ultra/` (19 patch scripts; session still active). Nothing here is authoritative — see `_agents/README.md`
+- **`_archive/`**: superseded builds, frozen — `(7)` (Claude base + Nemo Ultra fixes), `(8)` (pure Claude), `(9) (OC)` (recovered); lineage in its `BUILD-LOG.md`
+- **`_reference/`**: the user's uploads (`Sacks.webp`, `Sacksmol.webp`), byte-identical copies — never edited, never renamed
 - **`Football Sim/`**: the repository — git clone of `github.com/kozikosi/Football-Sim`, checked out on `main`; branches `main` (Claude-line only) + `glm`, `ds`, `nemo-super`, `nemo-ultra`, ownership map in its `BRANCHES.md`; push pending (user credentials required)
-- **Backups**: `backup-before-reorg/` (6 verified snapshots) + full-folder tar snapshots in the OpenCode temp dir
+- **Backups**: `backup-before-reorg/` (7 verified snapshots) + full-folder tar snapshots in the OpenCode temp dir
 - **Validation scripts** (`pw4.js`, `validate.js`, `phone.js`, `mk.sh`) are named in old docs but absent — recreate before any regression run
 
 ---
