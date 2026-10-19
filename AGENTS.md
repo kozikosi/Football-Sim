@@ -82,10 +82,13 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 ---
 
 ## Key Files & Entry Points
-- **Canonical file**: `NFL Draft Simulator.html` — the older "(7)" / "(9) (OC)" copies in this folder are stale; do not edit or delete them
-- **Colleague handoff**: `MASTER_GUIDE.md` (protocol + model suggestions) and `tasks/T1…T12` (paste-ready packets for other local agents)
-- **Validation scripts** (in `p/` folder if present — absent in this checkout): `pw4.js`, `validate.js`, `phone.js`, `mk.sh`
-- **Test runner**: `bash tests/run_all.sh` (present: `tests/madden-sim.spec.js` only)
+- **Canonical app**: `NFL Draft Simulator.html` at the project root. NOTE (Oct 19 ~01:48): the DS session applied its own "v20" restyle on top of the reviewed GLM baseline — treat the root file as DS work-in-progress until reconciled; the verified Season-first build is `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
+- **Protocol layer** (root): `AGENTS.md` (this file) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
+- **`Deepseek Flash/`**: the DS session's live workspace (Master Doctrine, Patch Notes, v20 canvas, its own backups) — do not fold into the mainline without review
+- **`archive/`**: `claude-lineage/` ((8) pure snapshot, recovered (9) (OC)), `nemo-ultra/` ((7) with its fixes + 19 patch scripts), `nemo-super/` (design doc + Season-First rewrite), `ds/` (master_plan)
+- **`Football Sim/`**: the repository — git clone of `github.com/kozikosi/Football-Sim`, checked out on `main`; branches `main` (Claude-line only) + `glm`, `ds`, `nemo-super`, `nemo-ultra`, ownership map in its `BRANCHES.md`; push pending (user credentials required)
+- **Backups**: `backup-before-reorg/` (6 verified snapshots) + full-folder tar snapshots in the OpenCode temp dir
+- **Validation scripts** (`pw4.js`, `validate.js`, `phone.js`, `mk.sh`) are named in old docs but absent — recreate before any regression run
 
 ---
 
