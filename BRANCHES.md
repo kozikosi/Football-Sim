@@ -16,3 +16,6 @@ Notes and caveats:
 - GitHub upload commits ("Add files via upload") were all made by Kosi manually; this file records the AI that actually authored each document.
 - DS renamed user-owned files (`Sacks`, `(9) (OC)`) with "(DS Flash)" suffixes during the split; those mislabels were reverted on main/locally.
 - The GLM canonical on `glm` is the 648,749-byte verified build; a newer 650,283-byte mutant appeared locally at 01:44 while a DS session was still writing — treat it as unreviewed work.
+
+## Session outcome (19 Oct)
+- Nemo Ultra (nemotron-3-ultra-free): rewrite loop ended with no surviving output; product file untouched (hash verified). Its record = the fixed `(7)` build, the 19 patch scripts, `AGENTS.md` origin, and the original spec on this branch. Session confirmed the submission workflow before going idle.
