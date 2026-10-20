@@ -119,8 +119,11 @@ def make_report(all_events: list[dict[str, Any]]) -> str:
     )
     unranked = sorted((r for r in rows if not r["eligible"]), key=lambda r: r["speaker"].casefold())
     ordered = ranked + unranked
+    snapshot_date = max((e.get("date", "") for e in active_events), default="unknown")
     lines = [
         "# Council Scorecard",
+        "",
+        f"**Snapshot date:** {snapshot_date} UTC",
         "",
         "Generated from council/scorecard/events.jsonl by scripts/build_council_scorecard.py.",
         "Purpose: observed contribution reliability and usefulness; this is not an intelligence or character ranking.",
@@ -176,7 +179,7 @@ def make_report(all_events: list[dict[str, Any]]) -> str:
     lines += [
         "## Reading this snapshot",
         "",
-        "- GPT and Ultra each have one provisional, single-review E2E assessment. They are not ranked and their small provisional difference must not determine whose factual account is accepted.",
+        "- GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.",
         "- Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.",
         "- Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.",
         "- Other historical members are not assigned scores from folder presence or incomparable old reports. They enter automatically when an audited event is recorded.",
