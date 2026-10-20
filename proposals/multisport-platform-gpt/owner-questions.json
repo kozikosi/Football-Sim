@@ -52,9 +52,9 @@
       "area": "eligibility",
       "priority": 2,
       "status": "open",
-      "question": "Does the approximate 1,200-player target apply to NFL alone, and what qualifies a current player for all-time eligibility?",
-      "recommended_default": "Plan for roughly 1,200 NFL entries and require a documented curated inclusion decision for current players.",
-      "cost_if_wrong": "Candidate research effort and roster representation may be sized incorrectly.",
+      "question": "What criteria should qualify a current player for the NFL all-time pool?",
+      "recommended_default": "Use a documented, curated inclusion decision rather than a simple fame or current rating cutoff.",
+      "cost_if_wrong": "An unclear eligibility rule can make the historical pool inconsistent and can create avoidable disputes about active players.",
       "answer": ""
     },
     {
@@ -162,9 +162,9 @@
       "area": "candidate-pool",
       "priority": 4,
       "status": "open",
-      "question": "Does the approximately 1,200-player target apply separately to NBA, and should candidates be balanced by position, era, or prominence?",
-      "recommended_default": "Plan for approximately 1,200 NBA entries and review coverage across role, era, and level of evidence.",
-      "cost_if_wrong": "The pool may be too small, too large, or overrepresent one role or generation.",
+      "question": "How should the NBA all-time candidate pool be balanced across eras and roles?",
+      "recommended_default": "Review representation across eras, roles, and evidence quality; let the accepted all-time definition determine inclusion.",
+      "cost_if_wrong": "The pool may overrepresent one generation or player archetype even when its total size is appropriate.",
       "answer": ""
     },
     {
