@@ -8,6 +8,7 @@ those events, so there is no separate member roster to maintain.
 from __future__ import annotations
 
 import json
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -119,7 +120,7 @@ def make_report(all_events: list[dict[str, Any]]) -> str:
     )
     unranked = sorted((r for r in rows if not r["eligible"]), key=lambda r: r["speaker"].casefold())
     ordered = ranked + unranked
-    snapshot_date = max((e.get("date", "") for e in active_events), default="unknown")
+    snapshot_date = datetime.now(timezone.utc).date().isoformat()
     lines = [
         "# Council Scorecard",
         "",
