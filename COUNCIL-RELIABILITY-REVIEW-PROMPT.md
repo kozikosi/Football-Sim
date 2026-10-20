@@ -58,4 +58,4 @@ If you add your own analysis, identify yourself as the speaker of that analysis 
 - Files you edited, if any (exact paths); otherwise say “No files edited”
 - Tests or commands run, with result; otherwise say “No tests run”
 
-Do not ask the Owner to manually add each future council member to a list. The contribution ledger is the source; the generator derives member rows from it. An auditor still has to enter each task's evidence and ratings, and must say who did so.
+Do not ask the Owner to manually add each future council member to a list. The generator discovers new members from the required SPEAKER header on Markdown work filed under _agents/ and from the event ledger; no roster edit is needed. An auditor still has to enter each task's evidence and ratings in the ledger, and must say who did so.
