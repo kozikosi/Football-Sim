@@ -94,21 +94,21 @@ Under the submission workflow, the steps below describe how **Claude** implement
 | `SUBMISSIONS.md` | each agent: **its own section only**, above its end-anchor | user/verifier: Status lines and decision notes |
 | `_agents/<name>/` | that agent only | never edit or rename another agent's files |
 | `_reference/`, `_archive/` | nobody — frozen | read-only |
-| `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | GLM session maintains at the user's request; decisions are the user's. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` |
-| `Football Sim/` (repo) | user pushes; GLM commits snapshots at the user's request | propose |
+| `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | maintained at the Owner's request, **by Owner assignment per edit (R4 — no rank)**: the assigned session applies approved changes and logs the record in `CHRONICLE.md`. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` or `COUNCIL-BULLETIN.md` |
+| `Football Sim/` (repo) | user pushes; snapshot commits at the user's request by whatever session the Owner assigns | propose |
 
 1. **No agent edits the product file or publishes.** All improvements, fixes and code go into `SUBMISSIONS.md`.
-2. **Claude is the sole implementer** — decides accept/defer/reject and how to build; resolves conflicting proposals; delivers complete files through the user.
+2. **Claude is the Architect and the sole implementer (R3 — technical authority)** — decides accept/defer/reject and how to build; resolves conflicting proposals; delivers complete files through the user.
 3. **Self-contained submissions** — quote the exact current code being replaced, then give the full replacement; Claude sees only what the paste contains. Always state the build hash the proposal applies to.
 4. **Read-only rule** — files you didn't author and don't own per the table above are read-only.
-5. **Test obligations** — before submitting code: `node --check`, and note what you verified. After Claude delivers a build: a read-only verification pass (end-to-end draft → season → playoffs, clean browser console, 390px layout check) gates the hash bump in `STATUS.md`.
+5. **Test obligations** — before submitting code: `node --check`, and note what you verified. After Claude delivers a build: a read-only verification pass (end-to-end draft → season → playoffs, clean browser console, 390px layout check) gates the hash bump in `STATUS.md`. The verifier files a five-line report (hash · E2E driven · numbers re-measured with command + sample size · console/390px result · what was deliberately not checked) and, where two builds exist, runs the function-diff (`tests/funcdiff.js`): the changed-function set must equal the union of the accepted submissions' touched functions.
 6. **Attribution lives in git commits and `_agents/` folders — never in filenames.**
 7. **Reading is free, messaging is not** — sessions may read anything; only the user relays between sessions.
 
 ---
 
 ## Key Files & Entry Points
-- **Canonical app**: `NFL Draft Simulator.html` at the project root — the GLM verified Season-first build + the DS session's finished patch (restyle + three fixes including the division-tag look-ahead bug), verified playable end-to-end in-browser Oct 19 ~02:05. Change log: `_agents/ds/deliveries/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch)
+- **The product**: `NFL Draft Simulator v20 Claude.html` — the **v20 reference build** (Owner ruling R2, 19 Oct): Claude's own lineage, now the merge base. `NFL Draft Simulator.html` (the Season-first build + the DS patch: restyle + three fixes incl. the division-tag look-ahead repair, verified in-browser Oct 19 ~02:05, hash `77bb9ed5…`) is the **donor of fixes** merged into v20; change log: `_agents/ds/deliveries/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch).
 - **Protocol layer** (root): `AGENTS.md` (this file) · `STATUS.md` (build hash + roles + parked decisions) · `COLLECTIVE-PROMPT.md` (standing system prompt for Claude, co-authored by the collective) · `SUBMISSIONS.md` (shared proposals document) · `ONBOARDING.md` (paste-ready orientation prompt for colleague sessions) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
 - **`_agents/`**: per-session workspaces — `glm/` (this session), `ds/` (Master Doctrine, Patch Notes, its snapshots), `nemo-super/` (design doc + Season-First rewrite), `nemo-ultra/` (19 patch scripts; session still active). Nothing here is authoritative — see `_agents/README.md`
 - **`_archive/`**: superseded builds, frozen — `(7)` (Claude base + Nemo Ultra fixes), `(8)` (pure Claude), `(9) (OC)` (recovered); lineage in its `BUILD-LOG.md`
@@ -145,6 +145,7 @@ Under the submission workflow, the steps below describe how **Claude** implement
 - "2-Pt Conv" not "two-point conversion" (except Guide)
 - No "with no strong lean either way" anywhere
 - Flex is realistic (not an exploit); QB **cannot** flex
+- **English only in documents and user-facing communication** (Owner rule, 19 Oct): all shared documents, logs, messages and anything the user reads/receives are written in English — the Owner reads EN/FR/ES/PT/Latin and does **not** read Chinese. Council-internal chat defaults to English too, so every session can audit it; a non-English line in a shared artefact is struck-and-replaced like a broken build line.
 
 ---
 

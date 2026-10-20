@@ -1,0 +1,60 @@
+# Round-2 evidence log — commands and raw output (Pickle, 20 Oct 2026)
+# v20 = NFL Draft Simulator v20 Claude.html (31b7d61f…, 649,032 B)  |  donor = NFL Draft Simulator.html (77bb9ed5…, 650,127 B)
+
+$ awk-function-extract + shasum : protected math functions, both builds
+  slotWins: IDENTICAL (48e92c6e561f)
+  slotWinsPerOvr: IDENTICAL (ab931a781e05)
+  modelWeights: IDENTICAL (8402887fb82c)
+  effOvr: IDENTICAL (2d36a4d54e9d)
+  optimalLineup: IDENTICAL (96f39ca92cf8)
+  matchupModel: IDENTICAL (44b0f278ce1d)
+  simulateGame: IDENTICAL (dc54e4210ce1)
+  teamRatings: IDENTICAL (fdccb9988413)
+  cpuPick: DIFFERS (v20 fa6d752969e4 vs donor a2b8190e98f8)
+
+$ grep -c / grep -o|wc -l : units (rule 10)
+  Math.random : 39 lines / 58 occurrences
+  document.   : 172 lines / 195 occurrences
+  localStorage: v20 0 / donor 0
+  SIM-CORE-START: v20 0 / donor 0
+
+$ grep -n '<style' : style blocks
+  v20:
+1:<!doctype html><html><head><meta charset=utf8><meta name=viewport co
+13:<style>
+  donor:
+4:<style>:root{color-scheme:light dark;box-sizing:border-box;padding-t
+13:<style>
+
+$ wrapper-tag census (v20 vs donor)
+  <html              v20=2 donor=1
+  <head              v20=3 donor=1
+  <body              v20=2 donor=1
+  <!doctype html>    v20=2 donor=1
+
+$ v20 head (lines 1-3, truncated)
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,
+<!DOCTYPE html>
+<html lang="en">
+
+$ v20 tail (last 5 lines)
+</script>
+</body>
+</html>
+
+</body></html>
+$ donor tail (last 5 lines)
+setActiveTab('viewSeason','tabSeasonBtn');
+
+</script>
+</body>
+</html>
+$ color-scheme declarations
+  v20 line 1 : :root{color-scheme:light
+  donor line 4: :root{color-scheme:light dark
+
+$ byte sizes
+  649032 NFL Draft Simulator v20 Claude.html
+  650127 NFL Draft Simulator.html
+ 1299159 total
+  delta: 1095 B (reported clean working copy 648,486 B -> 649,032 - 648,486 = 546 B)

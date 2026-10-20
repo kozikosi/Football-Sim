@@ -1,0 +1,41 @@
+# Round-3 evidence log — commands and raw output (Pickle, 20 Oct 2026)
+# Adversarial verification: funcdiff re-run + cpuPick direction, with my own extraction
+
+$ 1) DS funcdiff-probe.js re-run (his tool, his invocation)
+   node _agents/ds/tools/funcdiff-probe.js 'NFL Draft Simulator v20 Claude.html' 'NFL Draft Simulator.html'
+   409 top-level functions
+   412 top-level functions
+common 408 | identical 394 | differing 14
+A-only 1: updateStepper
+B-only 4: seasonToast, goSeason, meetingInfo, meetingTagText
+differing common:
+
+$ 2) My INDEPENDENT re-implementation (python3, project-style close on lone '}')
+  v20 funcs: 409  donor funcs: 412
+  common 408 | identical 394 | differing 14
+  v20-only : ['updateStepper']
+  donor-only: ['goSeason', 'meetingInfo', 'meetingTagText', 'seasonToast']
+
+$ 3) cpuPick DIRECTION — tokens inside each extracted body (grep -c)
+  hash v20:   fa6d752969e4
+  hash donor: a2b8190e98f8
+  curRound   donor=4 v20=0
+  topAvail   donor=4 v20=0
+  posBest    donor=2 v20=0
+  ovrFloor   donor=2 v20=0
+  donor miss line: const reach = 3 + Math.min(9, Math.floor(Math.abs(randNormal())*4));
+  v20   miss line: const c = cands[3 + Math.floor(Math.random()*Math.min(90, cands.length-3))]; best = c.p; bestSlot = c.s; }
+
+$ 4) Name census (units: named functions per file)
+  v20: 409   donor: 412
+
+$ 5) Math gate re-verification (8 protected functions + constants)
+  slotWins: IDENTICAL (48e92c6e561f)
+  slotWinsPerOvr: IDENTICAL (ab931a781e05)
+  modelWeights: IDENTICAL (8402887fb82c)
+  effOvr: IDENTICAL (2d36a4d54e9d)
+  optimalLineup: IDENTICAL (96f39ca92cf8)
+  matchupModel: IDENTICAL (44b0f278ce1d)
+  simulateGame: IDENTICAL (dc54e4210ce1)
+  teamRatings: IDENTICAL (fdccb9988413)
+  SEASON_RECORD_CAPS/PERSISTENCE: localStorage v20=0 donor=0

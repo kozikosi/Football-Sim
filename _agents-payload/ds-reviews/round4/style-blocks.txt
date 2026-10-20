@@ -1,0 +1,32 @@
+
+A/v20: 2 style blocks
+  block0: lines 1-1; 372 B; opens 5; @media 0; @keyframes 0; prefers-color-scheme 0; color-scheme 1
+    color   1: :root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+  block1: lines 13-313; 25872 B; opens 310; @media 9; @keyframes 5; prefers-color-scheme 2; color-scheme 2
+    comment 151: /* key players: aligned two-card layout */
+    comment 214: /* ---- phone layout: smaller base text, stacked columns, scrollable tables ---- */
+    comment 216: /* ===== v20 look: the season is the product ===== */
+    comment 254: /* the phone draft board: one compact card per player, every stat labelled and colour-coded */
+    marker  216: /* ===== v20 look: the season is the product ===== */
+    marker  254: /* the phone draft board: one compact card per player, every stat labelled and colour-coded */
+    color   18: @media (prefers-color-scheme: light){
+    color   223: @media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) body{background:
+
+B/donor: 2 style blocks
+  block0: lines 4-4; 377 B; opens 5; @media 0; @keyframes 0; prefers-color-scheme 0; color-scheme 1
+    color   4: :root{color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}
+  block1: lines 13-264; 20186 B; opens 259; @media 8; @keyframes 4; prefers-color-scheme 1; color-scheme 1
+    comment 151: /* key players: aligned two-card layout */
+    comment 214: /* ---- phone layout: smaller base text, stacked columns, scrollable tables ---- */
+    comment 254: /* ---- Season-first presentation: bottom supplementary links + hero CTAs ---- */
+    marker  254: /* ---- Season-first presentation: bottom supplementary links + hero CTAs ---- */
+    color   18: @media (prefers-color-scheme: light){
+
+block0 exact same: false
+block0 donor after color-scheme:light dark -> light equals v20: true
+block0 bytes: v20 372 / donor 377
+
+block1 lines: v20 13-313 (301) / donor 13-264 (252)
+block1 bytes: v20 25872 / donor 20186
+block1 opens: v20 310 / donor 259; @media 9/8; @keyframes 5/4
+block1 color-scheme occurrences: v20 2 / donor 1 (both are prefers-color-scheme media queries)
