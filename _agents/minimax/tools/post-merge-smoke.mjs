@@ -23,7 +23,10 @@
 // Exit codes (tests/CONTRACT.md v2 league): 0 = all checks pass, 1 = findings, 4 = usage/parse error.
 
 import { pathToFileURL } from 'node:url';
-import { resolve } from 'node:path';
+import { resolve, basename } from 'node:path';
+import fs from 'node:fs';
+import crypto from 'node:crypto';
+import { execFileSync } from 'node:child_process';
 
 const argv = process.argv.slice(2);
 const flags = {};
@@ -41,6 +44,19 @@ if (!target) {
 }
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+
+// ---- run identity helpers (GPT's OPENCHAMBER-E2E evidence schema asks for these) ----------------
+function gitOut(args) {
+  try { return execFileSync('git', args, { cwd: resolve(process.cwd()), encoding: 'utf8', stdio: ['ignore','pipe','ignore'] }).trim(); }
+  catch { return 'unavailable'; }
+}
+function gitRef() {
+  const d = gitOut(['rev-parse', '--abbrev-ref', 'HEAD']);
+  const h = gitOut(['rev-parse', 'HEAD']);
+  if (d === 'unavailable' || h === 'unavailable') return 'unavailable';
+  return d + ' @ ' + h.slice(0, 12);
+}
+function gitCommit() { const h = gitOut(['rev-parse', 'HEAD']); return h === 'unavailable' ? 'unavailable' : h; }
 
 const PROBE = `(() => {
   const vw = window.innerWidth, de = document.documentElement, offenders = [];
@@ -142,12 +158,33 @@ class CDP {
   // build-agnostic: state assertions decide success, ids are only the handle to click.
   // This runs BEFORE the 100-season report on purpose: render100 replaces its container's
   // innerHTML, which destroys the draft-results buttons (observed on v20: startHandle null).
-  const startSeasonBtn = await clickFirst(['ctaPlaySeasonBtn', 'startSeasonBtn']);
-  steps.season = { startHandle: startSeasonBtn };
+  //
+  // Season entry is ENUMERATED, not assumed. Known entry paths (measured 20 Oct):
+  //   donor-cta          ctaPlaySeasonBtn  -> the donor's Season tab (#seasonHost) -> hero
+  //   results-season-tab resultsSeasonBtn  -> v20's inline season panel inside the results
+  //   donor-season-tab   tabSeasonBtn       -> the donor's Season tab directly
+  //   v20-inline         (none)             -> the results panel already shows the season
+  // The "start" step differs too: the donor shows a hero (startSeasonHeroBtn), v20 renders
+  // startSeasonBtn inline; both then reach beginSeasonBtn / simSeasonBtn.
+  steps.season = { entryPath: null, startHandle: null, heroHandle: null, beginHandle: null, simHandle: null };
+  const ENTRY_PATHS = [
+    { id: 'donor-cta', steps: ['ctaPlaySeasonBtn'] },
+    { id: 'results-season-tab', steps: ['resultsSeasonBtn'] },
+    { id: 'donor-season-tab', steps: ['tabSeasonBtn'] },
+    { id: 'v20-inline', steps: [] },
+  ];
+  for (const p of ENTRY_PATHS) {
+    let clicked = null;
+    for (const s of p.steps) { if (await clickId(s)) { clicked = s; steps.season.entryHandle = s; await sleep(800); } }
+    if (await waitFor(`!!document.getElementById('startSeasonBtn')||!!document.getElementById('startSeasonHeroBtn')`, 2500, 250)) {
+      steps.season.entryPath = clicked ? p.id : 'already-rendered';
+      break;
+    }
+  }
+  steps.season.startHandle = await clickFirst(['startSeasonHeroBtn', 'startSeasonBtn']);
   await sleep(1500);
-  // the donor's season stage shows a hero panel first (startSeasonHeroBtn) before the preseason view
   steps.season.heroHandle = await clickFirst(['startSeasonHeroBtn']);
-  await sleep(1500);
+  await sleep(1200);
   steps.season.beginHandle = await clickFirst(['beginSeasonBtn', 'beginSeasonBtn2']);
   await sleep(1500);
   steps.season.simHandle = await clickFirst(['simSeasonBtn']);
@@ -201,14 +238,39 @@ class CDP {
   await sleep(1200);
   const probe = JSON.parse((await evalJS(PROBE)) || '{}');
 
+  const reportChecks = {
+    A_reportRendered: steps.reportRendered === true,
+    D_seasonAndPlayoffsComplete: steps.playoffs.complete === true && !!steps.playoffs.champion,
+    B_noViewportOverflow: probe.offenderCount === 0,
+    C_noPageErrors: errors().length === 0
+  };
+  const sha256 = crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  const bytes = fs.statSync(file).size;
+  const all = Object.values(reportChecks).every(v => v === true);
+  const anyFalse = Object.values(reportChecks).some(v => v !== true);
+  const skipped = Object.entries(steps).filter(([k, v]) => v === 'unavailable' || v === 'skipped').map(([k]) => k);
   const report = {
-    build: url.split('/').pop(),
-    checks: {
-      A_reportRendered: steps.reportRendered === true,
-      D_seasonAndPlayoffsComplete: steps.playoffs.complete === true && !!steps.playoffs.champion,
-      B_noViewportOverflow: probe.offenderCount === 0,
-      C_noPageErrors: errors().length === 0
+    // --- run identity (GPT's OPENCHAMBER-E2E evidence schema, fields the protocol asks for) ---
+    run: {
+      utc: new Date().toISOString(),
+      tool: 'post-merge-smoke.mjs',
+      tool_version: '2 (2026-10-20)',
+      artifact_path: file,
+      artifact_sha256: sha256,
+      artifact_bytes: bytes,
+      artifact_basename: basename(file),
+      git_ref: gitRef(),
+      git_commit: gitCommit(),
+      browser: 'Chromium-family over CDP (--remote-debugging-port=' + port + ')',
+      browser_version: browserVersion,
+      viewport: { desktop: '1280x900', mobile: '390x844' },
+      seed: 'none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed',
+      evidence_name: 'e2e-' + sha256.slice(0, 12) + '-' + new Date().toISOString().slice(0, 10) + '.json'
     },
+    verdict: all ? 'PASS' : (anyFalse ? 'FAIL' : 'PARTIAL'),
+    skipped_checks: skipped,
+    build: url.split('/').pop(),
+    checks: reportChecks,
     detail: { steps, draftPicks, reportPath: steps.reportPath, reportRendered: steps.reportRendered, reportStalled: steps.reportStalled,
       pageErrors: errors(), offenderCount: probe.offenderCount, offenders: probe.offenders,
       pageOverflowPx: probe.pageOverflowPx, documentScrollWidth: probe.documentScrollWidth, bodyOverflowX: probe.bodyOverflowX }
@@ -216,6 +278,6 @@ class CDP {
   console.log(JSON.stringify(report, null, 2));
   await cdp.send('Target.closeTarget', { targetId }, false);
   cdp.ws.close();
-  const failed = Object.values(report.checks).some(v => v !== true);
+  const failed = !all;
   process.exit(failed ? 1 : 0);
 })().catch(e => { console.error(String(e)); process.exit(4); });

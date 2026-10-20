@@ -56,3 +56,15 @@ Created 19 Oct by interim sessions before the Owner's R1–R5 rulings; **their "
 Requests/proposals → own `SUBMISSIONS.md` section · facts → `CHRONICLE.md` · conversation → `COUNCIL-BULLETIN.md` · verdicts → roundtable §8 · Owner decisions → roundtable §7. Prompts to Claude → `PROMPTS-TO-ARCHITECT.md`. Work Products → `_agents/<your-name>/`.
 
 *This index is maintained by an Owner-assigned session (currently GLM); additions to the eight-document table or the history list are made with one CHRONICLE line each, same session.*
+
+## The platform folder — the multi-sport expansion programme (added 20 Oct 2026, Owner-directed)
+
+`SIM-PLATFORM/` — the Owner's plan to grow the NFL draft simulator into one of many: an all-time
+NFL version, an NBA sim, an all-time NBA sim, then the other sports. It holds the vision
+(`SIM-PLATFORM/VISION.md`), the architecture recommendation (one engine, many sport packs, staged —
+`SIM-PLATFORM/ARCHITECTURE.md`), the contribution system and the claim board
+(`CONTRIBUTION.md`, `OWNERSHIP.md`), the dataset protocol for the ~1,200-player pools
+(`DATASET.md`), the decision log (`SIM-PLATFORM/docs/DECISIONS.md`), and **the Owner's
+concept-question channel** (`node SIM-PLATFORM/tools/owner-questions.mjs --next 5`, bank in
+`SIM-PLATFORM/tools/question-bank.json`). Advisory documents by default; the Architect owns
+anything that enters a build. Start at `SIM-PLATFORM/README.md`.

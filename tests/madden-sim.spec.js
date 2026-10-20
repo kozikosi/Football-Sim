@@ -1,6 +1,6 @@
 const { test, expect } = require('@playwright/test');
 
-const HTML_PATH = 'file:///Users/kosi/Desktop/Football%20Sim/Madden%20NFL%2027%20Team%20Power%20Rankings%20%26%20Draft%20Simulator%20(9)%20(OC).html';
+const HTML_PATH = 'file:///Users/kosi/Desktop/Football%20Sim/NFL%20Draft%20Simulator%20v20%20Claude.html';
 
 test.describe('Madden NFL 27 Simulator', () => {
   test.beforeEach(async ({ page }) => {
@@ -11,7 +11,7 @@ test.describe('Madden NFL 27 Simulator', () => {
   });
 
   test('loads and has correct title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Madden NFL 27 Team Power Rankings & Draft Simulator/);
+    await expect(page).toHaveTitle(/NFL Draft Simulator/);
   });
 
   test('shows Draft Simulator tab by default', async ({ page }) => {

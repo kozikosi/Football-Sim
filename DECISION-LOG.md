@@ -1,108 +1,39 @@
-# DECISION-LOG.md — Architect (Claude) rulings index
+# DECISION-LOG.md — searchable index of Architect decisions
 
-**Purpose.** Searchable index of Architect decisions. Separate from CHRONICLE (facts/events) — this is decisions only. One line per ruling.
+**Purpose.** One place where every ruling Claude (the Architect) has made is recorded, so no agent re-asks an answered question. Companions: `QUESTIONS-FOR-THE-ARCHITECT.md` (the question pack), `COUNCIL-BULLETIN.md` (discussion), `CHRONICLE.md` (facts/events).
 
-**Format:** `YYYY-MM-DD | Question ID | Decision | One-line reason | Build hash when applied`
+**How to use.** Append a row when Claude answers a question or makes a ruling. Columns: Date | Question ID | Decision | One-line reason | Build hash when applied. Separate from CHRONICLE (which is facts/events) — this is Architect decisions only.
 
----
-
-## Merge & Keep-List Decisions
-
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| 2026-10-19 | Owner R2 | v20 = reference base; donor = fixes | Owner ruling | — |
-| 2026-10-19 | Owner R3 | Claude = Architect, technical authority | Owner ruling | — |
-| 2026-10-19 | Owner R4 | No deputy, flat council | Owner ruling | — |
-| 2026-10-19 | Owner R5 | No editing another's files | Owner ruling | — |
-| 2026-10-19 | Owner R1 | Deployment out of scope | Owner ruling | — |
-| | Q-GLM-2 / Q-GLM-5 / Q-GLM-7 / Q-GLM-8 | | | |
-| | Q-NEMOSUPER-1 / Q-NEMOSUPER-2 | | | |
-| | Q-NEMOULTRA-1 / Q-NEMOULTRA-2 | | | |
-| | Q-PICKLE-1 / Q-PICKLE-3 / Q-PICKLE-7 / Q-PICKLE-8 | | | |
-| | Q-BEAM-1 / Q-BEAM-2 | | | |
-| | Q-DS-4 / Q-DS-5 | | | |
-| | Q-UK-1 / Q-UK-2 / Q-UK-3 | | | |
+**Status:** Seed entries from council records (M-19…M-57). Full transcription pending Owner pasting Claude's answers into QUESTIONS-FOR-THE-ARCHITECT.md ANSWERS section.
 
 ---
 
-## cpuPick Direction
+## Decisions
 
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| 2026-10-20 | Pickle M-13 #2 (original) | Keep v20's cpuPick | GLM forwarded unmeasured | — |
-| 2026-10-20 | Pickle M-20 / DS M-16 / GLM M-53 | **REVERSED** — Keep donor's cpuPick | Donor has round floors + bounded miss; v20 has cap + 92-deep unbounded miss | — |
-| | Q-PICKLE-1 (amended) | | | |
-| | Q-GLM-5 (implied) | | | |
-| | Q-NEMOSUPER-2 (implied) | | | |
-
----
-
-## Wrapper & color-scheme
-
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| | Q-GLM-7 | | | |
-| | Q-DS-4 | | | |
-| | Q-PICKLE-3 / Q-PICKLE-8 | | | |
-| | Q-BEAM-2 | | | |
-| | Q-UK-2 | | | |
+| Date | Question ID | Decision | One-line reason | Build hash |
+|------|-------------|----------|-----------------|------------|
+| 19 Oct | R1 | Internal project, deployment out of scope | Owner ruling | — |
+| 19 Oct | R2 | v20 = reference build; donor = merge donor | Owner ruling | 31b7d61f… |
+| 19 Oct | R3 | Claude holds technical authority; no outvoting | Owner ruling | — |
+| 19 Oct | R4 | No rank/deputy; assignments rotate | Owner ruling | — |
+| 19 Oct | R5 | No editing another agent's files without Owner permission | Owner ruling | — |
+| 20 Oct | D-a | Keep donor's `cpuPick` (94b878605b73 vs v20 3dc9d12f500a) | Donor has credible-GM round floors; v20 has seen>16 skips + 92-deep misses | 31b7d61f… |
+| 20 Oct | D-b | Wrapper: relocate 372 B base style, delete 173 B duplicate markup | v20 is double-wrapped; 546 B figure counts base style as duplication | 31b7d61f… |
+| 20 Oct | D-c | Donor `render100` drop-in (cc1016eacc78) | v20 uses undeclared `rWeights`; donor removes the crash | 31b7d61f… |
+| 20 Oct | Color-scheme | `light dark` (donor's) | App is dark-default; `light` forces light native controls on dark page | 31b7d61f… |
+| 20 Oct | #glue | Variant A recommended (nostack guard) | Preserves #draftTable2 pre-set labels; DS recommends A, Pickle baseline B | 31b7d61f… |
+| 20 Oct | Persistence | Out of scope for merge | Absent from both builds; post-merge work | — |
+| 20 Oct | Transport | MCP push to kozikosi/Football-Sim (provisional) | Claude's provisional answer; council proposes branch → verifier → main | — |
+| 20 Oct | House rules v2 | Adopted (rules 3, 4, 6, 8, 7, 11, R-f) | Owner directive M-26 | — |
+| 20 Oct | Rule 12 | Disavowed by Owner (M-38) | Superseded by rule 13 (direct collaboration) | — |
+| 20 Oct | Rule 13 | Direct collaboration is live | Owner ruling M-38 | — |
 
 ---
 
-## SIM-CORE Markers & Harness
+## How to add a row
 
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| 2026-10-19 | Contract v2 (B1–B4) | Markers + 3 headless entry points mandatory | Binding contract | — |
-| | Q-GLM-8 | | | |
-| | Q-PICKLE-7 / Q-PICKLE-9 | | | |
-| | Q-UK-4 | | | |
+When Claude answers a question or makes a ruling, append a row with: the date, the question ID (from QUESTIONS-FOR-THE-ARCHITECT.md or a ruling reference), the decision, a one-line reason, and the build hash when the decision is applied. Do not edit existing rows — append corrections as new rows citing the original.
 
----
+## House rules that apply
 
-## Workflow & Process
-
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| 2026-10-19 | GLM roundtable D3 | Full Claude-dominant write workflow | Owner interim answer | — |
-| 2026-10-20 | GLM M-52 | Architect MCP repo write confirmed | Tested read+write to kozikosi/football-sim | — |
-| | Q-GLM-1 / Q-GLM-2 / Q-GLM-3 | | | |
-| | Q-GLM-13 / Q-GLM-14 / Q-GLM-15 | | | |
-| | Q-GLM-16 / Q-GLM-17 / Q-GLM-18 | | | |
-| | Q-DS-6 / Q-DS-7 / Q-DS-8 | | | |
-| | Q-BEAM-3 / Q-BEAM-4 / Q-BEAM-5 | | | |
-| | Q-UK-6 / Q-UK-7 / Q-UK-8 | | | |
-
----
-
-## v20 Product Quality
-
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| | Q-GLM-6 (v20 soul) | | | |
-| | Q-GLM-20 (U-series triage) | | | |
-| | Q-GLM-21 (Architect wishlist) | | | |
-| | Q-GLM-22 (performance budget) | | | |
-| | Q-GLM-23 (v1.0 definition) | | | |
-| | Q-GLM-24 (awards/recap) | | | |
-| | Q-NEMOULTRA-3 / Q-NEMOULTRA-4 / Q-NEMOULTRA-5 | | | |
-| | Q-PICKLE-2 (persistence) | | | |
-| | Q-PICKLE-4 (seeded RNG) | | | |
-| | Q-PICKLE-5 (SEASON_RECORD_CAPS) | | | |
-| | Q-PICKLE-6 (queue hold) | | | |
-| | Q-UK-4 (harness timing) | | | |
-| | Q-UK-5 (verification timing) | | | |
-
----
-
-## Verification & Release
-
-| Date | Question ID | Decision | Reason | Build |
-|------|-------------|----------|--------|-------|
-| 2026-10-19 | GLM roundtable (verifier) | 1A: Ultra/fresh; 1B: DS/GLM | Five-line report + funcdiff | — |
-| | Q-GLM-4 (context packet) | | | |
-| | Q-UK-5 (harness before merge) | | | |
-
----
-
-*Maintained by UK (S-2200–2299). Append only — never rewrite. Source: COUNCIL-BULLETIN.md messages, QUESTIONS-FOR-THE-ARCHITECT.md answers, SUBMISSIONS.md status lines, CHRONICLE.md. Update when Architect answers arrive verbatim via Owner.*
+English only (rule 7). Append, never rewrite (rule 2). Facts need receipts (rule 11). Counts name units (rule 10).

@@ -66,9 +66,33 @@
 - **Q-MINIMAX-6** `[LATER]` Where should a user-visible crash like Q-MINIMAX-1 be logged — as a normal `SUBMISSIONS.md` proposal (round-cap bound), or on a fast lane that bypasses the cap? A crash in a shipped button is a different class from a balance change, but it still has to reach you.
 
 ---
-## ANSWERS — Architect (Claude)
+## Beam's questions
 
-*(empty — answers arrive verbatim as delivered through the Owner; each answer cites its question ID; strikethrough on any claim the Architect later revises with a dated correction line, so the record stays honest and nobody rewrites his words.)*
+- **Q-BEAM-1** `[BLOCKING]` Merge verification: what single automated check would you trust most to call the merge green — a protected-function hash gate (`tests/math-baseline.json`), a behaviour fixture diff (same inputs → same yards/points), or a full 100-season win-correlation (`pw4.js`, target r > 0.6)? If you had to pick one, which, and what threshold?
+- **Q-BEAM-2** `[NOW]` The v20 wrapper is double-wrapped (`grep -ic doctype` → 2: line 1 `<!doctype html>` + line 2 `<!DOCTYPE html>`), matching Pickle M-13's correction of DS P2; plus a stray 14-byte `</body></html>` tail. So the 544-byte delta is NOT explained by the tail alone — is the fix "remove the duplicate wrapper + duplicate close, keep the donor's structured header" (Pickle's recommendation), and which `color-scheme` declaration wins (`light` vs `light dark`)? A byte-exact "clean v20" reference would let every council member verify against one file.
+- **Q-BEAM-3** `[NOW]` For the council's contribution shape: do you want each advisor to file critiques (what's weak) and improvements (what to try) separately, or a single consolidated per-round brief (DS's Q-DS-6)? Your reading cost is the constraint; tell us the format and length you'll actually read.
+- **Q-BEAM-4** `[LATER]` v20 ships 58 unseeded `Math.random()` sites and zero persistence — given R1 (internal, no deploy), is reproducibility (seeded RNG) worth a protected-constant-level decision, or a post-merge round? And is "remember my season" (localStorage) a merge deliverable or a round-2 item (Pickle Q-PICKLE-2)?
+- **Q-BEAM-5** `[OPEN]` What is the smallest change that would make v20 verifiable by a fresh agent with no context — one file, one command, one expected number? (This is the test of whether our protocol is cheap enough.)
+
+### Nemo Ultra
+
+- **Q-NEMOULTRA-1** `[BLOCKING]` What is the exact v20 keep-list from the Architect's perspective — which v20 visual/UX components (hero, stepper, mobile draft board, CSS variables, animations) must survive the merge unchanged?
+- **Q-NEMOULTRA-2** `[BLOCKING]` The v20 mobile draft board (12-column CSS grid cards at lines 259-273) uses `data-nostack="1"` on the table — does the Architect want this pattern adopted for all mobile tables (standings, league leaders, player browser, team comparison)?
+- **Q-NEMOULTRA-3** `[NOW]` The v20 CSS introduces `--glow`, `--gold` variables and radial-gradient backgrounds. Does the Architect want these as the new design system baseline, or should the merge use canonical's simpler palette with v20 additions only where needed?
+- **Q-NEMOULTRA-4** `[NOW]` v20 uses `data-nostack="1"` on the draft table to disable mstack transformation. Should this opt-out pattern be standardized for all tables that need custom mobile layouts (draft board, draft priority, draft cards)?
+- **Q-NEMOULTRA-5** `[LATER]` v20's mobile draft board uses 12-column CSS grid with explicit `grid-column` assignments per cell. Is this the approved mobile table pattern going forward, or should we use the mstack data-label approach for consistency?
+
+## VL's questions
+
+- **Q-VL-1** `[BLOCKING]` v20's `render100` crashes with `ReferenceError: rWeights is not defined` at v20:6018 — `grep -n "rWeights"` on v20 returns exactly that one line and the identifier is never defined; the donor has zero occurrences and its own `render100` at donor:5984 renders the full 100-season report with 0 page errors. Which side wins the merge for `runLeague100`/`render100`? *(Settled by receipt: the merged candidate carries the donor's `render100` at `cc1016eacc78`, and MiniMax's dynamic gate on the candidate exits 0 with A true.)*
+- **Q-VL-2** `[BLOCKING]` v20's phone-layout block at v20:6409–6432 loses the stacked table layout after a viewport change (the `mstack` memo bug: a table stacked at 390, unstacked at 1280, then returns to 390 without re-stacking, leaving a 515 px table inside a 344 px card). The donor's block at donor:6458–6488 re-applies labels on every pass and dropped the row-count memo. Confirm the donor's block takes precedence in the merge. *(Settled by receipt: the merged candidate carries donor Variant A (`ec6306eb79df`) with v20's tail tab, `msChecked` absent, and MiniMax's gate exits 0 with B = 0 offenders.)*
+- **Q-VL-3** `[NOW]` The 390 px acceptance check is blind on this build: `body { overflow-x: hidden }` makes `documentElement.scrollWidth = innerWidth = 390` while `#playerTable` is 515 px wide inside a 344 px card. The mobile transform also runs on a 150 ms debounce and is skipped for tables not yet in the DOM. Should `tests/phone.js` assert **element-level** overflow (`getBoundingClientRect().right > innerWidth + 1`) after a ≥ 200 ms settle? *(MiniMax's `post-merge-smoke.mjs` already implements this: element-level, through the 390→1280→390 resize order, exit 0 on the merged candidate.)*
+- **Q-VL-4** `[NOW]` Two post-game copy defects are shared by both builds: "steal a 18–16 win" (v20:3082 / donor:3101 — wrong article for scores starting 8, 11, 18; observed live in the week-1 recap) and "the 49ers's answer" (v20:5433 / donor:5483). Post-merge round, or fold into the merge?
+- **Q-VL-5** `[NOW]` "sudden death" (v20:2880, recap paragraph builder) and "went the distance" (v20:2898, turnover paragraph) are live in v20 and already fixed in the donor; "expected scoring" (v20:4832) is live in both but only in a stats-explainer paragraph, not post-game copy. Rule: compliant as-is, or remove the phrase? *(Both phrases are at 0 occurrences in the merged candidate — MiniMax M-72 §1 — so this is now moot for v20→merged.)*
+- **Q-VL-6** `[LATER]` `SUBMISSIONS.md` is ~102 KB and a drag on your reading as Architect. Split it into an index plus per-entry files now, or only after the merge?
+- **Q-VL-7** `[OPEN]` Would a **pre-review stage** — where advisors review each other's `SUBMISSIONS.md` entries before they reach you — cut your reading cost enough to be worth one extra lightweight step? If yes, what shape (one checklist file? a §8-style verdict block per entry)?
+
+## ANSWERS — Architect (Claude)
 
 ---
 *Housekeeping: question numbers are stable; once answered they keep a `[ANSWERED <date>]` tag appended and never get renumbered. Sessions may add to their own block anytime. The Owner may add to section A anytime.*
