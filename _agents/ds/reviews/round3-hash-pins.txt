@@ -1,0 +1,51 @@
+A: 409 functions; B: 412 functions
+common 408 | identical 390 | differing 18
+A-only 1: updateStepper
+B-only 4: goSeason, meetingInfo, meetingTagText, seasonToast
+differing:
+  buildDefenseDetail: A 2501-2575 (75L) | B 2483-2557 (75L)
+  checkRewards: A 6381-6428 (48L) | B 6430-6484 (55L)
+  cpuPick: A 1368-1395 (28L) | B 1342-1384 (43L)
+  dramaticEnding: A 2834-2892 (59L) | B 2816-2874 (59L)
+  finishDraft2: A 6076-6085 (10L) | B 6125-6140 (16L)
+  fitNoteHTML: A 1616-1624 (9L) | B 1605-1607 (3L)
+  generateGameSummary: A 3031-3142 (112L) | B 3050-3162 (113L)
+  matchupTagHTML: A 3427-3432 (6L) | B 3477-3482 (6L)
+  playByPlay: A 2979-3030 (52L) | B 2997-3049 (53L)
+  render100: A 5934-6028 (95L) | B 5984-6078 (95L)
+  renderDraftBoard2: A 1626-1731 (106L) | B 1609-1713 (105L)
+  renderDraftResults: A 6124-6174 (51L) | B 6179-6223 (45L)
+  renderGuideHTML: A 4920-4953 (34L) | B 4970-5003 (34L)
+  renderPlayoffsView: A 3855-3894 (40L) | B 3905-3944 (40L)
+  renderSeasonTab: A 6038-6042 (5L) | B 6088-6091 (4L)
+  renderSeasonTabInner: A 6043-6059 (17L) | B 6092-6108 (17L)
+  setActiveTab: A 832-840 (9L) | B 776-783 (8L)
+  turnoverParagraph: A 2894-2948 (55L) | B 2876-2966 (91L)
+S-102 anchors:
+  startDraft2: A 1408-1446 | B 1397-1435
+  startSeason: A 3371-3381 | B 3391-3401
+  runLeague100: A 5880-5903 | B 5930-5953
+hash pins (12-hex, full body; v20 / donor):
+  setActiveTab	ae1a1425186e	d3a34f7c930b
+  cpuPick	3dc9d12f500a	94b878605b73
+  fitNoteHTML	182c1792501b	757091310f1f
+  renderDraftBoard2	6f77deaf263f	3736a5bfb36f
+  buildDefenseDetail	992145aa07e0	d2119e2e85f1
+  dramaticEnding	121874b933bb	50a5ae2444ac
+  turnoverParagraph	4438e25ceb0b	4afe77d0379a
+  playByPlay	e2b3fb170aa3	d4a85bd7b181
+  generateGameSummary	4a9bfd080ae2	9f285818eff6
+  matchupTagHTML	629126ff9072	ec2ac8742b3e
+  renderPlayoffsView	3332c4ee5417	e45f75b5cca9
+  renderGuideHTML	7fa8dd9b7c3d	220a95914ca9
+  render100	1ea6e8414397	cc1016eacc78
+  renderSeasonTab	06116b2fa88a	39ee2333b960
+  renderSeasonTabInner	b5d8adf9910b	441697cc5b99
+  finishDraft2	a8de5a4415df	f2795464c5c7
+  renderDraftResults	b807480c58be	aa36c6f94647
+set diffs:
+  updateStepper	53f8bddf4768	—
+  seasonToast	—	2899a60794ed
+  goSeason	—	c3aa841e5308
+  meetingInfo	—	b9cf6919cf54
+  meetingTagText	—	88f76590181b

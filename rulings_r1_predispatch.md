@@ -1,0 +1,82 @@
+# RULINGS — Round 1 pre-dispatch adjudication (Claude, 19 Oct 2026)
+
+Status: **NOT YET DISPATCHABLE** — three blockers in section F. Contract rulings (B), round plan (C) and task reconciliation (D) are final unless the verifier on the real build contradicts them. Paste this verbatim into STATUS.md / SUBMISSIONS.md (implementer's notes) via GLM.
+
+## A. What I independently verified (and what I could not)
+
+Files I could actually inspect: the attached SUBMISSIONS.md, CONTRACT.md, COLLECTIVE-PROMPT.md, ROUND-1-USER.md, the council memos, the public GitHub repo `kozikosi/football-sim` (HEAD c398345, 19 Oct 01:34 HST; read-only clone) and my own published build (v20).
+
+| Council claim | Result |
+|---|---|
+| C2: DOM references are interleaved with core math, so "zero `document.`/`window.` in the slice" cannot be satisfied by contiguous extraction | **CONFIRMED on the file I have.** 131 `document.`/`window.` references occur in the first 4,000 lines (206 in the whole file), mixed in with math. DS's "~110 before line 3942" is the same order. A static zero-count is unsatisfiable without a large UI refactor. |
+| Build identity `77bb9ed5…` (650,127 bytes) | **NOT VERIFIED — I do not have that file.** The repo's `NFL Draft Simulator.html` is 649,032 bytes, sha256 `31b7d61f42a5…`. It equals my published v20 plus a stray `<!doctype…>` header fragment and a duplicate `</body></html>` tail (the malformed-document finding). My v20 working copy is 648,486 bytes. None of these is 77bb9ed5. Every line number the council cites (1401, 3942, 5857 …) is therefore unchecked. |
+| ROUND-1-USER §D: "sudden death", "second meeting", "wasn't in this round", footer "MORE", needs-only, Guide intro, flex fit-check are already fixed | **CONTRADICTED on both files I can read.** Alive in both: `sudden death` (recap sentence "never got the ball back: sudden death, and that was the end of it"), the divisional banner "Same division: a second meeting…" (printed for every divisional game regardless of how many meetings occurred), "wasn't in this round", the footer label "More" (so **U-04 is not done**), and the dead function `fitNoteHTML` still contains the "out-values the best natural one" string (a text grep would call it live). Fixed in my lineage: needs-only toggle, Guide intro block, fit-check box (the box is gone; the dead function remains). The council's liveness check was either run on a different build or mis-grepped. **Do not close these items on the council's word.** |
+| C4: S-301 amendment gives phone.js exit 2 = usage/parse, conflicting with C4's 2 = data integrity | **CONFIRMED** (SUBMISSIONS.md line 603). I did not read S-102, S-103, S-401 in full; I rely on the relays that S-102 and S-401 were amended to the contract. Re-check when the build arrives. |
+| C5/C6: no bootstrap step for baseline.json | **CONFIRMED** from CONTRACT.md text (C5 step 3 needs the baseline; C6 says "written once from the certified build"; nobody says how). |
+| funcdiff should compare against 77bb9ed5, not backup-before-reorg | **NOT VERIFIED** (no hash provenance available to me). Policy ruled in B4. |
+| U-06: compute is ~75 ms/season so the 100-season failure is render/handoff | **Plausible, unproven.** I will reproduce at 390px emulation with separate compute/render timers before any change. |
+| Repo state | The GitHub repo is a stale upload snapshot: no `tests/`, no SUBMISSIONS.md/STATUS.md/CONTRACT.md. It is not the council's working tree. |
+
+## B. Contract rulings (CONTRACT.md → version 2; the amendments below are formal)
+
+**B1 — C2 (extraction boundary).** Replace the bullet "assert the slice contains zero `document.`/`window.` references" with:
+1. Markers appear exactly once; slice must parse (`node --check` equivalent via `new vm.Script`). Failure → exit 3, naming the problem.
+2. The slice is evaluated in a `vm` context in which `document`, `window`, `localStorage`, `sessionStorage`, `location`, `navigator` are accessors that throw `DOMAccessError(name)`. `Math.random` is replaced by the seeded generator inside that context (no product change).
+3. Each required entry point must exist as a function after evaluation, then be executed under the guard (`buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft`, plus a full seeded season/100-season run in pw4). Missing symbol, `ReferenceError` for an out-of-slice helper, or any `DOMAccessError` → **exit 3**, naming the symbol/accessor. Fix for a missing helper = a behavior-preserving move of that helper inside the markers (never a UI refactor).
+4. The static count of `document.`/`window.` text in the slice is printed as `INFO dom_text_refs=N` and recorded in the manifest; growth versus the manifest is a warning, not a gate.
+
+**B2 — C4 (exit codes) and the entry-wins rule.** The entry-wins precedence rule is **repealed** for exit codes and status-line grammar. League-wide, for every script in `tests/`: `0` pass · `1` validation/lint finding (numbers, drift, overflow) · `2` data-integrity violation (dataset checks, manifest mismatch, **missing or invalid baseline**) · `3` extraction/boundary failure (C2) · `4` usage error, missing input file, unparsable input. Consequences: S-301's "phone.js exit 2 = usage/parse" is **superseded** → phone.js uses 1 for findings and 4 for usage/parse; S-102, S-103, S-401, S-502 must match; `run_all.sh` exits with the first nonzero child code and names the step. If an entry disagrees with the contract, **the contract wins and the conflict is reported at assembly** (a script may not silently redefine a code). Output-line text format remains per-entry. Any future exception requires a numbered amendment here.
+
+**B3 — C5 (run order).** Insert **step 0: environment/identity** — print the sha256 of the product file and compare with STATUS.md (mismatch → exit 4, "wrong build"). Step 3 (pw4) runs its drift gate only when `tests/baseline.json` exists; when absent it exits **2**, and `run_all.sh` reports `PW4: BASELINE-ABSENT (exit 2)` — never a pass. Steps for scripts not yet delivered print `<NAME>: SKIPPED (not delivered this round)` and make the overall line `RUN_ALL: PARTIAL`, never `PASS`.
+
+**B4 — C6 (baseline and funcdiff procedure).**
+1. Designate the reference build: the certified build whose sha256 is recorded in STATUS.md.
+2. Bootstrap (verifier session only): `node tests/pw4.js --write-baseline` against that build. The command **refuses to overwrite** an existing baseline (exit 2) except with `--replace-baseline <ruling-ID>`, which logs the ID inside the file.
+3. Validate: the file records build sha256, seed, Node version, sample sizes (drafts × seasons) and tolerance bands; an immediate second run of `node tests/pw4.js` with the same seed must reproduce the same numbers exactly (else the harness is non-deterministic → fix before freezing).
+4. Freeze: the user records baseline.json's sha256 in STATUS.md. Regeneration is an explicit ruling, and mandatory re-measurement follows any accepted change to weights/MC/PLAN_K (C8.2).
+5. Until frozen, run_all reports pw4 as UNGATED. Round 1A may not claim any statistical regression gate.
+6. **funcdiff** belongs to the independent verification procedure, not routine `run_all.sh` (the runner cannot know the predecessor). Reference = the previous certified build named in STATUS.md, identified by sha256 in the report; the script asserts reference ≠ candidate hash (else exit 4) and prints both hashes. Expected-changed set must equal the union of the accepted entries' touched functions. For Round 1A (markers + moves) the expected set is the functions physically moved/wrapped, listed in the implementer's manifest.
+
+## C. Round plan (final)
+
+**Round 1A — foundation (5 entries, at the cap):**
+1. S-202 — SIM-CORE markers, three entry points, manifest (the only product-file change; behavior-preserving).
+2. S-203 — `tests/2025_standings.js` (data only; no dependency; ships here because 1B consumes it).
+3. S-103 — `tests/funcdiff.js`.
+4. S-102 — `tests/pw4.js` (needs S-202's entry points; includes M11 draft-distribution measurements for U-12 — measurement only).
+5. S-301 — `tests/run_all.sh` (steps 0–3 live; validate/phone print SKIPPED).
+Order of construction: S-202 → S-203 → S-103 → S-102 → S-301.
+**Acceptance 1A:** (a) markers exactly once; `node --check` passes on slice and whole script; (b) runtime-guard evaluation passes, entry points exist with S-102's quoted signatures (C7); (c) browser E2E on the candidate identical to the reference: draft → season → playoffs → Super Bowl, clean console, 390px no overflow; (d) funcdiff changed-set equals the manifest; (e) baseline bootstrapped and reproduced exactly; (f) manifest check; (g) a deliberately injected defect (e.g. delete one function, then flip one MC coefficient) makes run_all fail — proof the gates can fail.
+
+**Round 1B — remaining tests:** S-502 (`validate.js`) and S-401 (`tests/phone.js`), plus the run_all update that enables both. **Acceptance 1B:** validate re-measured on the real build (published r≈0.66/ρ≈0.69/RMSE≈2.6 are *references*, not gates, until measured); exit-code matrix tested (missing dataset → 2, missing marker → 3, bad arg → 4); validate must FAIL on three injected defects (shuffled team ratings, zeroed QB weight, reversed wins); phone.js flags the known offenders, and stays a lint (the 390px browser pass remains the authority); the S-301 nowrap rule is reconciled with U-17 before U-17 ships. 1B does not start until 1A is certified.
+
+U-series stays out of Round 1. U-06 diagnosis (read-only, separate compute vs render timers) may run in parallel by a local session; no product change.
+
+## D. Task reconciliation
+
+| Item | Status | Reason / next |
+|---|---|---|
+| §D stale items (sudden death, went-the-distance, "wasn't", fit-check, Guide intro, second meeting) | **REOPENED until verified** | Alive in the files I can read; verifier greps 77bb9ed5 with exact strings. |
+| U-04 footer "MORE" | **ACTIVE (R2)** | Label still in both files. |
+| U-20 needs-only | **Resolved in my lineage; verify in 77bb9ed5** | Toggle removed; a chosen position now shows everyone at it. |
+| U-01, 02, 03, 05, 07–11 | **ACTIVE, Round 2 batch A/B** | Copy/defaults; count as one "copy & defaults" change. |
+| U-06 | **ACTIVE (diagnosis now, fix R2)** | Hypothesis only. |
+| U-12 | **Measurement first (M11 in 1A), tuning R3** | 8-OVR rule needs distributions before touching `cpuPick`. |
+| U-13 | **Analysis R3** | Evidence-gated; re-measure validate afterwards (C8.2). |
+| U-14–U-16, U-18, U-19 | **ACTIVE, Round 2 recap build** | Real fix: one scoring-event source (consistency identity: events sum = score). |
+| U-17 | **ACTIVE R2** | Reconcile with S-301 nowrap rule. |
+| U-21 persistence | R3 | Needs core markers first. |
+| U-22 advanced stats | R4+, design-first | Rate ÷ league rate "index" cards + per-game vs total vs index ranks (as in the Sack Index attachments). |
+
+## E. Verification plan
+- A fresh session verifies, never an author of an entry in that round. 1A authors are GLM, DS, Nemo Super → verifier **Nemo Ultra** (or a brand-new session). 1B authors are GPT, Ultra → verifier **DS or GLM**.
+- Inputs: reference hash, candidate hash, accepted entries, CONTRACT v2, this file.
+- Report (five lines + disclosure): `BUILD <sha256 reference → candidate>` · `COMMANDS & EXIT CODES` · `RESULTS (numbers with sample size)` · `DISCRIMINATION (injected defects and whether each failed)` · `NOT CHECKED`. Missing execution is reported UNVERIFIED, never PASS.
+- I re-run the verifier's commands myself on the same file before promotion.
+
+## F. Dispatch readiness — NOT READY. Blockers
+1. **I do not have build 77bb9ed5.** Attach `NFL Draft Simulator.html` (650,127 bytes) to the chat, or upload it to the GitHub repo (the repo is public, I can clone it). Also attach STATUS.md, AGENTS.md, and tests/ if any exist. Until then no implementation and no line-number claim is trusted.
+2. **Liveness contradictions** (section A) must be re-checked by a session on 77bb9ed5.
+3. I have not read S-102, S-103, S-401 in full; I will read them against CONTRACT v2 when the build arrives and rule per entry (accept/defer/reject) in the Round 1A decision list. If I find them non-conforming I will send them back for amendment rather than patch them myself.
+
+Process notes: (i) the interim product-level document `claude/master_plan.md` in the project stays as a stopgap; the governance master document (short, navigation-only, referencing manifest/baseline/AGENTS.md) follows Round 1A certification, as GPT and the council advise. (ii) GPT's warning is adopted: after 1B the next priority is mathematical validation — does a player's estimated draft value predict the wins he adds in simulated seasons — rather than more infrastructure. (iii) Collective-protocol note: this session can read files and run Node, so Claude can run the harness before delivery and report real "Checked" results; delivery is still a candidate file the verifier gates before anything is published.

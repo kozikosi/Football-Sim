@@ -1,0 +1,14 @@
+# OS
+.DS_Store
+
+# Kilo tooling state (keep kilo.jsonc, the shared project config)
+.kilo/agent-manager.json
+.kilo/worktrees/
+.kilo/.gitignore
+
+# Nested git mirror (Owner's git infrastructure)
+Football Sim/
+
+# Frozen/backup artifacts (excluded from initial commit per Owner)
+_archive/
+backup-before-reorg/
