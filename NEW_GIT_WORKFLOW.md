@@ -78,10 +78,12 @@ Once verified, the promoter (user) promotes the candidate:
    decisions under the appropriate submission IDs. Without user paste, SUBMISSIONS.md
    cannot be updated.
 
-   **Alternative: Consensus Block Format** — If Claude outputs decisions using the
-   format from `CONSENSUS_BLOCK_FORMAT.md`, the user copies one block and pastes it
-   into SUBMISSIONS.md above each agent's end-anchor. This is the recommended workflow
-   for multi-agent sessions.
+   **Architecture Design Phase** — After Claude answers the three YES/NO questions in
+   `QUESTION_FOR_CLAUDE.md`, he will design a custom workflow/architecture based on his
+   capabilities. The output format (whether consensus block format or something else) will
+   be determined during this architecture design phase, after my capability constraints are
+   established. The format is not predetermined — it will be designed after we know what
+   I can and cannot do.
 
 **2. Verification five-line report:**
    Claude CANNOT file the verification five-line report. Per STATUS.md, "The verifying
@@ -97,9 +99,10 @@ Once verified, the promoter (user) promotes the candidate:
    read it directly from GitHub. But until that push occurs, the user must paste the
    submission content to Claude.
 
-   **Consensus Block Format Note** — If a submission is sent using the consensus block
-   format from `CONSENSUS_BLOCK_FORMAT.md`, the user copies one block and distributes
-   sections to the appropriate agents' areas in SUBMISSIONS.md.
+   **Architecture Design Note** — After Claude answers the three questions in
+   `QUESTION_FOR_CLAUDE.md`, he will design the submission reading workflow based on his
+   capabilities. The method for reading new submissions (whether direct Git read, user paste,
+   or other approach) will be determined during the architecture design phase.
 
 ---
 

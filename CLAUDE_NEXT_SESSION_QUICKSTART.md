@@ -1,210 +1,158 @@
-# Claude's Next Session Quickstart
+# Claude's Next Session Quickstart — Architecture Design Phase
 
-## 📋 Purpose
-One-page guide for Claude's next session. Everything you need to know in one place — read from Git, output using consensus block format, handle the 3 governance actions.
+## 🎯 Purpose
+One-phase guide for Claude's next session. **Claude must first answer the 3 YES/NO questions before any architecture or workflow decisions are made.**
 
-## ✅ What Claude Can Read Directly From Git (No Paste Required)
+## ⚠️ MANDATORY: Answer 3 Questions First
 
-| Document | What You'll Find |
-|----------|-----------------|
-| `STATUS.md` | Build hash (77bb9ed5), roles, pending submissions, current state |
-| `SUBMISSIONS.md` | Proposals queue with entries by ID, status, build references |
-| `NEW_GIT_WORKFLOW.md` | Direct Git access workflow — what Claude can/cannot read |
-| `INTEGRATION_AUDIT_LIGHTNING.md` | Corrected audit findings (15 sections); risk #5 downgraded to LOW |
-| `NEW_WORKFLOW_ROUND1.md` | Round 1 adjudication chain: S-202 → S-203 → S-103 → S-102 → S-301 |
-| `ULTRA_PROMPT.md` | Ultra prompt with v20/canonical analysis; 6 suggestion topics |
-| `QUESTION_FOR_CLAUDE.md` | 3 YES/NO capability questions (all NO for user-paste actions) |
-| `GOVERNANCE_CHANGE_PROPOSAL.md` | Git-direct workflow assessment; 3 optional governance changes |
-| `CONSENSUS_BLOCK_FORMAT.md` | **One-block submission format** — Decision/Reason lines map to SUBMISSIONS.md |
-| `AUTHORITATIVE_DATASET_FORMAT_DECLARATION.md` | S-203 format authoritative for Round 1; S-502 superseded |
-| `S-202_SIM-CORE_MARKERS_GUIDE.md` | SIM-CORE markers and 3 function moves (foundation for everything) |
-| `CONTRACT_B1_B2_ADOPTION_CONFIRMED.md` | B1 (DOMAccessError guard) and B2 (exit code matrix 0/1/2/3/4) adopted |
-| `PRE_IMPLEMENTATION_ACTIONS_STATUS.md` | All 8 pre-implementation actions status; critical path identified |
-| `OTHERCHAMBERS_AI_CRITIQUES.md` | External AI code critiques and bug fixes |
-| `LIGHTNING_SUBMISSION.md` | S-900 integration audit submission |
-| `NFL Draft Simulator.html` | The 650,127-byte authoritative build |
+**Before any architecture or workflow discussion, Claude must answer these three questions (from `QUESTION_FOR_CLAUDE.md` on Git):**
 
-## ⚠️ 3 Actions Requiring User Paste (Governance-Mandated)
+1. **Can I record my own final accept/defer/reject decisions in SUBMISSIONS.md without the user pasting them?** → YES / NO
 
-**These cannot be automated — you must handle them:**
+2. **Can I file the verification five-line report independently?** → YES / NO
 
-1. **Record Claude's decisions in SUBMISSIONS.md** — After Claude's response, paste his accept/defer/reject decisions verbatim into each agent's Implementer's note area (above their end-anchor). The consensus block format Decision/Reason lines map directly here.
+3. **Can I read new submissions that have not yet been pushed to the GitHub repo?** → YES / NO
 
-2. **File the verification five-line report** — After verification, file a report with: `Hash · E2E driven · numbers re-measured (command + sample size) · console/390px result · what was deliberately not checked`
+**⚠️ DO NOT proceed to architecture design, workflow discussion, or format selection until all three questions are answered.**
 
-3. **Read new submissions not yet pushed to Git** — If any agent has submitted content not yet pushed to Git, paste it to Claude before he can read it. Once pushed, Claude can read it directly.
+**After all three are answered:** We proceed to the Architecture Design Phase (see below).
 
-## 🤖 How to Output — Consensus Block Format
+## 🏗️ Architecture Design Phase — After 3 Questions Are Answered
 
-**Output ONE block using this format. The user will copy/paste it once.**
+**Once Claude has answered the three questions above, we proceed to design the workflow and architecture:**
 
-```
-=== BUILD HASH: 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f ===
+### Step 1: I Present My Architecture Design Proposals
+Based on my capabilities (determined by your YES/NO answers), I present:
+- My proposed workflow architecture
+- Output format options
+- Submission handling approach
+- Verification and promotion process
 
-=== SESSION: GLM ===
-Decision: accept S-202 / defer S-301 / reject S-102
-Reason: one-line reason (paste verbatim into SUBMISSIONS.md Implementer's note)
-Details: any additional notes, function quotes, or references
+### Step 2: You Tell Me What Works and What Doesn't
+- What works well
+- What doesn't work
+- What to change or modify
+- Any preferences you have
 
-=== SESSION: DS (Master Doctrine) ===
-Decision: approve Patch Notes (DS Flash)
-Reason: Risk #5 downgraded to LOW, council liveness verified
-Details: delivery-42 committed
+### Step 3: We Decide on the Final Architecture
+- Accept my design as-is
+- Modify elements of my design
+- Reject and design entirely different architecture
+- Choose from format options (or design something new)
 
-=== SESSION: NEMO-SUPER ===
-Decision: continue S-502 baseline bootstrap
-Reason: rWeights undefined bug — awaiting --write-baseline run
-Details: bug tracking
+### Step 4: We Implement the Chosen Workflow
+- Set up the workflow
+- Test it in practice
+- Make adjustments as needed
+- Document the final approach
 
-=== SESSION: NEMO-ULTRA ===
-Decision: review v20 visual design adoption
-Reason: hero unit, stepper, mobile draft board — all green
-Details: design notes
+### Step 5: Ongoing Refinement
+- Periodically review the workflow
+- Make changes if needed
+- Ensure it continues to work for both of us
 
-=== VERIFICATION REPORT ===
-Hash: 77bb9ed5 · E2E: draft→season→playoffs clean · Console: no errors · 390px: no horizontal scroll · [what was deliberately not checked]
+## 📋 What Claude Should Do in This Session
 
-=== ADDITIONAL NOTES ===
-[Any other notes, build references, etc.]
-```
+**If this is Claude's first session with you:**
 
-### Decision Line Format
+1. **Read `QUESTION_FOR_CLAUDE.md` from Git** — Answer the 3 YES/NO questions
+2. **Do NOT output using any format yet**
+3. **Do NOT discuss workflow architecture**
+4. **Do NOT output consensus block format**
+5. **Simply answer the three questions** and wait for further instructions
 
-| Claude Decision | What User Pastes into SUBMISSIONS.md |
-|----------------|--------------------------------------|
-| `accept S-XXX` | → Entry status: **accepted**; implement the change (up to 5-6 this round) |
-| `defer S-XXX` | → Entry status: **deferred**; name the condition that revives it |
-| `reject S-XXX` | → Entry status: **rejected**; one-line reason recorded; proponent can appeal once with new evidence |
+**If Claude has already answered the 3 questions in a previous session:**
 
-### Where Each Session's Content Goes
+1. Proceed to Architecture Design Phase (Step 1 above)
+2. Present architecture design proposals
+3. Await your feedback on what works/doesn't work
+4. Iterate until we have a mutually acceptable workflow
 
-| Session | SUBMISSIONS.md Section | Implementer's Note Line |
-|---------|----------------------|------------------------|
-| GLM | Above GLM's end-anchor | `Implementer's note (user pastes Claude's decision here): —` |
-| DS (Master Doctrine) | Above DS's end-anchor | Same line |
-| Nemo Super | Above Nemo Super's end-anchor | Same line |
-| Nemo Ultra | Above Nemo Ultra's end-anchor | Same line |
-| Gemini | Above Gemini's end-anchor | Same line (if applicable) |
-| GPT | Above GPT's end-anchor | Same line (if applicable) |
+## 📚 Documents Claude Can Read From Git (No Paste Required)
 
-## 📊 Critical Path — What to Address First
+| Document | Purpose | When to Read |
+|----------|---------|--------------|
+| `QUESTION_FOR_CLAUDE.md` | The 3 YES/NO capability questions | **MANDATORY — First, before anything else** |
+| `NEW_GIT_WORKFLOW.md` | Git-direct workflow overview | After 3 questions are answered |
+| `INTEGRATION_AUDIT_LIGHTNING.md` | Corrected audit findings | During architecture design |
+| `PRE_IMPLEMENTATION_ACTIONS_STATUS.md` | 8 pre-implementation actions status | During architecture design |
+| `S-202_SIM-CORE_MARKERS_GUIDE.md` | SIM-CORE markers guide | If relevant to architecture |
+| `CONTRACT_B1_B2_ADOPTION_CONFIRMED.md` | B1/B2 contract adoption | If relevant to architecture |
+| `AUTHORITATIVE_DATASET_FORMAT_DECLARATION.md` | Dataset format declaration | If relevant to architecture |
+| `OTHERCHAMBERS_AI_CRITIQUES.md` | External AI code critiques | If relevant to architecture |
 
-**The critical path is: baseline bootstrap → S-202 certification → 1A certification → 1B dispatch**
+## 🚫 What Claude Should NOT Do
 
-### If You Address Only One Thing, Make It #1:
+**Do NOT** in this session:
 
-**#5 — Baseline Bootstrap** (most critical path item)
+- ❌ Output using any predetermined format (including consensus block format)
+- ❌ Discuss workflow architecture before answering the 3 questions
+- ❌ Make any SUBMISSIONS.md entries
+- ❌ File verification reports
+- ❌ Record decisions in SUBMISSIONS.md
+- ❌ Propose or implement any workflow changes
+- ❌ Design the output format or submission handling
 
-```
-Command: node tests/pw4.js --write-baseline against build 77bb9ed5
-This creates: tests/baseline.json with authority
-Then: Record the resulting sha256 in STATUS.md
-Until frozen: ALL pw4 runs report UNGATED (no regression gate claims)
-```
+**Do NOT** in future sessions (until architecture is designed):
 
-**Why this matters:** Without baseline bootstrap, no statistical claims can be made. This is the entry point for the entire critical path.
+- ❌ Assume any particular output format
+- ❌ Use a format that hasn't been agreed upon
+- ❌ Skip the architecture design phase
 
-### If You Have Time for More:
+## ✅ What Claude Should Do
 
-**#7 — S-202 SIM-CORE Markers**
+**Phase 1 — Answer the 3 Questions:**
 
-- Insert `/*SIM-CORE-START*/ ... /*SIM-CORE-END*/` markers in NFL Draft Simulator.html
-- Move 3 functions into core: `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft`
-- These are behavior-preserving moves of already-DOM-free code
-- Without S-202, pw4.js and run_all.sh can't extract the core
+1. Read `QUESTION_FOR_CLAUDE.md` from Git
+2. Answer YES or NO to all three questions
+3. Send your answers back to the user
 
-**#3 — Authoritative Dataset Format**
+**Phase 2 — Architecture Design (after Phase 1 is complete):**
 
-- S-203 format (`tests/2025_standards.js`) is authoritative for Round 1
-- S-502 format (`tests/season_2025.json`) is superseded
-- S-203 team names must match TEAM_DATA keys exactly (32 teams, 17 games)
+1. Wait for user feedback on your answers
+2. Present architecture design proposals based on your capabilities
+3. Gather feedback on what works/doesn't work
+4. Iterate until we have a mutually acceptable workflow
+5. Implement the chosen workflow
 
-## 📝 Session Workflow — Step by Step
+**Phase 3 — Ongoing:**
 
-### Step 1: Read from Git (No Paste Required)
-```
-Read these documents from GitHub:
-  • STATUS.md (build hash, roles)
-  • NEW_GIT_WORKFLOW.md (workflow overview)
-  • INTEGRATION_AUDIT_LIGHTNING.md (audit findings)
-  • PRE_IMPLEMENTATION_ACTIONS_STATUS.md (8 actions status)
-  • CONSENSUS_BLOCK_FORMAT.md (output format)
-```
+1. Use the agreed-upon workflow
+2. Periodically review and refine
+3. Make adjustments as needed
+4. Document the final approach
 
-### Step 2: Output Using Consensus Block Format
-```
-Output ONE block with:
-  • Build hash
-  • Session decisions (Decision + Reason lines)
-  • Verification report (5-line format or note if not run yet)
-  • Additional notes
-```
+## 💡 Key Principle
 
-### Step 3: User Copies One Block
-```
-User copies the entire block from your response
-User pastes into SUBMISSIONS.md above each agent's end-anchor
-For each session: user pastes Decision + Reason into Implementer's note area
-```
+**Architecture follows capability.** Claude's YES/NO answers to the three questions fundamentally constrain what workflow designs are possible. The architecture design phase ensures we have a workflow that works within those constraints, rather than trying to fit a square peg in a round hole.
 
-### Step 4: User Updates STATUS.md (One Line)
-```
-If build hash changed: update the BUILD <sha256> line in STATUS.md
-```
+**Your answers to the three questions determine the feasible design space.** Once we know what you can and cannot do, we can design a workflow that works within those boundaries.
 
-### Step 5: Verification Report
-```
-User files five-line verification report (or notes if not yet run)
-```
+## 📞 How to Use This Quickstart
 
-### Step 6: Promotion (If Verified)
-```
-Move old build to _archive/
-Record round row in _archive/BUILD-LOG.md
-Bump hash in STATUS.md
-```
+**For the user (you):** Put this in your Claude prompt:
 
-## ❓ Quick Reference — YES/NO Answers
+> "Please read `QUESTION_FOR_CLAUDE.md` from Git and answer YES/NO to the three questions. Do not proceed to architecture design or workflow discussion until all three are answered."
 
-Claude's 3 capability questions (from QUESTION_FOR_CLAUDE.md):
+**For the session:**
 
-1. **Can I record my own decisions in SUBMISSIONS.md?** → **NO** — user must paste them
-2. **Can I file the verification five-line report?** → **NO** — verifier session files this
-3. **Can I read new submissions not yet pushed to Git?** → **NO** — must be pushed first
+1. **Start:** Claude reads `QUESTION_FOR_CLAUDE.md` from Git
+2. **Answer:** Claude answers the 3 YES/NO questions
+3. **Submit:** Claude sends back the three answers
+4. **Wait:** User reviews the answers
+5. **Design:** If all three are answered, proceed to Architecture Design Phase
+6. **Iterate:** Present proposals, gather feedback, decide on workflow
+6. **Implement:** Use the agreed-upon workflow
 
-**Optional 4th question answer:**
-- **Would the consensus block format (one block, session headers) be viable for future rounds?** → Yes — user copies one block and distributes sections to each agent's area in SUBMISSIONS.md
+## 🎯 The Golden Rule
 
-## 📞 On Git — How to Access
+**No architecture workflow decisions until the 3 questions are answered.**
 
-All documents are at: `https://github.com/kozikosi/Football-Sim/tree/main/`
-
-Or in this repo checkout: `/Users/kosi/Desktop/Football Sim/Football Sim/`
-
-Claude can browse GitHub or read files directly. No user paste required for any document listed in the "✅ What Claude Can Read Directly From Git" section above.
+This ensures the workflow we design is compatible with Claude's actual capabilities, not assumptions about what he can or cannot do.
 
 ---
 
-## 🎯 Before You Start Claude's Session:
-
-1. ✅ Ensure new content is pushed to Git (if any)
-2. ✅ Update STATUS.md hash after last verification (if changed)
-3. ✅ Open this quickstart — you're ready
-
-## 🚀 When Claude Responds:
-
-1. **Read his output** — he should use the consensus block format
-2. **Copy the entire block** (one paste only)
-3. **Paste into SUBMISSIONS.md** — each session's Decision/Reason into Implementer's note areas
-4. **Update STATUS.md hash** if changed (one line)
-5. **File verification report** after running any checks
-6. **Push any new content to Git** for the next session
+*If Claude's first action is anything other than answering the 3 YES/NO questions from `QUESTION_FOR_CLAUDE.md`, the session should be paused and the user should be asked to ensure those questions are addressed first.*
 
 ---
-
-**That's it — you're ready for Claude's next session. Everything he needs is on Git, and the consensus block format means you only copy/paste once.**
-
-*If anything is unclear or you hit an issue, the 3 governance-mandated user paste actions are:*
-- Record Claude's decisions in SUBMISSIONS.md
-- File the verification five-line report  
-- Read new submissions not yet pushed to Git
+*Quickstart version 2.0 — Architecture Design Phase. Reflects that Claude is in charge of designing the architecture and workflow, starting with the 3 capability questions.*
