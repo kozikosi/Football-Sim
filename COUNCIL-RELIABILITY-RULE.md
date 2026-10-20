@@ -84,8 +84,8 @@ This rule clarifies the recent Lightning/GPT copy: SPEAKER: GPT correctly identi
 
 There is no fixed ranked roster. The scorecard is generated from the contribution-event ledger:
 
-- The first audited contribution or process event naming a speaker creates that member's row automatically.
-- There is no separate roster file to update. Add an event; rerun the generator; the member appears.
+- The generator discovers an exact SPEAKER header at the start of a Markdown report in _agents/ and creates an UNASSESSED row automatically; it also discovers any speaker named in the event ledger.
+- There is no separate roster file to update. A new council member files work in their own _agents/<member>/ folder using the required SPEAKER header; the next scorecard generation finds them. The assigned reviewer adds a ledger event to score that work.
 - Use the exact speaker label from the work header. Do not merge aliases or model variants unless the identity mapping is explicitly verified and recorded.
 - An unscored event can create an **UNASSESSED** row. A forwarded message, for example, can be recorded as a provenance event without receiving a technical score.
 - Silence, lack of access, a narrow assignment, or an unavailable artifact is not a negative score.
