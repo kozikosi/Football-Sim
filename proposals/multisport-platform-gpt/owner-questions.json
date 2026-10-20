@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "purpose": "Owner decisions for the proposed multi-sport simulation portfolio. Defaults are recommendations, not accepted behavior.",
+  "questions": [
+    {
+      "id": "NFL-001",
+      "project": "nfl-current",
+      "area": "roster-flex",
+      "priority": 1,
+      "status": "open",
+      "question": "Which eligible positions may fill each NFL flex slot, and are there limits on the number of players from one position group?",
+      "recommended_default": "Use the current NFL roster rules already encoded in the simulator as the baseline; document them precisely before changing them.",
+      "cost_if_wrong": "A wrong flex definition changes draft eligibility, replacement values, roster composition, and simulation outcomes.",
+      "answer": ""
+    },
+    {
+      "id": "NFL-002",
+      "project": "nfl-current",
+      "area": "rating-semantics",
+      "priority": 2,
+      "status": "open",
+      "question": "What should an NFL player's overall rating mean: projected value for the next season, peak ability, or a blended football skill score?",
+      "recommended_default": "Keep the current rating meaning for V21; define any new all-time rating separately.",
+      "cost_if_wrong": "Changing the meaning of a rating can make every existing weight and historical comparison misleading.",
+      "answer": ""
+    },
+    {
+      "id": "NFL-003",
+      "project": "nfl-current",
+      "area": "season-rules",
+      "priority": 3,
+      "status": "open",
+      "question": "Which NFL schedule, seeding, tie, and playoff ruleset should the current simulation represent, and how should that version be labeled?",
+      "recommended_default": "Use one named real-world season ruleset and make the season year explicit in each run.",
+      "cost_if_wrong": "A run may be described as a current-season simulation while using incompatible schedule or playoff rules.",
+      "answer": ""
+    },
+    {
+      "id": "NFL-004",
+      "project": "nfl-all-time",
+      "area": "historical-rating",
+      "priority": 1,
+      "status": "open",
+      "question": "Should NFL all-time ratings represent peak season, best multi-year prime, career value, or an explicit blend?",
+      "recommended_default": "Use a documented blend of peak and sustained prime only if the Owner wants a balanced all-time roster; otherwise choose one clear interpretation.",
+      "cost_if_wrong": "The pool can mix incomparable concepts, and the simulation may reward longevity or peak ability unintentionally.",
+      "answer": ""
+    },
+    {
+      "id": "NFL-005",
+      "project": "nfl-all-time",
+      "area": "eligibility",
+      "priority": 2,
+      "status": "open",
+      "question": "Does the approximate 1,200-player target apply to NFL alone, and what qualifies a current player for all-time eligibility?",
+      "recommended_default": "Plan for roughly 1,200 NFL entries and require a documented curated inclusion decision for current players.",
+      "cost_if_wrong": "Candidate research effort and roster representation may be sized incorrectly.",
+      "answer": ""
+    },
+    {
+      "id": "NFL-006",
+      "project": "nfl-all-time",
+      "area": "current-adjustment",
+      "priority": 3,
+      "status": "open",
+      "question": "For eligible top current players, should the proposed minus-five adjustment affect the overall score or only selected rating dimensions?",
+      "recommended_default": "Store it as a named all-time mode adjustment and apply it to the overall score until a dimension-specific model is approved.",
+      "cost_if_wrong": "A broad adjustment can unfairly weaken a player in roles that the source ratings do not measure equally.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-001",
+      "project": "nba-current",
+      "area": "roster-rotation",
+      "priority": 1,
+      "status": "open",
+      "question": "Should the NBA user draft a team and assign a starting five, or should the engine choose the lineup and rotation from the drafted roster?",
+      "recommended_default": "Let users draft a roster and offer a clear, editable lineup/rotation step before simulation.",
+      "cost_if_wrong": "This defines the central user interaction and changes how player ratings must represent fit and role.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-002",
+      "project": "nba-current",
+      "area": "lineup-eligibility",
+      "priority": 2,
+      "status": "open",
+      "question": "Should NBA lineup eligibility use fixed positions, multi-position labels, or skill-based roles with position as descriptive metadata?",
+      "recommended_default": "Use multi-position eligibility with role/skill attributes; avoid a single rigid position where modern players routinely fill multiple roles.",
+      "cost_if_wrong": "Incorrect position assumptions can distort lineup fit and undervalue versatile players.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-003",
+      "project": "nba-current",
+      "area": "simulation-depth",
+      "priority": 3,
+      "status": "open",
+      "question": "Which factors must the first NBA game model represent: lineup fit, minutes, fatigue, injuries, usage, coaching, or only player strength?",
+      "recommended_default": "Start with lineup fit, minutes, and player strength; add fatigue or injury effects only when they can be explained and tested.",
+      "cost_if_wrong": "Too little detail may feel shallow; too much can make the first version hard to tune and verify.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-004",
+      "project": "nba-current",
+      "area": "nba2k-mapping",
+      "priority": 4,
+      "status": "open",
+      "question": "Which NBA2K edition and rating fields should be the source baseline, and how should their scale map to the simulator attributes?",
+      "recommended_default": "Choose one edition and roster update, preserve all raw values, then review a small mapping sample before importing the full pool.",
+      "cost_if_wrong": "Mixing editions or mapping incompatible fields can create systematic ratings errors.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-005",
+      "project": "nba-current",
+      "area": "season-rules",
+      "priority": 5,
+      "status": "open",
+      "question": "Which NBA season and playoff format should the first current simulation represent?",
+      "recommended_default": "Choose one named season and encode its schedule and playoff rules as versioned configuration.",
+      "cost_if_wrong": "Schedule and playoff outputs may not correspond to the stated season.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-006",
+      "project": "nba-all-time",
+      "area": "historical-era",
+      "priority": 1,
+      "status": "open",
+      "question": "Should NBA all-time players be rated at their best season, best multi-year prime, career value, or an explicit blend?",
+      "recommended_default": "Use a player’s defined prime as the base, with the selected season or years recorded for each rating.",
+      "cost_if_wrong": "Career longevity, peak dominance, and cross-era comparability lead to very different player pools.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-007",
+      "project": "nba-all-time",
+      "area": "era-adjustment",
+      "priority": 2,
+      "status": "open",
+      "question": "How should NBA players from different rules and playing eras be compared in the all-time simulation?",
+      "recommended_default": "Keep source/era information and simulation-era adjustment separate, then compare transparent options on representative player examples.",
+      "cost_if_wrong": "One implicit era adjustment can systematically favor or penalize a generation.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-008",
+      "project": "nba-all-time",
+      "area": "current-adjustment",
+      "priority": 3,
+      "status": "open",
+      "question": "Should the proposed minus-five current-player adjustment also apply to NBA all-time candidates, and what is the eligible current-player threshold?",
+      "recommended_default": "Apply no adjustment until the Owner defines eligibility and confirms the NFL suggestion should also govern NBA.",
+      "cost_if_wrong": "Copying a football policy into basketball may misrepresent the Owner’s intent.",
+      "answer": ""
+    },
+    {
+      "id": "NBA-009",
+      "project": "nba-all-time",
+      "area": "candidate-pool",
+      "priority": 4,
+      "status": "open",
+      "question": "Does the approximately 1,200-player target apply separately to NBA, and should candidates be balanced by position, era, or prominence?",
+      "recommended_default": "Plan for approximately 1,200 NBA entries and review coverage across role, era, and level of evidence.",
+      "cost_if_wrong": "The pool may be too small, too large, or overrepresent one role or generation.",
+      "answer": ""
+    },
+    {
+      "id": "SOCCER-001",
+      "project": "soccer",
+      "area": "simulation-concept",
+      "priority": 1,
+      "status": "open",
+      "question": "What does a soccer draft-season simulation mean: a fantasy-style draft, a club squad-building exercise, a transfer-window simulation, or another format?",
+      "recommended_default": "Prototype a fantasy-style squad draft first because it maps most directly to the existing draft-season product flow, but label it clearly as a game format rather than a real transfer model.",
+      "cost_if_wrong": "A draft concept that does not match how the Owner imagines soccer squad building may shape the wrong data and engine.",
+      "answer": ""
+    },
+    {
+      "id": "SOCCER-002",
+      "project": "soccer",
+      "area": "competition-scope",
+      "priority": 2,
+      "status": "open",
+      "question": "Should the soccer launch list use the dated men’s domestic league ranking snapshot in the proposal, with women’s leagues and cups considered separately?",
+      "recommended_default": "Use the stated snapshot as a provisional scope and revalidate it before implementation.",
+      "cost_if_wrong": "The number and identity of competitions can change, and a ranking is not necessarily the Owner’s preferred product boundary.",
+      "answer": ""
+    },
+    {
+      "id": "PORTFOLIO-001",
+      "project": "portfolio",
+      "area": "pool-size",
+      "priority": 1,
+      "status": "open",
+      "question": "Does approximately 1,200 all-time players mean 1,200 candidates for each of NFL and NBA, or 1,200 combined?",
+      "recommended_default": "Plan for approximately 1,200 per sport because each sport has its own pool and rating system.",
+      "cost_if_wrong": "This changes the data collection effort, storage estimates, and representation targets substantially.",
+      "answer": ""
+    },
+    {
+      "id": "PORTFOLIO-002",
+      "project": "portfolio",
+      "area": "architecture",
+      "priority": 2,
+      "status": "open",
+      "question": "Should the first shared platform boundary be limited to the web shell and run metadata, with engines remaining sport-specific?",
+      "recommended_default": "Yes; share only proven UI and run contracts until a second sport demonstrates a useful common abstraction.",
+      "cost_if_wrong": "A universal engine could entangle sport rules, while no shared shell would multiply routine product work.",
+      "answer": ""
+    }
+  ]
+}
