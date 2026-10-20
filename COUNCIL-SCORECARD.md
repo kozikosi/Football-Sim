@@ -14,7 +14,7 @@ Rule: primary evidence outranks scores. Provisional entries do not break ties.
 | Lightning | UNASSESSED | 0 | — | — | — | — | 1 |
 | Ultra | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
 
-A ranked standing requires at least three distinct audited tasks across two domains and an independent review. The first event automatically creates a row; no member roster is maintained.
+A ranked standing requires at least three distinct audited tasks across two domains and an independent review. A SPEAKER header under _agents/ or an event automatically creates a row; no member roster is maintained.
 
 ## Evidence notes
 
@@ -40,4 +40,4 @@ A ranked standing requires at least three distinct audited tasks across two doma
 - GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.
 - Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.
 - Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.
-- Other historical members are not assigned scores from folder presence or incomparable old reports. They enter automatically when an audited event is recorded.
+- Other historical members are not assigned scores from folder presence or incomparable old reports. New contributors appear automatically when a report in their own _agents/ folder starts with the required SPEAKER header.
