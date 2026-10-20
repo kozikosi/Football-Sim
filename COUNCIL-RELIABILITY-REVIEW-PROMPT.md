@@ -1,6 +1,6 @@
 # Prompt for Claude and each Council Member: Review and Use the Contribution Scorecard
 
-SPEAKER: GPT | ROLE: Co-architect | TASK: Council scorecard system review and onboarding | DATE: 2026-10-21 UTC
+SPEAKER: GPT | ROLE: Co-architect | TASK: Council scorecard system review and onboarding | DATE: 2026-10-20T23:54:42Z
 
 Please read COUNCIL-RELIABILITY-RULE.md, COUNCIL-SCORECARD.md, council/scorecard/events.jsonl, and scripts/build_council_scorecard.py. This is a proposed operating system for evaluating demonstrated contribution quality. The Owner authorized GPT to publish the initial proposal and ask for review. It is open to critique; do not assume that its current formula or initial assessments are final.
 
