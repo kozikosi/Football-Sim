@@ -47,3 +47,19 @@ When the owner is ready, create separate, reviewable outputs rather than editing
 - a small pilot pool reviewed by the owner before scaling toward the target pool size.
 
 These are suggestions for organizing later work, not approval to choose player ratings or settle simulation rules.
+
+## Player activity status: separate fact from season rating
+
+A follow-up requested that future player work distinguish by sport and whether a player is clearly retired or may still be active. Keep the raw sources intact and record status on a derived, source-linked player record. Do not split or rewrite the raw text: several files mix player seasons, career-level lists, roster concepts, and rankings.
+
+The first-pass queues are in [`status-triage/`](status-triage/README.md): [NFL recent-season mentions](status-triage/nfl/recent-season-mentions.csv) and [NBA recent-season mentions](status-triage/nba/recent-season-mentions.csv). They contain 66 NFL and 79 NBA source-line mentions of 2024–2026 seasons, not unique-player counts or confirmed active players. A recent peak season does not prove that a player is still on a roster, and an older peak season does not prove retirement. Status needs its own evidence and “checked as of” date.
+
+Recommended person-level status values:
+
+- `active`: verified on a current league/team roster as of the recorded date (define treatment of injured/reserve lists consistently);
+- `retired`: supported by a retirement announcement or authoritative career record;
+- `unrostered_or_free_agent`: no current roster spot, but no retirement claim;
+- `uncertain`: evidence is incomplete or conflicting.
+
+Keep `sport`, person identity, player-season (`season`), and career status as separate fields. Historical all-time ratings attach to a player-season. Any proposed current-player adjustment (including the earlier proposed -5) should be an explicit simulation rule applied after the player-season rating is defined; it is not encoded in these intake files.
+
