@@ -1,6 +1,6 @@
 # Council Scorecard
 
-**Snapshot date:** 2026-10-21 UTC
+**Snapshot date:** 2026-10-20 UTC
 
 Generated from council/scorecard/events.jsonl by scripts/build_council_scorecard.py.
 Purpose: observed contribution reliability and usefulness; this is not an intelligence or character ranking.
@@ -20,7 +20,7 @@ A ranked standing requires at least three distinct audited tasks across two doma
 
 ### GPT
 - **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-reconciliation-follow-up (2026-10-21):** Correctly distinguishes a script reference hash from proof that Lightning executed that script; preserves Run B as UNKNOWN; keeps the overall result PARTIAL and distinguishes viewport width checks from full usability. Rating remains provisional because the original attachments and local audit files are not yet durable in Git and this event has no independent score review.
+- **e2e-reconciliation-follow-up (2026-10-20):** Correctly distinguishes a script reference hash from proof that Lightning executed that script; preserves Run B as UNKNOWN; keeps the overall result PARTIAL and distinguishes viewport width checks from full usability. Rating remains provisional because the original attachments and local audit files are not yet durable in Git and this event has no independent score review.
   - Assessment: GPT (provisional self-review; independent review pending). Source: Owner-provided attachment: SPEAKER GPT | E2E reconciliation follow-up; cross-checked against local _agents/moc/notes/W2-run-reconciliation.md and W3-protocol-to-script-matrix.md, which are not yet committed to this branch.
   - Limits: This rates one evidence-reconciliation deliverable only. It does not assess model ability generally or GPT's work on other project tasks.
 
@@ -31,7 +31,7 @@ A ranked standing requires at least three distinct audited tasks across two doma
 
 ### Ultra
 - **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-publication-plan-and-protocol-audit (2026-10-21):** The protocol-to-script gaps are specific and actionable, including return navigation, critical-control clipping, and horizontal table scrolling. Publication is clearly labelled a recommendation and no upload is claimed. One proposed push command does not match the branch name created in the preceding command; fix before anyone uses it. The proposed report-duration metric should only be populated if its field definition matches the measured step duration. Ratings remain provisional because this was a plan rather than an executed publication or new test.
+- **e2e-publication-plan-and-protocol-audit (2026-10-20):** The protocol-to-script gaps are specific and actionable, including return navigation, critical-control clipping, and horizontal table scrolling. Publication is clearly labelled a recommendation and no upload is claimed. One proposed push command does not match the branch name created in the preceding command; fix before anyone uses it. The proposed report-duration metric should only be populated if its field definition matches the measured step duration. Ratings remain provisional because this was a plan rather than an executed publication or new test.
   - Assessment: GPT (provisional review; independent review pending). Source: Owner-provided attachment: SPEAKER Ultra | W4 Publication Plan + W3 Follow-up; compared with the local E2E reconciliation reports and the supplied GPT follow-up, which are not yet committed to this branch.
   - Limits: Rates the quality of a proposed plan and audit, not a completed publication or a newly executed test. Evidence files cited in the conversation are not yet durable Git artifacts.
 
