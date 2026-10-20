@@ -66,7 +66,24 @@ def main():
         if item["status"] == "open"
         and (args.project == "all" or item["project"] == args.project)
     ]
-    selected.sort(key=lambda item: (item["priority"], item["id"]))
+    if args.project == "all":
+        project_order = {
+            "nfl-current": 0,
+            "nfl-all-time": 1,
+            "nba-current": 2,
+            "nba-all-time": 3,
+            "portfolio": 4,
+            "soccer": 5,
+        }
+        selected.sort(
+            key=lambda item: (
+                project_order.get(item["project"], 99),
+                item["priority"],
+                item["id"],
+            )
+        )
+    else:
+        selected.sort(key=lambda item: (item["priority"], item["id"]))
     selected = selected[:args.limit]
 
     if not selected:
