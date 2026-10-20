@@ -1,0 +1,90 @@
+# M-8 evidence log — commands and raw output (Pickle, 19 Oct 2026)
+# Reference: v20 = NFL Draft Simulator v20 Claude.html ; donor = NFL Draft Simulator.html
+
+$ shasum -a 256 "$V20" "$DONOR"; wc -c "$V20" "$DONOR"
+31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819  NFL Draft Simulator v20 Claude.html
+77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f  NFL Draft Simulator.html
+  649032 NFL Draft Simulator v20 Claude.html
+  650127 NFL Draft Simulator.html
+ 1299159 total
+
+$ grep -c 'SIM-CORE-START' v20 donor
+v20: 0   donor: 0
+
+$ liveness strings on v20 (grep -c -F)
+  sudden death                     1
+  went the distance                1
+  wasn't in this round             1
+  second meeting                   1
+  with no strong lean either way   0
+  needs-only                       0
+
+$ grep -c localStorage v20 donor
+v20: 0   donor: 0
+
+$ grep -c -o 'document\.' / 'window\.' v20
+document.: 172   window.: 10
+Math.random: 39
+
+$ data-block + script boundaries (grep -n)
+448:<script>
+449:const PLAYERS = [["Ja'Marr Chase","WR","Cincinnati Benga
+450:const TEAM_DATA = {"Cincinnati Bengals":{"DE1":{"ovr":78
+452:const DEFAULT_WEIGHTS = {"QB": 320, "RB1": 100, "RB2": 4
+892:const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','WR3'
+899:const NATURAL_SLOT_MAP = {
+908:const FLEX = {
+6435:</script>
+
+$ protected constant first-chunk hash comparison (v20 vs donor)
+  DEFAULT_WEIGHTS: IDENTICAL (6ba7434bea34)
+  FLEX: IDENTICAL (0a9c18193bfc)
+  NATURAL_SLOT_MAP: IDENTICAL (48bc6452af76)
+  POINTS_PER_WIN: IDENTICAL (bf8ae204280c)
+  SEASON_RECORD_CAPS: IDENTICAL (28c933bfd818)
+  RATING_SPECS: IDENTICAL (560b9a975ea6)
+
+$ whole-function extraction hash (awk + shasum), v20 vs donor
+  slotWins: IDENTICAL (48e92c6e561f)
+  slotWinsPerOvr: IDENTICAL (ab931a781e05)
+  modelWeights: IDENTICAL (8402887fb82c)
+  effOvr: IDENTICAL (2d36a4d54e9d)
+  optimalLineup: IDENTICAL (96f39ca92cf8)
+  matchupModel: IDENTICAL (44b0f278ce1d)
+  simulateGame: IDENTICAL (dc54e4210ce1)
+  teamRatings: IDENTICAL (fdccb9988413)
+  cpuPick: DIFFERS (v20 fa6d752969e4 vs donor a2b8190e98f8)
+
+$ diff of extracted cpuPick (v20 vs donor)
+6a7,12
+>  const curRound = Math.floor((st.pos||0)/32)+1;
+>  const topAvail = st.pool.length ? st.pool[0][3] : 0;   // pool is sorted by OVR, so pool[0] is the board's best remaining player
+>  // Round-order floors (CPU GMs stay credible): round 1 everyone is at least 90 (a QB can go at 88+ during a run on
+>  // quarterbacks); rounds 2–3 a pick must be within 8 of the best available overall, and a reach at a low-priority spot
+>  // (kicker, punter, fullback) must at least be the best remaining player AT THAT POSITION. Later rounds are free.
+>  const ovrFloor = curRound===1 ? Math.max(90, topAvail-5) : curRound<=3 ? Math.max(85, topAvail-8) : -Infinity;
+9c15,18
+<   if((seen[pos]=(seen[pos]||0)+1) > 16) continue;
+---
+>   const posBest = (seen[pos]=(seen[pos]||0)+1) === 1;   // first sight in the sorted pool = best remaining at that position
+>   if(curRound<=3 && !posBest) continue;
+>   if(p[3] < (pos==='QB' && topAvail>0 && (topAvail - p[3]) <= 4 ? Math.min(88, ovrFloor) : ovrFloor)) continue;
+>   if((seen[pos]||0) > 16) continue;
+21,22c30,37
+<  // some front offices simply miss: they take a good-looking player a few spots down their own board
+<  if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){ cands.sort((a,b)=>b.v-a.v); const c = cands[3 + Math.floor(Math.random()*Math.min(90, cands.length-3))]; best = c.p; bestSlot = c.s; }
+---
+>  // some front offices simply miss: they take a good-looking player a few spots down their own board (a realistic
+>  // miss is a reach of a few spots, never thirty picks deep)
+>  if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){
+>   cands.sort((a,b)=>b.v-a.v);
+>   const reach = 3 + Math.min(9, Math.floor(Math.abs(randNormal())*4));
+>   const c = cands[Math.min(reach, cands.length-1)];
+>   if(c.p[3] >= (curRound===1 ? 88 : curRound<=3 ? topAvail-9 : 0)){ best = c.p; bestSlot = c.s; }
+>  }
+
+$ python3 byte-level tail inspection of v20
+  total bytes          : 649032
+  <!doctype html> count: 2
+  </body></html> count : 1
+  last 40 bytes repr   : b'/script>\n</body>\n</html>\n\n</body></html>'

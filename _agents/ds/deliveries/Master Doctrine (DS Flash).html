@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Football Sim — Master Doctrine (DS Flash)</title>
+<meta name="description" content="The governing document for the NFL Draft Simulator: product philosophy, information architecture, football model doctrine, invariants, backlog, and agent protocol.">
+<style>
+:root{
+  --bg:#070a10; --bg2:#0b0f18; --panel:#111725; --panel2:#161e2f; --panel3:#1d2739;
+  --text:#e9eef7; --sub:#8fa1b8; --dim:#5d6d84;
+  --accent:#4f8cff; --accent2:#ff6b4a; --gold:#f5b83d; --green:#3ecf8e; --red:#ff5c5c;
+  --border:#222d42; --border2:#2e3b55;
+  --radius:14px;
+  --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;
+  --display:"SF Pro Display",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  margin:0;background:var(--bg);color:var(--text);font-family:var(--sans);
+  font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;
+  background-image:radial-gradient(1200px 600px at 80% -10%, rgba(79,140,255,.10), transparent 60%),
+                   radial-gradient(900px 500px at 0% 0%, rgba(255,107,74,.06), transparent 55%);
+  background-repeat:no-repeat;
+}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+/* overflow-wrap:anywhere only breaks a token when it would otherwise overflow, so short
+   identifiers still read on one line while long ones cannot force a grid track wider
+   than the viewport (a nowrap inline code inside a grid item sets a large min-content
+   width and the item refuses to shrink — the classic min-width:auto trap). */
+code{font-family:var(--mono);font-size:.86em;background:rgba(79,140,255,.10);border:1px solid rgba(79,140,255,.18);
+     padding:.12em .4em;border-radius:5px;color:#b9d2ff;overflow-wrap:anywhere}
+pre{font-family:var(--mono);font-size:.8rem;line-height:1.55;background:#05080d;border:1px solid var(--border);
+    border-radius:10px;padding:14px 16px;overflow-x:auto;color:#a9c4e8;margin:14px 0}
+pre code{background:none;border:0;padding:0;color:inherit;font-size:1em;white-space:pre}
+
+/* ---------- shell ---------- */
+.shell{display:grid;grid-template-columns:290px minmax(0,1fr);gap:0;max-width:1560px;margin:0 auto}
+nav.toc{
+  position:sticky;top:0;height:100vh;overflow-y:auto;padding:26px 18px 60px;
+  border-right:1px solid var(--border);background:rgba(7,10,16,.72);backdrop-filter:blur(14px);
+}
+nav.toc .brandmark{display:flex;align-items:center;gap:9px;margin-bottom:4px}
+nav.toc .dot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);flex:0 0 auto}
+nav.toc .brandtxt{font-family:var(--display);font-weight:700;font-size:.86rem;letter-spacing:.08em;text-transform:uppercase;color:var(--text)}
+nav.toc .ver{font-size:.68rem;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin:2px 0 20px 18px}
+nav.toc ol{list-style:none;margin:0;padding:0;counter-reset:s}
+nav.toc li{counter-increment:s;margin:1px 0}
+nav.toc a{
+  display:block;padding:6px 10px 6px 34px;border-radius:7px;color:var(--sub);font-size:.815rem;
+  line-height:1.35;position:relative;transition:background .12s,color .12s;
+}
+nav.toc a::before{
+  content:counter(s);position:absolute;left:10px;top:6px;font-family:var(--mono);
+  font-size:.68rem;color:var(--dim);width:18px;
+}
+nav.toc a:hover{background:rgba(79,140,255,.08);color:var(--text);text-decoration:none}
+nav.toc a.active{background:rgba(79,140,255,.14);color:#cfe0ff}
+nav.toc a.active::before{color:var(--accent)}
+
+main{padding:44px clamp(20px,4vw,64px) 120px;min-width:0;max-width:1000px}
+
+/* ---------- masthead ---------- */
+.masthead{margin-bottom:54px;padding-bottom:34px;border-bottom:1px solid var(--border)}
+.kicker{font-family:var(--mono);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+.masthead h1{
+  font-family:var(--display);font-size:clamp(2.1rem,4.6vw,3.35rem);line-height:1.03;
+  letter-spacing:-.032em;margin:0 0 18px;font-weight:800;
+  background:linear-gradient(100deg,#fff 10%,#9dc0ff 55%,#ff9d7d 100%);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+}
+.masthead .dek{font-size:1.06rem;color:var(--sub);max-width:62ch;line-height:1.62;margin:0}
+.pills{display:flex;flex-wrap:wrap;gap:7px;margin-top:22px}
+.pill{font-family:var(--mono);font-size:.68rem;letter-spacing:.05em;padding:4px 10px;border-radius:999px;
+      background:var(--panel2);border:1px solid var(--border2);color:var(--sub);white-space:nowrap}
+.pill b{color:var(--text);font-weight:600}
+.pill.g{border-color:rgba(62,207,142,.3);background:rgba(62,207,142,.08);color:#8fe8bf}
+.pill.a{border-color:rgba(245,184,61,.3);background:rgba(245,184,61,.08);color:#f7d488}
+.pill.r{border-color:rgba(255,92,92,.28);background:rgba(255,92,92,.08);color:#ffa8a8}
+
+/* ---------- sections ---------- */
+section{margin:0 0 62px;scroll-margin-top:80px}
+section > h2{
+  font-family:var(--display);font-size:clamp(1.4rem,2.5vw,1.95rem);letter-spacing:-.02em;
+  margin:0 0 6px;font-weight:750;display:flex;align-items:baseline;gap:12px;
+}
+section > h2 .num{
+  font-family:var(--mono);font-size:.72rem;color:var(--accent);letter-spacing:.1em;
+  border:1px solid rgba(79,140,255,.3);border-radius:6px;padding:3px 7px;flex:0 0 auto;
+  transform:translateY(-3px);
+}
+section > .lede{color:var(--sub);font-size:.95rem;margin:0 0 26px;max-width:74ch}
+h3{font-family:var(--display);font-size:1.06rem;font-weight:650;letter-spacing:-.01em;margin:34px 0 10px;color:#dbe6f7}
+h3 .tag{font-family:var(--mono);font-size:.63rem;letter-spacing:.08em;text-transform:uppercase;
+        padding:2px 7px;border-radius:5px;margin-left:9px;vertical-align:2px;font-weight:600}
+.tag.p0{background:rgba(255,92,92,.14);color:#ff9b9b;border:1px solid rgba(255,92,92,.28)}
+.tag.p1{background:rgba(245,184,61,.14);color:#f7d488;border:1px solid rgba(245,184,61,.28)}
+.tag.p2{background:rgba(79,140,255,.14);color:#a9c8ff;border:1px solid rgba(79,140,255,.28)}
+.tag.p3{background:rgba(143,161,184,.12);color:#a9b8cc;border:1px solid rgba(143,161,184,.24)}
+h4{font-size:.92rem;font-weight:650;margin:22px 0 6px;color:#c9d7ea}
+p{margin:0 0 14px;max-width:74ch}
+ul,ol{margin:0 0 16px;padding-left:22px;max-width:74ch}
+li{margin:5px 0}
+li::marker{color:var(--dim)}
+strong{color:#fff;font-weight:640}
+em{color:#c3d2e6;font-style:italic}
+
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:20px 22px;margin:18px 0}
+.card.tight{padding:14px 18px}
+.card.accent{border-color:rgba(79,140,255,.32);background:linear-gradient(180deg,rgba(79,140,255,.07),rgba(79,140,255,.02))}
+.card.warn{border-color:rgba(245,184,61,.3);background:rgba(245,184,61,.05)}
+.card.danger{border-color:rgba(255,92,92,.28);background:rgba(255,92,92,.05)}
+.card.good{border-color:rgba(62,207,142,.28);background:rgba(62,207,142,.05)}
+.card h4{margin-top:0}
+.card p:last-child,.card ul:last-child,.card ol:last-child{margin-bottom:0}
+
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:18px 0}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
+/* grid items must be allowed to shrink below their content's min-content width */
+.grid2 > *,.grid3 > *{min-width:0}
+@media(max-width:820px){.grid2,.grid3{grid-template-columns:1fr}}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:18px 0;border:1px solid var(--border);border-radius:var(--radius)}
+table{border-collapse:collapse;width:100%;font-size:.855rem;min-width:520px}
+th{
+  text-align:left;padding:11px 13px;background:var(--panel2);color:#b6c8e0;
+  font-family:var(--mono);font-size:.68rem;letter-spacing:.09em;text-transform:uppercase;
+  font-weight:600;border-bottom:1px solid var(--border2);white-space:nowrap;
+  position:sticky;top:0;
+}
+td{padding:10px 13px;border-bottom:1px solid rgba(34,45,66,.6);vertical-align:top;color:#d3dfef}
+td.ok{color:var(--green);font-weight:600;white-space:nowrap}
+td.bad{color:var(--red);font-weight:600;white-space:nowrap}
+td.warn{color:var(--gold);font-weight:600;white-space:nowrap}
+tr:last-child td{border-bottom:0}
+tbody tr:hover{background:rgba(79,140,255,.045)}
+td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* ---------- doctrine blocks ---------- */
+.doctorine{display:grid;gap:0;margin:22px 0}
+.doctrine{
+  display:grid;grid-template-columns:44px 1fr;gap:16px;padding:18px 0;
+  border-bottom:1px solid rgba(34,45,66,.55);
+}
+.doctrine:last-child{border-bottom:0}
+.doctrine .n{
+  font-family:var(--mono);font-size:1.5rem;font-weight:700;color:var(--accent);
+  line-height:1;padding-top:2px;font-variant-numeric:tabular-nums;
+}
+.doctrine h4{margin:0 0 5px;font-size:.98rem}
+.doctrine p{margin:0;color:var(--sub);font-size:.9rem}
+
+/* ---------- priority rows ---------- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;align-items:center}
+.fbtn{
+  font-family:var(--mono);font-size:.72rem;letter-spacing:.05em;padding:7px 13px;border-radius:8px;
+  background:var(--panel2);border:1px solid var(--border2);color:var(--sub);cursor:pointer;
+  transition:all .13s;
+}
+.fbtn:hover{color:var(--text);border-color:#3a4a68}
+.fbtn[aria-pressed="true"]{background:rgba(79,140,255,.18);border-color:rgba(79,140,255,.45);color:#cfe0ff}
+.fsearch{
+  flex:1;min-width:170px;padding:7px 12px;border-radius:8px;background:var(--panel2);
+  border:1px solid var(--border2);color:var(--text);font-family:var(--sans);font-size:.82rem;
+}
+.fsearch:focus{outline:none;border-color:rgba(79,140,255,.5)}
+
+.task{border-left:3px solid var(--border2);padding:2px 0 2px 16px;margin:0 0 18px}
+.task.p0p{border-left-color:var(--red)}
+.task.p1p{border-left-color:var(--gold)}
+.task.p2p{border-left-color:var(--accent)}
+.task.p3p{border-left-color:var(--dim)}
+.task.hide{display:none}
+.task .th{display:flex;flex-wrap:wrap;align-items:baseline;gap:9px;margin-bottom:4px}
+.task .tid{font-family:var(--mono);font-size:.72rem;color:var(--dim);letter-spacing:.05em}
+.task .tt{font-weight:650;font-size:.95rem;color:#eaf1fb}
+.task .why{color:var(--sub);font-size:.87rem;margin:3px 0 0;max-width:72ch}
+.task .how{color:#b8cbe4;font-size:.84rem;margin:6px 0 0;padding:8px 12px;border-radius:8px;
+           background:rgba(79,140,255,.06);border:1px solid rgba(79,140,255,.13);max-width:none}
+.task .how b{color:#cfe0ff}
+.src{font-family:var(--mono);font-size:.63rem;letter-spacing:.05em;color:var(--dim);
+     border:1px solid var(--border);border-radius:4px;padding:1px 5px;white-space:nowrap}
+
+/* ---------- misc ---------- */
+.quote{
+  border-left:3px solid var(--accent);padding:4px 0 4px 18px;margin:18px 0;
+  color:#c7d7ec;font-size:.95rem;font-style:italic;
+}
+.quote .who{display:block;font-style:normal;font-family:var(--mono);font-size:.68rem;
+            letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-top:8px}
+hr{border:0;border-top:1px solid var(--border);margin:40px 0}
+.small{font-size:.82rem;color:var(--sub)}
+.mono{font-family:var(--mono);font-size:.8rem}
+.center{text-align:center}
+hr.fancy{border:0;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);margin:48px 0}
+
+.ia{display:grid;gap:10px;margin:20px 0}
+.ia-row{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;
+        padding:13px 16px;border-radius:11px;border:1px solid var(--border);background:var(--panel)}
+.ia-row.primary{border-color:rgba(79,140,255,.42);background:linear-gradient(90deg,rgba(79,140,255,.10),rgba(79,140,255,.03));
+                box-shadow:0 0 0 1px rgba(79,140,255,.08),0 8px 30px -18px rgba(79,140,255,.5)}
+.ia-row .slot{font-family:var(--mono);font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.ia-row .nm{font-weight:650;font-size:.95rem}
+.ia-row .ds{color:var(--sub);font-size:.82rem}
+.ia-row .wt{font-family:var(--mono);font-size:.66rem;color:var(--dim);text-align:right;white-space:nowrap}
+@media(max-width:760px){.ia-row{grid-template-columns:1fr;gap:5px}.ia-row .wt{text-align:left}}
+
+@media(max-width:980px){
+  .shell{grid-template-columns:1fr}
+  nav.toc{position:static;height:auto;border-right:0;border-bottom:1px solid var(--border);
+          max-height:none;padding:18px 16px 22px}
+  nav.toc ol{display:flex;flex-wrap:wrap;gap:4px}
+  nav.toc li{flex:0 0 auto}
+  nav.toc a{padding:6px 11px 6px 11px}
+  nav.toc a::before{display:none}
+  main{padding:30px 18px 90px;max-width:none}
+}
+/* very narrow phones: let the long meta pills wrap instead of forcing a horizontal scroll */
+@media(max-width:620px){
+  .pill{white-space:normal;max-width:100%}
+  .masthead h1{font-size:1.95rem}
+  main{padding-left:14px;padding-right:14px}
+}
+@media print{
+  nav.toc{display:none}
+  .shell{display:block}
+  body{background:#fff;color:#111}
+  main{max-width:none;padding:0}
+  .card,.tw{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+
+<nav class="toc" aria-label="Contents">
+  <div class="brandmark"><span class="dot"></span><span class="brandtxt">Master Doctrine</span></div>
+  <div class="ver">OC · rev 1 · 19 Oct 2026</div>
+  <ol>
+    <li><a href="#contract">The agent contract</a></li>
+    <li><a href="#what">What this product is now</a></li>
+    <li><a href="#ia">Information architecture</a></li>
+    <li><a href="#design">Design language</a></li>
+    <li><a href="#football">Football philosophy</a></li>
+    <li><a href="#onegame">The one-game doctrine</a></li>
+    <li><a href="#stats">Advanced stats taxonomy</a></li>
+    <li><a href="#invariants">Invariants</a></li>
+    <li><a href="#backlog">The backlog</a></li>
+    <li><a href="#language">Language &amp; style</a></li>
+    <li><a href="#testing">Testing protocol</a></li>
+    <li><a href="#notdo">Do not do</a></li>
+    <li><a href="#open">Open questions</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="masthead">
+  <div class="kicker">Governing document · Football Sim · DS Flash</div>
+  <h1>Master Doctrine</h1>
+  <p class="dek">
+    Everything an agent needs to make decisions the way the project's owner would make them,
+    when he is not in the room. Read this before touching a line of the simulator.
+  </p>
+  <div class="pills">
+    <span class="pill">Product: <b>NFL Draft Simulator</b></span>
+    <span class="pill">Core: <b>the season</b></span>
+    <span class="pill">Canonical: <b>NFL Draft Simulator.html</b></span>
+    <span class="pill g">Single file · no build</span>
+    <span class="pill a">Revised <b>19 Oct 2026</b></span>
+    <span class="pill r">Read §1 before any UI work</span>
+  </div>
+</header>
+
+<div class="card accent" style="margin-top:26px">
+  <h4 style="margin-top:0">Revision note — 19 October 2026</h4>
+  <p>This revision follows a full review of <strong>NFL Draft Simulator.html</strong>, the Season-first cut
+  built from <code>(9) (DS Flash).html</code>. The P0 repositioning shipped and mostly holds. The review found one
+  fresh regression in the division-rematch label, three narrative or data defects that survived the edit
+  batch, one calibration gap the two sack documents settle, and one UX problem that was not attempted at
+  all — the mobile draft board. The measurements are in §11; the new tasks are at the top of §9.</p>
+  <ul style="margin-bottom:0">
+    <li><strong>Shipped and verified:</strong> Season first and default; footer links; <em>Play a Season</em>
+    above the draft ranking; the copy removals; weights absent from every season surface; the optimal lineup
+    applied at draft completion; CPU first-round floor at 93–94 across three drafts; scoring events equal the
+    final score in 272 of 272 games; overtime scores filed under an Overtime heading.</li>
+    <li><strong>Attempted but not delivered:</strong> the mobile draft board (rows measure 243–260&nbsp;px at
+    390&nbsp;px and the header row is <code>display:none</code>), overtime possessions (still a single
+    synthetic walk-off), and turnover naming (still a cross-reference to the play-by-play).</li>
+    <li><strong>Found and fixed in v10:</strong> a Week&nbsp;2 division game read "They already met in
+    Week&nbsp;11" (the tag filtered for <em>played</em> meetings, not <em>earlier</em> ones); 19.2% of sacks
+    were dropped instead of credited to a player; and the document opened with a second
+    <code>&lt;html&gt;</code> wrapper whose <code>color-scheme:light</code> won over the dark theme.</li>
+    <li><strong>Still open:</strong> turnovers name players only in the play-by-play, the mobile draft board
+    is untouched, overtime is still one synthetic score, and 141 of 832 starters line up out of phase
+    (a centre at defensive tackle, a receiver at corner) because <code>FLEX</code> permits it.</li>
+  </ul>
+</div>
+
+<!-- ============================================================ -->
+<section id="contract">
+  <h2><span class="num">01</span>The agent contract</h2>
+  <p class="lede">How to use this document, and what is expected of every agent that picks up the project.</p>
+
+  <div class="card accent">
+    <h4>The one rule</h4>
+    <p><strong>When this document and your instinct disagree, this document wins. When this document and the
+    user's latest message disagree, the user's message wins — and the document is wrong and must be
+    corrected in the same session.</strong></p>
+  </div>
+
+  <h3>Division of labour</h3>
+  <p>The owner keeps three things for himself and for the senior model: <strong>football philosophy,
+  mathematical design, and architectural decisions.</strong> Local coding agents implement and test.
+  That split is deliberate. An agent that "improves" the matchup model without being asked has broken
+  the most valuable thing in the project.</p>
+
+  <div class="grid3">
+    <div class="card tight"><h4>Owner</h4><p class="small">Decides what the product is. Corrects direction. Owns taste and judgment calls. Never asked to review diff noise.</p></div>
+    <div class="card tight"><h4>Senior model</h4><p class="small">Writes doctrine, tunes math, makes architecture calls, produces implementation briefs.</p></div>
+    <div class="card tight"><h4>Coding agents</h4><p class="small">Implement against a brief, run the test protocol, report evidence. Never invent product direction.</p></div>
+  </div>
+
+  <h3>How to take a task</h3>
+  <ol>
+    <li><strong>Find the task ID</strong> in §9. If it is not in §9, it is not authorised — ask before building.</li>
+    <li><strong>Read the task's whole entry</strong>, including <em>why</em>. The why is what lets you handle the cases the brief did not cover.</li>
+    <li><strong>Check the invariants</strong> in §8 before your first edit. If your change would violate one, stop and report.</li>
+    <li><strong>Work on a copy.</strong> Never edit the canonical file in place. Save the result as a new numbered file, and put <code>OC</code> in the <code>&lt;title&gt;</code> and in the <code>&lt;h1&gt;</code>.</li>
+    <li><strong>Run the protocol</strong> in §11. Evidence, not assertions.</li>
+    <li><strong>Report in the fixed shape</strong> below.</li>
+  </ol>
+
+  <h3>Required report shape</h3>
+<pre><code>FILE      name and byte size of the file you produced
+CHANGED   what changed, in plain language, grouped by task ID
+NUMBERS   the measurements from §11 that apply to your tasks
+BROKE     anything you could not fix, or made worse, stated plainly
+NEXT      the single highest-value task from §9 you did not do</code></pre>
+
+  <div class="card warn">
+    <h4>Never report success you did not measure</h4>
+    <p>"Should work" and "I believe this fixes it" are not reports. If you could not run the check,
+    say which check you could not run and why. A short honest report is worth more than a long
+    confident one. This project has already been burned by an agent claiming validation scripts
+    existed that did not.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="what">
+  <h2><span class="num">02</span>What this product is now</h2>
+  <p class="lede">A repositioning, not a feature. Read this twice.</p>
+
+  <p>For most of the project's life it presented itself as <em>a power-ranking model that happens to
+  have a draft and a season attached</em>. The weights panel was centre-screen. The page opened on a
+  draft board. The headline read <code>NFL Team Power Ranking Model</code>.</p>
+
+  <p>That is over. The owner's direction, verbatim in spirit:</p>
+
+  <div class="quote">
+    The season simulation should be the core of the project from now on, and should be so visually.
+    The website should really present the season as the whole website, and the Madden rankings and all
+    the other tabs and weights are just a small supplementary part. They could be small links either to
+    the bottom corner or centred at the bottom.
+    <span class="who">Owner directive · 19 Oct</span>
+  </div>
+
+  <p>So the product is a <strong>draft simulator whose payoff is the season you play</strong>. Not a
+  rankings tool. Not six equal tabs. One experience with a small appendix.</p>
+
+  <h3>What the product is</h3>
+  <div class="grid2">
+    <div class="card good">
+      <h4>Is</h4>
+      <ul>
+        <li>A 32-team snake draft against believable CPU general managers</li>
+        <li>A 17-game season you actually play through</li>
+        <li>A playoff run with recaps that name names</li>
+        <li>A season review that reads like a real one</li>
+        <li>A draft board that explains its own recommendations</li>
+      </ul>
+    </div>
+    <div class="card danger">
+      <h4>Is not</h4>
+      <ul>
+        <li>A team power-ranking calculator</li>
+        <li>A weights playground</li>
+        <li>A Madden ratings browser (that data is an input, not the product)</li>
+        <li>A stats encyclopaedia</li>
+        <li>Six co-equal destinations</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>The three things a first-time visitor must understand in ten seconds</h3>
+  <div class="doctrine">
+    <div class="n">1</div>
+    <div><h4>What this is</h4><p>A title, one line, and a single obvious button. No instructions paragraph.</p></div>
+    <div class="n">2</div>
+    <div><h4>What just happened</h4><p>Immediately after the draft: your grade, and a large <em>Play a Season</em> action sitting directly above the draft ranking.</p></div>
+    <div class="n">3</div>
+    <div><h4>Where they are in the season</h4><p>A persistent, unmissable season spine — week, record, next opponent — never buried in a tab.</p></div>
+  </div>
+
+  <div class="card danger">
+    <h4>Delete on sight</h4>
+    <p>This paragraph currently sits at the top of the app and must not survive:</p>
+    <p style="font-family:var(--mono);font-size:.8rem;color:#ffb0b0;margin:8px 0 0">
+      NFL Team Power Ranking Model<br>
+      Adjust any weight on the left — every team's score and rank recalculates instantly.
+      Missing depth-chart slots are filled with a default of 70 OVR. Click any team row for a detailed breakdown.
+    </p>
+    <p class="small" style="margin-top:12px">Madden and weights may only be referenced inside the supplementary appendix. Nowhere else.</p>
+  </div>
+
+  <h3>The hard separation of weights and season</h3>
+  <p>These are two different products that share a roster data set. They must never be presented as
+  one system, and the season must never mention the weights.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>System</th><th>Purpose</th><th>Uses Madden weights?</th><th>Where it lives</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Season simulation</strong></td><td>How your drafted team performs</td><td><strong>No.</strong> Uses the matchup model only.</td><td>The whole site</td></tr>
+        <tr><td>Draft valuation</td><td>What a player is worth at a slot</td><td>No. Uses <code>slotWins</code>.</td><td>Draft tab</td></tr>
+        <tr><td>Power rankings</td><td>Comparing real NFL rosters</td><td>Yes</td><td>Appendix</td></tr>
+        <tr><td>Weights</td><td>Tuning the rankings</td><td>Yes</td><td>Appendix</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="card warn">
+    <h4>Specific instruction</h4>
+    <p>Do not reference weights, weight sliders, or position weights anywhere in the season views or the
+    100-season review. If a sentence exists there that mentions weights, delete it rather than rewording it.
+    The 100-season review is about football outcomes, not about a ranking configuration.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="ia">
+  <h2><span class="num">03</span>Information architecture</h2>
+  <p class="lede">One primary destination, one secondary, and an appendix. That is the whole site.</p>
+
+  <h3>The destination model</h3>
+  <div class="ia">
+    <div class="ia-row primary">
+      <div class="slot">Primary</div>
+      <div><div class="nm">Season</div><div class="ds">Draft results merge into this. Live season, standings, playoffs, awards, review.</div></div>
+      <div class="wt">tab 1 · always</div>
+    </div>
+    <div class="ia-row">
+      <div class="slot">Primary</div>
+      <div><div class="nm">Draft</div><div class="ds">Setup, live board, roster. Before the season exists.</div></div>
+      <div class="wt">tab 2</div>
+    </div>
+    <div class="ia-row">
+      <div class="slot">Appendix</div>
+      <div><div class="nm">Rankings · Players · Units · Compare · Guide · Weights</div><div class="ds">Small, quiet, centred at the bottom. Never in the top nav.</div></div>
+      <div class="wt">footer</div>
+    </div>
+  </div>
+
+  <h3>The merge, precisely</h3>
+  <p>When the draft reaches its last pick, the draft-results view and the season view stop being two
+  places. They become one tab called <strong>Season</strong>, and it moves to the far left. The
+  <em>Play a Season</em> control renders immediately above the draft ranking — not below it, not in a
+  separate panel, not behind a scroll.</p>
+
+<pre><code>BEFORE                                  AFTER DRAFT
+┌──────────────────────────────┐        ┌──────────────────────────────┐
+│ Draft │ Rankings │ Players… │        │ SEASON │ Draft │ … (appendix)  │
+├──────────────────────────────┤        ├──────────────────────────────┤
+│  draft board                 │        │  ┌────────────────────────┐  │
+│                              │        │  │   ▶ PLAY A SEASON      │  │
+│  (draft ends)                │  ───▶  │  └────────────────────────┘  │
+│  draft results               │        │  DRAFT RANKING               │
+│  ┌──────────────┐            │        │   B+  ·  4th of 32           │
+│  │ Play a Season│ (below)    │        │   pick-by-pick…              │
+│  └──────────────┘            │        │                              │
+└──────────────────────────────┘        └──────────────────────────────┘</code></pre>
+
+  <p>Before a draft exists, <strong>Season</strong> is still tab 1 and still first on the left. It shows
+  the empty state: a short line and the single action that starts a draft. The site never opens on a
+  table of numbers.</p>
+
+  <div class="card">
+    <h4>Why "Season" and not "Home"</h4>
+    <p>The label carries the message. A visitor who sees <em>Season</em> understands the product is
+    about playing a season. A visitor who sees <em>Home</em> learns nothing. The word does real work;
+    do not replace it with something clever.</p>
+  </div>
+
+  <h3>The appendix, exactly</h3>
+  <p>Bottom of the page, centred, quiet, one line, wraps on phones. Small type, low contrast until
+  hover. It must never look like a competing navigation.</p>
+<pre><code>────────────────────────────────────────────────────────
+  Rankings · Players · Position Units · Compare · Guide · Weights
+────────────────────────────────────────────────────────</code></pre>
+  <p class="small">These are not tabs. They open as their own view with a single "← Back to Season"
+  affordance. Reaching one should feel like opening a reference, not changing product.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="design">
+  <h2><span class="num">04</span>Design language</h2>
+  <p class="lede">The owner asked for beauty and motion, with errors fixable later. This is the language to build it in.</p>
+
+  <h3>The feeling</h3>
+  <p><strong>Broadcast booth, not spreadsheet.</strong> A live game has a spine: score, clock, down and
+  distance, and something happening. The site should feel like it is being played, not read. Numbers
+  should look like numbers on a scoreboard — condensed, tabular, confident. Prose should look like
+  good sports writing — plain, unhurried, generous line height.</p>
+
+  <h3>Non-negotiables</h3>
+  <div class="grid2">
+    <div class="card">
+      <h4>Motion that means something</h4>
+      <ul>
+        <li>Scores count up rather than appear</li>
+        <li>Bars grow from zero on reveal</li>
+        <li>Week cards slide in on advance</li>
+        <li>A pick flashes once, then settles</li>
+        <li><strong>Nothing loops.</strong> No ambient animation.</li>
+        <li>All motion respects <code>prefers-reduced-motion</code></li>
+      </ul>
+    </div>
+    <div class="card">
+      <h4>Hierarchy that survives a phone</h4>
+      <ul>
+        <li>One primary action visible at any moment</li>
+        <li>Tabular numbers everywhere (<code>font-variant-numeric: tabular-nums</code>)</li>
+        <li>No horizontal scroll at 390px — ever, on any view</li>
+        <li>Nothing important below the fold on first paint</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Token set to keep</h3>
+  <p>The existing palette is good and should not be reinvented. Extend it rather than replacing it.</p>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Token</th><th>Value</th><th>Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>--bg</code></td><td class="mono">#0b0e14</td><td>Page</td></tr>
+        <tr><td><code>--panel</code></td><td class="mono">#141922</td><td>Cards</td></tr>
+        <tr><td><code>--text</code></td><td class="mono">#e8ecf3</td><td>Body</td></tr>
+        <tr><td><code>--sub</code></td><td class="mono">#9fb0c0</td><td>Secondary text</td></tr>
+        <tr><td><code>--accent</code></td><td class="mono">#4f8cff</td><td><strong>The user's team.</strong> Reserved — see below</td></tr>
+        <tr><td><code>--accent2</code></td><td class="mono">#ff6b4a</td><td>Alert, opponent emphasis</td></tr>
+        <tr><td><code>--good</code></td><td class="mono">#3ecf8e</td><td>Win, positive delta</td></tr>
+        <tr><td><code>--bad</code></td><td class="mono">#ff6b6b</td><td>Loss, negative delta</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card warn">
+    <h4>The blue means one thing</h4>
+    <p><code>--accent</code> belongs to the user's team. It is not a generic link colour, not a hover
+    colour, not a highlight for "important". Every time it is used for something else, the user's
+    ability to find their own team in a wall of text degrades. Audit any new use against that rule.</p>
+  </div>
+
+  <h3>Typography</h3>
+  <ul>
+    <li><strong>Scores and statistics:</strong> tabular figures, slightly condensed, one weight heavier than surrounding text.</li>
+    <li><strong>Prose:</strong> same size as body text. Post-game narrative has repeatedly been reported as too small — do not shrink it to fit a panel; widen the panel.</li>
+    <li><strong>Labels:</strong> small, uppercase, letter-spaced, low contrast. Never the same weight as content.</li>
+    <li><strong>Rem base:</strong> currently <code>21px</code> on desktop and <code>16px</code> at the phone breakpoint — a 31% jump. Pick one scale and make the breakpoint adjustment deliberate rather than incidental.</li>
+  </ul>
+
+  <h3>Mobile draft board — the specific problem</h3>
+  <div class="card danger">
+    <h4>Symptom</h4>
+    <p>On a phone the draft board stacks into cards. Each card is too tall, and once you scroll past the
+    first few, you can no longer tell which number is which. The stat categories are invisible at the
+    point of use.</p>
+    <p><strong>Measured on the Season-first cut at 390&nbsp;px:</strong> a player row is
+    <strong>243–260&nbsp;px tall</strong> (ten stacked label/value lines, 23&nbsp;px each); the
+    <code>thead</code> is <code>display:none</code>; roughly two and a half players fit on a 844&nbsp;px
+    screen; the "Fills" cell wraps to three lines and splits the word <em>change</em> across two. There is
+    no horizontal scroll — the problem is vertical, and it is the worst experience in the product.</p>
+  </div>
+  <h4>Required behaviour</h4>
+  <ol>
+    <li><strong>Compress the card.</strong> One compact primary row: name, position, team, OVR, and the
+    one number that matters (Value here). Everything else is secondary and smaller.</li>
+    <li><strong>Keep the labels attached.</strong> A number without its label is not information. The
+    label must be visible on the value it belongs to, not floating in a header that scrolled away.</li>
+    <li><strong>Sticky category band.</strong> While scrolling the list, a pinned strip shows the
+    current sort and the column meanings, so the reader never loses the key.</li>
+    <li><strong>Sticky primary action.</strong> The recommended pick stays reachable at the bottom of
+    the viewport with a large tap target.</li>
+    <li><strong>Progressive detail.</strong> Tap a card to expand the full metric set. Collapsed by default.</li>
+  </ol>
+  <p class="small">The old approach — a <code>MutationObserver</code> that walks every table and writes
+  <code>data-label</code> onto cells — is a workaround. It is allowed to remain as a fallback, but new
+  layouts should emit labelled markup at render time.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="football">
+  <h2><span class="num">05</span>Football philosophy</h2>
+  <p class="lede">What the model believes about football. Every number downstream inherits these beliefs.</p>
+
+  <div class="doctrine">
+    <div class="n">1</div>
+    <div><h4>Units, not individuals</h4><p>A team is nine units: quarterback, backfield, receivers and
+      tight ends, run blocking, pass blocking, pass rush, run defence, coverage, and kicking. Games are
+      decided between units, not between all-pro lists.</p></div>
+
+    <div class="n">2</div>
+    <div><h4>Value is marginal, not absolute</h4><p>A player is worth what he adds over the replacement
+      you could have had at that slot. The 70-overall baseline is the anchor. Never price a player by
+      rating alone.</p></div>
+
+    <div class="n">3</div>
+    <div><h4>Position scarcity is real and large</h4><p>Quarterback and edge are worth multiples of guard
+      and safety. The weights encode this and must stay internally consistent with the draft board.</p></div>
+
+    <div class="n">4</div>
+    <div><h4>Fit is a penalty, not a bonus</h4><p>Playing out of position costs rating. Flexing is a
+      legitimate strategy, not an exploit — the owner has said so directly. Never "fix" it.</p></div>
+
+    <div class="n">5</div>
+    <div><h4>Plans are independent</h4><p>Offence and defence choose separately, and coaches are graded
+      against the opponent's <em>expected</em> plan, never the actual one. That is deliberate: grading
+      against the actual plan would teach the model to read minds.</p></div>
+
+    <div class="n">6</div>
+    <div><h4>Variance is the product</h4><p>Upsets are the reason the season is watchable. The model
+      should be well calibrated, not deterministic. Never reduce noise to make results tidier.</p></div>
+
+    <div class="n">7</div>
+    <div><h4>Real NFL output is the calibration target</h4><p>Scoring, yardage, sack rate, and win
+      distribution should look like a real season. The 2025 win correlation is the standing test.</p></div>
+  </div>
+
+  <div class="card warn">
+    <h4>Where the model currently cheats, and why it matters</h4>
+    <p>A game is produced by four separate random processes stitched together: unit production, final
+    score, scoring events, then player stat splits. The box score, the quarter score, and the recap are
+    all <em>consistent with</em> the same final score, but they are not <em>caused by</em> the same game.
+    That is the root of nearly every narrative complaint the owner has raised, including a defensive
+    touchdown that appears in prose and then vanishes from the score. §6 is the fix.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="onegame">
+  <h2><span class="num">06</span>The one-game doctrine</h2>
+  <p class="lede">The largest structural change available, and the one that retires the most bugs at once.</p>
+
+  <h3>Current state</h3>
+  <pre><code>unit ratings ──▶ expected yards ──▶ noise ──▶ FINAL SCORE
+                                              │
+                                              ├──▶ decompose into TDs/FGs/safeties
+                                              │     └──▶ scatter across quarters (weights 1, 1.05, 1, 1.15)
+                                              │
+                                              └──▶ split totals into player stats
+
+recap prose  ◀── reads the scattered events, invents names and drives</code></pre>
+  <p>Because the scatter is random and the score is already fixed, a team can "trail by 14 at the half"
+  purely because its points landed in the third and fourth quarters. A defensive touchdown can be
+  narrated that never entered the score. A walk-off score can be filed under the fourth quarter.</p>
+
+  <h3>Target state</h3>
+  <pre><code>unit ratings ──▶ drive generator ──▶ ordered plays ──▶ everything else is a sum
+
+  each drive:  field position ─▶ plays ─▶ outcome (TD / FG / punt / TO / safety)
+  each play:   type, yards, personnel, defender, ball carrier, clock
+
+  score    = sum of scoring plays
+  box score= sum of all plays
+  quarter  = bucketed by play clock
+  recap    = a reading of the play list, in order</code></pre>
+  <p>Under this doctrine, <strong>one source of truth</strong> exists and every view is a projection of it.
+  The invariant becomes trivially checkable: the scoring plays must sum to the final score, and they
+  must be in clock order.</p>
+
+  <div class="card accent">
+    <h4>Do this incrementally, not as a rewrite</h4>
+    <p>A full drive generator is a large build. The minimum viable version keeps the existing matchup
+    model for <em>expected</em> totals, then generates a play list whose sums are forced to match those
+    totals. That is a bounded change and it fixes the ordering, the quarter assignment, the defensive
+    score, and the walk-off placement in one move. Do not attempt a from-scratch engine rewrite.</p>
+  </div>
+
+  <h3>Overtime — the specific rules</h3>
+  <div class="card danger">
+    <h4>Current behaviour is wrong on two counts</h4>
+    <ul>
+      <li>The walk-off touchdown is rendered in the <strong>fourth quarter</strong> section of the timeline. It belongs in the overtime section.</li>
+      <li>It is narrated as <strong>sudden death</strong> ("the Cardinals never got the ball back"). Modern NFL overtime is not sudden death.</li>
+    </ul>
+  </div>
+  <h4>What to implement</h4>
+  <ul>
+    <li><strong>Regular season overtime:</strong> ten minutes. Both teams are entitled to a possession unless the first possession ends in a touchdown. A field goal on the first possession does <em>not</em> end the game. If the score is still tied after both possessions, the game ends as a tie (or continues to a second period only if the rules in force say so — pick one rule set and state it in the Guide).</li>
+    <li><strong>Postseason overtime:</strong> both teams get a possession regardless of whether the first ends in a touchdown.</li>
+    <li>The overtime period must have its own section in the timeline, with its own clock, and scoring there must never be filed under quarter four.</li>
+    <li>All overtime prose must be rewritten so it never claims the opponent "never got the ball" unless they genuinely did not.</li>
+  </ul>
+  <p class="small">Where a rule is simplified, say so plainly in the Guide ("simplified overtime"). Never
+  claim you are modelling NFL overtime if you are not.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="stats">
+  <h2><span class="num">07</span>Advanced stats taxonomy</h2>
+  <p class="lede">What "generate advanced stats for every meaningful stat" actually means, and the one idea that makes it cheap.</p>
+
+  <div class="card good">
+    <h4>Source material — received</h4>
+    <p>The two documents the owner referenced arrived on 19 October 2026 as <code>Sacks.webp</code> and
+    <code>Sacksmol.webp</code> in the repository root. They are <strong>Sack Index</strong> tables
+    (career sacks per game divided by the league's sacks per game during the player's career, compiled by
+    <code>@jaydpauley</code>) — a pass-rush reference, not a general taxonomy. The taxonomy below still
+    stands on football first principles; the sack material is reconciled in the next subsection, and where
+    the two disagree about sacks or pressure, the documents win.</p>
+  </div>
+
+  <h3>The spine: every stat is expected versus actual</h3>
+  <p>The simulation already produces <em>expected</em> values from the matchup model — expected rush
+  yards, expected pass yards, expected turnovers. That is exactly what modern advanced stats are built
+  on, and it is already in the building. So the rule is:</p>
+
+  <div class="card accent">
+    <p style="margin:0"><strong>For every meaningful stat, report three numbers: what the model
+    expected, what actually happened, and the difference.</strong> The difference is the player's
+    contribution. This turns the whole app from a box score into an analytics page without inventing a
+    single new simulation.</p>
+  </div>
+
+  <p>This yields, for free, the things real analytics sites sell: completion percentage over expected,
+  rush yards over expected, and pressure rate over expected. No new randomness, no new model.</p>
+
+  <h3>The taxonomy</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>Phase</th><th>Stat</th><th>Definition</th><th>Reads as</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="6"><strong>Passing</strong></td><td>CPOE</td><td>Completion % minus expected completion % on the same throws</td><td>Accuracy beyond scheme</td></tr>
+        <tr><td>aDOT</td><td>Average depth of target</td><td>How aggressive the throw was</td></tr>
+        <tr><td>ANY/A</td><td>Yards per attempt adjusted for sacks, TDs, INTs</td><td>Overall efficiency</td></tr>
+        <tr><td>Pressure-to-sack</td><td>Sacks ÷ pressures</td><td>How well pressure is avoided</td></tr>
+        <tr><td>Air yards vs YAC</td><td>Split of passing yards into air and after-catch</td><td>Who did the work</td></tr>
+        <tr><td>EPA per play</td><td>Expected points added, per dropback</td><td>Value per snap</td></tr>
+
+        <tr><td rowspan="4"><strong>Rushing</strong></td><td>RYOE</td><td>Rush yards over expected for the same blocking and box count</td><td>Back quality beyond the line</td></tr>
+        <tr><td>MTF</td><td>Missed tackles forced</td><td>Elusiveness</td></tr>
+        <tr><td>Explosive rate</td><td>Share of runs over 10 yards</td><td>Big-play tendency</td></tr>
+        <tr><td>Success rate</td><td>Share of runs that improved down and distance</td><td>Consistency</td></tr>
+
+        <tr><td rowspan="5"><strong>Receiving</strong></td><td>YPRR</td><td>Yards per route run</td><td>The single best receiver efficiency number</td></tr>
+        <tr><td>Target share</td><td>Share of team targets</td><td>Involvement</td></tr>
+        <tr><td>Air-yard share</td><td>Share of team air yards</td><td>Role depth</td></tr>
+        <tr><td>Drop rate</td><td>Drops ÷ catchable targets</td><td>Hands</td></tr>
+        <tr><td>Contested catch %</td><td>Wins on tight-window targets</td><td>Physicality</td></tr>
+
+        <tr><td rowspan="3"><strong>Offensive line</strong></td><td>Pass-block win rate</td><td>Reps won within 2.5 seconds</td><td>Protection quality</td></tr>
+        <tr><td>Run-block win rate</td><td>Reps won at the point of attack</td><td>Push</td></tr>
+        <tr><td>Sacks allowed</td><td>Attributed to a blocker</td><td>Accountability, not unit blame</td></tr>
+
+        <tr><td rowspan="3"><strong>Pass rush</strong></td><td>Pressure rate</td><td>Pressures ÷ pass-rush snaps</td><td>Disruption without sacks</td></tr>
+        <tr><td>Win rate</td><td>Reps won within 2.5 seconds</td><td>Consistency</td></tr>
+        <tr><td>TFL</td><td>Tackles for loss</td><td>Run disruption</td></tr>
+
+        <tr><td rowspan="4"><strong>Coverage</strong></td><td>Passer rating allowed</td><td>Opponent rating when targeted</td><td>Isolation quality</td></tr>
+        <tr><td>Yards per coverage snap</td><td>Coverage efficiency</td><td>Durability of assignment</td></tr>
+        <tr><td>Forced incompletions</td><td>PBUs plus tight-window misses</td><td>Ball skills</td></tr>
+        <tr><td>Target rate</td><td>How often thrown at</td><td>Respect level</td></tr>
+
+        <tr><td rowspan="2"><strong>Kicking</strong></td><td>FG % by distance band</td><td>Split at 20–29, 30–39, 40–49, 50+</td><td>Leg quality</td></tr>
+        <tr><td>Touchback rate</td><td>Kickoff depth</td><td>Field-position value</td></tr>
+
+        <tr><td><strong>Returns</strong></td><td>Return yards over expected</td><td>Actual minus expected for the returner grade</td><td>Third-phase value</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>The Sack Index <span class="tag p2">pass-rush calibration</span></h3>
+  <p>The owner's two documents define one number worth adopting verbatim:</p>
+
+  <div class="card accent">
+    <p style="margin:0"><strong>Sack Index = (sacks ÷ games) ÷ (league sacks per team-game over the same span).</strong>
+    It removes the era and the league's overall sack rate, so a 1970s rusher and a 2020s rusher can be put on
+    one line. A single season's index is naturally higher than a career's, because a career includes the
+    decline years — compare like with like.</p>
+  </div>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Reference point</th><th>Value in the documents</th></tr></thead>
+      <tbody>
+        <tr><td>League sacks per team-game, top-50 careers</td><td>2.26 – 2.56</td></tr>
+        <tr><td>Highest career index</td><td>Deacon Jones .372</td></tr>
+        <tr><td>The .300 club</td><td>Reggie White .350 · Myles Garrett .349 · DeMarcus Ware .344 · Mike Reid .342 · J.J. Watt .336 · T.J. Watt .334 · Aaron Donald .332 · Chandler Jones .331 · Von Miller .331</td></tr>
+        <tr><td>Floor of the all-time top 50</td><td>Jim Jeffcoat .182</td></tr>
+        <tr><td>What an elite <em>season</em> implies</td><td>.40–.45 — i.e. 16–18 sacks in 17 games at 2.3 per team-game</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h4>What the Season-first cut produces now</h4>
+  <ul>
+    <li>League rate: <strong>2.17</strong> sacks per team-game before v10, <strong>2.26</strong> after — inside
+    the real band either way.</li>
+    <li>Sack leader over 100 simulated seasons: <strong>14.8 average, 21 maximum</strong> before v10;
+    <strong>17.1 average, 21 maximum</strong> after. The 20+ season rate moved from 0.03 to 0.09 per league
+    season, against roughly 0.1 in the real record book.</li>
+    <li>Credit: <strong>100%</strong> after v10 (1,229 credited against 1,229 team sacks in a measured
+    season). Before it, 19.2% were discarded by an <code>18%</code> <code>continue</code> in
+    <code>buildDefenseDetail</code>, and the box score disagreed with the player lines.</li>
+    <li>The leader's index now sits near <strong>.44</strong> — the top of the elite band, as it should be for
+    the best season in a 32-team league.</li>
+  </ul>
+
+  <div class="card warn">
+    <h4>Targets to assert, not to eyeball</h4>
+    <ol style="margin-bottom:0">
+      <li><strong>Credit ratio 1.000.</strong> Every sack names a player. A rotation sack goes to <code>DL5</code>
+      or <code>LB4</code> by name, never nowhere. This alone lifts the leader to about 18.</li>
+      <li><strong>League 2.2–2.4</strong> sacks per team-game.</li>
+      <li><strong>Leader 15–18</strong> sacks, leader index <strong>.38–.45</strong>.</li>
+      <li><strong>20+ sack seasons at 0.05–0.12 per league season</strong> — rare, not impossible.</li>
+      <li><strong>Interior rushers at 50–70% of an edge rusher's share</strong> at equal rating.</li>
+      <li><strong>Never compare raw sack totals across eras.</strong> Inside one season, raw sacks are fine; the
+      moment the comparison crosses seasons, show the index.</li>
+    </ol>
+  </div>
+
+  <p><strong>Where it shows:</strong> the sack figure stays in the box score and the season line; the Sack
+  Index joins the defensive-line leaderboard and the 100-season audit (mean leader index next to mean and max
+  sacks). It is a context number, so it belongs on a details surface, not in a recap sentence.</p>
+
+  <h3>Rules for shipping advanced stats</h3>
+  <ol>
+    <li><strong>Never invent a stat the simulation did not produce.</strong> If the play list cannot support it, do not display it. A missing stat is honest; a fabricated one is a lie.</li>
+    <li><strong>Advanced stats live on a details surface</strong>, never in the main recap or the main season line. The owner wants plain football language up front.</li>
+    <li><strong>Every advanced stat needs a one-line plain-English gloss</strong> on first appearance. "RYOE — how many more yards he gained than an average back would have behind the same blocking."</li>
+    <li><strong>Percentiles require a league context.</strong> Show "87th percentile edge rusher" only if a real league distribution was computed, not an assumed one.</li>
+    <li><strong>Do not let the stats layer change the simulation.</strong> It is a projection of the play list. If a stat needs a new input, that is an engine change and needs its own authorisation.</li>
+  </ol>
+</section>
+
+<!-- ============================================================ -->
+<section id="invariants">
+  <h2><span class="num">08</span>Invariants</h2>
+  <p class="lede">Break one of these and the result is not a bug, it is a different product.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>Invariant</th><th>Checkable how</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Weights and wins-per-OVR are inverses</td><td>Recompute <code>modelWeights()</code> from <code>slotWinsPerOvr()</code>; error under 1%</td></tr>
+        <tr><td class="num">2</td><td>Replacement floor stays at 76</td><td>Grep <code>rlow</code>; assert <code>max(repl, 76)</code></td></tr>
+        <tr><td class="num">3</td><td>Flex penalties apply everywhere</td><td>Same <code>effOvr</code> in board, editor, season, sim</td></tr>
+        <tr><td class="num">4</td><td>User and CPU use the same lineup optimiser</td><td>Both call <code>optimalLineup()</code></td></tr>
+        <tr><td class="num">5</td><td>Plans are scored against expected, not actual</td><td>No reference to opponent's realised plan in scoring</td></tr>
+        <tr><td class="num">6</td><td>32.5 points per win</td><td><code>POINTS_PER_WIN</code> untouched</td></tr>
+        <tr><td class="num">7</td><td>Record caps never reduce a total</td><td>Monotone assertion over accumulation</td></tr>
+        <tr><td class="num">8</td><td>Seeding is deterministic</td><td>Same inputs produce byte-identical seed order</td></tr>
+        <tr style="border-top:2px solid var(--border2)">
+        <tr><td class="num">9</td><td><strong>Scoring events sum to the final score</strong></td><td>assert <code>sum(events) === homeScore + awayScore</code></td></tr>
+        <tr><td class="num">10</td><td><strong>Events are in clock order</strong></td><td>Monotone assertion over the ordered play list</td></tr>
+        <tr><td class="num">11</td><td><strong>Attribution never exceeds the margin</strong></td><td>assert <code>sum(swings) ≤ |margin| + 1</code></td></tr>
+        <tr><td class="num">12</td><td><strong>The seed reproduces the season</strong></td><td>Same seed twice produces identical standings</td></tr>
+        <tr><td class="num">13</td><td><strong>The season never reads the weights</strong></td><td>No weight variable reachable from season code paths</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="small">Items 9–13 are new and each is a one-line assertion. Add them to the test protocol
+  before any narrative work, because every narrative complaint in the backlog traces back to one of them.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="backlog">
+  <h2><span class="num">09</span>The backlog</h2>
+  <p class="lede">Every authorised task, ranked. Filter by priority. If a task is not here, it is not authorised.</p>
+
+  <div class="filters">
+    <button class="fbtn" data-f="all" aria-pressed="true">All</button>
+    <button class="fbtn" data-f="p0" aria-pressed="false">P0 · reposition</button>
+    <button class="fbtn" data-f="p1" aria-pressed="false">P1 · truth</button>
+    <button class="fbtn" data-f="p2" aria-pressed="false">P2 · integrity</button>
+    <button class="fbtn" data-f="p3" aria-pressed="false">P3 · craft</button>
+    <input class="fsearch" id="tsearch" placeholder="Filter tasks…" aria-label="Filter tasks">
+  </div>
+
+  <div id="tasklist">
+
+  <h3>Regressions &amp; new findings <span class="tag p0">19 Oct review</span></h3>
+  <p class="small">Found by reviewing the Season-first cut against this document. R1 is the most urgent because it
+  makes a preview tell the reader about a game that has not happened.</p>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">R-1</span><span class="tt">The division rematch tag must look backwards only</span><span class="src">review · regression</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">Verified on a simulated season: a Week&nbsp;2 division game with nothing played reads
+    "Same division. They already met in Week&nbsp;11: Bills lost 13–11." The tag now looks <em>forward</em>,
+    which is worse than the "second meeting" bug it replaced. Cause: <code>meetingInfo()</code> keeps every
+    other meeting and filters on <code>x.played</code>, not on whether it happened before this game.</p>
+    <p class="how"><b>Build:</b> Filter on order, not on played state: regular season <code>x.week &lt; g.week</code>;
+    playoffs by round index; a playoff game may use regular-season meetings and earlier rounds. When nothing
+    qualifies, say "first of N meetings" (N from the schedule), never "already met". Assert at Week&nbsp;1–2
+    that no division tag contains the word <em>met</em>.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">R-2</span><span class="tt">Credit every sack to a player</span><span class="src">review · data defect</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">Measured: 1,179 team sacks against 953 credited player sacks in one season (80.8%). A box
+    score that says three sacks can show player lines that add to two. It also depresses the sack leader to
+    14.8 and hides the top of the distribution the sack documents describe.</p>
+    <p class="how"><b>Build:</b> Remove the <code>18%</code> <code>continue</code> in <code>buildDefenseDetail</code>.
+    Put the rotation share on <code>DL5</code> and <code>LB4</code> by name, with their own weights. Assert
+    league-wide: sum of player sacks === sum of team sacks, to the last sack.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">R-3</span><span class="tt">The turnover paragraph must name the players</span><span class="src">review · P1-4 not done</span></div>
+    <p class="why">Verified: "The Colts came out one turnover ahead, and how they happened is in the
+    play-by-play above." The names exist one paragraph away, which is exactly what the owner asked to stop.
+    The fallback is also wrong: <code>statsNotes</code> treats a defender's <code>st.ff</code> as a giveaway
+    and pairs defenders to givers by array index.</p>
+    <p class="how"><b>Build:</b> Make the head itself carry the giveaways: "Lamar Jackson was intercepted by
+    Alontae Taylor in the first quarter" for a one-turnover game, and a comma list for more. The
+    <code>statsNotes</code> fallback may only use passing <code>st.int</code> and <code>st.fumLost</code>,
+    never <code>ff</code>, and may only name a defender who actually recorded the takeaway.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">R-4</span><span class="tt">Overtime must be possessions, not a synthetic score</span><span class="src">review · P1-3 partial</span></div>
+    <p class="why">The engine still adds one 3- or 7-point event to the tied score, then narrates possessions
+    it never simulated ("The Seahawks got their offensive possession, the Rams answered"). Under current
+    rules a field goal on the first possession does not end the game, so the prose explains a sequence the
+    model did not run.</p>
+    <p class="how"><b>Build:</b> Two or three possessions with real outcomes: first possession ends in TD
+    (game over), FG (opponent gets a possession that can tie, win with a TD, or lose), or nothing; then
+    sudden death. Emit each possession as an event so the timeline and the narrative read from the same
+    list. Regular-season ties stay possible; postseason cannot end level.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">R-5</span><span class="tt">Delete the duplicated document shell and refresh the labels</span><span class="src">review · hygiene</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">The file still opens with a second <code>&lt;!doctype html&gt;&lt;html&gt;…&lt;/body&gt;&lt;/html&gt;</code>
+    wrapper around the real document (line&nbsp;1 and the final line). Its <code>:root{color-scheme:light}</code>
+    wins over the dark theme, so native controls render light on a dark page, and the nested document is
+    invalid HTML. The <code>h1</code> also still says "(OC v9)" (the build's own label).</p>
+    <p class="how"><b>Build:</b> Delete both wrapper ends, leaving the real document lines. Move
+    <code>color-scheme</code> onto the app's own <code>:root</code> and set it to <code>dark</code> with the
+    light override kept. Replace the version label with a build number that matches the file. Keep the
+    <code>&lt;title&gt;</code> in sync.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">R-6</span><span class="tt">550&nbsp;ms of dead space before the draft board</span><span class="src">review · mobile</span></div>
+    <p class="why">Measured at 390&nbsp;px: four full-width selects and sixteen position chips sit above the
+    first player, and the "Pick priority" panel is empty whenever the CPU is on the clock. The user scrolls
+    two screens before seeing a player.</p>
+    <p class="how"><b>Build:</b> One compact filter row (search + position + sort) with the rest behind a
+    "Filters" disclosure; hide the priority panel when it has nothing to say; move the position chips under
+    the same disclosure. Do this in the same pass as P0-5.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">R-7</span><span class="tt">The receiving leader is about 23% low</span><span class="src">review · calibration</span></div>
+    <p class="why">The 100-season audit reports a receiving leader of 1,316 yards on average (max 1,520),
+    while the modern NFL leader sits near 1,700 and the record is 1,964. No simulated season has reached
+    1,700. Passing volume and rushing totals are in band, so the shortfall is in the target distribution,
+    not the offense.</p>
+    <p class="how"><b>Build:</b> Measure the WR1 target and air-yard share across the league first. Then raise
+    the top receiver's share of team targets rather than total passing yards, and re-run the 100-season audit
+    until the leader averages 1,550–1,750 with a max above 1,800. Do not touch <code>PT_PASS</code> to do it.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">R-8</span><span class="tt">The 100-season run freezes the tab for 45 seconds</span><span class="src">review · performance</span></div>
+    <p class="why">Measured: 45.5&nbsp;s of blocked main thread on a desktop Chromium, with no progress and no
+    way to cancel. On a phone this reads as a crash.</p>
+    <p class="how"><b>Build:</b> Yield between seasons (<code>await new Promise(r=&gt;setTimeout(r,0))</code>) and
+    paint "season 37 of 100" plus a Cancel button. Keep the full-detail path for the visible season; use the
+    lite season for the sample. This is the T9 packet in <code>MASTER_GUIDE.md</code>.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">R-9</span><span class="tt">141 of 832 starters line up out of phase</span><span class="src">review · needs owner approval</span></div>
+    <p class="why">Measured across the 32 drafted rosters after auto-applying the optimal lineup: 141 starters
+    (4.4 per team) are in a slot from the other side of the ball — a centre at defensive tackle, a receiver at
+    corner, a corner at tight end, a safety at tight end, a running back at tight end. <code>FLEX</code> permits
+    it (<code>WR:{SS:4,FS:4,CB:4}</code>, <code>C:{DT:4}</code>, <code>CB:{WR:4}</code>), the penalty is smaller
+    than the OVR gap, and the Hungarian algorithm does what it is told. The result is real: receivers record
+    interceptions in the box score.</p>
+    <p class="how"><b>Build:</b> A phase guard is the minimal fix — an offensive player may not start on
+    defence and a defensive player may not start on offence, whatever <code>FLEX</code> says. Keep the
+    realistic crossovers (OL between spots, edge to tackle, linebacker to edge, DB across the secondary,
+    receiver to tight end). This changes lineup math, so it is an owner decision, not an agent's.</p>
+  </div>
+
+  <h3>P0 — Repositioning <span class="tag p0">do first</span></h3>
+  <p class="small">Nothing else matters until the product presents itself as a draft-and-season simulator. These are UI, not engine, so they are safe to ship early.</p>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-1</span><span class="tt">Season-first information architecture</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">The site currently opens on a draft board with six co-equal tabs and a weights panel in the primary position. Season must become the whole site.</p>
+    <p class="how"><b>Build:</b> Season as tab 1, leftmost, default. Draft as tab 2. All six existing destinations demoted to a single centred footer line. Season renders an empty state with one action before a draft exists. No top-level nav beyond Season and Draft.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-2</span><span class="tt">Merge draft results into Season</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">After 26 rounds the user lands on a results page with no obvious next step. The season is the payoff and must be one click away, above the ranking.</p>
+    <p class="how"><b>Build:</b> On draft completion, the draft-results view becomes the Season tab's opening state. <em>Play a Season</em> renders immediately above the draft ranking, full width, visually primary. Remove the separate results tab.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-3</span><span class="tt">Delete the rankings preamble</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">The headline and instruction paragraph describe a different product and sit above the real one.</p>
+    <p class="how"><b>Build:</b> Remove the <code>h1</code> text "NFL Team Power Ranking Model" and the entire paragraph beginning "Adjust any weight on the left". The new headline names the draft simulator.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-4</span><span class="tt">Remove weights from the season and the 100-season review</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">Weights are a Madden-ranking configuration. The season does not use them. Mentioning them there implies a relationship that does not exist and has already caused confusion.</p>
+    <p class="how"><b>Build:</b> Grep every season and 100-season string for weight, slider, ranking configuration. Delete rather than reword. Weights may appear only in the appendix.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-5</span><span class="tt">Mobile draft board: compress and label</span><span class="src">owner · direct</span><span class="src" style="color:var(--red);border-color:rgba(255,92,92,.35)">not started</span></div>
+    <p class="why">Cards are too tall and the stat categories become invisible on scroll, so the numbers lose meaning.</p>
+    <p class="how"><b>Build:</b> Compact primary row (name, pos, team, OVR, Value here). Sticky category band showing the active sort and column meanings. Labelled values, never bare numbers. Sticky recommended-pick action with a large tap target. Tap to expand full metrics. Verify at 390px with zero horizontal scroll.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-6</span><span class="tt">Auto-apply the recommended lineup</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">A user who drafts inefficiently should not also be punished by playing an illegal or suboptimal lineup. The optimiser already exists and the CPU already uses it.</p>
+    <p class="how"><b>Build:</b> On season start, run <code>optimalLineup()</code> over the user's roster and apply it silently. Surface a one-line notice that it was applied, with a link to edit. The user may still override; the override must persist.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-7</span><span class="tt">Remove the "Needs only" control</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">The draft board has outgrown it, and it introduces a hidden state where the board silently shows fewer players than exist.</p>
+    <p class="how"><b>Build:</b> Delete the toggle. Fold its useful behaviour into the default sort: positions of need rank higher automatically. Remove any code path that renders a different list depending on it.</p>
+  </div>
+
+  <div class="task p0p" data-p="p0">
+    <div class="th"><span class="tid">P0-8</span><span class="tt">Delete the Guide preamble and the flexed-player sentences</span><span class="src">owner · direct</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span></div>
+    <p class="why">The owner reports these as confusing and unhelpful: "The best flexed player out-values the best natural one even after the penalty…" does not teach a reader anything they can act on.</p>
+    <p class="how"><b>Build:</b> Remove the "Guide: how this site works / Written for any football fan…" block entirely. Remove every instance of the "best flexed player out-values" sentence. If flex needs explaining, replace it with a single concrete example that names one player, one slot, and one number.</p>
+  </div>
+
+  <h3>P1 — Narrative truth <span class="tag p1">the recap must not lie</span></h3>
+  <p class="small">These are user-visible false statements. They damage trust more than any missing feature.</p>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-1</span><span class="tt">A defensive touchdown must persist in the score</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span><span class="src">owner · bug</span></div>
+    <p class="why">Observed: the recap narrates "Bobby Okereke came up with the football — and it went the distance for a touchdown (Broncos 14–12)", but the Broncos' 14 did not survive — the quarter line ended 12–7 to the Chiefs. The prose and the score disagree.</p>
+    <p class="how"><b>Build:</b> A scoring event emitted by the narrative layer must be the same object that contributes to the score. This is invariant 9. If the event exists in prose, it exists in the total.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-2</span><span class="tt">Walk-off scores belong in overtime</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span><span class="src">owner · bug</span></div>
+    <p class="why">A walk-off touchdown is being filed under the fourth quarter.</p>
+    <p class="how"><b>Build:</b> Give overtime its own timeline section with its own clock. Assert no overtime event carries <code>q === 4</code>.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-3</span><span class="tt">Current NFL overtime rules</span><span class="src" style="color:var(--gold);border-color:rgba(245,184,61,.35)">partial</span><span class="src">owner · direct</span></div>
+    <p class="why">The model uses sudden death, which the NFL has not used for years, and narrates it as such.</p>
+    <p class="how"><b>Build:</b> See §6. Both teams get a possession unless the first ends in a touchdown (regular season); postseason gives both teams a possession regardless. Rewrite all overtime prose. If simplified, label it simplified.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-4</span><span class="tt">Turnovers must name the players involved</span><span class="src" style="color:var(--red);border-color:rgba(255,92,92,.35)">open</span><span class="src">owner · direct</span></div>
+    <p class="why">"The turnovers canceled out, 1 apiece" and "The Broncos came out one turnover ahead" carry no information. The owner wants to know who.</p>
+    <p class="how"><b>Build:</b> Every turnover sentence names the player who forced it and the player who lost or intercepted it. Never a bare count. This applies to the summary line and to the timeline.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-5</span><span class="tt">Label every scoring action by the team it helped</span><span class="src" style="color:var(--gold);border-color:rgba(245,184,61,.35)">partial</span><span class="src">owner · direct</span></div>
+    <p class="why">In a bulleted quarter summary, the reader loses track of who benefited.</p>
+    <p class="how"><b>Build:</b> Each line leads with the benefiting team. Keep the bullet-list rhythm but render without bullet glyphs — one line per action, generous spacing.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-6</span><span class="tt">"Same division: a second meeting" must only appear on the second meeting</span><span class="src" style="color:var(--gold);border-color:rgba(245,184,61,.35)">partial</span><span class="src">owner · bug</span></div>
+    <p class="why">Observed on game two of the season, between teams that had not yet played. The label is derived from divisional membership, not from whether they have actually met.</p>
+    <p class="how"><b>Build:</b> Compute the label from games already played, never from the schedule. If the two teams have not met, it is a division opener, not a rematch.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-7</span><span class="tt">Head-to-head history in previews</span><span class="src" style="color:var(--gold);border-color:rgba(245,184,61,.35)">partial</span><span class="src">owner · direct</span></div>
+    <p class="why">The owner played the Colts in week three and again in the divisional round; the earlier meeting was never mentioned. Prior context is what makes a rematch feel like one.</p>
+    <p class="how"><b>Build:</b> If the teams have played this season, add one sentence naming the week, the score, and one defining moment. Do it for regular season and playoffs. Reuse the stored recap, do not regenerate it.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-8</span><span class="tt">"was not in this round" → "were not in this round"</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span><span class="src">owner · direct</span></div>
+    <p class="why">Teams are plural in the owner's preferred register.</p>
+    <p class="how"><b>Build:</b> Every team subject in a sentence takes a plural verb. Grep for the singular-verb pattern.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-9</span><span class="tt">"and it went the distance" → "and he went the distance"</span><span class="src" style="color:var(--green);border-color:rgba(62,207,142,.35)">shipped</span><span class="src">owner · direct</span></div>
+    <p class="why">The return is made by a person.</p>
+    <p class="how"><b>Build:</b> Grep the phrase. Audit similar pronoun slips in defensive-return narration.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-10</span><span class="tt">A safety is not a two-point conversion</span><span class="src" style="color:var(--red);border-color:rgba(255,92,92,.35)">open</span><span class="src">GLM · verified</span></div>
+    <p class="why">The two-point bucket is typed <code>SAF</code> unconditionally, so a successful 2-Pt Conv is credited to the opposing defence as a safety and adds to a defender's stat line.</p>
+    <p class="how"><b>Build:</b> Split the bucket at decomposition time into <code>SAF</code> and <code>CONV2</code> using a league-realistic ratio. Attribute <code>CONV2</code> to the offence; attribute <code>SAF</code> to the defence. Update the timeline and box score.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-11</span><span class="tt">Operator precedence in the late two-point swap</span><span class="src" style="color:var(--red);border-color:rgba(255,92,92,.35)">open</span><span class="src">GLM · verified</span></div>
+    <p class="why">Verified at the current line: the second disjunct has no <code>q &lt; 4</code> guard because <code>&amp;&amp;</code> binds tighter than <code>||</code>. A fourth-quarter touchdown can be re-timed into an earlier slot, reordering the timeline.</p>
+    <p class="how"><b>Build:</b> Collapse to a single predicate with the guard applied to both branches and a sanity check on clock order. Remove the duplicated term.</p>
+  </div>
+
+  <div class="task p1p" data-p="p1">
+    <div class="th"><span class="tid">P1-12</span><span class="tt">Attribution must not exceed the margin</span><span class="src" style="color:var(--red);border-color:rgba(255,92,92,.35)">open</span><span class="src">GLM · verified</span></div>
+    <p class="why">The realised yardage channels are soft-capped, but the per-part swings used by the "how it was decided" paragraph are not. When a cap binds, the explanation can attribute more points than the game was won by.</p>
+    <p class="how"><b>Build:</b> Compute the capped total, then rescale the parts proportionally so they sum to the realised channel. Assert invariant 11.</p>
+  </div>
+
+  <h3>P2 — League integrity <span class="tag p2">the numbers must be right</span></h3>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-1</span><span class="tt">Real tiebreakers</span><span class="src">all three reviewers</span></div>
+    <p class="why">Standings store only wins, losses, ties, and points. Ties break on head-to-head then point differential. Division record and conference record do not exist. Worse, a three-team head-to-head circle has no legal pairwise order, so the sort can hand a division to the team that lost it.</p>
+    <p class="how"><b>Build:</b> Track division and conference record in <code>freshStandings</code>. Replace the comparator with a group-based sort: group by win percentage, resolve two-team ties by head-to-head, then division record, then conference record, then common games when at least four are shared, then point differential, then a terminal deterministic key. Never rely on insertion order.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-2</span><span class="tt">CPU draft quality</span><span class="src">owner · direct</span></div>
+    <p class="why">Observed: Braden Smith drafted third overall; Will Reichard second overall. First-round picks should be believable, and a team that takes an unconventional position early must take the best player at it.</p>
+    <p class="how"><b>Build a round-dependent tolerance.</b> The CPU's chosen player must be within <code>tol(round)</code> OVR of the best available at the targeted slot: R1–2 → 4, R3–5 → 6, R6–10 → 8, R11+ → 12. Round 1 additionally constrains the board to the top ~10 overall and requires every pick to be 90+. If a CPU takes a kicker, punter, or tight end in the first three rounds, it must take the highest-rated player at that position, and the reach must be explained by a real positional run. Replace the uniform deep "miss" with a bounded falloff of no more than ~12 candidates. Target: a careful user finishes top five; the CPU stays competent but beatable.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-3</span><span class="tt">Post-draft first sentence compares to drafted teams</span><span class="src">owner · direct</span></div>
+    <p class="why">The first sentence of the draft recap compares the user's team to real NFL rosters. Those are different populations: the user's team was built by drafting against these 31 opponents.</p>
+    <p class="how"><b>Build:</b> The opening comparison must be against the other 31 drafted teams only. Real-NFL comparison may appear later, clearly labelled.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-4</span><span class="tt">League leaders: no horizontal scroll</span><span class="src">owner · direct</span></div>
+    <p class="why">Reported on desktop and mobile.</p>
+    <p class="how"><b>Build:</b> Fix the leaders table at both breakpoints. On phones it becomes stacked cards with visible labels. Verify 1440px and 390px.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-5</span><span class="tt">Record caps never subtract</span><span class="src">GLM + Grok</span></div>
+    <p class="why">Crossing a cap still replaces the total with <code>cap − random(0–34)</code>, so season totals stop equalling the sum of game logs, and identical paces stall at different numbers.</p>
+    <p class="how"><b>Build:</b> Refuse growth past the cap at accumulation time, deterministically. Never subtract. Display the capped value, do not mutate history.</p>
+  </div>
+
+  <div class="task p2p" data-p="p2">
+    <div class="th"><span class="tid">P2-6</span><span class="tt">Schedule fairness</span><span class="src">Grok</span></div>
+    <p class="why">Home games range to 6–12 and conference balance is unenforced, so schedule luck moves standings that the 100-season report treats as skill. If generation fails, Start Season throws with no message.</p>
+    <p class="how"><b>Build:</b> Constrain home and away to 8–9 each. Keep a rough intra- versus inter-conference split. Catch generation failure and show a retry.</p>
+  </div>
+
+  <h3>P3 — Craft <span class="tag p3">when the above is done</span></h3>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-1</span><span class="tt">Auto-save and resume</span><span class="src">every reviewer</span></div>
+    <p class="why">There is no persistence at all. A finished draft and a week-12 season die on refresh.</p>
+    <p class="how"><b>Build:</b> Versioned blob to <code>localStorage</code> after each pick and each week, inside <code>try/catch</code>. Offer Resume rather than auto-restoring. Include a discard path. Version the schema from day one.</p>
+  </div>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-2</span><span class="tt">Seeded simulation</span><span class="src">every reviewer</span></div>
+    <p class="why">Fifty-eight unseeded random calls. No season is reproducible, so no change is testable.</p>
+    <p class="how"><b>Build:</b> One injectable PRNG with a visible seed. Narrative hashing stays deterministic and separate. The 100-season run may keep using the global RNG.</p>
+  </div>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-3</span><span class="tt">Draft grid</span><span class="src">reviewer</span></div>
+    <p class="why">There is no way to see the draft as a whole: who took what, when.</p>
+    <p class="how"><b>Build:</b> Round × pick grid on the results surface. Read-only, compressed, scrollable horizontally inside its own container.</p>
+  </div>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-4</span><span class="tt">Cancel long runs and surface errors</span><span class="src">Grok</span></div>
+    <p class="why">A 100-season run cannot be cancelled, and a swallowed exception leaves a frozen progress bar with no message.</p>
+    <p class="how"><b>Build:</b> Cancel control on any long progress UI. Every long loop wrapped so a throw renders an error and a retry instead of a dead page.</p>
+  </div>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-5</span><span class="tt">Explain the board's own metrics</span><span class="src">reviewer + Tier 2</span></div>
+    <p class="why">Wins, Value here, Priority, and Gone answer different questions and are routinely confused.</p>
+    <p class="how"><b>Build:</b> One expandable explanation per pick, computed from the real numbers: quality, roster fit, wins added over the alternative, replacement risk, opportunity cost.</p>
+  </div>
+
+  <div class="task p3p" data-p="p3">
+    <div class="th"><span class="tid">P3-6</span><span class="tt">Accessibility floor</span><span class="src">reviewer</span></div>
+    <p class="why">Sortable headers cannot be focused or activated by keyboard at all. Dialogs trap the user with no Escape.</p>
+    <p class="how"><b>Build:</b> <code>tabindex</code>, <code>role</code>, <code>aria-sort</code>, Enter and Space on sortable headers. Escape and click-outside on dialogs. Names on icon-only controls. This is a floor, not an audit.</p>
+  </div>
+
+  </div><!-- /tasklist -->
+</section>
+
+<!-- ============================================================ -->
+<section id="language">
+  <h2><span class="num">10</span>Language &amp; style</h2>
+  <p class="lede">The prose is part of the product. These rules are enforceable by grep and should be.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Rule</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr><td>Plain football language</td><td>No analytics jargon in the main recap. Advanced terms get a gloss on first use.</td></tr>
+        <tr><td>Critique only 85+</td><td>Never criticise a player below 85 overall. Say nothing instead.</td></tr>
+        <tr><td>"2-Pt Conv"</td><td>Never "two-point conversion", except inside the Guide.</td></tr>
+        <tr><td>No hedging filler</td><td>Delete "with no strong lean either way" everywhere.</td></tr>
+        <tr><td>No pre-game tense after the fact</td><td>Never "expected scoring" or "before kickoff" in post-game text.</td></tr>
+        <tr><td>Teams are plural</td><td>"The Chiefs were", never "was".</td></tr>
+        <tr><td>People are people</td><td>"he went the distance", never "it".</td></tr>
+        <tr><td>The user's team is blue</td><td>Reserved accent. Never reuse for anything else.</td></tr>
+        <tr><td>Name the actors</td><td>Every turnover names who forced it and who lost it. Every score names who scored.</td></tr>
+        <tr><td>Stats near real records</td><td>Caps stay, but they must never make totals inconsistent.</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card">
+    <h4>Make the style rules executable</h4>
+    <p>Four of the rules above are one-line greps. Put them in the test runner so a regression fails
+    the build instead of reaching the page: the banned hedge phrase, "two-point conversion" outside the
+    Guide, "wasn't in this round", and "it went the distance". A rule that depends on memory is a rule
+    that will be broken.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="testing">
+  <h2><span class="num">11</span>Testing protocol</h2>
+  <p class="lede">Evidence, not assertions. Every claim in a report must trace to a number here.</p>
+
+  <div class="card danger">
+    <h4>State of the tooling</h4>
+    <p>The validation scripts the project's own documentation references — <code>pw4.js</code>,
+    <code>validate.js</code>, <code>phone.js</code>, <code>mk.sh</code>, <code>tests/run_all.sh</code> —
+    <strong>still do not exist in this checkout.</strong> <code>MASTER_GUIDE.md</code> now repeats the same
+    references, so the risk of an agent citing a script it cannot run has grown, not shrunk. Either restore
+    the scripts or delete the references. Until then, verify in a browser and quote the numbers below.</p>
+  </div>
+
+  <h3>Measured baseline — 19 October 2026</h3>
+  <p>Every figure below was taken from the Season-first build in a real browser (Chromium, Playwright),
+  not inferred from the source. Use them as the regression baseline: a later build that moves one of these
+  numbers has either fixed something or broken something, and either way it owes an explanation.</p>
+
+  <div class="tw">
+    <table>
+      <thead><tr><th>Measurement</th><th>Value</th><th>Verdict</th></tr></thead>
+      <tbody>
+        <tr><td>Scoring events vs final score</td><td>272 of 272 games exact, 52 games with a defensive TD</td><td class="ok">invariant holds</td></tr>
+        <tr><td>Overtime games / ties per season</td><td>8 OT games, 1 tie (0.25–0.34% of games)</td><td class="ok">matches the NFL</td></tr>
+        <tr><td>League sacks per team-game</td><td>2.17 (1,179 team sacks)</td><td class="ok">inside 2.05–2.56</td></tr>
+        <tr><td>Sacks credited to a player</td><td>1,229 of 1,229 = 100%</td><td class="ok">fixed in v10</td></tr>
+        <tr><td>Sack leader, 100 seasons</td><td>17.1 avg · 21 max · 0.09 seasons with 20+</td><td class="ok">in band</td></tr>
+        <tr><td>Receiving yards leader, 100 seasons</td><td>1,485 avg · 1,770 max (sample varies by draft)</td><td class="warn">still low — R-7</td></tr>
+        <tr><td>Passing / rushing yards leader</td><td>4,608 avg · 1,909 avg</td><td class="ok">in band</td></tr>
+        <tr><td>Model vs real 2025 wins</td><td>r 0.66 · ρ 0.69 · RMSE 2.6</td><td class="ok">meets the project target</td></tr>
+        <tr><td>100-season runtime</td><td>45–61 s blocked, no progress, no cancel</td><td class="bad">R-8</td></tr>
+        <tr><td>Out-of-phase starters after auto-lineup</td><td>141 of 832 (4.4 per team)</td><td class="bad">R-9</td></tr>
+        <tr><td>CPU first-round pick floor</td><td>93–94 OVR minimum across three drafts</td><td class="ok">beats the ≥90 target</td></tr>
+        <tr><td>CPU drift from best available</td><td>≤5 OVR in round 1, ≤8 in rounds 2–3</td><td class="ok">meets the ~8 rule</td></tr>
+        <tr><td>First kicker off the board</td><td>pick 75–144 (round 3–5); Aubrey 75–144 overall</td><td class="ok">no early kicker</td></tr>
+        <tr><td>Page-level horizontal overflow at 390 px</td><td>0 offenders across 12 views</td><td class="ok">holds</td></tr>
+        <tr><td>Mobile draft row height</td><td>243–260 px, header hidden</td><td class="bad">P0-5 not started</td></tr>
+        <tr><td>Division tag on a Week 2 game</td><td>never mentions a meeting; late games cite the earlier week only</td><td class="ok">fixed in v10</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card good">
+    <h4>The validation is now in the product</h4>
+    <p>The 100-season report carries the real-2025 check itself: correlation 0.66, Spearman 0.69, typical
+    miss 2.6 wins, against the same Madden ratings. That is the number the old <code>validate.js</code>
+    produced. Keep it there — an agent can verify the model without a script, which matters because the
+    scripts still do not exist in this checkout.</p>
+  </div>
+
+  <h3>The checklist</h3>
+  <div class="tw">
+    <table>
+      <thead><tr><th>#</th><th>Check</th><th>Pass condition</th></tr></thead>
+      <tbody>
+        <tr><td class="num">1</td><td>Syntax</td><td>Extracted script passes <code>node --check</code></td></tr>
+        <tr><td class="num">2</td><td>Draft completes</td><td>32 teams × 26 rounds, 832 picks, no throw</td></tr>
+        <tr><td class="num">3</td><td>Season completes</td><td>17 weeks, playoffs, Super Bowl, then review</td></tr>
+        <tr><td class="num">4</td><td>No horizontal scroll</td><td><code>scrollWidth === clientWidth</code> at 1440, 430, 390, 360, 320 — on every view</td></tr>
+        <tr><td class="num">5</td><td>Labels present</td><td>Every stacked cell carries its column header, before and after re-render</td></tr>
+        <tr><td class="num">6</td><td>Score identity</td><td>Scoring events sum to the final score (invariant 9)</td></tr>
+        <tr><td class="num">7</td><td>Clock order</td><td>Events monotone in clock (invariant 10)</td></tr>
+        <tr><td class="num">8</td><td>Attribution bound</td><td>Swings sum ≤ |margin| + 1 (invariant 11)</td></tr>
+        <tr><td class="num">9</td><td>Determinism</td><td>Same seed twice produces identical standings (invariant 12)</td></tr>
+        <tr><td class="num">10</td><td>No console errors</td><td>Zero page errors across a full draft and season</td></tr>
+        <tr><td class="num">11</td><td>Weights isolation</td><td>No weight reference reachable from season code (invariant 13)</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>How to run the browser checks</h3>
+  <p>Playwright is installed for Node. Launch the file directly over <code>file://</code>; local HTTP
+  servers have failed to bind in this environment. Synchronous script driving works; do not wait on
+  network idle.</p>
+<pre><code>const { chromium } = require('/Users/kosi/node_modules/playwright');
+const p = await (await chromium.launch()).newPage({ viewport:{width:390,height:844} });
+await p.goto('file://' + encodeURI(path.resolve(FILE)), { waitUntil:'load' });
+// then drive: #startDraftBtn → #simToEndBtn → #beginSeasonBtn → #simSeasonBtn</code></pre>
+  <p class="small">A test that fails on the original file and passes on yours is worth ten that pass
+  on both. Prove the test has teeth before claiming the fix.</p>
+</section>
+
+<!-- ============================================================ -->
+<section id="notdo">
+  <h2><span class="num">12</span>Do not do</h2>
+  <p class="lede">Things that have been decided, and should not be relitigated by a new agent.</p>
+
+  <div class="grid2">
+    <div class="card danger">
+      <h4>Hard no</h4>
+      <ul>
+        <li>Split the distributed file. One file, opens by double-click, works offline.</li>
+        <li>Add a build step, bundler, CDN, or framework.</li>
+        <li>Add paid services, accounts, or a backend.</li>
+        <li>Busts, player progression, injuries, multi-year franchises.</li>
+        <li>Contracts, trades, commissioner tools, custom rulesets.</li>
+        <li>Web Workers, PWA, IndexedDB, TypeScript, Vite.</li>
+        <li>Invent player ratings, team assignments, or statistical outputs.</li>
+        <li>Change <code>DEFAULT_WEIGHTS</code>, <code>FLEX</code>, <code>NATURAL_SLOT_MAP</code>, or MC coefficients without explicit authorisation.</li>
+      </ul>
+    </div>
+    <div class="card good">
+      <h4>Do instead</h4>
+      <ul>
+        <li>Keep one deployable file; develop however you like, concatenate on release.</li>
+        <li>Use <code>localStorage</code> for persistence.</li>
+        <li>Spend the complexity budget on the season, not on league mechanics.</li>
+        <li>Treat a deeper CPU miss as the only permitted source of team spread.</li>
+        <li>Ask before touching the math; implement freely inside the brief.</li>
+        <li>Prefer deleting a confusing sentence over rewording it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="card warn">
+    <h4>Correction to a previous record</h4>
+    <p>An earlier task list carried "sounds" on the do-not-do list. <strong>The owner never said
+    this.</strong> It was an agent's invention. Remove it. Sound is unaddressed, not forbidden.</p>
+  </div>
+</section>
+
+<!-- ============================================================ -->
+<section id="open">
+  <h2><span class="num">13</span>Open questions</h2>
+  <p class="lede">Where a wrong guess would change what gets built. Do not resolve these by assumption.</p>
+
+  <div class="card">
+    <ol>
+      <li><strong>Settled: overtime rule set.</strong> Keep regular-season ties possible and rare. The 100-season sample produces 0.34% ties; the NFL sits near 0.4%. No shootout, no coin-toss winner.</li>
+      <li><strong>Playing-time model.</strong> Some advanced stats (snap counts, pressure per rush, sack index) need a snap model that does not exist yet. Is a simplified per-game snap share acceptable? Current assumption: yes — a per-player share derived from slot and rating, used only for per-snap rates.</li>
+      <li><strong>Does the sack index reach the user?</strong> Current assumption: it joins the defensive-line leaderboard and the player season line, never a recap sentence.</li>
+      <li><strong>Does the appendix stay in the file</strong>, or become a separate page? Current assumption: same file, footer line.</li>
+      <li><strong>What happens to the draft tab after the season ends?</strong> Current assumption: it shows the completed draft read-only, with "start a new draft" as the only action.</li>
+      <li><strong>Phase-crossing flex.</strong> Should <code>FLEX</code> keep letting a centre start at
+      defensive tackle and a receiver at corner (141 of 832 starters do), or does a phase guard forbid it?
+      Current assumption: forbid it — the box score is producing interceptions by receivers.</li>
+      <li><strong>Which document is the source of truth?</strong> The root now holds <code>AGENTS.md</code>, <code>MASTER_GUIDE.md</code>, <code>MASTER_DESIGN_DOCUMENT.md</code> and this doctrine. They agree on the product and disagree on details (the guide still says Netlify; the repository deploys with GitHub Pages). Current assumption: this doctrine governs judgement, <code>MASTER_GUIDE.md</code> governs the packet sequence, and neither may contradict the other without an edit in the same session.</li>
+      <li><strong>What is <code>NFL Draft Simulator - Season First.html</code>?</strong> A 53&nbsp;KB placeholder prototype with no player data, sitting in the root beside the real file. Move it to <code>archive/</code> before an agent edits the wrong file.</li>
+    </ol>
+  </div>
+
+  <hr class="fancy">
+  <p class="small center" style="max-width:none;color:var(--dim)">
+    Master Doctrine · rev 2 · DS Flash · the governing document for the NFL Draft Simulator<br>
+    Reviewed against the Season-first build on 19 October 2026.<br>
+    When this document is wrong, fix the document in the same session you discover it.
+  </p>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---- scroll spy ---- */
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  function spy(){
+    var best = 0, bestTop = -Infinity;
+    for (var i = 0; i < sections.length; i++) {
+      if (!sections[i]) continue;
+      var top = sections[i].getBoundingClientRect().top;
+      if (top - 120 <= 0 && top > bestTop) { bestTop = top; best = i; }
+    }
+    links.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+  }
+  var ticking = false;
+  window.addEventListener('scroll', function(){
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(function(){ spy(); ticking = false; });
+  }, { passive: true });
+  spy();
+
+  /* ---- task filter ---- */
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.fbtn'));
+  var tasks = Array.prototype.slice.call(document.querySelectorAll('.task'));
+  var search = document.getElementById('tsearch');
+  var mode = 'all';
+
+  function apply(){
+    var q = (search && search.value || '').trim().toLowerCase();
+    tasks.forEach(function(t){
+      var okP = (mode === 'all') || (t.dataset.p === mode);
+      var okQ = !q || t.textContent.toLowerCase().indexOf(q) > -1;
+      t.classList.toggle('hide', !(okP && okQ));
+    });
+  }
+  buttons.forEach(function(b){
+    b.addEventListener('click', function(){
+      mode = b.dataset.f;
+      buttons.forEach(function(o){ o.setAttribute('aria-pressed', String(o === b)); });
+      apply();
+    });
+  });
+  if (search) search.addEventListener('input', apply);
+})();
+</script>
+</body>
+</html>
