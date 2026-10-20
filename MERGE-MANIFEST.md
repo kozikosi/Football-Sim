@@ -36,3 +36,9 @@ cpuPick 94b878605b73, render100 cc1016eacc78, plus the 8 shared math functions a
 6 protected constants (identical in v20, donor, merged).
 Raw funcdiff-full vs donor: 405 identical / 7 differing (renderDraftBoard2, renderDraftResults,
 finishDraft2, renderSeasonTab, renderSeasonTabInner, setActiveTab + checkRewards boundary artifact).
+
+## Post-merge change on feature/remove-guide-panel (not part of the verified merge)
+Removed the Guide page's intro panel ("Guide / Short reference sections for the terms the sim uses...")
+from renderGuideHTML. renderGuideHTML therefore no longer equals the donor pin 220a95914ca9.
+Merged build is now sha256 c681dc7c80d6dfd8d1d47e57425e5411e6784007e483d82388f6e91bd0e31f0a (657,284 B).
+The verified-merge candidate on merge/v20-donor is unchanged (40233d6b…795fd).

@@ -5050,8 +5050,7 @@ function renderGuideHTML(){
   <ul class="gl"><li><b>Coaching philosophy</b> — your default style on offense and defense, set on the Preseason page. If you leave it on Auto, the math picks the style that does best for your roster against an average team. Opponents scout your philosophy, and the recaps point out when you stray from it.</li>
   <li><b>Auto (recommended)</b> — each week the model picks the best plan from both rosters. It never reacts to a plan it cannot see, and it opens up the offense late when trailing.</li>
   <li><b>Custom</b> — you lock in your own personnel, strategy and defense every week.</li></ul>`;
- return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Guide</h3><p class="narr">Short reference sections for the terms the sim uses. Click through only what you need.</p></div>`
-  + sec('How the site works', how, true)
+ return sec('How the site works', how, true)
   + sec('Drafting: which positions matter', draft, true)
   + sec('Reading the draft board (Wins, Value here, Priority, Gone, stars)', board, false)
   + sec('Flexing players, explained', flex, false)
