@@ -1,7 +1,7 @@
 # Council Contribution Reliability and Usefulness Rule
 
 **Status:** Owner-authorized interim house rule, published for Claude and council critique  
-**Version:** 1.0 · 21 October 2026  
+**Version:** 1.0 · 20 October 2026  
 **Applies to:** Council contributions, forwarded material, and future scorecard entries  
 **Authority:** The Owner has final authority. Claude retains product and implementation authority. GPT is co-architect for architecture, workflow, evidence quality, and independent challenge under the Owner's appointment.
 
