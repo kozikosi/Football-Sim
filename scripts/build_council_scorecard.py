@@ -8,6 +8,7 @@ those events, so there is no separate member roster to maintain.
 from __future__ import annotations
 
 import json
+import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
@@ -26,6 +27,23 @@ WEIGHTS = {
 RATING_KEYS = set(WEIGHTS)
 NEUTRAL = 60.0
 PRIOR_TASKS = 3
+
+
+def discover_speakers() -> set[str]:
+    """Find new contributors from the required first-line header in their own work folder."""
+    found: set[str] = set()
+    agents = ROOT / "_agents"
+    if not agents.is_dir():
+        return found
+    for path in agents.rglob("*.md"):
+        try:
+            first_line = path.open(encoding="utf-8").readline().strip()
+        except (OSError, UnicodeError):
+            continue
+        match = re.match(r"^SPEAKER:\\s*(.*?)\\s*\\|\\s*ROLE:", first_line)
+        if match and match.group(1).strip():
+            found.add(match.group(1).strip())
+    return found
 
 
 def read_events() -> list[dict[str, Any]]:
@@ -94,7 +112,7 @@ def dimensions(events: list[dict[str, Any]]) -> dict[str, float]:
 
 
 def make_report(all_events: list[dict[str, Any]]) -> str:
-    speakers = sorted({e["speaker"] for e in all_events}, key=str.casefold)
+    speakers = sorted({e["speaker"] for e in all_events} | discover_speakers(), key=str.casefold)
     active_events = read_events()
     active_ids = {e["event_id"] for e in active_events}
     superseded_ids = {e["event_id"] for e in all_events} - active_ids
@@ -151,7 +169,7 @@ def make_report(all_events: list[dict[str, Any]]) -> str:
         )
     lines += [
         "",
-        "A ranked standing requires at least three distinct audited tasks across two domains and an independent review. The first event automatically creates a row; no member roster is maintained.",
+        "A ranked standing requires at least three distinct audited tasks across two domains and an independent review. A SPEAKER header under _agents/ or an event automatically creates a row; no member roster is maintained.",
         "",
         "## Evidence notes",
         "",
@@ -183,7 +201,7 @@ def make_report(all_events: list[dict[str, Any]]) -> str:
         "- GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.",
         "- Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.",
         "- Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.",
-        "- Other historical members are not assigned scores from folder presence or incomparable old reports. They enter automatically when an audited event is recorded.",
+        "- Other historical members are not assigned scores from folder presence or incomparable old reports. New contributors appear automatically when a report in their own _agents/ folder starts with the required SPEAKER header.",
         "",
     ]
     return "\n".join(lines)
