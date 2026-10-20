@@ -1,0 +1,75 @@
+MiniMax — raw command evidence, 20 Oct 2026
+=========================================
+All commands run from the project root: /Users/kosi/Desktop/Football Sim
+Builds: v20 "NFL Draft Simulator v20 Claude.html" (sha256 31b7d61f…, 649,032 B)
+        donor "NFL Draft Simulator.html" (sha256 77bb9ed5…, 650,127 B)
+
+--- 0. arrival evidence -------------------------------------------------
+$ shasum -a 256 "NFL Draft Simulator v20 Claude.html" && wc -c "NFL Draft Simulator v20 Claude.html"
+31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819  NFL Draft Simulator v20 Claude.html
+  649032 NFL Draft Simulator v20 Claude.html
+
+--- 1. browser harness (no installs) ------------------------------------
+Brave Browser 151 headless, CDP on 127.0.0.1:9222, driven with the pre-installed agent-browser CLI
+and with a dependency-free Node CDP driver (_agents/kilo/tools/cdp-phone-check.mjs).
+
+--- 2. end-to-end run on v20 (0 console errors) -------------------------
+load            -> PLAYERS 1200, TEAM_DATA 32, seasonState present, viewDraft active
+start draft     -> "Drafting as Kansas City Chiefs — you hold the #9 overall pick (Round 1)"
+user pick       -> button[data-pick="Josh Allen"][data-slot="QB"] -> roster.QB = Josh Allen (99 OVR)
+sim to end      -> draftSim.pos 832/832, user slots 26, results page + "Play a Season" CTA
+start season    -> phase regular, preseason editor (26 slot selects + game plans + aggression)
+begin season    -> week 1 board (simWeekBtn / simSeasonBtn)
+sim week 1      -> KC 18 - 16 CHI, box score + 4-quarter play-by-play
+sim rest        -> 272 games, 17 weeks, phase regularReview, awardsRS computed
+begin playoffs  -> phase playoffs, simRoundBtn / simRestBtn
+sim playoffs    -> phase complete, champion "Kansas City Chiefs", Super Bowl 31-23 vs Washington
+season review   -> 11-6 regular season, MVP Jaxson Dart, stat leaders, All-Pro, Pro Bowl, user summary
+console/errors  -> 0 entries throughout
+
+--- 3. F1: 100-season report crashes on v20 ------------------------------
+$ agent-browser errors --json     (after the 100-season run on v20)
+{"errors":[{"line":6017,"column":1005,
+ "text":"ReferenceError: rWeights is not defined\n    at render100 (file:///.../NFL%20Draft%20Simulator%20v20%20Claude.html:6018:1006)\n    at step (file:///.../NFL%20Draft%20Simulator%20v20%20Claude.html:5900:134)"},
+ {...same, second run...}]}
+UI after the run: "Simulating 100 seasons… / Season 100 of 100…" (never replaced by the report)
+
+$ grep -n "rWeights" "NFL Draft Simulator v20 Claude.html"      -> 1 match (line 6018 only; never defined)
+$ grep -n "rWeights" "NFL Draft Simulator.html"                 -> 0 matches
+donor run (same button): league100 populated, /100-Season Report/ present, 0 page errors
+
+--- 4. F2: mobile stacking lost after a viewport change ------------------
+$ node _agents/kilo/tools/cdp-phone-check.mjs "NFL Draft Simulator v20 Claude.html" --resize 390,1280,390 --click tabPlayersBtn
+  offenders: 7208 | pageOverflowPx: 0 | docScrollWidth: 390
+   - thead  w=515 right=538 parentOverflowX=auto
+   - tr    w=515 right=538 parentOverflowX=visible
+$ node _agents/kilo/tools/cdp-phone-check.mjs "NFL Draft Simulator.html" --resize 390,1280,390 --click tabPlayersBtn
+  offenders: 0 | pageOverflowPx: 0 | docScrollWidth: 390
+
+runtime proof of cause (page mutation only, no file edit):
+  playerTable.dataset.msChecked = "1201" and rows.length = 1201 while classList has no 'mstack'
+  -> set dataset.msChecked='' ; dispatch resize -> classList.contains('mstack') === true, width 344
+
+--- 5. F3: the naive 390px check is blind ---------------------------------
+on v20 in the F2 state: documentElement.scrollWidth = 390, innerWidth = 390, body overflow-x = hidden,
+while #playerTable is 515px wide inside a 344px card (columns STR/AGI/COD/INJ/AWR cut off).
+
+--- 6. F4/F5: copy + style strings (grep -c -F) -------------------------
+string                     v20   donor
+sudden death                 1      0      (v20:2880, recap paragraph builder)
+went the distance            1      0      (v20:2898, tdTag in turnover paragraph)
+expected scoring             1      1      (v20:4832, stats-explainer paragraph)
+no strong lean either way    0      0
+two-point conversion         0      0
+2-Pt Conv                   16      -
+needs-only                   0      -
+v20:3082 / donor:3101   "...to steal a ${wS}–${lS} win."      -> live: "steal a 18–16 win"
+v20:5433 / donor:5483   "the ${opp}'s answer to it"            -> "the 49ers's answer"
+
+--- 7. timing (headless Chromium, 390x844 viewport, this machine) --------
+full 17-game regular season (272 games)   : < 1 s of wall clock after the click
+100-season run (100 leagues simulated)    : < 10 s (v20 crashes at render) / ~25 s (donor renders)
+
+--- 8. not checked (deliberately) ---------------------------------------
+physical phone; Safari/Firefox; screen readers; print styles; donor's full season replay;
+node --check of an extracted script block (no harness scripts exist yet).

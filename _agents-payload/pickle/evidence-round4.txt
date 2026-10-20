@@ -1,0 +1,73 @@
+# Round-4 evidence log (Pickle, 20 Oct 2026) — REVISED after the extraction-rule audit
+# v20 = NFL Draft Simulator v20 Claude.html (31b7d61f…, 649,032 B) | donor = NFL Draft Simulator.html (77bb9ed5…, 650,127 B)
+
+== [F3] render100 verdict — my own grep ==
+  rWeights  occurrences  v20: 1   donor: 0
+  msChecked occurrences  v20: 3   donor: 0
+  v20 rWeights line:
+6018: + sec('What actually drove winning (neutral model, 32 rosters)', `<div class="draft-columns" style="grid-templat
+
+== THE EXTRACTION-RULE TRAP (why my first-draft pins were wrong) ==
+  slotWins body = lines 1309-1312. Same lines, one trailing newline apart:
+    awk|shasum (trailing NL) : 48e92c6e561f   bytes      159
+    join no trailing NL      : 39b4eab55c88   bytes      158
+    xxd difference:
+      10c10
+      < 00000090: 202b 2074 5b69 2b31 5d2a 663b 0a7d 0a     + t[i+1]*f;.}.
+      ---
+      > 00000090: 202b 2074 5b69 2b31 5d2a 663b 0a7d        + t[i+1]*f;.}
+  => canonical rule = DS funcdiff-full.js: LAST trimmed '}' before the next column-0 'function', joined by 
+, NO trailing newline.
+
+== canonical pins reproduced against DS's own tool ==
+  hash pins (12-hex, full body; v20 / donor):
+    setActiveTab	ae1a1425186e	d3a34f7c930b
+    cpuPick	3dc9d12f500a	94b878605b73
+    fitNoteHTML	182c1792501b	757091310f1f
+    renderDraftBoard2	6f77deaf263f	3736a5bfb36f
+    buildDefenseDetail	992145aa07e0	d2119e2e85f1
+    dramaticEnding	121874b933bb	50a5ae2444ac
+    turnoverParagraph	4438e25ceb0b	4afe77d0379a
+    playByPlay	e2b3fb170aa3	d4a85bd7b181
+    generateGameSummary	4a9bfd080ae2	9f285818eff6
+    matchupTagHTML	629126ff9072	ec2ac8742b3e
+    renderPlayoffsView	3332c4ee5417	e45f75b5cca9
+    renderGuideHTML	7fa8dd9b7c3d	220a95914ca9
+    render100	1ea6e8414397	cc1016eacc78
+    renderSeasonTab	06116b2fa88a	39ee2333b960
+    renderSeasonTabInner	b5d8adf9910b	441697cc5b99
+    finishDraft2	a8de5a4415df	f2795464c5c7
+    renderDraftResults	b807480c58be	aa36c6f94647
+  set diffs:
+
+== the 8 math functions + cpuPick + checkRewards (canonical rule) ==
+  symbol                 v20          donor        same?
+  slotWins               d23c4018c238 d23c4018c238 IDENTICAL
+  slotWinsPerOvr         9a2b49d5a603 9a2b49d5a603 IDENTICAL
+  modelWeights           6d8b83587cc2 6d8b83587cc2 IDENTICAL
+  effOvr                 4e1cf1a46cae 4e1cf1a46cae IDENTICAL
+  optimalLineup          5e74c957e4c8 5e74c957e4c8 IDENTICAL
+  matchupModel           774cfe2073cc 774cfe2073cc IDENTICAL
+  simulateGame           0148887cea42 0148887cea42 IDENTICAL
+  teamRatings            4d2cdcc5d8f5 4d2cdcc5d8f5 IDENTICAL
+  cpuPick                3dc9d12f500a 94b878605b73 DIFFERS
+  checkRewards           11da3c4e25c6 86cf4a62c2cc DIFFERS
+
+== 6 constants (first declaration line, byte-exact, no trailing newline) ==
+  DEFAULT_WEIGHTS      2d56789ac040  IDENTICAL
+  FLEX                 e0166584b07b  IDENTICAL
+  NATURAL_SLOT_MAP     b2cf069e96f3  IDENTICAL
+  POINTS_PER_WIN       c4bd184b1fba  IDENTICAL
+  SEASON_RECORD_CAPS   f006a6b1e918  IDENTICAL
+  RATING_SPECS         bfe71dc9d863  IDENTICAL
+
+== COUNT RECONCILIATION (canonical rule) ==
+  v20 409 | donor 412 | common 408 | identical 390 | differing 18
+  DIFFERING: buildDefenseDetail, checkRewards, cpuPick, dramaticEnding, finishDraft2, fitNoteHTML, generateGameSummary, matchupTagHTML, playByPlay, render100, renderDraftBoard2, renderDraftResults, renderGuideHTML, renderPlayoffsView, renderSeasonTab, renderSeasonTabInner, setActiveTab, turnoverParagraph
+  -> 18 = 17 real diffs + the checkRewards artefact (its span swallows the #glue IIFE)
+
+== checkRewards true body (first ^} close) is IDENTICAL ==
+  v20 6381-6408 : 0a000ce52783
+  donor 6430-6457: 0a000ce52783
+  next top-level 'function' after v20:6408 ->
+  (so a canonical scan runs checkRewards' span through the column-0 #glue IIFE at v20 6409-6432)
