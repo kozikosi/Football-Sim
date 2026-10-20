@@ -2,8 +2,8 @@
 """Generate COUNCIL-SCORECARD.md from the append-only audited event ledger.
 
 This is a transparent formatter and calculator, not an automatic evaluator.
-A reviewer must create evidence-backed events; the script discovers speakers from
-those events, so there is no separate member roster to maintain.
+A reviewer must create evidence-backed events; speaker headers in _agents/ and
+those events create member rows, so there is no separate roster to maintain.
 """
 from __future__ import annotations
 
@@ -40,7 +40,7 @@ def discover_speakers() -> set[str]:
             first_line = path.open(encoding="utf-8").readline().strip()
         except (OSError, UnicodeError):
             continue
-        match = re.match(r"^SPEAKER:\\s*(.*?)\\s*\\|\\s*ROLE:", first_line)
+        match = re.match(r"^SPEAKER:\s*(.*?)\s*\|\s*ROLE:", first_line)
         if match and match.group(1).strip():
             found.add(match.group(1).strip())
     return found
