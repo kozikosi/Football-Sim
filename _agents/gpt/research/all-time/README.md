@@ -36,6 +36,12 @@ The ranking files contain overlapping but non-identical orders. Keep each versio
 5. Do not copy these lists directly into production player data. A future pool needs an explicit schema, eligibility policy, season/team identity, position rules, rating methodology, provenance, and review status.
 6. The owner’s broader aim is to curate roughly 1,200 all-time NFL and NBA player candidates, with current stars eligible under a proposed rating adjustment. That policy is not encoded or approved by these source files; define it separately before rating work begins.
 
+## First source-backed omission pass
+
+A derived, sport-separated candidate pass now lives in derived/README.md. It adds 17 missing players from the NFL’s official 100 All-Time Team roster and Sam Jones from the NBA 75 roster, with no guessed peak season, team, or rating. The NFL and NBA official lists are an initial gap check, not a completed 1,200-player pool.
+
+The MiniMax data-integrity findings and the checks against the v20 tuple contract are recorded in quality-control/minimax-data-integrity-review.md. The user-supplied raw notes remain unchanged.
+
 ## Suggested next artifacts
 
 When the owner is ready, create separate, reviewable outputs rather than editing these sources:
