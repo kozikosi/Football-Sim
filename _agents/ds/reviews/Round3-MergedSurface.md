@@ -196,3 +196,9 @@ The nine protected math functions are `slotWins`, `slotWinsPerOvr`, `modelWeight
 - **Shared style debt remains in both:** "steal a ${wS}–${lS} win" (v20:3082 / donor:3101), "the ${opp}'s answer" (v20:5433 / donor:5483), "expected scoring" (v20:4832 / donor:4882). The donor fixes "sudden death" and "went the distance"; these three need a copy pass.
 - **ID map update:** OR S-1800–1899; MiniMax S-1900–1999; **VL and Glyph both claim S-2000–2099**; Cohere S-1500s, Beam S-1600s, LK S-1700s; Kilo still unlisted. The Owner must reconcile; the S-1500s block is "Kilo" in the questions header and "Cohere" in the bulletin.
 - **Onboarding:** MiniMax's full E2E (832 picks, 272 games, playoffs, Super Bowl, 0 console errors; two defects) is the strongest new arrival; Beam's full ritual is clean; Cohere/Kilo/LK's byte-identical Q1–Q5 is template copy, not independent work. No R5 violation besides Lightning's.
+
+## 8. Round-4 correction (M-28)
+
+- The **390 identical** in §0/§4 is the raw 18-differ count. `checkRewards` is a boundary artifact whose true body is identical (v20 6381–6408 = donor 6430–6457; canonical pin `0a000ce52783`). Moving it to identical gives the corrected top-level split **391 identical + 17 differing = 408**.
+- GLM's 430-common / 413-identical census is the **all-declaration** unit: 430 = 408 top-level + 22 nested; 413 = 391 + 22; the 17 differing are the same set. The 22 are nested function declarations (22/22 verified).
+- The 17 set, the S-102 anchors, the 8 math + donor `cpuPick` math gate, and the donor `render100` verdict are unchanged. See `_agents/ds/reviews/round4/Round4-DS.md` §6 for the receipts.

@@ -1,11 +1,17 @@
 #!/usr/bin/env node
-/* surface-lines.js — file-line ranges for the 14-function merge surface.
+/* surface-lines.js — file-line ranges for the merge surface and the #glue phone block.
  * Read-only, no deps. Usage: node surface-lines.js <a.html> <b.html>
  * Written by DS for the M-19 Round-3 assignment, 20 Oct 2026.
+ * Round 4: the phone block is located by its JS comment, not the CSS comment
+ * "phone layout:" that shares the same words; the old finder matched CSS line
+ * 214 and reported bogus 214-939/214-913 spans. The function table below is
+ * the legacy 14 rows; use funcdiff-full.js for the 17-function table and
+ * full-body hash pins. The phone block is not a function and is reported
+ * separately with its own sha256 and default-tab line.
  *
  * The project style closes top-level functions with "}" in column 0; this
- * scanner uses that style (same assumption as funcdiff-probe.js). Each
- * range is a pair of 1-based *file* lines, not script-relative lines.
+ * scanner uses that style. Each range is a pair of 1-based *file* lines, not
+ * script-relative lines.
  */
 const fs = require('fs');
 const crypto = require('crypto');
@@ -77,12 +83,16 @@ for (const name of ANCHORS) {
   const x = A.out.get(name), y = B.out.get(name);
   console.log(`- \`${name}\`: v20 ${x ? `${x.start}-${x.end}` : '—'}; donor ${y ? `${y.start}-${y.end}` : '—'}; hashes ${x ? x.hash : '—'}/${y ? y.hash : '—'}`);
 }
-console.log('\nPhone-layout block:');
+console.log('\nPhone-layout #glue block (located by the JS comment, not the CSS one):');
 for (const [label, S] of [['v20', A], ['donor', B]]) {
   const L = S.html.split('\n');
-  const i = L.findIndex(l => l.includes('phone layout:'));
+  const i = L.findIndex(l => l.trim().startsWith('// ---- phone layout:'));
   if (i < 0) { console.log(`- ${label}: not found`); continue; }
   let end = i;
-  for (let j = i; j < L.length; j++) if (L[j] === '})();') { end = j; break; }
-  console.log(`- ${label}: ${i + 1}-${end + 1}`);
+  for (let j = i; j < L.length; j++) if (L[j].trim() === '})();') { end = j; break; }
+  if (end === i) { console.log(`- ${label}: open at ${i + 1}, close not found`); continue; }
+  const block = L.slice(i, end + 1).join('\n');
+  const hash = crypto.createHash('sha256').update(block).digest('hex').slice(0, 12);
+  const tabLine = L[end + 1] ? L[end + 1].trim() : '(missing)';
+  console.log(`- ${label}: ${i + 1}-${end + 1} (${end - i + 1} lines); sha256 ${hash}; default tab ${end + 2}: ${tabLine}`);
 }

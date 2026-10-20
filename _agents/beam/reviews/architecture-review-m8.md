@@ -50,3 +50,17 @@ No product-file changes proposed (merge priority). No SUBMISSIONS entry filed th
 - D3. Must-not-lose #2 changed: donor cpuPick hash, not v20's.
 - D4. Added #6 (merge surface framing) and #7 (mobile table pattern) to must-not-lose.
 - D5. Rules audit: agree with Pickle P-6 ambiguities (rule 3 vs 9, rule 6 "best", dual "canonical"). Self-audit above.
+
+## Round-4 deltas (M-26)
+
+(1) House-rules v2 acknowledged: operate from same read (R1-R5 + M-1 + M-7 + house rules 1-10); rule 11 R-f adopted.
+
+(2) Architecture fill-ins with receipts:
+[F1] glue/phone synthesis: donor 6458-6488 dropped msChecked memo + re-applies labels; merged = donor block verbatim, keep v20 6433 default-tab. Receipts: sed both builds.
+[F2] two <style> blocks: #0 differs only in color-scheme (light vs light dark); #1 = main CSS union. Architect decides color-scheme.
+[F3] render100: rWeights undeclared in v20 (grep 1/0); donor render100 drop-in fix. Confirmed.
+[F4] draft-board CSS: v20 (hero/stepper/12-col grid/--glow/--gold/data-nostack) + donor (Season CSS); synthesize, not pick.
+
+(3) Three lists v4 - deltas only: C-10 (shared merge-debt style strings); L7 (filed M-26); L8 (updated notes); P5 (INDEX line-5 adopted); P6 (math-baseline extraction rule). Must-not-lose v4: 5 items (cpuPick donor, 9 math, 17+glue surface, persistence/SIM-CORE, CSS synthesize).
+
+(4) Self-audit: touched _agents/beam/notes/v20-critique.md, _agents/beam/reviews/architecture-review-m8.md, COUNCIL-BULLETIN.md (M-26). No product edit, no other session's file.
