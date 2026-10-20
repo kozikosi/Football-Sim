@@ -1,0 +1,105 @@
+{
+  "version": 1,
+  "description": "Integrity manifest for user-supplied raw all-time player research. The archived text files are preserved byte-for-byte.",
+  "sources": [
+    {
+      "id": "NFL-AT-001",
+      "sport": "NFL",
+      "path": "raw/nfl/01_all_time_depth_chart.txt",
+      "attachment_id": "b51162dd-f22e-4575-81a0-a6490a94d7fc",
+      "summary": "All-time offensive and defensive starters, depth chart, returners, kickers, and related roster notes.",
+      "bytes": 5295,
+      "lines": 84,
+      "sha256": "f10eba657cd921539a663c19cbb255042e9cfd0d65073a4e19dc76aece0bcbf8",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-002",
+      "sport": "NFL",
+      "path": "raw/nfl/02_favorites_and_player_season_rankings.txt",
+      "attachment_id": "9b1c042b-ec6f-4051-8660-0305b6342f7f",
+      "summary": "Personal favorite-player list followed by a long ranked player-season list.",
+      "bytes": 16887,
+      "lines": 725,
+      "sha256": "d712ae442cd328a95608eeb22711a52de2526faa2e3f1356dd916a733328cf78",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-003",
+      "sport": "NFL",
+      "path": "raw/nfl/03_personnel_lists_and_position_preferences.txt",
+      "attachment_id": "922108a1-48ba-4584-88cc-a6e5d9d4c132",
+      "summary": "Offense and defense candidate lists, position groupings, and a later preference note.",
+      "bytes": 7246,
+      "lines": 161,
+      "sha256": "2dda533db579e68403d9ea22f5607369adbbffaf0186e17d6131e0e342637915",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-004",
+      "sport": "NFL",
+      "path": "raw/nfl/04_player_season_ranking_variant_a.txt",
+      "attachment_id": "32598a5b-2d5c-4ba3-9c1a-ef8cb6e8819c",
+      "summary": "One version of a ranked NFL player-season list.",
+      "bytes": 7627,
+      "lines": 328,
+      "sha256": "7d1583a0cd407508e22fb717b1cc42517947da41a198803084baeebbd79c8c45",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-005",
+      "sport": "NFL",
+      "path": "raw/nfl/05_player_season_ranking_variant_b.txt",
+      "attachment_id": "2a78a982-8623-47d3-91ac-51109b8c5fcb",
+      "summary": "A second version of the ranked NFL player-season list.",
+      "bytes": 6261,
+      "lines": 272,
+      "sha256": "700f46dd7476bd136e0886c41e55cbd71d9b101b4039757dee6812ee3feaf953",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-006",
+      "sport": "NFL",
+      "path": "raw/nfl/06_player_season_ranking_variant_c.txt",
+      "attachment_id": "ce444ead-d089-46c4-9eb4-772bb76fab4f",
+      "summary": "A third version of the ranked NFL player-season list.",
+      "bytes": 6064,
+      "lines": 264,
+      "sha256": "c84c30df703b407617d75bd82ac7400dabdeebda6c164cf4f20aac95b1ad3baa",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-007",
+      "sport": "NFL",
+      "path": "raw/nfl/07_final_master_player_season_list.txt",
+      "attachment_id": "6a5b53cf-39e4-4c88-9d43-a1eece3ab7bc",
+      "summary": "A player-season ranking labeled “Final master list” in the source.",
+      "bytes": 8101,
+      "lines": 351,
+      "sha256": "a7cf7d79ce56863939f2ea6942429be01fc6ea3db3f080cbbbf2be38e3002aee",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NFL-AT-008",
+      "sport": "NFL",
+      "path": "raw/nfl/08_favorites_and_edge_rusher_notes.txt",
+      "attachment_id": "c10c4a97-5076-49e8-a7ec-c57c0f00d90f",
+      "summary": "Personal favorites and an edge-rusher-oriented list with additional analysis fields.",
+      "bytes": 7818,
+      "lines": 210,
+      "sha256": "430534448d99b711b9103cd1db1fb59dc16f950b1f44e8ed517dddb1aabd5a79",
+      "original_attachment": "Pasted text.txt"
+    },
+    {
+      "id": "NBA-AT-001",
+      "sport": "NBA",
+      "path": "raw/nba/01_peak_seasons_and_all_time_concepts.txt",
+      "attachment_id": "ed8244ea-ef54-4031-94de-8d3bc4b3f754",
+      "summary": "Peak-season ranking, roster and decade ideas, historical team concepts, duos, matchup explorations, and draft-pool notes.",
+      "bytes": 12325,
+      "lines": 1220,
+      "sha256": "fcbafb37ba93053e867f520030806d6f47d34d8a3343d8c569999089ba720b11",
+      "original_attachment": "Pasted text.txt"
+    }
+  ]
+}
