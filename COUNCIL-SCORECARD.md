@@ -1,46 +1,43 @@
 # Council Scorecard
 
-**Snapshot date:** 21 October 2026  
-**Generated from:** council/scorecard/events.jsonl using scripts/build_council_scorecard.py  
-**Purpose:** observed contribution reliability and usefulness, not an intelligence or character ranking.
+**Snapshot date:** 2026-10-21 UTC
+
+Generated from council/scorecard/events.jsonl by scripts/build_council_scorecard.py.
+Purpose: observed contribution reliability and usefulness; this is not an intelligence or character ranking.
+Rule: primary evidence outranks scores. Provisional entries do not break ties.
 
 ## Current standing
 
 | Member | Standing | Audited tasks | Composite (adjusted) | Evidence reliability | Practical value | Observed reasoning | Process events |
 |---|---|---:|---:|---:|---:|---:|---:|
 | GPT | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
-| Ultra | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
 | Lightning | UNASSESSED | 0 | — | — | — | — | 1 |
+| Ultra | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
 
-The GPT and Ultra entries are both single-task, GPT-authored provisional assessments awaiting an independent reviewer. They are not eligible for a rank and have identical provisional aggregate scores; neither score determines whose claim takes precedence. Claude is the Architect and is outside this initial advisor comparison; this does not assess Claude's ability or reliability.
+A ranked standing requires at least three distinct audited tasks across two domains and an independent review. The first event automatically creates a row; no member roster is maintained.
 
 ## Evidence notes
 
 ### GPT
-
-- **Task:** E2E reconciliation follow-up.
-- **Observed strengths:** distinguished a test-script reference from proof that Lightning executed that script; retained Run B as UNKNOWN; kept the overall verdict PARTIAL and did not call width-only measurements a full mobile-usability pass.
-- **Assessment:** provisional 4/5 on evidence accuracy, technical reasoning, usefulness, and delivery; 5/5 on provenance. Assessor: GPT; independent review pending.
-- **Limit:** one E2E evidence task only; attached report and local audit files are not yet durable Git evidence.
-
-### Ultra
-
-- **Task:** W4 evidence-publication plan plus W3 protocol follow-up.
-- **Observed strengths:** identified missing return-navigation, control-clipping, and horizontal-table-scroll checks; clearly marked publication as a recommendation; proposed keeping the large trace out of the product branch.
-- **Correction requested:** the proposed push command git push origin docs:e2e-runs does not match the prior docs/e2e-runs branch name; correct the refspec before anyone uses it. Populate a report-duration field only if the schema's field meaning matches the measured step duration.
-- **Assessment:** provisional 4/5 on evidence accuracy, technical reasoning, usefulness, and delivery; 5/5 on provenance. Assessor: GPT; independent review pending.
-- **Limit:** rates the plan and audit, not a completed upload or a newly executed test; source attachments are not yet durable Git evidence.
+- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
+- **e2e-reconciliation-follow-up (2026-10-21):** Correctly distinguishes a script reference hash from proof that Lightning executed that script; preserves Run B as UNKNOWN; keeps the overall result PARTIAL and distinguishes viewport width checks from full usability. Rating remains provisional because the original attachments and local audit files are not yet durable in Git and this event has no independent score review.
+  - Assessment: GPT (provisional self-review; independent review pending). Source: Owner-provided attachment: SPEAKER GPT | E2E reconciliation follow-up; cross-checked against local _agents/moc/notes/W2-run-reconciliation.md and W3-protocol-to-script-matrix.md, which are not yet committed to this branch.
+  - Limits: This rates one evidence-reconciliation deliverable only. It does not assess model ability generally or GPT's work on other project tasks.
 
 ### Lightning
+- **Status:** unassessed; 1 unscored process event(s). No technical conclusion is drawn.
+- **Unscored event — forwarded-excerpt:** The original author is preserved, but the forwarder is not named in the pasted header. The new rule adds a separate FORWARDED BY field. This event is not evidence that Lightning authored GPT's analysis, impersonated GPT, or intended to mislead.
+  - Source: Owner-provided attachment containing the GPT-authored E2E reconciliation follow-up under SPEAKER: GPT, reported as forwarded by Lightning.
 
-- **Observed event:** forwarded GPT's E2E follow-up with its original SPEAKER: GPT label but without a separate FORWARDED BY: Lightning label.
-- **Treatment:** unscored provenance event. The author's name was preserved; the missing detail was the forwarder's identity. This is not treated as impersonation, sabotage, or evidence of intent, and GPT's work is not credited to Lightning.
-- **Next step:** use the explicit forwarder line for future copied or forwarded text.
+### Ultra
+- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
+- **e2e-publication-plan-and-protocol-audit (2026-10-21):** The protocol-to-script gaps are specific and actionable, including return navigation, critical-control clipping, and horizontal table scrolling. Publication is clearly labelled a recommendation and no upload is claimed. One proposed push command does not match the branch name created in the preceding command; fix before anyone uses it. The proposed report-duration metric should only be populated if its field definition matches the measured step duration. Ratings remain provisional because this was a plan rather than an executed publication or new test.
+  - Assessment: GPT (provisional review; independent review pending). Source: Owner-provided attachment: SPEAKER Ultra | W4 Publication Plan + W3 Follow-up; compared with the local E2E reconciliation reports and the supplied GPT follow-up, which are not yet committed to this branch.
+  - Limits: Rates the quality of a proposed plan and audit, not a completed publication or a newly executed test. Evidence files cited in the conversation are not yet durable Git artifacts.
 
-## Precedence rule
+## Reading this snapshot
 
-Primary receipts and reproducible checks decide factual disputes. Scores are only a tie-breaker when evidence quality is genuinely comparable, the member is ranked with adequate confidence, and the adjusted gap is at least five points. Otherwise, keep the dispute unresolved and request an independent reproduction.
-
-## Limitations
-
-This is a narrow initial sample, not a retrospective ranking of everyone who has participated in the Football Sim project. Historical files use different standards and many claims have not been audited under one comparable rubric. A name appears automatically when an event is entered in the ledger; there is no separate roster to maintain. The Owner and Claude are invited to correct this proposal before the scorecard is treated as settled policy.
+- GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.
+- Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.
+- Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.
+- Other historical members are not assigned scores from folder presence or incomparable old reports. They enter automatically when an audited event is recorded.
