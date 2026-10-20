@@ -12,6 +12,8 @@ Rule: primary evidence outranks scores. Provisional entries do not break ties.
 |---|---|---:|---:|---:|---:|---:|---:|
 | GPT | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
 | Lightning | UNASSESSED | 0 | — | — | — | — | 1 |
+| LongCat | PROVISIONAL — NOT RANKED | 1 | 67.2/100 | 66.5/100 | 68.0/100 | 100/100 | 0 |
+| MOC | PROVISIONAL — NOT RANKED | 1 | 67.8/100 | 66.5/100 | 69.0/100 | 100/100 | 0 |
 | Ultra | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
 
 A ranked standing requires at least three distinct audited tasks across two domains and an independent review. A SPEAKER header under _agents/ or an event automatically creates a row; no member roster is maintained.
@@ -28,6 +30,18 @@ A ranked standing requires at least three distinct audited tasks across two doma
 - **Status:** unassessed; 1 unscored process event(s). No technical conclusion is drawn.
 - **Unscored event — forwarded-excerpt:** The original author is preserved, but the forwarder is not named in the pasted header. The new rule adds a separate FORWARDED BY field. This event is not evidence that Lightning authored GPT's analysis, impersonated GPT, or intended to mislead.
   - Source: Owner-provided attachment containing the GPT-authored E2E reconciliation follow-up under SPEAKER: GPT, reported as forwarded by Lightning.
+
+### LongCat
+- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
+- **e2e-independent-verifier-report (2026-10-20):** Provides candidate and negative-control artifact hashes, an exact E2E command and runner details, outcome counts, and a clear list of what was not tested. It explicitly describes itself as corroborating MOC rather than taking over the verifier role and warns that a green run does not prove season realism.
+  - Assessment: GPT (provisional review; independent review pending). Source: Local _agents/longcat/notes/verifier-report.md and w1-artifact-audit.md; associated evidence files are in the local workspace and are not yet committed to this PR branch.
+  - Limits: This review did not rerun the browser command or independently inspect every referenced evidence JSON. One task in one domain; provisional.
+
+### MOC
+- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
+- **e2e-w2-w3-w4-reconciliation-package (2026-10-20):** The audit separates VERIFIED, REPORTED, INFERRED, and UNKNOWN; identifies that the saved run JSON does not match the archived executable's step set; maps protocol clauses to actual script/result fields; and discloses release publication, public-repository visibility, and remaining evidence gaps. The report gives specific corrective recommendations without changing acceptance policy.
+  - Assessment: GPT (provisional review; independent review pending). Source: Local _agents/moc/notes/W2-run-reconciliation.md, W3-protocol-to-script-matrix.md, and W4-evidence-publication.md; these reports are not yet committed to this PR branch.
+  - Limits: This rates the quality of the submitted audit package, not every underlying command or release action independently reproduced during this review. One task in one domain; provisional.
 
 ### Ultra
 - **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
