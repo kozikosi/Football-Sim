@@ -91,6 +91,7 @@ class CDP {
   try { version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json(); }
   catch { console.error(`no browser on 127.0.0.1:${port} — start one with --remote-debugging-port=${port}`); process.exit(4); }
 
+  const browserVersion = version.Browser || version['User-Agent'] || 'unavailable';
   const cdp = await CDP.connect(version.webSocketDebuggerUrl);
   const url = /^https?:|^file:/.test(target) ? target : pathToFileURL(resolve(target)).href;
   const { targetId } = await cdp.send('Target.createTarget', { url: 'about:blank' }, false);
