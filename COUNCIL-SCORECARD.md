@@ -1,4 +1,4 @@
-# Council Contribution Scorecard
+# Council Contribution Assessment and Assignment Guide
 
 **Snapshot date:** 2026-10-20
 
@@ -41,7 +41,7 @@ A narrow, useful contribution can be recognized without forcing a cross-project 
 |---|---|---|---|
 | Lightning | UNASSESSED — forwarding event only | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consistently present in the pasted material. Record this as a formatting/provenance gap and use the required FORWARDED BY field in future forwards. Do not infer intent or technical authorship from this alone. | No technical contribution is scored from forwarding alone. |
 | LongCat | emerging — task-specific; not placed in cross-project order | The reported verifier package includes candidate and negative-control hashes, an exact command and runner details, outcome counts, and a clear statement of limits. It describes its role as corroborating another verification report rather than taking ownership of the run. | The report and associated evidence were described as local and were not independently re-run or inspected in this update. One narrow task is not enough to compare across all contributor domains. |
-| MOC | emerging — task-specific; not placed in cross-project order | The supplied reconciliation is unusually specific about what the trace does and does not prove. It distinguishes the visible UI path from season metrics, identifies that window.seasonState is not the lexical binding used by the build, and leaves the result PARTIAL because the Week 1 protocol check remains unresolved. The report also corrects an earlier PASS interpretation without changing the artifact or protocol. | This is one narrow E2E evidence task. The underlying trace and local report files were not replayed by this scorecard update, so the assessment remains reported rather than independently verified. |
+| MOC | emerging — task-specific; not placed in cross-project order | The supplied reconciliation is unusually specific about what the trace does and does not prove. It distinguishes the visible UI path from season metrics, identifies that window.seasonState is not the lexical binding used by the build, and leaves the result PARTIAL because the Week 1 protocol check remains unresolved. The report also corrects an earlier PASS interpretation without changing the artifact or protocol. | This is one narrow E2E evidence task. The underlying trace and local report files were not replayed by this assessment update, so the assessment remains reported rather than independently verified. |
 | New Member | UNASSESSED | No audited contribution event recorded yet. | No negative conclusion. |
 
 ## Recent task observations
