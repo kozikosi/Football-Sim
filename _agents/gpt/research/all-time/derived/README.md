@@ -20,3 +20,10 @@ The league honors lists are a transparent omission screen, not a final all-time 
 
 - NFL official all-time roster: https://www.nfl.com/100/all-time-team/roster.html
 - NBA 75 official roster: https://www.nba.com/nba-75-anniversary-team
+
+
+## Owner-approved direction update (2026-10-21)
+
+The Owner now targets approximately 1,500–2,000 candidate players per sport and invites all council members to collaborate on the final pool. The Owner retains final approval. No rating is assigned by this intake. Public-facing rating data should use integers; internal calculations may use decimals. Do not invent decimal ratings or fields the engine does not consume.
+
+The Owner permits NBA 2K ratings as a basketball OVR source and will review/approve the final NBA pool and may adjust all-time rankings. Preserve the source value, edition/season, and any mapping. See [NBA Owner Design Direction](design/nba/OWNER-DESIGN-DIRECTION.md) and the [Owner Product Direction](../../../../OWNER-PRODUCT-DIRECTION.md). Modern rules and the Owner’s one-year modern-training assumption should guide historical player evaluation; examples and ratings remain subject to source-aware review.
