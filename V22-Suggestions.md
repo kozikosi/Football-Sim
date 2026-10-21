@@ -522,3 +522,264 @@ No product files edited. No protected constants changed. This is an advisory doc
 **Mermaid note:** Mermaid diagrams are included as code blocks in this document. GitHub renders Mermaid in markdown, so Claude can view them directly. The `mermaid-cli` (`mmdc`) is not installed locally, so I cannot generate SVG/PNG exports. If the Owner wants exported diagrams, they can install `@mermaid-js/mermaid-cli` via npm.
 
 **Biome note:** Biome (v2.6.2) is available via npx. I used it to format the harness draft scripts (phone.js, funcdiff.js, pw4.js, validate.js). No fixes were applied — the scripts were already clean.
+
+---
+
+## P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass
+
+This section turns the Owner's 21 Oct (23:00) feedback into work Claude can execute. **P10-1 to P10-3
+change behaviour and need care; P10-4 to P10-8 are copy and presentation, and they are written as
+exact before → after strings so they can be applied without interpretation.**
+
+### P10-1 · The flex rules, rewritten
+
+The Owner's rules, with the unmentioned ones left alone:
+
+| Player | New rule | Change from the build |
+|---|---|---|
+| Edge (DE1/DE2) | **no penalty** for playing OLB / WILL / SAM | `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` is unmentioned and stays |
+| OLB / WILL / SAM | FS −6 · SS −4 · DT −4 · Edge −2 · CB3/Nickel −2 | `DE:6→2`, `CB3:4→2`, `FS:4→6`; `SS:4`, `DT:4`, `TE:6`, `RB:6` unchanged |
+| MIKE | DT −4 · SS −2 | `SS:4→2`; `DE:6`, `CB3:4`, `FS:4`, `TE:6`, `RB:6` unchanged |
+| SS | CB3/Nickel **free** · FS −2 · OLB/WILL/SAM −2 | `CB3:0` added (CB1/CB2 stay 4) · `WILL:2`, `SAM:2` added |
+| Cornerback | OLB/WILL/SAM −4 · MIKE −6 | `MIKE:4→6`; `WILL:4`, `SAM:4` unchanged |
+| Tight end | WR −2 · RB −4 | `WR:2` added · `RB:6→4`; `MIKE/WILL/SAM/SS/FS:6` unchanged |
+
+```js
+// WHERE: candidate lines 939-952 (LB_FLEX and FLEX) — the whole flex system lives in these two tables
+// WHAT: REPLACES them with the Owner's rules. NOTE: the key order matters for nothing except the
+//        display; the numbers do. "CB3" is an exact slot key and "CB" is the family key, and
+//        flexRule() checks the exact slot first — that is how SS can play CB3 for free and CB1/CB2
+//        for -4 without a second table.
+- const LB_FLEX = {DE:6, DT:4, CB3:4, SS:4, FS:4, TE:6, RB:6};
++ const LB_FLEX_WILL = {DE:2, DT:4, CB3:2, SS:4, FS:6, TE:6, RB:6};   // WILL / SAM / OLB
++ const LB_FLEX_MIKE = {DE:6, DT:4, CB3:4, SS:2, FS:4, TE:6, RB:6};   // MIKE / ILB
+  const FLEX = {
+   LT:{OG:0, C:0, DT:4}, RT:{OG:0, C:0, DT:4},
+   LG:{C:0, OT:4, DT:4}, RG:{C:0, OT:4, DT:4}, C:{OG:0, OT:4, DT:4},
+   DT:{DE:4, MIKE:4, WILL:4, SAM:4, OG:4, C:4, OT:6, RB:6},
+-  REDG:{DT:2, MIKE:4, WILL:2, SAM:2, TE:6, RB:6}, LEDG:{DT:2, MIKE:4, WILL:2, SAM:2, TE:6, RB:6},
+-  MIKE:LB_FLEX, WILL:LB_FLEX, SAM:LB_FLEX,
+-  CB:{SS:2, FS:0, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+-  SS:{FS:2, CB:4, MIKE:4, WILL:4, SAM:2, WR:4, TE:6, RB:6},
++  REDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6}, LEDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6},
++  MIKE:LB_FLEX_MIKE, WILL:LB_FLEX_WILL, SAM:LB_FLEX_WILL,
++  CB:{SS:2, FS:0, MIKE:6, WILL:4, SAM:4, WR:4, TE:6, RB:6},
++  SS:{FS:2, CB3:0, CB:4, MIKE:4, WILL:2, SAM:2, WR:4, TE:6, RB:6},
+   FS:{SS:2, CB:4, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+   WR:{TE:4, SS:4, FS:4, CB:4, RB:6},
+-  TE:{MIKE:6, WILL:6, SAM:6, SS:6, FS:6, RB:6},
++  TE:{WR:2, RB:4, MIKE:6, WILL:6, SAM:6, SS:6, FS:6},
+   HB:{TE:6}, QB:{}, K:{}
+  };
+```
+**The flex chart is rebuilt in the draft-roster order** (QB, RB1/RB2, WR1–3, TE1/2, the offensive
+line, DE1/2, DT1/2, MIKE/WILL/SAM, CB1–3, SS, FS), and every row shows the free spots, the −2, the −4
+and the −6 columns as the build's `flexExplainHTML()` already does. **Two labels change with it:**
+"Third corner" becomes **"CB3 / Nickel"** wherever it appears (the guide's glossary, the depth chart,
+the table headers).
+
+### P10-2 · The 3-4 base, and what it means for the maths
+
+The Owner's 3-4 order: **DE1 · DT1 (nose tackle) · DE2 · OLB1 · ILB1 · ILB2 · OLB2**, with
+"**OLB are treated the same as WILLs**" and "**ILB are treated the same as MIKEs**" for every wins
+value, and the guide and the preseason menu must say so.
+
+```js
+// WHERE: the depth-chart labels (DEPTH_CHART_GROUPS, candidate line 1091), the slot labels (LABELS)
+//        and the slot-wins table (slotWinsTable(), line 1326)
+// WHAT: ADDS a base selection and a label/value mapping. The build has 12 defensive slots in both
+//        bases — 4-3: DE1 DE2 DT1 DT2 MIKE WILL SAM CB1 CB2 CB3 SS FS
+//                    3-4: DE1 DT1(nose) DE2 OLB1 ILB1 ILB2 OLB2 CB1 CB2 CB3 SS FS
+//        The flex tables stay keyed on the 4-3 slot names, so the rules do not fork; the 3-4 names
+//        are resolved through one mapping table.
+const BASE_3_4 = {
+  // slot key (unchanged) : the name it wears in a 3-4, and the slot whose VALUE it carries
+  DE1:'DE1', DT1:'DT1 (nose tackle)', DE2:'DE2',
+  WILL:'OLB1', MIKE:'ILB1', SAM:'ILB2', DT2:'OLB2',     // <- the converted slot
+  CB1:'CB1', CB2:'CB2', CB3:'CB3 / Nickel', SS:'SS', FS:'FS'
+};
+// VALUE mapping: OLB1 and OLB2 are worth WILL, ILB1 and ILB2 are worth MIKE, and the converted
+// slot (DT2 -> OLB2) is worth SAM. This is the Owner's rule, in one place.
+const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'SAM', DT2:'SAM' };
+```
+**The Owner's other 3-4 instruction, in the guide and the preseason menu:** *"when the CB3/Nickel
+comes on the field, the LB3/SAM comes off"*. **The sam's value** (LB3/SAM) is what the nickel package
+gives up, and that sentence should sit next to the nickel explanation in both places.
+
+**Where the base is chosen:** on the **draft setup page** and on the **preseason page** — a two-option
+control ("3-4" / "4-3") beside the team and the pick. It changes the depth chart's names, the guide's
+chart, and the slot values above; it does **not** change the count of slots, the draft order, or the
+flex penalties.
+
+### P10-3 · Coaching philosophy and aggressiveness stay open all season
+
+**The finding:** the build locks the plan when the season starts (`seasonState.scriptLocked = true`,
+candidate lines 3544 and 3556) — the Owner's "locked in once you simulate Week 1". **The change:
+let the user change both, any time, and say so in the recap.**
+
+```js
+// WHERE: seasonState.scriptLocked (lines 3544, 3556) and the preseason controls
+// WHAT: REMOVES the lock for the USER's team (the CPU teams keep theirs) and re-renders the
+//        controls in the season view, not only on the preseason page.
+//        The recap must say when the plan changed and why, exactly as it does for the CPU teams.
+```
+**The copy that goes with it** (the Owner's sentence, rewritten):
+> "Your coaching philosophy is how your team likes to play by default. It names your team's style,
+> and opponents scout it. In any single game the plan can still change when a matchup calls for it,
+> and the recaps say when it does and why."
+*(the Owner's instruction: remove ", on offense and on defense. It names your team's style all season,
+and" — and capitalise "Opponents" wherever it starts a sentence.)*
+
+### P10-4 · The preseason menu, copy by copy
+
+| Where | Now | Becomes |
+|---|---|---|
+| philosophy paragraph | "Your coaching philosophy is how your team likes to play by default, on offense and on defense. It names your team's style all season, and opponents scout it…" | "Your coaching philosophy is how your team likes to play by default. It names your team's style, and Opponents scout it…" |
+| the RB fallback text | "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use." | **removed from the preseason menu** (it stays in the guide) |
+| "Why we recommend Auto" | the whole paragraph about Auto testing every setup | **removed completely** |
+| the setup explainer | "The model tried all 15 offensive setups…" | "**The model tries** all 15 offensive setups…" |
+| Cautious | "…Fewer 2-Pt Convs, a few more field goals, fewer touchdowns." | "…Fewer 2-Pt Convs, **fewer** field goals, fewer touchdowns." |
+| Balanced | "Follows the usual NFL chart: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th down when it is short and the field position is good." | "**Balanced Approach:** kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and **goes for it on 4th & short when in the opponent's territory**." |
+| Aggressive | "Goes for 2 early and often, and goes for it on 4th down instead of kicking. More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs." | "**More 2-Pt Conversions. More touchdowns. Fewer field goals, and a few more failed 4th downs.**" + a smaller line: "Almost always goes for a 2-point conversion unless you need an extra point to win the game. Almost always goes for it on 4th down unless you are behind your own 30-yard line, or you have a big lead in the fourth quarter." |
+| the 2-point section | "How a 2-Pt Conv works" | "**How a 2-Pt Conversion works**" |
+| the plan dropdown | small text | **larger text** for balanced / advanced / aggressive |
+| everything under the dropdown | plain paragraphs | **the Owner asks for all of it to be more beautiful** — see P10-8 |
+
+**One instruction that needs the maths checked, and a note on it:** the Balanced line now says it
+"goes for it on 4th & short when in the opponent's territory". **The council could not locate the
+4th-down decision code in the time available, so this sentence is not yet verified against the
+model.** Before it ships, check the decision rule in the game simulation: if the model kicks on 4th
+and-short outside the red zone, the sentence is wrong and the *model* should change (or the copy
+should). `AGGR_INFO` (candidate line 1972-1974) only carries the multipliers (`fg:1.08 / 1.00 / 0.86`,
+`two:0.45 / 1.00 / 1.90`, `td:0.96 / 1.00 / 1.05`) — the *field-position* rule lives elsewhere.
+
+### P10-5 · The game preview
+
+| Now | Becomes | Note |
+|---|---|---|
+| "one team built around its run defense, the other around its secondary" | "…one team built around its run defense **(Chiefs)**, the other around its secondary **(Vikings)**" | the Owner's complaint: the reader cannot tell which is which |
+| "Under center it is Matthew Stafford (99) against Geno Smith (74). All eyes will be on Matthew Stafford (QB, 99) and Christian Gonzalez (CB1, 98), the players each defense has to game-plan around." | "**Under center for the Chiefs is Matthew Stafford (99) against the Vikings' Geno Smith (74).**" | the "all eyes" sentence was wrong — a cornerback does not draw the opposing defence's game plan; **delete it** |
+| "Against an average team the first is worth roughly +2.3 points a game, so whichever side flinches loses ground." | **removed** | the Owner's rule: no "+x points a game" statements about a single unit |
+| "The Chiefs' secondary (85.5, #1) is a real weapon here — roughly +3.4 points a game compared with an average team — …" | the +x phrases are removed; the unit and its rank stay | same rule |
+| "The ratings lean the Chiefs by about 9.7 points (26.6–16.8)" | "**The ratings lean the Chiefs by about +9.7 points (26.6–16.8)**" | the overall margin may keep a point value, written with a "+" |
+| "…team by nature, and the model expects 12 personnel, run-heavy this week — as the favorite they would rather…" | **two sentences, no em dashes** | "…team by nature. The model expects 12 personnel, run-heavy this week. As the favorite they would rather…" |
+| "Defensively, expect the Chiefs in Nickel (a nickel defense focused on the pass) and the Vikings in Nickel · pass-defense (a nickel defense focused on the pass)." | "**expect the Chiefs in Nickel · Pass Defense and the Vikings in Nickel · Run Defense**" | the long parentheticals go; the defensive packages lose their subtitles in the little plan table |
+| the plan table's defensive rows | "Nickel (a nickel defense focused on the pass style)" | "**Nickel (dot) Pass Defense**", "**Nickel (dot) Run Defense**", or just "**Nickel**" |
+| the order of the blocks | Game plans → Lineups → Matchup → Opponent scouting report | **the lineups go directly below the game plan** (today they are at the top in the playoffs) |
+| the whole preview | a wall of sentences | **graphics first**: the Owner asks for the preview and the review to be "way more graphical", with full sentences "used sparingly" |
+
+### P10-6 · The game review
+
+| Now | Becomes |
+|---|---|
+| "The Chiefs finished it off, 28–14. The Chiefs had ripped off 21 unanswered points in the third quarter along the way." | the recap **starts with the 1st Quarter**; the "had ripped off" sentence is gone |
+| "First quarter: … Second quarter: … Third quarter: …" | "**1st Quarter** · **2nd Quarter** · **3rd Quarter** · **4th Quarter**" |
+| "Bryan Bresee got a hand on an extra point and blocked it for the Vikings." (in a 0-0 quarter) | **a glitch: the score says 0-0, so an extra point is impossible. Use a field goal.** The council did not trace the scoring-event writer; Claude should (the blocked-kick event at candidate line 3020 needs the quarter's score checked before it is narrated) |
+| "D'Andre Swift ran it in for a touchdown (Chiefs 7–0)." | "**Rushing TD (dot) D'Andre Swift (Chiefs 7-0)**" — a box-score line, not a sentence |
+| "Turnovers: The Chiefs came out one turnover ahead: Geno Smith was intercepted by Jaylon Johnson in the fourth quarter." | "**Turnovers: Chiefs 1 - 0 Vikings**" then "**Jaylon Johnson interception (4th Q)**" |
+| "Stars of the game: Evan Engram (Chiefs) had a strong day, hauling in 3 of 4 targets for 26 yards and 1 touchdown…" | the heading becomes **a star (glittering)**, not the words; **offensive players need at least 60 yards to be mentioned**; the slots are reserved for **90+ rating performances**, and the rating itself is not shown to the user |
+| "…worth about +2.3 points to the Chiefs." / "about +2.2 points on the scoreboard." / "a swing of roughly +1.3 points for the Chiefs." | **all removed** — the Owner asked for no "+x points" statements about single units |
+| "The ratings gave the Chiefs an edge of about 3.3 points, and they won by 14." | "**The ratings gave the Chiefs an edge of about +3.3 points, and they won by 14.**" |
+| "The Chiefs' pass rush (88.0, #4 of 32) only got home to Geno Smith once and hurried 9 more dropbacks, a swing of roughly +1.3 points for the Chiefs." | "…hurried 9 more dropbacks**.**" and "only got home to Geno Smith **once**" is no longer a criticism: **1-2 sacks is mid, 3+ is exceptional** |
+| "The Chiefs move to 1-0; the Vikings slip to 0-1." | **its own paragraph** |
+| the "Game plans:" block in the review | **hidden behind an arrow**, like the other drop-downs |
+| the game ball | the player with the game ball **must also appear in the Key Players chart** — today they can differ, which is why the game ball was "not assigned to any player" |
+| the box score of the quarters | **larger and more beautiful** |
+| the whole review's typography | "this whole font is terrible… maybe can fade into the page" — see P10-8 |
+
+### P10-7 · The season review and the 100-season report
+
+- The **win banner** after a game: much larger, centred, **at least three seconds**, like the Conference
+  Champions graphic — and it should **land somewhere and keep sparkling** afterwards.
+- "**Kansas City Chiefs: 14-3 · 397 PF · 296 PA**" is replaced by **two conference charts** that rank
+  the team 1-16 in its conference, and — the Owner's favourite idea — a **March Madness-style playoff
+  bracket** with the byes and both conferences, the Super Bowl contestants meeting in the middle.
+- The **awards** charts: prettier, and **gold for the user's players**, including the game-ball winner.
+- The **regular-season recap** becomes graphical: the first sentence on its own; the biggest win and
+  the ugliest win as **stat cards rather than sentences**; **each player on their own line**; and the
+  "cost the Chiefs roughly X points a game" phrasing removed.
+- **Removed:** the roster's out-of-position sentence ("The roster also asked 2 starters to play out of
+  position, costing 4 rating points across the lineup…"), the draft critique's "Early picks that are
+  worth little to winning matter most…", and the "What separated the playoff teams" **text** (the
+  section stays, but it must be a click-to-reveal and it must never be described again).
+- "Sacked 59x" is written **"59 Sacked"** everywhere, including the players' lines.
+- "More Advanced Stats" is renamed **"Advanced Stats"**; the explainer ("Advanced stats: what really
+  produced sacks and runs") is **highly condensed and only visible on click** from the Coverage, Sacks
+  or Offensive Line entries; and **every advanced stat should say why you did well or poorly**.
+- The 100-season report: **"a lot more graphical — only a few sentences here and there"**.
+- The **season review button** after the playoffs: **in blue, near the top**, next to the 100-season
+  simulation.
+- A team with a **bye** should see **the preview of its most likely next-round matchup**.
+- "Lineup and flexes" must **not** be at the top of the playoff page.
+
+### P10-8 · The graphical direction, for the Architect and for Figma
+
+The Owner's instruction, in one line: *"all game previews and game reviews are way more graphical.
+Full sentences should be used sparingly… The only thing that really needs sentences is narration of
+key plays in the clutch, or extra compliments to your star players, and hyping up the next round."*
+
+```mermaid
+flowchart LR
+  N["a number the sim already knows"] --> C["a card, a bar, a chip, a row"]
+  C --> H["a headline the card supports"]
+  H --> S["a sentence, only where a sentence is the point"]
+  S --> A["a player, a game ball, a moment"]
+```
+**The rule to work to:** a sentence is the *last* step, not the first. The review of a 28–14 game is
+a score line, four quarter cards, a turnover line, three star cards, a game-ball line, and a short
+"how it was decided" — not six paragraphs. The Owner also asks for the hyper text to be **glittering
+stars** and for the typography to **fade into the page** (a softer ink, more air, a lighter rule
+between blocks).
+
+**What the council can hand to Figma, and what Figma must bring back.** The council has the palette
+and the data; Claude has Figma. **To Claude:** the game's own numbers, the state list (the row you
+are looking at, the flexed row, the TOP row, the gone-by-next-pick row), the four team colours, and
+the eight blocks the review must have (score, quarters, turnovers, stars, game ball, how it was
+decided, plans, key players). **From Figma:** a frame of the **season review** and the **playoff
+bracket** — the two screens where "graphical" is the whole point.
+
+### P10-9 · What the council could not verify in this round
+- **The 4th-down maths** for the new Balanced sentence (P10-4) — the decision rule was not located.
+- **The blocked extra point in a 0-0 quarter** (P10-6) — the scoring-event writer was not traced.
+- **The game ball / Key Players mismatch** (P10-6) — the two are chosen in different places; the
+  fix is "the game ball is chosen from the key players", which is a small change once both are found.
+- **The 3-4's effect on the season model** — the alignment changes the *labels* and the *values*; it
+  does not change the matchup model, so the season's numbers should not move, but that has not been
+  measured.
+
+
+---
+
+## Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)
+
+**The Owner's words are the source of truth.** This section only *orders* them and names the slice each council seat owns; the seats' sections below carry the exact old→new strings. The rule for everything in this round: **one sentence says it, the rest is graphic.**
+
+### P0 · Mechanics (the flex rules and the base) — Owner-approved, Claude-implemented
+
+| # | the change | owner | notes |
+|---|---|---|---|
+| **P0-A** | the flex rules: edges take **no penalty** at OLB/WILL/SAM · OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2 · MIKE → DT −4, SS −2 · SS → CB3/Nickel free, FS/OLB/WILL/SAM −2 · CB → OLB/WILL/SAM −4, CB → MIKE −6 · TE → WR −2, TE → RB −4 · **anything not mentioned keeps its current rule** | Pickle (rules) · Lightning (risk) · LongCat (proof) | `FLEX` / `NATURAL_SLOT_MAP` are **protected constants** — the Owner's instruction is the approval; Claude implements. The chart is **redesigned in the draft-roster order**. |
+| **P0-B** | a **3-4 / 4-3 base** the user picks on the draft or preseason page. 3-4 order: DE1, DT1 (Nose Tackle), DE2, OLB1, ILB1, ILB2, OLB2. **OLB is treated exactly as WILL and ILB exactly as MIKE** in the wins maths and in every other calculation — and that must be **explained on the Guide and in the preseason menu**, including that **CB3/Nickel coming on means LB3/SAM comes off** | Pickle · BOC (menu copy) | the alias question (aliases of WILL/MIKE, or new slots?) is the open implementation question — Lightning's risk map |
+| **P0-C** | the **coaching philosophy and aggressiveness must not lock** after Week 1 | BOC · DS (check) | plus the description change |
+| **P0-D** | "Third corner" → **"CB3 / Nickel"** in the Guide | BOC | |
+
+### P1 · The copy (three lists; all of it plain, none of it "expected scoring")
+
+- **Preseason/philosophy:** the lock description rewritten · the "Why we recommend Auto" paragraph **removed entirely** · ", on offense and on defense. It names your team's style all season, and" removed and "Opponents" capitalised · the model paragraph becomes **"the model tries…"** · **one** of the two "the label stays the same all season…" sentences removed · the dropdown text **much larger** · "a few more field goals" → **"fewer field goals"** · "Follows the usual NFL chart:" → **"Balanced Approach:"** · its ending → "and goes for it on 4th & short when in opponent's territory" (**the maths is to be verified — LongCat/DS**) · Aggressive → "More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs." with the smaller follow-on · "How a 2-Pt Conv works" → **"Conversion"** · the RB −6 / −8 fallback text **removed from the preseason menu** · all descriptions after the dropdown selection made more beautiful.
+- **Game preview:** the team name after "run defense" and "secondary" — "(Chiefs)"/"(Vikings)" · "Under center for the x is … against the y's …" · the "All eyes will be on … Christian Gonzalez" sentence **fixed** (a defender is not something the opposing defence game-plans around) · **every "+x points a game" phrase removed** except the overall prediction, which becomes **"+3.3 points"** · em-dashes → **periods** · defensive labels → "Nickel · Pass Protection" / "Nickel · Run Defense" / "Nickel", **no subtitles** · the playoff preview far more beautiful.
+- **Game review:** starts with **"1st Quarter"** · the opening recap and the "had ripped off…" sentence removed · quarters read "1st/2nd/3rd/4th" · the blocked-extra-point-in-Q1 glitch → a field goal · box-score style scoring lines ("Rushing TD · D'Andre Swift (Chiefs 7-0)") · "Turnovers: Chiefs 1 - 0 Vikings" then "Jaylon Johnson interception (4th Q)" · the "how it was decided" phrases about points removed, the first number "+3.3", "and" → "but" if possible, **no sacks is not poor** (1-2 mid, 3+ exceptional) · "The Chiefs move to 1-0…" its own paragraph · the review's "Game plans:" block **hidden in a dropdown** · **the game ball must always be in the Key Players chart**.
+
+### P2 · The graphical direction (previews, reviews, season review, 100-season)
+
+the win banner **much larger, centred, ≥3 seconds**, like the conference-champions graphic, ideally landing and shimmering · "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" → **two conference charts ranking the team 1-16 in its conference**, ideally a **March Madness-style bracket** with byes and the Super Bowl meeting in the middle · the awards in **gold**, including the game-ball winner · the draft critique loses "Early picks that are worth little to winning matter most…" · the **"What separated the playoff teams"** section is **left but never mentioned** and must be clicked to see, with **no description of what separated the playoff teams anywhere** (it only repeats the user's own team) · "Sacked 59x" → **"59x Sacked"** · "More Advanced Stats" → **"Advanced Stats"** · the "Advanced stats: what really produced sacks and runs" note **highly condensed**, visible only when clicking Coverage Sacks or Offensive Line Advanced Stats · the season summary **far more graphical** (first sentence its own paragraph; biggest/ugliest win as indented stat lines; each player on its own line; no "cost the Chiefs roughly 0.7 points a game" phrasing; the "roster also asked 2 starters to play out of position" sentence **removed**) with a **better closing line** that either encourages the playoff push or the redraft · the "Why better or worse than the ratings?" block more graphical · **a bye shows the most likely next-round matchup's preview** · "Lineup and flexes" **not at the top** in the playoffs · the season-review button **in blue near the top**, next to the 100-season simulation · the 100-season review **far more graphical**, a few sentences here and there.
+
+### P3 · The stars of the game, the hype, and the typography
+
+the Stars table **much more beautiful** · offensive players need **≥60 yards** to be mentioned in the review's Stars section, the slots are reserved for **90+ rating performances** (the rating is used internally and never shown) · "Stars of the game:" becomes an **actual star** · "The Chiefs are Super Bowl champions." → **more beautiful, at least one exclamation point** · the game-review and season-review typography is "terrible" and must be much better, able to **fade into the page** without hurting legibility.
+
+### P4 · Only the Owner can settle these
+
+1. the **4th-down description's maths** — "goes for it on 4th & short when in opponent's territory" must be **true of the model**; if it is not, the copy changes, not the model.
+2. the **3-4/4-3 implementation shape** — OLB/ILB as **aliases** of WILL/MIKE, or as new slots with their own weights (this changes the roster, the depth chart and the draft order).
+3. whether **"no sacks is not poor"** is a wording rule or a **threshold change** in the model.
+4. the **bracket design** — the March Madness-style picture is a proposal; the Owner owns the shape.

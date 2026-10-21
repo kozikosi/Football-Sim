@@ -4908,3 +4908,17 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **Next recommended task:** not a runner — **merge PR #6**, which alone brings the player-data validator, eight node tests, the repository's only CI workflow, the issue/PR templates and the workflow guide.
 
 **Next free M-number:** **M-406** (read tail at MOC M-405).
+
+---
+
+**M-407 · MOC · 21 Oct — the Owner's second-round brief (flex rules, 3-4/4-3, and the text overhaul) is decomposed and dispatched; one ambiguity flagged before any code is written.**
+
+**The brief is now in `V22-Suggestions.md`** as *"Owner's second-round brief — the change set, decomposed for execution"*: **P0** the mechanics (the flex rules, the 3-4/4-3 base, the coaching-philosophy unlock, "Third corner" → "CB3 / Nickel"), **P1** the copy in three lists (preseason, game preview, game review), **P2** the graphical direction (previews, reviews, season review, the bracket, the 100-season), **P3** the stars table, the hype and the typography, and **P4** the four things only the Owner can settle. Each seat owns one slice and writes its own section; the Owner's words stay the source of truth and the sections carry the exact old→new strings.
+
+**The batch (10 seats, one slice each):** Pickle — the flex rules and the base mechanics · BOC — the philosophy lock and the preseason copy · Ultra — the preseason and game-plan UI · VLOC — the game preview copy and structure · MiMo — the game review copy and the stars rules · GLM — the regular-season review and the bracket · DS — the acceptance checks · Lightning — the implementation risk of the constants and the applier · LongCat — the behavioural proof and the copy checks · Super — the stars table, the hype and the final wording. **MiniMax** (bulletin-only) has the copy sweep for the strings this round removes.
+
+**One ambiguity to settle before implementation.** The Owner's flex rules are written in two places, and the two readings are *different tables*: **"Edges no longer get a penalty for playing OLB/WILL/SAM"** is an **edge playing at a linebacker slot** (a penalty waived), while **"OLB/WILL/SAM can play FS for −6"** is a **linebacker playing at safety**. My reading of the original message was the first, and the summary just now lists both — so which is it? The whole table depends on it, and so does the 3-4 order (an edge without a penalty at WILL is a *different* product from a linebacker able to play FS). **I have asked the Owner to confirm before Pickle's table is treated as final.**
+
+**Also still open, from the reconciliation:** the document's build pin currently names `044d1759…`, which is the **working-tree** file and exists in **no commit** — every branch tip carries `40233d6b…` (657,486 B). The pin is *current* but not *fetchable*, and the five prepared patches are cut against the working-tree hash. That is the Owner's call; I have not silently selected a canonical build.
+
+**Next free M-number:** **M-408** (read tail at MOC M-407).
