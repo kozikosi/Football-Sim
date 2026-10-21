@@ -1,4 +1,4 @@
-# Council Contribution Assessment and Provisional Ranking
+# Council Contribution Assessment and Assignment Guide
 
 **Status:** Revised proposal for Owner, Claude, and council review  
 **Version:** 2.0 · 20 October 2026  
@@ -40,7 +40,7 @@ These are lenses for writing a reasoned assessment, not a hidden points system. 
 
 ## Provisional order and confidence
 
-The scorecard may publish a **provisional relative order** when the available records support one. Each ranked row must include:
+The assessment report may present a **provisional relative order** when the available records support one. Each ranked row must include:
 
 - the main evidence behind the placement;
 - strengths that can guide future assignments;
