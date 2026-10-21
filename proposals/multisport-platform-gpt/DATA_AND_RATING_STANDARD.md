@@ -4,7 +4,7 @@
 
 ## Planning targets
 
-Use approximately 1,200 all-time candidates for each of NFL and NBA as a planning assumption, pending the Owner’s confirmation. “Candidate” means a player record proposed for inclusion; it does not mean every record must be fully rated before architecture work continues.
+**Updated Owner planning signal (2026-10-20):** Plan for approximately 1,500–2,000 all-time candidates for each of NFL and NBA. The Owner said this range seems like the goal, because the pool should be large enough to avoid fabricated players and poor role/flex coverage. Treat this as a planning target pending final sizing. A candidate is a proposed player record; it need not be fully rated before architecture and data-research work can continue.
 
 The current-season simulations need their own versioned pool and season context. Do not overwrite current data when creating an all-time pool.
 

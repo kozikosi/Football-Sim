@@ -40,7 +40,7 @@ MLB, NHL, and soccer are future portfolio targets, not reasons to broaden the V2
 
 ## All-time pool planning assumption
 
-Plan for approximately 1,200 all-time candidates in each of NFL and NBA unless the Owner says the 1,200 target is combined or chooses another number. This is a data target, not a launch requirement. Build a credible, reviewable pool in stages and preserve the option to expand it.
+**Updated Owner planning signal (2026-10-20):** Plan for approximately 1,500–2,000 all-time candidates in each of NFL and NBA. The Owner said this range seems like the goal, chiefly to avoid an undersized pool that forces fabricated players or poor role/flex coverage. Treat it as a planning target pending final sizing, not a requirement that the complete pool exist before research and staged simulation work begins.
 
 The Owner says current top players should remain eligible in an all-time pool with an adjustment of about minus five points. Treat this as a configurable eligibility/era adjustment, not a permanent edit to a player’s raw rating. The final policy remains an Owner decision.
 
