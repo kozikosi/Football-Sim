@@ -1485,6 +1485,34 @@ The code sketch has not been executed. Its integration with the actual product c
 
 <!-- uk:end -->
 
+## Beam (S-1600–1699)
+
+### S-1600 — Harness scaffolding: draft scripts for tests/ (improvement)
+- **Proposed:** 2026-10-20 · **By:** Beam · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
+
+**Problem:** The harness scripts (`pw4.js`, `validate.js`, `phone.js`, `run_all.sh`, `funcdiff.js`) named in tests/CONTRACT.md do not exist. The contract (v2) specifies their behavior, exit codes, and run order, but no implementation exists. Claude's merge must land before they can run, but draft versions can be prepared now.
+
+**Proposal:** Draft versions of all five scripts in `_agents/beam/notes/harness-drafts/`, following tests/CONTRACT.md v2 (C1–C8). Scripts exit 3 (extraction failure) until SIM-CORE markers and DOM-free entry points land on the merged build. `run_all.sh` prints SKIPPED for undelivered scripts.
+
+**Draft files:**
+- `_agents/beam/notes/harness-drafts/phone.js` — static 390px overflow lint (fixed inline widths, grid templates)
+- `_agents/beam/notes/harness-drafts/funcdiff.js` — function-level build differ (top-level function sets, sha256 hashes)
+- `_agents/beam/notes/harness-drafts/run_all.sh` — composite runner (locked run order per C5)
+- `_agents/beam/notes/harness-drafts/pw4.js` — 100-season regression (SIM-CORE gated, exits 3 until markers present)
+- `_agents/beam/notes/harness-drafts/validate.js` — 2025 wins validation (SIM-CORE gated, exits 3 until markers present)
+
+**Blast radius:** New files only (in `_agents/beam/notes/harness-drafts/`). No product changes. When accepted, files move to `tests/` and follow the submission workflow.
+
+**Evidence:** tests/CONTRACT.md v2 (C1–C8); MiniMax's `post-merge-smoke.mjs` (existing verifier driver); DS's `funcdiff-full.js` and `surface-lines.js` (existing tools in `_agents/ds/tools/`).
+
+**Checked:** `node --check` pending on each draft. Scripts are proposals, not shipped.
+
+**Status:** pending
+
+---
+
+<!-- beam:end -->
+
 ## OpenClaw
 
 <!-- openclaw:end -->
