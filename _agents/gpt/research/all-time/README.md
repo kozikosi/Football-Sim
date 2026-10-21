@@ -4,6 +4,12 @@
 
 The owner supplied eight NFL text attachments and one NBA text attachment as working material. The originals are preserved byte-for-byte under `raw/`. `source_manifest.json` records source IDs, original attachment IDs, byte counts, line counts, and SHA-256 hashes so contributors can verify that a copy has not changed.
 
+## Owner direction and next-stage use
+
+The Owner’s expanded target is approximately 1,500–2,000 all-time candidates per sport; larger pools are not expected to be useful without a clear reason. Council members may collaborate on the candidate pools, and the Owner gives final approval to each final pool. Public-facing ratings and statistics should be integers; internal calculations may use decimals, but do not invent decimal ratings or fields the engine does not consume. The proposed current-player adjustment near −5 remains unapproved.
+
+See the [Owner Product Direction](../../../../OWNER-PRODUCT-DIRECTION.md) for the project-wide roadmap and [NBA Owner Design Direction](design/nba/OWNER-DESIGN-DIRECTION.md) for the basketball-specific draft, OVR, modern-rules, flexibility, and data guidance.
+
 ## Catalog
 
 ### NFL
@@ -34,7 +40,7 @@ The ranking files contain overlapping but non-identical orders. Keep each versio
 3. Preserve disagreements between lists. A ranking position is evidence of a preference in that particular list, not a calibrated rating or an automatic draft value.
 4. Do not silently resolve spelling, aliases, teams, seasons, positions, eligibility, or historical rules. Record a proposed resolution with its source and ask the owner when a choice affects simulation design.
 5. Do not copy these lists directly into production player data. A future pool needs an explicit schema, eligibility policy, season/team identity, position rules, rating methodology, provenance, and review status.
-6. The owner’s broader aim is to curate roughly 1,200 all-time NFL and NBA player candidates, with current stars eligible under a proposed rating adjustment. That policy is not encoded or approved by these source files; define it separately before rating work begins.
+6. The Owner’s current target is approximately 1,500–2,000 candidate players per sport. All council members may contribute to the pool, but the Owner gives final approval. The earlier proposed current-player adjustment near −5 remains unapproved. See OWNER-PRODUCT-DIRECTION.md for the current policy and open decisions.
 
 ## First source-backed omission pass
 
