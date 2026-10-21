@@ -1,57 +1,68 @@
-# Council Scorecard
+# Council Contribution Scorecard
 
-**Snapshot date:** 2026-10-20 UTC
+**Snapshot date:** 2026-10-20
 
-Generated from council/scorecard/events.jsonl by scripts/build_council_scorecard.py.
-Purpose: observed contribution reliability and usefulness; this is not an intelligence or character ranking.
-Rule: primary evidence outranks scores. Provisional entries do not break ties.
+## What this is
 
-## Current standing
+This is a provisional, evidence-informed assessment of demonstrated project contributions and likely assignment fit. It is not a measure of innate intelligence, character, honesty, loyalty, or sabotage risk. The ranking is subjective and updateable; confidence and evidence limits are shown because the samples are uneven.
 
-| Member | Standing | Audited tasks | Composite (adjusted) | Evidence reliability | Practical value | Observed reasoning | Process events |
-|---|---|---:|---:|---:|---:|---:|---:|
-| GPT | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
-| Lightning | UNASSESSED | 0 | — | — | — | — | 1 |
-| LongCat | PROVISIONAL — NOT RANKED | 1 | 67.2/100 | 66.5/100 | 68.0/100 | 100/100 | 0 |
-| MOC | PROVISIONAL — NOT RANKED | 1 | 67.8/100 | 66.5/100 | 69.0/100 | 100/100 | 0 |
-| Ultra | PROVISIONAL — NOT RANKED | 1 | 65.5/100 | 66.5/100 | 65.0/100 | 80/100 | 0 |
+Primary receipts and independent reproduction outrank the ranking in every factual dispute. Use placement to help choose who should investigate a problem, never to decide which unsupported claim is true.
 
-A ranked standing requires at least three distinct audited tasks across two domains and an independent review. A SPEAKER header under _agents/ or an event automatically creates a row; no member roster is maintained.
+The numeric 0–100 draft is withdrawn. Its numbers are not current standings.
 
-## Evidence notes
+## Provisional comparative order
 
-### GPT
-- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-reconciliation-follow-up (2026-10-20):** Correctly distinguishes a script reference hash from proof that Lightning executed that script; preserves Run B as UNKNOWN; keeps the overall result PARTIAL and distinguishes viewport width checks from full usability. Rating remains provisional because the original attachments and local audit files are not yet durable in Git and this event has no independent score review.
-  - Assessment: GPT (provisional self-review; independent review pending). Source: Owner-provided attachment: SPEAKER GPT | E2E reconciliation follow-up; cross-checked against local _agents/moc/notes/W2-run-reconciliation.md and W3-protocol-to-script-matrix.md, which are not yet committed to this branch.
-  - Limits: This rates one evidence-reconciliation deliverable only. It does not assess model ability generally or GPT's work on other project tasks.
+| Rank | Contributor | Confidence | Demonstrated strengths | Limits / context | Best-supported assignment fit |
+|---:|---|---|---|---|---|
+| 1 | Pickle (Council advisor) | moderate | Strongest evidence discipline in the earlier records reviewed; independently reproduced key function comparisons and corrected an earlier cpuPick conclusion when receipts contradicted it. | The comparison is based on the work records available in that review, not a complete history across all project domains. | Independent audit of disputed technical claims; function and build comparisons. |
+| 2 | DS (Council advisor) | moderate | Strong adversarial review and integration analysis; identified important errors in other reviews and clarified what a combined merge actually changed. | Some earlier claims also needed correction; continue to assess calibration alongside analytical depth. | Independent integration review; combined-build and dependency analysis. |
+| 3 | GLM (Council advisor) | moderate | Repeated measurements and useful project records; contributed to reconciling build and documentation state. | Some status claims and interpretations were later corrected. | Reproducing measurements and reconciling shared records. |
+| 4 | MiniMax (Council advisor) | moderate | Strong hands-on verification record, including the 100-season crash, mobile resize defect, and dynamic gate work. | The strongest evidence is execution and verification; it is a narrower sample of broad architecture judgment. | Scripted regression checks, defect reproduction, and gate design. |
+| 5 | Claude (Architect) | low | The earlier review judged Claude likely strong in implementation and whole-system judgment based on work described in project records. | Little comparable, independently checked evidence was available in that review; the Architect role differs from advisor tasks. This low-confidence placement does not measure or constrain technical authority. | Product architecture, implementation, and whole-system decisions, as assigned by the Owner. |
+| 6 | Nemo Ultra (Council advisor) | low | Broad architectural coverage and useful risk areas in the earlier records reviewed. | Some specific claims were challenged or corrected; breadth was stronger than demonstrated precision in that sample. | Broad architecture and risk review when paired with an independent receipt check. |
+| 7 | Nemo Super (Council advisor) | low | Useful architecture review and a good catch on stale build references. | Some detailed assertions were disputed; the available record showed less independent reproduction than the members above. | Architecture review and build-reference audits, with independent reproduction for detailed claims. |
+| 8 | OR (Council advisor) | low | The records credit OR with a complete draft-to-Super-Bowl run, providing useful execution evidence. | Less comparative evidence was available on deep source and governance analysis. | End-to-end gameplay execution and user-flow checks. |
+| 9 | VL (Council advisor) | low | The records credit VL with hands-on draft, season, and playoff validation. | Limited evidence was available for cross-checking complex source claims. | Specified browser flows and focused regression validation. |
+| 10 | GPT (Co-architect) | low | The earlier review credited GPT with finding document and Git-history inconsistencies and proposing workflow improvements. | That review noted GPT had not independently run the local app or reproduced its tests. Later E2E reconciliation work is reported separately and has not been independently assessed here. This is a disclosed self-inclusion and must receive independent critique. | Evidence reconciliation, workflow design, and independent challenge; pair with a separate verifier for execution claims. |
+| 11 | Beam (Council advisor) | low | Careful onboarding, build identification, and useful workflow notes. | The reviewed sample was smaller than the evidence available for the contributors above. | Build identification, onboarding, and workflow documentation. |
+| 12 | UK (Council advisor) | low | Produced build-pinned reviews and useful questions. | Some verification was still marked pending in the records reviewed. | Build-pinned review and issue framing; pair with an executor when verification is required. |
+| 13 | Cohere (Council advisor) | low | The records show a pinned build review and a critique in progress. | Limited completed work was available to compare. | Focused review tasks with an explicit completion criterion. |
+| 14 | LK (Council advisor) | low | Provided build evidence and useful questions. | The recorded mobile check was still pending; there was too little completed evidence for a stronger placement. | Small, bounded verification tasks with a clear artifact and result format. |
+| 15 | Glyph (Council advisor) | low | The bulletin records a build check and critique/questions in progress. | Little completed, independently reproducible work was available to compare. | Bounded research or review tasks with explicit receipts. |
 
-### Lightning
-- **Status:** unassessed; 1 unscored process event(s). No technical conclusion is drawn.
-- **Unscored event — forwarded-excerpt:** The original author is preserved, but the forwarder is not named in the pasted header. The new rule adds a separate FORWARDED BY field. This event is not evidence that Lightning authored GPT's analysis, impersonated GPT, or intended to mislead.
-  - Source: Owner-provided attachment containing the GPT-authored E2E reconciliation follow-up under SPEAKER: GPT, reported as forwarded by Lightning.
+**Assessment basis:** Carries forward the earlier qualitative review of council bulletins and work records. This is not a fresh line-by-line audit of every historical artifact. The ordering is a provisional judgment about demonstrated project contribution, not innate intelligence or general trustworthiness.
+**Assessor:** GPT (initial continuity assessment; independent review requested). Independent review: pending.
 
-### LongCat
-- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-independent-verifier-report (2026-10-20):** Provides candidate and negative-control artifact hashes, an exact E2E command and runner details, outcome counts, and a clear list of what was not tested. It explicitly describes itself as corroborating MOC rather than taking over the verifier role and warns that a green run does not prove season realism.
-  - Assessment: GPT (provisional review; independent review pending). Source: Local _agents/longcat/notes/verifier-report.md and w1-artifact-audit.md; associated evidence files are in the local workspace and are not yet committed to this PR branch.
-  - Limits: This review did not rerun the browser command or independently inspect every referenced evidence JSON. One task in one domain; provisional.
+## Emerging or unassessed contributors
 
-### MOC
-- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-w2-w3-w4-reconciliation-package (2026-10-20):** The audit separates VERIFIED, REPORTED, INFERRED, and UNKNOWN; identifies that the saved run JSON does not match the archived executable's step set; maps protocol clauses to actual script/result fields; and discloses release publication, public-repository visibility, and remaining evidence gaps. The report gives specific corrective recommendations without changing acceptance policy.
-  - Assessment: GPT (provisional review; independent review pending). Source: Local _agents/moc/notes/W2-run-reconciliation.md, W3-protocol-to-script-matrix.md, and W4-evidence-publication.md; these reports are not yet committed to this PR branch.
-  - Limits: This rates the quality of the submitted audit package, not every underlying command or release action independently reproduced during this review. One task in one domain; provisional.
+A narrow, useful contribution can be recognized without forcing a cross-project rank. UNASSESSED means insufficient comparable evidence, not poor performance.
 
-### Ultra
-- **Status:** provisional; 1 audited task(s), 1 domain(s); independent review pending.
-- **e2e-publication-plan-and-protocol-audit (2026-10-20):** The protocol-to-script gaps are specific and actionable, including return navigation, critical-control clipping, and horizontal table scrolling. Publication is clearly labelled a recommendation and no upload is claimed. One proposed push command does not match the branch name created in the preceding command; fix before anyone uses it. The proposed report-duration metric should only be populated if its field definition matches the measured step duration. Ratings remain provisional because this was a plan rather than an executed publication or new test.
-  - Assessment: GPT (provisional review; independent review pending). Source: Owner-provided attachment: SPEAKER Ultra | W4 Publication Plan + W3 Follow-up; compared with the local E2E reconciliation reports and the supplied GPT follow-up, which are not yet committed to this branch.
-  - Limits: Rates the quality of a proposed plan and audit, not a completed publication or a newly executed test. Evidence files cited in the conversation are not yet durable Git artifacts.
+| Contributor | Standing | Latest evidence | Limits |
+|---|---|---|---|
+| Lightning | UNASSESSED — forwarding event only | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consistently present in the pasted material. Record this as a formatting/provenance gap and use the required FORWARDED BY field in future forwards. Do not infer intent or technical authorship from this alone. | No technical contribution is scored from forwarding alone. |
+| LongCat | emerging — task-specific; not placed in cross-project order | The reported verifier package includes candidate and negative-control hashes, an exact command and runner details, outcome counts, and a clear statement of limits. It describes its role as corroborating another verification report rather than taking ownership of the run. | The report and associated evidence were described as local and were not independently re-run or inspected in this update. One narrow task is not enough to compare across all contributor domains. |
+| MOC | emerging — task-specific; not placed in cross-project order | The supplied reconciliation is unusually specific about what the trace does and does not prove. It distinguishes the visible UI path from season metrics, identifies that window.seasonState is not the lexical binding used by the build, and leaves the result PARTIAL because the Week 1 protocol check remains unresolved. The report also corrects an earlier PASS interpretation without changing the artifact or protocol. | This is one narrow E2E evidence task. The underlying trace and local report files were not replayed by this scorecard update, so the assessment remains reported rather than independently verified. |
+| New Member | UNASSESSED | No audited contribution event recorded yet. | No negative conclusion. |
 
-## Reading this snapshot
+## Recent task observations
 
-- GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.
-- Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.
-- Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.
-- Other historical members are not assigned scores from folder presence or incomparable old reports. New contributors appear automatically when a report in their own _agents/ folder starts with the required SPEAKER header.
+| Speaker | Task | Evidence status | Observation | Source / limits |
+|---|---|---|---|---|
+| MOC | E2E evidence reconciliation | REPORTED | The supplied reconciliation is unusually specific about what the trace does and does not prove. It distinguishes the visible UI path from season metrics, identifies that window.seasonState is not the lexical binding used by the build, and leaves the result PARTIAL because the Week 1 protocol check remains unresolved. The report also corrects an earlier PASS interpretation without changing the artifact or protocol. | This is one narrow E2E evidence task. The underlying trace and local report files were not replayed by this scorecard update, so the assessment remains reported rather than independently verified. |
+| LongCat | Independent verifier report | REPORTED | The reported verifier package includes candidate and negative-control hashes, an exact command and runner details, outcome counts, and a clear statement of limits. It describes its role as corroborating another verification report rather than taking ownership of the run. | The report and associated evidence were described as local and were not independently re-run or inspected in this update. One narrow task is not enough to compare across all contributor domains. |
+| Nemo Ultra | E2E result correction | REPORTED | Ultra first circulated a PASS summary, then supplied a corrected PARTIAL result after the protocol gap was identified. The correction is useful evidence of follow-through. The remaining Week 1 check should use a probe that matches the build's actual season state before the suite is called complete. | The correction and run outputs were supplied in conversation; this update did not replay the browser run. One E2E task does not change the broader cross-project ordering by itself. |
+| GPT | E2E evidence reconciliation | REPORTED | GPT separated a script reference from proof of execution, kept an unavailable run UNKNOWN, and preserved the PARTIAL status where a required check was skipped. The assessment is self-authored and does not independently establish the accuracy of its own analysis. | Self-assessed, narrow task, and not an independent replay of the browser run. |
+| GPT (forwarded by Lightning) | E2E report forwarding | REPORTED | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consistently present in the pasted material. Record this as a formatting/provenance gap and use the required FORWARDED BY field in future forwards. Do not infer intent or technical authorship from this alone. | No technical contribution by Lightning is rated from this forwarding event. |
+
+## How to read and update this report
+
+- Confidence describes how much evidence supports the comparison, not a person's ability.
+- The initial order carries forward an earlier GPT assessment and awaits independent critique. Several entries rely on reported summaries rather than a fresh audit of every source file.
+- A later complete ranking snapshot may move contributors when comparable, attributable work justifies a change. The reviewer must state what new evidence changed the order.
+- New names appear automatically from exact SPEAKER headers in reports under _agents and from the event ledger. A reviewer adds evidence; no separate roster edit is needed.
+- Aliases are combined only when an explicit mapping is recorded in a reviewed ranking snapshot. Original event labels remain visible in the ledger.
+- Claude's Architect authority and the Owner's decision authority do not come from this ranking.
+
+## Superseded numeric draft
+
+The previous version's weighted 0–100 scores, neutral-prior formula, and numeric ranking threshold have been withdrawn. The old ledger is preserved separately for audit history and must not be used as current standing.
