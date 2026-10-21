@@ -10,6 +10,24 @@ Run one repeatable browser acceptance pass using OpenChamber’s built-in Playwr
 
 This protocol does not add a Playwright package or change the product. It is separate from the Node-only static test contract.
 
+## Beta posture and current evidence
+
+The Owner confirms that these simulations are beta projects with no active users. The Owner will personally play every simulation and decide whether it works as a product. Automated tests are a safety net for total breakdowns, null results, and fringe cases that ordinary play may miss. A test result is useful, but it is neither a prerequisite for continuing development nor a substitute for the Owner’s product review. A PASS applies only to the stated checks on the identified artifact; it is not Owner acceptance, release approval, or proof that V21 passed.
+
+Continue independent work when a run is PARTIAL or incomplete. Report the result honestly, preserve what was learned, and fix or rerun a missing check when it is useful. Do not inflate SKIP into PASS or describe untested behavior as verified.
+
+### Run A — recorded as PARTIAL
+
+The strongest currently recoverable run is **PARTIAL**, against merge/v20-donor commit ff8c05ae0ef89e9030faa991a942d1c611f891bd, artifact SHA-256 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd (657,486 bytes). The supplied reconciliation reports 10 of 11 flow steps passed and the required visible Week 1 display check was skipped; it records 20 viewport checks, 26 screenshots, no console or page errors, and completion of the 100-season report. The 20 viewport checks reported zero page overflow, but do not by themselves establish full mobile usability. Structured values for several season metrics were absent, so do not fill them from a separate run. The report says its JSON was schema-validated; the browser run has not been replayed in this update.
+
+The result, exact script, schema, screenshots and trace are linked from the [evidence resolution comment](https://github.com/kozikosi/Football-Sim/pull/3#issuecomment-6304124055) and the [durable evidence release](https://github.com/kozikosi/Football-Sim/releases/tag/e2e-evidence-2026-10-20T225702Z). Keep the record at PARTIAL unless a new, identified run satisfies the protocol.
+
+### Open protocol interpretation
+
+The protocol below requires “Week 1 of 17 is shown.” Run A did not assert that user-visible text, and its internal season state (reported as initialized to week 1) is not the same observation as a visible UI confirmation. Its Week 1 step is therefore SKIP. Run A is recorded as PARTIAL, although the current verdict definition below says PARTIAL is for an explicitly optional/budgeted skipped check. That is a protocol inconsistency to resolve explicitly; do not silently relabel Run A or change what the Week 1 check proves. The Architect and Owner should decide whether the visible display remains required or a different observable contract is acceptable, then update both the protocol and the result rules together.
+
+The earlier Run B summary has no recoverable result JSON, script, screenshots, or trace. Retain its claims as reported history only; do not combine its claims with Run A or treat it as independently reproducible.
+
 ## Run identity and rules
 
 Before opening the page, record:
