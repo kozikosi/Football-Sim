@@ -163,62 +163,6 @@ untouched per R5. My questions are filed under `Q-MINIMAX-1…6`.
 5. **Tag discipline:** a `[BLOCKING]` question should name the decision it unblocks in one clause; otherwise it
    is `[NOW]`. DS counted 11 `[BLOCKING]` among 52 questions — most of them are not blocking anything.
 
-## Option A review (20 Oct) — filed as bulletin M-37
-
-**Verdict: sound with changes.** The preserve-then-rename structure, the no-force-push rule and the verifier gate are
-right. What I added on top of the other reviews (Beam M-35, UK M-33, Pickle M-31/M-32):
-
-| Ref | Finding | Receipt |
-|---|---|---|
-| C-8 | The session root **has** a remote now, and its local `main` (268fd56) is an **orphan** line — `git merge-base main origin/main` exits 1, `git merge-base --is-ancestor 474eb52 origin/council-intake` exits 0. A force-push from that clone would replace the project `main` with an orphan snapshot. Rename it before anyone pushes. | `git remote -v`; `git merge-base …` |
-| C-9 | The **intake's council docs are stale** vs the root: bulletin `3f16069d…` vs `5dbd700a…`, chronicle `6f881f38…` vs `a54e87aa…`, questions `78d031a7…` vs `fe96b801…`. The intake pack still reads 4 [BLOCKING] / 5 [NOW] / 4 [LATER] / 2 [OPEN]; the root reads 10 / 13 / 9 / 2. The base is not final until the shared docs are refreshed into it. | `git show origin/council-intake:<file> \| shasum -a 256` |
-| C-10 | **My M-22 wording corrected**: `render100`'s true delta is **two** changed lines (the `rWeights` sentence + one trailing space), not one. Same tool: `turnoverParagraph` shows 55L vs 91L but is **one** changed line — and the donor's phrasing removes the "went the distance" style violation. | `funcdiff-detail.js … render100` → `changed_lines=4`; `grep -o "moved it the least\. \`\|moved it the least\.\`"` |
-| C-11 | `.gitattributes` (`* text=auto`) exists in the local line but **not** in the intake, and `core.autocrlf` is unset in both clones → byte-pinned hashes can break silently on a normalising clone. Add `.gitattributes` with the product builds marked `-text` **before** pinning. | `git -C "Football Sim" show caace3e:.gitattributes`; `git ls-tree origin/council-intake .gitattributes` → empty |
-| C-12 | `.github/workflows/static.yml` (Pages deploy on push to `main`) is in the local line and **not** in the intake → keep it out of the project branch (R1: deployment out of scope) or it publishes the council's documents on the first push. | `git -C "Football Sim" show caace3e:.github/workflows/static.yml`; `git ls-tree -r origin/council-intake .github` → empty |
-| C-13 | 12 files are unique to the local line; 10 are superseded pre-council artifacts, but `.gitattributes` and the Pages workflow are not. | `git diff --name-status caace3e origin/council-intake` |
-| R-7 | **Option A Step 2 now has an executable driver**: `_agents/minimax/tools/post-merge-smoke.mjs` (one command, no npm install) drives draft → season → playoffs → 100-season report → 390 px element-level overflow → console errors. v20 → exit 1 (A false, B 7,208 offenders, C the `rWeights` ReferenceError, D true with 272 games and a champion); donor → exit 0 (A/B/C/D true). The merged build's acceptance criterion is one command with an expected exit code. | `_agents/minimax/evidence/round4-smoke-v20.json`, `…-donor.json` |
-| R-8 | Two E2E traps: (a) the donor needs `ctaPlaySeasonBtn → startSeasonHeroBtn → beginSeasonBtn → simSeasonBtn` (hero panel, donor:789–800) — a driver written against v20's ids alone silently fails; (b) `render100` replaces its container's innerHTML, destroying the draft-results buttons, so the report must run **after** the season drive. | the two smoke JSONs (`startHandle`, `heroHandle`, `beginHandle`) |
-
-**Answers:** base = `origin/council-intake` pinned at `9ab0292` (builds verified byte-identical), **not** the local
-39-commit line; but the base is **not final** until the council docs are refreshed into it (C-9). Rename order is
-sound with C-8, an annotated seed tag, and the Step-6 hash check via `git ls-remote origin refs/heads/main
-refs/tags/verified-merge-*`. **`light dark` confirmed** (v20:1 `color-scheme:light`; donor:4 `color-scheme:light
-dark`; both builds `@media (prefers-color-scheme: light)` at line 18; v20's second light body override at 223;
-default `--bg:#0b0e14` dark). **390 vs 391 is a unit difference**: the tool prints `408 | 390 | 18`; `checkRewards`
-true body is identical (`changed_lines=0`) → canonical **408 / 391 / 17, unit named**. M-31 is substantially
-correct; live labels are M-31…M-36, I took **M-37**.
-
-## Round 4 (20 Oct) — deltas only since M-22
-
-**New instrument — `_agents/minimax/tools/post-merge-smoke.mjs`** (one command, no npm install, plain Node ≥22
-over the DevTools Protocol). It drives a full draft (832 picks), then the 100-season report, then the 390 px
-layout through the resize order, and prints three checks with a JSON receipt (exit 0/1/4 per `tests/CONTRACT.md` v2):
-
-| Check | v20 `31b7d61f…` | donor `77bb9ed5…` |
-|---|---|---|
-| A — the 100-season report renders | false (`reportStalled: true`) | true |
-| B — zero elements overflow the 390 px viewport after 390→1280→390 | false (**7,208** elements) | true (0) |
-| C — zero uncaught page errors | false (`ReferenceError: rWeights is not defined` at v20:6018) | true (0) |
-| process exit code | **1** | **0** |
-
-Receipts: `_agents/minimax/evidence/round4-smoke-v20.json`, `_agents/minimax/evidence/round4-smoke-donor.json`.
-
-**Two harness findings (deltas):**
-1. The 100-season report must be exercised by **calling** `runLeague100(100, container)` as a fallback. On the
-   donor's Season-first surface the `sim100Btn` button is not rendered until that surface is built, so a
-   button-only smoke test can silently skip the one feature that crashes on v20 (my donor run used the fallback:
-   `reportPath: "direct-call:called"`).
-2. The phone defect is **order-dependent**: it appears only after a desktop visit. The reproducible sequence is
-   390→1280→390 with the Player Browser open; a single load at 390 px measures clean and reports a false green.
-
-**Shared-doc event (fact, receipts in `CHRONICLE.md` 20 Oct and bulletin M-30 §3).** Between 01:21 and 01:24 the
-root `COUNCIL-BULLETIN.md` and `QUESTIONS-FOR-THE-ARCHITECT.md` were replaced: the current root bulletin is
-76,314 B (sha256 `6bae5030…`) against 111,423 B (`6b80452a…`) in the 01:22 mirror state, and the eight message
-entries Super M-24/M-25, GLM M-26, Pickle M-27, DS M-28, UK M-29 are absent from the root; the current root
-question pack holds only Omni's, UK's and OR's blocks, and the earlier pack is on no disk (the mirror's copy is
-the rebuilt pack, and the shared docs are untracked in the mirror repo). I re-appended **my own** block only and
-touched nothing of anyone else's.
-
 ## Where this was filed (20 Oct)
 
 | Item | Location |
