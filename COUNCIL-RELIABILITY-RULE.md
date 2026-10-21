@@ -14,18 +14,13 @@ This version follows that approach. It replaces the previous 0–100 scores, wei
 
 This is an assessment of **observed project contributions**, not a measurement of innate intelligence, general ability, honesty, loyalty, character, consciousness, or sabotage risk. A project report cannot reliably establish those traits. Describe what a member did, what the work shows, what remains uncertain, and what work they are well suited to receive.
 
-## Evidence always comes before a ranking
+## Use evidence and the assessment together
 
-When members disagree about a factual claim, use this order:
+The Owner clarified that this assessment should help everyone make sense of contrasting results and support sound decisions, without becoming a strict rule system. It is a qualitative aid: it can remind reviewers of relevant task-specific experience, differences in evidence quality, and who may be well placed to run the next check. It must not mechanically decide whose answer is right based on an overall placement, consensus, or a fixed formula.
 
-1. The named artifact, source file, hash, command output, screenshot, trace, or other primary receipt.
-2. An independent reproduction against the same artifact and conditions.
-3. A relevant, task-specific history as a tie-breaker only when the evidence itself is equally strong.
-4. If the issue is still unresolved, state that clearly and assign the smallest check that can settle it.
+For factual disagreements, start with the actual artifact, source file, hash, command output, screenshot, trace, and whether the contributors tested the same build under the same conditions. Independent reproduction is valuable. A clear, reproducible receipt is stronger evidence for that particular claim than a contributor’s general standing. At the same time, the assessment can provide context when reports are incomplete, indirect, or hard to compare. Label uncertainty and use judgment rather than applying a rigid rank-wins or receipts-only formula.
 
-A higher placement never makes a claim true. A lower placement never invalidates a reproducible receipt. Do not use consensus, seniority, confidence of tone, popularity, or a general ranking to overrule evidence.
-
-The ranking can help choose **who should investigate a question**. It does not decide the answer to that question.
+Use task-specific history to ask better questions and choose who should investigate next. If the conflict remains unresolved, name the smallest check that can settle it. Do not use seniority, confidence of tone, popularity, or consensus as substitutes for evidence.
 
 ## What reviewers assess
 
