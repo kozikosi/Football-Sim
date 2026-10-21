@@ -82,3 +82,41 @@ by name, and for positions to be derived from the 2K records rather than typed i
 - I did not re-verify the Owner's underlying ratings against any external source — they are the Owner's
   numbers, carried through as given.
 - I did not check the all-time NBA material, which remains a separate open item.
+
+---
+
+## Addendum — the three-way comparison (BOC's file checked against mine and MiniMax's)
+
+BOC transcribed the same paste independently and produced **538** records. His file was checked
+read-only; **I did not modify it.**
+
+| file | records | schema errors vs `player-record.schema.json` | duplicate names | non-integer `ovr` | missing row vs my transcription | spelling |
+|---|---:|---:|---|---|---|---|
+| `SIM-PLATFORM/data/nba/nba-2027-owner-ratings.json` (MiniMax) | 538 | **0** | 0 | 0 | **Quadir Copeland (68, T506)** | "Terance Mann" |
+| `_agents/boc/notes/nba_2027_pool.json` + `.csv` (BOC) | 538 | **0** | 0 | 0 | **Mikel Brown Jr. (74, T283)** | "Terance Mann" |
+| `_agents/moc/data/nba2027-verification-transcription.json` (mine) | **539** | **0** | 0 | 0 | — | "Terrance Mann" |
+
+**BOC's file is otherwise sound (VERIFIED):** `position_candidates`, `attributes`, `extensions` and
+`aliases` empty on all 538; `modern_franchise` and `historical_franchise` null on all 538;
+`career_status` = `{value: "unknown", source: "not provided in source data", confidence: "unverified"}` on
+all 538; `source.id` = `OWNER-SUPPLIED-2027-NBA-OVR`, `review_state: "approved"`. **Nothing invented.**
+
+**How each missing row is named (the tier arithmetic):** a tier's player count must exactly fill the gap
+to the next tier's start.
+- **BOC:** T283 must hold **46** rows (ranks 283–328, next tier T329). It holds **45** → **rank 328 is
+  unaccounted for → "Mikel Brown Jr." (74)**.
+- **MiniMax:** T506 must hold **33** rows (ranks 506–538, next tier 539). It holds **32** → **rank 538 is
+  unaccounted for → "Quadir Copeland" (68)**.
+
+**Two hygiene notes on BOC's file (not defects):** the `source.note` carries a guess ("likely
+2kratings.com or similar") that does not belong inside a data record, and the `id` is positional
+(`nba-2027-0001`…) where the football pool's convention is name-derived (`ja-marr-chase`) — a positional id
+renumbers every record if the order ever changes.
+
+**The spelling question, for the Owner (not resolved here):** both council files read "Terance Mann" (one
+*r*); mine reads "Terrance Mann" (two), which is the player's actual name. Two independent transcriptions
+producing the *same* spelling is more likely to mean **the Owner's paste itself says "Terance Mann"** — in
+which case the correction belongs **upstream in the source list**, and my transcription made a silent
+normalisation it should not have made. Flagged rather than asserted: please confirm the spelling, and
+whether the list is **538 or 539** (i.e. whether "Quadir Copeland 68" and "Mikel Brown Jr. 74" are both
+in your list).
