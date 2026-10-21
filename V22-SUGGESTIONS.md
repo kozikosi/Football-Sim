@@ -8,13 +8,14 @@
 1. **The weights are already right.** The Owner's table of default weights (QB 700, RB1 185, … FB 1) was compared slot by slot against the build: it matches the **derived** `modelWeights()` in **34/34 slots** and the hand-written `DEFAULT_WEIGHTS` constant in only 7/34. `modelWeights()` is already what the site ranks with (`weights = modelWeights()` at start-up). **Do not replace the derivation with a written table** — that would break `modelWeights() = f(slotWinsPerOvr())` and the draft board's weights would stop matching the numbers the Guide prints. What the Owner wants is the **label** ("Default is how the draft simulator sees the game."), the **user weights forgotten**, and the **recalibration** (below).
 2. **The per-spot numbers are the model's output, so a recalibration is a model change.** Measured: for **all 26 spots** the 70→90 gain is exactly 20 × the per-+1 slope (the colleagues' "the table fails its own arithmetic" is display rounding). But the per-spot gains **sum to 22.95 wins**, while the model — measured against an 80-rated opponent — gives an all-70 roster 12.1 points and an all-90 roster 29.2, a real gain of **0.53 wins**. A matchup is a difference, not a sum. Any weight change must therefore be **re-validated** (the draft board, the 100-season report, the real-2025 check: r ≈ 0.66, ρ ≈ 0.69, RMSE ≈ 2.6), not just typed in.
 
-**The Owner's words for the deliverable:** *"The next document you should send me once all these changes are done should be called Football-Sim-V22.html."*
+**The Owner's words for the deliverable:** _"The next document you should send me once all these changes are done should be called Football-Sim-V22.html."_
 
 ---
 
 ## P0 · The Value here column leaves the draft board (display only; the maths is untouched)
+
 **Where:** the draft board's CSS (l.268), the sort option (l.418), the header (l.426), the row cell (l.1766), the empty state (l.1768), and the Guide (l.4991, l.5056)
-**What it does:** removes the column, the header, the sort option and the Guide bullet; `r.v` stays in all nine of its mathematical consumers (Priority, the bar, the flex tag, the best-natural comparison, the sort key, the alternative-slot comparison). **The two traps:** adding a *new* `dc-pri` CSS rule does nothing — the file already has one at l.269 and the later rule wins, so **edit the existing rule**; and the Guide's "Value here" bullet must be **deleted, not reworded**, or it becomes a second "Priority" bullet.
+**What it does:** removes the column, the header, the sort option and the Guide bullet; `r.v` stays in all nine of its mathematical consumers (Priority, the bar, the flex tag, the best-natural comparison, the sort key, the alternative-slot comparison). **The two traps:** adding a _new_ `dc-pri` CSS rule does nothing — the file already has one at l.269 and the later rule wins, so **edit the existing rule**; and the Guide's "Value here" bullet must be **deleted, not reworded**, or it becomes a second "Priority" bullet.
 **Patch:** `value-here-keepsort.patch`
 
 ```diff
@@ -96,6 +97,7 @@
 ```
 
 ## P0 · The weights panel: "Default", a stateful "My Weights", and the badges moved to the bottom
+
 **Where:** the weights controls (l.548), the state helper (new, next to the controls), the input listener (l.551–558), the two handlers (l.564–565), the start-up seed (l.6410), the rankings row loop (l.624–627) and the table render (l.636)
 **What it does:** "Use model weights" → **"Default"**; "Back to my weights" → a button that reads **"Save My Weights"**, transparent and `disabled`, until a weight changes — then blue and reading **"My Weights"**. The penalty badges move out of the 32 team rows into a strip under the two buttons. The saved set is no longer seeded from `DEFAULT_WEIGHTS` at start-up (**the Owner's "forget the user weights"**).
 **Patch:** `merge-items1-5.patch`
@@ -317,6 +319,7 @@
 ```
 
 ## P0 · The Team Comparison page: no "real", no effective-ratings note, the unit table regrouped
+
 **Where:** the subtitle (l.823), `renderLineupTableHTML` (l.3351–3364) and its call site (l.6396), `unitComparisonHTML` (l.3374–3383), `computeDetailMetrics` (l.667), and the new CSS for the group rows
 **What it does:** the subtitle loses "real"; the "Ratings shown are effective ratings…" line is dropped **only on the Team Comparison tab** (the home page and the Draft Simulator keep it); the Unit Comparison table is rebuilt from `COMPARE_ROWS` — 12 rows, **no parentheses**, an **Offense** subtitle row and a **Defense** subtitle row, the Owner's order, and **Linebackers** as a new real row. The numbers on every surviving row are unchanged; only the verdict's count changes (12 comparisons, not 14).
 **Patch:** `merge-team-guide.patch`
@@ -499,8 +502,9 @@
 ```
 
 ## P0 · The Guide: the box goes, the flex table is reordered, the sections merge
+
 **Where:** the Guide assembly (l.5053–5058), `flexExplainHTML` (l.4962–4980), the CPU-pick paragraph (l.4997), the value table (l.4904–4905), the tier list (l.4985)
-**What it does:** the Guide box (the "Guide" heading and "Short reference sections…") is removed; "(never below a 76 rating) at a spot it still needs, " comes out of "How the computer teams pick"; every bare **tackle** that names the position becomes **offensive tackle** (but **not** "a TFL is a tackle for loss", where *tackle* is the action); the flex table is reordered **Quarterback first**, then the draft board's own order; "Drafting: which positions matter" and "Position values: all 26 starting spots" merge into **"Drafting & Position Values"**; the value table loses its "Wins, 70→90" column and is ordered by wins per +1 OVR.
+**What it does:** the Guide box (the "Guide" heading and "Short reference sections…") is removed; "(never below a 76 rating) at a spot it still needs, " comes out of "How the computer teams pick"; every bare **tackle** that names the position becomes **offensive tackle** (but **not** "a TFL is a tackle for loss", where _tackle_ is the action); the flex table is reordered **Quarterback first**, then the draft board's own order; "Drafting: which positions matter" and "Position values: all 26 starting spots" merge into **"Drafting & Position Values"**; the value table loses its "Wins, 70→90" column and is ordered by wins per +1 OVR.
 **Patch:** `merge-guide-v21.patch`
 
 ```diff
@@ -576,13 +580,13 @@
 
 **Where:** the weights panel's explanation sentence (the `<p class="narr">` above the two buttons, l.547).
 
-**What it does:** it **replaces** the long sentence that explains what the buttons do — *"The default is the model weights: what each spot is really worth in wins, scaled so the biggest spot (QB) is 700 and rounded to the nearest 5. Edit any number to build your own set; the buttons switch between the two."* — with the Owner's one line, and nothing else:
+**What it does:** it **replaces** the long sentence that explains what the buttons do — _"The default is the model weights: what each spot is really worth in wins, scaled so the biggest spot (QB) is 700 and rounded to the nearest 5. Edit any number to build your own set; the buttons switch between the two."_ — with the Owner's one line, and nothing else:
 
 ```
 Default is how the draft simulator sees the game.
 ```
 
-*(It is a one-line string replacement rather than a diff hunk because the sentence sits inside a long HTML line; apply it after the items 1–5 patch.)*
+_(It is a one-line string replacement rather than a diff hunk because the sentence sits inside a long HTML line; apply it after the items 1–5 patch.)_
 
 ---
 
@@ -590,31 +594,31 @@ Default is how the draft simulator sees the game.
 
 These are **not** yet in a patch. The council is on them; the code blocks below are the specification, and the owners are in the batch record.
 
-| # | the change | where it belongs | what it adds / subtracts / replaces |
-|---|---|---|---|
-| 1 | **"(Round 1)" is not static** — the round number must update every round, and "Round x" is right-aligned in the drafting-as box | the drafting-as box (l.1488 area) | replaces the hard-coded round with the live round; adds a right-aligned round label |
-| 2 | **"Undo my last pick" → "Undo"** | the draft toolbar (l.403) | one string |
-| 3 | **"You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)"** is bigger | the on-the-clock line | a font-size increase on one element |
-| 4 | **the board shows about two more names** | `.tablewrap` (l.187, `max-height:640px`) | raises the cap; must be re-checked at 390 px |
-| 5 | **"1 of 26 starters · +3.69 wins above a replacement-level lineup"** moves to the **bottom** | the rankings/summary header | moves one line, does not change it |
-| 6 | **"+1.65 wins here" → "+1.65 wins"** (and "−x wins") | the board's player line | the wins number stays, the word "here" goes; the **static** number is what is shown |
-| 7 | **the "also fits" line** → "x also y (−z flex)" | the fills/flex line (l.1763 area) | **removes the wins number and the word "fits"**; adds a separator so the list is not a wall of text |
-| 8 | **the Star system is removed** | the chips, the board's column headers, the Priority multiplier | removes ★★/★/☆, their text, and the ×1.5/×1.0/×0.5 multipliers — **this changes the ranking**, so the board's numbers move |
-| 9 | **"One table" → "Table"** | the view dropdown (l.419) | one string |
-| 10 | **"Value Here" gone from every visible string**, including "Sort: Value Here" | the sort dropdown (l.418) and anywhere else | see P0 block 1 |
-| 11 | **"Reading the draft board (Wins, Value here, Priority, Gone, stars)" → "Reading the draft board"**, and **Wins and Priority rewritten so a five-year-old gets them** | the Guide's section title and `boardMathHTML` | the title loses the column list; the two explanations are rewritten in plain words |
-| 12 | **"Flexing players, explained" → "Flexing"** | the Guide's section title | one string |
-| 13 | **"Football and site terms" → "Glossary"** | the Guide | one string |
-| 14 | **"The math of every game-plan choice" and the glossary move to the Guide** and off the home page | the home page's sections and the Guide's list | two sections move; the home page gets smaller |
-| 15 | **the Undo feature is documented on the Guide page and the home page**, under "Reading the draft board" | the Guide and the home page | adds two short explanations of an existing feature |
-| 16 | **the draft survives a refresh** (`localStorage`) | the draft state object and the boot path | **new**: persist the picks, the roster, the weights and the turn; restore on load; a corrupt or stale payload must not break the page |
-| 17 | **the Cooper DeJean glitch**: the board offers "FS" to a cornerback and the flex list is a wall of text | the fills/flex code (l.1755–1766) | the offered slots must be filtered to the positions the player can actually fill; "FS" belongs only in the change menu |
-| 18 | **the position cards collapse on mobile** to icon + position + OVR, expanding on tap | the card renderer and the CSS | **new** mobile behaviour |
-| 19 | **the sort/filter controls move to a sticky header or a collapsible panel** | l.415–419 | moves four controls so they stop eating vertical space |
-| 20 | **the cards follow the user's roster order** | the card renderer | the order follows the depth chart, not the league-wide board order |
-| 21 | **only −2 and −4 flexes are shown**; −6/−8 appear after round 20 | the card's flex list | one filter, one round condition |
-| 22 | **team colours on the cards**, primary/secondary/tertiary per team | a new colour map + the card CSS | **new data**: the build carries no team colours today, and inventing them is not allowed — the source has to be stated |
-| 23 | **the Player Browser shows ~15 players on desktop**; the footer tabs are always visible | the browser renderer and `.footnav` (l.239) | a display cap; the footer becomes sticky |
+| #   | the change                                                                                                                                                            | where it belongs                                               | what it adds / subtracts / replaces                                                                                                   |
+| --- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | **"(Round 1)" is not static** — the round number must update every round, and "Round x" is right-aligned in the drafting-as box                                       | the drafting-as box (l.1488 area)                              | replaces the hard-coded round with the live round; adds a right-aligned round label                                                   |
+| 2   | **"Undo my last pick" → "Undo"**                                                                                                                                      | the draft toolbar (l.403)                                      | one string                                                                                                                            |
+| 3   | **"You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)"** is bigger                                                                                      | the on-the-clock line                                          | a font-size increase on one element                                                                                                   |
+| 4   | **the board shows about two more names**                                                                                                                              | `.tablewrap` (l.187, `max-height:640px`)                       | raises the cap; must be re-checked at 390 px                                                                                          |
+| 5   | **"1 of 26 starters · +3.69 wins above a replacement-level lineup"** moves to the **bottom**                                                                          | the rankings/summary header                                    | moves one line, does not change it                                                                                                    |
+| 6   | **"+1.65 wins here" → "+1.65 wins"** (and "−x wins")                                                                                                                  | the board's player line                                        | the wins number stays, the word "here" goes; the **static** number is what is shown                                                   |
+| 7   | **the "also fits" line** → "x also y (−z flex)"                                                                                                                       | the fills/flex line (l.1763 area)                              | **removes the wins number and the word "fits"**; adds a separator so the list is not a wall of text                                   |
+| 8   | **the Star system is removed**                                                                                                                                        | the chips, the board's column headers, the Priority multiplier | removes ★★/★/☆, their text, and the ×1.5/×1.0/×0.5 multipliers — **this changes the ranking**, so the board's numbers move            |
+| 9   | **"One table" → "Table"**                                                                                                                                             | the view dropdown (l.419)                                      | one string                                                                                                                            |
+| 10  | **"Value Here" gone from every visible string**, including "Sort: Value Here"                                                                                         | the sort dropdown (l.418) and anywhere else                    | see P0 block 1                                                                                                                        |
+| 11  | **"Reading the draft board (Wins, Value here, Priority, Gone, stars)" → "Reading the draft board"**, and **Wins and Priority rewritten so a five-year-old gets them** | the Guide's section title and `boardMathHTML`                  | the title loses the column list; the two explanations are rewritten in plain words                                                    |
+| 12  | **"Flexing players, explained" → "Flexing"**                                                                                                                          | the Guide's section title                                      | one string                                                                                                                            |
+| 13  | **"Football and site terms" → "Glossary"**                                                                                                                            | the Guide                                                      | one string                                                                                                                            |
+| 14  | **"The math of every game-plan choice" and the glossary move to the Guide** and off the home page                                                                     | the home page's sections and the Guide's list                  | two sections move; the home page gets smaller                                                                                         |
+| 15  | **the Undo feature is documented on the Guide page and the home page**, under "Reading the draft board"                                                               | the Guide and the home page                                    | adds two short explanations of an existing feature                                                                                    |
+| 16  | **the draft survives a refresh** (`localStorage`)                                                                                                                     | the draft state object and the boot path                       | **new**: persist the picks, the roster, the weights and the turn; restore on load; a corrupt or stale payload must not break the page |
+| 17  | **the Cooper DeJean glitch**: the board offers "FS" to a cornerback and the flex list is a wall of text                                                               | the fills/flex code (l.1755–1766)                              | the offered slots must be filtered to the positions the player can actually fill; "FS" belongs only in the change menu                |
+| 18  | **the position cards collapse on mobile** to icon + position + OVR, expanding on tap                                                                                  | the card renderer and the CSS                                  | **new** mobile behaviour                                                                                                              |
+| 19  | **the sort/filter controls move to a sticky header or a collapsible panel**                                                                                           | l.415–419                                                      | moves four controls so they stop eating vertical space                                                                                |
+| 20  | **the cards follow the user's roster order**                                                                                                                          | the card renderer                                              | the order follows the depth chart, not the league-wide board order                                                                    |
+| 21  | **only −2 and −4 flexes are shown**; −6/−8 appear after round 20                                                                                                      | the card's flex list                                           | one filter, one round condition                                                                                                       |
+| 22  | **team colours on the cards**, primary/secondary/tertiary per team                                                                                                    | a new colour map + the card CSS                                | **new data**: the build carries no team colours today, and inventing them is not allowed — the source has to be stated                |
+| 23  | **the Player Browser shows ~15 players on desktop**; the footer tabs are always visible                                                                               | the browser renderer and `.footnav` (l.239)                    | a display cap; the footer becomes sticky                                                                                              |
 
 ---
 
@@ -622,16 +626,16 @@ These are **not** yet in a patch. The council is on them; the code blocks below 
 
 The Owner's own deltas, which are the ones to apply:
 
-| slot | now | → | the Owner's note |
-|---|---|---|---|
-| K | 0.72 | **0.45** | "Kickers cap ~$7M" |
-| WR2 | 0.60 | **0.63** | restores WR2 > RB1 > K |
-| RB1 | 0.67 | **0.58** | "except elite dual-threats" |
-| CB2 | 1.18 | **0.95** | "CB2s are $10–18M players" |
-| DE1 | 1.30 | **1.38** | the edge premium; DE1 tops the defense |
-| TE1 | 0.80 | — | "within 0.5 of WR1" (WR1 is 1.10) |
-| TE2 | 0.14 | — | "within 0.5 of WR3" (WR3 is 0.38) |
-| QB | 100% pass | — | "QBs rush"; the receivers too ("Receiver block") — the run share must be modelled, not asserted |
+| slot | now       | →        | the Owner's note                                                                                |
+| ---- | --------- | -------- | ----------------------------------------------------------------------------------------------- |
+| K    | 0.72      | **0.45** | "Kickers cap ~$7M"                                                                              |
+| WR2  | 0.60      | **0.63** | restores WR2 > RB1 > K                                                                          |
+| RB1  | 0.67      | **0.58** | "except elite dual-threats"                                                                     |
+| CB2  | 1.18      | **0.95** | "CB2s are $10–18M players"                                                                      |
+| DE1  | 1.30      | **1.38** | the edge premium; DE1 tops the defense                                                          |
+| TE1  | 0.80      | —        | "within 0.5 of WR1" (WR1 is 1.10)                                                               |
+| TE2  | 0.14      | —        | "within 0.5 of WR3" (WR3 is 0.38)                                                               |
+| QB   | 100% pass | —        | "QBs rush"; the receivers too ("Receiver block") — the run share must be modelled, not asserted |
 
 **How to do it without breaking the derivation.** The per-spot figures are outputs; the inputs are the unit coefficients (l.2084) and the per-slot composition that produces `passPts`/`runPts` (l.4893). So:
 - **move the coefficients** that feed the affected units (the kicker unit, the receiving corps, the running-back unit, the secondary's second corner, the pass-rush unit) until the derived per-+1 figures land near the Owner's targets;
@@ -661,6 +665,7 @@ the sort option · the weight recalibration and its re-validation cost · the "T
 ## P7 — Aesthetics and beauty (Beam's suggestions, 21 Oct)
 
 ### P7-1 · [NEW] Team-color theming across the entire UI
+
 **What:** The draft board's left-hand roster colors should reflect the user's selected team. For KC Chiefs: red + white + yellow (third color). For Seahawks: blue + green + white. For every team, derive a three-color palette (primary, secondary, accent) and apply it to:
 - The draft board's left-hand roster strip
 - The tab bar's active tab indicator
@@ -668,11 +673,12 @@ the sort option · the weight recalibration and its re-validation cost · the "T
 - The team comparison page's Team A/Team B headers
 - The position cards' left border
 - The badge strip's accent color
-**Where:** CSS variables `--team-primary`, `--team-secondary`, `--team-accent` set on `:root` when a team is selected. All team-colored elements reference these variables.
-**Impact:** Medium. New data (team color palettes for 32 teams) + CSS changes. High visual impact.
-**Figma:** Not yet set up. The Owner mentioned Figma access may need more configuration. If available, Figma would be ideal for designing the team-color palettes and testing them across all 32 teams before implementation.
+  **Where:** CSS variables `--team-primary`, `--team-secondary`, `--team-accent` set on `:root` when a team is selected. All team-colored elements reference these variables.
+  **Impact:** Medium. New data (team color palettes for 32 teams) + CSS changes. High visual impact.
+  **Figma:** Not yet set up. The Owner mentioned Figma access may need more configuration. If available, Figma would be ideal for designing the team-color palettes and testing them across all 32 teams before implementation.
 
 ### P7-2 · [NEW] Smoother animations and micro-interactions
+
 **What:** Add subtle animations to improve the feel of the draft board:
 - Player card hover: slight scale (1.02) + shadow lift
 - Draft pick animation: card slides in from right with a 200ms ease-out
@@ -680,87 +686,166 @@ the sort option · the weight recalibration and its re-validation cost · the "T
 - Badge appearance: pop-in with 100ms bounce
 - Weight slider change: number counter animation (300ms)
 - "Save My Weights" button: pulse animation when it becomes clickable
-**Where:** CSS transitions on `.card`, `.badge`, `.tab`, `.weight-slider`. JS for the counter animation.
-**Impact:** Low-medium. CSS + small JS additions. High polish impact.
-**Cost:** Minimal performance cost (CSS transforms are GPU-accelerated).
+  **Where:** CSS transitions on `.card`, `.badge`, `.tab`, `.weight-slider`. JS for the counter animation.
+  **Impact:** Low-medium. CSS + small JS additions. High polish impact.
+  **Cost:** Minimal performance cost (CSS transforms are GPU-accelerated).
 
 ### P7-3 · [NEW] Better visual hierarchy on the draft board
+
 **What:** The draft board currently has flat visual hierarchy — all rows look similar. Improve by:
 - Making the user's pick row slightly larger (1.1x scale) with a subtle glow
 - Color-coding position groups (QB = blue, RB = green, WR = orange, TE = purple, OL = gray, DL = red, LB = teal, CB/S = yellow, K/P = brown)
 - Adding a subtle zebra stripe (alternating row backgrounds at 2% opacity)
 - Making the "gone" players (already drafted) visually distinct (dimmed, strikethrough)
-**Where:** Draft board rendering CSS + JS.
-**Impact:** Medium. CSS + small JS. High readability impact.
+  **Where:** Draft board rendering CSS + JS.
+  **Impact:** Medium. CSS + small JS. High readability impact.
 
 ### P7-4 · [NEW] Dark mode polish
+
 **What:** The sim is dark by default. Polish the dark theme:
 - Softer card backgrounds (`--panel2` from `#1a1f2e` to `#1e2433`)
 - Better contrast on text (secondary text from `#8b92a8` to `#9aa0b8`)
 - Subtle gradient on the header (`linear-gradient(135deg, var(--accent), var(--accent2))`)
 - Glass-morphism on modals and dropdowns (`backdrop-filter: blur(8px)`)
 - Better scrollbar styling (thin, rounded, accent-colored)
-**Where:** `:root` CSS variables + modal/dropdown CSS.
-**Impact:** Low. CSS-only. High polish impact.
+  **Where:** `:root` CSS variables + modal/dropdown CSS.
+  **Impact:** Low. CSS-only. High polish impact.
 
 ### P7-5 · [NEW] Visual feedback on draft picks
+
 **What:** When a player is drafted:
 - The drafted player's card flashes green for 500ms
 - The team's roster strip updates with a slide-in animation
 - A small confetti burst (CSS-only, 3 particles) on the user's pick
 - The "X of 26 starters" counter animates (number rolls up)
-**Where:** Draft pick handler JS + CSS animations.
-**Impact:** Low-medium. CSS + small JS. High delight factor.
-**Cost:** Minimal. CSS animations are performant.
+  **Where:** Draft pick handler JS + CSS animations.
+  **Impact:** Low-medium. CSS + small JS. High delight factor.
+  **Cost:** Minimal. CSS animations are performant.
 
 ### P7-6 · [NEW] Better mobile draft board
+
 **What:** Beyond the collapse-to-compact-row already requested:
 - Sticky position filter bar (always visible at top of mobile draft board)
 - Swipe-to-draft (swipe right to draft, swipe left to skip) — gesture-based interaction
 - Bottom sheet for player details (instead of navigating away)
 - Haptic feedback on draft pick (via `navigator.vibrate(50)`)
-**Where:** Mobile CSS + touch event handlers.
-**Impact:** Medium. JS + CSS. High mobile UX impact.
-**Caveat:** Swipe gestures and haptic feedback are progressive enhancements — must degrade gracefully on desktop.
+  **Where:** Mobile CSS + touch event handlers.
+  **Impact:** Medium. JS + CSS. High mobile UX impact.
+  **Caveat:** Swipe gestures and haptic feedback are progressive enhancements — must degrade gracefully on desktop.
 
 ### P7-7 · [NEW] Figma integration
+
 **What:** The Owner mentioned Figma access may need more setup. If available, Figma would be ideal for:
 - Designing team-color palettes for all 32 teams
 - Testing mobile layouts at 390px, 760px, 1280px
 - Creating component libraries (cards, badges, tables) for reuse across sports
 - Exporting design tokens (colors, spacing, typography) as CSS variables
-**Where:** Design tool, not code. Would feed into the CSS variable definitions.
-**Impact:** High visual quality, but requires Figma setup first.
-**Status:** Not yet available. Owner to configure Figma MCP if desired.
+  **Where:** Design tool, not code. Would feed into the CSS variable definitions.
+  **Impact:** High visual quality, but requires Figma setup first.
+  **Status:** Not yet available. Owner to configure Figma MCP if desired.
 
 ---
 
 ## P8 — Council-only notes (not for Claude to implement; for the record)
 
 ### P8-1 · The "Value Here" removal
+
 "Value Here" is gone from the board, the guide, and the sort label. The sort option is KEPT and relabelled "Sort: slot value". The underlying `r.v` is still computed for every row and still feeds Priority, the priority bar, the flex tag, the best-natural comparison, the sort key, the alternative-slot comparison.
 
 ### P8-2 · The "also fits" line
+
 Format: "x also y (−z flex)" — no wins number, no "fits". Only −2 and −4 flexes shown; −6 and −8 from round 21.
 
 ### P8-3 · The Star system is removed
+
 Stars set how much you care about a position (★★ must-fill, ★ normal, ☆ low). Removed because it was confusing. The priority bar remains.
 
 ### P8-4 · The position cards follow the roster order
+
 The order of position cards should follow the order of the roster order. Mobile cards collapse to one row.
 
 ### P8-5 · The team colors
+
 The draft board's colors reflect the user's selected team. For KC: red + white + yellow. For Seahawks: blue + green + white. The special teams color is the team's third color.
 
 ### P8-6 · The weights
+
 The default weights are how the draft simulator sees the game. The Owner's specific changes: K 0.72→0.45, WR2 0.60→0.63, RB1 0.67→0.58, CB2 1.18→0.95, DE1 1.30→1.38, TE1 within 0.5 of WR1, TE2 within 0.5 of WR3, QB/WR pass/run percentages adjusted for run game. The "Save My Weights" button is transparent until a default weight is changed, then blue + "My Weights".
 
 ### P8-7 · The glossary
+
 25+ football terms for casual fans. Cross-reference with game previews and reviews.
 
 ### P8-8 · The advanced stats
+
 9 of 12 proposed stats are already computed but not displayed. Only 3 require new math. Recommend: do not build EPA (the model is structural, not play-level).
 
 ## What the council did NOT check
 
 the full E2E gate on any patched copy (only the relevant pages and the draft flow, with a seeded RNG) · the **390 px** layout of any of these changes · the season, the playoffs and the 100-season report on a patched build.
+
+
+---
+
+## Council additions - MOC - 21 Oct
+
+### The first lint of V21's code (biome 2.6.2)
+
+The product's embedded script had never been linted. Extracted from `NFL Draft Simulator merged.html` (V21, sha256 `40233d6b...`) and run through `biome check`: **72 errors, 55 warnings** - and the verdict is **not** 72 bugs. Two rules account for nearly all of it:
+
+| rule | what it fires on | verdict |
+|---|---|---|
+| `noAssignInExpressions` | the house idiom `(agg[k] = agg[k] || {...}).pts += x` and `return (_wTable = T)` | **style** - the codebase's lazy-default and memoisation idiom |
+| `useIterableCallbackReturn` | `forEach(x => arr.push(x))` and `forEach(x => obj[k] = v)` | **style** - the same idiom from the other side |
+
+**What Claude should take from this:** biome's defaults do not match this codebase, so biome cannot gate the build until the council adopts a config that turns those two rules off and keeps `noUnusedVariables` - the rule that would catch a V22 patch leaving dead code behind.
+
+### The maps (BOC's)
+
+```mermaid
+flowchart TD
+  VH[Value-here removal] --> BR[Board re-measure]
+  ST[Star + ranking fix] --> BR
+  DR[Derivation rules] --> WR[Weight recalibration]
+  BR --> VG[Verification gate]
+  WR --> VG
+```
+
+```mermaid
+flowchart LR
+  P0[P0 fixes] --> HTML[merged.html]
+  P1[P1 fixes] --> HTML
+  P2[P2 proposals] --> NOTES[_agents/boc/notes/]
+  TESTS[Test edits] --> SPEC[openchamber-e2e.spec.js]
+```
+
+```mermaid
+flowchart LR
+  P0[P0 fixes] --> HTML[merged.html]
+  P1[P1 fixes] --> HTML
+  P2[P2 proposals] --> NOTES[_agents/boc/notes/]
+  TESTS[Test edits] --> SPEC[e2e spec]
+```
+
+```mermaid
+flowchart LR
+  P0[P0 fixes] --> HTML[merged.html]
+  P1[P1 fixes] --> HTML
+  P2[P2 proposals] --> NOTES[notes/]
+  TESTS[Test edits] --> HTML
+```
+
+```mermaid
+flowchart TD
+  C[Claude decides] --> M[Merge keep-list, surface branch, wrapper, cpuPick, phone-layout, color-scheme]
+  K[Kosi decides] --> O[DEFAULT_WEIGHTS, minus-5, default tab, quarantine, archived sessions]
+  V[Measured by council] --> E[390px P0, Week 1, 272 games, 54 penalty, 1188 draftable]
+```
+
+### The localStorage draft design (V22 item b)
+
+`_agents/moc/notes/localstorage-draft-design.md` - persist the draft's **decisions** (the pick log, the team, the weights, the settings, where the turn stood) and **re-derive** the pool, the rosters and the CPU's valuation from the current build on load; persisting the whole state object would restore **stale ratings** if the build changed between the refresh and the restore. Key `nfl-draft-sim.draft.v1`; the restore validates every recorded pick against the current pool and stops at the last valid one; every `localStorage` access is wrapped, because a storage failure must break the draft's persistence and never the draft.
+
+### Still open for the Owner
+
+the sort option | the weight recalibration (K 0.45, WR2 0.63, RB1 0.58, CB2 0.95, DE1 1.38; TE1/TE2 within 0.5 of WR1/WR3; a run share for QB and the receivers) and its re-validation cost | the 'Table of Incremental Gains with Diminishing Returns Note', whose body never arrived | the brackets in the Unit Comparison labels | the badges | the Star removal's effect on the ranking | the localStorage draft | the team-colour palette, whose data source is still unsourced | the NBA pool (539 vs 538; the 63 players still unmatched) | the glossary's shape | how the two V21 Suggestions documents merge.
