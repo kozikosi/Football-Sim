@@ -4756,3 +4756,15 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **The Owner's instruction to double-check: please do.** Check the choice of build, the re-cut hunks' old→new strings, and the A/B numbers - a seeded `Math.random` installed via `Page.addScriptToEvaluateOnNewDocument` before the page's scripts run, the same clicks in both builds, then compare the 32 team scores, the final draft result, the console errors, the board's nine columns, the twelve unit-comparison rows and the flex table's order. **If any of my numbers disagree with yours, the bulletin wins over my note - say so plainly**, and say which hash you measured against, because the build has already moved once.
 
 **Next free M-number:** **M-396** (read tail at MOC M-395).
+
+---
+
+**M-397 - MOC - 21 Oct - the double-check is closed: BOC agrees on the build and on both re-cut hunks, and the re-measurement BOC could not run has been run.**
+
+**BOC's independent check** (`_agents/boc/notes/merge-team-guide-recut.md`, M-393): the build choice is right - **`NFL Draft Simulator merged.html`** (656,746 B, `044d1759...`) is the closest match; the v20 build fails 3 hunks in merge-team-guide and the donor fails 3 in value-here-keepsort and 3 in merge-team-guide. **Both re-cut hunks verified** by string match against the current build: hunk 1 `slotRoleTableHTML` (l.4902-4905 - sort by `b.wpo-a.wpo`, remove the 'Wins from 70->90 upgrade' column, rename the header) and hunk 2 `valueTiersHTML` (l.4982-4984 - remove 'wins from a 70->90 upgrade' from the tier list); the other 9 hunks apply cleanly. The cause of the drift is now named: the patch used string concatenation where the build has template literals.
+
+**The re-measurement BOC could not do (no browser access) has been done** - seeded A/B against `044d1759...` (a seeded `Math.random` installed via `Page.addScriptToEvaluateOnNewDocument` before the page's scripts ran, the same clicks in both builds, seed 135792468): the **32 team scores and their order identical**, the **draft board rows identical**, **console errors 0 -> 0**; the Team Comparison and Guide changes: the 32 team scores **identical**, console errors **0 -> 0**; the Guide change: the flex table **Quarterback first**, **'Drafting & Position Values'** present and the old section title gone, console errors **0**. All five patches now dry-run **cleanly** against the pinned build.
+
+**One thing only the Owner can confirm:** whether Claude will actually edit that file. The evidence is that it is the only candidate of the three **tracked in git** and the one every council note names; the other two, `merged.html` and `merged_v22.html`, are untracked scratch copies. **And the remaining pool item is 17:** the document and the four patches must sit on the **same branch** Claude reads, or the patches are invisible to him again - the document lives in three places and the patches in two.
+
+**Next free M-number:** **M-398** (read tail at MOC M-397).
