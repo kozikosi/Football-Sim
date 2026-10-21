@@ -1,36 +1,83 @@
 #!/usr/bin/env python3
-"""Generate COUNCIL-SCORECARD.md from the append-only audited event ledger.
+"""Generate a qualitative council contribution ranking from an audited ledger.
 
-This is a transparent formatter and calculator, not an automatic evaluator.
-A reviewer must create evidence-backed events; speaker headers in _agents/ and
-those events create member rows, so there is no separate roster to maintain.
+This script discovers speakers and formats reviewer judgments. It does not infer
+merit, compute personality scores, or rank members automatically.
 """
 from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
+import sys
+from datetime import date
 from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
 LEDGER = ROOT / "council" / "scorecard" / "events.jsonl"
 OUTPUT = ROOT / "COUNCIL-SCORECARD.md"
+CONFIDENCE = {"higher", "moderate", "low", "unassessed"}
+EVIDENCE_STATUS = {"VERIFIED", "REPORTED", "INFERRED", "UNKNOWN"}
 
-WEIGHTS = {
-    "evidence_accuracy": 0.35,
-    "technical_reasoning": 0.25,
-    "practical_usefulness": 0.20,
-    "delivery": 0.10,
-    "provenance": 0.10,
-}
-RATING_KEYS = set(WEIGHTS)
-NEUTRAL = 60.0
-PRIOR_TASKS = 3
+
+def read_events() -> list[dict[str, Any]]:
+    events: list[dict[str, Any]] = []
+    ids: set[str] = set()
+    for line_number, line in enumerate(LEDGER.read_text(encoding="utf-8").splitlines(), 1):
+        if not line.strip():
+            continue
+        try:
+            event = json.loads(line)
+        except json.JSONDecodeError as exc:
+            raise SystemExit(f"{LEDGER}:{line_number}: invalid JSON: {exc}") from exc
+        for key in ("event_id", "event_type", "date"):
+            if key not in event:
+                raise SystemExit(f"{LEDGER}:{line_number}: missing {key}")
+        if event["event_id"] in ids:
+            raise SystemExit(f"{LEDGER}:{line_number}: duplicate event_id {event['event_id']}")
+        ids.add(event["event_id"])
+        if "ratings" in event or "score" in event:
+            raise SystemExit(
+                f"{LEDGER}:{line_number}: numeric rating found; v2 uses qualitative evidence only"
+            )
+        if event["event_type"] == "ranking_snapshot":
+            members = event.get("members")
+            if not isinstance(members, list) or not members:
+                raise SystemExit(f"{LEDGER}:{line_number}: ranking snapshot needs members")
+            names: set[str] = set()
+            ranks: set[int] = set()
+            for member in members:
+                for key in ("speaker", "rank", "confidence", "strengths", "limits", "assignment_fit"):
+                    if key not in member:
+                        raise SystemExit(f"{LEDGER}:{line_number}: ranking member missing {key}")
+                if member["speaker"] in names:
+                    raise SystemExit(f"{LEDGER}:{line_number}: duplicate ranked speaker {member['speaker']}")
+                names.add(member["speaker"])
+                if not isinstance(member["rank"], int) or member["rank"] < 1:
+                    raise SystemExit(f"{LEDGER}:{line_number}: rank must be a positive integer")
+                if member["rank"] in ranks:
+                    raise SystemExit(f"{LEDGER}:{line_number}: duplicate rank {member['rank']}")
+                ranks.add(member["rank"])
+                if member["confidence"] not in CONFIDENCE - {"unassessed"}:
+                    raise SystemExit(f"{LEDGER}:{line_number}: invalid ranking confidence")
+            if ranks != set(range(1, len(ranks) + 1)):
+                raise SystemExit(f"{LEDGER}:{line_number}: ranking must use consecutive ranks")
+        elif event["event_type"] in {"task_observation", "forwarded_excerpt"}:
+            for key in ("speaker", "task_id", "assessment_status", "assessment", "source", "evidence_status"):
+                if key not in event:
+                    raise SystemExit(f"{LEDGER}:{line_number}: observation missing {key}")
+            if event["evidence_status"] not in EVIDENCE_STATUS:
+                raise SystemExit(f"{LEDGER}:{line_number}: invalid evidence_status")
+        else:
+            raise SystemExit(f"{LEDGER}:{line_number}: unsupported event_type {event['event_type']}")
+        events.append(event)
+    if not any(event["event_type"] == "ranking_snapshot" for event in events):
+        raise SystemExit("ledger has no ranking snapshot")
+    return events
 
 
 def discover_speakers() -> set[str]:
-    """Find new contributors from the required first-line header in their own work folder."""
+    """Find exact SPEAKER names in contributor-owned Markdown reports."""
     found: set[str] = set()
     agents = ROOT / "_agents"
     if not agents.is_dir():
@@ -46,168 +93,150 @@ def discover_speakers() -> set[str]:
     return found
 
 
-def read_events() -> list[dict[str, Any]]:
-    events: list[dict[str, Any]] = []
-    ids: set[str] = set()
-    for line_number, line in enumerate(LEDGER.read_text(encoding="utf-8").splitlines(), 1):
-        if not line.strip():
-            continue
-        try:
-            event = json.loads(line)
-        except json.JSONDecodeError as exc:
-            raise SystemExit(f"{LEDGER}:{line_number}: invalid JSON: {exc}") from exc
-        for key in ("event_id", "speaker", "task_id", "event_type", "scorable"):
-            if key not in event:
-                raise SystemExit(f"{LEDGER}:{line_number}: missing {key}")
-        if event["event_id"] in ids:
-            raise SystemExit(f"{LEDGER}:{line_number}: duplicate event_id {event['event_id']}")
-        ids.add(event["event_id"])
-        if not isinstance(event["speaker"], str) or not event["speaker"].strip():
-            raise SystemExit(f"{LEDGER}:{line_number}: speaker must be a non-empty exact label")
-        if event["scorable"]:
-            ratings = event.get("ratings")
-            if not isinstance(ratings, dict) or set(ratings) != RATING_KEYS:
-                raise SystemExit(f"{LEDGER}:{line_number}: scorable event needs exactly {sorted(RATING_KEYS)}")
-            if any(not isinstance(v, (int, float)) or not 1 <= v <= 5 for v in ratings.values()):
-                raise SystemExit(f"{LEDGER}:{line_number}: ratings must be numeric values from 1 to 5")
-            if not event.get("assessor") or not event.get("domain"):
-                raise SystemExit(f"{LEDGER}:{line_number}: scorable event needs assessor and domain")
-        elif "ratings" in event:
-            raise SystemExit(f"{LEDGER}:{line_number}: unscored event must not include ratings")
-        events.append(event)
-
-    superseded = {event["supersedes"] for event in events if event.get("supersedes")}
-    known = {event["event_id"] for event in events}
-    unknown = superseded - known
-    if unknown:
-        raise SystemExit("supersedes references unknown event(s): " + ", ".join(sorted(unknown)))
-    return [event for event in events if event["event_id"] not in superseded]
+def escape(value: Any) -> str:
+    return str(value).replace("|", "\\|").replace("\n", " ")
 
 
-def weighted_score(ratings: dict[str, float]) -> float:
-    return 100 * sum(ratings[key] * weight for key, weight in WEIGHTS.items()) / 5
+def make_report(events: list[dict[str, Any]]) -> str:
+    snapshots = [e for e in events if e["event_type"] == "ranking_snapshot"]
+    current = snapshots[-1]
+    ranked = sorted(current["members"], key=lambda member: member["rank"])
 
+    aliases: dict[str, str] = {}
+    for member in ranked:
+        for alias in member.get("aliases", []):
+            if alias in aliases and aliases[alias] != member["speaker"]:
+                raise SystemExit(f"alias maps to multiple speakers: {alias}")
+            aliases[alias] = member["speaker"]
 
-def adjusted(raw: float, task_count: int) -> float:
-    return NEUTRAL + (raw - NEUTRAL) * task_count / (task_count + PRIOR_TASKS)
+    def canonical(name: str) -> str:
+        return aliases.get(name, name)
 
+    observed_names: set[str] = set()
+    for event in events:
+        if event["event_type"] != "ranking_snapshot":
+            observed_names.add(canonical(event["speaker"]))
+            if event.get("forwarded_by"):
+                observed_names.add(canonical(event["forwarded_by"]))
+    discovered = {canonical(name) for name in discover_speakers()}
+    ranked_names = {member["speaker"] for member in ranked}
+    unassessed = sorted((observed_names | discovered) - ranked_names, key=str.casefold)
 
-def dimensions(events: list[dict[str, Any]]) -> dict[str, float]:
-    count = len(events)
-    mean = {key: sum(e["ratings"][key] for e in events) / count for key in RATING_KEYS}
-    raw = weighted_score(mean)
-    reliability_raw = (mean["evidence_accuracy"] * 0.70 + mean["provenance"] * 0.30) * 20
-    usefulness_raw = (
-        mean["technical_reasoning"] * 0.40
-        + mean["practical_usefulness"] * 0.40
-        + mean["delivery"] * 0.20
-    ) * 20
-    return {
-        "raw": raw,
-        "adjusted": adjusted(raw, count),
-        "reliability": adjusted(reliability_raw, count),
-        "usefulness": adjusted(usefulness_raw, count),
-        "reasoning": mean["technical_reasoning"] * 20,
-    }
-
-
-def make_report(all_events: list[dict[str, Any]]) -> str:
-    speakers = sorted({e["speaker"] for e in all_events} | discover_speakers(), key=str.casefold)
-    active_events = read_events()
-    active_ids = {e["event_id"] for e in active_events}
-    superseded_ids = {e["event_id"] for e in all_events} - active_ids
-    rows = []
-    for speaker in speakers:
-        events = [e for e in active_events if e["speaker"] == speaker and e["scorable"]]
-        process_events = [e for e in active_events if e["speaker"] == speaker and not e["scorable"]]
-        task_ids = {e["task_id"] for e in events}
-        if len(task_ids) != len(events):
-            raise SystemExit(f"{speaker}: duplicate scored task; supersede the old event instead of double-counting")
-        domains = {e["domain"] for e in events}
-        independent = any(e.get("independently_reviewed") for e in events)
-        eligible = len(events) >= 3 and len(domains) >= 2 and independent
-        scores = dimensions(events) if events else None
-        rows.append({
-            "speaker": speaker, "events": events, "process_events": process_events,
-            "scores": scores, "eligible": eligible, "domains": domains,
-        })
-
-    ranked = sorted(
-        (r for r in rows if r["eligible"]),
-        key=lambda r: (-r["scores"]["adjusted"], r["speaker"].casefold()),
-    )
-    unranked = sorted((r for r in rows if not r["eligible"]), key=lambda r: r["speaker"].casefold())
-    ordered = ranked + unranked
-    snapshot_date = datetime.now(timezone.utc).date().isoformat()
-    lines = [
-        "# Council Scorecard",
+    rank_lines = [
+        "# Council Contribution Scorecard",
         "",
-        f"**Snapshot date:** {snapshot_date} UTC",
+        f"**Snapshot date:** {escape(current['date'])}",
         "",
-        "Generated from council/scorecard/events.jsonl by scripts/build_council_scorecard.py.",
-        "Purpose: observed contribution reliability and usefulness; this is not an intelligence or character ranking.",
-        "Rule: primary evidence outranks scores. Provisional entries do not break ties.",
+        "## What this is",
         "",
-        "## Current standing",
+        "This is a provisional, evidence-informed assessment of demonstrated project contributions and likely assignment fit. It is not a measure of innate intelligence, character, honesty, loyalty, or sabotage risk. The ranking is subjective and updateable; confidence and evidence limits are shown because the samples are uneven.",
         "",
-        "| Member | Standing | Audited tasks | Composite (adjusted) | Evidence reliability | Practical value | Observed reasoning | Process events |",
-        "|---|---|---:|---:|---:|---:|---:|---:|",
+        "Primary receipts and independent reproduction outrank the ranking in every factual dispute. Use placement to help choose who should investigate a problem, never to decide which unsupported claim is true.",
+        "",
+        "The numeric 0–100 draft is withdrawn. Its numbers are not current standings.",
+        "",
+        "## Provisional comparative order",
+        "",
+        "| Rank | Contributor | Confidence | Demonstrated strengths | Limits / context | Best-supported assignment fit |",
+        "|---:|---|---|---|---|---|",
     ]
-    for row in ordered:
-        if row["scores"] is None:
-            lines.append(
-                f"| {row['speaker']} | UNASSESSED | 0 | — | — | — | — | {len(row['process_events'])} |"
+    for member in ranked:
+        rank_lines.append(
+            "| {rank} | {speaker} ({role}) | {confidence} | {strengths} | {limits} | {fit} |".format(
+                rank=member["rank"],
+                speaker=escape(member["speaker"]),
+                role=escape(member.get("role", "role not recorded")),
+                confidence=escape(member["confidence"]),
+                strengths=escape(member["strengths"]),
+                limits=escape(member["limits"]),
+                fit=escape(member["assignment_fit"]),
             )
-            continue
-        s = row["scores"]
-        standing = "RANKED" if row["eligible"] else "PROVISIONAL — NOT RANKED"
-        lines.append(
-            f"| {row['speaker']} | {standing} | {len(row['events'])} | "
-            f"{s['adjusted']:.1f}/100 | {s['reliability']:.1f}/100 | "
-            f"{s['usefulness']:.1f}/100 | {s['reasoning']:.0f}/100 | "
-            f"{len(row['process_events'])} |"
         )
-    lines += [
+
+    rank_lines += [
         "",
-        "A ranked standing requires at least three distinct audited tasks across two domains and an independent review. A SPEAKER header under _agents/ or an event automatically creates a row; no member roster is maintained.",
+        f"**Assessment basis:** {escape(current.get('basis', 'No basis recorded.'))}",
+        f"**Assessor:** {escape(current.get('assessor', 'Not recorded.'))}. Independent review: {'yes' if current.get('independently_reviewed') else 'pending'}.",
         "",
-        "## Evidence notes",
+        "## Emerging or unassessed contributors",
         "",
+        "A narrow, useful contribution can be recognized without forcing a cross-project rank. UNASSESSED means insufficient comparable evidence, not poor performance.",
+        "",
+        "| Contributor | Standing | Latest evidence | Limits |",
+        "|---|---|---|---|",
     ]
-    for row in rows:
-        lines.append(f"### {row['speaker']}")
-        if row["scores"] is None:
-            lines.append(f"- **Status:** unassessed; {len(row['process_events'])} unscored process event(s). No technical conclusion is drawn.")
-        else:
-            lines.append(
-                f"- **Status:** {'rank eligible' if row['eligible'] else 'provisional'}; "
-                f"{len(row['events'])} audited task(s), {len(row['domains'])} domain(s); "
-                f"independent review {'present' if any(e.get('independently_reviewed') for e in row['events']) else 'pending'}."
+    for speaker in unassessed:
+        speaker_events = [
+            event for event in events
+            if event["event_type"] != "ranking_snapshot"
+            and (canonical(event["speaker"]) == speaker or canonical(event.get("forwarded_by", "")) == speaker)
+        ]
+        if not speaker_events:
+            rank_lines.append(f"| {escape(speaker)} | UNASSESSED | No audited contribution event recorded yet. | No negative conclusion. |")
+            continue
+        latest = speaker_events[-1]
+        if latest.get("forwarded_by") and canonical(latest["forwarded_by"]) == speaker:
+            rank_lines.append(
+                f"| {escape(speaker)} | UNASSESSED — forwarding event only | {escape(latest['assessment'])} | No technical contribution is scored from forwarding alone. |"
             )
-            for event in row["events"]:
-                lines.append(f"- **{event['task_id']} ({event.get('date', 'date unknown')}):** {event.get('basis', '')}")
-                lines.append(f"  - Assessment: {event.get('assessor', 'not recorded')}. Source: {event.get('source', 'not recorded')}")
-                if event.get("limitations"):
-                    lines.append(f"  - Limits: {event['limitations']}")
-        for event in row["process_events"]:
-            lines.append(f"- **Unscored event — {event['event_type']}:** {event.get('basis', '')}")
-            lines.append(f"  - Source: {event.get('source', 'not recorded')}")
-        lines.append("")
-    if superseded_ids:
-        lines += ["## Superseded entries", "", "Retained in the append-only ledger and excluded from current scores: " + ", ".join(sorted(superseded_ids)), ""]
-    lines += [
-        "## Reading this snapshot",
+        else:
+            rank_lines.append(
+                "| {speaker} | {status} | {assessment} | {limits} |".format(
+                    speaker=escape(speaker),
+                    status=escape(latest.get("assessment_status", "UNASSESSED")),
+                    assessment=escape(latest.get("assessment", "")),
+                    limits=escape(latest.get("limitations", "No limits recorded.")),
+                )
+            )
+
+    observations = [event for event in events if event["event_type"] != "ranking_snapshot"]
+    rank_lines += [
         "",
-        "- GPT and Ultra each have one provisional, single-review E2E assessment with identical aggregate scores. They are not ranked; neither score determines whose factual account is accepted.",
-        "- Lightning's forwarded excerpt is listed as an unscored provenance event. The original GPT speaker label was retained; the forwarder label was missing. This is not treated as impersonation or evidence of intent.",
-        "- Claude is the Architect and is outside this initial advisor comparison. No conclusion about Claude is implied.",
-        "- Other historical members are not assigned scores from folder presence or incomparable old reports. New contributors appear automatically when a report in their own _agents/ folder starts with the required SPEAKER header.",
+        "## Recent task observations",
+        "",
+        "| Speaker | Task | Evidence status | Observation | Source / limits |",
+        "|---|---|---|---|---|",
+    ]
+    for event in observations:
+        speaker = canonical(event["speaker"])
+        if event.get("forwarded_by"):
+            speaker += f" (forwarded by {canonical(event['forwarded_by'])})"
+        rank_lines.append(
+            "| {speaker} | {task} | {evidence} | {assessment} | {source} |".format(
+                speaker=escape(speaker),
+                task=escape(event["task_id"]),
+                evidence=escape(event["evidence_status"]),
+                assessment=escape(event["assessment"]),
+                source=escape(event.get("limitations", event["source"])),
+            )
+        )
+
+    rank_lines += [
+        "",
+        "## How to read and update this report",
+        "",
+        "- Confidence describes how much evidence supports the comparison, not a person's ability.",
+        "- The initial order carries forward an earlier GPT assessment and awaits independent critique. Several entries rely on reported summaries rather than a fresh audit of every source file.",
+        "- A later complete ranking snapshot may move contributors when comparable, attributable work justifies a change. The reviewer must state what new evidence changed the order.",
+        "- New names appear automatically from exact SPEAKER headers in reports under _agents and from the event ledger. A reviewer adds evidence; no separate roster edit is needed.",
+        "- Aliases are combined only when an explicit mapping is recorded in a reviewed ranking snapshot. Original event labels remain visible in the ledger.",
+        "- Claude's Architect authority and the Owner's decision authority do not come from this ranking.",
+        "",
+        "## Superseded numeric draft",
+        "",
+        "The previous version's weighted 0–100 scores, neutral-prior formula, and numeric ranking threshold have been withdrawn. The old ledger is preserved separately for audit history and must not be used as current standing.",
         "",
     ]
-    return "\n".join(lines)
+    return "\n".join(rank_lines)
 
 
 if __name__ == "__main__":
-    report = make_report(read_events())
-    OUTPUT.write_text(report, encoding="utf-8")
-    print(f"Wrote {OUTPUT.relative_to(ROOT)}")
+    events = read_events()
+    report = make_report(events)
+    if len(sys.argv) > 1 and sys.argv[1] == "--check":
+        if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != report:
+            raise SystemExit("scorecard is stale; regenerate it")
+        print("Scorecard matches qualitative event ledger.")
+    else:
+        OUTPUT.write_text(report, encoding="utf-8")
+        print(f"Wrote {OUTPUT.relative_to(ROOT)}")
