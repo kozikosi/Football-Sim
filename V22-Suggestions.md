@@ -1,5 +1,17 @@
 # V22 Suggestions — Compiled by BOC — 21 Oct 2026
 
+> ## Read this first (MOC, coordinator) — 21 Oct, 19:45
+>
+> **The canonical order, the one form, and the map of what merges into what are in "How to read this document" at the end of this file — read that before anything else.** In short: **P0** = do first, **P1** = a decision Claude makes, **P2** = a decision the Owner makes, and **R1/R2/R3** = the round the work came from (R1 the ten-item directive, R2 the flex-rules and text overhaul, R3 the graphics and motion round). A round label says where the work came from; a priority label says when to do it. Every change line uses one form: **WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK** — and a line that cannot fill the last two does not belong here.
+>
+> **This file is being de-duplicated now, region by region.** The older `P7/P8/P9/P10/P11` headings, the "PART 5" heading and the "PRIORITY SUMMARY FOR CLAUDE" heading are **legacy labels**: their content is real and is being folded into the canonical order, and where a copy was folded a pointer is left in its place. Do not add a new priority label, and do not restate an item that is already here.
+>
+> **Two things to know before you start.**
+> 1. **The build pin.** The document pins `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B) — the **working-tree** file. **No commit carries that hash**; every branch tip holds `40233d6be00e987c…` (657,486 B, `ff8c05ae`, 2026-10-20). The Owner rules on the canonical build; until then the pin and the prepared patches describe a file nobody can fetch.
+> 2. **The flex rules are two different tables in the Owner's own words** — an *edge* at a linebacker slot with the penalty waived, versus a *linebacker* at safety — and the **CB3 conflict is blocking**, because "free" is computed against the open-spot set with no base-scheme awareness.
+>
+> **A clean dry-run against a working-tree file is not behavioural validation.** Anything in this document that says "verified" means a seeded comparison was run against a named hash; where that is not true, the line says so.
+
 ## 🚨 Claude's Critical Path (read this FIRST)
 **Implementation order:** P0 changes → verification → P1 decisions → P2 owner decisions.
 **Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS`): change only with explicit Owner approval. The flex rules P0-17 require Owner approval logged via this feedback — Claude implements the slot-mapping changes (OLB/ILB as aliases of WILL/MIKE via FLEX object) but must not alter penalty values without Owner sign-off.
@@ -12,20 +24,24 @@ This section is the single source of truth for Claude. Older duplicate-numbered 
 
 **Critical path:** P0 changes → verification → P1 decisions → P2 owner decisions.
 
-| # | Workstream | Item | Owner-approved scope | Canonical section(s) |
-|---|-----------|------|----------------------|----------------------|
-| 1 | Coaching / philosophy | Philosophy + aggressiveness editable **all season** (not locked at Week 1); description rewrite; "Opponents" → "OPPONENTS" | Yes | `P0-15`, `P10-3`, `PART 5` P0-15 |
-| 2 | Base defense | 3-4 vs 4-3 user selection on draft/preseason; OLB≡WILL, ILB≡MIKE in wins maths; CB3/Nickel ↔ LB3/SAM; chart in draft-roster order | Yes | `P0-16`, `P10-2`, Owner's brief P0-B |
-| 3 | Flex rules | Edges no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge+CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS+OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; unmentioned keep current | Yes (protected constants: Owner approval logged via feedback) | `P0-17`, `P10-1`, Owner's brief P0-A |
-| 4 | Draft board | P0-1..P0-14: Value Here, MORE, badges, weights, browser, rankings, comparison, guide, week 1, 390px | Yes | `P0-1`–`P0-14` (top) |
-| 5 | Game preview | Team tags on run defense/secondary; "Under center for the x is … against the y's …"; delete "All eyes will be on …"; remove all "+x points a game" unit statements; em-dash→period; defensive labels no subtitles; plan order lineups-below-plan; graphical | Yes | `P10-5`, Owner's brief P1 |
-| 6 | Game review | Start at "1st Quarter"; remove "had"; quarter labels; blocked-FG glitch; box-score TD lines; turnovers; stars; "+x" removal; "+3.3"; pass rush "but"; move-to-1-0 own para; hide game plans; game ball in key players; box score larger | Yes | `P10-6`, Owner's brief P1 |
-| 7 | Season review / playoff | Win banner ≥3s; conference charts; bracket; awards gold; remove draft-critique phrase; "what separated" click-reveal; "Sacked xx"; "Advanced Stats"; bye preview; lineup placement; season review button in blue | Yes | `P10-7`, `P10-8`, `P10-9`, `P11-5` |
-| 8 | Aesthetics / motion / champions | Super Bowl champion text + gold shimmer; motion/graphics/text in-out; chart alignment; "Your players; average season"/"Award patterns" visibility; realism audit internal; game review box score larger; typography fade | Yes | `P7-8`–`P7-13`, `P10-1`–`P10-15`, `P11-1`–`P11-8` |
+| # | Workstream | Item | Owner-approved scope | Canonical section(s) | Round |
+|---|-----------|------|----------------------|----------------------|-------|
+| 1 | Coaching / philosophy | Philosophy + aggressiveness editable **all season** (not locked at Week 1); description rewrite; "Opponents" → "OPPONENTS" | Yes | `P0-15`, `P10-3`, `PART 5` P0-15 | R2 |
+| 2 | Base defense | 3-4 vs 4-3 user selection on draft/preseason; OLB≡WILL, ILB≡MIKE in wins maths; CB3/Nickel ↔ LB3/SAM; chart in draft-roster order | Yes | `P0-16`, `P10-2`, Owner's brief P0-B | R2 |
+| 3 | Flex rules | Edges no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge+CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS+OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; unmentioned keep current | Yes (protected constants: Owner approval logged via feedback) | `P0-17`, `P10-1`, Owner's brief P0-A | R2 |
+| 4 | Draft board | P0-1..P0-14: Value Here, MORE, badges, weights, browser, rankings, comparison, guide, week 1, 390px | Yes | `P0-1`–`P0-14` (top) | R1 |
+| 5 | Game preview | Team tags on run defense/secondary; "Under center for the x is … against the y's …"; delete "All eyes will be on …"; remove all "+x points a game" unit statements; em-dash→period; defensive labels no subtitles; plan order lineups-below-plan; graphical | Yes | `P10-5`, Owner's brief P1 | R2 |
+| 6 | Game review | Start at "1st Quarter"; remove "had"; quarter labels; blocked-FG glitch; box-score TD lines; turnovers; stars; "+x" removal; "+3.3"; pass rush "but"; move-to-1-0 own para; hide game plans; game ball in key players; box score larger | Yes | `P10-6`, Owner's brief P1 | R2 |
+| 7 | Season review / playoff | Win banner ≥3s; conference charts; bracket; awards gold; remove draft-critique phrase; "what separated" click-reveal; "Sacked xx"; "Advanced Stats"; bye preview; lineup placement; season review button in blue | Yes | `P10-7`, `P10-8`, `P10-9`, `P11-5` | R3 |
+| 8 | Aesthetics / motion / champions | Super Bowl champion text + gold shimmer; motion/graphics/text in-out; chart alignment; "Your players; average season"/"Award patterns" visibility; realism audit internal; game review box score larger; typography fade | Yes | `P7-8`–`P7-13`, `P10-1`–`P10-15`, `P11-1`–`P11-8` | R3 |
 
 **Stale duplicate sections to ignore:** `PART 5` (older decomposition), `P10-1..9` (first round), `P10-1..15` (added later), `P11-1..8` (added later) — their content is folded into the canonical index above; follow the canonical sections for execution.
 
 **Next single action for Claude:** apply `P0-17` (flex rules) first, then `P0-15`, `P0-16`, `P0-18`, `P0-19`, then proceed through P0 → P7 per the canonical index.
+
+**House format for every change item:** **WHERE** (code location, line number(s)) · **WHAT** (old → new, exact text) · **WHY** (reason for change) · **SAFE ALONE?** (can apply without other changes) · **HOW TO CHECK** (verification command). All P0/P1/P2 items in this document use exact old→new line-number edits; the house format is the canonical way to record each change.
+
+---
 
 ## Five-minute header (read this first)
 
