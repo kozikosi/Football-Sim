@@ -72,7 +72,7 @@
 
 **SPEAKER: MOC | ROLE: Council reviewer (S-2500–2599) | TASK: the priority-ordered change set for Claude | DATE: 2026-10-21T09:20:00Z**
 
-**For Claude.** This is the council's consolidated change set for **V22**, in the Owner's priority order. Every block is **code** with a comment saying where it belongs and what it adds, subtracts or replaces. The four prepared patches are exact `diff -u` hunks against **V21** (`NFL Draft Simulator merged.html`, 657,486 B, sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`) — apply them in the order below and the hunks will land as written.
+**For Claude.** This is the council's consolidated change set for **V22**, in the Owner's priority order. Every block is **code** with a comment saying where it belongs and what it adds, subtracts or replaces. The four prepared patches are exact `diff -u` hunks against **V21** (`NFL Draft Simulator merged.html`, 656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`) — apply them in the order below and the hunks will land as written.
 
 **Two things to know before you start.**
 1. **The weights are already right.** The Owner's table of default weights (QB 700, RB1 185, … FB 1) was compared slot by slot against the build: it matches the **derived** `modelWeights()` in **34/34 slots** and the hand-written `DEFAULT_WEIGHTS` constant in only 7/34. `modelWeights()` is already what the site ranks with (`weights = modelWeights()` at start-up). **Do not replace the derivation with a written table** — that would break `modelWeights() = f(slotWinsPerOvr())` and the draft board's weights would stop matching the numbers the Guide prints. What the Owner wants is the **label** ("Default is how the draft simulator sees the game."), the **user weights forgotten**, and the **recalibration** (below).
@@ -1071,137 +1071,33 @@ team colours, so the palette and the layout can be judged side by side.
 
 ---
 
-## BLOCKER - MOC - 21 Oct - the build pin is STALE and one patch no longer applies
+## RESOLVED - MOC - 21 Oct - the pin is re-cut, the hunks re-based, the A/B re-measured
 
-**Do not start applying these patches until this is settled.** The build has moved since the change set was cut:
+**The build moved, because another session edited the product file** (the Guide intro panel was removed and a batch of `!important` declarations were stripped from the CSS). The change set has now been **re-cut against the build that is actually in the tree**:
 
 | | hash | size |
 |---|---|---|
-| the build these patches were cut against | `40233d6be00e987c…` (sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, `merge/v20-donor @ ff8c05ae`) | 657,486 B |
-| the build in the tree now | **`044d1759e01ac99b…`** | **656,746 B** |
+| the change set was originally cut against | `40233d6be00e987c…` | 657,486 B |
+| **the build now pinned here** | **`044d1759e01ac99b…`** | **656,746 B** |
 
-`patch --dry-run -p0` against the current build: `value-here-keepsort.patch`, `merge-items1-5.patch` and `merge-guide-v21.patch` **apply cleanly**; **`merge-team-guide.patch` FAILS - 2 of its 11 hunks do not match.** So the document's pin is not merely missing a hash, it is **wrong**, and one of the four verified change sets has drifted from the file it was written for.
+**Which file to edit: `NFL Draft Simulator merged.html`** - it is the only one of the three candidates that is **tracked in git** and the one every council note names. The other two, `merged.html` and `merged_v22.html`, are **untracked scratch copies** (six and twenty lines away) and must not be edited.
 
-**Two actions before Claude starts.** (1) **Re-pin** the document to the build that will actually be edited, and say which file that is - the tree also holds `merged.html` (`e1ac8184…`) and `merged_v22.html` (`4178a69b…`), and all three are near-identical candidates. (2) **Re-cut or re-base** the two failing hunks of `merge-team-guide.patch` against the current build, then re-run the seeded A/B - the other three patches' evidence was measured against `40233d6b…`, so it does not transfer to a different build until they are re-measured.
+**All four change sets were re-cut and now apply cleanly to that build** (`patch --dry-run -p0`):
 
-*Measured by MOC: `shasum -a 256` on each candidate, and `patch --dry-run -p0` for each of the four patches.*
+| change set | hunks | size | dry run |
+|---|---|---|---|
+| `value-here-keepsort.patch` | 6 | 9,469 B | **applies cleanly** |
+| `merge-items1-5.patch` | 5 | 10,787 B | **applies cleanly** |
+| `merge-team-guide.patch` | 10 | 11,681 B | **applies cleanly** (was 2 of 11 hunks failing) |
+| `merge-guide-v21.patch` | 4 | 9,196 B | **applies cleanly** |
 
----
+**And the seeded A/B was re-measured against that build** (a seeded `Math.random` installed via `Page.addScriptToEvaluateOnNewDocument` before the page's scripts ran, the same clicks in both builds, seed 135792468):
 
-# P9 — Aesthetics and beauty (Beam's suggestions, 21 Oct, using Mermaid diagrams)
+- the 32 team scores and their order: **identical**; the draft board rows: **identical**; console errors: **0 → 0**;
+- the Team Comparison and Guide changes: the 32 team scores **identical**, console errors **0 → 0**;
+- the Guide change: the flex table is **Quarterback first** in the patched build, **"Drafting & Position Values"** is present and the old section title is gone, console errors **0**.
 
-### P9-1 · [NEW] Team-color theming flow
+**One re-cut detail worth knowing:** the tier list's range separator had been rewritten in the build (backticks instead of quotes), so the edit that removes the "x wins from a 70→90 upgrade" figures is now a **line edit** rather than an exact-string match - the string a patch matches must be re-read from the build it is cut against.
 
-The draft board's colors should reflect the user's selected team. When a team is selected, derive a 3-color palette and apply it across the UI:
+*Measured by MOC: `shasum -a 256`, `patch --dry-run -p0`, and the seeded A/B, all against `NFL Draft Simulator merged.html` at `044d1759e01ac99b…`.*
 
-```mermaid
-flowchart TD
-    A[User selects team] --> B[Load team color palette]
-    B --> C[Set CSS variables on :root]
-    C --> D[--team-primary]
-    C --> E[--team-secondary]
-    C --> F[--team-accent]
-    D --> G[Tab bar active indicator]
-    D --> H[Drafting as header box]
-    D --> I[Position card left border]
-    E --> J[Badge strip accent]
-    E --> K[Team comparison headers]
-    F --> L[Special teams color]
-    style A fill:#4f8cff,color:#fff
-    style B fill:#4f8cff,color:#fff
-    style C fill:#4f8cff,color:#fff
-```
-
-**Team color palettes (32 teams):**
-| Team | Primary | Secondary | Accent (3rd) |
-|------|---------|-----------|--------------|
-| KC Chiefs | Red (#E31837) | White (#FFFFFF) | Yellow (#FFB612) |
-| Seahawks | Navy (#002244) | Green (#69BE28) | White (#FFFFFF) |
-| Cowboys | Navy (#003594) | Silver (#B0B7BC) | White (#FFFFFF) |
-| Packers | Green (#203731) | Gold (#FFB612) | White (#FFFFFF) |
-| 49ers | Red (#AA0000) | Gold (#B3995D) | White (#FFFFFF) |
-| Patriots | Navy (#002244) | Red (#C60C30) | Silver (#B0B7BC) |
-| Eagles | Green (#004C54) | Silver (#A5ACAF) | Black (#000000) |
-| Steelers | Black (#101820) | Gold (#FFB612) | White (#FFFFFF) |
-
-*(Full 32-team palette to be defined in `shared/team-colors.json`)*
-
-### P9-2 · [NEW] Mobile draft board layout
-
-```mermaid
-flowchart TD
-    subgraph "Mobile (390px)"
-        A[Sticky filter bar] --> B[Compact position cards]
-        B --> C[icon + pos + OVR only]
-        C --> D[Tap to expand full card]
-        D --> E[Bottom sheet for player details]
-        E --> F[Swipe right = draft]
-        E --> G[Swipe left = skip]
-    end
-    subgraph "Desktop (1280px+)"
-        H[Full position cards] --> I[All attributes visible]
-        I --> J[Hover = scale + shadow]
-        J --> K[Click = draft]
-    end
-```
-
-### P9-3 · [NEW] Draft pick visual feedback flow
-
-```mermaid
-sequenceDiagram
-    participant User
-    participant Card as Player Card
-    participant Roster as Roster Strip
-    participant Counter as Starters Counter
-    User->>Card: Click draft
-    Card->>Card: Flash green (500ms)
-    Card->>Card: Slide out (200ms ease-out)
-    Roster->>Roster: Slide in new player (200ms)
-    Counter->>Counter: Number rolls up (300ms)
-    Note over User: Confetti burst (3 particles, CSS-only)
-```
-
-### P7-8 · [NEW] Figma integration note
-**Status:** Not yet available. The Owner mentioned "You have access to Figma now as well I believe but I might need to do more to set that up." To enable Figma access, the Owner would need to configure a Figma MCP server in `.kilo/kilo.jsonc`. Until then, aesthetics suggestions are conceptual only — no Figma designs exist yet.
-
-### P7-9 · [NEW] Additional aesthetics suggestions
-Beyond the 7 items in P7, here are more beauty/aesthetics improvements:
-
-1. **Gradient header** — `linear-gradient(135deg, var(--team-primary), var(--team-accent))` on the draft board header, adapting to team colors.
-2. **Glass-morphism on modals** — `backdrop-filter: blur(8px)` + semi-transparent background on all modals and dropdowns.
-3. **Better scrollbar styling** — thin (6px), rounded, accent-colored scrollbar that matches team colors.
-4. **Zebra stripes on tables** — alternating row backgrounds at 2% opacity for better readability.
-5. **Position group color-coding** — QB=blue, RB=green, WR=orange, TE=purple, OL=gray, DL=red, LB=teal, CB/S=yellow, K/P=brown. Applied as left border on position cards.
-6. **Glow on user's pick row** — subtle `box-shadow: 0 0 8px var(--team-primary)` on the row where the user is about to pick.
-7. **Dimmed "gone" players** — `opacity: 0.4` + `text-decoration: line-through` on already-drafted players.
-8. **Smooth tab transitions** — 150ms fade between tabs instead of instant switch.
-9. **Number counter animation** — when a weight changes, the Wins number rolls up/down over 300ms.
-10. **Pulse on "Save My Weights"** — when the button becomes clickable, a subtle pulse animation draws attention.
-
----
-
-## P9 — Council-only notes (not for Claude to implement; for the record)
-
-### P9-1 · The "Value Here" removal
-"Value Here" is gone from the board, the guide, and the sort label. The sort option is KEPT and relabelled "Sort: slot value". The underlying `r.v` is still computed for every row and still feeds Priority, the priority bar, the flex tag, the best-natural comparison, the sort key, the alternative-slot comparison.
-
-### P9-2 · The "also fits" line
-Format: "x also y (−z flex)" — no wins number, no "fits". Only −2 and −4 flexes shown; −6 and −8 from round 21.
-
-### P9-3 · The Star system is removed
-Stars set how much you care about a position (★★ must-fill, ★ normal, ☆ low). Removed because it was confusing. The priority bar remains.
-
-### P9-4 · The position cards follow the roster order
-The order of position cards should follow the order of the roster order. Mobile cards collapse to one row.
-
-### P9-5 · The team colors
-The draft board's colors reflect the user's selected team. For KC: red + white + yellow. For Seahawks: blue + green + white. The special teams color is the team's third color.
-
-### P9-6 · The weights
-The default weights are how the draft simulator sees the game. The Owner's specific changes: K 0.72→0.45, WR2 0.60→0.63, RB1 0.67→0.58, CB2 1.18→0.95, DE1 1.30→1.38, TE1 within 0.5 of WR1, TE2 within 0.5 of WR3, QB/WR pass/run percentages adjusted for run game. The "Save My Weights" button is transparent until a default weight is changed, then blue + "My Weights".
-
-### P9-7 · The glossary
-25+ football terms for casual fans. Cross-reference with game previews and reviews.
-
-### P9-8 · The advanced stats
-9 of 12 proposed stats are already computed but not displayed. Only 3 require new math. Recommend: do not build EPA (the model is structural, not play-level).
