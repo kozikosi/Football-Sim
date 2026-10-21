@@ -131,6 +131,156 @@ Remove any saved user weights. Only use the model weights (DEFAULT_WEIGHTS). For
 ### P0-14. 390px P0
 - `#startSeasonBtn` at `top=963.03` in 844px viewport (preseason primary-action clause). Functional flow clean. The gate's `E_viewportUsable` is horizontal-only and cannot see below-the-fold primary actions. Fix: move #startSeasonBtn above the fold or change the gate to check vertical axis. (DS M-122 addendum 2, corroborated MOC M-334.)
 
+### P0-15. Coaching philosophy / aggressiveness: available all season + description text
+- Owner feedback (21 Oct, wave 2): "Your coaching philosophy and aggressiveness are locked in once you simulate Week 1" → Why? These should be available all season long. Please fix that and change the description here to reflect the changes.
+
+**Exact edits:**
+1. Coaching philosophy description (l.____): Current text: "Your coaching philosophy is how your team likes to play by default, on offense and on defense. It names your team's style all season, and opponents scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why."
+
+→ New text: "Your coaching philosophy is how your team likes to play by default. It names your team's style all season, and OPPONENTS scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why."
+
+2. Remove ", on offense and on defense. It names your team's style all season, and" from the description; capitalize "Opponents" → "OPPONENTS".
+
+3. Coaching philosophy / aggressiveness must remain editable for the entire season (not locked after Week 1). This is a functional fix.
+
+### P0-16. Base defense selection (3-4 vs 4-3) on draft/preseason page
+- Owner feedback (21 Oct, wave 2): On the draft page and/or preseason page, User should be able to select if he'd like his base to be 3-4 or 4-3.
+
+**Decision needed (Architect):** Which page — Draft page, Preseason page, or both?
+
+### P0-17. Flex rules overhaul (Owner feedback, 21 Oct) — PROTECTED CONSTANTS
+- Owner feedback (21 Oct, wave 2): Multiple flex rule changes requested.
+
+**Changes requested:**
+1. Edges no longer get a penalty for playing OLB/WILL/SAM.
+2. OLB/WILL/SAM can play FS for -6, SS/DT for -4, Edge and CB3/Nickel for -2.
+3. MIKE can play DT for -4, SS for -2.
+4. SS can play CB3/Nickel for free, FS/OLB/WILL/SAM for -2.
+5. "Third corner" → "CB3 / Nickel".
+6. Cornerbacks to OLB/WILL/SAM is -4. CBs to MIKE is -6.
+7. TEs can be WRs for -2 and running backs for -4.
+
+**If I didn't mention something, keep the same flex rules as before.** Chart needs redesign in draft roster order.
+
+**New 3-4 base structure (Owner feedback, 21 Oct):**
+```
+DE1
+DT1 (Nose Tackle)
+DE2
+OLB1 (Outside Linebacker)
+ILB1 (Inside Linebacker)
+ILB2
+OLB2
+```
+
+**Math rules:**
+- When it comes to establish wins values or any other math, OLB are treated the same as WILLs.
+- When it comes to establish wins values or any other math, ILB are treated the same as MIKEs.
+
+**Guide + preseason menu:**
+- Explain that when the CB3/Nickel comes on the field, the LB3/SAM comes off the field.
+
+**Preseason menu text removal:**
+- Remove: "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use."
+
+**CRITICAL — Protected constants:** Changes to `FLEX` and `NATURAL_SLOT_MAP` are PROTECTED CONSTANTS per AGENTS.md prohibition. Owner approval was granted via this feedback, but must be logged and Claude must not alter protected constants without Owner approval.
+
+### P0-18. Game recap UI/text improvements (Owner feedback, 21 Oct, wave 2)
+- "Opening day has a way of making everyone feel like a contender. The Chiefs visit the Vikings to open the season, one team built around its run defense, the other around its secondary.
+- The individual stories may matter as much as the team ones. Under center it is Matthew Stafford (99) against Geno Smith (74). All eyes will be on Matthew Stafford (QB, 99) and Christian Gonzalez (CB1, 98), the players each defense has to game-plan around.
+- Here is where it could be decided: the Chiefs' quarterback play (#2) against the Vikings' secondary (#2). Against an average team the first is worth roughly +2.3 points a game, so whichever side flinches loses ground. The Vikings' secondary (#2) is a real weapon here — roughly +2.2 points a game compared with an average team — and the Chiefs' receiving corps (#19) is poorly equipped to beat it. The ratings lean the Chiefs by about 3.3, but that margin is thinner than any coach wants to admit.
+- The Chiefs are a balanced offense with two tight ends team by nature, and the model expects 12 personnel, run-heavy this week — as the favorite they would rather shorten the game and protect the football and the pair of tight ends (Dallas Goedert 89 and Evan Engram 78) can do the job. ... Defensively, expect the Chiefs in Nickel (a nickel defense focused on the pass) and the Vikings in Nickel · pass-defense (a nickel defense focused on the pass)."
+
+**Requested fixes:**
+1. In the first paragraph, add "(Chiefs)" or "(Vikings)" after "run defense" and "secondary." Owner unsure which team has a good run defense by current wording.
+
+2. Rewrite "Under center it is Matthew Stafford (99) against Geno Smith (74)." → "Under center for the Chiefs is Matthew Stafford (99) against the Vikings' Geno Smith (74)."
+
+3. Fix "All eyes on Christian Gonzalez doesn't make sense because Christian Gonzalez plays on defense so the opposing defense wouldn't game plan around him" → rewrite.
+
+4. Completely remove statements like "Against an average team the first is worth roughly +2.3 points a game, so whichever side flinches loses ground."
+
+5. "The ratings lean the Chiefs by about 3.3, but that margin is thinner than any coach wants to admit." → acceptable when referring to overall prediction (betting-line-like); should be written as "+3.3".
+
+6. Replace m-dashes with periods; split the balanced-offense sentence into two sentences.
+
+**Formations:** All future references to formations like nickel or base should just say "Nickel", "Nickel (Pass Protection)", "Nickel (Run Defense)", or just "Nickel". The neutral Nickel should not say "Nickel defense focused on the pass" as a subtitle. None of the defensive packages should have subtitles in the little table for selecting your Game Plan. Remove long parentheticals like "(a nickel defense focused on the pass)."
+
+**Game plan UI:**
+- The UI is ugly here. Please make it a little smaller and a lot more beautiful.
+
+**Game review UI:**
+- Box score of the quarters table can be made larger and more beautiful.
+
+**Recap font:**
+- "This whole font is terrible. Needs to be made a lot more beautiful and maybe can fade into the page."
+
+**Critique fixes:**
+1. Remove "had" from "The Chiefs had ripped off 21 unanswered points in the third quarter along the way." → "The Chiefs ripped off 21 unanswered points in the third quarter."
+
+2. Remove the recap at the beginning. Report should start with "1st Quarter". Use "1st" "2nd" "3rd" "4th" more often.
+
+3. "First quarter: Bryan Bresee got a hand on an extra point and blocked it for the Vikings." → Score was 0-0 after the first quarter; makes no sense. Fix glitch. Could replace extra point with field goal.
+
+4. "D'Andre Swift ran it in for a touchdown (Chiefs 7–0)" → "Rushing TD (dot) D'Andre Swift (Chiefs 7–0)" — better box score style.
+
+5. Turnovers: "The Chiefs came out one turnover ahead: Geno Smith was intercepted by Jaylon Johnson in the fourth quarter." → Less natural. More like score summary: "Turnovers: Chiefs x - 0 Vikings" then "Jaylon Johnson interception (4th Q)".
+
+6. Offensive players need at least 60 yards to be mentioned in Stars. Reserve spaces for +90 rating performances (don't mention actual 90 rating to user; use internally for Stars generation).
+
+7. Replace "Stars of the game:" with an actual Star, maybe glittering?
+
+8. "How it was decided:" → Remove phrases like "worth about +2.3 points to the Chiefs." First "3.3" should be "+3.3" (OK to mention as overall score prediction).
+
+9. Pass rush: ideally "but" instead of "and". "a swing of roughly +1.3 points for the Chiefs." Should be removed.
+
+**Game ball:**
+- A game ball wasn't assigned to any player in the Key Players chart which doesn't make sense. The player with the game ball should always be in the key players.
+
+### P0-19. Season review / playoff preview UI improvements (Owner feedback, 21 Oct, wave 2)
+- The banner that appears after winning is great but should be much larger, centered on the screen, and remain on screen for at least 3 seconds. Similar to the Conference Champions graphic. It would be cool if that graphic could also land on the screen somewhere after it shows and continue to shimmer/sparkle.
+
+- "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" → Replace by two Conference charts ranking the team 1-16 in their conferences, as beautiful as possible. Ideally the Playoffs Picture would be a March Madness-style bracket showing byes and both conferences with the Super Bowl contestants meeting in the middle.
+
+- The regular season awards is well formatted but could be made a lot more beautiful.
+
+- Maybe use gold for your players on any awards charts, including the game ball winner.
+
+- Remove this phrase from the Draft critique: "Early picks that are worth little to winning matter most, because those picks are the hardest to replace later."
+
+- Leave the "What separated the playoff teams" but don't mention it ever and leave it so that you have to click on it to see it.
+
+- When you list the QB sacks in the your players or anywhere, write it as "x Sacked" instead of "Sacked zx"
+
+- Rename "More Advanced Stats" → "Advanced Stats".
+
+- The current "Advanced stats: what really produced sacks and runs" should be highly condensed and should only be visible when you click on Coverage Sacks or Offensive Lines Advanced Stats in the advanced Stats menu.
+
+- The Chiefs put together a dominant 14-3 campaign ... Again, I don't like the UI here. The text is ugly. Indent a lot more. The first sentence should be its own paragraph. Biggest win and ugliest win should be their own indentations and are ideally presented more like stats instead of full sentences. Each player highlighted should be on their own line and ideally presented more like graphics and stats instead of full sentences. Remove "cost the Chiefs roughly 0.7 points a game" type phrasing.
+
+- Remove: "The roster also asked 2 starters to play out of position, costing 4 rating points across the lineup — filling those spots naturally is the cheapest improvement available."
+
+- If it's not completely shifted to a more graphical layout, have a better more exciting final sentence that either encourages the player to start the playoffs or encourages them to redraft and see if they can make the Super Bowl.
+
+- "Why better or worse than the ratings?" → Offense: the scoreboard matched the ratings. ... Defense: ... Record, better than the scoring margin says: ...
+
+- If your team has a bye, show the game preview of the most likely matchup against the user in the next round.
+
+- "Lineup and flexes" in the playoffs shouldn't be at the top.
+
+- "PLAYOFF PREVIEW
+Divisional Round showdown: Dolphins vs. Chiefs" → Should be a lot more beautiful and a lot more exciting.
+
+- "The divisional round is where byes pay off and wild-card momentum gets tested. ..." → Ideally all game previews and game reviews are way more graphical. Full sentences should be used sparingly.
+
+- "The only thing that really needs sentences is narration of key plays in the clutch or extra compliments to user's star players and hyping up the next round.
+
+- "The Chiefs are Super Bowl champions." → So boring. Any hype text like this especially for the Super Bowl should be more beautiful and at least use an exclamation point.
+
+- The season review button after the playoff should be in blue near the top next to 100 season simulation.
+
+- The season review should also be more graphical. The 100 season review should also be a lot more graphical. Only a few sentences here and there.
+
 ---
 
 ## P1 — Architect decisions
@@ -783,3 +933,885 @@ the Stars table **much more beautiful** · offensive players need **≥60 yards*
 2. the **3-4/4-3 implementation shape** — OLB/ILB as **aliases** of WILL/MIKE, or as new slots with their own weights (this changes the roster, the depth chart and the draft order).
 3. whether **"no sacks is not poor"** is a wording rule or a **threshold change** in the model.
 4. the **bracket design** — the March Madness-style picture is a proposal; the Owner owns the shape.
+
+---
+
+## PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION
+
+---
+
+### P0-15: Coaching Philosophy & Aggressiveness — Available All Season
+
+**Problem:** "Your coaching philosophy and aggressiveness are locked in once you simulate Week 1" — should be available all season.
+
+**Current text (l.~2000 area):**
+```
+"Your coaching philosophy and aggressiveness are locked in once you simulate Week 1"
+```
+
+**Fix:** Remove the lock; allow changes all season. Update description:
+
+```html
+<!-- BEFORE -->
+"Your coaching philosophy and aggressiveness are locked in once you simulate Week 1"
+
+<!-- AFTER -->
+"Your coaching philosophy is how your team likes to play by default. It names your team's style all season, and Opponents scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why."
+```
+
+**Also fix aggressiveness descriptions:**
+
+| Current | Target |
+|---------|--------|
+| "Kicks the extra point almost every time and takes the field goal on most 4th downs inside the 35. Fewer 2-Pt Convs, a few more field goals, fewer touchdowns." | "Kicks the extra point almost every time and takes the field goal on most 4th downs inside the 35. Fewer 2-Pt Convs, fewer field goals, fewer touchdowns." |
+| "Follows the usual NFL chart: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th down when it is short and the field position is good." | "Balanced Approach: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th & short when in opponent's territory." |
+| "Goes for 2 early and often, and goes for it on 4th down instead of kicking. More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs." | "More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs." Then smaller text: "Almost always goes for 2-pt conversion unless you need an XP to win the game. Almost always goes for 4th down unless behind your own 30yd line or if you have a big lead in the 4th Quarter." |
+
+**Also:** "How a 2-Pt Conv works" → "How a 2-Pt Conversion works"
+
+---
+
+### P0-16: Base Defense Selection (3-4 vs 4-3)
+
+**Location:** Draft page and/or preseason page
+
+**Feature:** User selects base defense (3-4 or 4-3) on draft/preseason page.
+
+**If 3-4 selected, positions:**
+```
+DE1
+DT1 (Nose Tackle)
+DE2
+OLB1 (Outside Linebacker)
+ILB1 (Inside Linebacker)
+ILB2
+OLB2
+```
+
+**Math treatment:**
+- OLB treated same as WILL for wins values/math
+- ILB treated same as MIKE for wins values/math
+- Explain in guide and preseason menu
+
+**CB3/Nickel rule:** When CB3/Nickel comes on field, LB3/SAM comes off field.
+
+---
+
+### P0-17: Flex Rules Overhaul
+
+### **Edge Players:**
+- Edges no longer get penalty for playing OLB/WILL/SAM
+
+### **Flex Rules (Redesigned Table, QB First Order):**
+
+| Player | Can Flex To | Penalty |
+|--------|-------------|---------|
+| Edges | OLB, WILL, SAM | **No penalty** (removed) |
+| OLB/WILL/SAM | FS | -6 |
+| OLB/WILL/SAM | SS | -4 |
+| OLB/WILL/SAM | Edge | -2 |
+| OLB/WILL/SAM | CB3/Nickel | -2 |
+| MIKE | DT | -4 |
+| MIKE | SS | -2 |
+| SS | CB3/Nickel | **Free (0)** |
+| SS | FS/OLB/WILL/SAM | -2 |
+| TE | WR | -2 |
+| TE | RB | -4 |
+
+### **Flex Rules:**
+- If not mentioned, keep same flex rules as before
+- Redesign chart in draft roster order (QB first)
+- Combine "Position Values" dropdown with "Drafting: which positions matter" → rename to **"Drafting & Position Values"**
+- Remove "Value Here" from all visual displays (already in P0-1)
+- Flex table order follows draft roster order (QB first)
+
+**Additional Flex Rules:**
+- "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use." → **REMOVE from preseason menu**
+- "Third corner" in guide → "CB3 / Nickel"
+- "CBs to OLB/WILL/SAM is -4. CBs to MIKE is -6."
+- "TEs can be WRs for -2 and running backs for -4"
+- If not mentioned, keep same flex rules as before
+- Chart redesigned in draft roster order (QB first)
+
+**3-4 Base Defense Positions:**
+```
+DE1
+DT1 (Nose Tackle)
+DE2
+OLB1 (Outside Linebacker)
+ILB1 (Inside Linebacker)
+ILB2
+OLB2
+```
+
+**Math Treatment:**
+- OLB treated same as WILL for wins values/math
+- ILB treated same as MIKE for wins values/math
+- Explain in guide and preseason menu
+- When CB3/Nickel comes on field, LB3/SAM comes off field
+
+**Flex Display Rules:**
+- Only display flex potential if (-2 or -4)
+- (-6) flexes or (-8) appear after 20th round
+- Position card order follows roster order
+- "also fits: CB1 +1.37" → "also CB1 (−2 flex)" format
+- Remove wins number and word "fits"
+- Format: "x also y (−z flex)"
+
+---
+
+### P0-18: Draft Board UI Improvements
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| "Drafting as Kansas City Chiefs — you hold the #19 overall pick (Round 1)" | Round number dynamic: "Round x" right-aligned |
+| "Undo my last pick" | "Undo" |
+| "Reading the draft board (Wins, Value here, Priority, Gone, stars)" | "Reading the draft board" (remove Value Here, Stars) |
+| "Flexing players, explained" | "Flexing" |
+| "Football and site terms" | "Glossary" |
+| "One table" | "Table" |
+| "Your Pick order / Roster Depth chart" | "Your Roster / Depth Chart. Pick Order" (more horizontal) |
+| "Denzel Ward (93 OVR) · +1.65 wins here · priority +0.23 · 100% chance he is gone by your next pick" | Display static Wins + "wins" (+x wins / -x wins) |
+| "1 of 26 starters · +3.69 wins above a replacement-level lineup" | Move to bottom of panel |
+
+### **Visual Changes:**
+- "You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)" → **bigger text size**
+- Expand draft board visible size to bottom of panel (~2 more names visible)
+- "1 of 26 starters · +3.69 wins above a replacement-level lineup" → move to bottom
+- Position cards on mobile: collapse to compact row (icon + position abbr + OVR), expand on tap
+- Sort/filter controls: sticky header or collapsible panel
+- Position card order follows roster order
+- Flex potential display: only -2/-4 before round 20; -6/-8 after round 20
+- Position card colors: team primary/secondary colors (KC=red/white+yellow, SEA=blue/green+white)
+- Flex potential display: only -2/-4 before round 20; -6/-8 after round 20
+- Position card order follows roster order
+- "also fits: CB1 +1.37" → "also CB1 (−2 flex)" format
+- Remove wins number and word "fits"
+- Format: "x also y (−z flex)"
+
+---
+
+### P0-18: Draft Board UI Improvements (continued)
+
+### **Visual Changes:**
+- "You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)" → **bigger text size**
+- Expand draft board visible size to bottom of panel (~2 more names visible)
+- "1 of 26 starters · +3.69 wins above a replacement-level lineup" → move to bottom
+- Position cards on mobile: collapse to compact row (icon + position abbr + OVR), expand on tap
+- Sort/filter controls: sticky header or collapsible panel
+- Position card order follows roster order
+- Flex potential display: only -2/-4 before round 20; -6/-8 after round 20
+- Position card colors: team primary/secondary colors (KC=red/white+yellow, SEA=blue/green+white)
+- Flex potential display: only -2/-4 before round 20; -6/-8 after round 20
+- Position card order follows roster order
+- "also fits: CB1 +1.37" → "also CB1 (−2 flex)" format
+- Remove wins number and word "fits"
+- Format: "x also y (−z flex)"
+
+---
+
+### P0-19: Team Comparison Page
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| "Put any two real rosters side by side." | "Put any two rosters side by side." |
+| Remove disclaimer | `"Ratings shown are effective ratings — players flexed out of position carry their penalty."` → **Remove entirely** |
+
+### **Unit Comparison Table — Remove Parentheses + Reorganize:**
+
+**Current (with parentheses):**
+```
+Offense (QB+RB+WR+TE+OL)    81.4    85.3
+Defense (DL+LB+Secondary)   83.4    81.2
+Offensive Line (OT+OG+C)    78.4    90.8
+Defensive Line (DT+Edge)    85.0    82.3
+Secondary (CB+S)            82.8    91.4
+Primary Coverage (CB1 + DL) 85.0    99.0
+Quarterback                 95.0    83.5
+Running Backs (RB1+RB2)     85.5    87.7
+Wide Receivers (WR1-3)      79.3    73.5
+Tight Ends (TE1+TE2)        80.0    81.9
+Run Game (OL+RBs)           80.4    87.9
+Pass Game (OL+QB+Receiving) 81.6    85.3
+Run Defense (DL+LB+SS+NB)   86.1    85.3
+Pass Defense (DL+LB+Sec)    85.3
+```
+
+**Target Structure (no parentheses, organized):**
+```
+=== OFFENSE ===
+Offense
+Quarterback
+Offensive Line
+Running Backs
+Wide Receivers
+Tight Ends
+Run Game
+Pass Game
+
+=== DEFENSE ===
+Defense
+Defensive Line
+Linebackers
+Secondary
+Run Defense
+Pass Defense
+```
+
+**Implementation:** Remove all `(...)` from row labels, reorder rows per above structure, add visual separator/subtitle between Offense and Defense sections.
+
+---
+
+### P0-19: Team Comparison Page
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| "Put any two real rosters side by side." | "Put any two rosters side by side." |
+| Remove disclaimer | `"Ratings shown are effective ratings — players flexed out of position carry their penalty."` → **Remove entirely** |
+
+### **Unit Comparison Table — Remove Parentheses + Reorganize:**
+
+**Current (with parentheses):**
+```
+Offense (QB+RB+WR+TE+OL)    81.4    85.3
+Defense (DL+LB+Secondary)   83.4    81.2
+Offensive Line (OT+OG+C)    78.4    90.8
+Defensive Line (DT+Edge)    85.0    82.3
+Secondary (CB+S)            82.8    91.4
+Primary Coverage (CB1 + DL) 85.0    99.0
+Quarterback                 95.0    83.5
+Running Backs (RB1+RB2)     85.5    87.7
+Wide Receivers (WR1-3)      79.3    73.5
+Tight Ends (TE1+TE2)        80.0    81.9
+Run Game (OL+RBs)           80.4    87.9
+Pass Game (OL+QB+Receiving) 81.6    85.3
+Run Defense (DL+LB+SS+NB)   86.1    85.3
+Pass Defense (DL+LB+Sec)    85.3
+```
+
+**Target Structure (no parentheses, organized):**
+```
+=== OFFENSE ===
+Offense
+Quarterback
+Offensive Line
+Running Backs
+Wide Receivers
+Tight Ends
+Run Game
+Pass Game
+
+=== DEFENSE ===
+Defense
+Defensive Line
+Linebackers
+Secondary
+Run Defense
+Pass Defense
+```
+
+**Implementation:** Remove all `(...)` from row labels, reorder rows per above structure, add visual separator/subtitle between Offense and Defense sections.
+
+---
+
+### P0-19: Team Comparison Page
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| "Put any two real rosters side by side." | "Put any two rosters side by side." |
+| Remove disclaimer | `"Ratings shown are effective ratings — players flexed out of position carry their penalty."` → **Remove entirely** |
+
+### **Unit Comparison Table — Remove Parentheses + Reorganize:**
+
+**Current (with parentheses):**
+```
+Offense (QB+RB+WR+TE+OL)    81.4    85.3
+Defense (DL+LB+Secondary)   83.4    81.2
+Offensive Line (OT+OG+C)    78.4    90.8
+Defensive Line (DT+Edge)    85.0    82.3
+Secondary (CB+S)            82.8    91.4
+Primary Coverage (CB1 + DL) 85.0    99.0
+Quarterback                 95.0    83.5
+Running Backs (RB1+RB2)     85.5    87.7
+Wide Receivers (WR1-3)      79.3    73.5
+Tight Ends (TE1+TE2)        80.0    81.9
+Run Game (OL+RBs)           80.4    87.9
+Pass Game (OL+QB+Receiving) 81.6    85.3
+Run Defense (DL+LB+SS+NB)   86.1    85.3
+Pass Defense (DL+LB+Sec)    85.3
+```
+
+**Target Structure (no parentheses, organized):**
+```
+=== OFFENSE ===
+Offense
+Quarterback
+Offensive Line
+Running Backs
+Wide Receivers
+Tight Ends
+Run Game
+Pass Game
+
+=== DEFENSE ===
+Defense
+Defensive Line
+Linebackers
+Secondary
+Run Defense
+Pass Defense
+```
+
+**Implementation:** Remove all `(...)` from row labels, reorder rows per above structure, add visual separator/subtitle between Offense and Defense sections.
+
+---
+
+### P0-20: Guide Page Overhaul
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| Remove Guide Box + `"Guide\nShort reference sections for the terms the sim uses. Click through only what you need."` | **Remove entirely** |
+| `"1 Play the season. Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` | `"Play the season. seventeen game Regular Season, the Playoffs, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` |
+| `"advanced stats (what caused sacks and big runs)"` | `"advanced stats"` |
+| Remove "x wins from a 70-90 upgrade" | From all tier lists |
+| Remove "Wins, 70→90" column | From positional value table |
+
+### **Positional Value Table — Guide Page — Weight Adjustments:**
+
+| Position | Current Wins/+1 OVR | Target Wins/+1 OVR | Pass/Run |
+|----------|---------------------|---------------------|----------|
+| DE1 | 0.065 | 0.069 (1.38/20) | 79/21 |
+| CB2 | 0.059 | 0.0475 (0.95/20) | 88/12 |
+| WR2 | 0.030 | 0.0315 (0.63/20) | 95/5 |
+| RB1 | 0.033 | 0.029 (0.58/20) | 35/65 |
+| K | 0.036 | 0.0225 (0.45/20) | 100/0 (ST) |
+| TE1 | 0.040 | ~0.055-0.105 | Within 0.5 of WR1 |
+| TE2 | 0.007 | ~0.019-0.069 | Within 0.5 of WR3 |
+| QB | 0.127 | 0.127 | 100/0 → 90/10 |
+| WRs | 100/0 | ~95/5 | Add run % |
+
+**TE Constraints:** TE1 within 0.5 of WR1 (0.055); TE2 within 0.5 of WR3 (0.019)
+
+**Pass/Run Splits:**
+- QB: 100/0 → 90/10
+- WRs: 100/0 → ~95/5
+- RB1: 35/65 (keep)
+- RB2: 60/40 → 40/60
+
+**Remove from Guide:**
+- "x wins from a 70-90 upgrade" text (all instances)
+- "Wins, 70→90" column from table
+- Guide Box + intro text
+- "1 Play the season..." → rewrite as specified
+- "advanced stats (what caused sacks and big runs)" → "advanced stats"
+- Remove tier list "x wins from 70-90 upgrade" text
+- Remove "Wins, 70→90" column from table display
+
+---
+
+### P0-21: Game Preview/Review UI Overhaul
+
+### **Game Preview:**
+- Remove "+x points per game" statements
+- "The ratings lean the Chiefs by about 3.3" → "+3.3" (betting line style)
+- Remove "worth about +2.3 points to the Chiefs" type phrases
+- Replace em dashes with periods (two sentences)
+- Remove "a nickel defense focused on the pass" parentheticals
+- Defensive packages: "Nickel Pass Protection" / "Nickel Run Defense" / "Nickel" (no subtitles)
+- Remove "a nickel defense focused on the pass" parentheticals
+- UI: more beautiful, smaller, graphical
+- Lineups directly below game plan
+- Next: Matchup match → Opponent scouting report
+- Team identifiers: "(Chiefs)" or "(Vikings)" after "run defense"/"secondary"
+- "Under center it is Matthew Stafford (99) against Geno Smith (74)" → "Under center for the Chiefs is Matthew Stafford (99) against the Vikings' Geno Smith (74)"
+- Fix: Christian Gonzalez plays for Vikings defense, not Chiefs
+- Remove "worth about +2.3 points" phrases
+- "+3.3" not "3.3"
+- Replace em dashes with periods
+- Remove "a nickel defense focused on the pass" parentheticals
+- UI: more beautiful, smaller, graphical
+- Lineups directly below game plan
+- Next: Matchup match → Opponent scouting report
+- Team identifiers: "(Chiefs)" or "(Vikings)" after "run defense"/"secondary"
+- "Under center it is Matthew Stafford (99) against Geno Smith (74)" → "Under center for the Chiefs is Matthew Stafford (99) against the Vikings' Geno Smith (74)"
+- Fix: Christian Gonzalez plays for Vikings defense, not Chiefs
+- Remove "worth about +2.3 points" phrases
+- "+3.3" not "3.3"
+- Replace em dashes with periods
+- Remove "a nickel defense focused on the pass" parentheticals
+- UI: more beautiful, smaller, graphical
+- Lineups directly below game plan
+- Next: Matchup match → Opponent scouting report
+
+### **Game Review:**
+- Box score table: larger, more beautiful
+- Remove "The Chiefs finished it off, 28–14. The Chiefs had ripped off 21 unanswered points in the third quarter along the way."
+- Start with "1st Quarter" (use 1st/2nd/3rd/4th)
+- First quarter: fix extra point → field goal (score 0-0)
+- Format: "Rushing TD · D'Andre Swift (Chiefs 7-0)"
+- Turnovers: "Turnovers: Chiefs 1 - 0 Vikings" + "Jaylon Johnson INT (4th Q)"
+- Stars: +90 rating performances, replace "Stars of the game:" with ✨
+- Remove "worth about +2.3 points" phrases
+- "+3.3" not "3.3"
+- Remove "worth about +1.3 points" from pass rush
+- Sacks: 1-2=Mid, 3+=Exceptional
+- "The Chiefs move to 1-0..." own paragraph
+- Game plans: hidden dropdown
+- Game ball player in Key Players chart
+- Font: beautiful, fade into page
+
+### **Regular Season Review:**
+- Banner: larger, centered, 3s, shimmer/sparkle
+- Conference charts (1-16 ranks) instead of single line
+- Playoffs bracket: tournament style
+- Awards: beautiful, gold for player awards
+- Remove "Early picks that are worth little to winning matter most..."
+- "What separated the playoff teams" → click to expand (hidden)
+- QB sacks: "x Sacked"
+- Advanced stats: click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+- Indent more, first sentence own paragraph
+- Biggest/ugliest win: stat-style
+- Players: own lines, graphics
+- Remove "cost the Chiefs roughly 0.7 points a game" phrasing
+- Remove "roster also asked 2 starters to play out of position..."
+- Final sentence: encourage playoffs or redraft
+- "Why better or worse than ratings?" → graphical
+- Bye week: show likely matchup
+- "Lineup and flexes" not at top in playoffs
+- Playoff preview: beautiful, exciting
+- "The Chiefs are Super Bowl champions!" → exciting, exclamation!
+- Season review button: blue, top, near 100-season
+- Season review: more graphical
+- 100-season review: graphical, few sentences
+- Playoffs bracket: tournament style, byes, both conferences, Super Bowl middle
+- "Sacked zx" → "x Sacked"
+- Advanced stats: click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+
+---
+
+### P0-22: Season Review & Playoffs
+
+### **Season Review:**
+- Banner: larger, centered, 3s, shimmer/sparkle
+- Conference charts (1-16 ranks) instead of single line
+- Playoffs bracket: tournament style
+- Awards: beautiful, gold for player awards
+- Game ball winner: gold highlight
+
+### **Text Cleanup:**
+- Remove "Early picks that are worth little to winning matter most..."
+- "What separated the playoff teams" → click to expand (hidden)
+- QB sacks: "x Sacked"
+- Advanced stats: click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+- Indent more, first sentence own paragraph
+- Biggest/ugliest win: stat-style
+- Players: own lines, graphics
+- Remove "cost the Chiefs roughly 0.7 points a game" phrasing
+- Remove "roster also asked 2 starters to play out of position..."
+- Final sentence: encourage playoffs or redraft
+- "Why better or worse than ratings?" → graphical
+- Bye week: show likely matchup
+- "Lineup and flexes" not at top in playoffs
+- Playoff preview: beautiful, exciting
+- "The Chiefs are Super Bowl champions!" → exciting, exclamation!
+- Season review button: blue, top, near 100-season
+- Season review: more graphical
+- 100-season review: graphical, few sentences
+- Playoffs bracket: tournament style, byes, both conferences, Super Bowl middle
+- "Sacked zx" → "x Sacked"
+- Advanced stats: click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+
+---
+
+### P0-23: Position Rankings & Player Browser
+
+### **Position Rankings Dropdown:**
+- All combinations available
+- Offense: QB, QB+WR1, QB+WR1+OT1, QB+WR1+OT1+OT2... to WR3
+- Defense: CB1, CB1+DE1, CB1+DE1+CB2, CB1+DE1+CB2+DE2... to DT2
+- Combined: first not in above (QB+CB1), continue to WR3
+- One copy per set
+- Plural "s": "Defensive Line (Edges + DTs)"
+- "WR1-3" → "WR1+WR2+WR3"
+- "CB1-4" → "CB1+CB2+CB3+CB4"
+
+### **Player Browser:**
+- ~15 players on desktop, less on mobile
+- Footer tabs always visible at bottom
+
+---
+
+### P0-24: Team Comparison
+
+### **Team Comparison Page:**
+
+| Change | Current | Target |
+|--------|---------|--------|
+| Remove "real" | `"Put any two real rosters side by side."` | `"Put any two rosters side by side."` |
+| Remove disclaimer | `"Ratings shown are effective ratings..."` | **Remove entirely** |
+| Remove parentheses | `Offense (QB+RB+WR+TE+OL)` → `Offense` | All parentheses removed |
+| Reorganize | Flat list | **Offense section** → break → **Defense section** |
+
+**Target Order:**
+```
+OFFENSE: Offense, Quarterback, Offensive Line, Running Backs, Wide Receivers, Tight Ends, Run Game, Pass Game
+DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defense
+```
+
+### **Default Matchup:**
+- Chiefs (Team A) vs Raiders (Team B)
+
+### **Labels:**
+- "WR1-3" → "WR1+WR2+WR3"
+- "CB1-4" → "CB1+CB2+CB3+CB4"
+- Plural "s" for multiples
+
+---
+
+### P0-22: Guide Page
+
+### **Text Changes:**
+| Current | Target |
+|---------|--------|
+| Remove Guide Box | `"Guide\nShort reference sections..."` | **Remove entirely** |
+| Rewrite "Play the season" | `"1 Play the season. Seventeen games..."` | `"Play the season. seventeen game Regular Season, the Playoffs, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` |
+| Remove parenthetical | `"advanced stats (what caused sacks and big runs)"` | `"advanced stats"` |
+| Remove "x wins from 70-90" | Throughout positional value section | **Remove entirely** |
+| Remove "Wins, 70→90" column | From positional value table | Keep only "Wins per +1 OVR" + "Pass / Run" |
+
+### **Positional Value Table — Weight Adjustments:**
+
+| Position | Current Wins/+1 OVR | Target Wins/+1 OVR | Pass/Run |
+|----------|---------------------|---------------------|----------|
+| DE1 | 0.065 | 0.069 (1.38/20) | 79/21 |
+| CB2 | 0.059 | 0.0475 (0.95/20) | 88/12 |
+| WR2 | 0.030 | 0.0315 (0.63/20) | 95/5 |
+| RB1 | 0.033 | 0.029 (0.58/20) | 35/65 |
+| K | 0.036 | 0.0225 (0.45/20) | 100/0 (ST) |
+| TE1 | 0.040 | ~0.055-0.105 | Within 0.5 of WR1 |
+| TE2 | 0.007 | ~0.019-0.069 | Within 0.5 of WR3 |
+| QB | 0.127 | 0.127 | 100/0 → 90/10 |
+| WRs | 100/0 | ~95/5 | Add run % |
+
+**TE Constraints:** TE1 within 0.5 of WR1 (0.055); TE2 within 0.5 of WR3 (0.019)
+
+**Pass/Run Splits:**
+- QB: 100/0 → 90/10
+- WRs: 100/0 → ~95/5
+- RB1: 35/65 (keep)
+- RB2: 60/40 → 40/60
+
+**Remove from Guide:**
+- "x wins from a 70-90 upgrade" text (all instances)
+- "Wins, 70→90" column from table
+- Guide Box + intro text
+- "1 Play the season..." → rewrite as specified
+- "advanced stats (what caused sacks and big runs)" → "advanced stats"
+- Remove tier list "x wins from 70-90 upgrade" text
+- Remove "Wins, 70→90" column from table display
+
+---
+
+### P0-23: Positional Value Table — Arithmetic Fixes
+
+**All 20× multiplications must be exact:**
+
+| Row | Current Error | Fix |
+|-----|---------------|-----|
+| DT1/CB3 | .047 → 0.95 vs 0.94 | Both .047 × 20 = 0.94 |
+| MIKE/OG/C | .043 → 0.86 vs 0.85 | All .043 × 20 = 0.86 |
+| RB1 | .033 → 0.67 | .033 × 20 = 0.66 |
+| SAM | .004 → 0.07 | .004 × 20 = 0.08 |
+| FS/OG/C vs MIKE | .043 → 0.85 vs 0.86 | All 0.86 |
+
+**Specific Value Corrections (Consensus):**
+
+| Position | Current | Corrected | Reason |
+|----------|---------|-----------|--------|
+| DE1 | 1.30 | 1.44 | EDGE market > CB market |
+| DT1 | 0.95 | 1.12 | 3-tech pass-rush value |
+| CB2 | 1.18 | 0.98 | Below WR1/DE2/DT1 |
+| WR2 | 0.60 | 0.65 | > RB1 > K |
+| RB1 | 0.67 | 0.58 | Except elite dual-threats |
+| K | 0.72 | 0.45 | Kicker cap ~$7M |
+| SAM | 0.07 | 0.48 | Base-down starter ~60% of WILL |
+| TE2 | n/a | 0.18 (35/65) | Inline blocker + play-action |
+| RB2 | 0/100 | 40/60 | Passing-down back |
+| DT2 | 56/44 | 48/52 | Nose tackle = run stuffer |
+
+---
+
+### P0-24: Team Colors & Aesthetics (Figma)
+
+### **Team Color Theming:**
+- 32-team color map (primary/secondary/tertiary)
+- Draft board header: team primary color
+- Position cards: team primary/secondary left border
+- Player rows: subtle team color on hover
+- Badges/buttons: team accent colors
+- Scrollbars: team tertiary
+- Position cards: team primary left accent (KC=red/white+yellow, SEA=blue/green+white)
+
+### **CSS Variables:**
+```css
+:root {
+  --team-primary: #E31837;    /* Chiefs default */
+  --team-secondary: #FFB81C;
+  --team-tertiary: #FFFFFF;
+}
+
+.draft-header { background: linear-gradient(135deg, var(--team-primary), var(--team-secondary)); }
+.position-card { border-left: 4px solid var(--team-primary); }
+.draft-row:hover { border-left: 3px solid var(--team-secondary); }
+.badge { background: var(--team-primary); color: white; }
+.resetbtn.active { background: var(--team-primary); border-color: var(--team-primary); }
+```
+
+### **Team Color Map (32 teams):**
+[Full 32-team palette in V22-Suggestions.md Appendix]
+
+---
+
+## PRIORITY SUMMARY FOR CLAUDE
+
+### **P0 (Blocks Release):**
+1. 390px preseason CTA fix (`#startSeasonBtn` visible)
+2. Gate `E_viewportUsable` scope fix (`inViewport` + preseason probe)
+3. Gate exit code reliability (nonzero on FAIL/abort)
+4. Hard-rule violations: quarantine invented ratings files
+5. Result.json hand-edit fix (`result.v2.proposed.json`)
+6. All P0 UI changes above (Draftboard, Team Comparison, Guide, Game Preview/Review)
+
+### **P1 (Architect Decisions):**
+1. Default tab: Draft vs Season
+2. POSITION_TIER/TIER_BONUS: DELETE
+3. E2E driver: `tests/e2e-smoke.mjs` (GPT spec + MiniMax exec)
+4. 390px preseason CTA fix
+5. Gate `E_viewportUsable`: add `inViewport` + preseason probe
+
+### **Owner Decisions:**
+1. 47-message recovery
+2. Freeze shared docs + sync owner
+3. Quarantine rating files
+4. Promotion: wait for E2E PASS
+5. E2E locator fix (Week 1)
+6. Label collisions/content IDs
+7. E2E harness archive
+
+---
+
+### **VERIFICATION CHECKLIST**
+
+| Check | Command | Expected |
+|-------|---------|----------|
+| MiniMax smoke | `node _agents/minimax/tools/post-merge-smoke.mjs` | EXIT 0 |
+| OpenChamber E2E v2 | Playwright test | PASS (Week 1 + 390px CTA) |
+| Function diff | `node tests/funcdiff.js <ref> <cand>` | Changed set = accepted submissions |
+| 390px gate | `node tests/e2e-smoke.mjs` | EXIT 0, A-G true |
+| Schema validation | `npx jsonschema -i result.json schema.json` | PASS |
+| Console errors | Browser console | 0 errors |
+| 390px responsive | DevTools 390px | No horizontal scroll |
+
+---
+
+### **FILES TO MODIFY**
+
+| File | Purpose |
+|------|---------|
+| `merged.html` | All UI/Guide changes |
+| `tests/e2e-smoke.mjs` | Gate fixes (inViewport, preseason probe, exit codes) |
+| `_agents/minimax/tools/post-merge-smoke.mjs` | Shared gate sync |
+| `SIM-PLATFORM/tools/quarantine-sample-pool.mjs` | Run to quarantine ratings |
+| `SIM-PLATFORM/tools/build-pool-variant.mjs` | NBA pool variant |
+
+**Reference only (DO NOT MODIFY):**
+- `NFL Draft Simulator.html` (donor)
+- `NFL Draft Simulator v20 Claude.html` (V20 reference)
+
+---
+
+### **NEXT STEPS FOR CLAUDE**
+
+1. Apply Phase 1-3 changes to `merged.html`
+2. Fix gate in `tests/e2e-smoke.mjs` + `_agents/minimax/tools/post-merge-smoke.mjs`
+3. Run MiniMax smoke test → verify EXIT 0
+4. Run OpenChamber E2E v2 → fix Week 1 + 390px preseason CTA
+4. Fix gate scope: add `inViewport` to `E_viewportUsable`, probe at preseason
+5. Adopt `result.v2.proposed.json`
+4. Adopt 11/4/2 merge manifest
+5. Quarantine invented ratings files
+5. Run full verification suite
+
+---
+
+### **V21 → V22 Transition**
+
+After verification passes → promote build → **Football-Sim-V22.html**
+
+---
+
+**SPEAKER: UK | ROLE: Council Advisor | TASK: V22-Suggestions Complete | DATE: 2026-10-21T23:55:00Z**
+
+---
+
+# P10 — Aesthetics and beauty (additional suggestions, 21 Oct, from Owner feedback)
+
+### P10-1 · [NEW] Super Bowl champion celebration
+**What:** "The Chiefs are Super Bowl champions." is too boring. Any hype text especially for the Super Bowl should be more beautiful and at least use an exclamation point. The final banner when "Champions" is highlighted should have a gold theme and shimmer/sparkle for the user.
+**Where:** Super Bowl page, championship banner.
+**Impact:** Low. Text + CSS animation. High emotional impact.
+**Implementation:**
+- Text: "The Chiefs are Super Bowl Champions!" with exclamation point
+- Gold theme: `background: linear-gradient(135deg, #ffd700, #ff8c00, #ffd700); color: #000;`
+- Shimmer: CSS animation `@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }` with `background-size: 200% 100%`
+- Sparkle particles: CSS-only, 5-8 gold particles that animate outward and fade
+
+### P10-2 · [NEW] More motion and graphics throughout
+**What:** In general, more motion of graphics coming in and out of the screen, text coming in and out of the screen, and more ideas like confetti and banners to make a text-based game more exciting.
+**Where:** Game previews, game reviews, season review, playoff bracket, awards.
+**Impact:** Medium. CSS animations + small JS. High engagement impact.
+**Implementation:**
+- Page transitions: fade-in (200ms) when switching tabs
+- Game preview: slide-in from right (300ms ease-out)
+- Game review: slide-in from bottom (300ms ease-out)
+- Season review: cards animate in sequentially (staggered 100ms)
+- Playoff bracket: teams animate into position (200ms staggered)
+- Awards: gold shimmer on winner cards
+- Confetti: CSS-only, 10-15 particles, 1s duration, triggered on championship/Super Bowl
+- Banners: slide-in from top with bounce (300ms)
+
+### P10-3 · [NEW] Season review button placement
+**What:** The season review button after the playoff should be in blue near the top next to 100 season simulation.
+**Where:** Playoffs page, top action bar.
+**Impact:** Low. CSS + HTML repositioning.
+
+### P10-4 · [NEW] Season review more graphical
+**What:** The season review should be more graphical. Only a few sentences here and there.
+**Where:** Season review page.
+**Impact:** Medium. Major UI overhaul.
+
+### P10-5 · [NEW] 100 season review more graphical
+**What:** The 100 season review should also be a lot more graphical. Only a few sentences here and there.
+**Where:** 100 season review page.
+**Impact:** Medium. Major UI overhaul.
+
+### P10-6 · [NEW] "Seasons by Win total" left alignment fix
+**What:** The left alignment for the "Seasons by Win total" is poor and needs to be fixed. That whole chart could be made more beautiful.
+**Where:** 100 season review page, win total chart.
+**Impact:** Low. CSS fix.
+
+### P10-7 · [NEW] "Your players; average season" and "Award patterns" higher up
+**What:** "Your players; average season" and "Award patterns" should be higher up and automatically visible (not collapsed).
+**Where:** Season review page.
+**Impact:** Low. Layout change.
+
+### P10-8 · [NEW] Remove "Realism audit & league-wide records" and "Does the model predict real results?"
+**What:** Remove these from being visible to the user but store that information internally.
+**Where:** Season review page, realism audit section.
+**Impact:** Low. UI change (hide, don't delete).
+
+### P10-9 · [NEW] Game previews and reviews more graphical
+**What:** Ideally all game previews and game reviews are way more graphical. Full sentences should be used sparingly. Most of this data can be represented by graphics instead of sentences. The only thing that really needs sentences is narration of key plays in the clutch or extra compliments to user's star players and hyping up the next round.
+**Where:** Game preview and review pages.
+**Impact:** High. Major UI overhaul.
+
+### P10-10 · [NEW] Game review box score larger and more beautiful
+**What:** The box score of the quarters table can be made larger and more beautiful.
+**Where:** Game review, box score section.
+**Impact:** Medium. CSS/layout improvement.
+
+### P10-11 · [NEW] Game review text improvements
+**What:**
+- Remove "had" from second sentence in recap
+- Start with "1st Quarter" (use "1st" "2nd" "3rd" "4th" more often)
+- Fix extra point glitch (score was 0-0, replace with field goal)
+- Rushing TD format: "Rushing TD · D'Andre Swift (Chiefs 7-0)" instead of full sentence
+- Turnovers: "Turnovers: Chiefs 1 - 0 Vikings" then "Jaylon Johnson interception (4th Q)"
+- Offensive players need at least 60 yards to be mentioned; reserve for +90 rating performances (don't mention the actual 90 rating)
+- Replace "Stars of the game:" with an actual Star icon (glittering)
+- Game ball should always be in key players
+- Remove "worth about +2.3 points" phrasing
+- "a swing of roughly +1.3 points" → "but"
+- "The Chiefs move to 1-0; the Vikings slip to 0-1" → own paragraph
+- No sacks = poor, 1-2 sacks = mid, 3+ sacks = exceptional
+- Game plan descriptions: "Follows the usual NFL chart:" → "Balanced Approach:", replace "and goes for it on 4th down when it is short and the field position is good." with "and goes for it on 4th & short when in opponent's territory."
+- Aggressive description rewrite: "More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs." Then smaller text: "Almost always goes for 2-pt conversion unless you need an XP to win the game. Almost always goes for 4th down unless behind your own 30yd line or if you have a big lead in the 4th Quarter."
+- "How a 2-Pt Conv works" → "How a 2-Pt Conversion works"
+- All game plan descriptions need to be more beautiful
+- Replace m-dashes with periods in "Why these plans?" section
+- Defensive formation subtitles: "Nickel (dot) Pass Protection" or "Nickel (dot) Run Defense" or just "Nickel". Remove parentheticals like "(a nickel defense focused on the pass)."
+- Game plan UI: make smaller and more beautiful. Lineups directly below game plan. Next is Match up match, then opponent scouting report.
+- Remove "Early picks that are worth little to winning matter most, because those picks are the hardest to replace later." from Draft critique
+- "What separated the playoff teams" — hidden by default, only visible when clicked. Don't mention it ever. Playoff teams are almost always around #16 so descriptions repeat whatever the user's team is good at.
+- "x Sacked" instead of "Sacked x" for QB sacks
+- More advanced stats with click-to-explain (why you did well or poorly)
+- Rename "More Advanced Stats" to "Advanced Stats"
+- Condensed advanced stats: only visible when you click on Coverage Sacks or Offensive Lines Advanced Stats
+- Season review button after playoff in blue near top next to 100 season simulation
+- More graphical season review and 100 season review
+- If team has a bye, show game preview of most likely matchup
+- "Lineup and flexes" in playoffs shouldn't be at top
+- Playoff preview more beautiful and exciting
+- "The Chiefs are Super Bowl champions." → more beautiful, at least use an exclamation point
+- Game previews and reviews more graphical — full sentences used sparingly, most data as graphics, only sentences for clutch narration and star player compliments
+
+### P10-12 · [NEW] Regular Season Review banner
+**What:** The banner that appears after winning should be much larger, centered on screen, remain for at least 3 seconds, similar to Conference Champions graphic. Should land on screen and continue to shimmer/sparkle.
+**Where:** Regular season review, championship banner.
+**Impact:** Medium. CSS/JS animation.
+
+### P10-13 · [NEW] Conference charts
+**What:** "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" should be replaced by two Conference charts ranking teams 1-16 in their conferences, as beautiful as possible.
+**Where:** Regular season review, standings.
+**Impact:** Medium. New UI component.
+
+### P10-14 · [NEW] Playoff bracket
+**What:** Playoffs Picture should be an actual tournament-style March Madness type bracket showing byes and both conferences with Super Bowl contestants meeting in the middle.
+**Where:** Playoffs page.
+**Impact:** High. New UI component.
+
+### P10-15 · [NEW] Regular season awards
+**What:** Well formatted but could be more beautiful. Use gold for user's players on awards charts, including game ball winner.
+**Where:** Awards page.
+**Impact:** Medium. CSS/UI change.
+
+---
+
+## P11 — Council-only notes (not for Claude to implement; for the record)
+
+### P11-1 · The "Value Here" removal
+"Value Here" is gone from the board, the guide, and the sort label. The sort option is KEPT and relabelled "Sort: slot value". The underlying `r.v` is still computed for every row and still feeds Priority, the priority bar, the flex tag, the best-natural comparison, the sort key, the alternative-slot comparison.
+
+### P11-2 · The "also fits" line
+Format: "x also y (−z flex)" — no wins number, no "fits". Only −2 and −4 flexes shown; −6 and −8 from round 21.
+
+### P11-3 · The Star system is removed
+Stars set how much you care about a position (★★ must-fill, ★ normal, ☆ low). Removed because it was confusing. The priority bar remains.
+
+### P11-4 · The position cards follow the roster order
+The order of position cards should follow the order of the roster order. Mobile cards collapse to one row.
+
+### P11-5 · The team colors
+The draft board's colors reflect the user's selected team. For KC: red + white + yellow. For Seahawks: blue + green + white. The special teams color is the team's third color.
+
+### P11-6 · The weights
+The default weights are how the draft simulator sees the game. The Owner's specific changes: K 0.72→0.45, WR2 0.60→0.63, RB1 0.67→0.58, CB2 1.18→0.95, DE1 1.30→1.38, TE1 within 0.5 of WR1, TE2 within 0.5 of WR3, QB/WR pass/run percentages adjusted for run game. The "Save My Weights" button is transparent until a default weight is changed, then blue + "My Weights".
+
+### P11-7 · The glossary
+25+ football terms for casual fans. Cross-reference with game previews and reviews.
+
+### P11-8 · The advanced stats
+9 of 12 proposed stats are already computed but not displayed. Only 3 require new math. Recommend: do not build EPA (the model is structural, not play-level).
