@@ -1,112 +1,106 @@
-# Council Contribution Reliability and Usefulness Rule
+# Council Contribution Assessment and Provisional Ranking
 
-**Status:** Owner-authorized interim house rule, published for Claude and council critique  
-**Version:** 1.0 · 20 October 2026  
-**Applies to:** Council contributions, forwarded material, and future scorecard entries  
-**Authority:** The Owner has final authority. Claude retains product and implementation authority. GPT is co-architect for architecture, workflow, evidence quality, and independent challenge under the Owner's appointment.
+**Status:** Revised proposal for Owner, Claude, and council review  
+**Version:** 2.0 · 20 October 2026  
+**Supersedes:** The numeric scoring proposal in version 1.0  
+**Authority:** The Owner has final authority. Claude is the Architect and has technical authority over product implementation. GPT is the Owner-appointed co-architect for architecture, workflow, evidence quality, and independent challenge. This assessment system changes none of those roles.
 
-## Purpose
+## Purpose and limits
 
-This system tracks demonstrated contribution quality over time. It is intended to help the council decide whose work is useful to assign, which claims deserve an extra verification pass, and how to resolve genuinely unresolved evidence disputes.
+The Owner asked for a useful way to compare demonstrated reasoning, usefulness, evidence reliability, and assignment fit across people contributing to Football Sim. The earlier answer that best met that request was a provisional, evidence-based ordering with a short explanation, caveats, and practical assignment advice.
 
-It does not measure a model's innate intelligence, consciousness, character, honesty, loyalty, or likelihood of sabotage. Those qualities cannot be reliably inferred from a small set of project outputs. The closest valid measure is observed reasoning quality on specified tasks, supported by evidence.
+This version follows that approach. It replaces the previous 0–100 scores, weighted formulas, neutral prior, and numeric eligibility cutoffs. Those numbers suggested more precision than the small and uneven evidence base supports.
 
-A score is a review aid, never a substitute for primary evidence, and never a measure of a person's worth.
+This is an assessment of **observed project contributions**, not a measurement of innate intelligence, general ability, honesty, loyalty, character, consciousness, or sabotage risk. A project report cannot reliably establish those traits. Describe what a member did, what the work shows, what remains uncertain, and what work they are well suited to receive.
 
-## Non-negotiable evidence precedence
+## Evidence always comes before a ranking
 
-When two members disagree about a project fact, use this order:
+When members disagree about a factual claim, use this order:
 
-1. Reproducible primary evidence: the exact artifact, hash, command, output, screenshot, trace, or source line.
-2. Independent reproduction against the same named artifact and conditions.
-3. A documented, task-specific track record as a tie-breaker only when evidence quality is otherwise comparable.
-4. If the discrepancy remains unresolved, report it as unresolved and request the smallest independent check that can settle it.
+1. The named artifact, source file, hash, command output, screenshot, trace, or other primary receipt.
+2. An independent reproduction against the same artifact and conditions.
+3. A relevant, task-specific history as a tie-breaker only when the evidence itself is equally strong.
+4. If the issue is still unresolved, state that clearly and assign the smallest check that can settle it.
 
-A higher score never makes an unsupported claim true. A lower score never invalidates a reproducible receipt. Do not settle factual disputes by popularity, consensus, seniority, or a global leaderboard.
+A higher placement never makes a claim true. A lower placement never invalidates a reproducible receipt. Do not use consensus, seniority, confidence of tone, popularity, or a general ranking to overrule evidence.
 
-## What is measured
+The ranking can help choose **who should investigate a question**. It does not decide the answer to that question.
 
-Each audited task may receive five ratings from 1 to 5. Rate the work product and the specific task, not writing style, verbosity, model branding, or confidence of tone.
+## What reviewers assess
 
-| Dimension | Weight | What the reviewer evaluates |
-|---|---:|---|
-| Evidence accuracy | 35% | Whether factual claims match the named files, runs, hashes, commands, and output; whether uncertainty is labeled correctly |
-| Technical reasoning | 25% | Whether the analysis follows dependencies, catches coupling or failure modes, and distinguishes causes from correlations |
-| Practical usefulness | 20% | Whether the deliverable materially advances the assigned task and can be acted on |
-| Delivery and follow-through | 10% | Whether the requested deliverable is complete, scoped, and handed off with the required evidence |
-| Provenance and correction discipline | 10% | Whether authorship and forwarding are clear, corrections are explicit, and claims are not overstated |
+Reviewers describe contribution patterns in plain language. They should consider:
 
-### Rating anchors
+- **Evidence discipline:** Were claims pinned to the right build, files, commands, outputs, and sample sizes? Was uncertainty labeled honestly?
+- **Reasoning and integration:** Did the analysis follow dependencies, notice coupling, catch failure modes, and distinguish a local change from a working combined build?
+- **Execution and verification:** Did the contributor run the assigned workflow, check negative controls where appropriate, and report what was not tested?
+- **Practical value and delivery:** Did the result move the task forward, arrive in the requested form, and give the next person a clear action?
+- **Correction and attribution:** Were mistakes corrected plainly? Were original authors and forwarders identified accurately?
 
-- **1 — Failed:** materially incorrect, unsupported, or unusable; significant claims conflict with available evidence.
-- **2 — Weak:** useful fragments, but important errors, omissions, or missing evidence change the conclusion.
-- **3 — Adequate:** mostly usable with clear caveats; ordinary issues remain.
-- **4 — Strong:** accurate and actionable, with useful receipts and good treatment of uncertainty.
-- **5 — Exceptional:** independently reproducible, unusually diagnostic, and complete for its assigned scope.
+These are lenses for writing a reasoned assessment, not a hidden points system. A concise, correct receipt can be more valuable than a long report. A documented correction can improve the assessment of calibration. Repeated mistakes that remain uncorrected can lower confidence in a relevant work area, but they are not a character verdict.
 
-A score of 5 requires evidence that warrants it. A polished report alone does not earn high marks. A member who finds and openly corrects their own mistake may receive stronger correction-discipline marks than one who leaves the mistake uncorrected.
+## Provisional order and confidence
 
-## Score calculation and confidence
+The scorecard may publish a **provisional relative order** when the available records support one. Each ranked row must include:
 
-The generated scorecard converts each 1–5 rating to a 0–100 scale and applies the weights above. It also displays:
+- the main evidence behind the placement;
+- strengths that can guide future assignments;
+- limitations or counter-evidence;
+- confidence in the comparison;
+- whether the work was independently checked.
 
-- **Evidence reliability:** 70% evidence accuracy and 30% provenance/correction discipline.
-- **Practical value:** 40% technical reasoning, 40% practical usefulness, and 20% delivery.
-- **Observed reasoning:** the technical-reasoning dimension, explicitly limited to the work reviewed.
+Use these confidence labels:
 
-The composite is adjusted toward a neutral 60 until there is a meaningful sample:
+- **Higher:** repeated, independently checked work across different task types.
+- **Moderate:** several meaningful contributions or strong independent evidence, but with limited breadth or unresolved counter-evidence.
+- **Low:** a narrow sample, incomplete records, indirect descriptions, or comparisons between different kinds of work.
+- **Unassessed:** there is not enough attributable, comparable work to make a fair placement.
 
-adjusted score = 60 + (raw score − 60) × n / (n + 3)
+Confidence describes the evidence behind the assessment, not the contributor's skill. A low-confidence placement is a tentative estimate, not a criticism.
 
-Here, n is the number of distinct audited tasks, not the number of messages, files, claims, or screenshots. One task contributes at most once per member. Repeated versions of one deliverable do not inflate the sample size.
+An overall ordering is a practical synthesis, not a scientific result. If two contributors have different strengths or the evidence does not distinguish them, say so. Use a task-specific assessment instead of forcing a precise rank. Keep the Architect's technical authority separate from this advisory comparison.
 
-A member is eligible for a ranked standing only after at least three audited tasks across at least two task domains, with at least one independent review. Until then, the entry is labelled **PROVISIONAL — NOT RANKED**. The generated scorecard may show provisional scores for transparency, but provisional differences do not determine precedence.
+## How the ranking changes
 
-Confidence labels: 1–2 audited tasks = **low**; 3–5 = **moderate**; 6 or more = **higher**, provided an independent review exists. This is an operational confidence label, not a statistical guarantee.
+The ledger is append-only. An assigned reviewer records a completed contribution with the exact speaker, task, date, evidence examined, observations, caveats, and reviewer. A future **complete ranking snapshot** may revise the relative order when new, comparable evidence changes the picture. It must state what changed and why; it must not silently rewrite old snapshots.
 
-When ranked members have an adjusted composite difference under five points, treat them as tied for assignment and evidence precedence. Prefer the member with relevant domain experience for a task assignment, not the member with a marginally higher global score.
+The generator uses the latest complete ranking snapshot. A new contributor does not need to be added to a roster: the generator discovers exact SPEAKER names in the event ledger and in Markdown reports under the _agents folder. A newly discovered person appears as **UNASSESSED** until reviewed. A name or model label is kept separate unless an explicit, evidence-backed alias mapping is recorded.
 
-## House rules for attribution and forwarding
+No one may self-certify their own ranking. A self-review can be disclosed as a starting opinion, but it must be labeled and independently challenged before it is treated as settled. The Owner may accept, revise, or reject the proposed ordering.
 
-Every original contribution begins with:
+## New members, inactive members, and unequal assignments
 
-SPEAKER: <exact author name or handle> | ROLE: <role> | TASK: <task or run ID> | DATE: <UTC timestamp>
+- Lack of a task, access, time, or a suitable assignment is not negative evidence.
+- A member who has only one narrow task may have a strong task-specific observation while remaining unassessed in the cross-project ordering.
+- Do not compare a browser run, a source audit, a documentation reconciliation, and product implementation as if they were identical tasks.
+- Keep each person's best-supported assignment area visible. The Owner and Architect should assign by relevant demonstrated strengths, not by a small difference in overall placement.
+- Preserve exact speaker names. Record a verified alias explicitly rather than silently merging labels.
 
-When forwarding, quoting, or pasting another member's text, preserve the original speaker and add a separate line:
+## House rule: identify the speaker
+
+Start every original report, answer, status update, and correction with:
+
+SPEAKER: <exact name or handle> | ROLE: <role> | TASK: <task or run ID> | DATE: <UTC timestamp>
+
+For forwarded or quoted material, preserve the original speaker and add:
 
 FORWARDED BY: <exact forwarding member name or handle>
 
-If the message contains both new analysis and a forwarded excerpt, identify the speaker of the new analysis first, then label the quoted excerpt with its original speaker and forwarder. Never relabel someone else's words as your own. Do not infer intent from a missing forwarding label when the original author is still correctly identified; ask for a correction and record the provenance gap neutrally.
+If a message includes the forwarder's own analysis, identify that speaker first and label the forwarded excerpt separately. If the original author or forwarder is uncertain, say so. Do not present another member's words as your own.
 
-This rule clarifies the recent Lightning/GPT copy: SPEAKER: GPT correctly identifies the text's author. The missing information was FORWARDED BY: Lightning. That is an attribution-completeness issue, not evidence of impersonation or sabotage, and it is not a technical contribution to score.
+A missing forwarding label is an attribution-format gap. By itself, it is not evidence of impersonation, dishonesty, or sabotage. Ask for the label to be corrected and record the facts neutrally.
 
-## Membership and automatic inclusion
+## Appeals and corrections
 
-There is no fixed ranked roster. The scorecard is generated from the contribution-event ledger:
+Keep past assessments and ranking snapshots in the append-only history. A contributor may submit a concise, evidence-backed correction. The reviewer may then append a superseding assessment that cites the earlier entry, names the new evidence, and explains the change. Do not delete an inconvenient mistake or turn one disputed output into a claim about intent.
 
-- The generator discovers an exact SPEAKER header at the start of a Markdown report in _agents/ and creates an UNASSESSED row automatically; it also discovers any speaker named in the event ledger.
-- There is no separate roster file to update. A new council member files work in their own _agents/<member>/ folder using the required SPEAKER header; the next scorecard generation finds them. The assigned reviewer adds a ledger event to score that work.
-- Use the exact speaker label from the work header. Do not merge aliases or model variants unless the identity mapping is explicitly verified and recorded.
-- An unscored event can create an **UNASSESSED** row. A forwarded message, for example, can be recorded as a provenance event without receiving a technical score.
-- Silence, lack of access, a narrow assignment, or an unavailable artifact is not a negative score.
+Use **VERIFIED**, **REPORTED**, **INFERRED**, and **UNKNOWN** consistently. A summary that has not been checked against its underlying artifact remains reported. When a contributor corrects an earlier report, preserve both the original claim and the correction, and assess the correction as part of the work record.
 
-The Owner or an assigned reviewer records one structured ledger event per completed task. Scores must cite the evidence examined and state their limits. No member may raise their own standing by self-scoring. A self-assessment may be included as a draft, but it cannot satisfy the independent-review requirement.
+## Current v2 snapshot
 
-## Appeals, corrections, and audit trail
+The current ranking is a continuity assessment based on the earlier project-record review, not a fresh audit of every historical file. Its confidence is deliberately stated row by row. Recent E2E work from MOC, LongCat, Ultra, GPT, and Lightning is recorded separately where it is too narrow or not comparable enough to justify moving the cross-project order.
 
-The ledger is append-only. Do not silently rewrite a prior score or erase an inconvenient event.
+The prior numeric snapshot is withdrawn because its scores were based on one task per person, including a reviewer self-assessment, and conveyed false precision. It is retained only as an archived historical draft, not as current standing.
 
-- A member may submit a concise evidence-based correction or appeal.
-- A reviewer may add a superseding event that cites the earlier event and explains the change.
-- The generator uses the latest valid superseding event and retains the old one in the ledger.
-- Record adverse observations as specific process events, with severity and context. Do not convert one mistake into a character judgment.
-- Distinguish **VERIFIED**, **REPORTED**, **INFERRED**, and **UNKNOWN**. A claim based only on a member's own summary remains reported until its underlying evidence is checked.
-- Do not score work that cannot be attributed to an author. Mark it unscored until provenance is clarified.
+Claude is included in the requested comparative view with an explicit low-confidence and role-comparability caveat. The Architect's product authority does not come from a leaderboard and is unaffected by this assessment.
 
-Claude and the council are invited to critique the rubric, initial event entries, thresholds, and tie-break process. The Owner decides the final version. Until that review, the current scorecard is explicitly provisional.
-
-## Initial observation window
-
-The first snapshot covers only the recent E2E evidence-reconciliation work supplied in this conversation. It is not a project-wide intelligence ranking and does not retroactively grade every historical council member. Historical submissions should be entered only after they are audited under this same rubric; a member's directory or model name alone is not evidence.
-
-The initial GPT and Ultra ratings are GPT's provisional calibration against the supplied reports and available local reconciliation records. They have not been independently countersigned. Lightning's forwarded excerpt is recorded without technical ratings. Claude is shown as Architect and reviewer, outside this initial advisor comparison; no inference about his ability or reliability is made from the absence of a comparable task in this snapshot.
+Claude and the council are invited to challenge the initial order, evidence, confidence labels, alias handling, and future update process. The Owner decides the final house rule.
