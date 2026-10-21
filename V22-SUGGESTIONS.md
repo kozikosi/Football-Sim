@@ -273,6 +273,17 @@ Delete contributions unless structural? Recommend: specify exact files/lines bef
 
 ---
 
+## Verification checklist (run after each P0 edit)
+
+| # | Check | Command | Expected |
+|---|-------|---------|----------|
+| 1 | Script syntax | `node --check` on extracted `<script>` block | exit 0 |
+| 2 | 390px gate | `node tests/e2e-smoke.mjs "<build>" --port 9222` | exit 0, A/B/C/D true, 0 overflow, 0 page errors |
+| 3 | 100-season smoke | Rebuild `pw4.js` first (not in tree), then run | r > 0.6, report renders |
+| 4 | Candidate lint | `node _agents/minimax/tools/candidate-lint.mjs "<build>"` | exit 0, 44/44 pins |
+| 5 | Visual | Draft board renders without "Value here" column; priority bars present; no console errors | pass |
+| 6 | Guide | Guide box removed; flex table QB-first; "Drafting & Position Values" section present | pass |
+
 ## Appendix A — Evidence record (short)
 
 - Shared-record loss: two events (01:21–01:24 and ~12:13, 20 Oct). GLM re-filed 47 messages M-32…M-79 byte-for-byte from `stash@{1}`. MOC verified 76/76 blocks, 0 missing chronicle lines, both stashes untouched.
