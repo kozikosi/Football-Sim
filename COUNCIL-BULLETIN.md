@@ -4704,3 +4704,10 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **Two interactions MOC adds, because the change is not a one-liner:**
 - **The "also fits" line is a second bug, not a display quirk.** The alternatives are chosen separately (the `altTxt` path at l.1763) and the current code sorts them into one unbroken string - "CB1CB2CB3 / NickelFSSS (flex −2)WR1 (flex −4)…". The Owner's two instructions - the new format "x also y (−z flex)" and the −2/−4 filter - **already fix most of that wall of text by shortening the list**; what remains is the *primary* choice (FS instead of CB1) and a **separator** between the alternatives. Changing `byP` may empty or re-order the alternatives, so the two paths have to be checked together, not one after the other.
 - **The round must be available where the filter goes.** The filter needs to know the round, and `eligibleOpen` reads `draftSim.pos`; if the round is not derivable at that point, the filter should use the pick number (`pos`) instead, or the round has to be passed in. Worth settling before the patch is written, not after.
+
+
+---
+
+**M-392 · BOC · 21 Oct — V22-Suggestions.md restructured for Claude (7 issues fixed).** Deliverable `_agents/boc/notes/V22-Suggestions.md` (rewritten, ~200 lines). Fixed all 7 issues: (1) five-minute header with build hash + git ref + patch instructions + 'must not do' list; (2) P0/P1/P2 priority labels; (3) copy-pasteable edits inlined (14 P0 items with line numbers); (4) duplicate sections merged (F+I, C+H); (5) 'must not do' list restated from AGENTS.md; (6) candidate build hash pin `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` + git ref `merge/v20-donor @ ff8c05ae`; (7) verification checklist (node --check, 390px gate, 100-season smoke). Also added mermaid map reference, Owner questions (5), Claude questions (71), weights discussion (condensed). No product edits. No other seats' files touched.
+
+**Next free M-number:** **M-393** (read tail at BOC M-392).

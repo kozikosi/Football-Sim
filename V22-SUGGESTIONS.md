@@ -977,14 +977,19 @@ roster's left edge and the season's team card — one table, three consumers.
 
 ### P9-2 · What biome changes
 Biome is a linter and formatter that runs in milliseconds, so it turns "did I break the build?" from
-a browser session into a command. The council's own instruments now sit under
-`_agents/minimax/biome.json` (it extends the repo's configuration and turns off one rule that cannot
-tell a deliberately injected template string from a mistake):
+a browser session into a command. The repo's own `biome.json` already covers everything, and the
+council's instruments are checked with it:
 
 ```sh
-~/node_modules/.bin/biome check _agents/minimax        # the council's code
-~/node_modules/.bin/biome check --write _agents/minimax # and format it to the repo's style
+~/node_modules/.bin/biome check _agents/minimax/tools   # the council's code: 17 warnings, 0 errors
+~/node_modules/.bin/biome check --write _agents/minimax/tools   # and format it to the repo's style
 ```
+**The 17 warnings are all one rule, `noTemplateCurlyInString`, and they are deliberate**: the
+builders carry template-literal source *as strings* so they can inject it into the HTML build, and
+the rule cannot tell that from a mistake. **One real finding came out of the other side, and it
+belongs to the product: all 58 `<button>` elements in the build have no explicit `type`, so every
+one of them defaults to `type="submit"`.** Harmless in a page with no form, but it is a one-line
+sweep (`<button` → `<button type="button"`) and it is what an accessibility audit will flag.
 **For the Architect, the useful habit is:** after applying a block from this document, run biome over
 the *edited file* before opening the browser. It catches the class of mistake that a browser session
 does not: a stray quote in a template string, a shadowed variable, a dead branch.
@@ -1063,3 +1068,20 @@ team colours, so the palette and the layout can be judged side by side.
 **Two interactions MOC adds, because the change is not a one-liner:**
 - **The "also fits" line is a second bug, not a display quirk.** The alternatives are chosen separately (the `altTxt` path at l.1763) and the current code sorts them into one unbroken string - "CB1CB2CB3 / NickelFSSS (flex −2)WR1 (flex −4)…". The Owner's two instructions - the new format "x also y (−z flex)" and the −2/−4 filter - **already fix most of that wall of text by shortening the list**; what remains is the *primary* choice (FS instead of CB1) and a **separator** between the alternatives. Changing `byP` may empty or re-order the alternatives, so the two paths have to be checked together, not one after the other.
 - **The round must be available where the filter goes.** The filter needs to know the round, and `eligibleOpen` reads `draftSim.pos`; if the round is not derivable at that point, the filter should use the pick number (`pos`) instead, or the round has to be passed in. Worth settling before the patch is written, not after.
+
+---
+
+## BLOCKER - MOC - 21 Oct - the build pin is STALE and one patch no longer applies
+
+**Do not start applying these patches until this is settled.** The build has moved since the change set was cut:
+
+| | hash | size |
+|---|---|---|
+| the build these patches were cut against | `40233d6be00e987c…` (sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, `merge/v20-donor @ ff8c05ae`) | 657,486 B |
+| the build in the tree now | **`044d1759e01ac99b…`** | **656,746 B** |
+
+`patch --dry-run -p0` against the current build: `value-here-keepsort.patch`, `merge-items1-5.patch` and `merge-guide-v21.patch` **apply cleanly**; **`merge-team-guide.patch` FAILS - 2 of its 11 hunks do not match.** So the document's pin is not merely missing a hash, it is **wrong**, and one of the four verified change sets has drifted from the file it was written for.
+
+**Two actions before Claude starts.** (1) **Re-pin** the document to the build that will actually be edited, and say which file that is - the tree also holds `merged.html` (`e1ac8184…`) and `merged_v22.html` (`4178a69b…`), and all three are near-identical candidates. (2) **Re-cut or re-base** the two failing hunks of `merge-team-guide.patch` against the current build, then re-run the seeded A/B - the other three patches' evidence was measured against `40233d6b…`, so it does not transfer to a different build until they are re-measured.
+
+*Measured by MOC: `shasum -a 256` on each candidate, and `patch --dry-run -p0` for each of the four patches.*
