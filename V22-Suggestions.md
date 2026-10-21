@@ -8,6 +8,9 @@
 
 ## Five-minute header (read this first)
 
+> **Before anything else:** the ⚑ **Claude's execution brief** at the very end of this file gives the dependency
+> order, the decisions that are not yours, and the definition of done.
+
 **What this document is:** The council's consolidated V22 change set for Claude (Architect). Proposals only; Claude decides what enters the build. Every change is a copy-pasteable old→new edit with line numbers. Apply in P0→P1→P2 order.
 
 **What the build is:** `NFL Draft Simulator merged.html` (V21 candidate), 656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`, @ `merge/v20-donor` (current HEAD). Call it V21, not V22. Re-pinned by BOC on 21 Oct after MOC's blocker. Re-cut hunks: `_agents/boc/notes/merge-team-guide-recut.md`. The original pin (`40233d6b…`, 656,746 B) no longer matches any file in the working tree. Deliverable: `Football-Sim-V22.html`.
@@ -2020,3 +2023,98 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 
 1. **The build pin.** The document pins `044d1759…` (656,746 B) — the **working-tree** file. **No commit carries that hash**: every branch tip holds `40233d6b…` (657,486 B, `ff8c05ae`, 2026-10-20). Until the Owner rules on the canonical build, the patches and the pin describe a file nobody can fetch. **This is the Owner's decision, and it is the first one.**
 2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for LB3/SAM interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
+
+---
+
+> # ⚑ Claude's execution brief — read this before the rest
+>
+> **This file is three documents in one coat.** The council wrote it in parallel and it now carries
+> **three numbering systems that collide**: MOC's **P0** (draft-board fixes, 19 items) and **P1**
+> (Architect decisions, 40 items) with **P2** (Owner decisions); Beam's **P7** (aesthetics), **P8**
+> (council notes) and **P9** (mermaid diagrams); and MiniMax's **P10** (the 21 Oct 23:00 round) and
+> **P11** (the 23:30 round). At the very end there is MOC's **decomposed second-round brief**, which
+> reuses the labels P0/P1/P2 for a *different* taxonomy.
+>
+> **So: when you refer to an item, name the section and the title, never the number alone.**
+> "P0-17" could be the flex rules, the Team Comparison page, or the mechanics block. "the flex rules
+> (MOC's P0-17 and MiniMax's P10-1)" cannot be misread.
+>
+> ## The order to work in
+>
+> The file is ordered by the Owner's priority, not by dependency. **This is the dependency order** —
+> it is the one that leaves you with a working build at every step.
+>
+> | # | Do this | Where | Why now |
+> |---|---|---|---|
+> | 1 | Take the **four prepared diffs** (the "Value here" column and its CSS reflow, the weights panel, the Team Comparison page, the Guide) | P0-1…P0-11, and the built artifact `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` (`e5fa7e0e…`) | they are done and verified; take them as a diff and you are already halfway |
+> | 2 | Apply the **team colours** (they touch the header, the board and the cards) | P7-1 and P8-5, the built artifact `V22-candidate-teamcolours.html` (`b3de0523…`) | a visual change touches the same lines as the board diff — do it **after** step 1, not before |
+> | 3 | Fix the **board's display slot** (the Cooper DeJean case) and the "also fits" format | F (BOC's diagnosis) and P8-2 | it changes what every row shows; doing it before the copy work avoids doing the copy twice |
+> | 4 | Remove the **stars** and their paragraph, rename "One table", shorten "Undo" | P0-12 and P8-3 | small, self-contained, and they make the board legible for everything after |
+> | 5 | Do the **copy passes** (preseason, preview, review, season review) | P0-18, P0-19, P1, P2 (the decomposed brief) and P10-4…P10-7 | prose is the cheapest thing to change and the most visible; do it in one sitting |
+> | 6 | Do the **graphics and motion** (gold banner, the charts, the bar chart for "Seasons by Win total") | P7-8…P7-13, P9, P11 | these need the copy settled first, or the design gets redone |
+> | 7 | Apply the **mechanics** (the flex rules, the 3-4 base, the unlocked coaching) | P0-15…P0-17 and P10-1…P10-3 | the largest behavioural change; it must be tested on its own |
+> | 8 | Apply the **weights** (the five deltas, the constant, the user-weights removal) | P0-6, P0-7, Appendix D, P8-6 | protected constants; do them last, with the 100-season regression |
+> | 9 | Do the **storage and the platform** (localStorage, the 32-team palette check, the mobile cards) | H, P7-6, P0-8, P0-9 | independent of everything above |
+> | 10 | Close the **verification** pass: the gate, the 390 px probe, the season and the playoffs | the "Verification checklist" section | the file's own checklist is the acceptance bar |
+>
+> **After every step:** `node _agents/minimax/tools/post-merge-smoke.mjs "<your build>" --port 9222`
+> (exit 0, A–I PASS, 0 page errors) and `node _agents/minimax/tools/board-mobile-probe.mjs "<your build>"`
+> (0 overlapping cells, 0 clipped, 0 px horizontal overflow). The receipt goes in your report.
+>
+> ## If you are short on time: these five
+> 1. the four prepared diffs (step 1) — half the Owner's list, already built and verified;
+> 2. the flex rules (step 7, first half) — the Owner's most concrete instruction;
+> 3. the copy passes (step 5) — the most words, the least risk;
+> 4. the "Seasons by Win total" bar chart and the gold banner (step 6) — the two ugliest things named;
+> 5. the coaching-philosophy unlock (step 7, second half) — one line of code, and the Owner asked for it twice.
+>
+> ## The decisions that are not yours, and what to do while they are open
+>
+> The Owner's answers are in P2 (MOC's consolidated list) and Appendix B. **Do not block on them:**
+> every one of them has a stated default, and the work either side of the decision can proceed.
+>
+> | Decision | Discussed in | The council's default while it is open |
+> |---|---|---|
+> | the board's display slot (value or priority) | F, P8-2 | show the best-**value** slot; that is what the Owner's own question expects |
+> | may the "also fits" line show a flex | P8-2 | natural alternatives only; flexes live in the change menu |
+> | the stars (and `PRIO_MULT`) | P0-12, P8-3 | remove both; Priority becomes a pure scarcity number |
+> | "Save My Weights" versus "forget the user weights" | P0-5, P0-7 | keep the button as the "you have edited the defaults" signal; drop the saved set |
+> | the default-weights constant versus the derived table | P0-6, Appendix D, P8-6 | keep the constant as the fallback only; the derived table is the truth |
+> | the five deltas (protected) | Appendix D, P8-6, P10 | apply them as a calibration layer; they move the draft and the defaults, **not** the games |
+> | the QB / receiver run-game change (protected) | P10-2, P10-9 | **do not** apply it in V22; it moves the games and wants a 100-season run first |
+> | the 3-4 base on the draft and preseason pages | P0-16, P10-2 | ship the label and value mapping; the slot keys do not change |
+> | the guide's shared markup (home page vs guide page) | P0-11, P10 | one parameter per block; the Owner has not said which side keeps the box |
+> | the team palette's third colour and its contrast | P8-5, P11 | per-team check; a neutral beats a muddy accent |
+>
+> ## Where two seats proposed the same thing
+>
+> These are **not** conflicts to arbitrate — they are the same change written twice, and they differ in
+> form, not in intent. Take one, and note which:
+>
+> | The change | Written by MOC as | Written by Beam as | Written by MiniMax as | Take |
+> |---|---|---|---|---|
+> | the flex rules | P0-17 (diff form) | — | P10-1 (the tables) | **both**: MOC's diff if it applies, MiniMax's tables for the code |
+> | the 3-4 base | P0-16 | — | P10-2 (the mapping) | MiniMax's mapping; MOC's item is the same rule in prose |
+> | the coaching unlock | P0-15 | — | P10-3 | either; the anchor is `seasonState.scriptLocked` |
+> | the "wins here" wording | P0-18 | — | P10-6 | **MiniMax's anchor is the exact one** (the Pick priority panel, candidate line 1697) |
+> | the team colours | — | P7-1 | P8-5 and the built artifact | **the built artifact** (`b3de0523…`); P7-1 is the wish list |
+> | the gold banner and the motion | — | P7-8, P7-9 | P11-2, P11-3 | MiniMax's, because it reuses the build's own keyframes and adds the rules of taste |
+> | "Seasons by Win total" | — | P7-11 | P11-5 | either; it is one chart |
+> | the realism audit and the real-results check | — | P7-13 | P11-7 | either; the rule is "stop rendering, keep computing" |
+> | the stars and the chip paragraph | P0-12 | — | P8-3 | either |
+> | the "Value here" removal | P0-1 | — | P8-1 | the built artifact; MOC's item is the diff |
+>
+> ## The definition of done for V22
+>
+> 1. `node --check` clean on the extracted script, and `post-merge-smoke.mjs` **exit 0, A–I PASS, 0 page errors**.
+> 2. The 390 px probe: **0 overlapping cells, 0 clipped cells, 0 px horizontal overflow** on the board, the guide and the weights panel.
+> 3. A full season to the Super Bowl, and the 100-season simulation, both without a console error.
+> 4. Every copy change in the list applied **verbatim** — it is written as before → after on purpose.
+> 5. The protected-constant changes (the flex tables, the weights) each carry their own receipt: the flex change needs the guide's chart re-rendered, the weights need a 100-season run.
+> 6. A five-line report: the hash · what was driven end to end · the numbers re-measured with the command and the sample size · the console and 390 px result · what you deliberately did not check.
+>
+> ## One correction the file still owes
+> MiniMax's P0-13 originally said the line "Denzel Ward (93 OVR) · +1.65 wins here …" did not exist in
+> V21. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
+> V21, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
+> the correct one. If you find an older copy of that item, use this one.
