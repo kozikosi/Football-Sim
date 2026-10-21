@@ -1,0 +1,52 @@
+{
+  "build": "h50f4ffc_2",
+  "build_number": 2,
+  "constrains": [
+    "re2 2025-11-05 *_2"
+  ],
+  "depends": [
+    "__osx >=12.1",
+    "libabseil * cxx17*",
+    "libabseil >=20260526.0,<20260527.0a0",
+    "libcxx >=20"
+  ],
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "53fc25cff4504053ebb34895a6ac69ec",
+  "name": "libre2-11",
+  "sha256": "95380c70e1fd929a728876b70e578bbb6590c051d6cd9b3e2697c90e55259482",
+  "size": 164145,
+  "subdir": "osx-arm64",
+  "timestamp": 1784746923961,
+  "version": "2025.11.05",
+  "fn": "libre2-11-2025.11.05-h50f4ffc_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libre2-11-2025.11.05-h50f4ffc_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libre2-11-2025.11.05-h50f4ffc_2",
+  "requested_specs": [],
+  "files": [
+    "lib/libre2.11.0.0.dylib",
+    "lib/libre2.11.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libre2.11.0.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "e1db4ea53dc430bfeb958c2344a4786b3e680950e3c6294de876271fec41828a",
+        "size_in_bytes": 497856
+      },
+      {
+        "_path": "lib/libre2.11.dylib",
+        "path_type": "hardlink",
+        "sha256": "e1db4ea53dc430bfeb958c2344a4786b3e680950e3c6294de876271fec41828a",
+        "size_in_bytes": 497856
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libre2-11-2025.11.05-h50f4ffc_2",
+    "type": 1
+  }
+}

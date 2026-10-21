@@ -1,0 +1,20 @@
+GROUP-LEVEL fillability (positions that share slots; each slot x 32 teams)
+group            positions               supply  demand   net  cover
+QB               ['QB']                      40      32    +8  none — FLEX.QB is {}
+Backfield        ['HB', 'FB']                97      96    +1  HB->TE 6 only; FB new slot
+Receivers        ['WR']                     151      96   +55  WR->TE 4, WR->RB 6
+Tight ends       ['TE']                      53      64   -11  WR->TE 4 (cheapest)
+Offensive line   ['LT', 'RT', 'LG', 'RG']     159     128   +31  tackle<->guard 0
+Catcher          ['C']                       31      32    -1  LT/RT/LG/RG -> C 0
+Defensive line   ['REDG', 'LEDG', 'DT']     254     128  +126  DT->DE 4, DE->DT 2
+Linebackers      ['MIKE', 'WILL', 'SAM']      91      96    -5  LEDG->WILL/SAM 2, ->MIKE 4
+Cornerbacks      ['CB']                     141      96   +45  CB->SS 2, CB->FS 0
+Safeties         ['SS', 'FS']               107      64   +43  CB->FS 0, CB->SS 2
+                                                               cheapest fill of SS: [(2, 'FS')]
+Kicker           ['K']                       32      32    +0  NONE — FLEX.K = {}
+Punter (new)     ['P']                       32      32    +0  K->P 0 under the Owner's rule
+
+CORRECTION (LongCat, verified by me):
+  LB group = MIKE 43 + WILL 43 + SAM 5 = 91 for 96 slots -> -5  (I wrote 86 -> -10; correct 91 -> -5)
+  chain: 5 natural SAM + 27 MIKE/WILL into SAM = 32 SAM slots; MIKE/WILL left 59 for 64 -> -5
+  C (LongCat's extra): 31 for 32 -> -1, covered at 0 cost by LT/RT/LG/RG

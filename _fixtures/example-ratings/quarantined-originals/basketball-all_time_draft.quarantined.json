@@ -1,0 +1,49 @@
+{
+  "players": [
+    {
+      "playerId": "p001",
+      "name": "Stephen Curry",
+      "position": "SG",
+      "team": "GSW",
+      "era": "2016-2025",
+      "peakRating": 95.4,
+      "careerAverage": 87.9
+    },
+    {
+      "playerId": "p002",
+      "name": "LeBron James",
+      "position": "SF",
+      "team": "LAC",
+      "era": "2003-2025",
+      "peakRating": 94.1,
+      "careerAverage": 88.7
+    },
+    {
+      "playerId": "p003",
+      "name": "Kevin Durant",
+      "position": "PF",
+      "team": "OKC",
+      "era": "2008-2025",
+      "peakRating": 93.2,
+      "careerAverage": 86.5
+    },
+    {
+      "playerId": "p004",
+      "name": "Nikola Jokic",
+      "position": "C",
+      "team": "DEN",
+      "era": "2015-2025",
+      "peakRating": 92.8,
+      "careerAverage": 85.3
+    },
+    {
+      "playerId": "p005",
+      "name": "Giannis Antetokounmpo",
+      "position": "F",
+      "team": "MIL",
+      "era": "2013-2025",
+      "peakRating": 91.5,
+      "careerAverage": 84.0
+    }
+  ]
+}

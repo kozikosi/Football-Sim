@@ -1,0 +1,119 @@
+{
+  "build": "hc0f95ea_1",
+  "build_number": 1,
+  "depends": [
+    "__osx >=12.1",
+    "libcxx >=20"
+  ],
+  "license": "BSD-3-Clause AND CC-BY-3.0 AND MIT AND CC-BY AND Public Domain",
+  "license_family": "BSD",
+  "md5": "9efd3140e9800a7b1cdba4c082441511",
+  "name": "snappy",
+  "sha256": "82aed071c07ffa85615200e20d28d271deadf07002911c74d747d6137fb3c117",
+  "size": 39036,
+  "subdir": "osx-arm64",
+  "timestamp": 1767632418824,
+  "version": "1.2.2",
+  "fn": "snappy-1.2.2-hc0f95ea_1.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/snappy-1.2.2-hc0f95ea_1.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/snappy-1.2.2-hc0f95ea_1",
+  "requested_specs": [],
+  "files": [
+    "lib/libsnappy.1.2.2.dylib",
+    "lib/libsnappy.1.dylib",
+    "lib/libsnappy.a",
+    "lib/libsnappy.dylib",
+    "include/snappy-c.h",
+    "include/snappy-sinksource.h",
+    "include/snappy-stubs-public.h",
+    "include/snappy.h",
+    "lib/cmake/Snappy/SnappyConfig.cmake",
+    "lib/cmake/Snappy/SnappyConfigVersion.cmake",
+    "lib/cmake/Snappy/SnappyTargets-noconfig.cmake",
+    "lib/cmake/Snappy/SnappyTargets.cmake"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libsnappy.1.2.2.dylib",
+        "path_type": "hardlink",
+        "sha256": "09b28a6e4e9d1aff7fe8c5a72f9975afe340eddf5df9cc4beda5e65cb574c384",
+        "size_in_bytes": 78832
+      },
+      {
+        "_path": "lib/libsnappy.1.dylib",
+        "path_type": "softlink",
+        "sha256": "09b28a6e4e9d1aff7fe8c5a72f9975afe340eddf5df9cc4beda5e65cb574c384",
+        "sha256_in_prefix": "b75b5c582af06bd3d0b41f90e9123a6f5cdb967b441113af36f7ead1d22c43f6",
+        "size_in_bytes": 78832
+      },
+      {
+        "_path": "lib/libsnappy.a",
+        "path_type": "hardlink",
+        "sha256": "981a6cb93e97acecf05daff2744873d37196b5f847d7b24060bc8ee2915935f5",
+        "size_in_bytes": 42336
+      },
+      {
+        "_path": "lib/libsnappy.dylib",
+        "path_type": "softlink",
+        "sha256": "09b28a6e4e9d1aff7fe8c5a72f9975afe340eddf5df9cc4beda5e65cb574c384",
+        "sha256_in_prefix": "b75b5c582af06bd3d0b41f90e9123a6f5cdb967b441113af36f7ead1d22c43f6",
+        "size_in_bytes": 78832
+      },
+      {
+        "_path": "include/snappy-c.h",
+        "path_type": "hardlink",
+        "sha256": "205e85257ab386f547b024bfec7ab57fcdac95c34874c787c72b50a3d95debf4",
+        "size_in_bytes": 5414
+      },
+      {
+        "_path": "include/snappy-sinksource.h",
+        "path_type": "hardlink",
+        "sha256": "ba6308f8d64d670fbb068284096e2f4685e3919ed213a6de1a185aa3680203bb",
+        "size_in_bytes": 7265
+      },
+      {
+        "_path": "include/snappy-stubs-public.h",
+        "path_type": "hardlink",
+        "sha256": "e457170bee6cb777ca3d9c80baabb467ca0b2c85e6439b4baa79a7c85f50a18a",
+        "size_in_bytes": 2579
+      },
+      {
+        "_path": "include/snappy.h",
+        "path_type": "hardlink",
+        "sha256": "b4c51fd24a03d09dc17a6ba517a243a06a83c71ce7841955972a83576318b315",
+        "size_in_bytes": 12567
+      },
+      {
+        "_path": "lib/cmake/Snappy/SnappyConfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "c73d514a6f54da127837673c546cf19de0562dab3d146ac8e3836d8b663f9a92",
+        "size_in_bytes": 2498
+      },
+      {
+        "_path": "lib/cmake/Snappy/SnappyConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "5c44ee46e2c0e6a14e3e2c84c6f1d41bd4c3770049597206b6403351127828bc",
+        "size_in_bytes": 2762
+      },
+      {
+        "_path": "lib/cmake/Snappy/SnappyTargets-noconfig.cmake",
+        "path_type": "hardlink",
+        "sha256": "09f070a08b05146b7c9b0a884c3f154010d727b95dc735b9455c432a6356707d",
+        "size_in_bytes": 834
+      },
+      {
+        "_path": "lib/cmake/Snappy/SnappyTargets.cmake",
+        "path_type": "hardlink",
+        "sha256": "2a643f900d569984f2d1bd485d670f9f93127a6587843d58bc238c883d894c32",
+        "size_in_bytes": 4304
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/snappy-1.2.2-hc0f95ea_1",
+    "type": 1
+  }
+}

@@ -1,0 +1,8 @@
+
+MiniMax candidate lint — /tmp/minimax-fixture-C-v20results-only.html
+  sha256 1c68accf0d7a1d458336d256dff48117516fbda6d9a6fa2c2102d8bafd6350f4 · 657870 bytes
+  47 pass · 0 warn · 0 fail
+
+
+
+  exit 0 — candidate satisfies every static check

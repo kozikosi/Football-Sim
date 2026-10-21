@@ -1,0 +1,640 @@
+{
+  "schemaVersion": 1,
+  "suite": "OPENCHAMBER-E2E-NFL-1",
+  "runAtUtc": "2026-10-20T22:57:02.298Z",
+  "status": "PARTIAL",
+  "runner": {
+    "name": "Playwright",
+    "version": "1.64.1",
+    "browser": "chromium",
+    "browserVersion": "156.0.8078.4"
+  },
+  "gitRef": "merge/v20-donor",
+  "gitCommit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+  "artifactPath": "/Users/kosi/Desktop/Football Sim/merged.html",
+  "artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+  "steps": [
+    {
+      "id": "initial-load",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:03.369Z",
+      "durationMs": 3070,
+      "details": "Title: NFL Draft Simulator; Heading: NFL Draft Simulator"
+    },
+    {
+      "id": "start-draft",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:06.439Z",
+      "durationMs": 3229,
+      "details": "Draft started, live view visible"
+    },
+    {
+      "id": "select-instant-speed",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:09.668Z",
+      "durationMs": 439,
+      "details": "Instant speed selected"
+    },
+    {
+      "id": "sim-to-end",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:10.107Z",
+      "durationMs": 4138,
+      "details": "Draft complete confirmed; internal pos: unavailable"
+    },
+    {
+      "id": "click-results-season",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:14.245Z",
+      "durationMs": 2523,
+      "details": "Season landing visible, startSeasonBtn present"
+    },
+    {
+      "id": "start-season",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:16.768Z",
+      "durationMs": 3082,
+      "details": "Preseason setup visible, beginSeasonBtn present"
+    },
+    {
+      "id": "begin-season",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:19.850Z",
+      "durationMs": 3344,
+      "details": "Season started, simSeasonBtn visible"
+    },
+    {
+      "id": "week-1-display",
+      "status": "SKIP",
+      "startedAtUtc": "2026-10-20T22:57:23.194Z",
+      "durationMs": 0,
+      "details": "SKIP added by hand after the run - the run's script (sha256 ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757) contains no Week 1 check and emitted no week-1 step, so the protocol's observation (\"Confirm Week 1 of 17 is shown\", Section 3 Step 4) was never asserted by the runner. Marked SKIP per protocol (SKIP, never PASS); the run therefore stays PARTIAL. WITHDRAWN REASON: the original text read \"V20 donor build lacks persistent Week 1 display element (no #weekDisplay, #currentWeek, .week-indicator) ... Preseason setup shows 'Set up the ${user} before Week 1' text only.\" That is not supported by the run's own evidence: the three cited selectors occur 0 times in the trace, while the trace frame-snapshot at trace-time 18768.135 ms (between click #beginSeasonBtn and click #simSeasonBtn) contains <h3>Week 1 of 17</h3> and BUTTON#simWeekBtn. The display was present; the check was not implemented."
+    },
+    {
+      "id": "sim-season",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:23.194Z",
+      "durationMs": 5562,
+      "details": "Regular season complete; games played: unavailable (expected 272)"
+    },
+    {
+      "id": "sim-playoffs",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:28.756Z",
+      "durationMs": 5474,
+      "details": "Playoffs/Super Bowl complete; champion visible: true; rounds: unavailable"
+    },
+    {
+      "id": "sim-100-seasons",
+      "status": "PASS",
+      "startedAtUtc": "2026-10-20T22:57:34.230Z",
+      "durationMs": 14451,
+      "details": "100-season report rendered; driven-winning section: true; duration: unavailablems"
+    }
+  ],
+  "consoleErrors": [],
+  "pageErrors": [],
+  "viewportChecks": [
+    {
+      "checkpoint": "initial-load-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load-desktop.png"
+    },
+    {
+      "checkpoint": "initial-load",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load.png"
+    },
+    {
+      "checkpoint": "live-draft-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft-desktop.png"
+    },
+    {
+      "checkpoint": "live-draft",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft.png"
+    },
+    {
+      "checkpoint": "draft-results-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results-desktop.png"
+    },
+    {
+      "checkpoint": "draft-results",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results.png"
+    },
+    {
+      "checkpoint": "preseason-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-desktop.png"
+    },
+    {
+      "checkpoint": "preseason",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason.png"
+    },
+    {
+      "checkpoint": "preseason-setup-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup-desktop.png"
+    },
+    {
+      "checkpoint": "preseason-setup",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup.png"
+    },
+    {
+      "checkpoint": "season-started-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started-desktop.png"
+    },
+    {
+      "checkpoint": "season-started",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started.png"
+    },
+    {
+      "checkpoint": "regular-season-review-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review-desktop.png"
+    },
+    {
+      "checkpoint": "regular-season-review",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review.png"
+    },
+    {
+      "checkpoint": "playoffs-champion-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion-desktop.png"
+    },
+    {
+      "checkpoint": "playoffs-champion",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion.png"
+    },
+    {
+      "checkpoint": "100-season-report-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report-desktop.png"
+    },
+    {
+      "checkpoint": "100-season-report",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report.png"
+    },
+    {
+      "checkpoint": "final",
+      "width": 390,
+      "height": 844,
+      "documentScrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final.png"
+    },
+    {
+      "checkpoint": "final-desktop",
+      "width": 1280,
+      "height": 900,
+      "documentScrollWidth": 1280,
+      "bodyScrollWidth": 1280,
+      "pageOverflowPx": 0,
+      "overflowElements": [],
+      "screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final-desktop.png"
+    }
+  ],
+  "screenshots": [
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final-desktop.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/startup-light.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/startup-dark.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/draft-results-light.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/draft-results-dark.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/100-season-report-light.png",
+    "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/100-season-report-dark.png"
+  ],
+  "trace": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/trace/trace-1792537070181.zip",
+  "skippedChecks": [
+    "Week 1 of 17 display was never asserted by the runner: the run's script contains no Week 1 check and no week-1 step. The three selectors cited in the original text (#weekDisplay, #currentWeek, .week-indicator) occur 0 times in the trace, while the trace frame-snapshot at trace-time 18768.135 ms shows the build's regular-season view rendering <h3>Week 1 of 17</h3> and BUTTON#simWeekBtn. The absence of those selectors does not show that the build lacks the display. SKIP, never PASS."
+  ],
+  "notes": [
+    "Artifact hash verified: 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+    "PROTOCOL DEVIATION (same SKIP, corrected reason): the protocol's Week 1 checkpoint (Section 3, Step 4) requires \"Confirm Week 1 of 17 is shown.\" The runner never asserted it: the script contains no Week 1 check and emitted no week-1 step, so the step and this skipped-check entry were added by hand after the run. The original note claimed the V20 donor build \"has no persistent Week 1 DOM element (#weekDisplay, #currentWeek, .week-indicator absent)\" and that preseason setup shows \"Set up the ${user} before Week 1\" text only. That claim is not supported by the run's own evidence and is withdrawn: those three selectors occur 0 times in the trace, and the trace frame-snapshot at trace-time 18768.135 ms shows <h3>Week 1 of 17</h3> and BUTTON#simWeekBtn in the regular-season view. Marked SKIP per protocol (SKIP, never PASS). Overall status PARTIAL. The skip stands; only the reason is corrected.",
+    "PROTOCOL DEVIATION: simPlayoffsBtn presence differs from Lightning's run. This run found #simPlayoffsBtn in HTML and clickable after regular season; Lightning reported absent. Same artifact hash (40233d6be...), same suite revision (gpt/openchamber-e2e-suite HEAD), same runner (Playwright 1.64.1/Chromium 156). Difference likely timing/visibility wait condition, not build limitation.",
+    "Test script SHA-256: ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757",
+    "Schema validation: PASS - independently re-run 2026-10-21 with jsonschema 4.25.1, Draft202012Validator with FormatChecker: 0 errors, 17/17 required fields, valid enums, suite const, schemaVersion=1, gitCommit format, artifactSha256 format, trace present, 0 console/page errors. NOTE ON ATTRIBUTION: the runner itself performs no schema validation; the earlier wording (\"Schema validation: PASS ... 11 steps, 20 viewport checks, 24 screenshots\") was a hand-written check in this file, not the runner's output. NOTE ON COUNTS: the screenshot array holds 26 entries and 26 PNG files exist, but the machine output of the same script lists only 20 screenshot paths (the script pushes only the 20 viewport captures; the 6 light/dark captures are written to disk by captureLightDark() and never pushed into result.screenshots). \"24 screenshots\" matched neither 26 nor 20.",
+    "PROVENANCE: this file was written by hand after the run; it is not the runner's output. The run's script (sha256 ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757) has 10 recordStep call sites, contains no week-1 string, can set status to PARTIAL only when the 100-season step is SKIPped (l.413-415) and otherwise writes BLOCKED/FAIL/PASS (l.428-432), emits exactly one skippedChecks string (\"100-season simulation (budget/time)\"), and performs no schema validation. The trace and test-results/.last-run.json are both stamped 2026-10-20T22:57:52Z; the script and schema were copied into the run directory only at 23:11:28Z and 23:11:43Z; this file was written at 23:14:57Z. A re-run of the identical script against the identical artifact on 2026-10-21 (run directory test-results/e2e-1792542075904, result.json sha256 8379087163cf8a014fc25b60a14c861b3b4c66b4a437790c96642cc42843b4f0, 11945 bytes, runAtUtc 2026-10-21T00:21:15.904Z) produced exactly 10 steps, no week-1-display, skippedChecks [], 20 screenshot entries, status PASS, and the same null seasonMetrics. The machine-written output of the original run is therefore unrecoverable; the corrections in this file are anchored to the trace and to that re-run.",
+    "SCREENSHOTS: the machine output lists 20 screenshot paths (the viewport captures). The 6 light/dark captures (startup-{light,dark}, draft-results-{light,dark}, 100-season-report-{light,dark}) are written to disk by captureLightDark() but are not pushed into result.screenshots by the script. The 26-entry array in this file appends them by hand (all 26 PNG files exist; 26 of 26 present, 0 missing). Widths from the PNG IHDR: 10 files at 1280 px, 16 at 390 px.",
+    "REGULAR-SEASON GAME COUNT: 272 is NOT verified by this record. seasonMetrics.regularSeasonGamesPlayed is null and the only occurrence of \"272\" in this file is the expected count inside the sim-season step text (\"games played: unavailable (expected 272)\"). Do not attribute 272 games to this run.",
+    "REPORT DURATION: seasonMetrics.reportDurationMs was null while the sim-100-seasons step row in this same file carried durationMs 14451. It is set to 14451 here, sourced from that step record; the step's own details string still reads \"duration: unavailablems\".",
+    "PLAYWRIGHT LAST-RUN MARKER: test-results/.last-run.json contains {\"status\":\"passed\",\"failedTests\":[]} - Playwright's own marker says passed while this record says PARTIAL. The marker is written by the runner at the end of a green run and cannot encode the hand-added SKIP. It is not evidence that the protocol's Week 1 observation was made.",
+    "SECOND RUN DIRECTORY: test-results/e2e-1792537022083/ (215 ms before this run's directory) contained only an empty trace/ directory and no result.json - a first attempt of the same run that produced no record. The 2026-10-21 re-run reproduced the same pattern (test-results/e2e-1792542075522/, 382 ms earlier, empty trace/, no result.json).",
+    "LOCATION: the run directory test-results/e2e-1792537022298/ was removed from this working tree at approximately 2026-10-21T00:21-00:22Z, when a new run replaced the whole test-results/ tree. The absolute paths recorded in this file for the screenshots and the trace therefore no longer resolve locally. Durable copies: the published release e2e-evidence-2026-10-20T225702Z (assets result.json sha256 d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396, screenshots.zip with 26 PNGs, trace-1792537070181.zip sha256 05354b056a43095d0605cee8e292756e9bfbdc5a3c40e74880ed32573d84bc92) and _agents/moc/evidence/e2e-2026-10-20T225702Z/ (result.json byte-identical, sha256 d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396). The artifact itself is recoverable from git at merge/v20-donor:\"NFL Draft Simulator merged.html\" (blob 1087b6563ae614e45f580cbcc3480147202d98de, same sha256).",
+    "MOBILE COVERAGE: 20 viewport checkpoints were recorded, every row pageOverflowPx 0 and overflowElements []. That is a page-level width check. The protocol's 390px clause set has 8 items; this script implements the scope sentence, the wide-element scan and the screenshot clause, implements the scroll-width clause only partially (pageOverflowPx is derived from bodyScrollWidth alone; documentScrollWidth is recorded and never used for detection), and does not implement the three clauses that carry the usability meaning (primary heading / phase indicator / primary action visible and within the viewport; key buttons and filters not clipped or covered; intentional table scrollers can actually scroll horizontally). The protocol's own caveat (page overflow vs a wide table in a working scroller) is also unimplemented, because a width-only scan cannot see an element shifted partly offscreen. \"0 overflow elements\" therefore does not prove mobile usability.",
+    "RUN B (LIGHTNING) IS SEPARATE: no Lightning run artifacts exist on this machine. Its step/screenshot counts, the skipped 100-season run, the absent playoffs control and the 32 MB trace are REPORTED by another party (the Owner's PR #3 comment of 2026-10-20T22:45:33Z, preserved verbatim in _agents/moc/evidence/e2e-2026-10-20T225702Z/SUPERSEDED.md). They are not measured by this run and the cause of the difference is UNKNOWN. This run must not be merged with that run."
+  ],
+  "seasonMetrics": {
+    "draftPicks": null,
+    "regularSeasonGamesPlayed": null,
+    "championVisible": true,
+    "playoffRoundsCompleted": null,
+    "reportRendered": true,
+    "reportDurationMs": 14451
+  },
+  "_proposal": {
+    "kind": "proposed-corrected-record",
+    "title": "Run Reconciliation v2 - proposed corrected record for the Ultra PARTIAL run",
+    "author": "MiniMax subagent (run-reconciliation) - council seat S-1900-1999",
+    "createdAtUtc": "2026-10-21T00:26:00Z",
+    "status": "PROPOSAL - not adopted, not published, not written over the original",
+    "supersedes": null,
+    "supersedesStatement": "This file supersedes nothing. The original record is not replaced, edited, moved or deleted by this proposal. This is a new, separately versioned file that points at the original by path and sha256 and enumerates every difference.",
+    "proposes": {
+      "originalFile": "test-results/e2e-1792537022298/result.json",
+      "originalSha256": "d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396",
+      "originalBytes": 14128,
+      "originalMtimeUtc": "2026-10-20T23:14:57.386512Z",
+      "originalStatus": "PARTIAL",
+      "originalStateOnDisk": "DELETED from the working tree at approximately 2026-10-21T00:21-00:22Z, when a concurrent run replaced the whole test-results/ tree. This proposal did not delete it; the deletion was observed, not performed.",
+      "durableCopiesOfTheOriginal": [
+        {
+          "where": "GitHub release asset",
+          "locator": "https://github.com/kozikosi/Football-Sim/releases/tag/e2e-evidence-2026-10-20T225702Z (asset result.json)",
+          "sha256": "d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396",
+          "label": "VERIFIED by download and re-hash"
+        },
+        {
+          "where": "council working copy",
+          "locator": "_agents/moc/evidence/e2e-2026-10-20T225702Z/result.json",
+          "sha256": "d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396",
+          "label": "VERIFIED byte-identical to the original (cmp)"
+        }
+      ],
+      "differenceSummary": "Same run, same identity, same evidence set. Changes: (1) seasonMetrics.reportDurationMs null -> 14451; (2) the Week 1 SKIP reason and the skippedChecks entry are re-worded to state that the check was never implemented, with the original reason quoted and withdrawn; (3) the schema-validation note is corrected - the runner performs no validation, and the screenshot count is reconciled to 26 (array) / 20 (machine output) / 26 (PNG files); (4) nine new notes record the hand-edit provenance, the screenshot-array augmentation, the unverified 272, the report-duration source, the .last-run.json contradiction, the empty first-attempt run directory, the local deletion and its durable substitutes, the mobile-coverage gap, and the separation from Run B. status, identity fields, the 20 viewport rows, the 26 screenshot paths, the 11 step ids and their statuses are unchanged."
+    },
+    "deviations": [
+      {
+        "field": "seasonMetrics.reportDurationMs",
+        "original": null,
+        "proposed": 14451,
+        "kind": "data-correction",
+        "schemaEffect": "none - the schema allows integer|null with minimum 0",
+        "evidence": "steps[id=sim-100-seasons].durationMs === 14451 in the original file; the 100-season step is PASS with reportRendered true",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "steps[week-1-display].details",
+        "original": "V20 donor build lacks persistent Week 1 display element (no #weekDisplay, #currentWeek, .week-indicator). Preseason setup shows 'Set up the ${user} before Week 1' text only. Protocol requires visible Week 1 of 17 display during regular season; marked SKIP per protocol (SKIP, never PASS).",
+        "proposed": "SKIP retained; the reason is corrected to \"the runner never implemented the check\", with the original wording quoted and withdrawn, and the trace evidence cited",
+        "kind": "meaning-correction (the step status is unchanged: SKIP)",
+        "schemaEffect": "none - details is a free string",
+        "evidence": "trace frame-snapshot at trace-time 18768.135 ms contains <h3>Week 1 of 17</h3> and BUTTON#simWeekBtn; \"#weekDisplay\", \"#currentWeek\" and \".week-indicator\" occur 0 times in the trace",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "skippedChecks[0]",
+        "original": "Week 1 of 17 display (V20 donor build lacks persistent week indicator element; preseason setup text only)",
+        "proposed": "same skipped check, corrected reason; the check itself is unchanged",
+        "kind": "meaning-correction (the skipped check is unchanged)",
+        "schemaEffect": "none - array of free strings",
+        "evidence": "as above",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "notes[1]",
+        "original": "the Week 1 PROTOCOL DEVIATION note, which asserted the build lacks a persistent Week 1 DOM element",
+        "proposed": "same deviation, corrected reason, original claim quoted and withdrawn",
+        "kind": "meaning-correction",
+        "schemaEffect": "none - array of free strings",
+        "evidence": "as above",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "notes[4]",
+        "original": "Schema validation: PASS (all 17 required fields, valid enums, suite const, schemaVersion=1, gitCommit format, artifactSha256 format, 11 steps, 20 viewport checks, 24 screenshots, trace present, 0 console/page errors)",
+        "proposed": "the same PASS verdict, with the attribution corrected (the runner performs no validation), the screenshot counts reconciled to 26 / 20 / 26, and the independent re-validation cited",
+        "kind": "data-correction + attribution-correction",
+        "schemaEffect": "none - array of free strings",
+        "evidence": "jsonschema 4.25.1 Draft202012Validator with FormatChecker against the run schema: 0 errors, 17/17 required fields; the script contains no validation code; the 2026-10-21 re-run of the same script emits 20 screenshot entries",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "notes (appended)",
+        "original": "5 notes",
+        "proposed": "14 notes: the 5 original notes (2 of them re-worded as above) plus 9 new notes on provenance, screenshots, the unverified 272, the report-duration source, the last-run marker, the empty first-attempt directory, the local deletion, the mobile-coverage gap and the separation from Run B",
+        "kind": "additive",
+        "schemaEffect": "none - array of free strings",
+        "evidence": "see _proposal.verifiedFacts",
+        "label": "VERIFIED"
+      }
+    ],
+    "retainedValues": [
+      {
+        "field": "status",
+        "value": "PARTIAL",
+        "reason": "Retained. The protocol requires the visible Week 1 of 17 display during the regular season and that observation was never asserted, so the run is PARTIAL (10 PASS + 1 SKIP). The 2026-10-21 re-run of the same script wrote PASS, but it never checks Week 1 either, so the two verdicts are not comparable and the re-run is not adopted. Choosing otherwise is the Architect's call.",
+        "label": "VERIFIED (that the Week 1 observation was never asserted)"
+      },
+      {
+        "field": "suite / schemaVersion / runAtUtc / runner / gitRef / gitCommit / artifactPath / artifactSha256",
+        "value": "unchanged from the original",
+        "reason": "These identify the run. artifactPath is an owner-machine absolute path to an untracked file; the artifact content is recoverable from git at merge/v20-donor:\"NFL Draft Simulator merged.html\" (blob 1087b6563ae614e45f580cbcc3480147202d98de, same sha256). The path is retained so the record still points at the thing that was run; the caveat is recorded in the notes.",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "steps[].id / steps[].status / steps[].startedAtUtc / steps[].durationMs",
+        "value": "unchanged from the original (11 steps, 10 PASS + 1 SKIP)",
+        "reason": "Only the SKIP step's details text is re-worded. Note for the record: week-1-display and sim-season carry the same startedAtUtc to the millisecond (2026-10-20T22:57:23.194Z), which the script's per-call timestamp cannot produce - a hand-edit fingerprint.",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "viewportChecks (20 rows)",
+        "value": "unchanged from the original",
+        "reason": "Each row is the script's own measurement. What they do and do not prove is stated in the mobile-coverage note: page-level width check, not the protocol's element-level usability check.",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "screenshots (26 entries)",
+        "value": "unchanged from the original",
+        "reason": "All 26 PNG files exist and are durably published in the release asset screenshots.zip (19,697,908 B, 26 PNGs). The machine output lists only 20 of them; the other 6 are the light/dark captures the script never references. See the screenshots note.",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "consoleErrors / pageErrors",
+        "value": "[] / []",
+        "reason": "Unchanged and independently corroborated: the trace has 142 calls, 0 with an error field.",
+        "label": "VERIFIED"
+      },
+      {
+        "field": "seasonMetrics.regularSeasonGamesPlayed / draftPicks / playoffRoundsCompleted",
+        "value": "null / null / null",
+        "reason": "Left null on purpose. 272 appears only as the expected count in one step's text and is not verified by this record; the other two probes cannot work on this build.",
+        "label": "VERIFIED (that they are unverified)"
+      },
+      {
+        "field": "trace",
+        "value": "the original absolute path",
+        "reason": "The local run directory was deleted at approximately 2026-10-21T00:21-00:22Z; the trace itself is durable as release asset trace-1792537070181.zip (sha256 05354b056a43095d0605cee8e292756e9bfbdc5a3c40e74880ed32573d84bc92, 65,863,244 B).",
+        "label": "VERIFIED"
+      }
+    ],
+    "schemaConformance": {
+      "schemaFile": "test-results/e2e-1792537022298/OPENCHAMBER-E2E-RESULT.schema.json (also tests/OPENCHAMBER-E2E-RESULT.schema.json on branch gpt/openchamber-e2e-suite)",
+      "schemaSha256": "3f2e07cfc1db9b61b4c21dba37e0d360c4fedfbc0677ba2f51b02b25976de879",
+      "draft": "https://json-schema.org/draft/2020-12/schema",
+      "validator": "jsonschema 4.25.1, Draft202012Validator, FormatChecker enabled",
+      "originalRecordResult": "0 errors, 17/17 required fields (re-verified 2026-10-21)",
+      "thisFileResult": "MEASURED 2026-10-21 with jsonschema 4.25.1 / Draft202012Validator + FormatChecker: 1 error, of type additionalProperties, message: Additional properties are not allowed ( _proposal was unexpected ). The same document with \"_proposal\" removed: 0 errors, 17/17 required fields. Every schema-defined field keeps the schema name, type and enum; the suite const is unchanged; no required field is missing; the identity fields, the 20 viewport rows, the 26 screenshot paths and the 11 step ids/statuses are unchanged from the original.",
+      "deviationsFromStrictSchema": [
+        {
+          "id": "D1",
+          "what": "The top-level key \"_proposal\" is not in the schema's properties list, and the schema root sets \"additionalProperties\": false, so a strict validator reports this file as invalid with one error of type additionalProperties.",
+          "why": "The work package requires a top-level field recording that this file SUPERSEDES nothing but PROPOSES a corrected record, naming the original file and its sha256. There is no schema slot for that, and adding one would be a schema change (a protocol artefact) that this seat may not make.",
+          "whatWasNotFaked": "Every schema-defined field keeps the schema's name, type and enum; the suite const is unchanged; no required field is missing; no value was bent to fit. The single violation is the added key itself, and it is declared here rather than hidden.",
+          "howToGetAZeroErrorFile": "Delete the \"_proposal\" key. The remaining document validates with 0 errors - but it then no longer names the original record, its sha256, or the differences, which is the whole purpose of the correction.",
+          "label": "VERIFIED (the error was produced and observed, not predicted)"
+        }
+      ]
+    },
+    "runs": {
+      "runA_UltraCorrectedPartial": {
+        "runId": "test-results/e2e-1792537022298",
+        "runAtUtc": "2026-10-20T22:57:02.298Z",
+        "status": "PARTIAL",
+        "steps": "11 (10 PASS + 1 SKIP week-1-display)",
+        "artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+        "gitRef": "merge/v20-donor",
+        "gitCommit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+        "runner": "Playwright 1.64.1 / chromium 156.0.8078.4",
+        "resultSha256": "d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396",
+        "recordProvenance": "hand-edited after the run; not the runner's output (see the PROVENANCE note)",
+        "label": "VERIFIED"
+      },
+      "runB_LightningSeparate": {
+        "runId": null,
+        "runAtUtc": null,
+        "status": "UNKNOWN",
+        "artifactsOnThisMachine": "none",
+        "searchesPerformed": [
+          "find for result.json and e2e-* directories across the workspace and /Users/kosi (only Run A and the byte-identical council copy of Run A were found)",
+          "find for *lightning* paths (documents only, no run artifacts)",
+          "find /tmp for E2E artifacts (none)",
+          "the mirror clone \"Football Sim/\" (no test-results/ directory at all)"
+        ],
+        "reportedOnly": {
+          "steps": "7 (5 PASS, 2 SKIP)",
+          "screenshots": "four claimed in the JSON summary vs nine files named",
+          "hundredSeasonRun": "skipped",
+          "playoffsControl": "absent",
+          "trace": "a 32 MB trace",
+          "source": "the Owner's PR #3 comment of 2026-10-20T22:45:33Z, preserved verbatim in _agents/moc/evidence/e2e-2026-10-20T225702Z/SUPERSEDED.md"
+        },
+        "causeOfDifference": "UNKNOWN - must not be attributed to the build, and must not be described as resolved",
+        "separationStatement": "Run A and Run B are separate runs. Nothing in this file is evidence about Run B, and nothing about Run B is used to modify Run A. The Run A note about simPlayoffsBtn differing from Lightning's run is a hypothesis carried inside the record, not a measurement.",
+        "label": "UNKNOWN (reported statements are attributed to the Owner's PR comment)"
+      },
+      "runC_ReRun2026_10_21": {
+        "runId": "test-results/e2e-1792542075904",
+        "runAtUtc": "2026-10-21T00:21:15.904Z",
+        "status": "PASS",
+        "steps": "10 (all PASS), no week-1-display",
+        "skippedChecks": [],
+        "screenshotEntries": 20,
+        "resultSha256": "8379087163cf8a014fc25b60a14c861b3b4c66b4a437790c96642cc42843b4f0",
+        "resultBytes": 11945,
+        "scriptSha256": "ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757 (identical to Run A)",
+        "artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd (identical to Run A)",
+        "siblingEmptyDirectory": "test-results/e2e-1792542075522 (382 ms earlier, empty trace/, no result.json)",
+        "significance": "It reproduces the script's real output and therefore proves that Run A's stored record is not machine output. It is NOT Lightning's run, NOT a continuation of Run A, and NOT adopted as a replacement for Run A: it never checks Week 1 either, so its PASS is not comparable with Run A's PARTIAL.",
+        "label": "VERIFIED"
+      }
+    },
+    "verifiedFacts": [
+      {
+        "fact": "result.json sha256 d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396, 14128 bytes",
+        "command": "shasum -a 256",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "test-script.spec.js sha256 ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757, byte-identical to tests/openchamber-e2e.spec.js",
+        "command": "shasum -a 256 on both files",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "schema sha256 3f2e07cfc1db9b61b4c21dba37e0d360c4fedfbc0677ba2f51b02b25976de879",
+        "command": "shasum -a 256",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "artifact sha256 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd, 657486 bytes, in 4 independent copies incl. the blob inside origin/merge/v20-donor",
+        "command": "shasum -a 256 + git show origin/merge/v20-donor:\"NFL Draft Simulator merged.html\"",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "trace sha256 05354b056a43095d0605cee8e292756e9bfbdc5a3c40e74880ed32573d84bc92, 65863244 bytes",
+        "command": "shasum -a 256 (local and release asset)",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "original record is schema-valid: 0 errors, 17/17 required fields",
+        "command": "jsonschema 4.25.1 Draft202012Validator + FormatChecker",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "the script has 10 recordStep call sites, no week-1 string, and performs no schema validation",
+        "command": "grep over the script",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "the trace contains <h3>Week 1 of 17</h3> and BUTTON#simWeekBtn at trace-time 18768.135 ms; \"#weekDisplay\", \"#currentWeek\", \".week-indicator\" occur 0 times",
+        "command": "grep over the extracted trace.trace",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "the trace has 142 calls, 0 with an error field, 6 emulateMedia calls",
+        "command": "grep -c over the extracted trace.trace",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "the release e2e-evidence-2026-10-20T225702Z (published 2026-10-20T23:28:06Z) carries 9 assets including result.json, the 26 PNGs in screenshots.zip, and the 65.9 MB trace",
+        "command": "gh release view --json assets; gh release download + re-hash",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "PR #3 (OPEN, branch gpt/openchamber-e2e-suite) carries the protocol (sha256 88c820d4fd915efbf7e3260cd535dd472cfe7d6e63b34a65ba40adc14c19a208) and the schema",
+        "command": "git show origin/gpt/openchamber-e2e-suite:tests/OPENCHAMBER-E2E.md; gh pr view 3 --json files",
+        "label": "VERIFIED"
+      },
+      {
+        "fact": "the original run directory was deleted from the working tree at approx 2026-10-21T00:21-00:22Z by a concurrent re-run",
+        "command": "ls test-results/ before and after",
+        "label": "VERIFIED"
+      }
+    ],
+    "evidenceLabels": {
+      "VERIFIED": "reproduced by this session; the command is given",
+      "REPORTED": "another party's statement, attributed, not reproduced here",
+      "INFERRED": "reasoned, basis stated",
+      "UNKNOWN": "the evidence does not settle it"
+    },
+    "notChanged": [
+      "The original result.json is not superseded, edited, moved or deleted by this proposal.",
+      "No acceptance rule, protocol clause, schema, script, product file or shared document is changed.",
+      "The verdict of Run A stays PARTIAL; Run C's PASS is not adopted.",
+      "272 games is not verified and is not asserted.",
+      "The difference between Run A and Run B is not resolved and is not attributed to the build.",
+      "No git operation: no push, commit, tag, branch or checkout."
+    ]
+  }
+}

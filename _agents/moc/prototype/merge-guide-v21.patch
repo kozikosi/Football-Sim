@@ -1,0 +1,57 @@
+--- a/NFL Draft Simulator merged.html
++++ b/NFL Draft Simulator merged.html
+@@ -4960,22 +4960,10 @@
+   <h5 class="narr" style="margin:10px 0 6px;">Defensive styles</h5><ul class="gl">${defLis}</ul>`;
+ }
+ function flexExplainHTML(){
+- return `<p style="margin:4px 0;"><b>What is a flex?</b> Every starting spot has a natural position: a left tackle plays tackle, a strong safety plays strong safety. A <b>flex</b> means starting a player at a spot that is not his natural position — for example, your best guard playing tackle.</p>
++ return `<p style="margin:4px 0;"><b>What is a flex?</b> Every starting spot has a natural position: a left tackle plays offensive tackle, a strong safety plays strong safety. A <b>flex</b> means starting a player at a spot that is not his natural position — for example, your best guard playing offensive tackle.</p>
+   <p style="margin:4px 0;"><b>Why would you?</b> Spots are not equally valuable, and sometimes the best player left is at the wrong position. A strong player at a spot worth more wins can help you even after the penalty.</p>
+   <p style="margin:4px 0;"><b>What does it cost?</b> The player's rating is reduced while he plays out of position. The full rules:</p>
+-  <table><thead><tr><th>Player</th><th>Free</th><th>−2</th><th>−4</th><th>−6</th></tr></thead><tbody>
+-  <tr><td>Tackle</td><td>any other line spot (guard, center)</td><td></td><td>defensive tackle</td><td></td></tr>
+-  <tr><td>Guard / center</td><td>guard ↔ center</td><td></td><td>tackle, defensive tackle</td><td></td></tr>
+-  <tr><td>Defensive tackle</td><td></td><td></td><td>edge, linebacker, guard, center</td><td>tackle, running back</td></tr>
+-  <tr><td>Edge rusher</td><td></td><td>defensive tackle, WILL, SAM</td><td>MIKE</td><td>tight end, running back</td></tr>
+-  <tr><td>Linebacker</td><td>any linebacker spot</td><td></td><td>defensive tackle, safety, third corner</td><td>edge, tight end, running back</td></tr>
+-  <tr><td>Cornerback</td><td>free safety</td><td>strong safety</td><td>linebacker, wide receiver</td><td>tight end, running back</td></tr>
+-  <tr><td>Safety</td><td></td><td>other safety; strong safety to SAM</td><td>corner, linebacker, wide receiver</td><td>tight end, running back</td></tr>
+-  <tr><td>Wide receiver</td><td></td><td></td><td>tight end, safety, cornerback</td><td>running back</td></tr>
+-  <tr><td>Tight end</td><td></td><td></td><td></td><td>linebacker, safety, running back</td></tr>
+-  <tr><td>Running back</td><td></td><td></td><td></td><td>tight end</td></tr>
+-  <tr><td>Quarterback</td><td colspan="4">cannot play anywhere else</td></tr>
+-  </tbody></table>
++  <table><thead><tr><th>Player</th><th>Free</th><th>−2</th><th>−4</th><th>−6</th></tr></thead><tbody><tr><td>Quarterback</td><td colspan="4">cannot play anywhere else</td></tr><tr><td>Running back</td><td></td><td></td><td></td><td>tight end</td></tr><tr><td>Wide receiver</td><td></td><td></td><td>tight end, safety, cornerback</td><td>running back</td></tr><tr><td>Tight end</td><td></td><td></td><td></td><td>linebacker, safety, running back</td></tr><tr><td>Offensive tackle</td><td>any other line spot (guard, center)</td><td></td><td>defensive tackle</td><td></td></tr><tr><td>Guard / center</td><td>guard ↔ center</td><td></td><td>offensive tackle, defensive tackle</td><td></td></tr><tr><td>Defensive tackle</td><td></td><td></td><td>edge, linebacker, guard, center</td><td>offensive tackle, running back</td></tr><tr><td>Edge rusher</td><td></td><td>defensive tackle, WILL, SAM</td><td>MIKE</td><td>tight end, running back</td></tr><tr><td>Linebacker</td><td>any linebacker spot</td><td></td><td>defensive tackle, safety, third corner</td><td>edge, tight end, running back</td></tr><tr><td>Cornerback</td><td>free safety</td><td>strong safety</td><td>linebacker, wide receiver</td><td>tight end, running back</td></tr><tr><td>Safety</td><td></td><td>other safety; strong safety to SAM</td><td>corner, linebacker, wide receiver</td><td>tight end, running back</td></tr></tbody></table>
+   <p class="narr" style="margin:4px 0;">Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use.</p>
+   <p style="margin:4px 0;"><b>Who decides?</b> You do. The math suggests the arrangement that wins the most games, and you can accept it, change any spot yourself, or deliberately play less efficiently. The computer teams always use the math's best arrangement, and their drafting weighs every flex above. You can re-arrange your lineup any time during the season.</p>`;
+ }
+@@ -4994,7 +4982,7 @@
+   <li><b>Stars</b> (★★ / ★ / ☆) — your own thumb on the scale. A position marked ★★ counts 1.5× in Priority, ★ counts 1× and ☆ counts 0.5×. They only change the ranking, never the math.</li>
+  </ul>
+  <p style="margin:4px 0;"><b>Why can a linebacker show high priority?</b> Because priority is about scarcity, not just size. If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker's priority can be higher even though his Wins number is smaller. The Wins column is the clean “how good is he” number; Priority is the “do I need to take him now” number.</p>
+- <p style="margin:4px 0;"><b>How the computer teams pick.</b> Each CPU team takes the player who adds the most wins over a replacement-level starter (never below a 76 rating) at a spot it still needs, with a little personal taste for certain positions and some randomness. They can also flex a player.</p>`;
++ <p style="margin:4px 0;"><b>How the computer teams pick.</b> Each CPU team takes the player who adds the most wins over a replacement-level starter, with a little personal taste for certain positions and some randomness. They can also flex a player.</p>`;
+ }
+ function termsHTML(){
+  return `<ul class="gl">
+@@ -5043,7 +5031,7 @@
+  const flex = flexExplainHTML();
+  const values = `<p class="narr" style="margin:4px 0;">One row per starting spot, sorted from the most valuable to the least. Two things are shown for each, and they answer different questions:</p>
+   <ul class="gl"><li><b>Where the wins come from</b> splits the spot's total wins between its two jobs. For an offensive tackle, “77% pass · 23% run” means about three-quarters of his value comes from protecting the quarterback and a quarter from blocking for the run. Pass protection is worth more than run blocking per rating point, which is why the split leans pass.</li>
+-  <li><b>Share of each team rating it feeds</b> shows how big a slice of each team-wide rating this one spot is. “Pass protection 21% · run blocking 18%” means the tackle makes up about a fifth of the pass-protection rating and a bit less of the run-blocking rating, because five linemen (and for run blocking, a tight end) share each rating. This number is about <i>composition</i> (how the ratings are built); the other is about <i>importance</i> (how much the rating matters for winning). That is why the two sets of percentages do not match.</li></ul>
++  <li><b>Share of each team rating it feeds</b> shows how big a slice of each team-wide rating this one spot is. “Pass protection 21% · run blocking 18%” means the offensive tackle makes up about a fifth of the pass-protection rating and a bit less of the run-blocking rating, because five linemen (and for run blocking, a tight end) share each rating. This number is about <i>composition</i> (how the ratings are built); the other is about <i>importance</i> (how much the rating matters for winning). That is why the two sets of percentages do not match.</li></ul>
+   <p class="narr" style="margin:4px 0;">Tight ends help block for the run, running backs add value as pass catchers, and cornerbacks and free safeties each contribute roughly 10% of their value stopping the run.</p>${slotRoleTableHTML()}`;
+  const coach = `<p style="margin:4px 0;"><b>Personnel codes.</b></p>${persTableHTML()}<h5 class="narr" style="margin:14px 0 6px;">What each style means</h5>${styleListsHTML()}
+   <h5 class="narr" style="margin:14px 0 6px;">Auto, philosophy and custom plans</h5>
+@@ -5052,10 +5040,9 @@
+   <li><b>Custom</b> — you lock in your own personnel, strategy and defense every week.</li></ul>`;
+  return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Guide</h3><p class="narr">Short reference sections for the terms the sim uses. Click through only what you need.</p></div>`
+   + sec('How the site works', how, true)
+-  + sec('Drafting: which positions matter', draft, true)
++  + sec('Drafting & Position Values', draft + values, true)
+   + sec('Reading the draft board (Wins, Value here, Priority, Gone, stars)', board, false)
+   + sec('Flexing players, explained', flex, false)
+-  + sec('Position values: all 26 starting spots', values, false)
+   + sec('Coaching: personnel, styles and game plans', coach, false)
+   + sec('The math of every game-plan choice', planMathHTML(), false)
+   + sec('Football and site terms', termsHTML(), false);

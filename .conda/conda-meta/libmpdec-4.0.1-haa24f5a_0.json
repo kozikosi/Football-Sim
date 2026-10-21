@@ -1,0 +1,47 @@
+{
+  "build": "haa24f5a_0",
+  "build_number": 0,
+  "depends": [
+    "__osx >=12.1"
+  ],
+  "license": "BSD-2-Clause",
+  "license_family": "BSD",
+  "md5": "846740b7e983e4a4843f60f9c0dd757b",
+  "name": "libmpdec",
+  "sha256": "dc881ac87ba5ec4deb1a7845ab9b3c84a8906b9713c5ce842540c3bfe24a380e",
+  "size": 71769,
+  "subdir": "osx-arm64",
+  "timestamp": 1781726019172,
+  "version": "4.0.1",
+  "fn": "libmpdec-4.0.1-haa24f5a_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libmpdec-4.0.1-haa24f5a_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libmpdec-4.0.1-haa24f5a_0",
+  "requested_specs": [],
+  "files": [
+    "lib/libmpdec.4.0.1.dylib",
+    "lib/libmpdec.4.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libmpdec.4.0.1.dylib",
+        "path_type": "hardlink",
+        "sha256": "f7c17d30101ee36a9eb0c49855bb4fcf691761be61e7ef0ea696f4c93d7688d7",
+        "size_in_bytes": 221760
+      },
+      {
+        "_path": "lib/libmpdec.4.dylib",
+        "path_type": "softlink",
+        "sha256": "f7c17d30101ee36a9eb0c49855bb4fcf691761be61e7ef0ea696f4c93d7688d7",
+        "sha256_in_prefix": "f6f3c56f44c66f855301c6421d91bb53d451f0ce7b0bf5d8a7bbac8ce42d9ce7",
+        "size_in_bytes": 221760
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libmpdec-4.0.1-haa24f5a_0",
+    "type": 1
+  }
+}

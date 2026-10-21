@@ -1,0 +1,96 @@
+{
+  "build": "py313hca03da5_0",
+  "build_number": 0,
+  "depends": [
+    "python >=3.13,<3.14.0a0",
+    "python_abi 3.13.* *_cp313"
+  ],
+  "license": "PSF-2.0",
+  "license_family": "PSF",
+  "md5": "e08465869b7d96511029d939b3142f91",
+  "name": "typing_extensions",
+  "sha256": "969c4d991438697dfdcec9f40f6a902fa0a2fa487b434109efe05ea8ab1a46f3",
+  "size": 102663,
+  "subdir": "osx-arm64",
+  "timestamp": 1784101027595,
+  "version": "4.16.0",
+  "fn": "typing_extensions-4.16.0-py313hca03da5_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/typing_extensions-4.16.0-py313hca03da5_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/typing_extensions-4.16.0-py313hca03da5_0",
+  "requested_specs": [],
+  "files": [
+    "lib/python3.13/site-packages/__pycache__/typing_extensions.cpython-313.pyc",
+    "lib/python3.13/site-packages/typing_extensions.py",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/INSTALLER",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/RECORD",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/REQUESTED",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/WHEEL",
+    "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/direct_url.json"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/python3.13/site-packages/__pycache__/typing_extensions.cpython-313.pyc",
+        "path_type": "hardlink",
+        "sha256": "c09415ebec434bec32a63acaaef3a13719ea2031ac3251512e0d995c3bce27af",
+        "size_in_bytes": 165678
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions.py",
+        "path_type": "hardlink",
+        "sha256": "4040ca1a1ecbee00d1385c12a93084d1c5bd46f0b774f07e5ae7e91c4f55e696",
+        "size_in_bytes": 165012
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/licenses/LICENSE",
+        "path_type": "hardlink",
+        "sha256": "3b2f81fe21d181c499c59a256c8e1968455d6689d269aa85373bfb6af41da3bf",
+        "size_in_bytes": 13936
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/INSTALLER",
+        "path_type": "hardlink",
+        "sha256": "d0edee15f91b406f3f99726e44eb990be6e34fd0345b52b910c568e0eef6a2a8",
+        "size_in_bytes": 5
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/METADATA",
+        "path_type": "hardlink",
+        "sha256": "b05084ca1d50879865178d9fff9fabeab61bdfb1f361bfbde95421ffc8f9be46",
+        "size_in_bytes": 3310
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/RECORD",
+        "path_type": "hardlink",
+        "sha256": "5fa9d37e3239b7e2b1e9e825ab271584ea77e631d50bf68396c72a2db3186518",
+        "size_in_bytes": 785
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/REQUESTED",
+        "path_type": "hardlink",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "size_in_bytes": 0
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/WHEEL",
+        "path_type": "hardlink",
+        "sha256": "1b68144734c4b66791f27add5d425f3620775585718a03d0f9b110ba3a4d88db",
+        "size_in_bytes": 82
+      },
+      {
+        "_path": "lib/python3.13/site-packages/typing_extensions-4.16.0.dist-info/direct_url.json",
+        "path_type": "hardlink",
+        "sha256": "a84a74ec03c5435aebbe0f5591f382e574b5f5083819a6eb93904f6d6ce410a2",
+        "size_in_bytes": 92
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/typing_extensions-4.16.0-py313hca03da5_0",
+    "type": 1
+  }
+}

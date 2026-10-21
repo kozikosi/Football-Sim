@@ -1,0 +1,100 @@
+{
+  "build": "h04a03c9_1",
+  "build_number": 1,
+  "depends": [
+    "__osx >=12.1",
+    "c-ares >=1.34.7,<2.0a0",
+    "jansson >=2.15.0,<3.0a0",
+    "libcxx >=20",
+    "libev >=4.33,<4.34.0a0",
+    "libxml2 >=2.15.3,<2.16.0a0",
+    "libzlib >=1.3.2,<2.0a0",
+    "openssl >=3.5.7,<4.0a0",
+    "zlib"
+  ],
+  "license": "MIT",
+  "license_family": "MIT",
+  "md5": "bfdc87368c255c0558b48c637238101f",
+  "name": "libnghttp2",
+  "sha256": "387b4afeadc73784d0b3fb242bd2342a7121f0b0032d36ac1a37f2419abf5e9e",
+  "size": 565450,
+  "subdir": "osx-arm64",
+  "timestamp": 1784213097196,
+  "version": "1.69.0",
+  "fn": "libnghttp2-1.69.0-h04a03c9_1.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libnghttp2-1.69.0-h04a03c9_1.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libnghttp2-1.69.0-h04a03c9_1",
+  "requested_specs": [],
+  "files": [
+    "bin/nghttp",
+    "bin/nghttpd",
+    "bin/nghttpx",
+    "lib/libnghttp2.14.dylib",
+    "lib/libnghttp2.dylib",
+    "lib/pkgconfig/libnghttp2.pc",
+    "include/nghttp2/nghttp2.h",
+    "include/nghttp2/nghttp2ver.h"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "bin/nghttp",
+        "path_type": "hardlink",
+        "sha256": "730894e4458957d177d508deeb4076faff5510b4d21e671139c10b99904a8bfb",
+        "size_in_bytes": 407456
+      },
+      {
+        "_path": "bin/nghttpd",
+        "path_type": "hardlink",
+        "sha256": "d8f119266a676ca3bc2fbea42f828608f6a0513b7413003e6059df64280b8cde",
+        "size_in_bytes": 354976
+      },
+      {
+        "_path": "bin/nghttpx",
+        "path_type": "hardlink",
+        "sha256": "3ad23479893bee3439684ceebf8319a4c668bff53a7371f4e4ae3556a58aec76",
+        "size_in_bytes": 1240592
+      },
+      {
+        "_path": "lib/libnghttp2.14.dylib",
+        "path_type": "hardlink",
+        "sha256": "6ca5d3b1def67edaeb9855825d090444e668186e42a874b87bb03ea2e284d983",
+        "size_in_bytes": 211952
+      },
+      {
+        "_path": "lib/libnghttp2.dylib",
+        "path_type": "softlink",
+        "sha256": "6ca5d3b1def67edaeb9855825d090444e668186e42a874b87bb03ea2e284d983",
+        "sha256_in_prefix": "73cc2dc4c17b733e9bcd055afdd4b950f79ddf586b3eb71f83261f555b80cc5c",
+        "size_in_bytes": 211952
+      },
+      {
+        "_path": "lib/pkgconfig/libnghttp2.pc",
+        "path_type": "hardlink",
+        "sha256": "c52bb0ad39dc9328e1aa289c5f57dd7f0fca920eee253e135acacb1ea719b734",
+        "sha256_in_prefix": "531d6ed72720775ae3f6626a160b29e586ad7202de28863a6c6a12d6db297882",
+        "size_in_bytes": 1427,
+        "file_mode": "text",
+        "prefix_placeholder": "/Users/ec2-user/croot/nghttp2-split_1784213018819/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol"
+      },
+      {
+        "_path": "include/nghttp2/nghttp2.h",
+        "path_type": "hardlink",
+        "sha256": "c9aff55e325b63bd55f3bfa9da886d08d70e48cbacef3ed2d6028fb55d603505",
+        "size_in_bytes": 242356
+      },
+      {
+        "_path": "include/nghttp2/nghttp2ver.h",
+        "path_type": "hardlink",
+        "sha256": "6851cf5b33018afc6b3e2460e5df01ba797e9c87e1d29d88a4997ea673f16276",
+        "size_in_bytes": 1605
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libnghttp2-1.69.0-h04a03c9_1",
+    "type": 1
+  }
+}

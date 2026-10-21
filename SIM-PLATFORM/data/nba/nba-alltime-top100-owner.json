@@ -1,0 +1,2664 @@
+{
+  "meta": {
+    "title": "NBA all-time top 100 — Owner-supplied",
+    "source": "Owner-supplied list pasted into the council session on 2026-10-21",
+    "source_class": "owner-supplied ratings (the pool still needs the Owner's final approval)",
+    "retrieved": "2026-10-21",
+    "sport": "nba",
+    "era_mode": "alltime",
+    "competition": "nba",
+    "counts": {
+      "rows": 100,
+      "distinct_persons": 87,
+      "persons_with_multiple_player_seasons": 10,
+      "hall_of_fame_rows": 67,
+      "ovr_min": 93,
+      "ovr_max": 99
+    },
+    "column_interpretation": {
+      "ovr": "the overall rating, as supplied (integers 93-99 in this list)",
+      "three_point_shooting": "INFERRED — the source's second number. The reading fits every case that can be checked against a known 2K-style profile: Shaq 26, Curry 99, Nash 94, Chris Paul 83, Brunson 86, Tony Parker 89, Wilt 43, Bird 98, Dirk 96, Jordan 83, Jokić 85, Durant 95; range 25-99.",
+      "defence": "INFERRED — the source's third number. Equally consistent: Shaq 98, Curry 36, Nash 25, Chris Paul 27, Brunson 35, Tony Parker 30, Wilt 85, Bird 45, Dirk 50, Jordan 95, Jokić 75, Durant 80; range 25-99.",
+      "confirmation_needed": "the two columns are labelled INFERRED, not VERIFIED — the Owner should confirm before the NBA pack depends on them, and the labels are in the file so a wrong guess is visible rather than baked in."
+    },
+    "notes": [
+      "These are PLAYER-SEASONS, not players: 100 rows cover 87 distinct people, and 10 people appear more than once (LeBron x3, Durant x3, Kawhi x3; Shaq, Kareem, Wilt, Erving, Oscar, Moses Malone and Anthony Davis x2). The Owner's direction says person identity and player-season stay distinct, and this list is the first real example of that split.",
+      "peak_year is null everywhere: the Owner's source carried peak years and she asked that they be discarded; the paste has no year column, so the team is peak-era context only.",
+      "Positions are given as a pair of slots (SG / SF, PG / N …) — position candidates for the draft, from the Owner. Country, height and Hall-of-Fame/badges are carried as context.",
+      "Canonical names restore the diacritics the paste dropped (Jokić, Şengün, Porziņģis, Buzeliņš, Vučević, Topić, Bogdanović, Valančiūnas, Nurkić, Schröder, Jović, Salaün, Traoré) and expand three nicknames to their legal names (Earvin \"Magic\" Johnson, Nathaniel \"Nate\" Archibald, John Alexander \"Jo Jo\" White)."
+    ]
+  },
+  "persons": [
+    {
+      "person_key": "michael jordan",
+      "person_name": "Michael Jordan",
+      "canonical_name": "Michael Jordan",
+      "display_name": "Michael Jordan",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'6\"",
+      "hall_of_fame": true,
+      "badges": 34,
+      "player_seasons": [
+        {
+          "rank": 1,
+          "team": "CHI",
+          "ovr": 99,
+          "three_point_shooting": 83,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "tim duncan",
+      "person_name": "Tim Duncan",
+      "canonical_name": "Tim Duncan",
+      "display_name": "Tim Duncan",
+      "positions": "PF / C",
+      "country": "U.S. Virgin Islands",
+      "height": "6'11\"",
+      "hall_of_fame": true,
+      "badges": 27,
+      "player_seasons": [
+        {
+          "rank": 2,
+          "team": "SAS",
+          "ovr": 99,
+          "three_point_shooting": 75,
+          "defence": 65,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "shaquille oneal",
+      "person_name": "Shaquille O’Neal",
+      "canonical_name": "Shaquille O'Neal",
+      "display_name": "Shaquille O’Neal",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'1\"",
+      "hall_of_fame": true,
+      "badges": 18,
+      "player_seasons": [
+        {
+          "rank": 3,
+          "team": "LAL",
+          "ovr": 99,
+          "three_point_shooting": 26,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 77,
+          "team": "ORL",
+          "ovr": 94,
+          "three_point_shooting": 26,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "lebron james",
+      "person_name": "LeBron James",
+      "canonical_name": "LeBron James",
+      "display_name": "LeBron James",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": false,
+      "badges": 41,
+      "player_seasons": [
+        {
+          "rank": 4,
+          "team": "MIA",
+          "ovr": 99,
+          "three_point_shooting": 86,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 5,
+          "team": "CLE",
+          "ovr": 99,
+          "three_point_shooting": 81,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 41,
+          "team": "LAL",
+          "ovr": 96,
+          "three_point_shooting": 81,
+          "defence": 91,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kobe bryant",
+      "person_name": "Kobe Bryant",
+      "canonical_name": "Kobe Bryant",
+      "display_name": "Kobe Bryant",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'6\"",
+      "hall_of_fame": true,
+      "badges": 28,
+      "player_seasons": [
+        {
+          "rank": 6,
+          "team": "LAL",
+          "ovr": 99,
+          "three_point_shooting": 85,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "hakeem olajuwon",
+      "person_name": "Hakeem Olajuwon",
+      "canonical_name": "Hakeem Olajuwon",
+      "display_name": "Hakeem Olajuwon",
+      "positions": "C / PF",
+      "country": "Nigeria",
+      "height": "7'0\"",
+      "hall_of_fame": true,
+      "badges": 24,
+      "player_seasons": [
+        {
+          "rank": 7,
+          "team": "HOU",
+          "ovr": 99,
+          "three_point_shooting": 71,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "larry bird",
+      "person_name": "Larry Bird",
+      "canonical_name": "Larry Bird",
+      "display_name": "Larry Bird",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 29,
+      "player_seasons": [
+        {
+          "rank": 8,
+          "team": "BOS",
+          "ovr": 99,
+          "three_point_shooting": 98,
+          "defence": 45,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "magic johnson",
+      "person_name": "Magic Johnson",
+      "canonical_name": "Earvin \"Magic\" Johnson",
+      "display_name": "Magic Johnson",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 19,
+      "player_seasons": [
+        {
+          "rank": 9,
+          "team": "LAL",
+          "ovr": 99,
+          "three_point_shooting": 84,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kevin garnett",
+      "person_name": "Kevin Garnett",
+      "canonical_name": "Kevin Garnett",
+      "display_name": "Kevin Garnett",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'11\"",
+      "hall_of_fame": true,
+      "badges": 30,
+      "player_seasons": [
+        {
+          "rank": 10,
+          "team": "MIN",
+          "ovr": 98,
+          "three_point_shooting": 69,
+          "defence": 92,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "stephen curry",
+      "person_name": "Stephen Curry",
+      "canonical_name": "Stephen Curry",
+      "display_name": "Stephen Curry",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": false,
+      "badges": 19,
+      "player_seasons": [
+        {
+          "rank": 11,
+          "team": "GSW",
+          "ovr": 98,
+          "three_point_shooting": 99,
+          "defence": 36,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dirk nowitzki",
+      "person_name": "Dirk Nowitzki",
+      "canonical_name": "Dirk Nowitzki",
+      "display_name": "Dirk Nowitzki",
+      "positions": "PF / C",
+      "country": "Germany",
+      "height": "7'1\"",
+      "hall_of_fame": false,
+      "badges": 19,
+      "player_seasons": [
+        {
+          "rank": 12,
+          "team": "DAL",
+          "ovr": 98,
+          "three_point_shooting": 96,
+          "defence": 50,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "scottie pippen",
+      "person_name": "Scottie Pippen",
+      "canonical_name": "Scottie Pippen",
+      "display_name": "Scottie Pippen",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 13,
+          "team": "CHI",
+          "ovr": 98,
+          "three_point_shooting": 79,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "bill russell",
+      "person_name": "Bill Russell",
+      "canonical_name": "Bill Russell",
+      "display_name": "Bill Russell",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": true,
+      "badges": 0,
+      "player_seasons": [
+        {
+          "rank": 14,
+          "team": "BOS",
+          "ovr": 98,
+          "three_point_shooting": 29,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kareem abdul jabbar",
+      "person_name": "Kareem Abdul-Jabbar",
+      "canonical_name": "Kareem Abdul-Jabbar",
+      "display_name": "Kareem Abdul-Jabbar",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'2\"",
+      "hall_of_fame": true,
+      "badges": 26,
+      "player_seasons": [
+        {
+          "rank": 15,
+          "team": "MIL",
+          "ovr": 98,
+          "three_point_shooting": 36,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 40,
+          "team": "LAL",
+          "ovr": 96,
+          "three_point_shooting": 31,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "wilt chamberlain",
+      "person_name": "Wilt Chamberlain",
+      "canonical_name": "Wilt Chamberlain",
+      "display_name": "Wilt Chamberlain",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'1\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 16,
+          "team": "GSW",
+          "ovr": 98,
+          "three_point_shooting": 43,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 95,
+          "team": "PHI",
+          "ovr": 93,
+          "three_point_shooting": 43,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "giannis antetokounmpo",
+      "person_name": "Giannis Antetokounmpo",
+      "canonical_name": "Giannis Antetokounmpo",
+      "display_name": "Giannis Antetokounmpo",
+      "positions": "SF / SG",
+      "country": "Greece Nigeria",
+      "height": "6'11\"",
+      "hall_of_fame": false,
+      "badges": 38,
+      "player_seasons": [
+        {
+          "rank": 17,
+          "team": "MIL",
+          "ovr": 97,
+          "three_point_shooting": 69,
+          "defence": 91,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "walt frazier",
+      "person_name": "Walt Frazier",
+      "canonical_name": "Walt Frazier",
+      "display_name": "Walt Frazier",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 18,
+          "team": "NYK",
+          "ovr": 97,
+          "three_point_shooting": 78,
+          "defence": 61,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "vince carter",
+      "person_name": "Vince Carter",
+      "canonical_name": "Vince Carter",
+      "display_name": "Vince Carter",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'6\"",
+      "hall_of_fame": false,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 19,
+          "team": "TOR",
+          "ovr": 97,
+          "three_point_shooting": 90,
+          "defence": 99,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "nikola jokic",
+      "person_name": "Nikola Jokic",
+      "canonical_name": "Nikola Jokić",
+      "display_name": "Nikola Jokic",
+      "positions": "C / N",
+      "country": "Serbia",
+      "height": "7'0\"",
+      "hall_of_fame": false,
+      "badges": 29,
+      "player_seasons": [
+        {
+          "rank": 20,
+          "team": "DEN",
+          "ovr": 97,
+          "three_point_shooting": 85,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kevin durant",
+      "person_name": "Kevin Durant",
+      "canonical_name": "Kevin Durant",
+      "display_name": "Kevin Durant",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": false,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 21,
+          "team": "OKC",
+          "ovr": 97,
+          "three_point_shooting": 95,
+          "defence": 80,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 23,
+          "team": "GSW",
+          "ovr": 97,
+          "three_point_shooting": 95,
+          "defence": 90,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 36,
+          "team": "BKN",
+          "ovr": 96,
+          "three_point_shooting": 89,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "julius erving",
+      "person_name": "Julius Erving",
+      "canonical_name": "Julius Erving",
+      "display_name": "Julius Erving",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 14,
+      "player_seasons": [
+        {
+          "rank": 22,
+          "team": "BKN",
+          "ovr": 97,
+          "three_point_shooting": 82,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 83,
+          "team": "PHI",
+          "ovr": 94,
+          "three_point_shooting": 73,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "chris paul",
+      "person_name": "Chris Paul",
+      "canonical_name": "Chris Paul",
+      "display_name": "Chris Paul",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'0\"",
+      "hall_of_fame": false,
+      "badges": 29,
+      "player_seasons": [
+        {
+          "rank": 24,
+          "team": "NOP",
+          "ovr": 97,
+          "three_point_shooting": 83,
+          "defence": 27,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jerry west",
+      "person_name": "Jerry West",
+      "canonical_name": "Jerry West",
+      "display_name": "Jerry West",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'2\"",
+      "hall_of_fame": true,
+      "badges": 28,
+      "player_seasons": [
+        {
+          "rank": 25,
+          "team": "LAL",
+          "ovr": 97,
+          "three_point_shooting": 95,
+          "defence": 25,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "oscar robertson",
+      "person_name": "Oscar Robertson",
+      "canonical_name": "Oscar Robertson",
+      "display_name": "Oscar Robertson",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 26,
+          "team": "SAC",
+          "ovr": 97,
+          "three_point_shooting": 90,
+          "defence": 50,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 32,
+          "team": "MIL",
+          "ovr": 96,
+          "three_point_shooting": 80,
+          "defence": 50,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "karl malone",
+      "person_name": "Karl Malone",
+      "canonical_name": "Karl Malone",
+      "display_name": "Karl Malone",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 27,
+      "player_seasons": [
+        {
+          "rank": 27,
+          "team": "UTA",
+          "ovr": 97,
+          "three_point_shooting": 80,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "john stockton",
+      "person_name": "John Stockton",
+      "canonical_name": "John Stockton",
+      "display_name": "John Stockton",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'1\"",
+      "hall_of_fame": true,
+      "badges": 24,
+      "player_seasons": [
+        {
+          "rank": 28,
+          "team": "UTA",
+          "ovr": 97,
+          "three_point_shooting": 93,
+          "defence": 25,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dwyane wade",
+      "person_name": "Dwyane Wade",
+      "canonical_name": "Dwyane Wade",
+      "display_name": "Dwyane Wade",
+      "positions": "SG / N",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": false,
+      "badges": 28,
+      "player_seasons": [
+        {
+          "rank": 29,
+          "team": "MIA",
+          "ovr": 97,
+          "three_point_shooting": 78,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "moses malone",
+      "person_name": "Moses Malone",
+      "canonical_name": "Moses Malone",
+      "display_name": "Moses Malone",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 30,
+          "team": "HOU",
+          "ovr": 97,
+          "three_point_shooting": 43,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 31,
+          "team": "PHI",
+          "ovr": 97,
+          "three_point_shooting": 43,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "clyde drexler",
+      "person_name": "Clyde Drexler",
+      "canonical_name": "Clyde Drexler",
+      "display_name": "Clyde Drexler",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 11,
+      "player_seasons": [
+        {
+          "rank": 33,
+          "team": "POR",
+          "ovr": 96,
+          "three_point_shooting": 79,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "allen iverson",
+      "person_name": "Allen Iverson",
+      "canonical_name": "Allen Iverson",
+      "display_name": "Allen Iverson",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'0\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 34,
+          "team": "PHI",
+          "ovr": 96,
+          "three_point_shooting": 84,
+          "defence": 65,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "bob cousy",
+      "person_name": "Bob Cousy",
+      "canonical_name": "Bob Cousy",
+      "display_name": "Bob Cousy",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'1\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 35,
+          "team": "BOS",
+          "ovr": 96,
+          "three_point_shooting": 95,
+          "defence": 25,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "elgin baylor",
+      "person_name": "Elgin Baylor",
+      "canonical_name": "Elgin Baylor",
+      "display_name": "Elgin Baylor",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 37,
+          "team": "LAL",
+          "ovr": 96,
+          "three_point_shooting": 89,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "david robinson",
+      "person_name": "David Robinson",
+      "canonical_name": "David Robinson",
+      "display_name": "David Robinson",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'1\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 38,
+          "team": "SAS",
+          "ovr": 96,
+          "three_point_shooting": 71,
+          "defence": 60,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "steve nash",
+      "person_name": "Steve Nash",
+      "canonical_name": "Steve Nash",
+      "display_name": "Steve Nash",
+      "positions": "PG / N",
+      "country": "Canada",
+      "height": "6'3\"",
+      "hall_of_fame": true,
+      "badges": 15,
+      "player_seasons": [
+        {
+          "rank": 39,
+          "team": "PHX",
+          "ovr": 96,
+          "three_point_shooting": 94,
+          "defence": 25,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kawhi leonard",
+      "person_name": "Kawhi Leonard",
+      "canonical_name": "Kawhi Leonard",
+      "display_name": "Kawhi Leonard",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": false,
+      "badges": 28,
+      "player_seasons": [
+        {
+          "rank": 42,
+          "team": "TOR",
+          "ovr": 96,
+          "three_point_shooting": 83,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 53,
+          "team": "LAC",
+          "ovr": 95,
+          "three_point_shooting": 80,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 56,
+          "team": "SAS",
+          "ovr": 95,
+          "three_point_shooting": 84,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "john havlicek",
+      "person_name": "John Havlicek",
+      "canonical_name": "John Havlicek",
+      "display_name": "John Havlicek",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 43,
+          "team": "BOS",
+          "ovr": 96,
+          "three_point_shooting": 94,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "shai gilgeous alexander",
+      "person_name": "Shai Gilgeous-Alexander",
+      "canonical_name": "Shai Gilgeous-Alexander",
+      "display_name": "Shai Gilgeous-Alexander",
+      "positions": "PG / SF",
+      "country": "Canada",
+      "height": "6'6\"",
+      "hall_of_fame": false,
+      "badges": 31,
+      "player_seasons": [
+        {
+          "rank": 44,
+          "team": "OKC",
+          "ovr": 96,
+          "three_point_shooting": 78,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "rick barry",
+      "person_name": "Rick Barry",
+      "canonical_name": "Rick Barry",
+      "display_name": "Rick Barry",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 11,
+      "player_seasons": [
+        {
+          "rank": 45,
+          "team": "GSW",
+          "ovr": 95,
+          "three_point_shooting": 79,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "joel embiid",
+      "person_name": "Joel Embiid",
+      "canonical_name": "Joel Embiid",
+      "display_name": "Joel Embiid",
+      "positions": "C / N",
+      "country": "Cameroon United States",
+      "height": "7'0\"",
+      "hall_of_fame": false,
+      "badges": 27,
+      "player_seasons": [
+        {
+          "rank": 46,
+          "team": "PHI",
+          "ovr": 95,
+          "three_point_shooting": 78,
+          "defence": 80,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dominique wilkins",
+      "person_name": "Dominique Wilkins",
+      "canonical_name": "Dominique Wilkins",
+      "display_name": "Dominique Wilkins",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 9,
+      "player_seasons": [
+        {
+          "rank": 47,
+          "team": "ATL",
+          "ovr": 95,
+          "three_point_shooting": 75,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kevin mchale",
+      "person_name": "Kevin McHale",
+      "canonical_name": "Kevin McHale",
+      "display_name": "Kevin McHale",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 48,
+          "team": "BOS",
+          "ovr": 95,
+          "three_point_shooting": 78,
+          "defence": 65,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jerry lucas",
+      "person_name": "Jerry Lucas",
+      "canonical_name": "Jerry Lucas",
+      "display_name": "Jerry Lucas",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": true,
+      "badges": 24,
+      "player_seasons": [
+        {
+          "rank": 49,
+          "team": "SAC",
+          "ovr": 95,
+          "three_point_shooting": 90,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "derrick rose",
+      "person_name": "Derrick Rose",
+      "canonical_name": "Derrick Rose",
+      "display_name": "Derrick Rose",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": false,
+      "badges": 15,
+      "player_seasons": [
+        {
+          "rank": 50,
+          "team": "CHI",
+          "ovr": 95,
+          "three_point_shooting": 78,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "david thompson",
+      "person_name": "David Thompson",
+      "canonical_name": "David Thompson",
+      "display_name": "David Thompson",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": true,
+      "badges": 9,
+      "player_seasons": [
+        {
+          "rank": 51,
+          "team": "DEN",
+          "ovr": 95,
+          "three_point_shooting": 77,
+          "defence": 98,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "tony parker",
+      "person_name": "Tony Parker",
+      "canonical_name": "Tony Parker",
+      "display_name": "Tony Parker",
+      "positions": "PG / N",
+      "country": "France",
+      "height": "6'2\"",
+      "hall_of_fame": false,
+      "badges": 15,
+      "player_seasons": [
+        {
+          "rank": 52,
+          "team": "SAS",
+          "ovr": 95,
+          "three_point_shooting": 89,
+          "defence": 30,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "bill walton",
+      "person_name": "Bill Walton",
+      "canonical_name": "Bill Walton",
+      "display_name": "Bill Walton",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'11\"",
+      "hall_of_fame": true,
+      "badges": 28,
+      "player_seasons": [
+        {
+          "rank": 54,
+          "team": "POR",
+          "ovr": 95,
+          "three_point_shooting": 30,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "james worthy",
+      "person_name": "James Worthy",
+      "canonical_name": "James Worthy",
+      "display_name": "James Worthy",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 26,
+      "player_seasons": [
+        {
+          "rank": 55,
+          "team": "LAL",
+          "ovr": 95,
+          "three_point_shooting": 82,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "isiah thomas",
+      "person_name": "Isiah Thomas",
+      "canonical_name": "Isiah Thomas",
+      "display_name": "Isiah Thomas",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'1\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 57,
+          "team": "DET",
+          "ovr": 95,
+          "three_point_shooting": 76,
+          "defence": 65,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "george gervin",
+      "person_name": "George Gervin",
+      "canonical_name": "George Gervin",
+      "display_name": "George Gervin",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 7,
+      "player_seasons": [
+        {
+          "rank": 58,
+          "team": "SAS",
+          "ovr": 95,
+          "three_point_shooting": 79,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "russell westbrook",
+      "person_name": "Russell Westbrook",
+      "canonical_name": "Russell Westbrook",
+      "display_name": "Russell Westbrook",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": false,
+      "badges": 36,
+      "player_seasons": [
+        {
+          "rank": 59,
+          "team": "OKC",
+          "ovr": 95,
+          "three_point_shooting": 79,
+          "defence": 90,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "victor wembanyama",
+      "person_name": "Victor Wembanyama",
+      "canonical_name": "Victor Wembanyama",
+      "display_name": "Victor Wembanyama",
+      "positions": "C / PF",
+      "country": "France",
+      "height": "7'3\"",
+      "hall_of_fame": false,
+      "badges": 33,
+      "player_seasons": [
+        {
+          "rank": 60,
+          "team": "SAS",
+          "ovr": 95,
+          "three_point_shooting": 80,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "bob pettit",
+      "person_name": "Bob Pettit",
+      "canonical_name": "Bob Pettit",
+      "display_name": "Bob Pettit",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 61,
+          "team": "ATL",
+          "ovr": 95,
+          "three_point_shooting": 96,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dave cowens",
+      "person_name": "Dave Cowens",
+      "canonical_name": "Dave Cowens",
+      "display_name": "Dave Cowens",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 62,
+          "team": "BOS",
+          "ovr": 95,
+          "three_point_shooting": 78,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "patrick ewing",
+      "person_name": "Patrick Ewing",
+      "canonical_name": "Patrick Ewing",
+      "display_name": "Patrick Ewing",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'0\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 63,
+          "team": "NYK",
+          "ovr": 95,
+          "three_point_shooting": 65,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "gary payton",
+      "person_name": "Gary Payton",
+      "canonical_name": "Gary Payton",
+      "display_name": "Gary Payton",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 64,
+          "team": "OKC",
+          "ovr": 95,
+          "three_point_shooting": 80,
+          "defence": 42,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "tracy mcgrady",
+      "person_name": "Tracy McGrady",
+      "canonical_name": "Tracy McGrady",
+      "display_name": "Tracy McGrady",
+      "positions": "SG / PG",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 65,
+          "team": "ORL",
+          "ovr": 95,
+          "three_point_shooting": 91,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "james harden",
+      "person_name": "James Harden",
+      "canonical_name": "James Harden",
+      "display_name": "James Harden",
+      "positions": "SG / PG",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": false,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 66,
+          "team": "HOU",
+          "ovr": 95,
+          "three_point_shooting": 85,
+          "defence": 84,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "carmelo anthony",
+      "person_name": "Carmelo Anthony",
+      "canonical_name": "Carmelo Anthony",
+      "display_name": "Carmelo Anthony",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": false,
+      "badges": 20,
+      "player_seasons": [
+        {
+          "rank": 67,
+          "team": "DEN",
+          "ovr": 95,
+          "three_point_shooting": 87,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jason kidd",
+      "person_name": "Jason Kidd",
+      "canonical_name": "Jason Kidd",
+      "display_name": "Jason Kidd",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 68,
+          "team": "BKN",
+          "ovr": 95,
+          "three_point_shooting": 80,
+          "defence": 29,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jayson tatum",
+      "person_name": "Jayson Tatum",
+      "canonical_name": "Jayson Tatum",
+      "display_name": "Jayson Tatum",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": false,
+      "badges": 33,
+      "player_seasons": [
+        {
+          "rank": 69,
+          "team": "BOS",
+          "ovr": 94,
+          "three_point_shooting": 87,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "ray allen",
+      "person_name": "Ray Allen",
+      "canonical_name": "Ray Allen",
+      "display_name": "Ray Allen",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 10,
+      "player_seasons": [
+        {
+          "rank": 70,
+          "team": "OKC",
+          "ovr": 94,
+          "three_point_shooting": 98,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "pete maravich",
+      "person_name": "Pete Maravich",
+      "canonical_name": "Pete Maravich",
+      "display_name": "Pete Maravich",
+      "positions": "SG / PG",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 19,
+      "player_seasons": [
+        {
+          "rank": 71,
+          "team": "UTA",
+          "ovr": 94,
+          "three_point_shooting": 95,
+          "defence": 48,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "george mikan",
+      "person_name": "George Mikan",
+      "canonical_name": "George Mikan",
+      "display_name": "George Mikan",
+      "positions": "C / N",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 72,
+          "team": "LAL",
+          "ovr": 94,
+          "three_point_shooting": 78,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "elvin hayes",
+      "person_name": "Elvin Hayes",
+      "canonical_name": "Elvin Hayes",
+      "display_name": "Elvin Hayes",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 73,
+          "team": "WAS",
+          "ovr": 94,
+          "three_point_shooting": 70,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "paul pierce",
+      "person_name": "Paul Pierce",
+      "canonical_name": "Paul Pierce",
+      "display_name": "Paul Pierce",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 12,
+      "player_seasons": [
+        {
+          "rank": 74,
+          "team": "BOS",
+          "ovr": 94,
+          "three_point_shooting": 92,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "damian lillard",
+      "person_name": "Damian Lillard",
+      "canonical_name": "Damian Lillard",
+      "display_name": "Damian Lillard",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": false,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 75,
+          "team": "POR",
+          "ovr": 94,
+          "three_point_shooting": 87,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "kyrie irving",
+      "person_name": "Kyrie Irving",
+      "canonical_name": "Kyrie Irving",
+      "display_name": "Kyrie Irving",
+      "positions": "PG / SG",
+      "country": "United States Australia",
+      "height": "6'3\"",
+      "hall_of_fame": false,
+      "badges": 20,
+      "player_seasons": [
+        {
+          "rank": 76,
+          "team": "CLE",
+          "ovr": 94,
+          "three_point_shooting": 93,
+          "defence": 30,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dennis johnson",
+      "person_name": "Dennis Johnson",
+      "canonical_name": "Dennis Johnson",
+      "display_name": "Dennis Johnson",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'4\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 78,
+          "team": "PHX",
+          "ovr": 94,
+          "three_point_shooting": 68,
+          "defence": 31,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "mitch richmond",
+      "person_name": "Mitch Richmond",
+      "canonical_name": "Mitch Richmond",
+      "display_name": "Mitch Richmond",
+      "positions": "SG / SF",
+      "country": "United States",
+      "height": "6'5\"",
+      "hall_of_fame": true,
+      "badges": 14,
+      "player_seasons": [
+        {
+          "rank": 79,
+          "team": "SAC",
+          "ovr": 94,
+          "three_point_shooting": 91,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "penny hardaway",
+      "person_name": "Penny Hardaway",
+      "canonical_name": "Penny Hardaway",
+      "display_name": "Penny Hardaway",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": false,
+      "badges": 17,
+      "player_seasons": [
+        {
+          "rank": 80,
+          "team": "ORL",
+          "ovr": 94,
+          "three_point_shooting": 84,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dolph schayes",
+      "person_name": "Dolph Schayes",
+      "canonical_name": "Dolph Schayes",
+      "display_name": "Dolph Schayes",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'8\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 81,
+          "team": "PHI",
+          "ovr": 94,
+          "three_point_shooting": 90,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "sidney moncrief",
+      "person_name": "Sidney Moncrief",
+      "canonical_name": "Sidney Moncrief",
+      "display_name": "Sidney Moncrief",
+      "positions": "SG / PG",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": true,
+      "badges": 17,
+      "player_seasons": [
+        {
+          "rank": 82,
+          "team": "MIL",
+          "ovr": 94,
+          "three_point_shooting": 75,
+          "defence": 81,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jo jo white",
+      "person_name": "Jo Jo White",
+      "canonical_name": "John Alexander \"Jo Jo\" White",
+      "display_name": "Jo Jo White",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": true,
+      "badges": 16,
+      "player_seasons": [
+        {
+          "rank": 84,
+          "team": "BOS",
+          "ovr": 94,
+          "three_point_shooting": 78,
+          "defence": 60,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "chris mullin",
+      "person_name": "Chris Mullin",
+      "canonical_name": "Chris Mullin",
+      "display_name": "Chris Mullin",
+      "positions": "SF / SG",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 11,
+      "player_seasons": [
+        {
+          "rank": 85,
+          "team": "GSW",
+          "ovr": 94,
+          "three_point_shooting": 97,
+          "defence": 45,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "nate archibald",
+      "person_name": "Nate Archibald",
+      "canonical_name": "Nathaniel \"Nate\" Archibald",
+      "display_name": "Nate Archibald",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'1\"",
+      "hall_of_fame": true,
+      "badges": 15,
+      "player_seasons": [
+        {
+          "rank": 86,
+          "team": "SAC",
+          "ovr": 94,
+          "three_point_shooting": 74,
+          "defence": 35,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "anthony davis",
+      "person_name": "Anthony Davis",
+      "canonical_name": "Anthony Davis",
+      "display_name": "Anthony Davis",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": false,
+      "badges": 27,
+      "player_seasons": [
+        {
+          "rank": 87,
+          "team": "NOP",
+          "ovr": 94,
+          "three_point_shooting": 76,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        },
+        {
+          "rank": 88,
+          "team": "LAL",
+          "ovr": 94,
+          "three_point_shooting": 76,
+          "defence": 86,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "willis reed",
+      "person_name": "Willis Reed",
+      "canonical_name": "Willis Reed",
+      "display_name": "Willis Reed",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 26,
+      "player_seasons": [
+        {
+          "rank": 89,
+          "team": "NYK",
+          "ovr": 94,
+          "three_point_shooting": 54,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "alonzo mourning",
+      "person_name": "Alonzo Mourning",
+      "canonical_name": "Alonzo Mourning",
+      "display_name": "Alonzo Mourning",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'10\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 90,
+          "team": "MIA",
+          "ovr": 94,
+          "three_point_shooting": 62,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "bob mcadoo",
+      "person_name": "Bob McAdoo",
+      "canonical_name": "Bob McAdoo",
+      "display_name": "Bob McAdoo",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 23,
+      "player_seasons": [
+        {
+          "rank": 91,
+          "team": "LAC",
+          "ovr": 94,
+          "three_point_shooting": 30,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "wes unseld",
+      "person_name": "Wes Unseld",
+      "canonical_name": "Wes Unseld",
+      "display_name": "Wes Unseld",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 25,
+      "player_seasons": [
+        {
+          "rank": 92,
+          "team": "WAS",
+          "ovr": 94,
+          "three_point_shooting": 78,
+          "defence": 95,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jalen brunson",
+      "person_name": "Jalen Brunson",
+      "canonical_name": "Jalen Brunson",
+      "display_name": "Jalen Brunson",
+      "positions": "PG / N",
+      "country": "United States",
+      "height": "6'2\"",
+      "hall_of_fame": false,
+      "badges": 24,
+      "player_seasons": [
+        {
+          "rank": 93,
+          "team": "NYK",
+          "ovr": 93,
+          "three_point_shooting": 86,
+          "defence": 35,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "gilbert arenas",
+      "person_name": "Gilbert Arenas",
+      "canonical_name": "Gilbert Arenas",
+      "display_name": "Gilbert Arenas",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'3\"",
+      "hall_of_fame": true,
+      "badges": 22,
+      "player_seasons": [
+        {
+          "rank": 94,
+          "team": "WAS",
+          "ovr": 93,
+          "three_point_shooting": 89,
+          "defence": 75,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "mark price",
+      "person_name": "Mark Price",
+      "canonical_name": "Mark Price",
+      "display_name": "Mark Price",
+      "positions": "PG / SG",
+      "country": "United States",
+      "height": "6'0\"",
+      "hall_of_fame": false,
+      "badges": 18,
+      "player_seasons": [
+        {
+          "rank": 96,
+          "team": "CLE",
+          "ovr": 93,
+          "three_point_shooting": 96,
+          "defence": 25,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "dennis rodman",
+      "person_name": "Dennis Rodman",
+      "canonical_name": "Dennis Rodman",
+      "display_name": "Dennis Rodman",
+      "positions": "PF / SF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": true,
+      "badges": 14,
+      "player_seasons": [
+        {
+          "rank": 97,
+          "team": "CHI",
+          "ovr": 93,
+          "three_point_shooting": 62,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "chris webber",
+      "person_name": "Chris Webber",
+      "canonical_name": "Chris Webber",
+      "display_name": "Chris Webber",
+      "positions": "PF / C",
+      "country": "United States",
+      "height": "6'9\"",
+      "hall_of_fame": true,
+      "badges": 21,
+      "player_seasons": [
+        {
+          "rank": 98,
+          "team": "SAC",
+          "ovr": 93,
+          "three_point_shooting": 66,
+          "defence": 85,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "jimmy butler",
+      "person_name": "Jimmy Butler",
+      "canonical_name": "Jimmy Butler",
+      "display_name": "Jimmy Butler",
+      "positions": "SF / PF",
+      "country": "United States",
+      "height": "6'7\"",
+      "hall_of_fame": false,
+      "badges": 26,
+      "player_seasons": [
+        {
+          "rank": 99,
+          "team": "MIA",
+          "ovr": 93,
+          "three_point_shooting": 75,
+          "defence": 80,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    },
+    {
+      "person_key": "robert parish",
+      "person_name": "Robert Parish",
+      "canonical_name": "Robert Parish",
+      "display_name": "Robert Parish",
+      "positions": "C / PF",
+      "country": "United States",
+      "height": "7'0\"",
+      "hall_of_fame": true,
+      "badges": 20,
+      "player_seasons": [
+        {
+          "rank": 100,
+          "team": "BOS",
+          "ovr": 93,
+          "three_point_shooting": 25,
+          "defence": 70,
+          "peak_year": null,
+          "provenance": {
+            "source": "owner-supplied all-time NBA list (pasted 2026-10-21)",
+            "source_version": "owner paste",
+            "source_date": "2026-10-21",
+            "ratings_in_source": true,
+            "note": "the Owner asked that the peak-year data be discarded; the paste carries no year column, so the team is peak-era context only"
+          }
+        }
+      ]
+    }
+  ]
+}

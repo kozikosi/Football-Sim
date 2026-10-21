@@ -1,0 +1,6 @@
+slots: 26 players: 1200
+eligible slot-player edges: 12210
+demand: 832 nodes: 1228
+flow: 832 total penalty: 54 avg per slot: 0.065
+penalty histogram: {"0":816,"2":5,"4":11}
+per-slot: {"QB":{"n":32,"flexed":0,"penalty":0},"RB1":{"n":32,"flexed":0,"penalty":0},"RB2":{"n":32,"flexed":0,"penalty":0},"WR1":{"n":32,"flexed":0,"penalty":0},"WR2":{"n":32,"flexed":0,"penalty":0},"WR3":{"n":32,"flexed":0,"penalty":0},"TE1":{"n":32,"flexed":0,"penalty":0},"TE2":{"n":32,"flexed":11,"penalty":44},"OT1":{"n":32,"flexed":0,"penalty":0},"OT2":{"n":32,"flexed":0,"penalty":0},"OG1":{"n":32,"flexed":0,"penalty":0},"OG2":{"n":32,"flexed":0,"penalty":0},"C":{"n":32,"flexed":0,"penalty":0},"DE1":{"n":32,"flexed":0,"penalty":0},"DE2":{"n":32,"flexed":0,"penalty":0},"DT1":{"n":32,"flexed":0,"penalty":0},"DT2":{"n":32,"flexed":0,"penalty":0},"MIKE":{"n":32,"flexed":0,"penalty":0},"WILL":{"n":32,"flexed":0,"penalty":0},"SAM":{"n":32,"flexed":5,"penalty":10},"CB1":{"n":32,"flexed":0,"penalty":0},"CB2":{"n":32,"flexed":0,"penalty":0},"CB3":{"n":32,"flexed":0,"penalty":0},"SS":{"n":32,"flexed":0,"penalty":0},"FS":{"n":32,"flexed":0,"penalty":0},"K":{"n":32,"flexed":0,"penalty":0}}

@@ -1,0 +1,41 @@
+
+MiniMax candidate lint — NFL Draft Simulator v20 Claude.html
+  sha256 31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819 · 649032 bytes
+  31 pass · 0 warn · 16 fail
+
+  [FAIL] fn:cpuPick               got 3dc9d12f500a, want donor 94b878605b73 (v20 reject is 3dc9d12f500a)
+  [FAIL] fn:render100             got 1ea6e8414397, want donor cc1016eacc78 (v20 reject is 1ea6e8414397)
+  [FAIL] fn:fitNoteHTML           got 182c1792501b, want donor 757091310f1f
+  [FAIL] fn:buildDefenseDetail    got 992145aa07e0, want donor d2119e2e85f1
+  [FAIL] fn:dramaticEnding        got 121874b933bb, want donor 50a5ae2444ac
+  [FAIL] fn:turnoverParagraph     got 4438e25ceb0b, want donor 4afe77d0379a
+  [FAIL] fn:playByPlay            got e2b3fb170aa3, want donor d4a85bd7b181
+  [FAIL] fn:generateGameSummary   got 4a9bfd080ae2, want donor 9f285818eff6
+  [FAIL] fn:matchupTagHTML        got 629126ff9072, want donor ec2ac8742b3e
+  [FAIL] fn:renderPlayoffsView    got 3332c4ee5417, want donor e45f75b5cca9
+  [FAIL] fn:renderGuideHTML       got 7fa8dd9b7c3d, want donor 220a95914ca9
+  [FAIL] text:rWeights            1 occurrence(s) and NOT declared — ReferenceError
+  [FAIL] text:color-scheme        1 declaration(s): light — want exactly one "light dark"
+  [FAIL] text:msChecked           3 occurrence(s) — the mobile pass keeps a stale memo and skips re-stacking
+  [FAIL] text:wrapper             <!DOCTYPE x2, </html> x2 — v20 is double-wrapped
+  [FAIL] text:style-strings       sudden death x1, "went the distance" x1 — both removed in the donor
+
+  FAILING CHECKS:
+   - fn:cpuPick: got 3dc9d12f500a, want donor 94b878605b73 (v20 reject is 3dc9d12f500a)
+   - fn:render100: got 1ea6e8414397, want donor cc1016eacc78 (v20 reject is 1ea6e8414397)
+   - fn:fitNoteHTML: got 182c1792501b, want donor 757091310f1f
+   - fn:buildDefenseDetail: got 992145aa07e0, want donor d2119e2e85f1
+   - fn:dramaticEnding: got 121874b933bb, want donor 50a5ae2444ac
+   - fn:turnoverParagraph: got 4438e25ceb0b, want donor 4afe77d0379a
+   - fn:playByPlay: got e2b3fb170aa3, want donor d4a85bd7b181
+   - fn:generateGameSummary: got 4a9bfd080ae2, want donor 9f285818eff6
+   - fn:matchupTagHTML: got 629126ff9072, want donor ec2ac8742b3e
+   - fn:renderPlayoffsView: got 3332c4ee5417, want donor e45f75b5cca9
+   - fn:renderGuideHTML: got 7fa8dd9b7c3d, want donor 220a95914ca9
+   - text:rWeights: 1 occurrence(s) and NOT declared — ReferenceError
+   - text:color-scheme: 1 declaration(s): light — want exactly one "light dark"
+   - text:msChecked: 3 occurrence(s) — the mobile pass keeps a stale memo and skips re-stacking
+   - text:wrapper: <!DOCTYPE x2, </html> x2 — v20 is double-wrapped
+   - text:style-strings: sudden death x1, "went the distance" x1 — both removed in the donor
+
+  exit 1 — the candidate does not yet satisfy the merge oracle

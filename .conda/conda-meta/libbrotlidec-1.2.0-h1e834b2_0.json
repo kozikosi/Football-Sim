@@ -1,0 +1,66 @@
+{
+  "build": "h1e834b2_0",
+  "build_number": 0,
+  "depends": [
+    "__osx >=12.1",
+    "libbrotlicommon 1.2.0 hbd7815e_0"
+  ],
+  "license": "MIT",
+  "license_family": "MIT",
+  "md5": "8d41fd7da1d9d44b9ba39ab833f66605",
+  "name": "libbrotlidec",
+  "sha256": "9db56cd97049b73274301c2b9fc8ddb5e103f8c68b3b2a4c04d245c4e5b6fef5",
+  "size": 27444,
+  "subdir": "osx-arm64",
+  "timestamp": 1762363457191,
+  "version": "1.2.0",
+  "fn": "libbrotlidec-1.2.0-h1e834b2_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libbrotlidec-1.2.0-h1e834b2_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libbrotlidec-1.2.0-h1e834b2_0",
+  "requested_specs": [],
+  "files": [
+    "lib/pkgconfig/libbrotlidec.pc",
+    "lib/libbrotlidec.1.2.0.dylib",
+    "lib/libbrotlidec.1.dylib",
+    "lib/libbrotlidec.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/pkgconfig/libbrotlidec.pc",
+        "path_type": "hardlink",
+        "sha256": "9bc27ace674404e2747b82d58c722a6c570b275025c5f2ed9e8164a69226c416",
+        "sha256_in_prefix": "070ce6d8d843908bea5aef4bae5a1a2545daa81f6e92032e5eb0a7746ad33688",
+        "size_in_bytes": 375,
+        "file_mode": "text",
+        "prefix_placeholder": "/opt/miniconda3/conda-bld/brotli-split_1762363406148/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place"
+      },
+      {
+        "_path": "lib/libbrotlidec.1.2.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "d348febec09ec5298f5048925a33b4531be3d3bc06ced299440c19866d6f3d77",
+        "size_in_bytes": 87968
+      },
+      {
+        "_path": "lib/libbrotlidec.1.dylib",
+        "path_type": "softlink",
+        "sha256": "d348febec09ec5298f5048925a33b4531be3d3bc06ced299440c19866d6f3d77",
+        "sha256_in_prefix": "40c1e06df1a086d6ff9ac6a73baa0ea2702fe9a1b89014260f41a3fe9cd5922e",
+        "size_in_bytes": 87968
+      },
+      {
+        "_path": "lib/libbrotlidec.dylib",
+        "path_type": "softlink",
+        "sha256": "d348febec09ec5298f5048925a33b4531be3d3bc06ced299440c19866d6f3d77",
+        "sha256_in_prefix": "40c1e06df1a086d6ff9ac6a73baa0ea2702fe9a1b89014260f41a3fe9cd5922e",
+        "size_in_bytes": 87968
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libbrotlidec-1.2.0-h1e834b2_0",
+    "type": 1
+  }
+}

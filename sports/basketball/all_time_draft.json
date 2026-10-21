@@ -1,0 +1,7 @@
+{
+  "quarantined": true,
+  "notice": "This path previously held invented player ratings; AGENTS.md prohibits inventing ratings. Nothing was deleted: the original bytes are preserved at _fixtures/example-ratings/quarantined-originals/basketball-all_time_draft.quarantined.json. Safe synthetic example (record shape only): _fixtures/example-ratings/all_time_draft.example.json. Quarantine executed by MiMo 2026-10-21 UTC per VLOC assignment; execution notes: _agents/mimo/notes/quarantine-execution.md.",
+  "records": [],
+  "safe_example": "_fixtures/example-ratings/all_time_draft.example.json",
+  "quarantined_original": "_fixtures/example-ratings/quarantined-originals/basketball-all_time_draft.quarantined.json"
+}

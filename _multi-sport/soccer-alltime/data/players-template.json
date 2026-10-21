@@ -1,0 +1,218 @@
+// Soccer All-Time Player Database — Template
+// Format: array of player objects
+// Source: collectively created by the council using chosen soccer source (e.g., clubelo.com Elo ratings, Transfermarkt, FIFA historical ratings, IFFHS)
+// Era adjustment: applied to OVR per Owner's era tiers (see QUESTIONS-FOR-OWNER.md Q-SOCCER-AT-1)
+//
+// SCHEMA
+// {
+//   "name": "string — player's full name",
+//   "pos": "string — position code (see POSITIONS below)",
+//   "team": "string — primary club team (team name from LEAGUES/TEAMS list)",
+//   "league": "string — league name (e.g., 'Premier League', 'La Liga', 'Bundesliga', 'Serie A', 'Ligue 1', 'MLS', 'European Cup/Champions League')",
+//   "era": "string — decade of peak (e.g., '1950s', '1970s', '1990s', '2000s', '2010s', '2020s')",
+//   "ovr": "number — overall rating (0-99, with era adjustment applied)",
+//   "pac": "number — pace (0-99)",
+//   "sho": "number — shooting (0-99)",
+//   "pas": "number — passing (0-99)",
+//   "dri": "number — dribbling (0-99)",
+//   "def": "number — defending (0-99)",
+//   "phy": "number — physical (0-99)",
+//   "xf": "string|null — X-factor name (optional, soccer-specific traits)",
+//   "source": "string — how this rating was derived (Owner input, consensus, cited reference)"
+// }
+//
+// POSITIONS (11 starting slots per team, plus depth)
+// GK, RB, LB, CB1, CB2, CDM, CM, CAM, RW, LW, ST
+// Depth: GK2, RB2, LB2, CB3, CB4, CDM2, CM2, CAM2, RW2, LW2, ST2
+// Total: ~22 slots per team
+//
+// LEAGUES (Historical + Current)
+// Premier League, La Liga, Bundesliga, Serie A, Ligue 1, MLS,
+// European Cup/Champions League, Copa Libertadores, World Cup, European Championship, Copa América
+//
+// TEAMS (Historical + Current)
+// All current teams plus historical greats: Real Madrid, Barcelona, Bayern Munich, AC Milan, Juventus, Liverpool, Manchester United, Ajax, Ajax, Benfica, Porto, Celtic, Rangers, Boca Juniors, River Plate, Santos, Flamengo, etc.
+//
+// ERA ADJUSTMENT TIERS (proposed - pending Owner approval)
+// Pre-1960: pac -10, sho -5, pas -5, dri -5, def +5, phy +5
+// 1960s-1980s: pac -5, sho -2, pas -2, dri -2, def +2, phy +2
+// 1990s-2000s: baseline (no adjustment)
+// 2000s-2010s: pac +2, sho +2, pas +2, dri +2, def -2, phy -2
+// 2010s-present: pac +5, sho +3, pas +3, dri +3, def -3, phy -3
+//
+// EXAMPLES
+[
+  {
+    "name": "Pelé",
+    "pos": "ST",
+    "team": "Santos",
+    "league": "Copa Libertadores",
+    "era": "1960s",
+    "ovr": 99,
+    "pac": 90,
+    "sho": 98,
+    "pas": 92,
+    "dri": 98,
+    "def": 50,
+    "phy": 85,
+    "xf": "King of Football",
+    "source": "Owner input — consensus GOAT, era-adjusted from 95 (1960s base) +4 for historical dominance"
+  },
+  {
+    "name": "Diego Maradona",
+    "pos": "CAM",
+    "team": "Napoli",
+    "league": "Serie A",
+    "era": "1980s",
+    "ovr": 99,
+    "pac": 88,
+    "sho": 94,
+    "pas": 98,
+    "dri": 99,
+    "def": 55,
+    "phy": 85,
+    "xf": "El Pibe de Oro",
+    "source": "Owner input — consensus top-2 all-time, era-adjusted from 97 (1980s base) +2"
+  },
+  {
+    "name": "Lionel Messi",
+    "pos": "RW",
+    "team": "Barcelona",
+    "league": "La Liga",
+    "era": "2010s",
+    "ovr": 99,
+    "pac": 85,
+    "sho": 96,
+    "pas": 98,
+    "dri": 99,
+    "def": 35,
+    "phy": 68,
+    "xf": "GOAT",
+    "source": "Owner input — consensus GOAT, no era adjustment needed (modern era)"
+  },
+  {
+    "name": "Cristiano Ronaldo",
+    "pos": "ST",
+    "team": "Real Madrid",
+    "league": "La Liga",
+    "era": "2010s",
+    "ovr": 98,
+    "pac": 92,
+    "sho": 99,
+    "pas": 85,
+    "dri": 92,
+    "def": 40,
+    "phy": 95,
+    "xf": "CR7",
+    "source": "Owner input — consensus top-3 all-time, era-adjusted from 99 (modern) -1"
+  },
+  {
+    "name": "Johan Cruyff",
+    "pos": "CAM",
+    "team": "Ajax",
+    "league": "European Cup",
+    "era": "1970s",
+    "ovr": 98,
+    "pac": 88,
+    "sho": 92,
+    "pas": 96,
+    "dri": 97,
+    "def": 55,
+    "phy": 80,
+    "xf": "Total Football",
+    "source": "Owner input — Total Football architect, era-adjusted from 96 (1970s base) +2"
+  },
+  {
+    "name": "Franz Beckenbauer",
+    "pos": "CB1",
+    "team": "Bayern Munich",
+    "league": "Bundesliga",
+    "era": "1970s",
+    "ovr": 97,
+    "pac": 82,
+    "sho": 75,
+    "pas": 90,
+    "dri": 88,
+    "def": 96,
+    "phy": 88,
+    "xf": "Der Kaiser",
+    "source": "Owner input — best CB ever, era-adjusted from 95 (1970s base) +2"
+  },
+  {
+    "name": "Lev Yashin",
+    "pos": "GK",
+    "team": "Dynamo Moscow",
+    "league": "European Cup",
+    "era": "1960s",
+    "ovr": 97,
+    "pac": 55,
+    "sho": 10,
+    "pas": 70,
+    "dri": 30,
+    "def": 98,
+    "phy": 90,
+    "xf": "Black Spider",
+    "source": "Owner input — only GK to win Ballon d'Or, era-adjusted from 95 (1960s base) +2"
+  },
+  {
+    "name": "Alfredo Di Stéfano",
+    "pos": "CAM",
+    "team": "Real Madrid",
+    "league": "European Cup",
+    "era": "1950s",
+    "ovr": 98,
+    "pac": 85,
+    "sho": 94,
+    "pas": 93,
+    "dri": 93,
+    "def": 60,
+    "phy": 90,
+    "xf": "Blond Arrow",
+    "source": "Owner input — 5 European Cups, era-adjusted from 94 (1950s base) +4"
+  },
+  {
+    "name": "Xavi",
+    "pos": "CM",
+    "team": "Barcelona",
+    "league": "La Liga",
+    "era": "2000s",
+    "ovr": 96,
+    "pac": 70,
+    "sho": 75,
+    "pas": 99,
+    "dri": 94,
+    "def": 70,
+    "phy": 65,
+    "xf": "Maestro",
+    "source": "clubelo.com Elo 1980 peak — best playmaker of generation, era-adjusted from 96 (2000s base)"
+  },
+  {
+    "name": "Andrés Iniesta",
+    "pos": "CAM",
+    "team": "Barcelona",
+    "league": "La Liga",
+    "era": "2000s",
+    "ovr": 95,
+    "pac": 78,
+    "sho": 80,
+    "pas": 97,
+    "dri": 98,
+    "def": 65,
+    "phy": 65,
+    "xf": "Illusionist",
+    "source": "clubelo.com Elo 1960 peak — perfect complement to Xavi, era-adjusted from 95 (2000s base)"
+  }
+]
+
+// VALIDATION RULES
+// 1. Every player must have a name, pos, team, league, era, ovr, and source.
+// 2. ovr must be 0-99. pac/sho/pas/dri/def/phy must be 0-99.
+// 2. pos must be one of the position codes (GK, RB, LB, CB1, CB2, CDM, CM, CAM, RW, LW, ST, plus depth codes).
+// 3. team must be one of the official team names from the LEAGUES list.
+// 3. league must be one of the historical/current leagues.
+// 4. era must be a decade string (e.g., "1950s", "1980s", "2000s", "2010s", "2020s").
+// 4. xf is optional (null or omitted if no X-factor).
+// 5. source must explain how the rating was derived (source name, method, confidence).
+// 5. No duplicate players (same name + team + era).
+// 6. Position balance: aim for ~20 players per position across all eras.
+// 6. Total players: ~1,500-2,000 (current players with era adjustment + historical greats).

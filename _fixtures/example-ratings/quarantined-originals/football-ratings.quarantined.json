@@ -1,0 +1,49 @@
+{
+  "players": [
+    {
+      "playerId": "p001",
+      "name": "Tom Brady",
+      "position": "QB",
+      "team": "DAL",
+      "era": "2020-2025",
+      "peakRating": 98.5,
+      "careerAverage": 89.2
+    },
+    {
+      "playerId": "p002",
+      "name": "Patrick Mahomes",
+      "position": "QB",
+      "team": "KC",
+      "era": "2020-2025",
+      "peakRating": 97.8,
+      "careerAverage": 91.5
+    },
+    {
+      "playerId": "p003",
+      "name": "Lamar Jackson",
+      "position": "RB",
+      "team": "BAL",
+      "era": "2019-2025",
+      "peakRating": 96.3,
+      "careerAverage": 88.7
+    },
+    {
+      "playerId": "p004",
+      "name": "Stephen Curry",
+      "position": "SG",
+      "team": "GSW",
+      "era": "2016-2025",
+      "peakRating": 95.4,
+      "careerAverage": 87.9
+    },
+    {
+      "playerId": "p005",
+      "name": "Josh Hamilton",
+      "position": "WR",
+      "team": "MIN",
+      "era": "2005-2015",
+      "peakRating": 94.1,
+      "careerAverage": 85.3
+    }
+  ]
+}

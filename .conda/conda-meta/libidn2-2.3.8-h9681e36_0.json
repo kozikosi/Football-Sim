@@ -1,0 +1,74 @@
+{
+  "build": "h9681e36_0",
+  "build_number": 0,
+  "depends": [
+    "__osx >=12.1",
+    "gettext >=0.21.0,<1.0a0",
+    "libiconv >=1.16,<2.0a0",
+    "libunistring >=1,<2.0a0"
+  ],
+  "license": "LGPL-2.0 AND LGPL-3.0-or-later AND GPL-3.0-or-later",
+  "license_family": "OTHER",
+  "md5": "4caba2988c52534c6ba5e88afebba106",
+  "name": "libidn2",
+  "sha256": "bdd1c89fbb3b02907799131cb5a436200d134277cdb9dbebab77ebbd28a68e97",
+  "size": 114873,
+  "subdir": "osx-arm64",
+  "timestamp": 1760364408172,
+  "version": "2.3.8",
+  "fn": "libidn2-2.3.8-h9681e36_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libidn2-2.3.8-h9681e36_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libidn2-2.3.8-h9681e36_0",
+  "requested_specs": [],
+  "files": [
+    "lib/pkgconfig/libidn2.pc",
+    "bin/idn2",
+    "lib/libidn2.0.dylib",
+    "lib/libidn2.dylib",
+    "include/idn2.h"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/pkgconfig/libidn2.pc",
+        "path_type": "hardlink",
+        "sha256": "86ea1827e335d2a1cf1d8378484a0a3e0c385738870567a697a476a517e76083",
+        "sha256_in_prefix": "aad566adac510bdc823e50cc7b2b395257ce983f4e6ecd9242713d8c93a91bc7",
+        "size_in_bytes": 523,
+        "file_mode": "text",
+        "prefix_placeholder": "/opt/miniconda3/conda-bld/libidn2_1760364301762/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_"
+      },
+      {
+        "_path": "bin/idn2",
+        "path_type": "hardlink",
+        "sha256": "e58573f6c431621138957ab26aa35b41dedda22594fe6b7d43aca33f5fdde807",
+        "size_in_bytes": 89520
+      },
+      {
+        "_path": "lib/libidn2.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "66731f4086f35b942dfb4a93ff428e32be27aea4c6bc26c70b6351c0728db226",
+        "size_in_bytes": 259104
+      },
+      {
+        "_path": "lib/libidn2.dylib",
+        "path_type": "softlink",
+        "sha256": "66731f4086f35b942dfb4a93ff428e32be27aea4c6bc26c70b6351c0728db226",
+        "sha256_in_prefix": "7f97ef5d0a42efd41a4132783b160fc50e68861574c2f189117d1a375b5106e7",
+        "size_in_bytes": 259104
+      },
+      {
+        "_path": "include/idn2.h",
+        "path_type": "hardlink",
+        "sha256": "1f55fc1e02b0c4436c41ad7bb8977c64cf3bb61075a4cc412d996878fac93127",
+        "size_in_bytes": 14191
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libidn2-2.3.8-h9681e36_0",
+    "type": 1
+  }
+}

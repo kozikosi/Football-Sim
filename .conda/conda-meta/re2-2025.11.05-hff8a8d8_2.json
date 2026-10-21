@@ -1,0 +1,106 @@
+{
+  "build": "hff8a8d8_2",
+  "build_number": 2,
+  "depends": [
+    "libre2-11 2025.11.05 h50f4ffc_2"
+  ],
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "0599d5da879f6ffb1ec9637f8e2c00e1",
+  "name": "re2",
+  "sha256": "bfe1b9a4303719e56ef5f0b9d003f265f5d61253a6781202946f267081372ea8",
+  "size": 26222,
+  "subdir": "osx-arm64",
+  "timestamp": 1784746936392,
+  "version": "2025.11.05",
+  "fn": "re2-2025.11.05-hff8a8d8_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/re2-2025.11.05-hff8a8d8_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/re2-2025.11.05-hff8a8d8_2",
+  "requested_specs": [],
+  "files": [
+    "lib/pkgconfig/re2.pc",
+    "lib/libre2.dylib",
+    "include/re2/filtered_re2.h",
+    "include/re2/re2.h",
+    "include/re2/set.h",
+    "include/re2/stringpiece.h",
+    "lib/cmake/re2/re2Config.cmake",
+    "lib/cmake/re2/re2ConfigVersion.cmake",
+    "lib/cmake/re2/re2Targets-release.cmake",
+    "lib/cmake/re2/re2Targets.cmake"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/pkgconfig/re2.pc",
+        "path_type": "hardlink",
+        "sha256": "558ff826a3a2f28d94a3c329374f50830224339c9db792535a87c0ce9d2b2bc8",
+        "sha256_in_prefix": "deec7f4d365d8f9db677f52910d708334e5cecd2304061632d3078be54aaf89f",
+        "size_in_bytes": 538,
+        "file_mode": "text",
+        "prefix_placeholder": "/Users/ec2-user/croot/re2-split_1784746860024/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_pl"
+      },
+      {
+        "_path": "lib/libre2.dylib",
+        "path_type": "softlink",
+        "sha256": "23d67b87eeb7b36c09032310d20225341d7babfa8b907b63801398262f9b7002",
+        "sha256_in_prefix": "696846bd3f4ef293097481a53fa8f53a0f1601490feeebdb4de8327fcfc3c2f1",
+        "size_in_bytes": 479728
+      },
+      {
+        "_path": "include/re2/filtered_re2.h",
+        "path_type": "hardlink",
+        "sha256": "1ea210499ecb637cd0c8ebc5f20d0c3be02697e4aa0f614ebc831812709227f5",
+        "size_in_bytes": 4281
+      },
+      {
+        "_path": "include/re2/re2.h",
+        "path_type": "hardlink",
+        "sha256": "59f4d4b5318fcb6acf0c90f17d17e71903a87ec25d75fcf5d13e738beb29490f",
+        "size_in_bytes": 42153
+      },
+      {
+        "_path": "include/re2/set.h",
+        "path_type": "hardlink",
+        "sha256": "d862a0e44570aad753ab7b68ec1c3e34a95075aaf95e50b208b26b894cefd903",
+        "size_in_bytes": 2693
+      },
+      {
+        "_path": "include/re2/stringpiece.h",
+        "path_type": "hardlink",
+        "sha256": "59c1438095decbdab33a6140f6b358634e3dc31c36408ba9ce3b382ab3fb6c5a",
+        "size_in_bytes": 504
+      },
+      {
+        "_path": "lib/cmake/re2/re2Config.cmake",
+        "path_type": "hardlink",
+        "sha256": "382134b3768060ad7ccdfe110feb2baac9110ccf0b5f3307d9fb3a147e540d42",
+        "size_in_bytes": 1382
+      },
+      {
+        "_path": "lib/cmake/re2/re2ConfigVersion.cmake",
+        "path_type": "hardlink",
+        "sha256": "0646009b5688c6b38b691169fc0ed61fa393a9856fae8dcbc14ba2a4992b3792",
+        "size_in_bytes": 2765
+      },
+      {
+        "_path": "lib/cmake/re2/re2Targets-release.cmake",
+        "path_type": "hardlink",
+        "sha256": "9613749f12397b04bc420003b882f8044e6466ec509f18c84acd68fe1e00d5bb",
+        "size_in_bytes": 830
+      },
+      {
+        "_path": "lib/cmake/re2/re2Targets.cmake",
+        "path_type": "hardlink",
+        "sha256": "2ddef9e276bbb549060a35301194499ece718e1e06660fa84a6b4f5ea6bd5aa2",
+        "size_in_bytes": 4423
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/re2-2025.11.05-hff8a8d8_2",
+    "type": 1
+  }
+}

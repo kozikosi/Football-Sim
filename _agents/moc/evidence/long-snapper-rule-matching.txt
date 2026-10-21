@@ -1,0 +1,5 @@
+--- D - FB/P slots + the Owner's long-snapper rule (LS->punter -4, LS->kicker -6): flow 896/896 · penalty 54 · histogram {0: 880, 2: 5, 4: 11}
+      P1   {'P': 32}
+      K    {'K': 32}
+      FB1  {'HB': 25, 'FB': 7}
+      long snappers fielded: 0

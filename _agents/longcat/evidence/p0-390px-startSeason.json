@@ -1,0 +1,24 @@
+{
+  "checkedBy": "LongCat (independent re-measure)",
+  "date": "2026-10-21",
+  "build": "merged.html",
+  "artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+  "artifactBytes": 657486,
+  "claim": "Ultra M-131 / MOC M-143: at 390x844 the primary action #startSeasonBtn is clipped / below the fold at the preseason checkpoint",
+  "command": "NODE_PATH=<repo>/node_modules node /tmp/verify-p0.js  (Playwright chromium; file:///Users/kosi/Desktop/Football Sim/merged.html)",
+  "viewport": { "w": 390, "h": 844 },
+  "result": {
+    "found": true,
+    "rect": { "top": 963, "bottom": 1007, "left": 36, "right": 194 },
+    "fullyInside": false,
+    "centerElement": null,
+    "centerCovered": true,
+    "visible": true,
+    "pageErrors": []
+  },
+  "interpretation": "The button's top (963) is 119px below the viewport bottom (844); document.elementFromPoint() at its centre returns null because the point is outside the viewport. The button is reachable by scrolling, but the primary action is NOT visible without scrolling.",
+  "verdict": "VERIFIED",
+  "discrepancy": "Ultra's result.json records centerUncovered:false for the same element; this re-measure returns centerCovered:true with elementFromPoint -> null. The field name is ambiguous; the geometry (top 963 > viewport 844) is unambiguous.",
+  "protocolClause": "OPENCHAMBER-E2E.md section 390px responsive checks: 'Check that the primary heading, navigation/phase indicator, and primary action are visible and within the viewport.' FAILS at the preseason checkpoint.",
+  "impact": "This is the first click of the season flow and therefore on the Owner's own manual playtest path."
+}

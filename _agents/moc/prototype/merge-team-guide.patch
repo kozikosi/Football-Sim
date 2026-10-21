@@ -1,0 +1,146 @@
+--- a/NFL Draft Simulator merged.html
++++ b/NFL Draft Simulator merged.html
+@@ -118,6 +118,8 @@
+ .draft-columns{display:grid;grid-template-columns:1fr 300px;gap:16px;}
+ @media (max-width:860px){.draft-columns{grid-template-columns:1fr;}}
+ .badge-passfail{background:rgba(180,120,255,0.18);color:#b478ff;}
++#cmpUnitTable tr.cmpgroup td{font-weight:700;font-size:0.7rem;text-transform:uppercase;letter-spacing:.08em;color:var(--sub);padding:9px 0 4px;border-top:1px solid var(--border);}
++#cmpUnitTable tr.cmpgroup:first-child td{padding-top:2px;border-top:none;}
+ .matchup-card{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:16px;background:var(--panel2);border:1px solid var(--border);border-radius:12px;margin-bottom:14px;}
+ .matchup-card .mc-team{text-align:center;}
+ .matchup-card .mc-team.home{text-align:center;}
+@@ -664,9 +666,10 @@
+  return groupAvgFromPool(PLAYERS.filter(p=>p[2]===team), def);
+ }
+ 
+-function computeDetailMetrics(pool){
++function computeDetailMetrics(pool, keys){
++  keys = keys || DETAIL_KEYS;
+  const allTeams = Object.keys(TEAM_DATA);
+- return DETAIL_KEYS.map(key=>{
++ return keys.map(key=>{
+   const def = GROUP_DEFS.find(g=>g.key===key);
+   const teamVals = allTeams.map(t=>groupAvgForTeam(t, def).avg);
+   const myVal = groupAvgFromPool(pool, def);
+@@ -820,7 +823,7 @@
+ document.getElementById('tabDraftBtn').addEventListener('click', ()=> setActiveTab('viewDraft','tabDraftBtn'));
+ document.getElementById('tabCompareBtn').addEventListener('click', ()=> setActiveTab('viewCompare','tabCompareBtn'));
+ document.getElementById('tabGuideBtn').addEventListener('click', ()=> setActiveTab('viewGuide','tabGuideBtn'));
+-const SUPP_TITLES = {tabRankingsBtn:['Madden Rankings','Adjust any weight on the left and every team\'s score and rank recalculates instantly. Missing depth-chart slots are filled with a default of 70 OVR. Click any team row for a detailed breakdown.'], tabPlayersBtn:['Player Browser','Every Madden NFL 27 player rating, searchable by name, position and team.'], tabGroupsBtn:['Position Rankings','How all 32 real rosters rank at each position group.'], tabCompareBtn:['Team Comparison','Put any two real rosters side by side.'], tabGuideBtn:['Guide','How the simulator works, in plain language.']};
++const SUPP_TITLES = {tabRankingsBtn:['Madden Rankings','Adjust any weight on the left and every team\'s score and rank recalculates instantly. Missing depth-chart slots are filled with a default of 70 OVR. Click any team row for a detailed breakdown.'], tabPlayersBtn:['Player Browser','Every Madden NFL 27 player rating, searchable by name, position and team.'], tabGroupsBtn:['Position Rankings','How all 32 real rosters rank at each position group.'], tabCompareBtn:['Team Comparison','Put any two rosters side by side.'], tabGuideBtn:['Guide','How the simulator works, in plain language.']};
+ function updateStepper(){
+  const el = document.getElementById('stepper'); if(!el) return;
+  let step = 'draft'; const S = (typeof seasonState!=='undefined') ? seasonState : null;
+@@ -3348,7 +3351,7 @@
+  }
+  return {text: e.name ? `${e.name} (${e.ovr})` : '—', val: e.ovr};
+ }
+-function renderLineupTableHTML(slotmapLeft, slotmapRight){
++function renderLineupTableHTML(slotmapLeft, slotmapRight, showNote){
+  let rows = '';
+  DEPTH_CHART_GROUPS.forEach(([gname, gcls, slots])=>{
+   rows += `<tr><td colspan="3" class="narr" style="text-transform:uppercase;letter-spacing:.05em;font-size:0.7rem;padding-top:12px;">${gname}</td></tr>`;
+@@ -3361,7 +3364,7 @@
+    </tr>`;
+   });
+  });
+- return `<table><tbody>${rows}</tbody></table><p class="narr" style="margin:6px 0 0;">Ratings shown are effective ratings — players flexed out of position carry their penalty.</p>`;
++ return `<table><tbody>${rows}</tbody></table>${showNote===false?'':'<p class="narr" style="margin:6px 0 0;">Ratings shown are effective ratings — players flexed out of position carry their penalty.</p>'}`;
+ }
+ function countLineupEdges(slotmapA, slotmapB){
+  let a=0,b=0;
+@@ -3371,15 +3374,35 @@
+  });
+  return {a,b};
+ }
++const COMPARE_ROWS = [
++  {group:'Offense'},
++  {key:'QB',    label:'Quarterback'},
++  {key:'OL',    label:'Offensive Line'},
++  {key:'RB',    label:'Running Backs'},
++  {key:'WR',    label:'Wide Receivers'},
++  {key:'TE',    label:'Tight Ends'},
++  {key:'RUN',   label:'Run Game'},
++  {key:'PASS',  label:'Pass Game'},
++  {group:'Defense'},
++  {key:'DL',    label:'Defensive Line'},
++  {key:'LB',    label:'Linebackers'},
++  {key:'SEC',   label:'Secondary'},
++  {key:'RUND',  label:'Run Defense'},
++  {key:'PASSD', label:'Pass Defense'}
++];
+ function unitComparisonHTML(poolA, poolB){
+- const mA = computeDetailMetrics(poolA), mB = computeDetailMetrics(poolB);
+- let rows='', aUnits=0, bUnits=0;
+- mA.forEach((ma,i)=>{
+-  const mb = mB[i];
+-  if(ma.avg>mb.avg) aUnits++; else if(mb.avg>ma.avg) bUnits++;
+-  rows += `<tr><td style="${ma.avg>mb.avg?'font-weight:700;color:var(--good);':''}">${ma.avg.toFixed(1)}</td><td class="narr" style="text-align:center;">${ma.label}</td><td style="${mb.avg>ma.avg?'font-weight:700;color:var(--good);':''}text-align:right;">${mb.avg.toFixed(1)}</td></tr>`;
+- });
+- return {html:`<table><tbody>${rows}</tbody></table>`, aUnits, bUnits, total:mA.length};
++  const mA = computeDetailMetrics(poolA, DETAIL_KEYS.concat(['LB'])), mB = computeDetailMetrics(poolB, DETAIL_KEYS.concat(['LB']));
++  let rows='', aUnits=0, bUnits=0;
++  const byKey = {};
++  mA.forEach((m,i)=>{ byKey[m.key] = {a:m, b:mB[i]}; });
++  COMPARE_ROWS.forEach(cr=>{
++    if(cr.group){ rows += `<tr class="cmpgroup"><td colspan="3">${cr.group}</td></tr>`; return; }
++    const pair = byKey[cr.key]; if(!pair) return;
++    const ma = pair.a, mb = pair.b;
++    if(ma.avg>mb.avg) aUnits++; else if(mb.avg>ma.avg) bUnits++;
++    rows += `<tr><td style="${ma.avg>mb.avg?'font-weight:700;color:var(--good);':''}">${ma.avg.toFixed(1)}</td><td class="narr" style="text-align:center;">${cr.label}</td><td style="${mb.avg>ma.avg?'font-weight:700;color:var(--good);':''}text-align:right;">${mb.avg.toFixed(1)}</td></tr>`;
++  });
++  return {html:`<table id="cmpUnitTable"><tbody>${rows}</tbody></table>`, aUnits, bUnits, total:COMPARE_ROWS.filter(r=>r.key).length};
+ }
+ 
+ // ---- Home-page Team Comparison tab: actual NFL rosters only ----
+@@ -4900,9 +4923,9 @@
+ const slotName = s=> SLOT_FRIENDLY[s] || LABELS[s] || s;
+ // One row per starting spot, sorted by what a 70 → 90 upgrade is worth.
+ function slotRoleTableHTML(){
+- const rows = slotRoleRows().map(r=>Object.assign({up:slotWins(r.slot,90)-slotWins(r.slot,70)}, r)).sort((a,b)=>b.up-a.up);
+- const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
+- return `<table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this spot goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table>`;
++ const rows = slotRoleRows().map(r=>Object.assign({up:slotWins(r.slot,90)-slotWins(r.slot,70)}, r)).sort((a,b)=>b.wpo-a.wpo);
++ const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
++ return `<table><thead><tr><th>Starting spot</th><th title="How many extra wins per season this spot adds for one more point of overall rating">Wins per +1 OVR</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table>`;
+ }
+ // What every game-plan choice does to a league-average team, measured on the model itself.
+ function planMathHTML(){
+@@ -4982,7 +5005,7 @@
+ function valueTiersHTML(){
+  const rows = ROSTER_SLOTS.map(s=>({s, w:slotWins(s,90)-slotWins(s,70)})).sort((a,b)=>b.w-a.w);
+  const tiers = [['Franchise-changing', r=>r.w>=2],['High value', r=>r.w>=1&&r.w<2],['Solid value', r=>r.w>=0.7&&r.w<1],['Role players', r=>r.w>=0.3&&r.w<0.7],['Depth spots', r=>r.w<0.3]];
+- return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'–'+l[l.length-1].w.toFixed(1):''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
++ return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b>: ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
+ }
+ function boardMathHTML(){
+  return `<p style="margin:4px 0;"><b>OVR</b> is the Madden NFL 27 overall rating. The board adds four more columns:</p>
+@@ -5031,8 +5054,8 @@
+  const how = `<ol class="gl">
+   <li><b>Draft.</b> Choose your team and where you pick. When you are on the clock, pick from the board. Every player shows a Wins number and a Priority number (explained below), and the computer teams draft with the same math.</li>
+   <li><b>Preseason.</b> Choose your coaching philosophy (how you like to play) and decide where each of your players lines up, including any flexes.</li>
+-  <li><b>Play the season.</b> Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself.</li>
+-  <li><b>Review.</b> Game recaps, awards, advanced stats (what caused sacks and big runs), a critique of your picks, and a 100-season simulation that shows how much of your result was skill and how much was luck.</li>
++  <li><b>Play the season.</b> A seventeen-game regular season, the Playoffs, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself.</li>
++  <li><b>Review.</b> Game recaps, awards, advanced stats, a critique of your picks, and a 100-season simulation that shows how much of your result was skill and how much was luck.</li>
+  </ol>`;
+  const draft = `<p style="margin:4px 0;"><b>The goal</b> is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (the number in brackets is the extra wins per season from upgrading that spot from a 70 to a 90):</p>
+   ${valueTiersHTML()}
+@@ -5050,7 +5073,7 @@
+   <ul class="gl"><li><b>Coaching philosophy</b> — your default style on offense and defense, set on the Preseason page. If you leave it on Auto, the math picks the style that does best for your roster against an average team. Opponents scout your philosophy, and the recaps point out when you stray from it.</li>
+   <li><b>Auto (recommended)</b> — each week the model picks the best plan from both rosters. It never reacts to a plan it cannot see, and it opens up the offense late when trailing.</li>
+   <li><b>Custom</b> — you lock in your own personnel, strategy and defense every week.</li></ul>`;
+- return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Guide</h3><p class="narr">Short reference sections for the terms the sim uses. Click through only what you need.</p></div>`
++ return ''
+   + sec('How the site works', how, true)
+   + sec('Drafting: which positions matter', draft, true)
+   + sec('Reading the draft board (Wins, Value here, Priority, Gone, stars)', board, false)
+@@ -6393,7 +6416,7 @@
+    </div>
+    <div class="panel" style="margin-bottom:14px;">
+     <h4 style="margin-top:0;">Starter-by-Starter</h4>
+-    ${renderLineupTableHTML(a.slotmap, b.slotmap)}
++    ${renderLineupTableHTML(a.slotmap, b.slotmap, false)}
+    </div>
+    <div class="panel">
+     <h4 style="margin-top:0;">Unit Comparison</h4>

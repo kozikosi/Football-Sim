@@ -1,0 +1,218 @@
+{
+  "run": {
+    "utc": "2026-10-20T22:52:30.507Z",
+    "tool": "post-merge-smoke.mjs",
+    "tool_version": "3 (2026-10-20) — restored byte-for-byte from origin/council-intake after the 12:13 lane deletion, then re-patched with the season-path enumeration and this run identity",
+    "artifact_path": "NFL Draft Simulator v20 Claude.html",
+    "artifact_sha256": "31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819",
+    "artifact_bytes": 649032,
+    "artifact_basename": "NFL Draft Simulator v20 Claude.html",
+    "git_ref": "merge/v20-donor @ ff8c05ae0ef8",
+    "git_commit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+    "browser": "Chromium-family over CDP (--remote-debugging-port=9222)",
+    "browser_version": "Chrome/151.0.7922.137",
+    "viewport": {
+      "desktop": "1280x900",
+      "mobile": "390x844"
+    },
+    "seed": "none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed",
+    "evidence_name": "e2e-31b7d61f42a5-2026-10-20.json"
+  },
+  "verdict": "FAIL",
+  "skipped_checks": [],
+  "build": "NFL%20Draft%20Simulator%20v20%20Claude.html",
+  "checks": {
+    "A_reportRendered": false,
+    "D_seasonAndPlayoffsComplete": true,
+    "B_noViewportOverflow": false,
+    "C_noPageErrors": false
+  },
+  "detail": {
+    "steps": {
+      "startDraft": true,
+      "instant": true,
+      "simToEnd": true,
+      "reportPath": "ui-button",
+      "reportRendered": false,
+      "reportStalled": true,
+      "season": {
+        "entryPath": "already-rendered",
+        "startHandle": "startSeasonBtn",
+        "heroHandle": null,
+        "beginHandle": "beginSeasonBtn",
+        "simHandle": "simSeasonBtn",
+        "regularDone": true,
+        "gamesPlayed": 272
+      },
+      "playoffs": {
+        "beginHandle": false,
+        "simHandle": "simPlayoffsBtn",
+        "complete": true,
+        "champion": "New Orleans Saints"
+      }
+    },
+    "draftPicks": "832/832",
+    "reportPath": "ui-button",
+    "reportRendered": false,
+    "reportStalled": true,
+    "pageErrors": [
+      "ReferenceError: rWeights is not defined\n    at render100 (file:///Users/kosi/Desktop/Football%20Sim/NFL%20Draft%20Simulator%20v20%20Claude.html:6018:1006)\n    at step (file:///Users/kosi/Desktop/Football%20Sim/NFL%20Draft%20Simulator%20v20%20Claude.html:5900:134)"
+    ],
+    "offenderCount": 7208,
+    "offenders": [
+      {
+        "tag": "thead",
+        "id": "",
+        "left": 23,
+        "right": 538,
+        "width": 515,
+        "parentOverflowX": "auto",
+        "parentClientWidth": 344,
+        "text": "PLAYER POS TEAM OVR SPD STR AGI COD INJ AWR "
+      },
+      {
+        "tag": "tr",
+        "id": "",
+        "left": 23,
+        "right": 538,
+        "width": 515,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "PLAYER POS TEAM OVR SPD STR AGI COD INJ AWR"
+      },
+      {
+        "tag": "th",
+        "id": "",
+        "left": 356,
+        "right": 392,
+        "width": 36,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "STR"
+      },
+      {
+        "tag": "th",
+        "id": "",
+        "left": 392,
+        "right": 426,
+        "width": 34,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "AGI"
+      },
+      {
+        "tag": "th",
+        "id": "",
+        "left": 426,
+        "right": 465,
+        "width": 39,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "COD"
+      },
+      {
+        "tag": "th",
+        "id": "",
+        "left": 465,
+        "right": 497,
+        "width": 32,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "INJ"
+      },
+      {
+        "tag": "th",
+        "id": "",
+        "left": 497,
+        "right": 538,
+        "width": 40,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "AWR"
+      },
+      {
+        "tag": "tbody",
+        "id": "playerBody",
+        "left": 23,
+        "right": 538,
+        "width": 515,
+        "parentOverflowX": "auto",
+        "parentClientWidth": 344,
+        "text": "Ja'Marr ChaseXF WR Cincinnati Bengals 99 96 73 92 "
+      },
+      {
+        "tag": "tr",
+        "id": "",
+        "left": 23,
+        "right": 538,
+        "width": 515,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "Ja'Marr ChaseXF WR Cincinnati Bengals 99 96 73 92 "
+      },
+      {
+        "tag": "td",
+        "id": "",
+        "left": 356,
+        "right": 392,
+        "width": 36,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "73"
+      },
+      {
+        "tag": "td",
+        "id": "",
+        "left": 392,
+        "right": 426,
+        "width": 34,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "92"
+      },
+      {
+        "tag": "td",
+        "id": "",
+        "left": 426,
+        "right": 465,
+        "width": 39,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "96"
+      },
+      {
+        "tag": "td",
+        "id": "",
+        "left": 465,
+        "right": 497,
+        "width": 32,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "92"
+      },
+      {
+        "tag": "td",
+        "id": "",
+        "left": 497,
+        "right": 538,
+        "width": 40,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "99"
+      },
+      {
+        "tag": "tr",
+        "id": "",
+        "left": 23,
+        "right": 538,
+        "width": 515,
+        "parentOverflowX": "visible",
+        "parentClientWidth": 515,
+        "text": "Jaxon Smith-NjigbaXF WR Seattle Seahawks 99 93 63 "
+      }
+    ],
+    "pageOverflowPx": 0,
+    "documentScrollWidth": 390,
+    "bodyOverflowX": "hidden"
+  }
+}
