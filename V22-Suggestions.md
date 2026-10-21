@@ -1,5 +1,11 @@
 # V22 Suggestions — Compiled by BOC — 21 Oct 2026
 
+## 🚨 Claude's Critical Path (read this FIRST)
+**Implementation order:** P0 changes → verification → P1 decisions → P2 owner decisions.
+**Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS`): change only with explicit Owner approval. The flex rules P0-17 require Owner approval logged via this feedback — Claude implements the slot-mapping changes (OLB/ILB as aliases of WILL/MIKE via FLEX object) but must not alter penalty values without Owner sign-off.
+**Verifier gates** (run in order): 390px e2e-smoke.mjs → MiniMax smoke → OpenChamber E2E v2 → function diff. Do not batch-apply without intermediate verification.
+**Build:** `NFL Draft Simulator merged.html` (656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`), @ `merge/v20-donor`. Re-pinned by BOC on 21 Oct.
+
 ## Five-minute header (read this first)
 
 **What this document is:** The council's consolidated V22 change set for Claude (Architect). Proposals only; Claude decides what enters the build. Every change is a copy-pasteable old→new edit with line numbers. Apply in P0→P1→P2 order.
@@ -1958,3 +1964,59 @@ for whoever maintains the model.
   candidate lines 6000-6060.
 - **The confetti's budget** — a burst is cheap, but the site should not drop more than a few dozen
   elements at once, and the reduced-motion guard has to cover it.
+
+
+---
+
+## How to read this document (MOC, coordinator) — one numbering, one form, one order
+
+**The problem this fixes.** This file has grown past 1,900 lines and, as of this section, carried **four competing priority schemes** — BOC's `P0 / P1 / P2`, Beam's `P7 / P8 / P9`, MiniMax's `P10 / P11`, and a "PART 5" plus a "PRIORITY SUMMARY FOR CLAUDE". A reader — and Claude — cannot tell which number means "do this first". **The rules below are now the only ones.**
+
+### The canonical order
+
+| label | meaning | who decides |
+|---|---|---|
+| **P0** | **do this first** — the change set, with the code | Claude implements; the Owner has ruled on all of it |
+| **P1** | a decision **Claude** must make (design, interface, trade-offs) | Claude |
+| **P2** | a decision **the Owner** must make | Kosi |
+| **R1 / R2 / R3** | the **round** the work came from — not a priority | — |
+| **C** | council-only: for the record, **not for Claude to implement** | — |
+
+**R1** = the ten-item directive (20 Oct) · **R2** = the flex-rules and text overhaul (21 Oct) · **R3** = the graphics and motion round (21 Oct late). A round label is *where the work came from*; a priority label is *when to do it*. They are orthogonal, and that is the confusion this section removes.
+
+### The one form every change line uses
+
+```
+WHERE   file + line in V21
+WHAT    old string  ->  new string, exactly
+WHY     one line
+SAFE ALONE?   yes | depends on <x>
+HOW TO CHECK  the command, or the observation
+```
+
+A change line that cannot fill the last two lines is not ready to be in this document.
+
+### The map: what merges into what
+
+| as it stands | becomes |
+|---|---|
+| `P0 — Draft board fixes` (l.31), `P1 — Architect decisions` (l.286), `P2 — Owner decisions` (l.388) | **kept as the priority spine** — these are the labels that matter |
+| `P7 — Aesthetics and beauty` (l.500) **and** `P10 — Aesthetics and beauty (additional)` (l.1693) | **one** section under **R3**; the "additional" items are appended into it, not kept beside it |
+| `P8 — Council-only notes` (l.600) **and** `P11 — Council-only notes` (l.1816) | **one** appendix **C** |
+| `P10 — The 21 Oct 23:00 feedback round (MiniMax)` (l.701) and `P11 — The 21 Oct 23:30 round (MiniMax)` (l.1844) | **R2** and **R3** respectively, by their content |
+| `PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE)` (l.962) | folded into **R2** / **R3** by content; the section itself goes |
+| `PRIORITY SUMMARY FOR CLAUDE` (l.1611) | becomes the **one-page do-this-first list at the top**, above the five-minute header |
+| `Owner's second-round brief — the change set, decomposed for execution` (l.926) | becomes this **reading map** — the index of the whole document |
+| `Appendix E — Mermaid map` (l.458) **and** `P9 — Mermaid diagrams` (l.628) | **one** diagram section, merged |
+
+### What the council is doing to get it ready
+
+- Every seat lands **one section** in the form above, under **R2** or **R3**, and **does not introduce a new priority label**.
+- Every seat then does a **cold read of the whole document as Claude would** and reports the **top three things that would slow or stop him**, with line numbers. Those reports are the review, and they land in the same document.
+- **Nothing restates an item that is already there.** If your item is a duplicate, say so in your section and point at the existing line instead of copying it.
+- A change that **cannot be verified** is labelled as such. A clean dry-run against a working-tree file is **not** behavioural validation, and the document must never imply that it is.
+
+### The two facts Claude needs before he starts, and must not be surprised by
+
+1. **The build pin.** The document pins `044d1759…` (656,746 B) — the **working-tree** file. **No commit carries that hash**: every branch tip holds `40233d6b…` (657,486 B, `ff8c05ae`, 2026-10-20). Until the Owner rules on the canonical build, the patches and the pin describe a file nobody can fetch. **This is the Owner's decision, and it is the first one.**
+2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for LB3/SAM interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
