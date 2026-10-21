@@ -1513,6 +1513,109 @@ The code sketch has not been executed. Its integration with the actual product c
 
 <!-- beam:end -->
 
+## Beam (S-1600–1699)
+
+### S-1601 — Pinned navigation + pinned primary action (improvement, Owner decision #7)
+- **Proposed:** 2026-10-21 · **By:** Beam · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (merged candidate)
+
+**Problem:** The tab bar (`.tabs{display:flex; gap:8px; margin-bottom:16px; flex-wrap:wrap}`) is in ordinary flow. On a 900px-tall desktop the rankings tab sits at y=1939. On a 390×844 phone the Start Season button spans 963–1007. In preseason the Begin Season button is at the foot of a 7,483px page, eight clicks from the top. No test caught this because `getElementById().click()` works on elements nobody can see.
+
+**Proposal:** Pin the tab bar to the top of the viewport (`position: sticky; top: 0; z-index: 100`) and pin the primary action button to the bottom (`position: fixed; bottom: 0; z-index: 100`). This is a CSS-only change to the shell, not a markup change.
+
+**Blast radius:** CSS only. Touches `.tabs` and `.primary-action` (or equivalent) classes. No JS changes. No protected constants.
+
+**Evidence:** DS M-122 W6 rerun: `#startSeasonBtn` at `top=963.03` in 844px viewport. Pickle M-311: no horizontal overflow at 1280/1440 but 970px below fold at 900px. MiniMax adversarial: E_viewportUsable does not assert primaryAction.inViewport.
+
+**Checked:** `node --check` not applicable (CSS only). Needs browser verification at 390px and 1440px.
+
+**Status:** pending (Owner decision: "You decide for now but also in every document let claude know what you did and that claude needs to review your changes and decide on the final architecture.")
+
+---
+
+### S-1602 — FB and Punter slots on the draft board (foundations, Owner decision #12)
+- **Proposed:** 2026-10-21 · **By:** Beam · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (merged candidate)
+
+**Problem:** The draft board has 26 starter slots (ROSTER_SLOTS) but no FB or P slots. The sim drops 52 players (32 P + 8 FB + 12 LS) because there's no slot for them. Adding FB and P slots would make 40 of those 52 players draftable.
+
+**Owner's instructions (verbatim):**
+- "Any Running back (RB) or full back (FB) or Tight End (TE) are available to play FB at no flex cost."
+- "Kickers (K) and Punters (P) are available to be punters at no draft cost."
+- "The underlying math for how they work will be created by claude, but maybe other agents can help set the foundations for him."
+- "Do not alter any player position descriptions."
+
+**Proposal (foundations only, math by Claude):**
+1. Add `FB` and `P` to ROSTER_SLOTS (26 → 28 slots, 832 → 896 picks).
+2. Add flex rules: RB/FB/TE → FB at 0 penalty (no flex cost); K/P → P at 0 penalty (no draft cost).
+3. Add position weights: FB = 80 (low, like K), P = 75 (lowest).
+4. Add `effOvr` handling for FB and P slots.
+5. Add `teamRatings` unit for FB (if applicable) and P (kicker unit already exists; P could fold into K).
+6. Add replacement levels for FB and P positions.
+
+**Blast radius:** ROSTER_SLOTS, FLEX, NATURAL_SLOT_MAP, DEFAULT_WEIGHTS, effOvr, optimalLineup, teamRatings, replacementLevels, matchupModel (if P affects game sim). These are protected constants — changes require Owner approval.
+
+**Evidence:** BOC's FB-P-SLOT-FOUNDATIONS.md (verified: ROSTER_SLOTS l.924 (26), NATURAL_SLOT_MAP l.932-938, FLEX l.940-952, SLOT_FAMILY l.931, POS_SLOT_MAP l.962-970; FB/P missing everywhere). The 52 dropped players (32P+8FB+12LS) → 40 become draftable if FB/P slots added.
+
+**Checked:** `node --check` not applicable (proposal, not code). Needs Claude to implement the math.
+
+**Status:** pending (Owner decision #12; Owner specifically instructed: "Let claude know what work is done on this issue and that I specifically gave you these instructions.")
+
+---
+
+### S-1603 — Decision record: per-agent editable sections (Owner decision #15)
+- **Proposed:** 2026-10-21 · **By:** Beam · **Applies to build:** N/A (governance)
+
+**Problem:** The append-only bulletin (COUNCIL-BULLETIN.md) has grown too large to read end-to-end. Agents should be able to edit their own contributions but not others'. The Owner said "You can decide and execute the necessary changes but don't delete and comments or contributions from DS, PIckle, GLM, Ultra, GPT, MiniMax, Ultra, Super, OR, VL, or Beam."
+
+**Proposal:** Created `AGENT-SECTIONS.md` (root) — a shared file where each agent has their own section (delimited by `<!-- <name>:start -->` and `<!-- <name>:end -->`). Agents may edit and delete from their own section freely. Agents may NOT edit another agent's section. The bulletin remains the append-only historical record. AGENT-SECTIONS.md is the working surface.
+
+**Blast radius:** New file only. No existing files modified. No product changes.
+
+**Evidence:** Owner's instruction #15. AGENTS.md rule 2 (append, never rewrite) and R5 (no editing another agent's files without Owner permission).
+
+**Checked:** N/A (governance, not code).
+
+**Status:** pending (Owner decision #15; Owner said "You can decide and execute the necessary changes")
+
+---
+
+### S-1604 — Repository identity and canonical record (Owner decision #16)
+- **Proposed:** 2026-10-21 · **By:** Beam · **Applies to build:** N/A (governance)
+
+**Problem:** The Owner asked: "Is main the record or is a branch; does a 1,200-record pool go in git or in release assets; and which of the three suites is canonical?"
+
+**Decisions (Beam's recommendations):**
+1. **Main is NOT the record.** `origin/council-intake` (9ab0292, 182 files) is the current record. `main` (49fafc2, 28 files) is the old seed. The merged candidate (40233d6b…) is on `merge/v20-donor`. The Owner should decide which branch becomes the canonical `main` after promotion.
+2. **A 1,200-record pool should go in release assets, not git.** The pool is 1,181,912 B (1.1 MB). Git can handle it, but the Owner's preference (per MiniMax's recommendation) is release assets for large artifacts. The pool should be published as a release asset with a sha256 hash.
+3. **The canonical suite is `post-merge-smoke.mjs` (MiniMax's).** It's the only executable gate that exists. It checks A/B/C/D/E/F/G/H (8 checks). The OpenChamber E2E spec is secondary. The W6 rerun (DS) is a third instrument. All three should be run; the smoke test is the primary gate.
+
+**Blast radius:** None (governance decision, no code changes).
+
+**Evidence:** DS M-122 W6 rerun, MiniMax M-109 W1 audit, MiniMax M-105 (gate matrix), MOC M-102 (E2E evidence reconciliation), BOC M-107 (correction).
+
+**Checked:** N/A (governance, not code).
+
+**Status:** pending (Owner decision #16; Owner said "You decide")
+
+---
+
+<!-- beam:end -->
+
 ## OpenClaw
 
 <!-- openclaw:end -->
+
+<!-- minimax:start -->
+## MiniMax (S-1900–1999) — advisory: FB/P slot foundations for the Owner's #12 decision, measured and handed over
+
+**Build:** `merge/v20-donor` @ ff8c05a, `NFL Draft Simulator merged.html`, 657,486 B, sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (the Architect's merged candidate).
+
+**What the Owner decided (relayed by her, to be implemented by Claude):** `FB` and `P` become slots on the draft board; player position descriptions are NOT altered; `RB`, `FB` and `TE` may play `FB` at no flex cost; `K` and `P` may punt at no draft cost. The Owner asked other agents to set the foundations and asked that Claude be told what was done and that she gave these instructions.
+
+**What I did (foundations only — no product file touched):** `SIM-PLATFORM/foundations/FB-P-SLOT-FOUNDATIONS.md` gives the slot/flex changes as data, and measures the impact on two fixtures of the candidate (not applied to the product):
+* current: 26 slots, 26 rounds, 832 picks, and the pool seam writes 1,148 of the build's own 1,200 records — **52 dropped** (`P` 32, `LS` 12, `FB` 8) because there is no slot code for them, which nothing in the draft/games/100-season run notices;
+* Option A (`FB1` only): 27 slots, **864 picks**, 44 still dropped — gate **exit 0, all checks true** (fixture sha256 `9ebf3915a439c040`);
+* Option B (`FB1` + `P1`): 28 slots, **896 picks**, **0 dropped** — gate **exit 0, all checks true** (fixture sha256 `33014c5351b8c043`).
+The season length is unchanged (272 games); only the draft grows. The pick counts in existing receipts (832) become stale either way and the evidence must be regenerated.
+
+**What I did NOT do:** implement the maths, decide A vs B (default **B**), or decide whether the **12 long snappers** punt (default **yes, zero cost** — the Owner's rule does not cover them, so it needs a yes or no). No product file, no constants, no ratings touched. The council's other provisional answers this round (topology, record, E2E stack) are in `DECISIONS.md` and are also for Claude to review and decide.
+<!-- minimax:end -->

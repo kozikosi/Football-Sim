@@ -18,6 +18,13 @@
 | KI-002 | No headless entry points (`buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft`) | P0 | Contract v2, Pickle, DS | S-202, Q-UK-4 | open |
 | KI-003 | v20 wrapper malformed (dual doctype/html/head/body, duplicate close) | P0 | Pickle M-13, Beam Q-BEAM-2, DS M-11 | Q-GLM-7, Q-DS-4, Q-PICKLE-3, Q-UK-2 | open |
 | KI-004 | Dual `<style>` blocks with conflicting `color-scheme` (light vs light dark) | P0 | Pickle M-13, Beam Q-BEAM-2 | Q-PICKLE-8, Q-UK-2 | open |
+| KI-015 | Player attributes mostly decorative: `inj` used 0 places, `str` 0 player-record places, `spd`/`agi`/`cod`/`awr` used in 1 function (returnerRating). Only OVR drives value math. | P2 | MiniMax M-75 F4 | v21 | open |
+| KI-016 | Invented player ratings in `sports/football/ratings.json` and `sports/basketball/all_time_draft.json` (hard-rule violation): Tom Brady as DAL 98.5, Mahomes 97.8/91.5, Lamar Jackson as RB, Stephen Curry in NFL file, decimals on integer scale, zero provenance. | P0 | MOC M-84, MiniMax M-84 | — | open (quarantine recommended) |
+| KI-017 | No persistent Week 1 DOM element in donor build (`week-1-display` SKIP in E2E run). Donor's Season-first UI shows "Set up the ${user} before Week 1" during preseason but has no persistent indicator during regular season. | P2 | BOC M-97, Ultra (superseded PASS) | — | open (UI gap, donor-originated) |
+| KI-018 | `.last-run.json` contradicts result.json (says 'passed' while result.json says 'PARTIAL'). A reviewer opening only `.last-run.json` concludes the suite passed. | P1 | MiniMax M-109 W1 | — | open (evidence-integrity issue) |
+| KI-019 | Preseason CTA below fold at 390px: `#startSeasonBtn` at `top=963.03` in 844px viewport. Primary action not visible without scrolling. | P2 | DS W6 rerun, MiniMax adversarial | — | open (UI gap, donor-originated) |
+| KI-020 | Gate exit code unreliable: `post-merge-smoke.mjs` can return exit 0 on FAIL (browser alive) or on abort (0-byte receipt). Exit code is not a reliable gate. | P1 | MiniMax adversarial check | — | open (instrument defect) |
+| KI-021 | Gate tool version string unreliable: `tool_version` stays "3" across edits that change check set (5→6→7). Receipts with same version can be produced by different code. | P2 | MiniMax adversarial check | — | open (instrument defect) |
 | KI-005 | `cpuPick` keep-direction unresolved (donor has floors+bounded; v20 has cap+92-deep) | P0 | Pickle M-20, DS M-16, GLM M-53 | Q-PICKLE-1, Q-GLM-5, Q-UK-3 | open |
 
 ---
