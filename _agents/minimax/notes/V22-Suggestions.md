@@ -167,11 +167,15 @@ where `liveRound = Math.floor((draftSim.pos||0)/32)+1` (32 teams, 26 rounds; the
 
 ### P0-13 · [NEW] The wins wording: "+1.65 wins", not "wins here"
 ```js
-// WHERE: the card row (candidate line 1731) and the roster's per-slot wins (candidate line 1784)
+// WHERE: the "Pick priority" panel, candidate line 1697 (V21) / 1708 (V22 candidate)
 // WHAT: REPLACES "wins here" with "wins" next to the number, and makes the sign explicit:
 //        "+1.65 wins" / "−0.40 wins". The static Wins number is the one to show, not the spot-specific one.
+   // the line under each position bar, today:
+   //   Josh Allen (99 OVR) · +3.69 wins here · priority +0.73 · 100% chance he is gone by your next pick
+   // becomes:
+   //   Josh Allen (99 OVR) · +3.69 wins · priority +0.73 · 100% chance he is gone by your next pick
 ```
-**Flag for Claude:** the exact line Kosi quoted — "Denzel Ward (93 OVR) · +1.65 wins here · priority +0.23 · 100% chance he is gone by your next pick" — **does not exist in V21**: the fit-note renderer `fitNoteHTML()` was already emptied at candidate line 1663 ("removed from the user experience"). It must come from the donor build or an older V20. In V21 the equivalents are the table row's **Wins** column and the card row's "· 49% gone". **Grep the build being edited** and apply the wording change there.
+**Correction to an earlier note (MiniMax, M-369):** an earlier version of this document said the line Kosi quoted "does not exist in V21" and that it came from the donor build. **That was wrong.** The line is the **Pick priority panel's** per-position detail line, at candidate line 1697 (V21) / 1708 (the V22 candidate) — the screenshot of the built page shows it. The earlier claim came from a grep whose output line was cut before the phrase, and I did not re-check it against the rendered page. The change above is the right one; the anchor is now exact.
 
 ---
 
