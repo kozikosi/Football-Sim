@@ -572,6 +572,29 @@ Everything the council asserted about the maths was **measured**, not reasoned:
 **Impact:** High visual quality, but requires Figma setup first.
 **Status:** Not yet available. Owner to configure Figma MCP if desired.
 
+### P7-8 · [NEW] Super Bowl / Champions banner gold theme + shimmer
+**What:** "The Chiefs are Super Bowl champions." → So boring. Any hype text like this especially for the Super Bowl should be more beautiful and at least use an exclamation point.
+
+**Final banner when "Champions" is highlighted should have more of a gold theme and also shimmer for the user.**
+
+### P7-9 · [NEW] More motion: graphics and text coming in/out of screen
+**What:** In general the Owner would like a lot more motion of graphics coming in and out of the screen, text coming in and out of the screen, and more ideas like the confetti and the banners to make a text-based game a lot more exciting.
+
+### P7-10 · [NEW] Season review button placement + graphical season review
+**What:**
+- The season review button after the playoff should be in blue near the top next to 100 season simulation.
+- The season review should also be more graphical.
+- The 100 season review should also be a lot more graphical. Only a few sentences here and there.
+
+### P7-11 · [NEW] "Seasons by Win total" chart alignment + beauty
+**What:** The left alignment for the "Seasons by Win total" is poor and needs to be fixed. That whole chart could be made more beautiful.
+
+### P7-12 · [NEW] "Your players; average season" and "Award patterns" visibility
+**What:** "Your players; average season" and "Award patterns" should be higher up and automatically visible.
+
+### P7-13 · [NEW] Realism audit & league-wide records — hide from user, keep internal
+**What:** Remove "Realism audit & league-wide records" and "Does the model predict real results?" from being visible to the user, but you should store that information internally.
+
 ---
 
 ## P8 — Council-only notes (not for Claude to implement; for the record)
@@ -1815,3 +1838,123 @@ The default weights are how the draft simulator sees the game. The Owner's speci
 
 ### P11-8 · The advanced stats
 9 of 12 proposed stats are already computed but not displayed. Only 3 require new math. Recommend: do not build EPA (the model is structural, not play-level).
+
+---
+
+## P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports
+
+### P11-1 · "The Chiefs are Super Bowl champions." → something worth reading
+Two places say it (candidate line 3201, the game's closing line, and line 2930, the all-caps banner).
+**The Owner's rule: the hype text — especially for the Super Bowl — should be more beautiful and use
+at least one exclamation point.** Three drafts for Claude to choose between (all keep the fact and
+the score, none invented):
+
+> **A** "The Chiefs are Super Bowl champions — and the last game of the year belonged to them!"
+> **B** "Super Bowl champions! The Chiefs finish the year on the biggest stage in football — and they finish it hooping."
+> **C** "The Chiefs are Super Bowl champions! Thirty-one weeks of football, and one Sunday to crown it all."
+
+**C is the council's preference:** it carries the season's length, the stage, and the exclamation, and
+it cannot read as filler in a 14–3 season.
+
+### P11-2 · The Champions banner goes gold, and it shimmers
+```css
+/* WHERE: beside the existing .champion-banner rule; the banner is at candidate line 5890
+/* WHAT: ADDS a gold theme and a slow shimmer across the headline. The build already has the
+        keyframes (fxshine at line 102, fxglow at line 104) — this reuses them rather than adding a
+        new animation vocabulary. */
+.champion-banner{border:1px solid var(--gold,#FFC43C);
+  background:linear-gradient(120deg, rgba(255,196,60,.16), rgba(255,196,60,.04) 45%, rgba(255,196,60,.16));
+  box-shadow:0 12px 40px rgba(255,196,60,.22);}
+.champion-banner h2{background:linear-gradient(90deg,#8a6a00 0%,#FFD76A 35%,#FFF6D8 50%,#FFD76A 65%,#8a6a00 100%);
+  background-size:200% 100%; -webkit-background-clip:text; background-clip:text; color:transparent;
+  animation:fxshine 4.5s linear infinite;}
+```
+**And the winner's name should be in gold wherever the user's team appears on an awards chart** —
+including the game-ball winner (the Owner's instruction in the previous round).
+
+### P11-3 · A motion system, because a text game should move
+The build already has a small vocabulary — `fxpop` (101), `fxshine` (102), `fxtoast` (103), `fxglow`
+(104), `heroBounce` (230). **Three additions, used sparingly, and one guard:**
+
+```css
+/* WHERE: beside the existing keyframes */
+@keyframes fxrise{0%{transform:translateY(10px);opacity:0}100%{transform:translateY(0);opacity:1}}
+@keyframes fxswipe{0%{transform:translateX(-14px);opacity:0}100%{transform:translateX(0);opacity:1}}
+@keyframes fxconfetti{0%{transform:translate3d(0,-12vh,0) rotate(0);opacity:1}100%{transform:translate3d(var(--dx,0),102vh,0) rotate(720deg);opacity:.9}}
+@media (prefers-reduced-motion: reduce){ .fx-rise,.fx-swipe,.fx-confetti{animation:none !important;} }
+```
+**The rules that keep it tasteful, which Claude should follow:**
+1. **Motion is for arrivals and for the big moments** — the banner, the trophy, the final score, the
+   award cards. It is not for every table.
+2. **One thing moves at a time** on a screen; a staggered entrance reads as polish, a crowded one as noise.
+3. **Text that arrives should stay**: the recaps' sentences fade in, but nothing should slide away
+   while it is being read.
+4. **Confetti is for the trophy only** — the Super Bowl banner, and the user's own championship — and
+   it should be a short burst (about two seconds) that then settles, not a permanent effect.
+5. **The reduced-motion guard is not optional**: the site should still read perfectly with motion off.
+
+### P11-4 · The season review button goes up and goes blue
+```js
+// WHERE: candidate line 5894 (the seasonReviewBtn, rendered under the final bracket)
+// WHAT: MOVES the button to the top of the final screen, next to the 100-season simulation button,
+//        and makes it blue (the Accent colour) instead of the default reset button.
+```
+The Owner's words: *"The season review button after the playoff should be in blue near the top next to
+100 season simulation."*
+
+### P11-5 · The season review and the 100-season report become graphical
+Two reports, one direction. **"The season review should also be more graphical"** and **"The 100
+season review should also be a lot more graphical. Only a few sentences here and there."**
+
+The 100-season report's own guide text (candidate lines 5016-5024) describes eight blocks; the
+council's read is that the report should be **charts first, prose second**:
+
+| Block | Today | After |
+|---|---|---|
+| the correlation and the spread | a paragraph | a chart with a line, the league average marked, and one sentence |
+| "Seasons by Win total" | a left-aligned table, which reads poorly | **a horizontal bar chart, one bar per win total, centred labels, the user's seasons highlighted in the team colour** (the Owner's complaint: "The left alignment for the 'Seasons by Win total' is poor") |
+| "Your players; average season" | buried | **near the top, open by default** (see P11-6) |
+| "Award patterns" | buried | **near the top, open by default** |
+| "Realism audit & league-wide records" | visible | **hidden from the user, kept internally** (P11-7) |
+| "Does the model predict real results?" | visible | **hidden from the user, kept internally** (P11-7) |
+| the closing verdict | a wall of sentences | **one sentence, one number, one card** |
+
+**The rule to work to (the Owner's, in one line):** *"Only a few sentences here and there."* A report
+block is a number, a bar, a card, a chip — and **one** sentence that says what it means.
+
+### P11-6 · "Your players; average season" and "Award patterns" move up and open themselves
+```js
+// WHERE: the 100-season report renderer (candidate lines ~6000-6060; find the blocks by their visible
+//        headings "Your players; average season" and "Award patterns")
+// WHAT: MOVES both blocks to the top of the report, and renders them OPEN by default instead of
+//        collapsed. The Owner: "should be higher up and automatically visible".
+```
+**One design note:** the two blocks are the ones a user checks first — "how did my guys do" and "who
+wins what" — so they belong at the top, and they should not need a click to be seen.
+
+### P11-7 · Two report sections go internal
+**The Owner's instruction:** *"Remove Realism audit & league-wide records and Does the model predict
+real results? from being visible to the user but you should store that information internally."*
+
+```js
+// WHERE: the 100-season report renderer, and the guide's description of it (candidate line 5022)
+// WHAT: STOPS RENDERING two blocks, and KEEPS COMPUTING them.
+//
+//   · "Realism audit & league-wide records" — the comparison with real NFL single-season records.
+//   · "Does the model predict real results?" — the correlation against the real 2025 season.
+//
+//   The computation is not removed: the numbers are still calculated and stored on the report object
+//   (e.g. report.audit = {…}, report.realCheck = {…}), so the council can keep checking them and
+//   the Architect can show them again in any form. What goes is the user's screen, not the data.
+```
+**The council's note:** this is the right call — those two blocks are the ones that read as the
+simulation arguing with reality rather than as a game. Keeping them internal preserves the evidence
+for whoever maintains the model.
+
+### P11-8 · What the council could not check in this round
+- **The exact blocks in the 100-season renderer** for "Seasons by Win total", "Your players; average
+  season" and "Award patterns" — the headings are assembled at render time and did not match a
+  straight text search; Claude should find them by their visible headings in the renderer around
+  candidate lines 6000-6060.
+- **The confetti's budget** — a burst is cheap, but the site should not drop more than a few dozen
+  elements at once, and the reduced-motion guard has to cover it.
