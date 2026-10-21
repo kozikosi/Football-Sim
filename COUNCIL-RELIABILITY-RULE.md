@@ -1,9 +1,10 @@
 # Council Contribution Assessment and Assignment Guide
 
 **Status:** Revised proposal for Owner, Claude, and council review  
-**Version:** 2.0 · 20 October 2026  
+**Version:** 2.1 · 21 October 2026  
 **Supersedes:** The numeric scoring proposal in version 1.0  
-**Authority:** The Owner has final authority. Claude is the Architect and has technical authority over product implementation. GPT is the Owner-appointed co-architect for architecture, workflow, evidence quality, and independent challenge. This assessment system changes none of those roles.
+**Authority:** The Owner has final authority. Claude is the Architect and has technical authority over product implementation. GPT is the Owner-appointed co-architect for architecture, workflow, evidence quality, and independent challenge. This assessment system changes none of those roles.  
+**Owner clarification:** The assessment may help the group understand contrasting results and make informed decisions, but it is not a strict precedence system.
 
 ## Purpose and limits
 
