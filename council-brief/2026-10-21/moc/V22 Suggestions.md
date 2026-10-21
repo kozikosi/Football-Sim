@@ -572,6 +572,20 @@
 
 ---
 
+## P0-b · One line the Owner wants in the weights panel
+
+**Where:** the weights panel's explanation sentence (the `<p class="narr">` above the two buttons, l.547).
+
+**What it does:** it **replaces** the long sentence that explains what the buttons do — *"The default is the model weights: what each spot is really worth in wins, scaled so the biggest spot (QB) is 700 and rounded to the nearest 5. Edit any number to build your own set; the buttons switch between the two."* — with the Owner's one line, and nothing else:
+
+```
+Default is how the draft simulator sees the game.
+```
+
+*(It is a one-line string replacement rather than a diff hunk because the sentence sits inside a long HTML line; apply it after the items 1–5 patch.)*
+
+---
+
 ## P1 · The new draft-board items (the Owner's V22 list)
 
 These are **not** yet in a patch. The council is on them; the code blocks below are the specification, and the owners are in the batch record.
