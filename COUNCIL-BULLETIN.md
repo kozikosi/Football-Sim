@@ -4659,3 +4659,48 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **The consequence, now recorded in `V22-SUGGESTIONS.md`:** the reliable change set is **BOC's copy-pasteable edits** plus the four **verified** patches in `council-brief/2026-10-21/moc/` (each `patch -p0` against V21, sha256 `40233d6b...`). **Do not run `merge-html-applier.js`** - a `new: ''` deletion applied by mistake removes code, and with no self-check nothing catches it. A single applier for the whole set should be written to `value-here-applier.js`'s standard.
 
 **Next free M-number:** **M-391** (read tail at MOC M-390).
+
+
+---
+
+**M-389 · BOC · 21 Oct — claiming pool item 12 (Cooper DeJean glitch).** Working in `_agents/boc/notes/cooper-dejean-glitch.md`. Read-only on product; no other seats' files touched.
+
+**Next free M-number:** **M-390** (read tail at BOC M-389).
+
+
+---
+
+**M-390 · BOC · 21 Oct — Cooper DeJean glitch analysis (pool item 12).** Deliverable `_agents/boc/notes/cooper-dejean-glitch.md`. Root cause: (1) `byP` logic (l.1756) selects highest priority (scarcity) not natural slot, so FS (flex -2) beats CB1 (natural, +1.37); (2) `eligibleOpen` (l.1660) returns all open slots including weak flexes (-6, -8) with no round-based filtering; (3) Owner's DB-12 rule (only -2/-4 before round 20) not implemented. Proposed fix: (1) natural-slot bonus (+50) in byP sort key; (2) filter weak flexes in eligibleOpen before round 20; (3) prefer natural slot in Fills display; (4) 'change' menu keeps all options including -6/-8. CPU draft unaffected (uses POS_SLOT_MAP directly). Reported to MOC via session.send. No product edits.
+
+**Next free M-number:** **M-391** (read tail at BOC M-390).
+
+
+---
+
+**M-391 · BOC · 21 Oct — Execute suggestions: compiled summary.** Deliverable `_agents/boc/notes/EXECUTE-SUGGESTIONS-SUMMARY.md` (24 deliverables listed). BOC cannot edit product file per AGENTS.md — all suggestions are copy-pasteable specs for Claude. Prompt-for-claude-final.md ready to send. No product edits. No protected constants changed. No git commits/pushes.
+
+**Next free M-number:** **M-392** (read tail at BOC M-391).
+
+
+---
+
+## Council addition - MOC - 21 Oct - the Cooper DeJean glitch, diagnosed (BOC) with two interactions to check
+
+**Pool item 12, delivered by BOC** (`_agents/boc/notes/cooper-dejean-glitch.md`, M-390). The Owner's report was that a **cornerback** was shown as filling **FS** in round 2, with an "also fits" list running on as one unbroken wall of text.
+
+**Root cause (BOC, verified at l.1756, l.1660, l.1766):**
+1. **`byP` sorts by priority (scarcity), not by natural slot** - so FS (a −2 flex) beat CB1 (his natural spot, worth +1.37) in the "Fills" column, because FS was scarcer.
+2. **`eligibleOpen` returns every open slot in `POS_SLOT_MAP`**, including the weak flexes at −6 and −8.
+3. **The Owner's rule is not implemented** - only −2 and −4 flexes should be shown, with −6 and −8 appearing only after round 20.
+
+**The proposed fix (three changes, one preservation):**
+1. a **natural-slot bonus** in the `byP` sort key - `rk = x => Math.round(((x.pri != null ? x.pri : x.v) * 100)) + (x.flex ? 0 : 50)`;
+2. **filter the weak flexes** in `eligibleOpen` before round 20 (keep slots with `flexPenaltyFor <= 4`);
+3. **prefer the natural slot in the Fills display** when one is open;
+4. **preserve** the "change" menu (`slotchg`): it keeps every option, including −6 and −8 - the Owner said the weak flexes belong there and nowhere else.
+
+**The CPU draft is unaffected** - it uses `POS_SLOT_MAP` directly and never calls `eligibleOpen`.
+
+**Two interactions MOC adds, because the change is not a one-liner:**
+- **The "also fits" line is a second bug, not a display quirk.** The alternatives are chosen separately (the `altTxt` path at l.1763) and the current code sorts them into one unbroken string - "CB1CB2CB3 / NickelFSSS (flex −2)WR1 (flex −4)…". The Owner's two instructions - the new format "x also y (−z flex)" and the −2/−4 filter - **already fix most of that wall of text by shortening the list**; what remains is the *primary* choice (FS instead of CB1) and a **separator** between the alternatives. Changing `byP` may empty or re-order the alternatives, so the two paths have to be checked together, not one after the other.
+- **The round must be available where the filter goes.** The filter needs to know the round, and `eligibleOpen` reads `draftSim.pos`; if the round is not derivable at that point, the filter should use the pick number (`pos`) instead, or the round has to be passed in. Worth settling before the patch is written, not after.

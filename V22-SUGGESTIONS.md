@@ -1,3 +1,73 @@
+> **READING MAP — MiniMax, 21 Oct.** This file is the council's V22 change set, written to be worked
+> from top to bottom. This block is the navigation layer: where things are, what state they are in,
+> and what a free seat could pick up. Everything below it is unchanged council work.
+>
+> **The shape of the document**
+> ```mermaid
+> flowchart TD
+>   A["Owner's brief · Kosi 21 Oct"] --> B["P0 · the board, the weights panel, the Team Comparison, the Guide"]
+>   B --> C["P1 · the new draft-board items"]
+>   C --> D["P2 · the weight recalibration"]
+>   D --> E["P3 · the glossary and the advanced stats"]
+>   E --> F["P4 · the decisions still open"]
+>   F --> G["P7 · aesthetics and beauty"]
+>   G --> H["P8 · council notes, for the record"]
+>   B -. "prepared diffs" .-> I["council-brief/2026-10-21/*/*.patch"]
+>   I -.-> J["the Architect's V22 build"]
+>   J --> K["verification: post-merge-smoke + the 390 px probe"]
+> ```
+>
+> **What lives where**
+>
+> | Section | What it is | State | Where the code is |
+> |---|---|---|---|
+> | P0 · Value here | the column, its CSS reflow, the guide repairs | **done, verified** | `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` (`e5fa7e0e…`) |
+> | P0 · Weights panel | Default, the stateful My Weights, the badges moved | **done, verified** | same artifact |
+> | P0 · Team Comparison | no "real", no note on that page, the regrouped table, Chiefs/Raiders | **done, verified** | same artifact |
+> | P0 · Guide | the box, the flex table, the merged section, the glossary terms | **done, verified** | same artifact |
+> | P0-b · one weights-panel line | the Owner's last line about the label | **one line** | the diff below it |
+> | P1 · new board items | ~23 items: the board's display slot, the stars, the round, the cards | **specification** | the council's notes |
+> | P2 · the recalibration | the five deltas, how to apply them without breaking the derivation | **measured, with the factors** | `_agents/minimax/notes/position-value-adjustments.md` |
+> | P3 · glossary and stats | seventeen advanced-stat proposals; nine need no new maths | **proposal** | `_agents/minimax/notes/advanced-stats-proposals.md` |
+> | P4 · decisions | the seven the Owner still has to answer | **blocking** | this file |
+> | P7 · aesthetics | the team's colours and the rest of the beauty pass | **one part built** | `_agents/minimax/prototypes/V22-candidate-teamcolours.html` (`b3de0523…`) + `_agents/minimax/shots/` |
+> | P8 · council notes | the record: what was checked, what was not | **record** | this file |
+>
+> **The one diagram worth reading before touching the weights**
+> ```mermaid
+> flowchart LR
+>   R["RATING_SPECS<br/>(protected)"] --> T["teamRatings()"]
+>   T --> M["matchupModel()"]
+>   M --> G["the games<br/>17 weeks + playoffs"]
+>   T --> S["slotWinsTable()<br/>measured 50→100"]
+>   S --> A["SLOT_VALUE_ADJ<br/>the five deltas"]
+>   A --> W["slotWins / slotWinsPerOvr"]
+>   W --> D["modelWeights()<br/>the 0–700 defaults"]
+>   W --> B["the draft<br/>CPU picks, board value, priority"]
+>   G -. "unchanged by the deltas" .- A
+> ```
+> The deltas move the **draft** and the **defaults**; they do not move the **games**. If the intent is
+> to change the football rather than the draft, the change belongs in `RATING_SPECS`, which is a
+> protected constant and the Owner's call.
+>
+> **A suggested work queue — not assignments.** Seats are not always free, so nothing here is
+> assigned; take the first row you are free for, and say so in the bulletin when you report.
+>
+> | # | Suggested work | Why it is worth a free seat | Where |
+> |---|---|---|---|
+> | S1 | Re-read this file against the V22 candidate and list anything marked done that is not, or missing | a stale list is the most expensive kind of wrong | this file + `_agents/minimax/prototypes/` |
+> | S2 | 100-season regression with the five deltas applied | nobody has measured the deltas' effect on a season | `_agents/minimax/notes/position-value-adjustments.md` |
+> | S3 | 390 px pass over the collapsed mobile cards and the sticky filter header | the two items that are real design work, not one-liners | P1 |
+> | S4 | the localStorage shape for a half-finished draft | the most edge cases and the most value to the Owner | P1 |
+> | S5 | the team-colour palette check for all 32 teams | the map is written; the check is not | `_agents/minimax/notes/team-colours-and-beauty.md` |
+> | S6 | the position-rankings combination generator | data generation, not an edit; it needs a careful de-duplication | P1 |
+>
+> **How to read a diff block here.** Blocks marked `diff` are `patch -p0` against the candidate and
+> can be applied as they stand. Everything else is a specification: read it, write the code, and check
+> the result with `post-merge-smoke.mjs` and the 390 px probe.
+
+---
+
 # V22 Suggestions
 
 **SPEAKER: MOC | ROLE: Council reviewer (S-2500–2599) | TASK: the priority-ordered change set for Claude | DATE: 2026-10-21T09:20:00Z**
@@ -863,3 +933,133 @@ the sort option | the weight recalibration (K 0.45, WR2 0.63, RB1 0.58, CB2 0.95
 | `merge-html-applier.js` (87 lines) | **INCOMPLETE / NOT USABLE.** It defines 5 of the 16 draft-board items, two of them as destructive `new: ''` deletions, it has **no self-check** and **no `--team-colors` flag**. |
 
 **What this means for Claude.** The reliable change set is **BOC's copy-pasteable edits** plus the four verified patches in `council-brief/2026-10-21/moc/` (each `patch -p0` against V21, sha256 `40233d6b...`). **Do not run `merge-html-applier.js`**: a `new: ''` deletion applied by mistake removes code with no check to catch it. Three claims about the appliers were checked and did **not** hold: "8 of 16 DB items apply" (only 5 are defined), the "footlabel" self-check distinction (neither applier contains it), and the "geometry preserved (139, 64)" figures (the build actually holds **1,200 PLAYERS entries** and **32 TEAM_DATA teams**). If a single applier is wanted for the whole set, it should be written to `value-here-applier.js`'s standard: every edit an exact-string match, every deletion asserted, a self-check that prints the facts, and a flag per item.
+
+---
+
+## P9 · Beauty, with the new tools (MiniMax, 21 Oct)
+
+The Owner's note: *"Feel free to think about aesthetics and beauty more as well… Anywhere else you can
+add beauty and aesthetics (making the draft board's colours reflect the user's selected team) are
+highly encouraged."* And: the council has **mermaid** (GitHub renders it), **biome** locally, and
+**Claude has Figma**. Each of the three changes what "a design idea" costs, so the list below is
+written in those terms.
+
+### P9-1 · The draft in your team's colours — built, measured, screenshotted
+```js
+// WHERE: a constant beside the other draft constants, one call where the draft starts,
+//        and five CSS rules beside the existing .draftingas rules.
+// WHAT: ADDS three colour variables per team and themes the header, the board and the cards.
+//        The map is public knowledge and checkable: primary, secondary, accent.
+const TEAM_COLORS = { 'Kansas City Chiefs':['#E31837','#FFFFFF','#FFB81C'], /* …32 teams… */ };
+function applyTeamColors(teamName){
+ const c = TEAM_COLORS[teamName] || ['#4F8DFF','#FFFFFF','#FFC24B'];
+ const r = document.documentElement.style;
+ r.setProperty('--team1', c[0]); r.setProperty('--team2', c[1]); r.setProperty('--team3', c[2]);
+}
+```
+```css
+:root{--team1:#4F8DFF;--team2:#FFFFFF;--team3:#FFC24B;}
+.draftingas{background:linear-gradient(90deg, color-mix(in srgb, var(--team1) 15%, transparent), color-mix(in srgb, var(--team3) 9%, transparent));border:1px solid var(--team1);}
+.draftingas .badge-mono{background:var(--team1);color:var(--team2);box-shadow:0 0 0 3px var(--team3);}
+.draftingas .das-text b{color:var(--team1);}
+#draftTable2 tbody tr td.dc-name{box-shadow:inset 3px 0 0 var(--team1);padding-left:8px;}
+#draftTable2 tbody tr:hover{background:color-mix(in srgb, var(--team1) 9%, transparent);}
+.pcard{border-left:4px solid var(--team1);}
+```
+**Measured in the running build** (computed styles, three teams): Chiefs → badge rgb(227,24,55),
+ring rgb(255,184,28), frame and row edge rgb(227,24,55). Seahawks → rgb(0,34,68) with a white ring.
+Packers → rgb(32,55,49) with a white ring. **Build:** `_agents/minimax/prototypes/V22-candidate-teamcolours.html`
+(`b3de0523f08cae64a08d7c4f880509b61496523996654e891c13ee68fd18592`, 662,533 B) — the V22 candidate plus the
+palette. **Receipts:** `post-merge-smoke.mjs` exit 0, A–I PASS, 0 findings, 0 page errors (receipt
+`aa09c46982fc`); `node --check` exit 0. **Screenshots:** `_agents/minimax/shots/` (Chiefs, Seahawks,
+Packers, 1440 px, the draft panel as the user sees it). The same three variables can drive the
+roster's left edge and the season's team card — one table, three consumers.
+
+### P9-2 · What biome changes
+Biome is a linter and formatter that runs in milliseconds, so it turns "did I break the build?" from
+a browser session into a command. The council's own instruments now sit under
+`_agents/minimax/biome.json` (it extends the repo's configuration and turns off one rule that cannot
+tell a deliberately injected template string from a mistake):
+
+```sh
+~/node_modules/.bin/biome check _agents/minimax        # the council's code
+~/node_modules/.bin/biome check --write _agents/minimax # and format it to the repo's style
+```
+**For the Architect, the useful habit is:** after applying a block from this document, run biome over
+the *edited file* before opening the browser. It catches the class of mistake that a browser session
+does not: a stray quote in a template string, a shadowed variable, a dead branch.
+
+### P9-3 · What mermaid changes
+A design proposal in prose costs a paragraph; in a diagram it costs four lines and cannot drift from
+the text. The two diagrams that earn their place are already in this file — the document map in the
+reading map, and the weights chain (what the five deltas touch, and what they do not). Two more
+worth adding when the work starts:
+```mermaid
+flowchart LR
+  S["the player's legal slots"] --> E["an entry per slot<br/>value · flex penalty · priority"]
+  E --> D["the slot the row shows<br/>(value, natural spot wins ties)"]
+  E --> A["the 'also fits' line<br/>(value, natural alternatives)"]
+  D --> R["the board row"]
+  A --> R
+  R --> P["what the user sees:<br/>where he plays · what he is worth · how urgent"]
+```
+```mermaid
+flowchart TD
+  P["the Owner's brief"] --> C["council proposal<br/>a code block + a comment"]
+  C --> B["the Architect's build"]
+  B --> V["verification<br/>gate · 390 px · a probe"]
+  V -->|something fails| C
+  V -->|green| D["done"]
+  D --> N["the next item"]
+```
+
+### P9-4 · What Figma changes (and what it does not)
+Claude has Figma; the council does not. So the division of labour is: **Claude owns the visual
+system, the council owns the behaviour.** What the council can hand over is a *palette* and a
+*set of states* — and it has one of each now:
+- the palette: 32 teams × 3 colours, already in the build as `TEAM_COLORS`;
+- the states: the board has four visual states that a design system should name — the row you are
+  looking at, the row that is a flex, the "TOP" row, and the row that is gone by your next pick.
+**The most useful thing Claude could bring back:** a Figma frame of the draft panel in two or three
+team colours, so the palette and the layout can be judged side by side.
+
+### P9-5 · The rest of the beauty list, in one place
+1. The board's panel frame in the team colour (the board is the only screen without a coloured header).
+2. The position cards grouped by unit — offence in the primary, defence in the secondary, specialists in the accent.
+3. The priority bars: "what you gain" in the team colour, "what you would probably still find" in grey.
+4. The "TOP" and flex tags, so they stop reading as generic green.
+5. The season's user card in the standings, the schedule and the preview — the same three variables.
+6. **One dark-mode pass** before any of it ships: the team colours are used as fills and washes, and
+   `color-scheme: dark` is enabled in the build.
+
+### P9-6 · The council's remaining questions about the beauty work
+- **The palette's third colour.** It is used for the special-teams rows and the hover accent. For the
+  Chiefs that is gold; for the Seahawks white. Some teams' third colour is weak (browns, reds) — a
+  neutral fallback may be better than a muddy accent.
+- **Contrast.** A team colour on the badge needs 4.5:1 against the letters colour. The Chiefs (red
+  with white) pass; the Seahawks (navy with green) do not — the secondary should be checked per team.
+- **Dark mode.** A team colour that works on white may disappear on a dark panel.
+
+
+---
+
+## Council addition - MOC - 21 Oct - the Cooper DeJean glitch, diagnosed (BOC) with two interactions to check
+
+**Pool item 12, delivered by BOC** (`_agents/boc/notes/cooper-dejean-glitch.md`, M-390). The Owner's report was that a **cornerback** was shown as filling **FS** in round 2, with an "also fits" list running on as one unbroken wall of text.
+
+**Root cause (BOC, verified at l.1756, l.1660, l.1766):**
+1. **`byP` sorts by priority (scarcity), not by natural slot** - so FS (a −2 flex) beat CB1 (his natural spot, worth +1.37) in the "Fills" column, because FS was scarcer.
+2. **`eligibleOpen` returns every open slot in `POS_SLOT_MAP`**, including the weak flexes at −6 and −8.
+3. **The Owner's rule is not implemented** - only −2 and −4 flexes should be shown, with −6 and −8 appearing only after round 20.
+
+**The proposed fix (three changes, one preservation):**
+1. a **natural-slot bonus** in the `byP` sort key - `rk = x => Math.round(((x.pri != null ? x.pri : x.v) * 100)) + (x.flex ? 0 : 50)`;
+2. **filter the weak flexes** in `eligibleOpen` before round 20 (keep slots with `flexPenaltyFor <= 4`);
+3. **prefer the natural slot in the Fills display** when one is open;
+4. **preserve** the "change" menu (`slotchg`): it keeps every option, including −6 and −8 - the Owner said the weak flexes belong there and nowhere else.
+
+**The CPU draft is unaffected** - it uses `POS_SLOT_MAP` directly and never calls `eligibleOpen`.
+
+**Two interactions MOC adds, because the change is not a one-liner:**
+- **The "also fits" line is a second bug, not a display quirk.** The alternatives are chosen separately (the `altTxt` path at l.1763) and the current code sorts them into one unbroken string - "CB1CB2CB3 / NickelFSSS (flex −2)WR1 (flex −4)…". The Owner's two instructions - the new format "x also y (−z flex)" and the −2/−4 filter - **already fix most of that wall of text by shortening the list**; what remains is the *primary* choice (FS instead of CB1) and a **separator** between the alternatives. Changing `byP` may empty or re-order the alternatives, so the two paths have to be checked together, not one after the other.
+- **The round must be available where the filter goes.** The filter needs to know the round, and `eligibleOpen` reads `draftSim.pos`; if the round is not derivable at that point, the filter should use the pick number (`pos`) instead, or the round has to be passed in. Worth settling before the patch is written, not after.
