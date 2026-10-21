@@ -131,7 +131,7 @@ def make_report(events: list[dict[str, Any]]) -> str:
         "",
         "This is a provisional, evidence-informed assessment of demonstrated project contributions and likely assignment fit. It is not a measure of innate intelligence, character, honesty, loyalty, or sabotage risk. The ranking is subjective and updateable; confidence and evidence limits are shown because the samples are uneven.",
         "",
-        "Primary receipts and independent reproduction outrank the ranking in every factual dispute. Use placement to help choose who should investigate a problem, never to decide which unsupported claim is true.",
+        "Use receipts and independent reproduction as the main evidence for factual claims. The qualitative assessment can help interpret contrasting or incomplete reports, identify relevant experience, and choose who should investigate next; it is context, not a strict precedence rule. Never decide a factual claim from rank alone or use an overall placement to dismiss a clear, reproducible receipt.",
         "",
         "The numeric 0–100 draft is withdrawn. Its numbers are not current standings.",
         "",
