@@ -68,6 +68,26 @@ Two bugs were caught by measuring and fixed before this patch: the key-order com
 
 ## 5 · What Claude needs from the Owner before items 6 and 7
 
+### 5a · The weights question, settled by measurement
+
+**The Owner's table is `modelWeights()` — all 34 slots, exactly.** I compared the transcribed table against the two weight sets in the build, slot by slot, by evaluating both in the live page:
+
+| | slots matched |
+|---|---|
+| the Owner's table vs **`modelWeights()`** (derived from `slotWinsPerOvr()`, QB = 700) | **34 / 34** |
+| the Owner's table vs **`DEFAULT_WEIGHTS`** (the hand-written constant at l.452: QB 320, RB1 100, WR2 40, OT1 295 …) | 7 / 34 (only the depth slots, where both are 5 or 1) |
+
+So the Owner's sentence — *"These are the default weights you created"* — is **true of the model weights and false of the constant**. And the model weights are what the site already ranks with: `weights = modelWeights()` at start-up (l.6410), and `modelWeights()` is the derived 0–700 scale AGENTS.md calls "derived, not arbitrary".
+
+**Therefore item 6 needs no change to any protected constant.** The defaults are already what the Owner listed. What it needs is (a) the **label**, and (b) the removal of the places where the *older* constant still leaks in:
+
+- the seed `personalWeights = {...DEFAULT_WEIGHTS}` at l.6410 — **removed in my patch** (item 7's "forget user weights entirely", and it is not a protected constant; it is the one place the old set was still reachable);
+- the old fallback `personalWeights || DEFAULT_WEIGHTS` in the "Back to my weights" handler — **now `personalWeights || modelWeights()`** in my patch, so the fallback is the Owner's table rather than the old constant.
+
+`DEFAULT_WEIGHTS` itself can stay exactly as it is. If the Owner wants the constant deleted rather than merely unreferenced, that is a decision for him (and it is the protected constant, so it is his to make). MiniMax reached the same conclusion independently in M-358 — two measurements, same answer.
+
+### 5b · The two questions that are still the Owner's
+
 1. **The weights table itself.** The Owner's message stopped at "These are the default weights you created:" — the table did not arrive. BOC has transcribed it (QB 700, RB1 185, RB2 60, WR1 305 … K 200, P 1, FB 1), but **that transcription should be confirmed against the Owner's original** before a protected constant is changed.
 2. **Which constant the table refers to.** The build has two: `DEFAULT_WEIGHTS`, a hand-written constant (l.452: QB 320, RB1 100, WR2 40, OT1 295 …), and `modelWeights()`, which is **derived** from `slotWinsPerOvr()` on the 0–700 scale (QB = 700) — and AGENTS.md calls that scale "derived, not arbitrary". **The Owner's numbers look like the derived model weights, not the constant.** If that is right, then item 6 is not a constant change at all but a correction of a label, and "the default" is already what the site ranks with. Pickle is producing both comparison tables; this is the single most important open question in the set.
 3. **How items 5 and 7 coexist.** "Delete user weights; only use the model weights" and a "My Weights" button cannot both be true. My patch takes the middle road — the saved set lives in memory for the session only, and the button is the way to reach it.

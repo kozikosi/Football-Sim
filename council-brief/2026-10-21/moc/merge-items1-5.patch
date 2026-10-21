@@ -159,3 +159,12 @@
    + sec('Flexing players, explained', flex, false)
    + sec('Position values: all 26 starting spots', values, false)
    + sec('Coaching: personnel, styles and game plans', coach, false)
+@@ -6407,7 +6431,7 @@
+ }
+ 
+ initDraftSetup();
+-personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(); render();
++personalWeights = null; weights = modelWeights(); buildControls(); render();
+ // ---- the user's team and players, in blue everywhere ----
+ (function(){
+  let lastKey = '', rx = null, busy = false, queued = false;
