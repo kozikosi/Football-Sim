@@ -1,0 +1,272 @@
+1. '87 Reggie White
+2. '86 Lawrence Taylor
+3. '18 Aaron Donald
+4. '14 J.J. Watt
+5. '21 T.J. Watt
+6. '25 Myles Garrett
+7. '90 Derrick Thomas [KC]
+8. '67 Deacon Jones [STL]
+9. '11 Jared Allen
+10. '01 Michael Strahan
+11. '89 Chris Doleman
+12. '08 DeMarcus Ware
+13. '02 Jason Taylor
+14. '84 Mark Gastineau
+15. '14 Justin Houston [KC]
+16. '13 Robert Mathis
+17. '92 Leslie O'Neal
+18. '17 Chandler Jones
+19. '09 Elvis Dumervil
+20. '16 Von Miller
+21. '22 Nick Bosa
+22. '22 Micah Parsons
+23. '04 Dwight Freeney
+24. '18 Khalil Mack
+25. '11 Terrell Suggs
+26. '03 Julius Peppers
+27. '94 Kevin Greene
+28. '83 Richard Dent
+29. '97 John Randle
+30. '08 John Abraham
+31. '25 Aidan Hutchinson
+32. '25 Will Anderson Jr.
+33. '68 Claude Humphrey
+34. '71 Jack Youngblood
+35. '71 Alan Page
+36. '91 Rickey Jackson
+37. '85 Bruce Smith
+38. '70 Cedrick Hardman
+39. '78 Al Baker
+40. '83 Jack Gregory
+41. '86 Pat Swilling
+42. '84 Sean Jones
+43. '86 Clyde Simmons
+44. '68 Elvin Bethea
+45. '75 Randy White
+46. '71 Tony McGee
+47. '60 Jim Marshall
+48. '74 Too Tall Jones
+49. '83 Jim Jeffcoat
+50. '85 Howie Long
+51. '85 Fred Dean
+52. '84 Dan Hampton
+53. '87 Andre Tippett
+54. '83 Lee Roy Selmon
+55. '85 L.C. Greenwood
+56. '85 Steve McMichael
+57. '95 Bryant Young
+58. '94 Dermontti Dawson
+59. '05 Alan Faneca
+60. '05 Olin Kreutz
+61. '03 Willie Anderson
+62. '71 Gene Upshaw
+63. '70 Forrest Gregg
+64. '67 Jim Parker
+65. '75 Mike Webster
+66. '76 Art Shell
+67. '74 Rayfield Wright
+68. '77 Bob Brown
+69. '73 Ron Yary
+70. '80 Dwight Stephenson
+71. '96 Larry Little
+72. '73 Jerry Kramer
+73. '73 Jim Ringo
+74. '88 Mike Munchak
+75. '90 Steve Wisniewski
+76. '73 Gene Hickerson
+77. '64 Jim Otto
+78. '79 Bob Kuechenberg
+79. '85 Joe DeLamielleure
+80. '76 Russ Grimm
+81. '79 Dan Dierdorf
+82. '81 Joe Jacoby
+83. '83 Gary Zimmerman
+84. '91 Karl Mecklenburg
+85. '91 Zach Thomas
+86. '91 Sterling Sharpe
+87. '07 Randy Moss
+88. '00 Terrell Owens
+89. '02 Marvin Harrison
+90. '11 Calvin Johnson
+91. '19 Michael Thomas
+92. '20 Davante Adams
+93. '11 A.J. Green
+94. '14 Antonio Brown
+95. '14 Demaryius Thomas
+96. '09 Andre Johnson
+97. '04 Hines Ward
+98. '05 Anquan Boldin
+99. '06 Reggie Wayne
+100. '87 Jerry Rice
+101. '86 Art Monk
+102. '86 Steve Largent
+103. '87 James Lofton
+104. '84 Mark Clayton
+105. '88 Henry Ellard
+106. '84 Kellen Winslow
+107. '81 Ozzie Newsome
+108. '88 Shannon Sharpe
+109. '11 Rob Gronkowski
+110. '11 Jimmy Graham
+111. '91 Ben Coates
+112. '03 Jason Witten
+113. '11 Wes Welker
+114. '07 Antonio Freeman
+115. '09 Antonio Gates
+116. '20 Travis Kelce [KC]
+117. '01 Jason Peters
+118. '92 Seth Joyner
+119. '01 Trace Armstrong
+120. '24 Danielle Hunter
+121. '19 DeForest Buckner
+122. '21 Jeffery Simmons
+123. '22 Quinnen Williams
+124. '21 Cameron Heyward
+125. '09 Darnell Dockett
+126. '12 NaVorro Bowman
+127. '21 Matthew Judon
+128. '22 Haason Reddick
+129. '23 Brian Burns
+130. '14 Everson Griffen
+131. '12 Charles Johnson
+132. '11 Jason Pierre-Paul
+133. '15 Damon Harrison
+134. '13 Sheldon Richardson
+135. '06 Vince Wilfork
+136. '11 Haloti Ngata
+137. '05 Shaun Rogers
+138. '03 Casey Hampton
+139. '15 Cameron Jordan
+140. '16 Brandon Graham
+141. '14 Justin Tuck
+142. '04 Patrick Kerney
+143. '13 Robert Quinn [STL]
+144. '18 Chris Long [STL]
+145. '01 Leonard Little [STL]
+146. '03 Marc Bulger [STL]
+147. '08 James Laurinaitis [STL]
+148. '01 Brian Waters [KC]
+149. '16 Marcus Peters [KC]
+150. '18 Tyreek Hill [KC]
+151. '18 Kareem Hunt [KC]
+152. '17 Alex Smith [KC]
+153. '19 Frank Clark [KC]
+154. '17 Dee Ford [KC]
+155. '94 Barry Sanders
+156. '73 Walter Payton
+157. '98 Terrell Davis
+158. '00 Marshall Faulk [STL]
+159. '06 LaDainian Tomlinson
+160. '03 Priest Holmes [KC]
+161. '05 Larry Johnson [KC]
+162. '16 Le'Veon Bell
+163. '02 Clinton Portis
+164. '05 Shaun Alexander
+165. '03 Jamal Lewis
+166. '13 Jamaal Charles [KC]
+167. '00 Edgerrin James
+168. '84 Eric Dickerson [STL]
+169. '78 Earl Campbell
+170. '85 Marcus Allen
+171. '03 Steven Jackson [STL]
+172. '22 Josh Allen
+173. '23 Lamar Jackson
+174. '15 Cam Newton
+175. '90 Randall Cunningham
+176. '63 Fran Tarkenton
+177. '67 Roger Staubach
+178. '84 Dan Marino
+179. '59 Johnny Unitas
+180. '48 Otto Graham
+181. '42 Sammy Baugh
+182. '64 Raymond Berry
+183. '65 Mike Ditka
+184. '76 Dave Casper
+185. '23 Joe Burrow
+186. '23 Brock Purdy
+187. '07 Tom Brady
+188. '04 Peyton Manning
+189. '22 Patrick Mahomes [KC]
+190. '89 Joe Montana
+191. '94 Steve Young
+192. '99 Kurt Warner [STL]
+193. '75 Ken Stabler
+194. '93 John Elway
+195. '04 Tony Gonzalez [KC]
+196. '04 Tony Gonzalez [KC]
+197. '04 Ray Lewis
+198. '04 Ed Reed
+199. '09 Charles Woodson
+200. '09 Darrelle Revis
+201. '04 Champ Bailey
+202. '94 Deion Sanders
+203. '94 Rod Woodson
+204. '08 Troy Polamalu
+205. '05 Brian Dawkins
+206. '01 Aeneas Williams [STL]
+207. '01 Ronde Barber
+208. '80 Lester Hayes
+209. '16 Kam Chancellor
+210. '13 Earl Thomas
+211. '12 Charles Tillman
+212. '90 Jack Lambert
+213. '06 Derrick Brooks
+214. '85 Mike Singletary
+215. '11 Patrick Willis
+216. '94 Junior Seau
+217. '13 Lavonte David
+218. '17 Bobby Wagner
+219. '21 Vita Vea
+220. '17 Harrison Smith
+221. '20 Fred Warner
+222. '21 Jalen Ramsey
+223. '19 Stephon Gilmore
+224. '15 Patrick Peterson
+225. '09 Asante Samuel
+226. '02 Antoine Winfield
+227. '04 Ty Law
+228. '04 John Lynch
+229. '75 Larry Wilson
+230. '74 Ken Houston
+231. '75 Willie Brown
+232. '76 Mel Blount
+233. '76 Mike Haynes
+234. '56 Night Train Lane
+235. '75 Dick LeBeau
+236. '59 Gino Marchetti
+237. '62 Willie Davis
+238. '78 Jack Ham
+239. '72 Ted Hendricks
+240. '70 Dick Butkus
+241. '69 Buck Buchanan [KC]
+242. '66 Bobby Bell [KC]
+243. '74 Willie Lanier [KC]
+244. '64 Johnny Robinson [KC]
+245. '67 Len Dawson [KC]
+246. '04 Derrick Johnson [KC]
+247. '94 Willie Roaf [KC]
+248. '02 Will Shields [KC]
+249. '02 John Alt [KC]
+250. '06 Tamba Hali [KC]
+251. '97 Neil Smith [KC]
+252. '85 Albert Lewis [KC]
+253. '69 Emmitt Thomas [KC]
+254. '68 Curley Culp [KC]
+255. '71 Otis Taylor [KC]
+256. '99 Orlando Pace [STL]
+257. '88 Anthony Muñoz
+258. '05 Walter Jones
+259. '01 Jonathan Ogden
+260. '05 Steve Hutchinson
+261. '81 John Hannah
+262. '18 Chris Jones [KC]
+263. '73 Tom Mack [STL]
+264. '74 Jackie Slater [STL]
+265. '99 Kevin Carter [STL]
+266. '99 London Fletcher [STL]
+267. '99 Isaac Bruce [STL]
+268. '98 Randall McDaniel
+269. '16 Julio Jones
+270. '13 Luke Kuechly
+271. '02 Richard Seymour
+272. Zf

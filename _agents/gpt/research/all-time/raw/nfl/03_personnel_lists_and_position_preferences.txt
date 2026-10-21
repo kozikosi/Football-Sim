@@ -1,0 +1,161 @@
+Offense
+
+QB: Patrick Mahomes / Dan Marino / Peyton Manning / Tom Brady / Joe Montana / Drew Brees / Aaron Rodgers / Steve Young / Josh Allen / Lamar Jackson / Matthew Stafford 
+ RB: Barry Sanders / Walter Peyton / Adrian Peterson / Marcus Allen / LaDainian Tomlinson / Marshall Faulk / Priest Holmes / Jamaal Charles / Bijan Robinson / Jonathan Taylor
+ FB: Bo Jackson / Jim Brown / Earl Campbell / Eric Dickerson / Derrick Henry / Jerome Bettis / Lorenzo Neal / Kimble Anders / Christian Okoye / Kenneth Walker
+ WR: Jerry Rice / Calvin Johnson / Isaac Bruce / Puka Nacka / Michael Irvin / Reggie Wayne / Antonio Brown / Lynn Swann / Torry Holt 
+ WR: Randy Moss / Larry Fitzgerald / Terrell Owens / Marvin Harrison / JSN / Ja’Marr Chase / CeeDee Lamb / Tyreek Hill / Justin Jefferson 
+ TE: Travis Kelce / Tony Gonzalez / Rob Gronkowski / Antonio Gates / Trey McBride / Shannon Sharpe / Jimmy Graham / George Kittle / Brock Bowers
+
+LT: Anthony Muñoz / Willie Roaf / Art Shell / Trent Williams / Jackie Slater / Garrett Bolles / Tristan Wirfs
+ LG: Larry Allen / Brian Waters / Gene Upshaw / Jordan Mailata 
+ C: Penei Sewell / Dermonti Dawson / Dwight Stephenson / Kevin Mawae / Creed Humphrey
+ RG: Will Shields / Randall McDaniel / Jahri Evans / Larry Little / Jim Parker / Joe Thuney / Trey Smith 
+ RT: Orlando Pace / Jonathan Ogden / Walter Jones / Willie Anderson / Joe Thomas / Tony Boselli 
+
+
+
+Defense
+
+Left Edge: Reggie White / Myles Garrett / Bruce Smith / T.J. Watt / Justin Houston / Neil Smith / Tamba Hali / Danielle Hunter
+ DT: Aaron Donald / Cortez Kennedy / Alan Page / John Randle / Mean Joe Greene / Derrick Brown / DeForest Buckner
+ NT: Buck Buchanan / Warren Sapp / Vince Wilfork / Halota Ngata / Cam Heyward / Jeffrey Simmons / Dexter Lawrence / Quinnen Williams / Nnamdi Madubuike Dan Saleaumua
+ Right Edge: Derrick Thomas / Deacon Jones / Demarcus Ware / Will Anderson Jr. / J.J. Watt / Nick Bosa / Micah Parsons / 
+
+MIKE: Ray Lewis / Mike Singletary / Fred Warner / Patrick Willis / Bobby Wagner / Roquan Smith / 
+ WILL: Willie Lanier / Derrick Brooks / Junior Seau / Derrick Johnson / Zack Baun
+ SAM: Lawrence Taylor / Von Miller / Bobby Bell
+
+LCB: Deion Sanders / Champ Bailey / Rod Woodson / Charles Tillman / Richard Sherman / Darrelle Green / Aeneas Williams / Mel Blount
+ SS: Ronnie Lott / Troy Polamalu / Brian Dawkins / Kyle Hamilton /  Tyrann Mathieu
+ FS: Ed Reed / Rod Woodson / Jalen Ramsey / Earl Thomas / Eric Berry / Deron Cherry / 
+
+RCB: Charles Woodson / Darrelle Revis / Night Train Lane / Patrick Surtain / Christian Gonzalez / Trent McDuffie / Albert Lewis / Emmitt Thomas 
+
+Return: Devin Hester / Dante Hall  / Deion Sanders / Ed Reed / Charles Woodson / 
+
+K: Adam Vinatieri / Jan Stenerud / Brandon Aubrey / 
+
+Punter: Ray Guy / Jerrel Wilson / Reggie Roby  Player	Position
+Derrick Thomas	Right Edge
+Tamba Hali	Left Edge
+Orlando Pace	RT
+Will Shields	RG
+Willie Roaf	RT
+Eric Berry	SS
+Marshall Faulk	RB
+Trey Smith	RG
+Justin Houston	Left Edge
+Patrick Mahomes	QB
+Tyrann Mathieu	FS/Nickel
+Dan Saleaumua	NT
+Willie Lanier	MIKE
+Deron Cherry	SS
+Jackie Slater	LT/RT
+Reggie White	Left Edge
+Myles Garrett	Right Edge
+Will Anderson Jr.	Right Edge
+Lawrence Taylor	SAM
+Penei Sewell	C
+Anthony Muñoz	LT
+Trent Williams	LT
+Larry Allen	LG
+Brian Waters	LG
+Aeneas Williams	LCB/Nickel
+Dante Hall	Returner
+Priest Holmes	RB
+Larry Johnson	RB
+Jamaal Charles	RB
+Derrick Johnson	MIKE
+Marcus Allen	FB
+Neil Smith	DT
+Trent McDuffie	RCB/Nickel  QB
+Patrick Mahomes / Joe Montana / Peyton Manning
+RB
+Barry Sanders / Walter Payton / Jim Brown
+FB
+Kimble Anders / Christian Okoye / Marcus Allen
+WR
+Jerry Rice / Randy Moss / Devin Hester
+WR
+Terrell Owens / Torry Holt / Isaac Bruce
+TE
+Travis Kelce / Tony Gonzalez / Antonio Gates
+LT
+Anthony Muñoz / Trent Williams / Jackie Slater
+LG
+Larry Allen / Brian Waters / Alan Faneca
+C
+Penei Sewell / Creed Humphrey / Trey Smith
+RG
+Will Shields / Jahri Evans / Larry Little
+RT
+Orlando Pace / Willie Anderson / Laremy Tunsil
+ Left Edge
+Reggie White / Bruce Smith / Justin Houston
+DT
+Aaron Donald / Warren Sapp / Cortez Kennedy
+NT
+Buck Buchanan / Vince Wilfork / Haloti Ngata
+Right Edge
+Derrick Thomas / DeMarcus Ware / Myles Garrett
+MIKE
+Ray Lewis / Willie Lanier / Patrick Willis
+WILL
+Derrick Brooks / Junior Seau / London Fletcher
+SAM
+Lawrence Taylor / Von Miller / Bobby Bell
+Right CB
+Deion Sanders / Champ Bailey / Darrelle Revis
+SS
+Troy Polamalu / Eric Berry / Kam Chancellor
+FS
+Ronnie Lott / Ed Reed / Earl Thomas
+Left CB
+Charles Woodson / Rod Woodson / Darrell Green
+Nickel
+Tyrann Mathieu / Aeneas Williams / Charles Tillman
+Dime
+Albert Lewis / Kevin Ross / L'Jarius Sneed
+ Left Edge
+Reggie White / Bruce Smith / Justin Houston
+Right Edge
+Derrick Thomas / DeMarcus Ware / Myles Garrett
+Edge Rotation
+Tamba Hali / Von Miller / Will Anderson Jr.
+ Position	1st	2nd	3rd
+QB	Patrick Mahomes (A5, F10)	Joe Montana (A11, F38)	Peyton Manning (A6)
+RB	Barry Sanders (A12)	Walter Payton (A13)	Jim Brown (A14)
+FB	Kimble Anders (F47)	Christian Okoye (F44)	Marcus Allen (A69, F30)
+WR	Jerry Rice (A51)	Randy Moss (A74)	Terrell Owens (A181)
+TE	Travis Kelce (A177, F83)	Tony Gonzalez (A176)	Rob Gronkowski (A175)
+LT	Anthony Muñoz (A33, F21)	Orlando Pace (A35, F3)	Jackie Slater (A87, F15)
+LG	Larry Allen (A34, F23)	Bruce Matthews (A36)	Gene Upshaw (A47)
+C	Mike Webster (A84, F53)	Dermontti Dawson (A85)	Jim Otto (A86)
+RG	Will Shields (F4)	Alan Faneca (A89)	Joe Thuney (A141, F62)
+RT	Penei Sewell (A40, F20)	Willie Roaf (A42, F5)	Trent Williams (A41, F22)  Position	1st	2nd	3rd
+EDGE / DE	Reggie White (A1, F16)	Derrick Thomas (A2, F1)	Myles Garrett (A3, F17)
+DT / NT	Aaron Donald (A15, F53)	Cortez Kennedy (A114)	Warren Sapp (A115)
+OLB	Derrick Thomas (A2, F1)	Lawrence Taylor (A4, F19)	Will Anderson Jr. (A31, F18)
+ILB / MLB	Ray Lewis (A75)	Willie Lanier (A159, F13)	Bobby Wagner (A164)
+CB	Deion Sanders (A20)	Champ Bailey (A21)	Darrelle Revis (A22)
+S	Ronnie Lott (A54)	Ed Reed (A62)	Troy Polamalu (A76)
+Nickel / DB	Charles Woodson (A23)	Tyrann Mathieu (F11)	Aeneas Williams (F35)  Position	1st	2nd	3rd
+FS	Ronnie Lott (A54)	Ed Reed (A62)	Eric Berry (A180, F6)
+SS	Troy Polamalu (A76)	Kam Chancellor (A165)	Deron Cherry (F14)
+CB1	Deion Sanders (A20)	Champ Bailey (A21)	Darrelle Revis (A22)
+CB2	Charles Woodson (A23)	Aeneas Williams (F35)	Emmitt Thomas (F50)
+Nickel	Tyrann Mathieu (F11)	Charles Woodson (A23)	Trent McDuffie (F32)  Offense
+QB: Patrick Mahomes RB: Barry Sanders FB: Kimble Anders WR: Jerry Rice WR: Randy Moss TE: Travis Kelce
+LT: Anthony Muñoz LG: Bruce Matthews C: Mike Webster RG: Will Shields RT: Orlando Pace
+Defense — 4-3 interpretation
+DE: Reggie White DT: Aaron Donald DT: Cortez Kennedy DE: Derrick Thomas
+WLB: Lawrence Taylor MLB: Ray Lewis SLB: Will Anderson Jr.
+CB: Deion Sanders CB: Champ Bailey FS: Ronnie Lott SS: Troy Polamalu
+That defense is absolutely ridiculous.
+If I converted it to a 3-4
+I'd actually prefer:
+DE: Reggie White NT: Aaron Donald DE: Cortez Kennedy
+OLB: Derrick Thomas ILB: Ray Lewis ILB: Willie Lanier OLB: Lawrence Taylor
+CB: Deion Sanders CB: Champ Bailey FS: Ronnie Lott SS: Troy Polamalu
+
