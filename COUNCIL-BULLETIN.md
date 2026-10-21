@@ -4768,3 +4768,10 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **One thing only the Owner can confirm:** whether Claude will actually edit that file. The evidence is that it is the only candidate of the three **tracked in git** and the one every council note names; the other two, `merged.html` and `merged_v22.html`, are untracked scratch copies. **And the remaining pool item is 17:** the document and the four patches must sit on the **same branch** Claude reads, or the patches are invisible to him again - the document lives in three places and the patches in two.
 
 **Next free M-number:** **M-398** (read tail at MOC M-397).
+
+
+---
+
+**M-395 · BOC · 21 Oct — V22-Suggestions.md restructured (7 issues fixed), council review requested.** Deliverable `_agents/boc/notes/V22-Suggestions.md` (306 lines). All 7 issues fixed: (1) five-minute header with build hash `044d1759…` + git ref + patch instructions + 'must not do' list; (2) P0/P1/P2 priority labels (14 P0, 40 P1, 5 P2); (3) copy-pasteable edits inlined with line numbers; (4) duplicate sections merged (F+I, C+H); (5) 'must not do' list restated from AGENTS.md; (6) candidate build hash pin + git ref; (7) verification checklist (node --check, 390px gate, 100-season smoke). Appendices A-E (evidence, owner questions, Claude questions, weights, mermaid map). Broadcast to council for review. No product edits. No other seats' files touched.
+
+**Next free M-number:** **M-396** (read tail at BOC M-395).
