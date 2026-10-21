@@ -1,0 +1,99 @@
+MLB CURRENT SIMULATION — SCOPING RECEIPTS
+generated: 2026-10-21T01:36:13Z | branch: gpt/council-reliability-scorecard @ a3a26ae
+build cited: 'NFL Draft Simulator merged.html' sha256 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd (657486 B)
+
+=== R1. The football build's shape (the pattern to generalise) — file:line ===
+459:function modelWeights(){
+924:const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','WR3','TE1','TE2','OT1','OT2','OG1','OG2','C','DE1','DE2','DT1','DT2','MIKE','WILL','SAM','CB1','CB2','CB3','SS','FS','K'];
+925:const TOTAL_ROUNDS = ROSTER_SLOTS.length; // 26 — starters only (two TEs for 12/13/22 personnel), no DL5/LB4/CB4/SS2/FS2/WR4/P/FB
+1346:function slotWinsPerOvr(){
+1938:const RATING_SPECS = {
+1988:function teamRatings(slotmap){
+2003:function leagueBaseline(slotmapList){
+2038:const PERS_REC = {
+2044:const DEF_SPECS = {
+2100:function matchupModel(O0, D0, lg, plan){
+2286:function simulateGame(homeSM, awaySM, isPlayoff, lg, plans){
+4865:const POINTS_PER_WIN = 32.5;   // Sports Info Solutions' Pythagenpat-based conversion: roughly 32-33 points per win in recent seasons
+
+--- ROSTER_SLOTS (26) + rounds ---
+const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','WR3','TE1','TE2','OT1','OT2','OG1','OG2','C','DE1','DE2','DT1','DT2','MIKE','WILL','SAM','CB1','CB2','CB3','SS','FS','K'];
+const TOTAL_ROUNDS = ROSTER_SLOTS.length; // 26 — starters only (two TEs for 12/13/22 personnel), no DL5/LB4/CB4/SS2/FS2/WR4/P/FB
+
+--- teamRatings(): units -> composites ---
+function teamRatings(slotmap){
+ const r = {};
+ r.ret = retScore(slotmap);
+ for(const k in RATING_SPECS) r[k] = wavgSlots(slotmap, RATING_SPECS[k]);
+ for(const p in PERS_REC) r['rec'+p] = wavgSlots(slotmap, PERS_REC[p]);
+ r.rec11 = r.rec;
+ for(const k in DEF_SPECS) r[k] = wavgSlots(slotmap, DEF_SPECS[k]);
+ r.te1 = slotOvr(slotmap,'TE1'); r.te2 = slotOvr(slotmap,'TE2');
+ r.rbHeavy = wavgSlots(slotmap, {RB1:2.0, RB2:1.2});
+ r.passOff = 0.45*r.qb + 0.30*r.rec + 0.25*r.olPass;
+ r.runOff  = 0.35*r.rb + 0.65*r.olRun;
+ r.off = 0.6*r.passOff + 0.4*r.runOff;
+ r.def = 0.55*(0.5*r.passRush + 0.5*r.coverage) + 0.45*r.frontRun;
+ return r;
+}
+function leagueBaseline(slotmapList){
+
+--- matchupModel() signature + first lines ---
+function matchupModel(O0, D0, lg, plan){
+ plan = plan || DEFAULT_PLAN;
+ const po = plan.off, pd = plan.def;
+ const O = applyOffPlan(O0, po), LO = applyOffPlan(lg, po);
+ const D = applyDefPlan(D0, pd, false), LD = applyDefPlan(lg, pd, true);
+ const sT = offShift(po), rAmp = 1+PLAN_K.rAmp*sT, pAmp = 1-PLAN_K.pAmp*sT;
+ const dRB=O.rb-LO.rb, dOLr=O.olRun-LO.olRun, dQB=O.qb-lg.qb, dRec=O.rec-LO.rec, dOLp=O.olPass-lg.olPass, dK=O.kicker-lg.kicker;
+ const dFront=D.frontRun-LD.frontRun, dRush=D.passRush-LD.passRush, dCov=D.coverage-LD.coverage;
+ // identity: a team whose strength is the offensive line and the running backs leans run; a QB/receiver team leans pass
+ const lean = MC.lean*((0.35*(O0.rb-lg.rb)+0.65*(O0.olRun-lg.olRun)) - (0.45*dQB+0.30*(O0.rec-lg.rec)+0.25*dOLp));
+ // scheme terms: volume (how many snaps go to each side of the ball), formation edges and inherent package trade-offs
+ const heavy = PERS[po.pers].heavy, nick = pd.pkg==='nickel';
+ const schemeRun  = PERS[po.pers].runB + PLAN_K.kRun*sT + (nick ? PLAN_K.nickRun*heavy : PLAN_K.baseRunVsHeavy*heavy);
+
+--- POINTS_PER_WIN ---
+const POINTS_PER_WIN = 32.5;   // Sports Info Solutions' Pythagenpat-based conversion: roughly 32-33 points per win in recent seasons
+
+=== R2. The 'explain Wins' report shape (the thing to generalise) ===
+6127: + sec('What actually drove winning (neutral model, 32 rosters)', `<div class="draft-columns" style="grid-template-columns:1fr 1fr;gap:18px;"><div><h5 class="narr" style="margin:0 0 6px;">Each un
+
+=== R3. POOL ARITHMETIC (my computation; MLB roster shapes are REPORTED, not verified here) ===
+Roster slots (REPORTED MLB shapes):
+  26-man active roster      : 30 teams x 26 = 780 slots
+  40-man off-season roster  : 30 teams x 40 = 1200 slots
+  28-man in-season (2026?)  : 30 teams x 28 = 840 slots
+
+Football precedent (VERIFIED in the build):
+  ROSTER_SLOTS = 26, TOTAL_ROUNDS = 26  -> 26 x 32 teams = 832 picks
+  pool 1,200 (1,148 draftable)            -> 1.44 players per slot
+
+Owner target reconciliation (1,500-2,000 candidates):
+  vs  780 slots (26-man   ): 1,500 -> 1.92/slot | 2,000 -> 2.56/slot
+  vs  900 slots (30 rounds): 1,500 -> 1.67/slot | 2,000 -> 2.22/slot
+  vs 1200 slots (40-man   ): 1,500 -> 1.25/slot | 2,000 -> 1.67/slot
+
+Minimum per position group (1 per team slot), 30 teams:
+  SP : 5 per team x 30 =  150 minimum
+  RP : 8 per team x 30 =  240 minimum
+  C  : 1 per team x 30 =   30 minimum
+  1B : 1 per team x 30 =   30 minimum
+  2B : 1 per team x 30 =   30 minimum
+  3B : 1 per team x 30 =   30 minimum
+  SS : 1 per team x 30 =   30 minimum
+  LF : 1 per team x 30 =   30 minimum
+  CF : 1 per team x 30 =   30 minimum
+  RF : 1 per team x 30 =   30 minimum
+  DH : 1 per team x 30 =   30 minimum
+  TOTAL: 660 (13 pitchers + 13 position players + 1 DH = 27-man shape; 26-man uses 12 pitchers)
+
+Depth at the Owner's 1,800 midpoint, if pitchers take the depth:
+  pitchers  :  700  (SP 300 = 10 per team, RP 400 = 13 per team)
+  position  : 1100  (C 80, 1B 80, 2B 90, 3B 80, SS 90, LF 120, CF 120, RF 120, DH 60, utility/2-way 240)
+  check     : 700+1100 = 1800
+
+=== R4. Repo state (read-only; nothing written outside _agents/moc/) ===
+branch: gpt/council-reliability-scorecard @ a3a26ae  | working tree clean for shared docs? 2 modified
+pool files present in repo: 8 entries (MLB: none — no MLB pool exists)
+MLB sources in the repo: 23 file(s)
