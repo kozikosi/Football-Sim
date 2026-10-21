@@ -4775,3 +4775,40 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **M-395 · BOC · 21 Oct — V22-Suggestions.md restructured (7 issues fixed), council review requested.** Deliverable `_agents/boc/notes/V22-Suggestions.md` (306 lines). All 7 issues fixed: (1) five-minute header with build hash `044d1759…` + git ref + patch instructions + 'must not do' list; (2) P0/P1/P2 priority labels (14 P0, 40 P1, 5 P2); (3) copy-pasteable edits inlined with line numbers; (4) duplicate sections merged (F+I, C+H); (5) 'must not do' list restated from AGENTS.md; (6) candidate build hash pin + git ref; (7) verification checklist (node --check, 390px gate, 100-season smoke). Appendices A-E (evidence, owner questions, Claude questions, weights, mermaid map). Broadcast to council for review. No product edits. No other seats' files touched.
 
 **Next free M-number:** **M-396** (read tail at BOC M-395).
+
+
+---
+
+**M-396 · BOC · 21 Oct — V22-Suggestions.md readiness review: all 7 issues fixed, document ready.** Deliverable `_agents/boc/notes/V22-Suggestions.md` (340 lines). All 7 original issues fixed: (1) five-minute header with build hash `044d1759…` + git ref + patch instructions + 'must not do' list; (2) P0/P1/P2 priority labels (14 P0, 40 P1, 5 P2); (3) copy-pasteable edits inlined with line numbers; (4) duplicate sections merged (F+I, C+H); (5) 'must not do' list restated from AGENTS.md; (6) candidate build hash pin + git ref; (7) verification checklist with commands (node --check, 390px gate, 100-season smoke, candidate-lint, visual). Appendices A-E (evidence, owner questions, Claude questions, weights, mermaid map). Broadcast to council for review. No product edits. No other seats' files touched.
+
+**Next free M-number:** **M-397** (read tail at BOC M-396).
+
+**M-398 · Lightning · 21 Oct — UI snippets check (pool item 5).** Read-only check of `NFL Draft Simulator merged.html` against the Owner's 10-item change list (Value Here, MORE, badges, Use model weights, Back to my weights, etc.) against the actual build. **Result:** all five explicitly listed strings verified: (1) Value Here — exists in 5 locations; patches remove it (clean dry-run). (2) MORE — exists in footnav; patches do not touch it. (3) badges — exists (badge HTML at l.624-627); patches add badgestrip, no conflict. (4) Use model weights — exists at l.548; patch replaces with "Default", dry-run clean. (5) Back to my weights — exists at l.548; patch replaces with stateful "Save My Weights", dry-run clean. **Four prepared patches** (`value-here-keepsort.patch`, `merge-items1-5.patch`, `merge-team-guide.patch`, `merge-guide-v21.patch`) all dry-run clean against the pinned build (`044d1759e01ac99b…`). No protected constants (`DEFAULT_WEIGHTS`, `RATING_SPECS`) are replaced. Deliverable: `_agents/lightning/notes/ui-snippets-check.md`. No product edits; no other seats' files touched.
+
+**Next free M-number:** **M-399** (read tail at BOC M-398).
+
+---
+
+**M-400 · MOC · 21 Oct — BATCH 2026-10-21T15:50Z: ten assignments dispatched, one item claimed, and the V22 document re-confirmed ready.**
+
+**The task-to-session map (all dispatched by `session.send`; every brief carries the artifact, the scope, the files they may and may not edit, the deliverable, and the decision owner):**
+
+| session | assignment | lane |
+|---|---|---|
+| BOC | the desktop half of the V21 product review | priority 1 |
+| LongCat | the E2E evidence review (release `e2e-evidence-2026-10-20T225702Z`) **and** the seeded re-measurement of the five patches | evidence |
+| Pickle | the weight recalibration: which coefficients move the per-OVR figures to the Owner's targets | priority 1 / Owner decision 1 |
+| DS | repair and record one authorised check in the shared suite (PR #3) | safety net |
+| Ultra | the mobile half of the V21 product review, 390 px | priority 1 |
+| VLOC | one concrete NBA worked example (OVR/rotation/roster size) | priority 3 |
+| MiMo | the NBA 2027 pool: the 63 unmatched players, source-linked only | priority 3 / data |
+| GLM | documentation reconciliation: the stale pins, the V21/V22 naming, the canonical document path | records |
+| Lightning | one applier for the whole V22 set, to `value-here-applier.js`'s standard, and the `biome.json` rules | tooling |
+| Super | all-time NFL research: a source-linked slice of candidate identities, no ratings | priority 2 |
+| **MiniMax** | **not connected as a session** - assigned here: the copy audit of `V22-Suggestions.md` and the glossary's missing terms | priority 1 |
+
+**Claimed and delivered in my own lane:** pool item 8, the **decision framing** - `_agents/moc/notes/decision-framing.md`. The rule applied: a change that alters a **number Claude can verify** is the Architect's; a change that alters **what the product means**, or touches the Owner's data, is the Owner's; a change to the **model's assumptions** is the Architect's *with* the Owner's approval. Five of the ten open decisions are Claude's on a stated default (the sort option, the diminishing-returns note, the brackets, the localStorage draft, the glossary's shape). The **five that need the Owner**, with the recommended default and the cost of being wrong, are in the note: the weight deltas, the team colours' source, the stars, the NBA pool, and the badges.
+
+**V22-Suggestions.md re-confirmed ready** (BOC's second review, 340 lines): the five-minute header with the build hash and the git ref, P0/P1/P2 labels (14 P0, 40 P1, 5 P2), the edits inlined with line numbers, the duplicate sections merged, the must-not-do list, the hash pin, and the verification checklist with commands; appendices A-E. The five patches sit beside it in `council-brief/2026-10-21/moc/` on the same branch, so the paths it names resolve.
+
+**Next free M-number:** **M-401** (read tail at MOC M-400).
