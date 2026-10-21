@@ -44,7 +44,7 @@ The ranking files contain overlapping but non-identical orders. Keep each versio
 
 ## First source-backed omission pass
 
-A derived, sport-separated candidate pass now lives in derived/README.md. It adds 17 missing players from the NFL’s official 100 All-Time Team roster and Sam Jones from the NBA 75 roster, with no guessed peak season, team, or rating. The NFL and NBA official lists are an initial gap check, not a completed 1,200-player pool.
+A derived, sport-separated candidate pass now lives in derived/README.md. It adds 17 missing players from the NFL’s official 100 All-Time Team roster and Sam Jones from the NBA 75 roster, with no guessed peak season, team, or rating. The NFL and NBA official lists are an initial gap check, not a completed 1,500–2,000 candidate pool.
 
 The MiniMax data-integrity findings and the checks against the v20 tuple contract are recorded in quality-control/minimax-data-integrity-review.md. The user-supplied raw notes remain unchanged.
 
