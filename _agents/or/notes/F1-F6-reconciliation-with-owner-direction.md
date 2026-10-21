@@ -1,0 +1,117 @@
+# F1–F6 Reconciliation: GPT Multisport PR #1 vs Owner's Product Direction (20 Oct 2026)
+
+**Source:** `_agents/or/notes/consolidated-review-multisport-pr1.md` (sha256 `6cf4e3f1…`) vs Owner's stated direction (M-104/M-105/M-107, parallel-batch instruction).
+**Purpose:** Identify which F1-F6 recommendations are superseded, unchanged, or still open per the Owner's current priorities and instructions. Prevent rework by documenting settled decisions.
+**Scope:** NFL all-time, NBA current/all-time, architecture, pool sizing, flex, ratings.
+**No product files edited.** Read-only reconciliation of brief against new direction.
+
+---
+
+## F1 — NFL flex table: partially superseded
+
+| Field | Original brief (20 Oct) | Owner direction (20 Oct) | Status |
+|-------|------------------------|--------------------------|--------|
+| Question | Does all-time mode use the same `FLEX` table (v20:908)? | — | — |
+| Recommended default | **YES, unchanged**. Cost: one mapping table, reversible. | **Partially superseded.** Owner: *"I favor flexible, positionless thinking. The football flex system is a guideline, not a system to copy unchanged."* Plausible flexes can have penalties; some positions or roles can be hard constraints. | **Revised default: NO, do not copy unchanged.** Adopt positionless flex thinking as a guideline with penalties. Keep `FLEX` table as a *starting reference*, not a mandatory copy. Any new flex table for all-time is a design decision for the Owner, not a code-default path. Cost of being wrong: one new table instead of reusing old; reversible. |
+| Secondary question | Flex value: at actual starting slot (`effOvr`) or at listed position? | — Owner's positionless framing makes this moot — value at the slot actually started is the default under positionless thinking. | **No separate secondary question needed under new framing.** Under positionless flex, the "starting slot" is the effective slot; value is computed via `effOvr` at that slot. |
+| Evidence retained | `effOvr(player, slot) = player[3] - flexPenaltyFor(pos, slot)` (v20:946); `ROSTER_SLOTS` = 26; `NATURAL_SLOT_MAP`, `FLEX` tables (v20:892-908). | Owner's evidence framing: *"The football flex system is a guideline, not a system to copy unchanged."* | **Retain evidence** — code already decides flex value math via `effOvr`; position codes and penalty lookups are unchanged. |
+| Decision | Record in `DECISION-LOG.md` | **Owner has spoken.** No further F1 decision needed from Architect. Mark F1 superseded with revised default. | **Superseded — Owner's flex guideline framing takes precedence.** |
+
+---
+
+## F2 — Position taxonomy at load time: **unchanged** (still valid)
+
+| Field | Original brief | Owner direction | Status |
+|-------|---------------|-----------------|--------|
+| Question | Create `POSITION_TAXONOMY` (load-time mapping from era codes to current slot families)? | — | — |
+| Recommended default | **YES.** Add one artifact at load: `FL→WR`, `E→REDG/LEDG`, `T→LT/RT`, `G→LG/RG`, `HB→HB`, `LB→MIKE/WILL/SAM`, `DB→CB/SS/FS`, `K→K`. Keep `FLEX` table untouched. | — | **Unchanged.** The Owner's new direction does not address position taxonomy. The evidence (legacy codes return `null` from `flexRule`, Hungarian optimizer finds no legal assignment, draft produces 832/832 picks but only 748 slots filled) remains valid. No Owner statement contradicts it. |
+| Evidence | `SIM-PLATFORM/data/schema/player-record.schema.json` + `validate-dataset.mjs --fromBuild`. Legacy-coded pool: 832/832 picks but 748 actual picks / 748 slots filled. | — | **Retain and re-publish** with original brief. No change needed. |
+| Decision | Record in `DECISION-LOG.md` as F2 | **No Owner decision required.** Work can continue. | **Open — proceed with F2 as originally recommended.** |
+
+---
+
+## F3 — Pool target: 1,400 rated / 1,200 published per sport, ~200 current-eligible at −5: **superseded**
+
+| Field | Original brief | Owner direction | Status |
+|-------|---------------|-----------------|--------|
+| Question | Is "around 1,200" per sport or combined? | — | — |
+| Recommended default | **Rate 1,400 candidates per sport**, publish the **top 1,200** per sport as a view, current-eligible share ≈ **200** (each at −5). Ambiguity becomes a filter change, not a re-rating. | **"approximately 1,500–2,000 candidate players per sport."** Owner gives final approval to each pool. The approximately −5 current-player adjustment is **not approved.** | **Superseded.** Owner's range 1,500–2,000 per sport replaces my 1,400/1,200/200. Owner will approve final pool. Do not apply the −5 adjustment without Owner decision. |
+| Evidence | NFL draft consumes 32 teams × 26 slots = 832 picks. Current 1,200 pool leaves ~370 undrafted every year. Pool size sets depth left over, not draft volume. | Owner's source material (NBA 2K and FIFA ratings) may differ. Public-facing data should use integers; internal calculations may use decimals. Do not invent decimal ratings or fields the engine does not use. | **Update evidence** with Owner's 1,500–2,000 range. Document that −5 adjustment is not approved. Cite Owner's source material (NBA 2K OVR, FIFA ratings) as the new starting point. |
+| Decision | Record in `DECISION-LOG.md` as F3 | **Owner must answer.** The new range 1,500–2,000 per sport, −5 not approved, requires Owner decision before any pool curation proceeds. | **Superseded — pending Owner decision on pool size and −5 adjustment.** |
+
+---
+
+## F4 — Peak vs career: prime ratings + versioned prime/age curve: **partially superseded**
+
+| Field | Original brief | Owner direction | Status |
+|-------|---------------|-----------------|--------|
+| Question | Rate at peak as `ovr`, plus a versioned engine-level prime/age curve? | — | — |
+| Recommended default | **Two layers.** 1) Data layer: `ovr` = prime (best multi-year window); store `career_years`, `prime_seasons` metadata in separate versioned fields. 2) Engine layer: add explicit prime/age curve to sport profile — same pattern as `MC`, `PLAN_K`, `SEASON_RECORD_CAPS` — apply in season engine, not in data. | **Modeling assumption: all-time players have had a year to train under modern rules.** Owner gives examples: Kevin Garnett's long-two profile could support "at least league-average three-point shooter"; poor FT shooters (Chuck Hayes, Ben Wallace, DeAndre Jordan) are a reason NOT to assume one year of training makes them strong three-point shooters. Bring evidence and reasoning; treat as hypotheses for discussion, not fixed ratings. | **Partially superseded.** Owner provides a *modern-training assumption* for all-time players, which directly addresses the peak/career question from a different angle. The versioned curve is not explicitly approved or rejected — Owner frames it as "bring evidence and reasoning; treat as hypotheses." The −5 current-player adjustment is not approved. |
+| Evidence | Simulation has **no time dimension** for a player: `inj` in 0 places; `str` in 0 player-record places; `spd`/`agi`/`cod`/`awr` each used in exactly one function (`returnerRating`, v20:2581), all decorative except returners. Every player rated the same every season. Two candidate definitions (peak season, career value) cannot be expressed by the current engine at all. | Owner's modern-training hypothesis framework: Kevin Garnett → possible league-average 3PT; Chuck Hayes/Ben Wallace/DeAndre Jordan → poor FT shooting is a reason NOT to assume 3PT skill. These are hypotheses for discussion, not fixed ratings. Keep source ratings and player-season distinct from simulation rating. | **Retain evidence** — engine has no age/curve dimension. Update framing: Owner gives modern-training hypotheses, not a versioned curve yet. −5 adjustment not approved. |
+| Decision | Record in `DECISION-LOG.md` as F4 | **Owner has provided framing.** The modern-training assumption replaces the need for a versioned curve *at this time*. Mark F4 superseded with Owner's hypothesis framework. No versioned curve decision needed unless/until pool curation requires it. | **Partially superseded — Owner's modern-training hypothesis framework takes precedence.** Retain engine-no-curve evidence; update framing per Owner. |
+
+---
+
+## F5 — NBA roster arithmetic: how many active players per club? **superseded**
+
+| Field | Original brief | Owner direction | Status |
+|-------|---------------|-----------------|--------|
+| Question | How many players active per club — 15 (→ 450 → 15 rounds), 13 (→ 390 → 13 rounds), 12 (→ 360 → 12 rounds)? | — | — |
+| Recommended default | **15 active + 3 development = 450 slots, 15 rounds**, reusing the NFL draft loop with a new profile. | **Owner floated "drafting up to 10 players per team."** Also: "I favor flexible, positionless thinking. The football flex system is a guideline, not a system to copy unchanged." Positionless thinking affects roster mapping. | **Superseded.** Owner's "up to 10 players per team" replaces my 15 active / 450 / 15 rounds. Positionless thinking changes how roster slots map. The 2-round draft vs 15-man roster argument still holds, but the default roster size is now Owner's decision. |
+| Evidence | NFL arithmetic structurally forced: 32 × 26 = 832 picks. NBA: 30 × 15 = 450 = 15 rounds × 30 teams. A 2-round draft cannot fill a 15-man roster — that is the only real argument against a draft, and it dissolves once roster size is chosen. | Owner: "For NBA, I floated drafting up to 10 players per team. Computer-managed rotations could make an initial version easier; user-set rotations could be an advanced option." "I think soccer and baseball may be closer to football's draft structure. Hockey may be more like basketball, but I'm uncertain." Positionless thinking affects how 10 players map to 5-on-5 rotations. | **Update evidence** with Owner's 10-player-float. Retain the 2-round vs 15-man roster structural fact, but note that default roster size is Owner's decision (up to 10). |
+| Decision | Record in `DECISION-LOG.md` as F5 | **Owner must decide roster size.** The new "up to 10 players per team" float supersedes my 15/450/15 default. No F5 decision needed from Architect until Owner commits to a roster size. | **Superseded — pending Owner decision on NBA roster size.** |
+
+---
+
+## F6 — NBA rotations: minutes-weighted role tiers (gives inj a real job): **partially superseded**
+
+| Field | Original brief | Owner direction | Status |
+|-------|---------------|-----------------|--------|
+| Question | Adopt minutes-weighted role tiers for NBA matchup model? | — | — |
+| Recommended default | **YES.** Role tiers (starter / sixth / rotation / development) with a minutes distribution per team; matchup model takes a **minutes-weighted** unit rating, not "starting five + bench." Availability feeds minutes weights — this gives `inj` (inert today) a real job. Engine proposes the lineup, user may override it; `optimalLineup` (Hungarian) resolves conflicts — same precedent as football: advisory for user, binding for CPU. | **Owner floated "drafting up to 10 players per team. Computer-managed rotations could make an initial version easier; user-set rotations could be an advanced option."** Also: "For NBA, I floated drafting up to 10 players per team." Positionless thinking; computer-managed vs user-set rotations are concepts to compare, not finalized rules. | **Partially superseded.** Owner's "computer-managed rotations" and "user-set rotations" concepts partially overlap with my minutes-weighted role tiers but are framed as **concepts to compare**, not finalized rules. The minutes-weighted tiers still give `inj` a real job, but the default is no longer "YES, adopt" without Owner choice of computer vs user management. |
+| Evidence | Football engine has 9 unit ratings and `teamRatings(slotmap)` computes them from a depth chart; `optimalLineup` picks best legal assignment. No "bench" scalar in football because defence comes from who is actually on the field. NBA's equivalent of "second unit" is a rotation, not a scalar. Starting-five + bench composite makes star injuries not bite, bench quality nearly inert, deep vs shallow roster indistinguishable — star-and-role-freeze season. | Owner: "Computer-managed rotations could make an initial version easier; user-set rotations could be an advanced option." These are **concepts to compare**, not finalized rules. The star-and-role-freeze critique still applies under any fixed-role model. | **Retain evidence** — star-and-role-freeze critique is still valid under any fixed-role model. Update framing: Owner's concepts (computer-managed, user-set rotations) are alternatives to evaluate, not decisions. Minutes-weighted tiers still give `inj` a real job but are not the default without Owner call. |
+| Decision | Record in `DECISION-LOG.md` as F6 | **Owner has provided concepts, not a decision.** The default "YES, adopt" is replaced by Owner's "concepts to compare." No F6 decision needed from Architect until Owner chooses computer-managed or user-set rotations. | **Partially superseded — Owner's concepts framework takes precedence.** Retain evidence; update framing per Owner. |
+
+---
+
+## Summary table
+
+| F# | Original default | Owner direction | Current status |
+|---|---|---|---|
+| **F1** | YES, keep `FLEX` table unchanged | Flex system is a guideline, not a system to copy unchanged; positionless thinking; plausible flexes can have penalties; some positions/roles can be hard constraints | **Superseded** — Revised default: NO, do not copy unchanged. Positionless flex as guideline with penalties. |
+| **F2** | YES, add `POSITION_TAXONOMY` artifact at load time | No Owner statement | **Unchanged** — Proceed as originally recommended. |
+| **F3** | Rate 1,400 / publish top 1,200 / ~200 current-eligible at −5 | 1,500–2,000 per sport; −5 adjustment **not approved** | **Superseded** — Pending Owner decision on pool size and −5. |
+| **F4** | Prime ratings + versioned prime/age curve | Modern-training hypothesis for all-time players; −5 not approved; examples (Garnett/ch Hayes) as hypotheses for discussion | **Partially superseded** — Owner's hypothesis framework takes precedence; no versioned curve decision yet. |
+| **F5** | 15 active + 3 dev = 450 slots, 15 rounds | "Drafting up to 10 players per team"; computer-managed vs user-set rotations as concepts | **Superseded** — Pending Owner decision on NBA roster size (up to 10). |
+| **F6** | YES, adopt minutes-weighted role tiers | Computer-managed rotations could be easier; user-set rotations advanced option; concepts to compare, not finalized rules | **Partially superseded** — Owner's concepts framework; retain evidence, update framing. |
+
+---
+
+## Actions required
+
+| Item | Owner decision required? | Architect decision required? | Recommended next step |
+|------|-------------------------|----------------------------|----------------------|
+| F1 default (flex table) | **Yes** — Owner has spoken; no further Architect decision needed. | No. Mark F1 superseded in `DECISION-LOG.md`. | Record in `DECISION-LOG.md`: F1 superseded; flex guideline framing adopted. |
+| F3 pool size (−5 adjustment) | **Yes** — Owner said −5 is not approved; pool size 1,500–2,000 requires Owner approval. | No. Mark F3 superseded; pause pool curation until Owner decides. | Record in `DECISION-LOG.md`: F3 pending Owner decision on size and −5. |
+| F5 roster size | **Yes** — Owner's 10-player float requires decision. | No. Mark F5 superseded; pause NBA draft draft until Owner commits to roster size. | Record in `DECISION-LOG.md`: F5 pending roster size. |
+| F4 versioned curve | **No — Owner's hypothesis framework replaces the need.** | No. Mark F4 partially superseded; retain evidence, update framing. | Update `_agents/or/notes/F1-F6-reconciliation-with-owner-direction.md`; no `DECISION-LOG.md` entry needed. |
+| F6 role tiers | **No — Owner's concepts replace the default "YES."** | No. Mark F6 partially superseded; retain evidence, update framing. | Update reconciliation doc; no `DECISION-LOG.md` entry needed. |
+| F2 position taxonomy | **No — unchanged.** | Proceed. | Record in `DECISION-LOG.md`: F2 open, proceed as originally recommended. |
+
+---
+
+## Files modified
+
+| File | Change |
+|------|--------|
+| `_agents/or/notes/F1-F6-reconciliation-with-owner-direction.md` | **Created** — this reconciliation, mapping each F1-F6 against Owner's product direction. |
+| `_agents/or/notes/decisions-ready-for-owner.md` | **Unchanged** — kept as original brief; reconciliation sits alongside. |
+| `DECISION-LOG.md` | **Not modified** — Owner to record decisions; reconciliation documents what's settled vs open. |
+| No product files touched. | All work is read-only reconciliation of brief against new direction. |
+
+---
+
+**Prepared by:** OR (Council Observer/Analyst)
+**Date:** 20 Oct 2026 (updated 21 Oct 2026)
+**Lanes:** `_agents/or/notes/` only. No other agent's files edited. No product code modified.
+**Evidence:** All claims receipt-backed from v20 donor build (`31b7d61f…`), merged candidate (`40233d6b…`), and Owner's parallel-batch instruction (M-104/M-105/M-107).

@@ -1,0 +1,47 @@
+# Pickle evidence receipts — PR #4 intake integrity re-audit — 2026-10-21 03:45 UTC
+# Assignment from LongCat (dispatch coordinator). Read-only; nothing checked out, nothing edited outside my lane.
+# CWD: /Users/kosi/Desktop/Football Sim
+# PR #4 ref: origin/gpt/all-time-player-source-intake-20261020 -> f68b7f8a49ef
+
+REF="origin/gpt/all-time-player-source-intake-20261020"
+BASE="_agents/gpt/research/all-time"
+
+=== REF RESOLUTION ===
+$ git rev-parse --verify "$REF"
+f68b7f8a49ef...
+$ git ls-tree -r --name-only "$REF" | grep all-time
+  _agents/gpt/research/all-time/{raw/nfl/*.txt, raw/nba/01_*.txt, source_manifest.json, derived/**, quality-control/**, design/nba/OWNER-DESIGN-DIRECTION.md}
+
+=== (a) MANIFEST RECOMPUTATION — sha256 + bytes 9/9 CORRECT ===
+$ git show "$REF:$BASE/source_manifest.json" > /tmp/pr4audit/source_manifest.json
+  manifest bytes: 4305 ; version 1 ; 9 sources (NFL x8, NBA x1)
+for each source: git show "$REF:$BASE/<path>" | sha256 + wc -c
+  ALL 9 sha256 MATCH the manifest.
+  ALL 9 byte counts MATCH the manifest.
+  lines: 7/9 == wc -l ; NFL-AT-001 (84) and NBA-AT-001 (1220) == wc -l + 1 (both files end with no trailing newline).
+  => integrity claim "preserved byte-for-byte" HOLDS. lines field uses an unstated, inconsistent convention (annotation gap).
+
+=== (b) SPORT SEPARATION — CLEAN ===
+NFL raw concat: 65299 B ; NBA raw: 12325 B
+NBA markers in NFL files: NBA=0 Lakers=0 Celtics=0 LeBron=0 Curry=0 three-point=0 rebound=0 TS%=0 ; Kareem=5
+  $ grep -i -n Kareem /tmp/pr4audit/nfl_all.txt
+  593/1171/1448/1829/2158: "'18 Kareem Hunt [KC]"  -> NFL RB, not Abdul-Jabbar. NOT contamination.
+NFL markers in NBA file: NFL=0 quarterback=0 touchdown=0 sack=0 "wide receiver"=0 "Pro Bowl"=0
+
+=== (c) NO INVENTED VALUES — CLEAN ===
+gap candidate CSVs: engine_ovr non-empty in 0/18 rows; season 0/18; team 0/18.
+derived/README.md states: "season, team, and engine_ovr are intentionally blank ... Never fill those values by inference" ; "No ratings are assigned in these files."
+
+=== (d) OMISSION CANDIDATES — VERIFIED BOTH HALVES ===
+Absence (18/18): 0/17 NFL full names in the notes; "Sam Jones" absent from NBA notes.
+Presence (18/18):
+  NFL: curl https://www.nfl.com/100/all-time-team/roster.html (502424 B) -> 17/17 names matched; spans agree
+       (Dutch Clark 1931-1938, Motley 1946-1955, Van Buren 1944-1951, Bednarik 1949-1962, Schmidt 1953-1965,
+        Hewitt 1932-1943, Christiansen 1951-1958, ...)
+  NBA: NBA 75th Anniversary Team cited for Sam Jones — NOT rendered by me (UNKNOWN).
+
+=== (e) UNVERIFIED ===
+1. NBA 75 page render for Sam Jones — UNKNOWN.
+2. attachment_id / original_attachment provenance — REPORTED, not verifiable from the repo.
+3. All 18 career_span values not diffed cell-by-cell (spot-checked on the NFL 100 roster).
+4. Whether the 17-name omission set is EXHAUSTIVE for the NFL 100 list — UNKNOWN.

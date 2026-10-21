@@ -1,0 +1,44 @@
+{
+  "build": "minimax-fixture-B-v20results.html",
+  "checks": {
+    "A_reportRendered": true,
+    "D_seasonAndPlayoffsComplete": true,
+    "B_noViewportOverflow": true,
+    "C_noPageErrors": true
+  },
+  "detail": {
+    "steps": {
+      "startDraft": true,
+      "instant": true,
+      "simToEnd": true,
+      "reportPath": "ui-button",
+      "reportRendered": true,
+      "reportStalled": false,
+      "season": {
+        "entryPath": "already-rendered",
+        "startHandle": "startSeasonBtn",
+        "heroHandle": null,
+        "beginHandle": "beginSeasonBtn",
+        "simHandle": "simSeasonBtn",
+        "regularDone": true,
+        "gamesPlayed": 272
+      },
+      "playoffs": {
+        "beginHandle": null,
+        "simHandle": "simPlayoffsBtn",
+        "complete": true,
+        "champion": "Cincinnati Bengals"
+      }
+    },
+    "draftPicks": "832/832",
+    "reportPath": "ui-button",
+    "reportRendered": true,
+    "reportStalled": false,
+    "pageErrors": [],
+    "offenderCount": 0,
+    "offenders": [],
+    "pageOverflowPx": 0,
+    "documentScrollWidth": 390,
+    "bodyOverflowX": "hidden"
+  }
+}

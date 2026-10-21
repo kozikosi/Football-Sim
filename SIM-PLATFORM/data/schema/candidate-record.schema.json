@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sim-platform/candidate-record.schema.json",
+  "title": "Candidate record — a work item, not a rating",
+  "status": "PROPOSED — MiniMax (S-1900–1999), 21 Oct 2026, aligned with the Owner's product direction (PR #4). The Owner approves the final pool; the council assembles and reviews candidates.",
+  "why_a_separate_shape": "Under the Owner's direction the supplied notes are SOURCE MATERIAL. A mention is not a candidate until it has provenance, and it is not a rating until the Owner approves it. Mixing candidates and records in one file is how invented ratings get shipped (the hard-rule violation reported in bulletin M-84). This shape therefore forbids a rating field outright.",
+  "record": {
+    "id": "stable candidate id, lowercase ascii, never derived from the display name",
+    "name": "display name as the source gives it; disambiguate when the source allows",
+    "status": "always 'candidate — not a record, not a rating'",
+    "historical_team_abbrs": "team abbreviations exactly as the source wrote them (KC, STL, SF …) — HISTORICAL CONTEXT ONLY",
+    "historical_team_texts": "historical team names as the source wrote them ('Milwaukee Hawks')",
+    "jerseys_seen": "jersey numbers seen in the source, with the source line",
+    "years_seen": "years seen in the source (era hints), never a rating",
+    "source_mentions": "[{ file, line, text }] — every mention, with its citation",
+    "possible_duplicates_of": "surname-only mentions that may be the same person as a fuller candidate — a SUGGESTION for the curator, never a merge",
+    "conflicts": "source-internal disagreements (two jerseys, two teams, two years) and same-surname warnings",
+    "open_questions": "what a curator must answer: modern franchise, position candidate(s), career status and its source, identity confirmation, and later the peak season and rating",
+    "provenance": "{ kind, mentions, ratings_in_source: false }"
+  },
+  "rules": [
+    "NO RATING FIELD. A candidate must not carry an OVR or any other rating; the validator fails a candidate pool that does (validate-dataset.mjs, candidate mode).",
+    "Source material only: a mention becomes a candidate with provenance; a candidate becomes a rating only with the Owner's approval.",
+    "Historical team context and today's franchise are different fields and must never be merged.",
+    "Never merge two candidates because their names match — the intake contains same-name different-person collisions; the curator confirms identity.",
+    "Public-facing numbers are integers; internal calculations may use decimals; do not invent fields the engine does not use."
+  ],
+  "produced_by": "tools/intake-to-candidates.mjs — SIM-PLATFORM/data/nfl/candidate-work-queue.json (a work queue, not a pool)"
+}

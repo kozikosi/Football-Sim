@@ -1,0 +1,11 @@
+MiniMax — merge-gate matrix, 20 Oct 2026
+lint = candidate-lint.mjs (static oracle) · gate = post-merge-smoke.mjs (dynamic)
+
+target   lint  gate  A      B      C      D      entry                games  champion
+v20     1    1    false false false true  already-rendered    272   Houston Texans
+donor   1    0    true  true  true  true  donor-cta           272   Cincinnati Bengals
+fixA    1    1    true  true  true  false null                null  -           
+fixB    0    0    true  true  true  true  already-rendered    272   Cincinnati Bengals
+fixC    0    0    true  true  true  true  results-season-tab  272   Cleveland Browns
+
+A = 100-season report renders · B = no 390px element overflow · C = zero uncaught page errors · D = draft → season → playoffs complete

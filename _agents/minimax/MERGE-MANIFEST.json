@@ -1,0 +1,600 @@
+{
+  "_meta": {
+    "title": "Merge manifest — the v20 + donor merge oracle, as data",
+    "author": "MiniMax (S-1900–1999)",
+    "created": "2026-10-20",
+    "status": "PROPOSED — the Architect owns the values; advisors propose. Nothing here is a build.",
+    "consumed_by": [
+      "_agents/minimax/tools/candidate-lint.mjs",
+      "_agents/minimax/tools/post-merge-smoke.mjs"
+    ],
+    "why": "The oracle lived in a relayed chat paste, three bulletins and two lanes' tools. A pin without a machine-readable home is a pin that gets re-derived under pressure — four pins were voided in this council for exactly that. This file is that home, and the lint reads it instead of hardcoding pins.",
+    "authority": "Product files remain read-only to every advisor (R1/R3). This manifest is a proposal artifact inside _agents/minimax/.",
+    "revision": "rev 2 — 20 Oct 2026: surfaces block added; branch C measured (the minimal deviation is ONE function, not a pair); the dynamic gate now enumerates the season entry paths."
+  },
+  "reference_builds": {
+    "v20": {
+      "file": "NFL Draft Simulator v20 Claude.html",
+      "sha256": "31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819",
+      "bytes": 649032,
+      "role": "reference build (R2)"
+    },
+    "donor": {
+      "file": "NFL Draft Simulator.html",
+      "sha256": "77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f",
+      "bytes": 650127,
+      "role": "merge donor (R2)"
+    }
+  },
+  "extraction_rules": {
+    "R1_function_body": "First <script> block, split on '\\n'. A body runs from its column-0 'function NAME(' line through the LAST line whose trim()==='}' before the NEXT column-0 'function' line; join with '\\n'; sha256 WITHOUT a trailing newline; first 12 hex. (DS funcdiff-full.js; Pickle math-baseline.json _extraction_rule.)",
+    "R2_constant": "sha256 of the FIRST '^const NAME' declaration line, trailing newline stripped, whitespace NOT normalised; first 12 hex.",
+    "R3_top_level_names": "Declared symbols = column-0 'function NAME(', 'const|let|var NAME', 'class NAME'. Inner block declarations are not global symbols.",
+    "known_artefacts": {
+      "checkRewards": "The canonical rule over-reads the adjacent column-0 #glue phone IIFE, so it lists as differing. Its true body is identical in both parents. Excluded from the 17 and from the pin set (Pickle M-50 addendum).",
+      "void_pin": "The checkRewards pin 0a000ce52783 reproduces under NO stated rule and is withdrawn; the finding is proven by diff, not by hash.",
+      "trailing_newline": "A pin taken over 'awk | shasum' (which appends a newline) differs from a full-body pin. State the rule or the pin is void."
+    }
+  },
+  "protected": {
+    "math_functions": [
+      {
+        "name": "slotWins",
+        "hash": "d23c4018c238"
+      },
+      {
+        "name": "slotWinsPerOvr",
+        "hash": "9a2b49d5a603"
+      },
+      {
+        "name": "modelWeights",
+        "hash": "6d8b83587cc2"
+      },
+      {
+        "name": "effOvr",
+        "hash": "4e1cf1a46cae"
+      },
+      {
+        "name": "optimalLineup",
+        "hash": "5e74c957e4c8"
+      },
+      {
+        "name": "matchupModel",
+        "hash": "774cfe2073cc"
+      },
+      {
+        "name": "simulateGame",
+        "hash": "0148887cea42"
+      },
+      {
+        "name": "teamRatings",
+        "hash": "4d2cdcc5d8f5"
+      }
+    ],
+    "constants": [
+      {
+        "name": "DEFAULT_WEIGHTS",
+        "hash": "2d56789ac040"
+      },
+      {
+        "name": "FLEX",
+        "hash": "e0166584b07b"
+      },
+      {
+        "name": "NATURAL_SLOT_MAP",
+        "hash": "b2cf069e96f3"
+      },
+      {
+        "name": "POINTS_PER_WIN",
+        "hash": "c4bd184b1fba"
+      },
+      {
+        "name": "SEASON_RECORD_CAPS",
+        "hash": "f006a6b1e918"
+      },
+      {
+        "name": "RATING_SPECS",
+        "hash": "bfe71dc9d863"
+      }
+    ],
+    "also_protected_text_equal_to_v20": [
+      "MC",
+      "PLAN_K"
+    ],
+    "note": "All 8 math functions and all 6 constants are identical in both parents. AGENTS.md protects DEFAULT_WEIGHTS, FLEX, NATURAL_SLOT_MAP, MC, PLAN_K, RATING_SPECS."
+  },
+  "decisions": {
+    "cpuPick": {
+      "keep": "94b878605b73",
+      "reject": "3dc9d12f500a",
+      "source": "donor",
+      "note": "Donor carries the credible-GM round floors (curRound/topAvail/posBest/ovrFloor); v20's has seen>16 skips and misses up to 92 deep."
+    },
+    "render100": {
+      "keep": "cc1016eacc78",
+      "reject": "1ea6e8414397",
+      "source": "donor",
+      "note": "v20 uses rWeights at v20:6018 and never declares it (ReferenceError). The donor's copy omits the sentence. The delta is TWO changed lines (that sentence + one trailing space)."
+    }
+  },
+  "functions": [
+    {
+      "name": "cpuPick",
+      "source": "donor",
+      "v20": "3dc9d12f500a",
+      "donor": "94b878605b73",
+      "surface": null,
+      "note": "decided"
+    },
+    {
+      "name": "render100",
+      "source": "donor",
+      "v20": "1ea6e8414397",
+      "donor": "cc1016eacc78",
+      "surface": "report",
+      "note": "decided"
+    },
+    {
+      "name": "renderDraftBoard2",
+      "source": "v20",
+      "v20": "6f77deaf263f",
+      "donor": "3736a5bfb36f",
+      "surface": "draft-board",
+      "note": "the keep; the #draftTable2 markup and the nostack guard depend on it"
+    },
+    {
+      "name": "fitNoteHTML",
+      "source": "donor",
+      "v20": "182c1792501b",
+      "donor": "757091310f1f",
+      "surface": null,
+      "note": "decided"
+    },
+    {
+      "name": "buildDefenseDetail",
+      "source": "donor",
+      "v20": "992145aa07e0",
+      "donor": "d2119e2e85f1",
+      "surface": null,
+      "note": "decided"
+    },
+    {
+      "name": "dramaticEnding",
+      "source": "donor",
+      "v20": "121874b933bb",
+      "donor": "50a5ae2444ac",
+      "surface": null,
+      "note": "decided; also removes the 'sudden death' string (v20:2880)"
+    },
+    {
+      "name": "turnoverParagraph",
+      "source": "donor",
+      "v20": "4438e25ceb0b",
+      "donor": "4afe77d0379a",
+      "surface": null,
+      "note": "decided; also removes the 'went the distance' string (v20:2898)"
+    },
+    {
+      "name": "playByPlay",
+      "source": "donor",
+      "v20": "e2b3fb170aa3",
+      "donor": "d4a85bd7b181",
+      "surface": null,
+      "note": "decided"
+    },
+    {
+      "name": "generateGameSummary",
+      "source": "donor",
+      "v20": "4a9bfd080ae2",
+      "donor": "9f285818eff6",
+      "surface": null,
+      "note": "decided"
+    },
+    {
+      "name": "matchupTagHTML",
+      "source": "donor",
+      "v20": "629126ff9072",
+      "donor": "ec2ac8742b3e",
+      "surface": null,
+      "note": "decided; calls the donor-only helper meetingTagText"
+    },
+    {
+      "name": "renderPlayoffsView",
+      "source": "donor",
+      "v20": "3332c4ee5417",
+      "donor": "e45f75b5cca9",
+      "surface": "playoffs",
+      "note": "decided"
+    },
+    {
+      "name": "renderGuideHTML",
+      "source": "donor",
+      "v20": "7fa8dd9b7c3d",
+      "donor": "220a95914ca9",
+      "surface": "guide",
+      "note": "decided"
+    },
+    {
+      "name": "finishDraft2",
+      "source": "conditional",
+      "v20": "a8de5a4415df",
+      "donor": "f2795464c5c7",
+      "surface": "draft-results",
+      "note": "The donor's body calls the donor-only helper seasonToast and sets resultsView='sim'; the v20 body sets resultsView='season' and calls the v20-only updateStepper. Both are coherent with v20's renderDraftResults — see measured_branches."
+    },
+    {
+      "name": "renderDraftResults",
+      "source": "conditional",
+      "v20": "b807480c58be",
+      "donor": "aa36c6f94647",
+      "surface": "draft-results",
+      "note": "BLOCKING: the donor's body renders #ctaPlaySeasonBtn, whose handler calls setActiveTab('viewSeason','tabSeasonBtn') and getElementById('seasonHost') — none exist in v20's markup. Take the donor's copy only if the donor Season surface is adopted."
+    },
+    {
+      "name": "setActiveTab",
+      "source": "synthesize",
+      "v20": "ae1a1425186e",
+      "donor": "d3a34f7c930b",
+      "surface": "navigation",
+      "note": "The donor's view loop has no null guard (donor:777) while its tab loop does (donor:778). A synthesized version must null-guard the view loop."
+    },
+    {
+      "name": "renderSeasonTab",
+      "source": "synthesize",
+      "v20": "06116b2fa88a",
+      "donor": "39ee2333b960",
+      "surface": "season",
+      "note": "markup-dependent"
+    },
+    {
+      "name": "renderSeasonTabInner",
+      "source": "synthesize",
+      "v20": "b5d8adf9910b",
+      "donor": "441697cc5b99",
+      "surface": "season",
+      "note": "markup-dependent: the donor's line is the Season-entry path (#seasonHost + Season tab) and does not exist on v20 markup."
+    }
+  ],
+  "set_diffs": {
+    "donor_only_symbols": [
+      "goSeason",
+      "meetingInfo",
+      "meetingTagText",
+      "seasonToast"
+    ],
+    "v20_only_symbols": [
+      "SUPP_TITLES",
+      "updateStepper"
+    ],
+    "symbol_callers": {
+      "seasonToast": [
+        "finishDraft2"
+      ],
+      "meetingTagText": [
+        "matchupTagHTML"
+      ],
+      "goSeason": [
+        "setActiveTab (donor variant)"
+      ],
+      "meetingInfo": [],
+      "updateStepper": [
+        "setActiveTab (v20 variant)"
+      ]
+    },
+    "note": "The oracle said to keep the four donor-only helpers but never tied a helper to the body that calls it — the lint now checks that link (symbols:parent-only)."
+  },
+  "surfaces": [
+    {
+      "name": "draft-results",
+      "owner": "both",
+      "functions": [
+        "finishDraft2",
+        "renderDraftResults"
+      ],
+      "variants": [
+        {
+          "id": "v20-inline",
+          "anchor": {
+            "function": "renderDraftResults",
+            "hash": "b807480c58be"
+          },
+          "requires": {
+            "markup_ids": [
+              "resultsSeasonBtn",
+              "draftResultsBody",
+              "draftFinalResults"
+            ],
+            "symbols": []
+          },
+          "season_entry": "finishDraft2 sets resultsView='season' → renderDraftResults renders the season inline (renderSeasonTab(body), v20:6159) → startSeasonBtn",
+          "measured": "fixture B — gate exit 0, entry 'already-rendered'"
+        },
+        {
+          "id": "donor-cta",
+          "anchor": {
+            "function": "renderDraftResults",
+            "hash": "aa36c6f94647"
+          },
+          "requires": {
+            "markup_ids": [
+              "ctaPlaySeasonBtn",
+              "ctaPlaySeasonRow",
+              "viewSeason",
+              "tabSeasonBtn",
+              "seasonHost"
+            ],
+            "symbols": [
+              "goSeason"
+            ]
+          },
+          "season_entry": "CTA #ctaPlaySeasonBtn → setActiveTab('viewSeason','tabSeasonBtn') → #seasonHost (donor:6202)",
+          "measured": "fixture A on v20 markup — DEAD BUTTON, gate exit 1 (D false, gamesPlayed null)"
+        }
+      ]
+    },
+    {
+      "name": "season",
+      "owner": "both",
+      "functions": [
+        "renderSeasonTab",
+        "renderSeasonTabInner",
+        "renderPreseasonView",
+        "renderRegularSeasonView",
+        "renderRegularReviewView",
+        "renderSeasonCompleteView",
+        "renderPlayoffsView",
+        "render100"
+      ],
+      "variants": [
+        {
+          "id": "v20-inline",
+          "anchor": {
+            "function": "renderSeasonTabInner",
+            "hash": "b5d8adf9910b"
+          },
+          "requires": {
+            "markup_ids": [
+              "startSeasonBtn"
+            ],
+            "symbols": []
+          },
+          "season_entry": "renderSeasonTabInner(container) — the container is the results panel body",
+          "measured": "fixtures B and C — gate exit 0"
+        },
+        {
+          "id": "donor-host",
+          "anchor": {
+            "function": "renderSeasonTabInner",
+            "hash": "441697cc5b99"
+          },
+          "requires": {
+            "markup_ids": [
+              "seasonHost",
+              "viewSeason",
+              "tabSeasonBtn"
+            ],
+            "symbols": [
+              "goSeason"
+            ]
+          },
+          "season_entry": "renderSeasonTabInner → setActiveTab('viewSeason','tabSeasonBtn') + #seasonHost (donor:6100)",
+          "measured": "the donor build itself — gate exit 0"
+        }
+      ]
+    },
+    {
+      "name": "navigation",
+      "owner": "both",
+      "functions": [
+        "setActiveTab"
+      ],
+      "variants": [
+        {
+          "id": "v20",
+          "anchor": {
+            "function": "setActiveTab",
+            "hash": "ae1a1425186e"
+          },
+          "requires": {
+            "markup_ids": [
+              "viewDraft",
+              "tabDraftBtn",
+              "suppHead"
+            ],
+            "symbols": [
+              "updateStepper"
+            ]
+          },
+          "note": "the v20 view loop lists 6 views / 6 tabs (no viewSeason, no tabSeasonBtn)"
+        },
+        {
+          "id": "donor",
+          "anchor": {
+            "function": "setActiveTab",
+            "hash": "d3a34f7c930b"
+          },
+          "requires": {
+            "markup_ids": [
+              "viewSeason",
+              "tabSeasonBtn"
+            ],
+            "symbols": [
+              "goSeason"
+            ]
+          },
+          "note": "7 views / 7 tabs; the view loop has NO null guard (donor:777) — the tab loop does (donor:778)"
+        }
+      ]
+    },
+    {
+      "name": "supplemental",
+      "owner": "v20-only",
+      "functions": [
+        "setActiveTab (v20 variant)"
+      ],
+      "variants": [
+        {
+          "id": "v20",
+          "anchor": {
+            "function": "setActiveTab",
+            "hash": "ae1a1425186e"
+          },
+          "requires": {
+            "markup_ids": [
+              "suppHead",
+              "backToSim"
+            ],
+            "symbols": [
+              "SUPP_TITLES"
+            ]
+          },
+          "note": "v20's extra panel (SUPP_TITLES, backToSim). The donor has no equivalent; carrying it costs nothing but is a v20-only feature."
+        }
+      ]
+    }
+  ],
+  "markup_ids": {
+    "shared_count": 131,
+    "donor_only": [
+      "backToResultsBtn",
+      "ctaPlaySeasonBtn",
+      "ctaPlaySeasonRow",
+      "goDraftHeroBtn",
+      "goDraftResumeBtn",
+      "seasonHost",
+      "startSeasonHeroBtn",
+      "tabSeasonBtn",
+      "viewSeason"
+    ],
+    "v20_only": [
+      "backToSim",
+      "resultsSeasonBtn",
+      "stepper",
+      "suppHead"
+    ],
+    "measured": "grep -o 'id=\"[^\"]*\"' on both builds, set difference"
+  },
+  "text_checks": [
+    {
+      "id": "rWeights",
+      "expect": "0 occurrences, or declared",
+      "why": "the v20 crash (v20:6018)"
+    },
+    {
+      "id": "color-scheme",
+      "expect": "exactly one declaration, value 'light dark'",
+      "why": "the app is dark-default with a light OS override"
+    },
+    {
+      "id": "msChecked",
+      "expect": "0 occurrences",
+      "why": "the stale memo that loses the mobile stacking after a viewport change"
+    },
+    {
+      "id": "wrapper",
+      "expect": "exactly one <!DOCTYPE and one </html>",
+      "why": "v20 is double-wrapped"
+    },
+    {
+      "id": "style-strings",
+      "expect": "0 occurrences of 'sudden death' and 'went the distance'",
+      "why": "both removed in the donor"
+    },
+    {
+      "id": "tail",
+      "expect": "the last script line is setActiveTab('viewDraft','tabDraftBtn')",
+      "why": "the donor's Season-first tail would flip the default tab"
+    },
+    {
+      "id": "glue",
+      "expect": "#draftTable2 and data-nostack both present",
+      "why": "the Variant A nostack guard depends on v20's markup"
+    }
+  ],
+  "measured_branches": [
+    {
+      "id": "A",
+      "label": "the oracle exactly as stated (donor's renderDraftResults + finishDraft2, v20 markup)",
+      "split": "14 donor / 1 v20 / 2 synthesize",
+      "static_lint_exit": 1,
+      "gate_exit": 1,
+      "static_lint_detail": "surface:draft-results/donor-cta — lacks id=viewSeason, id=tabSeasonBtn, id=seasonHost",
+      "verdict": "FAIL — the CTA is a dead button; the season is unreachable. The static lint now catches it (it did not before the surfaces block existed)."
+    },
+    {
+      "id": "B",
+      "label": "v20's renderDraftResults + v20's finishDraft2",
+      "split": "11 donor / 4 v20 / 2 synthesize",
+      "static_lint_exit": 0,
+      "gate_exit": 0,
+      "verdict": "PASS — 272 games, champion; the static lint passes it too (the two deliberate deviations are 'conditional' functions, and the surface it carries is v20's, which is complete on v20 markup)."
+    },
+    {
+      "id": "C",
+      "label": "v20's renderDraftResults + the donor's finishDraft2",
+      "split": "12 donor / 3 v20 / 2 synthesize",
+      "static_lint_exit": 0,
+      "gate_exit": 0,
+      "verdict": "PASS — 272 games, champion; entry path 'results-season-tab' (the results' own Season tab). The results open on 'Vs. Simulated Teams' rather than the Season view — a UX difference vs B, not a defect."
+    },
+    {
+      "id": "C2",
+      "label": "v20's renderDraftResults + a synthesized finishDraft2 (the donor's body with resultsView='season')",
+      "split": "12 donor / 2 v20 / 3 synthesize",
+      "static_lint_exit": null,
+      "gate_exit": null,
+      "verdict": "NOT BUILT — proposed: keeps the donor's auto-optimal-lineup toast AND v20's landing on the Season view."
+    }
+  ],
+  "acceptance": {
+    "static": {
+      "command": "node _agents/minimax/tools/candidate-lint.mjs \"<candidate>\"",
+      "expected_exit": 0,
+      "selftest": "node _agents/minimax/tools/candidate-lint.mjs --selftest  (re-derives every pin from the parent builds; expected exit 0)",
+      "reference_exits": {
+        "v20": 1,
+        "donor": 1,
+        "fixA": 1,
+        "fixB": 0,
+        "fixC": 0
+      },
+      "note": "The two parents fail the static lint by design: they are the pre-merge inputs, not candidates. fixA fails only on the half-taken surface; fixB and fixC pass."
+    },
+    "dynamic": {
+      "command": "node _agents/minimax/tools/post-merge-smoke.mjs \"<candidate>\"",
+      "expected_exit": 0,
+      "checks": {
+        "A_reportRendered": true,
+        "B_noViewportOverflow": true,
+        "C_noPageErrors": true,
+        "D_seasonAndPlayoffsComplete": true
+      },
+      "reference_exits": {
+        "v20": 1,
+        "donor": 0,
+        "fixA": 1,
+        "fixB": 0,
+        "fixC": 0
+      },
+      "season_entry_paths": [
+        "ctaPlaySeasonBtn (donor CTA)",
+        "resultsSeasonBtn (v20 results' Season tab)",
+        "tabSeasonBtn (donor Season tab)",
+        "already-rendered (v20 inline)"
+      ]
+    },
+    "browser": "a Chromium-family browser with --remote-debugging-port=9222; Brave on macOS: '/Applications/Brave Browser.app/Contents/MacOS/Brave Browser' --headless=new --remote-debugging-port=9222 --user-data-dir=/tmp/minimax-profile about:blank",
+    "stop_condition": "If the two build sha256 values do not reproduce, or the gate does not exit 0, STOP and report. Do not edit the candidate to make it pass — a patched-to-green candidate destroys the evidence that the merge is a merge (Pickle M-45)."
+  },
+  "corrections": [
+    {
+      "date": "20 Oct 2026",
+      "to": "my own M-59 wording",
+      "was": "the donor's draft-results → season entry is a unit, so renderDraftResults AND finishDraft2 must be taken together from one build (11 donor / 4 v20 / 2 synthesize).",
+      "now": "the coupling is in renderDraftResults alone. With v20's renderDraftResults the donor's finishDraft2 still works (branch C, 12 donor / 3 v20 / 2 synthesize): the results panel carries its own Season tab (resultsSeasonBtn) and the season is reachable through it.",
+      "why": "the dynamic gate used to try only ctaPlaySeasonBtn/startSeasonBtn; it now enumerates the entry paths (ctaPlaySeasonBtn → resultsSeasonTab → tabSeasonBtn → already-rendered), which is what exposed branch C.",
+      "receipt": "evidence/paths-fixC.json (entry 'results-season-tab', 272 games, champion, gate exit 0)"
+    }
+  ],
+  "surfaces_note": "The surfaces block is the coupling the 17-function list cannot express: a surface's variant implies the DOM scaffolding and helper symbols it needs. `surface:<name>/<variant>` checks are FAILs when a candidate carries a variant without its scaffolding — that is what catches a half-taken surface (M-59/M-60). Human-readable twin: _agents/minimax/SURFACES.md."
+}

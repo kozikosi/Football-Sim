@@ -1,0 +1,95 @@
+// NFL All-Time Player Database — Template
+// Format: array of player objects
+// Source: collectively created by the council (no existing dataset)
+// Era adjustment: applied to OVR per Owner's era tiers (see QUESTIONS-FOR-OWNER.md Q-NFL-AT-1)
+
+// SCHEMA
+// {
+//   "name": "string — player's full name",
+//   "pos": "string — position code (see POSITIONS below)",
+//   "team": "string — primary team (team name from TEAMS list)",
+//   "era": "string — decade of peak (e.g., '1980s', '2000s', '2020s')",
+//   "ovr": "number — overall rating (0-99, with era adjustment applied)",
+//   "spd": "number — speed (0-99)",
+//   "str": "number — strength (0-99)",
+//   "agi": "number — agility (0-99)",
+//   "cod": "number — change of direction (0-99)",
+//   "inj": "number — injury rating (0-99, higher = more durable)",
+//   "awr": "number — awareness (0-99)",
+//   "xf": "string|null — X-factor name (optional)",
+//   "source": "string — how this rating was derived (Owner input, consensus, cited reference)"
+// }
+
+// POSITIONS (26 starter slots)
+// QB, RB1, RB2, WR1, WR2, WR3, WR4, TE1, TE2, OT1, OT2, OG1, OG2, C,
+// DE1, DE2, DT1, DT2, DL5, MIKE, WILL, SAM, LB4, CB1, CB2, CB3, CB4, SS, SS2, FS, FS2, K, P, FB
+
+// TEAMS (32 NFL teams)
+// Arizona Cardinals, Atlanta Falcons, Baltimore Ravens, Buffalo Bills, Carolina Panthers,
+// Chicago Bears, Cincinnati Bengals, Cleveland Browns, Dallas Cowboys, Denver Broncos,
+// Detroit Lions, Green Bay Packers, Houston Texans, Indianapolis Colts, Jacksonville Jaguars,
+// Kansas City Chiefs, Las Vegas Raiders, Los Angeles Chargers, Los Angeles Rams, Miami Dolphins,
+// Minnesota Vikings, New England Patriots, New Orleans Saints, New York Giants, New York Jets,
+// Philadelphia Eagles, Pittsburgh Steelers, San Francisco 49ers, Seattle Seahawks, Tampa Bay Buccaneers,
+// Tennessee Titans, Washington Commanders
+
+// EXAMPLES
+[
+  {
+    "name": "Joe Montana",
+    "pos": "QB",
+    "team": "San Francisco 49ers",
+    "era": "1980s",
+    "ovr": 96,
+    "spd": 72,
+    "str": 68,
+    "agi": 78,
+    "cod": 82,
+    "inj": 85,
+    "awr": 99,
+    "xf": "Clutch",
+    "source": "Owner input — consensus top-5 all-time QB, era-adjusted from 99 to 96"
+  },
+  {
+    "name": "Jerry Rice",
+    "pos": "WR1",
+    "team": "San Francisco 49ers",
+    "era": "1990s",
+    "ovr": 99,
+    "spd": 90,
+    "str": 78,
+    "agi": 92,
+    "cod": 94,
+    "inj": 95,
+    "awr": 99,
+    "xf": "YAC",
+    "source": "Owner input — consensus #1 all-time WR, no era adjustment needed"
+  },
+  {
+    "name": "Lawrence Taylor",
+    "pos": "DE1",
+    "team": "New York Giants",
+    "era": "1980s",
+    "ovr": 98,
+    "spd": 88,
+    "str": 95,
+    "agi": 90,
+    "cod": 88,
+    "inj": 88,
+    "awr": 97,
+    "xf": "Fearmonger",
+    "source": "Owner input — consensus top-3 all-time defender, era-adjusted from 99 to 98"
+  }
+]
+
+// VALIDATION RULES
+// 1. Every player must have a name, pos, team, era, ovr, and source.
+// 2. ovr must be 0-99. spd/str/agi/cod/inj/awr must be 0-99.
+// 3. pos must be one of the 26 starter slot codes (or DL5/LB4/CB4/SS2/FS2/WR4/P/FB for depth).
+// 4. team must be one of the 32 NFL team names.
+// 5. era must be a decade string (e.g., "1980s", "2000s").
+// 6. xf is optional (null or omitted if no X-factor).
+// 7. source must explain how the rating was derived.
+// 8. No duplicate players (same name + team).
+// 9. Position balance: aim for ~26 players per position across all eras.
+// 10. Total players: ~1,200 (current NFL players with -5 era adjustment + historical greats).

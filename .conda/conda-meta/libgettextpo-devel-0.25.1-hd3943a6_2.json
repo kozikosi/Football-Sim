@@ -1,0 +1,49 @@
+{
+  "build": "hd3943a6_2",
+  "build_number": 2,
+  "depends": [
+    "__osx >=12.1",
+    "libgettextpo 0.25.1 hd3943a6_2",
+    "libiconv >=1.18,<2.0a0",
+    "libintl 0.25.1 h55097f8_2"
+  ],
+  "license": "GPL-3.0-or-later",
+  "md5": "51fca8216b88233ab1ddc35bfc0281c3",
+  "name": "libgettextpo-devel",
+  "sha256": "68fd2a7f66b482e781a3c923f077713b5c0effb534c5568fd425dea839ae1db0",
+  "size": 36833,
+  "subdir": "osx-arm64",
+  "timestamp": 1784195978669,
+  "version": "0.25.1",
+  "fn": "libgettextpo-devel-0.25.1-hd3943a6_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libgettextpo-devel-0.25.1-hd3943a6_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libgettextpo-devel-0.25.1-hd3943a6_2",
+  "requested_specs": [],
+  "files": [
+    "lib/libgettextpo.dylib",
+    "include/gettext-po.h"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libgettextpo.dylib",
+        "path_type": "softlink",
+        "sha256": "d24b3f39df92a3f916db2cdca181a7944c894fb49000c13e4af6d3d637e1c1da",
+        "sha256_in_prefix": "1d010a6e3b1a6210bb874ea6ce59848590c206386d3c665e1f7b7f07a9c2ade2",
+        "size_in_bytes": 522464
+      },
+      {
+        "_path": "include/gettext-po.h",
+        "path_type": "hardlink",
+        "sha256": "d3f27edfdf9218be5b36323a09fd7f1ed601a470a9477669e54823b7b070b031",
+        "size_in_bytes": 15736
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libgettextpo-devel-0.25.1-hd3943a6_2",
+    "type": 1
+  }
+}

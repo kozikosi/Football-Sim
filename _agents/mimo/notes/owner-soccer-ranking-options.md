@@ -1,0 +1,76 @@
+# A6 — Soccer ranking source, cutoff, and league eligibility: approval memo for the Owner
+
+SPEAKER: MiMo | ROLE: Council reviewer (A6 assignee) | TASK: A6 · Soccer ranking source, cutoff, eligibility | DATE: 2026-10-21 (UTC)
+
+Prepared per MOC's A6 dispatch (2026-10-21T00:45Z). Decision-only: no ratings, no pool, no implementation.
+
+**Source of record:** `OWNER-PRODUCT-DIRECTION.md` on PR #4 branch `gpt/all-time-player-source-intake-20261020`, section "Baseball, hockey, and soccer" (sha256 `f816486550a5…`, 11,319 B; fetched via `gh api ...?ref=gpt/all-time-player-source-intake-20261020`; cross-hashed identically by GLM this session — VERIFIED twice). Key quotes (VERIFIED): *"the Owner intends to include leagues ranked above MLS plus MLS, each with current and all-time versions. Before implementation, ask the Owner to approve the ranking source, date/cutoff, and league eligibility list."* and *"Treat these as research hypotheses."*
+
+---
+
+## 1. Ranking source options
+
+| # | Option | What it measures | Update cadence | Reproducibility | Tiers that aren't strictly comparable |
+|---|--------|------------------|----------------|-----------------|--------------------------------------|
+| A | **IFFHS "Strongest National League in the World"** (published-league-body) | Annual global league-strength ranking from competitive results | Annual, published each January (latest edition: "IFFHS AWARDS 2025 – THE STRONGEST LEAGUE OF THE WORLD", 16 Jan 2026 — REPORTED, en.wikipedia.org/wiki/IFFHS citation list, retrieved 2026-10-21) | **LOW right now**: iffhs.com is under reconstruction ("the rankings … will return in full" — VERIFIED, iffhs.com, retrieved 2026-10-21); secondary sources conflict: one reports MLS 40th/426.75 pts, up from 49th (REPORTED, Threads/meta.ai post on the 2025 edition, retrieved 2026-10-21); another claims a 16 Jan 2026 release with MLS top-10 and Saudi 13th (REPORTED, Facebook post, retrieved 2026-10-21). Primary table not re-acquirable today → positions UNKNOWN | Single global table spans confederations by design; UEFA-vs-rest comparability is the known weak point of any single global league table |
+| B | **World Football Elo → league aggregation** (reproducible results model) | Elo from actual match results; league value = an aggregation rule over member clubs | Continuous (every match); the "cutoff" is a clean snapshot | **HIGH**: formula + results are public and scriptable. Ultra independently proposed exactly this — "World Football Elo, cutoff ≥1700 ≈ 180 clubs" (REPORTED via LongCat's bulletin M-138 summary of Ultra's report, 2026-10-21) | Club-level, not league-level: the aggregation rule (mean / median / top-N / matches-weighted) silently decides rankings; leagues with one super-club vs deep leagues diverge by rule choice. Cross-confederation Elo gaps rest on sparse continental evidence |
+| C | **Opta Power Rankings (media composite)** | Analyst/algorithm power rating of leagues | Rolling; media-published, no fixed artifact | **LOW**: proprietary methodology; the published list can change silently; no machine-readable table. GiveMeSport "Top 30 Leagues in World Football (2026)" includes MLS, ranks Colombia's top division above Saudi and MLS, Croatia 18th, Norway 19th (REPORTED, givemesport.com, retrieved 2026-10-21) | Cross-confederation, but ranking opacity makes disputes unsettleable by receipts |
+
+**Recommended default: B as the operative source (snapshot at cutoff, aggregation rule published with it), A as the citable cross-check once its table is re-acquirable, C rejected as primary.**
+Rationale: the ranking's only job is to decide *which leagues get built*; that decision must be reproducible by any seat from a pinned artifact (dispute rule: smallest reproducible check). A cannot currently be reproduced at all; C never can. Cost of choosing wrong: an unverifiable table makes eligibility contestable forever (A) or silently shifts membership between versions (C); an unstated aggregation rule in B lets one league's super-club decide membership — so B is only safe **with** the rule published alongside the snapshot.
+
+## 2. Cutoff date
+
+**Recommended default: one named snapshot timestamp — `2026-10-21T00:00Z` — archived raw + sha256 in evidence, changed only by Owner decision.** If the Owner prefers A as primary, the cutoff becomes the edition release date (`2026-01-16`) instead.
+
+What breaks if the sim's data lags the cutoff:
+- **Membership flips**: leagues sitting near MLS's rank at cutoff move afterward → "included because it was above MLS in October" disputes in later sessions; without a pinned artifact there is no receipt to settle it.
+- **Edition/season mismatch**: a January-2026 league table paired with a later player/ratings edition (the Owner plans FIFA ratings — see §5) means the league list and the player data describe different seasons; "current" sims become anachronistic at birth.
+- **Relabeled seasons**: European seasons straddle the calendar (2026-27); promotion/relegation changes club membership but not league identity — the snapshot must record the season label it describes, or "current" is ambiguous.
+
+## 3. Eligibility list (current + all-time)
+
+**Membership rule (the list is derived, not hand-written):** every league whose rank is strictly above MLS's rank in the pinned source at the cutoff, plus MLS itself — the Owner's words, VERIFIED in the direction doc.
+
+**Full enumeration is deliberately NOT produced here** (rule 7 — no invention): option A's table is currently unacquirable with conflicting secondary positions (§1), and option B's list exists only after the aggregation rule is run on a snapshot. The enumeration is a scripted extraction from the pinned artifact at cutoff — that script and its output *are* the deliverable the Owner approves. What is verified today: the anchor is MLS's position (REPORTED 40th under A's 2025 edition, contested by a conflicting REPORTED top-10 claim → primary re-acquisition required before any list is frozen).
+
+**Scope flag (structural, not a ranking question):** if MLS sits around 40th, "all leagues above MLS + MLS" ≈ 41 leagues × current+all-time ≈ **~82 soccer simulations** — against the Owner's stated floor of "at least eight simulations" for the four American sports. The eligibility decision may therefore need a scope decision too (all qualifying leagues / top-K above MLS / phased rollout). See decision table item 3.
+
+**Definitions applied uniformly to every league on the list:**
+- **Current** = the league *entity* as of the cutoff: its 2026 name, its 2026 club set, its current season label. (League identity ≠ display name — the Owner's distinct-fields rule applies to competitions too.)
+- **All-time** = the same league entity across its history: historical players attributed to the league seasons they actually played in (player-season field), shown with historical club context the way the Owner's Oscar Robertson/Cincinnati Royals example shows it — while the simulation places them in today's structures per the direction doc (VERIFIED: franchises section of the design doc).
+- **Renamed league**: same entity, new name — identity carries, historical display names preserved as context; no fork into two leagues.
+- **Merged/split league**: an explicit continuity decision recorded per league before approval (which historical spans belong to the entity); this is a list the Owner will sign off, not an inference session — flag, don't resolve.
+- **Promoted/relegated clubs**: affect club membership, never league identity — a club's players stay attributed to the league of the season they played in; the league itself does not move because its clubs did.
+
+## 4. Structural caveat — draft-sim vs season-sim (hypothesis, not a rule)
+
+The Owner's direction states his intuition is a *research hypothesis*: soccer may be closer to football's draft structure, or it may be a **season** simulation rather than a draft (direction doc: "Treat these as research hypotheses" — VERIFIED). What this implies for the eligibility list:
+
+- The **list itself survives either way** — it decides which leagues get a simulation regardless of mechanism. Membership rule, cutoff, and identity definitions are structure-agnostic.
+- What changes is the **per-league data contract**: a draft-sim needs a draftable player pool sized to fill rosters (the Owner's pool rules); a season-sim needs club squads, a season schedule, and no draft at all — eligibility membership would pair with club rosters instead of draft slots.
+- **Test before implementation** (Owner's rule: concrete examples before choices): build the comparison for exactly one league pair (MLS + one above-MLS league) showing what the user does in each structure — draft flow vs season flow — and bring that, not an abstraction, to the Owner. Until then: no draft machinery for soccer is "approved", and none is "rejected".
+
+## 5. What the Owner must supply for the FIFA-ratings pipeline (beyond any league ranking)
+
+A league ranking answers "which leagues"; it supplies zero player data. The FIFA-ratings pipeline needs, that the ranking does not:
+
+1. **Artifact clarification** — "FIFA ratings" is ambiguous as named: FIFA (the federation) publishes national-team rankings, not club-player ratings (INFERRED from what a league sim needs; the Owner's direction says "I plan to provide NBA 2K and FIFA ratings" without naming the artifact — VERIFIED the sentence exists, UNKNOWN which product he means). The Owner must name the product + edition/version + release date.
+2. **Coverage map** — which of the eligible leagues the named ratings source actually covers (a game-licensed source may stop below the top divisions; a 40-league list may be half-uncovered).
+3. **Player identity + season binding** — each rating tied to person/season, integers only in public data, source/version columns preserved (the Owner's field rules — VERIFIED in direction doc).
+4. **All-time gap** — current-player ratings cannot fill all-time pools; the all-time versions need a separate historical source and mapping policy (INFERRED: any current-edition ratings source covers current players by construction).
+5. **Approval path** — raw source is source material, not an approved pool (Owner's words — VERIFIED); the mapping from FIFA source value → sim OVR needs an explicit, Owner-approved step, and any all-time adjustment stays unapproved (the −5 is explicitly NOT approved — VERIFIED).
+
+---
+
+## Decision table (≤5 items for the Owner)
+
+| # | Decision | Recommended default | Cost of being wrong |
+|---|----------|--------------------|---------------------|
+| 1 | **Ranking source** | Option B (World Football Elo league snapshot, aggregation rule published) primary; Option A (IFFHS edition) as citable cross-check when re-acquirable; Option C rejected | Unverifiable/contestable eligibility (A now, C always): every later session re-litigates which leagues are "above MLS" with no receipt to settle it |
+| 2 | **Cutoff** | Single pinned snapshot `2026-10-21T00:00Z` (or `2026-01-16` edition date if A is primary), raw + sha256 archived, changed only by Owner decision | Membership flips and league-table/payer-data season mismatches; "current" sims born anachronistic; disputes with no artifact to check |
+| 3 | **Eligibility scope** | Derive the full list at cutoff, then bring its SIZE to the Owner in the same pass as source+date approval (if ≈41 leagues → propose top-K or phasing alongside MLS) | Assuming "all above MLS" blindly → ~82 soccer sims against an "at least eight" plan; pre-capping blindly → excluding leagues the Owner meant to include |
+| 4 | **Draft-sim vs season-sim for soccer** | Keep as hypothesis; test on one MLS+one-league concrete comparison before any per-league data contract is built | Building draft machinery for a season-sim sport (or the reverse) reworks the eligibility list's meaning, the pool rules, and the whole per-league pipeline |
+| 5 | **FIFA ratings artifact + coverage** | Owner names product, edition/version, and coverage; all-time versions get a separate historical-source decision at the same time | Pipeline built against the wrong "FIFA" artifact or partial coverage → half the eligible leagues unfillable, pools unapprovable, approvals stalled |
+
+**Protected-file compliance:** no product HTML touched; no ratings, no pool contents, no implementation; external claims labeled REPORTED with source + date; the direction doc quotes VERIFIED by fetch + sha256 (cross-hashed by GLM). Evidence: this file; fetch commands in the companion receipts of my NBA memo (`_agents/mimo/notes/nba-draft-rotation-receipts.md`).

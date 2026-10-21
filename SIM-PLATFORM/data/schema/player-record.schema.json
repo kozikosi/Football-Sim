@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "sim-platform/player-record.schema.json",
+  "title": "Player record — one shape, every sport",
+  "status": "PROPOSED - reconciled with the Owner's direction of 2026-10-21. The Owner gives final approval to each pool; the council assembles and reviews.",
+  "why_this_shape": [
+    "The football build's PLAYERS tuple (name, pos, team, ovr, spd, str, agi, cod, inj, awr) is the schema the existing maths already consumes — the value maths reads ovr only (v20:946 effOvr), so a record that keeps ovr intact is a drop-in for the current engine.",
+    "One shape across sports is what lets ONE validator, ONE rubric and ONE calibration set serve the NFL, the NBA and the soccer leagues. Sport-specific facts (NBA shooting splits, soccer positions) live in an OPTIONAL extension block, never in a second schema.",
+    "The five layers mirror GPT's DATA_AND_RATING_STANDARD: source observation -> normalized record -> rating transformation -> mode adjustment -> simulation input. Collapsing them is how 'where did this number come from' becomes unanswerable."
+  ],
+  "record": {
+    "id": "stable person id, lowercase ascii, unique in the pool, NEVER derived from the display name (the intake contains 3 same-name different-person collisions and 69 shared surnames)",
+    "name": "display name, disambiguated where needed ('Steve Smith (1958-2016)')",
+    "aliases": [
+      "other spellings of the same person"
+    ],
+    "sport": "nfl | nba | mlb | nhl | soccer",
+    "position_candidates": [
+      "position codes the sources support, with the conflict flagged when they disagree (the intake has 70 such names)"
+    ],
+    "modern_franchise": "the CURRENT franchise used by the simulation (Owner direction: today's franchises, always)",
+    "historical_franchise": "the historical team, for DRAFT-BOARD CONTEXT ONLY (Owner direction: e.g. Oscar Robertson's Cincinnati Royals, while the simulation places him on the current Sacramento Kings). Never used by the engine.",
+    "career_status": {
+      "value": "active | retired | historical-unknown",
+      "source": "where the status comes from; a roster career span is not a retirement source",
+      "confidence": "confirmed | inferred | unverified"
+    },
+    "ovr": "INTEGER 40..99 - the simulation rating and the general player summary (Owner: public-facing data is integers; internal maths may use decimals, but do not publish decimals)",
+    "attributes": {
+      "note": "a small number of attributes the engine actually uses, integers, each with a stated consumer. Do not add fields the engine does not use. In the football build only ovr reaches the value maths; spd/agi/cod/awr are used by one function (returnerRating) and inj by none."
+    },
+    "extensions": "OPTIONAL, integer-only, sport-specific display context (NBA: TS+, three-point rate; football: none today). Not consumed by the engine unless a consumer is named.",
+    "source": {
+      "id": "the source record id (e.g. NFL-AT-001, an NBA2K export with edition/year/season)",
+      "class": "owner-supplied notes | official roster | 2K export | council rating",
+      "retrieved": "ISO date",
+      "note": "what the source actually says - a mention, a roster line, a rating. A mention is not a rating.",
+      "review_state": "proposed | approved | disputed",
+      "ratings_in_source": "true | false"
+    }
+  },
+  "pool": {
+    "meta": {
+      "pool": "nfl-alltime",
+      "sport": "nfl",
+      "era_mode": "current | alltime",
+      "rubric": "v2 (Owner-aligned)",
+      "candidate_target": "1500-2000 candidates per sport (Owner direction, 2026-10-21). A pool only needs enough players to fill the required positions and rosters; a draft does not have to use every eligible player.",
+      "current_player_adjustment": "NOT APPROVED as of 2026-10-21. Do not apply a -5 (or any) adjustment until its purpose, eligible players and calibration are decided. Until then, current players carry their current rating.",
+      "approval": "the Owner approves the final pool; the council assembles and reviews"
+    },
+    "records": "[ array of records ]"
+  },
+  "rules": [
+    "A record's OVR is what the engine consumes; the six attributes are consumed today only by the special-teams returner rating (v20:2581). Rating work should therefore put the care into OVR and the provenance.",
+    "A record may not be published without provenance.source, source_date, rater(s) and rubric version.",
+    "A mode adjustment is a separate, versioned field — never a permanent edit of the source rating.",
+    "Historical position codes are translated to current slot families by the taxonomy at LOAD time, so the flex table and the weights never see a legacy code.",
+    "The pool stores a pool_rank; the published target is a filter on it. Changing the target is a filter change, not a re-rating.",
+    "LEGAL VOCABULARY: a position code is legal if it appears in the build's NATURAL_SLOT_MAP (the 19 draftable codes) OR in the build's own player vocabulary (FB, P, LS — present in the pool, never drafted). A code that is neither is a legacy/unknown code: those records are invisible to the draft pool, the replacement levels and the slot maps, and the draft then silently skips the picks it cannot fill (M-81).",
+    "The published reference pool is data/nfl/current.json — 1,200 records exported verbatim from the reference build by tools/export-current-pool.mjs and validated by tools/validate-dataset.mjs (exit 0). It is the file to copy the shape from.",
+    "SAME NAMES ARE NEVER MERGED: the all-time intake scan found 3 same-name/different-person collisions (Larry Johnson, Steve Smith, Joe Johnson) and 69 shared surnames among 1,470 distinct names. A pool record therefore carries a stable `id` (never derived from the display name) and a DISAMBIGUATED display name (e.g. 'Steve Smith (1958-2016)'), with `aliases` holding the other spellings. Never merge two records because their names match, and never let a name-only join create a record.",
+    "THE -5 CURRENT-PLAYER ADJUSTMENT IS NOT APPROVED (Owner, 2026-10-21). It must not appear in any pool until its purpose, eligible players and calibration are decided. The mode-adjustment FIELD remains in the schema so a future approved adjustment has a home, but it stays empty.",
+    "PUBLIC DATA IS INTEGERS. Internal calculations may use decimals; do not publish decimal ratings and do not invent fields the engine does not use.",
+    "MODERN RULES. Simulation rules are the current rules of the sport; for all-time players the Owner's modeling assumption is a year of training under modern rules - an assumption to argue from evidence, never a formula.",
+    "TODAY'S FRANCHISES. The simulation uses current franchises; the historical team is display context on the draft board only.",
+    "KEEP THE SIX THINGS SEPARATE: person, player-season, team/franchise, career status, source, simulation rating. A record that merges them cannot be corrected without re-rating.",
+    "SOURCE MATERIAL IS NOT A POOL. A mention, a fan list or a ranking is source material; it becomes a candidate only with provenance, and it becomes a rating only with the Owner's approval."
+  ],
+  "revision": "rev 4 - 2026-10-21: reconciled with the Owner's product direction (PR #4, OWNER-PRODUCT-DIRECTION.md): person / player-season / team / career-status / source / simulation-rating kept DISTINCT, today's franchises for the simulation with historical team as display context, integer public ratings, no unused fields, and the -5 current-player adjustment is NOT approved.",
+  "owner_direction_ref": "PR #4: OWNER-PRODUCT-DIRECTION.md and _agents/gpt/research/all-time/design/nba/OWNER-DESIGN-DIRECTION.md",
+  "entities": {
+    "person": "the stable identity (id, name, aliases) - who it is",
+    "player_season": "a person in a specific season (the intake holds 27 same-name multi-season entries in single ranking files)",
+    "team_or_franchise": "two distinct things: the historical team (display context) and the modern franchise (simulation identity)",
+    "career_status": "active / retired / unknown, with its own source and confidence - NOT inferred from a roster span",
+    "source": "what the source said, with its id, class, date and whether it contained a rating",
+    "simulation_rating": "the OVR the engine consumes, integer, approved by the Owner"
+  }
+}

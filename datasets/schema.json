@@ -1,0 +1,61 @@
+{
+  "version": 1,
+  "description": "All-time datasets schema (NFL and NBA)",
+  "required": [
+    "id",
+    "name",
+    "sport",
+    "source",
+    "sourceEdition",
+    "rosterUpdate",
+    "rawValue",
+    "transforms",
+    "modeAdjustments",
+    "confidence",
+    "reviewer",
+    "evidence",
+    "provenance"
+  ],
+  "properties": {
+    "id": {"type": "string"},
+    "name": {"type": "string"},
+    "sport": {"type": "string", "enum": ["nfl", "nba"]},
+    "position": {"type": "string"},
+    "era": {"type": "string"},
+    "source": {"type": "string"},
+    "sourceEdition": {"type": "string"},
+    "rosterUpdate": {"type": "string"},
+    "rawValue": {"type": "number"},
+    "transforms": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name", "value", "rationale"],
+        "properties": {
+          "name": {"type": "string"},
+          "value": {"type": "number"},
+          "rationale": {"type": "string"}
+        }
+      }
+    },
+    "modeAdjustments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["mode", "value", "rationale"],
+        "properties": {
+          "mode": {"type": "string", "enum": ["current", "alltime"]},
+          "value": {"type": "number"},
+          "rationale": {"type": "string"}
+        }
+      }
+    },
+    "peakRating": {"type": "number"},
+    "careerRating": {"type": "number"},
+    "primaryValue": {"type": "string", "enum": ["peak", "career", "hybrid"]},
+    "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+    "reviewer": {"type": "string"},
+    "evidence": {"type": "string"},
+    "provenance": {"type": "string"}
+  }
+}

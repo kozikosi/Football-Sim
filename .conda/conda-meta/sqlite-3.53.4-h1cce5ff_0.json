@@ -1,0 +1,97 @@
+{
+  "build": "h1cce5ff_0",
+  "build_number": 0,
+  "depends": [
+    "__osx >=12.1",
+    "libzlib >=1.3.2,<2.0a0",
+    "ncurses >=6.6,<7.0a0",
+    "readline >=8.3,<9.0a0",
+    "zlib >=1.3.2,<2.0a0"
+  ],
+  "license": "blessing",
+  "license_family": "Other",
+  "md5": "fd9a488523974dc8fcb18bd3869a4885",
+  "name": "sqlite",
+  "sha256": "70e11d64b91850bab45938774c610b7ee99969ebf3525c0e85af28bcb4875a30",
+  "size": 1219174,
+  "subdir": "osx-arm64",
+  "timestamp": 1789046833362,
+  "version": "3.53.4",
+  "fn": "sqlite-3.53.4-h1cce5ff_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/sqlite-3.53.4-h1cce5ff_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/sqlite-3.53.4-h1cce5ff_0",
+  "requested_specs": [],
+  "files": [
+    "bin/sqlite3",
+    "lib/pkgconfig/sqlite3.pc",
+    "share/man/man1/sqlite3.1",
+    "include/sqlite3.h",
+    "include/sqlite3ext.h",
+    "lib/libsqlite3.0.dylib",
+    "lib/libsqlite3.3.53.4.dylib",
+    "lib/libsqlite3.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "bin/sqlite3",
+        "path_type": "hardlink",
+        "sha256": "5869caeb19f39a9d7232c66220247b6adb47d4a507930d80bfa99dee4cc1ce1d",
+        "size_in_bytes": 2078704
+      },
+      {
+        "_path": "lib/pkgconfig/sqlite3.pc",
+        "path_type": "hardlink",
+        "sha256": "5f074d36c468880885036a2ae96ba663c7a100ddbdcd396306f0ab8ed9786aea",
+        "sha256_in_prefix": "ba5c850c03eaec7253d40e6dbaba812a070fa4707ed6d375f5a63b4e07b930f6",
+        "size_in_bytes": 309,
+        "file_mode": "text",
+        "prefix_placeholder": "/Users/ec2-user/croot/sqlite_1789046787002/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place"
+      },
+      {
+        "_path": "share/man/man1/sqlite3.1",
+        "path_type": "hardlink",
+        "sha256": "1edbafb8886b64e5e72ca559d306f5ee63356cbf1059f72e908b66d1e231c46e",
+        "size_in_bytes": 5315
+      },
+      {
+        "_path": "include/sqlite3.h",
+        "path_type": "hardlink",
+        "sha256": "919e7f2e8ed1d8f56ac17b412b8971c76aa5d1a879752cc6058f75e7d5910e1d",
+        "size_in_bytes": 690838
+      },
+      {
+        "_path": "include/sqlite3ext.h",
+        "path_type": "hardlink",
+        "sha256": "ac9645e5c9ff0cf176efdd6e75cb5e98f46295d38e02db5c4d208826a39ab4be",
+        "size_in_bytes": 39175
+      },
+      {
+        "_path": "lib/libsqlite3.0.dylib",
+        "path_type": "softlink",
+        "sha256": "4fef1d0d6aec813439d3cb677da0c704dd6c94db59d60308126d3384e49518f1",
+        "sha256_in_prefix": "d3e742d7b179eabc25b4bdd6bce9b93bb31c46615893904961f96b4d2635e07b",
+        "size_in_bytes": 1517008
+      },
+      {
+        "_path": "lib/libsqlite3.3.53.4.dylib",
+        "path_type": "hardlink",
+        "sha256": "4fef1d0d6aec813439d3cb677da0c704dd6c94db59d60308126d3384e49518f1",
+        "size_in_bytes": 1517008
+      },
+      {
+        "_path": "lib/libsqlite3.dylib",
+        "path_type": "softlink",
+        "sha256": "4fef1d0d6aec813439d3cb677da0c704dd6c94db59d60308126d3384e49518f1",
+        "sha256_in_prefix": "d3e742d7b179eabc25b4bdd6bce9b93bb31c46615893904961f96b4d2635e07b",
+        "size_in_bytes": 1517008
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/sqlite-3.53.4-h1cce5ff_0",
+    "type": 1
+  }
+}

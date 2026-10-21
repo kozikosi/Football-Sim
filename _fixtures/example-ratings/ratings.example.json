@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "EXAMPLE": true,
+    "example_notice": "EXAMPLE DATA — every name, team and rating in this file is synthetic and must never be used as a rating. It exists to demonstrate the record shape only.",
+    "quarantined_from": "ratings.json",
+    "quarantined_on": "2026-10-21"
+  },
+  "records": [
+    {
+      "playerId": "p001",
+      "name": "Example Player A",
+      "position": "QB",
+      "team": "Example Team 1",
+      "era": "2020-2025",
+      "peakRating": 98.5,
+      "careerAverage": 89.2,
+      "teams": [
+        "Example Team 1"
+      ],
+      "provenance": {
+        "source": "example",
+        "source_version": "quarantine-sample-pool v1",
+        "source_date": "2026-10-21",
+        "raters": [],
+        "batch": "example",
+        "review_state": "example — synthetic, not a rating",
+        "invented": true
+      }
+    },
+    {
+      "playerId": "p002",
+      "name": "Example Player B",
+      "position": "QB",
+      "team": "Example Team 2",
+      "era": "2020-2025",
+      "peakRating": 97.8,
+      "careerAverage": 91.5,
+      "teams": [
+        "Example Team 2"
+      ],
+      "provenance": {
+        "source": "example",
+        "source_version": "quarantine-sample-pool v1",
+        "source_date": "2026-10-21",
+        "raters": [],
+        "batch": "example",
+        "review_state": "example — synthetic, not a rating",
+        "invented": true
+      }
+    },
+    {
+      "playerId": "p003",
+      "name": "Example Player C",
+      "position": "RB",
+      "team": "Example Team 3",
+      "era": "2019-2025",
+      "peakRating": 96.3,
+      "careerAverage": 88.7,
+      "teams": [
+        "Example Team 3"
+      ],
+      "provenance": {
+        "source": "example",
+        "source_version": "quarantine-sample-pool v1",
+        "source_date": "2026-10-21",
+        "raters": [],
+        "batch": "example",
+        "review_state": "example — synthetic, not a rating",
+        "invented": true
+      }
+    },
+    {
+      "playerId": "p004",
+      "name": "Example Player D",
+      "position": "SG",
+      "team": "Example Team 4",
+      "era": "2016-2025",
+      "peakRating": 95.4,
+      "careerAverage": 87.9,
+      "teams": [
+        "Example Team 4"
+      ],
+      "provenance": {
+        "source": "example",
+        "source_version": "quarantine-sample-pool v1",
+        "source_date": "2026-10-21",
+        "raters": [],
+        "batch": "example",
+        "review_state": "example — synthetic, not a rating",
+        "invented": true
+      }
+    },
+    {
+      "playerId": "p005",
+      "name": "Example Player E",
+      "position": "WR",
+      "team": "Example Team 5",
+      "era": "2005-2015",
+      "peakRating": 94.1,
+      "careerAverage": 85.3,
+      "teams": [
+        "Example Team 5"
+      ],
+      "provenance": {
+        "source": "example",
+        "source_version": "quarantine-sample-pool v1",
+        "source_date": "2026-10-21",
+        "raters": [],
+        "batch": "example",
+        "review_state": "example — synthetic, not a rating",
+        "invented": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "build": "h55097f8_2",
+  "build_number": 2,
+  "depends": [
+    "__osx >=12.1",
+    "libiconv >=1.18,<2.0a0",
+    "libintl 0.25.1 h55097f8_2"
+  ],
+  "license": "LGPL-2.1-or-later",
+  "md5": "e48b492a11fff0eaad6f62a07b6d8c92",
+  "name": "libintl-devel",
+  "sha256": "96ddfc0b9a279185605e134728bc698b6a924fee7e85d88ec660dc28500981d6",
+  "size": 39488,
+  "subdir": "osx-arm64",
+  "timestamp": 1784195973735,
+  "version": "0.25.1",
+  "fn": "libintl-devel-0.25.1-h55097f8_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libintl-devel-0.25.1-h55097f8_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libintl-devel-0.25.1-h55097f8_2",
+  "requested_specs": [],
+  "files": [
+    "include/libintl.h",
+    "lib/libintl.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "include/libintl.h",
+        "path_type": "hardlink",
+        "sha256": "86841e94f7adbc7747e53462626292d8ed157d09315d72bf8c8d6fe93f9d2396",
+        "size_in_bytes": 41257
+      },
+      {
+        "_path": "lib/libintl.dylib",
+        "path_type": "softlink",
+        "sha256": "6f354d1e95befa712c69eb812a03a2b189eddb1f2a9a07bfc90419f0860d92d9",
+        "sha256_in_prefix": "ed17f9ec17215e0a46bf0aad22d3f70f8c16d85ea671a040f37471d13186982d",
+        "size_in_bytes": 245888
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libintl-devel-0.25.1-h55097f8_2",
+    "type": 1
+  }
+}

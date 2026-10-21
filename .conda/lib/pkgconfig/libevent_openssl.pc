@@ -1,0 +1,16 @@
+#libevent pkg-config source file
+
+prefix=/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b
+exec_prefix=/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b
+libdir=/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b/lib
+includedir=/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b/include
+
+Name: libevent_openssl
+Description: libevent_openssl adds openssl-based TLS support to libevent
+Version: 2.1.13
+Requires: libevent
+Conflicts:
+Libs: -L${libdir} -levent_openssl
+Libs.private:   -L/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b/lib/libssl.dylib -L/Users/kosi/Desktop/Football Sim/b5bf2e54cb654f7b/lib/libcrypto.dylib
+Cflags: -I${includedir} 
+

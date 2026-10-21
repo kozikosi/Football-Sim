@@ -1,0 +1,4 @@
+name,pos,team,era,ovr,spd,str,agi,cod,inj,awr,xf,source
+Joe Montana,QB,San Francisco 49ers,1980s,96,72,68,78,82,85,99,Clutch,"Owner input — consensus top-5 all-time QB, era-adjusted from 99 to 96"
+Jerry Rice,WR1,San Francisco 49ers,1990s,99,90,78,92,94,95,99,YAC,"Owner input — consensus #1 all-time WR, no era adjustment needed"
+Lawrence Taylor,DE1,New York Giants,1980s,98,88,95,90,88,88,97,Fearmonger,"Owner input — consensus top-3 all-time defender, era-adjusted from 99 to 98"

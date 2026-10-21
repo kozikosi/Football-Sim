@@ -1,0 +1,42 @@
+{
+  "build": "h55097f8_2",
+  "build_number": 2,
+  "depends": [
+    "__osx >=12.1",
+    "libiconv >=1.18,<2.0a0"
+  ],
+  "license": "LGPL-2.1-or-later",
+  "md5": "0936ca363ddee980a36ca168dcb4d78c",
+  "name": "libintl",
+  "sha256": "7fea983e3251e303b07918f86962251a88bb4b1a4277f7ac33fb80a49ef42511",
+  "size": 83989,
+  "subdir": "osx-arm64",
+  "timestamp": 1784195957491,
+  "version": "0.25.1",
+  "fn": "libintl-0.25.1-h55097f8_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libintl-0.25.1-h55097f8_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libintl-0.25.1-h55097f8_2",
+  "requested_specs": [],
+  "files": [
+    "lib/libintl.8.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libintl.8.dylib",
+        "path_type": "hardlink",
+        "sha256": "6f354d1e95befa712c69eb812a03a2b189eddb1f2a9a07bfc90419f0860d92d9",
+        "sha256_in_prefix": "3e4f49a6aad6c726d1037d1787b24eb46b757e852146ea40f59d229a9acc62c4",
+        "size_in_bytes": 245888,
+        "file_mode": "binary",
+        "prefix_placeholder": "/Users/ec2-user/croot/gettext-split_1784195628838/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehol"
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libintl-0.25.1-h55097f8_2",
+    "type": 1
+  }
+}

@@ -1,0 +1,343 @@
+{
+  "build": "h1e5d969_3",
+  "build_number": 3,
+  "constrains": [
+    "boost-cpp <0.0a0"
+  ],
+  "depends": [
+    "__osx >=12.1",
+    "bzip2 >=1.0.8,<2.0a0",
+    "icu >=78.3,<79.0a0",
+    "libcxx >=17",
+    "libiconv >=1.18,<2.0a0",
+    "libzlib >=1.3.2,<2.0a0",
+    "openssl >=3.5.9,<4.0a0",
+    "xz >=5.8.4,<6.0a0",
+    "zstd >=1.5.7,<1.6.0a0"
+  ],
+  "license": "BSL-1.0",
+  "md5": "0f64eaebe25eefdb16887625d3beb52d",
+  "name": "libboost",
+  "sha256": "96d3675d555f74ad100f06fb74ed1daa7ec7b2b3f60f10da63567df90921fbe6",
+  "size": 1941896,
+  "subdir": "osx-arm64",
+  "timestamp": 1792023623321,
+  "version": "1.88.0",
+  "fn": "libboost-1.88.0-h1e5d969_3.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libboost-1.88.0-h1e5d969_3.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libboost-1.88.0-h1e5d969_3",
+  "requested_specs": [],
+  "files": [
+    "lib/libboost_atomic.dylib",
+    "lib/libboost_charconv.dylib",
+    "lib/libboost_chrono.dylib",
+    "lib/libboost_cobalt.dylib",
+    "lib/libboost_container.dylib",
+    "lib/libboost_context.dylib",
+    "lib/libboost_contract.dylib",
+    "lib/libboost_coroutine.dylib",
+    "lib/libboost_date_time.dylib",
+    "lib/libboost_exception.a",
+    "lib/libboost_fiber.dylib",
+    "lib/libboost_filesystem.dylib",
+    "lib/libboost_graph.dylib",
+    "lib/libboost_iostreams.dylib",
+    "lib/libboost_json.dylib",
+    "lib/libboost_locale.dylib",
+    "lib/libboost_log.dylib",
+    "lib/libboost_log_setup.dylib",
+    "lib/libboost_math_c99.dylib",
+    "lib/libboost_math_c99f.dylib",
+    "lib/libboost_math_c99l.dylib",
+    "lib/libboost_math_tr1.dylib",
+    "lib/libboost_math_tr1f.dylib",
+    "lib/libboost_math_tr1l.dylib",
+    "lib/libboost_nowide.dylib",
+    "lib/libboost_prg_exec_monitor.dylib",
+    "lib/libboost_process.dylib",
+    "lib/libboost_program_options.dylib",
+    "lib/libboost_random.dylib",
+    "lib/libboost_regex.dylib",
+    "lib/libboost_serialization.dylib",
+    "lib/libboost_stacktrace_addr2line.dylib",
+    "lib/libboost_stacktrace_basic.dylib",
+    "lib/libboost_stacktrace_noop.dylib",
+    "lib/libboost_system.dylib",
+    "lib/libboost_test_exec_monitor.a",
+    "lib/libboost_thread.dylib",
+    "lib/libboost_timer.dylib",
+    "lib/libboost_type_erasure.dylib",
+    "lib/libboost_unit_test_framework.dylib",
+    "lib/libboost_url.dylib",
+    "lib/libboost_wave.dylib",
+    "lib/libboost_wserialization.dylib"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libboost_atomic.dylib",
+        "path_type": "hardlink",
+        "sha256": "58b48a88dcad8d80cad4dd3442db9d7c2beaa57dda701ba8d16d2643930032c6",
+        "size_in_bytes": 87680
+      },
+      {
+        "_path": "lib/libboost_charconv.dylib",
+        "path_type": "hardlink",
+        "sha256": "788573b49fdda7885aeda0e9197cd786f3f22e076a7fb93726c9cb9ca10801d2",
+        "size_in_bytes": 161952
+      },
+      {
+        "_path": "lib/libboost_chrono.dylib",
+        "path_type": "hardlink",
+        "sha256": "194e0dd541cc8946d38f9be0916b3f0ff43d0e480d4bdf64c730e0be204e6c88",
+        "size_in_bytes": 77808
+      },
+      {
+        "_path": "lib/libboost_cobalt.dylib",
+        "path_type": "hardlink",
+        "sha256": "434faeb7aea98b38e44c1f12861f94ba3196f6fcd4a3aa9e241ff6d12ec85ac1",
+        "size_in_bytes": 243568
+      },
+      {
+        "_path": "lib/libboost_container.dylib",
+        "path_type": "hardlink",
+        "sha256": "6352743f09506dd3a08f781736253ce67db737a3e054cfb355c47ed84bdf54d2",
+        "size_in_bytes": 123824
+      },
+      {
+        "_path": "lib/libboost_context.dylib",
+        "path_type": "hardlink",
+        "sha256": "4fc23a249b29defb504d168693eab827ef9f329068c2e03e40a01d67f7df153f",
+        "size_in_bytes": 53472
+      },
+      {
+        "_path": "lib/libboost_contract.dylib",
+        "path_type": "hardlink",
+        "sha256": "637a06362d212b4ecd2632af76793f1003be08a1f5e5f4207aae84a85115dfde",
+        "size_in_bytes": 144528
+      },
+      {
+        "_path": "lib/libboost_coroutine.dylib",
+        "path_type": "hardlink",
+        "sha256": "121e884c66ef921d21eba44fcca6b2e3dfe0686fd07ff09183a4732b6b25c6bf",
+        "size_in_bytes": 72176
+      },
+      {
+        "_path": "lib/libboost_date_time.dylib",
+        "path_type": "hardlink",
+        "sha256": "19e3e30d2b4d04afdfb019648cacbb6dd10e0385887ee703cf9742a1e1575acb",
+        "size_in_bytes": 35024
+      },
+      {
+        "_path": "lib/libboost_exception.a",
+        "path_type": "hardlink",
+        "sha256": "37c6e86b3e9b32f773a5502437beeda240ba22baaa1468c9ad8a49f97ee0cc15",
+        "size_in_bytes": 896
+      },
+      {
+        "_path": "lib/libboost_fiber.dylib",
+        "path_type": "hardlink",
+        "sha256": "f258d153703d20d3e640e7340cfa42e1953c5a1c251acf89a1e9235b3db9d58e",
+        "size_in_bytes": 133424
+      },
+      {
+        "_path": "lib/libboost_filesystem.dylib",
+        "path_type": "hardlink",
+        "sha256": "a3e3805afcc0db3e3e98d915ac987dd6b780d92e32a9aa02b14fd15fd37f0b31",
+        "size_in_bytes": 193488
+      },
+      {
+        "_path": "lib/libboost_graph.dylib",
+        "path_type": "hardlink",
+        "sha256": "9c97a478d47998731c8ec1fa20db1a3e0a0d2233f8d7429facbc95fcce5a89f8",
+        "size_in_bytes": 461088
+      },
+      {
+        "_path": "lib/libboost_iostreams.dylib",
+        "path_type": "hardlink",
+        "sha256": "e73038e6083bd6aed7b4973165f593a78bf84afc5f38a22dc61d4ce7ed3c14a0",
+        "size_in_bytes": 128720
+      },
+      {
+        "_path": "lib/libboost_json.dylib",
+        "path_type": "hardlink",
+        "sha256": "1768b049a79749837649357a7b3f641d6dfd50f4c8b261c5fa82d7dc8ce94447",
+        "size_in_bytes": 443808
+      },
+      {
+        "_path": "lib/libboost_locale.dylib",
+        "path_type": "hardlink",
+        "sha256": "068f0fa41525fb8344ebcaa4da5d0526d87d838a38e4807d183646a9b3a3a3fd",
+        "size_in_bytes": 773200
+      },
+      {
+        "_path": "lib/libboost_log.dylib",
+        "path_type": "hardlink",
+        "sha256": "cc12d2e9a862b9a1d2aeb69738e1aa30f8fe8795bf6cd146c5c8719ed396403b",
+        "size_in_bytes": 936080
+      },
+      {
+        "_path": "lib/libboost_log_setup.dylib",
+        "path_type": "hardlink",
+        "sha256": "362289a9646be99c5a3973d2028c8d2ad5ed0b1ae5b77584dbfd6d1fd69f2819",
+        "size_in_bytes": 1218880
+      },
+      {
+        "_path": "lib/libboost_math_c99.dylib",
+        "path_type": "hardlink",
+        "sha256": "a42ca115475c20081860eb4edec1f3fa67275e2dd7c133743af0d9f15831cf9c",
+        "size_in_bytes": 97200
+      },
+      {
+        "_path": "lib/libboost_math_c99f.dylib",
+        "path_type": "hardlink",
+        "sha256": "367ff945b7368dffeafd624b1fd6f71307b966d9b5c5a599a09415c92b8170d3",
+        "size_in_bytes": 97312
+      },
+      {
+        "_path": "lib/libboost_math_c99l.dylib",
+        "path_type": "hardlink",
+        "sha256": "4b6c5ab08fd9a778e68a781ba9add91fbb31df03b28df587dc6d96f30bc21af0",
+        "size_in_bytes": 96144
+      },
+      {
+        "_path": "lib/libboost_math_tr1.dylib",
+        "path_type": "hardlink",
+        "sha256": "cbfdf6a13ac5bc63d7f881fbf427d758f1e55bca454efedb65342160805758ad",
+        "size_in_bytes": 231296
+      },
+      {
+        "_path": "lib/libboost_math_tr1f.dylib",
+        "path_type": "hardlink",
+        "sha256": "c66e2601d10057bb3bd194e801eb634a60f9a18895ffdea9659660572e24d97d",
+        "size_in_bytes": 255072
+      },
+      {
+        "_path": "lib/libboost_math_tr1l.dylib",
+        "path_type": "hardlink",
+        "sha256": "e7bb1e5f1fd7d89216bef0b18adfcc4b15b420d365930226c40a8f4657cf3e3b",
+        "size_in_bytes": 230576
+      },
+      {
+        "_path": "lib/libboost_nowide.dylib",
+        "path_type": "hardlink",
+        "sha256": "4e5973d87175070ed039b6a87a3b2e25e9ac6c844e668165713d4b09f0c5c9b0",
+        "size_in_bytes": 57760
+      },
+      {
+        "_path": "lib/libboost_prg_exec_monitor.dylib",
+        "path_type": "hardlink",
+        "sha256": "555ede3ebac07fe6fbd58855bf85bec24a3a5ab62ea95a4e95348e1f6d0a64fe",
+        "size_in_bytes": 91808
+      },
+      {
+        "_path": "lib/libboost_process.dylib",
+        "path_type": "hardlink",
+        "sha256": "affccf2c766e4de60ad0b05dc3d31f8ed660fc32cd781bd8bd8072aa2cd1ddb9",
+        "size_in_bytes": 105200
+      },
+      {
+        "_path": "lib/libboost_program_options.dylib",
+        "path_type": "hardlink",
+        "sha256": "7b7a8a73e2749be567d224e985f98404952c413027b12b1b44b1c61dd10668af",
+        "size_in_bytes": 388112
+      },
+      {
+        "_path": "lib/libboost_random.dylib",
+        "path_type": "hardlink",
+        "sha256": "4ab22ec923fd0651119025235e20093d528132a6d20bd72adf98826888a01873",
+        "size_in_bytes": 76368
+      },
+      {
+        "_path": "lib/libboost_regex.dylib",
+        "path_type": "hardlink",
+        "sha256": "c3679fb5f624f5940e513275424ee6b06e43a517fce4ae6faf578adc583e42a9",
+        "size_in_bytes": 317904
+      },
+      {
+        "_path": "lib/libboost_serialization.dylib",
+        "path_type": "hardlink",
+        "sha256": "13a78722f5fe4ce3668afc982eddc9c09d914dadd5c375c008b2604a821352c5",
+        "size_in_bytes": 416112
+      },
+      {
+        "_path": "lib/libboost_stacktrace_addr2line.dylib",
+        "path_type": "hardlink",
+        "sha256": "80af1800b5fa9fb524786d4c26b93a6b6af0814297f719ce50881d1608ff8532",
+        "size_in_bytes": 87648
+      },
+      {
+        "_path": "lib/libboost_stacktrace_basic.dylib",
+        "path_type": "hardlink",
+        "sha256": "e1bf0e0761f25856f59d666a6d9c7d845b6e49b88bd5d9b0b44e3dafc5cc4797",
+        "size_in_bytes": 85840
+      },
+      {
+        "_path": "lib/libboost_stacktrace_noop.dylib",
+        "path_type": "hardlink",
+        "sha256": "aa81392b3f409c15aa5155deee473877448fa1275ab123cfe572d2accc5fd054",
+        "size_in_bytes": 35696
+      },
+      {
+        "_path": "lib/libboost_system.dylib",
+        "path_type": "hardlink",
+        "sha256": "770d784496537477f98a3c09edfcdae51b776bb5dd5933cfe0eeebb130df73dc",
+        "size_in_bytes": 34992
+      },
+      {
+        "_path": "lib/libboost_test_exec_monitor.a",
+        "path_type": "hardlink",
+        "sha256": "909eda084155db0813e572eaa0732484d221663b1f3c8226cc704362f3e91cda",
+        "size_in_bytes": 1564928
+      },
+      {
+        "_path": "lib/libboost_thread.dylib",
+        "path_type": "hardlink",
+        "sha256": "9bb58ba1d36be2e56228bd7a379e923626ec63e423c1183a4171d568566f8e87",
+        "size_in_bytes": 136560
+      },
+      {
+        "_path": "lib/libboost_timer.dylib",
+        "path_type": "hardlink",
+        "sha256": "ed1133d5a572e89fe1ec89368fbc388964f852fdfb1dd499a7f342f8870d4a6c",
+        "size_in_bytes": 64768
+      },
+      {
+        "_path": "lib/libboost_type_erasure.dylib",
+        "path_type": "hardlink",
+        "sha256": "7e37e8005346426f216c7f230d90fca1b489c4a02bf0ebe9e2dbf8a91d49c98f",
+        "size_in_bytes": 100800
+      },
+      {
+        "_path": "lib/libboost_unit_test_framework.dylib",
+        "path_type": "hardlink",
+        "sha256": "aeabfdb203d6a7bed0cd51224d7203c0aa807f822d2701445b3dfe3e6be0f480",
+        "size_in_bytes": 755568
+      },
+      {
+        "_path": "lib/libboost_url.dylib",
+        "path_type": "hardlink",
+        "sha256": "1f0814a61094358b9fec06fa2849fd7f7559f6e69124802d30b5c94cd89f8feb",
+        "size_in_bytes": 369376
+      },
+      {
+        "_path": "lib/libboost_wave.dylib",
+        "path_type": "hardlink",
+        "sha256": "d90862c6a4a8e712abf86086a3cc3c65244651eaa34b7a47cf9065248ff64e61",
+        "size_in_bytes": 1625760
+      },
+      {
+        "_path": "lib/libboost_wserialization.dylib",
+        "path_type": "hardlink",
+        "sha256": "ec1da15d74b1d38d64b6083e06df9574d54892f57fbed2158344b4b6123b0ce8",
+        "size_in_bytes": 346320
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libboost-1.88.0-h1e5d969_3",
+    "type": 1
+  }
+}

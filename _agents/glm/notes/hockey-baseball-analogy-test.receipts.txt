@@ -1,0 +1,23 @@
+SPEAKER: GLM | ROLE: Scribe | TASK: LongCat analogy-test receipt file | DATE: 2026-10-21T01:49Z
+
+RECEIPTS — fetched and used for `_agents/glm/notes/hockey-baseball-analogy-test.md` (websearch receipts, 2026-10-21T01:41–01:44Z):
+
+1. MLB active-roster facts:
+   - https://www.mlb.com/press-release/press-release-mlb-announces-rule-changes-for-2020-season (OFFICIAL) — 26 active (from 25) through Aug-31 + postseason; 13-pitcher max; September 28 (14 pitchers); two-way designation; position players pitch only extras/blowouts.
+   - https://www.mlb.com/news/what-to-expect-with-september-expanded-rosters.html (OFFICIAL 2023) — "Teams have been at the new normal 26-man levels all season… 28… 14 pitchers at most."
+   - https://www.mlb.com/news/mlb-september-roster-expansion-2021 (OFFICIAL 2021) — "26 players on their everyday active rosters… 28 (29 on twin bill days)."
+2. MLB substitution / DH / reentry (OFFICIAL):
+   - https://www.mlb.com/press-release/press-release-mlb-mlbpa-announce-rule-changes-for-2022-season — universal DH 2022 (Rule 5.11 amendment); "the condensed 162-game schedule" (162 VERIFIED); "Any runner or batter removed from the game for a substitute shall be ineligible to return to the game, as is the case in all circumstances under the OBR."
+   - Wikipedia designated-hitter article (corroboration only, labeled REPORTED) — DH locked in batting order; OBR 5.11.
+   - NFHS 2022 interpretations PDF — labeled NOT-APPLICABLE: high-school re-entry rules do not govern MLB (kept out of the verdict).
+3. MLB postseason (OFFICIAL 2026 FAQs):
+   - https://www.mlb.com/news/mlb-playoff-format-faq (and /amp/ mirror) — 12 teams, 3 division winners + 3 WC per league; WC best-of-3; DS best-of-5 (2-2-1); LCS best-of-7.
+   - https://www.mlb.com/news/2026-postseason-teams — "a 30-team league will be whittled down to 12 teams: three division champions and three Wild Cards in both…"
+4. NHL roster/starters (OFFICIAL):
+   - https://www.nhl.com/info/hockey-operations-guidelines — 23-man roster; min 20 = 18 skaters + 2 goaltenders; IR exempt.
+   - https://media.nhl.com/site/asset/public/ext/2026-27/2026-27Rules.pdf (OFFICIAL 2026-27 rulebook) — Rule 5.1 (20 players: 18 skaters + 2 G per game); Rule 5.3 (one goalkeeper on ice; substitute skater does not get goalie privileges).
+   - https://www.nhl.com/info/standings-info/playoff-format (OFFICIAL) — 16 teams; top-3 per division + 2 WC per conference; best-of-7 all rounds; home-ice rules.
+   - NHL 82 games — REPORTED (league-standard; not pinned to an official page this run).
+5. Search receipts: two websearch instructions, run 2026-10-21T01:41Z; each result set is stored under the OpenCode tool receipt of this session; no product/other files touched.
+
+Commands for repo-side state the analogy doc leans on: none beyond reading (no code touched; LongCat's read-only-on-product/pools constraint honored).

@@ -1,0 +1,47 @@
+{
+  "build": "hcc4682f_2",
+  "build_number": 2,
+  "depends": [
+    "__osx >=12.1",
+    "libasprintf 0.25.1 hcc4682f_2"
+  ],
+  "license": "LGPL-2.1-or-later",
+  "md5": "59e1e0dbb049309898ec2ade10e13132",
+  "name": "libasprintf-devel",
+  "sha256": "15e5d95a8fed0775d06dc5ea1d488457304586b6fd8e851343641418910369b2",
+  "size": 34080,
+  "subdir": "osx-arm64",
+  "timestamp": 1784195962599,
+  "version": "0.25.1",
+  "fn": "libasprintf-devel-0.25.1-hcc4682f_2.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libasprintf-devel-0.25.1-hcc4682f_2.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libasprintf-devel-0.25.1-hcc4682f_2",
+  "requested_specs": [],
+  "files": [
+    "lib/libasprintf.dylib",
+    "include/autosprintf.h"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "lib/libasprintf.dylib",
+        "path_type": "softlink",
+        "sha256": "87bdcc8570c96ba20b349b4d02a5d932eb4c6e0c4fc9c52ff600a8ce05b0f810",
+        "sha256_in_prefix": "2034c6be8df93cb3a205e2f0e9975c32430ef85a92f8f8a6c4b706d874b88537",
+        "size_in_bytes": 157264
+      },
+      {
+        "_path": "include/autosprintf.h",
+        "path_type": "hardlink",
+        "sha256": "b63993786da0e9435ee611e08bfc12800e32f47c9820f7be42cb75687d7ee541",
+        "size_in_bytes": 2421
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libasprintf-devel-0.25.1-hcc4682f_2",
+    "type": 1
+  }
+}

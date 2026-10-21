@@ -1,0 +1,10 @@
+MiniMax merge-gate matrix, 21 Oct 2026 (v6 gate: multi-tab 390px scan, draft-board assertion, tool_sha256, verdict line)
+A=report B=noOverflow C=noErrors D=season E=viewport F=games G=week1 H=board
+
+target  exit  A B C D E F G H  receipt_id
+merged    0  T T T T T T T T  d9689586b837
+varF      1  T F T T F T T T  4002696d6f47
+varE      1  T T T T T T T F  c11e8f7b7ea3
+v20       1  F F F T F T T T  de4e8f3300b5
+varB      0  T T T T T T T T  d72d4b5bc865
+varC      1  F T F F T F T T  de8e744042dc

@@ -1,0 +1,100 @@
+{
+  "build": "hbd7815e_0",
+  "build_number": 0,
+  "depends": [
+    "__osx >=12.1"
+  ],
+  "license": "MIT",
+  "license_family": "MIT",
+  "md5": "9f83d2c2497e71ef4b3578fbd78bc673",
+  "name": "libbrotlicommon",
+  "sha256": "6384ef4189390c3831c74d7c370947c0dcb130bbede2c2f384cf831fd8050254",
+  "size": 77225,
+  "subdir": "osx-arm64",
+  "timestamp": 1762363445823,
+  "version": "1.2.0",
+  "fn": "libbrotlicommon-1.2.0-hbd7815e_0.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/libbrotlicommon-1.2.0-hbd7815e_0.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libbrotlicommon-1.2.0-hbd7815e_0",
+  "requested_specs": [],
+  "files": [
+    "share/man/man1/brotli.1",
+    "lib/libbrotlicommon.1.2.0.dylib",
+    "lib/libbrotlicommon.1.dylib",
+    "lib/libbrotlicommon.dylib",
+    "lib/pkgconfig/libbrotlicommon.pc",
+    "share/man/man3/constants.h.3",
+    "share/man/man3/decode.h.3",
+    "share/man/man3/encode.h.3",
+    "share/man/man3/types.h.3"
+  ],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": [
+      {
+        "_path": "share/man/man1/brotli.1",
+        "path_type": "hardlink",
+        "sha256": "5592e0207f942e1b7be075bacd948ad20b76792845626a21592f5b9742c7af93",
+        "size_in_bytes": 5130
+      },
+      {
+        "_path": "lib/libbrotlicommon.1.2.0.dylib",
+        "path_type": "hardlink",
+        "sha256": "bdc3bd3214ce6444d321671d2f28f7ee99809948785c263d7f011caba7b70b65",
+        "size_in_bytes": 168128
+      },
+      {
+        "_path": "lib/libbrotlicommon.1.dylib",
+        "path_type": "softlink",
+        "sha256": "bdc3bd3214ce6444d321671d2f28f7ee99809948785c263d7f011caba7b70b65",
+        "sha256_in_prefix": "20dc0c33e51e669efdcbd78ec8f8129248c26665f785f115a169c7201c1d1e7c",
+        "size_in_bytes": 168128
+      },
+      {
+        "_path": "lib/libbrotlicommon.dylib",
+        "path_type": "softlink",
+        "sha256": "bdc3bd3214ce6444d321671d2f28f7ee99809948785c263d7f011caba7b70b65",
+        "sha256_in_prefix": "20dc0c33e51e669efdcbd78ec8f8129248c26665f785f115a169c7201c1d1e7c",
+        "size_in_bytes": 168128
+      },
+      {
+        "_path": "lib/pkgconfig/libbrotlicommon.pc",
+        "path_type": "hardlink",
+        "sha256": "c80836b2d00310869dbecb221be8d07d572a260c35f010bd06ea9b208c93d178",
+        "sha256_in_prefix": "b83f47532db4cbd3ace95fb6a9b6cd925fab9c68fa5eefb6c77f5f646875537e",
+        "size_in_bytes": 349,
+        "file_mode": "text",
+        "prefix_placeholder": "/opt/miniconda3/conda-bld/brotli-split_1762363406148/_h_env_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_placehold_place"
+      },
+      {
+        "_path": "share/man/man3/constants.h.3",
+        "path_type": "hardlink",
+        "sha256": "2ac99f4d97a57a170877fed3ff93251612850f43598ba4eaf234e246787c978d",
+        "size_in_bytes": 1767
+      },
+      {
+        "_path": "share/man/man3/decode.h.3",
+        "path_type": "hardlink",
+        "sha256": "be0a93be98e80f00d075bf43dc6a0bb84cb4028ce0082211e958d1ef18112d8f",
+        "size_in_bytes": 17452
+      },
+      {
+        "_path": "share/man/man3/encode.h.3",
+        "path_type": "hardlink",
+        "sha256": "893ebea4d0d29ff3f2b83004c6bcb4d3610ced41f7cb04f72c1710ff339f5a90",
+        "size_in_bytes": 24310
+      },
+      {
+        "_path": "share/man/man3/types.h.3",
+        "path_type": "hardlink",
+        "sha256": "c9afc281d042e84df6ba5ef4ac4a39f7e1ad8cae4d98adc702055b99c38b2267",
+        "size_in_bytes": 3081
+      }
+    ]
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/libbrotlicommon-1.2.0-hbd7815e_0",
+    "type": 1
+  }
+}

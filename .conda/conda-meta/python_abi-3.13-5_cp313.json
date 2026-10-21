@@ -1,0 +1,31 @@
+{
+  "build": "5_cp313",
+  "build_number": 5,
+  "constrains": [
+    "python 3.13.* *_cp313"
+  ],
+  "depends": [],
+  "license": "BSD-3-Clause",
+  "license_family": "BSD",
+  "md5": "bbc398ad77a58c4be50d7c2588a7c6e8",
+  "name": "python_abi",
+  "sha256": "d1430b541c328c7fe4ef4fb47600ebf0b818db44a26ad0161f10e505b6adbf8b",
+  "size": 5676,
+  "subdir": "osx-arm64",
+  "timestamp": 1790773292563,
+  "version": "3.13",
+  "fn": "python_abi-3.13-5_cp313.conda",
+  "url": "https://repo.anaconda.com/pkgs/main/osx-arm64/python_abi-3.13-5_cp313.conda",
+  "channel": "https://repo.anaconda.com/pkgs/main/",
+  "extracted_package_dir": "/Users/kosi/Library/Caches/rattler/cache/pkgs/python_abi-3.13-5_cp313",
+  "requested_specs": [],
+  "files": [],
+  "paths_data": {
+    "paths_version": 1,
+    "paths": []
+  },
+  "link": {
+    "source": "/Users/kosi/Library/Caches/rattler/cache/pkgs/python_abi-3.13-5_cp313",
+    "type": 1
+  }
+}
