@@ -75,3 +75,17 @@ decision.
   changes nothing about the decision and everything about the explanation.
 - **My "expand the intake" recommendation is withdrawn** — the Owner ruled that scarcity is expected and the
   pool should not be expanded to close the gap and no flex penalty should be loosened.
+
+---
+
+## Addendum — the Owner's long-snapper rule, measured (21 Oct)
+
+```
+D - FB/P slots + the long-snapper rule (LS->punter -4, LS->kicker -6):
+  flow 896/896 · penalty 54 · histogram {0: 880, 2: 5, 4: 11}
+  P1 {'P': 32} · K {'K': 32} · FB1 {'HB': 25, 'FB': 7} · long snappers fielded: 0
+```
+
+**VERIFIED**: with `LS` visible and `FLEX.LS = {P1: 4, K: 6}`, the draft still fills 896/896 at the same
+penalty 54, and the twelve long snappers are **never fielded** — the Owner's expectation confirmed. The rule
+is free insurance, not a cost. Receipt: `_agents/moc/evidence/long-snapper-rule-matching.txt`.

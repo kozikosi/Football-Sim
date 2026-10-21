@@ -110,3 +110,23 @@ result JSON) stay on the release rather than in git history.
 #12 with the rule set as ruled and the visible-vs-assignable invariant respected · the canonical E2E suite
 and an honest evidence record (supersede, do not edit) · #7 pinning and the measurement behind it · the two
 code-health items (`POSITION_TIER`/`TIER_BONUS` are dead; 58 unseeded `Math.random()` sites).
+
+---
+
+## Measured: the long-snapper rule is free, and the twelve never appear
+
+The matching was re-run with the Owner's rule added (`LS` visible in `NATURAL_SLOT_MAP`, `FLEX.LS = {P1: 4,
+K: 6}`):
+
+```
+D - FB/P slots + the long-snapper rule:  flow 896/896 · penalty 54 · histogram {0: 880, 2: 5, 4: 11}
+     P1  {'P': 32}          (all 32 punters at their own slot, zero cost)
+     K   {'K': 32}
+     FB1 {'HB': 25, 'FB': 7}
+     long snappers fielded: 0
+```
+
+**VERIFIED.** The rule changes nothing: the same 896/896 at the same penalty 54, and the twelve long snappers
+are **never fielded** — exactly as the Owner predicted ("you really shouldn't even see them unless there
+aren't 32 punters"). They cost nothing and cover the case where a punter is missing.
+Receipt: `_agents/moc/evidence/long-snapper-rule-matching.txt`.
