@@ -123,7 +123,7 @@ def make_report(events: list[dict[str, Any]]) -> str:
     unassessed = sorted((observed_names | discovered) - ranked_names, key=str.casefold)
 
     rank_lines = [
-        "# Council Contribution Scorecard",
+        "# Council Contribution Assessment and Assignment Guide",
         "",
         f"**Snapshot date:** {escape(current['date'])}",
         "",
@@ -235,8 +235,8 @@ if __name__ == "__main__":
     report = make_report(events)
     if len(sys.argv) > 1 and sys.argv[1] == "--check":
         if not OUTPUT.exists() or OUTPUT.read_text(encoding="utf-8") != report:
-            raise SystemExit("scorecard is stale; regenerate it")
-        print("Scorecard matches qualitative event ledger.")
+            raise SystemExit("contribution assessment report is stale; regenerate it")
+        print("Contribution assessment matches qualitative event ledger.")
     else:
         OUTPUT.write_text(report, encoding="utf-8")
         print(f"Wrote {OUTPUT.relative_to(ROOT)}")
