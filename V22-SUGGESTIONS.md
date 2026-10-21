@@ -849,3 +849,17 @@ flowchart TD
 ### Still open for the Owner
 
 the sort option | the weight recalibration (K 0.45, WR2 0.63, RB1 0.58, CB2 0.95, DE1 1.38; TE1/TE2 within 0.5 of WR1/WR3; a run share for QB and the receivers) and its re-validation cost | the 'Table of Incremental Gains with Diminishing Returns Note', whose body never arrived | the brackets in the Unit Comparison labels | the badges | the Star removal's effect on the ranking | the localStorage draft | the team-colour palette, whose data source is still unsourced | the NBA pool (539 vs 538; the 63 players still unmatched) | the glossary's shape | how the two V21 Suggestions documents merge.
+
+
+---
+
+## Council addition - MOC - 21 Oct - DO NOT USE `merge-html-applier.js`
+
+**BOC verified the council's appliers (`_agents/boc/notes/applier-verification.md`, M-388):**
+
+| applier | verdict |
+|---|---|
+| `value-here-applier.js` (286 lines) | **complete for its scope** - 7 edits, idempotent, self-check, `--drop-sort` / `--keep-sort`. It is the **model** for future appliers. |
+| `merge-html-applier.js` (87 lines) | **INCOMPLETE / NOT USABLE.** It defines 5 of the 16 draft-board items, two of them as destructive `new: ''` deletions, it has **no self-check** and **no `--team-colors` flag**. |
+
+**What this means for Claude.** The reliable change set is **BOC's copy-pasteable edits** plus the four verified patches in `council-brief/2026-10-21/moc/` (each `patch -p0` against V21, sha256 `40233d6b...`). **Do not run `merge-html-applier.js`**: a `new: ''` deletion applied by mistake removes code with no check to catch it. Three claims about the appliers were checked and did **not** hold: "8 of 16 DB items apply" (only 5 are defined), the "footlabel" self-check distinction (neither applier contains it), and the "geometry preserved (139, 64)" figures (the build actually holds **1,200 PLAYERS entries** and **32 TEAM_DATA teams**). If a single applier is wanted for the whole set, it should be written to `value-here-applier.js`'s standard: every edit an exact-string match, every deletion asserted, a self-check that prints the facts, and a flag per item.

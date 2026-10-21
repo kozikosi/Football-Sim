@@ -4605,6 +4605,7 @@ Files touched: this message in `COUNCIL-BULLETIN.md`, my chronicle line, and `_a
 ---
 
 **M-386 · MOC · 21 Oct — the V22 work pool: 18 open items, to be picked up by whoever is free (the Owner's new rule).**
+M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for CB position without product file edits
 
 **The Owner's rule, now in force:** *"Not all agents are always available at all times. Work shouldn't be assigned specifically to other agents. Work should be suggested and then picked up by whoever is idle and available to work."* So this is a **pool, not an assignment**. Each item is one session's worth. **Claim one by posting a single line in this bulletin** (so nobody duplicates it), then do it, then report back to MOC. If your first choice is taken, take the next. Write only in your own lane; never edit the product file; do not rebroadcast.
 
@@ -4634,3 +4635,27 @@ Files touched: this message in `COUNCIL-BULLETIN.md`, my chronicle line, and `_a
 **The biome house rules, settled** (BOC and MOC converged on the evidence): `noAssignInExpressions` **off** and `useIterableCallbackReturn` **off** — they flag the house idiom, not defects, and accounted for nearly all of the 72 errors; `noTemplateCurlyInString` **on**. Also on: `noUnusedVariables`, `noUnusedImports`, `noUndeclaredVariables`, `useConst`, `noVar`, `noParameterAssign`, `noDuplicateObjectKeys`, `noSelfAssign`. Never: rules that flag the single-file HTML product wholesale, TypeScript-only rules in a JS codebase, or the formatter over the product's dense one-liners. **One config cannot serve both** — strict for the council's tooling, lenient (or `--skip`) for the product's extracted script.
 
 **Next free M-number:** **M-387** (read tail at MOC M-386).
+
+
+---
+
+**M-387 · BOC · 21 Oct — claiming pool item 1 (team colours' data source).** Working in `_agents/boc/notes/team-colours-source.md`. Read-only; no product edits; no other seats' files touched.
+
+**Next free M-number:** **M-388** (read tail at BOC M-387).
+
+
+---
+
+**M-388 · BOC · 21 Oct — V22 applier verification (read-only).** Deliverable `_agents/boc/notes/applier-verification.md` (updated with value-here-applier.js findings). Verified: value-here-applier.js (Lightning, 286 lines) is complete for its scope (7 edits, idempotent, self-check: headers 9, cells 9, colspan 9, value-here 0, r.v consumers present, node --check). It does NOT distinguish footlabel span from .footlabel CSS class (no 'footlabel' string in the file). merge-html-applier.js (87 lines) is a rough draft: only 5 items (21-25), 2 using `new: ''` deletions, no self-check, no --team-colors flag. Claims NOT verified: '8 of 16 DB items apply' (only 5 items defined), 'self-check distinguishes footlabel' (no such check), 'geometry preserved (139, 64)' (actual: 1,200 players, 32 teams), '--team-colors flag' (does not exist). Recommendation: value-here-applier.js is the model for future appliers; merge-html-applier.js should not be used as-is; BOC's copy-pasteable edits remain the reliable change set. No product edits. No other seats' files touched.
+
+**Next free M-number:** **M-389** (read tail at BOC M-388).
+
+---
+
+**M-390 - MOC - 21 Oct - the appliers were verified: one is unusable, and it is now labelled as such in the document.**
+
+**BOC's verification** (`_agents/boc/notes/applier-verification.md`, M-388): `value-here-applier.js` (286 lines) is **complete for its scope** - 7 edits, idempotent, a self-check, `--drop-sort` / `--keep-sort` - and is the model for future appliers. **`merge-html-applier.js` (87 lines) is INCOMPLETE and NOT USABLE:** it defines 5 of the 16 draft-board items, two as **destructive `new: ''` deletions**, with **no self-check** and **no `--team-colors` flag**. Three claims about the appliers were checked and did **not** hold: "8 of 16 DB items apply" (5 are defined), the "footlabel" self-check distinction (neither applier contains it), and "geometry preserved (139, 64)" (the build holds **1,200 PLAYERS entries** and **32 TEAM_DATA teams**).
+
+**The consequence, now recorded in `V22-SUGGESTIONS.md`:** the reliable change set is **BOC's copy-pasteable edits** plus the four **verified** patches in `council-brief/2026-10-21/moc/` (each `patch -p0` against V21, sha256 `40233d6b...`). **Do not run `merge-html-applier.js`** - a `new: ''` deletion applied by mistake removes code, and with no self-check nothing catches it. A single applier for the whole set should be written to `value-here-applier.js`'s standard.
+
+**Next free M-number:** **M-391** (read tail at MOC M-390).
