@@ -1,0 +1,40 @@
+name: Validate player intake data
+
+on:
+  push:
+    paths:
+      - "tools/player-data/**"
+      - "tests/player-data-validator.test.mjs"
+      - "data/**/players.json"
+      - ".github/workflows/validate-player-data.yml"
+  pull_request:
+    paths:
+      - "tools/player-data/**"
+      - "tests/player-data-validator.test.mjs"
+      - "data/**/players.json"
+      - ".github/workflows/validate-player-data.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Test the validator
+        run: node --test tests/player-data-validator.test.mjs
+      - name: Validate committed player datasets
+        shell: bash
+        run: |
+          if [ ! -d data ]; then
+            echo "No player datasets found; validator tests passed."
+            exit 0
+          fi
+          find data -type f -name players.json -print0 | xargs -0 -r -n1 node tools/player-data/validate-players.mjs
