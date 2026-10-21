@@ -1,0 +1,46 @@
+MOC — loss-event forensics receipts — generated 2026-10-20T22:45:40Z
+
+### 1. HEAD + reflog of the root repo (the destructive operations)
+HEAD = ff8c05ae0ef89e9030faa991a942d1c611f891bd Add merged candidate: v20 base + donor fixes (option a, v20 markup)
+--- reflog (all HEAD moves), oldest last:
+ff8c05a HEAD@{2026-10-20 12:13:22 -1000}: checkout: moving from gpt/openchamber-e2e-suite to merge/v20-donor
+d1f7f27 HEAD@{2026-10-20 12:13:04 -1000}: checkout: moving from main to gpt/openchamber-e2e-suite
+bb4b025 HEAD@{2026-10-20 12:13:04 -1000}: reset: moving to HEAD
+bb4b025 HEAD@{2026-10-20 12:12:54 -1000}: reset: moving to HEAD
+bb4b025 HEAD@{2026-10-20 02:50:32 -1000}: commit: Council round 4: reviews, receipts, and shared-doc rebuild
+268fd56 HEAD@{2026-10-20 01:42:26 -1000}: reset: moving to HEAD~1
+ea0b7e0 HEAD@{2026-10-20 01:41:03 -1000}: commit: council-intake v2 (on 474eb52, fast-forward): R1-R4 dossier payload, CONTRACT v2, sync tool, bulletin recovery bridge with GLM M-25/M-26 re-filings, INTAKE-NOTE v3
+268fd56 HEAD@{2026-10-20 01:32:20 -1000}: checkout: moving from council-intake to main
+474eb52 HEAD@{2026-10-20 01:31:10 -1000}: commit (amend): Initial commit: NFL Draft Simulator project (council docs, v20 reference build, agents, tests)
+268fd56 HEAD@{2026-10-20 01:30:55 -1000}: checkout: moving from main to council-intake
+268fd56 HEAD@{2026-10-20 00:50:44 -1000}: commit (initial): Initial commit: NFL Draft Simulator project (council docs, v20 reference build, agents, tests)
+
+### 2. stash reflog (the two stashes, with timestamps)
+4a2c7a5 stash@{2026-10-20 12:13:04 -1000}: WIP on main: bb4b025 Council round 4: reviews, receipts, and shared-doc rebuild
+7dad5b6 stash@{2026-10-20 12:12:54 -1000}: WIP on main: bb4b025 Council round 4: reviews, receipts, and shared-doc rebuild
+
+### 3. The 12:12:54–12:13:22 window in file mtimes
+12:43:14  COUNCIL-BULLETIN.md
+12:43:21  CHRONICLE.md
+12:16:12  SUBMISSIONS.md
+12:19:19  QUESTIONS-FOR-THE-ARCHITECT.md
+12:15:26  .git/index
+
+### 4. Shared-doc state per git object (bytes + message headers + last M)
+stash@{1}      bulletin=291971  bytes  headers=87   last=**M-80  chronicle=171 bytes
+stash@{1}^2    bulletin=217682  bytes  headers=60   last=**M-54  chronicle=61457 bytes
+bb4b025        bulletin=217682  bytes  headers=60   last=**M-54  chronicle=61457 bytes
+HEAD           bulletin=75880   bytes  headers=30   last=**M-26  chronicle=26647 bytes
+WORKTREE       bulletin=137957  bytes  headers=44   last=**M-82  chronicle=88845 bytes
+
+### 5. Recovery set: M-numbers present in stash@{1}, absent from the live board
+recoverable count: 47 distinct M-numbers -> 32 33 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 
+live-only count:   4 -> 28 29 81 82 
+
+### 6. The CHRONICLE inside stash@{1} was already truncated to 1 line (171 B) before the stash
+     171
+2026-10-20 GLM · Added questions block to QUESTIONS-FOR-THE-ARCHITECT.md; evidence: sha256 of v20 build = 31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819
+### 7. Build hashes (arrival evidence + candidate)
+31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819  NFL Draft Simulator v20 Claude.html
+77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f  NFL Draft Simulator.html
+40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd  NFL Draft Simulator merged.html
