@@ -771,6 +771,58 @@ grep -n '32 \* TOTAL_ROUNDS' "NFL Draft Simulator merged.html"   # expect 2 site
 ```
 Then, with the seeded `Math.random` above, run a full 28-round draft and assert that the final pick index is **896**, that the resume button is still present at pick 833, and that no "starters are done" panel appears before 896.
 
+Then, with the seeded `Math.random` above, run a full 28-round draft and assert that the final pick index is **896**, that the resume button is still present at pick 833, and that no "starters are done" panel appears before 896.
+
+---
+
+### P0-29: Expanded Team Color Theming — Full Simulation Integration
+
+**Owner feedback (22 Oct):** Extend team-color theming throughout the entire simulation, not just the draft board header.
+
+**Core concept:** The user's team colors should permeate the entire experience. When facing an opponent, their team colors should appear throughout the matchup UI.
+
+**Specific implementations:**
+
+**Draft board header:** The blue border around "Drafting as Kansas City Chiefs — you hold the #4 overall pick (Round 1)" becomes the user's team colors (KC: red/white/yellow border; Vikings: purple/gold).
+
+**Matchup panels:** When facing an opponent, their team colors appear on:
+- Panel borders around their players
+- Team name labels (e.g., "(Vikings)" rendered in purple)
+- Star players get a team-color tint on their card/name
+- Game ball winner gets a team-colored star
+- Panel backgrounds subtly tinted with opponent's primary color
+
+**Game preview page:** 
+- Team headers in their colors
+- "Under center for the Chiefs is..." text uses team colors for team names
+- Opponent panels tinted with their team colors
+
+**Game review:**
+- Team-colored score boxes
+- Player cards tinted with their team colors
+- Turnover/score lines use team colors
+
+**Season review / playoffs:**
+- Conference charts use team colors for bars
+- Playoff bracket lines in team colors
+- Award cards use team colors for winners
+
+**Draft board:**
+- Already has team colors on position cards (P11-5) — ensure consistency
+- Draft header border uses user's team colors
+
+**Technical implementation:**
+- CSS variables: `--team-primary`, `--team-secondary`, `--team-tertiary` (already defined in P11-5)
+- Opponent colors: `--opp-primary`, `--opp-secondary`, `--opp-tertiary` set dynamically per matchup
+- Apply via JS on matchup load: `document.documentElement.style.setProperty('--opp-primary', colors.primary)`
+- Reuse existing 32-team color map (P11-5)
+
+**WHY:** The Owner wants the team identity to permeate the entire experience — "expanded out toward the whole draft simulation."
+
+**SAFE ALONE?** Yes — CSS/JS additions only, no math or protected constants.
+
+**HOW TO CHECK:** Visual verification at 390px and desktop; verify opponent colors appear correctly in matchup screens.
+
 ---
 
 ## P1 — Architect decisions
@@ -1752,7 +1804,7 @@ OLB2
 
 ---
 
-### P0-29: Draft Board UI Improvements (continued)
+### P0-30: Draft Board UI Improvements (continued)
 
 ### **Visual Changes:**
 - "You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)" → **bigger text size**
@@ -4645,3 +4697,270 @@ block of an opponent's players, `.gamestar` for a star that belongs to a side.
 takes the season screens or the board rows, use `teamTag()` / `.opp-panel` / `.gamestar` from P13-2
 rather than inventing a second palette. **And say in the bulletin which surface you took**, so the
 next seat extends the same system instead of starting another one.
+
+---
+
+# P12 — Team-color theming: deep dive (Beam's suggestions, 22 Oct)
+
+### P12-1 · [NEW] User's team colors permeate the entire UI
+
+When the user selects a team, every visual element should know which team it belongs to. The user's team colors should appear on:
+
+| Element | Current | Team-colored version |
+|---------|---------|---------------------|
+| Draft board header ("Drafting as KC Chiefs") | Blue border (#4f8cff) | Red border (#E31837) with yellow accent |
+| Tab bar active indicator | Blue (#4f8cff) | Team primary color |
+| Position cards left border | None | Team primary color (2px solid) |
+| Badge strip accent | Blue | Team primary color |
+| "Drafting as [Team]" box | Blue border | Team primary border + team secondary background |
+| Team comparison Team A header | Blue | Team primary |
+| Roster strip (left edge) | None | Team primary (3px solid) |
+| Weight sliders | Blue accent | Team primary accent |
+| Save My Weights button | Blue when active | Team primary when active |
+| Championship banner | Gold | Team primary + gold |
+| Conference chart bars | Blue | Team primary |
+| Season review banner | Gold | Team primary + gold |
+| Playoff bracket (user's team) | Neutral | Team primary |
+| Awards (user's players) | Gold | Team primary + gold |
+| Game ball winner (if user's player) | Gold | Team primary + gold |
+
+### P12-2 · [NEW] Opponent team colors in matchups
+
+When facing an opponent, their colors appear on their elements:
+
+| Element | Current | Opponent-colored version |
+|---------|---------|---------------------|
+| Opponent's player cards in preview | Same as user's | Opponent's primary color border |
+| Opponent's star players | Same as user's | Opponent's primary color tint |
+| Game ball winner (if opponent) | Gold | Opponent's primary color |
+| Opponent's panel headers | Same as user's | Opponent's primary |
+| Opponent's badges | Same as user's | Opponent's primary |
+| Matchup chart bars | Blue/red | User's primary vs opponent's primary |
+| Playoff bracket (opponent's team) | Neutral | Opponent's primary |
+| Preview text "run defense (#1)" | Neutral | User's team color for user's stats, opponent's color for theirs |
+
+### P12-3 · [NEW] Team color palette (32 teams)
+
+Each team gets a 3-color palette: primary, secondary, accent (third color).
+
+| Team | Primary | Secondary | Accent (3rd) |
+|------|---------|-----------|--------------|
+| Arizona Cardinals | #97233F | #000000 | #FFB612 |
+| Atlanta Falcons | #A71930 | #000000 | #A5ACAF |
+| Baltimore Ravens | #241773 | #000000 | #9E7C0C |
+| Buffalo Bills | #00338D | #C60C30 | #FFFFFF |
+| Carolina Panthers | #0085CA | #101820 | #BFC0BF |
+| Chicago Bears | #0B162A | #C83803 | #FFFFFF |
+| Cincinnati Bengals | #FB4F14 | #000000 | #FFFFFF |
+| Cleveland Browns | #311D00 | #FF3C00 | #FFFFFF |
+| Dallas Cowboys | #003594 | #869397 | #FFFFFF |
+| Denver Broncos | #FB4F14 | #002244 | #FFFFFF |
+| Detroit Lions | #0076B6 | #B0B7BC | #000000 |
+| Green Bay Packers | #203731 | #FFB612 | #FFFFFF |
+| Houston Texans | #03202F | #A71930 | #FFFFFF |
+| Indianapolis Colts | #002C5F | #FFFFFF | #A2AAAD |
+| Jacksonville Jaguars | #006778 | #D7A22A | #000000 |
+| Kansas City Chiefs | #E31837 | #FFB612 | #FFFFFF |
+| Las Vegas Raiders | #000000 | #A5ACAF | #FFFFFF |
+| Los Angeles Chargers | #0080C6 | #FFC20E | #FFFFFF |
+| Los Angeles Rams | #003594 | #FFA300 | #FFFFFF |
+| Miami Dolphins | #008E97 | #F58220 | #FFFFFF |
+| Minnesota Vikings | #4F2683 | #FFC62F | #FFFFFF |
+| New England Patriots | #002244 | #C60C30 | #B0B7BC |
+| New Orleans Saints | #D3BC8D | #101820 | #FFFFFF |
+| New York Giants | #0B2265 | #A71930 | #A5ACAF |
+| New York Jets | #125740 | #FFFFFF | #000000 |
+| Philadelphia Eagles | #004C54 | #A5ACAF | #000000 |
+| Pittsburgh Steelers | #FFB612 | #101820 | #FFFFFF |
+| San Francisco 49ers | #AA0000 | #B3995D | #FFFFFF |
+| Seattle Seahawks | #002244 | #69BE28 | #A5ACAF |
+| Tampa Bay Buccaneers | #D50A0A | #34302B | #FF7900 |
+| Tennessee Titans | #0C2340 | #4B92DB | #C8102E |
+| Washington Commanders | #5A1414 | #FFB612 | #FFFFFF |
+
+### P12-4 · [NEW] CSS variables for team colors
+
+```css
+:root {
+  --team-primary: #4f8cff;   /* default (blue) */
+  --team-secondary: #8b92a8; /* default (gray) */
+  --team-accent: #ffd700;    /* default (gold) */
+  --opp-primary: #8b92a8;    /* default (gray) */
+  --opp-secondary: #4f8cff;  /* default (blue) */
+}
+```
+
+When a team is selected:
+```js
+function setTeamColors(teamName) {
+  const palette = TEAM_COLORS[teamName];
+  document.documentElement.style.setProperty('--team-primary', palette.primary);
+  document.documentElement.style.setProperty('--team-secondary', palette.secondary);
+  document.documentElement.style.setProperty('--team-accent', palette.accent);
+}
+```
+
+### P12-5 · [NEW] Team-colored elements (CSS)
+
+```css
+/* Draft board */
+.draft-header { border-color: var(--team-primary); }
+.tab.active { border-bottom-color: var(--team-primary); }
+.position-card { border-left: 3px solid var(--team-primary); }
+.badge-strip { accent-color: var(--team-primary); }
+
+/* Team comparison */
+.team-a-header { background: var(--team-primary); color: #fff; }
+.team-b-header { background: var(--opp-primary); color: #fff; }
+
+/* Matchup charts */
+.matchup-bar-user { background: var(--team-primary); }
+.matchup-bar-opp { background: var(--opp-primary); }
+
+/* Playoff bracket */
+.bracket-user { border-color: var(--team-primary); }
+.bracket-opp { border-color: var(--opp-primary); }
+
+/* Awards */
+.award-winner-user { border-left: 3px solid var(--team-primary); }
+.award-winner-opp { border-left: 3px solid var(--opp-primary); }
+
+/* Game ball */
+.game-ball-user { color: var(--team-primary); }
+.game-ball-opp { color: var(--opp-primary); }
+
+/* Championship banner */
+.championship-banner { background: linear-gradient(135deg, var(--team-primary), var(--team-accent)); }
+```
+
+### P12-6 · [NEW] Mermaid diagram: team-color theming flow
+
+```mermaid
+flowchart TD
+    A[User selects team] --> B[Load team color palette]
+    B --> C[Set CSS variables on :root]
+    C --> D[--team-primary]
+    C --> E[--team-secondary]
+    C --> F[--team-accent]
+    D --> G[Tab bar active indicator]
+    D --> H[Drafting as header box]
+    D --> I[Position card left border]
+    E --> J[Badge strip accent]
+    E --> K[Team comparison headers]
+    F --> L[Special teams color]
+    D --> M[Matchup chart bars]
+    E --> N[Opponent panel headers]
+    F --> O[Championship banner]
+    style A fill:#4f8cff,color:#fff
+    style B fill:#4f8cff,color:#fff
+    style C fill:#4f8cff,color:#fff
+```
+
+### P12-7 · [NEW] Opponent team colors in matchups
+
+When displaying opponent elements, use a separate set of variables:
+```css
+:root {
+  --opp-primary: #8b92a8;   /* default (gray) */
+  --opp-secondary: #4f8cff; /* default (blue) */
+}
+```
+
+Apply opponent colors to:
+- Opponent's player cards in preview (opponent's primary border)
+- Opponent's star players (opponent's primary tint)
+- Game ball winner (if opponent: opponent's primary color)
+- Opponent's panel headers (opponent's primary)
+- Opponent's badges (opponent's primary)
+- Matchup chart bars (user's primary vs opponent's primary)
+- Playoff bracket (user's color for their team, opponent's color for theirs)
+
+### P12-8 · [NEW] Additional aesthetics ideas
+
+Beyond the team-color theming, here are more beauty/aesthetics improvements:
+
+1. **Gradient header** — `linear-gradient(135deg, var(--team-primary), var(--team-accent))` on the draft board header
+2. **Glass-morphism on modals** — `backdrop-filter: blur(8px)` + semi-transparent background on all modals and dropdowns
+3. **Better scrollbar styling** — thin (6px), rounded, accent-colored scrollbar that matches team colors
+4. **Zebra stripes on tables** — alternating row backgrounds at 2% opacity for better readability
+5. **Position group color-coding** — QB=blue, RB=green, WR=orange, TE=purple, OL=gray, DL=red, LB=teal, CB/S=yellow, K/P=brown
+6. **Glow on user's pick row** — subtle `box-shadow: 0 0 8px var(--team-primary)` on the row where the user is about to pick
+7. **Dimmed "gone" players** — `opacity: 0.4` + `text-decoration: line-through` on already-drafted players
+8. **Smooth tab transitions** — 150ms fade between tabs instead of instant switch
+9. **Number counter animation** — when a weight changes, the Wins number rolls up/down over 300ms
+10. **Pulse on "Save My Weights"** — when the button becomes clickable, a subtle pulse animation draws attention
+11. **Confetti on championship** — CSS-only, 10-15 particles, 1s duration, triggered on championship/Super Bowl
+12. **Shimmer on gold elements** — gold gradient with shimmer animation on championship banner and award winners
+13. **Opponent team colors in matchups** — opponent's primary color on their player cards, panel headers, badges
+14. **Playoff bracket team colors** — user's team in their color, opponent's team in theirs, Super Bowl in gold
+15. **Award winners** — gold border on user's players, opponent's primary for others
+
+### P12-9 · [NEW] Figma integration note
+**Status:** Not yet available. The Owner mentioned "You have access to Figma now as well I believe but I might need to do more to set that up." To enable Figma access, the Owner would need to configure a Figma MCP server in `.kilo/kilo.jsonc`. Until then, aesthetics suggestions are conceptual only — no Figma designs exist yet.
+
+**Biome:** Available via npx (v2.6.2). Used to format harness draft scripts (phone.js, funcdiff.js, pw4.js, validate.js). No fixes were applied — the scripts were already clean.
+
+**Mermaid:** Available in GitHub markdown (GitHub renders Mermaid in markdown). The `mermaid-cli` (`mmdc`) is not installed locally, so I cannot generate SVG/PNG exports. If the Owner wants exported diagrams, they can install `@mermaid-js/mermaid-cli` via npm.
+
+---
+
+## P14 · The team-colour canvas — twenty surfaces, each with one rule, each takeable (MiniMax, 22 Oct 04:35)
+
+*P13 built the frame and the hooks and named the matchup surfaces. This is the **expanded canvas**: a
+surface-by-surface table, so any seat can take one and extend the same system without asking anyone.
+Each row is a rule, not a task — implement it, screenshot it, post one line.*
+
+| # | Surface | The rule | The mechanism |
+|---|---|---|---|
+| S1 | The drafting-as frame | the team's border, a tri-colour stripe, the team-coloured name | **built** — P13-1 |
+| S2 | The board's rows | each row's left edge in **that player's NFL team colour**; your own picks in **your** colour | `[data-team]` on the row, or inline `--t1/--t2/--t3` |
+| S3 | The position cards | the card's edge matches its row's edge | same |
+| S4 | The depth chart and your roster | your team's colour on the left edge | `.teamframe` |
+| S5 | The preview's first paragraph | "(Chiefs)" / "(Vikings)" in the team's colour | `teamTag()` |
+| S6 | The preview's unit lines | each unit line tinted by the side that owns it | `.opp-panel` |
+| S7 | The key players and the stars | the player's row in their team's colour; the star glyph in the **winner's** colour | `.opp-panel` + `.gamestar` |
+| S8 | The game-ball line | the star in the winner's colour, the name in the player's team colour | `.gamestar` |
+| S9 | The quarter-by-quarter scoreboard | each team's row in their colour | `.opp-panel` |
+| S10 | The turnover line | each team name in their colour inside "Turnovers: Chiefs 1 - 0 Vikings" | inline `teamTag()` |
+| S11 | The matchup header and the playoff preview | **a "vs" card split diagonally** in the two teams' colours, names in their own | a new `.vscard` |
+| S12 | The standings | your row highlighted in your colour; the two conferences in two tints of the app's neutral | `.opp-panel` |
+| S13 | The schedule | your week's games in your colour; the opponent's row in theirs | as S2 |
+| S14 | The awards tables | **your players in gold**, everyone else in their NFL team colour | `.gamestar` + the gold token |
+| S15 | The 100-season report | your team's win distribution highlighted in your colour | chart colour |
+| S16 | The play-by-play and the recaps | every team name in its own colour wherever it appears | inline `teamTag()` |
+| S17 | The draft recap (your picks vs the board) | your picks in your colour, the board's best available in the board's | as S2 |
+| S18 | The champion banner | gold, with the champion's colour in the trophy's ribbon | `.gamestar` |
+| S19 | The "Sim to end" results | your row in your colour | as S2 |
+| S20 | The season's team card (yours) | your colour on the card's edge | `.teamframe` |
+
+### More colour ideas, beyond the surfaces
+- **The team abbreviation becomes a chip** — "KC" as a red chip, "MIN" as a purple one — so the
+  colour travels with the abbreviation everywhere it appears.
+- **Win and loss pills in the winner's colour** in the schedule, the standings and the 100-season table.
+- **A diagonal pinstripe in the conference's colour** behind the conference chart — a texture, not a
+  fill, so the numbers stay readable.
+- **The trophy's ribbon in the champion's colour**, gold everywhere else.
+- **A "versus" ribbon** in the two teams' colours, meeting in the middle, for the preview and the
+  playoff card.
+- **A last-play highlight** in the winning team's colour, so the key moment is found without reading.
+- **The season's own card** (your team, your record, your colour) as the one saturated block on a
+  screen that is otherwise greys.
+
+### The rules, restated for whoever takes a surface
+1. **Colour identifies a team; it never encodes value.** Never tint by performance.
+2. **Two saturated colours per screen is the limit** — yours in the accent role, the opponent's in
+   the secondary role, the rest in the app's greys. A rainbow is not a stadium.
+3. **A team colour is a chip or an edge, never a background behind body text.**
+4. **Colour is never the only carrier of meaning** — the team name is always written too, or beside
+   it, so the screen still reads for a colour-blind player or on a grey print.
+5. **The accent colour is the risky one** — some teams' thirds are muddy (browns, reds); a neutral
+   fallback beats a muddy accent.
+6. **Every palette needs a dark-mode check** before it ships, and a contrast check on the chip.
+7. **One map** — `TEAM_COLORS` is the only palette in the project, and it is already emitted as CSS
+   variables so any surface can use it.
+
+### How to take one
+Pick a row, implement it with `teamTag()` / `.opp-panel` / `.gamestar` / the `--t1/--t2/--t3`
+variables, screenshot it, and post one line in the bulletin: "Took S9 (the quarter scoreboard) —
+each team's row in their colour, draft simulator panel." **No coordination needed, and no need to ask
+whether a surface is in scope: if a row is in this table, it is in scope.**
