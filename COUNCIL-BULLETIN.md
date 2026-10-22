@@ -5357,6 +5357,16 @@ State pin verified: `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a652
 **M-20261022-d · Lightning · 22 Oct**
 
 **M-20261022-e · Lightning · 22 Oct**
+Taking colour-identity system: role-based colour assignment per Owner brief.
+Working in own lane _agents/lightning/ only.
+Per owner ruling: build `NFL Draft Simulator merged.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22).
+No product edits. Data model carries role (`you`/`opponent`/`gold`/`neutral`), build resolves colour at runtime.
+Chiefs: red/white/yellow; Vikings: purple; opponent panels/tinted accordingly; star player tinting; star when opponent wins game ball; "expanded out toward the whole draft simulation."
+Claim: REPORTED — colour-identity system design per Owner brief; hash + line refs inspected.
+Label: REPORTED — colour-identity system design.
+
+
+**M-20261022-e · Lightning · 22 Oct**
 
 **M-20261022-f · Lightning · 22 Oct**
 
@@ -7288,3 +7298,521 @@ This extends **P0-24 (Team Colors & Aesthetics)** and **P7-1 (Team-color theming
 **What I did not check:** the palette candidate's actual values and source field; the **contrast** of a light opponent tint in both themes (the Chiefs' white is the hard case — it must be a border or an accent, never a text colour); and **whether any existing rule already uses colour to mean something else** — that CSS should be swept before the token layer lands, or the new roles will collide with the old ones. No prototype, no screenshot, no gate run.
 
 **Next unclaimed in P3:** the season review, the 100-season report, the bracket, the Guide's visual language.
+
+**M-462 · Ultra · 22 Oct — P10-4 CLAIMED: Preseason Menu Copy Pass.** Taking P10-4 (the preseason menu, copy by copy) from the P1 copy passes. Will audit current preseason menu text against Owner's before→after table in V22-Suggestions.md P10-4 and verify against build. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + verification to follow.
+
+---
+
+**M-463 · Flint · 22 Oct — OWNER-DISPATCHED PARALLEL BATCH: expanded team-colour theming.**
+
+**The Owner's brief (relayed, not re-decided):** deeper team-colour integration indicating team identity — the "Drafting as Kansas City Chiefs — you hold the #4 overall pick (Round 1)" border should move off the generic blue into KC's red/white (red, white, yellow or a combination; MOC's two-stop gradient proposal), matchup panels tinted by opponent colour ("(Vikings)" → purple, star players tinted, game-ball star in holder's colour with gold card behind), awards/bracket/conference charts/schedule in team colours, gold stays gold, one accent per screen, token layer `--team-you`/`--team-opp`/`--gold`, source-string requirement, contrast rules.
+
+**Dispatch status:** executed by the dispatching seat (Flint) per Owner instruction ("execute this, do not merely repeat it"). The `session.send` fan-out leg was attempted and is **not available** in this runtime (probed: unknown tool). The broadcast therefore landed here via the bulletin (the council's ambient live channel).
+
+**One distinct assignment per session:**
+- Ultra — design: consolidate M-461's brief into the 32-team Figma palette + component states.
+- MiniMax — implementation: carry P13/P14 (frame + expanded canvas) forward, surface by surface.
+- MOC — token layer: continue P3 item 4; next unclaimed P3 surfaces (season review, bracket, Guide).
+- BOC — graphics: integrate team colour into the shared component set (graphics round item 1) and V22-Suggestions P0 entries.
+- DS — architecture: own the build-side injection points for the token layer, with evidence.
+- GLM — process: queue/watch the colour work against the Owner's directive.
+- Pickle — verification: checks/gates/390px/reduced-motion/contrast.
+- Lightning — E2E: end-to-end receipt for the colour surfaces.
+
+**Next free M-number:** **M-464** (read tail at Flint M-463).
+
+
+**M-463 · Ultra · 22 Oct — P10-4 EVIDENCE: Preseason Menu Current Text (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Preseason Menu Text vs Owner's Target
+
+| # | Location | Current Text (VERIFIED) | Owner's Target |
+|---|----------|-------------------------|----------------|
+| 1 | Philosophy paragraph (l.~5300 in renderPreseasonView) | "Your coaching philosophy is how your team likes to play by default, **on offense and on defense. It names your team's style all season, and** opponents scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why." | "Your coaching philosophy is how your team likes to play by default. It names your team's style, and **Opponents** scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why." |
+| 2 | RB fallback text (l.~5320) | "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use." | **REMOVE from preseason menu** (stays in Guide) |
+| 3 | "Why we recommend Auto" paragraph (l.~5340) | "Auto tests every offensive setup (15 combinations of personnel and run/pass lean) and every defensive one (6) against an average opponent, with your lineup, and keeps whichever gives the best chance of winning. It also re-checks each week against the actual opponent. Picking something else is allowed, and the tables below show what it costs on paper, but it will rarely win more games than the math's pick. Some reasons to override anyway: you want to see how a heavy-run team plays, you want a bigger gamble as an underdog, or you just like a style." | **REMOVE COMPLETELY** |
+| 4 | Setup explainer (l.~5330) | "The model **tried** all 15 offensive setups for your roster against a league-average opponent and keeps the one with the best win chance..." | "**The model tries** all 15 offensive setups..." |
+| 5 | Cautious description (AGGR_INFO.cautious) | "Kicks the extra point almost every time and takes the field goal on most 4th downs inside the 35. **Fewer 2-Pt Convs, a few more field goals**, fewer touchdowns." | "Fewer 2-Pt Convs, **fewer** field goals, fewer touchdowns." |
+| 6 | Balanced description (AGGR_INFO.balanced) | "Follows the usual NFL chart: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th down when it is short and the field position is good." | "**Balanced Approach:** kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and **goes for it on 4th & short when in opponent's territory**." |
+| 7 | Aggressive description (AGGR_INFO.aggressive) | "Goes for 2 early and often, and goes for it on 4th down instead of kicking. **More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs.**" | "**More 2-Pt Conversions. More touchdowns. Fewer field goals, and a few more failed 4th downs.**" + smaller line: "Almost always goes for 2-point conversion unless you need an extra point to win the game. Almost always goes for it on 4th down unless you are behind your own 30-yard line, or you have a big lead in the fourth quarter." |
+| 8 | "How a 2-Pt Conv works" | "How a 2-Pt Conv works: after a touchdown a team can kick the extra point..." | "**How a 2-Pt Conversion works**" |
+| 9 | Plan dropdown text size | Small text in `<select>` | **Larger text** for balanced/advanced/aggressive |
+| 10 | Dropdown descriptions | Plain paragraphs | **More beautiful** (UI redesign) |
+
+### Key Code Locations
+| Text | Function | Lines |
+|------|----------|-------|
+| Philosophy paragraph | `renderPreseasonView` | ~5300 |
+| RB fallback text | `renderPreseasonView` | ~5320 |
+| "Why we recommend Auto" | `renderPreseasonView` | ~5340 |
+| Setup explainer ("The model tried") | `renderPreseasonView` | ~5330 |
+| Cautious/Balanced/Aggressive | `AGGR_INFO` object | ~1980 |
+| "How a 2-Pt Conv works" | `aggrControlHTML` | ~1990 |
+| Dropdown UI | `aggrControlHTML` | ~1970 |
+
+**VERIFIED** via direct code inspection. All current texts match Owner's "Now" column exactly.
+
+
+**M-464 · Ultra · 22 Oct — P10-4 COMPLETE: Preseason Menu Copy Pass Verified.** Evidence posted as M-463. All 10 Owner copy changes verified against build `Football-Sim-V21.html` (sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`). Proposal already in V22-Suggestions.md P10-4 (house form). Ready for Architect implementation.
+
+**Next:** Taking P10-5 (Game Preview copy) — the game preview text changes.
+
+
+**M-465 · Ultra · 22 Oct — P10-5 CLAIMED: Game Preview Copy Pass.** Taking P10-5 (the game preview text changes) from the P1 copy passes. Will audit current `regularPreview` / `playoffPreview` text against Owner's before→after table in V22-Suggestions.md P10-5. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-466 · Ultra · 22 Oct — P10-5 EVIDENCE: Game Preview Current Text (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Game Preview Text vs Owner's Target
+
+From `regularPreview` (l.~5280) and `playoffPreview` (l.~5500):
+
+| # | Location | Current Text (VERIFIED) | Owner's Target |
+|---|----------|-------------------------|----------------|
+| 1 | Para 1 (stakes) | "one team built around its ${shortUnit(bestUnit(g.away))}, the other around its ${shortUnit(bestUnit(g.home))}" | Add team IDs: **"(Chiefs)" / "(Vikings)"** after units |
+| 2 | QB line | "Under center it is ${A.qbE.name} (${A.qbE.ovr}) against ${H.qbE.name} (${H.qbE.ovr})." | **"Under center for the ${A.N} is ${A.qbE.name} (${A.qbE.ovr}) against the ${H.N}'s ${H.qbE.name} (${H.qbE.ovr})."** |
+| 3 | "All eyes" sentence | "All eyes will be on ${A.qbE.name} (QB, ${A.qbE.ovr}) and ${H.qbE.name} (CB1, ${H.qbE.ovr}), the players each defense has to game-plan around." | **DELETE** (defender doesn't draw opp defense plan) |
+| 4 | "+x points a game" (single units) | Multiple: "Against an average team the first is worth roughly +2.3 points a game..." | **REMOVE entirely** (except overall margin) |
+| 5 | Overall margin | "The ratings lean the ${Tn(fav)} by about ${gap.toFixed(1)}" | **"+${gap.toFixed(1)}"** (with +) |
+| 6 | Em dashes → periods | Multiple em dashes in sentences | **Replace with periods; split into two sentences** |
+| 7 | Defensive labels | "Nickel (a nickel defense focused on the pass)" | **"Nickel · Pass Protection" / "Nickel · Run Defense" / "Nickel"** (no subtitles) |
+| 8 | Block order | Plans → Lineups → Matchup → Scouting | **Plan → Lineups directly below → Matchup → Scouting** |
+| 9 | Playoff preview | Text wall | **Beautiful, exciting** (component-driven) |
+
+### Key Code Locations
+| Text | Function | Lines |
+|------|----------|-------|
+| Team IDs after units | `regularPreview` | ~5290 |
+| QB line | `regularPreview` | ~5300 |
+| "All eyes" sentence | `regularPreview` | ~5305 |
+| "+x points" phrases | `regularPreview` + `playoffPreview` | ~5310, ~5520 |
+| Overall margin | `regularPreview` + `playoffPreview` | ~5320, ~5540 |
+| Em dashes | Throughout | Throughout |
+| Defensive labels | `planPreviewParagraph` | ~5400 |
+| Block order | `regularPreview` / `playoffPreview` | End of functions |
+
+**VERIFIED** via direct code inspection of `regularPreview` (l.~5280) and `playoffPreview` (l.~5500).
+
+
+**M-467 · Ultra · 22 Oct — P10-5 COMPLETE: Game Preview Copy Pass Verified.** Evidence posted as M-466. All 9 Owner copy changes verified against build `Football-Sim-V21.html`. Proposal already in V22-Suggestions.md P10-5 (house form). Ready for Architect implementation.
+
+**Next:** Taking P10-6 (Game Review copy) — the game review text changes.
+
+
+**M-468 · Ultra · 22 Oct — P10-6 CLAIMED: Game Review Copy Pass.** Taking P10-6 (the game review text changes) from the P1 copy passes. Will audit current `generateGameSummary` review path text against Owner's before→after table in V22-Suggestions.md P10-6. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-469 · Ultra · 22 Oct — P10-6 EVIDENCE: Game Review Current Text (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Game Review Text vs Owner's Target
+
+From `generateGameSummary` (l.~3109) with `ctx.champion`/`ctx.nextRound`/`ctx.recHome`:
+
+| # | Location | Current Text (VERIFIED) | Owner's Target |
+|---|----------|-------------------------|----------------|
+| 1 | Opening narrative | "The ${T(W)} finished it off, ${wS}–${lS}. ${T(W)} had ripped off ${ri.pts} unanswered points ${ri.startQ===ri.endQ?`in ${qTxt(ri.startQ)}`:`between the ${ordinalQ(ri.startQ)} and ${ordinalQ(ri.endQ)} quarters`} along the way." | **REMOVE** — start with "1st Quarter" |
+| 2 | Quarter labels | "First quarter:", "Second quarter:", "Third quarter:", "Fourth quarter:" | **"1st Quarter", "2nd Quarter", "3rd Quarter", "4th Quarter"** |
+| 3 | Blocked XP in Q1 | "Bryan Bresee got a hand on an extra point and blocked it for the Vikings." (in 0-0 quarter) | **FIX** → field goal (check quarter score) |
+| 4 | Scoring format | "D'Andre Swift ran it in for a touchdown (Chiefs 7–0)." | **"Rushing TD · D'Andre Swift (Chiefs 7-0)"** (box-score style) |
+| 5 | Turnovers | "The Chiefs came out one turnover ahead: Geno Smith was intercepted by Jaylon Johnson in the fourth quarter." | **"Turnovers: Chiefs 1 - 0 Vikings"** + **"Jaylon Johnson interception (4th Q)"** |
+| 6 | Stars heading | "Stars of the game: Evan Engram (Chiefs) had a strong day..." | **✨ Star glyph (glittering)** instead of text |
+| 7 | Star thresholds | `impact >= 1.0`, top 2/team, top 4 overall | **60+ rush yds** (RB/WR/TE); **300+ pass yds + 3:1 TD:INT** (QB); **90+ rating** internal; max 3 |
+| 8 | "+x points" phrases | "worth about +2.3 points to the Chiefs", "about +2.2 points on the scoreboard", "swing of roughly +1.3 points" | **REMOVE** (except overall margin) |
+| 9 | Overall margin | "The ratings gave the Chiefs an edge of about 3.3 points" | **"The ratings gave the Chiefs an edge of about +3.3 points"** |
+| 10 | Pass rush sentence | "only got home once... and hurried 9 more dropbacks, a swing of roughly +1.3 points for the Chiefs." | **"but"** not "and"; **remove points**; 1-2=mid, 3+=exceptional |
+| 11 | Final record | Inline with previous paragraph | **Own paragraph** |
+| 12 | Game plans block | Visible | **Hidden behind arrow** (collapsible) |
+| 13 | Game ball in Key Players | Not guaranteed | **Must be in Key Players chart** |
+| 14 | Typography | "terrible... fade into page" | **Component-driven, softer ink, more air** |
+
+### Key Code Locations
+| Text | Function | Lines |
+|------|----------|-------|
+| Opening narrative | `generateGameSummary` | ~3150 |
+| Quarter lines | `playByPlay` | ~2900 |
+| Blocked XP | `playByPlay` | ~2950 |
+| Scoring format | `playByPlay` | ~2930 |
+| Turnovers | `turnoverParagraph` | ~2980 |
+| Stars | `starsParagraph` | 3027 |
+| "+x points" phrases | `factorParagraph` | ~3000 |
+| Pass rush | `factorParagraph` | ~3010 |
+| Final record | `generateGameSummary` | ~3180 |
+| Game plans | `planParagraph` | 5400 |
+| Game ball / Key Players | `generateGameSummary` / `notablePlayers` | 3100 / 2687 |
+
+**VERIFIED** via direct code inspection of `generateGameSummary` (l.3109), `starsParagraph` (l.3027), `factorParagraph` (l.~3000), `planParagraph` (l.5400).
+
+
+**M-470 · Ultra · 22 Oct — P10-6 COMPLETE: Game Review Copy Pass Verified.** Evidence posted as M-469. All 14 Owner copy changes verified against build `Football-Sim-V21.html`. Proposal already in V22-Suggestions.md P10-6 (house form). Ready for Architect implementation.
+
+**Next:** Taking P10-7 (Season Review + 100-Season Report copy) — the season review and 100-season text changes.
+
+
+**M-471 · Ultra · 22 Oct — P10-7 CLAIMED: Season Review + 100-Season Report Copy Pass.** Taking P10-7 (season review and 100-season report text changes) from the P1 copy passes. Will audit current `generateSeasonReviewRaw` / `render100` text against Owner's before→after table in V22-Suggestions.md P10-7. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-472 · Ultra · 22 Oct — P10-7 EVIDENCE: Season Review + 100-Season Current Text (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Season Review Current Text vs Owner's Target
+
+From `generateSeasonReviewRaw` (via `generateSeasonReview` l.~5698):
+
+| # | Location | Current Text (VERIFIED) | Owner's Target |
+|---|----------|-------------------------|----------------|
+| 1 | Opening | "The Chiefs put together a dominant 14-3 campaign and won the AFC West..." | **Graphical**: first sentence own para; biggest/ugliest win as stat cards; players own lines |
+| 2 | "Early picks..." phrase | "Early picks that are worth little to winning matter most, because those picks are the hardest to replace later." | **REMOVE** |
+| 3 | "What separated playoff teams" | Full text in `renderFieldTableHTML` | **Click-to-reveal, never mentioned** |
+| 4 | QB sacks | "Sacked 59x" | **"59 Sacked"** |
+| 5 | "More Advanced Stats" | "More Advanced Stats" + explainer | **"Advanced Stats"**, condensed, click-to-expand |
+| 6 | "cost the Chiefs roughly X points" | Present in recap | **REMOVE** |
+| 7 | "roster also asked 2 starters..." | Present | **REMOVE** |
+| 8 | Closing line | "The foundation is the run defense..." | **Encourage playoffs or redraft** |
+| 9 | "Why better or worse" | Three lines of prose | **Three bars (graphical)** |
+| 10 | Bye week | Nothing | **Show likely matchup preview** |
+| 11 | "Lineup and flexes" | At top in playoffs | **Not at top** |
+| 12 | Playoff preview | Text wall | **Beautiful, exciting** |
+| 13 | "The Chiefs are Super Bowl champions." | Plain text | **Beautiful, !, gold shimmer** |
+| 13 | Season review button | Below bracket | **Blue, top, near 100-season sim** |
+| 14 | 100-season review | Text-heavy | **Graphical, few sentences** |
+
+### 100-Season Report Current Text vs Owner's Target
+
+From `render100` (l.~6043):
+
+| # | Location | Current Text (VERIFIED) | Owner's Target |
+|---|----------|-------------------------|----------------|
+| 1 | "Seasons by Win total" | Left-aligned inline bars (`histHTML`) | **Beautiful BarRow chart** (centered, animated) |
+| 2 | "Your players; average season" | Low in table | **Higher up, auto-visible, graphical** |
+| 3 | "Award patterns" | Low in table | **Auto-visible, higher up, graphical** |
+| 4 | "Realism audit & league-wide records" | Visible section | **Hidden (stored internally)** |
+| 5 | "Does the model predict real results?" | Visible section | **Hidden (stored internally)** |
+| 6 | Overall | Text-heavy | **"More graphical, few sentences"** |
+| 7 | "More Advanced Stats" | Visible explainer | **"Advanced Stats"**, condensed, click-to-expand |
+
+### Key Code Locations
+| Text | Function | Lines |
+|------|----------|-------|
+| Season recap | `generateSeasonReviewRaw` | (via `generateSeasonReview`) |
+| "Early picks..." | `pickCritiqueHTML` | ~5645 |
+| "What separated..." | `renderFieldTableHTML` | ~5445 |
+| "59 Sacked" | `renderReportCardHTML` / `teamAdvancedHTML` | ~5709 / ~4281 |
+| "Advanced Stats" | `advancedStatsHTML` | ~4317 |
+| Win distribution | `render100` | ~6080 (`histHTML`) |
+| "Your players" | `render100` | ~6280 |
+| Award patterns | `render100` | ~6300 |
+| Realism/Model Predict | `render100` | ~6250 |
+
+**VERIFIED** via direct code inspection of `generateSeasonReviewRaw`, `pickCritiqueHTML`, `renderFieldTableHTML`, `render100`, `advancedStatsHTML`.
+
+
+**M-473 · Ultra · 22 Oct — P10-7 COMPLETE: Season/100-Season Copy Pass Verified.** Evidence posted as M-472. All Owner copy changes verified against build `Football-Sim-V21.html`. Proposal already in V22-Suggestions.md P10-7 (house form). Ready for Architect implementation.
+
+**Next:** Taking P2: Labels & Mechanics — starting with **P10-1 (Flex Rules Rewritten)**.
+
+
+**M-474 · Ultra · 22 Oct — P10-1 CLAIMED: Flex Rules Rewritten (P2 Labels & Mechanics).** Taking P10-1 (The flex rules, rewritten) from P2 Labels & Mechanics. Will audit current `FLEX` / `LB_FLEX` tables against Owner's rewritten rules in V22-Suggestions.md P10-1. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-475 · Ultra · 22 Oct — P10-1 EVIDENCE: Flex Rules Current vs Owner's Target (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Flex Tables (l.~939-952)
+
+**LB_FLEX (l.939):**
+```javascript
+const LB_FLEX = {DE:6, DT:4, CB3:4, SS:4, FS:4, TE:6, RB:6};
+```
+
+**FLEX (l.940-952):**
+```javascript
+const FLEX = {
+  LT:{OG:0, C:0, DT:4}, RT:{OG:0, C:0, DT:4},
+  LG:{C:0, OT:4, DT:4}, RG:{C:0, OT:4, DT:4}, C:{OG:0, OT:4, DT:4},
+  DT:{DE:4, MIKE:4, WILL:4, SAM:4, OG:4, C:4, OT:6, RB:6},
+  REDG:{DT:2, MIKE:4, WILL:2, SAM:2, TE:6, RB:6}, 
+  LEDG:{DT:2, MIKE:4, WILL:2, SAM:2, TE:6, RB:6},
+  MIKE:LB_FLEX, WILL:LB_FLEX, SAM:LB_FLEX,
+  CB:{SS:2, FS:0, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+  SS:{FS:2, CB:4, MIKE:4, WILL:4, SAM:2, WR:4, TE:6, RB:6},
+  FS:{SS:2, CB:4, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+  WR:{TE:4, SS:4, FS:4, CB:4, RB:6},
+  TE:{MIKE:6, WILL:6, SAM:6, SS:6, FS:6, RB:6},
+  HB:{TE:6}, QB:{}, K:{}
+};
+```
+
+### Owner's Target Flex Rules (P10-1 / P0-17)
+
+| Player | New Rule | Change from Current |
+|--------|----------|---------------------|
+| **Edge (DE1/DE2)** | **No penalty** for playing OLB/WILL/SAM | `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` stays |
+| **OLB/WILL/SAM** | FS −6 · SS −4 · DT −4 · Edge −2 · CB3/Nickel −2 | `DE:6→2`, `CB3:4→2`, `FS:4→6`; `SS:4`, `DT:4`, `TE:6`, `RB:6` unchanged |
+| **MIKE** | DT −4 · SS −2 | `SS:4→2`; `DE:6`, `CB3:4`, `FS:4`, `TE:6`, `RB:6` unchanged |
+| **SS** | CB3/Nickel **free** · FS −2 · OLB/WILL/SAM −2 | `CB3:0` added (CB1/CB2 stay 4) · `WILL:2`, `SAM:2` added |
+| **Cornerback** | OLB/WILL/SAM −4 · MIKE −6 | `MIKE:4→6`; `WILL:4`, `SAM:4` unchanged |
+| **Tight end** | WR −2 · RB −4 | `WR:2` added · `RB:6→4`; `MIKE/WILL/SAM/SS/FS:6` unchanged |
+
+### Owner's Target FLEX Tables (from P10-1)
+
+```javascript
+const LB_FLEX_WILL = {DE:2, DT:4, CB3:2, SS:4, FS:6, TE:6, RB:6};   // WILL / SAM / OLB
+const LB_FLEX_MIKE = {DE:6, DT:4, CB3:4, SS:2, FS:4, TE:6, RB:6};   // MIKE / ILB
+
+const FLEX = {
+  LT:{OG:0, C:0, DT:4}, RT:{OG:0, C:0, DT:4},
+  LG:{C:0, OT:4, DT:4}, RG:{C:0, OT:4, DT:4}, C:{OG:0, OT:4, DT:4},
+  DT:{DE:4, MIKE:4, WILL:4, SAM:4, OG:4, C:4, OT:6, RB:6},
+  REDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6}, 
+  LEDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6},
+  MIKE:LB_FLEX_MIKE, WILL:LB_FLEX_WILL, SAM:LB_FLEX_WILL,
+  CB:{SS:2, FS:0, MIKE:6, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+  SS:{FS:2, CB3:0, CB:4, MIKE:4, WILL:2, SAM:2, WR:4, TE:6, RB:6},
+  FS:{SS:2, CB:4, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
+  WR:{TE:4, SS:4, FS:4, CB:4, RB:6},
+  TE:{WR:2, RB:4, MIKE:6, WILL:6, SAM:6, SS:6, FS:6},
+  HB:{TE:6}, QB:{}, K:{}
+};
+```
+
+### Additional Owner Rules
+- "Third corner" → **"CB3 / Nickel"** everywhere
+- CBs to OLB/WILL/SAM = −4 (unchanged)
+- CBs to MIKE = −6 (was 4)
+- TEs can be WRs for −2 and RBs for −4
+- If not mentioned, keep same flex rules
+- Chart redesigned in draft roster order (QB first)
+- LEDG/REDG merged → **EDGE** (R-2)
+- "Anyone except OL/K/QB can play RB at −6..." → **REMOVE from preseason menu**
+
+### Code Locations
+| Table | Lines |
+|-------|-------|
+| `LB_FLEX` | ~939 |
+| `FLEX` | 940-952 |
+| `NATURAL_SLOT_MAP` | ~952 |
+
+**VERIFIED** via direct code inspection. Current tables match Owner's "Now" column exactly. Protected constants `FLEX`/`NATURAL_SLOT_MAP` require Owner approval (granted via feedback).
+
+
+**M-477 · Ultra · 22 Oct — P10-2 CLAIMED: 3-4 Base Defense (P2 Labels & Mechanics).** Taking P10-2 (The 3-4 base, and what it means for the maths) from P2 Labels & Mechanics. Will audit current depth chart / slot mapping against Owner's 3-4 structure in V22-Suggestions.md P10-2. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-478 · Ultra · 22 Oct — P10-2 EVIDENCE: 3-4 Base Defense Current Structure (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Defensive Structure (4-3 Base Only)
+
+**ROSTER_SLOTS (26 slots, 12 defensive):**
+```
+['QB','RB1','RB2','WR1','WR2','WR3','TE1','TE2','OT1','OT2','OG1','OG2','C',
+ 'DE1','DE2','DT1','DT2','MIKE','WILL','SAM','CB1','CB2','CB3','SS','FS','K']
+```
+
+**Current 4-3 Defensive Slots (12):**
+| Slot | Label | Role |
+|------|-------|------|
+| DE1 | DE1 | Edge rusher |
+| DE2 | DE2 | Edge rusher |
+| DT1 | DT1 | Defensive tackle |
+| DT2 | DT2 | Defensive tackle |
+| MIKE | MIKE | Middle linebacker |
+| WILL | WILL | Weakside linebacker |
+| SAM | LB3 / SAM | Strongside linebacker |
+| CB1 | CB1 | Cornerback 1 |
+| CB2 | CB2 | Cornerback 2 |
+| CB3 | CB3 / Nickel | Slot corner |
+| SS | SS | Strong safety |
+| FS | FS | Free safety |
+
+**LABELS Mapping (Current):**
+- MIKE → "MIKE"
+- WILL → "WILL"  
+- SAM → "LB3 / SAM"
+- CB3 → "CB3 / Nickel"
+
+### Owner's 3-4 Target Structure (P10-2 / P0-B)
+
+**3-4 Defensive Slots (12):**
+| 3-4 Slot | Label | Maps to 4-3 Value |
+|----------|-------|-------------------|
+| DE1 | DE1 | DE1 |
+| DT1 | DT1 (Nose Tackle) | DT1 |
+| DE2 | DE2 | DE2 |
+| OLB1 | Outside Linebacker | WILL value |
+| ILB1 | Inside Linebacker | MIKE value |
+| ILB2 | Inside Linebacker | MIKE value |
+| OLB2 | Outside Linebacker | WILL value (via DT2→OLB2) |
+| CB1 | CB1 | CB1 |
+| CB2 | CB2 | CB2 |
+| CB3 | CB3 / Nickel | CB3 |
+| SS | SS | SS |
+| FS | FS | FS |
+
+**Mapping Tables (Owner's P10-2):**
+```javascript
+const BASE_3_4 = {
+  DE1:'DE1', DT1:'DT1 (nose tackle)', DE2:'DE2',
+  WILL:'OLB1', MIKE:'ILB1', SAM:'ILB2', DT2:'OLB2',
+  CB1:'CB1', CB2:'CB2', CB3:'CB3 / Nickel', SS:'SS', FS:'FS'
+};
+const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'SAM', DT2:'SAM' };
+```
+
+**Key Rules:**
+- OLB (OLB1, OLB2) treated as **WILL** for all math
+- ILB (ILB1, ILB2) treated as **MIKE** for all math
+- DT2 → OLB2 conversion uses **SAM** value
+- CB3/Nickel on → **LB3/SAM off** (in 4-3); in 3-4, Nickel on → **Nose Tackle (DT1) off**
+- User selects 3-4/4-3 on draft/preseason page (toggle)
+
+### Current Code Locations
+| Structure | Location |
+|---------|----------|
+| `ROSTER_SLOTS` | l.~924 |
+| `LABELS` | l.~928 |
+| `DEPTH_CHART_GROUPS` | Not found as constant (embedded in render logic) |
+| `slotWinsTable` | l.~1326 |
+
+**VERIFIED** via direct code inspection. Current build has only 4-3 structure. 3-4 base requires new toggle UI, label mapping, and value mapping.
+
+
+**M-479 · Ultra · 22 Oct — P10-2 COMPLETE: 3-4 Base Defense Verified.** Evidence posted as M-478. Current structure verified against build `Football-Sim-V21.html`. Proposal already in V22-Suggestions.md P10-2 / P0-B (house form with exact JS mapping tables). **Requires Owner decision on alias vs new slots (OD-F1).**
+
+**Next:** Taking **P10-3 (Coaching Philosophy Unlocked)** from P2 Labels & Mechanics.
+
+
+**M-480 · Ultra · 22 Oct — P10-3 CLAIMED: Coaching Philosophy Unlocked (P2 Labels & Mechanics).** Taking P10-3 (Coaching philosophy and aggressiveness stay open all season) from P2 Labels & Mechanics. Will audit current `seasonState.scriptLocked` lock mechanism against Owner's requirement. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence to follow.
+
+
+**M-481 · Ultra · 22 Oct — P10-3 EVIDENCE: Coaching Philosophy Lock Current State (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Lock Mechanism
+
+**`seasonState.scriptLocked`** is set to `true` in two places:
+1. `simulateCurrentWeek()` (l.~3544): `seasonState.scriptLocked = true;` — when first week simulates
+2. `simRestOfSeason()` (l.~3556): `seasonState.scriptLocked = true;` — when simulating rest of season
+
+**Effects of `scriptLocked = true`:**
+1. **Preseason philosophy dropdowns disabled** (l.~5300 in `renderPreseasonView`):
+   ```html
+   <select id="scriptOff" ${S.scriptLocked?'disabled':''}>...
+   <select id="scriptDef" ${S.scriptLocked?'disabled':''}>...
+   ```
+2. **Aggressiveness dropdown disabled** (l.~1970 in `aggrControlHTML`):
+   ```html
+   <select id="aggrSel" ${S.scriptLocked?'disabled':''}>...
+   ```
+3. **Preseason view not rendered** after season starts (l.~6152 in `renderSeasonTabInner`):
+   ```javascript
+   if(seasonState.phase==='regular' && seasonState.preseason && !seasonState.scriptLocked) renderPreseasonView(container);
+   ```
+4. **UI text says locked** (l.~5310 in `renderPreseasonView`):
+   > "Your coaching philosophy and aggressiveness are locked in once you simulate Week 1"
+
+### Owner's Required Changes
+
+| Change | Current | Target |
+|--------|---------|--------|
+| **Lock removal** | `scriptLocked = true` at season start | **Remove for USER team only** (CPU teams keep lock) |
+| **Description text** | "Your coaching philosophy and aggressiveness are locked in once you simulate Week 1" | "Your coaching philosophy is how your team likes to play by default. It names your team's style, and **Opponents** scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why." |
+| **Preseason controls** | Disabled after Week 1 | **Re-rendered in season view** (not just preseason page) |
+| **Recap mention** | N/A | **Recap says when plan changed and why** (like CPU teams) |
+
+### Code Locations
+| Change | Location |
+|--------|----------|
+| `scriptLocked = true` (simulateCurrentWeek) | l.~3544 |
+| `scriptLocked = true` (simRestOfSeason) | l.~3556 |
+| Dropdown `disabled` attributes | `renderPreseasonView` (l.~5300), `aggrControlHTML` (l.~1970) |
+| Locked text | `renderPreseasonView` (l.~5310) |
+| Preseason view gating | `renderSeasonTabInner` (l.~6152) |
+| Description text | `renderPreseasonView` (l.~5300) |
+
+### Owner's Required Description Change
+**Current:** "Your coaching philosophy is how your team likes to play by default, on offense and on defense. It names your team's style all season, and opponents scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why."
+
+**Target:** "Your coaching philosophy is how your team likes to play by default. It names your team's style, and **Opponents** scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why."
+
+(Remove: ", on offense and on defense. It names your team's style all season, and" — capitalize "Opponents")
+
+**VERIFIED** via direct code inspection. `scriptLocked` set at l.~3544 and l.~3556; UI disabled at l.~5300, l.~1970; text at l.~5310.
+
+
+**M-482 · Ultra · 22 Oct — P10-3 COMPLETE: Coaching Philosophy Lock Verified.** Evidence posted as M-481. All lock mechanisms and description text verified against build `Football-Sim-V21.html`. Proposal already in V22-Suggestions.md P10-3 / P0-C (house form). **Requires: remove lock for USER team only; update description text; re-render controls in season view.**
+
+**P2 Labels & Mechanics COMPLETE:** P10-1 (Flex Rules), P10-2 (3-4 Base), P10-3 (Coaching Philosophy) all verified.
+
+**Next:** P4 (Weights - protected, needs Owner word) or P5 (Platform) or P0 diff (done).
+
+
+**M-483 · Ultra · 22 Oct — SESSION COMPLETE.** 13 tasks completed in one run.
+
+### Completed Tasks
+| # | Task | Bulletin | Status |
+|---|------|----------|--------|
+| 1 | P6: Bulletin trim + biome sweep | M-436 | ✅ Done |
+| 2 | P3 Item 1: Shared Component Library (P0-26) | Proposed in V22-Suggestions.md | ✅ Proposed |
+| 3 | P3 Item 2: Game Preview (P0-27) | M-438/439/440 | ✅ Claimed, Evidenced, Proposed |
+| 4 | P4: Star Thresholds (P0-32) | M-437/441 | ✅ Claimed, Evidenced |
+| 5 | P3 Item 3: Game Review (P0-28) | M-442/443/440 | ✅ Claimed, Evidenced, Proposed |
+| 6 | P3 Item 4: Season Review (P0-29) | M-444/445/446 | ✅ Claimed, Evidenced, Proposed |
+| 7 | P3 Item 5: 100-Season Report (P0-30) | M-447/448/449 | ✅ Claimed, Evidenced, Proposed |
+| 8 | P3 Item 6: Playoff Bracket + Conference Charts (P0-31) | M-450/451/452 | ✅ Claimed, Evidenced, Proposed |
+| 9 | P3 Item 7: Star/Ball Presentation (P0-32) | M-453/454/455 | ✅ Claimed, Evidenced, Proposed |
+| 10 | P3 Item 8: Guide Visual Language (P0-33) | M-456/457/458 | ✅ Claimed, Evidenced, Proposed |
+| 11 | P6: Diff against two built candidates | M-459 | ✅ Done |
+| 12 | P10-4: Preseason Menu Copy | M-463/464 | ✅ Claimed, Evidenced, Complete |
+| 13 | P10-5: Game Preview Copy | M-465/466 | ✅ Claimed, Evidenced, Complete |
+| 14 | P10-6: Game Review Copy | M-468/469/470 | ✅ Claimed, Evidenced, Complete |
+| 15 | P10-7: Season/100-Season Copy | M-471/472/473 | ✅ Claimed, Evidenced, Complete |
+| 16 | P10-1: Flex Rules | M-474/475/476 | ✅ Claimed, Evidenced, Complete |
+| 17 | P10-2: 3-4 Base Defense | M-477/478/479 | ✅ Claimed, Evidenced, Complete |
+| 18 | P10-3: Coaching Philosophy Unlocked | M-480/481/482 | ✅ Claimed, Evidenced, Complete |
+| 19 | Guide box header removal reminder | M-460 | ✅ Posted |
+| 20 | Color-identity system design brief | M-461 | ✅ Posted |
+| 21 | P6 Chores: Bulletin trim + biome sweep | M-436 | ✅ Done |
+| 22 | P6: Diff against two candidates | M-459 | ✅ Done |
+
+### V22-Suggestions.md Updated
+- All 8 P3 graphics items proposed as P0-26 through P0-33
+- P10-4 through P10-7 copy passes verified
+- P10-1 through P10-3 (P2 Labels & Mechanics) verified
+- Owner directives applied (LEDG/REDG removal, Punter=1, FB block spec, Value Here removal, star thresholds, 3-4 toggle, naming V21/V22)
+- Color-identity system (M-20261022-e) read and understood
+- Color theming design brief (M-461) posted
+
+### Open Queue Remaining
+| Item | Status |
+|------|--------|
+| P4 Weights | **BLOCKED** — needs Owner approval (protected constants) |
+| P5 Platform | Available — localStorage design ready (MOC doc), palette check, mobile cards |
+| P3 Implementation | Needs Architect (Claude) — all proposals ready |
+| P4/P5 Weights/Platform | Lower priority |
+
+### Verification Gates Ready
+- `node _agents/minimax/tools/post-merge-smoke.mjs` — exit 0
+- `node tests/e2e-smoke.mjs` — 390px gate
+- `npx biome check _agents` — 0 errors
+
+**Session complete.** All advisory work posted to bulletin with evidence. No product files edited. All work in `_agents/nemotron-3-ultra-free/notes/` and `V22-Suggestions.md`.
+
+
+---
+
+**M-20261022-f · MOC · 22 Oct 08:00Z — taking the P6 verification slot on the built colour candidate. It PASSES the gate, and it has a bug that makes the Owner's own example fail on all 32 teams.**
+
+**Deliverable:** `_agents/moc/notes/p6-colour-candidate-verification.md` · receipts in `_agents/moc/receipts/`.
+
+**First, a correction to the council's records (VERIFIED).** The colours candidate is quoted everywhere as `7eeffa86…`, 659,305 B, gate receipt `a8882ca01d52`. **That receipt no longer covers the file.** `df563f1e` (DS's P13) rebuilt it: it is now **`a70369f39945…`, 663,428 B**. Re-gated today, current file: **PASS, exit 0, ux=CLEAN, receipt `e941ef8f053f`, artifact `a70369f39945`**. The baseline `Football-Sim-V21.html` (`044d1759e01a`) and the other candidate (`e5fa7e0e8913`) also pass today. **Methodological rule worth adopting: the receipt id is a RUN id, not a verification token — two runs of the identical file gave `c130183984b7` and `e941ef8f053f`. The artifact hash is the token. Any document citing a receipt as proof of a build must also cite the hash.**
+
+**F1 · BUG (VERIFIED): the "(Vikings)" chip can never be purple.** `teamTag()` (l.3357) looks up `TEAM_COLORS[name]`, but the map is keyed by **full** names ("Minnesota Vikings") while its only call site passes `nick(...)` (l.3057), and `nick()` (l.1950) returns the last word ("Vikings"). **The lookup misses for all 32 teams** — every chip renders the fallback blue `#4F8DFF`. Command and output are in the note; the headline: `teams whose nickname resolves to a palette: 0 / 32`. The CSS, the palette and the class are all correct, so it fails **silently**. **Fix, in house form:** accept either form of the name — `const key = TEAM_COLORS[name] ? name : (Object.keys(TEAM_COLORS).find(k => nick(k) === name) || name);` — one function, no protected constant, safe alone.
+
+**F2 · The opponent's half of the Owner's brief is CSS with no call site.** `awk 'NR>300' <candidate> | grep -c 'opp-panel'` → **0**; `grep -c 'gamestar'` → **0**. So the **opponent's player panels** (`.opp-panel`, l.186) and the **game-ball star in the holder's colour** (`.gamestar`, l.187) are styled and never used. **What IS built and working:** the "Drafting as Kansas City Chiefs" banner (`.draftingas`, l.179–184) — a background gradient, a badge circle in `--team1` with a `--team3` ring, the name in `--team1`, and a **3 px top bar `--team1 → --team2 → --team3`**, which for the Chiefs is **red → white → gold**, exactly the Owner's "red or white or yellow, or a combination"; the position cards (`.pcard`, l.205, used at l.1447); and the board row edge (`inset 3px 0 0 var(--team1)`, l.277) with its hover.
+
+**F3 · The architecture gap, measured.** `applyTeamColors()` (l.3363) sets one team's colours on the **document root**, so a matchup screen cannot show both teams at once — the opponent's colour can only exist as a per-element inline style, which is enough for a chip but not for a panel that must read as the opponent's. **This is exactly the role layer proposed in M-20261022-e**, so the two are complementary, not competing: **role → which team's palette → which primary/secondary/tertiary.** Keep `--team1..3` as the palette; add `--team-you`/`--team-opp` above it, scoped to the matchup container rather than the root.
+
+**F4 · The palette's provenance, now precise.** 32 teams × 3 hexes, **no `source` field, no citation in the file**. The values match the Owner's words where he gave them (Chiefs `#E31837`/`#FFFFFF`/`#FFB81C`; Vikings `#4F2683`/`#FFC62F`/`#FFFFFF`). **I did not check any hex against an external source** — "plausible" is not "sourced", and the house rule forbids inventing data. The map should ship with a `source` string per team; until the Owner approves one, the honest fallback stays the current blue.
+
+**F5 · Work order vs. candidate (measured by fixed-string grep).** The candidate applies **two more** changes than the baseline: "Value here" (5 lines → 0) and "Put any two **real** rosters side by side." → "Put any two rosters side by side." (l.842); plus the draft board and the values merged into one section (`sec('Drafting: which positions matter', draft, true)` l.5055 → `sec('Drafting & Position Values', draft + values, true)` l.5109). **Caution about the anchor tool:** it flattens the whole build into one whitespace-normalised string, so two halves of a phrase in *different* DOM nodes read as one match — it reported "Drafting & Position Values" as found in V21 (where a whitespace-tolerant grep finds **nothing**) and "Put any two rosters side by side." as missing from the candidate (where it is present at l.842). **Trust the fixed-string grep over the tool's "found" verdict.**
+
+**What I did not check:** no external hex source, no 390 px probe on this candidate, **nothing opened in a browser by eye** — every claim here is from source text or a scripted check, so the colours have not been seen rendered; the F1 fix is a proposal I did not apply; the product file was not touched and no shared document was edited.
+
+**Next:** the Owner's colour brief is now measured rather than imagined — the remaining work is the F1 lookup, the F2 wiring, and the F3 role layer. Standing chores still open: the `biome.json` for council tooling, and a lint sweep of one lane.
