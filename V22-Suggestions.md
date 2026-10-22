@@ -1206,6 +1206,21 @@ Read a subsection only when a canonical item sends you there — `P0-17` sends y
 ### P7-13 · [NEW] Realism audit & league-wide records — hide from user, keep internal
 **What:** Remove "Realism audit & league-wide records" and "Does the model predict real results?" from being visible to the user, but you should store that information internally.
 
+### P7-14 · [EXPANSION] Opponent team-color theming in matchups
+**What:** When facing a specific opponent, apply that team's colors throughout the matchup UI to reinforce team identity:
+- Opponent team's primary color applied to panels around their players
+- "(OpponentTeam)" text rendered in opponent's primary color anywhere it appears
+- Star players tinted with opponent's secondary color accent
+- Game ball star next to opponent players who win game ball rendered in opponent's accent color
+- These colors derived from the 32-team palette per P7-1 (KC: red+white+yellow; Seahawks: blue+green+white; etc.)
+- Opponent team identification available through the matchup model's team index
+- CSS variables `--opponent-primary`, `--opponent-secondary`, `--opponent-accent` set when matchup is loaded
+**Where:** Matchup review pages, game recap panels, star-player indicators, game ball badges — all reference opponent team-color CSS variables
+**Impact:** Medium. Adds team-color theming to matchup flow; complementary to P7-1 user-team theming. Moderate CSS + runtime team derivation.
+**Dependencies:** Opponent team index from matchup model; 32-team color map from P7-1; CSS variable references throughout matchup UI.
+**Notes:** Expands the existing team-color theming (P7-1) from user's team only to include opponents during matchups. Consistent with user request for "Vikings = purple" and team-color expansion throughout the draft simulation.
+**User identity counterpart:** The "Drafting as [Team]" header box border currently uses generic blue instead of the selected team's palette — should use team primary/secondary/accent (KC: red/white/yellow) per P7-1 to indicate user team identity at draft start.
+
 ---
 
 ## P8 — Council-only notes (not for Claude to implement; for the record)
@@ -4540,3 +4555,93 @@ Yes — all changes replace string concatenation with HTML components or remove 
 - Whether the guide nav cards should be clickable (JS needed)
 - Whether the value tier chart should be sortable
 - Whether the terms should be searchable
+
+---
+
+## P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend
+
+*The Owner's direction: *"the blue border around 'Drafting as Kansas City Chiefs' should be red or white
+or yellow or a combination. Maybe we could add the other teams' colours more into everything when you
+face them in a matchup… when '(Vikings)' is used anywhere that could be purple, their star players
+could be purple tinted, they could get a purple star next to them if they win the game ball in the
+matchup… expanded out toward the whole draft simulation."* **This section is the council's shared
+canvas for it: what is built, what is specified, and where the other seats should add their pieces.*
+
+### P13-1 · BUILT — your team's frame now wears the team
+```js
+// WHERE: the CSS beside .draftingas, and the drafting-as banner
+// WHAT: the frame takes the team's border, a tri-colour stripe, and the team-coloured name.
+ .draftingas{position:relative;overflow:hidden;}
+ .draftingas::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
+   background:linear-gradient(90deg,var(--team1) 0%,var(--team2) 48%,var(--team3) 100%);}
+ .draftingas .das-text b{color:var(--team1);}
+```
+**Measured in the running build** (computed styles, three teams): Chiefs → border `rgb(227,24,55)`,
+stripe red → white → gold; Seahawks → `rgb(0,34,68)`, stripe navy → green → white; Vikings →
+`rgb(79,38,131)`, stripe purple → gold → white. **Gate: exit 0, A–I PASS, 0 page errors (receipt
+`6671decfad93`).** The badge already carries the primary with the secondary letters and an accent
+ring, and the board's rows carry a team-coloured edge with a team-tinted hover.
+
+### P13-2 · BUILT — the hook for an opponent's colours anywhere
+```js
+// WHERE: a helper beside TEAM_COLORS
+// WHAT: a chip that carries a team's palette, so any surface can say "(Vikings)" in purple.
+function teamTag(name, label){
+  const c = TEAM_COLORS[name] || ['#4F8DFF','#FFFFFF','#FFC24B'];
+  return '<span class="teamtag" style="--t1:'+c[0]+';--t2:'+c[1]+';--t3:'+c[2]+'">'+(label||('('+name+')'))+'</span>';
+}
+```
+```css
+.teamtag{color:var(--t1);background:color-mix(in srgb, var(--t1) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--t1) 35%, transparent);border-radius:5px;padding:0 5px;}
+.opp-panel{border-left:3px solid var(--t1);background:color-mix(in srgb, var(--t1) 7%, transparent);}
+.gamestar{color:var(--t1);text-shadow:0 0 8px color-mix(in srgb, var(--t1) 60%, transparent);}
+```
+**This is the piece every other seat should build on:** `teamTag()` for a name, `.opp-panel` for a
+block of an opponent's players, `.gamestar` for a star that belongs to a side.
+
+### P13-3 · SPECIFIED — where the opponent's colours go in a matchup
+| Surface | What the Owner asked for | The mechanism |
+|---|---|---|
+| the preview's first paragraph | *"(Chiefs)" / "(Vikings)" after "run defense" and "secondary"* | `teamTag(team)` in the sentence, in the team's primary |
+| the unit lines | the unit and its rank, tinted by its owner | `.opp-panel` on the unit line |
+| the key players and the stars | *"their star players could be purple tinted"* | the player's row takes `.opp-panel` with the **owner's** colours — your players in yours, theirs in theirs |
+| the game ball | *"a purple star next to them if they win the game ball in the matchup"* | the star glyph takes `.gamestar` with the **winner's** colour; the game ball's player is always in the key players (already an Owner instruction) |
+| the matchup header | the two names | each name in its own colour, side by side |
+| the turnover line and the scoring lines | the score summary | the team name in its colour inside "Turnovers: Chiefs 1 - 0 Vikings" |
+
+### P13-4 · SPECIFIED — the draft simulation, expanded
+- **The board's rows** already carry each player's NFL team abbreviation; give each row a 3 px edge in
+  **that player's NFL team colour** — the draft board is the one screen where all 32 teams appear, so
+  this is where the palette earns its keep.
+- **Your own picks** carry your team's colour instead of the NFL team's, so the board tells you at a
+  glance which rows are yours.
+- **The position cards** take the same edge as the board row for that player.
+- **The depth chart** keeps your team's colour; **the roster's left edge** (the team-colour item from
+  P4-2) uses the same three variables, so one palette serves both.
+- **The stars on the board** stay gold (they are the user's priority), and a **CPU board** — if one is
+  ever shown — would use the CPU team's colour.
+
+### P13-5 · The rules that keep this tasteful
+1. **Colour identifies a team; it never encodes value.** No tinting by performance, ever.
+2. **Two saturated colours on one screen is the limit** — yours in the accent role, the opponent's in
+   the secondary role, everything else in the app's greys. A rainbow is not a stadium.
+3. **A team colour is a chip or an edge, not a background for body text.** Text keeps its contrast.
+4. **The accent colour is the risky one** — some teams' thirds are muddy (browns, reds). A neutral
+   fallback beats a muddy accent.
+5. **Every palette needs a dark-mode check** before it ships.
+6. **One map, one source**: `TEAM_COLORS` is the only palette in the project, and it is already
+   emitted as CSS variables so any surface can use it.
+
+### P13-6 · The open canvas — what the council should add, and how to add it
+**This section is the council's, not mine.** Three ways to extend it, no coordination needed:
+- **Name a surface and the rule.** "The standings: the user's conference gets the user's colour" —
+  a seat can add the rule and the code without waiting for anyone.
+- **Extend the palette** if a team's colours need a fourth value (a secondary for the text on a dark
+  panel, a neutral for the accent) — add it to `TEAM_COLORS` and every surface inherits it.
+- **Propose a colour treatment** with a sketch (mermaid for a flow, CSS for a visual), and the
+  Architect applies it — the same rule as every other proposal.
+**Beam** is already on the Guide's visual language, **BOC** on the graphics round: if either of you
+takes the season screens or the board rows, use `teamTag()` / `.opp-panel` / `.gamestar` from P13-2
+rather than inventing a second palette. **And say in the bulletin which surface you took**, so the
+next seat extends the same system instead of starting another one.

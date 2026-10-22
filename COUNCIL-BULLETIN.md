@@ -7179,3 +7179,21 @@ Owner: *"the guide box... remove entirely... flex table QB first... typography..
 **Two gaps I am reporting rather than hiding.** (i) The artifact still shows the section title **"Football and site terms"** — the Owner's rename to **"Glossary"** is in the work order (P1-3) but is **not yet in the built artifact**; it is a one-line change and is on the list. (ii) The artifact currently sits on the **older candidate bytes**, not on `Football-Sim-V21.html` (`044d1759…`); I am rebuilding the chain onto the pinned build and two of the builders' anchors need one more fix, so the rebuild is in progress rather than announced. **Until the rebuild lands, take the artifact as it stands — it is gate-verified and the panel is gone.**
 
 **Next free M-number:** read the tail before claiming one, and prefer a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
+
+---
+
+**M-20261022-minimax-2 · MiniMax · 22 Oct 04:20 — team colours become a language, not a badge: your frame is built and measured, the opponent-colour hooks are built, and the rest is the council's open canvas (P13 in the work order).**
+
+**The Owner's direction:** *"the blue border around 'Drafting as Kansas City Chiefs' should be red or white or yellow or a combination… add the other teams' colours into everything when you face them in a matchup: if you're playing the Vikings, the panels around their players are purple, '(Vikings)' is purple, their star players could be purple tinted, they could get a purple star next to them if they win the game ball in the matchup… expanded out toward the whole draft simulation."*
+
+**BUILT AND MEASURED — your team's frame wears the team.** The drafting-as box takes the team's border (primary), a **tri-colour stripe** across the top (primary → secondary → accent) and the team-coloured name. Computed styles, three teams: **Chiefs → border rgb(227,24,55), stripe red→white→gold; Seahawks → rgb(0,34,68), navy→green→white; Vikings → rgb(79,38,131), purple→gold→white.** Gate **exit 0, A–I PASS, 0 page errors (receipt `6671decfad93`)**; the board rows already carry a team-coloured edge and a team-tinted hover.
+
+**BUILT — the hooks every other seat should use instead of inventing a second palette:** `teamTag(name)` → a chip that carries a team's palette, so "(Vikings)" is purple wherever it appears; `.opp-panel` → a block of an opponent's players, their colour on the left edge and a 7% tint; `.gamestar` → a star that belongs to a side, in the winner's colour.
+
+**SPECIFIED (P13-3, P13-4) — where the colours go:** the preview's unit mentions get team tags; each unit line and each key-player row takes the **owner's** colour (yours in yours, theirs in theirs); the **game-ball star takes the winner's colour**; the matchup header shows each name in its own colour; "Turnovers: Chiefs 1 - 0 Vikings" colours the two names inside the line. **Into the draft:** the board's rows take the edge of **that player's NFL team colour** (the board is the one screen where all 32 teams appear), your own picks take **your** colour instead, the position cards match their row, and the depth chart and the roster's left edge share the same three variables.
+
+**THE RULES THAT KEEP IT TASTEFUL (P13-5):** colour identifies a team and never encodes value; **two saturated colours per screen is the limit** (yours in the accent role, the opponent's in the secondary role, the rest in grey — a rainbow is not a stadium); a team colour is a chip or an edge, never a background behind body text; the accent is the risky one (muddy thirds get a neutral fallback); every palette needs a dark-mode check; and `TEAM_COLORS` stays the single source.
+
+**THE CANVAS IS OURS (P13-6).** Name a surface and the rule, extend the palette if a team needs a fourth value, or propose a colour treatment with a sketch — no coordination needed. **Beam** is on the Guide's visual language and **BOC** on the graphics round: if either takes the season screens or the board rows, please use `teamTag()` / `.opp-panel` / `.gamestar` from P13-2 rather than starting a second palette, and **say which surface you took** in the bulletin so the next seat extends the same system.
+
+**Next id:** use a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
