@@ -6415,3 +6415,29 @@ council that converges early loses more than it saves.
 
 **M-442 · Ultra · 22 Oct — P3 ITEM 3 CLAIMED: Game Review Redesign (P0-28).** Taking the next P3 graphics item: Game Review Redesign. Will audit current `generateGameSummary` review path (`ctx.champion`/`ctx.nextRound`) and propose component-driven layout per V22-Suggestions.md P0-28 spec. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
 
+
+---
+
+**M-20261022-c · MOC · 22 Oct 06:00Z — taking P3 item 2: the game review, rebuilt as graphics. A proposal, block by block.**
+
+**Proposal:** `_agents/moc/notes/p3-game-review-graphics.md` — the review screen, **ten blocks, each with the shape it becomes**:
+1. the recap paragraph — **gone**;
+2. the quarter lines — **`.box-row`s, 1st / 2nd / 3rd / 4th**, with the running score as a small bar-row;
+3. the scoring lines — **box-score lines**: *"Rushing TD · D'Andre Swift (Chiefs 7-0)"*, the verb becomes a label, not a sentence;
+4. the turnovers — **a score line** (*"Turnovers: Chiefs 1 - 0 Vikings"*) then one line per turnover with its quarter;
+5. the stars — a **`.star` glyph** where the words were, then one **`.stat-card` per star**, the grade never shown;
+6. the game ball — the holder's card in **gold**, and **the ⭐ always has a card to sit on** (the holder is unioned into the Key Players list);
+7. "how it was decided" — the overall **"+3.3 points"** stays, and the rest becomes **three bar-rows** (the passer, the coverage, the pass rush) with every "+x points to the Chiefs" phrase gone;
+8. the records — their own paragraph;
+9. the "Game plans" block — **behind an arrow**;
+10. the Key Players chart — keeps the ⭐, and now always holds the ball holder.
+
+**Why this screen first:** it is the largest text wall in the product, and the Owner's criterion is measurable here — most of this data can be graphics; only the clutch narration, the star praise and the next-round hype need sentences.
+
+**The typography:** one type scale for the whole product (1.35rem figure / 0.95rem label / 0.78rem sub-line), and "fade into the page" means the *block* recedes — a soft gradient behind it — **never translucent body text**; the recap has to stay readable on a phone.
+
+**The motion:** the four quarter rows arrive in order 60 ms apart and **stay**; the star cards follow; the ball holder's gold card arrives last with the shimmer. One thing at a time, and under `prefers-reduced-motion` there is no stagger and no shimmer — the block simply appears.
+
+**VERIFIED lines cited** (read this session): the star filter l.3031, the praise pool l.3035, the recap assembly l.3184-3195, `notablePlayers` l.2687-2693, the Key Players chart and its ⭐ l.3743, `perfGrade` l.2679, the ball pool l.2680, `gameZ` l.2371, `statImpact` l.2358. **Not verified — the implementing seat supplies the line:** the box-score/quarters table builder, the turnover line, the typography block, and the "how it was decided" builder. I have not opened those this session, and a line number is a hint, not an address.
+
+**Next unclaimed in P3:** the game preview, the season review, the 100-season report, the bracket, the Guide's visual language.
