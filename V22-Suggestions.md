@@ -2065,12 +2065,12 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 
 > # ⚑ Claude's execution brief — read this before the rest
 >
-> **This file is three documents in one coat.** The council wrote it in parallel and it now carries
-> **three numbering systems that collide**: MOC's **P0** (draft-board fixes, 19 items) and **P1**
-> (Architect decisions, 40 items) with **P2** (Owner decisions); Beam's **P7** (aesthetics), **P8**
-> (council notes) and **P9** (mermaid diagrams); and MiniMax's **P10** (the 21 Oct 23:00 round) and
-> **P11** (the 23:30 round). At the very end there is MOC's **decomposed second-round brief**, which
-> reuses the labels P0/P1/P2 for a *different* taxonomy.
+> **This block is the dependency order, and it is now second to the coordinator's canonical scheme.**
+> The file's numbering of record is MOC's: **P0** = do this first, **P1** = a decision Claude makes,
+> **P2** = a decision the Owner makes, **R1/R2/R3** = the round the work came from, **C** =
+> council-only. The priority spine is P0–P2; **this block is the dependency spine** — the order that
+> leaves a working build at every step — and it sits beside the coordinator's "How to read this
+> document" section, not instead of it.
 >
 > **So: when you refer to an item, name the section and the title, never the number alone.**
 > "P0-17" could be the flex rules, the Team Comparison page, or the mechanics block. "the flex rules
@@ -2083,7 +2083,7 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 >
 > | # | Do this | Where | Why now |
 > |---|---|---|---|
-> | 1 | Take the **four prepared diffs** (the "Value here" column and its CSS reflow, the weights panel, the Team Comparison page, the Guide) | P0-1…P0-11, and the built artifact `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` (`e5fa7e0e…`) | they are done and verified; take them as a diff and you are already halfway |
+> | 1 | Take the **built candidate** — the "Value here" column and its CSS reflow, the weights panel, the Team Comparison page and the Guide, already built and gate-verified: `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` (`e5fa7e0e…`) | the change blocks are in the P0 spine; the artifact is one file to diff, and it is already halfway |
 > | 2 | Apply the **team colours** (they touch the header, the board and the cards) | P7-1 and P8-5, the built artifact `V22-candidate-teamcolours.html` (`b3de0523…`) | a visual change touches the same lines as the board diff — do it **after** step 1, not before |
 > | 3 | Fix the **board's display slot** (the Cooper DeJean case) and the "also fits" format | F (BOC's diagnosis) and P8-2 | it changes what every row shows; doing it before the copy work avoids doing the copy twice |
 > | 4 | Remove the **stars** and their paragraph, rename "One table", shorten "Undo" | P0-12 and P8-3 | small, self-contained, and they make the board legible for everything after |
@@ -2155,3 +2155,73 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 > V21. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
 > V21, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
 > the correct one. If you find an older copy of that item, use this one.
+
+---
+
+## C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him
+
+The coordinator asked every seat to read the document the way Claude would and report the **top
+things that would slow or stop him, with line numbers**. This is mine. Each blocker says what it
+is, where it is, and the fix — and two of them are mine to fix, which I have.
+
+### 1 · The pinned build is not the build the line numbers were taken from — **blocker**
+**Where:** the pin at the top of the document (`044d1759…`, 656,746 B) and MOC's "two facts" note.
+**The problem:** every `WHERE: file + line` line in the document was written against one of two
+files. The **pinned** file is `044d1759…` (656,746 B) — a working-tree file that **no commit
+carries**. The build the council actually measured, built and gated against is the merge candidate
+**`40233d6b…` (657,486 B)** — 740 bytes different. **A line-anchored change applied to the other file
+can land one or two lines off, or on a line that no longer says what the document claims.**
+**The fix:** before Claude starts, one seat re-pins the document to a **committed** build — the
+Owner's decision on the merge candidate — and the anchors are re-checked against it with one grep
+pass. **Until that happens, every line number in the document is a hint, not an address.**
+
+### 2 · The built artifacts are not on the priority spine — **blocker**
+**Where:** the "PRIORITY SUMMARY FOR CLAUDE" (l.1657) and the P0 spine.
+**The problem:** two council artifacts are **built, gate-verified and ready to take as a diff** — the
+V22 candidate with the four changes (`e5fa7e0e…`, 660,046 B) and the same plus the team colours
+(`b3de0523…`, 662,533 B) — and the document mentions them only in my block at the end. **A priority
+list that does not point at the finished work is a list Claude rebuilds from scratch.**
+**The fix:** the summary's first row becomes "**take the built candidate** (`e5fa7e0e…`), then the
+team colours (`b3de0523…`)". Both are in `_agents/minimax/prototypes/` and on
+`origin/council/minimax-lane`.
+
+### 3 · The prepared diff blocks are gone, and my block still points at them — **my fix, applied**
+The `diff` fences that carried the four changes have been folded into MOC's one-form change lines, so
+"take the four prepared diffs" is no longer true as written. **My ⚑ block now says the artifacts
+instead**, and the artifacts are the better route anyway: they are one file Claude can diff, rather
+than forty hunks he has to apply by hand.
+
+### 4 · The Owner's questions live in two places — **blocker**
+**Where:** `P2 — Owner decisions` (l.434) and `Appendix B — Owner questions (consolidated, ≤5)`
+(l.492).
+**The problem:** an Owner reading "which decisions are mine?" finds two lists of different length and
+different content, and a Claude reading the document cannot tell which is the one to act on.
+**The fix:** **Appendix B is the answer sheet** (it is the short one, and it is what the Owner
+responds to); **P2 becomes the working notes behind it**. One line at the top of P2 saying so is
+enough.
+
+### 5 · The do-this-first list is at the bottom — **blocker**
+**Where:** "PRIORITY SUMMARY FOR CLAUDE" (l.1657) versus the top of the file (l.46, the five-minute
+header).
+**The problem:** the coordinator's own map says the summary should become "the one-page do-this-first
+list at the top, above the five-minute header". It is still at the bottom, after 1,600 lines.
+**The fix:** move it to the top and make the five-minute header point at it. This is a cut-and-paste,
+and it is the single change that most improves the odds that Claude starts in the right place.
+
+### 6 · The flex rules are not a contradiction — **resolved**
+**Where:** MOC's "two facts", item 2, and the flex tables in "The 21 Oct 23:00 feedback round".
+**The reading:** the Owner's two sentences are two **directions** of the same rule, not two rules:
+*"Edges no longer get a penalty for playing OLB/WILL/SAM"* is an **edge player at a linebacker slot**
+(penalty waived), and *"OLB/WILL/SAM can play FS for −6"* is a **linebacker player at the FS slot**
+(penalty 6). The two tables that implement them are `REDG`/`LEDG` (the edge's row: `WILL:0, SAM:0`)
+and the linebackers' row (`FS:6`). **MiniMax's flex tables already encode exactly this reading**, so
+the item is resolved and needs no arbitration: take the two replacement tables, not a "fix" to one of
+the two sentences.
+
+### What I checked, so this cold read can be trusted
+I read the whole file end to end (now ~2,100 lines), counted the priority labels and found the two
+P11s and the two P10s that the coordinator's map already identifies, confirmed the `diff` fences are
+gone (0), confirmed the two built artifacts are referenced only in my block (3 mentions), and
+re-checked the pin against the merge candidate the council measured. **I did not re-measure the
+anchors against the pinned file** — that is blocker 1 and it needs a seat with the pinned build in
+hand.
