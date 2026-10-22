@@ -5870,3 +5870,36 @@ All P6 chores claimed (bulletin trim + biome sweep) now complete. Evidence: comm
 **And §3.5's loop, kept and sharpened:** a session is a run of tasks, not one task — finish one, take the next; before declaring idle, work the queue, then the standing chores, and only then say you are idle.
 
 **Next free M-number:** **M-387** (read tail at MiniMax M-386).
+
+
+---
+
+**M-443 · BOC · 22 Oct — claiming V22 GRAPHICS ROUND item 4 (season review).** Working in `_agents/boc/notes/graphics-item4-season-review.md`. Read-only outside lane; no product edits. Build hash `044d1759…` (V22). **Next free M-number:** **M-444** (read tail at BOC M-443).
+
+
+---
+
+**M-444 · BOC · 22 Oct — V22 graphics round item 4 complete.** Season review graphics proposal landed in `V22-Suggestions.md` (GR-4 through GR-4h). Eight conversions: champion banner → gold banner with shimmer, season review text → indented paragraphs with stat cards, report card → bar rows, 'why better/worse' → three bars, player highlights → own lines, 'Seasons by Win total' → improved bar chart, report card/awards → higher up and visible, realism audit/model prediction → removed from screen (computed but not displayed), season review button → blue near top next to 100-sim. Full spec in `_agents/boc/notes/graphics-item4-season-review.md`. **Next free M-number:** **M-445** (read tail at BOC M-444).
+
+**M-437 · Ultra · 22 Oct — P4 CLAIMED: Star thresholds (60 rush yds; QB 300 yds + 3:1 TD:INT).** Taking P4 from the open queue. Will audit current star-selection logic in `starsParagraph` (l.3027), `starsFaceoffHTML` (l.5397), `fragSeasonStars` (l.5595) and game-review stars section against Owner's thresholds: 60+ rushing yards for RB/WR/TE; 300+ passing yards + 3:1 TD:INT for QBs; 90+ rating internal gate. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
+
+
+
+---
+
+**M-445 · BOC · 22 Oct — claiming V22 GRAPHICS ROUND item 5 (100-season review).** Working in `_agents/boc/notes/graphics-item5-100-season-review.md`. Read-only outside lane; no product edits. Build hash `044d1759…` (V22). **Next free M-number:** **M-446** (read tail at BOC M-445).
+
+
+---
+
+**M-446 · BOC · 22 Oct — V22 graphics round item 5 complete.** 100-season review graphics proposal landed in `V22-Suggestions.md` (GR-5 through GR-5g). Seven conversions: win distribution → improved bar chart, playoff path → progress bars, 'your players' → stat cards, realism audit + model prediction → removed from screen (computed but stored), 'award patterns' → higher up and visible, narrative → indented, gold banner for best team. Full spec in `_agents/boc/notes/graphics-item5-100-season-review.md`. **Next free M-number:** **M-447** (read tail at BOC M-446).
+
+
+---
+
+**M-447 · BOC · 22 Oct — claiming V22 GRAPHICS ROUND item 6 (playoff bracket + conference charts).** Working in `_agents/boc/notes/graphics-item6-bracket-charts.md`. Read-only outside lane; no product edits. Build hash `044d1759…` (V22). **Next free M-number:** **M-448** (read tail at BOC M-447).
+
+
+---
+
+**M-448 · BOC · 22 Oct — V22 graphics round item 6 complete.** Playoff bracket + conference charts proposal landed in `V22-Suggestions.md` (GR-6 through GR-6e). Five conversions: March Madness-style bracket layout (AFC left, NFC right, SB center), byes display, conference ranking charts (1-16 horizontal bars), champion highlight (gold), bracket connector lines. Full spec in `_agents/boc/notes/graphics-item6-bracket-charts.md`. **Next free M-number:** **M-449** (read tail at BOC M-448).
