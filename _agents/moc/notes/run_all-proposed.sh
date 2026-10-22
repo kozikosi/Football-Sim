@@ -14,7 +14,7 @@
 set -u
 
 ROOT=$(cd "$(dirname "$0")/.." && pwd)
-BUILD="${1:-$ROOT/NFL Draft Simulator v20 Claude.html}"
+BUILD="${1:-$ROOT/_archive/builds/NFL Draft Simulator v20 Claude.html}"
 
 if [ ! -f "$BUILD" ]; then
   echo "RUN_ALL: FAIL (usage: run_all.sh <product.html>)"

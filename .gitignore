@@ -12,3 +12,6 @@ Football Sim/
 # Frozen/backup artifacts (excluded from initial commit per Owner)
 _archive/
 backup-before-reorg/
+
+# Biome product-lint scratch (extracted script; regenerated each run)
+tools/biome-product/scratch/

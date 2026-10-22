@@ -1,7 +1,14 @@
 {
   "$schema": "https://biomejs.dev/schemas/2.6.2/schema.json",
   "files": {
-    "includes": ["tests/**", "_agents/**/tools/**", "tools/**", "!node_modules"]
+    "includes": [
+      "tests/**",
+      "_agents/**/tools/**",
+      "tools/**",
+      "!tools/biome-product/**",
+      "!node_modules",
+      "!**/*.html"
+    ]
   },
   "formatter": {
     "enabled": true,
@@ -19,7 +26,8 @@
         "useIterableCallbackReturn": "error"
       },
       "correctness": {
-        "noUnusedImports": "error"
+        "noUnusedImports": "error",
+        "noUnusedVariables": "warn"
       },
       "nursery": {
         "useExplicitReturnType": "warn"
@@ -29,7 +37,9 @@
   },
   "overrides": [
     {
-      "includes": ["_agents/**/tools/build-*.mjs"],
+      "includes": [
+        "_agents/**/tools/build-*.mjs"
+      ],
       "linter": {
         "rules": {
           "suspicious": {

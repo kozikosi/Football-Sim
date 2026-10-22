@@ -5,8 +5,8 @@
 // DevTools Protocol using Node's built-in WebSocket (Node >= 22). No npm packages, no Playwright.
 //
 // Usage:
-//   node _agents/kilo/tools/cdp-phone-check.mjs "NFL Draft Simulator v20 Claude.html" [--port 9222]
-//   node _agents/kilo/tools/cdp-phone-check.mjs "NFL Draft Simulator v20 Claude.html" --width 390 --height 844
+//   node _agents/kilo/tools/cdp-phone-check.mjs "_archive/builds/NFL Draft Simulator v20 Claude.html" [--port 9222]
+//   node _agents/kilo/tools/cdp-phone-check.mjs "_archive/builds/NFL Draft Simulator v20 Claude.html" --width 390 --height 844
 //
 // Start a browser first, e.g. (macOS Brave):
 //   "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser" --headless=new \

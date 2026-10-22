@@ -13,7 +13,7 @@
 //   C. zero uncaught page errors for the whole run              → pageErrors.length === 0
 //
 // Usage:
-//   node _agents/minimax/tools/post-merge-smoke.mjs "NFL Draft Simulator v20 Claude.html" [--port 9222]
+//   node _agents/minimax/tools/post-merge-smoke.mjs "_archive/builds/NFL Draft Simulator v20 Claude.html" [--port 9222]
 //   node _agents/minimax/tools/post-merge-smoke.mjs "<merged file>" --port 9222
 //
 // Start a browser first, e.g. (macOS Brave):

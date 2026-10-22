@@ -26,8 +26,8 @@ import { fileURLToPath } from 'node:url';
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..', '..');
-const V20 = path.join(root, 'NFL Draft Simulator v20 Claude.html');
-const DONOR = path.join(root, 'NFL Draft Simulator.html');
+const V20 = path.join(root, '_archive/builds/NFL Draft Simulator v20 Claude.html');
+const DONOR = path.join(root, '_archive/builds/NFL Draft Simulator.html');
 const outArg = process.argv.slice(2).find(a => !a.startsWith('--'));
 const OUT = outArg || '/tmp/minimax-lint-fixture.html';
 

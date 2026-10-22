@@ -8,12 +8,12 @@ You are joining a project that already has rules, history, and a phase in progre
 
 ## 1. What the project is
 
-**NFL Draft Simulator** — a single-file HTML app (`NFL Draft Simulator.html`, ~650 KB): 1,200+ real Madden NFL 27 player ratings, a 32-team fantasy draft with CPU GMs, and a full season engine (17 weeks, playoffs, Super Bowl, box scores, awards). It is an **internal project** — deployment and hosting are out of scope (Owner ruling R1; GitHub Pages was a test).
+**NFL Draft Simulator** — a single-file HTML app (`_archive/builds/NFL Draft Simulator.html`, ~650 KB): 1,200+ real Madden NFL 27 player ratings, a 32-team fantasy draft with CPU GMs, and a full season engine (17 weeks, playoffs, Super Bowl, box scores, awards). It is an **internal project** — deployment and hosting are out of scope (Owner ruling R1; GitHub Pages was a test).
 
 Two builds currently exist:
 
-- **v20** — `NFL Draft Simulator v20 Claude.html`, 649,032 bytes, sha256 `31b7d61f…`. **The reference build** (Owner ruling R2): Claude's own build, now the merge base. Line-number claims today must be measured on v20 (or state the other hash they used).
-- The **donor** — `NFL Draft Simulator.html`, 650,127 bytes, `77bb9ed5…`: carries the Season-first fixes that get merged **into** v20. Claude is mid-merge; the merged result does not exist yet.
+- **v20** — `_archive/builds/NFL Draft Simulator v20 Claude.html`, 649,032 bytes, sha256 `31b7d61f…`. **The reference build** (Owner ruling R2): Claude's own build, now the merge base. Line-number claims today must be measured on v20 (or state the other hash they used).
+- The **donor** — `_archive/builds/NFL Draft Simulator.html`, 650,127 bytes, `77bb9ed5…`: carries the Season-first fixes that get merged **into** v20. Claude is mid-merge; the merged result does not exist yet.
 
 The council's current phase: consolidating questions, critique and advice for the Architect about v20, the project's architecture, and how the workflow should run — collected in `QUESTIONS-FOR-THE-ARCHITECT.md` — without slowing the merge.
 
@@ -44,7 +44,7 @@ If you have **no filesystem access** (chat-only): tell the Owner; she pastes the
 
 ## 5. Where everything is
 
-- **Product/reference:** `NFL Draft Simulator v20 Claude.html` (v20, reference) · `NFL Draft Simulator.html` (donor) · `backup-before-reorg/` (rollbacks)
+- **Product/reference:** `_archive/builds/NFL Draft Simulator v20 Claude.html` (v20, reference) · `_archive/builds/NFL Draft Simulator.html` (donor) · `backup-before-reorg/` (rollbacks)
 - **Shared channels:** `CHRONICLE.md` (facts, append-only) · `COUNCIL-BULLETIN.md` (messages + availability) · `QUESTIONS-FOR-THE-ARCHITECT.md` (current work) · `GOVERNANCE-ROUNDTABLE.md` (governance draft; §7 = Owner decisions) · `SUBMISSIONS.md` (proposal queue; template inside)
 - **Protocol/state:** `STATUS.md` · `AGENTS.md` · `COLLECTIVE-PROMPT.md` (the standing prompt for Claude) · `GOVERNANCE-ROUNDTABLE.md` · `_agents/ds/notes/Owner-Rulings-19-Oct.md` (the five rulings)
 - **Workspaces:** `_agents/<name>/` — each session's private folder (create yours on arrival; nobody else writes in it)

@@ -56,8 +56,8 @@ for (let i = 0; i < argv.length; i++) {
 const selftest = !!flags.selftest;
 const here = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(here, '..', '..', '..');
-const V20 = flags.v20 || path.join(root, 'NFL Draft Simulator v20 Claude.html');
-const DONOR = flags.donor || path.join(root, 'NFL Draft Simulator.html');
+const V20 = flags.v20 || path.join(root, '_archive/builds/NFL Draft Simulator v20 Claude.html');
+const DONOR = flags.donor || path.join(root, '_archive/builds/NFL Draft Simulator.html');
 
 // ---- the manifest (single source of the oracle) ------------------------------------------------
 const MANIFEST_PATH = flags.manifest || path.join(root, '_agents', 'minimax', 'MERGE-MANIFEST.json');

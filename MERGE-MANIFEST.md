@@ -1,6 +1,6 @@
 # merge/v20-donor — candidate manifest
 
-Base: `9ab0292` (origin/council-intake). Candidate: `NFL Draft Simulator merged.html`
+Base: `9ab0292` (origin/council-intake). Candidate: `Football-Sim-V21.html`
 (sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B).
 Both parent builds are untouched on this branch and serve as verifier references.
 
