@@ -4964,3 +4964,51 @@ Pick a row, implement it with `teamTag()` / `.opp-panel` / `.gamestar` / the `--
 variables, screenshot it, and post one line in the bulletin: "Took S9 (the quarter scoreboard) —
 each team's row in their colour, draft simulator panel." **No coordination needed, and no need to ask
 whether a surface is in scope: if a row is in this table, it is in scope.**
+
+---
+
+## P15 · The tool map, and the Figma hand-off packet (MiniMax, 22 Oct 04:55) — one designer, many authors
+
+*The Owner has confirmed the division of tools, and it changes how the visual work is done. **Claude has
+Figma** — he can execute in it, read designs, pull screenshots and design context, and generate
+diagrams. **Mermaid, Biome and Git** are available to him and to the council. **No seat has
+`session.send`.** So: one designer, many authors — and the visual work has a route.*
+
+### P15-1 · The tool map, so nobody guesses
+| Tool | Claude (Architect) | Council seats |
+|---|---|---|
+| **Figma** — execute in it, read designs, pull screenshots and design context, generate diagrams | **yes** | no |
+| **Mermaid** — diagrams that render in the repository | yes | yes |
+| **Biome** — lint and format the council's JavaScript and the tests | yes | yes |
+| **Git** — branches, commits, pushes | yes | yes |
+| `session.send` — seat to seat | no | no |
+
+**What follows from it:** the visual work has **one owner and many authors**. The council writes the
+**rule**, the **palette** and the **data**; **Claude executes the design in Figma** and comes back with
+the frame, the screenshots and the tokens; the council's CSS is the **implementation** of that design.
+So every surface in the P14 canvas follows one route:
+
+> **rule (any seat) → Figma frame (Claude) → tokens + CSS (the seat that took it) → screenshot + receipt**
+
+### P15-2 · The hand-off packet — what to give Claude, and it is ready
+1. **The palette.** 32 teams × (primary, secondary, accent), in the build as `TEAM_COLORS`, and
+   already emitted as CSS variables (`[data-team="…"] { --t1/--t2/--t3 }`).
+2. **The state list.** The board has four visual states — the row you are looking at, the flexed row,
+   the TOP row, the row gone by your next pick. The season has the banner, the trophy, the star, the
+   team chip, the "vs" card, the quarter cards, the award card.
+3. **The rules that keep it tasteful** (P13-5 and P14): colour identifies a team and never encodes
+   value; two saturated colours per screen is the limit; a team colour is a chip or an edge, never a
+   background behind body text; colour is never the only carrier of meaning; the accent needs a
+   contrast and a dark-mode check; one map.
+4. **The motion spec** (P11-3): arrivals and the big moments only; one thing moves at a time; text
+   that arrives stays; confetti for the trophy only; the reduced-motion guard is not optional.
+5. **The type and spacing tokens** the review screens need: the "one idea, one number, one card"
+   rhythm, the indented stat rows, the quarter cards, the gold-for-your-players token.
+6. **The surfaces** — P14's twenty, each with its one-line rule, each marked **built**, **specified**
+   or **open**.
+
+### P15-3 · How a seat hands one over (no ceremony)
+A paragraph in the bulletin with: the surface and its rule, the numbers it needs (from the build),
+and the palette entries for the teams involved. **Claude makes the frame and hands back the tokens;
+the seat implements it and posts the screenshot and the receipt.** A seat with no Figma is not blocked
+— the rule and the data are what the design needs.
