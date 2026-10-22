@@ -44,18 +44,23 @@ This section is the single source of truth for Claude. Older duplicate-numbered 
 
 **Stale duplicate sections to ignore:** `PART 5` (older decomposition), `P10-1..9` (first round), `P10-1..15` (added later), `P11-1..8` (added later) — their content is folded into the canonical index above; follow the canonical sections for execution.
 
-**Next single action for Claude:** apply `P0-17` (flex rules) first, then `P0-15`, `P0-16`, `P0-18`, `P0-19`, then proceed through P0 → P7 per the canonical index.
+**Next single action for Claude:** apply `P0-17` (flex rules) first — but ONLY via the `--flex-rules-v22` dry-run flag in `_agents/lightning/notes/v22-applier.js`, which prints hunks+hash+self-check and does NOT write to the product. Requires Owner approval for protected constants (`FLEX`/`NATURAL_SLOT_MAP`) and CB3 conflict resolution (0 vs 2). Do not apply without explicit Owner sign-off.
 
-**SAFE ALONE? designations for top-priority items:**
-- ✅ `P0-17` flex rules: **NO** — requires Owner approval for protected constants (`FLEX`/`NATURAL_SLOT_MAP`) and CB3 conflict resolution (0 vs 2); see `--flex-rules-v22` applier flag in `_agents/lightning/notes/flex-rules-risk-map.md`
-- ✅ `P0-15` coaching philosophy: **YES** — pure text copy; only description rewrite needed
-- ✅ `P0-16` base defense: **CONDITIONAL** — depends on flex alias mapping (OLB≡WILL, ILB≡MIKE) being applied first; see `--base-defense-v22` applier
-- ✅ `P0-1` Value Here removal: **YES** — copy-pasteable CSS/HTML edits; intermediate `node --check` verification passes
-- ✅ `P0-390px` startSeasonBtn: **NO** — gate scope change (`inViewport` + preseason probe); requires protocol coordination
+**SAFE ALONE? consolidated five-question list** (every line in V22-Suggestions.md that touches a protected constant or moves a number):
 
-**Dependency map (apply in order):**
-`P0-17` flex rules → `P0-16` base defense → `P0-15` coaching philosophy → `P0-1` Value Here → remaining P0 items
-(flex rules establish the math; base defense uses those maths; coaching is copy; draft board UI follows)
+| # | Line(s) | Change | Blast Radius | SAFE ALONE? | Five-Question Form |
+|---|---------|--------|-------------|------------|-------------------|
+| 1 | P0-17 flex table (l.779-804) | FLEX/LB_FLEX penalty values (FS:4→6, CB3:4→0/2, etc.) | **HIGH** — effOvr→board→CPU valuation; needs re-validation draft board/100-season/real-2025 | **NO** (depends on Owner approval + CB3 conflict) | 1. What change? FLEX penalty values restructured. 2. Why? Owner's flex rule feedback. 3. Owner approval? Yes — protected constants FLEX/NATURAL_SLOT_MAP. 4. SAFE alone? No — CB3 conflict (0 vs 2) blocks. 5. How to check? `--flex-rules-v22` dry-run + re-run pw4.js 100-season smoke. |
+| 2 | P0-16 base defense (l.1092) | 3-4/4-3 base + OLB≡WILL, ILB≡MIKE aliases | **MEDIUM** — wins maths affected; season model numbers should not move | **CONDITIONAL** (depends on flex alias mapping applied first) | 1. What change? Base defense user selection + alias mapping. 2. Why? Owner's 3-4 base structure. 3. Owner approval? Yes — per P0-B in Owner's brief. 4. SAFE alone? Conditional — need P0-17 flex rules first. 5. How to check? Verify season sim numbers unchanged after applying. |
+| 3 | Appendix D (l.522) | DEFAULT_WEIGHTS adjustments (K 0.72→0.45, etc.) | **HIGH** — modelWeights() = f(slotWinsPerOvr()) consistency | **NO** (requires explicit Owner approval) | 1. What change? Weight delta table: K, WR2, RB1, CB2, DE1, TE1/TE2. 2. Why? Colleague debate rebalancing. 3. Owner approval? Yes — per AGENTS.md §9, these are protected constants. 4. SAFE alone? No — breaking modelWeights() consistency is prohibited. 5. How to check? Verify modelWeights() = f(slotWinsPerOvr()) in 34/34 slots after any change. |
+| 4 | P0-15 coaching philosophy (l.168) | Description text rewrite + "Opponents" → "OPPONENTS" | **LOW** — pure text copy; no math impact | **YES** — self-contained text change | 1. What change? Description rewrite; capitalize "Opponents". 2. Why? Owner feedback: should be available all season. 3. Owner approval? Not — pure UI text. 4. SAFE alone? Yes — no math impact. 5. How to check? String match against new description text. |
+| 5 | P0-1 Value Here removal (l.37-45) | CSS/HTML edits removing "Value Here" column | **LOW** — copy-pasteable UI changes; intermediate node --check passes | **YES** — independent apply | 1. What change? Delete Value Here column from draft board visual. 2. Why? Remove column but keep r.v. in all background math. 3. Owner approval? Not — per prototyped P0-1. 4. SAFE alone? Yes — each of 7 locations edits independently. 5. How to check? node --check on extracted <script>; 390px e2e-smoke.mjs. |
+| 6 | Build pin (l.10, l.19, l.73, l.2081-2236) | Pin 044d1759e01ac99b vs drifted 40233d6be00e987c | **MEDIUM** — build identity; verification gate | **OWNER** — per P2-1 default tab + STATUS.md | 1. What change? Build pin re-pinned from V21 candidate hash to current. 2. Why? Original pin no longer matches working tree. 3. Owner approval? Yes — per BOC ruling 21 Oct. 4. SAFE alone? Owner decision. 5. How to check? Verify sha256 of merged.html matches pinned hash. |
+| 7 | Appendix B (l.440-444) | Candidate build sha256 reference | **LOW** — documentation only | **YES** — read-only reference | 1. What change? Document the sha256 of the candidate build. 2. Why? Verifier reproducibility. 3. Owner approval? Not — documented, not changed. 4. SAFE alone? Yes — read-only. 5. How to check? Confirm file sha256 matches recorded hash. |
+
+**Consolidation:** Only items 1, 3, and 6 require Owner approval (protected constants or build pin). Items 2 and 4 are conditional/independent but noted. Items 5 and 7 are safe to apply alone.
+
+---
 
 ---
 
