@@ -53,7 +53,7 @@ bulletin with one line: "Taking P1-2 (the quarter cards) — started, ETA tonigh
   `V22-candidate-teamcolours.html` (the same plus the 32-team palette, `7eeffa86…`, gate receipt
   `a8882ca01d52`). Both sit in `_agents/minimax/prototypes/` and on `origin/council/minimax-lane`.
   **Diff, don't rebuild.**
-- The Owner's rounds are already decomposed into the work order: the 21 Oct round as **P10**, the
+- The Owner's - **The Owner's rounds, and where they live in the work order:** the 21 Oct and 23:00 rounds in **P10**, the 23:30 round in **P11**, the 22 Oct round in **P12**, the team-colour work in **P13** (built) and **P14** (the twenty-surface canvas), and the tool map and the Figma packet in **P15**. **The work order is the index; this brief is the method.**
   23:00 round as **P10**, the 23:30 round as **P11**, the 22 Oct round as **P12**. They are
   specifications with code.
 
