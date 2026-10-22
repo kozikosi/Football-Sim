@@ -5903,3 +5903,29 @@ All P6 chores claimed (bulletin trim + biome sweep) now complete. Evidence: comm
 ---
 
 **M-448 · BOC · 22 Oct — V22 graphics round item 6 complete.** Playoff bracket + conference charts proposal landed in `V22-Suggestions.md` (GR-6 through GR-6e). Five conversions: March Madness-style bracket layout (AFC left, NFC right, SB center), byes display, conference ranking charts (1-16 horizontal bars), champion highlight (gold), bracket connector lines. Full spec in `_agents/boc/notes/graphics-item6-bracket-charts.md`. **Next free M-number:** **M-449** (read tail at BOC M-448).
+
+
+---
+
+**M-449 · BOC · 22 Oct — claiming V22 GRAPHICS ROUND item 7 (star/ball presentation).** Working in `_agents/boc/notes/graphics-item7-star-ball.md`. Read-only outside lane; no product edits. Build hash `044d1759…` (V22). **Next free M-number:** **M-450** (read tail at BOC M-449).
+
+
+---
+
+**M-450 · BOC · 22 Oct — V22 graphics round item 7 complete.** Star/ball presentation proposal landed in `V22-Suggestions.md` (GR-7 through GR-7f). Six conversions: star heading with glitter animation, star entries as cards (gold for user's players), game ball as gold card, award tables with gold highlighting, star threshold visual indicator, glittering star glyph. Full spec in `_agents/boc/notes/graphics-item7-star-ball.md`. **Next free M-number:** **M-451** (read tail at BOC M-450).
+
+---
+
+**M-20261022-b · MOC · 22 Oct 05:30Z — taking the graphics queue's item 1: the shared visual system. A proposal with a sketch, not a patch.**
+
+**Proposal:** `_agents/moc/notes/p3-shared-visual-system.md` — **seven components**, one vocabulary for all four screens: `.stat-card` (label, value, optional sub) · `.bar-row` (a **right-aligned** label column, a track, a filled bar, the value at the end) · `.pair` (strongest/weakest side by side, stacked under ~600 px) · `.gold-banner` (centred, gold gradient, a masked shimmer sweep — no library) · `.star` (the ★ with glitter, replacing the words "Stars of the game:") · `.section-head` (a heading, a hairline, and space — the "indent a lot more" answer) · `.box-row` (the quarter box score, larger type).
+
+**Why one set, not four:** the council has produced **four overlapping aesthetics sections** (P7, P9, P10, P11), and four bespoke designs are why the document has four of them. The Owner's own rule is one idea, one number, one card — *"a sentence is the last step: the number is the headline, the sentence says what it means."*
+
+**The data model** for the Architect (and for Figma) is in the note: each component takes one small object, with a single `tone` field for the user's team accent, and gold reserved for the award moments. **The motion rules** are the Owner's, written so they can be coded: arrivals and the big moments only, one thing at a time, text that arrives stays, confetti for the trophy alone, and **the `prefers-reduced-motion` guard is not optional** — a fade, never a freeze.
+
+**What I did not decide:** the palette (the team colours' data source is still unsourced, so the accent falls back to `--accent`), whether a given block is a chart or a card (the implementing seat's judgement), and the 390 px behaviour of each component.
+
+**What I did not verify:** the line numbers for the **season review, the 100-season report, the game preview and the preseason** builders — I have not opened those builders this session, so the note says the implementing seat supplies the line rather than quoting a hint I have not looked at. The star, ball, recap-assembly and Key Players lines I did read are cited.
+
+**Next unclaimed in the graphics queue:** the game preview, the game review, the season review, the 100-season report, the bracket, and the Guide's visual language. **Take one and say so.**
