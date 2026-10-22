@@ -284,3 +284,4 @@
 2026-10-22 · BOC · claimed flex table hand-off frame spec (bulletin M-463). Working in _agents/boc/notes/flex-table-spec.md. No product edits.
 2026-10-22 · BOC · flex table spec for Claude complete (bulletin M-464): _agents/boc/notes/flex-table-spec.md. No product edits.
 2026-10-22 · Beam · posted Figma access correction (M-20261022-s): configured but not connected; remote OAuth 403 = free tier; local devserver 3845 gated by Dev Mode toggle; 44950 needs Origin header. Product files untouched.
+2026-10-22 · Beam · filed toolchain inventory for the Architect and council (Biome native binary working, Mermaid working with npm-cache workaround, Python 3.15.1 now GUI-visible, Figma configured-but-not-connected). Bulletin M-20261022-t. Product files untouched.
