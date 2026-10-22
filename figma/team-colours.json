@@ -1,0 +1,426 @@
+{
+  "_meta": {
+    "what": "The 32-team palette: brand data and the derived display colours, for import into Figma",
+    "source": "GPT NFL team-colour table as supplied by the Owner on 22 Oct 2026 (NFL brand references: jimniels/teamcolors and the Pro Football Network team colour guide). Status: a published reference, not yet verified against each team own current brand guide.",
+    "rule": "display.letter = the brand secondary if it clears 4.5:1 on the primary, else white, else #0B0F16. display.stripe and display.edge = the first of (third, secondary) that is not white, not near-black and not the primary; where a team has none, the stripe is flat in its primary.",
+    "usage": "Draft-board rows use the PLAYER NFL team; the drafting frame uses the user team; in a matchup the opponent chip and panels use theirs."
+  },
+  "teams": {
+    "Baltimore Ravens": {
+      "brand": {
+        "primary": "#241773",
+        "secondary": "#000000",
+        "third": "#9E7C0C"
+      },
+      "display": {
+        "fill": "#241773",
+        "letter": "#FFFFFF",
+        "stripe": "#9E7C0C",
+        "edge": "#9E7C0C"
+      }
+    },
+    "Buffalo Bills": {
+      "brand": {
+        "primary": "#00338D",
+        "secondary": "#C60C30",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#00338D",
+        "letter": "#FFFFFF",
+        "stripe": "#C60C30",
+        "edge": "#C60C30"
+      }
+    },
+    "Cincinnati Bengals": {
+      "brand": {
+        "primary": "#FB4F14",
+        "secondary": "#000000",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#FB4F14",
+        "letter": "#000000",
+        "stripe": "#FB4F14",
+        "edge": "#FB4F14"
+      }
+    },
+    "Cleveland Browns": {
+      "brand": {
+        "primary": "#311D00",
+        "secondary": "#FF3C00",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#311D00",
+        "letter": "#FF3C00",
+        "stripe": "#FF3C00",
+        "edge": "#FF3C00"
+      }
+    },
+    "Denver Broncos": {
+      "brand": {
+        "primary": "#FB4F14",
+        "secondary": "#002244",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#FB4F14",
+        "letter": "#002244",
+        "stripe": "#FB4F14",
+        "edge": "#FB4F14"
+      }
+    },
+    "Houston Texans": {
+      "brand": {
+        "primary": "#03202F",
+        "secondary": "#A71930",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#03202F",
+        "letter": "#FFFFFF",
+        "stripe": "#03202F",
+        "edge": "#03202F"
+      }
+    },
+    "Indianapolis Colts": {
+      "brand": {
+        "primary": "#002C5F",
+        "secondary": "#FFFFFF",
+        "third": "#A2AAAD"
+      },
+      "display": {
+        "fill": "#002C5F",
+        "letter": "#FFFFFF",
+        "stripe": "#A2AAAD",
+        "edge": "#A2AAAD"
+      }
+    },
+    "Jacksonville Jaguars": {
+      "brand": {
+        "primary": "#101820",
+        "secondary": "#006778",
+        "third": "#D7A22A"
+      },
+      "display": {
+        "fill": "#101820",
+        "letter": "#FFFFFF",
+        "stripe": "#D7A22A",
+        "edge": "#D7A22A"
+      }
+    },
+    "Kansas City Chiefs": {
+      "brand": {
+        "primary": "#E31837",
+        "secondary": "#FFB81C",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#E31837",
+        "letter": "#FFFFFF",
+        "stripe": "#FFB81C",
+        "edge": "#FFB81C"
+      }
+    },
+    "Las Vegas Raiders": {
+      "brand": {
+        "primary": "#000000",
+        "secondary": "#A5ACAF",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#000000",
+        "letter": "#A5ACAF",
+        "stripe": "#A5ACAF",
+        "edge": "#A5ACAF"
+      }
+    },
+    "Los Angeles Chargers": {
+      "brand": {
+        "primary": "#0080C6",
+        "secondary": "#FFC20E",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#0080C6",
+        "letter": "#0B0F16",
+        "stripe": "#FFC20E",
+        "edge": "#FFC20E"
+      }
+    },
+    "Miami Dolphins": {
+      "brand": {
+        "primary": "#008E97",
+        "secondary": "#FC4C02",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#008E97",
+        "letter": "#0B0F16",
+        "stripe": "#FC4C02",
+        "edge": "#FC4C02"
+      }
+    },
+    "New England Patriots": {
+      "brand": {
+        "primary": "#002244",
+        "secondary": "#C60C30",
+        "third": "#BFC0BF"
+      },
+      "display": {
+        "fill": "#002244",
+        "letter": "#FFFFFF",
+        "stripe": "#BFC0BF",
+        "edge": "#BFC0BF"
+      }
+    },
+    "New York Jets": {
+      "brand": {
+        "primary": "#125740",
+        "secondary": "#FFFFFF",
+        "third": "#000000"
+      },
+      "display": {
+        "fill": "#125740",
+        "letter": "#FFFFFF",
+        "stripe": "#125740",
+        "edge": "#125740"
+      }
+    },
+    "Pittsburgh Steelers": {
+      "brand": {
+        "primary": "#FFB612",
+        "secondary": "#101820",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#FFB612",
+        "letter": "#101820",
+        "stripe": "#FFB612",
+        "edge": "#FFB612"
+      }
+    },
+    "Tennessee Titans": {
+      "brand": {
+        "primary": "#0C2340",
+        "secondary": "#4B92DB",
+        "third": "#C8102E"
+      },
+      "display": {
+        "fill": "#0C2340",
+        "letter": "#4B92DB",
+        "stripe": "#C8102E",
+        "edge": "#C8102E"
+      }
+    },
+    "Arizona Cardinals": {
+      "brand": {
+        "primary": "#97233F",
+        "secondary": "#000000",
+        "third": "#FFB612"
+      },
+      "display": {
+        "fill": "#97233F",
+        "letter": "#FFFFFF",
+        "stripe": "#FFB612",
+        "edge": "#FFB612"
+      }
+    },
+    "Atlanta Falcons": {
+      "brand": {
+        "primary": "#A71930",
+        "secondary": "#000000",
+        "third": "#A5ACAF"
+      },
+      "display": {
+        "fill": "#A71930",
+        "letter": "#FFFFFF",
+        "stripe": "#A5ACAF",
+        "edge": "#A5ACAF"
+      }
+    },
+    "Carolina Panthers": {
+      "brand": {
+        "primary": "#0085CA",
+        "secondary": "#101820",
+        "third": "#BFC0BF"
+      },
+      "display": {
+        "fill": "#0085CA",
+        "letter": "#0B0F16",
+        "stripe": "#BFC0BF",
+        "edge": "#BFC0BF"
+      }
+    },
+    "Chicago Bears": {
+      "brand": {
+        "primary": "#0B162A",
+        "secondary": "#000000",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#0B162A",
+        "letter": "#FFFFFF",
+        "stripe": "#0B162A",
+        "edge": "#0B162A"
+      }
+    },
+    "Dallas Cowboys": {
+      "brand": {
+        "primary": "#003594",
+        "secondary": "#869397",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#003594",
+        "letter": "#FFFFFF",
+        "stripe": "#869397",
+        "edge": "#869397"
+      }
+    },
+    "Detroit Lions": {
+      "brand": {
+        "primary": "#0076B6",
+        "secondary": "#B0B7BC",
+        "third": "#000000"
+      },
+      "display": {
+        "fill": "#0076B6",
+        "letter": "#FFFFFF",
+        "stripe": "#B0B7BC",
+        "edge": "#B0B7BC"
+      }
+    },
+    "Green Bay Packers": {
+      "brand": {
+        "primary": "#203731",
+        "secondary": "#FFB612",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#203731",
+        "letter": "#FFB612",
+        "stripe": "#FFB612",
+        "edge": "#FFB612"
+      }
+    },
+    "Los Angeles Rams": {
+      "brand": {
+        "primary": "#003594",
+        "secondary": "#FFD100",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#003594",
+        "letter": "#FFD100",
+        "stripe": "#FFD100",
+        "edge": "#FFD100"
+      }
+    },
+    "Minnesota Vikings": {
+      "brand": {
+        "primary": "#4F2683",
+        "secondary": "#FFC62F",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#4F2683",
+        "letter": "#FFC62F",
+        "stripe": "#FFC62F",
+        "edge": "#FFC62F"
+      }
+    },
+    "New Orleans Saints": {
+      "brand": {
+        "primary": "#D3BC8D",
+        "secondary": "#101820",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#D3BC8D",
+        "letter": "#101820",
+        "stripe": "#D3BC8D",
+        "edge": "#D3BC8D"
+      }
+    },
+    "New York Giants": {
+      "brand": {
+        "primary": "#0B2265",
+        "secondary": "#A71930",
+        "third": "#A5ACAF"
+      },
+      "display": {
+        "fill": "#0B2265",
+        "letter": "#FFFFFF",
+        "stripe": "#A5ACAF",
+        "edge": "#A5ACAF"
+      }
+    },
+    "Philadelphia Eagles": {
+      "brand": {
+        "primary": "#004C54",
+        "secondary": "#A5ACAF",
+        "third": "#000000"
+      },
+      "display": {
+        "fill": "#004C54",
+        "letter": "#FFFFFF",
+        "stripe": "#A5ACAF",
+        "edge": "#A5ACAF"
+      }
+    },
+    "San Francisco 49ers": {
+      "brand": {
+        "primary": "#AA0000",
+        "secondary": "#B3995D",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#AA0000",
+        "letter": "#FFFFFF",
+        "stripe": "#B3995D",
+        "edge": "#B3995D"
+      }
+    },
+    "Seattle Seahawks": {
+      "brand": {
+        "primary": "#002244",
+        "secondary": "#69BE28",
+        "third": "#A5ACAF"
+      },
+      "display": {
+        "fill": "#002244",
+        "letter": "#69BE28",
+        "stripe": "#A5ACAF",
+        "edge": "#A5ACAF"
+      }
+    },
+    "Tampa Bay Buccaneers": {
+      "brand": {
+        "primary": "#D50A0A",
+        "secondary": "#34302B",
+        "third": "#FF7900"
+      },
+      "display": {
+        "fill": "#D50A0A",
+        "letter": "#FFFFFF",
+        "stripe": "#FF7900",
+        "edge": "#FF7900"
+      }
+    },
+    "Washington Commanders": {
+      "brand": {
+        "primary": "#5A1414",
+        "secondary": "#FFB612",
+        "third": "#FFFFFF"
+      },
+      "display": {
+        "fill": "#5A1414",
+        "letter": "#FFB612",
+        "stripe": "#FFB612",
+        "edge": "#FFB612"
+      }
+    }
+  }
+}
