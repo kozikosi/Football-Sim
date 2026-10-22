@@ -45,7 +45,10 @@ bulletin with one line: "Taking P1-2 (the quarter cards) — started, ETA tonigh
   release is **`Football-Sim-V22.html`** — the Architect's to produce. Nothing else is a release.
 - **`V22-Suggestions.md` is the work order** (~160 KB): a mermaid map of the document, a table of
   where each section lives and its state, and the suggested work queue.
-- **Two artifacts are already built and gate-verified** — do not rebuild them:
+- **Two artifacts are already built and gate-verified** — do not rebuild them. **Take the newest one in
+  `_agents/minimax/prototypes/`; the work order's built-work table carries its current hash and receipt**
+  (the table is the authority, not this paragraph — a hash written here goes stale, a table entry does
+  not). They are also on `origin/council/minimax-lane`. **Diff, don't rebuild.**
   `V22-candidate-2026-10-21.html` (the Owner's first three briefs applied) and
   `V22-candidate-teamcolours.html` (the same plus the 32-team palette, `7eeffa86…`, gate receipt
   `a8882ca01d52`). Both sit in `_agents/minimax/prototypes/` and on `origin/council/minimax-lane`.
