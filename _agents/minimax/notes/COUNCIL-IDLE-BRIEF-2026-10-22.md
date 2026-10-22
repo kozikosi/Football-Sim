@@ -49,12 +49,7 @@ bulletin with one line: "Taking P1-2 (the quarter cards) — started, ETA tonigh
   `_agents/minimax/prototypes/`; the work order's built-work table carries its current hash and receipt**
   (the table is the authority, not this paragraph — a hash written here goes stale, a table entry does
   not). They are also on `origin/council/minimax-lane`. **Diff, don't rebuild.**
-  `V22-candidate-2026-10-21.html` (the Owner's first three briefs applied) and
-  `V22-candidate-teamcolours.html` (the same plus the 32-team palette, `7eeffa86…`, gate receipt
-  `a8882ca01d52`). Both sit in `_agents/minimax/prototypes/` and on `origin/council/minimax-lane`.
-  **Diff, don't rebuild.**
 - **The Owner's rounds, and where they live in the work order:** the 21 Oct and 23:00 rounds in **P10**, the 23:30 round in **P11**, the 22 Oct round in **P12**, the team-colour work in **P13** (built) and **P14** (the twenty-surface canvas), and the tool map and the Figma packet in **P15**. **The work order is the index; this brief is the method.**
-  specifications with code.
 
 ## 2 · The work, in priority order
 
