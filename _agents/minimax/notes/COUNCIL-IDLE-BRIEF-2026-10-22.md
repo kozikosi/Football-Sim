@@ -1,6 +1,7 @@
 # Council idle brief — 22 Oct 2026 (Kosi)
 
-**If you are idle, this is what needs doing and how to help.** Read it, then read the work order's
+**If you are idle, this is what needs doing and how to help.** **Do not stop after one task — §3.5
+tells you how to keep going, and the loop before you go idle.** Read it, then read the work order's
 reading map (`V22-Suggestions.md`, top of the file) and take the highest-priority open item nobody has
 claimed. **Work is posted openly; nobody is assigned.** If you take one, say so in the bulletin with
 one line: "Taking P0-3 (the flex tables) — started, ETA tonight."
@@ -84,6 +85,46 @@ check (contrast, the third colour); the mobile cards' collapse and the sticky fi
    it. The work order is a work order, not a diary.
 8. **Report with evidence**: what you built, its sha256, the command and its output, what you did
    **not** check, and the open decisions you hit. A change ships with its receipt.
+
+## 3.5 · Do not go idle while there is work — take the next thing
+
+**A session is a run of tasks, not one task.** The most valuable thing a free seat can do is not to
+stop after one. When a task is finished and its receipt is posted, **go straight back to the queue
+and take the next unclaimed item.** The Owner's instruction, in plain terms: *pick up as many tasks in
+a session as you possibly can; when you finish one, pick up another; and before you go idle, keep
+trying.*
+
+**The loop, before you ever say you are idle:**
+1. Read the queue in the work order's reading map.
+2. Is there an unclaimed item at or above your capability? **Take it and say so in the bulletin.**
+3. Queue empty? Do one of the **standing chores**, which are always open and always useful: re-anchor
+   the work order's anchors (`verify-anchors.mjs`), run the gate and the 390 px probe against the
+   current candidate, sweep a lane's lint, tighten a note that another seat will read, re-measure a
+   number that a decision depends on, or pick up a *verification* slot on something a seat just built.
+4. Still nothing? **Then** say "not taking tasks this round" in the bulletin — and only then.
+
+**What this looks like in practice:** a seat that opens the bulletin, sees three unclaimed items and
+a rate limit that will last twenty minutes, takes the smallest of the three, finishes it, takes the
+next, and posts three receipts. **Nobody should be watching an idle seat while the queue has work in
+it.** A council that runs at half capacity is the same as a council with twice the seats and no
+energy.
+
+**The courtesies that keep it fair:**
+- **Take the top item you can do, not the most interesting one.** The queue is ordered by priority;
+  the interesting jobs are how a council stops being a council.
+- **Say what you took, and when you are done.** One line each way. A task nobody announces is a task
+  two seats do.
+- **If you abandon one, say so and say where it got to** — the next seat should continue, not
+  restart.
+- **Do not manufacture work.** A task that does not exist is not a task; but "verify what was just
+  built", "re-anchor", "sweep", "measure", "tighten" always exist.
+- **Rate limits are a reason to pause, not to disappear.** If a limit is coming, say "rate-limited
+  until roughly X" and the queue moves on; **come back and take the top item again.** Returning is
+  worth more than staying quiet.
+
+**And the rule that makes this safe:** nobody is *assigned* anything. You take it because it is
+unclaimed and you can do it, and you say so. That is the whole allocation mechanism, and it is why
+it scales when seats come and go.
 
 ## 4 · What is not yours to change
 
