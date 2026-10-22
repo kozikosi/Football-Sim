@@ -1,0 +1,1572 @@
+{
+ "Arizona Cardinals": {
+  "team": "Arizona Cardinals",
+  "brand_colors": {
+   "primary": {
+    "hex": "#97233F",
+    "hexes": [
+     "#97233F"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#FFB612",
+    "hexes": [
+     "#FFB612"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#97233F",
+   "secondary": "#FFFFFF",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Atlanta Falcons": {
+  "team": "Atlanta Falcons",
+  "brand_colors": {
+   "primary": {
+    "hex": "#A71930",
+    "hexes": [
+     "#A71930"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#A71930",
+   "secondary": "#FFFFFF",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Baltimore Ravens": {
+  "team": "Baltimore Ravens",
+  "brand_colors": {
+   "primary": {
+    "hex": "#241773",
+    "hexes": [
+     "#241773"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#9E7C0C"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#9E7C0C"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#241773",
+   "secondary": "#FFFFFF",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Buffalo Bills": {
+  "team": "Buffalo Bills",
+  "brand_colors": {
+   "primary": {
+    "hex": "#00338D",
+    "hexes": [
+     "#00338D"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#C60C30",
+    "hexes": [
+     "#C60C30"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#00274D",
+    "hexes": [
+     "#00274D",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#00338D",
+   "secondary": "#C60C30",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Carolina Panthers": {
+  "team": "Carolina Panthers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0085CA",
+    "hexes": [
+     "#0085CA"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#BFC0BF",
+    "hexes": [
+     "#BFC0BF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#0085CA",
+   "secondary": "#BFC0BF",
+   "tertiary": "#101820",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Chicago Bears": {
+  "team": "Chicago Bears",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0B162A",
+    "hexes": [
+     "#0B162A"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#C83803",
+    "hexes": [
+     "#C83803"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#707070",
+    "hexes": [
+     "#707070",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#0B162A",
+   "secondary": "#FBC026",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Cincinnati Bengals": {
+  "team": "Cincinnati Bengals",
+  "brand_colors": {
+   "primary": {
+    "hex": "#FB4F14",
+    "hexes": [
+     "#FB4F14"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#707070",
+    "hexes": [
+     "#707070",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#FB4F14",
+   "secondary": "#000000",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Cleveland Browns": {
+  "team": "Cleveland Browns",
+  "brand_colors": {
+   "primary": {
+    "hex": "#311D00",
+    "hexes": [
+     "#311D00"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FF3C00",
+    "hexes": [
+     "#FF3C00"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#D9D9D6",
+    "hexes": [
+     "#D9D9D6",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#311D00",
+   "secondary": "#FF3C00",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Dallas Cowboys": {
+  "team": "Dallas Cowboys",
+  "brand_colors": {
+   "primary": {
+    "hex": "#003594",
+    "hexes": [
+     "#003594",
+     "#041E42"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#869397",
+    "hexes": [
+     "#869397"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#00338D",
+    "hexes": [
+     "#00338D",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#003594",
+   "secondary": "#869397",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Denver Broncos": {
+  "team": "Denver Broncos",
+  "brand_colors": {
+   "primary": {
+    "hex": "#FB4F14",
+    "hexes": [
+     "#FB4F14"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#002244",
+    "hexes": [
+     "#002244"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#808080",
+    "hexes": [
+     "#808080",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#FB4F14",
+   "secondary": "#002244",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Detroit Lions": {
+  "team": "Detroit Lions",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0076B6",
+    "hexes": [
+     "#0076B6"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#B0B7BC",
+    "hexes": [
+     "#B0B7BC"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#0076B6",
+   "secondary": "#B0B7BC",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Green Bay Packers": {
+  "team": "Green Bay Packers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#203731",
+    "hexes": [
+     "#203731"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFB612",
+    "hexes": [
+     "#FFB612"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#203731",
+   "secondary": "#FFB612",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Houston Texans": {
+  "team": "Houston Texans",
+  "brand_colors": {
+   "primary": {
+    "hex": "#03202F",
+    "hexes": [
+     "#03202F",
+     "#03203F"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#A71930",
+    "hexes": [
+     "#A71930",
+     "#E60029"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#020C11",
+    "hexes": [
+     "#020C11",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#03202F",
+   "secondary": "#A71930",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Indianapolis Colts": {
+  "team": "Indianapolis Colts",
+  "brand_colors": {
+   "primary": {
+    "hex": "#002C5F",
+    "hexes": [
+     "#002C5F"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#A2AAAD",
+    "hexes": [
+     "#A2AAAD",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#A2AAAD"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#002C5F",
+   "secondary": "#FFFFFF",
+   "tertiary": "#A2AAAD",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Jacksonville Jaguars": {
+  "team": "Jacksonville Jaguars",
+  "brand_colors": {
+   "primary": {
+    "hex": "#006778",
+    "hexes": [
+     "#006778",
+     "#101820"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#006778",
+    "hexes": [
+     "#006778",
+     "#D7A22A"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#D7A22A"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#006778",
+   "secondary": "#D7A22A",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Kansas City Chiefs": {
+  "team": "Kansas City Chiefs",
+  "brand_colors": {
+   "primary": {
+    "hex": "#E31837",
+    "hexes": [
+     "#E31837"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFB81C",
+    "hexes": [
+     "#FFB81C"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#E31837",
+   "secondary": "#FFFFFF",
+   "tertiary": "#FFB81C",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Las Vegas Raiders": {
+  "team": "Las Vegas Raiders",
+  "brand_colors": {
+   "primary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#707070",
+    "hexes": [
+     "#707070",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#101820",
+   "secondary": "#A5ACAF",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Los Angeles Chargers": {
+  "team": "Los Angeles Chargers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0080C6",
+    "hexes": [
+     "#0080C6"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFC20E",
+    "hexes": [
+     "#FFC20E"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#002244",
+    "hexes": [
+     "#002244",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#0080C6",
+   "secondary": "#0A2494",
+   "tertiary": "#FFC72C",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Los Angeles Rams": {
+  "team": "Los Angeles Rams",
+  "brand_colors": {
+   "primary": {
+    "hex": "#003594",
+    "hexes": [
+     "#003594"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFD100",
+    "hexes": [
+     "#FFD100"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#FFA300",
+    "hexes": [
+     "#FFA300",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#003594",
+   "secondary": "#FFB612",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Miami Dolphins": {
+  "team": "Miami Dolphins",
+  "brand_colors": {
+   "primary": {
+    "hex": "#008E97",
+    "hexes": [
+     "#008E97"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FC4C02",
+    "hexes": [
+     "#FC4C02"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#005778",
+    "hexes": [
+     "#005778",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#008E97",
+   "secondary": "#FC4C02",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Minnesota Vikings": {
+  "team": "Minnesota Vikings",
+  "brand_colors": {
+   "primary": {
+    "hex": "#4F2683",
+    "hexes": [
+     "#4F2683"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFC62F",
+    "hexes": [
+     "#FFC62F"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#4F2683",
+   "secondary": "#FFC62F",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "New England Patriots": {
+  "team": "New England Patriots",
+  "brand_colors": {
+   "primary": {
+    "hex": "#002244",
+    "hexes": [
+     "#002244"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#C60C30",
+    "hexes": [
+     "#C60C30"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#B0B7BC",
+    "hexes": [
+     "#B0B7BC"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#002244",
+   "secondary": "#C60C30",
+   "tertiary": "#BFC0BF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "New Orleans Saints": {
+  "team": "New Orleans Saints",
+  "brand_colors": {
+   "primary": {
+    "hex": "#D3BC8D",
+    "hexes": [
+     "#D3BC8D"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#707070",
+    "hexes": [
+     "#707070",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#101820",
+   "secondary": "#D3BC8D",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "New York Giants": {
+  "team": "New York Giants",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0B2265",
+    "hexes": [
+     "#0B2265",
+     "#0D2266"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#A71930",
+    "hexes": [
+     "#A71930"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#0B2265",
+   "secondary": "#A71930",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "New York Jets": {
+  "team": "New York Jets",
+  "brand_colors": {
+   "primary": {
+    "hex": "#125740",
+    "hexes": [
+     "#125740"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#808080"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#125740",
+   "secondary": "#FFFFFF",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Philadelphia Eagles": {
+  "team": "Philadelphia Eagles",
+  "brand_colors": {
+   "primary": {
+    "hex": "#004C54",
+    "hexes": [
+     "#004C54"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#004C54",
+   "secondary": "#A5ACAF",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Pittsburgh Steelers": {
+  "team": "Pittsburgh Steelers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#FFB612"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#101820",
+    "hexes": [
+     "#101820",
+     "#FFB612"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "tertiary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#FFB612",
+   "secondary": "#101820",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "San Francisco 49ers": {
+  "team": "San Francisco 49ers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#AA0000",
+    "hexes": [
+     "#AA0000"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#B3995D",
+    "hexes": [
+     "#B3995D"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#AA0000",
+   "secondary": "#B3995D",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Seattle Seahawks": {
+  "team": "Seattle Seahawks",
+  "brand_colors": {
+   "primary": {
+    "hex": "#002244",
+    "hexes": [
+     "#002244"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#69BE28",
+    "hexes": [
+     "#69BE28"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#A5ACAF",
+    "hexes": [
+     "#A5ACAF"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#002244",
+   "secondary": "#69BE28",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Tampa Bay Buccaneers": {
+  "team": "Tampa Bay Buccaneers",
+  "brand_colors": {
+   "primary": {
+    "hex": "#A71930",
+    "hexes": [
+     "#A71930",
+     "#D50A0A"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   },
+   "secondary": {
+    "hex": "#34302B",
+    "hexes": [
+     "#34302B"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#FF7900",
+    "hexes": [
+     "#FF7900"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#D50A0A",
+   "secondary": "#D7D7D8",
+   "tertiary": "#000000",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Tennessee Titans": {
+  "team": "Tennessee Titans",
+  "brand_colors": {
+   "primary": {
+    "hex": "#0C2340",
+    "hexes": [
+     "#0C2340"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#4B92DB",
+    "hexes": [
+     "#4B92DB"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#C8102E",
+    "hexes": [
+     "#C8102E"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   }
+  },
+  "display_colors": {
+   "primary": "#0C2340",
+   "secondary": "#4B92DB",
+   "tertiary": "#E2363F",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ },
+ "Washington Commanders": {
+  "team": "Washington Commanders",
+  "brand_colors": {
+   "primary": {
+    "hex": "#5A1414",
+    "hexes": [
+     "#5A1414"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "secondary": {
+    "hex": "#FFB612",
+    "hexes": [
+     "#FFB612"
+    ],
+    "corroborated": true,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_unverified"
+   },
+   "tertiary": {
+    "hex": "#000000",
+    "hexes": [
+     "#000000",
+     "#FFFFFF"
+    ],
+    "corroborated": false,
+    "source_url": [
+     "https://github.com/jimniels/teamcolors",
+     "https://www.profootballnetwork.com/nfl-team-color-codes-rgb-pantone-hex-and-cmyk-codes-for-all-32-teams/"
+    ],
+    "source_type": "reference_conflict"
+   }
+  },
+  "display_colors": {
+   "primary": "#5A1414",
+   "secondary": "#FFB81C",
+   "tertiary": "#FFFFFF",
+   "display_rule": "build value as shipped; contrast derivation pending (see p5-palette-contrast.md)",
+   "source_type": "build_shipped"
+  }
+ }
+}
