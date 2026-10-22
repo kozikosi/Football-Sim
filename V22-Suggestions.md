@@ -52,7 +52,7 @@ These are the Owner's. Where one conflicts with an item below, **the ruling wins
 
 | # | question | Owner's answer | effect on the items |
 |---|---|---|---|
-| **R-9** | **Where do the 32 team hexes come from?** | **SETTLED — "Go with GPT's colours."** GPT's table is the registry's source, carried verbatim in `_agents/minimax/tools/build-team-colours.mjs` with the provenance written into the file. The **display rule**: the brand palette stays data; the stripe's middle stop must be **visible on the light page** — not white, not near-black, not the primary — and if a team has no such colour, the stripe is flat in its primary rather than inventing a tint. Measured: **Chiefs red → gold → red**, white letters. | **No longer an open question.** Gemini's table was considered and not taken. The builder now holds GPT's values (Chiefs `#E31837`/`#FFB81C`/`#FFFFFF`; Vikings `#4F2683`/`#FFC62F`/`#FFFFFF`) — note the **secondary is now gold, not white**, which is the display rule at work. See `P17-1`/`P17-2` (MiniMax, committed `24ab9141`). |
+| **R-9** | **Where do the 32 team hexes come from?** | **SETTLED — "Go with GPT's colours."** GPT's table is the registry's source, carried verbatim in `_agents/minimax/tools/build-team-colours.mjs` with the provenance written into the file. The **display rule**: the brand palette stays data; the stripe's middle stop must be **visible on the light page** — not white, not near-black, not the primary — and if a team has no such colour, the stripe is flat in its primary rather than inventing a tint. | **No longer an open question.** Gemini's table was considered and not taken. The builder now holds GPT's values (Chiefs `#E31837`/`#FFB81C`/`#FFFFFF`; Vikings `#4F2683`/`#FFC62F`/`#FFFFFF`) — note the **secondary is now gold, not white**, which is the display rule at work. **⚠ The rule is honoured on the board rows and ignored on the banner** — see `P13-1b`; 18 of 32 teams get an invisible white stripe middle, the Owner's own Chiefs among them. |
 | **R-10** | **What makes a defender a star?** | *"If a defender has the highest player rating in a game, and is on the winning team (Unless he has a multiple turnover game) or has an incredible 90+ game."* | `R-6`'s yardage thresholds are **offensive-only**. A defender's bar is rating-led. This adds a second, parallel rule to `starsParagraph()` — the widest change in the block, and it needs its own seeded check. |
 | **R-11** | **Which screen is the intended handoff into the season?** | *"I don't understand."* — the question has been answered for the Owner in plain language, and the answer **corrects the premise**: the "Play a Season" hero **is live** (pin lines 6154–6159). What is dead is a **second, leftover copy** of it. | **Nothing is broken and nothing is missing from the flow.** The Owner's "Start Season" button works and reaches the Preseason page. The open decision is narrow: **delete the 27-line duplicate, or give the season a dedicated tab** (the donor build had one). See `P0-20a`. |
 | **R-12** | **Who gets the game ball in a tie?** | **SETTLED — "the least highly rated play[er] by static wins should be the winner in a tie."** Among tied candidates, the player with the **lowest static wins figure** (his spot's wins-per-point value) takes the game ball. | **No longer ambiguous.** The reasoning belongs in the code as a comment, because it explains the rule to whoever reads it later: the tie-break rewards the *alternative* — the lowest OVR would break fewer ties, because ratings cluster; **static wins breaks more**, and the Owner's preference is for static wins. See `P17-3` (MiniMax, committed `24ab9141`). The tie also goes to **defense** when the tie spans both an offensive and a defensive candidate. |
@@ -5123,33 +5123,119 @@ JS. **Does not require** the removed `teamTag()` helper or the removed `TEAM_COL
 `(Vikings)` renders in the same hue; the game-ball star is the opponent's primary.
 
 ### P13-2b · [DEFECT] two dead rules and one unreadable rule in the current candidate
-**WHERE** `_agents/minimax/prototypes/V22-candidate-teamcolours.html` lines 82–88.
-**WHAT — three findings, all measured in the artifact:**
 
-1. **`.conf-AFC` and `.conf-NFC` are dead.** They read `var(--t1)` / `var(--t2)` at the **top level** of
-   the stylesheet, but `--t1`/`--t2` are defined only **inside** `[data-team="…"]` scopes. Outside a
-   scoped element the custom property is undefined, so `color: var(--t1)` is invalid at computed-value
-   time and the declaration does nothing. The comment says "AFC in user's primary" — the intent needs
-   the user's palette on an ancestor (or `:root`), which the scope mechanism does not provide.
-   **Fix:** put the user's team on `:root` (`document.documentElement.dataset.team = userTeam`) so
-   `--t1/--t2/--t3` resolve at the top level, or scope those two rules under a user-team wrapper.
-2. **`.user-row[data-team]{color:var(--t1)}` makes the user's standings row unreadable for six teams.**
-   The whole row's text takes the team's primary, and for these primaries the contrast against the
-   light panel fails WCAG AA for text: **Steelers `#FFB612` 1.76:1**, Bengals `#FB4F14` 3.37:1,
-   Broncos `#FB4F14` 3.37:1, Dolphins `#008E97` 3.95:1, Panthers `#0085CA` 4.03:1, Chargers `#0080C6`
-   4.28:1 (threshold 4.5:1). **Fix:** use `--t1` for the row's border and tint only, and leave the text
-   in `--sub`/`inherit`.
-3. **Four palette collisions** make "which team is this" ambiguous on screen — identical primaries:
-   Bengals/Broncos both `#FB4F14`; Cowboys/Rams both `#003594`; Raiders/Saints both `#101820`;
-   Patriots/Seahawks both `#002244`.
+**⚠ RE-MEASURED 22 Oct 10:05 (OR, candidate `d15f6535…`, 664,581 B) — items 1 and 2 below are
+SUPERSEDED; item 3 still stands.** The artifact was rewritten again, and two of the three findings
+**no longer apply to it**. Read `P13-1b` for the defect that is real and larger.
 
-**WHY** the Owner's whole premise is that colour *identifies* a team. Two teams sharing a hex, or a
-row whose text cannot be read, defeats it.
-**SAFE ALONE?** (1) and (2) yes — CSS and one attribute. (3) is a **palette edit in another lane's
-builder** (`_agents/minimax/tools/build-team-colours.mjs`) and is reported to that seat, not taken here.
-**HOW TO CHECK** for each of the six teams above, the standings row's text colour must clear 4.5:1
-against the panel background; `grep -n "conf-AFC" ` must show the rule under a scope that defines
-`--t1`.
+**1. `.conf-AFC` / `.conf-NFC` — no longer dead, because the mechanism changed.** These rules read
+`var(--t1)` / `var(--t2)` at the top level, which was undefined when the palette lived only inside
+`[data-team="…"]` scopes. At `d15f6535…` the palette is applied to `:root` by `applyTeamColors()`
+(l.3375–3379, called l.1508), so `--t1/--t2/--t3` **do** resolve at the top level and the two rules
+**work**. *Nothing to do.*
+
+**2. `.user-row[data-team]{color:var(--t1)}` — the rule does not exist in this artifact.** The only
+`user-row` rule is `.divtable tr.user-row{background:rgba(79,140,255,0.12)}` (l.140). The standings
+row (l.3871) receives `class="user-row"` and `data-team`, but **no CSS colours its text with
+`--t1`**. *Nothing to do.* (For the record, had the rule existed, these GPT-table primaries would
+fail WCAG AA 4.5:1 as body text on the **light** panel: Saints 1.85, Steelers 1.76, Bengals 3.37,
+Broncos 3.37, Dolphins 3.95, Panthers 4.03, Chargers 4.28 — **7** teams; on the **dark** panel, 28
+of 32 would fail. Worth knowing if the rule is ever added.)
+
+**3. Four palette collisions — STILL STANDS.** Identical primaries make "which team is this"
+ambiguous on screen: Bengals/Broncos both `#FB4F14`; Cowboys/Rams both `#003594`; Raiders/Saints both
+`#101820`; Patriots/Seahawks both `#002244`. *Palette edit in another lane's builder
+(`_agents/minimax/tools/build-team-colours.mjs`) — reported, not taken here.*
+
+**Two further facts from the same measurement, for whoever touches this file next:**
+- **`teamTag()` has no call sites** at `d15f6535…` — it is dead code (l.3369). `.opp-panel` and
+  `.gamestar` (l.185–187) exist as CSS but **nothing renders them yet**.
+- **`--team-stripe` is written and never read.** `applyTeamColors()` sets it (l.3379); the banner's
+  stripe is a separate literal gradient in the CSS (l.184). One of the two is redundant.
+
+---
+
+### P13-1b · [DEFECT — the Owner's "visible middle" rule is applied to the rows but NOT to the banner
+
+**WHERE** `_agents/minimax/prototypes/V22-candidate-teamcolours.html` — `applyTeamColors()` l.3375–3379
+versus `teamStyle()` l.3360–3368; the banner's stripe rule l.184.
+
+**THE RULE.** `R-9`: *"the stripe's middle stop must be **visible on the light page** — not white, not
+near-black, not the primary — and if a team has no such colour, the stripe is flat in its primary
+rather than inventing a tint."*
+
+**WHAT IS BUILT.** `teamStyle()` (rows) **does** implement it — it picks a middle stop with
+`L(x) > 0.12`, excluding white, the primary, and near-black:
+```js
+3360: function teamStyle(name){
+3361:  … const mid = [c[2],c[1]].find(x => x && x!=='#FFFFFF' && x!==c[0] && L(x)>0.12);
+3368:  … return '--t1:'+c[0]+';--t2:'+letter+';--t3:'+(mid || c[0]); }
+```
+`applyTeamColors()` (the banner) **does not** — it copies the raw brand triple straight through:
+```js
+3375: function applyTeamColors(teamName){
+3377:  const c = TEAM_COLORS[teamName] || ['#4F8DFF','#FFFFFF','#FFC24B'];
+3379:  r.setProperty('--team1',c[0]); r.setProperty('--team2',c[1]); r.setProperty('--team3',c[2]);
+3379:  r.setProperty('--team-stripe','linear-gradient(90deg,'+c[0]+' 0%,'+c[2]+' 50%,'+c[0]+' 100%); }
+```
+and the banner's stripe is a literal (l.184): `linear-gradient(90deg,var(--team1) 0%,var(--team3) 50%,var(--team1) 100%)`.
+
+**THE RESULT, MEASURED.** The banner's middle stop is the **raw brand tertiary**, which is `#FFFFFF`
+for **18 of the 32 teams**. Against the light panel `#ffffff` that is a contrast ratio of
+**exactly 1.000** — the middle of the stripe disappears, and the banner shows two colour ends with a
+gap between them. Against the composited banner backdrop it is 1.042–1.162 — still invisible.
+
+**This is worse than a cosmetic gap on the dark theme, because of which theme users actually see:**
+the artifact is **dark by default** (`:root` l.14–17 is unconditional dark) but **renders light** on
+any machine whose OS reports `prefers-color-scheme: light` (l.18–22) — which is the macOS and
+Windows default. The light panel is the surface most people see.
+
+| surface | teams with an invisible stripe middle |
+|---|---|
+| light panel `#ffffff` (banner) | **18 of 32** — Bills, Bears, Bengals, Browns, Broncos, Chiefs, Cowboys, Commanders, Packers, Texans, Chargers, Rams, Dolphins, Vikings, Saints, Steelers, 49ers, Raiders |
+| light page `#f4f6fa` | 18 of 32 (CR 1.082) |
+| dark panel `#141922` | 3 of 32 — Lions, Jets, Eagles (mid `#000000`, CR 1.192) |
+| dark panel2 `#1b2230` | 3 of 32 (CR 1.318) |
+
+**The Chiefs are in that list.** Their stripe is `#E31837 → #FFFFFF → #E31837` — red, **white**, red.
+Gold (`#FFB81C`) is the badge's letter colour (l.180) and is **not in the stripe at all**. The Vikings
+are the same: `#4F2683 → #FFFFFF → #4F2683`.
+
+**WHAT (old → new).** `applyTeamColors()` must derive the middle stop the way `teamStyle()` already
+does, rather than copying `c[2]`:
+```js
+// old — the raw tertiary, white for 18 teams
+r.setProperty('--team3', c[2]);
+// new — the same derivation teamStyle() uses, with the stated fallback
+const mid = [c[2],c[1]].find(x => x && x!=='#FFFFFF' && x!==c[0] && L(x)>0.12);
+r.setProperty('--team3', mid || c[0]);
+```
+and the banner's gradient must consume that derived value (it already does, via `var(--team3)` at
+l.184 — so **only the setter changes**). If `--team-stripe` (l.3379) is kept, it must be built from
+the derived middle too.
+
+**WHY** The Owner's ruling is *"the middle must be visible on the light page."* It is currently
+honoured on the board rows and **ignored on the banner** — the one surface the Owner pointed at
+("the blue border around *Drafting as Kansas City Chiefs*"). The Owner's own team is one of the 18
+affected.
+
+**SAFE ALONE?** **Yes** — one function, one derived value, no markup change, no constants. It can land
+before or after `P13-1a`.
+**HOW TO CHECK**
+1. Set the draft team to Kansas City Chiefs. The computed `background-image` of `.draftingas::before`
+   must contain **`#FFB81C`** (gold) as its middle stop — **not** `#FFFFFF`.
+2. Same for the Vikings: the middle stop must be **`#FFC62F`** (gold), not `#FFFFFF`.
+3. Scripted: for all 32 teams, read the middle stop of `.draftingas::before` and assert it is never
+   `#FFFFFF`, never `#000000`, and never equal to the primary — or, where the team has no such
+   colour, that the stripe is flat in the primary.
+4. Assert the contrast of the middle stop against the light panel `#ffffff` is **> 1.2** for every team.
+
+**⚠ MOC's related claim, corrected (for the record).** MOC wrote *"the Chiefs' stripe is red → white
+at contrast 1.00 → gold, and that is true for 20 of 32 teams."* Measured: the stripe is red → **white**
+→ red (**not** → gold), "contrast 1.00" is exact against the light panel, and **18** teams get a white
+stripe middle (20 teams *carry* a white somewhere in their brand triple — 18 in slot 3, and Colts and
+Jets in slot 2). The *number* survives with a changed meaning; the *shape* of the claim was wrong.
+
 
 ### P13-2c · [DEFECT, other lane] four palette corrections in the emitted colours
 **WHERE** `_agents/minimax/tools/build-team-colours.mjs` lines 40–60 — **not this seat's file**;
@@ -5752,3 +5838,37 @@ front" framing** — the question was badly posed, and the Owner's answer remove
   board's chips show a player's **NFL team**, the depth chart shows the **slot he occupies**, and the
   flex rules speak in **slot names**. A player is what he does in your lineup, not what the pool says
   he is.
+
+---
+
+## P19 · The Owner's answers of 22 Oct 10:00 (MiniMax) — four settled, two records, and one reading that must be checked
+
+**SETTLED**
+1. **"Football and site terms" → "Glossary."** (Owner: "Yes.") — one line, in the guide's section list.
+3. **The save button stores the user's own weights, locally.** (Owner: *"If the user makes a change to the
+   default weights, they can press the save button to save those changes. Hopefully this would store
+   locally."*) — so the button is real: **`localStorage`**, the panel reopens with the user's set, and
+   **"Default"** restores the model's. **This also resolves the earlier contradiction:** the "delete
+   every record of my user weights" instruction was about the *council's* stored set, not the user's
+   own save button. The two live side by side now: the model weights (the truth) and the user's saved
+   copy (their edit), with a way back to the model.
+5. **The guide leaves the homepage entirely.** (Owner: *"No. That whole panel and text is completely
+   removed."*) — the homepage's guide panel **and its text go**, not just the box; the **Guide tab
+   keeps the full guide**. The homepage's "fill the guide" control goes with it.
+6. **The colours.** (Owner: *"You can check if you want but I feel confident in GPT's colours."*) — the
+   registry carries GPT's table as supplied; **a verification pass against each team's own brand guide
+   is available as a seat-sized chore** and nobody is waiting on it.
+
+**RECORDED, AND ONE READING THAT MUST BE CHECKED**
+2. **The weights tables** — the Owner asked to see both. **They are below, and they disagree in a way
+   that is not a rounding difference — see the note under the tables.**
+4. **The board's display slot** — the Owner asked for it in plain words again, so here it is in plain
+   words: **the board shows each player in one spot, and the council's two candidate rules are (a)
+   show him where he is worth the most to your team, or (b) show him where he will be scarcest.**
+   *Example, from the Cooper DeJean row Kosi saw:* DeJean is a cornerback. **(a)** would put him at
+   **CB1**, his natural spot, because a cornerback is worth the most at CB1. **(b)** put him at **FS**,
+   because a free safety is the scarce spot on that board, and a 90-rated CB is a known quantity while
+   FS is thin. **The council's recommendation is (a), value** — and here is the plain reason: the board
+   has a **Priority column already**, so the scarcity reading is not lost by choosing value; the
+   "Fills" column then means *"here is where he plays for you"*, which is what a user expects to read.
+   **One word from the Owner settles it: "value" or "scarcity".**
