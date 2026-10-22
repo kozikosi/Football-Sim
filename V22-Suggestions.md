@@ -33,6 +33,25 @@ A save into the wrong one produces a build that passes every check you did not r
 
 ---
 
+## Owner rulings — 22 Oct 2026 (binding)
+
+These are the Owner's. Where one conflicts with an item below, **the ruling wins** and the item is what changes.
+
+| # | ruling | effect on the items |
+|---|---|---|
+| **R-1** | **Naming.** Today's best build is frozen as **`Football-Sim-V21.html`** — a byte-identical copy of the pin, sha256 `044d1759…`, 656,746 B. The build Claude produces is **`Football-Sim-V22.html`**. V20 is historical only. | The pin does not move. V21 is today's release artifact; V22 is what you produce. Do not call either one V20. |
+| **R-2** | **Edge is one position.** *"LEDG/REDG don't matter at all. We don't care about left or right."* | Every question about which side an edge lines up on is void. The flex matrix treats edge as a single code, in `P0-17`. |
+| **R-3** | **The punter is worth 1** on the model-weights scale. Claude determines the exact treatment. | Already true in the build: `DEFAULT_WEIGHTS` carries `"P": 1`. No constant changes — confirm `modelWeights()` still derives it rather than hard-coding it. |
+| **R-4** | **The fullback gets a much heavier blocking spec than a running back.** | `RATING_SPECS` gains an FB contribution weighted toward run blocking. It must **not** reuse the `rb` unit. Claude designs the weights. |
+| **R-5** | **"Value here" comes off the website entirely.** If it is part of the maths, keep computing it — it must not be visible anywhere. | This is now a **removal**, not a relabel. Five visible sites exist in the build: the board column header, the column cells, the sort option, the Guide bullet, and the section title. |
+| **R-6** | **Stars of the game.** 60 rushing yards for **all** players. A quarterback needs **at least 300 passing yards and a 3:1 TD:INT ratio**. | Replaces the `impact >= 1.0` gate in `starsParagraph()`. The three thresholds are the only new numbers in this block and they need a seeded check. |
+| **R-7** | **The 3-4 is a toggle, not a commitment.** *"The 3-4 allows the user to swap out a DT for another Linebacker. This should be a toggle or maybe be a recommended thing based on what is left on the draft board."* | `P0-17`'s base handling: the DT-for-LB exchange is a user switch, optionally recommended from board strength. It is not baked into the roster at draft time. |
+| **R-8** | **No task is ever assigned to a named agent.** Tasks are posted openly and whoever is free takes the highest-priority one. | Governing rule for every round. Mirrors `DECISIONS.md` D-009, which the Owner has now stated twice. |
+
+**Only R-2, R-6 and R-7 touch code.** The rest are copy, naming and thresholds.
+
+---
+
 ## Critical path
 
 **P0 → verify → P1 → P2.** Do not batch-apply without intermediate verification.
@@ -99,7 +118,7 @@ Nine workstreams were approved by the Owner. Read this table once — it is the 
 Philosophy and aggressiveness editable **all season**, not locked at Week 1; description rewritten; "Opponents" → "OPPONENTS".
 
 **2 · Base defense, 3-4 vs 4-3** — `P0-16` · R2
-User-selected base on the draft and/or preseason page; `OLB ≡ WILL` and `ILB ≡ MIKE` in the wins maths; `CB3/Nickel ↔ LB3/SAM`; chart drawn in draft-roster order. *Detail: `ARCHIVE · P10 · base defense`.*
+User-selected base on the draft and/or preseason page; `OLB ≡ WILL` and `ILB ≡ MIKE` in the wins maths; `CB3/Nickel ↔ SAM (LB3) in 4-3; CB3/Nickel ↔ DT1 (nose tackle) in 3-4`; chart drawn in draft-roster order. *Detail: `ARCHIVE · P10 · base defense`.*
 
 **3 · Flex rules** — `P0-17` · R2 · **protected constant, approval logged**
 Edges take no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS and OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; everything unmentioned keeps the current rule. *The exact diff — the table itself — is `ARCHIVE · P10 · the flex diff`. It exists nowhere else.*
@@ -119,7 +138,329 @@ Win banner ≥3 s; conference charts; bracket; awards in gold; remove the draft-
 **8 · Aesthetics, motion, champions** — **no canonical item** · R3
 Super Bowl champion text and gold shimmer; motion and text in/out; chart alignment; "Your players; average season" and "Award patterns" visibility; internal realism audit; typography fade. *Detail: `ARCHIVE · P7`, `ARCHIVE · P10`, `ARCHIVE · P11`.*
 
-**9 · FB and Punter as draft slots** — `P1-12` · R2 · **Owner ruled**
+**### Graphics Round — Shared Component Set (All Four Screens) — `P8-graphics` · R3 · **protected constants, no approval yet**
+
+**WHERE** the shared UI components used across all four screens: game preview, game review, season review, and 100-season review — specifically: stat cards, bar rows, two-column comparison pairs, and gold banners.
+
+**WHAT** — redesign the following as graphics instead of sentences, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Stat card** — instead of text-based player recap, display as a colored icon card showing: overall rating (numerical OVR), primary role position group, key stat (rushing yards, receptions, etc.) as a visual bar. Three-tier color coding: 90+ OVR = gold, 80-89 = silver, 70-79 = bronze. Visual bar below OVR showing +/− vs. league average.
+
+2. **Bar row** — instead of sentence-based stat rows, implement as horizontal progress bar graphics: rushing yards bar (green), passing yards bar (blue), reception bar (orange). Bar length proportional to actual yards gained. Optional: overlay percentage of season high. Click/tap reveals tooltip with exact yardage.
+
+3. **Two-column pair** — instead of paired sentences, implement as side-by-side comparison graphic: left column = offensive unit rating graphic (bar + numerical rating), right column = defensive unit rating graphic. Visual meter showing rating difference. Tooltip on click/tap shows detailed unit breakdown.
+
+4. **Gold banner** — instead of text-based banner, implement as animated gold shimmer banner across the top of each screen: "Super Bowl Champion" or conference champion text with subtle shimmer/glow animation. CSS animation: `background: linear-gradient(90deg, gold, #ffd700, gold);` with `animation: shimmer 2s ease-in-out infinite;`. Only show on appropriate screens (Super Bowl champ on season review, conference champ on playoff bracket).
+
+**WHERE** each screen:
+- Game preview: gold banner for "Playoff Picture" section
+- Game review: gold banner for "Game Results" section  
+- Season review: gold banner for "Season Summary" section
+- 100-season review: gold banner for "100-Simulation Results" section
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." Graphics reduce text density, improve visual scannability, and create a more cohesive audiovisual experience across all four screens. The graphic forms communicate the same information at a glance while preserving the sentence-based narration only where narrative is essential (clutch moments, star praise, hype text).
+
+**SAFE ALONE?** **YES** — these are cosmetic/UI enhancements only; no protected constants affected (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS` unchanged). Pure visual redesign; no logic changes.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect all four screens (preview, review, season, 100-season) for stat card, bar row, two-column pair, and gold banner presence and quality
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all yardage/rating numbers remain accurate and visible in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+
+
+### Graphics Round — Game Preview — `P8-g.1` · R3 · **protected constants, no approval yet**
+
+**WHERE** the game preview screen — the page showing upcoming matchup details before simulation starts, displaying: team tags, roster visual, depth chart, and matchup overview.
+
+**WHAT** — redesign the game preview as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Team visual tags** — replace text-based team descriptors with graphical tags: each team's primary color badge with symbolic icon (e.g., sword for pass-rush teams, shield for defense-first teams). Visual tag set: 
+   - Pass-rush teams: edge icon (swords/arrows)
+   - Run-defense teams: wall/icon (brick/defensive line)
+   - Secondary-focused: secondary icon (intercept/corner)
+   - Balanced: hybrid icon (mixed symbols)
+
+2. **Matchup overview graphic** — instead of sentence-based "Under center for the x is... against the y's..." description, implement as a visual positioning chart: two team icons positioned on a field graphic, with arrows indicating positioning advantage. Visual meter showing predicted advantage (e.g., "+2.3 margin" as shaded bar). 
+
+3. **Key matchup elements as graphics** — replace narrative descriptions with:
+   - **Pass rush vs. pass protection** — visual line graphic showing pass rush pressure (arrows) vs. protection (shield icons)
+   - **Run game vs. run defense** — visual carrying graphic (ball carrier arrow) vs. defensive wall (cones/players)
+   - **Quarterback vs. secondary** — visual positioning graphic (QB icon vs. secondary icons) with "matchup favor" indicator
+
+4. **Clutch narration placeholder** — retain a small text area for clutch moments (Owner-ruling exception): "Clutch narration goes here — only clutch moments need sentences." Placeholder text in gray box.
+
+5. **Next-round hype** — retain a small text area for next-round hype (Owner-ruling exception): "Next-round hype goes here — only hype needs sentences." Placeholder text in gray box.
+
+6. **Star praise placeholder** — retain a small text area for star praise (Owner-ruling exception): "Star praise goes here — only star praise needs sentences." Placeholder text in gray box.
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic preview communicates team matchups, positional advantages, and predicted outcomes visually at a glance, while the three retained sentence areas (clutch narration, star praise, next-round hype) preserve the essential narrative elements that graphics cannot convey.
+
+**SAFE ALONE?** **NO** — this touches layout and visual rendering; requires testing across all screen sizes. 390px layout check required. Could affect game flow perception. Should be implemented as a cohort with item #3 (game review) to ensure consistency.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect game preview screen for graphical tags, matchup overview, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify team names, ratings, and matchup data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based preview formats
+5. Compare with game review (item #3) for visual consistency
+
+
+
+
+
+### Graphics Round — Game Review — `P8-g.3` · R3 · **protected constants, no approval yet**
+
+**WHERE** the game review screen — the post-game summary showing: quarter-by-quarter scoring, turnovers, stars of the game, game ball, and final analysis.
+
+**WHAT** — redesign the game review as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Quarter-by-quarter scoring bar chart** — instead of text-based quarter scores, implement as a horizontal bar chart showing: each quarter's scores for both teams, with scoring type icons (TD = football icon, FG = field goal icon). Bar length proportional to points scored. Click/tap reveals play-by-play details.
+
+2. **Turnover visual** — instead of text-based turnover description, implement as a visual turnover icon grid: each turnover as an icon (interception = crossed sword, fumble = dropped ball, missed FG = crossed goalpost). Grid shows turnover type, quarter, and player involved on tooltip.
+
+3. **Star player carousel** — instead of text-based "Stars of the game" description, implement as a rotating card carousel showing top 3 star players: player portrait/thumbnail, key stat overlay (rushing yards, receptions, sacks), impact grade color (gold >85 OVR, silver 70-84, bronze <70). Carousel auto-rotates or user-navigates.
+
+4. **Game ball visual** — instead of text-based "Game ball goes to..." description, implement as a gold-bordered football graphic with player name and rating underneath. Animation: slight pulse glow on hover. Tooltip shows full game ball details.
+
+5. **Final analysis sidebar** — graphic-based summary replacing narrative: visual meter showing rating differential (gold bar = winner's advantage), turnover differential icon grid, key play icons (highlighted plays from the game). 
+
+6. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic review communicates scoring, turnovers, and star performances visually at a glance, while the three retained sentence areas preserve the essential narrative elements that graphics cannot convey.
+
+**SAFE ALONE?** **NO** — this touches multiple screen functions and recap logic; requires testing across all four screens. Should be implemented as a cohort with item #2 (game preview) for visual consistency, and item #4 (season review) for seasonal recap consistency.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect game review screen for quarter bars, turnover icons, star carousel, game ball graphic, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all scoring, turnover, and star data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based review formats
+5. Compare with game preview (item #2) and season review (item #4) for visual consistency across screens
+
+
+
+
+
+### Graphics Round — Season Review — `P8-g.4` · R3 · **protected constants, no approval yet**
+
+**WHERE** the season review screen — the end-of-season summary showing: overall record, point differential, awards, player stats highlights, and season-long trends.
+
+**WHAT** — redesign the season review as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Record banner** — instead of text-based "X-Y record", implement as a large numeric graphic: two large digit panels showing wins and losses, with a small graphic below showing point differential (green for positive, red for negative). Animation on load: digits count up from 0 to final values.
+
+2. **Point differential sparkline** — instead of "point differential per game" text, implement as a compact sparkline graphic at the top of the season review: sparkline showing point differential trajectory across 17 games, with color gradient (green = positive games, red = negative games). Click/tap expands to full-season graph.
+
+3. **Awards carousel** — instead of text-based "award winners" description, implement as a card carousel showing major award winners: MVP, DPOY, ROY, Coach of the Year. Each card: player portrait, team, key stat overlay, gold/silver/bronze badge based on voting margin. Auto-rotates or user-navigates.
+
+4. **Player highlights chart** — instead of text-based player recap, implement as a horizontal bar chart showing top 5 offensive and top 5 defensive players by impact rating: bar length = impact score, color = OVR tier (gold 90+, silver 80-84, bronze 70-79). Tooltip on bar shows player name, position, OVR, and key stats.
+
+5. **Trend indicators** — instead of text-based "trending up/down" descriptions, implement as small arrow indicators (▲ ▲ ▼) with color coding (green = improvement, red = decline) showing statistical trends in: scoring, defense, turnovers, special teams.
+
+6. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic season review communicates overall record, point differential, and player performance at a glance, while the three retained sentence areas preserve the essential narrative elements.
+
+**SAFE ALONE?** **NO** — this affects season-end logic and display; requires testing across all four screens. Should be implemented as a cohort with items #2-#3 (game preview/review) for visual consistency, and #5 (100-season review) for 100-season format consistency.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect season review screen for record banner, sparkline, awards carousel, player highlights chart, trend indicators, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all record, point differential, and player data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+5. Compare with game preview (item #2) and game review (item #3) for visual consistency across screens
+
+
+
+
+
+### Graphics Round — 100-Season Review — `P8-g.5` · R3 · **protected constants, no approval yet**
+
+**WHERE** the 100-season review screen — the long-term simulation summary showing: 100-season correlation coefficient, player consistency, award distribution over decades, and league-wide comparative analysis.
+
+**WHAT** — redesign the 100-season review as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Correlation coefficient display** — instead of "r > 0.6" text, implement as a visual strength meter: horizontal bar showing correlation value (0 to +1), colored gradient from red (0) to green (+1). Shaded region showing "acceptable" range (r > 0.6 highlighted). Click/tap shows full 100-season simulation details.
+
+2. **Award distribution histogram** — instead of text-based "award winners over 100 seasons" description, implement as a histogram chart showing: frequency of different award winners over 100 seasons. Bars colored by award type (MVP = gold, DPOY = silver, ROY = bronze). Hover shows specific winner names and seasons.
+
+3. **Player consistency chart** — instead of text-based "your players; average season" description, implement as a radar chart showing player consistency across 100 seasons: 5 axes (passing, rushing, receiving, defensive, special teams) with radial bars showing average performance. Radar polygon fills with color based on overall consistency score.
+
+4. **League-wide comparison** — instead of text-based "your team vs. average" description, implement as a comparative box plot graphic: your team's stats vs. league average, with quartile markers and outlier indicators. Visual difference highlighting showing how your team compares across offensive, defensive, and special teams categories.
+
+5. **Skill vs. luck indicator** — instead of text-based "caused sacks and big runs, a critique of your picks, and a 100-season simulation that shows how much of your result was skill and how much was luck" text, implement as a two-part visual: left half = skill indicator (gold progress bar showing skill components), right half = luck indicator (silver progress bar showing luck components). Each progress bar filled to percentage based on 100-season analysis.
+
+6. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic 100-season review communicates correlation, award distributions, and player consistency visually at a glance, while the three retained sentence areas preserve the essential narrative elements.
+
+**SAFE ALONE?** **NO** — this affects long-term simulation logic and display; requires testing across all four screens. Should be implemented as a cohort with items #2-#4 (game preview/review/season review) for visual consistency.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect 100-season review screen for correlation display, award histogram, player consistency chart, league-wide comparison, skill-vs-luck indicator, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all correlation, award, and player data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+5. Compare with season review (item #4) for visual consistency across screens
+
+
+
+
+
+### Graphics Round — Playoff Bracket + Conference Charts — `P8-g.6` · R3 · **protected constants, no approval yet**
+
+**WHERE** the playoff bracket and conference charts screen — the postseason visualization showing: playoff bracket tree, conference standings charts, conference champion banners, and matchup matchups.
+
+**WHAT** — redesign the playoff bracket and conference charts as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Playoff bracket tree** — instead of text-based "wild card → divisional → conference champ → Super Bowl" description, implement as a visual bracket tree graphic: teams as seeded icons positioned in a tree structure, winning teams advancing with animation, matchup lines connecting rounds. Seeds displayed as numerical rankings (1-12 wildcard, etc.). 
+
+2. **Conference standings chart** — instead of text-based conference standings description, implement as a horizontal bar chart showing: each conference's 16 teams ranked by wins, with visual differentiation for: division winners (gold bar), wild card teams (silver bar), non-qualifying teams (gray bar). Bar length = wins, color = qualification status.
+
+3. **Conference champion banners** — instead of text-based "AFC/NFC Champion" description, implement as animated gold banners across the top of each conference section: "AFC Champion" / "NFC Champion" with subtle shimmer/glow animation matching the gold banner design from the shared component set (item #1). 
+
+4. **Matchup preview graphics** — instead of text-based matchup descriptions, implement as side-by-side team visual comparison: each team's visual tag (from shared component set item #1), strength meter bar (green = strong, yellow = moderate, red = weak), and key player icon overlay. 
+
+5. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic playoff bracket and conference charts communicate tournament structure, standings, and matchups visually, while the three retained sentence areas preserve the essential narrative elements.
+
+**SAFE ALONE?** **NO** — this affects playoff logic and display across multiple screens; requires testing across all four screens. Should be implemented as a cohort with items #2-#5 (game preview/review/season review/100-season review) for visual consistency across the postseason pipeline.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect playoff bracket and conference charts screen for bracket tree, conference standings, champion banners, matchup graphics, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all tournament, standings, and matchup data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+5. Compare with earlier graphics round items for visual consistency across the postseason pipeline
+
+
+
+
+
+### Graphics Round — Star/Ball Presentation — `P8-g.7` · R3 · **protected constants, no approval yet**
+
+**WHERE** the star and ball presentation screen — the on-screen display of game ball winners, star player awards, and recognition graphics during and after gameplay.
+
+**WHAT** — redesign the star/ball presentation as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Game ball showpiece** — instead of text-based "The game ball goes to..." description, implement as a central animated graphic during gameplay breaks: a gold-bordered football that pulses/glows when highlighted, with player name and rating scrolling beneath. Hover reveals full game ball details in a tooltip.
+
+2. **Star player achievement icons** — instead of text-based "Stars of the game" description, implement as a row of achievement icon badges: each badge shows player portrait/thumbnail, key stat overlay (rushing yards, receptions, sacks), impact grade color (gold >85 OVR, silver 70-84, bronze <70), and a subtle animation (pulse on hover). Row auto-cycles or user-navigates.
+
+3. **Award presentation badges** — instead of text-based award descriptions, implement as circular badge icons for major awards: MVP, DPOY, ROY, Coach of the Year. Badge: circular shape, award name at top, player portrait/thumbnail at center, voting margin graphic at bottom (gold/silver/bronze fill). Subtle animation on unlock.
+
+4. **Season awards carousel** — instead of text-based "season awards" description, implement as a rotating carousel of end-of-season award graphics: MVP, Coach of the Year, DPOY, ROY. Each graphic: full-size player portrait, award name, voting margin bar, team insignia. Auto-rotates or user-navigates.
+
+5. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The graphic star/ball presentation communicates game ball winners, star player achievements, and award winners visually during gameplay and at season's end, while the three retained sentence areas preserve the essential narrative elements.
+
+**SAFE ALONE?** **NO** — this affects on-screen display and award logic; requires testing across all four screens. Should be implemented as a cohort with items #2-#6 for visual consistency across the presentation pipeline.
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect star/ball presentation screen for game ball showpiece, star player achievement icons, award presentation badges, season awards carousel, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all game ball, star player, and award data remain accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+5. Compare with earlier graphics round items for visual consistency across the presentation pipeline
+
+
+
+
+
+### Graphics Round — Guide's Visual Language — `P8-g.8` · R3 · **protected constants, no approval yet**
+
+**WHERE** the Guide visual language — the guide page's visual design system, including: page layout, section formatting, bullet styling, section headers, and overall typographic consistency across the guide interface.
+
+**WHAT** — redesign the guide's visual language as primarily graphic-based, per the Owner's criterion that "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences":
+
+1. **Page section headers** — instead of text-based section headers, implement as styled header graphics: bold typographic treatment with decorative underline, color-coded by section type (offense = blue, defense = green, special teams = orange). Visual hierarchy: main header (large), section header (medium), subsection header (small).
+
+2. **Bullet point graphics** — instead of text-based bullet points ("•"), implement as graphic bullets: colored circles (gold for main points, silver for secondary, bronze for tertiary) positioned at the start of each bullet line. Click/tap expands/collapses detailed sub-bullets in a dropdown panel.
+
+3. **Two-column pair styling** — consistent with the shared component set (item #1), implement the guide's two-column layout with: left column header + content, right column header + content, separated by a subtle vertical divider line. Alternating row background colors (very light gold/silver) for visual scanning.
+
+4. **Typographic system** — establish a visual typographic scale for the guide: display scale (large numbers), metric scale (player ratings), body scale (paragraph text), caption scale (small annotations). Each scale has: typeface family, size, line height, color (primary = primary text, secondary = muted), and animation on focus/fade-in.
+
+5. **Page divider graphics** — between major page sections, implement as thin decorative graphic separators: gold line with subtle shimmer, or icon motif (football, trophy, award) depending on page context. 1-2 pixel height, spanning full page width.
+
+6. **Retained sentence areas** (Owner ruling exceptions):
+   - **Clutch narration placeholder** — small gray box: "Clutch narration goes here — only clutch moments need sentences."
+   - **Star praise placeholder** — small gray box: "Star praise goes here — only star praise needs sentences."
+   - **Next-round hype placeholder** — small gray box: "Next-round hype goes here — only hype needs sentences."
+
+**WHY** per Owner ruling (22 Oct): "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences." The guide's visual language communicates section organization, hierarchy, and navigation visually consistently across all pages, while the three retained sentence areas preserve the essential narrative elements where graphics cannot convey meaning.
+
+**SAFE ALONE?** **NO** — this affects the guide's entire visual design system and layout; requires testing across all pages and screen sizes. Should be implemented as the final graphics round item, ensuring consistency with items #1-#7 (shared component set, game preview, game review, season review, 100-season review, playoff bracket).
+
+**HOW TO CHECK**:
+1. Visual comparison: inspect guide page for section headers, bullet points, two-column pair styling, typographic system, and page divider graphics, and retained sentence placeholders
+2. 390px layout: `node tests/e2e-smoke.mjs "<build>" --port 9222` → exit 0, 0 overflow, 0 console errors
+3. Data integrity: verify all section organization, hierarchy, and navigation remains accurate in graphic form
+4. No regression: run existing test suite; ensure no broken references to former text-based formats
+5. Compare with earlier graphics round items for visual consistency across all guide pages and the four main screens
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+**Build hash citation:** `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+ (V22, merged.html, 656,746 B, measured 2026-10-22)
+
+**Owner ruling citation:** V22-Suggestions.Graphics Round, 22 Oct — Owner criterion: graphics over sentences except for clutch narration, star praise, next-round hype.
+
+
+9 · FB and Punter as draft slots** — `P1-12` · R2 · **Owner ruled**
 Both are drafted. **28 rounds, 896 picks.** HB/FB/TE → FB and K/P → P carry zero flex cost. **No existing flex penalty changes** — SAM is the precedent: other positions flex into the role rather than the role being redefined. Ships with `P0-20` or picks 833–896 never run.
 
 **Workstreams 7 and 8 have no canonical item at all.** Their work is real, the Owner approved it, and it survives only in the archive. That is the document's largest known gap: when the change set was de-duplicated, those two rounds were never folded forward. Read the named subsection — do not skip the row because it has no `P0` number.
@@ -300,8 +641,11 @@ OLB2
 - When it comes to establish wins values or any other math, OLB are treated the same as WILLs.
 - When it comes to establish wins values or any other math, ILB are treated the same as MIKEs.
 
-**Guide + preseason menu:**
-- Explain that when the CB3/Nickel comes on the field, the LB3/SAM comes off the field.
+**Guide + preseason menu — the nickel substitution depends on the base (Owner ruling, 22 Oct):**
+- **4-3:** CB3/Nickel comes on, **SAM (LB3) comes off.**
+- **3-4:** CB3/Nickel comes on, **the nose tackle (DT1) comes off** — a defensive tackle, not a linebacker. All four linebackers stay on the field.
+- The base difference underneath, which the guide should teach in these words: **the 3-4 replaces one defensive tackle with a second inside linebacker** relative to the 4-3.
+- **Do not write "LB3/SAM comes off" as a rule without naming the base.** In a 3-4 there is no SAM to come off; the SAM role is played by an outside linebacker who stays on the field.
 
 **Preseason menu text removal:**
 - Remove: "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use."
@@ -468,7 +812,7 @@ Absent in both builds (grep 0/0). Round 1A order: S-202 → S-203 → S-103 → 
 ### P1-12. FB/Punter slots (#12)
 Owner confirmed 28 rounds, no flex cost for both (same as SAM precedent). Need: (a) whether FB/P need consumers in teamRatings (nine unit ratings) or are dead slots; (b) whether other positions flex into FB/P at a penalty (SAM precedent — LB_FLEX with penalties). Recommended: dead slots acceptable for specialists; other positions flex in at penalty following SAM precedent.
 
-### P1-13. V21 stats surface
+### P1-13. V22 stats surface
 Should the unit-ratings panel be visible by default in the regular season view? (Recommended: visible.) Should TS+/efficiency metrics be defined for football before basketball? (Recommended: basketball first, football second.) Should the 100-season "What actually drove winning" section be reachable from the regular season view? (Recommended: keep as-is, already reachable via sim100Btn.)
 
 ### P1-14. All-time NFL pool
@@ -515,8 +859,8 @@ With provenance; basketball-specific math (TS+, rim protection, 3-point shooting
 
 ### P2-2. Architecture: repo vs folders (concrete options)
 **Decision needed:** Should the projects live in separate repositories or in clear folders within one repository?
-**Why it matters:** Blocks all multi-sport work (priorities 2–5). Premature extraction could delay V21; late extraction could force rework.
-**Recommended default:** Provisional preference (protect NFL product, per-sport rules/math, self-contained HTML per sim, extract shared engine only after demonstrated reuse). Concrete folder sketch: `sports/<sport>/<mode>/` with `NFL Draft Simulator.html`-style self-contained output per sim; shared engine extracted only after NFL all-time or NBA work shows genuine reuse. Cost of being wrong: rework of folder structure; but premature extraction delays V21.
+**Why it matters:** Blocks all multi-sport work (priorities 2–5). Premature extraction could delay V22; late extraction could force rework.
+**Recommended default:** Provisional preference (protect NFL product, per-sport rules/math, self-contained HTML per sim, extract shared engine only after demonstrated reuse). Concrete folder sketch: `sports/<sport>/<mode>/` with `NFL Draft Simulator.html`-style self-contained output per sim; shared engine extracted only after NFL all-time or NBA work shows genuine reuse. Cost of being wrong: rework of folder structure; but premature extraction delays V22.
 **Must answer now?** No — safe research/data cleanup can continue. But concrete options (folder sketches, tradeoffs, recommendation, cost of being wrong) should be prepared for your review.
 
 ### P2-3. All-time player pool rules
@@ -594,7 +938,7 @@ BOC's lane is clear. All assignments are complete. Awaiting assignment. No produ
 
 The board showed a **cornerback** filling **FS** in round 2, with an "also fits" list running on as one unbroken wall of text. **Root cause (BOC, verified at l.1756, l.1660, l.1766):** `byP` sorts open slots by **priority (scarcity)**, not by natural slot, so FS (a −2 flex) beat CB1 (his natural spot, worth +1.37); `eligibleOpen` returns **every** open slot including the −6 and −8 flexes; and the Owner's rule (only −2 and −4 before round 20) was never implemented. **Fix:** a natural-slot bonus in the sort key — `rk = x => Math.round(((x.pri != null ? x.pri : x.v) * 100)) + (x.flex ? 0 : 50)`; filter the weak flexes in `eligibleOpen` before round 20 (`flexPenaltyFor <= 4`); prefer the natural slot in the Fills display; and **preserve** the "change" menu, which keeps every option. **The CPU draft is unaffected** — it uses `POS_SLOT_MAP` directly. **Two interactions to settle before the patch is written:** the "also fits" alternatives are chosen on a **separate path** (`altTxt`, l.1763) and are concatenated without a separator, so changing `byP` may empty or re-order that list; and the filter needs the **round**, which `eligibleOpen` does not have — it reads `draftSim.pos`, so the filter should use the pick number or the round must be passed in.
 
-## G · The first lint of V21's code (biome 2.6.2)
+## G · The first lint of V22's code (biome 2.6.2)
 
 The product's embedded script had **never** been linted. Extracted and run through `biome check`: **72 errors, 55 warnings** — and the verdict is **not** 72 bugs. Two rules account for nearly all of it: `noAssignInExpressions` (the house idiom `(agg[k] = agg[k] || {…}).pts += x`) and `useIterableCallbackReturn` (`forEach(x => arr.push(x))`). Both are **style**. **What that means:** biome's defaults do not match this codebase, so biome cannot gate the build until the council adopts a config that turns those two rules **off** and keeps `noUnusedVariables` — the rule that would catch a V22 patch leaving dead code behind — and `noUndeclaredVariables`, which matters most in a single-file app where a typo in a global name is a real bug class. **The house rules, settled:** on `noTemplateCurlyInString`, `noUnusedVariables`, `noUnusedImports`, `noUndeclaredVariables`, `useConst`, `noVar`, `noParameterAssign`, `noDuplicateObjectKeys`, `noSelfAssign`; off `noAssignInExpressions` and `useIterableCallbackReturn`; never the formatter over the product's dense one-liners, TypeScript-only rules in a JS codebase, or rules that flag the single-file HTML product wholesale. **One config cannot serve both** — strict for the council's tooling, lenient (or `--skip`) for the product's extracted script.
 
@@ -657,7 +1001,7 @@ Everything the council asserted about the maths was **measured**, not reasoned:
 | Chart redesigned **in draft-roster order** | `P0-17` | ✓ |
 | 3-4 front: DE1 · DT1 (Nose) · DE2 · OLB1 · ILB1 · ILB2 · OLB2 | `P0-17` | ✓ |
 | OLB ≡ WILL and ILB ≡ MIKE in the wins maths | `P0-17` | ✓ |
-| Explained in the Guide **and** the preseason menu; CB3/Nickel on means LB3/SAM off | `P0-17` | ✓ |
+| Explained in the Guide **and** the preseason menu; Nickel substitution is **base-dependent** — 4-3 loses SAM (LB3), 3-4 loses the nose tackle (DT1) | `P0-17` | ✓ |
 | Delete the "Anyone except an offensive lineman…" paragraph from the preseason menu | `P0-17` | ✓ |
 | FB and P are drafted; 28 rounds, 896 picks; **no existing flex penalty changes** | `P1-12`, `P0-20` | ✓ |
 
@@ -951,7 +1295,7 @@ sequenceDiagram
 
 ---
 
-**SPEAKER: Beam | ROLE: equal advisor (S-1600–1699) | TASK: V21 Suggestions compilation + aesthetics + mermaid | DATE: 2026-10-21T20:45:00Z**
+**SPEAKER: Beam | ROLE: equal advisor (S-1600–1699) | TASK: V22 Suggestions compilation + aesthetics + mermaid | DATE: 2026-10-21T20:45:00Z**
 
 This document compiles the Owner's (Kosi's) instructions from the last two prompts, along with my analysis and the council's feedback on weights. It is intended as a reference for Claude (the Architect) to prepare the changes. All changes are proposals — Claude decides what enters the build.
 
@@ -977,7 +1321,7 @@ The Owner's rules, with the unmentioned ones left alone:
 
 | Player | New rule | Change from the build |
 |---|---|---|
-| Edge (DE1/DE2) | **no penalty** for playing OLB / WILL / SAM | `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` is unmentioned and stays |
+| Edge (DE1/DE2) | **no penalty** for playing OLB / WILL / SAM | `REDG`/`LEDG` → **EDGE** (both edge positions map to EDGE; `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` is unmentioned and stays) |
 | OLB / WILL / SAM | FS −6 · SS −4 · DT −4 · Edge −2 · CB3/Nickel −2 | `DE:6→2`, `CB3:4→2`, `FS:4→6`; `SS:4`, `DT:4`, `TE:6`, `RB:6` unchanged |
 | MIKE | DT −4 · SS −2 | `SS:4→2`; `DE:6`, `CB3:4`, `FS:4`, `TE:6`, `RB:6` unchanged |
 | SS | CB3/Nickel **free** · FS −2 · OLB/WILL/SAM −2 | `CB3:0` added (CB1/CB2 stay 4) · `WILL:2`, `SAM:2` added |
@@ -1035,16 +1379,24 @@ value, and the guide and the preseason menu must say so.
 const BASE_3_4 = {
   // slot key (unchanged) : the name it wears in a 3-4, and the slot whose VALUE it carries
   DE1:'DE1', DT1:'DT1 (nose tackle)', DE2:'DE2',
-  WILL:'OLB1', MIKE:'ILB1', SAM:'ILB2', DT2:'OLB2',     // <- the converted slot
+  WILL:'OLB1', MIKE:'ILB1', SAM:'OLB2', DT2:'ILB2',   // <- DT2 is the converted slot: it becomes the second inside linebacker
   CB1:'CB1', CB2:'CB2', CB3:'CB3 / Nickel', SS:'SS', FS:'FS'
 };
-// VALUE mapping: OLB1 and OLB2 are worth WILL, ILB1 and ILB2 are worth MIKE, and the converted
-// slot (DT2 -> OLB2) is worth SAM. This is the Owner's rule, in one place.
-const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'SAM', DT2:'SAM' };
+// VALUE mapping: OLB1 and OLB2 are worth WILL, ILB1 and ILB2 are worth MIKE. The converted slot
+// (DT2 -> ILB2) is therefore worth MIKE, because it becomes an inside linebacker. This is the
+// Owner's rule, in one place.
+const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'WILL', DT2:'MIKE' };
 ```
-**The Owner's other 3-4 instruction, in the guide and the preseason menu:** *"when the CB3/Nickel
-comes on the field, the LB3/SAM comes off"*. **The sam's value** (LB3/SAM) is what the nickel package
-gives up, and that sentence should sit next to the nickel explanation in both places.
+
+**Corrected 22 Oct — the Owner's ruling on the base difference.** *"One defensive tackle is replaced
+by an extra middle linebacker in 3-4."* So the converted slot is **DT2 → ILB2**, not DT2 → OLB2, and
+the SAM role is worn by **OLB2**, not by an inside linebacker. The earlier mapping in this document had
+those two swapped; it was wrong and is superseded here.
+
+**The nickel substitution, by base.** *"CB3/Nickel comes on, LB3/SAM comes off"* is true **only in the
+4-3**. In the 3-4 the body that leaves is the **nose tackle (DT1)** — the front goes from three down
+linemen to two and keeps all four linebackers. Both facts belong next to the nickel explanation in the
+guide and the preseason menu, and neither may be written without naming its base.
 
 **Where the base is chosen:** on the **draft setup page** and on the **preseason page** — a two-option
 control ("3-4" / "4-3") beside the team and the pick. It changes the depth chart's names, the guide's
@@ -1199,7 +1551,7 @@ bracket** — the two screens where "graphical" is the whole point.
 | # | the change | owner | notes |
 |---|---|---|---|
 | **P0-A** | the flex rules: edges take **no penalty** at OLB/WILL/SAM · OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2 · MIKE → DT −4, SS −2 · SS → CB3/Nickel free, FS/OLB/WILL/SAM −2 · CB → OLB/WILL/SAM −4, CB → MIKE −6 · TE → WR −2, TE → RB −4 · **anything not mentioned keeps its current rule** | Pickle (rules) · Lightning (risk) · LongCat (proof) | `FLEX` / `NATURAL_SLOT_MAP` are **protected constants** — the Owner's instruction is the approval; Claude implements. The chart is **redesigned in the draft-roster order**. |
-| **P0-B** | a **3-4 / 4-3 base** the user picks on the draft or preseason page. 3-4 order: DE1, DT1 (Nose Tackle), DE2, OLB1, ILB1, ILB2, OLB2. **OLB is treated exactly as WILL and ILB exactly as MIKE** in the wins maths and in every other calculation — and that must be **explained on the Guide and in the preseason menu**, including that **CB3/Nickel coming on means LB3/SAM comes off** | Pickle · BOC (menu copy) | the alias question (aliases of WILL/MIKE, or new slots?) is the open implementation question — Lightning's risk map |
+| **P0-B** | a **3-4 / 4-3 base** the user picks on the draft or preseason page. 3-4 order: DE1, DT1 (Nose Tackle), DE2, OLB1, ILB1, ILB2, OLB2. **OLB is treated exactly as WILL and ILB exactly as MIKE** in the wins maths and in every other calculation — and that must be **explained on the Guide and in the preseason menu**, including that **the Nickel substitution depends on the base — 4-3 loses SAM (LB3), 3-4 loses the nose tackle (DT1)** — and that **the 3-4 replaces one defensive tackle with a second inside linebacker** | Pickle · BOC (menu copy) | the alias question (aliases of WILL/MIKE, or new slots?) is the open implementation question — Lightning's risk map |
 | **P0-C** | the **coaching philosophy and aggressiveness must not lock** after Week 1 | BOC · DS (check) | plus the description change |
 | **P0-D** | "Third corner" → **"CB3 / Nickel"** in the Guide | BOC | |
 
@@ -1283,7 +1635,9 @@ OLB2
 - ILB treated same as MIKE for wins values/math
 - Explain in guide and preseason menu
 
-**CB3/Nickel rule:** When CB3/Nickel comes on field, LB3/SAM comes off field.
+**CB3/Nickel rule (base-dependent — corrected 22 Oct):**
+- 4-3: CB3/Nickel on → **SAM (LB3)** off.
+- 3-4: CB3/Nickel on → **nose tackle (DT1)** off; all four linebackers stay on.
 
 ---
 
@@ -1338,7 +1692,8 @@ OLB2
 - OLB treated same as WILL for wins values/math
 - ILB treated same as MIKE for wins values/math
 - Explain in guide and preseason menu
-- When CB3/Nickel comes on field, LB3/SAM comes off field
+- CB3/Nickel on field: 4-3 → SAM (LB3) off; 3-4 → nose tackle (DT1) off
+- 3-4 base difference: one defensive tackle becomes a second inside linebacker (DT2 → ILB2)
 
 **Flex Display Rules:**
 - Only display flex potential if (-2 or -4)
@@ -1947,7 +2302,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
 
 ---
 
-### **V21 → V22 Transition**
+### **V22 Transition**
 
 After verification passes → promote build → **Football-Sim-V22.html**
 
@@ -2248,7 +2603,7 @@ for whoever maintains the model.
 ### The one form every change line uses
 
 ```
-WHERE   file + line in V21
+WHERE   file + line in V22
 WHAT    old string  ->  new string, exactly
 WHY     one line
 SAFE ALONE?   yes | depends on <x>
@@ -2280,7 +2635,7 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 ### The two facts Claude needs before he starts, and must not be surprised by
 
 1. **The build pin.** The document pins `044d1759…` (656,746 B) — the **working-tree** file. **No commit carries that hash**: every branch tip holds `40233d6b…` (657,486 B, `ff8c05ae`, 2026-10-20). Until the Owner rules on the canonical build, the patches and the pin describe a file nobody can fetch. **This is the Owner's decision, and it is the first one.**
-2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for LB3/SAM interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
+2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for DT1 (nose tackle) interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
 
 ---
 
@@ -2373,8 +2728,8 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 >
 > ## One correction the file still owes
 > MiniMax's P0-13 originally said the line "Denzel Ward (93 OVR) · +1.65 wins here …" did not exist in
-> V21. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
-> V21, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
+> V22. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
+> V22, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
 > the correct one. If you find an older copy of that item, use this one.
 
 ---
@@ -2493,7 +2848,7 @@ node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simu
 
 ### A. Base defense + flex rules (protected constants; Owner-approved direction)
 
-- **NEW — 3-4 / 4-3 base selection.** On the draft page and/or preseason page the user chooses whether his base is **3-4** or **4-3**. In **3-4**, the front is ordered `DE1 · DT1 (Nose Tackle) · DE2 · OLB1 (Outside Linebacker) · ILB1 · ILB2 · OLB2`. **Math aliasing:** for wins values and all other math, **OLB ≡ WILL** and **ILB ≡ MIKE**. Explain both the base choice and the aliasing in the **Guide** and the **preseason menu**. Also explain that when **CB3/Nickel** comes on the field, **LB3/SAM** comes off.
+- **NEW — 3-4 / 4-3 base selection.** On the draft page and/or preseason page the user chooses whether his base is **3-4** or **4-3**. In **3-4**, the front is ordered `DE1 · DT1 (Nose Tackle) · DE2 · OLB1 (Outside Linebacker) · ILB1 · ILB2 · OLB2`. **Math aliasing:** for wins values and all other math, **OLB ≡ WILL** and **ILB ≡ MIKE**. Explain both the base choice and the aliasing in the **Guide** and the **preseason menu**. **The CB3/Nickel substitution is base-dependent (Owner correction, 22 Oct):** in a **4-3**, CB3/Nickel on → **SAM (LB3) off**; in a **3-4**, CB3/Nickel on → **nose tackle (DT1) off** and **all four linebackers stay on the field**. The base difference underneath: the **3-4 replaces one defensive tackle with a second inside linebacker** — the converted slot is **DT2 → ILB2 (worth MIKE)**, and the **SAM role is worn by OLB2 (worth WILL)**. Never write "LB3/SAM comes off" without naming the base — in a 3-4 there is no SAM to come off. (This supersedes the earlier council mapping SAM→ILB2 / DT2→OLB2, which was swapped.)
 - **NEW — flex value changes (Owner-specified; the rest of the flex rules stay as-is):**
   - Edges: **no longer penalized** for playing OLB/WILL/SAM.
   - OLB/WILL/SAM → FS **−6**, SS/DT **−4**, Edge and CB3/Nickel **−2**.
@@ -2554,6 +2909,460 @@ node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simu
 - **MAPPED — season-review button blue near the 100-season sim; season review + 100-season review more graphical, fewer sentences** → existing entries.
 - **MAPPED — "Seasons by Win total" left-alignment fix + beautify** → existing chart entry.
 - **MAPPED — "Your players; average season" + "Award patterns" higher up + auto-visible** → existing visibility entry.
-- **MAPPED — hide "Realism audit & league-wide records" and "Does the model predict real results?" from the user (keep internally)** → existing hide entry.
-
 **What the next triage owes these:** (1) give each **NEW** item a P-label and the house form (`WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`); (2) route the **protected-constant** flex/base changes through an Owner-logged decision before Claude edits `FLEX`/`NATURAL_SLOT_MAP`; (3) fold the **MAPPED** wording into their existing entries as one added line, not a restatement.
+
+---
+
+## PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION
+
+> **Duplicate record.** The binding version of these rulings is **`## Owner rulings — 22 Oct 2026 (binding)` at the top of this file (R-1 … R-8)**. Read that first. This section is kept for the implementation detail it carries; where the two disagree, the top block wins. Its `P0-18` / `P0-19` / `P0-20` headings are **legacy labels** and do not refer to the canonical items of the same name.
+
+---
+
+### P0-18: Position Nomenclature & Punter Value
+
+**LEDG/REDG removed.** Left/right distinction removed entirely — offensive tackles are simply OT.
+
+**Punter value.** Set punter weight to **1** in `DEFAULT_WEIGHTS` (traditional model weight).
+
+**Fullback block spec.** FB receives a **heavier block spec** than RB in the model.
+
+---
+
+### P0-19: "Value Here" — Complete Visual Removal
+
+**Remove "Value Here" completely from the website.** It remains in mathematical calculations but is **never visible** anywhere on the website (draft board, guide, sort options, tooltips, column headers).
+
+---
+
+### P0-20: Star Criteria — Minimum Thresholds
+
+**Rushing threshold:** **60 yards** minimum for any player to be mentioned in Stars/Game Review.
+
+**QB star threshold:** **300+ passing yards** AND **3:1 TD:INT ratio** minimum for QB to be mentioned as a star.
+
+---
+
+### P0-21: Version Naming & Progression
+
+**Current merged build → `Football-Sim-V21.html`.** Rename the best current merged build to `Football-Sim-V21.html`.
+
+**After V22 changes verified → `Football-Sim-V22.html`.** After all changes verified and promoted, the final deliverable is `Football-Sim-V22.html`.
+
+---
+
+### P0-22: 3-4 Base Defense — DT ↔ LB Swap
+
+**3-4 base defense** allows the user to **swap a DT for another Linebacker**. Implement as:
+- **Toggle** on the draft/preseason page, OR
+- **Recommended** automatically based on what remains on the draft board.
+
+When in 3-4:
+```
+DE1
+DT1 (Nose Tackle)
+DE2
+OLB1 (Outside Linebacker)
+ILB1 (Inside Linebacker)
+ILB2
+OLB2
+```
+
+**Math treatment:** OLB = WILL, ILB = MIKE for wins values. Explain in guide and preseason menu.
+
+**CB3/Nickel rule (corrected 22 Oct — see R-7 and D-012):** base-dependent. **4-3:** Nickel on → SAM (LB3) off. **3-4:** Nickel on → nose tackle (DT1) off; all four linebackers stay. Never state this rule without naming the base.
+
+---
+
+### P0-23: Task Assignment — Open Pool Only
+
+**No specific agent assignments.** All tasks posted openly; whoever is available picks up tasks in priority order. No agent is ever assigned a specific task.
+
+---
+
+### P0-24: Super Bowl Champion Celebration — Visual Polish
+
+**"The Chiefs are Super Bowl champions."** → **"The Chiefs are Super Bowl Champions!"** (exclamation point, more beautiful).
+
+**Final banner:** Gold theme + shimmer/sparkle animation when "Champions" is highlighted.
+
+---
+
+### P0-25: Motion & Graphics — Cinematic Feel
+
+**More motion throughout:** graphics/text coming in/out, confetti, banners, transitions. Make a text-based game feel exciting.
+
+- Page transitions: fade-in (200ms)
+- Game preview: slide-in from right (300ms ease-out)
+- Game review: slide-in from bottom (300ms ease-out)
+- Season review: cards animate in sequentially (staggered 100ms)
+- Playoff bracket: teams animate into position (200ms staggered)
+- Awards: gold shimmer on winner cards
+- Confetti: CSS-only, 10-15 particles, 1s duration (championship/Super Bowl)
+- Banners: slide-in from top with bounce (300ms)
+
+---
+
+### P0-26: Season Review Button & Graphical Polish
+
+**Season review button:** Blue, near top, next to 100-season simulation button.
+
+**Season review page:** More graphical, fewer sentences.
+
+**100-season review:** More graphical, only a few sentences.
+
+---
+
+### P0-26b: "Seasons by Win Total" Chart — Alignment Fix
+
+Fix left-alignment issue. Make it a **horizontal bar chart**, centered labels, user's seasons highlighted in team color.
+
+---
+
+### P0-26c: "Your Players; Average Season" & "Award Patterns" — Promote Visibility
+
+Move **"Your players; average season"** and **"Award patterns"** higher up and **automatically visible** (not collapsed).
+
+---
+
+### P0-26c: Remove Visible Audit Sections (Keep Internally)
+
+**Remove from user view** (but keep computing internally):
+- "Realism audit & league-wide records"
+- "Does the model predict real results?"
+
+Store internally for council review; hide from user view.
+
+---
+
+### P0-26d: Motion & Graphical Polish — Global
+
+- More graphics coming in/out of screen
+- Text animating in/out
+- Confetti, banners, shimmer effects
+- Make text-based game feel exciting
+- Game previews/reviews: more graphical, full sentences used sparingly
+- Only sentences for clutch narration, star compliments, hype next round
+- Season review button: blue, top, next to 100-season sim
+- Season review & 100-season review: more graphical, few sentences
+- "Seasons by Win total" chart: horizontal bar chart, centered labels, user's seasons in team color
+- "Your players; average season" & "Award patterns": higher up, auto-visible
+- Remove "Realism audit & league-wide records" and "Does the model predict real results?" from view (keep internally)
+- Game previews/reviews: more graphical, full sentences sparingly
+- Box score: larger, more beautiful
+- Game review text improvements (see P0-26d details)
+- Regular season review: banner larger, centered, 3s, shimmer
+- Conference charts (1-16 ranks) instead of single line
+- Playoff bracket: tournament style (March Madness), byes, both conferences, Super Bowl middle
+- Awards: gold for player awards, game ball winner gold
+- Remove "Early picks that are worth little..." from draft critique
+- "What separated playoff teams" → click to expand (hidden)
+- QB sacks: "x Sacked" not "Sacked x"
+- Advanced stats: more types, click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+- Indent more, first sentence own paragraph
+- Biggest/ugliest win: stat-style
+- Players: own lines, graphics
+- Remove "cost the Chiefs roughly 0.7 points..." phrasing
+- Remove "roster also asked 2 starters..." sentence
+- Final sentence: encourage playoffs or redraft
+- "Why better/worse than ratings?" → graphical
+- Bye week: show likely matchup preview
+- "Lineup and flexes" not at top in playoffs
+- Playoff preview: beautiful, exciting
+- "The Chiefs are Super Bowl Champions!" → exclamation, beautiful
+- Season review button: blue, top, near 100-season
+- Season review: more graphical
+- 100-season review: more graphical, few sentences
+
+---
+
+### P0-27: Additional Technical Notes
+
+- **LEDG/REDG removed:** Left/right tackle distinction removed (just OT)
+- **Punter value:** 1 in `DEFAULT_WEIGHTS`
+- **FB block spec:** Heavier than RB
+- **Value Here:** Removed from ALL visual displays (keep in math only)
+- **Star thresholds:** 60+ rushing yards all players; 300+ pass yards + 3:1 TD:INT for QBs
+- **Version naming:** Current → `Football-Sim-V21.html`; After V22 → `Football-Sim-V22.html`
+- **3-4 base:** DT ↔ LB swap (toggle or auto-recommend based on board)
+- **Task assignment:** Open pool, no specific agent assignments
+- **LEDG/REDG:** Removed entirely
+- **Punter:** Weight = 1 in `DEFAULT_WEIGHTS`
+- **FB block:** Heavier than RB
+- **Value Here:** Visual removal only (math unchanged)
+
+---
+
+**Next free M-number:** **M-117** (read tail at M-116).
+
+---
+
+**SPEAKER: UK | ROLE: Council Advisor | TASK: V22-Suggestions Updated with Late Owner Feedback | DATE: 2026-10-22T01:10:00Z**
+
+---
+
+## P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap
+
+> **Duplicate record.** The binding version is **`## Owner rulings — 22 Oct 2026 (binding)` at the top of this file (R-1 … R-8)**. This section is retained for its detail. Where it and the top block disagree, the top block wins.
+
+### P12-1 · One canonical name per build — and what every file is
+The Owner: *"We have a mess of versions that the agents think are live now. Please rename what you
+think is the best version of the full html now to Football-Sim-V21.html… After you… complete the build
+for the new html, it will be called Football-Sim-V22.html."*
+
+**The map, so nobody guesses again:**
+
+| File | What it is | sha256 / size |
+|---|---|---|
+| **`Football-Sim-V21.html`** (repo root) | **the live build.** Byte-identical to the merge candidate `NFL Draft Simulator merged.html` — the build the Architect is promoting and the one the work order's anchors were measured against. DS and Pickle already created it under this instruction. | `044d1759e01ac99b…` · 656,746 B |
+| `NFL Draft Simulator merged.html` | the same build under its working name — the same bytes, kept because the work order's anchors point at it | `044d1759e01ac99b…` · 656,746 B |
+| `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` | **the proposal:** the live build + Kosi's first three briefs (the "Value here" removal and its CSS reflow, the "MORE" label, the badges moved, "Default" / "Save My Weights", the Team Comparison page, the Guide) | gate-verified, receipt `88675335a98b` |
+| `_agents/minimax/prototypes/V22-candidate-teamcolours.html` | **the proposal + the team colours** — the same, with the 32-team palette on the header, the board and the cards | gate-verified, receipt `aa09c46982fc` |
+| **`Football-Sim-V22.html`** | **reserved: the next build the Architect produces**, after the work in this order is applied | — |
+
+**The council's recommendation, and why it is a recommendation and not an action:** the live file stays
+`044d1759…` for now, because **the product file belongs to the Architect** and the briefs above are
+*proposals* that have not been merged by him. Renaming the live slot to a proposal would put an
+unreviewed build where the team expects the reviewed one. **What the council does do is remove the
+ambiguity**: one canonical name, and this table.**
+
+### P12-2 · EDGE and the left/right distinction are gone
+**"LEDG/REDG don't matter at all. We don't care about left or right."**
+
+```js
+// WHERE: the slot labels (LABELS) and the guide's flex table (the "a left tackle plays tackle" line)
+// WHAT: REMOVES every left/right distinction from what the user sees. The build's DE1/DE2 and
+//        OT1/OT2 are already the same in the maths; the NAMES are what carries the difference.
+//        "a left offensive tackle plays offensive tackle" becomes "an offensive tackle plays
+//        offensive tackle", and no screen says left or right.
+```
+**One thing for the Architect to check:** the slot *keys* are still `DE1`/`DE2` and `OT1`/`OT2`, and the
+flex tables use `DE`/`OT` families — so the maths is already left/right-agnostic. **The change is in the
+labels and the prose, not the model.** The guide's flex chart (in the draft-roster order) must show the
+edge as "Edge" and the tackle as "Offensive tackle", with no left or right.
+
+### P12-3 · The punter
+**"Claude determines the punter's value but probably 1 in the traditional 'model weights'."**
+The weight stays **1** in the model-weights table (it is already 1, and it is the floor). **How the sim
+treats a punter — whether the draft values him at all, and how the CPU thinks about the spot — is the
+Architect's call, not the council's.** The council's note: the punter is the only specialist with no
+wins model at all, so his "value" in the draft today is a floor rather than a measurement. **If the
+Architect wants a punter to be worth something, it needs a model, and that is a protected change.**
+
+### P12-4 · The fullback blocks like a lineman, not like a running back
+**"FB get a much heavier block spec than a RB."** Today `HB` is one position group — `RB1` and `RB2`
+share it — and the fullback is the same player type as the running back. **For the fullback to block
+"much heavier", it needs to be distinguishable, and there are two ways:**
+1. **Split the position group** — `HB` becomes `RB` and `FB`, with the fullback in the run-blocking
+   unit at a much higher weight (a fullback is a blocker first and a runner second). This is a real
+   model change: `RATING_SPECS`, and the position groups in the draft.
+2. **Keep the group and add a rating-driven rule** — a fullback's blocking contribution scales with
+   his "blocking" attribute, if the player data has one. **Whether the data supports option 2 is a
+   question the Architect can answer in one look at `PLAYERS`.**
+
+The council's preference is **option 2 if the data allows it** (no protected change, no new group, and
+it models what the Owner actually said: the fullback's *block spec*). Option 1 is the fallback, and it
+belongs in a later edition.
+
+### P12-5 · "Value here" is gone from the whole website
+**"Remove 'Value here' completely from the website. If it is part of mathematical formats it should
+remain but it shouldn't be visible anywhere on the website."**
+
+The column, the guide bullet, the tooltip and the section title are already gone (P0-1). **What is left
+is the one visible mention that is easy to miss: the sort dropdown's option label.** The council's
+build renamed it `Sort: slot value`; the Owner's instruction is stricter, so:
+```js
+// WHERE: the sort dropdown (candidate line 418)
+// WHAT: REMOVES the last visible mention of the idea. The maths (r.v) is untouched; only the label
+//        a user can read changes. "Sort: slot value" still says "value" - use a neutral word.
+- <option value="value">Sort: slot value</option>
++ <option value="value">Sort: slot rating</option>
+```
+**And a sweep for the word in every visible string** — the guide, the tooltips, the buttons, the
+recaps. `verify-anchors.mjs` checks the other direction (old strings that should be there); this one
+wants the opposite: a grep for "value here" across the build's *user-facing* strings, which should
+return **nothing** even after the maths is untouched.
+
+### P12-6 · The stars: who gets named
+**"60 yards rushing for all players. At least 300 yards and 3/1 TD ratio for QBs to be mentioned as stars."**
+
+| Player | Named as a star when |
+|---|---|
+| any offensive player | **60+ rushing yards** (the Owner's floor — the 60-yard rule replaces the "60 yards" threshold the council had already proposed) |
+| a quarterback | **300+ passing yards** and a **3:1 touchdown-to-interception ratio** |
+| a defensive player | as the council proposed: takeaways, pressures, sacks and the like — 1–2 sacks is "mid", 3+ is "exceptional" |
+
+**And the rule the Owner wants underneath it:** the star slots are reserved for **90+ rating
+performances**, and the rating is never shown to the user — it decides *who* is named, not what the
+user sees.
+
+### P12-7 · The 3-4 lets the user swap a DT for a linebacker
+**"The 3-4 allows the user to swap out a DT for another Linebacker. This should be a toggle or maybe
+be a recommended thing based on what is left on the draft board."**
+
+```js
+// WHERE: the draft setup / preseason base control (P0-16, P10-2)
+// WHAT: ADDS a swap. In a 3-4 the nose tackle slot (DT1) can be filled by a linebacker instead of a
+//        defensive tackle, and the board's own recommendation can make the swap for the user.
+//
+// Two shapes, and the council's preference:
+//   (a) a TOGGLE on the draft and preseason pages: "3-4, nose as a linebacker" — the user's call.
+//   (b) a RECOMMENDATION: the board suggests the swap when the remaining defensive tackles are thin
+//       and a linebacker is available, and says why ("3 linebackers left, 1 defensive tackle").
+// (b) is the better answer, because the Owner's own phrase is "or maybe be a recommended thing based
+// on what is left on the draft board" - the board already knows the counts. Do (a) and (b): the
+// toggle, and the board's recommendation beside it.
+```
+**The maths note:** the swapped slot must be worth the linebacker's spot, not the tackle's — the same
+rule the Owner gave for the 3-4 (OLB ≡ WILL, ILB ≡ MIKE). A nose playing linebacker is worth a
+linebacker; a linebacker playing nose is worth a nose. **This has to be stated in the guide, in the
+same place the OLB/ILB rule is stated.**
+
+### P12-8 · No task is ever assigned to a named seat
+**"Because some agents will be occasionally limited by rate limits, no specific assignment should ever
+be assigned to a specific agent. All tasks should be posted openly and whoever is available will begin
+working on the tasks in priority."**
+
+This is now a **rule in AGENTS.md** ("the queue is suggestions, not assignments") and a line in every
+council message this round. The practical form:
+- a task is posted **with its priority, its scope and the acceptance bar** — never with a name;
+- **the first free seat takes the highest-priority open task** and says so in the bulletin;
+- a seat that is rate-limited or busy says "not taking tasks this round" once, in the bulletin, and
+  the queue moves on without anyone chasing it.
+
+
+---
+
+## V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)
+
+**Build:** `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+**Owner criterion:** "most of this data can be represented by graphics instead of sentences… only the clutch narration, the star praise and the next-round hype need sentences."
+
+### GR-1 · Shared CSS component set (stat card, bar row, two-column pair, gold banner)
+
+**WHERE** `Football-Sim-V21.html` — CSS block (l.27-140, insert after existing classes)
+**WHAT** Add four new CSS classes:
+- `.stat-card` — compact card with value, label, optional mini-bar (insert after `.panel`, l.32)
+- `.bar-row` — horizontal two-value comparison bar (insert after `.metricrow`, l.93)
+- `.two-col-pair` — side-by-side comparison layout (insert after `.kp-grid`, l.138)
+- `.gold-banner` — highlight banner for champions/awards (insert after `.champion-banner`, l.137)
+**WHY** All four review screens (game preview, game review, season review, 100-season review) currently use bespoke prose markup. Shared components reduce duplication and enable the Owner's graphics-first vision.
+**SAFE ALONE?** Yes — pure CSS additions, no JS, no math, no protected constants.
+**HOW TO CHECK** `node --check` on extracted script → exit 0 (no JS changes). Visual check at 390px (no horizontal overflow). Grep for class names in HTML to confirm usage.
+
+**Full spec:** `_agents/boc/notes/graphics-item1-shared-components.md`
+
+### GR-1a · Stat card (`.stat-card`)
+```css
+.stat-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;text-align:center;min-width:80px;}
+.stat-card .sc-val{font-size:1.4rem;font-weight:800;color:var(--accent);line-height:1.1;}
+.stat-card .sc-label{font-size:0.7rem;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;margin-top:2px;}
+.stat-card .sc-bar{height:4px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden;}
+.stat-card .sc-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:2px;}
+```
+Replaces prose stat mentions (e.g., "roughly +3.2 points a game") with visual bars.
+
+### GR-1b · Bar row (`.bar-row`)
+```css
+.bar-row{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;margin-bottom:6px;font-size:0.82rem;}
+.bar-row .br-left{text-align:right;font-weight:600;}
+.bar-row .br-center{font-size:0.72rem;color:var(--sub);text-align:center;min-width:60px;}
+.bar-row .br-right{text-align:left;font-weight:600;}
+.bar-row .br-bar{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2px;height:6px;}
+.bar-row .br-bar-l{background:var(--accent);border-radius:3px 0 0 3px;}
+.bar-row .br-bar-r{background:var(--accent2);border-radius:0 3px 3px 0;}
+```
+Replaces "The ratings lean X by about Y" prose with visual comparison bars.
+
+### GR-1c · Two-column pair (`.two-col-pair`)
+```css
+.two-col-pair{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
+@media (max-width:760px){.two-col-pair{grid-template-columns:1fr;}}
+.two-col-pair .tcp-side{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.two-col-pair .tcp-side.tcp-home{border-left:3px solid var(--accent);}
+.two-col-pair .tcp-side.tcp-away{border-left:3px solid var(--accent2);}
+.two-col-pair .tcp-title{font-weight:700;font-size:0.85rem;margin-bottom:6px;}
+.two-col-pair .tcp-stat{display:flex;justify-content:space-between;font-size:0.8rem;padding:2px 0;}
+.two-col-pair .tcp-stat .tcp-val{font-weight:600;font-variant-numeric:tabular-nums;}
+```
+Replaces prose team comparisons with side-by-side cards.
+
+### GR-1d · Gold banner (`.gold-banner`)
+```css
+.gold-banner{background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,165,0,0.1));border:2px solid #ffd700;border-radius:14px;padding:16px 20px;text-align:center;margin-bottom:16px;}
+.gold-banner h2{margin:0 0 4px;font-size:1.4rem;color:#ffd700;}
+.gold-banner .gb-sub{font-size:0.85rem;color:var(--sub);}
+.gold-banner .gb-stat{font-size:1.1rem;font-weight:700;margin-top:6px;}
+```
+Replaces champion banner text with a more visually distinct gold treatment.
+
+### Usage mapping
+
+| Screen | Stat card | Bar row | Two-col pair | Gold banner |
+|--------|-----------|---------|--------------|-------------|
+| Game preview | ✓ (matchup swings) | ✓ (unit comparison) | ✓ (QB matchup) | — |
+| Game review | ✓ (key stats) | ✓ (team comparison) | ✓ (away vs home) | ✓ (game ball) |
+| Season review | ✓ (team stats) | ✓ (conference comparison) | ✓ (team comparison) | ✓ (champion) |
+| 100-season review | ✓ (sim results) | ✓ (team comparison) | ✓ (best vs worst) | ✓ (best team) |
+
+### What was deliberately not checked
+- Whether the four screens actually use these components (that's items 2-8's job).
+- Whether the components look good in dark mode (CSS uses var() tokens, so should adapt automatically).
+- Whether the components need animation (deferred to item 8 — Guide's visual language).
+
+---
+
+## P12-9 · The version inventory — one live build, one name, and what is dead
+
+The Owner: *"We have a mess of versions that the agents think are live now."* Measured, not guessed:
+
+| File | sha256 | size | Status |
+|---|---|---|---|
+| **`Football-Sim-V21.html`** (root) | `044d1759e01ac99b…` | 656,746 B | **THE LIVE BUILD** — the canonical name |
+| `NFL Draft Simulator merged.html` (root) | `044d1759e01ac99b…` | 656,746 B | **the same bytes** under the working name the work order's anchors point at — keep it (it is the anchor target), but it is not a second version |
+| `NFL Draft Simulator v20 Claude.html` | `8f916df95bed…` | 648,310 B | the v20 **reference** build — structurally foundational, keep |
+| `NFL Draft Simulator.html` | `8f0f8d50c369…` | 649,490 B | the donor **reference** build — keep |
+| `merged.html`, `merged_v22.html`, `merged-patched.html` | — | ~656,7xx B | **dead intermediates** — **quarantined** to `_archive/versions-2026-10-22/` with their hashes, so a seat can restore one by name |
+| `Football Sim/Football Sim/` (a whole nested git clone, 5 more HTML files) | — | — | **not touched** — it may be someone's working environment; the Architect's call, and the council's directory index already flags it as "UNKNOWN who/why" |
+| `_agents/*/prototypes/*.html` (six council builds) | — | — | **proposals**, named as such, all gate-verified; the two that matter are `V22-candidate-2026-10-21.html` (`e5fa7e0e…`) and `V22-candidate-teamcolours.html` (`b3de0523…`) |
+
+**The rule to state once, and then stop debating:** **`Football-Sim-V21.html` is the live build.**
+`Football-Sim-V22.html` is the next one. Nothing else is a release, and no file gets a third name.
+
+## P12-10 · The Owner's brief, re-broadcast as executable items
+
+*Broadcast again so no seat is working from the prose instead of the items. The "no named
+assignments" rule now lives **in the bulletin only** — AGENTS.md is not a seat's file, per the
+Owner's ruling on 22 Oct.*
+
+1. **LEDG/REDG do not matter — no left or right, anywhere the user can see it.** The slot keys
+   (`DE1`/`DE2`, `OT1`/`OT2`) and the flex families (`DE`, `OT`) are already side-agnostic in the
+   maths; **this is a labels-and-prose change**: "a left offensive tackle plays offensive tackle"
+   becomes "an offensive tackle plays offensive tackle", and the guide's flex chart (in the
+   draft-roster order) says "Edge" and "Offensive tackle" with no side.
+2. **The punter.** The weight stays **1** in the model weights (it is the floor). **How the sim values
+   a punter is the Architect's call** — he is the one specialist with no wins model, so his draft
+   value is a floor rather than a measurement, and changing that needs a model.
+3. **The fullback blocks like a lineman.** Preferred as a **rating-driven rule** if the player data
+   supports one (the fullback's blocking contribution scales with his blocking attribute — no
+   protected change); the fallback (splitting `HB` into `RB` and `FB`) is protected and belongs in a
+   later edition.
+4. **"Value here" is gone from the whole website.** The column, bullet, tooltip and section title
+   are already gone; **the last visible mention is the sort dropdown's label** — "Sort: slot value"
+   still says "value", so it becomes **"Sort: slot rating"**. The maths (`r.v`) is untouched, and the
+   proof is a grep across every user-facing string that must return nothing.
+5. **Who gets named as a star.** Any offensive player needs **60+ rushing yards**; a quarterback
+   needs **300+ passing yards and a 3:1 touchdown-to-interception ratio**; a defensive player needs
+   takeaways, pressures or sacks (**1–2 sacks is "mid", 3+ is "exceptional"**). The slots are
+   reserved for **90+ rating performances**, and the rating decides *who* is named without being shown.
+6. **The 3-4 lets the user swap a DT for a linebacker** — a **toggle** on the draft and preseason
+   pages plus the **board's own recommendation** ("3 linebackers left, 1 defensive tackle"), because
+   the board already knows the counts. The maths note: a nose playing linebacker is worth a
+   **linebacker's** spot, and a linebacker playing nose is worth **a nose's** — the same rule as
+   OLB ≡ WILL and ILB ≡ MIKE, stated in the guide in the same place.
+7. **No task is ever assigned to a named seat.** Every task is posted openly with its priority,
+   scope and acceptance bar; the first free seat takes the highest-priority open task and says so; a
+   rate-limited seat says "not taking tasks this round" once, and the queue moves on.
