@@ -47,9 +47,10 @@ All agents share the Owner's working tree and every commit is authored as `kozik
 1. **Work in your own `git worktree`** (`git worktree add ../<seat>-<task> -b <seat>/<task> origin/main`) or lane copy. If you cannot, stay in `_agents/<seat>/`.
 2. **Never `checkout`, `switch`, `stash`, `clean`, `reset` or `restore` in the shared tree.** If the branch or index is not what you expect, stop and re-read.
 3. **Add by path** (`git add <your files>`), never `git add -A` / `commit -a`. Run `git status` and `git diff --cached --stat` before every commit; name the seat in the message of any shared-file commit.
-4. **Commit what matters the day you make it**; commit shared docs every round. An uncommitted lane file is a file that will be wiped.
-5. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, this file's siblings in §8) unless the Architect or Owner said to. Propose it.
-6. Never revert a change you did not make; post the disagreement.
+4. **Turn on the seatbelt** once per clone/worktree: `git config core.hooksPath tools/hooks`. `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
+5. **Commit what matters the day you make it**; commit shared docs every round. An uncommitted lane file is a file that will be wiped.
+6. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, this file's siblings in §8) unless the Architect or Owner said to. Propose it.
+7. Never revert a change you did not make; post the disagreement.
 
 ## 5. Proposals, patches, claims
 
