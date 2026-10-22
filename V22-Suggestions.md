@@ -18,6 +18,13 @@
 **Verifier gates** (run in order): 390px e2e-smoke.mjs → MiniMax smoke → OpenChamber E2E v2 → function diff. Do not batch-apply without intermediate verification.
 **Build:** `NFL Draft Simulator merged.html` (656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`), @ `merge/v20-donor`. Re-pinned by BOC on 21 Oct.
 
+### Quick start: Claude's first 3 actions
+1. **Apply `P0-17` flex rules** via the `--flex-rules-v22` dry-run flag in `_agents/lightning/notes/v22-applier.js` — this prints the hunks, validates the hash, and checks the chart's cells. Do NOT apply without Owner approval for protected constants.
+2. **Run 390px e2e-smoke.mjs** — verify `#startSeasonBtn` is above the fold and 0 horizontal overflow. This gate's `E_viewportUsable` fix (`inViewport` + preseason probe) is the first verification pass.
+3. **Run MiniMax smoke test** (`node _agents/minimax/tools/post-merge-smoke.mjs`) — exit 0 confirms 32 team scores and draft board rows are identical to the verified build.
+
+---
+
 ## 🧭 CLAUDE EXECUTION BRIEF v2 — 21 Oct 23:43 UTC (CANONICAL, supersedes duplicate numbering)
 
 This section is the single source of truth for Claude. Older duplicate-numbered sections (PART 5, P10-1..9, P10-1..15, P11-1..8) contain overlapping copies; treat the **canonical locations** below as authoritative and skip the stale duplicates when numbering conflicts.
@@ -38,6 +45,19 @@ This section is the single source of truth for Claude. Older duplicate-numbered 
 **Stale duplicate sections to ignore:** `PART 5` (older decomposition), `P10-1..9` (first round), `P10-1..15` (added later), `P11-1..8` (added later) — their content is folded into the canonical index above; follow the canonical sections for execution.
 
 **Next single action for Claude:** apply `P0-17` (flex rules) first, then `P0-15`, `P0-16`, `P0-18`, `P0-19`, then proceed through P0 → P7 per the canonical index.
+
+**SAFE ALONE? designations for top-priority items:**
+- ✅ `P0-17` flex rules: **NO** — requires Owner approval for protected constants (`FLEX`/`NATURAL_SLOT_MAP`) and CB3 conflict resolution (0 vs 2); see `--flex-rules-v22` applier flag in `_agents/lightning/notes/flex-rules-risk-map.md`
+- ✅ `P0-15` coaching philosophy: **YES** — pure text copy; only description rewrite needed
+- ✅ `P0-16` base defense: **CONDITIONAL** — depends on flex alias mapping (OLB≡WILL, ILB≡MIKE) being applied first; see `--base-defense-v22` applier
+- ✅ `P0-1` Value Here removal: **YES** — copy-pasteable CSS/HTML edits; intermediate `node --check` verification passes
+- ✅ `P0-390px` startSeasonBtn: **NO** — gate scope change (`inViewport` + preseason probe); requires protocol coordination
+
+**Dependency map (apply in order):**
+`P0-17` flex rules → `P0-16` base defense → `P0-15` coaching philosophy → `P0-1` Value Here → remaining P0 items
+(flex rules establish the math; base defense uses those maths; coaching is copy; draft board UI follows)
+
+---
 
 **House format for every change item:** **WHERE** (code location, line number(s)) · **WHAT** (old → new, exact text) · **WHY** (reason for change) · **SAFE ALONE?** (can apply without other changes) · **HOW TO CHECK** (verification command). All P0/P1/P2 items in this document use exact old→new line-number edits; the house format is the canonical way to record each change.
 
