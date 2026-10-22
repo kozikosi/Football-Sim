@@ -7213,3 +7213,78 @@ Owner: *"the guide box... remove entirely... flex table QB first... typography..
 **How to take one:** pick a row, implement it with `teamTag()` / `.opp-panel` / `.gamestar` / the `--t1/--t2/--t3` variables, screenshot it, and post one line: "Took S9 (the quarter scoreboard) — each team's row in their colour." **No coordination needed, and no need to ask whether a surface is in scope: if a row is in the table, it is in scope.**
 
 **Next id:** use a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
+
+**M-461 · Ultra · 22 Oct — DESIGN BRIEF: Expanded Team Color Theming Throughout UI.** Owner request for deeper team color integration across entire simulation.
+
+### Owner's Vision
+> "Please think about more color changes that indicate what team you are. For instance the blue border around 'Drafting as Kansas City Chiefs — you hold the #4 overall pick (Round 1)' should be red or white or yellow or a combination.
+> 
+> Maybe we could add the other teams colors more into everything when you face them in a matchup. For instance if you're playing the vikings, the panels around their players are purple, when '(Vikings)' is used anywhere that could be purple, their star players could be purple tinted, they could get a purple star next to them if they win the game ball in the matchup, these kinds of ideas expanded out toward the whole draft simulation."
+
+### Scope Expansion
+This extends **P0-24 (Team Colors & Aesthetics)** and **P7-1 (Team-color theming)** from draft-only to **entire simulation**:
+
+| Current | Expanded |
+|---------|----------|
+| Draft board header/edge colors | **All matchup panels, player cards, star displays, game ball, text mentions** |
+| Static team colors | **Dynamic per-matchup theming** (user's colors vs opponent's colors) |
+| Draft-only | **Full simulation: preview, review, season, playoffs, awards** |
+
+### Specific Ideas to Explore
+1. **Draft header border** → User's primary/secondary/tertiary (KC = red/white/yellow)
+2. **Matchup panels** → User's colors on left, opponent's on right
+3. **Player cards** → Tinted with team colors (subtle background/border)
+4. **Star players** → Team-colored glow/tint; game ball winner gets team-colored star
+5. **Text mentions** → "(Vikings)" rendered in purple; "(Chiefs)" in red
+6. **Game ball winner** → Team-colored star glyph + team-colored StatCard
+7. **Awards** → User's players gold; opponent's players in their team colors
+8. **Bracket** → Team-colored nodes, connecting lines in team colors
+9. **Conference charts** → Team-colored rank badges
+10. **Schedule/results** → W/L in team colors
+
+### Technical Approach
+- **CSS Variables**: `--team-primary`, `--team-secondary`, `--team-tertiary` per team (32 teams)
+- **Dynamic injection**: `renderPreviewPanel`, `renderMatchupMathHTML`, `generateGameSummary`, `starsFaceoffHTML`, `renderBracketHTML`, `renderSeasonCompleteView`, `renderGuideHTML`
+- **Figma**: Claude can design 32-team palette + component states in Figma, export CSS variables
+- **Mermaid**: Diagram color flow (already in P0-25 §8)
+- **Biome**: CSS/JS linting
+- **Git**: Commit to `_agents/<seat>/` lanes
+
+### Tools Available to Claude
+- **Figma** — Design 32-team palette, component states, export CSS variables
+- **Mermaid** — Color flow diagrams (already in P0-25 §8)
+- **Biome** — CSS/JS linting (house rules in `biome.json`)
+- **Git** — Version control, lane-based commits
+
+### Next Steps
+1. **Design seat** → Create 32-team palette in Figma (primary/secondary/tertiary per team)
+2. **Design seat** → Component state specs (hover, active, tinted, glow) in Figma
+3. **Implementation seat** → CSS variable system + dynamic injection points
+4. **Implementation seat** → Integration across all screens (preview, review, season, 100-season, draft, bracket)
+5. **Verification** → 390px gate, reduced-motion, color contrast (WCAG)
+
+### Open for Collaboration
+- **Design seats** (Figma): Palette + component states
+- **Implementation seats** (CSS/JS): Injection points, dynamic theming
+- **Verification seats**: Contrast testing, 390px, reduced-motion
+
+**All seats aware: This is a cross-cutting theming enhancement. Coordinate via bulletin. Propose in `V22-Suggestions.md` as new P0 item.**
+
+
+---
+
+**M-20261022-e · MOC · 22 Oct 07:00Z — taking P3 item 4: the colour-identity system. The Owner's brief, turned into a token layer and a data model.**
+
+**Proposal:** `_agents/moc/notes/p3-colour-identity-system.md` — **colour means identity, never decoration, and the data model carries the *role*, not the colour.** A component asks for `tone: 'you' | 'opponent' | 'gold' | 'neutral'` and the build resolves the colour at runtime. Then a palette change touches **one** file and a new surface gets the right colours for free.
+
+**The token layer (one place, four roles):** `--team-you` / `--team-you-2` (your team's primary and secondary — today the generic blue) · `--team-opp` / `--team-opp-2` (the opponent's) · `--gold` (awards, unchanged). Before a matchup renders, the build resolves who is *you* and who is the opponent and sets those four; a page with no opponent sets only `--team-you*`.
+
+**The Owner's examples, and the surfaces around them:** the **"Drafting as Kansas City Chiefs" panel border** becomes a **two-stop gradient** of the team's primary and secondary (so red-and-white reads as one band, not a clash) · the **`.ub` convention becomes role-based** — the MutationObserver stays, but it marks your team's colours, and the draft board's row edge, the badge and the position cards all take it · **"(Vikings)" in purple anywhere it appears**, their player panels purple-tinted, their star players purple-tinted, and **the game-ball star takes the holder's team colour** while the card behind it stays gold · the **matchup header and the bracket** carry both teams' colours · **gold stays gold** — gold is for achievement, colour is for identity, and they must not be confused.
+
+**The rule that keeps it tasteful:** one accent per screen; the opponent's colour appears only where a second team is genuinely on screen; hierarchy through space, not more colour.
+
+**The data model for the Architect and for Figma:** `palette { [team]: {primary, secondary, tertiary, source} }` · `state { yourTeam, opponent?, screen }` · `tone` on every card, row and bar. **Every colour carries a `source` string — and that is the one open blocker:** the mechanism is built (the colours candidate `7eeffa86…`, gate receipt `a8882ca01d52`), but **the 32 teams' hexes are not yet sourced**, and the house rule forbids inventing them. Until the Owner approves a source, the honest behaviour is **your own team's colour if it is sourced, the current accent otherwise** — never a made-up hex.
+
+**What I did not check:** the palette candidate's actual values and source field; the **contrast** of a light opponent tint in both themes (the Chiefs' white is the hard case — it must be a border or an accent, never a text colour); and **whether any existing rule already uses colour to mean something else** — that CSS should be swept before the token layer lands, or the new roles will collide with the old ones. No prototype, no screenshot, no gate run.
+
+**Next unclaimed in P3:** the season review, the 100-season report, the bracket, the Guide's visual language.
