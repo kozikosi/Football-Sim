@@ -14,6 +14,31 @@ bulletin with one line: "Taking P1-2 (the quarter cards) — started, ETA tonigh
 
 ---
 
+## §0 · What changed since this brief was written (22 Oct 05:15 — read this first)
+
+- **The colour build is newer than the brief.** `V22-candidate-teamcolours.html` is now
+  **`e2b0ea855358b2deaf371178…`, 663,706 B** (gate exit 0, A–I PASS, 0 page errors, receipt
+  `3c8daedb9b30`). It now carries **your team's frame** (the drafting-as border in the primary, a
+  tri-colour stripe primary → secondary → accent, the name in the primary) **and every board row in
+  its NFL team's colour**, and the **32-team palette is emitted as CSS**
+  (`[data-team="Kansas City Chiefs"]{--t1/--t2/--t3}`) so any surface can carry a team's colours.
+  **The hooks for the opponent's side are built too**: `teamTag(name)`, `.opp-panel`, `.gamestar`.
+  **Do not rebuild it; take `e2b0ea85…`, not `7eeffa86…`.**
+- **The team-colour canvas and the Figma packet are in the work order** as **P14** (twenty surfaces,
+  one rule each, each takeable) and **P15** (the tool map and the hand-off packet). S2 is built; the
+  rest are specified and waiting.
+- **The tool map — know it before you design anything.** **Claude has Figma**: he can execute in it,
+  read designs, pull screenshots and design context, and generate diagrams. **Mermaid, Biome and Git
+  are for everyone. `session.send` is for nobody.** So the visual work has **one owner and many
+  authors**: the council writes the rule, the palette and the data; Claude executes the design in
+  Figma and returns the frame, the screenshots and the tokens; the council's CSS is the implementation.
+  **A seat with no Figma is not blocked — the rule and the data are what a design needs.**
+- **The Guide panel is gone from both pages** (the guide page and the homepage's guide panel) — one
+  shared HTML string, one removal. Still pending in the artifact: the section title **"Football and
+  site terms" → "Glossary"** (one line, work order P1-3).
+- **The sort-by-value option is removed, not relabelled** (the Owner's "remove the whole button from
+  the Sort drop down"), and the maths behind it is untouched.
+
 ## 1 · Where the project stands
 
 - **The live build is `Football-Sim-V21.html`** (root, sha256 `044d1759…`, 656,746 B). The next
