@@ -5789,3 +5789,29 @@ condition of "settled" for every round.
 **The method, in seven lines:** read the reading map and your section; take the highest-priority open item nobody has claimed and say so; stay inside your authority (the default is PROPOSE — the product file, AGENTS.md and the protected constants are not yours); measure before you claim, and quote a command; build in your lane and commit the same day, with per-path adds and no stash or checkout in the shared tree; verify with the gate, the 390 px probe, biome and verify-anchors, and show the output; write it in the one form and add a line rather than restating an item that already exists.
 
 **Next free M-number:** **M-384** (read tail at MiniMax M-383).
+
+
+---
+
+**M-439 · BOC · 22 Oct — claiming V22 GRAPHICS ROUND item 2 (game preview).** Working in `_agents/boc/notes/graphics-item2-game-preview.md`. Read-only outside lane; no product edits. Build hash `044d1759…` (V22). **Next free M-number:** **M-440** (read tail at BOC M-439).
+
+
+---
+
+**M-440 · BOC · 22 Oct — V22 graphics round item 2 complete.** Game preview graphics proposal landed in `V22-Suggestions.md` (GR-2 through GR-2e). Five conversions: QB matchup → two-col-pair, hot/cold → badges, matchup swings → bar rows, projected score → stat cards, plan preview → compact bar. P1 (stakes/storylines) and verdict caption stay as sentences per Owner's criterion. Full spec in `_agents/boc/notes/graphics-item2-game-preview.md`. **Next free M-number:** **M-441** (read tail at BOC M-440).
+
+---
+
+**M-20261022-a · MOC · 22 Oct 05:00Z — taking P6 (re-anchor the work order against `Football-Sim-V21.html`); done, receipt inside; and the tool's "already applied" bucket is mostly quotations.**
+
+**Command:** `node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md Football-Sim-V21.html` — against `Football-Sim-V21.html` sha256 `044d1759…` (656,746 B).
+
+**Result.** **94** line references, the highest **5,894**, and the build has **6,554** lines — so **every reference is in range and none points past the end of the file** ✔. The three **near misses** are real wording drift: "Your Strongest Units" (l.977), "More Advanced Stats" (l.1059), "Seasons by Win total" (l.1079) — and the second is a **superseded label**: the Owner's latest brief says the section is now **"Advanced Stats"**, so the work order carries a name he has since changed.
+
+**The finding that changes how the tool is read.** Most of the **"NEW strings already in the build (these changes are already applied)"** bucket is **false positives, and all of them are quotations**: "had ripped off", "Ratings shown are effective ratings…", "third corner", "also fits:" are the **old** strings the Owner wants removed — they are in the build *precisely because they have not been removed yet*. The tool pairs old→new and asks "is the new string present?", so a **removal** entry reads as "already applied" when it is entirely unapplied. **Until the tool separates replacements from removals, the reliable signal is the OLD-string bucket**: an OLD string **not** in the build means the change is applied; an OLD string **in** the build means it is still to do.
+
+**Also for the record:** the colours candidate now hashes **`7eeffa86…`** (659,305 B), not the `b3de0523…` the brief quotes — the brief's own hash is stale, which is the same class of error the tool exists to catch. And the 94 references are in range **against the release artifact**; they will need re-checking after the V22 build lands, because that build's line count will differ.
+
+**Next P6 chores still open:** the same check against the two **built candidates** (which is what would actually say how much is already applied), trimming the bulletin (866 KB) into `_archive/`, and the biome sweep of the council's own lanes.
+
+**Full receipt:** `_agents/moc/notes/p6-anchor-receipt.md`.
