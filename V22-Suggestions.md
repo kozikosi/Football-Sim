@@ -616,6 +616,138 @@ Everything the council asserted about the maths was **measured**, not reasoned:
 
 ---
 
+## Appendix K — The Owner's direct instructions, and where each one is handled
+
+**Authority.** Everything else in this document is the council's proposal; Claude decides how it is built. These are the **Owner's own instructions**, and where a council item paraphrases one and drifts from it, the Owner's wording wins. Read this appendix as a checklist, not as a summary: an instruction here that no item covers is work with no home.
+
+**Status key.** ✓ carried by a canonical item · ◐ partly carried, wording not confirmed against this file · ✗ **no item carries it**
+
+### A · Coaching philosophy and aggressiveness
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| Philosophy and aggressiveness available **all season**, not locked after Week 1 | `P0-15` | ✓ |
+| Description rewritten; remove ", on offense and on defense. It names your team's style all season, and"; capitalise "Opponents" → "OPPONENTS" | `P0-15` | ✓ |
+| "The model tried all 15 offensive setups…" → "**the model tries**" | `P0-18` | ✓ |
+| Improve the UI of "Selected: Balanced offense with two tight ends (12 personnel, balanced) · Nickel defense focused on the pass" — *"It's ugly as is"* | none | ✗ |
+| **"Your Strongest Units"** and **"your weakest units"** get indentation, and side by side if it makes sense | none | ✗ |
+| **The top 3 appear in 3 distinct, beautiful UI areas — not as one sentence** | none | ✗ |
+| The sentence "The label stays the same all season…" appears twice — remove one, Owner's choice | `P0-18` | ◐ |
+| Remove **"Why we recommend Auto"** completely | `P0-18` | ✓ |
+| Enlarge the dropdown text for balanced / advanced / aggressive | `P0-18` | ◐ |
+| All the descriptions under the dropdown selection made more beautiful — *"Ugly currently"* | `P0-18` | ◐ |
+
+### B · Aggressiveness copy — exact wording
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| "a few more field goals" → "**fewer** field goals" | `P0-18` | ✓ |
+| "Follows the usual NFL chart:" → "**Balanced Approach:**" | `P0-18` | ✓ |
+| "and goes for it on 4th down when it is short and the field position is good" → "and goes for it on **4th & short when in opponent's territory**" — **and verify the maths says so** | `P0-18` | ◐ |
+| Aggressive rewritten as "More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs", with the detail in smaller type: *"Almost always goes for 2-pt conversion unless you need an XP to win the game. Almost always goes for 4th down unless behind your own 30yd line or if you have a big lead in the 4th Quarter."* | `P0-18` | ✓ |
+| "How a 2-Pt Conv works" → write out "**Conversion**" | `P0-18` | ✓ |
+
+### C · Base defense, flex rules, FB and P
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| User selects 3-4 or 4-3 base on the draft and/or preseason page | `P0-16` | ✓ |
+| Edges take no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS and OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; **unmentioned keeps the current rule** | `P0-17` | ✓ |
+| "Third corner" → "**CB3 / Nickel**" | `P0-17` | ✓ |
+| Chart redesigned **in draft-roster order** | `P0-17` | ✓ |
+| 3-4 front: DE1 · DT1 (Nose) · DE2 · OLB1 · ILB1 · ILB2 · OLB2 | `P0-17` | ✓ |
+| OLB ≡ WILL and ILB ≡ MIKE in the wins maths | `P0-17` | ✓ |
+| Explained in the Guide **and** the preseason menu; CB3/Nickel on means LB3/SAM off | `P0-17` | ✓ |
+| Delete the "Anyone except an offensive lineman…" paragraph from the preseason menu | `P0-17` | ✓ |
+| FB and P are drafted; 28 rounds, 896 picks; **no existing flex penalty changes** | `P1-12`, `P0-20` | ✓ |
+
+### D · Game preview
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| The stars-of-the-game table made more beautiful — *"consider using one of the new tools to design"* | `P0-18` | ◐ |
+| The opening paragraph must say which team has the run defense and which has the secondary — "(Chiefs)" / "(Vikings)" | `P0-18` | ◐ |
+| "Under center for the x is Matthew Stafford (99) against the y's Geno Smith (74)" | `P0-18` | ✓ |
+| "All eyes will be on [Christian Gonzalez]" makes no sense — a defender is not game-planned around by his own offense. Fix. | `P0-18` | ◐ |
+| Remove every "+x points a game" unit statement | `P0-18` | ✓ |
+| Keep the overall prediction, and write it as "**+3.3**" | `P0-18` | ✓ |
+| Replace most em-dashes with periods; "would rather" becomes its own sentence | `P0-18` | ◐ |
+| Formations read "Nickel · Pass Protection", "Nickel · Run Defense", or just "Nickel" | `P0-18` | ◐ |
+| No defensive package carries a subtitle in the selection table | `P0-18` | ✓ |
+| Delete the long parentheticals "(a nickel defense focused on the pass)" | `P0-18` | ✓ |
+| "Why these plans?" — smaller and a lot more beautiful | `P0-18` | ◐ |
+| Order on the page: game plan → **lineups** → matchup → opponent scouting report | `P0-18` | ◐ |
+
+### E · Game review
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| Box score table larger and more beautiful | `P0-18` | ✓ |
+| The whole recap font is terrible — make it beautiful, let it fade into the page | `P0-18` | ◐ |
+| Start at "1st Quarter"; use 1st/2nd/3rd/4th far more | `P0-18` | ✓ |
+| Blocked extra point shown at 0–0 is a glitch — fix it; a blocked field goal is the plausible event | `P0-18` | ◐ |
+| Quarter lines in box-score form: "Rushing TD · D'Andre Swift (Chiefs 7–0)", not full sentences | `P0-18` | ✓ |
+| Turnovers as a score line first, then the event: "Turnovers: Chiefs x – y Vikings" / "Jaylon Johnson interception (4th Q)" | `P0-18` | ✓ |
+| An offensive player needs **60+ yards** to be named in the stars | `P0-18` | ✓ |
+| Reserve the star slots for **90+ rated** performances (used internally, never shown) | `P0-18` | ◐ |
+| "Stars of the game:" replaced by an actual star, glittering | `P0-18` | ✓ |
+| Remove "worth about +2.3 points to the Chiefs" phrasing throughout | `P0-18` | ✓ |
+| Remove "a swing of roughly +1.3 points for the Chiefs" | `P0-18` | ✓ |
+| Pass rush "…only got home once **but** hurried 9 more" — "but", not "and" | `P0-18` | ◐ |
+| Sacks: **0 is poor, 1–2 is mid, 3+ is exceptional** | `P0-18` | ◐ |
+| "The Chiefs move to 1-0; the Vikings slip to 0-1" is its own paragraph | `P0-18` | ◐ |
+| Game plans hidden behind a dropdown, like the others | `P0-18` | ✓ |
+| The game-ball winner **must** appear in Key Players | `P0-18` | ◐ |
+
+### F · Regular season review
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| Win banner much larger, centred, on screen **at least 3 seconds** | `P0-19` | ✓ |
+| It lands somewhere on the screen afterwards and keeps shimmering | `P0-19` | ✓ |
+| "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" replaced by **two conference charts ranked 1–16** | `P0-19` | ✓ |
+| Playoff picture as a real tournament bracket — byes, both conferences, the Super Bowl in the middle | `P0-19` | ✓ |
+| Season awards more beautiful; **gold for the user's players**, including the game-ball winner | `P0-19` | ✓ |
+| Delete "Early picks that are worth little to winning matter most…" | `P0-19` | ✓ |
+| "What separated the playoff teams" stays but is **click-to-reveal**, and the descriptions of what separated them are removed | `P0-19` | ✓ |
+| Write "**x Sacked**", never "Sacked x" | `P0-19` | ✓ |
+| More advanced stats, and clicking one explains why you did well or poorly | `P0-19` | ✓ |
+| "More Advanced Stats" → "**Advanced Stats**" | `P0-19` | ✓ |
+| "Advanced stats: what really produced sacks and runs" heavily condensed, visible only when clicking Coverage Sacks or Offensive Line | `P0-19` | ✓ |
+| Season-review text: indent a lot more; first sentence its own paragraph; biggest and ugliest win as stats, not sentences; each named player on their own line | `P0-19` | ✓ |
+| Remove "cost the Chiefs roughly 0.7 points a game" phrasing | `P0-19` | ✓ |
+| Remove "The roster also asked 2 starters to play out of position…" | `P0-19` | ✓ |
+| A better final sentence — push the player toward the playoffs, or toward a redraft | `P0-19` | ✓ |
+| "Why better or worse than the ratings?" more graphical | `P0-19` | ◐ |
+
+### G · Playoffs and champions
+
+| The Owner's instruction | Handled by | |
+|---|---|---|
+| With a bye, show the most likely next-round matchup preview | `P0-19` | ✓ |
+| "Lineup and flexes" does not belong at the top of the playoff page | `P0-19` | ✓ |
+| "PLAYOFF PREVIEW · Divisional Round showdown" far more beautiful and exciting | `P0-19` | ◐ |
+| "The Chiefs are Super Bowl champions." is boring — make it beautiful, at least an exclamation point | `P0-19` | ✓ |
+| The Champions banner goes gold and shimmers | `P0-19` | ✓ |
+| Much more motion — graphics and text entering and leaving, confetti, banners | `P0-19` | ✓ |
+| Season review button in **blue**, near the top, next to the 100-season simulation | `P0-19` | ✓ |
+| Season review more graphical; the 100-season review much more graphical, only a few sentences | `P0-19` | ✓ |
+| "Seasons by Win total" left alignment fixed; the whole chart more beautiful | `P0-19` | ✓ |
+| "Your players; average season" and "Award patterns" higher up and automatically visible | `P0-19` | ✓ |
+| Remove "Realism audit & league-wide records" and "Does the model predict real results?" from the user's view, but **keep the information internally** | `P0-19` | ✓ |
+
+### The gap this appendix found
+
+**Three of the Owner's instructions in section A have no item anywhere in this document:**
+
+> "Create some indentation or something for Your Strongest Units and Your weakest units. Maybe these can appear side by side if it makes sense?"
+>
+> "The top 3 should also appear in 3 distinct beautiful ui designed areas, not as one sentence."
+>
+> "Selected: Balanced offense with two tight ends (12 personnel, balanced) · Nickel defense focused on the pass (Nickel · pass-defense)" — *"Just improve the ui of this. It's ugly as is."*
+
+They belong to the same screen as `P0-18`'s philosophy rewrite and should be folded into it before Claude starts. They were dropped in an earlier round and reported as covered; before this appendix existed, the word "strongest" appeared nowhere in the file.
+
 ---
 
 # ARCHIVE — legacy labels. Do not read to execute.
@@ -2352,3 +2484,76 @@ points past the end of the file.
 ```sh
 node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simulator merged.html"
 ```
+
+---
+
+## R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED
+
+**Source:** the Owner's own message (pasted by the Owner, not a coordinator relay). **Status: stored only — the Owner's instruction was "Store all these changes but don't work on them yet."** They are recorded faithfully so nothing is lost; they have **not** been given final P-labels or the full house form (that triage is the next step, not this one). Where an item already lives in an existing entry, the pointer is given and the item is **not** restated as new work (per "the work order is not a diary"). Items marked **NEW** have no existing pointer and need a P-label before Claude touches them. **Several items change `FLEX` / `NATURAL_SLOT_MAP` (protected constants) — the Owner is pre-approving the direction here; the exact values still need to land in the constants with an Owner-logged decision.**
+
+### A. Base defense + flex rules (protected constants; Owner-approved direction)
+
+- **NEW — 3-4 / 4-3 base selection.** On the draft page and/or preseason page the user chooses whether his base is **3-4** or **4-3**. In **3-4**, the front is ordered `DE1 · DT1 (Nose Tackle) · DE2 · OLB1 (Outside Linebacker) · ILB1 · ILB2 · OLB2`. **Math aliasing:** for wins values and all other math, **OLB ≡ WILL** and **ILB ≡ MIKE**. Explain both the base choice and the aliasing in the **Guide** and the **preseason menu**. Also explain that when **CB3/Nickel** comes on the field, **LB3/SAM** comes off.
+- **NEW — flex value changes (Owner-specified; the rest of the flex rules stay as-is):**
+  - Edges: **no longer penalized** for playing OLB/WILL/SAM.
+  - OLB/WILL/SAM → FS **−6**, SS/DT **−4**, Edge and CB3/Nickel **−2**.
+  - MIKE → DT **−4**, SS **−2**.
+  - SS → CB3/Nickel **free**, FS/OLB/WILL/SAM **−2**.
+  - CB → OLB/WILL/SAM **−4**; CB → MIKE **−6**.
+  - TE → WR **−2**, RB **−4**.
+  - The flex **chart must be redesigned in the order of the draft roster.**
+- **MAPPED — "third corner" → "CB3 / Nickel".** Existing guide/flex-table cell (MiniMax's C2 check found it lower-case as `third corner` in the flex cell). Change the cell to read "CB3 / Nickel"; leave no "third corner" anywhere.
+
+### B. Preseason / game-plan copy + UI
+
+- **NEW — remove** from the preseason menu: *"Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use."*
+- **NEW — coaching-philosophy description copy.** In *"Your coaching philosophy is how your team likes to play by default, on offense and on defense. It names your team's style all season, and opponents scout it…"* — remove `, on offense and on defense. It names your team's style all season, and` and capitalize the **O** in **Opponents**.
+- **NEW — `Selected: Balanced offense with two tight ends (12 personnel, balanced) · Nickel defense focused on the pass (Nickel · pass-defense)`** — improve the UI; "ugly as is."
+- **NEW — the auto-plan paragraph.** *"The model tried all 15 offensive setups…"* → change to **"the model tries."** Indent (or place side-by-side) **Your Strongest Units** and **Your Weakest Units**. Present the **top three** as **3 distinct designed areas**, not one sentence. Delete **one** of the two duplicate closing sentences (*"The label stays the same all season…"*) — implementer's choice which.
+- **NEW — delete entirely** the *"Why we recommend Auto…"* paragraph.
+- **NEW — dropdown text size.** In the balanced/advanced/aggressive dropdown, **significantly increase** the text size.
+- **NEW — copy fixes:** *"a few more field goals"* → **"fewer field goals"**. In the balanced description, replace *"Follows the usual NFL chart:"* with **"Balanced Approach:"** and replace *"and goes for it on 4th down when it is short and the field position is good."* with **"and goes for it on 4th & short when in opponent's territory."** — **verify the sim's 4th-down math actually matches this before shipping the copy.**
+- **NEW — aggressive description rewrite** to **"More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs."**, with the following smaller: *"Almost always goes for 2-pt conversion unless you need an XP to win the game. Almost always goes for 4th down unless behind your own 30yd line or if you have a big lead in the 4th Quarter."*
+- **NEW — "How a 2-Pt Conv works"** → write out **"Conversion"**; and make **all** the post-dropdown descriptions more beautiful ("ugly currently").
+- **NEW — defensive formation labels.** References like *"Nickel (a nickel defense focused on the pass)"* → just **"Nickel"**, or **"Nickel · Pass Protection"** / **"Nickel · Run Defense"** where the lean matters (keep the dot). **No subtitles** for the neutral package in the game-plan selector table; **remove** the long parentheticals.
+
+### C. Game preview copy
+
+- **NEW — attribute units to teams.** In the opening paragraph, tag *"run defense"* and *"secondary"* with the team (e.g. *(Chiefs)* / *(Vikings)*) so it's clear which team owns the strength.
+- **NEW — QB line rewrite** to *"Under center for the X is Matthew Stafford (99) against the Y's Geno Smith (74)."*; **fix** the *"All eyes will be on …"* sentence — it names a **defensive** player (Christian Gonzalez) as one the opposing **defense** game-plans around, which is backwards.
+- **NEW — remove** per-unit *"…worth roughly +2.3 points a game…"* phrasing. **Keep** only the **overall** game line, written as **"+x points"** (betting-line style).
+- **NEW — punctuation.** Replace most em-dashes with periods (split into two sentences where the Owner showed).
+- **NEW — UI: the "Game plans:" block** in the preview — make smaller and considerably more beautiful. **Order:** lineups directly below the game plan, then match-up, then opponent scouting report.
+
+### D. Game review copy + structure
+
+- **NEW — box score of quarters table** — larger and more beautiful.
+- **NEW — structure.** Start the report at **"1st Quarter"**; use **1st/2nd/3rd/4th** more; **remove** the opening recap line (*"The Chiefs finished it off, 28–14…"*). Fix the bad English — *"had ripped off"* loses *"had."*
+- **NEW — blocked-extra-point glitch.** *"…blocked it for the Vikings"* shows at **0–0** after Q1 — a contradiction; **fix**, and the event can become a **field goal**.
+- **NEW — box-score-style scoring lines**, e.g. **"Rushing TD · D'Andre Swift (Chiefs 7-0)"** instead of full sentences in the quarter reports.
+- **NEW — turnovers summary:** **"Turnovers: Chiefs x - 0 Vikings"** then **"Jaylon Johnson interception (4th Q)"** — less natural language, more score-summary.
+- **NEW — Stars of the game.** Offensive players need **≥60 yards** to be mentioned; **reserve** these slots for **+90-rated** performances (use the 90 threshold **internally** — do not show the rating to the user). Replace the *"Stars of the game:"* label with an **actual (glittering) star**.
+- **NEW — "How it was decided."** Remove the *"…worth about +2.3 points…"* and *"a swing of roughly +1.3 points"* phrasings; the **first** overall number is written **"+3.3"** and is fine. Pass-rush line: prefer **"but"** over "and" where it fits. **Sack tone:** 0 sacks = poor, 1–2 = mid, 3+ = exceptional. *"The Chiefs move to 1-0…"* → its **own paragraph**.
+- **NEW — "Game plans:" in the review** — hide it in a collapsible dropdown like the others.
+- **NEW — game ball must always appear in the Key Players chart** (it sometimes isn't assigned to anyone).
+- **MAPPED — box-score/scoring + stars rules** overlap the existing R2 "game review copy + stars rules" slice; fold these exact thresholds in there rather than opening a duplicate.
+
+### E. Regular season review + playoffs
+
+- **NEW — win banner.** Larger, centered, stays **≥3 s**; then it should **land** somewhere on screen and keep **shimmering**.
+- **NEW — replace** *"Kansas City Chiefs: 14-3 · 397 PF · 296 PA"* with **two conference charts** ranking the team **1–16** in its conference. Make the **Playoff Picture** a **tournament/March-Madness-style bracket**: show byes, both conferences, and the two Super Bowl teams meeting in the middle.
+- **NEW — regular-season narrative UI.** Indent more; the first sentence is its own paragraph; **biggest win** and **ugliest win** become stat-style blocks, not sentences; each highlighted player on its **own line** as graphics/stats; **remove** *"cost the Chiefs roughly 0.7 points a game"*-type phrasing; **remove** *"The roster also asked 2 starters to play out of position…"*; if not fully graphical, end with a **more exciting closing line** that either sends the player into the playoffs or invites a redraft to chase the Super Bowl.
+- **NEW — "Why better or worse than the ratings?"** — keep, but make more graphical.
+- **NEW — playoffs.** If the user has a **bye**, show a preview of the **most likely next-round matchup**. **"Lineup and flexes" should not be at the top.** Make the **"PLAYOFF PREVIEW"** headline far more beautiful and exciting. Previews and reviews overall: **more graphical, full sentences used sparingly** — sentences are for clutch-play narration, star-player compliments, and hyping the next round.
+- **MAPPED — awards gold for the user's players (incl. game-ball winner)** = existing awards-gold entry; **draft-critique phrase removal** and **"What separated the playoff teams" → click-to-reveal-only** = existing R2 copy entries; **"x Sacked"** and **Advanced-Stats rename/condense** = existing R2/R3 copy entries. Fold the Owner's wording into those.
+
+### F. Champions / motion / 100-season (maps to P7 aesthetics already stored)
+
+- **MAPPED — "The Chiefs are Super Bowl champions."** gold theme + shimmer + exclamation → existing champions-banner entry.
+- **MAPPED — more in/out motion** (confetti/banners) → existing motion entry.
+- **MAPPED — season-review button blue near the 100-season sim; season review + 100-season review more graphical, fewer sentences** → existing entries.
+- **MAPPED — "Seasons by Win total" left-alignment fix + beautify** → existing chart entry.
+- **MAPPED — "Your players; average season" + "Award patterns" higher up + auto-visible** → existing visibility entry.
+- **MAPPED — hide "Realism audit & league-wide records" and "Does the model predict real results?" from the user (keep internally)** → existing hide entry.
+
+**What the next triage owes these:** (1) give each **NEW** item a P-label and the house form (`WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`); (2) route the **protected-constant** flex/base changes through an Owner-logged decision before Claude edits `FLEX`/`NATURAL_SLOT_MAP`; (3) fold the **MAPPED** wording into their existing entries as one added line, not a restatement.
