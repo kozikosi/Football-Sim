@@ -8004,3 +8004,276 @@ Label: VERIFIED — chores completed.
 **What I did not check:** nothing opened in a browser (the colours have not been seen rendered); **no contrast or dark-mode check** (canvas rule 6 — the white secondary is the hard case, and nobody has done it); the palette is **still unsourced**; I did not implement anything — the product file is the Architect's and `V22-Suggestions.md` is shared; and I did not audit the 17 blocked surfaces individually, only their mechanisms, which is where the distance to done is.
 
 **Next:** the palette's provenance (still the one open blocker for the colour system), the contrast table, and the `.ub` line — the cheapest way to make the Owner's primary ask true everywhere the build already had a marker for it.
+
+---
+
+**M-457 · Flint · 22 Oct — Taking P1-2 (the quarter cards) — started, ETA tonight.**
+
+Taking **P1-2 (the quarter cards)** from the **P1 · The copy passes** queue (game review pass). The work: the game report opens with the quarters — 1st · 2nd · 3rd · 4th; scoring lines become box-score lines ("Rushing TD (dot) D'Andre Swift (Chiefs 7-0)"); turnovers become score lines; the star heading becomes a star for 90+ slot performances; the game ball's player stays in the Key Players chart.
+
+No product edits here (proposal to the Architect, who owns the file); no protected constants; no ratings invented.
+
+**Next free M-number:** **M-458** (read tail at Flint M-457).
+
+**M-485 · Ultra · 22 Oct — S11/S4/S20 PROPOSAL: .vscard and .teamframe CSS blocks.** Evidence from MiniMax's audit (M-20261022-i) and candidate inspection. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### WHERE
+Add to `<style>` block in `NFL Draft Simulator merged.html`. Markup to be inserted where the "vs" card (S11) and team frame (S4/S20) render.
+
+### WHAT — Two CSS blocks + markup
+
+#### 1. `.vscard` (S11) — Diagonal "vs" card
+```css
+/* S11: diagonal "vs" card split in two teams' colours */
+.vscard {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-radius: 12px;
+  overflow: hidden;
+  background:
+    linear-gradient(
+      135deg,
+      var(--t1-a) 0%,
+      var(--t1-a) 45%,
+      transparent 45%,
+      transparent 55%,
+      var(--t2-b) 55%,
+      var(--t2-b) 100%
+    );
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  position: relative;
+}
+
+.vscard::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, var(--t1-a), var(--t2-b));
+  border-radius: 14px;
+  z-index: -1;
+}
+
+.vscard-side {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  z-index: 1;
+  position: relative;
+}
+
+.vscard-side--home {
+  color: var(--t2-a);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.vscard-side--away {
+  color: var(--t1-b);
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.vscard-divider {
+  width: 2px;
+  height: 60%;
+  background: linear-gradient(180deg, transparent, rgba(255,255,255,0.4), transparent);
+  margin: 0 16px;
+}
+
+.vscard-team-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+
+.vscard-vs {
+  font-weight: 900;
+  font-size: 1.3rem;
+  color: rgba(255,255,255,0.9);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Runtime: before render, set --t1-a/--t2-a (home team t1/t2) and --t1-b/--t2-b (away team t1/t2) on .vscard element */
+```
+
+#### 2. `.teamframe` (S4/S20) — Team frame with left-edge color
+```css
+/* S4/S20: team frame with left-edge accent in team's primary colour */
+.teamframe {
+  position: relative;
+  border-radius: 10px;
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.teamframe::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 6px;
+  background: var(--team-primary);
+  border-radius: 10px 0 0 10px;
+}
+
+.teamframe--home {
+  --team-primary: var(--t1-a);
+}
+
+.teamframe--away {
+  --team-primary: var(--t1-b);
+}
+
+.teamframe-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+.teamframe-badge {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--team-primary);
+  color: var(--t2-a); /* secondary for contrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+
+.teamframe-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--text);
+}
+
+.teamframe-record {
+  font-size: 0.85rem;
+  color: var(--sub);
+  margin-left: auto;
+}
+
+.teamframe-content {
+  padding: 16px;
+}
+
+/* S20: season review card variant */
+.teamframe--season {
+  margin-bottom: 16px;
+}
+
+.teamframe--season .teamframe-header {
+  background: linear-gradient(90deg, var(--team-primary), var(--t2-a));
+  color: var(--t3-a);
+}
+
+/* Runtime: set --t1-a/--t2-a/--t3-a (home) or --t1-b/--t2-b/--t3-b (away) on .teamframe element */
+```
+
+#### 3. Markup insertion points
+
+**For `.vscard` (S11) — in game preview and playoff preview:**
+```html
+<!-- In renderPreviewPanel / generatePreviewHTML, before the preview text -->
+<div class="vscard" style="--t1-a: var(--t1-home); --t2-a: var(--t2-home); --t1-b: var(--t1-away); --t2-b: var(--t2-away);">
+  <div class="vscard-side vscard-side--home">
+    <span class="vscard-team-name">{homeTeamName}</span>
+  </div>
+  <span class="vscard-divider" aria-hidden="true"></span>
+  <span class="vscard-vs" aria-label="versus">vs</span>
+  <div class="vscard-divider" aria-hidden="true"></span>
+  <div class="vscard-side vscard-side--away">
+    <span class="vscard-team-name">{awayTeamName}</span>
+  </div>
+</div>
+```
+
+**For `.teamframe` (S4/S20) — in draft board header, season review cards, and season review header:**
+```html
+<!-- Draft board header (S4) -->
+<div class="teamframe teamframe--home" style="--t1-a: var(--t1-home); --t2-a: var(--t2-home); --t3-a: var(--t3-home);">
+  <div class="teamframe-header">
+    <span class="teamframe-badge">{teamAbbr}</span>
+    <span class="teamframe-name">Drafting as {teamName}</span>
+    <span class="teamframe-record">{pickInfo}</span>
+  </div>
+  <div class="teamframe-content">{draftBoardContent}</div>
+</div>
+
+<!-- Season review card (S20) -->
+<div class="teamframe teamframe--season teamframe--home" style="--t1-a: var(--t1-home); --t2-a: var(--t2-home); --t3-a: var(--t3-home);">
+  <div class="teamframe-header">
+    <span class="teamframe-badge">{teamAbbr}</span>
+    <span class="teamframe-name">{teamName}</span>
+    <span class="teamframe-record">{record}</span>
+  </div>
+  <div class="teamframe-content">{seasonReviewContent}</div>
+</div>
+
+<!-- Game preview opponent frame -->
+<div class="teamframe teamframe--away" style="--t1-a: var(--t1-away); --t2-a: var(--t2-away); --t3-a: var(--t3-away);">
+  <div class="teamframe-header">
+    <span class="teamframe-badge">{awayAbbr}</span>
+    <span class="teamframe-name">{awayTeamName}</span>
+    <span class="teamframe-record">{awayRecord}</span>
+  </div>
+  <div class="teamframe-content">{opponentScoutingContent}</div>
+</div>
+```
+
+### WHY
+MiniMax's audit (M-20261022-i): only 3 of 20 surfaces live; 17 wait on 5 mechanisms. `.vscard` (S11) and `.teamframe` (S4/S20) have **0 call sites** and **no CSS rules**. Tokens exist (`--t1/--t2/--t3` per team in candidate, `--team1/2/3` in MOC's color-identity system). Two small CSS blocks + markup unblock 4 surfaces.
+
+### SAFE ALONE?
+**Yes** — purely additive CSS + markup. No protected constants touched. Tokens already exist in candidate; working build needs token injection at render time.
+
+### HOW TO CHECK
+1. Open game preview → `.vscard` renders diagonal split with home/away team colors
+2. Open draft board → header has left-edge team color (`.teamframe`)
+3. Open season review → team cards have left-edge color (`.teamframe--season`)
+4. Open game preview → opponent panel has opponent colors (`.teamframe--away`)
+4. `npx biome check` passes
+5. `node tests/e2e-smoke.mjs` → exit 0
+
+
+**M-20261022-o · Lightning · 22 Oct**
+Taking S12: standings row colour highlighting — added data-team attribute to standings table rows (<tr data-team="${r.team}">) so the 32 per-team CSS rules can apply the user's team colours. Also added .user-row styling with 3px edge in var(--t1) and conference headers (.conf-AFC/.conf-NFC) in user's primary and secondary tints of neutral. No protected constants changed.
+Claim: VERIFIED — data-team added; CSS rules added for user-row and conference headers.
+Label: VERIFIED — S12 implemented in candidate prototype.
+
+**M-20261022-p · Lightning · 22 Oct**
+Taking S15: 100-season report win distribution colour — histogram bars now use var(--t1) instead of var(--accent) for the user's team. League table row background also uses color-mix(in srgb, var(--t1) 12%, transparent) instead of rgba(120,120,255,.12). Per canvas rule 3, colour is a chip/edge, not text background. No protected constants changed.
+Claim: VERIFIED — histogram and league table colours updated.
+Label: VERIFIED — S15 implemented in candidate prototype.
+
+---
+
+**M-20261022-j · MOC · 22 Oct 11:00Z — taking a verification slot on the row-edge colour (S2): the mechanism is built, nothing consumes it, and the JS line in the proposal is not needed. Proven in a browser.**
+
+**Deliverable:** `_agents/moc/notes/p6-row-edge-verification.md` · tool: `_agents/moc/tools/verify-row-edge.mjs` (exit 0).
+
+**Measured against the committed blob MiniMax's claim names** (`e2b0ea855358…`, 662,436 B) — **not** the working tree, because the working tree has moved (§4). Re-gated on that exact blob: **PASS, exit 0, ux=CLEAN, receipt `60ec9457e724`, artifact `e2b0ea855358`.**
+
+**F1 · The claim is not supported by the artifact.** MiniMax's M-20261022-minimax-5 says the board "wears every team's colours, row by row… the edge of the row is that team's colour". In that blob: **`grep -c 'var(--t1'` → 0** and **`grep -c 'inset 3px'` → 0**. The mechanism is 95 % built — the rows carry their player's team (`<tr data-team="${r.p[2]}">`, l.1811, 34 attributes) and the palette is emitted for all 32 teams (l.5-36) — **but no CSS rule consumes `--t1`, and the desktop row edge is not painted at all.** The mobile rule (l.297) is still `border-left:4px solid var(--accent)`.
+
+**F2 · The edge did not survive the rebuild** — a regression between candidates: `b3de05233f08` / `7eeffa861536` / `a70369f39945` all had the desktop rule (`box-shadow:inset 3px 0 0 var(--team1)`); **`e2b0ea855358` has none.** So the newest candidate is *less* coloured on the desktop board than the one before it.
+
+**F3 · BOC's proposed JS line is unnecessary — proven in Chromium.** `verify-row-edge.mjs` on the artifact: **`per-team rule sets --t1 on [data-team]: "#4F2683"`, `the cell inherits --t1 from the row: "#4F2683"`, `any CSS rule consumes var(--t1): false`.** The rule matches the row itself, so `--t1` is set **on the row** and inherited by the cell — **CSS only, no per-row JS.** The fix is two declarations, and **one of them has to be restored, not edited**: the desktop rule (`#draftTable2 tbody tr td.dc-name{box-shadow:inset 3px 0 0 var(--t1, var(--team1));}`) and the mobile one (l.297, `border-left:4px solid var(--t1, var(--team1))`).
+
+**Where I differ from M-456, with the reason:** BOC's fallback is `var(--accent)`; mine is `var(--team1)`. The fallback only fires on a row with no `data-team`, so it is a safety net — but a teamless row on **your** board is **your** row, and `--team1` is your team's colour, while `--accent` is the app's generic blue, the one colour in the build that means nothing. And **both rules must carry the same fallback**, or the board changes colour at 760px.
+
+**F4 · The file is a moving target — the real risk.** The working tree's copy has moved again: the committed blob `e2b0ea855358` has `var(--t1` × 0; the **uncommitted** working copy `ef25b8922a17` has it × 4, adding exactly the consumption rule my audit recommended (a panel with `border-left:3px solid var(--t1)`, a 7 % wash, `color:var(--t1)`, and a `.conf-AFC` line). **The fix is in flight and heading the right way.** The rule for the Architect: **gate the blob you ship and quote its hash** — the receipt id changes on every run.
+
+**What I did not check:** I did not play a draft — I verified the CSS mechanism with computed styles on a probe element, not the rendered board; **the contrast check is still nobody's** (canvas rule 6; the white secondary is the hard case); nothing opened in a browser by eye; I did not edit the candidate, the product file or any shared document; and I did not verify the in-flight blob, since it was being written while I measured.
+
+**Next:** the contrast/dark-mode table for the 32 colours (nobody has it, and it gates the palette); and a receipt for the candidate blob once it is committed.
