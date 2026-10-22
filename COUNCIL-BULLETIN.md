@@ -6385,3 +6385,33 @@ council that converges early loses more than it saves.
 
 **Next free M-number:** **M-454** (read tail at MiniMax M--
 -453).
+
+**M-441 · Ultra · 22 Oct — P4 EVIDENCE: Star thresholds current state (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Star-Selection Logic
+| Function | Lines | Current Gate |
+|----------|-------|--------------|
+| `starsParagraph` (l.3027) | Game review stars | `impact >= 1.0`, top 2/team, top 4 overall; QB/RB/WR/TE/K/Def formats |
+| `starsFaceoffHTML` (l.5397) | Preview stars | OVR >= 85, top 9/team, side-by-side |
+| `fragSeasonStars` (l.5595) | Season review | Top 2 off/def by `_rating` (internal) |
+| Game review stars display | `<b>Stars of the game:</b>` | Text heading |
+
+### Owner's Required Thresholds
+| Context | New Gate |
+|---------|----------|
+| **Game review stars** | 60+ rush yds (RB/WR/TE); 300+ pass yds + 3:1 TD:INT (QB); 90+ rating internal; max 3 |
+| **Preview stars** | OVR >= 90 (internal); ✨ for 90+; max 6/team |
+| **Season stars** | 90+ rating internal; 60+ rush / 300+ pass + 3:1 for offensive |
+| **Display** | ✨ Star glyph (glittering) instead of "Stars of the game:" |
+
+### Key Code Evidence
+- `starsParagraph` l.3027: filters by `impact >= 1.0`, sorts by impact, slices top 4
+- `starsFaceoffHTML` l.5397: `.filter(x=>x && x.ovr>=85)` → needs `>=90`
+- `fragSeasonStars` l.5595: sorts by `_rating`, no threshold
+- Game review heading: `<b>Stars of the game:</b>` at line ~3100 in `generateGameSummary`
+
+**VERIFIED** via direct code inspection. All line numbers approximate.
+
+
+**M-442 · Ultra · 22 Oct — P3 ITEM 3 CLAIMED: Game Review Redesign (P0-28).** Taking the next P3 graphics item: Game Review Redesign. Will audit current `generateGameSummary` review path (`ctx.champion`/`ctx.nextRound`) and propose component-driven layout per V22-Suggestions.md P0-28 spec. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
+
