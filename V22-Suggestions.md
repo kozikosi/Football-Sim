@@ -52,10 +52,10 @@ These are the Owner's. Where one conflicts with an item below, **the ruling wins
 
 | # | question | Owner's answer | effect on the items |
 |---|---|---|---|
-| **R-9** | **Where do the 32 team hexes come from?** | Two candidate palettes supplied with public sources (jimniels/teamcolors, Pro Football Network, NFL club brand PDFs). Both are explicitly *reference* values, not verified against current official guides. GPT's rule: **brand vs display** — brand colours are sourced and immutable; display colours are derived for rendering; white stays in the brand record and the invisible-edge problem is solved in the rendering layer. Gemini's rule: **no white as secondary** — three non-white brand colours per team. | The palette is a **sourced-data requirement**, not a copied list. `P13-2c` (four corrections) and `P0-29` are now blocked on an Owner choice between the two palettes. See `P13-3a` for the diff and the conflicts. |
+| **R-9** | **Where do the 32 team hexes come from?** | **SETTLED — "Go with GPT's colours."** GPT's table is the registry's source, carried verbatim in `_agents/minimax/tools/build-team-colours.mjs` with the provenance written into the file. The **display rule**: the brand palette stays data; the stripe's middle stop must be **visible on the light page** — not white, not near-black, not the primary — and if a team has no such colour, the stripe is flat in its primary rather than inventing a tint. Measured: **Chiefs red → gold → red**, white letters. | **No longer an open question.** Gemini's table was considered and not taken. The builder now holds GPT's values (Chiefs `#E31837`/`#FFB81C`/`#FFFFFF`; Vikings `#4F2683`/`#FFC62F`/`#FFFFFF`) — note the **secondary is now gold, not white**, which is the display rule at work. See `P17-1`/`P17-2` (MiniMax, committed `24ab9141`). |
 | **R-10** | **What makes a defender a star?** | *"If a defender has the highest player rating in a game, and is on the winning team (Unless he has a multiple turnover game) or has an incredible 90+ game."* | `R-6`'s yardage thresholds are **offensive-only**. A defender's bar is rating-led. This adds a second, parallel rule to `starsParagraph()` — the widest change in the block, and it needs its own seeded check. |
 | **R-11** | **Which screen is the intended handoff into the season?** | *"I don't understand."* — the question has been answered for the Owner in plain language, and the answer **corrects the premise**: the "Play a Season" hero **is live** (pin lines 6154–6159). What is dead is a **second, leftover copy** of it. | **Nothing is broken and nothing is missing from the flow.** The Owner's "Start Season" button works and reaches the Preseason page. The open decision is narrow: **delete the 27-line duplicate, or give the season a dedicated tab** (the donor build had one). See `P0-20a`. |
-| **R-12** | **Who gets the game ball in a tie?** | *"Tie goes to defense if defense or offense. Tie goes to the least highly rated player by wins if tied all on offense or tied all on defense."* | **⚠ Ambiguous as written — one clarifying line needed before it is coded.** *"the least highly rated player by wins"* admits two readings: fewest wins, or lowest rating ranked by wins. The tie case was never covered by `buildGameDetail()`'s winning-team rule, and the ruling also admits a losing team's 90+ player. |
+| **R-12** | **Who gets the game ball in a tie?** | **SETTLED — "the least highly rated play[er] by static wins should be the winner in a tie."** Among tied candidates, the player with the **lowest static wins figure** (his spot's wins-per-point value) takes the game ball. | **No longer ambiguous.** The reasoning belongs in the code as a comment, because it explains the rule to whoever reads it later: the tie-break rewards the *alternative* — the lowest OVR would break fewer ties, because ratings cluster; **static wins breaks more**, and the Owner's preference is for static wins. See `P17-3` (MiniMax, committed `24ab9141`). The tie also goes to **defense** when the tie spans both an offensive and a defensive candidate. |
 | **R-13** | **Which flex table is the rule?** | *"Left and right don't matter. Let claude handle the table."* | **P0-17 is delegated to the Architect.** The CB3 0-vs-2 blocker was an Owner question and is now a Claude decision. With `R-2` (edge is one position) the Architect now owns the whole flex table. |
 | **R-14** | **Is the 3-4 a real front or a label? Who comes off for CB3/Nickel?** | *"The lowest rated linebacker comes off in 3-4 for the nickel."* | Resolves **who comes off**: the default OLB2 becomes **the lowest-rated linebacker**. The relabel-vs-real-front question stays with the Architect per `R-7` (a toggle). |
 
@@ -4999,52 +4999,29 @@ canvas for it: what is built, what is specified, and where the other seats shoul
 
 ### P13-1 · BUILT — your team's frame now wears the team
 
-**⚠ CORRECTED 22 Oct 05:55 (OR, measured) — this item is NOT built in the current candidate. It was
-built, then reverted.** The measured result quoted below is real, but it describes a build that no
-longer exists on disk. Do not treat this section as a receipt.
+**⚠ HASH-PINNED CLAIM — read the hash, not the word.** This section has been correct twice and wrong
+twice, because **the artifact moves faster than the document**. The history, in order:
 
-**What happened.** Commit `c6567a1f` ("the board's rows wear their NFL team's colours") **removed**
-the team-coloured frame and restored the generic blue:
+| measured at | candidate sha256 | state of the frame | who said so |
+|---|---|---|---|
+| 21 Oct ~19:00 | `b3de0523…` | **built** — `border:1px solid var(--team1)` | MiniMax, P13-1 |
+| 21 Oct ~19:20 | `ef25b892…` (662,759 B) | **REVERTED** — `border:1px solid var(--accent)` = the blue | commit `c6567a1f`; OR corrected it |
+| 22 Oct ~06:45 | `d15f6535…` (664,581 B) | **built again** — `border:1px solid var(--team1)`, stripe `--team1 → --team3 → --team1` | MiniMax, P16/P17 |
 
-```diff
--.draftingas{…background:linear-gradient(90deg, color-mix(in srgb, var(--team1) 15%, transparent), color-mix(in srgb, var(--team3) 9%, transparent));border:1px solid var(--team1);…}
-+.draftingas{…background:linear-gradient(90deg, rgba(79,140,255,0.15), rgba(255,107,74,0.08));border:1px solid var(--accent);…}
--.draftingas .badge-mono{…background:var(--team1);color:var(--team2);box-shadow:0 0 0 3px var(--team3);…}
-+.draftingas .badge-mono{…background:var(--accent);color:#fff;…}
-```
+**Current state at `d15f6535…`: the frame IS built.** The Owner's blue border is **fixed** in the
+candidate. `.draftingas` (l.179) reads `border:1px solid var(--team1)`; the stripe (l.184) is
+`linear-gradient(90deg,var(--team1) 0%,var(--team3) 50%,var(--team1) 100%)`.
 
-**Current state, measured on disk:**
+**Two rules follow from this, and they apply to every claim in this document, not only this one:**
 
-| File | Line | `.draftingas` border |
-|---|---|---|
-| `NFL Draft Simulator merged.html` (the pin) | 179 | `border:1px solid var(--accent)` |
-| `_agents/minimax/prototypes/V22-candidate-teamcolours.html` | 221 | `border:1px solid var(--accent)` |
+1. **A "BUILT" claim is only true against a named hash.** Never against a file name.
+2. **The stripe's middle stop is `--team3`, not `--team2`** — the display rule from `R-9`: the middle
+   must be visible on the light page. The earlier `var(--t1) 0%, var(--t2) 48%, var(--t3) 100%` form
+   put **white** in the middle for 20 of 32 teams and is superseded.
 
-`--accent` is `#4f8cff` (pin line 16) — **`rgb(79, 140, 255)`, the blue the Owner complained about.**
-`grep -c -- "--team1" "NFL Draft Simulator merged.html"` → **0**. The candidate → **0**. The frame's
-colours are gone from both.
-
-**The Owner's complaint is therefore still open.** "the blue border around *Drafting as Kansas City
-Chiefs* … should be red or white or yellow or a combination" is exactly this line.
-
-**The fix, in one attribute** — see `P13-1a` for the full spec and `P0-29` for the surface table.
-
-```html
-<div id="draftingAsBanner" class="draftingas" data-team="Kansas City Chiefs"></div>
-```
-```css
-.draftingas{border:1px solid var(--t1);}          /* was: var(--accent) */
-.draftingas::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
-  background:linear-gradient(90deg,var(--t1) 0%,var(--t2) 48%,var(--t3) 100%);}
-.draftingas .das-text b{color:var(--t1);}
-.draftingas .badge-mono{background:var(--t1);color:var(--t2);box-shadow:0 0 0 3px var(--t3);}
-```
-
-**Historical record (the measurement that was taken, on the build that was reverted):** computed
-styles, three teams — Chiefs → border `rgb(227,24,55)`, stripe red → white → gold; Seahawks →
-`rgb(0,34,68)`, stripe navy → green → white; Vikings → `rgb(79,38,131)`, stripe purple → gold →
-white. Gate receipt `6671decfad93`. **Those numbers are the acceptance bar for the re-landing** —
-they were right once and can be right again, because the palette they came from still exists as CSS.
+**Measured against `d15f6535…`:** the frame wears the team; the badge carries the primary with the
+secondary letters; the board's rows carry a team-coloured edge; and the user's palette is applied to
+`:root` at draft start by `applyTeamColors(userTeamName)` (l.1508).
 
 ```js
 // WHERE: the CSS beside .draftingas, and the drafting-as banner
@@ -5062,49 +5039,23 @@ ring, and the board's rows carry a team-coloured edge with a team-tinted hover.
 
 ### P13-2 · BUILT — the hook for an opponent's colours anywhere
 
-**⚠ CORRECTED 22 Oct 05:55 (OR, measured) — the JS hook below is NOT in the current candidate, and the
-line "this is the piece every other seat should build on" now points at nothing.** The capability was
-**replaced, not lost** — by a better primitive. Read `P13-2a` before writing any opponent colour.
+**⚠ HASH-PINNED CLAIM — same history as `P13-1`.** At `ef25b892…` the JS hook measured **0** for
+every symbol (`teamTag`, `TEAM_COLORS`, `applyTeamColors`, `.teamtag`, `.opp-panel`, `.gamestar`,
+`--team1`) and the surviving primitive was the `[data-team]` scope. **At `d15f6535…` (22 Oct ~06:45)
+the JS hook is back**: `applyTeamColors` 2, `TEAM_COLORS` 4, `teamTag` 1, `.opp-panel` 1, `.gamestar` 1,
+`--team1` 9 — with `applyTeamColors(userTeamName)` called at l.1508 to set `:root`.
 
-**What is gone from `_agents/minimax/prototypes/V22-candidate-teamcolours.html` today** — measured by
-fixed-string count on the artifact (662,759 B, sha256 `ef25b892…`):
+**So the mechanism has been through two rewrites in three days:** JS map + `:root` → CSS scope →
+JS map + `:root`. **Do not assume either shape.** Read the artifact, hash it, then write the item.
 
-| Symbol | Count | Consequence |
-|---|---|---|
-| `teamTag` | **0** | the JS chip helper does not exist |
-| `TEAM_COLORS` | **0** | the JS palette map does not exist |
-| `applyTeamColors` | **0** | the `:root` setter does not exist |
-| `.teamtag` | **0** | the chip CSS does not exist |
-| `.opp-panel` | **0** | the opponent panel CSS does not exist |
-| `.gamestar` | **0** | the star CSS does not exist |
-| `--team1` | **0** | the root-level variables do not exist |
-| `--t1` | **36** | **the CSS scope exists** — 32 team rules + consumers |
-| `data-team` | **36** | **the attribute primitive exists** |
+**What is true at `d15f6535…`:** the palette is GPT's table carried in
+`_agents/minimax/tools/build-team-colours.mjs` with provenance in the file; `applyTeamColors(name)`
+sets `--team1/--team2/--team3` on `:root`; `teamTag(name,label)` emits a chip carrying the team's
+palette inline; `.opp-panel` and `.gamestar` are the opponent-panel and star rules; and the board's
+rows, the draft table's rows and the standings' rows carry `data-team`.
 
-**What replaced it.** The palette is emitted as CSS by
-`_agents/minimax/tools/build-team-colours.mjs`, and a team's colours travel by **scope**, not by a
-JS helper:
-
-```css
-[data-team="Kansas City Chiefs"]{--t1:#E31837;--t2:#FFFFFF;--t3:#FFB81C;}
-[data-team="Minnesota Vikings"]{--t1:#4F2683;--t2:#FFC62F;--t3:#FFFFFF;}
-```
-
-A `data-team` attribute on any element gives **that element and all its descendants** `--t1/--t2/--t3`.
-It is already applied to the draft board rows (candidate line 682), the draft table rows (line 1819) and
-the standings rows (line 3877), and it already has a consumer at line 82:
-
-```css
-.user-row[data-team] {
-  border-left: 3px solid var(--t1);
-  background: color-mix(in srgb, var(--t1) 7%, transparent);
-  color: var(--t1);
-}
-```
-
-**So the opponent hook is one attribute away and needs no new code.** The JS `teamTag()` was a way to
-carry a palette to a fragment of HTML; `data-team` carries it to a whole subtree, which is what an
-opponent's player panel actually is.
+**The surface table below still applies** — it names *where* the colours go, which has not changed.
+Only the *carrier* moved.
 
 ```js
 // WHERE: a helper beside TEAM_COLORS
@@ -5124,6 +5075,12 @@ function teamTag(name, label){
 block of an opponent's players, `.gamestar` for a star that belongs to a side.
 
 ### P13-1a · [CORRECTION + SPEC] the frame wears the team again — one attribute
+
+**⚠ SUPERSEDED by `P17` (22 Oct ~06:45, candidate `d15f6535…`).** This item prescribed the
+`[data-team]` scope as the carrier; the live build went back to **`applyTeamColors(userTeamName)` →
+`:root` → `--team1/--team2/--team3`**. The frame is **built**. Read `P17-1`/`P17-2` and the artifact;
+keep this only as the record of what the measurement found at `ef25b892…`.
+
 **WHERE** `#draftingAsBanner` (pin line 399) and the `.draftingas` CSS (pin line 179; candidate line 221).
 **WHAT** add `data-team="<full user team name>"` to the banner element; change the three colour
 references from `var(--accent)` to `var(--t1/--t2/--t3)`; add the tri-colour stripe.
@@ -5135,6 +5092,12 @@ Chiefs → `rgb(227,24,55)`, stripe red → white → gold.
 Chiefs and **not** `rgb(79, 140, 255)`; the stripe's three stops read `--t1`, `--t2`, `--t3`.
 
 ### P13-2a · [CORRECTION + SPEC] the opponent hook, rebuilt on the primitive that survived
+
+**⚠ SUPERSEDED by `P17` (22 Oct ~06:45, candidate `d15f6535…`).** The "primitive that survived" was
+true only at `ef25b892…`. The live build is back to **`teamTag()` + `.opp-panel` + `.gamestar` +
+`applyTeamColors()` → `:root`**. The *surfaces* this item names are still correct; the *carrier* is
+not. Use `P17`.
+
 **WHERE** the matchup surfaces named in `P13-3`, plus the draft surfaces in `P13-4`.
 **WHAT** wrap the opponent's block in `data-team="<opponent full name>"`; add three CSS rules that
 consume the scope's variables. **No JS, no new variable names, no palette map.**
@@ -5730,3 +5693,62 @@ If the Owner wants the game itself to play a 3-4, it is a real front — and it 
 change, with its own 100-season regression.* **The council's recommendation is still the label now and
 the real front as a later edition, but this one is the Owner's call, and it is now a question with
 words attached rather than a phrase.**
+
+---
+
+## P18 · The 3-4 is a label, and nothing about the maths changes (MiniMax, 22 Oct 09:40) — the Owner's ruling, and the retirement of the "real front" question
+
+**The Owner's ruling, verbatim in substance:**
+> *"OLB, ILB, and NT won't be considered mathematically significant positions. It should be treated like
+> the fact that CB3 becomes a Nickel. A lot of other positions could become a Nickel as well. No
+> player in the original player pool identifies as a Nickel. They become a nickel upon being placed in
+> that position. The same is true for NT, ILB, and OLB. No one is inherently changing their position
+> or their math. The math for the OLBs stays the same as WILLs and the math for the ILB stays the same
+> as MIKEs and the math for the NTs stay the same as DT1. It can be written as 'DT1 / Nose Tackle'."*
+
+### P18-1 · The principle, in one line
+**A position is a property of the SLOT, not of the player.** Nobody in the pool is a Nickel, an OLB,
+an ILB or a Nose Tackle; a player *becomes* one by being placed in that slot, and the slot's name and
+the slot's maths are fixed. **This closes the open question (P16-7) and retires the council's "real
+front" framing** — the question was badly posed, and the Owner's answer removes it: **there is no
+"real front" variant, because nothing about the maths changes.**
+
+### P18-2 · The rule, as it will be implemented
+1. **The twelve defensive slot keys never change:** DE1, DE2, DT1, DT2, MIKE, WILL, SAM, CB1, CB2,
+   CB3, SS, FS. The 3-4 is a **display layer over them**.
+2. **The 3-4 names those slots** (the build's own names stay as they are in a 4-3):
+   | Slot key | 3-4 display name | Whose maths it carries |
+   |---|---|---|
+   | DT1 | **"DT1 / Nose Tackle"** | **DT1's own** (the Owner's words: the NTs stay DT1) |
+   | WILL | OLB1 | **WILL's own** |
+   | SAM | ILB1 | **MIKE's own** |
+   | MIKE | ILB2 | **MIKE's own** |
+   | DT2 | OLB2 | **WILL's own** — this is the slot the 3-4 converts, because the 3-4 needs four linebacker slots and the build has three |
+   | CB3 | **"CB3 / Nickel"** | **CB3's own** |
+   **The one detail this table settles for the Architect:** the 3-4 needs **four** linebacker slots and
+   the build has **three** (MIKE, WILL, SAM), so **DT2 is the one slot that converts** — and to honour
+   "the OLBs stay the same as WILLs", it takes **WILL's maths**, not its own defensive-tackle maths.
+   The consequence the Owner should sanity-check: a defensive tackle placed at OLB2 therefore plays
+   with **WILL's slot value** and carries the usual **flex penalty for being a defensive tackle at a
+   linebacker spot** (the flex tables are unchanged — they speak in DT, MIKE, WILL, SAM and CB3 terms).
+3. **The flex rules are untouched.** They are written in the underlying slot names; the 3-4 only
+   renames what the user reads. A "Nickel" is a CB3 placement — and, per the Owner, "a lot of other
+   positions could become a Nickel as well", i.e. **the label belongs to the slot, whoever occupies it.**
+4. **The player pool is unchanged.** No player carries a position identity, and nothing in `PLAYERS`,
+   `RATING_SPECS`, `teamRatings`, `slotWinsTable` or `FLEX` moves. The base control changes the
+   **names on the depth chart and the guide**, and nothing else.
+5. **The guide and the preseason menu say so in the Owner's words:** *the maths for the OLBs is the
+   maths for the WILLs, the maths for the ILBs is the maths for the MIKEs, and the nose tackle is the
+   DT1 spot written "DT1 / Nose Tackle" — a position is a placement, not a person.*
+
+### P18-3 · What this closes, and what it leaves open
+- **Closed:** P16-7 (the "real front" question) and P12-2's open half — the 3-4 is a **label**, and
+  the council's P10-2 mapping is the implementation, with the DT2 → OLB2 detail above.
+- **Still open, from the same ruling:** none for the 3-4 itself. The owner's nickel answer (P16-6) —
+  "the lowest rated linebacker comes off in the 3-4 for the nickel" — is a *selection* rule and does
+  not change the maths either; it says which of the four linebacker slots leaves when the nickel is on.
+- **And the principle generalises** (the Owner said it as a rule about the Nickel, and it is worth
+  writing down as a rule): **no screen should ever imply that a player has an inherent position.** The
+  board's chips show a player's **NFL team**, the depth chart shows the **slot he occupies**, and the
+  flex rules speak in **slot names**. A player is what he does in your lineup, not what the pool says
+  he is.
