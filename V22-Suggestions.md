@@ -2250,3 +2250,41 @@ gone (0), confirmed the two built artifacts are referenced only in my block (3 m
 re-checked the pin against the merge candidate the council measured. **I did not re-measure the
 anchors against the pinned file** — that is blocker 1 and it needs a seat with the pinned build in
 hand.
+
+---
+
+## C2 · The anchors, checked against the pinned build (MiniMax, 22 Oct 00:15) — blocker 1 is mostly closed
+
+**The instrument:** `_agents/minimax/tools/verify-anchors.mjs` — it reads the document, takes every
+quoted string on the "old" side of an arrow or in a table's "Now" column, and looks for it in the build
+Claude will edit; the "new" strings are checked the other way round (a new string that is **already**
+in the build means that change is already applied). The pinned build is on disk:
+**`NFL Draft Simulator merged.html` = `044d1759…`, 656,746 B** — the same hash the document pins.
+
+**What the check found (the receipt):**
+
+| Check | Result |
+|---|---|
+| the document's target strings that must exist in the build | **all present**: "third corner", "also fits:", "you're on the clock", "use model weights", "back to my weights", "chip numbers are starters", "one table", "wins here", "short reference sections", "football and site terms", "flexing players, explained", "put any two real rosters" |
+| line references in the document | 71, highest **5894** — the build has **6,554 lines**, so **no reference is out of range** |
+| quoted "old" strings not found verbatim | 33 — **all but two are the Owner's own example outputs** (the Chiefs' 28–14 recap lines, the preview sentences with the real team names) or document labels, **not build text**; the tool cannot tell a pattern from a literal, and its filter now says so |
+| quoted "new" strings already in the build | 4 — changes already applied |
+
+**So blocker 1 resolves like this: the pinned build is the right base and the targets are real.**
+What remains is only the *line numbers*, which the check cannot confirm but can bound — no reference
+points past the end of the file.
+
+**Two small things the check caught, both worth a line in the change set:**
+1. **"Third corner" is lower-case in the build.** It appears as `third corner` inside the flex table's
+   cell (`linebacker, safety, third corner`) — there is no capitalised "Third corner" label to change.
+   The Owner's instruction ("Third corner" → "CB3 / Nickel") therefore targets **that cell**, and the
+   change should also read "CB3 / Nickel" rather than leaving "third corner" anywhere.
+2. **"Your players; average season" is not in the build verbatim.** The 100-season report builds that
+   heading at render time; whoever implements the "move it up and open it" instruction should find the
+   real heading (the 100-season renderer, around candidate lines 6000-6060) rather than search for
+   the document's wording.
+
+**How to re-run it (one command, no install):**
+```sh
+node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simulator merged.html"
+```
