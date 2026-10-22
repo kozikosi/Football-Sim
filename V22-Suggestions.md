@@ -1,101 +1,153 @@
-# V22 Suggestions — Compiled by BOC — 21 Oct 2026
+# V22 — the change order for Claude
 
-> ## Read this first (MOC, coordinator) — 21 Oct, 19:45
->
-> **The canonical order, the one form, and the map of what merges into what are in "How to read this document" at the end of this file — read that before anything else.** In short: **P0** = do first, **P1** = a decision Claude makes, **P2** = a decision the Owner makes, and **R1/R2/R3** = the round the work came from (R1 the ten-item directive, R2 the flex-rules and text overhaul, R3 the graphics and motion round). A round label says where the work came from; a priority label says when to do it. Every change line uses one form: **WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK** — and a line that cannot fill the last two does not belong here.
->
-> **This file is being de-duplicated now, region by region.** The older `P7/P8/P9/P10/P11` headings, the "PART 5" heading and the "PRIORITY SUMMARY FOR CLAUDE" heading are **legacy labels**: their content is real and is being folded into the canonical order, and where a copy was folded a pointer is left in its place. Do not add a new priority label, and do not restate an item that is already here.
->
-> **Two things to know before you start.**
-> 1. **The build pin.** The document pins `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B) — the **working-tree** file. **No commit carries that hash**; every branch tip holds `40233d6be00e987c…` (657,486 B, `ff8c05ae`, 2026-10-20). The Owner rules on the canonical build; until then the pin and the prepared patches describe a file nobody can fetch.
-> 2. **The flex rules are two different tables in the Owner's own words** — an *edge* at a linebacker slot with the penalty waived, versus a *linebacker* at safety — and the **CB3 conflict is blocking**, because "free" is computed against the open-spot set with no base-scheme awareness.
->
-> **A clean dry-run against a working-tree file is not behavioural validation.** Anything in this document that says "verified" means a seeded comparison was run against a named hash; where that is not true, the line says so.
+**Build:** `NFL Draft Simulator merged.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` · working tree, branch `merge/v20-donor`.
+**Not this:** every branch tip — `main` included — carries `40233d6be00e987c…` (**657,486 B**). That is the pre-drift build. Implementing this change set against it applies the work to a file the council never measured.
 
-## 🚨 Claude's Critical Path (read this FIRST)
-**Implementation order:** P0 changes → verification → P1 decisions → P2 owner decisions.
-**Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS`): change only with explicit Owner approval. The flex rules P0-17 require Owner approval logged via this feedback — Claude implements the slot-mapping changes (OLB/ILB as aliases of WILL/MIKE via FLEX object) but must not alter penalty values without Owner sign-off.
-**Verifier gates** (run in order): 390px e2e-smoke.mjs → MiniMax smoke → OpenChamber E2E v2 → function diff. Do not batch-apply without intermediate verification.
-**Build:** `NFL Draft Simulator merged.html` (656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`), @ `merge/v20-donor`. Re-pinned by BOC on 21 Oct.
+**And not these two either.** Three files on this disk share almost the same name and differ by a few bytes:
 
-### Quick start: Claude's first 3 actions
-1. **Apply `P0-17` flex rules** via the `--flex-rules-v22` dry-run flag in `_agents/lightning/notes/v22-applier.js` — this prints the hunks, validates the hash, and checks the chart's cells. Do NOT apply without Owner approval for protected constants.
-2. **Run 390px e2e-smoke.mjs** — verify `#startSeasonBtn` is above the fold and 0 horizontal overflow. This gate's `E_viewportUsable` fix (`inViewport` + preseason probe) is the first verification pass.
-3. **Run MiniMax smoke test** (`node _agents/minimax/tools/post-merge-smoke.mjs`) — exit 0 confirms 32 team scores and draft board rows are identical to the verified build.
+| File | sha256 | Size | What it is |
+|---|---|---|---|
+| `NFL Draft Simulator merged.html` | `044d1759e01a…` | 656,746 B | **the pin — the only correct target** |
+| `merged.html` | `e1ac8184a601…` | 656,750 B | a scratch copy, 4 bytes different |
+| `merged_v22.html` | `4178a69b3e3a…` | 656,727 B | a scratch copy, 19 bytes different |
+
+A save into the wrong one produces a build that passes every check you did not run and fails the one you did. Verify the hash before the first edit and after the last.
+
+**What this is:** the council's consolidated V22 change set, 21–22 Oct 2026. Every item is a **proposal**. You are the Architect: you decide what enters the build and how it is built. Nothing here overrides your judgement.
 
 ---
 
-## 🧭 CLAUDE EXECUTION BRIEF v2 — 21 Oct 23:43 UTC (CANONICAL, supersedes duplicate numbering)
+## Read in this order
 
-This section is the single source of truth for Claude. Older duplicate-numbered sections (PART 5, P10-1..9, P10-1..15, P11-1..8) contain overlapping copies; treat the **canonical locations** below as authoritative and skip the stale duplicates when numbering conflicts.
+| # | Section | Why | Size |
+|---|---|---|---|
+| 1 | this page | the pin, the order, the prohibitions | 1 screen |
+| 2 | **P0** — 20 items | blocks the release | 280 lines |
+| 3 | **P1** — 28 items | your decisions | 75 lines |
+| 4 | **P2** — 5 items | the Owner's decisions | 38 lines |
+| 5 | **Verification checklist** | the gates between edits | 11 lines |
+| 6 | **Appendices A–J** | evidence, only where an item cites it | 63 lines |
+| — | **ARCHIVE** and everything under it | history. **Do not read to execute.** Read one named subsection only when a canonical item sends you there. | 1,720 lines |
 
-**Critical path:** P0 changes → verification → P1 decisions → P2 owner decisions.
-
-| # | Workstream | Item | Owner-approved scope | Canonical section(s) | Round |
-|---|-----------|------|----------------------|----------------------|-------|
-| 1 | Coaching / philosophy | Philosophy + aggressiveness editable **all season** (not locked at Week 1); description rewrite; "Opponents" → "OPPONENTS" | Yes | `P0-15`, `P10-3`, `PART 5` P0-15 | R2 |
-| 2 | Base defense | 3-4 vs 4-3 user selection on draft/preseason; OLB≡WILL, ILB≡MIKE in wins maths; CB3/Nickel ↔ LB3/SAM; chart in draft-roster order | Yes | `P0-16`, `P10-2`, Owner's brief P0-B | R2 |
-| 3 | Flex rules | Edges no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge+CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS+OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; unmentioned keep current | Yes (protected constants: Owner approval logged via feedback) | `P0-17`, `P10-1`, Owner's brief P0-A | R2 |
-| 4 | Draft board | P0-1..P0-14: Value Here, MORE, badges, weights, browser, rankings, comparison, guide, week 1, 390px | Yes | `P0-1`–`P0-14` (top) | R1 |
-| 5 | Game preview | Team tags on run defense/secondary; "Under center for the x is … against the y's …"; delete "All eyes will be on …"; remove all "+x points a game" unit statements; em-dash→period; defensive labels no subtitles; plan order lineups-below-plan; graphical | Yes | `P10-5`, Owner's brief P1 | R2 |
-| 6 | Game review | Start at "1st Quarter"; remove "had"; quarter labels; blocked-FG glitch; box-score TD lines; turnovers; stars; "+x" removal; "+3.3"; pass rush "but"; move-to-1-0 own para; hide game plans; game ball in key players; box score larger | Yes | `P10-6`, Owner's brief P1 | R2 |
-| 7 | Season review / playoff | Win banner ≥3s; conference charts; bracket; awards gold; remove draft-critique phrase; "what separated" click-reveal; "Sacked xx"; "Advanced Stats"; bye preview; lineup placement; season review button in blue | Yes | `P10-7`, `P10-8`, `P10-9`, `P11-5` | R3 |
-| 8 | Aesthetics / motion / champions | Super Bowl champion text + gold shimmer; motion/graphics/text in-out; chart alignment; "Your players; average season"/"Award patterns" visibility; realism audit internal; game review box score larger; typography fade | Yes | `P7-8`–`P7-13`, `P10-1`–`P10-15`, `P11-1`–`P11-8` | R3 |
-
-**Stale duplicate sections to ignore:** `PART 5` (older decomposition), `P10-1..9` (first round), `P10-1..15` (added later), `P11-1..8` (added later) — their content is folded into the canonical index above; follow the canonical sections for execution.
-
-**Next single action for Claude:** apply `P0-17` (flex rules) first — but ONLY via the `--flex-rules-v22` dry-run flag in `_agents/lightning/notes/v22-applier.js`, which prints hunks+hash+self-check and does NOT write to the product. Requires Owner approval for protected constants (`FLEX`/`NATURAL_SLOT_MAP`) and CB3 conflict resolution (0 vs 2). Do not apply without explicit Owner sign-off.
-
-**SAFE ALONE? consolidated five-question list** (every line in V22-Suggestions.md that touches a protected constant or moves a number):
-
-| # | Line(s) | Change | Blast Radius | SAFE ALONE? | Five-Question Form |
-|---|---------|--------|-------------|------------|-------------------|
-| 1 | P0-17 flex table (l.779-804) | FLEX/LB_FLEX penalty values (FS:4→6, CB3:4→0/2, etc.) | **HIGH** — effOvr→board→CPU valuation; needs re-validation draft board/100-season/real-2025 | **NO** (depends on Owner approval + CB3 conflict) | 1. What change? FLEX penalty values restructured. 2. Why? Owner's flex rule feedback. 3. Owner approval? Yes — protected constants FLEX/NATURAL_SLOT_MAP. 4. SAFE alone? No — CB3 conflict (0 vs 2) blocks. 5. How to check? `--flex-rules-v22` dry-run + re-run pw4.js 100-season smoke. |
-| 2 | P0-16 base defense (l.1092) | 3-4/4-3 base + OLB≡WILL, ILB≡MIKE aliases | **MEDIUM** — wins maths affected; season model numbers should not move | **CONDITIONAL** (depends on flex alias mapping applied first) | 1. What change? Base defense user selection + alias mapping. 2. Why? Owner's 3-4 base structure. 3. Owner approval? Yes — per P0-B in Owner's brief. 4. SAFE alone? Conditional — need P0-17 flex rules first. 5. How to check? Verify season sim numbers unchanged after applying. |
-| 3 | Appendix D (l.522) | DEFAULT_WEIGHTS adjustments (K 0.72→0.45, etc.) | **HIGH** — modelWeights() = f(slotWinsPerOvr()) consistency | **NO** (requires explicit Owner approval) | 1. What change? Weight delta table: K, WR2, RB1, CB2, DE1, TE1/TE2. 2. Why? Colleague debate rebalancing. 3. Owner approval? Yes — per AGENTS.md §9, these are protected constants. 4. SAFE alone? No — breaking modelWeights() consistency is prohibited. 5. How to check? Verify modelWeights() = f(slotWinsPerOvr()) in 34/34 slots after any change. |
-| 4 | P0-15 coaching philosophy (l.168) | Description text rewrite + "Opponents" → "OPPONENTS" | **LOW** — pure text copy; no math impact | **YES** — self-contained text change | 1. What change? Description rewrite; capitalize "Opponents". 2. Why? Owner feedback: should be available all season. 3. Owner approval? Not — pure UI text. 4. SAFE alone? Yes — no math impact. 5. How to check? String match against new description text. |
-| 5 | P0-1 Value Here removal (l.37-45) | CSS/HTML edits removing "Value Here" column | **LOW** — copy-pasteable UI changes; intermediate node --check passes | **YES** — independent apply | 1. What change? Delete Value Here column from draft board visual. 2. Why? Remove column but keep r.v. in all background math. 3. Owner approval? Not — per prototyped P0-1. 4. SAFE alone? Yes — each of 7 locations edits independently. 5. How to check? node --check on extracted <script>; 390px e2e-smoke.mjs. |
-| 6 | Build pin (l.10, l.19, l.73, l.2081-2236) | Pin 044d1759e01ac99b vs drifted 40233d6be00e987c | **MEDIUM** — build identity; verification gate | **OWNER** — per P2-1 default tab + STATUS.md | 1. What change? Build pin re-pinned from V21 candidate hash to current. 2. Why? Original pin no longer matches working tree. 3. Owner approval? Yes — per BOC ruling 21 Oct. 4. SAFE alone? Owner decision. 5. How to check? Verify sha256 of merged.html matches pinned hash. |
-| 7 | Appendix B (l.440-444) | Candidate build sha256 reference | **LOW** — documentation only | **YES** — read-only reference | 1. What change? Document the sha256 of the candidate build. 2. Why? Verifier reproducibility. 3. Owner approval? Not — documented, not changed. 4. SAFE alone? Yes — read-only. 5. How to check? Confirm file sha256 matches recorded hash. |
-
-**Consolidation:** Only items 1, 3, and 6 require Owner approval (protected constants or build pin). Items 2 and 4 are conditional/independent but noted. Items 5 and 7 are safe to apply alone.
+**The shortcut worth taking:** `ARCHIVE · C · Cold read for Claude` is 70 lines written by a reviewer who read this document cold. It is the fastest way to see what will annoy you. `C2` checks its first claim and finds it mostly wrong — read them together.
 
 ---
 
+## Critical path
+
+**P0 → verify → P1 → P2.** Do not batch-apply without intermediate verification.
+
+**Gates, in order:** 390 px `tests/e2e-smoke.mjs` → MiniMax smoke (`node _agents/minimax/tools/post-merge-smoke.mjs`) → OpenChamber E2E v2 → function diff.
+
+**Two named scripts do not exist in the tree:** `pw4.js` (the 100-season run) and `validate.js`. `AGENTS.md` names them as targets, not files. Treat the 100-season report as a check to rebuild, not a command to run.
+
+**Your first three actions, none of which writes to the product:**
+
+1. `node _agents/lightning/notes/v22-applier.js --flex-rules-v22` — prints the P0-17 hunks, validates the build hash, self-checks the chart cells. It writes nothing.
+2. `tests/e2e-smoke.mjs` at 390 px — asserts `#startSeasonBtn` is above the fold and horizontal overflow is 0. **Known limit:** this gate's `inVp` test is horizontal-only, so it cannot fail on the vertical placement that motivated `P0-1`. Treat a pass as necessary, not sufficient.
+3. `node _agents/minimax/tools/post-merge-smoke.mjs` — exit 0 confirms the 32 team scores and the board rows match the verified build.
+
+**What blocks what.** Proposed by MOC; the first three lines are not yet verified against the build, the last one is.
+
+- `P1-10` → `P1-12` → `P0-17` → `P0-16` / `P0-12`
+- `P0-1` before `P0-12` — the board's column set changes before its rows are touched
+- `P0-5` with `P0-7` — two halves of one weights record
+- `P0-20` with `P1-12` — 28 rounds ships with the gate that still reads 26
+
 ---
 
-**House format for every change item:** **WHERE** (code location, line number(s)) · **WHAT** (old → new, exact text) · **WHY** (reason for change) · **SAFE ALONE?** (can apply without other changes) · **HOW TO CHECK** (verification command). All P0/P1/P2 items in this document use exact old→new line-number edits; the house format is the canonical way to record each change.
+## What you may not change without the Owner
 
----
+`DEFAULT_WEIGHTS` · `FLEX` · `NATURAL_SLOT_MAP` · `MC` coefficients · `PLAN_K` · `RATING_SPECS`.
 
-## Five-minute header (read this first)
-
-> **Before anything else:** the ⚑ **Claude's execution brief** at the very end of this file gives the dependency
-> order, the decisions that are not yours, and the definition of done.
-
-**What this document is:** The council's consolidated V22 change set for Claude (Architect). Proposals only; Claude decides what enters the build. Every change is a copy-pasteable old→new edit with line numbers. Apply in P0→P1→P2 order.
-
-**What the build is:** `NFL Draft Simulator merged.html` (V21 candidate), 656,746 B, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`, @ `merge/v20-donor` (current HEAD). Call it V21, not V22. Re-pinned by BOC on 21 Oct after MOC's blocker. Re-cut hunks: `_agents/boc/notes/merge-team-guide-recut.md`. The original pin (`40233d6b…`, 656,746 B) no longer matches any file in the working tree. Deliverable: `Football-Sim-V22.html`.
-
-**How to apply patches:** Each block is `old → new` with line numbers. Apply in P0→P1→P2 order. Run `node --check` on the extracted script after each edit. Verify with the 390px gate (`tests/e2e-smoke.mjs`) and the 100-season smoke (`pw4.js` *(the 100-season script is **not in the tree** either — AGENTS.md names it as a target, not a file; treat the 100-season report as a check to rebuild, not a command to run)*, target r > 0.6). Do not batch-apply without intermediate verification.
-
-**What Claude must not do (AGENTS.md prohibitions):**
-- ❌ Change `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS` without explicit Owner approval.
+- ❌ Change any of the six without explicit Owner approval.
 - ❌ Invent player ratings, team assignments, or statistical outputs.
 - ❌ Add paid APIs, CDN dependencies, or build steps.
-- ❌ Split the single HTML file without explicit Owner request.
-- ❌ Create git commits/branches/PRs unless asked.
-- ❌ Hand-edit evidence files (result.json, etc.).
-- ❌ Break `modelWeights() = f(slotWinsPerOvr())` (weight ↔ wins consistency).
-- ❌ Apply a candidate without the verifier's five-line report.
+- ❌ Split the single HTML file without an explicit request.
+- ❌ Create git commits, branches or PRs unless asked.
+- ❌ Hand-edit evidence files.
+- ❌ Break `modelWeights() = f(slotWinsPerOvr())`.
+- ❌ Apply a candidate without a verifier's five-line report.
+
+**`P0-17` is the one item that touches a protected constant with approval already logged** — and it is still **not safe alone**: the CB3 value is unresolved (0 vs 2). That single number is the only thing standing between `P0-17` and a normal item.
 
 ---
 
-## Priority labels (read in 10 seconds)
+## The one form every item uses
 
-- **P0 — blocks the release.** Must be fixed before V22 ships. (Value here removal, MORE removal, badge move, weights buttons, weights label, player browser cap, footer tabs, mobile collapse, team colors, Guide edits, Team Comparison edits, FB/Punter slots, Week 1 display, 390px P0.)
-- **P1 — Architect decision.** Claude decides whether/how to apply. (Color-scheme, render100, #glue variant, surface branch, SAM scarcity, FB/P slots, V21 stats surface, TS+ definition, architecture, cpuPick, phone-layout, copy debt, wrapper, sudden death/went the distance.)
-- **P2 — Owner decision.** Owner approval needed. (DEFAULT_WEIGHTS values, −5 adjustment, quarantine vs delete, archived sessions, default tab, repo vs folders, default tab, STATUS.md overwrite.)
+**WHERE** · **WHAT** · **WHY** · **SAFE ALONE?** · **HOW TO CHECK**
+
+An item that cannot fill the last two does not belong here. Where an item has no `HOW TO CHECK` yet, the default check for anything that touches simulation math is the **seeded A/B** already proven on this build:
+
+```js
+// Page.addScriptToEvaluateOnNewDocument, BEFORE the page scripts
+let s = 135792468;
+Math.random = () => (s = (s * 16807) % 2147483647) / 2147483647;
+```
+
+Drive the same clicks, compare the 32 team scores and their order. Identical means the change did not move the model; different means it did, and the item's blast radius is wrong.
+
+**A clean dry-run is not behavioural validation.** A patch that applies without error, and a diff that matches this document byte for byte, prove only that the bytes changed. They do not prove the game still plays. Where an item here says *verified*, it means a seeded comparison was run against a named hash — and where that is not true, the item says so instead of implying it.
+
+---
+
+## The nine workstreams, and what each one contains
+
+Nine workstreams were approved by the Owner. Read this table once — it is the whole change set in one screen. Detailed edits are in the sections named at the end of each line.
+
+**1 · Coaching / philosophy** — `P0-15` · R2
+Philosophy and aggressiveness editable **all season**, not locked at Week 1; description rewritten; "Opponents" → "OPPONENTS".
+
+**2 · Base defense, 3-4 vs 4-3** — `P0-16` · R2
+User-selected base on the draft and/or preseason page; `OLB ≡ WILL` and `ILB ≡ MIKE` in the wins maths; `CB3/Nickel ↔ LB3/SAM`; chart drawn in draft-roster order. *Detail: `ARCHIVE · P10 · base defense`.*
+
+**3 · Flex rules** — `P0-17` · R2 · **protected constant, approval logged**
+Edges take no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS and OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; everything unmentioned keeps the current rule. *The exact diff — the table itself — is `ARCHIVE · P10 · the flex diff`. It exists nowhere else.*
+
+**4 · Draft board** — `P0-1` – `P0-14` · R1
+Value Here, MORE, badges, weights buttons and label, player browser, position rankings, team comparison, Guide, Week 1 display, 390 px.
+
+**5 · Game preview** — `P0-18` · R2
+Team tags on run defense and secondary; "Under center for the x is … against the y's …"; delete "All eyes will be on …"; remove every "+x points a game" unit statement; em-dash → period; defensive labels without subtitles; plan above the lineups; graphical pass. *Detail: `ARCHIVE · P10 · preview`.*
+
+**6 · Game review** — `P0-18` · R2
+Start at "1st Quarter"; remove "had"; quarter labels; blocked-FG glitch; box-score TD lines; turnovers; stars; "+x" removal; "+3.3"; pass-rush "but"; move-to-1-0 in its own paragraph; hide game plans; game ball in key players; larger box score. *Detail: `ARCHIVE · P10 · review`.*
+
+**7 · Season review / playoff** — **no canonical item** · R3
+Win banner ≥3 s; conference charts; bracket; awards in gold; remove the draft-critique phrase; "what separated" as a click-reveal; "Sacked xx"; "Advanced Stats"; bye preview; lineup placement; season-review button in blue. *Detail: `ARCHIVE · P10` and `ARCHIVE · P11`.*
+
+**8 · Aesthetics, motion, champions** — **no canonical item** · R3
+Super Bowl champion text and gold shimmer; motion and text in/out; chart alignment; "Your players; average season" and "Award patterns" visibility; internal realism audit; typography fade. *Detail: `ARCHIVE · P7`, `ARCHIVE · P10`, `ARCHIVE · P11`.*
+
+**9 · FB and Punter as draft slots** — `P1-12` · R2 · **Owner ruled**
+Both are drafted. **28 rounds, 896 picks.** HB/FB/TE → FB and K/P → P carry zero flex cost. **No existing flex penalty changes** — SAM is the precedent: other positions flex into the role rather than the role being redefined. Ships with `P0-20` or picks 833–896 never run.
+
+**Workstreams 7 and 8 have no canonical item at all.** Their work is real, the Owner approved it, and it survives only in the archive. That is the document's largest known gap: when the change set was de-duplicated, those two rounds were never folded forward. Read the named subsection — do not skip the row because it has no `P0` number.
+
+**One unresolved ambiguity, stated plainly.** The flex rules exist in two readings in the Owner's own words — an **edge** standing at a linebacker slot with the penalty waived, versus a **linebacker** lining up at safety. They produce different tables. And the CB3 value is blocking for a second, deeper reason: "free" is computed against the open-spot set with **no base-scheme awareness**, so the same player can be free in one base and penalised in the other. Resolve the CB3 number (0 vs 2) before `FLEX` is touched; nothing else in `P0-17` needs a ruling.
+
+---
+
+## SAFE ALONE? — every item that touches a protected constant or moves a number
+
+| # | Item | Change | Blast radius | Safe alone? | How to check |
+|---|---|---|---|---|---|
+| 1 | `P0-17` | `FLEX` / `LB_FLEX` penalty values | **HIGH** — `effOvr` → board → CPU valuation | **NO** — CB3 0 vs 2 unresolved | dry-run, then a 100-season run |
+| 2 | `P0-16` | 3-4 / 4-3 base, `OLB≡WILL`, `ILB≡MIKE` | **MEDIUM** — wins maths | **CONDITIONAL** — after `P0-17` | season numbers unchanged |
+| 3 | Appendix D | `DEFAULT_WEIGHTS` deltas | **HIGH** — `modelWeights()` consistency | **NO** | `modelWeights()` = `f(slotWinsPerOvr())` in every slot |
+| 4 | `P0-15` | philosophy text + season-long unlock | **LOW** — copy only | **YES** | string match; editable at Week 2 and Week 10 |
+| 5 | `P0-1` | remove the Value Here column | **LOW** — visual only | **YES** | `grep -c 'Value Here'` → 0; seeded A/B identical |
+
+**Owner approval: items 1 and 3 only. Item 2 waits on item 1. Items 4 and 5 stand alone.**
+
+---
+
+## Priority labels
+
+- **P0 — blocks the release.** 20 items. Do first.
+- **P1 — your decision.** 28 items. Whether and how is yours.
+- **P2 — the Owner's decision.** 5 items. Do not implement; raise them.
+- **R1 / R2 / R3 — the round the work came from.** Provenance, not priority: R1 the ten-item directive, R2 the flex rules and text overhaul, R3 graphics and motion.
 
 ---
 
@@ -354,6 +406,29 @@ Divisional Round showdown: Dolphins vs. Chiefs" → Should be a lot more beautif
 
 ---
 
+### P0-20. The draft-complete gate is hardcoded to 26 rounds and will cut off picks 833–896
+
+**WHERE:** `NFL Draft Simulator merged.html` — `l.849` (`if(draftSim && draftSim.pos >= 32*26)` in `goSeason()`), `l.866` (`draftSim.pos < 32*26`, the resume button), and the copy at `l.852` ("Your 26 starters are done") and `l.863` ("draft 26 starters first").
+
+**WHAT (old → new):**
+- `l.849` — `draftSim.pos >= 32*26` → `draftSim.pos >= 32 * TOTAL_ROUNDS`
+- `l.866` — `draftSim.pos < 32*26` → `draftSim.pos < 32 * TOTAL_ROUNDS`
+- `l.852` — "Your 26 starters are done." → a computed count, or "Your starters are done."
+- `l.863` — "draft 26 starters first" → "draft your starters first"
+
+**WHY:** `TOTAL_ROUNDS = ROSTER_SLOTS.length` (`l.925`), so the moment FB and P enter `ROSTER_SLOTS` the clock and the round counter become 28 by themselves — but these two gates are literals. At pick 832 the build would declare the draft complete, show "Play a Season", and **picks 833–896 would never be simulated**. The resume button would also disappear at the same pick, removing the only way back into a draft in progress. The user-facing effect is the worst kind: the header reads "Round 28 of 28" while the game insists the draft is over.
+
+**SAFE ALONE?** **YES.** At 26 rounds `32 * TOTAL_ROUNDS === 32 * 26`, so the change is a provable no-op today and correct after. No protected constant, no maths, no layout.
+
+**HOW TO CHECK:**
+```bash
+grep -c '32\*26' "NFL Draft Simulator merged.html"        # expect 0 after the edit
+grep -n '32 \* TOTAL_ROUNDS' "NFL Draft Simulator merged.html"   # expect 2 sites
+```
+Then, with the seeded `Math.random` above, run a full 28-round draft and assert that the final pick index is **896**, that the resume button is still present at pick 833, and that no "starters are done" panel appears before 896.
+
+---
+
 ## P1 — Architect decisions
 
 ### P1-1. Merge keep-list
@@ -380,8 +455,9 @@ Donor (0) vs v20 (1 each). Recommended: donor (already clean).
 ### P1-8. Shared copy debt
 "steal a 18–16 win" (v20:3082 / donor:3101, wrong article for scores starting 8/11/18) and "the 49ers's answer" (v20:5433 / donor:5483). Post-merge round or fold into merge?
 
-### P1-9. "expected scoring" (v20:4832)
-Stats-explainer only. Compliant as-is or remove?
+### P1-9. "expected scoring" (v20:4832): stats-explainer only. Compliant as-is or remove?
+
+---
 
 ### P1-10. SIM-CORE markers + 3 headless entry points
 Absent in both builds (grep 0/0). Round 1A order: S-202 → S-203 → S-103 → S-102 → S-301. Product change = markers + moved entry points only. Acceptance (a)–(g) in rulings.
@@ -406,11 +482,9 @@ With provenance; basketball-specific math (TS+, rim protection, 3-point shooting
 
 ### P1-17. Soccer/baseball closer to football draft; hockey closer to basketball (uncertain). Ranking source/cutoff for soccer leagues above MLS + MLS TBD.
 
-### P1-18. Quarantine vs delete invented ratings files
-`sports/football/ratings.json` and `sports/basketball/all_time_draft.json`. Recommended: quarantine. Owner decides.
+### P1-18. Invented ratings files: `sports/football/ratings.json` and `sports/basketball/all_time_draft.json` still present, untracked, origin UNKNOWN. Quarantine recommended (not delete). Owner decides.
 
-### P1-19. Archived sessions (Liquid, Glyph, Omni, Cohere)
-Delete contributions unless structural? Recommend: specify exact files/lines before deletion.
+### P1-19. Archived sessions (Liquid, Glyph, Omni, Cohere): delete contributions unless structural? Recommend: specify exact files/lines before deletion.
 
 ### P1-20. Default tab: Draft vs Season-first. Owner decides. (Recommended: Season-first, matches donor + project instructions.)
 
@@ -419,12 +493,6 @@ Delete contributions unless structural? Recommend: specify exact files/lines bef
 ### P1-22. Color-scheme: `light dark` (donor header) vs `light`. (Recommended: `light dark`.)
 
 ### P1-23. Wrapper: double-wrapped (2 doctypes). Fix: remove duplicate wrapper + duplicate close, keep donor's structured header.
-
-### P1-24. "sudden death" (v20:2880) / "went the distance" (v20:2898): donor (0) vs v20 (1 each). (Recommended: donor.)
-
-### P1-25. "steal a 18–16 win" / "the 49ers's answer": shared debt in both builds. Post-merge round or fold into merge?
-
-### P1-26. "expected scoring" (v20:4832): stats-explainer only. Compliant as-is or remove?
 
 ### P1-27. E2E Week 1 display: build renders "Week 1 of 17" (l.3891). Check not implemented. Protocol change or check implementation? Owner/Architect decide. (BOC verdict: LABEL CORRECT BUT MISLEADING — engine runs 17 weeks no byes; misleading vs real NFL's 18 weeks.)
 
@@ -435,26 +503,6 @@ Delete contributions unless structural? Recommend: specify exact files/lines bef
 ### P1-30. `hiddenClipped: 1` on `tabDraftBtn` in every run. Unnamed in receipt; worth naming before next run. (MOC M-334.)
 
 ### P1-31. PR #5 scorecard generator admits `_agents/minimax/recon/run-reconciliation-v2.proposed.md`'s `SPEAKER: MiniMax subagent (run-reconciliation)` as a council member. One regeneration from publication. Fix before adopting.
-
-### P1-32. Invented ratings files: `sports/football/ratings.json` and `sports/basketball/all_time_draft.json` still present, untracked, origin UNKNOWN. Quarantine recommended (not delete). Owner decides.
-
-### P1-33. Archived sessions (Liquid, Glyph, Omni, Cohere): delete contributions unless structural? Recommend: specify exact files/lines before deletion.
-
-### P1-34. Default tab: Draft vs Season-first. Owner decides. (Recommended: Season-first, matches donor + project instructions.)
-
-### P1-35. STATUS.md overwrite (stale). Fix after verifier. Who updates the hash line?
-
-### P1-36. Color-scheme: `light dark` (donor header) vs `light`. (Recommended: `light dark`.)
-
-### P1-37. Wrapper: double-wrapped (2 doctypes). Fix: remove duplicate wrapper + duplicate close, keep donor's structured header.
-
-### P1-38. "sudden death" (v20:2880) / "went the distance" (v20:2898): donor (0) vs v20 (1 each). (Recommended: donor.)
-
-### P1-39. "steal a 18–16 win" / "the 49ers's answer": shared debt in both builds. Post-merge round or fold into merge?
-
-### P1-40. "expected scoring" (v20:4832): stats-explainer only. Compliant as-is or remove?
-
----
 
 ## P2 — Owner decisions
 
@@ -565,6 +613,22 @@ Everything the council asserted about the maths was **measured**, not reasoned:
 - The **seeded A/B** method, which every comparison used: install a seeded `Math.random` via `Page.addScriptToEvaluateOnNewDocument` **before** the page's scripts run, then drive the same clicks in both builds (the build has **58 unseeded `Math.random()` sites**, so two raw runs are not a comparison).
 - **The build moved once**, under an edit by another session (the Guide intro panel removed; a batch of `!important` declarations stripped). All five patches were re-cut and re-measured against it: the 32 team scores and the draft board rows **identical**, console errors **0 → 0**, the flex table **Quarterback first**, the new Guide section title present.
 
+
+---
+
+---
+
+# ARCHIVE — legacy labels. Do not read to execute.
+
+Everything below is kept so that nothing is lost. These are the `P7` / `P8` / `P9` / `P10` / `P11` sections, `PART 5`, `PRIORITY SUMMARY FOR CLAUDE`, the old maps and the two cold reads.
+
+**Three warnings before you open any of it.**
+
+1. **The labels were renumbered on 22 Oct and are now unique.** Before that, 25 labels each meant two to four different things — `P10-1` was both "the flex rules" and "Super Bowl champion celebration". The second and later occurrences carry fresh numbers: the flex-and-3-4 block keeps `P10-1`–`P10-9`, the aesthetics block is `P10-16`–`P10-24`, the 23:30 round is `P11-9`–`P11-16`. One caution: the archive's own `P0-20` (Guide Page Overhaul) is now **`P0-33`**, because `P0-20` belongs to the draft-complete gate in the canonical set.
+2. **These are `H1` headings, the canonical items are `H2`.** A rendered view makes the archive look like the document and the change set look like an appendix. That is an accident of how it was assembled, not a statement about importance.
+3. **Line numbers in the archive are stale.** The file has been restructured twice; the archive's own internal references were written against earlier versions. Navigate by heading text.
+
+Read a subsection only when a canonical item sends you there — `P0-17` sends you to the flex diff, and `P0-16` to the base-defense block.
 
 ---
 
@@ -1034,7 +1098,7 @@ the Stars table **much more beautiful** · offensive players need **≥60 yards*
 
 ---
 
-### P0-15: Coaching Philosophy & Aggressiveness — Available All Season
+### P0-25: Coaching Philosophy & Aggressiveness — Available All Season
 
 **Problem:** "Your coaching philosophy and aggressiveness are locked in once you simulate Week 1" — should be available all season.
 
@@ -1065,7 +1129,7 @@ the Stars table **much more beautiful** · offensive players need **≥60 yards*
 
 ---
 
-### P0-16: Base Defense Selection (3-4 vs 4-3)
+### P0-26: Base Defense Selection (3-4 vs 4-3)
 
 **Location:** Draft page and/or preseason page
 
@@ -1091,7 +1155,7 @@ OLB2
 
 ---
 
-### P0-17: Flex Rules Overhaul
+### P0-27: Flex Rules Overhaul
 
 ### **Edge Players:**
 - Edges no longer get penalty for playing OLB/WILL/SAM
@@ -1154,7 +1218,7 @@ OLB2
 
 ---
 
-### P0-18: Draft Board UI Improvements
+### P0-28: Draft Board UI Improvements
 
 ### **Text Changes:**
 | Current | Target |
@@ -1186,7 +1250,7 @@ OLB2
 
 ---
 
-### P0-18: Draft Board UI Improvements (continued)
+### P0-29: Draft Board UI Improvements (continued)
 
 ### **Visual Changes:**
 - "You're on the clock — Round 2 of 26, Pick 14 (overall 46 of 832)" → **bigger text size**
@@ -1205,7 +1269,7 @@ OLB2
 
 ---
 
-### P0-19: Team Comparison Page
+### P0-30: Team Comparison Page
 
 ### **Text Changes:**
 | Current | Target |
@@ -1258,7 +1322,7 @@ Pass Defense
 
 ---
 
-### P0-19: Team Comparison Page
+### P0-31: Team Comparison Page
 
 ### **Text Changes:**
 | Current | Target |
@@ -1311,7 +1375,7 @@ Pass Defense
 
 ---
 
-### P0-19: Team Comparison Page
+### P0-32: Team Comparison Page
 
 ### **Text Changes:**
 | Current | Target |
@@ -1364,7 +1428,7 @@ Pass Defense
 
 ---
 
-### P0-20: Guide Page Overhaul
+### P0-33: Guide Page Overhaul
 
 ### **Text Changes:**
 | Current | Target |
@@ -1575,7 +1639,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
 
 ---
 
-### P0-22: Guide Page
+### P0-34: Guide Page
 
 ### **Text Changes:**
 | Current | Target |
@@ -1619,7 +1683,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
 
 ---
 
-### P0-23: Positional Value Table — Arithmetic Fixes
+### P0-35: Positional Value Table — Arithmetic Fixes
 
 **All 20× multiplications must be exact:**
 
@@ -1648,7 +1712,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
 
 ---
 
-### P0-24: Team Colors & Aesthetics (Figma)
+### P0-36: Team Colors & Aesthetics (Figma)
 
 ### **Team Color Theming:**
 - 32-team color map (primary/secondary/tertiary)
@@ -1763,7 +1827,7 @@ After verification passes → promote build → **Football-Sim-V22.html**
 
 # P10 — Aesthetics and beauty (additional suggestions, 21 Oct, from Owner feedback)
 
-### P10-1 · [NEW] Super Bowl champion celebration
+### P10-16 [NEW] Super Bowl champion celebration
 **What:** "The Chiefs are Super Bowl champions." is too boring. Any hype text especially for the Super Bowl should be more beautiful and at least use an exclamation point. The final banner when "Champions" is highlighted should have a gold theme and shimmer/sparkle for the user.
 **Where:** Super Bowl page, championship banner.
 **Impact:** Low. Text + CSS animation. High emotional impact.
@@ -1773,7 +1837,7 @@ After verification passes → promote build → **Football-Sim-V22.html**
 - Shimmer: CSS animation `@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }` with `background-size: 200% 100%`
 - Sparkle particles: CSS-only, 5-8 gold particles that animate outward and fade
 
-### P10-2 · [NEW] More motion and graphics throughout
+### P10-17 [NEW] More motion and graphics throughout
 **What:** In general, more motion of graphics coming in and out of the screen, text coming in and out of the screen, and more ideas like confetti and banners to make a text-based game more exciting.
 **Where:** Game previews, game reviews, season review, playoff bracket, awards.
 **Impact:** Medium. CSS animations + small JS. High engagement impact.
@@ -1787,37 +1851,37 @@ After verification passes → promote build → **Football-Sim-V22.html**
 - Confetti: CSS-only, 10-15 particles, 1s duration, triggered on championship/Super Bowl
 - Banners: slide-in from top with bounce (300ms)
 
-### P10-3 · [NEW] Season review button placement
+### P10-18 [NEW] Season review button placement
 **What:** The season review button after the playoff should be in blue near the top next to 100 season simulation.
 **Where:** Playoffs page, top action bar.
 **Impact:** Low. CSS + HTML repositioning.
 
-### P10-4 · [NEW] Season review more graphical
+### P10-19 [NEW] Season review more graphical
 **What:** The season review should be more graphical. Only a few sentences here and there.
 **Where:** Season review page.
 **Impact:** Medium. Major UI overhaul.
 
-### P10-5 · [NEW] 100 season review more graphical
+### P10-20 [NEW] 100 season review more graphical
 **What:** The 100 season review should also be a lot more graphical. Only a few sentences here and there.
 **Where:** 100 season review page.
 **Impact:** Medium. Major UI overhaul.
 
-### P10-6 · [NEW] "Seasons by Win total" left alignment fix
+### P10-21 [NEW] "Seasons by Win total" left alignment fix
 **What:** The left alignment for the "Seasons by Win total" is poor and needs to be fixed. That whole chart could be made more beautiful.
 **Where:** 100 season review page, win total chart.
 **Impact:** Low. CSS fix.
 
-### P10-7 · [NEW] "Your players; average season" and "Award patterns" higher up
+### P10-22 [NEW] "Your players; average season" and "Award patterns" higher up
 **What:** "Your players; average season" and "Award patterns" should be higher up and automatically visible (not collapsed).
 **Where:** Season review page.
 **Impact:** Low. Layout change.
 
-### P10-8 · [NEW] Remove "Realism audit & league-wide records" and "Does the model predict real results?"
+### P10-23 [NEW] Remove "Realism audit & league-wide records" and "Does the model predict real results?"
 **What:** Remove these from being visible to the user but store that information internally.
 **Where:** Season review page, realism audit section.
 **Impact:** Low. UI change (hide, don't delete).
 
-### P10-9 · [NEW] Game previews and reviews more graphical
+### P10-24 [NEW] Game previews and reviews more graphical
 **What:** Ideally all game previews and game reviews are way more graphical. Full sentences should be used sparingly. Most of this data can be represented by graphics instead of sentences. The only thing that really needs sentences is narration of key plays in the clutch or extra compliments to user's star players and hyping up the next round.
 **Where:** Game preview and review pages.
 **Impact:** High. Major UI overhaul.
@@ -1914,7 +1978,7 @@ The default weights are how the draft simulator sees the game. The Owner's speci
 
 ## P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports
 
-### P11-1 · "The Chiefs are Super Bowl champions." → something worth reading
+### P11-9 "The Chiefs are Super Bowl champions." → something worth reading
 Two places say it (candidate line 3201, the game's closing line, and line 2930, the all-caps banner).
 **The Owner's rule: the hype text — especially for the Super Bowl — should be more beautiful and use
 at least one exclamation point.** Three drafts for Claude to choose between (all keep the fact and
@@ -1927,7 +1991,7 @@ the score, none invented):
 **C is the council's preference:** it carries the season's length, the stage, and the exclamation, and
 it cannot read as filler in a 14–3 season.
 
-### P11-2 · The Champions banner goes gold, and it shimmers
+### P11-10 The Champions banner goes gold, and it shimmers
 ```css
 /* WHERE: beside the existing .champion-banner rule; the banner is at candidate line 5890
 /* WHAT: ADDS a gold theme and a slow shimmer across the headline. The build already has the
@@ -1943,7 +2007,7 @@ it cannot read as filler in a 14–3 season.
 **And the winner's name should be in gold wherever the user's team appears on an awards chart** —
 including the game-ball winner (the Owner's instruction in the previous round).
 
-### P11-3 · A motion system, because a text game should move
+### P11-11 A motion system, because a text game should move
 The build already has a small vocabulary — `fxpop` (101), `fxshine` (102), `fxtoast` (103), `fxglow`
 (104), `heroBounce` (230). **Three additions, used sparingly, and one guard:**
 
@@ -1964,7 +2028,7 @@ The build already has a small vocabulary — `fxpop` (101), `fxshine` (102), `fx
    it should be a short burst (about two seconds) that then settles, not a permanent effect.
 5. **The reduced-motion guard is not optional**: the site should still read perfectly with motion off.
 
-### P11-4 · The season review button goes up and goes blue
+### P11-12 The season review button goes up and goes blue
 ```js
 // WHERE: candidate line 5894 (the seasonReviewBtn, rendered under the final bracket)
 // WHAT: MOVES the button to the top of the final screen, next to the 100-season simulation button,
@@ -1973,7 +2037,7 @@ The build already has a small vocabulary — `fxpop` (101), `fxshine` (102), `fx
 The Owner's words: *"The season review button after the playoff should be in blue near the top next to
 100 season simulation."*
 
-### P11-5 · The season review and the 100-season report become graphical
+### P11-13 The season review and the 100-season report become graphical
 Two reports, one direction. **"The season review should also be more graphical"** and **"The 100
 season review should also be a lot more graphical. Only a few sentences here and there."**
 
@@ -1993,7 +2057,7 @@ council's read is that the report should be **charts first, prose second**:
 **The rule to work to (the Owner's, in one line):** *"Only a few sentences here and there."* A report
 block is a number, a bar, a card, a chip — and **one** sentence that says what it means.
 
-### P11-6 · "Your players; average season" and "Award patterns" move up and open themselves
+### P11-14 "Your players; average season" and "Award patterns" move up and open themselves
 ```js
 // WHERE: the 100-season report renderer (candidate lines ~6000-6060; find the blocks by their visible
 //        headings "Your players; average season" and "Award patterns")
@@ -2003,7 +2067,7 @@ block is a number, a bar, a card, a chip — and **one** sentence that says what
 **One design note:** the two blocks are the ones a user checks first — "how did my guys do" and "who
 wins what" — so they belong at the top, and they should not need a click to be seen.
 
-### P11-7 · Two report sections go internal
+### P11-15 Two report sections go internal
 **The Owner's instruction:** *"Remove Realism audit & league-wide records and Does the model predict
 real results? from being visible to the user but you should store that information internally."*
 
@@ -2022,7 +2086,7 @@ real results? from being visible to the user but you should store that informati
 simulation arguing with reality rather than as a game. Keeping them internal preserves the evidence
 for whoever maintains the model.
 
-### P11-8 · What the council could not check in this round
+### P11-16 What the council could not check in this round
 - **The exact blocks in the 100-season renderer** for "Seasons by Win total", "Your players; average
   season" and "Award patterns" — the headings are assembled at render time and did not match a
   straight text search; Claude should find them by their visible headings in the renderer around
@@ -2250,3 +2314,41 @@ gone (0), confirmed the two built artifacts are referenced only in my block (3 m
 re-checked the pin against the merge candidate the council measured. **I did not re-measure the
 anchors against the pinned file** — that is blocker 1 and it needs a seat with the pinned build in
 hand.
+
+---
+
+## C2 · The anchors, checked against the pinned build (MiniMax, 22 Oct 00:15) — blocker 1 is mostly closed
+
+**The instrument:** `_agents/minimax/tools/verify-anchors.mjs` — it reads the document, takes every
+quoted string on the "old" side of an arrow or in a table's "Now" column, and looks for it in the build
+Claude will edit; the "new" strings are checked the other way round (a new string that is **already**
+in the build means that change is already applied). The pinned build is on disk:
+**`NFL Draft Simulator merged.html` = `044d1759…`, 656,746 B** — the same hash the document pins.
+
+**What the check found (the receipt):**
+
+| Check | Result |
+|---|---|
+| the document's target strings that must exist in the build | **all present**: "third corner", "also fits:", "you're on the clock", "use model weights", "back to my weights", "chip numbers are starters", "one table", "wins here", "short reference sections", "football and site terms", "flexing players, explained", "put any two real rosters" |
+| line references in the document | 71, highest **5894** — the build has **6,554 lines**, so **no reference is out of range** |
+| quoted "old" strings not found verbatim | 33 — **all but two are the Owner's own example outputs** (the Chiefs' 28–14 recap lines, the preview sentences with the real team names) or document labels, **not build text**; the tool cannot tell a pattern from a literal, and its filter now says so |
+| quoted "new" strings already in the build | 4 — changes already applied |
+
+**So blocker 1 resolves like this: the pinned build is the right base and the targets are real.**
+What remains is only the *line numbers*, which the check cannot confirm but can bound — no reference
+points past the end of the file.
+
+**Two small things the check caught, both worth a line in the change set:**
+1. **"Third corner" is lower-case in the build.** It appears as `third corner` inside the flex table's
+   cell (`linebacker, safety, third corner`) — there is no capitalised "Third corner" label to change.
+   The Owner's instruction ("Third corner" → "CB3 / Nickel") therefore targets **that cell**, and the
+   change should also read "CB3 / Nickel" rather than leaving "third corner" anywhere.
+2. **"Your players; average season" is not in the build verbatim.** The 100-season report builds that
+   heading at render time; whoever implements the "move it up and open it" instruction should find the
+   real heading (the 100-season renderer, around candidate lines 6000-6060) rather than search for
+   the document's wording.
+
+**How to re-run it (one command, no install):**
+```sh
+node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simulator merged.html"
+```
