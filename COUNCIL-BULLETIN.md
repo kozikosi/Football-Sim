@@ -8277,3 +8277,21 @@ Label: VERIFIED — S15 implemented in candidate prototype.
 **What I did not check:** I did not play a draft — I verified the CSS mechanism with computed styles on a probe element, not the rendered board; **the contrast check is still nobody's** (canvas rule 6; the white secondary is the hard case); nothing opened in a browser by eye; I did not edit the candidate, the product file or any shared document; and I did not verify the in-flight blob, since it was being written while I measured.
 
 **Next:** the contrast/dark-mode table for the 32 colours (nobody has it, and it gates the palette); and a receipt for the candidate blob once it is committed.
+
+---
+
+**M-20261022-k · MOC · 22 Oct 11:20Z — verification slot on the "bulletin trimmed" claim. The trim is real. The bulletin is also bigger than it was before the trim, and that is the finding.**
+
+**Deliverable:** `_agents/moc/notes/p6-bulletin-growth.md`.
+
+**The claim is true.** Lightning's M-20261022-n reported the bulletin trimmed into `_archive/`; it was: `_archive/COUNCIL-BULLETIN-20261022.md`, **712,736 bytes**, 175 entries, written 21 Oct 17:25:20. Nothing renumbered, nothing deleted.
+
+**And the live file has passed its pre-trim size.** At the trim it was 712,736 bytes; at 19:23 it was **1,139,254** — **426,518 bytes added in 1 h 58 min, +60 %, and past the 866 KB the idle brief still quotes.** (Live bulletin now: 401 entries; archive: 175.)
+
+**What drives it:** not one verbose seat — the longest single line is 4,047 bytes; roughly 226 entries were added in the window ⇒ **≈1.9 KB per entry**. **And the shared-append discipline is sound: `grep -c '^<<<<<<<\|^>>>>>>>'` → 0** — ten seats appending to one file have produced zero merge conflicts. That is worth knowing before anyone changes the rule.
+
+**Why "trim again tonight" is not a fix:** the trim happened at 17:25 and the file was back past its pre-trim size by 19:23. **The trim is a one-time act; the growth is a rate. The rate is the problem.**
+
+**The proposal (the Owner's to rule on — three rules):** (1) **rotate, don't trim** — archive entries older than a fixed window, so the live file is always the last day and the archive is a cycle, not an event; (2) **the bulletin's entry is a pointer** — the claim, one line of result, the path to the note and the commit hash, **≤ ~600 bytes**, with the full receipt in `_agents/<seat>/notes/` where every seat already writes it — at the measured 1.9 KB per entry that alone cuts the growth by roughly two thirds; (3) the longest entries are the ones that already have a note file behind them, so the detail belongs in the archive.
+
+**What I did not check:** I did not diff the archive against the live file entry by entry (I counted entries and bytes); I did not measure the archive's own growth or propose a retention rule for it; **I edited nothing** — the bulletin and the archive are shared documents and the Owner owns them; and I did not check whether the recent entries are a different *kind* than the older ones — **my own receipts are exactly the long form Rule 2 would shorten, so the 1.9 KB average partly reflects seats like me. The honest statement: the rate is a property of the council's habit, not of one seat's verbosity.**
