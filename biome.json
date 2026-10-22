@@ -1,0 +1,42 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.2/schema.json",
+  "files": {
+    "includes": ["tests/**", "_agents/**/tools/**", "tools/**", "!node_modules"]
+  },
+  "formatter": {
+    "enabled": true,
+    "indentStyle": "space",
+    "indentWidth": 2
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "suspicious": {
+        "noVar": "error",
+        "noDoubleEquals": "error",
+        "noAssignInExpressions": "error",
+        "noTemplateCurlyInString": "error",
+        "useIterableCallbackReturn": "error"
+      },
+      "correctness": {
+        "noUnusedImports": "error"
+      },
+      "nursery": {
+        "useExplicitReturnType": "warn"
+      },
+      "preset": "recommended"
+    }
+  },
+  "overrides": [
+    {
+      "includes": ["_agents/**/tools/build-*.mjs"],
+      "linter": {
+        "rules": {
+          "suspicious": {
+            "noTemplateCurlyInString": "off"
+          }
+        }
+      }
+    }
+  ]
+}

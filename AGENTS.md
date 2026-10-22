@@ -18,8 +18,9 @@ The project has **one** product file under active development. Every build-speci
 
 | File | sha256 | Size | Role |
 |------|--------|------|------|
+| `Football-Sim-V21.html` | `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` | 656,746 B | **Current build (V21)** — the release artifact, byte-identical to the working file — measured 2026-10-22 |
 | `NFL Draft Simulator merged.html` | `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` | 656,746 B | **The working file — V22 is built from this**, @ `merge/v20-donor` `ff8c05ae` — measured 2026-10-22 |
-| `NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 B | **Older reference build** — measured 2026-10-22 |
+| `NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 B | **Older reference build (V20)** — historical only — measured 2026-10-22 |
 | `NFL Draft Simulator.html` | `8f0f8d50…` | 649,490 B | Donor of fixes (Season-first + DS patches), not the base |
 
 Near-duplicate names exist on disk (`merged.html`, `merged_v22.html`) — they are scratch copies with different bytes. **Never** target them. The deliverable artifact is `Football-Sim-V22.html`, produced by the Architect from `NFL Draft Simulator merged.html`.
@@ -237,9 +238,11 @@ A change that cannot fill the last two fields is not ready. If your item is alre
 
 ## 14. Product files
 
-- **Older reference build (not the current one)**: `NFL Draft Simulator v20 Claude.html` — 648,310 bytes, `8f916df9…` (re-measured 2026-10-22)
+- **Current build (V21)**: `Football-Sim-V21.html` — 656,746 bytes, `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` — the best full build on disk, byte-identical to the working file (measured 2026-10-22). **This is the release artifact.**
+- **Next build (V22)**: `Football-Sim-V22.html` — produced by the Architect when the V22 work is complete. **It does not exist yet.**
 - **The working file — V22 is built from this**: `NFL Draft Simulator merged.html` — 656,746 bytes, `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` @ `merge/v20-donor` `ff8c05ae` (re-measured 2026-10-22). **This is a working-tree file: its hash changes when anyone applies a patch. Any note quoting its hash must say when it measured it.**
-- **Do not name the current build V20 or V21.** It is **V22** (Owner ruling, 22 Oct). The older build names are historical only.
+- **Naming rule (Owner, 22 Oct):** today's best build is **V21**; the build Claude is producing is **V22**; the earlier build is **V20** and is historical only. Do not call the current build V20.
+- **Older reference build (V20)**: `NFL Draft Simulator v20 Claude.html` — 648,310 bytes, `8f916df9…` (re-measured 2026-10-22)
 - **Donor of fixes**: `NFL Draft Simulator.html` — 649,490 bytes, `8f0f8d50…` (Season-first base + DS patch, incl. the division-tag look-ahead repair)
 - **Rollback**: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html`
 

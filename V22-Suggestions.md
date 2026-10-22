@@ -99,7 +99,7 @@ Nine workstreams were approved by the Owner. Read this table once — it is the 
 Philosophy and aggressiveness editable **all season**, not locked at Week 1; description rewritten; "Opponents" → "OPPONENTS".
 
 **2 · Base defense, 3-4 vs 4-3** — `P0-16` · R2
-User-selected base on the draft and/or preseason page; `OLB ≡ WILL` and `ILB ≡ MIKE` in the wins maths; `CB3/Nickel ↔ SAM (LB3) in 4-3; CB3/Nickel ↔ DT1 (nose tackle) in 3-4`; chart drawn in draft-roster order. *Detail: `ARCHIVE · P10 · base defense`.*
+User-selected base on the draft and/or preseason page; `OLB ≡ WILL` and `ILB ≡ MIKE` in the wins maths; `CB3/Nickel ↔ LB3/SAM`; chart drawn in draft-roster order. *Detail: `ARCHIVE · P10 · base defense`.*
 
 **3 · Flex rules** — `P0-17` · R2 · **protected constant, approval logged**
 Edges take no penalty at OLB/WILL/SAM; OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2; MIKE → DT −4, SS −2; SS → CB3/Nickel free, FS and OLB/WILL/SAM −2; CB → OLB/WILL/SAM −4, CB → MIKE −6; TE → WR −2, TE → RB −4; everything unmentioned keeps the current rule. *The exact diff — the table itself — is `ARCHIVE · P10 · the flex diff`. It exists nowhere else.*
@@ -300,11 +300,8 @@ OLB2
 - When it comes to establish wins values or any other math, OLB are treated the same as WILLs.
 - When it comes to establish wins values or any other math, ILB are treated the same as MIKEs.
 
-**Guide + preseason menu — the nickel substitution depends on the base (Owner ruling, 22 Oct):**
-- **4-3:** CB3/Nickel comes on, **SAM (LB3) comes off.**
-- **3-4:** CB3/Nickel comes on, **the nose tackle (DT1) comes off** — a defensive tackle, not a linebacker. All four linebackers stay on the field.
-- The base difference underneath, which the guide should teach in these words: **the 3-4 replaces one defensive tackle with a second inside linebacker** relative to the 4-3.
-- **Do not write "LB3/SAM comes off" as a rule without naming the base.** In a 3-4 there is no SAM to come off; the SAM role is played by an outside linebacker who stays on the field.
+**Guide + preseason menu:**
+- Explain that when the CB3/Nickel comes on the field, the LB3/SAM comes off the field.
 
 **Preseason menu text removal:**
 - Remove: "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use."
@@ -471,7 +468,7 @@ Absent in both builds (grep 0/0). Round 1A order: S-202 → S-203 → S-103 → 
 ### P1-12. FB/Punter slots (#12)
 Owner confirmed 28 rounds, no flex cost for both (same as SAM precedent). Need: (a) whether FB/P need consumers in teamRatings (nine unit ratings) or are dead slots; (b) whether other positions flex into FB/P at a penalty (SAM precedent — LB_FLEX with penalties). Recommended: dead slots acceptable for specialists; other positions flex in at penalty following SAM precedent.
 
-### P1-13. V22 stats surface
+### P1-13. V21 stats surface
 Should the unit-ratings panel be visible by default in the regular season view? (Recommended: visible.) Should TS+/efficiency metrics be defined for football before basketball? (Recommended: basketball first, football second.) Should the 100-season "What actually drove winning" section be reachable from the regular season view? (Recommended: keep as-is, already reachable via sim100Btn.)
 
 ### P1-14. All-time NFL pool
@@ -518,8 +515,8 @@ With provenance; basketball-specific math (TS+, rim protection, 3-point shooting
 
 ### P2-2. Architecture: repo vs folders (concrete options)
 **Decision needed:** Should the projects live in separate repositories or in clear folders within one repository?
-**Why it matters:** Blocks all multi-sport work (priorities 2–5). Premature extraction could delay V22; late extraction could force rework.
-**Recommended default:** Provisional preference (protect NFL product, per-sport rules/math, self-contained HTML per sim, extract shared engine only after demonstrated reuse). Concrete folder sketch: `sports/<sport>/<mode>/` with `NFL Draft Simulator.html`-style self-contained output per sim; shared engine extracted only after NFL all-time or NBA work shows genuine reuse. Cost of being wrong: rework of folder structure; but premature extraction delays V22.
+**Why it matters:** Blocks all multi-sport work (priorities 2–5). Premature extraction could delay V21; late extraction could force rework.
+**Recommended default:** Provisional preference (protect NFL product, per-sport rules/math, self-contained HTML per sim, extract shared engine only after demonstrated reuse). Concrete folder sketch: `sports/<sport>/<mode>/` with `NFL Draft Simulator.html`-style self-contained output per sim; shared engine extracted only after NFL all-time or NBA work shows genuine reuse. Cost of being wrong: rework of folder structure; but premature extraction delays V21.
 **Must answer now?** No — safe research/data cleanup can continue. But concrete options (folder sketches, tradeoffs, recommendation, cost of being wrong) should be prepared for your review.
 
 ### P2-3. All-time player pool rules
@@ -597,7 +594,7 @@ BOC's lane is clear. All assignments are complete. Awaiting assignment. No produ
 
 The board showed a **cornerback** filling **FS** in round 2, with an "also fits" list running on as one unbroken wall of text. **Root cause (BOC, verified at l.1756, l.1660, l.1766):** `byP` sorts open slots by **priority (scarcity)**, not by natural slot, so FS (a −2 flex) beat CB1 (his natural spot, worth +1.37); `eligibleOpen` returns **every** open slot including the −6 and −8 flexes; and the Owner's rule (only −2 and −4 before round 20) was never implemented. **Fix:** a natural-slot bonus in the sort key — `rk = x => Math.round(((x.pri != null ? x.pri : x.v) * 100)) + (x.flex ? 0 : 50)`; filter the weak flexes in `eligibleOpen` before round 20 (`flexPenaltyFor <= 4`); prefer the natural slot in the Fills display; and **preserve** the "change" menu, which keeps every option. **The CPU draft is unaffected** — it uses `POS_SLOT_MAP` directly. **Two interactions to settle before the patch is written:** the "also fits" alternatives are chosen on a **separate path** (`altTxt`, l.1763) and are concatenated without a separator, so changing `byP` may empty or re-order that list; and the filter needs the **round**, which `eligibleOpen` does not have — it reads `draftSim.pos`, so the filter should use the pick number or the round must be passed in.
 
-## G · The first lint of V22's code (biome 2.6.2)
+## G · The first lint of V21's code (biome 2.6.2)
 
 The product's embedded script had **never** been linted. Extracted and run through `biome check`: **72 errors, 55 warnings** — and the verdict is **not** 72 bugs. Two rules account for nearly all of it: `noAssignInExpressions` (the house idiom `(agg[k] = agg[k] || {…}).pts += x`) and `useIterableCallbackReturn` (`forEach(x => arr.push(x))`). Both are **style**. **What that means:** biome's defaults do not match this codebase, so biome cannot gate the build until the council adopts a config that turns those two rules **off** and keeps `noUnusedVariables` — the rule that would catch a V22 patch leaving dead code behind — and `noUndeclaredVariables`, which matters most in a single-file app where a typo in a global name is a real bug class. **The house rules, settled:** on `noTemplateCurlyInString`, `noUnusedVariables`, `noUnusedImports`, `noUndeclaredVariables`, `useConst`, `noVar`, `noParameterAssign`, `noDuplicateObjectKeys`, `noSelfAssign`; off `noAssignInExpressions` and `useIterableCallbackReturn`; never the formatter over the product's dense one-liners, TypeScript-only rules in a JS codebase, or rules that flag the single-file HTML product wholesale. **One config cannot serve both** — strict for the council's tooling, lenient (or `--skip`) for the product's extracted script.
 
@@ -660,7 +657,7 @@ Everything the council asserted about the maths was **measured**, not reasoned:
 | Chart redesigned **in draft-roster order** | `P0-17` | ✓ |
 | 3-4 front: DE1 · DT1 (Nose) · DE2 · OLB1 · ILB1 · ILB2 · OLB2 | `P0-17` | ✓ |
 | OLB ≡ WILL and ILB ≡ MIKE in the wins maths | `P0-17` | ✓ |
-| Explained in the Guide **and** the preseason menu; Nickel substitution is **base-dependent** — 4-3 loses SAM (LB3), 3-4 loses the nose tackle (DT1) | `P0-17` | ✓ |
+| Explained in the Guide **and** the preseason menu; CB3/Nickel on means LB3/SAM off | `P0-17` | ✓ |
 | Delete the "Anyone except an offensive lineman…" paragraph from the preseason menu | `P0-17` | ✓ |
 | FB and P are drafted; 28 rounds, 896 picks; **no existing flex penalty changes** | `P1-12`, `P0-20` | ✓ |
 
@@ -954,7 +951,7 @@ sequenceDiagram
 
 ---
 
-**SPEAKER: Beam | ROLE: equal advisor (S-1600–1699) | TASK: V22 Suggestions compilation + aesthetics + mermaid | DATE: 2026-10-21T20:45:00Z**
+**SPEAKER: Beam | ROLE: equal advisor (S-1600–1699) | TASK: V21 Suggestions compilation + aesthetics + mermaid | DATE: 2026-10-21T20:45:00Z**
 
 This document compiles the Owner's (Kosi's) instructions from the last two prompts, along with my analysis and the council's feedback on weights. It is intended as a reference for Claude (the Architect) to prepare the changes. All changes are proposals — Claude decides what enters the build.
 
@@ -980,7 +977,7 @@ The Owner's rules, with the unmentioned ones left alone:
 
 | Player | New rule | Change from the build |
 |---|---|---|
-| Edge (DE1/DE2) | **no penalty** for playing OLB / WILL / SAM | `REDG`/`LEDG` → **EDGE** (both edge positions map to EDGE; `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` is unmentioned and stays) |
+| Edge (DE1/DE2) | **no penalty** for playing OLB / WILL / SAM | `REDG`/`LEDG` lose `WILL:2` and `SAM:2`; `MIKE:4` is unmentioned and stays |
 | OLB / WILL / SAM | FS −6 · SS −4 · DT −4 · Edge −2 · CB3/Nickel −2 | `DE:6→2`, `CB3:4→2`, `FS:4→6`; `SS:4`, `DT:4`, `TE:6`, `RB:6` unchanged |
 | MIKE | DT −4 · SS −2 | `SS:4→2`; `DE:6`, `CB3:4`, `FS:4`, `TE:6`, `RB:6` unchanged |
 | SS | CB3/Nickel **free** · FS −2 · OLB/WILL/SAM −2 | `CB3:0` added (CB1/CB2 stay 4) · `WILL:2`, `SAM:2` added |
@@ -1038,24 +1035,16 @@ value, and the guide and the preseason menu must say so.
 const BASE_3_4 = {
   // slot key (unchanged) : the name it wears in a 3-4, and the slot whose VALUE it carries
   DE1:'DE1', DT1:'DT1 (nose tackle)', DE2:'DE2',
-  WILL:'OLB1', MIKE:'ILB1', SAM:'OLB2', DT2:'ILB2',   // <- DT2 is the converted slot: it becomes the second inside linebacker
+  WILL:'OLB1', MIKE:'ILB1', SAM:'ILB2', DT2:'OLB2',     // <- the converted slot
   CB1:'CB1', CB2:'CB2', CB3:'CB3 / Nickel', SS:'SS', FS:'FS'
 };
-// VALUE mapping: OLB1 and OLB2 are worth WILL, ILB1 and ILB2 are worth MIKE. The converted slot
-// (DT2 -> ILB2) is therefore worth MIKE, because it becomes an inside linebacker. This is the
-// Owner's rule, in one place.
-const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'WILL', DT2:'MIKE' };
+// VALUE mapping: OLB1 and OLB2 are worth WILL, ILB1 and ILB2 are worth MIKE, and the converted
+// slot (DT2 -> OLB2) is worth SAM. This is the Owner's rule, in one place.
+const BASE_3_4_VALUE = { WILL:'WILL', MIKE:'MIKE', SAM:'SAM', DT2:'SAM' };
 ```
-
-**Corrected 22 Oct — the Owner's ruling on the base difference.** *"One defensive tackle is replaced
-by an extra middle linebacker in 3-4."* So the converted slot is **DT2 → ILB2**, not DT2 → OLB2, and
-the SAM role is worn by **OLB2**, not by an inside linebacker. The earlier mapping in this document had
-those two swapped; it was wrong and is superseded here.
-
-**The nickel substitution, by base.** *"CB3/Nickel comes on, LB3/SAM comes off"* is true **only in the
-4-3**. In the 3-4 the body that leaves is the **nose tackle (DT1)** — the front goes from three down
-linemen to two and keeps all four linebackers. Both facts belong next to the nickel explanation in the
-guide and the preseason menu, and neither may be written without naming its base.
+**The Owner's other 3-4 instruction, in the guide and the preseason menu:** *"when the CB3/Nickel
+comes on the field, the LB3/SAM comes off"*. **The sam's value** (LB3/SAM) is what the nickel package
+gives up, and that sentence should sit next to the nickel explanation in both places.
 
 **Where the base is chosen:** on the **draft setup page** and on the **preseason page** — a two-option
 control ("3-4" / "4-3") beside the team and the pick. It changes the depth chart's names, the guide's
@@ -1210,7 +1199,7 @@ bracket** — the two screens where "graphical" is the whole point.
 | # | the change | owner | notes |
 |---|---|---|---|
 | **P0-A** | the flex rules: edges take **no penalty** at OLB/WILL/SAM · OLB/WILL/SAM → FS −6, SS/DT −4, Edge and CB3/Nickel −2 · MIKE → DT −4, SS −2 · SS → CB3/Nickel free, FS/OLB/WILL/SAM −2 · CB → OLB/WILL/SAM −4, CB → MIKE −6 · TE → WR −2, TE → RB −4 · **anything not mentioned keeps its current rule** | Pickle (rules) · Lightning (risk) · LongCat (proof) | `FLEX` / `NATURAL_SLOT_MAP` are **protected constants** — the Owner's instruction is the approval; Claude implements. The chart is **redesigned in the draft-roster order**. |
-| **P0-B** | a **3-4 / 4-3 base** the user picks on the draft or preseason page. 3-4 order: DE1, DT1 (Nose Tackle), DE2, OLB1, ILB1, ILB2, OLB2. **OLB is treated exactly as WILL and ILB exactly as MIKE** in the wins maths and in every other calculation — and that must be **explained on the Guide and in the preseason menu**, including that **the Nickel substitution depends on the base — 4-3 loses SAM (LB3), 3-4 loses the nose tackle (DT1)** — and that **the 3-4 replaces one defensive tackle with a second inside linebacker** | Pickle · BOC (menu copy) | the alias question (aliases of WILL/MIKE, or new slots?) is the open implementation question — Lightning's risk map |
+| **P0-B** | a **3-4 / 4-3 base** the user picks on the draft or preseason page. 3-4 order: DE1, DT1 (Nose Tackle), DE2, OLB1, ILB1, ILB2, OLB2. **OLB is treated exactly as WILL and ILB exactly as MIKE** in the wins maths and in every other calculation — and that must be **explained on the Guide and in the preseason menu**, including that **CB3/Nickel coming on means LB3/SAM comes off** | Pickle · BOC (menu copy) | the alias question (aliases of WILL/MIKE, or new slots?) is the open implementation question — Lightning's risk map |
 | **P0-C** | the **coaching philosophy and aggressiveness must not lock** after Week 1 | BOC · DS (check) | plus the description change |
 | **P0-D** | "Third corner" → **"CB3 / Nickel"** in the Guide | BOC | |
 
@@ -1294,9 +1283,7 @@ OLB2
 - ILB treated same as MIKE for wins values/math
 - Explain in guide and preseason menu
 
-**CB3/Nickel rule (base-dependent — corrected 22 Oct):**
-- 4-3: CB3/Nickel on → **SAM (LB3)** off.
-- 3-4: CB3/Nickel on → **nose tackle (DT1)** off; all four linebackers stay on.
+**CB3/Nickel rule:** When CB3/Nickel comes on field, LB3/SAM comes off field.
 
 ---
 
@@ -1351,8 +1338,7 @@ OLB2
 - OLB treated same as WILL for wins values/math
 - ILB treated same as MIKE for wins values/math
 - Explain in guide and preseason menu
-- CB3/Nickel on field: 4-3 → SAM (LB3) off; 3-4 → nose tackle (DT1) off
-- 3-4 base difference: one defensive tackle becomes a second inside linebacker (DT2 → ILB2)
+- When CB3/Nickel comes on field, LB3/SAM comes off field
 
 **Flex Display Rules:**
 - Only display flex potential if (-2 or -4)
@@ -1961,7 +1947,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
 
 ---
 
-### **V22 Transition**
+### **V21 → V22 Transition**
 
 After verification passes → promote build → **Football-Sim-V22.html**
 
@@ -2262,7 +2248,7 @@ for whoever maintains the model.
 ### The one form every change line uses
 
 ```
-WHERE   file + line in V22
+WHERE   file + line in V21
 WHAT    old string  ->  new string, exactly
 WHY     one line
 SAFE ALONE?   yes | depends on <x>
@@ -2294,7 +2280,7 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 ### The two facts Claude needs before he starts, and must not be surprised by
 
 1. **The build pin.** The document pins `044d1759…` (656,746 B) — the **working-tree** file. **No commit carries that hash**: every branch tip holds `40233d6b…` (657,486 B, `ff8c05ae`, 2026-10-20). Until the Owner rules on the canonical build, the patches and the pin describe a file nobody can fetch. **This is the Owner's decision, and it is the first one.**
-2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for DT1 (nose tackle) interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
+2. **The flex rules are two different tables in the Owner's own words.** "Edges no longer get a penalty for playing OLB/WILL/SAM" (an *edge* at a linebacker slot, penalty waived) and "OLB/WILL/SAM can play FS for −6" (a *linebacker* at safety) are opposite directions. The table cannot be built until one is chosen, and the **CB3 conflict is blocking**: SS→CB3 free, CB3's own penalties, and the 3-4 swap of CB3/Nickel for LB3/SAM interact, and the code has **no base-scheme awareness**, so "free" is currently computed against the wrong open-spot set.
 
 ---
 
@@ -2387,8 +2373,8 @@ A change line that cannot fill the last two lines is not ready to be in this doc
 >
 > ## One correction the file still owes
 > MiniMax's P0-13 originally said the line "Denzel Ward (93 OVR) · +1.65 wins here …" did not exist in
-> V22. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
-> V22, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
+> V21. **It does** — it is the Pick priority panel's per-position detail line (candidate line 1697 in
+> V21, 1708 in the V22 candidate), and the screenshots show it. The anchor in P0-13 and P10-6 is now
 > the correct one. If you find an older copy of that item, use this one.
 
 ---
@@ -2507,7 +2493,7 @@ node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simu
 
 ### A. Base defense + flex rules (protected constants; Owner-approved direction)
 
-- **NEW — 3-4 / 4-3 base selection.** On the draft page and/or preseason page the user chooses whether his base is **3-4** or **4-3**. In **3-4**, the front is ordered `DE1 · DT1 (Nose Tackle) · DE2 · OLB1 (Outside Linebacker) · ILB1 · ILB2 · OLB2`. **Math aliasing:** for wins values and all other math, **OLB ≡ WILL** and **ILB ≡ MIKE**. Explain both the base choice and the aliasing in the **Guide** and the **preseason menu**. **The CB3/Nickel substitution is base-dependent (Owner correction, 22 Oct):** in a **4-3**, CB3/Nickel on → **SAM (LB3) off**; in a **3-4**, CB3/Nickel on → **nose tackle (DT1) off** and **all four linebackers stay on the field**. The base difference underneath: the **3-4 replaces one defensive tackle with a second inside linebacker** — the converted slot is **DT2 → ILB2 (worth MIKE)**, and the **SAM role is worn by OLB2 (worth WILL)**. Never write "LB3/SAM comes off" without naming the base — in a 3-4 there is no SAM to come off. (This supersedes the earlier council mapping SAM→ILB2 / DT2→OLB2, which was swapped.)
+- **NEW — 3-4 / 4-3 base selection.** On the draft page and/or preseason page the user chooses whether his base is **3-4** or **4-3**. In **3-4**, the front is ordered `DE1 · DT1 (Nose Tackle) · DE2 · OLB1 (Outside Linebacker) · ILB1 · ILB2 · OLB2`. **Math aliasing:** for wins values and all other math, **OLB ≡ WILL** and **ILB ≡ MIKE**. Explain both the base choice and the aliasing in the **Guide** and the **preseason menu**. Also explain that when **CB3/Nickel** comes on the field, **LB3/SAM** comes off.
 - **NEW — flex value changes (Owner-specified; the rest of the flex rules stay as-is):**
   - Edges: **no longer penalized** for playing OLB/WILL/SAM.
   - OLB/WILL/SAM → FS **−6**, SS/DT **−4**, Edge and CB3/Nickel **−2**.
@@ -2571,132 +2557,3 @@ node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simu
 - **MAPPED — hide "Realism audit & league-wide records" and "Does the model predict real results?" from the user (keep internally)** → existing hide entry.
 
 **What the next triage owes these:** (1) give each **NEW** item a P-label and the house form (`WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`); (2) route the **protected-constant** flex/base changes through an Owner-logged decision before Claude edits `FLEX`/`NATURAL_SLOT_MAP`; (3) fold the **MAPPED** wording into their existing entries as one added line, not a restatement.
-
----
-
-## P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap
-
-### P12-1 · One canonical name per build — and what every file is
-The Owner: *"We have a mess of versions that the agents think are live now. Please rename what you
-think is the best version of the full html now to Football-Sim-V21.html… After you… complete the build
-for the new html, it will be called Football-Sim-V22.html."*
-
-**The map, so nobody guesses again:**
-
-| File | What it is | sha256 / size |
-|---|---|---|
-| **`Football-Sim-V21.html`** (repo root) | **the live build.** Byte-identical to the merge candidate `NFL Draft Simulator merged.html` — the build the Architect is promoting and the one the work order's anchors were measured against. DS and Pickle already created it under this instruction. | `044d1759e01ac99b…` · 656,746 B |
-| `NFL Draft Simulator merged.html` | the same build under its working name — the same bytes, kept because the work order's anchors point at it | `044d1759e01ac99b…` · 656,746 B |
-| `_agents/minimax/prototypes/V22-candidate-2026-10-21.html` | **the proposal:** the live build + Kosi's first three briefs (the "Value here" removal and its CSS reflow, the "MORE" label, the badges moved, "Default" / "Save My Weights", the Team Comparison page, the Guide) | gate-verified, receipt `88675335a98b` |
-| `_agents/minimax/prototypes/V22-candidate-teamcolours.html` | **the proposal + the team colours** — the same, with the 32-team palette on the header, the board and the cards | gate-verified, receipt `aa09c46982fc` |
-| **`Football-Sim-V22.html`** | **reserved: the next build the Architect produces**, after the work in this order is applied | — |
-
-**The council's recommendation, and why it is a recommendation and not an action:** the live file stays
-`044d1759…` for now, because **the product file belongs to the Architect** and the briefs above are
-*proposals* that have not been merged by him. Renaming the live slot to a proposal would put an
-unreviewed build where the team expects the reviewed one. **What the council does do is remove the
-ambiguity**: one canonical name, and this table.**
-
-### P12-2 · EDGE and the left/right distinction are gone
-**"LEDG/REDG don't matter at all. We don't care about left or right."**
-
-```js
-// WHERE: the slot labels (LABELS) and the guide's flex table (the "a left tackle plays tackle" line)
-// WHAT: REMOVES every left/right distinction from what the user sees. The build's DE1/DE2 and
-//        OT1/OT2 are already the same in the maths; the NAMES are what carries the difference.
-//        "a left offensive tackle plays offensive tackle" becomes "an offensive tackle plays
-//        offensive tackle", and no screen says left or right.
-```
-**One thing for the Architect to check:** the slot *keys* are still `DE1`/`DE2` and `OT1`/`OT2`, and the
-flex tables use `DE`/`OT` families — so the maths is already left/right-agnostic. **The change is in the
-labels and the prose, not the model.** The guide's flex chart (in the draft-roster order) must show the
-edge as "Edge" and the tackle as "Offensive tackle", with no left or right.
-
-### P12-3 · The punter
-**"Claude determines the punter's value but probably 1 in the traditional 'model weights'."**
-The weight stays **1** in the model-weights table (it is already 1, and it is the floor). **How the sim
-treats a punter — whether the draft values him at all, and how the CPU thinks about the spot — is the
-Architect's call, not the council's.** The council's note: the punter is the only specialist with no
-wins model at all, so his "value" in the draft today is a floor rather than a measurement. **If the
-Architect wants a punter to be worth something, it needs a model, and that is a protected change.**
-
-### P12-4 · The fullback blocks like a lineman, not like a running back
-**"FB get a much heavier block spec than a RB."** Today `HB` is one position group — `RB1` and `RB2`
-share it — and the fullback is the same player type as the running back. **For the fullback to block
-"much heavier", it needs to be distinguishable, and there are two ways:**
-1. **Split the position group** — `HB` becomes `RB` and `FB`, with the fullback in the run-blocking
-   unit at a much higher weight (a fullback is a blocker first and a runner second). This is a real
-   model change: `RATING_SPECS`, and the position groups in the draft.
-2. **Keep the group and add a rating-driven rule** — a fullback's blocking contribution scales with
-   his "blocking" attribute, if the player data has one. **Whether the data supports option 2 is a
-   question the Architect can answer in one look at `PLAYERS`.**
-
-The council's preference is **option 2 if the data allows it** (no protected change, no new group, and
-it models what the Owner actually said: the fullback's *block spec*). Option 1 is the fallback, and it
-belongs in a later edition.
-
-### P12-5 · "Value here" is gone from the whole website
-**"Remove 'Value here' completely from the website. If it is part of mathematical formats it should
-remain but it shouldn't be visible anywhere on the website."**
-
-The column, the guide bullet, the tooltip and the section title are already gone (P0-1). **What is left
-is the one visible mention that is easy to miss: the sort dropdown's option label.** The council's
-build renamed it `Sort: slot value`; the Owner's instruction is stricter, so:
-```js
-// WHERE: the sort dropdown (candidate line 418)
-// WHAT: REMOVES the last visible mention of the idea. The maths (r.v) is untouched; only the label
-//        a user can read changes. "Sort: slot value" still says "value" - use a neutral word.
-- <option value="value">Sort: slot value</option>
-+ <option value="value">Sort: slot rating</option>
-```
-**And a sweep for the word in every visible string** — the guide, the tooltips, the buttons, the
-recaps. `verify-anchors.mjs` checks the other direction (old strings that should be there); this one
-wants the opposite: a grep for "value here" across the build's *user-facing* strings, which should
-return **nothing** even after the maths is untouched.
-
-### P12-6 · The stars: who gets named
-**"60 yards rushing for all players. At least 300 yards and 3/1 TD ratio for QBs to be mentioned as stars."**
-
-| Player | Named as a star when |
-|---|---|
-| any offensive player | **60+ rushing yards** (the Owner's floor — the 60-yard rule replaces the "60 yards" threshold the council had already proposed) |
-| a quarterback | **300+ passing yards** and a **3:1 touchdown-to-interception ratio** |
-| a defensive player | as the council proposed: takeaways, pressures, sacks and the like — 1–2 sacks is "mid", 3+ is "exceptional" |
-
-**And the rule the Owner wants underneath it:** the star slots are reserved for **90+ rating
-performances**, and the rating is never shown to the user — it decides *who* is named, not what the
-user sees.
-
-### P12-7 · The 3-4 lets the user swap a DT for a linebacker
-**"The 3-4 allows the user to swap out a DT for another Linebacker. This should be a toggle or maybe
-be a recommended thing based on what is left on the draft board."**
-
-```js
-// WHERE: the draft setup / preseason base control (P0-16, P10-2)
-// WHAT: ADDS a swap. In a 3-4 the nose tackle slot (DT1) can be filled by a linebacker instead of a
-//        defensive tackle, and the board's own recommendation can make the swap for the user.
-//
-// Two shapes, and the council's preference:
-//   (a) a TOGGLE on the draft and preseason pages: "3-4, nose as a linebacker" — the user's call.
-//   (b) a RECOMMENDATION: the board suggests the swap when the remaining defensive tackles are thin
-//       and a linebacker is available, and says why ("3 linebackers left, 1 defensive tackle").
-// (b) is the better answer, because the Owner's own phrase is "or maybe be a recommended thing based
-// on what is left on the draft board" - the board already knows the counts. Do (a) and (b): the
-// toggle, and the board's recommendation beside it.
-```
-**The maths note:** the swapped slot must be worth the linebacker's spot, not the tackle's — the same
-rule the Owner gave for the 3-4 (OLB ≡ WILL, ILB ≡ MIKE). A nose playing linebacker is worth a
-linebacker; a linebacker playing nose is worth a nose. **This has to be stated in the guide, in the
-same place the OLB/ILB rule is stated.**
-
-### P12-8 · No task is ever assigned to a named seat
-**"Because some agents will be occasionally limited by rate limits, no specific assignment should ever
-be assigned to a specific agent. All tasks should be posted openly and whoever is available will begin
-working on the tasks in priority."**
-
-This is now a **rule in AGENTS.md** ("the queue is suggestions, not assignments") and a line in every
-council message this round. The practical form:
-- a task is posted **with its priority, its scope and the acceptance bar** — never with a name;
-- **the first free seat takes the highest-priority open task** and says so in the bulletin;
-- a seat that is rate-limited or busy says "not taking tasks this round" once, in the bulletin, and
-  the queue moves on without anyone chasing it.
