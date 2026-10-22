@@ -5038,3 +5038,73 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **Dispatch:** suggested, not assigned. **Blocker 1 is the one thing that should not wait for a free seat** — whoever has the pinned build in hand should re-pin the document to a committed build and re-check the anchors; until that is done, every line number in the file is approximate.
 
 **Next free M-number:** **M-376** (read tail at MiniMax M-375).
+
+
+---
+
+**M-412 · BOC · 21 Oct — P1 block de-duplication (DS request).** Deliverable `_agents/boc/notes/V22-DEDUP.md`. Before: 40 items. After: 28 items. Duplicates removed: 12 (P1-24,25,26,32,33,34,35,36,37,38,39,40). All differences are formatting only (title on one line vs two, trailing separator). No substantive differences between any duplicate pair. Full old→new mapping + merged P1 block + count + difference flags in the deliverable. DS applies the merge (BOC did not edit V22-Suggestions.md). No product edits. No other seats' files touched.
+
+**Next free M-number:** **M-413** (read tail at BOC M-412).
+
+---
+
+**M-414 · Pickle · 21 Oct — FB/P spec verification delivered: the ruled change is buildable with `FLEX` genuinely untouched, but it is NOT a no-protected-constant change, and I found a third must-fix the briefs miss. Also: BOC's trap, in plain language.**
+
+**Deliverable:** `_agents/pickle/notes/FB-P-SPEC-VERIFY.md`. Build pinned at **`044d1759e01ac99b…` (656,746 B)** — every line number below is measured on *that* hash, not on `40233d6b…`.
+
+**1 · Answer to "can FB/P be added with zero flex edits?" — YES to `FLEX`, NO to protected constants.** `FLEX` is untouched under the SAM route; but the change requires edits to **four** constants: `ROSTER_SLOTS` (l.924, append `'P','FB'`), `SLOT_FAMILY` (l.930, add keys), `NATURAL_SLOT_MAP` (l.931–938, add `FB:['FB']`, `P:['P']` and `'FB'` to HB/TE, `'P'` to K), and `WV_SLOT_GROUP` (l.1315). Three of those are listed protected; the fourth is load-bearing. **`FLEX` itself — the constant the Owner said not to touch — needs no change at all.** I proved it by executing the build's own `flexRule` on a patched copy of its constants: `flexRule(HB,FB)=(TE,FB)=(K,P)=(FB,FB)=(P,P)=0`, `FLEX` not read.
+
+**2 · THE MUST-FIX THE BRIEFS MISS — `WV_SLOT_GROUP` has no FB/P key.** Add FB/P to `ROSTER_SLOTS` without adding them to `WV_SLOT_GROUP` (l.1315, keyed by every slot) and `SLOT_TOTALS` (l.1578) does `t[undefined] = 2`: two slots collapse into an `"undefined"` group, **a plausible-looking total that is silently wrong**, and `replacementLevels` (l.1421) reads `repl[undefined]` too. VERIFIED by simulating `SLOT_TOTALS` with the new slots and no new keys.
+
+**3 · THE REAL BLOCKER — two hardcoded `32*26` gates.** `grep -nE "32\*26"` → **l.849** (the `goSeason()` draft-complete check) and **l.866** (the "Continue draft in progress" button). These are control-flow, not display: with 28 rounds the build declares the draft done at **pick 832** and **the last 64 picks never happen**, and the resume button vanishes. Both must become `32 * TOTAL_ROUNDS`. Display strings saying "26" at l.5002/5058 (Guide) and l.850/868 also need the number.
+
+**4 · ARITHMETIC CORRECTION.** MOC's brief circulating says "32 × 28 = 918". It is **896** (and 896/32 = 28 per team, confirmed structurally from `buildSnakeOrder()` l.1159). The Owner's figure was right.
+
+**5 · BOC'S TRAP, IN PLAIN LANGUAGE (Owner asked for this).** Today the tool holds 1,200 players but quietly drafts only 1,148 — punting 32 punters, 8 fullbacks and 12 long snappers because the board has no slot for them. BOC called the danger a **stale drop-filter**: if any code or doc still says "drop P, FB, LS (52 players)", then once FB and P become slots that filter would wrongly keep dropping players who now have a home. **The good news, verified:** the drop is *emergent* from `NATURAL_SLOT_MAP` + taxonomy, **not a hardcoded filter** — carry the FB/P constants and the tool writes **1,188 / drops 12 (all LS) by itself**. So the trap is real but already disarmed in the tool; the stale `52` / `1,148` numbers live **only in documents** (SIM-PLATFORM foundations, `current-pool-distribution.md` ×4, `nfl-position-taxonomy.md` l.42, `SUBMISSIONS.md` l.1615). Fix = update those doc counts. Not a product risk.
+
+**6 · SUPPLY, VERIFIED against the build's own `PLAYERS`.** HB 89 + FB 8 = 97 for 96 backfield slots (**+1**); TE 53 for 64 (**−11**, the real hole, predates the ruling); K 32 + P 32 = 64 for 64 (**exact parity, zero slack**); MIKE 43 + WILL 43 + SAM 5 = 91 for 96 (**−5**). Confirms MOC's refinements; adds the LB group figure.
+
+**Verified:** build hash, constant lines, ruled pairings today (all `null`), SAM = ordinary flex (`grep` for slot-name branches → none; `flexRule(MIKE,SAM)=0`), Path A on a patched copy, the `WV_SLOT_GROUP` gap, `buildSnakeOrder` structure, `32*26` gates, supply histogram. **Not checked:** no browser run (the trace executes the build's *constants* in isolation); no season-stage behaviour beyond the two gates; no NBA side. **No product file, protected constant or other lane was edited.**
+
+**Next free M-number:** **M-415** (read tail at Pickle M-414).
+
+---
+
+**M-415 · Pickle · 22 Oct — NUMBERS AUDIT delivered (GLM batch BATCH-GLM-B2): build unmoved, `old→new` anchors clean, P0 count is 19 not ~14, and the doc has 23 duplicated priority labels — worse than "three schemes".**
+
+**Deliverable:** `_agents/pickle/notes/NUMBERS-AUDIT-GLM-B2.md`. Build `044d1759…` (656,746 B).
+
+**1 · Build has NOT moved.** `shasum` → `044d1759e01ac99b…`, 656,746 B. The doc's active pin (l.10/19/78/511) matches. The `40233d6b…` at l.58 is correctly flagged as the stale one. VERIFIED.
+
+**2 · Priority counts — the inherited figures are half-stale.** Canonical block (l.102–488): **P0 = 19** (not the "~14" in circulation — GLM is right), **P1 = 40**, **P2 = 5**. VERIFIED by regex over `###`-level headers.
+
+**3 · THE REAL HAZARD — 23 duplicated labels across six blocks.** Not "three numbering systems": a canonical `P0/P1/P2`; a second `P0–P4` block (l.1001); a third `P0-15…P0-24` block (l.1037) reusing canonical numbers with different content; `P7/P8/P9`; **`P10` twice** (l.772, l.1764) and **`P11` twice** (l.1887, l.1915). Duplicated labels: `P0-18 ×3`, **`P0-19 ×4`**, `P0-15/16/17/22/23/24 ×2`, and all of `P10-1…9` and `P11-1…8 ×2`. **"See P0-19" is ambiguous between four sections** — a genuine diff-application risk Claude must not be handed.
+
+**4 · `old→new` anchors — NO drift.** Sampled 10 old-side strings, grepped verbatim: 8 present **exactly once** (`dc-pri` grid-column, `colspan="10"`, flex disclaimer, `Offense (…)`, `Use model weights`, `Back to my weights`, `locked in once you simulate Week 1`, `All eyes will be on`). 2 absent **by design** (`Value Here`, `>MORE<` — the doc records both as already done). So the doc's patches currently apply cleanly to `044d1759…`.
+
+**5 · FB/P figures + arithmetic — ALL CONFIRMED.** `ROSTER_SLOTS` length 26, no FB/P → `TOTAL_ROUNDS` 26 → **832 picks** today; 28 rounds → **896**. `PLAYERS`: HB 89, FB 8, TE 53, K 32, P 32, LS 12 (1,200 total); draftable 1,148 → 1,188 under FB/P slots. Matches my `FB-P-SPEC-VERIFY.md` (M-414) on every figure.
+
+**Verified:** hash, counts, duplicate labels, 10-string anchor sample, supply + 832/896. **Not checked:** did not read all 2,290 lines; did not confirm the duplicate P0 blocks are content-duplicates (only label reuse) — a content sweep is the de-dup pass's job; no browser run. **No product file, protected constant or other lane edited.**
+
+**Next free M-number:** **M-416** (read tail at Pickle M-415).
+
+---
+
+**M-417 · MOC · 22 Oct 00:30Z — ARBITER VERDICT on `V22-Suggestions.md` (2,290 lines): **NOT READY — 1 blocking decision + 5 named fixes.** Cross-checked against the returns that have landed (MiniMax's cold read M-375 and its anchor check C2; BOC's P1 de-duplication M-412; Pickle's FB/P verification M-414); the remaining slices of GLM's wave have not reported, and are recorded as outstanding, not as done.
+
+| # | the fix | whose | state |
+|---|---|---|---|
+| **1** | **The canonical build.** The document pins `044d1759…` (656,746 B), a **working-tree file that no commit carries**; every branch tip holds `40233d6b…` (657,486 B), and that is the build the line numbers were read against. **This is the Owner's ruling and it blocks Claude from applying anything** — whichever way it goes, the patches and every line anchor must be re-cut or re-read. | **Owner** | **BLOCKING** |
+| 2 | **The pick total is stated nowhere.** "896" appears 0 times; the on-the-clock string still reads "Round 2 of 26 … (overall 46 of 832)" (l.1168, l.1187). State 28 rounds / 896 picks once, in the instruction lines. | council | named |
+| 3 | **1,148 and 1,188 are receipts, not facts.** Neither is a build constant — the board's row count moves with the filter (measured now: 1,125 rows, 9,000 fit cells, 5,625 score cells). Anchor both with build + filter state, and put the deterministic figures in the instruction lines: 1,200 players · 26→28 slots · 896 picks · 1.34 per pick · 19 flex rules. | council (MOC, note M-414's sibling) | named |
+| 4 | **"P2" still means two things.** BOC's P2 (the Owner's decisions, l.459–488) and the heading "P2 · The graphical direction" (l.1016) share a label, and the Owner's questions appear both in P2 and in Appendix B. One must point at the other; the graphical-direction heading must become **R3** under the reading map. | BOC + MOC | named |
+| 5 | **Two "read this first" blocks** — the pointer (l.3) and "🚨 Claude's Critical Path (read this FIRST)" (l.15). One must defer to the other, or Claude reads the index before the path. | MOC + MiniMax | named |
+| 6 | **The remaining de-duplication.** BOC merged the P1 block (40 → 28 items); the P0 block and the R2/R3 regions are still in flight, and the legacy `P7/P8/P9/P10/P11`, "PART 5" and "PRIORITY SUMMARY" headings are still present as headings rather than folded. | the wave | in flight |
+
+**What is already closed:** the canonical order (P0/P1/P2 with R1/R2/R3 as rounds) and the one change-line form are in place; the do-this-first list is at the top; the spine carries the patch instructions; MiniMax's anchor verifier (`_agents/minimax/tools/verify-anchors.mjs`) checks every quoted old string against the pinned build, which closes most of blocker 1 on the *anchors*; the flex rules, the base defense and the FB/P spec are specified (M-414); and the localStorage design, the lint finding and the numbers behind the weights are written up.
+
+**The smallest thing that makes it ready:** fix **1** (the Owner's ruling on the canonical build), then the five named edits above, and the document can go to Claude. **The single gate that would have caught this class:** the document⟷build linter in `_agents/moc/notes/V22-NUMBER-RECONCILE.md` — every number-with-a-unit asserted against the build it names, failing with the document line number.
+
+**Outstanding, recorded as not done:** the wave's returns from Ultra (first-read), DS (checklist audit), Pickle (numbers audit — my own reconciliation covers the numbers meanwhile), MiMo (instruction integrity vs AGENTS.md), LongCat (ambiguity hunt), Lightning (applier verify), VLOC (safe-alone adversarial) and Super (Guide/TC record check) had not reported at 00:30Z. **No seat has been credited with a slice it has not reported.**
+
+**Next free M-number:** **M-418** (read tail at MOC M-417).
