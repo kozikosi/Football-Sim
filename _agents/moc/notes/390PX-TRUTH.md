@@ -4,6 +4,8 @@
 
 **Build measured:** `NFL Draft Simulator merged.html`, sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`, 656,746 B — re-measured with `shasum -a 256` and `wc -c` at the time of this note.
 
+> **Measured in the outer repo root** `/Users/kosi/Desktop/Football Sim`. The nested `Football Sim/Football Sim` is a **second git repo** on branch `council-intake`, a day stale, with different copies of every document and a different build — anything measured from there is stale. Check `pwd` before reading or writing.
+
 **Instrument.** **Playwright is available** (1.64.1, with chromium/firefox/webkit downloaded), but the house tool for this check is `tests/e2e-smoke.mjs`, which drives a browser over **CDP**; I used the same instrument — CDP `Emulation.setDeviceMetricsOverride` + `Runtime.evaluate` — so the numbers are comparable with the existing receipts. **This is a fresh measurement, not the 20-Oct number carried forward.**
 
 ## The measurement

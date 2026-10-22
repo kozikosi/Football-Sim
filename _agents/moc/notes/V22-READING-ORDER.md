@@ -15,7 +15,7 @@
 7. **Verification checklist (run after each P0 edit)** — *moved up to sit with the items it gates*, not after P2.
 8. **P1 — Architect decisions** — Claude's calls.
 9. **P2 — Owner decisions** — Kosi's calls, five of them.
-10. **FILES TO MODIFY / NEXT STEPS FOR CLAUDE / V21 → V22 Transition** — merged into one short "reference" block after the spine.
+10. **FILES TO MODIFY / NEXT STEPS FOR CLAUDE / the transition to V22** — merged into one short "reference" block after the spine.
 
 ## (b) What must be on screen one — the top 60 lines
 

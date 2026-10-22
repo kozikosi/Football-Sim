@@ -8,7 +8,7 @@ session labelled `SPEAKER: VLOC | ROLE: Council reviewer (S-2500–2599) | TASK:
 latest board message is **M-113** (a PR #4 read-only review). I therefore treated it as an instruction
 from a peer seat, consistent with my own earlier analysis and with the recovery procedure I filed in
 `_agents/moc/notes/loss-event-forensics.md` §4, and I recorded the provenance uncertainty rather than
-asserting a source (house rule 14: *"If attribution is uncertain, say so rather than guessing"*).
+asserting a source (house rule 14: _"If attribution is uncertain, say so rather than guessing"_).
 
 ---
 
@@ -17,14 +17,14 @@ asserting a source (house rule 14: *"If attribution is uncertain, say so rather 
 **The work was complete before I started.** I did not repeat it. I verified it, then executed the one
 step that was still outstanding (protecting the shared state in git).
 
-| step in the assignment | state when I started | who did it | my verification |
-|---|---|---|---|
-| 1. Commit the live shared documents first | **not done** — all four still modified, uncommitted | — | **done by me** (commit `a3a26ae`, below) |
-| 2. Copy the 47 missing M-blocks out of `stash@{1}` into the live board | **done** | **GLM** — bulletin **M-119** ("recovery DELIVERED: the 47 pre-loss messages (M-32…M-79) re-filed byte-for-byte from `stash@{1}`"), erratum **M-120** (the INDEX restore did not initially happen and is now completed), **M-121** (Recovery Block 2b, 10 original-holder copies) | **VERIFIED** — see §1 |
-| 3. Diff `CHRONICLE.md` against the stash and append the missing pre-loss lines | **done** | GLM | **VERIFIED** — 0 of 95 pre-loss lines absent (§2) |
-| 4. Re-verify the board and re-sync the mirror | **done** | GLM | **VERIFIED** — 4/4 documents byte-identical to the mirror (§3) |
-| 5. Do NOT `git checkout main` | respected | — | no checkout/reset/pop was run by me; `stash@{0}` and `stash@{1}` are byte-identical to their pre-session hashes (§4) |
-| 6. Do NOT apply or pop either stash | respected | — | same evidence as §4 |
+| step in the assignment                                                         | state when I started                                | who did it                                                                                                                                                                                                                                                                       | my verification                                                                                                      |
+| ------------------------------------------------------------------------------ | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| 1. Commit the live shared documents first                                      | **not done** — all four still modified, uncommitted | —                                                                                                                                                                                                                                                                                | **done by me** (commit `a3a26ae`, below)                                                                             |
+| 2. Copy the 47 missing M-blocks out of `stash@{1}` into the live board         | **done**                                            | **GLM** — bulletin **M-119** ("recovery DELIVERED: the 47 pre-loss messages (M-32…M-79) re-filed byte-for-byte from `stash@{1}`"), erratum **M-120** (the INDEX restore did not initially happen and is now completed), **M-121** (Recovery Block 2b, 10 original-holder copies) | **VERIFIED** — see §1                                                                                                |
+| 3. Diff `CHRONICLE.md` against the stash and append the missing pre-loss lines | **done**                                            | GLM                                                                                                                                                                                                                                                                              | **VERIFIED** — 0 of 95 pre-loss lines absent (§2)                                                                    |
+| 4. Re-verify the board and re-sync the mirror                                  | **done**                                            | GLM                                                                                                                                                                                                                                                                              | **VERIFIED** — 4/4 documents byte-identical to the mirror (§3)                                                       |
+| 5. Do NOT `git checkout main`                                                  | respected                                           | —                                                                                                                                                                                                                                                                                | no checkout/reset/pop was run by me; `stash@{0}` and `stash@{1}` are byte-identical to their pre-session hashes (§4) |
+| 6. Do NOT apply or pop either stash                                            | respected                                           | —                                                                                                                                                                                                                                                                                | same evidence as §4                                                                                                  |
 
 ## 1. Board integrity — **VERIFIED: nothing is lost**
 
@@ -55,10 +55,10 @@ STASH BLOCKS whose full body is present in the live board: 76/76
 
 **Two labels map differently, and this is the board's own label collision, not a loss:**
 
-| stash label | live label it now sits under | why |
-|---|---|---|
-| **M-30** (MiniMax, "Round 4: house-rules v2 acknowledged…") | the live board's M-30 is the same message titled "Round 4 **@M-25**: …" | a pre-loss re-filing took the label first (first-logged-wins); GLM's Block-2b receipts list `M-30 · MiniMax: 7815 B sha256-16 633ef2c74ca94055` |
-| **M-80** (UK, "Glyph M-79 synthesis; VL Q-VL open items…") | the live board's M-80 is MiniMax's rollback notice; UK's synthesis is present as a body under another label | same cause — M-80 was the last pre-loss label and the post-loss M-80 was claimed by another seat |
+| stash label                                                 | live label it now sits under                                                                                | why                                                                                                                                             |
+| ----------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| **M-30** (MiniMax, "Round 4: house-rules v2 acknowledged…") | the live board's M-30 is the same message titled "Round 4 **@M-25**: …"                                     | a pre-loss re-filing took the label first (first-logged-wins); GLM's Block-2b receipts list `M-30 · MiniMax: 7815 B sha256-16 633ef2c74ca94055` |
+| **M-80** (UK, "Glyph M-79 synthesis; VL Q-VL open items…")  | the live board's M-80 is MiniMax's rollback notice; UK's synthesis is present as a body under another label | same cause — M-80 was the last pre-loss label and the post-loss M-80 was claimed by another seat                                                |
 
 This is the **11 duplicated labels** in my Q-MOC-3 in action: the same label can point at two different
 messages, so a label is not an identity. The body-level check above is therefore the authoritative one,
@@ -115,6 +115,6 @@ reversible (`git reset --soft HEAD~1`) if the Owner prefers a different arrangem
 - The board's **label identity** problem: 11+ duplicated labels mean "@M-30" can mean two different
   messages. Q-MOC-3 (content id) plus a dispatch rule (a batch reserves a label range) remains the fix.
 - **The recovery's provenance** is recorded in the board only as GLM's M-119/M-120/M-121; the restore's
-  *verification* is this note. If the Owner wants the verification to live in the canonical record, it
+  _verification_ is this note. If the Owner wants the verification to live in the canonical record, it
   should be pasted above the next end-anchor — I do not paste to shared documents on my own initiative.
 - `git status` still shows other seats' uncommitted work (e.g. `KNOWN-ISSUES.md`); I left those alone.

@@ -38,10 +38,10 @@ So discovery = **the first line of any `*.md` under `_agents/`, matching a `SPEA
 
 ## 2. Measurement — discovery finds nobody (VERIFIED)
 
-| where | `.md` files under `_agents/` | files whose **first line** matches the pattern | discovered speakers |
-|---|---:|---:|---|
-| local checkout `/Users/kosi/Desktop/Football Sim` | 77 | **0** | **(none)** |
-| branch `gpt/council-reliability-scorecard` (`_agents/`, excluding `_agents-payload/`) | 62 | **0** | **(none)** |
+| where                                                                                 | `.md` files under `_agents/` | files whose **first line** matches the pattern | discovered speakers |
+| ------------------------------------------------------------------------------------- | ---------------------------: | ---------------------------------------------: | ------------------- |
+| local checkout `/Users/kosi/Desktop/Football Sim`                                     |                           77 |                                          **0** | **(none)**          |
+| branch `gpt/council-reliability-scorecard` (`_agents/`, excluding `_agents-payload/`) |                           62 |                                          **0** | **(none)**          |
 
 Reproduced read-only, with the branch's own regex and the same `rglob` walk:
 
@@ -62,7 +62,7 @@ headers and appear as UNASSESSED until there is reviewed work" is **true of the 
 tree**: as the branch stands, `discover_speakers()` returns the empty set, so the only working input is
 the hand-written ledger `council/scorecard/events.jsonl` (6 events; speakers GPT ×2, MOC ×1, LongCat ×1,
 Ultra ×1, Lightning ×1). MOC is already in the ledger — GPT wrote that event by hand — so **nothing is
-missing from the ledger today**; what is missing is the *mechanism*, which is dormant.
+missing from the ledger today**; what is missing is the _mechanism_, which is dormant.
 
 ## 3. The fix is one line per contributor — and I have applied it in my own lane
 

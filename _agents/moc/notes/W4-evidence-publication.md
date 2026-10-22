@@ -8,20 +8,19 @@ Acting on the Owner's earlier instruction ("attach or link the current result JS
 trace from a durable location in the PR discussion. The 65 MB trace should be linked as an artifact rather
 than committed to the product branch"), I did the following **before** the council brief arrived:
 
-| action | detail | when (UTC) |
-|---|---|---|
-| created a release | `e2e-evidence-2026-10-20T225702Z` on `kozikosi/Football-Sim` | 23:28:06 |
-| uploaded 9 assets | `result.json`, `SUPERSEDED.md`, `test-script.spec.js`, `OPENCHAMBER-E2E-RESULT.schema.json`, `screenshots.zip` (19,697,908 B), `trace-1792537070181.zip` (65,863,244 B), `schema-validation.txt`, `trace-playoffs-forensics.txt`, `validate-e2e-result.py` | 23:28–23:30 |
-| posted a comment on PR #3 | the reconciliation, 13,822 chars | 23:29:10 |
-| verified | every asset URL returns HTTP 200; `result.json` re-downloaded and hashed → `d64a5f9b…` (identical) | after |
+| action                    | detail                                                                                                                                                                                                                                                     | when (UTC)  |
+| ------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| created a release         | `e2e-evidence-2026-10-20T225702Z` on `kozikosi/Football-Sim`                                                                                                                                                                                               | 23:28:06    |
+| uploaded 9 assets         | `result.json`, `SUPERSEDED.md`, `test-script.spec.js`, `OPENCHAMBER-E2E-RESULT.schema.json`, `screenshots.zip` (19,697,908 B), `trace-1792537070181.zip` (65,863,244 B), `schema-validation.txt`, `trace-playoffs-forensics.txt`, `validate-e2e-result.py` | 23:28–23:30 |
+| posted a comment on PR #3 | the reconciliation, 13,822 chars                                                                                                                                                                                                                           | 23:29:10    |
+| verified                  | every asset URL returns HTTP 200; `result.json` re-downloaded and hashed → `d64a5f9b…` (identical)                                                                                                                                                         | after       |
 
 **Release URL:** <https://github.com/kozikosi/Football-Sim/releases/tag/e2e-evidence-2026-10-20T225702Z>
 **PR comment:** <https://github.com/kozikosi/Football-Sim/pull/3#issuecomment-6304124055>
 
 **Two things the Owner should know:**
-
 1. **The repository is public** (`gh repo view --isPrivate` → `false`), although R1 calls the project
-   internal. A *published* release therefore makes these assets publicly downloadable. The content is the
+   internal. A _published_ release therefore makes these assets publicly downloadable. The content is the
    simulator's own public screenshots and a trace of a public app — no credentials, no personal data — but
    the visibility change is real and is the Owner's call.
 2. **I published rather than proposed**, because the brief's W4 says "Do not upload, merge, or change the
@@ -45,13 +44,13 @@ contained the trace.
 
 ## 2. Proposal (if the Owner wants the artefacts elsewhere)
 
-| option | where the evidence lives | pros | cons | default |
-|---|---|---|---|---|
-| **A. Published release (current state)** | GitHub release assets on the public repo | durable, versionable, standard download URLs, no branch pollution, no size limit | assets become public on a public repo; a release is immutable-ish (assets can be replaced, the tag can move) | **current choice** — it matches the protocol's own instruction |
-| B. Draft release | same, but not published | private to collaborators | **the download URLs 404** — a draft release's assets are not linkable, so this fails the brief's "durable location" requirement | rejected, with the caveat measured (I tried it: `/releases/download/…` → *Not Found*) |
-| C. GitHub Actions artifact | an artifact from a workflow run | the native CI mechanism, 90-day retention | needs a workflow on the branch (the PR branch has none), retention is short, and it is a moving target | rejected |
-| D. Commit the small files to the PR branch, keep the trace on a release | `tests/evidence/…` on `gpt/openchamber-e2e-suite` | per-file permanent blob URLs inside the PR; reviewers see the evidence in the diff | adds a commit to another seat's branch; the 20 MB of PNGs would bloat the repo history | **recommended next step, on assignment** — commit only `result.json` (+ the v2 record) and the script; leave PNGs and trace on the release |
-| E. The owner's own storage | any object store the Owner controls | full control, private | not linked from the PR without a stable public-ish URL | available if the Owner prefers a private location |
+| option                                                                  | where the evidence lives                          | pros                                                                               | cons                                                                                                                            | default                                                                                                                                    |
+| ----------------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| **A. Published release (current state)**                                | GitHub release assets on the public repo          | durable, versionable, standard download URLs, no branch pollution, no size limit   | assets become public on a public repo; a release is immutable-ish (assets can be replaced, the tag can move)                    | **current choice** — it matches the protocol's own instruction                                                                             |
+| B. Draft release                                                        | same, but not published                           | private to collaborators                                                           | **the download URLs 404** — a draft release's assets are not linkable, so this fails the brief's "durable location" requirement | rejected, with the caveat measured (I tried it: `/releases/download/…` → _Not Found_)                                                      |
+| C. GitHub Actions artifact                                              | an artifact from a workflow run                   | the native CI mechanism, 90-day retention                                          | needs a workflow on the branch (the PR branch has none), retention is short, and it is a moving target                          | rejected                                                                                                                                   |
+| D. Commit the small files to the PR branch, keep the trace on a release | `tests/evidence/…` on `gpt/openchamber-e2e-suite` | per-file permanent blob URLs inside the PR; reviewers see the evidence in the diff | adds a commit to another seat's branch; the 20 MB of PNGs would bloat the repo history                                          | **recommended next step, on assignment** — commit only `result.json` (+ the v2 record) and the script; leave PNGs and trace on the release |
+| E. The owner's own storage                                              | any object store the Owner controls               | full control, private                                                              | not linked from the PR without a stable public-ish URL                                                                          | available if the Owner prefers a private location                                                                                          |
 
 ## 3. What is still missing from the published set, and why I did not add it
 
@@ -60,7 +59,6 @@ The **proposed corrected result record** (`_agents/moc/notes/result.v2.proposed.
 uploaded, because the brief now says not to change the PR without assignment. They are ready to attach on
 one word, and the brief's W5 explicitly wants "a new, clearly versioned file or correction record that
 points to the original and explains the difference" — the v2 record is exactly that:
-
 - it **does not modify** the original (`d64a5f9b…` is cited in its first note);
 - it corrects the Week 1 reason, the screenshot count (26) and the schema-validation claim;
 - it is **schema-valid** (jsonschema 4.25.1, Draft 2020-12 + FormatChecker → 0 errors, 17/17 required
@@ -80,7 +78,7 @@ points to the original and explains the difference" — the v2 record is exactly
    `e2e-<epoch-ms>` and the file is `result.json`. Recommended default: publish the copy under the
    protocol's name and keep the local path too. Cost: nothing.
 3. **A "run id" that is immutable.** Today the only run identifier is a directory name that a later run
-   would not overwrite, but the *result file inside it* was overwritten. Recommended default: the harness
+   would not overwrite, but the _result file inside it_ was overwritten. Recommended default: the harness
    writes `result.<runId>.json` and never mutates it (W3 R6). Cost: one line in the harness.
 
 ---

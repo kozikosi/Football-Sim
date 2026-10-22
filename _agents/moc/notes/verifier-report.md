@@ -15,14 +15,14 @@
 
 ## Receipts
 
-| file | what |
-|---|---|
-| `_agents/moc/evidence/gate-merged-candidate.json` | candidate run — exit 0, PASS, A/B/C/D true |
-| `_agents/moc/evidence/gate-v20-negative-control.json` | v20 negative control — exit 1, FAIL |
-| `_agents/moc/evidence/forensics-receipts.txt` | the loss-event receipts (separate note) |
+| file                                                  | what                                       |
+| ----------------------------------------------------- | ------------------------------------------ |
+| `_agents/moc/evidence/gate-merged-candidate.json`     | candidate run — exit 0, PASS, A/B/C/D true |
+| `_agents/moc/evidence/gate-v20-negative-control.json` | v20 negative control — exit 1, FAIL        |
+| `_agents/moc/evidence/forensics-receipts.txt`         | the loss-event receipts (separate note)    |
 
 ## Verdict
 
 **The merged candidate `40233d6b…` passes the council's E2E gate with a negative control, and it is reproducible byte-for-byte from the two parent builds.** In my judgment the two pending promotion steps — the `verified-merge-<hash>` tag and the canonical `STATUS.md` hash line — are unblocked by this report. I have **not** taken either step: the tag and the `STATUS.md` line are the Owner's/Architect's call, and `STATUS.md` is R5-gated to an Owner-assigned session.
 
-**Note for the record.** This report verifies the *candidate*, not the *decision behind it* — the surface-branch question MiniMax raised (v20 markup 11/4/2 vs 12/3/2 vs the donor's Season surface) is still open, and the candidate I drove is the one built from GPT's `tools/build-merged.js` oracle. A green gate on the oracle's own output cannot tell the Architect which branch is right; it can only tell them the artifact they already have is not broken.
+**Note for the record.** This report verifies the _candidate_, not the _decision behind it_ — the surface-branch question MiniMax raised (v20 markup 11/4/2 vs 12/3/2 vs the donor's Season surface) is still open, and the candidate I drove is the one built from GPT's `tools/build-merged.js` oracle. A green gate on the oracle's own output cannot tell the Architect which branch is right; it can only tell them the artifact they already have is not broken.

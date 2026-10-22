@@ -9,20 +9,20 @@ below carries a command or is labelled.
 
 ## 1. Reachability of the three records the Owner named (VERIFIED)
 
-The Owner's message this run says: *"The durable working records are in PR #4, especially
+The Owner's message this run says: _"The durable working records are in PR #4, especially
 `OWNER-PRODUCT-DIRECTION.md` and `_agents/gpt/research/all-time/design/nba/OWNER-DESIGN-DIRECTION.md`.
-The shared E2E and council-assessment notes are in PR #3 and PR #5."*
+The shared E2E and council-assessment notes are in PR #3 and PR #5."_
 
 Measured from this working tree (branch `merge/v20-donor` @ `ff8c05ae`):
 
-| record the Owner named | in the working tree? | in the PR branch ref? | verdict |
-|---|---|---|---|
-| `OWNER-PRODUCT-DIRECTION.md` | **ABSENT** (`ls` → No such file) | **PRESENT** on `origin/gpt/all-time-player-source-intake-20261020` | **VERIFIED-ABSENT from the tree** |
-| `_agents/gpt/research/all-time/design/nba/OWNER-DESIGN-DIRECTION.md` | **ABSENT** | **PRESENT** on the same ref | **VERIFIED-ABSENT from the tree** |
-| `tests/OPENCHAMBER-E2E.md` (E2E protocol, PR #3) | **ABSENT** | **PRESENT** on `origin/gpt/openchamber-e2e-suite` | **VERIFIED-ABSENT from the tree** |
-| `COUNCIL-RELIABILITY-RULE.md` (PR #5 rule) | **PRESENT at root** (9,713 B, 15:28) and **tracked** | also on `origin/gpt/council-reliability-scorecard` | **VERIFIED-PRESENT** |
-| `COUNCIL-SCORECARD.md`, `scripts/build_council_scorecard.py`, `council/scorecard/events.jsonl` | **ABSENT** | **PRESENT** on the PR #5 ref | **VERIFIED-ABSENT from the tree** |
-| `OWNER-DIRECTION.md` (root copy of the direction) | **PRESENT at root** (11,370 B, 15:22) but **UNTRACKED** | — | **VERIFIED-PRESENT but untracked** — it can be lost to a `git clean` |
+| record the Owner named                                                                         | in the working tree?                                    | in the PR branch ref?                                              | verdict                                                              |
+| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------ | -------------------------------------------------------------------- |
+| `OWNER-PRODUCT-DIRECTION.md`                                                                   | **ABSENT** (`ls` → No such file)                        | **PRESENT** on `origin/gpt/all-time-player-source-intake-20261020` | **VERIFIED-ABSENT from the tree**                                    |
+| `_agents/gpt/research/all-time/design/nba/OWNER-DESIGN-DIRECTION.md`                           | **ABSENT**                                              | **PRESENT** on the same ref                                        | **VERIFIED-ABSENT from the tree**                                    |
+| `tests/OPENCHAMBER-E2E.md` (E2E protocol, PR #3)                                               | **ABSENT**                                              | **PRESENT** on `origin/gpt/openchamber-e2e-suite`                  | **VERIFIED-ABSENT from the tree**                                    |
+| `COUNCIL-RELIABILITY-RULE.md` (PR #5 rule)                                                     | **PRESENT at root** (9,713 B, 15:28) and **tracked**    | also on `origin/gpt/council-reliability-scorecard`                 | **VERIFIED-PRESENT**                                                 |
+| `COUNCIL-SCORECARD.md`, `scripts/build_council_scorecard.py`, `council/scorecard/events.jsonl` | **ABSENT**                                              | **PRESENT** on the PR #5 ref                                       | **VERIFIED-ABSENT from the tree**                                    |
+| `OWNER-DIRECTION.md` (root copy of the direction)                                              | **PRESENT at root** (11,370 B, 15:22) but **UNTRACKED** | —                                                                  | **VERIFIED-PRESENT but untracked** — it can be lost to a `git clean` |
 
 ```
 $ ls OWNER-PRODUCT-DIRECTION.md                       → No such file or directory
@@ -48,15 +48,15 @@ PR still cannot reproduce its own result. The script is untracked in the owner's
 Counted in the **pre-existing** shared documents (`AGENTS.md`, the bulletin house-rules block, and
 `COMMUNICATION-PROTOCOL.md`):
 
-| rule the Owner restated | already in `COMMUNICATION-PROTOCOL.md`? | verdict |
-|---|---|---|
-| every report begins with speaker/role/task/UTC | 5 mentions (§5.5, §9, and the forwarded-material rules) | **ALREADY EXISTED** (house rule 14, adopted by Beam at M-103) |
-| VERIFIED / REPORTED / INFERRED / UNKNOWN | present | **ALREADY EXISTED** (house rule 11) |
-| one canonical status/evidence source; correct or supersede stale claims | 4 mentions | **ALREADY EXISTED** |
-| assemble a combined plan and exercise it before calling it settled | 3 mentions (§2 "assembled-build gate") | **ALREADY EXISTED** |
-| never call a candidate "V21"; record the exact build and hash | 2 mentions | **ALREADY EXISTED** |
-| no more than five questions to the Owner | `AGENTS.md` 1 mention | **ALREADY EXISTED** (rule 10) |
-| receipts over consensus; independent reproduction | 12+ mentions | **ALREADY EXISTED** |
+| rule the Owner restated                                                 | already in `COMMUNICATION-PROTOCOL.md`?                 | verdict                                                       |
+| ----------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------- |
+| every report begins with speaker/role/task/UTC                          | 5 mentions (§5.5, §9, and the forwarded-material rules) | **ALREADY EXISTED** (house rule 14, adopted by Beam at M-103) |
+| VERIFIED / REPORTED / INFERRED / UNKNOWN                                | present                                                 | **ALREADY EXISTED** (house rule 11)                           |
+| one canonical status/evidence source; correct or supersede stale claims | 4 mentions                                              | **ALREADY EXISTED**                                           |
+| assemble a combined plan and exercise it before calling it settled      | 3 mentions (§2 "assembled-build gate")                  | **ALREADY EXISTED**                                           |
+| never call a candidate "V21"; record the exact build and hash           | 2 mentions                                              | **ALREADY EXISTED**                                           |
+| no more than five questions to the Owner                                | `AGENTS.md` 1 mention                                   | **ALREADY EXISTED** (rule 10)                                 |
+| receipts over consensus; independent reproduction                       | 12+ mentions                                            | **ALREADY EXISTED**                                           |
 
 **Genuinely new this run (absent from the pre-existing docs, present in the Owner's direction record):**
 the eight-simulations goal · the ~1,500–2,000 candidate pool per sport · integer public ratings and the
@@ -74,8 +74,8 @@ $ grep -ci "positionless" OWNER-DIRECTION.md → 2      $ grep -ci "positionless
 $ grep -ci "1,500" OWNER-DIRECTION.md        → 2      $ grep -ci "1,500" AGENTS.md        → 0
 ```
 
-**So the duplication is a discovery failure, not a decision churn.** The *rules* were already written
-down; the *decisions* (pool size, integer ratings, franchises, modern-rules assumption, the eight-sim
+**So the duplication is a discovery failure, not a decision churn.** The _rules_ were already written
+down; the _decisions_ (pool size, integer ratings, franchises, modern-rules assumption, the eight-sim
 goal) are new and needed to reach the seats — which is exactly what the Owner's message says he is
 doing.
 
@@ -95,9 +95,8 @@ Content sketch (one screen; every line points at a file that is present in the w
 
 You are in the NFL Draft Simulator council. The owner has final authority; Claude is the Architect;
 GPT is the co-architect; council members advise with receipts.
-
 1. OWNER'S CURRENT DIRECTION (product priorities, pools, ratings, drafts, beta rules, reporting rules)
-   → OWNER-DIRECTION.md            (root, tracked)
+   → OWNER-DIRECTION.md (root, tracked)
 2. THE E2E PROTOCOL AND RESULT SCHEMA
    → tests/OPENCHAMBER-E2E.md · tests/OPENCHAMBER-E2E-RESULT.schema.json
    (if absent from this checkout: git fetch origin gpt/openchamber-e2e-suite)
