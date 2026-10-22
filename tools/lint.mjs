@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 // tools/lint.mjs — the council's one lint entry point. Plain Node (>= 18), no dependencies.
 //
-//   node tools/lint.mjs product Football-Sim-V21.html          lint the product's inline script
+//   node tools/lint.mjs product Football-Sim-PreColors.html          lint the product's inline script
 //   node tools/lint.mjs files tools/lint.mjs tests/foo.mjs     lint specific tooling files
-//   node tools/lint.mjs extract Football-Sim-V21.html [out.js] only extract (no Biome needed)
+//   node tools/lint.mjs extract Football-Sim-PreColors.html [out.js] only extract (no Biome needed)
 //   node tools/lint.mjs selftest                               check this wrapper against the real Biome
 //   flags: --baseline <file>  --update-baseline  --strict (new warnings fail too)  --biome <path>
 //

@@ -7,7 +7,7 @@
 import { spawnSync } from 'node:child_process';
 const git = (...a) => spawnSync('git', a, { encoding: 'utf8' }).stdout.trim().split('\n').filter(Boolean);
 const rows = git('diff', '--cached', '--name-status', '--no-renames').map((l) => { const [s, ...p] = l.split('\t'); return { s, p: p.join('\t') }; });
-const PROTECTED = [/^Football-Sim-V\d+\.html$/, /^AGENTS\.md$/, /^CLAUDE\.md$/, /^biome\.json$/, /^tools\/(lint|check-staged|build-merged)\./, /^tools\/hooks\//, /^MERGE-MANIFEST\.md$/];
+const PROTECTED = [/^Football-Sim-.+\.html$/, /^AGENTS\.md$/, /^CLAUDE\.md$/, /^biome\.json$/, /^tools\/(lint|check-staged|build-merged)\./, /^tools\/hooks\//, /^MERGE-MANIFEST\.md$/];
 const problems = [];
 const ok = process.env.ARCHITECT_OK === '1';
 for (const { s, p } of rows) {

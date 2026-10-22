@@ -1,4 +1,4 @@
-// Rebuilds "Football-Sim-V21.html" from the two parent builds on this branch.
+// Rebuilds "Football-Sim-PreColors.html" from the two parent builds on this branch.
 // usage: node tools/build-merged.js "_archive/builds/NFL Draft Simulator v20 Claude.html" "_archive/builds/NFL Draft Simulator.html" out.html
 // expected output sha256: 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd (657,486 B)
 const fs=require('fs');

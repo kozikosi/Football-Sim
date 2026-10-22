@@ -1,6 +1,6 @@
 # AGENTS.md — how the council works on the NFL Draft Simulator
 
-Read this first, then `V22-Suggestions.md` (the work order). Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
+Read this first, then `V22-Suggestions.md` (the work order; the file name is kept, the builds are named in §2). Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
 
 ## 1. Authority
 
@@ -19,13 +19,17 @@ Work is **suggested, never assigned to a named agent**: whoever is free takes th
 
 ## 2. Build truth
 
+A name is bound to one sha256. If the bytes differ, it is not that build.
+
 | Name | File | sha256 (first 16) | Bytes | State |
 |---|---|---|---|---|
-| **V21** | `Football-Sim-V21.html` | `40233d6be00e987c` | 657,486 | Current build. Rebuildable: `node tools/build-merged.js "<v20>" "<donor>" out.html` (inputs in `_archive/builds/`). |
+| **Pre-Colors** | `Football-Sim-PreColors.html` | `40233d6be00e987c` | 657,486 | **The current verified build.** Every anchor, patch and gate starts here. Rebuildable: `node tools/build-merged.js "<v20>" "<donor>" out.html` (inputs in `_archive/builds/`). |
+| **V23** | `Football-Sim-V23.html` | — | — | The Architect's next build (the Owner's V22 work list plus everything after it). Does not exist until the Architect builds it. |
 | V20 | `_archive/builds/NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 | Archived reference. |
-| V22 | `Football-Sim-V22.html` | — | — | Reserved for the Architect's next build. Does not exist until then. |
+| "V21" (council copy) | — | `044d1759…` | 656,746 | **Retired name, not a build.** An unverified modified copy (hand edit changes model output). Findings measured against it are `REPORTED` until re-anchored to Pre-Colors. |
+| "V22" | — | — | — | **Retired as a build name.** It survives only as the title of the work order (`V22-Suggestions.md`) and in lane file names such as `V22-candidate-*`. Those candidates were built on the council copy, not on Pre-Colors. |
 
-One file, one name. Never call a build by another version's name, never create a "merged", "final" or dated copy in the root; candidates live in a lane. Any note that quotes a hash says which file and when it was measured; re-measure with `sha256sum` before relying on one. Council candidates that were not built by the Architect are `REPORTED` until diffed against V21.
+Never call a build by another name, never create a "merged", "final" or dated copy in the root; candidates live in a lane and are named `<seat>-<what>-<date>`. A note that quotes a hash says which file and when it was measured; re-measure with `sha256sum` before relying on one. Anything not built by the Architect is `REPORTED` until diffed against Pre-Colors.
 
 ## 3. Product rules
 
@@ -34,7 +38,7 @@ The product is **one self-contained HTML file**: no paid API, no CDN, no build s
 **Protected** (change only to the exact value the Owner approved, citing the approval): `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, and the contract `modelWeights() = f(slotWinsPerOvr())`. A change to any of them, or to `teamRatings`, re-pins its hash in `MERGE-MANIFEST.md` in the same commit.
 
 Rules that replace the old "Do not" list, stated as what to do:
-- **Naming:** a V20 build is called V20 and a V21 build V21 (§2).
+- **Naming:** use only the names in the §2 table, each tied to its hash. A file is Pre-Colors only if its sha256 is the one in the table.
 - **Moving a number:** show before and after from a *seeded* run on the same build. The product has 58 unseeded `Math.random()` sites, so two unseeded runs differ by noise alone.
 - **PASS vs. acceptance:** a gate PASS means the checks ran clean. It is not product acceptance, and an implemented change is not an accepted one (§5).
 
@@ -57,7 +61,9 @@ All agents share the Owner's working tree and every commit is authored as `kozik
 **States — each is a different fact; never write one as another:**
 `proposed` → `accepted` (Architect) → `implemented` (in a build, receipt attached) → `verified` (a Verifier's gate result) → `Owner-accepted`. A proposal is not an accepted change; a patch is not an integrated change; an integrated change is not verified; verified is not accepted. Use the branch, PR, commit message and `MERGE-MANIFEST.md`; there is no separate registry.
 
-**One writer for the product file.** The Architect edits `Football-Sim-V*.html`. Anyone else investigates, prototypes in a lane, and submits an exact change: **target build (file + sha256) · WHERE (anchor string, not just a line) · old → new · WHY · SAFE ALONE? · HOW TO CHECK (command + expected output)**. A patch or applier script must fail loudly if its anchors do not match; `patch -p0`, a script, or a diff are all fine if they do. The Architect may delegate a bounded task on a named branch; that is the only other way to write the product file. Competing proposals are compared in the work order, not merged: the Architect picks one and says why.
+**A round, in one line:** the Architect posts the target build (file + sha256) and the open items → seats claim items and submit exact changes → the Architect integrates them into one build → a Verifier who wrote none of it runs the gate → the Owner accepts. Each arrow is a separate fact in the §5 state list; nothing skips one.
+
+**One writer for the product file.** The Architect edits `Football-Sim-*.html`. Anyone else investigates, prototypes in a lane, and submits an exact change: **target build (file + sha256) · WHERE (anchor string, not just a line) · old → new · WHY · SAFE ALONE? · HOW TO CHECK (command + expected output)**. A patch or applier script must fail loudly if its anchors do not match; `patch -p0`, a script, or a diff are all fine if they do. The Architect may delegate a bounded task on a named branch; that is the only other way to write the product file. Competing proposals are compared in the work order, not merged: the Architect picks one and says why.
 
 **Claims, not assignments.** To take work: say so (one line in the work order or a draft PR) with scope, base commit and branch. Anyone may *research* a claimed item at any time. A claim is a statement, not a lock, and silence is not release:
 - **Handoff:** the claimant says "released" or hands over with a note. The next seat continues from the last commit.
@@ -89,7 +95,7 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 
 | Path | Writer |
 |---|---|
-| `Football-Sim-V*.html` | Architect only (§5) |
+| `Football-Sim-*.html` | Architect only (§5) |
 | `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/` | Architect, or on his/the Owner's instruction |
 | `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
 | `COUNCIL-BULLETIN.md` | Any seat; a log of the current round with date-stamped ids (`M-20261022-a`); trim finished rounds into `_archive/` |
@@ -105,7 +111,7 @@ Priority labels in the work order: **P0** first · **P1** Architect decision · 
 Every change ships with a **receipt**: the command and its output. "I believe it works" is not one. Tiers: *trivial* (docs, wording) → `git diff` review; *product change* → `node --check` on the extracted script, the gate (`_agents/minimax/tools/post-merge-smoke.mjs`), 390 px check, a seeded before/after for any number; *protected constant* → also the Owner's approval and the re-pin. The Architect does not certify his own build; a Verifier does. Never claim to have run a script that does not exist in the tree (`pw4.js`, `validate.js`, `phone.js`, `tests/run_all.sh` are targets, not tools).
 
 **Lint (Biome).** `tools/lint.mjs` is the one entry point; it only reads.
-- `node tools/lint.mjs product Football-Sim-V21.html` extracts the inline script to `tools/biome-product/scratch/` (gitignored), lints that copy with `tools/biome-product/biome.json` (bug-class rules `error`, style rules `warn`, formatter off), maps findings back to **original line numbers**, and fails (exit 5) if the HTML's sha256 changed during the run. It refuses `--write/--fix/--unsafe` and never calls `biome format`.
+- `node tools/lint.mjs product Football-Sim-PreColors.html` extracts the inline script to `tools/biome-product/scratch/` (gitignored), lints that copy with `tools/biome-product/biome.json` (bug-class rules `error`, style rules `warn`, formatter off), maps findings back to **original line numbers**, and fails (exit 5) if the HTML's sha256 changed during the run. It refuses `--write/--fix/--unsafe` and never calls `biome format`.
 - Findings already in `tools/lint-baseline.json` are *known*; only **new** errors fail (exit 1; `--strict` also fails on new warnings). Create or refresh the baseline with `--update-baseline` once the real findings have been reviewed. Exit 3 = Biome missing or its report unreadable: **UNVERIFIED, not a pass**.
 - `node tools/lint.mjs selftest` runs the real Biome on a fixture with known defects. Run it once on any machine that has Biome before trusting the product lint. (Biome 2.6.2 is REPORTED working as a native binary for the Kilo seats; the Architect's sandbox cannot install it, so rule names and the JSON shape in `tools/biome-product/biome.json` and `lint.mjs` are UNVERIFIED until a seat posts a passing `selftest`.)
 - `node tools/lint.mjs files <paths>` / `npx biome check` use the root `biome.json` for council tooling only (`tests/`, `tools/`, `_agents/**/tools/`); it excludes every `.html`.
