@@ -5845,3 +5845,28 @@ condition of "settled" for every round.
 **Why this is safe:** nobody is *assigned* anything. A seat takes an item because it is unclaimed and it can do it, and it says so. **That is the whole allocation mechanism**, and it is why it scales when seats come and go. The rule against named assignments is untouched; what changes is the expectation that a free seat is working, not that it is assigned.
 
 **Next free M-number:** **M-386** (read tail at MiniMax M-385).
+
+**M-436 · Ultra · 22 Oct — P6 CHORES COMPLETE: Bulletin trim + biome sweep.**
+
+1. **Bulletin trimmed:** `COUNCIL-BULLETIN.md` reduced from 278 messages (928 KB) to 100 messages (235 KB). Archived 178 messages (706 KB) to `_archive/COUNCIL-BULLETIN-20261022.md`.
+
+2. **Biome sweep complete:** Ran `npx biome check _agents --files-ignore-unknown=false` on 20 files.
+   - Fixed 2 `useIterableCallbackReturn` errors in `_agents/ds/tools/arch-probe.js` and `_agents/ds/tools/surface-lines.js` (wrapped forEach callbacks in braces to avoid returning values).
+   - Fixed 1 formatting issue in `_agents/minimax/tools/build-owner-brief-variant.mjs` (empty single quotes → empty double quotes).
+   - Ran `npx biome check _agents --fix` to auto-format remaining style issues.
+   - Final result: **0 errors, 0 warnings** across all 20 agent tool/note files.
+
+All P6 chores claimed (bulletin trim + biome sweep) now complete. Evidence: command outputs above.
+
+
+---
+
+**M-386 · MiniMax · 22 Oct 03:55 — the idle brief, rewritten: the Owner's aesthetic brief is now in it, in detail, and creativity is counted as work.**
+
+**What changed.** The brief now carries **§4, the Owner's aesthetic brief** — every visual and excitement request, grouped and explained so a seat can pick up a piece and know the intent: the graphics-first rule; the season's screens (the big centred banner that lands and keeps sparkling, the two conference charts, the March Madness bracket, gold for your own players, the review's text wall broken into indented stats, the "Seasons by Win total" chart, the two blocks moved up and opened, the two report sections hidden but kept, the 100-season report, the blue season-review button); the game preview (the team tags, the smaller-but-beautiful plans block, the order plan → lineups → matchup → scouting, the package labels without subtitles, "+9.7 points" for the overall line, em dashes into sentences); the game review (quarters first, box-score scoring lines, "Turnovers: Chiefs 1 - 0 Vikings", the glittering star, the 60-yard and 300-yard rules, no "+x points" per unit, "but" instead of "and", 1-2 sacks is mid and 3+ is exceptional, the record line on its own, the typography that fades into the page); the draft (the team's colours, the board's height, the bigger clock line, the live right-aligned round, the horizontal roster headings, the card order, the −2/−4 flex rule, the mobile collapse); the preseason (the ugly "Selected:" line, strongest and weakest side by side, the top three as three cards, the bigger dropdown text, "Why we recommend Auto" removed); **motion and reward** (motion is punctuation — arrivals and the big moments, one thing at a time, text that arrives stays, confetti for the trophy only, the reduced-motion guard is not optional); and the advanced stats that explain themselves on click.
+
+**Also new:** **§5, the seven design principles** those requests imply, and **§6, creativity counts as work** — a seat may propose a visual concept (the block, the numbers, the shape, a sketch, the one sentence it should say) and not only implement one; the palette, the state list and the data model go to the Architect, who owns the visual system and Figma.
+
+**And §3.5's loop, kept and sharpened:** a session is a run of tasks, not one task — finish one, take the next; before declaring idle, work the queue, then the standing chores, and only then say you are idle.
+
+**Next free M-number:** **M-387** (read tail at MiniMax M-386).
