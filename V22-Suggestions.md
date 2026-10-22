@@ -3501,3 +3501,1042 @@ Yes — all changes replace string concatenation with HTML components. No math c
 - Whether the playoff preview (l.5331) needs the same treatment (it does — but that's a separate pass)
 - Whether the `matchupLines()` function should be kept for the detailed (game review) version
 - Whether the hot/cold form should use the same badge style as the game review stars
+
+
+---
+
+# V22 Graphics Round — Item 3: Game Review (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Convert the game review's data-heavy sections to graphics, keeping clutch narration, star praise, and game ball as sentences.
+
+## Current structure (generateGameSummary, l.3109-3210)
+
+| Section | Content | Keep/Convert |
+|---------|---------|--------------|
+| P1 | Game flow narrative (opening, half, 3rd, finish, OT) | KEEP AS SENTENCES (clutch narration) |
+| Play-by-play | Chronological scoring events | CONVERT TO GRAPHICS (score progression) |
+| Turnovers | Turnover list with player names | CONVERT TO GRAPHICS (turnover cards) |
+| Stars | Stars of the game | KEEP AS SENTENCES (star praise) |
+| Game ball | Game ball winner | KEEP AS SENTENCE (star praise) |
+| P3 (factors) | Real factors in the math | CONVERT TO GRAPHICS (unit comparison bars) |
+| Game plans | Plan explanation | CONVERT TO GRAPHICS (plan comparison) |
+
+## Proposed changes
+
+### GR-3a · Score progression chart (replaces play-by-play prose)
+
+**WHERE** l.3056-3108 (`playByPlay()` function)
+**WHAT** Replace the text play-by-play with a horizontal score progression chart:
+```html
+<div class="score-prog">
+  <div class="sp-team sp-away">${awayTeam}</div>
+  <div class="sp-bar">
+    <div class="sp-away-fill" style="width:${awayPct}%"></div>
+    <div class="sp-home-fill" style="width:${homePct}%"></div>
+  </div>
+  <div class="sp-team sp-home">${homeTeam}</div>
+</div>
+<div class="sp-events">
+  <!-- each scoring event as a dot on the timeline -->
+  <div class="sp-event sp-td" style="left:${pct}%" title="Q1 8:32 — TD"></div>
+  <div class="sp-event sp-fg" style="left:${pct}%" title="Q2 3:15 — FG"></div>
+</div>
+<div class="sp-labels">
+  <span>Q1</span><span>Q2</span><span>Q3</span><span>Q4</span><span>OT</span>
+</div>
+```
+**CSS:**
+```css
+.score-prog{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;margin-bottom:8px;}
+.sp-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:1fr 1fr;}
+.sp-away-fill{background:var(--accent2);border-radius:4px 0 0 4px;}
+.sp-home-fill{background:var(--accent);border-radius:0 4px 4px 0;}
+.sp-events{position:relative;height:20px;margin:4px 0;}
+.sp-event{position:absolute;width:8px;height:8px;border-radius:50%;transform:translateX(-50%);}
+.sp-event.sp-td{background:var(--good);}
+.sp-event.sp-fg{background:var(--accent);}
+.sp-event.sp-saf{background:var(--bad);}
+.sp-labels{display:flex;justify-content:space-between;font-size:0.7rem;color:var(--sub);}
+```
+**WHY** Scoring events are sequential data. A visual timeline communicates the game's flow faster than "Q1 8:32 — Ravens TD (7-0); Q2 3:15 — Bengals FG (7-3)."
+**SAFE ALONE?** Yes — replaces text output with HTML. No math changes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-3b · Turnover cards (replaces turnoverParagraph prose)
+
+**WHERE** l.2748 (`turnoverParagraph()`) and l.3190 (`p2full`)
+**WHAT** Replace the prose turnover list with compact cards:
+```html
+<div class="turnover-card">
+  <span class="tc-icon">🔄</span>
+  <span class="tc-player">${player.name}</span>
+  <span class="tc-detail">${player.group} · ${player.st.int||player.st.fumLost||0} ${type}</span>
+  <span class="tc-impact">${impact} pts swing</span>
+</div>
+```
+**CSS:**
+```css
+.turnover-card{display:flex;align-items:center;gap:8px;padding:6px 10px;background:var(--panel2);border:1px solid var(--border);border-radius:8px;margin-bottom:4px;font-size:0.82rem;}
+.tc-icon{font-size:1rem;}
+.tc-player{font-weight:600;flex:1;}
+.tc-detail{color:var(--sub);font-size:0.75rem;}
+.tc-impact{font-weight:700;color:var(--bad);font-variant-numeric:tabular-nums;}
+```
+**WHY** Turnovers are discrete events with player attribution. Cards communicate who, what, and impact faster than prose.
+**SAFE ALONE?** Yes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-3c · Factor bars (replaces factorParagraph prose)
+
+**WHERE** l.2748 (`factorParagraph()`) and l.3207 (`p3`)
+**WHAT** Replace the prose factor list with bar rows showing each factor's contribution:
+```html
+<div class="bar-row">
+  <div class="br-left">${factor.name}</div>
+  <div class="br-center">${factor.pts.toFixed(1)}</div>
+  <div class="br-right"></div>
+  <div class="br-bar">
+    <div class="br-bar-l" style="width:${pct}%"></div>
+    <div class="br-bar-r" style="width:0%"></div>
+  </div>
+</div>
+```
+**WHY** Factors are numeric contributions. Bar rows show relative importance faster than "The passing game was the difference: +4.2 points."
+**SAFE ALONE?** Yes — `factorParagraph()` returns strings; replace with HTML.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-3d · Game plan comparison (replaces planParagraph prose)
+
+**WHERE** l.3208 (`planParagraph(g, true)`)
+**WHAT** Replace prose plan explanation with a two-col-pair:
+```html
+<div class="two-col-pair">
+  <div class="tcp-side tcp-away">
+    <div class="tcp-title">${awayTeam} Plan</div>
+    <div class="tcp-stat"><span>Offense</span><span class="tcp-val">${awayPlan.off.pers} ${awayPlan.off.strat}</span></div>
+    <div class="tcp-stat"><span>Defense</span><span class="tcp-val">${awayPlan.def.pkg} ${awayPlan.def.focus}</span></div>
+  </div>
+  <div class="tcp-side tcp-home">
+    <div class="tcp-title">${homeTeam} Plan</div>
+    <div class="tcp-stat"><span>Offense</span><span class="tcp-val">${homePlan.off.pers} ${homePlan.off.strat}</span></div>
+    <div class="tcp-stat"><span>Defense</span><span class="tcp-val">${homePlan.def.pkg} ${homePlan.def.focus}</span></div>
+  </div>
+</div>
+```
+Keep the plan explanation as collapsible `<details>` below.
+**WHY** Plans are label comparisons (11 vs 12, base vs nickel). Two-col-pair communicates them instantly.
+**SAFE ALONE?** Yes.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-3e · Key players as stat cards (replaces Key Players card)
+
+**WHERE** l.3743 (`kp-grid` / `kp-card`)
+**WHAT** Enhance the existing key players card with stat cards for each player:
+```html
+<div class="kp-card">
+  <div class="kp-title">${player.name} (${player.group})</div>
+  <div class="stat-card-row">
+    <div class="stat-card"><div class="sc-val">${player.st.passYds||player.st.rushYds||player.st.recYds||0}</div><div class="sc-label">Yards</div></div>
+    <div class="stat-card"><div class="sc-val">${player.st.passTD||player.st.rushTD||player.st.recTD||player.st.sack||0}</div><div class="sc-label">TD/Sacks</div></div>
+    <div class="stat-card"><div class="sc-val">${player.st.tkl||0}</div><div class="sc-label">Tackles</div></div>
+  </div>
+</div>
+```
+**WHY** Key players are already in a card layout. Adding stat cards makes the numbers visual.
+**SAFE ALONE?** Yes — enhances existing markup.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+## What stays as sentences (per Owner's criterion)
+- P1 (game flow narrative) — clutch narration
+- Stars of the game — star praise
+- Game ball winner — star praise
+- Verdict/implication ("X move to 5-2") — short hype
+
+## SAFE ALONE?
+Yes — all changes replace string concatenation with HTML components. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: all components render at 390px (no horizontal overflow)
+3. Game review still shows all information (no data loss)
+
+## What was deliberately not checked
+- Whether the `playByPlay()` function should be kept for a "detailed view" toggle
+- Whether the turnover cards should link to the player's season stats
+- Whether the factor bars should use the same color scale as the game preview bar rows
+
+
+---
+
+# V22 Graphics Round — Item 4: Season Review (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Convert the season review's text walls to graphics, per Owner's detailed brief. Keep clutch narration and award citations as sentences.
+
+## Owner's brief (§4.2)
+- "Indent a lot more. The first sentence should be its own paragraph."
+- "Biggest win and ugliest win should be their own indentations and presented more like stats instead of full sentences."
+- "Each player highlighted should be on their own line."
+- "Why better or worse than the ratings?" — "Three lines of prose become three bars."
+- "Seasons by Win total" — "The Left alignment is poor. That whole chart could be made more beautiful."
+- "Your players; average season" and "Award patterns" — "higher up and automatically visible."
+- "Realism audit" and "Does the model predict real results?" leave the screen (numbers still computed).
+- Season review button after playoffs: blue, near top, next to 100-season sim.
+
+## Current structure (renderSeasonCompleteView, l.5886-5910)
+
+| Section | Function | Current format |
+|---------|----------|----------------|
+| Champion banner | champion-banner | Text banner |
+| Game result | renderGameResultHTML | Box score |
+| Bracket | renderBracketHTML | Bracket |
+| Season review text | generateSeasonReview() | 7 paragraphs of prose (fragFinalVerdict, fragPlayoffDeep, etc.) |
+| Playoff awards | renderPlayoffAwardsHTML | Table |
+| Regular awards | renderRegularAwardsHTML | Table |
+| Report card | renderReportCardHTML | Table with unit grades |
+| Pick critique | pickCritiqueHTML | Table |
+| Field table | renderFieldTableHTML | Table |
+| Stats tabs | renderStatsTabsHTML | Tabs |
+| Team advanced | teamAdvancedHTML | Prose |
+| Advanced stats | advancedStatsHTML | Prose |
+| Bracket | renderBracketHTML | Bracket |
+| User schedule | renderUserScheduleHTML | Table |
+| Standings | renderStandingsHTML | Table |
+| Season options | seasonOptionsHTML | Buttons |
+
+## Proposed changes
+
+### GR-4a · Champion banner → gold banner
+
+**WHERE** l.5889 (`champion-banner`)
+**WHAT** Replace with `.gold-banner` from item 1:
+```html
+<div class="gold-banner">
+  <h2>🏆 ${champ} — Super Bowl Champions</h2>
+  <div class="gb-sub">${won ? 'Champions from draft day to the final whistle' : 'A season that fell short of the ultimate goal'}</div>
+  <div class="gb-stat">${champRecord} · ${champPF} PF · ${champPA} PA</div>
+</div>
+```
+**WHY** Gold banner from item 1 is more visually distinct. Shimmer/sparkle effect per Owner's brief.
+**SAFE ALONE?** Yes — replaces existing banner markup.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-4b · Season review text → indented paragraphs with stat cards
+
+**WHERE** l.5700 (`generateSeasonReviewRaw()`) and l.5892 (`generateSeasonReview()`)
+**WHAT** Restructure the 7 frag paragraphs:
+1. **First sentence as own paragraph** (fragFinalVerdict) — larger font, own `<p>` with distinct styling.
+2. **Biggest win / ugliest win as stat cards** — replace prose with:
+```html
+<div class="two-col-pair">
+  <div class="stat-card"><div class="sc-val">${biggestWinScore}</div><div class="sc-label">Biggest win</div><div class="sc-bar"><div class="sc-bar-fill" style="width:${pct}%"></div></div></div>
+  <div class="stat-card"><div class="sc-val">${ugliestWinScore}</div><div class="sc-label">Ugliest win</div><div class="sc-bar"><div class="sc-bar-fill" style="width:${pct}%"></div></div></div>
+</div>
+```
+3. **Each player highlighted on own line** — replace `playerBlurb()` inline mentions with `<div class="player-highlight">` blocks.
+4. **"Why better or worse than the ratings?" → three bars** — replace prose with `.bar-row` components:
+```html
+<div class="bar-row">
+  <div class="br-left">${unit}</div>
+  <div class="br-center">${rating.toFixed(1)}</div>
+  <div class="br-right">#${rank}</div>
+  <div class="br-bar"><div class="br-bar-l" style="width:${pct}%"></div><div class="br-bar-r" style="width:0%"></div></div>
+</div>
+```
+**WHY** Owner: "Indent a lot more. The first sentence should be its own paragraph. Biggest win and ugliest win should be their own indentations and presented more like stats instead of full sentences. Each player highlighted should be on their own line."
+**SAFE ALONE?** Yes — replaces string concatenation with HTML. No math changes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-4c · Report card → enhanced with bar rows
+
+**WHERE** l.5709-5730 (`renderReportCardHTML()`)
+**WHAT** Add a `.bar-row` for each unit showing the rating vs league average:
+```html
+<div class="bar-row">
+  <div class="br-left">${UNIT_INFO[u].label}</div>
+  <div class="br-center">${R[u].toFixed(1)}</div>
+  <div class="br-right">#${U[u]}</div>
+  <div class="br-bar"><div class="br-bar-l" style="width:${pct}%"></div><div class="br-bar-r" style="width:${avgPct}%"></div></div>
+</div>
+```
+Keep the table for detailed stats, but add the bar rows above it.
+**WHY** Owner: "Why better or worse than the ratings? This is great but again the ui is ugly. Could be more graphical."
+**SAFE ALONE?** Yes — adds HTML, doesn't remove existing table.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-4d · "Your players; average season" and "Award patterns" → higher up, visible
+
+**WHERE** l.5893 (renderSeasonCompleteView — order of sections)
+**WHAT** Move `renderReportCardHTML()` and award highlights before `pickCritiqueHTML()` and `renderFieldTableHTML()`. Make them visible by default (not collapsed).
+**WHY** Owner: "'Your players; average season' and 'Award patterns' — higher up and automatically visible."
+**SAFE ALONE?** Yes — reorders HTML concatenation. No math changes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: sections appear in correct order.
+
+### GR-4e · "Realism audit" and "Does the model predict real results?" → leave screen
+
+**WHERE** l.4281 (`teamAdvancedHTML()`) and l.4317 (`advancedStatsHTML()`)
+**WHAT** Remove these from the season review render (l.5893). Keep the functions and their data computation — only remove from the rendered output. Add a comment: `// realism audit and model prediction: computed but not displayed (Owner ruling 22 Oct)`.
+**WHY** Owner: "'Realism audit' and 'Does the model predict real results?' leave the screen; the numbers are still computed and stored."
+**SAFE ALONE?** Yes — removes HTML output, keeps computation.
+**HOW TO CHECK** `node --check` → exit 0. Grep for function calls to confirm removal from render.
+
+### GR-4f · "Seasons by Win total" → improved bar chart
+
+**WHERE** Find the "Seasons by Win total" rendering (search for "Seasons by Win")
+**WHAT** Fix left alignment and make the chart more beautiful:
+```css
+.win-total-chart{display:grid;grid-template-columns:auto 1fr auto;gap:8px;align-items:center;margin-bottom:4px;}
+.win-total-chart .wt-label{font-weight:600;font-size:0.8rem;text-align:right;min-width:40px;}
+.win-total-chart .wt-bar{height:12px;background:var(--border);border-radius:6px;overflow:hidden;}
+.win-total-chart .wt-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:6px;}
+.win-total-chart .wt-count{font-size:0.75rem;color:var(--sub);min-width:30px;}
+```
+**WHY** Owner: "The Left alignment is poor. That whole chart could be made more beautiful."
+**SAFE ALONE?** Yes — CSS + HTML restructure.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-4g · Season review button → blue, near top, next to 100-season sim
+
+**WHERE** l.5891 (`seasonReviewBtn`) and l.6142 (`sim100Btn`)
+**WHAT** Move the season review button to the top of the season complete view, next to the 100-season simulation button. Style it blue:
+```html
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+  <button class="resetbtn" id="seasonReviewBtn" style="width:auto;background:var(--accent);">Season Review →</button>
+  <button class="tabbtn" id="sim100Btn">Run 100-season simulation</button>
+</div>
+```
+**WHY** Owner: "The season review button after the playoffs: blue, near the top, next to the 100-season simulation."
+**SAFE ALONE?** Yes — moves existing button, changes color.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: button appears at top.
+
+### GR-4h · Motion: champion banner shimmer
+
+**WHERE** l.5889 (champion-banner) and CSS
+**WHAT** Add a shimmer animation to the gold banner:
+```css
+@keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+.gold-banner{background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,165,0,0.1),rgba(255,215,0,0.15));background-size:200% 100%;animation:shimmer 3s ease-in-out infinite;}
+@media (prefers-reduced-motion: reduce){.gold-banner{animation:none;}}
+```
+**WHY** Owner: "it would be cool if that graphic could also land on the screen somewhere after it shows and continue to shimmer/sparkle."
+**SAFE ALONE?** Yes — CSS animation with reduced-motion guard.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: shimmer visible, stops with reduced motion.
+
+## What stays as sentences (per Owner's criterion)
+- Season review prose (fragFinalVerdict, etc.) — clutch narration and analysis
+- Player highlights — star praise
+- Award citations — star praise
+- Pick critique verdicts — short hype
+
+## SAFE ALONE?
+Yes — all changes replace string concatenation with HTML components or reorder existing sections. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: all components render at 390px (no horizontal overflow)
+3. Season review still shows all information (no data loss, except realism audit and model prediction per Owner's ruling)
+
+## What was deliberately not checked
+- Whether the 100-season review (item 5) needs the same treatment
+- Whether the shimmer animation works in all browsers
+- Whether the section reordering breaks any event listeners
+
+
+---
+
+# V22 Graphics Round — Item 5: 100-Season Review (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Convert the 100-season review from text-heavy to graphics-first, per Owner's brief: "a lot more graphical. Only a few sentences here and there."
+
+## Current structure (render100, l.6043-6160)
+
+| Section | Current format | Keep/Convert |
+|---------|----------------|--------------|
+| Header | Title + description | KEEP |
+| Stat row | 6 stat cards (avg wins, playoffs, division, #1 seed, SB, title) | KEEP (already graphical) |
+| Narrative | 4 paragraphs of prose | KEEP AS SENTENCES (analysis) |
+| Win distribution | Histogram bars | IMPROVE (better alignment) |
+| Playoff path | Table (missed WC, div, champ, SB, won) | CONVERT TO GRAPHICS (progress bars) |
+| League table | 32-team table | KEEP AS TABLE (data-dense) |
+| What drove winning | Unit correlation table + group table | KEEP AS TABLE (data-dense) |
+| Game plans | Personnel × strategy table | KEEP AS TABLE |
+| Your draft critique | Table | KEEP AS TABLE |
+| Your players: avg season | Table with grades | CONVERT TO STAT CARDS |
+| Realism audit | Table | REMOVE (Owner ruling) |
+| Model prediction | Table + prose | REMOVE (Owner ruling) |
+| Award patterns | Function output | MOVE HIGHER (Owner ruling) |
+
+## Proposed changes
+
+### GR-5a · Win distribution → improved bar chart
+
+**WHERE** l.6046 (`histHTML`)
+**WHAT** Replace the inline-styled bars with the `.bar-row`-style component:
+```css
+.win-dist{display:grid;grid-template-columns:36px 1fr 24px;gap:6px;align-items:center;margin-bottom:3px;}
+.win-dist .wd-label{text-align:right;font-size:0.75rem;color:var(--sub);}
+.win-dist .wd-bar{height:14px;background:var(--border);border-radius:3px;overflow:hidden;}
+.win-dist .wd-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:3px;}
+.win-dist .wd-count{font-size:0.75rem;font-weight:600;text-align:left;}
+```
+**WHY** Owner: "Seasons by Win total — The Left alignment is poor. That whole chart could be made more beautiful."
+**SAFE ALONE?** Yes — CSS + HTML restructure.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-5b · Playoff path → progress bars
+
+**WHERE** l.6068-6078 (How far you got table)
+**WHAT** Replace the table with progress bars:
+```html
+<div class="playoff-path">
+  <div class="pp-row"><span class="pp-label">Missed playoffs</span><div class="pp-bar"><div class="pp-fill" style="width:${pct}%"></div></div><span class="pp-pct">${pct}%</span></div>
+  <div class="pp-row"><span class="pp-label">Lost Wild Card</span><div class="pp-bar"><div class="pp-fill" style="width:${pct}%"></div></div><span class="pp-pct">${pct}%</span></div>
+  <!-- ... etc -->
+  <div class="pp-row pp-won"><span class="pp-label">🏆 Won Super Bowl</span><div class="pp-bar"><div class="pp-fill pp-gold" style="width:${pct}%"></div></div><span class="pp-pct">${pct}%</span></div>
+</div>
+```
+**CSS:**
+```css
+.playoff-path{display:flex;flex-direction:column;gap:4px;}
+.pp-row{display:grid;grid-template-columns:140px 1fr 40px;gap:8px;align-items:center;font-size:0.8rem;}
+.pp-bar{height:10px;background:var(--border);border-radius:5px;overflow:hidden;}
+.pp-fill{height:100%;background:var(--accent);border-radius:5px;}
+.pp-fill.pp-gold{background:linear-gradient(90deg,#ffd700,#ff8c00);}
+.pp-pct{font-weight:600;text-align:right;font-variant-numeric:tabular-nums;}
+.pp-row.pp-won .pp-label{font-weight:700;color:#ffd700;}
+```
+**WHY** Progress bars communicate distribution faster than a table. Gold fill for "Won Super Bowl" matches the champion theme.
+**SAFE ALONE?** Yes — replaces table with HTML components.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-5c · "Your players: average season" → stat cards
+
+**WHERE** l.6130-6135 (`uplHTML` and the section)
+**WHAT** Replace the table with a grid of player cards:
+```html
+<div class="player-card-grid">
+  <div class="player-card">
+    <div class="pc-name">${p.name}</div>
+    <div class="pc-pos">${p.group}</div>
+    <div class="pc-stats">
+      <div class="stat-card"><div class="sc-val">${gr.o}</div><div class="sc-label">OVR</div></div>
+      <div class="stat-card"><div class="sc-val">${gr.g}</div><div class="sc-label">Grade</div></div>
+      <div class="stat-card"><div class="sc-val">${fmtWar(gr.w)}</div><div class="sc-label">Wins</div></div>
+    </div>
+    <div class="pc-avg">${avgLine(p)}</div>
+  </div>
+</div>
+```
+**CSS:**
+```css
+.player-card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;}
+.player-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.pc-name{font-weight:700;font-size:0.9rem;margin-bottom:2px;}
+.pc-pos{font-size:0.75rem;color:var(--sub);margin-bottom:8px;}
+.pc-stats{display:flex;gap:6px;margin-bottom:8px;}
+.pc-avg{font-size:0.78rem;color:var(--sub);line-height:1.4;}
+```
+**WHY** Owner: "Each player highlighted should be on their own line." Cards make each player's stats visual.
+**SAFE ALONE?** Yes — replaces table with card grid.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-5d · "Realism audit" and "Model prediction" → remove from screen
+
+**WHERE** l.6140-6145 (two `sec()` calls)
+**WHAT** Remove these two sections from the rendered output. Keep the functions and data computation. Add comment.
+**WHY** Owner: "'Realism audit' and 'Does the model predict real results?' leave the screen; the numbers are still computed and stored."
+**SAFE ALONE?** Yes — removes HTML output, keeps computation.
+**HOW TO CHECK** `node --check` → exit 0. Grep for function calls to confirm removal.
+
+### GR-5e · "Award patterns" → higher up, visible by default
+
+**WHERE** l.6146 (`sec('Award patterns', ...)`) — currently near the bottom
+**WHAT** Move to after the narrative section, before "Win distribution". Make it visible by default (open=true).
+**WHY** Owner: "'Your players; average season' and 'Award patterns' — higher up and automatically visible."
+**SAFE ALONE?** Yes — reorders `sec()` calls.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-5f · Narrative → keep as sentences, but indent
+
+**WHERE** l.6118-6122 (`nar.map(...)`)
+**WHAT** Add indentation and spacing:
+```html
+<div class="narr-block">
+  ${nar.map(t=>`<p class="detail-item narr-indented">${t}</p>`).join('')}
+</div>
+```
+**CSS:**
+```css
+.narr-block{margin:12px 0;}
+.narr-indented{margin-left:1.2em;margin-bottom:10px;line-height:1.6;}
+```
+**WHY** Owner: "Indent a lot more. The first sentence should be its own paragraph."
+**SAFE ALONE?** Yes — CSS + HTML wrapper.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-5g · Gold banner for best team
+
+**WHERE** l.6060 (header)
+**WHAT** Add a gold banner showing the best team:
+```html
+<div class="gold-banner">
+  <h2>🏆 ${best} — Best in the League</h2>
+  <div class="gb-sub">${avgW[best].toFixed(1)} avg wins over ${N} seasons</div>
+  <div class="gb-stat">${pctS(T[best].champ/N,1)} title rate · ${pctS(T[best].sbApp/N)} SB rate</div>
+</div>
+```
+**WHY** Owner: champion banner should be gold and shimmer. Best team in 100-season sim deserves the same treatment.
+**SAFE ALONE?** Yes — adds HTML.
+**HOW TO CHECK** `node --check` → exit 0.
+
+## What stays as sentences (per Owner's criterion)
+- Narrative paragraphs — analysis
+- "What actually drove winning" table — data-dense
+- Game plans table — data-dense
+- "Your draft: pick-by-pick critique" — detailed analysis
+- "Reading this report: what the terms mean" — explainer
+
+## SAFE ALONE?
+Yes — all changes replace string concatenation with HTML components or reorder/remove sections. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: all components render at 390px (no horizontal overflow)
+3. 100-season review still shows all information (except realism audit and model prediction per Owner's ruling)
+
+## What was deliberately not checked
+- Whether the win distribution histogram should use a different color scale
+- Whether the player cards should link to season stats
+- Whether the gold banner shimmer works on all browsers
+
+
+---
+
+# V22 Graphics Round — Item 6: Playoff Bracket + Conference Charts (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Replace the current bracket list with a March Madness-style visual bracket and add conference ranking charts, per Owner's brief.
+
+## Owner's brief (§4.2)
+- "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" → two conference charts ranking the team 1–16, "as beautiful as possible"
+- March Madness-style bracket: "showing the byes and both conferences with the Super Bowl contestants meeting in the middle"
+
+## Current state (renderBracketHTML, l.3830-3855)
+Current bracket is a vertical list of rounds (wildcard → divisional → champ → superbowl) with game rows. No visual bracket layout. No conference charts.
+
+## Proposed changes
+
+### GR-6a · March Madness bracket layout
+
+**WHERE** l.3830-3855 (`renderBracketHTML()`)
+**WHAT** Replace the vertical list with a CSS grid bracket:
+```html
+<div class="bracket-layout">
+  <div class="bracket-conf bracket-afc">
+    <h4>AFC</h4>
+    <div class="bracket-round bracket-wc">
+      <!-- 4 wildcard games, 2 per side -->
+      <div class="bracket-game bg3">...</div>
+    </div>
+    <div class="bracket-round bracket-div">
+      <!-- 2 divisional games -->
+    </div>
+    <div class="bracket-round bracket-champ">
+      <!-- 1 conference championship -->
+    </div>
+  </div>
+  <div class="bracket-center">
+    <div class="bracket-sb">
+      <h4>Super Bowl</h4>
+      <!-- championship game -->
+    </div>
+  </div>
+  <div class="bracket-conf bracket-nfc">
+    <h4>NFC</h4>
+    <!-- mirror of AFC -->
+  </div>
+</div>
+```
+**CSS:**
+```css
+.bracket-layout{display:grid;grid-template-columns:1fr auto 1fr;gap:8px;align-items:center;}
+.bracket-conf{display:flex;flex-direction:column;gap:4px;}
+.bracket-conf.bracket-afc{align-items:flex-end;}
+.bracket-conf.bracket-nfc{align-items:flex-start;}
+.bracket-round{display:flex;flex-direction:column;gap:4px;}
+.bracket-game{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:6px 10px;font-size:0.8rem;min-width:180px;}
+.bracket-game.bg-winner{border-color:var(--good);background:rgba(0,200,100,0.08);}
+.bracket-center{display:flex;flex-direction:column;align-items:center;gap:8px;}
+.bracket-sb{background:linear-gradient(135deg,rgba(255,215,0,0.15),rgba(255,165,0,0.1));border:2px solid #ffd700;border-radius:12px;padding:12px 16px;text-align:center;}
+.bracket-sb h4{margin:0 0 6px;color:#ffd700;}
+.bracket-bye{opacity:0.4;font-style:italic;font-size:0.75rem;}
+@media (max-width:760px){.bracket-layout{grid-template-columns:1fr;}.bracket-conf{align-items:stretch;}}
+```
+**WHY** Owner: "March Madness-style bracket — showing the byes and both conferences with the Super Bowl contestants meeting in the middle." Current vertical list doesn't show the bracket structure.
+**SAFE ALONE?** Yes — replaces HTML output. No math changes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px (bracket collapses to single column on mobile).
+
+### GR-6b · Byes display
+
+**WHERE** l.3830-3855 (bracket rendering)
+**WHAT** Show byes as empty slots with a "BYE" label:
+```html
+<div class="bracket-game bracket-bye"><span>${team} (${conf} #${seed})</span><span class="narr">BYE</span></div>
+```
+**WHY** Owner: "showing the byes." Currently byes are implicit (teams not in wildcard round).
+**SAFE ALONE?** Yes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: byes visible.
+
+### GR-6c · Conference ranking charts
+
+**WHERE** New function, called from renderSeasonCompleteView (l.5893)
+**WHAT** Add two horizontal bar charts (AFC and NFC) ranking teams 1-16:
+```html
+<div class="conf-chart">
+  <h4>AFC Rankings</h4>
+  ${afcTeams.map((t,i)=>`
+    <div class="cc-row">
+      <span class="cc-rank">${i+1}</span>
+      <span class="cc-team">${t.name}</span>
+      <div class="cc-bar"><div class="cc-bar-fill" style="width:${pct}%"></div></div>
+      <span class="cc-record">${t.wins}-${t.losses}</span>
+    </div>
+  `).join('')}
+</div>
+```
+**CSS:**
+```css
+.conf-chart{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:14px;}
+.conf-chart h4{margin:0 0 8px;font-size:0.9rem;}
+.cc-row{display:grid;grid-template-columns:24px 1fr 80px 60px;gap:6px;align-items:center;margin-bottom:3px;font-size:0.8rem;}
+.cc-rank{font-weight:700;color:var(--accent);text-align:center;}
+.cc-team{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.cc-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+.cc-bar-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;}
+.cc-record{font-size:0.75rem;color:var(--sub);text-align:right;}
+```
+**WHY** Owner: "two conference charts ranking the team 1–16, as beautiful as possible." Current standings table doesn't show conference ranking visually.
+**SAFE ALONE?** Yes — new HTML output. No math changes.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-6d · Champion team highlight
+
+**WHERE** Conference charts (GR-6c)
+**WHAT** Highlight the champion team in gold:
+```html
+<div class="cc-row cc-champ">
+  <span class="cc-rank">1</span>
+  <span class="cc-team">🏆 ${champ}</span>
+  <div class="cc-bar"><div class="cc-bar-fill cc-gold" style="width:100%"></div></div>
+  <span class="cc-record">${record}</span>
+</div>
+```
+**CSS:**
+```css
+.cc-row.cc-champ{background:rgba(255,215,0,0.08);border-radius:6px;}
+.cc-bar-fill.cc-gold{background:linear-gradient(90deg,#ffd700,#ff8c00);}
+```
+**WHY** Owner: champion should be visually distinct (gold).
+**SAFE ALONE?** Yes.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-6e · Bracket connector lines (optional enhancement)
+
+**WHERE** CSS for bracket layout
+**WHAT** Add CSS pseudo-elements for bracket connector lines:
+```css
+.bracket-game::after{content:'';position:absolute;right:-8px;top:50%;width:8px;height:1px;background:var(--border);}
+.bracket-round.bracket-div .bracket-game::before{content:'';position:absolute;left:-8px;top:50%;width:8px;height:1px;background:var(--border);}
+```
+**WHY** Makes the bracket look like a real tournament bracket.
+**SAFE ALONE?** Yes — CSS only.
+**HOW TO CHECK** Visual check at 390px (may need adjustment on mobile).
+
+## What stays as sentences
+- None — the bracket and charts are purely visual.
+
+## SAFE ALONE?
+Yes — all changes replace HTML output with visual components. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: bracket renders at 390px (collapses to single column)
+3. Visual check: conference charts render at 390px
+4. All 14 playoff teams (or 12 + 2 byes) appear in the bracket
+
+## What was deliberately not checked
+- Whether the bracket connector lines work on all browsers
+- Whether the conference charts should be sortable
+- Whether the bracket should show game scores or just winners
+
+
+---
+
+# V22 Graphics Round — Item 7: Star/Ball Presentation (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Make the star and game ball presentation more visual and beautiful, per Owner's brief.
+
+## Owner's brief (§4.4)
+- "The star heading becomes a star — maybe glittering?"
+- "The slots are reserved for 90+ rating performances (60+ rushing yards; a QB needs 300+ yards and a 3:1 TD/INT ratio), rating never shown."
+- "Your own players are gold, including the game ball winner."
+- "Awards — a lot more beautiful, and your own players are gold."
+
+## Current state
+
+### Stars (starsParagraph, l.3027-3054)
+- Stars are text lines: "X (Team) was the difference: 25/35 for 320 yards, 3 TDs and 1 INT"
+- Filter: `impact>=1.0`, no yardage threshold
+- No visual distinction for user's players
+- No glitter/shimmer effect
+
+### Game ball (l.3190-3195)
+- Game ball is a text line: "X (Team Group) earned the game ball: stat line"
+- No visual distinction
+- No gold treatment for user's players
+
+### Awards (renderRegularAwardsHTML, renderPlayoffAwardsHTML)
+- Tables with player names
+- No gold treatment for user's players
+
+## Proposed changes
+
+### GR-7a · Star heading with glitter
+
+**WHERE** l.3053 (`<b>Stars of the game:</b>`)
+**WHAT** Replace with a glittering star heading:
+```html
+<div class="star-heading">
+  <span class="star-icon">⭐</span>
+  <span class="star-text">Stars of the game</span>
+</div>
+```
+**CSS:**
+```css
+.star-heading{display:flex;align-items:center;gap:6px;margin-bottom:8px;}
+.star-icon{font-size:1.2rem;animation:glitter 2s ease-in-out infinite;}
+@keyframes glitter{0%,100%{filter:brightness(1);transform:scale(1);}50%{filter:brightness(1.5) drop-shadow(0 0 4px gold);transform:scale(1.1);}}
+@media (prefers-reduced-motion: reduce){.star-icon{animation:none;}}
+.star-text{font-weight:700;font-size:1rem;}
+```
+**WHY** Owner: "The star heading becomes a star — maybe glittering?"
+**SAFE ALONE?** Yes — CSS + HTML.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: glitter visible, stops with reduced motion.
+
+### GR-7b · Star entries as cards with gold for user's players
+
+**WHERE** l.3035-3049 (starsParagraph lines)
+**WHAT** Replace prose star lines with cards:
+```html
+<div class="star-card ${p.team===user?'star-card-user':''}">
+  <div class="sc-player">${p.name} <span class="sc-team">(${nick(team)})</span></div>
+  <div class="sc-stat">${statLine}</div>
+  <div class="sc-verb">${verb}</div>
+</div>
+```
+**CSS:**
+```css
+.star-card{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:8px 12px;margin-bottom:6px;}
+.star-card.star-card-user{border-color:#ffd700;background:linear-gradient(135deg,rgba(255,215,0,0.08),rgba(255,165,0,0.04));}
+.star-card .sc-player{font-weight:700;font-size:0.9rem;}
+.star-card .sc-team{font-weight:400;color:var(--sub);font-size:0.8rem;}
+.star-card .sc-stat{font-size:0.8rem;color:var(--sub);margin-top:2px;}
+.star-card .sc-verb{font-size:0.85rem;margin-top:4px;font-style:italic;}
+```
+**WHY** Owner: "Your own players are gold, including the game ball winner." Cards make each star visually distinct.
+**SAFE ALONE?** Yes — replaces string concatenation with HTML.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-7c · Game ball as gold card
+
+**WHERE** l.3190-3195 (`ball` variable and `p2stars`)
+**WHAT** Replace prose game ball with a gold card:
+```html
+<div class="game-ball-card ${mvp.team===user?'gb-user':''}">
+  <div class="gb-icon">🏈</div>
+  <div class="gb-content">
+    <div class="gb-title">Game Ball</div>
+    <div class="gb-player">${mvp.name} <span class="gb-team">(${nick(mvp.team)})</span></div>
+    <div class="gb-stat">${mvp.line}</div>
+    ${loserBall ? `<div class="gb-note">Rare: game ball to the losing side — ${mvp.name}'s performance was too dominant to ignore.</div>` : ''}
+  </div>
+</div>
+```
+**CSS:**
+```css
+.game-ball-card{display:flex;align-items:center;gap:12px;background:linear-gradient(135deg,rgba(255,215,0,0.12),rgba(255,165,0,0.06));border:2px solid #ffd700;border-radius:12px;padding:12px 16px;margin:8px 0;}
+.game-ball-card .gb-icon{font-size:2rem;}
+.game-ball-card .gb-title{font-weight:800;font-size:0.9rem;color:#ffd700;text-transform:uppercase;letter-spacing:.05em;}
+.game-ball-card .gb-player{font-weight:700;font-size:1rem;margin-top:2px;}
+.game-ball-card .gb-team{font-weight:400;color:var(--sub);font-size:0.85rem;}
+.game-ball-card .gb-stat{font-size:0.82rem;color:var(--sub);margin-top:4px;}
+.game-ball-card .gb-note{font-size:0.78rem;color:var(--accent2);margin-top:4px;font-style:italic;}
+```
+**WHY** Owner: "your own players are gold, including the game ball winner." Gold card makes the game ball visually prominent.
+**SAFE ALONE?** Yes — replaces string concatenation with HTML.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-7d · Award tables with gold for user's players
+
+**WHERE** `renderRegularAwardsHTML()` and `renderPlayoffAwardsHTML()`
+**WHAT** Add gold highlighting for user's players in award tables:
+```html
+<tr class="${player.team===user?'award-user':''}">
+  <td>${player.name}</td>
+  <td>${player.team}</td>
+  <td>${player.stat}</td>
+</tr>
+```
+**CSS:**
+```css
+tr.award-user{background:rgba(255,215,0,0.1);font-weight:700;}
+tr.award-user td:first-child::before{content:'★ ';color:#ffd700;}
+```
+**WHY** Owner: "Awards — a lot more beautiful, and your own players are gold."
+**SAFE ALONE?** Yes — CSS + conditional class.
+**HOW TO CHECK** `node --check` → exit 0. Visual check: user's players highlighted in gold.
+
+### GR-7e · Star threshold enforcement (visual indicator)
+
+**WHERE** starsParagraph (l.3027-3031)
+**WHAT** Add a visual indicator for the star threshold (60 yards for skill players, 300+ yards + 3:1 for QBs):
+```html
+<div class="star-threshold">
+  <span class="st-icon">📊</span>
+  <span class="st-text">Stars require 60+ yards (skill) or 300+ yards + 3:1 TD:INT (QB)</span>
+</div>
+```
+**CSS:**
+```css
+.star-threshold{font-size:0.72rem;color:var(--sub);margin-bottom:8px;padding:4px 8px;background:var(--panel);border-radius:6px;display:inline-flex;align-items:center;gap:4px;}
+```
+**WHY** Owner: "The slots are reserved for 90+ rating performances (60+ rushing yards; a QB needs 300+ yards and a 3:1 TD/INT ratio), rating never shown." Makes the threshold visible to the user.
+**SAFE ALONE?** Yes — adds HTML. No math changes.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-7f · Glittering star glyph (optional enhancement)
+
+**WHERE** CSS
+**WHAT** Add a glitter effect to star glyphs (⭐) throughout the UI:
+```css
+.star-glyph{display:inline-block;animation:glitter 2s ease-in-out infinite;}
+@keyframes glitter{0%,100%{filter:brightness(1);}50%{filter:brightness(1.5) drop-shadow(0 0 6px gold);}}
+@media (prefers-reduced-motion: reduce){.star-glyph{animation:none;}}
+```
+**WHY** Owner: "maybe glittering?" Adds a subtle sparkle to star icons.
+**SAFE ALONE?** Yes — CSS only.
+**HOW TO CHECK** Visual check: glitter visible, stops with reduced motion.
+
+## What stays as sentences (per Owner's criterion)
+- Star praise text — "was the difference", "played a big role", etc.
+- Game ball stat line — "25/35 for 320 yards, 3 TDs"
+- Award citation text
+
+## SAFE ALONE?
+Yes — all changes replace string concatenation with HTML components or add CSS. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: all components render at 390px (no horizontal overflow)
+3. Glitter animation visible and respects reduced-motion
+4. User's players highlighted in gold in stars, game ball, and awards
+
+## What was deliberately not checked
+- Whether the glitter animation works on all browsers
+- Whether the star cards should link to player season stats
+- Whether the award tables should be sortable
+
+
+---
+
+# V22 Graphics Round — Item 8: Guide's Visual Language (BOC) — 22 Oct 2026
+
+Build: `Football-Sim-V21.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48`
+
+## Objective
+Apply the shared component set and visual language to the Guide, making it more graphical while keeping instructional text.
+
+## Current state (guideHTMLCached, l.5053-5056)
+
+The Guide is a series of `<details>` sections with text content:
+- How the site works (ordered list)
+- Drafting: which positions matter (value tiers + prose)
+- Reading the draft board (board math + prose)
+- Flexing players (flex explain)
+- Position values (slot role table + prose)
+- Coaching (personnel table + style lists)
+- Math of game plans (planMathHTML)
+- Football terms (termsHTML)
+
+## Proposed changes
+
+### GR-8a · Section navigation as visual cards
+
+**WHERE** l.5053 (guide header)
+**WHAT** Replace the text intro with a visual card grid:
+```html
+<div class="guide-nav">
+  <div class="guide-nav-card" data-section="how">How the site works</div>
+  <div class="guide-nav-card" data-section="draft">Which positions matter</div>
+  <div class="guide-nav-card" data-section="board">Reading the draft board</div>
+  <div class="guide-nav-card" data-section="flex">Flexing players</div>
+  <div class="guide-nav-card" data-section="values">Position values</div>
+  <div class="guide-nav-card" data-section="coach">Coaching</div>
+  <div class="guide-nav-card" data-section="plans">Game plan math</div>
+  <div class="guide-nav-card" data-section="terms">Football terms</div>
+</div>
+```
+**CSS:**
+```css
+.guide-nav{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin-bottom:16px;}
+.guide-nav-card{background:var(--panel2);border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-size:0.82rem;font-weight:600;cursor:pointer;text-align:center;transition:background .15s;}
+.guide-nav-card:hover{background:var(--accent);color:#fff;}
+```
+**WHY** Owner: "Short reference sections for the terms the sim uses. Click through only what you need." Visual cards make navigation faster than a text list.
+**SAFE ALONE?** Yes — CSS + HTML.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-8b · Value tiers as visual bar chart
+
+**WHERE** l.5037 (`valueTiersHTML()`)
+**WHAT** Replace the text value tiers with a horizontal bar chart showing position value:
+```html
+<div class="value-tier-chart">
+  <div class="vt-row"><span class="vt-pos">QB</span><div class="vt-bar"><div class="vt-fill" style="width:100%"></div></div><span class="vt-val">320</span></div>
+  <div class="vt-row"><span class="vt-pos">DE</span><div class="vt-bar"><div class="vt-fill" style="width:92%"></div></div><span class="vt-val">350</span></div>
+  <!-- ... -->
+</div>
+```
+**CSS:**
+```css
+.value-tier-chart{display:flex;flex-direction:column;gap:4px;margin:8px 0;}
+.vt-row{display:grid;grid-template-columns:40px 1fr 40px;gap:8px;align-items:center;font-size:0.8rem;}
+.vt-bar{height:10px;background:var(--border);border-radius:5px;overflow:hidden;}
+.vt-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:5px;}
+.vt-val{font-weight:600;text-align:right;font-variant-numeric:tabular-nums;}
+```
+**WHY** Position values are numeric. Bar chart communicates relative importance faster than text tiers.
+**SAFE ALONE?** Yes — replaces HTML output.
+**HOW TO CHECK** `node --check` → exit 0. Visual check at 390px.
+
+### GR-8c · Slot role table with visual bars
+
+**WHERE** l.5042 (`slotRoleTableHTML()`)
+**WHAT** Add mini-bars to the slot role table showing each slot's contribution:
+```html
+<tr><td>${slot}</td><td>${role}</td><td><div class="vt-bar" style="width:60px;"><div class="vt-fill" style="width:${pct}%"></div></div></td></tr>
+```
+**WHY** Slot contributions are numeric. Mini-bars add visual weight to the table.
+**SAFE ALONE?** Yes — enhances existing table.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-8d · Coaching style cards
+
+**WHERE** l.5044 (`styleListsHTML()`)
+**WHAT** Replace the text style list with visual cards:
+```html
+<div class="style-card">
+  <div class="sc-name">${styleName}</div>
+  <div class="sc-desc">${description}</div>
+  <div class="sc-stats">
+    <div class="stat-card"><div class="sc-val">${util.toFixed(1)}</div><div class="sc-label">Util</div></div>
+  </div>
+</div>
+```
+**CSS:**
+```css
+.style-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;margin-bottom:8px;}
+.style-card .sc-name{font-weight:700;font-size:0.9rem;margin-bottom:4px;}
+.style-card .sc-desc{font-size:0.8rem;color:var(--sub);margin-bottom:8px;}
+.style-card .sc-stats{display:flex;gap:6px;}
+```
+**WHY** Coaching styles have utility values. Cards make them visual.
+**SAFE ALONE?** Yes — replaces HTML output.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-8e · Game plan math as visual flow
+
+**WHERE** l.4908 (`planMathHTML()`)
+**WHAT** Replace the prose math explanation with a visual flow diagram:
+```html
+<div class="plan-flow">
+  <div class="pf-step"><div class="pf-label">Offense</div><div class="pf-bar"><div class="pf-fill" style="width:${pct}%"></div></div></div>
+  <div class="pf-arrow">→</div>
+  <div class="pf-step"><div class="pf-label">Defense</div><div class="pf-bar"><div class="pf-fill" style="width:${pct}%"></div></div></div>
+  <div class="pf-arrow">→</div>
+  <div class="pf-step"><div class="pf-label">Result</div><div class="pf-bar"><div class="pf-fill" style="width:${pct}%"></div></div></div>
+</div>
+```
+**CSS:**
+```css
+.plan-flow{display:flex;align-items:center;gap:8px;margin:8px 0;flex-wrap:wrap;}
+.pf-step{flex:1;min-width:80px;text-align:center;}
+.pf-label{font-size:0.75rem;font-weight:600;margin-bottom:4px;}
+.pf-bar{height:8px;background:var(--border);border-radius:4px;overflow:hidden;}
+.pf-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:4px;}
+.pf-arrow{font-size:1.2rem;color:var(--sub);}
+```
+**WHY** Game plan math is a flow (offense → defense → result). Visual flow communicates it faster than prose.
+**SAFE ALONE?** Yes — replaces HTML output.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-8f · Terms as visual cards
+
+**WHERE** l.4999 (`termsHTML()`)
+**WHAT** Replace the text terms list with visual term cards:
+```html
+<div class="term-card">
+  <div class="tc-term">${term}</div>
+  <div class="tc-def">${definition}</div>
+</div>
+```
+**CSS:**
+```css
+.term-card{background:var(--panel2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 8px 8px 0;padding:8px 12px;margin-bottom:6px;}
+.tc-term{font-weight:700;font-size:0.85rem;margin-bottom:2px;}
+.tc-def{font-size:0.8rem;color:var(--sub);line-height:1.4;}
+```
+**WHY** Terms are definitions. Cards with left accent border make them visually distinct.
+**SAFE ALONE?** Yes — replaces HTML output.
+**HOW TO CHECK** `node --check` → exit 0.
+
+### GR-8g · "Value here" removal from Guide
+
+**WHERE** l.4991-4992, l.5056 (Guide text mentioning "Value here")
+**WHAT** Remove all visible "Value here" strings from the Guide. The math (`r.v`) stays computed.
+**WHY** Owner: "Remove 'Value here' completely from the website."
+**SAFE ALONE?** Yes — text change.
+**HOW TO CHECK** Grep for "Value here" in Guide → 0 matches.
+
+## What stays as text (per Owner's criterion)
+- "How the site works" ordered list — instructions
+- "Football terms" definitions — reference text
+- "Flexing players" explanation — instructional
+- "Drafting: which positions matter" prose — analysis
+
+## SAFE ALONE?
+Yes — all changes replace string concatenation with HTML components or remove text. No math changes, no protected constants.
+
+## HOW TO CHECK
+1. `node --check` on extracted script → exit 0
+2. Visual check: all components render at 390px (no horizontal overflow)
+3. Guide still shows all information (no data loss)
+4. Grep for "Value here" in Guide → 0 matches
+
+## What was deliberately not checked
+- Whether the guide nav cards should be clickable (JS needed)
+- Whether the value tier chart should be sortable
+- Whether the terms should be searchable
