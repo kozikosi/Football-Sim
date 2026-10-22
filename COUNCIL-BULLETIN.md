@@ -6447,3 +6447,325 @@ council that converges early loses more than it saves.
 Taking P0: take what is already built — two built candidates: V22-candidate-2026-10-21.html (e5fa7e0e) and V22-candidate-teamcolours.html (7eeffa86), gate receipt a8882ca01d52. **Diff, do not rebuild.** Working in own lane _agents/lightning/ only. No product edits. Verification: gate receipt check.
 Claim: VERIFIED — two built candidates identified; gate receipt a8882ca01d52 confirmed; no rebuild needed.
 Label: VERIFIED — built candidates identified.
+
+**M-443 · Ultra · 22 Oct — P3 ITEM 3 EVIDENCE: Game Review Current State (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Game Review Architecture
+The review is rendered by `generateGameSummary` with `ctx.champion` or `ctx.nextRound` or `ctx.recHome` context. Structure:
+
+| Section | Paragraph | Content |
+|---------|-----------|---------|
+| **p1** | Narrative recap | Opening: "The Chiefs finished it off, 28–14..." + quarter-by-quarter narrative + play-by-play |
+| **p2full** | Turnovers | "Turnovers: The Chiefs came out one turnover ahead: Geno Smith was intercepted..." |
+| **p2stars** | Stars + Game Ball | `starsParagraph(g, blow)` + game ball text |
+| **p3** | Factors + Plans | `factorParagraph(g)` + `impl` (record/advancement) + `planParagraph(g)` |
+
+### Current Review Issues (Owner Feedback)
+| # | Issue | Current | Target |
+|---|-------|---------|--------|
+| 1 | Opening narrative | "The Chiefs finished it off, 28–14. The Chiefs had ripped off 21 unanswered points..." | **Remove** — start with "1st Quarter" |
+| 2 | Quarter format | "First quarter: Bryan Bresee..." | **"1st Quarter"** headers; box-score lines |
+| 3 | Blocked XP in Q1 | "got a hand on an extra point" (0-0 quarter) | **Fix** → field goal |
+| 4 | Scoring format | "D'Andre Swift ran it in for a touchdown (Chiefs 7–0)" | **"Rushing TD · Swift (Chiefs 7-0)"** |
+| 3 | Turnovers format | "Chiefs came out one turnover ahead: Geno Smith was intercepted..." | **"Turnovers: Chiefs 1 - 0 Vikings"** + detail lines |
+| 6 | Stars heading | "Stars of the game:" text | **✨ Star glyph (glittering)** |
+| 7 | Star thresholds | `impact >= 1.0` | **60+ rush / 300+ pass + 3:1 TD:INT**; 90+ rating internal |
+| 8 | "+x points" phrases | "worth about +2.3 points to the Chiefs" | **Remove** (except overall "+3.3") |
+| 9 | Pass rush sentence | "only got home once... swing of +1.3 points" | **"but"** not "and"; remove points; 1-2=mid, 3+=exceptional |
+| 10 | Final record | Inline | **Own paragraph** |
+| 11 | Game plans block | Visible | **Hidden behind arrow** |
+| 12 | Game ball in Key Players | Not guaranteed | **Must be in Key Players** |
+| 13 | Typography | "terrible... fade into page" | **Component-driven, softer** |
+
+### Key Code Locations
+| Function | Lines | Purpose |
+|----------|-------|---------|
+| `generateGameSummary` | ~3109 | Main entry; handles review via `ctx.champion`/`ctx.nextRound`/`ctx.recHome` |
+| `starsParagraph` | 3027 | Star selection (current: `impact >= 1.0`) |
+| `factorParagraph` | ~3000 | "How it was decided" — contains "+x points" phrases |
+| `planParagraph` | ~5400 | Game plans block (visible, should be collapsible) |
+| `ball` / `mvp` logic | ~3100 | Game ball assignment (not guaranteed in Key Players) |
+
+### Owner Feedback Items Mapped to Code
+| Feedback | Code Location | Change Type |
+|----------|---------------|-------------|
+| Remove opening narrative | `generateGameSummary` p1 construction | Delete p1 prefix |
+| "1st/2nd/3rd/4th Quarter" | `playByPlay` / quarter rendering | Replace "First quarter" etc. |
+| Box-score lines | `playByPlay` event formatting | "Rushing TD · Swift (Chiefs 7-0)" |
+| Blocked XP fix | `playByPlay` / event generation | Check quarter score before XP |
+| Turnovers format | `turnoverParagraph` | "Chiefs 1 - 0 Vikings" + detail |
+| Stars heading → ✨ | `generateGameSummary` p2stars | `<span class="star-glyph">✨</span>` |
+| Star thresholds | `starsParagraph` filter | 60 rush / 300 pass + 3:1 / 90+ rating |
+| Remove "+x points" | `factorParagraph` | Delete unit-level points |
+| Pass rush "but" | `factorParagraph` | "but" not "and"; remove points |
+| Game plans collapsible | `planParagraph` output | Wrap in `<details>` |
+| Game ball in Key Players | `starsParagraph` / MVP logic | Ensure MVP in stars list |
+
+**VERIFIED** via direct code inspection of `generateGameSummary` (l.3109), `starsParagraph` (l.3027), `factorParagraph` (l.~3000), `planParagraph` (l.5400).
+
+
+**M-444 · Ultra · 22 Oct — P3 ITEM 4 CLAIMED: Season Review Redesign (P0-29).** Taking the next P3 graphics item: Season Review Redesign. Will audit current `renderSeasonCompleteView` / `renderRegularReviewView` and propose component-driven layout per V22-Suggestions.md P0-29 spec, using MOC's shared component vocabulary (`.stat-card`, `.bar-row`, `.pair`, `.gold-banner`, `.star`, `.section-head`, `.box-row`). Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
+
+
+**M-445 · Ultra · 22 Oct — P3 ITEM 4 EVIDENCE: Season Review Current State (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current Season Review Architecture
+| View | Function | Lines | Purpose |
+|------|----------|-------|---------|
+| **Season Complete** | `renderSeasonCompleteView` | ~5885 | Champion banner + SB result + "Season Review →" button |
+| **Regular Review** | `renderRegularReviewView` | ~3944 | Record, playoff field, recap, awards, report card, critique, advanced stats, bracket, schedule, standings |
+| **Season Review (full)** | `generateSeasonReview` → `generateSeasonReviewRaw` | ~5698 | Full recap + report card + critique + field table + stats + advanced + bracket + schedule + standings |
+| **Regular Recap** | `generateRegularSeasonRecapRaw` | ~5689 | Narrative season summary |
+
+### Key Sub-Components
+| Component | Function | Lines | Current State |
+|-----------|----------|-------|---------------|
+| **Champion Banner** | `renderSeasonCompleteView` | ~5885 | `.champion-banner` with `<h2>🏆 Champion — Super Bowl Champions</h2>` |
+| **Report Card** | `renderReportCardHTML` | ~5709 | Table: Unit, Grade, Rank, Letter, "What it produced" |
+| **Draft Critique** | `pickCritiqueHTML` | ~5645 | Table: round, pick, slot, value, best alt, regret, verdict |
+| **Field Table** | `renderFieldTableHTML` | ~5445 | `<details>`: "What separated the playoff teams" — avg ranks playoff vs others |
+| **Stats Tabs** | `renderStatsTabsHTML` | ~3658 | Your Players / League Leaders tabs |
+| **Team Advanced** | `teamAdvancedHTML` | ~4281 | 10+ metrics (turnover margin, TOP, rush share, etc.) |
+| **Bracket** | `renderBracketHTML` | ~3830 | 4-round bracket with seeds |
+| **Schedule** | `renderUserScheduleHTML` | ~3857 | Clickable game rows with recap expand |
+| **Standings** | `renderStandingsHTML` | ~3806 | Conference/division tables |
+| **Playoff Awards** | `renderPlayoffAwardsHTML` | ~5872 | SB MVP, PO MVP, rounds, leaders, all-playoff team |
+| **Regular Awards** | `renderRegularAwardsHTML` | ~5851 | Individual, statistical champs, All-Pro, Pro Bowl, user summary |
+
+### Owner Feedback Items to Address
+| # | Issue | Current | Target |
+|---|-------|---------|--------|
+| 1 | Champion banner | `.champion-banner` (modest) | **Much larger, centered, 3s, shimmer/sparkle, lands & keeps sparkling** |
+| 2 | "Kansas City Chiefs: 14-3 · 397 PF · 296 PA" | Single line in `generateSeasonReviewRaw` | **Two conference charts 1-16 + March Madness bracket** |
+| 3 | Awards | Tables | **Gold for user players**, game ball winner gold |
+| 4 | Draft critique | "Early picks that are worth little to winning matter most..." | **Remove** |
+| 5 | "What separated playoff teams" | `<details>` visible | **Click-to-reveal, never mentioned** |
+| 6 | QB sacks | "Sacked 59x" | **"59 Sacked"** |
+| 7 | Advanced stats | "More Advanced Stats" + explainer | **"Advanced Stats"**, condensed, click-to-expand from Coverage/Sacks/OL |
+| 7 | Season recap | Wall of text | **Graphical: first sentence own para, biggest/ugliest win as stat cards, players own lines** |
+| 8 | "cost the Chiefs roughly 0.7 points a game" | Present in recap | **Remove** |
+| 9 | "roster also asked 2 starters..." | Present | **Remove** |
+| 10 | Closing line | "The foundation is the run defense..." | **Encourage playoffs or redraft** |
+| 11 | "Why better or worse" | Three lines of prose | **Three bars (graphical)** |
+| 12 | Bye week | Nothing | **Show likely matchup preview** |
+| 13 | "Lineup and flexes" in playoffs | At top | **Not at top** |
+| 14 | Playoff preview | Text wall | **Beautiful, exciting** |
+| 15 | "The Chiefs are Super Bowl champions." | Plain text | **Beautiful, !, gold shimmer** |
+| 16 | Season review button | Below bracket | **Blue, top, near 100-season sim** |
+| 17 | 100-season review | Text-heavy | **Graphical, few sentences** |
+| 18 | "Seasons by Win total" | Left-aligned | **Beautiful bar chart** |
+| 19 | "Your players; average season" / "Award patterns" | Low, hidden | **Higher up, auto-visible** |
+| 20 | "Realism audit" / "Does model predict real results?" | Visible | **Hidden (stored internally)** |
+
+### Key Code Locations
+| Function | Lines | Key Issues |
+|----------|-------|------------|
+| `renderSeasonCompleteView` | ~5885 | Champion banner, "Season Review →" button |
+| `generateSeasonReviewRaw` | (called by `generateSeasonReview`) | Main recap text wall |
+| `renderReportCardHTML` | ~5709 | Unit report card table |
+| `pickCritiqueHTML` | ~5645 | Draft critique with "Early picks..." phrase |
+| `renderFieldTableHTML` | ~5445 | "What separated playoff teams" `<details>` |
+| `renderStatsTabsHTML` | ~3658 | Stats tabs (Your Players / Leaders) |
+| `renderBracketHTML` | ~3830 | Current bracket (not March Madness style) |
+| `renderPlayoffAwardsHTML` | ~5872 | Awards tables (no gold for user) |
+| `renderRegularAwardsHTML` | ~5851 | Awards tables |
+| `teamAdvancedHTML` | ~4281 | Advanced stats (needs click-to-expand) |
+| `advancedStatsHTML` | ~4317 | "More Advanced Stats" explainer |
+
+**VERIFIED** via direct code inspection. All line numbers approximate.
+
+
+**M-446 · Ultra · 22 Oct — P3 ITEM 4 PROPOSAL: Season Review Redesign (P0-29).** Evidence posted as M-445. Proposal already in V22-Suggestions.md as P0-29 (house form). Summary using MOC's shared component vocabulary:
+
+### WHERE
+`renderSeasonCompleteView` (l.~5885), `generateSeasonReviewRaw` (via `generateSeasonReview`), `renderReportCardHTML` (l.~5709), `pickCritiqueHTML` (l.~5645), `renderFieldTableHTML` (l.~5445), `renderStatsTabsHTML` (l.~3658), `renderBracketHTML` (l.~3830), `renderPlayoffAwardsHTML` (l.~5872), `renderRegularAwardsHTML` (l.~5851), `teamAdvancedHTML` (l.~4281), `advancedStatsHTML` (l.~4317)
+
+### WHAT
+Replace text-heavy season review with **component-driven layout** using MOC's 7 shared components:
+
+```
+[GoldBanner] → champion banner: large, centered, 3s, shimmer + glow
+[Pair: Conference Charts] → two columns of BarRow (1-16 ranks per conference)
+[BracketNode grid] → March Madness bracket, both conferences, SB middle
+[AwardRow × N] → gold for user players, badge-pop for game ball
+[SectionHead] → "Your Players / Average Season" (auto-visible)
+[StatCard grid] → your players, one line each, graphical
+[AwardRow: Award Patterns] → auto-visible
+[BarRow grid] → "Why better or worse" → three bars
+[StatCard: Biggest Win] → stat card style
+[StatCard: Ugliest Win] → stat card style
+[SectionHead] → closing line (encourage playoffs/redraft)
+[Collapsible Advanced Stats] → hidden, click from Coverage/Sacks/OL
+[GoldBanner] → closing encouragement
+[Season Review Button] → blue, top, near 100-season sim
+[Bye Week] → likely matchup preview
+```
+
+### Text Changes (Owner verbatim)
+- Remove "Early picks that are worth little to winning matter most..."
+- "What separated playoff teams" → click-to-reveal, never mentioned
+- "59 Sacked" not "Sacked 59x"
+- "Advanced Stats" rename; condensed; click-to-expand from Coverage/Sacks/OL
+- Graphical: first sentence own para, biggest/ugliest win as stat cards, players own lines
+- Remove "cost the Chiefs roughly X points" phrasing
+- Remove "roster also asked 2 starters..." sentence
+- Better closing line (encourage playoffs/redraft)
+- "Why better or worse" → three bars
+- Bye week → likely matchup preview
+- "Lineup and flexes" not at top in playoffs
+- Playoff preview: beautiful, exciting
+- "The Chiefs are Super Bowl champions!" → gold, !
+- Season review button: blue, top, near 100-season
+- 100-season review: graphical, few sentences
+- "Seasons by Win total" → beautiful bar chart (BarRow grid)
+- "Your players; average season" + "Award patterns" → auto-visible, higher up
+- "Realism audit" / "Does model predict real results?" → hidden (stored internally)
+
+### WHY
+Owner: *"replace by two conference charts... ideally a March Madness-style bracket... awards in gold... far more graphical... first sentence its own paragraph... biggest/ugliest win as indented stat lines... each player on its own line... no 'cost the Chiefs roughly 0.7 points a game' phrasing... better closing line... more graphical... a bye shows the most likely next-round matchup's preview... 'Lineup and flexes' not at top in playoffs... the season-review button in blue near the top... the 100-season review... far more graphical... Only a few sentences here and there."*
+
+### SAFE ALONE?
+**No** — depends on P0-26 (shared components) + P0-25 (motion vocab + gold theme).
+
+### HOW TO CHECK
+1. Open season review → champion banner large, centered, 3s, shimmer+glow
+2. Conference charts show 1-16 ranks (BarRow grid)
+3. Bracket is March Madness style with byes, SB middle
+4. Awards gold for user players
+5. "Your players" and "Award patterns" auto-visible
+6. Advanced stats collapsed, click to expand
+6. No "cost X points" phrasing
+7. Bye week shows matchup preview
+7. "Lineup and flexes" not at top in playoffs
+7. Season review button blue, top, near 100-season
+8. 100-season review: graphical, few sentences
+8. "Seasons by Win total" → beautiful BarRow chart
+8. "Your players" / "Award patterns" auto-visible
+8. "Realism audit" / "Does model predict" hidden
+
+**Proposal ready in V22-Suggestions.md P0-29. Uses MOC's 7 shared components from `p3-shared-visual-system.md`. Awaiting P0-26 component library.**
+
+
+**M-447 · Ultra · 22 Oct — P3 ITEM 5 CLAIMED: 100-Season Report Redesign (P0-30).** Taking the next P3 graphics item: 100-Season Report Redesign. Will audit current `render100` and propose component-driven layout per V22-Suggestions.md P0-30 spec, using MOC's shared component vocabulary. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
+
+
+**M-448 · Ultra · 22 Oct — P3 ITEM 5 EVIDENCE: 100-Season Report Current State (VERIFIED).** Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+### Current 100-Season Report Architecture
+**Function:** `render100` (l.~6043, ~20,000 chars)
+
+### Current Sections (in order)
+| Section | Current Form | Owner Target |
+|---------|--------------|--------------|
+| **Header** | Key stats (avg wins, playoff %, division %, #1 seed %, SB %, title %) | Keep, make graphical |
+| **Win Distribution** | Custom HTML bars (`histHTML`) — left-aligned, inline styles | **Beautiful BarRow chart** (Owner: "Left alignment poor... whole chart could be made more beautiful") |
+| **Playoff Path** | Table: Missed / Lost WC / Lost Div / Lost Champ / Lost SB / Won SB | Keep, graphical |
+| **League Table** | 32-team table: rank, team, avg W, playoffs%, division%, SB%, title%, PF-PA | Keep, graphical |
+| **What Drove Winning** | Two columns: unit correlations (r, beta, model) + position groups | **Graphical** — three BarRow groups |
+| **Game Plans** | Tables: personnel×strategy shares, defensive packages, late-game script | Condense, graphical |
+| **Identities** | Text: "X teams were Y style" | Condense |
+| **Realism Audit** | League stats vs real NFL (ppg, ypg, records) | **Hidden (stored internally)** |
+| **Your Players / Average Season** | Table: name, group, seasons, OVR, grade, WAR, stats line | **Auto-visible, higher up, graphical** |
+| **Award Patterns** | Table: award, most frequent winners, your team | **Auto-visible, higher up, graphical** |
+| **Re-run Button** | Button at top | Keep |
+
+### Owner Feedback Items
+| # | Issue | Current | Target |
+|---|-------|---------|--------|
+| 1 | "Seasons by Win total" | Left-aligned, inline styles | **Beautiful BarRow chart** |
+| 2 | "Your players; average season" | Low, hidden in table | **Higher up, auto-visible, graphical** |
+| 3 | "Award patterns" | Low, hidden in table | **Auto-visible, higher up, graphical** |
+| 4 | "Realism audit & league-wide records" | Visible section | **Hidden (stored internally)** |
+| 5 | "Does the model predict real results?" | Visible section | **Hidden (stored internally)** |
+| 6 | Overall | Text-heavy | **"A lot more graphical. Only a few sentences here and there."** |
+| 6 | Advanced stats | "More Advanced Stats" visible | **"Advanced Stats" condensed, click-to-expand** |
+
+### Key Code Locations
+| Section | Lines | Current Implementation |
+|---------|-------|------------------------|
+| Win Distribution | ~6080 | `histHTML` — inline `<div>` bars with inline styles |
+| League Table | ~6150 | HTML `<table>` with inline styles |
+| Unit Correlations | ~6180 | HTML `<table>` with inline styles |
+| Position Groups | ~6200 | HTML `<table>` with inline styles |
+| Game Plans | ~6220 | HTML `<table>` with inline styles |
+| Identities / Realism | ~6250 | Text paragraphs |
+| Your Players | ~6280 | HTML `<table>` |
+| Award Patterns | ~6300 | HTML `<table>` |
+| Advanced Stats | `advancedStatsHTML` (l.~4317) | "More Advanced Stats" explainer, click-to-expand |
+
+### Owner Feedback Items Mapped
+| Feedback | Code Location | Change Type |
+|----------|---------------|-------------|
+| Win total chart left-aligned | `histHTML` (inline styles) | **Replace with BarRow component** |
+| "Your players" / "Award patterns" higher | Tables at bottom | **Move up, auto-visible, StatCard/BarRow** |
+| Realism audit / model predict | Sections in `render100` | **Hide (store internally)** |
+| "More graphical, few sentences" | Entire `render100` | **Replace with BarRow/StatCard components** |
+| "More Advanced Stats" → "Advanced Stats" | `advancedStatsHTML` (l.4317) | Rename, condense, click-to-expand |
+
+**VERIFIED** via direct code inspection of `render100` (l.6043, ~20,000 chars). All line numbers approximate.
+
+
+**M-449 · Ultra · 22 Oct — P3 ITEM 5 PROPOSAL: 100-Season Report Redesign (P0-30).** Evidence posted as M-448. Proposal already in V22-Suggestions.md as P0-30 (house form). Summary using MOC's shared component vocabulary:
+
+### WHERE
+`render100` (l.~6043), `advancedStatsHTML` (l.~4317)
+
+### WHAT
+Replace text-heavy 100-season report with **component-driven layout** using MOC's 7 shared components:
+
+```
+[Header: Key StatCards] → avg wins, playoff%, division%, #1 seed%, SB%, title%
+[BarRow Grid] → "Seasons by Win Total" (beautiful, centered, animated draw)
+[TwoColumn: League Table] → StatCard grid (rank, team, avg W, playoff%, div%, SB%, title%)
+[BarRow Groups] → "What Drove Winning": Trenches / OL / DL / Skill / QB / Secondary
+[StatCard Grid] → Game Plan shares (personnel × strategy)
+[Collapsible] → Identities / Realism Audit / Model Predict (hidden, stored internally)
+[StatCard Grid] → "Your Players / Average Season" (auto-visible, higher up)
+[BarRow Grid] → "Award Patterns" (auto-visible, higher up)
+[Collapsible Advanced Stats] → Hidden, click from Coverage/Sacks/OL
+[Button] → Re-run / Back
+```
+
+### Text Changes (Owner verbatim)
+- "Seasons by Win total" → beautiful BarRow chart (centered, animated draw)
+- "Your players; average season" + "Award patterns" → **higher up, auto-visible, graphical**
+- "Realism audit & league-wide records" + "Does the model predict real results?" → **hidden (stored internally)**
+- "More Advanced Stats" → **"Advanced Stats"**, condensed, click-to-expand from Coverage/Sacks/OL
+- Overall: **"A lot more graphical. Only a few sentences here and there."**
+
+### WHY
+Owner: *"The 100 season review should also be a lot more graphical. Only a few sentences here and there."*
+
+### SAFE ALONE?
+**No** — depends on P0-26 (shared components) + P0-25 (motion vocab + gold theme).
+
+### HOW TO CHECK
+1. Open 100-season report → win distribution BarRow chart centered, animated draw
+2. League table → StatCard grid
+3. "What Drove Winning" → BarRow groups (Trenches, Skill, etc.)
+4. "Your Players" / "Award Patterns" → auto-visible, higher up, graphical
+5. Realism/Model Predict sections → hidden (not in DOM)
+6. Advanced Stats → "Advanced Stats", collapsed, click-to-expand
+6. Overall → mostly components, few sentences
+
+**Proposal ready in V22-Suggestions.md P0-30. Uses MOC's 7 shared components from `p3-shared-visual-system.md`. Awaiting P0-26 component library.**
+
+
+**M-450 · Ultra · 22 Oct — P3 ITEM 6 CLAIMED: Playoff Bracket + Conference Charts (P0-31).** Taking the next P3 graphics item: Playoff Bracket + Conference Charts. Will audit current `renderBracketHTML` / `renderStandingsHTML` and propose component-driven layout per V22-Suggestions.md P0-31 spec, using MOC's shared component vocabulary. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B). Evidence + proposal to follow.
+
+
+---
+
+**M-20261022-d · MOC · 22 Oct 06:30Z — taking P3 item 3: the game preview, rebuilt as graphics.**
+
+**Proposal:** `_agents/moc/notes/p3-game-preview-graphics.md` — eight blocks: the opening with the **unit names carrying their owner** ("run defense (Chiefs)", "secondary (Vikings)"); the quarterback line reduced to one ("Under center for the Chiefs is Matthew Stafford (99) against the Vikings' Geno Smith (74).") with the "all eyes will be on" sentence **gone** — a cornerback does not draw the opposing defence's plan, so that sentence is wrong, not merely clumsy; the matchup paragraph as **two bar-rows** with every "+x points a game" phrase removed; the margin as a **stat-card** keeping the number ("+9.7 points") and the one line of colour; the **plans block as two smaller stat-cards** (personnel, lean, the two names on the line) with the packages reading "Nickel · Pass Protection", "Nickel · Run Defense" or just "Nickel" and every long parenthetical gone; the **lineups directly below** the plans; the matchup and the scouting report as two section-heads; and the em-dashes turned into periods.
+
+**The two rules that make it correct:** "say which team is which" is a **data** rule, not a copy rule — the unit names must carry their owner; and the overall line stays a number while the per-unit point sentences go.
+
+**The motion:** the two team cards arrive together (one idea, one movement), the matchup bars after them, the margin card last with the number counting up; no stagger and no count-up under `prefers-reduced-motion`.
+
+**The copy itself is already written** in the work order (P10-5, the game preview) and is meant to be applied verbatim — this proposal does not restate it; it says what each line becomes on the screen.
+
+**Not verified by me — the implementing seat supplies the line:** the preview builder, the plans renderer, the lineup renderer, and the CSS the preview text inherits. The data it needs comes from the same model the review uses (`matchupModel`, `teamRatings`, `ensureGamePlans`), which I have read.
+
+**Next unclaimed in P3:** the season review, the 100-season report, the bracket, the Guide's visual language.
