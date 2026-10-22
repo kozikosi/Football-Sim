@@ -1064,6 +1064,23 @@ shows "Play a Season" and "Start Season"; clicking "Start Season" still reaches 
 `node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors. Option B: the
 Season tab appears, `goSeason` is called from `setActiveTab`, and `grep -c "32\*26"` → **0**.
 
+### P0-20. The draft-complete gate is hardcoded to 26 rounds and will cut off picks 833–896
+
+**⚠ CORRECTED 22 Oct 06:30 (OR, measured) — every line this item cites is inside the DEAD `goSeason()`
+function.** See `P0-20a` for the full evidence. In short:
+
+- The **live** draft-complete gate is `l.1521` — `if(draftSim.pos >= draftSim.order.length){ … finishDraft2(); return; }` — and the
+  draft order is built at l.1161–1164 from `TOTAL_ROUNDS` (l.925 = `ROSTER_SLOTS.length`). **The live path is
+  already round-agnostic**, so the failure this item describes ("picks 833–896 would never be simulated")
+  **cannot occur**.
+- The `32*26` literals at l.849 and l.866, and the "26 starters" copy at l.852 and l.863, are all inside
+  `goSeason()` — a function with **no callers** and no markup hook.
+- **So this item is not a live bug.** It is **one of two things, depending on the Owner's `R-11`
+  decision**: if the dead function is **deleted** (`P0-20a` Option A), this item **disappears with it**;
+  if the function is **revived as a Season tab** (`P0-20a` Option B), this item becomes **mandatory** and
+  the edits below are the right ones.
+
+**Read `P0-20a` first. Do not apply this item to the live path — there is nothing there to change.**
 
 **WHERE:** `NFL Draft Simulator merged.html` — `l.849` (`if(draftSim && draftSim.pos >= 32*26)` in `goSeason()`), `l.866` (`draftSim.pos < 32*26`, the resume button), and the copy at `l.852` ("Your 26 starters are done") and `l.863` ("draft 26 starters first").
 
@@ -5646,3 +5663,70 @@ the CB3/Nickel line.
 changes the matchup model, the ratings and the player pool, and it wants its own 100-season
 regression. **But it is the Owner's call, and it is the one question in this round that changes what
 the game *is* rather than how it looks.**
+
+---
+
+## P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words
+
+### P17-1 · The colours are settled: **GPT's table is the registry's source**
+**The Owner's ruling: "Go with GPT's colours."** The build now carries that table verbatim
+(`_agents/minimax/tools/build-team-colours.mjs`, `const palette`), with the source written into the
+file: **GPT's NFL team-colour table as supplied by the Owner on 22 Oct 2026**, itself drawn from the
+NFL brand references (jimniels/teamcolors and Pro Football Network's team colour guide), with the
+status **"a published reference, not yet verified against each team's own current brand guide"**, and
+a note that the values are **transcribed from the Owner's message and should be checked against the
+source before release**.
+**The display rule, unchanged and now measured on the new table:** the brand palette stays **data**;
+the **display** palette is derived from it — `--t1` the primary (the fill and the edge), `--t2` the
+**letter colour** (the secondary if it clears 4.5:1 on the primary, else white, else near-black), and
+`--t3` the **stripe's middle**, which must be **visible on the light page** (not white, not
+near-black, not the primary — and if a team has no such colour, the stripe is flat in its primary
+rather than inventing a tint). Measured on the new table: **Chiefs red → gold → red** (white letters),
+**Seahawks navy → silver → navy** (green letters), **Dolphins aqua → orange → aqua** (near-black
+letters), **Bears and Jets flat** (their only other colours are white and black, which vanish on the
+light page). **Artifact `d15f6535f9e1…`, gate exit 0, A–I PASS, 0 page errors, receipt
+`a08837cbdfce`.**
+
+### P17-2 · "Two or more takeaways" — settled
+**A "multiple turnover game" is two or more takeaways.** The defender-star rule is therefore: **a
+defender is named a star when (a) he has the highest player rating in the game and is on the winning
+team, or (b) he has two or more takeaways, or (c) he has an incredible 90+ game.**
+
+### P17-3 · The game ball in a tie — settled, and the reasoning is worth keeping
+**The Owner's ruling: "the least highly rated play[er] by static wins should be the winner in a tie.
+Therefore players that statistically have less of a chance of putting in an exceptional performance
+get rewarded for beating expectation."**
+**As a rule:** among tied candidates, the player with the **lowest static wins figure** (his spot's
+wins-per-point value) takes the game ball. **The rationale is the point, and it belongs in the code
+as a comment, because it explains the rule to whoever reads it later:** the tie-break rewards the
+player who **beat expectation** rather than the player who was expected to do it. (The Owner's
+alternative — the lowest OVR — would break fewer ties, because ratings cluster; **static wins breaks
+more**, and the Owner's preference is for static wins.)
+
+### P17-4 · The dead hero — **Claude's call**
+**"Still don't understand the dead hero. Let claude decide."** The one-line description, for the
+record: **`goSeason()` is the function that draws the "Play a Season" panel — the panel with the
+"Start Season" button and the three-step explainer — and its only call is inside its own body, so
+that panel never appears on the page.** Either it is wired in (one call) or its sixteen dead lines
+are deleted. **The Owner's answer: Claude decides.** The council's recommendation stands on the
+record, and is not a condition: **wire it in** — the Owner's own season design is a three-step
+explainer, and one door beats three.
+
+### P17-5 · "Real front" — explained in plain words, because the phrase was doing too much work
+*Neither the Owner nor the council was using the phrase clearly. Here it is, without jargon.*
+**The question:** when you pick the 3-4, do you want **the same football with a different name on the
+depth chart**, or **a different team on the field**?
+- **A label (what the council's P10-2 builds).** Your twelve defensive positions keep their identity.
+  The depth chart reads *DE1 · DT1 (nose) · DE2 · OLB1 · ILB1 · ILB2 · OLB2* instead of
+  *DE1 · DE2 · DT1 · DT2 · MIKE · WILL · SAM*, and **the same player at the same spot is worth the
+  same wins** — an outside linebacker is worth exactly what a weakside linebacker was worth
+  (OLB ≡ WILL, ILB ≡ MIKE). **The games come out the same as a 4-3; the names change.**
+- **A real front.** The roster genuinely changes: you start **three linebackers and one nose tackle**,
+  a defensive end becomes a different kind of player, **the cornerback who replaces the third
+  linebacker is a different kind of player**, the positions you draft and start change, the players
+  in the pool change, the ratings change, and the matchup maths changes — so the results change too.
+**Which is it?** *If the Owner wants the same football with a 3-4 on the depth chart, it is a label.
+If the Owner wants the game itself to play a 3-4, it is a real front — and it is a much larger
+change, with its own 100-season regression.* **The council's recommendation is still the label now and
+the real front as a later edition, but this one is the Owner's call, and it is now a question with
+words attached rather than a phrase.**
