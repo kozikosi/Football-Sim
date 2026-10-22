@@ -5108,3 +5108,78 @@ M-386 · MOC · Cooper DeJean glitch claimed — analyzing FS flex filtering for
 **Outstanding, recorded as not done:** the wave's returns from Ultra (first-read), DS (checklist audit), Pickle (numbers audit — my own reconciliation covers the numbers meanwhile), MiMo (instruction integrity vs AGENTS.md), LongCat (ambiguity hunt), Lightning (applier verify), VLOC (safe-alone adversarial) and Super (Guide/TC record check) had not reported at 00:30Z. **No seat has been credited with a slice it has not reported.**
 
 **Next free M-number:** **M-418** (read tail at MOC M-417).
+
+---
+
+**M-418 · Pickle · 22 Oct — DISPATCH EXECUTED (Owner-ordered fan-out): ten sessions, one distinct assignment each, no chains.**
+
+**Coordinator:** Pickle. **Basis:** the Owner's dispatch instruction — broadcast to every reachable OpenChamber council session, one distinct assignment each, recipients work only their task and do not rebroadcast, report back to the coordinator.
+
+**Reachability at dispatch (VERIFIED via `session.list`):** 11 council sessions on this project. **Idle: BOC, MOC, LongCat.** **Busy (queued): DS, Lightning, Super, MiMo, GLM, VLOC, Ultra** plus mine. All ten non-Pickle sessions were sent one assignment.
+
+| Seat | Distinct assignment | Return to |
+|---|---|---|
+| **BOC** | Content-duplicate sweep of V22 (are the 23 duplicated labels content-duplicates or same-number-different-work?) | Pickle |
+| **MOC** | Dependency-order verification (is P0→P1→P2 actually buildable; P0-17/P1-11/P1-12 shared constants) | Pickle |
+| **LongCat** | 390px domain sweep (doc's P0-14/P1-28 claims vs build reality) | Pickle |
+| **Lightning** | Flex-table arithmetic cross-check (P0-17 old→new + 3-4 OLB=WILL/ILB=MIKE consequences) | Pickle |
+| **Super** | Copy-inventory of the Owner's exact strings (present/absent + doc replacement verbatim) | Pickle |
+| **MiMo** | Toolchain check (Biome / Mermaid / Figma genuinely reachable from this checkout) | Pickle |
+| **GLM** | Cross-reference table for the doc's external anchors (v20/l.NN citations, other .md files) | Pickle |
+| **VLOC** | Visual-feasibility (inline-only SVG/CSS/JS for the bracket, shimmer, motion, gold) | Pickle |
+| **DS** | Coordination-architecture audit (the Owner's meta-request: map, problems, changes, unverifiable) | Pickle |
+| **Ultra** | NBA-side parity check (does the Owner's V22 change have a silently-missing NBA analogue?) | Pickle |
+
+**Honest state:** ten assignments **dispatched**; three seats (BOC, MOC, LongCat) were **idle** so their work is **active now**; seven were **busy** so their work is **queued** behind their current turn, not yet begun. Nothing is claimed complete. One additional session was created (`Council: V22 doc CHRONOLOGY audit`) for an ordered-timeline return. I will report returns in the background; the Owner asked me to fan out and report back, so this line is the record, not the result.
+
+**Nothing here edits a product file, a protected constant, or another seat's lane.** Each recipient was instructed to write only in its own `_agents/<name>/` lane and to report to me.
+
+**Next free M-number:** **M-419** (read tail at Pickle M-418).
+
+
+---
+
+**M-418 · BOC · 21 Oct — P1 block de-duplication complete (DS request).** Deliverable `_agents/boc/notes/V22-DEDUP.md` (updated with sections 1-5). 40 P1 items → 28 unique, 12 duplicates removed (all formatting-only differences). Additional collision analysis: 8 P0 labels (19 occurrences), 9 P10 labels (18 occurrences), 8 P11 labels (16 occurrences) — all same-number-different-work, no true content-duplicates. Full old→new mapping, merged P1 block, count, and difference flags in the deliverable. DS applies the merge (BOC did not edit V22-Suggestions.md). No product edits. No other seats' files touched.
+
+---
+
+SPEAKER: VLOC | ROLE: Council reviewer (S-2500–2599) | TASK: Visual-feasibility pass on V22 graphical requests | DATE: 2026-10-22T00:35:00Z
+
+**M-419 · VLOC · 22 Oct — visual-feasibility report for Pickle's assignment.**
+
+**Deliverable:** `_agents/vloc/notes/VISUAL-FEASIBILITY.md`
+
+Build verified: `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B), `merge/v20-donor`.
+
+**Bottom line:** All six V22 graphical requests are feasible inline — no CDN, no build step, no SVG library required. The build already has CSS keyframe animations (l.101–104), a `prefers-reduced-motion` guard (l.110), a full-screen canvas (l.105), the `.ub` user-team highlight (l.100), and the render functions for bracket (l.3830), standings (l.3806), game result (l.3780), and champion banner (l.5885).
+
+| # | Request | Feasible inline? | Primary risk |
+|---|---------|-----------------|--------------|
+| 1 | Playoff bracket, March-Madness style, byes, conferences meeting in middle | **Yes** | Mobile layout of SVG connector lines at 390px |
+| 2 | Conference 1–16 charts (AFC + NFC) | **Yes** | Win% computation with ties; bar-width scaling |
+| 3 | Gold shimmering Champions banner (≥3s, lands, keeps shimmering) | **Yes** | JS timer for "land" after 3s; reduce() fallback |
+| 4 | Bigger box score | **Yes** | Quarter-cell overflow at 390px width |
+| 5 | Animated entry/exit of graphics | **Yes** | Animations conveying state-only info (reduce() rule) |
+| 6 | Gold-for-user-players on award charts | **Yes** | Colour-alone accessibility (★ badge second marker required) |
+
+**Requests that cannot be done without a dependency:** None. AGENTS.md prohibits CDN/build-step dependencies; none are needed.
+
+**What I did NOT check:** live rendered pixel measurements at 390×844 and 1280×900; actual contrast ratios against var(--accent)/var(--panel)/var(--text); whether `renderBracketHTML()` currently renders byes (content decision, not feasibility blocker); exact SVG connector-line coordinate math.
+
+**Next free M-number:** **M-420** (read tail at M-419).
+
+---
+
+**M-421 · Pickle · 22 Oct — FIRST RETURN from the dispatch batch (M-418): MOC's dependency-order audit is in, verified with one structural correction.** Deliverable: `_agents/moc/notes/DEPENDENCY-ORDER-AUDIT.md` (MOC's lane; document not edited).
+
+**What MOC found (REPORTED, and I agree with the substance):** the spine's "apply P0 → P1 → P2" is wrong in **one direction** — three P1 items must precede P0 items that depend on them. Corrected order: **P1-10** (headless entry points — gates the *proof* of P0-17), **P1-11** (SAM scarcity — a pool ruling, re-measures SAM supply), **P1-12** (FB/P slots) **→ then P0-17** (flex rules) **→ then P0-16** (3-4/4-3) and **P0-12** (board "also fits" line). Also: **P0-1 before P0-12** (same row template), and **P0-5 vs P0-7 contradict inside P0** — P0-5 keeps a "My Weights" save button, P0-7 deletes the user weights row. That last one is a genuine Owner ruling request, not a build question.
+
+**The structural fact that drives the reorder — I re-measured it. Right in substance, wrong in one count:**
+- **VERIFIED (MOC right):** the weights are keyed by **slot**. `WV_SLOT_GROUP` has **26 keys**, exactly today's 26 slots — which is *why* the FB/P ruling needs new `WV_SLOT_GROUP` keys (my M-414, finding 2).
+- **CORRECTED (MOC's count is wrong):** MOC states `FLEX` is keyed by **19** keys. It is **11**. Measured: `FLEX` keys = `LT, LG, DT, REDG, MIKE, CB, SS, FS, WR, TE, HB` — **11 positions**, not 19; MOC's own listed names are 11, so the "19" is a miscount, not a different table. The *substance* holds (FLEX is keyed by **position**, weights by **slot**), and that is the real structural driver: "OLB/WILL/SAM" is a rule about the **LB group's slots**, not a new `FLEX` key.
+
+**Verdict on the return:** accepted, with the 19→11 correction. The reorder stands on the position-vs-slot distinction, which is verified. **No product file, protected constant, or other lane edited.**
+
+**Dispatch batch state:** 1 of 10 returns in (MOC). Outstanding: BOC, LongCat, Lightning, Super, MiMo, GLM, VLOC, DS, Ultra, + the chronology session.
+
+**Next free M-number:** **M-422** (read tail at Pickle M-421).
