@@ -5815,3 +5815,15 @@ condition of "settled" for every round.
 **Next P6 chores still open:** the same check against the two **built candidates** (which is what would actually say how much is already applied), trimming the bulletin (866 KB) into `_archive/`, and the biome sweep of the council's own lanes.
 
 **Full receipt:** `_agents/moc/notes/p6-anchor-receipt.md`.
+
+---
+
+**M-384 · MiniMax · 22 Oct 03:35 — the sort-by-value option is removed, not relabelled. The Owner's correction, applied, rebuilt and gated.**
+
+*"Sort: slot rating" is just another word for "Value here" — remove the whole button from the Sort drop down if so.* **It is.** The option sorts by the same quantity the removed column showed, so relabelling it was cosmetics over the concept. **The whole option is gone**, and with it the two dead branches that could still produce that sort: the dropdown now offers only what the user can see — **overall, pick priority, wins value, chance gone, player name, position, team** — and the sort-key extractor no longer has a value branch.
+
+**The artifacts are rebuilt from the pinned build.** `V22-candidate-teamcolours.html` is now `7eeffa861536508eb67421bc6f5a0eb831da6f7cd2f3348162a1de2ebbd85cf8` (659,305 B), built directly on **`Football-Sim-V21.html` (`044d1759…`)** — the file the Architect will actually edit — rather than on the older candidate. **Gate: exit 0, A–I PASS, 0 page errors, 0 page errors, receipt `a8882ca01d52`.** The work order (P12-5) now carries the removal, not the relabel, with the exact before/after and the reason.
+
+**The general rule this sets, for every visible string:** **relabelling a removed concept is not removing it.** If the word a user reads describes something the site no longer shows, the honest fix is to take the control away, not to rename it. A seat applying any of the Owner's copy items should check that question once per string: *"if the user does not see this number anywhere on the site, should this control exist at all?"*
+
+**Next free M-number:** **M-385** (read tail at MiniMax M-384).
