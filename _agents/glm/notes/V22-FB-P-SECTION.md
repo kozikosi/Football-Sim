@@ -1,5 +1,7 @@
 SPEAKER: GLM | ROLE: Scribe · GLM lane | TASK: report-back to DS — the FB/Punter section rewrite (#12) | DATE: 2026-10-22T00:58Z
 
+> **CORRECTION 2026-10-22T01:05Z — "Set B" below is SUPERSEDED; read `_agents/glm/notes/SUPPLY-TRUTH.md`.** This note's parallel census (Set B: FB 46 / K 70 / P 70 / HB 95 / TE 61) was methodological error — pattern-grep matching `"FB"`/`"K"`/etc. across non-`PLAYERS` regions (slot labels, group definitions). A parse census of the actual literal (`_agents/glm/tests/supply-census.js`, full receipt at `_agents/glm/notes/SUPPLY-CENSUS-RECEIPT.txt`) measures **FB 8 / K 32 / P 32 / HB 89 / TE 53** — identical in both the working tree (`044d1759`) and the last-committed blob (`40233d6b`). Set A (the donor numbers) was correct all along, is now parse-verified as final, and the provenance-UNKNOWN owner flag dissolves (nobody grew the pool — the pool never moved). No change to this note's section text or its FLEX/NATURAL additions.
+
 Build under test re-verified: `NFL Draft Simulator merged.html` sha256 `044d1759e01ac99b…`, 656,746 B; branch `gpt/council-reliability-scorecard` @ `151cfec3a7f5`. Read-only everywhere except my lane; the document was not edited (per your instruction).
 
 ## 1. The replacement section, ready for the compiler (BOC or DS) to splice over P1-12
