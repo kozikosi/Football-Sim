@@ -61,6 +61,42 @@ These are the Owner's. Where one conflicts with an item below, **the ruling wins
 
 **Only R-2, R-6, R-7, R-10, R-12, R-13 and R-14 touch code.** R-9, R-11 and the rest are copy, naming, thresholds and data provenance.
 
+### Third binding block — the Owner's answers, 22 Oct 10:15Z
+
+| # | ruling | effect on the items |
+|---|---|---|
+| **R-15** | **The default tab is Draft**, as the homepage is now. *"But the button and layout of the homepage could really change a lot to be even more beautiful."* | Resolves `P2-1`'s first half in favour of the **candidate's current behaviour** — `setActiveTab('viewDraft','tabDraftBtn')` stands, and the donor's Season-first default is **not** adopted. The second half is a design request: **`P0-31` "The Draft Card"** is the proposal (hero tinted with the user's team, a team-coloured Start button that carries the pick number, stat chips instead of the prose paragraph, a three-card row mirroring the stepper, and a die chip for the pick order). `P0-31` is a **proposal** — the Architect builds what they judge better, in the spirit of the request. |
+| **R-16** | **The all-time pool size depends on the sport:** **1,500 football · 500 basketball · 1,500 hockey · 1,500 soccer · 2,000 baseball.** | Supersedes the flat "1,200" figure used throughout the work order. The number is a **per-sport target for the candidate pool**, and the visible pool is a view on it (32 × 26 = 832 picks drafted, the rest are bench). **Why it is per-sport:** a basketball roster is 15 active against football's 26, so the same draft needs a proportionally different bench; 500 for basketball is the ratio that keeps the bench depth comparable. **Effect:** the NFL all-time intake targets **1,500**, not 1,200 — `SIM-PLATFORM/data/schema/` and any pool-sizing note must be read with this number. |
+| **R-17** | **Delete the specific incidents of things that are clearly wrong.** | Applies to the invented rating records. **Executed 22 Oct by UK** — the ten clearly-wrong records were deleted, with receipts in `_fixtures/example-ratings/DELETION-LOG.md`; the two `sports/*` notices were updated so no pointer is broken; the safe synthetic shape-only examples are kept. **This closes the last open hard-rule item on the board.** |
+
+**R-15/R-16/R-17 are recorded here so the Architect and the council read them once, at the top, rather than hunting for them.** R-15 and R-17 are settled; R-16 changes a number that appears in several places, so the places to update are: `SIM-PLATFORM/data/schema/` sizing notes, the all-time pool brief, and the Owner's own earlier "1,200" phrasing in `P13-*`.
+
+---
+
+### Owner answers — 22 Oct 10:10Z (second round)
+
+| # | question | Owner's answer | effect |
+|---|---|---|---|
+| **R-15** | **Which build is the V22 base?** | *"I don't know."* — delegated. **Resolved by measurement: the candidate.** | **V22 is built from `_agents/minimax/prototypes/V22-candidate-teamcolours.html` (`d15f6535…`, 6,620 lines), not from the pin.** Verified a strict superset — every marker identical to the pin (6,553 lines) plus `applyTeamColors` ×2. The pin would throw away the whole colour system. **Action:** copy the candidate to the repo root as the working file before any edit, and record its sha256 in `STATUS.md`. |
+| **R-16** | **The dead `goSeason()`.** | *"I haven't seen the dead code. Let claude decide."* — delegated. | **The Architect decides**, with the framing in `P0-20a`: 27 lines (l.846–872), no callers, no `id` in the markup, no CSS class; the live hero is at l.6152–6163 and works. **If it is deleted, `P0-20` evaporates with it. If it is revived as a Season tab, `P0-20` becomes mandatory.** |
+| **R-17** | **Default tab — Draft or Season-first?** | *"I don't understand the difference between draft and season. But I think the start a draft that we have now is great."* | **The opening stays as it is today — the Draft tab.** The Owner has seen and approved the current entry. The default-tab question (`P2-1`) is **closed in favour of the status quo**, and the draft's entry screen becomes a priority below. |
+| **R-18** | **Do you want to see the flex table before Claude writes it?** | *"Yes but I want to give Claude the freedom to design all future tables to be a lot more beautiful and visually enticing."* | **Two things. (1)** The Architect designs the flex table and **shows it to the Owner before it enters the protected `FLEX` constant.** (2) **A standing mandate:** the Architect has the freedom to design **all future tables** to be more beautiful and visually enticing. This is not a one-item permission — it is the aesthetic bar for the whole of V22. |
+| **R-19** | **The all-time pool's current-player adjustment.** | *"No. Let's go with minus 3."* | **The adjustment is −3, not −5.** Applies to every current player's all-time rating. It still needs the eligibility and calibration decisions in `P2-3` before any all-time rating is assigned — the number is settled, the calibration is not. |
+| **R-20** | **Make hash-pinning mandatory?** | *"Ask everyone else if they agree."* | **Polled the council — see the response table below.** |
+
+### R-20 · The hash-pinning poll — the Owner's question, put to the council
+
+> **The question.** Should every claim in this work order carry the **sha256 of the build it was
+> measured against**? Measured cost: one line per claim. Measured benefit: in the last six hours,
+> MiniMax's "BUILT" claim went stale after its own revert commit and was true again by the next
+> commit; two council corrections went stale within the hour; and **three separate defects were
+> each found only by re-reading the artifact rather than trusting the document.** Nobody lied — the
+> claims were simply un-pinned.
+
+| seat | answer | note |
+|---|---|---|
+| _(pending — responses below as they arrive)_ | | |
+
 ---
 
 ### R-11 resolved — the plain-language version, with receipts (UK, 22 Oct)
@@ -913,6 +949,55 @@ no maths, no `FLEX`, no `DEFAULT_WEIGHTS` — but the three rulings must land to
 
 ---
 
+### P0-18b · [OWNER DIRECTIVE] "Start Draft" must be more attractive, more beautiful, and addicting
+
+**WHERE** `#startDraftBtn` — pin line 394, candidate line 406. It is the entry button on the Draft
+screen, wired at pin l.1106 / candidate l.1127 → `startDraft2()` (l.1455 / l.1476). The shared button
+rule is at pin l.249 / candidate l.256:
+```css
+249: #beginSeasonBtn,#beginSeasonBtn2,#startSeasonBtn,#startDraftBtn,#simSeasonBtn,#simPlayoffsBtn,#seasonReviewBtn{font-size:1rem;padding:13px 30px;}
+```
+The button is currently a plain `.resetbtn` with inline styles, sitting under the hero text
+*"NFL Draft Simulator / Draft your team. Play the season. Win the Super Bowl."* (pin l.319).
+
+**THE OWNER'S WORDS (22 Oct).** *"I think the start a draft that we have now is great. You should relay
+to everyone that we should make the start a draft button a lot more attractive and beautiful and
+addicting."*
+
+**WHAT.** The button becomes the **one thing the screen is asking for**. Concretely, and all of it is
+the Architect's to design — this item states the *bar*, not the mock-up:
+- **Hierarchy.** The button is the largest interactive element on the page. The hero title, the
+  tagline and the supplementary links all recede. One focal point.
+- **Colour.** The button wears the **user's team colours** once a team is chosen, and the user's
+  primary before that — the same `--team1/--team2/--team3` system as everything else. It is the
+  first place a visitor sees the team's identity.
+- **Weight and depth.** A real elevation — a gradient, a shadow that reads as a raised surface, and
+  a visible press state. Not a flat rectangle with padding.
+- **Motion.** A short, tasteful arrival (the button settles in as the hero resolves) and a
+  satisfying press. **Motion is punctuation, not decoration** (`P11`): one thing moves at a time, and
+  the `prefers-reduced-motion` guard is **not optional** — under it, the button appears statically
+  and the press state still reads.
+- **A reward for pressing it.** The moment the draft begins is a transition, not a page swap — the
+  screen should hand over to the draft like the product is going somewhere.
+- **It must still be a `<button>`** with an accessible name, keyboard-reachable, with a visible focus
+  ring. Beautiful and usable are not alternatives.
+
+**WHY** The Owner's whole brief is *"the site is a text game that should feel like a stadium."* The
+entry to the game is the highest-leverage moment on the site and it currently looks like a
+form control. `R-18` gives the Architect the freedom to design all future tables "a lot more
+beautiful and visually enticing" — this button is where that freedom should be spent first.
+
+**SAFE ALONE?** **Yes.** One element, its CSS, and its press transition. No maths, no constants, no
+layout of other screens.
+**HOW TO CHECK** (1) At 390 px the button is fully visible without scrolling, is the largest
+interactive element, and has **no** horizontal overflow. (2) With `prefers-reduced-motion: reduce`,
+**no** transition or animation plays and the button still reads as raised. (3) Tab to it — a visible
+focus ring appears. (4) Click it with the mouse: the press state registers and the draft begins with
+no layout shift. (5) `node _agents/minimax/tools/board-mobile-probe.mjs` → 0 overlaps, 0 clipped,
+0 overflow. (6) `node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors.
+
+---
+
 ### P0-19. Season review / playoff preview UI improvements (Owner feedback, 21 Oct, wave 2)
 - The banner that appears after winning is great but should be much larger, centered on the screen, and remain on screen for at least 3 seconds. Similar to the Conference Champions graphic. It would be cool if that graphic could also land on the screen somewhere after it shows and continue to shimmer/sparkle.
 
@@ -1201,6 +1286,152 @@ the computed `border-top-color` of `#draftingAsBanner` — it must be `rgb(227, 
 `rgb(79, 140, 255)`. (3) Face Minnesota Vikings and read the computed `border-left-color` of the
 opponent panel — `rgb(79, 38, 131)`. (4) 390 px: no horizontal overflow introduced by the new
 attributes. (5) `node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors.
+
+---
+
+### P0-31: The Homepage — "The Draft Card" (Owner's request, 22 Oct)
+
+> *"3. Draft first, like the homepage is now. But the button and layout of the homepage could really change a lot to be even more beautiful. Come up with suggestions and collaborate."*
+
+**WHERE** build l.317–321 (the `<header class="hero">`) and l.382–395 (the `#draftSetup` panel).
+
+**The concept, in one sentence:** **the homepage becomes a team card you pick up, not a settings form you fill in.** The current screen asks for two dropdowns and offers a small grey button; the screen should *promise the journey* and *be your team* the moment you choose it.
+
+#### The flow
+
+```mermaid
+flowchart TD
+    A["Hero — team-tinted<br/>title · team disc · stepper"] --> B["The Draft Card<br/>your team, your pick, one big button"]
+    B --> C["Start Draft<br/>team-coloured, carries the pick number"]
+    C --> D["Draft board"]
+    A -. "stat chips" .-> E["32 teams · 26 rounds<br/>832 picks · 1,200 players"]
+    A -. "three cards" .-> F["DRAFT · 32 teams, same math<br/>SEASON · 17 games<br/>PLAYOFFS · 14 teams, one trophy"]
+```
+
+#### M1 — the hero answers *what is this, and where am I?*
+
+Today the hero is generic: a bouncing 🏈, a blue-gradient `NFL Draft Simulator`, a static tagline, and a stepper that promises a journey but shows nothing of it. It should already be **your** team, because you pick a team two clicks later.
+
+```css
+/* The team variables already exist (P11-5 / P0-29). This is the homepage use. */
+.hero{ background:
+        radial-gradient(120% 140% at 8% 0%, color-mix(in srgb, var(--team-primary) 26%, transparent), transparent 62%),
+        linear-gradient(180deg, rgba(0,0,0,.24), rgba(0,0,0,0)),
+        var(--panel);
+      border-color: color-mix(in srgb, var(--team-primary) 45%, var(--border));
+      transition: background .45s ease, border-color .45s ease; }
+.hero h1{ background:linear-gradient(90deg, var(--team-primary), var(--team-secondary) 78%);
+          -webkit-background-clip:text; background-clip:text; color:transparent; }
+.hero-disc{ display:grid; place-items:center; width:56px; height:56px; border-radius:50%;
+            background:linear-gradient(140deg, var(--team-primary), var(--team-secondary));
+            color:#fff; font-weight:900; font-size:1.15rem; letter-spacing:.02em;
+            box-shadow:0 8px 22px color-mix(in srgb, var(--team-primary) 35%, transparent);
+            animation:heroBounce 3.4s ease-in-out infinite; }
+.stepper li.on{ background:linear-gradient(90deg, var(--team-primary), var(--team-secondary));
+                color:#fff; border-color:transparent;
+                box-shadow:0 4px 16px color-mix(in srgb, var(--team-primary) 40%, transparent); }
+```
+
+**WHAT** replace `<div class="hero-ball">🏈</div>` with a `.hero-disc` carrying the team's **abbreviation** (KC, NE, MIN) in the team's colours — and it becomes the small mark that appears on the Start button too, so the identity reads in one glance.
+
+#### M2 — the Start button becomes the hero of the screen
+
+Today:
+```html
+<button class="resetbtn" id="startDraftBtn" style="width:auto;padding:10px 24px;margin-top:12px;">Start Draft</button>
+```
+— the most important moment on the screen is the smallest element on it, at the bottom of a paragraph.
+
+**WHAT** a full-width, team-coloured button that **carries the pick number**:
+
+```html
+<button class="startcard" id="startDraftBtn">
+  <span class="startcard-kicker">You are</span>
+  <span class="startcard-team"><span class="startcard-disc">KC</span> Kansas City Chiefs</span>
+  <span class="startcard-pick">#19 overall · Round 1</span>
+  <span class="startcard-go">Start Draft →</span>
+</button>
+```
+```css
+.startcard{ width:100%; display:grid; gap:4px; justify-items:start; text-align:left;
+  padding:20px 24px; border-radius:18px; cursor:pointer;
+  background:linear-gradient(120deg, var(--team-primary), var(--team-secondary));
+  color:#fff; border:none; box-shadow:0 14px 34px color-mix(in srgb, var(--team-primary) 32%, transparent);
+  transition:transform .18s ease, box-shadow .18s ease; }
+.startcard:hover{ transform:translateY(-2px);
+  box-shadow:0 18px 40px color-mix(in srgb, var(--team-primary) 40%, transparent); }
+.startcard-kicker{ font-size:.72rem; letter-spacing:.14em; text-transform:uppercase; opacity:.85; }
+.startcard-team{ display:flex; align-items:center; gap:10px; font-size:1.4rem; font-weight:900; }
+.startcard-disc{ display:grid; place-items:center; width:34px; height:34px; border-radius:50%;
+  background:rgba(0,0,0,.32); font-size:.9rem; font-weight:900; }
+.startcard-pick{ font-size:.92rem; opacity:.9; }
+.startcard-go{ margin-top:6px; font-size:1.02rem; font-weight:800; }
+```
+
+#### M3 — the prose paragraph becomes four stat chips
+
+Today the setup panel opens with a paragraph of prose. The Owner's own rule — *"a number beats a sentence; a card beats a paragraph"* — turns it into chips:
+
+```html
+<div class="statrow">
+  <div class="stat"><b>32</b><span>teams</span></div>
+  <div class="stat"><b>26</b><span>rounds</span></div>
+  <div class="stat"><b>832</b><span>picks</span></div>
+  <div class="stat"><b>1,200</b><span>players</span></div>
+</div>
+```
+```css
+.statrow{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin:14px 0 4px; }
+.stat{ display:grid; gap:2px; padding:12px 14px; border-radius:14px;
+  background:var(--panel2); border:1px solid var(--border); }
+.stat b{ font-size:1.5rem; font-weight:900; line-height:1; color:var(--text); }
+.stat span{ font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sub); }
+@media (max-width:390px){ .statrow{ grid-template-columns:repeat(2,1fr); } }
+```
+**This also removes "32 **real** NFL franchises"** — the same word the Owner asked to come off the Team Comparison page.
+
+#### M4 — a three-card "what you'll do" row that mirrors the stepper
+
+The stepper already promises Draft → Season → Playoffs → Champion, and the homepage says nothing about it. Three cards, one line each, in the stepper's own vocabulary:
+
+```html
+<div class="threecards">
+  <div class="tcard"><b>Draft</b><p>26 rounds, 832 picks, 31 GMs drafting against the same math you do.</p></div>
+  <div class="tcard"><b>Season</b><p>17 games, real divisions, your call on every week.</p></div>
+  <div class="tcard"><b>Playoffs</b><p>14 teams, four rounds, one Super Bowl.</p></div>
+</div>
+```
+
+#### M5 — "Draft pick #" becomes a luck control, not a select
+
+`Random` is a **promise** (a fresh order every time); a `<select>` hides that promise behind a dropdown. Make it a die chip next to the team select:
+
+```html
+<label class="chipfield">Draft pick #
+  <button class="chip" id="draftPickChip">🎲 Random</button>
+</label>
+```
+with the existing `<select>` kept in the DOM (hidden) for the non-random values, so no logic changes.
+
+#### The order on the page
+
+1. **Hero** — team-tinted, team disc, stepper.
+2. **The Draft Card** — team name, pick number, the big Start button.
+3. **Stat chips** — 32 · 26 · 832 · 1,200.
+4. **Two controls** — Draft as, Draft pick #.
+5. **Three cards** — Draft / Season / Playoffs.
+
+**WHY** the Owner: *"the button and layout of the homepage could really change a lot to be even more beautiful."* The screen is the first and last impression of a text game that should feel like a stadium; today it reads as a settings dialog.
+
+**SAFE ALONE?** **Yes** — markup and CSS only, plus the existing team-colour variables from P0-29. No maths, no protected constants, no new data. The only coupling is that the team variables must exist; P0-29 supplies them. **If P0-29 has not landed, the hero falls back to the current colours** — so it can be built first with `--team-primary` defaulting to the current accent.
+
+**HOW TO CHECK**
+1. `node --check` on the extracted script → exit 0.
+2. Open the homepage; pick **Kansas City Chiefs** → the hero wash, the disc, the Start button and the stepper's "Draft" pill all turn **red→gold**; pick **Minnesota Vikings** → **purple→gold**. Read the computed values: `getComputedStyle(document.querySelector('.hero-disc')).backgroundImage` must contain `rgb(79, 38, 131)`.
+3. The Start button must show the **actual** pick: choose pick #19 → the button reads "#19 overall · Round 1".
+4. 390 px: `.statrow` becomes 2×2; the Start button is full-width; no horizontal overflow (`board-mobile-probe.mjs` → 0 clipped, 0 overflow).
+5. `node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors.
+6. `prefers-reduced-motion` guard: the disc's `heroBounce` and the hover lift are disabled under the reduced-motion media query.
 
 ---
 
@@ -5201,18 +5432,53 @@ Windows default. The light panel is the surface most people see.
 Gold (`#FFB81C`) is the badge's letter colour (l.180) and is **not in the stripe at all**. The Vikings
 are the same: `#4F2683 → #FFFFFF → #4F2683`.
 
-**WHAT (old → new).** `applyTeamColors()` must derive the middle stop the way `teamStyle()` already
-does, rather than copying `c[2]`:
+**WHAT (old → new).** The Owner's rule is already written — in the **generator**, at
+`_agents/minimax/tools/build-team-colours.mjs` l.161–171, as `displayFor()`. **That function is never
+called.** It is the dead code. The rule reaches the board rows only because `teamStyle()` (artifact
+l.3360–3368) re-implements a piece of it inline. Two changes are needed:
+
+**Change 1 — call the derivation on the banner path.** `applyTeamColors()` (artifact l.3375–3380)
+must derive the middle the way `teamStyle()` does, instead of copying the raw brand slot 3:
 ```js
 // old — the raw tertiary, white for 18 teams
 r.setProperty('--team3', c[2]);
-// new — the same derivation teamStyle() uses, with the stated fallback
+// new — the derived middle, with the stated fallback
 const mid = [c[2],c[1]].find(x => x && x!=='#FFFFFF' && x!==c[0] && L(x)>0.12);
 r.setProperty('--team3', mid || c[0]);
 ```
-and the banner's gradient must consume that derived value (it already does, via `var(--team3)` at
-l.184 — so **only the setter changes**). If `--team-stripe` (l.3379) is kept, it must be built from
-the derived middle too.
+The banner's gradient (l.184) already consumes `var(--team3)`, so **only the setter changes**.
+
+**Change 2 — the visibility test is the wrong KIND of test.** `L(x) > 0.12` is a *luminance* test
+applied to a *contrast* question. It rejects two plainly visible colours — **Texans red `#A71930`**
+(L = .091, but **CR 6.87** against the light page) and **Jaguars teal `#006778`** (L = .111, but
+**CR 6.04**) — and pushes **7 teams** (Bears, Bengals, Broncos, Texans, Saints, Jets, Steelers) into
+a flat stripe for no reason. The test must ask the question that was actually asked:
+```js
+// the background is --bg, #f4f6fa in the light theme
+const visible = x => x && x !== c[0] && CR(x, '#f4f6fa') >= 1.3;
+const mid = [c[2],c[1]].find(visible) || null;
+```
+**The helper already exists.** `_agents/minimax/tools/build-team-colours.mjs` l.160 defines
+`const contrast = (a,b) => …` and l.164 already uses it for the badge's letter colour. The middle
+stop at l.168 simply does not use it:
+```js
+168: const mid = [a, s2].find(x => x && x.toUpperCase() !== '#FFFFFF' && x.toUpperCase() !== p.toUpperCase() && lum(x) > 0.12);
+182: (artifact) const mid = [c[2], c[1]].find(x => x && … && L(x) > 0.12);
+```
+**Swap `lum(x) > 0.12` for `contrast(x, '#f4f6fa') >= 1.3`** and the same rule is right in the
+generator, the rows and the banner, with the helper already in hand.
+
+**With a contrast test, ZERO teams need the flat fallback** — every one of the 32 has a visible
+middle. The Owner's fallback clause ("if a team has no such colour, the stripe is flat in its
+primary") is therefore **never triggered** and needs no special case, beyond making the flat stripe a
+**two-stop** gradient rather than a three-stop one with an equal middle.
+
+**Also:** `--team-stripe` (l.3379) is written and referenced by **no CSS** — either consume it or drop
+it. `displayFor()` (generator l.161–171) should be called, not re-implemented.
+
+**THE COUNT, MEASURED.** With the rule as built, **21 of 32 teams** get an illegal banner middle:
+**18** with a white middle (invisible on the light panel, CR 1.000 against `#ffffff`) and **3** with a
+near-black middle (Lions, Jets, Eagles — CR 1.192 against the dark panel `#141922`).
 
 **WHY** The Owner's ruling is *"the middle must be visible on the light page."* It is currently
 honoured on the board rows and **ignored on the banner** — the one surface the Owner pointed at
@@ -5228,7 +5494,10 @@ before or after `P13-1a`.
 3. Scripted: for all 32 teams, read the middle stop of `.draftingas::before` and assert it is never
    `#FFFFFF`, never `#000000`, and never equal to the primary — or, where the team has no such
    colour, that the stripe is flat in the primary.
-4. Assert the contrast of the middle stop against the light panel `#ffffff` is **> 1.2** for every team.
+4. Assert the contrast of the middle stop against the light page `#f4f6fa` is **> 1.3** for every team
+   — and assert **zero** teams fall back to flat, which is what the corrected contrast test produces.
+5. Assert the **Texans** middle is `#A71930` and the **Jaguars** middle is `#006778` — those are the
+   two the old luminance test wrongly rejected.
 
 **⚠ MOC's related claim, corrected (for the record).** MOC wrote *"the Chiefs' stripe is red → white
 at contrast 1.00 → gold, and that is true for 20 of 32 teams."* Measured: the stripe is red → **white**
@@ -5242,19 +5511,42 @@ Jets in slot 2). The *number* survives with a changed meaning; the *shape* of th
 reported, not edited.
 **WHAT** the emitted 32-team palette carries four real errors, verified against the teams' own colours:
 
-| Team | Now | Should be | Why |
+| Team | Now (as emitted) | Should be | Why |
 |---|---|---|---|
-| Buffalo Bills | `#00338D`, `#C60C30` | **red primary, blue secondary** | the Bills' primary is red; the map has the two reversed |
-| Baltimore Ravens | `#241773`, `#FFFFFF`, `#000000` | purple, **black**, **gold** | gold is the Ravens' third colour and is missing |
-| Las Vegas Raiders | `#101820` primary | **silver** primary, black secondary | the Raiders' primary is silver; `#101820` is a near-black that also collides with the Saints |
-| New Orleans Saints | `#101820` primary | a distinguishable near-black | collides with the Raiders |
+| **Jacksonville Jaguars** slot 1 | `#101820` (black) | **`#006778` (teal)** | Jaguars Teal is the jersey and head-logo colour (PMS 3155 C); black is the helmet and trim. **This is the one real identity error in GPT's table.** |
+| **Chicago Bears** slot 2 | `#000000` (black) | **`#C83803` (Classic Bears Orange)** | Bears = Navy `#0B162A` / Orange `#C83803` / White `#FFFFFF`. **Black is not a Bears colour.** |
+| **New England Patriots** slot 3 | `#BFC0BF` | **`#B0B7BC`** | `#BFC0BF` is the **Panthers'** silver. Patriots silver is `#B0B7BC`. |
 
-**WHY** the Owner's ask is that each team *reads* as itself. A Bills row in blue is a wrong signal, and
-two teams sharing `#101820` make the opponent's identity unreadable at a glance.
-**SAFE ALONE?** Palette-only edit in the builder; it re-emits the CSS and changes no markup. It **is**
-safe alone, but it must not be applied in the same build as a `data-team` change without a re-measure.
-**HOW TO CHECK** re-run the builder; the emitted CSS shows the new triples; for the Chiefs and Vikings
-the triples are unchanged (`#E31837/#FFFFFF/#FFB81C`, `#4F2683/#FFC62F/#FFFFFF`).
+**⚠ The last two are REGRESSIONS in the builder, not errors in GPT's table.** The Owner supplied the
+Bears as `#C83803` and the Patriots as `#B0B7BC`; `_agents/minimax/tools/build-team-colours.mjs`
+carries `#000000` and `#BFC0BF` instead. **The builder did not faithfully carry the table it was given.**
+Check the builder against the Owner's supplied table value-by-value, not against a description of it.
+
+**⚠ CORRECTION — my own earlier claim in this item was wrong.** This item previously said the
+**Bills' primary should be red** and that the map had blue and red reversed. **It does not.** The
+Bills' primary is **blue `#00338D`** (helmet and jersey); red `#C60C30` is the secondary. All three
+candidate tables had it right. The claim came from a misreading and is withdrawn.
+
+**ALSO — the collisions are NOT palette errors and must not be "fixed" in the table.** Three pairs
+share a primary, and in each case the shared hex is a team's **real** colour:
+Bengals/Broncos `#FB4F14` · Cowboys/Rams `#003594` · Patriots/Seahawks `#002244`. **No palette edit
+can separate them.** Fix it in the **rendering layer** — the derived middle stop (Bengals/Broncos
+currently both fall back to flat, which makes them *identical*; Cowboys/Rams and Patriots/Seahawks
+already differ at the middle) plus a **three-letter team tag** so the two are never identified by
+colour alone. The Owner's premise is that colour *identifies* a team; on a 32-team draft board,
+colour alone cannot.
+
+**WHY** the Owner's ask is that each team *reads* as itself. A Jaguars row in black is a wrong
+signal, and two teams sharing `#FB4F14` make the opponent's identity unreadable at a glance.
+**SAFE ALONE?** The three palette corrections: palette-only edit in the builder; it re-emits the CSS
+and changes no markup. It **is** safe alone, but it must not be applied in the same build as a
+`data-team` change without a re-measure. **The collision fix is NOT palette-only** — it is a
+rendering change and belongs with `P13-1b`.
+**HOW TO CHECK** re-run the builder; the emitted values must match the Owner's supplied table
+value-by-value (diff the two tables, not a description of them); for the Chiefs and Vikings the
+triples are `#E31837`/`#FFB81C`/`#FFFFFF` and `#4F2683`/`#FFC62F`/`#FFFFFF`; and every colliding pair
+must be distinguishable by its middle stop or its tag.
+
 
 ### P13-3 · SPECIFIED — where the opponent's colours go in a matchup
 | Surface | What the Owner asked for | The mechanism |
@@ -5872,3 +6164,39 @@ front" framing** — the question was badly posed, and the Owner's answer remove
    has a **Priority column already**, so the scarcity reading is not lost by choosing value; the
    "Fills" column then means *"here is where he plays for you"*, which is what a user expects to read.
    **One word from the Owner settles it: "value" or "scarcity".**
+
+---
+
+## P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)
+
+*This supersedes **P15-1 "The tool map, so nobody guesses"**, which said Claude has Figma and the council does not. That was true when it was written on 22 Oct 04:55. **It is no longer true, and the work order is the first document every seat reads, so the correction lives here as well as in the bulletin and in `_agents/moc/notes/figma-capabilities-and-council-rules.md`.**
+
+### The fact
+- **Every seat now has Figma.** The remote MCP server `https://mcp.figma.com/mcp` (OAuth on first connect, no desktop app) is configured in `~/.config/opencode/opencode.json`, and the credential lives in the shared store — so every seat on the machine inherits it.
+- Verified: `whoami` → **Kosi**, plan "k's team", tier **starter**, role admin.
+- **To authenticate a machine:** `opencode mcp auth figma` — **and note the trap: the `opencode` on PATH was 1.19.3 and fails with "Database is not empty and has no session table"** (the database is the newer `session_v2` schema). Point `~/.opencode/bin/opencode` at OpenChamber's bundled **v2.0.32** first; the old binary is kept as `opencode-1.19.3.bak`.
+
+### The capabilities — 42 tools, six families
+| family | tools | what it is for here |
+|---|---|---|
+| **Read a design** | `get_design_context`, `get_screenshot`, `get_metadata`, `get_variable_defs`, `get_motion_context`, `get_figjam`, `search_design_system`, `get_libraries` | pull a frame, a palette or a motion spec out of a file; `get_variable_defs` is the palette as **named tokens** |
+| **Write a design** | `use_figma`, `generate_figma_design`, `create_new_file`, `send_code_to_figma`, `upload_assets`, `download_assets`, `generate_diagram`, `generate_image`, `export_video` | a seat puts a real frame on the canvas instead of describing one in a note; `generate_diagram` turns the council's mermaid into an editable FigJam board |
+| **Code Connect** | `get_code_connect_map`, `add_code_connect_map`, `send_code_connect_mappings`, `list_file_components_for_code_connect`, `get_context_for_code_connect`, `get_code_connect_suggestions` | bind a Figma component to the code that renders it — the long-term answer to "the palette is in a note and the CSS is in a file" |
+| **Weave** | `weave_list_tools`, `weave_find_model`, `weave_run_tool`, `weave_run_model`, `weave_get_tool_inputs`, `weave_get_tool_run_output`, `weave_get_model_run_output`, `weave_cancel_tool_run`, `weave_upload_asset` | run AI workflows inside Figma |
+| **Generative plugins & shaders** | `create_generative_plugin`, `list_generative_plugins`, `get_generative_plugin`, `update_generative_plugin`, `create_shader`, `list_shaders`, `get_shader`, `update_shader`, `list_file_shaders` | the Owner's "more motion, more excitement" could be a shader in the file, not only CSS |
+| **Mandatory skills** | `/figma-use`, `/figma-generate-design`, `/figma-generate-library`, `/figma-generate-diagram`, `/figma-design-to-code`, `/figma-code-connect`, `/figma-use-figjam` | load before the write paths; fallback `get_figma_skill` on `skill://index.json` |
+
+### The limits, measured
+- **Starter tier** → the free plan's feature set and **rate limits** — batch the calls.
+- **`code_layers_enabled: false`** → the generated code-layer path is limited; read and write still work.
+- **`specs_enabled: false`** → Figma's Dev Mode handoff is unavailable, so **the council's notes stay the spec**.
+- **The design-system route needs a file**: `get_libraries` and `search_design_system` both require a `fileKey`, and there is no "list my files" tool — so the route starts from `create_new_file` **or from a file key the Owner hands over**.
+- **Writing into the account needs the Owner's nod.** No seat has created a file, a component or a board in the account.
+
+### What changed in the rules, and what did not
+- **Changed:** *"the council does not design in Figma"* is **obsolete** — §6 of the idle brief (*"a seat may propose a visual concept"*) is the replacement. **A seat may now put a frame on the canvas.**
+- **Unchanged:** the **Architect owns the product file and the canonical tokens**; a seat's frame is a **proposal**, and only the Architect merges the product. No seat edits the build, `AGENTS.md` or a protected constant.
+- **The tool facts, for the hundredth time:** **Claude has Figma** (execute, read designs, pull screenshots, generate diagrams); **mermaid, biome and git are for everyone**; `session.send` for nobody.
+
+### The highest-value thing Figma does for this project
+**The palette becomes real.** `_agents/moc/receipts/palette-registry.json` — 32 teams × 3 values, each with a `source_url` and a verification status — becomes a **Figma variable collection with names** (`Team/Chiefs/Primary`, `/Secondary`, `/Tertiary`), with the display rules as **modes** of those variables: edge → primary, or the secondary when the primary is under 1.5 against the panel; stripe → primary → tertiary, the secondary only as a blend stop; text → the app's ink; gold stays gold. **A designer picks the team instead of a hex.**
