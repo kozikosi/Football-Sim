@@ -44,11 +44,149 @@ These are the Owner's. Where one conflicts with an item below, **the ruling wins
 | **R-3** | **The punter is worth 1** on the model-weights scale. Claude determines the exact treatment. | Already true in the build: `DEFAULT_WEIGHTS` carries `"P": 1`. No constant changes — confirm `modelWeights()` still derives it rather than hard-coding it. |
 | **R-4** | **The fullback gets a much heavier blocking spec than a running back.** | `RATING_SPECS` gains an FB contribution weighted toward run blocking. It must **not** reuse the `rb` unit. Claude designs the weights. |
 | **R-5** | **"Value here" comes off the website entirely.** If it is part of the maths, keep computing it — it must not be visible anywhere. | This is now a **removal**, not a relabel. Five visible sites exist in the build: the board column header, the column cells, the sort option, the Guide bullet, and the section title. |
-| **R-6** | **Stars of the game.** 60 rushing yards for **all** players. A quarterback needs **at least 300 passing yards and a 3:1 TD:INT ratio**. | Replaces the `impact >= 1.0` gate in `starsParagraph()`. The three thresholds are the only new numbers in this block and they need a seeded check. |
+| **R-6** | **Stars of the game.** 60 rushing yards for **all** players. A quarterback needs **at least 300 passing yards and a 3:1 TD:INT ratio**. | Replaces the `impact >= 1.0` gate in `starsParagraph()`. The three thresholds are the only new numbers in this block and they need a seeded check. **⚠ "all players" is narrowed by `R-10`:** the yardage thresholds are an *offensive* test; a defender's bar is rating-led. Read `R-6` and `R-10` together — one rule for offensive production, one for defensive. |
 | **R-7** | **The 3-4 is a toggle, not a commitment.** *"The 3-4 allows the user to swap out a DT for another Linebacker. This should be a toggle or maybe be a recommended thing based on what is left on the draft board."* | `P0-17`'s base handling: the DT-for-LB exchange is a user switch, optionally recommended from board strength. It is not baked into the roster at draft time. |
 | **R-8** | **No task is ever assigned to a named agent.** Tasks are posted openly and whoever is free takes the highest-priority one. | Governing rule for every round. Mirrors `DECISIONS.md` D-009, which the Owner has now stated twice. |
 
-**Only R-2, R-6 and R-7 touch code.** The rest are copy, naming and thresholds.
+### Owner answers — 22 Oct 06:00Z (MOC's six questions, answered)
+
+| # | question | Owner's answer | effect on the items |
+|---|---|---|---|
+| **R-9** | **Where do the 32 team hexes come from?** | Two candidate palettes supplied with public sources (jimniels/teamcolors, Pro Football Network, NFL club brand PDFs). Both are explicitly *reference* values, not verified against current official guides. GPT's rule: **brand vs display** — brand colours are sourced and immutable; display colours are derived for rendering; white stays in the brand record and the invisible-edge problem is solved in the rendering layer. Gemini's rule: **no white as secondary** — three non-white brand colours per team. | The palette is a **sourced-data requirement**, not a copied list. `P13-2c` (four corrections) and `P0-29` are now blocked on an Owner choice between the two palettes. See `P13-3a` for the diff and the conflicts. |
+| **R-10** | **What makes a defender a star?** | *"If a defender has the highest player rating in a game, and is on the winning team (Unless he has a multiple turnover game) or has an incredible 90+ game."* | `R-6`'s yardage thresholds are **offensive-only**. A defender's bar is rating-led. This adds a second, parallel rule to `starsParagraph()` — the widest change in the block, and it needs its own seeded check. |
+| **R-11** | **Which screen is the intended handoff into the season?** | *"I don't understand."* — the question has been answered for the Owner in plain language, and the answer **corrects the premise**: the "Play a Season" hero **is live** (pin lines 6154–6159). What is dead is a **second, leftover copy** of it. | **Nothing is broken and nothing is missing from the flow.** The Owner's "Start Season" button works and reaches the Preseason page. The open decision is narrow: **delete the 27-line duplicate, or give the season a dedicated tab** (the donor build had one). See `P0-20a`. |
+| **R-12** | **Who gets the game ball in a tie?** | *"Tie goes to defense if defense or offense. Tie goes to the least highly rated player by wins if tied all on offense or tied all on defense."* | **⚠ Ambiguous as written — one clarifying line needed before it is coded.** *"the least highly rated player by wins"* admits two readings: fewest wins, or lowest rating ranked by wins. The tie case was never covered by `buildGameDetail()`'s winning-team rule, and the ruling also admits a losing team's 90+ player. |
+| **R-13** | **Which flex table is the rule?** | *"Left and right don't matter. Let claude handle the table."* | **P0-17 is delegated to the Architect.** The CB3 0-vs-2 blocker was an Owner question and is now a Claude decision. With `R-2` (edge is one position) the Architect now owns the whole flex table. |
+| **R-14** | **Is the 3-4 a real front or a label? Who comes off for CB3/Nickel?** | *"The lowest rated linebacker comes off in 3-4 for the nickel."* | Resolves **who comes off**: the default OLB2 becomes **the lowest-rated linebacker**. The relabel-vs-real-front question stays with the Architect per `R-7` (a toggle). |
+
+**Only R-2, R-6, R-7, R-10, R-12, R-13 and R-14 touch code.** R-9, R-11 and the rest are copy, naming, thresholds and data provenance.
+
+---
+
+### R-11 resolved — the plain-language version, with receipts (UK, 22 Oct)
+
+The Owner answered *"I don't understand"*, so here is the plain version, and it changes the question from a decision into a deletion.
+
+**There are two copies of the same "Play a Season" screen in the build, and the Owner has been looking at the live one.**
+
+| | the copy that is live | the copy that cannot be reached |
+|---|---|---|
+| **Where** | build line **6155** | build line **851** |
+| **Reached by** | `renderSeasonTabInner()` (6152) → `renderSeasonTab()` (6147) → **~12 live call sites** (3919, 3921, 3923, 3940, 3960, 3961, 3998, 4000, 4002, 4819, 4825 …) | `goSeason()` at 846 — **nothing calls it** |
+| **Title** | `<h3>Play a Season</h3>` | `<h2>Play a Season</h2>` |
+| **Button** | `#startSeasonBtn` → `startSeason(); renderSeasonTab(container);` (6160) | `#startSeasonHeroBtn` → `startSeason(); goSeason();` (857) |
+| **The three-step explainer** | present, identical `<ol class="gl">` | present, identical |
+| **Reachable?** | **Yes** | **No — and it cannot be** |
+
+**Why the second copy can never appear.** `goSeason()` looks for an element with the id `seasonHost`:
+
+```js
+function goSeason(){
+ const host = document.getElementById('seasonHost'); if(!host) return;   // line 847
+```
+
+`seasonHost` occurs **exactly once in the whole 657,486-byte build** — that line. There is no such element on the page, so `goSeason()` returns immediately, every time. Its only call is at line 857, inside the very panel it renders.
+
+**Receipts (all against `Football-Sim-V21.html`, `044d1759…`, 656,746 B):**
+```bash
+grep -c "seasonHost"   Football-Sim-V21.html   # → 1   (the lookup itself)
+grep -c "viewSeason"   Football-Sim-V21.html   # → 0
+grep -c "tabSeasonBtn" Football-Sim-V21.html   # → 0   (there is no Season tab button at all)
+grep -n "Play a Season" Football-Sim-V21.html   # → 851 and 6155 (the two copies)
+grep -n "goSeason"     Football-Sim-V21.html   # → 846 (def) and 857 (the self-referential call)
+```
+
+**The answer, therefore, is the Owner's screen:** the product **does** have the "Play a Season" hero, it is the one at 6155, it is the one the Owner was shown, and it works. The second copy is a leftover from the merge.
+
+**The action is a delete, not a decision.** Remove the dead `goSeason()` (build lines **846–861**, ~16 lines of template) and keep the working copy. **No Owner ruling is needed.** If the Architect prefers, the surviving copy can absorb the better wording first — but the dead copy goes either way.
+
+**Effect on `R-11`:** *"I don't understand"* → **no longer a question.** It was never "is the hero the Owner was shown in the product?" (it is) but "there are two copies; which one lives?" (the 6155 one). Supersedes the "if the hero is the intended screen it must be revived" wording in the table above.
+
+---
+
+### R-12 disambiguated — the tie rule, and what the code can actually express (UK, 22 Oct)
+
+MOC flagged this as *"⚠ Ambiguous as written — one clarifying line needed before it is coded."* Here is the disambiguation, measured.
+
+**What the game-ball code does today** (build lines 2365–2380, 2677–2685):
+
+```js
+const winTeam = r.homeScore>r.awayScore ? g.home : r.awayScore>r.homeScore ? g.away : null;  // null on a tie
+const perfGrade = p => 60 + 5.5*p.impact;
+let pool = winTeam ? all.filter(p=> p.team===winTeam || perfGrade(p)>=90) : all;   // a TIE → pool = all
+const mvp = pool.reduce((a,b)=> ballScore(b)>ballScore(a) ? b : a, pool[0]);
+```
+
+and `ballScore` is a **wins-based, role-normalised z-score**:
+
+```js
+const SLOT_BASE = {"RB1":[14.08,7.39],"QB":[12.79,6.70], … };   // mean, sd of wins per slot
+const GAME_BALL_BIAS = {QB:1.82, RB:-0.50, WR:0.03, TE:-0.30, DL:-0.36, LB:-0.55, DB:-0.45, K:0.10};
+function gameZ(slot, raw){ const b = SLOT_BASE[slot]; return b ? (raw-b[0])/Math.sqrt(b[1]) : 0; }
+```
+
+**The decisive observation: a "tie" here means the contenders have the *same* `ballScore`.** So the tiebreak cannot be a second `ballScore` comparison — it must use a *different* field. The Owner's phrase *"the least highly rated player **by wins**"* then has exactly two readings, and they are **not equally cheap**:
+
+| Reading | What it means | What the code needs | Cost |
+|---------|---------------|---------------------|------|
+| **(A) "the least highly rated player", where the tie was *on the wins-based score*** | Among tied candidates, take the **lowest `ovr`**. "By wins" describes the score the tie was measured on, not a second sort key. | `p.ovr` only. **Already on every season player** (line 2634: `pl = {name, slot, group, team, ovr:e.ovr, st:{}}`). | **No new data.** One tiebreak branch. |
+| **(B) "least highly rated *by wins*" = the player with the fewest wins** | Among tied candidates, take the smallest **wins contribution**. | A per-player wins field. The season player object carries `ovr` and `st` (stats) — **no wins value**. It would have to be derived (`slotWins(slot)`) or plumbed in. | **New data plumbing** in the game-detail path. |
+
+**Recommendation: (A).** It matches the Owner's words, and it is the only reading the game-detail player object can express without new plumbing. The three branches become:
+
+1. **Tie across offense and defense → defense wins.**
+2. **Tie among all-offensive candidates → the lowest `ovr` of the tied set.**
+3. **Tie among all-defensive candidates → the lowest `ovr` of the tied set.**
+
+**One word still needed from the Owner, and it is small:** confirm that *"by wins"* in *"the least highly rated player by wins"* means **"the wins-based score that produced the tie"** (reading A) rather than **"fewest wins contributed"** (reading B). MOC's flag is correct; this is the one line that closes it.
+
+**One thing the Owner's ruling also touches, worth surfacing:** the existing code already lets **a losing team's** player take the game ball when `perfGrade(p)>=90` (line 2680). The Owner's R-10 says a defender can be a star if he is *"on the winning team … or has an incredible 90+ game"*, so the same 90+ escape is consistent across the two rulings. **The Architect should decide whether "incredible 90+ game" means `perfGrade(p)>=90` (the existing performance-grade concept, `60 + 5.5*impact`) or `p.ovr>=90`.** The Owner's phrase reads like a *performance* grade, and `perfGrade` already exists — that mapping is the cheaper one.
+
+---
+
+### R-10 field availability (UK, 22 Oct) — both branches are implementable
+
+R-10 (defender stars) needs a **player rating**; R-12 (game-ball tiebreak) needs a **rating** and possibly a **wins** value. Measured on the season's player object:
+
+```js
+// build line 2634 — every player in the game detail
+if(!pl){ const e = effEntry(sm, c.slot); pl = {name:c.p[0], slot:c.slot, group:SLOT_GROUP[c.slot], team, ovr:e.ovr, st:{}}; side.players.push(pl); }
+```
+
+| Field R-10/R-12 need | On the season player? | Note |
+|---|---|---|
+| **player rating** | **Yes — `p.ovr`** | `effEntry(sm, c.slot).ovr` — the *effective* rating, i.e. it already carries the flex penalty. That is the right number for "highest player rating in a game". |
+| **group (offense vs defense)** | **Yes — `p.group`** | `SLOT_GROUP[slot]` → QB/RB/WR/TE/DL/LB/DB/K. The offense-vs-defense tiebreak is a `group` test. |
+| **team** | **Yes — `p.team`** | The "on the winning team" test is `p.team===winTeam`. |
+| **per-player wins** | **No** | Only `slot`-level wins exist in the season path; the draft board's per-player `r.v` is not carried into the game detail. **Only reading (B) of R-12 would need this added.** |
+
+**Conclusion: R-10 needs no new data. R-12 needs no new data under reading (A).** Both are implementable inside `buildGameDetail()` and `starsParagraph()` as they stand.
+
+---
+
+### R-9 / R-14 — the hex question, narrowed (UK, 22 Oct)
+
+MOC's table records R-9 as *"blocked on an Owner choice between the two palettes"*. **That framing is slightly wider than the evidence allows, and narrowing it saves the Owner a decision they do not have to make.**
+
+GPT and Gemini **agree on the fix shape** and differ only on the values:
+
+| | GPT | Gemini | agreed? |
+|---|---|---|---|
+| Brand data separate from display data | yes — `brand_colors` (facts) + `display_colors` (UI decisions) | yes — Primary / Secondary (accent) / Tertiary (detail) as **functional roles** | **yes** |
+| White stays official but is not an invisible edge | "keep white in the brand palette; solve it in the rendering layer" | "eliminate white as a secondary colour" | **yes, in substance** — both keep the team's real identity and stop white being an invisible edge |
+| A derived colour must be labelled as derived | yes — `display_rule` | yes — "role-based fallback" | **yes** |
+| Every hex needs a source + verification status | yes — 7 acceptance criteria | (not addressed) | GPT only |
+
+**So the Owner's real choice is narrower: which palette, with a sourcing requirement attached — not "what is the architecture of the colour system".** The architecture is settled by both replies.
+
+**The one question the Owner's answer must contain** (MOC's framing, which stands):
+
+> **May the palette ship as *brand data with sources* plus a separate *display rule* — white staying official but never used as an invisible edge — with every hex carrying a source URL and a verification status?**
+
+**Recommended default: yes.** Adopt GPT's `brand_colors` / `display_colors` split; treat both published tables (GPT's from `jimniels/teamcolors` + Pro Football Network + NFL club brand PDFs; Gemini's all-non-white table) as a **research starting point**, not an approved source; require a source URL and verification status per hex before the colour system ships. Gemini's table is the better *starting* point for display (no white to solve), and GPT's is the better *record* (keeps white official). They can be merged: brand = GPT's, display = Gemini's, each with its own source.
+**Cost of being wrong:** a verification pass over 32 teams, and one or two hexes may move. Shipping unsourced hexes breaks the house rule and the audit trail — and MOC's contrast pass has already shown nine primaries are invisible as edges, so an unverified palette also ships a visual defect.
+
+---
 
 ---
 
@@ -704,6 +842,77 @@ OLB2
 **Game ball:**
 - A game ball wasn't assigned to any player in the Key Players chart which doesn't make sense. The player with the game ball should always be in the key players.
 
+### P0-18a · Stars and the game ball — `R-6` + `R-10` + `R-12`, measured against the build
+
+**WHERE** `starsParagraph(g, blow)` — pin lines **3027–3053**; and `buildGameDetail` — pin lines **2676–2683**.
+
+**WHAT — the current gate, quoted from the pin:**
+```js
+d[s].players.filter(p=>p.impact>=1.0 && !p.slot.startsWith('OT') && !p.slot.startsWith('OG') && p.slot!=='C')
+  .sort((a,b)=>b.impact-a.impact).slice(0,2)
+```
+Two problems, both now ruled on. `impact >= 1.0` is a production measure, so a defender cannot clear it
+the way the Owner means; and `p.slot!=='C'` excludes only the centre, while the *other* offensive line
+is excluded by slot prefix — leaving the defensive groups in a role-blind filter.
+
+**The player object, quoted from the pin (line 2546):**
+```js
+{name:e.name, slot, group:SLOT_GROUP[slot], team:teamName, ovr:e.ovr, st:{}}
+```
+`group` takes the values `QB RB WR TE OL DL LB DB K RET`. **Defenders are `DB` (corners and safeties),
+`DL` and `LB`.** The render branches in `starsParagraph` are `QB` / `RB` / `WR|TE` / `K` / **else** —
+so `DB`, `DL` and `LB` already fall into the defensive branch that renders sacks, INTs, forced fumbles,
+fumble recoveries, TFLs and tackles.
+
+**R-6 — offensive production (unchanged thresholds):**
+- QB — `s.passYds >= 300` **and** `s.passTD >= 3 * Math.max(1, s.int)` (the 3:1 TD:INT ratio)
+- RB, WR, TE — `s.rushYds >= 60`
+
+**R-10 — defenders, rating-led (new):**
+> *"If a defender has the highest player rating in a game, and is on the winning team (Unless he has a
+> multiple turnover game) or has an incredible 90+ game."*
+
+| Clause | Implementation |
+|---|---|
+| "a defender" | `p.group` is `DB`, `DL` or `LB` |
+| "the highest player rating in a game" | `p.ovr === max(ovr)` across **both** sides' `d.home.players` and `d.away.players` |
+| "on the winning team" | `p.team === (g.result.homeScore > g.result.awayScore ? g.home : g.away)` |
+| "unless he has a multiple turnover game" | the defender's turnover production `s.dint + s.ff + s.fr >= 2` **disqualifies** the winning-team clause |
+| "or has an incredible 90+ game" | the build's own performance grade `perfGrade = 60 + 5.5*p.impact >= 90` — the same measure `buildGameDetail` already uses (line 2679) |
+
+**R-12 — the game ball in a tie** (`buildGameDetail`, lines 2676–2683). The existing rule is
+`winTeam = homeScore>awayScore ? g.home : awayScore>homeScore ? g.away : null`, and when `winTeam` is
+`null` the pool falls back to **every** player in the game. The Owner's tie rule, as written:
+> *"Tie goes to defense if defense or offense. Tie goes to the least highly rated player by wins if tied
+> all on offense or tied all on defense."*
+
+**⚠ This one is ambiguous as written** and needs a single clarifying line before it is coded —
+*"the least highly rated player by wins"* admits at least two readings: (a) the player with the
+**fewest wins** among those tied, or (b) the player with the **lowest rating**, ranked by wins.
+The phrase is also silent on whether "defense" means the defender's *group* (`DB`/`DL`/`LB`) or the
+team's side. **Until it is disambiguated, implement only the unambiguous half:** in a tie, a
+**defensive** candidate is preferred over an offensive one.
+
+**WHY** The Owner's rulings replace a production-only gate with two role-aware ones. Without the
+split, the "stars of the game" slots stay empty for defensive games or get filled by an offensive
+player, which is exactly the complaint that produced `R-10`.
+
+**SAFE ALONE?** **No.** `R-6`, `R-10` and `R-12` are one block in one function pair; splitting them
+puts two different gates on the same four slots. It is safe with respect to the protected constants —
+no maths, no `FLEX`, no `DEFAULT_WEIGHTS` — but the three rulings must land together.
+
+**HOW TO CHECK**
+1. **Seeded A/B** (the seeded A/B in the front matter): drive the same clicks and compare the 32 team
+   scores. Identical means the star block did not move the model. It must not — this block only
+   changes what is *written*, not what is *simulated*.
+2. A scripted check over a season's games asserting: **every** game produces a stars block when any
+   player qualifies under `R-6` or `R-10`; no player appears in two games' star blocks; and the game
+   ball's player is always present in the Key Players chart (`renderKeyPlayersHTML`, line 3734).
+3. A tie fixture asserting the **defensive** candidate is chosen when the tie spans both an offensive
+   and a defensive player.
+
+---
+
 ### P0-19. Season review / playoff preview UI improvements (Owner feedback, 21 Oct, wave 2)
 - The banner that appears after winning is great but should be much larger, centered on the screen, and remain on screen for at least 3 seconds. Similar to the Conference Champions graphic. It would be cool if that graphic could also land on the screen somewhere after it shows and continue to shimmer/sparkle.
 
@@ -750,7 +959,111 @@ Divisional Round showdown: Dolphins vs. Chiefs" → Should be a lot more beautif
 
 ---
 
-### P0-20. The draft-complete gate is hardcoded to 26 rounds and will cut off picks 833–896
+### P0-20a · The "Play a Season" handoff — the hero is live, its duplicate is dead, and `P0-20` is aimed at that dead code
+
+**This is the plain-language answer to the Owner's `R-11` question.** The Owner was asked which screen
+is the intended handoff into the season and replied *"I don't understand."* Here is the answer.
+
+**WHAT THE OWNER ACTUALLY SEES.** When the draft ends, the "Draft Complete" screen opens with its
+**Season** tab already selected, and on that tab there is a **"Play a Season"** box: a short
+paragraph, **three numbered lines** explaining what happens next, and a big **"Start Season"** button.
+Clicking it builds the 17-game schedule and takes you to the **Preseason** page, where you choose your
+coaching philosophy and your lineup. **This works today.** Nothing is broken and nothing is missing
+from the flow.
+
+**MEASURED — the live copy (pin lines 6152–6163).**
+```js
+6152: function renderSeasonTabInner(container){
+6153:  if(!seasonState){
+6154:   container.innerHTML = `<div class="panel">
+6155:    <h3 style="margin-top:0;">Play a Season</h3>
+6156:    <p …>Simulate a full 17-game regular season with your drafted team against the other 31 simulated rosters, organized into real NFL divisions and conferences, then take your team through the playoffs to the Super Bowl!</p>
+6157:    <ol class="gl"><li>Starting the season builds the schedule…</li><li>On the Preseason page you choose your <b>coaching philosophy</b>…</li><li>New to the terms? The <b>Guide</b> tab explains every style, package and number on this site.</li></ol>
+6158:    <button class="resetbtn" id="startSeasonBtn" …>Start Season</button>
+6159:   </div>`;
+6160:   document.getElementById('startSeasonBtn').addEventListener('click', ()=>{ startSeason(); renderSeasonTab(container); });
+6161:  }
+6162:  …
+6163:  renderPreseasonView(container);
+```
+The live chain: `finishDraft2()` (l.6185) → `resultsView='season'` (l.6191) → `renderDraftResults()`
+(l.6192) → `renderSeasonTab(body)` (l.6268) → `renderSeasonTabInner` → the hero above.
+
+**MEASURED — the dead copy (pin lines 846–872, 27 lines).**
+```js
+846: function goSeason(){
+847:  const host = document.getElementById('seasonHost'); if(!host) return;
+848:  if(seasonState){ renderSeasonTab(host); return; }
+849:  if(draftSim && draftSim.pos >= 32*26){
+850:   host.innerHTML = `<div class="panel hero-panel">
+851:    <h2 …>Play a Season</h2>
+…
+854:    <button class="resetbtn" id="startSeasonHeroBtn" …>Start Season</button>
+855:    <p class="narr" …>Want to review your roster first? <button class="tabbtn" id="backToResultsBtn" …>Draft results</button></p>
+856:   </div>`;
+857:   document.getElementById('startSeasonHeroBtn').addEventListener('click', ()=>{ startSeason(); goSeason(); });
+858:   document.getElementById('backToResultsBtn').addEventListener('click', ()=>{ setActiveTab('viewDraft','tabDraftBtn'); … });
+859:   return;
+860:  }
+…
+872: }
+```
+`grep -n goSeason` → **2 occurrences only**: the definition (l.846) and a call at l.857 that is
+**inside its own body**. There is no external caller.
+
+**It is dead twice over.** `grep -c seasonHost` → **1** — only the `getElementById` at l.847. **No
+element with `id="seasonHost"` exists in the markup**, so l.847 returns immediately even if the
+function were called. `grep -c "viewSeason\|tabSeasonBtn"` → **0** — the pin has **no Season tab**.
+`grep -c "hero-panel"` → **2**, both inside this dead function, so **no `.hero-panel` CSS rule exists
+anywhere**.
+
+**What the dead copy uniquely contains:** a "Want to review your roster first? → Draft results" link
+(l.855/858) and the `hero-panel` class — which has no styles. That is all. The three-step explainer
+and the "Start Season" button are already live.
+
+**WHY IT DIED (donor cross-check).** The donor build `NFL Draft Simulator.html` **is** live: `tabSeasonBtn`
+(l.271), `<div id="seasonHost">` (l.333), the `setActiveTab` branch (l.782), and `goSeason()` (l.789,
+called at l.800 and l.6100). The merge kept **v20's markup** (no Season tab, no `#seasonHost`) and a
+synthesized `setActiveTab` (l.832–840: 6 views / 6 tabs, no `viewSeason`/`tabSeasonBtn`, no
+`goSeason()` branch) — so the donor's helper was carried over but its callers were not. The prototype
+`V22-candidate-teamcolours.html` agrees exactly (`goSeason` 2, `seasonHost` 1, `viewSeason|tabSeasonBtn` 0).
+
+**⚠ `P0-20` IS AIMED AT THIS DEAD CODE — and that changes what `P0-20` is.** `P0-20` cites `l.849` and
+`l.866` for the hardcoded `32*26`. **Both are inside the dead function.** The **live** draft-complete
+gate is round-agnostic already:
+
+| | code | round-aware? |
+|---|---|---|
+| **live** (l.1521) | `if(draftSim.pos >= draftSim.order.length){ … finishDraft2(); return; }` | **yes** |
+| draft order (l.1161–1164) | `for(let r=0;r<TOTAL_ROUNDS;r++){ … order.push(...teams); }` | **yes** — `TOTAL_ROUNDS = ROSTER_SLOTS.length` (l.925) |
+| **dead** (l.849, l.866) | `draftSim.pos >= 32*26` / `draftSim.pos < 32*26` | no |
+
+So the failure `P0-20` describes — *"at pick 832 the build would declare the draft complete and picks
+833–896 would never be simulated"* — **cannot occur in the live path**. Applying `P0-20` as written
+would edit four lines in a function that never runs, and the real risk it names would remain
+unaddressed, because the live path was never the problem.
+
+**THE DECISION — two options, and `P0-20` follows from the choice.**
+
+| | Option A — **delete** | Option B — **revive as a dedicated Season tab** |
+|---|---|---|
+| what | remove l.846–872 (27 lines) | add `#seasonHost` to the markup; add `viewSeason`/`tabSeasonBtn` to the view/tab lists (l.835–836); add the `goSeason()` branch to `setActiveTab` (l.832–840) |
+| `P0-20` | **evaporates with the function** — nothing to fix | **becomes mandatory**: `32*26` → `TOTAL_ROUNDS` at l.849/866, and the "Your 26 starters are done" copy (l.852) and "draft 26 starters first" (l.863) must go |
+| risk | **none** — no callers, no CSS, no `id` in the markup | adds a surface; the donor's `setActiveTab` needed a null guard here, and `P1-2`/`P1-3` are still open Architect decisions about that surface |
+| gives the Owner | nothing lost — the live hero is already on the Season tab of the Draft Complete screen | a **Season tab of its own**, as the donor build had |
+
+**The Owner's actual decision, in one line:** *is the season reached from the Draft Complete screen
+(as it is today), or does it get a tab of its own?* If the screen you see is the one you want, Option
+A is a pure deletion and `P0-20` disappears with it.
+
+**SAFE ALONE?** Option A: **yes** — a deletion of a function with no callers, no CSS class and no
+markup hook. Option B: **no** — it is a surface change and it drags `P0-20` and the `P1-2`/`P1-3`
+`setActiveTab` decisions with it.
+**HOW TO CHECK** Option A: `grep -c goSeason` → **0**; the Draft Complete screen's Season tab still
+shows "Play a Season" and "Start Season"; clicking "Start Season" still reaches the Preseason page;
+`node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors. Option B: the
+Season tab appears, `goSeason` is called from `setActiveTab`, and `grep -c "32\*26"` → **0**.
+
 
 **WHERE:** `NFL Draft Simulator merged.html` — `l.849` (`if(draftSim && draftSim.pos >= 32*26)` in `goSeason()`), `l.866` (`draftSim.pos < 32*26`, the resume button), and the copy at `l.852` ("Your 26 starters are done") and `l.863` ("draft 26 starters first").
 
@@ -811,17 +1124,66 @@ Then, with the seeded `Math.random` above, run a full 28-round draft and assert 
 - Already has team colors on position cards (P11-5) — ensure consistency
 - Draft header border uses user's team colors
 
-**Technical implementation:**
-- CSS variables: `--team-primary`, `--team-secondary`, `--team-tertiary` (already defined in P11-5)
-- Opponent colors: `--opp-primary`, `--opp-secondary`, `--opp-tertiary` set dynamically per matchup
-- Apply via JS on matchup load: `document.documentElement.style.setProperty('--opp-primary', colors.primary)`
-- Reuse existing 32-team color map (P11-5)
+**⚠ CORRECTED 22 Oct 05:55 (OR, measured — supersedes the technical block that stood here).** The three
+lines that were here were wrong against the build, and following them would have produced a **second,
+parallel palette** next to one that already exists.
 
-**WHY:** The Owner wants the team identity to permeate the entire experience — "expanded out toward the whole draft simulation."
+- "`--team-primary`, `--team-secondary`, `--team-tertiary` (already defined in P11-5)" — **false.
+  Those three names appear nowhere in the tree.** `P11-5` (line 2519) is a two-line prose note, not
+  code. `grep -c -- "--team-primary" "NFL Draft Simulator merged.html"` → **0**.
+- "Reuse existing 32-team color map (P11-5)" — **false for the pin.** The JS map `TEAM_COLORS` was
+  removed; the palette now lives as **CSS** in the builder `_agents/minimax/tools/build-team-colours.mjs`
+  and is emitted as `[data-team="<Full Team Name>"]{--t1;--t2;--t3}`. `grep -c "TEAM_COLORS"` on the
+  pin → **0**.
+- "`--opp-primary`, `--opp-secondary`, `--opp-tertiary` set dynamically per matchup" — **a fourth
+  vocabulary, and unnecessary.** The scope primitive already in the candidate does this with no new
+  variable name and no JS state.
 
-**SAFE ALONE?** Yes — CSS/JS additions only, no math or protected constants.
+**The one primitive to use — already built, already measured (`P13-2a`):** a `data-team` attribute on
+any wrapper carries that team's three colours to every descendant.
 
-**HOW TO CHECK:** Visual verification at 390px and desktop; verify opponent colors appear correctly in matchup screens.
+```html
+<!-- the opponent's block: its border, its name, its stars, its tint -->
+<div data-team="Minnesota Vikings"> … </div>
+<!-- the user's own frame -->
+<div id="draftingAsBanner" class="draftingas" data-team="Kansas City Chiefs"> … </div>
+```
+
+```css
+/* already emitted, 32 rules, prototype lines 5-36 — do not rebuild */
+[data-team="Kansas City Chiefs"]{--t1:#E31837;--t2:#FFFFFF;--t3:#FFB81C;}
+```
+
+**WHAT changes, exactly.** One attribute on the wrapper, and the CSS that consumes `--t1/--t2/--t3`:
+
+| Surface | Change | Var |
+|---|---|---|
+| Draft banner | add `data-team="<user team>"` to `#draftingAsBanner`; change `border:1px solid var(--accent)` → `var(--t1)`; add the tri-colour stripe | `--t1`, `--t2`, `--t3` |
+| Opponent panel | wrap the opponent's block in `data-team="<opponent>"`; `border-left:3px solid var(--t1)` | `--t1` |
+| "(Vikings)" chip | `<span data-team="Minnesota Vikings">(Vikings)</span>` — the scope colours the text | `--t1` |
+| Star / game ball | `<span class="gamestar" data-team="<the player's team>">★</span>` | `--t1` |
+
+**WHY:** The Owner wants the team identity to permeate the entire experience — "expanded out toward the
+whole draft simulation." One attribute answers it for the user's team **and** the opponent, because
+the mechanism is identical for both.
+
+**SAFE ALONE?** **Yes** — attributes and CSS only. No math, no protected constants, no new variable
+names, no new JS state. But it is **not safe as written above**: read `P13-1a` first, because the
+"your team's frame wears the team" claim was **reverted** in the current candidate and the Owner's
+blue border is still there.
+
+**⚠ BLOCKED ON `R-9` (the Owner's palette choice).** The mechanism above is settled, but the *values*
+are not: the Owner has supplied **two** candidate 32-team palettes (GPT's and Gemini's) which
+**disagree on the primary for the Jaguars, Steelers, Cowboys and Buccaneers**, and the palette now
+emitted in the candidate matches neither. Do not re-emit the palette until the Owner picks. See
+`P13-3a` for the diff, the collisions and the legibility numbers.
+
+**HOW TO CHECK:** (1) `grep -c "data-team" "NFL Draft Simulator merged.html"` → currently **0** in the
+pin; the candidate carries **36**. (2) In the browser, set the draft team to Kansas City Chiefs and read
+the computed `border-top-color` of `#draftingAsBanner` — it must be `rgb(227, 24, 55)`, **not**
+`rgb(79, 140, 255)`. (3) Face Minnesota Vikings and read the computed `border-left-color` of the
+opponent panel — `rgb(79, 38, 131)`. (4) 390 px: no horizontal overflow introduced by the new
+attributes. (5) `node _agents/minimax/tools/post-merge-smoke.mjs` → exit 0, A–I PASS, 0 page errors.
 
 ---
 
@@ -1172,7 +1534,7 @@ Read a subsection only when a canonical item sends you there — `P0-17` sends y
 - The badge strip's accent color
 **Where:** CSS variables `--team-primary`, `--team-secondary`, `--team-accent` set on `:root` when a team is selected. All team-colored elements reference these variables.
 **Impact:** Medium. New data (team color palettes for 32 teams) + CSS changes. High visual impact.
-**Figma:** Not yet set up. The Owner mentioned Figma access may need more configuration. If available, Figma would be ideal for designing the team-color palettes and testing them across all 32 teams before implementation.
+**Figma:** **The Owner has ruled (22 Oct) that the Architect has Figma access and can execute it** — read designs, pull screenshots and design context, generate diagrams. Figma is therefore available **to the Architect**, and the council routes the palette, the state list and the data model to him rather than designing in Figma. **Note:** the council's own sessions have **no** Figma MCP — `.kilo/kilo.jsonc` contains no `mcp`/figma entry — so a council seat must not plan around Figma being able to read or write a file.
 
 ### P7-2 · [NEW] Smoother animations and micro-interactions
 **What:** Add subtle animations to improve the feel of the draft board:
@@ -1233,7 +1595,7 @@ Read a subsection only when a canonical item sends you there — `P0-17` sends y
 - Exporting design tokens (colors, spacing, typography) as CSS variables
 **Where:** Design tool, not code. Would feed into the CSS variable definitions.
 **Impact:** High visual quality, but requires Figma setup first.
-**Status:** Not yet available. Owner to configure Figma MCP if desired.
+**Status:** **Available to the Architect** (Owner ruling, 22 Oct) — he can read designs, pull screenshots and design context, and generate diagrams. **Not available to council seats:** `.kilo/kilo.jsonc` has no `mcp`/figma entry, so the council proposes in text, CSS and mermaid and hands the visual system to the Architect.
 
 ### P7-8 · [NEW] Super Bowl / Champions banner gold theme + shimmer
 **What:** "The Chiefs are Super Bowl champions." → So boring. Any hype text like this especially for the Super Bowl should be more beautiful and at least use an exclamation point.
@@ -1259,19 +1621,18 @@ Read a subsection only when a canonical item sends you there — `P0-17` sends y
 **What:** Remove "Realism audit & league-wide records" and "Does the model predict real results?" from being visible to the user, but you should store that information internally.
 
 ### P7-14 · [EXPANSION] Opponent team-color theming in matchups
-**What:** When facing a specific opponent, apply that team's colors throughout the matchup UI to reinforce team identity:
-- Opponent team's primary color applied to panels around their players
-- "(OpponentTeam)" text rendered in opponent's primary color anywhere it appears
-- Star players tinted with opponent's secondary color accent
-- Game ball star next to opponent players who win game ball rendered in opponent's accent color
-- These colors derived from the 32-team palette per P7-1 (KC: red+white+yellow; Seahawks: blue+green+white; etc.)
-- Opponent team identification available through the matchup model's team index
-- CSS variables `--opponent-primary`, `--opponent-secondary`, `--opponent-accent` set when matchup is loaded
-**Where:** Matchup review pages, game recap panels, star-player indicators, game ball badges — all reference opponent team-color CSS variables
-**Impact:** Medium. Adds team-color theming to matchup flow; complementary to P7-1 user-team theming. Moderate CSS + runtime team derivation.
-**Dependencies:** Opponent team index from matchup model; 32-team color map from P7-1; CSS variable references throughout matchup UI.
-**Notes:** Expands the existing team-color theming (P7-1) from user's team only to include opponents during matchups. Consistent with user request for "Vikings = purple" and team-color expansion throughout the draft simulation.
-**User identity counterpart:** The "Drafting as [Team]" header box border currently uses generic blue instead of the selected team's palette — should use team primary/secondary/accent (KC: red/white/yellow) per P7-1 to indicate user team identity at draft start.
+**Superseded — do not implement from this item.** The Owner's request it records (Vikings = purple
+panels, purple "(Vikings)", purple-tinted stars, a purple game-ball star, and the user's own "Drafting
+as" border in the team's colours) is specified, with measurements, in **`P0-29`** (the surface table
+and the correct mechanism), **`P13-1a`** (the user's frame) and **`P13-2a`** (the opponent hook).
+Read those three; this entry is kept only as a pointer.
+
+**One correction worth carrying across:** the variable names proposed here — `--opponent-primary`,
+`--opponent-secondary`, `--opponent-accent` — are **not** the mechanism that survived. The surviving
+primitive is the `data-team` scope, which carries `--t1/--t2/--t3` from the emitted CSS. No new
+variable names are needed, and the opponent's team name is reachable at every matchup surface as a
+**name string** (`g.away` / `g.home`) — there is no team index anywhere in the matchup code, and none
+is needed.
 
 ---
 
@@ -4620,6 +4981,54 @@ matchup… expanded out toward the whole draft simulation."* **This section is t
 canvas for it: what is built, what is specified, and where the other seats should add their pieces.*
 
 ### P13-1 · BUILT — your team's frame now wears the team
+
+**⚠ CORRECTED 22 Oct 05:55 (OR, measured) — this item is NOT built in the current candidate. It was
+built, then reverted.** The measured result quoted below is real, but it describes a build that no
+longer exists on disk. Do not treat this section as a receipt.
+
+**What happened.** Commit `c6567a1f` ("the board's rows wear their NFL team's colours") **removed**
+the team-coloured frame and restored the generic blue:
+
+```diff
+-.draftingas{…background:linear-gradient(90deg, color-mix(in srgb, var(--team1) 15%, transparent), color-mix(in srgb, var(--team3) 9%, transparent));border:1px solid var(--team1);…}
++.draftingas{…background:linear-gradient(90deg, rgba(79,140,255,0.15), rgba(255,107,74,0.08));border:1px solid var(--accent);…}
+-.draftingas .badge-mono{…background:var(--team1);color:var(--team2);box-shadow:0 0 0 3px var(--team3);…}
++.draftingas .badge-mono{…background:var(--accent);color:#fff;…}
+```
+
+**Current state, measured on disk:**
+
+| File | Line | `.draftingas` border |
+|---|---|---|
+| `NFL Draft Simulator merged.html` (the pin) | 179 | `border:1px solid var(--accent)` |
+| `_agents/minimax/prototypes/V22-candidate-teamcolours.html` | 221 | `border:1px solid var(--accent)` |
+
+`--accent` is `#4f8cff` (pin line 16) — **`rgb(79, 140, 255)`, the blue the Owner complained about.**
+`grep -c -- "--team1" "NFL Draft Simulator merged.html"` → **0**. The candidate → **0**. The frame's
+colours are gone from both.
+
+**The Owner's complaint is therefore still open.** "the blue border around *Drafting as Kansas City
+Chiefs* … should be red or white or yellow or a combination" is exactly this line.
+
+**The fix, in one attribute** — see `P13-1a` for the full spec and `P0-29` for the surface table.
+
+```html
+<div id="draftingAsBanner" class="draftingas" data-team="Kansas City Chiefs"></div>
+```
+```css
+.draftingas{border:1px solid var(--t1);}          /* was: var(--accent) */
+.draftingas::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;
+  background:linear-gradient(90deg,var(--t1) 0%,var(--t2) 48%,var(--t3) 100%);}
+.draftingas .das-text b{color:var(--t1);}
+.draftingas .badge-mono{background:var(--t1);color:var(--t2);box-shadow:0 0 0 3px var(--t3);}
+```
+
+**Historical record (the measurement that was taken, on the build that was reverted):** computed
+styles, three teams — Chiefs → border `rgb(227,24,55)`, stripe red → white → gold; Seahawks →
+`rgb(0,34,68)`, stripe navy → green → white; Vikings → `rgb(79,38,131)`, stripe purple → gold →
+white. Gate receipt `6671decfad93`. **Those numbers are the acceptance bar for the re-landing** —
+they were right once and can be right again, because the palette they came from still exists as CSS.
+
 ```js
 // WHERE: the CSS beside .draftingas, and the drafting-as banner
 // WHAT: the frame takes the team's border, a tri-colour stripe, and the team-coloured name.
@@ -4635,6 +5044,51 @@ stripe red → white → gold; Seahawks → `rgb(0,34,68)`, stripe navy → gree
 ring, and the board's rows carry a team-coloured edge with a team-tinted hover.
 
 ### P13-2 · BUILT — the hook for an opponent's colours anywhere
+
+**⚠ CORRECTED 22 Oct 05:55 (OR, measured) — the JS hook below is NOT in the current candidate, and the
+line "this is the piece every other seat should build on" now points at nothing.** The capability was
+**replaced, not lost** — by a better primitive. Read `P13-2a` before writing any opponent colour.
+
+**What is gone from `_agents/minimax/prototypes/V22-candidate-teamcolours.html` today** — measured by
+fixed-string count on the artifact (662,759 B, sha256 `ef25b892…`):
+
+| Symbol | Count | Consequence |
+|---|---|---|
+| `teamTag` | **0** | the JS chip helper does not exist |
+| `TEAM_COLORS` | **0** | the JS palette map does not exist |
+| `applyTeamColors` | **0** | the `:root` setter does not exist |
+| `.teamtag` | **0** | the chip CSS does not exist |
+| `.opp-panel` | **0** | the opponent panel CSS does not exist |
+| `.gamestar` | **0** | the star CSS does not exist |
+| `--team1` | **0** | the root-level variables do not exist |
+| `--t1` | **36** | **the CSS scope exists** — 32 team rules + consumers |
+| `data-team` | **36** | **the attribute primitive exists** |
+
+**What replaced it.** The palette is emitted as CSS by
+`_agents/minimax/tools/build-team-colours.mjs`, and a team's colours travel by **scope**, not by a
+JS helper:
+
+```css
+[data-team="Kansas City Chiefs"]{--t1:#E31837;--t2:#FFFFFF;--t3:#FFB81C;}
+[data-team="Minnesota Vikings"]{--t1:#4F2683;--t2:#FFC62F;--t3:#FFFFFF;}
+```
+
+A `data-team` attribute on any element gives **that element and all its descendants** `--t1/--t2/--t3`.
+It is already applied to the draft board rows (candidate line 682), the draft table rows (line 1819) and
+the standings rows (line 3877), and it already has a consumer at line 82:
+
+```css
+.user-row[data-team] {
+  border-left: 3px solid var(--t1);
+  background: color-mix(in srgb, var(--t1) 7%, transparent);
+  color: var(--t1);
+}
+```
+
+**So the opponent hook is one attribute away and needs no new code.** The JS `teamTag()` was a way to
+carry a palette to a fragment of HTML; `data-team` carries it to a whole subtree, which is what an
+opponent's player panel actually is.
+
 ```js
 // WHERE: a helper beside TEAM_COLORS
 // WHAT: a chip that carries a team's palette, so any surface can say "(Vikings)" in purple.
@@ -4651,6 +5105,90 @@ function teamTag(name, label){
 ```
 **This is the piece every other seat should build on:** `teamTag()` for a name, `.opp-panel` for a
 block of an opponent's players, `.gamestar` for a star that belongs to a side.
+
+### P13-1a · [CORRECTION + SPEC] the frame wears the team again — one attribute
+**WHERE** `#draftingAsBanner` (pin line 399) and the `.draftingas` CSS (pin line 179; candidate line 221).
+**WHAT** add `data-team="<full user team name>"` to the banner element; change the three colour
+references from `var(--accent)` to `var(--t1/--t2/--t3)`; add the tri-colour stripe.
+**WHY** the Owner asked for the border to be the team's colours; it was built, measured and reverted
+(`c6567a1f`), so the ask is still open. The acceptance bar is the one in `P13-1`:
+Chiefs → `rgb(227,24,55)`, stripe red → white → gold.
+**SAFE ALONE?** Yes. One attribute plus four CSS declarations. The palette is already emitted.
+**HOW TO CHECK** computed `border-top-color` of `#draftingAsBanner` === `rgb(227, 24, 55)` for the
+Chiefs and **not** `rgb(79, 140, 255)`; the stripe's three stops read `--t1`, `--t2`, `--t3`.
+
+### P13-2a · [CORRECTION + SPEC] the opponent hook, rebuilt on the primitive that survived
+**WHERE** the matchup surfaces named in `P13-3`, plus the draft surfaces in `P13-4`.
+**WHAT** wrap the opponent's block in `data-team="<opponent full name>"`; add three CSS rules that
+consume the scope's variables. **No JS, no new variable names, no palette map.**
+
+```css
+.opp-panel{border-left:3px solid var(--t1);
+  background:color-mix(in srgb, var(--t1) 7%, transparent);}
+.teamtag{color:var(--t1);background:color-mix(in srgb, var(--t1) 12%, transparent);
+  border:1px solid color-mix(in srgb, var(--t1) 35%, transparent);border-radius:5px;padding:0 5px;}
+.gamestar{color:var(--t1);text-shadow:0 0 8px color-mix(in srgb, var(--t1) 60%, transparent);}
+```
+```html
+<div class="opp-panel" data-team="Minnesota Vikings"> …their players… </div>
+<span class="teamtag" data-team="Minnesota Vikings">(Vikings)</span>
+<span class="gamestar" data-team="Minnesota Vikings">★</span>
+```
+**WHY** the Owner asked for the opponent's colours everywhere they meet: panels purple, "(Vikings)"
+purple, stars tinted, a purple star for the game ball. The scope primitive delivers all four with one
+mechanism, and it is the same mechanism the user's own frame uses.
+**SAFE ALONE?** Yes, once `P13-1a` has landed — the `--t1` values come from the emitted CSS, not from
+JS. **Does not require** the removed `teamTag()` helper or the removed `TEAM_COLORS` map.
+**HOW TO CHECK** face the Vikings; the opponent panel's computed `border-left-color` is `rgb(79, 38, 131)`;
+`(Vikings)` renders in the same hue; the game-ball star is the opponent's primary.
+
+### P13-2b · [DEFECT] two dead rules and one unreadable rule in the current candidate
+**WHERE** `_agents/minimax/prototypes/V22-candidate-teamcolours.html` lines 82–88.
+**WHAT — three findings, all measured in the artifact:**
+
+1. **`.conf-AFC` and `.conf-NFC` are dead.** They read `var(--t1)` / `var(--t2)` at the **top level** of
+   the stylesheet, but `--t1`/`--t2` are defined only **inside** `[data-team="…"]` scopes. Outside a
+   scoped element the custom property is undefined, so `color: var(--t1)` is invalid at computed-value
+   time and the declaration does nothing. The comment says "AFC in user's primary" — the intent needs
+   the user's palette on an ancestor (or `:root`), which the scope mechanism does not provide.
+   **Fix:** put the user's team on `:root` (`document.documentElement.dataset.team = userTeam`) so
+   `--t1/--t2/--t3` resolve at the top level, or scope those two rules under a user-team wrapper.
+2. **`.user-row[data-team]{color:var(--t1)}` makes the user's standings row unreadable for six teams.**
+   The whole row's text takes the team's primary, and for these primaries the contrast against the
+   light panel fails WCAG AA for text: **Steelers `#FFB612` 1.76:1**, Bengals `#FB4F14` 3.37:1,
+   Broncos `#FB4F14` 3.37:1, Dolphins `#008E97` 3.95:1, Panthers `#0085CA` 4.03:1, Chargers `#0080C6`
+   4.28:1 (threshold 4.5:1). **Fix:** use `--t1` for the row's border and tint only, and leave the text
+   in `--sub`/`inherit`.
+3. **Four palette collisions** make "which team is this" ambiguous on screen — identical primaries:
+   Bengals/Broncos both `#FB4F14`; Cowboys/Rams both `#003594`; Raiders/Saints both `#101820`;
+   Patriots/Seahawks both `#002244`.
+
+**WHY** the Owner's whole premise is that colour *identifies* a team. Two teams sharing a hex, or a
+row whose text cannot be read, defeats it.
+**SAFE ALONE?** (1) and (2) yes — CSS and one attribute. (3) is a **palette edit in another lane's
+builder** (`_agents/minimax/tools/build-team-colours.mjs`) and is reported to that seat, not taken here.
+**HOW TO CHECK** for each of the six teams above, the standings row's text colour must clear 4.5:1
+against the panel background; `grep -n "conf-AFC" ` must show the rule under a scope that defines
+`--t1`.
+
+### P13-2c · [DEFECT, other lane] four palette corrections in the emitted colours
+**WHERE** `_agents/minimax/tools/build-team-colours.mjs` lines 40–60 — **not this seat's file**;
+reported, not edited.
+**WHAT** the emitted 32-team palette carries four real errors, verified against the teams' own colours:
+
+| Team | Now | Should be | Why |
+|---|---|---|---|
+| Buffalo Bills | `#00338D`, `#C60C30` | **red primary, blue secondary** | the Bills' primary is red; the map has the two reversed |
+| Baltimore Ravens | `#241773`, `#FFFFFF`, `#000000` | purple, **black**, **gold** | gold is the Ravens' third colour and is missing |
+| Las Vegas Raiders | `#101820` primary | **silver** primary, black secondary | the Raiders' primary is silver; `#101820` is a near-black that also collides with the Saints |
+| New Orleans Saints | `#101820` primary | a distinguishable near-black | collides with the Raiders |
+
+**WHY** the Owner's ask is that each team *reads* as itself. A Bills row in blue is a wrong signal, and
+two teams sharing `#101820` make the opponent's identity unreadable at a glance.
+**SAFE ALONE?** Palette-only edit in the builder; it re-emits the CSS and changes no markup. It **is**
+safe alone, but it must not be applied in the same build as a `data-team` change without a re-measure.
+**HOW TO CHECK** re-run the builder; the emitted CSS shows the new triples; for the Chiefs and Vikings
+the triples are unchanged (`#E31837/#FFFFFF/#FFB81C`, `#4F2683/#FFC62F/#FFFFFF`).
 
 ### P13-3 · SPECIFIED — where the opponent's colours go in a matchup
 | Surface | What the Owner asked for | The mechanism |
@@ -4896,7 +5434,7 @@ Beyond the team-color theming, here are more beauty/aesthetics improvements:
 15. **Award winners** — gold border on user's players, opponent's primary for others
 
 ### P12-9 · [NEW] Figma integration note
-**Status:** Not yet available. The Owner mentioned "You have access to Figma now as well I believe but I might need to do more to set that up." To enable Figma access, the Owner would need to configure a Figma MCP server in `.kilo/kilo.jsonc`. Until then, aesthetics suggestions are conceptual only — no Figma designs exist yet.
+**Status:** **Superseded (22 Oct).** The Owner's line — *"You have access to Figma now as well I believe but I might need to do more to set that up"* — is now a ruling that **the Architect has Figma** and can execute it, read designs, pull screenshots and design context, and generate diagrams. **Measured:** `.kilo/kilo.jsonc` still contains **no** `mcp`/figma entry, so **the council's own sessions have no Figma** — aesthetics suggestions from a council seat stay conceptual (text, CSS, mermaid) and the visual system is handed to the Architect, who owns it. Two thirds of the old sentence ("no Figma designs exist yet") remains true for the council and is false for the Architect.
 
 **Biome:** Available via npx (v2.6.2). Used to format harness draft scripts (phone.js, funcdiff.js, pw4.js, validate.js). No fixes were applied — the scripts were already clean.
 
@@ -5012,3 +5550,99 @@ A paragraph in the bulletin with: the surface and its rule, the numbers it needs
 and the palette entries for the teams involved. **Claude makes the frame and hands back the tokens;
 the seat implements it and posts the screenshot and the receipt.** A seat with no Figma is not blocked
 — the rule and the data are what the design needs.
+
+---
+
+## P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)
+
+*MOC's questions and the Owner's answers, turned into something Claude can implement, with the places
+where an answer still needs one more sentence. **The colour item is already fixed in the artifact** —
+MOC found a real defect in it, and it is fixed and re-gated.*
+
+### P16-1 · The colours: the sourcing, and the white edge (MOC's Q1) — FIXED, and one decision open
+**MOC is right on both counts, and the second one was a real defect in my build.** Measured on my
+palette: **6 teams carry a white secondary and 20 carry a white third** — twenty of thirty-two, as
+MOC said — and the stripe's middle stop was that white, which **vanishes on the light page** the
+Owner is looking at.
+**The fix, shipped in the artifact (`ad352584541d…`, gate receipt `5a9b541c2c2a`):**
+- **The brand palette stays as data; the display palette is derived from it by one documented rule.**
+  `--t1` = the brand primary (the fill, the edge) · `--t2` = the **letter colour** (the brand
+  secondary if it clears **4.5:1** on the primary, else white, else near-black `#0B0F16`) · `--t3` =
+  the brand accent (the stripe's middle, the hover).
+- **The stripe is primary → accent → primary and never uses a white stop.**
+- **Every board row carries its player's NFL team's derived palette inline** (`teamStyle(name)`), so
+  the row's edge is that team's colour wherever the row is rendered — no CSS block to keep in step.
+**The decision that is still open, and it is the Owner's:** where the **brand** values come from.
+My map was written from general knowledge, and the house rule forbids unsourced data — so it cannot
+ship as it stands. **The two reference tables now on the table are not the same dataset:** they differ
+on the Bears' orange (`#C83803`), the Buccaneers' red (`#D50A0A` vs `#A71930`), the Giants' blue
+(`#0B2265` vs `#0D2266`), the Rams' gold (`#FFB612` vs `#FFD100`), the Texans' navy (`#03202F` vs
+`#03203F`), the Jets' grey, the Saints' gold and others. **Recommendation: pick ONE published
+reference as the registry's source, record it per team with a `source` and a `status:
+reference_unverified`, keep the brand and the display colours separate (as GPT proposed), and never
+silently blend the two tables.** The contrast gate to run afterwards: every visible edge clears 3:1
+against the surface it sits on, and the primaries MOC found invisible on the dark theme get a
+documented treatment (a light hairline, or the accent as the edge).
+
+### P16-2 · What makes a defender a star (MOC's Q2) — the Owner's rule, written out
+> *"If a defender has the highest player rating in a game, and is on the winning team (unless he has
+> a multiple turnover game) or has an incredible 90+ game."*
+
+As a rule: **a defender is named a star when (a) he has the highest player rating in the game and he
+is on the winning team, or (b) he has a multiple-turnover game, or (c) he has an incredible 90+ game.**
+The offensive side stands: **60+ rushing yards** for any offensive player, **300+ passing yards and
+3:1 TD/INT** for a quarterback, and the slots reserved for **90+ rating performances** with the
+rating never shown. **One clause to confirm:** "a multiple turnover game" — the council's reading is
+**two or more takeaways** (it reads as an *exception* to the winning-team condition), but the number
+should be stated rather than inferred.
+
+### P16-3 · The dead hero and the season's front door (MOC's Q3 — the Owner: "I don't understand")
+**Here is what it is.** `goSeason()` is a sixteen-line function that renders the **"Play a Season"
+hero** — the panel with the **"Start Season"** button and the **three-step explainer** — and **its
+only call is inside its own body**, so the hero never reaches the DOM. The season is started from
+three other places instead. So the choice is exactly: **wire the hero in (one call), or delete the
+dead template (sixteen lines).**
+**The council's recommendation: wire it in.** (i) The Owner's season design is a three-step explainer
+(Preseason → Review → Playoffs), and the hero is where it belongs; (ii) three different entry points
+is a worse experience than one door; (iii) the cost is one line plus a 390 px check. **If the Owner
+saw that hero recently, it was in a build that still had the call — the current candidate does not.**
+
+### P16-4 · The game ball in a tie (MOC's Q4) — one sentence needed
+**The Owner's answer as written:** *"Tie goes to defense if defense or offense. Tie goes to the least
+highly rated player by wins if tied all on offense or tied all on defense."*
+**The council's reading:** a tie between a defender and an offensive player goes to the **defender**;
+a tie among offensive players, or among defensive players, goes to the player with the **fewest wins**.
+**The clause that reads backwards is the second one** — "fewest wins" would give the game ball to the
+*smaller* performance. **The alternative reading is "the highest wins figure wins the tie."** The two
+readings produce different game balls, so **this needs one sentence from the Owner before it is
+implemented.** (Ties in a game are rare, but the rule is cheap to state now and expensive to guess.)
+
+### P16-5 · The flex table (MOC's Q5) — "left and right don't matter. Let Claude handle the table"
+**Recorded: one table, no left or right, and Claude implements it.** The council's candidate is the
+two replacement tables in P10-1 — edges **free** at linebacker; WILL/SAM → FS −6, edge and CB3 −2,
+SS and DT −4; MIKE → DT −4 and SS −2; SS → CB3 **free**, FS and the linebackers −2; CB → the
+linebackers −4 and MIKE −6; TE → WR −2 and RB −4 — with everything else unchanged. **MOC's
+dependency — that the CB3/Nickel interaction cannot be settled until the base is legible — is now
+settled by the Owner's answer to Q6.**
+
+### P16-6 · The nickel in the 3-4 (MOC's Q6) — the Owner's answer, and a correction
+> *"The lowest rated linebacker comes off in 3-4 for the nickel."*
+
+**This corrects the council's earlier note**, which said the default is OLB2 (P12-7). **The rule as it
+will be implemented: when the nickel is on, the lowest-rated linebacker on the field leaves — not a
+fixed slot.** It is a *selection* rule, so it needs the linebackers' ratings at the moment the
+personnel is set (the lineup optimiser already has them), and it should be stated in the guide next to
+the CB3/Nickel line.
+
+### P16-7 · Still open, and it is the largest undecided mechanic of the round: is the 3-4 a real front or a label?
+*(DS's question, and it is not answered by the Owner's replies.)*
+- **A label** — the council's P10-2: the twelve defensive slots keep their keys, the 3-4 renames
+  them (DE1 · DT1 nose · DE2 · OLB1 · ILB1 · ILB2 · OLB2 · CB1 · CB2 · CB3/Nickel · SS · FS), and
+  **OLB carries WILL's value while ILB carries MIKE's**. The matchup model does not move.
+- **A real front** — `ROSTER_SLOTS`, `teamRatings` and the pool's logic all change: seven front-seven
+  spots, a nose tackle who is a different player type, a nickel that costs a linebacker, and a
+  different set of draftable players.
+**The council's recommendation: the label now, the real front as a later edition** — a real front
+changes the matchup model, the ratings and the player pool, and it wants its own 100-season
+regression. **But it is the Owner's call, and it is the one question in this round that changes what
+the game *is* rather than how it looks.**

@@ -121,17 +121,54 @@ for (const l of log) console.log(`  ${l}`);
 must('.draftingas .das-text b{color:var(--team1);font-size:1.05rem;}',
   '.draftingas .das-text b{color:var(--team1);font-size:1.05rem;}\n' +
   ' .draftingas{position:relative;overflow:hidden;}\n' +
-  ' .draftingas::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--team1) 0%,var(--team2) 48%,var(--team3) 100%);}\n' +
+  ' .draftingas::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:linear-gradient(90deg,var(--team1) 0%,var(--team3) 50%,var(--team1) 100%);}\n' +
   ' .teamtag{color:var(--t1);background:color-mix(in srgb, var(--t1) 12%, transparent);border:1px solid color-mix(in srgb, var(--t1) 35%, transparent);border-radius:5px;padding:0 5px;}\n' +
   ' .opp-panel{border-left:3px solid var(--t1);background:color-mix(in srgb, var(--t1) 7%, transparent);}\n' +
   ' .gamestar{color:var(--t1);text-shadow:0 0 8px color-mix(in srgb, var(--t1) 60%, transparent);}',
   'the drafting-as frame takes a tri-colour stripe and the team border, and the team-tag, opponent-panel and game-star hooks are defined');
 
+// ---------------------------------------------------------------- the board's rows wear their NFL team
+must('#draftTable2 tbody tr td.dc-name{box-shadow:inset 3px 0 0 var(--team1);padding-left:8px;}',
+  '#draftTable2 tbody tr td.dc-name{box-shadow:inset 3px 0 0 var(--team1);padding-left:8px;}\n' +
+  ' #draftTable2 tbody tr td.dc-name{box-shadow:inset 3px 0 0 var(--t1);}\n' +
+  ' #draftTable2 tbody tr:hover td.dc-name{box-shadow:inset 3px 0 0 var(--t3);}',
+  'the board rows take their own team colour on the edge, and the accent on hover');
+
+// ---------------------------------------------------------------- the board's rows wear their NFL team
+must(
+  'h += `<tr><td class="dc-name">${topTag(r)}${r.p[0]}</td>',
+  'h += `<tr><td class="dc-name">${topTag(r)}${r.p[0]}</td>',
+  'h += `<tr style="${teamStyle(r.p[2])}"><td class="dc-name">${topTag(r)}${r.p[0]}</td>',
+  "the board's rows carry their NFL team's derived palette, so each row's edge is that team's colour",
+);
+
 // ---------------------------------------------------------------- the script side: the map and the setter
 const mapLiteral = JSON.stringify(palette, null, 0);
+// A team's brand white is fine as DATA and terrible as a thin line on a light page (MOC's finding:
+// 20 of 32 teams carry a white, and the middle stop of the stripe disappeared). So the build derives
+// the DISPLAY colours from the brand colours with one documented rule:
+//   --t1 the brand primary (the fill, the edge)
+//   --t2 the letter colour: the brand secondary if it clears 4.5:1 on the primary, else white, else near-black
+//   --t3 the brand accent (the stripe's middle, the hover)
+// and the stripe never uses a white stop: primary -> accent -> primary.
+const lum = h => { const v=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(c=>c<=0.03928?c/12.92:Math.pow((c+0.055)/1.055,2.4)); return 0.2126*v[0]+0.7152*v[1]+0.0722*v[2]; };
+const contrast = (a,b) => { const l1=lum(a), l2=lum(b); return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05); };
+const displayFor = c => {
+  const [p, s2, a] = c;
+  const letter = contrast(s2, p) >= 4.5 ? s2 : (contrast('#FFFFFF', p) >= 4.5 ? '#FFFFFF' : '#0B0F16');
+  return [p, letter, a];
+};
 const addition = `
 // ---- the team's colours, everywhere the team appears (added by the council, 22 Oct) ----
 // A team tag that carries the team's palette, e.g. "(Vikings)" in purple.
+// The display palette for a team, inline: --t1 the primary, --t2 the letter colour, --t3 the accent.
+function teamStyle(name){
+  const c = TEAM_COLORS[name] || ['#4F8DFF','#FFFFFF','#FFC24B'];
+  const L = h => { const v=[1,3,5].map(i=>parseInt(h.substr(i,2),16)/255).map(x=>x<=0.03928?x/12.92:Math.pow((x+0.055)/1.055,2.4)); return 0.2126*v[0]+0.7152*v[1]+0.0722*v[2]; };
+  const ct = (a,b) => { const l1=L(a), l2=L(b); return (Math.max(l1,l2)+0.05)/(Math.min(l1,l2)+0.05); };
+  const letter = ct(c[1], c[0]) >= 4.5 ? c[1] : (ct('#FFFFFF', c[0]) >= 4.5 ? '#FFFFFF' : '#0B0F16');
+  return '--t1:'+c[0]+';--t2:'+letter+';--t3:'+c[2];
+}
 function teamTag(name, label){
   const c = TEAM_COLORS[name] || ['#4F8DFF','#FFFFFF','#FFC24B'];
   return '<span class="teamtag" style="--t1:'+c[0]+';--t2:'+c[1]+';--t3:'+c[2]+'">'+(label||('('+name+')'))+'</span>';
@@ -142,6 +179,7 @@ function applyTeamColors(teamName){
  const c = TEAM_COLORS[teamName] || ['#4F8DFF','#FFFFFF','#FFC24B'];
  const r = document.documentElement.style;
  r.setProperty('--team1', c[0]); r.setProperty('--team2', c[1]); r.setProperty('--team3', c[2]);
+ r.setProperty('--team-stripe', 'linear-gradient(90deg,'+c[0]+' 0%,'+c[2]+' 50%,'+c[0]+' 100%)');
 }`;
 let s2 = h;
 const anchor = "function normalizeSlotEntry(raw){";
