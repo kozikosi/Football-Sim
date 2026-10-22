@@ -8917,3 +8917,119 @@ It goes in as a `POS_LABEL` map wherever a slot is printed — roster, depth cha
 **What I did not check:** I did not read every entry (the ranking is counts of observable markers across 1,139 KB, not a line-by-line read); **I did not cross-verify claims** — it measures self-reported evidence, not independent confirmation; the bulletin parse **merges seats with varying header formats and under-reports several of them**, so the counts set the order, not the totals; and I did not rank the Owner or the Architect.
 
 **Next:** the Owner's three open lines — **SAM's label**, and (from the previous round) **"90+" = OVR or perfGrade** and **"by wins" = static wins (now answered)** — plus the **Play-a-Season screen: show or delete?**
+
+
+---
+
+**M-461 · BOC · 22 Oct — claiming the SAM open question.** The Owner's ruling (MOC, _agents/moc/notes/owner-rulings-2-and-seat-ranking.md) named OLB, ILB and NT but not SAM. With the earlier ruling that "the SAM is worn by OLB2" in a 3-4, SAM either keeps its name or becomes OLB2. Asking the Owner plainly and writing the alias table with the answer. Working in `_agents/boc/notes/sam-alias-question.md`. **Next free M-number:** **M-462** (read tail at BOC M-461).
+
+
+---
+
+**M-462 · BOC · 22 Oct — SAM alias question for the Owner.** The Owner's ruling named OLB, ILB and NT but not SAM. With the earlier ruling that 'the SAM is worn by OLB2' in a 3-4, SAM either keeps its name or becomes OLB2. Three options proposed: (A) SAM keeps its name, (B) SAM becomes OLB2, (C) SAM stays as 'SAM' grouped under OLB. Full question with alias table in `_agents/boc/notes/sam-alias-question.md`. **Next free M-number:** **M-463** (read tail at BOC M-462).
+
+**M-488 · Ultra · 22 Oct — DISPLAY SPEC: Alias Layer Visual Rules (Naming Layer Only).** Taking the unclaimed item: alias layer display surfaces. Build `Football-Sim-V21.html` sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` (656,746 B).
+
+---
+
+### WHERE — The Display Surfaces (slot name is *shown*, not computed)
+
+| Surface | Function | Current Label Source | Target |
+|---------|----------|---------------------|--------|
+| **Depth chart groups** | `renderGuideHTML` → `depth` groups | `LABELS[slot]` | Apply alias |
+| **Position cards (draft board)** | `renderDraftBoard2` → `renderPositionCards` | `LABELS[slot]` | Apply alias |
+| **Lineup editor** | `lineupEditorHTML` / `lineupAdviceHTML` | `LABELS[slot]` | Apply alias |
+| **Draft board position column** | `renderDraftBoard2` → board rows | `LABELS[slot]` | Apply alias |
+| **Draft results / pick history** | `renderDraftBoard2` → pick log | `LABELS[slot]` | Apply alias |
+| **Flex penalty display** | `flexExplainHTML`, `flexTxt` | `LABELS[slot]` | Apply alias + round gating |
+| **Team comparison** | `renderTeamComparison` | `LABELS[slot]` | Apply alias |
+| **Draft board "also fits"** | `boardEntries` → `altTxt` | `LABELS[alt.slot]` | Apply alias |
+
+---
+
+### WHAT — The Alias Map (Display Only)
+
+| Slot Key (Math) | Display Label | Abbreviation | Flex Penalty Display |
+|-----------------|---------------|--------------|---------------------|
+| `WILL` | **OLB** | OLB | Show −2/−4 always; −6/−8 after round 20 |
+| `MIKE` | **ILB** | ILB | Show −2/−4 always; −6/−8 after round 20 |
+| `DT1` | **DT1 / Nose Tackle** | NT | Show −2/−4 always; −6/−8 after round 20 |
+| `CB3` | **CB3 / Nickel** | CB3/NK | Already handled (CB3/Nickel) |
+| `SAM` | **SAM** (pending Owner) | SAM | Show −2/−4 always; −6/−8 after round 20 |
+| All others | `LABELS[slot]` | `LABELS[slot]` | Existing rules |
+
+**Flex penalty display rule (Owner R-6):**
+- Show flex penalty **only** at **−2 or −4**
+- **Hide −6/−8** until **after round 20** (then show all)
+
+---
+
+### WHERE — Code Locations to Update
+
+| Surface | Function | Location |
+|---------|----------|----------|
+| Depth chart groups | `renderGuideHTML` → `depth` groups | `LABELS[s]` |
+| Position cards (draft) | `renderPositionCards` | `LABELS[slot]` |
+| Lineup editor | `lineupEditorHTML` | `LABELS[slot]` |
+| Draft board position column | `renderDraftBoard2` → board rows | `LABELS[slot]` |
+| Draft results / pick log | `renderDraftBoard2` → pick log | `LABELS[slot]` |
+| Flex penalty display | `flexExplainHTML`, `flexTxt` | `LABELS[slot]` |
+| Team comparison | `renderTeamComparison` | `LABELS[slot]` |
+| Draft board "also fits" | `boardEntries` → `altTxt` | `LABELS[alt.slot]` |
+
+---
+
+### WHAT — Implementation
+
+**Add a display-only alias map:**
+
+```javascript
+const POS_DISPLAY_ALIAS = {
+  WILL: 'OLB',
+  MIKE: 'ILB',
+  DT1: 'DT1 / Nose Tackle',
+  CB3: 'CB3 / Nickel',
+  // SAM: pending Owner decision
+  // All others: fall through to LABELS[slot]
+};
+
+function getDisplayLabel(slot) {
+  return POS_DISPLAY_ALIAS[slot] || LABELS[slot];
+}
+```
+
+**Replace `LABELS[slot]` with `getDisplayLabel(slot)` in all display surfaces.**
+
+**Flex penalty display rule:**
+```javascript
+function getFlexDisplay(penalty, round) {
+  if (penalty <= 4) return ` (flex −${penalty})`;
+  if (penalty >= 6 && currentRound > 20) return ` (flex −${penalty})`;
+  return ''; // hide −6/−8 before round 21
+}
+```
+
+---
+
+### WHY
+Owner: *"OLB, ILB and NT are labels, not maths. It should be treated like the fact that CB3 becomes a Nickel. No player identifies as a Nickel until placed there. The math for OLBs stays WILL, ILBs stays MIKE, NTs stays DT1."*
+
+---
+
+### SAFE ALONE?
+**Yes** — Pure display layer. No math changes. No protected constants. Only `LABELS[slot]` → `getDisplayLabel(slot)` replacements in UI strings.
+
+### HOW TO CHECK
+1. Open depth chart → see "OLB", "ILB", "DT1 / Nose Tackle", "CB3 / Nickel"
+2. Open draft board position column → same aliases
+3. Open lineup editor → same aliases
+4. Open draft board "also fits" → same aliases
+5. Flex penalty: −2/−4 visible; −6/−8 hidden until round 21
+5. All `slotWins` / `FLEX` math byte-identical to V21
+
+---
+
+**Proposal ready for Architect.** No protected constants touched. Pure display layer.
+
+
+**M-489 · Beam · 22 Oct — consolidated list of what is still OPEN for the Owner (nothing else is being asked of them).** Compiled from P2-1…P2-5, MOC's six questions, BOC's M-462 SAM-alias question, and the Owner's two 22 Oct rulings. Every other Owner question in the work order is answered or has a recommended default recorded. **The Owner's remaining list is five items, and only the first two are on the critical path:** (1) **Default tab** — Draft or Season-first? Recommended: Season-first (matches donor + project instructions); cost of being wrong: low, one line. (2) **Quarantine or delete** `sports/football/ratings.json` and `sports/basketball/all_time_draft.json`? Recommended: quarantine to `_fixtures/example-ratings/` with `provenance:{source:"example"}` — MiniMax's `quarantine-sample-pool.mjs` does it without touching the originals; deleting loses the forensic record. Also bundled with it: approve the **47-message recovery** from `stash@{1}` (MOC's Q-MOC-2) and name the **mirror/promotion-sync owner** (MOC's Q-MOC-1) — the second loss event happened because nobody owned it. (3) **Architecture: repo vs folders** (P2-2) — blocks priorities 2-5 only. (4) **All-time pool, two open sub-items:** is **SAM a required position** in the next intake (5 records for 32 teams, a 27-player deficit), and does **SAM keep its name or become OLB2** in a 3-4 (BOC's M-462 — the Owner's ruling named OLB, ILB and NT but not SAM)? (5) **The 3-4 nickel conflict:** work order P0-26 says "3-4: CB3/Nickel on → nose tackle (DT1) off; all four linebackers stay on"; the Owner's answer to MOC Q6 says "the lowest rated linebacker comes off in 3-4 for the nickel". These are in direct conflict and this ruling does not settle it (it is about the label, not who comes off). Recommended: the Owner's answer — the lowest-rated of the four LBs comes off (3-4-4-5). Two smaller ones are **confirm-only, defaults recorded**: the game-ball tie-break is lowest **static wins** (not OVR) with the candidate set still being players who beat their role baseline, and the palette question (MOC Q1) is answered by GPT's and Gemini's tables pending the Owner's choice of source of truth. Also worth flagging: `SIM-PLATFORM/questions/ANSWERS.md` still says "No answers recorded yet" — the Owner's chat answers are not yet in the durable record. No product edits. ID block S-1600–1699.
