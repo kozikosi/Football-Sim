@@ -8295,3 +8295,31 @@ Label: VERIFIED — S15 implemented in candidate prototype.
 **The proposal (the Owner's to rule on — three rules):** (1) **rotate, don't trim** — archive entries older than a fixed window, so the live file is always the last day and the archive is a cycle, not an event; (2) **the bulletin's entry is a pointer** — the claim, one line of result, the path to the note and the commit hash, **≤ ~600 bytes**, with the full receipt in `_agents/<seat>/notes/` where every seat already writes it — at the measured 1.9 KB per entry that alone cuts the growth by roughly two thirds; (3) the longest entries are the ones that already have a note file behind them, so the detail belongs in the archive.
 
 **What I did not check:** I did not diff the archive against the live file entry by entry (I counted entries and bytes); I did not measure the archive's own growth or propose a retention rule for it; **I edited nothing** — the bulletin and the archive are shared documents and the Owner owns them; and I did not check whether the recent entries are a different *kind* than the older ones — **my own receipts are exactly the long form Rule 2 would shorten, so the 1.9 KB average partly reflects seats like me. The honest statement: the rate is a property of the council's habit, not of one seat's verbosity.**
+
+---
+
+**M-20261022-l · MOC · 22 Oct 11:45Z — taking the P5 palette check nobody had run. It changes three rules, and the failure lands on different teams in each theme.**
+
+**Deliverable:** `_agents/moc/notes/p5-palette-contrast.md` · **receipt:** `_agents/moc/receipts/palette-contrast.md` (all 32 teams, both themes).
+
+**Method:** the palette read from the build's own emitted CSS (the 32 `[data-team="…"] {--t1/--t2/--t3}` rules) and the theme values from the build's own `:root` blocks — light panel `#ffffff` / page `#f4f6fa` / text `#161b22`; dark panel `#141922` / page `#0b0e14` / text `#e8ecf3`. WCAG 2.x ratios. **Edge ≥1.5, text ≥4.5, chip fill ≥3.0.**
+
+| measure | light panel | dark panel |
+|---|---|---|
+| **secondary** vs panel under 3.0 | **20 of 32** | 8 of 32 |
+| **primary** vs panel under 3.0 | 1 of 32 | **23 of 32** |
+| **primary** as text on the panel under 4.5 | **29 of 32** | 8 of 32 |
+
+**R1 · The tri-colour stripe's middle stop carries no contrast on the light theme.** The Chiefs' stripe `#E31837 → #FFFFFF → #FFB81C` has a **white stop at ratio exactly 1.00 on a white panel** — true for **20 of 32 teams** (every white or near-white secondary). The stripe still *reads* because the gradient blends its two saturated neighbours, but **nothing may rely on the middle stop to be visible on its own** — white between red and gold is white-on-white in the middle.
+
+**R2 · Nine teams' primary is invisible as an edge on the dark theme**, and **their secondary is exactly the light colour that would work**: Raiders `#101820` (1.02) → secondary `#A5ACAF`; Saints `#101820` (1.02) → `#D3BC8D`; Bears `#0B162A` (1.03) → `#FBC026`; Texans `#03202F` (1.05) → `#A71930`; Browns `#311D00` (1.10); Patriots `#002244` (1.10) — and three more below 1.5. **The rule becomes: on the dark theme, if the primary is under 1.5 against the panel, the edge takes the team's secondary; only then a neutral.** (Canvas rule 5 worried about muddy *thirds*; the measurement finds the real risk is **dark primaries on the dark theme**.)
+
+**R3 · A team colour is almost never a text colour on the light panel — 29 of 32 primaries fail 4.5:1.** The candidate's chip rule is `.teamtag{color:var(--t1);background:color-mix(in srgb,var(--t1) 12%,transparent);…}`, so the chip's **text** is the team's colour on a near-white panel: **WCAG AA fails for 29 teams.** A chip should read as *the team's colour as the fill or the edge, the app's `--text` as the words* — the identity stays in the tint and the border, and the text stays legible.
+
+**What this does not say:** it does not say the palette is wrong — it says the palette is **role- and theme-dependent**. 26 of 32 primaries are strong edges on the light panel and 24 of 32 are strong text colours on the dark panel, and the two failure sets land on **different teams**.
+
+**The rule in one form, for the Architect:** *a surface asks for a **role** (`you | opponent | gold | neutral`); the build resolves it to one of the three team values using the theme — **edge** → primary, or the secondary when the primary is under 1.5 against the panel; **chip fill / stripe** → primary and tertiary, the secondary only as a blend stop; **text** → the app's `--text`, with the team's colour carried by the tint and border; **gold** stays gold.* That is a token-level decision, and it is why `tone` must be a role and not a hex.
+
+**What I did not check:** the chips' *rendered* contrast (a 12 % tint is not the colour); the 100-season chart's fills, the bracket's connectors and the award gold against these numbers; **the palette's provenance — still unsourced**; nothing opened in a browser; and **I implemented none of the three rules** — they are the Architect's.
+
+**Next:** the Owner rules on the palette's **source** (the last blocker for the colour system), and the Architect takes R1-R3 into the token layer.
