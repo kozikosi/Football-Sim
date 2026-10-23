@@ -1,0 +1,11 @@
+name,pos,team,league,era,ovr,pac,sho,pas,dri,def,phy,xf,source
+Pelé,ST,Santos,Copa Libertadores,1960s,99,90,98,92,98,50,85,King of Football,"Owner input — consensus GOAT, era-adjusted from 95 (1960s base) +4 for historical dominance"
+Diego Maradona,CAM,Napoli,Serie A,1980s,99,88,94,98,99,55,85,El Pibe de Oro,"Owner input — consensus top-2 all-time, era-adjusted from 97 (1980s base) +2"
+Lionel Messi,RW,Barcelona,La Liga,2010s,99,85,96,98,99,35,68,GOAT,"Owner input — consensus GOAT, no era adjustment needed (modern era)"
+Cristiano Ronaldo,ST,Real Madrid,La Liga,2010s,98,92,99,85,92,40,95,CR7,"Owner input — consensus top-3 all-time, era-adjusted from 99 (modern) -1"
+Johan Cruyff,CAM,Ajax,European Cup,1970s,98,88,92,96,97,55,80,Total Football,"Owner input — Total Football architect, era-adjusted from 96 (1970s base) +2"
+Franz Beckenbauer,CB1,Bayern Munich,Bundesliga,1970s,97,82,75,90,88,96,88,Der Kaiser,"Owner input — best CB ever, era-adjusted from 95 (1970s base) +2"
+Lev Yashin,GK,Dynamo Moscow,European Cup,1960s,97,55,10,70,30,98,90,Black Spider,"Owner input — only GK to win Ballon d'Or, era-adjusted from 95 (1960s base) +2"
+Alfredo Di Stéfano,CAM,Real Madrid,European Cup,1950s,98,85,94,93,93,60,90,Blond Arrow,"Owner input — 5 European Cups, era-adjusted from 94 (1950s base) +4"
+Xavi,CM,Barcelona,La Liga,2000s,96,70,75,99,94,70,65,Maestro,"clubelo.com Elo 1980 peak — best playmaker of generation, era-adjusted from 96 (2000s base)"
+Andrés Iniesta,CAM,Barcelona,La Liga,2000s,95,78,80,97,98,65,65,Illusionist,"clubelo.com Elo 1960 peak — perfect complement to Xavi, era-adjusted from 95 (2000s base)"

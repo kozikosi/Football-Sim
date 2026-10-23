@@ -207,3 +207,13 @@ The merge has priority. But the vision is the destination. Let's build it.
 - **New files:** `_agents/moc/tools/{build-sim-db,audit-colour-canvas,dataset-hash}.mjs`; `_agents/moc/notes/{p5-sqlite-server-fixed,p0-anchors-vs-precolors,council-update-2026-10-22-precolors,ux-player-browser-pagination-and-header,branding-20-0-and-homepage-copy}.md`; project knowledge plan (ec33fc1b) + roster note (67515ffa).
 - **New open questions:** header rework Option 1 vs 2 (Owner); Q4 poll results (registry format); V23 on hold.
 - **Updated council status:** 12 seats dispatched with distinct assignments (two batches). No product edit. No V23 work.
+
+---
+
+## 11. Session 2026-10-23 (Current Session) — Owner Directive & Project Knowledge Update
+
+- **Seat:** [Current Session] (Council Advisor)
+- **What changed:** Owner directive received for 20-0 branding: product presents as "20-0" (files stay "Football Sim"). Homepage changes: "Set Up Your Draft" → "DRAFT" with heavy UI emphasis; intro → "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"; season line → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?". Player Browser: 15 rows/page, header clickable→homepage. All changes are **V23 only** — confirmed NOT in unmerged bundle `claude-v21-and-council-ops` (5157c53a). Proposal written: `_agents/moc/notes/branding-20-0-and-homepage-copy.md`. Project knowledge file `NEW-SESSION-PROMPT.md` created for council onboarding. Hard prohibitions apply (protected constants unchanged).
+- **New files:** `NEW-SESSION-PROMPT.md` (council onboarding prompt)
+- **New open questions:** Header rework Option 1 vs 2 (Owner decision needed); V23 branding implementation (Architect decision); Player browser header redesign scope.
+- **Updated council status:** 20-0 branding proposal ready for V23. No product edit. Merge bundle ready (5157c53a). Council sessions should use NEW-SESSION-PROMPT.md for onboarding.
