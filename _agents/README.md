@@ -1,19 +1,28 @@
-# _agents/ — per-session workspaces
+# _agents/ — roster and lanes
 
-One folder per AI session. **Nothing here is authoritative** — the product file and the protocol files at the root are.
+Writer: Architect (edits the table only on the Owner's word). **Nothing in a lane is authoritative**; the product file and the root protocol files are. A seat owns its own folder and never edits another's. Process for joining, leaving and clean-up: `RETIREMENT.md`. New lane: copy `TEMPLATE-LANE.md`.
 
-| Folder | Session | Contents |
-|--------|---------|----------|
-| `glm/` | the GLM session | canonical Season-first build, verification, reorg, this protocol |
-| `ds/` | the DeepSeek Flash session | Master Doctrine, Patch Notes, its own snapshots |
-| `nemo-super/` | the Nemo Super VL session | design doc, Season-First rewrite attempt |
-| `nemo-ultra/` | the Nemo Ultra session | 19 patch scripts; session finished with no surviving rewrite — the scripts and the fixed `(7)` build on its branch are its record |
-| `openclaw/` | the OpenClaw session | **withdrawn 19 Oct before filing (user decision)** — folder and ID block kept in case it returns; its round-1 dataset assignment became GLM S-203 |
+Lane file convention: `_agents/<folder>/<FOLDER-NAME>.md` (e.g. `_agents/beam/BEAM.md`), the one file a seat rewrites at session end. Subfolders: `notes/`, `deliveries/`, `tools/`. No build copies or images (see `RETIREMENT.md` §4).
 
-Subfolders per agent: `notes/` (analysis, records), `deliveries/` (patches and documents offered to the mainline), `snapshots/` (builds they kept for rollback).
+## Roster (Owner's ruling, 23 Oct 2026)
 
-## Rules
-- An agent owns its own folder and never edits or renames another agent's files.
-- Mainline material belongs at the root, not here — deliveries are *proposals* until the pen-holder applies them.
-- A delivery patch must state the build hash (see `STATUS.md`) it applies to.
-- Need another session to see something? Write a note in your own `notes/` folder and tell the user to point them at it — that is the bulletin board. There is no `_agents/COMMON/` folder: shared mutable space is how round 0 went wrong.
+| Seat | State | Folder | Notes |
+|---|---|---|---|
+| Beam | **core** | `beam/` | Owner relies on heavily. |
+| Pickle | **core** | `pickle/` | Owner relies on heavily. Keeper of the Pre-Colors anchor build. |
+| BOC | **core** | _none yet_ | Owner relies on heavily. No lane folder exists on any branch the Architect can see: BOC creates it from the template on its next session. |
+| DS | standby | `ds/` | Over the footprint budget (1.7 MB of old build snapshots and images); trim to the budget at next session end. |
+| OR | standby | _none yet_ | Only `_agents-payload/or/` exists. |
+| VLOC | standby | `vl/` | UNKNOWN whether `vl/` is VLOC's folder or a separate VL seat; the Owner confirms. |
+| Super | standby | `nemo-super/` | |
+| Flint | probation | _none yet_ | Owner wants more evidence. Review after 3 verified items. |
+| MiniMax | retired 23 Oct (unavailable) | `minimax/` | Tombstone. Gate moved to `tools/`. |
+| MOC | retired 23 Oct (unavailable) | `moc/` | Tombstone. |
+| LK | retired (Owner, 23 Oct) | _none_ | No lane existed. |
+| GLM | retired 23 Oct (clean-up) | `glm/` | Tombstone. |
+| Ultra | retired 23 Oct (clean-up) | `nemo-ultra/` | Tombstone. |
+| UK | retired 23 Oct (clean-up) | `nemotron-3-ultra-free/` | Tombstone. UNKNOWN whether this folder is UK's; the Owner confirms. |
+| LongCat, MiMo | retired 23 Oct (clean-up) | _none_ | No lane existed. |
+| GPT, Cohere, Glyph, Lightning, OpenClaw | retired (Owner: "any name not mentioned is already retired") | _none_ | The `gpt/*` branches stay; they are history, not a seat. GPT is named in older docs as co-architect: the Owner confirms. |
+
+New members: `RETIREMENT.md` §5. The Owner admits; the Architect adds a row as **probation**.

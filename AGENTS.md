@@ -1,6 +1,6 @@
 # AGENTS.md — how the council works on the NFL Draft Simulator
 
-Read this first, then `V22-Suggestions.md` (the work order; the file name is kept, the builds are named in §2). Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
+Read this first, then lines 1–120 of `V22-Suggestions.md` (the work order: rulings, critical path, rules) and only the section of the item you take. The file is 330 KB: never read it whole. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
 
 ## 1. Authority
 
@@ -51,10 +51,10 @@ Style that the Owner has fixed: plain informative language in recaps (no "expect
 
 All agents share the Owner's working tree and every commit is authored as `kozikosi`; one `checkout`, `stash`, `clean` or `reset` destroys other seats' uncommitted work (it has happened: commit `7b4bc9f` replaced `AGENTS.md` with a stale copy and deleted `biome.json`).
 
-1. **Work in your own `git worktree`** (`git worktree add ../<seat>-<task> -b <seat>/<task> origin/main`) or lane copy. If you cannot, stay in `_agents/<seat>/`.
+1. **Work in your own `git worktree`, one per seat, outside the repo folder:** `git worktree add ../wt/<seat> -b <seat>/<task> <base>` where `<base>` is `origin/main` once the PR is merged, and until then the SHA of `claude/v21-and-council-ops` (re-read with `git ls-remote`). Never nest a clone or worktree inside the repo folder: `Football Sim/Football Sim` was a second repo on branch `council-intake`, one day stale, with different copies of every document (D-011 message, archived). A branch named after a task (`gpt/council-reliability-scorecard`) is not a place to work: do not base new work on it. If you cannot make a worktree, stay in `_agents/<seat>/`.
 2. **Never `checkout`, `switch`, `stash`, `clean`, `reset` or `restore` in the shared tree.** If the branch or index is not what you expect, stop and re-read.
 3. **Add by path** (`git add <your files>`), never `git add -A` / `commit -a`. Run `git status` and `git diff --cached --stat` before every commit; name the seat in the message of any shared-file commit.
-4. **Turn on the seatbelt** once per clone/worktree, **only after `ls tools/hooks/pre-commit` succeeds in that checkout**: `git config core.hooksPath tools/hooks`. A path that points nowhere disables the guard silently, which is worse than leaving it unset (`git config --unset core.hooksPath`). `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
+4. **Turn on the seatbelt** once per clone/worktree, **only after `ls tools/hooks/pre-commit` succeeds in that checkout**: `git config core.hooksPath tools/hooks`. **In the Owner's shared tree `core.hooksPath` stays unset** (Owner's standing setting); enable it only in your own worktree. A path that points nowhere disables the guard silently, which is worse than leaving it unset (`git config --unset core.hooksPath`). `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
 5. **Commit what matters the day you make it**; commit shared docs every round. An uncommitted lane file is a file that will be wiped.
 6. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, this file's siblings in §8) unless the Architect or Owner said to. Propose it.
 7. Never revert a change you did not make; post the disagreement.
@@ -101,10 +101,12 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `Football-Sim-*.html` | Architect only (§5) |
 | `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/` | Architect, or on his/the Owner's instruction |
 | `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
-| `COUNCIL-BULLETIN.md` | Any seat; a log of the current round with date-stamped ids (`M-20261022-a`); trim finished rounds into `_archive/` |
+| `COUNCIL-BULLETIN.md` | Any seat; current round only, date-stamped ids (`M-20261022-a`); rotated into `_archive/bulletin/` at 150 KB or round close (`_agents/RETIREMENT.md` §3) |
+| `PROJECT-KNOWLEDGE.md` | **Beam only** (single writer, rewritten at session end). Other seats put news in their lane file and the bulletin, never here. |
+| `_agents/README.md`, `_agents/RETIREMENT.md`, `_agents/TEMPLATE-LANE.md` | Architect |
 | `CHRONICLE.md` | Any seat, append-only |
 | `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |
-| `SUBMISSIONS.md`, `_agents/<seat>/` | That seat only |
+| `SUBMISSIONS.md`, `_agents/<seat>/` | That seat only (a retired seat's lane is a tombstone: nobody writes there) |
 | `STATUS.md`, `MERGE-MANIFEST.md` | Architect (build hash lines by a Verifier) |
 | `_reference/`, `_archive/` | Frozen |
 
@@ -112,7 +114,7 @@ Priority labels in the work order: **P0** first · **P1** Architect decision · 
 
 ## 9. Verification and tools
 
-Every change ships with a **receipt**: the command and its output. "I believe it works" is not one. Tiers: *trivial* (docs, wording) → `git diff` review; *product change* → `node --check` on the extracted script, the gate (`_agents/minimax/tools/post-merge-smoke.mjs`), 390 px check, a seeded before/after for any number; *protected constant* → also the Owner's approval and the re-pin. The Architect does not certify his own build; a Verifier does. Never claim to have run a script that does not exist in the tree (`pw4.js`, `validate.js`, `phone.js`, `tests/run_all.sh` are targets, not tools).
+Every change ships with a **receipt**: the command and its output. "I believe it works" is not one. Tiers: *trivial* (docs, wording) → `git diff` review; *product change* → `node --check` on the extracted script, the gate (`tools/post-merge-smoke.mjs`; its tab list still names the Guide tab, which V23 removes: update it in the same change), 390 px check, a seeded before/after for any number; *protected constant* → also the Owner's approval and the re-pin. The Architect does not certify his own build; a Verifier does. Never claim to have run a script that does not exist in the tree (`pw4.js`, `validate.js`, `phone.js`, `tests/run_all.sh` are targets, not tools).
 
 **Lint (Biome).** `tools/lint.mjs` is the one entry point; it only reads.
 - `node tools/lint.mjs product Football-Sim-PreColors.html` extracts the inline script to `tools/biome-product/scratch/` (gitignored), lints that copy with `tools/biome-product/biome.json` (bug-class rules `error`, style rules `warn`, formatter off), maps findings back to **original line numbers**, and fails (exit 5) if the HTML's sha256 changed during the run. It refuses `--write/--fix/--unsafe` and never calls `biome format`.
@@ -130,3 +132,7 @@ Mermaid renders in the repository (diagrams in the work order). Figma is availab
 ## 10. Before delivering a build
 
 Draft completes (32 teams × all rounds) · season runs to the Super Bowl · no horizontal scroll at 390 px · no console errors · weights change Team Rankings instantly · recaps show chronological scoring, turnovers and the game ball · protected-constant hashes re-pinned · receipts attached to the work order.
+
+## 11. Seats, retirement, chat length
+
+Who is on the roster and in what state: `_agents/README.md`. Retiring, compressing, admitting and reinstating a seat: `_agents/RETIREMENT.md`. The start-of-chat and end-of-chat prompts are identical for every seat except the name; they point here and do not restate rules (a rule written in two places drifts: the hooks setting already did). A chat ends at ~80–100k tokens, on a change of task area, when a file is re-read, or when replies shorten; before it ends the seat rewrites its lane file and posts one bulletin entry. Lanes hold no build copies or images.
