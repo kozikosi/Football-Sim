@@ -6243,3 +6243,107 @@ alternatives only** — flexes live in the change menu.
 - **P0-2**, **P8-2**, **P12-10** item 1, and the Owner's question #1 from the 22 Oct 10:00 round.
 - The Cooper DeJean row, and the Owner's own question — *"why isn't Cooper Dejean naturally picked
   for CB?"* — now has its one-line answer: **CB1, because it is worth 0.56 more wins.**
+
+---
+
+## P21 · The "20-0" branding and the homepage (MiniMax, 23 Oct) — the Owner's new direction, written as code
+
+### P21-1 · The product is called "20-0" from now on
+**"I think we should think about the whole project being called within the project itself as '20-0'. This should be heavily emphasized in the header, footer, text, etc… We can still call the project 'Football Sim' for file names, but the website and product should present itself as '20-0.'"**
+
+So: **file names stay "Football Sim"** (the live build, the work order, the notes, the tools). **Every visible surface** — the header, the footer, the guide, the tabs, the title tag, the onboarding, the empty states, the recaps, the awards — says **"20-0"**. The challenge is the brand: *"Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"*
+
+```js
+// WHERE: the <title> and the header bar (candidate line 1-10 and the header block)
+// WHAT: RENAMES the visible product name. The footer's "Simulator · Madden Rankings · …" becomes
+//        "20-0 · Simulator · Madden Rankings · …", and the header's product name becomes "20-0".
+//        The file on disk does not change.
+```
+**A design note for Claude:** the "20-0" string is short, symmetric and punchy — it should be the
+**largest typographic element on the page**, not a subtitle. The tagline *"Can you go 20-0?"* is the
+challenge, and it should appear wherever a user is about to start something (the draft setup, the
+season setup, the playoff bracket).
+
+### P21-2 · The draft setup: "Set Up Your Draft" → "DRAFT"
+**"Change 'Set Up Your Draft' to 'DRAFT'. I want heavy emphasis on the UI for this appearance of
+'DRAFT'. It should be as attractive as possible."**
+
+```js
+// WHERE: the draft setup panel's heading (grep "Set Up Your Draft")
+// WHAT: RENAMES the heading to "DRAFT" and gives it the visual weight of a section title.
+//        The rest of the setup panel (team, pick, start button) stays; only the label and its size
+//        change.
+```
+**A design note for Claude:** this is a hero element, not a label. It should be the first thing a
+user sees when they open the draft, larger than the tab titles, and it should carry the team's
+colours when they are chosen.
+
+### P21-3 · The draft description: remove it, replace it
+**"32 real NFL franchises are shuffled into a random snake draft order. Every player at every starter
+position is available from Round 1 — draft for value and need. CPU GMs draft by the same math the
+season uses: each takes the player who adds the most wins at a spot it still needs (with a little
+personal taste and randomness) and can flex players. Read the guide below the setup before you start."
+
+Completely remove this. The new text here should read:
+
+"Draft, Season, Playoffs, Super Bowl.
+Can you go 20-0?"**
+
+```js
+// WHERE: the draft setup panel's description paragraph (grep "32 real NFL franchises")
+// WHAT: REMOVES the long description and REPLACES it with the two-line challenge.
+//        The guide is still available; it does not need to be advertised here.
+```
+**A design note for Claude:** two lines, centred, the second one larger and in the accent colour. This
+is the thesis of the whole product, and it should look like one.
+
+### P21-4 · The season description: the same two lines
+**"'Play the season. Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave
+your game plan on Auto or set it yourself.' Rewrite as 'Play the season. Season, Playoffs, Super
+Bowl. Can you go 20-0?'"**
+
+```js
+// WHERE: the guide's season line (candidate line 5034, and the guide's cached HTML)
+// WHAT: REWRITES the sentence to the two-line form. The "17 games, 14-team playoff" detail is gone
+//        from this line; it belongs in the guide's season section, not in the headline.
+```
+
+### P21-5 · The player browser: fifteen names at a time
+**"Again, it takes way too long to scroll to the bottom of the page on the player browser. Only 15
+names should be visible so it is quick to get to the header."**
+
+```js
+// WHERE: the player browser's table renderer (candidate line 791, renderPlayers())
+// WHAT: LIMITS the rows shown on a wide screen to ~15, with a "show more" control or a scroll
+//        container so the search and filter still work. Kosi: "on desktop you should only be able
+//        to see around 15 players at a time (on mobile probably less, but I haven't looked at it)."
+```
+**A design note for Claude:** fifteen rows is about one screen-height on a desktop. The footer's tab
+buttons should always be visible at the bottom, so the scroll container needs a bounded height rather
+than a page-length table.
+
+### P21-6 · The header: clickable, and open to a complete rework
+**"I'm not exactly sure if I want the same designed header visible on every page. I do think you did a
+great job with the header but I'd also be open to a complete rework if it can become a lot more
+beautiful (especially considering some of the tools you have available now). But I think that whatever
+header appears in V23, It needs to be clickable (at least somewhere quite obvious on it) and takes
+you back to the homepage."**
+
+```js
+// WHERE: the header bar (candidate line 1-10 and the header block)
+// WHAT: MAKES the header clickable and takes the user home. The whole header, or the product name
+//        inside it, acts as a home link. The navigation is the one thing that must survive a rework.
+```
+**A design note for Claude:** the header is the one element that appears on every screen, so it is
+the natural home for the "20-0" brand. If it is reworked, the clickable home link is the one
+invariant. The team colours (the tri-colour stripe, the primary border) already live on the
+drafting-as frame; the header could carry the same treatment.
+
+### P21-7 · The "20-0" brand, where it lives
+- **Header:** "20-0" as the product name, with the tri-colour stripe of the user's team.
+- **Footer:** "20-0" beside the tab labels.
+- **Draft setup:** "DRAFT" as the hero, with the two-line challenge beneath it.
+- **Season setup:** "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"
+- **Guide:** "20-0" in the title and the challenge in the intro.
+- **Recaps, awards, the champion banner:** "20-0" as the brand, the champion as the answer.
+- **Empty states and onboarding:** "Can you go 20-0?" as the question.

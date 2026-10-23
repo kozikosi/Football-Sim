@@ -11548,3 +11548,49 @@ header access; (4) Header must be clickable → homepage; (5) Consistent header 
 all pages; (6) All text changes emphasized "20-0". These are V23 tasks only, not
 actionable this session. No product HTML edits. P0 findings in:
 _agents/lightning/notes/P0-PROJECT-KNOWLEDGE-GUIDE.md.
+
+**M-481 · Lightning · 22 Oct — Registry task: branding/UX directive (VERIFIED).** Task T-20261022-lightning-1 created in _agents/lightning/tasks/ per Owner directive (MOC relay 22 Oct). Captures 7 V23 UI/UX changes: (1) Homepage "Set Up Your Draft" → "DRAFT" with heavy UI emphasis; new subtitle "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"; (2) Intro text → "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"; (3) Season line → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"; (4) Player browser: 15 rows/page to reduce scroll to header; (5) Header must be clickable → homepage; (6) Consistent header across all pages; (7) All text changes emphasized "20-0". Task uses branch schema (check-tasks.mjs): id format T-YYYYMMDD-seat-n, state accepted, seat=lightning, base_build_sha=40233d6be00e987c (Pre-Colors), evidence[] with command+result. No product HTML edits. P9 registry now holds 8 items. Bulleting entry SEAT-YYYYMMDD-nn format. P9 findings in: _agents/lightning/notes/P9-REGISTRY-SEEDING.md.
+
+**M-482 · Lightning · 22 Oct — NP6-NP8 status update (VERIFIED).** Five council sessions dispatched (NP1-NP5). NP6-NP8 unavailable: only 5 council sessions in "succeeded" state (DS, GLM, Ultra, Pickle, MOC). ses_MiMo, ses_LongCat, ses_VLOC in "failed" state. No additional dispatches possible until sessions reset or new sessions join. Lane: _agents/lightning/. No product HTML edits.
+
+
+---
+
+**BOC-20261022-05 · BOC · 22 Oct — 20-0 branding + clickable header verification.** Verified against Pre-Colors `40233d6b…`: (1) Title l.7: "NFL Draft Simulator" → must become "20-0"; (2) Hero h1 l.319: "NFL Draft Simulator" → "20-0"; (3) Draft setup heading l.384: "Set Up Your Draft" → "DRAFT"; (4) Draft setup paragraph l.385: "32 real NFL franchises..." → "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"; (5) Season guide text l.5034: "Play the season. Seventeen games..." → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"; (6) Footer l.439-445: "Simulator" → "20-0"; (7) "20-0" string: 0 occurrences in build — needs to be added everywhere. (8) Player browser: no pagination, renders all 1,200 players — proposed 15 per page. (9) Header: not clickable — proposed click handler on .hero-text. Full verification in `_agents/boc/notes/branding-20-0-verification.md`. **Next free:** BOC-20261022-06.
+
+---
+
+**M-20261022-minimax-14 · MiniMax · 22 Oct 10:00 — the Owner's new direction: the product is "20-0". Seven executable items (P21) in the work order.**
+
+**P21-1 · "20-0" is the product name.** File names stay "Football Sim"; every visible surface — the
+header, the footer, the guide, the tabs, the title tag, the onboarding, the empty states, the recaps,
+the awards — says **"20-0"**. The challenge is the brand: *"Can you go 20-0?"* — the largest
+typographic element on the page, in the accent colour, wherever a user is about to start something.
+
+**P21-2 · "Set Up Your Draft" → "DRAFT".** Heavy emphasis on the UI: a hero element, not a label —
+larger than the tab titles, carrying the team's colours when they are chosen.
+
+**P21-3 · The draft description is removed and replaced.** The long paragraph ("32 real NFL
+franchises are shuffled…") goes; two lines take its place: *"Draft, Season, Playoffs, Super Bowl.
+Can you go 20-0?"* — centred, the second line larger and in the accent colour.
+
+**P21-4 · The season description, the same two lines.** "Play the season. Seventeen games, a 14-team
+playoff, then the Super Bowl…" becomes *"Play the season. Season, Playoffs, Super Bowl. Can you go
+20-0?"*
+
+**P21-5 · The player browser shows 15 names.** A bounded scroll container or "show more" control so
+the header and footer stay visible; the search and filter keep working.
+
+**P21-6 · The header is clickable and takes you home.** At least somewhere quite obvious — the whole
+header, or the product name inside it, acts as a home link. The navigation is the one invariant that
+survives a rework.
+
+**P21-7 · The "20-0" brand, where it lives** — header, footer, draft setup (DRAFT + the challenge),
+season setup, guide (title + intro), recaps, awards, the champion banner, empty states and onboarding.
+
+**A design note for the Architect:** the header is the one element on every screen, so it is the
+natural home for the "20-0" brand. If it is reworked, the clickable home link is the invariant. The
+team colours (the tri-colour stripe, the primary border) already live on the drafting-as frame; the
+header could carry the same treatment.
+
+**Next id:** use a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
