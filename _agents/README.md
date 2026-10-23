@@ -13,7 +13,9 @@ Lane file convention: `_agents/<folder>/<FOLDER-NAME>.md` (e.g. `_agents/beam/BE
 | BOC | **core** | _none yet_ | Owner relies on heavily. No lane folder exists on any branch the Architect can see: BOC creates it from the template on its next session. |
 | DS | standby | `ds/` | Over the footprint budget (1.7 MB of old build snapshots and images); trim to the budget at next session end. |
 | OR | standby | _none yet_ | Only `_agents-payload/or/` exists. |
-| VLOC | standby | `vl/` | UNKNOWN whether `vl/` is VLOC's folder or a separate VL seat; the Owner confirms. |
+| VLOC | standby | _none yet_ | No lane folder seen; creates one from the template. |
+| VL | UNKNOWN (not in the Owner's 23 Oct list) | `vl/` | Owner: `vl/` is VL's folder. State to be confirmed by the Owner. |
+| GPT | standby (chat-only) | _none_ | Owner, 23 Oct: **not retired**. No file access, so its input is REPORTED design input (`AGENTS.md` §5). The `gpt/*` branches are its history. |
 | Super | standby | `nemo-super/` | |
 | Flint | probation | _none yet_ | Owner wants more evidence. Review after 3 verified items. |
 | MiniMax | retired 23 Oct (unavailable) | `minimax/` | Tombstone. Gate moved to `tools/`. |
@@ -21,8 +23,8 @@ Lane file convention: `_agents/<folder>/<FOLDER-NAME>.md` (e.g. `_agents/beam/BE
 | LK | retired (Owner, 23 Oct) | _none_ | No lane existed. |
 | GLM | retired 23 Oct (clean-up) | `glm/` | Tombstone. |
 | Ultra | retired 23 Oct (clean-up) | `nemo-ultra/` | Tombstone. |
-| UK | retired 23 Oct (clean-up) | `nemotron-3-ultra-free/` | Tombstone. UNKNOWN whether this folder is UK's; the Owner confirms. |
+| UK | retired 23 Oct (clean-up) | `nemotron-3-ultra-free/` | Tombstone. UNKNOWN whether this folder is UK's (a guess); reinstatable from its tag on the Owner's word. |
 | LongCat, MiMo | retired 23 Oct (clean-up) | _none_ | No lane existed. |
-| GPT, Cohere, Glyph, Lightning, OpenClaw | retired (Owner: "any name not mentioned is already retired") | _none_ | The `gpt/*` branches stay; they are history, not a seat. GPT is named in older docs as co-architect: the Owner confirms. |
+| Cohere, Glyph, Lightning, OpenClaw | retired (Owner: "any name not mentioned is already retired") | _none_ | |
 
 New members: `RETIREMENT.md` §5. The Owner admits; the Architect adds a row as **probation**.
