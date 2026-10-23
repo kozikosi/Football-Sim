@@ -1,16 +1,19 @@
 # Multi-Agent Workflow Framework for NFL Draft Simulator
 
 ## Purpose
+
 Framework for running parallel AI sessions on the NFL Draft Simulator project while respecting the governance rules and Git-direct workflow.
 
 ## Core Principles
 
 ### 1. Each Agent Owns Their Section
+
 - Per AGENTS.md: "Each agent session writes only inside its own section below"
 - No agent edits another's file
 - Each agent's section ends with: `Implementer's note (user pastes Claude's decision here): —`
 
 ### 2. Git-Direct Access
+
 - All agents can read documents from GitHub directly (no paste required for most)
 - 3 governance-mandated user paste actions still apply:
   - Record Claude's decisions in SUBMISSIONS.md
@@ -18,37 +21,41 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
   - Read new submissions not yet pushed to Git
 
 ### 3. Claude Designs the Workflow
+
 - Claude answers 3 YES/NO questions first (QUESTION_FOR_CLAUDE.md)
 - Architecture designed after capabilities are known
 - Output format determined in architecture design phase
 
 ## Agent ID Blocks
 
-| Agent | ID Range | Example Entries |
-|-------|----------|----------------|
-| GLM | S-200–299 | S-201, S-202, S-203 |
-| DS (Master Doctrine) | S-100–199 | S-101, S-102, S-103 |
-| Nemo Super | S-300–399 | S-300, S-301, S-302 |
-| Nemo Ultra | S-400–499 | S-400, S-401, S-402 |
-| GPT | S-500–599 | S-501, S-502, S-503 |
-| Gemini | S-700–799 | S-701, S-702, S-703 |
-| (OpenClaw withdrew 19 Oct) | S-600–699 | Reserved |
+| Agent                      | ID Range  | Example Entries     |
+| -------------------------- | --------- | ------------------- |
+| GLM                        | S-200–299 | S-201, S-202, S-203 |
+| DS (Master Doctrine)       | S-100–199 | S-101, S-102, S-103 |
+| Nemo Super                 | S-300–399 | S-300, S-301, S-302 |
+| Nemo Ultra                 | S-400–499 | S-400, S-401, S-402 |
+| GPT                        | S-500–599 | S-501, S-502, S-503 |
+| Gemini                     | S-700–799 | S-701, S-702, S-703 |
+| (OpenClaw withdrew 19 Oct) | S-600–699 | Reserved            |
 
 ## Workflow Phases
 
 ### Phase 1: Architecture Design (Claude-Dependent)
+
 1. Claude answers 3 YES/NO questions in QUESTION_FOR_CLAUDE.md
 2. Based on answers, we design the workflow/architecture
 3. Output format is chosen (consensus block or other)
 4. **This phase is Claude-dependent — do not proceed without Claude's answers**
 
 ### Phase 2: Submission Filing
+
 1. Agents file submissions to Git (LIGHTNING_SUBMISSION.md)
 2. Submissions are readable by Claude directly from Git
 3. Claude outputs decisions using the agreed format
 4. User copies one block into SUBMISSIONS.md
 
 ### Phase 3: Verification & Promotion
+
 1. User verifies the build (read-only)
 2. User files five-line verification report
 3. User promotes build (archive old, record in BUILD-LOG.md, bump STATUS.md hash)
@@ -57,11 +64,13 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
 ## Agent Communication Protocol
 
 ### 1. Reading Protocol
+
 - Each agent reads documents from GitHub directly
 - No user paste required for: STATUS.md, SUBMISSIONS.md, CONTRACT.md, NEW_WORKFLOW_ROUND1.md, INTEGRATION_AUDIT_LIGHTNING.md, LIGHTNING_SUBMISSION.md, NFL Draft Simulator.html, and all other published docs
 - 3 actions requiring user paste are clearly documented
 
 ### 2. Submission Filing
+
 1. Agent creates LIGHTNING_SUBMISSION.md
 2. Commits and pushes to Git
 3. Claude reads it directly from GitHub
@@ -69,6 +78,7 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
 5. User copies one block into SUBMISSIONS.md
 
 ### 3. Decision Distribution
+
 1. Claude outputs one block using the agreed format
 2. User copies entire block (one paste)
 3. User pastes into SUBMISSIONS.md above each agent's end-anchor
@@ -102,14 +112,14 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
 - Reads: INTEGRATION_AUDIT_LIGHTNING.md, S-202_SIM-CORE_MARKERS_GUIDE.md
 - Files: LIGHTNING_SUBMISSION.md patches
 
-**Agent 2: GLM Architecture Agent**  
+**Agent 2: GLM Architecture Agent**
 - ID Range: S-200–299
 - Focus: Architecture decisions, S-202 markers, baseline bootstrap
 - Reads: NEW_WORKFLOW_ROUND1.md, PRE_IMPLEMENTATION_ACTIONS_STATUS.md
 - Files: LIGHTNING_SUBMISSION.md architecture decisions
 
 **Agent 3: Ultra Design Agent**
-- ID Range: S-400–499  
+- ID Range: S-400–499
 - Focus: Visual design, UI improvements, v20 adoption
 - Reads: ULTRA_PROMPT.md, AUTHORITATIVE_DATASET_FORMAT_DECLARATION.md
 - Files: LIGHTNING_SUBMISSION.md design suggestions
@@ -124,6 +134,7 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
 4. **Appeal possible** — Proponent can appeal once with new evidence
 
 ### Per AGENTS.md Rule 8:
+
 > "Conflicts are Claude's call — if two submissions collide, Claude chooses; note the collision in your entry if you see it."
 
 ## Documentation Requirements
@@ -131,7 +142,6 @@ Framework for running parallel AI sessions on the NFL Draft Simulator project wh
 ### Per-Agent Documentation
 
 Each agent should document:
-
 1. **Their SUBMISSIONS.md section** — Their entries and statuses
 2. **Their decisions** — What they accepted/deferred/rejected and why
 3. **Their readings** — Which Git documents they referenced
@@ -203,12 +213,14 @@ Each agent should document:
 ## Migration from Single-Agent to Multi-Agent
 
 ### Old Workflow:
+
 1. Single Claude session handles all submissions
 2. User copies multiple responses
 3. User pastes each separately into SUBMISSIONS.md
 4. Manual transcription into Implementer's note areas
 
 ### New Workflow:
+
 1. Multiple agents file submissions to Git
 2. Claude reads from Git directly
 3. Claude answers 3 YES/NO questions (mandatory first)
@@ -229,17 +241,20 @@ Each agent should document:
 ## Getting Started — 3-Agent Setup
 
 ### Step 1: Set Up Agent Sections
+
 1. Ensure SUBMISSIONS.md has sections for each agent above their end-anchors
 2. Verify each agent knows their ID range
 3. Confirm each agent can read from GitHub directly
 
 ### Step 2: Establish Workflow Pattern
+
 1. Agree on the workflow pattern (Phase 1 → Phase 2 → Phase 3)
 2. Understand the 3 mandatory YES/NO questions
 3. Design the output format in the architecture phase
 4. Document the conflict resolution process
 
 ### Step 3: Test with One Submission
+
 1. Agent 1 files a non-critical assessment submission
 2. Claude reads from Git and answers 3 questions
 3. Architecture design phase
@@ -249,6 +264,7 @@ Each agent should document:
 7. Iterate if needed
 
 ### Step 3: Scale Up
+
 1. Agent 2 files their first submission
 2. Follow the same pattern
 3. Add Agent 3 if needed
@@ -286,26 +302,26 @@ Each agent should document:
 
 ## Resources on Git
 
-| Document | Purpose | Agent Reference |
-|----------|---------|-----------------|
-| `QUESTION_FOR_CLAUDE.md` | 3 YES/NO capability questions | All agents — mandatory first read |
-| `NEW_GIT_WORKFLOW.md` | Git-direct workflow overview | All agents |
-| `PRE_IMPLEMENTATION_ACTIONS_STATUS.md` | 8 pre-implementation actions | All agents |
-| `CONSENSUS_BLOCK_FORMAT.md` | Output format (archived reference) | After architecture phase |
-| `S-202_SIM-CORE_MARKERS_GUIDE.md` | SIM-CORE markers and function moves | GLM, DS agents |
-| `AUTHORITATIVE_DATASET_FORMAT_DECLARATION.md` | Dataset format declaration | All agents |
-| `INTEGRATION_AUDIT_LIGHTNING.md` | Audit findings, liveness items | All agents |
-| `NEW_WORKFLOW_ROUND1.md` | Round 1 adjudication chain | All agents |
-| `FINAL_CONSOLIDATION.md` | Complete summary of deliverables | All agents |
-| `OtherChambers_AI_Critiques.md` | External AI code critiques | All agents |
-| `LIGHTNING_SUBMISSION.md` | S-900 integration audit submission | All agents |
-| `NFL Draft Simulator.html` | The 650,127-byte build | All agents |
-| `STATUS.md` | Build hash, roles, current state | All agents |
-| `AGENTS.md` | Invariants and role definitions | All agents |
-| `COLLECTIVE-PROMPT.md` | Standing system prompt | All agents |
-| `MASTER_GUIDE.md` | Season-first handoff documentation | All agents |
-| `master_task_list.md` | Settled and rejected decisions | All agents |
+| Document                                      | Purpose                             | Agent Reference                   |
+| --------------------------------------------- | ----------------------------------- | --------------------------------- |
+| `QUESTION_FOR_CLAUDE.md`                      | 3 YES/NO capability questions       | All agents — mandatory first read |
+| `NEW_GIT_WORKFLOW.md`                         | Git-direct workflow overview        | All agents                        |
+| `PRE_IMPLEMENTATION_ACTIONS_STATUS.md`        | 8 pre-implementation actions        | All agents                        |
+| `CONSENSUS_BLOCK_FORMAT.md`                   | Output format (archived reference)  | After architecture phase          |
+| `S-202_SIM-CORE_MARKERS_GUIDE.md`             | SIM-CORE markers and function moves | GLM, DS agents                    |
+| `AUTHORITATIVE_DATASET_FORMAT_DECLARATION.md` | Dataset format declaration          | All agents                        |
+| `INTEGRATION_AUDIT_LIGHTNING.md`              | Audit findings, liveness items      | All agents                        |
+| `NEW_WORKFLOW_ROUND1.md`                      | Round 1 adjudication chain          | All agents                        |
+| `FINAL_CONSOLIDATION.md`                      | Complete summary of deliverables    | All agents                        |
+| `OtherChambers_AI_Critiques.md`               | External AI code critiques          | All agents                        |
+| `LIGHTNING_SUBMISSION.md`                     | S-900 integration audit submission  | All agents                        |
+| `NFL Draft Simulator.html`                    | The 650,127-byte build              | All agents                        |
+| `STATUS.md`                                   | Build hash, roles, current state    | All agents                        |
+| `AGENTS.md`                                   | Invariants and role definitions     | All agents                        |
+| `COLLECTIVE-PROMPT.md`                        | Standing system prompt              | All agents                        |
+| `MASTER_GUIDE.md`                             | Season-first handoff documentation  | All agents                        |
+| `master_task_list.md`                         | Settled and rejected decisions      | All agents                        |
 
 ---
 
-*Framework version 1.0 — Designed for multi-agent NFL Draft Simulator workflow. All agents read from Git directly. 3 governance-mandated user paste actions apply. Claude designs workflow after answering 3 YES/NO questions.*
+_Framework version 1.0 — Designed for multi-agent NFL Draft Simulator workflow. All agents read from Git directly. 3 governance-mandated user paste actions apply. Claude designs workflow after answering 3 YES/NO questions._

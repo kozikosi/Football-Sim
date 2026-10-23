@@ -1,5 +1,4 @@
-NEW WORKFLOW DESIGN — Direct Git Access for Claude
-================================================================================
+# NEW WORKFLOW DESIGN — Direct Git Access for Claude
 
 STATUS: Published to Git for all agents and Claude review (19 October 2026).
 This document replaces the previous copy-paste workflow (Claude → User → OpenChamber)
@@ -26,6 +25,7 @@ on GitHub at `https://github.com/kozikosi/Football-Sim/tree/main`.
 ## NEW WORKFLOW — Direct Git Access Model
 
 ### Step 1: Agent Files Submission to Git
+
 Any agent session may post their submission directly to the GitHub repo. The file
 should be named `LIGHTNING_SUBMISSION.md` (or appropriate name for the agent's ID block)
 and placed in the `Football Sim/` directory (the git checkout).
@@ -41,9 +41,9 @@ The file is now visible on GitHub at:
 `https://github.com/kozikosi/Football-Sim/tree/main/LIGHTNING_SUBMISSION.md`
 
 ### Step 2: Claude Reads from Git Directly
+
 Claude can now read the following documents directly from GitHub without the user
 needing to paste them:
-
 - `STATUS.md` — Current build hash, roles, pending submissions
 - `SUBMISSIONS.md` — Proposals queue with all entries
 - `CONTRACT.md` — Contract v2 amendments and exit codes
@@ -57,11 +57,13 @@ needing to paste them:
 if the files were pasted to him in chat.**
 
 ### Step 3: User Updates STATUS.md (Minimal)
+
 The user still needs to perform one action: update the build hash in STATUS.md after
 verification. Per the existing rules, the verifying session files a five-line report
 updating only the `BUILD <sha256>` line.
 
 ### Step 4: Promotion
+
 Once verified, the promoter (user) promotes the candidate:
 - Moves old build to `_archive/`
 - Records round row in `_archive/BUILD-LOG.md`
@@ -72,41 +74,42 @@ Once verified, the promoter (user) promotes the candidate:
 ⚠️ **IMPORTANT: Claude cannot perform ANY of these three actions himself.**
 
 **1. Claude's final accept/defer/reject decisions (recorded in SUBMISSIONS.md):**
-   Claude CANNOT record his own decisions in SUBMISSIONS.md. Per the project governance,
-   the user must paste Claude's decisions verbatim into SUBMISSIONS.md. Claude delivers
-   candidate builds, but the user is responsible for recording his accept/defer/reject
-   decisions under the appropriate submission IDs. Without user paste, SUBMISSIONS.md
-   cannot be updated.
+Claude CANNOT record his own decisions in SUBMISSIONS.md. Per the project governance,
+the user must paste Claude's decisions verbatim into SUBMISSIONS.md. Claude delivers
+candidate builds, but the user is responsible for recording his accept/defer/reject
+decisions under the appropriate submission IDs. Without user paste, SUBMISSIONS.md
+cannot be updated.
 
-   **Architecture Design Phase** — After Claude answers the three YES/NO questions in
-   `QUESTION_FOR_CLAUDE.md`, he will design a custom workflow/architecture based on his
-   capabilities. The output format (whether consensus block format or something else) will
-   be determined during this architecture design phase, after my capability constraints are
-   established. The format is not predetermined — it will be designed after we know what
-   I can and cannot do.
+**Architecture Design Phase** — After Claude answers the three YES/NO questions in
+`QUESTION_FOR_CLAUDE.md`, he will design a custom workflow/architecture based on his
+capabilities. The output format (whether consensus block format or something else) will
+be determined during this architecture design phase, after my capability constraints are
+established. The format is not predetermined — it will be designed after we know what
+I can and cannot do.
 
 **2. Verification five-line report:**
-   Claude CANNOT file the verification five-line report. Per STATUS.md, "The verifying
-   session files a five-line report (adopted 19 Oct, from DS): build hash · what was
-   driven end-to-end · numbers re-measured (command + sample size) · console/390px result
-   · what was deliberately not checked." This is filed by the verifier session (a read-only
-   role), not by Claude. The user (or a verifier session) must file this report.
+Claude CANNOT file the verification five-line report. Per STATUS.md, "The verifying
+session files a five-line report (adopted 19 Oct, from DS): build hash · what was
+driven end-to-end · numbers re-measured (command + sample size) · console/390px result
+· what was deliberately not checked." This is filed by the verifier session (a read-only
+role), not by Claude. The user (or a verifier session) must file this report.
 
 **3. New submissions not yet pushed to Git:**
-   Claude CANNOT read submissions that have not been pushed to the GitHub repo. Per the
-   new workflow, any submission not yet committed to the Git repo must be pasted to Claude
-   by the user. Once a submission is pushed to Git (committed and pushed), Claude can then
-   read it directly from GitHub. But until that push occurs, the user must paste the
-   submission content to Claude.
+Claude CANNOT read submissions that have not been pushed to the GitHub repo. Per the
+new workflow, any submission not yet committed to the Git repo must be pasted to Claude
+by the user. Once a submission is pushed to Git (committed and pushed), Claude can then
+read it directly from GitHub. But until that push occurs, the user must paste the
+submission content to Claude.
 
-   **Architecture Design Note** — After Claude answers the three questions in
-   `QUESTION_FOR_CLAUDE.md`, he will design the submission reading workflow based on his
-   capabilities. The method for reading new submissions (whether direct Git read, user paste,
-   or other approach) will be determined during the architecture design phase.
+**Architecture Design Note** — After Claude answers the three questions in
+`QUESTION_FOR_CLAUDE.md`, he will design the submission reading workflow based on his
+capabilities. The method for reading new submissions (whether direct Git read, user paste,
+or other approach) will be determined during the architecture design phase.
 
 ---
 
 ### Step 1: Agent Files Submission to Git
+
 Any agent session may post their submission directly to the GitHub repo. The file
 should be named `LIGHTNING_SUBMISSION.md` (or appropriate name for the agent's ID block)
 and placed in the `Football Sim/` directory (the git checkout).
@@ -122,9 +125,9 @@ The file is now visible on GitHub at:
 `https://github.com/kozikosi/Football-Sim/tree/main/LIGHTNING_SUBMISSION.md`
 
 ### Step 2: Claude Reads from Git Directly
+
 Claude can now read the following documents directly from GitHub without the user
 needing to paste them:
-
 - `STATUS.md` — Current build hash, roles, pending submissions
 - `SUBMISSIONS.md` — Proposals queue with all entries
 - `CONTRACT.md` — Contract v2 amendments and exit codes
@@ -138,6 +141,7 @@ needing to paste them:
 if the files were pasted to him in chat.**
 
 ### Step 1: Agent Files Submission to Git
+
 (Again - duplicate step for emphasis)
 
 Any agent session may post their submission directly to the GitHub repo. The file

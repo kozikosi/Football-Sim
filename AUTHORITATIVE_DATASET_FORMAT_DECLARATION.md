@@ -4,7 +4,7 @@
 
 **Declaration Date:** 2026-10-19  
 **Applies To Build:** 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f  
-**Declaration By:** GLM session (per S-203 submission)  
+**Declaration By:** GLM session (per S-203 submission)
 
 ## Declaration
 
@@ -12,10 +12,10 @@ The **S-203 dataset format** (contained in `tests/2025_standards.js`) is hereby 
 
 ### Effective Immediately
 
-| Format | Status | Effective Round |
-|--------|--------|-----------------|
-| **S-203 format** (`tests/2025_standards.js`) | **Authoritative** | Round 1 |
-| S-502 format (`tests/season_2025.json`) | Superseded | Round 1 and forward |
+| Format                                       | Status            | Effective Round     |
+| -------------------------------------------- | ----------------- | ------------------- |
+| **S-203 format** (`tests/2025_standards.js`) | **Authoritative** | Round 1             |
+| S-502 format (`tests/season_2025.json`)      | Superseded        | Round 1 and forward |
 
 ### S-203 Format Specifications
 
@@ -56,14 +56,14 @@ This declaration is recorded in:
 
 ### Quick Reference
 
-| Question | Answer |
-|----------|--------|
-| What format is authoritative for Round 1? | S-203 (`tests/2025_standards.js`) |
-| Is S-502 format invalid? | No — superseded for Round 1 only |
-| Who declared S-203 authoritative? | GLM session (per S-203 submission) |
-| Where is this recorded? | INTEGRATION_AUDIT_LIGHTNING.md, NEW_WORKFLOW_ROUND1.md, this file |
-| When does S-502 become authoritative again? | Round 2+, or until formally re-declared |
+| Question                                    | Answer                                                            |
+| ------------------------------------------- | ----------------------------------------------------------------- |
+| What format is authoritative for Round 1?   | S-203 (`tests/2025_standards.js`)                                 |
+| Is S-502 format invalid?                    | No — superseded for Round 1 only                                  |
+| Who declared S-203 authoritative?           | GLM session (per S-203 submission)                                |
+| Where is this recorded?                     | INTEGRATION_AUDIT_LIGHTNING.md, NEW_WORKFLOW_ROUND1.md, this file |
+| When does S-502 become authoritative again? | Round 2+, or until formally re-declared                           |
 
 ---
 
-*This declaration is effective immediately and stands until a future round declares otherwise. The S-203 format remains authoritative for all subsequent rounds unless and until a new declaration is posted.*
+_This declaration is effective immediately and stands until a future round declares otherwise. The S-203 format remains authoritative for all subsequent rounds unless and until a new declaration is posted._

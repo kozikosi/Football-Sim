@@ -1,9 +1,11 @@
 # S-202 SIM-CORE Markers Implementation Guide
 
 ## Purpose
-Guide for adding /*SIM-CORE-START*/ ... /*SIM-CORE-END*/ markers to `NFL Draft Simulator.html` and moving three behavior-preserving functions into the SIM-CORE. This is Round 1 entry item S-202, and it is the **foundation for everything else** in Round 1A (S-202 → S-203 → S-103 → S-102 → S-301).
+
+Guide for adding /_SIM-CORE-START_/ ... /_SIM-CORE-END_/ markers to `NFL Draft Simulator.html` and moving three behavior-preserving functions into the SIM-CORE. This is Round 1 entry item S-202, and it is the **foundation for everything else** in Round 1A (S-202 → S-203 → S-103 → S-102 → S-301).
 
 ## Effective Build
+
 `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f` (650,127 bytes)
 
 ## Marker Placement
@@ -20,7 +22,6 @@ Add the following marker pairs around the SIM-CORE code section in `NFL Draft Si
 ### Placement in NFL Draft Simulator.html
 
 Insert the markers as follows (exact line numbers may vary depending on build version):
-
 1. **Find the existing DOM-free code section** that contains the draft simulation logic
 2. **Insert `/* SIM-CORE-START */`** on the line immediately **before** the first function/logic line of the SIM-CORE section
 3. **Insert `/* SIM-CORE-END */`** on the line immediately **after** the last function/logic line of the SIM-CORE section
@@ -29,11 +30,11 @@ Insert the markers as follows (exact line numbers may vary depending on build ve
 
 The following three functions should be **behavior-preserving moves** — their logic is unchanged, but they are relocated within the SIM-CORE boundary:
 
-| Function Name | Purpose | Current Location | New Location |
-|--------------|---------|------------------|--------------|
-| `buildDraftState` | Builds the draft state from player data and team rosters | Outside SIM-CORE (in UI layer) | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */` |
-| `simulateDraftHeadless` | Headless draft simulation (no UI rendering) | Outside SIM-CORE | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */` |
-| `buildLeagueFromDraft` | Builds league standings/results from draft results | Outside SIM-CORE | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */** |
+| Function Name           | Purpose                                                  | Current Location               | New Location                                              |
+| ----------------------- | -------------------------------------------------------- | ------------------------------ | --------------------------------------------------------- |
+| `buildDraftState`       | Builds the draft state from player data and team rosters | Outside SIM-CORE (in UI layer) | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */`  |
+| `simulateDraftHeadless` | Headless draft simulation (no UI rendering)              | Outside SIM-CORE               | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */`  |
+| `buildLeagueFromDraft`  | Builds league standings/results from draft results       | Outside SIM-CORE               | **Inside** `/* SIM-CORE-START */ ... /* SIM-CORE-END */** |
 
 ### Implementation Steps
 
@@ -42,6 +43,7 @@ The following three functions should be **behavior-preserving moves** — their 
    - Identify the start and end of the core logic block
 
 2. **Insert markers:**
+
    ```html
    /* SIM-CORE-START */
    [first line of SIM-CORE logic]
@@ -67,12 +69,12 @@ The following three functions should be **behavior-preserving moves** — their 
 
 After marker placement, verify:
 
-| Check | Method | Expected |
-|-------|--------|----------|
-| `pw4.js` can extract core | Run `node tests/pw4.js` | No DOMAccessError; core extracted successfully |
-| `run_all.sh` can extract core | Run `bash tests/run_all.sh` | All 30/32/34 test paths pass |
-| No behavioral changes | Full season sim before/after | Identical results (within floating-point tolerance) |
-| Three functions moved | Code diff | Three functions relocated; logic unchanged |
+| Check                         | Method                       | Expected                                            |
+| ----------------------------- | ---------------------------- | --------------------------------------------------- |
+| `pw4.js` can extract core     | Run `node tests/pw4.js`      | No DOMAccessError; core extracted successfully      |
+| `run_all.sh` can extract core | Run `bash tests/run_all.sh`  | All 30/32/34 test paths pass                        |
+| No behavioral changes         | Full season sim before/after | Identical results (within floating-point tolerance) |
+| Three functions moved         | Code diff                    | Three functions relocated; logic unchanged          |
 
 ### Dependency Chain
 
@@ -87,11 +89,10 @@ Without S-202 markers, `pw4.js` and `run_all.sh` cannot extract the core, and no
 ### On Git
 
 This guide is published on Git for all agents and Claude to read:
-
 - **File:** `S-202_SIM-CORE_MARKERS_GUIDE.md`
 - **Commit:** f579713 (or latest on main)
 - **Readable by:** Claude directly from GitHub (no paste required)
-- **Related:** 
+- **Related:**
   - `NEW_WORKFLOW_ROUND1.md` — S-202 is the first item in the 1A chain
   - `INTEGRATION_AUDIT_LIGHTNING.md` — Audit Risk #1 (SIM-CORE extraction) relates to this
   - `NEW_GIT_WORKFLOW.md` — Claude can read this guide from Git
@@ -106,4 +107,4 @@ This guide is published on Git for all agents and Claude to read:
 
 ---
 
-*This guide is effective upon publication on Git. S-202 certification is required before Round 1A dispatch. The markers and function moves are behavior-preserving — no logic changes, only relocation within the SIM-CORE boundary.*
+_This guide is effective upon publication on Git. S-202 certification is required before Round 1A dispatch. The markers and function moves are behavior-preserving — no logic changes, only relocation within the SIM-CORE boundary._

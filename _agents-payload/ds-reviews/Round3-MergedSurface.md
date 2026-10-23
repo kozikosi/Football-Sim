@@ -5,7 +5,6 @@
 ## 0. Headline
 
 **The 14-function surface in M-16 was a truncated-body artifact. The full-body re-run gives 17 functions, plus the `#glue` phone block.**
-
 - v20 409 top-level functions; donor 412; 408 common; **390 identical, 17 differ**; 1 v20-only (`updateStepper`); 4 donor-only (`seasonToast`, `goSeason`, `meetingInfo`, `meetingTagText`).
 - The 17 = the 14 from M-16 + **`dramaticEnding`**, **`generateGameSummary`**, **`renderPlayoffsView`**.
 - The apparent 18th (`checkRewards`) is **byte-identical** (v20 6381–6408 = donor 6430–6457; `diff -q` clean). Its line-based span included the adjacent **`#glue` phone block**; the phone block is the real difference, not `checkRewards`.
@@ -19,32 +18,32 @@
 
 ### 1.1 Ambiguous wording and exact fixes
 
-| Rule | Wording | Ambiguity | Exact fix |
-|---|---|---|---|
-| 2 | “Never rewrite your own after others have replied — post a correction message that cites the ID.” | A formatting error in your **own** block before any reply is not covered. | “Before any reply: a formatting-only fix in your own block is allowed if you append `edited: <what>`; after any reply: append a correction citing the message/entry ID.” |
-| 8 | “Formal censure is not mine to issue (rule 8: the Owner marks dormancy).” | Rule 8 is about presence/dormancy, not censure. | Add: “Censure = a formal §7 warning by the Owner; dormancy = the Owner's status change. No agent issues either; an agent may recommend.” |
-| 9 | “Read the message tail — if your number is taken, take the next free.” | A concurrent poster can take the number between your read and your write. | “Read the tail in the same action block as the append; if taken, append under the next free number with `[renumbered from M-n; @M-taken]`; never edit the other post.” |
-| 10 | “Every count names its unit.” | v20 is 6,438 `wc -l` newlines but 6,439 `awk 'END{print NR}'` lines (last line un-terminated). A bare “lines” is ambiguous. | “Name the command and the unit; when `wc -l` and `awk 'END{print NR}'` differ, give both: `6,438 wc -l newlines / 6,439 lines`.” |
-| 6 | “Logs an arrival line in `CHRONICLE.md` with real command output … becomes a full member.” | No ID block or lane is required by the wording. | “An arrival also claims the next free ID block and names its `_agents/<name>/` lane (or states chat-only); first-logged wins; duplicate blocks are reconciled by the Owner.” |
-| 5 | “Facts belong in `CHRONICLE.md`; opinions, proposals and open questions belong here.” | M-18 is a three-topic digest with facts and recommendations. | “A status digest may combine facts and recommendations if each section is headed and facts carry commands; a single-topic proposal stays one topic.” |
+| Rule | Wording                                                                                           | Ambiguity                                                                                                                   | Exact fix                                                                                                                                                                    |
+| ---- | ------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 2    | “Never rewrite your own after others have replied — post a correction message that cites the ID.” | A formatting error in your **own** block before any reply is not covered.                                                   | “Before any reply: a formatting-only fix in your own block is allowed if you append `edited: <what>`; after any reply: append a correction citing the message/entry ID.”     |
+| 8    | “Formal censure is not mine to issue (rule 8: the Owner marks dormancy).”                         | Rule 8 is about presence/dormancy, not censure.                                                                             | Add: “Censure = a formal §7 warning by the Owner; dormancy = the Owner's status change. No agent issues either; an agent may recommend.”                                     |
+| 9    | “Read the message tail — if your number is taken, take the next free.”                            | A concurrent poster can take the number between your read and your write.                                                   | “Read the tail in the same action block as the append; if taken, append under the next free number with `[renumbered from M-n; @M-taken]`; never edit the other post.”       |
+| 10   | “Every count names its unit.”                                                                     | v20 is 6,438 `wc -l` newlines but 6,439 `awk 'END{print NR}'` lines (last line un-terminated). A bare “lines” is ambiguous. | “Name the command and the unit; when `wc -l` and `awk 'END{print NR}'` differ, give both: `6,438 wc -l newlines / 6,439 lines`.”                                             |
+| 6    | “Logs an arrival line in `CHRONICLE.md` with real command output … becomes a full member.”        | No ID block or lane is required by the wording.                                                                             | “An arrival also claims the next free ID block and names its `_agents/<name>/` lane (or states chat-only); first-logged wins; duplicate blocks are reconciled by the Owner.” |
+| 5    | “Facts belong in `CHRONICLE.md`; opinions, proposals and open questions belong here.”             | M-18 is a three-topic digest with facts and recommendations.                                                                | “A status digest may combine facts and recommendations if each section is headed and facts carry commands; a single-topic proposal stays one topic.”                         |
 
 ### 1.2 Self-audit (files edited or posted since Round 1)
 
-| File | Lane / owner | What I wrote | R5 |
-|---|---|---|---|
-| `_agents/ds/reviews/Architecture-Review-M8.md` | DS lane | Round-1 review | own |
-| `_agents/ds/reviews/Peer-Review-Round2.md` | DS lane | Round-2 review + keep-oracle | own |
-| `_agents/ds/reviews/funcdiff-v20-donor.txt` | DS lane | Round-2 raw output — **superseded** (truncated bodies) | own |
-| `_agents/ds/tools/arch-probe.js` | DS lane | 40-metric probe | own |
-| `_agents/ds/tools/funcdiff-probe.js` | DS lane | function set/body hash — **superseded for body counts** | own |
-| `_agents/ds/tools/funcdiff-detail.js` | DS lane | per-function diff — **superseded for body counts** | own |
-| `_agents/ds/tools/surface-lines.js` | DS lane | line map — **superseded by `funcdiff-full.js`** | own |
-| `_agents/ds/tools/funcdiff-full.js` | DS lane | full-body diff + classify | own |
-| `_agents/ds/notes/Owner-Rulings-19-Oct.md` | DS lane | Owner rulings relay | own |
-| `COUNCIL-BULLETIN.md` | shared message list | M-11, M-16, my availability line, M-20 | own messages/line |
-| `QUESTIONS-FOR-THE-ARCHITECT.md` | shared question pack | DS block `Q-DS-1…9` (Q-DS-4 revised; Q-DS-9 added) | own block |
-| `CHRONICLE.md` | shared facts log | DS Round-1/Round-2/Round-3 facts lines | own facts lines |
-| `SUBMISSIONS.md` | shared queue | S-101, S-102, S-103 (my own entries) | own entries |
+| File                                           | Lane / owner         | What I wrote                                            | R5                |
+| ---------------------------------------------- | -------------------- | ------------------------------------------------------- | ----------------- |
+| `_agents/ds/reviews/Architecture-Review-M8.md` | DS lane              | Round-1 review                                          | own               |
+| `_agents/ds/reviews/Peer-Review-Round2.md`     | DS lane              | Round-2 review + keep-oracle                            | own               |
+| `_agents/ds/reviews/funcdiff-v20-donor.txt`    | DS lane              | Round-2 raw output — **superseded** (truncated bodies)  | own               |
+| `_agents/ds/tools/arch-probe.js`               | DS lane              | 40-metric probe                                         | own               |
+| `_agents/ds/tools/funcdiff-probe.js`           | DS lane              | function set/body hash — **superseded for body counts** | own               |
+| `_agents/ds/tools/funcdiff-detail.js`          | DS lane              | per-function diff — **superseded for body counts**      | own               |
+| `_agents/ds/tools/surface-lines.js`            | DS lane              | line map — **superseded by `funcdiff-full.js`**         | own               |
+| `_agents/ds/tools/funcdiff-full.js`            | DS lane              | full-body diff + classify                               | own               |
+| `_agents/ds/notes/Owner-Rulings-19-Oct.md`     | DS lane              | Owner rulings relay                                     | own               |
+| `COUNCIL-BULLETIN.md`                          | shared message list  | M-11, M-16, my availability line, M-20                  | own messages/line |
+| `QUESTIONS-FOR-THE-ARCHITECT.md`               | shared question pack | DS block `Q-DS-1…9` (Q-DS-4 revised; Q-DS-9 added)      | own block         |
+| `CHRONICLE.md`                                 | shared facts log     | DS Round-1/Round-2/Round-3 facts lines                  | own facts lines   |
+| `SUBMISSIONS.md`                               | shared queue         | S-101, S-102, S-103 (my own entries)                    | own entries       |
 
 **No product-file edits. No `STATUS.md`, `GOVERNANCE-ROUNDTABLE.md`, `AGENTS.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `tasks/` edits. No edits to another agent's `_agents/<name>/`. The `Football Sim/` clone was read; its two modified files are the Owner/GLM protocol update, not my work.**
 
@@ -81,25 +80,25 @@ $ shasum -a 256 v20 donor → 31b7d61f… / 77bb9ed5…; 649,032 B / 650,127 B
 
 ### 2.2 The 17-function merged surface (v20 ↔ donor, file lines)
 
-| # | function | v20 lines | donor lines | ln v20/donor | oracle | S-102 / S-103 anchor |
-|---|---|---|---|---|---|---|
-| 1 | `setActiveTab` | 832–840 | 776–783 | 9/8 | **synthesize** | before `startDraft2`; function unit |
-| 2 | `cpuPick` | 1368–1395 | 1342–1384 | 28/43 | **donor** | before `startDraft2`; function unit |
-| 3 | `fitNoteHTML` | 1616–1624 | 1605–1607 | 9/3 | **donor** | after `startDraft2`; function unit |
-| 4 | `renderDraftBoard2` | 1626–1731 | 1609–1713 | 106/105 | **v20** | after `startDraft2`; function unit |
-| 5 | `buildDefenseDetail` | 2501–2575 | 2483–2557 | 75/75 | **donor** | before `startSeason`; function unit |
-| 6 | `dramaticEnding` | 2834–2892 | 2816–2874 | 59/59 | **donor** | before `startSeason`; function unit |
-| 7 | `turnoverParagraph` | 2894–2948 | 2876–2966 | 55/91 | **donor** | before `startSeason`; function unit |
-| 8 | `playByPlay` | 2979–3030 | 2997–3049 | 52/53 | **donor** | before `startSeason`; function unit |
-| 9 | `generateGameSummary` | 3031–3142 | 3050–3162 | 112/113 | **donor** | before `startSeason`; function unit |
-| 10 | `matchupTagHTML` | 3427–3432 | 3477–3482 | 6/6 | **donor** + helper | after `startSeason`; function unit |
-| 11 | `renderPlayoffsView` | 3855–3894 | 3905–3944 | 40/40 | **donor** | between `startSeason` and `runLeague100`; function unit |
-| 12 | `renderGuideHTML` | 4920–4953 | 4970–5003 | 34/34 | **donor** | before `runLeague100`; function unit |
-| 13 | `render100` | 5934–6028 | 5984–6078 | 95/95 | **donor** | after `runLeague100`; function unit |
-| 14 | `renderSeasonTab` | 6038–6042 | 6088–6091 | 5/4 | **synthesize** | after `runLeague100`; function unit |
-| 15 | `renderSeasonTabInner` | 6043–6059 | 6092–6108 | 17/17 | **donor** | after `runLeague100`; function unit |
-| 16 | `finishDraft2` | 6076–6085 | 6125–6140 | 10/16 | **donor** + helper | after `runLeague100`; function unit |
-| 17 | `renderDraftResults` | 6124–6174 | 6179–6223 | 51/45 | **donor** | after `runLeague100`; function unit |
+| #   | function               | v20 lines | donor lines | ln v20/donor | oracle             | S-102 / S-103 anchor                                    |
+| --- | ---------------------- | --------- | ----------- | ------------ | ------------------ | ------------------------------------------------------- |
+| 1   | `setActiveTab`         | 832–840   | 776–783     | 9/8          | **synthesize**     | before `startDraft2`; function unit                     |
+| 2   | `cpuPick`              | 1368–1395 | 1342–1384   | 28/43        | **donor**          | before `startDraft2`; function unit                     |
+| 3   | `fitNoteHTML`          | 1616–1624 | 1605–1607   | 9/3          | **donor**          | after `startDraft2`; function unit                      |
+| 4   | `renderDraftBoard2`    | 1626–1731 | 1609–1713   | 106/105      | **v20**            | after `startDraft2`; function unit                      |
+| 5   | `buildDefenseDetail`   | 2501–2575 | 2483–2557   | 75/75        | **donor**          | before `startSeason`; function unit                     |
+| 6   | `dramaticEnding`       | 2834–2892 | 2816–2874   | 59/59        | **donor**          | before `startSeason`; function unit                     |
+| 7   | `turnoverParagraph`    | 2894–2948 | 2876–2966   | 55/91        | **donor**          | before `startSeason`; function unit                     |
+| 8   | `playByPlay`           | 2979–3030 | 2997–3049   | 52/53        | **donor**          | before `startSeason`; function unit                     |
+| 9   | `generateGameSummary`  | 3031–3142 | 3050–3162   | 112/113      | **donor**          | before `startSeason`; function unit                     |
+| 10  | `matchupTagHTML`       | 3427–3432 | 3477–3482   | 6/6          | **donor** + helper | after `startSeason`; function unit                      |
+| 11  | `renderPlayoffsView`   | 3855–3894 | 3905–3944   | 40/40        | **donor**          | between `startSeason` and `runLeague100`; function unit |
+| 12  | `renderGuideHTML`      | 4920–4953 | 4970–5003   | 34/34        | **donor**          | before `runLeague100`; function unit                    |
+| 13  | `render100`            | 5934–6028 | 5984–6078   | 95/95        | **donor**          | after `runLeague100`; function unit                     |
+| 14  | `renderSeasonTab`      | 6038–6042 | 6088–6091   | 5/4          | **synthesize**     | after `runLeague100`; function unit                     |
+| 15  | `renderSeasonTabInner` | 6043–6059 | 6092–6108   | 17/17        | **donor**          | after `runLeague100`; function unit                     |
+| 16  | `finishDraft2`         | 6076–6085 | 6125–6140   | 10/16        | **donor** + helper | after `runLeague100`; function unit                     |
+| 17  | `renderDraftResults`   | 6124–6174 | 6179–6223   | 51/45        | **donor**          | after `runLeague100`; function unit                     |
 
 **Count: 14 donor, 1 v20, 2 synthesize.** The S-102 anchors (`startDraft2` 1408–1446, `startSeason` 3371–3381, `runLeague100` 5880–5903) are identical in both builds and do not overlap any of the 17. They are the headless entry-point sites, not the merge rows.
 
@@ -111,18 +110,18 @@ $ shasum -a 256 v20 donor → 31b7d61f… / 77bb9ed5…; 649,032 B / 650,127 B
 
 ### 2.4 Non-function surface
 
-| Unit | v20 | donor | decision |
-|---|---|---|---|
-| `updateStepper` | 824–831 (8L) | — | **keep v20** |
-| `seasonToast` | — | 784–787 (4L) | **add donor** (load-bearing for `finishDraft2`) |
-| `goSeason` | — | 789–803 (15L) | **add donor** (load-bearing for `setActiveTab`/hero) |
-| `meetingInfo` | — | 3447–3466 (20L) | **add donor** (feeds `meetingTagText`) |
-| `meetingTagText` | — | 3467–3476 (10L) | **add donor** (feeds `matchupTagHTML`) |
-| `#glue` phone block | 6409–6432 (24L) | 6458–6488 (31L) | **donor** (Kilo F2; MiniMax M-22: 7,208 overflowing elements v20 / 0 donor; re-applies labels; no `msChecked` memo) |
-| `#glue` default tab | 6433 `viewDraft`/`tabDraftBtn` | 6489 `viewSeason`/`tabSeasonBtn` | **keep v20 6433** (MiniMax's trap: the donor is Season-first; take the donor block, not the donor tail). Season-first is a separate Architect decision. |
-| `#markup` wrapper | line 1 compact wrapper + line 2 DOCTYPE; duplicate close 6439 | structured header | remove duplicate wrapper + close; `color-scheme:light` vs `light dark` is the Architect's call |
-| `#style0` / `#style1` | 372 B + 25,872 B | 377 B + 20,186 B | **synthesize** — v20 draft-board CSS + donor Season CSS; Architect |
-| declaration `seasonState` | 188 lines (Round-2) | 187 lines (Round-2) | S-103 declaration unit; not re-checked here; likely donor Season state; Architect |
+| Unit                      | v20                                                           | donor                            | decision                                                                                                                                                |
+| ------------------------- | ------------------------------------------------------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `updateStepper`           | 824–831 (8L)                                                  | —                                | **keep v20**                                                                                                                                            |
+| `seasonToast`             | —                                                             | 784–787 (4L)                     | **add donor** (load-bearing for `finishDraft2`)                                                                                                         |
+| `goSeason`                | —                                                             | 789–803 (15L)                    | **add donor** (load-bearing for `setActiveTab`/hero)                                                                                                    |
+| `meetingInfo`             | —                                                             | 3447–3466 (20L)                  | **add donor** (feeds `meetingTagText`)                                                                                                                  |
+| `meetingTagText`          | —                                                             | 3467–3476 (10L)                  | **add donor** (feeds `matchupTagHTML`)                                                                                                                  |
+| `#glue` phone block       | 6409–6432 (24L)                                               | 6458–6488 (31L)                  | **donor** (Kilo F2; MiniMax M-22: 7,208 overflowing elements v20 / 0 donor; re-applies labels; no `msChecked` memo)                                     |
+| `#glue` default tab       | 6433 `viewDraft`/`tabDraftBtn`                                | 6489 `viewSeason`/`tabSeasonBtn` | **keep v20 6433** (MiniMax's trap: the donor is Season-first; take the donor block, not the donor tail). Season-first is a separate Architect decision. |
+| `#markup` wrapper         | line 1 compact wrapper + line 2 DOCTYPE; duplicate close 6439 | structured header                | remove duplicate wrapper + close; `color-scheme:light` vs `light dark` is the Architect's call                                                          |
+| `#style0` / `#style1`     | 372 B + 25,872 B                                              | 377 B + 20,186 B                 | **synthesize** — v20 draft-board CSS + donor Season CSS; Architect                                                                                      |
+| declaration `seasonState` | 188 lines (Round-2)                                           | 187 lines (Round-2)              | S-103 declaration unit; not re-checked here; likely donor Season state; Architect                                                                       |
 
 **Presence gate:** check the 17 function names + `updateStepper` + the four donor-only helpers + the `#glue` phone block + the default-tab call. The four helpers are load-bearing: `seasonToast` → `finishDraft2`; `goSeason` → `setActiveTab`; `meetingInfo` → `meetingTagText` → `matchupTagHTML`.
 
