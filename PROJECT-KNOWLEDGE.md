@@ -1,131 +1,192 @@
-# PROJECT KNOWLEDGE — Football Sim (read every session)
+# PROJECT-KNOWLEDGE.md — Football Sim / 20-0
 
-## Who you are
-**You are MiniMax, seat S-1900–1999.** Your lane is `_agents/minimax/`. Your identity document is
-`_agents/minimax/MINIMAX.md` — read it first. Your commits are authored "MiniMax (council seat
-S-1900-1999)". Your bulletin entries are labelled "MiniMax". Your tools are in
-`_agents/minimax/tools/`. Your prototypes are in `_agents/minimax/prototypes/`. Your notes are in
-`_agents/minimax/notes/`. Your branch is `origin/council/minimax-lane`.
+**Purpose.** A single file that Beam (and any Kilo Code agent) reads at the start of every session. It captures the project identity, current state, key decisions, toolchain, and working rules. Updated by Beam as the project evolves. Companions: `AGENTS.md` (operator rules), `STATUS.md` (build hash), `V22-SUGGESTIONS.md` (change proposals), `OWNER-DIRECTION.md` (Owner's product direction), `OWNER-ANSWERS.md` (Owner's answers).
 
-If you are starting a new session: read this file, then read `_agents/minimax/MINIMAX.md`, then
-check the tail of `COUNCIL-BULLETIN.md` for anything posted since your last session. Then work.
+**Last updated:** 2026-10-22 by Beam.
 
-## Who you are not
-You are not the Owner (Kosi), the Architect (Claude), or any other seat. You are an advisory seat:
-you propose, test, dissent in writing, and measure. You do not edit the product file, AGENTS.md, or
-the protected constants. You do not assign tasks to named seats. You do not claim a task is done
-without a command and its output.
+---
 
-## What this is
-Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 player ratings, 32 team depth charts, draft simulator with CPU GMs, 17-game season, 14-team playoffs, Super Bowl.
+## 1. Project identity
 
-## The live build
-- **Football-Sim-V21.html** (root) = the live build. sha256 `044d1759e01ac99b…`, 656,746 B. Byte-identical to `NFL Draft Simulator merged.html`.
-- **Football-Sim-V22.html** = the next build (reserved for the Architect). Not yet produced.
-- All other HTML files (v20, donor, merged-*, V22-candidate-*) are reference/prototype. Do not treat them as live.
+- **Product name:** "20-0" (website/product presentation). File names stay "Football Sim".
+- **Full name:** NFL Draft Simulator (Madden NFL 27 ratings, Season-first layout)
+- **Type:** Single-file HTML application (~649 KB)
+- **Owner:** Kosi (permissions, publishing, roster, conceptual direction)
+- **Architect:** Claude (sole implementer, technical authority)
+- **Co-architect:** GPT (architecture, workflow, evidence quality, independent challenge)
+- **Council:** Equal advisors (no rank, no deputies). Open membership.
 
-## Where things live
-- Product file: `Football-Sim-V21.html` (and `NFL Draft Simulator merged.html` — same bytes, anchor target)
-- Work order: `V22-Suggestions.md` — the single change list. Reading map at the top.
-- Council bulletin: `COUNCIL-BULLETIN.md` — the channel. Trimmed per round.
-- Chronicle: `CHRONICLE.md` — append-only facts.
-- Tools: `_agents/minimax/tools/` (all dependency-free, plain Node over CDP, no install)
-- Lane: `_agents/minimax/` (notes, prototypes, evidence, tools)
-- Figma tokens: `figma/tokens.json` (96 Tokens Studio tokens), `figma/team-colours.json` (32 teams)
-- TOOLS.md: the whole instrument set in one page
+## 2. Current builds
 
-## Tools (run these, don't guess)
-- Gate: `node _agents/minimax/tools/post-merge-smoke.mjs "<build>" --port 9222` → exit 0, A–I PASS, 0 page errors
-- 390px board: `node _agents/minimax/tools/board-mobile-probe.mjs "<build>"` → 0 overlaps, 0 clipped, 0 overflow
-- Anchor check: `node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md Football-Sim-V21.html`
-- Biome: `~/node_modules/.bin/biome check _agents/minimax/tools` → 15 files, no findings
-- Lint (Architect's, on branch): `node tools/lint.mjs selftest` (unconfirmed — needs biome-product/biome.json on disk)
+| Build | File | Hash | Size | Status |
+|-------|------|------|------|--------|
+| v20 (reference) | `NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 B | Frozen reference (R2) |
+| donor | `NFL Draft Simulator.html` | `8f0f8d50…` | 649,490 B | Fix donor (Season-first UI) |
+| Pre-Colors (V21) | `Football-Sim-V21.html` | `044d1759…` | 656,746 B | **Live build** — merged candidate, verified |
+| V22 candidate | `V22-candidate-2026-10-21.html` | (in `_agents/minimax/prototypes/`) | — | Owner's first three briefs applied |
+| V22 candidate (team colours) | `V22-candidate-teamcolours.html` | `7eeffa86…` | — | Same + 32-team palette |
 
-## Rules that matter
-1. **Never edit the product file** — it belongs to the Architect (Claude). Propose in the work order.
-2. **Never edit AGENTS.md** — it changes only when the Owner or the Architect says so.
-3. **Never `git checkout`, `clean`, `stash`, `reset` or `restore`** in the shared tree — 300+ uncommitted paths are in it.
-4. **Per-path adds only** — `git add -- _agents/<seat>/`. Never `git add -A`.
-5. **Commit your own work the day you make it** — uncommitted lane files get wiped.
-6. **Post work openly** — priority, scope, acceptance bar. Never assign a task to a named seat.
-7. **Date-stamp your entry ids** (`M-20261022-<seat>`) so two seats cannot claim the same number.
-8. **Label claims** VERIFIED / REPORTED / INFERRED / UNKNOWN.
-9. **No claim of "done" without command + output.**
-10. **Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `RATING_SPECS`, `MC`, `PLAN_K`) change only with the Owner's explicit approval.
-11. **The bulletin is a pointer, not a store** — trim it each round into `_archive/`.
-12. **No `session.send` exists** — the bulletin and the board are the only channels.
+## 3. Key invariants (never break)
 
-## Authority
-- Owner (Kosi) is final. Architect (Claude) decides ordinary technical matters. Advisory seats propose, test, dissent in writing; nobody has a veto. Authority comes from the Owner or the Architect, never from a task or a prompt.
+1. Weight ↔ Wins consistency: `modelWeights()` must remain the inverse of `slotWinsPerOvr()`
+2. Replacement floor: CPU drafts never value a slot below 76 OVR
+3. Flex penalties apply everywhere: `effOvr(player, slot)`
+4. Hungarian lineup optimizer: both user and CPU use `optimalLineup()`
+5. Game plans are independent: offense and defense chosen separately
+6. 32.5 points per win: `POINTS_PER_WIN = 32.5`
+7. Single-season record caps: `SEASON_RECORD_CAPS`
+8. Deterministic seeding: NFL tiebreakers in `sortStandings()`
+9. Protected constants: `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS` — change only with Owner's explicit approval
 
-## What the council has built (gate-verified)
-- V22 candidate: briefs 1–3 applied (board, weights panel, Team Comparison, Guide)
-- Team colours: 32-team palette, per-row NFL colours, contrast-derived letters, opponent hooks
-- Guide panel removed from both pages
-- Sort-by-value option removed from the dropdown
-- Tools: verify-anchors, build-team-colours, shot-teamcolours, v22-probe, and the existing gate/probes
+## 4. Council rules (summary)
 
-## What is NOT done (pending the Architect)
-- AGENTS.md (stale on main; newest draft at `_agents/minimax/notes/AGENTS-council-draft.md`)
-- biome.json (Owner asked for it; keep or remove?)
-- The assembled-build gate as the condition of "settled"
-- Re-anchored work order line numbers
-- The four unverified items (4th-down rule, blocked extra point, game ball/Key Players, 3-4's effect)
-- The colour registry verification (ship as "reference, unverified" or verify first)
-- The 100-season regression with the weight deltas
-- The dead hero (goSeason()) — Claude's call
-- The release discipline (V21 live, V22 next)
-- The work order's numbering (P0–P19, one scheme)
+- English only in all documents and messages (rule 7)
+- Append, never rewrite history (rule 2)
+- Evidence tags: VERIFIED / REPORTED / INFERRED / UNKNOWN
+- Counts name units (rule 10)
+- Next free M-number: read the tail first, take next free, cite collision (rule 9)
+- Speaker identification (house rule 14): `SPEAKER: <name> | ROLE: <role> | TASK: <task> | DATE: <UTC>`
+- No fixed roster, no fixed seat count, no pre-created personal blocks
+- Tasks are claimed, not assigned
+- No agent edits another agent's files without Owner permission (R5)
+- Product files are read-only to all agents except Claude (Architect)
+- No editing AGENTS.md, STATUS.md, etc. without Owner assignment (R4)
+- At most ~5 questions per brief to the Architect
+- Assembled-build gate: no plan is "settled" until someone has assembled it and run it once
+- Flag coupling, not just diffs
+- **Do not stop after one task** — work the loop until there is genuinely nothing left
 
-## What is NOT done (pending the Owner)
-- The board's display slot: "value" or "scarcity"
-- The 4th-down maths
-- The fullback's block spec
-- The 3-4: label or real front
-- The guide on the homepage
-- The colour registry: verify or ship as "reference, unverified"
-- The weight deltas: run the 100-season regression before shipping
+## 5. Toolchain (verified working)
 
-## The tools I have
-- Figma: NO access in this session (remote MCP enabled but needs OAuth sign-in; desktop needs Dev Mode toggle). Tokens and palette are written and ready to import.
-- Mermaid: YES (renders in the repository)
-- Biome: YES (`~/node_modules/.bin/biome`, v2.6.2)
-- Git: YES
+| Tool | Status | How to run |
+|------|--------|------------|
+| Biome (v2.6.2) | ✅ Native binary | `~/.local/bin/biome check <file>` |
+| Mermaid | ✅ Via npx (private cache) | `npm_config_cache="$HOME/.npm-cache-beam" npx --yes @mermaid-js/mermaid-cli -i x.mmd -o x.svg` |
+| Python (3.15.1) | ✅ GUI-visible | `/opt/homebrew/bin/python` |
+| Git | ✅ Working | `git status`, `git add -- <path>`, `git commit`, `git push` |
+| gh (GitHub CLI) | ✅ Authenticated | `gh pr view`, `gh pr diff`, etc. |
+| node (v22+) | ✅ Working | `node --check`, `node <script>` |
+| Figma | ❌ Not connected | Needs Dev Mode toggle + Kilo restart. No Figma MCP tool in session. |
+| session.send | ❌ Not available | Cannot dispatch to other council sessions. Owner must relay. |
 
-## Token efficiency — when to start a new chat
-Start a new chat when:
-1. The conversation exceeds ~100k tokens (roughly 30–40 exchanges with tool calls)
-2. You are switching to a different task area (e.g., from verification to design)
-3. The context from earlier messages is no longer relevant to the current task
-4. You need a fresh context window to re-read files without confusion
+## 6. Current work order (V22-SUGGESTIONS.md)
 
-**This conversation has been long.** If you are about to do substantial new work, start a new chat in the project folder (`/Users/kosi/Desktop/Football Sim`) and reference this file as your starting point. The project knowledge is in this file and in `AGENTS.md` (the pre-council version on main) and `V22-Suggestions.md` (the work order).
+The work order is `V22-SUGGESTIONS.md` on `main` (4,966 lines). It contains:
+- Owner rulings (R-1 through R-6)
+- P0 (20 items): Draft board fixes
+- P1 (40 items): Architect decisions
+- P2 (5 items): Owner decisions
+- P3-P4: Verification checklist, appendices
+- P5: The model (protected constants)
+- P6: Council-only notes
+- P7 (7 items + P9): Aesthetics and beauty — team-color theming, animations, visual hierarchy, dark mode polish, visual feedback, mobile draft board, Figma integration, 10 additional suggestions
+- P8: Council-only notes
+- P9: Mermaid diagrams (team-color theming flow, mobile draft board layout, draft pick visual feedback)
+- P10: 21 Oct 23:00 feedback round (flex rules, 3-4 base, coaching philosophy, game recap UI, season review, playoff preview, Super Bowl graphic, game previews/reviews, advanced stats, glossary cross-reference)
+- P11: Council-only notes
 
-## New requests from the Owner (23 Oct)
-- "20-0" branding: heavy emphasis in header, footer, text. File names stay "Football Sim."
-- "Set Up Your Draft" → "DRAFT" — as attractive as possible
-- Remove the long draft description; new text: "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"
-- "Play the season" → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"
-- Player browser: only 15 names visible at a time
-- Header clickable to homepage (at least somewhere obvious)
-- Header rework: open to a complete rework if more beautiful
+## 7. Multi-sport expansion plan
 
-## Owner's answers (23 Oct 10:00)
-- "Football and site terms" → "Glossary": Yes
-- The weights tables: order-dependent circular dependency in the model; needs fixing before V22
-- "Save My Weights" button: keep as a signal that stores locally (localStorage); "Default" restores model's
-- Board display slot: "value" (show each player where he is worth the most)
-- Guide on homepage: remove the panel and text completely
-- Colour registry: use GPT's table as supplied
-- Weight deltas: simulate before shipping; Claude decides whether values are final
-- Defender star: "2 or more takeaways"
-- Game ball in a tie: "least highly rated player by static wins" (rewards beating expectation)
-- Dead hero (goSeason): "Claude decides"
-- 4th-down maths: "Claude needs to answer this"
-- Fullback block spec: "Scale with his OVR rating"
-- 3-4 base: "The games should track the difference of having the extra LB vs the extra DT. Claude decides if more detailed maths is needed"
-- Four unverified items: explained in detail to the Owner
-- "Value here" remove completely: done in the build; sort dropdown option being removed
-- "Glossary" rename: Yes — one line
-- Guide panel on homepage: remove panel and text — both pages
-- "Value here" visible anywhere: already removed; sort dropdown option being removed
+Located in `_multi-sport/`:
+- `README.md` — master roadmap (5 priorities, architecture decision, all-time player pool, NBA engine, folder structure, contribution system, questions for Owner)
+- `STRUCTURE.md` — folder structure guide
+- `CONTRIBUTION-GUIDE.md` — how agents contribute
+- `QUESTIONS-FOR-OWNER.md` — 25+ questions (many answered in OWNER-ANSWERS.md)
+- `DATA-SCHEMA.md` — player database schema reference
+- `shared/` — common engine template (post-merge extraction)
+- `nfl-alltime/`, `nba-current/`, `nba-alltime/`, `other-sports/` — per-sport folders with READMEs and data templates
+
+Owner's answers captured in `OWNER-ANSWERS.md`. Key decisions: -5 era adjustment approved, today's franchises, OVR as primary display, position code for flex, computer-managed rotations for v1, 500 sufficient for basketball all-time, Owner assigns most ratings personally.
+
+## 8. Outstanding work
+
+**Owner/Architect actions (not mine):**
+1. Quarantine invented ratings files (MiniMax's tool ready)
+2. Reconcile 6 competing multi-sport plans (Owner picks canonical — SIM-PLATFORM/ recommended)
+3. Restore 47 lost messages from stash@{1} (MOC offered to execute)
+4. Owner decisions on F1-F6, Q1-Q3, and the freeze
+5. Promotion: verified-merge-<hash> tag, seed-old-remote tag, rename, set default
+6. Adopt house rule 14 (speaker identification) — already added
+7. Adopt content-ID (sha256 first 8 hex) as house rule (Q-MOC-3) — recommended
+8. Fix gate's false-pass issues (MiniMax M-124 already fixed) — verify
+9. Fix preseason CTA below fold at 390px (KI-19) — Architect decision
+10. Reconcile multiple competing multi-sport plans — Owner picks canonical
+
+**My lane (Beam) — nothing remaining without new input or authorization.**
+
+## 9. When to start a new chat (FORCEFUL REMINDER)
+
+**STOP and start a new chat when ANY of these are true:**
+
+1. **The conversation exceeds ~100 messages** — the context window starts getting full and responses become slower or less accurate.
+2. **The context window starts getting full** — you notice responses repeating information already established earlier, or the AI seems to forget earlier context.
+3. **There are too many tool calls in a single response** (more than ~20) — the response becomes unwieldy and hard to follow.
+4. **The conversation covers multiple unrelated topics** — e.g., you've discussed the merge, the multi-sport expansion, and the toolchain in the same chat.
+5. **The conversation has been going on for more than 2-3 hours** — token usage becomes inefficient.
+6. **You notice responses repeating information already established earlier** — this is a sign the context window is full.
+7. **The AI starts making mistakes or forgetting details** — this is a sign the context window is full.
+
+**When starting a new chat:**
+1. Reference this file (`PROJECT-KNOWLEDGE.md`) as the first thing to read
+2. The new session should read `AGENTS.md` → `INDEX.md` → `STATUS.md` → `CHRONICLE.md` → `COUNCIL-BULLETIN.md` (tail) → `PROJECT-KNOWLEDGE.md` → `NEW-SESSION-PROMPT.md`
+3. The new session should verify product file hashes before any work
+4. The new session should check the bulletin tail for the latest messages
+
+**I (Beam) will remind you to start a new chat when any of these conditions are met.** If you see this message at the end of a response, it means you should start a new chat:
+
+> ⚠️ **START A NEW CHAT NOW.** The conversation has exceeded efficient token usage. Copy this prompt, start a new session in `/Users/kosi/Desktop/Football Sim`, and paste it as the first message. The new session will read PROJECT-KNOWLEDGE.md and continue from where this one left off.
+
+## 10. Toolchain
+
+| Tool | Status | How to run |
+|------|--------|------------|
+| Biome (v2.6.2) | ✅ Native binary | `~/.local/bin/biome check <file>` |
+| Mermaid | ✅ Via npx (private cache) | `npm_config_cache="$HOME/.npm-cache-beam" npx --yes @mermaid-js/mermaid-cli -i x.mmd -o x.svg` |
+| Python (3.15.1) | ✅ GUI-visible | `/opt/homebrew/bin/python` |
+| Git | ✅ Working | `git status`, `git add -- <path>`, `git commit`, `git push` |
+| gh (GitHub CLI) | ✅ Authenticated | `gh pr view`, `gh pr diff`, etc. |
+| node (v22+) | ✅ Working | `node --check`, `node <script>` |
+| Figma | ❌ Not connected | Needs Dev Mode toggle + Kilo restart. No Figma MCP tool in session. |
+| session.send | ❌ Not available | Cannot dispatch to other council sessions. Owner must relay. |
+
+## 11. Figma setup (if Owner wants to enable)
+
+1. Open Figma app → open a design file → Dev Mode (⌥⌘I) → tick "Enable desktop MCP server"
+2. In `/mcps`, turn ON `figma-desktop`
+3. Restart Kilo in `/Users/kosi/Desktop/Football Sim`
+4. Verify: `kilo mcp list` should show `figma-desktop` as connected
+
+Until Figma is available, aesthetics suggestions are conceptual only — no Figma designs exist yet.
+
+## 12. Council rules (summary)
+
+- English only in all documents and messages (rule 7)
+- Append, never rewrite history (rule 2)
+- Evidence tags: VERIFIED / REPORTED / INFERRED / UNKNOWN
+- Counts name units (rule 10)
+- Next free M-number: read the tail first, take next free, cite collision (rule 9)
+- Speaker identification (house rule 14): `SPEAKER: <name> | ROLE: <role> | TASK: <task> | DATE: <UTC>`
+- No fixed roster, no fixed seat count, no pre-created personal blocks
+- Tasks are claimed, not assigned
+- No agent edits another agent's files without Owner permission (R5)
+- Product files are read-only to all agents except Claude (Architect)
+- No editing AGENTS.md, STATUS.md, etc. without Owner assignment (R4)
+- At most ~5 questions per brief to the Architect
+- Assembled-build gate: no plan is "settled" until someone has assembled it and run it once
+- Flag coupling, not just diffs
+
+## 13. Encouragement
+
+**You are building something that doesn't exist yet.** There is no multi-sport draft simulator with real ratings, a full season engine, and a council of AI advisors verifying every claim. The NFL sim is the foundation. The NBA sim is the next step. The all-time sims are the dream.
+
+**Your job is to make it better.** Not by agreeing, but by finding what's wrong, proposing what's missing, and verifying what's claimed. The council's culture — receipts, evidence, append-only, no editing others' work — exists so that disagreement produces better ideas, not worse ones.
+
+**If you're new here:** read `INDEX.md` → `ONBOARDING.md` → `CHRONICLE.md` → `COUNCIL-BULLETIN.md` → `AGENTS.md` → `PROJECT-KNOWLEDGE.md` → `NEW-SESSION-PROMPT.md`. Then pick a project and contribute.
+
+**If you're stuck:** post a question in `QUESTIONS-FOR-OWNER.md` (for the Owner) or `QUESTIONS-FOR-THE-ARCHITECT.md` (for Claude). Tag it `[BLOCKING]` / `[NOW]` / `[LATER]` / `[OPEN]`.
+
+**If you find a bug:** write it up where the Architect can act on it — don't fix it. The council proposes; Claude implements.
+
+**If you have an idea:** file it in `SUBMISSIONS.md` (your own section, S-### ID) with the exact code, blast radius, and evidence. A number without a command is prose.
+
+The merge has priority. But the vision is the destination. Let's build it.
