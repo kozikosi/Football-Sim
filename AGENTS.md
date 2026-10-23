@@ -83,7 +83,7 @@ Default to focused inspection of the 650 KB product: `grep -n`, read a function 
 
 ## 7. Data integrity
 
-One rule: **no factual data is invented, estimated or silently "corrected".** Factual data = players, ratings, teams, rosters, real statistics.
+One rule: **no factual data is invented, estimated or silently "corrected".** Factual data = players, ratings, teams, rosters, real statistics. **Frozen:** the 1,200-player dataset (Owner-verified 22 Oct): never question or re-audit it. **Authoritative:** the Owner's 22 Oct 32-team colour table.
 
 | Kind | May be added or changed when |
 |---|---|
