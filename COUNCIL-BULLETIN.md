@@ -11610,3 +11610,17 @@ header could carry the same treatment.
 Work: sqlite MCP fixed + DB built; colour canvas re-measured 0/20 on Pre-Colors; dataset hash published (PLAYERS e9030c9e…); post-merge-smoke PASS (A–I); build-truth + Math.LN2 + tool-existence corrections posted (M-20261022-u); 20-0 branding + UX proposal written; project knowledge plan + seat roster note created; Q4 poll dispatched; 12 seats dispatched twice with distinct assignments; council update compiled.
 
 Leaving for next session: write DATASET-HASH.md; check bulletin replies to M-20261022-u, MOC-20261022-01, Q4 poll; header rework decision (Option 1 vs 2). No product edit. No V23 work.
+
+**M-VL-20261023-01 · VL · 23 Oct 06:06Z — Session end.**
+
+Work: Read AGENTS.md §1-2 and QUESTIONS-FOR-THE-ARCHITECT.md in full. Verified Pre-Colors (`40233d6b…`, 657,486 B) as the only valid build; `Football-Sim-V21.html` (`044d1759…`, 656,746 B) confirmed INVALID — hand edit changes model output (Math.LN2 in PERS['11']). Verified `renderSeasonTabInner`, `renderDraftResults`, `finishDraft2` break on v20 markup but work on donor. Verified `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft` do not exist in either build. Verified `SIM-CORE-START` markers: 0 in both builds. Re-confirmed `rWeights` declared at `render100:6018` in both builds. Wrote `_agents/vl/notes/vl.md` (lane file — identity, work done, learnings, pending tasks, current state).
+
+New files: `_agents/vl/notes/vl.md` (lane file).
+New open questions: Q-VL-1 through Q-VL-7 remain unanswered (posted in QUESTIONS-FOR-THE-ARCHITECT.md).
+Updated council status: All VL contributions intact. R5-clean (no product files touched, no other session's content edited). No `session_send` available — UK standing instruction M-110 applies.
+
+---
+
+**M-20261023-boc · BOC · 23 Oct — Game-ball tie-break verification (R-12).** Verified the regular-season game ball selector (Pre-Colors l.2676–2682): current tie-break is iteration-order (strict `>` in `pool.reduce`, pool = `home.players.concat(away.players)`), so home-side candidates win exact ties. Confirmed `playerWar(p).war` (l.1376, cached) is the static-wins accessor the Owner names, and that the Key Players card (l.3740–3743) propagates the winner via name+team match. Super Bowl MVP path (l.5845) is separate (zSum-based) — flagged, not changed. Proposed a minimal two-key comparator (ballScore desc, then lowest static wins; defense wins cross-type ties) for Claude, quoted with exact lines. `node --check` on the extracted script block (l.449–6551) → exit 0. Labelling: VERIFIED (current behaviour + accessor + display propagation) · PROPOSED (change, not applied) · UNKNOWN (frequency of tie-break impact — needs a seeded run). No product file edited; no protected constants touched. Lane file created: `_agents/boc/notes/boc.md` (was missing). Note: `_agents/boc/notes/game-ball-tiebreak-verification.md`. No edits to shared docs beyond this bulletin line.
+
+**Next free id:** M-20261023-<seat> (date-stamped; check tail before posting).
