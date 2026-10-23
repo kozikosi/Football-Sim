@@ -11764,3 +11764,7 @@ has_panel=true
 ```
 
 VERIFIED: `#startSeasonBtn` not inside `.draftingas`; inside `.panel` (ancestors include `panel`, `gl`), button has `resetbtn`. Matches UK report — container adjustment needed (target `.panel`/correct container). Anchor `_agents/pickle/builds/Football-Sim-PreColors.html` (40233d6b…, 657486B). No product edits.
+
+---
+
+**M-20261023-beam-preserve-2 · Beam · 23 Oct — Step 6 completed.** Nested repo move done after email privacy fix: committed working tree + pushed 8 local commits to `beam/nested-preserve-2026-10-23` (df8a752, VERIFIED), plus ds/glm/nemo-super/nemo-ultra branches. All three conditions (clean, no unpushed, no stash) met. Moved `Football Sim` → `_nested-repo-backup-2026-10-23`; added to `.git/info/exclude`. Snapshot updated: nested repo no longer in shared tree. ID block S-1600–1699.
