@@ -15,6 +15,8 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 **Decision boundary.** Choose a sensible default and proceed, without a message, when the choice is reversible and technical. Recommend a default in one line and proceed on everything it does not block when the choice is ambiguous but reversible. Stop and ask the Owner (≤5 questions, each with a recommended default and what is blocked meanwhile) only for: an irreversible or externally visible action, a protected constant, or a real product call. Silence is never approval of the last three.
 
+**An instruction that names a file, branch or command says where it exists** (branch or commit). A step that depends on something the seat cannot see is not a step.
+
 Work is **suggested, never assigned to a named agent**: whoever is free takes the top open item and says so (§5). Seats come and go for weeks; nothing may depend on a particular one.
 
 ## 2. Build truth
@@ -25,7 +27,8 @@ A name is bound to one sha256. If the bytes differ, it is not that build.
 |---|---|---|---|---|
 | **Pre-Colors** | `Football-Sim-PreColors.html` | `40233d6be00e987c` | 657,486 | **The current verified build.** Every anchor, patch and gate starts here. Rebuildable: `node tools/build-merged.js "<v20>" "<donor>" out.html` (inputs in `_archive/builds/`). |
 | **V23** | `Football-Sim-V23.html` | — | — | The Architect's next build (the Owner's V22 work list plus everything after it). Does not exist until the Architect builds it. |
-| V20 | `_archive/builds/NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 | Archived reference. |
+| V20 | `_archive/builds/NFL Draft Simulator v20 Claude.html` | `31b7d61f42a53f3b` | 649,032 | Archived reference (re-measured 22 Oct from the file in git). |
+| Donor | `_archive/builds/NFL Draft Simulator.html` | `77bb9ed59ffa2294` | 650,127 | Archived. The Owner's disk copy of this name has been reported as `8f0f8d50…` (649,490 B): two different files under one name, UNKNOWN which carries which patches. Irrelevant for new work, because Pre-Colors already contains the patches. |
 | "V21" (council copy) | — | `044d1759…` | 656,746 | **Retired name, not a build.** An unverified modified copy (hand edit changes model output). Findings measured against it are `REPORTED` until re-anchored to Pre-Colors. |
 | "V22" | — | — | — | **Retired as a build name.** It survives only as the title of the work order (`V22-Suggestions.md`) and in lane file names such as `V22-candidate-*`. Those candidates were built on the council copy, not on Pre-Colors. |
 
@@ -35,11 +38,11 @@ Never call a build by another name, never create a "merged", "final" or dated co
 
 The product is **one self-contained HTML file**: no paid API, no CDN, no build step for the user, no split into several files. Do not change the product to make a linter or test pass; fix the cause or record the finding.
 
-**Protected** (change only to the exact value the Owner approved, citing the approval): `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, and the contract `modelWeights() = f(slotWinsPerOvr())`. A change to any of them, or to `teamRatings`, re-pins its hash in `MERGE-MANIFEST.md` in the same commit.
+**Protected** (change only to the exact value the Owner approved, citing the approval): `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, and the contract that `modelWeights()` is the monotone quantisation of `slotWinsPerOvr()` (700 scale, nearest 5, floor 5, so error ≤ 2.5 per slot and no rank inversions beyond rounding ties). It is not an exact inverse and must not be tested as one. A change to any of them, or to `teamRatings`, re-pins its hash in `MERGE-MANIFEST.md` in the same commit.
 
 Rules that replace the old "Do not" list, stated as what to do:
 - **Naming:** use only the names in the §2 table, each tied to its hash. A file is Pre-Colors only if its sha256 is the one in the table.
-- **Moving a number:** show before and after from a *seeded* run on the same build. The product has 58 unseeded `Math.random()` sites, so two unseeded runs differ by noise alone.
+- **Moving a number:** until the product has an injectable RNG (task `T-20261022-claude-2`, V23), runs are not repeatable (the product has 56–58 `Math.random()` sites and no seed), so only *structural* evidence counts: function-body hashes, diffs, and calculations from tables. Do not publish a before/after outcome from unseeded runs; once the RNG lands, compare seeded runs on the same build.
 - **PASS vs. acceptance:** a gate PASS means the checks ran clean. It is not product acceptance, and an implemented change is not an accepted one (§5).
 
 Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); QB cannot flex; flex stays realistic.
@@ -51,7 +54,7 @@ All agents share the Owner's working tree and every commit is authored as `kozik
 1. **Work in your own `git worktree`** (`git worktree add ../<seat>-<task> -b <seat>/<task> origin/main`) or lane copy. If you cannot, stay in `_agents/<seat>/`.
 2. **Never `checkout`, `switch`, `stash`, `clean`, `reset` or `restore` in the shared tree.** If the branch or index is not what you expect, stop and re-read.
 3. **Add by path** (`git add <your files>`), never `git add -A` / `commit -a`. Run `git status` and `git diff --cached --stat` before every commit; name the seat in the message of any shared-file commit.
-4. **Turn on the seatbelt** once per clone/worktree: `git config core.hooksPath tools/hooks`. `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
+4. **Turn on the seatbelt** once per clone/worktree, **only after `ls tools/hooks/pre-commit` succeeds in that checkout**: `git config core.hooksPath tools/hooks`. A path that points nowhere disables the guard silently, which is worse than leaving it unset (`git config --unset core.hooksPath`). `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
 5. **Commit what matters the day you make it**; commit shared docs every round. An uncommitted lane file is a file that will be wiped.
 6. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, this file's siblings in §8) unless the Architect or Owner said to. Propose it.
 7. Never revert a change you did not make; post the disagreement.
@@ -59,7 +62,7 @@ All agents share the Owner's working tree and every commit is authored as `kozik
 ## 5. Proposals, patches, claims
 
 **States — each is a different fact; never write one as another:**
-`proposed` → `accepted` (Architect) → `implemented` (in a build, receipt attached) → `verified` (a Verifier's gate result) → `Owner-accepted`. A proposal is not an accepted change; a patch is not an integrated change; an integrated change is not verified; verified is not accepted. Use the branch, PR, commit message and `MERGE-MANIFEST.md`; there is no separate registry.
+`proposed` → `accepted` (Architect) → `implemented` (in a build, receipt attached) → `verified` (a Verifier's gate result) → `Owner-accepted`. A proposal is not an accepted change; a patch is not an integrated change; an integrated change is not verified; verified is not accepted. **The registry is `tasks/`: one JSON file per item, `tasks/<id>.json`, id `T-YYYYMMDD-<seat>-<n>`, fields `title · state · seat · claimed_at · base_build_sha · evidence[{command,result}] · verification{seat,command,result} · owner_decision` (later states require more fields).** One file per item because seats then write different paths and cannot overwrite each other or reuse an id; `node tools/check-tasks.mjs` enforces unique ids, the state order, evidence before `implemented`, and a verifier different from the implementer. The work order (`V22-Suggestions.md`) keeps the briefs and prose; `tasks/` holds state. SQLite or any generated view is a projection, never the record.
 
 **A round, in one line:** the Architect posts the target build (file + sha256) and the open items → seats claim items and submit exact changes → the Architect integrates them into one build → a Verifier who wrote none of it runs the gate → the Owner accepts. Each arrow is a separate fact in the §5 state list; nothing skips one.
 
@@ -100,6 +103,7 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
 | `COUNCIL-BULLETIN.md` | Any seat; a log of the current round with date-stamped ids (`M-20261022-a`); trim finished rounds into `_archive/` |
 | `CHRONICLE.md` | Any seat, append-only |
+| `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |
 | `SUBMISSIONS.md`, `_agents/<seat>/` | That seat only |
 | `STATUS.md`, `MERGE-MANIFEST.md` | Architect (build hash lines by a Verifier) |
 | `_reference/`, `_archive/` | Frozen |
@@ -114,6 +118,8 @@ Every change ships with a **receipt**: the command and its output. "I believe it
 - `node tools/lint.mjs product Football-Sim-PreColors.html` extracts the inline script to `tools/biome-product/scratch/` (gitignored), lints that copy with `tools/biome-product/biome.json` (bug-class rules `error`, style rules `warn`, formatter off), maps findings back to **original line numbers**, and fails (exit 5) if the HTML's sha256 changed during the run. It refuses `--write/--fix/--unsafe` and never calls `biome format`.
 - Findings already in `tools/lint-baseline.json` are *known*; only **new** errors fail (exit 1; `--strict` also fails on new warnings). Create or refresh the baseline with `--update-baseline` once the real findings have been reviewed. Exit 3 = Biome missing or its report unreadable: **UNVERIFIED, not a pass**.
 - `node tools/lint.mjs selftest` runs the real Biome on a fixture with known defects. Run it once on any machine that has Biome before trusting the product lint. (Biome 2.6.2 is REPORTED working as a native binary for the Kilo seats; the Architect's sandbox cannot install it, so rule names and the JSON shape in `tools/biome-product/biome.json` and `lint.mjs` are UNVERIFIED until a seat posts a passing `selftest`.)
+- Why a wrapper exists at all: the root `biome.json` excludes HTML and Biome's CLI will not read-only-lint a script inside the product with original line numbers. If a seat shows that `biome lint Football-Sim-PreColors.html` does the same with 2.6.2, delete `tools/lint.mjs` and use that.
+- Verified on the real 2.6.2 binary by the council (REPORTED to me): `--reporter=json` emits `{summary, diagnostics, command}`; exit 0 clean, 1 on errors; root `biome.json` loads. Still unverified: the span/location fields inside each diagnostic and the rule names in `tools/biome-product/biome.json`. `selftest` settles both in one run.
 - `node tools/lint.mjs files <paths>` / `npx biome check` use the root `biome.json` for council tooling only (`tests/`, `tools/`, `_agents/**/tools/`); it excludes every `.html`.
 - Do not "fix" a product finding to quiet the linter, and do not add `biome-ignore` to hide one; a genuine problem is a work-order entry.
 
