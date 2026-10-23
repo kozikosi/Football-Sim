@@ -1,0 +1,31 @@
+Football-Sim-V21.html 044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48 656746
+NFL Draft Simulator merged.html 044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48 656746
+NFL Draft Simulator v20 Claude.html 8f916df95bedb3b369dc4714df92197ddd5f93f71e899645398080ed45a7b909 648310
+NFL Draft Simulator.html 8f0f8d50c369dcc79d6bdb3a81d062ce77c348dd2bfc044b26cbc7070952ced3 649490
+_agents/ds/snapshots/NFL Draft Simulator (pre-v10 backup) (DS Flash).html f114ef8e62c4f14ce5ca65582b5b1665a298f4c5918f0fbfeabc755ce6548f6f 648130
+_agents/ds/snapshots/Madden NFL 27 Team Power Rankings & Draft Simulator (9) (DS Flash).html 1a5233b2816ad9dcc5121367e70381efc0262f65f552fa119bfec221a774bc7c 641374
+_agents/ds/deliveries/Master Doctrine (DS Flash).html ea264fbe4a959cac6d3c5f0e5680817829bc815ab0a7ee0178cc77fb2e8fbe27 99554
+_agents/nemo-super/deliveries/NFL Draft Simulator - Season First (Nemo Super).html 382342abb84218fa82c57d53dba0d7bdceb9032b2d64e8ec0cbf17977f2a1fd0 86270
+_agents/minimax/prototypes/owner-brief-2026-10-21.html 4c42f6c03d0f01ede1cc5f1d189747bf3cbcd67e8439eda029c0bd6ccabe9771 657605
+_agents/minimax/prototypes/draft-board-no-value-here.html cd64d1cebb94bacf10d3a2bdbedfe491333f90bc2fc8210d44db4175cb45b644 657202
+_agents/minimax/prototypes/V22-candidate-2026-10-21.html e5fa7e0e891368099ef87f3b956f69a160a15a69c43711d6e00fefd09a8490fe 660046
+_agents/minimax/prototypes/v1-boc-change-set-with-measured-reflow.html 5ee6960b06bc2bd31883f06285b9481d52cd9e352df7f3bf6248812641737550 656876
+_agents/minimax/prototypes/V22-candidate-teamcolours.html d15f6535f9e15c984bea32511d9d4330c068217edd3ae2ed33210f76be473117 664581
+_agents/minimax/prototypes/owner-brief2-2026-10-21.html f4c26e3b0ae4ea13c4d7f5a399649e2cdd9ed7dec48da2dd30dbcf9aacea1a6f 657870
+_agents/pickle/builds/Football-Sim-PreColors.html 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd 657486
+_archive/Madden NFL 27 Team Power Rankings & Draft Simulator (8).html 6f1cf86385da09ac4579f699fd33cc98e4fb01a05690f209984fbb29477d23b8 640690
+_archive/versions-2026-10-22/merged_v22.html 4178a69b3e3a60a50c8f74aae4e8f4d413a436048fb17aa77404d203c0c76adb 656727
+_archive/versions-2026-10-22/merged-patched.html 578d041f52f86d4312d6e0d27fb2921ea881ad1712e7fd9c60163720f97570df 656113
+_archive/versions-2026-10-22/merged.html e1ac8184a601cc8bffa46069848b750eb30067c3f88f921aa90d79ee7da5b823 656750
+_archive/Madden NFL 27 Team Power Rankings & Draft Simulator (9) (OC).html eb954410e4e9f80c6d0fd7867a7aceed3bfcbc0d48625bef25d46847db3727a9 641368
+_archive/Madden NFL 27 Team Power Rankings & Draft Simulator (7).html 87fd098a1bff7b92922a1021436d0b270ca51b0b298c9cab8e1d3aa63f16b819 640776
+backup-before-reorg/Madden NFL 27 Team Power Rankings & Draft Simulator (8).html 6f1cf86385da09ac4579f699fd33cc98e4fb01a05690f209984fbb29477d23b8 640690
+backup-before-reorg/NFL Draft Simulator - Season First (Nemo Super).html 382342abb84218fa82c57d53dba0d7bdceb9032b2d64e8ec0cbf17977f2a1fd0 86270
+backup-before-reorg/NFL Draft Simulator.html f114ef8e62c4f14ce5ca65582b5b1665a298f4c5918f0fbfeabc755ce6548f6f 648130
+backup-before-reorg/NFL Draft Simulator (GLM verified build).html f114ef8e62c4f14ce5ca65582b5b1665a298f4c5918f0fbfeabc755ce6548f6f 648130
+backup-before-reorg/Madden NFL 27 Team Power Rankings & Draft Simulator (7).html 87fd098a1bff7b92922a1021436d0b270ca51b0b298c9cab8e1d3aa63f16b819 640776
+Football Sim/index.html 559880d779afcb16402f39a51ac8e4aa9e9a5a076af3d1d6d63a8d417deb2e15 602431
+Football Sim/Madden NFL 27 Team Power Rankings & Draft Simulator (8).html 6f1cf86385da09ac4579f699fd33cc98e4fb01a05690f209984fbb29477d23b8 640690
+Football Sim/NFL Draft Simulator.html 8f0f8d50c369dcc79d6bdb3a81d062ce77c348dd2bfc044b26cbc7070952ced3 649490
+Football Sim/Madden NFL 27 Team Power Rankings & Draft Simulator (9) (OC).html eb954410e4e9f80c6d0fd7867a7aceed3bfcbc0d48625bef25d46847db3727a9 641368
+Football Sim/NFL Draft Simulator v20 Claude.html 8f916df95bedb3b369dc4714df92197ddd5f93f71e899645398080ed45a7b909 648310

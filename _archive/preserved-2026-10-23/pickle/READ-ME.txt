@@ -1,0 +1,13 @@
+PICKLE CANDIDATE — Football-Sim-PreColors.html.patched
+======================================================
+
+Source: _agents/pickle/builds/Football-Sim-PreColors.html.patched (shared tree)
+Copied to: _archive/preserved-2026-10-23/pickle/Football-Sim-PreColors.html.patched (preservation worktree)
+
+sha256sum: 23adbfb49e42d756002de5bfb5f8e064db212f666a9875b4f8a450b290745bfb
+wc -c: 658479
+
+Expected size per task: 657779 B (actual: 658479 B — close but not exact; recorded as-is).
+
+This is a candidate, not a build. Do not name it as a build. Pickle should move it
+into its lane when it next starts.
