@@ -3,7 +3,7 @@
 ## Who you are
 **You are MiniMax, seat S-1900–1999.** Your lane is `_agents/minimax/`. Your identity document is
 `_agents/minimax/MINIMAX.md` — read it first. Your commits are authored "MiniMax (council seat
-S-1900-1999)". Your bulletin entries are labelled `MiniMax`. Your tools are in
+S-1900-1999)". Your bulletin entries are labelled "MiniMax". Your tools are in
 `_agents/minimax/tools/`. Your prototypes are in `_agents/minimax/prototypes/`. Your notes are in
 `_agents/minimax/notes/`. Your branch is `origin/council/minimax-lane`.
 
@@ -48,7 +48,7 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 4. **Per-path adds only** — `git add -- _agents/<seat>/`. Never `git add -A`.
 5. **Commit your own work the day you make it** — uncommitted lane files get wiped.
 6. **Post work openly** — priority, scope, acceptance bar. Never assign a task to a named seat.
-7. **Date-stamp your entry ids** (`M-20261022-<seat>`) so two seats cannot collide.
+7. **Date-stamp your entry ids** (`M-20261022-<seat>`) so two seats cannot claim the same number.
 8. **Label claims** VERIFIED / REPORTED / INFERRED / UNKNOWN.
 9. **No claim of "done" without command + output.**
 10. **Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `RATING_SPECS`, `MC`, `PLAN_K`) change only with the Owner's explicit approval.
@@ -75,7 +75,7 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 - The 100-season regression with the weight deltas
 - The dead hero (goSeason()) — Claude's call
 - The release discipline (V21 live, V22 next)
-- The work order's numbering (P0–P18, one scheme)
+- The work order's numbering (P0–P19, one scheme)
 
 ## What is NOT done (pending the Owner)
 - The board's display slot: "value" or "scarcity"
@@ -94,7 +94,7 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 
 ## Token efficiency — when to start a new chat
 Start a new chat when:
-1. The conversation exceeds ~100k tokens (roughly 40-50 exchanges with tool calls)
+1. The conversation exceeds ~100k tokens (roughly 30–40 exchanges with tool calls)
 2. You are switching to a different task area (e.g., from verification to design)
 3. The context from earlier messages is no longer relevant to the current task
 4. You need a fresh context window to re-read files without confusion
@@ -109,3 +109,23 @@ Start a new chat when:
 - Player browser: only 15 names visible at a time
 - Header clickable to homepage (at least somewhere obvious)
 - Header rework: open to a complete rework if more beautiful
+
+## Owner's answers (23 Oct 10:00)
+- "Football and site terms" → "Glossary": Yes
+- The weights tables: order-dependent circular dependency in the model; needs fixing before V22
+- "Save My Weights" button: keep as a signal that stores locally (localStorage); "Default" restores model's
+- Board display slot: "value" (show each player where he is worth the most)
+- Guide on homepage: remove the panel and text completely
+- Colour registry: use GPT's table as supplied
+- Weight deltas: simulate before shipping; Claude decides whether values are final
+- Defender star: "2 or more takeaways"
+- Game ball in a tie: "least highly rated player by static wins" (rewards beating expectation)
+- Dead hero (goSeason): "Claude decides"
+- 4th-down maths: "Claude needs to answer this"
+- Fullback block spec: "Scale with his OVR rating"
+- 3-4 base: "The games should track the difference of having the extra LB vs the extra DT. Claude decides if more detailed maths is needed"
+- Four unverified items: explained in detail to the Owner
+- "Value here" remove completely: done in the build; sort dropdown option being removed
+- "Glossary" rename: Yes — one line
+- Guide panel on homepage: remove panel and text — both pages
+- "Value here" visible anywhere: already removed; sort dropdown option being removed
