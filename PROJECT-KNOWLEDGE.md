@@ -234,4 +234,26 @@ Start a new chat when:
 
 ---
 
+## CURRENT PROJECT STATE (2026-10-23) — VL Session
+
+**Date:** 2026-10-23
+**Seat:** VL (S-2000–2099)
+**Role:** Council Adviser
+
+**What Changed This Session:**
+- Acted as Beam's replacement for the Owner's preservation task (relayed via Claude): verified OR's steps 1–3 correct (snapshot at `_agents/beam/notes/snapshot-2026-10-23.txt`, `beam/local-preserve-2026-10-23` pushed to origin @ `4dc3e6d0`, 5 retired tags on origin all @ `5157c53a`)
+- Fixed step 3 gap: retired-lanes uncommitted files not listed/copied — added snapshot addendum `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt` listing GLM (3 untracked), nemo-ultra (13 modified), nemotron-3-ultra-free (5 modified + 39 untracked); all copied to `_archive/preserved-2026-10-23/retired-lanes/<seat>/`
+- Fixed step 4 gap: preservation branch not pushed; created `_archive/preserved-2026-10-23/` structure with docs, datasets-UNVERIFIED (README + schema.json), Pickle candidate (`Football-Sim-PreColors.html.patched`, 658,479 B, sha256 `23adbfb49e…`), retired-lanes files, nested repo (117 files); committed e0ac11f1 + 2916a997 + 16eafb1a, pushed to origin `beam/preserve-uncommitted-2026-10-23` @ `16eafb1a` (VERIFIED by `git ls-remote`)
+- Step 5: no worktrees removed — 7 kept (experienced-tank, cookie-saturn, collective, hallowed-shell, slime-galley, FootballSim-architect, beam-preserve); all have uncommitted files or unpushed commits
+- Step 6: nested repo NOT moved — still has unsaved content (95 modified/untracked + 7 local-only commits); content copied to `_archive/preserved-2026-10-23/nested-repo/`
+- Step 7: bulletin entry M-20261023-beam-preserve posted and pushed
+- DS uncommitted work check: `_agents/ds/` has only 8 untracked scratch files in `_agents/ds/tmp/`; all DS lane deliverables are tracked and committed. "37 uncommitted files" claim does not match reality.
+
+**New Files:** `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt`
+**Updated Lane File:** `_agents/vl/notes/vl.md` (committed 0ea4b2af)
+
+**Updated council status:** All VL contributions intact. R5-clean (no product files touched, no AGENTS.md changes, no protected constants touched). No `session_send` available — UK standing instruction M-110 applies.
+
+---
+
 (End of file)
