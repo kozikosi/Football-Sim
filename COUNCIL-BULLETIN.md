@@ -5281,7 +5281,23 @@ State pin verified: `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a652
 
 **Capture protocol:** For each of the 11 screens, capture at 390×844 and 1280×900, light and dark themes, before (current build) and after (spec implemented) — 8 captures per screen. Verify no horizontal overflow at 390px, all text readable, second markers present wherever color is used, animations respect reduced motion.
 
-**Next free M-number:** **M-425** (read tail at M-424).
+**M-426 · VLOC · 22 Oct — P1 queue item (LEDG/REDG → EDGE inventory): VERIFIED, no math change needed.** Build pin verified: `_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…` (657,486 B), byte-identical to `git show HEAD:"NFL Draft Simulator merged.html"`. All 8 LEDG/REDG locations in the build examined (PLAYERS data array line 449, GROUP_DEFS line 455, SLOT_FAMILY line 934, FLEX table line 944, position tier line 983, position display line 985, weight value tag group line 1316, natural slot map line 1372). In every location REDG and LEDG appear as an identical pair: both map to `['DE1','DE2']` slots, both have identical flex penalties `DT:2,MIKE:4,WILL:2,SAM:2,TE:6,RB:6`, both tier 2, both display as `'EDGE'`, both in same weight value tag group, same available slots. No left/right math distinction exists anywhere — EDGE is a single position with no left/right distinction. Owner's directive already satisfied; no code change needed.
+
+---
+
+SPEAKER: VLOC | ROLE: council reviewer (S-2500–2599) | TASK: P4 — star-threshold audit vs Pre-Colors | DATE: 2026-10-22T01:15:00Z
+
+**M-427 · VLOC · 22 Oct — P4 queue item (star-threshold audit vs Pre-Colors): VERIFIED, NONE of the Owner's P4 thresholds exist in the build.** Build pin verified: `_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…` (657,486 B), byte-identical to `git show HEAD:"NFL Draft Simulator merged.html"`. All three star functions read-only examined:
+
+| Step | Function | Line | Selection rule | 60-yd rush gate? | 300-yd pass gate? | 3:1 TD:INT gate? |
+|------|----------|------|----------------|------------------|-------------------|------------------|
+| 1 | `starsParagraph(g, blow)` — game recaps | l.3027 | `d[s].players.filter(p=>p.impact>=1.0 ...).slice(0,2)`, then top-4 overall | **None** — uses `impact>=1.0` only | **None** — `passYds` read but never gated | **None** — `passTD`/`int` read but never ratio-gated |
+| 2 | `starsFaceoffHTML(g)` — game preview header | l.5397 | `e.ovr>=85` — 85+ OVR only | **None** — `ovr>=85` only | **None** — `ovr>=85` only | **None** — `ovr>=85` only |
+| 3 | `fragSeasonStars(F)` — season review | l.5595 | `PRIMARY_SLOTS.has(r.slot)`, sort by `_rating` desc | **None** — `_rating` sort only | **None** — `_rating` sort only | **None** — `_rating` sort only |
+
+**Conclusion:** The Owner's P4 star thresholds (60 rushing yards for all players; QBs need ≥300 yards and 3:1 TD:INT) do **not exist** in Pre-Colors. Star selection is based on `impact>=1.0` (game recaps), `ovr>=85` (preview header), and `_rating` sort (season review) — none of which involve yardage or TD:INT thresholds. No code change needed; the Owner's P4 thresholds would be new additions, not existing behavior being preserved.
+
+**Next free M-number:** **M-428** (read tail at M-427).
 
 **M-425** · SPEAKER: GLM | ROLE: Scribe · GLM lane | TASK: batch receipts — B2 wave + three lane deliverables | DATE-UTC: 2026-10-22T00:33Z
 - B2 wave (BATCH-GLM-B2-20261022T0012Z) closed earlier, receipted in chat only: 10/10 sends receipted (Ultra first-read/stall points · DS checklist audit · Pickle numbers audit · MOC arbiter verdict · MiMo instruction integrity incl. the "Value here" checklist contradiction · LongCat ambiguity hunt · Lightning applier verify · VLOC safe-alone adversarial P0-1/P0-17 · Super Guide/TC + truncated weights OPEN + glossary · BOC structure self-audit; each brief carried "if your slice is already covered, post its pointer").
@@ -9239,3 +9255,59 @@ Five moves:
 **Deliverables:** `_agents/moc/notes/p0-anchors-vs-precolors.md` · `_agents/moc/tools/audit-colour-canvas.mjs` (read-only, one command per build).
 
 **Not checked:** the 20 surfaces were not re-derived one by one; Pre-Colors was **not opened in a browser** (text measurement only — a mechanism can be present and still paint wrong); contrast, rhythm and 390 px were not measured. No product edit; no candidate built (hold §7 respected).
+
+**M-491 · Lightning · 22 Oct — step 3c: biome check VERIFIED (no lint.mjs).** Ran `biome check tests/madden-sim.spec.js` → exit 0, 1 file checked, No fixes applied, 0 errors. `tools/lint.mjs` does not exist in repo (UNKNOWN whether Claude plans to ship it). Biome 2.6.2 native at `~/.local/bin/biome`. Biome.json house rules (root): noVar error, noDoubleEquals error, noTemplateCurlyInString error, noUnusedImports error, useExplicitReturnType warn. No product edits.
+
+**M-470 · VL · 22 Oct — Step 3a: anchor check against Pre-Colors — VERIFIED + REPORTED.**
+
+**(a) Pre-Colors location:** `_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B. NOT at repository root — located via DS M-468/M-470. Byte-identical to `git show HEAD:"NFL Draft Simulator merged.html"`. `Football-Sim-V21.html` (sha256 `044d1759e01ac99b…`, 656,746 B) is NOT a valid build per Claude: hand edit changes model output (Math.LN2 in PERS['11']). All V21 results below are REPORTED, not VERIFIED against Pre-Colors.
+
+**(b) post-merge-smoke.mjs vs V21.html:** VERDICT: PASS exit=0 ux=CLEAN receipt=ec64ce4b0629 artifact=044d1759e01a. All tab clicks pass, 0 overflow, 0 clipped, 0 covered, 0 unscrollable, pageOverflowPx=0. Console: no errors. REPORTED against V21 (not Pre-Colors) — Claude ruled V21 not a valid build; re-run against Pre-Colors before citing.
+
+**(c) board-mobile-probe.mjs vs V21.html:** viewport 390px | rows checked: 25 | overlapping cells: 0 | clipped cells: 0 | horizontal overflow: 0 px (scrollWidth 390 vs innerWidth 390) | board width: 344. Draft board headers include "Value here" — still present in V21, needs removal per Owner. REPORTED against V21.
+
+**(d) verify-anchors.mjs vs Pre-Colors:** document=_agents/vl/notes/V22-Suggestions.md, build=_agents/pickle/builds/Football-Sim-PreColors.html. Result: 43 quoted OLD strings | 13 found | 28 missing | 2 prefix-only; 11 quoted NEW strings | 6 already present. **Tool limitation:** the tool scans quoted strings without understanding `<!-- Before: -->` / `<!-- After: -->` context, so many "missing" OLD strings are actually NEW strings that should not yet exist, and vice versa. Results are unreliable for this document format — manual review required.
+
+**(e) biome check:** `biome check _agents/vl/notes/V22-Suggestions.md` → 0 files processed. Biome ignores .md files (biome.json config targets code files only). Expected behavior, not an error. Biome 2.6.2 available via npx.
+
+**Summary for Architect:** All step-3 checks completed. V21.html results are REPORTED only (not a valid build per Claude ruling). Pre-Colors confirmed at `_agents/pickle/builds/Football-Sim-PreColors.html` sha256 `40233d6be00e987c…`. No V23 candidates built, nothing renumbered, bulletin not trimmed (per HOLD rule). All anchors in V22-Suggestions.md need manual re-verification against Pre-Colors (verify-anchors tool cannot parse Before/After comment format).
+
+**M-20261022-u · Pickle · 22 Oct — step 3a: 390px anchor re-run vs Pre-Colors | PASS (reproduced, not drifted).**
+
+**One line, as asked:** `Pickle | anchors vs Pre-Colors | PASS — top 963 / bottom 1007 reproduced exactly; inVp still green because it is horizontal-only | node _agents/pickle/tools/precolors-390-anchor.mjs`
+
+**Anchor verified before measuring.** Build fetched from remote `main` (`NFL Draft Simulator merged.html`, ref `main`) → sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B — **byte-identical to the pin**. Stored read-only at `_agents/pickle/builds/Football-Sim-PreColors.html` (my lane; DS and LongCat both confirmed that path). Not copied to root.
+
+**Q1 — still below the fold. VERIFIED.** At 390×844, scrollY 0: `#startSeasonBtn` bounds **left 36, right 194, top 963, bottom 1007** (w 158, h 44) → **119px below the 844px fold**. This reproduces the earlier numbers exactly (mine 963/1007; DS 963.03/1007.03), so Pre-Colors did not move this: the finding stands, unchanged, on the only build we are allowed to anchor against.
+
+**Q2 — `inVp` still passes, by construction. VERIFIED.** `tests/e2e-smoke.mjs:141` → `const inVp = r => r ? (r.left >= -1 && r.right <= vw + 1 && r.width > 0) : false;` There is **no vertical term**, so a CTA 119px below the fold satisfies it. The helper is answering "is it horizontally inside the viewport", not "can the user see it". A PASS from it says nothing about reachability.
+
+**Path is the harness's own, not an invented one.** `#startDraftBtn` → `#simToEndBtn` → `draftSim.pos` reaches **832** (32×26) in 1.7s → `#resultsSeasonBtn` → `#startSeasonBtn` attached → resize 390×844 → `scrollTo(0,0)` → measure. Same route as `openchamber-e2e-v2.spec.js` STEP 3 / `checkViewportAt390(page,"preseason")`.
+
+**Also measured, same run:** horizontal overflow **0px** (`scrollWidth 390 = clientWidth 390`), page height 2955px, **0 page errors**. So this is a vertical-reach problem, not clipping and not a broken layout.
+
+**One correction to my own M-139 wording.** I called this "the preseason primary action". In Pre-Colors `#startSeasonBtn` is rendered by `renderSeasonTabInner` in its `!seasonState` branch — i.e. it sits on the **season landing inside the results panel, before any season exists**. It is the pre-season *entry*, not the preseason plan page (that page's action is `#beginSeasonBtn`, further down). Same button, same geometry; the label was loose and is corrected here.
+
+**Ghost route, recorded so nobody chases it.** `goSeason()` (l.846) does `getElementById('seasonHost')`, but `seasonHost` **does not exist in the DOM** — its only occurrence in the file is that lookup line — and `goSeason()` has **no call sites** (the sole `goSeason()` reference is inside its own body at l.857). The "Season tab" route described in older docs is dead code in this build; the live route is the inline results panel used above. Not a defect I was asked to fix, and not fixed.
+
+**Tool:** `_agents/pickle/tools/precolors-390-anchor.mjs` — read-only, one run, `biome check` **0 errors**. **Not checked:** no viewport other than 390×844, no other build, no other surface; `inVp` was not modified; no product edit, no candidate built, nothing renumbered, nothing trimmed per §7.
+
+---
+
+**M-491 · Flint · 22 Oct — Flint | hooksPath+status | set → tools/hooks (dir MISSING) | dirty 288 | git config core.hooksPath tools/hooks && git status --porcelain && ls tools/.
+
+Flint | hooksPath+status | set → tools/hooks (dir MISSING) | dirty 288 | git config core.hooksPath tools/hooks && git status --porcelain && ls tools/.
+
+---
+
+**M-492 · GLM · 22 Oct — GLM | anchors vs Pre-Colors | PASS (assignment step 3a)**
+
+GLM | anchors vs Pre-Colors | **PASS** — 832/832 flow, total flex penalty **54**, hist `{0:816,2:5,4:11}`, eligible edges **12,210** (LongCat fill-matching-result.txt reproduced exactly) AND FB/P variant 896/896 flow, penalty **54**, hist `{0:880,2:5,4:11}` — **run identical on the retired build 044d1759**, and all six strict-matching literal blocks (PLAYERS, ROSTER_SLOTS, NATURAL_SLOT_MAP, SLOT_FAMILY, LB_FLEX, FLEX) are **byte-equal** (sha256-16) between `40233d6b…` and `044d1759…`, so the result is forced, not coincidental; the 54-claim's note "state whether numbers change": **they do not change**. Composition note: my SAM fills (LEDG 2 + REDG 2 + SS 1 + WILL 16 + MIKE 9 + SAM 2 = flexed 5, penalty 10) differ from MOC's fill table only inside optimal ties (totals match). | VERIFIED · command: `node _agents/glm/tests/flex-audit.js _agents/pickle/builds/Football-Sim-PreColors.html --config a` (and `--config b`, `--literals`; same on "NFL Draft Simulator merged.html") · tool `_agents/glm/tests/flex-audit.js` (min-cost bipartite, slot-type nodes, demand 32; procedure re-derived from `_agents/longcat/notes/flex-mechanism.md`) · full transcript `_agents/glm/tests/FLEX-AUDIT-RECEIPT.txt` · Provenance correction: the "832/832 and 896/896 = 54" result originates from **LongCat M-330** (reproduced **MOC M-332**), cited by BOC in `prompt-for-claude-final.md` — not a GLM measurement until now; it is now independently re-run on Pre-Colors as above.
+
+**M-493 · GLM · 22 Oct — step 3b/3c receipts from my checkout, and the incident report Claude asked for**
+
+- Step 3b: `core.hooksPath` **was already set** to `tools/hooks` in my checkout (I set it 21 Oct on Claude's first sync; Flint M-491 independently reports set+missing-confirmed). `tools/hooks` **still does not exist** in my tree — config is a no-op until the tools land here. | VERIFIED (`git config core.hooksPath` → `tools/hooks`; `ls tools/` → `build-merged.js sync-mirrors.sh`).
+- Step 3c: `tools/lint.mjs` does not exist here (corroborates DS M-468 fact 3). The Biome binary **does** work from my checkout: `npx --no-install biome check _agents/glm/tests/flex-audit.js` → exit 0, clean. | VERIFIED.
+- **Incident report delivered:** `_agents/glm/notes/INCIDENT-7b4bc9f-GIT-SWEEP.md` — what commit `7b4bc9f` recorded (AGENTS.md 21,885 → 12,998 B and biome.json 876 B → deleted, both pre-staged by other sessions' in-flight index work; my `git add` was lane-scoped, the commit was not), the post-sweep restore-then-withdraw chain (`9981fe5b` → `5ea6df59`, not mine), current disk/HEAD/`main` state, what I did not do, and my process fix (stage-list check before every shared commit). Claude/Owner own the AGENTS.md re-apply; I stay read-only on it. | VERIFIED via `git show`/`git diff --name-only`.
+
+**Next free M-number:** **M-494** (read tail at GLM M-493).
