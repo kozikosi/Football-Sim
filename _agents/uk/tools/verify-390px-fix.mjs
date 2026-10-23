@@ -6,8 +6,11 @@
 //
 // WHY THIS EXISTS
 // The #startSeasonBtn renders at ~509px from top (119px below fold at 390px).
-// Ultra's Option C: make .draftingas { position: sticky; bottom: 0 } so button stays visible.
-// This tool applies the CSS and verifies the button position is within viewport.
+// There are TWO "Start Season" buttons:
+//  1. Initial "Play a Season" screen (renderSeasonTabInner, !seasonState) — #startSeasonBtn in .panel
+//  2. Preseason setup page (renderPreseasonView) — #beginSeasonBtn and #beginSeasonBtn2 in .panel
+// Ultra's Option C targeted .draftingas but #startSeasonBtn is NOT inside it.
+// This tool tests the correct fix: make the initial screen's .panel have a sticky footer.
 
 import fs from "node:fs";
 
@@ -28,20 +31,52 @@ if (styleEnd === -1) {
   process.exit(1);
 }
 
+// The initial "Play a Season" screen: container.innerHTML = `<div class="panel">...#startSeasonBtn...</div>`
+// We need to target that specific panel. Add a class to it via CSS selector.
+// The panel is the direct child of the container (main content area).
+// Best approach: make the button itself sticky within its panel, or add a sticky footer wrapper.
+// Simplest CSS-only fix: target the panel that contains #startSeasonBtn when it's the ONLY content.
+
 const stickyCss = `
-/* UK S-UK-8: Sticky hero bar for 390px CTA fix */
-.draftingas {
+/* UK S-UK-8: Sticky CTA for 390px fix — initial Play a Season screen */
+.panel:has(#startSeasonBtn) {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.panel:has(#startSeasonBtn) > *:last-child {
   position: sticky;
   bottom: 0;
   z-index: 100;
   background: var(--panel);
   border-top: 1px solid var(--border);
   padding: 12px 16px;
+  margin-top: auto;
+}
+
+/* Preseason setup page: Begin the season buttons */
+.panel:has(#beginSeasonBtn),
+.panel:has(#beginSeasonBtn2) {
+  position: relative;
+}
+.panel:has(#beginSeasonBtn) > button,
+.panel:has(#beginSeasonBtn2) > button {
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  margin-top: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .draftingas {
+  .panel:has(#startSeasonBtn) > *:last-child,
+  .panel:has(#beginSeasonBtn) > button,
+  .panel:has(#beginSeasonBtn2) > button {
     position: static;
+    margin-top: 0;
   }
 }
 `;
@@ -53,20 +88,18 @@ if (applyCss) {
   console.log(`CSS injected. Patched build written to ${buildPath}.patched`);
 }
 
-// Verify #startSeasonBtn exists and is inside .draftingas
-const draftingasStart = patched.indexOf('class="draftingas"');
-const draftingasEnd = draftingasStart !== -1 ? patched.indexOf("</div>", draftingasStart) : -1;
-const btnPos = patched.indexOf('id="startSeasonBtn"');
+// Verify buttons exist
+const startBtn = patched.indexOf('id="startSeasonBtn"');
+const beginBtn1 = patched.indexOf('id="beginSeasonBtn"');
+const beginBtn2 = patched.indexOf('id="beginSeasonBtn2"');
 
 console.log(`Build: ${buildPath}`);
-console.log(`  .draftingas found: ${draftingasStart !== -1 ? "YES" : "NO"}`);
-console.log(`  #startSeasonBtn found: ${btnPos !== -1 ? "YES" : "NO"}`);
-if (draftingasStart !== -1 && btnPos !== -1) {
-  console.log(`  Button inside .draftingas: ${btnPos > draftingasStart && btnPos < draftingasEnd ? "YES" : "NO"}`);
-}
+console.log(`  #startSeasonBtn found: ${startBtn !== -1 ? "YES" : "NO"}`);
+console.log(`  #beginSeasonBtn found: ${beginBtn1 !== -1 ? "YES" : "NO"}`);
+console.log(`  #beginSeasonBtn2 found: ${beginBtn2 !== -1 ? "YES" : "NO"}`);
 
 // Check for sticky CSS in patched version
-const hasSticky = patched.includes("position: sticky") && patched.includes(".draftingas");
+const hasSticky = patched.includes("position: sticky") && patched.includes(":has(");
 console.log(`  Sticky CSS present: ${hasSticky ? "YES" : "NO"}`);
 
 // Check for prefers-reduced-motion handling
