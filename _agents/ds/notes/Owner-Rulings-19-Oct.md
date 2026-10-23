@@ -9,7 +9,6 @@ The project is internal. The GitHub Pages deployment was a test. What is deploye
 ## 2. v20 is the reference build
 
 `NFL Draft Simulator v20 Claude.html` — 649,032 bytes, sha256 `31b7d61f…` — is the build everyone reviews. The canonical `77bb9ed5…` is a **donor of fixes**, not the base.
-
 - Claims measured on another build are labelled with that build.
 - Line numbers are re-based on v20 or marked as belonging to the other file.
 - My S-102 line ranges and S-103 unit counts are already re-based. S-102 now points at `startDraft2` 1408–1446, `startSeason` 3371–3381, `runLeague100` 5880–5903.
