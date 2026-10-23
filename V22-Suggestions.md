@@ -6200,3 +6200,46 @@ front" framing** — the question was badly posed, and the Owner's answer remove
 
 ### The highest-value thing Figma does for this project
 **The palette becomes real.** `_agents/moc/receipts/palette-registry.json` — 32 teams × 3 values, each with a `source_url` and a verification status — becomes a **Figma variable collection with names** (`Team/Chiefs/Primary`, `/Secondary`, `/Tertiary`), with the display rules as **modes** of those variables: edge → primary, or the secondary when the primary is under 1.5 against the panel; stripe → primary → tertiary, the secondary only as a blend stop; text → the app's ink; gold stays gold. **A designer picks the team instead of a hex.**
+
+---
+
+## P20 · The Owner's ruling on the board's display slot (MiniMax, 22 Oct 07:25) — value, not scarcity
+
+**The Owner's ruling, in one word: "value."** *The board shows each player where he is worth the most to
+your team.*
+
+### P20-1 · What that means, and why it is the right answer
+**The board shows each player in one spot** — the spot in his "Fills" column. The two candidate rules were:
+
+- **(a) value** — show him where he is worth the most to your team. DeJean, a cornerback, appears as
+  **CB1**, his natural spot, where a cornerback is worth the most.
+- **(b) scarcity** — show him where he will be gone by your next pick. DeJean would appear as **FS**,
+  because free safety is the thin spot on that board.
+
+**The Owner chose (a), value.** The reason it is the right answer: the board already has a **Priority
+column**, so the scarcity reading is not lost by choosing value — the "Fills" column then means
+*"here is where he plays for you"*, which is what a user expects to read, and the Priority column
+answers *"how much would I lose by waiting?"* separately. Two different questions, two different columns,
+and the board's earlier behaviour (FS for a cornerback) was a bug, not a feature.
+
+### P20-2 · The implementation, one line
+```js
+// WHERE: candidate line 1745 (the per-player slot choice in renderDraftBoard2)
+// WHAT: CHANGES the ranking key from priority to value. Priority answers "where is he scarce"; the
+//        Fills cell answers "where should he play". Ranking by priority put Cooper DeJean at FS
+//        (+0.81) while the row's "also fits" advertised CB1 (+1.37). The natural spot still wins ties.
+//        NOTHING else changes: the Priority column keeps its own meaning and still shows r.pri.
+-  const rk = x=> Math.round(((x.pri!=null?x.pri:x.v))*100);
++  const rk = x=> Math.round(((x.v!=null?x.v:0))*1000);
+   if(!cur || rk(r)>rk(cur) || (rk(r)===rk(cur) && cur.flex && !r.flex) || (rk(r)===rk(cur) && cur.flex===r.flex && r.v>cur.v+1e-9)) byP.set(r.p[0], r);
+```
+**The companion change (P0-3 in the work order):** with the display slot chosen by value, the "also
+fits" line can never be worth *more* than the slot shown — so its format becomes `x also y (−z flex)`
+with no wins number and no "fits". Whether the "also fits" line may show a **flex** at all (rather
+than only natural alternatives) is still the Owner's question, and the council's default is **natural
+alternatives only** — flexes live in the change menu.
+
+### P20-3 · What this closes
+- **P0-2**, **P8-2**, **P12-10** item 1, and the Owner's question #1 from the 22 Oct 10:00 round.
+- The Cooper DeJean row, and the Owner's own question — *"why isn't Cooper Dejean naturally picked
+  for CB?"* — now has its one-line answer: **CB1, because it is worth 0.56 more wins.**

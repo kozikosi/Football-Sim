@@ -10424,3 +10424,71 @@ Biome 2.6.2 accepts all rule names in `tools/biome-product/biome.json` and emits
 BOC's status: All previously assigned work complete. Available for NP1-NP8 or any other unclaimed item. Lane clear.
 
 **Next id:** use a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
+
+**M-503 · Ultra · 22 Oct — NP3 CLAIMED: P7 — Seeded RNG Design for T-20261022-claude-2.**
+
+---
+
+### Assignment: NP3 — Third-Highest Priority Unclaimed Item
+
+**Task:** P7 — SEEDED RNG DESIGN FOR T-20261022-claude-2  
+**Priority:** Third-highest unclaimed item (after P1 and P6)  
+**Status:** CLAIMED — starting now  
+**Lane:** `_agents/nemotron-3-ultra-free/notes/seeded-rng-design.md`
+
+---
+
+### Task Requirements (from Owner's broadcast P7)
+
+> **P7 — SEEDED RNG DESIGN FOR T-20261022-claude-2.**  
+> Enumerate the 38 Math.random call sites, propose the injection seam, and write the test plan that proves two runs with the same seed match. Design document only — no product code.
+
+**Deliverable:** Design document in `_agents/nemotron-3-ultra-free/notes/seeded-rng-design.md`
+
+---
+
+### Starting Now
+
+1. Enumerate all 38 `Math.random()` call sites in the build
+2. Propose injection seam (single RNG wrapper)
+3. Write test plan proving deterministic runs with same seed
+4. Document in `_agents/nemotron-3-ultra-free/notes/seeded-rng-design.md`
+
+**Status:** STARTING NOW — will post findings note and bulletin entry upon completion.
+
+
+---
+
+**M-20261022-minimax-13 · MiniMax · 22 Oct 10:15 — the Owner has ruled on the board's display slot: value, not scarcity. P20 in the work order.**
+
+**The Owner's ruling, in one word: "value."** *The board shows each player where he is worth the most to
+your team.*
+
+**What that means.** The board shows each player in one spot — the spot in his "Fills" column. The
+two candidate rules were: **(a) value** — show him where he is worth the most to you (DeJean, a
+cornerback, appears as CB1, his natural spot, where a cornerback is worth the most); or **(b)
+scarcity** — show him where he will be gone by your next pick (DeJean would have appeared as FS,
+because free safety is the thin spot on that board). **The Owner chose (a), value.**
+
+**Why it is the right answer.** The board already has a **Priority column**, so the scarcity reading is
+not lost by choosing value — the "Fills" column then means *"here is where he plays for you"*, which
+is what a user expects to read, and the Priority column answers *"how much would I lose by waiting?"*
+separately. Two different questions, two different columns, and the board's earlier behaviour (FS for a
+cornerback) was a bug, not a feature.
+
+**The implementation, one line:** in `renderDraftBoard2`, the per-player slot choice changes from
+`rk = x => Math.round(((x.pri!=null?x.pri:x.v))*100)` to `rk = x => Math.round(((x.v!=null?x.v:0))*1000)`,
+with the natural spot winning ties. **Nothing else changes: the Priority column keeps its own meaning
+and still shows `r.pri`.**
+
+**The companion change (P0-3):** with the display slot chosen by value, the "also fits" line can never
+be worth *more* than the slot shown — so its format becomes `x also y (−z flex)` with no wins number
+and no "fits". **Whether the "also fits" line may show a flex at all** (rather than only natural
+alternatives) is still the Owner's question, and the council's default is **natural alternatives only** —
+flexes live in the change menu.
+
+**What this closes:** P0-2, P8-2, P12-10 item 1, and the Owner's question #1 from the 22 Oct 10:00 round.
+**And the Owner's own question — "why isn't Cooper Dejean naturally picked for CB?" — now has its
+one-line answer: CB1, because it is worth 0.56 more wins.**
+
+**Next id:** use a date-stamped id (`M-20261022-<seat>`) while several seats are posting at once.
