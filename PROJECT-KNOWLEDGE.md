@@ -22,9 +22,11 @@
 |-------|------|------|------|--------|
 | v20 (reference) | `NFL Draft Simulator v20 Claude.html` | `8f916df9…` | 648,310 B | Frozen reference (R2) |
 | donor | `NFL Draft Simulator.html` | `8f0f8d50…` | 649,490 B | Fix donor (Season-first UI) |
-| Pre-Colors (V21) | `Football-Sim-V21.html` | `044d1759…` | 656,746 B | **Live build** — merged candidate, verified |
-| V22 candidate | `V22-candidate-2026-10-21.html` | (in `_agents/minimax/prototypes/`) | — | Owner's first three briefs applied |
-| V22 candidate (team colours) | `V22-candidate-teamcolours.html` | `7eeffa86…` | — | Same + 32-team palette |
+| **Pre-Colors (the only build to anchor, patch and test against)** | `Football-Sim-PreColors.html` (in `_agents/pickle/builds/`) | `40233d6b…` | 657,486 B | **Live build** — merged candidate, verified (post-merge-smoke.mjs exit 0, A/B/C/D all true) |
+| V21 (retired as build name) | `Football-Sim-V21.html` | `044d1759…` | 656,746 B | Carries a hand edit that changes model output (Math.LN2 at l.2029, +7.52 pts/game). Not a release. Measurements against it are REPORTED, not wrong — re-run on Pre-Colors before citing. |
+| V22 candidate | `V22-candidate-2026-10-21.html` (in `_agents/minimax/prototypes/`) | — | — | Owner's first three briefs applied |
+| V22 candidate (team colours) | `V22-candidate-teamcolours.html` (in `_agents/minimax/prototypes/`) | `7eeffa86…` | — | Same + 32-team palette |
+| V23 | (not yet created) | — | — | Next build, written only by the Architect (Claude) |
 
 ## 3. Key invariants (never break)
 
@@ -66,7 +68,7 @@
 | Git | ✅ Working | `git status`, `git add -- <path>`, `git commit`, `git push` |
 | gh (GitHub CLI) | ✅ Authenticated | `gh pr view`, `gh pr diff`, etc. |
 | node (v22+) | ✅ Working | `node --check`, `node <script>` |
-| Figma | ❌ Not connected | Needs Dev Mode toggle + Kilo restart. No Figma MCP tool in session. |
+| Figma | ✅ Available (remote MCP) | Authenticated as Kosi, plan "k's team", tier starter, role admin. 42 tools (read, write, Code Connect, FigJam, diagrams, assets, generative plugins, shaders, motion, session). 19 skills. Route: remote MCP (https://mcp.figma.com/mcp, OAuth). Limits: rate limits, no code layers, no specs, get_libraries/search_design_system need fileKey. BOC M-466. |
 | session.send | ❌ Not available | Cannot dispatch to other council sessions. Owner must relay. |
 
 ## 6. Current work order (V22-SUGGESTIONS.md)
@@ -149,14 +151,21 @@ Owner's answers captured in `OWNER-ANSWERS.md`. Key decisions: -5 era adjustment
 | Figma | ❌ Not connected | Needs Dev Mode toggle + Kilo restart. No Figma MCP tool in session. |
 | session.send | ❌ Not available | Cannot dispatch to other council sessions. Owner must relay. |
 
-## 11. Figma setup (if Owner wants to enable)
+## 11. Figma setup (NOW AVAILABLE)
 
-1. Open Figma app → open a design file → Dev Mode (⌥⌘I) → tick "Enable desktop MCP server"
-2. In `/mcps`, turn ON `figma-desktop`
-3. Restart Kilo in `/Users/kosi/Desktop/Football Sim`
-4. Verify: `kilo mcp list` should show `figma-desktop` as connected
+Figma MCP is now authenticated and available to all seats (BOC M-466, 22 Oct).
 
-Until Figma is available, aesthetics suggestions are conceptual only — no Figma designs exist yet.
+**Route:** Remote MCP (`https://mcp.figma.com/mcp`, OAuth). Authenticated as Kosi, plan "k's team", tier starter, role admin.
+
+**Tools available (42):** read, write, Code Connect, FigJam, diagrams, assets, generative plugins, shaders, motion, session.
+
+**Skills available (19):** figma-use (MANDATORY before use_figma), figma-generate-design, figma-generate-library, figma-code-connect, figma-design-to-code, figma-generate-diagram, figma-use-motion, figma-use-figjam, figma-use-slides, figma-spec, figma-swiftui, figma-shaders, figma-generative-plugins, figma-implement-motion, figma-code-workflows, figma-create-new-file, figma-generate-design, figma-use-figjam, figma-use-slides.
+
+**Limits:** rate limits, no code layers, no specs, get_libraries/search_design_system need fileKey.
+
+**Rules (unchanged):** council does not design in Figma — palette/state-list/data-model go to Architect. Architect owns product file and visual system. Seats can now put real frames on canvas instead of describing them.
+
+**Note:** The free-tier OAuth wall (403) that blocked Beam's session has been resolved by BOC's authentication. Beam (Kilo Code) may still need a session restart to see the figma_* tools.
 
 ## 12. Council rules (summary)
 
