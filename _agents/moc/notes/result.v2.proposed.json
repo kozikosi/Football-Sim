@@ -1,0 +1,352 @@
+{
+	"schemaVersion": 1,
+	"suite": "OPENCHAMBER-E2E-NFL-1",
+	"runAtUtc": "2026-10-20T22:57:02.298Z",
+	"status": "PARTIAL",
+	"runner": {
+		"name": "Playwright",
+		"version": "1.64.1",
+		"browser": "chromium",
+		"browserVersion": "156.0.8078.4"
+	},
+	"gitRef": "merge/v20-donor",
+	"gitCommit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+	"artifactPath": "/Users/kosi/Desktop/Football Sim/merged.html",
+	"artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+	"steps": [
+		{
+			"id": "initial-load",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:03.369Z",
+			"durationMs": 3070,
+			"details": "Title: NFL Draft Simulator; Heading: NFL Draft Simulator"
+		},
+		{
+			"id": "start-draft",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:06.439Z",
+			"durationMs": 3229,
+			"details": "Draft started, live view visible"
+		},
+		{
+			"id": "select-instant-speed",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:09.668Z",
+			"durationMs": 439,
+			"details": "Instant speed selected"
+		},
+		{
+			"id": "sim-to-end",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:10.107Z",
+			"durationMs": 4138,
+			"details": "Draft complete confirmed; internal pos: unavailable"
+		},
+		{
+			"id": "click-results-season",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:14.245Z",
+			"durationMs": 2523,
+			"details": "Season landing visible, startSeasonBtn present"
+		},
+		{
+			"id": "start-season",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:16.768Z",
+			"durationMs": 3082,
+			"details": "Preseason setup visible, beginSeasonBtn present"
+		},
+		{
+			"id": "begin-season",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:19.850Z",
+			"durationMs": 3344,
+			"details": "Season started, simSeasonBtn visible"
+		},
+		{
+			"id": "week-1-display",
+			"status": "SKIP",
+			"startedAtUtc": "2026-10-20T22:57:23.194Z",
+			"durationMs": 0,
+			"details": "NOT IMPLEMENTED in the script. The script asserted #simSeasonBtn visible as a proxy for this checkpoint and never asserted the protocol's observation. The build DOES render a user-visible 'Week 1 of 17' (h3, no id, no .week-indicator class) at exactly this point: the run's own trace DOM snapshot at 2026-10-20T22:57:20.033Z contains 'H3margin:0;Week 1 of 17' plus button #simWeekBtn ('Simulate Week 1'), between click #beginSeasonBtn (22:57:19.849Z) and click #simSeasonBtn (22:57:23.272Z). The selectors cited in the earlier note (#weekDisplay, #currentWeek, .week-indicator) do not exist in the artifact (0 occurrences each). Protocol clause 3.4 is therefore UNVERIFIED, not 'build limitation'; a text-based locator (page.getByText(/Week 1 of 17/)) is proposed for architect review. The SKIP stands until the owner and architects accept that observation."
+		},
+		{
+			"id": "sim-season",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:23.194Z",
+			"durationMs": 5562,
+			"details": "Regular season complete; games played: unavailable (expected 272)"
+		},
+		{
+			"id": "sim-playoffs",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:28.756Z",
+			"durationMs": 5474,
+			"details": "Playoffs/Super Bowl complete; champion visible: true; rounds: unavailable"
+		},
+		{
+			"id": "sim-100-seasons",
+			"status": "PASS",
+			"startedAtUtc": "2026-10-20T22:57:34.230Z",
+			"durationMs": 14451,
+			"details": "100-season report rendered; driven-winning section: true; duration: unavailablems"
+		}
+	],
+	"consoleErrors": [],
+	"pageErrors": [],
+	"viewportChecks": [
+		{
+			"checkpoint": "initial-load-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load-desktop.png"
+		},
+		{
+			"checkpoint": "initial-load",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load.png"
+		},
+		{
+			"checkpoint": "live-draft-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft-desktop.png"
+		},
+		{
+			"checkpoint": "live-draft",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft.png"
+		},
+		{
+			"checkpoint": "draft-results-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results-desktop.png"
+		},
+		{
+			"checkpoint": "draft-results",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results.png"
+		},
+		{
+			"checkpoint": "preseason-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-desktop.png"
+		},
+		{
+			"checkpoint": "preseason",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason.png"
+		},
+		{
+			"checkpoint": "preseason-setup-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup-desktop.png"
+		},
+		{
+			"checkpoint": "preseason-setup",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup.png"
+		},
+		{
+			"checkpoint": "season-started-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started-desktop.png"
+		},
+		{
+			"checkpoint": "season-started",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started.png"
+		},
+		{
+			"checkpoint": "regular-season-review-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review-desktop.png"
+		},
+		{
+			"checkpoint": "regular-season-review",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review.png"
+		},
+		{
+			"checkpoint": "playoffs-champion-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion-desktop.png"
+		},
+		{
+			"checkpoint": "playoffs-champion",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion.png"
+		},
+		{
+			"checkpoint": "100-season-report-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report-desktop.png"
+		},
+		{
+			"checkpoint": "100-season-report",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report.png"
+		},
+		{
+			"checkpoint": "final",
+			"width": 390,
+			"height": 844,
+			"documentScrollWidth": 390,
+			"bodyScrollWidth": 390,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final.png"
+		},
+		{
+			"checkpoint": "final-desktop",
+			"width": 1280,
+			"height": 900,
+			"documentScrollWidth": 1280,
+			"bodyScrollWidth": 1280,
+			"pageOverflowPx": 0,
+			"overflowElements": [],
+			"screenshot": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final-desktop.png"
+		}
+	],
+	"screenshots": [
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-initial-load.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-live-draft.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-draft-results.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-preseason-setup.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-season-started.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-regular-season-review.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-playoffs-champion.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-100-season-report.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/viewport-final-desktop.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/startup-light.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/startup-dark.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/draft-results-light.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/draft-results-dark.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/100-season-report-light.png",
+		"/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/100-season-report-dark.png"
+	],
+	"trace": "/Users/kosi/Desktop/Football Sim/test-results/e2e-1792537022298/trace/trace-1792537070181.zip",
+	"skippedChecks": [
+		"Week 1 of 17 display (protocol section 3 clause 4) - NOT IMPLEMENTED in the script; the build renders 'Week 1 of 17' at the checkpoint (trace DOM snapshot 2026-10-20T22:57:20.033Z). Remains SKIP, never PASS."
+	],
+	"notes": [
+		"SUPERSEDES (does not modify) the stored result.json sha256 d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396 \u2014 see _agents/moc/notes/W2-run-reconciliation.md section 4. The stored file was hand-edited 17 minutes after the run (mtime 13:14:57 local vs trace 12:57:52) and contains a 'week-1-display' step and a skippedChecks entry that the script cannot emit (it has no Week 1 logic; its only skippedChecks push is the 100-season budget entry), and a note claiming a schema validation that no code in the repository performs. This v2 record corrects the reason, the screenshot count and the validation claim, and states the chain of custody.",
+		"Artifact hash verified: 40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd (re-derived from the file on disk by the reviewer, MATCH).",
+		"PROTOCOL DEVIATION: Week 1 checkpoint (protocol section 3, clause 4) requires 'Confirm Week 1 of 17 is shown'. The check was NOT IMPLEMENTED in the script; the build does render the text (see step week-1-display). Marked SKIP per protocol (SKIP, never PASS). Overall status PARTIAL.",
+		"SCREENSHOT COUNT: 26 = 20 viewport-check captures + 6 light/dark captures (startup-{light,dark}, draft-results-{light,dark}, 100-season-report-{light,dark}). The stored result's note 5 said 24; that is corrected here.",
+		"SCHEMA VALIDATION: performed by an external reviewer with python jsonschema 4.25.1 Draft202012Validator + FormatChecker against the repository schema (sha256 3f2e07cfc1db9b61b4c21dba37e0d360c4fedfbc0677ba2f51b02b25976de879) - 0 errors, 17/17 required fields. The runner itself performs NO schema validation; the earlier note claiming it did was incorrect.",
+		"SEASON METRICS ARE NULL BY PROBE BUG, NOT BY MISSING CAPABILITY: 'window.seasonState' has 0 occurrences in the artifact; the build declares 'let seasonState' (line 3445) and assigns it (line 3457) as a global lexical binding, reachable as the bare identifier only. The build also has no 'gamesPlayed' field; the count that exists is seasonState.schedule.length (= 272, read by tests/e2e-smoke.mjs, a different instrument). draftPicks, regularSeasonGamesPlayed, playoffRoundsCompleted and reportDurationMs are therefore left null here; they are NOT verified by this run.",
+		"MEASURED 100-SEASON ELAPSED TIME: 14451 ms (the step record's durationMs). seasonMetrics.reportDurationMs remains null because the global lastReportDurationMs does not exist in the build.",
+		"PLAYOFFS CONTROL: #simPlayoffsBtn was clicked at 2026-10-20T22:57:28.850Z with no error, at viewport 1280x900 (set explicitly 96 ms earlier); the champion locator isVisible returned true at 22:57:34.083Z. Evidence: trace-1792537070181.zip (65,863,244 B), screenshots viewport-playoffs-champion-desktop.png (1280x3953) and viewport-playoffs-champion.png (390x6045).",
+		"390px COVERAGE IS PARTIAL: the script implements 3 of the 8 protocol 390px clauses (run-at-390 at every checkpoint; record scroll widths + overflow; record elements wider than the viewport) and does not implement visibility/within-viewport, clipped-or-covered, scroller-scrollability, or shifted-element detection. 0 overflowing elements therefore does not establish the full element-level acceptance check.",
+		"Test script SHA-256: ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757 (442 lines; byte-identical to tests/openchamber-e2e.spec.js).",
+		"Run id: test-results/e2e-1792537022298 (created 2026-10-20T22:57:02.298Z). No other run's artifacts exist on this machine; a second directory e2e-1792537022083, 215 ms earlier, is empty and is the same run's first attempt."
+	],
+	"seasonMetrics": {
+		"draftPicks": null,
+		"regularSeasonGamesPlayed": null,
+		"championVisible": true,
+		"playoffRoundsCompleted": null,
+		"reportRendered": true,
+		"reportDurationMs": null
+	}
+}

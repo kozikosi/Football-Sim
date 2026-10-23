@@ -1,0 +1,29 @@
+function cpuPick(teamIndex, st){
+ st = st || draftSim;
+ const roster = st.rosters[teamIndex], T = slotWinsTable();
+ if(!st.repl || st.replPool - st.pool.length >= 6){ st.repl = replacementLevels(st.pool, st.rosters); st.replPool = st.pool.length; }
+ const repl = st.repl, rlow = {}, seen = {};
+ let best=null, bestVal=-Infinity, bestSlot=null; const cands = [];
+ for(const p of st.pool){ // pool is sorted by overall, so only the top few at each position can matter
+  const pos = p[1], c = POS_SLOT_MAP[pos]; if(!c) continue;
+  if((seen[pos]=(seen[pos]||0)+1) > 16) continue;
+  const nz = Math.max(0.02, 1 + cpuNoise(teamIndex)*randNormal());
+  for(const s of c){
+   if(roster.slots[s]) continue;
+   const g = WV_SLOT_GROUP[s], rl = rlow[s]!=null ? rlow[s] : (rlow[s] = Math.max(repl[g]==null?70:repl[g], 76));
+   const t = T[s], x = clampNum(p[3]-flexPen(pos,s), 50, 99.999)-50, i = x|0, f = x-i;
+   const w = t[i]*(1-f)+t[i+1]*f - slotWins(s, rl);
+   const v = w*cpuBias(teamIndex, g)*nz + 0.002*p[3];
+   cands.push({p, s, v});
+   if(v>bestVal){ bestVal=v; best=p; bestSlot=s; }
+  }
+ }
+ // some front offices simply miss: they take a good-looking player a few spots down their own board
+ if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){ cands.sort((a,b)=>b.v-a.v); const c = cands[3 + Math.floor(Math.random()*Math.min(90, cands.length-3))]; best = c.p; bestSlot = c.s; }
+ if(!best){ // nobody fits a natural or flex spot: take the best player left for any open spot
+  const s = firstOpenSlotAny(roster); if(!s || !st.pool.length) return null;
+  best = st.pool[0]; bestSlot = s;
+ }
+ return {player:best, slot:bestSlot};
+}
+

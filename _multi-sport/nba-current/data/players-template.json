@@ -1,0 +1,134 @@
+// NBA Current Player Database — Template
+// Format: array of player objects
+// Source: NBA2K ratings (Owner can transmit directly) or collective creation
+// Format proposed by Beam (S-1600s), pending Owner approval of stat columns
+
+// SCHEMA
+// {
+//   "name": "string — player's full name",
+//   "pos": "string — position code (PG, SG, SF, PF, C)",
+//   "team": "string — team name (from TEAMS list)",
+//   "ovr": "number — overall rating (0-99)",
+//   "pts": "number — points per game",
+//   "reb": "number — rebounds per game",
+//   "ast": "number — assists per game",
+//   "stl": "number — steals per game",
+//   "blk": "number — blocks per game",
+//   "tov": "number — turnovers per game",
+//   "fg": "number — field goal % (0-100)",
+//   "tp": "number — 3-point % (0-100)",
+//   "ft": "number — free throw % (0-100)",
+//   "spd": "number — speed (0-99)",
+//   "str": "number — strength (0-99)",
+//   "agi": "number — agility (0-99)",
+//   "awr": "number — awareness/IQ (0-99)",
+//   "inj": "number — injury/durability (0-99, higher = more durable)",
+//   "xf": "string|null — X-factor name (optional)",
+//   "source": "string — how this rating was derived"
+// }
+
+// POSITIONS (5 starter slots + bench)
+// PG (point guard), SG (shooting guard), SF (small forward), PF (power forward), C (center)
+// Bench depth: BENCH1, BENCH2, BENCH3, BENCH4, BENCH5
+
+// TEAMS (30 NBA teams)
+// Atlanta Hawks, Boston Celtics, Brooklyn Nets, Charlotte Hornets, Chicago Bulls,
+// Cleveland Cavaliers, Dallas Mavericks, Denver Nuggets, Detroit Pistons, Golden State Warriors,
+// Houston Rockets, Indiana Pacers, LA Clippers, Los Angeles Lakers, Memphis Grizzlies,
+// Miami Heat, Milwaukee Bucks, Minnesota Timberwolves, New Orleans Pelicans, New York Knicks,
+// Oklahoma City Thunder, Orlando Magic, Philadelphia 76ers, Phoenix Suns, Portland Trail Blazers,
+// Sacramento Kings, San Antonio Spurs, Toronto Raptors, Utah Jazz, Washington Wizards
+
+// FLEX RULES (proposed — pending Owner approval)
+// PG <-> SG: -3 OVR (combo guard)
+// SG <-> SF: -3 OVR (wing)
+// SF <-> PF: -3 OVR (forward)
+// PF <-> C: -3 OVR (big)
+// PG <-> SF: -7 OVR (two apart)
+// SG <-> PF: -7 OVR (two apart)
+// SF <-> C: -7 OVR (two apart)
+// PG <-> PF: -12 OVR (three apart)
+// SG <-> C: -12 OVR (three apart)
+// PG <-> C: -15 OVR (four apart — not recommended)
+
+// EXAMPLES
+[
+  {
+    "name": "LeBron James",
+    "pos": "SF",
+    "team": "Los Angeles Lakers",
+    "ovr": 97,
+    "pts": 25.7,
+    "reb": 7.3,
+    "ast": 8.3,
+    "stl": 1.3,
+    "blk": 0.5,
+    "tov": 3.5,
+    "fg": 54.0,
+    "tp": 41.0,
+    "ft": 75.0,
+    "spd": 85,
+    "str": 95,
+    "agi": 88,
+    "awr": 99,
+    "inj": 80,
+    "xf": "Clutch",
+    "source": "NBA2K25 rating — current season"
+  },
+  {
+    "name": "Stephen Curry",
+    "pos": "PG",
+    "team": "Golden State Warriors",
+    "ovr": 96,
+    "pts": 26.4,
+    "reb": 4.5,
+    "ast": 5.1,
+    "stl": 0.7,
+    "blk": 0.4,
+    "tov": 3.1,
+    "fg": 45.0,
+    "tp": 42.7,
+    "ft": 92.3,
+    "spd": 82,
+    "str": 65,
+    "agi": 90,
+    "awr": 97,
+    "inj": 75,
+    "xf": "Limitless Range",
+    "source": "NBA2K25 rating — current season"
+  },
+  {
+    "name": "Nikola Jokic",
+    "pos": "C",
+    "team": "Denver Nuggets",
+    "ovr": 98,
+    "pts": 26.4,
+    "reb": 12.4,
+    "ast": 9.0,
+    "stl": 1.4,
+    "blk": 0.9,
+    "tov": 3.0,
+    "fg": 58.3,
+    "tp": 35.9,
+    "ft": 81.7,
+    "spd": 60,
+    "str": 88,
+    "agi": 70,
+    "awr": 99,
+    "inj": 90,
+    "xf": "Clutch",
+    "source": "NBA2K25 rating — current season"
+  }
+]
+
+// VALIDATION RULES
+// 1. Every player must have name, pos, team, ovr, and source.
+// 2. ovr must be 0-99. spd/str/agi/awr/inj must be 0-99.
+// 3. pts/reb/ast/stl/blk/tov must be >= 0. fg/tp/ft must be 0-100.
+// 4. pos must be one of: PG, SG, SF, PF, C.
+// 5. team must be one of the 30 NBA team names.
+// 6. xf is optional (null or omitted if no X-factor).
+// 7. source must explain how the rating was derived.
+// 8. No duplicate players (same name + team).
+// 9. Position balance: aim for ~90 players per position (450 total / 5 positions).
+// 10. Total players: ~450 (current NBA rosters, ~15 per team).

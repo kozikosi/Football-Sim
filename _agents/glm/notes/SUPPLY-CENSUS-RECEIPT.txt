@@ -1,0 +1,60 @@
+record count: 1200 | record widths: 11
+first record: ["Ja'Marr Chase","WR","Cincinnati Bengals",99,96,73,92,96,92,99,true]
+
+-- position histogram (name@field-1 · total · ovr>=76 · ovr>=60) --
+WR        151    87   151
+CB        141    81   141
+DT        125    63   125
+HB         89    55    89
+LEDG       71    42    71
+REDG       58    34    58
+SS         54    34    54
+TE         53    30    53
+FS         53    31    53
+MIKE       43    29    43
+RG         43    24    43
+WILL       43    22    43
+QB         40    24    40
+LT         39    29    39
+RT         39    22    39
+LG         38    17    38
+K          32    21    32
+P          32    20    32
+C          31    18    31
+LS         12     6    12
+FB          8     3     8
+SAM         5     1     5
+
+ROSTER_SLOTS.length = 26
+ROSTER_SLOTS = ["QB","RB1","RB2","WR1","WR2","WR3","TE1","TE2","OT1","OT2","OG1","OG2","C","DE1","DE2","DT1","DT2","MIKE","WILL","SAM","CB1","CB2","CB3","SS","FS","K"]
+
+NATURAL_SUPPLY_SLOT_MAP keys: NOT FOUND
+POS_SLOT_MAP keys: NOT FOUND
+
+-- per-team slot classes (26) --
+{"QB":1,"RB1":1,"RB2":1,"WR1":1,"WR2":1,"WR3":1,"TE1":1,"TE2":1,"OT1":1,"OT2":1,"OG1":1,"OG2":1,"C":1,"DE1":1,"DE2":1,"DT1":1,"DT2":1,"MIKE":1,"WILL":1,"SAM":1,"CB1":1,"CB2":1,"CB3":1,"SS":1,"FS":1,"K":1}
+
+-- demand-th best OVR / position (n = drafted instances pool-wide) --
+fill in from note; raw per-position 32nd-best and 64th-best:
+C       32nd: POOL_EXHAUSTED@31 64th: POOL_EXHAUSTED@31 96th:  POOL_EXHAUSTED@31
+CB      32nd:         82 64th:               77 96th:                 74
+DT      32nd:         80 64th:               75 96th:                 73
+FB      32nd: POOL_EXHAUSTED@8 64th: POOL_EXHAUSTED@8 96th:   POOL_EXHAUSTED@8
+FS      32nd:         75 64th: POOL_EXHAUSTED@53 96th:  POOL_EXHAUSTED@53
+HB      32nd:         81 64th:               74 96th:  POOL_EXHAUSTED@89
+K       32nd:         71 64th: POOL_EXHAUSTED@32 96th:  POOL_EXHAUSTED@32
+LEDG    32nd:         77 64th:               72 96th:  POOL_EXHAUSTED@71
+LG      32nd:         72 64th: POOL_EXHAUSTED@38 96th:  POOL_EXHAUSTED@38
+LS      32nd: POOL_EXHAUSTED@12 64th: POOL_EXHAUSTED@12 96th:  POOL_EXHAUSTED@12
+LT      32nd:         73 64th: POOL_EXHAUSTED@39 96th:  POOL_EXHAUSTED@39
+MIKE    32nd:         75 64th: POOL_EXHAUSTED@43 96th:  POOL_EXHAUSTED@43
+P       32nd:         72 64th: POOL_EXHAUSTED@32 96th:  POOL_EXHAUSTED@32
+QB      32nd:         73 64th: POOL_EXHAUSTED@40 96th:  POOL_EXHAUSTED@40
+REDG    32nd:         76 64th: POOL_EXHAUSTED@58 96th:  POOL_EXHAUSTED@58
+RG      32nd:         72 64th: POOL_EXHAUSTED@43 96th:  POOL_EXHAUSTED@43
+RT      32nd:         72 64th: POOL_EXHAUSTED@39 96th:  POOL_EXHAUSTED@39
+SAM     32nd: POOL_EXHAUSTED@5 64th: POOL_EXHAUSTED@5 96th:   POOL_EXHAUSTED@5
+SS      32nd:         76 64th: POOL_EXHAUSTED@54 96th:  POOL_EXHAUSTED@54
+TE      32nd:         75 64th: POOL_EXHAUSTED@53 96th:  POOL_EXHAUSTED@53
+WILL    32nd:         74 64th: POOL_EXHAUSTED@43 96th:  POOL_EXHAUSTED@43
+WR      32nd:         83 64th:               77 96th:                 75

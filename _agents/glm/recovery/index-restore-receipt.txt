@@ -1,0 +1,8 @@
+INDEX.md restore completed 2026-10-21T00:37:30Z — byte-exact from stash@{1}:INDEX.md
+Gate history: first attempt SKIPPED (line-set check found 3 'live-only' lines); the 3 proved to be OLDER wordings of stash lines; restore then completed.
+- live l.5 'ten core shared documents' (no meaning note)
+    -> superseded by: stash l.5 'eleven core shared documents' + meaning note
+- live l.7 '## The 10 documents that matter'
+    -> superseded by: stash l.7 '## The 11 documents that matter'
+- live l.55 where-work-lands without PROMPTS row
+    -> superseded by: stash l.56 same line + 'Prompts to Claude -> PROMPTS-TO-ARCHITECT.md' + stash-only l.59-70 SIM-PLATFORM section

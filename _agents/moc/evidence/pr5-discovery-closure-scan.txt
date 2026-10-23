@@ -1,0 +1,92 @@
+====================================================================================================
+MOC1 — PR #5 discovery instance: independent re-derivation (read-only)
+cwd=/Users/kosi/Desktop/Football Sim  utc-run
+====================================================================================================
+
+[a] module loaded: ROOT=/Users/kosi/Desktop/Football Sim
+    (a) admitting lines, verbatim:
+       79 | def discover_speakers() -> set[str]:
+       80 |     """Find exact SPEAKER names in contributor-owned Markdown reports."""
+       81 |     found: set[str] = set()
+       82 |     agents = ROOT / "_agents"
+       83 |     if not agents.is_dir():
+       84 |         return found
+       85 |     for path in agents.rglob("*.md"):
+       86 |         try:
+       87 |             first_line = path.open(encoding="utf-8").readline().strip()
+       88 |         except (OSError, UnicodeError):
+       89 |             continue
+       90 |         match = re.match(r"^SPEAKER:\s*(.*?)\s*\|\s*ROLE:", first_line)
+       91 |         if match and match.group(1).strip():
+       92 |             found.add(match.group(1).strip())
+       93 |     return found
+
+    discover_speakers() -> 4 name(s): ['GLM', 'Lightning', 'MOC', 'MiniMax subagent (run-reconciliation)']
+
+    attribution (first matching file per name):
+      'GLM'                                            6 file(s)
+           _agents/glm/architecture/REPO-ARCHITECTURE-OPTIONS.md
+           _agents/glm/notes/football-metrics-wins-audit.md
+           _agents/glm/notes/owner-q5-canonical-questions.md
+           ... +3 more
+      'Lightning'                                      1 file(s)
+           _agents/lightning/notes/report-back-to-longcat.md
+      'MOC'                                            1 file(s)
+           _agents/moc/MOC.md
+      'MiniMax subagent (run-reconciliation)'          1 file(s)  <-- NON-COUNCIL identity
+           _agents/minimax/recon/run-reconciliation-v2.proposed.md
+
+    ledger ranked speakers : 0
+    ledger observed speakers: 4
+    => UNASSESSED list the report would print (7):
+         'GLM'
+         'GPT'
+         'Lightning'
+         'LongCat'
+         'MiniMax subagent (run-reconciliation)'   <-- NON-COUNCIL
+         'MOC'
+         'Ultra'
+
+    published artefact COUNCIL-SCORECARD.md: exists=True | unassessed names present in it: ['GLM', 'GPT', 'Lightning', 'LongCat', 'MOC', 'Ultra']
+        > | 3 | GLM (Council advisor) | moderate | Repeated measurements and useful project records; contributed to reconciling build and documentation state. | Some stat
+        > | 10 | GPT (Co-architect) | low | The earlier review credited GPT with finding document and Git-history inconsistencies and proposing workflow improvements. | T
+        > **Assessor:** GPT (initial continuity assessment; independent review requested). Independent review: pending.
+        > | Lightning | UNASSESSED — forwarding event only | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consistently present in 
+        > | GPT | E2E evidence reconciliation | REPORTED | GPT separated a script reference from proof of execution, kept an unavailable run UNKNOWN, and preserved the PA
+        > | GPT (forwarded by Lightning) | E2E report forwarding | REPORTED | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consist
+        > - The initial order carries forward an earlier GPT assessment and awaits independent critique. Several entries rely on reported summaries rather than a fresh au
+        > | Lightning | UNASSESSED — forwarding event only | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consistently present in 
+        > | GPT (forwarded by Lightning) | E2E report forwarding | REPORTED | The supplied excerpt retains GPT as its stated speaker. The forwarding label was not consist
+        > | LongCat | emerging — task-specific; not placed in cross-project order | The reported verifier package includes candidate and negative-control hashes, an exact
+        > | LongCat | Independent verifier report | REPORTED | The reported verifier package includes candidate and negative-control hashes, an exact command and runner d
+        > | MOC | emerging — task-specific; not placed in cross-project order | The supplied reconciliation is unusually specific about what the trace does and does not p
+        > | MOC | E2E evidence reconciliation | REPORTED | The supplied reconciliation is unusually specific about what the trace does and does not prove. It distinguishe
+        > | 6 | Nemo Ultra (Council advisor) | low | Broad architectural coverage and useful risk areas in the earlier records reviewed. | Some specific claims were chall
+        > | Nemo Ultra | E2E result correction | REPORTED | Ultra first circulated a PASS summary, then supplied a corrected PARTIAL result after the protocol gap was ide
+
+====================================================================================================
+[b] REPO-WIDE SCAN (excluding ['.conda', '.git', '.kilo', '_reference', 'backup-before-reorg', 'node_modules', 'test-results']): 9 file(s) whose FIRST line matches the SPEAKER pattern
+    inside the generator's walk root (_agents/**) : 9
+    outside it (LATENT for the current generator)  : 0
+====================================================================================================
+
+  INSIDE the walk — ADMITTED by discover_speakers() as it stands:
+    'GLM'                                            _agents/glm/architecture/REPO-ARCHITECTURE-OPTIONS.md
+    'GLM'                                            _agents/glm/notes/architecture-options.md
+    'GLM'                                            _agents/glm/notes/football-metrics-wins-audit.md
+    'GLM'                                            _agents/glm/notes/hockey-baseball-analogy-test.md
+    'GLM'                                            _agents/glm/notes/owner-direction-integration.md
+    'GLM'                                            _agents/glm/notes/owner-q5-canonical-questions.md
+    'Lightning'                                      _agents/lightning/notes/report-back-to-longcat.md
+    'MiniMax subagent (run-reconciliation)'          _agents/minimax/recon/run-reconciliation-v2.proposed.md
+    'MOC'                                            _agents/moc/MOC.md
+
+  OUTSIDE the walk — LATENT (would be admitted if the walk widened; not admitted today):
+
+  [c] LIVE vs LATENT classification:
+      LIVE + WRONGLY ADMITTED (non-council identity, in the walk): 1
+        'MiniMax subagent (run-reconciliation)' <- _agents/minimax/recon/run-reconciliation-v2.proposed.md
+      LIVE + correctly admitted (council seat, in the walk)     : 8
+      LATENT (matches the pattern, outside the walk)            : 0
+      IDLE-but-misattributable (in the walk, first line names a DIFFERENT seat):
+        (count: 0)

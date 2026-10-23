@@ -1,0 +1,2 @@
+function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.pow(Math.random(),1.0)*4.0; return draftSim.noiseSd[teamIndex]; }
+function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.pow(Math.random(),0.9)*0.95; return draftSim.missP[teamIndex]; }

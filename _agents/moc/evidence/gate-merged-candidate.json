@@ -1,0 +1,65 @@
+{
+	"run": {
+		"utc": "2026-10-20T22:41:59.706Z",
+		"tool": "post-merge-smoke.mjs",
+		"tool_version": "3 (2026-10-20) — restored byte-for-byte from origin/council-intake after the 12:13 lane deletion, then re-patched with the season-path enumeration and this run identity",
+		"artifact_path": "NFL Draft Simulator merged.html",
+		"artifact_sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+		"artifact_bytes": 657486,
+		"artifact_basename": "NFL Draft Simulator merged.html",
+		"git_ref": "merge/v20-donor @ ff8c05ae0ef8",
+		"git_commit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+		"browser": "Chromium-family over CDP (--remote-debugging-port=9222)",
+		"browser_version": "Chrome/151.0.7922.137",
+		"viewport": {
+			"desktop": "1280x900",
+			"mobile": "390x844"
+		},
+		"seed": "none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed",
+		"evidence_name": "e2e-40233d6be00e-2026-10-20.json"
+	},
+	"verdict": "PASS",
+	"skipped_checks": [],
+	"build": "NFL%20Draft%20Simulator%20merged.html",
+	"checks": {
+		"A_reportRendered": true,
+		"D_seasonAndPlayoffsComplete": true,
+		"B_noViewportOverflow": true,
+		"C_noPageErrors": true
+	},
+	"detail": {
+		"steps": {
+			"startDraft": true,
+			"instant": true,
+			"simToEnd": true,
+			"reportPath": "ui-button",
+			"reportRendered": true,
+			"reportStalled": false,
+			"season": {
+				"entryPath": "already-rendered",
+				"startHandle": "startSeasonBtn",
+				"heroHandle": null,
+				"beginHandle": "beginSeasonBtn",
+				"simHandle": "simSeasonBtn",
+				"regularDone": true,
+				"gamesPlayed": 272
+			},
+			"playoffs": {
+				"beginHandle": false,
+				"simHandle": "simPlayoffsBtn",
+				"complete": true,
+				"champion": "Houston Texans"
+			}
+		},
+		"draftPicks": "832/832",
+		"reportPath": "ui-button",
+		"reportRendered": true,
+		"reportStalled": false,
+		"pageErrors": [],
+		"offenderCount": 0,
+		"offenders": [],
+		"pageOverflowPx": 0,
+		"documentScrollWidth": 390,
+		"bodyOverflowX": "hidden"
+	}
+}

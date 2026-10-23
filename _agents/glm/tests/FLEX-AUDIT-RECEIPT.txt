@@ -1,0 +1,60 @@
+# GLM flex-audit receipt — strict-matching re-run (M-20261022-f), 2026-10-23T00:17:01Z
+# tool: _agents/glm/tests/flex-audit.js (min-cost bipartite, slot-type nodes, demand 32/slot)
+# procedure re-derived from LongCat _agents/longcat/notes/flex-mechanism.md; original receipts:
+#   _agents/longcat/evidence/fill-matching-result.txt · _agents/moc/evidence/fill-matching-mverify.txt
+
+## inputs
+_agents/pickle/builds/Football-Sim-PreColors.html : 40233d6be00e987c   657486 B   (PreColors, One to anchor against)
+"NFL Draft Simulator merged.html" : 044d1759e01ac99b   656746 B   (retired build, comparison only)
+
+## literal-block fingerprints (sha256-16 of the exact JS literal text)
+build            _agents/pickle/builds/Football-Sim-PreColors.html-plc        NFL Draft Simulator merged.html-wk
+PLAYERS          09627f9f05a6e26a	PLAYERS          09627f9f05a6e26a
+ROSTER_SLOTS     cf8941e915c89ef9	ROSTER_SLOTS     cf8941e915c89ef9
+NATURAL_SLOT_MAP 59885ca9066c6627	NATURAL_SLOT_MAP 59885ca9066c6627
+SLOT_FAMILY      d09f587641250145	SLOT_FAMILY      d09f587641250145
+LB_FLEX          b364fe6db8981dee	LB_FLEX          b364fe6db8981dee
+FLEX             df00185817c58d4b	FLEX             df00185817c58d4b
+
+## config A (26 slots) — PreColors
+build: _agents/pickle/builds/Football-Sim-PreColors.html
+config: A | slots: 26 players: 1200 demand: 832
+eligible edges: 12210
+flow: 832/832 | total penalty: 54 | avg/slot: 0.0649
+penalty histogram: {"0":816,"2":5,"4":11,"6":0,"8":0}
+slots with flex: {"TE2":{"fills":{"TE":21,"WR":11},"flexed":11,"penalty":44},"SAM":{"fills":{"LEDG":2,"REDG":2,"SS":1,"WILL":16,"MIKE":9,"SAM":2},"flexed":5,"penalty":10}}
+
+## config B (28 slots, roster+FB1+P1; HB->FB1=0, K->P1=0 one-way) — PreColors
+build: _agents/pickle/builds/Football-Sim-PreColors.html
+config: B | slots: 28 players: 1200 demand: 896
+eligible edges: 12339
+flow: 896/896 | total penalty: 54 | avg/slot: 0.0603
+penalty histogram: {"0":880,"2":5,"4":11,"6":0,"8":0}
+slots with flex: {"TE2":{"fills":{"TE":21,"WR":11},"flexed":11,"penalty":44},"SAM":{"fills":{"LEDG":2,"REDG":2,"SS":1,"WILL":16,"MIKE":9,"SAM":2},"flexed":5,"penalty":10}}
+
+## config A — retired build (comparison)
+build: NFL Draft Simulator merged.html
+config: A | slots: 26 players: 1200 demand: 832
+eligible edges: 12210
+flow: 832/832 | total penalty: 54 | avg/slot: 0.0649
+penalty histogram: {"0":816,"2":5,"4":11,"6":0,"8":0}
+slots with flex: {"TE2":{"fills":{"TE":21,"WR":11},"flexed":11,"penalty":44},"SAM":{"fills":{"LEDG":2,"REDG":2,"SS":1,"WILL":16,"MIKE":9,"SAM":2},"flexed":5,"penalty":10}}
+
+## config B — retired build (comparison)
+build: NFL Draft Simulator merged.html
+config: B | slots: 28 players: 1200 demand: 896
+eligible edges: 12339
+flow: 896/896 | total penalty: 54 | avg/slot: 0.0603
+penalty histogram: {"0":880,"2":5,"4":11,"6":0,"8":0}
+slots with flex: {"TE2":{"fills":{"TE":21,"WR":11},"flexed":11,"penalty":44},"SAM":{"fills":{"LEDG":2,"REDG":2,"SS":1,"WILL":16,"MIKE":9,"SAM":2},"flexed":5,"penalty":10}}
+
+## comparison targets
+LongCat (fill-matching-result.txt):        edges 12210 · flow 832 · penalty 54 · hist {0:816,2:5,4:11}
+LongCat (fill-matching-fbp-result.txt):    flow 896/896 · penalty 54 · hist {0:880,2:5,4:11} · TE2 flexed 11 · SAM flexed 5
+MOC   (fill-matching-mverify.txt A):       flow 832/832 · penalty 54 · hist {0:816,2:5,4:11} · K by K 32 · TE2 {TE 21, WR 11}
+MOC   (fill-matching-mverify.txt B):       flow 896/896 · penalty 54 · FB1 {HB 25, FB 7} · P1 {P 32}
+
+## result
+832/832 penalty 54 and 896/896 penalty 54 CONFIRMED on 40233d6b; all six literal blocks
+byte-identical to the retired build, so the strict-matching result cannot differ (pure function).
+Composition differs from MOC only inside optimal ties (my SAM fills: LEDG 2 + REDG 2 + SS 1 + WILL 16 + MIKE 9 + SAM 2, total flexed 5 · penalty 10; MOC: WILL 22/SAM 5/LEDG 5).
