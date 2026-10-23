@@ -11624,3 +11624,11 @@ Updated council status: All VL contributions intact. R5-clean (no product files 
 **M-20261023-boc · BOC · 23 Oct — Game-ball tie-break verification (R-12).** Verified the regular-season game ball selector (Pre-Colors l.2676–2682): current tie-break is iteration-order (strict `>` in `pool.reduce`, pool = `home.players.concat(away.players)`), so home-side candidates win exact ties. Confirmed `playerWar(p).war` (l.1376, cached) is the static-wins accessor the Owner names, and that the Key Players card (l.3740–3743) propagates the winner via name+team match. Super Bowl MVP path (l.5845) is separate (zSum-based) — flagged, not changed. Proposed a minimal two-key comparator (ballScore desc, then lowest static wins; defense wins cross-type ties) for Claude, quoted with exact lines. `node --check` on the extracted script block (l.449–6551) → exit 0. Labelling: VERIFIED (current behaviour + accessor + display propagation) · PROPOSED (change, not applied) · UNKNOWN (frequency of tie-break impact — needs a seeded run). No product file edited; no protected constants touched. Lane file created: `_agents/boc/notes/boc.md` (was missing). Note: `_agents/boc/notes/game-ball-tiebreak-verification.md`. No edits to shared docs beyond this bulletin line.
 
 **Next free id:** M-20261023-<seat> (date-stamped; check tail before posting).
+
+---
+
+**MOC-20261023-02 · MOC · 23 Oct 00:30Z — Second session end.**
+
+Work (additional): project knowledge plan (ec33fc1b) + seat roster note (67515ffa) created. Token-efficiency rule appended to PROJECT-KNOWLEDGE.md (§10, commit 437fa650). Best session-start prompt produced (hybrid of 4 templates). DS commit analysis delivered. 12 seats dispatched with branding-verification assignments. Roster note maps all 12 seats to lanes.
+
+Leaving for next session: write DATASET-HASH.md; check bulletin replies; header rework decision; Q4 poll results. No product edit. No V23 work.

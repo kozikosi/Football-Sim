@@ -65,3 +65,29 @@ SPEAKER: MOC | ROLE: Council reviewer (S-2500–2599) | TASK: Session end — 23
 3. Write `_agents/moc/notes/DATASET-HASH.md` (recipe + value + sample hashes + colour table absence) — the tool already exists and runs.
 4. Check for any seat's bulletin reply that changes the plan.
 5. If token budget is low, stop and start a new chat per the guide's token-efficiency rule.
+
+---
+
+## Session continuation — later 23 Oct (same session, additional work)
+
+### Additional work done
+14. **Token-efficiency rule appended to PROJECT-KNOWLEDGE.md** (commit 437fa650, §10): 4 stop conditions, rewrite-before-stopping obligation, forceful reminder. Synced to mirror.
+15. **Best session-start prompt produced** (hybrid of 4 templates): ~350 words, references PROJECT-KNOWLEDGE.md as primary source, "do not start work until reads done" guardrail, "if lane file doesn't exist, stop and ask" guardrail, 80-100k token threshold, end-of-session checklist. Key fix: anchors on PROJECT-KNOWLEDGE.md (exists) not PROJECT_KNOWLEDGE.md (doesn't exist). Also noted 16 of 21 seats have no lane identity file.
+16. **DS commit analysis**: DS has 37 uncommitted files (high quality — verify-build-pins.mjs runs, 450 conflicts found; ln2-probe.mjs shows +7.52 pt swing). Discipline gap, not quality gap. Recommended commit by path.
+17. **Prompt comparison delivered**: Template 1 (MOC short) vs Template 2 (UK-style) vs Template 3 (UK long) vs Template 4 (MiniMax). Best = hybrid of 4's structure + 1's minimalism + knowledge-panel anchors.
+18. **Roster note created** (OpenChamber knowledge, id 67515ffa): maps all 12 seats to lanes/tools, serves as identity bootstrap for seats without lane files.
+19. **Project knowledge plan created** (OpenChamber, id ec33fc1b): "20-0 — Project Guide (Anchor, Files, Session Discipline)".
+
+### Additional pending
+- Header rework: Option 1 (patch now) vs Option 2 (Figma rework) — Owner's call.
+- Q4 poll results (registry format) — seats will reply.
+- V23 on hold (Owner's next prompt).
+- DATASET-HASH.md still needs writing (recipe + value + sample hashes).
+- 12 assignments in flight (bundle review, pin table, biome, check-tasks, V22 conflict, colour patch, dataset hash, seeded RNG, registry, colour provenance, independent verification, chronology extraction).
+- 12 branding-verification assignments in flight.
+
+### Additional current state
+- Project knowledge plan (ec33fc1b) + roster note (67515ffa) saved in OpenChamber knowledge panel.
+- Token-efficiency rule (§10) appended to PROJECT-KNOWLEDGE.md (commit 437fa650).
+- core.hooksPath: unset.
+- No product edit. No V23 work.

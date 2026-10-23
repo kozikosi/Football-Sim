@@ -135,3 +135,10 @@ Start a new chat when:
 - "Glossary" rename: Yes — one line
 - Guide panel on homepage: remove panel and text — both pages
 - "Value here" visible anywhere: already removed; sort dropdown option being removed
+
+## 11. Session 2026-10-23 (MOC) — second end-of-session log
+
+- **Seat:** MOC (Council reviewer, S-2500–2599)
+- **What changed (additional):** project knowledge plan created (ec33fc1b) + seat roster note (67515ffa) in OpenChamber. Token-efficiency rule appended to PROJECT-KNOWLEDGE.md (§10, commit 437fa650). Best session-start prompt produced (hybrid of 4 templates, ~350 words). DS commit analysis delivered (discipline gap, not quality gap; verify-build-pins.mjs + ln2-probe.mjs verified working). 12 seats dispatched with branding-verification assignments. Roster note maps all 12 seats to lanes/tools (fixes the "no lane file" gap for 16 seats).
+- **New open questions:** header rework Option 1 vs 2; Q4 poll results; V23 on hold.
+- **Updated council status:** project knowledge panel now has identity note + guide plan. Token-efficiency rule is in PROJECT-KNOWLEDGE.md. No product edit. No V23 work.
