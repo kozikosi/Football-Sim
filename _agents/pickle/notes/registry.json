@@ -1,0 +1,5800 @@
+{
+  "generatedBy": "_agents/pickle/tools/work-order-registry.mjs",
+  "generatedFrom": "/Users/kosi/Desktop/Football Sim/V22-Suggestions.md",
+  "note": "Re-run after any edit to the work order; the markdown is the source, this JSON is a projection.",
+  "totals": {
+    "headings": 342,
+    "withId": 199,
+    "houseFormComplete": 4,
+    "bySection": {
+      "Owner rulings — 22 Oct 2026 (binding)": 8,
+      "The nine workstreams, and what each one contains": 7,
+      "P0 — Draft board fixes": 25,
+      "P1 — Architect decisions": 28,
+      "P2 — Owner decisions": 5,
+      "Appendix K — The Owner's direct instructions, and where each one is handled": 22,
+      "P8 — Council-only notes (not for Claude to implement; for the record)": 8,
+      "P9 — Mermaid diagrams (Beam's suggestions, 21 Oct)": 3,
+      "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass": 9,
+      "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)": 5,
+      "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION": 45,
+      "PRIORITY SUMMARY FOR CLAUDE": 22,
+      "P11 — Council-only notes (not for Claude to implement; for the record)": 8,
+      "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports": 8,
+      "How to read this document (MOC, coordinator) — one numbering, one form, one order": 5,
+      "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him": 7,
+      "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED": 6,
+      "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION": 14,
+      "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap": 8,
+      "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)": 7,
+      "Proposed changes": 43,
+      "Current state": 3,
+      "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend": 20,
+      "P14 · The team-colour canvas — twenty surfaces, each with one rule, each takeable (MiniMax, 22 Oct 04:35)": 3,
+      "P15 · The tool map, and the Figma hand-off packet (MiniMax, 22 Oct 04:55) — one designer, many authors": 3,
+      "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)": 7,
+      "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words": 5,
+      "P18 · The 3-4 is a label, and nothing about the maths changes (MiniMax, 22 Oct 09:40) — the Owner's ruling, and the retirement of the \"real front\" question": 3,
+      "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)": 5
+    }
+  },
+  "incomplete": {
+    "missingHowToCheck": [
+      "P0-1",
+      "P0-2",
+      "P0-3",
+      "P0-4",
+      "P0-5",
+      "P0-6",
+      "P0-7",
+      "P0-8",
+      "P0-9",
+      "P0-10",
+      "P0-11",
+      "P0-12",
+      "P0-13",
+      "P0-14",
+      "P0-15",
+      "P0-16",
+      "P0-17",
+      "P0-18",
+      "P0-19",
+      "P0-20",
+      "P0-29",
+      "P1-1",
+      "P1-2",
+      "P1-3",
+      "P1-4",
+      "P1-5",
+      "P1-6",
+      "P1-7",
+      "P1-8",
+      "P1-9",
+      "P1-10",
+      "P1-11",
+      "P1-12",
+      "P1-13",
+      "P1-14",
+      "P1-15",
+      "P1-16",
+      "P1-17",
+      "P1-18",
+      "P1-19",
+      "P1-20",
+      "P1-21",
+      "P1-22",
+      "P1-23",
+      "P1-27",
+      "P1-28",
+      "P1-29",
+      "P1-30",
+      "P1-31",
+      "P2-1",
+      "P2-2",
+      "P2-3",
+      "P2-4",
+      "P2-5",
+      "P7-1",
+      "P7-2",
+      "P7-3",
+      "P7-4",
+      "P7-5",
+      "P7-6",
+      "P7-7",
+      "P7-8",
+      "P7-9",
+      "P7-10",
+      "P7-11",
+      "P7-12",
+      "P7-13",
+      "P7-14",
+      "P8-1",
+      "P8-2",
+      "P8-3",
+      "P8-4",
+      "P8-5",
+      "P8-6",
+      "P8-7",
+      "P8-8",
+      "P9-1",
+      "P9-2",
+      "P9-3",
+      "P10-1",
+      "P10-2",
+      "P10-3",
+      "P10-4",
+      "P10-5",
+      "P10-6",
+      "P10-7",
+      "P10-8",
+      "P10-9",
+      "P0-25",
+      "P0-26",
+      "P0-27",
+      "P0-28",
+      "P0-30",
+      "P0-30",
+      "P0-31",
+      "P0-32",
+      "P0-33",
+      "P0-21",
+      "P0-22",
+      "P0-23",
+      "P0-24",
+      "P0-34",
+      "P0-35",
+      "P0-36",
+      "P10-16",
+      "P10-17",
+      "P10-18",
+      "P10-19",
+      "P10-20",
+      "P10-21",
+      "P10-22",
+      "P10-23",
+      "P10-24",
+      "P10-10",
+      "P10-11",
+      "P10-12",
+      "P10-13",
+      "P10-14",
+      "P10-15",
+      "P11-1",
+      "P11-2",
+      "P11-3",
+      "P11-4",
+      "P11-5",
+      "P11-6",
+      "P11-7",
+      "P11-8",
+      "P11-9",
+      "P11-10",
+      "P11-11",
+      "P11-12",
+      "P11-13",
+      "P11-14",
+      "P11-15",
+      "P11-16",
+      "P0-18",
+      "P0-19",
+      "P0-20",
+      "P0-21",
+      "P0-22",
+      "P0-23",
+      "P0-24",
+      "P0-25",
+      "P0-26",
+      "P0-26b",
+      "P0-26c",
+      "P0-26c",
+      "P0-26d",
+      "P0-27",
+      "P12-1",
+      "P12-2",
+      "P12-3",
+      "P12-4",
+      "P12-5",
+      "P12-6",
+      "P12-7",
+      "P12-8",
+      "P13-1",
+      "P13-2",
+      "P13-2b",
+      "P13-3",
+      "P13-4",
+      "P13-5",
+      "P13-6",
+      "P12-1",
+      "P12-2",
+      "P12-3",
+      "P12-4",
+      "P12-5",
+      "P12-6",
+      "P12-7",
+      "P12-8",
+      "P12-9",
+      "P15-1",
+      "P15-2",
+      "P15-3",
+      "P16-1",
+      "P16-2",
+      "P16-3",
+      "P16-4",
+      "P16-5",
+      "P16-6",
+      "P16-7",
+      "P17-1",
+      "P17-2",
+      "P17-3",
+      "P17-4",
+      "P17-5",
+      "P18-1",
+      "P18-2",
+      "P18-3"
+    ]
+  },
+  "protectedTouching": [
+    {
+      "id": "P0-7",
+      "constants": [
+        "DEFAULT_WEIGHTS"
+      ]
+    },
+    {
+      "id": "P0-17",
+      "constants": [
+        "FLEX",
+        "NATURAL_SLOT_MAP"
+      ]
+    },
+    {
+      "id": "P0-18a",
+      "constants": [
+        "DEFAULT_WEIGHTS",
+        "FLEX"
+      ]
+    },
+    {
+      "id": "P1-12",
+      "constants": [
+        "FLEX"
+      ]
+    },
+    {
+      "id": "P10-1",
+      "constants": [
+        "FLEX"
+      ]
+    },
+    {
+      "id": "P0-18",
+      "constants": [
+        "DEFAULT_WEIGHTS"
+      ]
+    },
+    {
+      "id": "P0-27",
+      "constants": [
+        "DEFAULT_WEIGHTS"
+      ]
+    },
+    {
+      "id": "P12-4",
+      "constants": [
+        "RATING_SPECS"
+      ]
+    },
+    {
+      "id": "P18-2",
+      "constants": [
+        "FLEX",
+        "RATING_SPECS"
+      ]
+    }
+  ],
+  "items": [
+    {
+      "id": null,
+      "title": "Owner answers — 22 Oct 06:00Z (MOC's six questions, answered)",
+      "line": 51,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3539
+    },
+    {
+      "id": null,
+      "title": "Third binding block — the Owner's answers, 22 Oct 10:15Z",
+      "line": 64,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2336
+    },
+    {
+      "id": null,
+      "title": "Owner answers — 22 Oct 10:10Z (second round)",
+      "line": 76,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX"
+      ],
+      "bodyChars": 2448
+    },
+    {
+      "id": null,
+      "title": "R-20 · The hash-pinning poll — the Owner's question, put to the council",
+      "line": 87,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 618
+    },
+    {
+      "id": null,
+      "title": "R-11 resolved — the plain-language version, with receipts (UK, 22 Oct)",
+      "line": 102,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2756
+    },
+    {
+      "id": null,
+      "title": "R-12 disambiguated — the tie rule, and what the code can actually express (UK, 22 Oct)",
+      "line": 143,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3427
+    },
+    {
+      "id": null,
+      "title": "R-10 field availability (UK, 22 Oct) — both branches are implementable",
+      "line": 183,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1282
+    },
+    {
+      "id": null,
+      "title": "R-9 / R-14 — the hex question, narrowed (UK, 22 Oct)",
+      "line": 203,
+      "section": "Owner rulings — 22 Oct 2026 (binding)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2406
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Game Preview — `P8-g.1` · R3 · protected constants, no approval yet",
+      "line": 349,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3463
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Game Review — `P8-g.3` · R3 · protected constants, no approval yet",
+      "line": 389,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3492
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Season Review — `P8-g.4` · R3 · protected constants, no approval yet",
+      "line": 425,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3609
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — 100-Season Review — `P8-g.5` · R3 · protected constants, no approval yet",
+      "line": 461,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3909
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Playoff Bracket + Conference Charts — `P8-g.6` · R3 · protected constants, no approval yet",
+      "line": 497,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3494
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Star/Ball Presentation — `P8-g.7` · R3 · protected constants, no approval yet",
+      "line": 531,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3449
+    },
+    {
+      "id": null,
+      "title": "Graphics Round — Guide's Visual Language — `P8-g.8` · R3 · protected constants, no approval yet",
+      "line": 565,
+      "section": "The nine workstreams, and what each one contains",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [
+        "FLEX"
+      ],
+      "bodyChars": 7527
+    },
+    {
+      "id": "P0-1",
+      "title": "P0-1. Remove \"Value Here\" from visual draft board (already prototyped)",
+      "line": 671,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1269
+    },
+    {
+      "id": "P0-2",
+      "title": "P0-2. Remove \"MORE\" from tab footer",
+      "line": 687,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 77
+    },
+    {
+      "id": "P0-3",
+      "title": "P0-3. Move badges to bottom of page under weights",
+      "line": 690,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 416
+    },
+    {
+      "id": "P0-4",
+      "title": "P0-4. \"Use model weights\" → \"Default\"",
+      "line": 697,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 57
+    },
+    {
+      "id": "P0-5",
+      "title": "P0-5. \"Back to my weights\" → \"Save My Weights\" (conditional visibility)",
+      "line": 700,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 479
+    },
+    {
+      "id": "P0-6",
+      "title": "P0-6. Weights table label correction",
+      "line": 708,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 274
+    },
+    {
+      "id": "P0-7",
+      "title": "P0-7. Delete user weights record",
+      "line": 711,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "DEFAULT_WEIGHTS"
+      ],
+      "bodyChars": 98
+    },
+    {
+      "id": "P0-8",
+      "title": "P0-8. Player browser: ~15 players on desktop",
+      "line": 714,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 268
+    },
+    {
+      "id": "P0-9",
+      "title": "P0-9. Position Rankings: complete combinations",
+      "line": 719,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 578
+    },
+    {
+      "id": "P0-10",
+      "title": "P0-10. Team Comparison",
+      "line": 729,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 745
+    },
+    {
+      "id": "P0-11",
+      "title": "P0-11. Guide page changes",
+      "line": 736,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1216
+    },
+    {
+      "id": "P0-12",
+      "title": "P0-12. Draft board V22 changes",
+      "line": 750,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1022
+    },
+    {
+      "id": "P0-13",
+      "title": "P0-13. Week 1 display",
+      "line": 766,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 261
+    },
+    {
+      "id": "P0-14",
+      "title": "P0-14. 390px P0",
+      "line": 769,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 339
+    },
+    {
+      "id": "P0-15",
+      "title": "P0-15. Coaching philosophy / aggressiveness: available all season + description text",
+      "line": 772,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1137
+    },
+    {
+      "id": "P0-16",
+      "title": "P0-16. Base defense selection (3-4 vs 4-3) on draft/preseason page",
+      "line": 784,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 230
+    },
+    {
+      "id": "P0-17",
+      "title": "P0-17. Flex rules overhaul (Owner feedback, 21 Oct) — PROTECTED CONSTANTS",
+      "line": 789,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX",
+        "NATURAL_SLOT_MAP"
+      ],
+      "bodyChars": 2193
+    },
+    {
+      "id": "P0-18",
+      "title": "P0-18. Game recap UI/text improvements (Owner feedback, 21 Oct, wave 2)",
+      "line": 829,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 4743
+    },
+    {
+      "id": "P0-18a",
+      "title": "P0-18a · Stars and the game ball — `R-6` + `R-10` + `R-12`, measured against the build",
+      "line": 881,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": true,
+        "what": false,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "DEFAULT_WEIGHTS",
+        "FLEX"
+      ],
+      "bodyChars": 4362
+    },
+    {
+      "id": "P0-18b",
+      "title": "P0-18b · [OWNER DIRECTIVE] \"Start Draft\" must be more attractive, more beautiful, and addicting",
+      "line": 952,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": true,
+        "what": false,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3303
+    },
+    {
+      "id": "P0-19",
+      "title": "P0-19. Season review / playoff preview UI improvements (Owner feedback, 21 Oct, wave 2)",
+      "line": 1001,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3634
+    },
+    {
+      "id": "P0-20a",
+      "title": "P0-20a · The \"Play a Season\" handoff — the hero is live, its duplicate is dead, and `P0-20` is aimed at that dead code",
+      "line": 1047,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 7017
+    },
+    {
+      "id": "P0-20",
+      "title": "P0-20. The draft-complete gate is hardcoded to 26 rounds and will cut off picks 833–896",
+      "line": 1152,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": true,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3126
+    },
+    {
+      "id": "P0-29",
+      "title": "P0-29: Expanded Team Color Theming — Full Simulation Integration",
+      "line": 1193,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": true,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 5411
+    },
+    {
+      "id": "P0-31",
+      "title": "P0-31: The Homepage — \"The Draft Card\" (Owner's request, 22 Oct)",
+      "line": 1292,
+      "section": "P0 — Draft board fixes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 8484
+    },
+    {
+      "id": "P1-1",
+      "title": "P1-1. Merge keep-list",
+      "line": 1440,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 478
+    },
+    {
+      "id": "P1-2",
+      "title": "P1-2. Merge surface branch",
+      "line": 1443,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 392
+    },
+    {
+      "id": "P1-3",
+      "title": "P1-3. setActiveTab tail line",
+      "line": 1446,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 161
+    },
+    {
+      "id": "P1-4",
+      "title": "P1-4. Wrapper",
+      "line": 1449,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 238
+    },
+    {
+      "id": "P1-5",
+      "title": "P1-5. cpuPick keep-direction",
+      "line": 1452,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 86
+    },
+    {
+      "id": "P1-6",
+      "title": "P1-6. phone-layout block",
+      "line": 1455,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 121
+    },
+    {
+      "id": "P1-7",
+      "title": "P1-7. \"sudden death\" (v20:2880) / \"went the distance\" (v20:2898)",
+      "line": 1458,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 63
+    },
+    {
+      "id": "P1-8",
+      "title": "P1-8. Shared copy debt",
+      "line": 1461,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 174
+    },
+    {
+      "id": "P1-9",
+      "title": "P1-9. \"expected scoring\" (v20:4832): stats-explainer only. Compliant as-is or remove?",
+      "line": 1464,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 5
+    },
+    {
+      "id": "P1-10",
+      "title": "P1-10. SIM-CORE markers + 3 headless entry points",
+      "line": 1468,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 172
+    },
+    {
+      "id": "P1-11",
+      "title": "P1-11. SAM scarcity",
+      "line": 1471,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 175
+    },
+    {
+      "id": "P1-12",
+      "title": "P1-12. FB/Punter slots (#12)",
+      "line": 1474,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX"
+      ],
+      "bodyChars": 376
+    },
+    {
+      "id": "P1-13",
+      "title": "P1-13. V22 stats surface",
+      "line": 1477,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 390
+    },
+    {
+      "id": "P1-14",
+      "title": "P1-14. All-time NFL pool",
+      "line": 1480,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 316
+    },
+    {
+      "id": "P1-15",
+      "title": "P1-15. Architecture: repo vs folders",
+      "line": 1483,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 280
+    },
+    {
+      "id": "P1-16",
+      "title": "P1-16. NBA 2K/FIFA ratings as sources",
+      "line": 1486,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 198
+    },
+    {
+      "id": "P1-17",
+      "title": "P1-17. Soccer/baseball closer to football draft; hockey closer to basketball (uncertain). Ranking source/cutoff for soccer leagues above MLS + MLS TBD.",
+      "line": 1489,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-18",
+      "title": "P1-18. Invented ratings files: `sports/football/ratings.json` and `sports/basketball/all_time_draft.json` still present, untracked, origin UNKNOWN. Quarantine recommended (not delete). Owner decides.",
+      "line": 1491,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-19",
+      "title": "P1-19. Archived sessions (Liquid, Glyph, Omni, Cohere): delete contributions unless structural? Recommend: specify exact files/lines before deletion.",
+      "line": 1493,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-20",
+      "title": "P1-20. Default tab: Draft vs Season-first. Owner decides. (Recommended: Season-first, matches donor + project instructions.)",
+      "line": 1495,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-21",
+      "title": "P1-21. STATUS.md overwrite (stale). Fix after verifier. Who updates the hash line?",
+      "line": 1497,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-22",
+      "title": "P1-22. Color-scheme: `light dark` (donor header) vs `light`. (Recommended: `light dark`.)",
+      "line": 1499,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-23",
+      "title": "P1-23. Wrapper: double-wrapped (2 doctypes). Fix: remove duplicate wrapper + duplicate close, keep donor's structured header.",
+      "line": 1501,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-27",
+      "title": "P1-27. E2E Week 1 display: build renders \"Week 1 of 17\" (l.3891). Check not implemented. Protocol change or check implementation? Owner/Architect decide. (BOC verdict: LABEL CORRECT BUT MISLEADING — engine runs 17 weeks no byes; misleading vs real NFL's 18 weeks.)",
+      "line": 1503,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-28",
+      "title": "P1-28. 390px P0: `#startSeasonBtn` at `top=963.03` in 844px viewport (preseason primary-action clause). Functional flow clean. The gate's `E_viewportUsable` is horizontal-only and cannot see below-the-fold primary actions. Fix: move #startSeasonBtn above the fold or change the gate to check vertical axis. (DS M-122 addendum 2, corroborated MOC M-334.)",
+      "line": 1505,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-29",
+      "title": "P1-29. E2E gate receipts are JSON object + trailing summary line (strict parser fails on \"Extra data\"). Fix: `--json` flag or `.json` + `.txt` pair. (MOC M-334.)",
+      "line": 1507,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-30",
+      "title": "P1-30. `hiddenClipped: 1` on `tabDraftBtn` in every run. Unnamed in receipt; worth naming before next run. (MOC M-334.)",
+      "line": 1509,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P1-31",
+      "title": "P1-31. PR #5 scorecard generator admits `_agents/minimax/recon/run-reconciliation-v2.proposed.md`'s `SPEAKER: MiniMax subagent (run-reconciliation)` as a council member. One regeneration from publication. Fix before adopting.",
+      "line": 1511,
+      "section": "P1 — Architect decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": "P2-1",
+      "title": "P2-1. Default tab + STATUS.md (consolidated)",
+      "line": 1515,
+      "section": "P2 — Owner decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 869
+    },
+    {
+      "id": "P2-2",
+      "title": "P2-2. Architecture: repo vs folders (concrete options)",
+      "line": 1522,
+      "section": "P2 — Owner decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 904
+    },
+    {
+      "id": "P2-3",
+      "title": "P2-3. All-time player pool rules",
+      "line": 1528,
+      "section": "P2 — Owner decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 987
+    },
+    {
+      "id": "P2-4",
+      "title": "P2-4. Cleanup: invented ratings + archived sessions",
+      "line": 1535,
+      "section": "P2 — Owner decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 916
+    },
+    {
+      "id": "P2-5",
+      "title": "P2-5. Week 1 display + E2E acceptance",
+      "line": 1542,
+      "section": "P2 — Owner decisions",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1004
+    },
+    {
+      "id": null,
+      "title": "A · Coaching philosophy and aggressiveness",
+      "line": 1631,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1149
+    },
+    {
+      "id": null,
+      "title": "B · Aggressiveness copy — exact wording",
+      "line": 1646,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 835
+    },
+    {
+      "id": null,
+      "title": "C · Base defense, flex rules, FB and P",
+      "line": 1656,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1051
+    },
+    {
+      "id": null,
+      "title": "D · Game preview",
+      "line": 1670,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1230
+    },
+    {
+      "id": null,
+      "title": "E · Game review",
+      "line": 1687,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1472
+    },
+    {
+      "id": null,
+      "title": "F · Regular season review",
+      "line": 1708,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1672
+    },
+    {
+      "id": null,
+      "title": "G · Playoffs and champions",
+      "line": 1729,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1172
+    },
+    {
+      "id": null,
+      "title": "The gap this appendix found",
+      "line": 1745,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2246
+    },
+    {
+      "id": "P7-1",
+      "title": "P7-1 · [NEW] Team-color theming across the entire UI",
+      "line": 1775,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1302
+    },
+    {
+      "id": "P7-2",
+      "title": "P7-2 · [NEW] Smoother animations and micro-interactions",
+      "line": 1787,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 657
+    },
+    {
+      "id": "P7-3",
+      "title": "P7-3 · [NEW] Better visual hierarchy on the draft board",
+      "line": 1799,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 584
+    },
+    {
+      "id": "P7-4",
+      "title": "P7-4 · [NEW] Dark mode polish",
+      "line": 1808,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 523
+    },
+    {
+      "id": "P7-5",
+      "title": "P7-5 · [NEW] Visual feedback on draft picks",
+      "line": 1818,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 438
+    },
+    {
+      "id": "P7-6",
+      "title": "P7-6 · [NEW] Better mobile draft board",
+      "line": 1828,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 565
+    },
+    {
+      "id": "P7-7",
+      "title": "P7-7 · [NEW] Figma integration",
+      "line": 1838,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 824
+    },
+    {
+      "id": "P7-8",
+      "title": "P7-8 · [NEW] Super Bowl / Champions banner gold theme + shimmer",
+      "line": 1848,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 294
+    },
+    {
+      "id": "P7-9",
+      "title": "P7-9 · [NEW] More motion: graphics and text coming in/out of screen",
+      "line": 1853,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 239
+    },
+    {
+      "id": "P7-10",
+      "title": "P7-10 · [NEW] Season review button placement + graphical season review",
+      "line": 1856,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 266
+    },
+    {
+      "id": "P7-11",
+      "title": "P7-11 · [NEW] \"Seasons by Win total\" chart alignment + beauty",
+      "line": 1862,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 138
+    },
+    {
+      "id": "P7-12",
+      "title": "P7-12 · [NEW] \"Your players; average season\" and \"Award patterns\" visibility",
+      "line": 1865,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 109
+    },
+    {
+      "id": "P7-13",
+      "title": "P7-13 · [NEW] Realism audit & league-wide records — hide from user, keep internal",
+      "line": 1868,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 180
+    },
+    {
+      "id": "P7-14",
+      "title": "P7-14 · [EXPANSION] Opponent team-color theming in matchups",
+      "line": 1871,
+      "section": "Appendix K — The Owner's direct instructions, and where each one is handled",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 971
+    },
+    {
+      "id": "P8-1",
+      "title": "P8-1 · The \"Value Here\" removal",
+      "line": 1889,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 314
+    },
+    {
+      "id": "P8-2",
+      "title": "P8-2 · The \"also fits\" line",
+      "line": 1892,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 112
+    },
+    {
+      "id": "P8-3",
+      "title": "P8-3 · The Star system is removed",
+      "line": 1895,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 138
+    },
+    {
+      "id": "P8-4",
+      "title": "P8-4 · The position cards follow the roster order",
+      "line": 1898,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 107
+    },
+    {
+      "id": "P8-5",
+      "title": "P8-5 · The team colors",
+      "line": 1901,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 176
+    },
+    {
+      "id": "P8-6",
+      "title": "P8-6 · The weights",
+      "line": 1904,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 367
+    },
+    {
+      "id": "P8-7",
+      "title": "P8-7 · The glossary",
+      "line": 1907,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 84
+    },
+    {
+      "id": "P8-8",
+      "title": "P8-8 · The advanced stats",
+      "line": 1910,
+      "section": "P8 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 164
+    },
+    {
+      "id": "P9-1",
+      "title": "P9-1 · Team-color theming flow",
+      "line": 1917,
+      "section": "P9 — Mermaid diagrams (Beam's suggestions, 21 Oct)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 533
+    },
+    {
+      "id": "P9-2",
+      "title": "P9-2 · Mobile draft board layout",
+      "line": 1937,
+      "section": "P9 — Mermaid diagrams (Beam's suggestions, 21 Oct)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 500
+    },
+    {
+      "id": "P9-3",
+      "title": "P9-3 · Draft pick visual feedback flow",
+      "line": 1956,
+      "section": "P9 — Mermaid diagrams (Beam's suggestions, 21 Oct)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1873
+    },
+    {
+      "id": "P10-1",
+      "title": "P10-1 · The flex rules, rewritten",
+      "line": 1994,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX"
+      ],
+      "bodyChars": 2927
+    },
+    {
+      "id": "P10-2",
+      "title": "P10-2 · The 3-4 base, and what it means for the maths",
+      "line": 2041,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2553
+    },
+    {
+      "id": "P10-3",
+      "title": "P10-3 · Coaching philosophy and aggressiveness stay open all season",
+      "line": 2082,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1095
+    },
+    {
+      "id": "P10-4",
+      "title": "P10-4 · The preseason menu, copy by copy",
+      "line": 2101,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2990
+    },
+    {
+      "id": "P10-5",
+      "title": "P10-5 · The game preview",
+      "line": 2124,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2447
+    },
+    {
+      "id": "P10-6",
+      "title": "P10-6 · The game review",
+      "line": 2139,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2653
+    },
+    {
+      "id": "P10-7",
+      "title": "P10-7 · The season review and the 100-season report",
+      "line": 2158,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2004
+    },
+    {
+      "id": "P10-8",
+      "title": "P10-8 · The graphical direction, for the Architect and for Figma",
+      "line": 2183,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1526
+    },
+    {
+      "id": "P10-9",
+      "title": "P10-9 · What the council could not verify in this round",
+      "line": 2209,
+      "section": "P10 · The 21 Oct 23:00 feedback round (MiniMax) — flex rules, the 3-4, and the graphical pass",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 616
+    },
+    {
+      "id": null,
+      "title": "P0 · Mechanics (the flex rules and the base) — Owner-approved, Claude-implemented",
+      "line": 2225,
+      "section": "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX",
+        "NATURAL_SLOT_MAP"
+      ],
+      "bodyChars": 1478
+    },
+    {
+      "id": null,
+      "title": "P1 · The copy (three lists; all of it plain, none of it \"expected scoring\")",
+      "line": 2234,
+      "section": "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2197
+    },
+    {
+      "id": null,
+      "title": "P2 · The graphical direction (previews, reviews, season review, 100-season)",
+      "line": 2240,
+      "section": "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1670
+    },
+    {
+      "id": null,
+      "title": "P3 · The stars of the game, the hype, and the typography",
+      "line": 2244,
+      "section": "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 519
+    },
+    {
+      "id": null,
+      "title": "P4 · Only the Owner can settle these",
+      "line": 2248,
+      "section": "Owner's second-round brief — the change set, decomposed for execution (MOC, coordinator)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 563
+    },
+    {
+      "id": "P0-25",
+      "title": "P0-25: Coaching Philosophy & Aggressiveness — Available All Season",
+      "line": 2261,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2042
+    },
+    {
+      "id": "P0-26",
+      "title": "P0-26: Base Defense Selection (3-4 vs 4-3)",
+      "line": 2292,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 594
+    },
+    {
+      "id": "P0-27",
+      "title": "P0-27: Flex Rules Overhaul",
+      "line": 2320,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Edge Players:",
+      "line": 2322,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 55
+    },
+    {
+      "id": null,
+      "title": "Flex Rules (Redesigned Table, QB First Order):",
+      "line": 2325,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 380
+    },
+    {
+      "id": null,
+      "title": "Flex Rules:",
+      "line": 2341,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1663
+    },
+    {
+      "id": "P0-28",
+      "title": "P0-28: Draft Board UI Improvements",
+      "line": 2384,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2386,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 797
+    },
+    {
+      "id": null,
+      "title": "Visual Changes:",
+      "line": 2399,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 870
+    },
+    {
+      "id": "P0-30",
+      "title": "P0-30: Draft Board UI Improvements (continued)",
+      "line": 2416,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Visual Changes:",
+      "line": 2418,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 870
+    },
+    {
+      "id": "P0-30",
+      "title": "P0-30: Team Comparison Page",
+      "line": 2435,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2437,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 265
+    },
+    {
+      "id": null,
+      "title": "Unit Comparison Table — Remove Parentheses + Reorganize:",
+      "line": 2443,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1027
+    },
+    {
+      "id": "P0-31",
+      "title": "P0-31: Team Comparison Page",
+      "line": 2488,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2490,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 265
+    },
+    {
+      "id": null,
+      "title": "Unit Comparison Table — Remove Parentheses + Reorganize:",
+      "line": 2496,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1027
+    },
+    {
+      "id": "P0-32",
+      "title": "P0-32: Team Comparison Page",
+      "line": 2541,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2543,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 265
+    },
+    {
+      "id": null,
+      "title": "Unit Comparison Table — Remove Parentheses + Reorganize:",
+      "line": 2549,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1027
+    },
+    {
+      "id": "P0-33",
+      "title": "P0-33: Guide Page Overhaul",
+      "line": 2594,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2596,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 694
+    },
+    {
+      "id": null,
+      "title": "Positional Value Table — Guide Page — Weight Adjustments:",
+      "line": 2605,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1075
+    },
+    {
+      "id": "P0-21",
+      "title": "P0-21: Game Preview/Review UI Overhaul",
+      "line": 2638,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Game Preview:",
+      "line": 2640,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1750
+    },
+    {
+      "id": null,
+      "title": "Game Review:",
+      "line": 2672,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 771
+    },
+    {
+      "id": null,
+      "title": "Regular Season Review:",
+      "line": 2689,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1326
+    },
+    {
+      "id": "P0-22",
+      "title": "P0-22: Season Review & Playoffs",
+      "line": 2722,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Season Review:",
+      "line": 2724,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 220
+    },
+    {
+      "id": null,
+      "title": "Text Cleanup:",
+      "line": 2731,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1141
+    },
+    {
+      "id": "P0-23",
+      "title": "P0-23: Position Rankings & Player Browser",
+      "line": 2760,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Position Rankings Dropdown:",
+      "line": 2762,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 330
+    },
+    {
+      "id": null,
+      "title": "Player Browser:",
+      "line": 2772,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 85
+    },
+    {
+      "id": "P0-24",
+      "title": "P0-24: Team Comparison",
+      "line": 2778,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Team Comparison Page:",
+      "line": 2780,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 643
+    },
+    {
+      "id": null,
+      "title": "Default Matchup:",
+      "line": 2795,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 38
+    },
+    {
+      "id": null,
+      "title": "Labels:",
+      "line": 2798,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 88
+    },
+    {
+      "id": "P0-34",
+      "title": "P0-34: Guide Page",
+      "line": 2805,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Text Changes:",
+      "line": 2807,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 654
+    },
+    {
+      "id": null,
+      "title": "Positional Value Table — Weight Adjustments:",
+      "line": 2816,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1075
+    },
+    {
+      "id": "P0-35",
+      "title": "P0-35: Positional Value Table — Arithmetic Fixes",
+      "line": 2849,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 966
+    },
+    {
+      "id": "P0-36",
+      "title": "P0-36: Team Colors & Aesthetics (Figma)",
+      "line": 2878,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 0
+    },
+    {
+      "id": null,
+      "title": "Team Color Theming:",
+      "line": 2880,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 337
+    },
+    {
+      "id": null,
+      "title": "CSS Variables:",
+      "line": 2889,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 506
+    },
+    {
+      "id": null,
+      "title": "Team Color Map (32 teams):",
+      "line": 2904,
+      "section": "PART 5: ADDITIONAL USER FEEDBACK (OCT 21 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 59
+    },
+    {
+      "id": null,
+      "title": "P0 (Blocks Release):",
+      "line": 2911,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 380
+    },
+    {
+      "id": null,
+      "title": "P1 (Architect Decisions):",
+      "line": 2919,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 221
+    },
+    {
+      "id": null,
+      "title": "Owner Decisions:",
+      "line": 2926,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 205
+    },
+    {
+      "id": null,
+      "title": "VERIFICATION CHECKLIST",
+      "line": 2937,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 558
+    },
+    {
+      "id": null,
+      "title": "FILES TO MODIFY",
+      "line": 2951,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 511
+    },
+    {
+      "id": null,
+      "title": "NEXT STEPS FOR CLAUDE",
+      "line": 2967,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 449
+    },
+    {
+      "id": null,
+      "title": "V22 Transition",
+      "line": 2981,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 269
+    },
+    {
+      "id": "P10-16",
+      "title": "P10-16 [NEW] Super Bowl champion celebration",
+      "line": 2993,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 813
+    },
+    {
+      "id": "P10-17",
+      "title": "P10-17 [NEW] More motion and graphics throughout",
+      "line": 3003,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 839
+    },
+    {
+      "id": "P10-18",
+      "title": "P10-18 [NEW] Season review button placement",
+      "line": 3017,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 200
+    },
+    {
+      "id": "P10-19",
+      "title": "P10-19 [NEW] Season review more graphical",
+      "line": 3022,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 161
+    },
+    {
+      "id": "P10-20",
+      "title": "P10-20 [NEW] 100 season review more graphical",
+      "line": 3027,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 180
+    },
+    {
+      "id": "P10-21",
+      "title": "P10-21 [NEW] \"Seasons by Win total\" left alignment fix",
+      "line": 3032,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 216
+    },
+    {
+      "id": "P10-22",
+      "title": "P10-22 [NEW] \"Your players; average season\" and \"Award patterns\" higher up",
+      "line": 3037,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 188
+    },
+    {
+      "id": "P10-23",
+      "title": "P10-23 [NEW] Remove \"Realism audit & league-wide records\" and \"Does the model predict real results?\"",
+      "line": 3042,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 196
+    },
+    {
+      "id": "P10-24",
+      "title": "P10-24 [NEW] Game previews and reviews more graphical",
+      "line": 3047,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 425
+    },
+    {
+      "id": "P10-10",
+      "title": "P10-10 · [NEW] Game review box score larger and more beautiful",
+      "line": 3052,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 172
+    },
+    {
+      "id": "P10-11",
+      "title": "P10-11 · [NEW] Game review text improvements",
+      "line": 3057,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 3084
+    },
+    {
+      "id": "P10-12",
+      "title": "P10-12 · [NEW] Regular Season Review banner",
+      "line": 3092,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 311
+    },
+    {
+      "id": "P10-13",
+      "title": "P10-13 · [NEW] Conference charts",
+      "line": 3097,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 249
+    },
+    {
+      "id": "P10-14",
+      "title": "P10-14 · [NEW] Playoff bracket",
+      "line": 3102,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 238
+    },
+    {
+      "id": "P10-15",
+      "title": "P10-15 · [NEW] Regular season awards",
+      "line": 3107,
+      "section": "PRIORITY SUMMARY FOR CLAUDE",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 192
+    },
+    {
+      "id": "P11-1",
+      "title": "P11-1 · The \"Value Here\" removal",
+      "line": 3116,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 314
+    },
+    {
+      "id": "P11-2",
+      "title": "P11-2 · The \"also fits\" line",
+      "line": 3119,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 112
+    },
+    {
+      "id": "P11-3",
+      "title": "P11-3 · The Star system is removed",
+      "line": 3122,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 138
+    },
+    {
+      "id": "P11-4",
+      "title": "P11-4 · The position cards follow the roster order",
+      "line": 3125,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 107
+    },
+    {
+      "id": "P11-5",
+      "title": "P11-5 · The team colors",
+      "line": 3128,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 176
+    },
+    {
+      "id": "P11-6",
+      "title": "P11-6 · The weights",
+      "line": 3131,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 367
+    },
+    {
+      "id": "P11-7",
+      "title": "P11-7 · The glossary",
+      "line": 3134,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 84
+    },
+    {
+      "id": "P11-8",
+      "title": "P11-8 · The advanced stats",
+      "line": 3137,
+      "section": "P11 — Council-only notes (not for Claude to implement; for the record)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 164
+    },
+    {
+      "id": "P11-9",
+      "title": "P11-9 \"The Chiefs are Super Bowl champions.\" → something worth reading",
+      "line": 3144,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 804
+    },
+    {
+      "id": "P11-10",
+      "title": "P11-10 The Champions banner goes gold, and it shimmers",
+      "line": 3157,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 978
+    },
+    {
+      "id": "P11-11",
+      "title": "P11-11 A motion system, because a text game should move",
+      "line": 3173,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1433
+    },
+    {
+      "id": "P11-12",
+      "title": "P11-12 The season review button goes up and goes blue",
+      "line": 3194,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 409
+    },
+    {
+      "id": "P11-13",
+      "title": "P11-13 The season review and the 100-season report become graphical",
+      "line": 3203,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1437
+    },
+    {
+      "id": "P11-14",
+      "title": "P11-14 \"Your players; average season\" and \"Award patterns\" move up and open themselves",
+      "line": 3223,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 549
+    },
+    {
+      "id": "P11-15",
+      "title": "P11-15 Two report sections go internal",
+      "line": 3233,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1096
+    },
+    {
+      "id": "P11-16",
+      "title": "P11-16 What the council could not check in this round",
+      "line": 3252,
+      "section": "P11 · The 21 Oct 23:30 round (MiniMax) — motion, the champions, and the graphical season reports",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 493
+    },
+    {
+      "id": null,
+      "title": "The canonical order",
+      "line": 3267,
+      "section": "How to read this document (MOC, coordinator) — one numbering, one form, one order",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 764
+    },
+    {
+      "id": null,
+      "title": "The one form every change line uses",
+      "line": 3279,
+      "section": "How to read this document (MOC, coordinator) — one numbering, one form, one order",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 266
+    },
+    {
+      "id": null,
+      "title": "The map: what merges into what",
+      "line": 3291,
+      "section": "How to read this document (MOC, coordinator) — one numbering, one form, one order",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1200
+    },
+    {
+      "id": null,
+      "title": "What the council is doing to get it ready",
+      "line": 3304,
+      "section": "How to read this document (MOC, coordinator) — one numbering, one form, one order",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 701
+    },
+    {
+      "id": null,
+      "title": "The two facts Claude needs before he starts, and must not be surprised by",
+      "line": 3311,
+      "section": "How to read this document (MOC, coordinator) — one numbering, one form, one order",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 9445
+    },
+    {
+      "id": null,
+      "title": "1 · The pinned build is not the build the line numbers were taken from — blocker",
+      "line": 3419,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 866
+    },
+    {
+      "id": null,
+      "title": "2 · The built artifacts are not on the priority spine — blocker",
+      "line": 3430,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 666
+    },
+    {
+      "id": null,
+      "title": "3 · The prepared diff blocks are gone, and my block still points at them — my fix, applied",
+      "line": 3440,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 341
+    },
+    {
+      "id": null,
+      "title": "4 · The Owner's questions live in two places — blocker",
+      "line": 3446,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 500
+    },
+    {
+      "id": null,
+      "title": "5 · The do-this-first list is at the bottom — blocker",
+      "line": 3455,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 502
+    },
+    {
+      "id": null,
+      "title": "6 · The flex rules are not a contradiction — resolved",
+      "line": 3463,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 719
+    },
+    {
+      "id": null,
+      "title": "What I checked, so this cold read can be trusted",
+      "line": 3473,
+      "section": "C · Cold read for Claude (MiniMax, 22 Oct 00:10) — the six things that would slow or stop him",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 500
+    },
+    {
+      "id": null,
+      "title": "A. Base defense + flex rules (protected constants; Owner-approved direction)",
+      "line": 3525,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1749
+    },
+    {
+      "id": null,
+      "title": "B. Preseason / game-plan copy + UI",
+      "line": 3538,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2720
+    },
+    {
+      "id": null,
+      "title": "C. Game preview copy",
+      "line": 3551,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 960
+    },
+    {
+      "id": null,
+      "title": "D. Game review copy + structure",
+      "line": 3559,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1805
+    },
+    {
+      "id": null,
+      "title": "E. Regular season review + playoffs",
+      "line": 3572,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1812
+    },
+    {
+      "id": null,
+      "title": "F. Champions / motion / 100-season (maps to P7 aesthetics already stored)",
+      "line": 3581,
+      "section": "R4 · Owner's direct suggestions (22 Oct) — STORED, NOT YET WORKED",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX",
+        "NATURAL_SLOT_MAP"
+      ],
+      "bodyChars": 950
+    },
+    {
+      "id": "P0-18",
+      "title": "P0-18: Position Nomenclature & Punter Value",
+      "line": 3598,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "DEFAULT_WEIGHTS"
+      ],
+      "bodyChars": 284
+    },
+    {
+      "id": "P0-19",
+      "title": "P0-19: \"Value Here\" — Complete Visual Removal",
+      "line": 3608,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 210
+    },
+    {
+      "id": "P0-20",
+      "title": "P0-20: Star Criteria — Minimum Thresholds",
+      "line": 3614,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 217
+    },
+    {
+      "id": "P0-21",
+      "title": "P0-21: Version Naming & Progression",
+      "line": 3622,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 273
+    },
+    {
+      "id": "P0-22",
+      "title": "P0-22: 3-4 Base Defense — DT ↔ LB Swap",
+      "line": 3630,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 655
+    },
+    {
+      "id": "P0-23",
+      "title": "P0-23: Task Assignment — Open Pool Only",
+      "line": 3653,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 164
+    },
+    {
+      "id": "P0-24",
+      "title": "P0-24: Super Bowl Champion Celebration — Visual Polish",
+      "line": 3659,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 222
+    },
+    {
+      "id": "P0-25",
+      "title": "P0-25: Motion & Graphics — Cinematic Feel",
+      "line": 3667,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 571
+    },
+    {
+      "id": "P0-26",
+      "title": "P0-26: Season Review Button & Graphical Polish",
+      "line": 3682,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 206
+    },
+    {
+      "id": "P0-26b",
+      "title": "P0-26b: \"Seasons by Win Total\" Chart — Alignment Fix",
+      "line": 3692,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 127
+    },
+    {
+      "id": "P0-26c",
+      "title": "P0-26c: \"Your Players; Average Season\" & \"Award Patterns\" — Promote Visibility",
+      "line": 3698,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 128
+    },
+    {
+      "id": "P0-26c",
+      "title": "P0-26c: Remove Visible Audit Sections (Keep Internally)",
+      "line": 3704,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 205
+    },
+    {
+      "id": "P0-26d",
+      "title": "P0-26d: Motion & Graphical Polish — Global",
+      "line": 3714,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2060
+    },
+    {
+      "id": "P0-27",
+      "title": "P0-27: Additional Technical Notes",
+      "line": 3757,
+      "section": "PART 5: ADDITIONAL OWNER FEEDBACK (OCT 22 LATE) — CLAUDE IMPLEMENTATION",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "DEFAULT_WEIGHTS"
+      ],
+      "bodyChars": 910
+    },
+    {
+      "id": "P12-1",
+      "title": "P12-1 · One canonical name per build — and what every file is",
+      "line": 3786,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1979
+    },
+    {
+      "id": "P12-2",
+      "title": "P12-2 · EDGE and the left/right distinction are gone",
+      "line": 3807,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 923
+    },
+    {
+      "id": "P12-3",
+      "title": "P12-3 · The punter",
+      "line": 3822,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 601
+    },
+    {
+      "id": "P12-4",
+      "title": "P12-4 · The fullback blocks like a lineman, not like a running back",
+      "line": 3830,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "RATING_SPECS"
+      ],
+      "bodyChars": 1046
+    },
+    {
+      "id": "P12-5",
+      "title": "P12-5 · \"Value here\" is gone from the whole website",
+      "line": 3845,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1657
+    },
+    {
+      "id": "P12-6",
+      "title": "P12-6 · The stars: who gets named",
+      "line": 3871,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 737
+    },
+    {
+      "id": "P12-7",
+      "title": "P12-7 · The 3-4 lets the user swap a DT for a linebacker",
+      "line": 3884,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1377
+    },
+    {
+      "id": "P12-8",
+      "title": "P12-8 · No task is ever assigned to a named seat",
+      "line": 3906,
+      "section": "P12 · The Owner's 22 Oct 01:00 round (MiniMax) — the file names, the flex neutrals, the star rules, and the 3-4 swap",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 736
+    },
+    {
+      "id": null,
+      "title": "GR-1 · Shared CSS component set (stat card, bar row, two-column pair, gold banner)",
+      "line": 3927,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1028
+    },
+    {
+      "id": null,
+      "title": "GR-1a · Stat card (`.stat-card`)",
+      "line": 3941,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 667
+    },
+    {
+      "id": null,
+      "title": "GR-1b · Bar row (`.bar-row`)",
+      "line": 3951,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 648
+    },
+    {
+      "id": null,
+      "title": "GR-1c · Two-column pair (`.two-col-pair`)",
+      "line": 3963,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 749
+    },
+    {
+      "id": null,
+      "title": "GR-1d · Gold banner (`.gold-banner`)",
+      "line": 3976,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 471
+    },
+    {
+      "id": null,
+      "title": "Usage mapping",
+      "line": 3985,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 493
+    },
+    {
+      "id": null,
+      "title": "What was deliberately not checked",
+      "line": 3994,
+      "section": "V22 GRAPHICS ROUND — Shared Component Set (BOC, item 1 of 8)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 280
+    },
+    {
+      "id": null,
+      "title": "GR-2a · QB matchup card (replaces P2 QB text)",
+      "line": 4074,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1440
+    },
+    {
+      "id": null,
+      "title": "GR-2b · Form indicators (hot/cold) as badges",
+      "line": 4102,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 412
+    },
+    {
+      "id": null,
+      "title": "GR-2c · Matchup swings as bar rows (replaces P3 prose)",
+      "line": 4113,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 937
+    },
+    {
+      "id": null,
+      "title": "GR-2d · Projected score as stat cards",
+      "line": 4132,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 662
+    },
+    {
+      "id": null,
+      "title": "GR-2e · Plan preview as compact bar",
+      "line": 4147,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 548
+    },
+    {
+      "id": null,
+      "title": "GR-3a · Score progression chart (replaces play-by-play prose)",
+      "line": 4205,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1833
+    },
+    {
+      "id": null,
+      "title": "GR-3b · Turnover cards (replaces turnoverParagraph prose)",
+      "line": 4244,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1007
+    },
+    {
+      "id": null,
+      "title": "GR-3c · Factor bars (replaces factorParagraph prose)",
+      "line": 4268,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 717
+    },
+    {
+      "id": null,
+      "title": "GR-3d · Game plan comparison (replaces planParagraph prose)",
+      "line": 4287,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1061
+    },
+    {
+      "id": null,
+      "title": "GR-3e · Key players as stat cards (replaces Key Players card)",
+      "line": 4310,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 908
+    },
+    {
+      "id": null,
+      "title": "GR-4a · Champion banner → gold banner",
+      "line": 4390,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 611
+    },
+    {
+      "id": null,
+      "title": "GR-4b · Season review text → indented paragraphs with stat cards",
+      "line": 4405,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1667
+    },
+    {
+      "id": null,
+      "title": "GR-4c · Report card → enhanced with bar rows",
+      "line": 4431,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 733
+    },
+    {
+      "id": null,
+      "title": "GR-4d · \"Your players; average season\" and \"Award patterns\" → higher up, visible",
+      "line": 4448,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 495
+    },
+    {
+      "id": null,
+      "title": "GR-4e · \"Realism audit\" and \"Does the model predict real results?\" → leave screen",
+      "line": 4456,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 627
+    },
+    {
+      "id": null,
+      "title": "GR-4f · \"Seasons by Win total\" → improved bar chart",
+      "line": 4464,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 869
+    },
+    {
+      "id": null,
+      "title": "GR-4g · Season review button → blue, near top, next to 100-season sim",
+      "line": 4479,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 738
+    },
+    {
+      "id": null,
+      "title": "GR-4h · Motion: champion banner shimmer",
+      "line": 4493,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 746
+    },
+    {
+      "id": null,
+      "title": "GR-5a · Win distribution → improved bar chart",
+      "line": 4555,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 806
+    },
+    {
+      "id": null,
+      "title": "GR-5b · Playoff path → progress bars",
+      "line": 4570,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1511
+    },
+    {
+      "id": null,
+      "title": "GR-5c · \"Your players: average season\" → stat cards",
+      "line": 4596,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1361
+    },
+    {
+      "id": null,
+      "title": "GR-5d · \"Realism audit\" and \"Model prediction\" → remove from screen",
+      "line": 4627,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 443
+    },
+    {
+      "id": null,
+      "title": "GR-5e · \"Award patterns\" → higher up, visible by default",
+      "line": 4635,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 386
+    },
+    {
+      "id": null,
+      "title": "GR-5f · Narrative → keep as sentences, but indent",
+      "line": 4643,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 482
+    },
+    {
+      "id": null,
+      "title": "GR-5g · Gold banner for best team",
+      "line": 4661,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 538
+    },
+    {
+      "id": null,
+      "title": "GR-6a · March Madness bracket layout",
+      "line": 4715,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 2176
+    },
+    {
+      "id": null,
+      "title": "GR-6b · Byes display",
+      "line": 4765,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 407
+    },
+    {
+      "id": null,
+      "title": "GR-6c · Conference ranking charts",
+      "line": 4776,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1515
+    },
+    {
+      "id": null,
+      "title": "GR-6d · Champion team highlight",
+      "line": 4808,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 623
+    },
+    {
+      "id": null,
+      "title": "GR-6e · Bracket connector lines (optional enhancement)",
+      "line": 4829,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 535
+    },
+    {
+      "id": null,
+      "title": "Stars (starsParagraph, l.3027-3054)",
+      "line": 4876,
+      "section": "Current state",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 209
+    },
+    {
+      "id": null,
+      "title": "Game ball (l.3190-3195)",
+      "line": 4882,
+      "section": "Current state",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 140
+    },
+    {
+      "id": null,
+      "title": "Awards (renderRegularAwardsHTML, renderPlayoffAwardsHTML)",
+      "line": 4887,
+      "section": "Current state",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 66
+    },
+    {
+      "id": null,
+      "title": "GR-7a · Star heading with glitter",
+      "line": 4893,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 856
+    },
+    {
+      "id": null,
+      "title": "GR-7b · Star entries as cards with gold for user's players",
+      "line": 4915,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1121
+    },
+    {
+      "id": null,
+      "title": "GR-7c · Game ball as gold card",
+      "line": 4939,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1554
+    },
+    {
+      "id": null,
+      "title": "GR-7d · Award tables with gold for user's players",
+      "line": 4968,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 652
+    },
+    {
+      "id": null,
+      "title": "GR-7e · Star threshold enforcement (visual indicator)",
+      "line": 4988,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 812
+    },
+    {
+      "id": null,
+      "title": "GR-7f · Glittering star glyph (optional enhancement)",
+      "line": 5006,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 525
+    },
+    {
+      "id": null,
+      "title": "GR-8a · Section navigation as visual cards",
+      "line": 5062,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1376
+    },
+    {
+      "id": null,
+      "title": "GR-8b · Value tiers as visual bar chart",
+      "line": 5088,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1191
+    },
+    {
+      "id": null,
+      "title": "GR-8c · Slot role table with visual bars",
+      "line": 5111,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 451
+    },
+    {
+      "id": null,
+      "title": "GR-8d · Coaching style cards",
+      "line": 5122,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 858
+    },
+    {
+      "id": null,
+      "title": "GR-8e · Game plan math as visual flow",
+      "line": 5146,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1277
+    },
+    {
+      "id": null,
+      "title": "GR-8f · Terms as visual cards",
+      "line": 5172,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 702
+    },
+    {
+      "id": null,
+      "title": "GR-8g · \"Value here\" removal from Guide",
+      "line": 5192,
+      "section": "Proposed changes",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 328
+    },
+    {
+      "id": "P13-1",
+      "title": "P13-1 · BUILT — your team's frame now wears the team",
+      "line": 5231,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2570
+    },
+    {
+      "id": "P13-2",
+      "title": "P13-2 · BUILT — the hook for an opponent's colours anywhere",
+      "line": 5271,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2182
+    },
+    {
+      "id": "P13-1a",
+      "title": "P13-1a · [CORRECTION + SPEC] the frame wears the team again — one attribute",
+      "line": 5308,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1183
+    },
+    {
+      "id": "P13-2a",
+      "title": "P13-2a · [CORRECTION + SPEC] the opponent hook, rebuilt on the primitive that survived",
+      "line": 5325,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 1848
+    },
+    {
+      "id": "P13-2b",
+      "title": "P13-2b · [DEFECT] two dead rules and one unreadable rule in the current candidate",
+      "line": 5356,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2156
+    },
+    {
+      "id": "P13-1b",
+      "title": "P13-1b · [DEFECT — the Owner's \"visible middle\" rule is applied to the rows but NOT to the banner",
+      "line": 5389,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": true,
+        "what": false,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 7588
+    },
+    {
+      "id": "P13-2c",
+      "title": "P13-2c · [DEFECT, other lane] four palette corrections in the emitted colours",
+      "line": 5509,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": true,
+        "what": true,
+        "why": true,
+        "safeAlone": true,
+        "howToCheck": true
+      },
+      "houseForm": true,
+      "protectedConstants": [],
+      "bodyChars": 3178
+    },
+    {
+      "id": "P13-3",
+      "title": "P13-3 · SPECIFIED — where the opponent's colours go in a matchup",
+      "line": 5551,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 970
+    },
+    {
+      "id": "P13-4",
+      "title": "P13-4 · SPECIFIED — the draft simulation, expanded",
+      "line": 5561,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 779
+    },
+    {
+      "id": "P13-5",
+      "title": "P13-5 · The rules that keep this tasteful",
+      "line": 5573,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 725
+    },
+    {
+      "id": "P13-6",
+      "title": "P13-6 · The open canvas — what the council should add, and how to add it",
+      "line": 5584,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1051
+    },
+    {
+      "id": "P12-1",
+      "title": "P12-1 · [NEW] User's team colors permeate the entire UI",
+      "line": 5601,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1205
+    },
+    {
+      "id": "P12-2",
+      "title": "P12-2 · [NEW] Opponent team colors in matchups",
+      "line": 5623,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 776
+    },
+    {
+      "id": "P12-3",
+      "title": "P12-3 · [NEW] Team color palette (32 teams)",
+      "line": 5638,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1823
+    },
+    {
+      "id": "P12-4",
+      "title": "P12-4 · [NEW] CSS variables for team colors",
+      "line": 5677,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 631
+    },
+    {
+      "id": "P12-5",
+      "title": "P12-5 · [NEW] Team-colored elements (CSS)",
+      "line": 5699,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1052
+    },
+    {
+      "id": "P12-6",
+      "title": "P12-6 · [NEW] Mermaid diagram: team-color theming flow",
+      "line": 5732,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 634
+    },
+    {
+      "id": "P12-7",
+      "title": "P12-7 · [NEW] Opponent team colors in matchups",
+      "line": 5755,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 617
+    },
+    {
+      "id": "P12-8",
+      "title": "P12-8 · [NEW] Additional aesthetics ideas",
+      "line": 5774,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1708
+    },
+    {
+      "id": "P12-9",
+      "title": "P12-9 · [NEW] Figma integration note",
+      "line": 5794,
+      "section": "P13 · Team colours as a language, not a badge (MiniMax, 22 Oct 04:15) — built in part, and open for the council to extend",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1131
+    },
+    {
+      "id": null,
+      "title": "More colour ideas, beyond the surfaces",
+      "line": 5832,
+      "section": "P14 · The team-colour canvas — twenty surfaces, each with one rule, each takeable (MiniMax, 22 Oct 04:35)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 824
+    },
+    {
+      "id": null,
+      "title": "The rules, restated for whoever takes a surface",
+      "line": 5845,
+      "section": "P14 · The team-colour canvas — twenty surfaces, each with one rule, each takeable (MiniMax, 22 Oct 04:35)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 891
+    },
+    {
+      "id": null,
+      "title": "How to take one",
+      "line": 5858,
+      "section": "P14 · The team-colour canvas — twenty surfaces, each with one rule, each takeable (MiniMax, 22 Oct 04:35)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 374
+    },
+    {
+      "id": "P15-1",
+      "title": "P15-1 · The tool map, so nobody guesses",
+      "line": 5873,
+      "section": "P15 · The tool map, and the Figma hand-off packet (MiniMax, 22 Oct 04:55) — one designer, many authors",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 894
+    },
+    {
+      "id": "P15-2",
+      "title": "P15-2 · The hand-off packet — what to give Claude, and it is ready",
+      "line": 5889,
+      "section": "P15 · The tool map, and the Figma hand-off packet (MiniMax, 22 Oct 04:55) — one designer, many authors",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1275
+    },
+    {
+      "id": "P15-3",
+      "title": "P15-3 · How a seat hands one over (no ceremony)",
+      "line": 5906,
+      "section": "P15 · The tool map, and the Figma hand-off packet (MiniMax, 22 Oct 04:55) — one designer, many authors",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 358
+    },
+    {
+      "id": "P16-1",
+      "title": "P16-1 · The colours: the sourcing, and the white edge (MOC's Q1) — FIXED, and one decision open",
+      "line": 5920,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 2065
+    },
+    {
+      "id": "P16-2",
+      "title": "P16-2 · What makes a defender a star (MOC's Q2) — the Owner's rule, written out",
+      "line": 5945,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 805
+    },
+    {
+      "id": "P16-3",
+      "title": "P16-3 · The dead hero and the season's front door (MOC's Q3 — the Owner: \"I don't understand\")",
+      "line": 5957,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 833
+    },
+    {
+      "id": "P16-4",
+      "title": "P16-4 · The game ball in a tie (MOC's Q4) — one sentence needed",
+      "line": 5968,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 786
+    },
+    {
+      "id": "P16-5",
+      "title": "P16-5 · The flex table (MOC's Q5) — \"left and right don't matter. Let Claude handle the table\"",
+      "line": 5978,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 520
+    },
+    {
+      "id": "P16-6",
+      "title": "P16-6 · The nickel in the 3-4 (MOC's Q6) — the Owner's answer, and a correction",
+      "line": 5986,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 490
+    },
+    {
+      "id": "P16-7",
+      "title": "P16-7 · Still open, and it is the largest undecided mechanic of the round: is the 3-4 a real front or a label?",
+      "line": 5995,
+      "section": "P16 · The Owner's answers to MOC's six questions, written as rules (MiniMax, 22 Oct 06:30)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 924
+    },
+    {
+      "id": "P17-1",
+      "title": "P17-1 · The colours are settled: GPT's table is the registry's source",
+      "line": 6012,
+      "section": "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1516
+    },
+    {
+      "id": "P17-2",
+      "title": "P17-2 · \"Two or more takeaways\" — settled",
+      "line": 6031,
+      "section": "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 282
+    },
+    {
+      "id": "P17-3",
+      "title": "P17-3 · The game ball in a tie — settled, and the reasoning is worth keeping",
+      "line": 6036,
+      "section": "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 792
+    },
+    {
+      "id": "P17-4",
+      "title": "P17-4 · The dead hero — Claude's call",
+      "line": 6047,
+      "section": "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 619
+    },
+    {
+      "id": "P17-5",
+      "title": "P17-5 · \"Real front\" — explained in plain words, because the phrase was doing too much work",
+      "line": 6056,
+      "section": "P17 · The Owner's answers of 22 Oct 09:25, disseminated (MiniMax) — colours settled, and the 3-4 explained in plain words",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1558
+    },
+    {
+      "id": "P18-1",
+      "title": "P18-1 · The principle, in one line",
+      "line": 6087,
+      "section": "P18 · The 3-4 is a label, and nothing about the maths changes (MiniMax, 22 Oct 09:40) — the Owner's ruling, and the retirement of the \"real front\" question",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 466
+    },
+    {
+      "id": "P18-2",
+      "title": "P18-2 · The rule, as it will be implemented",
+      "line": 6094,
+      "section": "P18 · The 3-4 is a label, and nothing about the maths changes (MiniMax, 22 Oct 09:40) — the Owner's ruling, and the retirement of the \"real front\" question",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [
+        "FLEX",
+        "RATING_SPECS"
+      ],
+      "bodyChars": 2169
+    },
+    {
+      "id": "P18-3",
+      "title": "P18-3 · What this closes, and what it leaves open",
+      "line": 6122,
+      "section": "P18 · The 3-4 is a label, and nothing about the maths changes (MiniMax, 22 Oct 09:40) — the Owner's ruling, and the retirement of the \"real front\" question",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 913
+    },
+    {
+      "id": null,
+      "title": "The fact",
+      "line": 6174,
+      "section": "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 702
+    },
+    {
+      "id": null,
+      "title": "The capabilities — 42 tools, six families",
+      "line": 6179,
+      "section": "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 1875
+    },
+    {
+      "id": null,
+      "title": "The limits, measured",
+      "line": 6189,
+      "section": "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 669
+    },
+    {
+      "id": null,
+      "title": "What changed in the rules, and what did not",
+      "line": 6196,
+      "section": "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 626
+    },
+    {
+      "id": null,
+      "title": "The highest-value thing Figma does for this project",
+      "line": 6201,
+      "section": "P16 · The tool map, REVISED — every seat has Figma (MOC, 22 Oct 14:10Z)",
+      "fields": {
+        "where": false,
+        "what": false,
+        "why": false,
+        "safeAlone": false,
+        "howToCheck": false
+      },
+      "houseForm": false,
+      "protectedConstants": [],
+      "bodyChars": 544
+    }
+  ]
+}

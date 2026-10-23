@@ -1,0 +1,95 @@
+# Pickle evidence receipts — bulletin M-112 — 2026-10-21 00:45 UTC
+# Independent reproduction of MOC's M-102 findings. Read-only; nothing edited.
+# CWD: /Users/kosi/Desktop/Football Sim  (branch merge/v20-donor)
+
+=== ARTIFACT PIN ===
+$ shasum -a 256 "NFL Draft Simulator merged.html"
+40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd
+$ wc -c < "NFL Draft Simulator merged.html"
+657486
+$ git log -1 --oneline ff8c05ae0ef89e9030faa991a942d1c611f891bd
+ff8c05a Add merged candidate: v20 base + donor fixes (option a, v20 markup)
+$ git ls-tree -r --name-only ff8c05ae | grep -i merged
+NFL Draft Simulator merged.html
+
+=== FINDING 1: result.json hand-edited (mtime sequence) ===
+$ stat -f "%Sm %N" -t "%H:%M:%S" trace test-script.spec.js OPENCHAMBER-E2E-RESULT.schema.json result.json
+12:57:50 trace
+13:11:28 test-script.spec.js
+13:11:43 OPENCHAMBER-E2E-RESULT.schema.json
+13:14:57 result.json
+
+$ shasum -a 256 result.json
+d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396
+
+$ grep -c 'week-1-display' result.json            -> 1
+$ grep -c 'week-1-display' test-script.spec.js    -> 0
+$ grep -c 'Week 1' test-script.spec.js            -> 0
+$ grep -cEi 'jsonschema|ajv|validate\(' test-script.spec.js -> 0
+$ grep -c -i 'schema validation' result.json      -> 1
+$ grep -n skippedChecks.push test-script.spec.js  -> 414: result.skippedChecks.push('100-season simulation (budget/time)');
+   (exactly ONE push site; the Week 1 skip in result.json has no producer)
+
+PROOF THE SCRIPT WOULD HAVE WRITTEN "PASS" (control flow):
+  line 112:  let status = 'PASS';
+  line 413:  if (reportResult.status === 'SKIP') {
+  line 415:    if (result.status === 'PASS') result.status = 'PARTIAL';
+  line 428:  const hasFail = result.steps.some(s => s.status === 'FAIL');
+  line 430:  if (hasBlocked) result.status = 'BLOCKED';
+  line 432:  else if (result.status !== 'PARTIAL') result.status = 'PASS';
+  100-season step recorded PASS (durationMs 14451) => reportResult.status !== 'SKIP'
+  => script logic writes PASS. File says PARTIAL. Edit proven.
+  The 11th step: {"id":"week-1-display","status":"SKIP","startedAtUtc":"2026-10-20T22:57:23.194Z","durationMs":0,...}
+  A 0 ms step absent from the script cannot be runner output.
+  Direction: the edit made the verdict STRICTER (PARTIAL where script=PASS). Not inflation.
+
+=== FINDING 2: Week 1 SKIP reason is false ===
+$ grep -n 'Week \${week} of 17' "merged.html"
+3891: ... <h3 style="margin:0;">Week ${week} of 17</h3> ... <button ... id="simWeekBtn" ...
+   (inside renderRegularSeasonView(); seasonState.currentWeek)
+
+TRACE (trace/trace-1792537070181.zip, 65863244 B, 12:57:50):
+$ unzip -o -q trace/trace-1792537070181.zip -d /tmp/trace_x
+$ grep -o "Week 1 of 17" /tmp/trace_x/trace.trace
+Week 1 of 17
+  DOM snapshot context: ["H3",{"style":"margin:0;"},"Week 1 of 17"],["BUTTON",{"id":"simWeekBtn"}...
+  Event ordering by byte position in trace.trace:
+    #beginSeasonBtn  t=18392.363
+    DOM:Week 1 of 17 t=18768.135        <-- 376 ms after begin, before any week sim
+    #simSeasonBtn    (next)
+
+CAUSE (script's own source, line 303):
+    // V20 donor build: no weekDisplay element, check for simSeasonBtn or season UI
+  SKIP record names probes: #weekDisplay, #currentWeek, .week-indicator
+  Build renders a bare <h3> with NO id and NO class -> all three probes miss.
+  Label: NOT IMPLEMENTED (id/class probe), not build limitation, not product change.
+  I did not restore PASS; did not touch the acceptance rule.
+
+=== FINDING 3: null metrics are a probe bug ===
+$ grep -c 'window\.seasonState' "merged.html"  -> 0
+$ grep -n 'let seasonState' "merged.html"      -> 3445: let seasonState = null;
+$ grep -c 'gamesPlayed' "merged.html"          -> 0
+  seasonMetrics: draftPicks/regularSeasonGamesPlayed/playoffRoundsCompleted = null
+  272 games NOT verified by this run. 100-season step durationMs = 14451 IS measured.
+  reportDurationMs remains null inside seasonMetrics -> internal contradiction.
+
+=== NEW DEFECT (not reported by MOC) ===
+  note text: "...20 viewport checks, 24 screenshots..." (hand-added)
+  result.json screenshots array length = 26  (20 'viewport-*' + 6 light/dark)
+  note undercounts by 2, in the same sentence claiming "Schema validation: PASS".
+  A validation note that miscounts the array it validated is self-refuting.
+
+=== RUN B (Lightning) ===
+  No script, result, log or trace for Run B on this machine -> UNKNOWN.
+  Counts/budget for Run B are REPORTED. Playoffs difference cause: UNKNOWN.
+  Run A playoffs click SUCCEEDED: #simPlayoffsBtn -> .champion-banner,#finalSeason,#cha...
+  locator resolved t=32611.702; 0 console/page errors recorded.
+
+=== PUBLICATION GAP (W4) ===
+$ git status --short test-results/ tests/openchamber-e2e.spec.js
+?? test-results/
+?? tests/openchamber-e2e.spec.js
+$ shasum -a 256 test-results/e2e-1792537022298/test-script.spec.js -> ee9aaa44d00557d6ebca13dc...
+$ shasum -a 256 tests/openchamber-e2e.spec.js                      -> ee9aaa44d00557d6ebca13dc...
+  Byte-identical. Supports "canonical script exists + Ultra run used this hash".
+  Does NOT establish Lightning's run used it.
