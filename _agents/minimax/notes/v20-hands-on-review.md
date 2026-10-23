@@ -13,23 +13,23 @@ Measurement script for the phone pass: `tools/phone-check.js` (paste-able into a
 
 ## What actually ran (all green unless noted)
 
-| Step | Result |
-|---|---|
-| Load v20 | 0 console errors; 1,200 players, 32 team depth charts |
-| Draft setup → draft | 832 picks (26 rounds × 32 teams), user = KC at #9; **user pick made by hand** (Josh Allen, QB) |
-| Sim to End | draft completes, results page renders, "Play a Season" CTA present |
-| Season | Week 1 simulated by hand (box score + play-by-play), then **rest of season** → 272 games, 17 weeks |
-| Playoffs | wild card → divisional → conference → **Super Bowl** (KC 31–23 WAS), phase `complete` |
-| Season Review | record 11–6, playoff narrative, MVP (Jaxson Dart), stat leaders, All-Pro, Pro Bowl, user summary |
-| 100-season report | **FAILS — see F1** |
-| 390 px pass | 6 tabs + live draft board + League Leaders + Your Players + season review — **no page-level overflow; one real defect, see F2** |
+| Step                | Result                                                                                                                          |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------- |
+| Load v20            | 0 console errors; 1,200 players, 32 team depth charts                                                                           |
+| Draft setup → draft | 832 picks (26 rounds × 32 teams), user = KC at #9; **user pick made by hand** (Josh Allen, QB)                                  |
+| Sim to End          | draft completes, results page renders, "Play a Season" CTA present                                                              |
+| Season              | Week 1 simulated by hand (box score + play-by-play), then **rest of season** → 272 games, 17 weeks                              |
+| Playoffs            | wild card → divisional → conference → **Super Bowl** (KC 31–23 WAS), phase `complete`                                           |
+| Season Review       | record 11–6, playoff narrative, MVP (Jaxson Dart), stat leaders, All-Pro, Pro Bowl, user summary                                |
+| 100-season report   | **FAILS — see F1**                                                                                                              |
+| 390 px pass         | 6 tabs + live draft board + League Leaders + Your Players + season review — **no page-level overflow; one real defect, see F2** |
 
 ## Findings
 
 ### F1 — `[BLOCKING]` The 100-season report crashes on v20 (uncaught `ReferenceError`)
 
 `render100()` throws at the very end of the run, so the report never renders and the UI stays stuck on
-"Simulating 100 seasons… Season 100 of 100…" (the 100 seasons themselves *do* simulate; `league100` is populated).
+"Simulating 100 seasons… Season 100 of 100…" (the 100 seasons themselves _do_ simulate; `league100` is populated).
 
 ```
 ReferenceError: rWeights is not defined
@@ -37,10 +37,10 @@ ReferenceError: rWeights is not defined
     at step     (…/NFL Draft Simulator v20 Claude.html:5900:134)
 ```
 
-* v20 line 6018 uses `rWeights` — `grep -n "rWeights"` on v20 returns **exactly that one line**; the
+- v20 line 6018 uses `rWeights` — `grep -n "rWeights"` on v20 returns **exactly that one line**; the
   identifier is never defined in the file.
-* The donor has **no** `rWeights` anywhere (`grep -c` = 0) and its own `render100` at donor line 5984.
-* Verified on the donor: the same feature renders the full report with **0 page errors**
+- The donor has **no** `rWeights` anywhere (`grep -c` = 0) and its own `render100` at donor line 5984.
+- Verified on the donor: the same feature renders the full report with **0 page errors**
   (`report:true`, `league100` populated, ~25 s).
 
 **Merge implication (Architect's call):** the merged build must take the donor's `runLeague100`/`render100`
@@ -55,10 +55,10 @@ table, so a wide table silently reverts to its desktop layout.
 
 Reproduction (measured, both builds):
 
-| Build | Sequence | `mstack` on `#playerTable` | table width inside a 344 px card |
-|---|---|---|---|
-| v20 `31b7d61f…` | load 390 → 1280 → 390 | `false` | 515 px (clipped/scrollable) |
-| donor `77bb9ed5…` | load 1280 → 390 | `true` | 344 px (stacked) |
+| Build             | Sequence              | `mstack` on `#playerTable` | table width inside a 344 px card |
+| ----------------- | --------------------- | -------------------------- | -------------------------------- |
+| v20 `31b7d61f…`   | load 390 → 1280 → 390 | `false`                    | 515 px (clipped/scrollable)      |
+| donor `77bb9ed5…` | load 1280 → 390       | `true`                     | 344 px (stacked)                 |
 
 Live confirmation of the cause (runtime only, no file edited): clearing the memo
 (`playerTable.dataset.msChecked=''`) and dispatching `resize` restores `mstack:true` immediately.
@@ -87,10 +87,10 @@ settle (≥ 200 ms, and re-measure after the transform) before it asserts.
 
 ### F4 — `[NOW]` Two post-game copy defects (shared by both builds)
 
-* v20 line 3082 / donor line 3101 — `…to steal a ${wS}–${lS} win.` → "steal a 18–16 win" (wrong article for
+- v20 line 3082 / donor line 3101 — `…to steal a ${wS}–${lS} win.` → "steal a 18–16 win" (wrong article for
   scores starting 8, 11 or 18). **Observed live** in the week-1 recap: "The Chiefs closed on a 10–3 run to
   steal a 18–16 win."
-* v20 line 5433 / donor line 5483 — `Their ${U} outplayed the ${opp}'s answer to it` → "the 49ers's answer".
+- v20 line 5433 / donor line 5483 — `Their ${U} outplayed the ${opp}'s answer to it` → "the 49ers's answer".
 
 Both are in the donor as well → **shared debt**, not merge-debt; neither is a one-character fix in the merge.
 
@@ -98,14 +98,14 @@ Both are in the donor as well → **shared debt**, not merge-debt; neither is a 
 
 Measured with `grep -c -F` on v20 `31b7d61f…` and donor `77bb9ed5…`:
 
-| String | v20 | donor | Where (v20) |
-|---|---|---|---|
-| `sudden death` | 1 | 0 | line 2880, inside the post-game recap paragraph builder |
-| `went the distance` | 1 | 0 | line 2898, `tdTag` in the turnover paragraph |
-| `expected scoring` | 1 | 1 | line 4832, stats-explainer paragraph (not post-game copy) |
-| `no strong lean either way` | 0 | 0 | — |
-| `two-point conversion` | 0 | 0 | — |
-| `2-Pt Conv` | 16 | — | — |
+| String                      | v20 | donor | Where (v20)                                               |
+| --------------------------- | --- | ----- | --------------------------------------------------------- |
+| `sudden death`              | 1   | 0     | line 2880, inside the post-game recap paragraph builder   |
+| `went the distance`         | 1   | 0     | line 2898, `tdTag` in the turnover paragraph              |
+| `expected scoring`          | 1   | 1     | line 4832, stats-explainer paragraph (not post-game copy) |
+| `no strong lean either way` | 0   | 0     | —                                                         |
+| `two-point conversion`      | 0   | 0     | —                                                         |
+| `2-Pt Conv`                 | 16  | —     | —                                                         |
 
 So "sudden death" and "went the distance" are **merge-debt** (the donor's recap text already resolves them);
 "expected scoring" is **shared** and its v20 occurrence is in a help paragraph, not a recap — the Architect may
@@ -113,18 +113,18 @@ rule it compliant.
 
 ### F6 — `[LATER]` Minor, cosmetic
 
-* v20 line 1 is a stray document prefix (`<!doctype html><html><head>…<style>…</style></head><body>`)
+- v20 line 1 is a stray document prefix (`<!doctype html><html><head>…<style>…</style></head><body>`)
   followed by a second `<!DOCTYPE html>`; the file ends with a stray `</body></html>` (line 6438).
   Already known (DS / Pickle). Confirmed again here: the page still loads and runs with 0 console errors.
 
 ## What I did **not** check (deliberately)
 
-* No physical phone (all measurements are headless Chromium at a 390×844 viewport).
-* No print stylesheet, no Safari/Firefox rendering, no screen-reader pass.
-* The donor's season-first flow was only driven as far as the draft + 100-season report; I did not replay a
+- No physical phone (all measurements are headless Chromium at a 390×844 viewport).
+- No print stylesheet, no Safari/Firefox rendering, no screen-reader pass.
+- The donor's season-first flow was only driven as far as the draft + 100-season report; I did not replay a
   full donor season.
-* No performance profiling beyond wall-clock of the 100-season run.
-* I did not run `node --check` on an extracted script block (no harness scripts exist yet — Round 1A builds them).
+- No performance profiling beyond wall-clock of the 100-season run.
+- I did not run `node --check` on an extracted script block (no harness scripts exist yet — Round 1A builds them).
 
 ## Questions for the Architect (filed as `Q-MINIMAX-1…6`)
 
@@ -132,7 +132,6 @@ See the MiniMax block in `QUESTIONS-FOR-THE-ARCHITECT.md` (`Q-MINIMAX-1…6`). C
 written before the Owner's name directive, when this session was still labelled "Kilo"; the "Kilo" block in the
 questions pack belongs to a different placeholder session (it repeats Nemo Super's text verbatim) and is left
 untouched per R5. My questions are filed under `Q-MINIMAX-1…6`.
-
 1. `[BLOCKING]` v20's `render100` crashes (`rWeights`, v20:5900/6018) while the donor's renders cleanly
    (donor:5984, 0 occurrences). Which side wins the merge for `runLeague100`/`render100`?
 2. `[BLOCKING]` v20's phone-layout block (v20:6409–6432) loses the stacked table layout after a viewport change
@@ -144,7 +143,7 @@ untouched per R5. My questions are filed under `Q-MINIMAX-1…6`.
    (v20:5433 / donor:5483). Post-merge round, or fold into the merge?
 5. `[NOW]` "expected scoring" is live in both builds but only in a stats-explainer paragraph (v20:4832).
    Ruling: compliant, or should the phrase go?
-6. `[LATER]` Where should a *user-visible crash* like F1 be logged — `SUBMISSIONS.md` as a product proposal,
+6. `[LATER]` Where should a _user-visible crash_ like F1 be logged — `SUBMISSIONS.md` as a product proposal,
    or a fast lane that bypasses the round cap? (A crash in a shipped button is a different class from a
    balance change, but it still has to reach you.)
 
@@ -165,14 +164,14 @@ untouched per R5. My questions are filed under `Q-MINIMAX-1…6`.
 
 ## Where this was filed (20 Oct)
 
-| Item | Location |
-|---|---|
-| Arrival + findings | `CHRONICLE.md` — line "2026-10-20 · MiniMax · joined …" (+ mirror-refresh line) |
-| Availability | `COUNCIL-BULLETIN.md` — availability strip, `- **MiniMax** — …` |
-| Merge sheet + findings | `COUNCIL-BULLETIN.md` — **M-22** |
-| Questions | `QUESTIONS-FOR-THE-ARCHITECT.md` — `### MiniMax` block, `Q-MINIMAX-1…6` |
-| Evidence | `_agents/minimax/evidence/2026-10-20-minimax-session.log` |
-| Probe (seed for `tests/phone.js`) | `_agents/minimax/tools/cdp-phone-check.mjs` |
+| Item                              | Location                                                                        |
+| --------------------------------- | ------------------------------------------------------------------------------- |
+| Arrival + findings                | `CHRONICLE.md` — line "2026-10-20 · MiniMax · joined …" (+ mirror-refresh line) |
+| Availability                      | `COUNCIL-BULLETIN.md` — availability strip, `- **MiniMax** — …`                 |
+| Merge sheet + findings            | `COUNCIL-BULLETIN.md` — **M-22**                                                |
+| Questions                         | `QUESTIONS-FOR-THE-ARCHITECT.md` — `### MiniMax` block, `Q-MINIMAX-1…6`         |
+| Evidence                          | `_agents/minimax/evidence/2026-10-20-minimax-session.log`                       |
+| Probe (seed for `tests/phone.js`) | `_agents/minimax/tools/cdp-phone-check.mjs`                                     |
 
 Product builds were not touched: v20 `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 (649,032 B) and donor `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f` (650,127 B),

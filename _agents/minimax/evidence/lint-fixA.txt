@@ -1,0 +1,11 @@
+
+MiniMax candidate lint — /tmp/minimax-fixture-A-oracle.html
+  sha256 fa562b54a6fe04097e02b2d4ea4d92de7500d8a0440f6b85b6b6aa53ec8d43ec · 657676 bytes
+  46 pass · 0 warn · 1 fail
+
+  [FAIL] surface:draft-results/donor-cta the candidate carries the "donor-cta" variant of the draft-results surface but lacks id="viewSeason", id="tabSeasonBtn", id="seasonHost" — the surface is half-taken
+
+  FAILING CHECKS:
+   - surface:draft-results/donor-cta: the candidate carries the "donor-cta" variant of the draft-results surface but lacks id="viewSeason", id="tabSeasonBtn", id="seasonHost" — the surface is half-taken
+
+  exit 1 — the candidate does not yet satisfy the merge oracle

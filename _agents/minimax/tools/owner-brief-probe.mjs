@@ -14,26 +14,66 @@
 //      "Default" -> back on the defaults -> "My Weights" still reachable (loads the saved set)
 //   6  the sort dropdown label and the guide text (no visible "value here" column name)
 
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL } from "node:url";
 
-const files = process.argv.slice(2).filter(a => !a.startsWith('--'));
-if (!files.length) { console.error('usage: owner-brief-probe.mjs <file.html> [...]'); process.exit(4); }
+const files = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+if (!files.length) {
+  console.error("usage: owner-brief-probe.mjs <file.html> [...]");
+  process.exit(4);
+}
 const port = 9222;
-const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+const version = await (
+  await fetch(`http://127.0.0.1:${port}/json/version`)
+).json();
 const ws = new WebSocket(version.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r));
-let id = 0; const pending = new Map();
-ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
-const send = (method, params = {}, sessionId) => { const i = ++id; ws.send(JSON.stringify({ id: i, method, params, ...(sessionId ? { sessionId } : {}) })); return new Promise((res, rej) => pending.set(i, { res, rej })); };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+await new Promise((r) => ws.addEventListener("open", r));
+let id = 0;
+const pending = new Map();
+ws.addEventListener("message", (e) => {
+  const m = JSON.parse(e.data);
+  if (m.id && pending.has(m.id)) {
+    const { res, rej } = pending.get(m.id);
+    pending.delete(m.id);
+    m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result);
+  }
+});
+const send = (method, params = {}, sessionId) => {
+  const i = ++id;
+  ws.send(
+    JSON.stringify({
+      id: i,
+      method,
+      params,
+      ...(sessionId ? { sessionId } : {}),
+    }),
+  );
+  return new Promise((res, rej) => pending.set(i, { res, rej }));
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const file of files) {
-  const { targetId } = await send('Target.createTarget', { url: 'about:blank' }, false);
-  const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true }, false);
-  await send('Page.enable', {}, sessionId); await send('Runtime.enable', {}, sessionId);
-  await send('Page.navigate', { url: pathToFileURL(file).href }, sessionId);
+  const { targetId } = await send(
+    "Target.createTarget",
+    { url: "about:blank" },
+    false,
+  );
+  const { sessionId } = await send(
+    "Target.attachToTarget",
+    { targetId, flatten: true },
+    false,
+  );
+  await send("Page.enable", {}, sessionId);
+  await send("Runtime.enable", {}, sessionId);
+  await send("Page.navigate", { url: pathToFileURL(file).href }, sessionId);
   await sleep(2800);
-  const ev = async expr => (await send('Runtime.evaluate', { expression: expr, returnByValue: true, awaitPromise: true }, sessionId)).result?.value;
+  const ev = async (expr) =>
+    (
+      await send(
+        "Runtime.evaluate",
+        { expression: expr, returnByValue: true, awaitPromise: true },
+        sessionId,
+      )
+    ).result?.value;
   const out = await ev(`(async function(){
     function txt(el){ return el ? (el.innerText||el.textContent||'').replace(/\\s+/g,' ').trim() : null; }
     var R = {};
@@ -101,21 +141,76 @@ for (const file of files) {
     return JSON.stringify(R);
   })()`);
   let d = {};
-  try { d = JSON.parse(out || '{}'); } catch (e) { console.log(file, '-> probe parse failed:', out); }
-  console.log('\n' + file);
-  console.log('  1 board headers      :', (d.boardHeaders || []).join(' | '));
+  try {
+    d = JSON.parse(out || "{}");
+  } catch (_e) {
+    console.log(file, "-> probe parse failed:", out);
+  }
+  console.log(`\n${file}`);
+  console.log("  1 board headers      :", (d.boardHeaders || []).join(" | "));
   console.log('    "Value here" cells :', d.valueHereCells);
-  console.log('    sort options      :', (d.sortOptions || []).join(' | '));
-  console.log('  2 footer            :', JSON.stringify(d.footText), '| buttons:', (d.footButtons || []).join(', '));
-  console.log('  3 panel order       :', (d.panelOrder || []).join(' > '));
-  console.log('    penalties below the buttons:', d.penaltyAfterButtons);
-  console.log('  4 buttons           : model="' + d.modelBtn + '" save="' + d.saveBtn + '" disabled=' + d.saveDisabled + ' classes=' + JSON.stringify(d.saveClasses));
-  console.log('    save button style : bg=' + JSON.stringify(d.saveBg) + ' opacity=' + d.saveOpacity);
-  console.log('  5 after edit        : label="' + d.afterEdit_label + '" disabled=' + d.afterEdit_disabled + ' classes=' + JSON.stringify(d.afterEdit_classes));
-  console.log('    after save        : personalWeights saved=' + d.afterSave_personalSaved + ' keys label="' + d.afterSave_label + '"');
-  console.log('    after Default     : label="' + d.afterDefault_label + '" disabled=' + d.afterDefault_disabled + ' onDefaults=' + d.afterDefault_onDefaults);
-  console.log('    after load        : QB=' + d.afterLoad_qb + ' differs=' + d.afterLoad_differs);
-  console.log('  6 guide mentions "Value here":', d.guideMentionsValueHere, '| body mentions it:', d.bodyMentionsValueHere, '| title:', d.guideBoardTitle);
-  await send('Target.closeTarget', { targetId }, false);
+  console.log("    sort options      :", (d.sortOptions || []).join(" | "));
+  console.log(
+    "  2 footer            :",
+    JSON.stringify(d.footText),
+    "| buttons:",
+    (d.footButtons || []).join(", "),
+  );
+  console.log("  3 panel order       :", (d.panelOrder || []).join(" > "));
+  console.log("    penalties below the buttons:", d.penaltyAfterButtons);
+  console.log(
+    '  4 buttons           : model="' +
+      d.modelBtn +
+      '" save="' +
+      d.saveBtn +
+      '" disabled=' +
+      d.saveDisabled +
+      " classes=" +
+      JSON.stringify(d.saveClasses),
+  );
+  console.log(
+    "    save button style : bg=" +
+      JSON.stringify(d.saveBg) +
+      " opacity=" +
+      d.saveOpacity,
+  );
+  console.log(
+    '  5 after edit        : label="' +
+      d.afterEdit_label +
+      '" disabled=' +
+      d.afterEdit_disabled +
+      " classes=" +
+      JSON.stringify(d.afterEdit_classes),
+  );
+  console.log(
+    "    after save        : personalWeights saved=" +
+      d.afterSave_personalSaved +
+      ' keys label="' +
+      d.afterSave_label +
+      '"',
+  );
+  console.log(
+    '    after Default     : label="' +
+      d.afterDefault_label +
+      '" disabled=' +
+      d.afterDefault_disabled +
+      " onDefaults=" +
+      d.afterDefault_onDefaults,
+  );
+  console.log(
+    "    after load        : QB=" +
+      d.afterLoad_qb +
+      " differs=" +
+      d.afterLoad_differs,
+  );
+  console.log(
+    '  6 guide mentions "Value here":',
+    d.guideMentionsValueHere,
+    "| body mentions it:",
+    d.bodyMentionsValueHere,
+    "| title:",
+    d.guideBoardTitle,
+  );
+  await send("Target.closeTarget", { targetId }, false);
 }
 ws.close();

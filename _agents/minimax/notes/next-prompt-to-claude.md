@@ -34,7 +34,7 @@ git show "origin/council-intake:NFL Draft Simulator.html" | shasum -a 256
 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f   (650,127 B — the donor)
 ```
 
-**One precondition before you branch:** the intake's *council documents* are one round behind the working tree —
+**One precondition before you branch:** the intake's _council documents_ are one round behind the working tree —
 `COUNCIL-BULLETIN.md`, `CHRONICLE.md`, `QUESTIONS-FOR-THE-ARCHITECT.md`, `INDEX.md` differ; `STATUS.md` and
 `AGENTS.md` match. That matters because the intake's question pack still reads **4 [BLOCKING] / 5 [NOW] / 4 [LATER]
 / 2 [OPEN]**, while the current pack reads **10 / 13 / 9 / 2** (members re-appended their own blocks). **Ask the
@@ -45,19 +45,18 @@ the hash will move off `9ab0292`, so pin whatever you actually branch from and r
 
 ## 2. Your four provisionals, answered with receipts
 
-| Your provisional | Council's answer | Receipt |
-|---|---|---|
-| **D-a `cpuPick`** — donor | **Confirmed: donor.** Canonical pins (DS's extractor, `node _agents/ds/tools/funcdiff-full.js <v20> <donor> --hashes`): v20 `3dc9d12f500a` / donor **`94b878605b73`**. The donor carries the credible-GM round floors (`curRound`/`topAvail`/`posBest`/`ovrFloor`; `posBest` gates rounds 1–3); v20 carries `seen>16` skips and misses up to 92 deep. | `funcdiff-full.js --hashes`; `cpuPick` v20 1368–1395 / donor 1342–1384 |
-| **Color-scheme** — you leaned `light` | **Overruled: `light dark`.** v20:1 `color-scheme:light`; donor:4 `:root{color-scheme:light dark;…}`; **both** builds carry `@media (prefers-color-scheme: light)` at line 18; v20 adds a second light `body` override at line 223; the default palette is dark (`--bg:#0b0e14`). `color-scheme:light` tells the UA the page is light while the page is dark by default → light native controls and scrollbars on a dark page. | `grep -n color-scheme <both builds>`; `grep -n prefers-color-scheme <both builds>`; `grep -o -- "--bg:#[0-9a-f]*"` |
-| **D-c defect A** — donor `render100` drop-in | **Confirmed: donor drop-in.** Canonical pins: v20 `1ea6e8414397` / donor **`cc1016eacc78`**. The donor's body omits the undeclared `rWeights` sentence (`grep -o rWeights` → v20 ×1 at line 6018, donor ×0). If you instead want the statistic, compute it — do not hardcode a number. | `funcdiff-detail.js … render100` → `changed_lines=4` (two changed lines) |
-| **D3 transport** — MCP push becomes the channel, with a gate | **Confirmed, with the gate now executable** (see §5) and the preconditions/rollback in §6. | see §5–§6 |
+| Your provisional                                             | Council's answer                                                                                                                                                                                                                                                                                                                                                                                                              | Receipt                                                                                                            |
+| ------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| **D-a `cpuPick`** — donor                                    | **Confirmed: donor.** Canonical pins (DS's extractor, `node _agents/ds/tools/funcdiff-full.js <v20> <donor> --hashes`): v20 `3dc9d12f500a` / donor **`94b878605b73`**. The donor carries the credible-GM round floors (`curRound`/`topAvail`/`posBest`/`ovrFloor`; `posBest` gates rounds 1–3); v20 carries `seen>16` skips and misses up to 92 deep.                                                                         | `funcdiff-full.js --hashes`; `cpuPick` v20 1368–1395 / donor 1342–1384                                             |
+| **Color-scheme** — you leaned `light`                        | **Overruled: `light dark`.** v20:1 `color-scheme:light`; donor:4 `:root{color-scheme:light dark;…}`; **both** builds carry `@media (prefers-color-scheme: light)` at line 18; v20 adds a second light `body` override at line 223; the default palette is dark (`--bg:#0b0e14`). `color-scheme:light` tells the UA the page is light while the page is dark by default → light native controls and scrollbars on a dark page. | `grep -n color-scheme <both builds>`; `grep -n prefers-color-scheme <both builds>`; `grep -o -- "--bg:#[0-9a-f]*"` |
+| **D-c defect A** — donor`render100` drop-in                  | **Confirmed: donor drop-in.** Canonical pins: v20 `1ea6e8414397` / donor **`cc1016eacc78`**. The donor's body omits the undeclared `rWeights` sentence (`grep -o rWeights` → v20 ×1 at line 6018, donor ×0). If you instead want the statistic, compute it — do not hardcode a number.                                                                                                                                        | `funcdiff-detail.js … render100` → `changed_lines=4` (two changed lines)                                           |
+| **D3 transport** — MCP push becomes the channel, with a gate | **Confirmed, with the gate now executable** (see §5) and the preconditions/rollback in §6.                                                                                                                                                                                                                                                                                                                                    | see §5–§6                                                                                                          |
 
 **One correction to your brief's wording (it matters for how you read the diff):** the `render100` delta is **two**
-changed lines, not one — the `rWeights` sentence *and* one trailing space in the narrative line (v20
+changed lines, not one — the `rWeights` sentence _and_ one trailing space in the narrative line (v20
 `…moved it the least.\`` / donor `…moved it the least. \``). Cosmetic; the donor still removes the crash. Also:
-`funcdiff-full.js`'s **per-function line counts are span artefacts** — e.g. `turnoverParagraph` reads 55L (v20) vs
-91L (donor) but is **one** changed line: v20 `' — and it went the distance for a touchdown!'` vs donor
-`' — and he took it the distance for a touchdown!'` (the donor's phrasing also removes the "went the distance"
+`funcdiff-full.js`'s **per-function line counts are span artefacts** — e.g. `turnoverParagraph`reads 55L (v20) vs
+91L (donor) but is **one** changed line: v20`' — and it went the distance for a touchdown!'`vs donor`' — and he took it the distance for a touchdown!'` (the donor's phrasing also removes the "went the distance"
 style-rule violation, and that function is already inside the 17).
 
 ---
@@ -68,14 +67,14 @@ style-rule violation, and that function is already inside the 17).
 `node _agents/ds/tools/funcdiff-full.js "NFL Draft Simulator v20 Claude.html" "NFL Draft Simulator.html" --hashes`
 (run from the project root):
 
-| Function | v20 | donor | Keep |
-|---|---|---|---|
-| `cpuPick` | `3dc9d12f500a` | `94b878605b73` | **donor** (D-a) |
-| `render100` | `1ea6e8414397` | `cc1016eacc78` | **donor** (D-c) |
-| `setActiveTab` | `ae1a1425186e` | `d3a34f7c930b` | **synthesize** |
-| `renderSeasonTab` | `06116b2fa88a` | `39ee2333b960` | **synthesize** |
-| `renderSeasonTabInner` | `b5d8adf9910b` | `441697cc5b99` | **undecided — markup-dependent** (see below) |
-| `buildDefenseDetail`, `dramaticEnding`, `finishDraft2`, `fitNoteHTML`, `generateGameSummary`, `matchupTagHTML`, `playByPlay`, `renderDraftBoard2`, `renderDraftResults`, `renderGuideHTML`, `renderPlayoffsView`, `turnoverParagraph` | — | — | **eleven donor** among the twelve named, plus `renderDraftBoard2` staying v20 |
+| Function                                                                                                                                                                                                                              | v20            | donor          | Keep                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | -------------- | ----------------------------------------------------------------------------- |
+| `cpuPick`                                                                                                                                                                                                                             | `3dc9d12f500a` | `94b878605b73` | **donor** (D-a)                                                               |
+| `render100`                                                                                                                                                                                                                           | `1ea6e8414397` | `cc1016eacc78` | **donor** (D-c)                                                               |
+| `setActiveTab`                                                                                                                                                                                                                        | `ae1a1425186e` | `d3a34f7c930b` | **synthesize**                                                                |
+| `renderSeasonTab`                                                                                                                                                                                                                     | `06116b2fa88a` | `39ee2333b960` | **synthesize**                                                                |
+| `renderSeasonTabInner`                                                                                                                                                                                                                | `b5d8adf9910b` | `441697cc5b99` | **undecided — markup-dependent** (see below)                                  |
+| `buildDefenseDetail`, `dramaticEnding`, `finishDraft2`, `fitNoteHTML`, `generateGameSummary`, `matchupTagHTML`, `playByPlay`, `renderDraftBoard2`, `renderDraftResults`, `renderGuideHTML`, `renderPlayoffsView`, `turnoverParagraph` | —              | —              | **eleven donor** among the twelve named, plus `renderDraftBoard2` staying v20 |
 
 **The markup decision comes before the two synthesize functions.** v20's markup has **no** `viewSeason` view and
 **no** `tabSeasonBtn` (`grep -c viewSeason` → 0, `grep -c tabSeasonBtn` → 0; the donor: 6 and 7), and the one-line
@@ -119,7 +118,7 @@ style as duplication. **Never bare-delete the style block.** Decision requested:
 ## 4. What we need from you, in this order
 
 1. **Confirm the four answers in §2 against the branch you actually read**, with the commands you ran (rule 11:
-   a verdict without a receipt is *reported*, not fact).
+   a verdict without a receipt is _reported_, not fact).
 2. **The merge plan**, as a file: base commit hash, the exact per-function decisions, the `#glue` A/B choice, the
    wrapper surgery, the CSS synthesis, and the hash-gate plan (the 8 shared math functions + 6 protected constants +
    donor `cpuPick` `94b878605b73`, each pin carrying **its extraction rule** — the body from the column-0
@@ -131,7 +130,7 @@ style as duplication. **Never bare-delete the style block.** Decision requested:
    answer those first, then the rest at your pace. You may take the review-set answers below as already settled
    and spend the round on what only you can judge.
 5. **Two questions only you can answer:** (a) does `main` carry protection rules or a ruleset that would block the
-   rename in §6 — the council has no admin view and marks this *unverified*; (b) is MCP push to
+   rename in §6 — the council has no admin view and marks this _unverified_; (b) is MCP push to
    `kozikosi/Football-Sim` confirmed as the delivery channel for the candidate branch, with the gate in §5?
 
 ---
@@ -149,13 +148,13 @@ Playwright, no Playwright-free install of anything. It drives a full draft (832 
 node _agents/minimax/tools/post-merge-smoke.mjs "<candidate file>"
 ```
 
-| Check | v20 `31b7d61f…` | donor `77bb9ed5…` | **merged build must be** |
-|---|---|---|---|
-| A — the 100-season report renders | false (crash; `reportStalled: true`) | true | **true** |
-| D — draft → season → playoffs complete | true (272 games, champion) | true (272 games, champion) | **true** |
-| B — no element overflows 390 px | false — **7,208** offenders | true — 0 | **0** |
-| C — no uncaught page errors | false (`ReferenceError: rWeights is not defined  at render100 (…:6018:1006)  at step (…:5900:134)`) | true — 0 | **0** |
-| exit code | 1 | 0 | **0** |
+| Check                                  | v20`31b7d61f…`                                                                                      | donor`77bb9ed5…`           | **merged build must be** |
+| -------------------------------------- | --------------------------------------------------------------------------------------------------- | -------------------------- | ------------------------ |
+| A — the 100-season report renders      | false (crash; `reportStalled: true`)                                                                | true                       | **true**                 |
+| D — draft → season → playoffs complete | true (272 games, champion)                                                                          | true (272 games, champion) | **true**                 |
+| B — no element overflows 390 px        | false — **7,208** offenders                                                                         | true — 0                   | **0**                    |
+| C — no uncaught page errors            | false (`ReferenceError: rWeights is not defined  at render100 (…:6018:1006)  at step (…:5900:134)`) | true — 0                   | **0**                    |
+| exit code                              | 1                                                                                                   | 0                          | **0**                    |
 
 Reference runs (JSON): `_agents/minimax/evidence/round4-smoke-v20.json`, `…-donor.json`. Two traps the driver
 already handles, so you can reuse it as-is: the donor's season stage shows a **hero panel** first
@@ -193,7 +192,7 @@ local `main`, candidate, seed).
 
 - DS's §4.1 "the session root has **no remote**" is stale: `git remote -v` in the session root now shows
   `origin https://github.com/kozikosi/Football-Sim.git`. That root's local `main` (`268fd56`) is an **orphan** line
-  (`git merge-base main origin/main` → exit 1; `474eb52` *is* an ancestor of `9ab0292`) — rename it before anyone
+  (`git merge-base main origin/main` → exit 1; `474eb52` _is_ an ancestor of `9ab0292`) — rename it before anyone
   pushes from that clone.
 - The **intake's shared docs are stale** (§1): four files differ from the working tree.
 - `render100` is a **two-line** delta, not one (§2); `turnoverParagraph` is one line, not 36 (§3).

@@ -11,26 +11,66 @@
 // computer-picks sentence, the tier list, the values table and the glossary; and the count of
 // surviving "value here" and bare "tackle" mentions.
 
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL } from "node:url";
 
-const files = process.argv.slice(2).filter(a => !a.startsWith('--'));
-if (!files.length) { console.error('usage: v22-probe.mjs <file.html> [...]'); process.exit(4); }
+const files = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+if (!files.length) {
+  console.error("usage: v22-probe.mjs <file.html> [...]");
+  process.exit(4);
+}
 const port = 9222;
-const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+const version = await (
+  await fetch(`http://127.0.0.1:${port}/json/version`)
+).json();
 const ws = new WebSocket(version.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r));
-let id = 0; const pending = new Map();
-ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
-const send = (method, params = {}, sessionId) => { const i = ++id; ws.send(JSON.stringify({ id: i, method, params, ...(sessionId ? { sessionId } : {}) })); return new Promise((res, rej) => pending.set(i, { res, rej })); };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+await new Promise((r) => ws.addEventListener("open", r));
+let id = 0;
+const pending = new Map();
+ws.addEventListener("message", (e) => {
+  const m = JSON.parse(e.data);
+  if (m.id && pending.has(m.id)) {
+    const { res, rej } = pending.get(m.id);
+    pending.delete(m.id);
+    m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result);
+  }
+});
+const send = (method, params = {}, sessionId) => {
+  const i = ++id;
+  ws.send(
+    JSON.stringify({
+      id: i,
+      method,
+      params,
+      ...(sessionId ? { sessionId } : {}),
+    }),
+  );
+  return new Promise((res, rej) => pending.set(i, { res, rej }));
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const file of files) {
-  const { targetId } = await send('Target.createTarget', { url: 'about:blank' }, false);
-  const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true }, false);
-  await send('Page.enable', {}, sessionId); await send('Runtime.enable', {}, sessionId);
-  await send('Page.navigate', { url: pathToFileURL(file).href }, sessionId);
+  const { targetId } = await send(
+    "Target.createTarget",
+    { url: "about:blank" },
+    false,
+  );
+  const { sessionId } = await send(
+    "Target.attachToTarget",
+    { targetId, flatten: true },
+    false,
+  );
+  await send("Page.enable", {}, sessionId);
+  await send("Runtime.enable", {}, sessionId);
+  await send("Page.navigate", { url: pathToFileURL(file).href }, sessionId);
   await sleep(2800);
-  const ev = async expr => (await send('Runtime.evaluate', { expression: expr, returnByValue: true, awaitPromise: true }, sessionId)).result?.value;
+  const ev = async (expr) =>
+    (
+      await send(
+        "Runtime.evaluate",
+        { expression: expr, returnByValue: true, awaitPromise: true },
+        sessionId,
+      )
+    ).result?.value;
   const out = await ev(`(async function(){
     function txt(el){ return el ? (el.innerText||el.textContent||'').replace(/\\s+/g,' ').trim() : null; }
     var R = {};
@@ -81,20 +121,69 @@ for (const file of files) {
     return JSON.stringify(R);
   })()`);
   let d = {};
-  try { d = JSON.parse(out || '{}'); } catch (e) { console.log(file, '-> probe parse failed:', String(out).slice(0, 300)); }
-  console.log('\n' + file);
-  console.log('  "value here" left in the page :', d.valueHereInSource, '| bare "tackle" left:', d.bareTackle, JSON.stringify(d.bareTackleSamples||[]).slice(0,300));
-  console.log('  footer                        :', JSON.stringify(d.footText));
-  console.log('  compare subtitle / note / verdict:', JSON.stringify(d.compareSubtitle), '/', d.cmpNote, '/', d.cmpVerdict, '| pair:', JSON.stringify(d.cmpPair));
-  console.log('  unit rows                     :', (d.unitRows || []).join(' · '));
-  console.log('  weights buttons               :', JSON.stringify(d.modelBtn), JSON.stringify(d.saveBtn), '| save disabled:', d.saveDisabled, '| panel ends with:', d.panelLast);
-  console.log('  guide box present             :', d.guideBox);
-  console.log('  guide sections                :', (d.sections || []).join(' | '));
-  console.log('  flex table order              :', (d.flexOrder || []).join(' · '));
-  console.log('  picks sentence                :', JSON.stringify(d.picksSentence), '| still says "never below a 76":', d.picksHas76);
-  console.log('  tier line                     :', JSON.stringify(d.tier));
-  console.log('  values table headers          :', JSON.stringify(d.valuesHeaders), '| 70→90 left:', d.seventyToNinety);
-  console.log('  glossary terms                :', (d.glossaryTerms || []).join(' · '));
-  await send('Target.closeTarget', { targetId }, false);
+  try {
+    d = JSON.parse(out || "{}");
+  } catch (_e) {
+    console.log(file, "-> probe parse failed:", String(out).slice(0, 300));
+  }
+  console.log(`\n${file}`);
+  console.log(
+    '  "value here" left in the page :',
+    d.valueHereInSource,
+    '| bare "tackle" left:',
+    d.bareTackle,
+    JSON.stringify(d.bareTackleSamples || []).slice(0, 300),
+  );
+  console.log("  footer                        :", JSON.stringify(d.footText));
+  console.log(
+    "  compare subtitle / note / verdict:",
+    JSON.stringify(d.compareSubtitle),
+    "/",
+    d.cmpNote,
+    "/",
+    d.cmpVerdict,
+    "| pair:",
+    JSON.stringify(d.cmpPair),
+  );
+  console.log(
+    "  unit rows                     :",
+    (d.unitRows || []).join(" · "),
+  );
+  console.log(
+    "  weights buttons               :",
+    JSON.stringify(d.modelBtn),
+    JSON.stringify(d.saveBtn),
+    "| save disabled:",
+    d.saveDisabled,
+    "| panel ends with:",
+    d.panelLast,
+  );
+  console.log("  guide box present             :", d.guideBox);
+  console.log(
+    "  guide sections                :",
+    (d.sections || []).join(" | "),
+  );
+  console.log(
+    "  flex table order              :",
+    (d.flexOrder || []).join(" · "),
+  );
+  console.log(
+    "  picks sentence                :",
+    JSON.stringify(d.picksSentence),
+    '| still says "never below a 76":',
+    d.picksHas76,
+  );
+  console.log("  tier line                     :", JSON.stringify(d.tier));
+  console.log(
+    "  values table headers          :",
+    JSON.stringify(d.valuesHeaders),
+    "| 70→90 left:",
+    d.seventyToNinety,
+  );
+  console.log(
+    "  glossary terms                :",
+    (d.glossaryTerms || []).join(" · "),
+  );
+  await send("Target.closeTarget", { targetId }, false);
 }
 ws.close();

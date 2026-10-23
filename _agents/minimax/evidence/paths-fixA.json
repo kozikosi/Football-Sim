@@ -1,0 +1,66 @@
+{
+	"run": {
+		"utc": "2026-10-20T22:27:27.496Z",
+		"tool": "post-merge-smoke.mjs",
+		"tool_version": "3 (2026-10-20) — restored byte-for-byte from origin/council-intake after the 12:13 lane deletion, then re-patched with the season-path enumeration and this run identity",
+		"artifact_path": "/tmp/minimax-fixture-A-oracle.html",
+		"artifact_sha256": "fa562b54a6fe04097e02b2d4ea4d92de7500d8a0440f6b85b6b6aa53ec8d43ec",
+		"artifact_bytes": 657676,
+		"artifact_basename": "minimax-fixture-A-oracle.html",
+		"git_ref": "merge/v20-donor @ ff8c05ae0ef8",
+		"git_commit": "ff8c05ae0ef89e9030faa991a942d1c611f891bd",
+		"browser": "Chromium-family over CDP (--remote-debugging-port=9222)",
+		"browser_version": "Chrome/151.0.7922.137",
+		"viewport": {
+			"desktop": "1280x900",
+			"mobile": "390x844"
+		},
+		"seed": "none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed",
+		"evidence_name": "e2e-fa562b54a6fe-2026-10-20.json"
+	},
+	"verdict": "FAIL",
+	"skipped_checks": [],
+	"build": "minimax-fixture-A-oracle.html",
+	"checks": {
+		"A_reportRendered": true,
+		"D_seasonAndPlayoffsComplete": false,
+		"B_noViewportOverflow": true,
+		"C_noPageErrors": true
+	},
+	"detail": {
+		"steps": {
+			"startDraft": true,
+			"instant": true,
+			"simToEnd": true,
+			"reportPath": "direct-call:called",
+			"reportRendered": true,
+			"reportStalled": false,
+			"season": {
+				"entryPath": null,
+				"startHandle": null,
+				"heroHandle": null,
+				"beginHandle": null,
+				"simHandle": null,
+				"entryHandle": "ctaPlaySeasonBtn",
+				"regularDone": false,
+				"gamesPlayed": null
+			},
+			"playoffs": {
+				"beginHandle": false,
+				"simHandle": null,
+				"complete": false,
+				"champion": null
+			}
+		},
+		"draftPicks": "832/832",
+		"reportPath": "direct-call:called",
+		"reportRendered": true,
+		"reportStalled": false,
+		"pageErrors": [],
+		"offenderCount": 0,
+		"offenders": [],
+		"pageOverflowPx": 0,
+		"documentScrollWidth": 390,
+		"bodyOverflowX": "hidden"
+	}
+}

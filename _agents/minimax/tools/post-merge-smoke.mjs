@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // MiniMax — post-merge smoke test for the NFL Draft Simulator builds (Round 4).
 //
 // One command, no installs, no dependencies: drives an already-running Chromium-family
@@ -22,41 +23,54 @@
 //
 // Exit codes (tests/CONTRACT.md v2 league): 0 = all checks pass, 1 = findings, 4 = usage/parse error.
 
-import { pathToFileURL, fileURLToPath } from 'node:url';
-import { resolve, basename } from 'node:path';
-import fs from 'node:fs';
-import crypto from 'node:crypto';
-import { execFileSync } from 'node:child_process';
+import { execFileSync } from "node:child_process";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import { basename, resolve } from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 
 const argv = process.argv.slice(2);
 const flags = {};
 const positional = [];
 for (let i = 0; i < argv.length; i++) {
-  if (argv[i].startsWith('--')) flags[argv[i].slice(2)] = argv[i + 1] && !argv[i + 1].startsWith('--') ? argv[++i] : true;
+  if (argv[i].startsWith("--"))
+    flags[argv[i].slice(2)] =
+      argv[i + 1] && !argv[i + 1].startsWith("--") ? argv[++i] : true;
   else positional.push(argv[i]);
 }
 const target = positional[0];
 const port = String(flags.port || 9222);
-const W = 390, H = 844;
+const _W = 390,
+  H = 844;
 if (!target) {
-  console.error('usage: post-merge-smoke.mjs <file-or-url> [--port 9222]');
+  console.error("usage: post-merge-smoke.mjs <file-or-url> [--port 9222]");
   process.exit(4);
 }
 
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // ---- run identity helpers (GPT's OPENCHAMBER-E2E evidence schema asks for these) ----------------
 function gitOut(args) {
-  try { return execFileSync('git', args, { cwd: resolve(process.cwd()), encoding: 'utf8', stdio: ['ignore','pipe','ignore'] }).trim(); }
-  catch { return 'unavailable'; }
+  try {
+    return execFileSync("git", args, {
+      cwd: resolve(process.cwd()),
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    }).trim();
+  } catch {
+    return "unavailable";
+  }
 }
 function gitRef() {
-  const d = gitOut(['rev-parse', '--abbrev-ref', 'HEAD']);
-  const h = gitOut(['rev-parse', 'HEAD']);
-  if (d === 'unavailable' || h === 'unavailable') return 'unavailable';
-  return d + ' @ ' + h.slice(0, 12);
+  const d = gitOut(["rev-parse", "--abbrev-ref", "HEAD"]);
+  const h = gitOut(["rev-parse", "HEAD"]);
+  if (d === "unavailable" || h === "unavailable") return "unavailable";
+  return `${d} @ ${h.slice(0, 12)}`;
 }
-function gitCommit() { const h = gitOut(['rev-parse', 'HEAD']); return h === 'unavailable' ? 'unavailable' : h; }
+function gitCommit() {
+  const h = gitOut(["rev-parse", "HEAD"]);
+  return h === "unavailable" ? "unavailable" : h;
+}
 
 const PROBE = `(() => {
   const vw = window.innerWidth, de = document.documentElement, offenders = [];
@@ -139,7 +153,6 @@ const PROBE = `(() => {
   });
 })()`;
 
-
 const PRIMARY_PROBE = `(() => {
   // The primary action of the CURRENT view: an explicit id if one is given, else the first
   // prominent control in the main panel. We record where it is and whether a user could see
@@ -176,22 +189,33 @@ const PRIMARY_PROBE = `(() => {
 })()`;
 
 class CDP {
-  constructor(ws) { this.ws = ws; this.id = 0; this.pending = new Map(); this.sessionId = null; this.events = []; }
+  constructor(ws) {
+    this.ws = ws;
+    this.id = 0;
+    this.pending = new Map();
+    this.sessionId = null;
+    this.events = [];
+  }
   static async connect(url) {
     const ws = new WebSocket(url);
-    await new Promise((res, rej) => { ws.onopen = res; ws.onerror = () => rej(new Error('ws error')); });
+    await new Promise((res, rej) => {
+      ws.onopen = res;
+      ws.onerror = () => rej(new Error("ws error"));
+    });
     const c = new CDP(ws);
-    ws.onmessage = ev => {
+    ws.onmessage = (ev) => {
       const m = JSON.parse(ev.data);
       if (m.id && c.pending.has(m.id)) {
-        const { res, rej } = c.pending.get(m.id); c.pending.delete(m.id);
+        const { res, rej } = c.pending.get(m.id);
+        c.pending.delete(m.id);
         m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result);
       } else if (m.method) c.events.push(m);
     };
     return c;
   }
   send(method, params = {}, useSession = true) {
-    const id = ++this.id, payload = { id, method, params };
+    const id = ++this.id,
+      payload = { id, method, params };
     if (useSession && this.sessionId) payload.sessionId = this.sessionId;
     this.ws.send(JSON.stringify(payload));
     return new Promise((res, rej) => this.pending.set(id, { res, rej }));
@@ -200,31 +224,64 @@ class CDP {
 
 (async () => {
   let version;
-  try { version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json(); }
-  catch { console.error(`no browser on 127.0.0.1:${port} — start one with --remote-debugging-port=${port}`); process.exit(4); }
+  try {
+    version = await (
+      await fetch(`http://127.0.0.1:${port}/json/version`)
+    ).json();
+  } catch {
+    console.error(
+      `no browser on 127.0.0.1:${port} — start one with --remote-debugging-port=${port}`,
+    );
+    process.exit(4);
+  }
 
-  const browserVersion = version.Browser || version['User-Agent'] || 'unavailable';
+  const browserVersion =
+    version.Browser || version["User-Agent"] || "unavailable";
   const cdp = await CDP.connect(version.webSocketDebuggerUrl);
-  const url = /^https?:|^file:/.test(target) ? target : pathToFileURL(resolve(target)).href;
-  const { targetId } = await cdp.send('Target.createTarget', { url: 'about:blank' }, false);
-  const { sessionId } = await cdp.send('Target.attachToTarget', { targetId, flatten: true }, false);
+  const url = /^https?:|^file:/.test(target)
+    ? target
+    : pathToFileURL(resolve(target)).href;
+  const { targetId } = await cdp.send(
+    "Target.createTarget",
+    { url: "about:blank" },
+    false,
+  );
+  const { sessionId } = await cdp.send(
+    "Target.attachToTarget",
+    { targetId, flatten: true },
+    false,
+  );
   cdp.sessionId = sessionId;
-  await cdp.send('Page.enable'); await cdp.send('Runtime.enable'); await cdp.send('Log.enable');
-  await cdp.send('Emulation.setDeviceMetricsOverride', { width: 1280, height: H, deviceScaleFactor: 1, mobile: false });
-  await cdp.send('Page.navigate', { url });
+  await cdp.send("Page.enable");
+  await cdp.send("Runtime.enable");
+  await cdp.send("Log.enable");
+  await cdp.send("Emulation.setDeviceMetricsOverride", {
+    width: 1280,
+    height: H,
+    deviceScaleFactor: 1,
+    mobile: false,
+  });
+  await cdp.send("Page.navigate", { url });
   await sleep(2500);
 
   const evalJS = async (expr) => {
-    const r = await cdp.send('Runtime.evaluate', { expression: expr, returnByValue: true });
+    const r = await cdp.send("Runtime.evaluate", {
+      expression: expr,
+      returnByValue: true,
+    });
     return r.result?.value;
   };
   const clickId = async (id) => {
-    const ok = await evalJS(`(()=>{const e=document.getElementById(${JSON.stringify(id)}); if(!e) return false; e.click(); return true;})()`);
+    const ok = await evalJS(
+      `(()=>{const e=document.getElementById(${JSON.stringify(id)}); if(!e) return false; e.click(); return true;})()`,
+    );
     return ok === true;
   };
   // Click the first id in the list that exists in the page; return the id clicked, or null.
   const clickFirst = async (ids) => {
-    for (const id of ids) { if (await clickId(id)) return id; }
+    for (const id of ids) {
+      if (await clickId(id)) return id;
+    }
     return null;
   };
   const waitFor = async (expr, timeoutMs, step = 250) => {
@@ -235,21 +292,42 @@ class CDP {
     }
     return false;
   };
-  const errors = () => cdp.events
-    .filter(e => e.method === 'Runtime.exceptionThrown' || e.method === 'Log.entryAdded')
-    .map(e => e.params.exceptionDetails?.exception?.description || e.params.entry?.text)
-    .filter(Boolean);
+  const errors = () =>
+    cdp.events
+      .filter(
+        (e) =>
+          e.method === "Runtime.exceptionThrown" ||
+          e.method === "Log.entryAdded",
+      )
+      .map(
+        (e) =>
+          e.params.exceptionDetails?.exception?.description ||
+          e.params.entry?.text,
+      )
+      .filter(Boolean);
 
-  const steps = { startDraft: null, instant: null, simToEnd: null, reportPath: null, reportRendered: null, reportStalled: null, season: null, playoffs: null, primaryAction: {} };
+  const steps = {
+    startDraft: null,
+    instant: null,
+    simToEnd: null,
+    reportPath: null,
+    reportRendered: null,
+    reportStalled: null,
+    season: null,
+    playoffs: null,
+    primaryAction: {},
+  };
 
   // --- A: drive a draft to completion, then run the 100-season report ---
-  steps.startDraft = await clickId('startDraftBtn');
+  steps.startDraft = await clickId("startDraftBtn");
   await sleep(1200);
-  steps.instant = await clickId('speedInstantBtn');
+  steps.instant = await clickId("speedInstantBtn");
   await sleep(600);
-  steps.simToEnd = await clickId('simToEndBtn');
+  steps.simToEnd = await clickId("simToEndBtn");
   await sleep(2500);
-  const draftPicks = await evalJS(`(typeof draftSim!=='undefined'&&draftSim)?draftSim.pos+'/'+draftSim.order.length:null`);
+  const draftPicks = await evalJS(
+    `(typeof draftSim!=='undefined'&&draftSim)?draftSim.pos+'/'+draftSim.order.length:null`,
+  );
   // H: the draft board must actually RENDER its players. The pick count was recorded but never
   // checked, so a build whose board always says "No players match." passed every gate
   // (adversarial finding F-3). We assert rows exist and the empty-state text is absent.
@@ -268,9 +346,18 @@ class CDP {
       return JSON.stringify({ rowCount: rows.length, emptyStatePresent: empty, container: body ? 'draftBody2' : 'draftCards', sample: text.replace(/\\s+/g,' ').slice(0,80) });
     }catch(e){ return JSON.stringify({ error: String(e) }); }
   })()`);
-  let draftBoardInfo; try { draftBoardInfo = JSON.parse(draftBoard); } catch(e) { draftBoardInfo = null; }
+  let draftBoardInfo;
+  try {
+    draftBoardInfo = JSON.parse(draftBoard);
+  } catch (_e) {
+    draftBoardInfo = null;
+  }
   steps.draftBoard = draftBoardInfo;
-  steps.draftBoardRenders = !!(draftBoardInfo && draftBoardInfo.rowCount > 0 && draftBoardInfo.emptyStatePresent === false);
+  steps.draftBoardRenders = !!(
+    draftBoardInfo &&
+    draftBoardInfo.rowCount > 0 &&
+    draftBoardInfo.emptyStatePresent === false
+  );
 
   // --- D: drive a full season (regular season + playoffs) to completion ---
   // build-agnostic: state assertions decide success, ids are only the handle to click.
@@ -284,35 +371,65 @@ class CDP {
   //   v20-inline         (none)             -> the results panel already shows the season
   // The "start" step differs too: the donor shows a hero (startSeasonHeroBtn), v20 renders
   // startSeasonBtn inline; both then reach beginSeasonBtn / simSeasonBtn.
-  steps.season = { entryPath: null, startHandle: null, heroHandle: null, beginHandle: null, simHandle: null };
+  steps.season = {
+    entryPath: null,
+    startHandle: null,
+    heroHandle: null,
+    beginHandle: null,
+    simHandle: null,
+  };
   // The Owner's #7 class: is the view's primary action reachable without scrolling?
-  steps.primaryAction.resultsView = JSON.parse((await evalJS(PRIMARY_PROBE)) || '{}');
+  steps.primaryAction.resultsView = JSON.parse(
+    (await evalJS(PRIMARY_PROBE)) || "{}",
+  );
   const ENTRY_PATHS = [
-    { id: 'donor-cta', steps: ['ctaPlaySeasonBtn'] },
-    { id: 'results-season-tab', steps: ['resultsSeasonBtn'] },
-    { id: 'donor-season-tab', steps: ['tabSeasonBtn'] },
-    { id: 'v20-inline', steps: [] },
+    { id: "donor-cta", steps: ["ctaPlaySeasonBtn"] },
+    { id: "results-season-tab", steps: ["resultsSeasonBtn"] },
+    { id: "donor-season-tab", steps: ["tabSeasonBtn"] },
+    { id: "v20-inline", steps: [] },
   ];
   for (const pth of ENTRY_PATHS) {
     let clicked = null;
-    for (const sid of pth.steps) { if (await clickId(sid)) { clicked = sid; steps.season.entryHandle = sid; await sleep(800); } }
-    if (await waitFor(`!!document.getElementById('startSeasonBtn')||!!document.getElementById('startSeasonHeroBtn')`, 2500, 250)) {
-      steps.season.entryPath = clicked ? pth.id : 'already-rendered';
+    for (const sid of pth.steps) {
+      if (await clickId(sid)) {
+        clicked = sid;
+        steps.season.entryHandle = sid;
+        await sleep(800);
+      }
+    }
+    if (
+      await waitFor(
+        `!!document.getElementById('startSeasonBtn')||!!document.getElementById('startSeasonHeroBtn')`,
+        2500,
+        250,
+      )
+    ) {
+      steps.season.entryPath = clicked ? pth.id : "already-rendered";
       break;
     }
   }
-  steps.season.startHandle = await clickFirst(['startSeasonHeroBtn', 'startSeasonBtn']);
+  steps.season.startHandle = await clickFirst([
+    "startSeasonHeroBtn",
+    "startSeasonBtn",
+  ]);
   await sleep(1500);
-  steps.season.heroHandle = await clickFirst(['startSeasonHeroBtn']);
+  steps.season.heroHandle = await clickFirst(["startSeasonHeroBtn"]);
   await sleep(1200);
   // Probe the PRESEASON view BEFORE clicking "Begin Season": that is the view DS measured
   // (the Begin Season button at the foot of a 7,483px page). Probing after the click would
   // sample a different surface and could never fail - the class of check that looks green
   // because it never looks.
-  steps.primaryAction.preseasonView = JSON.parse((await evalJS(PRIMARY_PROBE)) || '{}');
-  steps.season.beginHandle = await clickFirst(['beginSeasonBtn', 'beginSeason2Btn']);
+  steps.primaryAction.preseasonView = JSON.parse(
+    (await evalJS(PRIMARY_PROBE)) || "{}",
+  );
+  steps.season.beginHandle = await clickFirst([
+    "beginSeasonBtn",
+    "beginSeason2Btn",
+  ]);
   await sleep(1500);
-  steps.primaryAction.seasonView = JSON.parse((await evalJS(PRIMARY_PROBE)) || '{}');
+  steps.primaryAction.seasonView = JSON.parse(
+    (await evalJS(PRIMARY_PROBE)) || "{}",
+  );
   // 3.4 - the "Week 1 of 17" state, observed VISIBLY, before the week is simulated.
   // The build renders it as <h3>Week ${week} of 17</h3> while !seasonState.weekSimulated
   // (merged candidate line 3891). The E2E record's week-1-display step is SKIPped with the reason
@@ -338,12 +455,26 @@ class CDP {
       return JSON.stringify(out);
     }catch(e){ return JSON.stringify({ error: String(e) }); }
   })()`);
-  try { steps.season.week1 = JSON.parse(steps.season.week1); } catch(e) { steps.season.week1 = null; }
-  steps.season.week1Of17Seen = !!(steps.season.week1 && steps.season.week1.visible && steps.season.week1.week === 1 && steps.season.week1.of === 17);
-  steps.season.simHandle = await clickFirst(['simSeasonBtn']);
+  try {
+    steps.season.week1 = JSON.parse(steps.season.week1);
+  } catch (_e) {
+    steps.season.week1 = null;
+  }
+  steps.season.week1Of17Seen = !!(
+    steps.season.week1?.visible &&
+    steps.season.week1.week === 1 &&
+    steps.season.week1.of === 17
+  );
+  steps.season.simHandle = await clickFirst(["simSeasonBtn"]);
   await sleep(2500);
-  steps.season.regularDone = await waitFor(`!!document.getElementById('beginPlayoffsBtn')||!!document.getElementById('simPlayoffsBtn')||!!document.getElementById('simRestBtn')`, 120000, 500);
-  steps.season.gamesPlayed = await evalJS(`(function(){ try{ return (typeof seasonState!=='undefined'&&seasonState&&seasonState.schedule)?seasonState.schedule.length:null; }catch(e){ return null; } })()`);
+  steps.season.regularDone = await waitFor(
+    `!!document.getElementById('beginPlayoffsBtn')||!!document.getElementById('simPlayoffsBtn')||!!document.getElementById('simRestBtn')`,
+    120000,
+    500,
+  );
+  steps.season.gamesPlayed = await evalJS(
+    `(function(){ try{ return (typeof seasonState!=='undefined'&&seasonState&&seasonState.schedule)?seasonState.schedule.length:null; }catch(e){ return null; } })()`,
+  );
   // The VISIBLE game count, read from the rendered standings (what a user can see), so that a
   // "272 games" claim has a source a reviewer can check - the record's own metric may be null.
   steps.season.gamesPlayedVisible = await evalJS(`(function(){
@@ -360,169 +491,299 @@ class CDP {
       return JSON.stringify({ standingsTeamRows: teamRows, parsedRows: parsed, gamesPerTeamSum: sum, leagueGamesVisible: leagueGames });
     }catch(e){ return JSON.stringify({ error: String(e) }); }
   })()`);
-  try { steps.season.gamesVisible = JSON.parse(steps.season.gamesPlayedVisible); }
-  catch(e) { steps.season.gamesVisible = null; }
-  steps.season.gamesPlayedVisible = steps.season.gamesVisible ? steps.season.gamesVisible.leagueGamesVisible : null;
+  try {
+    steps.season.gamesVisible = JSON.parse(steps.season.gamesPlayedVisible);
+  } catch (_e) {
+    steps.season.gamesVisible = null;
+  }
+  steps.season.gamesPlayedVisible = steps.season.gamesVisible
+    ? steps.season.gamesVisible.leagueGamesVisible
+    : null;
   // 3.4 / 3.6 — record what the USER SEES, not only the internal state
-  steps.season.weekText = await evalJS(`(function(){ try{ const t=document.body.innerText||''; const m=t.match(/Week\\s+\\d+\\s+of\\s+\\d+/); return m?m[0]:null; }catch(e){ return null; } })()`);
+  steps.season.weekText = await evalJS(
+    `(function(){ try{ const t=document.body.innerText||''; const m=t.match(/Week\\s+\\d+\\s+of\\s+\\d+/); return m?m[0]:null; }catch(e){ return null; } })()`,
+  );
   steps.season.weekTextShown = !!steps.season.weekText;
-  steps.playoffs = { beginHandle: null, simHandle: null, complete: false, champion: null };
-  steps.playoffs.beginHandle = await clickId('beginPlayoffsBtn');
+  steps.playoffs = {
+    beginHandle: null,
+    simHandle: null,
+    complete: false,
+    champion: null,
+  };
+  steps.playoffs.beginHandle = await clickId("beginPlayoffsBtn");
   await sleep(1200);
-  steps.playoffs.simHandle = await clickFirst(['simPlayoffsBtn', 'simRestBtn']);
+  steps.playoffs.simHandle = await clickFirst(["simPlayoffsBtn", "simRestBtn"]);
   await sleep(2500);
-  steps.playoffs.complete = await waitFor(`(typeof seasonState!=='undefined'&&seasonState&&seasonState.champion)?true:false`, 60000, 500);
-  steps.playoffs.champion = await evalJS(`(function(){ try{ return (typeof seasonState!=='undefined'&&seasonState&&seasonState.champion)?seasonState.champion:null; }catch(e){ return null; } })()`);
+  steps.playoffs.complete = await waitFor(
+    `(typeof seasonState!=='undefined'&&seasonState&&seasonState.champion)?true:false`,
+    60000,
+    500,
+  );
+  steps.playoffs.champion = await evalJS(
+    `(function(){ try{ return (typeof seasonState!=='undefined'&&seasonState&&seasonState.champion)?seasonState.champion:null; }catch(e){ return null; } })()`,
+  );
 
   // Preferred path: the UI button (both parents expose id sim100Btn once their results/season
   // surface is rendered). Fallback: call the same global the button calls — build-independent.
-  if (!await waitFor(`!!document.getElementById('sim100Btn')`, 6000)) {
-    await clickId('tabSeasonBtn'); await sleep(800);
-    if (!await waitFor(`!!document.getElementById('sim100Btn')`, 3000)) {
-      await clickId('tabDraftBtn'); await sleep(800);
+  if (!(await waitFor(`!!document.getElementById('sim100Btn')`, 6000))) {
+    await clickId("tabSeasonBtn");
+    await sleep(800);
+    if (!(await waitFor(`!!document.getElementById('sim100Btn')`, 3000))) {
+      await clickId("tabDraftBtn");
+      await sleep(800);
     }
   }
   if (await waitFor(`!!document.getElementById('sim100Btn')`, 2000)) {
-    steps.reportPath = 'ui-button';
-    await clickId('sim100Btn');
+    steps.reportPath = "ui-button";
+    await clickId("sim100Btn");
   } else {
     const started = await evalJS(`(()=>{
       if(typeof runLeague100!=='function') return 'missing';
       const c=document.getElementById('draftFinalResults')||document.getElementById('seasonHost')||document.body;
       try{ runLeague100(100,c); return 'called'; }catch(e){ return 'threw:'+e.message; }
     })()`);
-    if (started === 'missing') { steps.reportPath = 'unavailable'; }
-    else { steps.reportPath = 'direct-call:' + started; }
+    if (started === "missing") {
+      steps.reportPath = "unavailable";
+    } else {
+      steps.reportPath = `direct-call:${started}`;
+    }
   }
-  if (steps.reportPath && steps.reportPath !== 'unavailable') {
-    steps.reportRendered = await waitFor(`/100-Season Report/.test(document.body.innerText)`, 120000, 500);
+  if (steps.reportPath && steps.reportPath !== "unavailable") {
+    steps.reportRendered = await waitFor(
+      `/100-Season Report/.test(document.body.innerText)`,
+      120000,
+      500,
+    );
     // "Season N of N…" with no report after the wait means the render threw (the v20 failure mode)
-    steps.reportStalled = !steps.reportRendered && await waitFor(`/Simulating 100 seasons/.test(document.body.innerText)`, 2000, 250);
+    steps.reportStalled =
+      !steps.reportRendered &&
+      (await waitFor(
+        `/Simulating 100 seasons/.test(document.body.innerText)`,
+        2000,
+        250,
+      ));
   }
 
   // 5.4 — the report can return to the season view via its back control
   steps.reportBack = await (async () => {
-    const before = await evalJS(`(typeof seasonState!=='undefined'&&seasonState)?String(seasonState.phase):'unknown'`);
-    const clicked = await clickId('back100Btn');
-    if (!clicked) return { clicked: false, phaseBefore: before, phaseAfter: null };
+    const before = await evalJS(
+      `(typeof seasonState!=='undefined'&&seasonState)?String(seasonState.phase):'unknown'`,
+    );
+    const clicked = await clickId("back100Btn");
+    if (!clicked)
+      return { clicked: false, phaseBefore: before, phaseAfter: null };
     await sleep(1200);
-    const after = await evalJS(`(typeof seasonState!=='undefined'&&seasonState)?String(seasonState.phase):'unknown'`);
+    const after = await evalJS(
+      `(typeof seasonState!=='undefined'&&seasonState)?String(seasonState.phase):'unknown'`,
+    );
     return { clicked: true, phaseBefore: before, phaseAfter: after };
   })();
 
   // --- B: mobile layout, including the resize path that v20 fails ---
   for (const w of [390, 1280, 390]) {
-    await cdp.send('Emulation.setDeviceMetricsOverride', { width: w, height: H, deviceScaleFactor: 1, mobile: false });
+    await cdp.send("Emulation.setDeviceMetricsOverride", {
+      width: w,
+      height: H,
+      deviceScaleFactor: 1,
+      mobile: false,
+    });
     await sleep(900);
   }
   // Scan EVERY tab at 390 px. An earlier version probed only the Players tab, which let a
   // CSS-only mobile regression on another view (Team Rankings) pass both gates — demonstrated
   // adversarially (see _agents/minimax/recon/adversarial-check.md, F-1).
-  const TABS = ['tabPlayersBtn', 'tabRankingsBtn', 'tabGroupsBtn', 'tabCompareBtn', 'tabGuideBtn', 'tabDraftBtn'];
+  const TABS = [
+    "tabPlayersBtn",
+    "tabRankingsBtn",
+    "tabGroupsBtn",
+    "tabCompareBtn",
+    "tabGuideBtn",
+    "tabDraftBtn",
+  ];
   const perTab = [];
   let probe = {};
   for (const tab of TABS) {
     const clicked = await clickId(tab);
     await sleep(900);
-    const p = JSON.parse((await evalJS(PROBE)) || '{}');
-    perTab.push({ tab, clicked, offenderCount: p.offenderCount || 0, clippedCount: p.clippedCount || 0,
-                   coveredCount: p.coveredCount || 0, unscrollable: (p.unscrollable || []).length,
-                   hiddenClipped: p.hiddenClippedCount || 0,
-                   pageOverflowPx: p.pageOverflowPx || 0, offenders: (p.offenders || []).slice(0, 3) });
-    if (!probe.offenderCount && p.offenderCount) probe = p;   // keep the worst offender sample
+    const p = JSON.parse((await evalJS(PROBE)) || "{}");
+    perTab.push({
+      tab,
+      clicked,
+      offenderCount: p.offenderCount || 0,
+      clippedCount: p.clippedCount || 0,
+      coveredCount: p.coveredCount || 0,
+      unscrollable: (p.unscrollable || []).length,
+      hiddenClipped: p.hiddenClippedCount || 0,
+      pageOverflowPx: p.pageOverflowPx || 0,
+      offenders: (p.offenders || []).slice(0, 3),
+    });
+    if (!probe.offenderCount && p.offenderCount) probe = p; // keep the worst offender sample
   }
   const totalOffenders = perTab.reduce((a, t) => a + t.offenderCount, 0);
   const totalClipped = perTab.reduce((a, t) => a + t.clippedCount, 0);
   const totalCovered = perTab.reduce((a, t) => a + t.coveredCount, 0);
   const totalUnscrollable = perTab.reduce((a, t) => a + t.unscrollable, 0);
-  const totalHiddenClipped = perTab.reduce((a, t) => a + (t.hiddenClipped || 0), 0);
-  const worstTab = perTab.slice().sort((a, b) => b.offenderCount - a.offenderCount)[0];
+  const totalHiddenClipped = perTab.reduce(
+    (a, t) => a + (t.hiddenClipped || 0),
+    0,
+  );
+  const worstTab = perTab
+    .slice()
+    .sort((a, b) => b.offenderCount - a.offenderCount)[0];
   probe = Object.assign({}, probe, {
-    offenderCount: totalOffenders, clippedCount: totalClipped, coveredCount: totalCovered,
-    unscrollable: [], tabsScanned: perTab.length, perTab,
+    offenderCount: totalOffenders,
+    clippedCount: totalClipped,
+    coveredCount: totalCovered,
+    unscrollable: [],
+    tabsScanned: perTab.length,
+    perTab,
     hiddenClippedCount: totalHiddenClipped,
     worstTab: worstTab ? worstTab.tab : null,
-    offenders: (worstTab && worstTab.offenders) || probe.offenders || []
+    offenders: worstTab?.offenders || probe.offenders || [],
   });
-  if (totalUnscrollable) probe.unscrollable = [{ note: 'unscrollable elements detected on one or more tabs' }];
+  if (totalUnscrollable)
+    probe.unscrollable = [
+      { note: "unscrollable elements detected on one or more tabs" },
+    ];
 
   const uxFindings = [];
   for (const [view, pa] of Object.entries(steps.primaryAction || {})) {
     if (!pa) continue;
     if (pa.found && pa.visibleWithoutScrolling === false) {
-      uxFindings.push(`${view}: the primary action "${pa.text || pa.id}" sits at ${pa.absTop}px in a ${pa.viewportHeight}px viewport (document ${pa.docHeight}px) - a user must scroll to reach it (Owner's #7)`);
+      uxFindings.push(
+        `${view}: the primary action "${pa.text || pa.id}" sits at ${pa.absTop}px in a ${pa.viewportHeight}px viewport (document ${pa.docHeight}px) - a user must scroll to reach it (Owner's #7)`,
+      );
     } else if (!pa.found) {
-      uxFindings.push(`${view}: no rendered primary action${pa.unrenderedCandidate ? ' - "' + pa.unrenderedCandidate + '" exists in the DOM but renders with no box' : ''} - the view's main action is not reachable (Owner's #7)`);
+      uxFindings.push(
+        `${view}: no rendered primary action${pa.unrenderedCandidate ? ` - "${pa.unrenderedCandidate}" exists in the DOM but renders with no box` : ""} - the view's main action is not reachable (Owner's #7)`,
+      );
     }
   }
   const uxFailed = uxFindings.length > 0;
   const reportChecks = {
     A_reportRendered: steps.reportRendered === true,
-    D_seasonAndPlayoffsComplete: steps.playoffs.complete === true && !!steps.playoffs.champion,
+    D_seasonAndPlayoffsComplete:
+      steps.playoffs.complete === true && !!steps.playoffs.champion,
     B_noViewportOverflow: probe.offenderCount === 0,
     C_noPageErrors: errors().length === 0,
-    E_viewportUsable: probe.clippedCount === 0 && probe.coveredCount === 0 && (probe.unscrollable || []).length === 0,
-    F_visibleGameCount: steps.season.gamesPlayedVisible != null && steps.season.gamesPlayedVisible === steps.season.gamesPlayed,
+    E_viewportUsable:
+      probe.clippedCount === 0 &&
+      probe.coveredCount === 0 &&
+      (probe.unscrollable || []).length === 0,
+    F_visibleGameCount:
+      steps.season.gamesPlayedVisible != null &&
+      steps.season.gamesPlayedVisible === steps.season.gamesPlayed,
     G_week1Visible: steps.season.week1Of17Seen === true,
     H_draftBoardRenders: steps.draftBoardRenders === true,
-    I_primaryActionVisible: uxFindings.length === 0
+    I_primaryActionVisible: uxFindings.length === 0,
   };
-  let sha256 = 'unavailable', bytes = 0;
-  try { sha256 = crypto.createHash('sha256').update(fs.readFileSync(target)).digest('hex'); bytes = fs.statSync(target).size; }
-  catch { /* target may be a URL */ }
-  const all = Object.values(reportChecks).every(v => v === true);
-  const anyFalse = Object.values(reportChecks).some(v => v !== true);
+  let sha256 = "unavailable",
+    bytes = 0;
+  try {
+    sha256 = crypto
+      .createHash("sha256")
+      .update(fs.readFileSync(target))
+      .digest("hex");
+    bytes = fs.statSync(target).size;
+  } catch {
+    /* target may be a URL */
+  }
+  const all = Object.values(reportChecks).every((v) => v === true);
+  const anyFalse = Object.values(reportChecks).some((v) => v !== true);
   const report = {
     // --- run identity (GPT's OPENCHAMBER-E2E evidence schema, fields the protocol asks for) ---
     run: {
       utc: new Date().toISOString(),
-      tool: 'post-merge-smoke.mjs',
-      tool_version: '5 (2026-10-21) — multi-tab 390px scan, draft-board assertion, week-1 + visible-game-count observations, receipt_id, tool_sha256',
-      tool_sha256: crypto.createHash('sha256').update(fs.readFileSync(fileURLToPath(import.meta.url))).digest('hex'),
+      tool: "post-merge-smoke.mjs",
+      tool_version:
+        "5 (2026-10-21) — multi-tab 390px scan, draft-board assertion, week-1 + visible-game-count observations, receipt_id, tool_sha256",
+      tool_sha256: crypto
+        .createHash("sha256")
+        .update(fs.readFileSync(fileURLToPath(import.meta.url)))
+        .digest("hex"),
       artifact_path: target,
       artifact_sha256: sha256,
       artifact_bytes: bytes,
       artifact_basename: basename(target),
       git_ref: gitRef(),
       git_commit: gitCommit(),
-      browser: 'Chromium-family over CDP (--remote-debugging-port=' + port + ')',
+      browser: `Chromium-family over CDP (--remote-debugging-port=${port})`,
       browser_version: browserVersion,
-      viewport: { desktop: '1280x900', mobile: '390x844' },
-      seed: 'none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed',
-      evidence_name: 'e2e-' + sha256.slice(0, 12) + '-' + new Date().toISOString().slice(0, 10) + '.json'
+      viewport: { desktop: "1280x900", mobile: "390x844" },
+      seed: "none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed",
+      evidence_name:
+        "e2e-" +
+        sha256.slice(0, 12) +
+        "-" +
+        new Date().toISOString().slice(0, 10) +
+        ".json",
     },
-    verdict: all ? 'PASS' : (anyFalse ? 'FAIL' : 'PARTIAL'),
-    ux_verdict: uxFailed ? 'FINDINGS' : 'CLEAN',
+    verdict: all ? "PASS" : anyFalse ? "FAIL" : "PARTIAL",
+    ux_verdict: uxFailed ? "FINDINGS" : "CLEAN",
     ux_findings: uxFindings,
-    ux_note: 'the I_primaryActionVisible check is reported separately from the safety verdict: a usability finding must not block a merge the way a crash does, and a PASS is not product acceptance.',
-    skipped_checks: Object.entries(steps).filter(([k, v]) => v === 'unavailable' || v === 'skipped').map(([k]) => k),
-    build: url.split('/').pop(),
+    ux_note:
+      "the I_primaryActionVisible check is reported separately from the safety verdict: a usability finding must not block a merge the way a crash does, and a PASS is not product acceptance.",
+    skipped_checks: Object.entries(steps)
+      .filter(([_k, v]) => v === "unavailable" || v === "skipped")
+      .map(([k]) => k),
+    build: url.split("/").pop(),
     checks: reportChecks,
-    detail: { steps, draftPicks, reportPath: steps.reportPath, reportRendered: steps.reportRendered, reportStalled: steps.reportStalled,
-      pageErrors: errors(), offenderCount: probe.offenderCount, offenders: probe.offenders,
-      pageOverflowPx: probe.pageOverflowPx, documentScrollWidth: probe.documentScrollWidth, bodyOverflowX: probe.bodyOverflowX,
-      clippedCount: probe.clippedCount, clipped: probe.clipped, coveredCount: probe.coveredCount, covered: probe.covered,
-      scrollerCount: probe.scrollerCount, unscrollable: probe.unscrollable,
-      headingVisible: probe.headingVisible, primaryAction: probe.primaryAction,
-      gamesPlayedInternal: steps.season.gamesPlayed, gamesPlayedVisible: steps.season.gamesPlayedVisible,
-      standingsTeamRows: steps.season.gamesVisible ? steps.season.gamesVisible.standingsTeamRows : null,
-      week1: steps.season.week1, week1Of17Seen: steps.season.week1Of17Seen,
+    detail: {
+      steps,
+      draftPicks,
+      reportPath: steps.reportPath,
+      reportRendered: steps.reportRendered,
+      reportStalled: steps.reportStalled,
+      pageErrors: errors(),
+      offenderCount: probe.offenderCount,
+      offenders: probe.offenders,
+      pageOverflowPx: probe.pageOverflowPx,
+      documentScrollWidth: probe.documentScrollWidth,
+      bodyOverflowX: probe.bodyOverflowX,
+      clippedCount: probe.clippedCount,
+      clipped: probe.clipped,
+      coveredCount: probe.coveredCount,
+      covered: probe.covered,
+      scrollerCount: probe.scrollerCount,
+      unscrollable: probe.unscrollable,
+      headingVisible: probe.headingVisible,
+      gamesPlayedInternal: steps.season.gamesPlayed,
+      gamesPlayedVisible: steps.season.gamesPlayedVisible,
+      standingsTeamRows: steps.season.gamesVisible
+        ? steps.season.gamesVisible.standingsTeamRows
+        : null,
+      week1: steps.season.week1,
+      week1Of17Seen: steps.season.week1Of17Seen,
       primaryAction: steps.primaryAction,
-      draftBoard: steps.draftBoard, tabsScanned: probe.tabsScanned, perTab: probe.perTab, worstTab: probe.worstTab,
-      hiddenClippedCount: probe.hiddenClippedCount }
+      draftBoard: steps.draftBoard,
+      tabsScanned: probe.tabsScanned,
+      perTab: probe.perTab,
+      worstTab: probe.worstTab,
+      hiddenClippedCount: probe.hiddenClippedCount,
+    },
   };
   // A receipt id over the receipt itself: if anyone hand-edits the evidence afterwards, the id
   // stops matching (MOC's W2 finding — a stored result.json that was not the runner's output).
-  const failed = !all;      // safety verdict: A/B/C/D (+F/G/H) only
-  const receiptId = crypto.createHash('sha256').update(JSON.stringify(report)).digest('hex').slice(0, 12);
+  const failed = !all; // safety verdict: A/B/C/D (+F/G/H) only
+  const receiptId = crypto
+    .createHash("sha256")
+    .update(JSON.stringify(report))
+    .digest("hex")
+    .slice(0, 12);
   report.run.receipt_id = receiptId;
-  report.run.receipt_id_note = 'sha256 of this receipt (without the two id fields), first 12 hex — recompute to prove the file was not edited after the run';
+  report.run.receipt_id_note =
+    "sha256 of this receipt (without the two id fields), first 12 hex — recompute to prove the file was not edited after the run";
   console.log(JSON.stringify(report, null, 2));
   // The last line is the authoritative, pipeline-safe signal: the exit code alone can be masked by
   // a pipe (`| tail`), and an aborted run writes NO receipt at all — a missing receipt is a failure.
-  console.log(`VERDICT: ${report.verdict} exit=${failed ? 1 : 0} ux=${report.ux_verdict} receipt=${report.run.receipt_id} artifact=${sha256.slice(0, 12)}`);
-  for (const f of uxFindings) console.log('  UX: ' + f);
-  await cdp.send('Target.closeTarget', { targetId }, false);
+  console.log(
+    `VERDICT: ${report.verdict} exit=${failed ? 1 : 0} ux=${report.ux_verdict} receipt=${report.run.receipt_id} artifact=${sha256.slice(0, 12)}`,
+  );
+  for (const f of uxFindings) console.log(`  UX: ${f}`);
+  await cdp.send("Target.closeTarget", { targetId }, false);
   cdp.ws.close();
   process.exit(failed ? 1 : 0);
-})().catch(e => { console.error(String(e)); process.exit(4); });
+})().catch((e) => {
+  console.error(String(e));
+  process.exit(4);
+});

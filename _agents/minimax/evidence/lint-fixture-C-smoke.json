@@ -1,0 +1,41 @@
+{
+	"build": "minimax-fixture-C-v20results-only.html",
+	"checks": {
+		"A_reportRendered": true,
+		"D_seasonAndPlayoffsComplete": false,
+		"B_noViewportOverflow": true,
+		"C_noPageErrors": true
+	},
+	"detail": {
+		"steps": {
+			"startDraft": true,
+			"instant": true,
+			"simToEnd": true,
+			"reportPath": "direct-call:called",
+			"reportRendered": true,
+			"reportStalled": false,
+			"season": {
+				"startHandle": null,
+				"heroHandle": null,
+				"beginHandle": null,
+				"simHandle": null,
+				"regularDone": false,
+				"gamesPlayed": null
+			},
+			"playoffs": {
+				"complete": false,
+				"champion": null
+			}
+		},
+		"draftPicks": "832/832",
+		"reportPath": "direct-call:called",
+		"reportRendered": true,
+		"reportStalled": false,
+		"pageErrors": [],
+		"offenderCount": 0,
+		"offenders": [],
+		"pageOverflowPx": 0,
+		"documentScrollWidth": 390,
+		"bodyOverflowX": "hidden"
+	}
+}

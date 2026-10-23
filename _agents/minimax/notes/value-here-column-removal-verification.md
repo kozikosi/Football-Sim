@@ -12,29 +12,27 @@
 
 Base: the candidate above. Every anchor below is present exactly once.
 
-| # | Where | From | To |
-|---|---|---|---|
-| 1 | CSS (candidate line 268) | ` #draftTable2 td.dc-wins{grid-column:5 / 7;grid-row:2;color:var(--good);} #draftTable2 td.dc-val{grid-column:7 / 10;grid-row:2;color:#6aa6ff;}` | ` #draftTable2 td.dc-wins{grid-column:5 / 7;grid-row:2;color:var(--good);}` |
-| 2 | CSS (candidate line 269) | `#draftTable2 td.dc-pri{grid-column:10 / 13;grid-row:2;color:var(--gold);}` | `#draftTable2 td.dc-pri{grid-column:7 / 13;grid-row:2;color:var(--gold);}` |
-| 3 | Sort dropdown (line 418) | `<option value="value">Sort: value here</option>` | *(removed)* — see §5c |
-| 4 | Table header (line 426) | `<th data-sort="value" class="sortable" title="The same math at the exact spot he would fill on YOUR roster, flex penalty included.">Value here</th>` | *(removed)* |
-| 5 | Table header (line 426) | `title="Value here minus what you would probably still find at that position at your next pick. High = waiting costs you."` | `title="Wins at this spot minus what you would probably still find at that position at your next pick. High = waiting costs you."` |
-| 6 | Row cell (line 1766) | `<td class="score dc-val" data-label="Value here">${wavg(r.v)}</td>` | *(removed)* |
-| 7 | Empty state (line 1768) | `colspan="10"` | `colspan="9"` |
-| 8 | Guide (lines 4991 and 5056) | the `<li><b>Value here</b> …</li>` bullet; `Reading the draft board (Wins, Value here, Priority, Gone, stars)` | bullet deleted; title → `Reading the draft board (Wins, Priority, Gone, stars)` |
+| #   | Where                       | From                                                                                                                                                  | To                                                                                                                                 |
+| --- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | CSS (candidate line 268)    | ` #draftTable2 td.dc-wins{grid-column:5 / 7;grid-row:2;color:var(--good);} #draftTable2 td.dc-val{grid-column:7 / 10;grid-row:2;color:#6aa6ff;}`      | ` #draftTable2 td.dc-wins{grid-column:5 / 7;grid-row:2;color:var(--good);}`                                                        |
+| 2   | CSS (candidate line 269)    | `#draftTable2 td.dc-pri{grid-column:10 / 13;grid-row:2;color:var(--gold);}`                                                                           | `#draftTable2 td.dc-pri{grid-column:7 / 13;grid-row:2;color:var(--gold);}`                                                         |
+| 3   | Sort dropdown (line 418)    | `<option value="value">Sort: value here</option>`                                                                                                     | _(removed)_ — see §5c                                                                                                              |
+| 4   | Table header (line 426)     | `<th data-sort="value" class="sortable" title="The same math at the exact spot he would fill on YOUR roster, flex penalty included.">Value here</th>` | _(removed)_                                                                                                                        |
+| 5   | Table header (line 426)     | `title="Value here minus what you would probably still find at that position at your next pick. High = waiting costs you."`                           | `title="Wins at this spot minus what you would probably still find at that position at your next pick. High = waiting costs you."` |
+| 6   | Row cell (line 1766)        | `<td class="score dc-val" data-label="Value here">${wavg(r.v)}</td>`                                                                                  | _(removed)_                                                                                                                        |
+| 7   | Empty state (line 1768)     | `colspan="10"`                                                                                                                                        | `colspan="9"`                                                                                                                      |
+| 8   | Guide (lines 4991 and 5056) | the `<li><b>Value here</b> …</li>` bullet; `Reading the draft board (Wins, Value here, Priority, Gone, stars)`                                        | bullet deleted; title → `Reading the draft board (Wins, Priority, Gone, stars)`                                                    |
 
 Edits 1–2 are BOC's #1 with the reflow measured (BOC left it open). Edits 3–8 are BOC's #2–#7.
 
 ## 2. The CSS reflow, measured — this is the part BOC left open
 
 The mobile grid is **`grid-template-columns:repeat(12,1fr)`** (candidate line 261) — 12 columns, not the 13/16 in BOC's note. Full placement in the base:
-
 - row 1 — `dc-name` 1/9, `dc-ovr` 9/11, `dc-btn` 11/13
 - row 2 — Pos 1/3, Team 3/5 (`nth-child(2)` / `nth-child(3)`, line 267), `dc-wins` 5/7, `dc-val` 7/10, `dc-pri` 10/13
 - row 3 — `dc-gone` 1/3, `dc-fills` 3/13
 
 **Consequence: exactly one cell has to move.** `dc-pri` 10/13 → **7/13**. Nothing else shifts:
-
 - `dc-gone` is on **row 3** (1/3), not row 2 — BOC's "shift priority and gone left by 3 columns" does not apply to it;
 - Pos and Team are selected by `nth-child`, and the removed cell is the 6th child, so their indices do not change;
 - `dc-fills` (3/13, row 3) and row 1 are untouched.
@@ -45,18 +43,18 @@ Giving Priority the freed three columns (7/13) rather than the same width (7/10)
 
 Instrument: `_agents/minimax/tools/post-merge-smoke.mjs` (the council gate, now also at `tests/e2e-smoke.mjs`) and a new purpose-built probe `_agents/minimax/tools/board-mobile-probe.mjs` (390 px board layout: overlap, clipping, horizontal scroll). Both are dependency-free plain Node over CDP.
 
-| Check | Base (40233d6b) | **BOC set + reflow (5ee6960b)** | My variant (cd64d1ce) |
-|---|---|---|---|
-| `post-merge-smoke.mjs` | exit 0, A–I PASS | **exit 0, A–I PASS, 0 findings, 0 page errors** | exit 0, A–I PASS, 0 findings, 0 page errors |
-| `node --check` (extracted script) | — | **exit 0** | exit 0 |
-| Board headers | 10 | **9** | 9 |
-| `dc-val` cells rendered | 1,133–1,144 (mine; the count depends on the board's filter state) — MOC measured 1,148 on the same change set | **0** | 0 |
-| `dc-val` / `data-label="Value here"` in source | 2 / 1 | **0 / 0** | 0 / 0 |
-| `r.v` uses in source (the maths) | 23 | **22** (only the render call) | 22 (only the render call) |
-| 390 px: overlapping cells in 25 rows | 0 | **0** | 0 |
-| 390 px: clipped cells / horizontal overflow | 0 / 0 px | **0 / 0 px** (scrollWidth 390 = innerWidth) | 0 / 0 px |
-| Priority column populated on the user's turn (pick 16) | 1,133 cells, 1,128 non-zero | **1,133 cells, 1,121 non-zero** | 1,133 cells, 1,121 non-zero |
-| Gate receipt | — | `dc4319c263f8` | `00a8560d7354` |
+| Check                                                  | Base (40233d6b)                                                                                               | **BOC set + reflow (5ee6960b)**                 | My variant (cd64d1ce)                       |
+| ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- | ------------------------------------------- |
+| `post-merge-smoke.mjs`                                 | exit 0, A–I PASS                                                                                              | **exit 0, A–I PASS, 0 findings, 0 page errors** | exit 0, A–I PASS, 0 findings, 0 page errors |
+| `node --check` (extracted script)                      | —                                                                                                             | **exit 0**                                      | exit 0                                      |
+| Board headers                                          | 10                                                                                                            | **9**                                           | 9                                           |
+| `dc-val` cells rendered                                | 1,133–1,144 (mine; the count depends on the board's filter state) — MOC measured 1,148 on the same change set | **0**                                           | 0                                           |
+| `dc-val` / `data-label="Value here"` in source         | 2 / 1                                                                                                         | **0 / 0**                                       | 0 / 0                                       |
+| `r.v` uses in source (the maths)                       | 23                                                                                                            | **22** (only the render call)                   | 22 (only the render call)                   |
+| 390 px: overlapping cells in 25 rows                   | 0                                                                                                             | **0**                                           | 0                                           |
+| 390 px: clipped cells / horizontal overflow            | 0 / 0 px                                                                                                      | **0 / 0 px** (scrollWidth 390 = innerWidth)     | 0 / 0 px                                    |
+| Priority column populated on the user's turn (pick 16) | 1,133 cells, 1,128 non-zero                                                                                   | **1,133 cells, 1,121 non-zero**                 | 1,133 cells, 1,121 non-zero                 |
+| Gate receipt                                           | —                                                                                                             | `dc4319c263f8`                                  | `00a8560d7354`                              |
 
 **The maths is untouched, and I checked it as a fact, not as a promise.** `r.v` is still computed for every row and still feeds Priority (`pri = e.v - later`), the priority bar, the flex-value tag, the group best, the replacement counts and the sort key. The Priority column carries non-zero numbers with the column gone (1,121 of 1,133 cells non-zero mid-draft, values like +0.46, +0.42, +0.19) — the decision column survives the removal.
 
@@ -71,7 +69,7 @@ Both are in my lane; neither is a build I intend to promote. The product file is
 
 ## 5. Three decisions that are the Owner's or Claude's, not mine
 
-**(a) The last value figure left on the board — the Fills cell.** `altTxt` (candidate line 1764) renders `also fits: CB1 +1.72 (−4 flex)` — the value the player *would have* at the alternative slot, with the flex penalty. After the column is removed, **this is the only remaining value number on the board**. It is not the "Value here" column (it is a different slot's value), so the Owner's direction does not obviously reach it; but if the intent is "no value numbers on the draft board", it must go too. Options: keep it, keep the slot name and drop the number, or drop the line. I have **not** changed it in either artifact. This is the one place where the two readings of the direction diverge in what the user sees.
+**(a) The last value figure left on the board — the Fills cell.** `altTxt` (candidate line 1764) renders `also fits: CB1 +1.72 (−4 flex)` — the value the player _would have_ at the alternative slot, with the flex penalty. After the column is removed, **this is the only remaining value number on the board**. It is not the "Value here" column (it is a different slot's value), so the Owner's direction does not obviously reach it; but if the intent is "no value numbers on the draft board", it must go too. Options: keep it, keep the slot name and drop the number, or drop the line. I have **not** changed it in either artifact. This is the one place where the two readings of the direction diverge in what the user sees.
 
 **(b) The guide must not describe a column that no longer exists.** BOC's set rewrites the Priority header tooltip (edit 5) and the section title (edit 8) and deletes the "Value here" bullet — but the guide's **Priority bullet** still reads "Priority — **Value here** minus the best you could expect to still find at that spot at your next pick." One stale phrase in the same document that just had its sibling phrases rewritten. Rewording it to "Wins at your roster spot minus …" is one sentence. In my variant the guide is untouched, so all five mentions remain.
 

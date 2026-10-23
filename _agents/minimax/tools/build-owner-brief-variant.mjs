@@ -74,7 +74,7 @@ patch(
 patch(
   '<option value="value">Sort: value here</option>',
   '<option value="value">Sort: value here</option>',
-  '',
+  "",
   "1c sort dropdown: the option is kept (the maths is unchanged) and relabelled, so no visible control names a column that no longer exists",
 );
 

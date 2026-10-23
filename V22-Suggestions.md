@@ -6347,3 +6347,248 @@ drafting-as frame; the header could carry the same treatment.
 - **Guide:** "20-0" in the title and the challenge in the intro.
 - **Recaps, awards, the champion banner:** "20-0" as the brand, the champion as the answer.
 - **Empty states and onboarding:** "Can you go 20-0?" as the question.
+
+---
+
+## P21 — Owner directives, 23 Oct 2026 (product identity + UI)
+
+### P21-1 · Product name: "20-0" (identity change)
+**WHERE** Every user-facing surface: hero title, tagline, tab labels, meta description, Guide, season review headers, Super Bowl screen, awards, 100-season report, any "NFL Draft Simulator" string shown to the user.
+**WHAT** The website and product present themselves as **"20-0"** — not "NFL Draft Simulator." File names and repo paths stay "Football Sim."
+**WHY** Owner's directive: "I think we should think about the whole project being called within the project itself as '20-0'. This should be heavily emphasized in the header, footer, text, etc."
+**SAFE ALONE?** Copy + CSS only. No math, no constants.
+**HOW TO CHECK** grep the build for "NFL Draft Simulator" in user-facing strings — every remaining instance must be in the file name or repo path only. The hero must read "20-0."
+
+### P21-2 · "Set Up Your Draft" → "DRAFT" (heavy UI emphasis)
+**WHERE** Draft tab hero / setup panel (pin l.319 hero text, l.394 startDraftBtn).
+**WHAT** The setup button/label changes from "Set Up Your Draft" to "DRAFT" — large, bold, visually dominant. The old explanatory paragraph ("32 real NFL franchises are shuffled...") is **completely removed** and replaced with:
+> "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"
+**WHY** Owner's directive: heavy emphasis on the UI for "DRAFT." It should be as attractive as possible. The new text is shorter, punchier, and ties to the "20-0" identity.
+**SAFE ALONE?** Yes — copy + CSS.
+**HOW TO CHECK** The draft entry screen shows "DRAFT" as the dominant element and the new one-line text. No horizontal overflow at 390px.
+
+### P21-3 · Season text rewrite
+**WHERE** Season tab hero / preseason intro (pin l.6156 area).
+**WHAT** "Play the season. Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself." → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"
+**WHY** Owner's directive: shorter, ties to "20-0" identity.
+**SAFE ALONE?** Yes — copy only.
+
+### P21-4 · Player Browser: 15 names max visible
+**WHERE** Player browser render (search for renderPlayers / playerBrowser / playerList).
+**WHAT** Only 15 player names visible at a time; pagination or "load more" for the rest. Currently the full list renders and takes too long to scroll past.
+**WHY** Owner's directive: "it takes way too long to scroll to the bottom of the page on the player browser. Only 15 names should be visible."
+**SAFE ALONE?** Yes — render logic change, no math.
+**HOW TO CHECK** Open player browser → exactly 15 rows shown, pagination works, no scroll lag.
+
+### P21-5 · Clickable header → homepage
+**WHERE** Site header (hero-text / top bar, pin l.319).
+**WHAT** The header becomes clickable — at least one obvious element — and navigates back to the homepage (Draft tab / top). The Owner is open to a complete header rework if it becomes "a lot more beautiful," especially given Figma MCP is now available.
+**WHY** Owner's directive: "whatever header appears in V23, it needs to be clickable (at least somewhere quite obvious on it) and takes you back to the homepage."
+**SAFE ALONE?** Yes — HTML + CSS + one click handler.
+**HOW TO CHECK** Click the header from any tab → returns to homepage. Focus ring visible on keyboard navigation.
+
+---
+
+---
+
+## PART 6: LATEST OWNER FEEDBACK (OCT 23) — CLAUDE IMPLEMENTATION
+
+---
+
+### P0-28: "20-0" Branding — Product Identity
+
+**Branding:** Product name is **"20-0"** — heavily emphasized in header, footer, text, UI.
+**File name:** Keep "Football Sim" for file names.
+**Tagline:** "Can you go 20-0?"
+
+---
+
+### P0-29: Homepage Changes
+
+| Change | Current | Target |
+|--------|---------|--------|
+| "Set Up Your Draft" | Header text | "DRAFT" (heavy emphasis on UI) |
+| Remove | "32 real NFL franchises are shuffled into a random snake draft order. Every player at every starter position is available from Round 1 — draft for value and need. CPU GMs draft by the same math the season uses: each takes the player who adds the most wins at a spot it still needs (with a little personal taste and randomness) and can flex players. Read the guide below the setup before you start." | **Remove entirely** |
+| New text | — | "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?" |
+| "1 Play the season..." | "1 Play the season. Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself." | "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?" |
+
+---
+
+### P0-30: Player Browser — 15 Names Only
+
+**Issue:** Takes too long to scroll to bottom of player browser page.
+
+**Fix:** Only 15 names visible at a time on desktop (less on mobile). Quick scroll to header.
+
+---
+
+### P0-31: Header — Clickable to Homepage
+
+**Requirement:** Header (at least somewhere obvious on it) should be clickable → back to homepage.
+
+**Owner open to:** Complete header rework if it becomes a lot more beautiful.
+
+---
+
+### P0-32: More Color Changes — Team Identity Permeation
+
+**Owner feedback:** "The blue border around 'Drafting as Kansas City Chiefs — you hold the #4 overall pick (Round 1)' should be red or white or yellow or a combination."
+
+**Expanded team-color theming throughout entire simulation:**
+
+| Element | Team-Color Application |
+|---------|------------------------|
+| Draft board header border | User's team colors (KC: red/white/yellow; Vikings: purple/gold) |
+| Matchup panels | Opponent's team colors on borders, labels, star tints, game ball stars, panel backgrounds |
+| Game preview | Team headers in colors, team names in colors, opponent panels tinted |
+| Game review | Team-colored score boxes, player cards, turnover/score lines |
+| Season review/playoffs | Conference charts in team colors, playoff brackets, award cards |
+| Draft board | Already has team colors on position cards (P0-29) — ensure consistency |
+
+**Technical:** CSS variables `--team-primary`, `--team-secondary`, `--team-tertiary` + `--opp-primary`, `--opp-secondary`, `--opp-tertiary` set dynamically per matchup.
+
+---
+
+### P0-33: Aesthetics & Beauty — Expanded Motion/Graphics
+
+**Owner feedback:** "I would like a lot more motion of graphics coming in and out of the screen, text coming in and out of the screen, and more ideas like the confetti and the banners to make a text based game a lot more exciting."
+
+**Motion rules (from council idle brief §4.7):**
+- Motion is for **arrivals and big moments** — banner, trophy, final score, award cards
+- **One thing moves at a time**
+- **Text that arrives stays**
+- **Confetti is for the trophy only** — short burst that settles
+- `prefers-reduced-motion` guard is **not optional**
+- **Reward moments:** gold shimmering banner that lands and keeps sparkling, confetti, trophy, gold award cards, glitter on star glyph, "!" on Super Bowl line
+
+**Additional aesthetic improvements:**
+- Game previews/reviews: more graphical, full sentences used sparingly
+- Box score: larger, more beautiful
+- Game review text: better formatting, more beautiful
+- Regular season review: banner larger, centered, 3s, shimmer
+- Conference charts: 1-16 ranks, beautiful
+- Playoff bracket: March Madness style, byes, both conferences, Super Bowl middle
+- Awards: gold for player awards, game ball winner gold
+- "Seasons by Win total" chart: horizontal bar chart, centered, team colors
+- "Your players; average season" & "Award patterns": higher up, auto-visible
+- Remove "Realism audit" & "Does model predict real results?" from view (keep internally)
+- "Sacked zx" → "x Sacked"
+- Advanced stats: click for explanation
+- "More Advanced Stats" → "Advanced Stats"
+- Condensed, click to expand
+- "Why better/worse than ratings?" → graphical
+- Bye week: show likely matchup
+- "Lineup and flexes" not at top in playoffs
+- Playoff preview: beautiful, exciting
+- "The Chiefs are Super Bowl Champions!" → exciting, exclamation!
+- Season review button: blue, top, near 100-season
+- Season review: more graphical
+- 100-season review: graphical, few sentences
+
+---
+
+### P0-34: Figma/Mermaid/Biome — Tool Access for Claude
+
+**Owner feedback:** "Claude has access to Figma so he can execute Figma. Claude can read designs, pull screenshots and design context, and generate diagrams. Mermaid, Biome, and Git are also the tools available to him."
+
+**Claude's tool access:**
+| Tool | Status |
+|------|--------|
+| Figma | ✅ Read designs, pull screenshots, generate diagrams |
+| Mermaid | ✅ Available (renders in markdown) |
+| Biome | ✅ Available (`npx biome`) |
+| Git | ✅ Available |
+
+**Note:** Council members (Kilo Code) do NOT have Figma access — only Claude does. Council proposals should be CSS/mermaid-based, not Figma-dependent.
+
+---
+
+### P0-35: Task Assignment — Open Pool Only
+
+**Owner direction:** "Because some agents will be occasionally limited by rate limits, no specific assignment should ever be assigned to a specific agent. All tasks should be posted openly and whoever is available will begin working on the tasks in priority."
+
+**Rule:** All tasks posted openly; first available agent picks up highest-priority unclaimed item. No named assignments.
+
+---
+
+## PRIORITY SUMMARY FOR CLAUDE
+
+### **P0 (Blocks Release):**
+1. 390px preseason CTA fix (`#startSeasonBtn` visible)
+2. Gate `E_viewportUsable` scope fix (`inViewport` + preseason probe)
+3. Gate exit code reliability (nonzero on FAIL/abort)
+4. Hard-rule violations: quarantine invented ratings files
+5. Result.json hand-edit fix (`result.v2.proposed.json`)
+6. All P0 UI changes (Draftboard, Team Comparison, Guide, Game Preview/Review, Season Review, Playoffs)
+7. "20-0" branding (header, footer, text, UI)
+8. Homepage changes ("DRAFT" text, remove old text, new text)
+9. Player Browser (15 names only, footer tabs always visible)
+10. Header (clickable to homepage, rework open)
+11. Team color theming (P0-29, 32-team palette, full simulation integration)
+12. Motion/graphics (animations, confetti, shimmer, transitions, Super Bowl celebration)
+
+### **P1 (Architect Decisions):**
+1. Default tab: Draft vs Season
+2. POSITION_TIER/TIER_BONUS: DELETE
+3. E2E driver: `tests/e2e-smoke.mjs` (GPT spec + MiniMax exec)
+4. 390px preseason CTA fix
+5. Gate `E_viewportUsable`: add `inViewport` + preseason probe
+6. Result.json correction: adopt `result.v2.proposed.json`
+7. Promotion criteria: require E2E v2 PASS
+8. Merge manifest: adopt 11/4/2 split
+9. Old Run A superseded
+10. Biome config fix: migrate `recommended` → `preset`
+
+### **Owner Decisions:**
+1. 47-message recovery
+2. Freeze shared docs + sync owner
+3. Quarantine rating files
+4. Promotion: wait for E2E PASS
+5. E2E locator fix (Week 1)
+6. Label collisions/content IDs
+7. E2E harness archive
+8. Architecture: repos or folders
+9. Pool size: per-sport
+10. Default tab: Draft vs Season
+
+---
+
+## VERIFICATION CHECKLIST
+
+| Check | Command | Expected |
+|-------|---------|----------|
+| MiniMax smoke | `node _agents/minimax/tools/post-merge-smoke.mjs` | EXIT 0 |
+| OpenChamber E2E v2 | Playwright test | PASS (Week 1 + 390px CTA) |
+| Function diff | `node tests/funcdiff.js <ref> <cand>` | Changed set = accepted submissions |
+| 390px gate | `node tests/e2e-smoke.mjs` | EXIT 0, A-G true |
+| Schema validation | `npx jsonschema -i result.json schema.json` | PASS |
+| Console errors | Browser console | 0 errors |
+| 390px responsive | DevTools 390px | No horizontal scroll |
+| Team colors | Visual check at 390px + desktop | Colors match team selection |
+| Biome lint | `npx biome check` | No errors (warnings OK) |
+
+---
+
+## FILES TO MODIFY
+
+| File | Purpose |
+|------|---------|
+| `merged.html` | All UI/Guide changes |
+| `tests/e2e-smoke.mjs` | Gate fixes (inViewport, preseason probe, exit codes) |
+| `_agents/minimax/tools/post-merge-smoke.mjs` | Shared gate sync |
+| `SIM-PLATFORM/tools/quarantine-sample-pool.mjs` | Run to quarantine ratings |
+| `SIM-PLATFORM/tools/build-pool-variant.mjs` | NBA pool variant |
+
+**Reference only (DO NOT MODIFY):**
+- `NFL Draft Simulator.html` (donor)
+- `NFL Draft Simulator v20 Claude.html` (V20 reference)
+
+---
+
+## V21 → V22 Transition
+
+After verification passes → promote build → **`Football-Sim-V22.html`**
+
+---
+
+**SPEAKER: UK | ROLE: Council Advisor | TASK: V22-Suggestions Updated with Latest Owner Feedback | DATE: 2026-10-23T10:00:00Z**

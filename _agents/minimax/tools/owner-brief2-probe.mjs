@@ -11,26 +11,66 @@
 // Guide: the box, the "Play the season" line, "advanced stats", the tier list (wins per +1 OVR) and
 // the values table (no "Wins, 70→90" column).
 
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL } from "node:url";
 
-const files = process.argv.slice(2).filter(a => !a.startsWith('--'));
-if (!files.length) { console.error('usage: owner-brief2-probe.mjs <file.html> [...]'); process.exit(4); }
+const files = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+if (!files.length) {
+  console.error("usage: owner-brief2-probe.mjs <file.html> [...]");
+  process.exit(4);
+}
 const port = 9222;
-const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+const version = await (
+  await fetch(`http://127.0.0.1:${port}/json/version`)
+).json();
 const ws = new WebSocket(version.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r));
-let id = 0; const pending = new Map();
-ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
-const send = (method, params = {}, sessionId) => { const i = ++id; ws.send(JSON.stringify({ id: i, method, params, ...(sessionId ? { sessionId } : {}) })); return new Promise((res, rej) => pending.set(i, { res, rej })); };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+await new Promise((r) => ws.addEventListener("open", r));
+let id = 0;
+const pending = new Map();
+ws.addEventListener("message", (e) => {
+  const m = JSON.parse(e.data);
+  if (m.id && pending.has(m.id)) {
+    const { res, rej } = pending.get(m.id);
+    pending.delete(m.id);
+    m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result);
+  }
+});
+const send = (method, params = {}, sessionId) => {
+  const i = ++id;
+  ws.send(
+    JSON.stringify({
+      id: i,
+      method,
+      params,
+      ...(sessionId ? { sessionId } : {}),
+    }),
+  );
+  return new Promise((res, rej) => pending.set(i, { res, rej }));
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const file of files) {
-  const { targetId } = await send('Target.createTarget', { url: 'about:blank' }, false);
-  const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true }, false);
-  await send('Page.enable', {}, sessionId); await send('Runtime.enable', {}, sessionId);
-  await send('Page.navigate', { url: pathToFileURL(file).href }, sessionId);
+  const { targetId } = await send(
+    "Target.createTarget",
+    { url: "about:blank" },
+    false,
+  );
+  const { sessionId } = await send(
+    "Target.attachToTarget",
+    { targetId, flatten: true },
+    false,
+  );
+  await send("Page.enable", {}, sessionId);
+  await send("Runtime.enable", {}, sessionId);
+  await send("Page.navigate", { url: pathToFileURL(file).href }, sessionId);
   await sleep(2800);
-  const ev = async expr => (await send('Runtime.evaluate', { expression: expr, returnByValue: true, awaitPromise: true }, sessionId)).result?.value;
+  const ev = async (expr) =>
+    (
+      await send(
+        "Runtime.evaluate",
+        { expression: expr, returnByValue: true, awaitPromise: true },
+        sessionId,
+      )
+    ).result?.value;
   const out = await ev(`(async function(){
     function txt(el){ return el ? (el.innerText||el.textContent||'').replace(/\\s+/g,' ').trim() : null; }
     var R = {};
@@ -82,20 +122,49 @@ for (const file of files) {
     return JSON.stringify(R);
   })()`);
   let d = {};
-  try { d = JSON.parse(out || '{}'); } catch (e) { console.log(file, '-> probe parse failed:', String(out).slice(0, 400)); }
-  console.log('\n' + file);
-  console.log('  Team Comparison subtitle :', JSON.stringify(d.subtitle));
-  console.log('  effective-ratings note on the page:', d.cmpHasRatingsNote, '| the string still exists in the page source:', d.sourceKeepsNote);
-  console.log('  descriptive verdict shown        :', d.cmpHasVerdict, '| default pair:', JSON.stringify(d.defaultPair));
-  console.log('  Unit Comparison rows:');
-  for (const r of d.unitRows || []) console.log('     ', r);
-  console.log('  Guide box present       :', d.guideHasBox, '| "Guide" h3 present:', d.guideHasBoxHeading);
+  try {
+    d = JSON.parse(out || "{}");
+  } catch (_e) {
+    console.log(file, "-> probe parse failed:", String(out).slice(0, 400));
+  }
+  console.log(`\n${file}`);
+  console.log("  Team Comparison subtitle :", JSON.stringify(d.subtitle));
+  console.log(
+    "  effective-ratings note on the page:",
+    d.cmpHasRatingsNote,
+    "| the string still exists in the page source:",
+    d.sourceKeepsNote,
+  );
+  console.log(
+    "  descriptive verdict shown        :",
+    d.cmpHasVerdict,
+    "| default pair:",
+    JSON.stringify(d.defaultPair),
+  );
+  console.log("  Unit Comparison rows:");
+  for (const r of d.unitRows || []) console.log("     ", r);
+  console.log(
+    "  Guide box present       :",
+    d.guideHasBox,
+    '| "Guide" h3 present:',
+    d.guideHasBoxHeading,
+  );
   console.log('  "Play the season" line  :', JSON.stringify(d.playTheSeason));
-  console.log('  advanced stats parenthetical:', d.advancedStatsParenthetical, '| any 70→90 wording left in the guide:', d.any70to90);
-  console.log('  tier line sample        :', JSON.stringify(d.tierSample));
-  console.log('  tier shows per +1 OVR   :', d.tierHasPerOvr);
-  console.log('  values table headers    :', JSON.stringify(d.valuesHeaders));
-  console.log('  values table first row  :', JSON.stringify(d.valuesFirstRow), '| rows:', d.valuesRowCount);
-  await send('Target.closeTarget', { targetId }, false);
+  console.log(
+    "  advanced stats parenthetical:",
+    d.advancedStatsParenthetical,
+    "| any 70→90 wording left in the guide:",
+    d.any70to90,
+  );
+  console.log("  tier line sample        :", JSON.stringify(d.tierSample));
+  console.log("  tier shows per +1 OVR   :", d.tierHasPerOvr);
+  console.log("  values table headers    :", JSON.stringify(d.valuesHeaders));
+  console.log(
+    "  values table first row  :",
+    JSON.stringify(d.valuesFirstRow),
+    "| rows:",
+    d.valuesRowCount,
+  );
+  await send("Target.closeTarget", { targetId }, false);
 }
 ws.close();

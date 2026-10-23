@@ -1,0 +1,16 @@
+
+MiniMax candidate lint — NFL Draft Simulator.html
+  sha256 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f · 650127 bytes
+  43 pass · 1 warn · 2 fail
+
+  [FAIL] fn:renderDraftBoard2     got 3736a5bfb36f, want v20 6f77deaf263f
+  [FAIL] text:tail                tail is the donor's Season-first line (setActiveTab('viewSeason','tabSeasonBtn');) — flips the merged default tab
+  [WARN] text:glue                data-nostack x0, #draftTable2 present — the nostack guard depends on both
+
+  FAILING CHECKS:
+   - fn:renderDraftBoard2: got 3736a5bfb36f, want v20 6f77deaf263f
+   - text:tail: tail is the donor's Season-first line (setActiveTab('viewSeason','tabSeasonBtn');) — flips the merged default tab
+  WARNINGS:
+   - text:glue: data-nostack x0, #draftTable2 present — the nostack guard depends on both
+
+  exit 1 — the candidate does not yet satisfy the merge oracle

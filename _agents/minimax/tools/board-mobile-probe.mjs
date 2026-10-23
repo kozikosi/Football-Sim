@@ -8,28 +8,74 @@
 // the same visual row do not overlap, that no cell is clipped away, and that the page has no
 // horizontal scroll. It also reports the Priority cell's rendered text (the number that must survive).
 
-import { pathToFileURL } from 'node:url';
+import { pathToFileURL } from "node:url";
 
-const files = process.argv.slice(2).filter(a => !a.startsWith('--'));
-if (!files.length) { console.error('usage: board-mobile-probe.mjs <file.html> [...]'); process.exit(4); }
+const files = process.argv.slice(2).filter((a) => !a.startsWith("--"));
+if (!files.length) {
+  console.error("usage: board-mobile-probe.mjs <file.html> [...]");
+  process.exit(4);
+}
 const port = 9222;
-const version = await (await fetch(`http://127.0.0.1:${port}/json/version`)).json();
+const version = await (
+  await fetch(`http://127.0.0.1:${port}/json/version`)
+).json();
 const ws = new WebSocket(version.webSocketDebuggerUrl);
-await new Promise(r => ws.addEventListener('open', r));
-let id = 0; const pending = new Map();
-ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.id && pending.has(m.id)) { const { res, rej } = pending.get(m.id); pending.delete(m.id); m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result); } });
-const send = (method, params = {}, sessionId) => { const i = ++id; ws.send(JSON.stringify({ id: i, method, params, ...(sessionId ? { sessionId } : {}) })); return new Promise((res, rej) => pending.set(i, { res, rej })); };
-const sleep = ms => new Promise(r => setTimeout(r, ms));
+await new Promise((r) => ws.addEventListener("open", r));
+let id = 0;
+const pending = new Map();
+ws.addEventListener("message", (e) => {
+  const m = JSON.parse(e.data);
+  if (m.id && pending.has(m.id)) {
+    const { res, rej } = pending.get(m.id);
+    pending.delete(m.id);
+    m.error ? rej(new Error(JSON.stringify(m.error))) : res(m.result);
+  }
+});
+const send = (method, params = {}, sessionId) => {
+  const i = ++id;
+  ws.send(
+    JSON.stringify({
+      id: i,
+      method,
+      params,
+      ...(sessionId ? { sessionId } : {}),
+    }),
+  );
+  return new Promise((res, rej) => pending.set(i, { res, rej }));
+};
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 for (const file of files) {
-  const { targetId } = await send('Target.createTarget', { url: 'about:blank' }, false);
-  const { sessionId } = await send('Target.attachToTarget', { targetId, flatten: true }, false);
-  await send('Page.enable', {}, sessionId); await send('Runtime.enable', {}, sessionId);
-  await send('Emulation.setDeviceMetricsOverride', { width: 390, height: 844, deviceScaleFactor: 3, mobile: true }, sessionId);
-  await send('Page.navigate', { url: pathToFileURL(file).href }, sessionId);
+  const { targetId } = await send(
+    "Target.createTarget",
+    { url: "about:blank" },
+    false,
+  );
+  const { sessionId } = await send(
+    "Target.attachToTarget",
+    { targetId, flatten: true },
+    false,
+  );
+  await send("Page.enable", {}, sessionId);
+  await send("Runtime.enable", {}, sessionId);
+  await send(
+    "Emulation.setDeviceMetricsOverride",
+    { width: 390, height: 844, deviceScaleFactor: 3, mobile: true },
+    sessionId,
+  );
+  await send("Page.navigate", { url: pathToFileURL(file).href }, sessionId);
   await sleep(2500);
-  const ev = async expr => (await send('Runtime.evaluate', { expression: expr, returnByValue: true }, sessionId)).result?.value;
-  await ev(`(()=>{const s=document.getElementById('draftPickNumberSelect'); if(s){s.value=s.options[s.options.length-1].value;} const b=document.getElementById('startDraftBtn'); if(b) b.click(); return true;})()`);
+  const ev = async (expr) =>
+    (
+      await send(
+        "Runtime.evaluate",
+        { expression: expr, returnByValue: true },
+        sessionId,
+      )
+    ).result?.value;
+  await ev(
+    `(()=>{const s=document.getElementById('draftPickNumberSelect'); if(s){s.value=s.options[s.options.length-1].value;} const b=document.getElementById('startDraftBtn'); if(b) b.click(); return true;})()`,
+  );
   await sleep(2500);
   await ev(`document.getElementById('draftTableWrap')?.scrollIntoView(); true`);
   await sleep(400);
@@ -55,13 +101,29 @@ for (const file of files) {
       headers: [].slice.call(document.querySelectorAll('#draftTable2 thead th')).map(function(th){return th.textContent.trim();}).join('|'),
       samples: samples };
   })())`);
-  const d = JSON.parse(out || '{}');
-  console.log('\n' + file);
-  console.log('  viewport 390px | rows checked:', d.rowsChecked, '| overlapping cells:', d.overlaps, '| clipped cells:', d.clipped);
-  console.log('  horizontal overflow:', d.horizontalScroll, 'px (scrollWidth', d.pageScrollW, 'vs innerWidth', d.innerW + ')', '| board width:', d.boardW);
-  console.log('  headers:', d.headers);
-  console.log('  Priority cell (row 1):', JSON.stringify(d.priority));
-  for (const s of d.samples || []) console.log('  row layout:', s);
-  await send('Target.closeTarget', { targetId }, false);
+  const d = JSON.parse(out || "{}");
+  console.log(`\n${file}`);
+  console.log(
+    "  viewport 390px | rows checked:",
+    d.rowsChecked,
+    "| overlapping cells:",
+    d.overlaps,
+    "| clipped cells:",
+    d.clipped,
+  );
+  console.log(
+    "  horizontal overflow:",
+    d.horizontalScroll,
+    "px (scrollWidth",
+    d.pageScrollW,
+    "vs innerWidth",
+    `${d.innerW})`,
+    "| board width:",
+    d.boardW,
+  );
+  console.log("  headers:", d.headers);
+  console.log("  Priority cell (row 1):", JSON.stringify(d.priority));
+  for (const s of d.samples || []) console.log("  row layout:", s);
+  await send("Target.closeTarget", { targetId }, false);
 }
 ws.close();
