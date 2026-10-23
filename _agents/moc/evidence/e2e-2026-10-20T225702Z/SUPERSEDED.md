@@ -9,17 +9,17 @@ It is a sidecar: the run's own `result.json` is **not** edited by me.
 
 ## A. The current result (supersedes nothing on disk)
 
-| field | value |
-|---|---|
-| run directory | `test-results/e2e-1792537022298/` |
-| `runAtUtc` | `2026-10-20T22:57:02.298Z` |
-| status | **PARTIAL** (10 PASS, 1 SKIP — `week-1-display`) |
-| script | `test-script.spec.js` — sha256 `ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757` |
-| schema | `OPENCHAMBER-E2E-RESULT.schema.json` — sha256 `3f2e07cfc1db9b61b4c21dba37e0d360c4fedfbc0677ba2f51b02b25976de879` |
-| result.json | sha256 `d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396` |
-| artifact | `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (657,486 B) @ `merge/v20-donor` `ff8c05ae0ef8` |
-| trace | `trace-1792537070181.zip`, 65,863,244 B |
-| preserved copy | `_agents/moc/evidence/e2e-2026-10-20T225702Z/` (result.json + schema + script) |
+| field          | value                                                                                                             |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- |
+| run directory  | `test-results/e2e-1792537022298/`                                                                                 |
+| `runAtUtc`     | `2026-10-20T22:57:02.298Z`                                                                                        |
+| status         | **PARTIAL** (10 PASS, 1 SKIP — `week-1-display`)                                                                  |
+| script         | `test-script.spec.js` — sha256 `ee9aaa44d00557d6ebca13dc0eb9f487fda2c2ce5e42578ae5cc8b392d3c3757`                 |
+| schema         | `OPENCHAMBER-E2E-RESULT.schema.json` — sha256 `3f2e07cfc1db9b61b4c21dba37e0d360c4fedfbc0677ba2f51b02b25976de879`  |
+| result.json    | sha256 `d64a5f9bb3ab6e7b0b97277beb3afdf8858950be1c3b8434a5e2d46426288396`                                         |
+| artifact       | `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (657,486 B) @ `merge/v20-donor` `ff8c05ae0ef8` |
+| trace          | `trace-1792537070181.zip`, 65,863,244 B                                                                           |
+| preserved copy | `_agents/moc/evidence/e2e-2026-10-20T225702Z/` (result.json + schema + script)                                    |
 
 ## B. The earlier run — SUPERSEDED, artifacts no longer on disk
 
@@ -40,7 +40,7 @@ The only surviving record of the earlier execution is the Owner's PR comment of 
 `result.json` anywhere (`test-results/e2e-1792537022298/result.json`), one trace (65,863,244 B), and no
 other screenshot set. The only other run directory, `test-results/e2e-1792537022083/`, is **215 ms
 before** the current one (22:57:02.083Z vs 22:57:02.298Z) and is **empty** apart from an empty `trace/`
-directory — it is the *first attempt of the same run*, not a separate execution.
+directory — it is the _first attempt of the same run_, not a separate execution.
 
 **Therefore:** the earlier run's own evidence cannot be re-measured; only its summary survives, and it
 survives here and in the PR discussion. It is superseded by the current run **for the counts below** —
@@ -48,16 +48,15 @@ not deleted, and not rewritten.
 
 ## C. The count trail, as reported by each account
 
-| account | steps | screenshots | 100-season | playoffs control | trace |
-|---|---|---|---|---|---|
-| Lightning's own summary (quoted above) | 7 (5 PASS, 2 SKIP) | 4 claimed / 9 named | skipped | absent | 32 MB |
-| Ultra's description of that run | 10 | 20, "no light/dark captures" | "both runs skipped it" | — | — |
-| The current run's **own note 5** (`result.json`) | 11 | **24** | PASS | clicked, champion visible | 65,863,244 B |
-| **The files, measured** | **11 (10 PASS, 1 SKIP)** | **26** | **PASS** | **clicked, champion visible** | **65,863,244 B** |
+| account                                          | steps                    | screenshots                  | 100-season             | playoffs control              | trace            |
+| ------------------------------------------------ | ------------------------ | ---------------------------- | ---------------------- | ----------------------------- | ---------------- |
+| Lightning's own summary (quoted above)           | 7 (5 PASS, 2 SKIP)       | 4 claimed / 9 named          | skipped                | absent                        | 32 MB            |
+| Ultra's description of that run                  | 10                       | 20, "no light/dark captures" | "both runs skipped it" | —                             | —                |
+| The current run's **own note 5** (`result.json`) | 11                       | **24**                       | PASS                   | clicked, champion visible     | 65,863,244 B     |
+| **The files, measured**                          | **11 (10 PASS, 1 SKIP)** | **26**                       | **PASS**               | **clicked, champion visible** | **65,863,244 B** |
 
 **Measured truth for the current run** (`_agents/moc/evidence/trace-playoffs-forensics.txt`,
 `_agents/moc/evidence/schema-validation.txt`):
-
 - steps: the `steps` array holds **11** entries — 10 `PASS`, 1 `SKIP` (`week-1-display`).
 - screenshots: the `screenshots` array holds **26** entries, and **26** PNG files exist on disk, with
   no entry missing a file and no file missing an entry. The array breaks down as **20 viewport-check

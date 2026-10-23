@@ -1,38 +1,67 @@
-SPEAKER: MOC | ROLE: Council reviewer (S-2500–2599) | TASK: Idle continuation review | DATE: 2026-10-21T00:20:00Z
+SPEAKER: MOC | ROLE: Council reviewer (S-2500–2599) | TASK: Session end — 23 Oct 2026 | DATE: 2026-10-23T00:00:00Z
 
 # MOC — council seat file
 
-> **Why this line is first.** PR #5's `scripts/build_council_scorecard.py` → `discover_speakers()` reads the
-> **first line** of every `*.md` under `_agents/` and matches `^SPEAKER:\s*(.*?)\s*\|\s*ROLE:`. Measured
-> 2026-10-21 00:2x UTC: **0 of 77** local `_agents/**/*.md` files — and **0 of 62** on the
-> `gpt/council-reliability-scorecard` branch — have such a first line, so the advertised automatic discovery
-> of new contributors is **inert**; the hand-written ledger `council/scorecard/events.jsonl` is the only
-> working input. This seat file now carries the label, so MOC is discoverable. See
-> `notes/pr5-discovery-check.md`. **Do not add a SPEAKER line to the files in `recovered/`** — they are
-> verbatim copies of other seats' messages and would mis-attribute them.
+**Seat.** MOC (Owner name directive, 20 Oct 2026). ID block **S-2500–2599**. Lane `_agents/moc/` — mine alone.
 
-**Seat.** MOC (Owner name directive, 20 Oct 2026). ID block **S-2500–2599** (next free past LongCat S-2400–2499; verified free — `grep -c 'S-2500' CHRONICLE.md COUNCIL-BULLETIN.md` → 0/0).
-**Lane.** `_agents/moc/` — mine alone. Nobody else writes here.
-**Arrival evidence.** `shasum -a 256 "NFL Draft Simulator v20 Claude.html"` → `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`, 649,032 B.
+## Identity & bootstrap
+- Read the project knowledge note "MOC identity + anchor (read first)" (id 135bd86a) and the plan "20-0 — Project Guide (Anchor, Files, Session Discipline)" (id ec33fc1b) at session start.
+- Anchor build: `_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B. The ONLY build to anchor/patch/test against.
 
-## What I did this round (one deliverable, two parts)
+## What I did this session (22–23 Oct)
 
-| part | what | where |
-|---|---|---|
-| 1 | **Loss-event forensics** — the mechanism behind both shared-document loss events, and a recovery inventory proving 47 messages are intact in a git stash | `notes/loss-event-forensics.md` · `evidence/forensics-receipts.txt` · `recovered/` |
-| 2 | **Independent verifier sign-off** on the merged candidate, with a negative control | `notes/verifier-report.md` · `evidence/gate-*.json` |
-
-## Files I wrote (all mine)
-
-- `MOC.md` (this file)
-- `notes/loss-event-forensics.md`
-- `notes/verifier-report.md`
-- `evidence/forensics-receipts.txt` · `evidence/gate-merged-candidate.json` · `evidence/gate-merged-candidate.err` · `evidence/gate-v20-negative-control.json` · `evidence/gate-v20-negative-control.err`
-- `recovered/bulletin-stash1.md` (291,971 B) · `recovered/bulletin-main-bb4b025.md` (217,682 B) · `recovered/chronicle-index-parent.md` (61,457 B) · `recovered/submissions-stash1.md` (116,916 B) · `recovered/M40,M53,M66,M70,M72,M75-original.md`
+1. **sqlite MCP server fixed + DB built** (M-20261022-r). `~/football-sim.db`: players 1,200 (11 fields each), team_slots 1,088 across 32 teams, meta with build sha256. Tool: `_agents/moc/tools/build-sim-db.mjs`. `opencode mcp list` → ✓ figma · ✓ github · ✓ sqlite.
+2. **Colour canvas re-measured on Pre-Colors: 0 of 20** (M-20261022-s), not 3 of 20. The 3-of-20 figure was candidate C. `--t1`=0, `teamTag()` absent, `.ub` still `var(--accent)`. Tool: `_agents/moc/tools/audit-colour-canvas.mjs`.
+3. **Dataset hash published** (MOC-20261022-dataset). PLAYERS = `e9030c9e4f67f2b1400b39f2b62656e3d3dcf63bd7f0020a51a807825e2f64fa` (1,200 rows, 11 fields). TEAM_DATA = `e8665a17e5b832cc5f94b243a776acdf28b05aebe2c1921f91ccfbf189b818f0`. Colour table absent from anchor (0 TEAM_COLORS). Tool: `_agents/moc/tools/dataset-hash.mjs`. Note pending: `_agents/moc/notes/DATASET-HASH.md`.
+4. **Post-merge-smoke on Pre-Colors: PASS** (A–I all true), receipt 84f15d27685c, artifact 40233d6be00e, 657,486 B. Command: `node _agents/minimax/tools/post-merge-smoke.mjs "_agents/pickle/builds/Football-Sim-PreColors.html" --port 9223`.
+5. **Build-truth correction** (M-20261022-u): `044d1759…` is 656,746 B; `40233d6b…` is 657,486 B. No file is both. Pre-Colors is the 40233d6b file.
+6. **Math.LN2 correction** (M-20261022-u): line 2029 is `const PERS`, not PLAYERS. Pre-Colors has `runB:0.000, passB:0.000`; merged has `Math.LN2`. The edit is uncommitted (297-line working-tree diff) and in no commit. Author: UNKNOWN.
+7. **Tool existence correction** (M-20261022-u): `tools/lint.mjs`, `tools/check-tasks.mjs`, `tools/hooks/pre-commit`, `tools/biome-product/biome.json` exist on `origin/claude/v21-and-council-ops` (5157c53a), unmerged, not missing.
+8. **core.hooksPath unset** — was set to `tools/hooks` (inert); now unset.
+9. **20-0 branding + UX proposal** (`_agents/moc/notes/branding-20-0-and-homepage-copy.md`): "20-0" in header/footer/title/copy; homepage "Set Up Your Draft"→"DRAFT"; intro→"Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"; season line→"Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"; player browser 15 rows; clickable header. Header rework Option 1 vs 2 open.
+10. **Project knowledge plan created**: "20-0 — Project Guide (Anchor, Files, Session Discipline)" (id ec33fc1b). Seat roster note (id 67515ffa).
+11. **Q4 poll dispatched** to 12 seats (registry: markdown/structured/either).
+12. **Fan-out dispatched twice**: 12 seats with distinct assignments (bundle review, pin table, biome, check-tasks, V22 conflict, colour patch, dataset hash, seeded RNG, registry, colour provenance, independent verification, chronology extraction); then 12 seats with branding-verification assignments.
+13. **Council update compiled** (`_agents/moc/notes/council-update-2026-10-22-precolors.md`): answers to Claude's six asks, status of five asks, council work since sync prompt.
 
 ## What I did not do
-
 - No product file touched (`31b7d61f…`, `77bb9ed5…`, `40233d6b…` all re-verified unchanged).
-- No branch, PR, merge, tag, push, stash apply, `git checkout` or `git reset`.
-- No edit to another seat's file, message, section or line; no edit to `STATUS.md`, `SUBMISSIONS.md`, `AGENTS.md`, `INDEX.md`, `GOVERNANCE-ROUNDTABLE.md`.
-- I ran MiniMax's gate (`_agents/minimax/tools/post-merge-smoke.mjs`) read-only; it writes only to stdout, and my receipts are in my own lane.
+- No V23 work (on hold).
+- No merge, no push of product.
+- No individual task assignments in the second batch (corrected after Owner's reminder).
+- Did not run step 3c (Biome selftest) as written.
+
+## Files I wrote (all mine, this session)
+- `_agents/moc/notes/p5-sqlite-server-fixed.md`
+- `_agents/moc/tools/build-sim-db.mjs`
+- `_agents/moc/notes/p0-anchors-vs-precolors.md`
+- `_agents/moc/tools/audit-colour-canvas.mjs`
+- `_agents/moc/notes/council-update-2026-10-22-precolors.md`
+- `_agents/moc/notes/ux-player-browser-pagination-and-header.md`
+- `_agents/moc/tools/dataset-hash.mjs`
+- `_agents/moc/notes/branding-20-0-and-homepage-copy.md`
+- `_agents/moc/notes/DATASET-HASH.md` (pending — write next session)
+- `MOC.md` (this rewrite)
+- Project knowledge plan + roster note (via OpenChamber, not in repo)
+
+## Pending / open questions
+- Header rework: Option 1 (patch now) vs Option 2 (Figma rework) — Owner's call.
+- Q4 poll results (registry format) — seats will reply.
+- V23 on hold (Owner's next prompt).
+- 12 assignments in flight.
+- `_agents/moc/notes/DATASET-HASH.md` still needs to be written (recipe + value + sample hashes + colour table absence).
+
+## Current state
+- Anchor: Pre-Colors `40233d6b…` (657,486 B) — verified, smoke PASS.
+- sqlite MCP: connected, DB `~/football-sim.db`.
+- core.hooksPath: unset.
+- Dataset hash: PLAYERS `e9030c9e4f67f2b1400b39f2b62656e3d3dcf63bd7f0020a51a807825e2f64fa`; TEAM_DATA `e8665a17e5b832cc5f94b243a776acdf28b05aebe2c1921f91ccfbf189b818f0`.
+- 12 seats dispatched with distinct assignments (two batches).
+- No product edit. No V23 work.
+
+## What the next session should do first
+1. Read the project knowledge note "MOC identity + anchor (read first)" (id 135bd86a) and plan "20-0 — Project Guide" (id ec33fc1b).
+2. Read the tail of COUNCIL-BULLETIN.md for replies to M-20261022-u, MOC-20261022-01, and the Q4 poll.
+3. Write `_agents/moc/notes/DATASET-HASH.md` (recipe + value + sample hashes + colour table absence) — the tool already exists and runs.
+4. Check for any seat's bulletin reply that changes the plan.
+5. If token budget is low, stop and start a new chat per the guide's token-efficiency rule.

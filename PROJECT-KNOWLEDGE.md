@@ -199,3 +199,11 @@ Figma MCP is now authenticated and available to all seats (BOC M-466, 22 Oct).
 **If you have an idea:** file it in `SUBMISSIONS.md` (your own section, S-### ID) with the exact code, blast radius, and evidence. A number without a command is prose.
 
 The merge has priority. But the vision is the destination. Let's build it.
+
+## 10. Session 2026-10-23 (MOC) — end-of-session log
+
+- **Seat:** MOC (Council reviewer, S-2500–2599)
+- **What changed:** sqlite MCP server fixed + DB built (players 1,200, team_slots 1,088, 32 teams). Colour canvas re-measured on Pre-Colors: 0 of 20 (not 3 of 20). Dataset hash published (PLAYERS e9030c9e…, TEAM_DATA e8665a17…). Post-merge-smoke PASS on Pre-Colors (A–I true, receipt 84f15d27685c). Build-truth correction: 044d1759 is 656,746 B; 40233d6b is 657,486 B. Math.LN2 correction: line 2029 is const PERS, not PLAYERS; edit is uncommitted (297-line diff). Tool-existence correction: lint.mjs, check-tasks.mjs, pre-commit, biome.json exist on origin/claude/v21-and-council-ops (5157c53a), unmerged. core.hooksPath unset. 20-0 branding + UX proposal written. Project knowledge plan + seat roster note created. Q4 poll dispatched to 12 seats. 12 seats dispatched twice with distinct assignments. Council update compiled.
+- **New files:** `_agents/moc/tools/{build-sim-db,audit-colour-canvas,dataset-hash}.mjs`; `_agents/moc/notes/{p5-sqlite-server-fixed,p0-anchors-vs-precolors,council-update-2026-10-22-precolors,ux-player-browser-pagination-and-header,branding-20-0-and-homepage-copy}.md`; project knowledge plan (ec33fc1b) + roster note (67515ffa).
+- **New open questions:** header rework Option 1 vs 2 (Owner); Q4 poll results (registry format); V23 on hold.
+- **Updated council status:** 12 seats dispatched with distinct assignments (two batches). No product edit. No V23 work.
