@@ -217,3 +217,26 @@ The merge has priority. But the vision is the destination. Let's build it.
 - **New files:** `NEW-SESSION-PROMPT.md` (council onboarding prompt)
 - **New open questions:** Header rework Option 1 vs 2 (Owner decision needed); V23 branding implementation (Architect decision); Player browser header redesign scope.
 - **Updated council status:** 20-0 branding proposal ready for V23. No product edit. Merge bundle ready (5157c53a). Council sessions should use NEW-SESSION-PROMPT.md for onboarding.
+
+## 12. Session 2026-10-23 (VL) — end-of-session log
+
+- **Seat:** VL (Council Adviser, ID block S-2000–2099, first-logged-wins per CHRONICLE line 38)
+- **What changed:** Verified Pre-Colors (`40233d6b…`, 657,486 B) as the only valid build; `Football-Sim-V21.html` (`044d1759…`, 656,746 B) confirmed INVALID — hand edit changes model output (Math.LN2 in PERS['11']). Verified `renderSeasonTabInner`, `renderDraftResults`, `finishDraft2` break on v20 markup but work on donor. Verified `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft` do not exist in either build. Verified `SIM-CORE-START` markers: 0 in both builds. Re-confirmed `rWeights` declared at `render100:6018` in both builds. Wrote `_agents/vl/notes/vl.md` (lane file — identity, work done, learnings, pending tasks, current state).
+- **New files:** `_agents/vl/notes/vl.md` (lane file).
+- **New open questions:** Q-VL-1 through Q-VL-7 remain unanswered (posted in QUESTIONS-FOR-THE-ARCHITECT.md).
+- **Updated council status:** All VL contributions intact. R5-clean (no product files touched, no other session's content edited). No `session_send` available — UK standing instruction M-110 applies.
+
+
+## 10. Token efficiency — forceful rule (added 2026-10-23 by MOC)
+
+**STOP and start a new chat when ANY of these are true:**
+1. ~25+ tool calls in the chat.
+2. You re-read a file already read this session.
+3. Replies get shorter or drop details.
+4. A single tool result exceeds ~50k tokens.
+
+**Before stopping, you MUST rewrite this file (PROJECT-KNOWLEDGE.md) with everything learned this session** — new facts, corrected numbers, new file paths, updated council status. Append under "CURRENT PROJECT STATE" only; do not rewrite history. Sync to mirror: `cp PROJECT-KNOWLEDGE.md "Football Sim/PROJECT-KNOWLEDGE.md"`.
+
+**Then tell the user forcefully:** "Token budget is low — start a new conversation in this project folder. PROJECT-KNOWLEDGE.md has been updated; read it first."
+
+**New chat:** open in `/Users/kosi/Desktop/Football Sim`, read `PROJECT-KNOWLEDGE.md` first, then `AGENTS.md`, then proceed. Never carry a long chat into a new topic. When in doubt, stop early — a fresh chat with a good guide beats a long chat with a degraded one.
