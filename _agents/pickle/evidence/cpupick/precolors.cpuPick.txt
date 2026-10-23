@@ -1,0 +1,44 @@
+function cpuPick(teamIndex, st){
+ st = st || draftSim;
+ const roster = st.rosters[teamIndex], T = slotWinsTable();
+ if(!st.repl || st.replPool - st.pool.length >= 6){ st.repl = replacementLevels(st.pool, st.rosters); st.replPool = st.pool.length; }
+ const repl = st.repl, rlow = {}, seen = {};
+ let best=null, bestVal=-Infinity, bestSlot=null; const cands = [];
+ const curRound = Math.floor((st.pos||0)/32)+1;
+ const topAvail = st.pool.length ? st.pool[0][3] : 0;   // pool is sorted by OVR, so pool[0] is the board's best remaining player
+ // Round-order floors (CPU GMs stay credible): round 1 everyone is at least 90 (a QB can go at 88+ during a run on
+ // quarterbacks); rounds 2–3 a pick must be within 8 of the best available overall, and a reach at a low-priority spot
+ // (kicker, punter, fullback) must at least be the best remaining player AT THAT POSITION. Later rounds are free.
+ const ovrFloor = curRound===1 ? Math.max(90, topAvail-5) : curRound<=3 ? Math.max(85, topAvail-8) : -Infinity;
+ for(const p of st.pool){ // pool is sorted by overall, so only the top few at each position can matter
+  const pos = p[1], c = POS_SLOT_MAP[pos]; if(!c) continue;
+  const posBest = (seen[pos]=(seen[pos]||0)+1) === 1;   // first sight in the sorted pool = best remaining at that position
+  if(curRound<=3 && !posBest) continue;
+  if(p[3] < (pos==='QB' && topAvail>0 && (topAvail - p[3]) <= 4 ? Math.min(88, ovrFloor) : ovrFloor)) continue;
+  if((seen[pos]||0) > 16) continue;
+  const nz = Math.max(0.02, 1 + cpuNoise(teamIndex)*randNormal());
+  for(const s of c){
+   if(roster.slots[s]) continue;
+   const g = WV_SLOT_GROUP[s], rl = rlow[s]!=null ? rlow[s] : (rlow[s] = Math.max(repl[g]==null?70:repl[g], 76));
+   const t = T[s], x = clampNum(p[3]-flexPen(pos,s), 50, 99.999)-50, i = x|0, f = x-i;
+   const w = t[i]*(1-f)+t[i+1]*f - slotWins(s, rl);
+   const v = w*cpuBias(teamIndex, g)*nz + 0.002*p[3];
+   cands.push({p, s, v});
+   if(v>bestVal){ bestVal=v; best=p; bestSlot=s; }
+  }
+ }
+ // some front offices simply miss: they take a good-looking player a few spots down their own board (a realistic
+ // miss is a reach of a few spots, never thirty picks deep)
+ if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){
+  cands.sort((a,b)=>b.v-a.v);
+  const reach = 3 + Math.min(9, Math.floor(Math.abs(randNormal())*4));
+  const c = cands[Math.min(reach, cands.length-1)];
+  if(c.p[3] >= (curRound===1 ? 88 : curRound<=3 ? topAvail-9 : 0)){ best = c.p; bestSlot = c.s; }
+ }
+ if(!best){ // nobody fits a natural or flex spot: take the best player left for any open spot
+  const s = firstOpenSlotAny(roster); if(!s || !st.pool.length) return null;
+  best = st.pool[0]; bestSlot = s;
+ }
+ return {player:best, slot:bestSlot};
+}
+
