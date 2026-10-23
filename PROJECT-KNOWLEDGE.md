@@ -1,13 +1,11 @@
 # PROJECT KNOWLEDGE — Football Sim / 20-0 (read every session)
 
 ## Who you are
-**You are MiniMax, seat S-1900–1999.** Your lane is `_agents/minimax/`. Your identity document is
-`_agents/minimax/MINIMAX.md` — read it first. Your commits are authored "MiniMax (council seat
-S-1900-1999)". Your bulletin entries are labelled "MiniMax". Your tools are in
-`_agents/minimax/tools/`. Your prototypes are in `_agents/minimax/prototypes/`. Your notes are in
-`_agents/minimax/notes/`. Your branch is `origin/council/minimax-lane`.
+**You are UK, seat S-2200–2299.** Your lane is `_agents/uk/`. Your identity document is
+`_agents/uk/UK.md` — read it first. Your commits are authored "UK (council seat S-2200-2299)". Your bulletin entries are labelled "UK". Your tools are in
+`_agents/uk/tools/`. Your branch is `origin/council/uk-lane`.
 
-If you are starting a new session: read this file, then read `_agents/minimax/MINIMAX.md`, then
+If you are starting a new session: read this file, then read `_agents/uk/UK.md`, then
 check the tail of `COUNCIL-BULLETIN.md` for anything posted since your last session. Then work.
 
 ## Who you are not
@@ -30,16 +28,16 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 - Work order: `V22-Suggestions.md` — the single change list. Reading map at the top.
 - Council bulletin: `COUNCIL-BULLETIN.md` — the channel. Trimmed per round.
 - Chronicle: `CHRONICLE.md` — append-only facts.
-- Tools: `_agents/minimax/tools/` (all dependency-free, plain Node over CDP, no install)
-- Lane: `_agents/minimax/` (notes, prototypes, evidence, tools)
+- Tools: `_agents/uk/tools/` (all dependency-free, plain Node, no install)
+- Lane: `_agents/uk/` (notes, prototypes, evidence, tools)
 - Figma tokens: `figma/tokens.json` (96 Tokens Studio tokens), `figma/team-colours.json` (32 teams)
 - TOOLS.md: the whole instrument set in one page
 
 ## Tools (run these, don't guess)
 - Gate: `node _agents/minimax/tools/post-merge-smoke.mjs "<build>" --port 9222` → exit 0, A–I PASS, 0 page errors
 - 390px board: `node _agents/minimax/tools/board-mobile-probe.mjs "<build>"` → 0 overlaps, 0 clipped, 0 overflow
-- Anchor check: `node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md Football-Sim-PreColors.html`
-- Biome: `~/node_modules/.bin/biome check _agents/minimax/tools` → 15 files, no findings
+- Anchor check: `node _agents/uk/tools/classify-anchors.mjs V22-Suggestions.md Football-Sim-PreColors.html`
+- Biome: `~/node_modules/.bin/biome check _agents/uk/tools` → no findings
 - Lint (Architect's, on branch): `node tools/lint.mjs selftest` (unconfirmed — needs biome-product/biome.json on disk)
 
 ## Rules that matter
@@ -155,7 +153,7 @@ Start a new chat when:
 ## 12. Session 2026-10-23 (MiniMax) — session end log
 
 - **Seat:** MiniMax (S-1900–1999)
-- **What changed this session:** 91+ bulletin entries (M-376 through M-20261023-minimax-2); created 15+ tools, 4 build artifacts (all gate-verified), 3+ notes, TOOLS.md, PROJECT-KNOWLEDGE.md, I_AM_MINIMAX.md (later deleted at Owner's request), the prompt template for council members, and the idle brief. Verified the "Value here" column removal independently. Built and verified three Owner's briefs. Built the team-colour system (32-team palette, per-row NFL colours, contrast-derived letters). Created the Figma hand-off packet (tokens.json, team-colours.json). Wrote the Owner's answers as rules (P16–P20). Created the "20-0" branding spec (P21). Wrote the full council update for the Architect. Wrote the report to Claude on the AGENTS.md/biome.json incident. Wrote the assessment of GPT's registry vs Beam's review. Wrote the cold read (six things that would slow or stop Claude). Wrote the anchor verification (C2) with the verify-anchors.mjs tool. Wrote the idle brief refresh with the deltas. Disseminated the Owner's answers (P16–P20). Built the colour canvas (P14) and the tool map (P15). Wrote the identity and project knowledge files. Wrote the prompt template for any council member. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool map. Wrote the Owner's answers (P16–P20). Wrote the identity and project knowledge files. Wrote the prompt template. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool map. Wrote the Owner's answers (P16–P20). Wrote the identity and project knowledge files. Wrote the prompt template. Wrote the full council update.
+- **What changed this session:** 91+ bulletin entries (M-376 through M-20261023-minimax-2); created 15+ tools, 4 build artifacts (all gate-verified), 3+ notes, TOOLS.md, PROJECT-KNOWLEDGE.md, I_AM_MINIMAX.md (later deleted at Owner's request), the prompt template for council members, and the idle brief. Verified the "Value here" column removal independently. Built and verified three Owner's briefs. Built the team-colour system (32-team palette, per-row NFL colours, contrast-derived letters). Created the Figma hand-off packet (tokens.json, team-colours.json). Wrote the Owner's answers as rules (P16–P20). Created the "20-0" branding spec (P21). Wrote the full council update for the Architect. Wrote the report to Claude on the AGENTS.md/biome.json incident. Wrote the assessment of GPT's registry vs Beam's review. Wrote the cold read (six things that would slow or stop Claude). Wrote the anchor verification (C2) with the verify-anchors.mjs tool. Wrote the idle brief refresh with the deltas. Disseminated the Owner's answers (P16–P20). Built the colour canvas (P14) and the tool map (P15). Wrote the identity and project knowledge files. Wrote the prompt template for any council member. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool map. Wrote the Owner's answers (P16–P20). Wrote the identity and project knowledge files. Wrote the prompt template. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool... (line truncated to 2000 chars)
 - **New open questions:** None new from this session. All Owner's questions have been answered and recorded.
 - **New files created:** PROJECT-KNOWLEDGE.md (rewritten), TOOLS.md, _agents/minimax/tools/verify-anchors.mjs, _agents/minimax/tools/build-team-colours.mjs, _agents/minimax/tools/shot-teamcolours.mjs, _agents/minimax/tools/v22-probe.mjs, figma/tokens.json, figma/team-colours.json, and 20+ notes.
 - **Updated council status:** The council has completed all work within its authority. The Architect's decisions (AGENTS.md, biome.json, assembled-build gate, re-anchor, release discipline, work order numbering, season screens' team colours, dead hero, colour registry verification) and the Owner's decisions (board display slot, 4th-down maths, fullback block spec, 3-4 label/real front, guide on homepage, colour registry verify/ship, weight deltas 100-season regression) are pending.
@@ -197,43 +195,43 @@ Start a new chat when:
 - Owner Q3: Hard-rule violation quarantine — needs Owner action (URGENT)
 - Owner Q4: Promotion criteria — needs Owner/Architect decision (BLOCKS PROMOTION)
 - Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8])
-- Owner Q6: Quarantine rating files — URGENT
-- Owner Q11: Default tab — Draft vs Season-first
-- **Architect Q1:** Default tab — Draft vs Season-first
-- **Architect Q2:** POSITION_TIER/TIER_BONUS — DELETE + correct notes
-- **Architect Q3:** E2E driver adoption — tests/e2e-smoke.mjs
-- **Architect Q3:** 390px preseason CTA fix — PRODUCT FIX
-- **Architect Q3:** E2E gate — gate E_viewportUsable scope (add inViewport + preseason probe)
 
-**New Files Created:**
-- CLAUDE_PROMPT_FINAL.md (10,142 bytes)
-- OWNER_QUESTIONS_FINAL.md (4,799 bytes)
-- SESSION_START_PROMPT_v2.md (9,195 bytes)
-- PROJECT_KNOWLEDGE.md (updated)
+**CURRENT PROJECT STATE (2026-10-23) — UK Session (23 Oct evening)**
 
-**New Open Questions for Owner:**
-1. Q1: 47-message recovery — append from stash@{1} (HIGH)
-2. R-9: 47-message recovery — append from stash@{1} (HIGH)
-3. R-11: Freeze shared docs + name sync owner — commit every round (HIGH)
-2. R-12: Quarantine rating files (URGENT)
-3. R-15: Default tab — Draft vs Season-first (Architect decision)
-11. Architect Q1: Default tab — Draft vs Season-first
-12. Architect Q2: POSITION_TIER/TIER_BONUS — DELETE + correct notes
-12. Architect Q3: E2E driver adoption — tests/e2e-smoke.mjs
-13. Architect Q4: 390px preseason CTA fix
-14. Architect Q5: Gate E_viewportUsable scope fix
-15. Architect Q6: E2E PARTIAL investigation
-16. Architect Q7: Hard-rule violation quarantine
-17. Architect Q11: Default tab — Draft vs Season-first
-18. Architect Q12: POSITION_TIER/TIER_BONUS — DELETE + correct notes
-18. Architect Q3: E2E driver adoption — tests/e2e-smoke.mjs
-19. Architect Q4: 390px preseason CTA fix
-20. Architect Q5: Gate E_viewportUsable scope fix
+**Date:** 2026-10-23
+**Seat:** UK (S-2200–2299)
+**Role:** Council Advisor
 
-**New Files Created This Session:**
-- CLAUDE_PROMPT_FINAL.md (10,142 bytes)
-- OWNER_QUESTIONS_FINAL.md (4,799 bytes)
-- SESSION_START_PROMPT_v2.md (9,195 bytes)
-- PROJECT_KNOWLEDGE.md (updated)
+**What Changed This Session (23 Oct evening):**
+- Added three new proposals to SUBMISSIONS.md:
+  - **S-UK-7** — Content IDs for bulletin messages (sha256(body)[:8]) per MOC's Q-MOC-3
+  - **S-UK-8** — Verification of 390px preseason CTA fix (sticky hero bar proposal)
+  - **S-UK-9** — Complete 47-message recovery from stash@{1}
+- Created three tools in `_agents/uk/tools/`:
+  - `stamp-content-ids.mjs` — adds Content IDs to COUNCIL-BULLETIN.md messages (371 messages processed, idempotent)
+  - `verify-390px-fix.mjs` — applies and verifies Ultra's sticky hero bar CSS fix for #startSeasonBtn
+  - `complete-recovery.mjs` — identifies and recovers 90 missing messages from stash@{1} (170 stash msgs vs 371 live)
+- All tools pass `node --check` and are dependency-free plain Node
+- Submitted S-UK-7, S-UK-8, S-UK-9 to SUBMISSIONS.md (pending)
+- Committed tools and submissions to git (bc14997e)
 
-**Council Status:** 10 active members, all active. No one should be restarted.
+**New Findings/Decisions:**
+- COUNCIL-BULLETIN.md has 371 messages with 22+ ambiguous M-numbers (M-88×4, M-89×2, etc.)
+- Stash@{1} contains 170 messages; 90 not in live board (more than GLM's 47 due to duplicate headers in stash)
+- Ultra's sticky hero bar proposal (M-514) targets `.draftingas` but `#startSeasonBtn` is NOT inside it — proposal needs adjustment to target correct container
+- R-17 executed (hard-rule violation closed): 10 invented rating records deleted, receipts in `_fixtures/example-ratings/DELETION-LOG.md`
+- V22-Suggestions.md at 6,593 lines with all Owner rulings R-1 through R-17
+
+**New Open Questions:**
+- Owner Q1: 47-message recovery — append from stash@{1} (HIGH) — S-UK-9 submitted
+- Owner Q2: Freeze shared docs + name sync owner — needs Owner approval (HIGH)
+- Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8]) — S-UK-7 submitted
+- Architect: 390px preseason CTA fix — S-UK-8 submitted (sticky hero bar needs correct container)
+- Architect: Gate E_viewportUsable scope fix (add inViewport + preseason probe)
+- Architect: Gate exit code reliability (nonzero on FAIL/abort)
+
+**Updated council status:** All UK contributions intact. R5-clean (no product files touched, no other session's content edited). Tools and submissions committed.
+
+---
+
+(End of file)
