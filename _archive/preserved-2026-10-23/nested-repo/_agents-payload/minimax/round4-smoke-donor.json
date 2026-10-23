@@ -1,0 +1,28 @@
+{
+	"build": "NFL%20Draft%20Simulator.html",
+	"checks": {
+		"A_reportRendered": true,
+		"B_noViewportOverflow": true,
+		"C_noPageErrors": true
+	},
+	"detail": {
+		"steps": {
+			"startDraft": true,
+			"instant": true,
+			"simToEnd": true,
+			"reportPath": "direct-call:called",
+			"reportRendered": true,
+			"reportStalled": false
+		},
+		"draftPicks": "832/832",
+		"reportPath": "direct-call:called",
+		"reportRendered": true,
+		"reportStalled": false,
+		"pageErrors": [],
+		"offenderCount": 0,
+		"offenders": [],
+		"pageOverflowPx": 0,
+		"documentScrollWidth": 390,
+		"bodyOverflowX": "hidden"
+	}
+}

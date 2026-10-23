@@ -1,0 +1,32 @@
+// ---- phone layout: any table that would need sideways scrolling becomes a stack of labelled cards ----
+(function(){
+ const mq = window.matchMedia('(max-width:760px)'); let busy = false, queued = false;
+ function pass(){
+  busy = true;
+  try{
+   document.querySelectorAll('table').forEach(t=>{
+    if(!mq.matches){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
+    const bodyRows = t.querySelectorAll('tbody tr');
+    const cols = t.rows.length ? t.rows[t.rows.length-1].cells.length : 0;
+    const parentW = t.parentElement ? t.parentElement.clientWidth : 0;
+    const fits = t.scrollWidth <= parentW + 1;
+    // Once a table is stacked it stays stacked, unless it genuinely fits with few columns.
+    const stack = !(fits && (cols<=3 || !t.tHead));
+    if(!stack){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
+    const heads = t.tHead && t.tHead.rows.length ? Array.from(t.tHead.rows[t.tHead.rows.length-1].cells).map(c=>c.textContent.trim()) : [];
+    // Every render replaces the cells, so labels have to be reapplied each time. Checking
+    // the first row is cheap and catches a re-render that keeps the same row count, which
+    // a row-count signature missed: wide tables then showed bare numbers on phones with
+    // no way to tell the columns apart.
+    const firstRow = bodyRows[0];
+    const missing = !!(firstRow && heads.length && Array.from(firstRow.cells).some((c,i)=>heads[i] && c.dataset.label!==heads[i]));
+    if(missing) bodyRows.forEach(r=>{ Array.from(r.cells).forEach((c,i)=>{ if(heads[i] && c.dataset.label!==heads[i]) c.dataset.label = heads[i]; }); });
+    t.classList.add('mstack');
+   });
+  } finally { busy = false; }
+ }
+ function schedule(){ if(queued || busy) return; queued = true; setTimeout(()=>{ queued = false; pass(); }, 150); }
+ new MutationObserver(schedule).observe(document.body, {childList:true, subtree:true});
+ window.addEventListener('resize', schedule); schedule();
+})();
+setActiveTab('viewDraft','tabDraftBtn');
