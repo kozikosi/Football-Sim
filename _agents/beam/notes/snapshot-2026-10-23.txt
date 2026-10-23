@@ -1,0 +1,171 @@
+=== SNAPSHOT 2026-10-23 ===
+pwd: /Users/kosi/Desktop/Football Sim
+branch: gpt/council-reliability-scorecard
+---
+ M .gitignore
+ M .kilo/kilo.jsonc
+ M ADVISOR-PLAYBOOK.md
+ M BOOTSTRAP.md
+ M CLAUDE_DOMINANT_WORKFLOW.md
+ M COLLECTIVE-PROMPT.md
+ M CONSENSUS_BLOCK_FORMAT.md
+ M COUNCIL-RELIABILITY-REVIEW-PROMPT.md
+ M COUNCIL-RELIABILITY-RULE.md
+ M COUNCIL-SCORECARD.md
+ M FINAL_CONSOLIDATION.md
+ M GOVERNANCE-ROUNDTABLE.md
+ M GOVERNANCE_CHANGE_PROPOSAL.md
+ M IDENTITY.md
+ M INDEX.md
+ M INTAKE-NOTE.md
+ M INTEGRATION_AUDIT_LIGHTNING.md
+ M LIGHTNING_SUBMISSION_READY.md
+ M MASTER_GUIDE.md
+ M MERGE-CHECKLIST.md
+ M NEW_GIT_WORKFLOW.md
+ M NEW_WORKFLOW_ROUND1.md
+ M "NFL Draft Simulator merged.html"
+ M "NFL Draft Simulator v20 Claude.html"
+ M "NFL Draft Simulator.html"
+ M ONBOARDING.md
+ M OPENCLAW-PROMPT.md
+ M OUTSTANDING_TASKS_SUMMARY.md
+ M OtherChambers_AI_Critiques.md
+ M ROADMAP.md
+ M STATUS.md
+ M ULTRA_PROMPT.md
+ M V20_COMPARED_TO_AUTHORITATIVE.md
+ M V20_CRITIQUE_vs_CANONICAL.md
+ M VERIFICATION-TEMPLATE.md
+ M _agents-payload/beam/reviews/architecture-review-m8.md
+ M _agents-payload/ds/notes/Owner-Rulings-19-Oct.md
+ M _agents-payload/ds/notes/master_plan.md
+ M _agents-payload/ds/reviews/Architecture-Review-M8.md
+ M _agents-payload/ds/reviews/Peer-Review-Round2.md
+ M _agents-payload/ds/reviews/Round3-MergedSurface.md
+ M _agents-payload/ds/reviews/round4/GluePhoneSynthesis.md
+ M _agents-payload/ds/reviews/round4/Round4-DS.md
+ M _agents-payload/ds/reviews/round4/StyleBlocks.md
+ M _agents-payload/ds/tools/arch-probe.js
+ M _agents-payload/ds/tools/funcdiff-detail.js
+ M _agents-payload/ds/tools/funcdiff-full.js
+ M _agents-payload/ds/tools/funcdiff-probe.js
+ M _agents-payload/ds/tools/style-blocks.js
+ M _agents-payload/ds/tools/surface-lines.js
+ M _agents-payload/minimax/evidence/round4-smoke-donor.json
+ M _agents-payload/minimax/evidence/round4-smoke-v20.json
+ M _agents-payload/minimax/notes/v20-hands-on-review.md
+ M _agents-payload/minimax/tools/cdp-phone-check.mjs
+ M "_agents-payload/nemo-super/notes/MASTER_DESIGN_DOCUMENT (Nemo Super).md"
+ M _agents-payload/nemo-super/notes/architecture-review.md
+ M _agents-payload/nemotron-3-ultra-free/reviews/ARCHITECTURE_REVIEW_ULTRA.md
+ M _agents-payload/nemotron-3-ultra-free/reviews/ROUND2_PEER_REVIEW.md
+ M _agents-payload/nemotron-3-ultra-free/reviews/ROUND3_VERIFICATION.md
+ M _agents-payload/nemotron-3-ultra-free/specs/V20_MOBILE_DRAFT_BOARD_PATTERN.md
+ M _agents-payload/or/v20-critique.md
+ M _agents-payload/or/workflow-improvements.md
+ M _agents-payload/pickle/architecture-review-M8.md
+ M _agents-payload/pickle/round2-peer-review.md
+ M _agents-payload/pickle/round3-review.md
+ M _agents-payload/pickle/round4-review.md
+ M _agents-payload/pickle/specs/M-8-merge-manifest-addendum.md
+ M _agents-payload/pickle/specs/math-baseline.json
+ M _agents-payload/vl/notes/v20-hands-on-critique.md
+ M _agents-payload/vl/notes/workflow-proposals.md
+ M _agents/README.md
+ M "_agents/nemo-super/deliveries/NFL Draft Simulator - Season First (Nemo Super).html"
+ M "_agents/nemo-super/notes/MASTER_DESIGN_DOCUMENT (Nemo Super).md"
+ M _agents/nemo-super/notes/architecture-review.md
+ M _agents/nemo-ultra/notes/patch-scripts/fix_concat.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_exact.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_final_real.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header3.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_hex.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_final.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_unicode.js
+ M _agents/nemotron-3-ultra-free/deliveries/ROUND1_PRE_DISPATCH_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/reviews/ARCHITECTURE_REVIEW_ULTRA.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND2_PEER_REVIEW.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND3_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/specs/V20_MOBILE_DRAFT_BOARD_PATTERN.md
+ M _agents/vl/notes/v20-hands-on-critique.md
+ M _agents/vl/notes/workflow-proposals.md
+ M master_task_list.md
+ M rulings_r1_predispatch.md
+ M tasks/CRITIQUES-DIGEST.md
+ M tasks/ROUND-1-GPT.md
+ M tasks/ROUND-1-PREFLIGHT.md
+ M tasks/ROUND-1-USER.md
+ M tasks/ROUND-1.md
+---WORKTREES---
+/Users/kosi/Desktop/Football Sim                                                        4dc3e6d0 [gpt/council-reliability-scorecard]
+/Users/kosi/.local/share/kilo/worktree-pool/football-sim-e9d1e2355493/experienced-tank  49fafc20 (detached HEAD)
+/Users/kosi/.local/share/kilo/worktree-pool/slime-galley-6382429aaf10/cookie-saturn     49fafc20 (detached HEAD)
+/Users/kosi/Desktop/Football Sim/.kilo/worktrees/collective                             268fd564 [collective]
+/Users/kosi/Desktop/Football Sim/.kilo/worktrees/hallowed-shell                         268fd564 [hallowed-shell]
+/Users/kosi/Desktop/Football Sim/.kilo/worktrees/slime-galley                           bb4b025b [slime-galley]
+/Users/kosi/Desktop/FootballSim-architect                                               1ce97573 [claude/v21-and-council-ops]
+/Users/kosi/Desktop/wt/beam-preserve                                                    ae7f14b9 [beam/preserve-uncommitted-2026-10-23]
+---STASH---
+stash@{0}: WIP on main: eb038be Add aesthetics/beauty section (P7) + council notes (P8) to V22-Suggestions.md
+stash@{1}: WIP on council/owner-direction-2026-10-21: c95dd77 Add aesthetics/beauty section (P7) + council notes (P8) to V22-Suggestions.md
+stash@{2}: WIP on gpt/council-reliability-scorecard: 8f42b7e Add V22-SUGGESTIONS.md (council consolidated + Beam aesthetics section)
+stash@{3}: WIP on main: bb4b025 Council round 4: reviews, receipts, and shared-doc rebuild
+stash@{4}: WIP on main: bb4b025 Council round 4: reviews, receipts, and shared-doc rebuild
+---LOCAL-ONLY---
+7ceda99e docs: correct P0-13 in the council's V22-Suggestions
+---NESTED---
+total 13032
+drwxr-xr-x@  67 kosi  staff     2144 Oct 23 11:07 .
+drwxr-xr-x@ 127 kosi  staff     4064 Oct 23 12:38 ..
+drwxr-xr-x@  14 kosi  staff      448 Oct 23 13:10 .git
+-rw-r--r--@   1 kosi  staff       66 Oct 18 06:50 .gitattributes
+---TAGS---
+47caac1a7be9e1367329bde645f9c4a85c3b3cc9	refs/tags/retired/glm-2026-10-23
+5157c53a15b1637fa4aa4b6cf015665a2f45ae2a	refs/tags/retired/glm-2026-10-23^{}
+6cfbf93f1bc4db06814eefef95885d27e468e79e	refs/tags/retired/minimax-2026-10-23
+5157c53a15b1637fa4aa4b6cf015665a2f45ae2a	refs/tags/retired/minimax-2026-10-23^{}
+50f239fe6dbe105340a6a5bd32677b8aedba305c	refs/tags/retired/moc-2026-10-23
+5157c53a15b1637fa4aa4b6cf015665a2f45ae2a	refs/tags/retired/moc-2026-10-23^{}
+c3d0b16d70ba6097cd333ffff1cb40d3e7ff76b6	refs/tags/retired/nemo-ultra-2026-10-23
+5157c53a15b1637fa4aa4b6cf015665a2f45ae2a	refs/tags/retired/nemo-ultra-2026-10-23^{}
+9eafac08d8d14f486f287fcf6f3657fb972b892c	refs/tags/retired/nemotron-3-ultra-free-2026-10-23
+5157c53a15b1637fa4aa4b6cf015665a2f45ae2a	refs/tags/retired/nemotron-3-ultra-free-2026-10-23^{}
+
+=== RETIRED LANES UNCOMMITTED/UNTRACKED (Step 3 check) ===
+--- minimax ---
+--- moc ---
+--- glm ---
+?? _agents/glm/notes/OWNER-DIRECTIVES-22OCT-W2.md
+?? _agents/glm/notes/PIN-SCAN-raw.txt
+?? _agents/glm/tmp/
+--- nemo-ultra ---
+ M _agents/nemo-ultra/notes/patch-scripts/fix_concat.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_exact.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_final_real.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header3.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_hex.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_final.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_unicode.js
+--- nemotron-3-ultra-free ---
+ M _agents/nemotron-3-ultra-free/deliveries/ROUND1_PRE_DISPATCH_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/reviews/ARCHITECTURE_REVIEW_ULTRA.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND2_PEER_REVIEW.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND3_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/specs/V20_MOBILE_DRAFT_BOARD_PATTERN.md
+?? _agents/nemotron-3-ultra-free/notes/
+?? _agents/nemotron-3-ultra-free/specs/DS_ARCH_PROBE_METRICS.md
+?? _agents/nemotron-3-ultra-free/specs/MATH_CORE_HASH_GATE.md
+?? _agents/nemotron-3-ultra-free/specs/PICKLE_MERGE_MANIFEST.md
+?? _agents/nemotron-3-ultra-free/specs/VERIFIED_SEEDS.md
+?? _agents/nemotron-3-ultra-free/v21-flow/
