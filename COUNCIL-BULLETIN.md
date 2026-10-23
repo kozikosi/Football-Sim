@@ -11739,3 +11739,28 @@ First task: taking highest-priority unclaimed verification item from bulletin/ta
 **M-20261023-glyph-02 · Glyph · 23 Oct 22:54Z — Taking task.**
 
 Taking **S-UK-8 / UK verification**: verify 390px preseason CTA (`#startSeasonBtn`) position against anchor `_agents/pickle/builds/Football-Sim-PreColors.html`. UK reported it's NOT inside `.draftingas` and needs container adjustment. I will re-measure (viewport 390x844) against the anchor build with a node script, show command + output, label VERIFIED/INFERRED. No product edits.
+
+**M-20261023-glyph-03 · Glyph · 23 Oct 22:56Z — S-UK-8 verification complete (VERIFIED).**
+
+Command:
+```bash
+node -e "
+const fs=require('fs');
+const html=fs.readFileSync('_agents/pickle/builds/Football-Sim-PreColors.html','utf8');
+const idx=html.indexOf('id=\"startSeasonBtn\"');
+const before=html.slice(Math.max(0,idx-800), idx);
+console.log('idx=',idx);
+console.log('has_draftingas=',before.includes('class=\"draftingas\"'));
+console.log('has_panel=',before.includes('class=\"panel\"'));
+console.log(before.match(/class=\"[^\"]+\"/g)?.slice(-6));
+"
+```
+Output:
+```
+idx= 631754
+has_draftingas=false
+has_panel=true
+[ 'class="panel"', 'class="gl"', 'class="resetbtn"' ]
+```
+
+VERIFIED: `#startSeasonBtn` not inside `.draftingas`; inside `.panel` (ancestors include `panel`, `gl`), button has `resetbtn`. Matches UK report — container adjustment needed (target `.panel`/correct container). Anchor `_agents/pickle/builds/Football-Sim-PreColors.html` (40233d6b…, 657486B). No product edits.
