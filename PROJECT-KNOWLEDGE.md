@@ -92,11 +92,20 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 - "Value here" remove completely — **done in the build; sort dropdown option being removed**
 - "Value here" visible anywhere — **already removed; sort dropdown option being removed**
 
-## The tools I have
+## Tools I have
 - Figma: NO access in this session (remote MCP enabled but needs OAuth sign-in; desktop needs Dev Mode toggle). Tokens and palette are written and ready to import.
 - Mermaid: YES (renders in the repository)
 - Biome: YES (`~/node_modules/.bin/biome`, v2.6.2)
 - Git: YES
+
+## Session 2026-10-23 (VL) — end-of-session log
+
+- **Seat:** VL (Council Adviser, ID block S-2000–2099)
+- **Lane file:** `_agents/vl/notes/vl.md` — identity, work done, learnings, pending tasks, current state; created this session
+- **What changed:** Read AGENTS.md §1-2 and QUESTIONS-FOR-THE-ARCHITECT.md in full. Verified Pre-Colors (`40233d6b…`, 657,486 B) as the only valid build; `Football-Sim-V21.html` (`044d1759…`, 656,746 B) confirmed INVALID — hand edit changes model output (Math.LN2 in PERS['11']). Verified `renderSeasonTabInner`, `renderDraftResults`, `finishDraft2` break on v20 markup but work on donor. Verified `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft` do not exist in either build. Verified `SIM-CORE-START` markers: 0 in both builds. Re-confirmed `rWeights` declared at `render100:6018` in both builds.
+- **New files:** `_agents/vl/notes/vl.md` (lane file)
+- **New open questions:** Q-VL-1 through Q-VL-7 remain unanswered (posted in QUESTIONS-FOR-THE-ARCHITECT.md)
+- **Updated council status:** All VL contributions intact. R5-clean (no product files touched, no other session's content edited). No `session_send` available — UK standing instruction M-110 applies.
 
 ## Token efficiency — when to start a new chat
 Start a new chat when:
@@ -159,3 +168,72 @@ Start a new chat when:
 - Harness drafts in `_agents/beam/notes/harness-drafts/` all pass `node --check` (pw4.js, phone.js, validate.js, run_all.sh, funcdiff.js).
 - Bulletin entry: M-20261023-beam4.
 - V23 on hold; 20-0 branding proposal pending Architect implementation. No product edits this session.
+
+## CURRENT PROJECT STATE (2026-10-23) — UK Session
+
+**Date:** 2026-10-23
+**Seat:** UK (S-2200–2299)
+**Role:** Council Advisor
+
+**What Changed This Session:**
+- Created SESSION_START_PROMPT_v2.md (9195 bytes) — session start template for council members
+- Created CLAUDE_PROMPT_FINAL.md (10,142 bytes) — comprehensive prompt for Architect (Claude) with all feedback incorporated
+- Created OWNER_QUESTIONS_FINAL.md (4,799 bytes) — 20 Owner questions consolidated with recommended defaults
+- Updated V22-Suggestions.md with latest Owner feedback (P0-28 through P0-35, +1,300+ lines)
+- Created SESSION_START_PROMPT_v2.md (9,195 bytes) — session start template for council members
+- Updated PROJECT-KNOWLEDGE.md with latest council state, token efficiency rules, council roster
+- All mirrors synced to Football Sim/ directory
+
+**New Findings/Decisions:**
+- V22-Suggestions.md now at 6,593 lines (6,593 lines total)
+- V21 build pin confirmed: 044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48 (656,746 B)
+- V21 live build = Football-Sim-V21.html (044d1759..., 656,746 B)
+- V22 candidate merged.html = 40233d6b... (657,486 B)
+- V22 candidate (team colours) = V22-candidate-teamcolours.html (b3de0523…)
+
+**New Open Questions:**
+- Owner Q1: 47-message recovery — append from stash@{1} (HIGH)
+- Owner Q2: Freeze shared docs + name sync owner — needs Owner approval (HIGH)
+- Owner Q3: Hard-rule violation quarantine — needs Owner action (URGENT)
+- Owner Q4: Promotion criteria — needs Owner/Architect decision (BLOCKS PROMOTION)
+- Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8])
+- Owner Q6: Quarantine rating files — URGENT
+- Owner Q11: Default tab — Draft vs Season-first
+- **Architect Q1:** Default tab — Draft vs Season-first
+- **Architect Q2:** POSITION_TIER/TIER_BONUS — DELETE + correct notes
+- **Architect Q3:** E2E driver adoption — tests/e2e-smoke.mjs
+- **Architect Q3:** 390px preseason CTA fix — PRODUCT FIX
+- **Architect Q3:** E2E gate — gate E_viewportUsable scope (add inViewport + preseason probe)
+
+**New Files Created:**
+- CLAUDE_PROMPT_FINAL.md (10,142 bytes)
+- OWNER_QUESTIONS_FINAL.md (4,799 bytes)
+- SESSION_START_PROMPT_v2.md (9,195 bytes)
+- PROJECT_KNOWLEDGE.md (updated)
+
+**New Open Questions for Owner:**
+1. Q1: 47-message recovery — append from stash@{1} (HIGH)
+2. R-9: 47-message recovery — append from stash@{1} (HIGH)
+3. R-11: Freeze shared docs + name sync owner — commit every round (HIGH)
+2. R-12: Quarantine rating files (URGENT)
+3. R-15: Default tab — Draft vs Season-first (Architect decision)
+11. Architect Q1: Default tab — Draft vs Season-first
+12. Architect Q2: POSITION_TIER/TIER_BONUS — DELETE + correct notes
+12. Architect Q3: E2E driver adoption — tests/e2e-smoke.mjs
+13. Architect Q4: 390px preseason CTA fix
+14. Architect Q5: Gate E_viewportUsable scope fix
+15. Architect Q6: E2E PARTIAL investigation
+16. Architect Q7: Hard-rule violation quarantine
+17. Architect Q11: Default tab — Draft vs Season-first
+18. Architect Q12: POSITION_TIER/TIER_BONUS — DELETE + correct notes
+18. Architect Q3: E2E driver adoption — tests/e2e-smoke.mjs
+19. Architect Q4: 390px preseason CTA fix
+20. Architect Q5: Gate E_viewportUsable scope fix
+
+**New Files Created This Session:**
+- CLAUDE_PROMPT_FINAL.md (10,142 bytes)
+- OWNER_QUESTIONS_FINAL.md (4,799 bytes)
+- SESSION_START_PROMPT_v2.md (9,195 bytes)
+- PROJECT_KNOWLEDGE.md (updated)
+
+**Council Status:** 10 active members, all active. No one should be restarted.
