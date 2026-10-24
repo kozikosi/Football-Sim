@@ -576,3 +576,184 @@ Reconciliation notes (Beam):
 
 OR's `_agents/or/V22-Aesthetic-Patches-20261024.md` provides 11 pluggable CSS patches (shadow system, animation tokens, spacing utilities, text utilities, layout utilities, badge system, progress/loading, separators, form fields, tooltips, focus-visible). All SAFE ALONE, CSS-only, no JS, no protected constants. Recommendation: adopt as the base utility layer; Beam's snippets and VL's tokens layer on top. Patch A-1 (shadows) overlaps Beam snippet #? (none) — new. Patch A-2 (animation tokens) overlaps VL/OR motion tokens — reconcile per note above. Patches A-3/A-4/A-5 (spacing/text/layout utilities) are new and high-value for the beauty pass. Patch A-11 (focus-visible) supersedes Beam's P7-17 focus rings in CSS terms.
 
+
+---
+
+## 23. Creative interaction snippets (P7-31..P7-42)
+
+### 23.1 Synthesized sound (Web Audio, no assets) — P7-31
+JS:
+```js
+let audioCtx = null;
+function getAudio() { if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)(); return audioCtx; }
+function tone(freq, dur, type = "sine", gain = 0.15) {
+  if (localStorage.getItem("sound") !== "on") return;
+  const ctx = getAudio();
+  const osc = ctx.createOscillator();
+  const g = ctx.createGain();
+  osc.type = type; osc.frequency.value = freq;
+  g.gain.value = gain;
+  osc.connect(g).connect(ctx.destination);
+  osc.start();
+  g.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + dur);
+  osc.stop(ctx.currentTime + dur);
+}
+function soundPick() { tone(523, 0.08); setTimeout(() => tone(659, 0.12), 90); }
+function soundTD() { tone(392, 0.15, "triangle"); }
+function soundChamp() { [523,659,784,1047].forEach((f,i) => setTimeout(() => tone(f, 0.18, "sawtooth", 0.12), i*110)); }
+function soundToggle() { localStorage.setItem("sound", localStorage.getItem("sound") === "on" ? "off" : "on"); }
+```
+
+### 23.2 Keyboard shortcuts — P7-32
+JS:
+```js
+document.addEventListener("keydown", (e) => {
+  if (e.target && /input|textarea|select/i.test(e.target.tagName)) return;
+  if (e.key === "j" || e.key === "ArrowDown") { moveFocus(1); e.preventDefault(); }
+  else if (e.key === "k" || e.key === "ArrowUp") { moveFocus(-1); e.preventDefault(); }
+  else if (e.key === "Enter") { draftFocused(); }
+  else if (e.key === "u") { undoPick(); }
+  else if (e.key === "/") { document.getElementById("searchBox")?.focus(); e.preventDefault(); }
+  else if (e.key === "?") { toggleShortcutHelp(); }
+  else if (e.key === "Escape") { closeAllDrawers(); }
+});
+```
+
+### 23.3 Haptic feedback — P7-34
+JS:
+```js
+function haptic(ms) { if (navigator.vibrate) navigator.vibrate(ms); }
+// pick: haptic(10); TD: haptic(30); champ: haptic([50,30,50,30,100]);
+```
+
+### 23.4 Hover "what-if" preview — P7-33
+JS:
+```js
+function showWhatIf(el, r) {
+  const tip = document.createElement("div");
+  tip.className = "whatif-tip";
+  tip.textContent = "+" + (r.v || 0).toFixed(2) + " wins here" + (r.flex ? " (" + r.flex + " flex)" : "");
+  el.appendChild(tip);
+}
+function hideWhatIf(el) { el.querySelector(".whatif-tip")?.remove(); }
+```
+CSS:
+```css
+.whatif-tip { position: absolute; top: -28px; left: 50%; transform: translateX(-50%); background: var(--panel,#141922); border: 1px solid var(--border,#2a3142); padding: 2px 8px; border-radius: 6px; font-size: 0.7rem; white-space: nowrap; z-index: 5; }
+```
+
+### 23.5 Season progress stepper — P7-36
+HTML:
+```html
+<div class="stepper" id="seasonStepper"></div>
+```
+JS:
+```js
+function renderStepper(weeks, current) {
+  const host = document.getElementById("seasonStepper");
+  host.innerHTML = weeks.map((w, i) => {
+    const cls = i < current ? (w.win ? "done win" : "done loss") : (i === current ? "current" : "future");
+    return `<span class="step ${cls}" title="Week ${i+1}"></span>`;
+  }).join("");
+}
+```
+CSS:
+```css
+.stepper { display: flex; gap: 3px; }
+.step { flex: 1; height: 6px; border-radius: 3px; background: #1f2937; transition: background var(--motion-normal,250ms); }
+.step.done.win { background: #22c55e; }
+.step.done.loss { background: #ef4444; }
+.step.current { background: var(--gold,#fbbf24); animation: pulse 1.2s ease-in-out infinite; }
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.5; } }
+```
+
+### 23.6 Dark/light theme toggle — P7-38
+JS:
+```js
+function applyTheme() {
+  const saved = localStorage.getItem("theme");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const dark = saved ? saved === "dark" : prefersDark;
+  document.documentElement.setAttribute("data-theme", dark ? "dark" : "light");
+}
+function toggleTheme() {
+  const cur = document.documentElement.getAttribute("data-theme");
+  localStorage.setItem("theme", cur === "dark" ? "light" : "dark");
+  applyTheme();
+}
+applyTheme();
+```
+CSS:
+```css
+body { transition: background 200ms ease, color 200ms ease; }
+```
+
+### 23.7 Player comparison modal — P7-39
+JS:
+```js
+function comparePlayers(a, b) {
+  const rows = [
+    ["Ovr", a.ovr, b.ovr],
+    ["Wins", a.wins, b.wins],
+    ["Value", a.val, b.val],
+  ];
+  const html = rows.map(([label, va, vb]) => {
+    const better = va > vb ? "a" : (vb > va ? "b" : "tie");
+    return `<tr><td>${label}</td><td class="${better==="a"?"better":""}">${va}</td><td class="${better==="b"?"better":""}">${vb}</td></tr>`;
+  }).join("");
+  document.getElementById("compareBody").innerHTML = html;
+  document.getElementById("compareModal").classList.add("open");
+}
+```
+CSS:
+```css
+.compare-modal { position: fixed; inset: 0; background: rgba(0,0,0,0.6); display: none; align-items: center; justify-content: center; z-index: 90; }
+.compare-modal.open { display: flex; }
+.compare-modal .panel { background: var(--panel,#141922); border: 1px solid var(--border,#2a3142); border-radius: 12px; padding: 16px; min-width: 280px; }
+.compare-modal td.better { color: var(--gold,#fbbf24); font-weight: 700; }
+```
+
+### 23.8 Draft grade card — P7-40
+JS:
+```js
+function draftGrade(roster, slotValues) {
+  const filled = Object.values(roster).filter(Boolean).length;
+  const total = Object.keys(roster).length;
+  const coverage = filled / total;
+  const valueSum = Object.entries(roster).reduce((s, [slot, p]) => s + (p ? (slotValues[slot] || 0) : 0), 0);
+  const maxVal = Object.values(slotValues).reduce((a,b) => a+b, 0);
+  const valueRatio = maxVal ? valueSum / maxVal : 0;
+  const score = (coverage * 0.5 + valueRatio * 0.5) * 100;
+  const grade = score >= 90 ? "A" : score >= 80 ? "B" : score >= 70 ? "C" : score >= 60 ? "D" : "F";
+  return { grade, score: score.toFixed(0), coverage: (coverage*100).toFixed(0), valueRatio: (valueRatio*100).toFixed(0) };
+}
+```
+
+### 23.9 Aria-live draft announcements — P7-41
+HTML:
+```html
+<div id="draftAnnounce" aria-live="polite" aria-atomic="true" style="position:absolute;left:-9999px;"></div>
+```
+JS:
+```js
+function announcePick(player, pos, ovr, idx, total) {
+  const el = document.getElementById("draftAnnounce");
+  if (el) el.textContent = `You drafted ${player}, ${pos}, ${ovr} overall. Pick ${idx} of ${total}.`;
+}
+```
+
+### 23.10 Print-friendly recap — P7-42
+CSS:
+```css
+@media print {
+  body { background: #fff; color: #000; }
+  .tabbar, .action-bar, button, .toast { display: none !important; }
+  .recap { page-break-inside: avoid; }
+  .quarter { page-break-after: always; }
+}
+```
+JS:
+```js
+function printRecap() { window.print(); }
+```
+

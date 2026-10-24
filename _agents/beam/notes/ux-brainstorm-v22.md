@@ -258,6 +258,93 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - HOW TO CHECK: toasts appear/dismiss correctly; queue works; `node --check` passes.
 
 
+## 14. Creative interactive & beauty ideas (V22 work-order candidates, batch 4)
+
+**P7-31 · Synthesized sound design (Web Audio, no assets)**
+- WHERE: global; triggered on draft pick, touchdown, turnover, championship.
+- WHAT: Use the Web Audio API to synthesize short tones (no audio files, no CDN): a rising two-note chime on user draft pick, a low thud on turnover, a fanfare arpeggio on championship. Muted by default with a 🔇/🔊 toggle persisted in localStorage.
+- WHY: Audio feedback massively increases perceived polish; stays within the single-file/no-CDN rule.
+- SAFE ALONE?: YES — opt-in, gated on user toggle, respects prefers-reduced-motion? (audio separate).
+- HOW TO CHECK: toggle persists; tones play only when enabled; no console errors; mute state survives reload.
+
+**P7-32 · Keyboard shortcuts**
+- WHERE: global keydown handler.
+- WHAT: `j`/`k` or arrows move draft-board focus; Enter drafts focused player; `u` undoes; `?` opens shortcut help; `/` focuses search; Esc closes drawers. Show a "?" help chip in the footer.
+- WHY: Power users draft faster; improves accessibility.
+- SAFE ALONE?: YES — additive keybindings, no logic change.
+- HOW TO CHECK: every shortcut works; help chip lists them; no conflict with form inputs (ignore when typing).
+
+**P7-33 · Hover "what-if" preview on player cards**
+- WHERE: draft board row hover (~l.1766).
+- WHAT: On hover, show a small tooltip: "+X.X wins if drafted here" computed from existing `r.v`, plus the flex penalty if applicable ("−2 flex"). No new math.
+- WHY: Lets the user compare candidates without clicking.
+- SAFE ALONE?: YES — display-only, computed from existing data.
+- HOW TO CHECK: tooltip shows correct delta; disappears on mouseleave; 390px uses tap-to-toggle instead.
+
+**P7-34 · Haptic feedback on mobile**
+- WHERE: draft pick, touchdown, championship.
+- WHAT: `navigator.vibrate()` short pulses (10ms pick, 30ms TD, pattern on championship) when supported; no-op otherwise.
+- WHY: Tactile payoff on mobile; zero cost on desktop.
+- SAFE ALONE?: YES — feature-detected, no-op fallback.
+- HOW TO CHECK: pulses fire on supported devices; no errors on unsupported.
+
+**P7-35 · Drag-to-reorder weights**
+- WHERE: weights table inputs.
+- WHAT: Allow dragging weight rows to reorder (visual only — values follow); or simpler: drag the "Default/My Weights" slider thumb. Start with a drag handle on each weight row that reorders display priority.
+- WHY: More direct manipulation than typing numbers.
+- SAFE ALONE?: NO — needs careful touch handling; cohort with P7-6 (changed-weight highlight).
+- HOW TO CHECK: reorder persists in view; no data corruption; 390px drag works.
+
+**P7-36 · Season progress stepper**
+- WHERE: season review header (P0-19).
+- WHAT: A horizontal 17-step progress bar showing weeks played, with playoff rounds appended; current week pulses; completed weeks show W/L colour.
+- WHY: At-a-glance season state; complements the sparkline (P7-15).
+- SAFE ALONE?: YES — display-only.
+- HOW TO CHECK: stepper reflects week; colours match results; no overflow at 390px.
+
+**P7-37 · Milestone confetti variants**
+- WHERE: championship banner, first win, playoff clinch.
+- WHAT: Different particle colours/counts per milestone: first win = 6 small particles, playoff clinch = 10, Super Bowl = 20 with gold shimmer. Reuse P7-24 confetti.
+- WHY: Celebrates moments proportionally.
+- SAFE ALONE?: YES — gated on events, reuses existing confetti.
+- HOW TO CHECK: each milestone fires correct variant; reduced motion respected.
+
+**P7-38 · Dark/light theme toggle with smooth transition**
+- WHERE: header/settings.
+- WHAT: Manual override (P1-22) with a 200ms cross-fade on `--bg/--text` via CSS transition on body; persist choice in localStorage; default follows OS.
+- WHY: User control over appearance.
+- SAFE ALONE?: YES — CSS vars + localStorage.
+- HOW TO CHECK: toggle switches instantly; persists; OS default respected when unset.
+
+**P7-39 · Player comparison modal**
+- WHERE: player browser / draft board.
+- WHAT: Select two players → side-by-side modal comparing Ovr, Wins, Value, position, team, with a "better at" highlight per row.
+- WHY: Helps decide between close candidates.
+- SAFE ALONE?: YES — display-only, computed from existing data.
+- HOW TO CHECK: modal opens with two players; comparison correct; Esc closes.
+
+**P7-40 · Draft grade card (post-draft)**
+- WHERE: after round 26/28 completes.
+- WHAT: A card showing a letter grade (A–F) derived from positional needs filled + value captured, with 3 short bullet reasons. No invented ratings — derived from existing slot values.
+- WHY: Satisfying closure to the draft; encourages redraft.
+- SAFE ALONE?: YES — derived metric, display-only.
+- HOW TO CHECK: grade renders; reasons reference real slots; no console errors.
+
+**P7-41 · Aria-live draft announcements**
+- WHERE: draft board.
+- WHAT: An `aria-live="polite"` region announcing "You drafted [Player], [Pos], [Ovr]" and "Pick [N] of [total]".
+- WHY: Screen-reader accessibility; complements P7-17 keyboard nav.
+- SAFE ALONE?: YES — additive markup.
+- HOW TO CHECK: screen reader announces picks; no visual change.
+
+**P7-42 · Print-friendly recap**
+- WHERE: game recap.
+- WHAT: `@media print` stylesheet: white bg, black text, hide chrome (tabs, buttons), page breaks between quarters. "Print recap" button calls `window.print()`.
+- WHY: Lets users save/share a clean recap.
+- SAFE ALONE?: YES — CSS + one button.
+- HOW TO CHECK: print preview clean; no clipped content.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
