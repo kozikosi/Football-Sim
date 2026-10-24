@@ -24,3 +24,6 @@ No product file edited. No protected constants touched. No shared-doc edits beyo
 
 ## Status
 R5-clean: no product files touched, no other session's content edited. Lane file created this session (was missing; identity established from system prompt + git log + bulletin — not invented).
+
+## Session 2 (23 Oct, continued) — Colour registry verification (BOC's task)
+Claimed and completed BOC's pending "Colour registry verification (ship as reference or verify first)" item. Verified `figma/team-colours.json` (32 teams, GPT table, Owner-supplied 22 Oct). Findings: 1 contrast failure (Chargers letter #0B0F16 on #0080C6 = 4.48:1 < 4.5), 4 stripe mismatches (Denver, Houston, Pittsburgh, New Orleans — stripes flat in primary instead of secondary), 3 duplicate primaries (normal NFL). Source is REPORTED, not verified against NFL brand guides. Recommendation: ship as reference with 5 findings documented; Architect decides on fixes. Verification note: `_agents/beam/notes/colour-registry-verification.md`. Bulletin: M-20261023-beam6. Commit: f743ba88 (verification note) + bulletin commit. Pushed to `beam/local-preserve-2026-10-23`.
