@@ -474,6 +474,32 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - HOW TO CHECK: badges unlock at correct milestones; animation respects reduced motion.
 
 
+## 16. Achievement & incentive ideas (V22 work-order candidates, batch 6)
+
+**P7-61 · "Giant Killer"** — beat a team rated 5+ OVR higher; badge = sword crossing a crown; gold rarity.
+**P7-62 · "Comeback Kid"** — win after trailing by 14+ in the 4th quarter; badge = rising arrow; blue rarity.
+**P7-63 · "Shutout"** — hold opponent to 0 points; badge = padlock; silver rarity.
+**P7-64 · "Blowout"** — win by 28+; badge = lightning bolt; silver rarity.
+**P7-65 · "Perfect Game"** — 0 turnovers + 0 sacks allowed; badge = diamond; gold rarity.
+**P7-66 · "Iron Man"** — no injuries all season; badge = shield with heart; bronze rarity.
+**P7-67 · "Road Warrior"** — 8+ road wins in a season; badge = bus; bronze rarity.
+**P7-68 · "Division Sweep"** — beat all division rivals; badge = broom; silver rarity.
+**P7-69 · "Draft Steal"** — a 4th+ round pick becomes a starter with 80+ OVR; badge = magnifying glass; gold rarity.
+**P7-70 · "Franchise QB"** — draft a QB in round 1 who becomes a 90+ OVR starter; badge = QB helmet; gold rarity.
+**P7-71 · "Defensive Mastermind"** — lead league in points allowed; badge = wall; silver rarity.
+**P7-72 · "Offensive Juggernaut"** — lead league in points scored; badge = fire; silver rarity.
+**P7-73 · "Clutch"** — 5+ game-winning drives in a season; badge = clock; gold rarity.
+**P7-74 · "Underdog"** — win the Super Bowl as a wild card; badge = star burst; gold rarity.
+**P7-75 · "Dynasty"** — win back-to-back Super Bowls; badge = crown + 2; platinum rarity (animated shimmer).
+**P7-76 · "Rebuilder"** — reach playoffs within 2 seasons of a 4-win season; badge = phoenix; gold rarity.
+**P7-77 · "Scouting Guru"** — draft 3 players who become starters; badge = eye; silver rarity.
+**P7-78 · "Cap Genius"** — win with the lowest-rated roster in the league (avg OVR < 75); badge = coin; gold rarity.
+**P7-79 · "Iron Curtain"** — 3 shutouts in a season; badge = three padlocks; platinum rarity.
+**P7-80 · "Century"** — score 100+ points in a single game; badge = "100"; platinum rarity (animated).
+
+Each achievement: unlock animation (scale-in + shimmer), toast notification, persisted in localStorage, displayed in a beautiful trophy case on the season review. Rarity tiers: bronze (common), silver (uncommon), gold (rare), platinum (animated shimmer, rarest).
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?

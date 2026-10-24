@@ -1159,3 +1159,121 @@ function unlockAchievements(state) {
 }
 ```
 
+
+---
+
+## 26. Achievement badge system (P7-60..P7-80) — plug-in
+
+### 26.1 Rarity tiers + badge CSS
+CSS:
+```css
+.ach-badge { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 10px; border-radius: 12px; background: var(--panel,#141a26); border: 1px solid var(--border,#273044); transition: transform var(--motion-fast,150ms), box-shadow var(--motion-fast,150ms); }
+.ach-badge .icon { font-size: 1.8rem; line-height: 1; }
+.ach-badge .label { font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--text-secondary,#9aa0b8); }
+.ach-badge.bronze { border-color: #d97706; }
+.ach-badge.silver { border-color: #94a3b8; }
+.ach-badge.gold { border-color: #fbbf24; box-shadow: 0 0 12px rgba(251,191,36,0.25); }
+.ach-badge.platinum { border-color: #e5e7eb; background: linear-gradient(135deg, #1f2937, #374151); animation: platinumShimmer 3s ease-in-out infinite; }
+@keyframes platinumShimmer { 0%,100% { box-shadow: 0 0 12px rgba(255,255,255,0.15); } 50% { box-shadow: 0 0 24px rgba(255,255,255,0.35); } }
+.ach-badge.locked { opacity: 0.3; filter: grayscale(1); }
+.ach-badge:hover { transform: translateY(-2px) scale(1.03); }
+.ach-badge.unlock { animation: achUnlock 600ms var(--ease-bounce,cubic-bezier(0.34,1.56,0.64,1)) both; }
+@keyframes achUnlock { 0% { transform: scale(0.3) rotate(-20deg); opacity: 0; } 60% { transform: scale(1.15) rotate(5deg); } 100% { transform: scale(1) rotate(0); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .ach-badge.unlock, .ach-badge.platinum { animation: none; } }
+```
+
+### 26.2 Achievement data + unlock logic
+JS:
+```js
+const ACHIEVEMENTS = [
+  { id: "firstwin", label: "First Win", icon: "🏈", rarity: "bronze", test: (s) => s.wins >= 1 },
+  { id: "tenwin", label: "10-Win Season", icon: "🔟", rarity: "silver", test: (s) => s.wins >= 10 },
+  { id: "shutout", label: "Shutout", icon: "🔒", rarity: "silver", test: (s) => s.shutout },
+  { id: "blowout", label: "Blowout", icon: "⚡", rarity: "silver", test: (s) => s.blowout },
+  { id: "perfect", label: "Perfect Game", icon: "💎", rarity: "gold", test: (s) => s.perfectGame },
+  { id: "giantkiller", label: "Giant Killer", icon: "⚔️", rarity: "gold", test: (s) => s.giantKiller },
+  { id: "comeback", label: "Comeback Kid", icon: "📈", rarity: "blue", test: (s) => s.comeback },
+  { id: "ironman", label: "Iron Man", icon: "🛡️", rarity: "bronze", test: (s) => s.noInjuries },
+  { id: "roadwarrior", label: "Road Warrior", icon: "🚌", rarity: "bronze", test: (s) => s.roadWins >= 8 },
+  { id: "divsweep", label: "Division Sweep", icon: "🧹", rarity: "silver", test: (s) => s.divisionSweep },
+  { id: "draftsteal", label: "Draft Steal", icon: "🔍", rarity: "gold", test: (s) => s.draftSteal },
+  { id: "franchiseqb", label: "Franchise QB", icon: "🏈", rarity: "gold", test: (s) => s.franchiseQB },
+  { id: "defmaster", label: "Defensive Mastermind", icon: "🧱", rarity: "silver", test: (s) => s.topDefense },
+  { id: "offjugg", label: "Offensive Juggernaut", icon: "🔥", rarity: "silver", test: (s) => s.topOffense },
+  { id: "clutch", label: "Clutch", icon: "⏰", rarity: "gold", test: (s) => s.gwd >= 5 },
+  { id: "underdog", label: "Underdog", icon: "⭐", rarity: "gold", test: (s) => s.wildcardSB },
+  { id: "dynasty", label: "Dynasty", icon: "👑", rarity: "platinum", test: (s) => s.backToBack },
+  { id: "rebuilder", label: "Rebuilder", icon: "♻️", rarity: "gold", test: (s) => s.rebuild },
+  { id: "scoutguru", label: "Scouting Guru", icon: "👁️", rarity: "silver", test: (s) => s.threeStarters },
+  { id: "capgenius", label: "Cap Genius", icon: "💰", rarity: "gold", test: (s) => s.lowRatedWin },
+  { id: "ironcurtain", label: "Iron Curtain", icon: "🛡️", rarity: "platinum", test: (s) => s.shutouts >= 3 },
+  { id: "century", label: "Century", icon: "💯", rarity: "platinum", test: (s) => s.pointsInGame >= 100 },
+];
+function unlockAchievements(state) {
+  const unlocked = JSON.parse(localStorage.getItem("ach") || "[]");
+  ACHIEVEMENTS.forEach((a) => {
+    if (!unlocked.includes(a.id) && a.test(state)) {
+      unlocked.push(a.id);
+      showToast("🏆 " + a.label + " unlocked!");
+      const badge = document.querySelector(`[data-ach="${a.id}"]`);
+      if (badge) { badge.classList.remove("locked"); badge.classList.add("unlock"); }
+    }
+  });
+  localStorage.setItem("ach", JSON.stringify(unlocked));
+}
+function renderTrophyCase() {
+  const unlocked = JSON.parse(localStorage.getItem("ach") || "[]");
+  const host = document.getElementById("trophyCase");
+  if (!host) return;
+  host.innerHTML = ACHIEVEMENTS.map((a) => {
+    const isUnlocked = unlocked.includes(a.id);
+    return `<div class="ach-badge ${a.rarity} ${isUnlocked ? "" : "locked"}" data-ach="${a.id}" title="${a.label}">
+      <div class="icon">${a.icon}</div>
+      <div class="label">${a.label}</div>
+    </div>`;
+  }).join("");
+}
+```
+
+### 26.3 Trophy case layout
+CSS:
+```css
+.trophy-case { display: grid; grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); gap: 10px; padding: 12px; background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 12px; }
+.trophy-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.trophy-header .count { font-size: 0.8rem; color: var(--text-secondary,#9aa0b8); }
+```
+HTML:
+```html
+<div class="trophy-header"><h3>Trophy Case</h3><span class="count" id="achCount"></span></div>
+<div class="trophy-case" id="trophyCase"></div>
+```
+
+---
+
+## 27. Review of OR V23 patches (mistakes / improvements)
+
+Source: `_agents/or/V23-Interactive-Beauty-20261024.md` (OR, 24 Oct). Overall solid; minor issues:
+
+- **V23-6 (skeleton)** defines `@keyframes shimmer` again — duplicates OR A-7's shimmer. Duplicate keyframes are allowed (last wins) but fragile. Recommend: reuse the existing shimmer name; don't redefine.
+- **V23-7 (high-contrast)** sets `box-shadow:none!important` on `:root` — `box-shadow` is not an inherited property, so this does nothing. Move the rule to `.panel` / universal selector, or remove. Also changes `.panel` to `border:2px solid var(--border)` which removes the box-shadow entirely — acceptable but confirm intent.
+- **V23-8 (toast stack)** uses `:nth-child(2)/(3)` with `bottom:76px/126px` — fragile if toasts are removed/re-added out of order. Recommend: use a CSS variable `--toast-offset` set by JS per toast, or flex column with gap. Beam's toast system (snippets §2) uses a queue and is more robust; recommend adopting Beam's queue + OR's stacking visuals.
+- **V23-1 (team glow)** references `--team-glow` and `--pick-x/--pick-y` which need JS setters; document them. Otherwise fine.
+- **V23-2 (staggered reveal)** requires `style="--i:0"` on children; document the requirement or auto-set via JS.
+- **V23-5 (win-prob dot)** `calc(800ms/(1+var(--wp-vol,0)*3))` works but ensure `--wp-vol` is a number. Fine.
+
+Recommendation: adopt OR's V23 patches as-is except V23-6 (reuse shimmer) and V23-7 (fix box-shadow placement) and V23-8 (use Beam's queue). All SAFE ALONE, CSS-only.
+
+---
+
+## 28. Review of VL plugin kit (mistakes / improvements)
+
+Source: `_agents/vl/deliveries/PLUGIN-KIT.md` + prototypes (VL, 24 Oct). Overall excellent manifest. Minor issues:
+
+- **Motion token mismatch**: VL uses `--motion-fast/normal/slow` (150/300/500ms); OR uses `--duration-*` (150/250/400ms) + `--ease-*`; Beam uses `--transition-*`. Three parallel token families. Recommend unifying on OR's `--duration-*` + `--ease-*` and aliasing the others for compat (documented in snippets §21 reconciliation notes).
+- **Panel colour**: VL `#1e2433` matches P7-4 request; adopt as `--panel2` (already done in snippets). Good.
+- **Team palette**: VL uses `.team-palette.<abbr>` CSS classes; Beam uses `setTeamColors()` JS. Recommend JS setter (covers all 32 teams without 32 CSS rules) + keep VL's palette map as the data source. VL's manifest doesn't flag this; document it.
+- **No mistakes in CSS itself** — VL's tokens are clean and well-organized. The interactive prototype's `rank-row div1` selector (typo: should be `.rank`) is a harmless no-op. Minor.
+- VL's manifest is the best single reference for Claude; recommend Claude read it alongside Beam's integration guide.
+
+Recommendation: adopt VL's manifest as the canonical block index; layer Beam's snippets and OR's patches on top. No conflicts.
+
