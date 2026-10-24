@@ -1,268 +1,202 @@
-# V22 Aesthetic Enhancement Proposals
+# V22 Aesthetic Enhancement Proposals — Detailed
 
-## Proposal List
+**Target build:** `Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B
+**Seat:** OR (Council Adviser, S-1800–1899)
+**Date:** 2026-10-24
 
-### **P0-1: Enhanced Color System**
-**WHERE:** `Football-Sim-PreColors.html:3-24`
-**WHAT:** Expand color system with additional semantic colors and improved contrast ratios
-- Add neutral grays (gray-50 through gray-900) for better contrast
-- Add semantic colors: success, warning, error, info
-- Update CSS custom properties with new palette
-- Improve existing contrast ratios to meet WCAG AA/AAA standards
-- Add color mode preferences UI component
-**WHY:** Current system relies on limited accent colors; modern design needs comprehensive color systems for better accessibility and visual hierarchy
-**SAFE ALONE:** ✅ Color changes only (no logic)
-**HOW TO CHECK:** 
-```bash
-node --check
-# Verify color contrast ratio:
-cat tools/lint.mjs product Football-Sim-PreColors.html | grep -i contrast
-# Visual check: inspect --bg, --panel, --text, --sub, --accent colors in browser devtools
+All proposals below are **advisory** — they document exact changes, blast radius, and verification steps. Implementation is the Architect's call. No protected constants touched.
+
+---
+
+## Proposal 1 · Enhanced Color System
+
+**WHERE:** `:root{}` block at `Football-Sim-PreColors.html:14-22`
+**WHAT:** Expand the 8-core color palette to 15 semantic colors with WCAG-compliant contrasts, add a `data-theme="dark"` toggle, and update light-mode palette for better balance.
+
+Old:
+```css
+:root{
+ --bg:#0b0e14; --panel:#141922; --panel2:#1b2230; --text:#e8ecf3; --sub:#9fb0c0;
+ --accent:#4f8cff; --accent2:#ff6b4a; --border:#2a3142; --good:#3ecf8e; --bad:#ff6b6b;
+}
+@media (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]){
+  --bg:#f4f6fa; --panel:#ffffff; --panel2:#eef1f6; --text:#161b22; --sub:#5a6472; --border:#dde2ea;
+ }
+}
 ```
 
-### **P0-2: Typography System Enhancement**
-**WHERE:** `Football-Sim-PreColors.html:25-26`
-**WHAT:** Complete typography system with hierarchical scales
-- Define heading scale: h1-6 with consistent sizing
-- Body copy: 14px base, optimize line-height for readability
-- Caption/small text: 0.68rem-0.85rem range
-- Font families with fallbacks
-- Text scaling for responsive design
-- Establish typographic rhythm
-**WHY:** Current typography lacks hierarchy and responsiveness; modern sites need clear typographic systems
-**SAFE ALONE:** ✅ Text-only changes
-**HOW TO CHECK:** 
+New:
+```css
+:root{
+ --bg:#0b0e14; --panel:#141922; --panel2:#1b2230; --alt:#222936;
+ --text:#e8ecf3; --sub:#9fb0c0; --muted:#6a7a8a;
+ --accent:#4f8cff; --accent-hover:#6bb0ff;
+ --accent2:#ff6b4a; --accent2-hover:#ff8762;
+ --border:#2a3142; --border-hover:#404a5e;
+ --good:#3ecf8e; --good-bg:rgba(62,207,142,.12);
+ --bad:#ff6b6b; --bad-bg:rgba(255,107,107,.12);
+ --warn:#ffb347; --warn-bg:rgba(255,179,71,.12);
+ --gold:#ffd75e; --gold-bg:rgba(255,215,94,.12);
+ --radius:12px; --radius-sm:8px; --radius-full:9999px;
+ --shadow:0 4px 16px rgba(0,0,0,.35);
+ --shadow-lg:0 8px 32px rgba(0,0,0,.45);
+}
+@media (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]){
+  --bg:#f4f6fa; --panel:#ffffff; --panel2:#eef1f6; --alt:#e3e8ef;
+  --text:#161b22; --sub:#5a6472; --muted:#7a8595;
+  --border:#dde2ea; --border-hover:#b8c1d1;
+  --good-bg:rgba(62,207,142,.08); --bad-bg:rgba(255,107,107,.08);
+  --warn-bg:rgba(255,179,71,.10); --gold-bg:rgba(255,215,94,.10);
+ }
+}
+```
+
+**Blast radius:** All CSS `var(--*)` references. Safe — old variables are supersets.
+**SAFE ALONE?:** YES — only CSS variables added/changed. No JS references.
+**HOW TO CHECK:**
 ```bash
-grep -n "font-family\|font-size" Football-Sim-PreColors.html | head -20
-# Verify hierarchy across all screens
+# Verify all old var names still exist
+grep -o "var(--[a-z0-9-]*)" Football-Sim-PreColors.html | sort -u | wc -l
+# Expected: same count or more (no removals)
+# Visual: check dark mode / light mode contrast
+node tools/lint.mjs product Football-Sim-PreColors.html
+```
+
+**VERIFIED:** N/A — proposal only.
+
+---
+
+## Proposal 2 · Typography Hierarchy System
+
+**WHERE:** `Football-Sim-PreColors.html:25-29` (body, h1, .sub)
+**WHAT:** Define a complete typographic scale with consistent sizes, line heights, and weights.
+
+New additions to body rule + new heading classes:
+```css
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
+h1{font-size:1.4rem;margin:0 0 4px;font-weight:700;line-height:1.2;}
+h2{font-size:1.15rem;margin:0 0 6px;font-weight:600;line-height:1.3;}
+h3{font-size:1rem;margin:0 0 4px;font-weight:600;line-height:1.3;}
+h4{font-size:0.8rem;margin:14px 0 6px;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);font-weight:600;}
+.body-md{font-size:0.85rem;line-height:1.5;}
+.caption-sm{font-size:0.68rem;line-height:1.4;color:var(--sub);text-transform:uppercase;letter-spacing:.04em;}
+```
+
+**Blast radius:** All `h1`-`h4`, `.sub`, body text across all screens.
+**SAFE ALONE?:** YES — class additions, no deletions.
+**HOW TO CHECK:**
+```bash
+# Ensure all heading sizes are defined
+grep -n "font-size" Football-Sim-PreColors.html | head -20
+# Visual comparison across all four screens
 node tests/e2e-smoke.mjs "<build>" --port 9222
 ```
 
-### **P0-3: Interactive Elements Styling**
-**WHERE:** `Football-Sim-PreColors.html:39,53,65,66-69`
-**WHAT:** Enhanced interactive state styling
-- Button hover/focus states with subtle transitions
-- Input field styling improvements
-- Tab button active states
-- Position button visual hierarchy
-- Badge styling improvements
-- Clearer interactive element feedback
-**WHY:** Current interactive states are minimal; modern UI needs richer feedback states
-**SAFE ALONE:** ✅ Styling only (no logic changes)
-**HOW TO CHECK:** 
-```bash
-# Visual comparison: hover/focus/active states on buttons, tabs, position buttons
-# Verify transitions and animations work
+---
+
+## Proposal 3 · Unified Interactive States
+
+**WHERE:** All interactive elements using `.panel`, `.resetbtn`, `.tabbtn`, `.posbtn`, `.slider-tog`, `.closebtn`, `.rank`
+**WHAT:** Standardize hover/focus/active states across all interactive elements with consistent transitions.
+
+New:
+```css
+/* Add to :root — shared transition tokens */
+--transition-fast:150ms ease;
+--transition-normal:250ms ease;
+
+/* Apply to all interactive elements */
+button, .tabbtn, .posbtn, .resetbtn, .closebtn, .qgbtn, .slider-tog, .rank{
+ transition:background-var(--transition-fast),border-color var(--transition-fast),color var(--transition-fast),box-shadow var(--transition-fast);
+}
+.tabbtn:hover{background:var(--panel2);}
+.tabbtn:focus-visible{outline:2px solid var(--accent);outline-offset:2px;}
+.posbtn:hover{border-color:var(--accent);}
+.resetbtn:hover{background:var(--accent-hover);}
+.rank:hover{filter:brightness(1.1);}
 ```
 
-### **P0-4: Card & Panel Design System**
-**WHERE:** `Football-Sim-PreColors.html:32,89,120,121`
-**WHAT:** Unified card/panel design system
-- Consistent border radius across all panels
-- Standardized padding/margin scales
-- Enhanced box shadows for depth
-- Panel hierarchy (main, secondary, tertiary)
-- Card grouping systems
-- Subtle hover effects for cards
-**WHY:** Visual inconsistency across components; need cohesive design system
-**SAFE ALONE:** ⚠️ Cross-component coordination needed
-**HOW TO CHECK:** 
+**Blast radius:** All interactive elements across the app.
+**SAFE ALONE?:** YES — additions only.
+**HOW TO CHECK:**
 ```bash
-# Visual audit of all panels/cards
-# Verify consistent radius, padding, shadows
-```
-
-### **P0-5: Badge & Label System**
-**WHERE:** `Football-Sim-PreColors.html:86-89,120`
-**WHAT:** Comprehensive badge/label system
-- Standardized badge styling across all types
-- Color-coded badge system
-- Badge positioning hierarchy
-- Size variants for different contexts
-- Clear semantic meaning
-**WHY:** Current badge system is inconsistent and limited
-**SAFE ALONE:** ✅ Independent enhancements
-**HOW TO CHECK:** 
-```bash
-# Verify all badges have consistent styling
-# Check color coding and semantic meaning
-```
-
-### **P0-6: Animation System**
-**WHERE:** `Football-Sim-PreColors.html:102-110`
-**WHAT:** Centralized animation system
-- CSS animation definitions for all animations
-- Standardized animation durations
-- Easing functions defined
-- Performance-optimized animations
-- Reduced motion support
-- Animation layering system
-**WHY:** Current animations are scattered and inconsistent
-**SAFE ALONE:** ⚠️ Cross-animation coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify all animations work correctly
-# Test reduced motion preference
-```
-
-### **P0-7: Gradient System**
-**WHERE:** `Football-Sim-PreColors.html:51,95`
-**WHAT:** Centralized gradient definitions
-- CSS custom properties for all gradients
-- Consistent gradient patterns
-- Improved color transitions
-- Gradient variations for accessibility
-- Performance-optimized gradients
-**WHY:** Current gradients are duplicated and inconsistent
-**SAFE ALONE:** ✅ Independent improvements
-**HOW TO CHECK:** 
-```bash
-# Verify all gradients use CSS variables
-```
-
-### **P0-8: Layout Grid System**
-**WHERE:** `Football-Sim-PreColors.html:107-121`
-**WHAT:** Responsive grid system
-- CSS Grid for complex layouts
-- Flexible grid gaps and columns
-- Responsive breakpoints
-- Grid alignment system
-- Space distribution utilities
-**WHY:** Current layouts lack grid foundation
-**SAFE ALONE:** ⚠️ Cross-layout coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify responsive grid behavior
-# Check layout consistency across screens
-```
-
-### **P0-9: Shadow System**
-**WHERE:** `Football-Sim-PreColors.html:32,66-69,120`
-**WHAT:** Unified shadow system
-- CSS custom properties for box shadows
-- Shadow hierarchy (small, medium, large)
-- Interactive shadow states
-- Color-adjusted shadows for dark mode
-- Performance-optimized shadows
-**WHY:** Current shadows are inconsistent and scattered
-**SAFE ALONE:** ⚠️ Cross-element coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify consistent shadow application
-# Check dark mode shadow adjustments
-```
-
-### **P0-10: Navigation System**
-**WHERE:** `Football-Sim-PreColors.html:53,58`
-**WHAT:** Enhanced navigation system
-- Tab navigation styling improvements
-- Menu system consistency
-- Active state indicators
-- Navigation hierarchy
-- Breadcrumbs (if applicable)
-**WHY:** Current navigation lacks polish and consistency
-**SAFE ALONE:** ⚠️ Cross-navigation coordination
-**HOW TO CHECK:** 
-```bash
-# Verify tab navigation consistency
-# Check active states and hover effects
-```
-
-### **P0-11: Form System**
-**WHERE:** `Football-Sim-PreColors.html:37,58`
-**WHAT:** Unified form system
-- Input field standardization
-- Label styling
-- Error state styling
-- Help text styling
-- Field validation indicators
-**WHY:** Current form styling is inconsistent
-**SAFE ALONE:** ✅ Independent improvements
-**HOW TO CHECK:** 
-```bash
-# Verify form element consistency
-# Test input field styling
-```
-
-### **P0-12: Overlay System**
-**WHERE:** `Football-Sim-PreColors.html:66-69`
-**WHAT:** Enhanced overlay system
-- Modal/backdrop styling
-- Popup system consistency
-- Overlay hierarchy
-- Close button styling
-- Focus management indicators
-**WHY:** Current overlays lack consistency
-**SAFE ALONE:** ⚠️ Cross-overlay coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify overlay hierarchy and styling
-# Test modal behavior
-```
-
-### **P0-13: Progress Indicators**
-**WHERE:** `Football-Sim-PreColors.html:50-52,94-95`
-**WHAT:** Unified progress indicator system
-- Progress bar styling
-- Loading indicator consistency
-- Status indicator system
-- Step indicator system
-- Progress color coding
-**WHY:** Current progress indicators are inconsistent
-**SAFE ALONE:** ⚠️ Cross-indicator coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify progress indicator consistency
-# Test all progress states
-```
-
-### **P0-14: Separator System**
-**WHERE:** `Football-Sim-PreColors.html:38,70-71,109`
-**WHAT:** Unified separator system
-- Divider styling
-- Section separators
-- Visual break elements
-- Separator hierarchy
-- Thin/thick separator variations
-**WHY:** Current visual separators are inconsistent
-**SAFE ALONE:** ⚠️ Cross-separator coordination needed
-**HOW TO CHECK:** 
-```bash
-# Verify consistent separator styling
-```
-
-### **P0-15: Utility Classes**
-**WHERE:** `Football-Sim-PreColors.html:49,46,62,63,70,73`
-**WHAT:** Additional utility classes
-- Spacing utilities (m-0, p-0, etc.)
-- Text utilities (text-center, font-weight, etc.)
-- Layout utilities
-- Shadow utilities
-- Color utilities
-- Display utilities
-**WHY:** Current utility system is limited
-**SAFE ALONE:** ✅ Independent additions
-**HOW TO CHECK:** 
-```bash
-# Verify utility class functionality
-# Test all utility variations
+# Verify focus outlines are accessible
+grep "focus" Football-Sim-PreColors.html | head -10
+# Test all interactive elements visually
 ```
 
 ---
 
-## Implementation Plan
+## Proposal 4 · Gradient System (Centralized Definitions)
 
-**Phase 1 (Weeks 1-2):** Core systems (Items 1-5, 7, 11)
-- Color system, typography, interactive elements, badges, gradients
-**Phase 2 (Weeks 3-4):** Component systems (Items 6, 9, 10, 12, 13, 14)
-- Animations, shadows, navigation, overlays, progress indicators, separators
-**Phase 3 (Weeks 5-6):** Layout and utilities (Items 8, 15)
-- Grid system, utility classes
+**WHERE:** `Football-Sim-PreColors.html:51,95` (`.bar-fill` and `.mbar-fill`)
+**WHAT:** Extract duplicated gradients into CSS variables for maintainability.
 
-Each phase will be tested and verified before moving to the next.
+New additions:
+```css
+:root{
+ /* ... existing vars ... */
+ --gradient-accent:linear-gradient(90deg,var(--accent),var(--accent2));
+ --gradient-accent-alt:linear-gradient(100deg,var(--gold),#fff6c4 30%,var(--accent2) 50%,#fff6c4 70%,var(--gold));
+ --gradient-sf:linear-gradient(90deg,rgba(255,196,60,.22),rgba(255,196,60,.04));
+}
+/* Then update .bar-fill and .mbar-fill */
+.bar-fill{background:var(--gradient-accent);height:100%;}
+.metricrow .mbar-fill{height:100%;background:var(--gradient-accent);}
+.sfrow.sf90{background:var(--gradient-sf);border-left:3px solid var(--gold);}
+```
+
+**Blast radius:** `.bar-fill`, `.mbar-fill`, `.sfrow.sf90` — appears only in their definitions.
+**SAFE ALONE?:** YES — variable extraction, no logic changes.
+**HOW TO CHECK:**
+```bash
+grep -c "linear-gradient" Football-Sim-PreColors.html
+# Expected: reduced count (centralized into variables)
+```
 
 ---
 
-**Budget:** 6-8 rounds of implementation
-**Dependencies:** Some items require coordination across multiple components
-**Risk Assessment:** Medium (coordination complexity, but individual items are low risk)
+## Proposal 5 · Enhanced Card/Panel Design
+
+**WHERE:** `.panel` (l.32), `.score-line` (l.132), `.matchup-card` (l.121), `.detailpanel` (l.89), `.synergy-box` (l.74)
+**WHAT:** Add subtle hover elevation and transition effects for card components.
+
+New additions:
+```css
+.panel, .score-line, .matchup-card, .detailpanel, .synergy-box, .bracket-game{
+ transition:transform var(--transition-fast),box-shadow var(--transition-fast);
+}
+.panel:hover,.matchup-card:hover,.synergy-box:hover{
+ transform:translateY(-1px);
+ box-shadow:var(--shadow);
+}
+.panel:focus-within{outline:2px solid var(--accent);outline-offset:2px;}
+```
+
+**Blast radius:** All card-like components.
+**SAFE ALONE?:** YES — visual enhancement only.
+**HOW TO CHECK:**
+```bash
+# Verify panel hover effects on all screens
+# Ensure focus-within works for accessibility
+```
+
+---
+
+## Implementation Priority
+
+| Proposal | Complexity | Risk | Priority |
+|----------|-----------|------|----------|
+| 1. Color System | Medium | Low | P0 |
+| 2. Typography | Low | Low | P0 |
+| 3. Interactive States | Low | Low | P1 |
+| 4. Gradient System | Low | Low | P2 |
+| 5. Enhanced Cards | Low | Low | P2 |
+
+**Phase 1 (High Priority):** Proposals 1-2 — foundational design system
+**Phase 2 (Medium):** Proposals 3-4 — interaction polish
+**Phase 3 (Low):** Proposal 5 — card enhancements
+
+Each proposal can be verified independently with `node --check` and visual comparison. No protected constants are touched in any proposal.
