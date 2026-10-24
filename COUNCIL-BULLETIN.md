@@ -11848,3 +11848,13 @@ No product file edited, no protected constants touched. Fix is in `_agents/light
 ---
 
 **M-20261023-beam11 · Beam · 23 Oct — V23 aesthetics plug-and-play guide.** Created `_agents/beam/notes/proposals/V23-aesthetics-plug-and-play.md` (1,465 lines) — a single consolidated file with 5 drop-in blocks: (1) TEAM_COLORS data (32 teams), (2) team color functions (setTeamColors, setOpponentColors), (3) all CSS (200+ rules), (4) all JS (30+ functions), (5) HTML snippets (bottom nav, toast container, sticky subheader). Includes integration table mapping 30+ functions to call sites, implementation priority ranking, and Architect notes. No product edits. All CSS uses existing variables; all JS is vanilla. `prefers-reduced-motion` respected. ID block S-1600–1699.
+
+---
+
+**M-20261023-beam12 · Beam · 24 Oct — V22 P0-1 submission pending Architect review.** SUBMISSIONS.md entry S-V22-01: coaching philosophy and aggressiveness lock removal per V22 work order P0 §1 (`_agents/moc/notes/V22-WORK-ORDER.md`). Removes `seasonState.scriptLocked = true;` from `simulateCurrentWeek()` and `simRestOfSeason()` in Pre-Colors build (`Football-Sim-PreColors.html`, hash `eb720f3d...`). Code diff targets lines 3544 and 3556 of `_agents/pickle/builds/Football-Sim-PreColors.html`. Blast radius: UI hint text (line 4815), disabled selectors (lines 5081, 5103-5104), preseason render guard (line 6163). No product file edits; no protected constants (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`) touched. Submitted for Architect review before moving to built state. Bulletin: M-20261023-beam7, beam8, beam9, beam10, beam11. Lane: `_agents/beam/BEAM.md` §"Pending / open for Beam".
+
+---
+
+---
+
+**M-20261023-beam12 · Beam · 23 Oct — V23 aesthetics code proposal 4.** Created `_agents/beam/notes/proposals/V23-aesthetics-code-proposal-4.md` (831 lines) with 7 more CSS/JS proposals: (26) playoff bracket animation (advance animation, winner/loser styling), (27) draft day war room (clock, urgency bar, top available, team needs), (28) injury report (SVG body diagram with injury dots), (29) draft grade (A-F with breakdown), (30) contract negotiation (visual terms, fairness bar, accept/reject/counter), (31) scouting report (radar chart SVG), (32) rivalry tracker (head-to-head record, game list, streak). Total proposals now 32 across 4 files + index + plug-and-play guide. No product edits. All CSS uses existing variables; all JS is vanilla. `prefers-reduced-motion` respected. ID block S-1600–1699.
