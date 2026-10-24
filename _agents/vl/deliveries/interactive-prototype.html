@@ -97,7 +97,7 @@
   .rank-list { display: flex; flex-direction: column; gap: 6px; }
   .rank-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,0.02); transition: background var(--motion-fast); cursor: pointer; }
   .rank-row:hover { background: rgba(var(--team-primary-rgb,59,130,246),0.1); }
-  .rank-row div1, .rank-row .rank { width: 26px; font-size: 0.75rem; font-weight: 800; color: var(--text-secondary); }
+  .rank-row .rank { width: 26px; font-size: 0.75rem; font-weight: 800; color: var(--text-secondary); }
   .rank-row .team { flex: 1; font-weight: 700; font-size: 0.85rem; }
   .rank-row .record { width: 44px; font-size: 0.75rem; color: var(--text-secondary); text-align: right; font-variant-numeric: tabular-nums; }
   .rank-row .bar { flex: 1; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; margin: 0 10px; }
@@ -175,7 +175,37 @@
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+  /* ==== VL achievements (plug-in block) ==== */
+  :root {
+    --ach-bronze: #cd7f32;
+    --ach-silver: #c0c0c0;
+    --ach-gold: #ffd700;
+    --ach-legend: #7b2cbf;
+    --ach-locked: #2d3446;
+  }
+  .ach-gallery { display: grid; grid-template-columns: repeat(auto-fill,minmax(140px,1fr)); gap: 12px; max-width: 900px; margin: 32px auto; padding: 0 16px; }
+  .ach-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; transition: transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); cursor: pointer; }
+  .ach-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+  .ach-card.locked { opacity: 0.55; filter: grayscale(1); border-color: var(--ach-locked); background: var(--panel); }
+  .ach-card.unlocked { border-color: var(--ach-gold); box-shadow: 0 0 0 3px rgba(251,191,36,0.15); }
+  .ach-card.legendary { border-color: var(--ach-legend); box-shadow: 0 0 12px rgba(123,44,191,0.35); }
+  .ach-icon { font-size: 2.2rem; margin-bottom: 6px; }
+  .ach-card.locked .ach-icon { filter: grayscale(1); opacity: 0.6; }
+  .ach-name { font-weight: 700; font-size: 0.8rem; margin-bottom: 2px; line-height: 1.15; }
+  .ach-trigger { font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 8px; }
+  .ach-progress { height: 6px; background: #1f2937; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+  .ach-progress .fill { height: 100%; border-radius: 3px; background: var(--ach-gold); width: 0%; transition: width var(--motion-normal); }
+  .ach-card.locked .ach-progress .fill { background: var(--ach-locked); }
+  .ach-toast { position: fixed; top: 110px; right: 16px; z-index: 200; background: var(--panel2); border: 1px solid var(--border); border-left: 4px solid var(--ach-gold); border-radius: 10px; padding: 12px 14px; color: #fff; min-width: 260px; transform: translateX(130%); transition: transform var(--motion-normal); box-shadow: 0 12px 40px rgba(0,0,0,0.45); }
+  .ach-toast.show { transform: translateX(0); }
+  .ach-toast .t-icon { font-size: 2rem; margin-right: 10px; vertical-align: middle; }
+  .ach-toast .t-body { display: inline-block; vertical-align: middle; }
+  .ach-toast .t-title { font-weight: 800; }
+  .ach-toast .t-trigger { font-size: 0.75rem; color: var(--text-secondary); margin-top: 4px; }
+  .ach-toggle { display: inline-block; padding: 6px 14px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin-bottom: 12px; }
+  .ach-toggle.active { background: var(--team-primary); color: #fff; border-color: var(--team-primary); }
 </style>
+
 </head>
 <body>
 
@@ -338,6 +368,20 @@
   <div class="note">Pulsing, bouncing football with gold border — ceremonial presentation after key games (P8-g.7 showpiece).</div>
 </div>
 
+<!-- VL achievements gallery (plug-in block) -->
+<div class="section-title">Creative · Achievement system (incentivize replay)</div>
+<button class="ach-toggle active" onclick="toggleAch(this)">Show unlocked</button>
+<div class="ach-gallery">
+  <div class="ach-card locked" id="ach-first-round"><div class="ach-icon">🏆</div><div class="ach-name">First Round Lock</div><div class="ach-trigger">Draft a top-10 pick</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+  <div class="ach-card locked" id="ach-steal"><div class="ach-icon">💎</div><div class="ach-name">Steal of the Draft</div><div class="ach-trigger">Draft ≥3 rounds below value</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+  <div class="ach-card locked" id="ach-monopoly"><div class="ach-icon">🎯</div><div class="ach-name">Positional Monopoly</div><div class="ach-trigger">Draft every player at one position</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+  <div class="ach-card locked" id="ach-tour"><div class="ach-icon">🗺️</div><div class="ach-name">32-Team Tour</div><div class="ach-trigger">Draft players from all 32 teams</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+  <div class="ach-card locked" id="ach-perfect"><div class="ach-icon">👑</div><div class="ach-name">Perfect Season</div><div class="ach-trigger">Finish 17-0</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+  <div class="ach-card legendary locked" id="ach-century"><div class="ach-icon">💯</div><div class="ach-name">Century Club</div><div class="ach-trigger">Complete 100 seasons</div><div class="ach-progress"><div class="fill" style="width:0%"></div></div></div>
+</div>
+<div id="ach-toast" class="ach-toast"><span class="t-icon">🏆</span><span class="t-body"><div class="t-title" id="ach-toast-title">Achievement unlocked</div><div class="t-trigger" id="ach-toast-trigger">Trigger goes here</div></span></div>
+<div class="note">Badge gallery: locked = grayscale/dimmed with progress bar; unlocked = team-color border + shimmer. Click a badge to reveal its trigger. Toasts slide in on unlock. All motion respects prefers-reduced-motion.</div>
+
 <div class="note" style="max-width:900px">
   <strong>Plug-in notes for Claude:</strong> Each block is keyed to a V22 item (P0-29 team theming, P0-19 season/playoff graphics, P0-18 game recap, P0-8 player browser, P0-9 position combos, P0-10 team comparison) plus creative extensions (live what-if slider, week timeline, game ball ceremony). Copy the <code>:root</code> token block first, then per-item CSS/JS. All motion respects <code>prefers-reduced-motion</code>. No protected constants — cosmetic/UI only (SAFE ALONE). Advisory only — product file untouched.
 </div>
@@ -365,6 +409,29 @@
     projfill.style.width = Math.min(100, Math.max(0, 40 + a*0.4 + b*0.25)) + '%';
   }
   pr.oninput=sc.oninput=upd; upd();
+  // VL achievements (plug-in block)
+  const achCards = document.querySelectorAll('.ach-card');
+  function toggleAch(btn){
+    achCards.forEach(c=> c.classList.toggle('locked', btn.classList.contains('active')? false : c.classList.contains('locked') ));
+    // simpler: toggle visibility of locked vs unlocked
+    achCards.forEach(c=>{
+      if(btn.classList.contains('active')){ c.style.display = c.classList.contains('unlocked')?'block':'none'; }
+      else { c.style.display = 'block'; }
+    });
+  }
+  function unlockAch(slug, trigger){
+    const c=document.getElementById('ach-'+slug);
+    if(!c || c.classList.contains('unlocked')) return;
+    c.classList.remove('locked'); c.classList.add('unlocked');
+    c.querySelector('.ach-progress .fill').style.width='100%';
+    const t=document.getElementById('ach-toast');
+    document.getElementById('ach-toast-title').textContent='Achievement unlocked';
+    document.getElementById('ach-toast-trigger').textContent=trigger||'';
+    t.classList.add('show');
+    setTimeout(()=>t.classList.remove('show'),2200);
+  }
+  // demo: unlock First Round Lock after 1.2s
+  setTimeout(()=>unlockAch('first-round','Drafted a top-10 pick'),1200);
 </script>
 </body>
 </html>
