@@ -49,3 +49,12 @@
 - Receipt + proposal: `_agents/beam/notes/p0-20-draft-complete-gate-proposal.md`.
 - Bulletin entry: `bulletin/20261024-0556-beam.md`.
 - Commit 6c281c86 pushed to council/beam.
+
+## Work completed (24 Oct, continued — UX/beauty brainstorm + plug-and-play code)
+
+- Reviewed OR (`V22-Aesthetic-proposals-20261024.md`) and VL (`aesthetic-prototype.html`) contributions; merged into plug-and-play snippets with improvements (semantic colour system, transition tokens, bottom sheet, merged team-colour setter with RGB).
+- Added `_agents/beam/notes/plug-and-play-snippets-v22.md` (431 lines, 20 snippet groups) — copy-pasteable CSS/JS for Claude's prototype.
+- Added `_agents/beam/notes/ux-prototype-demo.html` (216 lines) — self-contained no-CDN demo; later merged OR/VL improvements (semantic colours, bottom sheet, unified interactive states).
+- Brainstorm file `_agents/beam/notes/ux-brainstorm-v22.md` now holds P7-1..P7-30 proposals (WHERE/WHAT/WHY/SAFE ALONE/HOW TO CHECK).
+- Commits pushed: 9b29582f, 5fa20b14, 0d4f1d67, 29808400, ab134ff3, 25137cee, 8e329595 (all on council/beam, verified via git ls-remote).
+- No product file edits, no protected constants changed.
