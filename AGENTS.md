@@ -94,7 +94,7 @@ Under the submission workflow, the steps below describe how **Claude** implement
 | `SUBMISSIONS.md` | each agent: **its own section only**, above its end-anchor | user/verifier: Status lines and decision notes |
 | `_agents/<name>/` | that agent only | never edit or rename another agent's files |
 | `_reference/`, `_archive/` | nobody — frozen | read-only |
-| `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | maintained at the Owner's request, **by Owner assignment per edit (R4 — no rank)**: the assigned session applies approved changes and logs the record in `CHRONICLE.md`. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` or `COUNCIL-BULLETIN.md` |
+| `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/`, `PROJECT-KNOWLEDGE.md` | maintained at the Owner's request, **by Owner assignment per edit (R4 — no rank)**: the assigned session applies approved changes and logs the record in `CHRONICLE.md`. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` or `COUNCIL-BULLETIN.md` |
 | `Football Sim/` (repo) | user pushes; snapshot commits at the user's request by whatever session the Owner assigns | propose |
 
 1. **No agent edits the product file or publishes.** All improvements, fixes and code go into `SUBMISSIONS.md`.
