@@ -171,3 +171,10 @@
 - QUEUE-7: "Value here" inventory — 6 occurrences on 5 lines (sort option L418, header L426, cell L1766, guide bullet L4991, prose L4992, section title L5056) + "also fits" at L1764. r.v retained as background calc. Receipt in inbox/20261024-2220-beam-queue-7-value-here-inventory.md.
 - Commits pushed: 1b32f4ab, a88cf450 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — QUEUE-4 + peer review round 2)
+
+- QUEUE-4: Reviewed saved shared-tree snapshot (origin/preserve/shared-tree-2026-10-23-v2, 886 files). Per group: openchamber tests (keep/update), sports/ (drop, quarantined), figma/tokens.json (keep team-colours.json; tokens.json derived — Jacksonville fill mismatch), docs/ (keep), SIM-PLATFORM/ (keep). sports/ provenance UNVERIFIED (no source). figma/tokens.json NOT equal to Owner's table row-by-row (31/32 fill match; Jacksonville mismatch; stripe is derived). Receipt in inbox/20261024-2240-beam-queue-4-snapshot-review.md.
+- Peer review round 2: reviewed GLYPH QUEUE-1 (merge inline-flex centering), FK Q-V23-1 (stray line hypothesis) + Q-V23-2 (antique gold for small text), VL rose prototype (light-mode only, mismatch with user's dark preference) + QUEUE-2 (duplicate, consistent). Findings in peer-review-round-2.md.
+- Commits pushed: 5d700d08, fe8ce067 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
