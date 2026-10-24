@@ -47,17 +47,20 @@ Rules that replace the old "Do not" list, stated as what to do:
 
 Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); QB cannot flex; flex stays realistic.
 
-## 4. The shared tree (the failure we actually had)
+## 4. Worktrees, saving work, and the shared tree (the failure we actually had)
 
-All agents share the Owner's working tree and every commit is authored as `kozikosi`; one `checkout`, `stash`, `clean` or `reset` destroys other seats' uncommitted work (it has happened: commit `7b4bc9f` replaced `AGENTS.md` with a stale copy and deleted `biome.json`).
+**What happened.** All agents shared the Owner's working tree, and every commit is authored as `kozikosi`. One `checkout`, `stash`, `clean` or `reset` destroyed other seats' uncommitted work (commit `7b4bc9f` replaced `AGENTS.md` with a stale copy and deleted `biome.json`). On 23 Oct the same tree held 339 modified tracked files, 139 untracked files and 5 stashes on a stale task branch, with unpushed commits in 7 worktrees. **Cause, not blame:** the rules said "do not push" and treated the shared tree as the workspace and the message board, so finished work stayed on one disk, and stashes (the old defence against checkout accidents) are invisible to every branch and push. Fixed as follows; each rule has a tool.
 
-1. **Work in your own `git worktree`, one per seat, outside the repo folder:** `git worktree add ../wt/<seat> -b <seat>/<task> <base>` where `<base>` is `origin/main` once the PR is merged, and until then the SHA of `claude/v21-and-council-ops` (re-read with `git ls-remote`). Never nest a clone or worktree inside the repo folder: `Football Sim/Football Sim` was a second repo on branch `council-intake`, one day stale, with different copies of every document (D-011 message, archived). A branch named after a task (`gpt/council-reliability-scorecard`) is not a place to work: do not base new work on it. If you cannot make a worktree, stay in `_agents/<seat>/`.
-2. **Never `checkout`, `switch`, `stash`, `clean`, `reset` or `restore` in the shared tree.** If the branch or index is not what you expect, stop and re-read.
-3. **Add by path** (`git add <your files>`), never `git add -A` / `commit -a`. Run `git status` and `git diff --cached --stat` before every commit; name the seat in the message of any shared-file commit.
-4. **Turn on the seatbelt** once per clone/worktree, **only after `ls tools/hooks/pre-commit` succeeds in that checkout**: `git config core.hooksPath tools/hooks`. **In the Owner's shared tree `core.hooksPath` stays unset** (Owner's standing setting); enable it only in your own worktree. A path that points nowhere disables the guard silently, which is worse than leaving it unset (`git config --unset core.hooksPath`). `tools/check-staged.mjs` then refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files at once, or is made on `main`. The Architect/Owner overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`); a seat that overrides says so in the commit message. It is honour-system, but it stops the accidental case, which is the one that has happened.
-5. **Commit what matters the day you make it**; commit shared docs every round. An uncommitted lane file is a file that will be wiped.
-6. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, this file's siblings in §8) unless the Architect or Owner said to. Propose it.
-7. Never revert a change you did not make; post the disagreement.
+1. **The Owner's shared tree is read-only for everyone**, including lane files and the bulletin. Nobody edits files in it.
+2. **One worktree per seat**, `../wt/<seat>` (a sibling of the shared tree, never nested), branch **`council/<seat>`**, started from **`origin/council/base`**. The Owner creates it before the chat opens: `tools/new-seat-worktree.sh <seat>`. A seat verifies its location and does not create worktrees. Never base work on a task branch such as `gpt/...`. Task-specific branches only when the Architect asks.
+3. **Commit and push are required, not optional.** After every finished task and at session end: `git add -- <paths>`, commit, `git push origin council/<seat>`; verify with `git ls-remote`. **Your own `council/<seat>` branch is the only branch you push.** Never push `main`, `council/base`, `claude/*`, `architect/*` or another seat's branch. Work that exists only on a disk is lost work.
+4. **Never `git stash`.** Set work aside with a WIP commit on your branch. Inside your own worktree you may otherwise use git normally; in anyone else's worktree or the shared tree, never `checkout`, `switch`, `stash`, `clean`, `reset` or `restore`.
+5. **Add by path** (`git add <your files>`), never `git add -A` / `commit -a`. Run `git status` and `git diff --cached --stat` before every commit.
+6. **The preservation gate is a command:** `node tools/preserve.mjs check` lists every worktree, stash and commit that exists only locally and exits 1 if any. Run it at the end of every chat and before any clean-up. `tools/preserve.mjs snapshot|stashes|commits` save what it finds without touching a working tree (temporary index; pushes only `preserve/*`).
+7. **Messages are files.** One entry per session, `bulletin/<UTC>-<seat>.md`; read all seats' new entries with `node tools/council-sync.mjs`. Shared logs are written by the Architect (`CHRONICLE.md`, `COUNCIL-BULLETIN.md` header). Seats do not edit them, so branches never conflict.
+8. **Seatbelt (optional):** `git config core.hooksPath tools/hooks` only in your own worktree and only after `ls tools/hooks/pre-commit` succeeds there. It refuses a commit that stages a protected file (product HTML, `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/lint|check-staged|build-merged`, `MERGE-MANIFEST.md`), deletes a file outside `_agents/`/`_archive/`, adds >40 files, or is made on `main`. The Architect overrides on purpose (`ARCHITECT_OK=1`, `ALLOW_DELETE=1`, `ALLOW_BULK=1`). Leave it unset in the shared tree (Owner's setting).
+9. Do not edit a shared governance file (`AGENTS.md`, `CLAUDE.md`, `biome.json`, the siblings in §8) unless the Architect or Owner said to. Propose it in your bulletin entry. A change made without that is not integrated.
+10. Never revert a change you did not make; post the disagreement. Lanes hold no build copies or images.
 
 ## 5. Proposals, patches, claims
 
@@ -101,10 +104,11 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `Football-Sim-*.html` | Architect only (§5) |
 | `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/` | Architect, or on his/the Owner's instruction |
 | `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
-| `COUNCIL-BULLETIN.md` | Any seat; current round only, date-stamped ids (`M-20261022-a`); rotated into `_archive/bulletin/` at 150 KB or round close (`_agents/RETIREMENT.md` §3) |
-| `PROJECT-KNOWLEDGE.md` | **Beam only** (single writer, rewritten at session end). Other seats put news in their lane file and the bulletin, never here. |
-| `_agents/README.md`, `_agents/RETIREMENT.md`, `_agents/TEMPLATE-LANE.md` | Architect |
-| `CHRONICLE.md` | Any seat, append-only |
+| `bulletin/<UTC>-<seat>.md` | That seat, one file per session (§4.7); the Architect merges them into `council/base` and rotates old ones into `_archive/bulletin/` |
+| `COUNCIL-BULLETIN.md` | Architect (rules and live rulings only; rotated at 150 KB, `_agents/RETIREMENT.md` §3) |
+| `PROJECT-KNOWLEDGE.md` | Architect by default (one writer, rewritten at his handover); the Owner may assign a seat for a session. Seats propose changes in their bulletin entry. |
+| `_agents/README.md`, `RETIREMENT.md`, `TEMPLATE-LANE.md`, `START-OF-CHAT.md`, `END-OF-CHAT.md`, `ONBOARDING.md`, `MIGRATION.md` | Architect |
+| `CHRONICLE.md` | Architect, append-only; seats put verified facts on `FACT:` lines in their bulletin entry |
 | `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |
 | `SUBMISSIONS.md`, `_agents/<seat>/` | That seat only (a retired seat's lane is a tombstone: nobody writes there) |
 | `STATUS.md`, `MERGE-MANIFEST.md` | Architect (build hash lines by a Verifier) |
@@ -135,4 +139,4 @@ Draft completes (32 teams × all rounds) · season runs to the Super Bowl · no 
 
 ## 11. Seats, retirement, chat length
 
-Who is on the roster and in what state: `_agents/README.md`. Retiring, compressing, admitting and reinstating a seat: `_agents/RETIREMENT.md`. The start-of-chat and end-of-chat prompts are identical for every seat except the name; they point here and do not restate rules (a rule written in two places drifts: the hooks setting already did). A chat ends at ~80–100k tokens, on a change of task area, when a file is re-read, or when replies shorten; before it ends the seat rewrites its lane file and posts one bulletin entry. Lanes hold no build copies or images.
+Who is on the roster and in what state: `_agents/README.md`. Retiring, compressing, admitting and reinstating a seat: `_agents/RETIREMENT.md`. The start-of-chat and end-of-chat prompts are two lines each and point at `_agents/START-OF-CHAT.md` and `_agents/END-OF-CHAT.md`, which hold the procedure (a rule written in two places drifts: the hooks setting already did). A chat ends at ~80–100k tokens, on a change of task area, when a file is re-read, or when replies shorten; before it ends the seat rewrites its lane file, posts one bulletin entry, commits and pushes `council/<seat>`. Lanes hold no build copies or images.
