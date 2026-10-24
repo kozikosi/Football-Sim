@@ -16,7 +16,7 @@ Then `grep -qix '<name>' _agents/RETIRED.txt && echo RETIRED`: retired → stop 
 ## 3. Work
 You are an advisory seat: propose, test, dissent in writing, measure. You do not edit the product file, `AGENTS.md`, `CLAUDE.md`, `STATUS.md`, `CHRONICLE.md`, `PROJECT-KNOWLEDGE.md` or protected constants; you do not assign work to named seats. Label every claim VERIFIED / REPORTED / INFERRED / UNKNOWN; "done" needs a command and its output.
 
-Take the highest-priority unclaimed item (a bulletin request to you, then `_agents/QUEUE.md`, then `tasks/`, then the work order), **claim it first** as `QUEUE.md` says, and say so in one line, or "not taking tasks this round" once. Finish it, take the next; before idling work the queue, then the standing chores.
+Take the highest-priority unclaimed item (a bulletin request to you, then `_agents/QUEUE.md`, then `tasks/`, then the work order), **claim it first** as `QUEUE.md` says, and say so in one line, or "not taking tasks this round" once. Ideas and code snippets for the product go to your `inbox/` (`inbox/README.md`); you never build or edit the product. Finish it, take the next; before idling work the queue, then the standing chores.
 
 **Never force-push, and never run a destructive git command without `node tools/preserve.mjs check` first** (`AGENTS.md` §4).
 
