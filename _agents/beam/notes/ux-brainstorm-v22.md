@@ -68,6 +68,43 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - Confirmation dialogs for all destructive actions (delete weights, reset draft, clear save).
 - Toasts for async feedback (philosophy change, weight save, clipboard copy).
 
+## 11. Additional beauty & polish proposals (V22 work-order candidates)
+
+**P7-5 · Starter-count badge on draft header**
+- WHERE: draft board header box ("Drafting as [Team]", ~l.405 in Pre-Colors; re-anchor before applying).
+- WHAT: Add a small pill showing "X of 26 starters filled" computed from roster slots, updating live as picks are made. Colour: team primary.
+- WHY: User always knows draft progress without counting rows; supports P0-20's round-counter clarity.
+- SAFE ALONE?: YES — read-only computed display, no logic change, no protected constant.
+- HOW TO CHECK: grep confirms pill text absent before / present after; `node --check` on extracted script passes; 390 px no horizontal overflow.
+
+**P7-6 · Changed-weight cell highlight**
+- WHERE: weights table inputs (~l.540–560) and the "Default"/"Save My Weights" buttons.
+- WHAT: When a user edits a default weight, that cell's background tints team primary at low opacity; clears on reset. "Save My Weights" pulses when dirty (P0-5 state machine).
+- WHY: Immediate visual feedback on what changed; makes the dirty state discoverable.
+- SAFE ALONE?: YES — CSS class toggle + one JS listener, no maths.
+- HOW TO CHECK: edit one weight → cell tints and button turns blue/pulsing; reset → tint clears and button transparent; `node --check` passes.
+
+**P7-7 · Position-need chip on player cards**
+- WHERE: draft board row render (~l.1766) and mobile card collapse.
+- WHAT: Each player card gets a small "Need: POSn" chip (e.g., "Need: WR2") derived from unfilled roster slots; hidden when the roster is full at that position.
+- WHY: Lets the user draft need-first without opening the roster panel; works with position cards following roster order (P0-12).
+- SAFE ALONE?: YES — computed from existing roster state, display-only.
+- HOW TO CHECK: draft QB1 → QB1 chip disappears on remaining QBs, QB2 chip appears; `node --check` passes; 390 px card fits chip.
+
+**P7-8 · Collapsible Guide sections**
+- WHERE: Guide page (~l.4980–5060), each section under "Reading the draft board" etc.
+- WHAT: Wrap each Guide section in a click-to-toggle block; first section open by default, rest closed.
+- WHY: Guide is long; progressive disclosure improves scannability, especially on 390 px.
+- SAFE ALONE?: YES — HTML/JS toggle only, no content change.
+- HOW TO CHECK: open Guide → sections toggle, no console errors; 390 px no horizontal scroll.
+
+**P7-9 · "Undo" toast**
+- WHERE: "Undo" button handler (~l.403).
+- WHAT: After undo, a non-blocking toast appears at bottom for 2.5 s: "Pick undone — [Player]". Dismissable by tap, auto-dismisses.
+- WHY: Confirms the action happened; reduces "did it work?" uncertainty.
+- SAFE ALONE?: YES — toast element + setTimeout, no draft logic change.
+- HOW TO CHECK: undo a pick → toast shows correct player name and auto-dismisses; no console errors.
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
