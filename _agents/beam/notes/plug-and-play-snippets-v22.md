@@ -913,3 +913,249 @@ Reconciliation notes (Beam):
 - VL's creative what-if slider and week timeline are high-value and not in Beam's earlier snippets; now captured here (24.8, 24.9).
 - VL's game ball ceremony (24.10) is more elaborate than Beam's confetti; both can coexist (ceremony for game ball, confetti for championship).
 
+
+---
+
+## 25. Creative interaction snippets (P7-43..P7-60)
+
+### 25.1 Parallax tilt on champion banner — P7-43
+JS:
+```js
+const banner = document.querySelector(".champion-banner");
+if (banner && !window.matchMedia("(prefers-reduced-motion: reduce)").matches && window.matchMedia("(pointer: fine)").matches) {
+  banner.addEventListener("mousemove", (e) => {
+    const r = banner.getBoundingClientRect();
+    const x = (e.clientX - r.left) / r.width - 0.5;
+    const y = (e.clientY - r.top) / r.height - 0.5;
+    banner.style.transform = `perspective(800px) rotateY(${x*6}deg) rotateX(${-y*6}deg)`;
+  });
+  banner.addEventListener("mouseleave", () => { banner.style.transform = ""; });
+}
+```
+
+### 25.2 Count-up on scroll into view — P7-44
+JS:
+```js
+function countUp(el, to, ms = 900) {
+  const start = performance.now();
+  const from = 0;
+  const step = (now) => {
+    const t = Math.min((now - start) / ms, 1);
+    el.textContent = Math.round(from + (to - from) * t);
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+const io = new IntersectionObserver((entries) => {
+  entries.forEach((e) => {
+    if (e.isIntersecting && !e.target.dataset.counted) {
+      e.target.dataset.counted = "1";
+      countUp(e.target, +e.target.dataset.target);
+    }
+  });
+}, { threshold: 0.3 });
+document.querySelectorAll("[data-countup]").forEach((el) => io.observe(el));
+```
+HTML: `<span data-countup data-target="14">0</span>`
+
+### 25.3 Momentum / hot-hand indicator — P7-45
+CSS:
+```css
+.momentum { display: inline-flex; align-items: center; gap: 4px; font-size: 0.7rem; font-weight: 700; padding: 2px 8px; border-radius: 999px; }
+.momentum.hot { background: rgba(251,191,36,0.15); color: #fbbf24; }
+.momentum.cold { background: rgba(96,165,250,0.15); color: #60a5fa; }
+```
+JS:
+```js
+function momentumBadge(streak) {
+  if (streak >= 3) return `<span class="momentum hot">🔥 Hot (${streak})</span>`;
+  if (streak <= -3) return `<span class="momentum cold">❄️ Cold (${Math.abs(streak)})</span>`;
+  return "";
+}
+```
+
+### 25.4 Loading progress bar (100-season) — P7-48
+HTML:
+```html
+<div class="sim-progress"><div class="sim-fill" id="simFill"></div></div>
+<div class="sim-label" id="simLabel">Simulating season 0 of 100</div>
+```
+CSS:
+```css
+.sim-progress { height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
+.sim-fill { height: 100%; background: linear-gradient(90deg, var(--team-primary,#3b82f6), var(--gold,#fbbf24)); border-radius: 4px; transition: width 200ms ease; width: 0%; }
+.sim-label { font-size: 0.8rem; color: var(--text-secondary,#9aa0b8); margin-top: 6px; }
+@media (prefers-reduced-motion: reduce) { .sim-fill { transition: none; } }
+```
+JS:
+```js
+function setSimProgress(i, total) {
+  document.getElementById("simFill").style.width = (i / total * 100) + "%";
+  document.getElementById("simLabel").textContent = `Simulating season ${i} of ${total}`;
+}
+```
+
+### 25.5 View Transitions API tab swaps — P7-49
+JS:
+```js
+function switchTab(name) {
+  const doSwap = () => { /* render tab content */ };
+  if (document.startViewTransition) document.startViewTransition(doSwap);
+  else doSwap();
+}
+```
+CSS:
+```css
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: 200ms; }
+```
+
+### 25.6 Weather tint — P7-50
+CSS:
+```css
+.weather-rain { background: linear-gradient(180deg, rgba(96,165,250,0.12), transparent); }
+.weather-snow { background: linear-gradient(180deg, rgba(255,255,255,0.10), transparent); }
+.weather-sun { background: linear-gradient(180deg, rgba(251,191,36,0.12), transparent); }
+```
+
+### 25.7 Stadium gradient per team — P7-51
+CSS:
+```css
+.stadium-header { background: linear-gradient(135deg, var(--team-primary,#3b82f6), var(--team-secondary,#9aa0b8)); position: relative; overflow: hidden; }
+.stadium-header::after { content: ""; position: absolute; inset: 0; background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 60'><path d='M0 60 L20 40 L40 50 L60 35 L80 45 L100 30 L120 42 L140 38 L160 48 L180 36 L200 60 Z' fill='rgba(255,255,255,0.06)'/></svg>") bottom/cover no-repeat; pointer-events: none; }
+```
+
+### 25.8 Guided tour overlay — P7-52
+JS:
+```js
+const TOUR_STEPS = [
+  { sel: "#draftBoard", text: "This is your draft board — pick players to fill your roster." },
+  { sel: "#weightsTable", text: "Adjust weights to value positions your way." },
+  { sel: "#playSeasonBtn", text: "Play the season once your roster is set." },
+  { sel: "#seasonReview", text: "Review results, awards, and the playoff bracket." },
+];
+function startTour() {
+  if (localStorage.getItem("tourDone")) return;
+  let i = 0;
+  const overlay = document.getElementById("tourOverlay");
+  function show() {
+    if (i >= TOUR_STEPS.length) { overlay.remove(); localStorage.setItem("tourDone", "1"); return; }
+    const step = TOUR_STEPS[i];
+    const el = document.querySelector(step.sel);
+    overlay.querySelector(".tour-text").textContent = step.text;
+    // position spotlight...
+    i++;
+  }
+  show();
+}
+```
+CSS:
+```css
+.tour-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 1000; display: flex; align-items: center; justify-content: center; }
+.tour-card { background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 12px; padding: 20px; max-width: 320px; text-align: center; }
+```
+
+### 25.9 Density toggle — P7-53
+JS:
+```js
+function setDensity(mode) {
+  document.body.classList.toggle("compact", mode === "compact");
+  localStorage.setItem("density", mode);
+}
+```
+CSS:
+```css
+body.compact { font-size: 0.9em; }
+body.compact .card, body.compact .panel { padding: 8px 10px; }
+body.compact .stat-card { padding: 6px 8px; }
+```
+
+### 25.10 Colorblind-friendly palette — P7-54
+JS:
+```js
+function setColorblind(on) {
+  document.body.classList.toggle("cb", on);
+  localStorage.setItem("cb", on ? "1" : "0");
+}
+```
+CSS:
+```css
+body.cb { --good: #0072B2; --bad: #E69F00; --warn: #56B4E9; }
+```
+
+### 25.11 High-contrast mode — P7-55
+CSS:
+```css
+body.hc { --border: #fff; --sub: #fff; --muted: #ccc; --panel: #000; --panel2: #111; }
+body.hc .card, body.hc .panel { border-width: 2px; }
+```
+JS:
+```js
+function setHC(on) { document.body.classList.toggle("hc", on); localStorage.setItem("hc", on ? "1" : "0"); }
+```
+
+### 25.12 Konami code easter egg — P7-56
+JS:
+```js
+const KONAMI = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+let ki = 0;
+document.addEventListener("keydown", (e) => {
+  if (e.key === KONAMI[ki]) { ki++; if (ki === KONAMI.length) { document.body.classList.toggle("retro"); ki = 0; localStorage.setItem("retro", document.body.classList.contains("retro") ? "1" : "0"); } }
+  else ki = 0;
+});
+if (localStorage.getItem("retro") === "1") document.body.classList.add("retro");
+```
+CSS:
+```css
+body.retro { font-family: "Courier New", monospace; }
+body.retro .card, body.retro .panel { border: 3px solid var(--team-primary,#3b82f6); border-radius: 0; }
+```
+
+### 25.13 Highlight reel carousel — P7-57
+JS:
+```js
+let hrIdx = 0;
+function hrNext() {
+  const items = document.querySelectorAll(".hr-item");
+  items.forEach((el, i) => el.classList.toggle("active", i === hrIdx));
+  hrIdx = (hrIdx + 1) % items.length;
+}
+setInterval(hrNext, 3500);
+```
+CSS:
+```css
+.hr-item { display: none; }
+.hr-item.active { display: block; animation: fadeIn 300ms ease; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+```
+
+### 25.14 "Your pick vs CPU best" — P7-58
+JS:
+```js
+function showCpuBest(cpuPick) {
+  const el = document.getElementById("cpuBest");
+  if (el && cpuPick) el.textContent = `CPU would have taken ${cpuPick.name} (${cpuPick.ovr} OVR)`;
+}
+```
+
+### 25.15 Achievement badge system — P7-60
+JS:
+```js
+const ACHIEVEMENTS = [
+  { id: "firstwin", label: "First Win", test: (s) => s.wins >= 1 },
+  { id: "tenwin", label: "10-Win Season", test: (s) => s.wins >= 10 },
+  { id: "playoff", label: "Playoff Clinch", test: (s) => s.playoffs },
+  { id: "sb", label: "Super Bowl", test: (s) => s.champion },
+  { id: "undefeated", label: "Undefeated", test: (s) => s.wins === 17 },
+];
+function unlockAchievements(state) {
+  const unlocked = JSON.parse(localStorage.getItem("ach") || "[]");
+  ACHIEVEMENTS.forEach((a) => {
+    if (!unlocked.includes(a.id) && a.test(state)) {
+      unlocked.push(a.id);
+      showToast("🏆 Achievement unlocked: " + a.label);
+    }
+  });
+  localStorage.setItem("ach", JSON.stringify(unlocked));
+}
+```
+

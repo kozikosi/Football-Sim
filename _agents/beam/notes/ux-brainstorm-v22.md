@@ -345,6 +345,135 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - HOW TO CHECK: print preview clean; no clipped content.
 
 
+## 15. Creative interactive & beauty ideas (V22 work-order candidates, batch 5)
+
+**P7-43 · Parallax tilt on champion banner**
+- WHERE: champion banner (P0-19).
+- WHAT: Subtle 3D tilt following mouse position (max 6°) on desktop; disabled on touch/reduced motion.
+- WHY: Premium feel; zero cost on mobile.
+- SAFE ALONE?: YES — CSS transform + mousemove, feature-gated.
+- HOW TO CHECK: tilt responds to mouse; disabled under reduced motion; no jank.
+
+**P7-44 · Count-up on scroll into view**
+- WHERE: all numeric stats (wins, yards, ratings).
+- WHAT: Numbers count from 0 to final when scrolled into view (IntersectionObserver), once per element.
+- WHY: Draws attention to key stats without being intrusive.
+- SAFE ALONE?: YES — JS + IO, no layout change.
+- HOW TO CHECK: counts trigger on scroll; only once; reduced motion shows final value instantly.
+
+**P7-45 · Momentum / "hot hand" indicator**
+- WHERE: season review, team comparison.
+- WHAT: Small flame icon + "Hot" badge on teams on a 3+ win streak; snowflake for 3+ loss skid.
+- WHY: Surfaces narrative without sentences (R-5 style).
+- SAFE ALONE?: YES — display-only, derived from results.
+- HOW TO CHECK: badge appears at streak ≥3; clears below; no console errors.
+
+**P7-46 · Draft clock countdown (tension)**
+- WHERE: draft board "on the clock" row.
+- WHAT: 30-second countdown ring around the pick number; pulses red under 10s; auto-pick on timeout (CPU logic) with a toast.
+- WHY: Adds drama; mirrors real draft tension.
+- SAFE ALONE?: NO — touches pick timing; cohort with P0-12.
+- HOW TO CHECK: countdown accurate; auto-pick fires; reduced motion disables pulse.
+
+**P7-47 · Position scarcity heatmap**
+- WHERE: draft board, position cards.
+- WHAT: Colour intensity on position cards by remaining talent (deep colour = scarce, pale = abundant).
+- WHY: Visualises value of waiting at a position.
+- SAFE ALONE?: YES — display-only, derived from board state.
+- HOW TO CHECK: colour shifts as picks are made; no console errors.
+
+**P7-48 · Loading progress bar for 100-season sim**
+- WHERE: 100-season review.
+- WHAT: Determinate progress bar with percentage + "Simulating season X of 100"; animates smoothly.
+- WHY: 100-season runs take time; progress reduces perceived wait.
+- SAFE ALONE?: YES — UI only, progress from existing loop.
+- HOW TO CHECK: bar reaches 100%; no jank; reduced motion disables animation.
+
+**P7-49 · View Transitions API page swaps**
+- WHERE: tab switches.
+- WHAT: Use `document.startViewTransition` where supported for smooth cross-fade between tabs; fallback to instant.
+- WHY: Native, performant, no library.
+- SAFE ALONE?: YES — feature-detected.
+- HOW TO CHECK: smooth transition on supported browsers; instant fallback elsewhere.
+
+**P7-50 · Weather tint on game preview**
+- WHERE: game preview.
+- WHAT: Subtle background tint by weather (rain = cool blue, snow = white, sun = warm gold) — cosmetic only, no gameplay effect.
+- WHY: Atmosphere; matches "game preview more graphical" (P0-18).
+- SAFE ALONE?: YES — CSS class on container.
+- HOW TO CHECK: tint applies per weather; no contrast regression.
+
+**P7-51 · Stadium gradient per team**
+- WHERE: game preview header.
+- WHAT: Header background gradient derived from the user's team colours (already have them) plus a subtle stadium silhouette SVG (inline, no CDN).
+- WHY: Home-field feel.
+- SAFE ALONE?: YES — CSS/SVG, no logic.
+- HOW TO CHECK: gradient matches team; SVG inline; no external requests.
+
+**P7-52 · Guided tour / first-run overlay**
+- WHERE: first load.
+- WHAT: 4-step spotlight overlay highlighting draft board → weights → play season → review; dismissible, re-showable from settings.
+- WHY: Onboarding for new users (P0-12/P1-20).
+- SAFE ALONE?: YES — overlay + localStorage flag.
+- HOW TO CHECK: shows on first run only; re-showable; no console errors.
+
+**P7-53 · Density toggle (compact/comfortable)**
+- WHERE: settings.
+- WHAT: Toggle reducing padding/font by ~15% for power users; persisted.
+- WHY: Lets users fit more on screen.
+- SAFE ALONE?: YES — CSS class on body.
+- HOW TO CHECK: toggle changes density; persists; 390px still usable.
+
+**P7-54 · Colorblind-friendly palette option**
+- WHERE: settings.
+- WHAT: Alternate palette (blue/orange instead of red/green) for success/error states; persisted.
+- WHY: Accessibility.
+- SAFE ALONE?: YES — CSS var swap.
+- HOW TO CHECK: toggle swaps colours; persists; contrast maintained.
+
+**P7-55 · High-contrast mode**
+- WHERE: settings.
+- WHAT: Increases borders/text contrast, disables subtle backgrounds.
+- WHY: Accessibility for low vision.
+- SAFE ALONE?: YES — CSS class on body.
+- HOW TO CHECK: toggle works; no layout break; persists.
+
+**P7-56 · Konami-code easter egg**
+- WHERE: global.
+- WHAT: Konami code (↑↑↓↓←→←→BA) toggles a retro 8-bit theme (pixel font, chunky borders) for fun; persisted.
+- WHY: Delight; no gameplay effect.
+- SAFE ALONE?: YES — CSS class + key sequence.
+- HOW TO CHECK: sequence triggers theme; persists; reversible.
+
+**P7-57 · Highlight reel carousel**
+- WHERE: game recap.
+- WHAT: Auto-rotating carousel of the top 3 plays (TD/turnover/big play) with play description + mini graphic; pauses on hover.
+- WHY: Recap "clutch narration" exception stays as text, but graphics carry the rest (P0-18).
+- SAFE ALONE?: YES — display-only.
+- HOW TO CHECK: carousel rotates/pauses; no console errors.
+
+**P7-58 · "Your pick vs CPU best" after each pick**
+- WHERE: draft board, post-pick.
+- WHAT: Small line: "CPU would have taken [Player] ([Ovr])" — derived from existing CPU pick logic output, display-only.
+- WHY: Teaches the user; adds transparency.
+- SAFE ALONE?: YES — display-only (CPU pick already computed).
+- HOW TO CHECK: line shows after each pick; no new math.
+
+**P7-59 · Redo button alongside undo**
+- WHERE: draft board.
+- WHAT: "Redo" re-applies last undone pick if no new pick made since; disabled otherwise.
+- WHY: Forgiveness for accidental undos.
+- SAFE ALONE?: NO — needs undo-stack tracking; cohort with P0-12.
+- HOW TO CHECK: redo works once; disables after new pick.
+
+**P7-60 · Achievement badge system**
+- WHERE: season review.
+- WHAT: Small badges for milestones (first win, 10-win season, playoff clinch, Super Bowl, undefeated, etc.) with a subtle unlock animation.
+- WHY: Long-term engagement; visual reward.
+- SAFE ALONE?: YES — derived from existing season results.
+- HOW TO CHECK: badges unlock at correct milestones; animation respects reduced motion.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
