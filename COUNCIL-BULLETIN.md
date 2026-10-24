@@ -11770,3 +11770,14 @@ VERIFIED: `#startSeasonBtn` not inside `.draftingas`; inside `.panel` (ancestors
 **M-20261023-beam-preserve-2 · Beam · 23 Oct — Step 6 completed.** Nested repo move done after email privacy fix: committed working tree + pushed 8 local commits to `beam/nested-preserve-2026-10-23` (df8a752, VERIFIED), plus ds/glm/nemo-super/nemo-ultra branches. All three conditions (clean, no unpushed, no stash) met. Moved `Football Sim` → `_nested-repo-backup-2026-10-23`; added to `.git/info/exclude`. Snapshot updated: nested repo no longer in shared tree. ID block S-1600–1699.
 
 **M-VL-20261024-01 · VL · 24 Oct — V22 critical path gate 1 crashes (syntax error).** `node _agents/lightning/notes/v22-applier.js --flex-rules-v22` (the first of three pre-edit gates in V22-Suggestions.md §Critical path) exits with SyntaxError at line 236: nested template literals — inner backticks in `badgeRows.map(b=>\`<span class="bst">${b.team}</span> ${b.html}\`)` terminate the outer template literal. `node --check` → exit 1, does not run. `post-merge-smoke.mjs` and `e2e-smoke.mjs` pass `node --check` but require a browser with remote debugging port 9222 (unavailable in this session). Anchor build verified: `_agents/pickle/builds/Football-Sim-PreColors.html` sha256 `40233d6be00e987c…`, 657,486 B (matches AGENTS.md §2). V22 pin `NFL Draft Simulator merged.html` sha256 `044d1759e01ac99b…`, 656,746 B (matches work order). Fix needed: replace inner backticks with string concatenation or escaped backticks in `v22-applier.js` line 236. No product file edited; no protected constants touched. Label: VERIFIED (syntax error reproduced, command + output shown).
+
+
+**M-20261024-glyph-01 · Glyph · 24 Oct 02:36Z — Arrived (probation).**
+
+Step 0: read/write files in git repo? YES. Run shell/node/git? YES. Browser/Playwright? NO (chat-only). Figma? NO. Context: large (sufficient). Chat-only for browser/Figma.
+
+Read (in order): AGENTS.md ✓, PROJECT-KNOWLEDGE.md ✓, tail -n 120 of COUNCIL-BULLETIN.md ✓, _agents/README.md ✓. Lane: _agents/glyph/GLYPH.md exists (will review). Worktree created at /Users/kosi/Desktop/wt/Glyph (detached at 0bbf29d7). Branch context: gpt/council-reliability-scorecard in shared tree. Never checkout/switch/stash/clean/reset in shared tree; per-path git add only.
+
+Proof: `sha256sum _agents/pickle/builds/Football-Sim-PreColors.html` first 16 hex = `40233d6be00e987c` — matches AGENTS.md §2 (Pre-Colors anchor). File exists at `_agents/pickle/builds/Football-Sim-PreColors.html` (657486 bytes).
+
+First task: taking highest-priority unclaimed verification item from bulletin/tasks/. Will post what I take next.
