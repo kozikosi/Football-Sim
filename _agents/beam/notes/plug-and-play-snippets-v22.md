@@ -429,3 +429,150 @@ CSS:
 .sfrow.sf90 { background: var(--gradient-sf); border-left: 3px solid var(--gold); }
 ```
 
+
+---
+
+## 21. VL graphics-round design tokens (P8 shared + screens) — plug-in
+
+Source: `_agents/vl/deliveries/design-tokens.css` (VL, 24 Oct). Merged here with Beam's improvements (unified motion tokens, OVR tiers, team palette map).
+
+CSS (append to product `<style>`; product file untouched):
+```css
+:root {
+  --motion-fast: 150ms ease;
+  --motion-normal: 250ms ease;
+  --motion-slow: 400ms ease;
+  --ease-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --panel2: #1e2433;
+  --text-secondary: #9aa0b8;
+  --border: #273044;
+  --accent: #3b82f6;
+  --accent2: #8b5cf6;
+  --gold: #fbbf24;
+  --silver: #94a3b8;
+  --bronze: #d97706;
+  --ovr-gold: #fbbf24;
+  --ovr-silver: #94a3b8;
+  --ovr-bronze: #d97706;
+}
+.ovr-tier-gold { color: var(--ovr-gold); }
+.ovr-tier-silver { color: var(--ovr-silver); }
+.ovr-tier-bronze { color: var(--ovr-bronze); }
+```
+
+Stat card (P8 shared):
+```css
+.stat-card { display: flex; align-items: center; gap: 12px; background: var(--panel,#141a26); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+.stat-card .ovr { font-size: 1.35rem; font-weight: 800; width: 44px; text-align: center; }
+.stat-card .bar { flex: 1; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; }
+.stat-card .bar-fill { height: 100%; border-radius: 4px; transition: width var(--motion-normal); }
+.stat-card .label { font-size: 0.75rem; color: var(--text-secondary,#9aa0b8); }
+```
+
+Bar row (P8 shared):
+```css
+.bar-row { display: flex; flex-direction: column; gap: 6px; }
+.bar-row .row { display: flex; align-items: center; gap: 10px; }
+.bar-row .name { width: 120px; font-size: 0.8rem; color: var(--text-secondary,#9aa0b8); }
+.bar-row .track { flex: 1; height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; }
+.bar-row .fill { height: 100%; border-radius: 5px; transition: width var(--motion-normal); }
+.bar-row .val { width: 44px; font-size: 0.8rem; font-weight: 700; text-align: right; color: var(--text,#e8ecf3); }
+```
+
+Two-column pair (P8 shared):
+```css
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.unit-card { background: var(--panel,#141a26); border: 1px solid var(--border); border-radius: 10px; padding: 12px; }
+.unit-card .meter { height: 10px; background: #1f2937; border-radius: 5px; margin-top: 6px; overflow: hidden; }
+.unit-card .meter-fill { height: 100%; border-radius: 5px; transition: width var(--motion-normal); }
+```
+
+Gold banner (P8 shared / P7-8):
+```css
+.gold-banner { position: relative; overflow: hidden; border-radius: 10px; background: linear-gradient(90deg,#78350f,#b45309,#78350f); color: #fff; padding: 12px 16px; font-weight: 700; letter-spacing: 0.04em; animation: shimmer 2.5s ease-in-out infinite; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+```
+
+Quarter bars (P8-g.3):
+```css
+.qtr-bars { display: flex; gap: 8px; }
+.qtr-bar { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.qtr-bar .track { width: 100%; height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; }
+.qtr-bar .fill { height: 100%; border-radius: 5px; transition: width var(--motion-normal); }
+.qtr-bar .label { font-size: 0.7rem; color: var(--text-secondary,#9aa0b8); }
+```
+
+Turnover icon grid (P8-g.3):
+```css
+.turnover-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(72px, 1fr)); gap: 8px; }
+.to-icon { aspect-ratio: 1; border-radius: 8px; border: 1px solid var(--border); display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 1.5rem; gap: 4px; background: var(--panel,#141a26); }
+.to-icon .glyph { font-size: 1.4rem; }
+.to-icon .tag { font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.03em; }
+```
+
+Star card (P8-g.3/g.4/g.7):
+```css
+.star-card { background: var(--panel,#141a26); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.star-card .portrait { width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 8px; border: 2px solid var(--border); object-fit: cover; background: #1f2937; }
+.star-card .name { font-weight: 700; margin-bottom: 4px; }
+.star-card .stat { font-size: 0.75rem; color: var(--text-secondary,#9aa0b8); }
+.star-card .grade { margin-top: 6px; font-size: 0.7rem; font-weight: 800; padding: 2px 8px; border-radius: 10px; }
+```
+
+Game ball showpiece (P8-g.7):
+```css
+.game-ball { display: inline-flex; align-items: center; gap: 10px; border: 3px solid var(--gold); border-radius: 12px; background: #78350f; color: #fff; padding: 10px 14px; font-weight: 800; animation: pulseGlow 2.5s ease-in-out infinite; }
+@keyframes pulseGlow { 0%,100% { box-shadow: 0 0 0 0 rgba(251,191,36,0.4); } 50% { box-shadow: 0 0 0 10px rgba(251,191,36,0.25); } }
+```
+
+Record banner (P8-g.4):
+```css
+.record-banner { display: flex; gap: 18px; align-items: baseline; background: var(--panel,#141a26); border: 1px solid var(--border); border-radius: 12px; padding: 18px 22px; }
+.record-digit { font-size: 3rem; font-weight: 900; line-height: 1; }
+.record-digit.win { color: var(--ovr-gold); }
+.record-digit.loss { color: var(--text-secondary,#9aa0b8); }
+.record-diff { font-size: 0.85rem; color: var(--text-secondary,#9aa0b8); }
+```
+
+Sparkline (P8-g.4):
+```css
+.sparkline { height: 60px; display: flex; align-items: flex-end; gap: 3px; padding: 4px 0; }
+.spark-bar { flex: 1; min-height: 2px; border-radius: 2px 2px 0 0; transition: height var(--motion-normal); }
+.spark-bar.pos { background: #22c55e; }
+.spark-bar.neg { background: #ef4444; }
+```
+
+Awards carousel card (P8-g.4/g.6/g.7):
+```css
+.award-card { background: var(--panel,#141a26); border: 1px solid var(--border); border-radius: 12px; padding: 14px; text-align: center; }
+.award-badge { display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; margin: 0 auto 8px; font-weight: 800; font-size: 1.1rem; color: #fff; }
+.award-badge.gold { background: var(--ovr-gold); color: #0b0e14; }
+.award-badge.silver { background: var(--ovr-silver); }
+.award-badge.bronze { background: var(--ovr-bronze); }
+```
+
+Team tags (P8-g.1):
+```css
+.team-tag { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: 20px; font-size: 0.8rem; font-weight: 700; border: 1px solid var(--border); background: var(--panel,#141a26); color: var(--text,#e8ecf3); }
+.team-tag .dot { width: 10px; height: 10px; border-radius: 50%; }
+```
+
+Matchup advantage meter (P8-g.1):
+```css
+.matchup-meter { height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; margin-top: 6px; position: relative; }
+.matchup-meter .fill { height: 100%; border-radius: 5px; transition: width var(--motion-normal); }
+```
+
+Reconciliation notes (Beam):
+- Motion tokens: VL uses `--motion-fast/normal/slow`; OR uses `--duration-fast/normal/slow` + `--ease-*`; Beam used `--transition-fast/normal`. Recommend unifying on `--duration-*` + `--ease-*` (OR's richer set) and aliasing `--motion-*` → `--duration-*` for VL compat. Avoid three parallel token families.
+- Panel colour: VL `#1e2433` matches P7-4 request; adopt as `--panel2` (OR also uses `#1e2433`). Single source of truth.
+- Team palette: VL uses `.team-palette.<abbr>` classes; Beam uses `setTeamColors()` JS. Recommend JS setter (covers all 32 teams without 32 CSS rules) + keep VL's palette map as the data source for `TEAM_COLORS`.
+- OR's A-1..A-11 patches are the granular utility layer (shadows, animation tokens, spacing, text, layout, badges, progress, separators, forms, tooltips, focus). Recommend adopting OR's patches as the base utility layer, with Beam's snippets + VL's tokens as the higher-level components on top. No conflicts — different CSS regions.
+- OVR tier colours (gold/silver/bronze) are new and valuable for P8 stat cards / stars; adopt as-is.
+
+---
+
+## 22. OR patch A-1..A-11 summary (review, advisory)
+
+OR's `_agents/or/V22-Aesthetic-Patches-20261024.md` provides 11 pluggable CSS patches (shadow system, animation tokens, spacing utilities, text utilities, layout utilities, badge system, progress/loading, separators, form fields, tooltips, focus-visible). All SAFE ALONE, CSS-only, no JS, no protected constants. Recommendation: adopt as the base utility layer; Beam's snippets and VL's tokens layer on top. Patch A-1 (shadows) overlaps Beam snippet #? (none) — new. Patch A-2 (animation tokens) overlaps VL/OR motion tokens — reconcile per note above. Patches A-3/A-4/A-5 (spacing/text/layout utilities) are new and high-value for the beauty pass. Patch A-11 (focus-visible) supersedes Beam's P7-17 focus rings in CSS terms.
+
