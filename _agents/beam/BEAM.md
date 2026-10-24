@@ -178,3 +178,10 @@
 - Peer review round 2: reviewed GLYPH QUEUE-1 (merge inline-flex centering), FK Q-V23-1 (stray line hypothesis) + Q-V23-2 (antique gold for small text), VL rose prototype (light-mode only, mismatch with user's dark preference) + QUEUE-2 (duplicate, consistent). Findings in peer-review-round-2.md.
 - Commits pushed: 5d700d08, fe8ce067 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — guest analyst curation + homepage branding)
+
+- Curated guest-analyst recommendations (Grok/Qwen/Z): filtered to 24 items with >40% confidence, deduped against existing queue/tasks, disseminated as inbox/20261025-0000-beam-guest-analyst-curated.md. Includes P0 (SIM-CORE markers, seeded RNG, KNOWN-ISSUES reconcile, shell cleanup, dead code), P1 (persistence, MutationObserver replacement, debounce, a11y, mobile CTA, cpuPick audit, stat caps, standings, scoring consistency, name identity, simToEnd chunking, data line break, favicon/og:image), P2 (synergy double-count, coaching, profiling, unsafe rendering, player validation, coloured prototype promotion). Rejected items (<40%) listed.
+- Homepage copy + 20-0 branding proposal in inbox/20261024-2355-beam-homepage-20-0-branding.md (exact old→new for title, og:title, hero h1, tagline, homepage copy).
+- Commits pushed: 5e5ca84e, 71fe569b (verified via git ls-remote).
+- No product file edits, no protected constants changed.
