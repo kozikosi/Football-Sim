@@ -105,6 +105,72 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - SAFE ALONE?: YES — toast element + setTimeout, no draft logic change.
 - HOW TO CHECK: undo a pick → toast shows correct player name and auto-dismisses; no console errors.
 
+## 12. Further beauty & interaction proposals (V22 work-order candidates, batch 2)
+
+**P7-10 · Game-preview matchup meter**
+- WHERE: game preview screen, matchup overview line (P0-18, l.~3800 region; re-anchor before applying).
+- WHAT: Replace the "X vs Y" text with a horizontal meter: user's unit rating on the left, opponent's on the right, center mark at league average; fill colour follows team primary.
+- WHY: Visualises the +2.3 margin instantly; removes "+x points a game" unit statements per R-5 style.
+- SAFE ALONE?: YES — display-only, computed from existing ratings.
+- HOW TO CHECK: meter renders for both units, no overflow at 390 px, `node --check` passes.
+
+**P7-11 · Turnover timeline strip**
+- WHERE: game recap, scoring log (P0-18).
+- WHAT: A thin horizontal strip under the quarter scores: one tick per turnover, colour-coded by type (INT = red dot, fumble = orange, downs = grey, safety = yellow), hover shows quarter + player.
+- WHY: Every turnover named (R-5 style) but in a glanceable form; keeps the recap compact.
+- SAFE ALONE?: YES — display-only.
+- HOW TO CHECK: strip shows all turnovers in chronological order; tooltip correct; no console errors.
+
+**P7-12 · Star-praise card**
+- WHERE: game recap "Stars of the game" (P0-18, R-6 thresholds).
+- WHAT: Replace the text list with up to 3 star cards: portrait placeholder, name, key stat, impact grade colour (gold ≥85, silver 70–84, bronze <70). Pulsing star icon on the top card.
+- WHY: Per Owner ruling, only star praise needs sentences; the card is the graphic, the praise stays one short line.
+- SAFE ALONE?: YES — display-only.
+- HOW TO CHECK: cards render for 0–3 stars, no broken refs, 390 px no horizontal scroll.
+
+**P7-13 · Playoff bracket polish**
+- WHERE: season review / playoff preview (P0-19).
+- WHAT: March-Madness-style bracket: seeds as chips, team colours on each team, byes shown as "BYE" chips, tap a matchup → preview card. Horizontal scroll contained to the bracket, not the page.
+- WHY: Owner asked for a bracket; team colours make it legible at a glance.
+- SAFE ALONE?: NO — affects layout across screens; implement as a cohort with P7-14/P7-15.
+- HOW TO CHECK: 390 px no page-level horizontal scroll; tap opens preview; `node --check` passes.
+
+**P7-14 · Awards carousel**
+- WHERE: season review awards block (P0-19).
+- WHAT: Horizontal card carousel: MVP, DPOY, ROY, COY. Gold border on the user's players; opponent's primary for others. Auto-rotates, pauses on hover/tap.
+- WHY: Replaces the text-heavy awards list; matches graphics-round direction (P8-g.4).
+- SAFE ALONE?: NO — cohort with P7-13.
+- HOW TO CHECK: carousel advances/pauses correctly; user's players gold-bordered; no console errors.
+
+**P7-15 · Win/loss sparkline**
+- WHERE: season review header (P0-19).
+- WHAT: Compact 17-game sparkline of point differential, green for positive, red for negative, hover shows week + score.
+- WHY: Replaces the "14-3 · 397 PF · 296 PA" line with a visual that shows trajectory.
+- SAFE ALONE?: YES — display-only, computed from existing season data.
+- HOW TO CHECK: sparkline renders 17 points, hover tooltip correct, 390 px fits.
+
+**P7-16 · Empty-state illustrations (text-only)**
+- WHERE: player browser empty filter result, no draft in progress, no saved weights.
+- WHAT: Short, plain-language empty states with one primary action button (no images, no CDN): "No players match these filters — clear filters"; "No draft in progress — Start New Draft"; "No saved weights — Save My Weights".
+- WHY: Avoids blank flashes; keeps the one-file/no-CDN rule.
+- SAFE ALONE?: YES.
+- HOW TO CHECK: each empty state renders and its button works; `node --check` passes.
+
+**P7-17 · Focus rings & keyboard nav**
+- WHERE: all interactive elements (tabs, buttons, inputs, sort headers).
+- WHAT: Visible focus rings using team primary; Tab/Enter/Space operate every control; Esc closes drawers/modals.
+- WHY: Accessibility; no CDN; improves keyboard-driven play.
+- SAFE ALONE?: YES — CSS + small JS.
+- HOW TO CHECK: tab through a full draft without mouse; no focus traps; `node --check` passes.
+
+**P7-18 · Reduced-motion respect**
+- WHERE: global CSS.
+- WHAT: Wrap all non-essential animations (P7-2, P7-12, P7-14, confetti) in `@media (prefers-reduced-motion: reduce)` to disable or shorten to 0ms.
+- WHY: Accessibility; respects OS preference (pairs with P1-22 light/dark).
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: enable reduced motion in OS → animations disabled; no console errors.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
