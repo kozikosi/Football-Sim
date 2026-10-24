@@ -10,7 +10,7 @@
 
 ## Current Work and State
 - **Complete:** Lane files migrated to `../wt/or/_agents/or/notes/` (4 files: F1-F6-reconciliation, V21-Suggestions, consolidated-review-multisport-pr1, decisions-ready-for-owner). Saved shared-doc delta patch for V22-Suggestions.md (MiniMax's diff, commit 27f88cd0). COUNCIL-BULLETIN.md and SUBMISSIONS.md edits already committed by upstream sessions (no separate patch needed).
-- **In Progress:** None
+- **In Progress:** V22 aesthetic enhancement proposals brainstorm (Phase 1). Created `_agents/or/V22-Aesthetic-proposals-20261024.md`. User directed: "pursue all of them."
 - **Blocked:** T6/T7 verification (model usage limit); Figma MCP (session restart + sign-in); `session.send` (use `board_post` instead).
 
 ## Next Session Needs to Know
@@ -23,6 +23,7 @@
 - Q-OR-1: V22-Suggestions.md changes (61-line diff) — what does the Architect want from OR's delta?
 - Q-OR-2: Team-colour theming (KC border red/white/yellow; Vikings purple panels/text/stars) — implementation spec needed.
 - Q-OR-3: 3-4 base toggle, stars rule, remove "Value here" — remaining Owner directives not yet in V22-Suggestions.md.
+- Q-OR-4 (NEW): V22 aesthetic proposal set — which phases to implement first, which should be deferred?
 
 ## Live Files
 - Lane: `_agents/or/OR.md`
