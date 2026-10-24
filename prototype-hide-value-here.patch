@@ -1,0 +1,63 @@
+# Prototype: Hide "Value here" from Visual Draft Board
+# Keeps mathematical calculations intact (Priority still uses r.v internally)
+
+## Changes to merged.html
+
+### 1. Remove "Value here" column header from draft board table
+--- a/merged.html
++++ b/merged.html
+@@ -426,7 +426,6 @@
+      <thead><tr><th data-sort="name" class="sortable">Player</th><th data-sort="pos" class="sortable">Pos</th><th data-sort="team" class="sortable">Team</th><th data-sort="ovr" class="sortable">OVR</th><th data-sort="wins" class="sortable" title="Static: extra wins per season this player adds over a 70-rated player at his position. Identical for every team and every moment of the draft.">Wins</th><th data-sort="value" class="sortable" title="The same math at the exact spot he would fill on YOUR roster, flex penalty included.">Value here</th><th data-sort="priority" class="sortable" title="Value here minus what you would probably still find at that position at your next pick. High = waiting costs you.">Priority</th><th data-sort="gone" class="sortable" title="Chance a player of this type is gone by your next pick.">Gone</th><th>Fills</th><th></th></tr></thead>
++++
+      <thead><tr><th data-sort="name" class="sortable">Player</th><th data-sort="pos" class="sortable">Pos</th><th data-sort="team" class="sortable">Team</th><th data-sort="ovr" class="sortable">OVR</th><th data-sort="wins" class="sortable" title="Static: extra wins per season this player adds over a 70-rated player at his position. Identical for every team and every moment of the draft.">Wins</th><th data-sort="priority" class="sortable" title="Value here minus what you would probably still find at that position at your next pick. High = waiting costs you.">Priority</th><th data-sort="gone" class="sortable" title="Chance a player of this type is gone by your next pick.">Gone</th><th>Fills</th><th></th></tr></thead>
+
+### 2. Remove "Value here" data cells from draft board rows
+--- a/merged.html
++++ b/merged.html
+@@ -1766,7 +1766,7 @@
+    h += `<tr><td class="dc-name">${topTag(r)}${r.p[0]}</td><td data-label="Pos">${POS_DISPLAY[r.p[1]]||r.p[1]}</td><td data-label="Team">${TEAM_ABBR[r.p[2]]||r.p[2]}</td><td class="score dc-ovr" data-label="OVR">${r.p[3]}</td><td class="score dc-wins" data-label="Wins">${wavg(r.w)}</td><td class="score dc-val" data-label="Value here">${wavg(r.v)}</td><td class="score dc-pri" data-label="Priority">${r.pri!=null&&sim?fmtWar(r.pri):'—'}</td><td class="score dc-gone" data-label="Gone">${pctTxt(r.gone)}</td><td class="narr dc-fills" data-label="Fills">${fills}</td><td class="dc-btn">${btn(r)}</td></tr>`;
++++
+    h += `<tr><td class="dc-name">${topTag(r)}${r.p[0]}</td><td data-label="Pos">${POS_DISPLAY[r.p[1]]||r.p[1]}</td><td data-label="Team">${TEAM_ABBR[r.p[2]]||r.p[2]}</td><td class="score dc-ovr" data-label="OVR">${r.p[3]}</td><td class="score dc-wins" data-label="Wins">${wavg(r.w)}</td><td class="score dc-pri" data-label="Priority">${r.pri!=null&&sim?fmtWar(r.pri):'—'}</td><td class="score dc-gone" data-label="Gone">${pctTxt(r.gone)}</td><td class="narr dc-fills" data-label="Fills">${fills}</td><td class="dc-btn">${btn(r)}</td></tr>`;
+
+### 3. Update "No players match" colspan from 10 to 9
+--- a/merged.html
++++ b/merged.html
+@@ -1772,7 +1772,7 @@
+    document.getElementById('draftBody2').innerHTML = h || `<tr><td colspan="10" class="narr">No players match.</td></tr>`;
++++
+    document.getElementById('draftBody2').innerHTML = h || `<tr><td colspan="9" class="narr">No players match.</td></tr>`;
+
+### 4. (Optional) Update Guide text references - keep for documentation but clarify
+# The guide text at lines 4991-4992 and 5056 can remain for documentation purposes
+# since they explain the concept, but the visual column is removed.
+
+## What This Preserves (Mathematical Integrity)
+- `r.v` (Value) is still computed for every player
+- `r.pri` (Priority) = `r.v` - next_pick_value is still calculated correctly
+- `wavg(r.v)` is still computed internally for Priority calculation
+- Only the VISUAL column is removed from the draft board table
+
+## What Changes Visually
+- Draft board table: 9 columns instead of 10 (Player, Pos, Team, OVR, Wins, Priority, Gone, Fills, Action)
+- "Value here" column header removed
+- "Value here" data cells removed from each row
+- Priority column remains and still works correctly (uses r.v internally)
+
+## Verification Steps
+1. Load the modified HTML
+2. Start a draft
+3. Verify draft board has 9 columns (no "Value here" column)
+4. Verify Priority values still calculate correctly
+5. Verify "Sim to End" completes successfully
+6. Verify 100-season simulation works
+
+## Alternative: CSS-only Hide (If Preferred)
+If you prefer to keep the DOM structure but hide visually:
+```css
+/* Add to CSS */
+#draftTable2 th[data-sort="value"],
+#draftTable2 td.dc-val {
+    display: none;
+}
+```
+This keeps DOM structure intact for any JS that might reference column indices.

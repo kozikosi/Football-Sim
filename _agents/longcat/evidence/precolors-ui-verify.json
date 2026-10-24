@@ -1,0 +1,70 @@
+{
+  "build": "_agents/pickle/builds/Football-Sim-PreColors.html",
+  "anchor": "Pre-Colors 40233d6b (Claude's sync prompt)",
+  "checks": {
+    "draft": {
+      "started": true,
+      "instant": true,
+      "simToEnd": true,
+      "completed": true,
+      "picks": 832
+    },
+    "board": {
+      "found": true,
+      "container": "draftBody2",
+      "rowCount": 1148,
+      "headers": [
+        "Player",
+        "Pos",
+        "Team",
+        "OVR",
+        "Wins",
+        "Value here",
+        "Priority",
+        "Gone",
+        "Fills"
+      ],
+      "valueHereHeaderIndex": 5,
+      "valueHereFirstRowCell": "+3.69",
+      "emptyStatePresent": false,
+      "sampleRowCells": [
+        "TOP Josh Allen",
+        "QB",
+        "BUF",
+        "99",
+        "+3.69",
+        "+3.69",
+        "+0.76",
+        "100%",
+        "QB",
+        "Draft"
+      ]
+    },
+    "players": {
+      "tabClicked": true,
+      "PLAYERS_length": 1200,
+      "renderedRows": 1200,
+      "bodyTextSample": "Ja'Marr ChaseXF WR Cincinnati Bengals 99 96 73 92 96 92 99 Jaxon Smith-NjigbaXF WR Seattle Seahawks "
+    },
+    "rankings": {
+      "tabClicked": true,
+      "beforeSample": "1\t\nLos Angeles Rams\nAnchored by Matthew Stafford (QB, 99 OVR); TE1 is the soft spot at 74.\n\t86.13\t\n2\t\nBaltimore Ravens\nAnchored by Lamar Jackson (QB, 95 OVR); WILL is the soft spot at 78.\n\t84.25\t\n3\t\nPhiladelphia Eagles\nAnchored by Lane Johnson (OT1, 97 OVR); FS is the soft spot at 74.\n\t84.22\t\n4\t\nDenver Broncos\nAnchored by Pat Surtain II (CB1, 97 OVR); WILL is the soft spot at 74.\n\t83.68\t\n5\t\nNew En",
+      "qbInputPresent": true,
+      "originalQbWeight": 700,
+      "testQbWeight": 100,
+      "latency": 11,
+      "afterSample": "1\t\nLos Angeles Rams\nAnchored by Matthew Stafford (QB, 99 OVR); TE1 is the soft spot at 74.\n\t84.78\t\n2\t\nPhiladelphia Eagles\nAnchored by Lane Johnson (OT1, 97 OVR); FS is the soft spot at 74.\n\t84.45\t\n3\t\nDenver Broncos\nAnchored by Pat Surtain II (CB1, 97 OVR); WILL is the soft spot at 74.\n\t83.96\t\n4\t\nBaltimore Ravens\nAnchored by Lamar Jackson (QB, 95 OVR); WILL is the soft spot at 78.\n\t83.13\t\n5\t\nHousto",
+      "weightApplied": 100
+    },
+    "mobile390": {
+      "innerWidth": 390,
+      "documentScrollWidth": 390,
+      "scrollWidthEqualsViewport": true,
+      "pageOverflowPx": 0,
+      "offenderCount": 0,
+      "offenders": []
+    }
+  },
+  "pageErrors": [],
+  "verdict": "PASS"
+}

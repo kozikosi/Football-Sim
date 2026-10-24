@@ -1,0 +1,68 @@
+{
+	"worktrees": {
+		"wt-1792494456459-3": {
+			"branch": "collective",
+			"path": "/Users/kosi/Desktop/Football Sim/.kilo/worktrees/collective",
+			"parentBranch": "main",
+			"createdAt": "2026-10-20T11:07:36.459Z",
+			"label": "Collective",
+			"branchOwned": true
+		},
+		"wt-1792495198173-5": {
+			"branch": "hallowed-shell",
+			"path": "/Users/kosi/Desktop/Football Sim/.kilo/worktrees/hallowed-shell",
+			"parentBranch": "main",
+			"createdAt": "2026-10-20T11:19:58.173Z",
+			"branchOwned": true,
+			"autoNameSessionId": "ses_ea6f5de9effepAFqRxB4XLZnrr",
+			"autoNamePromptCount": 0,
+			"label": "New session - 2026-10-20T11:19:58.561Z"
+		},
+		"wt-1792500896652-1": {
+			"branch": "slime-galley",
+			"path": "/Users/kosi/Desktop/Football Sim/.kilo/worktrees/slime-galley",
+			"parentBranch": "main",
+			"createdAt": "2026-10-20T12:54:56.652Z",
+			"remote": "origin",
+			"branchOwned": true,
+			"label": "MiniMax (fork #1)",
+			"pinned": true
+		}
+	},
+	"sessions": {
+		"ses_ea7013044ffeOtOGBh0AaKso1Z": {
+			"worktreeId": "wt-1792494456459-3",
+			"createdAt": "2026-10-20T11:07:36.770Z"
+		},
+		"ses_ea7944814ffeTgkOwvwwwK7Ko3": {
+			"worktreeId": "wt-1792494456459-3",
+			"createdAt": "2026-10-20T11:07:53.218Z"
+		},
+		"ses_ea6f5de9effepAFqRxB4XLZnrr": {
+			"worktreeId": "wt-1792495198173-5",
+			"createdAt": "2026-10-20T11:19:58.571Z"
+		},
+		"ses_ea69ec235ffe60alF4pHx05wOx": {
+			"worktreeId": "wt-1792500896652-1",
+			"createdAt": "2026-10-20T12:55:08.377Z"
+		}
+	},
+	"tabOrder": {
+		"local": ["pending:0e0b82f2-56fc-4312-b8eb-c51f4bcf7cca"],
+		"wt-1792494456459-3": [
+			"ses_ea7013044ffeOtOGBh0AaKso1Z",
+			"ses_ea7944814ffeTgkOwvwwwK7Ko3"
+		]
+	},
+	"worktreeOrder": [
+		"wt-1792500896652-1",
+		"wt-1792494456459-3",
+		"wt-1792495198173-5"
+	],
+	"sessionsCollapsed": true,
+	"activeTarget": {
+		"projectId": "prj-a3cd83abf847",
+		"kind": "session",
+		"sessionId": "ses_ea69ec235ffe60alF4pHx05wOx"
+	}
+}

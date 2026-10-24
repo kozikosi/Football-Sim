@@ -1,0 +1,43 @@
+{
+  "$schema": "https://biomejs.dev/schemas/2.6.2/schema.json",
+  "root": false,
+  "files": {
+    "includes": [
+      "**/scratch/*.js"
+    ]
+  },
+  "formatter": {
+    "enabled": false
+  },
+  "assist": {
+    "enabled": false
+  },
+  "vcs": {
+    "enabled": false
+  },
+  "linter": {
+    "enabled": true,
+    "rules": {
+      "recommended": false,
+      "correctness": {
+        "noUnreachable": "error",
+        "noSelfAssign": "error",
+        "noConstantCondition": "error",
+        "noUndeclaredVariables": "error",
+        "noUnusedVariables": "warn"
+      },
+      "suspicious": {
+        "noRedeclare": "error",
+        "noDuplicateObjectKeys": "error",
+        "noDuplicateCase": "error",
+        "noFallthroughSwitchClause": "error",
+        "noGlobalAssign": "error",
+        "noSparseArray": "error",
+        "noDebugger": "error",
+        "noAssignInExpressions": "warn",
+        "noDoubleEquals": "warn",
+        "noVar": "warn"
+      }
+    }
+  }
+}

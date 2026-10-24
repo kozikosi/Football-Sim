@@ -1,0 +1,192 @@
+{
+  "run": {
+    "utc": "2026-10-21T01:45:36.854Z",
+    "tool": "post-merge-smoke.mjs",
+    "tool_version": "5 (2026-10-21) — multi-tab 390px scan, draft-board assertion, week-1 + visible-game-count observations, receipt_id, tool_sha256",
+    "tool_sha256": "3d2d95f1765be0c8722bc18b0b8ac8037d2c05ab6c233f41168a41a009f496d0",
+    "artifact_path": "merged.html",
+    "artifact_sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+    "artifact_bytes": 657486,
+    "artifact_basename": "merged.html",
+    "git_ref": "gpt/council-reliability-scorecard @ 4558e81106c3",
+    "git_commit": "4558e81106c341446d19334bd67c01e7fa01c000",
+    "browser": "Chromium-family over CDP (--remote-debugging-port=9222)",
+    "browser_version": "Chrome/151.0.7922.137",
+    "viewport": {
+      "desktop": "1280x900",
+      "mobile": "390x844"
+    },
+    "seed": "none — the build has no seeded RNG (58 Math.random sites), so this run is not reproducible by seed",
+    "evidence_name": "e2e-40233d6be00e-2026-10-21.json",
+    "receipt_id": "e54bcd7be96a",
+    "receipt_id_note": "sha256 of this receipt (without the two id fields), first 12 hex — recompute to prove the file was not edited after the run"
+  },
+  "verdict": "PASS",
+  "skipped_checks": [],
+  "build": "merged.html",
+  "checks": {
+    "A_reportRendered": true,
+    "D_seasonAndPlayoffsComplete": true,
+    "B_noViewportOverflow": true,
+    "C_noPageErrors": true,
+    "E_viewportUsable": true,
+    "F_visibleGameCount": true,
+    "G_week1Visible": true,
+    "H_draftBoardRenders": true
+  },
+  "detail": {
+    "steps": {
+      "startDraft": true,
+      "instant": true,
+      "simToEnd": true,
+      "reportPath": "ui-button",
+      "reportRendered": true,
+      "reportStalled": false,
+      "season": {
+        "entryPath": "already-rendered",
+        "startHandle": "startSeasonBtn",
+        "heroHandle": null,
+        "beginHandle": "beginSeasonBtn",
+        "simHandle": "simSeasonBtn",
+        "week1": {
+          "heading": "Week 1 of 17",
+          "week": 1,
+          "of": 17,
+          "visible": true,
+          "simWeekBtnVisible": true,
+          "innerTextMatch": "Week 1 of 17"
+        },
+        "week1Of17Seen": true,
+        "regularDone": true,
+        "gamesPlayed": 272,
+        "gamesPlayedVisible": 272,
+        "gamesVisible": {
+          "standingsTeamRows": 232,
+          "parsedRows": 32,
+          "gamesPerTeamSum": 544,
+          "leagueGamesVisible": 272
+        },
+        "weekText": null,
+        "weekTextShown": false
+      },
+      "playoffs": {
+        "beginHandle": true,
+        "simHandle": "simRestBtn",
+        "complete": true,
+        "champion": "Cleveland Browns"
+      },
+      "draftBoard": {
+        "rowCount": 1139,
+        "emptyStatePresent": false,
+        "container": "draftBody2",
+        "sample": "TOP Matthew StaffordQBLAR99+3.69+3.69+0.92100%QBDraftTOP Myles GarrettEDGELAR99+"
+      },
+      "draftBoardRenders": true,
+      "reportBack": {
+        "clicked": true,
+        "phaseBefore": "complete",
+        "phaseAfter": "complete"
+      }
+    },
+    "draftPicks": "832/832",
+    "reportPath": "ui-button",
+    "reportRendered": true,
+    "reportStalled": false,
+    "pageErrors": [],
+    "offenderCount": 0,
+    "offenders": [],
+    "clippedCount": 0,
+    "coveredCount": 0,
+    "unscrollable": [],
+    "gamesPlayedInternal": 272,
+    "gamesPlayedVisible": 272,
+    "standingsTeamRows": 232,
+    "week1": {
+      "heading": "Week 1 of 17",
+      "week": 1,
+      "of": 17,
+      "visible": true,
+      "simWeekBtnVisible": true,
+      "innerTextMatch": "Week 1 of 17"
+    },
+    "week1Of17Seen": true,
+    "draftBoard": {
+      "rowCount": 1139,
+      "emptyStatePresent": false,
+      "container": "draftBody2",
+      "sample": "TOP Matthew StaffordQBLAR99+3.69+3.69+0.92100%QBDraftTOP Myles GarrettEDGELAR99+"
+    },
+    "tabsScanned": 6,
+    "perTab": [
+      {
+        "tab": "tabPlayersBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 0,
+        "pageOverflowPx": 0,
+        "offenders": []
+      },
+      {
+        "tab": "tabRankingsBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 0,
+        "pageOverflowPx": 0,
+        "offenders": []
+      },
+      {
+        "tab": "tabGroupsBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 0,
+        "pageOverflowPx": 0,
+        "offenders": []
+      },
+      {
+        "tab": "tabCompareBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 0,
+        "pageOverflowPx": 0,
+        "offenders": []
+      },
+      {
+        "tab": "tabGuideBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 0,
+        "pageOverflowPx": 0,
+        "offenders": []
+      },
+      {
+        "tab": "tabDraftBtn",
+        "clicked": true,
+        "offenderCount": 0,
+        "clippedCount": 0,
+        "coveredCount": 0,
+        "unscrollable": 0,
+        "hiddenClipped": 1,
+        "pageOverflowPx": 0,
+        "offenders": []
+      }
+    ],
+    "worstTab": "tabPlayersBtn",
+    "hiddenClippedCount": 1
+  }
+}
+VERDICT: PASS exit=0 receipt=e54bcd7be96a artifact=40233d6be00e

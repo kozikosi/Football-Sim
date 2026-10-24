@@ -1,0 +1,85 @@
+SNAPSHOT ADDENDUM 2026-10-23 — RETIRED LANES UNCOMMITTED FILES
+================================================================
+Step 3 requirement: list uncommitted/untracked files in each retired lane
+before tagging is called done. These were NOT in the original snapshot file.
+
+SOURCE: git status --short -- _agents/minimax _agents/moc _agents/glm _agents/nemo-ultra _agents/nemotron-3-ultra-free
+RUN: VL, acting as Beam's replacement, 2026-10-23
+
+--- _agents/minimax --- (clean — no uncommitted files)
+--- _agents/moc --- (clean — no uncommitted files)
+
+--- _agents/glm --- (3 untracked files)
+?? _agents/glm/notes/OWNER-DIRECTIVES-22OCT-W2.md
+?? _agents/glm/notes/PIN-SCAN-raw.txt
+?? _agents/glm/tmp/CLAIM-M-20261022-e.md
+
+--- _agents/nemo-ultra --- (13 modified files)
+ M _agents/nemo-ultra/notes/patch-scripts/fix_concat.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_exact.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_final_real.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_header3.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_hex.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_entity2.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_final.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_header.js
+ M _agents/nemo-ultra/notes/patch-scripts/fix_lineup_unicode.js
+
+--- _agents/nemotron-3-ultra-free --- (5 modified + 39 untracked files)
+Modified:
+ M _agents/nemotron-3-ultra-free/deliveries/ROUND1_PRE_DISPATCH_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/reviews/ARCHITECTURE_REVIEW_ULTRA.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND2_PEER_REVIEW.md
+ M _agents/nemotron-3-ultra-free/reviews/ROUND3_VERIFICATION.md
+ M _agents/nemotron-3-ultra-free/specs/V20_MOBILE_DRAFT_BOARD_PATTERN.md
+
+Untracked:
+?? _agents/nemotron-3-ultra-free/notes/BULLETIN-PARTITION.md
+?? _agents/nemotron-3-ultra-free/notes/GLM-first-read-20261022.md
+?? _agents/nemotron-3-ultra-free/notes/MOC-DS-BOC-POOL-ANALYSIS.md
+?? _agents/nemotron-3-ultra-free/notes/NBA-PARITY-CHECK.md
+?? _agents/nemotron-3-ultra-free/notes/OWNER-DIRECTIVE-FB-P-FLEX.md
+?? _agents/nemotron-3-ultra-free/notes/OWNER-DIRECTIVE-SOCCER-SOURCE.md
+?? _agents/nemotron-3-ultra-free/notes/PARTITION-READY.md
+?? _agents/nemotron-3-ultra-free/notes/V22-CUT-LIST.md
+?? _agents/nemotron-3-ultra-free/notes/V22-STRUCTURE.md
+?? _agents/nemotron-3-ultra-free/notes/biome-test/biome.json
+?? _agents/nemotron-3-ultra-free/notes/biome-test/test-files/clean.js
+?? _agents/nemotron-3-ultra-free/notes/biome-test/test-files/violating.js
+?? _agents/nemotron-3-ultra-free/notes/bundle-review.md
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/check-tasks.mjs
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-bad-evidence.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-bad-id.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-duplicate.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-invalid-state.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-mismatch.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-missing-claimed.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-missing-seat.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-no-evidence.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-no-owner-decision.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-no-verification.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-self-verify.json
+?? _agents/nemotron-3-ultra-free/notes/check-tasks-test/tasks/T-20261022-valid.json
+?? _agents/nemotron-3-ultra-free/notes/dataset-hash.md
+?? _agents/nemotron-3-ultra-free/notes/merge-rehearsal/V22-Suggestions-branch.md
+?? _agents/nemotron-3-ultra-free/notes/pin-table.md
+?? _agents/nemotron-3-ultra-free/notes/pr5-verification.md
+?? _agents/nemotron-3-ultra-free/notes/registry-seed.md
+?? _agents/nemotron-3-ultra-free/notes/seeded-rng-design.md
+?? _agents/nemotron-3-ultra-free/notes/soccer-ranking-source-options.md
+?? _agents/nemotron-3-ultra-free/notes/startseason-btn-proposal.md
+?? _agents/nemotron-3-ultra-free/notes/v21-mobile-audit.md
+?? _agents/nemotron-3-ultra-free/notes/v21-ui-issue-inventory.md
+?? _agents/nemotron-3-ultra-free/notes/v21-visual-items-2-3-5-8.md
+?? _agents/nemotron-3-ultra-free/notes/v22-motion-graphics-spec.md
+?? _agents/nemotron-3-ultra-free/specs/DS_ARCH_PROBE_METRICS.md
+?? _agents/nemotron-3-ultra-free/specs/MATH_CORE_HASH_GATE.md
+?? _agents/nemotron-3-ultra-free/specs/PICKLE_MERGE_MANIFEST.md
+?? _agents/nemotron-3-ultra-free/specs/VERIFIED_SEEDS.md
+?? _agents/nemotron-3-ultra-free/v21-flow/FLOW-AUDIT.md
+
+DISPOSITION: All of the above copied to _archive/preserved-2026-10-23/retired-lanes/<seat>/
+in the preservation worktree (beam/preserve-uncommitted-2026-10-23), per step 4.
