@@ -1430,3 +1430,154 @@ Reconciliation notes (Beam):
 - The `body` radial gradient background may conflict with team-colour theming; recommend: keep the radial gradient but tint it with `--team-primary` at very low opacity (0.05) for team identity without heaviness.
 - Flattening nested panels (`panel .panel { background: transparent }`) may break screens that rely on nested panel contrast (e.g., season review). Test carefully.
 
+
+---
+
+## 31. Soft rose/gold/white theme (P7-83) — away from blue
+
+CSS:
+```css
+/* Rose/gold/white theme — replaces blue */
+:root {
+  --bg: #0d0a0e;
+  --panel: rgba(255,255,255,0.04);
+  --panel2: rgba(255,255,255,0.06);
+  --alt: rgba(255,255,255,0.02);
+  --text: #f5f0f0;
+  --sub: #c9b8bc;
+  --muted: #8a7a80;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.16);
+  --accent: #e8a0b4;        /* soft rose (primary) */
+  --accent-hover: #f2b5c4;
+  --accent2: #d4af37;       /* gold (secondary) */
+  --accent2-hover: #e6c87a;
+  --accent3: #f5f0f0;       /* warm white (tertiary) */
+  --good: #7ec8a0;
+  --good-bg: rgba(126,200,160,0.12);
+  --bad: #e88a8a;
+  --bad-bg: rgba(232,138,138,0.12);
+  --warn: #e8c07a;
+  --warn-bg: rgba(232,192,122,0.12);
+  --gold: #d4af37;
+  --gold-bg: rgba(212,175,55,0.12);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.25);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.35);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --gap: 24px;
+  --motion-fast: 150ms ease;
+  --motion-normal: 250ms ease;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #faf5f7;
+    --panel: rgba(255,255,255,0.7);
+    --panel2: rgba(255,255,255,0.85);
+    --alt: rgba(255,255,255,0.5);
+    --text: #2a1a20;
+    --sub: #6a4a52;
+    --muted: #9a7a82;
+    --border: rgba(200,120,140,0.15);
+    --border-hover: rgba(200,120,140,0.3);
+    --accent: #c97a8e;        /* deeper rose for contrast on light */
+    --accent-hover: #d98a9e;
+    --accent2: #b8941f;       /* deeper gold */
+    --accent2-hover: #c9a52f;
+    --good: #4a8a6a;
+    --good-bg: rgba(74,138,106,0.08);
+    --bad: #a85a5a;
+    --bad-bg: rgba(168,90,90,0.08);
+    --warn: #a88a4a;
+    --warn-bg: rgba(168,138,74,0.10);
+    --gold: #b8941f;
+    --gold-bg: rgba(184,148,31,0.10);
+  }
+}
+
+/* Open/airy base */
+body {
+  background: radial-gradient(ellipse at top, #1a1014 0%, #0d0a0e 60%);
+  background-attachment: fixed;
+  color: var(--text);
+}
+
+/* Open panels — glass, hairline border, generous padding */
+.panel, .card, .synergy-box, .matchup-card, .detailpanel, .score-line, .unit-card, .star-card, .award-card, .conf-card, .player-card {
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: none;
+  transition: transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+.panel:hover, .card:hover, .matchup-card:hover, .synergy-box:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* Flatten nested panels */
+.panel .panel, .card .card { background: transparent; border: none; padding: 0; box-shadow: none; backdrop-filter: none; }
+
+/* Accent used sparingly — only interactive elements and key data */
+button, .tabbtn, .posbtn, .resetbtn, a { color: var(--accent); }
+button.primary, .btn-primary { background: var(--accent); color: #fff; border: none; }
+
+/* Draft board: player names use neutral text (no blue) */
+.player-name, .dc-name { color: var(--text); }
+
+/* Each player's draft card accents use ONLY that team's three hexes */
+.player-card { border-left: 3px solid var(--team-primary, var(--accent)); }
+.player-card .badge { background: var(--team-secondary, var(--accent2)); color: #fff; }
+.player-card .accent-dot { background: var(--team-accent, var(--accent3)); }
+
+/* Shimmering gradient text (P7-81) — rose/gold variant */
+.shimmer-text {
+  background: linear-gradient(90deg, var(--accent, #e8a0b4) 0%, var(--accent2, #d4af37) 25%, var(--accent3, #f5f0f0) 50%, var(--accent2, #d4af37) 75%, var(--accent, #e8a0b4) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+.shimmer-text.gold {
+  background: linear-gradient(90deg, var(--accent2, #d4af37) 0%, var(--accent3, #f5f0f0) 50%, var(--accent2, #d4af37) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+@keyframes textShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .shimmer-text, .shimmer-text.gold { animation: none; background-position: 0 0; } }
+
+/* Value Here: removed from all visual elements (P0-1). Only background calc. */
+/* (No CSS needed — just ensure no .dc-val column, no "Value here" labels, no sort option.) */
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel, .card, .synergy-box, .matchup-card, .detailpanel, .score-line, .unit-card, .star-card, .award-card, .conf-card, .player-card { transition: none; }
+  body { background: var(--bg); }
+}
+```
+
+Reconciliation notes (Beam):
+- This is a global theme change — cohort with P7-82 (open/airy) and P0-1 (Value Here removal). Apply as a single coordinated theme pass.
+- Conflicts with OR's A-1 (shadow system): OR uses `--shadow-sm/md/lg/xl`; this uses `--shadow`/`--shadow-hover`. Recommend: adopt OR's shadow tokens as canonical, map `--shadow` → `--shadow-md`, `--shadow-hover` → `--shadow-lg`.
+- Conflicts with VL's `--panel2:#1e2433` (solid): this uses translucent `rgba(255,255,255,0.06)`. Recommend: translucent for openness; test WCAG AA contrast on both dark and light modes.
+- Conflicts with VL's `--border:#273044` (solid): this uses `rgba(255,255,255,0.08)`. Recommend: translucent border for openness; fallback to solid if contrast fails.
+- Conflicts with VL's `--accent:#3b82f6` (blue): replaced with rose `#e8a0b4`. This is the core of the user's request ("less blue").
+- Team colour theming (P0-29): each team's primary/secondary/accent should be drawn from their own palette, NOT from the global rose. The global rose is the default/unselected state. When a team is selected, their colours take over. The rose is the "house" colour.
+- Player names: use `--text` (warm white) instead of blue. Team colour can be used as a subtle left-border or badge, not as text colour.
+- Value Here: already removed per P0-1. This snippet reinforces no visual remnants.
+

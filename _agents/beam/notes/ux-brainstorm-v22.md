@@ -520,6 +520,16 @@ Each achievement: unlock animation (scale-in + shimmer), toast notification, per
 - HOW TO CHECK: visual comparison old vs new; 390px no overflow; contrast ratios maintained (WCAG AA); `node tools/lint.mjs product` exit 0.
 
 
+## 19. Soft rose/gold/white theme — away from blue (P7-83)
+
+**P7-83 · Rose/gold/white theme system (replace blue)**
+- WHERE: global `:root` and `@media (prefers-color-scheme: light)`, plus all panel/card containers and draft-board player name rendering.
+- WHAT: Replace the blue accent (`#4f8cff`) with a soft, delicate barely-pink rose palette: primary `#e8a0b4` (rose), secondary `#d4af37` (gold), tertiary `#f5f0f0` (warm white). Dark mode: near-black background with warm undertone, translucent glass panels, rose accent used sparingly. Light mode: barely-pink white background (`#faf5f7`), white panels, deeper rose accent (`#c97a8e`) for contrast. (1) No blue paneling anywhere. (2) "Value Here" removed from all visual elements (already P0-1; this reinforces no blue "value" column). (3) Player names on the draft board lose the dynamic blue colour — use neutral text (`--text`) or the player's team colour, never a global blue. (4) Each player's draft card uses only colours from that team's three hexes (primary/secondary/accent) for borders, badges, and accents — no global blue. (5) Open/airy panels (translucent glass, hairline borders, generous padding) per P7-82.
+- WHY: User explicitly requested "soft, delicate barely pink rose with gold and white as the second and third colors", "less blue", "no more blue paneling", "more open airy design". Value Here is a background calculation only.
+- SAFE ALONE?: NO — global theme change; cohort with P7-82 (open/airy) and P0-1 (Value Here removal). Apply as a single coordinated theme pass.
+- HOW TO CHECK: visual comparison; 390px no overflow; contrast ratios (WCAG AA) on both dark and light modes; `node tools/lint.mjs product` exit 0; no blue hexes remain in accent/panel/border variables.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
