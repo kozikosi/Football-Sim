@@ -20,7 +20,22 @@
 - Hype mode toggle (idea 8): motion+type scale for banner/copy; single helper for hype text.
 
 ### Slice 4 — Extended creative batch (fresh ideas)
-- Defensive-sub diagram (Guide); what-if weight sensitivity (INFERMED; needs injectable RNG); war-room mode; stadium hero; awards podium; trajectory sparkline; scoring sequence animation.
+- Defensive-sub diagram (Guide); what-if weight sensitivity (INFERED; needs injectable RNG); war-room mode; stadium hero; awards podium; trajectory sparkline; scoring sequence animation.
+
+## Readiness for Claude (updated 2026-10-24, after concept render)
+
+| Idea | Status | Blocker |
+|---|---|---|
+| B. Pick slide-in + confetti + flash | READY | none |
+| C. Player drawer + Draft CTA | READY | none (mobile = bottom sheet accepted as planned) |
+| A. Weight live animation | READY | none |
+| E. QoE bars + gold awards/game-ball | READY | none |
+| 8. Hype mode toggle | PENDING OWNER DECISION | toggle scope |
+| 2. Draft clock ring | READY | none |
+| 3. Keyboard draft controls | READY | none |
+| Fresh batch 16-23 | PENDING | injectable RNG for sensitivity; others ready |
+
+**Answer to "ready for Claude?":** Slices 1-3 core ideas are ready; hype toggle and fresh-batch items are not fully ready yet.
 
 ## Per-idea exact change + blast radius
 | Idea | WHERE (anchor) | old→new | WHY | SAFE ALONE? | HOW TO CHECK |
