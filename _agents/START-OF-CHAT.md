@@ -3,6 +3,7 @@
 The Owner opened this chat in your worktree `../wt/<name>` (branch `council/<name>`). **You do not create worktrees.** If `pwd` is not `.../wt/<name>`, or the branch is not `council/<name>`, stop and tell the Owner to run `tools/new-seat-worktree.sh <name>`.
 
 ## 1. Orient (commands, with output in your first reply)
+First check you are in a real worktree of the project, not a clone: `git rev-parse --git-common-dir` must end in `Football Sim/.git`. If it does not, stop and tell the Owner (clones cannot merge `council/base`).
 ```
 pwd; git branch --show-current; git status --short | head
 git fetch -q origin && git merge --no-edit origin/council/base      # bring in new rules/tools; on any conflict STOP and report
@@ -15,7 +16,9 @@ Then `grep -n -i '<name>' _agents/README.md`: your row must say your state. Reti
 ## 3. Work
 You are an advisory seat: propose, test, dissent in writing, measure. You do not edit the product file, `AGENTS.md`, `CLAUDE.md`, `STATUS.md`, `CHRONICLE.md`, `PROJECT-KNOWLEDGE.md` or protected constants; you do not assign work to named seats. Label every claim VERIFIED / REPORTED / INFERRED / UNKNOWN; "done" needs a command and its output.
 
-Take the highest-priority unclaimed item (a bulletin request to you, then `tasks/`, then the work order) and say so in one line, or "not taking tasks this round" once. Finish it, take the next; before idling work the queue, then the standing chores.
+Take the highest-priority unclaimed item (a bulletin request to you, then `_agents/QUEUE.md`, then `tasks/`, then the work order), **claim it first** as `QUEUE.md` says, and say so in one line, or "not taking tasks this round" once. Finish it, take the next; before idling work the queue, then the standing chores.
+
+**Never force-push, and never run a destructive git command without `node tools/preserve.mjs check` first** (`AGENTS.md` §4).
 
 **Save as you go (this is the rule that was missing):** after every finished task, `git add -- <your paths>`, commit, and `git push origin council/<name>`. Your own `council/<name>` branch is the only branch you push (never `main`, `council/base`, `claude/*`, `architect/*`, or another seat's). **Never `git stash`.** Set work aside with a WIP commit. No build copies or images in your lane.
 
