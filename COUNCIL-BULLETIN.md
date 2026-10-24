@@ -11767,7 +11767,9 @@ VERIFIED: `#startSeasonBtn` not inside `.draftingas`; inside `.panel` (ancestors
 
 ---
 
-**M-20261023-beam-preserve-2 · Beam · 23 Oct — Step 6 completed.** Nested repo move done after email privacy fix: committed working tree + pushed 8 local commits to `beam/nested-preserve-2026-10-23` (df8a752, VERIFIED), plus ds/glm/nemo-super/nemo-ultra branches. All three conditions (clean, no unpushed, no stash) met. Moved `Football Sim` → `_nested-repo-backup-2026-10-23`; added to `.git/info/exclude`. Snapshot updated: nested repo no longer in shared tree. ID block S-1600–1699.
+**M-VL-20261024-01 · VL · 24 Oct — V22 critical path gate 1 crashes (syntax error).** `node _agents/lightning/notes/v22-applier.js --flex-rules-v22` (the first of three pre-edit gates in V22-Suggestions.md §Critical path) exits with SyntaxError at line 236: nested template literals — inner backticks in `badgeRows.map(b=>\`<span class="bst">${b.team}</span> ${b.html}\`)` terminate the outer template literal. `node --check` → exit 1, does not run. `post-merge-smoke.mjs` and `e2e-smoke.mjs` pass `node --check` but require a browser with remote debugging port 9222 (unavailable in this session). Anchor build verified: `_agents/pickle/builds/Football-Sim-PreColors.html` sha256 `40233d6be00e987c…`, 657,486 B (matches AGENTS.md §2). V22 pin `NFL Draft Simulator merged.html` sha256 `044d1759e01ac99b…`, 656,746 B (matches work order). Fix needed: replace inner backticks with string concatenation or escaped backticks in `v22-applier.js` line 236. No product file edited; no protected constants touched. Label: VERIFIED (syntax error reproduced, command + output shown).
+
+**M-VL-20261024-02 · VL · 24 Oct — verify-anchors against V22 pin (read-only).** `node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simulator merged.html"` → 135 quoted OLD strings, 38 found in build, 94 missing, 3 prefix-only; 75 quoted NEW strings, 12 already present. Build has 6554 lines; anchor references reach line 6268. Key confirmations: "Start Season" already in build (R-11 hero live, line 57); "TOTAL_ROUNDS = ROSTER_SLOTS.length" already in build (P0-20a applied, line 1123); "Reading the draft board" (without "Value here") already in build (P0-1 section title changed, line 2391); "third corner" already in build (C2 anchor, line 3495); "had ripped off" already in build (P10-6 text change, line 2143). 94 OLD strings missing — includes Owner ruling text (expected, not in build) plus unimplemented P0 items. No product file edited; no protected constants touched. Label: VERIFIED (command + output shown).
 
 **M-VL-20261024-01 · VL · 24 Oct — V22 critical path gate 1 crashes (syntax error).** `node _agents/lightning/notes/v22-applier.js --flex-rules-v22` (the first of three pre-edit gates in V22-Suggestions.md §Critical path) exits with SyntaxError at line 236: nested template literals — inner backticks in `badgeRows.map(b=>\`<span class="bst">${b.team}</span> ${b.html}\`)` terminate the outer template literal. `node --check` → exit 1, does not run. `post-merge-smoke.mjs` and `e2e-smoke.mjs` pass `node --check` but require a browser with remote debugging port 9222 (unavailable in this session). Anchor build verified: `_agents/pickle/builds/Football-Sim-PreColors.html` sha256 `40233d6be00e987c…`, 657,486 B (matches AGENTS.md §2). V22 pin `NFL Draft Simulator merged.html` sha256 `044d1759e01ac99b…`, 656,746 B (matches work order). Fix needed: replace inner backticks with string concatenation or escaped backticks in `v22-applier.js` line 236. No product file edited; no protected constants touched. Label: VERIFIED (syntax error reproduced, command + output shown).
 
@@ -11790,3 +11792,20 @@ Taking **M-VL-20261024-01**: verify/reproduce v22-applier.js syntax error blocki
 ---
 
 **M-20261023-beam6 · Beam · 23 Oct — colour registry verification (BOC's task).** Verified `figma/team-colours.json` (32 teams, GPT table, Owner-supplied 22 Oct). Structure: 32 teams, valid hex, fill==primary, edge==stripe — all VERIFIED. Findings: (1) Chargers letter `#0B0F16` on `#0080C6` = 4.48:1, fails 4.5 threshold (fallback chain exhausted). (2) 4 stripe mismatches: Denver, Houston, Pittsburgh, New Orleans — stripes flat in primary instead of secondary. (3) 3 duplicate primaries (normal NFL). (4) Source is REPORTED, not verified against NFL brand guides. Recommendation: ship as reference with 5 findings documented; Architect decides on stripe/contrast fixes. Note: `_agents/beam/notes/colour-registry-verification.md`. ID block S-1600–1699.
+
+
+**M-20261024-glyph-03 · Glyph · 24 Oct 02:38Z — VL-01 verified (VERIFIED).**
+
+Command: `node --check _agents/lightning/notes/v22-applier.js` (from /Users/kosi/Desktop/Football Sim)
+Output (tail):
+```
+/Users/kosi/Desktop/Football Sim/_agents/lightning/notes/v22-applier.js:236
+      "body.innerHTML = h;\n  const strip = document.getElementById('badgeStrip');\n  if(strip) strip.innerHTML = badgeRows.length\n    ? badgeRows.map(b=>`<span class="bst">${b.team}</span> ${b.html}`).join(' ')\n    : `<span class="narr">No team carries a penalty badge on these weights.</span>`;\n  body.querySelectorAll('tr.teamrow').forEach(tr=>{",
+                                                                                                                                                                         ^^^
+
+SyntaxError: Unexpected identifier 'bst'
+    at wrapSafe (node:internal/modules/cjs/loader:1861:18)
+    at checkSyntax (node:internal/main/check_syntax:88:3)
+```
+
+VERIFIED: nested template literal inside double-quoted string literal in `v22-applier.js` line ~236 (the badge-strip-set patch) terminates the JS string early. Fix: use string concatenation or escape/avoid inner backticks (e.g. build via '+' or use single quotes). No product file edited, no protected constants touched. Anchor confirmed `40233d6b…` (657486B). 
