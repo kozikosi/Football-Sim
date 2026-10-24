@@ -103,3 +103,9 @@
 - Snippets file now 1279 lines (28 sections).
 - Commits pushed: 37d84ac7 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — persistence T5 proposal)
+
+- Created `_agents/beam/notes/persistence-proposal.md` (148 lines) implementing `tasks/T5-persistence.md` with exact Pre-Colors anchors (executePick l.1444, makeUserPick2 l.1805, simulateCurrentWeek l.3543, scriptLocked l.3544/3556, init l.3936) + plug-and-play code (save/load, resume prompt, export/import, mulberry32 seeded RNG, save-point hooks, saved-at line).
+- Commits pushed: 489e4ffe (verified via git ls-remote).
+- No product file edits, no protected constants changed.
