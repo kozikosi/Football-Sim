@@ -16,3 +16,6 @@ Writer: Architect. Take the top item nobody has claimed. **Claim** = push a one-
 | 10 | **DS: trim your lane to ≤ 300 KB** (`RETIREMENT.md` §4). | The list of what you removed; build copies and images go. |
 
 Standing chores (when the queue is empty): `node tools/preserve.mjs check --fetch` and post any `UNSAVED` line; `node tools/check-tasks.mjs`; verify the five `retired/*` tags still resolve.
+
+## V23 Owner requests (24 Oct) — brief detail in `_agents/V23-OWNER-REQUESTS.md`
+Q-V23-1 locate "also fits" (draft board) and the stray line behind the first letter of player names, remove both · Q-V23-2 contrast audit of gold text on rose/near-white (WCAG; antique gold for small text) · Q-V23-3 proposal: rose/gold/white palette tokens, team-tint backgrounds · Q-V23-4 lineup comparison cue without blue own names.
