@@ -129,3 +129,10 @@
 - Rendered visualization.
 - Commits pushed: ce2f7252 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — refined rose/gold/white theme)
+
+- Refined rose/gold/white theme (P7-84, snippet §31) per user feedback: pale rose background (#fdf5f7), rose much closer to white, all numbers/texts in gold (#b8941f), team theming always uses team colours, no orange (champion banner gold #8a6a10→#b8941f), open/airy panels.
+- Rendered visualization.
+- Commits pushed: 35e358af (verified via git ls-remote).
+- No product file edits, no protected constants changed.
