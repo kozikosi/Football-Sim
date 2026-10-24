@@ -1,0 +1,116 @@
+// NBA All-Time Player Database — Template
+// Format: array of player objects
+// Source: collectively created by the council (no existing dataset)
+// Era adjustment: applied to OVR per Owner's era tiers (see QUESTIONS-FOR-OWNER.md Q-NBA-AT-1)
+
+// SCHEMA (same as NBA current, plus era field)
+// {
+//   "name": "string — player's full name",
+//   "pos": "string — position code (PG, SG, SF, PF, C)",
+//   "team": "string — primary team (team name from TEAMS list)",
+//   "era": "string — decade of peak (e.g., '1960s', '1990s', '2020s')",
+//   "ovr": "number — overall rating (0-99, with era adjustment applied)",
+//   "pts": "number — points per game (career average or era-adjusted)",
+//   "reb": "number — rebounds per game",
+//   "ast": "number — assists per game",
+//   "stl": "number — steals per game",
+//   "blk": "number — blocks per game",
+//   "tov": "number — turnovers per game",
+//   "fg": "number — field goal % (0-100)",
+//   "tp": "number — 3-point % (0-100)",
+//   "ft": "number — free throw % (0-100)",
+//   "spd": "number — speed (0-99)",
+//   "str": "number — strength (0-99)",
+//   "agi": "number — agility (0-99)",
+//   "awr": "number — awareness/IQ (0-99)",
+//   "inj": "number — injury/durability (0-99, higher = more durable)",
+//   "xf": "string|null — X-factor name (optional)",
+//   "source": "string — how this rating was derived"
+// }
+
+// POSITIONS (5 starter slots + bench)
+// PG, SG, SF, PF, C, BENCH1, BENCH2, BENCH3, BENCH4, BENCH5
+
+// TEAMS (30 NBA teams — same as current)
+
+// FLEX RULES (same as NBA current — pending Owner approval)
+
+// EXAMPLES
+[
+  {
+    "name": "Michael Jordan",
+    "pos": "SG",
+    "team": "Chicago Bulls",
+    "era": "1990s",
+    "ovr": 99,
+    "pts": 30.1,
+    "reb": 6.2,
+    "ast": 5.3,
+    "stl": 2.3,
+    "blk": 0.8,
+    "tov": 2.7,
+    "fg": 49.7,
+    "tp": 32.7,
+    "ft": 83.5,
+    "spd": 92,
+    "str": 85,
+    "agi": 95,
+    "awr": 99,
+    "inj": 90,
+    "xf": "Clutch",
+    "source": "Owner input — consensus #1 all-time, no era adjustment needed"
+  },
+  {
+    "name": "Magic Johnson",
+    "pos": "PG",
+    "team": "Los Angeles Lakers",
+    "era": "1980s",
+    "ovr": 98,
+    "pts": 19.5,
+    "reb": 7.2,
+    "ast": 11.2,
+    "stl": 1.9,
+    "blk": 0.4,
+    "tov": 3.9,
+    "fg": 52.0,
+    "tp": 30.3,
+    "ft": 84.8,
+    "spd": 78,
+    "str": 82,
+    "agi": 85,
+    "awr": 99,
+    "inj": 85,
+    "xf": "Clutch",
+    "source": "Owner input — consensus top-5 all-time, era-adjusted from 99 to 98"
+  },
+  {
+    "name": "Kareem Abdul-Jabbar",
+    "pos": "C",
+    "team": "Los Angeles Lakers",
+    "era": "1970s",
+    "ovr": 97,
+    "pts": 24.6,
+    "reb": 11.2,
+    "ast": 3.6,
+    "stl": 0.9,
+    "blk": 2.6,
+    "tov": 2.6,
+    "fg": 55.9,
+    "tp": 0.0,
+    "ft": 72.1,
+    "spd": 65,
+    "str": 85,
+    "agi": 72,
+    "awr": 97,
+    "inj": 95,
+    "xf": "Skyhook",
+    "source": "Owner input — consensus top-5 all-time, era-adjusted from 99 to 97"
+  }
+]
+
+// VALIDATION RULES
+// Same as NBA current, plus:
+// 11. era must be a decade string (e.g., "1960s", "1980s", "2020s").
+// 12. All top current players are eligible with a -5 OVR adjustment.
+// 13. Total players: ~1,200 (all-time greats + current players with era adjustment).
+// 14. Position balance: aim for ~240 players per position (1,200 total / 5 positions).

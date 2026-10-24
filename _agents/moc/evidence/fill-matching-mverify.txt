@@ -1,0 +1,33 @@
+--- A — 26-slot (today's build)
+    demand 832 (26 slot types x 32) · eligible edges 390720
+    flow 832/832 · total penalty 54 · avg 0.0649/slot
+    penalty histogram {0: 816, 2: 5, 4: 11} · flexed slots {'TE2': 11, 'SAM': 5}
+      K    filled by {'K': 32}
+      TE2  filled by {'TE': 21, 'WR': 11}
+      SAM  filled by {'WILL': 22, 'SAM': 5, 'LEDG': 5}
+
+--- B — 28-slot FB/P, K may punt (one-way)
+    demand 896 (28 slot types x 32) · eligible edges 396384
+    flow 896/896 · total penalty 54 · avg 0.0603/slot
+    penalty histogram {0: 880, 2: 5, 4: 11} · flexed slots {'TE2': 11, 'SAM': 5}
+      FB1  filled by {'HB': 25, 'FB': 7}
+      P1   filled by {'P': 32}
+      K    filled by {'K': 32}
+      TE2  filled by {'TE': 21, 'WR': 11}
+      SAM  filled by {'WILL': 22, 'SAM': 5, 'LEDG': 5}
+
+--- C — 28-slot FB/P, P<->K interchangeable (symmetric)
+    demand 896 (28 slot types x 32) · eligible edges 397408
+    flow 896/896 · total penalty 54 · avg 0.0603/slot
+    penalty histogram {0: 880, 2: 5, 4: 11} · flexed slots {'TE2': 11, 'SAM': 5}
+      FB1  filled by {'HB': 25, 'FB': 7}
+      P1   filled by {'P': 32}
+      K    filled by {'K': 32}
+      TE2  filled by {'TE': 21, 'WR': 11}
+      SAM  filled by {'WILL': 22, 'SAM': 5, 'LEDG': 5}
+
+=== LOWER BOUND (now excluding the slot's own natural group) ===
+  cheapest NON-TE fill of a TE slot : (4, 'WR')  -> 11 x 4 = 44
+  cheapest NON-LB fill of a SAM slot : (2, 'REDG') -> 5 x 2 = 10
+  lower bound 54 vs achieved A 54 -> OPTIMAL (bound attained)
+  B achieved 54 | C achieved 54  (same bound applies to both)
