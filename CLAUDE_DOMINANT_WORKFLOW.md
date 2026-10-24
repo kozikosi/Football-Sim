@@ -57,19 +57,17 @@
    - Output: "Round N Implementation Plan" (text)
 
 3. **Present to user:**
+
    ```
    ROUND N IMPLEMENTATION PLAN
    Build: <hash> (<size> bytes)
-   
-   ACCEPTED: S-XXX, S-YYY, S-ZZZ
+      ACCEPTED: S-XXX, S-YYY, S-ZZZ
    DEFERRED: S-AAA (reason: ...)
    REJECTED: S-BBB (reason: ...)
-   
-   ORDER: 1.S-XXX → 2.S-YYY → 3.S-ZZZ
+      ORDER: 1.S-XXX → 2.S-YYY → 3.S-ZZZ
    ESTIMATED CHANGES: <N> functions, <M> files
    BLOCKERS: <any>
-   
-   Ready to implement? (y/n)
+      Ready to implement? (y/n)
    ```
 
 ---
@@ -81,7 +79,6 @@
 **Claude Actions (Autonomous Loop):**
 
 For each accepted submission in order:
-
 1. **Implement:**
    - Edit `NFL Draft Simulator.html` via MCP
    - Edit/create files in `tests/` via MCP
@@ -89,10 +86,11 @@ For each accepted submission in order:
    - Push to Git after each logical unit
 
 2. **Self-verify after each push:**
+
    ```bash
    node --check NFL Draft Simulator.html
    node tests/pw4.js          # if available
-   node tests/validate.js     # if available  
+   node tests/validate.js     # if available
    node tests/phone.js        # if available
    node tests/run_all.sh      # if available
    ```
@@ -112,6 +110,7 @@ For each accepted submission in order:
 **Verifier Session (User or designated session):**
 1. Pull latest from Git
 2. Run verification suite:
+
    ```bash
    node --check NFL Draft Simulator.html
    node tests/pw4.js
@@ -120,8 +119,9 @@ For each accepted submission in order:
    node tests/run_all.sh
    ```
 3. Browser E2E: Draft → Season → Playoffs → Super Bowl (clean console)
-2. 390px layout check (no horizontal scroll)
-3. File **5-line verification report** (User pastes to `STATUS.md`):
+4. 390px layout check (no horizontal scroll)
+5. File **5-line verification report** (User pastes to `STATUS.md`):
+
    ```
    BUILD: <hash>
    E2E: PASS/FAIL (draft→season→playoffs→SB)
@@ -147,7 +147,7 @@ For each accepted submission in order:
    - Archive previous build
 2. Push `STATUS.md` to Git
 3. Tag release: `v<major>.<minor>.<patch>`
-3. (Optional) Deploy to GitHub Pages
+4. (Optional) Deploy to GitHub Pages
 
 **Governance:** User performs these actions (no Claude involvement)
 
@@ -155,11 +155,11 @@ For each accepted submission in order:
 
 ## Governance Checkpoints (Only 3 User Touchpoints)
 
-| Checkpoint | Who | Action | When |
-|------------|-----|--------|------|
-| **1. Plan Approval** | User | "y" to implementation plan | After Phase 1 |
-| **2. Verification Report** | User | Paste 5-line report to `STATUS.md` | After Phase 3 |
-| **3. Promotion** | User | Update `STATUS.md`, push, tag | After Phase 3 PASS |
+| Checkpoint                 | Who  | Action                             | When               |
+| -------------------------- | ---- | ---------------------------------- | ------------------ |
+| **1. Plan Approval**       | User | "y" to implementation plan         | After Phase 1      |
+| **2. Verification Report** | User | Paste 5-line report to `STATUS.md` | After Phase 3      |
+| **3. Promotion**           | User | Update `STATUS.md`, push, tag      | After Phase 3 PASS |
 
 **Claude never performs these.** Everything else is autonomous.
 
@@ -181,11 +181,13 @@ Advisory Agents → SUBMISSIONS.md → User carries to Claude → Claude rules �
 ## MCP-Full Specific Optimizations
 
 ### Continuous Implementation
+
 - Claude pushes after **each logical change** (not batched)
 - Real-time `node --check` feedback loop
 - Failed pushes don't block — fix and re-push immediately
 
 ### Baseline Bootstrap (S-202)
+
 ```bash
 # Claude runs autonomously:
 node tests/pw4.js --write-baseline
@@ -195,16 +197,19 @@ node tests/pw4.js --write-baseline
 ```
 
 ### Contract Compliance (B1, B2)
+
 - Runtime `DOMAccessError` guard added to HTML
 - Exit code matrix (0/1/2/3/4) implemented in `pw4.js`
 - Tested via `node --check` + test suite
 
 ### Dataset Fix (S-203 vs S-602)
+
 - Single authoritative dataset at `tests/2025_standings.js`
 - Schema aligned with CONTRACT.md C3
 - Old conflicting file removed/renamed
 
 ### Liveness Fixes
+
 - "sudden death" → removed
 - "second meeting" banner → fixed
 - "weren't in this round" → verified/patched
@@ -217,9 +222,11 @@ node tests/pw4.js --write-baseline
 ## Round Structure (Recurring)
 
 ### Round 1A (Harness Core)
+
 ```
 S-202 → S-203 → S-103 → S-102 → S-301
 ```
+
 - SIM-CORE markers + 3 headless entry points
 - 2025 standings dataset
 - funcdiff.js
@@ -227,13 +234,16 @@ S-202 → S-203 → S-103 → S-102 → S-301
 - run_all.sh (orchestrator)
 
 ### Round 1B (Validation + Lint)
+
 ```
 S-502 (validate.js) → S-401 (phone.js)
 ```
+
 - External 2025 validation
 - 390px static lint
 
 ### Round 2+ (Product)
+
 - U-series items (U-01 through U-22)
 - Mathematical audit follow-ups
 - CSS fixes (S-400 risks)
@@ -246,13 +256,13 @@ S-502 (validate.js) → S-401 (phone.js)
 
 ## Error Handling & Recovery
 
-| Failure Point | Recovery |
-|---------------|----------|
-| `node --check` fails | Claude fixes → re-pushes → re-checks (loop) |
-| Test suite fails | Claude diagnoses → fixes → re-pushes → re-runs |
-| Verification FAIL | User reports specifics → Claude fixes → re-cycle |
-| Merge conflict | Claude resolves via MCP → re-pushes |
-| MCP Server down | Fallback to copy-paste (original workflow) |
+| Failure Point        | Recovery                                         |
+| -------------------- | ------------------------------------------------ |
+| `node --check` fails | Claude fixes → re-pushes → re-checks (loop)      |
+| Test suite fails     | Claude diagnoses → fixes → re-pushes → re-runs   |
+| Verification FAIL    | User reports specifics → Claude fixes → re-cycle |
+| Merge conflict       | Claude resolves via MCP → re-pushes              |
+| MCP Server down      | Fallback to copy-paste (original workflow)       |
 
 ---
 

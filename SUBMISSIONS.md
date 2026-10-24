@@ -1,17 +1,19 @@
 # SUBMISSIONS.md — the shared proposals document
 
-**The workflow in one line:** every AI session *proposes*; no agent edits the product file or publishes anything; the user carries this document to **Claude**; **Claude alone decides** what to implement and how; the user brings Claude's finished build back; a session verifies it read-only; the user publishes when satisfied.
+**The workflow in one line:** every AI session _proposes_; no agent edits the product file or publishes anything; the user carries this document to **Claude**; **Claude alone decides** what to implement and how; the user brings Claude's finished build back; a session verifies it read-only; the user publishes when satisfied.
 
 ## Who may write what
+
 - **Each agent session** (GLM, DS, Nemo Super, Nemo Ultra, GPT — OpenClaw withdrawn 19 Oct) writes **only inside its own section** below, inserting new entries **above its section's end-anchor**. Never touch another agent's section, another agent's entries, or anyone's Status line.
 - **The user** (or a session acting at the user's request) updates Status lines and adds Claude's decision notes. Rulings are recorded **verbatim** — including rejection reasons, so proponents can appeal. If a session disputes a transcription, the user pastes the raw Claude response to it directly.
 - **Claude** never writes here directly — its decisions arrive as notes the user (or the applier session, at the user's request) pastes under each entry.
 - **Chat-only sessions** (no file access — Claude, GPT, possibly OpenClaw) cannot read or write files at all: they receive paste text and deliver their entries **as paste text**. The user relays it, and it is transcribed **verbatim** into their section (above their end-anchor) by the user or a session acting at the user's request — no paraphrasing, no cleanup. A transcription dispute is settled by pasting the session's raw reply.
 
 ## Rules for a good submission
-1. **Use your ID block** — pre-allocated so parallel batches never collide: **DS S-100–199 · GLM S-200–299 · Nemo Super S-300–399 · Nemo Ultra S-400–499 · GPT S-500–599 · Gemini S-700–799** (reserved — fallback implementer, not an advisor) (S-0xx is reserved for examples). *(OpenClaw withdrew from the roster 19 Oct, user decision — block S-600–699 kept reserved in case it returns.)*
+
+1. **Use your ID block** — pre-allocated so parallel batches never collide: **DS S-100–199 · GLM S-200–299 · Nemo Super S-300–399 · Nemo Ultra S-400–499 · GPT S-500–599 · Gemini S-700–799** (reserved — fallback implementer, not an advisor) (S-0xx is reserved for examples). _(OpenClaw withdrew from the roster 19 Oct, user decision — block S-600–699 kept reserved in case it returns.)_
 2. **State the build** — the hash from `STATUS.md` your proposal applies to.
-3. **Be self-contained** — Claude sees only what the user pastes. Quote the *exact current code* being replaced (whole functions, with their names), then give the *full replacement code*. A bare diff is not enough. **Exception (amended 19 Oct):** if the build file is attached to the round, the *current* code of any function may be referenced by name + line range + build hash instead of quoted, **regardless of length** — the replacement and all NEW code are still always quoted in full. Without an attached build, quote the current code in full, unless the function is *moved unchanged* — then name + line range + hash suffices. Re-quoting hundreds of lines the implementer already has is waste (DS).
+3. **Be self-contained** — Claude sees only what the user pastes. Quote the _exact current code_ being replaced (whole functions, with their names), then give the _full replacement code_. A bare diff is not enough. **Exception (amended 19 Oct):** if the build file is attached to the round, the _current_ code of any function may be referenced by name + line range + build hash instead of quoted, **regardless of length** — the replacement and all NEW code are still always quoted in full. Without an attached build, quote the current code in full, unless the function is _moved unchanged_ — then name + line range + hash suffices. Re-quoting hundreds of lines the implementer already has is waste (DS).
 4. **Blast radius** — name what else calls this code and what could regress (check your callers before writing).
 5. **Evidence** — how any numerical claim was produced: the command, the sample size, the code path. A number without these is **prose** and must be marked as such; measured risks outrank prose ones in the pre-sort. Two sessions citing the same code path is **not** independent confirmation (DS, adopted 19 Oct).
 6. **Say what you checked** — `node --check` result, any simulation you ran, or "untested". Never claim results you don't have.
@@ -20,7 +22,8 @@
 9. **Stand-ins don't self-rule** — a session serving as implementer for a round has its own pending entries for that round deferred to the next (queue maintainer enforces; adopted with the implementer-succession decision, 19 Oct).
 
 ## Status vocabulary
-**pending** → **accepted** / **deferred** (must name the condition that revives it) / **rejected** (one-line reason; may be appealed **once**, only with new evidence) → **built** (name the round whose build contains it, e.g. `built R1`) → **verified** (a session's verification report passes on that build) → **shipped** (published; hash recorded). Two exits off the main line: **withdrawn** (the proponent retracts — one line why; retractions are recorded, not folklore) and **superseded** (a newer entry on the same topic replaces this one; name it by ID). Nothing can look live that isn't decided *and* built *and* verified (DS, adopted 19 Oct).
+
+**pending** → **accepted** / **deferred** (must name the condition that revives it) / **rejected** (one-line reason; may be appealed **once**, only with new evidence) → **built** (name the round whose build contains it, e.g. `built R1`) → **verified** (a session's verification report passes on that build) → **shipped** (published; hash recorded). Two exits off the main line: **withdrawn** (the proponent retracts — one line why; retractions are recorded, not folklore) and **superseded** (a newer entry on the same topic replaces this one; name it by ID). Nothing can look live that isn't decided _and_ built _and_ verified (DS, adopted 19 Oct).
 
 ## Standing prompt for the implementer (the user copies this + the document below)
 
@@ -29,39 +32,42 @@
 > You are the sole implementer for the NFL Draft Simulator (single-file HTML app). You have no file access — I copy and paste, and your complete builds reach me as downloaded artifacts. Below are proposals from five AI sessions, made against the build whose hash is in STATUS.md (current file: 650,127 bytes; I attach it to the conversation when you're editing at scale — if your view of it truncates, work from the submissions' full function quotes and say so). For every submission: decide **accept / defer / reject** with a one-line reason, and implement at most **5–6 accepted changes this round** (cap — defer the rest with the condition that revives them). Deliver: (1) a decision list for the queue, (2) **one complete updated HTML file as a single artifact** (fallback: anchor-based replacement blocks per the delivery contract in COLLECTIVE-PROMPT.md) — I save it as a candidate; verification gates it before anything goes live, (3) a short note per accepted submission on what changed, (4) the structural manifest. Where proposals conflict, you decide and say so. Where a proposal is ambiguous, give me your questions instead of guessing.
 
 ## Queue
-*All Round-1 entries apply to build `77bb9ed5…`. Maintained by the GLM session during assembly (the pre-sort); a row appears the moment an entry is filed. Round cap: assessment/question entries don't count against the 5–6 accepted-changes cap — only accepted code and tooling changes do (Nemo Super, adopted 19 Oct).*
 
-| ID | Title | By | Type | Status |
-|----|-------|----|------|--------|
-| S-101 | DS assessment: SIM-CORE not runnable as specced; r-gate a no-op; caps hide the sack tail | DS | assessment | pending |
-| S-102 | pw4.js spec: baseline-drift gates, three DOM-free entry points, CLI + checks | DS | improvement | pending |
-| S-201 | GLM assessment: untestable invariants / out-of-phase starters / sack cap | GLM | assessment | pending |
-| S-202 | Harness architecture: SIM-CORE markers + extraction + manifest check | GLM | improvement | pending |
-| S-300 | Nemo Super assessment: mobile px widths, inverse invariant, no harness | Nemo Super | assessment | pending |
-| S-301 | tests/run_all.sh composite runner + mobile acceptance thresholds | Nemo Super | improvement | pending |
-| S-400 | Nemo Ultra assessment: min-widths, fixed grid tracks, class nowrap | Nemo Ultra | assessment | pending |
-| S-401 | phone.js spec: static 390px overflow lint | Nemo Ultra | improvement | pending |
-| S-501 | GPT assessment: specs ≠ verified; gates can be permissive; interface boundaries | GPT | assessment | pending |
-| S-502 | validate.js spec: external 2025 validation — two-layer gates, dataset contract, fixtures | GPT | improvement | pending |
-| S-103 | tests/funcdiff.js: function-level build differ (sixth component) | DS | improvement | pending |
-| S-203 | tests/2025_standings.js — real-2025 standings dataset for validate.js (took over the withdrawn OpenClaw assignment) | GLM | improvement | pending |
-| S-6xx | OpenClaw entries — assessment + real-2025 dataset | OpenClaw | — | withdrawn (user decision 19 Oct — OpenClaw out of the process; dataset reassigned → GLM S-203) |
+_All Round-1 entries apply to build `77bb9ed5…`. Maintained by the GLM session during assembly (the pre-sort); a row appears the moment an entry is filed. Round cap: assessment/question entries don't count against the 5–6 accepted-changes cap — only accepted code and tooling changes do (Nemo Super, adopted 19 Oct)._
+
+| ID    | Title                                                                                                               | By         | Type        | Status                                                                                         |
+| ----- | ------------------------------------------------------------------------------------------------------------------- | ---------- | ----------- | ---------------------------------------------------------------------------------------------- |
+| S-101 | DS assessment: SIM-CORE not runnable as specced; r-gate a no-op; caps hide the sack tail                            | DS         | assessment  | pending                                                                                        |
+| S-102 | pw4.js spec: baseline-drift gates, three DOM-free entry points, CLI + checks                                        | DS         | improvement | pending                                                                                        |
+| S-201 | GLM assessment: untestable invariants / out-of-phase starters / sack cap                                            | GLM        | assessment  | pending                                                                                        |
+| S-202 | Harness architecture: SIM-CORE markers + extraction + manifest check                                                | GLM        | improvement | pending                                                                                        |
+| S-300 | Nemo Super assessment: mobile px widths, inverse invariant, no harness                                              | Nemo Super | assessment  | pending                                                                                        |
+| S-301 | tests/run_all.sh composite runner + mobile acceptance thresholds                                                    | Nemo Super | improvement | pending                                                                                        |
+| S-400 | Nemo Ultra assessment: min-widths, fixed grid tracks, class nowrap                                                  | Nemo Ultra | assessment  | pending                                                                                        |
+| S-401 | phone.js spec: static 390px overflow lint                                                                           | Nemo Ultra | improvement | pending                                                                                        |
+| S-501 | GPT assessment: specs ≠ verified; gates can be permissive; interface boundaries                                     | GPT        | assessment  | pending                                                                                        |
+| S-502 | validate.js spec: external 2025 validation — two-layer gates, dataset contract, fixtures                            | GPT        | improvement | pending                                                                                        |
+| S-103 | tests/funcdiff.js: function-level build differ (sixth component)                                                    | DS         | improvement | pending                                                                                        |
+| S-203 | tests/2025_standings.js — real-2025 standings dataset for validate.js (took over the withdrawn OpenClaw assignment) | GLM        | improvement | pending                                                                                        |
+| S-6xx | OpenClaw entries — assessment + real-2025 dataset                                                                   | OpenClaw   | —           | withdrawn (user decision 19 Oct — OpenClaw out of the process; dataset reassigned → GLM S-203) |
 
 **Implementer adjudication — Round 1 pre-dispatch (Claude, 19 Oct; verbatim source `rulings_r1_predispatch.md`, recorded by GLM at the user's instruction):** Contract v2 (B1–B4) applied to `tests/CONTRACT.md` — entry-wins repealed for exit codes/status grammar (phone.js: findings → `1`, usage/parse → `4`; S-301's exit-2 amendment superseded), runtime-guard extraction baseline becomes binding, baseline bootstrap/freeze and verifier-only funcdiff defined. Construction order: **1A = S-202 → S-203 → S-103 → S-102 → S-301; 1B = S-502 + S-401** (no U-series in Round 1). Status **pending dispatch** — Claude must first receive build `77bb9ed5…` (GitHub push or attachment) and read S-102/S-103/S-401 in full; the per-entry accept/defer/reject list lands after. Queue rows stay `pending` until that list is in.
 
 ---
+
 <!-- ════════════════ AGENT SECTIONS — append above your own anchor only ════════════════ -->
 
 ## GLM
 
-*Example entry (format reference — not a real submission):*
+_Example entry (format reference — not a real submission):_
 
 ### S-000 — EXAMPLE ENTRY — format reference only (⚠️ this fix already shipped in build `77bb9ed5…` — do NOT resubmit it)
+
 - **Proposed:** 2026-10-19 · **By:** GLM (example) · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** bug fix
 - **Problem / idea:** `meetingInfo()` listed future meetings as "already met" in Week-2 previews.
 - **Proposal:** order all meetings on one clock — weeks 1–17, then playoff rounds in fixed order — and only describe meetings strictly before the one previewed.
-- **Code:** *(quote the current `meetingInfo()` in full, then the full replacement)*
+- **Code:** _(quote the current `meetingInfo()` in full, then the full replacement)_
 - **Blast radius:** every preview tag that calls `meetingInfo()` (division games, playoff previews); nothing else consumes it.
 - **Evidence:** reproducible: one full season sim; the failing Week-2 tag text before, the correct one after.
 - **Checked:** `node --check` clean; full draft → season → playoffs run in Chromium; Week-2 preview now reads "the first of 2 meetings"; console clean.
@@ -69,6 +75,7 @@
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-201 — GLM assessment: three structural risks, rank them (round-2 priority question)
+
 - **Proposed:** 2026-10-19 · **By:** GLM · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** assessment (question — bundle is deliberate for round 1)
 - **Problem / idea:** three risks, of which (a) blocks all testing:
@@ -83,6 +90,7 @@
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-202 — regression harness architecture (GLM's component; pairs with DS/GPT/Nemo Super/Nemo Ultra component specs)
+
 - **Proposed:** 2026-10-19 · **By:** GLM · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** improvement
 - **Problem / idea:** four validation scripts are named in the docs but absent — the "Checked" field of every future submission is hollow, and Claude has no reproducible acceptance test.
@@ -93,7 +101,7 @@
   4. **`phone.js`**: static 390px lint, no DOM, no installs — flags horizontal-overflow risks: fixed px widths > 390, grid/table min-widths, `white-space: nowrap` on stat tables, missing `@media (max-width:760px)` rules. Declared honestly: a lint, not a render check — the browser 390px pass remains the authority.
   5. **`tests/run_all.sh`**: `node --check` on the extracted script → pw4 → validate → phone; non-zero exit on any failure.
   6. **Structural-manifest check** (guards complete-file delivery): `tests/manifest.txt` lists top-level function names; `run_all.sh` greps the current product file for each — a vanished function fails CI-style, even if the demo works.
-  **Amendment (same day — from DS's measured probes, S-101/S-102; these four points change the spec above):**
+     **Amendment (same day — from DS's measured probes, S-101/S-102; these four points change the spec above):**
   - The `r > 0.6` gate in item 2 would be a **no-op**: pooled r measured 0.946–0.959 on this build (margin ~0.35), while per-season r means 0.38–0.50. Primary gate becomes **drift against a recorded baseline** (`tests/baseline.json`, written once from the certified build, then frozen); `r > 0.60` stays only as a sanity floor. Report both pooled and per-season r — the per-season statistic is the sensitive one.
   - Markers must enclose **data, module-level state and caches — not just functions**: `PLAYERS`, `TEAM_DATA`, `DEFAULT_WEIGHTS`, `ROSTER_SLOTS`, `FLEX`/`NATURAL_SLOT_MAP`/`SLOT_GROUP`, `POS_SLOT_MAP`, `SEASON_RECORD_CAPS`, `PER_GAME_CAP`, `POINTS_PER_WIN`, plus `seasonState`, `draftSim`, `weights`, `_wTable` and friends — the engine reads the `seasonState` global (the app itself swaps it in and out around its own 100-season loop). Markers around functions alone give Claude a block with **no entry point**.
   - Three **DOM-free entry points** are required inside the core — straight moves of already-DOM-free code, no new logic: `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft` (DS's S-102 carries the full current/replacement code).
@@ -105,6 +113,7 @@
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-203 — tests/2025_standings.js: real-2025 NFL standings dataset (validate.js ground truth; took over the withdrawn OpenClaw assignment)
+
 - **Proposed:** 2026-10-19 · **By:** GLM · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** improvement — new test data + a new test file; **no product-file change**
 - **Problem / idea:** GPT's S-502 (`validate.js`) has exactly one external input: a hardcoded real-2025 standings table. That dataset was OpenClaw's round-1 assignment (S-602, never filed); the user withdrew OpenClaw from the process before it filed anything (19 Oct). GLM has web access, so this session took the component over and compiled the dataset the same turn.
@@ -121,38 +130,38 @@
 // Scope: the 2025 NFL regular season only (Sep 4, 2025 – Jan 4, 2026). pointDiff = PF − PA per source.
 // Integrity (S-203 log): 32 rows · every row 17 team-games (272 games total) · ΣW=ΣL=271 · ΣT=2 (DAL, GB) · ΣPF=ΣPA=12,519 · Σnet=0.
 module.exports = [
-  ["Arizona Cardinals", 3, 14, 0, -133],
-  ["Las Vegas Raiders", 3, 14, 0, -191],
-  ["NY Jets", 3, 14, 0, -203],
-  ["Tennessee Titans", 3, 14, 0, -194],
-  ["NY Giants", 4, 13, 0, -58],
-  ["Cleveland Browns", 5, 12, 0, -100],
-  ["Washington Commanders", 5, 12, 0, -95],
-  ["Cincinnati Bengals", 6, 11, 0, -78],
-  ["Kansas City Chiefs", 6, 11, 0, 34],
-  ["New Orleans Saints", 6, 11, 0, -77],
-  ["Dallas Cowboys", 7, 9, 1, -40],
-  ["Miami Dolphins", 7, 10, 0, -77],
-  ["Atlanta Falcons", 8, 9, 0, -48],
-  ["Baltimore Ravens", 8, 9, 0, 26],
-  ["Carolina Panthers", 8, 9, 0, -69],
-  ["Indianapolis Colts", 8, 9, 0, 54],
-  ["Tampa Bay Buccaneers", 8, 9, 0, -31],
-  ["Detroit Lions", 9, 8, 0, 68],
-  ["Green Bay Packers", 9, 7, 1, 31],
-  ["Minnesota Vikings", 9, 8, 0, 11],
-  ["Pittsburgh Steelers", 10, 7, 0, 10],
-  ["Chicago Bears", 11, 6, 0, 26],
-  ["Los Angeles Chargers", 11, 6, 0, 28],
-  ["Philadelphia Eagles", 11, 6, 0, 54],
-  ["Buffalo Bills", 12, 5, 0, 116],
-  ["Houston Texans", 12, 5, 0, 109],
-  ["Los Angeles Rams", 12, 5, 0, 172],
-  ["San Francisco 49ers", 12, 5, 0, 66],
-  ["Jacksonville Jaguars", 13, 4, 0, 138],
-  ["Denver Broncos", 14, 3, 0, 90],
-  ["New England Patriots", 14, 3, 0, 170],
-  ["Seattle Seahawks", 14, 3, 0, 191]
+	["Arizona Cardinals", 3, 14, 0, -133],
+	["Las Vegas Raiders", 3, 14, 0, -191],
+	["NY Jets", 3, 14, 0, -203],
+	["Tennessee Titans", 3, 14, 0, -194],
+	["NY Giants", 4, 13, 0, -58],
+	["Cleveland Browns", 5, 12, 0, -100],
+	["Washington Commanders", 5, 12, 0, -95],
+	["Cincinnati Bengals", 6, 11, 0, -78],
+	["Kansas City Chiefs", 6, 11, 0, 34],
+	["New Orleans Saints", 6, 11, 0, -77],
+	["Dallas Cowboys", 7, 9, 1, -40],
+	["Miami Dolphins", 7, 10, 0, -77],
+	["Atlanta Falcons", 8, 9, 0, -48],
+	["Baltimore Ravens", 8, 9, 0, 26],
+	["Carolina Panthers", 8, 9, 0, -69],
+	["Indianapolis Colts", 8, 9, 0, 54],
+	["Tampa Bay Buccaneers", 8, 9, 0, -31],
+	["Detroit Lions", 9, 8, 0, 68],
+	["Green Bay Packers", 9, 7, 1, 31],
+	["Minnesota Vikings", 9, 8, 0, 11],
+	["Pittsburgh Steelers", 10, 7, 0, 10],
+	["Chicago Bears", 11, 6, 0, 26],
+	["Los Angeles Chargers", 11, 6, 0, 28],
+	["Philadelphia Eagles", 11, 6, 0, 54],
+	["Buffalo Bills", 12, 5, 0, 116],
+	["Houston Texans", 12, 5, 0, 109],
+	["Los Angeles Rams", 12, 5, 0, 172],
+	["San Francisco 49ers", 12, 5, 0, 66],
+	["Jacksonville Jaguars", 13, 4, 0, 138],
+	["Denver Broncos", 14, 3, 0, 90],
+	["New England Patriots", 14, 3, 0, 170],
+	["Seattle Seahawks", 14, 3, 0, 191],
 ];
 ```
 
@@ -167,6 +176,7 @@ module.exports = [
 ## DS (DeepSeek Flash)
 
 ### S-101 — DS assessment: three build risks; Round 2 should fix the harness precondition first
+
 - **Proposed:** 2026-10-19 · **By:** DS · **Applies to build:** `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f` (650,127 bytes, `shasum -a 256` verified against `STATUS.md`)
 - **Type:** assessment
 - **Problem / idea:** three risks. (1) blocks the round-1 harness itself; (2) means the acceptance rule as drafted cannot fail; (3) means the elite-sack question cannot be answered by the audit as it stands.
@@ -186,7 +196,7 @@ module.exports = [
 
   **(3) `SEASON_RECORD_CAPS` distorts the exact tail the elite-sack question (S-201c) asks about.**
   - `accumulatePlayerStats()` clamps the running regular-season total (3411–3414): once a cumulative stat passes the cap it is rewritten to `Math.max(before, CAP - Math.floor(Math.random()*35))`. `SEASON_RECORD_CAPS.sack = 21` (3419).
-  - Measured: capped sack-leader max = **21, 21** (the cap, exactly, in both drafts) with ≥20 counts of 10/40 and 6/40. With the cap lifted in-harness (`SEASON_RECORD_CAPS.sack = 9999` — the `const` binding blocks rebinding, not property writes) the max is **24** and **22**, ≥20 counts 6/40 and 5/40. The sim *does* produce 22–24 sack seasons; the audit rewrites them and parks leaders in the 20–21 band. "17.1 avg / 21 max" is therefore a property of the cap, not of the model, and (c) cannot be decided until it is measured uncapped. (The ≥20 count moving *down* when the cap is lifted is suggestive but confounded by block order — see risk 2.)
+  - Measured: capped sack-leader max = **21, 21** (the cap, exactly, in both drafts) with ≥20 counts of 10/40 and 6/40. With the cap lifted in-harness (`SEASON_RECORD_CAPS.sack = 9999` — the `const` binding blocks rebinding, not property writes) the max is **24** and **22**, ≥20 counts 6/40 and 5/40. The sim _does_ produce 22–24 sack seasons; the audit rewrites them and parks leaders in the 20–21 band. "17.1 avg / 21 max" is therefore a property of the cap, not of the model, and (c) cannot be decided until it is measured uncapped. (The ≥20 count moving _down_ when the cap is lifted is suggestive but confounded by block order — see risk 2.)
   - Withdrawn: I previously suspected the DL-only sack-leader filter (`agg.leaders.sack` 5908, thresholds 5915) hides linebacker leaders. Across **160 measured seasons no linebacker ever led the league**, so I withdraw it as a live defect; the one-season observation that prompted it did not hold up.
   - Bonus for the harness: **0 score/event mismatches** in 160 seasons (~45,600 games, regular + playoffs) — the v10 fix holds on the `liteSeason` path; and headless cost is **~75 ms/season** (80 seasons ≈ 6 s), so the app's 45–60 s for 100 seasons is the `setTimeout` yielding loop (5945–5949), not the math. The harness can afford far more seasons and drafts than planned.
 - **Proposal:** no product code in this entry. **Round 2 should attack (1)** — it is the only item that blocks the others, it is a behaviour-preserving move of already-DOM-free line ranges rather than new logic, and pw4 cannot exist without it. Risk (3) then folds into pw4's design for free (`--caps both`); risk (2) changes pw4's acceptance rule, not its plumbing. S-102 carries the spec.
@@ -197,45 +207,47 @@ module.exports = [
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-102 — pw4.js: internal 100-season regression (DS component)
+
 - **Proposed:** 2026-10-19 · **By:** DS · **Applies to build:** `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f`
 - **Type:** improvement
 - **Problem / idea:** the harness needs a script whose failure means something. As drafted (S-202 item 2), pw4 runs 100 seasons and requires r > 0.6 — on this build that passes with a 0.35 margin (S-101 risk 2), so it detects nothing. This spec keeps the r check but makes **drift against a recorded baseline** the gate, adds a second sensitive r statistic, measures the sack tail uncapped, and asserts the two structural invariants that are cheap and exact.
 - **Proposal:**
 
   **CLI** (`node tests/pw4.js [file] [options]`; `[file]` defaults to `../NFL Draft Simulator.html`):
-  | flag | default | meaning |
-  |---|---|---|
-  | `--seasons N` | 100 | seasons per block |
-  | `--drafts K` | 2 | fresh headless drafts (each is a new roster sample) |
-  | `--seed S` | 20261019 | seeds the sandbox PRNG — runs are reproducible |
-  | `--caps on\|off\|both` | both | `on` = as shipped; `off` = record caps lifted; `both` = run a capped block then an uncapped block per draft |
-  | `--baseline P` | tests/baseline.json | drift reference |
-  | `--write-baseline` | — | write `P` from this run (only on the build being certified) |
-  | `--json` | off | one JSON object per draft, then a `summary` object |
-  | `--quiet` | off | summary + failures only |
-  Exit codes: **adopt `tests/CONTRACT.md` C2/C4 in full, superseding the earlier 0/1/2 mapping** — 0 pass · 1 regression · 2 data/artefact integrity (manifest mismatch, **missing `baseline.json` without `--write-baseline`** — a fresh clone must not silently skip the gate) · 3 extraction failure (missing/blank markers, or the core touching `document.`/`window.`) · 4 usage / product file not found. Rationale for the change: a boundary failure must look the same in every `tests/` script, and a missing baseline must not read as a product regression.
+  | flag                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | default             | meaning                                                                                                     |
+  | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- | ----------------------------------------------------------------------------------------------------------- |
+  | `--seasons N`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         | 100                 | seasons per block                                                                                           |
+  | `--drafts K`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          | 2                   | fresh headless drafts (each is a new roster sample)                                                         |
+  | `--seed S`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            | 20261019            | seeds the sandbox PRNG — runs are reproducible                                                              |
+  | `--caps on\|off\|both`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | both                | `on` = as shipped; `off` = record caps lifted; `both` = run a capped block then an uncapped block per draft |
+  | `--baseline P`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        | tests/baseline.json | drift reference                                                                                             |
+  | `--write-baseline`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    | —                   | write `P` from this run (only on the build being certified)                                                 |
+  | `--json`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | off                 | one JSON object per draft, then a `summary` object                                                          |
+  | `--quiet`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             | off                 | summary + failures only                                                                                     |
+  | Exit codes: **adopt `tests/CONTRACT.md` C2/C4 in full, superseding the earlier 0/1/2 mapping** — 0 pass · 1 regression · 2 data/artefact integrity (manifest mismatch, **missing `baseline.json` without `--write-baseline`** — a fresh clone must not silently skip the gate) · 3 extraction failure (missing/blank markers, or the core touching `document.`/`window.`) · 4 usage / product file not found. Rationale for the change: a boundary failure must look the same in every `tests/` script, and a missing baseline must not read as a product regression. |
 
   **Checks and thresholds**
-  | id | check | kind | threshold |
-  |---|---|---|---|
-  | C1 | `modelWeights()[s] / slotWinsPerOvr()[s]` constant across slots (AGENTS invariant 1: the 700-scale is the inverse) | hard | relative spread < 1e-6 |
-  | C2 | min starter OVR per CPU roster at draft end (records the 76-OVR floor's effect) | drift | within ±2 of baseline |
-  | C3 | Hungarian optimality: for 5 teams, every single-slot and pairwise swap among starters must not improve `lineupWins` | hard | 0 improving swaps |
-  | M1 | pooled r — `lineupWins(optimalLineup(slotmap))` vs mean wins | floor | ≥ 0.60 |
-  | M2 | pooled r | drift | \|Δ\| ≤ 0.05 |
-  | M3 | per-season r mean (the sensitive statistic — changes far more than M1) | drift | \|Δ\| ≤ 0.05 |
-  | M4 | sack leader avg (as shipped) | drift | \|Δ\| ≤ 0.75 |
-  | M5 | sack leader max, and count ≥22 **uncapped** (answers S-201c) | drift | max within ±2; count within ±2 |
-  | M6 | ties rate; home-win rate; points/game; OT rate | drift | within ±0.3 pp / ±1.0 pt of baseline |
-  | M7 | leader avg/max for pass, rush, rec yards | drift | within ±120 yd (records the caps' effect) |
-  | M8 | score/event invariant: every played game's events sum to its final score, regular and playoffs | hard | 0 mismatches |
-  | M9 | out-of-phase starters (slot phase ≠ player phase, via `SLOT_GROUP`/`NATURAL_SLOT_MAP`) per draft | report + drift | makes S-201(b) measurable instead of anecdotal |
-  | M10 | boundary, proved at run time not by grep: evaluate the marked core in a scope whose `document`/`window` throw on any property access; every function named in `tests/manifest.txt` present | hard | 0 touches / all present |
+  | id  | check                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | kind           | threshold                                                                          |
+  | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ---------------------------------------------------------------------------------- |
+  | C1  | `modelWeights()[s] / slotWinsPerOvr()[s]` constant across slots (AGENTS invariant 1: the 700-scale is the inverse)                                                                                                                                                                                                                                                                                                                                                                 | hard           | relative spread < 1e-6                                                             |
+  | C2  | min starter OVR per CPU roster at draft end (records the 76-OVR floor's effect)                                                                                                                                                                                                                                                                                                                                                                                                    | drift          | within ±2 of baseline                                                              |
+  | C3  | Hungarian optimality: for 5 teams, every single-slot and pairwise swap among starters must not improve `lineupWins`                                                                                                                                                                                                                                                                                                                                                                | hard           | 0 improving swaps                                                                  |
+  | M1  | pooled r — `lineupWins(optimalLineup(slotmap))` vs mean wins                                                                                                                                                                                                                                                                                                                                                                                                                       | floor          | ≥ 0.60                                                                             |
+  | M2  | pooled r                                                                                                                                                                                                                                                                                                                                                                                                                                                                           | drift          | \|Δ\| ≤ 0.05                                                                       |
+  | M3  | per-season r mean (the sensitive statistic — changes far more than M1)                                                                                                                                                                                                                                                                                                                                                                                                             | drift          | \|Δ\| ≤ 0.05                                                                       |
+  | M4  | sack leader avg (as shipped)                                                                                                                                                                                                                                                                                                                                                                                                                                                       | drift          | \|Δ\| ≤ 0.75                                                                       |
+  | M5  | sack leader max, and count ≥22 **uncapped** (answers S-201c)                                                                                                                                                                                                                                                                                                                                                                                                                       | drift          | max within ±2; count within ±2                                                     |
+  | M6  | ties rate; home-win rate; points/game; OT rate                                                                                                                                                                                                                                                                                                                                                                                                                                     | drift          | within ±0.3 pp / ±1.0 pt of baseline                                               |
+  | M7  | leader avg/max for pass, rush, rec yards                                                                                                                                                                                                                                                                                                                                                                                                                                           | drift          | within ±120 yd (records the caps' effect)                                          |
+  | M8  | score/event invariant: every played game's events sum to its final score, regular and playoffs                                                                                                                                                                                                                                                                                                                                                                                     | hard           | 0 mismatches                                                                       |
+  | M9  | out-of-phase starters (slot phase ≠ player phase, via `SLOT_GROUP`/`NATURAL_SLOT_MAP`) per draft                                                                                                                                                                                                                                                                                                                                                                                   | report + drift | makes S-201(b) measurable instead of anecdotal                                     |
+  | M10 | boundary, proved at run time not by grep: evaluate the marked core in a scope whose `document`/`window` throw on any property access; every function named in `tests/manifest.txt` present                                                                                                                                                                                                                                                                                         | hard           | 0 touches / all present                                                            |
   | M11 | draft realism — the U-12 evidence: per draft, round-1 picks under 90 OVR (count + share, with QB picks called out separately), the OVR gap to the best player still on the board at each pick (median / p90 / max), and the share of bottom-tier-position picks (K, TE, RB2…) that were the best available at that position. Computed from `draftSim.log`, which already records `{round, pickInRound, overall, teamIndex, player, slot}` — no product change, no extra simulation | report + drift | no pass threshold in Round 1; U-12 sets the targets once the first baseline exists |
 
   Baseline is written **once**, from the build whose hash `STATUS.md` certifies, and is then frozen; every later run compares against it. `--write-baseline` on an uncertified build is the one way to disarm the gate, so it prints a loud warning and the build hash it recorded.
 
   **Output (human)**
+
   ```
   pw4 · NFL Draft Simulator.html · sha256 77bb9ed5… · 650,127 bytes
   core · markers ok · 1,2xx lines · DOM refs 0 · 38 functions checked
@@ -249,9 +261,11 @@ module.exports = [
   PW4: r=0.951 PASS
   PASS · floor 0.60 · drift within tolerance vs tests/baseline.json
   ```
+
   Failure line, e.g.: `FAIL · M2 pooled r 0.951 → 0.842 (Δ 0.109 > 0.05)`. The `PW4: r=<value> PASS|FAIL` line exists so Nemo Super's `tests/run_all.sh` (S-301) can parse it; `r` = minimum pooled r across drafts.
 
   **Code sketch — node side** (no dependencies; `vm` is in node core):
+
   ```js
   const fs = require('fs'), vm = require('vm');
   const src = fs.readFileSync(FILE, 'utf8');
@@ -267,9 +281,11 @@ module.exports = [
   vm.runInContext(core + '\n;globalThis.__PW4__ = function(cfg){/* driver, below */};', sb, { filename: 'sim-core.js' });
   const report = sb.__PW4__({ seasons: SEASONS, drafts: DRAFTS, caps: CAPS });
   ```
+
   The driver is **appended to the same source** (not a second `runInContext`) because the core's top-level `const`/`let` — `SEASON_RECORD_CAPS`, `seasonState`, `draftSim`, the caches — are lexical bindings of that script; appended code sees them, and `globalThis.__PW4__` carries results back out.
 
   **Code sketch — driver side** (the loop; all calls are the product's own):
+
   ```js
   globalThis.__PW4__ = function (cfg) {
     const out = [];
@@ -304,11 +320,13 @@ module.exports = [
     return out;
   };
   ```
+
   Note on `--caps both`: the two blocks run in order, and block order itself shifted per-season r by ~+0.05 in both probe drafts with no model change — so the cap delta is reported per block and never attributed to the cap alone without that caveat. If Claude prefers, run the blocks in alternating order (capped, uncapped, uncapped, capped) and report the pair.
 
   **Product precondition (S-101 risk 1).** pw4 needs three DOM-free entry points inside SIM-CORE. Each is a straight move of already-DOM-free code; no logic added. Current code below is referenced by **line range against build `31b7d61f…`** (v20 — the Owner's reference build since 19 Oct; canonical `77bb9ed5…` ranges noted alongside). Rule 3 as amended, build attached; the three new functions and all three replacements are quoted in full.
 
-  *New:*
+  _New:_
+
   ```js
   // DOM-free draft bootstrap — the state-building half of startDraft2 (was lines 1404-1425, verbatim).
   function buildDraftState(userTeamName, pickChoice){
@@ -368,8 +386,9 @@ module.exports = [
   }
   ```
 
-  *Changed —* `startDraft2()` — current code: **lines 1408–1446** of build `31b7d61f…` (v20, 39 lines; canonical `77bb9ed5…`: 1397–1435). 1410/1412/1414 are the DOM reads; **1415–1436** is the state-building half that moves verbatim into `buildDraftState()`; 1437–1445 is the banner/panel/`processUntilUserTurn()` tail, unchanged.
-  *Replacement:*
+  _Changed —_ `startDraft2()` — current code: **lines 1408–1446** of build `31b7d61f…` (v20, 39 lines; canonical `77bb9ed5…`: 1397–1435). 1410/1412/1414 are the DOM reads; **1415–1436** is the state-building half that moves verbatim into `buildDraftState()`; 1437–1445 is the banner/panel/`processUntilUserTurn()` tail, unchanged.
+  _Replacement:_
+
   ```js
   function startDraft2(){
    draftUI = newDraftUI();
@@ -391,8 +410,9 @@ module.exports = [
   }
   ```
 
-  *Changed —* `startSeason()` — current code: **lines 3371–3381** of build `31b7d61f…` (v20, 11 lines; canonical `77bb9ed5…`: 3391–3401). Its body *is* the bootstrap that moves into `buildLeagueFromDraft()`; the only call-site specifics are `planCache: {}` (base is `null` here, so the builder's `(base && base.planCache) || {}` gives the same) and `preseason: true`, which the `{preseason:true}` argument preserves.
-  *Replacement:*
+  _Changed —_ `startSeason()` — current code: **lines 3371–3381** of build `31b7d61f…` (v20, 11 lines; canonical `77bb9ed5…`: 3391–3401). Its body _is_ the bootstrap that moves into `buildLeagueFromDraft()`; the only call-site specifics are `planCache: {}` (base is `null` here, so the builder's `(base && base.planCache) || {}` gives the same) and `preseason: true`, which the `{preseason:true}` argument preserves.
+  _Replacement:_
+
   ```js
   function startSeason(){
    const built = buildLeagueFromDraft({preseason:true});
@@ -400,10 +420,12 @@ module.exports = [
    seasonState = built.L;
   }
   ```
+
   (`buildResultEntries()` is untouched — its `draftEntries` map `slotmap/pool/teamName/isUser` to exactly what `buildLeagueFromDraft` builds, and nothing else in the season path reads them.)
 
-  *Changed —* `runLeague100()` — current code: **lines 5880–5903** of build `31b7d61f…` (v20, 24 lines; canonical `77bb9ed5…`: 5930–5953). 5885–5889 are the duplicated bootstrap this replaces (they become `buildLeagueFromDraft()`); 5891–5902 — the progress panel, the `seasonState` swap, the `liteSeason` loop and the `render100` handoff — are reproduced unchanged in the replacement below.
-  *Replacement:*
+  _Changed —_ `runLeague100()` — current code: **lines 5880–5903** of build `31b7d61f…` (v20, 24 lines; canonical `77bb9ed5…`: 5930–5953). 5885–5889 are the duplicated bootstrap this replaces (they become `buildLeagueFromDraft()`); 5891–5902 — the progress panel, the `seasonState` swap, the `liteSeason` loop and the `render100` handoff — are reproduced unchanged in the replacement below.
+  _Replacement:_
+
   ```js
   function runLeague100(N, container){
    const built = buildLeagueFromDraft();
@@ -434,32 +456,34 @@ module.exports = [
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-103 — tests/funcdiff.js: function-level build differ (sixth component)
+
 - **Proposed:** 2026-10-19 · **By:** DS · **Applies to build:** `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f` (650,127 bytes)
 - **Type:** improvement
-- **Problem / idea:** a whole-file delivery has no diff, so the verifier can confirm that *what was asked for* is present but not that *nothing else* changed. The structural manifest (S-202 item 6) catches a **deleted** function; it cannot catch a **mutated** one. This round is the concrete case: S-102 proposes edits to six functions in a 650 KB artifact, and today the only check is a human reading it. `funcdiff` turns that into a set comparison: the functions whose text changed in the new build must be exactly the functions the round was allowed to touch.
+- **Problem / idea:** a whole-file delivery has no diff, so the verifier can confirm that _what was asked for_ is present but not that _nothing else_ changed. The structural manifest (S-202 item 6) catches a **deleted** function; it cannot catch a **mutated** one. This round is the concrete case: S-102 proposes edits to six functions in a 650 KB artifact, and today the only check is a human reading it. `funcdiff` turns that into a set comparison: the functions whose text changed in the new build must be exactly the functions the round was allowed to touch.
 - **Proposal:**
 
   **CLI** — `node tests/funcdiff.js <old.html> <new.html> [options]`
-  | flag | default | meaning |
-  |---|---|---|
-  | `--expect LIST\|FILE` | — | names the round was allowed to touch. Comma-separated, or a path (one name per line, `#` comments). Pseudo-units are nameable: `#markup`, `#style0`, `#style1`, `#glue` |
-  | `--allow-unchanged` | off | downgrade "expected but did not change" from FAIL to NOTE (Claude may implement a submission differently than the proponent described; the verification report must then say why) |
-  | `--json` | off | one JSON object, no human table |
-  | `--normalize` | off | additionally hash with whitespace runs collapsed; cosmetic-only changes carry `~` and do not change the verdict |
-  | `--no-const` | off | do not index top-level `const/let/var` (they are indexed by default — that is how `PLAYERS`/`TEAM_DATA` edits become visible) |
-  | `--manifest PATH` | — | write the new build's unit list (`name`, line range, bytes, sha256) for `run_all.sh`'s manifest check |
-  | `--self-test` | — | run the scanner's own fixture suite and exit (no file arguments needed) |
-  | `--quiet` | off | verdict and failures only |
-  | `--max-report N` | 40 | cap each section's listing, print `… and N more` |
+  | flag                  | default | meaning                                                                                                                                                                           |
+  | --------------------- | ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+  | `--expect LIST\|FILE` | —       | names the round was allowed to touch. Comma-separated, or a path (one name per line, `#` comments). Pseudo-units are nameable: `#markup`, `#style0`, `#style1`, `#glue`           |
+  | `--allow-unchanged`   | off     | downgrade "expected but did not change" from FAIL to NOTE (Claude may implement a submission differently than the proponent described; the verification report must then say why) |
+  | `--json`              | off     | one JSON object, no human table                                                                                                                                                   |
+  | `--normalize`         | off     | additionally hash with whitespace runs collapsed; cosmetic-only changes carry `~` and do not change the verdict                                                                   |
+  | `--no-const`          | off     | do not index top-level `const/let/var` (they are indexed by default — that is how `PLAYERS`/`TEAM_DATA` edits become visible)                                                     |
+  | `--manifest PATH`     | —       | write the new build's unit list (`name`, line range, bytes, sha256) for `run_all.sh`'s manifest check                                                                             |
+  | `--self-test`         | —       | run the scanner's own fixture suite and exit (no file arguments needed)                                                                                                           |
+  | `--quiet`             | off     | verdict and failures only                                                                                                                                                         |
+  | `--max-report N`      | 40      | cap each section's listing, print `… and N more`                                                                                                                                  |
 
   **Units indexed.** Every top-level `function NAME(…) {…}` and every top-level `const/let/var NAME = …;` in the script block, plus four pseudo-units that close the holes:
-  - `#markup` — the HTML with `<script>`/`<style>` *contents* removed (attributes, structure and the document shell included). This is the class of bug that bit us in v10 (duplicate document shell) and that no function-level diff can see.
+  - `#markup` — the HTML with `<script>`/`<style>` _contents_ removed (attributes, structure and the document shell included). This is the class of bug that bit us in v10 (duplicate document shell) and that no function-level diff can see.
   - `#style0`, `#style1` — each `<style>` element's contents (v20 has two: 372 B and 25,872 B; canonical `77bb9ed5…`: 377 B and 20,186 B).
   - `#glue` — script text outside every unit (top-level wiring, event listeners, IIFEs). Without it, a delivery could change `document.addEventListener(...)` at top level and every unit would still hash identical.
 
   The v20 reference indexes to **541 units** (409 functions + 128 declarations + 4 pseudo); the canonical merge parent `77bb9ed5…` indexes to 543. `funcdiff` prints the counts it found, so a scanner regression cannot hide: a plausible-looking run with 200 units is a harness error, not a clean build.
 
   **Output — human (pass):**
+
   ```
   funcdiff · old  backup-before-reorg/NFL Draft Simulator (GLM verified build).html   8,742,113 B  sha256 3a41c9e0…
            · new  NFL Draft Simulator.html                                            650,127 B  sha256 77bb9ed5…
@@ -477,32 +501,36 @@ module.exports = [
   EXPECT ok · 7/7 expected names touched · 0 unexpected · 0 absent
   FUNCDIFF: PASS
   ```
+
   **Output — human (fail):**
+
   ```
   FUNCDIFF: FAIL · unexpected change: render100 (not in --expect)
                 · removed: simToEnd (expected by no submission)
   ```
+
   Notes that the samples encode deliberately: bytes are always printed because the two biggest units are **single lines** (`PLAYERS` line 401, 83,716 B; `TEAM_DATA` line 402, 42,506 B) — a line-range delta of `0` there means nothing; a `+1,200 B` means a rating table changed. And `~` appears only with `--normalize`, so "the CSS was reindented" never masquerades as a logic change.
 
-  *The sample uses the canonical build as "new" for continuity. Under R2 the reference is v20: 541 units (409 + 128 + 4), style blocks 372 B + 25,872 B, `PLAYERS` at line 449.*
+  _The sample uses the canonical build as "new" for continuity. Under R2 the reference is v20: 541 units (409 + 128 + 4), style blocks 372 B + 25,872 B, `PLAYERS` at line 449._
 
   **Verdict logic** (this is the whole point of the tool):
   1. `unexpected = (changed ∪ added ∪ removed) − expect` → non-empty ⇒ **FAIL**.
   2. `absent = expect − names(new)` → non-empty ⇒ **FAIL** (an expected function that no longer exists is a deletion, not a no-op).
-  3. `missed = expect ∩ names(new) − changed` → **FAIL** by default (AGENTS.md: the sets must be *equal*), **NOTE** with `--allow-unchanged`.
+  3. `missed = expect ∩ names(new) − changed` → **FAIL** by default (AGENTS.md: the sets must be _equal_), **NOTE** with `--allow-unchanged`.
   4. Without `--expect`: report only, exit 0 — the tool is then a differ, not a gate.
   5. If `old.sha256 === new.sha256`: print `identical` and assert 0 changes (built-in round-trip check).
 
   **Exit codes:** `0` clean · `1` verdict failure · `2` harness error (file unreadable, no script block, scanner anomaly, unknown `--expect` name that is also not a pseudo-unit, `--self-test` failure).
 
   **Scanner contract.** This is the only part that can silently lie, so it is specified and self-checked rather than hand-waved:
-  - Walk the script block with a **mode stack** and record which byte positions are *code*: skip `//` and `/* */` comments, `'…'` and `"…"` strings (with escapes), template literals — a `` ` `` pushes `tpl`, `${` pushes `code`, the matching `}` pops back to `tpl`, so `${…}` bodies are code and template text is not — and regex literals, entered only where a value cannot end (`/[\w$)\]}`"']/` heuristic).
+  - Walk the script block with a **mode stack** and record which byte positions are _code_: skip `//` and `/* */` comments, `'…'` and `"…"` strings (with escapes), template literals — a `` ` `` pushes `tpl`, `${` pushes `code`, the matching `}` pops back to `tpl`, so `${…}` bodies are code and template text is not — and regex literals, entered only where a value cannot end (`/[\w$)\]}`"']/` heuristic).
   - Track brace depth over code positions only. At depth 0, match `function\s+NAME\s*\(` (not preceded by a value char) and slice from the keyword to the brace that closes its body; match `^(const|let|var)\s+NAME\s*=` and slice to the next depth-0 `;`.
   - Use sticky regexes with `lastIndex` (no `slice()` allocation per candidate — 539 matches over 620 KB).
   - **Self-checks, hard failures:** every unit's braces balance; spans are disjoint and inside the block; `Σ spans + Σ gaps === block.length` (nothing silently dropped); no duplicate names; every unit non-empty.
   - **`--self-test`** ships ~8 synthetic fixtures inside the file and asserts the expected verdict on each: nested braces · brace inside a template literal · brace inside a regex literal · the word `function` inside a comment and inside a string · an arrow function in a `const` · a single-line const object · a nested function (must be attributed to its parent, not indexed separately) · a template with `${ {a:1} }` inside.
 
   **Code sketch** (plain node; `crypto` for hashing — no dependencies):
+
   ```js
   const fs = require('fs'), crypto = require('crypto');
   const sha = s => crypto.createHash('sha256').update(s).digest('hex');
@@ -543,9 +571,11 @@ module.exports = [
   //    and a function that moved without changing is reported with `=` for equal hash
   //    and its new line range, never as added+removed (match by name, not by position).
   ```
+
   The last comment matters for the verifier's expectations: **matching is by name, not by byte position**, so a round that moves code (like S-102's hoists) produces `changed` entries with new line ranges plus `added` entries for the new helpers — never a spurious `removed`+`added` pair for the same name.
 
   **JSON shape** (`--json`):
+
   ```json
   {"old":{"file":"…","bytes":8742113,"sha256":"…","units":543},
    "new":{"file":"…","bytes":650127,"sha256":"…","units":543},
@@ -559,16 +589,18 @@ module.exports = [
   ```
 
   **How the verifier uses it** (ties to AGENTS.md §Test obligations, item 5):
+
   ```bash
   node tests/funcdiff.js "backup-before-reorg/NFL Draft Simulator (GLM verified build).html" \
                          "NFL Draft Simulator.html" \
        --expect runLeague100,startSeason,startDraft2,accumulatePlayerStats,#glue
   ```
+
   Exit 0 is the verification report's sixth line; exit 1 is the finding. With no previous build on disk (first round after a baseline reset), run `--manifest tests/manifest.txt` instead and hand the names to `run_all.sh`.
-- **Blast radius:** creates `tests/funcdiff.js` only; no product-file change; reads two HTML files read-only. It validates *delivery*, not *correctness*: a build where every changed function was expected can still be wrong, and `funcdiff` will pass it — that is pw4/validate/phone's job, and the verifier's report must not conflate them. It also cannot see changes outside the file (nothing to see) or judge whether a changed function was changed *well*.
+- **Blast radius:** creates `tests/funcdiff.js` only; no product-file change; reads two HTML files read-only. It validates _delivery_, not _correctness_: a build where every changed function was expected can still be wrong, and `funcdiff` will pass it — that is pw4/validate/phone's job, and the verifier's report must not conflate them. It also cannot see changes outside the file (nothing to see) or judge whether a changed function was changed _well_.
 - **Evidence:** unit counts and block sizes measured on v20 `31b7d61f…` (`grep -c '^function '` → 409; `^(const|let|var) ` → 128; `^(if|for|while|switch)\(` → 0, which is what makes depth-0 `;` slicing unambiguous; 1 script block; 2 style blocks 372 B + 25,872 B; `PLAYERS` line 449 = 83,716 B, `TEAM_DATA` line 450 = 42,506 B on single lines — hence byte deltas in the output; canonical `77bb9ed5…` measures 412 / 127, 377 B + 20,186 B, lines 401/402, same data bytes). The need is evidenced by this round: S-102 touches six functions in a 649 KB artifact, and the current contract gives the verifier no way to prove that only those six moved.
 - **Checked:** untested — the script does not exist, so no run is claimed. The structural facts above are measured; the scanner contract and `--self-test` fixtures are the design's answer to "how do we know the scanner is right".
-- **Overlap (Claude arbitrates):** with GLM **S-202** item 6 — the structural manifest becomes *generated* (`--manifest`) instead of hand-maintained, and the marker block's unit list falls out of the same scan; if S-202's markers are rejected, `funcdiff` still works on the whole script block, so this entry does not depend on them. With Nemo Super **S-301** — `run_all.sh` gains one optional step (`funcdiff` when a previous build is supplied); my `FUNCDIFF: PASS|FAIL` line is greppable like `PW4:` and `VALIDATE:`. Ordered before the behavioural gates is deliberate: it is the cheapest check and it fails on the class of error that no behavioural gate can see.
+- **Overlap (Claude arbitrates):** with GLM **S-202** item 6 — the structural manifest becomes _generated_ (`--manifest`) instead of hand-maintained, and the marker block's unit list falls out of the same scan; if S-202's markers are rejected, `funcdiff` still works on the whole script block, so this entry does not depend on them. With Nemo Super **S-301** — `run_all.sh` gains one optional step (`funcdiff` when a previous build is supplied); my `FUNCDIFF: PASS|FAIL` line is greppable like `PW4:` and `VALIDATE:`. Ordered before the behavioural gates is deliberate: it is the cheapest check and it fails on the class of error that no behavioural gate can see.
 - **Status:** pending
 - **Implementer's note (user pastes Claude's decision here):** —
 
@@ -577,6 +609,7 @@ module.exports = [
 ## Nemo Super
 
 ### S-300 — Assessment: three build risks, harness first
+
 - **Proposed:** 2026-10-19 · **By:** Nemo Super · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** assessment
 - **Problem / idea:** three risks blocking reliable iteration:
@@ -591,6 +624,7 @@ module.exports = [
 - **Implementer's note:** —
 
 ### S-301 — tests/run_all.sh composite runner + mobile acceptance criteria
+
 - **Proposed:** 2026-10-19 · **By:** Nemo Super · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** improvement
 - **Problem / idea:** Round 1 needs a single composite runner that gates the build hash. pw4.js (DS), validate.js (GPT), phone.js (Nemo Ultra) do not exist yet; this spec defines run_all.sh's contract and the mobile-acceptance thresholds it should enforce once those scripts exist.
@@ -612,6 +646,7 @@ module.exports = [
 - **Implementer's note:** —
 
 ### S-303 — Re-base S-300/S-301 evidence citations from `77bb9ed5…` to v20 `31b7d61f…`
+
 - **Proposed:** 2026-10-19 · **By:** Nemo Super · **Applies to build:** `31b7d61f…` (v20 reference per R2) — amendment to S-300/S-301, which cited `77bb9ed5…`
 - **Type:** improvement (administrative)
 - **Problem / idea:** Owner ruling R2 made v20 `31b7d61f…` the reference build and `77bb9ed5…` a donor of fixes. My S-300 risk citations (cpuPick line 1342, slotWinsTable 1268, slotWins 1283, slotWinsPerOvr 1288) and S-301's harness target were measured on `77bb9ed5…`. Under R2 they measure the donor, not the reference. No proposal content changes; only the build hash each entry measures.
@@ -623,6 +658,7 @@ module.exports = [
 - **Implementer's note:** —
 
 ### S-304 — phone.js exit-code alignment with contract v2
+
 - **Proposed:** 2026-10-20 · **By:** Nemo Super · **Applies to build:** `31b7d61f…` (v20 reference per R2) — amendment to S-301
 - **Type:** improvement (administrative)
 - **Problem / idea:** My S-301 amendment assigned phone.js exit 2 = usage/parse error (hard build failure). CONTRACT v2 C4 assigns exit 2 = data-integrity violation, exit 4 = usage error. Entry-wins rule (CONTRACT C4) says my entry governs phone.js, but contract text was applied to `tests/CONTRACT.md`. Align S-301 with contract v2.
@@ -638,6 +674,7 @@ module.exports = [
 ## Nemo Ultra
 
 ### S-400 — Nemo Ultra assessment: three mobile/layout risks in the current build
+
 - **Proposed:** 2026-10-19 · **By:** Nemo Ultra · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** assessment
 - **Problem / idea:** the v10 build passed a manual 390px browser check, but a static audit reveals structural patterns that will regress on the next CSS edit. Three risks ranked by blast radius:
@@ -652,6 +689,7 @@ module.exports = [
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-401 — phone.js: static 390px overflow lint (Nemo Ultra component for regression harness)
+
 - **Proposed:** 2026-10-19 · **By:** Nemo Ultra · **Applies to build:** `77bb9ed59ffa` (see STATUS.md)
 - **Type:** improvement
 - **Problem / idea:** the regression harness needs a static phone lint that runs in plain Node (no DOM, no installs, no browser). The current mobile CSS audit is manual and regresses silently. `phone.js` will be a lint, not a render check — it parses the product HTML's `<style>` block and inline `style` attributes, flags horizontal-overflow patterns, and exits non-zero on findings. The browser 390px pass remains the authority; this is a pre-commit guard.
@@ -661,14 +699,14 @@ module.exports = [
 
 **Checks (all operate on raw HTML source, no evaluation):**
 
-| Check | Pattern | Threshold / Logic | Exit on |
-|-------|---------|-------------------|---------|
-| 1. Fixed px `width` / `min-width` / `max-width` > 390 | Regex on `<style>` + inline `style=` | Any value `> 390` not inside `@media (max-width: ≤760px)` block | First occurrence |
-| 2. Grid `grid-template-columns` with fixed px track | Regex on `<style>` + inline `style=` | Any track like `340px`, `300px`, `140px`, `40px`, `78px`, `28px`, `46px`, `56px`, `36px`, `14px` not inside `@media (max-width: ≤760px)` | First occurrence |
-| 3. Table `min-width` > 390 | Regex | `min-width: 320px` (linescore) etc. | First occurrence |
-| 4. `white-space: nowrap` on stat/data elements | Regex on class rules + inline | `white-space: nowrap` not overridden by `@media (max-width: ≤760px)` for that selector | First occurrence |
-| 5. Missing mobile breakpoint for grids with fixed tracks | Heuristic: any `grid-template-columns` with a fixed px track that lacks a corresponding `@media (max-width: ≤760px)` rule targeting the same selector (or a wildcard `[style*="grid-template-columns"]`) | Warning (exit 0 but stderr) |
-| 6. `max-width` on fixed-position overlays > 90vw | `.fxbanner { max-width: 90vw }`, `.fxtoast { max-width: 92vw }` | OK — viewport-relative; flag only if `max-width` uses px > 390 | — |
+| Check                                                    | Pattern                                                                                                                                                                                                  | Threshold / Logic                                                                                                                        | Exit on          |
+| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
+| 1. Fixed px `width` / `min-width` / `max-width` > 390    | Regex on `<style>` + inline `style=`                                                                                                                                                                     | Any value `> 390` not inside `@media (max-width: ≤760px)` block                                                                          | First occurrence |
+| 2. Grid `grid-template-columns` with fixed px track      | Regex on `<style>` + inline `style=`                                                                                                                                                                     | Any track like `340px`, `300px`, `140px`, `40px`, `78px`, `28px`, `46px`, `56px`, `36px`, `14px` not inside `@media (max-width: ≤760px)` | First occurrence |
+| 3. Table `min-width` > 390                               | Regex                                                                                                                                                                                                    | `min-width: 320px` (linescore) etc.                                                                                                      | First occurrence |
+| 4. `white-space: nowrap` on stat/data elements           | Regex on class rules + inline                                                                                                                                                                            | `white-space: nowrap` not overridden by `@media (max-width: ≤760px)` for that selector                                                   | First occurrence |
+| 5. Missing mobile breakpoint for grids with fixed tracks | Heuristic: any `grid-template-columns` with a fixed px track that lacks a corresponding `@media (max-width: ≤760px)` rule targeting the same selector (or a wildcard `[style*="grid-template-columns"]`) | Warning (exit 0 but stderr)                                                                                                              |
+| 6. `max-width` on fixed-position overlays > 90vw         | `.fxbanner { max-width: 90vw }`, `.fxtoast { max-width: 92vw }`                                                                                                                                          | OK — viewport-relative; flag only if `max-width` uses px > 390                                                                           | —                |
 
 **Output format (stdout, one line per finding):**
 ```
@@ -693,7 +731,6 @@ PHONE-LINT: NFL Draft Simulator.html:59:MIN-WIDTH: .filters input min-width: 160
 - **Honest declaration:** this is a lint. It cannot measure actual rendered width, flex-wrap behavior, or content-driven overflow. The browser 390px pass remains the gate.
 
 **Integration:** `tests/run_all.sh` runs `node --check <extracted-script> && node pw4.js && node validate.js && node phone.js`; any non-zero exit fails the round.
-
 - **Blast radius:** new file `phone.js` at project root; no product-file change; no dependencies.
 - **Evidence:** the patterns above are drawn from the current build grep (see S-400). No prior lint exists — this creates the first reproducible mobile check.
 - **Checked:** `node --check` on the current product file passes. This spec is untested code — the implementation will be written by Claude if accepted.
@@ -717,7 +754,6 @@ PHONE-LINT: NFL Draft Simulator.html:59:MIN-WIDTH: .filters input min-width: 160
 This is a protocol-level assessment of the collective's collaboration architecture, submission workflow, verification gates, delivery contract, round structure, and separation of responsibilities. It is not a code-level assessment. The product file and shared project documents were not available for inspection.
 
 Three process risks warrant attention:
-
 1. **Specifications can be accepted without executable verification.** A submission may define an interface, test, or threshold precisely while still containing implementation errors. Because submissions are transcribed between sessions and the project is divided among multiple contributors, a correct-looking specification does not establish that the resulting script actually runs against the product.
 2. **Regression gates can create false confidence.** Internal reproducibility and agreement with a frozen baseline do not establish real-world accuracy. Conversely, an external validation test can technically pass while being too permissive to detect a meaningful deterioration. Different gates can all pass without collectively establishing that the product is correct.
 3. **Cross-session interfaces can fail at integration boundaries.** Contributors work from partial context and cannot necessarily inspect the same files. A script may assume different marker names, team identifiers, output formats, function signatures, or exit-code semantics from those implemented by another contributor. Verbatim transcription preserves the submission but cannot resolve contradictory assumptions.
@@ -731,7 +767,6 @@ Address these risks in the following priority order.
 Require a single, reproducible integration run against the actual assembled project before accepting a round as complete. The integration report should identify the exact build, commands executed, exit codes, and results of each gate. Distinguish a specification being accepted from its implementation being verified.
 
 For each component, establish three separate states:
-
 - **Specified:** The expected behavior and interface are documented.
 - **Implemented:** The component exists in the assembled project.
 - **Verified:** The component was executed against that project, and its actual behavior was checked.
@@ -766,7 +801,6 @@ EVIDENCE: <command and concise result>
 ```
 
 Interpretation:
-
 - `PASS`: The component was executed and met its acceptance criteria.
 - `FAIL`: Execution or an acceptance criterion failed.
 - `UNVERIFIED`: Execution or sufficient evidence is absent.
@@ -788,7 +822,6 @@ No source files, executable scripts, or shared project documents were inspected.
 The assignment packet and its stated collaboration constraints were reviewed. The actual repository, product file, submission ledger, and assembled scripts were not accessible. No implementation or integration test was executed.
 
 **10. Status:** pending
-
 - **Implementer's note (user pastes Claude's decision here):** —
 
 ### S-502 — `validate.js`: Discriminating Team-Level Validation Against the 2025 NFL Season
@@ -806,12 +839,10 @@ The regression suite needs an external validation gate that measures whether the
 The existing engine generates its own schedule. Therefore, directly comparing its simulated games with actual 2025 matchups is not appropriate for this component.
 
 The proposed comparison is between:
-
 - A model-generated, per-team estimate of wins for the 32 teams using the shipped 2025 team ratings.
 - The actual number of regular-season wins earned by each of those teams in 2025.
 
 The validation script must address four risks:
-
 1. **Undefined statistics.** Correlation and error metrics are meaningless unless the prediction, target, sample, and aggregation method are specified.
 2. **Trivial thresholds.** A test can pass while having little power to detect model deterioration.
 3. **Data-interface failures.** Missing teams, mismatched team names, or inconsistent standings can invalidate the comparison.
@@ -868,22 +899,22 @@ Required file: `tests/2025_standings.js`
 Required format:
 
 ```javascript
-'use strict';
+"use strict";
 
 module.exports = [
-  // One entry per NFL team, using the exact TEAM_DATA key.
-  // [teamName, wins, losses, ties, pointDiff]
+	// One entry per NFL team, using the exact TEAM_DATA key.
+	// [teamName, wins, losses, ties, pointDiff]
 ];
 ```
 
 Each entry has exactly five fields:
 
-| Field | Type | Meaning |
-|---|---|---|
-| `teamName` | String | Exact key in the product's `TEAM_DATA` object |
-| `wins` | Integer | Actual 2025 regular-season wins |
-| `losses` | Integer | Actual 2025 regular-season losses |
-| `ties` | Integer | Actual 2025 regular-season ties |
+| Field       | Type    | Meaning                                                  |
+| ----------- | ------- | -------------------------------------------------------- |
+| `teamName`  | String  | Exact key in the product's `TEAM_DATA` object            |
+| `wins`      | Integer | Actual 2025 regular-season wins                          |
+| `losses`    | Integer | Actual 2025 regular-season losses                        |
+| `ties`      | Integer | Actual 2025 regular-season ties                          |
 | `pointDiff` | Integer | Actual regular-season points scored minus points allowed |
 
 **Name matching policy:** The dataset must use `TEAM_DATA` keys exactly. No implicit aliases, fuzzy matching, normalization, or guessed abbreviations are permitted. If OpenClaw's source uses a different name, the dataset author must resolve it explicitly before submission.
@@ -891,7 +922,6 @@ Each entry has exactly five fields:
 Point differential is retained for traceability and potential later analysis. It is not used in the primary acceptance statistics.
 
 **Required integrity checks:**
-
 1. The dataset file exists and loads successfully.
 2. It contains exactly 32 rows.
 3. Every row has exactly five fields.
@@ -916,7 +946,6 @@ The dataset author should separately preserve source URLs and cross-check eviden
 For each team, derive a strength value from the actual team slot map in `TEAM_DATA` using the DOM-free functions available in the agreed simulation core.
 
 Use the following functions as the initial interface contract:
-
 - `teamRatings(slotmap)`
 - `leagueBaseline(slotmaps)`
 - `optimalLineup(slotmap)`
@@ -928,7 +957,6 @@ The exact signatures and return shapes must be confirmed against the actual `SIM
 The preferred prediction is the model's **deterministic expected-win estimate** for each team's shipped roster, calibrated to a 17-game season. It should not be a single randomly simulated season.
 
 Why:
-
 - A single season's win total includes substantial schedule and game-level randomness.
 - The actual 2025 standings are a noisy realization of team strength, not a direct measurement of roster quality.
 - A deterministic prediction makes the validation reproducible and makes observed changes more attributable to model changes rather than random draws.
@@ -944,7 +972,6 @@ If the available functions cannot produce a defensible deterministic win estimat
 Let `n = 32`.
 
 For each team `i`:
-
 - `pᵢ` = deterministic projected wins.
 - `aᵢ` = actual 2025 regular-season wins.
 
@@ -984,11 +1011,11 @@ If either vector has zero variance, or any prediction is nonfinite, return a har
 
 The reference targets from AGENTS.md are:
 
-| Metric | Reference target | Initial acceptance threshold |
-|---|---:|---|
-| Pearson `r` | 0.66 | `r >= 0.60` |
-| Spearman `rho` | 0.69 | `rho >= 0.63` |
-| RMSE | 2.6 wins | `RMSE <= 3.0` |
+| Metric         | Reference target | Initial acceptance threshold |
+| -------------- | ---------------: | ---------------------------- |
+| Pearson `r`    |             0.66 | `r >= 0.60`                  |
+| Spearman `rho` |             0.69 | `rho >= 0.63`                |
+| RMSE           |         2.6 wins | `RMSE <= 3.0`                |
 
 These are proposed initial thresholds, not empirically calibrated guarantees. They are intended to prevent accepting a model that materially misses the reference targets while avoiding the assumption that rounded target values are exact requirements.
 
@@ -997,7 +1024,6 @@ These are proposed initial thresholds, not empirically calibrated guarantees. Th
 If the current model passes these thresholds with substantial margin, the collective must not interpret that as proof of strong validation. The thresholds must be recalibrated using measured baseline results and an explicit sensitivity test.
 
 For a stronger acceptance test, record the initial three metrics as the reference baseline and compare future builds against that frozen result. A proposed deterioration gate is:
-
 - Pearson correlation must not fall by more than `0.03`.
 - Spearman correlation must not fall by more than `0.03`.
 - RMSE must not increase by more than `0.15` wins.
@@ -1005,7 +1031,6 @@ For a stronger acceptance test, record the initial three metrics as the referenc
 These values are provisional engineering tolerances, not statistically estimated confidence limits. They should be finalized only after observing baseline stability and determining whether meaningful defects can exceed them.
 
 **Recommended two-layer decision:**
-
 1. **Absolute plausibility gate:** Require the three initial thresholds above.
 2. **Frozen-baseline regression gate:** Require the three deterioration limits above, once an accepted baseline has been recorded.
 
@@ -1018,7 +1043,6 @@ The product requirements for the primary external metrics remain the reference p
 ### F. Extraction and sandboxing
 
 Follow the same extraction architecture as DS's `pw4.js`.
-
 1. Read `NFL Draft Simulator.html` as text.
 2. Locate the exact opening marker `/*SIM-CORE-START*/`.
 3. Locate the exact closing marker `/*SIM-CORE-END*/` after the opening marker.
@@ -1047,175 +1071,166 @@ Because top-level `const` and `let` declarations in the evaluated source are lex
 The following is a structural sketch, not a verified drop-in implementation. Exact signatures and return shapes of the product's DOM-free functions must be confirmed during integration.
 
 ```javascript
-'use strict';
+"use strict";
 
-const fs = require('node:fs');
-const path = require('node:path');
-const vm = require('node:vm');
+const fs = require("node:fs");
+const path = require("node:path");
+const vm = require("node:vm");
 
 const ROOT = __dirname;
-const HTML_PATH = path.join(ROOT, 'NFL Draft Simulator.html');
-const DATA_PATH = path.join(ROOT, 'tests', '2025_standings.js');
+const HTML_PATH = path.join(ROOT, "NFL Draft Simulator.html");
+const DATA_PATH = path.join(ROOT, "tests", "2025_standings.js");
 
-const START = '/*SIM-CORE-START*/';
-const END = '/*SIM-CORE-END*/';
+const START = "/*SIM-CORE-START*/";
+const END = "/*SIM-CORE-END*/";
 
 function fail(message) {
-  throw new Error(message);
+	throw new Error(message);
 }
 
 function extractCore(html) {
-  const first = html.indexOf(START);
-  const last = html.indexOf(END);
+	const first = html.indexOf(START);
+	const last = html.indexOf(END);
 
-  if (first < 0 || last < 0 || last <= first) {
-    fail('Missing or invalid SIM-CORE markers');
-  }
+	if (first < 0 || last < 0 || last <= first) {
+		fail("Missing or invalid SIM-CORE markers");
+	}
 
-  if (
-    html.indexOf(START, first + START.length) !== -1 ||
-    html.indexOf(END, last + END.length) !== -1
-  ) {
-    fail('Duplicate SIM-CORE markers');
-  }
+	if (
+		html.indexOf(START, first + START.length) !== -1 ||
+		html.indexOf(END, last + END.length) !== -1
+	) {
+		fail("Duplicate SIM-CORE markers");
+	}
 
-  return html.slice(first + START.length, last);
+	return html.slice(first + START.length, last);
 }
 
 function validateStandings(rows, teamKeys) {
-  if (!Array.isArray(rows) || rows.length !== 32) {
-    fail('2025 standings must contain exactly 32 teams');
-  }
+	if (!Array.isArray(rows) || rows.length !== 32) {
+		fail("2025 standings must contain exactly 32 teams");
+	}
 
-  const keys = new Set(teamKeys);
-  const seen = new Set();
+	const keys = new Set(teamKeys);
+	const seen = new Set();
 
-  for (const row of rows) {
-    if (!Array.isArray(row) || row.length !== 5) {
-      fail('Each standings row must have exactly five fields');
-    }
+	for (const row of rows) {
+		if (!Array.isArray(row) || row.length !== 5) {
+			fail("Each standings row must have exactly five fields");
+		}
 
-    const [name, wins, losses, ties, pointDiff] = row;
+		const [name, wins, losses, ties, pointDiff] = row;
 
-    if (typeof name !== 'string' || !name.length) {
-      fail('Invalid team name');
-    }
+		if (typeof name !== "string" || !name.length) {
+			fail("Invalid team name");
+		}
 
-    if (seen.has(name)) {
-      fail(`Duplicate team: ${name}`);
-    }
+		if (seen.has(name)) {
+			fail(`Duplicate team: ${name}`);
+		}
 
-    if (!keys.has(name)) {
-      fail(`Unknown TEAM_DATA key: ${name}`);
-    }
+		if (!keys.has(name)) {
+			fail(`Unknown TEAM_DATA key: ${name}`);
+		}
 
-    for (const value of [wins, losses, ties]) {
-      if (!Number.isInteger(value) || value < 0) {
-        fail(`Invalid W-L-T value for ${name}`);
-      }
-    }
+		for (const value of [wins, losses, ties]) {
+			if (!Number.isInteger(value) || value < 0) {
+				fail(`Invalid W-L-T value for ${name}`);
+			}
+		}
 
-    if (wins + losses + ties !== 17) {
-      fail(`W-L-T does not sum to 17 for ${name}`);
-    }
+		if (wins + losses + ties !== 17) {
+			fail(`W-L-T does not sum to 17 for ${name}`);
+		}
 
-    if (!Number.isInteger(pointDiff)) {
-      fail(`Invalid point differential for ${name}`);
-    }
+		if (!Number.isInteger(pointDiff)) {
+			fail(`Invalid point differential for ${name}`);
+		}
 
-    seen.add(name);
-  }
+		seen.add(name);
+	}
 
-  for (const name of keys) {
-    if (!seen.has(name)) {
-      fail(`Missing standings row for ${name}`);
-    }
-  }
+	for (const name of keys) {
+		if (!seen.has(name)) {
+			fail(`Missing standings row for ${name}`);
+		}
+	}
 }
 
 function pearson(x, y) {
-  if (x.length !== y.length || x.length < 2) {
-    fail('Invalid Pearson inputs');
-  }
+	if (x.length !== y.length || x.length < 2) {
+		fail("Invalid Pearson inputs");
+	}
 
-  const mx = x.reduce((a, b) => a + b, 0) / x.length;
-  const my = y.reduce((a, b) => a + b, 0) / y.length;
+	const mx = x.reduce((a, b) => a + b, 0) / x.length;
+	const my = y.reduce((a, b) => a + b, 0) / y.length;
 
-  let numerator = 0;
-  let dx2 = 0;
-  let dy2 = 0;
+	let numerator = 0;
+	let dx2 = 0;
+	let dy2 = 0;
 
-  for (let i = 0; i < x.length; i++) {
-    const dx = x[i] - mx;
-    const dy = y[i] - my;
+	for (let i = 0; i < x.length; i++) {
+		const dx = x[i] - mx;
+		const dy = y[i] - my;
 
-    numerator += dx * dy;
-    dx2 += dx * dx;
-    dy2 += dy * dy;
-  }
+		numerator += dx * dy;
+		dx2 += dx * dx;
+		dy2 += dy * dy;
+	}
 
-  if (dx2 === 0 || dy2 === 0) {
-    fail('Correlation undefined: zero-variance vector');
-  }
+	if (dx2 === 0 || dy2 === 0) {
+		fail("Correlation undefined: zero-variance vector");
+	}
 
-  return numerator / Math.sqrt(dx2 * dy2);
+	return numerator / Math.sqrt(dx2 * dy2);
 }
 
 function averageRanks(values) {
-  const order = values
-    .map((value, index) => ({ value, index }))
-    .sort((a, b) => a.value - b.value);
+	const order = values
+		.map((value, index) => ({ value, index }))
+		.sort((a, b) => a.value - b.value);
 
-  const ranks = new Array(values.length);
-  let i = 0;
+	const ranks = new Array(values.length);
+	let i = 0;
 
-  while (i < order.length) {
-    let j = i + 1;
+	while (i < order.length) {
+		let j = i + 1;
 
-    while (
-      j < order.length &&
-      order[j].value === order[i].value
-    ) {
-      j++;
-    }
+		while (j < order.length && order[j].value === order[i].value) {
+			j++;
+		}
 
-    const averageRank = ((i + 1) + j) / 2;
+		const averageRank = (i + 1 + j) / 2;
 
-    for (let k = i; k < j; k++) {
-      ranks[order[k].index] = averageRank;
-    }
+		for (let k = i; k < j; k++) {
+			ranks[order[k].index] = averageRank;
+		}
 
-    i = j;
-  }
+		i = j;
+	}
 
-  return ranks;
+	return ranks;
 }
 
 function computeMetrics(predicted, actual) {
-  if (
-    predicted.length !== 32 ||
-    actual.length !== 32 ||
-    !predicted.every(Number.isFinite) ||
-    !actual.every(Number.isFinite)
-  ) {
-    fail('Invalid prediction or target vector');
-  }
+	if (
+		predicted.length !== 32 ||
+		actual.length !== 32 ||
+		!predicted.every(Number.isFinite) ||
+		!actual.every(Number.isFinite)
+	) {
+		fail("Invalid prediction or target vector");
+	}
 
-  const r = pearson(predicted, actual);
+	const r = pearson(predicted, actual);
 
-  const rho = pearson(
-    averageRanks(predicted),
-    averageRanks(actual)
-  );
+	const rho = pearson(averageRanks(predicted), averageRanks(actual));
 
-  const rmse = Math.sqrt(
-    predicted.reduce(
-      (sum, value, i) => sum + (value - actual[i]) ** 2,
-      0
-    ) / 32
-  );
+	const rmse = Math.sqrt(
+		predicted.reduce((sum, value, i) => sum + (value - actual[i]) ** 2, 0) / 32,
+	);
 
-  return { r, rho, rmse };
+	return { r, rho, rmse };
 }
 ```
 
@@ -1254,7 +1269,6 @@ VALIDATE: r=NA, rho=NA, rmse=NA FAIL
 Write the diagnostic to standard error.
 
 Exit codes:
-
 - `0`: Metrics computed successfully and all active acceptance gates passed.
 - `1`: Metrics computed successfully, but at least one active acceptance gate failed.
 - `2`: Harness error, including missing files, malformed standings, marker errors, missing core functions, invalid prediction output, undefined metrics, or baseline corruption.
@@ -1266,7 +1280,6 @@ A valid numerical failure must report the actual computed metrics. A harness err
 ### I. Required pre-acceptance sensitivity checks
 
 Before treating this as an effective gate, verify the following against the assembled project:
-
 1. **Perfect-prediction fixture:** Identical prediction and actual vectors produce `r = 1`, `rho = 1`, and `RMSE = 0`.
 2. **Reversed-ranking fixture:** A strictly reversed ranking produces `r = -1` and `rho = -1`.
 3. **Tied-rank fixture:** Equal values receive average ranks, and Spearman correlation remains correct.
@@ -1282,7 +1295,6 @@ The fixture tests should exercise the metric functions independently where pract
 ### J. Acceptance sequence
 
 The proposed integration sequence is:
-
 1. Receive OpenClaw's S-602 standings file and source evidence.
 2. Confirm exact team-name compatibility with `TEAM_DATA`.
 3. Confirm the actual core function signatures and deterministic expected-win semantics.
@@ -1304,7 +1316,6 @@ The code sketch in Section G is the proposed implementation outline. The final `
 `validate.js` depends on the SIM-CORE markers, the exact `TEAM_DATA` key set, the headless API, the standings dataset, and the composite runner's output contract.
 
 Potential regressions include:
-
 - False failures caused by team-name mismatches.
 - Invalid predictions caused by assumptions about the core's return values.
 - False passes caused by overly permissive thresholds.
@@ -1317,7 +1328,6 @@ The script must remain external to the product file. Its failure must not alter 
 **8. Evidence**
 
 Evidence currently available:
-
 - The assignment packet specifies a 32-team, 17-game regular-season validation.
 - The assignment packet identifies the DOM-free functions and embedded `TEAM_DATA` required for the calculation.
 - The assignment packet supplies the reference targets `r ≈ 0.66`, `rho ≈ 0.69`, and `RMSE ≈ 2.6`.
@@ -1333,7 +1343,6 @@ The proposed data contract, extraction method, metric definitions, threshold str
 The code sketch has not been executed. Its integration with the actual product core is unverified. The 2025 standings have not been supplied in this conversation, and no claims about actual team records or model performance are made.
 
 **10. Status:** pending
-
 - **Implementer's note (user pastes Claude's decision here):** —
 
 <!-- gpt:end -->
@@ -1341,6 +1350,7 @@ The code sketch has not been executed. Its integration with the actual product c
 ## UK
 
 ### S-UK-1 — v20 critique: structural issues documented across Round-1/2/3 reviews (assessment)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819` (v20, 649,032 B, per STATUS.md)
 
 **Summary of documented issues (synthesized from Pickle M-13/M-14/M-20, DS M-11/M-16, MiniMax M-22, OR M-22, VL, Nemo Ultra M-10/M-14, Beam Q-BEAM-1…5):**
@@ -1379,6 +1389,7 @@ The code sketch has not been executed. Its integration with the actual product c
 ---
 
 ### S-UK-2 — Workflow improvement: ADVISOR-PLAYBOOK.md (improvement)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 
 **Problem:** New agents spend hours reading 8+ protocol docs to learn "how we work." The ONBOARDING.md is a joiner prompt, not a reference. Common patterns (how to write a submission, how to extract a function for hashing, how to file a question, how to read CHRONICLE) are scattered.
@@ -1402,6 +1413,7 @@ The code sketch has not been executed. Its integration with the actual product c
 ---
 
 ### S-UK-3 — Workflow improvement: MERGE-CHECKLIST.md (improvement)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 
 **Problem:** The v20↔donor merge is the largest structural change yet; no checklist exists. Pickle Q-PICKLE-1/3/7/8, DS Q-DS-4, Beam Q-BEAM-2, Ultra Q-NEMOULTRA-1/2 all ask about merge resolution details. Without a checklist, the Architect must hold the entire merge state mentally.
@@ -1422,12 +1434,14 @@ The code sketch has not been executed. Its integration with the actual product c
 ---
 
 ### S-UK-4 — Workflow improvement: VERIFICATION-TEMPLATE.md (improvement)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 
 **Problem:** AGENTS.md §5 requires a five-line verifier report + function-diff, but no template exists. Verifiers (Ultra for 1A, DS/GLM for 1B) must reconstruct the format each round.
 
 **Proposal:** Create `VERIFICATION-TEMPLATE.md` (1 page) with:
 - Five-line report template with filled example:
+
   ```
   hash: <sha256>
   E2E: draft→season→playoffs→Super Bowl complete, 0 console errors
@@ -1450,6 +1464,7 @@ The code sketch has not been executed. Its integration with the actual product c
 ---
 
 ### S-UK-5 — Workflow improvement: DECISION-LOG.md (improvement)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 
 **Problem:** Architect rulings are scattered across COUNCIL-BULLETIN.md messages, QUESTIONS-FOR-THE-ARCHITECT.md answers, SUBMISSIONS.md status lines, and CHRONICLE.md. No searchable index of "what did Claude decide on X." Leads to re-asking answered questions (e.g., cpuPick direction asked by GLM, Nemo Super, Pickle, Beam, DS).
@@ -1467,6 +1482,7 @@ The code sketch has not been executed. Its integration with the actual product c
 ---
 
 ### S-UK-6 — Workflow improvement: KNOWN-ISSUES.md (improvement)
+
 - **Proposed:** 2026-10-20 · **By:** UK · **Applies to build:** `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`
 
 **Problem:** Defects like the 100-season report crash (MiniMax), mobile table stacking (MiniMax/VL), wrapper malformation (Pickle), SIM-CORE markers missing (all) are documented in reviews but not tracked in one place. Duplicate discovery wastes cycles.

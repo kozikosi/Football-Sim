@@ -10,7 +10,6 @@
 ## 1. Project Purpose
 
 The Madden NFL 27 Simulator is a **single-file browser application** that lets a user:
-
 1. **Draft** a 32-team fantasy NFL roster via snake draft (CPU GMs use the same valuation math as the season engine)
 2. **Simulate** a full 17-game regular season + 7-team playoff bracket + Super Bowl
 3. **Review** game recaps, box scores, advanced stats, awards, and a 100-season regression report
@@ -22,11 +21,13 @@ This is **not** a power-ranking calculator first. The **Season / Draft Simulator
 ## 2. Vision & Positioning
 
 ### Primary Branding
+
 - **Title:** `NFL Draft Simulator` (or `Madden NFL 27 Draft & Season Simulator`)
 - **Tagline:** Draft your team, simulate the season, win the Super Bowl.
 - **Primary call to action:** Start Draft → Sim Season → Review Results
 
 ### Secondary / Supplementary Tabs
+
 These exist to serve the draft-and-season loop, never to dominate it:
 - Team Rankings (real NFL rosters only; user weights do NOT affect season sim)
 - Player Browser
@@ -36,6 +37,7 @@ These exist to serve the draft-and-season loop, never to dominate it:
 - Settings / Model Weights (demoted to a collapsible footer section or Settings tab)
 
 ### What Gets Removed / Demoted
+
 - The left-panel weight controls are **not** the main feature. They move to Settings or a collapsible "Model Settings" section.
 - "NFL Team Power Ranking Model" header text — removed. Replaced by Draft/Season branding.
 - "Adjust any weight on the left..." subtitle — removed.
@@ -48,12 +50,11 @@ These exist to serve the draft-and-season loop, never to dominate it:
 ## 3. Core Invariants (Never Break)
 
 These are inherited from AGENTS.md and remain absolute:
-
 1. **Weight ↔ Wins Consistency:** `modelWeights()` is the inverse of `slotWinsPerOvr()`. The 700-scale is derived, not arbitrary.
 2. **Replacement Floor:** CPU drafts never value a slot below 76 OVR replacement (`rlow` in `cpuPick`).
 3. **Flex Penalties Apply Everywhere:** `effOvr(player, slot)` used in draft board, lineup editor, season ratings, game simulation.
 4. **Hungarian Lineup Optimizer:** Both user (advisory) and CPU (binding) use `optimalLineup()` — same math.
-5. **Game Plans Are Independent:** Offense and defense chosen separately; coaches scored vs. *expected* opponent plan, not actual.
+5. **Game Plans Are Independent:** Offense and defense chosen separately; coaches scored vs. _expected_ opponent plan, not actual.
 6. **32.5 Points Per Win:** `POINTS_PER_WIN = 32.5` converts point differentials to wins.
 7. **Single-Season Record Caps:** `SEASON_RECORD_CAPS` truncates stats at real NFL records (deterministic clamp — never random subtraction).
 8. **Deterministic Seeding:** NFL tiebreakers (H2H → division → conference → point diff) in `sortStandings()`.
@@ -66,19 +67,20 @@ These are inherited from AGENTS.md and remain absolute:
 
 The file remains one HTML document containing:
 
-| Section | Purpose |
-|---------|---------|
-| `<head>` + CSS | Theme tokens, layout, mobile-first responsive rules |
-| `PLAYERS` | ~1,200+ player rating tuples |
-| `TEAM_DATA` | 32 team depth charts (36 roster slots) |
-| `DEFAULT_WEIGHTS` | Position-weight map |
-| Math layer | `slotWins`, `slotWinsPerOvr`, `modelWeights`, `replacementLevels`, `cpuPick`, `matchupModel`, `teamRatings`, `optimalLineup`, `simulateGame` |
-| Draft engine | Snake draft, CPU GM logic, draft board, roster editor |
-| Season engine | 17-game schedule, standings, tiebreakers, playoffs, awards |
-| Narrative layer | Game recaps, play-by-play, dramatic endings, factor analysis |
-| UI layer | Tabs, tables, cards, modals, confetti |
+| Section           | Purpose                                                                                                                                      |
+| ----------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `<head>` + CSS    | Theme tokens, layout, mobile-first responsive rules                                                                                          |
+| `PLAYERS`         | ~1,200+ player rating tuples                                                                                                                 |
+| `TEAM_DATA`       | 32 team depth charts (36 roster slots)                                                                                                       |
+| `DEFAULT_WEIGHTS` | Position-weight map                                                                                                                          |
+| Math layer        | `slotWins`, `slotWinsPerOvr`, `modelWeights`, `replacementLevels`, `cpuPick`, `matchupModel`, `teamRatings`, `optimalLineup`, `simulateGame` |
+| Draft engine      | Snake draft, CPU GM logic, draft board, roster editor                                                                                        |
+| Season engine     | 17-game schedule, standings, tiebreakers, playoffs, awards                                                                                   |
+| Narrative layer   | Game recaps, play-by-play, dramatic endings, factor analysis                                                                                 |
+| UI layer          | Tabs, tables, cards, modals, confetti                                                                                                        |
 
 ### Code Organization Within the File
+
 Use clear region comments so colleagues can navigate:
 
 ```javascript
@@ -109,20 +111,22 @@ Use clear region comments so colleagues can navigate:
 ## 5. UI / UX Requirements
 
 ### 5.1 Tab Order (New Vision)
-| Order | Tab | Role |
-|-------|-----|------|
-| 1 | **Season** | Schedule, standings, recaps, playoffs, awards — the core loop |
-| 2 | Draft | Draft setup, live board, roster |
-| 3 | Team Rankings | Supplementary |
-| 4 | Player Browser | Supplementary |
-| 5 | Position Rankings | Supplementary |
-| 6 | Team Comparison | Supplementary |
-| 7 | Guide | Reference |
-| 8 | Settings / Model Weights | Collapsible footer or separate tab |
+
+| Order | Tab                      | Role                                                          |
+| ----- | ------------------------ | ------------------------------------------------------------- |
+| 1     | **Season**               | Schedule, standings, recaps, playoffs, awards — the core loop |
+| 2     | Draft                    | Draft setup, live board, roster                               |
+| 3     | Team Rankings            | Supplementary                                                 |
+| 4     | Player Browser           | Supplementary                                                 |
+| 5     | Position Rankings        | Supplementary                                                 |
+| 6     | Team Comparison          | Supplementary                                                 |
+| 7     | Guide                    | Reference                                                     |
+| 8     | Settings / Model Weights | Collapsible footer or separate tab                            |
 
 The **Season tab is the default active view** when a season exists. When no season exists, show a "Start Season" prompt that leads to draft setup.
 
 ### 5.2 Mobile (Non-Negotiable)
+
 - **No horizontal scroll anywhere at 390px.** Every table stacks into labeled cards (`data-label` attributes).
 - All grids collapse to single column at ≤760px.
 - Text sizes readable on phone without zooming.
@@ -130,6 +134,7 @@ The **Season tab is the default active view** when a season exists. When no seas
 - Audit every view at 390px with a phone test (`phone.js` equivalent).
 
 ### 5.3 Draft Board (Compressed Mobile View)
+
 Each player card shows, in minimal vertical space:
 - Name (primary)
 - Pos / Team / OVR (secondary, inline)
@@ -140,6 +145,7 @@ Each player card shows, in minimal vertical space:
 Remove the "Needs only" toggle. Needs filtering happens via position chips and sorting.
 
 ### 5.4 Season View
+
 - Week-by-week schedule with results
 - Standings with division/conference rank
 - Game recaps that are chronological archives (not re-rolled on each view)
@@ -148,6 +154,7 @@ Remove the "Needs only" toggle. Needs filtering happens via position chips and s
 - Season Review page after Super Bowl
 
 ### 5.5 Visual Hierarchy
+
 - User's team shown in blue (`.ub` class) — applied at render time, NOT via MutationObserver text-walking.
 - Confetti/rewards for: playoff clinch, division title, #1 seed, conference title, Super Bowl win, streaks, 10+ wins.
 - Respect `prefers-reduced-motion`.
@@ -157,34 +164,40 @@ Remove the "Needs only" toggle. Needs filtering happens via position chips and s
 ## 6. Math & Simulation Standards
 
 ### 6.1 What the Season Sim Uses
+
 The season simulation uses its **own neutral matchup model**. It does **NOT** use the Team Rankings weight sliders. This must be stated clearly in UI so users don't think their weights changed season outcomes.
 
 ### 6.2 Math Functions (Do Not Modify Without Approval)
-| Function | Purpose |
-|----------|---------|
-| `slotWins(slot, ovr)` | Wins/season added vs 70 baseline |
-| `slotWinsPerOvr()` | Marginal wins per +1 OVR (cached) |
-| `modelWeights()` | 0–700 scale from slotWinsPerOvr (QB=700) |
-| `replacementLevels(pool, rosters)` | Replacement OVR by position group |
-| `cpuPick(teamIndex, state)` | CPU GM logic |
-| `matchupModel(O, D, lg, plan)` | Expected points |
-| `teamRatings(slotmap)` | Nine unit ratings |
-| `simulateGame()` | Realizes yards/TOs/sacks, noise, OT |
-| `optimalLineup(slotmap)` | Hungarian algorithm |
+
+| Function                           | Purpose                                  |
+| ---------------------------------- | ---------------------------------------- |
+| `slotWins(slot, ovr)`              | Wins/season added vs 70 baseline         |
+| `slotWinsPerOvr()`                 | Marginal wins per +1 OVR (cached)        |
+| `modelWeights()`                   | 0–700 scale from slotWinsPerOvr (QB=700) |
+| `replacementLevels(pool, rosters)` | Replacement OVR by position group        |
+| `cpuPick(teamIndex, state)`        | CPU GM logic                             |
+| `matchupModel(O, D, lg, plan)`     | Expected points                          |
+| `teamRatings(slotmap)`             | Nine unit ratings                        |
+| `simulateGame()`                   | Realizes yards/TOs/sacks, noise, OT      |
+| `optimalLineup(slotmap)`           | Hungarian algorithm                      |
 
 ### 6.3 Automatic Lineup Application
+
 After the draft completes, **automatically apply the recommended lineup** to the user's roster. Even if the user drafted inefficiently, the math's best arrangement is applied. The user can override it later.
 
 ### 6.4 Overtime Rules (Modern NFL)
+
 - **Regular season:** One 10-minute OT period. Both teams get a possession unless the first drive scores a TD. If still tied after OT, it's a tie.
 - **Postseason:** Multiple OT periods until a winner. Both teams get at least one possession.
 - **No sudden death walk-off FG on first possession** unless it's a TD.
 - Fix narrative: walk-off touchdown belongs in the OT section, not Q4.
 
 ### 6.5 Turnover Narrative
+
 Every turnover must name the players involved: who threw/fumbled, who forced/recovered, quarter, and score impact. No generic "turnovers canceled out" without specifics.
 
 ### 6.6 Head-to-Head
+
 If teams met earlier in the season (or playoffs), mention the result briefly. Do not claim a "second meeting" in Week 2 if they haven't played yet.
 
 ---
@@ -192,6 +205,7 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 ## 7. Narrative Standards
 
 ### 7.1 Style Rules
+
 - Plain informative language
 - No "expected scoring" or "before kickoff" in post-game text
 - Critique only 85+ OVR players
@@ -201,6 +215,7 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 - User's team in blue
 
 ### 7.2 Recaps
+
 - Chronological scoring + turnovers + game ball
 - Every score and turnover narrated with scorer names
 - Final drive integrated into the flow
@@ -208,10 +223,12 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 - Indent the game-ball sentence, end with exclamation point
 
 ### 7.3 Game Plans
+
 - Paragraph broken into indented sections, new paragraph when switching teams
 - "through this defense" → "through your defense" when opponent attacks user
 
 ### 7.4 2-Pt Conv
+
 - Explain when a team goes for 2 vs XP
 - Preseason option: Cautious / Balanced / Aggressive
 - Teams always go for 2 when down 8 or 11 late
@@ -221,20 +238,24 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 ## 8. Data Integrity
 
 ### 8.1 Player Identity
+
 - Assign every player a **unique internal ID** for draft selections, roster assignments, stats, search, saves.
 - Do not identify players by name alone (name-based `findIndex` is fragile).
 
 ### 8.2 Record Caps
+
 - Deterministic clamp at `SEASON_RECORD_CAPS`. No random subtraction.
 - A stat never goes down once recorded.
 
 ### 8.3 Schedule
+
 - Division games: real home-and-home.
 - Non-division: structured pairings with reasonable home/away balance (8–9 home games).
 - Conference split roughly maintained.
 - Fail gracefully if schedule generation cannot complete (show retry UI, not console error).
 
 ### 8.4 Standings & Tiebreakers
+
 - Win pct → head-to-head → division record → conference record → common games → point diff
 - Multi-team ties handled safely (no circular H2H ambiguity breaking sort)
 - Point differential is **not** an early tiebreaker
@@ -244,16 +265,19 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 ## 9. Persistence & Reproducibility
 
 ### 9.1 Auto-Save (Tier 2, high priority)
+
 - `localStorage` save after every draft pick, lineup change, completed week, playoff game, weight change.
 - On load: "Resume where you left off?" (Resume | Start New)
 - Versioned save blob with discard path
 
 ### 9.2 Seeded RNG (Tier 2)
+
 - Optional simulation seed for reproducible seasons
 - Same seed + same draft = identical season
 - Useful for debugging and agent comparisons
 
 ### 9.3 Export / Import
+
 - Download save as JSON
 - Load save from JSON
 - No accounts, no server, no backend
@@ -263,15 +287,17 @@ If teams met earlier in the season (or playoffs), mention the result briefly. Do
 ## 10. Testing Requirements
 
 ### 10.1 Validation Scripts
-| Script | Purpose |
-|--------|---------|
-| `node --check` | Syntax check on extracted script |
-| `node pw4.js` | Draft → season → playoffs → 100-sim regression |
-| `node validate.js` | Real 2025 wins: r≈0.66, ρ≈0.69, RMSE≈2.6 |
-| `node phone.js` | 390px overflow check |
-| `bash tests/run_all.sh` | Full test suite |
+
+| Script                  | Purpose                                        |
+| ----------------------- | ---------------------------------------------- |
+| `node --check`          | Syntax check on extracted script               |
+| `node pw4.js`           | Draft → season → playoffs → 100-sim regression |
+| `node validate.js`      | Real 2025 wins: r≈0.66, ρ≈0.69, RMSE≈2.6       |
+| `node phone.js`         | 390px overflow check                           |
+| `bash tests/run_all.sh` | Full test suite                                |
 
 ### 10.2 Unit Tests
+
 Test pure math functions in isolation:
 - `slotWins`, `slotWinsPerOvr`, `modelWeights`
 - `cpuPick`, `optimalLineup`, `replacementLevels`
@@ -279,6 +305,7 @@ Test pure math functions in isolation:
 - `flexPenaltyFor`
 
 ### 10.3 Edge Fixtures
+
 - Score of exactly 1 (coin flip in `realisticScore`)
 - 0–0 regulation into OT
 - Two players sharing a full name (draft integrity)
@@ -303,6 +330,7 @@ Test pure math functions in isolation:
 ## 12. Master Task Order (Top to Bottom)
 
 ### Phase 1 — Foundation (This Release)
+
 1. Restructure HTML: clean document, Season tab first, Draft second
 2. Demote weights to Settings / collapsible section
 3. Mobile draft board: compressed cards, no horizontal scroll
@@ -315,6 +343,7 @@ Test pure math functions in isolation:
 10. Auto-apply recommended lineup after draft
 
 ### Phase 2 — Tier 1 Correctness
+
 11. Season record cap: deterministic clamp, no random subtraction
 12. Sack leaderboard: include LBs
 13. Postseason MVP: restrict to Super Bowl teams
@@ -325,6 +354,7 @@ Test pure math functions in isolation:
 18. Remove dead code (double `buildControls`, unused vars)
 
 ### Phase 3 — Tier 2
+
 19. Auto-save / resume (`localStorage`)
 20. Seeded RNG option
 21. CPU draft floor experiment + recalc each pick
@@ -334,6 +364,7 @@ Test pure math functions in isolation:
 25. Win-probability graph
 
 ### Phase 4 — Polish
+
 26. Confetti / rewards (already partially done — verify all trigger)
 27. Accessibility: aria-labels, focus management, Escape on confirmDialog
 28. Theme toggle persistence
@@ -345,6 +376,7 @@ Test pure math functions in isolation:
 ## 13. Development Workflow
 
 ### For AI Agents
+
 1. Read the relevant section of the code first
 2. Propose the change (what and why, exact lines)
 3. Make minimal edits
@@ -352,6 +384,7 @@ Test pure math functions in isolation:
 5. Summarize what changed and how it was tested
 
 ### For Human Developers
+
 - Open the single HTML file in any browser — it just works
 - Use browser devtools for inspection
 - Edit directly in the file; no build step
@@ -370,4 +403,4 @@ Test pure math functions in isolation:
 
 ---
 
-*End of Master Design Document. All future work should reference this file first.*
+_End of Master Design Document. All future work should reference this file first._

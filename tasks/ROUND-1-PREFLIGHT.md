@@ -23,7 +23,7 @@
 
 **Q2 — Your own entries, in view of the whole.** With the U-series and the contract now visible: do you want to amend, narrow, or add anything to your own filed entries (e.g., S-102's pw4 output vs U-12's distribution measurement; S-401's lint scope vs U-17's League-Leaders overflow; S-502's validation vs U-13)? Amendments are normal submissions in your own section (new/updated entry, current-build hash); do not edit other sessions' entries.
 
-**Q3 — `tests/CONTRACT.md`.** Any gap or conflict with your own script spec (exit codes, extraction semantics, run order, manifest/baseline ownership)? Remember the entry-wins rule: if the contract conflicts *with your filed entry*, say which should win and why — the implementer arbitrates.
+**Q3 — `tests/CONTRACT.md`.** Any gap or conflict with your own script spec (exit codes, extraction semantics, run order, manifest/baseline ownership)? Remember the entry-wins rule: if the contract conflicts _with your filed entry_, say which should win and why — the implementer arbitrates.
 
 **Q4 — Round design.** Cap arithmetic (seven harness entries vs 5–6 accepted changes per build → a two-candidate split is likely); verifier selection (every advisor authored Round-1 harness pieces, so verification may need a scratch session — any objection or better idea); the shaping-first dispatch order; the master-doc framing in §E; anything you predict will break before or after dispatch.
 

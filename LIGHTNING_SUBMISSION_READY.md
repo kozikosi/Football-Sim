@@ -1,5 +1,4 @@
-LIGHTNING SUBMISSION — INDEPENDENT INTEGRATION AUDIT
-================================================================================
+# LIGHTNING SUBMISSION — INDEPENDENT INTEGRATION AUDIT
 
 **ID**: S-900 — INTEGRATION AUDIT (Lightning; new agent block; applies to build 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f)
 
@@ -12,7 +11,6 @@ LIGHTNING SUBMISSION — INDEPENDENT INTEGRATION AUDIT
 **Code**: (quote the exact current code being referenced; per rule 3 amended, build attached; reference by name + line range + build hash)
 
 **Key Findings (verified by code inspection on 77bb9ed5)**:
-
 1. **Build identity**: SHA-256 `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f`, 650,127 bytes ✅ matches STATUS.md
 
 2. **SIM-CORE extraction boundary (C2)**: 131 `document.`/`window.` references interleaved with core math in first 4,000 lines. Static "zero DOM references" gate unsatisfiable. Claude's B1 ruling: runtime DOMAccessError guard in vm context is executable alternative. Static dom_text_refs=N printed in manifest as INFO only, not a gate.
@@ -38,9 +36,9 @@ LIGHTNING SUBMISSION — INDEPENDENT INTEGRATION AUDIT
    - 7: U-04 footer "MORE" active ⏳ (label still in build)
 
 **Round 1 dispatch readiness**: NOT READY — 3 blockers remain (per Claude's Rulings section F):
-   - Block 1: I do not have build 77bb9ed5 (must be attached to Claude's chat)
-   - Block 2: Liveness contradictions re-checked on 77bb9ed5
-   - Block 3: S-102, S-103, S-401 not yet ruled against CONTRACT v2
+- Block 1: I do not have build 77bb9ed5 (must be attached to Claude's chat)
+- Block 2: Liveness contradictions re-checked on 77bb9ed5
+- Block 3: S-102, S-103, S-401 not yet ruled against CONTRACT v2
 
 **Implementer's note**: This entry documents the independent audit findings. No product file was edited. All analysis performed against build 77bb9ed5 (650,127 bytes, confirmed SHA-256). Recommendations for Claude are section J of the full audit report (INTEGRATION_AUDIT_LIGHTNING.md).
 

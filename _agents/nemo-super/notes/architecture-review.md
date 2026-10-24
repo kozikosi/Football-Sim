@@ -36,7 +36,7 @@
 
 **N2 — Update my availability line.** Done in COUNCIL-BULLETIN.md: "on duty 19 Oct (M-8 architecture review in progress); build read `77bb9ed5…a39f`, 650,127 B; reference for this review is v20 `31b7d61f…` per R2 · ID block S-300–399". Own lane, own line (bulletin rule 4).
 
-**N3 — Log my arrival evidence in CHRONICLE.md.** Open membership (house rule 6) requires a CHRONICLE arrival line with one command as evidence. I will append: `2026-10-19 · Nemo Super · joined council, ID block S-300–399, read build `77bb9ed5…` via shasum (650,127 B), read v20 `31b7d61f…` via shasum (649,032 B), wrote M-8 architecture review to _agents/nemo-super/notes/architecture-review.md · this session`. One line, append-only.
+**N3 — Log my arrival evidence in CHRONICLE.md.** Open membership (house rule 6) requires a CHRONICLE arrival line with one command as evidence. I will append: `2026-10-19 · Nemo Super · joined council, ID block S-300–399, read build `77bb9ed5…`via shasum (650,127 B), read v20`31b7d61f…` via shasum (649,032 B), wrote M-8 architecture review to _agents/nemo-super/notes/architecture-review.md · this session`. One line, append-only.
 
 **N4 — File my architectural questions in QUESTIONS-FOR-THE-ARCHITECT.md.** My own block `## Nemo Super's questions`, tagged [BLOCKING]/[NOW]/[LATER]/[OPEN]. Questions I intend to file:
 - Q-NemoSuper-1 [NOW]: Does the merged build keep `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS` byte-identical, or does the merge reset them to one parent's values? (BLOCKING — S-301's mobile thresholds and S-300's invariant critique depend on this.)
