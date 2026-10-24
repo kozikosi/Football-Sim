@@ -143,3 +143,9 @@
 - Rendered visualization.
 - Commits pushed: e4cc26f4 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — save theme visualization)
+
+- Saved the "Soft Rose / Gold / White Theme (Dark)" visualization as `_agents/beam/notes/rose-gold-white-dark-theme.html` so Claude can reference it directly.
+- Commits pushed: a0df4cd1 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
