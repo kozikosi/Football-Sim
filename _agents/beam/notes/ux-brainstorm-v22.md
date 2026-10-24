@@ -171,6 +171,93 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 - HOW TO CHECK: enable reduced motion in OS → animations disabled; no console errors.
 
 
+## 13. Further beauty & interaction proposals (V22 work-order candidates, batch 3)
+
+**P7-19 · Roster strip team-colour accent**
+- WHERE: draft board left roster strip (P0-12).
+- WHAT: 3 px solid left border in team primary on the user's roster strip; opponent strips use opponent primary.
+- WHY: Reinforces team identity on the draft board (P7-1 theme).
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: border colour matches selected team; 390 px no overflow.
+
+**P7-20 · Position-group colour coding on draft rows**
+- WHERE: draft board row render (~l.1766).
+- WHAT: Left 3 px border per position group (QB blue, RB green, WR orange, TE purple, OL grey, DL red, LB teal, CB/S yellow, K/P brown).
+- WHY: Faster scanning of the board; aligns with P7-3.
+- SAFE ALONE?: YES — CSS class on existing position cell.
+- HOW TO CHECK: colours render per group; no console errors.
+
+**P7-21 · Dimmed "gone" players**
+- WHERE: draft board rows where player already drafted.
+- WHAT: opacity 0.4 + line-through on name; keep Ovr visible.
+- WHY: Makes unavailable players instantly distinguishable.
+- SAFE ALONE?: YES — CSS class toggle.
+- HOW TO CHECK: gone players dimmed; still selectable? (no — gone = not selectable); no console errors.
+
+**P7-22 · Number counter on weight change**
+- WHERE: weights table Wins display.
+- WHAT: 300 ms roll-up/down when a weight changes (requestAnimationFrame).
+- WHY: Draws attention to impact of the edit.
+- SAFE ALONE?: YES — small JS, no maths change.
+- HOW TO CHECK: changing a weight animates the Wins number; reset stops animation; `node --check` passes.
+
+**P7-23 · Pulse on "Save My Weights"**
+- WHERE: weights buttons (P0-5).
+- WHAT: Subtle pulse animation when the button becomes clickable (dirty state).
+- WHY: Discoverability of the dirty state.
+- SAFE ALONE?: YES — CSS animation gated on dirty class.
+- HOW TO CHECK: button pulses only when dirty; stops on save/reset.
+
+**P7-24 · Confetti on championship**
+- WHERE: season review championship banner (P0-19, R-6 style).
+- WHAT: 10–15 CSS-only particles, 1 s, team primary + gold; respects reduced motion.
+- WHY: Celebratory payoff; matches P7-13 shimmer.
+- SAFE ALONE?: YES — CSS + small JS, gated on championship.
+- HOW TO CHECK: confetti fires once on championship; disabled under reduced motion; no console errors.
+
+**P7-25 · Shimmer on gold elements**
+- WHERE: championship banner, award winners, game ball (P0-18/P0-19).
+- WHAT: Gold gradient shimmer (2 s infinite) on gold text/elements.
+- WHY: Visual emphasis on achievements.
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: shimmer renders; no layout shift; respects reduced motion.
+
+**P7-26 · Glass-morphism on modals/dropdowns**
+- WHERE: all modals and dropdowns.
+- WHAT: backdrop-filter blur(8px) + semi-transparent bg.
+- WHY: Depth and polish on dark theme.
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: blur renders in supported browsers; fallback solid bg otherwise; no console errors.
+
+**P7-27 · Thin accent scrollbar**
+- WHERE: global scrollbar.
+- WHAT: 6 px, rounded, team primary thumb.
+- WHY: Cohesive with team colours.
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: scrollbar styled; no horizontal overflow introduced.
+
+**P7-28 · Zebra stripes on tables**
+- WHERE: draft board, team comparison, box score.
+- WHAT: Alternating row bg at 2% opacity.
+- WHY: Readability on long lists.
+- SAFE ALONE?: YES — CSS-only.
+- HOW TO CHECK: stripes render; no contrast regression.
+
+**P7-29 · Skeleton loading states**
+- WHERE: player browser, draft board initial render.
+- WHAT: Pulse-animated skeleton rows instead of blank flashes.
+- WHY: Perceived performance; avoids layout jump.
+- SAFE ALONE?: YES — CSS + small JS.
+- HOW TO CHECK: skeleton shows then swaps; no console errors.
+
+**P7-30 · Toast system (global)**
+- WHERE: global; used by philosophy change, weight save, undo, clipboard copy.
+- WHAT: Bottom-center toast, 2.5 s, auto-dismiss, tap to dismiss, one at a time (queue).
+- WHY: Consistent async feedback.
+- SAFE ALONE?: YES — small JS + CSS.
+- HOW TO CHECK: toasts appear/dismiss correctly; queue works; `node --check` passes.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
