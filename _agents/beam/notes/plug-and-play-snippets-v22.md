@@ -757,3 +757,159 @@ JS:
 function printRecap() { window.print(); }
 ```
 
+
+---
+
+## 24. VL interactive prototype components (P0-18/19/29) — plug-in
+
+Source: `_agents/vl/deliveries/interactive-prototype.html` (VL, 24 Oct). Merged here with Beam's reconciliation notes.
+
+### 24.1 Champion banner (P0-19) — large, centered, 3s+, shimmer + sparkles
+CSS:
+```css
+.champion-banner { position: relative; overflow: hidden; border-radius: 16px; background: linear-gradient(135deg,#78350f,#b45309,#78350f); color: #fff; text-align: center; padding: 34px 24px; margin: 24px auto; max-width: 720px; box-shadow: 0 20px 50px -8px rgba(180,83,9,0.45); animation: shimmer 3s ease-in-out infinite, popIn 0.5s var(--ease-bounce, cubic-bezier(0.34,1.56,0.64,1)) both; background-size: 200% auto; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+.champion-banner h2 { margin: 0 0 6px; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+.champion-banner p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+.sparkle { position: absolute; width: 6px; height: 6px; background: var(--gold,#fbbf24); border-radius: 50%; animation: sparkle 2s ease-in-out infinite; pointer-events: none; }
+@keyframes sparkle { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.6); } }
+```
+
+### 24.2 Playoff bracket (P0-19) — seeded teams, connectors, byes
+CSS:
+```css
+.bracket { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+.round { display: flex; gap: 14px; margin-bottom: 26px; align-items: flex-start; }
+.matchup { display: flex; flex-direction: column; gap: 8px; min-width: 150px; }
+.team-seed { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border,#273044); border-radius: 8px; background: var(--panel,#141a26); cursor: pointer; transition: border-color var(--motion-fast,150ms), box-shadow var(--motion-fast,150ms); }
+.team-seed.winner { border-color: var(--team-primary,#3b82f6); box-shadow: 0 0 0 3px rgba(var(--team-primary-rgb,59,130,246),0.25); background: rgba(var(--team-primary-rgb,59,130,246),0.12); }
+.team-seed .seed { font-size: 0.7rem; font-weight: 800; color: var(--text-secondary,#9aa0b8); width: 16px; text-align: center; }
+.team-seed .name { flex: 1; font-weight: 700; font-size: 0.85rem; }
+.team-seed .tag { font-size: 0.62rem; padding: 1px 6px; border-radius: 10px; background: var(--border,#273044); color: var(--text-secondary,#9aa0b8); }
+.connector { width: 14px; height: 2px; background: var(--border,#273044); align-self: center; margin: 6px 0; }
+.connector.vertical { width: 2px; height: 46px; margin: 0 auto; }
+```
+
+### 24.3 Conference ranked bar charts (P0-19) — 1-16 ranked
+CSS:
+```css
+.conf-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 900px; margin: 32px auto; padding: 0 16px; }
+.conf-card { background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 12px; padding: 16px; }
+.conf-card h4 { margin: 0 0 12px; font-size: 0.9rem; color: var(--text-secondary,#9aa0b8); text-transform: uppercase; letter-spacing: 0.05em; }
+.rank-list { display: flex; flex-direction: column; gap: 6px; }
+.rank-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,0.02); transition: background var(--motion-fast,150ms); cursor: pointer; }
+.rank-row:hover { background: rgba(var(--team-primary-rgb,59,130,246),0.1); }
+.rank-row .rank { width: 26px; font-size: 0.75rem; font-weight: 800; color: var(--text-secondary,#9aa0b8); }
+.rank-row .team { flex: 1; font-weight: 700; font-size: 0.85rem; }
+.rank-row .record { width: 44px; font-size: 0.75rem; color: var(--text-secondary,#9aa0b8); text-align: right; font-variant-numeric: tabular-nums; }
+.rank-row .bar { flex: 1; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; margin: 0 10px; }
+.rank-row .fill { height: 100%; border-radius: 4px; transition: width var(--motion-normal,250ms); }
+```
+
+### 24.4 Game recap score boxes (P0-18) — team-colored
+CSS:
+```css
+.score-row { display: flex; gap: 12px; margin-bottom: 14px; }
+.score-box { flex: 1; border-radius: 12px; padding: 14px 16px; color: #fff; position: relative; overflow: hidden; }
+.score-box.user { background: linear-gradient(135deg, var(--team-primary,#3b82f6), var(--team-secondary,#9aa0b8)); }
+.score-box.opp { background: linear-gradient(135deg, var(--opp-primary,#ef4444), var(--opp-secondary,#f59e0b)); }
+.score-box .tname { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.9; }
+.score-box .score { font-size: 2.2rem; font-weight: 900; }
+.score-box .detail { margin-top: 6px; font-size: 0.78rem; opacity: 0.9; }
+```
+
+### 24.5 Player browser cards (P0-8) — ~15/page, yours highlighted
+CSS:
+```css
+.player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.player-card { background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 10px; padding: 12px; cursor: pointer; transition: transform var(--motion-fast,150ms), box-shadow var(--motion-fast,150ms), border-color var(--motion-fast,150ms); }
+.player-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+.player-card.yours { border-left: 4px solid var(--team-primary,#3b82f6); background: rgba(var(--team-primary-rgb,59,130,246),0.08); }
+.player-card .ovr { float: right; font-weight: 800; font-size: 0.85rem; }
+.player-card .ovr.gold { color: var(--gold,#fbbf24); }
+.player-card .ovr.silver { color: #94a3b8; }
+.player-card .ovr.bronze { color: #d97706; }
+.player-card .name { font-weight: 700; margin-bottom: 2px; }
+.player-card .meta { font-size: 0.75rem; color: var(--text-secondary,#9aa0b8); margin-bottom: 6px; }
+.player-card .statbar { height: 6px; background: #1f2937; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+.player-card .stat-fill { height: 100%; border-radius: 3px; transition: width var(--motion-normal,250ms); }
+```
+
+### 24.6 Position rankings combo chips (P0-9)
+CSS:
+```css
+.pos-combos { display: flex; flex-wrap: wrap; gap: 6px; }
+.combo-chip { display: inline-block; padding: 6px 12px; border: 1px solid var(--border,#273044); background: var(--panel,#141a26); color: var(--text,#e8ecf3); border-radius: 20px; font-size: 0.8rem; cursor: pointer; transition: all var(--motion-fast,150ms); }
+.combo-chip.active { background: var(--team-primary,#3b82f6); color: #fff; border-color: var(--team-primary,#3b82f6); box-shadow: 0 0 0 2px var(--team-primary,#3b82f6); }
+```
+
+### 24.7 Team comparison side-by-side (P0-10)
+CSS:
+```css
+.compare-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 12px; padding: 18px; }
+.compare-col { display: flex; flex-direction: column; gap: 10px; }
+.compare-col.user { border-left: 4px solid var(--team-primary,#3b82f6); padding-left: 10px; }
+.compare-col.opp { border-left: 4px solid var(--opp-primary,#ef4444); padding-left: 10px; }
+.stat-line { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+```
+
+### 24.8 Live "what-if" win projection (creative)
+CSS:
+```css
+.whatif { background: var(--panel2,#1e2433); border: 1px solid var(--border,#273044); border-radius: 12px; padding: 18px; }
+.slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.slider-row label { width: 150px; font-size: 0.8rem; color: var(--text-secondary,#9aa0b8); }
+input[type=range] { flex: 1; accent-color: var(--team-primary,#3b82f6); }
+.proj-meter { height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; margin-top: 10px; }
+.proj-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg,#ef4444,#fbbf24,#22c55e); transition: width var(--motion-normal,250ms); }
+```
+JS:
+```js
+function updateProj() {
+  const a = +document.getElementById("pr").value;
+  const b = +document.getElementById("sc").value;
+  document.getElementById("prv").textContent = a;
+  document.getElementById("scv").textContent = b;
+  const wins = (10 + (a-50)*0.07 + (b-50)*0.05).toFixed(1);
+  document.getElementById("projw").textContent = wins;
+  document.getElementById("projfill").style.width = Math.min(100, Math.max(0, 40 + a*0.4 + b*0.25)) + "%";
+}
+document.getElementById("pr").oninput = document.getElementById("sc").oninput = updateProj;
+updateProj();
+```
+
+### 24.9 Interactive week timeline (creative) — click to expand
+CSS:
+```css
+.week-item { background: var(--panel,#141a26); border: 1px solid var(--border,#273044); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; cursor: pointer; transition: all var(--motion-fast,150ms); }
+.week-item:hover { background: rgba(var(--team-primary-rgb,59,130,246),0.1); border-color: var(--team-primary,#3b82f6); }
+.week-item.expanded { background: rgba(var(--team-primary-rgb,59,130,246),0.15); border-color: var(--team-primary,#3b82f6); }
+.week-item .head { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+.week-item .detail { display: none; margin-top: 8px; font-size: 0.8rem; color: var(--text-secondary,#9aa0b8); border-top: 1px solid var(--border,#273044); padding-top: 8px; }
+.week-item.expanded .detail { display: block; }
+.week-item .chevron { font-size: 0.7rem; transition: transform var(--motion-fast,150ms); }
+.week-item.expanded .chevron { transform: rotate(180deg); }
+```
+JS:
+```js
+function toggleWeek(el) { el.classList.toggle("expanded"); }
+```
+
+### 24.10 Animated game ball ceremony (creative)
+CSS:
+```css
+.game-ball-ceremony { text-align: center; }
+.football { width: 90px; height: 56px; background: #78350f; border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%; margin: 0 auto 10px; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.4); animation: bounce 2.5s ease-in-out infinite; border: 3px solid var(--gold,#fbbf24); }
+.football::after { content: ""; position: absolute; inset: 4px; background: #d97706; border-radius: 48% 48% 42% 42% / 55% 55% 45% 45%; }
+@keyframes bounce { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-16px) rotate(8deg); } }
+.ball-label { font-weight: 700; margin-bottom: 4px; }
+```
+
+Reconciliation notes (Beam):
+- VL's interactive prototype is the most complete single-file demo of P0-18/19/29 + creative extensions. Recommend Claude use it as the reference prototype, layering OR's utility patches (A-1..A-11) and Beam's snippets on top.
+- VL uses `--team-primary-rgb` for rgba; keep Beam's `setTeamColors()` with rgb. Good.
+- VL uses `--motion-fast/normal/slow` (150/300/500ms) vs OR's `--duration-*` (150/250/400). Recommend unifying on OR's `--duration-*` + `--ease-*` and aliasing `--motion-*` for compat.
+- VL's creative what-if slider and week timeline are high-value and not in Beam's earlier snippets; now captured here (24.8, 24.9).
+- VL's game ball ceremony (24.10) is more elaborate than Beam's confetti; both can coexist (ceremony for game ball, confetti for championship).
+
