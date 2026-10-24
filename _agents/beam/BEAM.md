@@ -136,3 +136,10 @@
 - Rendered visualization.
 - Commits pushed: 35e358af (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — dark rose/gold/white theme v2)
+
+- Refined theme to dark: white text over dark warm background, gold numbers/accents, rose subtle accent only, no orange, open/airy glass panels, team theming.
+- Rendered visualization.
+- Commits pushed: e4cc26f4 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
