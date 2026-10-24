@@ -57,3 +57,7 @@
 - Strong reds, yellows, blues: avoid going forward unless the value is a team's actual color hex.
 - New site palette direction: lightest, faintest pastel pink as the main color; gold and white as the top two other colors.
 - Concept mocks updated: Draft Delight v1 (blue/gold/red), v2 (open air, lighter chrome), v3 (pastel pink + gold + white) — v3 is the current direction.
+
+## Design ruling (2026-10-24, Owner direction, follow-up)
+- Pink base replaced: background becomes a near-white tint of the selected team's primary color (team-driven, faint).
+- Scope: team-tinted background for all tabs except the Season tab.
