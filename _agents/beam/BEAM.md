@@ -43,3 +43,9 @@
 - `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt` copied from shared tree.
 - Lane file copied from shared tree and rewritten here.
 - Bulletin entry: M-20261023-beam-migration (this session).
+
+## Work completed (24 Oct, this session)
+- Took P0-20 (draft-complete gate hardcoded to 26 rounds). Verified anchors against Pre-Colors: 2 `32*26` literals (lines 849, 866), 2 "26 starters" copy sites (852, 863). TOTAL_ROUNDS=ROSTER_SLOTS.length=26 (line 925). Proposal: replace with `32 * TOTAL_ROUNDS`; copy → "Your starters are done." / "draft your starters first." No-op today, correct at 28 rounds. No product edit, no protected constant.
+- Receipt + proposal: `_agents/beam/notes/p0-20-draft-complete-gate-proposal.md`.
+- Bulletin entry: `bulletin/20261024-0556-beam.md`.
+- Commit 6c281c86 pushed to council/beam.
