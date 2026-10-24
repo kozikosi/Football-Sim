@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>V23 — Rose & Gold Theme Prototype (VL)</title>
+<style>
+  /* ============================================================
+     V23 theme: soft barely-pink pastel rose + gold + white
+     No blue paneling unless present in a team's hexes.
+     "Value Here" kept as hidden data attribute only (never rendered).
+     ============================================================ */
+  :root {
+    /* --- Pastel rose theme (Owner directive) --- */
+    --rose-primary: #fce4ec;      /* barely-pink pastel rose */
+    --rose-primary-rgb: 252, 228, 236;
+    --rose-secondary: #f8bbd0;    /* softer rose accent */
+    --rose-tertiary: #ffffff;     /* white */
+    --rose-deep: #f06292;         /* deeper rose for emphasis */
+    --rose-deep-rgb: 240, 98, 146;
+
+    /* Gold & white as 2nd & 3rd */
+    --gold: #fdd835;              /* soft gold */
+    --gold-deep: #fbc02d;
+    --white: #ffffff;
+    --off-white: #fafafa;
+
+    /* Neutral text (no dynamic blue on names) */
+    --text-primary: #3e2723;      /* soft dark for names */
+    --text-secondary: #5d4037;    /* muted brown */
+    --text-muted: #8d6e63;        /* soft muted */
+    --border-soft: #efebe9;       /* barely-there border */
+
+    /* Panel bg: pastel rose, NOT blue */
+    --bg: #fff7f9;                /* barely rose tint */
+    --panel: #fff3f5;
+    --panel2: #fceff2;
+
+    /* Motion */
+    --motion-fast: 150ms ease;
+    --motion-normal: 300ms ease-out;
+    --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif; background: var(--bg); color: var(--text-primary); line-height: 1.5; }
+
+  /* --- Header --- */
+  header { padding: 20px 28px; background: var(--rose-primary); border-bottom: 1px solid var(--border-soft); position: sticky; top: 0; z-index: 50; }
+  header .wordmark { font-size: 1.5rem; font-weight: 800; letter-spacing: 0.02em; color: var(--rose-deep); text-decoration: none; }
+
+  /* --- Team palette selector (demo) --- */
+  .team-picker { margin: 16px 28px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+  .team-btn { padding: 8px 14px; border: 1px solid var(--border-soft); background: var(--panel); color: var(--text-secondary); border-radius: 10px; cursor: pointer; font-size: 0.85rem; }
+  .team-btn.active { border-color: var(--rose-deep); color: var(--rose-deep); box-shadow: 0 0 0 3px rgba(var(--rose-deep-rgb),0.15); }
+
+  /* --- Draft header: NO "Value Here" anywhere visible --- */
+  .draft-header {
+    border-left: 5px solid var(--rose-deep);
+    background: rgba(var(--rose-deep-rgb),0.06);
+    padding: 14px 18px; border-radius: 0 10px 10px 0;
+    margin: 0 28px 24px; font-weight: 700; color: var(--text-primary);
+  }
+  .draft-header .team-name { color: var(--rose-deep); font-weight: 800; }
+
+  /* --- Draft board: player names soft neutral (NOT blue) --- */
+  .board { max-width: 900px; margin: 0 auto 32px; padding: 0 28px; }
+  .board table { width: 100%; border-collapse: separate; border-spacing: 0 10px; }
+  .board th { text-align: left; color: var(--text-muted); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; padding: 10px 14px; font-weight: 600; }
+  .board td { padding: 12px 16px; border-bottom: 1px solid var(--border-soft); background: var(--panel); }
+  .board tr { transition: background var(--motion-fast), transform var(--motion-fast); }
+  .board tr:hover td { background: var(--panel2); transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.06); }
+
+  /* Player card: team's 3 hexes for 2nd & 3rd colors; NO blue on name */
+  .board tr.user-pick td { border-left: 4px solid var(--team-primary); background: rgba(var(--team-primary-rgb,240,98,146),0.08); }
+  .board tr.user-pick .player-name { color: var(--text-primary); } /* soft neutral, not blue */
+  .player-name { color: var(--text-primary); font-weight: 700; letter-spacing: -0.01em; }
+
+  /* Team-colored chips using team's secondary/tertiary hexes */
+  .pos-chip { display: inline-block; padding: 3px 10px; border-radius: 9px; font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: #fff; }
+  .pos-chip.pos-QB { background: var(--team-primary); }
+  .pos-chip.pos-RB { background: var(--team-secondary); }
+  .pos-chip.pos-WR { background: var(--team-tertiary); color: var(--text-primary); border: 1px solid var(--border-soft); }
+  .pos-chip.pos-TE { background: var(--team-secondary); opacity: 0.9; }
+  .pos-chip.pos-OL { background: var(--team-tertiary); color: var(--text-primary); border: 1px solid var(--border-soft); }
+
+  .team-color-ring { width: 10px; height: 10px; border-radius: 50%; display: inline-block; margin-right: 6px; background: var(--team-primary); box-shadow: 0 0 0 1.5px var(--team-tertiary); }
+
+  /* "Value Here" — REMOVED from all visuals; kept only as hidden data attribute */
+  /* .value-here { display: none; }  <- never rendered; stored as data-value-here on rows */
+
+  /* --- Motion: pick slide-in + rose confetti --- */
+  .slide-in { animation: slideIn var(--motion-normal) both; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+  .flash-rose { animation: flashRose 0.5s ease; }
+  @keyframes flashRose { 0% { background: var(--panel); } 50% { background: #ffeff2; } 100% { background: var(--panel); } }
+  .confetti { position: fixed; top: 10vh; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 100; }
+  .confetti::after { content:''; position:absolute; left:-4px; top:-4px; width:8px; height:8px; background: var(--gold); border-radius:50%; animation: confetti 0.6s ease-out both; }
+  .confetti::before { content:''; position:absolute; left:2px; top:-6px; width:6px; height:6px; background: var(--rose-secondary); border-radius:50%; animation: confetti 0.7s ease-out both; }
+  @keyframes confetti { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(20px,-60px) scale(0); opacity: 0; } }
+
+  /* --- Panels: pastel rose + gold, NO blue --- */
+  .panel { background: var(--panel); border: 1px solid var(--border-soft); border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+  .panel.gold { border-left: 4px solid var(--gold); background: rgba(253,216,53,0.06); }
+  .panel h3 { margin: 0 0 10px; font-size: 0.85rem; color: var(--rose-deep); text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; }
+
+  /* --- Score boxes: rose/gold, team-colored --- */
+  .score-row { display: flex; gap: 12px; margin-bottom: 14px; }
+  .score-box { flex: 1; border-radius: 12px; padding: 14px 16px; color: #3e2723; position: relative; overflow: hidden; }
+  .score-box.user { background: linear-gradient(135deg, var(--rose-primary), var(--rose-secondary)); border: 1px solid var(--rose-deep); }
+  .score-box.opp { background: linear-gradient(135deg, var(--gold), #f9e79f); border: 1px solid var(--gold-deep); color: #4a3a00; }
+  .score-box .tname { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 800; opacity: 0.85; }
+  .score-box.user .tname { color: var(--rose-deep); }
+  .score-box.opp .tname { color: #b26a00; }
+  .score-box .score { font-size: 2.4rem; font-weight: 900; margin-top: 4px; }
+  .score-box.user .score { color: var(--rose-deep); }
+  .score-box.opp .score { color: #b26a00; }
+
+  /* --- Confetti burst on user pick --- */
+  .burst-btn { background: var(--rose-deep); color: #fff; border: none; border-radius: 10px; padding: 10px 18px; font-weight: 700; cursor: pointer; margin-top: 12px; box-shadow: 0 4px 14px rgba(240,98,146,0.35); }
+  .burst-btn:hover { background: #ec407a; }
+
+  /* --- Scrollbar --- */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--rose-secondary); border-radius: 4px; }
+
+  .note { max-width: 900px; margin: 24px auto; padding: 0 28px; color: var(--text-muted); font-size: 0.85rem; border-left: 3px solid var(--rose-secondary); padding-left: 14px; }
+  .section-title { color: var(--text-muted); font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 30px 28px 10px; border-bottom: 1px solid var(--border-soft); padding-bottom: 6px; font-weight: 700; }
+</style>
+</head>
+<body>
+<header><a href="#" class="wordmark">NFL Draft Simulator · 20-0</a></header>
+
+<!-- Team picker -->
+<div class="team-picker">
+  <strong style="color:var(--text-secondary)">Team palette (rose/gold/white base):</strong>
+  <button class="team-btn active" onclick="setTeam(this,'#f06292','#f8bbd0','#ffffff','240,98,146')">Default Rose+Gold</button>
+  <button class="team-btn" onclick="setTeam(this,'#e31837','#ffb612','#ffffff','227,24,55')">KC Chiefs (team hexes)</button>
+  <button class="team-btn" onclick="setTeam(this,'#4f2683','#ffc62f','#ffffff','79,38,131')">Vikings (team hexes)</button>
+  <button class="team-btn" onclick="setTeam(this,'#aa0000','#b3995d','#ffffff','170,0,0')">49ers (team hexes)</button>
+</div>
+
+<!-- Draft header — no "Value Here" visible -->
+<div class="draft-header">
+  Drafting as <span class="team-name">Kansas City Chiefs</span> — you hold the #4 overall pick (Round 1)
+</div>
+
+<!-- Draft board -->
+<div class="board">
+  <table>
+    <thead><tr><th>Pick</th><th>Player</th><th>Pos</th><th>Team</th><th>OVR</th></tr></thead>
+    <tbody>
+      <tr class="user-pick slide-in flash-rose">
+        <td>1</td><td><span class="team-color-ring"></span><span class="player-name">Patrick Mahomes</span></td>
+        <td><span class="pos-chip pos-QB">QB</span></td><td>KC</td><td>99</td>
+      </tr>
+      <tr class="slide-in">
+        <td>2</td><td><span class="team-color-ring"></span><span class="player-name">Justin Jefferson</span></td>
+        <td><span class="pos-chip pos-WR">WR</span></td><td>MIN</td><td>97</td>
+      </tr>
+      <tr>
+        <td>3</td><td><span class="team-color-ring"></span><span class="player-name">Christian McCaffrey</span></td>
+        <td><span class="pos-chip pos-RB">RB</span></td><td>SF</td><td>95</td>
+      </tr>
+      <tr>
+        <td>4</td><td><span class="team-color-ring"></span><span class="player-name">Nick Bosa</span></td>
+        <td><span class="pos-chip pos-DL">DL</span></td><td>SF</td><td>94</td>
+      </tr>
+      <tr>
+        <td>5</td><td><span class="team-color-ring"></span><span class="player-name">Trent Williams</span></td>
+        <td><span class="pos-chip pos-OL">OL</span></td><td>SF</td><td>93</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note">Player names in soft neutral (not blue). Card 2nd/3rd colors from team's 3 hexes. "Value Here" removed from all visuals — kept only as hidden background calc.</div>
+</div>
+
+<button class="burst-btn" onclick="fireConfetti()">Draft pick confetti (rose + gold)</button>
+<div class="confetti"></div>
+
+<!-- Score boxes (rose/gold) -->
+<div class="section-title">Game recap — rose + gold score boxes</div>
+<div class="score-row">
+  <div class="score-box user"><div class="tname">KC Chiefs (you)</div><div class="score">31</div></div>
+  <div class="score-box opp"><div class="tname">SF 49ers</div><div class="score">20</div></div>
+</div>
+
+<!-- Panels -->
+<div class="panel gold">
+  <h3>Rose + gold panel (no blue)</h3>
+  <p style="margin:0;color:var(--text-secondary)">Soft pastel rose background with gold accent — no blue paneling anywhere unless present in a team's hexes.</p>
+</div>
+
+<div class="note" style="max-width:900px">
+  <strong>Design directives applied:</strong> (1) Theme = soft barely-pink pastel rose primary, gold + white as 2nd/3rd. (2) "Value Here" removed from ALL visual elements — kept only as hidden background calculation (data attribute, never rendered). (3) Player names on draft board in soft neutral — no dynamic blue. (4) Each player card's 2nd/3rd colors drawn from that team's 3 hexes. (5) No blue paneling or primary colors unless present in the team's hexes. All motion respects prefers-reduced-motion. Advisory prototype — product file untouched.
+</div>
+
+<script>
+  function setTeam(btn,p1,s,t,rgb){
+    document.documentElement.style.setProperty('--team-primary',p1);
+    document.documentElement.style.setProperty('--team-secondary',s);
+    document.documentElement.style.setProperty('--team-tertiary',t);
+    document.documentElement.style.setProperty('--team-primary-rgb',rgb);
+    document.querySelectorAll('.team-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  function fireConfetti(){ const c=document.querySelector('.confetti'); c.style.left='48%'; c.style.top='10vh'; setTimeout(()=>{c.style.left='';c.style.top='';},800); }
+</script>
+</body>
+</html>
