@@ -22,7 +22,7 @@ if (!buildPath) {
   process.exit(4);
 }
 
-let html = fs.readFileSync(buildPath, "utf8");
+const html = fs.readFileSync(buildPath, "utf8");
 
 // Find the <style> block to inject CSS
 const styleEnd = html.indexOf("</style>");
@@ -84,7 +84,7 @@ const stickyCss = `
 let patched = html;
 if (applyCss) {
   patched = html.slice(0, styleEnd) + stickyCss + html.slice(styleEnd);
-  fs.writeFileSync(buildPath + ".patched", patched, "utf8");
+  fs.writeFileSync(`${buildPath}.patched`, patched, "utf8");
   console.log(`CSS injected. Patched build written to ${buildPath}.patched`);
 }
 
@@ -99,14 +99,19 @@ console.log(`  #beginSeasonBtn found: ${beginBtn1 !== -1 ? "YES" : "NO"}`);
 console.log(`  #beginSeasonBtn2 found: ${beginBtn2 !== -1 ? "YES" : "NO"}`);
 
 // Check for sticky CSS in patched version
-const hasSticky = patched.includes("position: sticky") && patched.includes(":has(");
+const hasSticky =
+  patched.includes("position: sticky") && patched.includes(":has(");
 console.log(`  Sticky CSS present: ${hasSticky ? "YES" : "NO"}`);
 
 // Check for prefers-reduced-motion handling
 const hasReducedMotion = patched.includes("prefers-reduced-motion");
-console.log(`  prefers-reduced-motion handled: ${hasReducedMotion ? "YES" : "NO"}`);
+console.log(
+  `  prefers-reduced-motion handled: ${hasReducedMotion ? "YES" : "NO"}`,
+);
 
 if (!applyCss) {
   console.log("\nRun with --apply-css to generate patched build.");
-  console.log("Then test with: node tests/e2e-smoke.mjs <patched-build> --port 9222");
+  console.log(
+    "Then test with: node tests/e2e-smoke.mjs <patched-build> --port 9222",
+  );
 }
