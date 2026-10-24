@@ -52,3 +52,8 @@
 
 ## Receipts required before integration
 - `node --check` on extracted script; `node tools/lint.mjs product Football-Sim-PreColors.html`; `tools/post-merge-smoke.mjs`; 390 px check; seeded before/after where numbers move.
+
+## Design ruling (2026-10-24, Owner direction)
+- Strong reds, yellows, blues: avoid going forward unless the value is a team's actual color hex.
+- New site palette direction: lightest, faintest pastel pink as the main color; gold and white as the top two other colors.
+- Concept mocks updated: Draft Delight v1 (blue/gold/red), v2 (open air, lighter chrome), v3 (pastel pink + gold + white) — v3 is the current direction.
