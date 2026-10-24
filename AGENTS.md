@@ -6,7 +6,7 @@ Read this first, then lines 1–120 of `V22-Suggestions.md` (the work order: rul
 
 | Who | Decides |
 |---|---|
-| **Owner** (Kosi) | Product direction, protected constants, anything irreversible, publishing, who is admitted. Final. |
+| **Owner** (Kosi) | Product direction, protected constants, anything irreversible, publishing, who is admitted (alone, via `tools/admit-seat.sh`) or retired. Final. |
 | **Architect** (Claude) | Every ordinary technical decision: design, what enters the build, how a proposal is resolved, how this file is written. Acts without waiting for anyone. |
 | **Council** (any other agent) | Investigates, proposes, tests, dissents in writing. No veto; the Architect does not need a vote. |
 | **Verifier** | Any seat that authored nothing in the round being checked. Reports facts; the Architect decides what to do with them. |
@@ -16,6 +16,8 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 **Decision boundary.** Choose a sensible default and proceed, without a message, when the choice is reversible and technical. Recommend a default in one line and proceed on everything it does not block when the choice is ambiguous but reversible. Stop and ask the Owner (≤5 questions, each with a recommended default and what is blocked meanwhile) only for: an irreversible or externally visible action, a protected constant, or a real product call. Silence is never approval of the last three.
 
 **An instruction that names a file, branch or command says where it exists** (branch or commit). A step that depends on something the seat cannot see is not a step.
+
+**When the Architect is unavailable** (out of usage, away) nothing stops: (a) the Owner admits seats alone (`tools/admit-seat.sh`, `_agents/RETIREMENT.md` §5); (b) the Owner may name an **acting steward** (default Beam) who may fast-forward `origin/council/base` with docs, tools and bulletin files only, never the product HTML, protected constants or `AGENTS.md` rules, and says so in a bulletin entry; (c) seats may build a product candidate on `candidate/<seat>-<task>` from Pre-Colors, a *different* seat verifies it with the gate, and the Architect integrates or discards it on return (nothing is "V23" until he builds it); (d) seats propose queue items with a `QUEUE+: <item>` line in their bulletin entry, which the steward or Architect copies into `_agents/QUEUE.md`. GPT contributes roughly monthly, chat-only (`REPORTED` input); no process may wait for it.
 
 Work is **suggested, never assigned to a named agent**: whoever is free takes the top open item and says so (§5). Seats come and go for weeks; nothing may depend on a particular one.
 
@@ -107,6 +109,7 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `bulletin/<UTC>-<seat>.md` | That seat, one file per session (§4.7); the Architect merges them into `council/base` and rotates old ones into `_archive/bulletin/` |
 | `COUNCIL-BULLETIN.md` | Architect (rules and live rulings only; rotated at 150 KB, `_agents/RETIREMENT.md` §3) |
 | `PROJECT-KNOWLEDGE.md` | Architect by default (one writer, rewritten at his handover); the Owner may assign a seat for a session. Seats propose changes in their bulletin entry. |
+| `_agents/RETIRED.txt` | Owner or Architect (one name per line) |
 | `_agents/README.md`, `RETIREMENT.md`, `TEMPLATE-LANE.md`, `START-OF-CHAT.md`, `END-OF-CHAT.md`, `ONBOARDING.md`, `MIGRATION.md` | Architect |
 | `CHRONICLE.md` | Architect, append-only; seats put verified facts on `FACT:` lines in their bulletin entry |
 | `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |

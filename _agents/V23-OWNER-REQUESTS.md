@@ -1,0 +1,8 @@
+# V23 — Owner requests, 24 Oct 2026 (verbatim intent, Architect organises; nothing here is built yet)
+Earlier: brand "20-0"; DRAFT hero homepage; clickable header wordmark returns home; player browser 15/page, position dropdown aligned/styled like the draft board; whole-site beauty and interactivity pass.
+1. **Game-play animation**: screen shows the game being played; Q1 events slowly appear, score changes slowly, scorers and big plays appear; tables fade in lightly; whole game ≤10–15 s; should feel like an event.
+2. **Lineup comparison**: do not colour the user's player names blue; keep the ability to see who has the better player (earlier colour arrangement).
+3. **Draft board**: remove "also fits"; remove the stray line behind the first letter of player names; "TOP" stays but dynamic gold, no green; no dynamic colour on player names, less blue; **"Value here" removed from every visual incl. sort**, kept only as background calculation. Draft card 2nd/3rd colours must be among the team's three hexes.
+4. **Theme**: soft, barely-pink rose dominant (much closer to white), gold and white second/third; all numbers/text gold (not rose); no orange anywhere (gold must not drift orange, e.g. behind "Super Bowl Champion!"); no blue panels; open, airy.
+5. **Team theming**: background becomes a near-white tint of the selected team's primary colour on every tab except Season; always that team's colours (Owner's 22 Oct table is authoritative).
+Open questions for the Owner are in the Architect's reply (gold legibility, animation scope, tint scope, lineup cue, who builds while Architect is away).
