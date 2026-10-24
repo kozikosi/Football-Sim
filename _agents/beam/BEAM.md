@@ -18,6 +18,7 @@ No product file edited. No protected constants touched. No shared-doc edits beyo
 ## Pending / open for Beam
 - Check bulletin replies to M-20261022-u, MOC-20261022-01, Q4 poll (per MOC's leaving note).
 - Header rework decision (Option 1 patch now vs Option 2 Figma rework) — recommendation already filed (Option 1 now, Option 2 as separate Figma item); Owner decision still open.
+- **S-V22-01 pending**: V22 P0-1 coaching philosophy lock removal — SUBMISSIONS.md entry submitted (build `eb720f3d...`, Pre-Colors). Removes `scriptLocked = true` from `simulateCurrentWeek()` and `simRestOfSeason()` in `_agents/pickle/builds/Football-Sim-PreColors.html`. Harveyball-style Awaiting Architect review before moving to built state.
 - Harness drafts in `_agents/beam/notes/harness-drafts/` (pw4.js, phone.js, validate.js, run_all.sh, funcdiff.js) — drafts for the Architect; verify/refresh before any regression run.
 - 100-season regression with the weight deltas (still pending the Architect).
 - Colour registry verification (ship as reference or verify first).
@@ -39,3 +40,6 @@ Completed the brainstorm with 8 more CSS/JS proposals in `_agents/beam/notes/pro
 
 ## Session 6 (23 Oct, continued) — V23 aesthetics proposals index
 Created `_agents/beam/notes/proposals/V23-aesthetics-code-proposal-index.md` (102 lines) indexing all 25 CSS/JS proposals across 4 files (1,827 total lines). Implementation priority ranking (23 items). Combined proposals cover the full brainstorm. No product edits. Bulletin: M-20261023-beam10. Commit: a8a6ce42 (index) + b74e2eff (bulletin). Pushed to `beam/local-preserve-2026-10-23`.
+
+## Session 7 (23 Oct, continued) — V23 aesthetics plug-and-play guide
+Created `_agents/beam/notes/proposals/V23-aesthetics-plug-and-play.md` (1,465 lines) — a single consolidated file with 5 drop-in blocks: TEAM_COLORS data, team color functions, all CSS (200+ rules), all JS (30+ functions), HTML snippets. Includes integration table mapping 30+ functions to call sites. No product edits. Bulletin: M-20261023-beam11. Commit: 51d83984 (proposal) + 0c70d55c (bulletin). Pushed to `beam/local-preserve-2026-10-23`.
