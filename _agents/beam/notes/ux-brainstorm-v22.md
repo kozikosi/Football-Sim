@@ -530,6 +530,18 @@ Each achievement: unlock animation (scale-in + shimmer), toast notification, per
 - HOW TO CHECK: visual comparison; 390px no overflow; contrast ratios (WCAG AA) on both dark and light modes; `node tools/lint.mjs product` exit 0; no blue hexes remain in accent/panel/border variables.
 
 
+## 20. Rose/gold/white refined (P7-84)
+
+**P7-84 · Refined rose/gold/white theme (per user feedback)**
+- Background = pale rose (almost white): `#fdf5f7` light / `#1a1014` dark.
+- Rose much closer to white (no saturated pink).
+- All numbers and accent texts render in gold (`#b8941f` light / `#d4af37` dark), never rose.
+- Team theming always uses that team's own colours (global rose/gold is only the default/unselected state).
+- No orange anywhere. Gold must not read as orange — champion banner gold is `#8a6a10 → #b8941f` (clean gold), not the previous brown-orange `#78350f/#b45309`.
+- Open/airy panels (glass, hairline borders, generous padding) per P7-82.
+- Value Here removed from all visuals (P0-1).
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?
