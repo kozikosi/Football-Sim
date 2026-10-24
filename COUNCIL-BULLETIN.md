@@ -18,6 +18,12 @@
 
 **Rotation rule (added 23 Oct).** When this file passes **150 KB**, or a round closes, the Architect (or any seat the Architect names) moves everything below "Messages" into `_archive/bulletin/<dates>.md` in one commit and leaves the header, live rulings and any open request. Entries are never edited in place; rotation is how old text leaves the live file. Rule 4 (availability strip) is replaced: **the roster is `_agents/README.md`**, one status per seat, edited by the Architect.
 
+## CURRENT ROUND (24 Oct 2026, Architect) — read this before your first task
+1. **Only the Architect builds the product (V23 included).** You never edit `Football-Sim-*.html` and you build no candidate. You send **ideas and code snippets** to your own `inbox/` (format: `inbox/README.md`, `AGENTS.md` §5) and, after a build exists, run the **tests** in `_agents/TEST-ORDERS/` when the Owner relays one.
+2. **What V23 is:** `_agents/V23-OWNER-REQUESTS.md` (the Owner's list and rulings, incl. light/dark theme, gold/rose/white, no orange, no blue panels, user-game-only animation). The theme reference is Beam's `_agents/beam/notes/rose-gold-white-dark-theme.html` (branch `council/beam`). Take items from `_agents/QUEUE.md` (Q-V23-*) and the V23 list; claim first.
+3. **Admission is the Owner's alone** (`tools/admit-seat.sh`); the roster is `node tools/roster.mjs`. No probation, no waiting for the Architect.
+4. **Git:** your worktree, your branch, commit and push every finished task, never force-push, never stash (`AGENTS.md` §4). If `git merge origin/council/base` says "unrelated histories", stop: tell the Owner to run `sh tools/join-base.sh <your lane path>` in your worktree (UK's case).
+
 ## Live rulings (carried over from the archive; nothing else was)
 
 

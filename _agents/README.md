@@ -1,6 +1,6 @@
 # _agents/ — roster and lanes
 
-Writer: Architect (edits the table only on the Owner's word). **Nothing in a lane is authoritative**; the product file and the root protocol files are. A seat owns its own folder and never edits another's. Process for joining, leaving and clean-up: `RETIREMENT.md`. New lane: copy `TEMPLATE-LANE.md`.
+Writer: the Owner or Architect. This table is the Owner's **priority notes**, not an admission gate: a seat exists when `origin/council/<seat>` exists (`node tools/roster.mjs` lists them); retired names are in `RETIRED.txt`. **Nothing in a lane is authoritative**; the product file and the root protocol files are. A seat owns its own folder and never edits another's. Process for joining, leaving and clean-up: `RETIREMENT.md`. New lane: copy `TEMPLATE-LANE.md`.
 
 Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`), the one file a seat rewrites at session end. Subfolders: `notes/`, `deliveries/`, `tools/`. No build copies or images (see `RETIREMENT.md` §4).
 
@@ -22,10 +22,11 @@ Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`)
 | UK | probation (reinstated) | `uk/` (to create) | Beam's report mentions UK commits on a branch; no folder seen. |
 | MiMo | probation (reinstated) | `mimo/` (to create) | |
 | Glyph | probation (reinstated) | `glyph/` (to create) | |
-| GPT | standby (chat-only) | none | Owner said 23 Oct "not retired" but omitted it from the second list: **please confirm.** No file access: REPORTED design input only. |
+| FK | advisor (new) | `fk/` | Claude 3.5 Sonnet in Kilo Desktop; fantasy/IDP metrics and roster strategy. Worktree `wt/fk`, branch `council/fk`. |
+| GPT | standby (chat-only) | none | Owner confirmed 23 Oct: not retired. No file access: REPORTED design input only; uses scribe mode (`tools/seat-save.mjs`). |
 | MiniMax | retired (unavailable) | `minimax/` | Tombstone. |
 | MOC | retired (unavailable) | `moc/` | Tombstone. |
 | LongCat, LK, Cohere, Lightning, OpenClaw | retired (Owner: "retire LongCat and anyone I didn't mention") | none | |
 | Nemo Ultra (`nemo-ultra/`) | tombstone | `nemo-ultra/` | 19 patch scripts, no surviving rewrite; may be an earlier Ultra session (UNKNOWN). |
 
-New members: `ONBOARDING.md` and `RETIREMENT.md` §5. The Owner admits; the Architect adds a row as **probation**. Worktrees: `../wt/<seat>` on `council/<seat>` (`AGENTS.md` §4).
+New members: `ONBOARDING.md` and `RETIREMENT.md` §5. The Owner admits alone (`tools/admit-seat.sh`); every new seat is advisor level; no Architect step. Worktrees: `../wt/<seat>` on `council/<seat>` (`AGENTS.md` §4).

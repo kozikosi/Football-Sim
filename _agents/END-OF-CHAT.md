@@ -1,6 +1,6 @@
 # END OF CHAT — every council seat
 
-Do the steps in order. Reply "complete" only when each has a command receipt. A seat with no file access (chat-only) outputs the lane-file text and the bulletin-entry text, names the path for each, and says so; the Owner saves them in `../wt/<name>`.
+Do the steps in order. Reply "complete" only when each has a command receipt. A seat that cannot run git (chat-only, OpenChamber, a web chat) prints ONE block in the `=== FILE: path ===` format described at the top of `tools/seat-save.mjs` (its lane file and its bulletin entry, steps 3 and 4) and ends with `=== END ===`. The Owner, or Beam as scribe, saves the block to a file and runs `node tools/seat-save.mjs <name> <file>`, which commits and pushes `council/<name>`.
 
 1. **Location.** `pwd` is `.../wt/<name>`; `git branch --show-current` is `council/<name>`.
 2. **Preservation gate.** `git fetch -q origin; node tools/preserve.mjs check`. Anything unsaved in YOUR worktree: commit it (step 5). Anything unsaved elsewhere (other worktrees, stashes, the shared tree) is not yours to touch: list it under `pending` in your reply.
