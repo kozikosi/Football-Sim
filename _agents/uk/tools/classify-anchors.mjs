@@ -157,7 +157,13 @@ for (let i = 0; i < lines.length; i++) {
   if (kind === "beforeAfter") {
     for (const c of cells.slice(0, -1))
       for (const q of quoted(c))
-        oldStrings.push({ q, line: i + 1, section, raw: l, role: "beforeAfter-old" });
+        oldStrings.push({
+          q,
+          line: i + 1,
+          section,
+          raw: l,
+          role: "beforeAfter-old",
+        });
     for (const q of quoted(cells[cells.length - 1]))
       newStrings.push({ q, line: i + 1, section, raw: l });
   } else {
@@ -166,8 +172,7 @@ for (let i = 0; i < lines.length; i++) {
     for (const c of cells) {
       for (const q of quoted(c)) {
         const sentence =
-          c.split(/(?<=[.;])\s+/)
-            .find((s) => s.includes(q)) || c;
+          c.split(/(?<=[.;])\s+/).find((s) => s.includes(q)) || c;
         if (REMOVE_VERB.test(sentence))
           oldStrings.push({
             q,
@@ -225,7 +230,10 @@ for (const m of missing) {
   }
   // NEAR MISS — the text is present but with different punctuation/wrapping.
   const stripped = norm(m.q).replace(/[()"'“”`]/g, "");
-  if (stripped.length > 12 && flat.toLowerCase().includes(stripped.toLowerCase())) {
+  if (
+    stripped.length > 12 &&
+    flat.toLowerCase().includes(stripped.toLowerCase())
+  ) {
     cls.nearMiss.push(m);
     continue;
   }
@@ -240,10 +248,18 @@ console.log(
   `TARGET strings claimed by the document: ${N.length}  |  already present: ${N.filter((x) => count(x.q) > 0).length}`,
 );
 console.log("\n=== THE TRUE COUNT ===");
-console.log(`  TRUE BROKEN ANCHORS : ${cls.broken.length}   <- only these need a document fix`);
-console.log(`  false: Owner voice  : ${cls.ownerVoice.length}   <- the Owner's own words`);
-console.log(`  false: rendered     : ${cls.rendered.length}   <- build stores a template literal`);
-console.log(`  false: near miss    : ${cls.nearMiss.length}   <- present, different punctuation`);
+console.log(
+  `  TRUE BROKEN ANCHORS : ${cls.broken.length}   <- only these need a document fix`,
+);
+console.log(
+  `  false: Owner voice  : ${cls.ownerVoice.length}   <- the Owner's own words`,
+);
+console.log(
+  `  false: rendered     : ${cls.rendered.length}   <- build stores a template literal`,
+);
+console.log(
+  `  false: near miss    : ${cls.nearMiss.length}   <- present, different punctuation`,
+);
 
 const show = (title, arr) => {
   if (!arr.length) return;
@@ -255,7 +271,10 @@ const show = (title, arr) => {
   if (arr.length > 40) console.log(`  … and ${arr.length - 40} more`);
 };
 show("TRUE BROKEN ANCHORS (act on these)", cls.broken);
-show("RENDERED EXAMPLES (search the SOURCE form, not the quoted text)", cls.rendered);
+show(
+  "RENDERED EXAMPLES (search the SOURCE form, not the quoted text)",
+  cls.rendered,
+);
 show("NEAR MISSES (present, different punctuation)", cls.nearMiss);
 show("near-miss prefix matches (wording check)", prefix);
 
