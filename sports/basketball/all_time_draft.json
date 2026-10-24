@@ -1,0 +1,6 @@
+{
+ "quarantined": true,
+ "notice": "Deleted 5 clearly-wrong records on 22 Oct 2026 under the Owner's ruling that \"the specific incidents of things that are clearly wrong\" be deleted. Every deleted record carried at least one of: an invented decimal rating on an integer 40-99 scale; a `careerAverage` field no engine reads; no provenance; or a factual error (a basketball player in the football file, a quarterback listed as a running back, a player on a team he never played for). Nothing wrong remains on disk. The safe synthetic example (record shape only, every name and rating invented and marked) is kept at _fixtures/example-ratings/all_time_draft.example.json. Deletion receipts: _fixtures/example-ratings/DELETION-LOG.md. Executed by UK per the Owner's instruction of 22 Oct 2026.",
+ "records": [],
+ "safe_example": "_fixtures/example-ratings/all_time_draft.example.json"
+}

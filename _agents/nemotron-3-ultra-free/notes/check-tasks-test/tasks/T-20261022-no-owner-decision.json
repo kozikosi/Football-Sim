@@ -1,0 +1,10 @@
+{
+  "id": "T-20261022-no-owner-01",
+  "title": "Owner-accepted without decision",
+  "state": "owner-accepted",
+  "base_build_sha": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+  "seat": "ultra",
+  "claimed_at": "2026-10-22T10:00:00Z",
+  "evidence": [{"command": "npm test", "result": "PASS"}],
+  "verification": {"seat": "pickle", "command": "npm test", "result": "PASS"}
+}

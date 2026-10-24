@@ -1,0 +1,6 @@
+
+let a = 1, b = 2;
+if (a == b) { console.log(a); }
+var old = 3;
+let p = 0, q = {}; if (p = q.x) { console.log(p); }
+const ok = document.createElement("div"); console.log(ok);

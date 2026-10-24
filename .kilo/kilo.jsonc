@@ -1,3 +1,24 @@
 {
-  "$schema": "https://app.kilo.ai/config.json"
+	"$schema": "https://app.kilo.ai/config.json",
+	"mcp": {
+		"figma": {
+			"type": "remote",
+			"url": "https://mcp.figma.com/mcp",
+			"enabled": true,
+			"timeout": 30000
+		},
+		"figma-desktop": {
+			"type": "remote",
+			"url": "http://127.0.0.1:3845/mcp",
+			"enabled": false,
+			"timeout": 10000
+		}
+	},
+	"permission": {
+		"figma_*": "ask",
+		"figma_get_*": "allow"
+	},
+	"instructions": [
+		"PROJECT-KNOWLEDGE.md"
+	]
 }

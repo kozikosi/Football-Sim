@@ -1,0 +1,1694 @@
+{
+	"meta": {
+		"title": "NBA — who still needs a score",
+		"generated": "2026-10-21",
+		"generated_by": "MiniMax (S-1900–1999)",
+		"rated_now": {
+			"current_2027_list": 538,
+			"alltime_persons": 87,
+			"alltime_player_seasons": 100
+		},
+		"owner_target": "1,500–2,000 candidates per sport (Owner direction, 21 Oct 2026)",
+		"method": "matched the intake's candidate identities against the Owner's rated sets by normalised name and by surname; rows that are section headings or usernames were separated as noise"
+	},
+	"counts": {
+		"intake_candidates": 494,
+		"still_needing_a_score_full_name": 38,
+		"still_needing_a_score_single_token": 376,
+		"non_player_rows_filtered": 7
+	},
+	"alltime_gap": {
+		"note": "the all-time pool's top 87 persons are rated (100 player-seasons); at the Owner's target the all-time NBA pool still needs this many more people",
+		"min_needed": 1113,
+		"max_needed": 1913
+	},
+	"need_score_full_name": [
+		{
+			"name": "Bailey Howell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:476"
+		},
+		{
+			"name": "Michael Ray",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:150"
+		},
+		{
+			"name": "Ben Simmons",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:162"
+		},
+		{
+			"name": "Bill Cartwright",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:470"
+		},
+		{
+			"name": "Bj Armstrong",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:558"
+		},
+		{
+			"name": "Blake Griffin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:218"
+		},
+		{
+			"name": "Brendon Haywood",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:238"
+		},
+		{
+			"name": "Brian Taylor",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:487"
+		},
+		{
+			"name": "Byron Scott",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:392"
+		},
+		{
+			"name": "Charlie Scott",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:521"
+		},
+		{
+			"name": "Chris Ford",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:488"
+		},
+		{
+			"name": "Danny Manning",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:559"
+		},
+		{
+			"name": "Darryl Dawkins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:274"
+		},
+		{
+			"name": "David Wesley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:633"
+		},
+		{
+			"name": "Dennis Scott",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:666"
+		},
+		{
+			"name": "Dick Barnett",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:564"
+		},
+		{
+			"name": "Earl Monroe",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:296"
+		},
+		{
+			"name": "Elden Campbell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:225"
+		},
+		{
+			"name": "Freddie Lewis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:513"
+		},
+		{
+			"name": "Grant Hill",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:125"
+		},
+		{
+			"name": "Hal Greer",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:371"
+		},
+		{
+			"name": "J Lin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:639"
+		},
+		{
+			"name": "Jason Terry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:365"
+		},
+		{
+			"name": "Joe Barry Carrol",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:234"
+		},
+		{
+			"name": "Joe Caldwell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:526"
+		},
+		{
+			"name": "Johnny Moore",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:635"
+		},
+		{
+			"name": "K Willis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:499"
+		},
+		{
+			"name": "Kenny Jet",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:280"
+		},
+		{
+			"name": "Larry Hughes",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:711"
+		},
+		{
+			"name": "Marc Gasol",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:39"
+		},
+		{
+			"name": "Mario Elie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:479"
+		},
+		{
+			"name": "Pau Gasol",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:38"
+		},
+		{
+			"name": "Sam Bowie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:231"
+		},
+		{
+			"name": "Sean Elliot",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:454"
+		},
+		{
+			"name": "Terrell Brandon",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:560"
+		},
+		{
+			"name": "Trent Tucker",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:489"
+		},
+		{
+			"name": "Trey Murphy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:748"
+		},
+		{
+			"name": "Van Arsdale",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:546"
+		}
+	],
+	"need_identity_single_token": [
+		{
+			"name": "Embiid",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:30"
+		},
+		{
+			"name": "Giannis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:10"
+		},
+		{
+			"name": "Jokic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:20"
+		},
+		{
+			"name": "Kareem",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:3"
+		},
+		{
+			"name": "Lebron",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:8"
+		},
+		{
+			"name": "Kawhi",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:22"
+		},
+		{
+			"name": "Duncan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:5"
+		},
+		{
+			"name": "Magic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:21"
+		},
+		{
+			"name": "Curry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:28"
+		},
+		{
+			"name": "Ewing",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:17"
+		},
+		{
+			"name": "Admiral",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:15"
+		},
+		{
+			"name": "Barkley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:42"
+		},
+		{
+			"name": "Doncic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:26"
+		},
+		{
+			"name": "Hakeem",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:4"
+		},
+		{
+			"name": "Barry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:103"
+		},
+		{
+			"name": "Gobert",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:175"
+		},
+		{
+			"name": "McGrady",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:52"
+		},
+		{
+			"name": "Thurmond",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:186"
+		},
+		{
+			"name": "Walton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:13"
+		},
+		{
+			"name": "Booker",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:69"
+		},
+		{
+			"name": "Divac",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:76"
+		},
+		{
+			"name": "Drexler",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:101"
+		},
+		{
+			"name": "Jordan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:900"
+		},
+		{
+			"name": "Malone",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:903"
+		},
+		{
+			"name": "Moses",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:16"
+		},
+		{
+			"name": "Olajuwon",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:899"
+		},
+		{
+			"name": "Penny",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:40"
+		},
+		{
+			"name": "Russell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:12"
+		},
+		{
+			"name": "Sengun",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:105"
+		},
+		{
+			"name": "Webber",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:72"
+		},
+		{
+			"name": "Wemby",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:770"
+		},
+		{
+			"name": "Whiteside",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:254"
+		},
+		{
+			"name": "Adebayo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:126"
+		},
+		{
+			"name": "Alvin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:155"
+		},
+		{
+			"name": "Arvydas",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:29"
+		},
+		{
+			"name": "Ayton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:660"
+		},
+		{
+			"name": "Banchero",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:216"
+		},
+		{
+			"name": "Bellamy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:187"
+		},
+		{
+			"name": "Bibby",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:530"
+		},
+		{
+			"name": "Bowen",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:325"
+		},
+		{
+			"name": "Bradley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:251"
+		},
+		{
+			"name": "Brooks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:319"
+		},
+		{
+			"name": "Brunson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:68"
+		},
+		{
+			"name": "Camby",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:169"
+		},
+		{
+			"name": "Capela",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:165"
+		},
+		{
+			"name": "Caruso",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:161"
+		},
+		{
+			"name": "Castle",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:135"
+		},
+		{
+			"name": "Chandler",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:314"
+		},
+		{
+			"name": "Christie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:153"
+		},
+		{
+			"name": "Cousy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:189"
+		},
+		{
+			"name": "Cowens",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:132"
+		},
+		{
+			"name": "Dampier",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:170"
+		},
+		{
+			"name": "Dandridge",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:262"
+		},
+		{
+			"name": "Dolph",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:78"
+		},
+		{
+			"name": "Dominique",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:51"
+		},
+		{
+			"name": "Drummond",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:309"
+		},
+		{
+			"name": "Dumars",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:154"
+		},
+		{
+			"name": "Duren",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:88"
+		},
+		{
+			"name": "Dwight",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:49"
+		},
+		{
+			"name": "Dyson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:193"
+		},
+		{
+			"name": "Eason",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:682"
+		},
+		{
+			"name": "Eaton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:130"
+		},
+		{
+			"name": "Francis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:455"
+		},
+		{
+			"name": "Goodrich",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:166"
+		},
+		{
+			"name": "Haliburton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:57"
+		},
+		{
+			"name": "Haslem",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:315"
+		},
+		{
+			"name": "Havlicek",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:133"
+		},
+		{
+			"name": "Hawkins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:936"
+		},
+		{
+			"name": "Hibbert",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:306"
+		},
+		{
+			"name": "Holmgren",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:77"
+		},
+		{
+			"name": "Horford",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:134"
+		},
+		{
+			"name": "Iguodala",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:152"
+		},
+		{
+			"name": "Jermaine",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:143"
+		},
+		{
+			"name": "Julius",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:41"
+		},
+		{
+			"name": "Kessler",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:148"
+		},
+		{
+			"name": "Kirilenko",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:75"
+		},
+		{
+			"name": "Lever",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:149"
+		},
+		{
+			"name": "Lively",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:375"
+		},
+		{
+			"name": "Marion",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:156"
+		},
+		{
+			"name": "Maxey",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:137"
+		},
+		{
+			"name": "McAdoo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:48"
+		},
+		{
+			"name": "Mcdaniels",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:112"
+		},
+		{
+			"name": "McGinnis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:63"
+		},
+		{
+			"name": "Missi",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:701"
+		},
+		{
+			"name": "Morant",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:214"
+		},
+		{
+			"name": "Murphy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:202"
+		},
+		{
+			"name": "Nance",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:208"
+		},
+		{
+			"name": "Nater",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:236"
+		},
+		{
+			"name": "Nowitzki",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:36"
+		},
+		{
+			"name": "Payton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:109"
+		},
+		{
+			"name": "Petrie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:497"
+		},
+		{
+			"name": "Poeltl",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:204"
+		},
+		{
+			"name": "Randle",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:211"
+		},
+		{
+			"name": "Redick",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:483"
+		},
+		{
+			"name": "Richmond",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:115"
+		},
+		{
+			"name": "Robinson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:902"
+		},
+		{
+			"name": "Ruland",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:224"
+		},
+		{
+			"name": "Siakam",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:206"
+		},
+		{
+			"name": "Sikma",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:100"
+		},
+		{
+			"name": "Smits",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:217"
+		},
+		{
+			"name": "Tatum",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:102"
+		},
+		{
+			"name": "Thorpe",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:266"
+		},
+		{
+			"name": "Timelord",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:177"
+		},
+		{
+			"name": "Tomjanovich",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:114"
+		},
+		{
+			"name": "Unseld",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:131"
+		},
+		{
+			"name": "Westbrook",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:120"
+		},
+		{
+			"name": "White",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:323"
+		},
+		{
+			"name": "Zubac",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:91"
+		},
+		{
+			"name": "Abdul-rauf",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:512"
+		},
+		{
+			"name": "Abdur-rahim",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:586"
+		},
+		{
+			"name": "Adams",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:738"
+		},
+		{
+			"name": "Aguirre",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:427"
+		},
+		{
+			"name": "Aldama",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:696"
+		},
+		{
+			"name": "Aldridge",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:416"
+		},
+		{
+			"name": "Arenas",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:336"
+		},
+		{
+			"name": "Ariza",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:316"
+		},
+		{
+			"name": "Arizin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:190"
+		},
+		{
+			"name": "Armstrong",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:646"
+		},
+		{
+			"name": "Artest",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:110"
+		},
+		{
+			"name": "Ausar",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:332"
+		},
+		{
+			"name": "Avdija",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:328"
+		},
+		{
+			"name": "Bargnani",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:634"
+		},
+		{
+			"name": "Barnes",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:752"
+		},
+		{
+			"name": "Baron",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:408"
+		},
+		{
+			"name": "Battier",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:160"
+		},
+		{
+			"name": "Batum",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:650"
+		},
+		{
+			"name": "Baylor",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:948"
+		},
+		{
+			"name": "Beasley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:433"
+		},
+		{
+			"name": "Beatty",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:282"
+		},
+		{
+			"name": "Bingo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:622"
+		},
+		{
+			"name": "Birdsong",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:563"
+		},
+		{
+			"name": "Blackman",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:532"
+		},
+		{
+			"name": "Bogdanovic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:697"
+		},
+		{
+			"name": "Bogues",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:610"
+		},
+		{
+			"name": "Bogut",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:313"
+		},
+		{
+			"name": "Boozer",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:527"
+		},
+		{
+			"name": "Brand",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:81"
+		},
+		{
+			"name": "Braun",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:700"
+		},
+		{
+			"name": "Brogdon",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:423"
+		},
+		{
+			"name": "Bucks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1092"
+		},
+		{
+			"name": "Buddy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:704"
+		},
+		{
+			"name": "Burleson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:237"
+		},
+		{
+			"name": "Bynum",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:244"
+		},
+		{
+			"name": "Camara",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:330"
+		},
+		{
+			"name": "Campy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:581"
+		},
+		{
+			"name": "Caron",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:552"
+		},
+		{
+			"name": "Carter",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:833"
+		},
+		{
+			"name": "Cason",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:113"
+		},
+		{
+			"name": "Celtics",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1097"
+		},
+		{
+			"name": "Chambers",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:519"
+		},
+		{
+			"name": "Cheeks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:578"
+		},
+		{
+			"name": "Chenier",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:551"
+		},
+		{
+			"name": "Clarke",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:743"
+		},
+		{
+			"name": "Claxton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:655"
+		},
+		{
+			"name": "Clingan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:176"
+		},
+		{
+			"name": "Coleman",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:535"
+		},
+		{
+			"name": "Connie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:92"
+		},
+		{
+			"name": "Cooper",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:106"
+		},
+		{
+			"name": "Cornbread",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:95"
+		},
+		{
+			"name": "Coulibaly",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:705"
+		},
+		{
+			"name": "Cousins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:421"
+		},
+		{
+			"name": "Crief",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1159"
+		},
+		{
+			"name": "Cummings",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:393"
+		},
+		{
+			"name": "Daniels",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:283"
+		},
+		{
+			"name": "Dantley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:123"
+		},
+		{
+			"name": "Daugherty",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:261"
+		},
+		{
+			"name": "Debuscherre",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:119"
+		},
+		{
+			"name": "Debusschere",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:293"
+		},
+		{
+			"name": "Decades",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:849"
+		},
+		{
+			"name": "Dejounte",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:747"
+		},
+		{
+			"name": "Derozan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:451"
+		},
+		{
+			"name": "Dikembe",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:71"
+		},
+		{
+			"name": "Divencenzo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:450"
+		},
+		{
+			"name": "Domantis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:364"
+		},
+		{
+			"name": "Donaldson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:277"
+		},
+		{
+			"name": "Donovan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:210"
+		},
+		{
+			"name": "Draymond",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:151"
+		},
+		{
+			"name": "Duckworth",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:617"
+		},
+		{
+			"name": "Durant",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:992"
+		},
+		{
+			"name": "Ellis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:275"
+		},
+		{
+			"name": "Elvin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:121"
+		},
+		{
+			"name": "Embry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:448"
+		},
+		{
+			"name": "English",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:61"
+		},
+		{
+			"name": "Finley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:534"
+		},
+		{
+			"name": "Flagg",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:87"
+		},
+		{
+			"name": "Franz",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:327"
+		},
+		{
+			"name": "Frazier",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:32"
+		},
+		{
+			"name": "Frontcourts",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1104"
+		},
+		{
+			"name": "Gafford",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:381"
+		},
+		{
+			"name": "Gallinari",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:480"
+		},
+		{
+			"name": "Garland",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:391"
+		},
+		{
+			"name": "Garnett",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:789"
+		},
+		{
+			"name": "George",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:877"
+		},
+		{
+			"name": "Gervin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:65"
+		},
+		{
+			"name": "Giddey",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:694"
+		},
+		{
+			"name": "Gilmore",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:18"
+		},
+		{
+			"name": "Ginobili",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:46"
+		},
+		{
+			"name": "Granger",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:538"
+		},
+		{
+			"name": "Griffin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:357"
+		},
+		{
+			"name": "Groza",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:198"
+		},
+		{
+			"name": "Guerin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:501"
+		},
+		{
+			"name": "Gugliotta",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:550"
+		},
+		{
+			"name": "Hagan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:267"
+		},
+		{
+			"name": "Hardaway",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:907"
+		},
+		{
+			"name": "Harden",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:55"
+		},
+		{
+			"name": "Harrington",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:649"
+		},
+		{
+			"name": "Hartenstein",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:329"
+		},
+		{
+			"name": "Hawks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1102"
+		},
+		{
+			"name": "Hayes",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:937"
+		},
+		{
+			"name": "Hayward",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:529"
+		},
+		{
+			"name": "Haywood",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:370"
+		},
+		{
+			"name": "Heinsohn",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:506"
+		},
+		{
+			"name": "Herro",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:401"
+		},
+		{
+			"name": "Hersey",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:442"
+		},
+		{
+			"name": "Hield",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:727"
+		},
+		{
+			"name": "Hinrich",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:661"
+		},
+		{
+			"name": "Hodges",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:485"
+		},
+		{
+			"name": "Horace",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:129"
+		},
+		{
+			"name": "Hornacek",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:630"
+		},
+		{
+			"name": "Horry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:379"
+		},
+		{
+			"name": "Houston",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:446"
+		},
+		{
+			"name": "Hudson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:385"
+		},
+		{
+			"name": "Ibaka",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:86"
+		},
+		{
+			"name": "Ihart",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:621"
+		},
+		{
+			"name": "Ilgauskas",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:248"
+		},
+		{
+			"name": "Ilgauskus",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:553"
+		},
+		{
+			"name": "Ingram",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:429"
+		},
+		{
+			"name": "Issel",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:83"
+		},
+		{
+			"name": "Iverson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:188"
+		},
+		{
+			"name": "Jalen",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:658"
+		},
+		{
+			"name": "Jameer",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:647"
+		},
+		{
+			"name": "Jamison",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:575"
+		},
+		{
+			"name": "Jerami",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:714"
+		},
+		{
+			"name": "Jimmy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:104"
+		},
+		{
+			"name": "Johnston",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:265"
+		},
+		{
+			"name": "Jovic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:461"
+		},
+		{
+			"name": "Kanter",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:482"
+		},
+		{
+			"name": "Kemba",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:418"
+		},
+		{
+			"name": "Kenon",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:544"
+		},
+		{
+			"name": "Kersey",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:572"
+		},
+		{
+			"name": "Kittles",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:689"
+		},
+		{
+			"name": "Kmart",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:380"
+		},
+		{
+			"name": "Knicks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1095"
+		},
+		{
+			"name": "Korver",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:273"
+		},
+		{
+			"name": "Kukoc",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:439"
+		},
+		{
+			"name": "Kyrie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:831"
+		},
+		{
+			"name": "Laettner",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:457"
+		},
+		{
+			"name": "Lafrentz",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:239"
+		},
+		{
+			"name": "Lakers",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1091"
+		},
+		{
+			"name": "Lanier",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:70"
+		},
+		{
+			"name": "Laphonso",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:708"
+		},
+		{
+			"name": "Larusso",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:664"
+		},
+		{
+			"name": "Levert",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:672"
+		},
+		{
+			"name": "Lonzo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:663"
+		},
+		{
+			"name": "Lovelette",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:284"
+		},
+		{
+			"name": "Lowry",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:349"
+		},
+		{
+			"name": "Lucas",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:503"
+		},
+		{
+			"name": "Macauley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:495"
+		},
+		{
+			"name": "Maggette",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:585"
+		},
+		{
+			"name": "Mailman",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:47"
+		},
+		{
+			"name": "Majerle",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:547"
+		},
+		{
+			"name": "Marbury",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:569"
+		},
+		{
+			"name": "Marin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:603"
+		},
+		{
+			"name": "Markannen",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:725"
+		},
+		{
+			"name": "Markkanen",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:200"
+		},
+		{
+			"name": "Marques",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:271"
+		},
+		{
+			"name": "Mashburn",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:515"
+		},
+		{
+			"name": "Mathurin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:677"
+		},
+		{
+			"name": "Maurice",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:355"
+		},
+		{
+			"name": "Maxwell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:648"
+		},
+		{
+			"name": "Mcdyess",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:537"
+		},
+		{
+			"name": "Mchale",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:37"
+		},
+		{
+			"name": "Mcmillan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:324"
+		},
+		{
+			"name": "Middleton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:345"
+		},
+		{
+			"name": "Mikan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:96"
+		},
+		{
+			"name": "Miller",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:460"
+		},
+		{
+			"name": "Mobley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:163"
+		},
+		{
+			"name": "Moncrief",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:97"
+		},
+		{
+			"name": "Monta",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:690"
+		},
+		{
+			"name": "Mourning",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:50"
+		},
+		{
+			"name": "Mullin",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:58"
+		},
+		{
+			"name": "Myles",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:346"
+		},
+		{
+			"name": "Nesmith",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:334"
+		},
+		{
+			"name": "Netolicky",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:539"
+		},
+		{
+			"name": "Novak",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:719"
+		},
+		{
+			"name": "Nuggets",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1101"
+		},
+		{
+			"name": "Oakley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:591"
+		},
+		{
+			"name": "Okafor",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:171"
+		},
+		{
+			"name": "Okongwu",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:674"
+		},
+		{
+			"name": "Oladipo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:438"
+		},
+		{
+			"name": "Olowokandi",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:227"
+		},
+		{
+			"name": "Oscar",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:27"
+		},
+		{
+			"name": "Ostertag",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:233"
+		},
+		{
+			"name": "Oubre",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:715"
+		},
+		{
+			"name": "Parish",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:90"
+		},
+		{
+			"name": "Paultz",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:221"
+		},
+		{
+			"name": "Paxson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:616"
+		},
+		{
+			"name": "Person",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:566"
+		},
+		{
+			"name": "Pettit",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:67"
+		},
+		{
+			"name": "Pierce",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:43"
+		},
+		{
+			"name": "Pippen",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:35"
+		},
+		{
+			"name": "Pistol",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:191"
+		},
+		{
+			"name": "Poole",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:462"
+		},
+		{
+			"name": "Porter",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:343"
+		},
+		{
+			"name": "Porzingis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:524"
+		},
+		{
+			"name": "Powell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:728"
+		},
+		{
+			"name": "Pressey",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:618"
+		},
+		{
+			"name": "Pritchard",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:640"
+		},
+		{
+			"name": "Purvis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:602"
+		},
+		{
+			"name": "Quickley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:681"
+		},
+		{
+			"name": "Rashard",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:183"
+		},
+		{
+			"name": "Rasheed",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:298"
+		},
+		{
+			"name": "Ratliff",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:168"
+		},
+		{
+			"name": "Reaves",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:675"
+		},
+		{
+			"name": "Reeves",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:626"
+		},
+		{
+			"name": "Reggie",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:64"
+		},
+		{
+			"name": "Rider",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:636"
+		},
+		{
+			"name": "Roberson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:311"
+		},
+		{
+			"name": "Rockets",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1093"
+		},
+		{
+			"name": "Rodman",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:146"
+		},
+		{
+			"name": "Rollins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:247"
+		},
+		{
+			"name": "Rondo",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:474"
+		},
+		{
+			"name": "Schrempf",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:415"
+		},
+		{
+			"name": "Schroeder",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:641"
+		},
+		{
+			"name": "Sczerbiak",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:456"
+		},
+		{
+			"name": "Sears",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:494"
+		},
+		{
+			"name": "Seikaly",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:588"
+		},
+		{
+			"name": "Sexton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:726"
+		},
+		{
+			"name": "Sharman",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:259"
+		},
+		{
+			"name": "Sharpe",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:723"
+		},
+		{
+			"name": "Silas",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:600"
+		},
+		{
+			"name": "Simmons",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:409"
+		},
+		{
+			"name": "Simons",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:724"
+		},
+		{
+			"name": "Sixers",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1096"
+		},
+		{
+			"name": "Skiles",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:631"
+		},
+		{
+			"name": "Sleepy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:281"
+		},
+		{
+			"name": "Sloan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:504"
+		},
+		{
+			"name": "Smart",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:403"
+		},
+		{
+			"name": "Sochan",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:750"
+		},
+		{
+			"name": "Sprewell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:638"
+		},
+		{
+			"name": "Spurs",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1098"
+		},
+		{
+			"name": "Stackhouse",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:516"
+		},
+		{
+			"name": "Starks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:531"
+		},
+		{
+			"name": "Starters",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:809"
+		},
+		{
+			"name": "Steph",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:872"
+		},
+		{
+			"name": "Stockton",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:59"
+		},
+		{
+			"name": "Stoudamire",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:598"
+		},
+		{
+			"name": "Suggs",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:463"
+		},
+		{
+			"name": "Tayshaun",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:321"
+		},
+		{
+			"name": "Teague",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:609"
+		},
+		{
+			"name": "Theirs",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1022"
+		},
+		{
+			"name": "Theus",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:580"
+		},
+		{
+			"name": "Thompson",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:734"
+		},
+		{
+			"name": "Thurl",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:589"
+		},
+		{
+			"name": "Timmy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:786"
+		},
+		{
+			"name": "Tobias",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:702"
+		},
+		{
+			"name": "Toney",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:484"
+		},
+		{
+			"name": "Towns",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:138"
+		},
+		{
+			"name": "Tripucka",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:597"
+		},
+		{
+			"name": "Twardsik",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:493"
+		},
+		{
+			"name": "Valancinuis",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:268"
+		},
+		{
+			"name": "Vanvleet",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:735"
+		},
+		{
+			"name": "Varejao",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:623"
+		},
+		{
+			"name": "Vassell",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:751"
+		},
+		{
+			"name": "Vince",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:79"
+		},
+		{
+			"name": "Vucevic",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:434"
+		},
+		{
+			"name": "Warriors",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:1094"
+		},
+		{
+			"name": "Wembanyama",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:14"
+		},
+		{
+			"name": "Westphal",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:545"
+		},
+		{
+			"name": "Wicks",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:570"
+		},
+		{
+			"name": "Wiggins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:642"
+		},
+		{
+			"name": "Wilkens",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:285"
+		},
+		{
+			"name": "Wilkins",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:295"
+		},
+		{
+			"name": "Winters",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:579"
+		},
+		{
+			"name": "Worthy",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:122"
+		},
+		{
+			"name": "Yardley",
+			"source": "01_peak_seasons_and_all_time_concepts.txt:449"
+		}
+	],
+	"non_player_rows": [
+		"Bench",
+		"Starting Five",
+		"Basic Draft",
+		"Best Duos",
+		"Big Ben",
+		"Reddit Goat Calcukator",
+		"Top Peak NBA"
+	]
+}

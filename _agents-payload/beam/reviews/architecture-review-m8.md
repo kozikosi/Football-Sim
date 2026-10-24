@@ -3,6 +3,7 @@
 Reference build: v20 `NFL Draft Simulator v20 Claude.html`, sha256 `31b7d61f...`, 649,032 B (verified this session). Donor: `NFL Draft Simulator.html`, `77bb9ed5...`, 650,127 B.
 
 ## Scope
+
 Per M-8: (a) the council collaboration system (8 docs in INDEX, write/ownership model R2-R5, open membership, evidence culture, mirrors, question pack, phase handoffs); (b) the project's technical architecture as advisory critique. Product code changes still go through SUBMISSIONS.md, never direct edits. Three lists below.
 
 ## 1. Critiques - what is structurally weak

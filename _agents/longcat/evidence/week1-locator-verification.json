@@ -1,0 +1,26 @@
+{
+	"checkedBy": "LongCat (independent re-measure)",
+	"date": "2026-10-21",
+	"build": "merged.html",
+	"artifactSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+	"artifactBytes": 657486,
+	"question": "MOC M-143: the Week-1 locator was implemented in tests/openchamber-e2e.spec.js before the observation was ratified — does the implementation match the ratified observation, or a proxy?",
+	"command": "NODE_PATH=<repo>/node_modules node /tmp/verify-week1.js  (Playwright chromium; file:///Users/kosi/Desktop/Football%20Sim/merged.html)",
+	"specUnderTest": {
+		"path": "tests/openchamber-e2e.spec.js",
+		"sha256": "6a781e71814ee99b678fa8ce8474ff4b470cd61209ff85b21379dbf698ab0744",
+		"bytes": 18173,
+		"note": "BOC's modification; untracked (?? tests/openchamber-e2e.spec.js)"
+	},
+	"path": "Start Draft -> Instant -> Sim to End -> resultsSeasonBtn -> startSeasonBtn -> beginSeasonBtn, then measure",
+	"result": {
+		"textCount_pageGetByText_Week1of17": 1,
+		"h3Texts": ["Week 1 of 17"],
+		"seasonState": { "currentWeek": 1, "phase": "regular" },
+		"windowSeasonStateDefined": false,
+		"pageErrors": []
+	},
+	"verdict": "VERIFIED — BOC's two assertions both hold after Begin Season: the literal text 'Week 1 of 17' is rendered (exactly one match) and seasonState.currentWeek === 1. The implementation asserts the RATIFIED OBSERVATION, not a proxy.",
+	"corroboration": "MOC M-102 §2 found the same text at artifact line 3891 (renderRegularSeasonView) and in the run's own trace DOM snapshot at 2026-10-20T22:57:20.033Z. window.seasonState being undefined confirms MOC M-102 §3's probe-bug finding: seasonState is a module-scope lexical binding reachable by its bare identifier, never a window property.",
+	"impact": "The Week-1 SKIP can now be re-tested against a locator that can actually match. Whether the stored result.json is regenerated is the Architect's call; I did not touch it."
+}

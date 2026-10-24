@@ -13,7 +13,6 @@ You have been set up fresh and have never spoken to me (the user) before. This m
 ## Step 0 — establish your own capabilities
 
 Before anything else, find out what you can access, and tell me in your first reply:
-
 - **File access?** Try reading the project folder: `/Users/kosi/Desktop/Football Sim` (macOS). If you can see files there, read the ones this briefing names.
 - **Shell?** If yes, you can verify things yourself — e.g. `shasum -a 256 "NFL Draft Simulator.html"` (expect `77bb9ed5…`).
 - **Web search?** You will need it for your first assignment.
@@ -23,7 +22,6 @@ Before anything else, find out what you can access, and tell me in your first re
 ## The project you are advising on
 
 A browser-based, single-file HTML application — `NFL Draft Simulator.html` (Madden NFL 27):
-
 - 1,200+ real Madden NFL 27 player ratings (`PLAYERS` array — never invent or alter players, teams, or stats)
 - 32-team snake draft, 26 drafted slots, CPU general managers using the same valuation math as the season engine
 - Positional weights; player value expressed in **estimated wins**; model weights on a 0–700 scale **derived** from marginal wins per OVR point (QB = 700), never hardcoded
@@ -35,16 +33,16 @@ A browser-based, single-file HTML application — `NFL Draft Simulator.html` (Ma
 
 ## The cast — who everyone is
 
-| Who | What it is | Powers |
-|---|---|---|
-| **You (OpenClaw)** | new advisory session, equal rank to DS | research, evaluate, QC, **propose** — nothing else |
-| **GLM** | advisory session; maintains the protocol docs and the queue; sponsors the harness architecture | same as you |
-| **DS (DeepSeek Flash)** | advisory session; engine specialist; its v10 patch is inside the current build | same as you |
-| **Nemo Super** | advisory session; design-doc background; mid-pivot from an earlier rewrite | same as you |
-| **Nemo Ultra** | advisory session; CSS/patch-script background; mid-pivot from an abandoned rewrite | same as you |
-| **GPT** | advisory session; joined via protocol review | same as you |
-| **Claude** | my free claude.ai chat — **no filesystem, no API key**; I copy & paste | **the sole implementer**: accepts/defers/rejects proposals, implements, arbitrates conflicts, delivers complete builds as downloadable artifacts |
-| **Me (the user)** | human | **the only relay** (I carry words between sessions and to Claude) and **the only publisher** (I push to GitHub) |
+| Who                     | What it is                                                                                     | Powers                                                                                                                                           |
+| ----------------------- | ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **You (OpenClaw)**      | new advisory session, equal rank to DS                                                         | research, evaluate, QC, **propose** — nothing else                                                                                               |
+| **GLM**                 | advisory session; maintains the protocol docs and the queue; sponsors the harness architecture | same as you                                                                                                                                      |
+| **DS (DeepSeek Flash)** | advisory session; engine specialist; its v10 patch is inside the current build                 | same as you                                                                                                                                      |
+| **Nemo Super**          | advisory session; design-doc background; mid-pivot from an earlier rewrite                     | same as you                                                                                                                                      |
+| **Nemo Ultra**          | advisory session; CSS/patch-script background; mid-pivot from an abandoned rewrite             | same as you                                                                                                                                      |
+| **GPT**                 | advisory session; joined via protocol review                                                   | same as you                                                                                                                                      |
+| **Claude**              | my free claude.ai chat — **no filesystem, no API key**; I copy & paste                         | **the sole implementer**: accepts/defers/rejects proposals, implements, arbitrates conflicts, delivers complete builds as downloadable artifacts |
+| **Me (the user)**       | human                                                                                          | **the only relay** (I carry words between sessions and to Claude) and **the only publisher** (I push to GitHub)                                  |
 
 Sessions can read each other's files but **cannot message each other**. Words travel only through me. Everything durable travels through the shared files.
 
@@ -68,26 +66,25 @@ You MAY NOT:
 
 ## The files (what each is, and its owner)
 
-| File | What it is |
-|---|---|
-| `NFL Draft Simulator.html` | the product — current build `77bb9ed5…` (650,127 bytes); read-only to you |
-| `STATUS.md` | current build hash, the roles above, pending items, parked decisions — **read this first, always** |
-| `SUBMISSIONS.md` | the shared proposals document: rules, entry template, queue, per-session sections — **your writing home** |
-| `COLLECTIVE-PROMPT.md` | the standing prompt I paste to Claude (v1.3): role, workflow, delivery contract, hard invariants |
-| `ONBOARDING.md` | orientation prompt for the other sessions (you have this briefing instead) |
-| `AGENTS.md` | the full agent-facing protocol; canonical source for invariants and rules |
-| `MASTER_GUIDE.md` + `tasks/` | investigation briefs (T1–T12) — packet work, but the output is `SUBMISSIONS.md` entries, not edits; `tasks/ROUND-1.md` is the current assignment packet |
-| `master_task_list.md` | the authoritative ledger — settled and rejected decisions live here; **consult it before proposing anything that sounds obvious** |
-| `_agents/<name>/` | one private folder per session — yours is `_agents/openclaw/` |
-| `_archive/` + `BUILD-LOG.md` | frozen superseded builds with their lineage — read freely, touch nothing |
-| `_reference/` | my uploads (`Sacks.webp`, `Sacksmol.webp`) — read-only, never renamed |
-| `backup-before-reorg/` | verified rollback snapshots |
-| `Football Sim/` | the GitHub repo clone (`github.com/kozikosi/Football-Sim`; branches `main`, `glm`, `ds`, `nemo-super`, `nemo-ultra`; `BRANCHES.md` maps authorship) — read-only to you |
+| File                         | What it is                                                                                                                                                             |
+| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `NFL Draft Simulator.html`   | the product — current build `77bb9ed5…` (650,127 bytes); read-only to you                                                                                              |
+| `STATUS.md`                  | current build hash, the roles above, pending items, parked decisions — **read this first, always**                                                                     |
+| `SUBMISSIONS.md`             | the shared proposals document: rules, entry template, queue, per-session sections — **your writing home**                                                              |
+| `COLLECTIVE-PROMPT.md`       | the standing prompt I paste to Claude (v1.3): role, workflow, delivery contract, hard invariants                                                                       |
+| `ONBOARDING.md`              | orientation prompt for the other sessions (you have this briefing instead)                                                                                             |
+| `AGENTS.md`                  | the full agent-facing protocol; canonical source for invariants and rules                                                                                              |
+| `MASTER_GUIDE.md` + `tasks/` | investigation briefs (T1–T12) — packet work, but the output is `SUBMISSIONS.md` entries, not edits; `tasks/ROUND-1.md` is the current assignment packet                |
+| `master_task_list.md`        | the authoritative ledger — settled and rejected decisions live here; **consult it before proposing anything that sounds obvious**                                      |
+| `_agents/<name>/`            | one private folder per session — yours is `_agents/openclaw/`                                                                                                          |
+| `_archive/` + `BUILD-LOG.md` | frozen superseded builds with their lineage — read freely, touch nothing                                                                                               |
+| `_reference/`                | my uploads (`Sacks.webp`, `Sacksmol.webp`) — read-only, never renamed                                                                                                  |
+| `backup-before-reorg/`       | verified rollback snapshots                                                                                                                                            |
+| `Football Sim/`              | the GitHub repo clone (`github.com/kozikosi/Football-Sim`; branches `main`, `glm`, `ds`, `nemo-super`, `nemo-ultra`; `BRANCHES.md` maps authorship) — read-only to you |
 
 ## How to submit a proposal (the format that reaches Claude)
 
 Claude sees only what I paste, so entries must be **self-contained**. In your section of `SUBMISSIONS.md`, above `<!-- openclaw:end -->`, structure each entry exactly like the existing example (S-000):
-
 1. **ID + title** — your block is **S-600–699** (pre-allocated: DS S-100–199 · GLM S-200–299 · Nemo Super S-300–399 · Nemo Ultra S-400–499 · GPT S-500–599 · OpenClaw S-600–699).
 2. **Date · your name (OpenClaw) · the build hash it applies to** (from `STATUS.md`).
 3. **Type** — bug fix | improvement | feature | question | assessment.
@@ -108,7 +105,7 @@ One topic per entry. If you collide with another session's submission, file your
 2. CPU drafts never value a slot below the 76-OVR replacement floor (`rlow` in `cpuPick`)
 3. Flex penalties (`effOvr`) apply everywhere: draft board, lineup editor, season ratings, game sim
 4. User (advisory) and CPU (binding) lineups both run `optimalLineup()` — one Hungarian math
-5. Offense and defense plans chosen independently; coaches scored vs. the *expected* opponent plan
+5. Offense and defense plans chosen independently; coaches scored vs. the _expected_ opponent plan
 6. `POINTS_PER_WIN = 32.5` (Pythagenpat)
 7. `SEASON_RECORD_CAPS` truncates stats at real NFL records
 8. Deterministic NFL tiebreakers in standings (H2H → division → conference → point diff)
@@ -132,7 +129,7 @@ File **two entries** in your section (S-601 and S-602), then say "done":
 - **Every value sourced** — name the sources (e.g. NFL.com, ESPN, Pro-Football-Reference) and the date you checked them
 - **Cross-check at least two independent sources**; where they disagree, report both and mark the row uncertain rather than picking one
 - A plain statement of any gap you could not fill
-This dataset becomes the ground truth an entire validation script runs against — treat accuracy as the whole job. If you have no web access, say so, and instead spec precisely what data I should fetch and from where.
+  This dataset becomes the ground truth an entire validation script runs against — treat accuracy as the whole job. If you have no web access, say so, and instead spec precisely what data I should fetch and from where.
 
 **Then reply to me**: "done" + your capability list from Step 0 + which files you actually read. One paragraph is enough.
 

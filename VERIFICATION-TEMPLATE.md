@@ -53,24 +53,24 @@ Changed functions: <list with one-line diff summary each>
 
 ## 3. Console/390px checklist (use during E2E)
 
-| Tab / View | 390px Pass? | Console Errors | Notes |
-|------------|-------------|----------------|-------|
-| Season (onboarding) | ☐ | ☐ | |
-| Season (preseason editor) | ☐ | ☐ | |
-| Season (weekly sim) | ☐ | ☐ | |
-| Season (playoffs bracket) | ☐ | ☐ | |
-| Season (Super Bowl) | ☐ | ☐ | |
-| Season (Review/Recap) | ☐ | ☐ | |
-| Draft (setup) | ☐ | ☐ | |
-| Draft (live board) | ☐ | ☐ | |
-| Draft (priority chart) | ☐ | ☐ | |
-| Draft (depth chart) | ☐ | ☐ | |
-| Draft (results) | ☐ | ☐ | |
-| Team Rankings (weights + table) | ☐ | ☐ | |
-| Player Browser | ☐ | ☐ | |
-| Position Rankings | ☐ | ☐ | |
-| Team Comparison | ☐ | ☐ | Guide |
-| 100-season report (if available) | ☐ | ☐ | Known crash v20:6018 |
+| Tab / View                       | 390px Pass? | Console Errors | Notes                |
+| -------------------------------- | ----------- | -------------- | -------------------- |
+| Season (onboarding)              | ☐           | ☐              |                      |
+| Season (preseason editor)        | ☐           | ☐              |                      |
+| Season (weekly sim)              | ☐           | ☐              |                      |
+| Season (playoffs bracket)        | ☐           | ☐              |                      |
+| Season (Super Bowl)              | ☐           | ☐              |                      |
+| Season (Review/Recap)            | ☐           | ☐              |                      |
+| Draft (setup)                    | ☐           | ☐              |                      |
+| Draft (live board)               | ☐           | ☐              |                      |
+| Draft (priority chart)           | ☐           | ☐              |                      |
+| Draft (depth chart)              | ☐           | ☐              |                      |
+| Draft (results)                  | ☐           | ☐              |                      |
+| Team Rankings (weights + table)  | ☐           | ☐              |                      |
+| Player Browser                   | ☐           | ☐              |                      |
+| Position Rankings                | ☐           | ☐              |                      |
+| Team Comparison                  | ☐           | ☐              | Guide                |
+| 100-season report (if available) | ☐           | ☐              | Known crash v20:6018 |
 
 **390px test method (per MiniMax M-22):**
 - Use element-level `scrollWidth > clientWidth` check, NOT `documentElement.scrollWidth` (body overflow-x:hidden masks clipping)
@@ -82,7 +82,6 @@ Changed functions: <list with one-line diff summary each>
 ## 4. "What was deliberately not checked" prompts
 
 Check all that apply and add to the fifth line:
-
 - [ ] External validation dataset (2025 standings) — validate.js not run / dataset not shipped
 - [ ] SIM-CORE runtime guard — markers not yet inserted / S-202 pending
 - [ ] 100-season regression (pw4.js) — harness not built / crash known
@@ -112,4 +111,4 @@ Function-diff: <pass/fail/not run> — <details>
 
 ---
 
-*Maintained by UK (S-2200–2299). Append updates; never rewrite. See CHRONICLE for change log.*
+_Maintained by UK (S-2200–2299). Append updates; never rewrite. See CHRONICLE for change log._

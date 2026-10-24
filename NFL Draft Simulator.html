@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>:root{color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
+<style>:root{color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none}</style>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>NFL Draft Simulator (Madden NFL 27)</title>
@@ -107,7 +107,7 @@ input:checked + .slider-tog:before{transform:translateX(16px);}
 .fxbanner small{display:block;font-size:.55em;font-weight:700;letter-spacing:.08em;margin-top:4px;}
 .fxtoast{position:fixed;left:50%;bottom:26px;z-index:9999;pointer-events:none;background:var(--panel2);border:2px solid var(--accent);color:var(--text);padding:10px 18px;border-radius:999px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.35);animation:fxtoast 3.6s ease forwards;max-width:92vw;text-align:center;}
 .champion-banner.fxwon{animation:fxglow 2.2s ease-in-out infinite;border-color:#ffc43c;}
-@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none !important;opacity:1;}}
+@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none;opacity:1;}}
 
 .sfrow{display:flex;justify-content:space-between;gap:8px;font-size:0.85rem;padding:1px 4px;color:var(--sub);}
 .sfrow.sf90{background:linear-gradient(90deg,rgba(255,196,60,.22),rgba(255,196,60,.04));border-left:3px solid #ffc43c;color:var(--text);font-weight:700;border-radius:4px;margin:2px 0;}
@@ -132,7 +132,7 @@ input:checked + .slider-tog:before{transform:translateX(16px);}
 .score-line{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;padding:14px;background:var(--panel2);border:1px solid var(--accent);border-radius:12px;margin-bottom:14px;}
 .score-line .sl-score{font-size:1.8rem;font-weight:800;text-align:center;}
 .score-line .sl-team{font-weight:600;font-size:0.95rem;}
-.score-line .sl-team:first-child{text-align:right !important;}
+.score-line .sl-team:first-child{text-align:right;}
 .score-line .sl-team:last-child{text-align:left;}
 .divtable{margin-bottom:16px;}
 .divtable h5{margin:0 0 6px;font-size:0.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);}
@@ -214,41 +214,41 @@ tr.detailrow .detailwrap{padding:14px 16px;background:var(--panel2);}
 /* ---- phone layout: smaller base text, stacked columns, scrollable tables ---- */
 @media (max-width:760px){
  html{font-size:16px;}
- .draft-columns{grid-template-columns:1fr !important;}
- .panel{padding-left:12px !important;padding-right:12px !important;}
+ .draft-columns{grid-template-columns:1fr;}
+ .panel{padding-left:12px;padding-right:12px;}
  table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch;}
  .tabs{flex-wrap:wrap;}
  .filters{flex-wrap:wrap;}
- .score-line{grid-template-columns:1fr !important;text-align:center;}
- .sl-team{text-align:center !important;}
- select,input[type=text],input[type=search]{max-width:100% !important;}
+ .score-line{grid-template-columns:1fr;text-align:center;}
+ .sl-team{text-align:center;}
+ select,input[type=text],input[type=search]{max-width:100%;}
  .depth-row{flex-wrap:wrap;}
  h1{font-size:1.2rem;}
- .chipbar,.filters,#draftChips{flex-wrap:wrap !important;}
+ .chipbar,.filters,#draftChips{flex-wrap:wrap;}
  .panel{max-width:100%;overflow-x:auto;min-width:0;}
  .view,.panel>div{min-width:0;}
 }
 @media (max-width:760px){
- table.mstack{display:block;overflow:visible !important;width:100%;}
+ table.mstack{display:block;overflow:visible;width:100%;}
  table.mstack thead{display:none;}
  table.mstack tbody,table.mstack tfoot{display:block;}
  table.mstack tr{display:block;border:1px solid var(--border);border-radius:8px;margin:6px 0;padding:4px 10px;background:var(--panel2);}
- table.mstack td,table.mstack th{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:3px 0 !important;border:0 !important;text-align:right !important;min-width:0;white-space:normal !important;overflow-wrap:anywhere;}
+ table.mstack td,table.mstack th{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:3px 0;border:0;text-align:right;min-width:0;white-space:normal;overflow-wrap:anywhere;}
  table.mstack td::before{content:attr(data-label);color:var(--sub);text-align:left;flex:0 0 38%;font-size:0.85em;}
  table.mstack td:not([data-label])::before{content:none;}
  table.mstack td:first-child{font-weight:700;}
  .depth-row.dgrid{grid-template-columns:3em minmax(0,1fr) 2.4em 3.2em;}
- label{max-width:100% !important;min-width:0;}
- select{width:100%;max-width:100% !important;text-overflow:ellipsis;}
+ label{max-width:100%;min-width:0;}
+ select{width:100%;max-width:100%;text-overflow:ellipsis;}
  label.narr{flex:1 1 100%;}
  body{overflow-x:hidden;}
  .wrap{padding-left:10px;padding-right:10px;}
  .tabs .tabbtn,.tabbtn{padding:7px 9px;font-size:0.8rem;}
  button.resetbtn{max-width:100%;}
- .matchup-card{grid-template-columns:1fr !important;}
+ .matchup-card{grid-template-columns:1fr;}
  .bracket-game.bg3{grid-template-columns:1fr auto;}
- [style*="grid-template-columns"]{grid-template-columns:1fr !important;}
- [style*="white-space:nowrap"]{white-space:normal !important;}
+ [style*="grid-template-columns"]{grid-template-columns:1fr;}
+ [style*="white-space:nowrap"]{white-space:normal;}
 }
 th.sortable{cursor:pointer;user-select:none;} th.sortable:hover{text-decoration:underline;}
 /* ---- Season-first presentation: bottom supplementary links + hero CTAs ---- */
@@ -420,7 +420,7 @@ const DL_SLOTS = ['DE1','DE2','DT1','DT2'];                       // pass rush
 const COVERAGE_SLOTS = ['CB1','CB2','CB3','CB4','SS','FS','MIKE','WILL','SAM']; // coverage incl. LBs
 const PASSGAME_SLOTS = ['OT1','OT2','OG1','OG2','C','QB','WR1','WR2','WR3','TE1','TE2']; // "Can't Pass" = OL+QB+WR1-3+TE
 
-let synergy = {
+const synergy = {
  runEnabled: false, runThreshold: 80, runSlope: 1, runMaxPenalty: 2,
  passEnabled: false, passThreshold: 81, passSlope: 1, passMaxPenalty: 3,
  passGameEnabled: false, passGameThreshold: 80, passGameSlope: 1, passGameMaxPenalty: 2
@@ -503,7 +503,7 @@ function buildControls(){
   inp.addEventListener('input', ()=>{
    if(inp.dataset.slot){
     weights[inp.dataset.slot] = parseFloat(inp.value) || 0;
-   } else if(synergy.hasOwnProperty(inp.id)){
+   } else if(Object.hasOwn(synergy, inp.id)){
     synergy[inp.id] = parseFloat(inp.value) || 0;
    }
    render();
@@ -539,7 +539,7 @@ function bestWorst(team){
  for(const s in weights){
   if((weights[s]||0) <= 0) continue;
   const entry = slotmap[s];
-  if(!entry || !entry.name) continue;
+  if(!entry?.name) continue;
   if(!best || entry.ovr > best.ovr) best = {slot:LABELS[s], ...entry};
   if(FIRST_STRING_SLOTS.includes(s) && (!worst || entry.ovr < worst.ovr)) worst = {slot:LABELS[s], ...entry};
  }
@@ -568,7 +568,7 @@ function render(){
    narr = `Headlined by ${best.name} (${best.slot}, ${best.ovr} OVR).`;
   }
   const totalPenalty = syn.runPenalty + syn.passPenalty + syn.passGamePenalty;
-  let penaltyParts = [];
+  const penaltyParts = [];
   if(syn.passPenalty > 0.05) penaltyParts.push(`Weak D (-${syn.passPenalty.toFixed(1)})`);
   if(syn.runPenalty > 0.05) penaltyParts.push(`Can't Run (-${syn.runPenalty.toFixed(1)})`);
   if(syn.passGamePenalty > 0.05) penaltyParts.push(`Can't Pass (-${syn.passGamePenalty.toFixed(1)})`);
@@ -632,17 +632,17 @@ function renderDetailHTML(title, metrics){
  const strengths = metrics.filter(m=>m.rank<=8).sort((a,b)=>a.rank-b.rank).slice(0,3);
  const weaknesses = metrics.filter(m=>m.rank>=25).sort((a,b)=>b.rank-a.rank).slice(0,3);
 
- let barsHtml = metrics.map(m=>`
+ const barsHtml = metrics.map(m=>`
   <div class="metricrow">
    <div>${m.label}</div>
    <div class="mbar-bg"><div class="mbar-fill" style="width:${m.pct.toFixed(0)}%"></div></div>
    <div>#${m.rank}</div>
   </div>`).join('');
 
- let strengthItems = strengths.length
+ const strengthItems = strengths.length
   ? strengths.map(m=>`<p class="detail-item"><b>${m.label}</b> — ranked #${m.rank} in the league, led by ${m.top[0] ? m.top[0][0] : 'a thin room'}.</p>`).join('')
   : `<p class="detail-item">No unit cracks the league top 8.</p>`;
- let weaknessItems = weaknesses.length
+ const weaknessItems = weaknesses.length
   ? weaknesses.map(m=>`<p class="detail-item"><b>${m.label}</b> — #${m.rank} of 32 in the league.</p>`).join('')
   : `<p class="detail-item">No glaring bottom-tier weakness.</p>`;
 
@@ -672,7 +672,7 @@ function showTeamDetail(team){
 // ---- Player Browser ----
 const PCOLS = ['name','pos','team','ovr','spd','str','agi','cod','inj','awr'];
 let playerSort = {col:'ovr', dir:-1};
-let playerFilters = {search:'', pos: new Set(), team:''};
+const playerFilters = {search:'', pos: new Set(), team:''};
 
 const QUICK_GROUPS = GROUP_DEFS.filter(g=> g.rankIndex === undefined);
 
@@ -819,7 +819,7 @@ initPlayerBrowser();
 // ---- Position Group Rankings ----
 function initGroupRankings(){
  const sel = document.getElementById('groupSelect');
- let lastCat = null;
+ const lastCat = null;
  GROUP_DEFS.forEach(g=>{
   if(g.cat !== lastCat){
    if(lastCat !== null) sel.appendChild(document.createElement('optgroup')).label='';
@@ -893,7 +893,7 @@ const FLEX = {
  HB:{TE:6}, QB:{}, K:{}
 };
 const EMERGENCY_PENALTY = 8;       // only when no remaining player can legally fill a spot you still need
-function isNaturalSlot(pos, slot){ const nat = NATURAL_SLOT_MAP[pos]; return !!(nat && nat.includes(slot)); }
+function isNaturalSlot(pos, slot){ const nat = NATURAL_SLOT_MAP[pos]; return !!(nat?.includes(slot)); }
 function flexRule(pos, slot){        // penalty if the move is allowed, else null
  if(isNaturalSlot(pos, slot)) return 0;
  const t = FLEX[pos]; if(!t) return null;
@@ -922,8 +922,8 @@ function effOvr(player, slot){
  return player[3] - flexPenaltyFor(player[1], slot);
 }
 // GM tiers: 1 QB; 2 EDGE/OT/WR/CB; 3 IDL/IOL/LB/S; 4 TE/RB; 5 ST
-const POSITION_TIER = {QB:1, REDG:2,LEDG:2,LT:2,RT:2,WR:2,CB:2, DT:3,LG:3,RG:3,C:3,MIKE:3,WILL:3,SAM:3,SS:3,FS:3, TE:4,HB:4, K:5,P:5,FB:5};
-const TIER_BONUS = {1:14, 2:8, 3:0, 4:-6, 5:-30};
+const _POSITION_TIER = {QB:1, REDG:2,LEDG:2,LT:2,RT:2,WR:2,CB:2, DT:3,LG:3,RG:3,C:3,MIKE:3,WILL:3,SAM:3,SS:3,FS:3, TE:4,HB:4, K:5,P:5,FB:5};
+const _TIER_BONUS = {1:14, 2:8, 3:0, 4:-6, 5:-30};
 const POS_DISPLAY = {HB:'RB', REDG:'EDGE', LEDG:'EDGE', LT:'OT', RT:'OT', LG:'OG', RG:'OG'};
 const TEAM_ABBR = {
  'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF',
@@ -953,7 +953,7 @@ function divisionOfTeam(team){ return Object.keys(NFL_DIVISIONS).find(d=>NFL_DIV
 function conferenceOfTeam(team){ const d = divisionOfTeam(team); return CONFERENCES.AFC.includes(d) ? 'AFC' : 'NFC'; }
 function divisionRivals(team){ const d = divisionOfTeam(team); return NFL_DIVISIONS[d].filter(t=>t!==team); }
 
-function pairKey(a,b){ return a<b ? a+'|'+b : b+'|'+a; }
+function pairKey(a,b){ return a<b ? `${a}|${b}` : `${b}|${a}`; }
 function shuffleArr(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
 
 function generateDivisionWeeks(){
@@ -1043,7 +1043,7 @@ function initDraftSetup(){
  { const ro=document.createElement('option'); ro.value='__random'; ro.textContent='Random team'; sel.insertBefore(ro, sel.firstChild); }
  sel.value = teamNames.includes('Kansas City Chiefs') ? 'Kansas City Chiefs' : teamNames[0];
  const pickSel = document.getElementById('draftPickNumberSelect');
- for(let i=1;i<=32;i++){ const o=document.createElement('option'); o.value=i; o.textContent='Pick '+i; pickSel.appendChild(o); }
+ for(let i=1;i<=32;i++){ const o=document.createElement('option'); o.value=i; o.textContent=`Pick ${i}`; pickSel.appendChild(o); }
  pickSel.value = 'random';
  document.getElementById('startDraftBtn').addEventListener('click', startDraft2);
  document.getElementById('speedInstantBtn').addEventListener('click', ()=>{
@@ -1081,7 +1081,7 @@ function initDraftSetup(){
   if(c){ e.preventDefault(); const name = c.dataset.chg, p = draftSim.pool.find(x=>x[0]===name); if(!p) return;
    const roster = draftSim.rosters[draftSim.userIndex], cur = draftUI.slotPick[name];
    const sl = document.createElement('select'); sl.className = 'slotsel';
-   openSlotsFor(roster, p).forEach(s=>{ const o = document.createElement('option'); o.value = s; const pen = flexPenaltyFor(p[1], s); o.textContent = (LABELS[s]||s) + (pen ? ' (flex \u2212'+pen+')' : ''); if(s===cur) o.selected = true; sl.appendChild(o); });
+   openSlotsFor(roster, p).forEach(s=>{ const o = document.createElement('option'); o.value = s; const pen = flexPenaltyFor(p[1], s); o.textContent = (LABELS[s]||s) + (pen ? ` (flex \u2212${pen})` : ''); if(s===cur) o.selected = true; sl.appendChild(o); });
    sl.addEventListener('change', ()=>{ draftUI.slotPick[name] = sl.value; renderDraftBoard2(); });
    c.replaceWith(sl); sl.focus(); }
  };
@@ -1210,9 +1210,9 @@ function lineupScoresHTML(roster, hostId){
  return `<div class="narr" style="margin:6px 0 2px;"><b>Group scores</b> (each spot weighted by what it is worth in wins; flex penalties included; arrows show the change from your last edit)</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px;">${cells}</div>`;
 }
 function returnerRowHTML(hostId){
- const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S || !S.teams) return '';
+ const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S?.teams) return '';
  const user = seasonUserTeam(); if(!user) return '';
- const cands = returnerCandidates(S.teams[user].slotmap).sort((a,b)=>returnerRating(b.p)-returnerRating(a.p)), cur = (S.returners||{})[user] || autoReturner(S.teams[user].slotmap);
+ const cands = returnerCandidates(S.teams[user].slotmap).sort((a,b)=>returnerRating(b.p)-returnerRating(a.p)), cur = S.returners?.[user] || autoReturner(S.teams[user].slotmap);
  return `<div style="margin-top:12px;border-top:1px solid var(--border);padding-top:8px;"><div class="depth-row lgrid"><span class="slotname">Ret</span><select data-returner="1" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${cands.map(c=>`<option value="${c.p[0].replace(/"/g,'&quot;')}" ${c.p[0]===cur?'selected':''}>${c.p[0]} — ${POS_DISPLAY[c.p[1]]||c.p[1]} ${c.p[3]}, score ${returnerRating(c.p).toFixed(1)}</option>`).join('')}</select><span></span></div>
  <details style="margin-top:6px;"><summary class="narr" style="cursor:pointer;">How is the returner chosen?</summary><p class="narr" style="margin:6px 0;">Who returns kicks and punts. Each eligible starter gets a <b>returner score</b>: 50% speed, 20% agility, 20% change of direction and 10% awareness. The list is ranked by score and the default is the top of it. Each return's yardage is drawn around a league-average return (about 19.5 yards on a kickoff, 7.4 on a punt) and scaled by that score: a returner 10 points above the 82 baseline gains about 25% more yards per return. Better returns mean better field position, worth about 0.04 points per extra return yard, and the yards count toward the season leaders and awards. You can change the returner at any time, including in the playoffs.</p></details></div>`;
 }
@@ -1225,7 +1225,7 @@ function lineupEditorHTML(roster, hostId){
     const fp = flexPenaltyFor(p[1], sl);
     return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''}>${p[0]} — ${POS_DISPLAY[p[1]]||p[1]} ${p[3]}${fp?` (flex −${fp} = ${p[3]-fp})`:''}</option>`;
    }).join('');
-   const war = cur ? `<span class="narr" style="margin-left:6px;">${fmtWar(winsAt(cur, sl))}</span>` : '';
+   const _war = cur ? `<span class="narr" style="margin-left:6px;">${fmtWar(winsAt(cur, sl))}</span>` : '';
    return `<div class="depth-row lgrid"><span class="slotname">${LABELS[sl]||sl}</span><select data-lineup="${sl}" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${opts}</select><span class="dwar">${cur?fmtWar(winsAt(cur, sl)):''}</span></div>`;
   }).join('');
   return `<div class="depth-group ${gcls}"><h4>${gname}</h4>${rows}${gcls==='st'?returnerRowHTML(hostId):''}</div>`;
@@ -1240,7 +1240,7 @@ function wireLineupEditor(roster, hostId, onChange){
   if(!ok) FX.toast('That swap is not allowed: the player cannot flex there, or it would leave someone out of position.');
   onChange();
  }));
- const ap = document.getElementById(hostId+'Apply'); if(ap) ap.addEventListener('click', ()=>{ applyLineup(roster, lineupAdvice(roster).best); onChange(); });
+ const ap = document.getElementById(`${hostId}Apply`); if(ap) ap.addEventListener('click', ()=>{ applyLineup(roster, lineupAdvice(roster).best); onChange(); });
 }
 function refreshUserAfterLineup(){
  const S = seasonState; if(!S) return;
@@ -1302,7 +1302,7 @@ function replacementLevels(pool, rosters){
  return out;
 }
 let _replStatic = null;
-function staticReplacement(){
+function _staticReplacement(){
  if(_replStatic) return _replStatic;
  const rosters = []; for(let i=0;i<32;i++) rosters.push({slots:{}});
  return (_replStatic = replacementLevels(PLAYERS.filter(p=>POS_SLOT_MAP[p[1]]), rosters));
@@ -1335,10 +1335,10 @@ function cpuBias(teamIndex, group){
  return b[group];
 }
 // every front office has its own judgment: some draft close to the board, some reach and miss, which spreads the 32 rosters
-function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.pow(Math.random(),1.0)*4.0; return draftSim.noiseSd[teamIndex]; }
-function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.pow(Math.random(),0.9)*0.95; return draftSim.missP[teamIndex]; }
+function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.random() ** 1.0*4.0; return draftSim.noiseSd[teamIndex]; }
+function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.random() ** 0.9*0.95; return draftSim.missP[teamIndex]; }
 const _fpc = {};
-function flexPen(pos, slot){ const k = pos+'|'+slot; return _fpc[k]!=null ? _fpc[k] : (_fpc[k] = flexPenaltyFor(pos, slot)); }
+function flexPen(pos, slot){ const k = `${pos}|${slot}`; return _fpc[k]!=null ? _fpc[k] : (_fpc[k] = flexPenaltyFor(pos, slot)); }
 function cpuPick(teamIndex, st){
  st = st || draftSim;
  const roster = st.rosters[teamIndex], T = slotWinsTable();
@@ -1453,7 +1453,7 @@ function processUntilUserTurn(){
    return;
   }
   const pk = cpuPick(t);
-  if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+  if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
  }
  draftSim.awaitingUser = false;
  finishDraft2();
@@ -1472,7 +1472,7 @@ function stepSlow(){
  }
  draftSim.awaitingUser = false;
  const pk = cpuPick(t);
- if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+ if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
  renderDraftLive();
  slowTimer = setTimeout(stepSlow, 750);
 }
@@ -1482,7 +1482,7 @@ function simToEnd(){
  while(draftSim.pos < draftSim.order.length){
   const t = draftSim.order[draftSim.pos];
   const pk = cpuPick(t);
-  if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+  if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
  }
  draftSim.awaitingUser = false;
  finishDraft2();
@@ -1494,7 +1494,7 @@ function teamLabel(i){
 }
 
 function renderDraftLive(){
- { const ub = document.getElementById('undoPickBtn'); if(ub) ub.style.display = (draftSim.undoStack && draftSim.undoStack.length && draftSim.awaitingUser) ? '' : 'none'; }
+ { const ub = document.getElementById('undoPickBtn'); if(ub) ub.style.display = (draftSim.undoStack?.length && draftSim.awaitingUser) ? '' : 'none'; }
  const round = Math.floor(draftSim.pos/32)+1;
  const pickInRound = (draftSim.pos%32)+1;
  document.getElementById('draftStatusText').textContent = draftSim.awaitingUser
@@ -1531,7 +1531,7 @@ function userFits(roster, p){
  }
  return Object.values(byG);
 }
-const vKey = (g,v)=> g+'|'+Math.round(v*1e4);
+const vKey = (g,v)=> `${g}|${Math.round(v*1e4)}`;
 
 // What is likely to be left at your next pick? Replay the CPU logic forward several times and, per position group, record the best value still
 // on the board and how many players of each exact value remain. Equal players are counted by value, not identity, so equal players always get equal priority.
@@ -1549,7 +1549,7 @@ function simRecs(){
    const sim = {pool:S.pool.slice(), rosters:S.rosters.map(r=>({slots:Object.assign({},r.slots)})), repl:null};
    for(let i=S.pos+1;i<nextIdx;i++){
     const ti = S.order[i], pk = cpuPick(ti, sim);
-    if(pk && pk.slot){ const ix = sim.pool.indexOf(pk.player); if(ix>-1) sim.pool.splice(ix,1); sim.rosters[ti].slots[pk.slot] = pk.player; }
+    if(pk?.slot){ const ix = sim.pool.indexOf(pk.player); if(ix>-1) sim.pool.splice(ix,1); sim.rosters[ti].slots[pk.slot] = pk.player; }
    }
    const best = {}, cnt = {};
    for(const p of sim.pool){ const fs = fm.get(p[0]); if(!fs) continue; for(const e of fs){ if(best[e.g]==null || e.v>best[e.g]) best[e.g] = e.v; const k = vKey(e.g,e.v); cnt[k] = (cnt[k]||0)+1; } }
@@ -1586,11 +1586,11 @@ function retarget(r, slot, sim){ // user picked a different open slot for this p
  return mkEntry(p, r.w, {slot, g:WV_SLOT_GROUP[slot], v, flex:isOutOfPosition(p[1],slot), pen:flexPenaltyFor(p[1],slot)}, sim);
 }
 function wavg(x){ return x==null ? '—' : fmtWar(x); }
-function pctTxt(x){ return x==null ? '—' : Math.round(x*100)+'%'; }
+function pctTxt(x){ return x==null ? '—' : `${Math.round(x*100)}%`; }
 // If NO remaining player can legally fill any spot you still need (e.g. the last open spot is TE2 and every tight end and legal flex is gone),
 // you may take anyone left for that spot at the emergency penalty, exactly like the computer teams do.
 function userEmergency(roster){
- const S = draftSim, key = S.pos+'|'+Object.keys(roster.slots).length;
+ const S = draftSim, key = `${S.pos}|${Object.keys(roster.slots).length}`;
  if(S._emKey===key) return S._em;
  const open = ROSTER_SLOTS.filter(s=>!roster.slots[s]);
  S._emKey = key; S._em = open.length>0 && !S.pool.some(p=>(POS_SLOT_MAP[p[1]]||[]).some(s=>!roster.slots[s]));
@@ -1617,7 +1617,7 @@ function renderDraftBoard2(){
  const textKey = ['name','pos','team'].includes(sortKey);
  const keyOf = r=> sortKey==='priority' ? r.score : sortKey==='wins' ? r.w : sortKey==='value' ? (r.v==null?-99:r.v) : sortKey==='gone' ? (r.gone==null?-1:r.gone)
    : sortKey==='name' ? r.p[0] : sortKey==='pos' ? (POS_DISPLAY[r.p[1]]||r.p[1]) : sortKey==='team' ? r.p[2] : r.p[3];
- const dir = draftUI.sortAsc ? -1 : 1;
+ const _dir = draftUI.sortAsc ? -1 : 1;
  const cmp = textKey ? (a,b)=> (keyOf(a)<keyOf(b)?-1:keyOf(a)>keyOf(b)?1:0)*(draftUI.sortAsc===false?-1:1) || cmpPlayers(a.p,b.p)
    : (a,b)=>{ const d = (Math.round(keyOf(b)*100)-Math.round(keyOf(a)*100))*(draftUI.sortAsc?-1:1); if(d!==0) return d;
       if(!!a.flex!==!!b.flex) return a.flex?1:-1;       // ties (shown values equal): a natural fit beats a player who would have to flex
@@ -1635,7 +1635,7 @@ function renderDraftBoard2(){
   ph = `<div class="narr" style="margin-bottom:8px;">For each position you still need, the best option by <b>priority</b>. The whole bar is the wins that player adds <i>at that spot on your roster</i> (flex penalty included); the <b style="color:var(--good);">green</b> part is what you would lose by waiting until your next pick, ${sim.gap} picks from now; the <span style="color:var(--sub);">grey</span> part is what you would probably still find then anyway.</div>`;
   pri.forEach(r=>{
    const w = Math.max(r.v,0), gp = Math.max(0, Math.min(w, r.pri)), grey = w-gp;
-   ph += `<div class="pr-row"><div><b>${WV_NAMES[r.g]}</b></div><div><div class="pr-bar" title="${r.p[0]}"><i style="width:${gp/maxW*100}%;background:var(--good);"></i><i style="width:${grey/maxW*100}%;background:var(--sub);opacity:.55;"></i></div><div class="narr" style="margin-top:2px;">${r.p[0]} (${r.p[3]} OVR) · ${fmtWar(r.v)} wins here · priority ${fmtWar(r.pri)} · ${pctTxt(r.gone)} chance he is gone by your next pick${r.flex?' · flexed −'+r.pen:''}</div></div></div>`;
+   ph += `<div class="pr-row"><div><b>${WV_NAMES[r.g]}</b></div><div><div class="pr-bar" title="${r.p[0]}"><i style="width:${gp/maxW*100}%;background:var(--good);"></i><i style="width:${grey/maxW*100}%;background:var(--sub);opacity:.55;"></i></div><div class="narr" style="margin-top:2px;">${r.p[0]} (${r.p[3]} OVR) · ${fmtWar(r.v)} wins here · priority ${fmtWar(r.pri)} · ${pctTxt(r.gone)} chance he is gone by your next pick${r.flex?` · flexed −${r.pen}`:''}</div></div></div>`;
   });
  }
  document.getElementById('draftPriority').innerHTML = ph;
@@ -1669,7 +1669,7 @@ function renderDraftBoard2(){
    if(!list.length) h += '<div class="narr">No players match.</div>';
    list.forEach(r=>{
     const w = Math.max(r.v,0), gp = sim ? Math.max(0,Math.min(w,r.pri)) : 0;
-    h += `<div class="prow"><div>${topTag(r)}<b>${r.p[0]}</b> <span class="narr">${r.p[3]} OVR · ${TEAM_ABBR[r.p[2]]||r.p[2]}${flexTxt(r)}${r.gone!=null?' · '+pctTxt(r.gone)+' gone':''}</span><div class="mbar"><i style="width:${gp/mx*100}%;background:var(--good);"></i><i style="width:${(w-gp)/mx*100}%;background:var(--sub);opacity:.55;"></i></div></div><div class="score" title="Wins at this spot on your roster (flex penalty included)">${wavg(r.v)}</div><div>${btn(r)}</div></div>`;
+    h += `<div class="prow"><div>${topTag(r)}<b>${r.p[0]}</b> <span class="narr">${r.p[3]} OVR · ${TEAM_ABBR[r.p[2]]||r.p[2]}${flexTxt(r)}${r.gone!=null?` · ${pctTxt(r.gone)} gone`:''}</span><div class="mbar"><i style="width:${gp/mx*100}%;background:var(--good);"></i><i style="width:${(w-gp)/mx*100}%;background:var(--sub);opacity:.55;"></i></div></div><div class="score" title="Wins at this spot on your roster (flex penalty included)">${wavg(r.v)}</div><div>${btn(r)}</div></div>`;
    });
    h += '</div></div>';
   });
@@ -1688,7 +1688,7 @@ function renderDraftBoard2(){
    if(!cur || rk(r)>rk(cur) || (rk(r)===rk(cur) && cur.flex && !r.flex) || (rk(r)===rk(cur) && cur.flex===r.flex && r.v>cur.v+1e-9)) byP.set(r.p[0], r);
    (flexAlt[r.p[0]] = flexAlt[r.p[0]] || []).push(r);
   });
-  let list = [...byP.values()].map(r=>{ const sp = draftUI.slotPick[r.p[0]]; return sp && !roster.slots[sp] && openSlotsFor(roster, r.p).includes(sp) ? retarget(r, sp, sim) : r; });
+  const list = [...byP.values()].map(r=>{ const sp = draftUI.slotPick[r.p[0]]; return sp && !roster.slots[sp] && openSlotsFor(roster, r.p).includes(sp) ? retarget(r, sp, sim) : r; });
   S.pool.forEach(p=>{  // every available player is boardable now (the old needs-only filter is retired)
    if(byP.has(p[0]) || !matchesSearch(p)) return;
    const tg = WV_TAG_GROUP[p[1]];
@@ -1700,13 +1700,13 @@ function renderDraftBoard2(){
   list.forEach(r=>{
    const opts = canPick && r.slot ? openSlotsFor(roster, r.p) : [];
    const alt = r.slot ? (flexAlt[r.p[0]]||[]).filter(x=>x.slot!==r.slot && x.v>r.v-0.15 && x.g!==r.g).sort((a,b)=>b.v-a.v)[0] : null;
-   const altTxt = alt ? `<div class="narr" title="The other spot he could fill, with the value he would have there">also fits: ${LABELS[alt.slot]||alt.slot} ${fmtWar(alt.v)}${alt.flex?' (\u2212'+alt.pen+' flex)':''}</div>` : '';
+   const altTxt = alt ? `<div class="narr" title="The other spot he could fill, with the value he would have there">also fits: ${LABELS[alt.slot]||alt.slot} ${fmtWar(alt.v)}${alt.flex?` (\u2212${alt.pen} flex)`:''}</div>` : '';
    const fills = r.slot ? `${LABELS[r.slot]||r.slot}${flexTxt(r)}${altTxt}${opts.length>1?` <a href="#" class="slotchg" data-chg="${r.p[0].replace(/"/g,'&quot;')}" title="Choose which open spot he fills">change</a>`:''}` : 'Full';
    h += `<tr><td>${topTag(r)}${r.p[0]}</td><td>${POS_DISPLAY[r.p[1]]||r.p[1]}</td><td>${r.p[2]}</td><td class="score">${r.p[3]}</td><td class="score">${wavg(r.w)}</td><td class="score">${wavg(r.v)}</td><td class="score">${r.pri!=null&&sim?fmtWar(r.pri):'—'}</td><td class="score">${pctTxt(r.gone)}</td><td class="narr">${fills}</td><td>${btn(r)}</td></tr>`;
   });
   document.getElementById('draftBody2').innerHTML = h || `<tr><td colspan="10" class="narr">No players match the filters.</td></tr>`;
   const fn = document.getElementById('draftFitSummary');
-  const notes = [];
+  const _notes = [];
   fn.innerHTML = '';
  }
  if(view==='cards') document.getElementById('draftFitSummary').innerHTML = '';
@@ -1722,7 +1722,7 @@ function renderDraftRoster2(){
  const row = (sl, p, rnd, extra)=>{
   const oop = p && isOutOfPosition(p[1], sl);
   const oopTag = oop ? `<span class="badge badge-passfail" style="margin-left:6px;" title="Playing a flexed/non-natural position">Flexed</span>` : '';
-  const war = p ? `<span class="narr" style="margin-left:6px;" title="Wins above a replacement-level player at this slot">${fmtWar(winsAt(p, sl))}</span>` : '';
+  const _war = p ? `<span class="narr" style="margin-left:6px;" title="Wins above a replacement-level player at this slot">${fmtWar(winsAt(p, sl))}</span>` : '';
   return `<div class="depth-row dgrid"><span class="slotname">${extra||''}${LABELS[sl]||sl}</span><span class="${p?'playername':'empty'}">${p?p[0]:'needed'}${oopTag}</span><span class="dovr">${p?`(${p[3]})`:''}</span><span class="narr dwar">${p?fmtWar(winsAt(p, sl)):''}</span></div>`;
  };
  if(draftUI.rosterView==='pick'){
@@ -1730,12 +1730,12 @@ function renderDraftRoster2(){
   document.getElementById('draftRosterList').innerHTML = mine.length ? mine.map(l=>row(l.slot, l.player, l.round, `<span class="narr" style="margin-right:6px;">R${l.round}.${String(l.pickInRound).padStart(2,'0')}</span>`)).join('') : '<div class="narr">Your picks will list here in the order you make them.</div>';
   return;
  }
- document.getElementById('draftRosterList').innerHTML = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>`<div class="depth-group ${gcls}"><h4>${gname}</h4>${slots.map(sl=>row(sl, roster.slots[sl], roster.pickRounds&&roster.pickRounds[sl])).join('')}</div>`).join('');
+ document.getElementById('draftRosterList').innerHTML = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>`<div class="depth-group ${gcls}"><h4>${gname}</h4>${slots.map(sl=>row(sl, roster.slots[sl], roster.pickRounds?.[sl])).join('')}</div>`).join('');
 }
 
 // take back your last pick: the board returns to the moment you were on the clock (the CPU picks in between are replayed fresh)
 function undoUserPick(){
- const u = draftSim && draftSim.undoStack && draftSim.undoStack.pop(); if(!u) return;
+ const u = draftSim?.undoStack?.pop(); if(!u) return;
  if(slowTimer){ clearTimeout(slowTimer); slowTimer = null; }
  draftSim.pos = u.pos; draftSim.pool = u.pool.slice();
  draftSim.rosters.forEach((r,i)=>{ r.slots = {...u.slots[i]}; r.pickRounds = {...u.rounds[i]}; });
@@ -1779,7 +1779,7 @@ function ordinalNum(n){ const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-2
 function unitPhrase(m){
  const special = {QB:'quarterback play', RB:'the running back room', WR:'the receiver group', TE:'the tight end room'};
  if(special[m.key]) return special[m.key];
- return 'the ' + m.label.replace(/\s*\([^)]*\)/g,'').toLowerCase();
+ return `the ${m.label.replace(/\s*\([^)]*\)/g,'').toLowerCase()}`;
 }
 function generateDraftRecap(entry, metrics, log){
  const strengths = metrics.filter(m=>m.rank<=8).sort((a,b)=>a.rank-b.rank);
@@ -1824,11 +1824,11 @@ function generateDraftRecap(entry, metrics, log){
   ]);
  }
  if(reach && steal && reach.player[0]!==steal.player[0]){
-  p2 += ' ' + pick([
+  p2 += ` ${pick([
    `On the other side of the ledger, ${reach.player[0]} at pick ${reach.overall} came off the board earlier than his grade suggested, which happens once a team starts drafting for need over pure value.`,
    `Not every pick can be a home run — ${reach.player[0]} at pick ${reach.overall} was more a need pick than a value pick.`,
    `The one head-scratcher was taking ${reach.player[0]} as early as pick ${reach.overall}.`
-  ]);
+  ])}`;
  }
 
  // ---- paragraph 3: the weak spot + the verdict ----
@@ -1843,17 +1843,17 @@ function generateDraftRecap(entry, metrics, log){
  } else {
   p3 = pick([`No unit grades out as a real liability, which is the mark of a well-rounded draft.`, `Every phase of the roster holds up reasonably well — there's no true weak link.`]);
  }
- p3 += ' ' + (entry.rankAmongReal<=10
+ p3 += ` ${entry.rankAmongReal<=10
   ? pick([`Put this roster in the real NFL and it's a playoff-caliber group as constructed.`, `This is the kind of roster that competes for a division title as-is.`])
   : entry.rankAmongReal<=22
   ? pick([`In the real NFL this profiles as a middle-of-the-pack team — competitive, but a piece or two short of a contender.`, `On paper this looks like a .500 team: solid, but not yet dangerous.`])
-  : pick([`In the real NFL there'd be real work left to do before this group could challenge the league's best.`, `This is a roster still early in the process of becoming a contender.`]));
+  : pick([`In the real NFL there'd be real work left to do before this group could challenge the league's best.`, `This is a roster still early in the process of becoming a contender.`])}`;
 
  return [p1,p2,p3].filter(Boolean).map(t=>`<p class="detail-item">${t}</p>`).join('');
 }
 
 // ================= SEASON SIMULATION ENGINE =================
-function categoryRating(pool, key){
+function _categoryRating(pool, key){
  const def = GROUP_DEFS.find(g=>g.key===key);
  return groupAvgFromPool(pool, def).avg;
 }
@@ -1871,7 +1871,7 @@ function weightedPick(items){
 function nick(team){ return team.split(' ').slice(-1)[0]; }
 function fmtTOP(seconds){ const m = Math.floor(seconds/60), s = seconds%60; return `${m}:${String(s).padStart(2,'0')}`; }
 function ordinalQ(q){ return ['first','second','third','fourth','overtime'][q-1]; }
-function joinList(arr){ if(arr.length<=1) return arr.join(''); if(arr.length===2) return arr.join(' and '); return arr.slice(0,-1).join(', ')+', and '+arr[arr.length-1]; }
+function joinList(arr){ if(arr.length<=1) return arr.join(''); if(arr.length===2) return arr.join(' and '); return `${arr.slice(0,-1).join(', ')}, and ${arr[arr.length-1]}`; }
 function numWord(n){ return ['zero','one','two','three','four','five','six','seven','eight'][n] || String(n); }
 
 // ---- ratings built from the actual lineup (slot-based, honors the flex penalty) ----
@@ -1915,7 +1915,7 @@ const AGGR_INFO = {
  aggressive:{label:'Aggressive',two:1.90, td:1.05, fg:0.86, desc:'Goes for 2 early and often, and goes for it on 4th down instead of kicking. More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs.'}
 };
 function aggrOf(sm){
- const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S || !S.teams) return 'balanced';
+ const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S?.teams) return 'balanced';
  S.aggr = S.aggr || {};
  const t = Object.keys(S.teams).find(k=>S.teams[k].slotmap===sm); if(!t) return 'balanced';
  if(!S.aggr[t]){ const u = Math.random(); S.aggr[t] = S.teams[t].isUser ? 'balanced' : (u<0.22?'cautious':u>0.78?'aggressive':'balanced'); }
@@ -1930,7 +1930,7 @@ function teamRatings(slotmap){
  const r = {};
  r.ret = retScore(slotmap);
  for(const k in RATING_SPECS) r[k] = wavgSlots(slotmap, RATING_SPECS[k]);
- for(const p in PERS_REC) r['rec'+p] = wavgSlots(slotmap, PERS_REC[p]);
+ for(const p in PERS_REC) r[`rec${p}`] = wavgSlots(slotmap, PERS_REC[p]);
  r.rec11 = r.rec;
  for(const k in DEF_SPECS) r[k] = wavgSlots(slotmap, DEF_SPECS[k]);
  r.te1 = slotOvr(slotmap,'TE1'); r.te2 = slotOvr(slotmap,'TE2');
@@ -1967,7 +1967,7 @@ function computeUnitRanks(ratingsByTeam){
 // Neutral, NFL-style logic: pass plays are worth more per snap, run-heavy trades expected points for ball security,
 // lower variance and a bigger payoff for a dominant interior line; heavy sets lean on tight ends who must exist on the roster.
 const PERS = {
- '11': {label:'11 personnel', long:'one back, one tight end, three receivers', run:0.00, runB:0.000, passB:0.000, heavy:0.0, tbw:0.00, pc:0.0},
+ '11': {label:'11 personnel', long:'one back, one tight end, three receivers', run:0.00, runB:Math.LN2, passB:Math.LN2, heavy:0.0, tbw:0.00, pc:0.0},
  '12': {label:'12 personnel', long:'one back, two tight ends, two receivers',  run:0.03, runB:0.030, passB:-0.015, heavy:0.5, tbw:0.08, pc:0.22},
  '13': {label:'13 personnel', long:'one back, three tight ends, one receiver', run:0.06, runB:0.055, passB:-0.035, heavy:1.0, tbw:0.14, pc:0.42},
  '21': {label:'21 personnel', long:'two backs, one tight end, two receivers',  run:0.05, runB:0.040, passB:-0.030, heavy:0.6, tbw:0.03, pc:0.38},
@@ -2001,7 +2001,7 @@ function normCdf(z){ const t=1/(1+0.2316419*Math.abs(z)), d=0.3989423*Math.exp(-
 
 function applyOffPlan(O, po){
  const p = po.pers, out = Object.assign({}, O);
- if(PERS_REC[p]) out.rec = O['rec'+p];
+ if(PERS_REC[p]) out.rec = O[`rec${p}`];
  if(p==='21' || p==='22') out.rb = O.rbHeavy;
  const blk = p==='13' ? (O.te2+70)/2 : (p==='12'||p==='22') ? (O.te1+O.te2)/2 : O.te1;
  out.olRun = O.olRun + PERS[p].tbw*(blk-75)*PLAN_K.kBlock;
@@ -2071,7 +2071,7 @@ function matchupModel(O0, D0, lg, plan){
   parts.forEach(([unit, owner, lv])=>{
    if(unit==='lean' || unit==='scheme') return;
    const eff = effOf(lv);                               // effect on the OFFENSE's expected points
-   const key = unit+'|'+owner;
+   const key = `${unit}|${owner}`;
    raw[key] = raw[key] || {unit, owner, pts:0, kinds:{}};
    const swing = owner==='off' ? eff : -eff;
    raw[key].pts += swing; raw[key].kinds[kind] = (raw[key].kinds[kind]||0)+swing;
@@ -2083,7 +2083,7 @@ function matchupModel(O0, D0, lg, plan){
  add(skParts,   lv=> -PT_SACK*LAM_SACK*(Math.exp(lv)-1), 'sacks');
  if(Math.abs(kickPts)>0.01) raw['kicker|off'] = {unit:'kicker', owner:'off', pts:kickPts, kinds:{'field goals':kickPts}};
  // leaning hard in either direction makes a team predictable: a small efficiency cost that grows with the lean
- const planCost = PLAN_K.predict*Math.pow(STRAT[po.strat].s/0.08, 2) - PLAN_K.defPredict*Math.abs(DEF_FOCUS[pd.focus].f) + PERS[po.pers].pc;  // pc: a non-11 set takes a receiver off the field, a real cost unless the extra tight end or back is a better player
+ const planCost = PLAN_K.predict*(STRAT[po.strat].s/0.08) ** 2 - PLAN_K.defPredict*Math.abs(DEF_FOCUS[pd.focus].f) + PERS[po.pers].pc;  // pc: a non-11 set takes a receiver off the field, a real cost unless the extra tight end or back is a better player
  const structPts = BASE_PTS + PT_RUSH*(expRush-RUSH_BASE) + PT_PASS*(expPass-PASS_BASE) - PT_TO*(lamTO-LAM_TO) - PT_SACK*(lamSack-LAM_SACK) + kickPts + retPts - planCost;
  const channels = {run:PT_RUSH*(expRush-RUSH_BASE), pass:PT_PASS*(expPass-PASS_BASE), to:-PT_TO*(lamTO-LAM_TO), sack:-PT_SACK*(lamSack-LAM_SACK), kick:kickPts, plan:-planCost};
  // run-heavy shortens the game and shrinks the spread of outcomes; pass-heavy does the opposite
@@ -2168,7 +2168,7 @@ const DEF_STYLE_INFO = {
 };
 function aStyle(n){ return (/^[aeiou]/i.test(n)?'an ':'a ')+n; }
 function planText(po){ return `${PERS[po.pers].label}, ${STRAT[po.strat].label}`; }
-function defPlanText(pd){ return `${DEF_PKG[pd.pkg].label}${pd.focus==='neutral'?'':' · '+DEF_FOCUS[pd.focus].label}`; }
+function defPlanText(pd){ return `${DEF_PKG[pd.pkg].label}${pd.focus==='neutral'?'':` · ${DEF_FOCUS[pd.focus].label}`}`; }
 function planFits(c, o){ return !c || Object.keys(c).every(k=> !(k in o) || !c[k] || c[k]==='auto' || o[k]===c[k]); }
 function choosePlans(H, A, lg, usualH, usualA, expH, expA, cH, cA){
  // expH / expA: what each side's opponent EXPECTS of it (scouted coaching philosophy). Decisions are independent of the opponent's actual choice.
@@ -2202,7 +2202,7 @@ function scoutedPlan(team){
  return {off:o||base.off, def:d||base.def, adapted:!!((o&&diff(o,base.off))||(d&&diff(d,base.def)))};
 }
 function userPlanConstraint(){
- const S = (typeof seasonState!=='undefined') ? seasonState : null; const u = S && S.userPlan; if(!u) return null;
+ const S = (typeof seasonState!=='undefined') ? seasonState : null; const u = S?.userPlan; if(!u) return null;
  if(u.mode==='manual') return {pers:u.pers, strat:u.strat, pkg:u.pkg, focus:u.focus};
  if(u.mode==='script'){ const id = S.identity[seasonUserTeam()]; return {pers:id.off.pers, strat:id.off.strat, pkg:id.def.pkg, focus:id.def.focus}; }
  return null;
@@ -2213,7 +2213,7 @@ function ensureGamePlans(g){
  const uc = userPlanConstraint(), user = seasonUserTeam();
  const cH = (uc && g.home===user) ? uc : null, cA = (uc && g.away===user) ? uc : null;
  const eH = scoutedPlan(g.home), eA = scoutedPlan(g.away);
- const key = g.home+'|'+g.away+'|'+(cH?JSON.stringify(cH):'')+'|'+(cA?JSON.stringify(cA):'')+'|'+JSON.stringify([eH.off,eH.def,eA.off,eA.def,S.identity[g.home].off,S.identity[g.home].def,S.identity[g.away].off,S.identity[g.away].def]);
+ const key = `${g.home}|${g.away}|${cH?JSON.stringify(cH):''}|${cA?JSON.stringify(cA):''}|${JSON.stringify([eH.off,eH.def,eA.off,eA.def,S.identity[g.home].off,S.identity[g.home].def,S.identity[g.away].off,S.identity[g.away].def])}`;
  S.planCache = S.planCache || {};
  let ent = S.planCache[key];
  if(!ent) ent = S.planCache[key] = choosePlans(S.unitRatings[g.home], S.unitRatings[g.away], S.league, S.identity[g.home], S.identity[g.away], eH, eA, cH, cA);
@@ -2222,7 +2222,7 @@ function ensureGamePlans(g){
  g.scouted = {home:eH.adapted, away:eA.adapted};
  return g.plans;
 }
-function resetUnplayedPlans(){ seasonState.planCache = {}; seasonState.schedule.forEach(g=>{ if(!g.played){ g.plans = null; g.preview = null; } }); ['wildcard','divisional','champ','superbowl'].forEach(rk=>((seasonState.playoffRounds&&seasonState.playoffRounds[rk])||[]).forEach(g=>{ if(!g.played){ g.plans=null; g.preview=null; } })); }
+function resetUnplayedPlans(){ seasonState.planCache = {}; seasonState.schedule.forEach(g=>{ if(!g.played){ g.plans = null; g.preview = null; } }); ['wildcard','divisional','champ','superbowl'].forEach(rk=>((seasonState.playoffRounds?.[rk])||[]).forEach(g=>{ if(!g.played){ g.plans=null; g.preview=null; } })); }
 
 function simulateGame(homeSM, awaySM, isPlayoff, lg, plans){
  const H = teamRatings(homeSM), A = teamRatings(awaySM);
@@ -2364,7 +2364,7 @@ function buildOffenseDetail(sm, teamName, stats, events, defTD){
  const rotShare = (slot, e, ref) => Math.min(1, share(slot) + (e && ref ? clampNum((e.ovr-ref.ovr)/25, 0, 0.4) : 0));
 
  // quarterback scrambles: a function of how fast he is (starters average about 240 yards a season, from under 50 to over 800)
- const rawQB = sm['QB'], qbSpd = Array.isArray(rawQB) ? rawQB[4] : 82;
+ const rawQB = sm.QB, qbSpd = Array.isArray(rawQB) ? rawQB[4] : 82;
  const qbRushYds = qb ? clampNum(Math.round(205*Math.exp((qbSpd-85)/8)/17*Math.sqrt(Math.max(stats.rushYards,20)/105)*Math.exp(gaussNoise(0.45)-0.1)), 0, Math.round(stats.rushYards*0.40)) : 0;
  if(qbRushYds>0){ add(qb, 'QB', 'rushYds', qbRushYds); add(qb, 'QB', 'car', Math.max(1, Math.round(qbRushYds/clampNum(5.6+gaussNoise(0.8),3.5,8)))); }
  // backs: the BEST back leads (whichever slot he occupies); the other gets a share that grows with his rating and with 21/22 personnel
@@ -2501,10 +2501,10 @@ function buildDefenseDetail(sm, teamName, oppGiveaways, sacksForced, sk, extra){
  const sackW = {DE1:1.3,DE2:1.2,DT1:.9,DT2:.7,MIKE:.6,WILL:.6,SAM:.45,DL5:.42,LB4:.36};
  const sackCredits = [];
  for(let i=0;i<sacksForced;i++){
-  const cause = (sk && sk.causes[i]) || 'rush';
+  const cause = (sk?.causes[i]) || 'rush';
   // a sack won by pure rush skill goes to the better rusher; one created by a broken line or locked-down coverage is closer to a coin flip
   const qw = cause==='rush' ? 1 : cause==='ol' ? 0.35 : 0.5;
-  const s = weightedPick(sackers.map(x=>({item:x, w:sackW[x]*Math.pow(ovrFactor(bySlot[x].e.ovr,45), qw)})));
+  const s = weightedPick(sackers.map(x=>({item:x, w:sackW[x]*ovrFactor(bySlot[x].e.ovr,45) ** qw})));
   const pl = P(bySlot[s].e, s);
   pl.st.sack = (pl.st.sack||0)+1;
   const ck = cause==='rush' ? 'skE' : cause==='ol' ? 'skO' : 'skC';
@@ -2567,9 +2567,9 @@ function autoReturner(sm){   // the fastest eligible starter, with a small prefe
 }
 function addReturns(side, team, sm){
  const S = (typeof seasonState!=='undefined') ? seasonState : null;
- let name = S && S.returners && S.returners[team];
+ const name = S?.returners?.[team];
  const cands = returnerCandidates(sm);
- let c = cands.find(x=>x.p[0]===name) || cands.find(x=>x.p[0]===autoReturner(sm));
+ const c = cands.find(x=>x.p[0]===name) || cands.find(x=>x.p[0]===autoReturner(sm));
  if(!c) return;
  let pl = side.players.find(p=>p.name===c.p[0]);
  if(!pl){ const e = effEntry(sm, c.slot); pl = {name:c.p[0], slot:c.slot, group:SLOT_GROUP[c.slot], team, ovr:e.ovr, st:{}}; side.players.push(pl); }
@@ -2637,7 +2637,7 @@ function notablePlayers(side){
 // ---- scoring: choose a realistic mix of TDs/FGs for a final score, spread over four quarters ----
 const _decompCache = {};
 function scoreDecompositions(S, ag){
- ag = ag||'balanced'; const AG = AGGR_INFO[ag]; const key = S+'|'+ag;
+ ag = ag||'balanced'; const AG = AGGR_INFO[ag]; const key = `${S}|${ag}`;
  if(_decompCache[key]) return _decompCache[key];
  const LAMBDA = {td:2.6*AG.td, fg:1.05*AG.fg, six:0.07*AG.two, eight:0.022*AG.two, saf:0.012};
  const fact = n => { let f=1; for(let i=2;i<=n;i++) f*=i; return f; };
@@ -2647,7 +2647,7 @@ function scoreDecompositions(S, ag){
    const rem = S - (n8*8+n6*6+n2*2+n7*7);
    if(rem%3!==0) continue;
    const n3 = rem/3;
-   const w = Math.pow(LAMBDA.td,n7)/fact(n7) * Math.pow(LAMBDA.fg,n3)/fact(n3) * Math.pow(LAMBDA.six,n6)/fact(n6) * Math.pow(LAMBDA.eight,n8)/fact(n8) * Math.pow(LAMBDA.saf,n2)/fact(n2);
+   const w = LAMBDA.td ** n7/fact(n7) * LAMBDA.fg ** n3/fact(n3) * LAMBDA.six ** n6/fact(n6) * LAMBDA.eight ** n8/fact(n8) * LAMBDA.saf ** n2/fact(n2);
    combos.push({n7,n3,n6,n8,n2,w});
   }
  _decompCache[key] = combos;
@@ -2692,11 +2692,11 @@ function factorParagraph(g){
  const S = (typeof seasonState!=='undefined' && seasonState) ? seasonState : null;
  const other = s => s==='home' ? 'away' : 'home';
  const teamOf = s => s==='home' ? g.home : g.away;
- const T = s => 'the '+nick(teamOf(s));
+ const T = s => `the ${nick(teamOf(s))}`;
  const statsOf = s => s==='home' ? r.homeStats : r.awayStats;
  const grade = (s, unit) => {
   const rating = (s==='home' ? rt.H : rt.A)[unit];
-  const rank = S && S.unitRanks && S.unitRanks[teamOf(s)] ? S.unitRanks[teamOf(s)][unit] : null;
+  const rank = S?.unitRanks?.[teamOf(s)] ? S.unitRanks[teamOf(s)][unit] : null;
   return `${rating.toFixed(1)}${rank ? `, #${rank} of 32` : ''}`;
  };
  // gather each unit's total point swing (owner's perspective) across run / pass / turnover / sack channels
@@ -2704,7 +2704,7 @@ function factorParagraph(g){
  ['home','away'].forEach(offSide=>{
   ex[offSide].swings.forEach(sw=>{
    const ownerSide = sw.owner==='off' ? offSide : other(offSide);
-   const key = ownerSide+'|'+sw.unit;
+   const key = `${ownerSide}|${sw.unit}`;
    agg[key] = agg[key] || {ownerSide, unit:sw.unit, pts:0};
    agg[key].pts += sw.pts;
   });
@@ -2727,7 +2727,7 @@ function factorParagraph(g){
   switch(e.unit){
    case 'olRun': case 'rb': {
     const rb = topBy(mine.players.filter(p=>p.group==='RB'), p=>p.st.rushYds||0), ol = topBy(mine.players.filter(p=>p.group==='OL'), p=>p.st.pk||0);
-    if(good) return `${capFirst(poss(N))} ${desc} (${gr}) carried its weight: ${my.rushYards} rushing yards${car?` on ${car} carries (${ypc} a carry)`:''}${rb&&rb.st.rushYds?`, ${rb.name} getting ${rb.st.rushYds} of them`:''}${ol&&ol.st.pk>=4?` and ${ol.name} piling up ${ol.st.pk} pancakes`:''}${swing}`;
+    if(good) return `${capFirst(poss(N))} ${desc} (${gr}) carried its weight: ${my.rushYards} rushing yards${car?` on ${car} carries (${ypc} a carry)`:''}${rb?.st.rushYds?`, ${rb.name} getting ${rb.st.rushYds} of them`:''}${ol&&ol.st.pk>=4?` and ${ol.name} piling up ${ol.st.pk} pancakes`:''}${swing}`;
     return `${capFirst(poss(N))} ${desc} (${gr}) never found a rhythm: ${my.rushYards} rushing yards${car?` on ${car} carries (${ypc} a carry)`:''}${swing}`;
    }
    case 'olPass': {
@@ -2736,8 +2736,8 @@ function factorParagraph(g){
     return `${capFirst(poss(N))} pass protection (${gr}) broke down: ${pl1(my.sacks,'sack')} and ${pl1(press,'pressure')} allowed${worst&&((worst.st.sa||0)+(worst.st.pa||0))>=2?`, with ${worst.name} taking the worst of it`:''}${swing}`;
    }
    case 'passRush': {
-    const dl = mine.players.filter(p=>p.group==='DL'||p.group==='LB'), lead = topBy(dl, p=>p.st.sack||0), press = sumK(mine,'hur'), made = (mine.sackCauses&&mine.sackCauses.made)||[];
-    const byOl = made.filter(c=>c==='ol').length, byCov = made.filter(c=>c==='cov').length;
+    const dl = mine.players.filter(p=>p.group==='DL'||p.group==='LB'), lead = topBy(dl, p=>p.st.sack||0), press = sumK(mine,'hur'), made = (mine.sackCauses?.made)||[];
+    const byOl = made.filter(c=>c==='ol').length, _byCov = made.filter(c=>c==='cov').length;
     const oqb = topBy(theirs.players.filter(p=>p.group==='QB'), p=>p.st.att||p.st.passAtt||0), qn = oqb?oqb.name:'the opposing quarterback';
     const homeTxt = op.sacks===0 ? `never got home to ${qn}` : op.sacks===1 ? `only got home to ${qn} once` : `got home to ${qn} ${op.sacks} times`;
     if(good) return `${capFirst(poss(N))} pass rush (${gr}) ${homeTxt} and hurried ${pl1(press,'more dropback')}${lead&&lead.st.sack>=2?`, ${lead.name} getting ${lead.st.sack} of the sacks`:''}${swing}`;
@@ -2764,8 +2764,8 @@ function factorParagraph(g){
    }
    case 'rec': {
     const rcv = mine.players.filter(p=>p.group==='WR'||p.group==='TE'), rec = rcv.reduce((a,p)=>a+(p.st.rec||0),0), tgt = rcv.reduce((a,p)=>a+(p.st.tgt||0),0), top = topBy(rcv, p=>p.st.recYds||0), pct = Math.round(100*rec/Math.max(tgt,1));
-    if(good) return `${capFirst(poss(N))} receivers (${gr}) won their routes: ${rec} catches on ${tgt} targets for ${my.passYards} yards${top&&top.st.recYds?`, led by ${top.name} (${top.st.recYds})`:''}${swing}`;
-    return `${capFirst(poss(N))} receivers (${gr}) struggled to separate: ${rec} catches on ${tgt} targets (${pct}%)${top&&top.st.recYds?` and nobody topped ${top.st.recYds} yards`:''}${swing}`;
+    if(good) return `${capFirst(poss(N))} receivers (${gr}) won their routes: ${rec} catches on ${tgt} targets for ${my.passYards} yards${top?.st.recYds?`, led by ${top.name} (${top.st.recYds})`:''}${swing}`;
+    return `${capFirst(poss(N))} receivers (${gr}) struggled to separate: ${rec} catches on ${tgt} targets (${pct}%)${top?.st.recYds?` and nobody topped ${top.st.recYds} yards`:''}${swing}`;
    }
    default: {
     const k = mine.players.find(p=>p.group==='K');
@@ -2776,20 +2776,20 @@ function factorParagraph(g){
  const hp = r.proj.home, ap = r.proj.away, gap = Math.abs(hp-ap), fav = hp>=ap ? 'home' : 'away';
  const winnerSide = r.homeScore>r.awayScore ? 'home' : r.awayScore>r.homeScore ? 'away' : null, margin = Math.abs(r.homeScore-r.awayScore);
  let lead;
- if(!winnerSide) lead = `The ratings had this as ${gap<1?'a toss-up':'a '+gap.toFixed(1)+'-point edge for '+T(fav)}, and it ended level.`;
+ if(!winnerSide) lead = `The ratings had this as ${gap<1?'a toss-up':`a ${gap.toFixed(1)}-point edge for ${T(fav)}`}, and it ended level.`;
  else if(gap<1) lead = `The ratings had this as a toss-up, and ${T(winnerSide)} took it by ${margin}.`;
  else if(winnerSide===fav) lead = `The ratings gave ${T(fav)} an edge of about ${gap.toFixed(1)} points, and they won by ${margin}.`;
  else lead = `The ratings gave ${T(fav)} an edge of about ${gap.toFixed(1)} points, but ${T(winnerSide)} flipped it and won by ${margin}.`;
  const parts = [lead];
- if(ranked.length) parts.push(ranked.map(outcome).join('. ') + '.');
+ if(ranked.length) parts.push(`${ranked.map(outcome).join('. ')}.`);
  // swing the unit grades cannot know about
  const toH = r.homeStats.turnovers, toA = r.awayStats.turnovers;
  if(Math.abs(toH-toA)>=2){
   const loser = toH>toA ? 'home' : 'away', winnerS = other(loser);
-  const many = toH>toA ? toH : toA, few = toH>toA ? toA : toH;
-  parts.push(`The turnover battle swung it further: ${T(loser)} turned it over ${many} times while ${T(winnerS)} ${few===0 ? "never gave it away" : `gave it away only ${few===1?'once':few+' times'}`}, a swing worth roughly ${(3.0*Math.abs(toH-toA)).toFixed(0)} points.`);
+  const many = Math.max(toH , toA), few = Math.min(toH , toA);
+  parts.push(`The turnover battle swung it further: ${T(loser)} turned it over ${many} times while ${T(winnerS)} ${few===0 ? "never gave it away" : `gave it away only ${few===1?'once':`${few} times`}`}, a swing worth roughly ${(3.0*Math.abs(toH-toA)).toFixed(0)} points.`);
  }
- return `<b>How it was decided:</b> ` + parts.join(' ');
+ return `<b>How it was decided:</b> ${parts.join(' ')}`;
 }
 
 // ---- narrative recap: a story of the game, not a stat dump ----
@@ -2803,12 +2803,12 @@ function longestRun(result){
  return best;
 }
 function capFirst(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
-function poss(t){ return /s$/.test(t) ? t+"'" : t+"'s"; }
+function poss(t){ return /s$/.test(t) ? `${t}'` : `${t}'s`; }
 
 // ---- the finish: walk-off scores and last-gasp stops, told with some drama ----
-function hashPick(g, salt, arr){ let h = 0; const k = g.home+'|'+g.away+'|'+(g.week||g.roundLabel||'')+'|'+g.result.homeScore+'-'+g.result.awayScore+'|'+salt; for(let i=0;i<k.length;i++) h = (h*31 + k.charCodeAt(i))>>>0; return arr[h%arr.length]; }
+function hashPick(g, salt, arr){ let h = 0; const k = `${g.home}|${g.away}|${g.week||g.roundLabel||''}|${g.result.homeScore}-${g.result.awayScore}|${salt}`; for(let i=0;i<k.length;i++) h = (h*31 + k.charCodeAt(i))>>>0; return arr[h%arr.length]; }
 function hashInt(g, salt, lo, hi){ let h = 0; const k = g.home+g.away+g.result.homeScore+salt; for(let i=0;i<k.length;i++) h = (h*131 + k.charCodeAt(i))>>>0; return lo + h%(hi-lo+1); }
-function clockLeft(e){ const secs = Math.max(0, Math.round((1-e.t)*(e.q>=5?600:900))); return `${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`; }
+function _clockLeft(e){ const secs = Math.max(0, Math.round((1-e.t)*(e.q>=5?600:900))); return `${Math.floor(secs/60)}:${String(secs%60).padStart(2,'0')}`; }
 const qTxt = q => q>=5 ? 'overtime' : `the ${ordinalQ(q)} quarter`;
 function clockSecs(e){ return Math.max(0, Math.round((1-e.t)*(e.q>=5?600:900))); }
 function clockStr(sec){ return `${Math.floor(sec/60)}:${String(sec%60).padStart(2,'0')}`; }
@@ -2819,10 +2819,10 @@ function dramaticEnding(g, ctx){
  const evs = r.homeEvents.map(e=>({...e, side:'home'})).concat(r.awayEvents.map(e=>({...e, side:'away'}))).sort((a,b)=> a.q-b.q || a.t-b.t);
  if(!evs.length) return '';
  const W = hs>as ? 'home' : 'away', L = W==='home' ? 'away' : 'home', margin = Math.abs(hs-as);
- const wn = 'the '+nick(g[W]), ln = 'the '+nick(g[L]), WN = capFirst(wn), LN = capFirst(ln);
+ const wn = `the ${nick(g[W])}`, ln = `the ${nick(g[L])}`, WN = capFirst(wn), LN = capFirst(ln);
  const last = evs[evs.length-1];
  const before = {home:hs, away:as}; before[last.side] -= last.pts;
- const sb = !!(ctx && ctx.champion), po = !!g.roundLabel;
+ const sb = !!(ctx?.champion), po = !!g.roundLabel;
  const late = last.q>=5 || (last.q===4 && last.t>=0.5);
  const wPl = d[W].players, lPl = d[L].players;
  const top = (arr, f)=> arr.slice().sort((a,b)=>f(b)-f(a))[0];
@@ -2852,7 +2852,7 @@ function dramaticEnding(g, ctx){
    const dist = hashInt(g,'fg',29,57);
    head = `<b>${ot?'WALK-OFF FIELD GOAL IN OVERTIME!':'A GAME-WINNING FIELD GOAL!'}</b> ${kicker?B(kicker.name):`The ${nick(g[W])} kicker`} drilled it from ${dist} yards${ot?'':` with ${clockStr(secs)} left`}, and ${wn} ${trailing>0?`erased a ${trailing}-point deficit`:'broke a tie'} to win ${fin}!`;
   } else {
-   const wTD = (r[W+'Events']||[]).filter(e=>e.type==='TD' && !e.defensive), li = wTD.findIndex(e=>e.t===last.t && e.q===last.q), sc = (li>=0 && (d[W].tdScorers||[])[li]) || ((d[W].tdScorers||[]).length ? hashPick(g,'td',d[W].tdScorers) : null), nm = sc ? (sc.name||sc) : 'the ball carrier';
+   const wTD = (r[`${W}Events`]||[]).filter(e=>e.type==='TD' && !e.defensive), li = wTD.findIndex(e=>e.t===last.t && e.q===last.q), sc = (li>=0 && (d[W].tdScorers||[])[li]) || ((d[W].tdScorers||[]).length ? hashPick(g,'td',d[W].tdScorers) : null), nm = sc ? (sc.name||sc) : 'the ball carrier';
    head = `<b>${ot?'WALK-OFF TOUCHDOWN!':'A GAME-WINNING TOUCHDOWN!'}</b> ${B(nm)} found the end zone ${ot?'in overtime':`with ${clockStr(secs)} left`} and ${wn} ${trailing>0?`came back from ${trailing} down`:'took the lead for good'}, ${fin}!`;
   }
   out.push(head);
@@ -2869,28 +2869,28 @@ function dramaticEnding(g, ctx){
  if(!out.length) return '';
  let txt = out.join(' ');
  if(sb) txt += ` <b>${WN.toUpperCase()} ARE SUPER BOWL CHAMPIONS!</b>`;
- else if(po && margin<=8) txt = `<b>PLAYOFF DRAMA!</b> ` + txt;
+ else if(po && margin<=8) txt = `<b>PLAYOFF DRAMA!</b> ${txt}`;
  return txt;
 }
 // ---- paragraph 2: turnovers and the plays that swing games ----
 function turnoverParagraph(g, collapse, raw){
- const r = g.result, d = g.detail, T = s => 'the '+nick(s==='home'?g.home:g.away), other = s => s==='home'?'away':'home';
+ const r = g.result, d = g.detail, T = s => `the ${nick(s==='home'?g.home:g.away)}`, other = s => s==='home'?'away':'home';
  const info = ['home','away'].map(s=>({s, n:(s==='home'?r.homeStats:r.awayStats).turnovers, ints:d[s].giveaways.filter(x=>x.type==='INT'), fums:d[s].giveaways.filter(x=>x.type==='FUM')}));
  const total = info[0].n+info[1].n, items = [], bits = { push:(txt,q)=>items.push({q:q||1, i:items.length, t:txt}) };
  const tdTag = gv => gv.td ? ' — and he took it the distance for a touchdown!' : '';
  info.sort((a,b)=>b.n-a.n).forEach((inf,idx)=>{
   const s = inf.s, turning = collapse===s;
   if(inf.ints.length>=2){
-   const picks = inf.ints.map(x=>`${x.takenBy||'a defender'} (${x.q>=5?'OT':'Q'+x.q})`), qb = inf.ints[0].name, n = inf.ints.length;
+   const picks = inf.ints.map(x=>`${x.takenBy||'a defender'} (${x.q>=5?'OT':`Q${x.q}`})`), qb = inf.ints[0].name, n = inf.ints.length;
    const td = inf.ints.find(x=>x.td);
-   bits.push(hashPick(g,'i2'+s,[
+   bits.push(hashPick(g,`i2${s}`,[
     `${qb} threw ${numWord(n)} interceptions, to ${joinList(picks)}${td?`, and ${td.takenBy} took one back for six`:''}.`,
     `It was a rough day for ${qb}: ${numWord(n)} passes went to the other team (${joinList(picks)})${td?`, one of them returned for a touchdown by ${td.takenBy}`:''}.`,
     `${joinList(picks)} each came away with a ${qb} throw.${td?` ${td.takenBy}'s went for a touchdown.`:''}`
    ]), inf.ints[0].q);
   } else if(inf.ints.length===1){
    const x = inf.ints[0], q = qTxt(x.q);
-   bits.push(turning && x.q===4 ? `The turning point came when ${x.name} was intercepted by ${x.takenBy||'the defense'} in the fourth quarter${tdTag(x)||'.'}` : hashPick(g,'i1'+s,[
+   bits.push(turning && x.q===4 ? `The turning point came when ${x.name} was intercepted by ${x.takenBy||'the defense'} in the fourth quarter${tdTag(x)||'.'}` : hashPick(g,`i1${s}`,[
     `${x.takenBy||'The defense'} jumped a ${x.name} throw in ${q} for the interception${tdTag(x)||'.'}`,
     `${x.name} was picked off by ${x.takenBy||'the defense'} in ${q}${tdTag(x)||'.'}`,
     `${x.name} tried to squeeze one in during ${q} and ${x.takenBy||'the defense'} made him pay${tdTag(x)||'.'}`
@@ -2908,8 +2908,8 @@ function turnoverParagraph(g, collapse, raw){
     `${forcer} ripped it loose from ${f.name} in ${q} and ${rec} came up with the football${td?' — and he took it the distance for a touchdown':'.'}`,
     `${f.name} was stripped by ${forcer} in ${q}, and ${rec} scooped it up${td||'.'}`
    ];
-   if(f.group==='QB') v.push(`${f.name} held the ball too loosely in ${q}; ${forcer} knocked it free and ${same?'recovered it himself':rec+' recovered'}${td||'.'}`);
-   bits.push(turning && f.q===4 ? `The turning point came when ${forcer} stripped ${f.name} in the fourth quarter and ${same?'recovered it himself':rec+' recovered'}${td||'.'}` : hashPick(g,'f'+s+j,v), f.q);
+   if(f.group==='QB') v.push(`${f.name} held the ball too loosely in ${q}; ${forcer} knocked it free and ${same?'recovered it himself':`${rec} recovered`}${td||'.'}`);
+   bits.push(turning && f.q===4 ? `The turning point came when ${forcer} stripped ${f.name} in the fourth quarter and ${same?'recovered it himself':`${rec} recovered`}${td||'.'}` : hashPick(g,`f${s}${j}`,v), f.q);
   });
  });
  // the detail pass can be thinner than the stat line (game script trims); name each giveaway from the box score if so
@@ -2933,7 +2933,7 @@ function turnoverParagraph(g, collapse, raw){
   return `${x.name} lost a fumble${x.takenBy?`, forced by ${x.takenBy}`:''}${x.recoveredBy?`, recovered by ${x.recoveredBy}`:''} ${when}`;
  };
  const gvList = (s, max) => {
-  const gv = ((d[s] && d[s].giveaways) || []).filter(x=>x.type==='INT'||x.type==='FUM');
+  const gv = ((d[s]?.giveaways) || []).filter(x=>x.type==='INT'||x.type==='FUM');
   if(!gv.length) return '';
   const parts = gv.slice(0, max).map(gvName);
   if(gv.length>max) parts.push(`${gv.length-max} more`);
@@ -2956,9 +2956,9 @@ function turnoverParagraph(g, collapse, raw){
  }
  // swing plays that are not turnovers: safeties, blocked kicks, defensive scores not already told above
  ['home','away'].forEach(s=>{
-  const safQs = (r[s+'Events']||[]).filter(e=>e.type==='SAF').map(e=>e.q);
+  const safQs = (r[`${s}Events`]||[]).filter(e=>e.type==='SAF').map(e=>e.q);
   (d[s].safeties||[]).forEach((nm,i)=> bits.push(`${nm} dropped a ball carrier in the end zone for a safety, two points for ${T(s)}.`, safQs[i]||4));
-  (d[s].blocks||[]).forEach((bk,i)=> bits.push(`${bk.name} got a hand on ${bk.kind==='extra point'?'an':'a'} ${bk.kind} and blocked it for ${T(s)}.`, hashPick(g,'bq'+s+i,[1,2,3,4])));
+  (d[s].blocks||[]).forEach((bk,i)=> bits.push(`${bk.name} got a hand on ${bk.kind==='extra point'?'an':'a'} ${bk.kind} and blocked it for ${T(s)}.`, hashPick(g,`bq${s}${i}`,[1,2,3,4])));
  });
 
  if(raw) return {head, items:items.slice(), statsNotes};
@@ -2966,7 +2966,7 @@ function turnoverParagraph(g, collapse, raw){
 }
 // ---- paragraph 3: the stars ----
 function starsParagraph(g, blow){
- const d = g.detail, T = s => 'the '+nick(s==='home'?g.home:g.away), r = g.result;
+ const d = g.detail, T = s => `the ${nick(s==='home'?g.home:g.away)}`, r = g.result;
  const cand = [];
  ['home','away'].forEach(s=>{
   d[s].players.filter(p=>p.impact>=1.0 && !p.slot.startsWith('OT') && !p.slot.startsWith('OG') && p.slot!=='C').sort((a,b)=>b.impact-a.impact).slice(0,2).forEach(p=>cand.push({p, s}));
@@ -2976,12 +2976,12 @@ function starsParagraph(g, blow){
  const strong = blow ? ['was unstoppable','put on a show','dominated','was a one-man wrecking crew'] : ['was the difference','played a big role','delivered','had a strong day'];
  const lines = pick4.map((c,i)=>{
   const p = c.p, s = p.st, who = `${p.name} (${nick(c.s==='home'?g.home:g.away)})`;
-  const v = hashPick(g,'sv'+i, strong);
+  const v = hashPick(g,`sv${i}`, strong);
   const extra = [];
   if(s.tpc) extra.push(`and converted a 2-Pt Conv`);
-  if(p.group==='QB') return `${who} ${v}: ${s.cmp||0}/${s.att||0} for ${s.passYds||0} yards, ${s.passTD||0} touchdown${(s.passTD||0)===1?'':'s'}${s.int?` and ${s.int} interception${s.int===1?'':'s'}`:''}${s.rushYds>=20?`, plus ${s.rushYds} on the ground`:''}${extra.length?', '+extra[0]:''}${ex}`;
-  if(p.group==='RB') return `${who} ${v}, rushing for ${s.rushYds||0} yards on ${s.car||0} carries${s.rushTD?` with ${s.rushTD} touchdown${s.rushTD===1?'':'s'}`:''}${s.recYds>=30?` and adding ${s.recYds} through the air`:''}${extra.length?', '+extra[0]:''}${ex}`;
-  if(p.group==='WR'||p.group==='TE') return `${who} ${v}, hauling in ${s.rec||0} of ${s.tgt||0} targets for ${s.recYds||0} yards${s.recTD?` and ${s.recTD} touchdown${s.recTD===1?'':'s'}`:''}${extra.length?', '+extra[0]:''}${ex}`;
+  if(p.group==='QB') return `${who} ${v}: ${s.cmp||0}/${s.att||0} for ${s.passYds||0} yards, ${s.passTD||0} touchdown${(s.passTD||0)===1?'':'s'}${s.int?` and ${s.int} interception${s.int===1?'':'s'}`:''}${s.rushYds>=20?`, plus ${s.rushYds} on the ground`:''}${extra.length?`, ${extra[0]}`:''}${ex}`;
+  if(p.group==='RB') return `${who} ${v}, rushing for ${s.rushYds||0} yards on ${s.car||0} carries${s.rushTD?` with ${s.rushTD} touchdown${s.rushTD===1?'':'s'}`:''}${s.recYds>=30?` and adding ${s.recYds} through the air`:''}${extra.length?`, ${extra[0]}`:''}${ex}`;
+  if(p.group==='WR'||p.group==='TE') return `${who} ${v}, hauling in ${s.rec||0} of ${s.tgt||0} targets for ${s.recYds||0} yards${s.recTD?` and ${s.recTD} touchdown${s.recTD===1?'':'s'}`:''}${extra.length?`, ${extra[0]}`:''}${ex}`;
   if(p.group==='K') return `${who} stayed perfect on ${s.fg||0} field goal${(s.fg||0)===1?'':'s'}${ex}`;
   const bits = [];
   if(s.sack) bits.push(`${s.sack} sack${s.sack===1?'':'s'}`); if(s.dint) bits.push(`${s.dint} interception${s.dint===1?'':'s'}`); if(s.dtd) bits.push(`${s.dtd===1?'a':s.dtd} defensive touchdown${s.dtd===1?'':'s'}`);
@@ -2998,14 +2998,14 @@ function playByPlay(g, pEnd, halfTxt, collapse){
  const r = g.result, d = g.detail, nameOf = s=>s==='home'?g.home:g.away, other = s=>s==='home'?'away':'home';
  const items = [];
  ['home','away'].forEach(sd=>{
-  const evs = (r[sd+'Events']||[]), sc = (d[sd].tdScorers||[]).slice(), kick = d[sd].players.find(p=>p.group==='K');
+  const evs = (r[`${sd}Events`]||[]), sc = (d[sd].tdScorers||[]).slice(), kick = d[sd].players.find(p=>p.group==='K');
   evs.forEach((e,ix)=>{
    items.push({side:sd, q:e.q, t:e.t, e, ix, sc: (e.type==='TD' && !e.defensive) ? sc.shift() : null, kick});
   });
  });
  const tur = turnoverParagraph(g, collapse, true);
  const mixed = items.map(x=>({kind:'score', q:x.q, t:x.t, x}));
- tur.items.forEach((it,k)=> mixed.push({kind:'turn', q:Math.min(it.q||1,5), t:hashInt(g,'tt'+k,50,950)/1000, txt:it.t}));
+ tur.items.forEach((it,k)=> mixed.push({kind:'turn', q:Math.min(it.q||1,5), t:hashInt(g,`tt${k}`,50,950)/1000, txt:it.t}));
  const defEv = mixed.filter(m=>m.kind==='score' && m.x.e.defensive).sort((a,b)=>a.q-b.q||a.t-b.t);
  const mixed2 = mixed.filter(m=>!(m.kind==='score' && m.x.e.defensive));
  mixed2.forEach(m=>{ if(m.kind==='turn' && /touchdown|for six/.test(m.txt) && defEv.length){ m.def = defEv.shift(); } });
@@ -3016,7 +3016,7 @@ function playByPlay(g, pEnd, halfTxt, collapse){
  const tag = ()=> h===a ? `tied ${h}–${a}` : h>a ? `${nick(g.home)} ${h}–${a}` : `${nick(g.away)} ${a}–${h}`;
  mixed.forEach(m=>{
   if(m.kind==='turn'){ if(m.def){ const dd = m.def.x; if(dd.side==='home') h += dd.e.pts; else a += dd.e.pts; add(m.q, m.txt.replace(/([.!])$/, ` (${tag()}).`).replace(/\)\.\.$/,').')); } else add(m.q, m.txt); return; }
-  const {side:sd, e, sc, kick} = m.x, tm = 'the '+nick(nameOf(sd));
+  const {side:sd, e, sc, kick} = m.x, tm = `the ${nick(nameOf(sd))}`;
   if(sd==='home') h += e.pts; else a += e.pts;
   if(e.defensive){ add(m.q, `That put ${tm} on the board (${tag()}).`); return; }
   let t;
@@ -3040,9 +3040,9 @@ function playByPlay(g, pEnd, halfTxt, collapse){
  [1,2,3,4,5].forEach(q=>{
   if(!out[q]) { if(q<5) parts.push(`<b>${Q[q]}:</b> no scoring.`); return; }
   let txt = out[q].join(' ');
-  if(q===2 && halfTxt) txt += ' '+halfTxt;
-  if(q===4 && pEnd && !r.ot) txt += ' '+pEnd;
-  if(q===5 && pEnd) txt += ' '+pEnd;
+  if(q===2 && halfTxt) txt += ` ${halfTxt}`;
+  if(q===4 && pEnd && !r.ot) txt += ` ${pEnd}`;
+  if(q===5 && pEnd) txt += ` ${pEnd}`;
   parts.push(`<b>${Q[q]}:</b> ${txt}`);
  });
  return {html:parts.join('</p><p class="detail-item pbp">'), head:tur.head};
@@ -3054,7 +3054,7 @@ function generateGameSummary(g, ctx){
  const side = hs>as ? 'home' : as>hs ? 'away' : null;
  const other = s => s==='home' ? 'away' : 'home';
  const nameOf = s => s==='home' ? g.home : g.away;
- const T = s => 'the '+nick(nameOf(s));            // "the Ravens"
+ const T = s => `the ${nick(nameOf(s))}`;            // "the Ravens"
  const scoreOf = s => s==='home' ? hs : as;
  const margin = Math.abs(hs-as), total = hs+as;
  const A = flow.after;
@@ -3070,7 +3070,7 @@ function generateGameSummary(g, ctx){
  } else {
   const W = side, L = other(side), wn = T(W), ln = T(L), wS = scoreOf(W), lS = scoreOf(L);
   const wA3 = ptsAfter(W,3), lA3 = ptsAfter(L,3), q4W = wS-wA3, q4L = lS-lA3;
-  const wH = ptsAfter(W,2), lH = ptsAfter(L,2);
+  const _wH = ptsAfter(W,2), _lH = ptsAfter(L,2);
   const evsAll = r.homeEvents.map(e=>({...e,side:'home'})).concat(r.awayEvents.map(e=>({...e,side:'away'}))).sort((a,b)=>a.q-b.q||a.t-b.t);
   const sc = (q,s)=> ptsAfter(s,q);
   const leaderAt = q => A[q].h>A[q].a ? 'home' : A[q].a>A[q].h ? 'away' : null;
@@ -3086,16 +3086,16 @@ function generateGameSummary(g, ctx){
   const half = lh ? pick([`${capFirst(T(lh))} led ${hiLo(2)} at the half.`, `At the break it was ${nick(nameOf(lh))} ${hiLo(2)}.`]) : `It was tied ${A[2].h}–${A[2].a} at the half.`;
   // 3) the third quarter
   const d3h = A[3].h-A[2].h, d3a = A[3].a-A[2].a, l3 = leaderAt(3);
-  let third;
+  let _third;
   const big3 = Math.abs(d3h-d3a)>=7 ? (d3h>d3a?'home':'away') : null;
-  if(big3) third = `${capFirst(T(big3))} outscored ${T(other(big3))} ${Math.max(d3h,d3a)}–${Math.min(d3h,d3a)} in the third quarter ${l3===big3?'to go up':'to '+(l3?'close within':'tie it at')} ${l3?hiLo(3):A[3].h+'–'+A[3].a}.`;
-  else if(d3h+d3a===0) third = 'Neither offense scored in the third quarter.';
-  else third = l3 ? `${capFirst(T(l3))} still led ${hiLo(3)} after three quarters.` : `It was tied ${A[3].h}–${A[3].a} after three quarters.`;
+  if(big3) _third = `${capFirst(T(big3))} outscored ${T(other(big3))} ${Math.max(d3h,d3a)}–${Math.min(d3h,d3a)} in the third quarter ${l3===big3?'to go up':`to ${l3?'close within':'tie it at'}`} ${l3?hiLo(3):`${A[3].h}–${A[3].a}`}.`;
+  else if(d3h+d3a===0) _third = 'Neither offense scored in the third quarter.';
+  else _third = l3 ? `${capFirst(T(l3))} still led ${hiLo(3)} after three quarters.` : `It was tied ${A[3].h}–${A[3].a} after three quarters.`;
   // 4) the finish
   let fin;
   if(r.ot){
    fin = `Regulation ended tied ${A[4].h}–${A[4].a}, and ${wn} won it in overtime, ${wS}–${lS}.`;
-   third = '';
+   _third = '';
   } else if(lead(W,3)<0){
    collapse = L;
    fin = pick([`Then ${wn} closed on a ${q4W}–${q4L} run to steal a ${wS}–${lS} win.`, `${capFirst(wn)} outscored ${ln} ${q4W}–${q4L} down the stretch and won ${wS}–${lS}.`]);
@@ -3117,7 +3117,7 @@ function generateGameSummary(g, ctx){
   const pEnd = dramaticEnding(g, ctx);
   const fin2 = capFirst(fin.replace(/^Then /,'')); p1 = ((prefix ? prefix+fin2.charAt(0).toLowerCase()+fin2.slice(1) : fin2) + runTxt).trim();
   const pbp = playByPlay(g, pEnd, half, collapse);
-  p1 += `</p><p class="detail-item pbp">` + pbp.html; collapse2 = pbp.head;
+  p1 += `</p><p class="detail-item pbp">${pbp.html}`; collapse2 = pbp.head;
   if(g.divisional) p1 += ` It was a divisional game, so it counts a little extra.`;
  }
  p1 = capFirst(p1);
@@ -3125,7 +3125,7 @@ function generateGameSummary(g, ctx){
  // ----- paragraph 2: turnovers and swing plays; paragraph 3: the stars, then the game ball -----
  const blow = margin>=17;
  const turnStats = turnoverParagraph(g, collapse, true).statsNotes || [];
- const p2full = collapse2 ? `<b>Turnovers:</b> ${collapse2}${turnStats.length ? ' '+turnStats.join(' ') : ''}` : '';
+ const p2full = collapse2 ? `<b>Turnovers:</b> ${collapse2}${turnStats.length ? ` ${turnStats.join(' ')}` : ''}` : '';
  const mvp = d.mvp;
  const ball = pick([
   `${mvp.name} (${nick(mvp.team)} ${mvp.group}) earned the game ball: ${mvp.line}.`,
@@ -3133,7 +3133,7 @@ function generateGameSummary(g, ctx){
  ]);
  const loserBall = ((g.result.homeScore>g.result.awayScore) ? g.home : g.away)!==mvp.team && g.result.homeScore!==g.result.awayScore;
  const starsTxt = starsParagraph(g, blow);
- const p2stars = (starsTxt ? starsTxt : '') + `</p><p class="detail-item indent">` + ball.replace(/\.$/,'!') + (loserBall ? ` It is rare for the game ball to go to the losing side; ${mvp.name}'s performance was so dominant (a ${mvp.perfGrade||90} grade) that it could not be ignored.` : '');
+ const p2stars = `${starsTxt ? starsTxt : ''}</p><p class="detail-item indent">${ball.replace(/\.$/,'!')}${loserBall ? ` It is rare for the game ball to go to the losing side; ${mvp.name}'s performance was so dominant (a ${mvp.perfGrade||90} grade) that it could not be ignored.` : ''}`;
 
  // ----- paragraph 3: the real factors in the math, then what it means -----
  let impl = '';
@@ -3157,7 +3157,7 @@ function generateGameSummary(g, ctx){
  } else if(ctx.recHome){
   impl = `Both clubs leave with a tie in the books (${nick(g.home)} ${ctx.recHome}, ${nick(g.away)} ${ctx.recAway}).`;
  }
- const p3 = (factorParagraph(g) + ' ' + impl).trim() + (planParagraph(g) ? `</p><p class="detail-item"><b>Game plans:</b></p><p class="detail-item indent">${planParagraph(g, true)}` : '');
+ const p3 = (`${factorParagraph(g)} ${impl}`).trim() + (planParagraph(g) ? `</p><p class="detail-item"><b>Game plans:</b></p><p class="detail-item indent">${planParagraph(g, true)}` : '');
  return [p1, p2full, p2stars, p3].filter(Boolean).map(t=>`<p class="detail-item">${t}</p>`).join('');
 }
 
@@ -3330,8 +3330,8 @@ function renderHomeComparison(){
  const teams = Object.keys(TEAM_DATA).sort();
  if(!homeCmpInit){
   teams.forEach(t=>{ [selA,selB].forEach(sel=>{ const o=document.createElement('option'); o.value=t; o.textContent=t; sel.appendChild(o); }); });
-  selA.value = (currentScored[0]||{}).team || teams[0];
-  selB.value = (currentScored[1]||{}).team || teams[1];
+  selA.value = currentScored[0]?.team || teams[0];
+  selB.value = currentScored[1]?.team || teams[1];
   selA.addEventListener('change', renderHomeComparison);
   selB.addEventListener('change', renderHomeComparison);
   homeCmpInit = true;
@@ -3365,11 +3365,11 @@ function renderDepthChartHTML(slotmap, pickRounds){
  return DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>{
   const rows = slots.map(s=>{
    const e = normalizeSlotEntry(slotmap[s]);
-   const rnd = pickRounds && pickRounds[s];
-   const oop = e && e.pos && isOutOfPosition(e.pos, s);
+   const rnd = pickRounds?.[s];
+   const oop = e?.pos && isOutOfPosition(e.pos, s);
    const rndTag = rnd ? `<span class="narr" style="margin-left:6px;">R${rnd}</span>` : '';
    const oopTag = oop ? `<span class="badge badge-passfail" style="margin-left:6px;">Flexed</span>` : '';
-   return `<div class="depth-row"><span class="slotname">${LABELS[s]||s}</span><span class="${e&&e.name?'playername':'empty'}">${e&&e.name?`${e.name} (${e.ovr})`:'—'}${rndTag}${oopTag}</span></div>`;
+   return `<div class="depth-row"><span class="slotname">${LABELS[s]||s}</span><span class="${e?.name?'playername':'empty'}">${e?.name?`${e.name} (${e.ovr})`:'—'}${rndTag}${oopTag}</span></div>`;
   }).join('');
   return `<div class="depth-group ${gcls}"><h4>${gname}</h4>${rows}</div>`;
  }).join('');
@@ -3405,7 +3405,7 @@ function teamNames(){ return Object.keys(seasonState.teams); }
 function accumulatePlayerStats(teamName, players){
  const book = (seasonState.phase==='playoffs' || seasonState.phase==='complete') ? seasonState.playerStatsPO : seasonState.playerStats;
  players.forEach(p=>{
-  const key = teamName+'|'+p.name;
+  const key = `${teamName}|${p.name}`;
   const rec = book[key] || (book[key] = {team:teamName, name:p.name, group:p.group, slot:p.slot, ovr:p.ovr, st:{}, gp:0});
   rec.gp++; rec.zSum = (rec.zSum||0) + p.impact;
   const before = {}; Object.keys(SEASON_RECORD_CAPS).forEach(k=>{ before[k] = rec.st[k]||0; });
@@ -3424,10 +3424,10 @@ function playGame(g, isPlayoff){
  g.detail = buildGameDetail(g, hs, as);
  accumulatePlayerStats(g.home, g.detail.home.players);
  accumulatePlayerStats(g.away, g.detail.away.players);
- if(!isPlayoff){ const RD = seasonState.runDir = seasonState.runDir || {}; ['home','away'].forEach(sd=>{ const t = g[sd], rd = g.detail[sd].plays && g.detail[sd].plays.runDir; if(!rd) return; const T = RD[t] = RD[t] || {L:{car:0,yds:0},M:{car:0,yds:0},R:{car:0,yds:0}}; ['L','M','R'].forEach(d=>{ T[d].car += rd[d].car; T[d].yds += rd[d].yds; }); }); }
+ if(!isPlayoff){ const RD = seasonState.runDir = seasonState.runDir || {}; ['home','away'].forEach(sd=>{ const t = g[sd], rd = g.detail[sd].plays?.runDir; if(!rd) return; const T = RD[t] = RD[t] || {L:{car:0,yds:0},M:{car:0,yds:0},R:{car:0,yds:0}}; ['L','M','R'].forEach(d=>{ T[d].car += rd[d].car; T[d].yds += rd[d].yds; }); }); }
  g.played = true; seasonState.ratingsDirty = true;
 }
-function recStr(st, t){ const s=st[t]; return `${s.wins}-${s.losses}${s.ties?'-'+s.ties:''}`; }
+function recStr(st, t){ const s=st[t]; return `${s.wins}-${s.losses}${s.ties?`-${s.ties}`:''}`; }
 function ordinalN(n){ const v = n%100; return n+((v>=11&&v<=13)?'th':({1:'st',2:'nd',3:'rd'}[n%10]||'th')); }
 // rank within a group of teams by win percentage, then point differential
 function rankAmong(st, team, group){
@@ -3447,7 +3447,7 @@ function rivalryOf(g){ const a = nick(g.home), b = nick(g.away); const r = RIVAL
 function meetingInfo(g){
  // how many times these two meet this season (schedule + playoffs), and what happened last time
  try{
-  const S = seasonState; if(!S || !S.schedule) return null;
+  const S = seasonState; if(!S?.schedule) return null;
   const pair = q => (q.home===g.home && q.away===g.away) || (q.home===g.away && q.away===g.home);
   const reg = S.schedule.filter(x=>x!==g && pair(x));
   const po = [];
@@ -3456,9 +3456,9 @@ function meetingInfo(g){
   const RKS = ['wildcard','divisional','champ','superbowl'];
   const ord = new Map();
   reg.forEach(x=>ord.set(x, x.week||0));
-  po.forEach(x=>{ const ri = RKS.findIndex(rk=>((S.playoffRounds||{})[rk]||[]).some(y=>y===x)); ord.set(x, 19+Math.max(0,ri)); });
+  po.forEach(x=>{ const ri = RKS.findIndex(rk=>(S.playoffRounds?.[rk]||[]).some(y=>y===x)); ord.set(x, 19+Math.max(0,ri)); });
   let gOrd = g.week || 0;
-  if(!gOrd) gOrd = 19 + Math.max(0, RKS.findIndex(rk=>((S.playoffRounds||{})[rk]||[]).some(y=>y===g)));
+  if(!gOrd) gOrd = 19 + Math.max(0, RKS.findIndex(rk=>(S.playoffRounds?.[rk]||[]).some(y=>y===g)));
   const others = reg.concat(po).sort((a,b)=>(ord.get(a)||0)-(ord.get(b)||0));
   const prior = others.filter(x=>x.played && x.result && (ord.get(x)||0) < gOrd);
   return {n: others.length + 1, prior: prior.length ? prior[prior.length-1] : null};
@@ -3476,14 +3476,14 @@ function meetingTagText(g){
 }
 function matchupTagHTML(g){
  const riv = rivalryOf(g);
- if(g.divisional) return `<div class="mtag mtag-div"><span class="mtag-big">DIVISION SHOWDOWN</span><span class="mtag-sub">${riv?riv+'. ':''}${meetingTagText(g)}</span></div>`;
+ if(g.divisional) return `<div class="mtag mtag-div"><span class="mtag-big">DIVISION SHOWDOWN</span><span class="mtag-sub">${riv?`${riv}. `:''}${meetingTagText(g)}</span></div>`;
  if(riv) return `<div class="mtag mtag-riv"><span class="mtag-big">RIVALRY GAME</span><span class="mtag-sub">${riv}.</span></div>`;
  return '';
 }
 
 function simulateCurrentWeek(){
- seasonState.scriptLocked = true;
- const week = seasonState.currentWeek;
+  seasonState.scriptLocked = true;
+  const week = seasonState.currentWeek;
  const games = seasonState.schedule.filter(g=>g.week===week);
  games.forEach(g=>{ if(!g.played) playGame(g,false); });
  const st = computeStandings(seasonState.schedule, teamNames());
@@ -3494,8 +3494,8 @@ function simulateCurrentWeek(){
  seasonState.weekSimulated = true;
 }
 function simRestOfSeason(){
- seasonState.scriptLocked = true;
- while(seasonState.phase==='regular'){
+  seasonState.scriptLocked = true;
+  while(seasonState.phase==='regular'){
   if(!seasonState.weekSimulated) simulateCurrentWeek();
   advanceWeek();
  }
@@ -3523,7 +3523,7 @@ function simulatePlayoffRound(){
  games.forEach(g=>{
   g.roundLabel = ROUND_LABELS[rk];
   playGame(g, true);
-  const winnerHome = g.result.homeScore>g.result.awayScore;
+  const _winnerHome = g.result.homeScore>g.result.awayScore;
   g.summary = generateGameSummary(g, rk==='superbowl' ? {champion:true} : {nextRound: NEXT_ROUND_LABEL[rk]});
  });
  if(rk==='wildcard') seasonState.playoffRounds.divisional = buildDivisionalRound(seasonState.seeds, games);
@@ -3559,7 +3559,7 @@ function userPlayoffStatus(userTeam){
  }
  return {status:'champion'};
 }
-function userPlayoffResultText(userTeam){
+function _userPlayoffResultText(userTeam){
  const s = userPlayoffStatus(userTeam);
  if(s.status==='missed') return 'missed the playoffs';
  if(s.status==='champion') return 'won the Super Bowl';
@@ -3568,7 +3568,7 @@ function userPlayoffResultText(userTeam){
 }
 
 // ---------- season stats ----------
-function seasonImpact(st){ return statImpact(st); }
+function _seasonImpact(st){ return statImpact(st); }
 function fmtN(n){ return (n||0).toLocaleString('en-US'); }
 function seasonStatLine(group, s){
  const parts = [];
@@ -3608,14 +3608,14 @@ function renderStatsTabsHTML(kind){
 }
 function wireStatsTabs(){
  ['', 'PO'].forEach(sfx=>{
-  const a=document.getElementById('statsTabYou'+sfx), b=document.getElementById('statsTabLeaders'+sfx);
+  const a=document.getElementById(`statsTabYou${sfx}`), b=document.getElementById(`statsTabLeaders${sfx}`);
   if(!a||!b) return;
-  const pa=document.getElementById('statsPaneYou'+sfx), pb=document.getElementById('statsPaneLeaders'+sfx);
+  const pa=document.getElementById(`statsPaneYou${sfx}`), pb=document.getElementById(`statsPaneLeaders${sfx}`);
   a.addEventListener('click', ()=>{ a.classList.add('active'); b.classList.remove('active'); pa.style.display='block'; pb.style.display='none'; });
   b.addEventListener('click', ()=>{ b.classList.add('active'); a.classList.remove('active'); pb.style.display='block'; pa.style.display='none'; });
-  const r1=document.getElementById('ldrBtnRtg'+sfx), r2=document.getElementById('ldrBtnStat'+sfx);
+  const r1=document.getElementById(`ldrBtnRtg${sfx}`), r2=document.getElementById(`ldrBtnStat${sfx}`);
   if(r1&&r2){
-   const p1=document.getElementById('ldrRtg'+sfx), p2=document.getElementById('ldrStat'+sfx);
+   const p1=document.getElementById(`ldrRtg${sfx}`), p2=document.getElementById(`ldrStat${sfx}`);
    r1.addEventListener('click', ()=>{ r1.classList.add('active'); r2.classList.remove('active'); p1.style.display='block'; p2.style.display='none'; });
    r2.addEventListener('click', ()=>{ r2.classList.add('active'); r1.classList.remove('active'); p2.style.display='block'; p1.style.display='none'; });
   }
@@ -3755,16 +3755,16 @@ function renderStandingsHTML(){
    html += `<div class="divtable"><h5>${div}</h5><table><thead><tr><th></th><th>W-L</th><th>PF/G</th><th>PA/G</th><th>Diff</th></tr></thead><tbody>`;
    rows.forEach(r=>{
     const gp = r.wins+r.losses+r.ties;
-    html += `<tr class="${r.team===user?'user-row':''}"><td>${r.team}</td><td class="score">${r.wins}-${r.losses}${r.ties?'-'+r.ties:''}</td><td class="narr">${gp?(r.pf/gp).toFixed(1):'—'}</td><td class="narr">${gp?(r.pa/gp).toFixed(1):'—'}</td><td class="narr">${r.diff>=0?'+':''}${r.diff}</td></tr>`;
+    html += `<tr class="${r.team===user?'user-row':''}"><td>${r.team}</td><td class="score">${r.wins}-${r.losses}${r.ties?`-${r.ties}`:''}</td><td class="narr">${gp?(r.pf/gp).toFixed(1):'—'}</td><td class="narr">${gp?(r.pa/gp).toFixed(1):'—'}</td><td class="narr">${r.diff>=0?'+':''}${r.diff}</td></tr>`;
    });
    html += `</tbody></table></div>`;
   });
   html += `</div>`;
  });
- return html + `</div></div>`;
+ return `${html}</div></div>`;
 }
 function seedLabel(g, sideKey){
- const seed = g[sideKey+'Seed'], conf = g[sideKey+'Conf'];
+ const seed = g[`${sideKey}Seed`], conf = g[`${sideKey}Conf`];
  if(!seed) return '';
  return conf ? `${conf} champion · #${seed} seed` : `Seed #${seed}`;
 }
@@ -3772,11 +3772,11 @@ function renderBracketHTML(){
  const order = ['wildcard','divisional','champ','superbowl'];
  let html = '';
  order.forEach(rk=>{
-  const games = seasonState.playoffRounds && seasonState.playoffRounds[rk];
+  const games = seasonState.playoffRounds?.[rk];
   if(!games) return;
   html += `<div class="bracket-round"><h4>${ROUND_LABELS[rk]}</h4>`;
   games.forEach(g=>{
-   const tag = (s,k)=> g[k+'Seed'] ? ` <span class="narr">(${g[k+'Conf']?g[k+'Conf']+' ':''}#${g[k+'Seed']})</span>` : '';
+   const tag = (s,k)=> g[`${k}Seed`] ? ` <span class="narr">(${g[`${k}Conf`]?`${g[`${k}Conf`]} `:''}#${g[`${k}Seed`]})</span>` : '';
    if(g.result){
     const homeWon = g.result.homeScore>g.result.awayScore;
     html += `<div class="bracket-game bg3"><span class="${!homeWon?'bg-winner':''}">${g.away}${tag(g,'away')} ${g.result.awayScore}</span><span class="narr">final</span><span class="${homeWon?'bg-winner':''}">${g.result.homeScore} ${g.home}${tag(g,'home')}</span></div>`;
@@ -3815,7 +3815,7 @@ function renderUserScheduleHTML(){
 function wireScheduleClicks(container){
  container.querySelectorAll('tr.sgrow').forEach(tr=>{
   tr.addEventListener('click', ()=>{
-   const row = document.getElementById('sg-detail-'+tr.dataset.wk);
+   const row = document.getElementById(`sg-detail-${tr.dataset.wk}`);
    if(!row) return;
    row.style.display = row.style.display==='none' ? 'table-row' : 'none';
   });
@@ -3886,12 +3886,12 @@ function renderRegularReviewView(container){
  const user = seasonUserTeam(), conf = conferenceOfTeam(user);
  const st = computeStandings(seasonState.schedule, teamNames());
  const s = st[user];
- const seedCards = ['AFC','NFC'].map(c=>`<div><h5 style="margin:0 0 6px;" class="narr">${c} playoff field</h5>${seasonState.seeds[c].map(x=>`<div class="bracket-game" style="${x.team===user?'border-color:var(--accent);':''}"><span>#${x.seed} ${x.team}</span><span class="narr">${x.wins}-${x.losses}${x.ties?'-'+x.ties:''}</span></div>`).join('')}</div>`).join('');
+ const seedCards = ['AFC','NFC'].map(c=>`<div><h5 style="margin:0 0 6px;" class="narr">${c} playoff field</h5>${seasonState.seeds[c].map(x=>`<div class="bracket-game" style="${x.team===user?'border-color:var(--accent);':''}"><span>#${x.seed} ${x.team}</span><span class="narr">${x.wins}-${x.losses}${x.ties?`-${x.ties}`:''}</span></div>`).join('')}</div>`).join('');
  const made = seasonState.seeds[conf].some(x=>x.team===user);
  let html = `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
    <h3 style="margin:0;">Regular Season Review</h3>
    <div style="display:flex;gap:8px;flex-wrap:wrap;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;padding:10px 24px;">Begin Playoffs</button>':''}<button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
-   <p class="dsub" style="margin-top:8px;">${user}: ${s.wins}-${s.losses}${s.ties?'-'+s.ties:''} · ${s.pf} PF · ${s.pa} PA</p>
+   <p class="dsub" style="margin-top:8px;">${user}: ${s.wins}-${s.losses}${s.ties?`-${s.ties}`:''} · ${s.pf} PF · ${s.pa} PA</p>
    ${generateRegularSeasonRecap()}
   </div>`;
  html += `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Playoff Picture ${made?'':'<span class="narr">(your team is out)</span>'}</h4><div class="draft-columns" style="grid-template-columns:1fr 1fr;">${seedCards}</div></div>`;
@@ -3919,9 +3919,9 @@ function renderPlayoffsView(container){
   if(status.status==='playing' && status.round===rk){
    const pg = status.game, opp = pg.home===user ? pg.away : pg.home;
    html += lineupPanelHTML() + renderPreviewPanel(pg, 'playoff') + renderScoutingHTML(opp) + renderGamePlanPanel(pg) + renderMatchupMathHTML(pg.home, pg.away, pg) + renderLineupComparisonHTML(pg.home, pg.away);
-  } else if(games && games.length){
+  } else if(games?.length){
    const feat = games.slice().sort((a,b)=>{ const sc=g=>{ const H=seasonState.unitRatings[g.home], A=seasonState.unitRatings[g.away]; return H.off+H.def+A.off+A.def; }; return sc(b)-sc(a); })[0];
-   html += `<div class="narr" style="margin:0 0 6px;">${user} isn't in the featured game of the round — here is the one everyone is talking about.</div>` + renderPreviewPanel(feat, 'playoff');
+   html += `<div class="narr" style="margin:0 0 6px;">${user} isn't in the featured game of the round — here is the one everyone is talking about.</div>${renderPreviewPanel(feat, 'playoff')}`;
   }
  } else {
   html += `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
@@ -3944,7 +3944,7 @@ function renderPlayoffsView(container){
 }
 
 // ================= SEASON FACTS & REVIEW WRITERS =================
-const PRIMARY_STAT = {QB:'passYds', RB:'rushYds', WR:'recYds', TE:'recYds', OL:'rbk', DL:'sack', LB:'tkl', DB:'dint', K:'fg'};
+const _PRIMARY_STAT = {QB:'passYds', RB:'rushYds', WR:'recYds', TE:'recYds', OL:'rbk', DL:'sack', LB:'tkl', DB:'dint', K:'fg'};
 const GROUP_PLURAL = {QB:'quarterbacks', RB:'running backs', WR:'wide receivers', TE:'tight ends', OL:'offensive linemen', DL:'defensive linemen', LB:'linebackers', DB:'defensive backs', K:'kickers'};
 const TRENCH_SLOTS = ['OT1','OT2','OG1','OG2','C','DE1','DE2','DT1','DT2'];
 const SKILL_SLOTS  = ['QB','RB1','WR1','WR2','WR3','TE1','TE2'];
@@ -4014,7 +4014,7 @@ function ensureRatings(){
  S.ratingsDirty = false; S._ratingsReady = true;
 }
 const GROUP_SINGULAR = {QB:'quarterback', RB:'running back', WR:'wide receiver', TE:'tight end', OL:'offensive lineman', DL:'defensive lineman', LB:'linebacker', DB:'defensive back', K:'kicker'};
-function playerLeagueRank(rec){ ensureRatings(); return rec._rank || 0; }
+function _playerLeagueRank(rec){ ensureRatings(); return rec._rank || 0; }
 function rankTag(rec){
  ensureRatings();
  const n = rec._rank, r = rec._rating;
@@ -4103,13 +4103,13 @@ function buildGrades(){
  });
  ['trench','skill','back7'].forEach(k=>{
   const vals = names.map(t=>out[t][k]), m = mean_(vals), s = sd_(vals) || 1;
-  names.forEach(t=>{ out[t][k+'Z'] = (out[t][k]-m)/s; });
-  names.slice().sort((a,b)=>out[b][k]-out[a][k]).forEach((t,i)=>{ out[t][k+'Rank'] = i+1; });
+  names.forEach(t=>{ out[t][`${k}Z`] = (out[t][k]-m)/s; });
+  names.slice().sort((a,b)=>out[b][k]-out[a][k]).forEach((t,i)=>{ out[t][`${k}Rank`] = i+1; });
  });
  names.forEach(t=>{ const d = out[t].trenchZ - out[t].skillZ; out[t].type = d>=0.6 ? 'trench-heavy' : d<=-0.6 ? 'skill-heavy' : 'balanced'; });
  return out;
 }
-function buildSnapshot(F){
+function _buildSnapshot(F){
  const B = buildGrades(), names = F.names, wins = names.map(n=>F.st[n].wins);
  const r = {
   trench: pearson(names.map(n=>B[n].trench), wins),
@@ -4128,7 +4128,7 @@ function buildSnapshot(F){
 // ---- paragraph fragments (shared by the regular-season review and the final season review) ----
 function fragArc(F, final){
  const {user, N, me, log, S} = F, conf = conferenceOfTeam(user), div = divisionOfTeam(user);
- const rec = `${me.wins}-${me.losses}${me.ties?'-'+me.ties:''}`, A = aOrAn(rec);
+ const rec = `${me.wins}-${me.losses}${me.ties?`-${me.ties}`:''}`, A = aOrAn(rec);
  const divRows = divisionStandings(div, F.st, S.schedule), divPlace = divRows.findIndex(r=>r.team===user)+1;
  const seedEntry = S.seeds ? S.seeds[conf].find(x=>x.team===user) : null;
  const ppgDiff = ((me.pf-me.pa)/F.gp);
@@ -4150,7 +4150,7 @@ function fragArc(F, final){
  const finish = l5w>=4 ? `They finished hot, winning ${l5w} of their last 5.` : l5w<=1 ? `They limped to the finish, going just ${l5w}-${5-l5w} down the stretch.` : `They went ${l5w}-${5-l5w} over their last five.`;
  const margin = ppgDiff>=0 ? `They outscored opponents by ${ppgDiff.toFixed(1)} points per game.` : `They were outscored by ${Math.abs(ppgDiff).toFixed(1)} points per game.`;
  // pythagorean check: did the record match the scoring margin?
- const e = 2.37, expW = F.gp * Math.pow(me.pf,e)/(Math.pow(me.pf,e)+Math.pow(me.pa,e)), actW = me.wins + me.ties*0.5, gap = actW-expW;
+ const e = 2.37, expW = F.gp * me.pf ** e/(me.pf ** e+me.pa ** e), actW = me.wins + me.ties*0.5, gap = actW-expW;
  let luck = '';
  if(gap>=1.5) luck = ` Their scoring margin was that of ${aOrAn(expW.toFixed(1))} ${expW.toFixed(1)}-win team, so the record leaned on close-game fortune.`;
  else if(gap<=-1.5) luck = ` Their scoring margin was that of ${aOrAn(expW.toFixed(1))} ${expW.toFixed(1)}-win team, so the record undersold how well they actually played.`;
@@ -4194,7 +4194,7 @@ function fragMoments(F){
 
 // The offensive line as characters: who anchored it, who leaked, and whether the running back's year was his own doing or his blockers'.
 const SIDE_OF = {OT1:'L',OG1:'L',C:'M',OG2:'R',OT2:'R'}, SIDE_NAME = {L:'left side',M:'middle',R:'right side'};
-function olStory(F){
+function _olStory(F){
  const {S, user} = F; ensureRatings();
  const mine = teamPlayerStats(user), ol = mine.filter(r=>r.group==='OL').sort((a,b)=>(b.ovr||0)-(a.ovr||0));
  if(ol.length<3) return '';
@@ -4204,7 +4204,7 @@ function olStory(F){
  out.push(`Up front, ${playerBlurb(star)} — the ${slotTxt(star)} — was the best lineman on the roster (${star.ovr} OVR)${pancake.name!==star.name?`, while ${pancake.name} led the unit with ${pancake.st.pk||0} pancakes`:`, and he also led the unit with ${star.st.pk||0} pancakes`}.`);
  const avgSa = mean_(ol.map(r=>r.st.sa||0));
  if((leaky.st.sa||0) >= avgSa+3 && (leaky.st.sa||0)>=8) out.push(`${leaky.name} (${slotTxt(leaky)}) was the leak: ${leaky.st.sa} sacks and ${leaky.st.pa||0} pressures allowed, well above the rest of the line.`);
- const rb = mine.filter(r=>r.group==='RB').sort((a,b)=>(b.st.rushYds||0)-(a.st.rushYds||0))[0], rd = S.runDir && S.runDir[user];
+ const rb = mine.filter(r=>r.group==='RB').sort((a,b)=>(b.st.rushYds||0)-(a.st.rushYds||0))[0], rd = S.runDir?.[user];
  if(rb && rd){
   const tot = ['L','M','R'].reduce((a,d)=>a+rd[d].car,0)||1, ypc = d=> rd[d].car? rd[d].yds/rd[d].car : 0, all = ['L','M','R'].reduce((a,d)=>a+rd[d].yds,0)/tot;
   const side = SIDE_OF[star.slot] || 'M', share = rd[side].car/tot, sideYpc = ypc(side);
@@ -4227,7 +4227,7 @@ function teamAdvancedHTML(){
    const t = g[sd], x = T[t], r = g.result, st = sd==='home'?r.homeStats:r.awayStats, ost = sd==='home'?r.awayStats:r.homeStats;
    const my = sd==='home'?r.homeScore:r.awayScore, op = sd==='home'?r.awayScore:r.homeScore;
    x.g++; x.to += st.turnovers; x.tk += ost.turnovers; x.top += st.top; x.run += st.rushYards; x.plays += st.rushYards+st.passYards;
-   (r[sd+'Events']||[]).forEach(e=>{ if(e.type==='TD'){ x.td++; x.tdPts += e.pts; if(e.pts===8||(e.pts===6&&e.tpTry)){ x.tpa++; if(e.pts===8) x.tpm++; } } else if(e.type==='FG'){ x.fg++; x.fgPts += 3; } });
+   (r[`${sd}Events`]||[]).forEach(e=>{ if(e.type==='TD'){ x.td++; x.tdPts += e.pts; if(e.pts===8||(e.pts===6&&e.tpTry)){ x.tpa++; if(e.pts===8) x.tpm++; } } else if(e.type==='FG'){ x.fg++; x.fgPts += 3; } });
    if(Math.abs(my-op)<=7){ x.close++; if(my>op) x.closeW++; }
    const rt = g.detail[sd].returner; if(rt) x.ret += (rt.kry||0)+(rt.pry||0);
   });
@@ -4235,34 +4235,34 @@ function teamAdvancedHTML(){
  const names = teamNames().filter(t=>T[t].g>0); if(!names.length) return '';
  const metrics = [
   ['Turnover margin per game', x=>(x.tk-x.to)/x.g, v=>(v>=0?'+':'')+v.toFixed(2), 'takeaways minus giveaways'],
-  ['Time of possession', x=>x.top/x.g, v=>Math.floor(v/60)+':'+String(Math.round(v%60)).padStart(2,'0'), 'minutes per game'],
-  ['Rushing share of yardage', x=>x.run/Math.max(x.plays,1)*100, v=>v.toFixed(0)+'%', 'how run-heavy the offense was'],
+  ['Time of possession', x=>x.top/x.g, v=>`${Math.floor(v/60)}:${String(Math.round(v%60)).padStart(2,'0')}`, 'minutes per game'],
+  ['Rushing share of yardage', x=>x.run/Math.max(x.plays,1)*100, v=>`${v.toFixed(0)}%`, 'how run-heavy the offense was'],
   ['Touchdowns per game', x=>x.td/x.g, v=>v.toFixed(2), 'all touchdowns, offense and defense'],
   ['Field goals per game', x=>x.fg/x.g, v=>v.toFixed(2), 'made field goals'],
-  ['Share of points from touchdowns', x=>x.tdPts/Math.max(x.tdPts+x.fgPts,1)*100, v=>v.toFixed(0)+'%', 'the rest came from field goals'],
+  ['Share of points from touchdowns', x=>x.tdPts/Math.max(x.tdPts+x.fgPts,1)*100, v=>`${v.toFixed(0)}%`, 'the rest came from field goals'],
   ['2-Pt Conv tries', x=>x.tpa, v=>String(v), 'all season'],
-  ['2-Pt Conv success', x=>x.tpa? x.tpm/x.tpa*100 : -1, v=>v<0?'—':v.toFixed(0)+'%', 'made out of tried'],
-  ['Win rate in one-score games', x=>x.close? x.closeW/x.close*100 : -1, v=>v<0?'—':v.toFixed(0)+'%', 'games decided by 7 or fewer'],
+  ['2-Pt Conv success', x=>x.tpa? x.tpm/x.tpa*100 : -1, v=>v<0?'—':`${v.toFixed(0)}%`, 'made out of tried'],
+  ['Win rate in one-score games', x=>x.close? x.closeW/x.close*100 : -1, v=>v<0?'—':`${v.toFixed(0)}%`, 'games decided by 7 or fewer'],
   ['Return yards per game', x=>x.ret/x.g, v=>v.toFixed(0), 'kick and punt returns']
  ];
  const rows = metrics.map(([label,f,fmt,note])=>{
   const vals = names.map(t=>({t, v:f(T[t])})).sort((a,b)=>b.v-a.v);
   const mine = vals.findIndex(x=>x.t===user)+1, lg = vals.reduce((a,x)=>a+x.v,0)/vals.length, best = vals[0], um = vals.find(x=>x.t===user).v;
-  return `<tr><td>${label}<div class="narr">${note}</div></td><td class="score ub">${fmt(um)}</td><td class="score">${mine?('#'+mine):'—'}</td><td class="score">${fmt(lg)}</td><td>${nick(best.t)} <span class="narr">${fmt(best.v)}</span></td></tr>`;
+  return `<tr><td>${label}<div class="narr">${note}</div></td><td class="score ub">${fmt(um)}</td><td class="score">${mine?(`#${mine}`):'—'}</td><td class="score">${fmt(lg)}</td><td>${nick(best.t)} <span class="narr">${fmt(best.v)}</span></td></tr>`;
  }).join('');
  const lgTry = names.reduce((a,t)=>a+T[t].tpa,0), lgMade = names.reduce((a,t)=>a+T[t].tpm,0);
  return `<details class="panel" style="margin-bottom:14px;" open><summary style="cursor:pointer;font-weight:700;">More advanced stats: how your team scored and protected the ball</summary>
   <table><thead><tr><th>Stat</th><th>${nick(user)}</th><th>Rank</th><th>League avg</th><th>League best</th></tr></thead><tbody>${rows}</tbody></table>
-  <p class="narr" style="margin:8px 0 0;">League-wide there were ${lgTry} 2-Pt Conv tries and ${lgMade} were made (${lgTry?Math.round(lgMade/lgTry*100):0}%). Your game-day aggressiveness setting was <b>${AGGR_INFO[(S.aggr||{})[user]||'balanced'].label}</b>.</p></details>`;
+  <p class="narr" style="margin:8px 0 0;">League-wide there were ${lgTry} 2-Pt Conv tries and ${lgMade} were made (${lgTry?Math.round(lgMade/lgTry*100):0}%). Your game-day aggressiveness setting was <b>${AGGR_INFO[S.aggr?.[user]||'balanced'].label}</b>.</p></details>`;
 }
 function advancedStatsHTML(){
- const S = seasonState, user = seasonUserTeam(), cn = {rush:'individual pass rush', ol:'a weak offensive line', cov:'coverage (the quarterback held the ball)'};
+ const S = seasonState, user = seasonUserTeam(), _cn = {rush:'individual pass rush', ol:'a weak offensive line', cov:'coverage (the quarterback held the ball)'};
  const tally = (team, key)=>{ const c = {rush:0, ol:0, cov:0}; S.schedule.forEach(g=>{ if(!g.played||!g.detail) return; ['home','away'].forEach(sd=>{ if(g[sd]===team && g.detail[sd].sackCauses) g.detail[sd].sackCauses[key].forEach(x=>{ c[x] = (c[x]||0)+1; }); }); }); return c; };
  const leagueShare = key=>{ const c = {rush:0, ol:0, cov:0}; teamNames().forEach(t=>{ const x = tally(t,key); ['rush','ol','cov'].forEach(k=>{ c[k] += x[k]; }); }); const n = c.rush+c.ol+c.cov||1; return {rush:c.rush/n, ol:c.ol/n, cov:c.cov/n, n}; };
  const made = tally(user,'made'), taken = tally(user,'taken'), lgm = leagueShare('made');
  const nm = made.rush+made.ol+made.cov, nt = taken.rush+taken.ol+taken.cov;
  if(!nm && !nt) return '';
- const pct = (v,n)=> n? Math.round(v/n*100)+'%' : '\u2014';
+ const pct = (v,n)=> n? `${Math.round(v/n*100)}%` : '\u2014';
  const mine = teamPlayerStats(user);
  const dl = mine.filter(r=>r.group==='DL').sort((a,b)=>(b.st.sack||0)-(a.st.sack||0));
  const dlRows = dl.map(r=>{ const gp = Math.max(r.gp,1), e = r.st.skE||0, o = r.st.skO||0, c = r.st.skC||0, tot = e+o+c||1;
@@ -4310,7 +4310,7 @@ function fragOffense(F){
  if(qb) bits.push(`${playerBlurb(qb)} ran the show`);
  if(rb) bits.push(`${playerBlurb(rb)} carried the ground game`);
  if(rec) bits.push(`${playerBlurb(rec)} was the top target`);
- return `${s1} ${s2} ${bits.length ? bits.join('; ') + '.' : ''}`;
+ return `${s1} ${s2} ${bits.length ? `${bits.join('; ')}.` : ''}`;
 }
 
 // Why did the scoreboard disagree with the ratings? Split points allowed into ratings, schedule, game plans and luck.
@@ -4333,7 +4333,7 @@ function defenseWhy(F){
  const n = games.length; withSched /= n; withPlans /= n; actual /= n; homeAdj /= n;
  const schedFx = withSched - homeAdj - myNraw, planFx = withPlans - withSched;
  const paRank = rankIn(T,'pa',user,true), sg = v=>Math.abs(v)<0.05 ? '0.0' : (v>=0?'+':'\u2212')+Math.abs(v).toFixed(1);
- const avgOppOff = mean_(games.map(g=>(function(r){ return 0.6*r.passOff+0.4*r.runOff; })(S.unitRanks[g.home===user?g.away:g.home])));
+ const avgOppOff = mean_(games.map(g=>((r)=> 0.6*r.passOff+0.4*r.runOff)(S.unitRanks[g.home===user?g.away:g.home])));
  const gap = actual - myN, luck = gap - schedFx - planFx;
  if(Math.abs(paRank-rankN)<5 && Math.abs(gap)<1.5) return ` The scoreboard matched the ratings: the units projected to about ${myN.toFixed(1)} points allowed per game (#${rankN} in the league) and they allowed ${actual.toFixed(1)} (#${paRank}).`;
  const parts = [];
@@ -4370,8 +4370,8 @@ function offenseWhy(F){
  return `<b>Offense, ${gap>=0?'better':'worse'} than the ratings:</b> from the units alone the offense projected to about ${myN.toFixed(1)} points a game (#${rankN}), and it scored ${actual.toFixed(1)} (#${pfRank}), a gap of ${sg(gap)}. Breaking that down: ${joinList(parts)}.`;
 }
 function recordWhy(F){
- const me = F.me || (F.st && F.st[F.user]); if(!me || !F.gp) return '';
- const e = 2.37, expW = F.gp*Math.pow(me.pf,e)/(Math.pow(me.pf,e)+Math.pow(me.pa,e)), actW = me.wins + me.ties*0.5, gap = actW-expW;
+ const me = F.me || (F.st?.[F.user]); if(!me || !F.gp) return '';
+ const e = 2.37, expW = F.gp*me.pf ** e/(me.pf ** e+me.pa ** e), actW = me.wins + me.ties*0.5, gap = actW-expW;
  if(Math.abs(gap)<1) return `<b>Record:</b> ${actW} wins is about what the ${me.pf}\u2013${me.pa} scoring margin predicts (${expW.toFixed(1)}), so the record is an honest picture of the team.`;
  return `<b>Record, ${gap>0?'better':'worse'} than the scoring margin says:</b> the ${me.pf}\u2013${me.pa} scoring margin is what a ${expW.toFixed(1)}-win team usually produces, but they won ${actW}. ${gap>0?'Close games broke their way.':'Close games went against them: the margin was good enough for more wins.'}`;
 }
@@ -4388,7 +4388,7 @@ function passRushWhy(F){
 }
 function whyBoxHTML(F){
  let parts = [];
- try{ const dw = (defenseWhy(F)||'').trim(); parts = [offenseWhy(F), (dw && !/^<b>Why/.test(dw) ? '<b>Defense:</b> '+dw : dw).replace(/^\s*<b>Why (worse|better) than the ratings\?<\/b>/, m=>`<b>Defense, ${/worse/.test(m)?'worse':'better'} than the ratings:</b>`), recordWhy(F), passRushWhy(F)].filter(Boolean); }catch(e){ parts = []; }
+ try{ const dw = (defenseWhy(F)||'').trim(); parts = [offenseWhy(F), (dw && !/^<b>Why/.test(dw) ? `<b>Defense:</b> ${dw}` : dw).replace(/^\s*<b>Why (worse|better) than the ratings\?<\/b>/, m=>`<b>Defense, ${/worse/.test(m)?'worse':'better'} than the ratings:</b>`), recordWhy(F), passRushWhy(F)].filter(Boolean); }catch(e){ parts = []; }
  if(!parts.length) return '';
  return `<details class="panel" style="margin:10px 0;"><summary style="cursor:pointer;font-weight:700;">Why better or worse than the ratings?</summary><div style="margin-top:8px;">${parts.map(p=>`<p class="detail-item">${p}</p>`).join('')}</div></details>`;
 }
@@ -4410,14 +4410,14 @@ function fragDefense(F){
  const wv = r=> r ? (slotWinsPerOvr()[r.slot]||0)*((r.ovr||80)-70) : -9;
  const cand = [[dl,'led the rush'],[lb,'led the middle of the defense'],[db,db&&/^CB/.test(db.slot||'')?'locked down the outside':'anchored the back end']].filter(x=>x[0]).sort((a,b)=>wv(b[0])-wv(a[0]));
  const bits = cand.map(([r,t])=>`${playerBlurb(r)} ${t}`);
- return `${s1} ${s2} ${bits.length ? bits.join('; ') + '.' : ''}`;
+ return `${s1} ${s2} ${bits.length ? `${bits.join('; ')}.` : ''}`;
 }
-function fragPlayoffRun(F){
+function _fragPlayoffRun(F){
  const plog = userPlayoffLog(), {N, user, S} = F;
- const sb = S.playoffRounds && S.playoffRounds.superbowl && S.playoffRounds.superbowl[0];
+ const sb = S.playoffRounds?.superbowl?.[0];
  const champ = S.champion===user;
  let sbLine = '';
- if(sb && sb.result && !champ){
+ if(sb?.result && !champ){
   const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away, l = w===sb.home ? sb.away : sb.home;
   const ws = Math.max(sb.result.homeScore, sb.result.awayScore), ls = Math.min(sb.result.homeScore, sb.result.awayScore);
   sbLine = ` The ${nick(w)} went on to win the Super Bowl, beating the ${nick(l)} ${ws}–${ls}.`;
@@ -4436,7 +4436,7 @@ function fragPlayoffRun(F){
 function fragAwards(F){
  const user = F.user, counts = {};
  const all = F.S.schedule.filter(g=>g.played && (g.home===user||g.away===user)).map(g=>g.detail.mvp);
- ['wildcard','divisional','champ','superbowl'].forEach(rk=>{ (F.S.playoffRounds&&F.S.playoffRounds[rk]||[]).forEach(g=>{ if(g.result && (g.home===user||g.away===user)) all.push(g.detail.mvp); }); });
+ ['wildcard','divisional','champ','superbowl'].forEach(rk=>{ (F.S.playoffRounds?.[rk]||[]).forEach(g=>{ if(g.result && (g.home===user||g.away===user)) all.push(g.detail.mvp); }); });
  all.filter(m=>m.team===user).forEach(m=>{ counts[m.name]=(counts[m.name]||{n:0,group:m.group}); counts[m.name].n++; });
  const top = Object.entries(counts).sort((a,b)=>b[1].n-a[1].n).slice(0,3);
  const total = top.reduce((s,x)=>s+x[1].n,0);
@@ -4457,7 +4457,7 @@ function fragOutlook(F, final){
 
 // ================= STORY DATA LAYER: form, history, swings, unit values =================
 const OPPOSING = {olRun:'frontRun', rb:'frontRun', frontRun:'olRun', olPass:'passRush', passRush:'olPass', rec:'coverage', coverage:'rec', qb:'coverage', kicker:'kicker'};
-const SLOT_UNIT = {QB:'qb', RB1:'rb', RB2:'rb', WR1:'rec', WR2:'rec', WR3:'rec', TE1:'rec', TE2:'rec', OT1:'olPass', OT2:'olPass', OG1:'olPass', OG2:'olPass', C:'olPass',
+const _SLOT_UNIT = {QB:'qb', RB1:'rb', RB2:'rb', WR1:'rec', WR2:'rec', WR3:'rec', TE1:'rec', TE2:'rec', OT1:'olPass', OT2:'olPass', OG1:'olPass', OG2:'olPass', C:'olPass',
  DE1:'passRush', DE2:'passRush', DT1:'frontRun', DT2:'frontRun', MIKE:'frontRun', WILL:'frontRun', SAM:'frontRun', CB1:'coverage', CB2:'coverage', CB3:'coverage', SS:'coverage', FS:'coverage', K:'kicker'};
 function teamOfSide(g, side){ return side==='home' ? g.home : g.away; }
 function scoreFor(g, team){ const home = g.home===team; return {fs: home?g.result.homeScore:g.result.awayScore, os: home?g.result.awayScore:g.result.homeScore, opp: home?g.away:g.home, home}; }
@@ -4465,13 +4465,13 @@ function teamPlayedGames(team){
  const S = seasonState;
  const out = S.schedule.filter(g=>g.played && (g.home===team||g.away===team)).sort((a,b)=>a.week-b.week);
  ['wildcard','divisional','champ','superbowl'].forEach(rk=>{
-  ((S.playoffRounds && S.playoffRounds[rk]) || []).forEach(g=>{ if(g.result && g.detail && (g.home===team||g.away===team)) out.push(g); });
+  ((S.playoffRounds?.[rk]) || []).forEach(g=>{ if(g.result && g.detail && (g.home===team||g.away===team)) out.push(g); });
  });
  return out;
 }
 function playoffGamesOf(team){ return teamPlayedGames(team).filter(g=>g.roundLabel); }
 function h2hGames(a, b){ return seasonState.schedule.filter(g=>g.played && ((g.home===a&&g.away===b)||(g.home===b&&g.away===a))); }
-function h2hGame(a,b){ return h2hGames(a,b)[0]||null; }
+function _h2hGame(a,b){ return h2hGames(a,b)[0]||null; }
 
 function recentForm(team, n){
  const games = teamPlayedGames(team).slice(-n), agg = {};
@@ -4491,13 +4491,13 @@ function recentForm(team, n){
 }
 function formLine(a){
  const s = a.st, n = a.n, pl = (v,w)=>`${v} ${w}${v===1?'':'s'}`, G = a.group;
- if(G==='QB') return `${fmtN(s.passYds||0)} yards, ${pl(s.passTD||0,'touchdown')} and ${pl(s.int||0,'interception')} ${n===1?'in the last game':'over the last '+n+' games'}`;
- if(G==='RB') return `${fmtN(s.rushYds||0)} rushing yards and ${pl(s.rushTD||0,'touchdown')} ${n===1?'in the last game':'over the last '+n+' games'}`;
- if(G==='WR'||G==='TE') return `${fmtN(s.recYds||0)} receiving yards and ${pl(s.recTD||0,'touchdown')}${s.tgt?` on ${s.rec||0} catches from ${s.tgt} targets`:''} ${n===1?'in the last game':'over the last '+n+' games'}`;
- if(G==='DL') return `${pl(s.sack||0,'sack')} and ${pl(s.tkl||0,'tackle')} ${n===1?'in the last game':'over the last '+n+' games'}`;
- if(G==='LB') return `${pl(s.tkl||0,'tackle')} and ${pl(s.sack||0,'sack')} ${n===1?'in the last game':'over the last '+n+' games'}`;
- if(G==='DB') return `${pl(s.dint||0,'interception')} and ${pl(s.tkl||0,'tackle')} ${n===1?'in the last game':'over the last '+n+' games'}`;
- return `${pl(s.fg||0,'field goal')} ${n===1?'in the last game':'over the last '+n+' games'}`;
+ if(G==='QB') return `${fmtN(s.passYds||0)} yards, ${pl(s.passTD||0,'touchdown')} and ${pl(s.int||0,'interception')} ${n===1?'in the last game':`over the last ${n} games`}`;
+ if(G==='RB') return `${fmtN(s.rushYds||0)} rushing yards and ${pl(s.rushTD||0,'touchdown')} ${n===1?'in the last game':`over the last ${n} games`}`;
+ if(G==='WR'||G==='TE') return `${fmtN(s.recYds||0)} receiving yards and ${pl(s.recTD||0,'touchdown')}${s.tgt?` on ${s.rec||0} catches from ${s.tgt} targets`:''} ${n===1?'in the last game':`over the last ${n} games`}`;
+ if(G==='DL') return `${pl(s.sack||0,'sack')} and ${pl(s.tkl||0,'tackle')} ${n===1?'in the last game':`over the last ${n} games`}`;
+ if(G==='LB') return `${pl(s.tkl||0,'tackle')} and ${pl(s.sack||0,'sack')} ${n===1?'in the last game':`over the last ${n} games`}`;
+ if(G==='DB') return `${pl(s.dint||0,'interception')} and ${pl(s.tkl||0,'tackle')} ${n===1?'in the last game':`over the last ${n} games`}`;
+ return `${pl(s.fg||0,'field goal')} ${n===1?'in the last game':`over the last ${n} games`}`;
 }
 function hotCold(team, n){
  const f = recentForm(team, n||3);
@@ -4519,7 +4519,7 @@ function gameSwingList(g){
  ['home','away'].forEach(offSide=>{
   ex[offSide].swings.forEach(sw=>{
    const owner = sw.owner==='off' ? offSide : (offSide==='home'?'away':'home');
-   const key = owner+'|'+sw.unit;
+   const key = `${owner}|${sw.unit}`;
    (agg[key] = agg[key] || {ownerSide:owner, unit:sw.unit, pts:0}).pts += sw.pts;
   });
  });
@@ -4534,9 +4534,9 @@ function planFxLive(g, side){
  const m = matchupModel(O, D, lg, {off:own.off, def:opp.def}), n = matchupModel(O, D, lg, {off:NEUTRAL_OFF, def:opp.def});
  return {pts:m.structPts-n.structPts, to:m.lamTO/n.lamTO-1, sack:m.lamSack/n.lamSack-1, m};
 }
-function pctAbs(v){ return Math.abs(v*100).toFixed(0)+'%'; }
+function pctAbs(v){ return `${Math.abs(v*100).toFixed(0)}%`; }
 // "your defense" when the opponent is the user's team, otherwise "the Falcons' defense"
-function defOf(t){ return t===seasonUserTeam() ? 'your defense' : poss('the '+nick(t))+' defense'; }
+function defOf(t){ return t===seasonUserTeam() ? 'your defense' : `${poss(`the ${nick(t)}`)} defense`; }
 function playoffMissed(){ try{ return !!seasonState && !!seasonState.seeds && userPlayoffStatus(seasonUserTeam()).status==='missed'; }catch(e){ return false; } }
 function planWhy(g, side){
  const S = seasonState, home = side==='home', team = home?g.home:g.away, oppT = home?g.away:g.home;
@@ -4557,7 +4557,7 @@ function planWhy(g, side){
  } else why.push(`neither the run nor the pass has a clear edge in this matchup, so a balanced mix is the safest call`);
  if(po.pers!=='11'){
   const te = PERS[po.pers].long;
-  if(po.pers==='12'||po.pers==='22') why.push(`the pair of tight ends (${t1?t1.name+' '+t1.ovr:'—'} and ${t2?t2.name+' '+t2.ovr:'a replacement-level TE2'}) can do the job`);
+  if(po.pers==='12'||po.pers==='22') why.push(`the pair of tight ends (${t1?`${t1.name} ${t1.ovr}`:'—'} and ${t2?`${t2.name} ${t2.ovr}`:'a replacement-level TE2'}) can do the job`);
   if(po.pers==='13') why.push(`the roster has no third tight end, so the model plugs in a generic 70 for 13 personnel`);
   if(po.pers==='21'||po.pers==='22') why.push(`the second back adds a lead blocker and a change of pace`);
  }
@@ -4566,7 +4566,7 @@ function planWhy(g, side){
 // What a change of personnel actually changes: who leaves the field, who comes on, and what that does to run blocking and receiving.
 function persSwapWhy(team, oppT, from, to){
  const S = seasonState, sm = S.teams[team].slotmap, R = S.unitRatings[team], rk = S.unitRanks[oppT];
- const dg = p=>({r:+p[0], t:+p[1], w:5-p[0]-p[1]})[0], cnt = p=>({rb:+p[0], te:+p[1], wr:5-p[0]-p[1]});
+ const _dg = p=>({r:+p[0], t:+p[1], w:5-p[0]-p[1]})[0], cnt = p=>({rb:+p[0], te:+p[1], wr:5-p[0]-p[1]});
  const a = cnt(from), b = cnt(to), nm = (sl)=>{ const e = effEntry(sm, sl); return e ? `${e.name} (${e.ovr})` : 'a replacement-level player'; };
  const out = [], inn = [];
  if(b.wr<a.wr){ const k = a.wr-b.wr; out.push(k===1 ? `the third receiver ${nm('WR3')}` : `two receivers (${nm('WR2')} and ${nm('WR3')})`); }
@@ -4585,10 +4585,10 @@ function persSwapWhy(team, oppT, from, to){
 function deviationWhy(g, side){
  const S = seasonState, home = side==='home', team = home?g.home:g.away, oppT = home?g.away:g.home, lg = S.league;
  const R = S.unitRatings[team], O = S.unitRatings[oppT], id = S.identity[team];
- const pl = (g.result && g.result.plans) || g.plans, own = pl[side].off, od = pl[home?'away':'home'].def, oppOff = pl[home?'away':'home'].off;
+ const pl = (g.result?.plans) || g.plans, own = pl[side].off, od = pl[home?'away':'home'].def, oppOff = pl[home?'away':'home'].off;
  const a = matchupModel(R, O, lg, {off:own, def:od}), u = matchupModel(R, O, lg, {off:id.off, def:od});
  const dPts = a.structPts-u.structPts, rk = S.unitRanks[oppT], rm = S.unitRanks[team];
- const N = 'the '+nick(oppT), bits = [];
+ const N = `the ${nick(oppT)}`, bits = [];
  if(own.strat!==id.off.strat){
   if(own.strat==='run'){
    if(rk.frontRun>=18) bits.push(`${N} run defense ranks only #${rk.frontRun}`);
@@ -4603,7 +4603,7 @@ function deviationWhy(g, side){
   } else bits.push(`neither the run nor the pass had a clear edge, so they went back to a balanced mix`);
  }
  if(own.pers!==id.off.pers){
-  const [t1,t2] = teTwo(team), sm = S.teams[team].slotmap, w3 = effEntry(sm,'WR3');
+  const [t1,t2] = teTwo(team), sm = S.teams[team].slotmap, _w3 = effEntry(sm,'WR3');
   bits.push(persSwapWhy(team, oppT, id.off.pers, own.pers));
  }
  const size = Math.abs(dPts)<0.15 ? 'a near coin-flip on paper, with the model leaning very slightly to the change' : `about ${Math.abs(dPts).toFixed(1)} points a game ${dPts>=0?'better':'worse'} than the coaching philosophy on paper (${(a.expRush-u.expRush>=0?'+':'−')+Math.abs(a.expRush-u.expRush).toFixed(0)} rushing and ${(a.expPass-u.expPass>=0?'+':'−')+Math.abs(a.expPass-u.expPass).toFixed(0)} passing yards)`;
@@ -4611,7 +4611,7 @@ function deviationWhy(g, side){
 }
 function defDeviationWhy(g, side){
  const S = seasonState, home = side==='home', team = home?g.home:g.away, oppT = home?g.away:g.home, id = S.identity[team];
- const pl = (g.result && g.result.plans) || g.plans, own = pl[side].def, oppOff = pl[home?'away':'home'].off, rk = S.unitRanks[oppT];
+ const pl = (g.result?.plans) || g.plans, own = pl[side].def, oppOff = pl[home?'away':'home'].off, rk = S.unitRanks[oppT];
  const bits = [];
  if(own.pkg!==id.def.pkg) bits.push(own.pkg==='base' ? `${nick(oppT)} lean on the run (${planText(oppOff)})` : `${nick(oppT)} want to throw (${planText(oppOff)}, receivers ranked #${rk.rec})`);
  if(own.focus!==id.def.focus) bits.push(own.focus==='pass' ? `their passing game is the bigger threat (receivers #${rk.rec})` : own.focus==='run' ? `their ground game is the bigger threat (run blocking #${rk.olRun})` : `neither side of their offense stood out, so they played it straight`);
@@ -4637,7 +4637,7 @@ function planParagraph(g, paras){
  const r = g.result; if(!r.plans || !g.detail) return '';
  const S = seasonState, out = [], user = seasonUserTeam();
  ['home','away'].forEach(side=>{
-  const team = side==='home'?g.home:g.away, N = 'the '+nick(team), pl = r.plans[side], fx = r.planFx[side], id = S.identity[team], plays = g.detail[side].plays;
+  const team = side==='home'?g.home:g.away, N = `the ${nick(team)}`, pl = r.plans[side], fx = r.planFx[side], id = S.identity[team], plays = g.detail[side].plays;
   const usual = JSON.stringify(pl.off)===JSON.stringify(id.off);
   const mix = plays ? ` (${plays.rush} runs to ${plays.pass} dropbacks, ${(plays.runPct*100).toFixed(0)}% rushing)` : '';
   let s = usual
@@ -4646,14 +4646,14 @@ function planParagraph(g, paras){
   if(pl.off.strat==='run') s += ` The model valued the run-heavy approach at ${fx.pts>=0?'+':'−'}${Math.abs(fx.pts).toFixed(1)} points against a plain balanced approach, with giveaways down about ${pctAbs(fx.to)} and a narrower range of outcomes.`;
   else if(pl.off.strat==='pass') s += ` It carried the usual risk: ${fx.pts>=0?'+':'−'}${Math.abs(fx.pts).toFixed(1)} points against a balanced plan, but giveaways up about ${pctAbs(fx.to)} and sacks up about ${pctAbs(fx.sack)}.`;
   else if(pl.off.pers!=='11') s += ` The formation alone was worth ${fx.pts>=0?'+':'−'}${Math.abs(fx.pts).toFixed(1)} points against a plain 11-personnel look.`;
-  if(g.scouted && g.scouted[side]) s += ` The ${nick(side==='home'?g.away:g.home)} had seen this new look on film and planned for it.`;
+  if(g.scouted?.[side]) s += ` The ${nick(side==='home'?g.away:g.home)} had seen this new look on film and planned for it.`;
   out.push(s);
  });
  const dsides = ['home','away'].map(side=>{ const team = side==='home'?g.home:g.away, pd = r.plans[side].def; return `the ${nick(team)} (${defPlanText(pd)})`; });
  out.push(`On defense, ${dsides[0]} lined up against ${dsides[1]}.`);
- ['home','away'].forEach(side=>{ const team = side==='home'?g.home:g.away; if(JSON.stringify(r.plans[side].def)!==JSON.stringify(S.identity[team].def)){ const t = defDeviationWhy(g, side); if(t) out.push(`${capFirst('the '+nick(team))}: ${t}`); } });
- if(r.script && r.script.trailFrom){
-  const sc = r.script, team = sc.trail==='home'?g.home:g.away, N = 'the '+nick(team), won = (sc.trail==='home') ? r.homeScore>r.awayScore : r.awayScore>r.homeScore;
+ ['home','away'].forEach(side=>{ const team = side==='home'?g.home:g.away; if(JSON.stringify(r.plans[side].def)!==JSON.stringify(S.identity[team].def)){ const t = defDeviationWhy(g, side); if(t) out.push(`${capFirst(`the ${nick(team)}`)}: ${t}`); } });
+ if(r.script?.trailFrom){
+  const sc = r.script, team = sc.trail==='home'?g.home:g.away, N = `the ${nick(team)}`, won = (sc.trail==='home') ? r.homeScore>r.awayScore : r.awayScore>r.homeScore;
   const wasRun = offShift(sc.trailFrom) > 0.03;
   out.push(won
    ? `${capFirst(N)} fell behind and opened up late${wasRun?', abandoning a run-heavy script':''}, throwing their way to the comeback — the game script never boxed them in.`
@@ -4668,7 +4668,7 @@ function styleParagraph(team){
  let t = `Style: ${capFirst(offStyleName(id.off))} on offense (${planText(id.off)}) and ${aStyle(defStyleName(id.def))} on defense (${defPlanText(id.def)}).`;
  if(games.length>=2){
   const cnt = {}, sc = {run:0,pass:0,neutral:0}; let nick_ = 0, fx = 0, fxn = 0;
-  games.forEach(g=>{ const side = g.home===team?'home':'away', po = g.plans[side].off, pd = g.plans[side].def; cnt[po.pers] = (cnt[po.pers]||0)+1; sc[po.strat]++; if(pd.pkg==='nickel') nick_++; if(g.result && g.result.planFx){ fx += g.result.planFx[side].pts; fxn++; } });
+  games.forEach(g=>{ const side = g.home===team?'home':'away', po = g.plans[side].off, pd = g.plans[side].def; cnt[po.pers] = (cnt[po.pers]||0)+1; sc[po.strat]++; if(pd.pkg==='nickel') nick_++; if(g.result?.planFx){ fx += g.result.planFx[side].pts; fxn++; } });
   const top = Object.entries(cnt).sort((a,b)=>b[1]-a[1]);
   t += ` Through ${games.length} games they have used ${joinList(top.map(([p,n])=>`${p} personnel ${n} time${n===1?'':'s'}`))}; ${sc.run} run-heavy, ${sc.pass} pass-heavy and ${sc.neutral} balanced game plans, with nickel on defense ${nick_} times.`;
   if(fxn) t += ` Cumulatively the game plans were worth ${fx>=0?'+':'−'}${Math.abs(fx).toFixed(1)} points against a plain 11-personnel, balanced approach.`;
@@ -4679,7 +4679,7 @@ function planPreviewParagraph(g){
  const S = seasonState, plans = ensureGamePlans(g), parts = [];
  const A = g.away, H = g.home;
  const sideTxt = (side)=>{
-  const team = side==='home'?H:A, N = 'the '+nick(team), po = plans[side].off, id = S.identity[team];
+  const team = side==='home'?H:A, N = `the ${nick(team)}`, po = plans[side].off, id = S.identity[team];
   const why = planWhy(g, side);
   return `${capFirst(N)} are ${aStyle(offStyleName(id.off))} team by nature, and the model expects ${planText(po)} this week — ${joinList(why)}.`;
  };
@@ -4743,11 +4743,11 @@ function renderGamePlanPanel(g){
   ${planCardsHTML(g)}
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;">
    ${radio('auto','Auto (recommended)','The math picks the best plan for this matchup.')}
-   ${radio('script','My coaching philosophy',phil+'.')}
+   ${radio('script','My coaching philosophy',`${phil}.`)}
    ${radio('manual','Custom','Choose each piece yourself.')}
   </div>
   ${manual?`<div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:10px;">
-   ${sel('planPers','Personnel',Object.keys(PERS).map(k=>[k,PERS[k].label+' — '+PERS[k].long]),u.pers)}
+   ${sel('planPers','Personnel',Object.keys(PERS).map(k=>[k,`${PERS[k].label} — ${PERS[k].long}`]),u.pers)}
    ${sel('planStrat','Run/pass lean',[['run','Run-heavy'],['neutral','Balanced'],['pass','Pass-heavy']],u.strat)}
    ${sel('planPkg','Defensive package',[['base','Base'],['nickel','Nickel']],u.pkg)}
    ${sel('planFocus','Defensive focus',[['run','Run defense'],['neutral','Balanced'],['pass','Pass defense']],u.focus)}</div>`:''}
@@ -4773,7 +4773,7 @@ function topMatchupSwings(homeTeam, awayTeam, k, g){
  [['home',mh],['away',ma]].forEach(([offSide,m])=>{
   m.swings.forEach(sw=>{
    const owner = sw.owner==='off' ? offSide : (offSide==='home'?'away':'home');
-   const key = owner+'|'+sw.unit;
+   const key = `${owner}|${sw.unit}`;
    (agg[key] = agg[key] || {ownerSide:owner, unit:sw.unit, pts:0}).pts += sw.pts;
   });
  });
@@ -4842,7 +4842,7 @@ const slotName = s=> SLOT_FRIENDLY[s] || LABELS[s] || s;
 // One row per starting spot, sorted by what a 70 → 90 upgrade is worth.
 function slotRoleTableHTML(){
  const rows = slotRoleRows().map(r=>Object.assign({up:slotWins(r.slot,90)-slotWins(r.slot,70)}, r)).sort((a,b)=>b.up-a.up);
- const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
+ const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?`+${r.wpo.toFixed(3)}`:'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
  return `<table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this spot goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 // What every game-plan choice does to a league-average team, measured on the model itself.
@@ -4869,13 +4869,13 @@ function planMathHTML(){
  let off = '';
  OFF_OPTS.forEach(o=>{
   const m = matchupModel(lg, lg, lg, {off:o, def:DEFAULT_DEF});
-  off += `<tr><td>${PERS[o.pers].label}</td><td>${STRAT[o.strat].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="score">±${m.sd.toFixed(1)}</td><td class="narr">${fit[o.pers+'|'+o.strat]||''}</td></tr>`;
+  off += `<tr><td>${PERS[o.pers].label}</td><td>${STRAT[o.strat].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="score">±${m.sd.toFixed(1)}</td><td class="narr">${fit[`${o.pers}|${o.strat}`]||''}</td></tr>`;
  });
  const dfit = {'base|neutral':'Better against the run, worse in coverage. Right against run-first offenses.','base|run':'The most run-focused look. Predictable, so it pays a small penalty.','base|pass':'Base personnel that plays coverage; rarely right.','nickel|neutral':'The modern default: a third corner on the field.','nickel|run':'Nickel personnel with the focus on the run. Uncommon.','nickel|pass':'Gives up some run defense to take away the pass. Predictable, so it pays a small penalty.'};
  let def = '';
  DEF_OPTS.forEach(d=>{
   const m = matchupModel(lg, lg, lg, {off:NEUTRAL_OFF, def:d});
-  def += `<tr><td>${DEF_PKG[d.pkg].label}</td><td>${DEF_FOCUS[d.focus].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="narr">${dfit[d.pkg+'|'+d.focus]||''}</td></tr>`;
+  def += `<tr><td>${DEF_PKG[d.pkg].label}</td><td>${DEF_FOCUS[d.focus].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="narr">${dfit[`${d.pkg}|${d.focus}`]||''}</td></tr>`;
  });
  return `<h5 class="narr" style="margin:6px 0;">Offense: what each choice does to a league-average team against a league-average defense</h5>
   <table><thead><tr><th>Personnel</th><th>Strategy</th><th>Points vs. 11 balanced</th><th>Rush / pass yds</th><th>Giveaways</th><th>Sacks taken</th><th>Spread</th><th>When it is the right call</th></tr></thead><tbody>${off}</tbody></table>
@@ -4923,7 +4923,7 @@ function flexExplainHTML(){
 function valueTiersHTML(){
  const rows = ROSTER_SLOTS.map(s=>({s, w:slotWins(s,90)-slotWins(s,70)})).sort((a,b)=>b.w-a.w);
  const tiers = [['Franchise-changing', r=>r.w>=2],['High value', r=>r.w>=1&&r.w<2],['Solid value', r=>r.w>=0.7&&r.w<1],['Role players', r=>r.w>=0.3&&r.w<0.7],['Depth spots', r=>r.w<0.3]];
- return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'–'+l[l.length-1].w.toFixed(1):''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
+ return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?`–${l[l.length-1].w.toFixed(1)}`:''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
 }
 function boardMathHTML(){
  return `<p style="margin:4px 0;"><b>OVR</b> is the Madden NFL 27 overall rating. The board adds four more columns:</p>
@@ -5010,7 +5010,7 @@ function styleTablesHTML(team){
  const offRows = Object.keys(OFF_STYLE_INFO).map(k=>{ const o = resolveOffStyle(team, k); return {k, o, u:offUtil(R, lg, lg, o, exp, id.def, 0)}; }).sort((a,b)=>b.u-a.u);
  const defRows = Object.keys(DEF_STYLE_INFO).map(k=>{ const d = {pkg:DEF_STYLE_INFO[k].pkg, focus:DEF_STYLE_INFO[k].focus}; return {k, d, u:defUtil(R, lg, lg, d, exp, id.off, 0)}; }).sort((a,b)=>b.u-a.u);
  const bo = offRows[0].u, bd = defRows[0].u;
- const row = (name, setup, u, best, chosen, desc)=>`<tr style="${chosen?'background:var(--panel2);':''}"><td><b>${capFirst(name)}</b>${best===u?' <span class="badge badge-passfail" style="margin-left:4px;">math\'s pick</span>':''}${chosen?' <span class="narr">(your choice)</span>':''}<div class="narr">${desc}</div></td><td class="narr">${setup}</td><td class="score">${(u*100).toFixed(1)}%</td><td class="score">${u===best?'—':'−'+((best-u)*100).toFixed(1)+' pts'}</td></tr>`;
+ const row = (name, setup, u, best, chosen, desc)=>`<tr style="${chosen?'background:var(--panel2);':''}"><td><b>${capFirst(name)}</b>${best===u?' <span class="badge badge-passfail" style="margin-left:4px;">math\'s pick</span>':''}${chosen?' <span class="narr">(your choice)</span>':''}<div class="narr">${desc}</div></td><td class="narr">${setup}</td><td class="score">${(u*100).toFixed(1)}%</td><td class="score">${u===best?'—':`−${((best-u)*100).toFixed(1)} pts`}</td></tr>`;
  const o = offRows.map(r=>row(r.k, planText(r.o), r.u, bo, id.offChoice===r.k, OFF_STYLE_INFO[r.k].desc)).join('');
  const d = defRows.map(r=>row(r.k, defPlanText(r.d), r.u, bd, id.defChoice===r.k, DEF_STYLE_INFO[r.k].desc)).join('');
  const head = '<thead><tr><th>Style</th><th>Setup used</th><th title="Chance of beating an average team at a neutral site with this style">Win chance vs. an average team</th><th>Cost vs. the best</th></tr></thead>';
@@ -5087,9 +5087,9 @@ function slotLine(team, slot){ const e = effEntry(seasonState.teams[team].slotma
 function shortUnit(u){ return UNIT_INFO[u].short; }
 
 function identityParagraphs(team, isUser){
- const S = seasonState, rk = S.unitRanks[team], The = 'the '+nick(team);
+ const S = seasonState, rk = S.unitRanks[team], The = `the ${nick(team)}`;
  const names = teamNames(), st = computeStandings(S.schedule, names), s = st[team], gp = s.wins+s.losses+s.ties, T = teamSeasonTotals();
- const rec = `${s.wins}-${s.losses}${s.ties?'-'+s.ties:''}`;
+ const rec = `${s.wins}-${s.losses}${s.ties?`-${s.ties}`:''}`;
  const lean = rk.passOff - rk.runOff, style = lean>=7 ? 'run' : lean<=-7 ? 'pass' : 'balanced';
  const units = Object.keys(UNIT_INFO).filter(u=>u!=='kicker');
  const byRank = units.slice().sort((a,b)=>rk[a]-rk[b]), best = byRank.slice(0,2), worst = byRank.slice(-2).reverse();
@@ -5151,8 +5151,8 @@ function previewCtx(team){
  const seeds = S.seeds || computeSeeding(st, S.schedule);
  let seedInfo = null; ['AFC','NFC'].forEach(c=>{ const e = seeds[c].find(x=>x.team===team); if(e) seedInfo = {conf:c, seed:e.seed}; });
  const qbE = effEntry(S.teams[team].slotmap, 'QB');
- return {team, N:nick(team), s, gp, rec:`${s.wins}-${s.losses}${s.ties?'-'+s.ties:''}`, pct: gp ? (s.wins+s.ties*0.5)/gp : 0,
-  streak: teamStreakThrough(team, 99), hot:hc.hot, cold:hc.cold, form:hc.f, seedInfo, qbE, qbRec: qbE ? S.playerStats[team+'|'+qbE.name] : null, st};
+ return {team, N:nick(team), s, gp, rec:`${s.wins}-${s.losses}${s.ties?`-${s.ties}`:''}`, pct: gp ? (s.wins+s.ties*0.5)/gp : 0,
+  streak: teamStreakThrough(team, 99), hot:hc.hot, cold:hc.cold, form:hc.f, seedInfo, qbE, qbRec: qbE ? S.playerStats[`${team}|${qbE.name}`] : null, st};
 }
 function previewHeadline(g, mode){
  const A = nick(g.away), H = nick(g.home);
@@ -5247,12 +5247,12 @@ function regularPreview(g){
  parts.push(planPreviewParagraph(g));
  return parts.map(t=>`<p class="detail-item">${t}</p>`).join('');
 }
-function Tn(team){ return 'the '+nick(team); }
+function Tn(team){ return `the ${nick(team)}`; }
 function matchupLines(g, sw, detailed){
  const S = seasonState, used = new Set(), lines = [];
  sw.list.forEach(e=>{
   const owner = teamOfSide(g, e.ownerSide), opp = teamOfSide(g, e.ownerSide==='home'?'away':'home'), ou = OPPOSING[e.unit];
-  const key = [owner+'|'+e.unit, opp+'|'+ou].sort().join('~'); if(used.has(key)) return; used.add(key);
+  const key = [`${owner}|${e.unit}`, `${opp}|${ou}`].sort().join('~'); if(used.has(key)) return; used.add(key);
   const ur = S.unitRanks[owner][e.unit], or = S.unitRanks[opp][ou], pts = Math.abs(e.pts).toFixed(1);
   const rate = (t,u) => detailed ? `${S.unitRatings[t][u].toFixed(1)}, #${S.unitRanks[t][u]}` : `#${S.unitRanks[t][u]}`;
   if(e.pts>0){
@@ -5286,7 +5286,7 @@ function playoffPreview(g){
 
  // the road
  const road = c => {
-  const s = c.s, gp = c.gp, diff = (s.pf-s.pa)/gp, e = 2.37, expW = gp*Math.pow(s.pf,e)/(Math.pow(s.pf,e)+Math.pow(s.pa,e)), gap = s.wins+s.ties*0.5-expW;
+  const s = c.s, gp = c.gp, diff = (s.pf-s.pa)/gp, e = 2.37, expW = gp*s.pf ** e/(s.pf ** e+s.pa ** e), gap = s.wins+s.ties*0.5-expW;
   return {kind: gap>=1.5?'lucky':gap<=-1.5?'unlucky':'honest', head:`the ${c.N} went ${c.rec} (${diff>=0?'+':'−'}${Math.abs(diff).toFixed(1)} points per game)`};
  };
  const ra = road(A), rh = road(H);
@@ -5381,7 +5381,7 @@ function fragPlayoffField(F){
  const T = F.T, diffMe = (T[user].pf-T[user].pa)/F.gp, diffPo = mean_(po.map(t=>(T[t].pf-T[t].pa)/T[t].g));
  const toMe = (T[user].take-T[user].give)/F.gp, toPo = mean_(po.map(t=>(T[t].take-T[t].give)/T[t].g));
  s2 += `On the scoreboard, playoff teams averaged a ${diffPo>=0?'+':'−'}${Math.abs(diffPo).toFixed(1)} point differential and a ${toPo>=0?'+':'−'}${Math.abs(toPo).toFixed(2)} turnover margin per game; the ${N} were at ${diffMe>=0?'+':'−'}${Math.abs(diffMe).toFixed(1)} and ${toMe>=0?'+':'−'}${Math.abs(toMe).toFixed(2)}${inField?'':', which is part of why they were watching from home'}.`;
- return s1 + ' ' + s2;
+ return `${s1} ${s2}`;
 }
 function renderFieldTableHTML(){
  const F = factsBase(), S = F.S, po = playoffTeamsList(S), others = F.names.filter(n=>!po.includes(n));
@@ -5449,7 +5449,7 @@ function fragWeaknessCost(F){
 
 // ---------- final-review fragments (playoff-centered, deliberately different from the regular-season review) ----------
 function fragFinalVerdict(F){
- const {user, N, me, S} = F, rec = `${me.wins}-${me.losses}${me.ties?'-'+me.ties:''}`, champ = S.champion===user, plog = userPlayoffLog();
+ const {user, N, me, S} = F, rec = `${me.wins}-${me.losses}${me.ties?`-${me.ties}`:''}`, champ = S.champion===user, plog = userPlayoffLog();
  if(champ) return pick([`It ended the way every team in this league hopes to: the ${N} turned a ${rec} regular season into the Super Bowl title, winning ${plog.length} straight elimination games to do it.`, `A ${rec} regular season was only the opening act. The ${N} won ${plog.length} straight playoff games and finished with the trophy.`]);
  if(!plog.length) return S.seeds.AFC.concat(S.seeds.NFC).some(x=>x.team===user)
   ? `A ${rec} season earned the ${N} a first-round bye, but the bracket never handed them a game they could win.`
@@ -5476,9 +5476,9 @@ function edgeLine(game, mine, won, user, used){
  const withStar = star ? ` ${star} was at the center of it.` : '';
  const T = won
   ? (mine.pts>0 ? [
-     `The ${U} gave them the clearest advantage (about ${pts} points on paper)${star?', and '+star+' made it count':''}.`,
+     `The ${U} gave them the clearest advantage (about ${pts} points on paper)${star?`, and ${star} made it count`:''}.`,
      `${capFirst(U)} tilted the matchup their way, worth roughly ${pts} points a game over what the ${opp} could match.`,
-     `The ${U} did the quiet work that decided it${star?' \u2014 '+star+' in particular':''}.`,
+     `The ${U} did the quiet work that decided it${star?` \u2014 ${star} in particular`:''}.`,
      `On paper the ${U} was the biggest gap between the teams, and the game played out that way.${withStar}`,
      `Their ${U} outplayed the ${opp}'s answer to it, a ${pts}-point swing in the model.${withStar}`,
      `The deciding factor was the ${U}: it won its matchup and everything else could be average.${withStar}`
@@ -5489,7 +5489,7 @@ function edgeLine(game, mine, won, user, used){
   : (mine.pts>0 ? [
      `Their best pregame advantage, the ${U}, was not enough to carry them.${withStar}`,
      `The ${U} held up its end (${pts} points of edge on paper) but the other side won enough of the remaining matchups.`,
-     `They did what they could with the ${U}${star?' \u2014 '+star+' played well':''} \u2014 it just was not the part of the game that decided it.`,
+     `They did what they could with the ${U}${star?` \u2014 ${star} played well`:''} \u2014 it just was not the part of the game that decided it.`,
      `Having the better ${U} did not translate into the win; the margins elsewhere were too large.`]
    : [
      `The ${U} was the weak link the ${opp} went after, a ${pts}-point swing against them.`,
@@ -5504,8 +5504,8 @@ function edgeLine(game, mine, won, user, used){
 function fragPlayoffDeep(F){
  const {user, S} = F, plog = userPlayoffLog();
  if(!plog.length){
-  const sb = S.playoffRounds.superbowl && S.playoffRounds.superbowl[0];
-  if(sb && sb.result){ const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away; return `The bracket played out without them. The ${nick(w)} won the Super Bowl, ${Math.max(sb.result.homeScore,sb.result.awayScore)}–${Math.min(sb.result.homeScore,sb.result.awayScore)}.`; }
+  const sb = S.playoffRounds.superbowl?.[0];
+  if(sb?.result){ const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away; return `The bracket played out without them. The ${nick(w)} won the Super Bowl, ${Math.max(sb.result.homeScore,sb.result.awayScore)}–${Math.min(sb.result.homeScore,sb.result.awayScore)}.`; }
   return '';
  }
  const usedEdge = new Set();
@@ -5528,10 +5528,10 @@ function fragPlayoffVsRegular(F){
  const reg = avg(S.schedule.filter(g=>g.played && (g.home===user||g.away===user))), po = avg(pg.map(x=>x.game));
  const d = (a,b,u)=>{ const x = a-b; return `${a.toFixed(1)}${u||''} (${x>=0?'+':'−'}${Math.abs(x).toFixed(1)} vs. the regular season)`; };
  if(pg.length===1) return `In that single playoff game the offense scored ${po.pts.toFixed(0)} points (against ${reg.pts.toFixed(1)} a game in the regular season) and the defense allowed ${po.allowed.toFixed(0)} (against ${reg.allowed.toFixed(1)}). The ground game gained ${po.rush.toFixed(0)} yards (${reg.rush.toFixed(0)} per game before) and the passing game ${po.pass.toFixed(0)} (${reg.pass.toFixed(0)}); they gave the ball away ${po.give.toFixed(0)} time${po.give===1?'':'s'} and took it ${po.take.toFixed(0)}, with ${po.sacks.toFixed(0)} sack${po.sacks===1?'':'s'} allowed.`;
- return pick([
+ return `${pick([
   `January looked different. In the playoffs the offense averaged ${d(po.pts,reg.pts,' points')} and the defense allowed ${d(po.allowed,reg.allowed,'')}; the ground game produced ${po.rush.toFixed(0)} yards a game against ${reg.rush.toFixed(0)} in the regular season, the passing game ${po.pass.toFixed(0)} against ${reg.pass.toFixed(0)}.`,
   `The postseason version of the ${N} scored ${d(po.pts,reg.pts,' points a game')} and allowed ${po.allowed.toFixed(1)} (against ${reg.allowed.toFixed(1)} before). They threw for ${po.pass.toFixed(0)} a night (${reg.pass.toFixed(0)} in the regular season) and ran for ${po.rush.toFixed(0)} (${reg.rush.toFixed(0)}).`
- ]) + ` They took the ball away ${po.take.toFixed(1)} times a game and gave it up ${po.give.toFixed(1)}${po.give>reg.give+0.4?', a drift in the wrong direction':po.give<reg.give-0.4?', a tighter ship than in the regular season':''}, and absorbed ${po.sacks.toFixed(1)} sacks a game.`;
+ ])} They took the ball away ${po.take.toFixed(1)} times a game and gave it up ${po.give.toFixed(1)}${po.give>reg.give+0.4?', a drift in the wrong direction':po.give<reg.give-0.4?', a tighter ship than in the regular season':''}, and absorbed ${po.sacks.toFixed(1)} sacks a game.`;
 }
 function fragSeasonStars(F){
  const mine = teamPlayerStats(F.user);
@@ -5550,7 +5550,7 @@ function fragExitCause(F){
   const sw = gameSwingList(gm).filter(e=>teamOfSide(gm,e.ownerSide)===user && e.pts<0).sort((a,b)=>a.pts-b.pts).slice(0,2);
   const mySacks = s.home ? gm.result.homeStats.sacks : gm.result.awayStats.sacks, myTO = s.home ? gm.result.homeStats.turnovers : gm.result.awayStats.turnovers;
   const units = sw.map(e=>`the ${shortUnit(e.unit)} (#${S.unitRanks[user][e.unit]}, about ${Math.abs(e.pts).toFixed(1)} points of drag)`);
-  return `The ${lost.round} loss to the ${nick(s.opp)} had identifiable causes. ${units.length?`The model's two biggest knocks against the ${N} were ${joinList(units)}.`:`The numbers did not show a single glaring mismatch.`} They also took ${mySacks} sack${mySacks===1?'':'s'} and gave it away ${myTO} time${myTO===1?'':'s'}, and ${gm.detail.mvp.team===user?'even with a standout game from '+gm.detail.mvp.name:gm.detail.mvp.name+' ('+gm.detail.mvp.group+') made the difference for the other side'}.`;
+  return `The ${lost.round} loss to the ${nick(s.opp)} had identifiable causes. ${units.length?`The model's two biggest knocks against the ${N} were ${joinList(units)}.`:`The numbers did not show a single glaring mismatch.`} They also took ${mySacks} sack${mySacks===1?'':'s'} and gave it away ${myTO} time${myTO===1?'':'s'}, and ${gm.detail.mvp.team===user?`even with a standout game from ${gm.detail.mvp.name}`:`${gm.detail.mvp.name} (${gm.detail.mvp.group}) made the difference for the other side`}.`;
  }
  if(S.champion===user){
   const closest = plog.slice().sort((a,b)=>Math.abs(scoreFor(a.game,user).fs-scoreFor(a.game,user).os)-Math.abs(scoreFor(b.game,user).fs-scoreFor(b.game,user).os))[0];
@@ -5588,8 +5588,8 @@ function pickCritiqueHTML(inner){
  const rows = pickCritique(); if(!rows.length) return '';
  const verdict = r=> r.regret<=0.05 ? ['Best available','var(--good)'] : r.regret<=0.2 ? ['Fine','var(--sub)'] : r.regret<=0.45 ? ['Left value behind','var(--accent2)'] : ['Costly miss','var(--bad)'];
  const body = rows.map(r=>{ const [vt,col] = verdict(r);
-  return `<tr><td class="narr">R${r.round}.${String(r.pickInRound).padStart(2,'0')}</td><td>${r.player[0]} <span class="narr">${POS_DISPLAY[r.player[1]]||r.player[1]} ${r.player[3]}${r.flex?' (flexed)':''}</span></td><td>${slotName(r.slot)}</td><td class="score">${fmtWar(r.v)}</td><td>${r.best && !r.wasBest ? `${r.best.p[0]} <span class="narr">${POS_DISPLAY[r.best.p[1]]||r.best.p[1]} ${r.best.p[3]} at ${slotName(r.best.s)}, ${fmtWar(r.best.v)}</span>` : '<span class="narr">your pick</span>'}</td><td class="score">${r.regret>0.005?'\u2212'+r.regret.toFixed(2):'0.00'}</td><td style="color:${col};font-weight:600;">${vt}</td></tr>`; }).join('');
- const early = rows.filter(r=>r.round<=3).sort((a,b)=>b.regret-a.regret);
+  return `<tr><td class="narr">R${r.round}.${String(r.pickInRound).padStart(2,'0')}</td><td>${r.player[0]} <span class="narr">${POS_DISPLAY[r.player[1]]||r.player[1]} ${r.player[3]}${r.flex?' (flexed)':''}</span></td><td>${slotName(r.slot)}</td><td class="score">${fmtWar(r.v)}</td><td>${r.best && !r.wasBest ? `${r.best.p[0]} <span class="narr">${POS_DISPLAY[r.best.p[1]]||r.best.p[1]} ${r.best.p[3]} at ${slotName(r.best.s)}, ${fmtWar(r.best.v)}</span>` : '<span class="narr">your pick</span>'}</td><td class="score">${r.regret>0.005?`\u2212${r.regret.toFixed(2)}`:'0.00'}</td><td style="color:${col};font-weight:600;">${vt}</td></tr>`; }).join('');
+ const _early = rows.filter(r=>r.round<=3).sort((a,b)=>b.regret-a.regret);
  const misses = rows.slice().sort((a,b)=>b.regret-a.regret).filter(r=>r.regret>0.2).slice(0,3);
  const good = rows.filter(r=>r.wasBest && r.v>=0.5).slice(0,3);
  const lowEarly = rows.filter(r=>r.round<=3 && r.v<0.35);
@@ -5628,7 +5628,7 @@ function fragPriorities(F){
 }
 
 function generateRegularSeasonRecap(){
- const S0 = seasonState; if(S0 && S0.cacheRecap && S0.cacheRecapKey===S0.schedule.filter(g=>g.played).length) return S0.cacheRecap;
+ const S0 = seasonState; if(S0?.cacheRecap && S0.cacheRecapKey===S0.schedule.filter(g=>g.played).length) return S0.cacheRecap;
  const out0 = generateRegularSeasonRecapRaw(); if(S0){ S0.cacheRecap = out0; S0.cacheRecapKey = S0.schedule.filter(g=>g.played).length; } return out0;
 }
 function generateRegularSeasonRecapRaw(){
@@ -5637,7 +5637,7 @@ function generateRegularSeasonRecapRaw(){
   .map(t=>`<p class="detail-item">${t}</p>`).join('') + whyBoxHTML(F);
 }
 function generateSeasonReview(){
- const S0 = seasonState; if(S0 && S0.cacheReview) return S0.cacheReview;
+ const S0 = seasonState; if(S0?.cacheReview) return S0.cacheReview;
  const out0 = generateSeasonReviewRaw(); if(S0 && S0.phase==='complete') S0.cacheReview = out0; return out0;
 }
 function generateSeasonReviewRaw(){
@@ -5719,7 +5719,7 @@ function computeRegularSeasonAwards(){
  const mvp = best(mvpPool.length?mvpPool:off, c=> (rate(c)-50)/17 + 0.12*(W[c.team]-9) + (c.pos==='QB'?1.2:0));
  const opoy = best(off.filter(c=>c.pos!=='QB'), c=> (rate(c)-50)/17 + 0.05*(W[c.team]-9));
  const dpoy = best(def, c=> (rate(c)-50)/17 + 0.05*(W[c.team]-9));
- const qbs = off.filter(c=>c.pos==='QB').sort((a,b)=>rate(b)-rate(a));
+ const _qbs = off.filter(c=>c.pos==='QB').sort((a,b)=>rate(b)-rate(a));
  const coach = teamNames().slice().sort((a,b)=>(W[b]-EW[b])-(W[a]-EW[a]))[0];
  const rank = (c, arr)=> arr.length ? arr.filter(x=>rate(x)>rate(c)).length+1 : 0;
  const mvpWhy = c => pick([`${rate(c).toFixed(1)}-rated ${c.pos} on a ${W[c.team]}-win team`, `the league's top-rated ${c.pos} profile, carrying ${c.team} to ${W[c.team]} wins`, `${c.pos} production (${rate(c).toFixed(1)} rating) and ${W[c.team]} wins`]);
@@ -5766,7 +5766,7 @@ function computeRegularSeasonAwards(){
 function computePlayoffAwards(){
  const S = seasonState, book = Object.values(S.playerStatsPO), out = {rounds:[], leaders:[], team:[], sbMvp:null, mvp:null};
  const sb = S.playoffRounds.superbowl[0];
- if(sb && sb.detail) out.sbMvp = {...sb.detail.mvp, game:sb};
+ if(sb?.detail) out.sbMvp = {...sb.detail.mvp, game:sb};
  [['champ','Conference Championship MVPs'],['divisional','Divisional Round Game Balls'],['wildcard','Wild Card Game Balls']].forEach(([rk,label])=>{
   const games = (S.playoffRounds[rk]||[]).filter(g=>g.detail);
   if(games.length) out.rounds.push({label, items:games.map(g=>({g, p:g.detail.mvp}))});
@@ -5780,12 +5780,12 @@ function computePlayoffAwards(){
  // all-playoff team by cumulative game impact
  const spec = [['QB','QB',1],['RB','RB',1],['WR','WR',2],['TE','TE',1],['DL','DL',3],['LB','LB',2],['DB','DB',3],['K','K',1]];
  spec.forEach(([label,group,n])=>{
-  book.filter(x=>x.group===group).sort((a,b)=>(b.zSum||0)-(a.zSum||0)).slice(0,n).forEach(r=>out.team.push({pos:label, name:r.name, team:r.team, line:seasonStatLine(r.group, r.st)+` (${r.gp} G)`}));
+  book.filter(x=>x.group===group).sort((a,b)=>(b.zSum||0)-(a.zSum||0)).slice(0,n).forEach(r=>out.team.push({pos:label, name:r.name, team:r.team, line:`${seasonStatLine(r.group, r.st)} (${r.gp} G)`}));
  });
  // the postseason MVP comes from a Super Bowl team: the champion's best player, unless the runner-up's was clearly better
- let pool = book; { const sbg = (seasonState.playoffRounds.superbowl||[])[0]; if(sbg && sbg.result){ const champ = sbg.result.homeScore>sbg.result.awayScore ? sbg.home : sbg.away, ru = champ===sbg.home ? sbg.away : sbg.home; const best = t=>book.filter(x=>x.team===t).sort((a,b)=>(b.zSum||0)-(a.zSum||0))[0]; const c = best(champ), r = best(ru); pool = (r && c && (r.zSum||0) > 1.3*(c.zSum||0)) ? [r] : (c ? [c] : book); } }
+ let pool = book; { const sbg = (seasonState.playoffRounds.superbowl||[])[0]; if(sbg?.result){ const champ = sbg.result.homeScore>sbg.result.awayScore ? sbg.home : sbg.away, ru = champ===sbg.home ? sbg.away : sbg.home; const best = t=>book.filter(x=>x.team===t).sort((a,b)=>(b.zSum||0)-(a.zSum||0))[0]; const c = best(champ), r = best(ru); pool = (r && c && (r.zSum||0) > 1.3*(c.zSum||0)) ? [r] : (c ? [c] : book); } }
  const top = pool.slice().sort((a,b)=>(b.zSum||0)-(a.zSum||0))[0];
- if(top) out.mvp = {name:top.name, team:top.team, line:seasonStatLine(top.group, top.st)+` (${top.gp} G)`};
+ if(top) out.mvp = {name:top.name, team:top.team, line:`${seasonStatLine(top.group, top.st)} (${top.gp} G)`};
  return out;
 }
 function honorLineHTML(c, user){ return `<span${c.team===user?' style="color:var(--accent);font-weight:700;"':''}>${c.name}</span> <span class="narr">${nick(c.team)}</span>`; }
@@ -5793,7 +5793,7 @@ function renderRegularAwardsHTML(A, open){
  const user = seasonUserTeam();
  const ind = A.individual.map(a=> a.c
   ? `<tr><td>${a.title}</td><td>${honorLineHTML(a.c,user)} <span class="narr">${a.c.pos} · ${a.c.line}</span><div class="narr">${a.why}</div></td></tr>`
-  : `<tr><td>${a.title}</td><td><span${a.team===user?' style="color:var(--accent);font-weight:700;"':''}>${a.coach?a.coach+' \u00b7 ':''}${a.team}</span><div class="narr">${a.why}</div></td></tr>`).join('');
+  : `<tr><td>${a.title}</td><td><span${a.team===user?' style="color:var(--accent);font-weight:700;"':''}>${a.coach?`${a.coach} \u00b7 `:''}${a.team}</span><div class="narr">${a.why}</div></td></tr>`).join('');
  const stat = A.stat.map(a=>`<tr><td>${a.title}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
  const teamBox = (tm)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${tm[pos].map(c=>honorLineHTML(c,user)).join(', ')||'—'}</td></tr>`).join('');
  const pbBox = (cf)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${A.proBowl[cf][pos].map(c=>honorLineHTML(c,user)).join(', ')||'—'}</td></tr>`).join('');
@@ -5832,7 +5832,7 @@ function renderSeasonCompleteView(container){
   <p>${won ? `${user} won it all — a championship from draft day to the final whistle.` : `${user} did not bring home the Lombardi Trophy this year.`}</p></div>`;
  html += renderGameResultHTML(sb, (sb.home===user||sb.away===user) ? user : null);
  if(!seasonState.showReview){
-  html += renderBracketHTML() + `<div class="panel" style="margin-bottom:14px;text-align:center;"><button class="resetbtn" id="seasonReviewBtn" style="width:auto;margin:0;padding:12px 28px;">Season Review →</button><div class="narr" style="margin-top:6px;">Awards, stats, your report card and how the season was decided.</div></div>`;
+  html += `${renderBracketHTML()}<div class="panel" style="margin-bottom:14px;text-align:center;"><button class="resetbtn" id="seasonReviewBtn" style="width:auto;margin:0;padding:12px 28px;">Season Review →</button><div class="narr" style="margin-top:6px;">Awards, stats, your report card and how the season was decided.</div></div>`;
   container.innerHTML = html; wireScheduleClicks(container); wireStatsTabs();
   document.getElementById('seasonReviewBtn').addEventListener('click', ()=>{ seasonState.showReview = true; renderSeasonTab(container); window.scrollTo(0,0); });
   return;
@@ -5894,13 +5894,13 @@ function liteSeason(L, agg){
   tt.rushYds += r.homeStats.rushYards + r.awayStats.rushYards; tt.passYds += r.homeStats.passYards + r.awayStats.passYards;
   ['home','away'].forEach(side=>{
    const po = g.plans[side].off, pd = g.plans[side].def, mine = side==='home' ? r.homeScore : r.awayScore, theirs = side==='home' ? r.awayScore : r.homeScore, win = mine>theirs ? 1 : mine===theirs ? 0.5 : 0;
-   const k = po.pers+'|'+po.strat, e = agg.plan[k] || (agg.plan[k] = {n:0,w:0,pts:0,to:0,rush:0,pass:0,sk:0,fxP:0,fxT:0});
+   const k = `${po.pers}|${po.strat}`, e = agg.plan[k] || (agg.plan[k] = {n:0,w:0,pts:0,to:0,rush:0,pass:0,sk:0,fxP:0,fxT:0});
    e.fxP += r.planFx[side].pts; e.fxT += r.planFx[side].to;
    const stt = side==='home' ? r.homeStats : r.awayStats; e.n++; e.w += win; e.pts += mine; e.to += stt.turnovers; e.rush += stt.rushYards; e.pass += stt.passYards; e.sk += stt.sacks;
-   const dk = pd.pkg+'|'+pd.focus, d = agg.def[dk] || (agg.def[dk] = {n:0,w:0,pa:0,sk:0,to:0}); d.n++; d.w += win; d.pa += theirs; d.sk += (side==='home'?r.awayStats:r.homeStats).sacks; d.to += (side==='home'?r.awayStats:r.homeStats).turnovers;
+   const dk = `${pd.pkg}|${pd.focus}`, d = agg.def[dk] || (agg.def[dk] = {n:0,w:0,pa:0,sk:0,to:0}); d.n++; d.w += win; d.pa += theirs; d.sk += (side==='home'?r.awayStats:r.homeStats).sacks; d.to += (side==='home'?r.awayStats:r.homeStats).turnovers;
    tt.rushAtt += g.detail[side].plays.rush; tt.passAtt += g.detail[side].plays.pass;
   });
-  if(r.script && r.script.trailFrom){ const tr = r.script.trail, won = (tr==='home') ? r.homeScore>r.awayScore : r.awayScore>r.homeScore; const kk = STRAT[r.script.trailFrom.strat].label; const e = agg.script[kk] || (agg.script[kk] = {n:0,w:0,sw:0}); e.n++; e.sw += r.script.swing||0; if(won) e.w++; }
+  if(r.script?.trailFrom){ const tr = r.script.trail, won = (tr==='home') ? r.homeScore>r.awayScore : r.awayScore>r.homeScore; const kk = STRAT[r.script.trailFrom.strat].label; const e = agg.script[kk] || (agg.script[kk] = {n:0,w:0,sw:0}); e.n++; e.sw += r.script.swing||0; if(won) e.w++; }
  });
  // leaders (regular season)
  const rows = Object.values(L.playerStats);
@@ -5917,11 +5917,11 @@ function liteSeason(L, agg){
   if(((s.rushTD||0)+(s.recTD||0))>=20) th.td20++;
  });
  // awards
- const mv = awards.individual[0].c; agg.mvpPos[mv.pos] = (agg.mvpPos[mv.pos]||0)+1; const mk = mv.name+'|'+mv.team; agg.mvpNames[mk] = (agg.mvpNames[mk]||0)+1;
+ const mv = awards.individual[0].c; agg.mvpPos[mv.pos] = (agg.mvpPos[mv.pos]||0)+1; const mk = `${mv.name}|${mv.team}`; agg.mvpNames[mk] = (agg.mvpNames[mk]||0)+1;
  const U = awards.userSummary; agg.userHon.ap1 += U.ap1; agg.userHon.ap2 += U.ap2; agg.userHon.pb += U.pb;
  awards.individual.forEach(a=>{ const key = a.title.startsWith('Most')?'mvp':a.title.startsWith('Offensive')?'opoy':a.title.startsWith('Defensive')?'dpoy':'coach'; if((a.c&&a.c.team===user) || a.team===user) agg.userHon[key]++; });
  agg.awardBy = agg.awardBy || {}; agg.statBy = agg.statBy || {};
- const tally = (store, title, name, team, pos)=>{ const e = store[title] || (store[title] = {pos:{}, who:{}, teams:{}, user:0}); if(pos) e.pos[pos] = (e.pos[pos]||0)+1; const k = name+'|'+team; e.who[k] = (e.who[k]||0)+1; e.teams[team] = (e.teams[team]||0)+1; if(team===user) e.user++; };
+ const tally = (store, title, name, team, pos)=>{ const e = store[title] || (store[title] = {pos:{}, who:{}, teams:{}, user:0}); if(pos) e.pos[pos] = (e.pos[pos]||0)+1; const k = `${name}|${team}`; e.who[k] = (e.who[k]||0)+1; e.teams[team] = (e.teams[team]||0)+1; if(team===user) e.user++; };
  awards.individual.forEach(a=>{ if(a.c) tally(agg.awardBy, a.title, a.c.name, a.c.team, a.c.pos); else tally(agg.awardBy, a.title, a.coach||a.team, a.team, 'Head coach'); });
  awards.stat.forEach(a=>tally(agg.statBy, a.title, a.name, a.team, null));
  // user's players
@@ -5935,7 +5935,7 @@ function runLeague100(N, container){
  const teams = {}; entries.forEach(e=>{ teams[e.teamName] = {pool:Object.values(e.slotmap).filter(Boolean), slotmap:e.slotmap, isUser:e.isUser}; });
  const names = Object.keys(teams), league = leagueBaseline(names.map(n=>teams[n].slotmap));
  const unitRatings = {}; names.forEach(n=>{ unitRatings[n] = teamRatings(teams[n].slotmap); });
- const L = {teams, schedule:[], currentWeek:1, phase:'regular', playerStats:{}, playerStatsPO:{}, league, unitRatings, unitRanks:computeUnitRanks(unitRatings), identity:{}, planCache:(base&&base.planCache)||{}, userPlan:{mode:'auto',pers:'auto',strat:'auto',pkg:'auto',focus:'auto'}};
+ const L = {teams, schedule:[], currentWeek:1, phase:'regular', playerStats:{}, playerStatsPO:{}, league, unitRatings, unitRanks:computeUnitRanks(unitRatings), identity:{}, planCache:(base?.planCache)||{}, userPlan:{mode:'auto',pers:'auto',strat:'auto',pkg:'auto',focus:'auto'}};
  names.forEach(n=>{ L.identity[n] = teamIdentity(unitRatings[n], league); });
  const user = names.find(n=>teams[n].isUser), agg = newAgg(names, user);
  container.innerHTML = `<div class="panel"><h3 style="margin-top:0;">Simulating 100 seasons…</h3><div style="background:var(--border,#ccc);height:10px;border-radius:5px;overflow:hidden;"><div id="sim100Bar" style="height:10px;width:0%;background:var(--accent);"></div></div><p class="narr" id="sim100Txt">Starting…</p></div>`;
@@ -5945,14 +5945,14 @@ function runLeague100(N, container){
   try{ const t0 = Date.now(); while(done<N && Date.now()-t0<120){ liteSeason(L, agg); done++; } }
   finally{ seasonState = prev; }
   const bar = document.getElementById('sim100Bar'), txt = document.getElementById('sim100Txt');
-  if(bar) bar.style.width = (done/N*100)+'%'; if(txt) txt.textContent = `Season ${done} of ${N}…`;
+  if(bar) bar.style.width = `${done/N*100}%`; if(txt) txt.textContent = `Season ${done} of ${N}…`;
   if(done<N) setTimeout(step, 0);
   else { league100 = {agg, L:{unitRatings, unitRanks:L.unitRanks, league, identity:L.identity, teams, names}, user, N, scores:null}; render100(container); }
  };
  setTimeout(step, 20);
 }
 function r2(v){ return Math.round(v*100)/100; }
-function pctS(v, d){ return (v*100).toFixed(d==null?0:d)+'%'; }
+function pctS(v, d){ return `${(v*100).toFixed(d==null?0:d)}%`; }
 function corr(xs, ys){ return pearson(xs, ys); }
 function ridgeSolve(Z, y, lam){
  const n = Z.length, k = Z[0].length, A = Array.from({length:k},()=>Array(k+1).fill(0));
@@ -5965,7 +5965,7 @@ function ridgeSolve(Z, y, lam){
 
 function awardPatternsHTML(A, N, user){
  const top = (obj, k)=> Object.entries(obj).sort((a,b)=>b[1]-a[1]).slice(0,k);
- const pctN = v=> Math.round(v/N*100)+'%';
+ const pctN = v=> `${Math.round(v/N*100)}%`;
  const rowsI = Object.entries(A.awardBy||{}).map(([title,e])=>{
   const pos = top(e.pos,4).map(([p,n])=>`${p} ${pctN(n)}`).join(' \u00b7 ');
   const who = top(e.who,3).map(([k,n])=>`${k.split('|')[0]} <span class="narr">(${nick(k.split('|')[1])})</span> \u00d7${n}`).join(', ');
@@ -5990,7 +5990,7 @@ function render100(container){
  const hist = {}; myW.forEach(w=>{ const k = Math.round(w); hist[k] = (hist[k]||0)+1; });
  const maxH = Math.max(...Object.values(hist));
  const histHTML = Array.from({length:18},(_,k)=>k).map(k=>`<div style="display:flex;align-items:center;gap:8px;font-size:0.8rem;"><span style="width:34px;text-align:right;" class="narr">${k}-${17-k}</span><div style="background:var(--accent);height:12px;width:${((hist[k]||0)/maxH*100).toFixed(1)}%;min-width:${hist[k]?2:0}px;border-radius:2px;"></div><span class="narr">${hist[k]||0}</span></div>`).join('');
- const reachN = mine.reach; const cum = [0,1,2,3,4,5].map(i=>reachN.slice(i).reduce((a,b)=>a+b,0)/N);
+ const reachN = mine.reach; const _cum = [0,1,2,3,4,5].map(i=>reachN.slice(i).reduce((a,b)=>a+b,0)/N);
  const userName = nick(user);
  // what drives winning
  const units = ['olRun','olPass','rb','qb','rec','passRush','frontRun','coverage','kicker'];
@@ -6011,20 +6011,20 @@ function render100(container){
  const leagueRows = sorted.map((n,i)=>{ const t = T[n]; return `<tr style="${n===user?'background:rgba(120,120,255,.12);font-weight:700;':''}"><td class="rank">${i+1}</td><td class="team">${n}</td><td class="score">${avgW[n].toFixed(1)}</td><td class="score">${pctS(t.po/N)}</td><td class="score">${pctS(t.div/N)}</td><td class="score">${pctS(t.sbApp/N)}</td><td class="score">${pctS(t.champ/N,1)}</td><td class="narr">${(t.pf/t.g).toFixed(1)} – ${(t.pa/t.g).toFixed(1)}</td></tr>`; }).join('');
  // plans
  const PN = Object.keys(A.plan), totalPlans = PN.reduce((a,k)=>a+A.plan[k].n,0);
- const planRows = ['11','12','13','21','22'].map(p=>['run','neutral','pass'].map(s=>{ const e = A.plan[p+'|'+s]; if(!e||e.n<30) return ''; return `<tr><td>${PERS[p].label}</td><td>${STRAT[s].label}</td><td class="score">${pctS(e.n/totalPlans,1)}</td><td class="score">${(e.pts/e.n).toFixed(1)}</td><td class="score">${(e.to/e.n).toFixed(2)}</td><td class="score">${(e.rush/e.n).toFixed(0)} / ${(e.pass/e.n).toFixed(0)}</td><td class="score">${pctS(e.w/e.n,1)}</td></tr>`; }).join('')).join('');
+ const planRows = ['11','12','13','21','22'].map(p=>['run','neutral','pass'].map(s=>{ const e = A.plan[`${p}|${s}`]; if(!e||e.n<30) return ''; return `<tr><td>${PERS[p].label}</td><td>${STRAT[s].label}</td><td class="score">${pctS(e.n/totalPlans,1)}</td><td class="score">${(e.pts/e.n).toFixed(1)}</td><td class="score">${(e.to/e.n).toFixed(2)}</td><td class="score">${(e.rush/e.n).toFixed(0)} / ${(e.pass/e.n).toFixed(0)}</td><td class="score">${pctS(e.w/e.n,1)}</td></tr>`; }).join('')).join('');
  const DN = Object.keys(A.def), totalDef = DN.reduce((a,k)=>a+A.def[k].n,0);
- const defRows = ['base','nickel'].map(k=>['run','neutral','pass'].map(f=>{ const e = A.def[k+'|'+f]; if(!e||e.n<30) return ''; return `<tr><td>${DEF_PKG[k].label}</td><td>${DEF_FOCUS[f].label}</td><td class="score">${pctS(e.n/totalDef,1)}</td><td class="score">${(e.pa/e.n).toFixed(1)}</td><td class="score">${(e.sk/e.n).toFixed(2)}</td><td class="score">${(e.to/e.n).toFixed(2)}</td><td class="score">${pctS(e.w/e.n,1)}</td></tr>`; }).join('')).join('');
+ const defRows = ['base','nickel'].map(k=>['run','neutral','pass'].map(f=>{ const e = A.def[`${k}|${f}`]; if(!e||e.n<30) return ''; return `<tr><td>${DEF_PKG[k].label}</td><td>${DEF_FOCUS[f].label}</td><td class="score">${pctS(e.n/totalDef,1)}</td><td class="score">${(e.pa/e.n).toFixed(1)}</td><td class="score">${(e.sk/e.n).toFixed(2)}</td><td class="score">${(e.to/e.n).toFixed(2)}</td><td class="score">${pctS(e.w/e.n,1)}</td></tr>`; }).join('')).join('');
  const scriptRows = Object.entries(A.script).map(([k,e])=>`<tr><td>${capFirst(k)} plan, trailing by 3–18 late</td><td class="score">${e.n} games</td><td class="score">${(e.sw/e.n>=0?'+':'−')+Math.abs(e.sw/e.n).toFixed(1)} margin swing · ${pctS(e.w/e.n,1)} still won</td></tr>`).join('');
- const sp = Object.entries(A.script); const runE = A.script['run-heavy'], passE = A.script['pass-heavy'];
+ const sp = Object.entries(A.script); const runE = A.script['run-heavy'], _passE = A.script['pass-heavy'];
  // identities
  const idCount = {}; names.forEach(n=>{ const k = capFirst(offStyleName(D.L.identity[n].off)); idCount[k] = (idCount[k]||0)+1; });
- const idTxt = Object.entries(idCount).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ');
+ const _idTxt = Object.entries(idCount).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} (${v})`).join(', ');
  // realism
  const lg = A.leaders, tt = A.totals, ppg = tt.pts/tt.g/2, ypg = tt.yds/tt.g/2;
  const rr = (arr)=>`${Math.round(mean_(arr)).toLocaleString('en-US')} avg · ${Math.round(Math.max(...arr)).toLocaleString('en-US')} max`;
  const perSeason = v=>(v/N).toFixed(2);
- const topMvp = Object.entries(A.mvpNames).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([k,v])=>`${k.split('|')[0]} (${nick(k.split('|')[1])}) ×${v}`).join(', ');
- const mvpPos = Object.entries(A.mvpPos).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} ${v}%`.replace(/(\d+)%/, (m,x)=>Math.round(x/N*100)+'%')).join(', ');
+ const _topMvp = Object.entries(A.mvpNames).sort((a,b)=>b[1]-a[1]).slice(0,5).map(([k,v])=>`${k.split('|')[0]} (${nick(k.split('|')[1])}) ×${v}`).join(', ');
+ const _mvpPos = Object.entries(A.mvpPos).sort((a,b)=>b[1]-a[1]).map(([k,v])=>`${k} ${v}%`.replace(/(\d+)%/, (m,x)=>`${Math.round(x/N*100)}%`)).join(', ');
  const U = A.userHon;
  // user players avg lines
  const upl = Object.values(A.userPl).filter(p=>p.n>=N*0.6).sort((a,b)=>GROUP_ORDER.indexOf(a.group)-GROUP_ORDER.indexOf(b.group) || ((b.st.passYds||0)+(b.st.rushYds||0)*1.4+(b.st.recYds||0)+(b.st.sack||0)*40+(b.st.tkl||0)*4)-((a.st.passYds||0)+(a.st.rushYds||0)*1.4+(a.st.recYds||0)+(a.st.sack||0)*40+(a.st.tkl||0)*4));
@@ -6048,11 +6048,11 @@ function render100(container){
  const best = sorted[0], worst = sorted[sorted.length-1];
  const trench = groups[0], skill = groups[3];
  const verdict = trench.r>skill.r+0.1 ? `The lines carried more of the winning than the skill positions did in this model (trenches r = ${trench.r.toFixed(2).replace('-','−')} vs. skill/QB r = ${skill.r.toFixed(2).replace('-','−')})` : skill.r>trench.r+0.1 ? `Skill positions and the quarterback carried more of the winning than the lines did here (skill/QB r = ${skill.r.toFixed(2)} vs. trenches r = ${trench.r.toFixed(2)})` : `Trenches (r = ${trench.r.toFixed(2)}) and skill/quarterback (r = ${skill.r.toFixed(2)}) were about equally predictive`;
- const sumPlan = st_=>{ let n=0,to=0,pts=0,fxP=0,fxT=0; ['11','12','13','21','22'].forEach(p=>{ const e=A.plan[p+'|'+st_]; if(e){ n+=e.n; to+=e.to; pts+=e.pts; fxP+=e.fxP; fxT+=e.fxT; } }); const m=Math.max(n,1); return {n, to:to/m, pts:pts/m, fxP:fxP/m, fxT:fxT/m}; };
+ const sumPlan = st_=>{ let n=0,to=0,pts=0,fxP=0,fxT=0; ['11','12','13','21','22'].forEach(p=>{ const e=A.plan[`${p}|${st_}`]; if(e){ n+=e.n; to+=e.to; pts+=e.pts; fxP+=e.fxP; fxT+=e.fxT; } }); const m=Math.max(n,1); return {n, to:to/m, pts:pts/m, fxP:fxP/m, fxT:fxT/m}; };
  const pl = {r:sumPlan('run'), p:sumPlan('pass'), nn:sumPlan('neutral')};
- const p11 = ['run','neutral','pass'].reduce((a,st_)=>a+((A.plan['11|'+st_]||{n:0}).n),0);
+ const _p11 = ['run','neutral','pass'].reduce((a,st_)=>a+((A.plan[`11|${st_}`]||{n:0}).n),0);
  const nar = [
-  `Over ${N} simulated seasons the ${userName} averaged ${myAvg.toFixed(1)} wins (${myRank===1?'the best':'#'+myRank+' of 32 in the league'}), with a typical range of ${q(0.1).toFixed(0)}–${q(0.9).toFixed(0)} wins and extremes of ${ws[0]}–${ws[ws.length-1]}. They made the playoffs ${pctS(mine.po/N)} of the time, won the division ${pctS(mine.div/N)}, earned the #1 seed ${pctS(mine.bye/N)}, reached the Super Bowl ${pctS(mine.sbApp/N)} and won it ${pctS(mine.champ/N,1)} (${mine.champ} title${mine.champ===1?'':'s'}). A single season can land anywhere in that range, which is the real lesson of the exercise: one 17-game year is a small sample.`,
+  `Over ${N} simulated seasons the ${userName} averaged ${myAvg.toFixed(1)} wins (${myRank===1?'the best':`#${myRank} of 32 in the league`}), with a typical range of ${q(0.1).toFixed(0)}–${q(0.9).toFixed(0)} wins and extremes of ${ws[0]}–${ws[ws.length-1]}. They made the playoffs ${pctS(mine.po/N)} of the time, won the division ${pctS(mine.div/N)}, earned the #1 seed ${pctS(mine.bye/N)}, reached the Super Bowl ${pctS(mine.sbApp/N)} and won it ${pctS(mine.champ/N,1)} (${mine.champ} title${mine.champ===1?'':'s'}). A single season can land anywhere in that range, which is the real lesson of the exercise: one 17-game year is a small sample.`,
   `What decided games in this league: ${unitCorr.slice().sort((a,b)=>b.beta-a.beta).slice(0,2).map(x=>shortUnit(x.u)).join(' and ')} moved the win total the most, and ${unitCorr.slice().sort((a,b)=>b.beta-a.beta).slice(-2).map(x=>shortUnit(x.u)).join(' and ')} moved it the least. `,
   `Game plans behaved the way football people expect. Most teams played a balanced approach (${pctS(pl.nn.n/totalPlans)} of games); ${pctS(pl.r.n/totalPlans)} ran heavily and ${pctS(pl.p.n/totalPlans)} threw heavily. Compared with the same team playing a plain balanced game, a run-heavy plan was worth ${pl.r.fxP>=0?'+':'−'}${Math.abs(pl.r.fxP).toFixed(1)} points a game and cut giveaways by ${pctS(Math.abs(pl.r.fxT))}, while a pass-heavy plan was worth ${pl.p.fxP>=0?'+':'−'}${Math.abs(pl.p.fxP).toFixed(1)} points with ${pctS(Math.abs(pl.p.fxT))} ${pl.p.fxT>=0?'more':'fewer'} giveaways. ${runE ? `Teams that fell behind switched to throwing late, and that switch helped them by about ${Math.abs(runE.sw/runE.n).toFixed(1)} points over the final stretch.` : ''} The full breakdown by personnel group is in the Game plans section below.`,
   `Does it look like the NFL? Teams averaged ${ppg.toFixed(1)} points and ${ypg.toFixed(0)} yards a game, with ${(tt.to/tt.g/2).toFixed(1)} turnovers a game, ${pctS(tt.homeW/tt.g)} of games won by the home team, and ${pctS(tt.close/tt.g)} of games decided by 3 points or fewer. The best individual seasons stayed near real-life records: ${Math.max(...lg.pass).toLocaleString('en-US')} passing yards (record 5,477), ${Math.max(...lg.rush).toLocaleString('en-US')} rushing (record 2,105), ${Math.max(...lg.recvYds).toLocaleString('en-US')} receiving (record 1,964) and ${Math.max(...lg.sack)} sacks (record 22.5). The detailed numbers are in the sections below.`
@@ -6185,7 +6185,7 @@ function renderDraftResults(){
 
  const rankAmongDrafted = Math.min(32, draftEntries.filter(e=>e.score>myEntry.score).length + 1);
 
- let h = `<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;"><h2 style="margin-top:0;">Draft Complete</h2><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">Start a new draft…</button></div>
+ const h = `<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;"><h2 style="margin-top:0;">Draft Complete</h2><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">Start a new draft…</button></div>
   <p class="dsub">Your team (${myEntry.teamName}) scored <b style="color:var(--accent)">${myEntry.score.toFixed(2)}</b> — <b>#${rankAmongDrafted} of the 32 drafted teams</b>${rankAmongDrafted!==rankAmongReal?` (and #${rankAmongReal} of 32 against the actual NFL rosters)`:''}. Click any row for its full roster and breakdown.</p>
   <div class="cta-row" id="ctaPlaySeasonRow"><button class="resetbtn" id="ctaPlaySeasonBtn">Play a Season →</button></div>
   <div class="tabs" style="margin-bottom:10px;flex-wrap:wrap;">
@@ -6236,15 +6236,15 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
   const rank = Math.min(32, leagueVals.filter(v=>v>myVal).length + 1);   // ranked against the 32 real teams: last place is #32
   const pct = ((32-rank)/31)*100;
   const grade = letterGrade(pct);
-  const oop = e && e.pos && isOutOfPosition(e.pos, s);
+  const oop = e?.pos && isOutOfPosition(e.pos, s);
   const effCell = oop
    ? `<span style="color:var(--bad);font-weight:700;">${myVal} <span class="narr" style="font-weight:400;">(${e.ovr} − ${flexPenaltyFor(e.pos,s)}, flexed)</span></span>`
    : `<span class="score">${e?e.ovr:'—'}</span>`;
-  slotRows += `<tr><td>${LABELS[s]||s}</td><td>${e&&e.name?e.name:'—'}${oop?` <span class="badge badge-passfail">Flexed from ${e.pos}</span>`:''}</td><td>${effCell}</td><td class="narr">${rnd?`Round ${rnd}`:'—'}</td><td class="score">#${rank}/32</td><td class="score">${grade}</td></tr>`;
+  slotRows += `<tr><td>${LABELS[s]||s}</td><td>${e?.name?e.name:'—'}${oop?` <span class="badge badge-passfail">Flexed from ${e.pos}</span>`:''}</td><td>${effCell}</td><td class="narr">${rnd?`Round ${rnd}`:'—'}</td><td class="score">#${rank}/32</td><td class="score">${grade}</td></tr>`;
  });
 
  const metrics = computeDetailMetrics(myEntry.pool);
- let catRows = metrics.map(m=>`<tr><td>${m.label}</td><td class="score">${m.avg.toFixed(1)}</td><td class="score">#${m.rank}/32</td><td class="score">${letterGrade(m.pct)}</td></tr>`).join('');
+ const catRows = metrics.map(m=>`<tr><td>${m.label}</td><td class="score">${m.avg.toFixed(1)}</td><td class="score">#${m.rank}/32</td><td class="score">${letterGrade(m.pct)}</td></tr>`).join('');
 
  const overallPct = ((32-rankAmongReal)/31)*100;
 
@@ -6294,20 +6294,20 @@ function renderComparisonTab(container, draftEntries, realEntries){
  `;
  function buildOptions(sel, defaultVal){
   const og1 = document.createElement('optgroup'); og1.label = 'Your Draft';
-  draftEntries.filter(e=>e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='YOU'; o.textContent='Your Team ('+e.teamName+')'; og1.appendChild(o); });
+  draftEntries.filter(e=>e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='YOU'; o.textContent=`Your Team (${e.teamName})`; og1.appendChild(o); });
   sel.appendChild(og1);
   const og2 = document.createElement('optgroup'); og2.label = 'Simulated Draft Teams';
-  draftEntries.filter(e=>!e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='SIM:'+e.teamName; o.textContent=e.teamName+' (sim)'; og2.appendChild(o); });
+  draftEntries.filter(e=>!e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value=`SIM:${e.teamName}`; o.textContent=`${e.teamName} (sim)`; og2.appendChild(o); });
   sel.appendChild(og2);
   const og3 = document.createElement('optgroup'); og3.label = 'Actual NFL Rosters';
-  realEntries.forEach(e=>{ const o=document.createElement('option'); o.value='NFL:'+e.teamName; o.textContent=e.teamName+' (actual)'; og3.appendChild(o); });
+  realEntries.forEach(e=>{ const o=document.createElement('option'); o.value=`NFL:${e.teamName}`; o.textContent=`${e.teamName} (actual)`; og3.appendChild(o); });
   sel.appendChild(og3);
   sel.value = defaultVal;
  }
  const selA = document.getElementById('cmpTeamA');
  const selB = document.getElementById('cmpTeamB');
  buildOptions(selA, 'YOU');
- buildOptions(selB, 'NFL:'+Object.keys(TEAM_DATA).sort()[0]);
+ buildOptions(selB, `NFL:${Object.keys(TEAM_DATA).sort()[0]}`);
 
  function resolve(key){
   if(key==='YOU') return draftEntries.find(e=>e.isUser);
@@ -6349,7 +6349,7 @@ function renderComparisonTab(container, draftEntries, realEntries){
 initDraftSetup();
 personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(); render();
 // ---- the user's team and players, in blue everywhere ----
-(function(){
+(()=> {
  let lastKey = '', rx = null, busy = false, queued = false;
  const esc = t=>t.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
  function build(){
@@ -6357,11 +6357,11 @@ personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(
    if(typeof draftSim==='undefined' || !draftSim || !draftSim.rosters) return null;
    const ur = draftSim.rosters.find(r=>r.isUser); if(!ur) return null;
    const names = new Set(); (draftSim.log||[]).forEach(l=>{ if(l.isUser && l.player){ const n = Array.isArray(l.player)?l.player[0]:l.player.name; if(n) names.add(n); } });
-   Object.values(ur.slots||{}).forEach(p=>{ if(p && p[0]) names.add(p[0]); });
+   Object.values(ur.slots||{}).forEach(p=>{ if(p?.[0]) names.add(p[0]); });
    if(ur.teamName){ names.add(nick(ur.teamName)); names.add(ur.teamName); }
    const list = Array.from(names).filter(n=>n && n.length>3).sort((a,b)=>b.length-a.length);
    const key = list.join('|'); if(key===lastKey) return rx; lastKey = key;
-   rx = list.length ? new RegExp('(^|[^A-Za-z])('+list.map(esc).join('|')+')(?![A-Za-z])','g') : null; return rx;
+   rx = list.length ? new RegExp(`(^|[^A-Za-z])(${list.map(esc).join('|')})(?![A-Za-z])`,'g') : null; return rx;
   }catch(e){ return null; }
  }
  const SKIP = {SCRIPT:1,STYLE:1,SELECT:1,OPTION:1,TEXTAREA:1,INPUT:1,BUTTON:1,TITLE:1};
@@ -6371,7 +6371,7 @@ personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(
    const R = build(); if(!R) return;
    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {acceptNode:n=>{
     if(!n.nodeValue || n.nodeValue.length<4) return NodeFilter.FILTER_REJECT;
-    for(let p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName] || (p.classList && p.classList.contains('ub')) || (p.style && p.style.color && p.style.color.indexOf('accent')>=0)) return NodeFilter.FILTER_REJECT; }
+    for(let p=n.parentNode;p&&p!==document.body;p=p.parentNode){ if(SKIP[p.nodeName] || (p.classList?.contains('ub')) || (p.style?.color && p.style.color.indexOf('accent')>=0)) return NodeFilter.FILTER_REJECT; }
     R.lastIndex = 0; return R.test(n.nodeValue) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_REJECT; }});
    const nodes = []; while(w.nextNode()) nodes.push(w.currentNode);
    nodes.forEach(n=>{
@@ -6387,9 +6387,9 @@ personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(
  schedule();
 })();
 // ---- celebrations: confetti and small rewards when the user's team wins big ----
-const FX = (function(){
+const FX = (()=> {
  let cv = null, ctx = null, parts = [], raf = 0;
- const reduce = ()=> window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const reduce = ()=> window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
  function ensure(){ if(cv) return; cv = document.createElement('canvas'); cv.id = 'fxCanvas'; document.body.appendChild(cv); ctx = cv.getContext('2d'); size(); window.addEventListener('resize', size); }
  function size(){ if(!cv) return; const d = window.devicePixelRatio||1; cv.width = innerWidth*d; cv.height = innerHeight*d; ctx.setTransform(d,0,0,d,0,0); }
  const COLORS = ['#4f8cff','#ffffff','#ffc43c','#ff6b4a','#3ecf8e','#b48cff'], GOLD = ['#ffc43c','#ffd75e','#fff6c4','#ffffff','#e8a317'];
@@ -6428,7 +6428,7 @@ const FX = (function(){
  return {play, toast};
 })();
 function checkRewards(){
- const S = seasonState; if(!S || !S.teams) return; const user = seasonUserTeam(); if(!user) return;
+ const S = seasonState; if(!S?.teams) return; const user = seasonUserTeam(); if(!user) return;
  S.rewards = S.rewards || {}; const done = k=>{ if(S.rewards[k]) return false; S.rewards[k] = true; return true; };
  const won = g=> g.result && (g.home===user ? g.result.homeScore>g.result.awayScore : g.result.awayScore>g.result.homeScore);
  const lost = g=> g.result && (g.home===user ? g.result.homeScore<g.result.awayScore : g.result.awayScore<g.result.homeScore);
@@ -6436,8 +6436,8 @@ function checkRewards(){
   const mine = S.schedule.filter(g=>g.played && g.result && (g.home===user||g.away===user)); if(!mine.length) return;
   let streak = 0; for(let i=mine.length-1;i>=0;i--){ if(won(mine[i])) streak++; else break; }
   const w = mine.filter(won).length, l = mine.filter(lost).length;
-  if(streak>=3 && streak<=17 && [3,5,7,10,13,17].includes(streak) && done('streak'+streak)) FX.play(streak>=7?'medium':'small', streak===17?'Perfect season: 17-0!':`${streak} wins in a row!`);
-  else if([5,10,13].includes(w) && done('wins'+w)) FX.play('small', `${w} wins on the season`);
+  if(streak>=3 && streak<=17 && [3,5,7,10,13,17].includes(streak) && done(`streak${streak}`)) FX.play(streak>=7?'medium':'small', streak===17?'Perfect season: 17-0!':`${streak} wins in a row!`);
+  else if([5,10,13].includes(w) && done(`wins${w}`)) FX.play('small', `${w} wins on the season`);
   if(S.phase==='regularReview'){
    const e = S.seeds.AFC.concat(S.seeds.NFC).find(x=>x.team===user);
    if(e){
@@ -6450,13 +6450,13 @@ function checkRewards(){
  } else if(S.phase==='playoffs'){
   const g = (S.playoffRounds.champ||[]).find(x=>x.result && (x.home===user||x.away===user));
   if(g && won(g) && done('conf')) FX.play('conf');
-  else { for(const rk of ['wildcard','divisional']){ const gg = (S.playoffRounds[rk]||[]).find(x=>x.result && (x.home===user||x.away===user)); if(gg && won(gg) && done('po'+rk)) FX.play('small', rk==='wildcard'?'Playoff win! On to the divisional round':'Divisional round won! One win from the Super Bowl'); } }
+  else { for(const rk of ['wildcard','divisional']){ const gg = (S.playoffRounds[rk]||[]).find(x=>x.result && (x.home===user||x.away===user)); if(gg && won(gg) && done(`po${rk}`)) FX.play('small', rk==='wildcard'?'Playoff win! On to the divisional round':'Divisional round won! One win from the Super Bowl'); } }
  } else if(S.phase==='complete'){
   if(S.champion===user && !S.showReview && done('sb')){ FX.play('sb'); setTimeout(()=>{ const b = document.querySelector('.champion-banner'); if(b) b.classList.add('fxwon'); }, 50); }
  }
 }
 // ---- phone layout: any table that would need sideways scrolling becomes a stack of labelled cards ----
-(function(){
+(()=> {
  const mq = window.matchMedia('(max-width:760px)'); let busy = false, queued = false;
  function pass(){
   busy = true;
@@ -6470,7 +6470,7 @@ function checkRewards(){
     // Once a table is stacked it stays stacked, unless it genuinely fits with few columns.
     const stack = !(fits && (cols<=3 || !t.tHead));
     if(!stack){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
-    const heads = t.tHead && t.tHead.rows.length ? Array.from(t.tHead.rows[t.tHead.rows.length-1].cells).map(c=>c.textContent.trim()) : [];
+    const heads = t.tHead?.rows.length ? Array.from(t.tHead.rows[t.tHead.rows.length-1].cells).map(c=>c.textContent.trim()) : [];
     // Every render replaces the cells, so labels have to be reapplied each time. Checking
     // the first row is cheap and catches a re-render that keeps the same row count, which
     // a row-count signature missed: wide tables then showed bare numbers on phones with

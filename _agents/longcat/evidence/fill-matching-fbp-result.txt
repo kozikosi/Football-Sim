@@ -1,0 +1,5 @@
+slots: 28 players: 1200 demand: 896
+eligible edges: 13168
+flow: 896 / 896 total penalty: 54 avg: 0.060
+penalty histogram: {"0":880,"2":5,"4":11}
+slots needing flex: {"TE2":{"n":32,"flexed":11,"penalty":44},"SAM":{"n":32,"flexed":5,"penalty":10}}
