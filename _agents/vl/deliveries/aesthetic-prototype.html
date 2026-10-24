@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VL — Aesthetic Prototype (P7)</title>
+<style>
+  * { box-sizing: border-box; }
+  :root {
+    /* --- P7-4 dark mode polish --- */
+    --bg: #0b0e14;
+    --panel: #141a26;
+    --panel2: #1e2433;            /* was #1a1f2e */
+    --text: #e8ecf3;
+    --text-secondary: #9aa0b8;    /* was #8b92a8 */
+    --accent: #3b82f6;
+    --accent2: #8b5cf6;
+    --border: #273044;
+    --success: #22c55e;
+    --gold: #fbbf24;
+
+    /* --- P7-1 team theming (set on team select) --- */
+    --team-primary: var(--accent);
+    --team-secondary: var(--text-secondary);
+    --team-accent: var(--accent2);
+    --opponent-primary: #ef4444;
+    --opponent-secondary: #f59e0b;
+    --opponent-accent: #f59e0b;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body {
+    margin: 0;
+    font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  /* --- P7-4 header gradient --- */
+  header {
+    padding: 16px 24px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  header h1 { margin: 0; font-size: 1.25rem; letter-spacing: -0.02em; }
+
+  /* --- Team palette toggle (P7-1 demo) --- */
+  .team-picker { margin: 12px 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .team-btn { padding: 6px 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+  .team-btn.active { border-color: var(--team-primary); color: var(--team-primary); box-shadow: 0 0 0 2px var(--team-primary); }
+
+  /* --- Glass-morphism panel (P7-4) --- */
+  .glass {
+    background: rgba(30, 36, 51, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 12px;
+  }
+
+  /* --- P7-3 draft board --- */
+  .board { max-width: 700px; margin: 24px auto; padding: 0 16px; }
+  .board table { width: 100%; border-collapse: separate; border-spacing: 0 6px; }
+  .board th { text-align: left; color: var(--text-secondary); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; padding: 8px 10px; }
+  .board td { padding: 10px 12px; border-bottom: 1px solid var(--border); background: var(--panel); }
+  .board tr:nth-child(even) td { background: rgba(255,255,255,0.02); } /* P7-3 zebra */
+  .board tr.user-pick td { background: rgba(var(--team-primary-rgb,59,130,246),0.10); border-left: 4px solid var(--team-primary); transform: scale(1.02); box-shadow: 0 0 16px rgba(var(--team-primary-rgb,59,130,246),0.25); } /* P7-3 user pick */
+  .board tr.gone td { opacity: 0.45; text-decoration: line-through; color: var(--text-secondary); } /* P7-3 gone */
+  .board tr:hover td { transform: translateY(-1px); box-shadow: 0 4px 12px rgba(0,0,0,0.25); transition: transform 0.15s ease, box-shadow 0.15s ease; } /* P7-2 hover */
+  .pos-chip { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: #fff; }
+  .pos-QB { background: var(--team-primary); }
+  .pos-RB { background: #22c55e; }
+  .pos-WR { background: #f97316; }
+  .pos-TE { background: #a855f7; }
+  .pos-OL { background: #64748b; }
+  .pos-DL { background: #ef4444; }
+  .pos-LB { background: #14b8a6; }
+  .pos-CB, .pos-S { background: #eab308; color: #0b0e14; }
+  .pos-K, .pos-P { background: #a16207; }
+
+  /* --- P7-5 pick feedback --- */
+  .flash-green { animation: flashGreen 0.5s ease; }
+  @keyframes flashGreen { 0% { background: var(--panel); } 50% { background: #dcfce7; color: #166534; } 100% { background: var(--panel); } }
+  .slide-in { animation: slideIn 0.2s ease-out both; }
+  @keyframes slideIn { from { opacity: 0; transform: translateX(24px); } to { opacity: 1; transform: translateX(0); } }
+  .badge-pop { animation: badgePop 0.1s ease both; }
+  @keyframes badgePop { 0% { transform: scale(0.7); } 100% { transform: scale(1); } }
+
+  /* --- P7-5 confetti (CSS only, 3 particles) --- */
+  .confetti { position: fixed; top: 10vh; left: 50%; width: 0; height: 0; pointer-events: none; z-index: 100; }
+  .confetti::after { content: ''; position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; animation: confetti 0.6s ease-out both; }
+  .confetti::before { content: ''; position: absolute; left: 2px; top: -6px; width: 6px; height: 6px; background: var(--team-primary); border-radius: 50%; animation: confetti 0.7s ease-out both; }
+  @keyframes confetti { 0% { transform: translate(0,0) scale(1); opacity: 1; } 100% { transform: translate(24px,-64px) scale(0); opacity: 0; } }
+
+  /* --- P7-8 champions banner gold shimmer --- */
+  .champions-banner {
+    margin: 24px auto; max-width: 700px; padding: 0 16px;
+  }
+  .champions-card {
+    background: linear-gradient(135deg, #78350f, #b45309);
+    color: #fff;
+    border-radius: 14px;
+    padding: 26px 28px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 10px 30px -6px rgba(180,83,9,0.35);
+  }
+  .champions-card h2 { margin: 0 0 8px; font-size: 1.5rem; text-transform: uppercase; letter-spacing: 0.06em; }
+  .champions-card p { margin: 0; font-size: 1rem; opacity: 0.95; }
+  .shimmer {
+    position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+    animation: shimmer 2.5s infinite;
+  }
+  @keyframes shimmer { 0% { left: -100%; } 100% { left: 100%; } }
+  .champions-card::after {
+    content: ''; position: absolute; inset: -2px; border-radius: 16px;
+    background: linear-gradient(90deg, transparent 25%, #fbbf24 50%, transparent 75%);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) padding-box;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0) padding-box;
+    -webkit-mask-composite: destination-out; mask-composite: exclude;
+    opacity: 0.35; pointer-events: none;
+  }
+
+  /* --- P7-6 mobile: sticky filter + bottom sheet --- */
+  .mobile-sticky { position: sticky; top: 56px; z-index: 40; background: var(--bg); border-bottom: 1px solid var(--border); padding: 8px 16px; display: flex; gap: 8px; overflow-x: auto; }
+  .filter-chip { padding: 6px 14px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 20px; font-size: 0.85rem; white-space: nowrap; cursor: pointer; }
+  .filter-chip.active { border-color: var(--team-primary); color: var(--team-primary); }
+
+  .bottom-sheet {
+    position: fixed; inset: 0 0 auto 0; z-index: 80;
+    background: var(--panel2);
+    border-top: 1px solid var(--border);
+    border-top-left-radius: 16px; border-top-right-radius: 16px;
+    transform: translateY(100%); transition: transform 0.25s ease;
+    max-height: 60vh; overflow: auto;
+  }
+  .bottom-sheet.open { transform: translateY(0); }
+  .sheet-handle { width: 32px; height: 4px; background: #374151; border-radius: 2px; margin: 10px auto 6px; }
+
+  /* scrollbar (P7-4) */
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; padding: 24px; max-width: 900px; margin: 0 auto; }
+  .card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .card h3 { margin: 0 0 8px; font-size: 1rem; }
+  .tag { display: inline-block; margin-top: 8px; padding: 3px 10px; border-radius: 10px; font-size: 0.75rem; background: var(--panel2); color: var(--text-secondary); border: 1px solid var(--border); }
+
+  .note { max-width: 700px; margin: 24px auto; padding: 0 16px; color: var(--text-secondary); font-size: 0.9rem; border-left: 3px solid var(--border); padding-left: 12px; }
+  .note.team { border-color: var(--team-primary); }
+</style>
+</head>
+<body>
+<header>Aesthetic Prototype — P7 (VL lane)</header>
+
+<div class="team-picker">
+  <strong style="color:var(--text-secondary)">Team palette:</strong>
+  <button class="team-btn active" onclick="setTeam(this,'--team-primary','--team-secondary','--team-accent','#3b82f6','#9aa0b8','#8b5cf6','59,130,246')">KC Chiefs (red+white+yellow)</button>
+  <button class="team-btn" onclick="setTeam(this,'--team-primary','--team-secondary','--team-accent','#0b5394','#6bbf59','#a5cae1','11,83,148')">Seahawks (blue+green+white)</button>
+  <button class="team-btn" onclick="setTeam(this,'--team-primary','--team-secondary','--team-accent','#4f2683','#c1d600','#4f2683','79,38,131')">Vikings (purple)</button>
+</div>
+
+<div class="champions-banner">
+  <div class="champions-card">
+    <div class="shimmer"></div>
+    <h2>Super Bowl Champions!</h2>
+    <p>The <span style="color:#fbbf24;font-weight:700">Chiefs</span> are Super Bowl champions!</p>
+  </div>
+</div>
+
+<div class="board">
+  <table>
+    <thead><tr><th>Pick</th><th>Player</th><th>Pos</th><th>Team</th><th>OVR</th></tr></thead>
+    <tbody>
+      <tr class="user-pick slide-in flash-green">
+        <td>1</td><td>Patrick Mahomes</td><td><span class="pos-chip pos-QB">QB</span></td><td>KC</td><td>99</td>
+      </tr>
+      <tr class="slide-in badge-pop">
+        <td>2</td><td>Justin Jefferson</td><td><span class="pos-chip pos-WR">WR</span></td><td>MIN</td><td>97</td>
+      </tr>
+      <tr class="gone">
+        <td>3</td><td>Christian McCaffrey</td><td><span class="pos-chip pos-RB">RB</span></td><td>SF</td><td>95</td>
+      </tr>
+      <tr>
+        <td>4</td><td>Nick Bosa</td><td><span class="pos-chip pos-DL">DL</span></td><td>SF</td><td>94</td>
+      </tr>
+      <tr>
+        <td>5</td><td>Trent Williams</td><td><span class="pos-chip pos-OL">OL</span></td><td>SF</td><td>93</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="note team" style="margin-top:10px">User pick row glows with team primary · gone players dimmed + struck · zebra stripes · hover lift (P7-2/3)</div>
+</div>
+
+<div class="mobile-sticky" style="margin:0 16px">
+  <span style="color:var(--text-secondary);font-size:0.75rem;text-transform:uppercase;letter-spacing:0.06em">Position filter</span>
+  <button class="filter-chip active">All</button>
+  <button class="filter-chip">QB</button><button class="filter-chip">RB</button>
+  <button class="filter-chip">WR</button><button class="filter-chip">TE</button>
+  <button class="filter-chip">OL</button><button class="filter-chip">DL</button>
+  <button class="filter-chip">LB</button><button class="filter-chip">CB/S</button>
+  <button class="filter-chip">K/P</button>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <h3>P7-2 · Micro-interactions</h3>
+    <p>Hover lift, 150ms tab fade, badge pop-in, weight counter roll-up, "Save My Weights" pulse.</p>
+    <span class="tag badge-pop">Badge pop</span> <span class="tag">Slide-in pick</span>
+  </div>
+  <div class="card">
+    <h3>P7-4 · Dark polish</h3>
+    <p>Softer panels, better secondary-text contrast, header gradient, glass-morphism modals, accent scrollbar.</p>
+    <span class="tag">Glass modal</span> <span class="tag">Gradient header</span>
+  </div>
+  <div class="card">
+    <h3>P7-5 · Pick feedback</h3>
+    <p>Green flash on draft, roster strip slide-in, confetti burst on user pick, animated starters counter.</p>
+    <div class="confetti"></div>
+    <span class="tag">Confetti</span> <span class="tag">Green flash</span>
+  </div>
+</div>
+
+<div class="bottom-sheet" id="sheet">
+  <div class="sheet-handle"></div>
+  <h3 style="margin:0 0 8px">Player details</h3>
+  <p style="color:var(--text-secondary);margin:0 0 12px">Tap a card to open (bottom sheet instead of navigating away).</p>
+  <button style="padding:10px 16px;background:var(--team-primary);border:none;border-radius:8px;color:#fff;cursor:pointer" onclick="closeSheet()">Close</button>
+</div>
+
+<div class="note" style="max-width:900px">
+  <strong>Plug-in notes for Claude:</strong> Copy the <code>:root</code> variable block and the <code>.board</code> / <code>.champions-card</code> / <code>@keyframes</code> rules into the product's &lt;style&gt;. Set <code>--team-*</code> on team selection and <code>--opponent-*</code> on matchup load (P7-1/14). Gate all motion on <code>prefers-reduced-motion</code>. Advisory only — product file untouched.
+</div>
+
+<script>
+  function setTeam(btn, p, s, a, pHex, sHex, aHex, rgb) {
+    document.documentElement.style.setProperty(p, pHex);
+    document.documentElement.style.setProperty(s, sHex);
+    document.documentElement.style.setProperty(a, aHex);
+    document.documentElement.style.setProperty('--team-primary-rgb', rgb);
+    document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  document.querySelectorAll('.board tbody tr').forEach(tr => {
+    tr.addEventListener('click', () => {
+      const sheet = document.getElementById('sheet');
+      sheet.classList.toggle('open');
+    });
+  });
+  function closeSheet(){ document.getElementById('sheet').classList.remove('open'); }
+  // fire confetti once on load (P7-5 demo)
+  setTimeout(()=>{ const c=document.querySelector('.confetti'); c.style.left='48%'; c.style.top='10vh'; }, 300);
+</script>
+</body>
+</html>
