@@ -10,7 +10,7 @@
 
 ## Current Work and State
 - **Complete:** Lane files migrated to `../wt/or/_agents/or/notes/` (4 files: F1-F6-reconciliation, V21-Suggestions, consolidated-review-multisport-pr1, decisions-ready-for-owner). Saved shared-doc delta patch for V22-Suggestions.md (MiniMax's diff, commit 27f88cd0). COUNCIL-BULLETIN.md and SUBMISSIONS.md edits already committed by upstream sessions (no separate patch needed).
-- **In Progress:** V22 aesthetic enhancement patches ready for Architect. Created `V22-Aesthetic-proposals-20261024.md` (brainstorm) and `V22-Aesthetic-Patches-20261024.md` (pluggable CSS patches). User directed: "pursue all of them" → implement all 11 patch files.
+- **In Progress:** V22 aesthetic enhancement patches submitted for Architect integration. 11 pluggable CSS patches (A-1 through A-11) documented in `V22-Aesthetic-Patches-20261024.md`, all anchors verified against `Football-Sim-PreColors.html` sha256 `40233d6be00e987c`. User directed: "pursue all of them" → all patches completed and ready for Architect to apply.
 - **Blocked:** T6/T7 verification (model usage limit); Figma MCP (session restart + sign-in); `session.send` (use `board_post` instead).
 
 ## Next Session Needs to Know
