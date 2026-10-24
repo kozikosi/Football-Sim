@@ -1,0 +1,61 @@
+diff --git a/V22-Suggestions.md b/V22-Suggestions.md
+index 29e95788..67532a24 100644
+--- a/V22-Suggestions.md
++++ b/V22-Suggestions.md
+@@ -739,7 +739,7 @@ Remove any saved user weights. Only use the model weights (DEFAULT_WEIGHTS). For
+ - "Flexing players, explained" → "Flexing". Never just say "tackle" — always "offensive Tackle." Reorganize flex table QB first.
+ - "Position Values" dropdown → combine with "Drafting: which positions matter", rename to "Drafting & Position Values".
+ - Remove "(WR1-3)" → "(WR1+WR2+WR3)". Same pattern. Remove "(CB1-4)" → "(CB1+CB2+CB3+CB4)".
+-- Remove "Wins, 70→90" column from slot role table. Keep "Wins per +1 rating".
++- Remove "Wins from a 70→90 upgrade" column from slot role table. Keep "Wins per +1 rating".
+ - Remove "x wins from a 70→90 upgrade" from tier list → plain ordered list of slots.
+ - Remove Guide box header ("Guide" + "Short reference sections...").
+ - "Play the season. Seventeen games, a 14-team playoff, then the Super Bowl." → "Play the season. Seventeen-game regular season, the Playoffs, then the Super Bowl."
+@@ -2600,7 +2600,7 @@ Pass Defense
+ | `"1 Play the season. Seventeen games, a 14-team playoff, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` | `"Play the season. seventeen game Regular Season, the Playoffs, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` |
+ | `"advanced stats (what caused sacks and big runs)"` | `"advanced stats"` |
+ | Remove "x wins from a 70-90 upgrade" | From all tier lists |
+-| Remove "Wins, 70→90" column | From positional value table |
++| Remove "Wins from a 70→90 upgrade" column | From positional value table |
+ 
+ ### **Positional Value Table — Guide Page — Weight Adjustments:**
+ 
+@@ -2626,12 +2626,12 @@ Pass Defense
+ 
+ **Remove from Guide:**
+ - "x wins from a 70-90 upgrade" text (all instances)
+-- "Wins, 70→90" column from table
++- "Wins from a 70→90 upgrade" column from table
+ - Guide Box + intro text
+ - "1 Play the season..." → rewrite as specified
+ - "advanced stats (what caused sacks and big runs)" → "advanced stats"
+ - Remove tier list "x wins from 70-90 upgrade" text
+-- Remove "Wins, 70→90" column from table display
++- Remove "Wins from a 70→90 upgrade" column from table display
+ 
+ ---
+ 
+@@ -2811,7 +2811,7 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
+ | Rewrite "Play the season" | `"1 Play the season. Seventeen games..."` | `"Play the season. seventeen game Regular Season, the Playoffs, then the Super Bowl. Each week you can leave your game plan on Auto or set it yourself."` |
+ | Remove parenthetical | `"advanced stats (what caused sacks and big runs)"` | `"advanced stats"` |
+ | Remove "x wins from 70-90" | Throughout positional value section | **Remove entirely** |
+-| Remove "Wins, 70→90" column | From positional value table | Keep only "Wins per +1 OVR" + "Pass / Run" |
++| Remove "Wins from a 70→90 upgrade" column | From positional value table | Keep only "Wins per +1 OVR" + "Pass / Run" |
+ 
+ ### **Positional Value Table — Weight Adjustments:**
+ 
+@@ -2837,12 +2837,12 @@ DEFENSE: Defense, Defensive Line, Linebackers, Secondary, Run Defense, Pass Defe
+ 
+ **Remove from Guide:**
+ - "x wins from a 70-90 upgrade" text (all instances)
+-- "Wins, 70→90" column from table
++- "Wins from a 70→90 upgrade" column from table
+ - Guide Box + intro text
+ - "1 Play the season..." → rewrite as specified
+ - "advanced stats (what caused sacks and big runs)" → "advanced stats"
+ - Remove tier list "x wins from 70-90 upgrade" text
+-- Remove "Wins, 70→90" column from table display
++- Remove "Wins from a 70→90 upgrade" column from table display
+ 
+ ---
+ 
