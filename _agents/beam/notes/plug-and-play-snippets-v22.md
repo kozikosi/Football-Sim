@@ -304,3 +304,128 @@ CSS:
 ---
 
 Notes: All snippets are advisory; the Architect decides integration. None touches protected constants or the product file. Re-anchor line numbers against Pre-Colors before applying.
+
+---
+
+## Review of OR and VL contributions (Beam, 24 Oct)
+
+**OR (`_agents/or/V22-Aesthetic-proposals-20261024.md`)** — 5 proposals: expanded 15-color semantic palette with WCAG contrasts + light-mode toggle; typography scale (h1–h4, body-md, caption-sm); unified interactive states with transition tokens; centralized gradient variables; card hover elevation. All SAFE ALONE, CSS-only or CSS+var. Reconciles with Beam's team-colour approach: OR's `--accent/--accent2` become the *default* palette; team colours (`--team-primary`) override `--accent` when a team is selected. Recommendation: adopt OR's variable set as the base, then layer team colours on top.
+
+**VL (`_agents/vl/deliveries/aesthetic-prototype.html`)** — plug-in prototype: P7-1 team theming, P7-2 hover-lift, P7-3 user-pick glow + gone dimming + zebra, P7-4 dark polish, P7-5 pick feedback (flash/badge pop/confetti/counter), P7-6 mobile sticky filter + bottom sheet, P7-8 champions shimmer banner. Good overlap with Beam snippets; VL adds the bottom-sheet and filter-chip patterns which Beam lacked.
+
+**Improvements / merges:**
+- OR's `--transition-fast/--transition-normal` tokens should replace Beam's ad-hoc `180ms`/`300ms` literals.
+- VL's `--team-primary-rgb` (needed for `rgba(var(--team-primary-rgb),0.10)`) should be set alongside `--team-primary` in `setTeamColors()`; add `rgb` to `TEAM_COLORS`.
+- VL's bottom sheet is a better mobile pattern than Beam's modal for player details (touch-friendly, swipe-to-dismiss candidate).
+- Conflict: OR sets `--panel2:#1b2230`, VL sets `#1e2433`, Beam's demo uses `#1a1f2e`. Recommend VL's `#1e2433` (softer, matches P7-4 request). Single source of truth: pick one and document.
+
+---
+
+## 16. Merged team-colour setter (includes RGB for rgba usage)
+
+JS:
+```js
+const TEAM_COLORS = {
+  "Kansas City Chiefs": { primary: "#E31837", secondary: "#FFB612", accent: "#FFFFFF", rgb: "227,24,55" },
+  "Seattle Seahawks": { primary: "#002244", secondary: "#69BE28", accent: "#A5ACAF", rgb: "0,34,68" },
+  "Dallas Cowboys": { primary: "#003594", secondary: "#869397", accent: "#FFFFFF", rgb: "0,53,148" }
+};
+function setTeamColors(name) {
+  const p = TEAM_COLORS[name] || { primary: "#4f8cff", secondary: "#8b92a8", accent: "#ffd700", rgb: "79,140,255" };
+  const r = document.documentElement.style;
+  r.setProperty("--team-primary", p.primary);
+  r.setProperty("--team-secondary", p.secondary);
+  r.setProperty("--team-accent", p.accent);
+  r.setProperty("--team-primary-rgb", p.rgb);
+}
+```
+
+---
+
+## 17. Bottom sheet (mobile player details) — from VL, improved
+
+CSS:
+```css
+.bottom-sheet { position: fixed; inset: auto 0 0 0; z-index: 80; background: var(--panel2,#1e2433); border-top: 1px solid var(--border,#2a3142); border-top-left-radius: 16px; border-top-right-radius: 16px; transform: translateY(100%); transition: transform var(--transition-normal,250ms) ease; max-height: 60vh; overflow: auto; padding: 12px 16px; }
+.bottom-sheet.open { transform: translateY(0); }
+.sheet-handle { width: 32px; height: 4px; background: #374151; border-radius: 2px; margin: 0 auto 8px; }
+@media (prefers-reduced-motion: reduce) { .bottom-sheet { transition: none; } }
+```
+
+JS:
+```js
+function openSheet() { document.getElementById("sheet").classList.add("open"); }
+function closeSheet() { document.getElementById("sheet").classList.remove("open"); }
+```
+
+---
+
+## 18. OR's semantic colour system + typography scale (plug-in)
+
+CSS (drop into `:root`; overrides defaults, team colours layer on top):
+```css
+:root {
+  --bg: #0b0e14; --panel: #141922; --panel2: #1e2433; --alt: #222936;
+  --text: #e8ecf3; --sub: #9fb0c0; --muted: #6a7a8a;
+  --accent: #4f8cff; --accent-hover: #6bb0ff;
+  --accent2: #ff6b4a; --accent2-hover: #ff8762;
+  --border: #2a3142; --border-hover: #404a5e;
+  --good: #3ecf8e; --good-bg: rgba(62,207,142,.12);
+  --bad: #ff6b6b; --bad-bg: rgba(255,107,107,.12);
+  --warn: #ffb347; --warn-bg: rgba(255,179,71,.12);
+  --gold: #ffd75e; --gold-bg: rgba(255,215,94,.12);
+  --radius: 12px; --radius-sm: 8px; --radius-full: 9999px;
+  --shadow: 0 4px 16px rgba(0,0,0,.35); --shadow-lg: 0 8px 32px rgba(0,0,0,.45);
+  --transition-fast: 150ms ease; --transition-normal: 250ms ease;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #f4f6fa; --panel: #ffffff; --panel2: #eef1f6; --alt: #e3e8ef;
+    --text: #161b22; --sub: #5a6472; --muted: #7a8595;
+    --border: #dde2ea; --border-hover: #b8c1d1;
+    --good-bg: rgba(62,207,142,.08); --bad-bg: rgba(255,107,107,.08);
+    --warn-bg: rgba(255,179,71,.10); --gold-bg: rgba(255,215,94,.10);
+  }
+}
+h1 { font-size: 1.4rem; margin: 0 0 4px; font-weight: 700; line-height: 1.2; }
+h2 { font-size: 1.15rem; margin: 0 0 6px; font-weight: 600; line-height: 1.3; }
+h3 { font-size: 1rem; margin: 0 0 4px; font-weight: 600; line-height: 1.3; }
+h4 { font-size: 0.8rem; margin: 14px 0 6px; text-transform: uppercase; letter-spacing: .04em; color: var(--sub); font-weight: 600; }
+.body-md { font-size: 0.85rem; line-height: 1.5; }
+.caption-sm { font-size: 0.68rem; line-height: 1.4; color: var(--sub); text-transform: uppercase; letter-spacing: .04em; }
+```
+
+---
+
+## 19. Unified interactive states (from OR, improved)
+
+CSS:
+```css
+button, .tabbtn, .posbtn, .resetbtn, .closebtn, .qgbtn, .slider-tog, .rank {
+  transition: background var(--transition-fast), border-color var(--transition-fast), color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.tabbtn:hover { background: var(--panel2); }
+.tabbtn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.posbtn:hover { border-color: var(--accent); }
+.resetbtn:hover { background: var(--accent-hover); }
+.rank:hover { filter: brightness(1.1); }
+.panel:hover, .matchup-card:hover, .synergy-box:hover { transform: translateY(-1px); box-shadow: var(--shadow); }
+.panel:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
+```
+
+---
+
+## 20. Centralized gradients (from OR, improved)
+
+CSS:
+```css
+:root {
+  --gradient-accent: linear-gradient(90deg, var(--accent), var(--accent2));
+  --gradient-accent-alt: linear-gradient(100deg, var(--gold), #fff6c4 30%, var(--accent2) 50%, #fff6c4 70%, var(--gold));
+  --gradient-sf: linear-gradient(90deg, rgba(255,196,60,.22), rgba(255,196,60,.04));
+}
+.bar-fill { background: var(--gradient-accent); height: 100%; }
+.metricrow .mbar-fill { height: 100%; background: var(--gradient-accent); }
+.sfrow.sf90 { background: var(--gradient-sf); border-left: 3px solid var(--gold); }
+```
+
