@@ -37,13 +37,13 @@ The round's product is a **regression harness** — five scripts around the prod
 
 Components other sessions already specced — **do not duplicate them**:
 
-| Script | Owner | One-line summary |
-|---|---|---|
-| `pw4.js` | DS | 100-season internal regression; primary gate = drift against a frozen baseline (`tests/baseline.json`), r > 0.6 only a sanity floor |
-| `phone.js` | Nemo Ultra | static 390px overflow lint (HTML/CSS parse only) |
-| `tests/run_all.sh` | Nemo Super | composite runner: `node --check` → pw4 → validate → phone; exit 2 of any script = hard failure |
-| `tests/funcdiff.js` | DS (pending) | function-diff between two builds — catches mutated functions |
-| SIM-CORE architecture | GLM | markers, extraction method, manifest check |
+| Script                | Owner        | One-line summary                                                                                                                    |
+| --------------------- | ------------ | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `pw4.js`              | DS           | 100-season internal regression; primary gate = drift against a frozen baseline (`tests/baseline.json`), r > 0.6 only a sanity floor |
+| `phone.js`            | Nemo Ultra   | static 390px overflow lint (HTML/CSS parse only)                                                                                    |
+| `tests/run_all.sh`    | Nemo Super   | composite runner: `node --check` → pw4 → validate → phone; exit 2 of any script = hard failure                                      |
+| `tests/funcdiff.js`   | DS (pending) | function-diff between two builds — catches mutated functions                                                                        |
+| SIM-CORE architecture | GLM          | markers, extraction method, manifest check                                                                                          |
 
 **Your component is `validate.js` — the external real-2025 validation.** It is the one script that checks the model against reality rather than against itself.
 
@@ -59,7 +59,6 @@ Components other sessions already specced — **do not duplicate them**:
 ## Dataset interlock (important)
 
 The **real 2025 season results table** is being compiled right now by OpenClaw (its S-602: all 32 teams, W-L, point differential if sourceable, every value sourced and cross-checked). Your spec must define the **format** that dataset arrives in so the two interlock without another round. Requirements to state in your spec:
-
 - A concrete machine-readable format (suggest: a JS array of `[teamName, wins, losses, ties, pointDiff]`).
 - **Name matching is a real pitfall**: the dataset's team names must match `TEAM_DATA`'s keys exactly, or your spec must require an explicit mapping table. Say which, explicitly.
 - The script must **fail loudly (exit 2)** if the table is missing, incomplete (not 32 teams), or internally inconsistent (wins+losses+ties ≠ 17 games per team in 2025, which had no ties — but don't take my word: make your spec verify it).

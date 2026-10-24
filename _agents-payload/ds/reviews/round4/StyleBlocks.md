@@ -11,10 +11,10 @@ Receipts: `_agents/ds/reviews/round4/style-blocks.txt`, `style-blocks-diff.txt`;
 
 ## 1. `#style0` — head inline block
 
-| build | span | bytes | rule opens | what it contains |
-|---|---|---|---|---|
-| v20 | line 1 | 372 | 5 | `:root{color-scheme:light;box-sizing:border-box;padding-top/bottom:safe-area}`; `html{scroll-padding-top}`; `body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}`; `img{max-width:100%}`; `[hidden]:not([hidden=until-found i]){display:none!important}` |
-| donor | line 4 | 377 | 5 | identical except **`color-scheme:light dark`** |
+| build | span   | bytes | rule opens | what it contains                                                                                                                                                                                                                                                                                               |
+| ----- | ------ | ----- | ---------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| v20   | line 1 | 372   | 5          | `:root{color-scheme:light;box-sizing:border-box;padding-top/bottom:safe-area}`; `html{scroll-padding-top}`; `body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}`; `img{max-width:100%}`; `[hidden]:not([hidden=until-found i]){display:none!important}` |
+| donor | line 4 | 377   | 5          | identical except **`color-scheme:light dark`**                                                                                                                                                                                                                                                                 |
 
 **Exact check:** `block0 exact same: false`; after replacing the donor's `color-scheme:light dark` with `color-scheme:light`, the two blocks are byte-identical. This is the only `#style0` difference. It contains no draft-board selectors.
 
@@ -24,10 +24,10 @@ Receipts: `_agents/ds/reviews/round4/style-blocks.txt`, `style-blocks-diff.txt`;
 
 ## 2. `#style1` — main block
 
-| build | span | lines | bytes | `{` opens | `@media` | `@keyframes` | `prefers-color-scheme` |
-|---|---|---|---|---|---|---|---|
-| v20 | 13–313 | 301 | 25,872 | 310 | 9 | 5 | 2 |
-| donor | 13–264 | 252 | 20,186 | 259 | 8 | 4 | 1 |
+| build | span   | lines | bytes  | `{` opens | `@media` | `@keyframes` | `prefers-color-scheme` |
+| ----- | ------ | ----- | ------ | --------- | -------- | ------------ | ---------------------- |
+| v20   | 13–313 | 301   | 25,872 | 310       | 9        | 5            | 2                      |
+| donor | 13–264 | 252   | 20,186 | 259       | 8        | 4            | 1                      |
 
 Common base (identical in both; only two diff hunks):
 - root variables + light media override (line 18); layout, panels, buttons, tables; player browser/filters/position list/synergy; detail/metric bars/animations/toasts; draft board base, roster, matchup, playoffs, depth chart, draft UI; generic phone layout and `table.mstack`.

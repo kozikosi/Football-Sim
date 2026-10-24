@@ -3541,8 +3541,7 @@ function matchupTagHTML(g){
 }
 
 function simulateCurrentWeek(){
- seasonState.scriptLocked = true;
- const week = seasonState.currentWeek;
+  const week = seasonState.currentWeek;
  const games = seasonState.schedule.filter(g=>g.week===week);
  games.forEach(g=>{ if(!g.played) playGame(g,false); });
  const st = computeStandings(seasonState.schedule, teamNames());
@@ -3553,8 +3552,7 @@ function simulateCurrentWeek(){
  seasonState.weekSimulated = true;
 }
 function simRestOfSeason(){
- seasonState.scriptLocked = true;
- while(seasonState.phase==='regular'){
+  while(seasonState.phase==='regular'){
   if(!seasonState.weekSimulated) simulateCurrentWeek();
   advanceWeek();
  }

@@ -1,6 +1,6 @@
 # tests/CONTRACT.md — shared interface contract for the Round-1 harness
 
-> Adopted from GPT's S-501 finding: *a spec that assumes an interface it hasn't verified produces integration surprises* — first live example was S-502's own script-location assumption. One place where the settled conventions live, so nobody guesses again. Normative for every script in `tests/` and for the implementer building them (the COLLECTIVE-PROMPT.md workflow applies — tooling changes go through submissions and verification like everything else).
+> Adopted from GPT's S-501 finding: _a spec that assumes an interface it hasn't verified produces integration surprises_ — first live example was S-502's own script-location assumption. One place where the settled conventions live, so nobody guesses again. Normative for every script in `tests/` and for the implementer building them (the COLLECTIVE-PROMPT.md workflow applies — tooling changes go through submissions and verification like everything else).
 
 **Version 2 · 2026-10-19 · amended by the implementer's Round-1 pre-dispatch rulings (B1–B4 of `rulings_r1_predispatch.md`, applied to the files by GLM at the user's instruction). Version 1 + C8 was the pre-flight state. Applies to build `77bb9ed5…`.**
 
@@ -32,7 +32,7 @@
 - Pointers: `pw4.js` → S-102 · `validate.js` → S-502 · `phone.js` → S-401 · `run_all.sh` → S-301 · `funcdiff.js` → S-103.
 - Shared behaviors all scripts adopt: `--help` prints a one-screen usage summary; stdout stays parseable, final line `PASS <name>` or `FAIL <name> <reason>`.
 - **League-wide exit codes**, for every script in `tests/`: `0` pass · `1` validation/lint finding (numbers, drift, overflow) · `2` data-integrity violation (dataset checks, manifest mismatch, **missing or invalid baseline**) · `3` extraction/boundary failure (C2) · `4` usage error, missing input file, unparsable input.
-- **The entry-wins precedence rule is repealed for exit codes and status-line grammar.** If a filed entry disagrees, the contract wins and the conflict is reported at assembly — a script may not silently redefine a code. Consequence (ruled): S-301's phone.js `exit 2 = usage/parse` amendment is **superseded** — `phone.js` uses `1` for findings and `4` for usage/parse. Output-line *text format* remains per-entry. Any future exception requires a numbered amendment here.
+- **The entry-wins precedence rule is repealed for exit codes and status-line grammar.** If a filed entry disagrees, the contract wins and the conflict is reported at assembly — a script may not silently redefine a code. Consequence (ruled): S-301's phone.js `exit 2 = usage/parse` amendment is **superseded** — `phone.js` uses `1` for findings and `4` for usage/parse. Output-line _text format_ remains per-entry. Any future exception requires a numbered amendment here.
 
 ## C5 — Run order + aggregation (`run_all.sh`, S-301 — ruled B3)
 
@@ -62,5 +62,5 @@ Steps for scripts not yet delivered print `<NAME>: SKIPPED (not delivered this r
 ## C8 — Preflight findings (19 Oct; disposition after the rulings)
 
 1. ~~Exit-code-2 collision (Nemo Super, preflight).~~ **RESOLVED by B2**: league codes stand; `phone.js` uses `1` for findings and `4` for usage/parse; the S-301 exit-2 amendment is superseded and recorded here.
-2. **U-13 / S-502 coupling (Nemo Super, preflight).** If the U-13 weights audit changes `DEFAULT_WEIGHTS` (protected — user's conditional approval already on record), `validate.js`'s published targets (r ≈ 0.66, ρ ≈ 0.69, RMSE ≈ 2.6) shift with it: those numbers describe the *current* weights. After any accepted weights change, the validate targets/baseline must be **re-measured, never carried over** (B4.4 makes this rule for the baseline too).
+2. **U-13 / S-502 coupling (Nemo Super, preflight).** If the U-13 weights audit changes `DEFAULT_WEIGHTS` (protected — user's conditional approval already on record), `validate.js`'s published targets (r ≈ 0.66, ρ ≈ 0.69, RMSE ≈ 2.6) shift with it: those numbers describe the _current_ weights. After any accepted weights change, the validate targets/baseline must be **re-measured, never carried over** (B4.4 makes this rule for the baseline too).
 3. **S-301 threshold (iii) ↔ U-17 watch item.** phone.js's `white-space: nowrap` threshold and the U-17 League-Leaders overflow fix may complement or collide; reconcile before U-17 ships — the 1B acceptance list carries this.

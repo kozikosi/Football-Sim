@@ -84,7 +84,7 @@ tr.detailrow .detailwrap{padding:14px 16px;background:var(--panel2);}
   }
   table.mstack thead{display:none;}
   table.mstack tr{border:1px solid var(--border);border-radius:8px;margin:6px 0;padding:8px 12px;background:var(--panel2); overflow:hidden;}
-  table.mstack td, table.mstack th{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:4px 0 !important;border:0 !important;text-align:right; white-space:normal; overflow-wrap:anywhere; min-width:0;}
+  table.mstack td, table.mstack th{display:flex;justify-content:space-between;align-items:baseline;gap:10px;padding:4px 0;border:0;text-align:right; white-space:normal; overflow-wrap:anywhere; min-width:0;}
   table.mstack td::before{content:attr(data-label);color:var(--sub);text-align:left;flex:0 0 35%;font-size:0.85em;}
   table.mstack td:not([data-label])::before{content:none;}
   table.mstack td:first-child{font-weight:700;}
@@ -214,7 +214,7 @@ input:checked + .slider-tog:before{transform:translateX(16px);}
 @keyframes fxpop{0%{transform:translate(-50%,-50%) scale(.3);opacity:0}12%{transform:translate(-50%,-50%) scale(1.08);opacity:1}20%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-60%) scale(1.02);opacity:0}}
 @keyframes fxshine{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @keyframes fxtoast{0%{transform:translate(-50%,20px);opacity:0}12%,85%{transform:translate(-50%,0);opacity:1}100%{transform:translate(-50%,-10px);opacity:0}}
-@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none !important;opacity:1;}}
+@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none;opacity:1;}}
 
 /* ============================================================================
    CONFIRM DIALOG
@@ -464,9 +464,9 @@ table.linescore td:first-child,table.linescore th:first-child{text-align:left;}
 const POINTS_PER_WIN = 32.5;
 const WINS_BASE = 70;
 const EMERGENCY_PENALTY = 8;
-const HOME_FIELD = 1.7;
+const _HOME_FIELD = 1.7;
 const BASE_PTS = 21.5;
-const PTS_NOISE = 6.0;
+const _PTS_NOISE = 6.0;
 const RUSH_BASE = 105;
 const PASS_BASE = 220;
 const PT_RUSH = 0.040;
@@ -475,7 +475,7 @@ const PT_TO = 3.0;
 const PT_SACK = 0.8;
 const LAM_TO = 1.2;
 const LAM_SACK = 2.2;
-const RET_PTS = 2.36;
+const _RET_PTS = 2.36;
 
 const DEFAULT_WEIGHTS = {
   "QB": 320, "RB1": 100, "RB2": 40, "WR1": 60, "WR2": 40, "WR3": 20, "WR4": 5,
@@ -520,50 +520,50 @@ const NFL_DIVISIONS = {
   'NFC West': ['Arizona Cardinals','Los Angeles Rams','San Francisco 49ers','Seattle Seahawks']
 };
 
-const ROUND_LABELS = {wildcard:'Wild Card Round', divisional:'Divisional Round', champ:'Conference Championship', superbowl:'Super Bowl'};
-const NEXT_ROUND_LABEL = {wildcard:'Divisional Round', divisional:'Conference Championship', champ:'Super Bowl'};
+const _ROUND_LABELS = {wildcard:'Wild Card Round', divisional:'Divisional Round', champ:'Conference Championship', superbowl:'Super Bowl'};
+const _NEXT_ROUND_LABEL = {wildcard:'Divisional Round', divisional:'Conference Championship', champ:'Super Bowl'};
 
 /* ============================================================================
    STATE
    ============================================================================ */
 let weights = {...DEFAULT_WEIGHTS};
-let personalWeights = null;
-let synergy = { runEnabled:false, runThreshold:80, runSlope:1, runMaxPenalty:2, passEnabled:false, passThreshold:81, passSlope:1, passMaxPenalty:3, passGameEnabled:false, passGameThreshold:80, passGameSlope:1, passGameMaxPenalty:2 };
+const _personalWeights = null;
+const _synergy = { runEnabled:false, runThreshold:80, runSlope:1, runMaxPenalty:2, passEnabled:false, passThreshold:81, passSlope:1, passMaxPenalty:3, passGameEnabled:false, passGameThreshold:80, passGameSlope:1, passGameMaxPenalty:2 };
 let draftSim = null;
 let seasonState = null;
-let league100 = null;
-let currentScored = [];
-let draftUI = null;
+const _league100 = null;
+const _currentScored = [];
+const draftUI = null;
 let draftSpeed = 'slow';
 let slowTimer = null;
-let _warCache = new Map();
+const _warCache = new Map();
 let _wpoCache = null;
-let _wTable = null;
-let _decompCache = {};
+const _wTable = null;
+const _decompCache = {};
 
 /* ============================================================================
    UTILITIES
    ============================================================================ */
 function clampNum(v,lo,hi){ return Math.max(lo, Math.min(hi, v)); }
 function randNormal(){ let u=0,v=0; while(u===0) u=Math.random(); while(v===0) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }
-function gaussNoise(sd){ return randNormal()*sd; }
-function poisson(lambda){ if(lambda<=0) return 0; const L=Math.exp(-lambda); let k=0,p=1; do{ k++; p*=Math.random(); }while(p>L); return k-1; }
-function weightedPick(items){ const total = items.reduce((s,x)=>s+x.w,0); let r = Math.random()*total; for(const x of items){ r -= x.w; if(r<=0) return x.item; } return items[items.length-1].item; }
+function _gaussNoise(sd){ return randNormal()*sd; }
+function _poisson(lambda){ if(lambda<=0) return 0; const L=Math.exp(-lambda); let k=0,p=1; do{ k++; p*=Math.random(); }while(p>L); return k-1; }
+function _weightedPick(items){ const total = items.reduce((s,x)=>s+x.w,0); let r = Math.random()*total; for(const x of items){ r -= x.w; if(r<=0) return x.item; } return items[items.length-1].item; }
 function shuffleArr(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }
-function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
-function normCdf(z){ const t=1/(1+0.2316419*Math.abs(z)), d=0.3989423*Math.exp(-z*z/2); const p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return z>0?1-p:p; }
-function ordinalNum(n){ const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
+function _pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function _normCdf(z){ const t=1/(1+0.2316419*Math.abs(z)), d=0.3989423*Math.exp(-z*z/2); const p=d*t*(0.3193815+t*(-0.3565638+t*(1.781478+t*(-1.821256+t*1.330274)))); return z>0?1-p:p; }
+function _ordinalNum(n){ const s=['th','st','nd','rd'], v=n%100; return n+(s[(v-20)%10]||s[v]||s[0]); }
 function nick(team){ return team.split(' ').slice(-1)[0]; }
-function capFirst(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
-function joinList(arr){ if(arr.length<=1) return arr.join(''); if(arr.length===2) return arr.join(' and '); return arr.slice(0,-1).join(', ')+', and '+arr[arr.length-1]; }
-function fmtTOP(seconds){ const m = Math.floor(seconds/60), s = seconds%60; return `${m}:${String(s).padStart(2,'0')}`; }
+function _capFirst(s){ return s.charAt(0).toUpperCase()+s.slice(1); }
+function _joinList(arr){ if(arr.length<=1) return arr.join(''); if(arr.length===2) return arr.join(' and '); return `${arr.slice(0,-1).join(', ')}, and ${arr[arr.length-1]}`; }
+function _fmtTOP(seconds){ const m = Math.floor(seconds/60), s = seconds%60; return `${m}:${String(s).padStart(2,'0')}`; }
 function fmtWar(w){ return (w>=0?'+':'\u2212') + Math.abs(w).toFixed(2); }
-function letterGrade(pct){ if(pct>=97) return 'A+'; if(pct>=90) return 'A'; if(pct>=80) return 'A-'; if(pct>=70) return 'B+'; if(pct>=60) return 'B'; if(pct>=50) return 'B-'; if(pct>=40) return 'C+'; if(pct>=30) return 'C'; if(pct>=20) return 'C-'; if(pct>=10) return 'D'; return 'F'; }
-function pctTxt(x){ return x==null ? '—' : Math.round(x*100)+'%'; }
-function fmtN(n){ return (n||0).toLocaleString('en-US'); }
+function _letterGrade(pct){ if(pct>=97) return 'A+'; if(pct>=90) return 'A'; if(pct>=80) return 'A-'; if(pct>=70) return 'B+'; if(pct>=60) return 'B'; if(pct>=50) return 'B-'; if(pct>=40) return 'C+'; if(pct>=30) return 'C'; if(pct>=20) return 'C-'; if(pct>=10) return 'D'; return 'F'; }
+function _pctTxt(x){ return x==null ? '—' : `${Math.round(x*100)}%`; }
+function _fmtN(n){ return (n||0).toLocaleString('en-US'); }
 
 function divisionOfTeam(team){ return Object.keys(NFL_DIVISIONS).find(d=>NFL_DIVISIONS[d].includes(team)); }
-function conferenceOfTeam(team){ const d = divisionOfTeam(team); return d ? (['AFC East','AFC North','AFC South','AFC West'].includes(d) ? 'AFC' : 'NFC') : 'AFC'; }
+function _conferenceOfTeam(team){ const d = divisionOfTeam(team); return d ? (['AFC East','AFC North','AFC South','AFC West'].includes(d) ? 'AFC' : 'NFC') : 'AFC'; }
 
 /* ============================================================================
    DATA STUBS (representative sample — integrate full PLAYERS / TEAM_DATA here)
@@ -651,7 +651,7 @@ const FLEX = {
   WR:{TE:4, SS:4, FS:4, CB:4, RB:6}, TE:{MIKE:6, WILL:6, SAM:6, SS:6, FS:6, RB:6},
   HB:{TE:6}, QB:{}, K:{}
 };
-function isNaturalSlot(pos, slot){ const nat = NATURAL_SLOT_MAP[pos]; return !!(nat && nat.includes(slot)); }
+function isNaturalSlot(pos, slot){ const nat = NATURAL_SLOT_MAP[pos]; return !!(nat?.includes(slot)); }
 function flexRule(pos, slot){ if(isNaturalSlot(pos, slot)) return 0; const t = FLEX[pos]; if(!t) return null; if(t[slot]!=null) return t[slot]; return null; }
 function flexPenaltyFor(pos, slot){ const p = flexRule(pos, slot); return p==null ? EMERGENCY_PENALTY : p; }
 function effOvr(player, slot){ if(!player) return 70; return player[3] - flexPenaltyFor(player[1], slot); }
@@ -761,13 +761,13 @@ function matchupModel(O0, D0, lg, plan){
   const lamTO = LAM_TO*Math.exp(toLog), lamSack = LAM_SACK*Math.exp(skLog);
   const kickPts = MC.kick*dK;
   const raw = {};
-  function add(parts, effOf, kind){ parts.forEach(([unit, owner, lv])=>{ if(unit==='lean' || unit==='scheme') return; const eff = effOf(lv); const key = unit+'|'+owner; raw[key] = raw[key] || {unit, owner, pts:0, kinds:{}}; const swing = owner==='off' ? eff : -eff; raw[key].pts += swing; raw[key].kinds[kind] = (raw[key].kinds[kind]||0)+swing; }); }
+  function add(parts, effOf, kind){ parts.forEach(([unit, owner, lv])=>{ if(unit==='lean' || unit==='scheme') return; const eff = effOf(lv); const key = `${unit}|${owner}`; raw[key] = raw[key] || {unit, owner, pts:0, kinds:{}}; const swing = owner==='off' ? eff : -eff; raw[key].pts += swing; raw[key].kinds[kind] = (raw[key].kinds[kind]||0)+swing; }); }
   add(runParts, lv=> PT_RUSH*RUSH_BASE*(Math.exp(lv)-1), 'ground game');
   add(passParts, lv=> PT_PASS*PASS_BASE*(Math.exp(lv)-1), 'passing game');
   add(toParts, lv=> -PT_TO*LAM_TO*(Math.exp(lv)-1), 'turnovers');
   add(skParts, lv=> -PT_SACK*LAM_SACK*(Math.exp(lv)-1), 'sacks');
   if(Math.abs(kickPts)>0.01) raw['kicker|off'] = {unit:'kicker', owner:'off', pts:kickPts, kinds:{'field goals':kickPts}};
-  const planCost = PLAN_K.predict*Math.pow(STRAT[po.strat].s/0.08, 2) - PLAN_K.defPredict*Math.abs(DEF_FOCUS[pd.focus].f) + PERS[po.pers].pc;
+  const planCost = PLAN_K.predict*(STRAT[po.strat].s/0.08) ** 2 - PLAN_K.defPredict*Math.abs(DEF_FOCUS[pd.focus].f) + PERS[po.pers].pc;
   const structPts = BASE_PTS + PT_RUSH*(expRush-RUSH_BASE) + PT_PASS*(expPass-PASS_BASE) - PT_TO*(lamTO-LAM_TO) - PT_SACK*(lamSack-LAM_SACK) + kickPts - planCost;
   const channels = {run:PT_RUSH*(expRush-RUSH_BASE), pass:PT_PASS*(expPass-PASS_BASE), to:-PT_TO*(lamTO-LAM_TO), sack:-PT_SACK*(lamSack-LAM_SACK), kick:kickPts, plan:-planCost};
   const vm = clampNum(1 - PLAN_K.vm*sT, 0.7, 1.2);
@@ -809,8 +809,8 @@ function render(){
    ============================================================================ */
 const WV_GROUPS = ['QB','EDGE','OT','CB','WR','DT','OG','C','LB','SS','FS','TE','RB','K'];
 const WV_NAMES = {QB:'Quarterback',EDGE:'Edge rusher',OT:'Offensive tackle',CB:'Cornerback',WR:'Wide receiver',DT:'Defensive tackle',OG:'Guard',C:'Center',LB:'Linebacker',SS:'Strong safety',FS:'Free safety',TE:'Tight end',RB:'Running back',K:'Kicker'};
-const PRIO_MULT = {2:1.5, 1:1, 0:0.5}, PRIO_STAR = {2:'★★', 1:'★', 0:'☆'};
-const SLOT_FAMILY = {QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',TE1:'TE',TE2:'TE',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',DE1:'DE',DE2:'DE',DT1:'DT',DT2:'DT',MIKE:'MIKE',WILL:'WILL',SAM:'SAM',CB1:'CB',CB2:'CB',CB3:'CB',SS:'SS',FS:'FS',K:'K'};
+const _PRIO_MULT = {2:1.5, 1:1, 0:0.5}, PRIO_STAR = {2:'★★', 1:'★', 0:'☆'};
+const _SLOT_FAMILY = {QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',TE1:'TE',TE2:'TE',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',DE1:'DE',DE2:'DE',DT1:'DT',DT2:'DT',MIKE:'MIKE',WILL:'WILL',SAM:'SAM',CB1:'CB',CB2:'CB',CB3:'CB',SS:'SS',FS:'FS',K:'K'};
 
 function newDraftUI(){ return {groups:new Set(WV_GROUPS), prio:{}, rosterView:'depth', sim:null, slotPick:{}}; }
 let draftUI = newDraftUI();
@@ -919,7 +919,7 @@ function processUntilUserTurn(){
       return;
     }
     const pk = cpuPick(t);
-    if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+    if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
   }
   draftSim.awaitingUser = false;
   finishDraft2();
@@ -938,7 +938,7 @@ function stepSlow(){
   }
   draftSim.awaitingUser = false;
   const pk = cpuPick(t);
-  if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+  if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
   renderDraftLive();
   slowTimer = setTimeout(stepSlow, 750);
 }
@@ -948,7 +948,7 @@ function simToEnd(){
   while(draftSim.pos < draftSim.order.length){
     const t = draftSim.order[draftSim.pos];
     const pk = cpuPick(t);
-    if(pk && pk.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
+    if(pk?.slot) executePick(t, pk.player, pk.slot); else draftSim.pos++;
   }
   draftSim.awaitingUser = false;
   finishDraft2();
@@ -971,10 +971,10 @@ function cpuBias(teamIndex, group){
   if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.random()*8 : Math.exp(0.5*randNormal());
   return b[group];
 }
-function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.pow(Math.random(),1.0)*4.0; return draftSim.noiseSd[teamIndex]; }
-function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.pow(Math.random(),0.9)*0.95; return draftSim.missP[teamIndex]; }
+function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.random() ** 1.0*4.0; return draftSim.noiseSd[teamIndex]; }
+function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.random() ** 0.9*0.95; return draftSim.missP[teamIndex]; }
 const _fpc = {};
-function flexPen(pos, slot){ const k = pos+'|'+slot; return _fpc[k]!=null ? _fpc[k] : (_fpc[k] = flexPenaltyFor(pos, slot)); }
+function flexPen(pos, slot){ const k = `${pos}|${slot}`; return _fpc[k]!=null ? _fpc[k] : (_fpc[k] = flexPenaltyFor(pos, slot)); }
 function cpuPick(teamIndex, st){
   st = st || draftSim;
   const roster = st.rosters[teamIndex], T = slotWinsTable();
@@ -1017,7 +1017,7 @@ function renderDraftLive(){
       : `Round ${round} of ${TOTAL_ROUNDS}, Pick ${pickInRound} — ${teamLabel(draftSim.order[draftSim.pos])} is on the clock...`;
   }
   const ub = document.getElementById('undoPickBtn');
-  if(ub) ub.style.display = (draftSim.undoStack && draftSim.undoStack.length && draftSim.awaitingUser) ? '' : 'none';
+  if(ub) ub.style.display = (draftSim.undoStack?.length && draftSim.awaitingUser) ? '' : 'none';
   const all = draftSim.log.slice().reverse();
   const recent = document.getElementById('draftRecentPicks');
   if(recent){
@@ -1083,18 +1083,18 @@ function renderDraftBoard2(){
   const canPick = S.awaitingUser;
   const sortKey = sortBy;
   const keyOf = r=> sortKey==='priority' ? r.v : sortKey==='wins' ? r.w : sortKey==='value' ? r.v : sortKey==='gone' ? -1 : sortKey==='name' ? r.p[0] : sortKey==='pos' ? (POS_DISPLAY[r.p[1]]||r.p[1]) : sortKey==='team' ? r.p[2] : r.p[3];
-  const dir = draftUI.sortAsc ? -1 : 1;
+  const _dir = draftUI.sortAsc ? -1 : 1;
   const cmp = (a,b)=>{ const d = (keyOf(b)-keyOf(a))*(draftUI.sortAsc?-1:1); if(d!==0) return d; return (b.p[3]-a.p[3]) || cmpPlayers(a.p,b.p); };
   const filled = {}; ROSTER_SLOTS.forEach(s=>{ if(roster.slots[s]){ const g = WV_SLOT_GROUP[s]; filled[g] = (filled[g]||0)+1; } });
   const openG = WV_GROUPS.filter(g=>SLOT_TOTALS(g) - (filled[g]||0) > 0);
   const sel = draftUI.groups;
   const bestBy = {}; entries.forEach(r=>{ if(!bestBy[r.g] || r.v>bestBy[r.g].v) bestBy[r.g] = r; });
   const pri = openG.filter(g=>bestBy[g]).map(g=>bestBy[g]).sort((a,b)=>b.v-a.v).slice(0,7);
-  const maxW = Math.max(0.5, ...pri.map(r=>Math.max(r.v,0)));
+  const _maxW = Math.max(0.5, ...pri.map(r=>Math.max(r.v,0)));
   let ph = '';
   ph = `<div class="narr" style="margin-bottom:8px;">For each position you still need, the best option by value at that spot on your roster (flex penalty included).</div>`;
   pri.forEach(r=>{
-    ph += `<div class="pr-row"><div><b>${WV_NAMES[r.g]}</b></div><div style="margin-top:2px;">${r.p[0]} (${r.p[3]} OVR) · ${fmtWar(r.v)} wins here${r.flex?' · flexed −'+r.pen:''}</div></div>`;
+    ph += `<div class="pr-row"><div><b>${WV_NAMES[r.g]}</b></div><div style="margin-top:2px;">${r.p[0]} (${r.p[3]} OVR) · ${fmtWar(r.v)} wins here${r.flex?` · flexed −${r.pen}`:''}</div></div>`;
   });
   document.getElementById('draftPriority').innerHTML = ph;
   let ch = `<div class="chipbar">`;
@@ -1111,13 +1111,13 @@ function renderDraftBoard2(){
     const gs = openG.filter(g=>sel.has(g));
     let h = '<div class="cardgrid">';
     gs.forEach(g=>{
-      let list = entries.filter(r=>r.g===g && matchesSearch(r.p) && (posF==='all' || WV_TAG_GROUP(r.p[1])===posF)).sort(cmp);
+      const list = entries.filter(r=>r.g===g && matchesSearch(r.p) && (posF==='all' || WV_TAG_GROUP(r.p[1])===posF)).sort(cmp);
       const mx = Math.max(0.3, ...list.map(r=>Math.max(r.v||0, 0)));
       h += `<div class="pcard"><h4><span>${WV_NAMES[g]}</span><span class="narr">${filled[g]||0}/${SLOT_TOTALS(g)}</span></h4><div class="plist">`;
       if(!list.length) h += '<div class="narr">No players match.</div>';
       list.forEach(r=>{
         const w = Math.max(r.v,0);
-        h += `<div class="prow"><div><b>${r.p[0]}</b> <span class="narr">${r.p[3]} OVR · ${TEAM_ABBR[r.p[2]]||r.p[2]}${r.flex?' (flex → '+r.slot+', −'+r.pen+')':''}</span><div class="mbar"><i style="width:${(w/mx*100)}%;background:var(--accent);"></i></div></div><div class="score">${wavg(r.v)}</div><div>${canPick && r.slot ? `<button class="resetbtn" style="width:auto;margin:0;padding:3px 9px;font-size:0.75rem;" data-pick="${r.p[0].replace(/"/g,'&quot;')}" data-slot="${r.slot}">Draft</button>` : ''}</div></div>`;
+        h += `<div class="prow"><div><b>${r.p[0]}</b> <span class="narr">${r.p[3]} OVR · ${TEAM_ABBR[r.p[2]]||r.p[2]}${r.flex?` (flex → ${r.slot}, −${r.pen})`:''}</span><div class="mbar"><i style="width:${(w/mx*100)}%;background:var(--accent);"></i></div></div><div class="score">${wavg(r.v)}</div><div>${canPick && r.slot ? `<button class="resetbtn" style="width:auto;margin:0;padding:3px 9px;font-size:0.75rem;" data-pick="${r.p[0].replace(/"/g,'&quot;')}" data-slot="${r.slot}">Draft</button>` : ''}</div></div>`;
       });
       h += '</div></div>';
     });
@@ -1133,7 +1133,7 @@ function renderDraftBoard2(){
       const cur = byP.get(r.p[0]);
       if(!cur || r.v>cur.v) byP.set(r.p[0], r);
     });
-    if(!document.getElementById('needsOnlyToggle') || !document.getElementById('needsOnlyToggle').checked){
+    if(!document.getElementById('needsOnlyToggle')?.checked){
       S.pool.forEach(p=>{
         if(byP.has(p[0]) || !matchesSearch(p)) return;
         const tg = WV_TAG_GROUP(p[1]);
@@ -1141,7 +1141,7 @@ function renderDraftBoard2(){
         byP.set(p[0], {p, w:playerWar(p).war, slot:null, g:tg, v:null, flex:false, pen:0});
       });
     }
-    let list = [...byP.values()].sort(cmp);
+    const list = [...byP.values()].sort(cmp);
     let h = '';
     list.forEach(r=>{
       const opts = canPick && r.slot ? openSlotsFor(roster, r.p) : [];
@@ -1156,7 +1156,7 @@ function prioOf(g){ return draftUI.prio[g]==null ? 1 : draftUI.prio[g]; }
 function wavg(x){ return x==null ? '—' : fmtWar(x); }
 function openSlotsFor(roster, p){ return (POS_SLOT_MAP[p[1]]||[]).filter(s=>!roster.slots[s]); }
 function undoUserPick(){
-  const u = draftSim && draftSim.undoStack && draftSim.undoStack.pop(); if(!u) return;
+  const u = draftSim?.undoStack?.pop(); if(!u) return;
   if(slowTimer){ clearTimeout(slowTimer); slowTimer = null; }
   draftSim.pos = u.pos; draftSim.pool = u.pool.slice();
   draftSim.rosters.forEach((r,i)=>{ r.slots = {...u.slots[i]}; r.pickRounds = {...u.rounds[i]}; });
@@ -1197,15 +1197,15 @@ function renderDraftRoster2(){
 function renderDraftResults(){
   const panel = document.getElementById('draftFinalResults');
   const myEntry = draftSim.rosters.find(r=>r.isUser);
-  const realTeams = Object.keys(TEAM_DATA);
+  const _realTeams = Object.keys(TEAM_DATA);
   let slotRows = '';
   [].concat(...[['Offense',['QB','RB1','RB2','WR1','WR2','WR3','TE1','TE2','OT1','OG1','C','OG2','OT2']],['Defense',['DE1','DT1','DT2','DE2','MIKE','WILL','SAM','CB1','CB2','CB3','FS','SS']],['Special Teams',['K']]].map(g=>g[2])).forEach(s=>{
     const p = myEntry.slotmap[s];
     const e = normalizeSlotEntry(p);
-    const rnd = myEntry.pickRounds && myEntry.pickRounds[s];
-    const oop = e && e.pos && isOutOfPosition(e.pos, s);
+    const rnd = myEntry.pickRounds?.[s];
+    const oop = e?.pos && isOutOfPosition(e.pos, s);
     const effCell = oop ? `<span style="color:var(--bad);font-weight:700;">${e.ovr} <span class="narr" style="font-weight:400;">(${e.rawOvr} − ${flexPenaltyFor(e.pos,s)}, flexed)</span></span>` : `<span class="score">${e?e.ovr:'—'}</span>`;
-    slotRows += `<tr><td>${LABELS[s]||s}</td><td>${e&&e.name?e.name:'—'}${oop?' <span class="badge badge-passfail">Flexed from '+e.pos+'</span>':''}</td><td>${effCell}</td><td class="narr">${rnd?`Round ${rnd}`:'—'}</td></tr>`;
+    slotRows += `<tr><td>${LABELS[s]||s}</td><td>${e?.name?e.name:'—'}${oop?` <span class="badge badge-passfail">Flexed from ${e.pos}</span>`:''}</td><td>${effCell}</td><td class="narr">${rnd?`Round ${rnd}`:'—'}</td></tr>`;
   });
   panel.innerHTML = `
     <h2 style="margin-top:0;">Draft Complete</h2>
@@ -1229,27 +1229,27 @@ function normalizeSlotEntry(raw){
 }
 
 /* Wire draft board events */
-document.getElementById('startDraftBtn') && document.getElementById('startDraftBtn').addEventListener('click', startDraft2);
-document.getElementById('speedInstantBtn') && document.getElementById('speedInstantBtn').addEventListener('click', ()=>{ draftSpeed='instant'; document.getElementById('speedInstantBtn').classList.add('active'); document.getElementById('speedSlowBtn').classList.remove('active'); if(draftSim && !draftSim.awaitingUser) processUntilUserTurn(); });
-document.getElementById('speedSlowBtn') && document.getElementById('speedSlowBtn').addEventListener('click', ()=>{ draftSpeed='slow'; document.getElementById('speedSlowBtn').classList.add('active'); document.getElementById('speedInstantBtn').classList.remove('active'); if(draftSim && !draftSim.awaitingUser && !slowTimer) stepSlow(); });
-document.getElementById('simToEndBtn') && document.getElementById('simToEndBtn').addEventListener('click', simToEnd);
-document.getElementById('undoPickBtn') && document.getElementById('undoPickBtn').addEventListener('click', undoUserPick);
-document.getElementById('draftSort2') && document.getElementById('draftSort2').addEventListener('change', ()=>{ renderDraftBoard2(); });
-document.getElementById('draftView2') && document.getElementById('draftView2').addEventListener('change', ()=>{ renderDraftBoard2(); });
-document.getElementById('draftPosFilter2') && document.getElementById('draftPosFilter2').addEventListener('change', ()=>{ renderDraftBoard2(); });
-document.getElementById('draftSearch2') && document.getElementById('draftSearch2').addEventListener('input', ()=>{ renderDraftBoard2(); });
-document.getElementById('rosterPickBtn') && document.getElementById('rosterPickBtn').addEventListener('click', ()=>{ draftUI.rosterView='pick'; renderDraftRoster2(); });
-document.getElementById('rosterDepthBtn') && document.getElementById('rosterDepthBtn').addEventListener('click', ()=>{ draftUI.rosterView='depth'; renderDraftRoster2(); });
-document.getElementById('draftBody2') && document.getElementById('draftBody2').addEventListener('click', e=>{
+document.getElementById('startDraftBtn')?.addEventListener('click', startDraft2);
+document.getElementById('speedInstantBtn')?.addEventListener('click', ()=>{ draftSpeed='instant'; document.getElementById('speedInstantBtn').classList.add('active'); document.getElementById('speedSlowBtn').classList.remove('active'); if(draftSim && !draftSim.awaitingUser) processUntilUserTurn(); });
+document.getElementById('speedSlowBtn')?.addEventListener('click', ()=>{ draftSpeed='slow'; document.getElementById('speedSlowBtn').classList.add('active'); document.getElementById('speedInstantBtn').classList.remove('active'); if(draftSim && !draftSim.awaitingUser && !slowTimer) stepSlow(); });
+document.getElementById('simToEndBtn')?.addEventListener('click', simToEnd);
+document.getElementById('undoPickBtn')?.addEventListener('click', undoUserPick);
+document.getElementById('draftSort2')?.addEventListener('change', ()=>{ renderDraftBoard2(); });
+document.getElementById('draftView2')?.addEventListener('change', ()=>{ renderDraftBoard2(); });
+document.getElementById('draftPosFilter2')?.addEventListener('change', ()=>{ renderDraftBoard2(); });
+document.getElementById('draftSearch2')?.addEventListener('input', ()=>{ renderDraftBoard2(); });
+document.getElementById('rosterPickBtn')?.addEventListener('click', ()=>{ draftUI.rosterView='pick'; renderDraftRoster2(); });
+document.getElementById('rosterDepthBtn')?.addEventListener('click', ()=>{ draftUI.rosterView='depth'; renderDraftRoster2(); });
+document.getElementById('draftBody2')?.addEventListener('click', e=>{
   const b = e.target.closest('button[data-pick]'); if(b){ makeUserPick2(b.dataset.pick, b.dataset.slot); return; }
   const c = e.target.closest('[data-chg]');
   if(c){ e.preventDefault(); const name = c.dataset.chg, p = draftSim.pool.find(x=>x[0]===name); if(!p) return;
     const sl = document.createElement('select'); sl.className = 'slotsel';
-    openSlotsFor(draftSim.rosters[draftSim.userIndex], p).forEach(s=>{ const o = document.createElement('option'); o.value = s; o.textContent = (LABELS[s]||s) + (flexPenaltyFor(p[1], s) ? ' (flex −'+flexPenaltyFor(p[1],s)+')' : ''); sl.appendChild(o); });
+    openSlotsFor(draftSim.rosters[draftSim.userIndex], p).forEach(s=>{ const o = document.createElement('option'); o.value = s; o.textContent = (LABELS[s]||s) + (flexPenaltyFor(p[1], s) ? ` (flex −${flexPenaltyFor(p[1],s)})` : ''); sl.appendChild(o); });
     sl.addEventListener('change', ()=>{ makeUserPick2(name, sl.value); });
     c.replaceWith(sl); sl.focus(); }
 });
-document.getElementById('draftCards') && document.getElementById('draftCards').addEventListener('click', e=>{
+document.getElementById('draftCards')?.addEventListener('click', e=>{
   const b = e.target.closest('button[data-pick]'); if(b){ makeUserPick2(b.dataset.pick, b.dataset.slot); return; }
 });
 
@@ -1267,7 +1267,7 @@ function startSeason(){
   names.forEach(n=>{ seasonState.identity[n] = teamIdentity(unitRatings[n], league); });
   seasonState.returners = {}; names.forEach(n=>{ seasonState.returners[n] = autoReturner(teams[n].slotmap); });
 }
-function seasonUserTeam(){ return Object.keys(seasonState.teams).find(t=>seasonState.teams[t].isUser); }
+function _seasonUserTeam(){ return Object.keys(seasonState.teams).find(t=>seasonState.teams[t].isUser); }
 function teamNames(){ return Object.keys(seasonState.teams); }
 
 function buildResultEntries(){
@@ -1287,7 +1287,7 @@ function scoreRoster(roster){
 /* ============================================================================
    SCHEDULE
    ============================================================================ */
-function pairKey(a,b){ return a<b ? a+'|'+b : b+'|'+a; }
+function pairKey(a,b){ return a<b ? `${a}|${b}` : `${b}|${a}`; }
 function generateDivisionWeeks(){
   const weeks = [[],[],[],[],[],[]];
   Object.values(NFL_DIVISIONS).forEach(([a,b,c,d])=>{
@@ -1362,7 +1362,7 @@ function initPage(){
   { const ro=document.createElement('option'); ro.value='__random'; ro.textContent='Random team'; slotSel.insertBefore(ro, slotSel.firstChild); }
   slotSel.value = teamNames.includes('Kansas City Chiefs') ? 'Kansas City Chiefs' : teamNames[0];
   const pickSel = document.getElementById('draftPickNumberSelect');
-  for(let i=1;i<=32;i++){ const o=document.createElement('option'); o.value=i; o.textContent='Pick '+i; pickSel.appendChild(o); }
+  for(let i=1;i<=32;i++){ const o=document.createElement('option'); o.value=i; o.textContent=`Pick ${i}`; pickSel.appendChild(o); }
   pickSel.value = 'random';
   renderDraftBoard2();
   renderDraftRoster2();

@@ -8,43 +8,43 @@
 
 ## 0. Headline: the merge surface is 14 functions, not a Season layer
 
-| Measure | Result |
-|---|---|
-| Top-level functions | v20 409 · donor 412 |
-| Common / identical / differing | 408 / 394 / **14** |
-| v20-only | 1 — `updateStepper` |
-| donor-only | 4 — `seasonToast`, `goSeason`, `meetingInfo`, `meetingTagText` |
-| Season engine (9 functions) | 9/9 present in both; 7/9 byte-identical |
-| Season engine differences | `playByPlay` (52L vs 53L), `render100` (95L both) — presentation |
-| `simulateGame` | identical (matches GLM receipt `dc54e4210ce1`) |
-| `seasonState` refs | 188 v20 · 187 donor |
+| Measure                        | Result                                                           |
+| ------------------------------ | ---------------------------------------------------------------- |
+| Top-level functions            | v20 409 · donor 412                                              |
+| Common / identical / differing | 408 / 394 / **14**                                               |
+| v20-only                       | 1 — `updateStepper`                                              |
+| donor-only                     | 4 — `seasonToast`, `goSeason`, `meetingInfo`, `meetingTagText`   |
+| Season engine (9 functions)    | 9/9 present in both; 7/9 byte-identical                          |
+| Season engine differences      | `playByPlay` (52L vs 53L), `render100` (95L both) — presentation |
+| `simulateGame`                 | identical (matches GLM receipt `dc54e4210ce1`)                   |
+| `seasonState` refs             | 188 v20 · 187 donor                                              |
 
 The 14 differing: `setActiveTab`, `cpuPick`, `fitNoteHTML`, `renderDraftBoard2`, `buildDefenseDetail`, `turnoverParagraph`, `playByPlay`, `matchupTagHTML`, `renderGuideHTML`, `render100`, `renderSeasonTab`, `renderSeasonTabInner`, `finishDraft2`, `renderDraftResults`. Twelve are UI/render; `cpuPick` is the one math delta; `finishDraft2` is the one non-math logic delta.
 
 **Why this matters.** Pickle's D-b ("the donor carries the Season-first engine surface v20 lacks … whole feature layer — the bulk", `_agents/pickle/architecture-review-M8.md` lines 34–36) is not what the files contain. The engine is shared and identical in 7 of 9; only its presentation differs. The donor's Season-first contribution is four small helpers plus the render/recap changes and CSS. The merge is a UI reconciliation with one math delta (`cpuPick`) and one draft-finalization delta (`finishDraft2`), not an engine transplant. A manifest built for a layer move would over-scope the round and risk replacing a shared engine.
 
-*Caveat:* extraction is line-based and approximate; it covers top-level `function` declarations, not top-level statements. The 408/394/14 split is exact for that set.
+_Caveat:_ extraction is line-based and approximate; it covers top-level `function` declarations, not top-level statements. The 408/394/14 split is exact for that set.
 
 ## 0.5 The keep-oracle — the gap the Round-1 reviews left
 
 Both my probe and Pickle's hash gate describe the **inputs**. Neither says which parent wins per function, so the merge would be decided by edit order. The per-function diff (`funcdiff-detail.js`) supplies the missing column. **Proposed** below; the Architect decides.
 
-| Function | The substantive difference (whitespace ignored) | Proposed keep |
-|---|---|---|
-| `cpuPick` | Donor adds round floors (`curRound`, `topAvail`, `ovrFloor`), first-sight `posBest`, bounded miss (`reach = 3 + Math.min(9, Math.floor(Math.abs(randNormal())*4))`, 3–12, floor-checked). v20 has `seen[pos] > 16` and `3 + Math.floor(Math.random()*Math.min(90, …))`, a reach up to 92 deep. | **donor** |
-| `setActiveTab` | v20: `suppHead`/hero/`updateStepper`. Donor: `viewSeason`/`tabSeasonBtn` + `goSeason()`. | **synthesize** |
-| `fitNoteHTML` | v20 shows the flex-vs-natural note; donor returns `''` with "removed from the user experience". | **donor** (design call) |
-| `renderDraftBoard2` | v20 adds the `needsOnly` filter; the rest is indentation (3 raw lines → 1 substantive). | **v20** |
-| `buildDefenseDetail` | Donor adds `DL5`/`LB4` to sackers and removes the 18% rotation skip. | **donor** |
-| `turnoverParagraph` | v20 "it went the distance"; donor "he took it the distance". | **donor** |
-| `playByPlay` | Donor adds `!r.ot` to the Q4 line and a Q5 `pEnd` line. | **donor** |
-| `matchupTagHTML` | Donor calls `meetingTagText(g)`; v20 inlines the text. | **donor** + helper |
-| `renderGuideHTML` | Donor adds the Guide intro panel; v20 returns an empty prefix. | **donor** |
-| `render100` | v20 adds "The sim never reads your weights…" paragraph; donor lacks it. | **v20** (design call) |
-| `renderSeasonTab` | v20 adds `updateStepper()`; donor shell is otherwise the same. | **synthesize** |
-| `renderSeasonTabInner` | v20 calls `renderSeasonTab(container)`; donor calls `setActiveTab('viewSeason','tabSeasonBtn')` + host. | **donor** |
-| `finishDraft2` | Donor uses `optimalLineup` + `applyLineup` + `seasonToast`; v20 uses `lineupAdvice`. | **donor** + helper |
-| `renderDraftResults` | Donor adds rank/score + "Play a Season →" CTA; v20 keeps the old Season tab. | **donor** |
+| Function               | The substantive difference (whitespace ignored)                                                                                                                                                                                                                                                | Proposed keep           |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
+| `cpuPick`              | Donor adds round floors (`curRound`, `topAvail`, `ovrFloor`), first-sight `posBest`, bounded miss (`reach = 3 + Math.min(9, Math.floor(Math.abs(randNormal())*4))`, 3–12, floor-checked). v20 has `seen[pos] > 16` and `3 + Math.floor(Math.random()*Math.min(90, …))`, a reach up to 92 deep. | **donor**               |
+| `setActiveTab`         | v20: `suppHead`/hero/`updateStepper`. Donor: `viewSeason`/`tabSeasonBtn` + `goSeason()`.                                                                                                                                                                                                       | **synthesize**          |
+| `fitNoteHTML`          | v20 shows the flex-vs-natural note; donor returns `''` with "removed from the user experience".                                                                                                                                                                                                | **donor** (design call) |
+| `renderDraftBoard2`    | v20 adds the `needsOnly` filter; the rest is indentation (3 raw lines → 1 substantive).                                                                                                                                                                                                        | **v20**                 |
+| `buildDefenseDetail`   | Donor adds `DL5`/`LB4` to sackers and removes the 18% rotation skip.                                                                                                                                                                                                                           | **donor**               |
+| `turnoverParagraph`    | v20 "it went the distance"; donor "he took it the distance".                                                                                                                                                                                                                                   | **donor**               |
+| `playByPlay`           | Donor adds `!r.ot` to the Q4 line and a Q5 `pEnd` line.                                                                                                                                                                                                                                        | **donor**               |
+| `matchupTagHTML`       | Donor calls `meetingTagText(g)`; v20 inlines the text.                                                                                                                                                                                                                                         | **donor** + helper      |
+| `renderGuideHTML`      | Donor adds the Guide intro panel; v20 returns an empty prefix.                                                                                                                                                                                                                                 | **donor**               |
+| `render100`            | v20 adds "The sim never reads your weights…" paragraph; donor lacks it.                                                                                                                                                                                                                        | **v20** (design call)   |
+| `renderSeasonTab`      | v20 adds `updateStepper()`; donor shell is otherwise the same.                                                                                                                                                                                                                                 | **synthesize**          |
+| `renderSeasonTabInner` | v20 calls `renderSeasonTab(container)`; donor calls `setActiveTab('viewSeason','tabSeasonBtn')` + host.                                                                                                                                                                                        | **donor**               |
+| `finishDraft2`         | Donor uses `optimalLineup` + `applyLineup` + `seasonToast`; v20 uses `lineupAdvice`.                                                                                                                                                                                                           | **donor** + helper      |
+| `renderDraftResults`   | Donor adds rank/score + "Play a Season →" CTA; v20 keeps the old Season tab.                                                                                                                                                                                                                   | **donor**               |
 
 **The big flip: `cpuPick` belongs to the donor, not v20.** Pickle's M-13 #2 and Super's M-15 #2 both say "keep v20's copy" (Super: "v20's round-order floors + bounded miss"; "DS concurs"). The full functions show the opposite, and I never concurred — my Round-1 review did not measure the direction. v20 (`fa6d752969e4`) has the older `seen > 16` cap and a miss that can reach 92 picks down the board; the donor (`a2b8190e98f8`) has the round-order floors, the `posBest` filter, and the bounded, floor-checked miss — the exact fix its comment names ("a realistic miss is a reach of a few spots, never thirty picks deep"). Ultra's M-14 line 275 repeats the same reversal. Taking v20's copy would keep the bug. This is the oracle's first catch.
 
@@ -173,18 +173,17 @@ Both my probe and Pickle's hash gate describe the **inputs**. Neither says which
 
 ## 3. Must-not-lose (5)
 
-1. **The merge surface is 14 functions + 5 set diffs, and it needs a keep-oracle and a presence gate.** 408 common, 394 identical, 14 differ; the engine is 7/9 identical. Take the **donor's `cpuPick`** (the round floors + bounded miss), not v20's older cap; synthesize `setActiveTab`/`renderSeasonTab`; add the four donor-only helpers. *Source: DS funcdiff + §0.5; corrects Pickle D-b and the three Round-2 posts (Pickle M-13 #2, Super M-15 #2, Ultra M-14 line 275) that keep v20's `cpuPick`.*
-2. **Math gate: 8 protected functions byte-identical; `cpuPick` is the one intended difference.** Gate the merged candidate on 8/8, assert the **donor's** `cpuPick` (`a2b8190e98f8`, not v20's `fa6d752969e4`), and fail on any other math drift. Three Round-2 posts say the reverse; the full-function read is the tie-breaker. *Source: Pickle's gate, corrected; `simulateGame` matches GLM receipt `dc54e4210ce1`.*
-3. **The wrapper is double, and the color-scheme is a design call.** Remove the duplicate compact wrapper (line 1) and the duplicate close (line 6439), keep the structured header; v20's `color-scheme:light` vs the donor's `light dark` is the Architect's decision. 544 B measured vs 546 reported. *Source: Pickle M-13; replaces DS's withdrawn "relocate-then-delete".*
-4. **Persistence is absent from both, and U-06 is live.** `render100` is not the fix — the two copies differ by one paragraph, and neither solves the mobile 100-season bug. Declare persistence new work; diagnose U-06 separately. *Source: all four reviews; `tasks/ROUND-1-USER.md` line 14.*
-5. **Build SIM-CORE on the merged hash, not alongside it.** `SIM-CORE` markers are absent in both parents; CONTRACT C2 line 17 is already correct, so only the markers are missing, once, on the merged file. *Source: Pickle M-9/M-13; Super T1/T4; DS S-102.*
+1. **The merge surface is 14 functions + 5 set diffs, and it needs a keep-oracle and a presence gate.** 408 common, 394 identical, 14 differ; the engine is 7/9 identical. Take the **donor's `cpuPick`** (the round floors + bounded miss), not v20's older cap; synthesize `setActiveTab`/`renderSeasonTab`; add the four donor-only helpers. _Source: DS funcdiff + §0.5; corrects Pickle D-b and the three Round-2 posts (Pickle M-13 #2, Super M-15 #2, Ultra M-14 line 275) that keep v20's `cpuPick`._
+2. **Math gate: 8 protected functions byte-identical; `cpuPick` is the one intended difference.** Gate the merged candidate on 8/8, assert the **donor's** `cpuPick` (`a2b8190e98f8`, not v20's `fa6d752969e4`), and fail on any other math drift. Three Round-2 posts say the reverse; the full-function read is the tie-breaker. _Source: Pickle's gate, corrected; `simulateGame` matches GLM receipt `dc54e4210ce1`._
+3. **The wrapper is double, and the color-scheme is a design call.** Remove the duplicate compact wrapper (line 1) and the duplicate close (line 6439), keep the structured header; v20's `color-scheme:light` vs the donor's `light dark` is the Architect's decision. 544 B measured vs 546 reported. _Source: Pickle M-13; replaces DS's withdrawn "relocate-then-delete"._
+4. **Persistence is absent from both, and U-06 is live.** `render100` is not the fix — the two copies differ by one paragraph, and neither solves the mobile 100-season bug. Declare persistence new work; diagnose U-06 separately. _Source: all four reviews; `tasks/ROUND-1-USER.md` line 14._
+5. **Build SIM-CORE on the merged hash, not alongside it.** `SIM-CORE` markers are absent in both parents; CONTRACT C2 line 17 is already correct, so only the markers are missing, once, on the merged file. _Source: Pickle M-9/M-13; Super T1/T4; DS S-102._
 
 ## 4. Optional: one consolidated advisory brief (answers Q-DS-6 / Q-DS-8)
 
 **Problem it solves.** Four reviews, 67 questions, 12 pending entries, and seven technical points repeated in all four. The Architect reads 4× for 1× content; the Owner cannot see the splits without reading everything.
 
 **Proposal.** One `ROUND-N-BRIEF.md`, ≤600 words, written by a consolidator the Owner names **per round** (no standing chair — R4 compatible), with five sections:
-
 1. **Findings (max 5).** Claim · evidence (command + output, or tag) · proposed action (file + exact change).
 2. **Split register.** Genuine disagreements only: who says what, one line each; no consensus theatre.
 3. **Resolved since last round.** What was dropped, corrected or adopted.
@@ -201,25 +200,25 @@ Both my probe and Pickle's hash gate describe the **inputs**. Neither says which
 
 ## 5. Verification log
 
-| Claim | Command | Output |
-|---|---|---|
-| Function sets | `node _agents/ds/tools/funcdiff-probe.js <v20> <donor>` | 409/412; 408 common; 394 identical; 14 differ; 1 v20-only / 4 donor-only |
-| Per-function diffs | `node _agents/ds/tools/funcdiff-detail.js <v20> <donor>` | 14 functions; counts in §0.5; `--w` isolates indentation |
-| Season engine | `grep -c "^function <f>("` both | 1/1 for all nine |
-| seasonState | `grep -o seasonState \| wc -l` | 188 v20 / 187 donor |
-| buildControls | `grep -n "^function buildControls"` | 506 v20 / 458 donor |
-| startDraft2 | `grep -n "^function startDraft2"` | 1408 |
-| DOM first 4,000 | `sed -n '1,4000p' \| grep -o 'document\.\|window\.' \| wc -l` | 131 |
-| Random calls | `grep -oF 'Math.random()' \| wc -l` / `grep -cF 'Math.random()'` | 58/39 v20; 56/38 donor |
-| CPU floors | `grep -c "ovrFloor\|curRound"` | 0 v20; 5 donor lines |
-| data-nostack | `grep -in nostack` | line 425 (HTML), line 6417 (JS) |
-| Wrapper | `sed -n '1,6p'` / `grep -n color-scheme` | v20 line 1 compact wrapper, `light`; donor line 1 `<!DOCTYPE html>`, line 4 `light dark` |
-| Round-2 direction | `grep -n "ovrFloor\|curRound"` + full-function read | 0 v20 / 5 donor lines; donor has the bounded miss |
-| B1-B4 / unintegrated | `grep -c` | 0 / 0 |
-| Clone | `git -C "Football Sim" ls-files \| wc -l` | 28 |
-| Queue | table-row grep | 12 pending, 0 shipped, 0 struck, 1 withdrawn (`S-6xx`) |
-| Questions | `awk` section counts / `[BLOCKING]` | 67 / 15 |
-| Contract | `sed -n '14,20p' tests/CONTRACT.md` | runtime boundary + seeded `Math.random` |
+| Claim                | Command                                                          | Output                                                                                   |
+| -------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Function sets        | `node _agents/ds/tools/funcdiff-probe.js <v20> <donor>`          | 409/412; 408 common; 394 identical; 14 differ; 1 v20-only / 4 donor-only                 |
+| Per-function diffs   | `node _agents/ds/tools/funcdiff-detail.js <v20> <donor>`         | 14 functions; counts in §0.5; `--w` isolates indentation                                 |
+| Season engine        | `grep -c "^function <f>("` both                                  | 1/1 for all nine                                                                         |
+| seasonState          | `grep -o seasonState \| wc -l`                                   | 188 v20 / 187 donor                                                                      |
+| buildControls        | `grep -n "^function buildControls"`                              | 506 v20 / 458 donor                                                                      |
+| startDraft2          | `grep -n "^function startDraft2"`                                | 1408                                                                                     |
+| DOM first 4,000      | `sed -n '1,4000p' \| grep -o 'document\.\|window\.' \| wc -l`    | 131                                                                                      |
+| Random calls         | `grep -oF 'Math.random()' \| wc -l` / `grep -cF 'Math.random()'` | 58/39 v20; 56/38 donor                                                                   |
+| CPU floors           | `grep -c "ovrFloor\|curRound"`                                   | 0 v20; 5 donor lines                                                                     |
+| data-nostack         | `grep -in nostack`                                               | line 425 (HTML), line 6417 (JS)                                                          |
+| Wrapper              | `sed -n '1,6p'` / `grep -n color-scheme`                         | v20 line 1 compact wrapper, `light`; donor line 1 `<!DOCTYPE html>`, line 4 `light dark` |
+| Round-2 direction    | `grep -n "ovrFloor\|curRound"` + full-function read              | 0 v20 / 5 donor lines; donor has the bounded miss                                        |
+| B1-B4 / unintegrated | `grep -c`                                                        | 0 / 0                                                                                    |
+| Clone                | `git -C "Football Sim" ls-files \| wc -l`                        | 28                                                                                       |
+| Queue                | table-row grep                                                   | 12 pending, 0 shipped, 0 struck, 1 withdrawn (`S-6xx`)                                   |
+| Questions            | `awk` section counts / `[BLOCKING]`                              | 67 / 15                                                                                  |
+| Contract             | `sed -n '14,20p' tests/CONTRACT.md`                              | runtime boundary + seeded `Math.random`                                                  |
 
 **Not checked:** runtime on v20 (no headless path), U-06 root cause, 390px rendering, true CSS usage, top-level statements outside functions, and whether the donor's `cpuPick` clears the 100-season regression (`pw4.js` does not exist — no claim that it ran).
 

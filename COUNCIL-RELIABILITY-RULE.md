@@ -25,7 +25,6 @@ Use task-specific history to ask better questions and choose who should investig
 ## What reviewers assess
 
 Reviewers describe contribution patterns in plain language. They should consider:
-
 - **Evidence discipline:** Were claims pinned to the right build, files, commands, outputs, and sample sizes? Was uncertainty labeled honestly?
 - **Reasoning and integration:** Did the analysis follow dependencies, notice coupling, catch failure modes, and distinguish a local change from a working combined build?
 - **Execution and verification:** Did the contributor run the assigned workflow, check negative controls where appropriate, and report what was not tested?
@@ -37,7 +36,6 @@ These are lenses for writing a reasoned assessment, not a hidden points system. 
 ## Provisional order and confidence
 
 The assessment report may present a **provisional relative order** when the available records support one. Each ranked row must include:
-
 - the main evidence behind the placement;
 - strengths that can guide future assignments;
 - limitations or counter-evidence;
@@ -45,7 +43,6 @@ The assessment report may present a **provisional relative order** when the avai
 - whether the work was independently checked.
 
 Use these confidence labels:
-
 - **Higher:** repeated, independently checked work across different task types.
 - **Moderate:** several meaningful contributions or strong independent evidence, but with limited breadth or unresolved counter-evidence.
 - **Low:** a narrow sample, incomplete records, indirect descriptions, or comparisons between different kinds of work.

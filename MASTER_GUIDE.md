@@ -33,20 +33,20 @@ Canon file: `NFL Draft Simulator.html` (branched from "(9) (OC).html"). Older co
 
 ## 4. Full task packets (`tasks/`)
 
-| Packet | Title | Model suggestion |
-|---|---|---|
-| T1 | Mobile draft board: compressed cards + labeled stats | Nemotron 3.5 Super VL (visual) |
-| T2 | Overtime rules + end-of-game narration | GLM-5.3-Flash or DeepSeek |
-| T3 | Advanced stats for every meaningful stat | DeepSeek V4.1 Flash |
-| T4 | Narrative score consistency (bullets fed from events) | GLM-5.3-Flash |
-| T5 | Persistence: autosave + export/import + seed | GLM-5.3-Flash |
-| T6 | CPU draft order floors + reach rules | DeepSeek V4.1 Flash |
-| T7 | Standings tiebreak chain | GPT (free) or DeepSeek |
-| T8 | Schedule constraints (home/away, conference balance, retry) | GPT (free) |
-| T9 | liteSeason fast path + cancel button | DeepSeek V4.1 Flash |
-| T10 | Head-to-head recap in game previews | GLM-5.3-Flash |
-| T11 | League leaders: zero horizontal scroll (desktop + mobile) | Nemotron 3.5 Super VL (visual) |
-| T12 | OL awards footnote (or code) reconciliation | any |
+| Packet | Title                                                       | Model suggestion               |
+| ------ | ----------------------------------------------------------- | ------------------------------ |
+| T1     | Mobile draft board: compressed cards + labeled stats        | Nemotron 3.5 Super VL (visual) |
+| T2     | Overtime rules + end-of-game narration                      | GLM-5.3-Flash or DeepSeek      |
+| T3     | Advanced stats for every meaningful stat                    | DeepSeek V4.1 Flash            |
+| T4     | Narrative score consistency (bullets fed from events)       | GLM-5.3-Flash                  |
+| T5     | Persistence: autosave + export/import + seed                | GLM-5.3-Flash                  |
+| T6     | CPU draft order floors + reach rules                        | DeepSeek V4.1 Flash            |
+| T7     | Standings tiebreak chain                                    | GPT (free) or DeepSeek         |
+| T8     | Schedule constraints (home/away, conference balance, retry) | GPT (free)                     |
+| T9     | liteSeason fast path + cancel button                        | DeepSeek V4.1 Flash            |
+| T10    | Head-to-head recap in game previews                         | GLM-5.3-Flash                  |
+| T11    | League leaders: zero horizontal scroll (desktop + mobile)   | Nemotron 3.5 Super VL (visual) |
+| T12    | OL awards footnote (or code) reconciliation                 | any                            |
 
 A packet is "done" when: its done-when list holds, `node --check` passes on the extracted script, the packet's browser check passes at 390px (UI packets only), and nothing outside the packet's file/section list changed.
 
@@ -81,7 +81,7 @@ A packet is "done" when: its done-when list holds, `node --check` passes on the 
 
 **Declined (user constraints):** 5-file split / TypeScript / Vite / componentization; busts, progression, injuries; trades; multi-year/contracts/HoF; Web Workers; punter model beyond the scalar returner term. Context-dependent player value (Model B): partial — roster interactions already exist via slots/replacement; document added to the Guide wording. Sim diagnostics dashboard: not a tab in the Season-first IA; fold the 10 key audit numbers into the 100-season report's existing "realism audit" section instead.
 
-**Notes:** "Second meeting"/division-tag copy: the tag must compute the actual meeting number from the schedule and mention the earlier result when the two sides already met (merged into T10 scope). The sim's OT is currently one walk-off possession; T2 makes the *rules* right at minimum in text and events; a per-play generator stays parked unless the user promotes it after seeing T2.
+**Notes:** "Second meeting"/division-tag copy: the tag must compute the actual meeting number from the schedule and mention the earlier result when the two sides already met (merged into T10 scope). The sim's OT is currently one walk-off possession; T2 makes the _rules_ right at minimum in text and events; a per-play generator stays parked unless the user promotes it after seeing T2.
 
 ## 9. Documentation hygiene (housekeeping, done)
 

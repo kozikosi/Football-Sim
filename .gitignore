@@ -12,3 +12,4 @@ Football Sim/
 # Frozen/backup artifacts (excluded from initial commit per Owner)
 _archive/
 backup-before-reorg/
+node_modules

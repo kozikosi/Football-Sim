@@ -83,13 +83,13 @@ grep -n "Math.random()" file.html | wc -l  # lines
 
 When assigned as verifier (authored nothing in the round):
 
-| Step | Command / Action | Pass Criteria |
-|------|------------------|---------------|
-| 1. Syntax | `node --check <extracted-script.js>` | No errors |
-| 2. E2E | Open HTML in browser → full draft (32 teams, 26 rounds) → 17-week season → playoffs → Super Bowl | Completes, 0 console errors |
-| 3. 390px | DevTools device toolbar → 390px width → navigate all tabs (Season, Draft, Rankings, Browser, Comparison, Guide) | No horizontal scroll, no overflow |
-| 4. Console | DevTools Console tab during E2E | Clean (only expected logs) |
-| 5. Report | Write 5-line report + function-diff (if two builds) | See VERIFICATION-TEMPLATE.md |
+| Step       | Command / Action                                                                                                | Pass Criteria                     |
+| ---------- | --------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| 1. Syntax  | `node --check <extracted-script.js>`                                                                            | No errors                         |
+| 2. E2E     | Open HTML in browser → full draft (32 teams, 26 rounds) → 17-week season → playoffs → Super Bowl                | Completes, 0 console errors       |
+| 3. 390px   | DevTools device toolbar → 390px width → navigate all tabs (Season, Draft, Rankings, Browser, Comparison, Guide) | No horizontal scroll, no overflow |
+| 4. Console | DevTools Console tab during E2E                                                                                 | Clean (only expected logs)        |
+| 5. Report  | Write 5-line report + function-diff (if two builds)                                                             | See VERIFICATION-TEMPLATE.md      |
 
 ---
 
@@ -110,12 +110,12 @@ sh tools/sync-mirrors.sh --check
 
 ## 7. Evidence vocabulary (non-negotiable)
 
-| Word | When to use |
-|------|-------------|
-| *reported* | Another session's message says X; you haven't run the command |
-| *inferred* | You deduced X from evidence but didn't measure directly |
-| *unverified* | You have no evidence at all — pure speculation |
-| *measured* | You ran the command; cite command + output + sample size |
+| Word         | When to use                                                   |
+| ------------ | ------------------------------------------------------------- |
+| _reported_   | Another session's message says X; you haven't run the command |
+| _inferred_   | You deduced X from evidence but didn't measure directly       |
+| _unverified_ | You have no evidence at all — pure speculation                |
+| _measured_   | You ran the command; cite command + output + sample size      |
 
 **Never** state a number without its unit (lines / occurrences / files / bytes). DS M-11 vs Pickle M-9 disagreed for an afternoon over `grep -c` vs `grep -o \| wc -l`.
 
@@ -123,14 +123,14 @@ sh tools/sync-mirrors.sh --check
 
 ## 8. Quick commands reference
 
-| Task | Command |
-|------|---------|
-| v20 hash + size | `shasum -a 256 "NFL Draft Simulator v20 Claude.html" && wc -c "NFL Draft Simulator v20 Claude.html"` |
-| donor hash + size | `shasum -a 256 "NFL Draft Simulator.html" && wc -c "NFL Draft Simulator.html"` |
-| SIM-CORE markers | `grep -c "SIM-CORE-START" "NFL Draft Simulator v20 Claude.html"` |
-| localStorage check | `grep -c "localStorage" "NFL Draft Simulator v20 Claude.html"` |
-| Function census | `grep -c "^function " "NFL Draft Simulator v20 Claude.html"` |
-| DOM refs in script | `sed -n '448,6435p' "NFL Draft Simulator v20 Claude.html" \| grep -c "document\."` |
+| Task               | Command                                                                                              |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| v20 hash + size    | `shasum -a 256 "NFL Draft Simulator v20 Claude.html" && wc -c "NFL Draft Simulator v20 Claude.html"` |
+| donor hash + size  | `shasum -a 256 "NFL Draft Simulator.html" && wc -c "NFL Draft Simulator.html"`                       |
+| SIM-CORE markers   | `grep -c "SIM-CORE-START" "NFL Draft Simulator v20 Claude.html"`                                     |
+| localStorage check | `grep -c "localStorage" "NFL Draft Simulator v20 Claude.html"`                                       |
+| Function census    | `grep -c "^function " "NFL Draft Simulator v20 Claude.html"`                                         |
+| DOM refs in script | `sed -n '448,6435p' "NFL Draft Simulator v20 Claude.html" \| grep -c "document\."`                   |
 
 ---
 
@@ -146,10 +146,10 @@ sh tools/sync-mirrors.sh --check
 2. CPU draft replacement floor = 76 OVR (`rlow` in `cpuPick`)
 3. `effOvr(player, slot)` used everywhere (draft board, lineup, season, game sim)
 4. User + CPU both use `optimalLineup()` (Hungarian, flex-aware)
-5. Game plans independent: offense/defense chosen separately, scored vs *expected* opponent plan
+5. Game plans independent: offense/defense chosen separately, scored vs _expected_ opponent plan
 6. `POINTS_PER_WIN = 32.5` · `SEASON_RECORD_CAPS` at real NFL records
 7. NFL tiebreakers in `sortStandings()` (H2H → div → conf → point diff)
 
 ---
 
-*Maintained by UK (S-2200–2299). Append updates; never rewrite. See CHRONICLE for change log.*
+_Maintained by UK (S-2200–2299). Append updates; never rewrite. See CHRONICLE for change log._

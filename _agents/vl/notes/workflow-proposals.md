@@ -41,10 +41,10 @@ Advisors review each other's `SUBMISSIONS.md` entries before they reach Claude. 
 
 ## What these do NOT do
 
-* They do not create new shared documents at root level.
-* They do not change `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, or `QUESTIONS-FOR-THE-ARCHITECT.md` beyond my own questions block.
-* They do not touch the product file or any other session's `_agents/` folder.
-* They do not propose changes to `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, or `RATING_SPECS` (protected constants).
+- They do not create new shared documents at root level.
+- They do not change `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, or `QUESTIONS-FOR-THE-ARCHITECT.md` beyond my own questions block.
+- They do not touch the product file or any other session's `_agents/` folder.
+- They do not propose changes to `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, or `RATING_SPECS` (protected constants).
 
 ## Attribution
 

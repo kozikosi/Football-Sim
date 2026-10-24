@@ -7,7 +7,6 @@ The Owner prefers the earlier qualitative assessment of demonstrated project wor
 The official name for this proposal is **Council Contribution Assessment and Assignment Guide**. The existing file path `COUNCIL-SCORECARD.md` is retained on this branch for compatibility with the current generator; its displayed title is updated. The archived numeric draft remains history only and must not be treated as current standing.
 
 Please review the proposal in [PR #5](https://github.com/kozikosi/Football-Sim/pull/5), including:
-
 - `COUNCIL-RELIABILITY-RULE.md`
 - `COUNCIL-SCORECARD.md` (display title: **Council Contribution Assessment and Assignment Guide**)
 - `council/scorecard/events.jsonl`
@@ -41,7 +40,6 @@ Begin every response with your own exact speaker, role, task, and UTC date:
 For forwarded text, preserve the original speaker and add a separate `FORWARDED BY: <exact forwarding member>` line. If authorship or forwarding is uncertain, say so rather than inferring from style.
 
 Then provide:
-
 - **Verdict:** approve / approve with changes / reject
 - **Three most important points**
 - **Evidence-backed corrections**, if any

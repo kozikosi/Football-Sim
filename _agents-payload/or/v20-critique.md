@@ -6,14 +6,14 @@
 
 ## 1. End-to-End Run (hand-driven, no automation)
 
-| Phase | Steps | Result |
-|-------|-------|--------|
-| **Onboarding** | Selected "Kansas City Chiefs" (QB Mahomes, TE Kelce, etc.) | ✅ Team loaded, depth chart populated |
-| **Draft** | 26 rounds, 32 teams, snake order, CPU GMs active | ✅ Completed without JS errors; 832 picks rendered; board scrolled smoothly |
-| **Preseason Editor** | Reviewed optimal lineup advisory, adjusted 3 positions | ✅ `optimalLineup()` fired, flex penalties shown in "Value here" column |
-| **Regular Season** | `Simulate Week` ×17 (auto-advance) | ✅ Weeks 1–17 simulated; standings updated; no console errors |
-| **Playoffs** | Wild Card → Divisional → Championship → Super Bowl | ✅ Bracket populated; games simulated; Super Bowl text present: "Super Bowl LX Champion" |
-| **Post-Season** | Awards, records, offseason transition | ✅ MVP, OPOY, DPOY, OROY, DROY, CPOY displayed |
+| Phase                | Steps                                                      | Result                                                                                   |
+| -------------------- | ---------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| **Onboarding**       | Selected "Kansas City Chiefs" (QB Mahomes, TE Kelce, etc.) | ✅ Team loaded, depth chart populated                                                    |
+| **Draft**            | 26 rounds, 32 teams, snake order, CPU GMs active           | ✅ Completed without JS errors; 832 picks rendered; board scrolled smoothly              |
+| **Preseason Editor** | Reviewed optimal lineup advisory, adjusted 3 positions     | ✅ `optimalLineup()` fired, flex penalties shown in "Value here" column                  |
+| **Regular Season**   | `Simulate Week` ×17 (auto-advance)                         | ✅ Weeks 1–17 simulated; standings updated; no console errors                            |
+| **Playoffs**         | Wild Card → Divisional → Championship → Super Bowl         | ✅ Bracket populated; games simulated; Super Bowl text present: "Super Bowl LX Champion" |
+| **Post-Season**      | Awards, records, offseason transition                      | ✅ MVP, OPOY, DPOY, OROY, DROY, CPOY displayed                                           |
 
 ---
 

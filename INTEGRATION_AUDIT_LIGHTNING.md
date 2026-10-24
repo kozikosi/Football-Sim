@@ -13,13 +13,13 @@ A. VERIFIED BUILD IDENTITY
 ✓ Matches STATUS.md reference build exactly.
 
 ✗ REPO SNAPSHOT: GitHub repo (HEAD c398345, 19 Oct 01:34 HST) is 649,032 bytes with
-  SHA-256 31b7d61f42a5... — it is a stale upload snapshot, NOT the council's reference
-  build. It contains stray `<!doctype...>` header fragment and duplicate `</body></html>`
-  tail. The authoritative build must be provided via chat attachment or GitHub LFS.
+SHA-256 31b7d61f42a5... — it is a stale upload snapshot, NOT the council's reference
+build. It contains stray `<!doctype...>` header fragment and duplicate `</body></html>`
+tail. The authoritative build must be provided via chat attachment or GitHub LFS.
 
 ✗ CLAUDE DOES NOT HAVE BUILD 77bb9ed5: Claude's working copy is v20 (648,486 bytes).
-  Claude's rulings are based on the council's build descriptions, not direct inspection.
-  This audit operates on the actual 77bb9ed5 file available in this environment.
+Claude's rulings are based on the council's build descriptions, not direct inspection.
+This audit operates on the actual 77bb9ed5 file available in this environment.
 
 ==============================================================================
 B. CLAUDE'S RULINGS — ROUND 1 PRE-DISPATCH ADJUDICATION
@@ -100,8 +100,8 @@ B. CLAUDE'S RULINGS — ROUND 1 PRE-DISPATCH ADJUDICATION
   council's word alone.
 
 ✓ CONTRACT CONSISTENCY: Claude's rulings B1-B4 are internally consistent and executable.
-  The key remaining dependency is: Claude must receive the 650,127-byte build 77bb9ed5
-  to verify line numbers and run diagnostics.
+The key remaining dependency is: Claude must receive the 650,127-byte build 77bb9ed5
+to verify line numbers and run diagnostics.
 
 ==============================================================================
 C. FUNCTION SIGNATURES AND DATA STRUCTURES (VERIFIED)
@@ -155,34 +155,34 @@ D. SIM-CORE EXTRACTION FEASIBILITY (WITH CLAUDE'S RULINGS)
 ==============================================================================
 
 ✓ PURE FUNCTIONS available for extraction (DOM-free in isolation):
-  slotWins, slotWinsPerOvr, modelWeights, replacementLevels
-  lineupWins, optimalLineup, effOvr, cpuPick, matchupModel, teamRatings
-  simulateGame, liteSeason, newAgg, buildFullSchedule, buildSnakeOrder
-  computeStandings, computeSeeding, computeRegularSeasonAwards
+slotWins, slotWinsPerOvr, modelWeights, replacementLevels
+lineupWins, optimalLineup, effOvr, cpuPick, matchupModel, teamRatings
+simulateGame, liteSeason, newAgg, buildFullSchedule, buildSnakeOrder
+computeStandings, computeSeeding, computeRegularSeasonAwards
 
 ✗ DOM REFERENCES: 131 `document.`/`window.` references in the file. Approximately
-  110+ occur in the first 4,000 lines (before line 3942 where core math resides).
-  Claude's ruling B1 replaces the unachievable static zero-count with a runtime guard.
+110+ occur in the first 4,000 lines (before line 3942 where core math resides).
+Claude's ruling B1 replaces the unachievable static zero-count with a runtime guard.
 
 ✓ CLAUDE'S RUNTIME GUARD (B1) IS THE EXECUTABLE ALTERNATIVE:
-  - Markers enclosed: /*SIM-CORE-START*/ ... /*SIM-CORE-END*/
-  - In vm context: document/window etc. throw DOMAccessError(name)
-  - Math.random replaced by seeded generator (mulberry32) inside context
-  - Required entry points must exist as functions after evaluation and be executable
-    under the guard (buildDraftState, simulateDraftHeadless, buildLeagueFromDraft)
-  - Missing symbol → ReferenceError → exit 3; DOMAccessError → exit 3
-  - Static dom_text_refs=N printed in manifest; growth vs manifest is WARNING not GATE
+- Markers enclosed: /_SIM-CORE-START_/ ... /_SIM-CORE-END_/
+- In vm context: document/window etc. throw DOMAccessError(name)
+- Math.random replaced by seeded generator (mulberry32) inside context
+- Required entry points must exist as functions after evaluation and be executable
+  under the guard (buildDraftState, simulateDraftHeadless, buildLeagueFromDraft)
+- Missing symbol → ReferenceError → exit 3; DOMAccessError → exit 3
+- Static dom_text_refs=N printed in manifest; growth vs manifest is WARNING not GATE
 
 ✗ GAP: startDraft2() (lines 1397-389) has DOM reads at lines 1401/1403 that must remain
-  outside markers. The DOM-free half (1404-1425) moves to buildDraftState() verbatim.
+outside markers. The DOM-free half (1404-1425) moves to buildDraftState() verbatim.
 
 ✗ GAP: startSeason() (lines 3391-3401) currently duplicates bootstrap in runLeague100
-  (lines 5930-5953). Claude's S-102 replacement: buildLeagueFromDraft({preseason:true}).
+(lines 5930-5953). Claude's S-102 replacement: buildLeagueFromDraft({preseason:true}).
 
 ✓ ENTRY POINTS (already DOM-free, straight moves per S-102):
-  - buildDraftState(userTeamName, pickChoice) — draft state builder
-  - simulateDraftHeadless(userTeamName, pickChoice) — draft + lineup finalization
-  - buildLeagueFromDraft(opts) — unified league bootstrap for startSeason/runLeague100
+- buildDraftState(userTeamName, pickChoice) — draft state builder
+- simulateDraftHeadless(userTeamName, pickChoice) — draft + lineup finalization
+- buildLeagueFromDraft(opts) — unified league bootstrap for startSeason/runLeague100
 
 ==============================================================================
 E. S-502 VALIDATION ARCHITECTURE (WITH CLAUDE'S RULINGS)
@@ -191,28 +191,28 @@ E. S-502 VALIDATION ARCHITECTURE (WITH CLAUDE'S RULINGS)
 ✓ TEAM_DATA key format: exact team names (verified) — must match dataset teamName
 
 ✓ PROPOSED DATASET: tests/2025_standards.js (S-203 format)
-  - Array of [teamName, wins, losses, ties, pointDiff]
-  - teamName matches TEAM_DATA keys exactly (32 teams, 17 games)
-  - ΣW=ΣL=271, ΣT=2 (DAL, GB), 544 games, ΣPF=ΣPA=12,519, Σnet=0
+- Array of [teamName, wins, losses, ties, pointDiff]
+- teamName matches TEAM_DATA keys exactly (32 teams, 17 games)
+- ΣW=ΣL=271, ΣT=2 (DAL, GB), 544 games, ΣPF=ΣPA=12,519, Σnet=0
 
 ✗ S-502/GPT PROPOSAL: tests/season_2025.json — DIFFERENT filename/schema
-  - Claude must declare which is authoritative
-  - S-203 format matches TEAM_DATA keys exactly; no alias table needed
+- Claude must declare which is authoritative
+- S-203 format matches TEAM_DATA keys exactly; no alias table needed
 
 ✓ VALIDATION PROCEDURE (what works with current code):
-  1. Load dataset [teamName, wins, losses, ties, pointDiff] for all 32 teams
-  2. For each row, look up TEAM_DATA[teamName] — if undefined, alias/rename needed
-  3. Call lineupWins(TEAM_DATA[teamName].slotmap) for each team → projected wins
-  4. Simulate 17-game season via lite(headless) → simulated wins
-  5. Compare projected vs simulated; compute Pearson r, Spearman ρ, RMSE
-  6. Target: r ≈ 0.66, ρ ≈ 0.69, RMSE ≈ 2.6 (historical references, not gates until measured)
+1. Load dataset [teamName, wins, losses, ties, pointDiff] for all 32 teams
+2. For each row, look up TEAM_DATA[teamName] — if undefined, alias/rename needed
+3. Call lineupWins(TEAM_DATA[teamName].slotmap) for each team → projected wins
+4. Simulate 17-game season via lite(headless) → simulated wins
+5. Compare projected vs simulated; compute Pearson r, Spearman ρ, RMSE
+6. Target: r ≈ 0.66, ρ ≈ 0.69, RMSE ≈ 2.6 (historical references, not gates until measured)
 
 ✗ GAP: No existing function projects wins for TEAM_DATA original rosters.
-  lineupWins() works with slotmaps, but no headless 17-game simulation for shipped rosters.
-  Only draft-generated rosters have headless path (via buildDraftState + liteSeason).
+lineupWins() works with slotmaps, but no headless 17-game simulation for shipped rosters.
+Only draft-generated rosters have headless path (via buildDraftState + liteSeason).
 
 ✓ FEASIBLE AFTER S-202: Create headless projection path using TEAM_DATA slotmaps
-  with lineupWins() + 17-game liteSeason loop.
+with lineupWins() + 17-game liteSeason loop.
 
 ==============================================================================
 F. CONTRACT CONFLICTS (RESOLVED PER CLAUDE'S RULINGS)
@@ -243,35 +243,34 @@ G. STATISTICAL ASSUMPTIONS (UNVERIFIED, PER CLAUDE)
 ==============================================================================
 
 ✗ HISTORICAL METRICS (references, not gates):
-  - Pearson r ≈ 0.66 vs real 2025 wins
-  - Spearman ρ ≈ 0.69
-  - RMSE ≈ 2.6 wins
+- Pearson r ≈ 0.66 vs real 2025 wins
+- Spearman ρ ≈ 0.69
+- RMSE ≈ 2.6 wins
 
 ✗ PROVENANCE: Cited in AGENTS.md but NOT documented as measured against build 77bb9ed5.
-  These appear to be references from prior validation, possibly pre-v10.
+These appear to be references from prior validation, possibly pre-v10.
 
 ✗ CAN THEY BE REPRODUCED?
-  - NOT VERIFIED against 77bb9ed5. pw4.js measures r ≈ 0.946–0.959 (pooled, simulator-internal)
-    and per-season r ≈ 0.38–0.50 — these are AGAINST the simulator's OWN projected wins,
-    not against real 2025 data.
-  - validate.js would need the 2025 dataset + headless simulation to measure against real data.
-    This script does not yet exist.
+- NOT VERIFIED against 77bb9ed5. pw4.js measures r ≈ 0.946–0.959 (pooled, simulator-internal)
+  and per-season r ≈ 0.38–0.50 — these are AGAINST the simulator's OWN projected wins,
+  not against real 2025 data.
+- validate.js would need the 2025 dataset + headless simulation to measure against real data.
+  This script does not yet exist.
 
 ✗ MATHEMATICAL COMPARABILITY:
-  - Historical r ≈ 0.66 cannot be directly compared to simulator's internal r ≈ 0.95
-    without knowing the exact validation procedure that produced 0.66.
-  - Per S-101 risk 2: pooled r ≈ 0.95 (internal), per-season r ≈ 0.40 — the historical
-    r ≈ 0.66 likely uses a different method (possibly team-level correlations).
+- Historical r ≈ 0.66 cannot be directly compared to simulator's internal r ≈ 0.95
+  without knowing the exact validation procedure that produced 0.66.
+- Per S-101 risk 2: pooled r ≈ 0.95 (internal), per-season r ≈ 0.40 — the historical
+  r ≈ 0.66 likely uses a different method (possibly team-level correlations).
 
 ✗ SENSITIVITY: Metrics could differ due to weight values, replacement levels, CPU miss/noise,
-  record caps (sack=21), flex penalties, draft algorithm variance.
+record caps (sack=21), flex penalties, draft algorithm variance.
 
 ==============================================================================
 H. ROUND 1A/1B DEPENDENCY ASSESSMENT (WITH CLAUDE'S RULINGS)
 ==============================================================================
 
 Round 1A (5 entries, at the cap): S-202, S-203, S-103, S-102, S-301
-
 1. S-202 (SIM-CORE markers + 3 entry points) — PREREQUISITE: NONE (first in order)
    - Product change: marker comments + three function moves
    - BLOCKS: S-102 (needs entry points), S-301 (needs marker proof)
@@ -345,12 +344,11 @@ EXECUTIVE SUMMARY
 The authoritative build identity is verified. Claude's Round 1 pre-dispatch rulings
 (A–F) have been incorporated. Critical integration blockers must be resolved before
 implementation can proceed:
-
 1. **SIM-CORE extraction (CRITICAL, per Claude B1)**: Static "zero document./window."
    gate cannot succeed — 110+ DOM references are interleaved with core math. Claude's
    amended C2 uses a runtime DOMAccessError guard in vm context. Markers + vm sandbox
-   + entry-point execution check is the executable alternative. Static dom_text_refs=N
-   printed in manifest as INFO only, not a gate.
+   - entry-point execution check is the executable alternative. Static dom_text_refs=N
+     printed in manifest as INFO only, not a gate.
 
 2. **Baseline not bootstrapped (HIGH, per Claude B3/B4)**: No tests/baseline.json exists
    from 77bb9ed5. The pw4 drift gate requires a frozen baseline; without it, every run
@@ -376,7 +374,6 @@ implementation can proceed:
    any without verifying against 77bb9ed5. All confirmed present by grep.
 
 ACTIONS BEFORE IMPLEMENTATION (per Claude's rulings):
-
 1. ✅ Attach/build the 650,127-byte file 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f
    if not already provided via chat. (Verified: identity matches.)
 

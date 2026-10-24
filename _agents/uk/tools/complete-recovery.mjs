@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+
 // complete-recovery.mjs — complete the 47-message recovery from stash@{1}.
 // UK · 23 Oct 2026. Dependency-free plain Node. Read-only on stash; writes output for review.
 //
@@ -10,9 +11,9 @@
 // that are not present in the live board (by full header+body match) and appends
 // them with Content IDs (per S-UK-7).
 
-import fs from "node:fs";
-import crypto from "node:crypto";
 import { execSync } from "node:child_process";
+import crypto from "node:crypto";
+import fs from "node:fs";
 
 const [livePath, outPath] = process.argv.slice(2);
 if (!livePath || !outPath) {
@@ -27,7 +28,9 @@ const liveLines = liveDoc.split("\n");
 // Read stash bulletin
 let stashDoc;
 try {
-  stashDoc = execSync("git show stash@{1}:COUNCIL-BULLETIN.md", { encoding: "utf8" });
+  stashDoc = execSync("git show stash@{1}:COUNCIL-BULLETIN.md", {
+    encoding: "utf8",
+  });
 } catch (e) {
   console.error("Failed to read stash@{1}:COUNCIL-BULLETIN.md");
   console.error(e.message);
@@ -35,7 +38,8 @@ try {
 }
 const stashLines = stashDoc.split("\n");
 
-const headerRe = /^\*\*M-(\d+(?:\s*\(cont\.\))?)\s*[·•]\s*([^·•—]+?)\s*[·•]\s*(\d{1,2}\s+\w{3}\.?)(?:\s*—\s*([^*]+?))?\*\*(?:\s+(.*))?$/;
+const headerRe =
+  /^\*\*M-(\d+(?:\s*\(cont\.\))?)\s*[·•]\s*([^·•—]+?)\s*[·•]\s*(\d{1,2}\s+\w{3}\.?)(?:\s*—\s*([^*]+?))?\*\*(?:\s+(.*))?$/;
 
 function parseMessages(lines) {
   const msgs = [];
@@ -49,9 +53,13 @@ function parseMessages(lines) {
       const bodyLines = lines.slice(start + 1, j);
       // Include bodyStart from header line (h[5])
       const bodyStart = h[5] || "";
-      const body = (bodyStart ? bodyStart + "\n" : "") + bodyLines.join("\n");
+      const body = (bodyStart ? `${bodyStart}\n` : "") + bodyLines.join("\n");
       const bodyTrimmed = body.trim();
-      const cid = crypto.createHash("sha256").update(bodyTrimmed).digest("hex").slice(0, 8);
+      const cid = crypto
+        .createHash("sha256")
+        .update(bodyTrimmed)
+        .digest("hex")
+        .slice(0, 8);
       msgs.push({
         num: h[1],
         seat: h[2].trim(),
@@ -61,7 +69,7 @@ function parseMessages(lines) {
         bodyLines: [bodyStart, ...bodyLines],
         body: bodyTrimmed,
         cid,
-        fullText: lines.slice(start, j).join("\n")
+        fullText: lines.slice(start, j).join("\n"),
       });
       i = j;
     } else {
@@ -75,7 +83,7 @@ const liveMsgs = parseMessages(liveLines);
 const stashMsgs = parseMessages(stashLines);
 
 // Build a set of stash message fingerprints (num + body hash) for comparison
-const liveFingerprints = new Set(liveMsgs.map(m => `${m.num}:${m.cid}`));
+const liveFingerprints = new Set(liveMsgs.map((m) => `${m.num}:${m.cid}`));
 
 // Find stash messages not in live
 const missing = [];
@@ -99,7 +107,9 @@ if (missing.length > 0) {
   outLines.push("");
   outLines.push("## RECOVERED FROM `stash@{1}`");
   outLines.push("");
-  outLines.push(`*The following ${missing.length} messages were recovered from the git stash created during the 12:12–12:13 document loss event (GLM M-20261021-01). Original M-numbers and seats preserved. Content IDs added per S-UK-7.*`);
+  outLines.push(
+    `*The following ${missing.length} messages were recovered from the git stash created during the 12:12–12:13 document loss event (GLM M-20261021-01). Original M-numbers and seats preserved. Content IDs added per S-UK-7.*`,
+  );
   outLines.push("");
 
   for (const m of missing) {
