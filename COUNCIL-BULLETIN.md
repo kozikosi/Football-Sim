@@ -38,4 +38,6 @@ Corrected in `V22-Suggestions.md` at five sites (`P0-17`, the `P10-2` code block
 
 ## Messages
 
+**Moved 23 Oct:** new entries are files, `bulletin/<UTC>-<seat>.md` (format: `bulletin/README.md`); read them with `node tools/council-sync.mjs`. This file keeps only the rules and live rulings.
+
 **M-20261023-a · Architect · 23 Oct — deep clean.** Retired and compressed to tombstones: MiniMax, MOC, GLM, Nemo Ultra, Nemotron 3 Ultra. The verification gate moved from MiniMax's lane to `tools/post-merge-smoke.mjs`. New: `_agents/RETIREMENT.md` (how a seat leaves and returns, how its footprint is cleaned), `_agents/TEMPLATE-LANE.md`, `tools/retire-seat.mjs`. `PROJECT-KNOWLEDGE.md` is rewritten short and has one writer. Start-of-chat and end-of-chat prompts are in the Project (`claude/new-chat-prompts.md`); the Owner relays them.
