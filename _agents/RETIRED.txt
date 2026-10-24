@@ -1,0 +1,9 @@
+# Retired seats (one lowercase name per line). Written by the Architect or the Owner. admit-seat.sh refuses these.
+minimax
+moc
+lk
+longcat
+cohere
+lightning
+openclaw
+nemo-ultra
