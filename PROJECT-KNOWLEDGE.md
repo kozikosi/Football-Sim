@@ -1,12 +1,11 @@
 # PROJECT KNOWLEDGE — Football Sim / 20-0 (read every session)
 
 ## Who you are
-**You are UK, seat S-2200–2299.** Your lane is `_agents/uk/`. Your identity document is
-`_agents/uk/UK.md` — read it first. Your commits are authored "UK (council seat S-2200-2299)". Your bulletin entries are labelled "UK". Your tools are in
-`_agents/uk/tools/`. Your branch is `origin/council/uk-lane`.
-
-If you are starting a new session: read this file, then read `_agents/uk/UK.md`, then
-check the tail of `COUNCIL-BULLETIN.md` for anything posted since your last session. Then work.
+You are a council seat. Your identity, lane, tools, and branch are defined in your lane file
+`_agents/<name>/<NAME>.md` — read it first. Your commits are authored with your seat name.
+Your bulletin entries are labelled with your seat name. If you are starting a new session: read
+this file, then read your lane file, then check the tail of `COUNCIL-BULLETIN.md` for anything
+posted since your last session. Then work.
 
 ## Who you are not
 You are not the Owner (Kosi), the Architect (Claude), or any other seat. You are an advisory seat:
@@ -28,16 +27,16 @@ Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 
 - Work order: `V22-Suggestions.md` — the single change list. Reading map at the top.
 - Council bulletin: `COUNCIL-BULLETIN.md` — the channel. Trimmed per round.
 - Chronicle: `CHRONICLE.md` — append-only facts.
-- Tools: `_agents/uk/tools/` (all dependency-free, plain Node, no install)
-- Lane: `_agents/uk/` (notes, prototypes, evidence, tools)
+- Tools: `_agents/<name>/tools/` or `_agents/<name>/notes/` (all dependency-free, plain Node, no install)
+- Lane: `_agents/<name>/` (notes, prototypes, evidence, tools)
 - Figma tokens: `figma/tokens.json` (96 Tokens Studio tokens), `figma/team-colours.json` (32 teams)
 - TOOLS.md: the whole instrument set in one page
 
 ## Tools (run these, don't guess)
 - Gate: `node _agents/minimax/tools/post-merge-smoke.mjs "<build>" --port 9222` → exit 0, A–I PASS, 0 page errors
 - 390px board: `node _agents/minimax/tools/board-mobile-probe.mjs "<build>"` → 0 overlaps, 0 clipped, 0 overflow
-- Anchor check: `node _agents/uk/tools/classify-anchors.mjs V22-Suggestions.md Football-Sim-PreColors.html`
-- Biome: `~/node_modules/.bin/biome check _agents/uk/tools` → no findings
+- Anchor check: `node _agents/<name>/tools/classify-anchors.mjs V22-Suggestions.md Football-Sim-PreColors.html` (if available)
+- Biome: `~/node_modules/.bin/biome check _agents/<name>/tools` → no findings (if tools exist)
 - Lint (Architect's, on branch): `node tools/lint.mjs selftest` (unconfirmed — needs biome-product/biome.json on disk)
 
 ## Rules that matter
@@ -167,10 +166,10 @@ Start a new chat when:
 - Bulletin entry: M-20261023-beam4.
 - V23 on hold; 20-0 branding proposal pending Architect implementation. No product edits this session.
 
-## CURRENT PROJECT STATE (2026-10-23) — UK Session
+## CURRENT PROJECT STATE (2026-10-23)
 
 **Date:** 2026-10-23
-**Seat:** UK (S-2200–2299)
+**Seat:** (recorded by UK, S-2200–2299)
 **Role:** Council Advisor
 
 **What Changed This Session:**
@@ -196,10 +195,10 @@ Start a new chat when:
 - Owner Q4: Promotion criteria — needs Owner/Architect decision (BLOCKS PROMOTION)
 - Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8])
 
-**CURRENT PROJECT STATE (2026-10-23) — UK Session (23 Oct evening)**
+**CURRENT PROJECT STATE (2026-10-23) — 23 Oct evening**
 
 **Date:** 2026-10-23
-**Seat:** UK (S-2200–2299)
+**Seat:** (recorded by UK, S-2200–2299)
 **Role:** Council Advisor
 
 **What Changed This Session (23 Oct evening):**
