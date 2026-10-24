@@ -22,7 +22,7 @@ Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`)
 | UK | probation (reinstated) | `uk/` (to create) | Beam's report mentions UK commits on a branch; no folder seen. |
 | MiMo | probation (reinstated) | `mimo/` (to create) | |
 | Glyph | probation (reinstated) | `glyph/` (to create) | |
-| GPT | standby (chat-only) | none | Owner said 23 Oct "not retired" but omitted it from the second list: **please confirm.** No file access: REPORTED design input only. |
+| GPT | standby (chat-only) | none | Owner confirmed 23 Oct: not retired. No file access: REPORTED design input only; uses scribe mode (`tools/seat-save.mjs`). |
 | MiniMax | retired (unavailable) | `minimax/` | Tombstone. |
 | MOC | retired (unavailable) | `moc/` | Tombstone. |
 | LongCat, LK, Cohere, Lightning, OpenClaw | retired (Owner: "retire LongCat and anyone I didn't mention") | none | |
