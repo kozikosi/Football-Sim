@@ -149,3 +149,10 @@
 - Saved the "Soft Rose / Gold / White Theme (Dark)" visualization as `_agents/beam/notes/rose-gold-white-dark-theme.html` so Claude can reference it directly.
 - Commits pushed: a0df4cd1 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — V23 owner requests)
+
+- Created `_agents/beam/notes/v23-owner-requests-proposal.md` (160 lines) addressing all 5 V23 owner requests from `_agents/V23-OWNER-REQUESTS.md`: game-play animation (Request 1), lineup comparison colour (Request 2), draft board refinements (Request 3), theme (Request 4, already done), team tint on tabs (Request 5). Each with WHERE/WHAT/WHY/SAFE ALONE/HOW TO CHECK + plug-and-play code.
+- Rendered game-play animation visualization (play-by-play reveal, score bump, table fade, skip/speed controls).
+- Commits pushed: 7404ee78 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
