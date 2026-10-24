@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>UX Prototype Demo — Beam (advisory, no product edits)</title>
+<style>
+:root {
+  --team-primary: #4f8cff;
+  --team-secondary: #8b92a8;
+  --team-accent: #ffd700;
+  --opp-primary: #8b92a8;
+  --bg: #0f1320;
+  --panel: #1a1f2e;
+  --text: #e6e9f2;
+  --muted: #9aa0b8;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; background: var(--bg); color: var(--text); padding: 16px; }
+h1 { font-size: 1.2rem; margin: 0 0 12px; }
+h2 { font-size: 1rem; margin: 16px 0 8px; color: var(--team-primary); }
+.card { background: var(--panel); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; margin-bottom: 12px; }
+.row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+.btn { background: var(--team-primary); color: #fff; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; }
+.btn.secondary { background: transparent; border: 1px solid var(--team-primary); color: var(--team-primary); }
+.pill { display: inline-block; padding: 2px 8px; border-radius: 999px; background: var(--team-primary); color: #fff; font-size: 0.75rem; }
+.team-primary-border { border-color: var(--team-primary); }
+.pos-qb { border-left: 3px solid #4f8cff; }
+.pos-rb { border-left: 3px solid #22c55e; }
+.pos-wr { border-left: 3px solid #f97316; }
+.pos-te { border-left: 3px solid #a855f7; }
+.pos-ol { border-left: 3px solid #6b7280; }
+.pos-dl { border-left: 3px solid #ef4444; }
+.pos-lb { border-left: 3px solid #14b8a6; }
+.pos-cb, .pos-s { border-left: 3px solid #eab308; }
+.pos-k, .pos-p { border-left: 3px solid #92400e; }
+.player-gone { opacity: 0.4; text-decoration: line-through; }
+.skel { height: 14px; border-radius: 4px; background: linear-gradient(90deg, #1a1f2e 25%, #2a3148 50%, #1a1f2e 75%); background-size: 200% 100%; animation: skel 1.2s ease-in-out infinite; margin: 6px 0; }
+@keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+.toast { background: rgba(15,19,32,0.92); color: #e6e9f2; padding: 8px 14px; border-radius: 8px; margin-top: 6px; font-size: 0.85rem; border: 1px solid var(--team-primary); animation: toastIn 180ms ease-out; pointer-events: auto; }
+@keyframes toastIn { from { opacity:0; transform:translateY(6px);} to { opacity:1; transform:translateY(0);} }
+#toastHost { position: fixed; bottom: 12px; left: 50%; transform: translateX(-50%); z-index: 9999; pointer-events: none; }
+.modal { backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); background: rgba(15,19,32,0.85); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; padding: 12px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-thumb { background: var(--team-primary); border-radius: 3px; }
+tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+@keyframes confettiFall { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(100vh) rotate(720deg); opacity: 0; } }
+.confetti-particle { position: fixed; width: 8px; height: 8px; background: var(--team-primary); animation: confettiFall 1s ease-out forwards; }
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.gold-shimmer { background: linear-gradient(90deg, #ffd700 0%, #fff 50%, #ffd700 100%); background-size: 200% 100%; animation: shimmer 2s ease-in-out infinite; -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+.action-bar { position: sticky; bottom: 0; display: flex; gap: 8px; padding: 8px; background: rgba(15,19,32,0.95); backdrop-filter: blur(6px); border-radius: 8px; }
+.action-bar .primary { flex: 1; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  .confetti-particle { display: none; }
+  .gold-shimmer { animation: none; }
+}
+table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+th, td { padding: 6px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.06); }
+select { background: var(--panel); color: var(--text); border: 1px solid rgba(255,255,255,0.12); padding: 6px; border-radius: 6px; }
+</style>
+</head>
+<body>
+<h1>UX Prototype Demo — Beam (advisory, plug-and-play)</h1>
+<p style="color:var(--muted);font-size:0.85rem;margin:0 0 12px;">Self-contained demo of the snippets. No CDN. Switch team to see theming.</p>
+
+<div class="card">
+  <h2>Team colour theming</h2>
+  <div class="row">
+    <select id="teamSel">
+      <option>Kansas City Chiefs</option>
+      <option>Seattle Seahawks</option>
+      <option>Dallas Cowboys</option>
+    </select>
+    <span class="pill">starter badge</span>
+    <span id="starterBadge" class="pill" style="background:var(--team-secondary);">0 of 26 starters</span>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Weight table (demo)</h2>
+  <table>
+    <thead><tr><th>Slot</th><th>Weight</th><th>Wins</th></tr></thead>
+    <tbody>
+      <tr class="pos-qb"><td>QB</td><td><input type="number" value="700" style="width:60px;background:var(--panel);color:var(--text);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px;"></td><td id="winsQb">12.40</td></tr>
+      <tr class="pos-rb"><td>RB1</td><td><input type="number" value="580" style="width:60px;background:var(--panel);color:var(--text);border:1px solid rgba(255,255,255,0.12);border-radius:4px;padding:2px;"></td><td id="winsRb">8.10</td></tr>
+      <tr class="player-gone pos-wr"><td>WR1 (gone)</td><td>630</td><td>9.20</td></tr>
+    </tbody>
+  </table>
+  <div class="row" style="margin-top:8px;">
+    <button class="btn" id="saveW">Save My Weights</button>
+    <button class="btn secondary" id="resetW">Default</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Toast + interactions</h2>
+  <div class="row">
+    <button class="btn" id="toastBtn">Show toast</button>
+    <button class="btn secondary" id="undoBtn">Undo pick</button>
+    <button class="btn secondary" id="confettiBtn">Confetti</button>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Skeleton loading</h2>
+  <div id="skelHost"></div>
+</div>
+
+<div class="card">
+  <h2>Gold shimmer</h2>
+  <div class="gold-shimmer" style="font-size:1.4rem;font-weight:700;">Super Bowl Champion!</div>
+</div>
+
+<div class="card">
+  <h2>Modal (glass)</h2>
+  <button class="btn secondary" id="modalBtn">Open modal</button>
+  <div id="modalHost" style="display:none;margin-top:8px;">
+    <div class="modal">
+      <p style="margin:0 0 8px;">Glass-morphism modal with backdrop blur.</p>
+      <button class="btn secondary" id="closeModal">Close</button>
+    </div>
+  </div>
+</div>
+
+<div class="action-bar">
+  <button class="btn primary">Primary action</button>
+  <button class="btn secondary">More</button>
+</div>
+
+<div id="toastHost"></div>
+
+<script>
+const TEAM_COLORS = {
+  "Kansas City Chiefs": { primary: "#E31837", secondary: "#FFB612", accent: "#FFFFFF" },
+  "Seattle Seahawks": { primary: "#002244", secondary: "#69BE28", accent: "#A5ACAF" },
+  "Dallas Cowboys": { primary: "#003594", secondary: "#869397", accent: "#FFFFFF" }
+};
+function setTeamColors(name) {
+  const p = TEAM_COLORS[name] || { primary: "#4f8cff", secondary: "#8b92a8", accent: "#ffd700" };
+  const r = document.documentElement.style;
+  r.setProperty("--team-primary", p.primary);
+  r.setProperty("--team-secondary", p.secondary);
+  r.setProperty("--team-accent", p.accent);
+}
+document.getElementById("teamSel").addEventListener("change", (e) => setTeamColors(e.target.value));
+setTeamColors("Kansas City Chiefs");
+
+const toastQueue = [];
+let toastBusy = false;
+function showToast(msg, ms = 2500) {
+  toastQueue.push({ msg, ms });
+  if (!toastBusy) drainToast();
+}
+function drainToast() {
+  if (!toastQueue.length) { toastBusy = false; return; }
+  toastBusy = true;
+  const { msg, ms } = toastQueue.shift();
+  const host = document.getElementById("toastHost");
+  const el = document.createElement("div");
+  el.className = "toast";
+  el.textContent = msg;
+  host.appendChild(el);
+  setTimeout(() => { el.remove(); drainToast(); }, ms);
+}
+
+function animateCounter(el, from, to, ms = 300) {
+  const start = performance.now();
+  const step = (now) => {
+    const t = Math.min((now - start) / ms, 1);
+    const v = from + (to - from) * t;
+    el.textContent = v.toFixed(2);
+    if (t < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+function fireConfetti(n = 12) {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  for (let i = 0; i < n; i++) {
+    const el = document.createElement("div");
+    el.className = "confetti-particle";
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.top = "-10px";
+    el.style.background = i % 2 ? "var(--team-accent)" : "var(--team-primary)";
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 1000);
+  }
+}
+
+document.getElementById("toastBtn").addEventListener("click", () => showToast("Weights saved"));
+document.getElementById("undoBtn").addEventListener("click", () => showToast("Pick undone — D. Swift"));
+document.getElementById("confettiBtn").addEventListener("click", () => fireConfetti(15));
+document.getElementById("saveW").addEventListener("click", () => {
+  showToast("My Weights saved");
+  animateCounter(document.getElementById("winsQb"), 12.40, 13.10);
+});
+document.getElementById("resetW").addEventListener("click", () => {
+  showToast("Reset to default");
+  animateCounter(document.getElementById("winsQb"), 13.10, 12.40);
+});
+document.getElementById("modalBtn").addEventListener("click", () => { document.getElementById("modalHost").style.display = "block"; });
+document.getElementById("closeModal").addEventListener("click", () => { document.getElementById("modalHost").style.display = "none"; });
+
+const skelHost = document.getElementById("skelHost");
+skelHost.innerHTML = Array.from({ length: 4 }, () => `<div class="skel" style="width:${60 + Math.random()*30}%;"></div>`).join("");
+
+let filled = 0;
+const badge = document.getElementById("starterBadge");
+setInterval(() => {
+  filled = (filled + 1) % 27;
+  badge.textContent = filled + " of 26 starters";
+}, 1200);
+</script>
+</body>
+</html>
