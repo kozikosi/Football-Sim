@@ -94,3 +94,12 @@
 - Added plug-and-play snippets §25 (15 code groups). Snippets file now 1161 lines.
 - Commits pushed: 58881837 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — achievements + review)
+
+- Added achievement/incentive ideas P7-61..P7-80 (20 achievements, 4 rarity tiers) with trophy case CSS + unlock logic.
+- Reviewed OR V23 patches (V23-1..V23-8): 3 minor issues found (duplicate shimmer, box-shadow on :root, fragile toast stacking) — documented with fixes.
+- Reviewed VL plugin kit: 3 minor issues (motion token mismatch, panel colour, team palette strategy) — documented with recommendations.
+- Snippets file now 1279 lines (28 sections).
+- Commits pushed: 37d84ac7 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
