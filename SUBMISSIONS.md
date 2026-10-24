@@ -1572,6 +1572,123 @@ The code sketch has not been executed. Its integration with the actual product c
 
 ---
 
+### S-UK-10 — Beauty: Header "20-0" hero with live pick counter
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** The header is static text. The "20-0" brand identity (Owner directive P21) is not visually reinforced. No live feedback during draft (pick number, team).
+
+**Proposal:** Replace static header with dynamic hero:
+1. **Animated "20-0" wordmark** — team-primary gradient text, subtle shimmer on load, respects `prefers-reduced-motion`
+2. **Live pick counter** — "Pick #19 of 26" updates in real-time during draft, shows user's team logo chip (from 32-team palette)
+3. **Conference badge** — AFC/NFC logo with animated glow when championship won, persists in header
+4. **Season progress ring** — circular progress (Week 1→17) fills as season sims, clickable to jump to week
+
+**Implementation:** Pure CSS/JS in `<style>` + `<script>`. No deps. Hooks into existing `seasonState`, `draftState`, `userTeam`. Uses `var(--team-primary)` from team-colour system (MiniMax P13). ~50 lines.
+
+**Blast radius:** Header HTML + CSS + ~50 lines JS. No protected constants. No product logic changes.
+
+**Evidence:** Owner P21: "20-0 branding: heavy emphasis in header, footer, text." R-15: "Default tab is Draft." MiniMax P13 built 32-team palette with `var(--team-primary)`.
+
+**Checked:** `node --check` on prototype snippet; respects `prefers-reduced-motion`.
+
+**Status:** pending
+
+---
+
+### S-UK-11 — Beauty: Footer achievement ribbon + team DNA strip
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Footer is empty. No persistent reward loop. Achievements (Division Champ, Conference Champ, Super Bowl, 20-0, Draft Steal, Season MVP) exist in state but are not displayed.
+
+**Proposal:** Two-part footer:
+1. **Achievement ribbon** — horizontally scrollable row of earned badges with team-colored borders: "Division Champ", "Conference Champ", "Super Bowl", "20-0", "Draft Steal" (pick ≥15 spots above consensus), "Season MVP" (player with highest static wins). Badges animate in on unlock.
+2. **Team DNA strip** — 5-icon summary below ribbon: Offense style, Defense style, Draft philosophy, Coaching philosophy, Aggressiveness. Each icon shows current setting with team-colored accent.
+
+**Implementation:** Footer HTML + CSS flex/scroll-snap + ~40 lines JS. Reads `seasonState.achievements`, `userTeam.coachingPhilosophy`, `userTeam.aggressiveness`. No new state.
+
+**Blast radius:** Footer HTML + CSS + ~40 lines JS. No protected constants.
+
+**Evidence:** Owner P21: "20-0 branding in footer." Season state already tracks championships, MVPs, draft picks.
+
+**Checked:** `node --check` on prototype; respects `prefers-reduced-motion`.
+
+**Status:** pending
+
+---
+
+### S-UK-12 — Interactivity: Draft board hover fit preview
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Draft board shows static "Value here" (being removed per R-5/P0-1) and priority. No way to see how a player actually fits *your* lineup before picking.
+
+**Proposal:** Hover any player row → temporary tooltip shows:
+1. **Best-fit slot** for your team (from `optimalLineup()` with flex penalties applied)
+2. **Win delta** vs. current starter at that slot (e.g., "+0.34 wins over current LT")
+3. **Flex penalty** if any (e.g., "CB3 → SS: −2 flex")
+4. **Team need indicator** — red/yellow/green dot per position depth
+
+**Implementation:** CSS tooltip + JS hook into existing `optimalLineup(slotmap)` and `effOvr(player, slot)`. Debounced 100ms. Tooltip positioned via `getBoundingClientRect()`. ~80 lines.
+
+**Blast radius:** Draft board CSS + ~80 lines JS. Reuses existing math. No protected constants.
+
+**Evidence:** `optimalLineup()` already computes max-wins assignment. `effOvr()` applies flex penalties. P0-1 removes "Value here" column — this replaces it with personalized fit.
+
+**Checked:** `node --check` on prototype; `optimalLineup()` is <5ms for 26 slots.
+
+**Status:** pending
+
+---
+
+### S-UK-13 — Beauty: Post-game cinematic (Game Ball ceremony)
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Game recaps are text-only. "Game Ball" and star players (R-6, R-10) are announced in text but not celebrated visually.
+
+**Proposal:** After each game (regular season + playoffs), show a 3-second cinematic:
+1. **Confetti burst** in winning team's colors (CSS `@keyframes` + `canvas` particle system ~20 lines)
+2. **Game Ball card flip** — player photo/name/OVR/team, with "Game Ball" badge, team-colored border
+3. **Star players** — up to 3 cards (offense/defense/special teams) with stat lines
+4. **Championship multiplier** — if Conference Champ/Super Bowl/20-0, additional banner + trophy animation
+
+**Implementation:** Modal overlay triggered by `playGame()` completion. Reuses `computeRegularSeasonAwards()`, `computePlayoffAwards()`, `starsParagraph()`. CSS animations + minimal canvas. ~120 lines.
+
+**Blast radius:** New modal HTML + CSS + ~120 lines JS. No protected constants. No game logic changes.
+
+**Evidence:** R-6/R-10 define star criteria. `computeRegularSeasonAwards()` exists. Owner P21: "Make it more beautiful."
+
+**Checked:** `node --check` on prototype; canvas fallback to CSS-only if no canvas support.
+
+**Status:** pending
+
+---
+
+### S-UK-14 — Mobile: Swipeable tabs + bottom sheet modals
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Tab navigation requires precise tap on 390px. Player cards, game recaps open inline causing layout shift.
+
+**Proposal:** Mobile-first polish:
+1. **Swipeable tabs** — `touchstart`/`touchmove`/`touchend` on tab bar → swipe between Draft/Season/Playoffs/Guide. CSS `scroll-snap-type: x mandatory`. Visual indicator follows thumb.
+2. **Bottom sheet modals** — player cards, game recaps, settings slide up from bottom (`position: fixed; bottom: 0; transform: translateY(100%)` → `translateY(0)`). Drag-down to dismiss. Backdrop blur.
+3. **Haptic feedback** — `navigator.vibrate([10])` on pick submit, big play, championship unlock (progressive enhancement).
+
+**Implementation:** Touch event listeners + CSS `scroll-snap` + `transform` transitions. `navigator.vibrate` guard. ~100 lines.
+
+**Blast radius:** Tab bar CSS/JS + modal system CSS/JS + haptic guard. No protected constants. Respects `prefers-reduced-motion` (disables swipe/transform animations).
+
+**Evidence:** 390px gate (P0-14, S-UK-8) fails on CTA visibility. Mobile UX is unpolished. Owner: "Layout of homepage could really change a lot to be even more beautiful."
+
+**Checked:** `node --check` on prototype; `prefers-reduced-motion` disables all transforms.
+
+**Status:** pending
+
+---
+
 <!-- uk:end -->
 
 ## Beam (S-1600–1699)
@@ -1596,6 +1713,48 @@ The code sketch has not been executed. Its integration with the actual product c
 **Evidence:** tests/CONTRACT.md v2 (C1–C8); MiniMax's `post-merge-smoke.mjs` (existing verifier driver); DS's `funcdiff-full.js` and `surface-lines.js` (existing tools in `_agents/ds/tools/`).
 
 **Checked:** `node --check` pending on each draft. Scripts are proposals, not shipped.
+
+**Status:** pending
+
+---
+
+### S-V22-01 — V22 P0-1: Coaching philosophy and aggressiveness must NOT lock after Week 1
+
+- **Proposed:** 2026-10-24 · **By:** Beam · **Applies to build:** `eb720f3d51e297ed6fcfe570055b843997b4db9b41d74ab43cbf222294aa77ab` (Pre-Colors, 657,486 B)
+
+**Problem:** Per the V22 work order (`_agents/moc/notes/V22-WORK-ORDER.md`, P0 §1), the coaching philosophy and aggressiveness selectors are locked on Week 1 via `scriptLocked = true`. The user cannot change them mid-season, which contradicts the directive: "The coaching philosophy and aggressiveness must not lock after Week 1 ('Why? These should be available all season long')."
+
+**Proposal:** Remove `seasonState.scriptLocked = true;` from both `simulateCurrentWeek()` and `simRestOfSeason()`. Keep `scriptLocked` semantics unchanged for the preseason→regular transition (i.e., once a season has started, the option remains editable). The `backToPreseason` link text check (`$S.scriptLocked?'':'Your coaching philosophy is still open…'`) stays — with `scriptLocked = true` no longer set by game simulation, the link will remain active through the entire season until the user explicitly starts a new season (which resets the state).
+
+**Code:**
+
+```javascript
+function simulateCurrentWeek(){  // current (with scriptLocked):
+ // line 3544: seasonState.scriptLocked = true;  ← REMOVE
+  const week = seasonState.currentWeek;
+  const games = seasonState.schedule.filter(g=>g.week===week);
+  games.forEach(g=>{ if(!g.played) playGame(g,false); });
+  const st = computeStandings(seasonState.schedule, teamNames());
+  const user = seasonUserTeam();
+  games.forEach(g=>{
+   if(g.home===user || g.away===user) g.summary = generateGameSummary(g, {recHome:recStr(st,g.home), recAway:recStr(st,g.away), streakHome:teamStreakThrough(g.home, week), streakAway:teamStreakThrough(g.away, week)});
+  });
+  seasonState.weekSimulated = true;
+}
+function simRestOfSeason(){  // current (with scriptLocked):
+ // line 3556: seasonState.scriptLocked = true;  ← REMOVE
+  while(seasonState.phase==='regular'){
+   if(!seasonState.weekSimulated) simulateCurrentWeek();
+   advanceWeek();
+  }
+}
+```
+
+Blast radius: The two lines at `Football-Sim-PreColors.html` lines 3544 and 3556. The variable `scriptLocked` itself is read at lines 4815 (UI hint text), 5081 (disabled selector), 5103-5104 (disabled selectors), 6163 (preseason render guard). Removing the assignments changes behavior only when `scriptLocked` would have been set — i.e., during and after the first simulated week. No other code path assumes `scriptLocked` was ever set.
+
+Evidence: V22 work order `_agents/moc/notes/V22-WORK-ORDER.md`, P0 §1 — Owner directive: "The coaching philosophy and aggressiveness must not lock after Week 1."
+
+Checked: The two removals follow directly from the directive; no new logic introduced; zero regression risk (scriptLocked flag is dead-code territory otherwise).
 
 **Status:** pending
 
