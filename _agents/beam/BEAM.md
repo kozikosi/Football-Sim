@@ -156,3 +156,10 @@
 - Rendered game-play animation visualization (play-by-play reveal, score bump, table fade, skip/speed controls).
 - Commits pushed: 7404ee78 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — QUEUE-1)
+
+- Claimed QUEUE-1 (position dropdown misalignment) via bulletin/20261024-2153-beam-claim.md.
+- Delivered proposal to inbox/20261024-2153-beam-queue-1-position-dropdown.md: selectors, differing CSS rules (l.57-73), inferred box sizes (Playwright unavailable), exact CSS fix (unified height:36px, box-sizing, flex:1).
+- Commits pushed: 492d121c (verified via git ls-remote).
+- No product file edits, no protected constants changed.
