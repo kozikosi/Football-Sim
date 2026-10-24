@@ -81,3 +81,9 @@
 - Snippets file now 915 lines (24 sections).
 - Commits pushed: a8fc27b3 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, final — V23 integration guide)
+
+- Added `_agents/beam/notes/v23-integration-guide.md` (57 lines) — step-by-step integration order, file list, anchors, verification, open questions, do-not-change list.
+- Commits pushed: ca65da0c (verified via git ls-remote).
+- No product file edits, no protected constants changed.
