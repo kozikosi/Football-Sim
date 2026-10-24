@@ -11,7 +11,6 @@ You are joining a project that already has rules, history, and a phase in progre
 **NFL Draft Simulator** — a single-file HTML app (`NFL Draft Simulator.html`, ~650 KB): 1,200+ real Madden NFL 27 player ratings, a 32-team fantasy draft with CPU GMs, and a full season engine (17 weeks, playoffs, Super Bowl, box scores, awards). It is an **internal project** — deployment and hosting are out of scope (Owner ruling R1; GitHub Pages was a test).
 
 Two builds currently exist:
-
 - **v20** — `NFL Draft Simulator v20 Claude.html`, 649,032 bytes, sha256 `31b7d61f…`. **The reference build** (Owner ruling R2): Claude's own build, now the merge base. Line-number claims today must be measured on v20 (or state the other hash they used).
 - The **donor** — `NFL Draft Simulator.html`, 650,127 bytes, `77bb9ed5…`: carries the Season-first fixes that get merged **into** v20. Claude is mid-merge; the merged result does not exist yet.
 
@@ -29,7 +28,7 @@ The council's current phase: consolidating questions, critique and advice for th
 2. **Never edit another session's work** — Claude's, another advisor's, no exceptions — without the Owner's permission (R5). Suggestions welcome; edits are not.
 3. **No publishing, no git pushes, no installs, no spending, no external services.**
 4. **Never invent or alter player ratings, teams, or stats** — `PLAYERS` is real data.
-5. **A claim without a command is not a claim** (the project's iron rule). For unverified statements the only permitted words are *reported*, *inferred*, *unverified*. Any line-number citation names the build hash it was measured on.
+5. **A claim without a command is not a claim** (the project's iron rule). For unverified statements the only permitted words are _reported_, _inferred_, _unverified_. Any line-number citation names the build hash it was measured on.
 6. **Append, never rewrite.** Corrections are new entries that cite what they correct — in every shared document.
 7. **English only.** All documents, logs, messages, and anything the user reads or receives are written in **English** — the Owner reads EN/FR/ES/PT/Latin and does **not** read Chinese. Council-internal chat defaults to English as well, so every session can audit it. Deliver your analysis to the Owner in English even if you think better in another language.
 
@@ -64,7 +63,7 @@ If you have **no filesystem access** (chat-only): tell the Owner; she pastes the
 - CPU drafts never value a slot below the 76-OVR replacement floor (`rlow` in `cpuPick`).
 - Flex penalties (`effOvr`) apply everywhere: draft board, lineup editor, season ratings, game sim.
 - User and CPU lineups both use `optimalLineup()` — one Hungarian math.
-- Game plans: offense and defense chosen independently; coaches scored vs. the *expected* opponent plan.
+- Game plans: offense and defense chosen independently; coaches scored vs. the _expected_ opponent plan.
 - `POINTS_PER_WIN = 32.5` · `SEASON_RECORD_CAPS` truncates at real NFL records · deterministic NFL tiebreakers in standings.
 - Protected constants — `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS` — change only with the Owner's explicit approval.
 - Prohibited: file split, build steps, CDNs, Web Workers, PWA, paid APIs. Sounds, if ever approved, ship muted.
@@ -74,7 +73,7 @@ If you have **no filesystem access** (chat-only): tell the Owner; she pastes the
 
 - One topic per post/proposal; prose ≤ ~40 lines; question before essay; no essay over ~1,000 words unless the Owner asks.
 - In `SUBMISSIONS.md`: entries are self-contained — ID + title, date + session name + **build hash**, type, problem, proposal, code (exact current + full replacement), blast radius, evidence (command + sample size or "none"), checked (`node --check` result or "untested"), status. The template is in the file header.
-- Vocabulary for everything unverified: *reported* / *inferred* / *unverified*. Strike your own errors by appending a correction, citing the original.
+- Vocabulary for everything unverified: _reported_ / _inferred_ / _unverified_. Strike your own errors by appending a correction, citing the original.
 - **Language: English only** — in every document, log, post and anything the Owner reads (§3.7). If a source you found is in another language, cite and summarize it in English; don't quote untranslated passages into shared artefacts.
 - **Ordering parallel work:** "Run a parallel batch: send this brief to all sessions" / "Execute a parallel batch: do A, B, C at once" = several independent actions dispatched simultaneously in one action block. Variants (broadcast / fan-out-and-report / background / subagents) and the courtesy rules live in `INDEX.md`'s phrase book.
 
@@ -84,4 +83,4 @@ One paragraph: confirm you understand the division of labour (§2–3), list the
 
 ---
 
-*Historical note (from v1, for context only): the DS v10-era patch and the Nemo rewrites that predate the submission workflow are already routed through the shared-file era; the "personal notes" a few older docs carry were day-one corrections, since applied. Today's ground truth is `CHRONICLE.md` + the rulings note.*
+_Historical note (from v1, for context only): the DS v10-era patch and the Nemo rewrites that predate the submission workflow are already routed through the shared-file era; the "personal notes" a few older docs carry were day-one corrections, since applied. Today's ground truth is `CHRONICLE.md` + the rulings note._
