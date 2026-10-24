@@ -500,6 +500,16 @@ Advisory design input only. No product file edits. Anchored to V22 work order + 
 Each achievement: unlock animation (scale-in + shimmer), toast notification, persisted in localStorage, displayed in a beautiful trophy case on the season review. Rarity tiers: bronze (common), silver (uncommon), gold (rare), platinum (animated shimmer, rarest).
 
 
+## 17. Shimmering gradient text (P7-81) — apply everywhere
+
+**P7-81 · Shimmering gradient text**
+- WHERE: championship banner, team-name headers, page titles, award winners, "Super Bowl Champion!", "Drafting as [Team]", conference champion banners, 100-season review title.
+- WHAT: Apply a shimmering gradient text effect (`background: linear-gradient(90deg, color1, #fff, color1); background-size: 200% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmer 2.5s ease-in-out infinite;`) using team colours or gold. Adapts to team theming via `--team-primary`/`--team-accent`.
+- WHY: High visual impact, zero JS, pure CSS, draws the eye to key moments. User specifically loved this effect.
+- SAFE ALONE?: YES — CSS-only, display-only.
+- HOW TO CHECK: shimmer renders on all target elements; respects `prefers-reduced-motion` (animation disabled); no layout shift; contrast maintained.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?

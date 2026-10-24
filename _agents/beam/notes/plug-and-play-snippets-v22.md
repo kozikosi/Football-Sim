@@ -1277,3 +1277,48 @@ Source: `_agents/vl/deliveries/PLUGIN-KIT.md` + prototypes (VL, 24 Oct). Overall
 
 Recommendation: adopt VL's manifest as the canonical block index; layer Beam's snippets and OR's patches on top. No conflicts.
 
+
+---
+
+## 29. Shimmering gradient text (P7-81) — apply everywhere
+
+CSS:
+```css
+.shimmer-text {
+  background: linear-gradient(90deg, var(--team-primary, #e31837) 0%, var(--team-accent, #ffb81c) 25%, #fff 50%, var(--team-accent, #ffb81c) 75%, var(--team-primary, #e31837) 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 2.5s ease-in-out infinite;
+  display: inline-block;
+}
+.shimmer-text.gold {
+  background: linear-gradient(90deg, #fbbf24 0%, #fff 50%, #fbbf24 100%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: textShimmer 2.5s ease-in-out infinite;
+}
+@keyframes textShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) { .shimmer-text, .shimmer-text.gold { animation: none; background-position: 0 0; } }
+```
+
+HTML usage:
+```html
+<h1 class="shimmer-text">Super Bowl Champions!</h1>
+<h2 class="shimmer-text gold">Kansas City Chiefs</h2>
+<span class="shimmer-text">Drafting as Kansas City Chiefs</span>
+```
+
+Recommended targets (apply as often as possible):
+- Championship / conference champion banners
+- Team names in headers and score boxes
+- Award winner names (MVP, DPOY, etc.)
+- "Super Bowl Champion!" text
+- Page titles (Draft, Season Review, 100-Season Review)
+- First-place team in conference charts
+- Game ball winner name
+- Achievement unlock toast text
+
