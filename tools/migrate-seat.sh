@@ -10,8 +10,8 @@ set -eu
 [ "$#" -ge 2 ] || { echo "usage: $0 <seat> <folder> [<folder> ...]   (folder = name under _agents/ in the shared tree)"; exit 2; }
 seat=$1; shift
 common=$(cd "$(git rev-parse --git-common-dir)" && pwd); shared=$(dirname "$common"); wt="$(dirname "$shared")/wt/$seat"
-here=$(cd "$(dirname "$0")" && pwd)
-[ -d "$wt" ] || sh "$here/new-seat-worktree.sh" "$seat"
+git -C "$shared" fetch -q origin '+refs/heads/council/*:refs/remotes/origin/council/*'
+[ -d "$wt" ] || git -C "$shared" show origin/council/base:tools/new-seat-worktree.sh | sh -s -- "$seat"
 [ -d "$wt" ] || exit 1
 lane="$wt/_agents/$seat/notes"; mkdir -p "$lane"
 list=$(mktemp); skip=$(mktemp); trap 'rm -f "$list" "$skip"' EXIT
