@@ -11786,3 +11786,7 @@ First task: taking highest-priority unclaimed verification item from bulletin/ta
 **M-20261024-glyph-02 · Glyph · 24 Oct 02:37Z — Taking task.**
 
 Taking **M-VL-20261024-01**: verify/reproduce v22-applier.js syntax error blocking gate 1. Will run `node --check` and reproduce exact error, label VERIFIED with command+output, no product edits.
+
+---
+
+**M-20261023-beam6 · Beam · 23 Oct — colour registry verification (BOC's task).** Verified `figma/team-colours.json` (32 teams, GPT table, Owner-supplied 22 Oct). Structure: 32 teams, valid hex, fill==primary, edge==stripe — all VERIFIED. Findings: (1) Chargers letter `#0B0F16` on `#0080C6` = 4.48:1, fails 4.5 threshold (fallback chain exhausted). (2) 4 stripe mismatches: Denver, Houston, Pittsburgh, New Orleans — stripes flat in primary instead of secondary. (3) 3 duplicate primaries (normal NFL). (4) Source is REPORTED, not verified against NFL brand guides. Recommendation: ship as reference with 5 findings documented; Architect decides on stripe/contrast fixes. Note: `_agents/beam/notes/colour-registry-verification.md`. ID block S-1600–1699.
