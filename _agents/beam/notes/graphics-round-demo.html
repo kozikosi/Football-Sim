@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Graphics Round Demo — Beam (P8 shared + screens)</title>
+<style>
+:root {
+  --bg:#0b0e14; --panel:#141922; --panel2:#1e2433; --text:#e8ecf3; --sub:#9aa0b8;
+  --border:#273044; --accent:#3b82f6; --gold:#fbbf24; --silver:#94a3b8; --bronze:#d97706;
+  --team-primary:#e31837; --ovr-gold:#fbbf24; --ovr-silver:#94a3b8; --ovr-bronze:#d97706;
+  --motion-normal:250ms ease;
+}
+* { box-sizing: border-box; }
+body { margin:0; font-family: system-ui,sans-serif; background:var(--bg); color:var(--text); padding:16px; }
+h1 { font-size:1.1rem; margin:0 0 12px; }
+h2 { font-size:0.95rem; margin:16px 0 8px; color:var(--gold); }
+.card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px; margin-bottom:12px; }
+.row { display:flex; gap:8px; flex-wrap:wrap; align-items:center; }
+.stat-card { display:flex; align-items:center; gap:12px; background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:10px 12px; margin-bottom:8px; }
+.stat-card .ovr { font-size:1.35rem; font-weight:800; width:44px; text-align:center; }
+.stat-card .bar { flex:1; height:8px; background:#1f2937; border-radius:4px; overflow:hidden; }
+.stat-card .bar-fill { height:100%; border-radius:4px; transition:width var(--motion-normal); }
+.stat-card .label { font-size:0.75rem; color:var(--sub); }
+.bar-row { display:flex; flex-direction:column; gap:6px; margin-bottom:8px; }
+.bar-row .r { display:flex; align-items:center; gap:10px; }
+.bar-row .name { width:120px; font-size:0.8rem; color:var(--sub); }
+.bar-row .track { flex:1; height:10px; background:#1f2937; border-radius:5px; overflow:hidden; }
+.bar-row .fill { height:100%; border-radius:5px; transition:width var(--motion-normal); }
+.bar-row .val { width:44px; font-size:0.8rem; font-weight:700; text-align:right; }
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:8px; }
+.unit-card { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:12px; }
+.unit-card .meter { height:10px; background:#1f2937; border-radius:5px; margin-top:6px; overflow:hidden; }
+.unit-card .meter-fill { height:100%; border-radius:5px; transition:width var(--motion-normal); }
+.gold-banner { position:relative; overflow:hidden; border-radius:10px; background:linear-gradient(90deg,#78350f,#b45309,#78350f); color:#fff; padding:12px 16px; font-weight:700; letter-spacing:0.04em; animation:shimmer 2.5s ease-in-out infinite; margin-bottom:8px; }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+.qtr-bars { display:flex; gap:8px; margin-bottom:8px; }
+.qtr-bar { flex:1; display:flex; flex-direction:column; align-items:center; gap:6px; }
+.qtr-bar .track { width:100%; height:10px; background:#1f2937; border-radius:5px; overflow:hidden; }
+.qtr-bar .fill { height:100%; border-radius:5px; transition:width var(--motion-normal); }
+.qtr-bar .label { font-size:0.7rem; color:var(--sub); }
+.turnover-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(72px,1fr)); gap:8px; margin-bottom:8px; }
+.to-icon { aspect-ratio:1; border-radius:8px; border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; background:var(--panel); }
+.to-icon .glyph { font-size:1.4rem; }
+.to-icon .tag { font-size:0.62rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
+.star-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px; text-align:center; }
+.star-card .portrait { width:56px; height:56px; border-radius:50%; margin:0 auto 8px; border:2px solid var(--border); background:#1f2937; }
+.star-card .name { font-weight:700; margin-bottom:4px; }
+.star-card .stat { font-size:0.75rem; color:var(--sub); }
+.star-card .grade { margin-top:6px; font-size:0.7rem; font-weight:800; padding:2px 8px; border-radius:10px; }
+.game-ball { display:inline-flex; align-items:center; gap:10px; border:3px solid var(--gold); border-radius:12px; background:#78350f; color:#fff; padding:10px 14px; font-weight:800; animation:pulseGlow 2.5s ease-in-out infinite; }
+@keyframes pulseGlow { 0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,0.4); } 50% { box-shadow:0 0 0 10px rgba(251,191,36,0.25); } }
+.record-banner { display:flex; gap:18px; align-items:baseline; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin-bottom:8px; }
+.record-digit { font-size:3rem; font-weight:900; line-height:1; }
+.record-digit.win { color:var(--ovr-gold); }
+.record-digit.loss { color:var(--sub); }
+.sparkline { height:60px; display:flex; align-items:flex-end; gap:3px; padding:4px 0; margin-bottom:8px; }
+.spark-bar { flex:1; min-height:2px; border-radius:2px 2px 0 0; transition:height var(--motion-normal); }
+.spark-bar.pos { background:#22c55e; }
+.spark-bar.neg { background:#ef4444; }
+.award-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px; text-align:center; }
+.award-badge { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; margin:0 auto 8px; font-weight:800; font-size:1.1rem; color:#fff; }
+.award-badge.gold { background:var(--ovr-gold); color:#0b0e14; }
+.award-badge.silver { background:var(--ovr-silver); }
+.award-badge.bronze { background:var(--ovr-bronze); }
+.team-tag { display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; border:1px solid var(--border); background:var(--panel); }
+.team-tag .dot { width:10px; height:10px; border-radius:50%; }
+.matchup-meter { height:10px; background:#1f2937; border-radius:5px; overflow:hidden; margin-top:6px; }
+.matchup-meter .fill { height:100%; border-radius:5px; transition:width var(--motion-normal); }
+.pos-chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:#fff; }
+.pos-QB { background:var(--team-primary); } .pos-RB { background:#22c55e; } .pos-WR { background:#f97316; } .pos-TE { background:#a855f7; } .pos-OL { background:#64748b; } .pos-DL { background:#ef4444; } .pos-LB { background:#14b8a6; } .pos-CB,.pos-S { background:#eab308; color:#0b0e14; } .pos-K,.pos-P { background:#a16207; }
+@media (prefers-reduced-motion: reduce) { .gold-banner,.game-ball,.bar-fill,.fill,.meter-fill,.spark-bar { animation:none !important; transition:none !important; } }
+</style>
+</head>
+<body>
+<h1>Graphics Round Demo — P8 shared components + screens</h1>
+
+<div class="card">
+  <h2>Stat cards (P8)</h2>
+  <div class="stat-card"><div class="ovr ovr-tier-gold">99</div><div style="flex:1"><div style="font-weight:700;">P. Mahomes</div><div class="label">QB · KC</div></div><div class="bar"><div class="bar-fill" style="width:92%;background:var(--team-primary);"></div></div></div>
+  <div class="stat-card"><div class="ovr ovr-tier-silver">88</div><div style="flex:1"><div style="font-weight:700;">T. Kelce</div><div class="label">TE · KC</div></div><div class="bar"><div class="bar-fill" style="width:74%;background:#a855f7;"></div></div></div>
+</div>
+
+<div class="card">
+  <h2>Bar row (P8)</h2>
+  <div class="bar-row">
+    <div class="r"><div class="name">Rushing</div><div class="track"><div class="fill" style="width:68%;background:#22c55e;"></div></div><div class="val">142</div></div>
+    <div class="r"><div class="name">Passing</div><div class="track"><div class="fill" style="width:82%;background:var(--team-primary);"></div></div><div class="val">312</div></div>
+    <div class="r"><div class="name">Receiving</div><div class="track"><div class="fill" style="width:55%;background:#f97316;"></div></div><div class="val">98</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Two-column pair (P8)</h2>
+  <div class="two-col">
+    <div class="unit-card"><div style="font-weight:700;">Offense</div><div style="font-size:0.8rem;color:var(--sub);">Rating 84</div><div class="meter"><div class="meter-fill" style="width:84%;background:var(--team-primary);"></div></div></div>
+    <div class="unit-card"><div style="font-weight:700;">Defense</div><div style="font-size:0.8rem;color:var(--sub);">Rating 79</div><div class="meter"><div class="meter-fill" style="width:79%;background:#ef4444;"></div></div></div>
+  </div>
+</div>
+
+<div class="gold-banner">Super Bowl Champion!</div>
+
+<div class="card">
+  <h2>Quarter bars (P8-g.3)</h2>
+  <div class="qtr-bars">
+    <div class="qtr-bar"><div class="label">1st</div><div class="track"><div class="fill" style="width:40%;background:var(--team-primary);"></div></div><div class="label">7</div></div>
+    <div class="qtr-bar"><div class="label">2nd</div><div class="track"><div class="fill" style="width:70%;background:var(--team-primary);"></div></div><div class="label">14</div></div>
+    <div class="qtr-bar"><div class="label">3rd</div><div class="track"><div class="fill" style="width:30%;background:#ef4444;"></div></div><div class="label">3</div></div>
+    <div class="qtr-bar"><div class="label">4th</div><div class="track"><div class="fill" style="width:90%;background:var(--team-primary);"></div></div><div class="label">17</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Turnover icon grid (P8-g.3)</h2>
+  <div class="turnover-grid">
+    <div class="to-icon"><div class="glyph">⚔</div><div class="tag" style="color:#ff6b6b;">INT 4Q</div></div>
+    <div class="to-icon"><div class="glyph">⬇</div><div class="tag" style="color:#ffb347;">FUM 2Q</div></div>
+    <div class="to-icon"><div class="glyph">✕</div><div class="tag" style="color:var(--sub);">DOWNS 3Q</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Star card (P8-g.3/g.7)</h2>
+  <div class="star-card">
+    <div class="portrait"></div>
+    <div class="name">P. Mahomes</div>
+    <div class="stat">312 yds · 3 TD · 1 INT</div>
+    <div class="grade" style="background:var(--ovr-gold);color:#0b0e14;">STAR</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Game ball (P8-g.7)</h2>
+  <div class="game-ball">🏈 Game ball: P. Mahomes</div>
+</div>
+
+<div class="card">
+  <h2>Record banner (P8-g.4)</h2>
+  <div class="record-banner">
+    <div><div class="record-digit win">14</div><div style="font-size:0.7rem;color:var(--sub);">WINS</div></div>
+    <div><div class="record-digit loss">3</div><div style="font-size:0.7rem;color:var(--sub);">LOSSES</div></div>
+    <div class="record-diff">+3.3 pt diff/game</div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Sparkline (P8-g.4)</h2>
+  <div class="sparkline">
+    <div class="spark-bar pos" style="height:60%;"></div>
+    <div class="spark-bar pos" style="height:40%;"></div>
+    <div class="spark-bar neg" style="height:30%;"></div>
+    <div class="spark-bar pos" style="height:80%;"></div>
+    <div class="spark-bar pos" style="height:50%;"></div>
+    <div class="spark-bar neg" style="height:20%;"></div>
+    <div class="spark-bar pos" style="height:90%;"></div>
+    <div class="spark-bar pos" style="height:70%;"></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Awards carousel (P8-g.4/g.6/g.7)</h2>
+  <div class="row">
+    <div class="award-card"><div class="award-badge gold">MVP</div><div style="font-weight:700;">P. Mahomes</div><div style="font-size:0.75rem;color:var(--sub);">KC · 99 OVR</div></div>
+    <div class="award-card"><div class="award-badge silver">DPOY</div><div style="font-weight:700;">M. Garrett</div><div style="font-size:0.75rem;color:var(--sub);">CLE · 97 OVR</div></div>
+    <div class="award-card"><div class="award-badge bronze">ROY</div><div style="font-weight:700;">C. Stroud</div><div style="font-size:0.75rem;color:var(--sub);">HOU · 85 OVR</div></div>
+  </div>
+</div>
+
+<div class="card">
+  <h2>Team tags + matchup meter (P8-g.1)</h2>
+  <div class="row">
+    <div class="team-tag"><span class="dot" style="background:var(--team-primary);"></span>KC Chiefs</div>
+    <div class="team-tag"><span class="dot" style="background:#003594;"></span>DAL Cowboys</div>
+  </div>
+  <div class="matchup-meter"><div class="fill" style="width:62%;background:var(--team-primary);"></div></div>
+  <div style="font-size:0.75rem;color:var(--sub);margin-top:4px;">KC +2.3 advantage</div>
+</div>
+
+<p style="color:var(--sub);font-size:0.8rem;margin-top:16px;">Advisory plug-and-play demo. No product file touched. Reduced motion respected.</p>
+</body>
+</html>
