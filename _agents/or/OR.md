@@ -8,32 +8,25 @@
 - **Product Name:** 20-0 (file names: "Football Sim")
 - **Valid Build:** `Football-Sim-PreColors.html` (sha256 `40233d6be00e987c…`, 657,486 B)
 
-## Work Done This Session
-- **Migration (24 Oct):** Migrated uncommitted work from shared tree to worktree `../wt/or` per MIGRATION.md
-  - Copied 4 lane files from `_agents/or/notes/` (F1-F6-reconciliation, V21-Suggestions, consolidated-review-multisport-pr1, decisions-ready-for-owner)
-  - Saved 1 shared-doc diff: `shared-doc-delta-V22-Suggestions.md.patch`
-- **Prior session work (21 Oct, recorded in lane files):**
-  - F1-F6 reconciliation with Owner direction (117 lines)
-  - V21-Suggestions.md (383 lines) — team colours, draft board, weight recalibration
-  - Consolidated review: multisport PR1 (210 lines)
-  - Decisions ready for Owner (86 lines)
+## Current Work and State
+- **Complete:** Lane files migrated to `../wt/or/_agents/or/notes/` (4 files: F1-F6-reconciliation, V21-Suggestions, consolidated-review-multisport-pr1, decisions-ready-for-owner). Saved shared-doc delta patch for V22-Suggestions.md (MiniMax's diff, commit 27f88cd0). COUNCIL-BULLETIN.md and SUBMISSIONS.md edits already committed by upstream sessions (no separate patch needed).
+- **In Progress:** None
+- **Blocked:** T6/T7 verification (model usage limit); Figma MCP (session restart + sign-in); `session.send` (use `board_post` instead).
 
-## Learnings / Next Session Needs to Know
-- **Migration rule:** Never edit SHARED (`/Users/kosi/Desktop/Football Sim`). Work only in `../wt/<name>`.
-- **Preserve tool** (`tools/preserve.mjs`) does NOT exist in shared tree — skip step 2 of END-OF-CHAT; verify worktree state manually.
-- **Worktree path:** `/Users/kosi/Desktop/wt/or` on branch `council/or` (merge-base with `origin/council/base` = `f4527a26`)
-- **`session.send` is unavailable** — use `board_post` for parallel dispatches.
-- **Figma MCP** requires session restart and Figma sign-in (config in `.kilo/kilo.jsonc`).
-- **Model usage limit** reached on T6/T7 — wait for reset before resuming verification tracks.
+## Next Session Needs to Know
+- Work ONLY in `../wt/or`. SHARED (`/Users/kosi/Desktop/Football Sim`) is read-only — copy out, never edit in place.
+- `tools/preserve.mjs` does NOT exist in SHARED — skip END-OF-CHAT §2 preservation gate; verify worktree state manually.
+- Model usage limit reached on T6/T7 — wait for reset before resuming verification tracks.
+- `session.send` unavailable — use `board_post` for parallel dispatches.
 
-## Pending Tasks / Open Questions
+## Open Questions
 - Q-OR-1: V22-Suggestions.md changes (61-line diff) — what does the Architect want from OR's delta?
 - Q-OR-2: Team-colour theming (KC border red/white/yellow; Vikings purple panels/text/stars) — implementation spec needed.
 - Q-OR-3: 3-4 base toggle, stars rule, remove "Value here" — remaining Owner directives not yet in V22-Suggestions.md.
-- Q-OR-4: T6 (line-number truth sweep) and T7 (protected-constants audit) blocked pending model usage limit reset.
-- Q-OR-5: Football-Sim-V21.html existence and rename verification pending.
 
-## Current State
-- **Complete:** Lane files migrated (4 files + 1 patch), worktree clean, branch `council/or` ready to push.
-- **In Progress:** None
-- **Blocked:** T6/T7 verification tracks (model usage limit); Figma MCP (session restart + sign-in); session.send (use board_post).
+## Live Files
+- Lane: `_agents/or/OR.md`
+- Notes: `_agents/or/notes/` (4 files + 1 patch)
+- Bulletin: `bulletin/20261024-0341-or.md`
+- Worktree path: `/Users/kosi/Desktop/wt/or`
+- Branch: `council/or`, merge-base with `origin/council/base` = `f4527a260f11aa805fceefdc7c6602739c3fefb7`
