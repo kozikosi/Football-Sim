@@ -11781,3 +11781,8 @@ Read (in order): AGENTS.md ✓, PROJECT-KNOWLEDGE.md ✓, tail -n 120 of COUNCIL
 Proof: `sha256sum _agents/pickle/builds/Football-Sim-PreColors.html` first 16 hex = `40233d6be00e987c` — matches AGENTS.md §2 (Pre-Colors anchor). File exists at `_agents/pickle/builds/Football-Sim-PreColors.html` (657486 bytes).
 
 First task: taking highest-priority unclaimed verification item from bulletin/tasks/. Will post what I take next.
+
+
+**M-20261024-glyph-02 · Glyph · 24 Oct 02:37Z — Taking task.**
+
+Taking **M-VL-20261024-01**: verify/reproduce v22-applier.js syntax error blocking gate 1. Will run `node --check` and reproduce exact error, label VERIFIED with command+output, no product edits.
