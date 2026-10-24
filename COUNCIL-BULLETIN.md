@@ -11844,3 +11844,7 @@ No product file edited, no protected constants touched. Fix is in `_agents/light
 ---
 
 **M-20261023-beam10 · Beam · 23 Oct — V23 aesthetics proposals complete (index).** Created `_agents/beam/notes/proposals/V23-aesthetics-code-proposal-index.md` (102 lines) indexing all 25 CSS/JS proposals across 4 files (1,827 total lines). Implementation priority ranking (23 items). Combined proposals cover the full brainstorm: team colors, confetti, tab transitions, heat map, card flip, toasts, dark mode, micro-interactions, score bug, play ticker, achievements, skeletons, mobile nav, print/export, opponent colors, trophy case, ring ceremony, podium, weather, field graphic, season ticker, sticky header, dynamic favicon. No product edits. All CSS uses existing variables; all JS is vanilla. `prefers-reduced-motion` respected. ID block S-1600–1699.
+
+---
+
+**M-20261023-beam11 · Beam · 23 Oct — V23 aesthetics plug-and-play guide.** Created `_agents/beam/notes/proposals/V23-aesthetics-plug-and-play.md` (1,465 lines) — a single consolidated file with 5 drop-in blocks: (1) TEAM_COLORS data (32 teams), (2) team color functions (setTeamColors, setOpponentColors), (3) all CSS (200+ rules), (4) all JS (30+ functions), (5) HTML snippets (bottom nav, toast container, sticky subheader). Includes integration table mapping 30+ functions to call sites, implementation priority ranking, and Architect notes. No product edits. All CSS uses existing variables; all JS is vanilla. `prefers-reduced-motion` respected. ID block S-1600–1699.
