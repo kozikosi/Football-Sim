@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VL — Interactive & Beautiful Prototype (V22 P0-18/19/29)</title>
+<style>
+  /* ============================================================
+     VL interactive design tokens — plug-in block #0
+     V22 P0-29 team-color theming + motion tokens.
+     Copy into product <style>. Product sets --team-* on team select
+     and --opp-* on matchup load. No protected constants touched.
+     ============================================================ */
+  :root {
+    /* palette (P0-29: user team primary/secondary/tertiary; opp primary/secondary/tertiary) */
+    --team-primary: #3b82f6;
+    --team-secondary: #9aa0b8;
+    --team-tertiary: #e5e7eb;
+    --opp-primary: #ef4444;
+    --opp-secondary: #f59e0b;
+    --opp-tertiary: #f3f4f6;
+
+    /* base dark theme (P7-4 polish) */
+    --bg: #0b0e14;
+    --panel: #141a26;
+    --panel2: #1e2433;
+    --text: #e8ecf3;
+    --text-secondary: #9aa0b8;
+    --border: #273044;
+    --accent: #3b82f6;
+    --gold: #fbbf24;
+    --success: #22c55e;
+
+    --motion-fast: 150ms ease;
+    --motion-normal: 300ms ease-out;
+    --motion-slow: 500ms ease-out;
+    --ease-bounce: cubic-bezier(0.34,1.56,0.64,1);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+  /* ---- team-color demo picker (P0-29) ---- */
+  .team-picker { margin: 12px 24px; display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+  .team-btn { padding: 6px 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+  .team-btn.active { border-color: var(--team-primary); color: var(--team-primary); box-shadow: 0 0 0 2px var(--team-primary); }
+
+  /* ---- P0-29: Draft board header border in team colors ---- */
+  .draft-header {
+    border-left: 5px solid var(--team-primary);
+    background: rgba(var(--team-primary-rgb,59,130,246),0.06);
+    padding: 12px 16px; border-radius: 0 8px 8px 0;
+    margin-bottom: 16px; font-weight: 700; color: var(--text);
+  }
+  .draft-header .team-name { color: var(--team-primary); }
+
+  /* ---- P0-19: Super Bowl / conference champion banner (large, centered, 3s+, shimmer + sparkle) ---- */
+  .champion-banner {
+    position: relative; overflow: hidden; border-radius: 16px;
+    background: linear-gradient(135deg,#78350f,#b45309,#78350f);
+    color: #fff; text-align: center; padding: 34px 24px; margin: 24px auto; max-width: 720px;
+    box-shadow: 0 20px 50px -8px rgba(180,83,9,0.45);
+    animation: shimmer 3s ease-in-out infinite, popIn 0.5s var(--ease-bounce) both;
+    background-size: 200% auto;
+  }
+  @keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+  @keyframes popIn { from { opacity: 0; transform: scale(0.85); } to { opacity: 1; transform: scale(1); } }
+  .champion-banner h2 { margin: 0 0 6px; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 0.05em; }
+  .champion-banner p { margin: 0; font-size: 1.05rem; opacity: 0.95; }
+  .sparkle {
+    position: absolute; width: 6px; height: 6px; background: var(--gold); border-radius: 50%;
+    animation: sparkle 2s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes sparkle { 0%,100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.6); } }
+
+  /* ---- P0-19: March Madness-style playoff bracket ---- */
+  .bracket { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+  .bracket h3 { color: var(--text-secondary); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 8px; }
+  .round { display: flex; gap: 14px; margin-bottom: 26px; align-items: flex-start; }
+  .matchup { display: flex; flex-direction: column; gap: 8px; min-width: 150px; }
+  .team-seed { display: flex; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--border); border-radius: 8px; background: var(--panel); position: relative; cursor: pointer; transition: border-color var(--motion-fast), box-shadow var(--motion-fast); }
+  .team-seed.winner { border-color: var(--team-primary); box-shadow: 0 0 0 3px rgba(var(--team-primary-rgb,59,130,246),0.25); background: rgba(var(--team-primary-rgb,59,130,246),0.12); }
+  .team-seed .seed { font-size: 0.7rem; font-weight: 800; color: var(--text-secondary); width: 16px; text-align: center; }
+  .team-seed .name { flex: 1; font-weight: 700; font-size: 0.85rem; }
+  .team-seed .tag { font-size: 0.62rem; padding: 1px 6px; border-radius: 10px; background: var(--border); color: var(--text-secondary); }
+  .connector { width: 14px; height: 2px; background: var(--border); align-self: center; margin: 6px 0; }
+  .connector.vertical { width: 2px; height: 46px; margin: 0 auto; }
+
+  /* ---- P0-19: Conference ranked bar charts (1-16) ---- */
+  .conf-charts { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; max-width: 900px; margin: 32px auto; padding: 0 16px; }
+  .conf-card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 16px; }
+  .conf-card h4 { margin: 0 0 12px; font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .rank-list { display: flex; flex-direction: column; gap: 6px; }
+  .rank-row { display: flex; align-items: center; gap: 10px; padding: 6px 8px; border-radius: 8px; background: rgba(255,255,255,0.02); transition: background var(--motion-fast); cursor: pointer; }
+  .rank-row:hover { background: rgba(var(--team-primary-rgb,59,130,246),0.1); }
+  .rank-row div1, .rank-row .rank { width: 26px; font-size: 0.75rem; font-weight: 800; color: var(--text-secondary); }
+  .rank-row .team { flex: 1; font-weight: 700; font-size: 0.85rem; }
+  .rank-row .record { width: 44px; font-size: 0.75rem; color: var(--text-secondary); text-align: right; font-variant-numeric: tabular-nums; }
+  .rank-row .bar { flex: 1; height: 8px; background: #1f2937; border-radius: 4px; overflow: hidden; margin: 0 10px; }
+  .rank-row .fill { height: 100%; border-radius: 4px; transition: width var(--motion-normal); }
+
+  /* ---- P0-19: Game preview / recap graphical (team-colored score boxes) ---- */
+  .recap { max-width: 700px; margin: 32px auto; padding: 0 16px; }
+  .score-row { display: flex; gap: 12px; margin-bottom: 14px; }
+  .score-box { flex: 1; border-radius: 12px; padding: 14px 16px; color: #fff; position: relative; overflow: hidden; }
+  .score-box.user { background: linear-gradient(135deg, var(--team-primary), var(--team-secondary)); }
+  .score-box.opp { background: linear-gradient(135deg, var(--opp-primary), var(--opp-secondary)); }
+  .score-box .tname { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; opacity: 0.9; }
+  .score-box .score { font-size: 2.2rem; font-weight: 900; }
+  .score-box .detail { margin-top: 6px; font-size: 0.78rem; opacity: 0.9; }
+
+  /* ---- P0-8 player browser cards (~15 per page) ---- */
+  .players { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+  .player-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .player-card { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px; cursor: pointer; transition: transform var(--motion-fast), box-shadow var(--motion-fast), border-color var(--motion-fast); }
+  .player-card:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); border-color: var(--border); }
+  .player-card.yours { border-left: 4px solid var(--team-primary); background: rgba(var(--team-primary-rgb,59,130,246),0.08); }
+  .player-card .ovr { float: right; font-weight: 800; font-size: 0.85rem; }
+  .player-card .ovr.gold { color: var(--gold); } .player-card .ovr.silver { color: #94a3b8; } .player-card .ovr.bronze { color: #d97706; }
+  .player-card .name { font-weight: 700; margin-bottom: 2px; }
+  .player-card .meta { font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 6px; }
+  .player-card .statbar { height: 6px; background: #1f2937; border-radius: 3px; overflow: hidden; margin-top: 4px; }
+  .player-card .stat-fill { height: 100%; border-radius: 3px; transition: width var(--motion-normal); }
+
+  /* ---- P0-9 position rankings combo chips ---- */
+  .pos-combos { max-width: 900px; margin: 32px auto; padding: 0 16px; }
+  .combo-chip { display: inline-block; padding: 6px 12px; border: 1px solid var(--border); background: var(--panel); color: var(--text); border-radius: 20px; font-size: 0.8rem; cursor: pointer; margin: 4px 4px 4px 0; transition: all var(--motion-fast); }
+  .combo-chip.active { background: var(--team-primary); color: #fff; border-color: var(--team-primary); box-shadow: 0 0 0 2px var(--team-primary); }
+
+  /* ---- P0-10 team comparison side-by-side ---- */
+  .compare { max-width: 800px; margin: 32px auto; padding: 0 16px; }
+  .compare-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .compare-col { display: flex; flex-direction: column; gap: 10px; }
+  .compare-col h4 { margin: 0 0 6px; font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .compare-col.user { border-left: 4px solid var(--team-primary); padding-left: 10px; }
+  .compare-col.opp { border-left: 4px solid var(--opp-primary); padding-left: 10px; }
+  .stat-line { display: flex; justify-content: space-between; font-size: 0.85rem; padding: 4px 0; border-bottom: 1px solid rgba(255,255,255,0.03); }
+
+  /* ---- creative: live win-projection slider (what-if) ---- */
+  .whatif { max-width: 700px; margin: 32px auto; padding: 0 16px; background: var(--panel2); border: 1px solid var(--border); border-radius: 12px; padding: 18px; }
+  .whatif h3 { margin: 0 0 12px; font-size: 0.9rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.05em; }
+  .slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+  .slider-row label { width: 150px; font-size: 0.8rem; color: var(--text-secondary); }
+  input[type=range] { flex: 1; accent-color: var(--team-primary); }
+  .proj-meter { height: 10px; background: #1f2937; border-radius: 5px; overflow: hidden; margin-top: 10px; }
+  .proj-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg,#ef4444,#fbbf24,#22c55e); width: 60%; transition: width var(--motion-normal); }
+
+  /* ---- creative: interactive week timeline (clickable recap cards) ---- */
+  .week-timeline { max-width: 700px; margin: 32px auto; padding: 0 16px; }
+  .week-item { background: var(--panel); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; cursor: pointer; transition: all var(--motion-fast); }
+  .week-item:hover { background: rgba(var(--team-primary-rgb,59,130,246),0.1); border-color: var(--team-primary); }
+  .week-item.expanded { background: rgba(var(--team-primary-rgb,59,130,246),0.15); border-color: var(--team-primary); }
+  .week-item .head { display: flex; justify-content: space-between; align-items: center; font-weight: 700; }
+  .week-item .detail { display: none; margin-top: 8px; font-size: 0.8rem; color: var(--text-secondary); border-top: 1px solid var(--border); padding-top: 8px; }
+  .week-item.expanded .detail { display: block; }
+  .chevron { font-size: 0.7rem; transition: transform var(--motion-fast); }
+  .week-item.expanded .chevron { transform: rotate(180deg); }
+
+  /* ---- creative: animated game ball ceremony ---- */
+  .game-ball-ceremony { max-width: 500px; margin: 32px auto; text-align: center; }
+  .football { width: 90px; height: 56px; background: #78350f; border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%; margin: 0 auto 10px; position: relative; box-shadow: 0 8px 24px rgba(0,0,0,0.4); animation: bounce 2.5s ease-in-out infinite; border: 3px solid var(--gold); }
+  .football::after { content:''; position:absolute; inset:4px; background:#d97706; border-radius:48% 48% 42% 42%/55% 55% 45% 45%; }
+  @keyframes bounce { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-16px) rotate(8deg); } }
+  .ball-label { font-weight: 700; margin-bottom: 4px; }
+
+  .section-title { color: var(--text-secondary); font-size: 1rem; text-transform: uppercase; letter-spacing: 0.06em; margin: 34px 16px 10px; border-bottom: 1px solid var(--border); padding-bottom: 6px; }
+
+  .note { max-width: 900px; margin: 24px auto; padding: 0 16px; color: var(--text-secondary); font-size: 0.82rem; border-left: 3px solid var(--border); padding-left: 12px; }
+
+  ::-webkit-scrollbar { width: 8px; height: 8px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- P0-29 team picker -->
+<div class="team-picker">
+  <strong style="color:var(--text-secondary)">User team (P0-29 color theming):</strong>
+  <button class="team-btn active" onclick="setTeam(this,'#3b82f6','#9aa0b8','#e5e7eb','#ef4444','#f59e0b','#f3f4f6','59,130,246')">KC Chiefs (red/white/yellow)</button>
+  <button class="team-btn" onclick="setTeam(this,'#0b5394','#6bbf59','#a5cae1','#4f2683','#c1d600','#4f2683','11,83,148')">Vikings (purple/gold)</button>
+  <button class="team-btn" onclick="setTeam(this,'#e31837','#ffb81c','#a5aca4','#0b5394','#6bbf59','#a5cae1','227,24,55')">49ers (red/gold)</button>
+</div>
+
+<!-- P0-29 draft header in team colors -->
+<div class="draft-header">
+  Drafting as <span class="team-name">Kansas City Chiefs</span> — you hold the #4 overall pick (Round 1)
+</div>
+
+<!-- P0-19 Super Bowl champion banner -->
+<div class="champion-banner">
+  <h2>Super Bowl Champions!</h2>
+  <p>The <span style="color:var(--gold);font-weight:800">Kansas City Chiefs</span> are Super Bowl champions!</p>
+  <div style="margin-top:10px; font-size:0.75rem; opacity:0.8">Banner remains on screen · shimmer + sparkle animation (P0-19)</div>
+  <span class="sparkle" style="top:20%; left:15%; animation-delay:0s"></span>
+  <span class="sparkle" style="top:35%; left:75%; animation-delay:0.6s"></span>
+  <span class="sparkle" style="top:55%; left:30%; animation-delay:1.2s"></span>
+  <span class="sparkle" style="top:40%; left:85%; animation-delay:1.8s"></span>
+</div>
+
+<!-- P0-19 March Madness playoff bracket -->
+<div class="section-title">P0-19 · March Madness-style playoff bracket</div>
+<div class="bracket">
+  <div class="round">
+    <div class="matchup">
+      <div class="team-seed winner"><span class="seed">1</span><span class="name">KC Chiefs</span><span class="tag">AFC</span></div>
+      <div class="connector vertical"></div>
+      <div class="team-seed"><span class="seed">8</span><span class="name">NY Jets</span><span class="tag">AFC</span></div>
+    </div>
+    <div class="connector" style="margin-top:22px"></div>
+    <div class="matchup">
+      <div class="team-seed"><span class="seed">4</span><span class="name">BUF Bills</span><span class="tag">AFC</span></div>
+      <div class="connector vertical"></div>
+      <div class="team-seed"><span class="seed">5</span><span class="name">BAL Ravens</span><span class="tag">AFC</span></div>
+    </div>
+  </div>
+  <div class="round" style="justify-content:center">
+    <div class="matchup">
+      <div class="team-seed winner"><span class="seed">1</span><span class="name">KC Chiefs</span><span class="tag">AFC Champ</span></div>
+      <div class="connector vertical"></div>
+      <div class="team-seed"><span class="seed">4</span><span class="name">BUF Bills</span><span class="tag">AFC</span></div>
+    </div>
+  </div>
+  <div class="note">Seeded team icons advance with animation · connector lines · conference colors · byes shown as byes (P0-19 bracket request).</div>
+</div>
+
+<!-- P0-19 conference ranked bar charts -->
+<div class="section-title">P0-19 · Conference charts (ranked 1-16, beautiful)</div>
+<div class="conf-charts">
+  <div class="conf-card">
+    <h4>AFC — ranked by wins</h4>
+    <div class="rank-list">
+      <div class="rank-row"><span class="rank">1</span><span class="team">KC Chiefs</span><div class="bar"><div class="fill" style="width:94%; background:var(--team-primary)"></div></div><span class="record">15-2</span></div>
+      <div class="rank-row"><span class="rank">2</span><span class="team">BUF Bills</span><div class="bar"><div class="fill" style="width:82%; background:#94a3b8"></div></div><span class="record">13-4</span></div>
+      <div class="rank-row"><span class="rank">3</span><span class="team">BAL Ravens</span><div class="bar"><div class="fill" style="width:78%; background:#94a3b8"></div></div><span class="record">12-5</span></div>
+      <div class="rank-row"><span class="rank">4</span><span class="team">HOU Texans</span><div class="bar"><div class="fill" style="width:69%; background:#94a3b8"></div></div><span class="record">11-6</span></div>
+      <div class="rank-row"><span class="rank">5</span><span class="team">LAC Chargers</span><div class="bar"><div class="fill" style="width:62%; background:#94a3b8"></div></div><span class="record">10-7</span></div>
+    </div>
+  </div>
+  <div class="conf-card">
+    <h4>NFC — ranked by wins</h4>
+    <div class="rank-list">
+      <div class="rank-row"><span class="rank">1</span><span class="team">SF 49ers</span><div class="bar"><div class="fill" style="width:91%; background:#ef4444"></div></div><span class="record">14-3</span></div>
+      <div class="rank-row"><span class="rank">2</span><span class="team">DET Lions</span><div class="bar"><div class="fill" style="width:85%; background:#94a3b8"></div></div><span class="record">13-4</span></div>
+      <div class="rank-row"><span class="rank">3</span><span class="team">PHI Eagles</span><div class="bar"><div class="fill" style="width:80%; background:#94a3b8"></div></div><span class="record">12-5</span></div>
+      <div class="rank-row"><span class="rank">4</span><span class="team">DAL Cowboys</span><div class="bar"><div class="fill" style="width:65%; background:#94a3b8"></div></div><span class="record">10-7</span></div>
+      <div class="rank-row"><span class="rank">5</span><span class="team">GB Packers</span><div class="bar"><div class="fill" style="width:60%; background:#94a3b8"></div></div><span class="record">9-8</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- P0-19 game recap graphical score boxes -->
+<div class="section-title">P0-19/P0-18 · Game recap — graphical score boxes</div>
+<div class="recap">
+  <div class="score-row">
+    <div class="score-box user"><div class="tname">KC Chiefs (you)</div><div class="score">31</div><div class="detail">14 PF · +2 turnover diff</div></div>
+    <div class="score-box opp"><div class="tname">SF 49ers</div><div class="score">20</div><div class="detail">24 PA · -2 turnover diff</div></div>
+  </div>
+  <div class="note">Team-colored score boxes · larger, centered · retained sentences only for clutch/star/hype (P0-19/P0-18 ruling).</div>
+</div>
+
+<!-- P0-8 player browser cards -->
+<div class="section-title">P0-8 · Player browser — ~15 per page, position dropdown aligned like draft board</div>
+<div class="players">
+  <div class="player-grid">
+    <div class="player-card yours"><span class="ovr gold">99</span><div class="name">Patrick Mahomes</div><div class="meta">QB · KC · Age 28</div><div class="statbar"><div class="stat-fill" style="width:98%; background:var(--gold)"></div></div></div>
+    <div class="player-card"><span class="ovr silver">94</span><div class="name">Nick Bosa</div><div class="meta">DL · SF · Age 27</div><div class="statbar"><div class="stat-fill" style="width:92%; background:#ef4444"></div></div></div>
+    <div class="player-card"><span class="ovr silver">94</span><div class="name">Justin Jefferson</div><div class="meta">WR · MIN · Age 25</div><div class="statbar"><div class="stat-fill" style="width:91%; background:#f97316"></div></div></div>
+    <div class="player-card yours"><span class="ovr bronze">88</span><div class="name">Trent Williams</div><div class="meta">OL · SF · Age 36</div><div class="statbar"><div class="stat-fill" style="width:85%; background:#d97706"></div></div></div>
+    <div class="player-card"><span class="ovr bronze">86</span><div class="name">Micah Parsons</div><div class="meta">LB · DAL · Age 26</div><div class="statbar"><div class="stat-fill" style="width:80%; background:#d97706"></div></div></div>
+    <div class="player-card yours"><span class="ovr silver">91</span><div class="name">Travis Kelce</div><div class="meta">TE · KC · Age 35</div><div class="statbar"><div class="stat-fill" style="width:88%; background:#a855f7"></div></div></div>
+  </div>
+  <div class="note">~15 players per page · position dropdown · yours highlighted with team-color border · stat bars as micro-graphics (P0-8).</div>
+</div>
+
+<!-- P0-9 position rankings combo chips -->
+<div class="section-title">P0-9 · Position rankings — complete combinations</div>
+<div class="pos-combos">
+  <span class="combo-chip active">QB overall</span><span class="combo-chip">QB by tier</span><span class="combo-chip">RB1/RB2</span><span class="combo-chip">WR1/WR2/WR3</span><span class="combo-chip">TE1/TE2</span><span class="combo-chip">OT/OG/OC</span><span class="combo-chip">DE/DT</span><span class="combo-chip">OLB/ILB</span><span class="combo-chip">CB/S</span><span class="combo-chip">K/P</span>
+</div>
+
+<!-- P0-10 team comparison -->
+<div class="section-title">P0-10 · Team comparison — side-by-side</div>
+<div class="compare">
+  <div class="compare-col user">
+    <h4>KC Chiefs (you)</h4>
+    <div class="stat-line"><span>Wins</span><span style="color:var(--gold);font-weight:800">14</span></div>
+    <div class="stat-line"><span>PF</span><span style="color:var(--gold);font-weight:800">497</span></div>
+    <div class="stat-line"><span>PA</span><span style="color:var(--team-secondary)">296</span></div>
+    <div class="stat-line"><span>Point diff</span><span style="color:var(--success);font-weight:700">+201</span></div>
+  </div>
+  <div class="compare-col opp">
+    <h4>SF 49ers</h4>
+    <div class="stat-line"><span>Wins</span><span style="color:var(--opp-primary);font-weight:800">12</span></div>
+    <div class="stat-line"><span>PF</span><span style="color:var(--opp-secondary)">421</span></div>
+    <div class="stat-line"><span>PA</span><span style="color:var(--text-secondary)">334</span></div>
+    <div class="stat-line"><span>Point diff</span><span style="color:var(--success);font-weight:700">+87</span></div>
+  </div>
+</div>
+
+<!-- Creative: live win-projection what-if -->
+<div class="section-title">Creative · Live "what-if" win projection</div>
+<div class="whatif">
+  <div class="slider-row"><label>Pass-rush investment</label><input type="range" min="0" max="100" value="65" id="pr"><span id="prv">65</span></div>
+  <div class="slider-row"><label>Secondary depth</label><input type="range" min="0" max="100" value="55" id="sc"><span id="scv">55</span></div>
+  <div class="proj-meter"><div class="proj-fill" id="projfill"></div></div>
+  <div style="font-size:0.8rem;color:var(--text-secondary);margin-top:8px">Projected wins: <span id="projw" style="color:var(--gold);font-weight:800">10.2</span></div>
+  <div class="note">Drag sliders → projected wins recompute live (creative extension; ties to P0-15 philosophy/aggressiveness editable all season).</div>
+</div>
+
+<!-- Creative: interactive week timeline -->
+<div class="section-title">Creative · Week-by-week recap timeline (click to expand)</div>
+<div class="week-timeline">
+  <div class="week-item" onclick="toggleWeek(this)">
+    <div class="head"><span>Week 4 · vs SF 49ers</span><span class="chevron">▼</span></div>
+    <div class="detail">W 31–20 · Mahomes 420 YDS, 4 TD · Bosa 3 sacks · Turnovers: 2 for KC, 0 for SF · Game ball: Mahomes</div>
+  </div>
+  <div class="week-item" onclick="toggleWeek(this)">
+    <div class="head"><span>Week 7 · @ BAL Ravens</span><span class="chevron">▼</span></div>
+    <div class="detail">L 24–27 · Close game · Turnover in Q4 cost 7 points · Game ball: N. Bosa</div>
+  </div>
+  <div class="week-item" onclick="toggleWeek(this)">
+    <div class="head"><span>Week 12 · vs LV Raiders</span><span class="chevron">▼</span></div>
+    <div class="detail">W 38–10 · Dominant · 5 TD passes · Game ball: J. Jefferson</div>
+  </div>
+</div>
+
+<!-- Creative: animated game ball ceremony -->
+<div class="section-title">Creative · Game ball ceremony (animated)</div>
+<div class="game-ball-ceremony">
+  <div class="football"></div>
+  <div class="ball-label">Game Ball — Patrick Mahomes · 94 OVR</div>
+  <div class="note">Pulsing, bouncing football with gold border — ceremonial presentation after key games (P8-g.7 showpiece).</div>
+</div>
+
+<div class="note" style="max-width:900px">
+  <strong>Plug-in notes for Claude:</strong> Each block is keyed to a V22 item (P0-29 team theming, P0-19 season/playoff graphics, P0-18 game recap, P0-8 player browser, P0-9 position combos, P0-10 team comparison) plus creative extensions (live what-if slider, week timeline, game ball ceremony). Copy the <code>:root</code> token block first, then per-item CSS/JS. All motion respects <code>prefers-reduced-motion</code>. No protected constants — cosmetic/UI only (SAFE ALONE). Advisory only — product file untouched.
+</div>
+
+<script>
+  function setTeam(btn,p1,s,t,p2,s2,t2,rgb){
+    document.documentElement.style.setProperty('--team-primary',p1);
+    document.documentElement.style.setProperty('--team-secondary',s);
+    document.documentElement.style.setProperty('--team-tertiary',t);
+    document.documentElement.style.setProperty('--opp-primary',p2);
+    document.documentElement.style.setProperty('--opp-secondary',s2);
+    document.documentElement.style.setProperty('--opp-tertiary',t2);
+    document.documentElement.style.setProperty('--team-primary-rgb',rgb);
+    document.querySelectorAll('.team-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+  function toggleWeek(el){ el.classList.toggle('expanded'); }
+  // live what-if slider (creative extension)
+  const pr=document.getElementById('pr'), sc=document.getElementById('sc'), prv=document.getElementById('prv'), scv=document.getElementById('scv'), projfill=document.getElementById('projfill'), projw=document.getElementById('projw');
+  function upd(){
+    const a=+pr.value, b=+sc.value;
+    prv.textContent=a; scv.textContent=b;
+    const wins = (10 + (a-50)*0.07 + (b-50)*0.05).toFixed(1);
+    projw.textContent = wins;
+    projfill.style.width = Math.min(100, Math.max(0, 40 + a*0.4 + b*0.25)) + '%';
+  }
+  pr.oninput=sc.oninput=upd; upd();
+</script>
+</body>
+</html>
