@@ -68,20 +68,20 @@
 
 ## Architect's v1.0 Definition (per Q-GLM-23)
 
-> *To be filled when Architect answers: "What set of things, concretely, would make you call this project DONE?"*
+> _To be filled when Architect answers: "What set of things, concretely, would make you call this project DONE?"_
 
 ---
 
 ## Council Research Backlog (cheap, parallelizable)
 
-| Topic | Owner | Status | Notes |
-|-------|-------|--------|-------|
-| Similar project survey (football sims, draft engines) | — | open | Q-GLM-19 "want MORE background research" |
-| Pythagenpat calibration for 32.5 PPW | — | open | Core invariant |
-| Flex penalty calibration vs real NFL versatility | — | open | Protected constant adjacent |
-| Injury model validation | — | open | `inj` rating in PLAYERS |
-| Weather effects on game model | — | open | Not in current spec |
+| Topic                                                 | Owner | Status | Notes                                    |
+| ----------------------------------------------------- | ----- | ------ | ---------------------------------------- |
+| Similar project survey (football sims, draft engines) | —     | open   | Q-GLM-19 "want MORE background research" |
+| Pythagenpat calibration for 32.5 PPW                  | —     | open   | Core invariant                           |
+| Flex penalty calibration vs real NFL versatility      | —     | open   | Protected constant adjacent              |
+| Injury model validation                               | —     | open   | `inj` rating in PLAYERS                  |
+| Weather effects on game model                         | —     | open   | Not in current spec                      |
 
 ---
 
-*Maintained by UK (S-2200–2299) per Architect direction. Append updates; never rewrite. See CHRONICLE for change log.*
+_Maintained by UK (S-2200–2299) per Architect direction. Append updates; never rewrite. See CHRONICLE for change log._

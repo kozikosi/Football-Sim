@@ -1,6 +1,7 @@
 # AGENTS.md — Instructions for AI Coding Agents
 
 ## Project Purpose
+
 This is the **NFL Draft Simulator** (Madden NFL 27 ratings, Season-first layout) — a single-file HTML application containing:
 - 1,200+ real Madden NFL 27 player ratings (`PLAYERS` array)
 - 32 team depth charts (`TEAM_DATA` object)
@@ -14,33 +15,37 @@ This is the **NFL Draft Simulator** (Madden NFL 27 ratings, Season-first layout)
 ## Architecture Overview
 
 ### Data Layer (embedded in HTML)
-| Variable | Purpose |
-|----------|---------|
-| `PLAYERS` | Array of `[name, pos, team, ovr, spd, str, agi, cod, inj, awr, xf?]` — 1,200+ entries |
-| `TEAM_DATA` | Object: `teamName -> {slot: {ovr, name}}` for 36 roster slots per team |
-| `DEFAULT_WEIGHTS` | Position-weight map (QB=320, OT=295, DE=350, CB=350, etc.) |
-| `ROSTER_SLOTS` | 26 starter slots drafted (excludes DL5, LB4, CB4, SS2, FS2, WR4, P, FB) |
-| `FLEX` / `NATURAL_SLOT_MAP` | Flex rules: which positions can play which slots, with rating penalties |
+
+| Variable                    | Purpose                                                                               |
+| --------------------------- | ------------------------------------------------------------------------------------- |
+| `PLAYERS`                   | Array of `[name, pos, team, ovr, spd, str, agi, cod, inj, awr, xf?]` — 1,200+ entries |
+| `TEAM_DATA`                 | Object: `teamName -> {slot: {ovr, name}}` for 36 roster slots per team                |
+| `DEFAULT_WEIGHTS`           | Position-weight map (QB=320, OT=295, DE=350, CB=350, etc.)                            |
+| `ROSTER_SLOTS`              | 26 starter slots drafted (excludes DL5, LB4, CB4, SS2, FS2, WR4, P, FB)               |
+| `FLEX` / `NATURAL_SLOT_MAP` | Flex rules: which positions can play which slots, with rating penalties               |
 
 ### Core Math Functions (do not modify without approval)
-| Function | Purpose |
-|----------|---------|
-| `slotWins(slot, ovr)` | Wins/season added by a player at `slot` with given OVR vs. 70 baseline |
-| `slotWinsPerOvr()` | Marginal wins per +1 OVR at each slot (cached) |
-| `modelWeights()` | Converts `slotWinsPerOvr` to 0–700 scale (QB=700) |
+
+| Function                           | Purpose                                                                   |
+| ---------------------------------- | ------------------------------------------------------------------------- |
+| `slotWins(slot, ovr)`              | Wins/season added by a player at `slot` with given OVR vs. 70 baseline    |
+| `slotWinsPerOvr()`                 | Marginal wins per +1 OVR at each slot (cached)                            |
+| `modelWeights()`                   | Converts `slotWinsPerOvr` to 0–700 scale (QB=700)                         |
 | `replacementLevels(pool, rosters)` | Replacement OVR by position group based on remaining starters league-wide |
-| `cpuPick(teamIndex, state)` | CPU GM logic: value over replacement × bias × noise, with miss rate |
-| `matchupModel(O, D, lg, plan)` | Expected points from offensive/defensive unit ratings + game plan |
-| `teamRatings(slotmap)` | Nine unit ratings from lineup (flex penalties applied) |
-| `simulateGame()` | Realizes yards/TOs/sacks from model, adds noise, late-game script, OT |
-| `optimalLineup(slotmap)` | Hungarian algorithm for max-wins slot assignment (flex-aware) |
+| `cpuPick(teamIndex, state)`        | CPU GM logic: value over replacement × bias × noise, with miss rate       |
+| `matchupModel(O, D, lg, plan)`     | Expected points from offensive/defensive unit ratings + game plan         |
+| `teamRatings(slotmap)`             | Nine unit ratings from lineup (flex penalties applied)                    |
+| `simulateGame()`                   | Realizes yards/TOs/sacks from model, adds noise, late-game script, OT     |
+| `optimalLineup(slotmap)`           | Hungarian algorithm for max-wins slot assignment (flex-aware)             |
 
 ### UI Tabs (in DOM order)
+
 1. **Season** (default active) — the whole site lives here: onboarding, draft handoff, preseason editor, weekly sim, playoffs, Super Bowl
 2. **Draft** — setup, live draft board, priority chart, roster depth chart, results with "Play a Season" CTA
-Supplementary bottom links (below the views): **Team Rankings** (weights left, table right), **Player Browser**, **Position Rankings**, **Team Comparison**, **Guide**.
+   Supplementary bottom links (below the views): **Team Rankings** (weights left, table right), **Player Browser**, **Position Rankings**, **Team Comparison**, **Guide**.
 
 ### Season Phases (state machine in `seasonState.phase`)
+
 `preseason` → `regular` (weeks 1–17) → `regularReview` → `playoffs` (wildcard→divisional→champ→superbowl) → `complete`
 
 ---
@@ -51,7 +56,7 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 2. **Replacement Floor**: CPU drafts never value a slot below 76 OVR replacement (see `rlow` in `cpuPick`).
 3. **Flex Penalties Apply Everywhere**: `effOvr(player, slot)` used in draft board, lineup editor, season ratings, game simulation.
 4. **Hungarian Lineup Optimizer**: Both user (advisory) and CPU (binding) use `optimalLineup()` — same math.
-5. **Game Plans Are Independent**: Offense and defense chosen separately; coaches scored vs. *expected* opponent plan, not actual.
+5. **Game Plans Are Independent**: Offense and defense chosen separately; coaches scored vs. _expected_ opponent plan, not actual.
 6. **32.5 Points Per Win**: `POINTS_PER_WIN = 32.5` converts point differentials to wins (Pythagenpat-based).
 7. **Single-Season Record Caps**: `SEASON_RECORD_CAPS` truncates stats at real NFL records (5400 pass yds, 2060 rush, etc.).
 8. **Deterministic Seeding**: NFL tiebreakers (H2H → division → conference → point diff) in `sortStandings()`.
@@ -62,7 +67,6 @@ Supplementary bottom links (below the views): **Team Rankings** (weights left, t
 ## Implementation Workflow (for the implementer — advisory sessions never edit)
 
 Under the submission workflow, the steps below describe how **Claude** implements accepted submissions. Advisory sessions follow "Ownership & Write Protocol": propose in `SUBMISSIONS.md`, never touch the product file.
-
 1. **Read the relevant section first** — understand the function, its callers, and what could regress.
 2. **Work only from accepted submissions in the current round** — respect the round cap (5–6 changes); defer the rest with a reviving condition.
 3. **Make minimal edits** — touch only the necessary functions/variables.
@@ -76,6 +80,7 @@ Under the submission workflow, the steps below describe how **Claude** implement
 ---
 
 ## Prohibited Actions
+
 - ❌ Change `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC` coefficients, `PLAN_K`, `RATING_SPECS` without approval
 - ❌ Invent player ratings, team assignments, or statistical outputs
 - ❌ Add paid APIs, CDN dependencies, or build steps
@@ -88,15 +93,14 @@ Under the submission workflow, the steps below describe how **Claude** implement
 
 **Principle: agents propose, Claude implements, the user relays and publishes.**
 
-| Path | Who may write | Everyone else |
-|------|---------------|---------------|
-| `NFL Draft Simulator.html` | **Claude only** (build arrives via the user) | read-only for every agent |
-| `SUBMISSIONS.md` | each agent: **its own section only**, above its end-anchor | user/verifier: Status lines and decision notes |
-| `_agents/<name>/` | that agent only | never edit or rename another agent's files |
-| `_reference/`, `_archive/` | nobody — frozen | read-only |
+| Path                                                                                                                  | Who may write                                                                                                                                                                                                                                                    | Everyone else                                                 |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `NFL Draft Simulator.html`                                                                                            | **Claude only** (build arrives via the user)                                                                                                                                                                                                                     | read-only for every agent                                     |
+| `SUBMISSIONS.md`                                                                                                      | each agent: **its own section only**, above its end-anchor                                                                                                                                                                                                       | user/verifier: Status lines and decision notes                |
+| `_agents/<name>/`                                                                                                     | that agent only                                                                                                                                                                                                                                                  | never edit or rename another agent's files                    |
+| `_reference/`, `_archive/`                                                                                            | nobody — frozen                                                                                                                                                                                                                                                  | read-only                                                     |
 | `AGENTS.md`, `STATUS.md`, `COLLECTIVE-PROMPT.md`, `ONBOARDING.md`, `MASTER_GUIDE.md`, `master_task_list.md`, `tasks/` | maintained at the Owner's request, **by Owner assignment per edit (R4 — no rank)**: the assigned session applies approved changes and logs the record in `CHRONICLE.md`. Exception: the verifying session may update **only the build-hash line** in `STATUS.md` | propose changes via `SUBMISSIONS.md` or `COUNCIL-BULLETIN.md` |
-| `Football Sim/` (repo) | user pushes; snapshot commits at the user's request by whatever session the Owner assigns | propose |
-
+| `Football Sim/` (repo)                                                                                                | user pushes; snapshot commits at the user's request by whatever session the Owner assigns                                                                                                                                                                        | propose                                                       |
 1. **No agent edits the product file or publishes.** All improvements, fixes and code go into `SUBMISSIONS.md`.
 2. **Claude is the Architect and the sole implementer (R3 — technical authority)** — decides accept/defer/reject and how to build; resolves conflicting proposals; delivers complete files through the user.
 3. **Self-contained submissions** — quote the exact current code being replaced, then give the full replacement; Claude sees only what the paste contains. Always state the build hash the proposal applies to.
@@ -108,6 +112,7 @@ Under the submission workflow, the steps below describe how **Claude** implement
 ---
 
 ## Key Files & Entry Points
+
 - **The product**: `NFL Draft Simulator v20 Claude.html` — the **v20 reference build** (Owner ruling R2, 19 Oct): Claude's own lineage, now the merge base. `NFL Draft Simulator.html` (the Season-first build + the DS patch: restyle + three fixes incl. the division-tag look-ahead repair, verified in-browser Oct 19 ~02:05, hash `77bb9ed5…`) is the **donor of fixes** merged into v20; change log: `_agents/ds/deliveries/Patch Notes (DS Flash).md`. Rollback: `backup-before-reorg/NFL Draft Simulator (GLM verified build).html` (also on the clone's `glm` branch).
 - **Protocol layer** (root): `AGENTS.md` (this file) · `STATUS.md` (build hash + roles + parked decisions) · `COLLECTIVE-PROMPT.md` (standing system prompt for Claude, co-authored by the collective) · `SUBMISSIONS.md` (shared proposals document) · `ONBOARDING.md` (paste-ready orientation prompt for colleague sessions) · `master_task_list.md` (shared ledger) · `MASTER_GUIDE.md` (Season-first handoff doc) · `tasks/T1…T12` packets for colleague agents · `tests/madden-sim.spec.js`
 - **`_agents/`**: per-session workspaces — `glm/` (this session), `ds/` (Master Doctrine, Patch Notes, its snapshots), `nemo-super/` (design doc + Season-First rewrite), `nemo-ultra/` (19 patch scripts; session still active). Nothing here is authoritative — see `_agents/README.md`
@@ -121,22 +126,23 @@ Under the submission workflow, the steps below describe how **Claude** implement
 
 ## Quick Reference: Where to Look
 
-| Task | Search For |
-|------|------------|
-| Draft board columns | `boardEntries()`, `renderDraftBoard2()` |
-| CPU draft logic | `cpuPick()`, `cpuBias()`, `cpuNoise()`, `cpuMiss()` |
-| Season simulation | `simulateGame()`, `playGame()`, `simulateCurrentWeek()` |
-| Matchup math | `matchupModel()`, `applyOffPlan()`, `applyDefPlan()` |
-| Lineup/flex | `optimalLineup()`, `effOvr()`, `flexPenaltyFor()`, `lineupEditorHTML()` |
-| Game plans | `ensureGamePlans()`, `teamIdentity()`, `planWhy()` |
-| Recaps/narrative | `generateGameSummary()`, `playByPlay()`, `factorParagraph()` |
-| Awards | `computeRegularSeasonAwards()`, `computePlayoffAwards()` |
-| Mobile CSS | `@media (max-width:760px)` block |
-| Weight controls | `buildControls()`, `modelWeights()`, `personalWeights` |
+| Task                | Search For                                                              |
+| ------------------- | ----------------------------------------------------------------------- |
+| Draft board columns | `boardEntries()`, `renderDraftBoard2()`                                 |
+| CPU draft logic     | `cpuPick()`, `cpuBias()`, `cpuNoise()`, `cpuMiss()`                     |
+| Season simulation   | `simulateGame()`, `playGame()`, `simulateCurrentWeek()`                 |
+| Matchup math        | `matchupModel()`, `applyOffPlan()`, `applyDefPlan()`                    |
+| Lineup/flex         | `optimalLineup()`, `effOvr()`, `flexPenaltyFor()`, `lineupEditorHTML()` |
+| Game plans          | `ensureGamePlans()`, `teamIdentity()`, `planWhy()`                      |
+| Recaps/narrative    | `generateGameSummary()`, `playByPlay()`, `factorParagraph()`            |
+| Awards              | `computeRegularSeasonAwards()`, `computePlayoffAwards()`                |
+| Mobile CSS          | `@media (max-width:760px)` block                                        |
+| Weight controls     | `buildControls()`, `modelWeights()`, `personalWeights`                  |
 
 ---
 
 ## Style Rules (from project conventions)
+
 - Plain informative language; no "expected scoring"/"before kickoff" in post-game text
 - Critique only 85+ OVR players in recaps; every turnover named
 - Overtime events appear only in the overtime block; never "sudden death"
@@ -150,6 +156,7 @@ Under the submission workflow, the steps below describe how **Claude** implement
 ---
 
 ## Testing Checklist Before Delivery
+
 - [ ] Draft completes without errors (all 32 teams, 26 rounds)
 - [ ] Season sims to completion (regular + playoffs + Super Bowl)
 - [ ] 100-season validation (`pw4.js`) produces r > 0.6

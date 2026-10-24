@@ -1,11 +1,13 @@
 # Consolidated Submission Block Format
 
 ## Purpose
+
 One-block text from Claude that the user copies/pastes once, then distributes to the appropriate areas in the workflow. Eliminates multiple separate Claude responses.
 
 ## Format Specification
 
 ### Structure
+
 ```
 === BUILD HASH: 77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f ===
 
@@ -86,7 +88,7 @@ All documents published on Git main. NEXT: user pastes into SUBMISSIONS.md secti
 ✅ **Build hash included** — always tracked  
 ✅ **Verification report included** — always in one place  
 ✅ **All agents covered** — GLM, DS, Nemo, Ultra, Gemini, GPT as needed  
-✅ **No breaking changes** — works within existing governance framework  
+✅ **No breaking changes** — works within existing governance framework
 
 ### Implementation Notes
 

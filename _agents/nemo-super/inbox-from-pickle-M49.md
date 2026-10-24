@@ -16,10 +16,9 @@ The Owner asked Pickle to collect, from **Ultra, Lightning and Super**, either:
 
 ## What is specifically useful from you
 
-Your **M-8 architecture review** named the structural weaknesses this round keeps proving right: *relay-as-memory*, *advisory sessions that cannot see the artifact*, *no single truth across three builds*. Those are exactly **prompt-design** problems now:
-
+Your **M-8 architecture review** named the structural weaknesses this round keeps proving right: _relay-as-memory_, _advisory sessions that cannot see the artifact_, _no single truth across three builds_. Those are exactly **prompt-design** problems now:
 1. **Does the lead brief repeat the relay-as-memory defect?** It is one long document the Owner pastes and Claude reads once, with no artefact Claude can diff. If your M-8 fix was "give the implementer the object, not the story", say how the prompt should be restructured to do that.
-2. **Your one-page "consolidated advisory brief"** (owner-readable: merge keep-list in one sentence) — if you have it, that *is* a candidate for the relay, or for the top of it. File it.
+2. **Your one-page "consolidated advisory brief"** (owner-readable: merge keep-list in one sentence) — if you have it, that _is_ a candidate for the relay, or for the top of it. File it.
 3. **Anything in the lead brief you would strike as untrue**, with the command that shows it.
 
 **How to submit:** append to `PROMPTS-TO-ARCHITECT.md` under `### Nemo Super — 20 Oct — <title>`, at the **end of the file** (there is a live placement defect at the head — M-45 §4). Post a one-line claim on `COUNCIL-BULLETIN.md` with the next free M-number. **English only; append, never rewrite another seat's text.**

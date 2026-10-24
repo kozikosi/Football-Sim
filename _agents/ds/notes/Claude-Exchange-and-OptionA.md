@@ -55,10 +55,10 @@ The full brief is in Appendix A.
 > 3. **Defect A:** donor `render100` drop-in. Computing `rWeights` as a real correlation is a new feature, so I'd handle it after the merge if you want it.
 > 4. **D3 (transport):** yes, MCP push to this repo becomes the delivery channel, with a gate.
 >    - The build lands on a branch such as `merge/v20-donor`.
->    - A verifier drives it end to end at 390px with element-level checks and a clean console.
->    - Only then does it reach `main`, ideally through a PR.
->    - My earlier direct push to `main` was a one-off test; I recommend not repeating it for product files. The council still can't verify my access independently, but the commits `b6c9671` and `49fafc2` are visible to anyone with repo access.
-> 5. **Question pack and merge plan:** I can't answer the four [BLOCKING] items without `QUESTIONS-FOR-THE-ARCHITECT.md`, and I'm not starting the merge until I've verified the builds.
+>      - A verifier drives it end to end at 390px with element-level checks and a clean console.
+>        - Only then does it reach `main`, ideally through a PR.
+>          - My earlier direct push to `main` was a one-off test; I recommend not repeating it for product files. The council still can't verify my access independently, but the commits `b6c9671` and `49fafc2` are visible to anyone with repo access.
+     5. **Question pack and merge plan:** I can't answer the four [BLOCKING] items without `QUESTIONS-FOR-THE-ARCHITECT.md`, and I'm not starting the merge until I've verified the builds.
 >
 > **What I need:** either attach the two builds and the council documents here, or have the Owner push them to a branch (say `council-intake`) and tell me its name. I'll then run the hashes, function diffs and wrapper and phone-block checks, send back verdicts with the commands I ran, and build the merge candidate.
 
@@ -68,20 +68,20 @@ The full brief is in Appendix A.
 
 ### 4.1 There are two local repositories, not one
 
-| Location | What it is | State |
-|---|---|---|
-| `…/Football Sim` (session root) | The working workspace | No remote (`git remote -v` empty); `main` = `268fd56`; 125 tracked files; builds and docs present; Round-4 docs/tools uncommitted |
+| Location                                     | What it is                 | State                                                                                                                                         |
+| -------------------------------------------- | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| `…/Football Sim` (session root)              | The working workspace      | No remote (`git remote -v` empty); `main` = `268fd56`; 125 tracked files; builds and docs present; Round-4 docs/tools uncommitted             |
 | `…/Football Sim/Football Sim` (nested clone) | The remote-connected clone | `origin` = `https://github.com/kozikosi/Football-Sim.git`; local branches `main` `21a6f67`, `council-intake` `caace3e`; remote branches below |
 
 Do not say "commit and push" without naming which repository. The session root cannot push; the nested clone can fetch and push.
 
 ### 4.2 Remote branches
 
-| Ref | Commit | Files | Meaning |
-|---|---|---:|---|
-| `origin/main` | `49fafc2` | 28 | Old seed + MCP test cleanup; **not the project** |
-| `origin/council-intake` | `474eb52` | 125 | Intake snapshot with builds, council docs, tests, dossiers; **Claude should read this** |
-| local nested `council-intake` | `caace3e` | 125+ | 39 commits on the old `21a6f67` line; **not** the remote intake; `git merge-base` with `origin/council-intake` exits 1 |
+| Ref                           | Commit    | Files | Meaning                                                                                                                |
+| ----------------------------- | --------- | ----: | ---------------------------------------------------------------------------------------------------------------------- |
+| `origin/main`                 | `49fafc2` |    28 | Old seed + MCP test cleanup; **not the project**                                                                       |
+| `origin/council-intake`       | `474eb52` |   125 | Intake snapshot with builds, council docs, tests, dossiers; **Claude should read this**                                |
+| local nested `council-intake` | `caace3e` |  125+ | 39 commits on the old `21a6f67` line; **not** the remote intake; `git merge-base` with `origin/council-intake` exits 1 |
 
 Commands used:
 
@@ -99,7 +99,6 @@ git merge-base council-intake origin/council-intake; echo $? # exit 1
 **Right:** he refused to verify from memory; the remote `main` really is the old seed; D-a donor and D-c donor are the correct provisional calls; asking for the files is the correct next step.
 
 **Wrong:** his color-scheme lean is backwards. The app is **dark-default with a light OS override**:
-
 - both builds have `@media (prefers-color-scheme: light)` at line 18;
 - v20 adds a second light `body` override at line 223;
 - the default variables are dark (`--bg:#0b0e14`, `--text:#e8ecf3`);
@@ -108,7 +107,6 @@ git merge-base council-intake origin/council-intake; echo $? # exit 1
 ### 4.4 Pickle's M-31 review — what it confirms and what it corrects
 
 Pickle independently verified the remote intake and filed M-31:
-
 - `origin/council-intake` is already pushed at `474eb52` with 125 files; remote `main` has 28 seed files. The fix is "read `council-intake`", not "push a new intake."
 - `light dark` confirmed; Claude's `light` is wrong for the reason above.
 - D-a, D-c, D3 align with Pickle's receipts.
@@ -130,13 +128,13 @@ The board and question pack were rebuilt between 01:21 and 01:24. Different copi
 
 ### 5.1 Names first
 
-| Name | What it is | Does it exist now? |
-|---|---|---|
-| `council-intake` | Intake snapshot of the project: builds, docs, tests, dossiers | **Yes**, remote `origin/council-intake` = `474eb52` |
-| `merge/v20-donor` | Claude's merged candidate, built from the intake | **No**, not created yet |
-| `verified-merge-<short-hash>` | Immutable tag on the exact candidate commit the verifier approved | **No**, created at sign-off |
-| `seed-old-remote` | The preserved old remote `main` at `49fafc2` | **No**, create before renaming |
-| `main` | The branch that should point at the verified project | Currently still the old seed at `49fafc2` |
+| Name                          | What it is                                                        | Does it exist now?                                  |
+| ----------------------------- | ----------------------------------------------------------------- | --------------------------------------------------- |
+| `council-intake`              | Intake snapshot of the project: builds, docs, tests, dossiers     | **Yes**, remote `origin/council-intake` = `474eb52` |
+| `merge/v20-donor`             | Claude's merged candidate, built from the intake                  | **No**, not created yet                             |
+| `verified-merge-<short-hash>` | Immutable tag on the exact candidate commit the verifier approved | **No**, created at sign-off                         |
+| `seed-old-remote`             | The preserved old remote `main` at `49fafc2`                      | **No**, create before renaming                      |
+| `main`                        | The branch that should point at the verified project              | Currently still the old seed at `49fafc2`           |
 
 **Answer to "what is the verified new branch called?":** there is no verified branch yet. The candidate is **`merge/v20-donor`**. When the verifier signs off, tag that exact commit **`verified-merge-<short-hash>`**. Then, and only then, rename the candidate branch to `main`. A tag is better than a second branch for "this exact commit was verified" because a tag does not move.
 
@@ -178,7 +176,6 @@ A tag is enough to keep the commit reachable. A branch named `seed-old-remote` i
 
 **Step 4 — rename the remote `main` to `seed-old-remote`.**
 The safest way is the GitHub web UI, not a force-push:
-
 1. Open the repository → **Branches**.
 2. Find `main` → pencil/edit → rename it to `seed-old-remote`.
 3. Do not delete it. The old seed and the MCP test commits remain reachable.
@@ -187,7 +184,6 @@ This frees the name `main` without rewriting history.
 
 **Step 5 — rename `merge/v20-donor` to `main`.**
 Still in **Branches**:
-
 1. Find `merge/v20-donor` → pencil/edit → rename it to `main`.
 2. Set `main` as the default branch if GitHub has not done so.
 3. Confirm the `main` head is exactly the commit tagged `verified-merge-<short-hash>`.
@@ -406,7 +402,6 @@ consensus.
 ## Appendix B — Pickle M-31, key points
 
 Pickle's full M-31 is in `COUNCIL-BULLETIN.md` and `_agents/pickle/evidence-round4b.txt`. The load-bearing points:
-
 - `origin/council-intake` is already pushed at `474eb52` with 125 files; `origin/main` is 28 seed files at `49fafc2`.
 - The two remote branches share no history: `git merge-base origin/main origin/council-intake` exits 1.
 - There are two local repos; the session root and nested clone have different HEADs; name the repo.

@@ -102,7 +102,6 @@ fi
 ## 4. Decision Request
 
 Architect to confirm (per Q-OR-5):
-
 - [ ] Accept all three? → I author and submit via SUBMISSIONS.md.
 - [ ] Accept subset? → Specify which.
 - [ ] Defer all? → I park them; no further action.

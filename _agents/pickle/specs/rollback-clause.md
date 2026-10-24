@@ -8,15 +8,15 @@
 
 ## 1. Why a clause, and what state it protects
 
-Option A renames branches on the remote. **A rename is not a git operation** — GitHub implements it as *create the new ref + delete the old ref*. If the rename half-completes, or if verification fails **after** the rename, the recovery path differs depending on whether anything was pushed to the new `main` in the meantime. MiniMax (M-37 §6) gave the right two renames but stated them in one clause without the order or the failure modes; this clause makes the whole thing executable and names the traps.
+Option A renames branches on the remote. **A rename is not a git operation** — GitHub implements it as _create the new ref + delete the old ref_. If the rename half-completes, or if verification fails **after** the rename, the recovery path differs depending on whether anything was pushed to the new `main` in the meantime. MiniMax (M-37 §6) gave the right two renames but stated them in one clause without the order or the failure modes; this clause makes the whole thing executable and names the traps.
 
 **The three durable pointers that must exist before Step 3 begins** (so any rollback has something to point at):
 
-| Pointer | Value at the time it is made | Purpose |
-|---|---|---|
-| annotated tag `seed-old-remote` | `49fafc2` | keeps the old seed reachable forever; `git tag -a` (MiniMax C-8/R-2), not lightweight |
-| branch `seed-old-remote` | `49fafc2` | a *branch* shows in the GitHub dropdown; a tag does not |
-| annotated tag `verified-merge-<hash>` | the merge candidate commit | the only "this exact commit passed E2E" marker; created by the **verifier**, not the author |
+| Pointer                               | Value at the time it is made | Purpose                                                                                     |
+| ------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------- |
+| annotated tag `seed-old-remote`       | `49fafc2`                    | keeps the old seed reachable forever; `git tag -a` (MiniMax C-8/R-2), not lightweight       |
+| branch `seed-old-remote`              | `49fafc2`                    | a _branch_ shows in the GitHub dropdown; a tag does not                                     |
+| annotated tag `verified-merge-<hash>` | the merge candidate commit   | the only "this exact commit passed E2E" marker; created by the **verifier**, not the author |
 
 **End state after a successful Option A** (the state a rollback must undo):
 
@@ -31,7 +31,7 @@ council-intake    = 9ab0292
 
 ## 2. The rollback — three cases, each with commands
 
-### Case A (the clean case): verification fails *after* the rename, but **nothing was pushed to the new `main`**
+### Case A (the clean case): verification fails _after_ the rename, but **nothing was pushed to the new `main`**
 
 This is DS/MiniMax's case and it is the common one. `main` still points exactly at the commit tagged `verified-merge-<hash>`, so **the commit graph is untouched** and only names need to change back. **Order is mandatory** — you cannot rename a branch to a name that is still in use.
 
@@ -54,7 +54,7 @@ git -C "/Users/kosi/Desktop/Football Sim/Football Sim" ls-remote origin 'refs/he
 
 Then `main` has moved past the verified commit and "undo" is **no longer a rename**. Two sub-cases, and the choice is the Architect's:
 
-**B1 — prefer no history rewrite (default):** keep the bad commit's history and *add* a revert, or simply re-promote isn't possible; instead:
+**B1 — prefer no history rewrite (default):** keep the bad commit's history and _add_ a revert, or simply re-promote isn't possible; instead:
 ```bash
 # Do NOT force-push main (Option A's own rule; main is the default branch and may be protected).
 # Move the good content forward with an explicit revert or a fresh forward commit, then re-verify.
@@ -82,11 +82,11 @@ Nothing is lost in Case C: both commits (`49fafc2`, the verified one) are still 
 
 ## 3. The traps this clause names (none of them are in the current plan)
 
-**Trap 1 — the default branch must never point at a name that does not exist.** GitHub usually re-points the default automatically when the current default is renamed, but this is not guaranteed across all flows and cannot be verified from here (no repo-admin view — flagged *unverified* by every reviewer). **Rule: before any rename, set the default to an *existing* name; after any rename, run `git symbolic-ref refs/remotes/origin/HEAD` (or read Settings → General) and confirm it matches the intended branch.** GLM M-32 §2 and Mirror both flag this; this clause makes it a hard precondition of every case above.
+**Trap 1 — the default branch must never point at a name that does not exist.** GitHub usually re-points the default automatically when the current default is renamed, but this is not guaranteed across all flows and cannot be verified from here (no repo-admin view — flagged _unverified_ by every reviewer). **Rule: before any rename, set the default to an _existing_ name; after any rename, run `git symbolic-ref refs/remotes/origin/HEAD` (or read Settings → General) and confirm it matches the intended branch.** GLM M-32 §2 and Mirror both flag this; this clause makes it a hard precondition of every case above.
 
 **Trap 2 — "no force-push to `main`" and "reset `main` to the tag" are in conflict if `main` ever moves.** Option A forbids force-pushing `main`; Case B2 requires it. Resolve by **preference order: B1 (forward revert) before B2 (force reset)**, and B2 only with Owner approval. Do not let the two rules collide silently.
 
-**Trap 3 — a tag alone is not discoverable.** `seed-old-remote` as a *tag* does not appear in the branch dropdown; someone landing cold may not find it. Hence **both** a tag and a branch for the seed (already in MiniMax's version), and the tag name written into `STATUS.md`/the board, not only into a chat message (the board lost messages on 20 Oct — see M-31 §1).
+**Trap 3 — a tag alone is not discoverable.** `seed-old-remote` as a _tag_ does not appear in the branch dropdown; someone landing cold may not find it. Hence **both** a tag and a branch for the seed (already in MiniMax's version), and the tag name written into `STATUS.md`/the board, not only into a chat message (the board lost messages on 20 Oct — see M-31 §1).
 
 **Trap 4 — the verifier must own the verified tag.** If the Architect tags his own commit "verified", the gate self-certifies. The tag is created by the **verifier** after the E2E pass (MiniMax's `post-merge-smoke.mjs`, exit 0 required for the merged build). My addition to what DS/MiniMax wrote.
 
@@ -96,7 +96,7 @@ Nothing is lost in Case C: both commits (`49fafc2`, the verified one) are still 
 
 ## 4. What is genuinely still unverified (honesty per rule 11)
 
-- Whether `main` has a **branch-protection rule or ruleset** — requires repo-admin access; all four reviewers (Beam R1, GLM §2, MiniMax C-8, me) mark it *unverified*. Do not assume "no protection"; confirm in Settings → Branches before Step 3.
+- Whether `main` has a **branch-protection rule or ruleset** — requires repo-admin access; all four reviewers (Beam R1, GLM §2, MiniMax C-8, me) mark it _unverified_. Do not assume "no protection"; confirm in Settings → Branches before Step 3.
 - Whether GitHub **auto-re-points the default** on this repo's flow — same access limitation. Treat Trap 1 as a manual precondition.
 - The exact `verified-merge-<hash>` value — does not exist yet; the merge candidate has not been built.
 
@@ -104,4 +104,4 @@ Nothing is lost in Case C: both commits (`49fafc2`, the verified one) are still 
 
 ## 5. One-line summary of the decision
 
-**Rollback is cheap and reversible *only in Case A* (rename back, graph untouched); it becomes a history decision the moment anyone pushes to the new `main`, so the clause's real force is the precondition: tag the seed, tag the verified commit (verifier-owned), and freeze pushes to `main` until the tag exists.**
+**Rollback is cheap and reversible _only in Case A_ (rename back, graph untouched); it becomes a history decision the moment anyone pushes to the new `main`, so the clause's real force is the precondition: tag the seed, tag the verified commit (verifier-owned), and freeze pushes to `main` until the tag exists.**

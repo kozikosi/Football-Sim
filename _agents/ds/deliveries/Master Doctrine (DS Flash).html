@@ -1390,12 +1390,12 @@ await p.goto('file://' + encodeURI(path.resolve(FILE)), { waitUntil:'load' });
 </div>
 
 <script>
-(function(){
+(()=> {
   "use strict";
 
   /* ---- scroll spy ---- */
   var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
-  var sections = links.map(function(a){ return document.querySelector(a.getAttribute('href')); });
+  var sections = links.map((a)=> document.querySelector(a.getAttribute('href')));
   function spy(){
     var best = 0, bestTop = -Infinity;
     for (var i = 0; i < sections.length; i++) {
@@ -1403,13 +1403,13 @@ await p.goto('file://' + encodeURI(path.resolve(FILE)), { waitUntil:'load' });
       var top = sections[i].getBoundingClientRect().top;
       if (top - 120 <= 0 && top > bestTop) { bestTop = top; best = i; }
     }
-    links.forEach(function(a, i){ a.classList.toggle('active', i === best); });
+    links.forEach((a, i)=> { a.classList.toggle('active', i === best); });
   }
   var ticking = false;
-  window.addEventListener('scroll', function(){
+  window.addEventListener('scroll', ()=> {
     if (ticking) return;
     ticking = true;
-    requestAnimationFrame(function(){ spy(); ticking = false; });
+    requestAnimationFrame(()=> { spy(); ticking = false; });
   }, { passive: true });
   spy();
 
@@ -1420,17 +1420,17 @@ await p.goto('file://' + encodeURI(path.resolve(FILE)), { waitUntil:'load' });
   var mode = 'all';
 
   function apply(){
-    var q = (search && search.value || '').trim().toLowerCase();
-    tasks.forEach(function(t){
+    var q = (search?.value || '').trim().toLowerCase();
+    tasks.forEach((t)=> {
       var okP = (mode === 'all') || (t.dataset.p === mode);
       var okQ = !q || t.textContent.toLowerCase().indexOf(q) > -1;
       t.classList.toggle('hide', !(okP && okQ));
     });
   }
-  buttons.forEach(function(b){
-    b.addEventListener('click', function(){
+  buttons.forEach((b)=> {
+    b.addEventListener('click', ()=> {
       mode = b.dataset.f;
-      buttons.forEach(function(o){ o.setAttribute('aria-pressed', String(o === b)); });
+      buttons.forEach((o)=> { o.setAttribute('aria-pressed', String(o === b)); });
       apply();
     });
   });

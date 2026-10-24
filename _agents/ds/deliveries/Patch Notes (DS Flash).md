@@ -10,22 +10,39 @@ Three defects fixed, all verified in Chromium against a full draft and season. T
 
 ## 1. Division tag looked forward in time
 
-`meetingInfo()` filtered other meetings on `played`, not on whether they happened **before** the game being previewed. A Week 2 division game therefore read *"They already met in Week 11: Bills lost 13–11."*
+`meetingInfo()` filtered other meetings on `played`, not on whether they happened **before** the game being previewed. A Week 2 division game therefore read _"They already met in Week 11: Bills lost 13–11."_
 
 ```js
 // before
-const others = reg.concat(po).sort((a,b)=>(a.week||99)-(b.week||99));
-const prior = others.filter(x=>x.played && x.result);
+const others = reg.concat(po).sort((a, b) => (a.week || 99) - (b.week || 99));
+const prior = others.filter((x) => x.played && x.result);
 
 // after — one clock: weeks 1–18, then the four playoff rounds
-const RKS = ['wildcard','divisional','champ','superbowl'];
+const RKS = ["wildcard", "divisional", "champ", "superbowl"];
 const ord = new Map();
-reg.forEach(x=>ord.set(x, x.week||0));
-po.forEach(x=>{ const ri = RKS.findIndex(rk=>((S.playoffRounds||{})[rk]||[]).some(y=>y===x)); ord.set(x, 19+Math.max(0,ri)); });
+reg.forEach((x) => ord.set(x, x.week || 0));
+po.forEach((x) => {
+	const ri = RKS.findIndex((rk) =>
+		((S.playoffRounds || {})[rk] || []).some((y) => y === x),
+	);
+	ord.set(x, 19 + Math.max(0, ri));
+});
 let gOrd = g.week || 0;
-if(!gOrd) gOrd = 19 + Math.max(0, RKS.findIndex(rk=>((S.playoffRounds||{})[rk]||[]).some(y=>y===g)));
-const others = reg.concat(po).sort((a,b)=>(ord.get(a)||0)-(ord.get(b)||0));
-const prior = others.filter(x=>x.played && x.result && (ord.get(x)||0) < gOrd);
+if (!gOrd)
+	gOrd =
+		19 +
+		Math.max(
+			0,
+			RKS.findIndex((rk) =>
+				((S.playoffRounds || {})[rk] || []).some((y) => y === g),
+			),
+		);
+const others = reg
+	.concat(po)
+	.sort((a, b) => (ord.get(a) || 0) - (ord.get(b) || 0));
+const prior = others.filter(
+	(x) => x.played && x.result && (ord.get(x) || 0) < gOrd,
+);
 ```
 
 **Verified:** 16 Week 1–2 division games, 0 mention a meeting. Week 11 games cite Week 2 and nothing later.
@@ -60,22 +77,21 @@ The wrapper's stylesheet is preserved and moved to the top of the real `<head>`;
 
 ## Measured after the patch
 
-| Check | Before | After |
-|---|---|---|
-| Scoring events = final score | 272/272 | 272/272 |
-| Sacks credited to a player | 80.8% | 100% |
-| Sack leader, 100 seasons | 14.8 avg | 17.1 avg |
+| Check                         | Before           | After                |
+| ----------------------------- | ---------------- | -------------------- |
+| Scoring events = final score  | 272/272          | 272/272              |
+| Sacks credited to a player    | 80.8%            | 100%                 |
+| Sack leader, 100 seasons      | 14.8 avg         | 17.1 avg             |
 | Division tag on a Week 2 game | "met in Week 11" | no meeting mentioned |
-| Page-level overflow at 390 px | none | none |
-| Console errors | none | none |
-| 100-season runtime | 45 s | 45–61 s |
+| Page-level overflow at 390 px | none             | none                 |
+| Console errors                | none             | none                 |
+| 100-season runtime            | 45 s             | 45–61 s              |
 
 ---
 
 ## Found, not fixed — needs the owner's call
 
 **141 of 832 starters line up out of phase** (4.4 per team) once the optimal lineup is applied. A centre starts at defensive tackle, a receiver at corner, a corner at tight end. `FLEX` allows it and the penalty is smaller than the OVR gap:
-
 - `WR:{TE:4, SS:4, FS:4, CB:4, RB:6}`
 - `C:{OG:0, OT:4, DT:4}`
 - `CB:{SS:2, FS:0, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6}`

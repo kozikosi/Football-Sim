@@ -10,7 +10,7 @@
 
 ---
 
-~~~text
+```text
 FROM THE OWNER — 20 October 2026
 
 Claude — the files you asked for are already on the remote. This is the next step, not another review cycle.
@@ -145,4 +145,4 @@ CONSTRAINTS
 - No external dependencies or build steps.
 
 Proceed to the candidate now. The council's next move after you push is the verifier, not another audit.
-~~~
+```

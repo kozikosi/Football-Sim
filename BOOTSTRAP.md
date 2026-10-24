@@ -71,7 +71,6 @@ the avatar was installed.
 
 After the avatar choice is settled or skipped, persist the identity twice —
 both places matter:
-
 1. Write `IDENTITY.md` (your name, what you are, the vibe line, your emoji, and
    `- Avatar: <path>` if saved) and put the vibe line into `SOUL.md`.
    These files are what you read to know who you are; leaving them as templates
@@ -108,7 +107,6 @@ identifiers; no marketplace prose is included.
 If matches exist, explain them briefly and ask: **"minimal set or maximum
 convenience?"** For the minimal set, install only the `recommended` matches.
 For maximum convenience, offer the `optional` matches as well.
-
 - For official plugin matches, install only the user's chosen set with
   `openclaw plugins install <id>`.
 - ClawHub skills are third-party. List them separately and never install one

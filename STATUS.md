@@ -1,6 +1,7 @@
 # STATUS.md — build state & workflow roles
 
 ## Roles (Owner rulings R1–R5, 19 Oct · flat council — supersedes the 19 Oct submission-workflow roles)
+
 - **Foreground.** Council = Owner + Architect + equal members. Availability is not rank (R4); no role is inherited by being online; assignments (including maintainer duty) are made by the Owner per task, never by default.
 - **Owner (user)**: permissions, publishing, the roster, and per-edit assignments for the shared documents. Final decisions land in `GOVERNANCE-ROUNDTABLE.md` §7.
 - **Claude — the Architect**: technical authority on design, implementation, what enters the build, and how a submission is resolved (R3). Advisors advise with evidence; no outvoting; nobody edits Claude's documents (R5). The Architect does not verify his own build — a verifier reports facts; he decides what to do with them (G6, kept).
@@ -11,6 +12,7 @@
 - **Maintenance rule (interim, pending D9)**: no one owns `STATUS.md` / `AGENTS.md` / `COLLECTIVE-PROMPT.md` by rank. The Owner assigns who folds an approved change into a shared doc; the change is logged in `CHRONICLE.md`. (Posted as bulletin M-2 for comment.)
 
 ## Current state
+
 - **Reference build (R2)**: `NFL Draft Simulator v20 Claude.html` (project root) — `31b7d61f…` (649,032 bytes). v20 is the base for line numbers and for the merge.
 - **Donor build**: `NFL Draft Simulator.html` = `77bb9ed59ffa22949a8d71b62d8aa370deafd225bfaa3a3144ca9ce50421a39f` (650,127 bytes) — contributes its fixes (Season-first base + DS patch, incl. the division-tag look-ahead repair) to the merge; not the reference.
 - **Merge in flight (reported)**: the Architect is merging v20 (base) with the canonical donor; the merged result has no hash yet. When it lands, this file's reference line moves to the merged hash and the donor is archived, never deleted.
@@ -21,6 +23,7 @@
 - **Git & deployment**: infrastructure only (R1 — internal project; GitHub Pages was a test). No deploy log, no "is it live" questions; repo operations happen at the Owner's discretion and are not a blocker for anything.
 
 ## Round 1 — pre-dispatch adjudication (Claude, 19 Oct · `rulings_r1_predispatch.md`)
+
 - **Status: NOT YET DISPATCHABLE — re-based on R2 (19 Oct).** Blockers after the Owner rulings: (1) ~~build `77bb9ed5…` delivery~~ — **superseded by R2**: the reference is v20 (`31b7d61f…`), which the Architect already holds and is merging; (2) liveness re-check on the real build — answered on v20 by the implementer's findings, corroborated by GLM's own greps (six of the seven §D strings live on v20; "went the distance" re-measured 1 this session); (3) the Architect reads S-102/S-103/S-401 in full against Contract v2 — with the re-based line ranges from the rulings note (startDraft2 1408–1446, startSeason 3371–3381, runLeague100 5880–5903; funcdiff units 541, not 543). Round-1A construction order stands (S-202 → S-203 → S-103 → S-102 → S-301) but its target file is the merged/reference v20 lineage once the merge hash is named; sequencing ruling (merge first, then 1A) was requested in the GLM roundtable addendum and awaits the §7 record.
 - **Adopted now** (applied to `tests/CONTRACT.md` → **v2**): B1 runtime-guard extraction (`DOMAccessError` vm context; `INFO dom_text_refs=N`; exit 3 semantics) · B2 exit-code matrix with entry-wins repealed for codes/status grammar (phone.js → `1` findings / `4` usage; S-301 exit-2 amendment superseded) · B3 run-order step 0 identity check + `PW4: BASELINE-ABSENT (exit 2)` + SKIPPED/`RUN_ALL: PARTIAL` semantics · B4 baseline bootstrap/freeze (verifier-only `--write-baseline`, `--replace-baseline <ID>`, exact-reproduction before freeze) + funcdiff verifier-only (reference = certified build in STATUS.md, ref ≠ candidate hash).
 - **Round plan (final):** 1A = S-202 → S-203 → S-103 → S-102 → S-301 (product change = markers + moved entry points only; acceptance (a)–(g) in the rulings, incl. the injected-defect proof). 1B = S-502 + S-401 only after 1A certifies. U-series stays out of Round 1; U-12 measurement rides S-102's M11.
@@ -31,5 +34,6 @@
 - **Round-1A target state (unchanged by R2):** both `77bb9ed5…` and v20 `31b7d61f…` lack the SIM-CORE markers and the three headless entry points (`grep -c` verified 0/0 on both, 19 Oct) — S-202 remains genuine pending work; Contract v2 (`tests/CONTRACT.md`) is the binding basis for the harness build.
 
 ## Parked decisions (daylight required — user decides)
+
 - **Re-root**: product → `index.html` at the repo root, dissolving the nested clone. If adopted, the next push changes what GitHub Pages serves live (old v6 artifact → Season-first app). A deliberate product decision, not file plumbing. Written here so "later" never becomes "why do two folders exist?"
 - **PRODUCT.md**: not yet written — it needs the user's judgement (what the product is, which invariants bind, what priority means). Agent-proposed, user-edited. Until then: `AGENTS.md` constrains, `MASTER_GUIDE.md` sequences, `tasks/` executes
