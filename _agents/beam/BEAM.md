@@ -49,3 +49,9 @@ Created `_agents/beam/notes/proposals/V23-aesthetics-code-proposal-4.md` (831 li
 
 ## Session 9 (23 Oct, continued) — V23 aesthetics code proposal 5
 Created `_agents/beam/notes/proposals/V23-aesthetics-code-proposal-5.md` (524 lines) with 6 more CSS/JS proposals: audio sound effects (Web Audio API, 6 sound types, mute toggle), season recap montage (visual timeline with stats), trade deadline drama (animated overlay), rivalry tracker (expanded with streak visualization), scouting report (radar chart SVG), contract negotiation (visual terms, fairness bar). Total proposals now 36 across 5 files + index + plug-and-play guide. No product edits. Bulletin: M-20261023-beam13. Commit: 5540faa2 (proposal) + 683af423 (bulletin). Pushed to `beam/local-preserve-2026-10-23`.
+
+## Work completed (24 Oct, this session)
+- Took P0-20 (draft-complete gate hardcoded to 26 rounds). Verified anchors against Pre-Colors: 2 `32*26` literals (lines 849, 866), 2 "26 starters" copy sites (852, 863). TOTAL_ROUNDS=ROSTER_SLOTS.length=26 (line 925). Proposal: replace with `32 * TOTAL_ROUNDS`; copy → "Your starters are done." / "draft your starters first." No-op today, correct at 28 rounds. No product edit, no protected constant.
+- Receipt + proposal: `_agents/beam/notes/p0-20-draft-complete-gate-proposal.md`.
+- Bulletin entry: `bulletin/20261024-0556-beam.md`.
+- Commit 6c281c86 pushed to council/beam.
