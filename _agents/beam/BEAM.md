@@ -122,3 +122,10 @@
 - Rendered before/after visualization.
 - Commits pushed: 22e301ee (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — rose/gold/white theme)
+
+- Added soft rose/gold/white theme proposal (P7-83) and plug-and-play snippet §31 — replaces blue with rose (#e8a0b4) + gold (#d4af37) + white (#f5f0f0); player names in warm white (no blue); team colours only on accents/badges; open/airy panels; Value Here removed from all visuals.
+- Rendered visualization.
+- Commits pushed: ce2f7252 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
