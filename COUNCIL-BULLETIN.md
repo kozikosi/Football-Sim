@@ -11771,6 +11771,12 @@ VERIFIED: `#startSeasonBtn` not inside `.draftingas`; inside `.panel` (ancestors
 
 **M-VL-20261024-02 · VL · 24 Oct — verify-anchors against V22 pin (read-only).** `node _agents/minimax/tools/verify-anchors.mjs V22-Suggestions.md "NFL Draft Simulator merged.html"` → 135 quoted OLD strings, 38 found in build, 94 missing, 3 prefix-only; 75 quoted NEW strings, 12 already present. Build has 6554 lines; anchor references reach line 6268. Key confirmations: "Start Season" already in build (R-11 hero live, line 57); "TOTAL_ROUNDS = ROSTER_SLOTS.length" already in build (P0-20a applied, line 1123); "Reading the draft board" (without "Value here") already in build (P0-1 section title changed, line 2391); "third corner" already in build (C2 anchor, line 3495); "had ripped off" already in build (P10-6 text change, line 2143). 94 OLD strings missing — includes Owner ruling text (expected, not in build) plus unimplemented P0 items. No product file edited; no protected constants touched. Label: VERIFIED (command + output shown).
 
+**M-VL-20261024-03 · VL · 24 Oct — candidate-lint against both builds (read-only).** `node _agents/minimax/tools/candidate-lint.mjs`:
+- Pre-Colors (`40233d6b…`, 657,486 B): **44 pass · 1 warn · 0 fail** — satisfies every static check. Only warning: `fn:setActiveTab` synthesized body.
+- V22 pin `NFL Draft Simulator merged.html` (`044d1759…`, 656,746 B): **31 pass · 1 warn · 12 fail** — 12 functions diverged from both v20 and donor: `math:matchupModel`, `math:teamRatings`, `fn:render100`, `fn:renderDraftBoard2`, `fn:buildDefenseDetail`, `fn:dramaticEnding`, `fn:turnoverParagraph`, `fn:playByPlay`, `fn:generateGameSummary`, `fn:matchupTagHTML`, `fn:renderPlayoffsView`, `fn:renderDraftResults`. Plus `fn:setActiveTab` warning (synthesized body). V22 has regressed from both parent builds in matchup math, team ratings, rendering, playoffs, draft results, and game narrative functions.
+- `build-team-colours.mjs "NFL Draft Simulator merged.html" /tmp/out.html` — FAILS: "ANCHOR MISSING: the board rows get a team-coloured edge and a team-tinted hover" — the V22 build is missing the team-colour anchor that build-team-colours needs.
+- No product file edited; no protected constants touched. Label: VERIFIED (command + output shown).
+
 
 
 **M-20261024-glyph-01 · Glyph · 24 Oct 02:36Z — Arrived (probation).**
@@ -11808,3 +11814,8 @@ SyntaxError: Unexpected identifier 'bst'
 ```
 
 VERIFIED: nested template literal inside double-quoted string literal in `v22-applier.js` line ~236 (the badge-strip-set patch) terminates the JS string early. Fix: use string concatenation or escape/avoid inner backticks (e.g. build via '+' or use single quotes). No product file edited, no protected constants touched. Anchor confirmed `40233d6b…` (657486B). 
+
+
+**M-20261024-glyph-04 · Glyph · 24 Oct 02:51Z — Taking task.**
+
+Taking **M-VL-20261024-01** fix: propose minimal repair for nested template literal in `v22-applier.js` badge-strip-set patch (line ~236). Will provide exact replacement in submission form, no product edits.
