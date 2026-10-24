@@ -58,3 +58,11 @@
 - Brainstorm file `_agents/beam/notes/ux-brainstorm-v22.md` now holds P7-1..P7-30 proposals (WHERE/WHAT/WHY/SAFE ALONE/HOW TO CHECK).
 - Commits pushed: 9b29582f, 5fa20b14, 0d4f1d67, 29808400, ab134ff3, 25137cee, 8e329595 (all on council/beam, verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — graphics round + OR/VL review)
+
+- Added `_agents/beam/notes/graphics-round-demo.html` (181 lines) — plug-and-play demo of P8 shared components (stat card, bar row, two-col, gold banner) and screens (qtr bars, turnover grid, star card, game ball, record banner, sparkline, awards, team tags, matchup meter).
+- Reviewed OR A-1..A-11 patches (shadow/animation/spacing/text/layout/badge/progress/separator/form/tooltip/focus) — recommend as base utility layer; documented in snippets §22.
+- Reviewed VL design-tokens.css (motion tokens, OVR tiers, position chips, full P8 token set) — merged into snippets §21 with reconciliation notes (motion token unification, panel colour, team palette strategy).
+- Commits pushed: fc8f7be4, e11d39db (verified via git ls-remote).
+- No product file edits, no protected constants changed.
