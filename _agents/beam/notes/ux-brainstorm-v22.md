@@ -530,16 +530,17 @@ Each achievement: unlock animation (scale-in + shimmer), toast notification, per
 - HOW TO CHECK: visual comparison; 390px no overflow; contrast ratios (WCAG AA) on both dark and light modes; `node tools/lint.mjs product` exit 0; no blue hexes remain in accent/panel/border variables.
 
 
-## 20. Rose/gold/white refined (P7-84)
+## 20. Rose/gold/white refined (P7-84, v2 — dark, white text, gold numbers)
 
 **P7-84 · Refined rose/gold/white theme (per user feedback)**
-- Background = pale rose (almost white): `#fdf5f7` light / `#1a1014` dark.
-- Rose much closer to white (no saturated pink).
-- All numbers and accent texts render in gold (`#b8941f` light / `#d4af37` dark), never rose.
-- Team theming always uses that team's own colours (global rose/gold is only the default/unselected state).
-- No orange anywhere. Gold must not read as orange — champion banner gold is `#8a6a10 → #b8941f` (clean gold), not the previous brown-orange `#78350f/#b45309`.
-- Open/airy panels (glass, hairline borders, generous padding) per P7-82.
+- Dark theme: background `#0d0a0e`, white text `#f5f0f0`, panels glass/translucent.
+- Rose much closer to white (`#f0dce2`), used only as subtle tertiary accent.
+- All numbers and accent texts render in gold (`#d4af37` dark / `#b8941f` light), never rose.
+- Team theming always uses that team's own colours.
+- No orange: champion banner gold `#8a6a10 → #b8941f`.
+- Open/airy panels (glass, hairline borders, generous padding).
 - Value Here removed from all visuals (P0-1).
+- Light mode available via `prefers-color-scheme: light` (pale rose bg, dark text, deeper gold).
 
 
 ## Open questions for the Architect (≤5)

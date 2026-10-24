@@ -1433,39 +1433,41 @@ Reconciliation notes (Beam):
 
 ---
 
-## 31. Soft rose/gold/white theme (P7-83, refined) — away from blue
+## 31. Soft rose/gold/white theme (P7-83, refined v2) — dark, white text, gold numbers
 
-Refinements per user (24 Oct): background = pale rose (almost white); rose much closer to white; all numbers/texts in gold (not rose); team theming always uses that team's colours; no orange; gold must not read as orange (especially behind "Super Bowl Champion!").
+Refinements per user (24 Oct): white text over black (dark theme); rose much closer to white (subtle accent only); all numbers/texts in gold; team theming always uses team colours; no orange; gold must not read as orange.
 
 CSS:
 ```css
-/* Rose/gold/white theme — refined */
+/* Rose/gold/white theme — dark, white text, gold numbers */
 :root {
-  --bg: #fdf5f7;            /* barely-pink white background */
-  --panel: #ffffff;          /* white panels (open/airy) */
-  --panel2: #faf0f3;        /* very pale rose */
-  --alt: #f5eef1;
-  --text: #2a1a20;          /* dark warm body text */
-  --sub: #6a4a52;
-  --muted: #9a7a82;
-  --border: rgba(200,120,140,0.12);
-  --border-hover: rgba(200,120,140,0.25);
-  --accent: #b8941f;        /* gold (primary accent — numbers/texts) */
-  --accent-hover: #c9a52f;
+  --bg: #0d0a0e;            /* dark warm background */
+  --panel: rgba(255,255,255,0.04);  /* glass panel */
+  --panel2: rgba(255,255,255,0.06);
+  --alt: rgba(255,255,255,0.02);
+  --text: #f5f0f0;          /* white text */
+  --sub: #c9b8bc;
+  --muted: #8a7a80;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.16);
+  --accent: #d4af37;        /* gold (primary accent — numbers/texts) */
+  --accent-hover: #e6c87a;
   --accent2: #f5f0f0;       /* warm white (secondary) */
-  --accent3: #f0dce2;       /* pale rose (tertiary) */
-  --good: #5a8a6a;
-  --good-bg: rgba(90,138,106,0.08);
-  --bad: #a85a5a;
-  --bad-bg: rgba(168,90,90,0.08);
-  --warn: #a88a4a;
-  --warn-bg: rgba(168,138,74,0.10);
-  --gold: #b8941f;          /* clean gold, not orange */
-  --gold-bg: rgba(184,148,31,0.10);
+  --accent3: #f0dce2;       /* pale rose (tertiary, subtle) */
+  --good: #7ec8a0;
+  --good-bg: rgba(126,200,160,0.12);
+  --bad: #e88a8a;
+  --bad-bg: rgba(232,138,138,0.12);
+  --warn: #e8c07a;
+  --warn-bg: rgba(232,192,122,0.12);
+  --gold: #d4af37;          /* clean gold, not orange */
+  --gold-bg: rgba(212,175,55,0.12);
+  --rose: #f0dce2;          /* barely-pink rose accent */
+  --rose-bg: rgba(240,220,226,0.06);
   --radius: 16px;
   --radius-sm: 10px;
-  --shadow: 0 4px 24px rgba(0,0,0,0.08);
-  --shadow-hover: 0 8px 32px rgba(0,0,0,0.12);
+  --shadow: 0 4px 24px rgba(0,0,0,0.25);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.35);
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -1475,39 +1477,42 @@ CSS:
   --motion-fast: 150ms ease;
   --motion-normal: 250ms ease;
 }
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --bg: #1a1014;
-    --panel: rgba(255,255,255,0.04);
-    --panel2: rgba(255,255,255,0.06);
-    --alt: rgba(255,255,255,0.02);
-    --text: #f5f0f0;
-    --sub: #c9b8bc;
-    --muted: #8a7a80;
-    --border: rgba(255,255,255,0.08);
-    --border-hover: rgba(255,255,255,0.16);
-    --accent: #d4af37;        /* gold (brighter on dark) */
-    --accent-hover: #e6c87a;
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #fdf5f7;
+    --panel: rgba(255,255,255,0.7);
+    --panel2: rgba(255,255,255,0.85);
+    --alt: rgba(255,255,255,0.5);
+    --text: #2a1a20;
+    --sub: #6a4a52;
+    --muted: #9a7a82;
+    --border: rgba(200,120,140,0.15);
+    --border-hover: rgba(200,120,140,0.3);
+    --accent: #b8941f;
+    --accent-hover: #c9a52f;
     --accent2: #f5f0f0;
     --accent3: #f0dce2;
-    --good: #7ec8a0;
-    --good-bg: rgba(126,200,160,0.12);
-    --bad: #e88a8a;
-    --bad-bg: rgba(232,138,138,0.12);
-    --warn: #e8c07a;
-    --warn-bg: rgba(232,192,122,0.12);
-    --gold: #d4af37;
-    --gold-bg: rgba(212,175,55,0.12);
+    --good: #4a8a6a;
+    --good-bg: rgba(74,138,106,0.08);
+    --bad: #a85a5a;
+    --bad-bg: rgba(168,90,90,0.08);
+    --warn: #a88a4a;
+    --warn-bg: rgba(168,138,74,0.10);
+    --gold: #b8941f;
+    --gold-bg: rgba(184,148,31,0.10);
+    --rose: #f0dce2;
+    --rose-bg: rgba(240,220,226,0.5);
   }
 }
 
 /* Open/airy base */
 body {
-  background: var(--bg);
+  background: radial-gradient(ellipse at top, #1a1014 0%, #0d0a0e 60%);
+  background-attachment: fixed;
   color: var(--text);
 }
 
-/* Open panels — glass on dark, solid white on light */
+/* Open panels — glass, hairline border, generous padding */
 .panel, .card, .synergy-box, .matchup-card, .detailpanel, .score-line, .unit-card, .star-card, .award-card, .conf-card, .player-card {
   background: var(--panel);
   backdrop-filter: blur(8px);
@@ -1525,11 +1530,11 @@ body {
 }
 .panel .panel, .card .card { background: transparent; border: none; padding: 0; box-shadow: none; backdrop-filter: none; }
 
-/* Accent used sparingly — gold for numbers/texts/accents, not rose */
+/* Accent used sparingly — gold for numbers/texts/accents */
 button, .tabbtn, .posbtn, .resetbtn, a { color: var(--accent); }
-button.primary, .btn-primary { background: var(--accent); color: #fff; border: none; }
+button.primary, .btn-primary { background: var(--accent); color: #0d0a0e; border: none; }
 
-/* Draft board: player names in warm text (not blue, not rose) */
+/* Draft board: player names in white text (not blue, not rose) */
 .player-name, .dc-name { color: var(--text); }
 
 /* Each player's draft card accents use ONLY that team's three hexes */
@@ -1542,7 +1547,7 @@ button.primary, .btn-primary { background: var(--accent); color: #fff; border: n
 
 /* Shimmering gradient text — gold/rose variant */
 .shimmer-text {
-  background: linear-gradient(90deg, var(--accent, #b8941f) 0%, var(--accent3, #f0dce2) 25%, var(--accent2, #f5f0f0) 50%, var(--accent3, #f0dce2) 75%, var(--accent, #b8941f) 100%);
+  background: linear-gradient(90deg, var(--accent, #d4af37) 0%, var(--accent3, #f0dce2) 25%, var(--accent2, #f5f0f0) 50%, var(--accent3, #f0dce2) 75%, var(--accent, #d4af37) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1551,7 +1556,7 @@ button.primary, .btn-primary { background: var(--accent); color: #fff; border: n
   display: inline-block;
 }
 .shimmer-text.gold {
-  background: linear-gradient(90deg, var(--accent, #b8941f) 0%, var(--accent2, #f5f0f0) 50%, var(--accent, #b8941f) 100%);
+  background: linear-gradient(90deg, var(--accent, #d4af37) 0%, var(--accent2, #f5f0f0) 50%, var(--accent, #d4af37) 100%);
   background-size: 200% 100%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1562,7 +1567,7 @@ button.primary, .btn-primary { background: var(--accent); color: #fff; border: n
 @keyframes textShimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .shimmer-text, .shimmer-text.gold { animation: none; background-position: 0 0; } }
 
-/* Champion banner — gold shimmer, NOT orange */
+/* Champion banner — clean gold, NOT orange */
 .champion-banner {
   background: linear-gradient(135deg, #8a6a10, #b8941f, #8a6a10);
   background-size: 200% auto;
@@ -1590,11 +1595,10 @@ button.primary, .btn-primary { background: var(--accent); color: #fff; border: n
 ```
 
 Reconciliation notes (Beam):
-- Background is now pale rose (#fdf5f7 light / #1a1014 dark) — "rose closer to white".
-- All numbers/texts render in gold via `.num, .score, .ovr, .record-digit, .val, [data-num]` — but scope carefully; body text stays `--text` (dark warm). Only numbers and accent text use gold.
-- Champion banner gold is now `#8a6a10 → #b8941f` (clean gold, no orange). Previous `#78350f/#b45309` (brown-orange) removed.
-- Team theming: global rose/gold is the default; when a team is selected, `--team-primary/secondary/accent` override. Player card accents use team hexes only.
-- Value Here: no visual remnants. Already P0-1.
-- Conflicts with OR A-1 (shadows): map `--shadow` → `--shadow-md`, `--shadow-hover` → `--shadow-lg`.
-- Conflicts with VL `--panel2:#1e2433`: now translucent. Test WCAG AA contrast on both modes.
+- Dark theme default: white text over dark warm background. Light mode available via `prefers-color-scheme: light` (or `data-theme="light"`).
+- Gold (`#d4af37` dark / `#b8941f` light) for all numbers and accents — not rose.
+- Rose (`#f0dce2`) used only as a subtle tertiary accent (borders, highlights), never for text/numbers.
+- Champion banner gold is `#8a6a10 → #b8941f` (clean gold, no orange).
+- Team theming: global rose/gold is the default; team colours override when selected.
+- Value Here: no visual remnants.
 
