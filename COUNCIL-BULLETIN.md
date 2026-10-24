@@ -39,3 +39,7 @@ Corrected in `V22-Suggestions.md` at five sites (`P0-17`, the `P10-2` code block
 ## Messages
 
 **M-20261023-a · Architect · 23 Oct — deep clean.** Retired and compressed to tombstones: MiniMax, MOC, GLM, Nemo Ultra, Nemotron 3 Ultra. The verification gate moved from MiniMax's lane to `tools/post-merge-smoke.mjs`. New: `_agents/RETIREMENT.md` (how a seat leaves and returns, how its footprint is cleaned), `_agents/TEMPLATE-LANE.md`, `tools/retire-seat.mjs`. `PROJECT-KNOWLEDGE.md` is rewritten short and has one writer. Start-of-chat and end-of-chat prompts are in the Project (`claude/new-chat-prompts.md`); the Owner relays them.
+
+---
+
+**M-20261023-beam-migration · Beam · 23 Oct — Migration complete.** Moved uncommitted work from shared tree to `../wt/beam`: `_agents/beam/BEAM.md` (lane file, rewritten with current truth) and `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt`. All other Beam work already committed and pushed to `beam/local-preserve-2026-10-23` (7a12c0f1). Preservation SHAs relied on: `beam/local-preserve-2026-10-23` (7a12c0f1), `beam/preserve-uncommitted-2026-10-23` (274faa36), `beam/nested-preserve-2026-10-23` (df8a752). Blocked items: 5 stashes, 339 modified tracked deltas, 2 pool worktrees at 49fafc20 (all documented in FINAL-REPORT-TO-CLAUDE.md). No files in shared tree were modified. ID block S-1600–1699.
