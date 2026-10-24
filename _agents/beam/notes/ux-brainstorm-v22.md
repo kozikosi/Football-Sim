@@ -510,6 +510,16 @@ Each achievement: unlock animation (scale-in + shimmer), toast notification, per
 - HOW TO CHECK: shimmer renders on all target elements; respects `prefers-reduced-motion` (animation disabled); no layout shift; contrast maintained.
 
 
+## 18. Open/airy design system — away from blue panels (P7-82)
+
+**P7-82 · Open, airy layout (less boxy panels)**
+- WHERE: global `:root` and all panel/card containers (` .panel`, `.card`, `.synergy-box`, `.matchup-card`, `.detailpanel`, `.score-line`).
+- WHAT: Replace heavy dark panel fills with an open, airy system: (1) panels become translucent glass (`rgba(255,255,255,0.03)` + `backdrop-filter: blur(8px)`), (2) borders become hairline (1px, low opacity), (3) generous padding (20-24px), (4) wide gutters (24px), (5) remove nested panel-on-panel (flatten hierarchy), (6) use negative space instead of dividers, (7) typography breathes (line-height 1.6, larger headings), (8) accent colour used sparingly (only interactive elements and key data), (9) backgrounds become near-black with subtle radial gradients instead of flat fills, (10) cards have no drop shadow by default, shadow only on hover/elevation.
+- WHY: "Get away from the blue panels" — the current UI feels boxy and dense. Openness improves scannability, reduces visual fatigue, and feels more modern/premium.
+- SAFE ALONE?: YES — CSS-only, no logic changes, no protected constants.
+- HOW TO CHECK: visual comparison old vs new; 390px no overflow; contrast ratios maintained (WCAG AA); `node tools/lint.mjs product` exit 0.
+
+
 ## Open questions for the Architect (≤5)
 1. Default tab: Owner's "DRAFT hero" implies Draft-first, but P1-20 recommends Season-first. Which wins?
 2. Should the homepage onboarding strip be dismissible permanently or re-showable from settings?

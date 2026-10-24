@@ -1322,3 +1322,111 @@ Recommended targets (apply as often as possible):
 - Game ball winner name
 - Achievement unlock toast text
 
+
+---
+
+## 30. Open/airy design system (P7-82) — away from blue panels
+
+CSS:
+```css
+/* Open/airy base — replace heavy panel fills */
+:root {
+  --bg: #0a0d14;
+  --panel: rgba(255,255,255,0.03);
+  --panel2: rgba(255,255,255,0.05);
+  --alt: rgba(255,255,255,0.02);
+  --text: #e8ecf3;
+  --sub: #9fb0c0;
+  --muted: #6a7a8a;
+  --border: rgba(255,255,255,0.08);
+  --border-hover: rgba(255,255,255,0.16);
+  --accent: #4f8cff;
+  --accent2: #ff6b4a;
+  --good: #3ecf8e;
+  --bad: #ff6b6b;
+  --gold: #ffd75e;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --shadow: 0 4px 24px rgba(0,0,0,0.25);
+  --shadow-hover: 0 8px 32px rgba(0,0,0,0.35);
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --gap: 24px;
+}
+
+/* Subtle radial background instead of flat fill */
+body {
+  background: radial-gradient(ellipse at top, #111827 0%, #0a0d14 60%);
+  background-attachment: fixed;
+}
+
+/* Open panels — glass, hairline border, generous padding, no shadow by default */
+.panel, .card, .synergy-box, .matchup-card, .detailpanel, .score-line, .unit-card, .star-card, .award-card, .conf-card {
+  background: var(--panel);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: var(--space-lg);
+  box-shadow: none;
+  transition: transform var(--motion-fast,150ms), box-shadow var(--motion-fast,150ms), border-color var(--motion-fast,150ms);
+}
+.panel:hover, .card:hover, .matchup-card:hover, .synergy-box:hover {
+  border-color: var(--border-hover);
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-1px);
+}
+
+/* Flatten nested panels — no panel-on-panel */
+.panel .panel, .card .card { background: transparent; border: none; padding: 0; box-shadow: none; backdrop-filter: none; }
+
+/* Generous spacing between sections */
+.section { margin-bottom: var(--space-xl); }
+.section + .section { margin-top: var(--space-xl); }
+
+/* Typography breathes */
+h1 { font-size: 1.6rem; font-weight: 700; line-height: 1.2; margin: 0 0 var(--space-sm); }
+h2 { font-size: 1.2rem; font-weight: 600; line-height: 1.3; margin: var(--space-lg) 0 var(--space-sm); color: var(--text); }
+h3 { font-size: 1rem; font-weight: 600; line-height: 1.3; margin: var(--space-md) 0 var(--space-xs); color: var(--sub); }
+.body-md { font-size: 0.9rem; line-height: 1.6; color: var(--text); }
+.caption { font-size: 0.75rem; line-height: 1.5; color: var(--sub); }
+
+/* Hairline dividers instead of heavy borders */
+.divider { height: 1px; background: var(--border); margin: var(--space-lg) 0; border: none; }
+.section-divider { margin: var(--space-xl) 0; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); border: none; }
+
+/* Accent used sparingly — only interactive elements */
+button, .tabbtn, .posbtn, .resetbtn { color: var(--accent); }
+button.primary, .btn-primary { background: var(--accent); color: #fff; }
+
+/* Open grid — wider gutters */
+.grid-open { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: var(--gap); }
+.row-open { display: flex; gap: var(--gap); flex-wrap: wrap; align-items: center; }
+
+/* Remove default box shadows from tables */
+table { border-collapse: separate; border-spacing: 0 var(--space-xs); }
+th, td { padding: var(--space-sm) var(--space-md); }
+
+/* Smooth transitions on everything interactive */
+button, a, .tabbtn, .posbtn, .resetbtn, .card, .panel {
+  transition: background var(--motion-fast,150ms), border-color var(--motion-fast,150ms), color var(--motion-fast,150ms), transform var(--motion-fast,150ms), box-shadow var(--motion-fast,150ms);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .panel, .card, .synergy-box, .matchup-card, .detailpanel, .score-line, .unit-card, .star-card, .award-card, .conf-card { transition: none; }
+  body { background: var(--bg); }
+}
+```
+
+Reconciliation notes (Beam):
+- This is a global restyle — touches `:root`, `body`, all panel/card selectors. Apply as a cohort (not alone) to avoid half-styled screens.
+- Conflicts with OR's A-1 (shadow system): OR adds `--shadow-sm/md/lg/xl`; this system uses `--shadow`/`--shadow-hover`. Recommend: adopt OR's shadow tokens as the canonical set and map `--shadow` → `--shadow-md`, `--shadow-hover` → `--shadow-lg`.
+- Conflicts with VL's `--panel2:#1e2433` (solid): this system uses translucent `rgba(255,255,255,0.05)`. Recommend: translucent for "open" feel, but ensure WCAG AA contrast on text. Test with the 390px gate and a contrast checker.
+- Conflicts with VL's `--border:#273044` (solid): this system uses `rgba(255,255,255,0.08)`. Recommend: translucent border for openness; fallback to solid if contrast fails.
+- The `body` radial gradient background may conflict with team-colour theming; recommend: keep the radial gradient but tint it with `--team-primary` at very low opacity (0.05) for team identity without heaviness.
+- Flattening nested panels (`panel .panel { background: transparent }`) may break screens that rely on nested panel contrast (e.g., season review). Test carefully.
+
