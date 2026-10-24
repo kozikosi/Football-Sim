@@ -109,3 +109,9 @@
 - Created `_agents/beam/notes/persistence-proposal.md` (148 lines) implementing `tasks/T5-persistence.md` with exact Pre-Colors anchors (executePick l.1444, makeUserPick2 l.1805, simulateCurrentWeek l.3543, scriptLocked l.3544/3556, init l.3936) + plug-and-play code (save/load, resume prompt, export/import, mulberry32 seeded RNG, save-point hooks, saved-at line).
 - Commits pushed: 489e4ffe (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — peer review)
+
+- Created `_agents/beam/notes/peer-review-findings.md` (65 lines) reviewing OR, VL, UK, DS, MOC, MiniMax contributions. Found minor issues: OR V23-6 duplicate shimmer, V23-7 box-shadow on :root (no-op), V23-8 fragile toast stacking, V23-2 undocumented --i requirement, A-2 `pulse` name collision; VL motion token mismatch, team-palette strategy, harmless `rank-row div1` typo. Recommendations documented.
+- Commits pushed: 82de525e (verified via git ls-remote).
+- No product file edits, no protected constants changed.
