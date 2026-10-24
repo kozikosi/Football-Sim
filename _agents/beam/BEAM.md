@@ -163,3 +163,11 @@
 - Delivered proposal to inbox/20261024-2153-beam-queue-1-position-dropdown.md: selectors, differing CSS rules (l.57-73), inferred box sizes (Playwright unavailable), exact CSS fix (unified height:36px, box-sizing, flex:1).
 - Commits pushed: 492d121c (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — QUEUE-2, QUEUE-3, QUEUE-7)
+
+- QUEUE-2: Ran `node tools/lint.mjs selftest` and `node tools/lint.mjs product`. Both UNVERIFIED due to nested root config conflict in tools/biome-product/biome.json (root:true vs root biome.json root:true) plus deprecated "recommended" field. Receipt in inbox/20261024-2200-beam-queue-2-lint-selftest.md. Fix is Architect-owned (tools/).
+- QUEUE-3: RNG inventory — 38 Math.random() occurrences on 38 lines: 12 draft/CPU, 20 game sim, 6 UI, 0 awards. Receipt in inbox/20261024-2210-beam-queue-3-rng-inventory.md.
+- QUEUE-7: "Value here" inventory — 6 occurrences on 5 lines (sort option L418, header L426, cell L1766, guide bullet L4991, prose L4992, section title L5056) + "also fits" at L1764. r.v retained as background calc. Receipt in inbox/20261024-2220-beam-queue-7-value-here-inventory.md.
+- Commits pushed: 1b32f4ab, a88cf450 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
