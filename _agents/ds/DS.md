@@ -1,23 +1,101 @@
 # DS — lane file
 
-## Identity
-- **Seat:** DS · **Model / how reached:** DeepSeek V4.1 Flash Free via OpenChamber (worktree `…/council-ds`) · **State:** advisor
-- **ID block:** none used this session · **First seen:** 2026-10-25
-- **Strengths shown so far (evidence, not claims):** reviews P-001, P-003, P-005 against Pre-Colors with measured receipts (commits `aefb8e3c`, `73e46643`, `0290ad8a`)
+**Seat:** DS · **Model:** deepseek-v4.1-flash-free
+**Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds`
+**Branch:** `council/ds` · **merge-base HEAD origin/council/base:** `29e2f4de`
+**Last session end:** 2026-10-25 03:01 UTC (25 Oct session)
 
-## Current work
-- **Claimed / in progress:** none (P-001 claim released; the item is REWORK/OPEN for a fresh pass)
-- **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` · **Branch:** `council/ds` · **Merge-base with `origin/council/base`:** `29e2f4de`
-- **Done this session:**
-  - P-001 review #1 — rejected: Beam's homepage file keeps text the Owner's 24 Oct afternoon ruling removes; missing moving header, shimmer button, guide fade. `inbox/20261025-0255-ds-P-001-review.md`
-  - P-003 review #1 — rejected: no contrast table; light gold `#b8941f` 2.68:1; light-mode body hard-coded dark 1.19:1; `--accent2` white as text 1.09:1; hard-coded orange/blue untouched; "numbers gold" selectors absent. `inbox/20261025-0259-ds-P-003-review.md`
-  - P-005 review #1 — rejected: `Value here` is 7 occurrences on 6 lines (not 6/5), the Priority tooltip missed; grid/`colspan` follow-up missing; TOP/names/flex/stray-line/Cooper DeJean not covered. `inbox/20261025-0301-ds-P-005-review.md`
-- **Blocked / waiting on:** nothing from a seat.
+The `wt/ds` worktree at `/Users/kosi/Desktop/wt/ds` is **orphaned** — its `.git` points at
+`.git/worktrees/ds`, which no longer exists. Do not work there. This worktree is the live one.
 
-## What the next session needs
-- **Read first:** `inbox/20261025-0255-ds-P-001-review.md` (exact corrected P-001 requirements), `inbox/20261025-0259-ds-P-003-review.md` (measured contrast table), `_agents/PRIORITIES.md` (then `node tools/next.mjs`).
-- **Open questions:** (1) Does the Architect keep “NFL Draft Simulator” inside `<title>`/og:title or replace it (3 old-name occurrences total)? (2) Which light-mode gold is approved for small text (`#8f6a0e` measures 4.62:1)?
-- **Do not redo:** P-001/P-003/P-005 reviews are filed and pushed; a review may not be repeated by the same seat. Pre-Colors hash re-verified: `40233d6b…795fd`, 657,486 B.
+## State
 
-## Files in this lane
-- none (the three reviews live in `inbox/`, not here)
+The 23 Oct deep clean removed this lane's uncommitted files from both the shared tree and
+`council/ds`. They were recovered on 24 Oct from **`2ffe3627`** ("DS: preserve uncommitted lane work
+(36 files) — committed by Beam at the Owner's request to prevent loss"), reachable from
+`council/uk` and the `preserve/*` branches, **not** from `council/ds`. Seven files were restored
+here; the rest of the preserve commit stayed behind because later lane work supersedes it.
+
+## What this lane now holds
+
+| file | what it is |
+|---|---|
+| `notes/MATHCORE-VS-PRECOLORS.md` | 26-slot `slotWins`/`modelWeights` comparison, Pre-Colors vs `044d1759`; causal proof by restoring `PERS['11']` |
+| `notes/UPDATE-TO-CLAUDE-2026-10-22.md` | consolidated answers to the Architect's four questions and five asks |
+| `notes/OWNER-RULINGS-2026-10-22-PROVENANCE-COLOURS.md` | dataset frozen by Owner attestation; 32×3 palette; the seven changed hexes |
+| `tools/ln2-probe.mjs` | five-arm `matchupModel` fixture probe |
+| `tools/mathcore-probe.mjs` | loads a build, exports its own `slotWins`/`slotWinsPerOvr`/`modelWeights`/`PERS`; `--zero11` causal test |
+| `tools/verify-build-pins.mjs` | document-wide pin scanner (superseded in scope by the pin work below) |
+| `tools/task-validator-probe.mjs` | 18-case adversarial harness for `tools/check-tasks.mjs` |
+
+`notes/master_plan.md` was reduced to a stub on 24 Oct. It named `nfl_power_rankings.html` as the
+single build, called v20 "current", and told sessions to avoid git — all three obsolete, and the
+last one directly contrary to the current protocol. Its original text is in git history.
+
+## This session (25 Oct 2026, 03:01 UTC) — P0 reviews
+
+- **P-001 (homepage) — rejected.** Beam's file keeps the tagline / “Season, Playoffs, Super Bowl…” copy that the Owner's 24 Oct afternoon ruling removes, and does not deliver the moving header, shimmer DRAFT button or guide fade. Items 1–2 (title, og:title) are usable. Corrected requirements with verified anchors are in `inbox/20261025-0255-ds-P-001-review.md`. **My P-001 claim is released**; the item is REWORK for any seat.
+- **P-003 (theme tokens) — rejected.** No contrast table; light gold `#b8941f` on `#fdf5f7` = **2.68:1** (FAIL), `#8f6a0e` = **4.62:1** (AA); §31's light mode keeps the dark body background (**1.19:1**); `--accent2:#f5f0f0` is text at l.62/198/270 (**1.09:1** on light panels); hard-coded orange/blue untouched (7 × `#ffc43c`, 4 × `#6aa6ff`, l.127/128/227/250/268); the “numbers gold” selectors do not exist. Measured table in `inbox/20261025-0259-ds-P-003-review.md`.
+- **P-005 (draft board) — rejected.** `Value here` = **7 occurrences on 6 lines** (418, 426 ×2, 1766, 4991, 4992, 5056), not 6/5; the Priority header `title` at 426 was missed; deleting the value cell needs `dc-pri` 10/13 → 7/13 and `colspan` 10 → 9; TOP/names/flex/stray-line/Cooper DeJean are not covered. `also fits` = 1 (1764); `Fits as` = 0. In `inbox/20261025-0301-ds-P-005-review.md`.
+- Pre-Colors re-verified this session: `40233d6b…795fd`, 657,486 B.
+
+## Findings still live
+
+1. **Math.LN2 — closed.** Not a sign error: a neutral `0.000` baseline was replaced by `ln 2`.
+   Pre-Colors is clean. In the drift build the effect is +7.52 pts on an all-80 fixture and the
+   valuation core degenerates — `modelWeights()` puts the kicker at 700 above the quarterback at
+   605. Restoring the one coefficient reproduces Pre-Colors exactly (`max |perOvr delta| = 0.0`).
+   The `F4` label is retired; do not reuse it.
+2. **Build truth.** `044d1759` = **656,746 B**; `40233d6b` (Pre-Colors) = **657,486 B**. Any document
+   pairing `044d1759` with 657,486 B is wrong. `merged.html` and `Football-Sim-V21.html` are the
+   same bytes.
+3. **Biome F6 — complete.** All 14 declared rule names are accepted by 2.6.2 and fire. But
+   `tools/biome-product/biome.json` as written is **fatal in-tree**: `"root": true` gives
+   *"Found a nested root configuration"*. `"root": false` is accepted; omitting the key is also
+   fatal. `"recommended": false` is **deprecated** — use `"preset": "none"`, identical diagnostics.
+   `--reporter=json` writes pure JSON to stdout: `{summary, diagnostics, command}`, each diagnostic
+   `{severity, message, category, location:{path,start:{line,column},end}, advices}`. Pretty
+   diagnostics go to **stderr**. Two-line fix required before the config can be used.
+4. **`tools/check-tasks.mjs` — 3 defects, 15/18 cases correct.**
+   - the id regex `[a-z0-9]+` **rejects hyphenated seat names**, so `T-…-nemo-super-1` fails and two
+     existing seats cannot register. Fix: `[a-z0-9-]+`.
+   - `claimed_at` is required but never validated — `"yesterday"` passes.
+   - `base_build_sha` accepts 9 hex characters (range is 8–64 by design; fine, but undocumented).
+   - the duplicate-id check can never fire alone: a duplicate id in a second file also fails the
+     filename rule first, so uniqueness is enforced by the filesystem, not the check.
+5. **Pins — two names, four files.** `"V20"` and `"NFL Draft Simulator.html"` are each **two
+   different files under one name**:
+   - v20 — git `_archive/builds/…v20 Claude.html` = `31b7d61f`, 649,032 B; disk
+     `./NFL Draft Simulator v20 Claude.html` = `8f916df9`, 648,310 B.
+   - donor — git `NFL Draft Simulator.html` = `77bb9ed5`, 650,127 B; disk = `8f0f8d50`, 649,490 B.
+     There is a third on disk: `backup-before-reorg/NFL Draft Simulator.html` = `f114ef8e`, 648,130 B.
+   - Pre-Colors `40233d6b` 657,486; drift `044d1759` 656,746.
+   `_archive/builds/` **does not exist on disk**, so `AGENTS.md` §2 pins a path that is not there.
+6. **Bundle.** `origin/claude/v21-and-council-ops` = `5157c53a`; `1ce97573` is its direct ancestor;
+   no remote ref points at `1ce97573`; no PR has this branch as head. The stale worktree
+   `/Users/kosi/Desktop/FootballSim-architect` is still at `1ce97573`.
+7. **Owner rulings.** The 1,200-row dataset is frozen and Owner-verified — do not re-rate, re-source
+   or question it. The colour palette matches `figma/team-colours.json` for 25/32; exactly seven
+   teams change; apply only after the bundle PR.
+
+## Pending for the next session
+
+- **P0 reviews filed 25 Oct, items OPEN/REWORK:** P-001, P-003 and P-005 need a fresh work pass from any seat, then three different reviewers. The three review files above carry the corrected requirements and must not be repeated by DS.
+- **P8 pin table — inventory done, table not written.** Four ambiguity pairs above; produce one
+  table separated into live documents and historical logs, with a rule that no row carries a hash
+  and a byte count belonging to different files.
+- **P4/P1 V22-Suggestions.md conflict resolution — assigned, NOT started.** The dispatch claims 342
+  headings / 199 with ids / 178 unique / 21 duplicated; I have not reproduced those counts. The file
+  differs between `main` (6,202 lines) and the branch (5,017 lines), so measure both.
+- **P5 colour patch, P6 dataset hash, P7 RNG design — not started.**
+- `check-tasks.mjs` fixes are findings for the Architect; do not edit `tools/`.
+
+## Open questions
+
+1. Which v20 is canonical — git `31b7d61f` or disk `8f916df9`? `AGENTS.md` pins the git one at a
+   path that does not exist on disk. Default: the git blob, because it is reproducible; cost of being
+   wrong: line-number references drift by one build.
+2. Should `check-tasks.mjs` widen the seat pattern to `[a-z0-9-]+`? Default: yes; cost if wrong: a
+   registry that cannot name `nemo-super` or `nemo-ultra`.
+
+_DS end-anchor · this lane only._
