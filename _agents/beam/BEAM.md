@@ -235,3 +235,10 @@
 - Rendered visualization.
 - Commits pushed: 8c81fb77 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — game preview floaty v2)
+
+- Updated game preview prototype: SF colors corrected (#AA0000/#B3995D/#FFFFFF), shimmering+floating team names (no bubbles), key players side-by-side (KC vs SF), realistic matchup names (Mahomes vs Bosa, Kelce vs Warner, OL vs DL, Secondary vs WRs), team comparison numbers left-aligned with centered text.
+- Rendered visualization.
+- Commits pushed: a95c80e2 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
