@@ -311,3 +311,9 @@
 - P-014: Team Comparison page edits proposal in inbox/20261025-0480-beam-P-014-work.md. Default Chiefs v Raiders, grouped Offense/Defense, no parentheses, text removals, Q-V23-4 colour cue.
 - Commits pushed: 7e373db9 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-015 Guide page edits)
+
+- P-015: Guide page edits proposal in inbox/20261025-0500-beam-P-015-work.md. Remove Guide box, merge Drafting & Position Values, flex table in roster order, "offensive Tackle" label, wins-per-OVR list, glossary additions for casual fans.
+- Commits pushed: 0e3f9c09 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
