@@ -12,3 +12,11 @@ Earlier: brand "20-0"; DRAFT hero homepage; clickable header wordmark returns ho
 - **Team accents:** once a team is chosen every accent uses that team's three hexes, **except players on opponent teams**, and each player's draft card keeps the colours of their real NFL team until the draft ends. Rose until a team is chosen; Home/Season/Playoffs stay rose, other tabs take the near-white team tint.
 - **Lineup comparison:** neutral names; higher OVR gets a small gold marker + bold.
 - **Who builds:** only the Architect builds V23 and decides. The council sends ideas/snippets to its `inbox/` and runs tests the Architect orders (`_agents/TEST-ORDERS/`).
+
+## Owner's additional rulings, 24 Oct (afternoon) — these beat earlier wording
+- **Homepage:** copy VL's moving "20-0" header. Remove all of: the tagline, the Draft/Season/Playoffs/Champion stepper, "Set Up Your Draft", the "Season, Playoffs, Super Bowl…" line, and the "Draft as / Draft pick" label text. New font for the main DRAFT button, **shimmer** instead of the left-sweep effect. Remove the guide panel and all other text from the home page; when the user scrolls toward the footer the guide fades in from nothing. (The team and pick selectors are functionally needed: kept as floating inputs without label text, pending the Owner's word.) Reference prototypes: VL v7/v8, Glyph.
+- **Team colours:** once the user picks a team and starts the draft, that team's three colours transform the whole app (darker or paler tones allowed for legibility). On the draft board each player is framed by the three colours of the real NFL team he is on, until the draft ends. After the draft, your players are framed by your team's colours; other teams' players by theirs. Neutral = white; no black or grey except dark mode's black.
+- **Draft board:** remove "Fits as" completely; show only "Flex x (-y)".
+- **Position Rankings:** DL + CBs = top 6 players (not 8), and that is the page default.
+- **Naming:** Z.ai's work previously called "Football-Sim-V23.html" is relabelled **Z-post-blue** everywhere.
+- **Roles:** GPT and Z.ai are **High Councillors** (`AGENTS.md` §1). Platforms: Kilo = Glyph, FK, Beam, VL, UK, OR; independent = GPT, Z.ai; OpenChamber = everyone else.
