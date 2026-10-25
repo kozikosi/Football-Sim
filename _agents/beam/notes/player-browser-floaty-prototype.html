@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html><head><meta charset=utf-8><style>
+:root { --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0; --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c; --team-primary-rgb:227,24,55; --motion-fast:150ms ease; --motion-normal:250ms ease; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); padding:20px; line-height:1.6; overflow-x:hidden; }
+@keyframes textShimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@keyframes scrollRight { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+@keyframes scrollLeft { 0% { transform:translateX(100%); } 100% { transform:translateX(-100%); } }
+.header-scroll-layer { position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
+.header-scroll-text { position:absolute; white-space:nowrap; font-weight:900; letter-spacing:0.15em; will-change:transform; }
+.header-scroll-text.l1 { top:12%; font-size:0.8rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
+.header-scroll-text.l2 { top:42%; font-size:1.1rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
+.header-scroll-text.l3 { top:72%; font-size:0.55rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
+.home-20-0 { display:inline-block; font-size:1.4rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; }
+.home-20-0:hover { transform:scale(1.05); filter:brightness(1.2); }
+@media (prefers-reduced-motion: reduce) { .header-scroll-text, .home-20-0 { animation:none; } .home-20-0 { background-position:0 0; } }
+.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.card:hover { border-color:var(--border-hover); box-shadow:0 8px 32px rgba(0,0,0,0.35); transform:translateY(-1px); }
+p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
+.shimmer-text { background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.shimmer-text.gold { background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 50%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.player-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:12px; transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.player-card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.player-card.yours { border-left:3px solid var(--team-primary); background:rgba(var(--team-primary-rgb),0.06); }
+.player-card .ovr { float:right; font-weight:800; font-size:0.9rem; color:var(--accent); }
+.player-card .name { font-weight:700; font-size:0.9rem; color:var(--text); margin-bottom:2px; }
+.player-card .meta { font-size:0.75rem; color:var(--sub); margin-bottom:6px; }
+.player-card .statbar { height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; margin-top:4px; }
+.player-card .stat-fill { height:100%; border-radius:3px; transition:width var(--motion-normal); }
+.combo-chip { display:inline-block; padding:6px 12px; border:1px solid var(--border); background:var(--panel); color:var(--text); border-radius:20px; font-size:0.8rem; cursor:pointer; margin:4px 4px 4px 0; transition:all var(--motion-fast); }
+.combo-chip.active { background:var(--accent); color:#0d0a0e; border-color:var(--accent); box-shadow:0 0 0 2px var(--accent); }
+.filters { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:14px; align-items:center; }
+.filters input, .filters select { background:var(--panel2); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:7px 10px; font-size:0.85rem; }
+.filters input { flex:1; min-width:120px; }
+.pos-chip { display:inline-block; padding:2px 8px; border-radius:10px; font-size:0.7rem; font-weight:700; text-transform:uppercase; letter-spacing:0.04em; color:#fff; }
+.pos-QB { background:var(--team-primary); } .pos-RB { background:#22c55e; } .pos-WR { background:#f97316; } .pos-TE { background:#a855f7; } .pos-OL { background:#64748b; } .pos-DL { background:#ef4444; } .pos-LB { background:#14b8a6; } .pos-CB,.pos-S { background:#eab308; color:#0d0a0e; } .pos-K,.pos-P { background:#a16207; }
+@media (prefers-reduced-motion: reduce) { .shimmer-text { animation:none; background-position:0 0; } }
+@media (max-width:600px) { .filters { flex-direction:column; } .filters input, .filters select { width:100%; } }
+</style></head><body>
+
+<!-- Header -->
+<div style="position:relative;">
+  <div class="header-scroll-layer">
+    <div class="header-scroll-text l1">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l2">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l3">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+  </div>
+  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
+    <a class="home-20-0" href="#" onclick="return false;">20-0</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; border:1px solid var(--border); background:var(--panel);"><span style="width:10px;height:10px;border-radius:50%;background:var(--team-primary);display:inline-block;"></span>KC Chiefs</div>
+    </div>
+  </div>
+</div>
+
+<h1 style="margin:12px 0 2px; font-size:1.2rem; color:var(--sub); font-weight:600;">Player Browser</h1>
+<p style="margin:0 0 12px;">Every Madden NFL 27 player rating, searchable by name, position and team.</p>
+
+<!-- Filters -->
+<div class="filters">
+  <input type="text" placeholder="Search players...">
+  <select><option>All positions</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>OL</option><option>DL</option><option>LB</option><option>DB</option></select>
+  <select><option>All teams</option><option>KC Chiefs</option><option>SF 49ers</option><option>DAL Cowboys</option></select>
+</div>
+
+<!-- Position combos -->
+<div style="margin-bottom:12px;">
+  <span class="combo-chip active">QB overall</span>
+  <span class="combo-chip">RB1/RB2</span>
+  <span class="combo-chip">WR1/WR2/WR3</span>
+  <span class="combo-chip">TE1/TE2</span>
+  <span class="combo-chip">OT/OG/OC</span>
+  <span class="combo-chip">DE/DT</span>
+  <span class="combo-chip">OLB/ILB</span>
+  <span class="combo-chip">CB/S</span>
+</div>
+
+<!-- Player cards (15 per page) -->
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:10px; margin-bottom:12px;">
+  <div class="player-card yours"><span class="ovr gold">99</span><div class="name">Patrick Mahomes</div><div class="meta">QB · KC · Age 28</div><span class="pos-chip pos-QB">QB</span><div class="statbar"><div class="stat-fill" style="width:98%;background:var(--gold);"></div></div></div>
+  <div class="player-card"><span class="ovr gold">99</span><div class="name">Josh Allen</div><div class="meta">QB · BUF · Age 28</div><span class="pos-chip pos-QB">QB</span><div class="statbar"><div class="stat-fill" style="width:97%;background:var(--gold);"></div></div></div>
+  <div class="player-card"><span class="ovr silver">96</span><div class="name">Justin Jefferson</div><div class="meta">WR · MIN · Age 25</div><span class="pos-chip pos-WR">WR</span><div class="statbar"><div class="stat-fill" style="width:94%;background:#f97316;"></div></div></div>
+  <div class="player-card"><span class="ovr silver">94</span><div class="name">Nick Bosa</div><div class="meta">DL · SF · Age 27</div><span class="pos-chip pos-DL">DL</span><div class="statbar"><div class="stat-fill" style="width:92%;background:#ef4444;"></div></div></div>
+  <div class="player-card yours"><span class="ovr silver">94</span><div class="name">Travis Kelce</div><div class="meta">TE · KC · Age 35</div><span class="pos-chip pos-TE">TE</span><div class="statbar"><div class="stat-fill" style="width:90%;background:#a855f7;"></div></div></div>
+  <div class="player-card"><span class="ovr silver">94</span><div class="name">Trent Williams</div><div class="meta">OL · SF · Age 36</div><span class="pos-chip pos-OL">OL</span><div class="statbar"><div class="stat-fill" style="width:89%;background:#64748b;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">88</span><div class="name">Jalen Ramsey</div><div class="meta">CB · PIT · Age 30</div><span class="pos-chip pos-CB">CB</span><div class="statbar"><div class="stat-fill" style="width:85%;background:#eab308;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">88</span><div class="name">Derwin James</div><div class="meta">S · LAC · Age 28</div><span class="pos-chip pos-S">S</span><div class="statbar"><div class="stat-fill" style="width:84%;background:#eab308;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">87</span><div class="name">Fred Warner</div><div class="meta">LB · SF · Age 28</div><span class="pos-chip pos-LB">LB</span><div class="statbar"><div class="stat-fill" style="width:83%;background:#14b8a6;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">86</span><div class="name">Derrick Henry</div><div class="meta">RB · BAL · Age 30</div><span class="pos-chip pos-RB">RB</span><div class="statbar"><div class="stat-fill" style="width:82%;background:#22c55e;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">85</span><div class="name">George Kittle</div><div class="meta">TE · SF · Age 31</div><span class="pos-chip pos-TE">TE</span><div class="statbar"><div class="stat-fill" style="width:81%;background:#a855f7;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">84</span><div class="name">Chris Jones</div><div class="meta">DL · KC · Age 30</div><span class="pos-chip pos-DL">DL</span><div class="statbar"><div class="stat-fill" style="width:80%;background:#ef4444;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">83</span><div class="name">Tyreek Hill</div><div class="meta">WR · MIA · Age 30</div><span class="pos-chip pos-WR">WR</span><div class="statbar"><div class="stat-fill" style="width:79%;background:#f97316;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">82</span><div class="name">Saquon Barkley</div><div class="meta">RB · PHI · Age 27</div><span class="pos-chip pos-RB">RB</span><div class="statbar"><div class="stat-fill" style="width:78%;background:#22c55e;"></div></div></div>
+  <div class="player-card"><span class="ovr bronze">81</span><div class="name">Micah Parsons</div><div class="meta">LB · GB · Age 25</div><span class="pos-chip pos-LB">LB</span><div class="statbar"><div class="stat-fill" style="width:77%;background:#14b8a6;"></div></div></div>
+</div>
+
+<!-- Pagination -->
+<div style="display:flex; justify-content:center; gap:8px; margin:12px 0;">
+  <button style="background:var(--panel); border:1px solid var(--border); color:var(--text); padding:6px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem;">← Prev</button>
+  <span style="color:var(--sub); font-size:0.8rem; padding:6px 0;">Page 1 of 80</span>
+  <button style="background:var(--panel); border:1px solid var(--border); color:var(--text); padding:6px 12px; border-radius:6px; cursor:pointer; font-size:0.8rem;">Next →</button>
+</div>
+
+<div style="margin-top:12px; padding:10px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
+  <p style="margin:0; color:var(--sub); font-size:0.75rem;">KC Chiefs (red/gold). Player browser: 15 rows/page, searchable, position combos, clickable header sort. Glass panels, no blue. Mobile: cards stack. Open/airy.</p>
+</div>
+</body></html>
