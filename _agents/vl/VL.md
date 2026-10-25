@@ -25,4 +25,6 @@
 - `_agents/vl/deliveries/queue5-header-option-a.html`
 - `_agents/vl/deliveries/queue5-header-option-b.html`
 - `_agents/vl/deliveries/queue6-beam-25-proposals-ranking.md`
+- `_agents/vl/deliveries/queue5-homepage-floaty-prototype.html`
 - `inbox/20261024-2357-vl-branding-20-0.md`
+- `inbox/20261025-0020-vl-homepage-floaty.md`
