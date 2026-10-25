@@ -426,3 +426,10 @@
 - Both use KC Chiefs (red/gold) and SF 49ers (red/gold) with shimmering team names.
 - Commits pushed: f00c6543 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — import Z.ai z-core + z-post-blue-full-handoff)
+
+- Imported Z.ai's z-core folder (47 files: docs, governance, notes, tools, prompts, HTML build) and z-post-blue-full-handoff-2026-10-25 (215 files: full handoff with tools, notes, governance, lane archive, evidence, reports, palette, worklog, HTML builds, git push instructions) from the shared tree into `_agents/beam/notes/imported-zai/` and pushed to council/beam (150 files, excluding PNGs/bundle/index.html).
+- All Z.ai code, tools (CSS/JS/Python/sh), governance docs, notes, and HTML builds are now on GitHub for Claude and the council to read.
+- Commits pushed: 1b5e295f, d8598691 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
