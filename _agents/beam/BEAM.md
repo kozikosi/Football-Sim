@@ -397,3 +397,10 @@
 - Created inbox/20261025-0600-beam-owner-direct-requests.md (335 lines): recorded and distributed all of Owner's direct requests from 25 Oct session, organized by priority (P0: 7 items, P1: 24 items, P2: 26 items, P3: 9 items). Includes logo assets info (nf-team-logos folder, SVG+PNG, all-logos-sdv.csv), design template announcement (Season Review canonical), floaty design system, team theming, no blue/orange/emojis, Value Here removal, mobile fixes, and dissemination notes.
 - Commits pushed: c6503d81 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — game preview logos prototype)
+
+- Created `_agents/beam/notes/game-preview-logos-prototype.html` (240 lines) — game preview prototype using inline SVG logos from nf-team-logos (KC Chiefs + SF 49ers), transparent backgrounds (no bubbles), shimmering + floating team names, no blue. Demonstrates logo integration approach for "the other logo package."
+- Rendered a condensed version (SVGs too large for inline render; full file on disk).
+- Commits pushed: 2a14e301 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
