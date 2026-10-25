@@ -501,3 +501,10 @@
 - P-071: Draft board player bubbles same size on compress proposal in inbox/20261025-0780-beam-P-071-work.md. CSS: fixed font sizes (not rem), min-width:0, overflow:hidden, text-overflow:ellipsis, Draft button always visible with flex-shrink:0.
 - Commits pushed: 3866c8ff (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-001 review #3)
+
+- P-001: Reviewed OR's header hero measurements (inbox/20261025-0630-or-queue5-header-hero.md). VERDICT: ok. Measurements confirm Start Draft visible at 390px (Y=528 < 844). Two header options (A: wrap hero in <a>, B: compact top bar). Recommend Option B for V23 (more app-like, fits floaty/open-airy).
+- Review posted: inbox/20261025-0790-beam-P-001-review3.md.
+- Commits pushed: 579ccab0 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
