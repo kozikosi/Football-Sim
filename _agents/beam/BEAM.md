@@ -477,3 +477,9 @@
 - P-044: Remove "you hold the #X overall pick (Round 1)" text proposal in inbox/20261025-0720-beam-P-044-work.md. Exact old→new at l.1488. SAFE ALONE: YES.
 - Commits pushed: 07512d64 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-045 Align (x.y))
+
+- P-045: Align "(x.y)" draft pick indicator proposal in inbox/20261025-0740-beam-P-045-work.md. Candidate elements: on-the-clock text (l.1559), gone-by-next-pick (l.1697), Priority column (l.1766). Recommended text-align:right on relevant container. Exact "(x.y)" element not found in Pre-Colors — may need to be added.
+- Commits pushed: 2d0f9940 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
