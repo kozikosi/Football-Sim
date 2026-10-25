@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 — Homepage (VL P-001 prototype)</title>
+<style>
+  /* ============================================================
+     VL P-001 homepage prototype — V23 only. Advisory prototype.
+     Kansas City Chiefs palette: red #E31837, white #FFFFFF, gold #FFB612.
+     Product file untouched.
+     
+     P-001 requirements:
+     - Moving 20-0 header (infinite marquee) + static corner "20-0" home button
+     - Minimal hero (clean/empty)
+     - Shimmer DRAFT button — visible at 390px without scrolling
+     - Guide fades in on scroll
+     - Team + pick selectors as floating inputs (no labels)
+     ============================================================ */
+  :root{
+    --kc-red:#E31837;        /* KC primary */
+    --kc-red-deep:#C41E3A;   /* deeper red */
+    --kc-white:#FFFFFF;      /* KC white (3rd) */
+    --kc-gold:#FFB612;       /* KC gold (2nd) */
+    --kc-gold-deep:#D4A017;
+    --ink:#1A1718;           /* soft dark neutral for names */
+    --muted:#8D6E63;
+    --border:#D9CBD0;        /* soft rose hairline */
+    --bg:#FDF7F7;            /* barely red tint page bg */
+    --panel:#FFFFFF;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --motion:400ms ease;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1A0A0C; --panel:#221416; --panel2:#2C1C1E;
+      --ink:#FCE4EC; --muted:#E8A0B4; --border:#4A242A;
+      --kc-red:#FF4D5A; --kc-gold:#FFD166; --kc-white:#FCE4EC;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;}
+  body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+
+  /* ---------- Header: moving 20-0 marquee + static corner button ---------- */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;
+  }
+  header .marquee{
+    position:relative;width:100%;height:1.5rem;overflow:hidden;white-space:nowrap;flex:1;
+  }
+  header .track{
+    position:absolute;top:0;left:0;width:200%;height:100%;
+    display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform;
+  }
+  header .track-l{animation:marqueeL 16s linear infinite;}
+  header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
+  @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  header .home{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;box-shadow:0 6px 18px rgba(227,24,55,.3);
+    transition:transform 200ms ease,box-shadow 200ms ease;white-space:nowrap;
+  }
+  header .home:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(227,24,55,.45);}
+  header .home:focus-visible{outline:3px solid var(--kc-gold);outline-offset:3px;border-radius:10px;}
+  @media (prefers-reduced-motion: reduce){header .track-l,header .track-r{animation:none;transform:none;}}
+
+  /* ---------- Page shell ---------- */
+  .page{max-width:760px;margin:0 auto;padding:0 16px;flex:1;display:flex;flex-direction:column;}
+
+  /* ---------- Hero: minimal, clean/empty ---------- */
+  .hero{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    padding:40px 20px 20px;overflow:visible;
+  }
+  .float-text{
+    position:absolute;font-weight:900;letter-spacing:-.01em;
+    pointer-events:none;user-select:none;will-change:transform;
+  }
+  .float-text.t1{top:8%;left:6%;font-size:1.5rem;color:var(--kc-gold);}
+  .float-text.t2{top:18%;right:10%;font-size:1.35rem;color:var(--kc-red-deep);}
+  .float-text.t3{top:34%;left:12%;font-size:1.7rem;color:var(--kc-gold);}
+  .float-text.t4{top:48%;right:6%;font-size:1.4rem;color:var(--kc-red-deep);}
+  .float-text.a{animation:floatA 5s ease-in-out infinite;}
+  .float-text.b{animation:floatB 6.4s ease-in-out infinite 1s;}
+  .float-text.c{animation:floatA 5s ease-in-out infinite 1.8s;}
+  .float-text.d{animation:floatB 6.4s ease-in-out infinite 2.6s;}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(-6px,-10px,0) rotate(3deg);}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(8px,-8px,0) rotate(-3deg);}}
+  @media (prefers-reduced-motion: reduce){.float-text{animation:none;transform:none;}}
+
+  /* ---------- Shimmer DRAFT button — visible at 390px without scrolling ---------- */
+  .cta-row{display:flex;justify-content:center;margin-top:26px;}
+  .startdraft{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:14px 42px;border-radius:16px;border:none;
+    font-weight:900;font-size:1.15rem;letter-spacing:.04em;
+    cursor:pointer;
+    box-shadow:0 12px 36px rgba(227,24,55,.5);
+    transition:transform 250ms ease,box-shadow 250ms ease,filter 250ms ease;
+    animation:floatDraft 4s ease-in-out infinite, shimmer 3s linear infinite;
+  }
+  .startdraft:hover{transform:translateY(-3px);box-shadow:0 16px 44px rgba(227,24,55,.65);filter:brightness(1.05);}
+  .startdraft:active{transform:translateY(0);}
+  .startdraft .label{
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  @keyframes floatDraft{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  @keyframes shimmer{0%{background-position:-200% 0;}100%{background-position:200% 0;}}
+  @media (prefers-reduced-motion: reduce){.startdraft{animation:none !important;}}
+
+  /* ---------- Floating team + pick selectors (no labels) ---------- */
+  .floating-selectors{
+    max-width:760px;margin:18px auto 0;padding:0 16px;
+    display:flex;gap:12px;align-items:center;flex-wrap:wrap;
+  }
+  .floating-selectors select{
+    width:210px;padding:10px 12px;border-radius:10px;
+    border:1px solid var(--border);
+    background:rgba(253,243,247,0.6);
+    color:var(--ink);font-size:0.95rem;
+    appearance:none;cursor:pointer;
+    transition:border-color 200ms ease;
+  }
+  .floating-selectors select:hover{border-color:var(--kc-red-deep);}
+  .floating-selectors select:focus{border-color:var(--kc-red-deep);box-shadow:0 0 0 3px rgba(201,122,142,.12);outline:none;}
+
+  /* ---------- Guide: fades in on scroll ---------- */
+  .guide-card{
+    max-width:760px;margin:24px auto 0;padding:0 16px;
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:16px;padding:16px;
+    opacity:0;transform:translateY(12px);
+    transition:opacity 600ms ease,transform 600ms ease;
+  }
+  .guide-card.visible{opacity:1;transform:translateY(0);}
+  .guide-card h3{margin:0 0 8px;font-weight:900;font-size:1rem;color:var(--kc-red-deep);}
+  .guide-card p{margin:0;color:var(--ink);font-size:0.9rem;line-height:1.5;}
+
+  .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--muted);
+    font-size:0.82rem;border-left:3px solid var(--kc-red-deep);padding-left:14px;}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--kc-gold-deep);border-radius:4px;}
+</style>
+</head>
+<body>
+<header role="banner" aria-label="20-0">
+  <div class="marquee">
+    <div class="track track-l" id="trackL"></div>
+    <div class="track track-r" id="trackR"></div>
+  </div>
+  <a href="#" class="home" onclick="return goHome();" role="button"
+     aria-label="Return to homepage (20-0)" tabindex="0">20-0</a>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <div class="float-text t1 a">20-0</div>
+    <div class="float-text t2 b">KC</div>
+    <div class="float-text t3 c">SF</div>
+    <div class="float-text t4 d">SUPER BOWL</div>
+  </div>
+
+  <div class="cta-row">
+    <button class="startdraft" onclick="return startDraft();"><span class="label">Start Draft</span></button>
+  </div>
+
+  <div class="floating-selectors">
+    <select id="draftSlot"><option>Draft as</option><option>KC Chiefs</option><option>SF 49ers</option><option>MIN Vikings</option></select>
+    <select id="draftPickNumber"><option>Draft pick #</option><option>Random</option><option>1</option><option>2</option><option>3</option></select>
+  </div>
+
+  <div class="guide-card" id="guideCard">
+    <h3>How to draft</h3>
+    <p>Pick your team and pick number, then tap Start Draft. CPU GMs draft by the same math the season uses — each takes the player who adds the most wins at a spot it still needs, with a little personal taste and randomness.</p>
+  </div>
+</div>
+
+<p class="note">Advisory prototype (V23 only). P-001 homepage: moving 20-0 marquee header + static corner "20-0" home button; minimal hero; shimmer DRAFT button visible at 390px without scrolling; floating team + pick selectors (no labels); guide fades in on scroll. No grey — everything KC red/gold/white. No emojis. Mobile-ready, prefers-reduced-motion respected.</p>
+
+<script>
+  function buildTrack(id, count){
+    const el=document.getElementById(id);
+    const item='<span class="item">20-0</span>';
+    let html='';
+    for(let i=0;i<count;i++) html+=item;
+    el.innerHTML=html+html;
+  }
+  buildTrack('trackL',14);
+  buildTrack('trackR',12);
+
+  /* Guide fades in on scroll */
+  const guideCard=document.getElementById('guideCard');
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        guideCard.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  },{threshold:0.1});
+  observer.observe(guideCard);
+
+  function goHome(){ return false; }
+  function startDraft(){ return false; }
+</script>
+</body>
+</html>
