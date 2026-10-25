@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NFL Draft Simulator</title>
+<style>
+  :root { --text:#e8ecf4; --sub:#94a3b8; --accent:#ffb3c6; --border:rgba(255,255,255,.1); }
+  body { background:#0a0e17; color:var(--text); margin:0; padding:0; font-family:system-ui, sans-serif; }
+  .header { padding:20px; display:flex; align-items:center; gap:16px; border-bottom:1px solid var(--border); }
+  .home-link { flex:1; text-decoration:none; display:flex; align-items:center; gap:12px; }
+  h1 { font-size:1.5rem; font-weight:900; background:linear-gradient(90deg,var(--text),var(--accent) 70%); -webkit-background-clip:text; background-clip:text; color:transparent; margin:0; }
+  .tagline { color:var(--sub); font-size:.95rem; margin:2px 0 0; }
+  .nav { display:flex; gap:16px; }
+  .nav a { color:var(--sub); font-size:.9rem; text-decoration:none; }
+  .nav a:hover { color:var(--text); }
+  .badge { background:linear-gradient(90deg,var(--accent),#ff6b9d); color:#fff; padding:2px 8px; border-radius:999px; font-size:.7rem; font-weight:700; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <a href="#" class="home-link">
+      <div><h1>NFL Draft Simulator</h1><div class="tagline">Draft • Season • Playoffs • Champion</div></div>
+    </a>
+    <nav class="nav">
+      <a href="#">Simulator</a>
+      <a href="#">Player Browser</a>
+      <a href="#">Rankings</a>
+      <a href="#" class="badge">1<span style="margin-left:4px;">Pick</span></a>
+    </nav>
+  </header>
+</body>
+</html>
