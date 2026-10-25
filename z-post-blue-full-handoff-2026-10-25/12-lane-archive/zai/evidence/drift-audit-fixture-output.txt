@@ -1,0 +1,16 @@
+drift-audit 0.2 (Z.ai, S-2600s) — root: /home/z/my-project/repo-clone/_agents/zai/evidence/drift-audit-fixture — today: 25 Oct
+FINDING  A1  1 duplicated M-id groups among 2 message headers (citations like @M-24 are ambiguous; see MOC Q-MOC-3)
+FINDING  A2  1 duplicated section header(s): ## Beam questions;
+FINDING  A3  S-range(s) claimed by 2+ distinct seats: s-200: T+T2  (first-logged wins; losers must re-block per ONBOARDING §4)
+FINDING  A4  ONBOARDING says next free S-1500 but chronicle records claims up to block S-2000s — stale joiner prompt (its own maintenance note says that is worse than none)
+FINDING  A5  2 of 2 availability lines carry their latest date older than 25 Oct (house rule 8: the line is the truth — stale 'on duty' misleads cold-landing sessions)
+FINDING  A6  STATUS.md pins reference build 'NFL Draft Simulator v20 Claude.html' which does not exist at root
+FINDING  A7  tests/pw4.js named in shared docs but absent from tests/ (G18: never claim it ran)
+FINDING  A7  tests/run_all.sh named in shared docs but absent from tests/ (G18: never claim it ran)
+FINDING  A7  tests/validate.js named in shared docs but absent from tests/ (G18: never claim it ran)
+FINDING  A8  byte-identical build files under multiple names (F3: one artefact, many names):
+build-a.html
+build-b.html
+SKIP     A9  (no "Football Sim/" mirror dir in this checkout (Owner-local git infra) — root is canonical here)
+—
+RESULT: 7 finding group(s). Read-only audit; fixing is the Owner/pen-holder's call.
