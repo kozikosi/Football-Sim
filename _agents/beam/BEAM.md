@@ -581,3 +581,9 @@
 - P-048: Remove "Play a Season" panel text proposal in inbox/20261025-0910-beam-P-048-work.md. Exact old→new at l.849-858. Removes h2, paragraph, <ol>. Start Season button becomes floating shimmering pill (team colours). "Draft results" link preserved. SAFE ALONE: YES.
 - Commits pushed: e6dc7f04 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-049 Remove parentheses from position groups)
+
+- P-049: Remove parentheses from position groups proposal in inbox/20261025-0930-beam-P-049-work.md. 30+ label changes in GROUP_DEFS (remove parenthetical content). Groups already ordered Offense→Defense→Specialists. SAFE ALONE: YES.
+- Commits pushed: 6fc1aecf (verified via git ls-remote).
+- No product file edits, no protected constants changed.
