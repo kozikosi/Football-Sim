@@ -452,3 +452,9 @@
 - P-042: "Change" button color alignment proposal in inbox/20261025-0670-beam-P-042-work.md. .slotchg uses var(--accent) not blue; remove #6aa6ff from dc-val (Value Here column removed); all blue hexes eliminated.
 - Commits pushed: 7be6d15a (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — import z-post-blue-docs-update-2026-10-26)
+
+- Imported Z.ai's z-post-blue-docs-update-2026-10-26 folder (42 files: updated docs, tools, build, governance, ZAI.md, START/END-OF-CHAT-ZAI.md, OWNER-ROUND-8-INTAKE.md, CHECKSUMS.txt, publish.sh) to GitHub on both council/zai and council/beam branches. Z.ai's latest build (md5 0cef8bf7a5646bd283c1b687bf740e5c, wave 13) is now on GitHub.
+- Commits pushed: 34d822c4 (council/zai), d9f71466 (council/beam) — verified via git ls-remote.
+- No product file edits, no protected constants changed.
