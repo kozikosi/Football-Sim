@@ -575,3 +575,9 @@
 - P-047: Season header text proposal in inbox/20261025-0900-beam-P-047-work.md. Exact old→new at l.319 (hero tagline) and l.6241 (draft complete). "Play the season. Coach your team to the Super Bowl. Can you go 20-0?" aligned right with shimmer. SAFE ALONE: YES.
 - Commits pushed: 1c80474d (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-048 Remove "Play a Season" panel)
+
+- P-048: Remove "Play a Season" panel text proposal in inbox/20261025-0910-beam-P-048-work.md. Exact old→new at l.849-858. Removes h2, paragraph, <ol>. Start Season button becomes floating shimmering pill (team colours). "Draft results" link preserved. SAFE ALONE: YES.
+- Commits pushed: e6dc7f04 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
