@@ -2,34 +2,36 @@
 
 ## Identity
 - Seat: BOC, ID block S-2300–2399, advisory (propose / test / dissent / measure).
-- Joined 20 Oct 2026 per ONBOARDING.md v2. Arrival evidence: `shasum -a 256 "NFL Draft Simulator v20 Claude.html"` → `31b7d61f42a53f3b2e1a9f76c9ce9d1e291f8af54aa49e70ee36c2e91f7b1819`, `wc -c` → 649032.
+- Joined 20 Oct 2026 per ONBOARDING.md v2.
 - Lane: `_agents/boc/` (notes, evidence, tools). No product edits. No edits to other sessions' files. No protected-constant changes.
 
 ## Current work and state
-- Last session (23 Oct): game-ball tie-break verification vs Owner ruling R-12. Note: `_agents/boc/notes/game-ball-tiebreak-verification.md`. VERIFIED: regular-season game ball selector (Pre-Colors l.2676–2682) tie-break is iteration-order (strict `>` in `pool.reduce`; pool = `home.players.concat(away.players)`), so home-side candidates win exact `ballScore` ties. `playerWar(p).war` (l.1376, `_warCache`) is the static-wins accessor R-12 names. Key Players card (l.3740–3743) propagates via name+team match. PROPOSED (not applied): minimal two-key comparator — ballScore desc, then lowest static wins; defense wins cross-type ties. UNKNOWN: frequency of tie-break impact on outcomes (needs seeded run). Super Bowl MVP path (l.5845) is separate (zSum-based) — flagged, not changed. `node --check` on extracted script block (l.449–6551) → exit 0.
-- Anchor build: `_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B. Reference build only; never edited.
-- Protected constants untouched: DEFAULT_WEIGHTS, FLEX, NATURAL_SLOT_MAP, MC, PLAN_K, RATING_SPECS.
+- Last session (23 Oct): game-ball tie-break verification (note `_agents/boc/notes/game-ball-tiebreak-verification.md`).
+- This session (25 Oct):
+  - Reviewed P-006 (Beam's QUEUE-1 position-dropdown submission): verdict IMPROVED. Found posdrop flex bug (posbtn won't stretch because posdrop isn't a flex item of .filters) and corrected verification command (tests/e2e-smoke.mjs does not exist; use tools/post-merge-smoke.mjs). Lint exit 3 = UNVERIFIED on this machine (nested root config). File: `inbox/20261025-0328-boc-P-006-review.md`.
+  - Claimed + delivered P-002 brand inventory: 3 brand occurrences of "NFL Draft Simulator" (title l.7, og:title l.10, hero h1 l.319) + comment l.923 + ambiguous tab label l.440. File: `inbox/20261025-0345-boc-P-002-work.md`.
+- Anchor build: Football-Sim-PreColors.html, sha256 40233d6be00e987c…, 657486 B.
 
 ## What the next session needs
 - Read this file, then `_agents/boc/notes/game-ball-tiebreak-verification.md`, then `bulletin/` via `node tools/council-sync.mjs --days 3`.
-- Worktree: `/Users/kosi/Desktop/wt/boc`, branch `council/boc`, merge-base `f4527a260f11aa805fceefdc7c6602739c3fefb7` (origin/council/base).
-- Run the preservation gate first: `git fetch -q origin; node tools/preserve.mjs check`.
+- Worktree: `/Users/kosi/Desktop/wt/boc`, branch `council/boc`.
+- Run preservation gate first: `git fetch -q origin; node tools/preserve.mjs check`.
 
 ## Open questions
-- Seeded run to measure how often the R-12 tie-break changes the game-ball winner (needs CDP drive of simulateGame).
-- 100-season report star/game-ball criteria — unchecked.
-- Remaining unverified items: 4th-down rule maths, blocked extra point, 3-4's effect.
-- Colour-registry verification (ship as reference or verify first).
-- 100-season regression with the weight deltas.
+- P-003 (theme tokens) rework still open; P-005 (draft board clean-up) rework open; both P0. Consider taking P-005 (grep-based) next.
+- Lint selftest still UNVERIFIED on this machine (exit 3 nested root config).
+- Seeded run for R-12 tie-break frequency (needs CDP drive).
 
 ## Live files
 - `_agents/boc/BOC.md` (this file)
 - `_agents/boc/notes/game-ball-tiebreak-verification.md`
-- `_agents/boc/notes/shared-doc-delta-CHRONICLE.md.patch` (my CHRONICLE addition, for Architect)
-- `_agents/boc/notes/shared-doc-delta-COUNCIL-BULLETIN.md.patch` (my bulletin addition, for Architect)
-- `bulletin/20261025-0257-boc.md` (this session's bulletin entry)
+- `inbox/20261025-0328-boc-P-006-review.md`
+- `inbox/20261025-0329-boc-P-006-claim.md`
+- `inbox/20261025-0335-boc-P-002-claim.md`
+- `inbox/20261025-0345-boc-P-002-work.md`
+- `bulletin/20261025-0355-boc.md` (this session)
 
 ## Worktree / branch
 - Path: `/Users/kosi/Desktop/wt/boc`
 - Branch: `council/boc`
-- merge-base HEAD origin/council/base: `f4527a260f11aa805fceefdc7c6602739c3fefb7`
+- merge-base HEAD origin/council/base: `29e2f4def704262a931a95c244151c67012aa13a`
