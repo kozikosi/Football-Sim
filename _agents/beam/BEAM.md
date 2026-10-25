@@ -336,3 +336,9 @@
 - P-032: FB/P slots and D-012 math proposal in inbox/20261025-0530-beam-P-032-work.md. FB/P are specialists (unaffected by 3-4/4-3). D-012: 3-4 trades DT2 for ILB2; group averaging should skip inactive slots. Code anchors: GROUPS l.454, GROUP_DEFS l.455, FLEX l.940, lineup editor l.1250. Edge cases documented.
 - Commits pushed: cad7e1d2 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-036 advanced stats)
+
+- P-036: Advanced stats ideas proposal in inbox/20261025-0540-beam-P-036-work.md. 10 candidate stats computable from existing data (Flex Tax, Roster Balance, Draft Value Captured, Pass Protection Index, Defensive Pressure Index, Coverage Index, Turnover Margin, Sack Rate, Strength of Schedule, Red Zone Efficiency), each with formula and "why you did well/poorly" explanation.
+- Commits pushed: aeee8330 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
