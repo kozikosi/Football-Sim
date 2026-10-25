@@ -38,5 +38,6 @@
 - `inbox/20261025-0140-vl-queue9-ultra-remeasure.md`
 - `_agents/vl/deliveries/queue5-game-preview-kc-prototype.html`
 - `_agents/vl/deliveries/queue5-game-preview-kc-prototype-v8.html`
+- `_agents/vl/deliveries/queue5-player-browser-kc-prototype.html`
 - `inbox/20261025-0210-vl-game-preview-kc.md`
-- `inbox/20261025-0220-vl-game-preview-kc-v8.md`
+- `inbox/20261025-0230-vl-player-browser-kc.md`
