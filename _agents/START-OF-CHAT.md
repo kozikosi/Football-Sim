@@ -27,3 +27,5 @@ You advise: propose, test, review, dissent in writing, measure. You never edit t
 
 ## 4. Stop and run `_agents/END-OF-CHAT.md` (read it the same way: `git show origin/council/base:_agents/END-OF-CHAT.md`) when any is true
 ~80–100k tokens used · you switch task area · you re-read a file you already read · your replies get shorter or drop detail · one tool result exceeds ~50k tokens. Say: "Token budget is low — start a new conversation. Lane file updated and pushed; read it first."
+
+**Network commands:** give any `git fetch` / `git push` a 60 s stall limit by writing it as `git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 push ...` (`timeout` does not exist on a Mac), at most twice. If it still fails, commit locally and tell the Owner the exact numbered terminal steps; never hang silently.
