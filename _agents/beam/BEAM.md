@@ -550,3 +550,9 @@
 - P-102: Draft board extends to bottom of panel proposal in inbox/20261025-0860-beam-P-102-work.md. CSS: min-height calc(100vh - 120px), flex column, tbody min-height 400px. SAFE ALONE: YES.
 - Commits pushed: 56cbad3f (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-125 Start A New Draft button)
+
+- P-125: "Start A New Draft" button at bottom of draft page proposal in inbox/20261025-0870-beam-P-125-work.md. Shimmering pill, confirm dialog, returns home. Also updates existing "Start a new draft…" buttons (l.6240, l.3929) to use same flow.
+- Commits pushed: aae21c1a (verified via git ls-remote).
+- No product file edits, no protected constants changed.
