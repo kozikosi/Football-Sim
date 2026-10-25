@@ -4224,15 +4224,16 @@ function lineupCell(slotmap, s){
  return {text: e.name ? `${e.name} (${e.ovr})` : '—', val: e.ovr};
 }
 function renderLineupTableHTML(slotmapLeft, slotmapRight){
+ function eNameOnly(t){ return t.replace(/\s*\([^)]+\)/,''); }
  let rows = '';
  DEPTH_CHART_GROUPS.forEach(([gname, gcls, slots])=>{
   rows += `<tr><td colspan="3" class="narr" style="text-transform:uppercase;letter-spacing:.05em;font-size:0.7rem;padding-top:12px;">${gname}</td></tr>`;
   slots.forEach(s=>{
    const l = lineupCell(slotmapLeft, s), r = lineupCell(slotmapRight, s);
-   rows += `<tr>
-    <td style="${l.val>r.val?'font-weight:700;color:var(--good);':''}">${l.text}</td>
+  rows += `<tr>
+    <td style="${l.val>r.val?'font-weight:700;color:var(--gold);':''}">${l.val>r.val?'★ ':''}${eNameOnly(l.text)}</td>
     <td class="narr" style="text-align:center;">${LABELS[s]||s}</td>
-    <td style="${r.val>l.val?'font-weight:700;color:var(--good);':''}text-align:right;">${r.text}</td>
+    <td style="${r.val>l.val?'font-weight:700;color:var(--gold);text-align:right;':''}">${eNameOnly(r.text)}${r.val>l.val?' ★':''}</td>
    </tr>`;
   });
  });
