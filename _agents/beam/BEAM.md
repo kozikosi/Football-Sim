@@ -192,3 +192,10 @@
 - Rendered visualization.
 - Commits pushed: b4db89cb (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — homepage floaty units revised)
+
+- Revised homepage floaty draft setup: four separate floating rose-gold entities (Season, Playoffs, Super Bowl, Can you go 20-0) with no period/no sentence; removed "Read the guide..." text; Start Draft more floaty/vibrant with shimmer effect; mobile-responsive.
+- Rendered visualization.
+- Commits pushed: 751ca44c (verified via git ls-remote).
+- No product file edits, no protected constants changed.
