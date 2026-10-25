@@ -213,3 +213,10 @@
 - Rendered visualization.
 - Commits pushed: 4fa674e2 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — QUEUE-9)
+
+- QUEUE-9: Re-measured preserved math-core hash gate. Found the proposal's hash `dc54e4210ce1` (shared by all 8 functions) is NOT a real per-function hash — the awk extraction truncates at the first standalone `}`. On Pre-Colors, the 8 functions have distinct hashes (slotWins 4b191ab6238d, slotWinsPerOvr b686e04550bd, modelWeights c0023182ddac, effOvr e65b6006831d, optimalLineup 51b55aa8adaf, matchupModel 8e9ae4b8929d, simulateGame 416426ea14c6, teamRatings 0a10fd25614f). VERIFIED_SEEDS.md repeats the same truncation artifact. Build identity (v20/PreColors/Donor) reproduces. Recommendation: rewrite extraction with brace-depth counting before trusting any hash gate.
+- Receipt in inbox/20261025-0110-beam-queue-9-math-core-hash-gate.md.
+- Commits pushed: 75ea0936 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
