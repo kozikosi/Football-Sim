@@ -220,3 +220,11 @@
 - Receipt in inbox/20261025-0110-beam-queue-9-math-core-hash-gate.md.
 - Commits pushed: 75ea0936 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — Q-V23-3, Q-V23-4 + standing chores)
+
+- Q-V23-3: Palette tokens + team-tint backgrounds proposal in inbox/20261025-0200-beam-q-v23-3-palette-tokens-team-tint.md (rose/gold/white tokens, open/airy, team-tint on non-Season tabs).
+- Q-V23-4: Lineup comparison cue (no blue on user names; gold ▲ better-player cue; team-colour accents) in inbox/20261025-0205-beam-q-v23-4-lineup-comparison.md.
+- Standing chores: preserve.mjs check --fetch → beam clean (0 UNSAVED). check-tasks.mjs → 7 items, 0 problems. Remaining queue items 1-9 all claimed; QUEUE-10 (DS trim lane) is DS's task.
+- Commits pushed: 439fb811 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
