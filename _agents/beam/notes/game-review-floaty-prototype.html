@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html><head><meta charset=utf-8><style>
+:root { --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --panel2:rgba(255,255,255,0.06); --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0; --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c; --team-primary-rgb:227,24,55; --opp-primary:#aa0000; --opp-secondary:#b3995d; --opp-primary-rgb:170,0,0; --motion-fast:150ms ease; --motion-normal:250ms ease; --ease-bounce:cubic-bezier(0.34,1.56,0.64,1); }
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); padding:20px; line-height:1.6; overflow-x:hidden; }
+@keyframes textShimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes scrollRight { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+@keyframes scrollLeft { 0% { transform:translateX(100%); } 100% { transform:translateX(-100%); } }
+@keyframes float1 { 0%,100% { transform:translate(0,0) rotate(0deg); } 25% { transform:translate(3px,-5px) rotate(1deg); } 50% { transform:translate(-2px,-8px) rotate(-1deg); } 75% { transform:translate(4px,-3px) rotate(0.5deg); } }
+@keyframes float2 { 0%,100% { transform:translate(0,0) rotate(0deg); } 33% { transform:translate(-4px,-6px) rotate(-1.5deg); } 66% { transform:translate(3px,-4px) rotate(1deg); } }
+@keyframes btnFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@keyframes sparkle { 0%,100% { opacity:0.6; transform:scale(1); } 50% { opacity:1; transform:scale(1.6); } }
+@keyframes playReveal { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:translateY(0); } }
+@keyframes scoreBump { 0% { transform:scale(1); } 50% { transform:scale(1.4); } 100% { transform:scale(1); } }
+@keyframes tableFade { from { opacity:0; } to { opacity:1; } }
+.header-scroll-layer { position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
+.header-scroll-text { position:absolute; white-space:nowrap; font-weight:900; letter-spacing:0.15em; will-change:transform; }
+.header-scroll-text.l1 { top:12%; font-size:0.8rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
+.header-scroll-text.l2 { top:42%; font-size:1.1rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
+.header-scroll-text.l3 { top:72%; font-size:0.55rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
+.home-20-0 { display:inline-block; font-size:1.4rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; }
+.home-20-0:hover { transform:scale(1.05); filter:brightness(1.2); }
+@media (prefers-reduced-motion: reduce) { .header-scroll-text, .home-20-0 { animation:none; } .home-20-0 { background-position:0 0; } }
+.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.card:hover { border-color:var(--border-hover); box-shadow:0 8px 32px rgba(0,0,0,0.35); transform:translateY(-1px); }
+p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
+.shimmer-text { background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.shimmer-text.gold { background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 50%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.score-box { flex:1; min-width:140px; border-radius:12px; padding:14px 16px; color:#fff; }
+.score-box.user { background:linear-gradient(135deg,var(--team-primary),var(--team-secondary)); }
+.score-box.opp { background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary)); }
+.score-box .tname { font-size:0.8rem; text-transform:uppercase; letter-spacing:0.06em; opacity:0.9; }
+.score-box .score { font-size:2.2rem; font-weight:900; transition:transform 200ms ease; }
+.score-box .score.bump { animation:scoreBump 300ms ease; }
+.score-box .detail { margin-top:6px; font-size:0.78rem; opacity:0.9; }
+.qtr-bar { display:flex; align-items:center; gap:8px; margin:4px 0; }
+.qtr-bar .label { width:32px; font-size:0.75rem; color:var(--sub); font-weight:600; }
+.qtr-bar .track { flex:1; height:8px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden; }
+.qtr-bar .fill { height:100%; border-radius:4px; transition:width 600ms ease; }
+.qtr-bar .score-val { width:28px; text-align:right; font-weight:700; color:var(--accent); font-size:0.85rem; }
+.play-row { opacity:0; transform:translateY(8px); transition:opacity 300ms ease, transform 300ms ease; padding:8px 10px; margin-bottom:4px; border-radius:8px; font-size:0.85rem; border-left:3px solid transparent; }
+.play-row.revealed { opacity:1; transform:translateY(0); }
+.play-row.big { background:rgba(212,175,55,0.08); border-left-color:var(--gold); }
+.play-row .scorer { opacity:0; transition:opacity 300ms ease 100ms; color:var(--gold); font-weight:700; margin-left:8px; }
+.play-row.revealed .scorer { opacity:1; }
+.play-row .qtr { font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-right:8px; }
+.play-log { min-height:240px; max-height:360px; overflow-y:auto; padding:8px; }
+.table-fade { opacity:0; transition:opacity 400ms ease; }
+.table-fade.show { opacity:1; }
+.stat-table { width:100%; border-collapse:separate; border-spacing:0 4px; font-size:0.8rem; }
+.stat-table th { text-align:left; color:var(--sub); font-size:0.7rem; text-transform:uppercase; letter-spacing:0.04em; padding:4px 8px; }
+.stat-table td { padding:6px 8px; background:rgba(255,255,255,0.02); border-radius:4px; }
+.star-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:12px; text-align:center; transition:transform var(--motion-fast); }
+.star-card:hover { transform:translateY(-2px); }
+.star-card .portrait { width:48px; height:48px; border-radius:50%; margin:0 auto 6px; border:2px solid var(--border); background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; color:var(--accent); }
+.star-card .name { font-weight:700; font-size:0.85rem; margin-bottom:2px; }
+.star-card .stat { font-size:0.7rem; color:var(--sub); }
+.star-card .grade { margin-top:4px; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:10px; }
+.game-ball { display:inline-flex; align-items:center; gap:10px; border:3px solid var(--gold); border-radius:12px; background:#78350f; color:#fff; padding:10px 14px; font-weight:800; animation:pulseGlow 2.5s ease-in-out infinite; }
+@keyframes pulseGlow { 0%,100% { box-shadow:0 0 0 0 rgba(251,191,36,0.4); } 50% { box-shadow:0 0 0 10px rgba(251,191,36,0.25); } }
+.turnover-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(80px, 1fr)); gap:8px; margin:8px 0; }
+.to-icon { aspect-ratio:1; border-radius:8px; border:1px solid var(--border); display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; background:rgba(255,255,255,0.02); }
+.to-icon .glyph { font-size:1.3rem; }
+.to-icon .tag { font-size:0.6rem; font-weight:700; text-transform:uppercase; letter-spacing:0.03em; }
+.controls { display:flex; gap:8px; margin:12px 0; flex-wrap:wrap; }
+.controls button { background:var(--panel); border:1px solid var(--border); color:var(--text); padding:8px 14px; border-radius:6px; cursor:pointer; font-size:0.85rem; transition:all var(--motion-fast); }
+.controls button:hover { border-color:var(--accent); color:var(--accent); }
+.controls button.primary { background:var(--accent); color:#0d0a0e; border:none; font-weight:700; }
+.progress-bar { height:4px; background:rgba(255,255,255,0.05); border-radius:2px; margin:8px 0; overflow:hidden; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--team-primary),var(--gold)); border-radius:2px; transition:width 200ms ease; width:0%; }
+.status { font-size:0.8rem; color:var(--sub); margin:4px 0; }
+@media (prefers-reduced-motion: reduce) { .play-row, .play-row .scorer, .table-fade, .game-ball { animation:none !important; transition:none !important; opacity:1; transform:none; } .wp-line { animation:none; stroke-dashoffset:0; } }
+@media (max-width:600px) { .key-players { grid-template-columns:1fr; } }
+</style></head><body>
+
+<!-- Header -->
+<div style="position:relative;">
+  <div class="header-scroll-layer">
+    <div class="header-scroll-text l1">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l2">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l3">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+  </div>
+  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
+    <a class="home-20-0" href="#" onclick="return false;">20-0</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <div class="team-tag" style="border-color:var(--team-primary);"><span class="dot" style="background:var(--team-primary); width:10px;height:10px;border-radius:50%;display:inline-block;"></span>KC Chiefs</div>
+      <span style="color:var(--sub); font-size:0.8rem;">Week 4</span>
+    </div>
+  </div>
+</div>
+
+<h1 style="margin:12px 0 2px; font-size:1.2rem; color:var(--sub); font-weight:600;">Game Review</h1>
+<p style="margin:0 0 12px;">Week 4 — Kansas City Chiefs 31, San Francisco 49ers 20</p>
+
+<!-- Score boxes -->
+<div style="display:flex; gap:12px; flex-wrap:wrap; margin-bottom:12px;">
+  <div class="score-box user"><div class="tname">KC Chiefs (you)</div><div class="score" id="scoreYou">0</div><div class="detail">14 PF · +2 turnover diff</div></div>
+  <div class="score-box opp"><div class="tname">SF 49ers</div><div class="score" id="scoreOpp">0</div><div class="detail">24 PA · -2 turnover diff</div></div>
+</div>
+
+<!-- Quarter bars -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Score by Quarter</h2>
+<div id="qtrBars" style="margin-bottom:12px;">
+  <div class="qtr-bar"><span class="label">1st</span><div class="track"><div class="fill" style="width:0%; background:var(--team-primary);"></div></div><span class="score-val">0</span></div>
+  <div class="qtr-bar"><span class="label">2nd</span><div class="track"><div class="fill" style="width:0%; background:var(--team-primary);"></div></div><span class="score-val">0</span></div>
+  <div class="qtr-bar"><span class="label">3rd</span><div class="track"><div class="fill" style="width:0%; background:var(--opp-primary);"></div></div><span class="score-val">0</span></div>
+  <div class="qtr-bar"><span class="label">4th</span><div class="track"><div class="fill" style="width:0%; background:var(--team-primary);"></div></div><span class="score-val">0</span></div>
+</div>
+
+<!-- Progress + controls -->
+<div class="progress-bar"><div class="progress-fill" id="prog"></div></div>
+<div class="status" id="status">Ready to replay. Press "Play Review".</div>
+<div class="controls">
+  <button class="primary" onclick="playReview()">Play Review</button>
+  <button onclick="skipReview()">Skip</button>
+  <button onclick="toggleSpeed()">Speed: <span id="speedLabel">1x</span></button>
+  <button onclick="resetReview()">Reset</button>
+</div>
+
+<!-- Play-by-play log -->
+<div class="card">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Live Play-by-Play</h2>
+  <div class="play-log" id="playLog"></div>
+</div>
+
+<!-- Turnover summary -->
+<div class="card table-fade" id="turnovers">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Turnovers</h2>
+  <div class="turnover-grid">
+    <div class="to-icon"><div class="glyph">⚔</div><div class="tag" style="color:#ff6b6b;">INT 4Q</div></div>
+    <div class="to-icon"><div class="glyph">⬇</div><div class="tag" style="color:#ffb347;">FUM 2Q</div></div>
+    <div class="to-icon"><div class="glyph">✕</div><div class="tag" style="color:var(--sub);">DOWNS 3Q</div></div>
+  </div>
+  <p style="font-size:0.8rem; color:var(--sub); margin:8px 0 0;">Every turnover named. KC +2 turnover diff.</p>
+</div>
+
+<!-- Stars of the game -->
+<div class="card table-fade" id="stars">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Stars of the Game</h2>
+  <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px;">
+    <div class="star-card"><div class="portrait">PM</div><div class="name">P. Mahomes</div><div class="stat">312 yds · 3 TD · 1 INT</div><div class="grade" style="background:var(--gold);color:#0d0a0e;">STAR</div></div>
+    <div class="star-card"><div class="portrait" style="background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary));">NB</div><div class="name">N. Bosa</div><div class="stat">3 sacks · 7 TFL</div><div class="grade" style="background:#94a3b8;">STAR</div></div>
+    <div class="star-card"><div class="portrait">TK</div><div class="name">T. Kelce</div><div class="stat">8 rec · 98 yds · 1 TD</div><div class="grade" style="background:#d97706;">STAR</div></div>
+  </div>
+</div>
+
+<!-- Game ball -->
+<div class="card table-fade" id="gameball" style="text-align:center;">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Game Ball</h2>
+  <div class="game-ball">🏈 Game ball: P. Mahomes</div>
+  <p style="font-size:0.8rem; color:var(--sub); margin:8px 0 0;">312 yards, 3 TDs, 1 INT — the engine of the offense.</p>
+</div>
+
+<!-- Box score -->
+<div class="card table-fade" id="boxscore">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Box Score</h2>
+  <table class="stat-table">
+    <thead><tr><th>Player</th><th>Pos</th><th>Yds</th><th>TD</th></tr></thead>
+    <tbody>
+      <tr><td>P. Mahomes</td><td>QB</td><td>312</td><td>3</td></tr>
+      <tr><td>T. Kelce</td><td>TE</td><td>98</td><td>1</td></tr>
+      <tr><td>I. Pacheco</td><td>RB</td><td>87</td><td>1</td></tr>
+      <tr><td>R. Rice</td><td>WR</td><td>76</td><td>1</td></tr>
+      <tr><td>N. Bosa</td><td>DL</td><td>3 sacks</td><td>0</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Game stats -->
+<div class="card table-fade" id="gamestats">
+  <h2 style="font-size:0.9rem; margin:0 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Game Stats</h2>
+  <table class="stat-table">
+    <thead><tr><th>Stat</th><th>KC</th><th>SF</th></tr></thead>
+    <tbody>
+      <tr><td>Total Yards</td><td>421</td><td>334</td></tr>
+      <tr><td>Turnovers</td><td>0</td><td>2</td></tr>
+      <tr><td>Time of Poss</td><td>34:12</td><td>25:48</td></tr>
+      <tr><td>3rd Down</td><td>7/12</td><td>4/11</td></tr>
+      <tr><td>Sacks</td><td>1</td><td>3</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div style="margin-top:12px; padding:10px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
+  <p style="margin:0; color:var(--sub); font-size:0.75rem;">KC Chiefs (red/gold) vs SF 49ers. Game review with 10-20s animation: play-by-play reveal, score bump, quarter bars, scorer fade-in, big-play highlight, tables fade in. Skip/Speed controls. Reduced-motion fallback. No blue. Mobile-responsive.</p>
+</div>
+
+<script>
+const plays = [
+  {q:"1st", text:"Kickoff. KC receives.", big:false},
+  {q:"1st", text:"Mahomes 12yd pass to Kelce.", big:false},
+  {q:"1st", text:"Pacheco 8yd run.", big:false},
+  {q:"1st", text:"TOUCHDOWN - Mahomes 24yd pass to Kelce!", big:true, scoreChange:{el:"scoreYou",val:"7"}, scorer:"Kelce", qtrIdx:0, qtrScore:7},
+  {q:"1st", text:"SF goes 3-and-out.", big:false},
+  {q:"2nd", text:"Mahomes 45yd bomb to MVS.", big:false},
+  {q:"2nd", text:"TOUCHDOWN - Pacheco 3yd run!", big:true, scoreChange:{el:"scoreYou",val:"14"}, scorer:"Pacheco", qtrIdx:1, qtrScore:14},
+  {q:"2nd", text:"SF scores FG (42yd).", big:false, scoreChange:{el:"scoreOpp",val:"3"}, qtrIdx:1, qtrScore:3},
+  {q:"2nd", text:"INTERCEPTION - Bosa tips, picked by Warner!", big:true, scorer:"Warner", qtrIdx:1},
+  {q:"3rd", text:"SF TD - Purdy 12yd pass to Kittle.", big:true, scoreChange:{el:"scoreOpp",val:"10"}, scorer:"Kittle", qtrIdx:2, qtrScore:10},
+  {q:"3rd", text:"Mahomes 33yd pass to Rice.", big:false},
+  {q:"3rd", text:"TOUCHDOWN - Mahomes 18yd pass to Rice!", big:true, scoreChange:{el:"scoreYou",val:"21"}, scorer:"Rice", qtrIdx:2, qtrScore:21},
+  {q:"4th", text:"SF FG (38yd).", big:false, scoreChange:{el:"scoreOpp",val:"13"}, qtrIdx:3, qtrScore:13},
+  {q:"4th", text:"Mahomes 28yd scramble.", big:false},
+  {q:"4th", text:"TOUCHDOWN - Mahomes 6yd run!", big:true, scoreChange:{el:"scoreYou",val:"28"}, scorer:"Mahomes", qtrIdx:3, qtrScore:28},
+  {q:"4th", text:"SF scores TD (Purdy 5yd run).", big:true, scoreChange:{el:"scoreOpp",val:"20"}, scorer:"Purdy", qtrIdx:3, qtrScore:20},
+  {q:"4th", text:"Final: KC 28 - SF 20. Chiefs win!", big:true},
+];
+
+const qtrScores = { KC: [7, 14, 21, 28], SF: [0, 3, 10, 20] };
+const qtrMax = [14, 14, 21, 28];
+
+let speed = 1;
+let timer = null;
+let idx = 0;
+let running = false;
+
+function playReview() {
+  if (running) return;
+  running = true;
+  idx = 0;
+  document.getElementById("playLog").innerHTML = "";
+  document.getElementById("scoreYou").textContent = "0";
+  document.getElementById("scoreOpp").textContent = "0";
+  document.querySelectorAll(".qtr-bar .fill").forEach((f, i) => { f.style.width = "0%"; });
+  document.querySelectorAll(".qtr-bar .score-val").forEach((s) => { s.textContent = "0"; });
+  document.getElementById("boxscore").classList.remove("show");
+  document.getElementById("gamestats").classList.remove("show");
+  document.getElementById("stars").classList.remove("show");
+  document.getElementById("gameball").classList.remove("show");
+  document.getElementById("turnovers").classList.remove("show");
+  document.getElementById("prog").style.width = "0%";
+  document.getElementById("status").textContent = "Replaying game...";
+  step();
+}
+
+function step() {
+  if (idx >= plays.length) {
+    document.getElementById("boxscore").classList.add("show");
+    document.getElementById("gamestats").classList.add("show");
+    document.getElementById("stars").classList.add("show");
+    document.getElementById("gameball").classList.add("show");
+    document.getElementById("turnovers").classList.add("show");
+    document.getElementById("status").textContent = "Review complete. " + plays.length + " plays in ~" + ((plays.length*400/speed)/1000).toFixed(1) + "s.";
+    running = false;
+    return;
+  }
+  const p = plays[idx];
+  const host = document.getElementById("playLog");
+  const row = document.createElement("div");
+  row.className = "play-row" + (p.big ? " big" : "");
+  row.innerHTML = '<span class="qtr">' + p.q + '</span><span>' + p.text + '</span><span class="scorer">' + (p.scorer ? "— " + p.scorer : "") + '</span>';
+  host.appendChild(row);
+  host.scrollTop = host.scrollHeight;
+  requestAnimationFrame(() => row.classList.add("revealed"));
+  if (p.scoreChange) {
+    const sc = document.getElementById(p.scoreChange.el);
+    if (sc) { sc.textContent = p.scoreChange.val; sc.classList.add("bump"); setTimeout(() => sc.classList.remove("bump"), 300); }
+  }
+  if (p.qtrIdx !== undefined && p.qtrScore !== undefined) {
+    const bars = document.querySelectorAll(".qtr-bar");
+    const bar = bars[p.qtrIdx];
+    if (bar) {
+      const fill = bar.querySelector(".fill");
+      const val = bar.querySelector(".score-val");
+      const pct = (p.qtrScore / qtrMax[p.qtrIdx]) * 100;
+      if (fill) fill.style.width = pct + "%";
+      if (val) val.textContent = p.qtrScore;
+    }
+  }
+  document.getElementById("prog").style.width = ((idx+1)/plays.length*100) + "%";
+  idx++;
+  timer = setTimeout(step, 400 / speed);
+}
+
+function skipReview() {
+  clearTimeout(timer);
+  running = false;
+  const host = document.getElementById("playLog");
+  host.innerHTML = "";
+  plays.forEach((p) => {
+    const row = document.createElement("div");
+    row.className = "play-row revealed" + (p.big ? " big" : "");
+    row.innerHTML = '<span class="qtr">' + p.q + '</span><span>' + p.text + '</span><span class="scorer">' + (p.scorer ? "— " + p.scorer : "") + '</span>';
+    host.appendChild(row);
+  });
+  document.getElementById("scoreYou").textContent = "28";
+  document.getElementById("scoreOpp").textContent = "20";
+  document.querySelectorAll(".qtr-bar").forEach((bar, i) => {
+    const fill = bar.querySelector(".fill");
+    const val = bar.querySelector(".score-val");
+    if (fill) fill.style.width = (qtrScores.KC[i] / qtrMax[i] * 100) + "%";
+    if (val) val.textContent = qtrScores.KC[i];
+  });
+  document.getElementById("boxscore").classList.add("show");
+  document.getElementById("gamestats").classList.add("show");
+  document.getElementById("stars").classList.add("show");
+  document.getElementById("gameball").classList.add("show");
+  document.getElementById("turnovers").classList.add("show");
+  document.getElementById("prog").style.width = "100%";
+  document.getElementById("status").textContent = "Skipped. Full review revealed instantly.";
+}
+
+function toggleSpeed() {
+  speed = speed === 1 ? 2 : 1;
+  document.getElementById("speedLabel").textContent = speed + "x";
+}
+
+function resetReview() {
+  clearTimeout(timer);
+  running = false;
+  idx = 0;
+  document.getElementById("playLog").innerHTML = "";
+  document.getElementById("scoreYou").textContent = "0";
+  document.getElementById("scoreOpp").textContent = "0";
+  document.querySelectorAll(".qtr-bar .fill").forEach((f) => { f.style.width = "0%"; });
+  document.querySelectorAll(".qtr-bar .score-val").forEach((s) => { s.textContent = "0"; });
+  document.getElementById("boxscore").classList.remove("show");
+  document.getElementById("gamestats").classList.remove("show");
+  document.getElementById("stars").classList.remove("show");
+  document.getElementById("gameball").classList.remove("show");
+  document.getElementById("turnovers").classList.remove("show");
+  document.getElementById("prog").style.width = "0%";
+  document.getElementById("status").textContent = "Ready to replay. Press Play Review.";
+}
+</script>
+</body></html>
