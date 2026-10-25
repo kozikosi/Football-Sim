@@ -6,54 +6,49 @@
 - Lane: `_agents/boc/` (notes, evidence, tools). No product edits. No edits to other sessions' files. No protected-constant changes.
 
 ## Current work and state
-- This session (25 Oct): review #1s of Beam's P0/P1 work, all against `Football-Sim-PreColors.html` (sha256 `40233d6be00e987c…`, 657,486 B). Verdicts all "improved":
-  - P-001 (homepage): `inbox/20261025-0352-boc-P-001-review.md` — palette must default to rose (not KC red); size 10435 B > 10 KB; floaty text/labels remain; title/og:title not addressed.
-  - P-003 (theme tokens): `inbox/20261025-0400-boc-P-003-review.md` — contrast table inflated (#b8941f = 2.68 not 4.2); `--accent2` redefinition breaks orange semantics; hard-coded #ffc43c/#6aa6ff untouched.
-  - P-005 (draft board): `inbox/20261025-0420-boc-P-005-review.md` — occurrence count 7/6 not 6/5; grid not adjusted; `currentRound` undefined (ReferenceError); gold fallback wrong.
-  - P-009 (Position Rankings): `inbox/20261025-0430-boc-P-009-review.md` — DLCB `n:8 → 6` missing (Owner ruling); pluralization list incomplete; count 62 not 60.
-  - P-010 (draft copy/layout): `inbox/20261025-0440-boc-P-010-review.md` — items 6/9 lack exact anchors; prefix/label wording ambiguous.
-  - P-011 (draft resume): `inbox/20261025-0510-boc-P-011-review.md` — anchor errors (init line, preseason transitions); draft-stall-on-restore; incomplete failure modes; incomplete seeded-RNG conversion list; size/keep-list.
-  - P-012 (weights page UI): `inbox/20261025-0530-boc-P-012-review.md` — missing updateWeightBtnStates in input handler; badges aggregation unspecified; dead .active toggle.
-  - P-013 (default weights): `inbox/20261025-0550-boc-P-013-review.md` — no reviewable table; 20× not a code path; scope (fallback vs model) ambiguous.
-  - P-014 (team comparison): `inbox/20261025-0570-boc-P-014-review.md` — item 2 already done; item 3 scope mismatch; item 5 is V23 theme scope.
-  - P-015 (guide page): `inbox/20261025-0590-boc-P-015-review.md` — item 3 ambiguities (which table, casing); glossary overlaps termsHTML; cache invalidation.
-  - P-016 (preseason/4th-down): `inbox/20261025-0610-boc-P-016-review.md` — analysis accurate but overstates mismatch; missing "unlocked all season" code change, UI sketch, text/UI redesign.
-  - P-017 (3-4 base + flex rules): `inbox/20261025-0630-boc-P-017-review.md` — FLEX protected (CB3=0 needs Owner confirm); Part 4 anchor wrong (l.4979 not l.5096); negative-penalty downstream effects; Part 1/3 under-specified (split recommended).
-- Earlier (23 Oct): game-ball tie-break verification note `_agents/boc/notes/game-ball-tiebreak-verification.md`; P-006 review IMPROVED; P-002 brand inventory.
+- Session 26 Oct: reviewed 11 items (P-030, P-032, P-033, P-034, P-035, P-036, P-037, P-038, P-039, P-050, P-051), all against Football-Sim-PreColors.html (sha256 40233d6be00e987c…, 657,486 B) or the relevant repo files. Verdicts: 6 improved, 5 ok. All pushed to council/boc.
+- Key findings this session:
+  - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
+  - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
+  - P-033: lint selftest fails (nested root config); removing "root": true from tools/biome-product/biome.json validated (Biome processes file, parseReport works). Smoke-test TABS list (post-merge-smoke.mjs:421) must drop 'tabGuideBtn' for V23.
+  - P-034: team-colours.json has 6 brand mismatches vs Owner's 22 Oct table (JAX primary + 5 secondary/third), not just JAX. JAX brand entry needs full primary/secondary/third swap.
+  - P-035: all 37 cited proposals verified in Beam's brainstorm; SAFE ALONE designations match. Minor: duplicate P7-38, top-25 actually ~17.
+  - P-036: playerWar at 1376 (not ~1600); replacementLevels at 1352 (not 1355). Red Zone Efficiency: makeScoringEvents does NOT track field position (Beam's claim false). Turnover Margin not "already in standings."
+  - P-037: stepper has 4 steps (Draft/Season/Playoffs/Champion), not 17. Draft table grid is span-based, not 12 tiny columns. Most findings cosmetic/unverified (no Playwright).
+  - P-038: protected-function hash dc54e4210ce1 is a placeholder (identical for all 8 functions) — "math drift" claim unverified. Math.random 56 (not 38). Hashes are SHA-1 (40 hex), not SHA-256.
+  - P-039: Math.random 38 repeated (wrong; actual 56). KI items unverified (GPT docs not in repo).
+  - P-050: no per-play win probability exists; wpFrom is pre-game only. Design needs per-play WP model.
+  - P-051: ok. No audio code in product; snippet exists; P7-31 verified.
 - Anchor build: Football-Sim-PreColors.html, sha256 40233d6be00e987c…, 657,486 B.
 
 ## What the next session needs
-- Read this file, then `node tools/council-sync.mjs --days 3` (reviews above are on `council/boc`).
-- Worktree: `/Users/kosi/Desktop/wt/boc`, branch `council/boc`.
-- Run preservation gate first: `git fetch -q origin; node tools/preserve.mjs check` (exit 1 from other worktrees is expected, not mine).
-- All P-001/P-003/P-005/P-009/P-010/P-011/P-012/P-013/P-014/P-015/P-016/P-017 now at 1/3 each (boc reviewed); need two more reviewers each. Next candidates per `node tools/next.mjs`: P-018… or standing chores.
-- Lint selftest still UNVERIFIED on this machine (exit 3 nested root config).
+- Read this file, then `node tools/council-sync.mjs --days 3` (reviews above are on council/boc).
+- Worktree: /Users/kosi/Desktop/wt/boc, branch council/boc.
+- All reviewed items remain 0/3 on next.mjs (reviews not yet merged into council/base by the Architect). Do not re-review them.
+- Candidate next items: P-031 (injectable RNG, depends on P-030), or standing chores (preserve check, check-tasks, lane trim).
+- Lint selftest still UNVERIFIED until Architect removes "root": true from tools/biome-product/biome.json.
 
 ## Open questions
-- P-003 (theme tokens) rework still open; P-005 (draft board) rework open; both P0.
-- Whether 0-penalty flexes count as "shown" in P-005's flex-gating (Owner wording ambiguous).
-- Whether slot identifiers (MIKE, WILL, SAM, FS, SS, CB1…) should be pluralized in P-009 (Owner wording ambiguous).
+- Whether the Architect will re-hash protected functions with SHA-256 and pin in MERGE-MANIFEST.md (P-038 recommendation).
+- Whether team-colours.json brand entries for the 6 mismatched teams will be re-synced (P-034 recommendation).
+- Whether Red Zone Efficiency (P-036 stat 10) should be dropped or scoped as sim-core work.
 
 ## Live files
 - `_agents/boc/BOC.md` (this file)
-- `_agents/boc/notes/game-ball-tiebreak-verification.md`
-- `inbox/20261025-0328-boc-P-006-review.md`
-- `inbox/20261025-0345-boc-P-002-work.md`
-- `inbox/20261025-0352-boc-P-001-review.md`
-- `inbox/20261025-0400-boc-P-003-review.md`
-- `inbox/20261025-0420-boc-P-005-review.md`
-- `inbox/20261025-0430-boc-P-009-review.md`
-- `inbox/20261025-0440-boc-P-010-review.md`
-- `inbox/20261025-0510-boc-P-011-review.md`
-- `inbox/20261025-0530-boc-P-012-review.md`
-- `inbox/20261025-0550-boc-P-013-review.md`
-- `inbox/20261025-0570-boc-P-014-review.md`
-- `inbox/20261025-0590-boc-P-015-review.md`
-- `inbox/20261025-0610-boc-P-016-review.md`
-- `inbox/20261025-0630-boc-P-017-review.md`
-- `bulletin/20261025-0355-boc.md` (prior session)
+- `inbox/20261025-0414-boc-P-030-claim.md` / `-review.md`
+- `inbox/20261025-0415-boc-P-032-claim.md` / `-review.md`
+- `inbox/20261025-0416-boc-P-033-claim.md` / `-review.md`
+- `inbox/20261025-0417-boc-P-034-claim.md` / `-review.md`
+- `inbox/20261025-0417-boc-P-035-claim.md` / `-review.md`
+- `inbox/20261025-0418-boc-P-036-claim.md` / `-review.md`
+- `inbox/20261025-0418-boc-P-037-claim.md` / `-review.md`
+- `inbox/20261025-0419-boc-P-038-claim.md` / `-review.md`
+- `inbox/20261025-0419-boc-P-039-claim.md` / `-review.md`
+- `inbox/20261025-0420-boc-P-050-claim.md` / `-review.md`
+- `inbox/20261025-0420-boc-P-051-claim.md` / `-review.md`
+- `bulletin/20261025-0420-boc.md` (this session)
 
 ## Worktree / branch
-- Path: `/Users/kosi/Desktop/wt/boc`
-- Branch: `council/boc`
-- merge-base HEAD origin/council/base: `29e2f4def704262a931a95c244151c67012aa13a`
+- Path: /Users/kosi/Desktop/wt/boc
+- Branch: council/boc
+- merge-base HEAD origin/council/base: 29e2f4def704262a931a95c244151c67012aa13a
