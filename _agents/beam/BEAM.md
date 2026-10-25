@@ -465,3 +465,9 @@
 - Review posted: inbox/20261025-0700-beam-P-040-review.md.
 - Commits pushed: 963cc8a4 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-043 Remove Star system)
+
+- P-043: Remove Star system proposal in inbox/20261025-0710-beam-P-043-work.md. Exact removals: star span (l.1705), star text (l.1708), PRIO_STAR/prioOf logic, star CSS, guide star table (l.5072). Priority multiplier stays in math. SAFE ALONE: YES.
+- Commits pushed: c3072e63 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
