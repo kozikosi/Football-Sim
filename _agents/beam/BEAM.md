@@ -489,3 +489,9 @@
 - P-068: Homepage dropdown menus side-by-side proposal in inbox/20261025-0750-beam-P-068-work.md. CSS: flex-wrap:nowrap, overflow-x:auto, selects shrink with text-overflow:ellipsis. Mobile: no stacking. SAFE ALONE: YES.
 - Commits pushed: b3307c87 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-069 Footer as real footer)
+
+- P-069: Footer as real footer proposal in inbox/20261025-0770-beam-P-069-work.md. CSS: footnav becomes full-width footer (border-top, not rounded pill). Move from .wrap to bottom. "See guide for details" just above footer.
+- Commits pushed: 81f99909 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
