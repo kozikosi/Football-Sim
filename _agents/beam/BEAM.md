@@ -355,3 +355,9 @@
 - Receipt in inbox/20261025-0560-beam-P-039-work.md.
 - Commits pushed: 73fc91d4 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-050 win-probability graph)
+
+- P-050: Win-probability graph design proposal in inbox/20261025-0570-beam-P-050-work.md. SVG-based line graph, per-play WP from existing sim data, key moment dots, progressive draw animation, reduced-motion fallback, mobile-responsive. Design only (P3).
+- Commits pushed: 304d09c5 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
