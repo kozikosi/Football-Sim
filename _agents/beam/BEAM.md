@@ -404,3 +404,10 @@
 - Rendered a condensed version (SVGs too large for inline render; full file on disk).
 - Commits pushed: 2a14e301 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-001 review #2)
+
+- P-001: Reviewed OR's floaty homepage follow-up (inbox/20261025-0541-or-vl-p001-homepage-floaty.md). VERDICT: improved. All 9 Owner directives verified against V23-OWNER-REQUESTS.md. OR added fade timing, Change button colour, Start Draft float, softer selects, always-visible Draft button, sortable numbers, no-grow bubbles, footer, Start Season shimmer. One concern: OR's file lacks the exact HTML/CSS/JS block that VL's original had — recommend merging both.
+- Review posted: inbox/20261025-0610-beam-P-001-review2.md.
+- Commits pushed: 007a46cc (verified via git ls-remote).
+- No product file edits, no protected constants changed.
