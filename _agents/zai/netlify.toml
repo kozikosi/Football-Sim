@@ -1,0 +1,35 @@
+# Netlify configuration for Football Sim (Z-post-blue)
+# Prevents Netlify from processing/minifying the large inline HTML
+# which breaks the draft board's CSS grid and inline JavaScript.
+
+[build]
+  publish = "."
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+
+# Disable HTML processing (minification breaks large inline scripts)
+[build.processing]
+  skip_processing = true
+
+[build.processing.html]
+  pretty_urls = false
+
+[build.processing.css]
+  bundle = false
+  minify = false
+
+[build.processing.js]
+  bundle = false
+  minify = false
+
+[build.processing.images]
+  compress = false
