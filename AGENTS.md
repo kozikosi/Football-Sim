@@ -2,7 +2,7 @@
 
 **NEVER ASSIGN WORK TO INDIVIDUAL AGENTS. Work comes from one ranked list, `_agents/PRIORITIES.md`; whoever opens a chat runs `node tools/next.mjs`, takes the top line, and the next agents review it. Nothing waits for a particular seat.**
 
-Read this first, then lines 1–120 of `V22-Suggestions.md` (the work order: rulings, critical path, rules) and only the section of the item you take. The file is 330 KB: never read it whole. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
+Read this first, then take work from `_agents/PRIORITIES.md` (`node tools/next.mjs`). `V22-Suggestions.md` (330 KB) is frozen history: never read it whole; only the section a PRIORITIES row cites. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
 
 ## 1. Authority
 
@@ -73,7 +73,7 @@ Style that the Owner has fixed: plain informative language in recaps (no "expect
 ## 5. Proposals, patches, claims
 
 **States — each is a different fact; never write one as another:**
-`proposed` → `accepted` (Architect) → `implemented` (in a build, receipt attached) → `verified` (a Verifier's gate result) → `Owner-accepted`. A proposal is not an accepted change; a patch is not an integrated change; an integrated change is not verified; verified is not accepted. **The registry is `tasks/`: one JSON file per item, `tasks/<id>.json`, id `T-YYYYMMDD-<seat>-<n>`, fields `title · state · seat · claimed_at · base_build_sha · evidence[{command,result}] · verification{seat,command,result} · owner_decision` (later states require more fields).** One file per item because seats then write different paths and cannot overwrite each other or reuse an id; `node tools/check-tasks.mjs` enforces unique ids, the state order, evidence before `implemented`, and a verifier different from the implementer. The work order (`V22-Suggestions.md`) keeps the briefs and prose; `tasks/` holds state. SQLite or any generated view is a projection, never the record.
+`proposed` → `accepted` (Architect) → `implemented` (in a build, receipt attached) → `verified` (a Verifier's gate result) → `Owner-accepted`. A proposal is not an accepted change; a patch is not an integrated change; an integrated change is not verified; verified is not accepted. **The registry is `tasks/`: one JSON file per item, `tasks/<id>.json`, id `T-YYYYMMDD-<seat>-<n>`, fields `title · state · seat · claimed_at · base_build_sha · evidence[{command,result}] · verification{seat,command,result} · owner_decision` (later states require more fields).** One file per item because seats then write different paths and cannot overwrite each other or reuse an id; `node tools/check-tasks.mjs` enforces unique ids, the state order, evidence before `implemented`, and a verifier different from the implementer. `PRIORITIES.md` holds the ranked briefs; `tasks/` holds the Architect's build state. SQLite or any generated view is a projection, never the record.
 
 **A round, in one line:** the Architect posts the target build (file + sha256) and the open items → seats claim items and submit exact changes → the Architect integrates them into one build → a Verifier who wrote none of it runs the gate → the Owner accepts. Each arrow is a separate fact in the §5 state list; nothing skips one.
 
@@ -112,7 +112,6 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 |---|---|
 | `Football-Sim-*.html` | Architect only (§5) |
 | `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/` | Architect, or on his/the Owner's instruction |
-| `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
 | `_agents/PRIORITIES.md` | Architect or Owner (re-ranking); seats propose with `PRIORITY+:` lines |
 | `inbox/<UTC>-<seat>-<slug>.md` | That seat, on its own branch: one file per idea or snippet (§5 *Inbox*); the Architect reads them with `node tools/council-sync.mjs --inbox` and the review chain is tracked by `node tools/next.mjs --board` |
 | `_agents/TEST-ORDERS/` | Architect (test orders); seats post results in their bulletin entry |
@@ -123,7 +122,8 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `_agents/README.md`, `RETIREMENT.md`, `TEMPLATE-LANE.md`, `START-OF-CHAT.md`, `END-OF-CHAT.md`, `ONBOARDING.md`, `MIGRATION.md` | Architect |
 | `CHRONICLE.md` | Architect, append-only; seats put verified facts on `FACT:` lines in their bulletin entry |
 | `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |
-| `SUBMISSIONS.md`, `_agents/<seat>/` | That seat only (a retired seat's lane is a tombstone: nobody writes there) |
+| `SUBMISSIONS.md`, `V22-Suggestions.md` | **Frozen history** (24 Oct): no new entries. Proposals, snippets and reviews go in `inbox/`; the Architect's build lifecycle lives in `tasks/`; the ranked queue is `PRIORITIES.md`. One home per kind of thing, no parallel registries. |
+| `_agents/<seat>/` | That seat only (a retired seat's lane is a tombstone: nobody writes there) |
 | `STATUS.md`, `MERGE-MANIFEST.md` | Architect (build hash lines by a Verifier) |
 | `_reference/`, `_archive/` | Frozen |
 
