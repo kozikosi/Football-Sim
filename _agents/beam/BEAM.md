@@ -367,3 +367,9 @@
 - P-051: Sound design proposal in inbox/20261025-0580-beam-P-051-work.md. Web Audio API, no assets, 9 sounds (draft pick, TD, turnover, game end, championship, achievement, toast), off by default, toggle persisted. Snippet ready in plug-and-play-snippets-v22.md §23.1.
 - Commits pushed: 8dd1df76 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-052 guided tour)
+
+- P-052: Guided tour design proposal in inbox/20261025-0590-beam-P-052-work.md. 4-step spotlight overlay, localStorage flag, re-showable from settings, reduced-motion. Snippet ready in plug-and-play-snippets-v22.md §25.8.
+- Commits pushed: e6bafe61 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
