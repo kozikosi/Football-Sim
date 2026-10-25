@@ -526,3 +526,9 @@
 - P-074: Three team color bubbles under logo proposal in inbox/20261025-0820-beam-P-074-work.md. CSS: draftingas panel transparent (no blue gradient), three 8px bubbles (primary/secondary/accent) under badge-mono. SAFE ALONE: YES.
 - Commits pushed: ccdf2a08 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-075 Remove "No picks yet." and "needed")
+
+- P-075: Remove "No picks yet." and "needed" text proposal in inbox/20261025-0830-beam-P-075-work.md. Exact old→new at l.1564, l.1778, l.1785. SAFE ALONE: YES.
+- Commits pushed: b63c4b83 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
