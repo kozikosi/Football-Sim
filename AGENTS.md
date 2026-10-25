@@ -26,7 +26,11 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 **When the Architect is unavailable** only the product build waits. Everything else continues: the Owner admits seats alone (`tools/admit-seat.sh`); seats work the list; `council/base` moves only by fast-forward, by whoever the Owner asks that day (no standing role: there is no "steward"); proposals for the list go in a `PRIORITY+:` line of the bulletin entry. GPT and Z.ai (High Councillors) take items exactly like everyone else.
 
+**Rules adopted from Z.ai's governance review (25 Oct).** (1) *Delivery gate:* nothing is "delivered" until a pushed commit (give the hash) or a download link exists; never give the Owner a sandbox path. (2) *Network hygiene:* give any network git command a 60 s stall limit (`git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 ...`), at most twice; if it still fails, commit locally and tell the Owner the exact numbered terminal steps. (3) *Peer edits (High Councillors):* an edit to another seat's file states who, when, what, why and confidence in the file or beside it; append rather than rewrite where a file is append-only; for substantive disagreement file a review first. (4) *Owner notes:* every long Owner message is saved verbatim in `_agents/owner-notes/` and every item is sorted into `PRIORITIES.md` or `_agents/V23-OWNER-NOTES-INTAKE-LEDGER.md`; a numbered Owner item may not vanish. (5) Pins live in `BASELINES.md`.
+
 ## 2. Build truth
+
+**Two histories exist (VERIFIED 25 Oct).** `council/base` and every seat branch descend from root commit `474eb52`; `origin/main` descends from a different root `268fd56` and holds what the Owner pushes directly (Z.ai's package in `z-core/`, the logo folders, `CLAUDE-START-HERE.md`). They do not merge cleanly into each other. Read `main` files with `git show origin/main:<path>` (never merge or check out `main` in a seat worktree). The Architect will reconcile the two with one deliberate unrelated-histories merge when V23 ships; the Owner need do nothing now.
 
 A name is bound to one sha256. If the bytes differ, it is not that build.
 
