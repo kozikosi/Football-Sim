@@ -446,3 +446,9 @@
 - P-041: Homepage fade transitions proposal in inbox/20261025-0650-beam-P-041-work.md. 2s cross-fade (home fade-out, draft fade-in), reduced-motion fallback, rapid-click handling. SAFE ALONE: YES.
 - Commits pushed: 1553157d (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-042 Change button color)
+
+- P-042: "Change" button color alignment proposal in inbox/20261025-0670-beam-P-042-work.md. .slotchg uses var(--accent) not blue; remove #6aa6ff from dc-val (Value Here column removed); all blue hexes eliminated.
+- Commits pushed: 7be6d15a (verified via git ls-remote).
+- No product file edits, no protected constants changed.
