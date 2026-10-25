@@ -47,3 +47,6 @@
 - `inbox/20261025-0350-vl-p001-homepage.md`
 - `_agents/vl/deliveries/queue5-draftboard-p005-prototype.html`
 - `inbox/20261025-0400-vl-p005-draftboard.md`
+- `_agents/vl/deliveries/queue5-game-review-kc-prototype.html`
+- `_agents/vl/deliveries/queue5-game-animation-kc-prototype.html`
+- `inbox/20261025-0420-vl-game-review-animation-kc.md`
