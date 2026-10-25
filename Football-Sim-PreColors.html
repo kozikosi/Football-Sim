@@ -419,15 +419,13 @@ body{
 
 .hero-marquee{display:flex;align-items:center;gap:16px;overflow:hidden}
 .hero-title-btn{flex:1;overflow:hidden;background:none;border:none;cursor:pointer;padding:8px 0}
-.marquee{display:flex;flex-direction:column;gap:4px;width:100%;overflow:hidden}
-.marquee-track{display:flex;gap:24px;animation:marquee-right 28s linear infinite;white-space:nowrap}
-.marquee-track-reverse{animation:marquee-left 32s linear infinite;animation-direction:reverse}
-.marquee-track span{font-size:1.6rem;font-weight:900;letter-spacing:.12em;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 16px rgba(217,169,179,.2));animation:shimmer-text 6s linear infinite}
-@keyframes marquee-right{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes marquee-left{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.marquee{display:flex;width:100%;overflow:hidden}
+.marquee-track{display:flex;gap:0;width:200%;animation:marquee-one 12s linear infinite;white-space:nowrap}
+.marquee-track span{flex:0 0 50%;text-align:center;font-size:2rem;font-weight:900;letter-spacing:.24em;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 24px rgba(217,169,179,.22));animation:shimmer-text 4s linear infinite}
+@keyframes marquee-one{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes shimmer-text{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @media (max-width:760px){
-  .marquee-track span{font-size:1.2rem}
+  .marquee-track span{font-size:1.4rem}
 }
 
 </style>
@@ -1158,15 +1156,13 @@ body{
 
 .hero-marquee{display:flex;align-items:center;gap:16px;overflow:hidden}
 .hero-title-btn{flex:1;overflow:hidden;background:none;border:none;cursor:pointer;padding:8px 0}
-.marquee{display:flex;flex-direction:column;gap:4px;width:100%;overflow:hidden}
-.marquee-track{display:flex;gap:24px;animation:marquee-right 28s linear infinite;white-space:nowrap}
-.marquee-track-reverse{animation:marquee-left 32s linear infinite;animation-direction:reverse}
-.marquee-track span{font-size:1.6rem;font-weight:900;letter-spacing:.12em;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 4px 16px rgba(217,169,179,.2));animation:shimmer-text 6s linear infinite}
-@keyframes marquee-right{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-@keyframes marquee-left{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.marquee{display:flex;width:100%;overflow:hidden}
+.marquee-track{display:flex;gap:0;width:200%;animation:marquee-one 12s linear infinite;white-space:nowrap}
+.marquee-track span{flex:0 0 50%;text-align:center;font-size:2rem;font-weight:900;letter-spacing:.24em;background:linear-gradient(90deg,var(--accent),var(--gold),var(--accent));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 24px rgba(217,169,179,.22));animation:shimmer-text 4s linear infinite}
+@keyframes marquee-one{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 @keyframes shimmer-text{0%{background-position:-200% 0}100%{background-position:200% 0}}
 @media (max-width:760px){
-  .marquee-track span{font-size:1.2rem}
+  .marquee-track span{font-size:1.4rem}
 }
 
 </style>
@@ -1187,12 +1183,8 @@ body{background:#120a0e !important}
   <button id="heroTitleBtn" class="hero-title-btn" title="Back to home">
     <div class="marquee">
       <div class="marquee-track">
-        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
-        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
-      </div>
-      <div class="marquee-track marquee-track-reverse">
-        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
-        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
+        <span>20-0 20-0 20-0 20-0 20-0 20-0 20-0 20-0</span>
+        <span>20-0 20-0 20-0 20-0 20-0 20-0 20-0 20-0</span>
       </div>
     </div>
   </button>
@@ -1260,7 +1252,7 @@ body{background:#120a0e !important}
  <div class="view active" id="viewDraft">
  <div class="panel" id="draftSetup">
 
-  <div class="filters float-filters" style="align-items:flex-end;justify-content:center;gap:16px;flex-wrap:wrap;">
+  <div class="filters float-filters" style="align-items:flex-end;justify-content:center;gap:16px;flex-wrap:wrap;display:none;">
    <label class="float-label" style="display:flex;flex-direction:column;gap:6px;font-size:0.9rem;color:var(--sub);">Draft as
     <select id="draftSlotSelect" class="float-select"></select>
    </label>
