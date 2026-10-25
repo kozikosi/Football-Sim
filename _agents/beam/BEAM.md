@@ -623,3 +623,9 @@
 - P-059: Remove "Current lineup" text proposal in inbox/20261025-1000-beam-P-059-work.md. Exact old→new at l.1246. "wins added" not found in Pre-Colors (may be from different build). SAFE ALONE: YES.
 - Commits pushed: da3c6033 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-060 Remove "Three optional settings" text)
+
+- P-060: "Three optional settings" text not found in Pre-Colors (may be from later build). No action needed on Pre-Colors. Noted in inbox/20261025-1010-beam-P-060-work.md.
+- Commits pushed: 0b930204 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
