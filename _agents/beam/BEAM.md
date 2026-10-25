@@ -323,3 +323,10 @@
 - P-017: 3-4/4-3 base toggle + flex rules proposal in inbox/20261025-0500-beam-P-017-work.md. UI toggle, base-dependent nickel substitution (4-3 removes SAM, 3-4 removes DT1), OLB≡WILL and ILB≡MIKE in wins maths, updated FLEX table (edges no penalty at OLB/WILL/SAM, TE→WR -2, TE→RB -4, CB→MIKE -6, etc.), preseason text removal. FLEX is protected — Owner approval + re-pin needed.
 - Commits pushed: 1a38ce50 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-038 review #1)
+
+- P-038: Reviewed VL's QUEUE-9 re-measure (inbox/20261025-0140-vl-queue9-ultra-remeasure.md). VERDICT: ok. Independently reproduced all numbers (8 function hashes, Math.random count, cpuPick hash, rWeights count, SIM-CORE markers, localStorage count, build identity). All match. Additional finding from VL: PLAYERS dataset hash differs (09627f9f vs 3e8b7a4f) — new, recommend Architect verify.
+- Review posted: inbox/20261025-0510-beam-P-038-review.md.
+- Commits pushed: 2adc94eb (verified via git ls-remote).
+- No product file edits, no protected constants changed.
