@@ -391,3 +391,9 @@
 - Draft board prototype feedback: "players too big" → needs compact card layout with smaller fonts, tighter spacing, horizontal scroll on mobile. Will revise.
 - Commits pushed: 5d3b80ed (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — Owner direct requests record)
+
+- Created inbox/20261025-0600-beam-owner-direct-requests.md (335 lines): recorded and distributed all of Owner's direct requests from 25 Oct session, organized by priority (P0: 7 items, P1: 24 items, P2: 26 items, P3: 9 items). Includes logo assets info (nf-team-logos folder, SVG+PNG, all-logos-sdv.csv), design template announcement (Season Review canonical), floaty design system, team theming, no blue/orange/emojis, Value Here removal, mobile fixes, and dissemination notes.
+- Commits pushed: c6503d81 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
