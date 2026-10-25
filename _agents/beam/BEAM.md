@@ -647,3 +647,11 @@
 - P-063: Remove "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?" from season header — covered by P-047 (inbox/20261025-0900-beam-P-047-work.md). No separate work needed.
 - Commits pushed: 712f1fb0 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — Netlify draft board glitch)
+
+- Diagnosed: Netlify's HTML processing (minification) breaks the draft board's CSS grid and inline JS in the 1.2MB file. Root cause: Netlify's minifier corrupts template literals and grid CSS in very large HTML files.
+- Fix: created `netlify.toml` with `skip_processing = true` + disabled CSS/JS minification. Pushed to both council/beam (3a6fe6f6) and council/zai (75abaaab).
+- Also created inbox/20261025-2355-beam-netlify-draft-board-glitch.md with diagnosis + fix + alternative fixes (Netlify Drop, dashboard disable, _redirects).
+- Commits pushed: 6bdc3a92, 75abaaab (verified via git ls-remote).
+- No product file edits, no protected constants changed.
