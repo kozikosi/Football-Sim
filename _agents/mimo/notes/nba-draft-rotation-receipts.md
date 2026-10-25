@@ -1,0 +1,29 @@
+# Receipts — NBA draft-and-rotation comparison + A6 soccer memo + quarantine
+
+SPEAKER: MiMo | ROLE: Council reviewer | TASK: receipt file for LongCat's NBA assignment (companion to nba-draft-rotation-comparison.md) | DATE: 2026-10-21 (UTC)
+
+## Commands and outputs (this session, all VERIFIED)
+
+| Claim                                           | Command                                                                                                                                                                                      | Result                                                                                                                                                                                    |
+| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Merge candidate identity                        | `shasum -a 256 merged.html; wc -c merged.html`                                                                                                                                               | `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B — matches the documented merge-candidate hash at `merge/v20-donor` `ff8c05ae`                               |
+| NBA design direction doc fetched + hashed       | `gh api "repos/kozikosi/Football-Sim/contents/_agents/gpt/research/all-time/design/nba/OWNER-DESIGN-DIRECTION.md?ref=gpt/all-time-player-source-intake-20261020" --jq .content \| base64 -d` | 63 lines; sha256 `42c27557be99da69ba432c1dc31cef97cf996b002808be7607156fc6f1858335` (5,639 B) — independently re-hashed identically by GLM this session (double receipt)                  |
+| Direction doc absent from working tree          | `ls _agents/gpt/research/all-time/design/nba/`                                                                                                                                               | `No such file or directory` (checkout on `gpt/council-reliability-scorecard`, which lacks PR #4 files) — reported VERIFIED-absent per Pickle's instruction, not summarized from memory    |
+| Product direction doc fetched + hashed          | `gh api "repos/kozikosi/Football-Sim/contents/OWNER-PRODUCT-DIRECTION.md?ref=gpt/all-time-player-source-intake-20261020"`                                                                    | 112 lines, sha256 `f816486550a5c3563404c91534bb6fc95841dd27de9b951d02838b00ce782da8` (11,319 B) — matches GLM's independent hash                                                          |
+| `teamRatings` structure                         | `grep -n "function teamRatings\|function matchupModel…" merged.html` + read l.1988–2117                                                                                                      | `teamRatings` l.1988, `applyOffPlan` l.2061, `applyDefPlan` l.2069, `matchupModel` l.2100 — quoted lines in the memo are from this read                                                   |
+| Football pool comparison figure (832/1,148)     | not re-run this session                                                                                                                                                                      | **REPORTED** — MiniMax's pool census, bulletin M-84 (2026-10-20)                                                                                                                          |
+| NBA roster-size league fact (15-player rosters) | not re-fetched this session                                                                                                                                                                  | **REPORTED** — league roster rule                                                                                                                                                         |
+| TS+/possession formula conventions              | not re-fetched this session                                                                                                                                                                  | **REPORTED** — public analytics convention; to be frozen in model definition before publishing                                                                                            |
+| IFFHS/UEFA/Opta soccer-ranking claims           | `websearch` results, retrieved 2026-10-21                                                                                                                                                    | each cited with source + date in `owner-soccer-ranking-options.md`; iffhs.com under reconstruction = VERIFIED from result; conflicting MLS positions = REPORTED conflict, primary UNKNOWN |
+
+## Quarantine receipts
+
+Full table in `_agents/mimo/notes/quarantine-execution.md`. Headlines: originals preserved byte-identical (`5d116412…`, `536b5114…`); stubs valid JSON at canonical paths; no invented names at canonical paths (grep clean); `invented: true` on all 10 fixture records; tool at `SIM-PLATFORM/tools/quarantine-sample-pool.mjs` (the `_agents/minimax/tools/` path in the brief does not exist).
+
+## Files written this round (own lane only)
+
+- `_agents/mimo/notes/quarantine-execution.md`
+- `_agents/mimo/notes/owner-soccer-ranking-options.md`
+- `_agents/mimo/notes/nba-draft-rotation-comparison.md`
+- `_agents/mimo/notes/nba-draft-rotation-receipts.md` (this file)
+- stubs + fixture augmentation + quarantined-originals moves (quarantine assignment, documented above)
