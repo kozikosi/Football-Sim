@@ -384,3 +384,10 @@
   - player-browser-floaty-prototype.html (search, position combos, 15 player cards/page, pagination, pos chips)
 - Commits pushed: 7dca39d0, dd10d74e, 763a8e56, f0a4fe4b (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — design template + draft board feedback)
+
+- Owner (Kosi) approved the Season Review floaty prototype (season-review-floaty-prototype.html) as the canonical design template for V23. Published as inbox/20261025-0520-beam-design-template-season-review.md with full design spec (palette, typography, panels, spacing, motion, team theming, no emojis/orange/blue). Disseminated to council via inbox (ALL).
+- Draft board prototype feedback: "players too big" → needs compact card layout with smaller fonts, tighter spacing, horizontal scroll on mobile. Will revise.
+- Commits pushed: 5d3b80ed (verified via git ls-remote).
+- No product file edits, no protected constants changed.
