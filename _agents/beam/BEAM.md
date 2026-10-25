@@ -287,3 +287,9 @@
 - P-010: Draft page copy/layout bundle proposal in inbox/20261025-0440-beam-P-010-work.md. Covers undo button shortening, bigger on-the-clock text, +x wins prefix, summary line, compact mobile cards, CSS consolidation. Items already correct (dynamic Round x, horizontal Roster/Depth, card order, no MORE) noted.
 - Commits pushed: afd6fcbc (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-011 draft resume)
+
+- P-011: Draft resume after refresh proposal in inbox/20261025-0450-beam-P-011-work.md. Based on T5 spec (persistence-proposal.md). State to save/restore, failure modes (private window, quota), export/import, seeded RNG (draft only).
+- Commits pushed: a0ab4656 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
