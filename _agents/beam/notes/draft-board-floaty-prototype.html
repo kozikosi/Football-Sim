@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html><head><meta charset=utf-8><style>
+:root { --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --panel2:rgba(255,255,255,0.06); --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0; --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c; --team-primary-rgb:227,24,55; --motion-fast:150ms ease; --motion-normal:250ms ease; --ease-bounce:cubic-bezier(0.34,1.56,0.64,1); }
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); padding:20px; line-height:1.6; overflow-x:hidden; }
+@keyframes textShimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes scrollRight { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+@keyframes scrollLeft { 0% { transform:translateX(100%); } 100% { transform:translateX(-100%); } }
+@keyframes float1 { 0%,100% { transform:translate(0,0) rotate(0deg); } 25% { transform:translate(3px,-5px) rotate(1deg); } 50% { transform:translate(-2px,-8px) rotate(-1deg); } 75% { transform:translate(4px,-3px) rotate(0.5deg); } }
+@keyframes btnFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+.header-scroll-layer { position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
+.header-scroll-text { position:absolute; white-space:nowrap; font-weight:900; letter-spacing:0.15em; will-change:transform; }
+.header-scroll-text.l1 { top:12%; font-size:0.8rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
+.header-scroll-text.l2 { top:42%; font-size:1.1rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
+.header-scroll-text.l3 { top:72%; font-size:0.55rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
+.home-20-0 { display:inline-block; font-size:1.4rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; }
+.home-20-0:hover { transform:scale(1.05); filter:brightness(1.2); }
+@media (prefers-reduced-motion: reduce) { .header-scroll-text, .home-20-0 { animation:none; } .home-20-0 { background-position:0 0; } }
+.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.card:hover { border-color:var(--border-hover); box-shadow:0 8px 32px rgba(0,0,0,0.35); transform:translateY(-1px); }
+p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
+.shimmer-text { background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.shimmer-text.gold { background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 50%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.float-card { background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:14px; transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.float-card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.top-tag { font-size:0.62rem; font-weight:800; background:var(--gold); color:#0d0a0e; border-radius:4px; padding:0 4px; vertical-align:1px; }
+.flex-badge { font-size:0.62rem; font-weight:800; background:var(--gold); color:#0d0a0e; border-radius:4px; padding:0 4px; vertical-align:1px; }
+.player-row { display:grid; grid-template-columns:2fr 0.6fr 0.6fr 0.5fr 0.7fr 0.7fr 0.7fr 0.6fr 1.5fr 0.8fr; gap:4px; padding:6px 8px; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem; align-items:center; }
+.player-row:hover { background:rgba(255,255,255,0.02); }
+.player-row .name { font-weight:700; color:var(--text); }
+.player-row .ovr { text-align:center; font-weight:800; color:var(--accent); }
+.player-row .wins { text-align:center; color:var(--accent); font-variant-numeric:tabular-nums; }
+.player-row .pri { text-align:center; color:var(--gold); }
+.player-row .gone { text-align:center; color:var(--sub); font-size:0.75rem; }
+.player-row .fills { font-size:0.7rem; color:var(--sub); }
+.player-row .btn { padding:4px 8px; border-radius:6px; background:var(--accent); color:#0d0a0e; border:none; cursor:pointer; font-size:0.75rem; font-weight:700; }
+@media (max-width:760px) { .player-row { grid-template-columns:1fr; gap:2px; } .player-row .btn { width:100%; } }
+.btn-float { width:auto; padding:10px 28px; border-radius:999px; font-size:0.9rem; font-weight:700; background:linear-gradient(135deg,var(--accent),var(--accent3)); color:#0d0a0e; border:none; box-shadow:0 4px 20px rgba(212,175,55,0.25); transition:transform 150ms ease, box-shadow 150ms ease; cursor:pointer; animation:btnFloat 3s ease-in-out infinite; -webkit-text-fill-color:#0d0a0e; }
+.btn-float:hover { transform:translateY(-4px); box-shadow:0 8px 28px rgba(212,175,55,0.35); }
+.btn-float:active { transform:scale(0.97); }
+@media (prefers-reduced-motion: reduce) { .btn-float { animation:none; } }
+</style></head><body>
+
+<!-- Header -->
+<div style="position:relative;">
+  <div class="header-scroll-layer">
+    <div class="header-scroll-text l1">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l2">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l3">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+  </div>
+  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
+    <a class="home-20-0" href="#" onclick="return false;">20-0</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; border:1px solid var(--border); background:var(--panel);"><span style="width:10px;height:10px;border-radius:50%;background:var(--team-primary);display:inline-block;"></span>KC Chiefs</div>
+      <span style="color:var(--sub); font-size:0.8rem;">Round 4 of 26</span>
+    </div>
+  </div>
+</div>
+
+<h1 style="margin:12px 0 2px; font-size:1.2rem; color:var(--sub); font-weight:600;">Draft Board</h1>
+<p style="margin:0 0 12px;">Kansas City Chiefs — you hold the #4 overall pick (Round 1)</p>
+
+<!-- On the clock -->
+<div style="text-align:center; margin-bottom:12px; padding:10px; background:rgba(212,175,55,0.06); border:1px solid rgba(212,175,55,0.15); border-radius:12px;">
+  <div style="font-size:1rem; font-weight:800; color:var(--accent);">You're on the clock — Round 4 of 26, Pick 1 (overall 4 of 32)</div>
+  <div style="font-size:0.8rem; color:var(--sub); margin-top:2px;">14 seconds remaining</div>
+</div>
+
+<!-- Filters -->
+<div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px; align-items:center;">
+  <input type="text" placeholder="Search players..." style="flex:1; min-width:120px; background:var(--panel2); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:7px 10px; font-size:0.85rem;">
+  <select style="background:var(--panel2); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:7px 10px; font-size:0.85rem; min-width:120px;">
+    <option>All positions</option><option>QB</option><option>RB</option><option>WR</option><option>TE</option><option>OL</option><option>DL</option><option>LB</option><option>DB</option>
+  </select>
+  <button style="background:var(--panel2); border:1px solid var(--border); color:var(--text); border-radius:8px; padding:7px 10px; font-size:0.85rem; cursor:pointer; min-width:120px; text-align:left;">Position ▾</button>
+</div>
+
+<!-- Draft board table -->
+<div style="overflow-x:auto;">
+  <div style="display:grid; grid-template-columns:2fr 0.6fr 0.6fr 0.5fr 0.7fr 0.7fr 0.7fr 0.6fr 1.5fr 0.8fr; gap:4px; padding:6px 8px; font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; border-bottom:1px solid var(--border);">
+    <span>Name</span><span>Pos</span><span>Team</span><span>OVR</span><span>Wins</span><span>Priority</span><span>Gone</span><span>Fills</span><span></span>
+  </div>
+  <div class="player-row">
+    <span class="name"><span class="top-tag">TOP</span> P. Mahomes</span><span>QB</span><span>KC</span><span class="ovr">99</span><span class="wins">12.4</span><span class="pri">8.2</span><span class="gone">2%</span><span class="fills">QB</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name"><span class="top-tag">TOP</span> J. Allen</span><span>QB</span><span>BUF</span><span class="ovr">99</span><span class="wins">12.1</span><span class="pri">7.9</span><span class="gone">5%</span><span class="fills">QB</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name">T. Lawrence</span><span>QB</span><span>JAX</span><span class="ovr">93</span><span class="wins">9.8</span><span class="pri">4.1</span><span class="gone">12%</span><span class="fills">QB</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name"><span class="top-tag">TOP</span> M. Garrett</span><span>DL</span><span>CLE</span><span class="ovr">99</span><span class="wins">8.5</span><span class="pri">6.3</span><span class="gone">3%</span><span class="fills">DE1 <span class="flex-badge">Flex x (-2)</span></span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name">N. Bosa</span><span>DL</span><span>SF</span><span class="ovr">94</span><span class="wins">7.2</span><span class="pri">4.8</span><span class="gone">8%</span><span class="fills">DE1</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name">C. Jones</span><span>DL</span><span>KC</span><span class="ovr">94</span><span class="wins">7.0</span><span class="pri">4.5</span><span class="gone">6%</span><span class="fills">DT1</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name">J. Jefferson</span><span>WR</span><span>MIN</span><span class="ovr">96</span><span class="wins">6.8</span><span class="pri">4.2</span><span class="gone">4%</span><span class="fills">WR1</span><button class="btn">Draft</button>
+  </div>
+  <div class="player-row">
+    <span class="name">T. Hill</span><span>WR</span><span>MIA</span><span class="ovr">95</span><span class="wins">6.5</span><span class="pri">3.9</span><span class="gone">7%</span><span class="fills">WR1</span><button class="btn">Draft</button>
+  </div>
+</div>
+
+<!-- Roster strip -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Your Roster (KC Chiefs)</h2>
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:6px; margin-bottom:12px;">
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">QB</span> <span style="font-weight:700; color:var(--text);">Mahomes (99)</span></div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">RB1</span> <span style="font-weight:700; color:var(--text);">Walker (91)</span></div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">WR1</span> <span style="font-weight:700; color:var(--text);">Rice (85)</span></div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">TE1</span> <span style="font-weight:700; color:var(--text);">Kelce (91)</span></div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">OT1</span> <span style="font-weight:700; color:var(--text);">—</span></div>
+  <div style="background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:8px; padding:6px 8px; font-size:0.75rem;"><span style="color:var(--sub);">DE1</span> <span style="font-weight:700; color:var(--text);">—</span></div>
+</div>
+
+<!-- Undo -->
+<div style="text-align:center; margin:12px 0;">
+  <button style="background:var(--panel); border:1px solid var(--border); color:var(--text); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:0.85rem; margin-right:8px;">Undo</button>
+  <button style="background:var(--panel); border:1px solid var(--border); color:var(--text); padding:8px 16px; border-radius:8px; cursor:pointer; font-size:0.85rem;">Redo</button>
+</div>
+
+<div style="margin-top:12px; padding:10px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
+  <p style="margin:0; color:var(--sub); font-size:0.75rem;">KC Chiefs (red/gold). Draft board: no "Value here" column, no "also fits" line, TOP in gold, names uncoloured, flex only at -2/-4 until round 20, FLEX VALUE renamed "Flex x (-y)" in gold. Mobile: rows stack. No blue. Open/airy.</p>
+</div>
+</body></html>
