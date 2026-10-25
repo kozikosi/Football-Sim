@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 — Game Review KC Chiefs (VL prototype)</title>
+<style>
+  /* ============================================================
+     VL game review prototype — V23 only. Advisory prototype.
+     Kansas City Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF.
+     Product file untouched.
+     ============================================================ */
+  :root{
+    --kc-red:#E31837;
+    --kc-red-deep:#C41E3A;
+    --kc-white:#FFFFFF;
+    --kc-gold:#FFB612;
+    --kc-gold-deep:#D4A017;
+    --ink:#1A1718;
+    --muted:#8D6E63;
+    --border:#D9CBD0;
+    --bg:#FDF7F7;
+    --panel:#FFFFFF;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --motion:400ms ease;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1A0A0C;
+      --panel:#221416;
+      --panel2:#2C1C1E;
+      --ink:#FCE4EC;
+      --muted:#E8A0B4;
+      --border:#4A242A;
+      --kc-red:#FF4D5A;
+      --kc-gold:#FFD166;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;}
+  body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;}
+  header .marquee{
+    position:relative;width:100%;height:1.5rem;overflow:hidden;white-space:nowrap;flex:1;}
+  header .track{
+    position:absolute;top:0;left:0;width:200%;height:100%;
+    display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform;}
+  header .track-l{animation:marqueeL 16s linear infinite;}
+  header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
+  @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  header .home{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;box-shadow:0 6px 18px rgba(227,24,55,.3);
+    transition:transform 200ms ease,box-shadow 200ms ease;white-space:nowrap;}
+  header .home:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(227,24,55,.45);}
+  header .home:focus-visible{outline:3px solid var(--kc-gold);outline-offset:3px;border-radius:10px;}
+  @media (prefers-reduced-motion: reduce){header .track-l,header .track-r{animation:none;transform:none;}}
+
+  /* ===== Page shell ===== */
+  .page{max-width:760px;margin:0 auto;padding:0 16px;flex:1;display:flex;flex-direction:column;}
+
+  /* ===== Hero: clean/empty floaty entities ===== */
+  .hero{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    padding:40px 20px 20px;overflow:visible;}
+  .float-text{
+    position:absolute;font-weight:900;letter-spacing:-.01em;
+    pointer-events:none;user-select:none;will-change:transform;}
+  .float-text.t1{top:8%;left:6%;font-size:1.5rem;color:var(--kc-gold);}
+  .float-text.t2{top:18%;right:10%;font-size:1.35rem;color:var(--kc-red-deep);}
+  .float-text.t3{top:34%;left:12%;font-size:1.7rem;color:var(--kc-gold);}
+  .float-text.t4{top:48%;right:6%;font-size:1.4rem;color:var(--kc-red-deep);}
+  .float-text.a{animation:floatA 5s ease-in-out infinite;}
+  .float-text.b{animation:floatB 6.4s ease-in-out infinite 1s;}
+  .float-text.c{animation:floatA 5s ease-in-out infinite 1.8s;}
+  .float-text.d{animation:floatB 6.4s ease-in-out infinite 2.6s;}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(-6px,-10px,0) rotate(3deg);}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(8px,-8px,0) rotate(-3deg);}}
+  @media (prefers-reduced-motion: reduce){.float-text{animation:none;transform:none;}}
+
+  /* ===== Matchup header: team tags ===== */
+  .matchup-header{
+    display:flex;align-items:center;gap:14px;max-width:760px;
+    margin:24px auto 0;padding:0 16px;}
+  .team-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:16px;font-weight:900;font-size:1.1rem;
+    letter-spacing:-.01em;border:2px solid transparent;}
+  .team-tag.user{
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-red));
+    color:#fff;border-color:var(--kc-gold);box-shadow:0 8px 24px rgba(227,24,55,.35);}
+  .team-tag.opp{
+    background:transparent;border-color:var(--kc-red-deep);color:var(--kc-red-deep);box-shadow:none;}
+  .team-tag .dot{width:10px;height:10px;border-radius:50%;}
+  .team-tag.user .dot{background:var(--kc-gold);box-shadow:0 0 0 3px rgba(255,182,18,.4);}
+  .team-tag.opp .dot{background:var(--kc-gold-deep);box-shadow:0 0 0 3px rgba(176,134,20,.4);}
+  .vs{font-weight:800;font-size:1.1rem;color:var(--muted);}
+
+  /* ===== Final score card ===== */
+  .score-row{display:flex;gap:12px;max-width:760px;margin:24px auto 0;padding:0 16px;}
+  .score-box{flex:1;border-radius:14px;padding:18px 16px;color:#fff;
+    position:relative;overflow:hidden;}
+  .score-box.user{background:linear-gradient(135deg,var(--kc-red-deep),var(--kc-red));
+    border:1px solid var(--kc-red-deep);}
+  .score-box.opp{background:linear-gradient(135deg,var(--kc-gold-deep),var(--kc-gold));
+    color:#14100F;border:1px solid var(--kc-gold-deep);}
+  .score-box .tname{font-size:0.75rem;text-transform:uppercase;letter-spacing:.06em;
+    font-weight:800;opacity:0.9;}
+  .score-box.user .tname{color:#ffe8e8;}.score-box.opp .tname{color:#8a5a00;}
+  .score-box .score{font-size:2.6rem;font-weight:900;margin-top:6px;}
+  .score-box.user .score{color:#fff;}.score-box.opp .score{color:#14100F;}
+
+  /* ===== Turnovers ===== */
+  .turnovers{max-width:760px;margin:20px auto 0;padding:0 16px;
+    display:flex;flex-wrap:wrap;gap:10px;}
+  .turnover{background:var(--panel);border:1px solid var(--border);
+    border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:8px;
+    flex:1;min-width:130px;}
+  .turnover .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .turnover.fumble .dot{background:var(--kc-gold-deep);}
+  .turnover.int .dot{background:var(--kc-red-deep);}
+  .turnover .txt{font-size:0.85rem;color:var(--ink);font-weight:700;}
+  .turnover .txt .player{font-weight:800;color:var(--kc-red-deep);}
+
+  /* ===== Star players ===== */
+  .stars{max-width:760px;margin:24px auto 0;padding:0 16px;display:flex;gap:10px;}
+  .star{flex:1;background:var(--panel);border:1px solid var(--border);
+    border-radius:14px;padding:14px;text-align:center;}
+  .star .portrait{width:52px;height:52px;border-radius:50%;margin:0 auto 8px;
+    border:2px solid var(--border);background:#F3E5E6;}
+  .star .name{font-weight:800;margin-bottom:4px;color:var(--ink);}
+  .star .stat{font-size:0.75rem;color:var(--muted);margin-bottom:6px;}
+  .star .grade{font-weight:900;padding:3px 10px;border-radius:10px;font-size:0.7rem;}
+  .star .grade.gold{background:var(--kc-gold);color:#14100F;}
+  .star .grade.silver{background:#F3E5E6;color:var(--ink);}
+  .star .grade.bronze{background:#D4A017;color:#fff;}
+
+  /* ===== Game ball ===== */
+  .game-ball{max-width:760px;margin:24px auto 0;padding:0 16px;text-align:center;}
+  .game-ball-card{display:inline-flex;align-items:center;gap:10px;
+    border:3px solid var(--kc-gold);border-radius:16px;background:#C41E3A;
+    color:#fff;padding:12px 18px;font-weight:900;
+    animation:pulseGlow 2.5s ease-in-out infinite;}
+  @keyframes pulseGlow{0%,100%{box-shadow:0 0 0 0 rgba(251,191,36,0.4);}50%{box-shadow:0 0 0 12px rgba(251,191,36,0.25);}}
+
+  /* ===== Start Draft ===== */
+  .cta-row{display:flex;justify-content:center;margin-top:34px;}
+  .startdraft{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 34px;border-radius:14px;border:none;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    color:#14100F;font-weight:900;font-size:1.05rem;letter-spacing:.03em;
+    cursor:pointer;box-shadow:0 10px 30px rgba(227,24,55,.4);
+    transition:transform 250ms ease,box-shadow 250ms ease,filter 250ms ease;
+    animation:floatDraft 4s ease-in-out infinite;}
+  .startdraft:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(227,24,55,.55);
+    filter:brightness(1.05);}
+  .startdraft:active{transform:translateY(0);}
+  @keyframes floatDraft{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  @media (prefers-reduced-motion: reduce){.startdraft{animation:none !important;}}
+
+  .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--muted);
+    font-size:0.82rem;border-left:3px solid var(--kc-red-deep);padding-left:14px;}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--kc-gold-deep);border-radius:4px;}
+</style>
+</head>
+<body>
+<header role="banner" aria-label="20-0">
+  <div class="marquee">
+    <div class="track track-l" id="trackL"></div>
+    <div class="track track-r" id="trackR"></div>
+  </div>
+  <a href="#" class="home" role="button" tabindex="0">20-0</a>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <div class="float-text t1 a">20-0</div>
+    <div class="float-text t2 b">KC</div>
+    <div class="float-text t3 c">SF</div>
+    <div class="float-text t4 d">SUPER BOWL</div>
+  </div>
+
+  <div class="matchup-header">
+    <div class="team-tag user"><span class="dot"></span>KC Chiefs</div>
+    <span class="vs">vs</span>
+    <div class="team-tag opp"><span class="dot"></span>SF 49ers</div>
+  </div>
+
+  <div class="score-row">
+    <div class="score-box user"><div class="tname">KC Chiefs</div><div class="score">31</div></div>
+    <div class="score-box opp"><div class="tname">SF 49ers</div><div class="score">20</div></div>
+  </div>
+
+  <div class="turnovers">
+    <div class="turnover fumble"><span class="dot"></span><div class="txt"><span class="player">Patrick Mahomes</span> fumble</div></div>
+    <div class="turnover int"><span class="dot"></span><div class="txt"><span class="player">Brock Purdy</span> INT</div></div>
+  </div>
+
+  <div class="stars">
+    <div class="star"><div class="portrait"></div><div class="name">Patrick Mahomes</div><div class="stat">420 YDS · 4 TD</div><div class="grade gold">GOLD</div></div>
+    <div class="star"><div class="portrait"></div><div class="name">Nick Bosa</div><div class="stat">3 Sacks</div><div class="grade silver">SILVER</div></div>
+    <div class="star"><div class="portrait"></div><div class="name">Travis Kelce</div><div class="stat">110 YDS · 1 TD</div><div class="grade bronze">BRONZE</div></div>
+  </div>
+
+  <div class="game-ball"><div class="game-ball-card">Game Ball — Patrick Mahomes</div></div>
+
+  <div class="cta-row"><button class="startdraft">Start Draft</button></div>
+</div>
+
+<p class="note">Advisory prototype (V23 only). KC Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF.
+Header: infinite scrolling "20-0" marquee + static corner "20-0" home button. Hero: clean/empty floaty entities.
+Game review page: team tags, final score boxes, turnovers, star players (gold/silver/bronze grades),
+game ball card, "Start Draft" floats centered, play arrow removed. No grey — everything KC red/gold/white.
+Mobile-ready, prefers-reduced-motion respected.</p>
+
+<script>function buildTrack(id,count){
+  const el=document.getElementById(id);const item='<span class="item">20-0</span>';let html='';
+  for(let i=0;i<count;i++)html+=item;el.innerHTML=html+html;}buildTrack('trackL',14);buildTrack('trackR',12);</script>
+</body>
+</html>

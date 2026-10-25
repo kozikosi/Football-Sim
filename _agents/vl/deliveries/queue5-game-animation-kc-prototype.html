@@ -7,17 +7,36 @@
 <style>
   /* ============================================================
      VL game animation prototype — V23 only. Advisory prototype.
-     Kansas City Chiefs palette: red #E31837, white #FFFFFF, gold #FFB612.
-     A 10-20 second game screen animation showing quarter-by-quarter
-     scoring and key plays (turnovers, big plays, touchdowns).
+     Kansas City Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF.
+     A 15-20 second game screen animation showing score by quarter
+     and key plays happening in real-time.
      Product file untouched.
      ============================================================ */
   :root{
-    --kc-red:#E31837; --kc-red-deep:#C41E3A; --kc-white:#FFFFFF;
-    --kc-gold:#FFB612; --kc-gold-deep:#D4A017; --ink:#1A1718;
-    --muted:#8D6E63; --border:#D9CBD0; --bg:#FDF7F7; --panel:#FFFFFF;
+    --kc-red:#E31837;
+    --kc-red-deep:#C41E3A;
+    --kc-white:#FFFFFF;
+    --kc-gold:#FFB612;
+    --kc-gold-deep:#D4A017;
+    --ink:#1A1718;
+    --muted:#8D6E63;
+    --border:#D9CBD0;
+    --bg:#FDF7F7;
+    --panel:#FFFFFF;
     --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
     --motion:400ms ease;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1A0A0C;
+      --panel:#221416;
+      --panel2:#2C1C1E;
+      --ink:#FCE4EC;
+      --muted:#E8A0B4;
+      --border:#4A242A;
+      --kc-red:#FF4D5A;
+      --kc-gold:#FFD166;
+    }
   }
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
@@ -25,64 +44,97 @@
   body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
     min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
 
-  /* ---------- Header ---------- */
-  header{position:sticky;top:env(safe-area-inset-top,0);z-index:50;
-    display:flex;align-items:center;justify-content:space-between;gap:12px;
-    padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;}
-  header .marquee{position:relative;width:100%;height:1.5rem;overflow:hidden;
-    white-space:nowrap;flex:1;}
-  header .track{position:absolute;top:0;left:0;width:200%;height:100%;
-    display:flex;align-items:center;gap:22px;font-weight:900;font-size:1.25rem;
-    letter-spacing:-.02em;background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+  /* ===== Header ===== */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;}
+  header .marquee{
+    position:relative;width:100%;height:1.5rem;overflow:hidden;white-space:nowrap;flex:1;}
+  header .track{
+    position:absolute;top:0;left:0;width:200%;height:100%;
+    display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
     -webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform;}
   header .track-l{animation:marqueeL 16s linear infinite;}
   header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
   @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
   @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
-  header .home{display:inline-flex;align-items:center;justify-content:center;gap:6px;
-    padding:8px 18px;border-radius:12px;border:none;font-weight:900;font-size:1.2rem;
-    letter-spacing:-.02em;background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
-    -webkit-background-clip:text;background-clip:text;color:transparent;cursor:pointer;
-    box-shadow:0 6px 18px rgba(227,24,55,.3);transition:transform 200ms ease,box-shadow 200ms ease;
-    white-space:nowrap;}
+  header .home{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;box-shadow:0 6px 18px rgba(227,24,55,.3);
+    transition:transform 200ms ease,box-shadow 200ms ease;white-space:nowrap;}
   header .home:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(227,24,55,.45);}
+  header .home:focus-visible{outline:3px solid var(--kc-gold);outline-offset:3px;border-radius:10px;}
   @media (prefers-reduced-motion: reduce){header .track-l,header .track-r{animation:none;transform:none;}}
 
-  /* ---------- Game animation area ---------- */
+  /* ===== Page shell ===== */
   .page{max-width:760px;margin:0 auto;padding:0 16px;flex:1;display:flex;flex-direction:column;}
-  .game-container{max-width:760px;margin:24px auto 0;padding:0 16px;}
-  .game-stage{position:relative;aspect-ratio:16/9;background:#F7F3F5;border:1px solid var(--border);
-    border-radius:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.08);}
 
-  /* Field markings */
-  .field{position:absolute;inset:0;background:#2d6a4f;background-image:
-    linear-gradient(#2d6a4f 2px,transparent 2px),linear-gradient(90deg,#2d6a4f 2px,transparent 2px);
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    padding:40px 20px 20px;overflow:visible;}
+  .float-text{
+    position:absolute;font-weight:900;letter-spacing:-.01em;
+    pointer-events:none;user-select:none;will-change:transform;}
+  .float-text.t1{top:8%;left:6%;font-size:1.5rem;color:var(--kc-gold);}
+  .float-text.t2{top:18%;right:10%;font-size:1.35rem;color:var(--kc-red-deep);}
+  .float-text.t3{top:34%;left:12%;font-size:1.7rem;color:var(--kc-gold);}
+  .float-text.t4{top:48%;right:6%;font-size:1.4rem;color:var(--kc-red-deep);}
+  .float-text.a{animation:floatA 5s ease-in-out infinite;}
+  .float-text.b{animation:floatB 6.4s ease-in-out infinite 1s;}
+  .float-text.c{animation:floatA 5s ease-in-out infinite 1.8s;}
+  .float-text.d{animation:floatB 6.4s ease-in-out infinite 2.6s;}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(-6px,-10px,0) rotate(3deg);}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(8px,-8px,0) rotate(-3deg);}}
+  @media (prefers-reduced-motion: reduce){.float-text{animation:none;transform:none;}}
+
+  /* ===== Game stage ===== */
+  .game-container{max-width:760px;margin:24px auto 0;padding:0 16px;}
+  .game-stage{
+    position:relative;aspect-ratio:16/9;background:#F7F3F5;
+    border:1px solid var(--border);border-radius:16px;overflow:hidden;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);}
+  .field{position:absolute;inset:0;background:#2d6a4f;
+    background-image:linear-gradient(#2d6a4f 2px,transparent 2px),linear-gradient(90deg,#2d6a4f 2px,transparent 2px);
     background-size:40px 40px;opacity:0.3;}
-  .yard-line{position:absolute;left:50%;transform:translateX(-50%);top:10px;bottom:10px;
-    width:2px;background:rgba(255,255,255,0.4);}
+  .yard-line{position:absolute;left:50%;transform:translateX(-50%);top:10px;bottom:10px;width:2px;background:rgba(255,255,255,0.4);}
 
   /* Scoreboard overlay */
-  .scoreboard{position:absolute;top:10px;left:10px;right:10px;display:flex;justify-content:space-between;
-    align-items:center;padding:10px 16px;background:rgba(26,23,24,0.85);border-radius:12px;
+  .scoreboard{
+    position:absolute;top:10px;left:10px;right:10px;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:10px 16px;background:rgba(26,23,24,0.85);border-radius:12px;
     color:#fff;z-index:10;backdrop-filter:blur(6px);}
   .team{display:flex;align-items:center;gap:8px;}
   .team .dot{width:10px;height:10px;border-radius:50%;}
-  .team.user .dot{background:var(--kc-gold);} .team.opp .dot{background:var(--kc-gold-deep);}
-  .team .name{font-weight:800;font-size:0.9rem;} .team.user .name{color:#ffe8e8;}
+  .team.user .dot{background:var(--kc-gold);}
+  .team.opp .dot{background:var(--kc-gold-deep);}
+  .team .name{font-weight:800;font-size:0.9rem;}
+  .team.user .name{color:#ffe8e8;}
   .team.opp .name{color:#14100F;}
   .score{font-weight:900;font-size:1.4rem;margin-left:6px;}
-  .team.user .score{color:#fff;} .team.opp .score{color:#14100F;}
+  .team.user .score{color:#fff;}
+  .team.opp .score{color:#14100F;}
   .quarter{font-weight:800;font-size:0.8rem;color:var(--kc-gold-deep);margin-left:12px;}
 
   /* Play clock */
-  .play-clock{position:absolute;top:10px;right:10px;width:60px;height:60px;
+  .play-clock{
+    position:absolute;top:10px;right:10px;width:60px;height:60px;
     border-radius:50%;border:3px solid var(--kc-gold-deep);color:var(--kc-gold-deep);
     font-weight:900;font-size:1.2rem;display:flex;align-items:center;justify-content:center;
     z-index:10;animation:clockPulse 1s ease-in-out infinite;}
   @keyframes clockPulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
 
   /* Players */
-  .player{position:absolute;width:34px;height:34px;border-radius:50%;display:flex;
+  .player{
+    position:absolute;width:34px;height:34px;border-radius:50%;display:flex;
     align-items:center;justify-content:center;font-weight:900;font-size:0.75rem;
     color:#fff;z-index:5;transition:all 0.6s ease;pointer-events:none;}
   .player.kc{background:var(--kc-red-deep);box-shadow:0 2px 8px rgba(227,24,55,.4);}
@@ -97,35 +149,47 @@
     border:3px solid var(--kc-gold);z-index:6;pointer-events:none;
     box-shadow:0 2px 6px rgba(0,0,0,.3);}
 
-  /* Play labels */
-  .play-label{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
+  /* Play label */
+  .play-label{
+    position:absolute;bottom:14px;left:50%;transform:translateX(-50%);
     background:rgba(0,0,0,0.75);color:#fff;padding:8px 14px;border-radius:20px;
     font-weight:800;font-size:0.85rem;z-index:10;pointer-events:none;
     animation:fadeInOut 2s ease-in-out;}
   @keyframes fadeInOut{0%,100%{opacity:0;}20%,80%{opacity:1;}}
 
-  /* Qtr highlight */
-  .qtr-indicator{position:absolute;top:10px;left:50%;transform:translateX(-50%);
+  /* Quarter indicator */
+  .qtr-indicator{
+    position:absolute;top:10px;left:50%;transform:translateX(-50%);
     background:rgba(227,24,55,0.9);color:#fff;font-weight:900;font-size:1.1rem;
     padding:4px 12px;border-radius:20px;z-index:10;opacity:0;
     animation:fadeInOut 2s ease-in-out;}
 
-  /* ---------- Hero / controls ---------- */
-  .controls{max-width:760px;margin:24px auto 0;padding:0 16px;display:flex;gap:12px;
-    align-items:center;flex-wrap:wrap;}
-  button{padding:10px 20px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+  /* Controls */
+  .controls{max-width:760px;margin:24px auto 0;padding:0 16px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;}
+  button{
+    padding:10px 20px;border-radius:10px;border:none;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
     color:#14100F;font-weight:900;font-size:0.9rem;cursor:pointer;}
   button:hover{filter:brightness(1.05);}
+
   .legend{font-size:0.75rem;color:var(--muted);margin-top:6px;}
   .legend span{margin-right:12px;display:inline-flex;align-items:center;gap:4px;}
   .legend .dot{width:8px;height:8px;border-radius:50%;}
+
   .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--muted);
     font-size:0.82rem;border-left:3px solid var(--kc-red-deep);padding-left:14px;}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--kc-gold-deep);border-radius:4px;}
 </style>
 </head>
 <body>
 <header role="banner" aria-label="20-0">
-  <div class="marquee"><div class="track track-l" id="trackL"></div><div class="track track-r" id="trackR"></div></div>
+  <div class="marquee">
+    <div class="track track-l" id="trackL"></div>
+    <div class="track track-r" id="trackR"></div>
+  </div>
   <a href="#" class="home" role="button" tabindex="0">20-0</a>
 </header>
 
@@ -148,7 +212,7 @@
       <div class="player wr kc" id="pWR" style="left:45%;top:30%;">WR</div>
       <div class="player cb sf" id="pCB1" style="left:60%;top:28%;">CB</div>
       <div class="player cb sf" id="pCB2" style="left:70%;top:45%;">CB</div>
-      <div class="player ball" id="ball" style="left:10%;top:40%;"></div>
+      <div class="ball" id="ball" style="left:10%;top:40%;"></div>
     </div>
 
     <div class="play-label" id="playLabel">—</div>
@@ -165,27 +229,27 @@
     <span><span class="dot" style="background:var(--kc-gold);"></span>Football</span>
   </div>
 
-  <p class="note">Advisory prototype (V23 only). KC Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF. Header: infinite scrolling "20-0" marquee + static corner "20-0" button. Game screen: animated play-by-play over 15 seconds showing quarter-by-quarter scoring, turnovers, and big plays with ball/player movement. Play clock counts down, scoreboard updates, play labels appear at key moments. No grey — everything KC red/gold/white. Mobile-ready, prefers-reduced-motion respected.</p>
-</div>
+  <p class="note">Advisory prototype (V23 only). KC Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF.
+  Header: infinite scrolling "20-0" marquee + static corner "20-0" button. Game screen: animated play-by-play
+  over 15 seconds showing quarter-by-quarter scoring, turnovers, and big plays with ball/player movement.
+  Play clock counts down, scoreboard updates, play labels appear at key moments. No grey — everything KC
+  red/gold/white. Mobile-ready, prefers-reduced-motion respected.</p>
 
 <script>
-  const scoreKC = document.getElementById('scoreKC');
-  const scoreSF = document.getElementById('scoreSF');
-  const qtrEl = document.getElementById('qtr');
-  const clock = document.getElementById('clock');
-  const qtrInd = document.getElementById('qtrInd');
-  const playLabel = document.getElementById('playLabel');
-  const pQB = document.getElementById('pQB');
-  const pRB = document.getElementById('pRB');
-  const pWR = document.getElementById('pWR');
-  const pCB1 = document.getElementById('pCB1');
-  const pCB2 = document.getElementById('pCB2');
-  const ball = document.getElementById('ball');
+  const scoreKC=document.getElementById('scoreKC');
+  const scoreSF=document.getElementById('scoreSF');
+  const qtrEl=document.getElementById('qtr');
+  const clock=document.getElementById('clock');
+  const qtrInd=document.getElementById('qtrInd');
+  const playLabel=document.getElementById('playLabel');
+  const pQB=document.getElementById('pQB');
+  const pRB=document.getElementById('pRB');
+  const pWR=document.getElementById('pWR');
+  const pCB1=document.getElementById('pCB1');
+  const pCB2=document.getElementById('pCB2');
+  const ball=document.getElementById('ball');
 
-  let scoreA = 0, scoreB = 0;
-  let qtr = 1;
-  let clockTime = 15;
-  let playing = false;
+  let scoreA=0,scoreB=0,qtr=1,clockTime=15,playing=false;
 
   function fmtClock(s){const m=Math.floor(s/60);const sec=s%60;return `${m}:${sec.toString().padStart(2,'0')}`;}
   function setScore(){scoreKC.textContent=scoreA;scoreSF.textContent=scoreB;}
@@ -224,7 +288,6 @@
       setClock(clockTime);
     }, 1000);
 
-    // Schedule plays
     plays.forEach(([t,label,pQBp,pRBp,pWRp,pCB1p,pCB2p,pBall,sA,sB])=>{
       setTimeout(()=>{
         if(!playing) return;
