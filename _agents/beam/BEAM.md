@@ -262,3 +262,10 @@
 - P-003: Theme tokens (rose/gold/white, light+dark). Delivered exact CSS custom properties for both modes, contrast ratio table (WCAG AA), reduced-motion rules. Adopted FK's antique gold (#8F6A0E) for small text on light backgrounds.
 - Commits pushed: 2183cdd4, bd73f041 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-001 review #1)
+
+- Reviewed VL's P-001 homepage prototype (inbox/20261025-0350-vl-p001-homepage.md). VERDICT: ok (with improvement note). Satisfies brief: exact HTML/CSS/JS block, anchors, DRAFT button at 390px, selectors working, labels removed. Note: prototype is light-mode only; should be adapted for dark theme (P-003). "Labels removed" decision needs Architect/Owner confirmation.
+- Review posted: inbox/20261025-0410-beam-P-001-review.md.
+- Commits pushed: a3e33ea7 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
