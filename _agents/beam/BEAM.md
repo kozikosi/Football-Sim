@@ -495,3 +495,9 @@
 - P-069: Footer as real footer proposal in inbox/20261025-0770-beam-P-069-work.md. CSS: footnav becomes full-width footer (border-top, not rounded pill). Move from .wrap to bottom. "See guide for details" just above footer.
 - Commits pushed: 81f99909 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-071 Draft board player bubbles)
+
+- P-071: Draft board player bubbles same size on compress proposal in inbox/20261025-0780-beam-P-071-work.md. CSS: fixed font sizes (not rem), min-width:0, overflow:hidden, text-overflow:ellipsis, Draft button always visible with flex-shrink:0.
+- Commits pushed: 3866c8ff (verified via git ls-remote).
+- No product file edits, no protected constants changed.
