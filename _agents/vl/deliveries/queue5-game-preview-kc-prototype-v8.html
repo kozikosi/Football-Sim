@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 — Game Preview (KC Chiefs) (VL prototype v8)</title>
+<style>
+  /* ============================================================
+     VL game-preview concept v8 — V23 only. Advisory prototype.
+     Kansas City Chiefs palette: red #E31837, white #FFFFFF, gold #FFB612.
+     Changes vs v7:
+       * Hero entities: NO emojis — text only ("20-0", "KC", "SF", "SUPER BOWL")
+         floating in independent infinite motion.
+       * Matchup header: removed "Matchup advantage" / "Opponent edge" labels
+         entirely — meter stands alone.
+     Product file untouched.
+     ============================================================ */
+  :root{
+    --kc-red:#E31837;        /* KC primary */
+    --kc-red-deep:#C41E3A;   /* deeper red */
+    --kc-white:#FFFFFF;      /* KC white (3rd) */
+    --kc-gold:#FFB612;       /* KC gold (2nd) */
+    --kc-gold-deep:#D4A017;
+    --ink:#1A1718;           /* KC navy-ish dark */
+    --muted:#8D6E63;
+    --border:#D9CBD0;
+    --bg:#FDF7F7;            /* barely red tint page bg */
+    --panel:#FFFFFF;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --motion:400ms ease;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#1A0A0C; --panel:#221416; --panel2:#2C1C1E;
+      --ink:#FCE4EC; --muted:#E8A0B4; --border:#4A242A;
+      --kc-red:#FF4D5A; --kc-gold:#FFD166; --kc-white:#FCE4EC;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;}
+  body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+
+  /* ---------- Header: marquee + static corner button ---------- */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;
+  }
+  header .marquee{
+    position:relative;width:100%;height:1.5rem;overflow:hidden;white-space:nowrap;flex:1;
+  }
+  header .track{
+    position:absolute;top:0;left:0;width:200%;height:100%;
+    display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform;
+  }
+  header .track-l{animation:marqueeL 16s linear infinite;}
+  header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
+  @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  header .home{
+    display:inline-flex;align-items:center;justify-content:center;gap:6px;
+    padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;box-shadow:0 6px 18px rgba(227,24,55,.3);
+    transition:transform 200ms ease,box-shadow 200ms ease;white-space:nowrap;
+  }
+  header .home:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(227,24,55,.45);}
+  header .home:active{transform:translateY(0);}
+  header .home:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:10px;}
+  @media (prefers-reduced-motion: reduce){header .track-l,header .track-r{animation:none;transform:none;}}
+
+  /* ---------- Page shell ---------- */
+  .page{max-width:760px;margin:0 auto;padding:0 16px;flex:1;display:flex;flex-direction:column;}
+
+  /* ---------- Hero: clean/empty floaty text entities (NO emojis) ---------- */
+  .hero{
+    position:relative;display:flex;align-items:center;justify-content:center;
+    padding:40px 20px 20px;overflow:visible;
+  }
+  .float-text{
+    position:absolute;font-weight:900;letter-spacing:-.01em;
+    pointer-events:none;user-select:none;will-change:transform;
+  }
+  .float-text.t1{top:8%;left:6%;font-size:1.5rem;color:var(--kc-gold);}
+  .float-text.t2{top:18%;right:10%;font-size:1.35rem;color:var(--kc-red-deep);}
+  .float-text.t3{top:34%;left:12%;font-size:1.7rem;color:var(--kc-gold);}
+  .float-text.t4{top:48%;right:6%;font-size:1.4rem;color:var(--kc-red-deep);}
+  .float-text.a{animation:floatA 5s ease-in-out infinite;}
+  .float-text.b{animation:floatB 6.4s ease-in-out infinite 1s;}
+  .float-text.c{animation:floatA 5s ease-in-out infinite 1.8s;}
+  .float-text.d{animation:floatB 6.4s ease-in-out infinite 2.6s;}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(-6px,-10px,0) rotate(3deg);}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(8px,-8px,0) rotate(-3deg);}}
+  @media (prefers-reduced-motion: reduce){.float-text{animation:none;transform:none;}}
+
+  /* ---------- Matchup header: team tags ---------- */
+  .matchup-header{
+    display:flex;align-items:center;gap:14px;
+    max-width:760px;margin:24px auto 0;padding:0 16px;
+  }
+  .team-tag{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:10px 18px;border-radius:16px;
+    font-weight:900;font-size:1.1rem;letter-spacing:-.01em;
+    border:2px solid transparent;
+  }
+  .team-tag.user{
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-red));
+    color:#fff;border-color:var(--kc-gold);
+    box-shadow:0 8px 24px rgba(227,24,55,.35);
+  }
+  .team-tag.opp{
+    background:transparent;border-color:var(--kc-red-deep);
+    color:var(--kc-red-deep);box-shadow:none;
+  }
+  .team-tag .dot{width:10px;height:10px;border-radius:50%;}
+  .team-tag.user .dot{background:var(--kc-gold);box-shadow:0 0 0 3px rgba(255,182,18,.4);}
+  .team-tag.opp .dot{background:var(--kc-gold-deep);box-shadow:0 0 0 3px rgba(176,134,20,.4);}
+  .vs{font-weight:800;font-size:1.1rem;color:var(--muted);}
+
+  /* ---------- Matchup advantage meter: NO labels ---------- */
+  .meter-card{
+    max-width:760px;margin:16px auto 0;padding:0 16px;
+    border-radius:16px;border:1px solid var(--border);
+    background:var(--panel);box-shadow:0 4px 16px rgba(0,0,0,.04);
+  }
+  .meter-track{
+    height:10px;background:#1F2937;border-radius:5px;overflow:hidden;
+    margin:14px 16px 16px;position:relative;
+  }
+  .meter-fill{height:100%;border-radius:5px;transition:width 600ms ease;}
+  .meter-fill.user-side{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));width:58%;}
+  .meter-vals{display:flex;justify-content:space-between;padding:0 16px 14px;}
+  .meter-val{font-weight:900;font-size:1rem;}
+  .meter-val.user{color:var(--kc-red-deep);}
+  .meter-val.opp{color:var(--kc-gold-deep);}
+
+  /* ---------- Matchup cards (3 key elements) ---------- */
+  .matchup-cards{
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;
+    max-width:760px;margin:20px auto 0;padding:0 16px;
+  }
+  .matchup-card{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px;
+    transition:transform 200ms ease,box-shadow 200ms ease,border-color 200ms ease;
+  }
+  .matchup-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(0,0,0,.08);border-color:var(--kc-red-deep);}
+  .matchup-card .head{display:flex;justify-content:space-between;align-items:center;}
+  .matchup-card .name{font-weight:800;font-size:0.85rem;color:var(--ink);}
+  .matchup-card .name.user{color:var(--kc-red-deep);}
+  .matchup-card .name.opp{color:var(--kc-gold-deep);}
+  .matchup-card .stat{font-size:2rem;font-weight:900;letter-spacing:-.02em;color:var(--ink);}
+  .matchup-card .stat.user{color:var(--kc-red-deep);}
+  .matchup-card .stat.opp{color:var(--kc-gold-deep);}
+  .matchup-card .tag{font-size:0.68rem;text-transform:uppercase;letter-spacing:.05em;font-weight:800;
+    padding:2px 10px;border-radius:10px;color:#fff;background:var(--kc-red-deep);}
+  .matchup-card .bar{height:6px;background:#F3E5E6;border-radius:3px;overflow:hidden;margin-top:6px;}
+  .matchup-card .bar-fill{height:100%;border-radius:3px;transition:width 500ms ease;}
+  .matchup-card .bar-fill.user{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));width:70%;}
+  .matchup-card .bar-fill.opp{background:linear-gradient(90deg,var(--kc-gold-deep),var(--kc-gold));width:62%;}
+
+  /* ---------- Clutch / hype / star narration placeholders ---------- */
+  .narration{
+    max-width:760px;margin:24px auto 0;padding:0 16px;
+    display:flex;flex-direction:column;gap:10px;
+  }
+  .narr-card{
+    background:var(--panel);border:1px solid var(--border);
+    border-radius:14px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;
+  }
+  .narr-card.clutch .dot{background:var(--kc-gold);}
+  .narr-card.hype .dot{background:var(--kc-red-deep);}
+  .narr-card.star .dot{background:var(--kc-gold-deep);}
+  .narr-card .dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+  .narr-card .txt{font-size:0.9rem;color:var(--ink);line-height:1.5;}
+  .narr-card .txt .emph{font-weight:900;color:var(--kc-red-deep);}
+
+  /* ---------- Start Draft floats centered ---------- */
+  .cta-row{display:flex;justify-content:center;margin-top:34px;}
+  .startdraft{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 34px;border-radius:14px;border:none;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    color:#14100F;font-weight:900;font-size:1.05rem;letter-spacing:.03em;
+    cursor:pointer;box-shadow:0 10px 30px rgba(227,24,55,.4);
+    transition:transform 250ms ease,box-shadow 250ms ease,filter 250ms ease;
+    animation:floatDraft 4s ease-in-out infinite;
+  }
+  .startdraft:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(227,24,55,.55);filter:brightness(1.05);}
+  @keyframes floatDraft{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  @media (prefers-reduced-motion: reduce){.startdraft{animation:none !important;}}
+
+  .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--muted);
+    font-size:0.82rem;border-left:3px solid var(--kc-red-deep);padding-left:14px;}
+
+  ::-webkit-scrollbar{width:8px;height:8px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+  ::-webkit-scrollbar-thumb{background:var(--kc-gold-deep);border-radius:4px;}
+</style>
+</head>
+<body>
+<header role="banner" aria-label="20-0">
+  <div class="marquee">
+    <div class="track track-l" id="trackL"></div>
+    <div class="track track-r" id="trackR"></div>
+  </div>
+  <a href="#" class="home" onclick="return goHome();" role="button"
+     aria-label="Return to homepage (20-0)" tabindex="0">20-0</a>
+</header>
+
+<div class="page">
+  <div class="hero">
+    <div class="float-text t1 a">20-0</div>
+    <div class="float-text t2 b">KC</div>
+    <div class="float-text t3 c">SF</div>
+    <div class="float-text t4 d">SUPER BOWL</div>
+  </div>
+
+  <div class="matchup-header">
+    <div class="team-tag user"><span class="dot"></span>KC Chiefs</div>
+    <span class="vs">vs</span>
+    <div class="team-tag opp"><span class="dot"></span>SF 49ers</div>
+  </div>
+
+  <div class="meter-card">
+    <div class="meter-track"><div class="meter-fill user-side"></div></div>
+    <div class="meter-vals">
+      <span class="meter-val user">58%</span><span class="meter-val opp">42%</span>
+    </div>
+  </div>
+
+  <div class="matchup-cards">
+    <div class="matchup-card">
+      <div class="head"><span class="name user">Pass rush</span><span class="stat user">94</span></div>
+      <div class="tag">KC vs SF</div>
+      <div class="bar"><div class="bar-fill user"></div></div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">Chiefs' front seven vs 49ers' O-line</div>
+    </div>
+    <div class="matchup-card">
+      <div class="head"><span class="name opp">Run game</span><span class="stat opp">78</span></div>
+      <div class="tag">SF vs KC</div>
+      <div class="bar"><div class="bar-fill opp"></div></div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">49ers' ground attack vs Chiefs' D-front</div>
+    </div>
+    <div class="matchup-card">
+      <div class="head"><span class="name user">QB</span><span class="stat user">99</span></div>
+      <div class="tag">KC vs SF</div>
+      <div class="bar"><div class="bar-fill user"></div></div>
+      <div style="font-size:0.75rem;color:var(--muted);margin-top:6px">Mahomes vs 49ers' secondary</div>
+    </div>
+  </div>
+
+  <div class="narration">
+    <div class="narr-card clutch">
+      <span class="dot"></span>
+      <div class="txt">Clutch: <span class="emph">Mahomes</span> 4th-quarter TD drive vs SF in 2 of last 3 meetings.</div>
+    </div>
+    <div class="narr-card hype">
+      <span class="dot"></span>
+      <div class="txt">Next-round hype: Winner faces <span class="emph">AFC Championship</span> — road to the Super Bowl runs through here.</div>
+    </div>
+    <div class="narr-card star">
+      <span class="dot"></span>
+      <div class="txt">Star praise: <span class="emph">N. Bosa</span> — 18 sacks, +14.2 pressure win rate vs KC tackles.</div>
+    </div>
+  </div>
+
+  <div class="cta-row">
+    <button class="startdraft" onclick="return startDraft();">Start Draft</button>
+  </div>
+</div>
+
+<p class="note">Advisory prototype (V23 only). Kansas City Chiefs palette: red #E31837, gold #FFB612, white #FFFFFF. Header: infinite scrolling "20-0" marquee + static inline corner "20-0" home button. Hero: clean/empty floaty text entities ("20-0", "KC", "SF", "SUPER BOWL") — NO emojis. Matchup page: team tags, advantage meter with NO "Matchup advantage"/"Opponent edge" labels, 3 matchup cards (pass rush / run game / QB), clutch/hype/star narration placeholders, "Start Draft" floats centered, play arrow removed. No grey — everything KC red/gold/white. Mobile-ready, prefers-reduced-motion respected.</p>
+
+<script>
+  function buildTrack(id, count){
+    const el=document.getElementById(id);
+    const item='<span class="item">20-0</span>';
+    let html='';
+    for(let i=0;i<count;i++) html+=item;
+    el.innerHTML=html+html;
+  }
+  buildTrack('trackL',14);
+  buildTrack('trackR',12);
+  function goHome(){ return false; }
+  function startDraft(){ return false; }
+</script>
+</body>
+</html>
