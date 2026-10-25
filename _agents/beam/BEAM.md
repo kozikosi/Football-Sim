@@ -417,3 +417,12 @@
 - P-018: Game preview redesign proposal in inbox/20261025-0630-beam-P-018-work.md. References game-preview-floaty-prototype.html and game-preview-logos-prototype.html as canonical mocks. Graphical, fewer sentences, team tags, key players side-by-side, game plan, shimmer text.
 - Commits pushed: bf3e3e31 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — logo test prototypes)
+
+- Created two minimal logo test prototypes for side-by-side comparison:
+  - logo-test-svg.html (12KB) — inline SVG logos from nf-team-logos, normalized to 80x80 max box, transparent, no bubbles.
+  - logo-test-png.html (105KB) — base64-encoded PNG logos from nf-team-logos, normalized to 80x80 max box, transparent, no bubbles.
+- Both use KC Chiefs (red/gold) and SF 49ers (red/gold) with shimmering team names.
+- Commits pushed: f00c6543 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
