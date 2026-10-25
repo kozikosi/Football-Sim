@@ -1,0 +1,528 @@
+{
+  "generated_from": "ESPN public sports API (+ authentic SVG masters where available)",
+  "variants": [
+    "big_square",
+    "big_circle",
+    "big_circle_badge",
+    "small_square",
+    "small_circle",
+    "small_circle_badge"
+  ],
+  "sizes": {
+    "big": 512,
+    "small": 128
+  },
+  "competition": "NBA",
+  "teams": [
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Atlanta Hawks",
+      "slug": "atlanta-hawks",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/atl.png",
+      "matched_as": "Atlanta Hawks",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_big_square.png",
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_big_circle.png",
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_big_circle_badge.png",
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_small_square.png",
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_small_circle.png",
+        "NBA/Eastern Conference/Atlanta Hawks/atlanta-hawks_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Boston Celtics",
+      "slug": "boston-celtics",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/bos.png",
+      "matched_as": "Boston Celtics",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_big_square.png",
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_big_circle.png",
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_big_circle_badge.png",
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_small_square.png",
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_small_circle.png",
+        "NBA/Eastern Conference/Boston Celtics/boston-celtics_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Brooklyn Nets",
+      "slug": "brooklyn-nets",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/bkn.png",
+      "matched_as": "Brooklyn Nets",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_big_square.png",
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_big_circle.png",
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_big_circle_badge.png",
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_small_square.png",
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_small_circle.png",
+        "NBA/Eastern Conference/Brooklyn Nets/brooklyn-nets_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Charlotte Hornets",
+      "slug": "charlotte-hornets",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/cha.png",
+      "matched_as": "Charlotte Hornets",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_big_square.png",
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_big_circle.png",
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_big_circle_badge.png",
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_small_square.png",
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_small_circle.png",
+        "NBA/Eastern Conference/Charlotte Hornets/charlotte-hornets_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Chicago Bulls",
+      "slug": "chicago-bulls",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/chi.png",
+      "matched_as": "Chicago Bulls",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_big_square.png",
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_big_circle.png",
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_big_circle_badge.png",
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_small_square.png",
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_small_circle.png",
+        "NBA/Eastern Conference/Chicago Bulls/chicago-bulls_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Cleveland Cavaliers",
+      "slug": "cleveland-cavaliers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/cle.png",
+      "matched_as": "Cleveland Cavaliers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_big_square.png",
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_big_circle.png",
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_big_circle_badge.png",
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_small_square.png",
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_small_circle.png",
+        "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Dallas Mavericks",
+      "slug": "dallas-mavericks",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/dal.png",
+      "matched_as": "Dallas Mavericks",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_big_square.png",
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_big_circle.png",
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_big_circle_badge.png",
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_small_square.png",
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_small_circle.png",
+        "NBA/Western Conference/Dallas Mavericks/dallas-mavericks_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Denver Nuggets",
+      "slug": "denver-nuggets",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/den.png",
+      "matched_as": "Denver Nuggets",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_big_square.png",
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_big_circle.png",
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_big_circle_badge.png",
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_small_square.png",
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_small_circle.png",
+        "NBA/Western Conference/Denver Nuggets/denver-nuggets_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Detroit Pistons",
+      "slug": "detroit-pistons",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/det.png",
+      "matched_as": "Detroit Pistons",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_big_square.png",
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_big_circle.png",
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_big_circle_badge.png",
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_small_square.png",
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_small_circle.png",
+        "NBA/Eastern Conference/Detroit Pistons/detroit-pistons_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Golden State Warriors",
+      "slug": "golden-state-warriors",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/gs.png",
+      "matched_as": "Golden State Warriors",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_big_square.png",
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_big_circle.png",
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_big_circle_badge.png",
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_small_square.png",
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_small_circle.png",
+        "NBA/Western Conference/Golden State Warriors/golden-state-warriors_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Houston Rockets",
+      "slug": "houston-rockets",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/hou.png",
+      "matched_as": "Houston Rockets",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Houston Rockets/houston-rockets_big_square.png",
+        "NBA/Western Conference/Houston Rockets/houston-rockets_big_circle.png",
+        "NBA/Western Conference/Houston Rockets/houston-rockets_big_circle_badge.png",
+        "NBA/Western Conference/Houston Rockets/houston-rockets_small_square.png",
+        "NBA/Western Conference/Houston Rockets/houston-rockets_small_circle.png",
+        "NBA/Western Conference/Houston Rockets/houston-rockets_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Indiana Pacers",
+      "slug": "indiana-pacers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/ind.png",
+      "matched_as": "Indiana Pacers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_big_square.png",
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_big_circle.png",
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_big_circle_badge.png",
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_small_square.png",
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_small_circle.png",
+        "NBA/Eastern Conference/Indiana Pacers/indiana-pacers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "LA Clippers",
+      "slug": "la-clippers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/lac.png",
+      "matched_as": "LA Clippers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/LA Clippers/la-clippers_big_square.png",
+        "NBA/Western Conference/LA Clippers/la-clippers_big_circle.png",
+        "NBA/Western Conference/LA Clippers/la-clippers_big_circle_badge.png",
+        "NBA/Western Conference/LA Clippers/la-clippers_small_square.png",
+        "NBA/Western Conference/LA Clippers/la-clippers_small_circle.png",
+        "NBA/Western Conference/LA Clippers/la-clippers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Los Angeles Lakers",
+      "slug": "los-angeles-lakers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/lal.png",
+      "matched_as": "Los Angeles Lakers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_big_square.png",
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_big_circle.png",
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_big_circle_badge.png",
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_small_square.png",
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_small_circle.png",
+        "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Memphis Grizzlies",
+      "slug": "memphis-grizzlies",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/mem.png",
+      "matched_as": "Memphis Grizzlies",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_big_square.png",
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_big_circle.png",
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_big_circle_badge.png",
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_small_square.png",
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_small_circle.png",
+        "NBA/Western Conference/Memphis Grizzlies/memphis-grizzlies_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Miami Heat",
+      "slug": "miami-heat",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/mia.png",
+      "matched_as": "Miami Heat",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Miami Heat/miami-heat_big_square.png",
+        "NBA/Eastern Conference/Miami Heat/miami-heat_big_circle.png",
+        "NBA/Eastern Conference/Miami Heat/miami-heat_big_circle_badge.png",
+        "NBA/Eastern Conference/Miami Heat/miami-heat_small_square.png",
+        "NBA/Eastern Conference/Miami Heat/miami-heat_small_circle.png",
+        "NBA/Eastern Conference/Miami Heat/miami-heat_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Milwaukee Bucks",
+      "slug": "milwaukee-bucks",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/mil.png",
+      "matched_as": "Milwaukee Bucks",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_big_square.png",
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_big_circle.png",
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_big_circle_badge.png",
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_small_square.png",
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_small_circle.png",
+        "NBA/Eastern Conference/Milwaukee Bucks/milwaukee-bucks_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Minnesota Timberwolves",
+      "slug": "minnesota-timberwolves",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/min.png",
+      "matched_as": "Minnesota Timberwolves",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_big_square.png",
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_big_circle.png",
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_big_circle_badge.png",
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_small_square.png",
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_small_circle.png",
+        "NBA/Western Conference/Minnesota Timberwolves/minnesota-timberwolves_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "New Orleans Pelicans",
+      "slug": "new-orleans-pelicans",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/no.png",
+      "matched_as": "New Orleans Pelicans",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_big_square.png",
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_big_circle.png",
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_big_circle_badge.png",
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_small_square.png",
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_small_circle.png",
+        "NBA/Western Conference/New Orleans Pelicans/new-orleans-pelicans_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "New York Knicks",
+      "slug": "new-york-knicks",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/ny.png",
+      "matched_as": "New York Knicks",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_big_square.png",
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_big_circle.png",
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_big_circle_badge.png",
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_small_square.png",
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_small_circle.png",
+        "NBA/Eastern Conference/New York Knicks/new-york-knicks_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Oklahoma City Thunder",
+      "slug": "oklahoma-city-thunder",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/okc.png",
+      "matched_as": "Oklahoma City Thunder",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_big_square.png",
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_big_circle.png",
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_big_circle_badge.png",
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_small_square.png",
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_small_circle.png",
+        "NBA/Western Conference/Oklahoma City Thunder/oklahoma-city-thunder_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Orlando Magic",
+      "slug": "orlando-magic",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/orl.png",
+      "matched_as": "Orlando Magic",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_big_square.png",
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_big_circle.png",
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_big_circle_badge.png",
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_small_square.png",
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_small_circle.png",
+        "NBA/Eastern Conference/Orlando Magic/orlando-magic_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Philadelphia 76ers",
+      "slug": "philadelphia-76ers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/phi.png",
+      "matched_as": "Philadelphia 76ers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_big_square.png",
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_big_circle.png",
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_big_circle_badge.png",
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_small_square.png",
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_small_circle.png",
+        "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Phoenix Suns",
+      "slug": "phoenix-suns",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/phx.png",
+      "matched_as": "Phoenix Suns",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_big_square.png",
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_big_circle.png",
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_big_circle_badge.png",
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_small_square.png",
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_small_circle.png",
+        "NBA/Western Conference/Phoenix Suns/phoenix-suns_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Portland Trail Blazers",
+      "slug": "portland-trail-blazers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/por.png",
+      "matched_as": "Portland Trail Blazers",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_big_square.png",
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_big_circle.png",
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_big_circle_badge.png",
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_small_square.png",
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_small_circle.png",
+        "NBA/Western Conference/Portland Trail Blazers/portland-trail-blazers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Sacramento Kings",
+      "slug": "sacramento-kings",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/sac.png",
+      "matched_as": "Sacramento Kings",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_big_square.png",
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_big_circle.png",
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_big_circle_badge.png",
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_small_square.png",
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_small_circle.png",
+        "NBA/Western Conference/Sacramento Kings/sacramento-kings_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "San Antonio Spurs",
+      "slug": "san-antonio-spurs",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/sa.png",
+      "matched_as": "San Antonio Spurs",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_big_square.png",
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_big_circle.png",
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_big_circle_badge.png",
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_small_square.png",
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_small_circle.png",
+        "NBA/Western Conference/San Antonio Spurs/san-antonio-spurs_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Toronto Raptors",
+      "slug": "toronto-raptors",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/tor.png",
+      "matched_as": "Toronto Raptors",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_big_square.png",
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_big_circle.png",
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_big_circle_badge.png",
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_small_square.png",
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_small_circle.png",
+        "NBA/Eastern Conference/Toronto Raptors/toronto-raptors_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Western Conference",
+      "team": "Utah Jazz",
+      "slug": "utah-jazz",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/utah.png",
+      "matched_as": "Utah Jazz",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Western Conference/Utah Jazz/utah-jazz_big_square.png",
+        "NBA/Western Conference/Utah Jazz/utah-jazz_big_circle.png",
+        "NBA/Western Conference/Utah Jazz/utah-jazz_big_circle_badge.png",
+        "NBA/Western Conference/Utah Jazz/utah-jazz_small_square.png",
+        "NBA/Western Conference/Utah Jazz/utah-jazz_small_circle.png",
+        "NBA/Western Conference/Utah Jazz/utah-jazz_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "team": "Washington Wizards",
+      "slug": "washington-wizards",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/nba/500/wsh.png",
+      "matched_as": "Washington Wizards",
+      "match_score": 1.0,
+      "files": [
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_big_square.png",
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_big_circle.png",
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_big_circle_badge.png",
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_small_square.png",
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_small_circle.png",
+        "NBA/Eastern Conference/Washington Wizards/washington-wizards_small_circle_badge.png"
+      ]
+    }
+  ]
+}

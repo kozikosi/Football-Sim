@@ -1,0 +1,262 @@
+{
+  "source": "Wikidata P154 -> Wikimedia Commons",
+  "competition": "NBA",
+  "teams": [
+    {
+      "team": "Atlanta Hawks",
+      "slug": "atlanta-hawks",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Boston Celtics",
+      "slug": "boston-celtics",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Brooklyn Nets",
+      "slug": "brooklyn-nets",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Charlotte Hornets",
+      "slug": "charlotte-hornets",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Chicago Bulls",
+      "slug": "chicago-bulls",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Cleveland Cavaliers",
+      "slug": "cleveland-cavaliers",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": "NBA/Eastern Conference/Cleveland Cavaliers/cleveland-cavaliers.svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Cleveland_Cavaliers_logo.svg",
+      "src": "wikipedia",
+      "wikidata": "Q162990",
+      "commons_file": "Cleveland Cavaliers",
+      "bytes": 1072
+    },
+    {
+      "team": "Dallas Mavericks",
+      "slug": "dallas-mavericks",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Denver Nuggets",
+      "slug": "denver-nuggets",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Detroit Pistons",
+      "slug": "detroit-pistons",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": "NBA/Eastern Conference/Detroit Pistons/detroit-pistons.svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/c/c9/Logo_of_the_Detroit_Pistons.svg",
+      "src": "wikipedia",
+      "wikidata": "Q169661",
+      "commons_file": "Detroit Pistons",
+      "bytes": 7075
+    },
+    {
+      "team": "Golden State Warriors",
+      "slug": "golden-state-warriors",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "blocked-wordmark"
+    },
+    {
+      "team": "Houston Rockets",
+      "slug": "houston-rockets",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Indiana Pacers",
+      "slug": "indiana-pacers",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "LA Clippers",
+      "slug": "la-clippers",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Los Angeles Lakers",
+      "slug": "los-angeles-lakers",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": "NBA/Western Conference/Los Angeles Lakers/los-angeles-lakers.svg",
+      "source": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Los_Angeles_Lakers_logo.svg",
+      "src": "wikipedia",
+      "wikidata": "Q121783",
+      "commons_file": "Los Angeles Lakers",
+      "bytes": 13145
+    },
+    {
+      "team": "Memphis Grizzlies",
+      "slug": "memphis-grizzlies",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Miami Heat",
+      "slug": "miami-heat",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Milwaukee Bucks",
+      "slug": "milwaukee-bucks",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Minnesota Timberwolves",
+      "slug": "minnesota-timberwolves",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "New Orleans Pelicans",
+      "slug": "new-orleans-pelicans",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "New York Knicks",
+      "slug": "new-york-knicks",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Oklahoma City Thunder",
+      "slug": "oklahoma-city-thunder",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Orlando Magic",
+      "slug": "orlando-magic",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Philadelphia 76ers",
+      "slug": "philadelphia-76ers",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": "NBA/Eastern Conference/Philadelphia 76ers/philadelphia-76ers.svg",
+      "source": "https://commons.wikimedia.org/wiki/Special:FilePath/Philadelphia_76ers_Logo.svg",
+      "src": "commons-p154",
+      "wikidata": "Q138089",
+      "commons_file": "Philadelphia 76ers Logo.svg",
+      "bytes": 21125
+    },
+    {
+      "team": "Phoenix Suns",
+      "slug": "phoenix-suns",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Portland Trail Blazers",
+      "slug": "portland-trail-blazers",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Sacramento Kings",
+      "slug": "sacramento-kings",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "San Antonio Spurs",
+      "slug": "san-antonio-spurs",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Toronto Raptors",
+      "slug": "toronto-raptors",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "no-logo"
+    },
+    {
+      "team": "Utah Jazz",
+      "slug": "utah-jazz",
+      "competition": "NBA",
+      "group": "Western Conference",
+      "svg": null,
+      "reason": "png-only"
+    },
+    {
+      "team": "Washington Wizards",
+      "slug": "washington-wizards",
+      "competition": "NBA",
+      "group": "Eastern Conference",
+      "svg": null,
+      "reason": "png-only"
+    }
+  ]
+}

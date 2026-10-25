@@ -1,0 +1,528 @@
+{
+  "generated_from": "ESPN public sports API (+ authentic SVG masters where available)",
+  "variants": [
+    "big_square",
+    "big_circle",
+    "big_circle_badge",
+    "small_square",
+    "small_circle",
+    "small_circle_badge"
+  ],
+  "sizes": {
+    "big": 512,
+    "small": 128
+  },
+  "competition": "MLB",
+  "teams": [
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Arizona Diamondbacks",
+      "slug": "arizona-diamondbacks",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ari.png",
+      "matched_as": "Arizona Diamondbacks",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_big_square.png",
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_big_circle.png",
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_big_circle_badge.png",
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_small_square.png",
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_small_circle.png",
+        "MLB/National League/Arizona Diamondbacks/arizona-diamondbacks_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Athletics",
+      "slug": "athletics",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/ath.png",
+      "matched_as": "Athletics",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Athletics/athletics_big_square.png",
+        "MLB/American League/Athletics/athletics_big_circle.png",
+        "MLB/American League/Athletics/athletics_big_circle_badge.png",
+        "MLB/American League/Athletics/athletics_small_square.png",
+        "MLB/American League/Athletics/athletics_small_circle.png",
+        "MLB/American League/Athletics/athletics_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Atlanta Braves",
+      "slug": "atlanta-braves",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/atl.png",
+      "matched_as": "Atlanta Braves",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Atlanta Braves/atlanta-braves_big_square.png",
+        "MLB/National League/Atlanta Braves/atlanta-braves_big_circle.png",
+        "MLB/National League/Atlanta Braves/atlanta-braves_big_circle_badge.png",
+        "MLB/National League/Atlanta Braves/atlanta-braves_small_square.png",
+        "MLB/National League/Atlanta Braves/atlanta-braves_small_circle.png",
+        "MLB/National League/Atlanta Braves/atlanta-braves_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Baltimore Orioles",
+      "slug": "baltimore-orioles",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bal.png",
+      "matched_as": "Baltimore Orioles",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_big_square.png",
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_big_circle.png",
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_big_circle_badge.png",
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_small_square.png",
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_small_circle.png",
+        "MLB/American League/Baltimore Orioles/baltimore-orioles_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Boston Red Sox",
+      "slug": "boston-red-sox",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/bos.png",
+      "matched_as": "Boston Red Sox",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Boston Red Sox/boston-red-sox_big_square.png",
+        "MLB/American League/Boston Red Sox/boston-red-sox_big_circle.png",
+        "MLB/American League/Boston Red Sox/boston-red-sox_big_circle_badge.png",
+        "MLB/American League/Boston Red Sox/boston-red-sox_small_square.png",
+        "MLB/American League/Boston Red Sox/boston-red-sox_small_circle.png",
+        "MLB/American League/Boston Red Sox/boston-red-sox_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Chicago Cubs",
+      "slug": "chicago-cubs",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chc.png",
+      "matched_as": "Chicago Cubs",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Chicago Cubs/chicago-cubs_big_square.png",
+        "MLB/National League/Chicago Cubs/chicago-cubs_big_circle.png",
+        "MLB/National League/Chicago Cubs/chicago-cubs_big_circle_badge.png",
+        "MLB/National League/Chicago Cubs/chicago-cubs_small_square.png",
+        "MLB/National League/Chicago Cubs/chicago-cubs_small_circle.png",
+        "MLB/National League/Chicago Cubs/chicago-cubs_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Chicago White Sox",
+      "slug": "chicago-white-sox",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/chw.png",
+      "matched_as": "Chicago White Sox",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Chicago White Sox/chicago-white-sox_big_square.png",
+        "MLB/American League/Chicago White Sox/chicago-white-sox_big_circle.png",
+        "MLB/American League/Chicago White Sox/chicago-white-sox_big_circle_badge.png",
+        "MLB/American League/Chicago White Sox/chicago-white-sox_small_square.png",
+        "MLB/American League/Chicago White Sox/chicago-white-sox_small_circle.png",
+        "MLB/American League/Chicago White Sox/chicago-white-sox_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Cincinnati Reds",
+      "slug": "cincinnati-reds",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cin.png",
+      "matched_as": "Cincinnati Reds",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_big_square.png",
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_big_circle.png",
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_big_circle_badge.png",
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_small_square.png",
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_small_circle.png",
+        "MLB/National League/Cincinnati Reds/cincinnati-reds_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Cleveland Guardians",
+      "slug": "cleveland-guardians",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/cle.png",
+      "matched_as": "Cleveland Guardians",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_big_square.png",
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_big_circle.png",
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_big_circle_badge.png",
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_small_square.png",
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_small_circle.png",
+        "MLB/American League/Cleveland Guardians/cleveland-guardians_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Colorado Rockies",
+      "slug": "colorado-rockies",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/col.png",
+      "matched_as": "Colorado Rockies",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Colorado Rockies/colorado-rockies_big_square.png",
+        "MLB/National League/Colorado Rockies/colorado-rockies_big_circle.png",
+        "MLB/National League/Colorado Rockies/colorado-rockies_big_circle_badge.png",
+        "MLB/National League/Colorado Rockies/colorado-rockies_small_square.png",
+        "MLB/National League/Colorado Rockies/colorado-rockies_small_circle.png",
+        "MLB/National League/Colorado Rockies/colorado-rockies_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Detroit Tigers",
+      "slug": "detroit-tigers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/det.png",
+      "matched_as": "Detroit Tigers",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Detroit Tigers/detroit-tigers_big_square.png",
+        "MLB/American League/Detroit Tigers/detroit-tigers_big_circle.png",
+        "MLB/American League/Detroit Tigers/detroit-tigers_big_circle_badge.png",
+        "MLB/American League/Detroit Tigers/detroit-tigers_small_square.png",
+        "MLB/American League/Detroit Tigers/detroit-tigers_small_circle.png",
+        "MLB/American League/Detroit Tigers/detroit-tigers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Houston Astros",
+      "slug": "houston-astros",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/hou.png",
+      "matched_as": "Houston Astros",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Houston Astros/houston-astros_big_square.png",
+        "MLB/American League/Houston Astros/houston-astros_big_circle.png",
+        "MLB/American League/Houston Astros/houston-astros_big_circle_badge.png",
+        "MLB/American League/Houston Astros/houston-astros_small_square.png",
+        "MLB/American League/Houston Astros/houston-astros_small_circle.png",
+        "MLB/American League/Houston Astros/houston-astros_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Kansas City Royals",
+      "slug": "kansas-city-royals",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/kc.png",
+      "matched_as": "Kansas City Royals",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Kansas City Royals/kansas-city-royals_big_square.png",
+        "MLB/American League/Kansas City Royals/kansas-city-royals_big_circle.png",
+        "MLB/American League/Kansas City Royals/kansas-city-royals_big_circle_badge.png",
+        "MLB/American League/Kansas City Royals/kansas-city-royals_small_square.png",
+        "MLB/American League/Kansas City Royals/kansas-city-royals_small_circle.png",
+        "MLB/American League/Kansas City Royals/kansas-city-royals_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Los Angeles Angels",
+      "slug": "los-angeles-angels",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/laa.png",
+      "matched_as": "Los Angeles Angels",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_big_square.png",
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_big_circle.png",
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_big_circle_badge.png",
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_small_square.png",
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_small_circle.png",
+        "MLB/American League/Los Angeles Angels/los-angeles-angels_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Los Angeles Dodgers",
+      "slug": "los-angeles-dodgers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/lad.png",
+      "matched_as": "Los Angeles Dodgers",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_big_square.png",
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_big_circle.png",
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_big_circle_badge.png",
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_small_square.png",
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_small_circle.png",
+        "MLB/National League/Los Angeles Dodgers/los-angeles-dodgers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Miami Marlins",
+      "slug": "miami-marlins",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mia.png",
+      "matched_as": "Miami Marlins",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Miami Marlins/miami-marlins_big_square.png",
+        "MLB/National League/Miami Marlins/miami-marlins_big_circle.png",
+        "MLB/National League/Miami Marlins/miami-marlins_big_circle_badge.png",
+        "MLB/National League/Miami Marlins/miami-marlins_small_square.png",
+        "MLB/National League/Miami Marlins/miami-marlins_small_circle.png",
+        "MLB/National League/Miami Marlins/miami-marlins_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Milwaukee Brewers",
+      "slug": "milwaukee-brewers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/mil.png",
+      "matched_as": "Milwaukee Brewers",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_big_square.png",
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_big_circle.png",
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_big_circle_badge.png",
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_small_square.png",
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_small_circle.png",
+        "MLB/National League/Milwaukee Brewers/milwaukee-brewers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Minnesota Twins",
+      "slug": "minnesota-twins",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/min.png",
+      "matched_as": "Minnesota Twins",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Minnesota Twins/minnesota-twins_big_square.png",
+        "MLB/American League/Minnesota Twins/minnesota-twins_big_circle.png",
+        "MLB/American League/Minnesota Twins/minnesota-twins_big_circle_badge.png",
+        "MLB/American League/Minnesota Twins/minnesota-twins_small_square.png",
+        "MLB/American League/Minnesota Twins/minnesota-twins_small_circle.png",
+        "MLB/American League/Minnesota Twins/minnesota-twins_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "New York Mets",
+      "slug": "new-york-mets",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nym.png",
+      "matched_as": "New York Mets",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/New York Mets/new-york-mets_big_square.png",
+        "MLB/National League/New York Mets/new-york-mets_big_circle.png",
+        "MLB/National League/New York Mets/new-york-mets_big_circle_badge.png",
+        "MLB/National League/New York Mets/new-york-mets_small_square.png",
+        "MLB/National League/New York Mets/new-york-mets_small_circle.png",
+        "MLB/National League/New York Mets/new-york-mets_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "New York Yankees",
+      "slug": "new-york-yankees",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/nyy.png",
+      "matched_as": "New York Yankees",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/New York Yankees/new-york-yankees_big_square.png",
+        "MLB/American League/New York Yankees/new-york-yankees_big_circle.png",
+        "MLB/American League/New York Yankees/new-york-yankees_big_circle_badge.png",
+        "MLB/American League/New York Yankees/new-york-yankees_small_square.png",
+        "MLB/American League/New York Yankees/new-york-yankees_small_circle.png",
+        "MLB/American League/New York Yankees/new-york-yankees_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Philadelphia Phillies",
+      "slug": "philadelphia-phillies",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/phi.png",
+      "matched_as": "Philadelphia Phillies",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_big_square.png",
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_big_circle.png",
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_big_circle_badge.png",
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_small_square.png",
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_small_circle.png",
+        "MLB/National League/Philadelphia Phillies/philadelphia-phillies_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Pittsburgh Pirates",
+      "slug": "pittsburgh-pirates",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/pit.png",
+      "matched_as": "Pittsburgh Pirates",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_big_square.png",
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_big_circle.png",
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_big_circle_badge.png",
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_small_square.png",
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_small_circle.png",
+        "MLB/National League/Pittsburgh Pirates/pittsburgh-pirates_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "San Diego Padres",
+      "slug": "san-diego-padres",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sd.png",
+      "matched_as": "San Diego Padres",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/San Diego Padres/san-diego-padres_big_square.png",
+        "MLB/National League/San Diego Padres/san-diego-padres_big_circle.png",
+        "MLB/National League/San Diego Padres/san-diego-padres_big_circle_badge.png",
+        "MLB/National League/San Diego Padres/san-diego-padres_small_square.png",
+        "MLB/National League/San Diego Padres/san-diego-padres_small_circle.png",
+        "MLB/National League/San Diego Padres/san-diego-padres_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "San Francisco Giants",
+      "slug": "san-francisco-giants",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sf.png",
+      "matched_as": "San Francisco Giants",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/San Francisco Giants/san-francisco-giants_big_square.png",
+        "MLB/National League/San Francisco Giants/san-francisco-giants_big_circle.png",
+        "MLB/National League/San Francisco Giants/san-francisco-giants_big_circle_badge.png",
+        "MLB/National League/San Francisco Giants/san-francisco-giants_small_square.png",
+        "MLB/National League/San Francisco Giants/san-francisco-giants_small_circle.png",
+        "MLB/National League/San Francisco Giants/san-francisco-giants_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Seattle Mariners",
+      "slug": "seattle-mariners",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/sea.png",
+      "matched_as": "Seattle Mariners",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Seattle Mariners/seattle-mariners_big_square.png",
+        "MLB/American League/Seattle Mariners/seattle-mariners_big_circle.png",
+        "MLB/American League/Seattle Mariners/seattle-mariners_big_circle_badge.png",
+        "MLB/American League/Seattle Mariners/seattle-mariners_small_square.png",
+        "MLB/American League/Seattle Mariners/seattle-mariners_small_circle.png",
+        "MLB/American League/Seattle Mariners/seattle-mariners_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "St. Louis Cardinals",
+      "slug": "st-louis-cardinals",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/stl.png",
+      "matched_as": "St. Louis Cardinals",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_big_square.png",
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_big_circle.png",
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_big_circle_badge.png",
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_small_square.png",
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_small_circle.png",
+        "MLB/National League/St. Louis Cardinals/st-louis-cardinals_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Tampa Bay Rays",
+      "slug": "tampa-bay-rays",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tb.png",
+      "matched_as": "Tampa Bay Rays",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_big_square.png",
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_big_circle.png",
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_big_circle_badge.png",
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_small_square.png",
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_small_circle.png",
+        "MLB/American League/Tampa Bay Rays/tampa-bay-rays_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Texas Rangers",
+      "slug": "texas-rangers",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tex.png",
+      "matched_as": "Texas Rangers",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Texas Rangers/texas-rangers_big_square.png",
+        "MLB/American League/Texas Rangers/texas-rangers_big_circle.png",
+        "MLB/American League/Texas Rangers/texas-rangers_big_circle_badge.png",
+        "MLB/American League/Texas Rangers/texas-rangers_small_square.png",
+        "MLB/American League/Texas Rangers/texas-rangers_small_circle.png",
+        "MLB/American League/Texas Rangers/texas-rangers_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "American League",
+      "team": "Toronto Blue Jays",
+      "slug": "toronto-blue-jays",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/tor.png",
+      "matched_as": "Toronto Blue Jays",
+      "match_score": 1.0,
+      "files": [
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_big_square.png",
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_big_circle.png",
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_big_circle_badge.png",
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_small_square.png",
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_small_circle.png",
+        "MLB/American League/Toronto Blue Jays/toronto-blue-jays_small_circle_badge.png"
+      ]
+    },
+    {
+      "competition": "MLB",
+      "group": "National League",
+      "team": "Washington Nationals",
+      "slug": "washington-nationals",
+      "source_logo": "https://a.espncdn.com/i/teamlogos/mlb/500/wsh.png",
+      "matched_as": "Washington Nationals",
+      "match_score": 1.0,
+      "files": [
+        "MLB/National League/Washington Nationals/washington-nationals_big_square.png",
+        "MLB/National League/Washington Nationals/washington-nationals_big_circle.png",
+        "MLB/National League/Washington Nationals/washington-nationals_big_circle_badge.png",
+        "MLB/National League/Washington Nationals/washington-nationals_small_square.png",
+        "MLB/National League/Washington Nationals/washington-nationals_small_circle.png",
+        "MLB/National League/Washington Nationals/washington-nationals_small_circle_badge.png"
+      ]
+    }
+  ]
+}
