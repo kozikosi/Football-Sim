@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html><head><meta charset=utf-8><style>
+:root { --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0; --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c; --team-primary-rgb:227,24,55; --motion-fast:150ms ease; --motion-normal:250ms ease; --ease-bounce:cubic-bezier(0.34,1.56,0.64,1); }
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); padding:20px; line-height:1.6; overflow-x:hidden; }
+@keyframes textShimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
+@keyframes shimmer { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes scrollRight { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+@keyframes scrollLeft { 0% { transform:translateX(100%); } 100% { transform:translateX(-100%); } }
+@keyframes btnFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
+@keyframes sparkle { 0%,100% { opacity:0.6; transform:scale(1); } 50% { opacity:1; transform:scale(1.6); } }
+@keyframes float1 { 0%,100% { transform:translate(0,0) rotate(0deg); } 25% { transform:translate(3px,-5px) rotate(1deg); } 50% { transform:translate(-2px,-8px) rotate(-1deg); } 75% { transform:translate(4px,-3px) rotate(0.5deg); } }
+.header-scroll-layer { position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
+.header-scroll-text { position:absolute; white-space:nowrap; font-weight:900; letter-spacing:0.15em; will-change:transform; }
+.header-scroll-text.l1 { top:12%; font-size:0.8rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
+.header-scroll-text.l2 { top:42%; font-size:1.1rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
+.header-scroll-text.l3 { top:72%; font-size:0.55rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
+.home-20-0 { display:inline-block; font-size:1.4rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; }
+.home-20-0:hover { transform:scale(1.05); filter:brightness(1.2); }
+@media (prefers-reduced-motion: reduce) { .header-scroll-text, .home-20-0 { animation:none; } .home-20-0 { background-position:0 0; } }
+.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.card:hover { border-color:var(--border-hover); box-shadow:0 8px 32px rgba(0,0,0,0.35); transform:translateY(-1px); }
+p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
+.shimmer-text { background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.shimmer-text.gold { background:linear-gradient(90deg,var(--accent) 0%,var(--accent2) 50%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; display:inline-block; }
+.record-banner { display:flex; gap:18px; align-items:baseline; background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:18px 22px; margin:8px 0; }
+.record-digit { font-size:3rem; font-weight:900; line-height:1; }
+.record-digit.win { color:var(--gold); }
+.record-digit.loss { color:var(--sub); }
+.sparkline { height:60px; display:flex; align-items:flex-end; gap:3px; padding:4px 0; }
+.spark-bar { flex:1; min-height:2px; border-radius:2px 2px 0 0; transition:height var(--motion-normal); }
+.spark-bar.pos { background:#22c55e; }
+.spark-bar.neg { background:#ef4444; }
+.stat-row { display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem; }
+.stat-row .label { color:var(--sub); }
+.stat-row .val { font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
+.stat-row .val.opp { color:var(--opp-primary); }
+.float-card { background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:14px; transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.float-card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.star-card { background:rgba(255,255,255,0.03); border:1px solid var(--border); border-radius:12px; padding:12px; text-align:center; transition:transform var(--motion-fast); }
+.star-card:hover { transform:translateY(-2px); }
+.star-card .portrait { width:48px; height:48px; border-radius:50%; margin:0 auto 6px; border:2px solid var(--border); background:rgba(255,255,255,0.05); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; color:var(--accent); }
+.star-card .name { font-weight:700; font-size:0.85rem; margin-bottom:2px; }
+.star-card .stat { font-size:0.7rem; color:var(--sub); }
+.star-card .grade { margin-top:4px; font-size:0.65rem; font-weight:800; padding:2px 8px; border-radius:10px; }
+.award-badge { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border-radius:50%; margin:0 auto 8px; font-weight:800; font-size:1.1rem; color:#fff; }
+.award-badge.gold { background:var(--gold); color:#0d0a0e; }
+.award-badge.silver { background:#94a3b8; }
+.award-badge.bronze { background:#d97706; }
+.bracket { display:flex; gap:14px; align-items:flex-start; flex-wrap:wrap; }
+.matchup { display:flex; flex-direction:column; gap:8px; min-width:150px; }
+.team-seed { display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--border); border-radius:8px; background:var(--panel); cursor:pointer; transition:border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.team-seed.winner { border-color:var(--team-primary); box-shadow:0 0 0 3px rgba(var(--team-primary-rgb),0.25); background:rgba(var(--team-primary-rgb),0.12); }
+.team-seed .seed { font-size:0.7rem; font-weight:800; color:var(--sub); width:16px; text-align:center; }
+.team-seed .name { flex:1; font-weight:700; font-size:0.85rem; }
+.team-seed .tag { font-size:0.62rem; padding:1px 6px; border-radius:10px; background:var(--border); color:var(--sub); }
+.connector { width:14px; height:2px; background:var(--border); align-self:center; margin:6px 0; }
+.connector.v { width:2px; height:46px; margin:0 auto; }
+.gold-banner { position:relative; overflow:hidden; border-radius:10px; background:linear-gradient(90deg,#8a6a10,#b8941f,#8a6a10); background-size:200% auto; color:#fff; padding:14px 18px; font-weight:700; letter-spacing:0.04em; animation:shimmer 2.5s ease-in-out infinite; margin:8px 0; }
+.conf-chart { display:flex; flex-direction:column; gap:4px; }
+.conf-row { display:flex; align-items:center; gap:8px; padding:4px 0; }
+.conf-row .rank { width:20px; font-size:0.75rem; font-weight:800; color:var(--sub); }
+.conf-row .team { flex:1; font-size:0.8rem; font-weight:600; }
+.conf-row .record { width:40px; font-size:0.7rem; color:var(--sub); text-align:right; }
+.conf-row .bar { flex:2; height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; }
+.conf-row .bar-fill { height:100%; border-radius:3px; transition:width var(--motion-normal); }
+@media (prefers-reduced-motion: reduce) { .gold-banner, .game-ball { animation:none !important; } .shimmer-text { animation:none; background-position:0 0; } }
+@media (max-width:600px) { .bracket { flex-direction:column; } .record-banner { flex-direction:column; gap:8px; } }
+</style></head><body>
+
+<!-- Header -->
+<div style="position:relative;">
+  <div class="header-scroll-layer" style="position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border);">
+    <div class="header-scroll-text l1">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l2">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+    <div class="header-scroll-text l3">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
+  </div>
+  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
+    <a class="home-20-0" href="#" onclick="return false;">20-0</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <div style="display:inline-flex; align-items:center; gap:6px; padding:6px 12px; border-radius:20px; font-size:0.8rem; font-weight:700; border:1px solid var(--border); background:var(--panel);"><span style="width:10px;height:10px;border-radius:50%;background:var(--team-primary);display:inline-block;"></span>KC Chiefs</div>
+      <span style="color:var(--sub); font-size:0.8rem;">Season Review</span>
+    </div>
+  </div>
+</div>
+
+<h1 style="margin:12px 0 2px; font-size:1.2rem; color:var(--sub); font-weight:600;">Season Review</h1>
+<p style="margin:0 0 12px;">Kansas City Chiefs — 14-3 · 497 PF · 296 PA · +3.3 pt diff/game</p>
+
+<!-- Record banner -->
+<div class="record-banner">
+  <div><div class="record-digit win">14</div><div style="font-size:0.7rem;color:var(--sub);">WINS</div></div>
+  <div><div class="record-digit loss">3</div><div style="font-size:0.7rem;color:var(--sub);">LOSSES</div></div>
+  <div style="font-size:0.85rem;color:var(--sub);">+3.3 pt diff/game · 1st in AFC West</div>
+</div>
+
+<!-- Sparkline -->
+<div class="sparkline">
+  <div class="spark-bar pos" style="height:60%;"></div><div class="spark-bar pos" style="height:40%;"></div><div class="spark-bar neg" style="height:30%;"></div><div class="spark-bar pos" style="height:80%;"></div><div class="spark-bar pos" style="height:50%;"></div><div class="spark-bar neg" style="height:20%;"></div><div class="spark-bar pos" style="height:90%;"></div><div class="spark-bar pos" style="height:70%;"></div><div class="spark-bar pos" style="height:65%;"></div><div class="spark-bar neg" style="height:25%;"></div><div class="spark-bar pos" style="height:75%;"></div><div class="spark-bar pos" style="height:55%;"></div><div class="spark-bar pos" style="height:85%;"></div><div class="spark-bar neg" style="height:15%;"></div><div class="spark-bar pos" style="height:95%;"></div><div class="spark-bar pos" style="height:60%;"></div><div class="spark-bar pos" style="height:70%;"></div>
+</div>
+
+<!-- Playoff bracket -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Playoff Bracket</h2>
+<div class="bracket">
+  <div class="matchup">
+    <div class="team-seed winner"><span class="seed">1</span><span class="name">KC Chiefs</span><span class="tag">AFC</span></div>
+    <div class="connector v"></div>
+    <div class="team-seed"><span class="seed">8</span><span class="name">NY Jets</span><span class="tag">AFC</span></div>
+  </div>
+  <div class="connector"></div>
+  <div class="matchup">
+    <div class="team-seed"><span class="seed">4</span><span class="name">BUF Bills</span><span class="tag">AFC</span></div>
+    <div class="connector v"></div>
+    <div class="team-seed"><span class="seed">5</span><span class="name">BAL Ravens</span><span class="tag">AFC</span></div>
+  </div>
+  <div class="connector"></div>
+  <div class="matchup">
+    <div class="team-seed"><span class="seed">3</span><span class="name">CIN Bengals</span><span class="tag">AFC</span></div>
+    <div class="connector v"></div>
+    <div class="team-seed"><span class="seed">6</span><span class="name">HOU Texans</span><span class="tag">AFC</span></div>
+  </div>
+  <div class="connector"></div>
+  <div class="matchup">
+    <div class="team-seed"><span class="seed">2</span><span class="name">MIA Dolphins</span><span class="tag">AFC</span></div>
+    <div class="connector v"></div>
+    <div class="team-seed"><span class="seed">7</span><span class="name">IND Colts</span><span class="tag">AFC</span></div>
+  </div>
+</div>
+
+<!-- Conference charts -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Conference Standings (AFC)</h2>
+<div class="conf-chart">
+  <div class="conf-row"><span class="rank">1</span><span class="team">KC Chiefs</span><span class="record">14-3</span><div class="bar"><div class="bar-fill" style="width:82%; background:var(--team-primary);"></div></div></div>
+  <div class="conf-row"><span class="rank">2</span><span class="team">MIA Dolphins</span><span class="record">12-5</span><div class="bar"><div class="bar-fill" style="width:70%; background:#008e97;"></div></div></div>
+  <div class="conf-row"><span class="rank">3</span><span class="team">CIN Bengals</span><span class="record">11-6</span><div class="bar"><div class="bar-fill" style="width:65%; background:#fb4f14;"></div></div></div>
+  <div class="conf-row"><span class="rank">4</span><span class="team">BUF Bills</span><span class="record">11-6</span><div class="bar"><div class="bar-fill" style="width:65%; background:#00338d;"></div></div></div>
+  <div class="conf-row"><span class="rank">5</span><span class="team">BAL Ravens</span><span class="record">10-7</span><div class="bar"><div class="bar-fill" style="width:59%; background:#241773;"></div></div></div>
+  <div class="conf-row"><span class="rank">6</span><span class="team">HOU Texans</span><span class="record">10-7</span><div class="bar"><div class="bar-fill" style="width:59%; background:#03202f;"></div></div></div>
+  <div class="conf-row"><span class="rank">7</span><span class="team">IND Colts</span><span class="record">9-8</span><div class="bar"><div class="bar-fill" style="width:53%; background:#002c5f;"></div></div></div>
+  <div class="conf-row"><span class="rank">8</span><span class="team">NY Jets</span><span class="record">9-8</span><div class="bar"><div class="bar-fill" style="width:53%; background:#125740;"></div></div></div>
+</div>
+
+<!-- Awards -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Awards</h2>
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:8px; margin-bottom:12px;">
+  <div class="card" style="text-align:center; padding:12px;">
+    <div class="award-badge gold">MVP</div>
+    <div style="font-weight:700; font-size:0.85rem;">P. Mahomes</div>
+    <div style="font-size:0.7rem; color:var(--sub);">KC · 99 OVR</div>
+  </div>
+  <div class="card" style="text-align:center; padding:12px;">
+    <div class="award-badge silver">DPOY</div>
+    <div style="font-weight:700; font-size:0.85rem;">M. Garrett</div>
+    <div style="font-size:0.7rem; color:var(--sub);">CLE · 97 OVR</div>
+  </div>
+  <div class="card" style="text-align:center; padding:12px;">
+    <div class="award-badge bronze">ROY</div>
+    <div style="font-weight:700; font-size:0.85rem;">C. Stroud</div>
+    <div style="font-size:0.7rem; color:var(--sub);">HOU · 85 OVR</div>
+  </div>
+  <div class="card" style="text-align:center; padding:12px;">
+    <div class="award-badge gold">COY</div>
+    <div style="font-weight:700; font-size:0.85rem;">A. Reid</div>
+    <div style="font-size:0.7rem; color:var(--sub);">KC</div>
+  </div>
+</div>
+
+<!-- Gold banner -->
+<div class="gold-banner">
+  <span style="position:absolute; width:6px; height:6px; background:var(--gold); border-radius:50%; top:30%; left:10%; animation:sparkle 2s ease-in-out infinite;"></span>
+  <span style="position:absolute; width:6px; height:6px; background:var(--gold); border-radius:50%; top:60%; left:80%; animation:sparkle 2s ease-in-out infinite; animation-delay:0.8s;"></span>
+  Super Bowl Champion!
+</div>
+
+<!-- Champion banner -->
+<div style="position:relative; overflow:hidden; border-radius:16px; background:linear-gradient(135deg,#8a6a10,#b8941f,#8a6a10); background-size:200% auto; color:#fff; text-align:center; padding:36px 24px; margin:12px 0; box-shadow:0 20px 50px -8px rgba(138,106,16,0.25); animation:shimmer 3s ease-in-out infinite, popIn 0.5s var(--ease-bounce) both;">
+  <h2 style="margin:0 0 6px; font-size:1.8rem; text-transform:uppercase; letter-spacing:0.05em; color:#fff;">Super Bowl Champions!</h2>
+  <p style="margin:0; font-size:1.05rem; opacity:0.95; color:#fff;">The <span style="color:var(--gold); font-weight:800;">Kansas City Chiefs</span> are Super Bowl champions!</p>
+  <span style="position:absolute; width:6px; height:6px; background:var(--gold); border-radius:50%; top:20%; left:15%; animation:sparkle 2s ease-in-out infinite;"></span>
+  <span style="position:absolute; width:6px; height:6px; background:var(--gold); border-radius:50%; top:35%; left:75%; animation:sparkle 2s ease-in-out infinite; animation-delay:0.6s;"></span>
+  <span style="position:absolute; width:6px; height:6px; background:var(--gold); border-radius:50%; top:55%; left:30%; animation:sparkle 2s ease-in-out infinite; animation-delay:1.2s;"></span>
+</div>
+
+<!-- Advanced stats -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Advanced Stats</h2>
+<div class="float-card">
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Flex Tax</span><span style="font-weight:700; color:var(--accent);">0 pts</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Roster Balance</span><span style="font-weight:700; color:var(--accent);">8.2</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Draft Value Captured</span><span style="font-weight:700; color:var(--accent);">+4.2 wins</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Pass Protection Index</span><span style="font-weight:700; color:var(--accent);">91.2</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Defensive Pressure Index</span><span style="font-weight:700; color:var(--accent);">88.5</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Coverage Index</span><span style="font-weight:700; color:var(--accent);">84.1</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Turnover Margin</span><span style="font-weight:700; color:var(--accent);">+5</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Sack Rate</span><span style="font-weight:700; color:var(--accent);">3.2%</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem;"><span style="color:var(--sub);">Strength of Schedule</span><span style="font-weight:700; color:var(--accent);">.529</span></div>
+  <div style="display:flex; justify-content:space-between; padding:5px 0; font-size:0.8rem;"><span style="color:var(--sub);">Red Zone Efficiency</span><span style="font-weight:700; color:var(--accent);">68%</span></div>
+</div>
+
+<!-- Star cards -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Stars of the Season</h2>
+<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(120px, 1fr)); gap:8px; margin-bottom:12px;">
+  <div class="star-card"><div class="portrait">PM</div><div class="name">P. Mahomes</div><div class="stat">4,832 yds · 38 TD</div><div class="grade" style="background:var(--gold);color:#0d0a0e;">MVP</div></div>
+  <div class="star-card"><div class="portrait" style="background:linear-gradient(135deg,#003594,#869397);">NB</div><div class="name">N. Bosa</div><div class="stat">18.5 sacks · 28 TFL</div><div class="grade" style="background:#94a3b8;">DPOY</div></div>
+  <div class="star-card"><div class="portrait">TK</div><div class="name">T. Kelce</div><div class="stat">1,200 yds · 12 TD</div><div class="grade" style="background:#d97706;">1st Team</div></div>
+  <div class="star-card"><div class="portrait" style="background:linear-gradient(135deg,#aa0000,#b3995d);">CM</div><div class="name">C. McCaffrey</div><div class="stat">1,800 yds · 16 TD</div><div class="grade" style="background:#d97706;">1st Team</div></div>
+</div>
+
+<div style="margin-top:12px; padding:10px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
+  <p style="margin:0; color:var(--sub); font-size:0.75rem;">KC Chiefs (red/gold). Season review: record banner, sparkline, playoff bracket, conference standings, awards, champion banner, advanced stats, stars. Floaty glass panels. No blue. Mobile-responsive.</p>
+</div>
+</body></html>
