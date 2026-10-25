@@ -330,3 +330,9 @@
 - Review posted: inbox/20261025-0510-beam-P-038-review.md.
 - Commits pushed: 2adc94eb (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-032 FB/P slots + D-012 math)
+
+- P-032: FB/P slots and D-012 math proposal in inbox/20261025-0530-beam-P-032-work.md. FB/P are specialists (unaffected by 3-4/4-3). D-012: 3-4 trades DT2 for ILB2; group averaging should skip inactive slots. Code anchors: GROUPS l.454, GROUP_DEFS l.455, FLEX l.940, lineup editor l.1250. Edge cases documented.
+- Commits pushed: cad7e1d2 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
