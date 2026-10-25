@@ -29,5 +29,6 @@
 - `_agents/vl/deliveries/queue5-homepage-floaty-prototype-v2.html`
 - `_agents/vl/deliveries/queue5-homepage-floaty-prototype-v3.html`
 - `_agents/vl/deliveries/queue5-homepage-floaty-prototype-v4.html`
+- `_agents/vl/deliveries/queue5-homepage-floaty-prototype-v5.html`
 - `inbox/20261024-2357-vl-branding-20-0.md`
-- `inbox/20261025-0055-vl-homepage-floaty-v4.md`
+- `inbox/20261025-0105-vl-homepage-prompt-to-claude-v5.md`
