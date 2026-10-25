@@ -206,3 +206,10 @@
 - Rendered visualization.
 - Commits pushed: cc0f9014 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — homepage infinite motion revised v2)
+
+- Revised homepage proposal: removed the four floating text units (Season/Playoffs/Super Bowl/20-0?) entirely; brightened scrolling 20-0 pattern (opacity 0.10-0.15); added one static shimmering "20-0" as obvious clickable home button; no emojis; Start Draft floats + shimmers; mobile-responsive.
+- Rendered visualization.
+- Commits pushed: 4fa674e2 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
