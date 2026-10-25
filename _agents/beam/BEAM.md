@@ -269,3 +269,9 @@
 - Review posted: inbox/20261025-0410-beam-P-001-review.md.
 - Commits pushed: a3e33ea7 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-005 draft board clean-up)
+
+- P-005: Draft board clean-up proposal in inbox/20261025-0420-beam-P-005-work.md. Covers: Value Here removal (QUEUE-7), also fits removal (Q-V23-1), TOP badge gold (not green), names uncoloured, flex shown only at -2/-4 until round 20, FLEX VALUE renamed to "Flex x (-y)" in gold, Cooper DeJean FS-flex glitch explained (CB→FS penalty 0, isOutOfPosition false, but flexAlt still shows "also fits: FS" + green FLEX VALUE badge misleadingly).
+- Commits pushed: 44b67326 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
