@@ -185,3 +185,10 @@
 - Homepage copy + 20-0 branding proposal in inbox/20261024-2355-beam-homepage-20-0-branding.md (exact old→new for title, og:title, hero h1, tagline, homepage copy).
 - Commits pushed: 5e5ca84e, 71fe569b (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — homepage floaty draft setup)
+
+- Created inbox/20261025-0010-beam-homepage-floaty-draft-setup.md: removes "Set Up Your Draft" heading, replaces with 20-0 shimmer text; four floating rose-gold pill entities (Draft as, Draft pick #, Start Draft, guide link); selects barely visible (translucent, hairline, pill-shaped); Start Draft floats centered with gradient + shadow; mobile wraps.
+- Rendered visualization.
+- Commits pushed: b4db89cb (verified via git ls-remote).
+- No product file edits, no protected constants changed.
