@@ -641,3 +641,9 @@
 - P-062: Matchup page creative/interactive with logos proposal in inbox/20261025-1040-beam-P-062-work.md. References game-preview-floaty-prototype.html + game-preview-logos-prototype.html. Graphical, fewer sentences, team tags, key players side-by-side, game plan, shimmer text.
 - Commits pushed: 33e1114c (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-063 Remove season header text)
+
+- P-063: Remove "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?" from season header — covered by P-047 (inbox/20261025-0900-beam-P-047-work.md). No separate work needed.
+- Commits pushed: 712f1fb0 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
