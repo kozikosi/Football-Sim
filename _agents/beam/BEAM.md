@@ -532,3 +532,9 @@
 - P-075: Remove "No picks yet." and "needed" text proposal in inbox/20261025-0830-beam-P-075-work.md. Exact old→new at l.1564, l.1778, l.1785. SAFE ALONE: YES.
 - Commits pushed: b63c4b83 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-076 "by your next pick" text)
+
+- P-076: "by your next pick" text disappear on compress proposal in inbox/20261025-0840-beam-P-076-work.md. Wrap in `.narrow-hide` span, hide via media query at 760px. SAFE ALONE: YES.
+- Commits pushed: 20f01542 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
