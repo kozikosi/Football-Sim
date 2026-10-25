@@ -538,3 +538,9 @@
 - P-076: "by your next pick" text disappear on compress proposal in inbox/20261025-0840-beam-P-076-work.md. Wrap in `.narrow-hide` span, hide via media query at 760px. SAFE ALONE: YES.
 - Commits pushed: 20f01542 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-077 Keep shimmering "Can you go 20-0")
+
+- P-077: Keep shimmering "Can you go 20-0" on Draft complete page proposal in inbox/20261025-0850-beam-P-077-work.md. Exact old→new at l.6241. Shimmer-text CSS (gold variant). Canonical example of emphasizing a word in the colour palette. SAFE ALONE: YES.
+- Commits pushed: 939ebd8d (verified via git ls-remote).
+- No product file edits, no protected constants changed.
