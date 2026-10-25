@@ -593,3 +593,9 @@
 - P-053: Style table dropdown menu proposal in inbox/20261025-0950-beam-P-053-work.md. Wrap style tables + "Why we recommend Auto" + "How a 2-Pt Conv works" in <details> elements. Simplify language to 5th-grade level. Visualize instead of paragraph text. SAFE ALONE: YES.
 - Commits pushed: 21753151 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-054 Remove "Why Auto" section)
+
+- P-054: Remove "Why we recommend Auto" section entirely proposal in inbox/20261025-0960-beam-P-054-work.md. Exact removal at l.5107. SAFE ALONE: YES.
+- Commits pushed: ff83990e (verified via git ls-remote).
+- No product file edits, no protected constants changed.
