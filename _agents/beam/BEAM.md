@@ -293,3 +293,9 @@
 - P-011: Draft resume after refresh proposal in inbox/20261025-0450-beam-P-011-work.md. Based on T5 spec (persistence-proposal.md). State to save/restore, failure modes (private window, quota), export/import, seeded RNG (draft only).
 - Commits pushed: a0ab4656 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-012 Weights page UI)
+
+- P-012: Weights page UI proposal in inbox/20261025-0460-beam-P-012-work.md. Button labels Default/My Weights, active state tracking, new explanatory text, badges moved below table, behaviour table.
+- Commits pushed: c677add1 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
