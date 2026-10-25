@@ -361,3 +361,9 @@
 - P-050: Win-probability graph design proposal in inbox/20261025-0570-beam-P-050-work.md. SVG-based line graph, per-play WP from existing sim data, key moment dots, progressive draw animation, reduced-motion fallback, mobile-responsive. Design only (P3).
 - Commits pushed: 304d09c5 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-051 sound design)
+
+- P-051: Sound design proposal in inbox/20261025-0580-beam-P-051-work.md. Web Audio API, no assets, 9 sounds (draft pick, TD, turnover, game end, championship, achievement, toast), off by default, toggle persisted. Snippet ready in plug-and-play-snippets-v22.md §23.1.
+- Commits pushed: 8dd1df76 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
