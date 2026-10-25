@@ -3,7 +3,7 @@
 
 **THE RULE: nobody is assigned to anything.** Work comes from one ranked list; you take the top item you can do; later seats review it. Never wait for a particular seat, and never tell another seat what to do.
 
-The Owner opened this chat in your worktree `../wt/<name>` (branch `council/<name>`). **You do not create worktrees.** If `pwd` is not `.../wt/<name>` or the branch is not `council/<name>`, stop and tell the Owner (command in the Project doc `new-chat-prompts.md` §1).
+The Owner opened this chat in your worktree `../wt/<name>` (branch `council/<name>`). **You do not create worktrees.** If `pwd` is not `.../wt/<name>` or the branch is not `council/<name>`, stop and tell the Owner (command in the Project doc `chat-management.md` §1).
 
 ## 1. Orient (commands, with output in your first reply)
 ```

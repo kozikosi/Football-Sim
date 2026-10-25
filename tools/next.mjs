@@ -23,7 +23,9 @@ const alias = new Map(); for (const it of items.values()) for (const a of it.sou
 const canon = (s) => { if (!s) return null; const m = s.match(/[A-Z]-\d{3}/); if (m && items.has(m[0])) return m[0]; const a = s.match(/QUEUE[- ]?(\d+)|Q-V23-(\d+)/i); if (!a) return null; return alias.get(a[1] ? `QUEUE-${a[1]}` : `Q-V23-${a[2]}`) || null; };
 // collect inbox files across seat branches
 const files = new Map(); // name -> {ref, seat, t, head}
+const misfiled = [];
 for (const ref of g('for-each-ref', '--format=%(refname:short)', 'refs/remotes/origin/council').split('\n').filter(Boolean)) {
+  for (const f of g('ls-tree', '-r', '--name-only', ref).split('\n').filter((x) => /^(_agents\/[^/]+\/inbox\/|inbox\/[^/]+\/)/.test(x))) misfiled.push(`${ref.replace('origin/', '')}:${f}`);
   for (const f of g('ls-tree', '-r', '--name-only', ref, '--', 'inbox/').split('\n').filter(Boolean)) {
     const m = f.match(/inbox\/(\d{8})-(\d{4})-([a-z0-9]+)-?(.*)\.md$/);
     if (!m || files.has(f)) continue;
@@ -61,7 +63,7 @@ const line = (it) => `${it.id} [P${it.eff}${it.upgraded ? '↑' : ''}] ${it.stat
 if (args.includes('--board')) {
   console.log(`BOARD (${items.size} items; reviews needed: ${REVIEWS_NEEDED}; branches read: ${new Set([...files.values()].map((x) => x.ref)).size})`);
   for (const it of [...items.values()].sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id))) console.log((it.blocked.length ? 'BLOCKED(' + it.blocked.join(',') + ') ' : '') + line(it));
-  process.exit(0);
+  notice(); process.exit(0);
 }
 const mine = [];
 for (const it of items.values()) {
@@ -70,7 +72,9 @@ for (const it of items.values()) {
   else if (it.status === 'NEEDS-REVIEW' && it.author !== me && !it.reviewers.includes(me)) mine.push({ it, action: `REVIEW #${it.nrev + 1} of ${REVIEWS_NEEDED}: read ${it.lastWork.ref}:${it.lastWork.f}`, score: 0 });
 }
 mine.sort((a, b) => a.it.eff - b.it.eff || a.score - b.score || a.it.id.localeCompare(b.it.id));
+function notice() { if (misfiled.length) console.log(`\nNOTICE: ${misfiled.length} file(s) sit in a per-seat or nested inbox (e.g. ${misfiled.slice(0, 2).join(', ')}). They are IGNORED here. Work is never addressed to a seat: put work in top-level inbox/ on your own branch (inbox/README.md).`); }
 console.log(`NEXT FOR ${me || '(unknown seat)'}: top of the list, nobody is assigned. Pick the first line; claim it first (AGENTS.md §5).`);
 if (!mine.length) console.log('Nothing open or awaiting your review. Run standing chores (AGENTS.md §5) or --board.');
 for (const { it, action } of mine.slice(0, 6)) console.log(`\n${line(it)}\n   ACTION: ${action}\n   BRIEF:  ${it.work}`);
+notice();
 console.log('\nHow: claim = file inbox/<UTC>-<you>-<ID>-claim.md with "CLAIM: <ID>"; work = inbox/<UTC>-<you>-<ID>-<slug>.md; review = inbox/<UTC>-<you>-<ID>-review.md with "REVIEW-OF: <file>" and "VERDICT: ok|improved|rejected" (+ the improved text). Push your branch.');
