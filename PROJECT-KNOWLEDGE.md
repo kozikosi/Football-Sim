@@ -1,9 +1,11 @@
 # PROJECT-KNOWLEDGE.md — "20-0" (repo and files: Football Sim)
 
-**Single writer: the Architect** (rewritten at his handover; the Owner may assign a seat for a session; everyone else proposes changes in their bulletin entry). Initial short version written by the Architect, 23 Oct 2026; the 14 KB predecessor is `_archive/PROJECT-KNOWLEDGE-2026-10-22-beam.md` (stale: build table, duplicated rules, a second reading order). **This file states current facts only. Rules live in `AGENTS.md`; do not copy them here.**
+**Single writer: the Architect** (rewritten at his handover; the Owner may let a seat write it for a session; everyone else proposes changes in their bulletin entry). Initial short version written by the Architect, 23 Oct 2026; the 14 KB predecessor is `_archive/PROJECT-KNOWLEDGE-2026-10-22-beam.md` (stale: build table, duplicated rules, a second reading order). **This file states current facts only. Rules live in `AGENTS.md`; do not copy them here.**
+
+**Nobody is assigned to anything:** one ranked list (`_agents/PRIORITIES.md`), `node tools/next.mjs`, three reviews per item (`AGENTS.md` §1, §5).
 
 ## Reading order (the only one)
-See `_agents/START-OF-CHAT.md`. In short: `AGENTS.md`, this file, `COUNCIL-BULLETIN.md`, `node tools/council-sync.mjs --days 3`, your lane file; the work order only as lines 1–120 of `V22-Suggestions.md` plus your item's section.
+See `_agents/START-OF-CHAT.md` (read from `origin/council/base`). In short: `AGENTS.md`, this file, `COUNCIL-BULLETIN.md`, `_agents/V23-OWNER-REQUESTS.md`, your lane file; then `node tools/next.mjs`.
 
 **Council base:** `origin/council/base` (the Architect moves it; seats merge it with `git merge --no-edit origin/council/base` at chat start). Until the PR to `main` is merged this is the only correct base; never base on a task branch.
 
