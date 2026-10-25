@@ -508,3 +508,9 @@
 - Review posted: inbox/20261025-0790-beam-P-001-review3.md.
 - Commits pushed: 579ccab0 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-072 Draft button always visible)
+
+- P-072: Draft button always visible proposal in inbox/20261025-0790-beam-P-072-work.md. CSS: sticky bottom on mobile, flex-shrink:0, white-space:nowrap. SAFE ALONE: YES.
+- Commits pushed: 711b98a7 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
