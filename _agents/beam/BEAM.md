@@ -305,3 +305,9 @@
 - P-013: Default weights recalibration framework in inbox/20261025-0470-beam-P-013-work.md. Proposed arithmetic (col2 = 20×col1, quantise to 700 scale), agreed adjustments (K .45, WR2 .63, RB1 .58, CB2 .95, DE1 1.38, TE1/TE2 within .5), Owner input needed for full table. Never applied without Owner approval.
 - Commits pushed: df6f8814 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-014 Team Comparison)
+
+- P-014: Team Comparison page edits proposal in inbox/20261025-0480-beam-P-014-work.md. Default Chiefs v Raiders, grouped Offense/Defense, no parentheses, text removals, Q-V23-4 colour cue.
+- Commits pushed: 7e373db9 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
