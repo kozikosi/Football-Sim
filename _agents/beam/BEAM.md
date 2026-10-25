@@ -411,3 +411,9 @@
 - Review posted: inbox/20261025-0610-beam-P-001-review2.md.
 - Commits pushed: 007a46cc (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-018 Game preview redesign)
+
+- P-018: Game preview redesign proposal in inbox/20261025-0630-beam-P-018-work.md. References game-preview-floaty-prototype.html and game-preview-logos-prototype.html as canonical mocks. Graphical, fewer sentences, team tags, key players side-by-side, game plan, shimmer text.
+- Commits pushed: bf3e3e31 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
