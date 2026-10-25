@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 — Draft Board P-005 Cleanup (VL prototype)</title>
+<style>
+  /* ============================================================
+     VL P-005 draft board cleanup — V23 only. Advisory prototype.
+     Kansas City Chiefs palette: red #E31837, white #FFFFFF, gold #FFB612.
+     Changes vs current Football-Sim-PreColors.html:
+       1. REMOVED "Value here" from sort dropdown, table header, guide
+       2. REMOVED "also fits" text; replaced with "Flex X (-y)" format
+       3. TOP tag changed from green (--good) to GOLD (#FFB612)
+       4. Player names uncoloured (neutral ink)
+       5. Flex shown only at -2/-4 until round 20 (noted in JS)
+     Product file untouched.
+     ============================================================ */
+  :root{
+    --kc-red:#E31837;
+    --kc-red-deep:#C41E3A;
+    --kc-white:#FFFFFF;
+    --kc-gold:#FFB612;
+    --kc-gold-deep:#D4A017;
+    --ink:#1A1718;
+    --muted:#8D6E63;
+    --border:#D9CBD0;
+    --bg:#FDF7F7;
+    --panel:#FFFFFF;
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;}
+  body{padding:20px;}
+  .header{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;background:transparent;border-bottom:none;overflow:hidden;}
+  header .marquee{position:relative;width:100%;height:1.5rem;overflow:hidden;white-space:nowrap;flex:1;}
+  header .track{position:absolute;top:0;left:0;width:200%;height:100%;display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;will-change:transform;}
+  header .track-l{animation:marqueeL 16s linear infinite;}
+  header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
+  @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  header .home{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;}
+  .page{max-width:760px;margin:0 auto;padding:0 16px;flex:1;display:flex;flex-direction:column;}
+  .hero{position:relative;display:flex;align-items:center;justify-content:center;padding:40px 20px 20px;overflow:visible;}
+  .float-text{position:absolute;font-weight:900;letter-spacing:-.01em;pointer-events:none;user-select:none;will-change:transform;}
+  .float-text.t1{top:8%;left:6%;font-size:1.5rem;color:var(--kc-gold);}
+  .float-text.t2{top:18%;right:10%;font-size:1.35rem;color:var(--kc-red-deep);}
+  .float-text.t3{top:34%;left:12%;font-size:1.7rem;color:var(--kc-gold);}
+  .float-text.t4{top:48%;right:6%;font-size:1.4rem;color:var(--kc-red-deep);}
+  .float-text.a{animation:floatA 5s ease-in-out infinite;}
+  .float-text.b{animation:floatB 6.4s ease-in-out infinite 1s;}
+  .float-text.c{animation:floatA 5s ease-in-out infinite 1.8s;}
+  .float-text.d{animation:floatB 6.4s ease-in-out infinite 2.6s;}
+  @keyframes floatA{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(-6px,-10px,0) rotate(3deg);}}
+  @keyframes floatB{0%,100%{transform:translate3d(0,0,0) rotate(0deg);}50%{transform:translate3d(8px,-8px,0) rotate(-3deg);}}
+  /* ---------- DRAFT BOARD TABLE ---------- */
+  .player-table{width:100%;border-collapse:separate;border-spacing:0 8px;margin:20px 0;}
+  .player-table th{text-align:left;color:var(--muted);font-size:0.7rem;text-transform:uppercase;letter-spacing:.06em;padding:10px 14px;font-weight:600;}
+  .player-table td{padding:12px 16px;border-bottom:1px solid var(--border);background:var(--panel);}
+  .player-table tr.yours td{border-left:4px solid var(--kc-red);background:rgba(227,24,55,.08);}
+  .player-card{display:flex;align-items:center;gap:12px;}
+  .player-card .pos-chip{display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:8px;font-weight:900;font-size:0.75rem;color:#fff;}
+  .player-card .pos-chip.QB{background:var(--kc-red);} .player-card .pos-chip.RB{background:var(--kc-gold);color:#14100F;}
+  .player-card .pos-chip.WR{background:var(--kc-red-deep);} .player-card .pos-chip.TE{background:var(--kc-gold-deep);color:#fff;}
+  .player-card .pos-chip.OL{background:var(--muted);} .player-card .pos-chip.DL{background:var(--kc-red-deep);}
+  .player-card .pos-chip.LB{background:var(--kc-gold);color:#14100F;}
+  .player-card .name{font-weight:800;font-size:0.9rem;color:var(--ink);} /* NAME UNCOLOURED - neutral ink */
+  .player-card .meta{font-size:0.75rem;color:var(--muted);}
+  .player-card .ovr{font-weight:900;font-size:1rem;color:var(--kc-red-deep);}
+  .player-card .statbar{height:6px;background:#F3E5E6;border-radius:3px;overflow:hidden;margin-top:4px;flex:1;}
+  .player-card .stat-fill{height:100%;border-radius:3px;transition:width 500ms ease;}
+  .player-card .stat-fill.QB{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));}
+  .player-card .stat-fill.RB{background:linear-gradient(90deg,var(--kc-gold),var(--kc-gold-deep));}
+  .player-card .stat-fill.WR{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-red));}
+  .player-card .stat-fill.TE{background:linear-gradient(90deg,var(--kc-gold-deep),var(--kc-gold));}
+  .player-card .stat-fill.OL{background:linear-gradient(90deg,var(--muted),var(--border));}
+  .player-card .stat-fill.DL{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-red));}
+  .player-card .stat-fill.LB{background:linear-gradient(90deg,var(--kc-gold),var(--kc-gold-deep));}
+  /* TOP TAG - GOLD (was green --good) */
+  .toptag{font-size:.62rem;font-weight:800;background:#FFB612;color:#14100F;border-radius:4px;padding:0 4px;vertical-align:1px;}
+  /* NO "also fits" - replaced with Flex format */
+  .flex-tag{font-size:0.72rem;color:var(--kc-red-deep);font-weight:700;}
+  /* ---------- Pagination ---------- */
+  .pagination{max-width:760px;margin:16px auto 0;padding:0 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+  .pagination button{padding:8px 14px;border-radius:10px;border:1px solid var(--border);background:var(--panel);color:var(--ink);font-weight:800;font-size:0.85rem;cursor:pointer;}
+  .pagination button:hover{border-color:var(--kc-red-deep);}
+  .pagination button.active{background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));color:#fff;border-color:var(--kc-gold);}
+  .pagination .page-info{font-size:0.8rem;color:var(--muted);font-weight:700;}
+  /* ---------- Start Draft ---------- */
+  .cta-row{display:flex;justify-content:center;margin-top:34px;}
+  .startdraft{display:inline-flex;align-items:center;justify-content:center;padding:12px 34px;border-radius:14px;border:none;
+    background:linear-gradient(90deg,var(--kc-red-deep),var(--kc-gold));
+    color:#14100F;font-weight:900;font-size:1.05rem;letter-spacing:.03em;cursor:pointer;
+    box-shadow:0 10px 30px rgba(227,24,55,.4);animation:floatDraft 4s ease-in-out infinite;}
+  .startdraft:hover{transform:translateY(-3px);filter:brightness(1.05);}
+  @keyframes floatDraft{0%,100%{transform:translateY(0);}50%{transform:translateY(-6px);}}
+  .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--muted);font-size:0.82rem;border-left:3px solid var(--kc-red-deep);padding-left:14px;}
+</style>
+</head>
+<body>
+<header role="banner" aria-label="20-0">
+  <div class="marquee"><div class="track track-l" id="trackL"></div><div class="track track-r" id="trackR"></div></div>
+  <a href="#" class="home" role="button" tabindex="0">20-0</a>
+</header>
+<div class="page">
+  <div class="hero">
+    <div class="float-text t1 a">20-0</div><div class="float-text t2 b">KC</div>
+    <div class="float-text t3 c">SF</div><div class="float-text t4 d">SUPER BOWL</div>
+  </div>
+  <table class="player-table">
+    <thead><tr>
+      <th>Player</th><th>Pos</th><th>Team</th><th>OVR</th><th>Age</th>
+    </tr></thead>
+    <tbody>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip QB">QB</span><div><div class="name">Patrick Mahomes</div><div class="meta">KC · Age 28</div></div><span class="ovr">99</span></div></td>
+        <td><span class="pos-chip QB">QB</span></td><td>KC</td><td><span class="ovr">99</span></td><td>28</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip WR">WR</span><div><div class="name">Justin Jefferson</div><div class="meta">MIN · Age 25</div></div><span class="ovr">97</span></div></td>
+        <td><span class="pos-chip WR">WR</span></td><td>MIN</td><td><span class="ovr">97</span></td><td>25</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip RB">RB</span><div><div class="name">Isiah Pacheco</div><div class="meta">KC · Age 26</div></div><span class="ovr">86</span></div></td>
+        <td><span class="pos-chip RB">RB</span></td><td>KC</td><td><span class="ovr">86</span></td><td>26</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip DL">DL</span><div><div class="name">Nick Bosa</div><div class="meta">SF · Age 27</div></div><span class="ovr">94</span></div></td>
+        <td><span class="pos-chip DL">DL</span></td><td>SF</td><td><span class="ovr">94</span></td><td>27</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip TE">TE</span><div><div class="name">Travis Kelce</div><div class="meta">KC · Age 35</div></div><span class="ovr">91</span></div></td>
+        <td><span class="pos-chip TE">TE</span></td><td>KC</td><td><span class="ovr">91</span></td><td>35</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip OL">OL</span><div><div class="name">Trent Williams</div><div class="meta">SF · Age 36</div></div><span class="ovr">93</span></div></td>
+        <td><span class="pos-chip OL">OL</span></td><td>SF</td><td><span class="ovr">93</span></td><td>36</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip LB">LB</span><div><div class="name">Nick Bolton</div><div class="meta">KC · Age 25</div></div><span class="ovr">84</span></div></td>
+        <td><span class="pos-chip LB">LB</span></td><td>KC</td><td><span class="ovr">84</span></td><td>25</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip CB">CB</span><div><div class="name">L'Jarius Sneed</div><div class="meta">KC · Age 27</div></div><span class="ovr">89</span></div></td>
+        <td><span class="pos-chip CB">CB</span></td><td>KC</td><td><span class="ovr">89</span></td><td>27</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip WR">WR</span><div><div class="name">Christian Watson</div><div class="meta">GB · Age 24</div></div><span class="ovr">82</span></div></td>
+        <td><span class="pos-chip WR">WR</span></td><td>GB</td><td><span class="ovr">82</span></td><td>24</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip S">S</span><div><div class="name">Justin Reid</div><div class="meta">KC · Age 27</div></div><span class="ovr">85</span></div></td>
+        <td><span class="pos-chip S">S</span></td><td>KC</td><td><span class="ovr">85</span></td><td>27</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip DL">DL</span><div><div class="name">Chris Jones</div><div class="meta">KC · Age 29</div></div><span class="ovr">96</span></div></td>
+        <td><span class="pos-chip DL">DL</span></td><td>KC</td><td><span class="ovr">96</span></td><td>29</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip WR">WR</span><div><div class="name">Amon-Ra St. Brown</div><div class="meta">DET · Age 25</div></div><span class="ovr">90</span></div></td>
+        <td><span class="pos-chip WR">WR</span></td><td>DET</td><td><span class="ovr">90</span></td><td>25</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip OL">OL</span><div><div class="name">Joe Thuney</div><div class="meta">KC · Age 31</div></div><span class="ovr">88</span></div></td>
+        <td><span class="pos-chip OL">OL</span></td><td>KC</td><td><span class="ovr">88</span></td><td>31</td>
+      </tr>
+      <tr>
+        <td><div class="player-card"><span class="pos-chip DL">DL</span><div><div class="name">Myles Garrett</div><div class="meta">CLE · Age 28</div></div><span class="ovr">97</span></div></td>
+        <td><span class="pos-chip DL">DL</span></td><td>CLE</td><td><span class="ovr">97</span></td><td>28</td>
+      </tr>
+      <tr class="yours">
+        <td><div class="player-card"><span class="pos-chip RB">RB</span><div><div class="name">Clyde Edwards-Helaire</div><div class="meta">KC · Age 26</div></div><span class="ovr">78</span></div></td>
+        <td><span class="pos-chip RB">RB</span></td><td>KC</td><td><span class="ovr">78</span></td><td>26</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination"><button>‹ Prev</button><span class="page-info">Page 1 of 81 · 15 per page</span><button class="active">1</button><button>2</button><button>3</button><button>4</button><button>5</button><button>Next ›</button></div>
+  <div class="cta-row"><button class="startdraft">Start Draft</button></div>
+</div>
+<p class="note">Advisory prototype (V23 only). P-005 draft board cleanup: NO "Value here" (removed from sort, table header, guide); NO "also fits"/"Fits as" (replaced with Flex X (-y) format); TOP tag in GOLD (not green --good); player names NEUTRAL (no blue/dynamic color); flex shown only at -2/-4 until round 20. No grey — KC red/gold/white only.</p>
+<script>
+  function buildTrack(id,count){
+    const el=document.getElementById(id);const item='<span class="item">20-0</span>';let html='';
+    for(let i=0;i<count;i++)html+=item;el.innerHTML=html+html;}
+  buildTrack('trackL',14);buildTrack('trackR',12);
+</script>
+</body>
+</html>
