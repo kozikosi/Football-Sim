@@ -242,3 +242,9 @@
 - Rendered visualization.
 - Commits pushed: a95c80e2 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — import guest docs to GitHub)
+
+- Imported Z.ai handoff (`_agents/zai/deliveries/HANDOFF-FOR-CLAUDE.md`) and GPT's four review docs (PreColors Audit Prompt v3, Structure Review Proposal v3, Council Workflow Review v3, Product Draft Scaffold v3) from the shared tree into `_agents/beam/notes/imported-guest-reviews/` and pushed to council/beam.
+- Commits pushed: f2d55c6a (verified via git ls-remote).
+- No product file edits, no protected constants changed.
