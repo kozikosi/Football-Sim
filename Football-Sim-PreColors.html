@@ -1267,7 +1267,7 @@ body{background:#120a0e !important}
  <div id="draftGuideHost"></div>
  <div id="draftLive" style="display:none;">
   <div class="panel">
-   <div id="draftingAsBanner" class="draftingas"></div>
+   <div id="draftingAsBanner" class="draftingas" style="text-align:right;">Drafting</div>
    <div class="tabs" style="margin-bottom:10px;">
     <button class="tabbtn" id="speedInstantBtn">Instant</button>
     <button class="tabbtn active" id="speedSlowBtn">Slow</button>
@@ -2569,10 +2569,9 @@ function renderDraftBoard2(){
  let ch = `<div class="chipbar">`;
  WV_GROUPS.forEach(g=>{
   const f = filled[g]||0, t = SLOT_TOTALS[g]||0, on = sel.has(g);
-  ch += `<span class="chip ${on?'on':''} ${f>=t?'full':''}"><span data-tog="${g}" title="Show or hide ${WV_NAMES[g].toLowerCase()}s">${g} ${f}/${t}</span><span class="star" data-star="${g}" title="How much you care about ${WV_NAMES[g].toLowerCase()}: ★★ = must-fill (counts 1.5× in Priority), ★ = normal, ☆ = low (0.5×). Click to change.">${PRIO_STAR[prioOf(g)]}</span></span>`;
+  ch += `<span class="chip ${on?'on':''} ${f>=t?'full':''}"><span data-tog="${g}" title="Show or hide ${WV_NAMES[g].toLowerCase()}s">${g} ${f}/${t}</span></span>`;
  });
- ch += `<span class="chip" data-all="1"><span>all</span></span><span class="chip" data-none="1"><span>none</span></span></div>
-  <div class="narr" style="margin:-4px 0 8px;">Chip numbers are starters drafted / starting spots (0/2 = both open). Stars set how much you care about a position: ★★ must-fill (Priority ×1.5), ★ normal, ☆ low (×0.5). Click a star to change it.</div>`;
+ ch += `<span class="chip" data-all="1"><span>all</span></span><span class="chip" data-none="1"><span>none</span></span></div>`;
  document.getElementById('draftChips').innerHTML = ch;
  // ---- filter into rows ----
  const matchesSearch = p=> !search || p[0].toLowerCase().includes(search);
