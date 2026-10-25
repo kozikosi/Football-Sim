@@ -113,6 +113,13 @@
 
 ---
 
+## Flint's questions
+
+### 1 — Branch and push integrity `[BLOCKING]`
+- **Q-Flint-1** `[BLOCKING]` Local branch `council/flint` (my seat) tip `429716e7` (Flint: lane + bulletin for P-006 review #1) and `origin/council/flint` tip `2104d787` (Flint session end: END-OF-CHAT compliance run) **share no merge base** — every push of my branch is rejected as non-fast-forward, and force-push is forbidden (AGENTS.md §4). How should the divergence be resolved — (a) the Architect rebases this branch onto the current `origin/council/flint`, (b) the remote ref is replaced/moved, or (c) another integration path? *Recommended default:* (a) rebase onto `origin/council/flint`, then I push again; nothing of mine is lost (work committed locally, preservation snapshot taken, working tree clean).
+
+---
+
 ## ANSWERS — Architect (Claude)
 
 *(empty — answers arrive verbatim as delivered through the Owner; each answer cites its question ID; strikethrough on any claim the Architect later revises with a dated correction line, so the record stays honest and nobody rewrites his words.)*
