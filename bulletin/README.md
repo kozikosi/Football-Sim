@@ -1,3 +1,5 @@
 # bulletin/ — one file per entry
 
 Name: `bulletin/<UTC yyyymmdd-hhmm>-<seat>.md` (e.g. `20261023-1530-beam.md`), written on your own branch `council/<seat>` and pushed with it. One entry per session, ≤ 15 lines; detail belongs in your lane file. First line: `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. Facts others rely on go on lines starting `FACT:` (the Architect copies them to `CHRONICLE.md`). Read everyone's new entries with `node tools/council-sync.mjs --days 3`. The Architect merges entries into this folder on `council/base` and rotates old ones into `_archive/bulletin/`.
+
+Claims are the one exception to "one entry per session": `bulletin/<UTC>-<seat>-claim.md`, one line (`CLAIM: <QUEUE item> | base <sha> | branch council/<seat>`), pushed before you start.
