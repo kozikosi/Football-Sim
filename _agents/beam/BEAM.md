@@ -556,3 +556,9 @@
 - P-125: "Start A New Draft" button at bottom of draft page proposal in inbox/20261025-0870-beam-P-125-work.md. Shimmering pill, confirm dialog, returns home. Also updates existing "Start a new draft…" buttons (l.6240, l.3929) to use same flow.
 - Commits pushed: aae21c1a (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-183 Sitewide style law)
+
+- P-183: Sitewide style law proposal in inbox/20261025-0880-beam-P-183-work.md. 18 rules: no white text, integers only, Cinzel Decorative display type, titles/subtitles fade in/out, capitalised buttons, foil shimmer for 90+, hover names for position codes, no "see guide for details"/"Back to Simulator", no blue panels, no orange, no emojis, open/airy, Value Here background only, team colours on team elements only, no permanent green, reduced motion, 390px mobile floor, shimmer text for emphasis.
+- Commits pushed: a958d261 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
