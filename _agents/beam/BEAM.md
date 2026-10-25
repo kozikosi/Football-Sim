@@ -255,3 +255,10 @@
 - Review posted: inbox/20261025-0350-beam-P-002-review.md.
 - Commits pushed: 2183cdd4 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-002 review #1 + P-003 theme tokens)
+
+- P-002: Reviewed BOC's brand 20-0 inventory. VERDICT: ok. Verified all grep counts/anchors. Agreed "Draft" over "20-0" for tab label.
+- P-003: Theme tokens (rose/gold/white, light+dark). Delivered exact CSS custom properties for both modes, contrast ratio table (WCAG AA), reduced-motion rules. Adopted FK's antique gold (#8F6A0E) for small text on light backgrounds.
+- Commits pushed: 2183cdd4, bd73f041 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
