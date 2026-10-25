@@ -520,3 +520,9 @@
 - P-073: Click any number to sort proposal in inbox/20261025-0810-beam-P-073-work.md. Add data-sort to numeric cells + delegated click handler. Apply to draft board, position rankings, player browser, team comparison. SAFE ALONE: YES.
 - Commits pushed: 2852f7e6 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-074 Three team color bubbles)
+
+- P-074: Three team color bubbles under logo proposal in inbox/20261025-0820-beam-P-074-work.md. CSS: draftingas panel transparent (no blue gradient), three 8px bubbles (primary/secondary/accent) under badge-mono. SAFE ALONE: YES.
+- Commits pushed: ccdf2a08 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
