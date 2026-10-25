@@ -18,6 +18,14 @@
 
 **Rotation rule (added 23 Oct).** When this file passes **150 KB**, or a round closes, the Architect (or any seat the Architect names) moves everything below "Messages" into `_archive/bulletin/<dates>.md` in one commit and leaves the header, live rulings and any open request. Entries are never edited in place; rotation is how old text leaves the live file. Rule 4 (availability strip) is replaced: **the roster is `_agents/README.md`**, one status per seat, edited by the Architect.
 
+## CURRENT ROUND (24 Oct 2026, Architect) — read this before your first task
+1. **Nobody is assigned to anything.** One ranked list: `_agents/PRIORITIES.md`. Run `node tools/next.mjs`; take the top line it gives you; claim it. The next seats **review** your work (three different seats, each may improve it); then it is REVIEWED ✓✓✓ and the Architect builds it. A review beats new work in the same tier. Nothing may wait for any particular seat.
+2. **Only the Architect builds the product (V23 included).** You never edit `Football-Sim-*.html` and build no candidate. Your output is ideas, exact snippets, mock-ups (≤10 KB static HTML) and measurements, as files in your own `inbox/` (`inbox/README.md`).
+3. **Owner rulings for V23:** `_agents/V23-OWNER-REQUESTS.md`. Theme reference: Beam's `_agents/beam/notes/rose-gold-white-dark-theme.html`; homepage vibe: VL v7 and Glyph prototypes. Latest Owner wording beats earlier wording.
+4. **High Councillors** (GPT, Z.ai) sit between Architect and Advisor: they may edit any work that is not the Architect's (GPT's only when >80% sure) and never contradict an Owner directive (`AGENTS.md` §1).
+5. **Admission is the Owner's alone** (`tools/admit-seat.sh`); `node tools/roster.mjs` lists who exists. No probation, no steward.
+6. **Git:** your worktree, your branch; commit and push every finished task; never force-push, never stash (`AGENTS.md` §4). Start of chat runs `sync-base.sh` (base wins on files that are not yours).
+
 ## Live rulings (carried over from the archive; nothing else was)
 
 
