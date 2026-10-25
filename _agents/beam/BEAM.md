@@ -342,3 +342,9 @@
 - P-036: Advanced stats ideas proposal in inbox/20261025-0540-beam-P-036-work.md. 10 candidate stats computable from existing data (Flex Tax, Roster Balance, Draft Value Captured, Pass Protection Index, Defensive Pressure Index, Coverage Index, Turnover Margin, Sack Rate, Strength of Schedule, Red Zone Efficiency), each with formula and "why you did well/poorly" explanation.
 - Commits pushed: aeee8330 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-037 mobile audit)
+
+- P-037: Mobile audit at 390px proposal in inbox/20261025-0550-beam-P-037-work.md. 15 findings (CSS-based, no Playwright): #startSeasonBtn below fold, draft table 12-col grid cramped, stepper 17 steps illegible, filters wrap, bracket overflow, hero padding, footnav, draftingas, chipbar, table scroll, viewhead, panel, depth-row, matchup-card, bracket-game. Playwright verification NOT performed.
+- Commits pushed: aec2c227 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
