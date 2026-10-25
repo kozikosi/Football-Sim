@@ -471,3 +471,9 @@
 - P-043: Remove Star system proposal in inbox/20261025-0710-beam-P-043-work.md. Exact removals: star span (l.1705), star text (l.1708), PRIO_STAR/prioOf logic, star CSS, guide star table (l.5072). Priority multiplier stays in math. SAFE ALONE: YES.
 - Commits pushed: c3072e63 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-044 remove pick text)
+
+- P-044: Remove "you hold the #X overall pick (Round 1)" text proposal in inbox/20261025-0720-beam-P-044-work.md. Exact old→new at l.1488. SAFE ALONE: YES.
+- Commits pushed: 07512d64 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
