@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 - Chiefs Game Preview</title>
+<style>
+:root{
+  --bg:#0a0506;
+  --text:#f6f0f0;
+  --sub:#d7c9cc;
+  --gold:#d4af37;
+  --gold-2:#f2d77c;
+  --chiefs-red:#E31837;
+  --chiefs-gold:#FFB81C;
+  --chiefs-white:#FFFFFF;
+  --border:transparent;
+}
+*{box-sizing:border-box;outline:none!important;box-shadow:none!important}
+html,body{margin:0;padding:0;background:radial-gradient(1400px 800px at 50% -10%, rgba(227,24,55,.18), transparent 60%),radial-gradient(900px 600px at 80% 0%, rgba(255,184,28,.14), transparent 55%),var(--bg);color:var(--text);font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif}
+.wrap{max-width:1080px;margin:0 auto;padding:22px 16px 80px}
+header{display:flex;align-items:center;justify-content:center;margin:6px 0 18px}
+.marquee{display:flex;flex-direction:column;gap:4px;width:100%;overflow:hidden}
+.marquee-track{display:flex;gap:28px;animation:marquee-right 26s linear infinite;white-space:nowrap}
+.marquee-track-reverse{animation:marquee-left 30s linear infinite;animation-direction:reverse}
+.marquee-track span{font-size:1.6rem;font-weight:900;letter-spacing:.14em;background:linear-gradient(90deg,var(--chiefs-white),var(--chiefs-gold),var(--chiefs-red),var(--chiefs-gold),var(--chiefs-white));background-size:300% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 6px 22px rgba(227,24,55,.16));animation:shimmer 6s linear infinite}
+@keyframes marquee-right{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes marquee-left{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+@keyframes shimmer{0%{background-position:-300% 0}100%{background-position:300% 0}}
+
+.hero{position:relative;text-align:center;margin:10px 0 26px;animation:floaty 4s ease-in-out infinite}
+.hero h1{margin:0;font-size:clamp(2.2rem,6vw,4.6rem);font-weight:900;letter-spacing:.08em;background:linear-gradient(90deg,var(--chiefs-white),var(--chiefs-gold),var(--chiefs-red));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 7s linear infinite;filter:drop-shadow(0 10px 40px rgba(227,24,55,.22))}
+.hero .sub{margin:6px 0 0;color:var(--sub);letter-spacing:.16em;text-transform:uppercase;font-size:.8rem}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;margin:16px 0 22px}
+.team{display:flex;flex-direction:column;align-items:center;gap:10px;animation:floaty 4.2s ease-in-out infinite}
+.team.away{animation-delay:.2s}
+.team.home{animation-delay:.4s}
+.team .logo{width:clamp(90px,16vw,150px);height:clamp(90px,16vw,150px);border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle, rgba(255,255,255,.06), transparent 70%);filter:drop-shadow(0 16px 60px rgba(227,24,55,.24))}
+.team .name{font-size:clamp(1.2rem,4vw,2.6rem);font-weight:900;letter-spacing:.06em}
+.team .meta{color:var(--sub);letter-spacing:.12em;text-transform:uppercase;font-size:.75rem}
+.vs-mid{display:flex;flex-direction:column;align-items:center;gap:6px}
+.vs-mid .big{font-size:clamp(2.4rem,10vw,6rem);font-weight:900;background:linear-gradient(90deg,var(--chiefs-gold),var(--chiefs-white),var(--chiefs-gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 5s linear infinite}
+.vs-mid .time{color:var(--sub);letter-spacing:.18em;text-transform:uppercase}
+
+.section{margin:18px 0}
+.section-title{display:flex;align-items:center;justify-content:center;gap:12px;margin:10px 0 16px;color:var(--sub);text-transform:uppercase;letter-spacing:.18em;font-size:.8rem}
+.section-title::before,.section-title::after{content:'';height:1px;flex:1;background:linear-gradient(90deg,transparent,rgba(255,184,28,.4),transparent)}
+
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px}
+.card{grid-column:1/-1;background:transparent;border:none;animation:floaty 4.6s ease-in-out infinite}
+@media(min-width:880px){
+  .card.half{grid-column:span 6}
+}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.card-title{font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.card-sub{color:var(--sub)}
+.stars{display:flex;flex-direction:column;gap:8px}
+.star-row{display:flex;align-items:center;justify-content:space-between;animation:floaty 4s ease-in-out infinite}
+.star-row:nth-child(2){animation-delay:.15s}
+.star-row:nth-child(3){animation-delay:.3s}
+.star-row:nth-child(4){animation-delay:.45s}
+.star-row:nth-child(5){animation-delay:.6s}
+.star-name{display:flex;align-items:center;gap:10px}
+.star-name .num{color:var(--chiefs-gold)}
+.star-ovr{font-weight:900;color:var(--chiefs-gold)}
+.prose{display:flex;flex-direction:column;gap:12px;color:var(--text)}
+.prose p{margin:0;line-height:1.7}
+
+.float-tag{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;border-radius:999px;background:transparent;color:var(--chiefs-gold);letter-spacing:.16em;text-transform:uppercase;font-size:.75rem;animation:floaty 3.8s ease-in-out infinite}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero-marquee">
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
+        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
+      </div>
+      <div class="marquee-track marquee-track-reverse">
+        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
+        <span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="hero">
+    <h1>GAME PREVIEW</h1>
+    <div class="sub">AFC Championship • Arrowhead Energy • January Air</div>
+  </div>
+
+  <div class="vs">
+    <div class="team away">
+      <div class="logo">
+        <svg width="90" height="90" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="none" stroke="var(--chiefs-gold)" stroke-width="4"/>
+          <text x="50" y="58" text-anchor="middle" font-size="28" fill="var(--chiefs-white)" font-weight="900">BUF</text>
+        </svg>
+      </div>
+      <div class="name">BUFFALO BILLS</div>
+      <div class="meta">14-3 • AFC East</div>
+    </div>
+    <div class="vs-mid">
+      <div class="big">VS</div>
+      <div class="time">SUN 6:30 PM ET</div>
+    </div>
+    <div class="team home">
+      <div class="logo">
+        <svg width="90" height="90" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="48" fill="rgba(227,24,55,.22)" stroke="var(--chiefs-gold)" stroke-width="4"/>
+          <text x="50" y="58" text-anchor="middle" font-size="26" fill="var(--chiefs-white)" font-weight="900">KC</text>
+        </svg>
+      </div>
+      <div class="name" style="color:var(--chiefs-gold)">KANSAS CITY CHIEFS</div>
+      <div class="meta">15-2 • AFC West • Home</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">Chiefs Stars</div>
+    <div class="grid">
+      <div class="card">
+        <div class="stars">
+          <div class="star-row">
+            <div class="star-name"><span class="num">#15</span><span>PATRICK MAHOMES</span></div>
+            <span class="star-ovr">99</span>
+          </div>
+          <div class="star-row">
+            <div class="star-name"><span class="num">#87</span><span>TRAVIS KELCE</span></div>
+            <span class="star-ovr">91</span>
+          </div>
+          <div class="star-row">
+            <div class="star-name"><span class="num">#1</span><span>XAVIER WORTHY</span></div>
+            <span class="star-ovr">79</span>
+          </div>
+          <div class="star-row">
+            <div class="star-name"><span class="num">#95</span><span>CHRIS JONES</span></div>
+            <span class="star-ovr">94</span>
+          </div>
+          <div class="star-row">
+            <div class="star-name"><span class="num">#55</span><span>FRANK CLARK</span></div>
+            <span class="star-ovr">81</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-title">The Storyline</div>
+    <div class="grid">
+      <div class="card half">
+        <div class="card-head">
+          <div class="card-title">Quarterback Duel</div>
+          <div class="card-sub">Legacy on the line</div>
+        </div>
+        <div class="prose">
+          <p>Two of the league's finest collide under the Arrowhead lights. Mahomes' brilliance meets Allen's power in a matchup that has defined the AFC for years.</p>
+          <p>The margin for error is razor thin. One possession could swing everything.</p>
+        </div>
+      </div>
+      <div class="card half">
+        <div class="card-head">
+          <div class="card-title">Trenches & Takeaways</div>
+          <div class="card-sub">Where games are won</div>
+        </div>
+        <div class="prose">
+          <p>Chris Jones and the Chiefs front look to disrupt Josh Allen. Turnovers could be the difference — Kansas City's opportunistic defense lives for them.</p>
+          <p>Protecting Mahomes and establishing rhythm early will be paramount against Buffalo's pressure.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align:center;margin-top:30px">
+    <div class="float-tag">FLOATING • AIRY • CHIEFS RED & GOLD</div>
+  </div>
+</div>
+</body>
+</html>
