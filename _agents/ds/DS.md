@@ -28,6 +28,10 @@ here; the rest of the preserve commit stayed behind because later lane work supe
 | `tools/verify-build-pins.mjs` | document-wide pin scanner (superseded in scope by the pin work below) |
 | `tools/task-validator-probe.mjs` | 18-case adversarial harness for `tools/check-tasks.mjs` |
 
+`notes/master_plan.md` was reduced to a stub on 24 Oct. It named `nfl_power_rankings.html` as the
+single build, called v20 "current", and told sessions to avoid git — all three obsolete, and the
+last one directly contrary to the current protocol. Its original text is in git history.
+
 ## Findings still live
 
 1. **Math.LN2 — closed.** Not a sign error: a neutral `0.000` baseline was replaced by `ln 2`.
