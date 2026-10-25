@@ -514,3 +514,9 @@
 - P-072: Draft button always visible proposal in inbox/20261025-0790-beam-P-072-work.md. CSS: sticky bottom on mobile, flex-shrink:0, white-space:nowrap. SAFE ALONE: YES.
 - Commits pushed: 711b98a7 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-073 Click any number to sort)
+
+- P-073: Click any number to sort proposal in inbox/20261025-0810-beam-P-073-work.md. Add data-sort to numeric cells + delegated click handler. Apply to draft board, position rankings, player browser, team comparison. SAFE ALONE: YES.
+- Commits pushed: 2852f7e6 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
