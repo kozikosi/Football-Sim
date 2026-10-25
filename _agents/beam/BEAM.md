@@ -440,3 +440,9 @@
 - Review posted: inbox/20261025-0640-beam-P-006-review.md.
 - Commits pushed: 00e0b291 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-041 homepage fade transitions)
+
+- P-041: Homepage fade transitions proposal in inbox/20261025-0650-beam-P-041-work.md. 2s cross-fade (home fade-out, draft fade-in), reduced-motion fallback, rapid-click handling. SAFE ALONE: YES.
+- Commits pushed: 1553157d (verified via git ls-remote).
+- No product file edits, no protected constants changed.
