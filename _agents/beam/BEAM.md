@@ -281,3 +281,9 @@
 - P-009: Position Rankings proposal in inbox/20261025-0430-beam-P-009-work.md. Covers: default group change SEC → DLCB (DL+CBs top 6), plural labels, "(WR1+WR2+WR3)" naming standardization. All 60 combinations already in GROUP_DEFS (one copy each, generated from model weights). Label/default changes only — no math, no protected constants.
 - Commits pushed: f7e5cf94 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-010 draft page copy/layout)
+
+- P-010: Draft page copy/layout bundle proposal in inbox/20261025-0440-beam-P-010-work.md. Covers undo button shortening, bigger on-the-clock text, +x wins prefix, summary line, compact mobile cards, CSS consolidation. Items already correct (dynamic Round x, horizontal Roster/Depth, card order, no MORE) noted.
+- Commits pushed: afd6fcbc (verified via git ls-remote).
+- No product file edits, no protected constants changed.
