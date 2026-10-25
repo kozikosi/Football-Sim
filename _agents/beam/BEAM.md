@@ -199,3 +199,10 @@
 - Rendered visualization.
 - Commits pushed: 751ca44c (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — homepage infinite motion 20-0)
+
+- Revised homepage proposal: removed football from header, replaced with infinite-scrolling 20-0 pattern (3 layers, different speeds/directions, varying opacity/sizes → non-obvious). Removed panels/bubbles around Season/Playoffs/Super Bowl/20-0? (plain floating text with text-shadow). Removed emojis. Changed "20-0 Can you?" → "20-0?". All four units float with independent infinite motion (different durations/phases). Start Draft floats + shimmers. Mobile-responsive.
+- Rendered visualization.
+- Commits pushed: cc0f9014 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
