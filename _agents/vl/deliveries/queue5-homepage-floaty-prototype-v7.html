@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 — Homepage draft hero (VL prototype v7)</title>
+<style>
+  /* ============================================================
+     VL home-page concept v7 — V23 only. Advisory prototype.
+     Product file untouched. Rose / gold / white theme.
+     Changes vs v6:
+       * Header: infinite scrolling "20-0" marquee (two overlapping
+         layers, opposite directions) PLUS one permanent static
+         "20-0" home button in the corner — inline with the marquee
+         (not a tall vertical pill on its own line), no panel around
+         it (header background is transparent rose-tint, no panel).
+       * Hero: clean/empty — no text, no panels/bubbles/emojis.
+       * Selection boxes: TRANSPARENT background (not grey),
+         rose-gold labels, hairline rose border.
+       * "Start Draft": floats centered, no play arrow.
+     ============================================================ */
+  :root{
+    --bg:#faf5f7;            /* barely rose tint page bg */
+    --panel:#ffffff;         /* white panel (3rd colour) */
+    --rose:#e8a0b4;          /* soft barely-pink rose (primary) */
+    --rose-deep:#c97a8e;     /* deeper rose accent */
+    --gold:#d4af37;          /* gold (2nd) */
+    --gold-deep:#b8941f;     /* deeper gold for small text */
+    --ink:#2d1f23;           /* soft dark neutral */
+    --border:#dcc7d4;        /* soft rose border */
+    --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+    --motion:400ms ease;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#0d0a0e; --panel:#140f12; --panel2:#1c1518;
+      --ink:#f5f0f0; --border:#4a2e36; --off-white:#120c0d;
+      --rose:#f0dce2; --rose-deep:#e8a0b4; --gold:#d4af37; --gold-deep:#b8941f;
+    }
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);
+    font-family:var(--font);font-size:16px;}
+  body{padding-top:env(safe-area-inset-top,0);padding-bottom:env(safe-area-inset-bottom,0);
+    min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden;}
+
+  /* ---------- Header: infinite "20-0" marquee + static corner button ---------- */
+  header{
+    position:sticky;top:env(safe-area-inset-top,0);z-index:50;
+    display:flex;align-items:center;justify-content:space-between;
+    gap:12px;padding:12px 16px;background:transparent;  /* no panel around the button */
+    border-bottom:none;                                /* no panel border */
+  }
+  /* scrolling "20-0" marquee (two layers, opposite directions) */
+  header .marquee{
+    position:relative;width:100%;height:1.5rem;overflow:hidden;
+    white-space:nowrap;
+    flex:1;  /* take available space, sit inline with corner button */
+  }
+  header .track{
+    position:absolute;top:0;left:0;width:200%;height:100%;
+    display:flex;align-items:center;gap:22px;
+    font-weight:900;font-size:1.25rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--rose-deep),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    will-change:transform;
+  }
+  header .track-l{animation:marqueeL 16s linear infinite;}
+  header .track-r{animation:marqueeR 22s linear infinite;opacity:0.55;}
+  @keyframes marqueeL{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+  @keyframes marqueeR{0%{transform:translateX(-50%);}100%{transform:translateX(0);}}
+  /* permanent static "20-0" home button in the corner — inline, not vertical pill */
+  header .home{
+    display:inline-flex;align-items:center;justify-content:center;
+    gap:6px;padding:8px 18px;border-radius:12px;border:none;
+    font-weight:900;font-size:1.2rem;letter-spacing:-.02em;
+    background:linear-gradient(90deg,var(--rose-deep),var(--gold));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    cursor:pointer;
+    box-shadow:0 6px 18px rgba(201,122,142,.3);
+    transition:transform 200ms ease,box-shadow 200ms ease;
+    text-decoration:none;
+    white-space:nowrap;
+  }
+  header .home:hover{transform:translateY(-1px);box-shadow:0 10px 30px rgba(201,122,142,.45);}
+  header .home:active{transform:translateY(0);}
+  header .home:focus-visible{outline:3px solid var(--gold);outline-offset:3px;border-radius:10px;}
+  @media (prefers-reduced-motion: reduce){
+    header .track-l,header .track-r{animation:none;transform:none;}
+  }
+
+  /* ---------- Hero: clean/empty — NO text, no panels/bubbles/emojis ---------- */
+  .hero{
+    position:relative;
+    display:flex;align-items:center;justify-content:center;
+    padding:40px 20px 20px;max-width:760px;margin:24px auto 0;
+    overflow:visible;
+  }
+
+  /* ---------- Draft controls: TRANSPARENT boxes, no grey ---------- */
+  .controls{
+    display:flex;gap:12px;flex-wrap:wrap;justify-content:center;
+    max-width:760px;margin:26px auto 0;padding:0 16px;
+  }
+  .control{
+    display:flex;flex-direction:column;gap:5px;align-items:flex-start;
+  }
+  .control label{
+    font-size:0.7rem;text-transform:uppercase;letter-spacing:.05em;
+    font-weight:800;color:var(--rose-deep);   /* rose gold labels */
+  }
+  .control select{
+    width:210px;padding:10px 12px;border-radius:10px;
+    border:1px solid var(--border);        /* soft rose hairline */
+    background:transparent;                /* TRANSPARENT — not grey */
+    color:var(--ink);font-size:0.95rem;
+    appearance:none;cursor:pointer;
+    transition:border-color 200ms ease,box-shadow 200ms ease;
+  }
+  .control select:hover{border-color:var(--rose-deep);}
+  .control select:focus{border-color:var(--rose-deep);box-shadow:0 0 0 3px rgba(201,122,142,.12);outline:none;}
+  .control select option{background:var(--panel);color:var(--ink);}
+
+  /* ---------- Start Draft: floats + centered, NO play arrow ---------- */
+  .cta-row{display:flex;justify-content:center;margin-top:34px;}
+  .startdraft{
+    display:inline-flex;align-items:center;justify-content:center;
+    padding:12px 34px;border-radius:14px;border:none;
+    background:linear-gradient(90deg,var(--rose-deep),var(--gold));
+    color:#1a0f0f;font-weight:900;font-size:1.05rem;letter-spacing:.03em;
+    cursor:pointer;
+    box-shadow:0 10px 30px rgba(201,122,142,.4);
+    transition:transform 250ms ease,box-shadow 250ms ease,filter 250ms ease;
+    animation:floatDraft 4s ease-in-out infinite;
+  }
+  .startdraft:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(201,122,142,.55);filter:brightness(1.05);}
+  .startdraft:active{transform:translateY(0);}
+  @keyframes floatDraft{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+  @media (prefers-reduced-motion: reduce){.startdraft{animation:none !important;}}
+
+  .note{max-width:760px;margin:28px auto;padding:0 16px;color:var(--rose-deep);
+    font-size:0.82rem;border-left:3px solid var(--rose-deep);padding-left:14px;}
+</style>
+</head>
+<body>
+<header role="banner" aria-label="20-0">
+  <div class="marquee">
+    <div class="track track-l" id="trackL"></div>
+    <div class="track track-r" id="trackR"></div>
+  </div>
+  <a href="#" class="home" onclick="return goHome();" role="button"
+     aria-label="Return to homepage (20-0)" tabindex="0">20-0</a>
+</header>
+
+<div class="hero">
+  <!-- intentionally empty/clean — no text, no panels/bubbles/emojis -->
+</div>
+
+<div class="controls">
+  <div class="control">
+    <label>Draft as</label>
+    <select id="draftSlot"><option>Kansas City Chiefs</option></select>
+  </div>
+  <div class="control">
+    <label>Draft pick #</label>
+    <select id="draftPickNumber"><option>Random</option></select>
+  </div>
+</div>
+
+<div class="cta-row">
+  <button class="startdraft" onclick="return startDraft();">Start Draft</button>
+</div>
+
+<p class="note">Advisory prototype (V23 only). Header: infinite scrolling "20-0" marquee (two overlapping layers, opposite directions, different speeds) PLUS one permanent static inline "20-0" corner button — clickable to return to homepage, no emoji, no words beyond "20-0", button inline with the marquee (not a tall vertical pill), no panel around it (transparent header, no panel border). Hero: clean/empty — all text removed ("Season", "Playoffs", "Super Bowl", "20-0?"), no panels/bubbles/emojis. Selection boxes: TRANSPARENT background (not grey), rose-gold labels ("Draft as", "Draft pick #"), hairline rose border. "Start Draft" floats centered, play arrow removed. Mobile: marquee + corner button + controls stack; targets ≥44px; prefers-reduced-motion respected.</p>
+
+<script>
+  function buildTrack(id, count){
+    const el=document.getElementById(id);
+    const item='<span class="item">20-0</span>';
+    let html='';
+    for(let i=0;i<count;i++) html+=item;
+    el.innerHTML=html+html; /* duplicated for seamless loop */
+  }
+  buildTrack('trackL',14);
+  buildTrack('trackR',12);
+
+  function goHome(){ /* static corner "20-0" → homepage */ return false; }
+  function startDraft(){ /* enters draft flow */ return false; }
+</script>
+</body>
+</html>
