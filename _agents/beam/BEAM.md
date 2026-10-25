@@ -483,3 +483,9 @@
 - P-045: Align "(x.y)" draft pick indicator proposal in inbox/20261025-0740-beam-P-045-work.md. Candidate elements: on-the-clock text (l.1559), gone-by-next-pick (l.1697), Priority column (l.1766). Recommended text-align:right on relevant container. Exact "(x.y)" element not found in Pre-Colors — may need to be added.
 - Commits pushed: 2d0f9940 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-068 Homepage dropdowns side by side)
+
+- P-068: Homepage dropdown menus side-by-side proposal in inbox/20261025-0750-beam-P-068-work.md. CSS: flex-wrap:nowrap, overflow-x:auto, selects shrink with text-overflow:ellipsis. Mobile: no stacking. SAFE ALONE: YES.
+- Commits pushed: b3307c87 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
