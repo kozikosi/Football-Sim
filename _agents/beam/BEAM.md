@@ -562,3 +562,10 @@
 - P-183: Sitewide style law proposal in inbox/20261025-0880-beam-P-183-work.md. 18 rules: no white text, integers only, Cinzel Decorative display type, titles/subtitles fade in/out, capitalised buttons, foil shimmer for 90+, hover names for position codes, no "see guide for details"/"Back to Simulator", no blue panels, no orange, no emojis, open/airy, Value Here background only, team colours on team elements only, no permanent green, reduced motion, 390px mobile floor, shimmer text for emphasis.
 - Commits pushed: a958d261 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-016 review #1)
+
+- P-016: Reviewed OR's 4th-down mismatch analysis (inbox/20261025-0620-or-queue8-fourth-down-mismatch.md). VERDICT: ok. Confirmed: "XP 94%" and "2-Pt Conv 48%" not in code (LAMBDA probabilities); "late by 8/11 always goes for 2" matches code l.2724; style directions match. OR's analysis is thorough and accurate.
+- Review posted: inbox/20261025-0890-beam-P-016-review.md.
+- Commits pushed: 527f523f (verified via git ls-remote).
+- No product file edits, no protected constants changed.
