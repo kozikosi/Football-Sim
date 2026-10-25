@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>20-0 - Game Animation Prototype</title>
+<style>
+:root{
+  --bg:#080304;--text:#f7f3f4;--sub:#e6d7db;--gold:#FFB81C;--red:#E31837;--white:#FFFFFF;
+}
+*{box-sizing:border-box;outline:none!important;box-shadow:none!important}
+html,body{margin:0;padding:0;background:radial-gradient(1400px 800px at 50% -10%, rgba(227,24,55,.16), transparent 60%),var(--bg);color:var(--text);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;overflow-x:hidden}
+.wrap{max-width:1000px;margin:0 auto;padding:18px 14px 90px}
+header{display:flex;justify-content:center;margin:6px 0 16px}
+.marquee{width:100%;overflow:hidden}
+.track{display:flex;gap:32px;animation:marquee 32s linear infinite}
+.track.rev{animation-direction:reverse;animation-duration:36s;margin-top:4px}
+.track span{font-size:1.4rem;font-weight:900;letter-spacing:.16em;background:linear-gradient(90deg,var(--white),var(--gold),var(--red));-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@keyframes shimmer{0%{background-position:-400% 0}100%{background-position:400% 0}}
+.title{text-align:center;margin:10px 0 22px;animation:floaty 4s ease-in-out infinite}
+.title h1{margin:0;font-size:clamp(1.8rem,7vw,4rem);font-weight:900;letter-spacing:.12em;background:linear-gradient(90deg,var(--white),var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent}
+.title .tag{color:var(--sub);letter-spacing:.2em;text-transform:uppercase}
+.scorebar{display:grid;grid-template-columns:1fr auto 1fr;gap:16px;align-items:center;margin:16px 0 20px}
+.team{display:flex;flex-direction:column;align-items:center;gap:8px;animation:floaty 4.2s ease-in-out infinite}
+.score{font-size:clamp(4rem,14vw,8rem);font-weight:900;background:linear-gradient(90deg,var(--gold),var(--white));-webkit-background-clip:text;background-clip:text;color:transparent}
+.clock{color:var(--sub);letter-spacing:.18em;text-transform:uppercase;text-align:center}
+.quarter{display:flex;justify-content:center;gap:10px;margin:14px 0}
+.qpill{padding:6px 14px;border-radius:999px;background:transparent;color:var(--sub);letter-spacing:.14em;text-transform:uppercase;animation:floaty 4s ease-in-out infinite}
+.qpill.active{color:var(--gold)}
+.timeline{display:flex;flex-direction:column;gap:12px;margin-top:18px}
+.event{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;opacity:0;animation:reveal 1.2s ease forwards;animation-delay:var(--d)}
+.event:nth-child(1){--d:0.4s}
+.event:nth-child(2){--d:1.2s}
+.event:nth-child(3){--d:2.2s}
+.event:nth-child(4){--d:3.4s}
+.event:nth-child(5){--d:4.8s}
+.event:nth-child(6){--d:6.4s}
+@keyframes reveal{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.event-time{color:var(--gold);letter-spacing:.12em;text-transform:uppercase;white-space:nowrap}
+.event-text{line-height:1.8}
+.footer-tag{text-align:center;margin-top:40px;color:var(--gold);letter-spacing:.24em;text-transform:uppercase;animation:floaty 4s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="marquee">
+      <div class="track"><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span></div>
+      <div class="track rev"><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span><span>20-0</span></div>
+    </div>
+  </header>
+  <div class="title">
+    <h1>LIVE GAME ANIMATION</h1>
+    <div class="tag">Slow Reveal • 12-15s Flow</div>
+  </div>
+  <div class="scorebar">
+    <div class="team"><div>BUFFALO</div><div class="score">24</div></div>
+    <div class="clock">
+      <div>FINAL</div>
+      <div>KC 31 - BUF 24</div>
+    </div>
+    <div class="team"><div style="color:var(--gold)">KANSAS CITY</div><div class="score">31</div></div>
+  </div>
+  <div class="quarter">
+    <div class="qpill">Q1</div><div class="qpill">Q2</div><div class="qpill">Q3</div><div class="qpill active">Q4</div>
+  </div>
+  <div class="timeline">
+    <div class="event"><div class="event-text">Q1 8:42 - Chiefs march downfield, capped by a short TD run.</div><div class="event-time">KC 7 - BUF 0</div></div>
+    <div class="event"><div class="event-text">Q2 5:16 - Chris Jones brings down Allen for a big sack, forces punt.</div><div class="event-time">KC 10 - BUF 7</div></div>
+    <div class="event"><div class="event-text">Q2 0:04 - Butker nails a clutch field goal to take the lead into halftime.</div><div class="event-time">KC 13 - BUF 10</div></div>
+    <div class="event"><div class="event-text">Q3 9:21 - Bills respond with a long TD drive to regain the lead.</div><div class="event-time">KC 13 - BUF 17</div></div>
+    <div class="event"><div class="event-text">Q4 7:08 - Chiefs answer with a balanced drive, back on top.</div><div class="event-time">KC 24 - BUF 17</div></div>
+    <div class="event"><div class="event-text">Q4 2:17 - Mahomes to Worthy for a go-ahead TD. Defense seals it to send KC to the Super Bowl.</div><div class="event-time">KC 31 - BUF 24</div></div>
+  </div>
+  <div class="footer-tag">FLOATY ANIMATION • SKIP FRIENDLY • OWN GAME ONLY</div>
+</div>
+</body>
+</html>
