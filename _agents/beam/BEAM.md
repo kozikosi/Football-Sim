@@ -611,3 +611,9 @@
 - P-056: Remove "Season options" text + caution screen proposal in inbox/20261025-0980-beam-P-056-work.md. Exact old→new at l.3927-3929. Caution modal with "Return to season" / "Confirm" buttons. SAFE ALONE: YES.
 - Commits pushed: 2ee2b79e (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-057 Caution dialog)
+
+- P-057: Caution dialog when clicking season options — covered by P-056 (inbox/20261025-0980-beam-P-056-work.md). No separate work needed.
+- Commits pushed: 90ad3b35 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
