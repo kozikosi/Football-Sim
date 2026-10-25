@@ -4,6 +4,8 @@ Writer: the Owner or Architect. This table is the Owner's **priority notes**, no
 
 Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`), the one file a seat rewrites at session end. Subfolders: `notes/`, `deliveries/`, `tools/`. No build copies or images (see `RETIREMENT.md` §4).
 
+Platforms (24 Oct): **Kilo** = Glyph, FK, Beam, VL, UK, OR · **independent** = GPT, Z.ai · **OpenChamber** = everyone else. Nobody is assigned work by seat: `PRIORITIES.md`.
+
 ## Roster (Owner's ruling, 23 Oct 2026, second list)
 
 | Seat | State | Folder | Notes |
@@ -23,7 +25,8 @@ Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`)
 | MiMo | probation (reinstated) | `mimo/` (to create) | |
 | Glyph | probation (reinstated) | `glyph/` (to create) | |
 | FK | advisor (new) | `fk/` | Claude 3.5 Sonnet in Kilo Desktop; fantasy/IDP metrics and roster strategy. Worktree `wt/fk`, branch `council/fk`. |
-| GPT | standby (chat-only) | none | Owner confirmed 23 Oct: not retired. No file access: REPORTED design input only; uses scribe mode (`tools/seat-save.mjs`). |
+| GPT | **High Councillor** (independent) | none | Named by the Owner 24 Oct. Posts monthly or so; nothing waits on GPT. Wrote review documents in `_agents/reviews/october-2026/` (not yet on origin: see `new-chat-prompts.md`). |
+| Z.ai | **High Councillor** (independent) | `zai/` | Named by the Owner 24 Oct. Handoff `_agents/zai/deliveries/HANDOFF-FOR-CLAUDE.md` (not yet on origin). Its former "V23" file is **Z-post-blue**. |
 | MiniMax | retired (unavailable) | `minimax/` | Tombstone. |
 | MOC | retired (unavailable) | `moc/` | Tombstone. |
 | LongCat, LK, Cohere, Lightning, OpenClaw | retired (Owner: "retire LongCat and anyone I didn't mention") | none | |

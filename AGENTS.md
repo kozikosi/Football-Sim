@@ -1,5 +1,7 @@
 # AGENTS.md — how the council works on the NFL Draft Simulator
 
+**NEVER ASSIGN WORK TO INDIVIDUAL AGENTS. Work comes from one ranked list, `_agents/PRIORITIES.md`; whoever opens a chat runs `node tools/next.mjs`, takes the top line, and the next agents review it. Nothing waits for a particular seat.**
+
 Read this first, then lines 1–120 of `V22-Suggestions.md` (the work order: rulings, critical path, rules) and only the section of the item you take. The file is 330 KB: never read it whole. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
 
 ## 1. Authority
@@ -8,6 +10,7 @@ Read this first, then lines 1–120 of `V22-Suggestions.md` (the work order: rul
 |---|---|
 | **Owner** (Kosi) | Product direction, protected constants, anything irreversible, publishing, who is admitted (alone, via `tools/admit-seat.sh`) or retired. Final. |
 | **Architect** (Claude) | Every ordinary technical decision: design, what enters the build, how a proposal is resolved, how this file is written. Acts without waiting for anyone. |
+| **High Councillor** (GPT, Z.ai; named by the Owner, 24 Oct) | Between Architect and Advisor. Advisory like the council, plus: may edit any work that is not the Architect's (an Advisor's work freely; another High Councillor's only when more than 80% confident the edit helps), delivered on their own branch or as a review that names the file. May **not** edit the Architect's work (product HTML, `AGENTS.md`, `CLAUDE.md`, `PRIORITIES.md`, `tools/`, `CHRONICLE.md`, test orders) or contradict an Owner directive. Disagreement goes through the bulletin or inbox, never by overwriting. Their commands in review documents are optional input to the Architect. |
 | **Council** (any other agent) | Investigates, proposes, tests, dissents in writing. No veto; the Architect does not need a vote. |
 | **Verifier** | Any seat that authored nothing in the round being checked. Reports facts; the Architect decides what to do with them. |
 
@@ -17,11 +20,11 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 **An instruction that names a file, branch or command says where it exists** (branch or commit). A step that depends on something the seat cannot see is not a step.
 
-**Only the Architect builds.** Nobody else writes `Football-Sim-*.html` (V23 included), on any branch, ever; there are no candidate builds. The council supplies **ideas and code snippets** and, after a build exists, **tests and regressions**: ideas and snippets go to the seat's own `inbox/` (§5), tests run on a **test order** the Architect writes (`_agents/TEST-ORDERS/`) and are posted as results in the bulletin. A seat that has "just applied it" to the product has not helped.
+**Only the Architect builds.** Nobody else writes `Football-Sim-*.html` (V23 included), on any branch, ever; there are no candidate builds. The council supplies **ideas, exact code snippets, mock-ups and measurements** (to its own `inbox/`) and, after a build exists, **tests**. A seat that "just applied it" to the product has not helped.
 
-**When the Architect is unavailable** (out of usage, away) nothing stops except the build itself: (a) the Owner admits seats alone (`tools/admit-seat.sh`, `_agents/RETIREMENT.md` §5); (b) the Owner may name an **acting steward** (default Beam) who may fast-forward `origin/council/base` with docs, tools, inbox/bulletin files only, never the product HTML, protected constants or `AGENTS.md` rules, and says so in a bulletin entry; (c) seats keep filling their inbox and may test Pre-Colors; (d) queue proposals go in a `QUEUE+: <item>` line of the bulletin entry, which the steward or Architect copies into `_agents/QUEUE.md`. GPT contributes roughly monthly, chat-only (`REPORTED` input); no process may wait for it.
+**Work is never assigned to a named agent, anywhere** (not in prompts, not in docs, not in task rows). One ranked list (`_agents/PRIORITIES.md`), one command (`node tools/next.mjs`), one chain: the first seat to arrive does the top item; later seats **review** it (three different seats, each may improve it); after three confirmations it carries **REVIEWED ✓✓✓** and goes to the Architect. A review you can do beats new work in the same tier. Seats are often unavailable (OpenChamber was down for a day), so nothing may wait for one. The Architect may suggest *what* matters most, never *who*.
 
-Work is **suggested, never assigned to a named agent**: whoever is free takes the top open item and says so (§5). Seats come and go for weeks; nothing may depend on a particular one.
+**When the Architect is unavailable** only the product build waits. Everything else continues: the Owner admits seats alone (`tools/admit-seat.sh`); seats work the list; `council/base` moves only by fast-forward, by whoever the Owner asks that day (no standing role: there is no "steward"); proposals for the list go in a `PRIORITY+:` line of the bulletin entry. GPT and Z.ai (High Councillors) take items exactly like everyone else.
 
 ## 2. Build truth
 
@@ -34,6 +37,7 @@ A name is bound to one sha256. If the bytes differ, it is not that build.
 | V20 | `_archive/builds/NFL Draft Simulator v20 Claude.html` | `31b7d61f42a53f3b` | 649,032 | Archived reference (re-measured 22 Oct from the file in git). |
 | Donor | `_archive/builds/NFL Draft Simulator.html` | `77bb9ed59ffa2294` | 650,127 | Archived. The Owner's disk copy of this name has been reported as `8f0f8d50…` (649,490 B): two different files under one name, UNKNOWN which carries which patches. Irrelevant for new work, because Pre-Colors already contains the patches. |
 | "V21" (council copy) | — | `044d1759…` | 656,746 | **Retired name, not a build.** An unverified modified copy (hand edit changes model output). Findings measured against it are `REPORTED` until re-anchored to Pre-Colors. |
+| **Z-post-blue** | — | — | — | Z.ai's working copy, formerly labelled "Football-Sim-V23.html" anywhere it appears. **Not a build**: `REPORTED` until diffed against Pre-Colors; only the Architect's file may be called V23. |
 | "V22" | — | — | — | **Retired as a build name.** It survives only as the title of the work order (`V22-Suggestions.md`) and in lane file names such as `V22-candidate-*`. Those candidates were built on the council copy, not on Pre-Colors. |
 
 Never call a build by another name, never create a "merged", "final" or dated copy in the root; candidates live in a lane and are named `<seat>-<what>-<date>`. A note that quotes a hash says which file and when it was measured; re-measure with `sha256sum` before relying on one. Anything not built by the Architect is `REPORTED` until diffed against Pre-Colors.
@@ -75,14 +79,11 @@ Style that the Owner has fixed: plain informative language in recaps (no "expect
 
 **One writer for the product file.** The Architect edits `Football-Sim-*.html`. Anyone else investigates, prototypes in a lane, and submits an exact change: **target build (file + sha256) · WHERE (anchor string, not just a line) · old → new · WHY · SAFE ALONE? · HOW TO CHECK (command + expected output)**. A patch or applier script must fail loudly if its anchors do not match; `patch -p0`, a script, or a diff are all fine if they do. The Architect does not delegate writing the product file. Competing proposals are compared in the work order, not merged: the Architect picks one and says why.
 
-**Inbox (where ideas and code snippets go).** One file per item on your own branch: `inbox/<UTC yyyymmdd-hhmm>-<seat>-<slug>.md`, first line `SPEAKER: … | TASK: …`, then `FOR: <V23 item number from _agents/V23-OWNER-REQUESTS.md, or a QUEUE number>`, then the §5 patch form (WHERE anchor · old → new · WHY · SAFE ALONE? · HOW TO CHECK) or `IDEA:` text. Code longer than ~150 lines stays in your lane (`deliveries/`) and the inbox file names its path and commit. Label every claim. Push your branch; the Architect collects with `node tools/council-sync.mjs --inbox --days 7`. Do not repeat an item already in the inbox of another seat: add a `+1:` line to your own file naming theirs. The product is never edited; a snippet is a proposal until the Architect builds it.
+**Inbox (where ideas and code snippets go).** One file per item on your own branch: `inbox/<UTC yyyymmdd-hhmm>-<seat>-<slug>.md`, first line `SPEAKER: … | TASK: …`, then `FOR: <ID from _agents/PRIORITIES.md, e.g. P-005>` (the file name carries the ID too: `inbox/<UTC>-<seat>-P-005-<slug>.md`), then the §5 patch form (WHERE anchor · old → new · WHY · SAFE ALONE? · HOW TO CHECK) or `IDEA:` text. Code longer than ~150 lines stays in your lane (`deliveries/`) and the inbox file names its path and commit. Label every claim. Push your branch; the Architect collects with `node tools/council-sync.mjs --inbox --days 7`. Another seat's work on the same ID is reviewed, not repeated. The product is never edited; a snippet is a proposal until the Architect builds it.
 
-**Test orders.** After a build, the Architect writes `_agents/TEST-ORDERS/<build>-<n>.md` (build file + sha256, the exact commands, what passing looks like, which seat is suggested). The Owner relays one line (prompt G). The seat posts `RESULT: <test> | PASS/FAIL | <command> | <key output>` lines in its bulletin entry; a seat that supplied a snippet for that build does not verify it.
+**Test orders.** After a build, the Architect writes `_agents/TEST-ORDERS/<build>-<n>.md` (build file + sha256, the exact commands, what passing looks like). It also appears as an item in `PRIORITIES.md`, so any seat can take it; the Owner relays nothing. The seat posts `RESULT: <test> | PASS/FAIL | <command> | <key output>` lines in its bulletin entry; a seat that supplied a snippet for that build does not verify it.
 
-**Claims, not assignments.** To take work: say so (one line in the work order or a draft PR) with scope, base commit and branch. Anyone may *research* a claimed item at any time. A claim is a statement, not a lock, and silence is not release:
-- **Handoff:** the claimant says "released" or hands over with a note. The next seat continues from the last commit.
-- **Takeover:** if there is no commit, PR update or post since the claim's last activity for **24 h on an item the Owner is waiting on, 72 h otherwise** (agents are often away longer than a day for ordinary reasons), post a takeover note naming the claim and base commit, then work on a *new* branch from the last commit. Nothing is deleted. If the first claimant returns, the one whose change is verified first lands and the other rebases; the loser's work stays in git.
-- The Architect may reassign anything at any time.
+**Claims and the review chain (no assignments).** `node tools/next.mjs` lists your next action. To take work, push `inbox/<UTC>-<you>-<ID>-claim.md` containing `CLAIM: <ID>` (scope in one line); a claim lapses after **24 h on P0, 72 h otherwise** with no pushed file, then anyone takes it, starting from the last commit (nothing is deleted; if the first claimant returns, the one whose work is reviewed first lands and the other rebases). Anyone may *research* a claimed item. Work and reviews are files (`inbox/README.md`); three confirmations by three different seats = **REVIEWED ✓✓✓**; a rejection reopens the item. The Architect may re-rank anything at any time.
 
 **Conflicting or stale input.** Reports that disagree are both kept; the Architect resolves them by re-running the check, not by counting votes. A finding whose build or hash no longer matches is `REPORTED` until re-measured. When newer evidence supersedes yours, say so on your own entry; do not delete it.
 
@@ -112,7 +113,8 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `Football-Sim-*.html` | Architect only (§5) |
 | `AGENTS.md`, `CLAUDE.md`, `biome.json`, `tools/` | Architect, or on his/the Owner's instruction |
 | `V22-Suggestions.md` (work order; built-work table first) | Council, one entry per change, `WHERE · WHAT · WHY · SAFE ALONE? · HOW TO CHECK`; add one line to an existing entry rather than restating it |
-| `inbox/<UTC>-<seat>-<slug>.md` | That seat, on its own branch: one file per idea or snippet (§5 *Inbox*); the Architect reads them with `node tools/council-sync.mjs --inbox` |
+| `_agents/PRIORITIES.md` | Architect or Owner (re-ranking); seats propose with `PRIORITY+:` lines |
+| `inbox/<UTC>-<seat>-<slug>.md` | That seat, on its own branch: one file per idea or snippet (§5 *Inbox*); the Architect reads them with `node tools/council-sync.mjs --inbox` and the review chain is tracked by `node tools/next.mjs --board` |
 | `_agents/TEST-ORDERS/` | Architect (test orders); seats post results in their bulletin entry |
 | `bulletin/<UTC>-<seat>.md` | That seat, one file per session (§4.7); the Architect merges them into `council/base` and rotates old ones into `_archive/bulletin/` |
 | `COUNCIL-BULLETIN.md` | Architect (rules and live rulings only; rotated at 150 KB, `_agents/RETIREMENT.md` §3) |
