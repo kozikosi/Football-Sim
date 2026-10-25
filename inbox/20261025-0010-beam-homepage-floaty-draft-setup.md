@@ -1,4 +1,4 @@
-SPEAKER: Beam | ROLE: Council Adviser | TASK: Homepage floaty draft setup + 20-0 branding | DATE: 2026-10-25T00:10Z
+SPEAKER: Beam | ROLE: Council Adviser | TASK: Homepage floaty draft setup + 20-0 branding (revised) | DATE: 2026-10-25T00:17Z
 
 FOR: V23-OWNER-REQUESTS (branding + homepage)
 
@@ -6,7 +6,7 @@ WHERE: Football-Sim-PreColors.html (l.382-393, draft setup panel)
 
 old -> new:
 
-1. Remove "Set Up Your Draft" heading + rewrite copy (combine with 20-0 branding):
+1. Remove "Set Up Your Draft" heading + rewrite copy:
 old:
   <div class="panel" id="draftSetup">
    <h2 style="margin-top:0;">Set Up Your Draft</h2>
@@ -24,7 +24,12 @@ old:
 
 new:
   <div class="panel" id="draftSetup" style="background:transparent;border:none;box-shadow:none;backdrop-filter:none;padding:var(--space-xl,32px) var(--space-lg,24px);">
-   <p style="text-align:center;font-size:1.1rem;font-weight:600;margin:0 0 var(--space-lg,24px);background:linear-gradient(90deg,var(--accent,#d4af37) 0%,var(--accent3,#f0dce2) 50%,var(--accent,#d4af37) 100%);background-size:200% 100%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:textShimmer 2.5s ease-in-out infinite;display:inline-block;width:100%;">Season, Playoffs, Super Bowl. Can you go 20-0?</p>
+   <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;margin:0 0 var(--space-lg,24px);">
+    <span class="float-entity" style="font-size:1rem;font-weight:700;padding:8px 20px;border-radius:999px;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.25);color:var(--accent,#d4af37);backdrop-filter:blur(8px);">Season</span>
+    <span class="float-entity" style="font-size:1rem;font-weight:700;padding:8px 20px;border-radius:999px;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.25);color:var(--accent,#d4af37);backdrop-filter:blur(8px);">Playoffs</span>
+    <span class="float-entity" style="font-size:1rem;font-weight:700;padding:8px 20px;border-radius:999px;background:rgba(212,175,55,0.12);border:1px solid rgba(212,175,55,0.25);color:var(--accent,#d4af37);backdrop-filter:blur(8px);">Super Bowl</span>
+    <span class="float-entity shimmer-text" style="font-size:1.1rem;font-weight:800;padding:8px 22px;border-radius:999px;background:rgba(212,175,55,0.15);border:1px solid rgba(212,175,55,0.3);backdrop-filter:blur(8px);">Can you go 20-0</span>
+   </div>
    <div class="float-row" style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;align-items:center;margin-bottom:20px;">
     <label class="float-pill" style="display:flex;flex-direction:column;gap:2px;font-size:0.72rem;color:var(--sub);align-items:center;">
      <span style="font-size:0.68rem;text-transform:uppercase;letter-spacing:0.04em;">Draft as</span>
@@ -36,17 +41,16 @@ new:
     </label>
    </div>
    <div style="text-align:center;">
-    <button class="resetbtn" id="startDraftBtn" style="width:auto;padding:12px 36px;border-radius:999px;font-size:1rem;font-weight:700;background:linear-gradient(135deg,var(--accent,#d4af37),var(--accent3,#f0dce2));color:#0d0a0e;border:none;box-shadow:0 4px 24px rgba(212,175,55,0.25);transition:transform 150ms ease, box-shadow 150ms ease;">Start Draft</button>
+    <button class="resetbtn shimmer-text" id="startDraftBtn" style="width:auto;padding:12px 36px;border-radius:999px;font-size:1rem;font-weight:700;background:linear-gradient(135deg,var(--accent,#d4af37),var(--accent3,#f0dce2));color:#0d0a0e;border:none;box-shadow:0 4px 24px rgba(212,175,55,0.25);transition:transform 150ms ease, box-shadow 150ms ease;-webkit-text-fill-color:#0d0a0e;">Start Draft</button>
    </div>
-   <p style="text-align:center;font-size:0.78rem;color:var(--sub);margin-top:16px;">Read the guide below the setup before you start.</p>
   </div>
 
-WHY: Removes "Set Up Your Draft" heading. Replaces sentence-format copy with floating rose-gold entities (4 separate pills: Draft as, Draft pick #, Start Draft, guide link). Select rectangles become barely noticeable (translucent, hairline border, pill shape). Start Draft floats (centered, pill-shaped, gradient, shadow). Mobile: flex-wrap + centered, min-widths ensure tap targets.
+WHY: Removes "Set Up Your Draft" heading. Replaces sentence-format copy with four separate floating rose-gold entities (no period, no sentence). "Read the guide..." removed. Selects barely visible (translucent, hairline, pill-shaped). Start Draft floats centered with gradient + shadow + shimmer text effect. Mobile wraps gracefully (flex-wrap + centered).
 
 SAFE ALONE?: YES — HTML/CSS only; no logic, no protected constants.
 
-HOW TO CHECK: grep -n "Set Up Your Draft" → 0 hits. Visual: no heading; four floating pills centered; Start Draft is a centered pill with gradient; selects have barely visible borders; mobile (390px) wraps gracefully with no overflow.
+HOW TO CHECK: grep -n "Set Up Your Draft" → 0 hits. grep -n "Read the guide below" → 0 hits. Visual: four floating pills (Season, Playoffs, Super Bowl, Can you go 20-0) with no period; Start Draft is a centered shimmering pill; mobile wraps.
 
 EVIDENCE: VERIFIED (l.383-393 confirmed; exact strings captured).
 
-Notes: Combine with homepage 20-0 branding proposal (inbox/20261024-2355-beam-homepage-20-0-branding.md). The shimmer-text keyframes must be defined (already in snippet §31). Team theming: the Start Draft gradient uses --accent/--accent3 which follow team colours when selected.
+Notes: Combine with homepage 20-0 branding proposal. The shimmer-text keyframes must be defined (already in snippet §31). Team theming: gradient uses --accent/--accent3 which follow team colours.
