@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html><head><meta charset=utf-8><style>
-:root {
-  --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --panel2:rgba(255,255,255,0.06);
-  --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08);
-  --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0;
-  --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c;
-  --team-accent:#a5aca4; --team-primary-rgb:227,24,55; --opp-primary:#003594;
-  --opp-secondary:#869397; --opp-primary-rgb:0,53,148;
-  --motion-fast:150ms ease; --motion-normal:250ms ease;
-  --ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
-}
+:root { --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --panel2:rgba(255,255,255,0.06); --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80; --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16); --accent:#d4af37; --accent2:#f5f0f0; --accent3:#f0dce2; --gold:#d4af37; --team-primary:#e31837; --team-secondary:#ffb81c; --team-accent:#a5aca4; --team-primary-rgb:227,24,55; --opp-primary:#aa0000; --opp-secondary:#b3995d; --opp-accent:#ffffff; --opp-primary-rgb:170,0,0; --motion-fast:150ms ease; --motion-normal:250ms ease; --ease-bounce:cubic-bezier(0.34,1.56,0.64,1); }
 * { box-sizing:border-box; }
 body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); padding:20px; line-height:1.6; overflow-x:hidden; }
 @keyframes textShimmer { 0% { background-position:200% 0; } 100% { background-position:-200% 0; } }
@@ -22,88 +13,93 @@ body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
 @keyframes btnFloat { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-4px); } }
 @keyframes sparkle { 0%,100% { opacity:0.6; transform:scale(1); } 50% { opacity:1; transform:scale(1.6); } }
 @keyframes popIn { from { opacity:0; transform:scale(0.85); } to { opacity:1; transform:scale(1); } }
-
-/* Header with scrolling 20-0 pattern */
-.header-scroll-layer { position:relative; height:60px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
+.header-scroll-layer { position:relative; height:50px; overflow:hidden; margin-bottom:12px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid var(--border); }
 .header-scroll-text { position:absolute; white-space:nowrap; font-weight:900; letter-spacing:0.15em; will-change:transform; }
-.header-scroll-text.l1 { top:12%; font-size:0.9rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
-.header-scroll-text.l2 { top:42%; font-size:1.2rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
-.header-scroll-text.l3 { top:72%; font-size:0.6rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
-
-/* Static 20-0 home button */
-.home-20-0 { display:inline-block; font-size:1.5rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; transition:transform 150ms ease, filter 150ms ease; }
+.header-scroll-text.l1 { top:12%; font-size:0.8rem; color:rgba(212,175,55,0.12); animation:scrollRight 20s linear infinite; }
+.header-scroll-text.l2 { top:42%; font-size:1.1rem; color:rgba(212,175,55,0.09); animation:scrollLeft 35s linear infinite; }
+.header-scroll-text.l3 { top:72%; font-size:0.55rem; color:rgba(240,220,226,0.10); animation:scrollRight 50s linear infinite; }
+.home-20-0 { display:inline-block; font-size:1.4rem; font-weight:900; letter-spacing:0.05em; background:linear-gradient(90deg,var(--accent) 0%,var(--accent3) 25%,var(--accent2) 50%,var(--accent3) 75%,var(--accent) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite; cursor:pointer; text-decoration:none; border:none; background-color:transparent; }
 .home-20-0:hover { transform:scale(1.05); filter:brightness(1.2); }
 @media (prefers-reduced-motion: reduce) { .header-scroll-text, .home-20-0 { animation:none; } .home-20-0 { background-position:0 0; } }
-
-/* Open/airy glass panels */
-.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:20px; margin-bottom:12px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+.card { background:var(--panel); backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px); border:1px solid var(--border); border-radius:16px; padding:16px; margin-bottom:10px; box-shadow:0 4px 24px rgba(0,0,0,0.25); transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
 .card:hover { border-color:var(--border-hover); box-shadow:0 8px 32px rgba(0,0,0,0.35); transform:translateY(-1px); }
 p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
 
-/* Team tags */
-.team-tag { display:inline-flex; align-items:center; gap:8px; padding:8px 16px; border-radius:20px; font-size:0.9rem; font-weight:700; border:1px solid var(--border); background:var(--panel); backdrop-filter:blur(8px); }
-.team-tag .dot { width:12px; height:12px; border-radius:50%; }
-.team-tag.kc { border-color:var(--team-primary); }
-.team-tag.opp { border-color:var(--opp-primary); }
+/* Team name shimmer (replaces bubble) */
+.team-name-shimmer { display:inline-block; font-size:1.3rem; font-weight:900; letter-spacing:0.03em; background:linear-gradient(90deg,var(--team-primary) 0%,var(--team-accent) 25%,#fff 50%,var(--team-accent) 75%,var(--team-primary) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite, float1 4s ease-in-out infinite; text-shadow:0 0 20px rgba(var(--team-primary-rgb),0.3); }
+.team-name-shimmer.opp { background:linear-gradient(90deg,var(--opp-primary) 0%,var(--opp-accent) 25%,#fff 50%,var(--opp-accent) 75%,var(--opp-primary) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2.5s ease-in-out infinite, float2 5.5s ease-in-out infinite; text-shadow:0 0 20px rgba(var(--opp-primary-rgb),0.3); }
+@keyframes float1 { 0%,100% { transform:translate(0,0) rotate(0deg); } 25% { transform:translate(3px,-5px) rotate(1deg); } 50% { transform:translate(-2px,-8px) rotate(-1deg); } 75% { transform:translate(4px,-3px) rotate(0.5deg); } }
+@keyframes float2 { 0%,100% { transform:translate(0,0) rotate(0deg); } 33% { transform:translate(-4px,-6px) rotate(-1.5deg); } 66% { transform:translate(3px,-4px) rotate(1deg); } }
 
-/* Matchup meter */
-.matchup-meter { height:10px; background:rgba(255,255,255,0.05); border-radius:5px; overflow:hidden; margin-top:8px; }
-.matchup-meter .fill { height:100%; border-radius:5px; transition:width var(--motion-normal); }
+/* VS shimmer */
+.vs-shimmer { display:inline-block; font-size:1.4rem; font-weight:900; background:linear-gradient(90deg,var(--gold) 0%,#fff 50%,var(--gold) 100%); background-size:200% 100%; -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; animation:textShimmer 2s ease-in-out infinite; }
+
+/* Preview hero (no bubbles) */
+.preview-hero { text-align:center; padding:20px; background:linear-gradient(135deg, rgba(var(--team-primary-rgb),0.06), rgba(var(--opp-primary-rgb),0.06)); border-radius:16px; border:1px solid var(--border); margin-bottom:12px; position:relative; overflow:hidden; }
+.preview-hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(var(--team-primary-rgb),0.10) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(var(--opp-primary-rgb),0.10) 0%, transparent 60%); pointer-events:none; }
+.preview-hero .teams { display:flex; justify-content:center; align-items:center; gap:24px; margin-bottom:10px; position:relative; z-index:1; }
+.preview-hero .team-block { text-align:center; }
+.preview-hero .team-block .record { font-size:0.75rem; color:var(--sub); margin-top:4px; }
+.preview-hero .game-info { font-size:0.8rem; color:var(--sub); margin-top:8px; position:relative; z-index:1; }
+.preview-hero .weather { display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:20px; background:rgba(255,255,255,0.04); border:1px solid var(--border); font-size:0.75rem; }
+.preview-hero .matchup-meter { height:8px; background:rgba(255,255,255,0.05); border-radius:4px; overflow:hidden; margin-top:10px; }
+.preview-hero .matchup-meter .fill { height:100%; border-radius:4px; transition:width var(--motion-normal); }
+
+/* Key players side-by-side */
+.key-players { display:grid; grid-template-columns:1fr auto 1fr; gap:8px; align-items:center; margin-bottom:12px; }
+.key-player { background:rgba(255,255,255,0.02); border:1px solid var(--border); border-radius:12px; padding:10px; transition:transform var(--motion-fast), border-color var(--motion-fast); }
+.key-player:hover { border-color:var(--border-hover); transform:translateY(-1px); }
+.key-player .avatar { width:36px; height:36px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.75rem; color:#fff; margin-bottom:6px; }
+.key-player .name { font-weight:700; font-size:0.85rem; color:var(--text); }
+.key-player .meta { font-size:0.7rem; color:var(--sub); }
+.key-player .stat { font-size:0.8rem; font-weight:700; color:var(--accent); margin-top:4px; }
+.key-player.kc .avatar { background:linear-gradient(135deg,var(--team-primary),var(--team-secondary)); }
+.key-player.opp .avatar { background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary)); }
+.key-divider { text-align:center; font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; }
 
 /* Matchup cards */
-.matchup-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:14px; transition:transform var(--motion-fast), border-color var(--motion-fast); }
+.matchup-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(140px, 1fr)); gap:8px; margin-bottom:12px; }
+.matchup-card { background:var(--panel); border:1px solid var(--border); border-radius:12px; padding:12px; transition:transform var(--motion-fast), border-color var(--motion-fast); }
 .matchup-card:hover { border-color:var(--border-hover); transform:translateY(-1px); }
-.matchup-card .label { font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px; }
-.matchup-card .value { font-size:1.1rem; font-weight:700; color:var(--accent); }
-.matchup-card .bar { height:6px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; margin-top:6px; }
+.matchup-card .label { font-size:0.65rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:3px; }
+.matchup-card .value { font-size:1rem; font-weight:700; color:var(--accent); }
+.matchup-card .bar { height:5px; background:rgba(255,255,255,0.05); border-radius:3px; overflow:hidden; margin-top:5px; }
 .matchup-card .bar-fill { height:100%; border-radius:3px; transition:width var(--motion-normal); }
 
-/* Game preview hero */
-.preview-hero { text-align:center; padding:24px; background:linear-gradient(135deg, rgba(var(--team-primary-rgb),0.08), rgba(var(--opp-primary-rgb),0.08)); border-radius:16px; border:1px solid var(--border); margin-bottom:16px; position:relative; overflow:hidden; }
-.preview-hero::before { content:""; position:absolute; inset:0; background:radial-gradient(ellipse at 30% 50%, rgba(var(--team-primary-rgb),0.12) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(var(--opp-primary-rgb),0.12) 0%, transparent 60%); pointer-events:none; }
-.preview-hero .teams { display:flex; justify-content:center; align-items:center; gap:24px; margin-bottom:12px; position:relative; z-index:1; }
-.preview-hero .team-block { text-align:center; }
-.preview-hero .team-block .name { font-size:1.1rem; font-weight:800; margin-bottom:2px; }
-.preview-hero .team-block .record { font-size:0.8rem; color:var(--sub); }
-.preview-hero .vs { font-size:1.4rem; font-weight:900; color:var(--gold); }
-.preview-hero .game-info { font-size:0.85rem; color:var(--sub); margin-top:8px; position:relative; z-index:1; }
-.preview-hero .weather { display:inline-flex; align-items:center; gap:6px; padding:4px 12px; border-radius:20px; background:rgba(255,255,255,0.04); border:1px solid var(--border); font-size:0.8rem; }
-
-/* Floaty cards (no hard edges) */
-.float-card { background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:16px; transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
+/* Team comparison */
+.float-card { background:rgba(255,255,255,0.03); backdrop-filter:blur(8px); border:1px solid rgba(255,255,255,0.06); border-radius:16px; padding:14px; transition:transform var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast); }
 .float-card:hover { border-color:var(--border-hover); transform:translateY(-2px); box-shadow:0 8px 24px rgba(0,0,0,0.3); }
+.stat-row { display:flex; align-items:center; padding:5px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.8rem; }
+.stat-row .label { flex:1; text-align:center; color:var(--sub); }
+.stat-row .val { width:60px; font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; text-align:left; }
+.stat-row .val.opp { color:var(--opp-primary); }
+.stat-row .header { display:flex; justify-content:space-between; margin-bottom:6px; font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; }
+.stat-row .header span:first-child { color:var(--team-primary); font-weight:700; }
+.stat-row .header span:last-child { color:var(--opp-primary); font-weight:700; }
 
-/* Stat row */
-.stat-row { display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.03); font-size:0.85rem; }
-.stat-row .label { color:var(--sub); }
-.stat-row .val { font-weight:700; color:var(--accent); font-variant-numeric:tabular-nums; }
+/* Game plan */
+.plan-row { display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+.plan-col { flex:1; min-width:100px; }
+.plan-col .label { font-size:0.65rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:3px; }
+.plan-col .value { font-weight:700; color:var(--text); font-size:0.9rem; }
+.plan-col .detail { font-size:0.7rem; color:var(--sub); }
 
-/* Player spotlight */
-.spotlight { display:flex; align-items:center; gap:12px; padding:10px; border-radius:10px; background:rgba(255,255,255,0.02); border:1px solid var(--border); transition:transform var(--motion-fast), border-color var(--motion-fast); }
-.spotlight:hover { border-color:var(--border-hover); transform:translateY(-1px); }
-.spotlight .avatar { width:40px; height:40px; border-radius:50%; background:linear-gradient(135deg,var(--team-primary),var(--team-secondary)); display:flex; align-items:center; justify-content:center; font-weight:800; font-size:0.8rem; color:#fff; }
-.spotlight .info { flex:1; }
-.spotlight .name { font-weight:700; font-size:0.9rem; }
-.spotlight .meta { font-size:0.75rem; color:var(--sub); }
-.spotlight .stat { font-size:0.85rem; font-weight:700; color:var(--accent); }
-
-/* Weather tint */
-.weather-clear { background:linear-gradient(180deg, rgba(251,191,36,0.06), transparent); }
-.weather-rain { background:linear-gradient(180deg, rgba(96,165,250,0.06), transparent); }
-
-/* Responsive */
-@media (max-width:600px) { .preview-hero .teams { flex-direction:column; gap:12px; } .preview-hero .vs { font-size:1.1rem; } }
-@media (prefers-reduced-motion: reduce) { .header-scroll-text { animation:none; } }
+/* CTA */
+.btn-float { width:auto; padding:12px 36px; border-radius:999px; font-size:1rem; font-weight:700; background:linear-gradient(135deg,var(--accent),var(--accent3)); color:#0d0a0e; border:none; box-shadow:0 4px 24px rgba(212,175,55,0.25); transition:transform 150ms ease, box-shadow 150ms ease; cursor:pointer; animation:btnFloat 3s ease-in-out infinite; -webkit-text-fill-color:#0d0a0e; }
+.btn-float:hover { transform:translateY(-6px); box-shadow:0 8px 32px rgba(212,175,55,0.35); }
+.btn-float:active { transform:scale(0.97); }
+@media (prefers-reduced-motion: reduce) { .btn-float, .team-name-shimmer, .vs-shimmer { animation:none; } .team-name-shimmer, .vs-shimmer { background-position:0 0; } }
+@media (max-width:600px) { .preview-hero .teams { flex-direction:column; gap:12px; } .preview-hero .vs { font-size:1rem; } .key-players { grid-template-columns:1fr; } }
 </style></head><body>
 
-<!-- Header with scrolling 20-0 pattern -->
+<!-- Header -->
 <div style="position:relative;">
   <div class="header-scroll-layer">
     <div class="header-scroll-text l1">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
     <div class="header-scroll-text l2">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
     <div class="header-scroll-text l3">20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0  20-0</div>
   </div>
-  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:12px 16px;">
+  <div style="position:relative; z-index:1; display:flex; align-items:center; justify-content:space-between; padding:10px 14px;">
     <a class="home-20-0" href="#" onclick="return false;">20-0</a>
     <div style="display:flex; gap:8px; align-items:center;">
       <div class="team-tag kc"><span class="dot" style="background:var(--team-primary);"></span>KC Chiefs</div>
@@ -112,125 +108,125 @@ p { color:var(--sub); font-size:0.85rem; margin:4px 0 12px; }
   </div>
 </div>
 
-<h1 style="margin:16px 0 4px; font-size:1.3rem; color:var(--sub); font-weight:600;">Game Preview</h1>
-<p style="margin:0 0 16px;">Week 4 — Kansas City Chiefs vs San Francisco 49ers</p>
+<h1 style="margin:12px 0 2px; font-size:1.2rem; color:var(--sub); font-weight:600;">Game Preview</h1>
+<p style="margin:0 0 12px;">Week 4 — Kansas City Chiefs vs San Francisco 49ers</p>
 
-<!-- Preview hero -->
+<!-- Preview hero (no bubbles — shimmering team names) -->
 <div class="preview-hero weather-clear">
   <div class="teams">
     <div class="team-block">
-      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--team-primary),var(--team-secondary));margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#fff;box-shadow:0 4px 16px rgba(var(--team-primary-rgb),0.3);">KC</div>
-      <div class="name" style="color:var(--team-primary);">Chiefs</div>
+      <div class="team-name-shimmer">Chiefs</div>
       <div class="record">3-0</div>
     </div>
-    <div class="vs">VS</div>
+    <div class="vs-shimmer">VS</div>
     <div class="team-block">
-      <div style="width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary));margin:0 auto 8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:1.1rem;color:#fff;box-shadow:0 4px 16px rgba(var(--opp-primary-rgb),0.3);">SF</div>
-      <div class="name" style="color:var(--opp-primary);">49ers</div>
+      <div class="team-name-shimmer opp">49ers</div>
       <div class="record">2-1</div>
     </div>
   </div>
   <div class="game-info">
     <span class="weather">☀️ Clear, 72°F</span>
-    <span style="margin:0 8px;">·</span>
+    <span style="margin:0 6px;">·</span>
     <span>Arrowhead Stadium</span>
-    <span style="margin:0 8px;">·</span>
+    <span style="margin:0 6px;">·</span>
     <span>Sunday 1:00 PM</span>
   </div>
-  <div style="margin-top:12px;">
-    <div style="font-size:0.8rem; color:var(--sub); margin-bottom:4px;">Win Probability</div>
+  <div style="margin-top:10px;">
+    <div style="font-size:0.75rem; color:var(--sub); margin-bottom:3px;">Win Probability</div>
     <div class="matchup-meter"><div class="fill" style="width:62%; background:linear-gradient(90deg,var(--team-primary),var(--gold));"></div></div>
-    <div style="font-size:0.85rem; margin-top:4px;"><span style="color:var(--team-primary); font-weight:700;">KC 62%</span> <span style="color:var(--sub);">vs</span> <span style="color:var(--opp-primary); font-weight:700;">SF 38%</span></div>
+    <div style="font-size:0.8rem; margin-top:3px;"><span style="color:var(--team-primary); font-weight:700;">KC 62%</span> <span style="color:var(--sub);">vs</span> <span style="color:var(--opp-primary); font-weight:700;">SF 38%</span></div>
   </div>
 </div>
 
-<!-- Matchup cards -->
-<h2 style="font-size:0.9rem; margin:16px 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Matchup Breakdown</h2>
-<div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(160px, 1fr)); gap:10px; margin-bottom:16px;">
+<!-- Key players (side-by-side) -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Key Players</h2>
+<div class="key-players">
+  <div class="key-player kc">
+    <div class="avatar">PM</div>
+    <div class="name">P. Mahomes</div>
+    <div class="meta">QB · KC · 99 OVR</div>
+    <div class="stat">312 yds, 3 TD</div>
+  </div>
+  <div class="key-divider">vs</div>
+  <div class="key-player opp">
+    <div class="avatar">NB</div>
+    <div class="name">N. Bosa</div>
+    <div class="meta">DL · SF · 94 OVR</div>
+    <div class="stat">3 sacks, 7 TFL</div>
+  </div>
+</div>
+<div class="key-players">
+  <div class="key-player kc">
+    <div class="avatar">TK</div>
+    <div class="name">T. Kelce</div>
+    <div class="meta">TE · KC · 97 OVR</div>
+    <div class="stat">8 rec, 98 yds, 1 TD</div>
+  </div>
+  <div class="key-divider">vs</div>
+  <div class="key-player opp">
+    <div class="avatar" style="background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary));">FW</div>
+    <div class="name">F. Warner</div>
+    <div class="meta">LB · SF · 96 OVR</div>
+    <div class="stat">12 tackles, 1 INT</div>
+  </div>
+</div>
+
+<!-- Matchup breakdown (realistic names) -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Matchup Breakdown</h2>
+<div class="matchup-grid">
   <div class="matchup-card">
-    <div class="label">Offense vs Defense</div>
+    <div class="label">Mahomes vs Bosa</div>
     <div class="value">KC +2.3</div>
     <div class="bar"><div class="bar-fill" style="width:62%; background:linear-gradient(90deg,var(--team-primary),var(--gold));"></div></div>
   </div>
   <div class="matchup-card">
-    <div class="label">Pass Rush vs OL</div>
-    <div class="value">SF +1.1</div>
-    <div class="bar"><div class="bar-fill" style="width:45%; background:linear-gradient(90deg,var(--opp-primary),#869397);"></div></div>
-  </div>
-  <div class="matchup-card">
-    <div class="label">Coverage vs WRs</div>
+    <div class="label">Kelce vs Warner</div>
     <div class="value">KC +0.8</div>
     <div class="bar"><div class="bar-fill" style="width:55%; background:linear-gradient(90deg,var(--team-primary),var(--gold));"></div></div>
   </div>
   <div class="matchup-card">
-    <div class="label">Run Game</div>
-    <div class="value">Even</div>
-    <div class="bar"><div class="bar-fill" style="width:50%; background:linear-gradient(90deg,var(--team-primary),var(--opp-primary));"></div></div>
+    <div class="label">OL vs DL</div>
+    <div class="value">SF +1.1</div>
+    <div class="bar"><div class="bar-fill" style="width:45%; background:linear-gradient(90deg,var(--opp-primary),#869397);"></div></div>
+  </div>
+  <div class="matchup-card">
+    <div class="label">Secondary vs WRs</div>
+    <div class="value">KC +0.5</div>
+    <div class="bar"><div class="bar-fill" style="width:52%; background:linear-gradient(90deg,var(--team-primary),var(--gold));"></div></div>
   </div>
 </div>
 
-<!-- Key players spotlight -->
-<h2 style="font-size:0.9rem; margin:16px 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Key Matchups</h2>
-<div style="display:flex; flex-direction:column; gap:8px; margin-bottom:16px;">
-  <div class="spotlight">
-    <div class="avatar">PM</div>
-    <div class="info"><div class="name" style="color:var(--text);">P. Mahomes</div><div class="meta">QB · KC · 99 OVR</div></div>
-    <div class="stat">312 yds, 3 TD</div>
-  </div>
-  <div class="spotlight">
-    <div class="avatar" style="background:linear-gradient(135deg,var(--opp-primary),var(--opp-secondary));">NB</div>
-    <div class="info"><div class="name" style="color:var(--text);">N. Bosa</div><div class="meta">DL · SF · 94 OVR</div></div>
-    <div class="stat">3 sacks, 7 TFL</div>
-  </div>
-  <div class="spotlight">
-    <div class="avatar">TK</div>
-    <div class="info"><div class="name" style="color:var(--text);">T. Kelce</div><div class="meta">TE · KC · 97 OVR</div></div>
-    <div class="stat">8 rec, 98 yds, 1 TD</div>
-  </div>
-</div>
-
-<!-- Quick stats -->
-<h2 style="font-size:0.9rem; margin:16px 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Team Comparison</h2>
+<!-- Team comparison (text centered, numbers left-aligned) -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Team Comparison</h2>
 <div class="float-card">
-  <div class="stat-row"><span class="label">Points For / Game</span><span class="val">31.2</span><span class="val" style="color:var(--opp-primary);">24.8</span></div>
-  <div class="stat-row"><span class="label">Points Against / Game</span><span class="val">18.5</span><span class="val" style="color:var(--opp-primary);">22.1</span></div>
-  <div class="stat-row"><span class="label">Total Yards / Game</span><span class="val">421</span><span class="val" style="color:var(--opp-primary);">334</span></div>
-  <div class="stat-row"><span class="label">Turnover Diff</span><span class="val">+5</span><span class="val" style="color:var(--opp-primary);">-2</span></div>
-  <div class="stat-row"><span class="label">Sacks</span><span class="val">12</span><span class="val" style="color:var(--opp-primary);">8</span></div>
-  <div style="display:flex; justify-content:space-between; margin-top:8px; font-size:0.75rem; color:var(--sub);">
-    <span style="color:var(--team-primary); font-weight:700;">KC Chiefs</span>
-    <span style="color:var(--opp-primary); font-weight:700;">SF 49ers</span>
+  <div class="stat-row header">
+    <span>KC Chiefs</span>
+    <span style="flex:1; text-align:center;">Stat</span>
+    <span>SF 49ers</span>
   </div>
+  <div class="stat-row"><span class="val">31.2</span><span class="label">Points For / Game</span><span class="val opp">24.8</span></div>
+  <div class="stat-row"><span class="val">18.5</span><span class="label">Points Against / Game</span><span class="val opp">22.1</span></div>
+  <div class="stat-row"><span class="val">421</span><span class="label">Total Yards / Game</span><span class="val opp">334</span></div>
+  <div class="stat-row"><span class="val">+5</span><span class="label">Turnover Diff</span><span class="val opp">-2</span></div>
+  <div class="stat-row"><span class="val">12</span><span class="label">Sacks</span><span class="val opp">8</span></div>
 </div>
 
-<!-- Game plan preview -->
-<h2 style="font-size:0.9rem; margin:16px 0 8px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Your Game Plan</h2>
+<!-- Game plan -->
+<h2 style="font-size:0.85rem; margin:12px 0 6px; color:var(--gold); text-transform:uppercase; letter-spacing:0.06em;">Your Game Plan</h2>
 <div class="float-card">
-  <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:center;">
-    <div style="flex:1; min-width:120px;">
-      <div style="font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;">Offense</div>
-      <div style="font-weight:700; color:var(--text);">Balanced</div>
-      <div style="font-size:0.75rem; color:var(--sub);">Auto-recommended</div>
-    </div>
-    <div style="flex:1; min-width:120px;">
-      <div style="font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;">Defense</div>
-      <div style="font-weight:700; color:var(--text);">Aggressive</div>
-      <div style="font-size:0.75rem; color:var(--sub);">Blitz-heavy</div>
-    </div>
-    <div style="flex:1; min-width:120px;">
-      <div style="font-size:0.7rem; color:var(--sub); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px;">Aggressiveness</div>
-      <div style="font-weight:700; color:var(--text);">Balanced</div>
-      <div style="font-size:0.75rem; color:var(--sub);">Standard NFL chart</div>
-    </div>
+  <div class="plan-row">
+    <div class="plan-col"><div class="label">Offense</div><div class="value">Balanced</div><div class="detail">Auto-recommended</div></div>
+    <div class="plan-col"><div class="label">Defense</div><div class="value">Aggressive</div><div class="detail">Blitz-heavy</div></div>
+    <div class="plan-col"><div class="label">Aggressiveness</div><div class="value">Balanced</div><div class="detail">Standard NFL chart</div></div>
   </div>
 </div>
 
 <!-- CTA -->
-<div style="text-align:center; margin:20px 0;">
-  <button style="width:auto; padding:12px 36px; border-radius:999px; font-size:1rem; font-weight:700; background:linear-gradient(135deg,var(--accent),var(--accent3)); color:#0d0a0e; border:none; box-shadow:0 4px 24px rgba(212,175,55,0.25); cursor:pointer; transition:transform 150ms ease, box-shadow 150ms ease; animation:btnFloat 3s ease-in-out infinite; -webkit-text-fill-color:#0d0a0e;">Simulate Game</button>
+<div style="text-align:center; margin:16px 0;">
+  <button class="btn-float">Simulate Game</button>
 </div>
 
-<div style="margin-top:16px; padding:12px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
-  <p style="margin:0; color:var(--sub); font-size:0.8rem;">KC Chiefs (red/gold) vs SF 49ers. Floaty glass panels, no blue. Team-colour theming. Shimmer text on title. Open/airy layout. Mobile-responsive.</p>
+<div style="margin-top:12px; padding:10px; background:var(--panel); border-radius:12px; border:1px solid var(--border);">
+  <p style="margin:0; color:var(--sub); font-size:0.75rem;">KC Chiefs (red/gold) vs SF 49ers (red/gold). No bubbles on team names — shimmering + floating. Key Players side-by-side. Realistic matchup names. Numbers left-aligned, text centered. No blue. Mobile-responsive.</p>
 </div>
 </body></html>
