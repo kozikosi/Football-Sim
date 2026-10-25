@@ -1,0 +1,118 @@
+/* ================= Z-POST-BLUE V11 (eleventh wave) =================
+   Owner: 25 Oct. No strange blue anywhere, readable dynamic buttons,
+   full-bleed 20-0s, bottom footer nav, pick-order dropdown joins the
+   custom family, board: team-icon filter + chips under OVR (85+) +
+   Cinzel everywhere, no sort arrow, no desktop h-scroll, replay +50%. */
+
+/* ---- 1. the 20-0s touch the screen edges (static wordmark + moving marquee) ---- */
+.zpb-bar{padding-left:0;padding-right:0;}
+.zpb-home{padding-left:2px;}
+.zpb-marquee{-webkit-mask-image:none !important;mask-image:none !important;}
+
+/* ---- 2. the setup panel never scrolls on its own ---- */
+#draftSetup{overflow:visible !important;}
+#draftSetup .filters{min-height:65px;}  /* keeps the hero composition the Owner approved with the native pick box */
+@media (min-width:761px){
+ #viewDraft .panel{overflow-x:visible;}
+ #viewDraft .tablewrap{overflow-x:visible;}
+}
+
+/* ---- 3. dropdown family: one-line names, readable tones, pick box tinted ---- */
+.zpb-selpop{min-width:300px;max-width:min(92vw,380px);width:max-content;}
+.zpb-selopt{white-space:nowrap;color:var(--zaL,inherit);}
+:root[data-theme="dark"] .zpb-selopt{color:var(--zaD,var(--zaL,inherit));}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-selopt{color:var(--zaD,var(--zaL,inherit));}
+}
+.zpb-selbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px;}
+
+/* ---- 4. board: bigger logos, chips under the OVR number, team-icon filter ---- */
+.zpb-teamcol .zpb-logo{width:27px;height:27px;}
+.zpb-teamcol{cursor:default;}
+.zpb-tfilter{cursor:pointer;border-radius:9px;padding:2px 4px;transition:box-shadow .2s ease,background .2s ease;}
+.zpb-tfilter:hover{background:var(--zr2,transparent);box-shadow:0 0 10px var(--zr1,transparent);}
+.zpb-tfilter.zpb-tf-on{box-shadow:0 0 0 2px var(--zrb,var(--accent)),0 0 14px var(--zr1,transparent);}
+.zpb-ovrstack{display:inline-flex;flex-direction:column;align-items:center;gap:3px;line-height:1.1;}
+.zpb-ovrchips{display:inline-flex;}
+.zpb-ovrchips .zpb-chip{margin:0;}
+.zpb-ovrchips .zpb-chip i{width:5px;height:5px;}
+.zpb-tfpill{display:inline-flex;align-items:center;gap:7px;padding:4px 12px;border-radius:999px;
+ border:1px solid var(--zrb,var(--accent));color:var(--zrb,var(--accent));font-weight:700;font-size:.72rem;
+ background:var(--zr2,transparent);box-shadow:0 0 12px var(--zr1,transparent);}
+.zpb-tfpill img{width:18px;height:18px;object-fit:contain;}
+
+/* ---- 5. Cinzel Decorative across the draft board ---- */
+#viewDraft td.dc-name,#viewDraft td[data-label="Pos"],#viewDraft .prow b,
+#draftRosterList .playername,#draftRosterList .slotname,#draftRosterTotal b,
+.draftingas .das-text b,.chip,.depth-group h4{
+ font-family:'Cinzel Decorative','Cinzel','Bodoni Moda',Georgia,serif;}
+
+/* ---- 6. the effective-ratings note: tiny and breathing ---- */
+.zpb-fadenote{margin:6px 0 0;font-size:.52rem;letter-spacing:.04em;color:var(--sub);
+ animation:zpbfade 7s ease-in-out infinite;}
+@keyframes zpbfade{0%,100%{opacity:.22}50%{opacity:.85}}
+
+/* ---- 7. lineups: group headers centered ---- */
+.zpb-lu-grp{text-align:center;}
+
+/* ---- 8. scouting/identity bars: RUN BLOCKING / PASS PROTECTION / RECEIVING CORPS ---- */
+.zpb-rkname{text-transform:uppercase;font-size:.72rem;letter-spacing:.05em;}
+
+/* ---- 9. matchup math: the right team's integers right-aligned ---- */
+.zpb-mc-h{justify-content:flex-end;}
+.zpb-mc-h b.zpb-mnum{display:block;text-align:right;min-width:2.4ch;}
+
+/* ---- 10. standings: W-L column first, tidy ---- */
+.zpb-divmain table td:first-child,.zpb-divmain table th:first-child{white-space:nowrap;}
+
+/* ---- 11. 100 Seasons: rank rows with logos, bars that never cover the name ---- */
+.zpb-100bar{grid-template-columns:max-content 1fr 44px;}
+.zpb-100name{display:inline-flex;align-items:center;gap:6px;white-space:nowrap;font-weight:700;}
+.zpb-100name img{width:20px;height:20px;object-fit:contain;}
+.zpb-100bar .score{text-align:right;}
+
+/* ---- 12. how-your-draft-ranks: fades in on scroll, breathes, no table lines ---- */
+.zpb-ranks-fade{opacity:0;transform:translateY(26px);transition:opacity 3.4s ease,transform 3.4s ease;}
+.zpb-ranks-fade.zpb-fadein{opacity:1;transform:none;animation:zpbrankspulse 8.5s ease-in-out 3.4s infinite;}
+@keyframes zpbrankspulse{0%,100%{opacity:1}50%{opacity:.62}}
+.zpb-ranks-fade table td,.zpb-ranks-fade table th{border:0 !important;box-shadow:none !important;}
+.zpb-ranks-fade h3{letter-spacing:.04em;}
+
+/* ---- 13. the two-team duel (why these plans) ---- */
+.zpb-duel{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0;}
+@media (max-width:700px){.zpb-duel{grid-template-columns:1fr;}}
+.zpb-duelcard{border:1px solid var(--zr1,var(--border));border-radius:14px;padding:12px 14px;background:var(--zr2,var(--panel2));}
+.zpb-duelhd{display:flex;align-items:center;gap:8px;font-weight:800;margin-bottom:6px;color:var(--zrb,var(--accent));}
+.zpb-duelhd img{width:24px;height:24px;object-fit:contain;}
+.zpb-duelrow{display:flex;justify-content:space-between;gap:10px;font-size:.86rem;padding:2px 0;}
+.zpb-duelrow b{color:var(--text);}
+.zpb-duelchips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.zpb-duelchip{padding:3px 10px;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.03em;}
+.zpb-dstrong{background:var(--zr3,rgba(201,162,75,.16));color:var(--zrb,var(--accent));border:1px solid var(--zr1,transparent);}
+.zpb-dweak{background:transparent;color:var(--sub);border:1px dashed var(--zr1,var(--border));}
+.zpb-teamlink{color:var(--tA,var(--accent));font-weight:700;}
+
+/* ---- 14. the replay: about 50% larger, badges for TD/FG/TO ---- */
+.zpb-replay{width:min(840px,96vw);}
+.zpb-rep-log{min-height:340px;max-height:66vh;}
+.zpb-rep-hd{padding:16px 20px;}
+.zpb-rep-team img{width:34px;height:34px;}
+.zpb-rep-team b{font-size:1rem;}
+.zpb-rep-sc{font-size:2rem;}
+.zpb-rep-line{font-size:.94rem;padding:7px 12px;gap:9px;}
+.zpb-rep-line img{width:23px;height:23px;}
+.zrl-t{min-width:54px;font-size:.78rem;}
+.zrl-team{font-size:.82rem;}
+.zpb-rep-final b{font-size:1.6rem;}
+.zrl-badge{font-weight:800;font-size:.7rem;letter-spacing:.08em;min-width:30px;text-align:center;
+ padding:1px 7px;border-radius:7px;border:1px solid currentColor;line-height:1.5;font-variant-numeric:tabular-nums;}
+.zrl-badge.zpb-shm{border-color:transparent;}
+
+/* ---- 15. footer nav: the bottom bar (all caps; the JS pins it to .wrap) ---- */
+nav.footnav .footlink,.zpb-foot .footlink{
+ font-family:'Cinzel Decorative','Cinzel','Bodoni Moda',Georgia,serif;}
+.zpb-fmark{display:none;}
+
+/* ---- 16. dynamic buttons: the active label always readable ---- */
+.tabbtn.active,.zpb-seg button.zpb-seg-on{color:var(--ongold,#fffaf2);}
+.zpb-seg button.zpb-seg-on{color:var(--tA,var(--gold3));}
