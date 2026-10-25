@@ -3,19 +3,24 @@
 ## Identity
 - **Seat:** Flint · **Model / how reached:** Flint 40B Free (OpenChamber) · **State:** probation (Owner: wants more evidence)
 - **ID block:** <S-nnnn–nnnn> (only if the seat files submissions) · **First seen:** 2026-10-24
-- **Strengths shown so far (evidence, not claims):** Pre-Colors hash gate `40233d6be00e987c…` (657,486 B); three review #1s filed (P-001/P-003/P-005, all rejected, 25 Oct).
+- **Strengths shown so far (evidence, not claims):** Pre-Colors hash gate `40233d6be00e987c…` (657,486 B); three review #1s filed (P-001/P-003/P-005, all rejected, 25 Oct); P-006 review #1 filed (VERDICT: improved, 25 Oct 03:09Z).
 
 ## Current work
-- **Claimed / in progress:** P-006 — REVIEW #1 of 3 for the player-browser position-dropdown item; author Beam, file `inbox/20261024-2153-beam-queue-1-position-dropdown.md`.
-- **Done this session:** orient + sync-base (clean merge to 29e2f4de); read order completed (AGENTS, PROJECT-KNOWLEDGE, COUNCIL-BULLETIN, V23-OWNER-REQUESTS, lane template); `node tools/next.mjs` → top line P-006 `NEEDS-REVIEW 0/3` → REVIEW #1 of 3.
-- **Verified:** Beam's CSS quotes/lines 58/59/64/65/66 correct; player-row anchors were off (real: l.337–345, Beam wrote 343-345); real Playwright run (lib 1.64.1, chromium-1248, 390×844 & 1280×800) confirmed wrap-at-390 (h=74 two rows; 31 vs 33 heights) and no-stretch at 1280 (posBtn `flex 0 1 auto`, `posdrop` display `block`).
-- **Done this session:** verdict **improved**; claim + review filed (`inbox/20261025-0309-flint-P-006-claim.md`, `inbox/20261025-0309-flint-P-006-review.md`); committed `7e37c13c`. **Push `origin/council/flint` REJECTED (non-fast-forward)** — stopped per AGENTS.md §4, `preserve.mjs snapshot` run, awaiting Architect.
+- **Claimed / in progress:** P-009 — Position Rankings: every combination, DL+CBs top 6 (default), plural labels, `(WR1+WR2+WR3)` naming — work item just filed.
+
+## What I did this session (2026-10-24/25)
+- Orient + sync-base (clean merge to 29e2f4de); read order completed; `node tools/next.mjs` → P-006 `NEEDS-REVIEW 0/3` → REVIEW #1 of 3.
+- P-006 review #1 (Beam): VERDICT **improved**; claim + review filed (`inbox/20261025-0309-flint-P-006-claim.md`, `inbox/20261025-0309-flint-P-006-review.md`); committed `7e37c13c`.
+- Push `origin/council/flint` rejected (non-fast-forward; local HEAD `429716e7` shares no merge base with remote `2104d787`) → stop, snapshot, ask Architect → **Owner redirected: keep working** → Q-Flint-1 recorded in `QUESTIONS-FOR-THE-ARCHITECT.md`.
+- P-002 (Brand 20-0): claim + work (old-name inventory, l.7–11/319/384/440–445/823) filed; committed `fc94fb05`.
+- P-009 (Position Rankings): claim + work filed; committed `2b5275b5`.
 
 ## What the next session needs
-- **Read first:** `AGENTS.md`, `_agents/START-OF-CHAT.md`, `_agents/PRIORITIES.md` (next: third P-006 review or P-008), `bulletin/20261025-0309-flint.md`.
-- **Open questions:** how to resolve divergence on `council/flint` with origin (Architect decision; never force-push).
+- **Read first:** `AGENTS.md`, `_agents/START-OF-CHAT.md`, `_agents/PRIORITIES.md` (next top line after P-009 filings).
+- **Open questions:** Q-Flint-1 (push divergence); Architect's ruling on P-002 replacements / P-009 content.
 - **Do not redo:** none yet.
 
 ## Files in this lane
-- `inbox/20261025-0309-flint-P-006-claim.md` — claim (P-006).
-- `inbox/20261025-0309-flint-P-006-review.md` — review #1 (VERDICT: improved).
+- `inbox/20261025-0309-flint-P-006-claim.md`, `inbox/20261025-0309-flint-P-006-review.md`.
+- `inbox/20261025-0328-flint-P-002-claim.md`, `inbox/20261025-0328-flint-P-002-brand.md`.
+- `inbox/20261025-0328-flint-P-009-claim.md`, `inbox/20261025-0328-flint-P-009-brand.md.
