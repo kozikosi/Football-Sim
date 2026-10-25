@@ -6,12 +6,19 @@
 - Lane: `_agents/boc/` (notes, evidence, tools). No product edits. No edits to other sessions' files. No protected-constant changes.
 
 ## Current work and state
-- This session (25 Oct): five review #1s of Beam's P0/P1 work, all against `Football-Sim-PreColors.html` (sha256 `40233d6be00e987c…`, 657,486 B). Verdicts all "improved":
+- This session (25 Oct): review #1s of Beam's P0/P1 work, all against `Football-Sim-PreColors.html` (sha256 `40233d6be00e987c…`, 657,486 B). Verdicts all "improved":
   - P-001 (homepage): `inbox/20261025-0352-boc-P-001-review.md` — palette must default to rose (not KC red); size 10435 B > 10 KB; floaty text/labels remain; title/og:title not addressed.
   - P-003 (theme tokens): `inbox/20261025-0400-boc-P-003-review.md` — contrast table inflated (#b8941f = 2.68 not 4.2); `--accent2` redefinition breaks orange semantics; hard-coded #ffc43c/#6aa6ff untouched.
   - P-005 (draft board): `inbox/20261025-0420-boc-P-005-review.md` — occurrence count 7/6 not 6/5; grid not adjusted; `currentRound` undefined (ReferenceError); gold fallback wrong.
   - P-009 (Position Rankings): `inbox/20261025-0430-boc-P-009-review.md` — DLCB `n:8 → 6` missing (Owner ruling); pluralization list incomplete; count 62 not 60.
   - P-010 (draft copy/layout): `inbox/20261025-0440-boc-P-010-review.md` — items 6/9 lack exact anchors; prefix/label wording ambiguous.
+  - P-011 (draft resume): `inbox/20261025-0510-boc-P-011-review.md` — anchor errors (init line, preseason transitions); draft-stall-on-restore; incomplete failure modes; incomplete seeded-RNG conversion list; size/keep-list.
+  - P-012 (weights page UI): `inbox/20261025-0530-boc-P-012-review.md` — missing updateWeightBtnStates in input handler; badges aggregation unspecified; dead .active toggle.
+  - P-013 (default weights): `inbox/20261025-0550-boc-P-013-review.md` — no reviewable table; 20× not a code path; scope (fallback vs model) ambiguous.
+  - P-014 (team comparison): `inbox/20261025-0570-boc-P-014-review.md` — item 2 already done; item 3 scope mismatch; item 5 is V23 theme scope.
+  - P-015 (guide page): `inbox/20261025-0590-boc-P-015-review.md` — item 3 ambiguities (which table, casing); glossary overlaps termsHTML; cache invalidation.
+  - P-016 (preseason/4th-down): `inbox/20261025-0610-boc-P-016-review.md` — analysis accurate but overstates mismatch; missing "unlocked all season" code change, UI sketch, text/UI redesign.
+  - P-017 (3-4 base + flex rules): `inbox/20261025-0630-boc-P-017-review.md` — FLEX protected (CB3=0 needs Owner confirm); Part 4 anchor wrong (l.4979 not l.5096); negative-penalty downstream effects; Part 1/3 under-specified (split recommended).
 - Earlier (23 Oct): game-ball tie-break verification note `_agents/boc/notes/game-ball-tiebreak-verification.md`; P-006 review IMPROVED; P-002 brand inventory.
 - Anchor build: Football-Sim-PreColors.html, sha256 40233d6be00e987c…, 657,486 B.
 
@@ -19,7 +26,7 @@
 - Read this file, then `node tools/council-sync.mjs --days 3` (reviews above are on `council/boc`).
 - Worktree: `/Users/kosi/Desktop/wt/boc`, branch `council/boc`.
 - Run preservation gate first: `git fetch -q origin; node tools/preserve.mjs check` (exit 1 from other worktrees is expected, not mine).
-- Next review candidates per `node tools/next.mjs`: P-011, P-012, P-013, P-014… (P-001/P-003/P-005/P-009/P-010 now at 1/3 each; need two more reviewers each).
+- All P-001/P-003/P-005/P-009/P-010/P-011/P-012/P-013/P-014/P-015/P-016/P-017 now at 1/3 each (boc reviewed); need two more reviewers each. Next candidates per `node tools/next.mjs`: P-018… or standing chores.
 - Lint selftest still UNVERIFIED on this machine (exit 3 nested root config).
 
 ## Open questions
@@ -37,6 +44,13 @@
 - `inbox/20261025-0420-boc-P-005-review.md`
 - `inbox/20261025-0430-boc-P-009-review.md`
 - `inbox/20261025-0440-boc-P-010-review.md`
+- `inbox/20261025-0510-boc-P-011-review.md`
+- `inbox/20261025-0530-boc-P-012-review.md`
+- `inbox/20261025-0550-boc-P-013-review.md`
+- `inbox/20261025-0570-boc-P-014-review.md`
+- `inbox/20261025-0590-boc-P-015-review.md`
+- `inbox/20261025-0610-boc-P-016-review.md`
+- `inbox/20261025-0630-boc-P-017-review.md`
 - `bulletin/20261025-0355-boc.md` (prior session)
 
 ## Worktree / branch
