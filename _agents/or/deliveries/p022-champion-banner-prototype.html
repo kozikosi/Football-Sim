@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-022 Champion Banner Prototype</title>
+<style>
+:root{
+  --bg:#1a1418;
+  --text:#f5f0f0;
+  --sub:#a09098;
+  --gold:#d4af37;
+  --gold-light:#ffd75e;
+  --gold-mid:#ffc43c;
+  --rose:#f4c2c2;
+  --rose-soft:#ffd700;
+  --accent:#d4af37;
+  --panel:rgba(255,255,255,0.04);
+  --border:rgba(255,255,255,0.08);
+  --good:#3ecf8e;
+  --bad:#ff6b4a;
+  --radius:12px;
+  --font-display:'Cinzel Decorative', Georgia, serif;
+  --font-body:system-ui, -apple-system, sans-serif;
+}
+@font-face{
+  font-family:'Cinzel Decorative';
+  src:url('https://fonts.gstatic.com/s/cinzeldecorative/v13/daaCSScvJGqLYhG8nNt8KPPuhpAZ.woff2') format('woff2');
+  font-display:swap;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:var(--font-body);line-height:1.5}
+.container{max-width:100%;padding:20px}
+h1{font-family:var(--font-display);margin:0 0 24px;font-size:clamp(1.5rem,5vw,3rem);text-align:center}
+.card{background:var(--panel);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px}
+
+/* Champion Banner */
+.champion-banner{
+  position:relative;
+  width:100%;
+  padding:clamp(40px,8vw,80px) 24px;
+  text-align:center;
+  overflow:hidden;
+  border-radius:var(--radius);
+  background:
+    linear-gradient(100deg,var(--gold-light) 0%,var(--rose-soft) 30%,var(--gold-mid) 50%,var(--rose-soft) 70%,var(--gold-light) 100%);
+  background-size:200% 100%;
+}
+@media (prefers-reduced-motion: no-preference){
+  .champion-banner{
+    animation:fxpop 4.2s ease forwards,fxshine 2.5s linear infinite;
+  }
+}
+@keyframes fxpop{
+  0%{transform:scale(0.95);opacity:0}
+  100%{transform:scale(1);opacity:1}
+}
+@keyframes fxshine{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+.champion-banner__text{
+  font-family:var(--font-display);
+  font-size:clamp(2rem,6vw,4rem);
+  font-weight:700;
+  letter-spacing:.04em;
+  color:#3a2600;
+  text-shadow:0 2px 8px rgba(0,0,0,0.15);
+  position:relative;
+  z-index:2;
+}
+.champion-banner__star{
+  display:inline-block;
+  margin-left:16px;
+  font-size:clamp(1.5rem,4vw,2.5rem);
+  animation:star-pulse 2s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: no-preference){
+  .champion-banner__star{
+    animation:star-pulse 2s ease-in-out infinite;
+  }
+}
+@keyframes star-pulse{
+  0%,100%{transform:scale(1) rotate(0deg);opacity:1}
+  50%{transform:scale(1.15) rotate(5deg);opacity:0.9}
+}
+
+/* Hype Text */
+.hype-text{
+  text-align:center;
+  margin:24px 0;
+}
+.hype-text__phrase{
+  font-family:var(--font-display);
+  font-size:clamp(1.25rem,4vw,2rem);
+  font-weight:700;
+  letter-spacing:.04em;
+  background:linear-gradient(100deg,var(--gold-light) 0%,var(--rose-soft) 50%,var(--gold-mid) 100%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:hype-shimmer 4.2s linear infinite;
+}
+@media (prefers-reduced-motion: no-preference){
+  .hype-text__phrase{
+    animation:hype-shimmer 4.2s linear infinite;
+  }
+}
+@keyframes hype-shimmer{
+  0%{background-position:200% 0}
+  100%{background-position:-200% 0}
+}
+
+/* Confetti Canvas */
+.confetti-canvas{
+  position:fixed;
+  top:0;left:0;width:100vw;height:100vh;
+  pointer-events:none;
+  z-index:9999;
+  opacity:0;
+  transition:opacity 0.5s ease;
+}
+.confetti-canvas.active{
+  opacity:1;
+}
+@media (prefers-reduced-motion: reduce){
+  .confetti-canvas{
+    display:none !important;
+  }
+  .confetti-static{
+    display:block !important;
+  }
+}
+.confetti-static{
+  display:none;
+  position:fixed;
+  top:0;left:0;width:100vw;height:100vh;
+  pointer-events:none;
+  z-index:9998;
+  background-image:
+    radial-gradient(circle at 10% 20%, var(--gold) 2px, transparent 2px),
+    radial-gradient(circle at 30% 40%, var(--rose-soft) 2px, transparent 2px),
+    radial-gradient(circle at 50% 60%, var(--gold-light) 2px, transparent 2px),
+    radial-gradient(circle at 70% 80%, var(--rose) 2px, transparent 2px),
+    radial-gradient(circle at 90% 10%, var(--gold-mid) 2px, transparent 2px);
+  background-size:200px 200px;
+  opacity:0.15;
+}
+
+/* Motion Catalogue */
+.motion-catalogue table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:0.85rem;
+}
+.motion-catalogue th,.motion-catalogue td{
+  padding:10px 12px;
+  text-align:left;
+  border-bottom:1px solid var(--border);
+}
+.motion-catalogue th{
+  font-family:var(--font-display);
+  color:var(--gold);
+  font-weight:600;
+  font-size:0.9rem;
+}
+.motion-catalogue tr:hover td{
+  background:rgba(255,255,255,0.02);
+}
+.motion-catalogue code{
+  background:rgba(255,255,255,0.08);
+  padding:2px 6px;
+  border-radius:4px;
+  font-size:0.85em;
+}
+
+/* Controls */
+.controls{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:24px 0}
+.btn{
+  padding:12px 24px;
+  border:none;
+  border-radius:8px;
+  font-family:var(--font-display);
+  font-size:0.9rem;
+  font-weight:700;
+  cursor:pointer;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn:active{transform:scale(0.98)}
+.btn-primary{background:linear-gradient(90deg,var(--accent),var(--rose-soft));color:#1a1418}
+.btn-secondary{background:var(--panel);color:var(--text);border:1px solid var(--border)}
+.btn:hover{box-shadow:0 4px 16px rgba(212,175,55,0.3)}
+
+/* Animations */
+@media (prefers-reduced-motion: reduce){
+  .champion-banner,.hype-text__phrase,.champion-banner__star{
+    animation:none !important;
+  }
+  .champion-banner{
+    background:var(--gold-mid);
+  }
+  .hype-text__phrase{
+    -webkit-text-fill-color:var(--gold);
+    background:none;
+  }
+}
+
+/* Reveal animations */
+.reveal{
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.8s ease,transform 0.8s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <h1>P-022 Champion Banner Prototype</h1>
+
+  <div class="card reveal">
+    <h2 style="margin:0 0 16px;font-family:var(--font-display);color:var(--gold)">Champion Banner</h2>
+    <div class="champion-banner" id="championBanner">
+      <span class="champion-banner__text">CHAMPION</span>
+      <span class="champion-banner__star">★</span>
+    </div>
+    <p style="margin:16px 0 0;color:var(--sub);font-size:0.9rem">
+      Gold foil gradient with infinite shimmer sweep. Cinzel Decorative display type.
+      Respects <code>prefers-reduced-motion</code> — static gold fill, no animation.
+    </p>
+  </div>
+
+  <div class="card reveal">
+    <h2 style="margin:0 0 16px;font-family:var(--font-display);color:var(--gold)">Hype Text</h2>
+    <div class="hype-text">
+      <span class="hype-text__phrase">CAN YOU GO 20-0?</span>
+    </div>
+    <p style="margin:16px 0 0;color:var(--sub);font-size:0.9rem">
+      Shimmering gradient text in team palette (gold/rose). No white text, no blue panels.
+      Slow fade-in/out on view enter/leave per P-183 style law.
+    </p>
+  </div>
+
+  <div class="card reveal">
+    <h2 style="margin:0 0 16px;font-family:var(--font-display);color:var(--gold)">Confetti Burst</h2>
+    <p style="color:var(--sub);margin-bottom:16px">Click the button to trigger confetti. Respects <code>prefers-reduced-motion</code> — shows static dots instead of falling animation.</p>
+    <div class="controls">
+      <button class="btn btn-primary" id="triggerConfetti">TRIGGER CONFETTI</button>
+      <button class="btn btn-secondary" id="resetConfetti">RESET</button>
+    </div>
+    <canvas class="confetti-canvas" id="confettiCanvas" aria-hidden="true"></canvas>
+    <div class="confetti-static" aria-hidden="true"></div>
+  </div>
+
+  <div class="card reveal motion-catalogue">
+    <h2 style="margin:0 0 16px;font-family:var(--font-display);color:var(--gold)">Motion Catalogue</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Animation</th>
+          <th>Duration</th>
+          <th>Trigger</th>
+          <th>Reduced-motion Fallback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Champion banner foil shimmer</td>
+          <td><code>2.5s infinite</code></td>
+          <td>Champion confirmed</td>
+          <td>Static gold fill, no gradient animation</td>
+        </tr>
+        <tr>
+          <td>20-0? shimmer sweep</td>
+          <td><code>4.2s</code></td>
+          <td>Header view enter</td>
+          <td>Static bold text</td>
+        </tr>
+        <tr>
+          <td>Confetti burst</td>
+          <td><code>2s</code> then fade</td>
+          <td>Champion / game won</td>
+          <td>Static grid of dots</td>
+        </tr>
+        <tr>
+          <td>Dropdown fade</td>
+          <td><code>800ms</code></td>
+          <td>View enter</td>
+          <td>Instant opacity 1</td>
+        </tr>
+        <tr>
+          <td>Panel slide</td>
+          <td><code>400ms</code></td>
+          <td>View leave</td>
+          <td>Instant opacity 0</td>
+        </tr>
+        <tr>
+          <td>Button hover</td>
+          <td><code>200ms</code></td>
+          <td>Cursor over</td>
+          <td>Instant background swap</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="card reveal">
+    <h2 style="margin:0 0 16px;font-family:var(--font-display);color:var(--gold)">Integration Hooks (Pre-Colors)</h2>
+    <ul style="color:var(--sub);line-height:2">
+      <li><code>#fxbanner</code> at line 109 — gold foil pattern (reuse for champion banner)</li>
+      <li><code>.toptag</code> at line 199 — shimmer tag pattern for 20-0</li>
+      <li><code>renderBracketHTML()</code> at line 5896 — playoff bracket hook for confetti trigger</li>
+      <li><code>generateSeasonReview()</code> at line 5700 — season review hook for champion banner placement</li>
+      <li><code>computeRegularSeasonAwards()</code> at line 5772 — awards include champion detection</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+// Confetti system
+const canvas=document.getElementById('confettiCanvas');
+const ctx=canvas.getContext('2d');
+let confetti=[],animId=null,running=false;
+
+function resize(){
+  canvas.width=window.innerWidth;
+  canvas.height=window.innerHeight;
+}
+window.addEventListener('resize',resize);
+resize();
+
+class Confetto{
+  constructor(){
+    this.reset();
+  }
+  reset(){
+    this.x=Math.random()*canvas.width;
+    this.y=-20;
+    this.size=Math.random()*8+4;
+    this.color=['var(--gold)','var(--gold-light)','var(--rose)','var(--rose-soft)','var(--gold-mid)'][Math.floor(Math.random()*5)];
+    this.rotation=Math.random()*Math.PI*2;
+    this.rotationSpeed=(Math.random()-0.5)*0.1;
+    this.velocityY=Math.random()*3+2;
+    this.velocityX=(Math.random()-0.5)*2;
+    this.opacity=1;
+  }
+  update(){
+    this.y+=this.velocityY;
+    this.x+=this.velocityX;
+    this.rotation+=this.rotationSpeed;
+    this.opacity-=0.005;
+    if(this.y>canvas.height+20 || this.opacity<=0) this.reset();
+  }
+  draw(){
+    ctx.save();
+    ctx.translate(this.x,this.y);
+    ctx.rotate(this.rotation);
+    ctx.globalAlpha=this.opacity;
+    ctx.fillStyle=this.color;
+    ctx.beginPath();
+    ctx.rect(-this.size/2,-this.size/2,this.size,this.size);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+function initConfetti(count=80){
+  confetti=[];
+  for(let i=0;i<count;i++) confetti.push(new Confetto());
+}
+
+function animate(){
+  if(!running) return;
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+  confetti.forEach(c=>{c.update();c.draw();});
+  animId=requestAnimationFrame(animate);
+}
+
+function startConfetti(){
+  if(running) return;
+  running=true;
+  initConfetti(100);
+  canvas.classList.add('active');
+  animate();
+  setTimeout(()=>{
+    running=false;
+    cancelAnimationFrame(animId);
+    canvas.classList.remove('active');
+  },2000);
+}
+
+document.getElementById('triggerConfetti').addEventListener('click',startConfetti);
+document.getElementById('resetConfetti').addEventListener('click',()=>{
+  running=false;
+  cancelAnimationFrame(animId);
+  canvas.classList.remove('active');
+  ctx.clearRect(0,0,canvas.width,canvas.height);
+});
+
+// Scroll reveal
+const observer=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('visible');});
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
