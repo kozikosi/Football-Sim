@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BUG-FOOTBALL-SIM-W21-v1 · Technical Bug Report & Fix Brief</title>
+<style>
+  :root {
+    --bg: #fdfcf9;
+    --fg: #1a1a1a;
+    --muted: #555;
+    --border: #d8d4cc;
+    --accent: #7a2f2a;
+    --accent2: #2f4a7a;
+    --code-bg: #f0ece5;
+    --code-fg: #2a2a2a;
+    --tbl-alt: #f5f1ea;
+    --warn: #a62b1f;
+    --ok: #2e6b3e;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    margin: 0;
+    padding: 0;
+    font: 15px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+  }
+  .doc {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 32px 80px;
+  }
+  h1 {
+    font-size: 2rem;
+    margin: 0 0 6px;
+    color: var(--accent);
+    letter-spacing: -0.01em;
+  }
+  h2 {
+    font-size: 1.35rem;
+    margin: 40px 0 12px;
+    padding-bottom: 6px;
+    border-bottom: 2px solid var(--accent);
+    color: var(--accent);
+  }
+  h3 {
+    font-size: 1.1rem;
+    margin: 26px 0 8px;
+    color: var(--accent2);
+  }
+  h4 {
+    font-size: 0.98rem;
+    margin: 18px 0 6px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  p { margin: 8px 0; }
+  .meta {
+    color: var(--muted);
+    font-size: 0.88rem;
+    line-height: 1.5;
+    margin: 0 0 20px;
+    padding: 14px 16px;
+    background: var(--tbl-alt);
+    border-left: 4px solid var(--accent);
+    border-radius: 4px;
+  }
+  .meta strong { color: var(--fg); }
+  .meta div { margin: 2px 0; }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+    font-size: 0.88em;
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: "SF Mono", Menlo, Consolas, "Courier New", monospace;
+    font-size: 0.82em;
+    background: var(--code-bg);
+    color: var(--code-fg);
+    padding: 12px 14px;
+    border-radius: 6px;
+    overflow-x: auto;
+    line-height: 1.5;
+    border-left: 3px solid var(--accent2);
+    margin: 10px 0;
+  }
+  pre code {
+    background: none;
+    padding: 0;
+    border-radius: 0;
+    font-size: 1em;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0 18px;
+    font-size: 0.92em;
+  }
+  th, td {
+    padding: 8px 10px;
+    text-align: left;
+    vertical-align: top;
+    border: 1px solid var(--border);
+  }
+  th {
+    background: var(--accent);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.82em;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+  tbody tr:nth-child(even) td { background: var(--tbl-alt); }
+  ul, ol { margin: 8px 0; padding-left: 26px; }
+  li { margin: 4px 0; }
+  .toc {
+    background: var(--tbl-alt);
+    padding: 16px 20px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    margin: 24px 0;
+  }
+  .toc h4 { margin: 0 0 8px; }
+  .toc ol { margin: 0; padding-left: 22px; }
+  .toc a { color: var(--accent2); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .callout {
+    background: #fff6e6;
+    border-left: 4px solid #c99a2e;
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 14px 0;
+  }
+  .danger {
+    background: #fbeae7;
+    border-left: 4px solid var(--warn);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 14px 0;
+  }
+  .ok {
+    background: #eaf5ee;
+    border-left: 4px solid var(--ok);
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin: 14px 0;
+  }
+  .checklist { list-style: none; padding-left: 0; }
+  .checklist li { padding-left: 26px; position: relative; margin: 6px 0; }
+  .checklist li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    font-size: 1.1em;
+    color: var(--accent2);
+  }
+  .footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    font-size: 0.85em;
+    color: var(--muted);
+    font-style: italic;
+  }
+  @media print {
+    body { background: #fff; }
+    .doc { padding: 20px; max-width: 100%; }
+    h2 { page-break-after: avoid; }
+    pre, table { page-break-inside: avoid; }
+    .toc { page-break-after: always; }
+  }
+</style>
+</head>
+<body>
+<article class="doc">
+
+  <h1>TECHNICAL BUG REPORT &amp; FIX BRIEF</h1>
+
+  <div class="meta">
+    <div><strong>Document ID:</strong> BUG-FOOTBALL-SIM-W21-v1</div>
+    <div><strong>Subject File:</strong> <code>Football-Sim-Z-post-blue-w21.html</code></div>
+    <div><strong>Subject Project:</strong> Madden-NFL-27 Season Simulator (single-file, ~20k lines)</div>
+    <div><strong>Prepared For:</strong> z.ai (bug-hunt / fix-patch agent)</div>
+    <div><strong>Prepared By:</strong> Full-file code review of the submitted file</div>
+    <div><strong>Status:</strong> Ready for fix work</div>
+    <div><strong>Priority:</strong> <span style="color:var(--warn);font-weight:700;">Cluster A &amp; Cluster B are blocking user flows — P0</span></div>
+  </div>
+
+  <div class="toc">
+    <h4>Table of Contents</h4>
+    <ol>
+      <li><a href="#s1">Executive Summary</a></li>
+      <li><a href="#s2">Context &amp; Scope</a></li>
+      <li><a href="#s3">Reported Bug Cluster A — Draft Board Broken</a></li>
+      <li><a href="#s4">Reported Bug Cluster B — Three Tabs Empty</a></li>
+      <li><a href="#s5">Additional Latent Bugs (Full-File Review)</a></li>
+      <li><a href="#s6">Ordered Fix Plan (F1–F14)</a></li>
+      <li><a href="#s7">Verification Console Block</a></li>
+      <li><a href="#s8">Test Matrix</a></li>
+      <li><a href="#s9">Deliverable &amp; Acceptance Criteria</a></li>
+      <li><a href="#s10">Appendices (Root-Cause Table, Reference Greps, Checklist)</a></li>
+    </ol>
+  </div>
+
+  <h2 id="s1">1. Executive Summary</h2>
+  <p>Two clusters of intermittent regressions have been reported by the user and recur across page loads. A full-file review has identified <strong>14 latent bugs</strong> in addition to the two reported clusters. This document specifies each bug with location, cause, and fix, followed by an ordered fix plan, a verification harness, and a test matrix.</p>
+  <div class="callout">
+    <p style="margin:0;"><strong>Scope of work:</strong> Minimal, surgical fixes only. No refactoring for style, no renaming, no code reorganization. Preserve the model math, flex penalties, schedule generator, game simulation, awards logic, and 100-season sim exactly as they are.</p>
+  </div>
+  <p><strong>Success criteria:</strong> All ten matrix runs (Part 8) pass on desktop and mobile, in light and dark mode, with <code>localStorage</code> both cleared and pre-populated.</p>
+
+  <h2 id="s2">2. Context &amp; Scope</h2>
+  <ul>
+    <li><strong>File:</strong> <code>Football-Sim-Z-post-blue-w21.html</code></li>
+    <li><strong>Structure:</strong> One main <code>&lt;script&gt;</code> block, plus two trailing <code>&lt;script id="zpb-w13"&gt;</code>-style blocks (wave-10 and wave-13 IIFEs), plus an extensive CSS layer.</li>
+    <li><strong>Iteration history:</strong> ~13 design waves. Design intent is annotated in comments prefixed with <code>"Owner"</code> and <code>"wave N"</code>. <strong>Do not remove or contradict those annotations.</strong></li>
+    <li><strong>Failure mode observed:</strong> After a fresh page load, several unrelated UI regions are simultaneously empty, and the draft state machine freezes on the first render. This pattern is consistent with a single throw early in the main script that prevents downstream assignments from running.</li>
+  </ul>
+  <div class="danger">
+    <p style="margin:0 0 6px;"><strong>Do not touch:</strong></p>
+    <ul style="margin:0;">
+      <li>Draft model math (<code>slotWinsTable</code>, <code>matchupModel</code>, <code>MC</code>, <code>RATING_SPECS</code>, <code>DEF_SPECS</code>, <code>teamRatings</code>)</li>
+      <li>Flex penalties (<code>FLEX</code>, <code>flexPenaltyFor</code>, <code>POS_SLOT_MAP</code>)</li>
+      <li>Schedule generator (<code>buildFullSchedule</code>, division weeks)</li>
+      <li>Game simulation (<code>simulateGame</code>, <code>playGame</code>, <code>buildGameDetail</code>)</li>
+      <li>Awards logic (<code>computeRegularSeasonAwards</code>, <code>computePlayoffAwards</code>)</li>
+      <li>100-season sim (<code>runLeague100</code>, <code>liteSeason</code>)</li>
+    </ul>
+  </div>
+
+  <h2 id="s3">3. Reported Bug Cluster A — Draft Board Broken</h2>
+
+  <h3>3.1 Reported symptoms</h3>
+  <p>On <strong>first page load</strong>, clicking DRAFT produces:</p>
+  <table>
+    <thead><tr><th style="width:60px;">#</th><th>Symptom</th></tr></thead>
+    <tbody>
+      <tr><td>A.1</td><td>Wins and Priority columns of the draft board show dashes or disappear entirely</td></tr>
+      <tr><td>A.2</td><td>CPU never starts drafting, even when user is at pick 1.32 (<code>userIndex = 31</code> — 31 CPU picks should run before user)</td></tr>
+      <tr><td>A.3</td><td>After the user picks, the player is <strong>not added to the depth chart</strong></td></tr>
+      <tr><td>A.4</td><td>CPU still doesn't resume drafting after the user's pick</td></tr>
+    </tbody>
+  </table>
+  <blockquote style="border-left:4px solid var(--accent2);padding:8px 16px;margin:12px 0;color:var(--muted);font-style:italic;">
+    User's original report: <em>"the priority and WINS numbers have disappeared and the computer doesn't start drafting until my first selection even though I'm 1.32. Even after I select players they are not added to my depth chart and the cpu doesn't start drafting. This glitch has happened before."</em>
+  </blockquote>
+
+  <h3>3.2 Root-cause hypothesis</h3>
+  <p><code>renderDraftLive()</code> wraps the board render in <code>try/catch</code>:</p>
+  <pre><code>try { renderDraftBoard2(); } catch(err) { try { zpbFallbackBoard(err); } catch(e2){} }</code></pre>
+  <p>On any throw, <code>zpbFallbackBoard(err)</code> fires — a <strong>minimal board with no Wins, no Priority, and only conditional Draft buttons</strong>. This exactly matches <strong>A.1</strong>.</p>
+  <p>A <strong>separate</strong> <code>try/catch</code> around <code>renderDraftRoster2()</code>:</p>
+  <pre><code>try { renderDraftBoard2(); } catch(err) { ... }
+try { renderDraftRoster2(); } catch(err) {}</code></pre>
+  <p>Means if <code>renderDraftRoster2</code> throws, the depth chart stays frozen at nothing → <strong>A.3</strong>.</p>
+  <p>The state machine freeze (<strong>A.2</strong>, <strong>A.4</strong>) has three independent candidates: (a) wave-13 didn't load so <code>zpbWelcomeCine</code> is missing but the try/catch fails to fall through; (b) <code>cpuBias</code>/<code>cpuNoise</code>/<code>cpuMiss</code> corrupt global <code>draftSim</code>, making <code>simRecs()</code> return garbage; (c) the watchdog 25s deferral never force-starts.</p>
+
+  <h3>3.3 Candidate list (each must be reproduced then fixed)</h3>
+
+  <h4>A1 — Bare cross-script calls: <code>zpbDimeDrafRow</code> / <code>zpbDimeRow</code> / <code>zpbDimeCell</code></h4>
+  <p><strong>Location:</strong> <code>renderDraftRoster2()</code> (main script) ends with:</p>
+  <pre><code>document.getElementById('draftRosterList').innerHTML =
+  DEPTH_CHART_GROUPS.map(([gname, gcls, slots]) =>
+    `&lt;div class="depth-group ${gcls}"&gt;&lt;h4&gt;${gname}&lt;/h4&gt;${slots.map(sl =>
+      row(sl, roster.slots[sl], roster.pickRounds &amp;&amp; roster.pickRounds[sl])
+    ).join('')}${gcls==='def' ? zpbDimeDrafRow(roster) : ''}&lt;/div&gt;`
+  ).join('');</code></pre>
+  <p><code>zpbDimeDrafRow</code> is <strong>only</strong> assigned inside <code>&lt;script id="zpb-w13"&gt;</code>. If wave-13 fails to parse (unbalanced braces, stray <code>&lt;/script&gt;</code> in a template literal, truncation), <code>zpbDimeDrafRow</code> is <code>undefined</code> → throws → caught by inner try/catch → <strong>depth chart never updates</strong>.</p>
+  <p><strong>Fix (choose one):</strong></p>
+  <ul>
+    <li>Move <code>zpbDimeOf</code>, <code>zpbDimeCell</code>, <code>zpbDimeRow</code>, <code>zpbDimeDrafRow</code> into the <strong>main script block</strong> (before init).</li>
+    <li>Or guard every call site:</li>
+  </ul>
+  <pre><code>${gcls==='def' &amp;&amp; typeof zpbDimeDrafRow === 'function' ? zpbDimeDrafRow(roster) : ''}</code></pre>
+  <p>Same treatment for <code>renderLineupTableHTML</code> (v7) calling <code>zpbDimeCell</code>, and <code>renderDepthChartHTML</code> calling <code>zpbDimeRow</code>.</p>
+
+  <h4>A2 — <code>window.zpbLift</code> guard inconsistency</h4>
+  <p><code>zpbRowVars</code> is guarded:</p>
+  <pre><code>function zpbRowVars(name){
+  const pk = zpbPackFor(name); if(!pk) return '';
+  return '--zr1:' + zpbRgba((window.zpbLift ? zpbLift(pk.accL, 0.58) : pk.accL), 0.12) + ';...';
+}</code></pre>
+  <p><strong>But</strong> <code>zpbLeagueBarsHTML</code> and <code>zpbMetricsHTML</code> (wave-11-B, main script) use <code>pk.r1</code> directly (<strong>see A3</strong>), so the guard does not help them.</p>
+
+  <h4>A3 — <code>pk.r1</code> / <code>pk.r2</code> / <code>pk.r3</code> are undefined</h4>
+  <p><code>zpbPackFor()</code> returns a pack with properties:</p>
+  <pre><code>raw, accL, accD, acc2L, acc2D, acc3L, acc3D, txL, txd, sud,
+hairL, hairD, bgL, bgD, on, onD,
+g1..g6, b1..b6, o1..o4, d1..d2  (+ dark variants)</code></pre>
+  <p><strong>There is no <code>r1</code>, <code>r2</code>, or <code>r3</code>.</strong> But two functions reference <code>pk.r1</code>:</p>
+  <pre><code>// zpbLeagueBarsHTML
+const uv = pk ? '--zrb:' + pk.accL + ';--zr1:' + pk.r1 + ';' : '';
+
+// zpbMetricsHTML
+const uv = pk ? '--zrb:' + pk.accL + ';--zr1:' + pk.r1 + ';' : '';</code></pre>
+  <p>Result: <code>--zr1:undefined;</code> is set as a CSS custom property. Browsers treat <code>"undefined"</code> as a valid custom-property value, so <code>var(--zr1, fallback)</code> resolves to the string <code>"undefined"</code> instead of using the fallback — the whole gradient / box-shadow declaration is invalid at computed-value time and silently drops.</p>
+  <p><strong>Fix:</strong> Use the same value <code>zpbRowVars</code> uses:</p>
+  <pre><code>function zpbR1(pk){
+  return zpbRgba(window.zpbLift ? zpbLift(pk.accL, 0.58) : pk.accL, 0.12);
+}
+const uv = pk ? '--zrb:' + pk.accL + ';--zr1:' + zpbR1(pk) + ';' : '';</code></pre>
+  <p>Or better: add <code>r1</code>, <code>r2</code>, <code>r3</code> fields to the pack object inside <code>zpbPackFor</code> so both paths share one source of truth.</p>
+
+  <h4>A4 — <code>POINTS_PER_WIN</code> temporal dead zone</h4>
+  <p><code>POINTS_PER_WIN</code> is declared:</p>
+  <pre><code>const POINTS_PER_WIN = 32.5;</code></pre>
+  <p>in the shared phrase-bank helpers section (mid-file, <strong>after</strong> the draft simulator section). Referenced in <code>slotWinsTable</code>:</p>
+  <pre><code>const lg = teamRatings(base), k = 17 / POINTS_PER_WIN, ...</code></pre>
+  <p><strong>Any call to <code>slotWinsTable()</code> before that line executes throws <code>ReferenceError: Cannot access 'POINTS_PER_WIN' before initialization</code>.</strong></p>
+  <p>First normal call: <code>slotWins → slotWinsTable</code>, first triggered by <code>slotWinsPerOvr()</code> inside <code>modelWeights()</code> at the very end of the main script — <strong>after</strong> assignment. Safe in normal flow.</p>
+  <p><strong>But</strong> any deferred call that fires <em>before</em> the main script finishes assignment hits TDZ. Deferred calls: wave-13 <code>setTimeout(zpbInitRankingsUI, 0)</code> (after file load, safe), wave-10 <code>_boot</code> at 400ms (safe). Suspect: any synchronous <code>slotWins</code> call made during main-script execution before the <code>const</code> line.</p>
+  <p><strong>Fix:</strong> Either move <code>POINTS_PER_WIN</code> earlier, or guard the read:</p>
+  <pre><code>const ppw = (typeof POINTS_PER_WIN !== 'undefined') ? POINTS_PER_WIN : 32.5;</code></pre>
+
+  <h4>A5 — <code>SLOT_POS</code> incomplete + TDZ in <code>starsFaceoffHTML</code></h4>
+  <p><code>SLOT_POS</code> is a <code>const</code> declared in the shared-awards section. <code>starsFaceoffHTML</code> (wave-11-B, earlier in the file) uses it:</p>
+  <pre><code>rows = ROSTER_SLOTS.map(sl => {
+  const e = effEntry(sm, sl);
+  return e ? { name: e.name, group: SLOT_POS[sl] || sl, ... } : null;
+})</code></pre>
+  <p>Two problems:</p>
+  <ol>
+    <li><strong>TDZ:</strong> If called synchronously before <code>const SLOT_POS</code> line, throws.</li>
+    <li><strong>Incomplete coverage:</strong> <code>SLOT_POS</code> misses <code>WR1, WR2, WR3, RB1, RB2, OT1, OT2, OG1, OG2, C, TE2, FB, P</code>. Falls through to slot name string.</li>
+  </ol>
+  <p><strong>Fix:</strong></p>
+  <pre><code>group: (typeof SLOT_POS !== 'undefined' &amp;&amp; SLOT_POS[sl]) || sl</code></pre>
+  <p>Plus expand <code>SLOT_POS</code> to cover every <code>ROSTER_SLOTS</code> entry (or derive from <code>SLOT_FAMILY</code>).</p>
+
+  <h4>A6 — <code>cpuBias</code> / <code>cpuNoise</code> / <code>cpuMiss</code> corrupt global <code>draftSim</code></h4>
+  <pre><code>function cpuBias(teamIndex, group){
+  draftSim.bias = draftSim.bias || {};
+  const b = draftSim.bias[teamIndex] = draftSim.bias[teamIndex] || {};
+  if(b[group] == null) b[group] = ...;
+  return b[group];
+}
+function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; ... }
+function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; ... }</code></pre>
+  <p>These mutate the <strong>global</strong> draft even though <code>cpuPick(ti, st)</code> accepts a <code>st</code> parameter.</p>
+  <p>During <code>simRecs()</code>, the board render runs <code>cpuPick</code> <strong>12 times</strong> with <code>st = sim</code>, each trial drafting ~31 picks = ~372 <code>cpuPick</code> calls <strong>per board render</strong> — all writing to the <em>real</em> <code>draftSim.bias</code>, <code>draftSim.noiseSd</code>, <code>draftSim.missP</code>.</p>
+  <p>Because bias magnitude drives the <code>v</code> values that feed <code>simRecs().later</code> (which feeds <code>pri</code>), random-walked bias flattens all priorities toward zero. <strong>This is a strong candidate for "Priority disappeared on first try".</strong></p>
+  <p><strong>Fix — thread <code>st</code> through:</strong></p>
+  <pre><code>function cpuBias(teamIndex, group, st){
+  st = st || draftSim;
+  st.bias = st.bias || {};
+  const b = st.bias[teamIndex] = st.bias[teamIndex] || {};
+  if(b[group] == null) b[group] = Math.random() < 0.33 ? 0.003 + Math.random()*0.03
+                            : Math.random() < 0.35 ? 5 + Math.random()*8
+                            : Math.exp(0.5*randNormal());
+  return b[group];
+}
+function cpuNoise(teamIndex, st){
+  st = st || draftSim;
+  st.noiseSd = st.noiseSd || {};
+  if(st.noiseSd[teamIndex] == null) st.noiseSd[teamIndex] = 0.1 + Math.pow(Math.random(), 1.0) * 4.0;
+  return st.noiseSd[teamIndex];
+}
+function cpuMiss(teamIndex, st){
+  st = st || draftSim;
+  st.missP = st.missP || {};
+  if(st.missP[teamIndex] == null) st.missP[teamIndex] = Math.pow(Math.random(), 0.9) * 0.95;
+  return st.missP[teamIndex];
+}
+// inside cpuPick:
+const nz = Math.max(0.02, 1 + cpuNoise(teamIndex, st) * randNormal());
+const v  = w * cpuBias(teamIndex, g, st) * nz + 0.002 * p[3];
+// and:
+if(cands.length > 8 &amp;&amp; Math.random() < cpuMiss(teamIndex, st)) { ... }</code></pre>
+
+  <h4>A7 — <code>zpbWelcomeCine</code> never fires <code>zpbKick</code> if it fails mid-cinematic</h4>
+  <p><code>startDraft2()</code> ends with:</p>
+  <pre><code>const zpbKick = () => {
+  if(window._zpbKickStarted) return;
+  window._zpbKickStarted = true;
+  zpbStopDraftWatchdog();
+  try { processUntilUserTurn(); } catch(err) { zpbDraftRecover(err); }
+};
+window._zpbWelFade = zpbKick;
+try {
+  if(typeof zpbWelcomeCine === 'function') zpbWelcomeCine(zpbKick);
+  else zpbKick();
+} catch(err) { zpbKick(); }
+zpbStartDraftWatchdog();</code></pre>
+  <p><code>zpbWelcomeCine</code> is defined in wave-13. If it throws <strong>after</strong> creating the overlay <code>.zpb-fin-welcome</code> (e.g., inside <code>at(…)</code> timers or <code>beginFade</code>), then <code>zpbKick</code> never fires → <strong>CPU never drafts</strong>.</p>
+  <p>Worse: the 1500ms watchdog checks:</p>
+  <pre><code>const cine = document.querySelector('.zpb-fin-welcome');
+if(cine){
+  if(Date.now() - t0 > 25000){ try { cine.remove(); } catch(e){} }
+  else return;
+}</code></pre>
+  <p><strong>So while the cinematic is in the DOM under 25s, the watchdog keeps deferring.</strong></p>
+  <p><strong>Fix — hard override in the watchdog:</strong></p>
+  <pre><code>if(!window._zpbKickStarted &amp;&amp; Date.now() - t0 > 12000){
+  try { const c = document.querySelector('.zpb-fin-welcome'); if(c) c.remove(); } catch(e){}
+  window._zpbKickStarted = true;
+  zpbStopDraftWatchdog();
+  try { processUntilUserTurn(); } catch(err) { zpbDraftRecover(err); }
+  return;
+}</code></pre>
+
+  <h4>A8 — <code>zpbFillAllLineups</code> can assign the same player to multiple teams</h4>
+  <pre><code>window.zpbFillAllLineups = function(){
+  (draftSim.rosters || []).forEach(r => {
+    const used = new Set(...);              // ← per-team, NOT global
+    ROSTER_SLOTS.forEach(s => {
+      ...
+      (draftSim.pool || []).forEach(p => {
+        if(used.has(p[0])) return;
+        const fit = (WV_TAG_GROUP[p[1]] === g) ? p[3] : p[3] - 9;   // ← -9 is not real flex cost
+        ...
+      });
+      if(best){ sm[s] = [...]; used.add(best[0]); }               // ← pool NOT spliced
+    });
+  });
+};</code></pre>
+  <p>Team A can take Player X; team B can take Player X again. <code>draftSim.pool</code> is never spliced. Depth chart can show the same player on multiple teams.</p>
+  <p><strong>Fix:</strong></p>
+  <pre><code>window.zpbFillAllLineups = function(){
+  if(typeof draftSim === 'undefined' || !draftSim || !draftSim.rosters) return;
+  if(typeof ROSTER_SLOTS === 'undefined' || typeof WV_SLOT_GROUP === 'undefined') return;
+  const used = new Set();
+  (draftSim.rosters || []).forEach(r => {
+    Object.values(r.slots || {}).forEach(p => {
+      if(!p) return;
+      const nm = Array.isArray(p) ? p[0] : (p.name || '');
+      if(nm) used.add(nm);
+    });
+  });
+  (draftSim.rosters || []).forEach(r => {
+    const sm = r.slots || (r.slots = {});
+    ROSTER_SLOTS.forEach(s => {
+      if(sm[s]) return;
+      const g = WV_SLOT_GROUP[s];
+      let best = null, bestO = -1e9;
+      (draftSim.pool || []).forEach(p => {
+        if(used.has(p[0])) return;
+        const fit = (WV_TAG_GROUP[p[1]] === g) ? p[3]
+                    : p[3] - (typeof flexPenaltyFor === 'function' ? flexPenaltyFor(p[1], s) : 9);
+        if(fit > bestO){ bestO = fit; best = p; }
+      });
+      if(best){
+        sm[s] = [best[0], best[1], best[2], best[3]];
+        used.add(best[0]);
+        draftSim.pool = draftSim.pool.filter(p => p[0] !== best[0]);
+      }
+    });
+  });
+};</code></pre>
+
+  <h4>A9 — <code>winsAt</code> / <code>effOvr</code> can throw for edge players</h4>
+  <p><code>winsAt</code> → <code>effOvr</code> → <code>flexPenaltyFor</code> → <code>flexRule</code>. For P and FB players, <code>POS_SLOT_MAP</code> exists but <code>FLEX</code> doesn't cover every slot, so <code>flexPenaltyFor</code> can hit <code>EMERGENCY_PENALTY</code> (fine). But <code>slotWins(slot, ovr)</code> for slots the player can't legally occupy may return <code>NaN</code> if <code>p[3]</code> is undefined.</p>
+  <p><strong>Fix:</strong></p>
+  <pre><code>function winsAt(p, slot, base){
+  if(!p) return 0;
+  const ovr = effOvr(p, slot);
+  if(!isFinite(ovr)) return 0;
+  return slotWins(slot, ovr) - slotWins(slot, base == null ? WINS_BASE : base);
+}</code></pre>
+
+  <h4>A10 — <code>zpbFallbackBoard</code> doesn't guarantee Draft buttons</h4>
+  <p>Produces rows for the first 60 pool entries with <code>data-pick</code> / <code>data-slot</code> buttons <strong>only when <code>findAssignableSlot</code> returns a slot</strong>. If the user's roster is broken (all slots filled, or <code>pos</code> mapping broken), the buttons never appear, and the user has no way to make a pick. Combined with the state machine not progressing, this looks like a complete freeze.</p>
+  <p><strong>Fix:</strong> Ensure <code>zpbFallbackBoard</code> always renders a valid button for at least one pickable player if <code>draftSim.awaitingUser</code> is true.</p>
+
+  <h2 id="s4">4. Reported Bug Cluster B — Three Tabs Empty</h2>
+
+  <h3>4.1 Reported symptoms</h3>
+  <table>
+    <thead><tr><th style="width:60px;">#</th><th>Tab</th><th>Missing</th></tr></thead>
+    <tbody>
+      <tr><td>B.5</td><td>MADDEN RANKINGS (<code>#viewRankings</code>)</td><td><code>#resultsBody</code> empty — should list 32 teams with scores</td></tr>
+      <tr><td>B.6</td><td>POSITION RANKINGS (<code>#viewGroups</code>)</td><td><code>#groupBody</code> empty — should list 32 teams with slot toggles + THE SERIES presets 1..26</td></tr>
+      <tr><td>B.7</td><td>GUIDE (<code>#viewGuide</code>)</td><td><code>#guideBody</code> empty — should be a big <code>&lt;details&gt;</code> guide</td></tr>
+    </tbody>
+  </table>
+  <blockquote style="border-left:4px solid var(--accent2);padding:8px 16px;margin:12px 0;color:var(--muted);font-style:italic;">
+    User's original report: <em>"The Madden rankings position rankings, and the guide are all not appearing at all."</em>
+  </blockquote>
+
+  <h3>4.2 Root-cause hypothesis</h3>
+  <p>The main script ends with:</p>
+  <pre><code>initDraftSetup();
+personalWeights = {...DEFAULT_WEIGHTS}; weights = modelWeights(); buildControls(); render();
+// ub-highlighting IIFE, FX engine, checkRewards, mobile-stacking IIFE, setActiveTab('viewDraft','tabDraftBtn');</code></pre>
+  <p><strong>If <code>render()</code> throws, the entire rest of the main script block never executes.</strong> That means:</p>
+  <ul>
+    <li><strong>Madden Rankings tab stays empty</strong> — <code>render()</code> never populated <code>#resultsBody</code> → <strong>B.5</strong></li>
+    <li><code>setActiveTab('viewDraft','tabDraftBtn')</code> never runs — masked because the HTML already has <code>&lt;div class="view active" id="viewDraft"&gt;</code></li>
+    <li><code>FX</code>, <code>checkRewards</code>, mobile-stacking IIFE never initialize</li>
+  </ul>
+  <p><strong>Why would <code>render()</code> throw?</strong> Two candidates:</p>
+  <ol>
+    <li><code>render()</code> accesses <code>document.getElementById('totalwt').textContent</code> with no guard. If <code>buildControls()</code> threw mid-way (because it called <code>zpbSeriesSelectHTML()</code> — only assigned in wave-13 — and wave-13 didn't load, or hit <code>POINTS_PER_WIN</code> TDZ), then <code>#totalwt</code> doesn't exist and <code>render()</code> throws on the first DOM touch.</li>
+    <li>If <code>render()</code> gets past that, it calls <code>bestWorst(row.team)</code> and <code>getSynergy(row.team)</code> for every team — any throw inside <code>slotWins</code> (TDZ) or <code>computeScore</code> → <code>render</code> throws.</li>
+  </ol>
+
+  <h3>4.3 Root cause for Position Rankings specifically</h3>
+  <p><code>#viewGroups</code> is populated by <code>zpbInitRankingsUI()</code>, called via <code>setTimeout(..., 0)</code> at the bottom of wave-20 (main script). <code>zpbInitRankingsUI</code> → <code>zpbSeriesData()</code> → <code>slotWins(s, 90)</code> / <code>slotWins(s, 70)</code> → <code>slotWinsTable()</code> → reads <code>POINTS_PER_WIN</code>.</p>
+  <p><strong>If <code>POINTS_PER_WIN</code> was never assigned (because the main script threw earlier), <code>slotWinsTable</code> throws → <code>zpbSeriesData</code> throws → <code>zpbInitRankingsUI</code> throws inside the setTimeout (uncaught) → <code>#groupBody</code> stays empty → B.6.</strong></p>
+
+  <h3>4.4 Root cause for Guide specifically</h3>
+  <p><code>renderGuideHTML()</code> calls <strong>many</strong> wave-10/11-B/13 functions:</p>
+  <ul>
+    <li><code>zpbDraftGuideHTML</code> (wave-10) — calls <code>zpbPosRankHTML</code> (wave-10) — calls <code>slotWins</code> — <strong>TDZ risk</strong></li>
+    <li><code>zpbFieldMapHTML</code> (wave-13) — guarded by <code>typeof window.zpbFieldMapHTML === 'function'</code> in <code>zpbDraftGuideHTML</code> — safe</li>
+    <li><code>zpbFlexExplainHTML</code> (wave-10) — guarded by <code>typeof flexExplainHTML === 'function'</code> — safe</li>
+    <li><code>zpbValuesHTML</code> (wave-10) — calls <code>slotWins</code> — <strong>TDZ risk</strong></li>
+    <li><code>zpbPkgVizHTML</code> (wave-10) — no <code>slotWins</code> call — safe</li>
+    <li><code>zpbCoachGuideHTML</code> (wave-10) — no <code>slotWins</code> call — safe</li>
+    <li><code>zpbDefGuideHTML</code> (wave-10) — no <code>slotWins</code> call — safe</li>
+    <li><code>planMathHTML</code> — calls <code>matchupModel</code> — safe</li>
+    <li><code>slotRoleTableHTML</code> — calls <code>slotRoleRows</code> → <code>teamRatings</code> — safe</li>
+    <li><code>zpbBadgesGuideHTML</code> (wave-10) — safe</li>
+    <li><code>zpbGlossHTML</code> (wave-10) → <code>zpbGlossPositionsHTML</code> — safe</li>
+  </ul>
+  <p><strong>Any throw in one of these kills the whole <code>renderGuideHTML</code> and leaves the tab blank → B.7.</strong></p>
+  <p><strong>Fix:</strong> Guard each <code>zpb*</code> call in <code>renderGuideHTML</code>:</p>
+  <pre><code>const safe = (fn, fallback = '') => (typeof fn === 'function') ? fn() : fallback;
+// and:
++ sec('DRAFTING: WHICH POSITIONS MATTER', safe(window.zpbDraftGuideHTML), true)
++ sec('POSITION VALUES: ALL 28 STARTING SPOTS', safe(window.zpbValuesHTML), false)
+// etc.</code></pre>
+  <p>Or fix the underlying TDZ (see A4) so <code>slotWins</code> never throws.</p>
+
+  <h3>4.5 Wave-13 parse failure — diagnostic checklist</h3>
+  <p>If wave-13 fails to parse (unbalanced braces, stray <code>&lt;/script&gt;</code> inside a template literal, truncation), then:</p>
+  <ul>
+    <li><code>zpbDimeDrafRow</code>, <code>zpbDimeRow</code>, <code>zpbDimeCell</code> → <code>undefined</code> → <strong>depth chart doesn't update</strong> (A1 → A.3)</li>
+    <li><code>zpbWelcomeCine</code> → <code>undefined</code> → CPU kickoff falls through <code>else zpbKick()</code> → should work</li>
+    <li><code>zpbLift</code> → <code>undefined</code> → <code>zpbRowVars</code> still works (falls back to <code>pk.accL</code>)</li>
+    <li><code>zpbCineYds</code> → <code>undefined</code> → replay shows plain <code>+3</code> badges instead of yard boxes</li>
+    <li><code>zpbFieldMapHTML</code> → <code>undefined</code> → Guide field map section missing (guarded)</li>
+    <li><code>zpbSeriesSteps</code> / <code>zpbSeriesSelectHTML</code> → <code>undefined</code> → <code>buildControls</code> skips series select → <strong>but</strong> if the series select's absence makes <code>#controls</code> empty, <code>render()</code> may throw on <code>#totalwt</code></li>
+    <li><code>zpbLeagueBarsHTML</code> / <code>zpbMetricsHTML</code> redefinitions don't happen → wave-11-B versions used instead → call <code>pk.r1</code> (A3), producing <code>--zr1:undefined</code> — cosmetic</li>
+  </ul>
+
+  <h3>4.6 Wave-10 IIFE not completing</h3>
+  <p>If <strong>any</strong> throw occurs mid-IIFE, all subsequent assignments are lost. <code>renderGuideHTML</code> calls <strong>many</strong> of these. <strong>Fix:</strong> Move critical init functions out of the IIFE into main script scope, or wrap the IIFE body in try/catch logging each step.</p>
+
+  <h2 id="s5">5. Additional Latent Bugs (Full-File Review)</h2>
+  <p>Real bugs in the current code, not yet reported by the user. They will cause identical symptoms when they fire.</p>
+
+  <h3>B1 — Comparison tab team selectors are invisible</h3>
+  <p><strong>Where:</strong> <code>renderHomeComparison()</code>.</p>
+  <p><strong>What:</strong> After the first visit to TEAM COMPARISON, the two <code>&lt;select id="homeCmpA"&gt;</code> / <code>&lt;select id="homeCmpB"&gt;</code> elements are the invisible <code>.zpb-sel-native</code> natives — they get moved into <code>#zpbCmpSlotA</code> / <code>#zpbCmpSlotB</code>, but their <code>.zpb-selwrap</code> wrapper (which contains the <strong>visible</strong> button and popup) is left orphaned inside <code>#zpbCmpSelHold</code>. User sees the panel with "vs" but no way to pick teams.</p>
+  <p><strong>Why:</strong></p>
+  <pre><code>if(zpbHold){ zpbHold.appendChild(selA); zpbHold.appendChild(selB); }
+const zpbSlotA = document.getElementById('zpbCmpSlotA');
+if(zpbSlotA) zpbSlotA.appendChild(selA);   // ← moves native select, not wrapper</code></pre>
+  <p><strong>Fix:</strong></p>
+  <pre><code>const wrapperOf = sel => sel.closest('.zpb-selwrap') || sel;
+if(zpbSlotA){ const wA = wrapperOf(selA); if(wA) zpbSlotA.appendChild(wA); }
+if(zpbSlotB){ const wB = wrapperOf(selB); if(wB) zpbSlotB.appendChild(wB); }</code></pre>
+
+  <h3>B2 — Duplicate function definitions (last one wins)</h3>
+  <p>Functions defined more than once (later shadows earlier; no crash today, but a future edit may silently change behavior):</p>
+  <ul>
+    <li><code>zpbGameReplay</code> (v7 → v9)</li>
+    <li><code>zpbPreviewStripHTML</code> (v7 → v9)</li>
+    <li><code>starsFaceoffHTML</code> (original → V11-B)</li>
+    <li><code>renderKeyPlayersHTML</code> (original → V11-B)</li>
+    <li><code>renderRegularAwardsHTML</code> (original → V11-B)</li>
+    <li><code>renderPlayoffAwardsHTML</code> (original → V11-B)</li>
+    <li><code>pickCritiqueHTML</code> (original → rewrite)</li>
+    <li><code>teamAdvancedHTML</code> (original → rewrite)</li>
+    <li><code>advancedStatsHTML</code> (original → rewrite)</li>
+    <li><code>renderLineupTableHTML</code> (original → v7)</li>
+    <li><code>renderLineupComparisonHTML</code> (original → v7)</li>
+  </ul>
+  <p>Consolidate for maintainability. If consolidating, update every bare reference to the earlier version.</p>
+
+  <h3>B3 — <code>renderLineupTableHTML</code> (v7) fragile guard</h3>
+  <pre><code>${ll.text !== '—' &amp;&amp; zL ? 'zpb-trow' : ''}</code></pre>
+  <p><code>zL</code> is the raw <code>--zr1:…;</code> CSS string — truthy when set, falsy when empty. Safe, but visually breaks when <code>pk.r1</code> returns <code>undefined</code> (see A3).</p>
+
+  <h3>B4 — <code>TOTAL_ROUNDS</code> comment lies</h3>
+  <pre><code>const TOTAL_ROUNDS = ROSTER_SLOTS.length; // 26 — starters only ...</code></pre>
+  <p><code>ROSTER_SLOTS</code> has <strong>28</strong> entries. Update comment; also update <code>finishDraft2</code> and any printed "26 starters" text to 28.</p>
+
+  <h3>B5 — <code>DETAIL_KEYS</code> missing kickers</h3>
+  <p><code>DETAIL_KEYS</code> doesn't include <code>'K'</code>, so kickers don't appear in roster detail metrics (<code>renderYourRosterTab</code> / <code>renderDraftResults</code>). If intentional, add a comment; if not, add <code>'K'</code> (a <code>GROUP_DEFS</code> entry exists).</p>
+
+  <h3>B6 — <code>generateSeasonReview</code> / <code>generateRegularSeasonRecap</code> are dead code</h3>
+  <p>Both functions (and <code>frag*</code> helpers) are fully written but not called by any render path:</p>
+  <ul>
+    <li><code>renderRegularReviewView</code> → <code>zpbSeasonStoryHTML()</code>, <code>renderReportCardHTML()</code>, <code>pickCritiqueHTML()</code>, etc. — <strong>no</strong> <code>generateRegularSeasonRecap()</code></li>
+    <li><code>renderSeasonCompleteView</code> → <code>zpbMetricsHTML()</code>, awards, stats, pick critique — <strong>no</strong> <code>generateSeasonReview()</code></li>
+  </ul>
+  <p>Either wire in or delete. Dead prose block is the largest chunk of unused code; it hides bugs when scanning.</p>
+
+  <h3>B7 — <code>seasonState.scriptLocked</code> is dead</h3>
+  <p>Appears in <code>renderSeasonTabInner()</code> (<code>!seasonState.scriptLocked</code>) and <code>simulateCurrentWeek()</code> (<code>= false</code>). <strong>Nothing ever sets it to <code>true</code>.</strong> Effect: preseason view re-appears every time <code>preseason &amp;&amp; phase==='regular'</code> — as long as <code>S.preseason</code> is true. If intended, remove the dead guard; if not, set <code>true</code> when the user clicks "Begin the season".</p>
+
+  <h3>B8 — <code>pickCritique</code> assumes array shape</h3>
+  <p><code>pickCritique()</code> returns rows with <code>r.player</code> assumed to be a <code>PLAYERS</code>-format array. In normal flow it is (from <code>draftSim.pool</code>), but if a future flow sets <code>slots[slot] = {name, ovr}</code> (object form — that's what <code>TEAM_DATA</code> uses), <code>r.player[0]</code> returns <code>undefined</code>. <strong>Fix:</strong> Normalize <code>l.player</code> through <code>normalizeSlotEntry</code> at entry to <code>pickCritique</code>, or add an <code>Array.isArray</code> check.</p>
+
+  <h3>B9 — <code>zpbGameReplay</code> v9 has unused <code>isPO</code></h3>
+  <pre><code>const isPO = !!(g.roundLabel || (seasonState &amp;&amp; seasonState.playoffRounds &amp;&amp; seasonState.playoffRounds[g.roundLabel ? seasonState.currentPlayoffRound : ''] === undefined &amp;&amp; false));</code></pre>
+  <p><code>=== undefined &amp;&amp; false</code> always evaluates to <code>false</code>. <code>isPO</code> is never referenced. Remove or simplify.</p>
+
+  <h3>B10 — <code>zpbFallbackBoard</code> degrades silently</h3>
+  <p>No indication to the user why the board looks degraded. When fixing, surface a small notice: <em>"Board render failed — please reload"</em>.</p>
+
+  <h2 id="s6">6. Ordered Fix Plan (F1–F14)</h2>
+
+  <h3>F1 — Isolate all init calls (<strong>Cluster B fix, highest priority</strong>)</h3>
+  <pre><code>try { initDraftSetup();  } catch(e) { console.error('initDraftSetup:', e); }
+try { weights = modelWeights(); } catch(e) { console.error('modelWeights:', e); }
+try { buildControls(); } catch(e) { console.error('buildControls:', e); }
+try { render(); } catch(e) { console.error('render:', e); }
+try { setActiveTab('viewDraft','tabDraftBtn'); } catch(e) { console.error('setActiveTab:', e); }</code></pre>
+  <p>Ensures that if <code>render()</code> throws, <code>FX</code>, <code>checkRewards</code>, <code>setActiveTab</code>, and the mobile-stacking IIFE still execute — and the user gets a <strong>specific console error</strong> identifying the failure.</p>
+
+  <h3>F2 — Guard every cross-script reference</h3>
+  <p>Move these from wave-13 into main script (before init) <strong>or</strong> guard every bare call:</p>
+  <ul>
+    <li><code>window.zpbLift</code></li>
+    <li><code>window.zpbCineYds</code></li>
+    <li><code>window.zpbDimeOf</code> / <code>zpbDimeCell</code> / <code>zpbDimeRow</code> / <code>zpbDimeDrafRow</code></li>
+    <li><code>window.zpbFieldMapHTML</code> (already guarded, verify)</li>
+    <li><code>window.zpbSeriesSteps</code> / <code>zpbSeriesSelectHTML</code></li>
+    <li><code>window.zpbWelcomeCine</code></li>
+  </ul>
+  <p>Specific bare-call sites:</p>
+  <ul>
+    <li><code>renderDraftRoster2</code> — <code>zpbDimeDrafRow</code></li>
+    <li><code>renderGuideHTML</code> — every <code>zpb*</code> call</li>
+    <li><code>buildControls</code> — <code>zpbSeriesSelectHTML</code></li>
+    <li><code>startDraft2</code> — <code>zpbWelcomeCine</code> (verify try/catch fallthrough)</li>
+  </ul>
+
+  <h3>F3 — Fix <code>zpbFillAllLineups</code> (global dedup + pool splice)</h3>
+  <p>See A8.</p>
+
+  <h3>F4 — Fix <code>pk.r1</code> / <code>pk.r2</code> / <code>pk.r3</code> undefined</h3>
+  <p>See A3. Apply to <code>zpbLeagueBarsHTML</code> and <code>zpbMetricsHTML</code>.</p>
+
+  <h3>F5 — Thread <code>st</code> through <code>cpuBias</code> / <code>cpuNoise</code> / <code>cpuMiss</code></h3>
+  <p>See A6.</p>
+
+  <h3>F6 — Freeze-resistant watchdog (12s hard override)</h3>
+  <p>See A7.</p>
+
+  <h3>F7 — <code>zpbDraftRecover</code> guarantees progress</h3>
+  <pre><code>function zpbDraftRecover(err){
+  try { console.warn('Z-post-blue draft auto-recover:', err); } catch(e){}
+  try {
+    const feed = document.getElementById('draftRecentPicks');
+    if(feed &amp;&amp; !feed.children.length)
+      feed.innerHTML = '&lt;div class="narr"&gt;The draft engine hiccuped once — retrying.&lt;/div&gt;';
+  } catch(e){}
+  try { processUntilUserTurn(); return; } catch(e2){}
+  try { renderDraftLive(); } catch(e3){}
+  try { zpbFallbackBoard(err); } catch(e4){}
+  if(typeof draftSim !== 'undefined' &amp;&amp; draftSim &amp;&amp; !draftSim.awaitingUser
+     &amp;&amp; draftSim.pos &lt; draftSim.order.length){
+    draftSim.pos++;   // skip the offending pick — one bad pick never freezes the draft
+    try { processUntilUserTurn(); } catch(e5){
+      try { slowTimer = setTimeout(stepSlow, 750); } catch(e6){}
+    }
+  }
+}</code></pre>
+
+  <h3>F8 — Guard <code>render()</code> against missing DOM</h3>
+  <p>Every <code>document.getElementById(...).textContent = ...</code> in <code>render()</code> gets a <code>if(el)</code> guard. Same treatment for <code>renderDraftLive</code> and every renderer that assumes specific DOM structure.</p>
+
+  <h3>F9 — Fix <code>SLOT_POS</code> incomplete + TDZ in <code>starsFaceoffHTML</code></h3>
+  <p>See A5.</p>
+
+  <h3>F10 — Fix <code>POINTS_PER_WIN</code> TDZ</h3>
+  <p>See A4.</p>
+
+  <h3>F11 — Guard <code>winsAt</code></h3>
+  <p>See A9.</p>
+
+  <h3>F12 — Fix <code>renderHomeComparison</code> orphan wrapper</h3>
+  <p>See B1.</p>
+
+  <h3>F13 — Fix wave-10 / wave-13 parse errors</h3>
+  <p>Open DevTools → Console. Look for <code>Uncaught SyntaxError</code> or <code>Uncaught ReferenceError</code>. Verify:</p>
+  <ul>
+    <li>Balanced braces everywhere (<code>zpbFieldMapHTML</code>, <code>zpbFlexTree</code>, <code>zpbSeriesSteps</code>, <code>zpbWelcomeCine</code>)</li>
+    <li>No stray <code>&lt;/script&gt;</code> inside a string literal</li>
+    <li>No duplicate <code>const</code>/<code>let</code> at module scope</li>
+  </ul>
+
+  <h3>F14 — Cleanup</h3>
+  <ul>
+    <li>Update <code>TOTAL_ROUNDS</code> comment to 28 (B4)</li>
+    <li>Add <code>'K'</code> to <code>DETAIL_KEYS</code> or add intent comment (B5)</li>
+    <li>Remove <code>isPO</code> from <code>zpbGameReplay</code> (B9)</li>
+    <li>Remove or wire in <code>generateSeasonReview</code> / <code>generateRegularSeasonRecap</code> (B6)</li>
+    <li>Remove or set <code>seasonState.scriptLocked</code> (B7)</li>
+  </ul>
+
+  <h2 id="s7">7. Verification Console Block</h2>
+  <p>Run after page load, and again after clicking DRAFT:</p>
+  <pre><code>// 1. Is each wave-script block loaded?
+console.log('=== Script load check ===');
+['zpbLift','zpbCineYds','zpbWelcomeCine','zpbFieldMapHTML','zpbDimeCell','zpbDimeDrafRow',
+ 'zpbDimeOf','zpbDimeRow','zpbSeriesSelectHTML','zpbSeriesSteps','zpbFlexTree',
+ 'zpbPosRankHTML','zpbDraftGuideHTML','zpbValuesHTML','zpbGlossHTML','zpbSw',
+ 'zpbDefGuideHTML','zpbPkgVizHTML','zpbBadgesGuideHTML']
+ .forEach(n => console.log(n, typeof window[n]));
+
+// 2. Did init run?
+console.log('=== Init check ===');
+console.log('#resultsBody rows:', document.querySelectorAll('#resultsBody tr').length);
+console.log('#totalwt exists:', !!document.getElementById('totalwt'));
+console.log('#controls children:', document.getElementById('controls')?.childElementCount);
+console.log('#zpbSeriesSel exists:', !!document.getElementById('zpbSeriesSel'));
+console.log('#groupBody rows:', document.querySelectorAll('#groupBody tr').length);
+console.log('#guideBody childElementCount:', document.getElementById('guideBody')?.childElementCount);
+
+// 3. Is POINTS_PER_WIN initialized?
+console.log('=== TDZ check ===');
+console.log('POINTS_PER_WIN:', typeof POINTS_PER_WIN !== 'undefined' ? POINTS_PER_WIN : 'TDZ / undefined');
+console.log('SLOT_POS:', typeof SLOT_POS !== 'undefined' ? 'ok' : 'TDZ / undefined');
+
+// 4. Does the win math run?
+console.log('=== Math check ===');
+try { console.log('slotWins(QB, 90):', slotWins('QB', 90)); } catch(e) { console.error('slotWins throws:', e); }
+try { console.log('slotWins(P, 90):',  slotWins('P',  90)); } catch(e) { console.error('slotWins P throws:', e); }
+try { console.log('slotWins(FB, 90):', slotWins('FB', 90)); } catch(e) { console.error('slotWins FB throws:', e); }
+try { console.log('slotWinsTable():', Object.keys(slotWinsTable()).length); } catch(e) { console.error('slotWinsTable throws:', e); }
+
+// 5. Can one board render complete?
+console.log('=== Renderer check ===');
+try { renderDraftBoard2();   console.log('board rendered ok');    } catch(e) { console.error('board throws:', e); }
+try { renderDraftRoster2();  console.log('roster rendered ok');   } catch(e) { console.error('roster throws:', e); }
+try { renderGuideHTML();     console.log('guide rendered ok');    } catch(e) { console.error('guide throws:', e); }
+try { zpbInitRankingsUI();   console.log('rankings rendered ok'); } catch(e) { console.error('rankings throws:', e); }
+
+// 6. After clicking DRAFT:
+console.log('=== Draft state ===');
+console.log('draftSim:', draftSim);
+console.log('pos:', draftSim?.pos, 'userIndex:', draftSim?.userIndex,
+            'awaitingUser:', draftSim?.awaitingUser, 'log:', draftSim?.log?.length);
+console.log('cpuPick(0) trial:',
+  (function(){ try { return cpuPick(0); } catch(e) { return 'throws: ' + e.message; } })());</code></pre>
+  <p><strong>Save <code>console.error</code> output verbatim.</strong> Cluster A almost certainly corresponds to one specific throw inside <code>renderDraftBoard2</code> or <code>renderDraftRoster2</code>. Cluster B almost certainly corresponds to one or more of: <code>render()</code> at init throwing, wave-13 not loading, <code>POINTS_PER_WIN</code>/<code>SLOT_POS</code> TDZ, or a bare cross-script call throwing.</p>
+
+  <h2 id="s8">8. Test Matrix</h2>
+  <p>Run each with <strong>cleared <code>localStorage</code></strong>, and again with <code>zpb:theme=dark</code> and <code>zpb:base34=1</code> pre-set:</p>
+  <table>
+    <thead><tr><th>#</th><th>Team</th><th>Pick</th><th>Speed</th><th>Expected user index</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>Kansas City Chiefs</td><td>random</td><td>Slow</td><td>any</td></tr>
+      <tr><td>2</td><td>Kansas City Chiefs</td><td>1</td><td>Slow</td><td>0</td></tr>
+      <tr><td>3</td><td>Kansas City Chiefs</td><td>32</td><td>Slow</td><td>31</td></tr>
+      <tr><td>4</td><td>Kansas City Chiefs</td><td>16</td><td>Instant</td><td>15</td></tr>
+      <tr><td>5</td><td>Arizona Cardinals</td><td>random</td><td>Slow</td><td>any</td></tr>
+      <tr><td>6</td><td>Carolina Panthers</td><td>32</td><td>Slow</td><td>31</td></tr>
+      <tr><td>7</td><td>NY Giants</td><td>1</td><td>Instant</td><td>0</td></tr>
+      <tr><td>8</td><td>San Francisco 49ers</td><td>random</td><td>Instant</td><td>any</td></tr>
+      <tr><td>9</td><td>Los Angeles Rams</td><td>8</td><td>Slow</td><td>7</td></tr>
+      <tr><td>10</td><td>Pittsburgh Steelers</td><td>random</td><td>Slow</td><td>any</td></tr>
+    </tbody>
+  </table>
+  <p><strong>For each run, verify after clicking DRAFT and waiting:</strong></p>
+  <ul class="checklist">
+    <li>WELCOME / TO THE / DRAFT cinematic completes (or is skipped)</li>
+    <li>CPU drafts <code>userIndex</code> picks (verify <code>draftSim.pos === draftSim.userIndex</code> and <code>draftSim.log.length === userIndex</code>) <strong>before</strong> user is on the clock</li>
+    <li>Draft board shows <strong>Wins</strong> and <strong>Priority</strong> columns with numeric values (not dashes)</li>
+    <li>After user picks, the player appears in the depth chart with round number</li>
+    <li>After user picks, the CPU resumes drafting (verify <code>draftSim.log.length</code> increases without user action)</li>
+    <li>MADDEN RANKINGS tab shows 32 rows with team names and scores</li>
+    <li>POSITION RANKINGS tab shows 32 rows with slot toggles and THE SERIES preset buttons 1..26</li>
+    <li>GUIDE tab shows the full guide with field map, flex tree, defensive fronts, badges, glossary, plan math</li>
+  </ul>
+  <p><strong>Then run the same across:</strong></p>
+  <ul>
+    <li>Light and dark mode (theme toggle)</li>
+    <li>Mobile widths 375, 414, 768, 1280</li>
+    <li>Full flow: draft → preseason → regular season → playoffs → SB → season review → 100 seasons → back → re-draft</li>
+    <li>Position Rankings tab; Player Browser; Team Comparison (this is where B1 hides)</li>
+    <li>3-4 / 4-3 toggle (changes labels + flex rules)</li>
+    <li>Lineup editor before and after season start (lineup flex swap should still work)</li>
+  </ul>
+
+  <h2 id="s9">9. Deliverable &amp; Acceptance Criteria</h2>
+  <p>Return:</p>
+  <ol>
+    <li><strong>A patch (or unified diff)</strong> of every changed line, with a one-line comment above each change explaining the fix.</li>
+    <li><strong>The console-log block from Part 7 and its output before and after the fix</strong> — from one representative run of <strong>Matrix Run #3</strong> (Kansas City, pick 32, Slow) — since that exercises the <code>userIndex = 31</code> CPU pre-draft path.</li>
+    <li><strong>Any bug you could not reproduce</strong> — list it explicitly. If a fix is speculative, say so rather than silently shipping it.</li>
+    <li><strong>A note on any behavior you intentionally changed</strong> (e.g., the watchdog now force-starts after 12s instead of 25s).</li>
+    <li><strong>Confirmation that the following remain unchanged:</strong> draft model math, flex penalties, schedule generator, game simulation, awards logic, 100-season sim.</li>
+    <li><strong>A grep check:</strong> after F4, <code>grep</code> for <code>pk.r1</code>, <code>pk.r2</code>, <code>pk.r3</code> — confirm none remain.</li>
+    <li><strong>A duplicate-function check:</strong> after B2 (if you consolidate), <code>grep -c "^function zpbGameReplay\|^zpbGameReplay ="</code> should return <code>1</code>.</li>
+  </ol>
+
+  <h2 id="s10">10. Appendices</h2>
+
+  <h3>Appendix A — Root-cause summary table</h3>
+  <table>
+    <thead><tr><th>Bug</th><th>Location</th><th>Class</th><th>Symptom</th></tr></thead>
+    <tbody>
+      <tr><td>A1</td><td><code>renderDraftRoster2</code> bare <code>zpbDimeDrafRow</code></td><td>Cross-script TDZ</td><td>Depth chart frozen</td></tr>
+      <tr><td>A2</td><td><code>zpbRowVars</code> / <code>zpbLift</code> guard</td><td>Guard inconsistency</td><td>Theming</td></tr>
+      <tr><td>A3</td><td><code>zpbLeagueBarsHTML</code>, <code>zpbMetricsHTML</code> <code>pk.r1</code></td><td>Undefined property</td><td>Broken tint</td></tr>
+      <tr><td>A4</td><td><code>POINTS_PER_WIN</code></td><td>TDZ</td><td><code>slotWins</code> throws</td></tr>
+      <tr><td>A5</td><td><code>starsFaceoffHTML</code> <code>SLOT_POS</code></td><td>TDZ + missing entries</td><td>Fallback board</td></tr>
+      <tr><td>A6</td><td><code>cpuBias</code> / <code>cpuNoise</code> / <code>cpuMiss</code></td><td>Global vs <code>st</code></td><td>Priority flattened</td></tr>
+      <tr><td>A7</td><td><code>zpbWelcomeCine</code> watchdog</td><td>Timing</td><td>CPU never drafts</td></tr>
+      <tr><td>A8</td><td><code>zpbFillAllLineups</code></td><td>Duplicate assignment</td><td>Duplicate rosters</td></tr>
+      <tr><td>A9</td><td><code>winsAt</code></td><td>Missing guard</td><td>NaN in depth chart</td></tr>
+      <tr><td>A10</td><td><code>zpbFallbackBoard</code></td><td>Missing Draft button</td><td>Complete freeze</td></tr>
+      <tr><td>B5–B7</td><td><code>render()</code> throw cascade</td><td>Init isolation</td><td>3 tabs empty</td></tr>
+      <tr><td>B1</td><td><code>renderHomeComparison</code></td><td>Orphan wrapper</td><td>Team selectors invisible</td></tr>
+      <tr><td>B2</td><td>Duplicate defs</td><td>Maintenance risk</td><td>Silent shadowing</td></tr>
+      <tr><td>B4</td><td><code>TOTAL_ROUNDS</code> comment</td><td>Docs</td><td>Cosmetic</td></tr>
+      <tr><td>B5</td><td><code>DETAIL_KEYS</code></td><td>Data</td><td>Missing kicker</td></tr>
+      <tr><td>B6</td><td><code>generateSeasonReview</code></td><td>Dead code</td><td>Hidden bugs</td></tr>
+      <tr><td>B7</td><td><code>scriptLocked</code></td><td>Dead flag</td><td>Preseason reopens</td></tr>
+      <tr><td>B8</td><td><code>pickCritique</code></td><td>Shape</td><td><code>undefined</code> access</td></tr>
+      <tr><td>B9</td><td><code>isPO</code></td><td>Dead code</td><td>n/a</td></tr>
+      <tr><td>B10</td><td><code>zpbFallbackBoard</code> notice</td><td>UX</td><td>Silent degrade</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Appendix B — Do-not-touch reference grep</h3>
+  <p>Confirm none of these are modified by the fix:</p>
+  <pre><code>grep -n "slotWinsTable\|matchupModel\|RATING_SPECS\|DEF_SPECS\|teamRatings" \
+     Football-Sim-Z-post-blue-w21.html
+grep -n "POS_SLOT_MAP\|flexPenaltyFor\|flexRule\|FLEX\b" \
+     Football-Sim-Z-post-blue-w21.html
+grep -n "buildFullSchedule\|generateDivisionWeeks" \
+     Football-Sim-Z-post-blue-w21.html
+grep -n "simulateGame\|playGame\|buildGameDetail" \
+     Football-Sim-Z-post-blue-w21.html
+grep -n "computeRegularSeasonAwards\|computePlayoffAwards" \
+     Football-Sim-Z-post-blue-w21.html
+grep -n "runLeague100\|liteSeason" \
+     Football-Sim-Z-post-blue-w21.html</code></pre>
+  <p>Run before and after. <strong>Diff should be zero.</strong></p>
+
+  <h3>Appendix C — Validation checklist for the fix agent</h3>
+  <ul class="checklist">
+    <li>Cluster A.1 (Wins/Priority) fixed — visible on first board render</li>
+    <li>Cluster A.2 (CPU pre-drafts) fixed — <code>draftSim.pos === draftSim.userIndex</code> after cinematic</li>
+    <li>Cluster A.3 (depth chart updates) fixed — pick shows immediately</li>
+    <li>Cluster A.4 (CPU resumes) fixed — <code>draftSim.log.length</code> increments after user pick</li>
+    <li>Cluster B.5 (Madden Rankings) fixed — 32 rows visible</li>
+    <li>Cluster B.6 (Position Rankings) fixed — 32 rows + presets visible</li>
+    <li>Cluster B.7 (Guide) fixed — full <code>&lt;details&gt;</code> guide renders</li>
+    <li>All 14 latent bugs (A1–A10, B1–B10) either fixed or explicitly reported as "not reproducible"</li>
+    <li>All 10 matrix runs pass</li>
+    <li>Console shows no errors after clicking DRAFT</li>
+    <li>Light + dark + mobile passes</li>
+    <li>No regression on happy-path full flow</li>
+  </ul>
+
+  <div class="footer">
+    <strong>End of Document.</strong> Do not refactor for style or rename functions. Minimal, surgical fixes only. Test on at least the 10 matrix runs listed in Part 8, on both desktop and mobile viewport, in both light and dark mode. Report every failure you cannot fix, with the exact console error.
+  </div>
+
+</article>
+</body>
+</html>
