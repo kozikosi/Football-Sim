@@ -685,3 +685,9 @@
 - P-113: Standings shorten names + user division at top proposal in inbox/20261025-1100-beam-P-113-work.md. 32-team short-name map, user's division full size at top, others smaller/collapsed.
 - Commits pushed: 5007d4dd (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-128 Guide home-field advantage)
+
+- P-128: Guide home-field advantage proposal in inbox/20261025-1110-beam-P-128-work.md. Glossary entry for "Home-field advantage" (+1.7 points, constant, shows in model projection). Update game preview copy to "home field adds 1.7 — see Guide". SAFE ALONE: YES.
+- Commits pushed: 57924671 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
