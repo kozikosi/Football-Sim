@@ -691,3 +691,9 @@
 - P-128: Guide home-field advantage proposal in inbox/20261025-1110-beam-P-128-work.md. Glossary entry for "Home-field advantage" (+1.7 points, constant, shows in model projection). Update game preview copy to "home field adds 1.7 — see Guide". SAFE ALONE: YES.
 - Commits pushed: 57924671 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-175 Window compression audit)
+
+- P-175: Window compression audit (CSS-based, no Playwright) in inbox/20261025-1120-beam-P-175-work.md. Breakpoints: 860px (2-col→1-col), 760px (mobile). No fixed widths >200px. Panels don't "get bigger" — container shrinks. Recommend intermediate 1024px breakpoint + consolidate 760px blocks.
+- Commits pushed: be73f0d7 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
