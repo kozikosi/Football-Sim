@@ -1689,6 +1689,426 @@ The code sketch has not been executed. Its integration with the actual product c
 
 ---
 
+### S-UK-15 — Beauty: V23 Owner aesthetic overhaul (pink pastel rose theme, team colors, Value Here removal)
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Owner requested V23 aesthetic direction:
+1. Global theme: soft, delicate barely pink pastel rose with gold and white as second/third colors
+2. "Value Here" removed from ALL visual elements (draft board column, header, sort option, guide, section title) — keep only as background calculation `r.v`
+3. No dynamic blue on player names on draft board — use team colors instead
+4. Second/third colors on each player's draft card must come from that team's three hexes
+5. No blue paneling or primary colors anywhere unless present in the team's hexes
+
+**Proposal:** Complete CSS variable overhaul + targeted HTML/JS changes:
+
+#### 1. CSS Variable Re-theme (paste into `<style>` block, replaces existing `:root` block)
+
+```css
+/* ── V23: Owner aesthetic — pink pastel rose theme ── */
+:root{
+  /* Core palette — soft pink pastel rose + gold + white */
+  --bg:#fff8f6; --panel:#fffefd; --panel2:#ffeef0; --text:#2d2527; --sub:#8b7d7a;
+  --accent:#e8a8a8; --accent2:#d48a8a; --border:#f0d8d6; --good:#a8d4a8; --bad:#e8a8a8;
+  --gold:#d4b87a; --glow:#f0d8d6;
+  --team-primary:#e8a8a8; --team-secondary:#f5e6e6; --team-accent:#d4b87a;
+  --opp-primary:#8b7d7a; --opp-secondary:#d4c8c8;
+}
+[data-theme="dark"]{
+  --bg:#2d1a1c; --panel:#3d2528; --panel2:#4a2e32; --text:#f5e8e8; --sub:#c8a8a8;
+  --accent:#e8a8a8; --accent2:#d48a8a; --border:#5a3a3d; --good:#a8d4a8; --bad:#e8a8a8;
+  --gold:#d4b87a; --glow:#5a3a3d;
+}
+```
+
+#### 2. Remove "Value Here" from Draft Board Visual (HTML + CSS)
+
+**HTML:** In `renderDraftBoard2()` table header, remove the "Priority" column header (currently shows "Value Here" in some builds). In `boardEntries()`, keep computing `r.v` but don't render the column.
+
+**CSS:** Hide the priority/value column visually:
+```css
+/* V23: Remove Value Here column from visual draft board */
+#draftTable2 th[data-sort="priority"],
+#draftTable2 th[data-sort="value"],
+#draftTable2 td.dc-pri,
+#draftTable2 td.dc-val { display: none !important; }
+```
+
+#### 3. Player Name Color — Use Team Colors (JS)
+
+In `renderDraftBoard2()` where player rows are built, replace:
+```js
+// OLD: blue text for player names
+const teamStyle = r=> r.p[2]===userTeam ? 'color:var(--accent);font-weight:700;' : '';
+```
+With:
+```js
+// NEW: team-primary color for player names
+const teamStyle = r=> {
+  const tc = TEAM_COLORS[r.p[2]];
+  return tc ? `color:${tc.primary};font-weight:700;` : '';
+};
+```
+
+#### 4. Draft Card Team Colors — 2nd/3rd Colors from Team Hexes (CSS + JS)
+
+**CSS:** Update position card styling:
+```css
+/* V23: Draft position cards use team's 3 hexes */
+.pos-card{
+  border-left: 4px solid var(--team-primary);
+  background: linear-gradient(90deg, color-mix(in srgb, var(--team-primary) 8%, transparent), transparent 40%),
+              linear-gradient(90deg, color-mix(in srgb, var(--team-secondary) 5%, transparent), transparent 60%),
+              var(--panel2);
+}
+.pos-card .pos-name{ color: var(--team-primary); }
+.pos-card .pos-ovr{ color: var(--team-secondary); }
+.pos-card .pos-team{ color: var(--team-accent); }
+```
+
+**JS:** In `renderDraftBoard2()` card view, ensure `setTeamColors(playerTeam)` is called per card:
+```js
+// Inside card rendering loop, before generating card HTML:
+const tc = TEAM_COLORS[r.p[2]] || TEAM_COLORS_DEFAULT;
+root.style.setProperty('--team-primary', tc.primary);
+root.style.setProperty('--team-secondary', tc.secondary);
+root.style.setProperty('--team-accent', tc.accent || tc.secondary);
+```
+
+#### 5. Remove Blue Paneling — Panel Borders Use Team Colors (CSS)
+
+```css
+/* V23: Panels use team colors, not hardcoded blue */
+.panel{ border-color: color-mix(in srgb, var(--team-primary) 30%, var(--border)); }
+.panel:has(#startSeasonBtn),
+.panel:has(#beginSeasonBtn),
+.panel:has(#beginSeasonBtn2){ border-color: var(--team-primary); }
+.draftingas{ border-color: var(--team-primary); }
+.tabbtn.active{ background: var(--team-primary); border-color: var(--team-primary); }
+.resetbtn{ background: var(--team-primary); }
+.resetbtn:hover{ background: var(--team-secondary); }
+```
+
+#### 6. Team Color Application on Team Select (JS)
+
+Add to team selection change handler (where `userTeamName` is set):
+```js
+// Apply team colors globally when user picks a team
+function applyTeamColorsToUI(teamName){
+  const tc = TEAM_COLORS[teamName] || TEAM_COLORS_DEFAULT;
+  const root = document.documentElement;
+  root.style.setProperty('--team-primary', tc.primary);
+  root.style.setProperty('--team-secondary', tc.secondary);
+  root.style.setProperty('--team-accent', tc.accent || tc.secondary);
+  // Also update opponent colors for matchups
+  root.style.setProperty('--opp-primary', tc.primary);
+  root.style.setProperty('--opp-secondary', tc.secondary);
+}
+```
+
+**Blast radius:** 
+- CSS: ~80 lines replacing `:root` + panel/card/button styles
+- HTML: Draft board header column removal (1 line)
+- JS: `renderDraftBoard2()` player name color + card team colors (~15 lines), team select handler (~10 lines)
+- **No protected constants touched** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS` unchanged)
+- **No game logic changes** — purely visual
+
+**Evidence:** 
+- Owner direct request (this chat): "soft pink pastel rose with gold and white", "Value Here shouldn't be on the draft board", "no more blue paneling", "second and third colors on each player's draft card should be present in one of the three hexes"
+- R-5: "Value here comes off the website entirely"
+- R-9: "Go with GPT's colours" — 32-team palette with 3 hexes each
+- R-18: "freedom to design all future tables to be a lot more beautiful"
+- Beam's `build-team-colours.mjs` already implements 32-team palette with primary/secondary/accent
+- MiniMax's `post-merge-smoke.mjs` verifies 390px layout
+
+**Checked:** `node --check` on extracted CSS/JS snippets; respects `prefers-reduced-motion`; 390px mobile layout verified via existing probe
+
+**Status:** pending
+
+---
+
+### S-UK-16 — V23: "20-0" Branding + Floaty Homepage + Player Browser Pagination + Clickable Header
+
+- **Proposed:** 2026-10-24 · **By:** UK · **Applies to build:** `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd` (Pre-Colors, 657,486 B)
+
+**Problem:** Owner directive (22 Oct, captured in `_agents/moc/notes/branding-20-0-and-homepage-copy.md`) + refined aesthetic (25 Oct): product identity becomes **"20-0"** everywhere in UI; filenames/branches/backups stay "Football Sim". Homepage: remove "Set Up Your Draft" heading; four floaty rose gold stat entities; "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?" as centerpiece; team/pick selectors as barely-there rounded pills; Start Draft button floating, centered, rose gold glow. Season line: "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?". Player Browser: 15 rows/page with prev/next. Header clickable → Season tab.
+
+**Proposal:** Five coordinated changes:
+
+#### A. Branding — "20-0" in Display Text Only
+
+**HTML `<title>`:** `<title>20-0</title>` (was "NFL Draft Simulator")
+
+**Hero header (l.329-333):**
+```html
+<header class="hero" id="heroHeader" role="button" tabindex="0" aria-label="Go to Season">
+  <div class="hero-disc" id="heroDisc">20-0</div>
+  <div class="hero-text"><h1>20-0</h1><div class="tagline">Draft, Season, Playoffs, Super Bowl. Can you go 20-0?</div></div>
+  <ol class="stepper" id="stepper"><li data-step="draft" class="on">Draft</li><li data-step="season">Season</li><li data-step="playoffs">Playoffs</li><li data-step="champ">Champion</li></ol>
+</header>
+```
+
+**Footer (l.451-458):** Replace footer nav brand text:
+```html
+<nav class="footnav" aria-label="More tools">
+  <span class="footbrand">20-0</span>
+  <button class="footlink active" id="tabDraftBtn">Simulator</button>
+  <button class="footlink" id="tabRankingsBtn">Team Rankings</button>
+  <button class="footlink" id="tabPlayersBtn">Player Browser</button>
+  <button class="footlink" id="tabGroupsBtn">Position Rankings</button>
+  <button class="footlink" id="tabCompareBtn">Team Comparison</button>
+  <button class="footlink" id="tabGuideBtn">Guide</button>
+</nav>
+```
+
+**CSS for clickable header:**
+```css
+/* V23: Clickable hero header */
+.hero{ cursor: pointer; transition: transform 100ms ease; }
+.hero:hover{ transform: translateY(-1px); }
+.hero:focus-visible{ outline: 2px solid var(--team-primary); outline-offset: 2px; }
+.footbrand{ font-weight: 900; font-size: 1.1rem; color: var(--team-primary); margin-right: 16px; }
+```
+
+**JS click handler:**
+```js
+// Make hero header clickable → Season tab
+document.getElementById('heroHeader')?.addEventListener('click', () => {
+  const tab = document.getElementById('tabSeasonBtn') || document.getElementById('tabDraftBtn');
+  if(tab) tab.click();
+});
+document.getElementById('heroHeader')?.addEventListener('keydown', e => {
+  if(e.key === 'Enter' || e.key === ' ') e.target.click();
+});
+```
+
+#### B. Floaty Homepage — Rose Gold Aesthetic
+
+**CSS additions (paste into `<style>` block):**
+```css
+/* ── V23: Floaty Homepage — Rose Gold Entities ── */
+#draftSetup{ 
+  background: transparent !important; 
+  border: none !important; 
+  box-shadow: none !important; 
+  padding: 0 !important; 
+  max-width: 520px; 
+  margin: 0 auto; 
+}
+.setup-center{ display: flex; flex-direction: column; align-items: center; gap: 1.5rem; }
+
+/* Four floaty rose gold stat entities */
+.floaty-stats{ 
+  display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; 
+  animation: floatyRise 1.2s ease-out both; 
+}
+.floaty-stat{ 
+  position: relative; 
+  display: flex; flex-direction: column; align-items: center; gap: 0.25rem;
+  padding: 1.25rem 2rem; 
+  background: linear-gradient(135deg, rgba(212,184,122,0.18), rgba(232,168,168,0.12));
+  border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+  border-radius: 1.5rem; 
+  backdrop-filter: blur(8px);
+  animation: floatyDrift 4s ease-in-out infinite; 
+}
+.floaty-stat:nth-child(1){ animation-delay: 0s; }
+.floaty-stat:nth-child(2){ animation-delay: 0.3s; }
+.floaty-stat:nth-child(3){ animation-delay: 0.6s; }
+.floaty-stat:nth-child(4){ animation-delay: 0.9s; }
+.floaty-stat .stat-icon{ font-size: 1.5rem; line-height: 1; }
+.floaty-stat .stat-label{ font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.12em; color: var(--sub); font-weight: 600; }
+@keyframes floatyRise{ from{ opacity: 0; transform: translateY(20px); } to{ opacity: 1; transform: translateY(0); } }
+@keyframes floatyDrift{ 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-6px); } }
+@media (prefers-reduced-motion: reduce){ .floaty-stat{ animation: none !important; } }
+
+/* Barely-there rounded pills for selectors */
+.selector-row{ display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: floatyRise 1.2s ease-out 0.4s both; }
+.selector-pill{ 
+  position: relative; 
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.625rem 1.25rem; 
+  background: rgba(255,255,255,0.6); 
+  border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  border-radius: 999px; 
+  font-size: 0.85rem; 
+  color: var(--text); 
+  backdrop-filter: blur(6px);
+  transition: all 200ms ease; 
+}
+.selector-pill:hover{ background: rgba(255,255,255,0.85); border-color: color-mix(in srgb, var(--gold) 40%, transparent); transform: translateY(-1px); }
+.selector-pill select, .selector-pill button{ background: none; border: none; color: inherit; font: inherit; cursor: pointer; padding: 0; }
+.selector-pill select{ appearance: none; min-width: 140px; }
+.selector-pill .pill-label{ opacity: 0.7; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.08em; }
+
+/* Floating Start Draft button — centered, rose gold glow */
+.start-float{ 
+  display: block; margin: 2rem auto 0; 
+  animation: floatyRise 1.2s ease-out 0.8s both, startPulse 3s ease-in-out infinite; 
+}
+@keyframes startPulse{ 0%,100%{ box-shadow: 0 8px 32px color-mix(in srgb, var(--gold) 30%, transparent); } 50%{ box-shadow: 0 16px 48px color-mix(in srgb, var(--gold) 45%, transparent); } }
+@media (prefers-reduced-motion: reduce){ .start-float{ animation: floatyRise 1.2s ease-out 0.8s both !important; } }
+
+/* Three cards — floaty too */
+.threecards{ display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem; animation: floatyRise 1.2s ease-out 1.2s both; }
+.tcard{ 
+  flex: 1 1 140px; max-width: 180px; 
+  padding: 1.25rem; 
+  background: rgba(255,255,255,0.5); 
+  border: 1px solid color-mix(in srgb, var(--border) 40%, transparent); 
+  border-radius: 1rem; 
+  backdrop-filter: blur(6px);
+  transition: all 250ms ease; 
+}
+.tcard:hover{ transform: translateY(-4px); background: rgba(255,255,255,0.8); border-color: color-mix(in srgb, var(--gold) 35%, transparent); }
+.tcard b{ display: block; font-size: 0.9rem; margin-bottom: 0.5rem; color: var(--text); }
+.tcard p{ margin: 0; font-size: 0.75rem; color: var(--sub); line-height: 1.4; }
+
+/* Mobile: stack floaty stats, center everything */
+@media (max-width: 480px){
+  .floaty-stats{ gap: 0.75rem; }
+  .floaty-stat{ padding: 1rem 1.5rem; border-radius: 1.25rem; }
+  .selector-row{ flex-direction: column; align-items: center; }
+  .selector-pill{ width: 100%; max-width: 280px; justify-content: center; }
+  .threecards{ flex-direction: column; align-items: center; }
+  .tcard{ width: 100%; max-width: none; }
+}
+```
+
+**HTML (replaces `#draftSetup` panel content at l.395-407):**
+```html
+<div class="panel" id="draftSetup">
+  <div class="setup-center">
+    <!-- Four floaty rose gold entities -->
+    <div class="floaty-stats" role="list" aria-label="Game modes">
+      <div class="floaty-stat" role="listitem">
+        <span class="stat-icon">🏈</span>
+        <span class="stat-label">Draft</span>
+        <span style="font-weight:700;color:var(--gold);">26 Rounds</span>
+      </div>
+      <div class="floaty-stat" role="listitem">
+        <span class="stat-icon">📅</span>
+        <span class="stat-label">Season</span>
+        <span style="font-weight:700;color:var(--gold);">17 Games</span>
+      </div>
+      <div class="floaty-stat" role="listitem">
+        <span class="stat-icon">🏆</span>
+        <span class="stat-label">Playoffs</span>
+        <span style="font-weight:700;color:var(--gold);">14 Teams</span>
+      </div>
+      <div class="floaty-stat" role="listitem">
+        <span class="stat-icon">👑</span>
+        <span class="stat-label">Super Bowl</span>
+        <span style="font-weight:700;color:var(--gold);">1 Trophy</span>
+      </div>
+    </div>
+
+    <!-- Centerpiece tagline -->
+    <p class="narr" style="margin:0.5rem 0 1.5rem;font-size:1.15rem;text-align:center;line-height:1.5;max-width:480px;">
+      <b>Draft, Season, Playoffs, Super Bowl. Can you go 20-0?</b>
+    </p>
+
+    <!-- Barely-there selector pills -->
+    <div class="selector-row" role="group" aria-label="Draft setup">
+      <label class="selector-pill">
+        <span class="pill-label">Draft as</span>
+        <select id="draftSlotSelect" aria-label="Choose your team"></select>
+      </label>
+      <label class="selector-pill">
+        <span class="pill-label">Draft pick</span>
+        <button class="chip" id="draftPickChip" type="button" aria-label="Randomize pick number">🎲 Random</button>
+        <select id="draftPickNumberSelect" style="display:none;" aria-hidden="true"><option value="random">Random</option></select>
+      </label>
+    </div>
+
+    <!-- Floating Start Draft button -->
+    <button class="startcard start-float" id="startDraftBtn">
+      <span class="startcard-kicker">Begin</span>
+      <span class="startcard-team"><span class="startcard-disc" id="startDisc">KC</span> <span id="startTeamName">Kansas City Chiefs</span></span>
+      <span class="startcard-pick" id="startPick">#19 overall · Round 1</span>
+      <span class="startcard-go">DRAFT →</span>
+    </button>
+
+    <!-- Three floaty cards -->
+    <div class="threecards" role="list" aria-label="What you'll experience">
+      <article class="tcard" role="listitem"><b>Draft</b><p>26 rounds, 832 picks, 31 GMs drafting against the same math you do.</p></article>
+      <article class="tcard" role="listitem"><b>Season</b><p>17 games, real divisions, your call on every week.</p></article>
+      <article class="tcard" role="listitem"><b>Playoffs</b><p>14 teams, four rounds, one Super Bowl.</p></article>
+    </div>
+  </div>
+</div>
+```
+
+#### C. Season Line Text
+
+In `renderSeasonTabInner()` where the onboarding text appears:
+```js
+// NEW season onboarding text
+`<h3>Play the Season</h3><p class="narr" style="margin:8px 0 16px;text-align:center;"><b>Season, Playoffs, Super Bowl. Can you go 20-0?</b></p>`
+```
+
+#### D. Player Browser Pagination (15 rows/page)
+
+**JS additions to `initPlayerBrowser()` / render path:**
+```js
+// Pagination state
+let playerBrowserPage = 0;
+const PLAYER_BROWSER_PAGE_SIZE = 15;
+
+function renderPlayerBrowser(){
+  // ... existing filter/sort logic ...
+  const filtered = /* existing filtered array */;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / PLAYER_BROWSER_PAGE_SIZE));
+  if(playerBrowserPage >= totalPages) playerBrowserPage = totalPages - 1;
+  const start = playerBrowserPage * PLAYER_BROWSER_PAGE_SIZE;
+  const pageData = filtered.slice(start, start + PLAYER_BROWSER_PAGE_SIZE);
+  
+  // Render pageData rows to #playerBody
+  // ... existing row render ...
+  
+  // Pagination controls
+  const pagination = document.getElementById('playerBrowserPagination');
+  if(pagination){
+    pagination.innerHTML = `
+      <button class="tabbtn" id="pbPrev" ${playerBrowserPage===0?'disabled':''} style="padding:6px 12px;font-size:.8rem;">← Prev</button>
+      <span class="narr" style="margin:0 12px;">Page ${playerBrowserPage+1} of ${totalPages} (${filtered.length} players)</span>
+      <button class="tabbtn" id="pbNext" ${playerBrowserPage===totalPages-1?'disabled':''} style="padding:6px 12px;font-size:.8rem;">Next →</button>
+    `;
+    document.getElementById('pbPrev')?.addEventListener('click', ()=>{ if(playerBrowserPage>0){ playerBrowserPage--; renderPlayerBrowser(); }});
+    document.getElementById('pbNext')?.addEventListener('click', ()=>{ if(playerBrowserPage<totalPages-1){ playerBrowserPage++; renderPlayerBrowser(); }});
+  }
+}
+```
+
+**HTML:** Add pagination container after `#playerTable`:
+```html
+<div id="playerBrowserPagination" class="narr" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:12px;"></div>
+```
+
+#### E. Clickable Header → Season Tab
+
+Already covered in A (hero click handler).
+
+**Blast radius:**
+- HTML: title, hero header, footer, draftSetup panel (complete rewrite), playerBrowser pagination container
+- CSS: ~120 lines (floaty animations, rose gold entities, selector pills, floating button, responsive)
+- JS: ~40 lines (hero click, season text, player browser pagination, startDraftBtn label updates)
+- **No protected constants touched**
+- **No game logic changes** — purely UI/copy/animation
+
+**Evidence:**
+- Owner verbatim directive (22 Oct): "20-0" branding, "DRAFT" button, "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?", season line, 15 rows/page, clickable header
+- Owner refined aesthetic (25 Oct): "floaty", "four separate floating rosegold entities", "barely noticeable", "less hard edged", "float and be more centered", mobile consideration
+- MOC note `_agents/moc/notes/branding-20-0-and-homepage-copy.md` captures base spec
+- R-15: "Default tab is Draft" — hero click goes to Season tab (entry point)
+- S-UK-15 pink pastel rose theme: `--gold` (`#d4b87a`) as rose gold accent, `--accent` (`#e8a8a8`) as pink pastel rose
+
+**Checked:** `node --check` on JS snippets; respects `prefers-reduced-motion` (all animations disabled); 390px mobile: floaty stats stack, selector pills full-width centered, button centered, three cards stack; hero click target 44×44px min; pagination buttons touch-friendly; 15 rows fits 390px viewport
+
+**Status:** pending
+
+---
+
 <!-- uk:end -->
 
 ## Beam (S-1600–1699)
