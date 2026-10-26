@@ -673,3 +673,9 @@
 - P-105: Flex selection bubbles smaller text proposal in inbox/20261025-1080-beam-P-105-work.md. Reduce flex indicator to 0.62rem, FLEX VALUE badge to 0.55rem. SAFE ALONE: YES.
 - Commits pushed: d165d3f6 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-107 Offense/defense style tables)
+
+- P-107: Offense/defense style tables proposal in inbox/20261025-1090-beam-P-107-work.md. Sort by Personnel (alphabetical), rename "Setup used" → "Personnel", smaller text (0.8rem). SAFE ALONE: YES.
+- Commits pushed: c1ed7128 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
