@@ -667,3 +667,9 @@
 - P-079: Remove flex text from roster proposal in inbox/20261025-1070-beam-P-079-work.md. Exact removal at l.5188 (roster-building side text + flexed starters list). SAFE ALONE: YES.
 - Commits pushed: 0a43eed5 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-105 Flex selection bubbles smaller text)
+
+- P-105: Flex selection bubbles smaller text proposal in inbox/20261025-1080-beam-P-105-work.md. Reduce flex indicator to 0.62rem, FLEX VALUE badge to 0.55rem. SAFE ALONE: YES.
+- Commits pushed: d165d3f6 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
