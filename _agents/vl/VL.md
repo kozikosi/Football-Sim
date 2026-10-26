@@ -7,24 +7,8 @@
 
 ## Current work
 - **Claimed / in progress:** (none — all claimed items completed & pushed)
-- **Done this session:** 13 council reviews completed & pushed on `council/vl`:
-  - P-004 REVIEW #2 of 3 — VERDICT: improved (team colour table corrected to Owner's 22 Oct table; 6 of 32 teams fixed: Chicago Bears, Jacksonville Jaguars, Kansas City Chiefs, Los Angeles Rams, Miami Dolphins, New England Patriots)
-  - P-007 REVIEW #1 of 3 — VERDICT: improved (missing playGame side effects in animateGame, timing math under 30s, no Skip abort, no CONTINUE handler, matchMedia guard, clutch time unit undefined)
-  - P-008 REVIEW #3 of 3 — VERDICT: improved (wrong line anchors, `--accent` is blue not gold, `.lineup-row`/`--team-primary`/`--opp-primary` classes/vars don't exist, inline `color:var(--accent)` not a class)
-  - P-009 REVIEW #3 of 3 — VERDICT: improved (entry count 62 not 60, DLCB n=8 vs Owner's "top 6", MIKE/WILL/SAM plural ambiguity, wrong line anchor l.897 not l.893)
-  - P-018 REVIEW #2 of 3 — VERDICT: improved (prototype 18.5KB exceeds 10KB limit, wrong WHERE anchor "P0-18 region" doesn't exist, no exact product changes for 19 "points a game" removals)
-  - P-040 REVIEW #3 of 3 — VERDICT: ok (logo assets verified on origin/main: nfl-team-logos/ 226 files, all-logos-sdv.csv 633 rows/597 NFL, KC entries exist; recommendation to use nfl-team-logos/ is sound)
-  - P-041 REVIEW #3 of 3 — VERDICT: improved (wrong anchor l.832 not l.3936, opacity-based CSS breaks layout since all views would be in DOM simultaneously, proposed setActiveTab drops updateStepper/suppHead/hero/scroll/compare/guide, no rapid-click protection, should reuse `reduce()` helper)
-  - P-042 REVIEW #2 of 3 — VERDICT: improved (`var(--accent,#d4af37)` resolves to blue not gold — should use `var(--gold)` `#ffc43c`, wrong line numbers, removing dc-val also removes dc-wins on same line, HOW TO CHECK wrong due to `--accent` used in 45 places)
-  - P-043 REVIEW #2 of 3 — VERDICT: improved (misses 3 of 5 ★/☆ locations: l.1572 PRIO_STAR, l.4994 Guide "Stars" item, l.5401 sfstar; wrong Guide anchor l.5072; misses l.1131 click handler, l.1727 pcard header, l.114/.chip .star CSS)
-  - P-044 REVIEW #2 of 3 — VERDICT: ok (exact match at l.1488, single occurrence of "you hold the #" text)
-  - P-045 REVIEW #2 of 3 — VERDICT: improved (no separate "(x.y)" element exists, concrete fix: change on-the-clock text to "(R{x}.{y})" format + text-align:right on l.406)
-  - P-068 REVIEW #2 of 3 — VERDICT: ok (all anchors verified: `.filters` l.57, l.58-59, mobile l.280)
-  - P-069 REVIEW #2 of 3 — VERDICT: improved ("see guide for details" text not found in Pre-Colors — 0 hits; DATE invalid; l.874 IIFE appends footnav to .wrap; use position:sticky bottom:0 instead of moving HTML)
-  - P-071 REVIEW #2 of 3 — VERDICT: improved (integrate mobile changes into existing @media block at l.255, remove P-072 Draft button overlap from this item, add overflow:hidden/text-overflow to .dc-name)
-  - P-072 REVIEW #2 of 3 — VERDICT: improved (position:sticky may not pin to viewport — use position:fixed; coordinate with P-001 draft setup redesign; add flex-shrink:0/white-space:nowrap to l.249)
-  - P-073 REVIEW #2 of 3 — VERDICT: improved (`#draftBoard2` doesn't exist — use `.draft-columns` common parent; l.1731 anchor wrong — cards view not table view; l.1766 is the table dc-ovr cell)
-- **Blocked / waiting on:** Architect review/accept of all 13 review verdicts; none blocked on other seats.
+- **Done this session:** 13 council reviews completed & pushed on `council/vl` (P-004, P-007, P-008, P-009, P-018, P-040, P-041, P-042, P-043, P-044, P-045, P-068, P-069, P-071, P-072, P-073); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md` (graphical playoff preview with matchup header, stat bars, chips, key players, win-prob bar; bye-week panel replaces the single dsub line at l.3975).
+- **Blocked / waiting on:** Architect review/accept of all 14 review verdicts + P-021 patch; none blocked on other seats.
 
 ## What the next session needs
 - **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/VL.md` (this file); `_agents/PRIORITIES.md` (open items).
@@ -97,5 +81,6 @@
 - `inbox/20261026-1425-vl-P-071-review.md`
 - `inbox/20261026-1435-vl-P-072-claim.md`
 - `inbox/20261026-1435-vl-P-072-review.md`
-- `inbox/20261026-1445-vl-P-073-claim.md`
-- `inbox/20261026-1445-vl-P-073-review.md`
+- `inbox/20261026-1500-vl-P-021-claim.md`
+- `inbox/20261026-1500-vl-P-021-review.md`
+- `_agents/vl/deliveries/p021-playoff-preview-prototype.html`
