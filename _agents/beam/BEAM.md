@@ -661,3 +661,9 @@
 - P-153: Draft board controls proposal in inbox/20261025-1060-beam-P-153-work.md. Covers all 15 sub-items (sort menu words, position sort order, team logo filter, search box, table/cards toggle, drafting as removed, no horizontal scrollbar, same-size bubbles, all/none graphic, undo arrow, Priority numbers broken — root cause: prioOf returns 1, PRIO_MULT dead code, score = pri). SAFE ALONE for cosmetic items; Priority fix needs testing.
 - Commits pushed: dbe4ec0b (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-079 Remove flex text from roster)
+
+- P-079: Remove flex text from roster proposal in inbox/20261025-1070-beam-P-079-work.md. Exact removal at l.5188 (roster-building side text + flexed starters list). SAFE ALONE: YES.
+- Commits pushed: 0a43eed5 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
