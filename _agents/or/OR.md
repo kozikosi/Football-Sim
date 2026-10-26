@@ -1,5 +1,5 @@
 # OR — Lane File
-**Session:** 2026-10-25 · **Role:** Council Adviser · **ID Block:** S-1800–1899 (first-logged-wins, CHRONICLE line 38)
+**Session:** 2026-10-26 · **Role:** Council Adviser · **ID Block:** S-1800–1899 (first-logged-wins, CHRONICLE line 38)
 
 ## Identity
 - **Name:** OR
@@ -16,8 +16,10 @@
   - V23 localStorage persistence layer (P1-P7) committed.
   - **QUEUE-7 "Value here" inventory** (25 Oct): 0 user-facing occurrences remain in Pre-Colors. Output in `inbox/20261025-0028-or-value-here-inventory.md`.
   - **Biome 2.6.2 lint tooling fix** (25 Oct): migrated `tools/biome-product/biome.json` to Biome 2.x format; fixed `tools/lint.mjs parseReport` to handle line/column location; `selftest` now PASSES (Biome 2.6.2, exit 0); `product Football-Sim-PreColors.html` runs clean (exit 0).
-- **In Progress:** None.
-- **Blocked:** T6/T7 verification (model usage limit); Figma MCP (session restart + sign-in); `session.send` (use `board_post` instead).
+  - **QUEUE-5 header/DRAFT hero measurements and delivery** (25 Oct): Start Draft button IS visible at 390px (Y=484, bottom Y=528 < viewport 844); page scroll height 2580px. Two delivery options in `QUEUE5-deliveries/` (Option A = 1,119 B; Option B = 1,571 B; both < 10 KB; clickable wordmark returns home). Beam's QUEUE-5 Beam review verdict: "ok" — Option B recommended for V23.
+  - **QUEUE-6 Beam's 25 V23 aesthetic proposals ranked** (25 Oct): rankings in `QUEUE6-rankings.md`; top batch (tab transitions, heat map calendar w/ legend, micro-interactions, championship banner + confetti, team colour theming, score bug + PBP ticker, loading skeletons, achievement badges, opponent colour in matchup preview, player card flip, sticky sub-header, field graphic SVG, leaderboard podium); defer list (animated season ticker, weather overlay, mobile bottom nav, trophy case page, ring ceremony, dynamic favicon, print/export).
+- **In Progress:** Z.ai draft board disappearance glitch — intermittent, board "completely disappears" when playing Z.ai post-blue HTML, offline or online. Investigation: extracted to `/tmp/z-post-blue.html`; Playwright tests at 390px + desktop show board renders correctly after `#startDraftBtn` click (trCount 1184, htmlLen ~14.5 MB, no JS errors, `draftLive` visible, `draftTableWrap` bounding box valid). Draft setup hides correctly. Content size (~14.5 MB innerHTML) warrants scrutiny but rendering completes.
+- **Blocked:** T6/T7 verification (model usage limit); Figma MCP (session restart + sign-in); `session.send` (use `board_post` instead); QUEUE-2 lint selftest (waiting on Biome machine).
 
 ## Next Session Needs to Know
 - Work ONLY in `../wt/or`. SHARED (`/Users/kosi/Desktop/Football Sim`) is read-only — copy out, never edit in place.
@@ -39,4 +41,4 @@
 - Inbox: `inbox/20261025-0028-or-value-here-inventory.md`
 - Bulletin: `bulletin/20261025-0341-or.md`
 - Worktree path: `/Users/kosi/Desktop/wt/or`
-- Branch: `council/or`, merge-base with `origin/council/base` = `f4527a260f11aa805fceefdc7c6602739c3fefb7`
+- Branch: `council/or`, merge-base with `origin/council/base` = `db980a10eb27dc62c9448771a5ecbff3de5b22d6`
