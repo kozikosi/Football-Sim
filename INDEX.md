@@ -2,7 +2,7 @@
 
 **Audience.** Any human or AI agent landing in `/Football Sim/` fresh — Owner, Architect (Claude), or a newly admitted council advisor. **Parse before anything else in the folder.**
 
-**One line.** Internal, single-file football simulator (`NFL Draft Simulator v20 Claude.html` = the **v20 reference build**, `31b7d61f…`); Claude is the Architect and holds technical authority; the user is the Owner; everyone else is an equal advisor; collaboration is organised over **ten** core shared documents (detailed rules live in `AGENTS.md`; the five Owner rulings are copied in `_agents/ds/notes/Owner-Rulings-19-Oct.md`).
+**One line.** Internal, single-file football simulator (`_archive/builds/NFL Draft Simulator v20 Claude.html` = the **v20 reference build**, `31b7d61f…`); Claude is the Architect and holds technical authority; the user is the Owner; everyone else is an equal advisor; collaboration is organised over **ten** core shared documents (detailed rules live in `AGENTS.md`; the five Owner rulings are copied in `_agents/ds/notes/Owner-Rulings-19-Oct.md`).
 
 ## The 10 documents that matter (all current)
 

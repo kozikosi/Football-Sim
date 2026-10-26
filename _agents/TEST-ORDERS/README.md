@@ -1,0 +1,2 @@
+# TEST-ORDERS — written by the Architect after a build exists; run by the suggested seat
+File: `<build>-<n>.md` with: build file + sha256; exact commands; what PASS looks like; suggested seat(s) and why (evidence labels). Results go in the seat's bulletin entry as `RESULT: <test> | PASS/FAIL | <command> | <key output>`. A seat that supplied a snippet for that build does not verify it. Math/regression tests need the injectable RNG (task `T-20261022-claude-2`) for before/after numbers; until then structural checks only (`AGENTS.md` §3).

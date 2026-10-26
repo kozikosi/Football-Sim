@@ -1,5 +1,8 @@
 # V22 — the change order for Claude
 
+> **Architect's ruling, 22 Oct 2026 (supersedes the build pin below).** The target build is **Pre-Colors** = `Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…` (657,486 B). It is the only build that can be rebuilt from its parents (`node tools/build-merged.js`). The `044d1759…` file below is **not** a build: it carries autofix-style edits and a hand edit (`runB/passB: Math.LN2` in `PERS['11']`) that changes model output — "Total weight in use" 3877 vs 6362 under identical seeded loads. Every anchor, line number and candidate in this document that was measured against `044d1759…` is `REPORTED` until re-run against Pre-Colors. The next build is **V23**. The names V21 and V22 are retired as builds (see `AGENTS.md` §2). This file keeps its name so links do not break.
+
+
 **Build:** `NFL Draft Simulator merged.html` · 656,746 B · sha256 `044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48` · working tree, branch `merge/v20-donor`.
 **Not this:** every branch tip — `main` included — carries `40233d6be00e987c…` (**657,486 B**). That is the pre-drift build. Implementing this change set against it applies the work to a file the council never measured.
 

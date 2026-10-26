@@ -1,0 +1,1 @@
+{"id":"T-20261022-claude-2","title":"V23: injectable RNG (all Math.random sites go through rnd(); default behaviour unchanged) so seeded before/after becomes a runnable test","state":"accepted","seat":"claude","claimed_at":"2026-10-22","base_build_sha":"40233d6be00e987c"}

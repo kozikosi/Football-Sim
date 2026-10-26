@@ -69,7 +69,7 @@
 
 - **Pickle M-8/M-13/M-20** = `_agents/pickle/architecture-review-M8.md`, `evidence-round2.txt`, `evidence-round3.txt`, `round3-review.md`
 - **DS M-11/M-16** = `_agents/ds/reviews/Architecture-Review-M8.md`, `Peer-Review-Round2.md`, `funcdiff-v20-donor.txt`
-- **MiniMax M-22** = `_agents/minimax/evidence/2026-10-20-minimax-session.log`, `cdp-phone-check.mjs`
+- **MiniMax M-22** = `_agents/minimax/evidence/2026-10-20-minimax-session.log`, `cdp-phone-check.mjs` [Lane compressed 23 Oct: recover from its TOMBSTONE.md; `cdp-phone-check.mjs` is now `tools/probes/`.]
 - **OR M-22** = Playwright E2E results
 - **VL** = VL's hands-on E2E + phone pass
 - **Nemo Ultra M-10/M-14** = `_agents/nemotron-3-ultra-free/reviews/ARCHITECTURE_REVIEW_ULTRA.md`, MUST-NOT-LOSE

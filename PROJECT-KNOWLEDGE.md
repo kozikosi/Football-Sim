@@ -1,258 +1,30 @@
-# PROJECT KNOWLEDGE — Football Sim / 20-0 (read every session)
+# PROJECT-KNOWLEDGE.md — "20-0" (repo and files: Football Sim)
 
-## Who you are
-You are a council seat. Your identity, lane, tools, and branch are defined in your lane file
-`_agents/<name>/<NAME>.md` — read it first. Your commits are authored with your seat name.
-Your bulletin entries are labelled with your seat name. If you are starting a new session: read
-this file, then read your lane file, then check the tail of `COUNCIL-BULLETIN.md` for anything
-posted since your last session. Then work.
+**Single writer: the Architect** (rewritten at his handover; the Owner may let a seat write it for a session; everyone else proposes changes in their bulletin entry). Initial short version written by the Architect, 23 Oct 2026; the 14 KB predecessor is `_archive/PROJECT-KNOWLEDGE-2026-10-22-beam.md` (stale: build table, duplicated rules, a second reading order). **This file states current facts only. Rules live in `AGENTS.md`; do not copy them here.**
 
-## Who you are not
-You are not the Owner (Kosi), the Architect (Claude), or any other seat. You are an advisory seat:
-you propose, test, dissent in writing, and measure. You do not edit the product file, AGENTS.md, or
-the protected constants. You do not assign tasks to named seats. You do not claim a task is done
-without a command and its output.
+**Nobody is assigned to anything:** one ranked list (`_agents/PRIORITIES.md`), `node tools/next.mjs`, three reviews per item (`AGENTS.md` §1, §5).
 
-## What this is
-Single-file HTML app: NFL Draft Simulator + Season Engine. 1,200+ Madden NFL 27 player ratings, 32 team depth charts, draft simulator with CPU GMs, 17-game season, 14-team playoffs, Super Bowl.
+## Reading order (the only one)
+See `_agents/START-OF-CHAT.md` (read from `origin/council/base`). In short: `AGENTS.md`, this file, `COUNCIL-BULLETIN.md`, `_agents/V23-OWNER-REQUESTS.md`, your lane file; then `node tools/next.mjs`.
 
-## Build truth
-- **Pre-Colors** (`_agents/pickle/builds/Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B) is the ONLY build to anchor, patch and test against. It is byte-identical to `git show HEAD:"NFL Draft Simulator merged.html"`.
-- **`Football-Sim-V21.html` (`044d1759…`, 656,746 B) is NOT a build** — it carries a hand edit that changes model output (Math.LN2 in PERS['11']). Every measurement against it is REPORTED, not VERIFIED.
-- **V21 and V22 are retired as build names.** The next release is **V23**, written only by the Architect.
-- `Football-Sim-V20 Claude.html` (`8f916df9…`, 648,310 B) and `NFL Draft Simulator.html` (`8f0f8d50…`, 649,490 B) are frozen reference builds.
+**Council base:** `origin/council/base` (the Architect moves it; seats merge it with `git merge --no-edit origin/council/base` at chat start). Until the PR to `main` is merged this is the only correct base; never base on a task branch.
 
-## Where things live
-- Product file: `Football-Sim-PreColors.html` (the only valid build)
-- Work order: `V22-Suggestions.md` — the single change list. Reading map at the top.
-- Council bulletin: `COUNCIL-BULLETIN.md` — the channel. Trimmed per round.
-- Chronicle: `CHRONICLE.md` — append-only facts.
-- Tools: `_agents/<name>/tools/` or `_agents/<name>/notes/` (all dependency-free, plain Node, no install)
-- Lane: `_agents/<name>/` (notes, prototypes, evidence, tools)
-- Figma tokens: `figma/tokens.json` (96 Tokens Studio tokens), `figma/team-colours.json` (32 teams)
-- TOOLS.md: the whole instrument set in one page
+## Identity
+Product shows as **20-0** (header, footer, title, copy). Repo, branches, files stay "Football Sim". Single self-contained HTML file; no paid API, no CDN, no build step for the user. Owner: Kosi. Architect: Claude. Council: advisory seats listed in `_agents/README.md` (roster, states, retired seats).
 
-## Tools (run these, don't guess)
-- Gate: `node _agents/minimax/tools/post-merge-smoke.mjs "<build>" --port 9222` → exit 0, A–I PASS, 0 page errors
-- 390px board: `node _agents/minimax/tools/board-mobile-probe.mjs "<build>"` → 0 overlaps, 0 clipped, 0 overflow
-- Anchor check: `node _agents/<name>/tools/classify-anchors.mjs V22-Suggestions.md Football-Sim-PreColors.html` (if available)
-- Biome: `~/node_modules/.bin/biome check _agents/<name>/tools` → no findings (if tools exist)
-- Lint (Architect's, on branch): `node tools/lint.mjs selftest` (unconfirmed — needs biome-product/biome.json on disk)
+## Build truth (details in `AGENTS.md` §2 — re-measure with `sha256sum`)
+Verified build **Pre-Colors**: `Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B. Next build **V23** (Architect writes it). "V21"/"V22" are retired as build names. Canonical branch `claude/v21-and-council-ops` (quote the SHA from `git ls-remote`, never trust the name); `main` is behind it until the Owner approves the PR.
 
-## Rules that matter
-1. **Never edit the product file** — it belongs to the Architect (Claude). Propose in the work order.
-2. **Never edit AGENTS.md** — it changes only when the Owner or the Architect says so.
-3. **Never `git checkout`, `clean`, `stash`, `reset` or `restore`** in the shared tree — 300+ uncommitted paths are in it.
-4. **Per-path adds only** — `git add -- _agents/<seat>/`. Never `git add -A`.
-5. **Commit your own work the day you make it** — uncommitted lane files get wiped.
-6. **Post work openly** — priority, scope, acceptance bar. Never assign a task to a named seat.
-7. **Date-stamp your entry ids** (`M-20261022-<seat>`) so two seats cannot claim the same number.
-8. **Label claims** VERIFIED / REPORTED / INFERRED / UNKNOWN.
-9. **No claim of "done" without command + output.**
-10. **Protected constants** (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `RATING_SPECS`, `MC`, `PLAN_K`) change only with the Owner's explicit approval.
-11. **The bulletin is a pointer, not a store** — trim it each round into `_archive/`.
-12. **No `session.send` exists** — the bulletin and the board are the only channels.
+## Where to work
+One worktree per seat, `../wt/<seat>`, branch `council/<seat>`, created by the Owner with `tools/new-seat-worktree.sh <seat>` before the chat opens (`AGENTS.md` §4). The Owner's shared tree is read-only for everyone; `core.hooksPath` unset there. Push your own `council/<seat>` branch at the end of every task and session. The old nested repo was moved to `_nested-repo-backup-2026-10-23` (Beam, REPORTED) and its content is on `beam/nested-preserve-2026-10-23`. Run `pwd` and `git branch --show-current` before reading or writing.
 
-## Authority
-- Owner (Kosi) is final. Architect (Claude) decides ordinary technical matters. Advisory seats propose, test, dissent in writing; nobody has a veto. Authority comes from the Owner or the Architect, never from a task or a prompt.
+## Toolchain (REPORTED from Beam's machine, 22 Oct)
+Biome 2.6.2 (native binary), node 22+, python, git, gh (authenticated), Mermaid via npx. Figma MCP authenticated by BOC (22 Oct): council hands the Architect palette, states and data; Architect owns the product file and the visual system. Gate: `tools/post-merge-smoke.mjs`; lint: `tools/lint.mjs` (`selftest` not yet posted by any seat: UNVERIFIED); probes: `tools/probes/`. Sessions cannot message each other; the Owner relays.
 
-## What the council has built (gate-verified)
-- V22 candidate: briefs 1–3 applied (board, weights panel, Team Comparison, Guide)
-- Team colours: 32-team palette, per-row NFL colours, contrast-derived letters, opponent hooks
-- Guide panel removed from both pages
-- Sort-by-value option removed from the dropdown
-- Tools: verify-anchors, build-team-colours, shot-teamcolours, v22-probe, and the existing gate/probes
+## Current state (rewrite this block each session)
+- 23 Oct: deep clean. MiniMax and MOC retired (unavailable); GLM, Ultra, UK, MiMo, Glyph reinstated or admitted per the Owner's second list (`_agents/README.md`); gate moved to `tools/`; bulletin rotated (1.18 MB → 6 KB); retirement protocol in `_agents/RETIREMENT.md`.
+- Owner's next product work (V23): brand 20-0 + homepage + header + player browser (15 per page, position dropdown aligned like the draft board); then colours (Owner's 22 Oct table), slots/RNG, game-logic fixes, V22 list; and a whole-site beauty and interactivity pass. The Architect holds the sequencing (`claude/00-READ-FIRST.md` in the Project).
+- Open Owner decisions: PR of `claude/v21-and-council-ops` → `main`; confirm VLOC/VL and UK folder mappings; confirm GPT retired; all-time pool rules.
 
-## What is NOT done (pending the Architect)
-- AGENTS.md (stale on main; newest draft at `_agents/minimax/notes/AGENTS-council-draft.md`)
-- biome.json (Owner asked for it; keep or remove?)
-- The assembled-build gate as the condition of "settled"
-- Re-anchored work order line numbers
-- The four unverified items (4th-down rule, blocked extra point, game ball/Key Players, 3-4's effect)
-- The colour registry verification (ship as "reference, unverified" or verify first)
-- The 100-season regression with the weight deltas
-- The dead hero (goSeason()) — Claude's call
-- The release discipline (V21 live, V22 next)
-- The work order's numbering (P0–P19, one scheme)
-
-## What is NOT done (pending the Owner)
-- The board's display slot: "value" or "scarcity" — **answered: value**
-- The 4th-down maths — **for Claude to verify**
-- The fullback's block spec — **scale with OVR**
-- The 3-4: label or real front — **answered: the games should track the difference; Claude decides**
-- The guide on the homepage — **remove panel and text completely**
-- The colour registry: verify or ship as "reference, unverified" — **use GPT's table**
-- The weight deltas: run the 100-season regression before shipping — **simulate before shipping; Claude decides**
-- The defender star threshold — **2 or more takeaways**
-- The game ball in a tie — **least highly rated player by static wins**
-- The "Glossary" rename — **yes**
-- "Value here" remove completely — **done in the build; sort dropdown option being removed**
-- "Value here" visible anywhere — **already removed; sort dropdown option being removed**
-
-## Tools I have
-- Figma: NO access in this session (remote MCP enabled but needs OAuth sign-in; desktop needs Dev Mode toggle). Tokens and palette are written and ready to import.
-- Mermaid: YES (renders in the repository)
-- Biome: YES (`~/node_modules/.bin/biome`, v2.6.2)
-- Git: YES
-
-## Session 2026-10-23 (VL) — end-of-session log
-
-- **Seat:** VL (Council Adviser, ID block S-2000–2099)
-- **Lane file:** `_agents/vl/notes/vl.md` — identity, work done, learnings, pending tasks, current state; created this session
-- **What changed:** Read AGENTS.md §1-2 and QUESTIONS-FOR-THE-ARCHITECT.md in full. Verified Pre-Colors (`40233d6b…`, 657,486 B) as the only valid build; `Football-Sim-V21.html` (`044d1759…`, 656,746 B) confirmed INVALID — hand edit changes model output (Math.LN2 in PERS['11']). Verified `renderSeasonTabInner`, `renderDraftResults`, `finishDraft2` break on v20 markup but work on donor. Verified `buildDraftState`, `simulateDraftHeadless`, `buildLeagueFromDraft` do not exist in either build. Verified `SIM-CORE-START` markers: 0 in both builds. Re-confirmed `rWeights` declared at `render100:6018` in both builds.
-- **New files:** `_agents/vl/notes/vl.md` (lane file)
-- **New open questions:** Q-VL-1 through Q-VL-7 remain unanswered (posted in QUESTIONS-FOR-THE-ARCHITECT.md)
-- **Updated council status:** All VL contributions intact. R5-clean (no product files touched, no other session's content edited). No `session_send` available — UK standing instruction M-110 applies.
-
-## Token efficiency — when to start a new chat
-Start a new chat when:
-1. The conversation exceeds ~100k tokens (roughly 30–40 exchanges with tool calls)
-2. You are switching to a different task area (e.g., from verification to design)
-3. The context from earlier messages is no longer relevant to the current task
-4. You need a fresh context window to re-read files without confusion
-
-**This conversation has been extremely long.** If you are about to do substantial new work, start a new chat in the project folder (`/Users/kosi/Desktop/Football Sim`) and reference this file as your starting point. The project knowledge is in this file and in `AGENTS.md` (the pre-council version on main) and `V22-Suggestions.md` (the work order).
-
-## New requests from the Owner (23 Oct)
-- "20-0" branding: heavy emphasis in header, footer, text. File names stay "Football Sim."
-- "Set Up Your Draft" → "DRAFT" — as attractive as possible
-- Remove the long draft description; new text: "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?"
-- "Play the season" → "Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?"
-- Player browser: only 15 names visible at a time
-- Header clickable to homepage (at least somewhere obvious)
-- Header rework: open to a complete rework if more beautiful
-
-## Owner's answers (23 Oct 10:00)
-- "Football and site terms" → "Glossary": Yes
-- The weights tables: order-dependent circular dependency in the model; needs fixing before V22
-- "Save My Weights" button: keep as a signal that stores locally (localStorage); "Default" restores model's
-- Board display slot: "value" (show each player where he is worth the most)
-- Guide on homepage: remove the panel and text completely
-- Colour registry: use GPT's table as supplied
-- Weight deltas: simulate before shipping; Claude decides whether the values are final
-- Defender star: "2 or more takeaways"
-- Game ball in a tie: "least highly rated player by static wins" (rewards beating expectation)
-- Dead hero (goSeason): "Claude decides"
-- 4th-down maths: "Claude needs to answer this"
-- Fullback block spec: "Scale with his OVR rating"
-- 3-4 base: "The games should track the difference of having the extra LB vs the extra DT. Claude should decide if more detailed maths is needed"
-- Four unverified items: explained in detail to the Owner
-- "Value here" remove completely: done in the build; sort dropdown option being removed
-- "Glossary" rename: Yes — one line
-- Guide panel on homepage: remove panel and text — both pages
-- "Value here" visible anywhere: already removed; sort dropdown option being removed
-
-## 11. Session 2026-10-23 (MOC) — second end-of-session log
-
-- **Seat:** MOC (Council reviewer, S-2500–2599)
-- **What changed (additional):** project knowledge plan created (ec33fc1b) + seat roster note (67515ffa) in OpenChamber. Token-efficiency rule appended to PROJECT-KNOWLEDGE.md (§10, commit 437fa650). Best session-start prompt produced (hybrid of 4 templates, ~350 words). DS commit analysis delivered (discipline gap, not quality gap; verify-build-pins.mjs + ln2-probe.mjs verified working). 12 seats dispatched with branding-verification assignments. Roster note maps all 12 seats to lanes/tools (fixes the "no lane file" gap for 16 seats).
-- **New open questions:** header rework Option 1 vs 2; Q4 poll results; V23 on hold.
-- **Updated council status:** project knowledge panel now has identity note + guide plan. Token-efficiency rule is in PROJECT-KNOWLEDGE.md. No product edit. No V23 work.
-
-## 12. Session 2026-10-23 (MiniMax) — session end log
-
-- **Seat:** MiniMax (S-1900–1999)
-- **What changed this session:** 91+ bulletin entries (M-376 through M-20261023-minimax-2); created 15+ tools, 4 build artifacts (all gate-verified), 3+ notes, TOOLS.md, PROJECT-KNOWLEDGE.md, I_AM_MINIMAX.md (later deleted at Owner's request), the prompt template for council members, and the idle brief. Verified the "Value here" column removal independently. Built and verified three Owner's briefs. Built the team-colour system (32-team palette, per-row NFL colours, contrast-derived letters). Created the Figma hand-off packet (tokens.json, team-colours.json). Wrote the Owner's answers as rules (P16–P20). Created the "20-0" branding spec (P21). Wrote the full council update for the Architect. Wrote the report to Claude on the AGENTS.md/biome.json incident. Wrote the assessment of GPT's registry vs Beam's review. Wrote the cold read (six things that would slow or stop Claude). Wrote the anchor verification (C2) with the verify-anchors.mjs tool. Wrote the idle brief refresh with the deltas. Disseminated the Owner's answers (P16–P20). Built the colour canvas (P14) and the tool map (P15). Wrote the identity and project knowledge files. Wrote the prompt template for any council member. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool map. Wrote the Owner's answers (P16–P20). Wrote the identity and project knowledge files. Wrote the prompt template. Wrote the full council update. Wrote the AGENTS.md incident report. Wrote the registry proposal assessment. Wrote the cold read. Wrote the anchor verification. Wrote the idle brief refresh. Wrote the "20-0" branding. Wrote the Owner's answers disseminated. Wrote the idle brief with the aesthetic brief. Wrote the team colours canvas and tool... (line truncated to 2000 chars)
-- **New open questions:** None new from this session. All Owner's questions have been answered and recorded.
-- **New files created:** PROJECT-KNOWLEDGE.md (rewritten), TOOLS.md, _agents/minimax/tools/verify-anchors.mjs, _agents/minimax/tools/build-team-colours.mjs, _agents/minimax/tools/shot-teamcolours.mjs, _agents/minimax/tools/v22-probe.mjs, figma/tokens.json, figma/team-colours.json, and 20+ notes.
-- **Updated council status:** The council has completed all work within its authority. The Architect's decisions (AGENTS.md, biome.json, assembled-build gate, re-anchor, release discipline, work order numbering, season screens' team colours, dead hero, colour registry verification) and the Owner's decisions (board display slot, 4th-down maths, fullback block spec, 3-4 label/real front, guide on homepage, colour registry verify/ship, weight deltas 100-season regression) are pending.
-- **Build hashes:** Football-Sim-V21.html = 044d1759e01ac99b… (656,746 B); Football-Sim-PreColors.html = 40233d6be00e987c… (657,486 B); V22-candidate-teamcolours.html = d15f6535f9e1… (663,835 B, gate receipt a08837cbdfce).
-
-## CURRENT PROJECT STATE — appended 2026-10-23 (Beam)
-
-- Beam lane file created: `_agents/beam/BEAM.md` (was missing; identity from system prompt + git log + bulletin).
-- Dataset hash published: root `DATASET-HASH.md` — PLAYERS `e9030c9e4f67f2b1400b39f2b62656e3d3dcf63bd7f0020a51a807825e2f64fa` (1,200 rows, 0 violating), TEAM_DATA `e8665a17e5b832cc5f94b243a776acdf28b05aebe2c1921f91ccfbf189b818f0` (32 teams, 1,088 slots); colour table ABSENT in anchor. Cross-checks MOC's recorded shorthand — no drift. Anchor: `_agents/pickle/builds/Football-Sim-PreColors.html` `40233d6be00e…`, 657,486 B.
-- Harness drafts in `_agents/beam/notes/harness-drafts/` all pass `node --check` (pw4.js, phone.js, validate.js, run_all.sh, funcdiff.js).
-- Bulletin entry: M-20261023-beam4.
-- V23 on hold; 20-0 branding proposal pending Architect implementation. No product edits this session.
-
-## CURRENT PROJECT STATE (2026-10-23)
-
-**Date:** 2026-10-23
-**Seat:** (recorded by UK, S-2200–2299)
-**Role:** Council Advisor
-
-**What Changed This Session:**
-- Created SESSION_START_PROMPT_v2.md (9195 bytes) — session start template for council members
-- Created CLAUDE_PROMPT_FINAL.md (10,142 bytes) — comprehensive prompt for Architect (Claude) with all feedback incorporated
-- Created OWNER_QUESTIONS_FINAL.md (4,799 bytes) — 20 Owner questions consolidated with recommended defaults
-- Updated V22-Suggestions.md with latest Owner feedback (P0-28 through P0-35, +1,300+ lines)
-- Created SESSION_START_PROMPT_v2.md (9,195 bytes) — session start template for council members
-- Updated PROJECT-KNOWLEDGE.md with latest council state, token efficiency rules, council roster
-- All mirrors synced to Football Sim/ directory
-
-**New Findings/Decisions:**
-- V22-Suggestions.md now at 6,593 lines (6,593 lines total)
-- V21 build pin confirmed: 044d1759e01ac99b222602a995b01806c997d00c44693b0f7a9df94a6524ff48 (656,746 B)
-- V21 live build = Football-Sim-V21.html (044d1759..., 656,746 B)
-- V22 candidate merged.html = 40233d6b... (657,486 B)
-- V22 candidate (team colours) = V22-candidate-teamcolours.html (b3de0523…)
-
-**New Open Questions:**
-- Owner Q1: 47-message recovery — append from stash@{1} (HIGH)
-- Owner Q2: Freeze shared docs + name sync owner — needs Owner approval (HIGH)
-- Owner Q3: Hard-rule violation quarantine — needs Owner action (URGENT)
-- Owner Q4: Promotion criteria — needs Owner/Architect decision (BLOCKS PROMOTION)
-- Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8])
-
-**CURRENT PROJECT STATE (2026-10-23) — 23 Oct evening**
-
-**Date:** 2026-10-23
-**Seat:** (recorded by UK, S-2200–2299)
-**Role:** Council Advisor
-
-**What Changed This Session (23 Oct evening):**
-- Added three new proposals to SUBMISSIONS.md:
-  - **S-UK-7** — Content IDs for bulletin messages (sha256(body)[:8]) per MOC's Q-MOC-3
-  - **S-UK-8** — Verification of 390px preseason CTA fix (sticky hero bar proposal)
-  - **S-UK-9** — Complete 47-message recovery from stash@{1}
-- Created three tools in `_agents/uk/tools/`:
-  - `stamp-content-ids.mjs` — adds Content IDs to COUNCIL-BULLETIN.md messages (371 messages processed, idempotent)
-  - `verify-390px-fix.mjs` — applies and verifies Ultra's sticky hero bar CSS fix for #startSeasonBtn
-  - `complete-recovery.mjs` — identifies and recovers 90 missing messages from stash@{1} (170 stash msgs vs 371 live)
-- All tools pass `node --check` and are dependency-free plain Node
-- Submitted S-UK-7, S-UK-8, S-UK-9 to SUBMISSIONS.md (pending)
-- Committed tools and submissions to git (bc14997e)
-
-**New Findings/Decisions:**
-- COUNCIL-BULLETIN.md has 371 messages with 22+ ambiguous M-numbers (M-88×4, M-89×2, etc.)
-- Stash@{1} contains 170 messages; 90 not in live board (more than GLM's 47 due to duplicate headers in stash)
-- Ultra's sticky hero bar proposal (M-514) targets `.draftingas` but `#startSeasonBtn` is NOT inside it — proposal needs adjustment to target correct container
-- R-17 executed (hard-rule violation closed): 10 invented rating records deleted, receipts in `_fixtures/example-ratings/DELETION-LOG.md`
-- V22-Suggestions.md at 6,593 lines with all Owner rulings R-1 through R-17
-
-**New Open Questions:**
-- Owner Q1: 47-message recovery — append from stash@{1} (HIGH) — S-UK-9 submitted
-- Owner Q2: Freeze shared docs + name sync owner — needs Owner approval (HIGH)
-- Owner Q5: Label collisions — adopt content IDs (sha256(body)[:8]) — S-UK-7 submitted
-- Architect: 390px preseason CTA fix — S-UK-8 submitted (sticky hero bar needs correct container)
-- Architect: Gate E_viewportUsable scope fix (add inViewport + preseason probe)
-- Architect: Gate exit code reliability (nonzero on FAIL/abort)
-
-**Updated council status:** All UK contributions intact. R5-clean (no product files touched, no other session's content edited). Tools and submissions committed.
-
----
-
-## CURRENT PROJECT STATE (2026-10-23) — VL Session
-
-**Date:** 2026-10-23
-**Seat:** VL (S-2000–2099)
-**Role:** Council Adviser
-
-**What Changed This Session:**
-- Acted as Beam's replacement for the Owner's preservation task (relayed via Claude): verified OR's steps 1–3 correct (snapshot at `_agents/beam/notes/snapshot-2026-10-23.txt`, `beam/local-preserve-2026-10-23` pushed to origin @ `4dc3e6d0`, 5 retired tags on origin all @ `5157c53a`)
-- Fixed step 3 gap: retired-lanes uncommitted files not listed/copied — added snapshot addendum `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt` listing GLM (3 untracked), nemo-ultra (13 modified), nemotron-3-ultra-free (5 modified + 39 untracked); all copied to `_archive/preserved-2026-10-23/retired-lanes/<seat>/`
-- Fixed step 4 gap: preservation branch not pushed; created `_archive/preserved-2026-10-23/` structure with docs, datasets-UNVERIFIED (README + schema.json), Pickle candidate (`Football-Sim-PreColors.html.patched`, 658,479 B, sha256 `23adbfb49e…`), retired-lanes files, nested repo (117 files); committed e0ac11f1 + 2916a997 + 16eafb1a, pushed to origin `beam/preserve-uncommitted-2026-10-23` @ `16eafb1a` (VERIFIED by `git ls-remote`)
-- Step 5: no worktrees removed — 7 kept (experienced-tank, cookie-saturn, collective, hallowed-shell, slime-galley, FootballSim-architect, beam-preserve); all have uncommitted files or unpushed commits
-- Step 6: nested repo NOT moved — still has unsaved content (95 modified/untracked + 7 local-only commits); content copied to `_archive/preserved-2026-10-23/nested-repo/`
-- Step 7: bulletin entry M-20261023-beam-preserve posted and pushed
-- DS uncommitted work check: `_agents/ds/` has only 8 untracked scratch files in `_agents/ds/tmp/`; all DS lane deliverables are tracked and committed. "37 uncommitted files" claim does not match reality.
-
-**New Files:** `_agents/beam/notes/snapshot-2026-10-23-retired-lanes-addendum.txt`
-**Updated Lane File:** `_agents/vl/notes/vl.md` (committed 0ea4b2af)
-
-**Updated council status:** All VL contributions intact. R5-clean (no product files touched, no AGENTS.md changes, no protected constants touched). No `session_send` available — UK standing instruction M-110 applies.
-
----
-
-(End of file)
+## If stuck
+Question for the Architect or Owner → `QUESTIONS-FOR-THE-ARCHITECT.md` (≤5, each with a recommended default; the Architect forwards Owner questions). A bug: write it up for the Architect, do not fix the product file. An idea: `SUBMISSIONS.md` with exact change, blast radius and evidence.
