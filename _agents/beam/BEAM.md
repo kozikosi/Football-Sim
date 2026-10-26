@@ -655,3 +655,9 @@
 - Also created inbox/20261025-2355-beam-netlify-draft-board-glitch.md with diagnosis + fix + alternative fixes (Netlify Drop, dashboard disable, _redirects).
 - Commits pushed: 6bdc3a92, 75abaaab (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-153 Draft board controls)
+
+- P-153: Draft board controls proposal in inbox/20261025-1060-beam-P-153-work.md. Covers all 15 sub-items (sort menu words, position sort order, team logo filter, search box, table/cards toggle, drafting as removed, no horizontal scrollbar, same-size bubbles, all/none graphic, undo arrow, Priority numbers broken — root cause: prioOf returns 1, PRIO_MULT dead code, score = pri). SAFE ALONE for cosmetic items; Priority fix needs testing.
+- Commits pushed: dbe4ec0b (verified via git ls-remote).
+- No product file edits, no protected constants changed.
