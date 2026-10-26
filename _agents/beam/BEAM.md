@@ -697,3 +697,9 @@
 - P-175: Window compression audit (CSS-based, no Playwright) in inbox/20261025-1120-beam-P-175-work.md. Breakpoints: 860px (2-col→1-col), 760px (mobile). No fixed widths >200px. Panels don't "get bigger" — container shrinks. Recommend intermediate 1024px breakpoint + consolidate 760px blocks.
 - Commits pushed: be73f0d7 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-176 Preseason copy rewrites)
+
+- P-176: Preseason copy rewrites proposal in inbox/20261025-1130-beam-P-176-work.md. 12 text/CSS changes: remove "on offense and on defense", capital O in "Opponents", float in, remove repeated "label stays the same", remove "Why we recommend Auto" (P-054), remove 2-pt "This changes" paragraph, aggression texts, "Conversion" in full, remove "(x teams run it)"/"Follows the usual NFL chart", negative numbers for built-in cost, bigger dropdown text.
+- Commits pushed: d0708f76 (verified via git ls-remote).
+- No product file edits, no protected constants changed.
