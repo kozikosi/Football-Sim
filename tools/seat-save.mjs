@@ -10,7 +10,7 @@
 //   === FILE: bulletin/20261023-2200-<seat>.md ===
 //   ...file text...
 //   === END ===
-// Allowed paths: _agents/**, bulletin/**, tasks/** . Anything else (AGENTS.md, product files, tools/) is refused.
+// Allowed paths: _agents/**, bulletin/**, inbox/**, tasks/** . Anything else (AGENTS.md, product files, tools/) is refused.
 import { execFileSync } from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -27,7 +27,7 @@ const written = [];
 for (let i = 1; i < parts.length; i += 2) {
   const rel = parts[i].trim();
   const body = parts[i + 1].replace(/^=== END ===\s*$/m, '').replace(/^\n/, '');
-  if (path.isAbsolute(rel) || rel.split('/').includes('..') || !/^(_agents|bulletin|tasks)\//.test(rel)) { console.error(`refused path: ${rel} (allowed: _agents/, bulletin/, tasks/)`); process.exit(3); }
+  if (path.isAbsolute(rel) || rel.split('/').includes('..') || !/^(_agents|bulletin|inbox|tasks)\//.test(rel)) { console.error(`refused path: ${rel} (allowed: _agents/, bulletin/, inbox/, tasks/)`); process.exit(3); }
   const dest = path.join(wt, rel); fs.mkdirSync(path.dirname(dest), { recursive: true }); fs.writeFileSync(dest, body.trimEnd() + '\n'); written.push(rel);
 }
 if (!written.length) { console.error('no "=== FILE: path ===" blocks found'); process.exit(4); }
