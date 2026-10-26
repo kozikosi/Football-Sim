@@ -679,3 +679,9 @@
 - P-107: Offense/defense style tables proposal in inbox/20261025-1090-beam-P-107-work.md. Sort by Personnel (alphabetical), rename "Setup used" → "Personnel", smaller text (0.8rem). SAFE ALONE: YES.
 - Commits pushed: c1ed7128 (verified via git ls-remote).
 - No product file edits, no protected constants changed.
+
+## Work completed (24 Oct, continued — P-113 Standings)
+
+- P-113: Standings shorten names + user division at top proposal in inbox/20261025-1100-beam-P-113-work.md. 32-team short-name map, user's division full size at top, others smaller/collapsed.
+- Commits pushed: 5007d4dd (verified via git ls-remote).
+- No product file edits, no protected constants changed.
