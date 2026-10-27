@@ -1,0 +1,70 @@
+{
+ "boot": {
+  "title": "NFL Draft Simulator",
+  "buttons": 16,
+  "players": 1200,
+  "rosterSlots": 26,
+  "hasDraftSelect": true,
+  "selectOptions": 33
+ },
+ "pool": {
+  "n": 1200,
+  "byPos": {
+   "WR": 151,
+   "QB": 40,
+   "REDG": 58,
+   "TE": 53,
+   "CB": 141,
+   "MIKE": 43,
+   "HB": 89,
+   "LT": 39,
+   "RT": 39,
+   "LEDG": 71,
+   "DT": 125,
+   "LG": 38,
+   "C": 31,
+   "RG": 43,
+   "FS": 53,
+   "SS": 54,
+   "WILL": 43,
+   "FB": 8,
+   "K": 32,
+   "P": 32,
+   "LS": 12,
+   "SAM": 5
+  },
+  "maye": [
+   {
+    "pos": "QB",
+    "team": "New England Patriots",
+    "ovr": 89
+   }
+  ],
+  "top10": [
+   "Ja'Marr Chase|WR|99",
+   "Jaxon Smith-Njigba|WR|99",
+   "Josh Allen|QB|99",
+   "Matthew Stafford|QB|99",
+   "Myles Garrett|REDG|99",
+   "Trey McBride|TE|99",
+   "Christian Gonzalez|CB|98",
+   "Fred Warner|MIKE|98",
+   "Jahmyr Gibbs|HB|98",
+   "Micah Parsons|REDG|98"
+  ]
+ },
+ "eff": {
+  "qbAtQB": 95,
+  "qbAtWR1": 87,
+  "qbLegalSlots": [
+   "QB"
+  ],
+  "hbLegalSlots": [
+   "RB1",
+   "RB2",
+   "TE1",
+   "TE2"
+  ]
+ },
+ "consoleErrors": []
+}

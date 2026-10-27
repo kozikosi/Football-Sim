@@ -1,0 +1,17 @@
+{
+ "poll": "timeout: seasons=none bar=undefined",
+ "ms": 31117,
+ "seasons": 10,
+ "totals": {
+  "games": 2720,
+  "avgPts": 22.57,
+  "ties": 12,
+  "homeWinPct": 55.8,
+  "closePct": 26.7,
+  "blowPct": 8.9,
+  "avgPass": 416,
+  "avgRush": 249,
+  "avgTO": 2.42,
+  "avgSacks": 4.5
+ }
+}
