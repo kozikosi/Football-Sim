@@ -7,7 +7,7 @@
 
 ## Current work
 - **Claimed / in progress:** (none — all claimed items completed & pushed)
-- **Done this session:** 13 council reviews completed & pushed on `council/vl` (P-004, P-007, P-008, P-009, P-018, P-040, P-041, P-042, P-043, P-044, P-045, P-068, P-069, P-071, P-072, P-073); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md` (graphical playoff preview with matchup header, stat bars, chips, key players, win-prob bar; bye-week panel replaces the single dsub line at l.3975).
+- **Done this session:** 24 council reviews completed & pushed on `council/vl` (P-004 #2, P-007 #1, P-008 #3, P-009 #3, P-018 #2, P-019 #2, P-020 #2, P-022 #1, P-023 #1, P-040 #3, P-041 #3, P-042 #2, P-043 #2, P-044 #2, P-045 #2, P-046 #1, P-058 #1, P-064 #1, P-067 #1, P-068 #2, P-069 #2, P-071 #2, P-072 #2, P-073 #2, P-074 #2, P-075 #2, P-076 #2, P-077 #2, P-078 #1, P-100 #1, P-101 #1, P-102 #2, P-103 #1, P-104 #1, P-108 #1); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md` (graphical playoff preview with matchup header, stat bars, chips, key players, win-prob bar; bye-week panel replaces the single dsub line at l.3975).
 - **Blocked / waiting on:** Architect review/accept of all 14 review verdicts + P-021 patch; none blocked on other seats.
 
 ## What the next session needs
@@ -84,3 +84,41 @@
 - `inbox/20261026-1500-vl-P-021-claim.md`
 - `inbox/20261026-1500-vl-P-021-review.md`
 - `_agents/vl/deliveries/p021-playoff-preview-prototype.html`
+- `inbox/20261026-1505-vl-P-019-claim.md`
+- `inbox/20261026-1505-vl-P-019-review.md`
+- `inbox/20261026-1510-vl-P-020-claim.md`
+- `inbox/20261026-1510-vl-P-020-review.md`
+- `inbox/20261026-1515-vl-P-022-claim.md`
+- `inbox/20261026-1515-vl-P-022-review.md`
+- `inbox/20261026-1520-vl-P-023-claim.md`
+- `inbox/20261026-1520-vl-P-023-review.md`
+- `inbox/20261026-1525-vl-P-046-claim.md`
+- `inbox/20261026-1525-vl-P-046-review.md`
+- `inbox/20261026-1530-vl-P-058-claim.md`
+- `inbox/20261026-1530-vl-P-058-review.md`
+- `inbox/20261026-1535-vl-P-064-claim.md`
+- `inbox/20261026-1535-vl-P-064-review.md`
+- `inbox/20261026-1540-vl-P-067-claim.md`
+- `inbox/20261026-1540-vl-P-067-review.md`
+- `inbox/20261026-1545-vl-P-074-claim.md`
+- `inbox/20261026-1545-vl-P-074-review.md`
+- `inbox/20261026-1550-vl-P-075-claim.md`
+- `inbox/20261026-1550-vl-P-075-review.md`
+- `inbox/20261026-1555-vl-P-076-claim.md`
+- `inbox/20261026-1555-vl-P-076-review.md`
+- `inbox/20261026-1560-vl-P-077-claim.md`
+- `inbox/20261026-1560-vl-P-077-review.md`
+- `inbox/20261026-1565-vl-P-078-claim.md`
+- `inbox/20261026-1565-vl-P-078-review.md`
+- `inbox/20261026-1570-vl-P-100-claim.md`
+- `inbox/20261026-1570-vl-P-100-review.md`
+- `inbox/20261026-1575-vl-P-101-claim.md`
+- `inbox/20261026-1575-vl-P-101-review.md`
+- `inbox/20261026-1580-vl-P-102-claim.md`
+- `inbox/20261026-1580-vl-P-102-review.md`
+- `inbox/20261026-1585-vl-P-103-claim.md`
+- `inbox/20261026-1585-vl-P-103-review.md`
+- `inbox/20261026-1590-vl-P-104-claim.md`
+- `inbox/20261026-1590-vl-P-104-review.md`
+- `inbox/20261026-1595-vl-P-108-claim.md`
+- `inbox/20261026-1595-vl-P-108-review.md`
