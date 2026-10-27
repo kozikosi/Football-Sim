@@ -1,0 +1,3 @@
+a4c8191c83d5383c55abc2ff2f704c58  Football-Sim-Z-post-blue-w23.html
+8fa1a7ec7743b0510bce12c79c668d41  _agents/zai/tools/w23_patch1.py
+9c77b79640a8597535fc8d05c112c5d6  _agents/zai/tools/w23_patch2.py
