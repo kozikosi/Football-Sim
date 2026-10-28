@@ -2948,7 +2948,7 @@ function zpbGameReplay(g, focusTeam){
    const zpbChip = t=>'<span class="zrl-badge zrl-chip">'+t+'</span>'; // w19 (Owner): the play speaks in boxes
    const zpbYds = s=>{ const m = /(\d+)\s*yds/.exec(s||''); return m ? zpbChip(m[1]+'Y') : ''; };
    if(e.type==='FG') return (inf.kicker || 'Kicker') + ' ' + zpbChip('FG') + (window.zpbCineYds ? ' ' + zpbYds(zpbCineYds(e,'fg')) : '');
-   if(e.type==='SAF') return 'Safety';
+   if(e.type==='SAF'){ const s0 = inf.safs && inf.safs.shift(); return (s0 && s0.n1 && s0.n2 && s0.n1!==s0.n2) ? (s0.n1 + ' & ' + s0.n2) : ((s0 && s0.n1) || 'Safety'); } // w28 (Owner): a safety names both defenders
    if(e.type==='TD'){
     const total = inf.recs.length + inf.rush.length;
     const isPass = total ? Math.random() < (inf.recs.length/total) : false;
@@ -3072,14 +3072,15 @@ function zpbGameReplay(g, focusTeam){
     const ct = st.recTD || 0; for(let i=0;i<ct;i++) recs.push(p.name);
    });
    const dtq = ((g.detail && g.detail[sd] && g.detail[sd].defScores) || []).slice().sort((a,b)=>(a.q-b.q)).map(d=>({name:d.name, kind:d.type}));
-   info[sd] = {qbName:qbName, kicker:kicker, recs:recs, rush:rush, dtq:dtq};
+   const safs = ((g.detail && g.detail[sd] && g.detail[sd].safeties) || []).slice().map(x=> (x && x.n1) ? x : {n1:(typeof x==='string'?x:''), n2:(typeof x==='string'?x:'')}); // w28 (Owner): safeties carry two names
+   info[sd] = {qbName:qbName, kicker:kicker, recs:recs, rush:rush, dtq:dtq, safs:safs};
   });
   const describe = e=>{
    const inf = info[e.side] || {recs:[], rush:[], qbName:'', kicker:'', dtq:[]};
    const zpbChip = t=>'<span class="zrl-badge zrl-chip">'+t+'</span>'; // w19 (Owner): the play speaks in boxes
    const zpbYds = s=>{ const m = /(\d+)\s*yds/.exec(s||''); return m ? zpbChip(m[1]+'Y') : ''; };
    if(e.type==='FG') return (inf.kicker || 'Kicker') + ' ' + zpbChip('FG') + (window.zpbCineYds ? ' ' + zpbYds(zpbCineYds(e,'fg')) : '');
-   if(e.type==='SAF') return 'Safety';
+   if(e.type==='SAF'){ const s0 = inf.safs && inf.safs.shift(); return (s0 && s0.n1 && s0.n2 && s0.n1!==s0.n2) ? (s0.n1 + ' & ' + s0.n2) : ((s0 && s0.n1) || 'Safety'); } // w28 (Owner): a safety names both defenders
    if(e.type==='TD'){
     const total = inf.recs.length + inf.rush.length;
     const isPass = total ? Math.random() < (inf.recs.length/total) : false;
@@ -3100,7 +3101,17 @@ function zpbGameReplay(g, focusTeam){
   // turnovers: real totals from the box score, spaced across quarters for the log
   const toH = (r.homeStats && r.homeStats.turnovers) || 0, toA = (r.awayStats && r.awayStats.turnovers) || 0;
   const toEvents = [];
-  const tkQ = {home:((g.detail && g.detail.home && g.detail.home.takeaways) || []).slice(), away:((g.detail && g.detail.away && g.detail.away.takeaways) || []).slice()};
+  const tkQ = {home:((g.detail && g.detail.away && g.detail.away.takeaways) || []).slice(), away:((g.detail && g.detail.home && g.detail.home.takeaways) || []).slice()}; // w28 (Owner): a home giveaway is taken by the AWAY defense — the queues were cross-wired, which is why the nameless fallback ever fired
+  [['home',toH],['away',toA]].forEach(([sd,n])=>{ // w28 (Owner): belt and braces — if the records ever come up short, pad from the box score so no line is ever nameless
+   while(tkQ[sd].length < n){
+    const opp2 = sd==='home' ? 'away' : 'home';
+    const dps = ((g.detail && g.detail[opp2] && g.detail[opp2].players) || []).filter(p=>p.group==='DL'||p.group==='LB'||p.group==='DB').sort((a,b)=>(b.impact||0)-(a.impact||0));
+    const opss = ((g.detail && g.detail[sd] && g.detail[sd].players) || []).filter(p=>p.group==='QB'||p.group==='RB').sort((a,b)=>((b.st.int||0)+(b.st.fumLost||0))-((a.st.int||0)+(a.st.fumLost||0)));
+    const dN = dps.length ? dps[tkQ[sd].length % dps.length].name : '';
+    const oN = opss.length ? opss[tkQ[sd].length % opss.length].name : '';
+    tkQ[sd].push({type:'FUM', name:dN, from:oN, recoveredBy:dN});
+   }
+  });
   [['home',toH],['away',toA]].forEach(([sd,n])=>{
    for(let i=0;i<n;i++){
     const q = Math.min(4, 1+Math.floor((i+0.5)/Math.max(n,1)*4));
@@ -3200,22 +3211,34 @@ function zpbGameReplay(g, focusTeam){
     const ev = e;
     timers.push(setTimeout(()=>{
      if(ev.type==='TO'){
-      const line = document.createElement('div');
-      line.className = 'zpb-rep-line zrl-to';
+      // w28 (Owner): a fumble is one line per player — KC x [FUM] / DEN y [FF] / DEN z [FR] —
+      // the same defender forcing and recovering wears both boxes on one line, and an interception
+      // keeps the x [INT] y shape. No line is ever nameless.
       const tk = (tkQ[ev.side] || []).shift();
       const zpbTc = t=>'<span class="zrl-badge zrl-chip">'+t+'</span>'; // w19 (Owner): FF / FR / INT wear boxes
-      const toTxt = tk ? (tk.type==='INT'
-        ? ((tk.name || '') + ' ' + zpbTc('INT') + ' ' + (tk.from || ''))
-        : (tk.recoveredBy && tk.recoveredBy===tk.name
-           ? ((tk.name || '') + ' ' + zpbTc('FF') + ' & ' + zpbTc('FR'))
-           : ((tk.name || '') + ' ' + zpbTc('FF') + (tk.recoveredBy ? ', ' + zpbTc('FR') : ''))))
-       : (abbr(g[ev.side==='home'?'away':'home']) + ' gives it up');
       const zpbWinner = ev.side==='home' ? g.away : g.home; // the team that won the ball
-      line.innerHTML = '<span class="zrl-t">' + ev.q + 'Q ' + clockOf(ev) + '</span>' + crest(g[ev.side])
-       + '<span class="zrl-team">' + abbr(g[ev.side]) + '</span><span class="zrl-play">' + toTxt + '</span>'
-       + '<span class="zrl-badge" style="color:' + colOf(zpbWinner) + ';">\u2022 ' + abbr(zpbWinner) + '</span>'; // w19 (Owner): TO is a dot; the box names who takes over
-      log.appendChild(line);
-      requestAnimationFrame(()=>{ line.classList.add('in'); });
+      const oppKey = ev.side==='home' ? 'away' : 'home';
+      const zpbLine = (teamKey, txt, dot)=>{
+       const ln = document.createElement('div');
+       ln.className = 'zpb-rep-line zrl-to';
+       ln.innerHTML = '<span class="zrl-t">' + ev.q + 'Q ' + clockOf(ev) + '</span>' + crest(g[teamKey])
+        + '<span class="zrl-team">' + abbr(g[teamKey]) + '</span><span class="zrl-play">' + txt + '</span>'
+        + (dot ? '<span class="zrl-badge" style="color:' + colOf(zpbWinner) + ';">\u2022 ' + abbr(zpbWinner) + '</span>' : '');
+       log.appendChild(ln);
+       requestAnimationFrame(()=>{ ln.classList.add('in'); });
+      };
+      if(tk && tk.type==='INT'){
+       zpbLine(ev.side, (tk.name || '') + ' ' + zpbTc('INT') + ' ' + (tk.from || ''), true);
+      } else if(tk && tk.recoveredBy && tk.recoveredBy===tk.name){
+       zpbLine(ev.side, (tk.from || '') + ' ' + zpbTc('FUM'), false);
+       zpbLine(oppKey, (tk.name || '') + ' ' + zpbTc('FF') + ' & ' + zpbTc('FR'), true);
+      } else if(tk){
+       zpbLine(ev.side, (tk.from || '') + ' ' + zpbTc('FUM'), false);
+       zpbLine(oppKey, (tk.name || '') + ' ' + zpbTc('FF'), false);
+       zpbLine(oppKey, (tk.recoveredBy || tk.name || '') + ' ' + zpbTc('FR'), true);
+      } else {
+       zpbLine(ev.side, zpbTc('TO'), true);
+      }
       log.scrollTop = log.scrollHeight;
       return;
      }
@@ -3573,7 +3596,7 @@ renderLineupComparisonHTML = function(homeTeam, awayTeam){
  const stA = (typeof zpbRowVars==='function') ? zpbRowVars(awayTeam) : '';
  const stH = (typeof zpbRowVars==='function') ? zpbRowVars(homeTeam) : '';
  const hd = '<div class="zpb-lu-row zpb-lu-hd"><span class="zpb-lu-cell zpb-lu-l" style="' + stA + '">' + lg(awayTeam) + ' <b>' + nick(awayTeam) + '</b></span><span class="zpb-lu-c"></span><span class="zpb-lu-cell zpb-lu-r" style="' + stH + '"><b>' + nick(homeTeam) + '</b> ' + lg(homeTeam) + '</span></div>';
- return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Lineups</h4>${hd}${renderLineupTableHTML(awaySlotmap, homeSlotmap, awayTeam, homeTeam)}</div>`;
+ return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">LINEUPS</h4>${hd}${renderLineupTableHTML(awaySlotmap, homeSlotmap, awayTeam, homeTeam)}</div>`; // w28 (Owner): tab titles capitalized
 };
 
 // preview strip: no "model" text, no logos in the edge chips, edges aligned by
@@ -5921,26 +5944,27 @@ function passerRating(cmp, att, yds, td, int){
 }
 // extra tracked stats, worded for a box-score line
 function extraStats(group, s){
+ // w28 (Owner): FF, TKL, FR — the badges law in the extra chips too
  const p = [];
- if(group==='QB' && s.sackd) p.push(`sacked ${s.sackd}x`);
- if(s.fum) p.push(`${s.fum} fumble${s.fum===1?'':'s'}${s.fumLost?` (${s.fumLost} lost)`:''}`);
- if(s.tpc) p.push(`${s.tpc} 2-Pt Conv${s.tpc===1?'':'s'}`);
- if(s.fr) p.push(`${s.fr} fumble recover${s.fr===1?'y':'ies'}`);
- if(s.dtd) p.push(`${s.dtd} defensive TD${s.dtd===1?'':'s'}`);
- if(s.saf) p.push(`${s.saf} safety`);
- if(s.blk) p.push(`${s.blk} blocked kick${s.blk===1?'':'s'}`);
- if(s.krN) p.push(`${s.krN} KR for ${s.krYds} yds`);
- if(s.prN) p.push(`${s.prN} PR for ${s.prYds} yds`);
+ if(s.fum) p.push(`${s.fum} FUM${s.fumLost?` (${s.fumLost} LOST)`:''}`);
+ if(s.tpc) p.push(`${s.tpc} 2PT`);
+ if(s.fr) p.push(`${s.fr} FR`);
+ if(s.dtd) p.push(`${s.dtd} DEF TD`);
+ if(s.saf) p.push(`${s.saf} SAF`);
+ if(s.blk) p.push(`${s.blk} BLK`);
+ if(s.krN) p.push(`${s.krN}/${s.krYds||0} KR`);
+ if(s.prN) p.push(`${s.prN}/${s.prYds||0} PR`);
  return p;
 }
 function gameStatLine(group, s){
+ // w28 (Owner): the badge law — every token capitalized; C, RUSHY, PASSY, RECY, Y, SK/SKS, SAF, PRSS
  const parts = [];
- if(group==='QB'){ parts.push(`${s.cmp||0}/${s.att||0}, ${s.passYds||0} yds, ${s.passTD||0} TD`); if(s.int) parts.push(`${s.int} INT`); if(s.rushYds) parts.push(`${s.rushYds} rush yds`); if(s.rushTD) parts.push(`${s.rushTD} rush TD`); }
- else if(group==='RB'){ parts.push(`${s.car||0} car, ${s.rushYds||0} rush yds`); if(s.rushTD) parts.push(`${s.rushTD} TD`); if(s.recYds) parts.push(`${s.recYds} rec yds`); if(s.recTD) parts.push(`${s.recTD} rec TD`);  }
- else if(group==='WR' || group==='TE'){ parts.push(`${s.rec||0}/${s.tgt||0} rec, ${s.recYds||0} yds`); if(s.recTD) parts.push(`${s.recTD} TD`); if(s.rushTD) parts.push(`${s.rushTD} rush TD`);  }
- else if(group==='K'){ parts.push(`${s.fg||0} FG`); }
- else if(group==='OL'){ parts.push(`${s.rbk||0} rush yds behind`, `${s.pk||0} pancakes`); if(s.sa) parts.push(`${s.sa} sack${s.sa===1?'':'s'} allowed`); if(s.pa) parts.push(`${s.pa} pressure${s.pa===1?'':'s'} allowed`); }
- else { if(s.sack) parts.push(`${s.sack} sack${s.sack===1?'':'s'}`); if(s.dint) parts.push(`${s.dint} INT`); if(s.ff) parts.push(`${s.ff} FF`); if(s.pd) parts.push(`${s.pd} PD`); if(s.tfl) parts.push(`${s.tfl} TFL`); parts.push(`${s.tkl||0} tkl`); }
+ if(group==='QB'){ parts.push(`${s.cmp||0}/${s.att||0} CMP`, `${s.passYds||0} PASSY`, `${s.passTD||0} TD`); if(s.int) parts.push(`${s.int} INT`); if(s.rushYds) parts.push(`${s.rushYds} RUSHY`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`); if(s.sackd) parts.push(`${s.sackd} SK`); }
+ else if(group==='RB'){ parts.push(`${s.car||0} C`, `${s.rushYds||0} RUSHY`); if(s.rushTD) parts.push(`${s.rushTD} TD`); if(s.recYds) parts.push(`${s.recYds} RECY`); if(s.recTD) parts.push(`${s.recTD} REC TD`);  }
+ else if(group==='WR' || group==='TE'){ parts.push(`${s.rec||0}/${s.tgt||0} REC`, `${s.recYds||0} RECY`); if(s.recTD) parts.push(`${s.recTD} TD`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`);  }
+ else if(group==='K'){ parts.push(`${s.fg||0}/${s.fga||0} FG`); }
+ else if(group==='OL'){ parts.push(`${s.rbk||0} RUSHY`, `${s.pk||0} PK`); if(s.sa) parts.push(`${s.sa} SK A`); if(s.pa) parts.push(`${s.pa} PRSS A`); }
+ else { if(s.sack) parts.push(`${s.sack} SK${s.sack===1?'':'S'}`); if(s.dint) parts.push(`${s.dint} INT`); if(s.ff) parts.push(`${s.ff} FF`); if(s.pd) parts.push(`${s.pd} PD`); if(s.tfl) parts.push(`${s.tfl} TFL`); parts.push(`${s.tkl||0} TKL`); }
  return parts.concat(extraStats(group, s)).join(', ');
 }
 function splitAmong(total, items){
@@ -6049,7 +6073,7 @@ function buildOffenseDetail(sm, teamName, stats, events, defTD){
    tdScorers.push({name:rs.e.name, group:SLOT_GROUP[rs.slot], kind:'rush', q:ev.q});
   }
  });
- if(k) add(k, 'K', 'fg', events.filter(e=>e.type==='FG').length);
+ if(k){ const fgMade = events.filter(e=>e.type==='FG').length; const missLam = 0.22 + Math.max(0, 82 - k.ovr)*0.03; add(k, 'K', 'fg', fgMade); add(k, 'K', 'fga', fgMade + poisson(missLam)); } // w28 (Owner): FG reads made/attempts — misses are noise; the scoreboard never changes
  // two-point tries: a TD worth 8 converted one; a TD worth 6 is either a missed kick or a failed try (decided once per event)
  tdAll.forEach(ev=>{
   const made = ev.pts===8;
@@ -6148,7 +6172,10 @@ function buildDefenseDetail(sm, teamName, oppGiveaways, sacksForced, sk, extra){
  const safeties = [];
  for(let i=0;i<(extra.saf||0);i++){
   const s = weightedPick(sackers.map(x=>({item:x, w:sackW[x]*ovrFactor(bySlot[x].e.ovr,45)})));
-  const pl = P(bySlot[s].e, s); pl.st.saf = (pl.st.saf||0)+1; safeties.push(bySlot[s].e.name);
+  const pl = P(bySlot[s].e, s); pl.st.saf = (pl.st.saf||0)+1;
+  const mates = sackers.filter(x=>x!==s); // w28 (Owner): a safety is never a solo act — a second defender is always in on it
+  const s2 = mates.length ? weightedPick(mates.map(x=>({item:x, w:sackW[x]*ovrFactor(bySlot[x].e.ovr,45)}))) : s;
+  safeties.push({n1:bySlot[s].e.name, n2:bySlot[s2].e.name});
  }
  // blocked kicks (field goal, punt or extra point): rare, and mostly a big interior lineman getting a hand up
  const blocks = [], blkW = {DT1:1,DT2:.7,DE1:.4,DE2:.3,SAM:.5,MIKE:.3,CB3:.3,SS:.2};
@@ -6561,7 +6588,7 @@ function turnoverParagraph(g, collapse, raw){
  // swing plays that are not turnovers: safeties, blocked kicks, defensive scores not already told above
  ['home','away'].forEach(s=>{
   const safQs = (r[s+'Events']||[]).filter(e=>e.type==='SAF').map(e=>e.q);
-  (d[s].safeties||[]).forEach((nm,i)=> bits.push(`${nm} dropped a ball carrier in the end zone for a safety, two points for ${T(s)}.`, safQs[i]||4));
+  (d[s].safeties||[]).forEach((nm,i)=>{ const a2 = (nm && nm.n1) ? nm : {n1:nm, n2:nm}; bits.push(a2.n1===a2.n2 ? `${a2.n1} dropped a ball carrier in the end zone for a safety, two points for ${T(s)}.` : `${a2.n1}, with ${a2.n2} in on the tackle, dropped the ball carrier in the end zone for a safety, two points for ${T(s)}.`, safQs[i]||4); }); // w28 (Owner): both defenders get their name in the story
   (d[s].blocks||[]).forEach((bk,i)=> bits.push(`${bk.name} got a hand on ${bk.kind==='extra point'?'an':'a'} ${bk.kind} and blocked it for ${T(s)}.`, hashPick(g,'bq'+s+i,[1,2,3,4])));
  });
 
@@ -7208,15 +7235,16 @@ function userPlayoffResultText(userTeam){
 function seasonImpact(st){ return statImpact(st); }
 function fmtN(n){ return (n||0).toLocaleString('en-US'); }
 function seasonStatLine(group, s){
+ // w28 (Owner): the badge law across the season lines — C, RUSHY, PASSY, RECY, SK/SKS, PRSS, FG made/attempts
  const parts = [];
- if(group==='QB'){ parts.push(`${fmtN(s.cmp)}/${fmtN(s.att)} cmp`, `${fmtN(s.passYds)} pass yds`, `${s.passTD||0} TD`, `${s.int||0} INT`, `${passerRating(s.cmp,s.att,s.passYds,s.passTD||0,s.int||0).toFixed(1)} rate`); if(s.rushYds) parts.push(`${fmtN(s.rushYds)} rush yds`); }
- else if(group==='RB'){ parts.push(`${fmtN(s.car)} car`, `${fmtN(s.rushYds)} rush yds`, `${s.rushTD||0} TD`); if(s.recYds) parts.push(`${fmtN(s.recYds)} rec yds`); if(s.recTD) parts.push(`${s.recTD} rec TD`); }
- else if(group==='WR'||group==='TE'){ parts.push(`${fmtN(s.rec)}/${fmtN(s.tgt)} rec`, `${fmtN(s.recYds)} yds`, `${s.recTD||0} TD`); if(s.rushTD) parts.push(`${s.rushTD} rush TD`); }
- else if(group==='K'){ parts.push(`${s.fg||0} FG`); }
- else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} rush yds behind`, `${s.pk||0} pancakes`, `${s.sa||0} sacks allowed`, `${s.pa||0} pressures allowed`); }
- else if(group==='DL'){ parts.push(`${s.sack||0} sacks`, `${s.tfl||0} TFL`, `${s.hur||0} pressures`, `${s.tkl||0} tkl`); if(s.ff) parts.push(`${s.ff} FF`); }
- else if(group==='LB'){ parts.push(`${s.tkl||0} tkl`, `${s.tfl||0} TFL`, `${s.sack||0} sacks`); if(s.dint) parts.push(`${s.dint} INT`); if(s.pd) parts.push(`${s.pd} PD`); if(s.ff) parts.push(`${s.ff} FF`); }
- else { parts.push(`${s.dint||0} INT`, `${s.pd||0} PD`, `${s.tkl||0} tkl`); if(s.ff) parts.push(`${s.ff} FF`); }
+ if(group==='QB'){ parts.push(`${fmtN(s.cmp)}/${fmtN(s.att)} CMP`, `${fmtN(s.passYds)} PASSY`, `${s.passTD||0} TD`, `${s.int||0} INT`, `${passerRating(s.cmp,s.att,s.passYds,s.passTD||0,s.int||0).toFixed(1)} RTG`); if(s.rushYds) parts.push(`${fmtN(s.rushYds)} RUSHY`); }
+ else if(group==='RB'){ parts.push(`${fmtN(s.car)} C`, `${fmtN(s.rushYds)} RUSHY`, `${s.rushTD||0} TD`); if(s.recYds) parts.push(`${fmtN(s.recYds)} RECY`); if(s.recTD) parts.push(`${s.recTD} REC TD`); }
+ else if(group==='WR'||group==='TE'){ parts.push(`${fmtN(s.rec)}/${fmtN(s.tgt)} REC`, `${fmtN(s.recYds)} RECY`, `${s.recTD||0} TD`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`); }
+ else if(group==='K'){ parts.push(`${s.fg||0}/${s.fga||0} FG`); }
+ else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} RUSHY`, `${s.pk||0} PK`, `${s.sa||0} SK A`, `${s.pa||0} PRSS A`); }
+ else if(group==='DL'){ parts.push(`${s.sack||0} SK${(s.sack||0)===1?'':'S'}`, `${s.tfl||0} TFL`, `${s.hur||0} PRSS`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
+ else if(group==='LB'){ parts.push(`${s.tkl||0} TKL`, `${s.tfl||0} TFL`, `${s.sack||0} SK${(s.sack||0)===1?'':'S'}`); if(s.dint) parts.push(`${s.dint} INT`); if(s.pd) parts.push(`${s.pd} PD`); if(s.ff) parts.push(`${s.ff} FF`); }
+ else { parts.push(`${s.dint||0} INT`, `${s.pd||0} PD`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
  return parts.concat(extraStats(group, s)).join(', ');
 }
 let STATS_KIND = 'rs';
@@ -7263,16 +7291,16 @@ function leaderBoards(mode){
  const rows = Object.values(curBook());
  const f1 = v => (v==null?'—':v.toFixed(1));
  const boards = [
-  {title:'Quarterbacks', group:'QB', key:'passYds', cols:[['Cmp/Att',r=>`${fmtN(r.st.cmp)}/${fmtN(r.st.att)}`],['Yds',r=>fmtN(r.st.passYds)],['TD',r=>r.st.passTD||0],['INT',r=>r.st.int||0],['Rate',r=>passerRating(r.st.cmp,r.st.att,r.st.passYds,r.st.passTD||0,r.st.int||0).toFixed(1)],['TD:INT',r=>f1((r.st.passTD||0)/Math.max(r.st.int||0,1))],['Sacked',r=>r.st.sackd||0],['FUM',r=>r.st.fum||0],['2PT',r=>r.st.tpc||0]]},
-  {title:'Running Backs', group:'RB', key:'rushYds', cols:[['Car',r=>fmtN(r.st.car)],['Rush',r=>fmtN(r.st.rushYds)],['YPC',r=>f1((r.st.rushYds||0)/Math.max(r.st.car||0,1))],['TD',r=>r.st.rushTD||0],['Rec',r=>fmtN(r.st.recYds)],['FUM',r=>r.st.fum||0],['Lost',r=>r.st.fumLost||0],['2PT',r=>r.st.tpc||0]]},
-  {title:'Wide Receivers', group:'WR', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Yds',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0],['2PT',r=>r.st.tpc||0]]},
-  {title:'Tight Ends', group:'TE', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Yds',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0],['2PT',r=>r.st.tpc||0]]},
-  {title:'Offensive Line', group:'OL', key:'pk', cols:[['Yds behind',r=>fmtN(r.st.rbk)],['Pancakes',r=>r.st.pk||0],['Sacks alwd',r=>r.st.sa||0],['Press. alwd',r=>r.st.pa||0]]},
-  {title:'Defensive Line', group:'DL', key:'sack', cols:[['Sacks',r=>r.st.sack||0],['TFL',r=>r.st.tfl||0],['Press.',r=>r.st.hur||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0],['Blk',r=>r.st.blk||0],['Saf',r=>r.st.saf||0]]},
-  {title:'Linebackers', group:'LB', key:'tkl', cols:[['Tkl',r=>r.st.tkl||0],['TFL',r=>r.st.tfl||0],['Sacks',r=>r.st.sack||0],['INT',r=>r.st.dint||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0],['Blk',r=>r.st.blk||0],['Saf',r=>r.st.saf||0]]},
-  {title:'Defensive Backs', group:'DB', key:'dint', cols:[['INT',r=>r.st.dint||0],['PD',r=>r.st.pd||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0],['Blk',r=>r.st.blk||0],['Saf',r=>r.st.saf||0]]},
-  {title:'Kickers', group:'K', key:'fg', cols:[['FG',r=>r.st.fg||0]]},
-  {title:'Returners', group:'RET', key:'retYds', pred:r=>(r.st.krN||0)+(r.st.prN||0)>0, cols:[['KR',r=>`${r.st.krN||0} for ${fmtN(r.st.krYds)}`],['KR avg',r=>f1((r.st.krYds||0)/Math.max(r.st.krN||0,1))],['PR',r=>`${r.st.prN||0} for ${fmtN(r.st.prYds)}`],['PR avg',r=>f1((r.st.prYds||0)/Math.max(r.st.prN||0,1))],['Total yds',r=>fmtN(r.st.retYds)]]}
+  {title:'Quarterbacks', group:'QB', key:'passYds', cols:[['Cmp/Att',r=>`${fmtN(r.st.cmp)}/${fmtN(r.st.att)}`],['Y',r=>fmtN(r.st.passYds)],['TD/INT',r=>(r.st.passTD||0)+'/'+(r.st.int||0)],['SK',r=>r.st.sackd||0],['FUM',r=>r.st.fum||0]]},
+  {title:'Running Backs', group:'RB', key:'rushYds', cols:[['C/RUSHY',r=>fmtN(r.st.car||0)+'/'+fmtN(r.st.rushYds||0)],['YPC',r=>f1((r.st.rushYds||0)/Math.max(r.st.car||0,1))],['TD',r=>r.st.rushTD||0],['Rec',r=>fmtN(r.st.recYds)],['FUM',r=>r.st.fum||0]]},
+  {title:'Wide Receivers', group:'WR', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Y',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0]]},
+  {title:'Tight Ends', group:'TE', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Y',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0]]},
+  {title:'Offensive Line', group:'OL', key:'pk', cols:[['Y behind',r=>fmtN(r.st.rbk)],['SK A',r=>r.st.sa||0],['PRSS A',r=>r.st.pa||0]]},
+  {title:'Defensive Line', group:'DL', key:'sack', cols:[['SKS',r=>r.st.sack||0],['TFL',r=>r.st.tfl||0],['PRSS',r=>r.st.hur||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]},
+  {title:'Linebackers', group:'LB', key:'tkl', cols:[['Tkl',r=>r.st.tkl||0],['TFL',r=>r.st.tfl||0],['SKS',r=>r.st.sack||0],['INT',r=>r.st.dint||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]},
+  {title:'Defensive Backs', group:'DB', key:'dint', cols:[['INT',r=>r.st.dint||0],['PD',r=>r.st.pd||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]},
+  {title:'Kickers', group:'K', key:'fg', cols:[['FG',r=>(r.st.fg||0)+'/'+(r.st.fga||0)]]},
+  {title:'Returners', group:'RET', key:'retYds', pred:r=>(r.st.krN||0)+(r.st.prN||0)>0, cols:[['KR',r=>(r.st.krN||0)+'/'+fmtN(r.st.krYds||0)],['KR avg',r=>f1((r.st.krYds||0)/Math.max(r.st.krN||0,1))],['PR',r=>(r.st.prN||0)+'/'+fmtN(r.st.prYds||0)],['PR avg',r=>f1((r.st.prYds||0)/Math.max(r.st.prN||0,1))],['Total Y',r=>fmtN(r.st.retYds)]]}
  ];
  return boards.map(b=>({...b, rows: rows.filter(b.pred || (r=>r.group===b.group))
   .sort((mode==='stat' || b.pred) ? (x,y)=>(y.st[b.key]||0)-(x.st[b.key]||0) || (y.st.tkl||0)-(x.st.tkl||0) : (x,y)=>(y._rating||0)-(x._rating||0)).slice(0,10)}));
@@ -7288,11 +7316,7 @@ function leadersPane(mode){
 }
 function leadersInner(sfx){
  sfx = sfx || '';
- const blurbs = Object.keys(RATING_BLURB).filter(g=>g!=='TE').map(g=>`<b>${g}</b>: ${RATING_BLURB[g]}`).join(' · ');
- return `<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:8px;">
-   <span class="narr">Sorted by:</span><button class="tabbtn active" id="ldrBtnRtg${sfx}">Performance rating</button><button class="tabbtn" id="ldrBtnStat${sfx}">Raw stat</button></div>
-  <p class="narr" style="margin:0 0 10px;">Each position has its own rating (50 = average starter) that blends volume with efficiency, so a player can rank high without leading the league in yards. ${blurbs}.</p>
-  <div id="ldrRtg${sfx}">${leadersPane('rating')}</div><div id="ldrStat${sfx}" style="display:none;">${leadersPane('stat')}</div>`;
+  return `<div id="ldrRtg${sfx}">${leadersPane('rating')}</div>`; // w28 (Owner): the Raw stat button and the rating explainer paragraph are gone
 }
 // ---------- rendering helpers ----------
 function renderLineScoreHTML(g){
@@ -7340,7 +7364,7 @@ function matchupMathInner(homeTeam, awayTeam, g){
   <div class="zpb-mgrid">${units.map(row).join('')}</div>`;
 }
 function renderMatchupMathHTML(homeTeam, awayTeam, g){
- return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Matchup math <span class="narr" style="font-weight:400;">(how the model sees this game)</span></h4>${matchupMathInner(homeTeam, awayTeam, g)}</div>`;
+ return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">MATCHUP MATH <span class="narr" style="font-weight:400;">(how the model sees this game)</span></h4>${matchupMathInner(homeTeam, awayTeam, g)}</div>`;
 }
 
 // ---- your team's identity: which units define it, using the same grades the sim runs on ----
@@ -7365,12 +7389,13 @@ function renderGameResultHTML(game, focusTeam){
   </div>
   ${renderLineScoreHTML(game)}
   ${renderKeyPlayersHTML(game)}
-  <details style="margin-top:10px;"><summary class="narr" style="cursor:pointer;">Team stats</summary>${renderTeamStatsHTML(game)}</details>
+  <!-- w28 (Owner): Team stats paints open by default; tab titles capitalized -->
+  <details style="margin-top:10px;" open><summary class="narr" style="cursor:pointer;">TEAM STATS</summary>${renderTeamStatsHTML(game)}</details>
  </div>`;
 }
 function renderLineupComparisonHTML(homeTeam, awayTeam){
  const homeSlotmap = seasonState.teams[homeTeam].slotmap, awaySlotmap = seasonState.teams[awayTeam].slotmap;
- return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Lineups <span class="narr" style="font-weight:400;">(${awayTeam} left · ${homeTeam} right)</span></h4>${renderLineupTableHTML(awaySlotmap, homeSlotmap, awayTeam, homeTeam)}</div>`;
+ return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">LINEUPS <span class="narr" style="font-weight:400;">(${awayTeam} left · ${homeTeam} right)</span></h4>${renderLineupTableHTML(awaySlotmap, homeSlotmap, awayTeam, homeTeam)}</div>`;
 }
 function renderStandingsHTML(){
  const standings = computeStandings(seasonState.schedule, teamNames());
@@ -7487,7 +7512,7 @@ function renderRegularSeasonView(container){
    const mineRow = g.home===user||g.away===user;
    return `<div class="bracket-game bg3" style="${mineRow?'border-color:var(--accent);':''}"><span class="${aw?'bg-winner':''}">${g.away} ${g.result.awayScore}</span><span class="narr">${g.divisional?'div':'final'}</span><span class="${hw?'bg-winner':''}">${g.result.homeScore} ${g.home}</span></div>`;
   }).join('');
-  html += `<details class="panel" style="margin-bottom:14px;"><summary style="cursor:pointer;font-weight:700;">Around the league — Week ${week} scores</summary><div style="margin-top:8px;">${scoreRows}</div></details>`;
+  html += `<details class="panel" style="margin-bottom:14px;"><summary style="cursor:pointer;font-weight:700;">AROUND THE LEAGUE — WEEK ${week} SCORES</summary><div style="margin-top:8px;">${scoreRows}</div></details>`;
  }
  html += lineupPanelHTML() + renderUserScheduleHTML() + renderStandingsHTML() + renderStatsTabsHTML() + seasonOptionsHTML(); // w19 (Owner): Your Team's Identity repeated the math — gone
  container.innerHTML = html;
@@ -7795,24 +7820,24 @@ function zpbStatChipsHTML(rec){
  const chip = (v, k)=>'<span class="zpb-schip"><b>' + v + '</b><i>' + k + '</i></span>';
  if(g==='QB'){
   out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.cmp) + '/' + fmtN(s.att) + '</b></span>');
-  out.push(chip(fmtN(s.passYds||0), 'PassY'));
+  out.push(chip(fmtN(s.passYds||0), 'PASSY'));
   out.push(chip(s.passTD||0, 'TD'));
   out.push(chip(s.int||0, 'INT'));
   out.push(chip(passerRating(s.cmp,s.att,s.passYds,s.passTD||0,s.int||0).toFixed(1), '20-0'));
-  if(s.rushYds) out.push(chip(fmtN(s.rushYds), 'RushY'));
+  if(s.rushYds) out.push(chip(fmtN(s.rushYds), 'RUSHY'));
   if(s.sackd) out.push(chip(s.sackd, 'SK'));
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='RB'){
-  out.push(chip(fmtN(s.rushYds||0), 'RushY'), chip(s.rushTD||0, 'TD'));
-  if(s.recYds) out.push(chip(fmtN(s.recYds), 'RecY'));
-  if(s.recTD) out.push(chip(s.recTD, 'RecTD'));
+  out.push(chip(fmtN(s.car||0), 'C'), chip(fmtN(s.rushYds||0), 'RUSHY'), chip(s.rushTD||0, 'TD')); // w28 (Owner): carries read C
+  if(s.recYds) out.push(chip(fmtN(s.recYds), 'RECY'));
+  if(s.recTD) out.push(chip(s.recTD, 'REC TD'));
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='WR'||g==='TE'){
-  out.push(chip(fmtN(s.recYds||0), 'RecY'), chip(s.recTD||0, 'TD'));
+  out.push(chip(fmtN(s.recYds||0), 'RECY'), chip(s.recTD||0, 'TD'));
   if(s.rec) out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.rec) + '/' + fmtN(s.tgt) + '</b></span>');
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='OL'){
-  out.push(chip(fmtN(s.rbk||0), 'RbkY'), chip(s.pk||0, 'PK'), chip(s.sa||0, 'SK'));
+  out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PK'), chip(s.sa||0, 'SK A'), chip(s.pa||0, 'PRSS A')); // w28 (Owner): RUSHY behind the blocks; PRSS for pressure
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='K'){
   out.push(chip((s.fg||0) + '/' + (s.fga||s.fg||0), 'FG'), chip(s.pat||0, 'XP'));
@@ -8556,7 +8581,7 @@ function renderGamePlanPanel(g){
  const sel = (idn, label, opts, cur)=>`<label class="narr" style="display:flex;flex-direction:column;gap:2px;font-size:0.72rem;">${label}<select id="${idn}"><option value="auto">Auto</option>${opts.map(([v,l])=>`<option value="${v}" ${cur===v?'selected':''}>${l}</option>`).join('')}</select></label>`;
  const radio = (v, label, hint)=>`<label style="display:flex;gap:6px;align-items:flex-start;cursor:pointer;flex:1 1 200px;"><input type="radio" name="planMode" value="${v}" ${mode===v?'checked':''} style="margin-top:3px;"><span><b>${label}</b><span class="narr" style="display:block;margin:0;">${hint}</span></span></label>`;
  const phil = `${capFirst(offStyleName(id.off))} + ${defStyleName(id.def)}`;
- return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Game plan</h3>
+ return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">GAME PLAN</h3>
   ${planCardsHTML(g)}
   <div style="display:flex;gap:16px;flex-wrap:wrap;margin-top:10px;">
    ${radio('auto','Auto (recommended)','The math picks the best plan for this matchup.')}
@@ -8749,6 +8774,7 @@ function termsHTML(){
   <li><b>Expected vs. actual</b> — the model computes how many points a team <i>should</i> score or allow from its ratings and schedule. The scoreboard adds luck (bounces, turnovers, close games), so a team can finish well above or below its expectation without anything being wrong.</li>
   <li><b>Pass rush / edge rusher / interior line</b> — edge rushers (DE) line up on the outside and chase the quarterback; defensive tackles (DT) play in the middle and also stop runs.</li>
   <li><b>Secondary</b> — the defensive backs: cornerbacks (CB) cover receivers on the outside and safeties (SS, FS) play deeper and help against both pass and run. <b>Backfield</b> means only the area behind the offensive line where the quarterback and running backs line up.</li>
+  <li><b>Mike, Will, Sam</b> — the three starting linebacker spots. The M in Mike is for middle. The W in Will is for weak side (away from the tight end). The S in Sam is for strong side (on the tight end's side).</li>
   <li><b>Nickel</b> — a defense with five defensive backs instead of four; an extra defensive back comes in for a linebacker.</li>
   <li><b>Dime</b> — plays around 10% of the snaps, mainly on 3rd and long or 4th and long, especially at the end of the game, preventing Hail Marys.</li>
   <li><b>Pressure, sack, TFL</b> — a pressure is a hurry or hit on the quarterback, a sack is a tackle of the quarterback, and a TFL is a tackle for loss (behind the line of scrimmage).</li>
@@ -8802,13 +8828,16 @@ function zpbBadgesGuideHTML(){
   + chip('INT', 'Interception \u2014 the pass was caught by the defense.')
   + chip('FF', 'Forced fumble \u2014 the defender knocked the ball out.')
   + chip('FR', 'Fumble recovery \u2014 the ball was picked up by the defense.')
+  + chip('FUM', 'Fumble \u2014 the ball came loose; the line names who lost it.')
+  + chip('SAF', 'Safety \u2014 two points; the play names both defenders in on the tackle.')
   + chip('\u2022 KC', 'Turnover \u2014 the dot marks the giveaway; the box names the team that takes over.')
   + '<h5 class="narr" style="flex-basis:100%;margin:12px 0 4px;">On the player panels</h5>'
-  + schip('5,000', 'PassY', 'Passing yards across the season.') // w27 (Owner): the example values
+  + schip('5,000', 'PASSY', 'Passing yards across the season.') // w27 example values · w28 law: yards read PASSY / RUSHY / RECY
   + schip('50', 'TD', 'Touchdowns scored or thrown.')
   + schip('15', 'INT', 'Interceptions thrown (or caught, on defense).')
   + schip('158.3', '20-0', 'The passer rating, carrying the site\'s perfect-season mark.')
-  + schip('250', 'RushY', 'Rushing yards.')
+  + schip('250', 'RUSHY', 'Rushing yards.')
+  + schip('300', 'C', 'Carries \u2014 the handoffs the back took.') // w28 (Owner): carries read C
   + schip('25', 'SK', 'Sacks \u2014 allowed by a quarterback, or forced by a defender.')
   + schip('100', 'QBR', 'The season performance grade the math computes for this player against his peers.')
   + schip('20', 'W', 'Wins.')
@@ -10038,6 +10067,7 @@ function wireRowClicks(panel, allForClick){
 }
 
 function renderDraftResults(){ if(typeof zpbMaybeFinishCine==='function') zpbMaybeFinishCine();
+ if(seasonState && resultsView==='nfl') resultsView = 'season'; // w28 (Owner): VS. ACTUAL NFL TEAMS lives on the first draft review only — once a season exists it is gone, even from a stale view
  const panel = document.getElementById('draftFinalResults');
  const {draftEntries, realEntries} = buildResultEntries();
  const myEntry = draftEntries.find(e=>e.isUser);
@@ -10167,7 +10197,13 @@ function renderComparisonTab(container, draftEntries, realEntries){
  const selA = document.getElementById('cmpTeamA');
  const selB = document.getElementById('cmpTeamB');
  buildOptions(selA, 'YOU');
- buildOptions(selB, 'NFL:'+Object.keys(TEAM_DATA).sort()[0]);
+ { // w28 (Owner): the comparison opens on your biggest rival — the sim roster, not the actual one
+  const RIVALS = {'Buffalo Bills':'Miami Dolphins','Miami Dolphins':'Buffalo Bills','New England Patriots':'New York Jets','New York Jets':'New England Patriots','Baltimore Ravens':'Pittsburgh Steelers','Cincinnati Bengals':'Pittsburgh Steelers','Cleveland Browns':'Pittsburgh Steelers','Pittsburgh Steelers':'Baltimore Ravens','Houston Texans':'Tennessee Titans','Indianapolis Colts':'Houston Texans','Jacksonville Jaguars':'Tennessee Titans','Tennessee Titans':'Jacksonville Jaguars','Denver Broncos':'Las Vegas Raiders','Kansas City Chiefs':'Las Vegas Raiders','Las Vegas Raiders':'Kansas City Chiefs','Los Angeles Chargers':'Las Vegas Raiders','Dallas Cowboys':'Philadelphia Eagles','New York Giants':'Philadelphia Eagles','Philadelphia Eagles':'Dallas Cowboys','Washington Commanders':'Dallas Cowboys','Chicago Bears':'Green Bay Packers','Detroit Lions':'Green Bay Packers','Green Bay Packers':'Chicago Bears','Minnesota Vikings':'Green Bay Packers','Atlanta Falcons':'New Orleans Saints','Carolina Panthers':'Atlanta Falcons','New Orleans Saints':'Atlanta Falcons','Tampa Bay Buccaneers':'New Orleans Saints','Arizona Cardinals':'Seattle Seahawks','Los Angeles Rams':'San Francisco 49ers','San Francisco 49ers':'Los Angeles Rams','Seattle Seahawks':'San Francisco 49ers'};
+  const _me = draftEntries.find(e=>e.isUser);
+  const _rv = _me && RIVALS[_me.teamName];
+  const _simRival = _rv && draftEntries.find(e=>!e.isUser && e.teamName===_rv);
+  buildOptions(selB, _simRival ? 'SIM:'+_rv : 'NFL:'+Object.keys(TEAM_DATA).sort()[0]);
+ }
 
  function resolve(key){
   if(key==='YOU') return draftEntries.find(e=>e.isUser);
@@ -10180,16 +10216,12 @@ function renderComparisonTab(container, draftEntries, realEntries){
   const a = resolve(selA.value), b = resolve(selB.value);
   const resultDiv = document.getElementById('cmpResult');
   if(!a || !b){ resultDiv.innerHTML=''; return; }
-  const edges = countLineupEdges(a.slotmap, b.slotmap);
-  const units = unitComparisonHTML(a.pool, b.pool);
-  const leader = a.score>=b.score ? a : b;
-  const verdict = `${leader.label} grades ${Math.abs(a.score-b.score).toFixed(2)} points higher. ${a.label} holds the edge at ${edges.a} starting spots to ${edges.b}, and wins ${units.aUnits} of ${units.total} unit comparisons to ${units.bUnits}.`;
+  const units = unitComparisonHTML(a.pool, b.pool); // w28 (Owner): the grades/edges verdict sentence is gone — the tables speak
   resultDiv.innerHTML = `
    <div class="panel" style="margin-bottom:14px;">
     <div style="display:flex;justify-content:space-between;align-items:center;font-size:1.1rem;font-weight:700;gap:10px;flex-wrap:wrap;">
      <span>${a.label}</span><span class="score" style="color:var(--accent);">${a.score.toFixed(2)} vs ${b.score.toFixed(2)}</span><span>${b.label}</span>
     </div>
-    <p class="detail-item" style="margin-top:10px;">${verdict}</p>
    </div>
    <div class="panel" style="margin-bottom:14px;">
     <h4 style="margin-top:0;">Starter-by-Starter</h4>
@@ -10426,7 +10458,7 @@ function starsFaceoffHTML(g){
   const pre = seasonState && seasonState.currentWeek===1 && !seasonState.weekSimulated;
   const cardsOf = team=>{
    let rows = [];
-   try{ rows = teamPlayerStats(team).filter(r=>r.group!=='OL'&&r.ovr).sort((a,b)=>(b.ovr||0)-(a.ovr||0)).slice(0,5); }catch(e){}
+   try{ rows = teamPlayerStats(team).filter(r=>r.group!=='OL'&&r.ovr).sort((a,b)=>((b._rating!=null?b._rating:(b.ovr||0))-(a._rating!=null?a._rating:(a.ovr||0)))).slice(0,5); }catch(e){} // w28 (Owner): selection and order follow the season rating
    if(!rows.length){
     try{
      const sm = seasonState.teams[team].slotmap;
@@ -10452,10 +10484,8 @@ function starsFaceoffHTML(g){
   let rowsHTML = '';
   for(let i=0;i<N;i++) rowsHTML += '<div class="zpb-pvfrow">'+(AW[i]||empty)+(HM[i]||empty)+'</div>';
   // w19 (Owner): the stars face each other across the row, not stacked; the "player by player" note is gone
-  return '<div class="zpb-pvwrap"><div class="zpb-pvface"><span class="zpb-pvteamhd" style="'+stv(g.away)+'">'+lg(g.away)+'<b>'+nick(g.away)+'</b></span>'
-   + '<span class="zpb-pvvs">VS</span>'
-   + '<span class="zpb-pvteamhd" style="'+stv(g.home)+'"><b>'+nick(g.home)+'</b>'+lg(g.home)+'</span></div>'
-   + (rowsHTML || '<div class="narr" style="padding:10px;">No rated starters</div>') + '</div>';
+  // w28 (Owner): the team names already sit in Cinzel beside the model bar above — the second, non-Cinzel copy below is gone
+  return '<div class="zpb-pvwrap">' + (rowsHTML || '<div class="narr" style="padding:10px;">No rated starters</div>') + '</div>';
  }catch(err){ return ''; }
 }
 
@@ -10488,7 +10518,7 @@ renderKeyPlayersHTML = function(g){
    const rows = (typeof notablePlayers==='function') ? notablePlayers(det[sd]||{}) : [];
    let list = rows.slice();
    list = list.filter((p,i)=> list.findIndex(q=>q.name===p.name && (q.team||team)===(p.team||team))===i);   // one row per player
-   if(mvp && !list.some(p=>p.name===mvp.name)) list = [mvp].concat(list);
+   if(mvp && (mvp.team||team)===team && !list.some(p=>p.name===mvp.name)) list = [mvp].concat(list); // w28 (Owner): the game ball never visits the other team's card
    return '<div class="kp-card"><div class="kp-title" style="'+stv(team)+'">'+lg(team)+'<b>'+team+'</b></div>'
     + '<div class="zpb-pvcards">'+list.map(p=>{
         const isM = mvp && p.name===mvp.name && (p.team||team)===mvp.team;
@@ -10497,7 +10527,7 @@ renderKeyPlayersHTML = function(g){
         return card(p, team, star);
       }).join('')+'</div></div>';
   };
-  return '<h4 style="margin:14px 0 8px;">Key Players</h4><div class="kp-grid">'+side('away', g.away)+side('home', g.home)+'</div>';
+  return '<h4 style="margin:14px 0 8px;">KEY PLAYERS</h4><div class="kp-grid">'+side('away', g.away)+side('home', g.home)+'</div>';
  }catch(err){ return ''; }
 };
 
