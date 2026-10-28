@@ -1,0 +1,123 @@
+I added logos into the Football Sim main folder.  For this sport, there is all-logos-sdv.csv and the folder nf-team-logos
+
+Feel free to use whichever set you like better.   Pre-colors random comments  Please fade into the draft a lot slower. Let the home page have a couple second to fade out and the draft page have a couple seconds to fade in 
+
+The "change" button should align with overall color palette, not always blue. 
+
+Remove the Star system and this text: Chip numbers are starters drafted / starting spots (0/2 = both open). Stars set how much you care about a position: ★★ must-fill (Priority ×1.5), ★ normal, ☆ low (×0.5). Click a star to change it."  Remove this text on the draft board "you hold the #8 overall pick (Round1)"
+Align this to the right "(x.y)" where x and y are user's next draft pick round and pick number. 
+
+Remove the green from the Pick priority . Make sure green doesn’t appear in in light mode. Colors should be aligned with user selected team’s color palette. 
+
+The green in the draft menu Pick priority menu still shows up in light mode. Please correct. 
+
+Make sure that any tools or discrete sections of code that you make for post-blue is available for Claude to easily copy and paste into his own version. Please update your prompt to him if necessary. 
+
+The green in the draft menu Pick priority menu still shows up in light mode. Please correct. 
+
+This is good "Your draft is in the books. Play the season. Season, Playoffs, Super Bowl. Can you go 20-0?" Except change to  "Play the season. Coach your team to the Super Bowl. Can you go 20-0?" aligned to the right. 
+
+Remove all of this "Play a Season
+Simulate a full 17-game regular season with your drafted team against the other 31 simulated rosters, organized into real NFL divisions and conferences, then take your team through the playoffs to the Super Bowl!
+
+Starting the season builds the schedule. Nothing is simulated yet.
+On the Preseason page you choose your coaching philosophy (offensive and defensive style) and who plays where, including any flexes. Then simulate one week at a time or the rest of the season.
+New to the terms? The Guide tab explains every style, package and number on this site." and have the Start Season Button look almost identical to the home page with the same font and side but shimmering with that user' selected team's colors. That whole panel that it sits in should be removed.
+
+"Offense (QB+RB+WR+TE+OL)" Remove all of the parentheses. Just the position groups are fine. Sort these position groups from Offense to Defense in a similar pattern of the draft board your roster order. 
+
+Remove all of this text, "More than anything, this draft was about quarterback play, a group that ranks #4 league-wide, headlined by Lamar Jackson. Overall it grades out to an 81.8, which lands around the 55th percentile against the 32 real NFL rosters.
+
+The best value on the board was Tyler Bass (K), who landed at pick 806 — a real coup relative to the talent still available at that point. Not every pick can be a home run — Cobie Durant at pick 155 was more a need pick than a value pick.
+
+If there's a crack in the foundation, it's the running back room at #32 of 32. In the real NFL this profiles as a middle-of-the-pack team — competitive, but a piece or two short of a contender." There doesn't need to be any text here at all for any team. 
+
+On the preseason page, all the names aren't full visible when compressed. Maybe only show last name if the window compresses. 
+
+"Why a pass-heavy offense? The model tried all 15 offensive setups for your roster against a league-average opponent and keeps the one with the best win chance. Your strongest units are secondary (#3) and quarterback play (#4); the weakest is offensive line (run blocking) (#29). The top three: 11 personnel, pass-heavy (+0.36 pts vs. balanced 11, win chance vs. an average team 57.0%), 11 personnel, balanced (+0.00 pts vs. balanced 11, win chance vs. an average team 56.1%), and 12 personnel, pass-heavy (−0.65 pts vs. balanced 11, win chance vs. an average team 53.7%). The label stays the same all season because it describes your usual approach — the plan used in a given game can differ when a matchup calls for it, and the recaps say when it does."
+This should not be visible unless you click it on a dropdown menu. The language should be extremely simplified as if a 5th grader could read it. Ideally it would be more of a visualization than a pragraph of text. 
+
+This should be compressed and within the previous created dropdown menu. 
+
+"Why we recommend Auto. Auto tests every offensive setup (15 combinations of personnel and run/pass lean) and every defensive one (6) against an average opponent, with your lineup, and keeps whichever gives the best chance of winning. It also re-checks each week against the actual opponent. Picking something else is allowed, and the tables below show what it costs on paper, but it will rarely win more games than the math's pick. Some reasons to override anyway: you want to see how a heavy-run team plays, you want a bigger gamble as an underdog, or you just like a style. If you deviate from your philosophy during the season (three of the last four games the same new look), opponents notice and plan for it, and the recaps will point it out. Your game-plan mode each week is separate: Auto (the math picks), My coaching philosophy (always your style) or Custom (you pick every piece). The language should also be simplified as well or visualized. 
+
+The style table should be it's own dropdown menu and not visible unless clicked on. 
+
+"Follows the usual NFL chart: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th down when it is short and the field position is good." This should be the same size and font as the text above the dropdown menu in Game-day aggressiveness. 
+This should be it's own dropdown menu and not visible unless clicked on "How a 2-Pt Conv works: after a touchdown a team can kick the extra point (1 point, made about 94% of the time) or run one play from the 2-yard line for 2 points (made about 48% of the time). Both are worth about 0.95 points a try, so the choice is about game situation. Whatever your setting, a team trailing by 8 or 11 late always goes for 2, because that is the try that ties the game or leaves it a field goal from tying. Every other team in the league has its own style too, and the recap says when a team went for 2."
+
+Remove this text. "Season options
+These throw away the season in progress."
+
+When you click on one of the two, you should be brought to a screen that says "Caution: Your current season will be erased if you continue" with two buttons allowing you to return to the season or "x" one of the two buttons they clicked on initially 
+
+The color on the buttons for the chiefs looks a little weird in light mode. I would prefer more shimmering and more of a gold than the snot yellow.
+
+Remove this: "Current lineup: +13.44 wins vs. a 70s lineup, with 4 flexed starters." Remove this from the Group scores parenthesis "wins added · "
+
+Remove this: "Three optional settings, preselected with recommended values. Philosophy and aggressiveness lock at Week 1; lineup and returner stay editable."
+
+"Stars (85+ OVR)
+Chiefs
+★ Lamar Jackson QB
+95
+A.J. Brown WR1
+89
+Derwin James Jr CB1
+89
+Devin Lloyd MIKE
+86
+Jalen Pitre CB2
+86
+Kevin Byard III FS
+85
+Colts
+★ Fred Warner DE1
+92
+★ Quinyon Mitchell CB1
+90
+Jared Verse DE2
+88
+Dexter Lawrence II OT1
+87
+Malik Nabers WR1
+86"
+
+This section should be a lot more beautiful and look more like the draft board. The players should be across from each other and the stars should be glowing. 
+
+"Kansas City Chiefs
+0-0
+@
+Indianapolis Colts
+0-0"
+Remove the panel from this and be a lot more creative and interactive with the matchup. Maybe use the logos or make this prototype by Glyph kilo-file://local/Users/kosi/Desktop/wt/glyph/VISUAL-DESIGN-SHOWCASE.html a lot more dyanamic 
+
+Remove this text: "Draft, Season, Playoffs, Super Bowl. Can you go 20-0?" from the season header. 
+
+In this text in the sub header, make sure permanent green doesn't appear in the bubbles once the former step (e.g. DRAFT ) is completed. Currently the green draft buble is green while using the chiefs in light mode.
+
+I think we should remove almost of all of the game preview text. Refer to this prototype Game Preview Floaty v2 by Beam. don't copy it but that's what i mean by replace the text with a more visual, graphical layout. Same goes for the Game plan sections and the opponent scouting report section and the matchup math section and the Your Team's Identity Section and the Schedule section and the Key Players section and the Regular Season Review section and the game review section and everything should be more glimmery and the user's division should appear at the top of the Standings and the other divisions's standing should be significantly smaller
+
+Try to create an animation that occurs while the game simulates that last 15-20 seconds and slowly shows the score appearing by play and quarter and lists the names of the big plays as if reading a game log on sleeper or espn. 
+
+
+The Lineups sections is an ok layout but less boxy and table and more dyanamic floaty. The Colts colors should be used instead of the green on their players in light mode. 
+ On the homepage, as the screen becomes smaller the dropdown menus should become smaller and stay in their same positions side by side, not stack on top of each  other. 
+
+On the homepage, the footer should really be a footer and be visible at the bottom of the page. "see guide for details" should be just above the footer, even closer than it is now. 
+
+Can you give me  a separate one page prototype using the other logo package so i can see how it looks. Also maybe if you can completely subtract the white space from the logos you used that would be best. Transparent bubbles would be better if you must maintain the bubbles but I'd rather just see the logos and not the bubbles around them. 
+
+The individual players bubbles on the draft board paradoxically get larger as the screen compresses. Make sure they stay in the same formatting. Most importantly, the "draft" button disappears as the size of the window changes. That is the most important button to make sure is always visible on the screen with name and pos. Ideally you can click on any of the numbers on the screen to sort by that category. 
+
+Put the three team color bubbles on the draft board underneath the logo. 
+
+Remove "No picks yet." and "needed" from the draft page. 
+
+Where it says "for "x % gone by your next pick" the "by your next pick" should disppear as the screen compresses. 
+
+I just wanted to tell you I love that you add the shimmering effect to e "Can you go 20-0" on the Draft complete page. I hope you keep that and please make a note to everyone that is exactly the type of example of how to empahize a certain word -- in the color palette and shimmering. 
+
+The "Math's pick" color should fit the color palette of the selected team; it should not alwasy be purple. Make sure to check again that there is no permamnet green anywhere, including the ranking numbers on game previews and review.
+
+You dont need to mention who got flexed, even graphically. Remove this: "On the roster-building side, the strength is concentrated in the skill positions (#13 in the league), with the back seven (#28) the least developed. 9 starters are playing out of position (Jahmyr Gibbs (RB) at TE1, −6; Jarvis Brownlee Jr (CB) at TE2, −6; Milton Williams (DT) at OT1, −6; Tanor Bortolini (C) at OT2, −4; Moro Ojomo (DT) at OG1, −4; Jonathan Greenard (EDGE) at DT1, −2; Zion Young (EDGE) at DT2, −2; Odafe Oweh (EDGE) at WILL, −2; Khyiris Tonga (DT) at LB3 / SAM, −4), a combined 36-point rating hit already built into every grade above."
