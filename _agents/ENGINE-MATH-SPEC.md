@@ -67,7 +67,7 @@ Return-game calibration (P-191: PFR refused our fetch; PFF gives only the return
 5. **NICKEL read literally: yes**, and the site should say NICKEL more than CB3 (copy rule for V23; CB3 stays the internal slot id).
 6. **Architecture: foundation first (Option B).** "One file" describes the delivered artifact only; see §13 for the stack the Owner's friend and the council converged on.
 **Still waiting on the Owner (protected constants, so they wait):**
-7. **DL5 = 140 in the table, DL5 natural for DT and EDGE, and the derived flex rule of §12.2.** Say "change DL5 to N" to refit (about a minute).
+7. **APPROVED by the Owner 27 Oct 2026 (~21:55 HST, new-chat message: "I approve this. Go ahead."): DL5 = 140 in the table, DL5 natural for DT and EDGE, and the derived flex rule of §12.2.** Say "change DL5 to N" to refit (about a minute).
 8. **TE3 and WR4 as spots 31 and 32 of 32 (with the math for 10 personnel).** Not built; needs a `'10'` personnel entry, `PERS_REC` rows and the 13-personnel blocking term (§12.4). Players down to 50 OVR: Owner offered; needed (WR1-WR4 need 128 receivers, the dataset has about 142; TE1-TE3 need 96 and it has about 51).
 **Retired or superseded:** WR5 as a spot (Owner agreed DL5 instead, 27 Oct; five-receiver personnel is a handful of snaps a season, REPORTED not measured here).
 

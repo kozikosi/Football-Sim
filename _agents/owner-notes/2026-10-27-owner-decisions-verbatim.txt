@@ -25,3 +25,12 @@ Yes i agree. Use your remaining usage on integrating a DL5
 --- later ---
 @attachment (saved as 2026-10-27-architecture-replies-verbatim.txt) and finish with the DL5 integration
 Continue
+
+
+--- 27 Oct 2026, ~21:55 HST (start of chat 4, message verbatim) ---
+Read `claude/00-READ-FIRST.md`. first
+Decision for you: approve DL5 = 140 and its derived flex rule. That unlocks the protected-constant change and the TE3/WR4 10-personnel math.
+I approve this. Go ahead. But i also want to hear you opinions on the architecture analysis
+
+--- same chat, Owner after the new chat said the repo was not in its workspace ---
+You need to rewrite your own documents or instructions to me so this confusion between chats doesn't happen. You do have git access btw. Let's tackle this confusion between chats problem first
