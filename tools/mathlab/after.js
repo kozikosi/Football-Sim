@@ -1,6 +1,6 @@
 // mathlab/after.js — install a fit result (weights + MC + new run/punt terms) in memory, then print table, pass/run split and full-lineup realism.
 // usage: node after.js <html> <fit.json> <cfg.json>
-const { chromium } = require('playwright'); const fs = require('fs'); const lab = require('./lab.js'); const { installDime } = require('./inpage.js');
+const { chromium } = require('playwright'); const fs = require('fs'); const lab = require('./lab.js'); const { installDime, installDL5 } = require('./inpage.js');
 const [file, fitF, cfgF] = process.argv.slice(2);
 const fit = JSON.parse(fs.readFileSync(fitF)), cfg = JSON.parse(fs.readFileSync(cfgF));
 function install(fit, cfg) {
@@ -19,6 +19,7 @@ function install(fit, cfg) {
 (async () => {
   const { browser, page, errs } = await lab.open(file);
   if (cfg.dime) await page.evaluate(`(${installDime.toString()})(${JSON.stringify(cfg.dime)})`);
+  if (cfg.dl5) await page.evaluate(`(${installDL5.toString()})(${JSON.stringify(cfg.dl5)})`);
   await page.evaluate(`(${install.toString()})(${JSON.stringify(fit)}, ${JSON.stringify(cfg)})`);
   const out = {
     table: await page.evaluate(lab.inPageTable), split: await page.evaluate(lab.inPageSplit), stack: await page.evaluate(lab.inPageStack)

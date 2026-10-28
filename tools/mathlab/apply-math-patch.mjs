@@ -24,7 +24,7 @@ const block = (label, startRe, endStr, repl) => {             // from a line sta
   h = h.slice(0, a) + repl + h.slice(b + endStr.length); log.push(label);
 };
 const lit = o => '{' + Object.entries(o).map(([k, v]) => `${k}:${+(+v).toFixed(3)}`).join(', ') + '}';
-const S = fit.snapped, P = cfg.patch, D = cfg.dime;
+const S = fit.snapped, P = cfg.patch, D = cfg.dime, L5 = cfg.dl5;   // L5: the DL5 rotation slot (fixed share, already inside the fitted spec weights)
 
 block('RATING_SPECS', /^const RATING_SPECS = \{/m, '\n};', 'const RATING_SPECS = {\n' + Object.entries(S.RATING_SPECS).map(([k, v]) => ` ${k}: ${lit(v)}`).join(',\n') + '\n};');
 block('DEF_SPECS', /^const DEF_SPECS = \{/m, '\n};', 'const DEF_SPECS = {\n' + Object.entries(S.DEF_SPECS).map(([k, v]) => ` ${k}: ${lit(v)}`).join(',\n') + '\n};');
@@ -41,8 +41,9 @@ once('structPts', '+ kickPts + retPts - planCost;', '+ kickPts + retPts + puntPt
 once('channels', 'const channels = {run:PT_RUSH*(expRush-RUSH_BASE),', 'const channels = {run:PT_RUSH*(expRush-RUSH_BASE)+qbRun+wrBlk,');
 // slots (math only; order not final)
 { const m = h.match(/^const ROSTER_SLOTS = \[([^\]]*)\];/m); if (!m) { console.error('ABORT ROSTER_SLOTS'); process.exit(1); }
-  h = h.replace(m[0], () => `const ROSTER_SLOTS = [${m[1]},'FB','P','DIME'];   // FB, P, DIME appended for the math lab; V23 sets the real order`); log.push('ROSTER_SLOTS'); }
+  h = h.replace(m[0], () => `const ROSTER_SLOTS = [${m[1]},'FB','P','DIME'${L5 ? ",'DL5'" : ''}];   // FB, P, DIME${L5 ? ', DL5' : ''} appended for the math lab; V23 sets the real order`); log.push('ROSTER_SLOTS'); }
 once('WV_OFF_SLOTS', "'OG2','C','K']);", "'OG2','C','K','FB']);");
-once('SLOT_FAMILY', "const SLOT_FAMILY = {QB:'QB',", "const SLOT_FAMILY = {FB:'FB',P:'P',DIME:'DIME',QB:'QB',");
+once('SLOT_FAMILY', "const SLOT_FAMILY = {QB:'QB',", `const SLOT_FAMILY = {FB:'FB',P:'P',DIME:'DIME',${L5 ? "DL5:'DL5'," : ''}QB:'QB',`);
+if (L5) once('NATURAL DL5', " DT:['DT1','DT2'], REDG:['DE1','DE2'], LEDG:['DE1','DE2'],\n MIKE:['MIKE','WILL','SAM']", " DT:['DT1','DT2','DL5'], REDG:['DE1','DE2','DL5'], LEDG:['DE1','DE2','DL5'],   // DL5: a natural spot for every lineman (STATIC_SLOTS, the starter-only value layer, is deliberately unchanged)\n MIKE:['MIKE','WILL','SAM']");
 fs.writeFileSync(outF, h);
 console.log(`patched ${log.length} anchors: ${log.join(', ')}\n in sha256 ${inSha} -> out sha256 ${sha(h)} (${h.length} B) -> ${outF}`);

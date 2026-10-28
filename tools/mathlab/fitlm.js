@@ -4,7 +4,7 @@
 // cfg: {targets:{slot:wins7090}, patch:{qbRunC,wrBlkC,wrBlkW,puntPts}, grid, iters, ridge, mcKnobs:[..]}
 const { chromium } = require('playwright');
 const fs = require('fs');
-const { installDime } = require('./inpage.js');
+const { installDime, installDL5 } = require('./inpage.js');
 const file = process.argv[2];
 const cfg = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
 const outPath = process.argv.includes('--out') ? process.argv[process.argv.indexOf('--out') + 1] : null;
@@ -100,6 +100,7 @@ function pageProgram(cfg) {
   await page.goto('file://' + file);
   await page.waitForFunction(() => typeof slotWinsTable === 'function', null, { timeout: 20000 });
   if (cfg.dime) console.log('slots after installDime:', await page.evaluate(`(${installDime.toString()})(${JSON.stringify(cfg.dime)})`));
+  if (cfg.dl5) console.log('slots after installDL5:', await page.evaluate(`(${installDL5.toString()})(${JSON.stringify(cfg.dl5)})`));
   const res = await page.evaluate(`(${pageProgram.toString()})(${JSON.stringify(cfg)})`);
   const T = cfg.targets;
   console.log('rms log-error by iteration:', res.hist.map(v => (v * 100).toFixed(1) + '%').join(' '));

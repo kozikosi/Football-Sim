@@ -1,10 +1,10 @@
-# Prompts the Owner pastes (generated 2026-10-27T20:16Z, ref architect/engine-and-seats)
+# Prompts the Owner pastes (generated 2026-10-28T07:31Z, ref council/base)
 One short prompt per seat per chat.
 
 ## Z.ai
 
 ```
-You are Z.ai. Read https://raw.githubusercontent.com/kozikosi/football-sim/architect/engine-and-seats/_agents/seats/packets/PACKET-ZAI.md and follow it exactly. If you cannot open the link, say so in one line and I will attach the file.
+You are Z.ai. Read https://raw.githubusercontent.com/kozikosi/football-sim/council/base/_agents/seats/packets/PACKET-ZAI.md and follow it exactly. If you cannot open the link, say so in one line and I will attach the file.
 ```
 No attachment needed.
 

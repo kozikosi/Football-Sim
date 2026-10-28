@@ -42,3 +42,28 @@ function installDefAggr(src, K) {
   return Object.keys(fn.DAGGR_INFO);
 }
 module.exports.installDefAggr = installDefAggr;
+
+// installDL5(D): adds the DL5 slot (a rotational lineman) to the live engine, in memory. Same idea as DIME: a FIXED SHARE, not a package.
+//   D = {share, dl, rows}. share = fraction of defensive snaps on which the 5th lineman is on the field (MEASURED: 0.33, see
+//   results/dl5-snap-measurement-2026-10-27.txt). dl = the four starting linemen he rotates with. rows = the rating specs that contain them.
+//   While DL5 is on the field he replaces ONE of the four starters, each equally likely (INFERRED). Averaging that over all snaps gives
+//   weights that need no new code in the matchup: every starter's weight x (1 - share/4), DL5's weight = share x mean(starter weights),
+//   total weight unchanged. DT, REDG and LEDG are natural at DL5 (penalty 0); everyone else follows results/dl5-flex.json.
+function installDL5(D) {
+  if (!ROSTER_SLOTS.includes('DL5')) ROSTER_SLOTS.push('DL5');
+  SLOT_FAMILY.DL5 = 'DL5';
+  ['DT', 'REDG', 'LEDG'].forEach(t => { if (!NATURAL_SLOT_MAP[t].includes('DL5')) NATURAL_SLOT_MAP[t].push('DL5'); });
+  if (!window.__dl5Done) {
+    const objs = { RATING_SPECS, DEF_SPECS };
+    Object.entries(D.rows).forEach(([obj, rows]) => rows.forEach(row => {
+      const sp = objs[obj][row];
+      const mean = D.dl.reduce((a, s) => a + (sp[s] || 0), 0) / D.dl.length;
+      D.dl.forEach(s => { if (sp[s] != null) sp[s] = sp[s] * (1 - D.share / D.dl.length); });
+      sp.DL5 = D.share * mean;
+    }));
+    window.__dl5Done = true;
+  }
+  _wTable = null; _wpoCache = null;
+  return ROSTER_SLOTS.length;
+}
+module.exports.installDL5 = installDL5;
