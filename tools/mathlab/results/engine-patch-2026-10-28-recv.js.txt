@@ -1,0 +1,43 @@
+// RATING_SPECS (protected) — new composition weights
+const RATING_SPECS = {
+ olRun: {OT1:1.09, OT2:1.02, OG1:1.08, OG2:1.08, C:1.19, TE1:0.35, FB:0.36},
+ olPass: {OT1:1.53, OT2:1.43, OG1:0.9, OG2:0.9, C:1},
+ rb: {RB1:1.95, RB2:0.48},
+ qb: {QB:1},
+ rec: {WR1:0.99, WR2:0.91, WR3:0.53, TE1:0.53, RB1:0.19, TE3:0.02, WR4:0.02},
+ passRush: {DE1:1.9, DE2:1.4, DT1:1.05, DT2:0.79, MIKE:0.26, WILL:0.27, DL5:0.45},
+ frontRun: {DT1:1.58, DT2:1.18, DE1:0.95, DE2:0.87, MIKE:1.03, WILL:0.9, SAM:0.94, SS:0.34, CB1:0.7, CB2:0.51, CB3:0.19, FS:0.48, DL5:0.39},
+ coverage: {CB1:1.39, CB2:1.06, CB3:0.86, SS:0.69, FS:0.77, MIKE:0.34, WILL:0.36, SAM:0.4},
+ kicker: {K:1},
+};
+// DEF_SPECS (protected)
+const DEF_SPECS = {
+ frontBase: {DT1:1.58, DT2:1.18, DE1:0.95, DE2:0.87, MIKE:1.03, WILL:0.9, SAM:1.34, SS:0.34, CB1:0.7, CB2:0.51, CB3:0.1, FS:0.48, DL5:0.39},
+ frontNick: {DT1:1.58, DT2:1.18, DE1:0.95, DE2:0.87, MIKE:1.03, WILL:0.9, SAM:0.13, SS:0.51, CB1:0.7, CB2:0.51, CB3:0.19, FS:0.48, DL5:0.39},
+ covBase: {CB1:1.39, CB2:1.06, CB3:0.24, SS:0.69, FS:0.77, MIKE:0.34, WILL:0.36, SAM:0.54},
+ covNick: {CB1:1.39, CB2:1.06, CB3:0.96, SS:0.69, FS:0.77, MIKE:0.34, WILL:0.36, SAM:0.07},
+ covDime: {CB1:1.39, CB2:1.06, CB3:0.96, DIME:1.09, SS:0.69, FS:0.77, MIKE:0.34},
+};
+// PERS_REC (personnel receiving specs; TE/WR/RB shares follow the same fit)
+const PERS_REC = {
+ '12': {WR1:0.99, WR2:0.96, TE1:0.53, TE2:0.41, RB1:0.19},
+ '13': {WR1:0.99, TE1:0.53, TE2:0.41, TE3:0.24, RB1:0.19},
+ '21': {WR1:0.99, WR2:0.96, TE1:0.53, RB1:0.19, RB2:0.48},
+ '22': {WR1:0.99, TE1:0.53, TE2:0.41, RB1:0.19, RB2:0.48},
+};
+// MC (protected) — changed keys only; every other key keeps its current value
+//   qb: 0.00766 -> 0.00655 | toQb: 0.0172 -> 0.01471 | kick: 0.069 -> 0.04859 | rb: 0.0249 -> 0.0208 | olRun: 0.0516 -> 0.0495 | front: 0.0559 -> 0.05577 | rec: 0.0173 -> 0.02045 | olPass: 0.0149 -> 0.01403 | rush: 0.0138 -> 0.01579 | cov: 0.0283 -> 0.0184
+// NEW terms inside matchupModel (added to structPts; qbRun and wrBlk also to channels.run):
+const QB_RUN_C = 0.0194;   // points per QB OVR point vs league: scrambles and designed runs
+const WR_BLK_C = 0.01147, WR_BLK_W = [1,1,1];   // points per average-WR1..3 OVR point: perimeter blocking and the light-box effect
+const PUNT_PTS = 1.084;   // was 1.6
+// DIME: ROSTER_SLOTS gets 'DIME' (29 slots; TOTAL_ROUNDS follows); SLOT_FAMILY.DIME = 'DIME'; DEF_SPECS.covDime above; NOT a DEF_OPTS package.
+const DIME_W = 0.15;   // = 10% snap share (Owner) x 1.5 passing-down leverage (INFERRED, P-196)
+// in applyDefPlan, after coverage is computed (league AND team, so the baseline is consistent): out.coverage = (1-DIME_W)*out.coverage + DIME_W*D.covDime;
+// DL5: ROSTER_SLOTS gets 'DL5' (0.33 = share of defensive snaps the 5th lineman plays, MEASURED, results/dl5-snap-measurement-2026-10-27.txt); SLOT_FAMILY.DL5 = 'DL5'; NATURAL_SLOT_MAP.DT/REDG/LEDG gain 'DL5'.
+// No new matchup code: the rotation is already inside the weights above (each of DE1, DE2, DT1, DT2 x (1 - 0.33/4); DL5 = 0.33 x the mean of their weights) in passRush, frontRun, frontBase, frontNick, then fitted.
+// STATIC_SLOTS (starter-only value layer) is unchanged. Flex into DL5: results/flex-engine.js.txt (derived from the Owner guide by flexdl5.mjs; Owner approval pending).
+// TE3, WR4 (spots 31, 32): ROSTER_SLOTS gets 'TE3','WR4'; SLOT_FAMILY.TE3='TE', SLOT_FAMILY.WR4='WR'; NATURAL_SLOT_MAP.TE gains 'TE3', .WR gains 'WR4'; WV_OFF_SLOTS gain both. No flex rule: the family tables already give them TE2's and WR3's rules.
+// No new matchup code: the shares are inside RATING_SPECS.rec above (MEASURED 96,624 plays: 3+ TE on 4.52% of plays, taking weight from WR2; four receivers on 1.0%, taking it from TE1 0.0052, RB1 0.0048). '10' personnel is NOT a plan option (spec 14.3).
+// in teamRatings: r.qbRunR = slotOvr(sm,"QB"); r.wrBlk = weighted mean of WR1..3 OVR using WR_BLK_W
+// in matchupModel: qbRun = QB_RUN_C*(O0.qbRunR - lg.qbRunR); wrBlk = WR_BLK_C*(O0.wrBlk - lg.wrBlk); structPts += qbRun + wrBlk;

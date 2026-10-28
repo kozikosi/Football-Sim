@@ -7,6 +7,6 @@ const path = require('path'); const lab = require(path.join(__dirname, 'lab.js')
   let mx = 0, w = ''; Object.keys(fit.final).forEach(s => { const d = Math.abs((t[s] || { w7090: NaN }).w7090 - fit.final[s]); if (!(d <= mx)) { mx = d; w = s; } });
   const der = {}; Object.keys(t).forEach(s => { der[s] = Math.round(t[s].w7090 / 0.00254 / 10) * 10; });
   console.log('spots in patched file', Object.keys(t).length, '| max |patched - fit| =', mx.toExponential(2), 'wins at', w, '| page errors', errs.length, errs.slice(0, 2));
-  console.log('derived weights: QB', der.QB, 'DE1', der.DE1, 'CB1', der.CB1, 'K', der.K, 'P', der.P, 'DIME', der.DIME, 'DL5', der.DL5, 'FB', der.FB, 'SAM', der.SAM);
+  console.log('derived weights: QB', der.QB, 'DE1', der.DE1, 'CB1', der.CB1, 'K', der.K, 'P', der.P, 'DIME', der.DIME, 'DL5', der.DL5, 'FB', der.FB, 'TE3', der.TE3, 'WR4', der.WR4, 'SAM', der.SAM);
   await browser.close(); process.exit(errs.length || !(mx <= 0.002) ? 1 : 0);
 })();

@@ -67,3 +67,27 @@ function installDL5(D) {
   return ROSTER_SLOTS.length;
 }
 module.exports.installDL5 = installDL5;
+
+// installRecv(D): adds TE3 and WR4 (spots 31 and 32) to the live engine, in memory. Same idea as DIME and DL5: a FIXED SHARE baked into the weights.
+//   D = {row, te3:{share, from}, wr4:{from:[[slot, share],...]}}. MEASURED (results/personnel-measurement-2026-10-28.txt, 96,624 plays 2023-25):
+//   three or more tight ends are on the field for 4.5% of plays (the third replaces WR2 relative to 12 personnel), four receivers for 1.0%
+//   (10 personnel 0.52% replaces TE1, 01 personnel 0.47% replaces RB1). Each share moves share x (weight of the replaced slot) of weight from that
+//   slot to the new one, total weight unchanged, in RATING_SPECS[row]. '10' is deliberately NOT a plan option (see spec 14.3: as a free plan
+//   it cut TE1's value by 32% and was picked by 5 of 32 real rosters against 1% of real snaps). Flex needs no new rule: TE3 is in family TE, WR4 in WR.
+function installRecv(D) {
+  ['TE3', 'WR4'].forEach(s => { if (!ROSTER_SLOTS.includes(s)) ROSTER_SLOTS.push(s); });
+  SLOT_FAMILY.TE3 = 'TE'; SLOT_FAMILY.WR4 = 'WR';
+  if (!NATURAL_SLOT_MAP.TE.includes('TE3')) NATURAL_SLOT_MAP.TE.push('TE3');
+  if (!NATURAL_SLOT_MAP.WR.includes('WR4')) NATURAL_SLOT_MAP.WR.push('WR4');
+  WV_OFF_SLOTS.add('TE3'); WV_OFF_SLOTS.add('WR4');
+  if (!window.__recvDone) {
+    const sp = RATING_SPECS[D.row];
+    const move = (from, share, to) => { const w = sp[from] * share; sp[from] -= w; sp[to] = (sp[to] || 0) + w; };
+    move(D.te3.from, D.te3.share, 'TE3');
+    D.wr4.from.forEach(([slot, share]) => move(slot, share, 'WR4'));
+    window.__recvDone = true;
+  }
+  _wTable = null; _wpoCache = null;
+  return ROSTER_SLOTS.length;
+}
+module.exports.installRecv = installRecv;

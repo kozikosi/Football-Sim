@@ -16,3 +16,6 @@ Needs Node + Playwright (`NODE_PATH=$(npm root -g)`), and a product-like HTML (Z
 | `lab.js` | table / split / stack measurements |
 Typical run: `node fitlm.js <html> cfg.json --out results/fit.json && node check-design.mjs results/fit.json && node realcheck.js <html> results/fit.json wins2025.json cfg.json`.
 A test you add must fail when the thing it guards is broken: corrupt one input and watch it fail (ENGINE-MATH-SPEC section 7, E8).
+| `personnel-shares.py` | measures offensive personnel shares from nflverse participation data (evidence for TE3 / WR4; output `results/personnel-measurement-2026-10-28.txt`) |
+| `recv-plan-experiment.js` | the experiment behind spec 14.3: `'10'` as a plan option (do not use for the build) |
+| `installRecv` (inpage.js) | adds TE3 and WR4 as fixed-share spots (cfg.json `recv`); canonical 32-spot fit `results/fit-precolors-2026-10-28-recv.json`, literals `results/engine-patch-2026-10-28-recv.js.txt` |

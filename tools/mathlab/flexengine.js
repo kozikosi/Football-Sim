@@ -2,15 +2,15 @@
 // live engine in memory, then asks the engine's OWN flexPenaltyFor() for every tag x slot and checks the Owner's guide holds.
 // Writes results/flex-compiled.json + results/flex-engine.js.txt (the literals the V23 build pastes). Exit 1 on any failure.
 const { chromium } = require('playwright'); const fs = require('fs'); const path = require('path');
-const { installDime, installDL5 } = require('./inpage.js');
+const { installDime, installDL5, installRecv } = require('./inpage.js');
 const G = JSON.parse(fs.readFileSync(path.join(__dirname, 'flex.json'))).flex;
-const ADD = JSON.parse(fs.readFileSync(path.join(__dirname, 'flex-dl5.json')));   // DL5 destination, derived from the guide by flexdl5.mjs (Owner approval pending)
+const ADD = JSON.parse(fs.readFileSync(path.join(__dirname, 'flex-dl5.json')));   // DL5 destination, derived from the guide by flexdl5.mjs (Owner approved 27 Oct)
 Object.entries(ADD.flex).forEach(([r, t]) => Object.assign(G[r], t));
 const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, 'cfg.json')));
 // dataset tag -> guide role   (LS has no slot; it is excluded from the pool by the product)
 const TAG_ROLE = { QB: 'QB', HB: 'RB', FB: 'FB', WR: 'WR', TE: 'TE', LT: 'OT', RT: 'OT', LG: 'OG', RG: 'OG', C: 'C', DT: 'DT', REDG: 'EDGE', LEDG: 'EDGE', MIKE: 'ILB', WILL: 'OLB', SAM: 'OLB', CB: 'CB', SS: 'SS', FS: 'FS', K: 'K', P: 'P' };
 // slot -> the guide's destination name. CB3 is the NICKEL slot; DIME is the 6th DB. CB1/CB2 are plain CB.
-const SLOT_DEST = { QB: 'QB', RB1: 'RB', RB2: 'RB', FB: 'FB', WR1: 'WR', WR2: 'WR', WR3: 'WR', TE1: 'TE', TE2: 'TE', OT1: 'OT', OT2: 'OT', OG1: 'OG', OG2: 'OG', C: 'C', DT1: 'DT', DT2: 'DT', DE1: 'EDGE', DE2: 'EDGE',
+const SLOT_DEST = { QB: 'QB', RB1: 'RB', RB2: 'RB', FB: 'FB', WR1: 'WR', WR2: 'WR', WR3: 'WR', TE1: 'TE', TE2: 'TE', TE3: 'TE', WR4: 'WR', OT1: 'OT', OT2: 'OT', OG1: 'OG', OG2: 'OG', C: 'C', DT1: 'DT', DT2: 'DT', DE1: 'EDGE', DE2: 'EDGE',
   MIKE: 'ILB', WILL: 'OLB', SAM: 'OLB', CB1: 'CB', CB2: 'CB', CB3: 'NICKEL', DIME: 'DIME', DL5: 'DL5', SS: 'SS', FS: 'FS', K: 'K', P: 'P' };
 const SLOTS = Object.keys(SLOT_DEST);
 const ownDest = role => (role === 'CB' ? ['CB', 'NICKEL'] : ADD.natural.includes(role) ? [role, 'DL5'] : [role]);   // a CB is natural at CB1, CB2 and the nickel slot; DIME is a free flex by the guide
@@ -30,6 +30,7 @@ function expected(tag, slot) { const role = TAG_ROLE[tag]; if (compiled.NATURAL[
   await pg.goto('file://' + process.argv[2]); await pg.waitForFunction(() => typeof slotWinsTable === 'function');
   await pg.evaluate(`(${installDime.toString()})(${JSON.stringify(cfg.dime)})`);
   if (cfg.dl5) await pg.evaluate(`(${installDL5.toString()})(${JSON.stringify(cfg.dl5)})`);
+  if (cfg.recv) await pg.evaluate(`(${installRecv.toString()})(${JSON.stringify(cfg.recv)})`);
   const got = await pg.evaluate(({ C, tags, slots }) => {
     Object.keys(FLEX).forEach(k => delete FLEX[k]); Object.keys(NATURAL_SLOT_MAP).forEach(k => delete NATURAL_SLOT_MAP[k]);
     Object.assign(FLEX, C.FLEX); Object.assign(NATURAL_SLOT_MAP, C.NATURAL);
@@ -42,7 +43,9 @@ function expected(tag, slot) { const role = TAG_ROLE[tag]; if (compiled.NATURAL[
   // spot checks straight from the Owner's text (independent of the tables above)
   const spot = [['QB', 'WR1', 6], ['HB', 'FB', 2], ['FB', 'RB1', 4], ['WR', 'CB3', 4], ['WR', 'CB1', 6], ['CB', 'DIME', 0], ['SS', 'CB3', 0], ['SS', 'CB1', 6], ['FS', 'CB1', 4], ['WILL', 'MIKE', 2], ['MIKE', 'WILL', 0],
     ['REDG', 'WILL', 2], ['REDG', 'MIKE', 4], ['LT', 'FB', 4], ['LG', 'OT1', 4], ['P', 'K', 2], ['K', 'P', 0], ['TE', 'DIME', 6], ['TE', 'WR1', 2], ['DT', 'OT1', 6], ['WR', 'DIME', 4], ['CB', 'WR1', 4], ['QB', 'RB1', 8],
-    ['DT', 'DL5', 0], ['REDG', 'DL5', 0], ['LEDG', 'DL5', 0], ['LT', 'DL5', 4], ['LG', 'DL5', 4], ['C', 'DL5', 4], ['MIKE', 'DL5', 4], ['WILL', 'DL5', 4], ['SAM', 'DL5', 4], ['TE', 'DL5', 6], ['CB', 'DL5', 8], ['QB', 'DL5', 8], ['WR', 'DL5', 8], ['HB', 'DL5', 8], ['DT', 'DT1', 0]];
+    ['DT', 'DL5', 0], ['REDG', 'DL5', 0], ['LEDG', 'DL5', 0], ['LT', 'DL5', 4], ['LG', 'DL5', 4], ['C', 'DL5', 4], ['MIKE', 'DL5', 4], ['WILL', 'DL5', 4], ['SAM', 'DL5', 4], ['TE', 'DL5', 6], ['CB', 'DL5', 8], ['QB', 'DL5', 8], ['WR', 'DL5', 8], ['HB', 'DL5', 8], ['DT', 'DT1', 0], ['WR', 'WR4', 0], ['TE', 'TE3', 0], ['TE', 'WR4', 2]];
+  // TE3 must behave exactly like TE2, WR4 exactly like WR3, for every dataset tag (same family, same guide destination)
+  Object.keys(TAG_ROLE).forEach(t => { [['TE3', 'TE2'], ['WR4', 'WR3']].forEach(([a, b]) => { if (got.o[t][a] !== got.o[t][b]) { console.log(`FAIL ${t}@${a} is ${got.o[t][a]} but ${t}@${b} is ${got.o[t][b]}`); bad++; } }); });
   spot.forEach(([t, s, p]) => { const g = got.o[t][s]; if (g !== p) { console.log(`FAIL spot ${t}@${s}: Owner text says ${p}, engine ${g}`); bad++; } });
   console.log('tags', Object.keys(TAG_ROLE).length, 'slots', SLOTS.length, 'cells', cells, 'allowed (penalty<8)', allowed, 'spot checks', spot.length, 'page errors', errs.length);
   const out = path.join(__dirname, 'results');
