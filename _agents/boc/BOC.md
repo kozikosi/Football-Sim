@@ -7,6 +7,7 @@
 
 ## Current work and state
 - Session 26 Oct: reviewed 11 items (P-030, P-032, P-033, P-034, P-035, P-036, P-037, P-038, P-039, P-050, P-051), all against Football-Sim-PreColors.html (sha256 40233d6be00e987c…, 657,486 B) or the relevant repo files. Verdicts: 6 improved, 5 ok. All pushed to council/boc.
+- Session 28 Oct: recorded the Owner's 28 Oct message verbatim (_agents/owner-notes/2026-10-28-N1-verbatim.txt); appended the item→row mapping to _agents/V23-OWNER-NOTES-INTAKE-LEDGER.md (every numbered item maps to an existing PRIORITIES row P-040..P-079 and the P-001/P-003/P-007/P-018/P-019/P-020/P-151/P-155/P-156/P-160..P-168/P-176/P-177/P-185/P-187 set); filed two PRIORITY+ proposals (copy-pasteable snippets for Claude; reconcile nf-team-logos vs nfl-team-logos). Reviewed P-019 (improved: 3 of 5 generator changes already present in Pre-Colors; blocked-XP glitch not reproducible; re-scoped) and P-042 (improved: verification grep target cannot be 0 hits; corrected the check). Both pushed to council/boc.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
@@ -47,6 +48,9 @@
 - `inbox/20261025-0420-boc-P-050-claim.md` / `-review.md`
 - `inbox/20261025-0420-boc-P-051-claim.md` / `-review.md`
 - `bulletin/20261025-0420-boc.md` (this session)
+- `inbox/20261028-2225-boc-P-019-claim.md` / `-review.md`
+- `inbox/20261028-2226-boc-P-042-claim.md` / `-review.md`
+- `bulletin/20261028-0100-boc.md` (this session)
 
 ## Worktree / branch
 - Path: /Users/kosi/Desktop/wt/boc
