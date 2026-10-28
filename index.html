@@ -2152,7 +2152,7 @@ html{scrollbar-gutter:stable;}
    <div class="tabs" style="margin-bottom:10px;">
     <button class="tabbtn" id="speedInstantBtn">Instant</button>
     <button class="tabbtn active" id="speedSlowBtn">Slow</button>
-    <button class="tabbtn" id="undoPickBtn" style="display:none;" title="Take back your last pick (one per draft)">↶ Undo</button>
+    <button class="tabbtn" id="undoPickBtn" style="display:none;" title="Take back your last pick (one per round)">↶ Undo</button>
     <button class="tabbtn" id="simToEndBtn" style="margin-left:auto;">Sim to End</button>
    </div>
    <div id="draftStatusText" style="font-weight:700;margin-bottom:6px;"></div>
@@ -4006,17 +4006,17 @@ window.zpbPersBoxesHTML = function(){
 };
 // package movement viz + emphasis badges (symbols, no words)
 window.zpbPkgVizHTML = function(){
- const dot = n => Array.from({length:n}, ()=>'<i></i>').join('');
  const badge = kind => kind==='pass'
     ? '<span class="zpb-emph zpb-emph-b" title="Pass emphasis"><b>P+</b></span>'
     : kind==='run'
     ? '<span class="zpb-emph zpb-emph-b" title="Run emphasis"><b>R+</b></span>'
     : '<span class="zpb-emph zpb-emph-b" title="Balanced"><span class="zpb-bars"><i></i><i></i><i></i></span></span>';
- return '<div class="zpb-pkg">'
-  + '<div class="zpb-pkgcard"><h5>4-3</h5><div class="zpb-pkgdots">'+dot(4)+'<i class="db"></i>'+dot(3)+'</div><p>Four down linemen, three linebackers. Stronger against the run, a little thinner in coverage.</p></div>'
-  + '<div class="zpb-pkgcard"><h5>3-4</h5><div class="zpb-pkgdots">'+dot(3)+'<i class="db"></i><i class="ldiff"></i>'+dot(3)+'<i class="ldiff"></i></div><p>The nose tackle holds the middle and a defensive tackle slides out — a linebacker family of two inside, two outside.</p></div>'
-  + '<div class="zpb-pkgcard"><h5>Nickel</h5><div class="zpb-pkgdots">'+dot(4)+'<i class="db"></i><i class="ldiff"></i>'+dot(2)+'<i class="ldiff"></i><i></i></div><p>Nickel takes a linebacker off and puts an extra defensive back on. The modern default.</p></div>'
-  + '<div class="zpb-pkgcard"><h5>Focus</h5><div class="zpb-pkgdots">'+badge('pass')+' '+badge('run')+' '+badge('bal')+'</div><p>The same personnel can lean pass, lean run, or stay even — the badge shows the lean at a glance.</p></div>'
+ const K = window.zpbDefFrontKit(); // w29 (Owner): the coaching cards ARE the Defense-section visuals — same dots, same colors, DT2 always a square, ILB2 and SAM always triangles
+ return '<div class="zpb-defgrid">'
+  + K.card('4-3', K.row43, 'Four down linemen, three linebackers. Stronger against the run, a little thinner in coverage.', '4-3 front: four defensive linemen, three linebackers, four defensive backs.', {DT2:1,SAM:1})
+  + K.card('3-4', K.row34, 'The nose tackle holds the middle and a defensive tackle slides out \u2014 a linebacker family of two inside, two outside.', '3-4 front: three defensive linemen, four linebackers.', {ILB2:1,SAM:1})
+  + K.card('NICKEL', K.rowNK, 'Nickel takes a linebacker off and puts an extra defensive back on. The modern default.', 'Nickel front: five defensive backs.', {DT2:1,NICKEL:1})
+  + '<div class="zpb-defcard"><h5>FOCUS</h5><div class="zpb-defdots">'+badge('pass')+' '+badge('run')+' '+badge('bal')+'</div><p>The same personnel can lean pass, lean run, or stay even \u2014 the badge shows the lean at a glance.</p></div>'
   + '</div>';
 };
 // coach guide: drop the Auto/Custom list, keep philosophy as a fading line,
@@ -4029,7 +4029,7 @@ window.zpbCoachGuideHTML = function(coach){
       .replace(/<h5 class="narr" style="margin:6px 0;">Offensive styles<\/h5>[\s\S]*$/, '');
  h += zpbPkgVizHTML()
    + '<div class="zpb-swgroup">'
-   + zpbSw('COACHING PHILOSOPHY', 'Your default style, set on the Preseason page. If you leave it on Auto, the math picks the style that does best for your roster against an average team. Opponents scout it, and the recaps point out when you stray from it.')
+   + zpbSw('COACHING PHILOSOPHY', 'Your default style, set on the Preseason page.<br>Opponents scout it, and the recaps point out when you stray from it.') // w29 (Owner): the Auto sentence is gone; the two lines sit centered, one on top of the other
    + '</div>'
    + '<div class="zpb-swgroup zpb-autocust">'
    + zpbSw('AUTO', 'The math predicts the best personnel.')
@@ -5050,7 +5050,7 @@ function startDraft2(){
  draftSim = {
   userIndex, rosters, teamNames: shuffled,
   pool: PLAYERS.filter(p=>POS_SLOT_MAP[p[1]]).sort((a,b)=>(b[3]-a[3])||(a[0]<b[0]?-1:1)),
-  order: buildSnakeOrder(), pos:0, log:[], awaitingUser:false
+  order: buildSnakeOrder(), pos:0, log:[], awaitingUser:false, undoUsedRound:null // w29 (Owner): one undo per round
  };
  if(slowTimer){ clearTimeout(slowTimer); slowTimer=null; }
  setSpeedButtons();
@@ -5174,7 +5174,7 @@ function teamLabel(i){
 }
 
 function renderDraftLive(){
- { const ub = document.getElementById('undoPickBtn'); if(ub) ub.style.display = (draftSim.undoStack && draftSim.undoStack.length && draftSim.awaitingUser) ? '' : 'none'; }
+ { const ub = document.getElementById('undoPickBtn'); if(ub) ub.style.display = (draftSim.undoStack && draftSim.undoStack.length && draftSim.awaitingUser && draftSim.undoUsedRound !== Math.floor(draftSim.pos/32)+1) ? '' : 'none'; } // w29 (Owner): available every round, once per round
  const round = Math.floor(draftSim.pos/32)+1;
  const pickInRound = (draftSim.pos%32)+1;
  document.getElementById('draftStatusText').textContent = '';  // on-the-clock text retired (Owner)
@@ -5432,7 +5432,9 @@ function renderDraftRoster2(){
 
 // take back your last pick: the board returns to the moment you were on the clock (the CPU picks in between are replayed fresh)
 function undoUserPick(){
- const u = draftSim && draftSim.undoStack && draftSim.undoStack.pop(); if(!u) return;
+ if(!draftSim || (draftSim.undoUsedRound === Math.floor(draftSim.pos/32)+1)) return; // w29 (Owner): the undo may be spent once per round
+ const u = draftSim.undoStack && draftSim.undoStack.pop(); if(!u) return;
+ draftSim.undoUsedRound = Math.floor(draftSim.pos/32)+1; // w29: spent in this round — it returns when the next round begins
  if(slowTimer){ clearTimeout(slowTimer); slowTimer = null; }
  draftSim.pos = u.pos; draftSim.pool = u.pool.slice();
  draftSim.rosters.forEach((r,i)=>{ r.slots = {...u.slots[i]}; r.pickRounds = {...u.rounds[i]}; });
@@ -8692,37 +8694,41 @@ function planMathHTML(){
  const lg = neutralLeague(), n = matchupModel(lg, lg, lg, {off:NEUTRAL_OFF, def:DEFAULT_DEF});
  const sg = v=>(v>=0?'+':'−')+Math.abs(v).toFixed(2);
  const fit = {
-  '11|neutral':'The default. No lean, no cost.',
-  '11|run':'Strong run blockers and backs, or a quarterback that is a liability. Cuts giveaways and variance.',
+  '11|neutral':'The default',
+  '11|run':'Strong run blockers and running backs or a weak quarterback. Reduces giveaways and variance',
   '11|pass':'Elite quarterback, receivers and pass protection; or an underdog that needs variance.',
-  '12|neutral':'Tight ends clearly better than the third receiver. Adds blocking and a second receiving threat.',
+  '12|neutral':'Second tight end is clearly better than third receiver. Adds blocking but fewer long-yardage receptions',
   '12|run':'A good line plus tight ends who block. Heavier box, fewer giveaways.',
   '12|pass':'Two tight ends who catch, with play-action off the run threat.',
-  '13|neutral':'Three tight ends on the field. Only two are drafted; the third is a generic 70.',
+  '13|neutral':'Three tight ends on the field. Great blocking but few big passing plays',
   '13|run':'Maximum blocking. Almost no receivers; a short-yardage and clock-killing set.',
-  '13|pass':'Rarely right: one receiver on the field.',
+  '13|pass':'Personnel and strategy are paradoxical. Rarely selected. One receiver on the field.',
   '21|neutral':'A real second back or fullback. Mostly a changeup.',
   '21|run':'An I-formation team with two good backs and a strong line.',
-  '21|pass':'Rarely right.',
+  '21|pass':'Personnel and strategy are paradoxical. Rarely selected.',
   '22|neutral':'Two backs and two tight ends, one receiver. A power look.',
-  '22|run':'Goal-line and four-minute offense; the most run-heavy look.',
-  '22|pass':'Rarely right.'
+  '22|run':'Goal-line and four-minute offense; the most <span class="zpb-emph zpb-emph-b" title="Run emphasis"><b>R+</b></span> look.',
+  '22|pass':'Personnel and strategy are paradoxical. Rarely selected.'
  };
+ // w29 (Owner): balanced first in every section; the lean reads as the R+ / P+ badge, never the words
+ const ZPB_LEAN_ORD = {neutral:0, run:1, pass:2};
+ const ZPB_LEAN = s=> s==='run' ? '<span class="zpb-emph zpb-emph-b" title="Run emphasis"><b>R+</b></span>'
+  : s==='pass' ? '<span class="zpb-emph zpb-emph-b" title="Pass emphasis"><b>P+</b></span>' : STRAT[s].label;
  let off = '';
- OFF_OPTS.forEach(o=>{
+ OFF_OPTS.slice().sort((a,b)=> a.pers===b.pers ? (ZPB_LEAN_ORD[a.strat]-ZPB_LEAN_ORD[b.strat]) : 0).forEach(o=>{
   const m = matchupModel(lg, lg, lg, {off:o, def:DEFAULT_DEF});
-  off += `<tr><td>${PERS[o.pers].label}</td><td>${STRAT[o.strat].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="score">±${m.sd.toFixed(1)}</td><td class="narr">${fit[o.pers+'|'+o.strat]||''}</td></tr>`;
+  off += `<tr><td>${PERS[o.pers].label}</td><td>${ZPB_LEAN(o.strat)}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="score">±${m.sd.toFixed(1)}</td><td class="narr">${fit[o.pers+'|'+o.strat]||''}</td></tr>`;
  });
  const dfit = {'base|neutral':'Better against the run, worse in coverage. Right against run-first offenses.','base|run':'The most run-focused look. Predictable, so it pays a small penalty.','base|pass':'Base personnel that plays coverage; rarely right.','nickel|neutral':'The modern default: an extra defensive back on the field.','nickel|run':'Nickel personnel with the focus on the run. Uncommon.','nickel|pass':'Gives up some run defense to take away the pass. Predictable, so it pays a small penalty.'};
  let def = '';
- DEF_OPTS.forEach(d=>{
+ DEF_OPTS.slice().sort((a,b)=> a.pkg===b.pkg ? (ZPB_LEAN_ORD[a.focus]-ZPB_LEAN_ORD[b.focus]) : 0).forEach(d=>{ // w29 (Owner): balanced first in every section
   const m = matchupModel(lg, lg, lg, {off:NEUTRAL_OFF, def:d});
   def += `<tr><td>${DEF_PKG[d.pkg].label}</td><td>${DEF_FOCUS[d.focus].label}</td><td class="score">${sg(m.structPts-n.structPts)}</td><td class="score">${m.expRush.toFixed(0)} / ${m.expPass.toFixed(0)}</td><td class="score">${m.lamTO.toFixed(2)}</td><td class="score">${m.lamSack.toFixed(2)}</td><td class="narr">${dfit[d.pkg+'|'+d.focus]||''}</td></tr>`;
  });
- return `<h5 class="narr" style="margin:6px 0;">Offense: what each choice does to a league-average team against a league-average defense</h5>
+ return `<h5 class="narr" style="margin:6px 0;">OFFENSE</h5>
   <div class="tablewrap"><table><thead><tr><th>Personnel</th><th>Strategy</th><th>Points vs. 11 balanced</th><th>Rush / pass yds</th><th>Giveaways</th><th>Sacks taken</th><th>Spread</th><th>When it is the right call</th></tr></thead><tbody>${off}</tbody></table></div>
-  <p class="narr">Points are per game, the model's expected scoring against the same defense. "Spread" is the standard deviation of a game's scoring margin: run-heavy narrows it, pass-heavy widens it, which is why an underdog may choose to throw even when throwing costs expected points. Every non-11 set also takes a receiver off the field (−0.2 to −0.5 points a game) that only a better tight end or second back can repay.</p>
-  <h5 class="narr" style="margin:14px 0 6px;">Defense: what each choice does to the offense it faces</h5>
+  <p class="narr">Points are per game, the model's expected scoring against the same defense. "Spread" is the standard deviation of a game's scoring margin: the <span class="zpb-emph zpb-emph-b" title="Run emphasis"><b>R+</b></span> lean narrows it, the <span class="zpb-emph zpb-emph-b" title="Pass emphasis"><b>P+</b></span> lean widens it, which is why an underdog may choose to throw even when throwing costs expected points. Every non-11 set also takes a receiver off the field (−0.2 to −0.5 points a game) that only a better tight end or second back can repay.</p>
+  <h5 class="narr" style="margin:14px 0 6px;">DEFENSE</h5>
   <div class="tablewrap"><table><thead><tr><th>Package</th><th>Focus</th><th>Points allowed vs. nickel balanced</th><th>Rush / pass yds allowed</th><th>Giveaways forced</th><th>Sacks</th><th>When it is the right call</th></tr></thead><tbody>${def}</tbody></table></div>
   <p class="narr" style="margin:8px 0 0;">Home field is worth +1.7 points a game in the model.</p>`;
 }
@@ -8753,17 +8759,21 @@ function valueTiersHTML(){
  return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'–'+l[l.length-1].w.toFixed(1):''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
 }
 function boardMathHTML(){
- // w27 (Owner): the Wins / Priority / Gone explanation, visualized like the other panels — words kept, boxes added
- const col = (word, tone, body)=>'<div class="zpb-bmcol">'
-  + '<span class="zrl-badge '+(tone||'')+'">'+word+'</span>'
+ // w29 (Owner): the titles wear the same box ([WINS] like [PRIORITY] and [GONE]), every line sits
+ // centered with the Owner's own line breaks, and CPU DRAFT STRATEGY + UNDO each live in their own panel.
+ const col = (word, body)=>'<div class="zpb-bmcol">'
+  + '<span class="zrl-badge">'+word+'</span>'
   + '<div class="narr">'+body+'</div></div>';
- return '<div class="zpb-bmgrid">'
-  + col('WINS', 'zpb-shm', '<b>How good is he.</b> How many more games per season a player adds than a 70-rated player at his position, according to the same matchup math that plays the games. It is <i>static</i>: the same number for everyone with that position and rating, on every team and at every point in the draft. If a position has several starting spots (two tackles, three receivers), Wins averages across them. Running back 2, tight end 2 and the strongside linebacker are depth roles and are left out. (Guards and centers are valued the same, which is why a 76 center and a 76 guard have identical Wins.)')
-  + col('PRIORITY', '', '<b>Do I need to take him now.</b> What picking him now adds over the best you could expect to still find at that spot at your next pick. To estimate it, the site replays the computer teams\u2019 picks twelve times between now and your next turn and averages what is left. A big priority means waiting costs you; a priority near zero or negative means someone about as good will probably still be there. Priority changes as your roster fills and as the board thins.')
-  + col('GONE', '', '<b>Is he about to leave.</b> The chance that a player of this type (same position group and same value) has been picked before your next turn, across those twelve replays.')
+ return '<div class="zpb-bmgrid zpb-bm-center">'
+  + col('WINS', 'How many more games per season a player adds than a 70-rated player at his position<br>WINS are static.')
+  + col('PRIORITY', 'Do I need to take him now.<br>What picking him now adds over the best you could expect to still find at that spot at your next pick. Priority changes as your roster fills and as the board thins.')
+  + col('GONE', 'Is he about to leave.<br>The chance that a player will be picked by another team before your next turn')
   + '</div>'
-  + '<div class="zpb-bmcall"><b>Why can a linebacker show high priority?</b> Because priority is about scarcity, not just size. If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker\u2019s priority can be higher even though his Wins number is smaller. The Wins column is the clean \u201chow good is he\u201d number; Priority is the \u201cdo I need to take him now\u201d number.</div>'
-  + '<p style="margin:8px 0 0;"><b>How the computer teams pick.</b> Each CPU team takes the player who adds the most wins over a replacement-level starter (never below a 76 rating) at a spot it still needs, with a little personal taste for certain positions and some randomness.</p>';
+  + '<div class="zpb-bmcall zpb-bm-center"><b>Why can a linebacker show high priority?</b><br>Because priority is about scarcity, not just size. If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker\u2019s priority can be higher even though his Wins number is smaller.<br>The Wins column is the clean \u201chow good is he\u201d number.<br>Priority is the \u201cdo I need to take him now\u201d number.</div>'
+  + '<div class="zpb-swgroup">'
+  + zpbSw('CPU DRAFT STRATEGY', 'CPU teams draft by priority with a little personal taste for certain positions and some randomness.')
+  + zpbSw('UNDO', 'The \u21b6 Undo button takes back your most recent pick')
+  + '</div>';
 }
 function termsHTML(){
  return `<ul class="gl">
@@ -8795,7 +8805,9 @@ function readingStatsHTML(){
   <p><b>Grade</b> (your players): where the player's rating ranks among every starter-caliber player at his position: A = top 10%, C = middle, F = bottom 10%.</p>`;
 }
 // W18: DEFENSE panel — the four packages drawn as fronts (Owner: creative viz, like the line-of-scrimmage map).
-window.zpbDefGuideHTML = function(){
+// w29 (Owner): the front cards are a shared kit, so the Coaching section draws the very
+// same visuals — DT2 always a square, ILB2 and SAM always triangles, the named colors kept.
+window.zpbDefFrontKit = function(){
  // w26 (Owner): DL squares, LB triangles, DB circles; DT2, ILB2, SAM, NICKEL and DIME
  // wear their own colors, labeled at the bottom, lit in the fronts where they play.
  const COL = {DT2:'#4fa3a5',ILB2:'#a684e0',SAM:'#d98e4a',NICKEL:'#4f86e0',DIME:'#7fd67f'}; // w27 (Owner): Nickel and Dime wear colors no other dot claims
@@ -8807,14 +8819,17 @@ window.zpbDefGuideHTML = function(){
  const rowDM  = dots('DL',[['z-dl'],['z-dl'],['z-dl','c-dt2'],['z-dl']]) + dots('LB',[['z-lb']]) + dots('DB',[[''],[''],['c-nk'],[''],[''],['c-dm']]);
  const chipRow = inn=> '<div class="zpb-definout">' + Object.keys(COL).map(k=>'<span class="zpb-dl-chip'+(inn[k]?' in':'')+'"><i style="background:'+COL[k]+'"></i>'+k+'</span>').join('') + '</div>';
  const card = (t, rows, p, tip, inn)=>'<div class="zpb-defcard" title="'+tip.replace(/"/g,'&quot;')+'"><h5>'+t+'</h5>'+rows+'<p>'+p+'</p>'+chipRow(inn)+'</div>';
+ return {COL:COL, dot:dot, dots:dots, row43:row43, row34:row34, rowNK:rowNK, rowDM:rowDM, chipRow:chipRow, card:card};
+};
+window.zpbDefGuideHTML = function(){
+ const K = window.zpbDefFrontKit();
  return '<div class="zpb-defgrid">'
-  + card('4-3', row43, 'Four down linemen and three linebackers \u2014 the classic front. The SAM walks out over the tight end and the front four does the rushing.', '4-3 front: four defensive linemen, three linebackers, four defensive backs. Stronger against the run; a little thinner in coverage.', {DT2:1,SAM:1})
-  + card('3-4', row34, 'Three down linemen and four linebackers. The nose tackle holds the middle while two outside linebackers stand up \u2014 they rush on one call and drop on the next.', '3-4 front: an end slides out to linebacker, so the two outside linebackers become the pass rush. The same personnel, a different shape.', {ILB2:1,SAM:1})
-  + card('NICKEL', rowNK, 'A linebacker comes off and an extra defensive back \u2014 the nickel \u2014 comes in: five defensive backs. The modern default when the offense throws.', 'Nickel: the extra defensive back replaces a linebacker. Better in coverage, a little softer against the run.', {DT2:1,NICKEL:1})
-  + card('DIME', rowDM, 'A sixth defensive back comes in \u2014 built for 3rd and long, 4th and long, and the end of the game when only a Hail Mary can beat you.', 'Dime: plays around 10% of the snaps, mainly on 3rd and long or 4th and long, especially at the end of the game, preventing Hail Marys.', {DT2:1,NICKEL:1,DIME:1})
+  + K.card('4-3', K.row43, 'Four down linemen and three linebackers \u2014 the classic front. The SAM walks out over the tight end and the front four does the rushing.', '4-3 front: four defensive linemen, three linebackers, four defensive backs. Stronger against the run; a little thinner in coverage.', {DT2:1,SAM:1})
+  + K.card('3-4', K.row34, 'Three down linemen and four linebackers. The nose tackle holds the middle while two outside linebackers stand up \u2014 they rush on one call and drop on the next.', '3-4 front: an end slides out to linebacker, so the two outside linebackers become the pass rush. The same personnel, a different shape.', {ILB2:1,SAM:1})
+  + K.card('NICKEL', K.rowNK, 'A linebacker comes off and an extra defensive back \u2014 the nickel \u2014 comes in: five defensive backs. The modern default when the offense throws.', 'Nickel: the extra defensive back replaces a linebacker. Better in coverage, a little softer against the run.', {DT2:1,NICKEL:1})
+  + K.card('DIME', K.rowDM, 'A sixth defensive back comes in \u2014 built for 3rd and long, 4th and long, and the end of the game when only a Hail Mary can beat you.', 'Dime: plays around 10% of the snaps, mainly on 3rd and long or 4th and long, especially at the end of the game, preventing Hail Marys.', {DT2:1,NICKEL:1,DIME:1})
   + '</div>'
-  + '<div class="zpb-deflegend">' + Object.keys(COL).map(k=>'<span class="zpb-dl-chip"><i style="background:'+COL[k]+'"></i>'+k+'</span>').join('') + '</div>'
-  + '<p class="narr" style="margin:8px 0 0;text-align:center;">Squares are the defensive line, triangles the linebackers, circles the defensive backs. The five named spots wear their own colors \u2014 lit where they play, dimmed where they don\u2019t.</p>';
+  + '<div class="zpb-deflegend">' + Object.keys(K.COL).map(k=>'<span class="zpb-dl-chip"><i style="background:'+K.COL[k]+'"></i>'+k+'</span>').join('') + '</div>';
 };
 // w19 (Owner): every boxed chip on the site, explained — as beautiful as the badges themselves
 function zpbBadgesGuideHTML(){
@@ -8850,7 +8865,7 @@ function fillDraftGuide(){ /* the hint is retired (Owner) */ }
 function renderGuideHTML(){
  const sec = (t, inner, open)=>`<details class="panel" style="margin-bottom:12px;" ${open?'open':''}><summary style="cursor:pointer;font-weight:700;font-size:1.02rem;">${t}</summary><div style="margin-top:10px;">${inner}</div></details>`;
  const how = `<ol class="gl">
-  <li><b>Draft.</b> Choose your team and where you pick. When you are on the clock, pick from the board. One Undo per draft takes your pick back. Every player shows a Wins number and a Priority number (explained below), and the computer teams draft with the same math.</li>
+  <li><b>Draft.</b> Choose your team and where you pick. When you are on the clock, pick from the board. One Undo per round takes your pick back. Every player shows a Wins number and a Priority number (explained below), and the computer teams draft with the same math.</li>
   <li><b>Preseason.</b> Choose your coaching philosophy (how you like to play) and decide where each of your players lines up, including any flexes.</li>
   <li><b>Play the season.</b> Season, Playoffs, Super Bowl. Can you go <b class="zpb-shine">20-0</b>? Seventeen games, a 14-team playoff — leave your game plan on Auto or set it yourself each week.</li>
   <li><b>Review.</b> Game recaps, awards, advanced stats (what caused sacks and big runs), a critique of your picks, and 100 SEASONS, which shows how much of your result was skill and how much was luck.</li>
@@ -8860,7 +8875,7 @@ function renderGuideHTML(){
   <p style="margin:4px 0;">In short: <b>quarterback is in a class by itself</b>. After that, the <b>edge rushers and cornerbacks are the most valuable defenders</b>, and the <b>offensive tackles and top wide receiver</b> are the most valuable non-quarterbacks on offense. Safeties and interior linemen are solid; running backs, tight ends and linebackers matter less than most fans expect.</p>
   <div class="zpb-bigfade"><span class="zpb-shine">YOU CAN FLEX</span></div>
   `;
- const board = `${boardMathHTML()}<p style="margin:8px 0 0;"><b>One Undo per draft.</b> The ↶ Undo button takes back your most recent pick — once per draft, and only while you are on the clock.</p>`; // w27: the heading lives on the panel itself now
+ const board = `${boardMathHTML()}`; // w29 (Owner): CPU DRAFT STRATEGY and UNDO live in their own panels inside the section now
  const flex = flexExplainHTML();
  const values = `<p class="narr" style="margin:4px 0;">One row per starting spot, sorted from the most valuable to the least. Fullbacks and punters carry real modeled value here: the fullback owns a lead-blocker share of run blocking, and the punter drives hidden-yards field position. The integer weight scale behind these numbers lives in the weights guide (REWEIGHT-BRIEF), with the quarterback anchored at 1000.</p>
   <ul class="gl"><li><b>Where the wins come from</b> splits the spot's total wins between its two jobs. For an offensive tackle, “77% pass · 23% run” means about three-quarters of his value comes from protecting the quarterback and a quarter from blocking for the run. Pass protection is worth more than run blocking per rating point, which is why the split leans pass.</li>
@@ -10171,32 +10186,41 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
 function renderComparisonTab(container, draftEntries, realEntries){
  container.innerHTML = `
   <div class="panel" style="margin-bottom:14px;">
-   <div class="filters">
+   <div class="filters zpb-cmp-filters">
     <label style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);">Team A
      <select id="cmpTeamA"></select>
     </label>
-    <label style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);">Team B
+    <label class="zpb-cmp-b" style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);">Team B
      <select id="cmpTeamB"></select>
     </label>
    </div>
   </div>
   <div id="cmpResult"></div>
  `;
+ // w29 (Owner): the bar reads the team NAME — "Chiefs", never a partial word — and
+ // steps up to the full name when the screen is at maximum width.
+ const zpbNickOf = t=> (t||'').split(' ').slice(-1)[0];
+ const zpbWideScr = ()=> (window.innerWidth||1280) >= 1100;
  function buildOptions(sel, defaultVal){
+  const n = t=> zpbWideScr() ? t : zpbNickOf(t);
   const og1 = document.createElement('optgroup'); og1.label = 'Your Draft';
-  draftEntries.filter(e=>e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='YOU'; o.textContent='Your Team ('+e.teamName+')'; og1.appendChild(o); });
+  draftEntries.filter(e=>e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='YOU'; o.textContent='Your Team ('+n(e.teamName)+')'; og1.appendChild(o); });
   sel.appendChild(og1);
   const og2 = document.createElement('optgroup'); og2.label = 'Simulated Draft Teams';
-  draftEntries.filter(e=>!e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='SIM:'+e.teamName; o.textContent=e.teamName+' (sim)'; og2.appendChild(o); });
+  draftEntries.filter(e=>!e.isUser).forEach(e=>{ const o=document.createElement('option'); o.value='SIM:'+e.teamName; o.textContent=n(e.teamName)+' (sim)'; og2.appendChild(o); });
   sel.appendChild(og2);
   const og3 = document.createElement('optgroup'); og3.label = 'Actual NFL Rosters';
-  realEntries.forEach(e=>{ const o=document.createElement('option'); o.value='NFL:'+e.teamName; o.textContent=e.teamName+' (actual)'; og3.appendChild(o); });
+  realEntries.forEach(e=>{ const o=document.createElement('option'); o.value='NFL:'+e.teamName; o.textContent=n(e.teamName)+' (actual)'; og3.appendChild(o); });
   sel.appendChild(og3);
   sel.value = defaultVal;
  }
  const selA = document.getElementById('cmpTeamA');
  const selB = document.getElementById('cmpTeamB');
  buildOptions(selA, 'YOU');
+ { // w29 (Owner): crossing the width threshold repaints the labels, selection preserved
+  const zpbCmpRelabel = ()=>{ const va = selA.value, vb = selB.value; selA.innerHTML=''; selB.innerHTML=''; buildOptions(selA, va); buildOptions(selB, vb); };
+  selA._zpbRelabel = zpbCmpRelabel; selB._zpbRelabel = zpbCmpRelabel;
+ }
  { // w28 (Owner): the comparison opens on your biggest rival — the sim roster, not the actual one
   const RIVALS = {'Buffalo Bills':'Miami Dolphins','Miami Dolphins':'Buffalo Bills','New England Patriots':'New York Jets','New York Jets':'New England Patriots','Baltimore Ravens':'Pittsburgh Steelers','Cincinnati Bengals':'Pittsburgh Steelers','Cleveland Browns':'Pittsburgh Steelers','Pittsburgh Steelers':'Baltimore Ravens','Houston Texans':'Tennessee Titans','Indianapolis Colts':'Houston Texans','Jacksonville Jaguars':'Tennessee Titans','Tennessee Titans':'Jacksonville Jaguars','Denver Broncos':'Las Vegas Raiders','Kansas City Chiefs':'Las Vegas Raiders','Las Vegas Raiders':'Kansas City Chiefs','Los Angeles Chargers':'Las Vegas Raiders','Dallas Cowboys':'Philadelphia Eagles','New York Giants':'Philadelphia Eagles','Philadelphia Eagles':'Dallas Cowboys','Washington Commanders':'Dallas Cowboys','Chicago Bears':'Green Bay Packers','Detroit Lions':'Green Bay Packers','Green Bay Packers':'Chicago Bears','Minnesota Vikings':'Green Bay Packers','Atlanta Falcons':'New Orleans Saints','Carolina Panthers':'Atlanta Falcons','New Orleans Saints':'Atlanta Falcons','Tampa Bay Buccaneers':'New Orleans Saints','Arizona Cardinals':'Seattle Seahawks','Los Angeles Rams':'San Francisco 49ers','San Francisco 49ers':'Los Angeles Rams','Seattle Seahawks':'San Francisco 49ers'};
   const _me = draftEntries.find(e=>e.isUser);
@@ -10793,21 +10817,25 @@ window.zpbFieldMapHTML = function(){
  const chipOf = (fam, r) => '<i class="zpb-ftchip '+cls(r[0])+'" title="'+fam+' plays '+r[1]+' at '+tag(r[0])+'">'+tag(r[0])+' '+r[1]+'</i>';
  const strip = fams => ''; // w26 (Owner): the flexing math has no place on the field map
  const row = (a, cls) => '<div class="zpb-fm-row'+(cls?' '+cls:'')+'">' + a.map(x=>'<i>'+x+'</i>').join('') + '</div>';
+ // w29 (Owner): the defense lines up ACROSS from the offense, below it — one shared field,
+ // each defender mirrored over his man. The WRs stand an extra bubble out toward the
+ // sidelines, the CBs line up directly across from them, and the nickel and the dime sit
+ // in the slot gap between the offensive line and the receivers.
+ const xrow = a=> '<div class="zpb-fm-row">' + a.map(x=>'<i style="--x:'+x[1]+'">'+x[0]+'</i>').join('') + '</div>';
  return '<div class="zpb-fm" role="img" aria-label="Field map: where each position lines up">'
   + '<div class="zpb-fm-side zpb-fm-off">'
-  + row(['RB']) + strip(['RB'])
-  + row(['QB']) + strip(['QB'])
-  + row(['WR','OT','OG','C','OG','OT','TE','WR','WR'], ' zpb-fm-line') + strip(['WR','OT','OG','C','TE'])
+  + xrow([['RB',-2],['FB',2]])
+  + xrow([['QB',0]])
+  + xrow([['WR',-5],['TE',-3],['OT',-2],['OG',-1],['C',0],['OG',1],['OT',2],['WR',4],['WR',5]])
   + '</div>'
   + '<div class="zpb-fm-scrim"><span>LINE OF SCRIMMAGE</span></div>'
   + '<div class="zpb-fm-side zpb-fm-def">'
-  + row(['DE','DT','DT','DE']) + strip(['DE','DT'])
-  + row(['CB','NICKEL','CB'], ' zpb-fm-wide') + strip(['CB','NICKEL'])
-  + row(['WILL','MIKE','SAM']) + strip(['OLB','MIKE'])
-  + row(['DIME']) + strip(['DIME'])
-  + row(['FS','SS']) + strip(['FS','SS'])
+  + xrow([['DE',-3],['DT',-1],['DT',1],['DE',3]])
+  + xrow([['SAM',-2],['MIKE',0],['WILL',2]])
+  + xrow([['CB',-5],['NICKEL',3],['CB',5]])
+  + xrow([['DIME',3]])
+  + xrow([['SS',-2],['FS',2]])
   + '</div>'
-  + strip(['FB','K','P'])
   + '</div>'
   + '<div class="zpb-fm-legend">'
   + '<div class="zpb-fm-lh">OFFENSE</div>'
@@ -11021,7 +11049,7 @@ window.zpb100More = function(myW, N, mine){
 :root[data-theme="dark"] #playerBody td.num,:root:not([data-theme="light"]) #playerBody td.num{color:var(--tnd,var(--text));}
 #playerBody .zpb-pb-name.zpb-vib{font-weight:800;}
 /* 4) comparison: a colored panel behind EVERY player, winner cells included */
-.zpb-lu-cell.zpb-trow{box-shadow:inset 0 0 0 1px var(--zrbd,transparent);}
+/* w29 (Owner): the old ring on every cell is retired — every player sits on a backing panel (a ::before, so the 90+ shimmer survives) and the highlighted border is the 85+ tier alone */
 :root[data-theme="dark"] .zpb-lu-row :where(.zpb-lu-cell.zpb-trow),:root:not([data-theme="light"]) .zpb-lu-row :where(.zpb-lu-cell.zpb-trow){color:var(--tnd,var(--tn,inherit));}
 .zpb-lu-cell.zpb-vib{color:var(--tn,var(--tA2,var(--accent)));}
 :root[data-theme="dark"] .zpb-lu-cell.zpb-vib,:root:not([data-theme="light"]) .zpb-lu-cell.zpb-vib{color:var(--tnd,var(--tn,inherit));}
@@ -11237,6 +11265,36 @@ setTimeout(function(){
 }, 400);
 </script>
 
+<style id="zpb-w29-css">
+/* ============ Z-POST-BLUE W29 ============ */
+/* A (Owner): Where they line up — ONE shared field: offense on top, defense mirrored
+   below it, every station at its own --x. WRs stand an extra bubble out, the CBs line
+   up directly across from them, and the nickel + dime sit in the slot gap. */
+.zpb-fm{display:block;}
+.zpb-fm-side{display:block;}
+.zpb-fm-row{display:block;position:relative;height:46px;margin:3px 0;}
+.zpb-fm-row > i{position:absolute;left:calc(50% + var(--x,0)*7.7%);top:50%;transform:translate(-50%,-50%);min-width:40px;}
+.zpb-fm-scrim{margin:7px 0;}
+@media (max-width:430px){
+ .zpb-fm-row{height:40px;}
+ .zpb-fm-row > i{min-width:30px;height:26px;font-size:.62rem;padding:0 4px;}
+ .zpb-fm-ini{min-width:30px;padding:1px 3px;border-radius:8px;}
+ .zpb-fm-ini b{font-size:.62rem;}
+ .zpb-fm-ini i{font-size:.44rem;}
+}
+/* I (Owner): comparison player panels — EVERY player sits on a backing panel;
+   the highlighted border is the 85+ tier (vibrant and shimmering alike). */
+.zpb-lu-row .zpb-lu-cell{position:relative;}
+.zpb-lu-row .zpb-lu-cell.zpb-trow::before{content:"";position:absolute;inset:0;border-radius:10px;background:var(--zr1,transparent);z-index:-1;}
+.zpb-lu-row .zpb-lu-cell.zpb-trow.zpb-vib::before,.zpb-lu-row .zpb-lu-cell.zpb-trow.zpb-shm::before{box-shadow:inset 0 0 0 1px var(--zrbd,var(--accent));}
+/* D (Owner): Reading the Draft Board — titles and text centered, every line on its own */
+.zpb-bm-center{text-align:center;}
+.zpb-bm-center .zrl-badge{align-self:center;}
+.zpb-bmcol .narr,.zpb-bmcall{line-height:1.8;}
+/* H (Owner): Team Comparison — Team B's dropdown hugs the right edge of the panel */
+.zpb-cmp-filters{justify-content:space-between;align-items:flex-end;}
+.zpb-cmp-filters .zpb-cmp-b{align-items:flex-end;text-align:right;}
+</style>
 <script id="zpb-w27-js">
 // ============ Z-POST-BLUE W27 JS ============
 // Where they belong — the draft pick drawn on the field, the guide's field-map format,
@@ -11257,31 +11315,54 @@ window.zpbBelongMapHTML = function(entry){
    const cls = ov>=90 ? 'zpb-shm' : (ov>=85 ? 'zpb-vib' : '');
    return '<i class="zpb-fm-ini ' + cls + '" title="' + String(e.name).replace(/"/g,'&quot;') + (ov ? ' \u00b7 ' + Math.round(ov) : '') + '"><b>' + ini(e.name) + '</b><i>' + lab + '</i></i>';
   };
-  const row = (a, cls)=>'<div class="zpb-fm-row' + (cls ? ' ' + cls : '') + '">' + a.map(x=>cell(x[0], x[1])).join('') + '</div>';
   const lbl = s=>(typeof LABELS !== 'undefined' && LABELS[s]) ? LABELS[s] : s;
-  const L = s=>[s, lbl(s)];
   const base34 = !!window.ZPB34;
   const dt1 = base34 ? 'NT' : lbl('DT1'), dt2 = base34 ? 'OLB1' : lbl('DT2');
   const mike = base34 ? 'ILB1' : lbl('MIKE'), will = base34 ? 'ILB2' : lbl('WILL'), sam = base34 ? 'OLB2' : lbl('SAM');
+  // w29 (Owner): one shared field, defense mirrored below the offense — every station
+  // sits at its own --x. The corners stand across from the receivers; the nickel and
+  // the dime sit in the slot gap between the offensive line and the receivers.
+  const xrow = a=>'<div class="zpb-fm-row">' + a.map(x=>{
+    const c = cell(x[0], x[1]);
+    return c.replace('class="zpb-fm-ini', 'style="--x:' + x[2] + '" class="zpb-fm-ini');
+  }).join('') + '</div>';
+  const xL = (s,x)=>[s, lbl(s), x];
   return '<div class="zpb-fm" role="img" aria-label="Where they belong: your starters at their stations"' + (vars ? ' style="' + vars + '"' : '') + '>'
    + '<div class="zpb-fm-side zpb-fm-off">'
-   + row([[ 'RB1', lbl('RB1')],['FB', lbl('FB')]])
-   + row([L('QB')])
-   + row([L('WR1'),L('TE1'),['OT1',lbl('OT1')],['OG1',lbl('OG1')],['C',lbl('C')],['OG2',lbl('OG2')],['OT2',lbl('OT2')],L('WR3'),L('WR2')], ' zpb-fm-line')
+   + xrow([xL('RB1',-2),['FB', lbl('FB'), 2]])
+   + xrow([xL('QB',0)])
+   + xrow([xL('WR1',-5),xL('TE1',-3),xL('OT1',-2),xL('OG1',-1),xL('C',0),xL('OG2',1),xL('OT2',2),xL('WR3',4),xL('WR2',5)])
    + '</div>'
    + '<div class="zpb-fm-scrim"><span>LINE OF SCRIMMAGE</span></div>'
    + '<div class="zpb-fm-side zpb-fm-def">'
-   + row([['DE1',lbl('DE1')],['DT1',dt1],['DT2',dt2],['DE2',lbl('DE2')]])
-   + row([L('CB1'),L('CB2')], ' zpb-fm-wide')
-   + row([L('CB3'),['DIME','Dime']])
-   + row([['MIKE',mike],['WILL',will],['SAM',sam]])
-   + row([L('FS'),L('SS')])
+   + xrow([xL('DE1',-3),['DT1',dt1,-1],['DT2',dt2,1],xL('DE2',3)])
+   + xrow([['SAM',sam,-2],['MIKE',mike,0],['WILL',will,2]])
+   + xrow([xL('CB1',-5),xL('CB3',3),xL('CB2',5)])
+   + xrow([['DIME','Dime',3]])
+   + xrow([xL('SS',-2),xL('FS',2)])
    + '</div>'
    + '</div>'
-   + '<p class="narr" style="margin:6px 0 0;text-align:center;">Every starter wears his initials at the station he belongs to \u2014 the nickel and the dime sit out in the slot, between the corners and the linebackers.</p>';
+   + '<p class="narr" style="margin:6px 0 0;text-align:center;">Every starter wears his initials at the station he belongs to \u2014 the corners stand across from the receivers, and the nickel and the dime sit in the slot, in the gap between the line and the receivers.</p>';
  }catch(err){ return ''; }
 };
 </script>
 
+<script id="zpb-w29-js">
+// ============ Z-POST-BLUE W29 JS ============
+// w29 (Owner): crossing the comparison width threshold repaints the TEAM COMPARISON
+// dropdown labels — "Chiefs" normally, the full name at maximum width — selection kept.
+(function(){
+ var t = null;
+ window.addEventListener('resize', function(){
+  clearTimeout(t);
+  t = setTimeout(function(){
+   try{
+    var a = document.getElementById('cmpTeamA');
+    if(a && a._zpbRelabel) a._zpbRelabel();
+   }catch(err){}
+  }, 200);
+ });
+})();
+</script>
 </body>
 </html>
