@@ -10,6 +10,7 @@
 - Session 28 Oct: recorded the Owner's 28 Oct message verbatim (_agents/owner-notes/2026-10-28-N1-verbatim.txt); appended the item→row mapping to _agents/V23-OWNER-NOTES-INTAKE-LEDGER.md; filed two PRIORITY+ proposals. Reviewed P-019 (improved) and P-042 (improved). Both pushed.
 - Session 28 Oct (cont.): reviewed P-020 (improved: mock missing, no anchors) and P-021 (improved: CSS accurate, JS bodies missing). Both pushed. Ran targeted checks on z.ai w30 vs Pre-Colors (see bulletin 20261028-0200-boc.md).
 - Session 28 Oct (cont. 2): reviewed P-022 (improved: anchors accurate, Cinzel not loaded, FX.play('champion') missing). Pushed.
+- Session 28 Oct (cont. 3): offered Z.ai's w31/w32 prompt as ~50 PRIORITY+ clusters to the council (bulletin 20261028-0300-boc.md). Reviewed P-023 (improved: render100 anchor wrong — actual 6043 not 5596; Cinzel missing). Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
