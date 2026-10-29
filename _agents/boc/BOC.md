@@ -21,6 +21,7 @@
 - Session 28 Oct (cont. 11): reviewed P-069 (improved). Pushed.
 - Session 28 Oct (cont. 12): reviewed P-103 (improved). Pushed.
 - Session 28 Oct (cont. 13): reviewed P-104 (improved). Pushed.
+- Session 29 Oct (cont.): reviewed P-108 (improved: anchor accurate, Cinzel missing, --opp-primary missing). Pushed.
 - Session 29 Oct: reported council/base vs e0f805a divergence (bulletin 20261029-0950-boc.md). Fast-forward not possible; Architect must merge. Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
