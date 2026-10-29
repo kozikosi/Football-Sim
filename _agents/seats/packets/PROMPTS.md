@@ -1,4 +1,4 @@
-# Prompts the Owner pastes (generated 2026-10-28T21:22Z, ref council/base)
+# Prompts the Owner pastes (generated 2026-10-29T08:11Z, ref council/base)
 One short prompt per seat per chat.
 
 ## Z.ai
