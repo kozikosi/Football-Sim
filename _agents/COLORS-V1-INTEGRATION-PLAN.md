@@ -1,4 +1,4 @@
-# V23 integration plan: Architect's engine inside Z.ai's shell (Architect, 29 Oct 2026)
+# COLORS V1 integration plan: Architect's engine inside Z.ai's shell (file was named V23-INTEGRATION-PLAN.md; the Owner renamed the build "Colors v1" on 28 Oct, file `Football-Sim-Colors-v1.html`) (Architect, 29 Oct 2026)
 Basis: Z.ai's `HANDOFF-TO-CLAUDE.md` (w33, read in full) and my function-hash diffs of w30 and w33 against Pre-Colors (`_agents/W30-ENGINE-DIFF-2026-10-28.md`). Labels: VERIFIED = I ran it; REPORTED = Z.ai's word.
 Shell: `Football-Sim-Z-post-blue-w33.html`, sha256 `68d105f0100db3eb…`, 1,440,296 B (REPORTED current; Owner has not yet played w32/w33). Not a build.
 
@@ -26,3 +26,16 @@ Reasons: the Owner is happy with the UI; the seam is a set of named functions; a
 2. Z.ai's w33 changed protected constants (above). Default: my approved table replaces them; tell me if any Z.ai value was an Owner instruction.
 3. The Owner's "go" on V23 (spec §9).
 Not checked: w33 behaviour in a browser; the w32 suites; whether payload blocks rebind `DEFAULT_WEIGHTS`; `simulateGame`/`matchupModel` line diffs.
+
+## Update 28 Oct 17:16 HST (Owner: permission to build; name Colors v1)
+**Z.ai flex vs REV 2 (VERIFIED by reading both).** w33 `FLEX` is the Owner's 21 Oct addendum; `flex.json` is REV 2 (26 Oct) and governs. Main differences (REV 2 / w33):
+- Missing in w33: NICKEL and DIME as destinations for WR, TE, EDGE, MIKE/ILB, SS, FS, CB (w33 has CB3 only for SS and MIKE/WILL/SAM); FB as a destination for RB, TE, OL, DT, EDGE, ILB; DL5; every REV 2 entry for FB/P (`FB:{}`).
+- Different values: QB (WR/SS/FS 6 vs RB/WR 6, no S); RB->WR 4, FB 2 (w33: TE only); WR->RB 4, CB 6 (w33: RB 6, CB 4); TE->RB 6 (w33: 4), TE->OL/DL 6 (absent); EDGE->OLB 2 (w33: WILL/SAM 0), ->ILB 4 (MIKE 4), ->NICKEL 6 (absent); MIKE->S 6, NICKEL 6, DIME 6 (w33: SS 2, FS 4, CB3 4); OLB->EDGE 4, DT 6, NICKEL 4, SS 6 (w33: 2, 4, 2, 4); SS->CB 6, ILB 6, OLB 4, WR 6 (w33: 4, 4, 2, 4); FS->NICKEL/DIME 0 (absent); CB->NICKEL/DIME 0 (absent); P->K 2 (w33: 0).
+- Extra in w33, absent in REV 2: OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB 4-6, FS/CB->TE/RB 6.
+Resolution: REV 2 is installed in Colors v1 (spec §12.2 adds DL5). Z.ai's shell reads `flexPenaltyFor`, so no UI change is needed.
+
+**Data.** The Owner's new Madden file did not arrive: BOC's CSV is header-only and the Beam raw/JSON files are not on its branch (VERIFIED). Request: attach the file (or push `madden-ratings-raw.txt`) so I can parse it (name, pos, team, OVR, SPD, STR). Consequences: AGENTS.md §7 "1,200-player dataset frozen" is superseded by the Owner; the ratings fit (z-score weights, returner score, K/P curves) is re-run on the new distribution before the table is trusted; the pool-size blocker (P-201) is likely resolved (1,941 players REPORTED by Beam). Model input: OVR only for slot value; SPD (and STR where a role needs it) allowed in the returner score and in tie-breaking; the browser and the board show only OVR, STR, SPD.
+
+**3&O / 4&O cinematics are not honest today (VERIFIED, w33 `zpbLastDrivesHTML`).** Its own comment says the model has no drives; it picks a "plausible yard line" from `12 + (i*7 + |margin|*3) % 26`, labels any quiet stretch in the last quarter a 3&O, and names the carrier and returner from season box-score ranks. None of that comes from the engine. To make it honest the engine needs a drive model: a generated drive sequence (start spot, plays, yards, result: TD, FG, punt, turnover, downs, end of half) conditioned so that drive yards, points, punts, takeaways and sacks sum to the team totals the current model produces (identity checks in the test order). 3&O (three plays, punt), 4&O (turnover on downs) and yard lines then come from the same data as the score. This is a new engine stage ahead of the cinematics work and replaces the fabricated drive chart; PRIORITIES entry to follow. The shell's `{q,t,pts,type}` events stay the contract; drives add `g.result.drives[]`.
+
+**Order now:** steps 0-3 of the plan above, then the drive generator, then steps 4-7; new data refit is gated on the file.
