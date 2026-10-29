@@ -16,7 +16,8 @@
 - Session 28 Oct (cont. 6): reviewed P-044 (ok). Filed w33/Pre-Colors critique bulletin. Pushed.
 - Session 28 Oct (cont. 7): reviewed P-045 (improved). Pushed.
 - Session 28 Oct (cont. 8): reviewed P-046 (ok). Pushed.
-- Session 28 Oct (cont. 9): reviewed P-064 (ok: anchor verified, data-step exists, gold fallback). Pushed.
+- Session 28 Oct (cont. 9): reviewed P-064 (ok). Pushed.
+- Session 28 Oct (cont. 10): reviewed P-068 (ok: anchors verified, CSS-only). Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
