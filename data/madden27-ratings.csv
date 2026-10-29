@@ -753,6 +753,7 @@ Deatrich Wise Jr,DT,Washington Commanders,75,74,85
 DeMarvion Overshown,MIKE,Dallas Cowboys,75,88,64
 Derrick Barnes,WILL,Detroit Lions,75,85,79
 Devin Singletary,HB,NY Giants,75,86,70
+Dominic Zvada,K,NY Giants,75,72,44
 Dylan Sampson,HB,Cleveland Browns,75,92,65
 E.J. Speed,SAM,Houston Texans,75,89,74
 Emanuel Wilson,HB,Seattle Seahawks,75,90,72
@@ -852,6 +853,7 @@ Demetrius Knight Jr,WILL,Cincinnati Bengals,74,86,72
 Dennis Gardeck,SAM,Jacksonville Jaguars,74,86,81
 Devin Duvernay,WR,Arizona Cardinals,74,93,68
 Dorian Williams,WILL,Buffalo Bills,74,89,63
+Drew Stevens,K,Washington Commanders,74,72,48
 Elijah Ponder,REDG,New England Patriots,74,85,76
 Emmanuel Pregnon,LG,Jacksonville Jaguars,74,65,89
 Eric Murray,FS,Jacksonville Jaguars,74,86,63
@@ -1131,6 +1133,7 @@ Dante Stills,DT,Arizona Cardinals,71,76,80
 Darrick Forrest,FS,San Francisco 49ers,71,90,67
 David Walker,REDG,Tampa Bay Buccaneers,71,83,78
 David Moore,WR,Carolina Panthers,71,87,74
+DeAndre Carter,WR,Detroit Lions,71,88,60
 Del'Shawn Phillips,SAM,Los Angeles Chargers,71,87,72
 Devin Moore,CB,Dallas Cowboys,71,90,58
 Devontez Walker,WR,Baltimore Ravens,71,94,63
@@ -1401,6 +1404,7 @@ Tyler Baron,REDG,NY Jets,69,85,76
 Tyrion Ingram-Dawkins,LEDG,Minnesota Vikings,69,77,83
 Tyrod Taylor,QB,Green Bay Packers,69,85,57
 Zane Durant,DT,Buffalo Bills,69,79,87
+Aaron Hall,DT,Carolina Panthers,68,71,81
 Adam Prentice,FB,Denver Broncos,68,77,76
 Ahmed Hassanein,REDG,Detroit Lions,68,80,83
 Ajani Cornelius,RG,Dallas Cowboys,68,64,86
@@ -1415,6 +1419,7 @@ Brian Parker II,LG,Cincinnati Bengals,68,68,89
 British Brooks,FB,Houston Texans,68,86,78
 Brycen Tremayne,WR,Carolina Panthers,68,87,68
 Caedan Wallace,RT,Miami Dolphins,68,67,87
+Camden Brown,WR,Dallas Cowboys,68,88,63
 Carson Beck,QB,Arizona Cardinals,68,79,62
 Carson Wentz,QB,Minnesota Vikings,68,82,72
 Charlie Kolar,TE,Los Angeles Chargers,68,84,68
@@ -1429,6 +1434,7 @@ Dante Trader Jr,SS,Miami Dolphins,68,84,62
 Dare Ogunbowale,HB,Houston Texans,68,87,71
 David Long Jr,CB,New Orleans Saints,68,89,61
 Dawand Jones,LT,Cleveland Browns,68,61,95
+Dohnte Meyers,WR,Cincinnati Bengals,68,88,59
 Dont'e Thornton Jr,WR,Las Vegas Raiders,68,96,70
 Donte Kent,CB,Pittsburgh Steelers,68,93,56
 Drew Shelton,RT,Dallas Cowboys,68,67,83
@@ -1438,6 +1444,7 @@ Dylan Laube,HB,Las Vegas Raiders,68,88,67
 Emari Demercado,HB,Dallas Cowboys,68,91,65
 Enrique Cruz Jr,LT,San Francisco 49ers,68,74,85
 Erick All Jr,TE,Cincinnati Bengals,68,86,72
+J. Michael Sturdivant,WR,Green Bay Packers,68,92,61
 Jackie Marshall,DT,Tennessee Titans,68,76,87
 Jackson Hawes,TE,Buffalo Bills,68,78,72
 Jackson Slater,RG,Tennessee Titans,68,72,89
@@ -1495,6 +1502,8 @@ Cade Stover,TE,Houston Texans,67,84,74
 Carson Vinson,LT,Baltimore Ravens,67,68,81
 Carver Willis,LG,San Francisco 49ers,67,69,83
 Chris Roland-Wallace,FS,Kansas City Chiefs,67,86,64
+Chris Blair,WR,Atlanta Falcons,67,88,62
+Chukwuebuka Godrick,LT,Miami Dolphins,67,68,85
 Chukwuma Okorafor,RT,NY Jets,67,67,85
 Cole Payton,QB,Philadelphia Eagles,67,87,68
 Corey Kiner,HB,New England Patriots,67,88,73
@@ -1539,6 +1548,7 @@ Khalid Kareem,REDG,San Francisco 49ers,67,78,84
 Kitan Oladapo,SS,Green Bay Packers,67,86,68
 Larrell Murchison,DT,Los Angeles Rams,67,70,87
 Logan Taylor,LT,Los Angeles Chargers,67,66,88
+Malik McClain,WR,NY Jets,67,90,65
 Marcus Mbow,RT,NY Giants,67,71,84
 Mason Rudolph,QB,Pittsburgh Steelers,67,73,66
 Matt Peart,LT,Denver Broncos,67,68,86
@@ -1553,9 +1563,12 @@ Parker Brailsford,C,Cleveland Browns,67,72,83
 Quintayvious Hutchins,REDG,New England Patriots,67,81,74
 Riley Leonard,QB,Indianapolis Colts,67,86,70
 Robert Tonyan,TE,Pittsburgh Steelers,67,85,74
+Robert Henry Jr.,HB,Seattle Seahawks,67,88,69
 Simi Fehoko,WR,Arizona Cardinals,67,90,66
+Skyler Thomas,FS,Chicago Bears,67,89,64
 Spencer Anderson,RG,Pittsburgh Steelers,67,67,88
 Tanner McKee,QB,Philadelphia Eagles,67,77,61
+Tay Martin,WR,Detroit Lions,67,89,62
 Tim Smith,DT,Indianapolis Colts,67,68,83
 Tony Fields II,MIKE,Chicago Bears,67,85,64
 Toriano Pride Jr,CB,Cleveland Browns,67,93,55
@@ -1566,9 +1579,11 @@ Ali Gaye,REDG,Houston Texans,66,82,73
 Ar'maj Reed-Adams,RG,Buffalo Bills,66,63,85
 Bobby Jamison-Travis,DT,NY Giants,66,64,83
 Brenden Schooler,SS,New England Patriots,66,92,64
+Bryan Hudson,C,NY Giants,66,62,84
 Bryce Cabeldue,LG,Las Vegas Raiders,66,74,90
 C.J. Williams,WR,Jacksonville Jaguars,66,88,65
 Cameron Williams,RT,Atlanta Falcons,66,66,88
+Channing Canada,CB,New England Patriots,66,91,61
 Charles Woods,CB,New England Patriots,66,86,55
 Charlie Woerner,TE,Atlanta Falcons,66,82,77
 Dallis Flowers,CB,Chicago Bears,66,91,51
@@ -1578,6 +1593,7 @@ Dareke Young,WR,Las Vegas Raiders,66,90,71
 Davis Mills,QB,Houston Texans,66,81,56
 Dean Connors,HB,Los Angeles Rams,66,91,71
 Dillon Gabriel,QB,Cleveland Browns,66,83,58
+DJ Herman,FB,Miami Dolphins,66,75,78
 Drew Kendall,LG,Philadelphia Eagles,66,71,81
 Drew Ogletree,TE,Indianapolis Colts,66,81,74
 Ethan Onianwa,RT,Atlanta Falcons,66,65,84
@@ -1590,7 +1606,9 @@ Jacob Monk,RG,Green Bay Packers,66,69,83
 Jalen Milroe,QB,Seattle Seahawks,66,93,69
 Jalen Davis,CB,Cincinnati Bengals,66,88,53
 James Williams Sr,WILL,Tennessee Titans,66,84,71
+James Thompson Jr,DT,San Francisco 49ers,66,72,87
 Javontae Jean-Baptiste,REDG,Washington Commanders,66,84,77
+Jayden Loving,DT,Chicago Bears,66,70,85
 Jaylen Harrell,LEDG,Tennessee Titans,66,83,75
 JL Skinner,SS,Denver Broncos,66,89,59
 Joe Royer,TE,Cleveland Browns,66,84,75
@@ -1617,6 +1635,7 @@ Matt Gulbin,RG,Washington Commanders,66,64,79
 Max Mitchell,LT,NY Jets,66,61,85
 Michael Deiter,C,Denver Broncos,66,68,86
 Michael Burton,FB,Cleveland Browns,66,80,82
+Montorie Foster Jr,WR,Seattle Seahawks,66,88,58
 Morgan Cox,LS,Tennessee Titans,66,70,73
 Myles Price,WR,Minnesota Vikings,66,92,53
 Nathan Thomas,LT,Houston Texans,66,66,85
@@ -1628,12 +1647,15 @@ Parker Hughes,WILL,Jacksonville Jaguars,66,88,71
 Patrick Johnson,REDG,Las Vegas Raiders,66,82,75
 Rayuan Lane III,SS,Jacksonville Jaguars,66,87,59
 Reese Taylor,CB,Miami Dolphins,66,90,54
+Rodney McGraw,REDG,Miami Dolphins,66,80,76
 Ronnie Rivers,HB,Los Angeles Rams,66,87,63
+Sebastian Valdez,DT,San Francisco 49ers,66,72,85
 Sedrick Van Pran-Granger,C,Indianapolis Colts,66,66,82
 Seth McGowan,HB,Indianapolis Colts,66,89,75
 Siran Neal,SS,San Francisco 49ers,66,90,60
 Thomas Incoom,LEDG,Carolina Panthers,66,84,77
 Thomas Booker IV,DT,Las Vegas Raiders,66,74,85
+Trace Ford,REDG,NY Giants,66,84,75
 Trevor Keegan,RG,Minnesota Vikings,66,64,85
 Trey Sermon,HB,Atlanta Falcons,66,84,78
 Ty'Ron Hopper,WILL,Green Bay Packers,66,83,66
@@ -1658,6 +1680,7 @@ Branson Taylor,LG,Los Angeles Chargers,65,63,85
 Britain Covey,WR,Philadelphia Eagles,65,88,41
 Brock Wright,TE,Detroit Lions,65,85,79
 Bryan Thomas Jr,LEDG,Jacksonville Jaguars,65,79,72
+Bryson Eason,DT,Kansas City Chiefs,65,69,80
 Case Keenum,QB,Chicago Bears,65,76,54
 Chaz Chambliss,LEDG,Minnesota Vikings,65,81,79
 Chigozie Anusiem,CB,Las Vegas Raiders,65,91,60
@@ -1668,12 +1691,15 @@ Devon Key,FS,Denver Broncos,65,86,66
 Dylan Cook,RT,Pittsburgh Steelers,65,69,80
 Eli Raridon,TE,New England Patriots,65,85,74
 Elijah Garcia,DT,Dallas Cowboys,65,71,83
+Eric O'Neill,LEDG,Detroit Lions,65,79,79
 Fred Johnson,RT,Philadelphia Eagles,65,62,85
 Hayden Conner,LG,Arizona Cardinals,65,65,86
 Haynes King,QB,Carolina Panthers,65,90,70
 Hunter Wohler,SS,Indianapolis Colts,65,87,63
 Isaiah Stalbird,WILL,New Orleans Saints,65,89,66
 Jack Driscoll,LT,Pittsburgh Steelers,65,70,83
+Jack Pyburn,LEDG,Kansas City Chiefs,65,79,76
+Jackson Meeks,TE,Detroit Lions,65,84,65
 Jackson Kuwatch,MIKE,Carolina Panthers,65,84,69
 Jayden Williams,LT,Arizona Cardinals,65,72,84
 Jordan Jackson,DT,Denver Broncos,65,73,78
@@ -1681,8 +1707,10 @@ Josh Blackwell,CB,Chicago Bears,65,94,53
 Josh Cuevas,TE,Baltimore Ravens,65,83,74
 Julian Ashby,LS,New England Patriots,65,74,68
 Kalen King,CB,Arizona Cardinals,65,87,47
+Kapena Gushiken,CB,Indianapolis Colts,65,92,59
 Keyon Martin,CB,Baltimore Ravens,65,92,54
 Ko Kieft,TE,Tampa Bay Buccaneers,65,72,75
+Kohl Levao,LG,NY Jets,65,56,86
 Kyle McCord,QB,Miami Dolphins,65,75,62
 Leonard Taylor III,DT,New England Patriots,65,68,84
 Matt Dickerson,DT,Jacksonville Jaguars,65,71,81
@@ -1696,12 +1724,15 @@ Pat Coogan,C,Tennessee Titans,65,66,82
 Rejzohn Wright,CB,New Orleans Saints,65,89,53
 Robert Spears-Jennings,SS,Pittsburgh Steelers,65,93,62
 Rocco Underwood,LS,Philadelphia Eagles,65,74,66
+Rodney Shelley,CB,Los Angeles Chargers,65,91,59
+Sabastian Harsh,REDG,Houston Texans,65,84,82
 Sam Roush,TE,Chicago Bears,65,82,80
 Sam Howell,QB,Dallas Cowboys,65,82,64
 Segun Olubi,MIKE,Las Vegas Raiders,65,89,66
 Skyler Gill-Howard,DT,Detroit Lions,65,70,81
 Tanner Koziol,TE,Jacksonville Jaguars,65,82,73
 Taylen Green,QB,Cleveland Browns,65,92,66
+Theo Wease Jr,WR,Los Angeles Chargers,65,88,62
 Thomas Fidone II,TE,NY Giants,65,81,71
 Tip Reiman,TE,Arizona Cardinals,65,84,77
 Truman Jones,LEDG,Tennessee Titans,65,83,71
@@ -1717,6 +1748,8 @@ Zeek Biggers,DT,Miami Dolphins,65,69,84
 Zemaiah Vaughn,CB,Minnesota Vikings,65,91,66
 Alex Bachman,WR,Los Angeles Rams,64,87,61
 Alijah Huzzie,CB,Jacksonville Jaguars,64,93,64
+Anthony Campbell,DT,Green Bay Packers,64,72,83
+Ayden Garnes,CB,Tampa Bay Buccaneers,64,91,54
 BJ Green II,REDG,Jacksonville Jaguars,64,82,80
 Branson Combs,WILL,Jacksonville Jaguars,64,83,71
 Caleb Murphy,REDG,Los Angeles Chargers,64,79,70
@@ -1728,9 +1761,13 @@ Cooper McDonald,MIKE,Kansas City Chiefs,64,84,73
 Corey Levin,C,Atlanta Falcons,64,63,84
 D.J. Montgomery,WR,Indianapolis Colts,64,89,53
 Darryl Peterson III,REDG,Los Angeles Rams,64,77,72
+Doneiko Slaughter,CB,Pittsburgh Steelers,64,92,58
 Donovan Jennings,LG,Green Bay Packers,64,72,86
 Dylan McMahon,C,Los Angeles Rams,64,69,80
 Easton Mascarenas-Arnold,WILL,Cleveland Browns,64,86,73
+Elliott Davison,FS,New England Patriots,64,91,58
+Erick Hunter,MIKE,New England Patriots,64,90,69
+Ethan Burke,REDG,Baltimore Ravens,64,74,71
 Frank Crum,LT,Denver Broncos,64,74,85
 Garrett Dellinger,LG,Tennessee Titans,64,67,88
 Gavin Bartholomew,TE,Minnesota Vikings,64,82,70
@@ -1741,10 +1778,13 @@ Jalen McLeod,MIKE,Jacksonville Jaguars,64,81,77
 Jarrett Stidham,QB,Denver Broncos,64,82,62
 Joe Giles-Harris,SAM,Cincinnati Bengals,64,82,69
 Jordan Turner,WILL,Denver Broncos,64,81,75
+Justin Barron,MIKE,Dallas Cowboys,64,84,70
 Kameron Johnson,WR,Tampa Bay Buccaneers,64,90,63
 Kayode Awosika,LG,Los Angeles Chargers,64,65,86
 Kendall Williamson,FS,Los Angeles Chargers,64,91,63
+Kevin Knowles,CB,Tampa Bay Buccaneers,64,90,54
 Khalil Dorsey,CB,Detroit Lions,64,91,51
+Khalil Jacobs,MIKE,New England Patriots,64,82,75
 Kristian Welch,WILL,Green Bay Packers,64,85,75
 Liam McCullough,LS,Atlanta Falcons,64,75,64
 Luke Farrell,TE,San Francisco 49ers,64,77,77
@@ -1770,11 +1810,13 @@ Trevor Nowaske,SAM,Detroit Lions,64,88,74
 Trey Lance,QB,Los Angeles Chargers,64,87,71
 Will Howard,QB,Pittsburgh Steelers,64,81,68
 Yasir Abdullah,SAM,Atlanta Falcons,64,90,70
+Avery Smith,CB,Seattle Seahawks,63,88,58
 Bam Martin-Scott,WILL,Carolina Panthers,63,85,74
 Bauer Sharp,TE,Tampa Bay Buccaneers,63,85,71
 Brandon Pili,DT,Seattle Seahawks,63,61,82
 Brayden Willis,TE,San Francisco 49ers,63,84,76
 C.J. Okoye,DT,NY Giants,63,58,89
+CJ Donaldson,HB,New Orleans Saints,63,87,72
 Cody Lindenberg,WILL,Las Vegas Raiders,63,82,71
 Corey Bullock,LG,Carolina Panthers,63,62,85
 Dallen Bentley,TE,Denver Broncos,63,85,71
@@ -1782,6 +1824,7 @@ Ethan Downs,REDG,Kansas City Chiefs,63,83,83
 Garret Wallow,WILL,San Francisco 49ers,63,83,69
 Garrett Nussmeier,QB,Kansas City Chiefs,63,78,63
 Jackson Woodard,MIKE,Miami Dolphins,63,84,73
+Jacob Bayer,RG,Cincinnati Bengals,63,66,86
 Jacob Thomas,FS,Minnesota Vikings,63,91,63
 Jacob Hummel,WILL,Houston Texans,63,86,67
 Jake Briningstool,TE,Kansas City Chiefs,63,81,71
@@ -1797,19 +1840,25 @@ Lew Nichols,HB,Pittsburgh Steelers,63,85,68
 Malik Herring,LEDG,Miami Dolphins,63,74,78
 Mark Redman,TE,Green Bay Packers,63,78,77
 Mason Richman,RT,Seattle Seahawks,63,60,84
+Mason Murphy,RT,New Orleans Saints,63,62,82
+Maximus Pulley,FS,Los Angeles Rams,63,88,62
 Mike Brown,FS,New England Patriots,63,88,66
+Nate Lynn,LEDG,NY Jets,63,78,69
 PJ Jules,FS,Cincinnati Bengals,63,89,65
 Quinn Ewers,QB,Jacksonville Jaguars,63,78,66
 Quintin Morris,TE,Jacksonville Jaguars,63,82,72
 Robert Beal Jr,REDG,Miami Dolphins,63,90,68
 Seydou Traore,TE,Miami Dolphins,63,85,72
 Storm Norton,LT,Atlanta Falcons,63,64,82
+Tahj Chambers,WILL,Indianapolis Colts,63,85,68
+Tanoa Togiai,LG,Washington Commanders,63,64,89
 Teagan Quitoriano,TE,Arizona Cardinals,63,74,78
 Tylan Grable,RT,Buffalo Bills,63,74,81
 Tyler Batty,LEDG,Minnesota Vikings,63,80,83
 William Wagner,LS,Cincinnati Bengals,63,73,71
 Willie Lampkin IV,LG,Philadelphia Eagles,63,65,82
 Xavier Nwankpa,FS,Kansas City Chiefs,63,90,62
+Albert Reese IV,RT,Arizona Cardinals,62,65,85
 Alex Ward,LS,Las Vegas Raiders,62,69,66
 Andrew Meyer,C,Miami Dolphins,62,70,86
 Athan Kaliakmanis,QB,Washington Commanders,62,75,65
@@ -1833,29 +1882,40 @@ Jacob Spomer,C,Los Angeles Chargers,62,68,86
 Jake Haener,QB,NY Giants,62,83,61
 Joe Huber,LG,Minnesota Vikings,62,66,86
 John Williams,LT,Green Bay Packers,62,67,87
+John Michael Gyllenborg,TE,Kansas City Chiefs,62,86,76
 Karene Reid,MIKE,Denver Broncos,62,83,70
+Keleki Latu,TE,Buffalo Bills,62,76,67
 Luke Tenuta,RT,Indianapolis Colts,62,58,81
 Michael Jurgens,C,Minnesota Vikings,62,58,80
 Moliki Matavao,TE,New Orleans Saints,62,79,76
 Nick Samac,C,Minnesota Vikings,62,65,84
 Nick Muse,TE,Atlanta Falcons,62,81,80
+Sam Hagen,RT,Houston Texans,62,64,84
+Tanner Arkin,TE,New England Patriots,62,76,75
 TeRah Edwards,DT,Carolina Panthers,62,65,87
 Tristin McCollum,FS,Las Vegas Raiders,62,89,57
+Wydett Williams Jr,SS,Arizona Cardinals,62,88,62
+Anthony Tyus III,HB,Carolina Panthers,61,86,72
 Brandon Crenshaw-Dickson,RT,Tennessee Titans,61,61,86
 Colson Yankoff,TE,Washington Commanders,61,85,71
+Hayden Rucci,TE,Los Angeles Chargers,61,77,73
 Isaiah World,LT,Los Angeles Chargers,61,63,83
+Jalon Daniels,QB,Tampa Bay Buccaneers,61,84,62
 Jay Higgins IV,MIKE,Baltimore Ravens,61,78,68
 Josh Woods,MIKE,Atlanta Falcons,61,83,64
 Matt Orzech,LS,Green Bay Packers,61,77,73
 Princeton Fant,TE,Dallas Cowboys,61,87,72
 Tommy DeVito,QB,New England Patriots,61,84,62
 Torricelli Simpkins III,RG,Carolina Panthers,61,57,78
+Treyton Welch,TE,New Orleans Saints,61,84,77
 Behren Morton,QB,New England Patriots,60,76,61
 Benjamin Chukwuma,LT,Tampa Bay Buccaneers,60,61,82
 Caleb Lohner,TE,Denver Broncos,60,83,75
 Diego Pounds,RT,Kansas City Chiefs,60,67,81
+DJ Uiagalelei,QB,Los Angeles Chargers,60,75,65
 Evan Deckers,LS,Tampa Bay Buccaneers,60,67,62
 Graham Mertz,QB,Houston Texans,60,77,60
+Jack Strand,QB,Atlanta Falcons,60,80,64
 Jaren Kanak,TE,Tennessee Titans,60,88,76
 Joe Cardona,LS,Los Angeles Rams,60,74,80
 Josh Sills,RG,NY Giants,60,63,78
@@ -1872,6 +1932,7 @@ Max Brosmer,QB,Minnesota Vikings,59,79,70
 Scott Daly,LS,Chicago Bears,59,71,72
 Tyson Bagent,QB,Chicago Bears,59,79,59
 Rex Sunahara,LS,Cleveland Browns,58,69,62
+Hayden Large,TE,Chicago Bears,57,82,75
 Milo Eifler,MIKE,Tennessee Titans,57,85,64
 Patrick O'Connell,MIKE,Seattle Seahawks,57,82,62
 Sam Ehlinger,QB,Denver Broncos,57,84,67
