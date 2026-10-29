@@ -1,0 +1,91 @@
+SPEAKER: Owner (Kosi) | ROLE: Owner | TASK: add DIME; flex guide REV 2 | DATE: 2026-10-26 01:45 HST — saved verbatim by the Architect (AGENTS.md section 1 rule 4). The block between the BEGIN/END lines is the guide exactly as sent and is parsed by tools/mathlab/flexparse.mjs.
+
+Ok so I decided to add Dime to the position list and the engine. This position plays around 10% of the snaps, mainly on 3rd and long or 4th and long, especially at the end of the game, preventing Hail Marys.
+
+Here is the updated flex list. I think you should redesign the table you've been using. z.ai made a decent example in his guide page in his most recent post blue htmls for an example. I think it could definitely be visualized better, maybe with figma, but definitely we need to improve the ui over that table.
+
+But we're not worried about ui right now. Just make sure the math engine is working and is logical at every step.
+
+Continue your work. Appreciate you.
+
+=====BEGIN FLEX GUIDE REV 2=====
+Quarterback
+-6  WR, S
+
+Running Back
+-2 FB
+-4 WR
+-6 TE
+FULL BACK
+   -4 RB, TE
+
+Wide Receiver
+
+-4 RB, TE, S, NICKEL, DIME
+-6 CB
+
+Tight End
+
+-2 WR, FB
+-6 RB, C, OG, OT, DE, DT, LB, S, NICKEL, DIME
+
+Offensive Tackle
+
+Free OG, C
+-4 DT, FB
+
+Offensive Guard
+
+Free C
+-4 OT, DT, FB
+
+Center
+
+Free OG
+-4 OT, DT, FB
+
+Defensive Tackle
+
+-4 OG, C, DE, FB
+-6 OT
+
+Defensive Edge
+
+-2 DT, WILL, SAM, OLB
+-4 MIKE, ILB, FB
+-6 TE, RB, NICKEL
+
+MIKE / ILB
+FREE ILB, WILL, SAM, OLB
+-4 DT, FB
+-6 DE, TE, S, NICKEL, DIME
+
+WILL / SAM / OLB
+
+FREE OLB, WILL,
+-2 MIKE
+-4 DE, NICKEL
+-6 DT, TE, S, FB, DIME
+
+STRONG SAFETY
+  FREE NICKEL, DIME
+ -2 FS
+ -4 WILL, SAM, OLB
+ -6 CB, MIKE, WR, TE, RB, FB
+
+FREE SAFETY
+   FREE NICKEL, DIME
+   -2 SS
+   -4 CB, WR,
+
+CORNERBACK
+    FREE FS, NICKEL, DIME
+    -2 SS
+    -4 WR
+
+KICKER
+    FREE P
+
+PUNTER
+    -2 K
+=====END FLEX GUIDE REV 2=====
