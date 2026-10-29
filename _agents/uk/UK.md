@@ -8,7 +8,7 @@
 
 ---
 
-## Session Work Summary (2026-10-28)
+## Session Work Summary (2026-10-29)
 
 ### Reviews Completed (All Pushed to `council/uk`)
 
@@ -39,9 +39,14 @@
 | **P-160** | #1 | **WORK** | Season review copy and metrics cleanup. Removed "Team rankings are regular-season only...", "428 points for...undefined", "The bracket awaits...", long paragraph. Updated header to "SEASON REVIEW" once. QUARTERBACK PLAY only, RUN BLOCKING/PASS PROTECTION names, QB first, depth-chart order. Metrics clickable with fading notes. Integers only. 2-Pt Conversions "x of y". "IN DA CLUTCH" section. INDIVIDUAL SKILL, SUBPAR BLOCKING, EXCELLENT COVERAGE labels. Top-right "20-0?" + "Try again to go 20-0?" button. |
 | **P-166** | #1 | **CLAIM** | Game animation log lines: panel 50% larger, more space between quarters, no lines, palette text, format "<team> <play> <yds>", shimmering TD/FG tags, score "x - y", turnovers as "x int y", "x fum", "y FF", "z FR", "x strips y & x recovers", always with time, never print "Touchdown" or "Turnover", fix glitches. |
 
-### GitHub Pushes
+### Current Session (2026-10-29)
 
-- All reviews and work pushed to `council/uk` branch (commits: `b6520bcb`, `b9144591`, `8c7ab9a0`, `4a6be338`, `6e03ccc6`, `8384c02d`, `dbb616e8`, `f176125d`, `c31b4612`, `d2a6f541`, and earlier)
+| Task | Status | Notes |
+|------|--------|-------|
+| **P-163** | **CLAIM + WORK** | Playoff preview redesign: key players as vertical cards (one per line), shimmering at 90+ (no drifting names); remove "quarterback play +3.3 pass protection"; whole preview in Cinzel Decorative; star emojis team-coloured and shimmering; playoff picture text in palette colours. Anchors: `starsFaceoffHTML` (5397-5404), `playoffPreview` matchup lines filter (5380-5383), `renderPreviewPanel` Cinzel wrapper (5405-5409), CSS shimmer keyframes. Files: `inbox/20261029-1949-uk-P-163-claim.md`, `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`. |
+
+### GitHub Pushes
+- All reviews and work pushed to `council/uk` branch (commits: `2dee0f90`, `78fa3d64`, and earlier)
 
 ---
 
@@ -55,6 +60,7 @@
 - **z-post-blue draft board**: Race condition in `setActiveTab` vs async `renderDraftLive` (from earlier session) — needs Architect triage.
 - **P-160**: Season review text cleanup spec written — remove "Team rankings...", "428 points...undefined", "The bracket awaits...", long paragraph; fix headers, metrics, integers, 2-Pt format, "IN DA CLUTCH", "20-0?" panel.
 - **P-166**: Game animation log lines format spec claimed — panel 50% larger, palette text, format spec, glitch fixes.
+- **P-163**: Playoff preview redesign spec submitted — vertical card layout for key players, Cinzel Decorative throughout, team-coloured shimmering stars, remove "quarterback play +3.3 pass protection" artifact.
 
 ---
 
@@ -64,6 +70,7 @@
 - **P-007**: Architect must implement animation (new `animateGame` function, integration in `simulateCurrentWeek`)
 - **P-005**: Ready for Architect (Beam's work complete, my review #3 done)
 - **z-post-blue draft board**: Race condition needs triage
+- **P-163**: Ready for Architect review — presentational changes only, safe alone
 
 ---
 
@@ -76,7 +83,7 @@
 
 ## Next Session Should Read
 
-1. **`inbox/20261028-2244-uk-P-160-work.md` through `20261028-2244-uk-P-166-claim.md`** — This session's work
+1. **`inbox/20261029-1949-uk-P-163-claim.md` and `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`** — This session's P-163 work
 2. **`_agents/PRIORITIES.md`** — Master priority list
 3. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
 
@@ -95,7 +102,7 @@
 
 - **Worktree path:** `/Users/kosi/Desktop/wt/uk`
 - **Branch:** `council/uk`
-- **Merge-base with origin/council/base:** `git merge-base HEAD origin/council/base`
+- **Merge-base with origin/council/base:** `d1e335e94445bbc439b932c98a6b737c24f5d18e`
 
 ---
 
