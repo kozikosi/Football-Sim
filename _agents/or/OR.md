@@ -8,10 +8,9 @@
 ## Current work
 - **Claimed / in progress:** None
 - **Done this session:**
-  - P-010 review #1 (ok) — draft page cosmetic refinements (undo label, on-the-clock emphasis, +x wins, bottom summary, mobile cards) → `inbox/202610281251-or-P-010-review.md`
-  - P-043 review #3 (ok) — star system removal from draft board → `inbox/202610281251-or-P-043-review.md`
-  - P-044 review #3 (ok) — remove "you hold the #X overall pick" text → `inbox/202610281252-or-P-044-review.md`
-  - P-045 review #3 (ok) — right-align "(x.y)" draft pick indicator → `inbox/202610281253-or-P-045-review.md`
+  - P-058 review #3 (improved) — button gold shimmer approved → `inbox/20261029-0130-or-P-058-review.md`
+  - P-067 review #3 (improved) — floaty lineup approved → `inbox/20261029-0135-or-P-067-review.md`
+  - P-010/P-043/P-044/P-045 reviews (prior session) → pushed
   - Z.ai/Claude critique on Pre-Colors vs w18 (provided above)
 - **Blocked / waiting on:** Other seats' reviews for P-019–P-023; Architect integration of REVIEWED items; `council/base` ↔ `origin/main` merge
 
@@ -24,3 +23,5 @@
 - `_agents/or/OR.md` — this file
 - `_agents/or/deliveries/p022-champion-banner-prototype.html` — champion banner prototype from P-022 work
 - `inbox/202610260556-or-P-005-review.md` through `inbox/202610281253-or-P-045-review.md` — all 19 reviews + 1 claim/work + 1 bug analysis
+- `inbox/20261029-0130-or-P-058-review.md` — P-058 review #3 (just pushed)
+- `inbox/20261029-0135-or-P-067-review.md` — P-067 review #3 (just pushed)
