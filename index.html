@@ -2181,7 +2181,7 @@ html{scrollbar-gutter:stable;}
   </div>
  </div>
  <div class="panel" id="draftFinalResults" style="display:none;"></div>
-<nav class="footnav zpb-footnav" aria-label="More tools"><button class="footlink active" id="tabDraftBtn">SIMULATOR</button><button class="footlink" id="tabRankingsBtn">MADDEN RANKINGS</button><button class="footlink" id="tabPlayersBtn">PLAYER BROWSER</button><button class="footlink" id="tabGroupsBtn">POSITION RANKINGS</button><button class="footlink" id="tabCompareBtn">TEAM COMPARISON</button><button class="footlink" id="tabGuideBtn">GUIDE</button><button class="footlink" id="themeToggleBtn" title="Switch light / dark">DARK</button></nav>
+<nav class="footnav zpb-footnav" aria-label="More tools"><button class="footlink active" id="tabDraftBtn">SIMULATOR</button><button class="footlink" id="tabRankingsBtn">MADDEN RANKINGS</button><button class="footlink" id="tabPlayersBtn">PLAYER BROWSER</button><button class="footlink" id="tabGroupsBtn">POSITION RANKINGS</button><button class="footlink" id="tabCompareBtn">TEAM COMPARISON</button><button class="footlink" id="tabGuideBtn">GUIDE</button></nav><div class="zpb-foottheme"><button class="footlink" id="themeToggleBtn" title="Switch light / dark">DARK</button></div>
 </div>
 <script>
 window.ZPB_BLUE_LIFT = {"Buffalo Bills":1, "Los Angeles Rams":1}; // w27 (Owner): colors that are too dark
@@ -2189,9 +2189,9 @@ const PLAYERS = [["Ja'Marr Chase","WR","Cincinnati Bengals",99,96,73,92,96,92,99
 const TEAM_DATA = {"Cincinnati Bengals":{"DE1":{"ovr":78,"name":"Boye Mafe"},"DE2":{"ovr":77,"name":"Cashius Howell"},"DT1":{"ovr":93,"name":"Dexter Lawrence II"},"DT2":{"ovr":88,"name":"Jonathan Allen"},"CB1":{"ovr":83,"name":"DJ Turner II"},"CB2":{"ovr":78,"name":"Dax Hill"},"CB3":{"ovr":71,"name":"Ja'Sir Taylor"},"CB4":{"ovr":71,"name":"Josh Newton"},"OG1":{"ovr":74,"name":"Dalton Risner"},"OG2":{"ovr":71,"name":"Dylan Fairchild"},"C":{"ovr":76,"name":"Ted Karras"},"OT1":{"ovr":76,"name":"Amarius Mims"},"OT2":{"ovr":76,"name":"Orlando Brown Jr"},"MIKE":{"ovr":70,"name":null},"WILL":{"ovr":73,"name":"Demetrius Knight Jr"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":76,"name":"B.J. Hill"},"RB1":{"ovr":83,"name":"Chase Brown"},"RB2":{"ovr":75,"name":"Samaje Perine"},"TE1":{"ovr":78,"name":"Mike Gesicki"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":77,"name":"Jordan Battle"},"SS2":{"ovr":76,"name":"Kyle Dugger"},"QB":{"ovr":97,"name":"Joe Burrow"},"FS":{"ovr":80,"name":"Bryan Cook"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":99,"name":"Ja'Marr Chase"},"WR2":{"ovr":87,"name":"Tee Higgins"},"WR3":{"ovr":73,"name":"Andrei Iosivas"},"K":{"ovr":81,"name":"Evan McPherson"},"P":{"ovr":75,"name":"Ryan Rehkow"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":70,"name":null}},"Seattle Seahawks":{"DE1":{"ovr":87,"name":"DeMarcus Lawrence"},"DE2":{"ovr":77,"name":"Derick Hall"},"DT1":{"ovr":88,"name":"Leonard Williams"},"DT2":{"ovr":85,"name":"Byron Murphy II"},"CB1":{"ovr":91,"name":"Devon Witherspoon"},"CB2":{"ovr":78,"name":"Josh Jobe"},"CB3":{"ovr":76,"name":"Terrion Arnold"},"CB4":{"ovr":71,"name":"Julian Neal"},"OG1":{"ovr":75,"name":"Grey Zabel"},"OG2":{"ovr":72,"name":"Anthony Bradford"},"C":{"ovr":70,"name":null},"OT1":{"ovr":83,"name":"Abraham Lucas"},"OT2":{"ovr":83,"name":"Charles Cross"},"MIKE":{"ovr":84,"name":"Ernest Jones IV"},"WILL":{"ovr":75,"name":"Drake Thomas"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"Derick Hall"},"RB1":{"ovr":83,"name":"Zach Charbonnet"},"RB2":{"ovr":76,"name":"Jadarian Price"},"TE1":{"ovr":75,"name":"A.J. Barner"},"TE2":{"ovr":71,"name":"Elijah Arroyo"},"SS":{"ovr":86,"name":"Nick Emmanwori"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":87,"name":"Sam Darnold"},"FS":{"ovr":86,"name":"Julian Love"},"FS2":{"ovr":75,"name":"Bud Clark"},"WR1":{"ovr":99,"name":"Jaxon Smith-Njigba"},"WR2":{"ovr":83,"name":"Cooper Kupp"},"WR3":{"ovr":79,"name":"Rashid Shaheed"},"K":{"ovr":84,"name":"Jason Myers"},"P":{"ovr":85,"name":"Michael Dickson"},"FB":{"ovr":73,"name":"Robbie Ouzts"},"WR4":{"ovr":75,"name":"Tory Horton"}},"Buffalo Bills":{"DE1":{"ovr":88,"name":"Greg Rousseau"},"DE2":{"ovr":78,"name":"Bradley Chubb"},"DT1":{"ovr":82,"name":"Ed Oliver"},"DT2":{"ovr":74,"name":"Deone Walker"},"CB1":{"ovr":82,"name":"Christian Benford"},"CB2":{"ovr":78,"name":"Maxwell Hairston"},"CB3":{"ovr":76,"name":"Dee Alford"},"CB4":{"ovr":74,"name":"Davison Igbinosun"},"OG1":{"ovr":76,"name":"Austin Corbett"},"OG2":{"ovr":75,"name":"O'Cyrus Torrence"},"C":{"ovr":81,"name":"Connor McGovern"},"OT1":{"ovr":88,"name":"Dion Dawkins"},"OT2":{"ovr":85,"name":"Spencer Brown"},"MIKE":{"ovr":84,"name":"Terrel Bernard"},"WILL":{"ovr":74,"name":"Dorian Williams"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"TJ Parker"},"RB1":{"ovr":93,"name":"James Cook III"},"RB2":{"ovr":75,"name":"Ray Davis"},"TE1":{"ovr":82,"name":"Dalton Kincaid"},"TE2":{"ovr":76,"name":"Dawson Knox"},"SS":{"ovr":75,"name":"C.J. Gardner-Johnson"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":99,"name":"Josh Allen"},"FS":{"ovr":79,"name":"Cole Bishop"},"FS2":{"ovr":73,"name":"Damar Hamlin"},"WR1":{"ovr":84,"name":"DJ Moore"},"WR2":{"ovr":83,"name":"Khalil Shakir"},"WR3":{"ovr":75,"name":"Joshua Palmer"},"K":{"ovr":74,"name":"Tyler Bass"},"P":{"ovr":73,"name":"Tommy Doman Jr"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":75,"name":"Keon Coleman"}},"Los Angeles Rams":{"DE1":{"ovr":99,"name":"Myles Garrett"},"DE2":{"ovr":84,"name":"Byron Young"},"DT1":{"ovr":95,"name":"Aaron Donald"},"DT2":{"ovr":85,"name":"Kobie Turner"},"CB1":{"ovr":94,"name":"Trent McDuffie"},"CB2":{"ovr":80,"name":"Jaylen Watson"},"CB3":{"ovr":75,"name":"Emmanuel Forbes Jr"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":90,"name":"Kevin Dotson"},"OG2":{"ovr":80,"name":"Steve Avila"},"C":{"ovr":78,"name":"Coleman Shelton"},"OT1":{"ovr":85,"name":"Alaric Jackson"},"OT2":{"ovr":73,"name":"Warren McClendon Jr"},"MIKE":{"ovr":86,"name":"Nate Landman"},"WILL":{"ovr":78,"name":"Omar Speights"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":83,"name":"Poona Ford"},"RB1":{"ovr":89,"name":"Kyren Williams"},"RB2":{"ovr":78,"name":"Blake Corum"},"TE1":{"ovr":74,"name":"Tyler Higbee"},"TE2":{"ovr":73,"name":"Colby Parkinson"},"SS":{"ovr":83,"name":"Kam Curl"},"SS2":{"ovr":82,"name":"Quentin Lake"},"QB":{"ovr":99,"name":"Matthew Stafford"},"FS":{"ovr":80,"name":"Kamren Kinchens"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":98,"name":"Puka Nacua"},"WR2":{"ovr":90,"name":"Davante Adams"},"WR3":{"ovr":75,"name":"Tutu Atwell"},"K":{"ovr":76,"name":"Harrison Mevis"},"P":{"ovr":80,"name":"Ethan Evans"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":72,"name":"Jordan Whittington"}},"Arizona Cardinals":{"DE1":{"ovr":85,"name":"Josh Sweat"},"DE2":{"ovr":76,"name":"Zaven Collins"},"DT1":{"ovr":78,"name":"Walter Nolen III"},"DT2":{"ovr":73,"name":"Andrew Billings"},"CB1":{"ovr":78,"name":"Garrett Williams"},"CB2":{"ovr":77,"name":"Will Johnson"},"CB3":{"ovr":74,"name":"Kei'Trel Clark"},"CB4":{"ovr":74,"name":"Max Melton"},"OG1":{"ovr":80,"name":"Isaac Seumalo"},"OG2":{"ovr":75,"name":"Chase Bisontis"},"C":{"ovr":83,"name":"Hjalte Froholdt"},"OT1":{"ovr":86,"name":"Paris Johnson Jr"},"OT2":{"ovr":71,"name":"Elijah Wilkinson"},"MIKE":{"ovr":81,"name":"Mack Wilson Sr"},"WILL":{"ovr":70,"name":null},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":73,"name":"Baron Browning"},"RB1":{"ovr":82,"name":"Jeremiyah Love"},"RB2":{"ovr":81,"name":"Tyler Allgeier"},"TE1":{"ovr":99,"name":"Trey McBride"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":90,"name":"Budda Baker"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":72,"name":"Jacoby Brissett"},"FS":{"ovr":77,"name":"Andrew Wingard"},"FS2":{"ovr":72,"name":"Dadrion Taylor-Demerson"},"WR1":{"ovr":81,"name":"Michael Wilson"},"WR2":{"ovr":77,"name":"Marvin Harrison Jr"},"WR3":{"ovr":77,"name":"Kendrick Bourne"},"K":{"ovr":75,"name":"Chad Ryland"},"P":{"ovr":74,"name":"Blake Gillikin"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":74,"name":"Devin Duvernay"}},"New England Patriots":{"DE1":{"ovr":82,"name":"Harold Landry III"},"DE2":{"ovr":77,"name":"Dre'Mont Jones"},"DT1":{"ovr":86,"name":"Milton Williams"},"DT2":{"ovr":81,"name":"DaQuan Jones"},"CB1":{"ovr":98,"name":"Christian Gonzalez"},"CB2":{"ovr":85,"name":"Carlton Davis III"},"CB3":{"ovr":82,"name":"Marcus Jones"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":86,"name":"Mike Onwenu"},"OG2":{"ovr":83,"name":"Alijah Vera-Tucker"},"C":{"ovr":70,"name":null},"OT1":{"ovr":82,"name":"Morgan Moses"},"OT2":{"ovr":81,"name":"Will Campbell"},"MIKE":{"ovr":85,"name":"Robert Spillane"},"WILL":{"ovr":75,"name":"Christian Elliss"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"Dre'Mont Jones"},"RB1":{"ovr":82,"name":"TreVeyon Henderson"},"RB2":{"ovr":79,"name":"Rhamondre Stevenson"},"TE1":{"ovr":86,"name":"Hunter Henry"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":81,"name":"Craig Woodson"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":89,"name":"Drake Maye"},"FS":{"ovr":85,"name":"Kevin Byard III"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":89,"name":"A.J. Brown"},"WR2":{"ovr":79,"name":"Romeo Doubs"},"WR3":{"ovr":77,"name":"DeMario Douglas"},"K":{"ovr":74,"name":"Andres Borregales"},"P":{"ovr":78,"name":"Bryce Baringer"},"FB":{"ovr":83,"name":"Reggie Gilliam"},"WR4":{"ovr":76,"name":"Mack Hollins"}},"San Francisco 49ers":{"DE1":{"ovr":94,"name":"Nick Bosa"},"DE2":{"ovr":77,"name":"Mykel Williams"},"DT1":{"ovr":77,"name":"Osa Odighizuwa"},"DT2":{"ovr":72,"name":"Alfred Collins"},"CB1":{"ovr":81,"name":"Deommodore Lenoir"},"CB2":{"ovr":77,"name":"Renardo Green"},"CB3":{"ovr":76,"name":"Jack Jones"},"CB4":{"ovr":76,"name":"Nate Hobbs"},"OG1":{"ovr":82,"name":"Dominick Puni"},"OG2":{"ovr":70,"name":null},"C":{"ovr":77,"name":"Jake Brendel"},"OT1":{"ovr":96,"name":"Trent Williams"},"OT2":{"ovr":81,"name":"Colton McKivitz"},"MIKE":{"ovr":98,"name":"Fred Warner"},"WILL":{"ovr":85,"name":"Dre Greenlaw"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":73,"name":"Keion White"},"RB1":{"ovr":97,"name":"Christian McCaffrey"},"RB2":{"ovr":73,"name":"Jordan James"},"TE1":{"ovr":96,"name":"George Kittle"},"TE2":{"ovr":72,"name":"Jake Tonges"},"SS":{"ovr":74,"name":"Malik Mustapha"},"SS2":{"ovr":74,"name":"Marques Sigle"},"QB":{"ovr":85,"name":"Brock Purdy"},"FS":{"ovr":74,"name":"Ji'Ayir Brown"},"FS2":{"ovr":73,"name":"Ashtyn Davis"},"WR1":{"ovr":91,"name":"Mike Evans"},"WR2":{"ovr":80,"name":"Ricky Pearsall"},"WR3":{"ovr":78,"name":"Christian Kirk"},"K":{"ovr":77,"name":"Eddy Pineiro"},"P":{"ovr":76,"name":"Corliss Waitman"},"FB":{"ovr":88,"name":"Kyle Juszczyk"},"WR4":{"ovr":77,"name":"Deebo Samuel Sr"}},"Detroit Lions":{"DE1":{"ovr":94,"name":"Aidan Hutchinson"},"DE2":{"ovr":77,"name":"Derrick Moore"},"DT1":{"ovr":83,"name":"Alim McNeill"},"DT2":{"ovr":76,"name":"Tyleik Williams"},"CB1":{"ovr":83,"name":"D.J. Reed"},"CB2":{"ovr":76,"name":"Roger McCreary"},"CB3":{"ovr":72,"name":"Ennis Rakestraw Jr"},"CB4":{"ovr":71,"name":"Rock Ya-Sin"},"OG1":{"ovr":76,"name":"Tate Ratledge"},"OG2":{"ovr":72,"name":"Ben Bartch"},"C":{"ovr":74,"name":"Cade Mays"},"OT1":{"ovr":98,"name":"Penei Sewell"},"OT2":{"ovr":75,"name":"Blake Miller"},"MIKE":{"ovr":87,"name":"Jack Campbell"},"WILL":{"ovr":74,"name":"Malcolm Rodriguez"},"SAM":{"ovr":75,"name":"Derrick Barnes"},"LB4":{"ovr":73,"name":"Devin White"},"DL5":{"ovr":76,"name":"Tyleik Williams"},"RB1":{"ovr":98,"name":"Jahmyr Gibbs"},"RB2":{"ovr":76,"name":"Isiah Pacheco"},"TE1":{"ovr":88,"name":"Sam LaPorta"},"TE2":{"ovr":72,"name":"Tyler Conklin"},"SS":{"ovr":91,"name":"Brian Branch"},"SS2":{"ovr":78,"name":"Chuck Clark"},"QB":{"ovr":88,"name":"Jared Goff"},"FS":{"ovr":91,"name":"Kerby Joseph"},"FS2":{"ovr":73,"name":"Avonte Maddox"},"WR1":{"ovr":95,"name":"Amon-Ra St. Brown"},"WR2":{"ovr":85,"name":"Jameson Williams"},"WR3":{"ovr":73,"name":"Isaac TeSlaa"},"K":{"ovr":76,"name":"Jake Bates"},"P":{"ovr":79,"name":"Jack Fox"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":70,"name":null}},"Green Bay Packers":{"DE1":{"ovr":98,"name":"Micah Parsons"},"DE2":{"ovr":77,"name":"Lukas Van Ness"},"DT1":{"ovr":80,"name":"Javon Hargrave"},"DT2":{"ovr":78,"name":"Devonte Wyatt"},"CB1":{"ovr":77,"name":"Benjamin St-Juste"},"CB2":{"ovr":77,"name":"Carrington Valentine"},"CB3":{"ovr":77,"name":"Keisean Nixon"},"CB4":{"ovr":72,"name":"Brandon Cisse"},"OG1":{"ovr":73,"name":"Aaron Banks"},"OG2":{"ovr":70,"name":null},"C":{"ovr":70,"name":null},"OT1":{"ovr":87,"name":"Zach Bako-Bewele"},"OT2":{"ovr":72,"name":"Jordan Morgan"},"MIKE":{"ovr":79,"name":"Zaire Franklin"},"WILL":{"ovr":80,"name":"Edgerrin Cooper"},"SAM":{"ovr":78,"name":"Isaiah McDuffie"},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":74,"name":"Dani Dennis-Sutton"},"RB1":{"ovr":90,"name":"Josh Jacobs"},"RB2":{"ovr":74,"name":"Kaleb Johnson"},"TE1":{"ovr":85,"name":"Tucker Kraft"},"TE2":{"ovr":76,"name":"Jonnu Smith"},"SS":{"ovr":92,"name":"Xavier McKinney"},"SS2":{"ovr":77,"name":"Javon Bullard"},"QB":{"ovr":84,"name":"Jordan Love"},"FS":{"ovr":76,"name":"Evan Williams"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":81,"name":"Christian Watson"},"WR2":{"ovr":80,"name":"Jayden Reed"},"WR3":{"ovr":78,"name":"Matthew Golden"},"K":{"ovr":77,"name":"Trey Smack"},"P":{"ovr":74,"name":"Daniel Whelan"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":72,"name":"Bo Melton"}},"Philadelphia Eagles":{"DE1":{"ovr":85,"name":"Jonathan Greenard"},"DE2":{"ovr":83,"name":"Nolan Smith Jr"},"DT1":{"ovr":89,"name":"Jalen Carter"},"DT2":{"ovr":82,"name":"Jordan Davis"},"CB1":{"ovr":90,"name":"Quinyon Mitchell"},"CB2":{"ovr":89,"name":"Cooper DeJean"},"CB3":{"ovr":82,"name":"Riq Woolen"},"CB4":{"ovr":73,"name":"Jakorian Bennett"},"OG1":{"ovr":84,"name":"Landon Dickerson"},"OG2":{"ovr":74,"name":"Tyler Steen"},"C":{"ovr":76,"name":"Cam Jurgens"},"OT1":{"ovr":97,"name":"Lane Johnson"},"OT2":{"ovr":91,"name":"Jordan Mailata"},"MIKE":{"ovr":79,"name":"Jihaad Campbell"},"WILL":{"ovr":93,"name":"Zack Baun"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"Arnold Ebiketie"},"RB1":{"ovr":92,"name":"Saquon Barkley"},"RB2":{"ovr":77,"name":"Tank Bigsby"},"TE1":{"ovr":89,"name":"Dallas Goedert"},"TE2":{"ovr":72,"name":"Eli Stowers"},"SS":{"ovr":75,"name":"Marcus Epps"},"SS2":{"ovr":74,"name":"Michael Carter II"},"QB":{"ovr":82,"name":"Jalen Hurts"},"FS":{"ovr":74,"name":"Andrew Mukuba"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":92,"name":"DeVonta Smith"},"WR2":{"ovr":78,"name":"Dontayvion Wicks"},"WR3":{"ovr":76,"name":"Makai Lemon"},"K":{"ovr":79,"name":"Jake Elliott"},"P":{"ovr":79,"name":"Braden Mann"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":76,"name":"Marquise Brown"}},"Las Vegas Raiders":{"DE1":{"ovr":97,"name":"Maxx Crosby"},"DE2":{"ovr":78,"name":"Kwity Paye"},"DT1":{"ovr":74,"name":"Folorunso Fatukasi"},"DT2":{"ovr":73,"name":"Adam Butler"},"CB1":{"ovr":83,"name":"Taron Johnson"},"CB2":{"ovr":77,"name":"Eric Stokes"},"CB3":{"ovr":74,"name":"Darien Porter"},"CB4":{"ovr":74,"name":"Jermod McCoy"},"OG1":{"ovr":78,"name":"Jackson Powers-Johnson"},"OG2":{"ovr":70,"name":null},"C":{"ovr":88,"name":"Tyler Linderbaum"},"OT1":{"ovr":91,"name":"Kolton Miller"},"OT2":{"ovr":72,"name":"DJ Glaze"},"MIKE":{"ovr":78,"name":"Nakobe Dean"},"WILL":{"ovr":80,"name":"Quay Walker"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":74,"name":"Folorunso Fatukasi"},"RB1":{"ovr":85,"name":"Ashton Jeanty"},"RB2":{"ovr":72,"name":"Mike Washington Jr"},"TE1":{"ovr":93,"name":"Brock Bowers"},"TE2":{"ovr":72,"name":"Michael Mayer"},"SS":{"ovr":82,"name":"Jeremy Chinn"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":74,"name":"Kirk Cousins"},"FS":{"ovr":76,"name":"Treydan Stukes"},"FS2":{"ovr":71,"name":"Isaiah Pola-Mao"},"WR1":{"ovr":78,"name":"Tre Tucker"},"WR2":{"ovr":77,"name":"Jalen Nailor"},"WR3":{"ovr":73,"name":"Jack Bech"},"K":{"ovr":75,"name":"Matt Gay"},"P":{"ovr":79,"name":"A.J. Cole"},"FB":{"ovr":73,"name":"Connor Heyward"},"WR4":{"ovr":70,"name":null}},"Denver Broncos":{"DE1":{"ovr":91,"name":"Nik Bonitto"},"DE2":{"ovr":84,"name":"Jonathon Cooper"},"DT1":{"ovr":87,"name":"Zach Allen"},"DT2":{"ovr":76,"name":"D.J. Jones"},"CB1":{"ovr":97,"name":"Pat Surtain II"},"CB2":{"ovr":79,"name":"Ja'Quan McMillian"},"CB3":{"ovr":78,"name":"Riley Moss"},"CB4":{"ovr":75,"name":"Jahdae Barron"},"OG1":{"ovr":95,"name":"Quinn Meinerz"},"OG2":{"ovr":74,"name":"Ben Powers"},"C":{"ovr":77,"name":"Luke Wattenberg"},"OT1":{"ovr":96,"name":"Garett Bolles"},"OT2":{"ovr":82,"name":"Mike McGlinchey"},"MIKE":{"ovr":85,"name":"Alex Singleton"},"WILL":{"ovr":74,"name":"Justin Strnad"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":75,"name":"Malcolm Roach"},"RB1":{"ovr":82,"name":"J.K. Dobbins"},"RB2":{"ovr":80,"name":"RJ Harvey"},"TE1":{"ovr":78,"name":"Evan Engram"},"TE2":{"ovr":71,"name":"Adam Trautman"},"SS":{"ovr":88,"name":"Talanoa Hufanga"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":81,"name":"Bo Nix"},"FS":{"ovr":83,"name":"Brandon Jones"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":87,"name":"Courtland Sutton"},"WR2":{"ovr":85,"name":"Jaylen Waddle"},"WR3":{"ovr":79,"name":"Troy Franklin"},"K":{"ovr":78,"name":"Wil Lutz"},"P":{"ovr":79,"name":"Jeremy Crawshaw"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":77,"name":"Marvin Mims Jr"}},"Atlanta Falcons":{"DE1":{"ovr":79,"name":"Jalon Walker"},"DE2":{"ovr":79,"name":"James Pearce Jr"},"DT1":{"ovr":79,"name":"Gervon Dexter Sr"},"DT2":{"ovr":74,"name":"Brandon Dorlus"},"CB1":{"ovr":88,"name":"A.J. Terrell Jr"},"CB2":{"ovr":75,"name":"Avieon Terrell"},"CB3":{"ovr":75,"name":"Mike Hughes"},"CB4":{"ovr":73,"name":"Billy Bowman Jr"},"OG1":{"ovr":93,"name":"Chris Lindstrom"},"OG2":{"ovr":77,"name":"Matthew Bergeron"},"C":{"ovr":82,"name":"Ryan Neuzil"},"OT1":{"ovr":89,"name":"Jake Matthews"},"OT2":{"ovr":75,"name":"Jawaan Taylor"},"MIKE":{"ovr":80,"name":"Divine Deablo"},"WILL":{"ovr":70,"name":null},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":76,"name":"Za'Darius Smith"},"RB1":{"ovr":96,"name":"Bijan Robinson"},"RB2":{"ovr":78,"name":"Brian Robinson Jr"},"TE1":{"ovr":81,"name":"Kyle Pitts Sr"},"TE2":{"ovr":74,"name":"Austin Hooper"},"SS":{"ovr":78,"name":"Xavier Watts"},"SS2":{"ovr":72,"name":"Sydney Brown"},"QB":{"ovr":73,"name":"Tua Tagovailoa"},"FS":{"ovr":94,"name":"Jessie Bates III"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":92,"name":"Drake London"},"WR2":{"ovr":73,"name":"Jahan Dotson"},"WR3":{"ovr":73,"name":"Olamide Zaccheaus"},"K":{"ovr":85,"name":"Nick Folk"},"P":{"ovr":78,"name":"Jake Bailey"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":73,"name":"Zachariah Branch"}},"Carolina Panthers":{"DE1":{"ovr":82,"name":"Jaelan Phillips"},"DE2":{"ovr":75,"name":"Nic Scourton"},"DT1":{"ovr":96,"name":"Derrick Brown"},"DT2":{"ovr":74,"name":"Bobby Brown III"},"CB1":{"ovr":87,"name":"Jaycee Horn"},"CB2":{"ovr":81,"name":"Mike Jackson"},"CB3":{"ovr":73,"name":"Chau Smith-Wade"},"CB4":{"ovr":71,"name":"Akayleb Evans"},"OG1":{"ovr":85,"name":"Damien Lewis"},"OG2":{"ovr":81,"name":"Robert Hunt"},"C":{"ovr":71,"name":"Luke Fortner"},"OT1":{"ovr":84,"name":"Taylor Moton"},"OT2":{"ovr":81,"name":"Rasheed Walker"},"MIKE":{"ovr":82,"name":"Bobby Okereke"},"WILL":{"ovr":86,"name":"Devin Lloyd"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":74,"name":"Lee Hunter"},"RB1":{"ovr":81,"name":"Chuba Hubbard"},"RB2":{"ovr":76,"name":"Jonathon Brooks"},"TE1":{"ovr":79,"name":"Darren Waller"},"TE2":{"ovr":72,"name":"Tommy Tremble"},"SS":{"ovr":75,"name":"Nick Scott"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":78,"name":"Bryce Young"},"FS":{"ovr":81,"name":"Tre'von Moehrig"},"FS2":{"ovr":73,"name":"Isaiah Simmons"},"WR1":{"ovr":85,"name":"Tetairoa McMillan"},"WR2":{"ovr":78,"name":"Jalen Coker"},"WR3":{"ovr":74,"name":"Xavier Legette"},"K":{"ovr":76,"name":"Ryan Fitzgerald"},"P":{"ovr":74,"name":"Sam Martin"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":73,"name":"John Metchie III"}},"Chicago Bears":{"DE1":{"ovr":81,"name":"Montez Sweat"},"DE2":{"ovr":73,"name":"Austin Booker"},"DT1":{"ovr":81,"name":"Grady Jarrett"},"DT2":{"ovr":71,"name":"Neville Gallimore"},"CB1":{"ovr":89,"name":"Jaylon Johnson"},"CB2":{"ovr":83,"name":"Kyler Gordon"},"CB3":{"ovr":76,"name":"Tyrique Stevenson Sr"},"CB4":{"ovr":75,"name":"Clark Phillips III"},"OG1":{"ovr":96,"name":"Joe Thuney"},"OG2":{"ovr":80,"name":"Jonah Jackson"},"C":{"ovr":76,"name":"Garrett Bradbury"},"OT1":{"ovr":87,"name":"Darnell Wright"},"OT2":{"ovr":74,"name":"Braxton Jones"},"MIKE":{"ovr":86,"name":"Devin Bush"},"WILL":{"ovr":81,"name":"T.J. Edwards"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":71,"name":"Jack Sanborn"},"DL5":{"ovr":72,"name":"Shemar Turner"},"RB1":{"ovr":86,"name":"D'Andre Swift"},"RB2":{"ovr":79,"name":"Kyle Monangai"},"TE1":{"ovr":83,"name":"Colston Loveland"},"TE2":{"ovr":78,"name":"Cole Kmet"},"SS":{"ovr":77,"name":"Dillon Thieneman"},"SS2":{"ovr":74,"name":"Cam Lewis"},"QB":{"ovr":91,"name":"Caleb Williams"},"FS":{"ovr":78,"name":"Xavier Woods"},"FS2":{"ovr":77,"name":"Coby Bryant"},"WR1":{"ovr":82,"name":"Rome Odunze"},"WR2":{"ovr":79,"name":"Luther Burden III"},"WR3":{"ovr":76,"name":"Kalif Raymond"},"K":{"ovr":78,"name":"Cairo Santos"},"P":{"ovr":75,"name":"Tory Taylor"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":72,"name":"Zavion Thomas"}},"Indianapolis Colts":{"DE1":{"ovr":81,"name":"Laiatu Latu"},"DE2":{"ovr":75,"name":"Arden Key"},"DT1":{"ovr":92,"name":"DeForest Buckner"},"DT2":{"ovr":83,"name":"Grover Stewart"},"CB1":{"ovr":90,"name":"Sauce Gardner"},"CB2":{"ovr":88,"name":"Charvarius Ward Sr"},"CB3":{"ovr":81,"name":"Cam Taylor-Britt"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":94,"name":"Quenton Nelson"},"OG2":{"ovr":76,"name":"Matt Goncalves"},"C":{"ovr":86,"name":"Tanor Bortolini"},"OT1":{"ovr":86,"name":"Bernhard Raimann"},"OT2":{"ovr":70,"name":null},"MIKE":{"ovr":74,"name":"CJ Allen"},"WILL":{"ovr":70,"name":null},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":74,"name":"JT Tuimoloau"},"RB1":{"ovr":96,"name":"Jonathan Taylor"},"RB2":{"ovr":70,"name":null},"TE1":{"ovr":84,"name":"Tyler Warren"},"TE2":{"ovr":71,"name":"Mo Alie-Cox"},"SS":{"ovr":74,"name":"A.J. Haulcy"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":77,"name":"Daniel Jones"},"FS":{"ovr":84,"name":"Camryn Bynum"},"FS2":{"ovr":71,"name":"Jonathan Owens"},"WR1":{"ovr":84,"name":"Alec Pierce"},"WR2":{"ovr":82,"name":"Keenan Allen"},"WR3":{"ovr":80,"name":"Josh Downs"},"K":{"ovr":74,"name":"Spencer Shrader"},"P":{"ovr":83,"name":"Rigoberto Sanchez"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":78,"name":"Darius Slayton"}},"Minnesota Vikings":{"DE1":{"ovr":83,"name":"Andrew Van Ginkel"},"DE2":{"ovr":80,"name":"Dallas Turner"},"DT1":{"ovr":80,"name":"Jalen Redmond"},"DT2":{"ovr":76,"name":"Caleb Banks"},"CB1":{"ovr":84,"name":"Byron Murphy Jr"},"CB2":{"ovr":81,"name":"Isaiah Rodgers Sr"},"CB3":{"ovr":77,"name":"James Pierre"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":77,"name":"Will Fries"},"OG2":{"ovr":75,"name":"Donovan Jackson"},"C":{"ovr":71,"name":"Blake Brandel"},"OT1":{"ovr":90,"name":"Christian Darrisaw"},"OT2":{"ovr":87,"name":"Brian O'Neill"},"MIKE":{"ovr":81,"name":"Blake Cashman"},"WILL":{"ovr":77,"name":"Eric Wilson"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":74,"name":"Jake Golday"},"DL5":{"ovr":73,"name":"Domonique Orange"},"RB1":{"ovr":81,"name":"Aaron Jones Sr"},"RB2":{"ovr":80,"name":"Jordan Mason"},"TE1":{"ovr":83,"name":"T.J. Hockenson"},"TE2":{"ovr":73,"name":"Josh Oliver"},"SS":{"ovr":82,"name":"Josh Metellus"},"SS2":{"ovr":73,"name":"Jakobe Thomas"},"QB":{"ovr":75,"name":"Kyler Murray"},"FS":{"ovr":87,"name":"Harrison Smith"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":96,"name":"Justin Jefferson"},"WR2":{"ovr":84,"name":"Jordan Addison"},"WR3":{"ovr":81,"name":"Jauan Jennings"},"K":{"ovr":82,"name":"Will Reichard"},"P":{"ovr":73,"name":"Brett Thorson"},"FB":{"ovr":71,"name":"Max Bredeson"},"WR4":{"ovr":71,"name":"Tai Felton"}},"Pittsburgh Steelers":{"DE1":{"ovr":96,"name":"T.J. Watt"},"DE2":{"ovr":87,"name":"Alex Highsmith"},"DT1":{"ovr":95,"name":"Cam Heyward"},"DT2":{"ovr":78,"name":"Sebastian Joseph-Day"},"CB1":{"ovr":86,"name":"Jamel Dean"},"CB2":{"ovr":85,"name":"Joey Porter"},"CB3":{"ovr":76,"name":"Asante Samuel Jr"},"CB4":{"ovr":75,"name":"Brandin Echols"},"OG1":{"ovr":77,"name":"Mason McCormick"},"OG2":{"ovr":72,"name":"Gennings Dunker"},"C":{"ovr":85,"name":"Zach Frazier"},"OT1":{"ovr":76,"name":"Troy Fautanu"},"OT2":{"ovr":75,"name":"Max Iheanachor"},"MIKE":{"ovr":80,"name":"Patrick Queen"},"WILL":{"ovr":75,"name":"Cole Holcomb"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":78,"name":"Sebastian Joseph-Day"},"RB1":{"ovr":84,"name":"Rico Dowdle"},"RB2":{"ovr":83,"name":"Jaylen Warren"},"TE1":{"ovr":79,"name":"Pat Freiermuth"},"TE2":{"ovr":76,"name":"Darnell Washington"},"SS":{"ovr":80,"name":"Jaquan Brisker"},"SS2":{"ovr":80,"name":"DeShon Elliott"},"QB":{"ovr":79,"name":"Aaron Rodgers"},"FS":{"ovr":90,"name":"Jalen Ramsey"},"FS2":{"ovr":77,"name":"Rayshawn Jenkins"},"WR1":{"ovr":85,"name":"DK Metcalf"},"WR2":{"ovr":83,"name":"Michael Pittman"},"WR3":{"ovr":75,"name":"Germie Bernard"},"K":{"ovr":86,"name":"Chris Boswell"},"P":{"ovr":72,"name":"Cameron Johnston"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":71,"name":"Roman Wilson"}},"Kansas City Chiefs":{"DE1":{"ovr":81,"name":"George Karlaftis"},"DE2":{"ovr":77,"name":"R Mason Thomas"},"DT1":{"ovr":94,"name":"Chris Jones"},"DT2":{"ovr":76,"name":"Peter Woods"},"CB1":{"ovr":80,"name":"L'Jarius Sneed"},"CB2":{"ovr":79,"name":"Mansoor Delane"},"CB3":{"ovr":77,"name":"Kristian Fulton"},"CB4":{"ovr":74,"name":"Nohl Williams"},"OG1":{"ovr":91,"name":"Trey Smith"},"OG2":{"ovr":75,"name":"Kingsley Suamataia"},"C":{"ovr":95,"name":"Creed Humphrey"},"OT1":{"ovr":81,"name":"Josh Simmons"},"OT2":{"ovr":72,"name":"Jaylon Moore"},"MIKE":{"ovr":81,"name":"Nick Bolton"},"WILL":{"ovr":89,"name":"Drue Tranquill"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":74,"name":"Felix Anudike-Uzomah"},"RB1":{"ovr":91,"name":"Kenneth Walker"},"RB2":{"ovr":74,"name":"Brashard Smith"},"TE1":{"ovr":91,"name":"Travis Kelce"},"TE2":{"ovr":73,"name":"Noah Gray"},"SS":{"ovr":76,"name":"Chamarri Conner"},"SS2":{"ovr":74,"name":"Jaden Hicks"},"QB":{"ovr":93,"name":"Patrick Mahomes"},"FS":{"ovr":79,"name":"Alohi Gilman"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":85,"name":"Rashee Rice"},"WR2":{"ovr":79,"name":"Xavier Worthy"},"WR3":{"ovr":75,"name":"Tyquan Thornton"},"K":{"ovr":81,"name":"Harrison Butker"},"P":{"ovr":75,"name":"Matt Araiza"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":71,"name":"Jalen Royals"}},"Tennessee Titans":{"DE1":{"ovr":78,"name":"Keldric Faulk"},"DE2":{"ovr":77,"name":"Jermaine Johnson II"},"DT1":{"ovr":95,"name":"Jeffery Simmons"},"DT2":{"ovr":80,"name":"John Franklin-Myers"},"CB1":{"ovr":80,"name":"Cor'Dale Flott"},"CB2":{"ovr":78,"name":"Alontae Taylor"},"CB3":{"ovr":75,"name":"Joshua Williams"},"CB4":{"ovr":73,"name":"Jaylon Jones"},"OG1":{"ovr":84,"name":"Peter Skoronski"},"OG2":{"ovr":70,"name":null},"C":{"ovr":70,"name":null},"OT1":{"ovr":80,"name":"JC Latham"},"OT2":{"ovr":73,"name":"Dan Moore"},"MIKE":{"ovr":78,"name":"Cody Barton"},"WILL":{"ovr":78,"name":"Cedric Gray"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":76,"name":"Jacob Martin"},"RB1":{"ovr":83,"name":"Tony Pollard"},"RB2":{"ovr":77,"name":"Tyjae Spears"},"TE1":{"ovr":71,"name":"Gunnar Helm"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":78,"name":"Amani Hooker"},"SS2":{"ovr":75,"name":"Tony Adams"},"QB":{"ovr":74,"name":"Cam Ward"},"FS":{"ovr":75,"name":"Kevin Winston Jr"},"FS2":{"ovr":71,"name":"Terrell Burgess"},"WR1":{"ovr":84,"name":"Wan'Dale Robinson"},"WR2":{"ovr":78,"name":"Calvin Ridley"},"WR3":{"ovr":77,"name":"Carnell Tate"},"K":{"ovr":75,"name":"Joey Slye"},"P":{"ovr":78,"name":"Tommy Townsend"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":77,"name":"Elic Ayomanor"}},"Baltimore Ravens":{"DE1":{"ovr":89,"name":"Trey Hendrickson"},"DE2":{"ovr":76,"name":"Zion Young"},"DT1":{"ovr":90,"name":"Nnamdi Madubuike"},"DT2":{"ovr":82,"name":"Calais Campbell"},"CB1":{"ovr":85,"name":"Marlon Humphrey"},"CB2":{"ovr":83,"name":"Chidobe Awuzie"},"CB3":{"ovr":82,"name":"Nate Wiggins"},"CB4":{"ovr":71,"name":"Chandler Rivers"},"OG1":{"ovr":80,"name":"John Simpson"},"OG2":{"ovr":77,"name":"Olaivavega Ioane"},"C":{"ovr":70,"name":null},"OT1":{"ovr":86,"name":"Ronnie Stanley"},"OT2":{"ovr":78,"name":"Roger Rosengarten"},"MIKE":{"ovr":93,"name":"Roquan Smith"},"WILL":{"ovr":78,"name":"Trenton Simpson"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":76,"name":"Zion Young"},"RB1":{"ovr":94,"name":"Derrick Henry"},"RB2":{"ovr":77,"name":"Justice Hill"},"TE1":{"ovr":90,"name":"Mark Andrews"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":92,"name":"Kyle Hamilton"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":95,"name":"Lamar Jackson"},"FS":{"ovr":78,"name":"Malaki Starks"},"FS2":{"ovr":77,"name":"Jaylinn Hawkins"},"WR1":{"ovr":89,"name":"Zay Flowers"},"WR2":{"ovr":77,"name":"Rashod Bateman"},"WR3":{"ovr":72,"name":"Chris Moore"},"K":{"ovr":78,"name":"Tyler Loop"},"P":{"ovr":73,"name":"Ryan Eckley"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":72,"name":"Ja'Kobi Lane"}},"Tampa Bay Buccaneers":{"DE1":{"ovr":80,"name":"Rueben Bain Jr"},"DE2":{"ovr":79,"name":"Yaya Diaby"},"DT1":{"ovr":94,"name":"Vita Vea"},"DT2":{"ovr":77,"name":"A'Shawn Robinson"},"CB1":{"ovr":80,"name":"Zyon McCollum"},"CB2":{"ovr":79,"name":"Jacob Parrish"},"CB3":{"ovr":75,"name":"Benjamin Morrison"},"CB4":{"ovr":73,"name":"Keionte Scott"},"OG1":{"ovr":77,"name":"Cody Mauch"},"OG2":{"ovr":74,"name":"Ben Bredeson"},"C":{"ovr":76,"name":"Graham Barton"},"OT1":{"ovr":95,"name":"Tristan Wirfs"},"OT2":{"ovr":84,"name":"Luke Goedeke"},"MIKE":{"ovr":75,"name":"Josiah Trotter"},"WILL":{"ovr":80,"name":"Alex Anzalone"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":72,"name":"SirVocea Dennis"},"DL5":{"ovr":77,"name":"Calijah Kancey"},"RB1":{"ovr":85,"name":"Bucky Irving"},"RB2":{"ovr":79,"name":"Kenny Gainwell"},"TE1":{"ovr":75,"name":"Cade Otton"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":79,"name":"Tykee Smith"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":83,"name":"Baker Mayfield"},"FS":{"ovr":93,"name":"Antoine Winfield Jr"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":82,"name":"Chris Godwin Jr"},"WR2":{"ovr":81,"name":"Emeka Egbuka"},"WR3":{"ovr":74,"name":"Jalen McMillan"},"K":{"ovr":78,"name":"Chase McLaughlin"},"P":{"ovr":76,"name":"Riley Dixon"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":73,"name":"Tez Johnson"}},"Houston Texans":{"DE1":{"ovr":95,"name":"Will Anderson Jr"},"DE2":{"ovr":92,"name":"Danielle Hunter"},"DT1":{"ovr":81,"name":"Sheldon Rankins"},"DT2":{"ovr":75,"name":"Kayden McDonald"},"CB1":{"ovr":92,"name":"Derek Stingley Jr"},"CB2":{"ovr":87,"name":"Kamari Lassiter"},"CB3":{"ovr":86,"name":"Jalen Pitre"},"CB4":{"ovr":72,"name":"Ja'Marcus Ingram"},"OG1":{"ovr":78,"name":"Ed Ingram"},"OG2":{"ovr":74,"name":"Keylan Rutledge"},"C":{"ovr":72,"name":"Evan Brown"},"OT1":{"ovr":82,"name":"Braden Smith"},"OT2":{"ovr":79,"name":"Trent Brown"},"MIKE":{"ovr":83,"name":"Azeez Al-Shaair"},"WILL":{"ovr":75,"name":"Henry To'oTo'o"},"SAM":{"ovr":75,"name":"E.J. Speed"},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":75,"name":"Kayden McDonald"},"RB1":{"ovr":83,"name":"David Montgomery"},"RB2":{"ovr":81,"name":"Woody Marks"},"TE1":{"ovr":84,"name":"Dalton Schultz"},"TE2":{"ovr":72,"name":"Foster Moreau"},"SS":{"ovr":79,"name":"Reed Blankenship"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":76,"name":"C.J. Stroud"},"FS":{"ovr":84,"name":"Calen Bullock"},"FS2":{"ovr":72,"name":"Kamari Ramsey"},"WR1":{"ovr":90,"name":"Nico Collins"},"WR2":{"ovr":80,"name":"Kayshon Boutte"},"WR3":{"ovr":79,"name":"Tank Dell"},"K":{"ovr":81,"name":"Ka'imi Fairbairn"},"P":{"ovr":70,"name":null},"FB":{"ovr":70,"name":null},"WR4":{"ovr":77,"name":"Jayden Higgins"}},"Washington Commanders":{"DE1":{"ovr":80,"name":"Odafe Oweh"},"DE2":{"ovr":79,"name":"Dorance Armstrong"},"DT1":{"ovr":84,"name":"Daron Payne"},"DT2":{"ovr":76,"name":"Charles Omenihu"},"CB1":{"ovr":78,"name":"Amik Robertson"},"CB2":{"ovr":77,"name":"Rasul Douglas"},"CB3":{"ovr":77,"name":"Trey Amos"},"CB4":{"ovr":75,"name":"Mike Sainristil"},"OG1":{"ovr":87,"name":"Sam Cosmi"},"OG2":{"ovr":75,"name":"Andrew Wylie"},"C":{"ovr":72,"name":"Nick Allegretti"},"OT1":{"ovr":94,"name":"Laremy Tunsil"},"OT2":{"ovr":73,"name":"Josh Conerly Jr"},"MIKE":{"ovr":83,"name":"Leo Chenal"},"WILL":{"ovr":79,"name":"Frankie Luvu"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":76,"name":"Deatrich Wise Jr"},"RB1":{"ovr":79,"name":"Jacory Croskey-Merritt"},"RB2":{"ovr":78,"name":"Rachaad White"},"TE1":{"ovr":75,"name":"Chigoziem Okonkwo"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":81,"name":"Nick Cross"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":80,"name":"Jayden Daniels"},"FS":{"ovr":77,"name":"Quan Martin"},"FS2":{"ovr":73,"name":"Jeremy Reaves"},"WR1":{"ovr":91,"name":"Terry McLaurin"},"WR2":{"ovr":86,"name":"Stefon Diggs"},"WR3":{"ovr":75,"name":"Antonio Williams"},"K":{"ovr":73,"name":"Drew Stevens"},"P":{"ovr":77,"name":"Tress Way"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":75,"name":"Jaylin Lane"}},"NY Giants":{"DE1":{"ovr":89,"name":"Brian Burns"},"DE2":{"ovr":82,"name":"Abdul Carter"},"DT1":{"ovr":84,"name":"D.J. Reader"},"DT2":{"ovr":77,"name":"Shelby Harris"},"CB1":{"ovr":79,"name":"Greg Newsome II"},"CB2":{"ovr":78,"name":"Dru Phillips"},"CB3":{"ovr":76,"name":"Deonte Banks"},"CB4":{"ovr":76,"name":"Paulson Adebo"},"OG1":{"ovr":79,"name":"Francis Mauigoa"},"OG2":{"ovr":74,"name":"Jon Runyan"},"C":{"ovr":72,"name":"John Michael Schmitz Jr"},"OT1":{"ovr":93,"name":"Andrew Thomas"},"OT2":{"ovr":81,"name":"Jermaine Eluemunor"},"MIKE":{"ovr":83,"name":"Tremaine Edmunds"},"WILL":{"ovr":79,"name":"Arvell Reese"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"Shelby Harris"},"RB1":{"ovr":82,"name":"Cam Skattebo"},"RB2":{"ovr":78,"name":"Tyrone Tracy Jr"},"TE1":{"ovr":77,"name":"Isaiah Likely"},"TE2":{"ovr":77,"name":"Theo Johnson"},"SS":{"ovr":75,"name":"Tyler Nubin"},"SS2":{"ovr":73,"name":"Jason Pinnock"},"QB":{"ovr":78,"name":"Jaxson Dart"},"FS":{"ovr":84,"name":"Jevon Holland"},"FS2":{"ovr":78,"name":"Ar'Darius Washington"},"WR1":{"ovr":86,"name":"Malik Nabers"},"WR2":{"ovr":76,"name":"Calvin Austin"},"WR3":{"ovr":76,"name":"Darnell Mooney"},"K":{"ovr":72,"name":"Dominic Zvada"},"P":{"ovr":76,"name":"Jordan Stout"},"FB":{"ovr":84,"name":"Patrick Ricard"},"WR4":{"ovr":73,"name":"Malachi Fields"}},"Dallas Cowboys":{"DE1":{"ovr":84,"name":"Rashan Gary"},"DE2":{"ovr":78,"name":"Malachi Lawrence"},"DT1":{"ovr":91,"name":"Quinnen Williams"},"DT2":{"ovr":79,"name":"Kenny Clark"},"CB1":{"ovr":83,"name":"DaRon Bland"},"CB2":{"ovr":81,"name":"Cobie Durant"},"CB3":{"ovr":72,"name":"Shavon Revel Jr"},"CB4":{"ovr":71,"name":"Caelen Carson"},"OG1":{"ovr":89,"name":"Tyler Smith"},"OG2":{"ovr":82,"name":"Tyler Booker"},"C":{"ovr":75,"name":"Cooper Beebe"},"OT1":{"ovr":75,"name":"Terence Steele"},"OT2":{"ovr":74,"name":"Tyler Guyton"},"MIKE":{"ovr":75,"name":"DeMarvion Overshown"},"WILL":{"ovr":77,"name":"Dee Winters"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":78,"name":"Von Miller"},"RB1":{"ovr":86,"name":"Javonte Williams"},"RB2":{"ovr":73,"name":"Malik Davis"},"TE1":{"ovr":82,"name":"Jake Ferguson"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":85,"name":"Jalen Thompson"},"SS2":{"ovr":82,"name":"Caleb Downs"},"QB":{"ovr":91,"name":"Dak Prescott"},"FS":{"ovr":78,"name":"Malik Hooker"},"FS2":{"ovr":74,"name":"P.J. Locke"},"WR1":{"ovr":93,"name":"CeeDee Lamb"},"WR2":{"ovr":88,"name":"George Pickens"},"WR3":{"ovr":76,"name":"KaVontae Turpin"},"K":{"ovr":87,"name":"Brandon Aubrey"},"P":{"ovr":79,"name":"Bryan Anger"},"FB":{"ovr":72,"name":"Hunter Luepke"},"WR4":{"ovr":76,"name":"Ryan Flournoy"}},"Cleveland Browns":{"DE1":{"ovr":88,"name":"Jared Verse"},"DE2":{"ovr":73,"name":"Derek Barnett"},"DT1":{"ovr":80,"name":"Mason Graham"},"DT2":{"ovr":77,"name":"Maliek Collins"},"CB1":{"ovr":93,"name":"Denzel Ward"},"CB2":{"ovr":79,"name":"Tyson Campbell"},"CB3":{"ovr":76,"name":"Mekhi Blackmon"},"CB4":{"ovr":71,"name":"Noah Igbinoghene"},"OG1":{"ovr":78,"name":"Zion Johnson"},"OG2":{"ovr":77,"name":"Teven Jenkins"},"C":{"ovr":84,"name":"Elgton Jenkins"},"OT1":{"ovr":80,"name":"Tytus Howard"},"OT2":{"ovr":79,"name":"Spencer Fano"},"MIKE":{"ovr":83,"name":"Carson Schwesinger"},"WILL":{"ovr":83,"name":"Jeremiah Owusu-Koramoah"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":73,"name":"Sam Williams"},"RB1":{"ovr":82,"name":"Quinshon Judkins"},"RB2":{"ovr":75,"name":"Dylan Sampson"},"TE1":{"ovr":80,"name":"Harold Fannin Jr"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":82,"name":"Grant Delpit"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":70,"name":null},"FS":{"ovr":76,"name":"Ronnie Hickman"},"FS2":{"ovr":75,"name":"Emmanuel McNeil-Warren"},"WR1":{"ovr":81,"name":"Jerry Jeudy"},"WR2":{"ovr":75,"name":"Denzel Boston"},"WR3":{"ovr":75,"name":"KC Concepcion Jr"},"K":{"ovr":71,"name":"Andre Szmyt"},"P":{"ovr":80,"name":"Corey Bojorquez"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":71,"name":"Tylan Wallace"}},"Los Angeles Chargers":{"DE1":{"ovr":86,"name":"Khalil Mack"},"DE2":{"ovr":79,"name":"Akheem Mesidor"},"DT1":{"ovr":77,"name":"Teair Tart"},"DT2":{"ovr":75,"name":"Dalvin Tomlinson"},"CB1":{"ovr":81,"name":"Donte Jackson"},"CB2":{"ovr":80,"name":"Tarheeb Still"},"CB3":{"ovr":73,"name":"Cam Hart"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":72,"name":"Cole Strange"},"OG2":{"ovr":71,"name":"Trevor Penning"},"C":{"ovr":80,"name":"Tyler Biadasz"},"OT1":{"ovr":92,"name":"Rashawn Slater"},"OT2":{"ovr":85,"name":"Joe Alt"},"MIKE":{"ovr":76,"name":"Denzel Perryman"},"WILL":{"ovr":82,"name":"Daiyan Henley"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":75,"name":"Dalvin Tomlinson"},"RB1":{"ovr":81,"name":"Omarion Hampton"},"RB2":{"ovr":77,"name":"Kimani Vidal"},"TE1":{"ovr":79,"name":"David Njoku"},"TE2":{"ovr":75,"name":"Oronde Gadsden"},"SS":{"ovr":93,"name":"Derwin James Jr"},"SS2":{"ovr":80,"name":"Tony Jefferson"},"QB":{"ovr":89,"name":"Justin Herbert"},"FS":{"ovr":79,"name":"Elijah Molden"},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":83,"name":"Ladd McConkey"},"WR2":{"ovr":80,"name":"Quentin Johnston"},"WR3":{"ovr":73,"name":"Tre' Harris"},"K":{"ovr":82,"name":"Cameron Dicker"},"P":{"ovr":80,"name":"JK Scott"},"FB":{"ovr":74,"name":"Alec Ingold"},"WR4":{"ovr":72,"name":"Brenen Thompson"}},"Miami Dolphins":{"DE1":{"ovr":75,"name":"Chop Robinson"},"DE2":{"ovr":75,"name":"Joshua Uche"},"DT1":{"ovr":83,"name":"Zach Sieler"},"DT2":{"ovr":75,"name":"Kenneth Grant"},"CB1":{"ovr":76,"name":"Chris Johnson"},"CB2":{"ovr":74,"name":"Darrell Baker Jr"},"CB3":{"ovr":72,"name":"JuJu Brents"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":78,"name":"Kadyn Proctor"},"OG2":{"ovr":70,"name":null},"C":{"ovr":90,"name":"Aaron Brewer"},"OT1":{"ovr":81,"name":"Patrick Paul"},"OT2":{"ovr":73,"name":"Austin Jackson"},"MIKE":{"ovr":78,"name":"Jacob Rodriguez"},"WILL":{"ovr":84,"name":"Jordyn Brooks"},"SAM":{"ovr":72,"name":"Willie Gay Jr"},"LB4":{"ovr":71,"name":"Ronnie Harrison Jr"},"DL5":{"ovr":72,"name":"Trey Moore"},"RB1":{"ovr":88,"name":"De'Von Achane"},"RB2":{"ovr":73,"name":"Jaylen Wright"},"TE1":{"ovr":70,"name":null},"TE2":{"ovr":70,"name":null},"SS":{"ovr":71,"name":"Kyle Louis"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":74,"name":"Malik Willis"},"FS":{"ovr":70,"name":null},"FS2":{"ovr":70,"name":null},"WR1":{"ovr":74,"name":"Jalen Tolbert"},"WR2":{"ovr":73,"name":"Malik Washington"},"WR3":{"ovr":72,"name":"Caleb Douglas"},"K":{"ovr":72,"name":"Riley Patterson"},"P":{"ovr":77,"name":"Bradley Pinion"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":71,"name":"Chris Bell"}},"NY Jets":{"DE1":{"ovr":81,"name":"David Bailey"},"DE2":{"ovr":78,"name":"Will McDonald IV"},"DT1":{"ovr":79,"name":"T'Vondre Sweat"},"DT2":{"ovr":78,"name":"David Onyemata"},"CB1":{"ovr":76,"name":"Brandon Stephens"},"CB2":{"ovr":76,"name":"Jarvis Brownlee Jr"},"CB3":{"ovr":75,"name":"D'Angelo Ponds"},"CB4":{"ovr":75,"name":"Nahshon Wright"},"OG1":{"ovr":80,"name":"Joe Tippmann"},"OG2":{"ovr":77,"name":"Dylan Parham"},"C":{"ovr":72,"name":"Josh Myers"},"OT1":{"ovr":83,"name":"Armand Membou"},"OT2":{"ovr":76,"name":"Olu Fashanu"},"MIKE":{"ovr":90,"name":"Demario Davis"},"WILL":{"ovr":76,"name":"Jamien Sherwood"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":78,"name":"Will McDonald IV"},"RB1":{"ovr":87,"name":"Breece Hall"},"RB2":{"ovr":73,"name":"Braelon Allen"},"TE1":{"ovr":74,"name":"Kenyon Sadiq"},"TE2":{"ovr":74,"name":"Mason Taylor"},"SS":{"ovr":89,"name":"Minkah Fitzpatrick"},"SS2":{"ovr":76,"name":"Dane Belton"},"QB":{"ovr":74,"name":"Geno Smith"},"FS":{"ovr":77,"name":"Andre Cisco"},"FS2":{"ovr":71,"name":"Malachi Moore"},"WR1":{"ovr":86,"name":"Garrett Wilson"},"WR2":{"ovr":77,"name":"Adonai Mitchell"},"WR3":{"ovr":75,"name":"Omar Cooper Jr"},"K":{"ovr":73,"name":"Blake Grupe"},"P":{"ovr":73,"name":"Austin McNamara"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":74,"name":"Tim Patrick"}},"Jacksonville Jaguars":{"DE1":{"ovr":89,"name":"Josh Hines-Allen"},"DE2":{"ovr":80,"name":"Travon Walker"},"DT1":{"ovr":76,"name":"Arik Armstead"},"DT2":{"ovr":73,"name":"Albert Regis"},"CB1":{"ovr":83,"name":"Jourdan Lewis"},"CB2":{"ovr":83,"name":"Travis Hunter"},"CB3":{"ovr":78,"name":"Jarrian Jones"},"CB4":{"ovr":74,"name":"Montaric Brown"},"OG1":{"ovr":79,"name":"Ezra Cleveland"},"OG2":{"ovr":73,"name":"Emmanuel Pregnon"},"C":{"ovr":74,"name":"Robert Hainsey"},"OT1":{"ovr":77,"name":"Anton Harrison"},"OT2":{"ovr":77,"name":"Walker Little"},"MIKE":{"ovr":86,"name":"Foyesade Oluokun"},"WILL":{"ovr":70,"name":null},"SAM":{"ovr":74,"name":"Dennis Gardeck"},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":73,"name":"DaVon Hamilton"},"RB1":{"ovr":78,"name":"Bhayshul Tuten"},"RB2":{"ovr":73,"name":"Ameer Abdullah"},"TE1":{"ovr":77,"name":"Brenton Strange"},"TE2":{"ovr":70,"name":null},"SS":{"ovr":81,"name":"Antonio Johnson"},"SS2":{"ovr":70,"name":null},"QB":{"ovr":86,"name":"Trevor Lawrence"},"FS":{"ovr":74,"name":"Eric Murray"},"FS2":{"ovr":73,"name":"Caleb Ransaw"},"WR1":{"ovr":82,"name":"Jakobi Meyers"},"WR2":{"ovr":82,"name":"Parker Washington"},"WR3":{"ovr":80,"name":"Brian Thomas Jr"},"K":{"ovr":80,"name":"Cam Little"},"P":{"ovr":76,"name":"Logan Cooke"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":70,"name":null}},"New Orleans Saints":{"DE1":{"ovr":82,"name":"Chase Young"},"DE2":{"ovr":79,"name":"Cameron Jordan"},"DT1":{"ovr":78,"name":"Davon Godchaux"},"DT2":{"ovr":75,"name":"Bryan Bresee"},"CB1":{"ovr":76,"name":"Kool-Aid McKinstry"},"CB2":{"ovr":75,"name":"Martin Emerson Jr"},"CB3":{"ovr":73,"name":"Quincy Riley"},"CB4":{"ovr":70,"name":null},"OG1":{"ovr":79,"name":"David Edwards"},"OG2":{"ovr":76,"name":"Cesar Ruiz"},"C":{"ovr":87,"name":"Erik McCoy"},"OT1":{"ovr":78,"name":"Kelvin Banks Jr"},"OT2":{"ovr":76,"name":"Taliese Fuaga"},"MIKE":{"ovr":75,"name":"Pete Werner"},"WILL":{"ovr":83,"name":"Kaden Elliss"},"SAM":{"ovr":70,"name":null},"LB4":{"ovr":70,"name":null},"DL5":{"ovr":77,"name":"Anfernee Jennings"},"RB1":{"ovr":87,"name":"Travis Etienne Jr"},"RB2":{"ovr":79,"name":"Alvin Kamara"},"TE1":{"ovr":80,"name":"Juwan Johnson"},"TE2":{"ovr":73,"name":"Noah Fant"},"SS":{"ovr":78,"name":"Julian Blackmon"},"SS2":{"ovr":77,"name":"Jonas Sanker"},"QB":{"ovr":79,"name":"Tyler Shough"},"FS":{"ovr":84,"name":"Justin Reid"},"FS2":{"ovr":74,"name":"Jordan Howden"},"WR1":{"ovr":88,"name":"Chris Olave"},"WR2":{"ovr":76,"name":"Devaughn Vele"},"WR3":{"ovr":76,"name":"Jordyn Tyson"},"K":{"ovr":77,"name":"Daniel Carlson"},"P":{"ovr":75,"name":"Ryan Wright"},"FB":{"ovr":70,"name":null},"WR4":{"ovr":70,"name":"Barion Brown"}}}
 ;
 const DEFAULT_WEIGHTS = {"QB": 320, "RB1": 100, "RB2": 40, "WR1": 60, "WR2": 40, "WR3": 20, "WR4": 5, "TE1": 80, "TE2": 20, "OT1": 295, "OT2": 295, "OG1": 295, "OG2": 295, "C": 295, "DE1": 350, "DE2": 350, "DT1": 320, "DT2": 300, "DL5": 5, "MIKE": 100, "WILL": 100, "SAM": 60, "LB4": 5, "CB1": 350, "CB2": 295, "CB3": 80, "CB4": 20, "SS": 80, "SS2": 5, "FS": 60, "FS2": 5, "K": 5, "P": 1, "FB": 1};
-const LABELS = {"DE1": "DE1", "DE2": "DE2", "DT1": "DT1", "DT2": "DT2", "CB1": "CB1", "CB2": "CB2", "CB3": "Nickel", "CB4": "CB4 / Dime", "OG1": "OG1", "OG2": "OG2", "C": "C", "OT1": "OT1", "OT2": "OT2", "MIKE": "MIKE", "WILL": "WILL", "SAM": "SAM", "LB4": "LB4", "DL5": "DL5 / Elephant", "RB1": "RB1", "RB2": "RB2", "TE1": "TE1", "TE2": "TE2", "SS": "SS", "SS2": "SS2 / Big Nickel", "QB": "QB", "FS": "FS", "FS2": "FS2 / Quarter", "WR1": "WR1", "WR2": "WR2", "WR3": "WR3", "WR4": "WR4", "K": "K", "P": "P", "FB": "FB"};
+const LABELS = {"DE1": "DE1", "DE2": "DE2", "DT1": "DT1", "DT2": "DT2", "CB1": "CB1", "CB2": "CB2", "CB3": "Nickel", "CB4": "CB4 / Dime", "OG1": "OG1", "OG2": "OG2", "C": "C", "OT1": "OT1", "OT2": "OT2", "MIKE": "MIKE", "WILL": "WILL", "SAM": "SAM", "LB4": "LB4", "DL5": "DL5", "RB1": "RB1", "RB2": "RB2", "TE1": "TE1", "TE2": "TE2", "SS": "SS", "SS2": "SS2 / Big Nickel", "QB": "QB", "FS": "FS", "FS2": "FS2 / Quarter", "WR1": "WR1", "WR2": "WR2", "WR3": "WR3", "WR4": "WR4", "K": "K", "P": "P", "FB": "FB"};
 const GROUPS = [["Quarterback & Skill Positions", ["QB", "RB1", "RB2", "FB", "WR1", "WR2", "WR3", "WR4", "TE1", "TE2"]], ["Offensive Line", ["OT1", "OT2", "OG1", "OG2", "C"]], ["Defensive Line", ["DE1", "DE2", "DT1", "DT2", "DL5"]], ["Linebackers", ["MIKE", "WILL", "SAM", "LB4"]], ["Secondary", ["CB1", "CB2", "CB3", "CB4", "SS", "SS2", "FS", "FS2"]], ["Specialists", ["K", "P"]]]; // w27 (Owner): FB is a skill position
-const GROUP_DEFS = [{"key":"QB","label":"Quarterback","pos":["QB"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB1","label":"RB1","pos":["HB"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB2","label":"RB2","pos":["HB"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"WR1","label":"WR1","pos":["WR"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"WR2","label":"WR2","pos":["WR"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"WR3","label":"WR3","pos":["WR"],"n":1,"rankIndex":2,"cat":"Offense — Positions"},{"key":"WR4","label":"WR4","pos":["WR"],"n":1,"rankIndex":3,"cat":"Offense — Positions"},{"key":"TE1","label":"TE1","pos":["TE"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"TE2","label":"TE2","pos":["TE"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"OT1","label":"OT1","pos":["LT","RT"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"OT2","label":"OT2","pos":["LT","RT"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"OG1","label":"OG1","pos":["LG","RG"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"OG2","label":"OG2","pos":["LG","RG"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"C","label":"Center","pos":["C"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB","label":"Running Backs","pos":["HB"],"n":2,"cat":"Offense — Team Units"},{"key":"WR","label":"Wide Receivers","pos":["WR"],"n":3,"cat":"Offense — Team Units"},{"key":"TE","label":"Tight Ends","pos":["TE"],"n":2,"cat":"Offense — Team Units"},{"key":"RECV","label":"Receiving Corps","pos":["WR","TE"],"n":4,"cat":"Offense — Team Units"},{"key":"OT","label":"Offensive Tackles","pos":["LT","RT"],"n":2,"cat":"Offense — Team Units"},{"key":"OGUARDS","label":"Offensive Guards","pos":["LG","RG"],"n":2,"cat":"Offense — Team Units"},{"key":"OG","label":"Interior OL","pos":["LG","RG","C"],"n":3,"cat":"Offense — Team Units"},{"key":"OL","label":"Offensive Line","pos":["LT","RT","LG","RG","C"],"n":5,"cat":"Offense — Team Units"},{"key":"RUN","label":"Run Game","pos":["LT","RT","LG","RG","C","HB"],"n":7,"cat":"Offense — Team Units"},{"key":"PASS","label":"Pass Game","pos":["LT","RT","LG","RG","C","QB","WR","TE"],"n":10,"cat":"Offense — Team Units"},{"key":"SKILL","label":"Skill Positions","pos":["HB","WR","TE"],"n":6,"cat":"Offense — Team Units"},{"key":"OFFENSE","label":"Offense","pos":["QB","HB","WR","TE","LT","RT","LG","RG","C"],"n":13,"cat":"Offense — Team Units"},{"key":"DE1","label":"DE1","pos":["REDG","LEDG"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"DE2","label":"DE2","pos":["REDG","LEDG"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"DL5","label":"DL5 / Elephant","pos":["DT","REDG","LEDG"],"n":1,"rankIndex":4,"cat":"Defense — Positions"},{"key":"DT1","label":"DT1","pos":["DT"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"DT2","label":"DT2","pos":["DT"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"MIKE","label":"MIKE","pos":["MIKE"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"WILL","label":"WILL","pos":["WILL"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"SAM","label":"SAM","pos":["SAM"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"LB4","label":"LB4","pos":["MIKE","WILL","SAM"],"n":1,"rankIndex":3,"cat":"Defense — Positions"},{"key":"CB1","label":"CB1","pos":["CB"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"CB2","label":"CB2","pos":["CB"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"CB3","label":"Nickel","pos":["CB"],"n":1,"rankIndex":2,"cat":"Defense — Positions"},{"key":"CB4","label":"CB4 / Dime","pos":["CB"],"n":1,"rankIndex":3,"cat":"Defense — Positions"},{"key":"SS","label":"SS","pos":["SS"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"SS2","label":"SS2 / Big Nickel","pos":["SS"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"FS","label":"FS","pos":["FS"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"FS2","label":"FS2 / Quarter","pos":["FS"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"EDGE","label":"Edge Rushers","pos":["REDG","LEDG"],"n":2,"cat":"Defense — Team Units"},{"key":"DT","label":"Defensive Tackles","pos":["DT"],"n":2,"cat":"Defense — Team Units"},{"key":"DL","label":"Defensive Line","pos":["DT","REDG","LEDG"],"n":4,"cat":"Defense — Team Units"},{"key":"LB","label":"Linebackers","pos":["MIKE","WILL","SAM"],"n":3,"cat":"Defense — Team Units"},{"key":"FRONT7","label":"Front Seven","pos":["DT","REDG","LEDG","MIKE","WILL","SAM"],"n":7,"cat":"Defense — Team Units"},{"key":"CB","label":"Cornerbacks","pos":["CB"],"n":4,"cat":"Defense — Team Units"},{"key":"S","label":"Safeties","pos":["FS","SS"],"n":2,"cat":"Defense — Team Units"},{"key":"SEC","label":"Secondary","pos":["CB","FS","SS"],"n":6,"cat":"Defense — Team Units"},{"key":"PRIMCOV","label":"Primary Coverage","pos":["DT","REDG","LEDG","CB"],"n":5,"parts":[{"pos":["CB"],"n":1},{"pos":["DT","REDG","LEDG"],"n":4}],"cat":"Defense — Team Units"},{"key":"DLCB","label":"DL + CBs","pos":["DT","REDG","LEDG","CB"],"n":8,"cat":"Defense — Team Units"},{"key":"RUND","label":"Run Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","SS","CB"],"n":9,"cat":"Defense — Team Units"},{"key":"PASSD","label":"Pass Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense — Team Units"},{"key":"ZONE","label":"Zone Defense","pos":["CB","MIKE","WILL","SAM","FS","SS"],"n":8,"cat":"Defense — Team Units"},{"key":"DEFENSE","label":"Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense — Team Units"},{"key":"TRENCHES","label":"Trenches","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG"],"n":9,"cat":"Combined Units"},{"key":"TRENCHES_CB","label":"Trenches + CBs","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG","CB"],"n":13,"cat":"Combined Units"},{"key":"K","label":"Kicker","pos":["K"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"P","label":"Punter","pos":["P"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"FB","label":"Fullback","pos":["FB"],"n":1,"rankIndex":0,"cat":"Specialists"}];
+const GROUP_DEFS = [{"key":"QB","label":"Quarterback","pos":["QB"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB1","label":"RB1","pos":["HB"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB2","label":"RB2","pos":["HB"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"WR1","label":"WR1","pos":["WR"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"WR2","label":"WR2","pos":["WR"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"WR3","label":"WR3","pos":["WR"],"n":1,"rankIndex":2,"cat":"Offense — Positions"},{"key":"WR4","label":"WR4","pos":["WR"],"n":1,"rankIndex":3,"cat":"Offense — Positions"},{"key":"TE1","label":"TE1","pos":["TE"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"TE2","label":"TE2","pos":["TE"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"OT1","label":"OT1","pos":["LT","RT"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"OT2","label":"OT2","pos":["LT","RT"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"OG1","label":"OG1","pos":["LG","RG"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"OG2","label":"OG2","pos":["LG","RG"],"n":1,"rankIndex":1,"cat":"Offense — Positions"},{"key":"C","label":"Center","pos":["C"],"n":1,"rankIndex":0,"cat":"Offense — Positions"},{"key":"RB","label":"Running Backs","pos":["HB"],"n":2,"cat":"Offense — Team Units"},{"key":"WR","label":"Wide Receivers","pos":["WR"],"n":3,"cat":"Offense — Team Units"},{"key":"TE","label":"Tight Ends","pos":["TE"],"n":2,"cat":"Offense — Team Units"},{"key":"RECV","label":"Receiving Corps","pos":["WR","TE"],"n":4,"cat":"Offense — Team Units"},{"key":"OT","label":"Offensive Tackles","pos":["LT","RT"],"n":2,"cat":"Offense — Team Units"},{"key":"OGUARDS","label":"Offensive Guards","pos":["LG","RG"],"n":2,"cat":"Offense — Team Units"},{"key":"OG","label":"Interior OL","pos":["LG","RG","C"],"n":3,"cat":"Offense — Team Units"},{"key":"OL","label":"Offensive Line","pos":["LT","RT","LG","RG","C"],"n":5,"cat":"Offense — Team Units"},{"key":"RUN","label":"Run Game","pos":["LT","RT","LG","RG","C","HB"],"n":7,"cat":"Offense — Team Units"},{"key":"PASS","label":"Pass Game","pos":["LT","RT","LG","RG","C","QB","WR","TE"],"n":10,"cat":"Offense — Team Units"},{"key":"SKILL","label":"Skill Positions","pos":["HB","WR","TE"],"n":6,"cat":"Offense — Team Units"},{"key":"OFFENSE","label":"Offense","pos":["QB","HB","WR","TE","LT","RT","LG","RG","C"],"n":13,"cat":"Offense — Team Units"},{"key":"DE1","label":"DE1","pos":["REDG","LEDG"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"DE2","label":"DE2","pos":["REDG","LEDG"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"DL5","label":"DL5","pos":["DT","REDG","LEDG"],"n":1,"rankIndex":4,"cat":"Defense — Positions"},{"key":"DT1","label":"DT1","pos":["DT"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"DT2","label":"DT2","pos":["DT"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"MIKE","label":"MIKE","pos":["MIKE"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"WILL","label":"WILL","pos":["WILL"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"SAM","label":"SAM","pos":["SAM"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"LB4","label":"LB4","pos":["MIKE","WILL","SAM"],"n":1,"rankIndex":3,"cat":"Defense — Positions"},{"key":"CB1","label":"CB1","pos":["CB"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"CB2","label":"CB2","pos":["CB"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"CB3","label":"Nickel","pos":["CB"],"n":1,"rankIndex":2,"cat":"Defense — Positions"},{"key":"CB4","label":"CB4 / Dime","pos":["CB"],"n":1,"rankIndex":3,"cat":"Defense — Positions"},{"key":"SS","label":"SS","pos":["SS"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"SS2","label":"SS2 / Big Nickel","pos":["SS"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"FS","label":"FS","pos":["FS"],"n":1,"rankIndex":0,"cat":"Defense — Positions"},{"key":"FS2","label":"FS2 / Quarter","pos":["FS"],"n":1,"rankIndex":1,"cat":"Defense — Positions"},{"key":"EDGE","label":"Edge Rushers","pos":["REDG","LEDG"],"n":2,"cat":"Defense — Team Units"},{"key":"DT","label":"Defensive Tackles","pos":["DT"],"n":2,"cat":"Defense — Team Units"},{"key":"DL","label":"Defensive Line","pos":["DT","REDG","LEDG"],"n":4,"cat":"Defense — Team Units"},{"key":"LB","label":"Linebackers","pos":["MIKE","WILL","SAM"],"n":3,"cat":"Defense — Team Units"},{"key":"FRONT7","label":"Front Seven","pos":["DT","REDG","LEDG","MIKE","WILL","SAM"],"n":7,"cat":"Defense — Team Units"},{"key":"CB","label":"Cornerbacks","pos":["CB"],"n":4,"cat":"Defense — Team Units"},{"key":"S","label":"Safeties","pos":["FS","SS"],"n":2,"cat":"Defense — Team Units"},{"key":"SEC","label":"Secondary","pos":["CB","FS","SS"],"n":6,"cat":"Defense — Team Units"},{"key":"PRIMCOV","label":"Primary Coverage","pos":["DT","REDG","LEDG","CB"],"n":5,"parts":[{"pos":["CB"],"n":1},{"pos":["DT","REDG","LEDG"],"n":4}],"cat":"Defense — Team Units"},{"key":"DLCB","label":"DL + CBs","pos":["DT","REDG","LEDG","CB"],"n":8,"cat":"Defense — Team Units"},{"key":"RUND","label":"Run Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","SS","CB"],"n":9,"cat":"Defense — Team Units"},{"key":"PASSD","label":"Pass Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense — Team Units"},{"key":"ZONE","label":"Zone Defense","pos":["CB","MIKE","WILL","SAM","FS","SS"],"n":8,"cat":"Defense — Team Units"},{"key":"DEFENSE","label":"Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense — Team Units"},{"key":"TRENCHES","label":"Trenches","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG"],"n":9,"cat":"Combined Units"},{"key":"TRENCHES_CB","label":"Trenches + CBs","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG","CB"],"n":13,"cat":"Combined Units"},{"key":"K","label":"Kicker","pos":["K"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"P","label":"Punter","pos":["P"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"FB","label":"Fullback","pos":["FB"],"n":1,"rankIndex":0,"cat":"Specialists"}];
 let weights = {...DEFAULT_WEIGHTS};
 let personalWeights = null;
 // Model weights: each roster spot's wins per rating point, scaled so the largest (QB) equals 700; extra depth spots stay tiny.
@@ -2797,7 +2797,7 @@ function zpbTeamChips(name){
 // inline custom props consumed by .zpb-trow (light + dark sets, swapped by CSS)
 function zpbRowVars(name){
  const pk=zpbPackFor(name); if(!pk) return '';
- return '--zr1:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.12)+';--zr2:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.03)+';--zr3:'+zpbRgba((window.zpbLift?zpbLift(pk.raw[2],0.58):pk.raw[2]),0.10)+';--zrb:'+pk.accL+
+ return '--zr1:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.76):pk.accL),0.07)+'; // w32 (Owner): light mode lifts the tint further so the team ink always reads--zr2:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.03)+';--zr3:'+zpbRgba((window.zpbLift?zpbLift(pk.raw[2],0.58):pk.raw[2]),0.10)+';--zrb:'+pk.accL+
   ';--zr1d:'+zpbRgba(pk.accD,0.15)+';--zr2d:'+zpbRgba(pk.accD,0.04)+';--zr3d:'+zpbRgba(pk.raw[2],0.12)+';--zrbd:'+pk.accD+
   ';--tA2:'+pk.accL+';--tG2:'+(window.zpbLift?zpbLift(pk.accL,0.35):pk.accL)+';--glow:'+zpbRgba(pk.accL,0.35)+';--tn:'+pk.txL+';--tnd:'+pk.accD+';'; // w20: tier palette rides every row · w27: --tnd = the team color tuned for the dark theme
 }
@@ -3068,7 +3068,7 @@ function zpbGameReplay(g, focusTeam){
     const rt = st.rushTD || 0; for(let i=0;i<rt;i++) rush.push(p.name);
     const ct = st.recTD || 0; for(let i=0;i<ct;i++) recs.push(p.name);
    });
-   const dtq = ((g.detail && g.detail[sd] && g.detail[sd].defScores) || []).slice().sort((a,b)=>(a.q-b.q)).map(d=>({name:d.name, kind:d.type, from:d.from})); // w30 (Owner): the return TD names the man who lost the ball
+   const dtq = ((g.detail && g.detail[sd] && g.detail[sd].defScores) || []).slice().sort((a,b)=>(a.q-b.q)).map(d=>({name:d.name, kind:d.type, from:d.from, forcer:d.forcer||null, sameMan:!!d.sameMan})); // w30 (Owner): the return TD names the man who lost the ball · w32 (Owner): the fumble chain rides along
    const safs = ((g.detail && g.detail[sd] && g.detail[sd].safeties) || []).slice().map(x=> (x && x.n1) ? x : {n1:(typeof x==='string'?x:''), n2:(typeof x==='string'?x:'')}); // w28 (Owner): safeties carry two names
    info[sd] = {qbName:qbName, kicker:kicker, recs:recs, rush:rush, dtq:dtq, safs:safs};
   });
@@ -3089,11 +3089,17 @@ function zpbGameReplay(g, focusTeam){
    if(e.type==='TD'){
     const total = inf.recs.length + inf.rush.length;
     const isPass = total ? Math.random() < (inf.recs.length/total) : false;
-    if(isPass && inf.recs.length) return nm(inf.qbName || 'Quarterback', _me) + ' to ' + nm(inf.recs.shift(), _me) + ' ' + (window.zpbCineYds ? zpbYds(zpbCineYds(e,'pass')) : '');
-    if(inf.rush.length) return nm(inf.rush.shift(), _me) + ' rush ' + (window.zpbCineYds ? zpbYds(zpbCineYds(e,'run')) : ''); // w19 (Owner): RUSH, yardage box beside it
+    if(isPass && inf.recs.length) return nm(inf.qbName || 'Quarterback', _me) + ' to ' + nm(inf.recs.shift(), _me) + ' ' + zpbChip('TD', _me) + (window.zpbCineYds ? ' ' + zpbYds(zpbCineYds(e,'pass')) : ''); // w32 (Owner): every TD wears the box
+    if(inf.rush.length) return nm(inf.rush.shift(), _me) + ' rush ' + zpbChip('TD', _me) + (window.zpbCineYds ? ' ' + zpbYds(zpbCineYds(e,'run')) : ''); // w19 (Owner): RUSH, yardage box beside it · w32 (Owner): the TD box
     if(inf.recs.length) return nm(inf.qbName || 'Quarterback', _me) + ' to ' + nm(inf.recs.shift(), _me) + ' ' + (window.zpbCineYds ? zpbYds(zpbCineYds(e,'pass')) : '');
-    const d = (inf.dtq || []).shift(); // w30 (Owner): a defensive score reads X [INT][TD] Y or X [FF][TD] Y — the scorer, the boxes, the man who lost the ball
-    if(d) return nm(d.name, _me) + ' ' + zpbChip(d.kind==='INT' ? 'INT' : 'FF', _me) + zpbChip('TD', _me) + (d.from ? ' ' + nm(d.from, _op) : '');
+    const d = (inf.dtq || []).shift(); // w30 (Owner): a defensive score names the whole play
+    if(d){
+     if(d.kind!=='FUM') return nm(d.name, _me) + ' ' + zpbChip('INT', _me) + zpbChip('TD', _me) + (d.from ? ' ' + nm(d.from, _op) : '');
+     // w32 (Owner): a fumble score is the whole chain — x [FF] y [FR][TD]; when the man who forced
+     // it also recovered and scored, the line reads z [FUM] x [FF][FR][TD].
+     if(d.sameMan) return nm(d.from, _op) + ' ' + zpbChip('FUM', _me) + nm(d.name, _me) + ' ' + zpbChip('FF', _me) + zpbChip('FR', _me) + zpbChip('TD', _me);
+     return nm(d.forcer || d.name, _me) + ' ' + zpbChip('FF', _me) + nm(d.name, _me) + ' ' + zpbChip('FR', _me) + zpbChip('TD', _me);
+    }
     return 'Touchdown';
    }
    return 'Score';
@@ -3171,7 +3177,7 @@ function zpbGameReplay(g, focusTeam){
    intro.innerHTML = '<div class="zpb-intro-flash"></div>'
     + '<div class="zpb-intro-title">' + roundLabel.toUpperCase() + '</div>'
     + '<div class="zpb-intro-logos"><span class="zpb-intro-l">' + crest(g.away) + '</span><span class="zpb-intro-vs">VS</span><span class="zpb-intro-r">' + crest(g.home) + '</span></div>'
-    + '<div class="zpb-intro-sub">' + (isSB ? 'the everything game' : abbr(g.away) + ' at ' + abbr(g.home)) + '</div>'
+    + '<div class="zpb-intro-sub">' + (isSB ? 'the everything game' : abbr(g.away) + ' @ ' + abbr(g.home)) + '</div>' // w32 (Owner): during the game, AT is @
     + '<button class="tabbtn zpb-intro-skip" id="zrepIntroSkip">Skip intro</button>';
    box.appendChild(intro);
    const flash = ()=>{ const f = intro.querySelector('.zpb-intro-flash'); if(f){ f.style.opacity = '.95'; setTimeout(()=>{ f.style.transition = 'opacity .7s ease'; f.style.opacity = '0'; }, 240); } };
@@ -3200,6 +3206,9 @@ function zpbGameReplay(g, focusTeam){
    box.classList.add('done');
    if(skip) skip.style.display = 'none';
    if(go) go.style.display = '';
+   // w32 (Owner): the streak cinematic belongs to the final whistle — it plays here, once,
+   // only when this game just completed the streak, never on the way into the next one.
+   if(focusTeam && typeof zpbStreakReward==='function'){ setTimeout(()=>{ try{ zpbStreakReward(); }catch(err){} }, 1300); }
   };
   const runEvents = ()=>{
    const total0 = all.length;
@@ -3331,9 +3340,9 @@ function zpbRestSummary(){
       : '<div class="zpb-restseed">OFFSEASON COMES EARLY</div><p style="margin:6px 0 0;text-align:center;">THE PLAYOFFS WILL PLAY OUT WITHOUT YOU</p><p style="margin:6px 0 0;text-align:center;">DRAFT AGAIN TO GO <b class="zpb-shine">20-0</b>?</p>')
    + '<div style="margin-top:16px;"><button class="resetbtn zpb-startbtn" id="zpbRestGo" style="font-size:.95rem;padding:12px 30px !important;">Continue</button></div>'
    + '</div>';
+  if(honors.length) ov.classList.add('zpb-rest-honorsfirst'); // w32 (Owner): set BEFORE the paint — the box can never flash on and off
   document.body.appendChild(ov);
   if(honors.length){
-    ov.classList.add('zpb-rest-honorsfirst');
     setTimeout(()=> ov.classList.add('zpb-rest-ready'), Math.min(honors.length*900 + 1600, 20000));
   } else ov.classList.add('zpb-rest-ready');
   ov.querySelector('#zpbRestGo').addEventListener('click', ()=> ov.remove());
@@ -3489,7 +3498,7 @@ add100Button = function(container){
    }
    else btn.innerHTML = logo(v) + '<span class="zpb-face" style="' + vars + '">' + face + '</span>';
   };
-  if('ResizeObserver' in window){ try{ new ResizeObserver(()=>fitFace(btn)).observe(btn); }catch(e){} }
+  if('ResizeObserver' in window){ try{ let _raf=0; new ResizeObserver(()=>{ if(_raf) return; _raf=requestAnimationFrame(()=>{ _raf=0; try{ fitFace(btn); }catch(err){} }); }).observe(btn); }catch(e){ } } // w32 (Owner): the observer is rAF-debounced — the loop notification can never fire
   window.addEventListener('resize', ()=>fitFace(btn));
   const build = ()=>{
    const tst = pack(tintTeam(sel));
@@ -3683,7 +3692,7 @@ teamAdvancedHTML = function(){
   ['Touchdowns / g', (me.td/me.g).toFixed(2), 'all touchdowns', me.td/me.g > leagueAvg(x=>x.td/x.g)],
   ['Field goals / g', (me.fg/me.g).toFixed(2), 'made', null],
   ['2-Pt Conversions', twoPt, 'conversions', null],
-  ['IN DA CLUTCH', close, 'within 7 points', me.close ? me.closeW*2 > me.close : null],
+   ['CLUTCH GAMES', close, 'within 7 points', me.close ? me.closeW*2 > me.close : null], // w32 (Owner): the label is CLUTCH GAMES
   ['Return yards / g', Math.round(me.ret/me.g), 'kick + punt', null]
  ].map(c=>'<div class="zpb-adcard' + (c[3]===true ? ' zpb-adgood' : c[3]===false ? ' zpb-adbad' : '') + '"><span>' + c[0] + '</span><b>' + c[1] + '</b><i>' + c[2] + '</i></div>').join('');
  // sack causes, drawn as bars
@@ -3696,7 +3705,7 @@ teamAdvancedHTML = function(){
   sackHTML = '<div class="zpb-100sec">Sacks made — why they fell</div>'
    + (nm ? barRow('INDIVIDUAL SKILL', made.rush, nm) + barRow('SUBPAR BLOCKING', made.ol, nm) + barRow('EXCELLENT COVERAGE', made.cov, nm) : '<p class="narr" style="margin:4px 0;">No sacks recorded yet.</p>')
    + '<div class="zpb-100sec">Sacks taken — why they happened</div>'
-   + (nt ? barRow('Rusher won', taken.rush, nt) + barRow('SUBPAR BLOCKING', taken.ol, nt) + barRow('EXCELLENT COVERAGE', taken.cov, nt) : '<p class="narr" style="margin:4px 0;">No sacks allowed yet.</p>');
+   + (nt ? barRow('RUSHER WON', taken.rush, nt) + barRow('SUBPAR BLOCKING', taken.ol, nt) + barRow('EXCELLENT COVERAGE', taken.cov, nt) : '<p class="narr" style="margin:4px 0;">No sacks allowed yet.</p>'); // w32 (Owner): RUSHER WON in caps
  }
  return '<div class="panel zpb-glowpanel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Advanced stats</h4>'
   + '<div class="zpb-advgrid">' + cards + '</div>' + sackHTML + '</div>';
@@ -3827,7 +3836,23 @@ function zpbStrengthsHTML(){
 })();
 document.addEventListener('click', function(e){
  if(e.target && e.target.id === 'zpbTryAgainBtn'){
-  confirmDialog('This discards your drafted roster and any season in progress and takes you back to the draft setup.', 'Yes, run it back', startNewDraftFlow);
+  // w32 (Owner): three doors — run it back with the same team, call an audible with a new one, or cancel.
+  const ov = document.createElement('div'); ov.className = 'confirm-ov';
+  ov.innerHTML = '<div class="confirm-box zpb-again-box">'
+   + '<p style="margin-top:0;"><b>Try again to go <span class="zpb-shine">20-0</span>?</b></p>'
+   + '<button class="resetbtn zpb-again-btn" data-again="run" style="width:auto;margin:8px 0 0;padding:11px 22px;">RUN IT BACK <span class="zpb-again-dot">&middot;</span> SAME TEAM</button>'
+   + '<button class="tabbtn zpb-again-btn" data-again="new" style="width:auto;margin:8px 0 0;padding:11px 22px;">CALL AN AUDIBLE <span class="zpb-again-dot">&middot;</span> NEW TEAM</button>'
+   + '<button class="tabbtn zpb-again-btn" data-again="cancel" style="width:auto;margin:8px 0 0;padding:9px 22px;">CANCEL</button>'
+   + '</div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click', ev=>{
+   const b = ev.target.closest('[data-again]');
+   if(!b && ev.target!==ov) return;
+   ov.remove();
+   if(!b || b.dataset.again==='cancel') return;
+   if(b.dataset.again==='run'){ try{ startSeason(); renderSeasonTab(document.getElementById('seasonHost') || document.getElementById('draftResultsBody')); }catch(err){} }
+   if(b.dataset.again==='new'){ try{ startNewDraftFlow(); }catch(err){} }
+  });
  }
 });
 
@@ -4014,9 +4039,14 @@ window.zpbValuesHTML = function(){
 window.zpbPersBoxesHTML = function(){
  if(typeof PERS === 'undefined') return '';
  let h = '<div class="zpb-persboxes">';
- Object.keys(PERS).forEach(k=>{
+ const boxes = Object.keys(PERS).map(k=>{
   const rb = +k[0], te = +k[1], wr = 5-rb-te;
-  h += `<div class="zpb-persbox" title="${PERS[k].long}"><b>${k}</b><span>RB ${rb}</span><span>TE ${te}</span><span>WR ${wr}</span></div>`;
+  return {k, rb, te, wr, long:PERS[k].long};
+ });
+ if(!boxes.some(b=>b.k==='10')) boxes.push({k:'10', rb:1, te:0, wr:4, long:'one back, no tight end, four receivers \u2014 shown for reading the code (the math lane owns whether the sim runs it)'}); // w32 (Owner): 10 joins the wall, display-first
+ boxes.sort((a,b)=> (+a.k)-(+b.k));
+ boxes.forEach(b=>{
+  h += `<div class="zpb-persbox" title="${b.long}"><b>${b.k}</b><span>RB ${b.rb}</span><span>TE ${b.te}</span><span>WR ${b.wr}</span></div>`;
  });
  h += '</div>';
  return h;
@@ -4027,12 +4057,13 @@ window.zpbPkgVizHTML = function(){
     ? '<span class="zpb-emph zpb-emph-b" title="Pass emphasis"><b>P+</b></span>'
     : kind==='run'
     ? '<span class="zpb-emph zpb-emph-b" title="Run emphasis"><b>R+</b></span>'
-    : '<span class="zpb-emph zpb-emph-b" title="Balanced"><span class="zpb-bars"><i></i><i></i><i></i></span></span>';
+    : '<span class="zpb-emph zpb-emph-b" title="Balanced"><b>\u2261</b></span>'; // w32 (Owner): balanced is the \u2261 glyph \u2014 the three bars are gone everywhere
  const K = window.zpbDefFrontKit(); // w29 (Owner): the coaching cards ARE the Defense-section visuals — same dots, same colors, DT2 always a square, ILB2 and SAM always triangles
  return '<div class="zpb-defgrid">'
   + K.card('4-3', K.row43, 'Four down linemen, three linebackers. Stronger against the run, a little thinner in coverage.', '4-3 front: four defensive linemen, three linebackers, four defensive backs.', {DT2:1,SAM:1})
   + K.card('3-4', K.row34, 'The nose tackle holds the middle and a defensive tackle slides out \u2014 a linebacker family of two inside, two outside.', '3-4 front: three defensive linemen, four linebackers.', {ILB2:1,SAM:1})
   + K.card('NICKEL', K.rowNK, 'Nickel takes a linebacker off and puts an extra defensive back on. The modern default.', 'Nickel front: five defensive backs.', {DT2:1,NICKEL:1})
+  + K.card('DIME', K.rowDM, 'A sixth defensive back comes in \u2014 built for 3rd and long, 4th and long, and the end of the game when only a Hail Mary can beat you.', 'Dime: plays around 10% of the snaps, mainly on 3rd and long or 4th and long, especially at the end of the game, preventing Hail Marys.', {DT2:1,NICKEL:1,DIME:1}) // w32 (Owner): the Dime card lives in the Coaching panel, between Nickel and Focus
   + '<div class="zpb-defcard"><h5>FOCUS</h5><div class="zpb-defdots">'+badge('pass')+' '+badge('run')+' '+badge('bal')+'</div><p>The same personnel can lean pass, lean run, or stay even \u2014 the badge shows the lean at a glance.</p></div>'
   + '</div>';
 };
@@ -4163,6 +4194,13 @@ window.zpbAdjSpec = function(name, spec){
 };
 
 // ---- draft board helpers ----
+window.zpbOrderSlots = function(gcls, slots){
+ if(gcls!=='def' || !window.ZPB34) return slots;
+ const order = ['DE1','DT1','DE2','DL5','DT2','MIKE','WILL','SAM','CB1','CB2','FS','SS','CB3']; // w32 (Owner): in the 3-4, OLB1 (DT2) falls in between DL5 and ILB1
+ const kept = order.filter(s=>slots.includes(s));
+ const rest = slots.filter(s=>!order.includes(s));
+ return kept.concat(rest);
+};
 window.zpbSlotOrderOf = function(pos){
  if(typeof NATURAL_SLOT_MAP === 'undefined' || typeof ROSTER_SLOTS === 'undefined') return 99;
  const nat = NATURAL_SLOT_MAP[pos] || [];
@@ -4743,7 +4781,9 @@ function initDraftSetup(){
    const sl = document.createElement('select'); sl.className = 'slotsel';
    openSlotsFor(roster, p).forEach(s=>{ const o = document.createElement('option'); o.value = s; const pen = flexPenaltyFor(p[1], s); o.textContent = (LABELS[s]||s) + (pen ? ' (-'+pen+')' : ''); if(s===cur) o.selected = true; sl.appendChild(o); });
    sl.addEventListener('change', ()=>{ draftUI.slotPick[name] = sl.value; renderDraftBoard2(); });
-   c.replaceWith(sl); sl.focus(); }
+   c.replaceWith(sl); sl.focus();
+   try{ if(sl.showPicker) sl.showPicker(); }catch(err){} // w32 (Owner): ONE click opens the menu
+   }
  };
  document.getElementById('draftBody2').addEventListener('click', pickClick);
  document.getElementById('draftCards').addEventListener('click', pickClick);
@@ -4880,7 +4920,7 @@ function returnerRowHTML(hostId){
 function lineupEditorHTML(roster, hostId){
  const players = Object.values(roster.slots).filter(Boolean).sort((a,b)=>cmpPlayers(a,b));
  const groups = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>{
-  const rows = slots.map(sl=>{
+  const rows = window.zpbOrderSlots(gcls, slots).map(sl=>{
    const cur = roster.slots[sl];
    const opts = players.filter(p=>eligibleSlotsFor(p).includes(sl) || (cur && p[0]===cur[0])).map(p=>{
     const fp = flexPenaltyFor(p[1], sl);
@@ -4986,7 +5026,7 @@ function playerWar(p){
  return v;
 }
 
-function fmtWar(w){ return (w>=0?'+':'\u2212') + Math.abs(w).toFixed(2); }
+function fmtWar(w){ return (w>=0?'+':'\u2212') + Math.round(Math.abs(w)); } // w32 (Owner): wins are integers on the screen
 
 // CPU front offices value players the way the sim does: wins above the replacement-level player at the slot they would fill,
 // with each team's own (slightly different) read on each position group and some pick-to-pick noise.
@@ -5015,6 +5055,9 @@ function cpuPick(teamIndex, st){
  const ovrFloor = curRound===1 ? Math.max(90, topAvail-5) : curRound<=3 ? Math.max(85, topAvail-8) : -Infinity;
  for(const p of st.pool){ // pool is sorted by overall, so only the top few at each position can matter
   const pos = p[1], c = POS_SLOT_MAP[pos]; if(!c) continue;
+  // w32 (Owner): a team never drafts a second quarterback before round 25 — the spot is filled,
+  // the season is decided elsewhere; only the late rounds may carry a backup.
+  if(pos==='QB' && curRound<25 && (function(r){ for(const k in r.slots){ const q=r.slots[k]; if(q && q[1]==='QB') return true; } return false; })(roster)) continue;
   const posBest = (seen[pos]=(seen[pos]||0)+1) === 1;   // first sight in the sorted pool = best remaining at that position
   if(curRound<=3 && !posBest) continue;
   if(p[3] < (pos==='QB' && topAvail>0 && (topAvail - p[3]) <= 4 ? Math.min(88, ovrFloor) : ovrFloor)) continue;
@@ -5462,7 +5505,7 @@ function renderDraftRoster2(){
   document.getElementById('draftRosterList').innerHTML = mine.length ? mine.map(l=>row(l.slot, l.player, l.round, `<span class="narr" style="margin-right:6px;">R${l.round}.${String(l.pickInRound).padStart(2,'0')}</span>`)).join('') : '<div class="narr">Your picks will list here in the order you make them.</div>';
   return;
  }
- document.getElementById('draftRosterList').innerHTML = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>`<div class="depth-group ${gcls}"><h4>${gname}</h4>${slots.map(sl=>row(sl, roster.slots[sl], roster.pickRounds&&roster.pickRounds[sl])).join('')}${gcls==='def'?zpbDimeDrafRow(roster):''}</div>`).join('');
+ document.getElementById('draftRosterList').innerHTML = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>`<div class="depth-group ${gcls}"><h4>${gname}</h4>${window.zpbOrderSlots(gcls, slots).map(sl=>row(sl, roster.slots[sl], roster.pickRounds&&roster.pickRounds[sl])).join('')}${gcls==='def'?zpbDimeDrafRow(roster):''}</div>`).join('');
 }
 
 // take back your last pick: the board returns to the moment you were on the clock (the CPU picks in between are replayed fresh)
@@ -5986,7 +6029,7 @@ function extraStats(group, s){
  if(s.fum) p.push(`${s.fum} FUM${s.fumLost?` (${s.fumLost} LOST)`:''}`);
  if(s.tpc) p.push(`${s.tpc} 2PT`);
  if(s.fr) p.push(`${s.fr} FR`);
- if(s.dtd) p.push(`${s.dtd} DEF TD`);
+ if(s.dtd) p.push(`${s.dtd} TD`); // w32 (Owner): a defensive touchdown is just TD \u2014 never DEF TD
  if(s.saf) p.push(`${s.saf} SAF`);
  if(s.blk) p.push(`${s.blk} BLK`);
  if(s.krN) p.push(`${s.krN}/${s.krYds||0} KR`);
@@ -6000,7 +6043,7 @@ function gameStatLine(group, s){
  else if(group==='RB'){ parts.push(`${s.car||0} CAR`, `${s.rushYds||0} RUSHY`); if(s.rushTD) parts.push(`${s.rushTD} TD`); if(s.recYds) parts.push(`${s.recYds} RECY`); if(s.recTD) parts.push(`${s.recTD} REC TD`);  }
  else if(group==='WR' || group==='TE'){ parts.push(`${s.rec||0}/${s.tgt||0} REC`, `${s.recYds||0} RECY`); if(s.recTD) parts.push(`${s.recTD} TD`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`);  }
  else if(group==='K'){ parts.push(`${s.fg||0}/${s.fga||0} FG`); }
- else if(group==='OL'){ parts.push(`${s.rbk||0} RUSHY`, `${s.pk||0} PK`); if(s.sa) parts.push(`${s.sa} SK A`); if(s.pa) parts.push(`${s.pa} PRSS A`); }
+ else if(group==='OL'){ parts.push(`${s.rbk||0} RUSHY`, `${s.pk||0} PK`); if(s.sa) parts.push(`${s.sa} SK`); if(s.pa) parts.push(`${s.pa} PRSS`); } // w32 (Owner): SK and PRSS in the game line too
  else { if(s.sack) parts.push(`${s.sack} SK`); if(s.dint) parts.push(`${s.dint} INT`); if(s.ff) parts.push(`${s.ff} FF`); if(s.pd) parts.push(`${s.pd} PD`); if(s.tfl) parts.push(`${s.tfl} TFL`); parts.push(`${s.tkl||0} TKL`); }
  return parts.concat(extraStats(group, s)).join(', ');
 }
@@ -6203,7 +6246,7 @@ function buildDefenseDetail(sm, teamName, oppGiveaways, sacksForced, sk, extra){
   const tk = takeaways[i]; tk.td = true; if(oppGiveaways[i]) oppGiveaways[i].td = true;
   const nm = tk.type==='INT' ? tk.name : (tk.recoveredBy||tk.name);
   const pl = players[nm]; if(pl) pl.st.dtd = (pl.st.dtd||0)+1;
-  defScores.push({type:tk.type, name:nm, q:tk.q, from:tk.from});
+  defScores.push({type:tk.type, name:nm, q:tk.q, from:tk.from, forcer:(tk.type==='FUM'?tk.name:null), sameMan:(tk.type==='FUM' && !!tk.recoveredBy && tk.recoveredBy===tk.name)}); // w32 (Owner): the full fumble chain
  });
  // safeties (2 points the defense scored by tackling a ball carrier in his own end zone, or sacking him there)
  const safeties = [];
@@ -7064,16 +7107,16 @@ function zpbDepthZonesHTML(slotmap, pickRounds, owner){
   return `<div class="zpb-dz-row"><span class="slotname">Dime</span><span class="zpb-dz-name ${cls}">${nm}</span><span class="zpb-dz-ovr">${ovr}</span></div>`;
  };
  return `<div class="zpb-dz">
-  ${zone('Offense','zpb-dz-off', DEPTH_CHART_GROUPS[0][2])}
-  ${zone('Defense','zpb-dz-def', DEPTH_CHART_GROUPS[1][2], dimeRow())}
-  ${zone('Special Teams','zpb-dz-st', DEPTH_CHART_GROUPS[2][2])}
+  ${zone('Offense','zpb-dz-off', window.zpbOrderSlots('off', DEPTH_CHART_GROUPS[0][2]))}
+  ${zone('Defense','zpb-dz-def', window.zpbOrderSlots('def', DEPTH_CHART_GROUPS[1][2]), dimeRow())}
+  ${zone('Special Teams','zpb-dz-st', window.zpbOrderSlots('st', DEPTH_CHART_GROUPS[2][2]))}
  </div>`;
 }
 
 function renderDepthChartHTML(slotmap, pickRounds, owner){
  const zst = (owner && typeof zpbRowVars==='function') ? zpbRowVars(owner) : '';
  return DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>{
-  const rows = slots.map(s=>{
+  const rows = window.zpbOrderSlots(gcls, slots).map(s=>{
    const e = normalizeSlotEntry(slotmap[s]);
    const rnd = pickRounds && pickRounds[s];
    const oop = e && e.pos && isOutOfPosition(e.pos, s);
@@ -7179,8 +7222,12 @@ function meetingInfo(g){
 function meetingTagText(g){ return ''; }
 function matchupTagHTML(g){
  const riv = rivalryOf(g);
- if(g.divisional) return `<div class="mtag mtag-div"><span class="mtag-big">DIVISION SHOWDOWN</span><span class="mtag-sub">${riv?riv+'. ':''}${meetingTagText(g)}</span></div>`;
- if(riv) return `<div class="mtag mtag-riv"><span class="mtag-big">RIVALRY GAME</span><span class="mtag-sub">${riv}.</span></div>`;
+ const _clean = t=> (t||'').replace(/\.+\s*$/,''); // w32 (Owner): no period after the feud line
+ if(g.divisional){
+  if(!g._divPhrase) g._divPhrase = window.zpbRivalryPhrase();
+  return `<div class="mtag mtag-div"><span class="mtag-big">${g._divPhrase}</span><span class="mtag-sub">${riv?_clean(riv)+' ':''}${meetingTagText(g)}</span></div>`;
+ }
+ if(riv) return `<div class="mtag mtag-riv"><span class="mtag-big">RIVALRY GAME</span><span class="mtag-sub">${_clean(riv)}</span></div>`;
  return '';
 }
 
@@ -7282,7 +7329,7 @@ function seasonStatLine(group, s){
  else if(group==='RB'){ parts.push(`${fmtN(s.car)} CAR`, `${fmtN(s.rushYds)} RUSHY`, `${s.rushTD||0} TD`); if(s.recYds) parts.push(`${fmtN(s.recYds)} RECY`); if(s.recTD) parts.push(`${s.recTD} REC TD`); }
  else if(group==='WR'||group==='TE'){ parts.push(`${fmtN(s.rec)}/${fmtN(s.tgt)} REC`, `${fmtN(s.recYds)} RECY`, `${s.recTD||0} TD`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`); }
  else if(group==='K'){ parts.push(`${s.fg||0}/${s.fga||0} FG`); }
- else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} RUSHY`, `${s.pk||0} PK`, `${s.sa||0} SK A`, `${s.pa||0} PRSS A`); }
+ else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} RUSHY`, `${s.pk||0} PK`, `${s.sa||0} SK`, `${s.pa||0} PRSS`); } // w32 (Owner): SK and PRSS \u2014 never SK A, never PRSS A
  else if(group==='DL'){ parts.push(`${s.sack||0} SK`, `${s.tfl||0} TFL`, `${s.hur||0} PRSS`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
  else if(group==='LB'){ parts.push(`${s.tkl||0} TKL`, `${s.tfl||0} TFL`, `${s.sack||0} SK`); if(s.dint) parts.push(`${s.dint} INT`); if(s.pd) parts.push(`${s.pd} PD`); if(s.ff) parts.push(`${s.ff} FF`); }
  else { parts.push(`${s.dint||0} INT`, `${s.pd||0} PD`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
@@ -7299,7 +7346,7 @@ function userStatsInner(){
  const user = seasonUserTeam();
  const rows = teamPlayerStats(user).sort((a,b)=> GROUP_ORDER.indexOf(a.group)-GROUP_ORDER.indexOf(b.group) || ((b.ovr||0)-(a.ovr||0)) || b.impact-a.impact);
  if(!rows.length) return `<p class="narr">${STATS_KIND==='po'?(playoffMissed()?'Your team missed the playoffs.':'Your team has not played a playoff game yet, so there are no playoff totals.'):'No games played yet — your players\' season totals will build here as you go.'}</p>`;
- const body = rows.map(r=>`<tr><td>${r.name}</td><td class="narr">${r.group}</td><td class="narr">${r.ovr||''}</td><td class="narr">${r.gp}</td><td class="score">${r._rating!=null?r._rating.toFixed(1):'—'} <span class="narr">#${r._rank||'–'}</span></td><td>${seasonStatLine(r.group, r.st)}</td></tr>`).join('');
+ const body = rows.map(r=>`<tr><td>${r.name}</td><td class="narr">${r.group}</td><td class="narr">${r.ovr||''}</td><td class="narr">${r.gp}</td><td class="score">${r._rating!=null?Math.round(r._rating):'\u2014'} <span class="narr">#${r._rank||'–'}</span></td><td>${seasonStatLine(r.group, r.st)}</td></tr>`).join('');
  return `<table><thead><tr><th>Player</th><th>Pos</th><th>OVR</th><th>GP</th><th>Rating (rank at pos.)</th><th>${STATS_KIND==='po'?'Playoff':'Season'} Stats (${user})</th></tr></thead><tbody>${body}</tbody></table>`;
 }
 function renderStatsTabsHTML(kind){
@@ -7336,21 +7383,21 @@ function leaderBoards(mode){
   {title:'Running Backs', group:'RB', key:'rushYds', cols:[['CAR/RUSHY',r=>fmtN(r.st.car||0)+'/'+fmtN(r.st.rushYds||0)],['YPC',r=>f1((r.st.rushYds||0)/Math.max(r.st.car||0,1))],['TD',r=>r.st.rushTD||0],['Rec',r=>fmtN(r.st.recYds)],['FUM',r=>r.st.fum||0]]},
   {title:'Wide Receivers', group:'WR', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Y',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0]]},
   {title:'Tight Ends', group:'TE', key:'recYds', cols:[['Rec/Tgt',r=>`${fmtN(r.st.rec)}/${fmtN(r.st.tgt)}`],['Y',r=>fmtN(r.st.recYds)],['TD',r=>r.st.recTD||0],['FUM',r=>r.st.fum||0]]},
-  {title:'Offensive Line', group:'OL', key:'pk', cols:[['Y behind',r=>fmtN(r.st.rbk)],['SK A',r=>r.st.sa||0],['PRSS A',r=>r.st.pa||0]]},
-  {title:'Defensive Line', group:'DL', key:'sack', cols:[['SK',r=>r.st.sack||0],['TFL',r=>r.st.tfl||0],['PRSS',r=>r.st.hur||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]}, // w30 (Owner): never SKS — always SK
-  {title:'Linebackers', group:'LB', key:'tkl', cols:[['Tkl',r=>r.st.tkl||0],['TFL',r=>r.st.tfl||0],['SK',r=>r.st.sack||0],['INT',r=>r.st.dint||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]},
-  {title:'Defensive Backs', group:'DB', key:'dint', cols:[['INT',r=>r.st.dint||0],['PD',r=>r.st.pd||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['Def TD',r=>r.st.dtd||0]]},
+  {title:'Offensive Line', group:'OL', key:'pk', cols:[['Y behind',r=>fmtN(r.st.rbk)],['SK',r=>r.st.sa||0],['PRSS',r=>r.st.pa||0]]}, // w32 (Owner): SK / PRSS on the leaders page
+  {title:'Defensive Line', group:'DL', key:'sack', cols:[['SK',r=>r.st.sack||0],['TFL',r=>r.st.tfl||0],['PRSS',r=>r.st.hur||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['TD',r=>r.st.dtd||0]]}, // w32 (Owner): TD, never Def TD // w30 (Owner): never SKS — always SK
+  {title:'Linebackers', group:'LB', key:'tkl', cols:[['Tkl',r=>r.st.tkl||0],['TFL',r=>r.st.tfl||0],['SK',r=>r.st.sack||0],['INT',r=>r.st.dint||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['TD',r=>r.st.dtd||0]]}, // w32 (Owner): TD, never Def TD
+  {title:'Defensive Backs', group:'DB', key:'dint', cols:[['INT',r=>r.st.dint||0],['PD',r=>r.st.pd||0],['Tkl',r=>r.st.tkl||0],['FF',r=>r.st.ff||0],['FR',r=>r.st.fr||0],['TD',r=>r.st.dtd||0]]}, // w32 (Owner): TD, never Def TD
   {title:'Kickers', group:'K', key:'fg', cols:[['FG',r=>(r.st.fg||0)+'/'+(r.st.fga||0)]]},
   {title:'Returners', group:'RET', key:'retYds', pred:r=>(r.st.krN||0)+(r.st.prN||0)>0, cols:[['KR',r=>(r.st.krN||0)+'/'+fmtN(r.st.krYds||0)],['KR avg',r=>f1((r.st.krYds||0)/Math.max(r.st.krN||0,1))],['PR',r=>(r.st.prN||0)+'/'+fmtN(r.st.prYds||0)],['PR avg',r=>f1((r.st.prYds||0)/Math.max(r.st.prN||0,1))],['Total Y',r=>fmtN(r.st.retYds)]]}
  ];
  return boards.map(b=>({...b, rows: rows.filter(b.pred || (r=>r.group===b.group))
-  .sort((mode==='stat' || b.pred) ? (x,y)=>(y.st[b.key]||0)-(x.st[b.key]||0) || (y.st.tkl||0)-(x.st.tkl||0) : (x,y)=>(y._rating||0)-(x._rating||0)).slice(0,10)}));
+  .sort(b.pred ? (x,y)=>(y._rating||0)-(x._rating||0) : ((mode==='stat') ? (x,y)=>(y.st[b.key]||0)-(x.st[b.key]||0) || (y.st.tkl||0)-(x.st.tkl||0) : (x,y)=>(y._rating||0)-(x._rating||0))).slice(0,10)})); // w32 (Owner): returners sort by rating.slice(0,10)}));
 }
 function leadersPane(mode){
  const user = seasonUserTeam();
  const cards = leaderBoards(mode).map(b=>{
   const head = ['Rtg'].concat(b.cols.map(c=>c[0])).map(h=>`<th>${h}</th>`).join('');
-  const body = b.rows.map((r,i)=>`<tr class="${r.team===user?'user-row':''}"><td class="narr">${i+1}</td><td>${r.name} <span class="narr">${nick(r.team)}</span></td><td class="score" style="font-weight:700;">${r._rating!=null?r._rating.toFixed(1):'—'}</td>${b.cols.map(c=>`<td class="score">${c[1](r)}</td>`).join('')}</tr>`).join('');
+  const body = b.rows.map((r,i)=>`<tr class="${r.team===user?'user-row':''}"><td class="narr">${i+1}</td><td>${r.name} <span class="narr">${nick(r.team)}</span></td><td class="score" style="font-weight:700;">${r._rating!=null?Math.round(r._rating):'\u2014'}</td>${b.cols.map(c=>`<td class="score">${c[1](r)}</td>`).join('')}</tr>`).join('');
   return `<div class="divtable"><h5>${b.title}</h5><table><thead><tr><th></th><th>Player</th>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
  }).join('');
  return `<div class="draft-columns" style="grid-template-columns:1fr 1fr;">${cards}</div>`;
@@ -7622,18 +7669,18 @@ function zpbSeasonStoryHTML(){
   badge('RECORD', rec, 'zpb-sb-hero' + (F.me.losses===0&&F.me.ties===0 ? ' zpb-sb-perfect' : '')),
   seedEntry ? badge(conf.toUpperCase()+' SEED', '#'+seedEntry.seed, 'zpb-sb-gold') : null,
   sk.best.W.n>=3 ? badge('WIN STREAK', sk.best.W.n+' · W'+sk.best.W.s+'–'+sk.best.W.e, 'zpb-sb-good') : (sk.best.L.n>=3 ? badge('LOSING STREAK', sk.best.L.n+' · W'+sk.best.L.s+'–'+sk.best.L.e, 'zpb-sb-bad') : null),
-  badge('PPG MARGIN', (ppgDiff>=0?'+':'−')+Math.abs(ppgDiff).toFixed(1), ppgDiff>=0?'zpb-sb-good':'zpb-sb-bad'),
-  badge('WINS PREDICTED', expW.toFixed(1)),
-  big ? badge('BLOWOUT WIN', big.fs+'–'+big.os+' '+(big.home?'VS':'@')+' '+nick(big.opp)+' · W'+big.week, 'zpb-sb-good') : null,
-  (marquee && (!big || marquee.week!==big.week)) ? badge('BEST WIN', marquee.fs+'–'+marquee.os+' VS '+nick(marquee.opp)+' ('+F.st[marquee.opp].wins+'-'+F.st[marquee.opp].losses+') · W'+marquee.week, 'zpb-sb-good') : null,
-  worst ? badge('WORST LOSS', worst.fs+'–'+worst.os+' '+(worst.home?'VS':'@')+' '+nick(worst.opp)+' · W'+worst.week, 'zpb-sb-bad') : null,
-  (bad && (!worst || bad.week!==worst.week) && F.st[bad.opp].wins<=7) ? badge('PAIN', 'W'+bad.week+' VS '+nick(bad.opp)+' ('+F.st[bad.opp].wins+'-'+F.st[bad.opp].losses+')', 'zpb-sb-bad') : null,
+  badge('PPG MARGIN', (ppgDiff>=0?'+':'−')+Math.round(Math.abs(ppgDiff)), ppgDiff>=0?'zpb-sb-good':'zpb-sb-bad'), // w32 (Owner): integers
+  badge('WINS PREDICTED', String(Math.round(expW))), // w32 (Owner): integers
+  big ? badge('BLOWOUT WIN', big.fs+'-'+big.os, (big.home?'vs ':'@ ')+nick(big.opp).toUpperCase(), 'zpb-sb-good zpb-sbadge-sm') : null, // w32 (Owner): the score sits over the opponent — smaller, names capitalized, no dot, no week
+  (marquee && (!big || marquee.week!==big.week)) ? badge('BEST WIN', marquee.fs+'-'+marquee.os, 'vs '+nick(marquee.opp).toUpperCase(), 'zpb-sb-good zpb-sbadge-sm') : null, // w32 (Owner): same two-line law
+  worst ? badge('WORST LOSS', worst.fs+'-'+worst.os, (worst.home?'vs ':'@ ')+nick(worst.opp).toUpperCase(), 'zpb-sb-bad zpb-sbadge-sm') : null, // w32 (Owner): same two-line law
+  (bad && (!worst || bad.week!==worst.week) && F.st[bad.opp].wins<=7) ? badge('PAIN', F.st[bad.opp].wins+'-'+F.st[bad.opp].losses, 'vs '+nick(bad.opp).toUpperCase(), 'zpb-sb-bad zpb-sbadge-sm') : null, // w32 (Owner): PAIN shows the victim's record the same way
   close.length>=3 ? badge('ONE SCORE', cw+'–'+(close.length-cw)) : null,
   dv.length ? badge('VS DIVISION', dw+'–'+(dv.length-dw)) : null,
   badge('AT HOME', hw+'–'+(home.length-hw)),
   badge('ON THE ROAD', rw+'–'+(road.length-rw)),
   vs.length>=3 ? badge('VS PLAYOFF TEAMS', vw+'–'+(vs.length-vw)) : null,
-  badge('PTS SCORED PER GAME', ppg.toFixed(1)+' · #'+rankOf('pf', false)),
+  badge('PTS SCORED PER GAME', Math.round(ppg)+' · #'+rankOf('pf', false)), // w32 (Owner): integers on the review badges
   badge('RUSH YARDS PER GAME', Math.round(t.rush/gp)+' · #'+rankOf('rush', false)),
   badge('PASS YARDS PER GAME', Math.round(t.pass/gp)+' · #'+rankOf('pass', false)),
   badge('RUN BLOCKING', '#'+(U.olRun||32)),
@@ -7641,7 +7688,7 @@ function zpbSeasonStoryHTML(){
   badge('SACKS ALLOWED', t.skTaken+' · #'+rankOf('skTaken', true)),
  ].filter(Boolean);
  const DEF = [
-  badge('PTS ALLOWED PER GAME', (t.pa/gp).toFixed(1)+' · #'+rankOf('pa', true)),
+  badge('PTS ALLOWED PER GAME', Math.round(t.pa/gp)+' · #'+rankOf('pa', true)), // w32 (Owner): integers
   badge('RUSH YARDS ALLOWED', Math.round(t.rushA/gp)+' · #'+rankOf('rushA', true)),
   badge('PASS YARDS ALLOWED', Math.round(t.passA/gp)+' · #'+rankOf('passA', true)),
   badge('SACKS', t.skForced+' · #'+rankOf('skForced', false)),
@@ -7722,12 +7769,12 @@ function renderRegularReviewView(container){
    <div style="display:flex;gap:8px;flex-wrap:wrap;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;padding:10px 24px;">Begin Playoffs</button>':''}<button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
    <p class="dsub" style="margin-top:8px;">${user}: ${s.wins}-${s.losses}${s.ties?'-'+s.ties:''} · ${s.pf} PF · ${s.pa} PA</p>
   </div>`;
- html = zpbSeasonStoryHTML() + html; // w19 (Owner): the season in badges IS the first panel — the dropdown is gone
+ html = html + zpbSeasonStoryHTML(); // w32 (Owner): the Regular Season Review panel (and its SIM PLAYOFFS button) sits ABOVE the badges
  html += `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Playoff Picture ${made?'':'<span class="narr">(your team is out)</span>'}</h4><div class="draft-columns" style="grid-template-columns:1fr 1fr;">${seedCards}</div></div>`;
- html += renderRegularAwardsHTML(seasonState.awardsRS, true) + renderReportCardHTML() + pickCritiqueHTML() + renderFieldTableHTML() + renderStatsTabsHTML() + teamAdvancedHTML() + advancedStatsHTML() + renderUserScheduleHTML() + renderStandingsHTML();
+ html += renderRegularAwardsHTML(seasonState.awardsRS, true) + pickGradePanelHTML() + renderStatsTabsHTML() + teamAdvancedHTML() + advancedStatsHTML() + renderUserScheduleHTML() + renderStandingsHTML() + seasonOptionsHTML(); // w32 (Owner): the season options ride at the bottom of the review too // w32 (Owner): the old Unit Report Card table and the pick-critique table give way to the pick-grade table; the unit badges live in the Season Review header now
  container.innerHTML = html;
  try{ zpbWireStory(); }catch(e){}
- wireScheduleClicks(container); wireStatsTabs();
+ wireScheduleClicks(container); wireStatsTabs(); wireSeasonOptions(container);
  { const bp = document.getElementById('beginPlayoffsBtn'); if(bp) bp.addEventListener('click', ()=>{ startPlayoffs(); renderSeasonTab(container); }); }
  document.getElementById('simPlayoffsBtn').addEventListener('click', ()=>{ startPlayoffs(); for(const rk of ['wildcard','divisional','champ','superbowl']){ simulatePlayoffRound(); if(rk!=='superbowl') advancePlayoffRound(); } renderSeasonTab(container); });
 }
@@ -7846,7 +7893,10 @@ function ensureRatings(){
   const peers = rows.filter(r=>r.group===g); if(!peers.length) return;
   const W = RATING_WEIGHTS[g], keys = Object.keys(W), mets = peers.map(ratingMetrics), stats = {};
   keys.forEach(k=>{ const vals = mets.map(m=>m[k]); stats[k] = {m:mean_(vals), s:sd_(vals)}; });
-  peers.forEach((r,i)=>{ let z=0; keys.forEach(k=>{ const st=stats[k]; z += W[k]*(st.s>1e-9 ? (mets[i][k]-st.m)/st.s : 0); }); r._rating = clampNum(50+17*z + roleBonus(r), 0, 99.9); });
+  peers.forEach((r,i)=>{ let z=0; keys.forEach(k=>{ const st=stats[k]; z += W[k]*(st.s>1e-9 ? (mets[i][k]-st.m)/st.s : 0); });
+   r._rating = clampNum(50+17*z + roleBonus(r), 0, 99.9);
+   if(g==='K') r._rating = clampNum(56 + (r._rating-50)*0.42, 40, 82); // w32 (Owner): kickers stop topping the league \u2014 the K curve is compressed toward the middle
+  });
   peers.slice().sort((a,b)=>b._rating-a._rating).forEach((r,i)=>{ r._rank = i+1; });
  });
  });
@@ -7858,8 +7908,8 @@ function rankTag(rec){
  ensureRatings();
  const n = rec._rank, r = rec._rating;
  if(!n) return '';
- if(n===1) return `the league's top-rated ${GROUP_SINGULAR[rec.group]}, ${r.toFixed(1)}`;
- if(n<=5) return `rated #${n} among ${GROUP_PLURAL[rec.group]} (${r.toFixed(1)})`;
+ if(n===1) return `the league's top-rated ${GROUP_SINGULAR[rec.group]}, ${Math.round(r)}`; // w32 (Owner): integers
+ if(n<=5) return `rated #${n} among ${GROUP_PLURAL[rec.group]} (${Math.round(r)})`; // w32 (Owner): integers
  return '';
 }
 // w19 (Owner): the player-panel format — the stat, then its little boxed label (PassY, TD, INT, 20-0, RushY, SK, QBR, W…)
@@ -7886,7 +7936,7 @@ function zpbStatChipsHTML(rec){
   if(s.rec) out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.rec) + '/' + fmtN(s.tgt) + '</b></span>');
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='OL'){
-  out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PK'), chip(s.sa||0, 'SK A'), chip(s.pa||0, 'PRSS A')); // w28 (Owner): RUSHY behind the blocks; PRSS for pressure
+  out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PK'), chip(s.sa||0, 'SK'), chip(s.pa||0, 'PRSS')); // w32 (Owner): SK / PRSS chips
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='K'){
   out.push(chip((s.fg||0) + '/' + (s.fga||s.fg||0), 'FG'), chip(s.pat||0, 'XP'));
@@ -8642,9 +8692,7 @@ function renderGamePlanPanel(g){
    ${sel('planStrat','Run/pass lean',[['run','Run-heavy'],['neutral','Balanced'],['pass','Pass-heavy']],u.strat)}
    ${sel('planPkg','Defensive package',[['base','Base'],['nickel','Nickel']],u.pkg)}
    ${sel('planFocus','Defensive focus',[['run','Run defense'],['neutral','Balanced'],['pass','Pass defense']],u.focus)}</div>`:''}
-  <details style="margin-top:10px;"><summary style="cursor:pointer;font-weight:700;">WHY THESE PLANS?</summary>
-   ${zpbDuelHTML(g)}
-   <p class="narr" style="margin:6px 0 0;">Coaches are scored against what the opponent is <i>expected</i> to do — nobody reacts to a plan they cannot see — and a trailing team opens it up late. ${S.scriptLocked?'':'Your coaching philosophy is still open on the <a href="#" id="backToPreseason" class="zpb-teamlink">Preseason page</a>.'} The Guide tab has the math of each choice.</p></details></div>`;
+  </div>`; // w32 (Owner): the WHY THESE PLANS? dropdown is gone from the game plan panel
 }
 function wireGamePlanPanel(container){
  const S = seasonState, u = S.userPlan;
@@ -8656,6 +8704,7 @@ function wireGamePlanPanel(container){
  const bp = document.getElementById('backToPreseason');
  if(bp) bp.addEventListener('click', e=>{ e.preventDefault(); S.preseason = true; renderSeasonTab(container); });
 }
+// w32 (Owner): the why-plans explainer lives only in the Guide now \u2014 nothing wires it here
 
 function topMatchupSwings(homeTeam, awayTeam, k, g){
  const S = seasonState, lg = S.league, H = S.unitRatings[homeTeam], A = S.unitRatings[awayTeam];
@@ -8783,7 +8832,7 @@ const STYLE_COUNTS = ()=>{ const c = {}; if(!seasonState) return c; Object.value
 
 // ---- shared explainers (each concept is defined once and reused on the Guide and Preseason pages) ----
 function persTableHTML(){
- return `<p class="narr" style="margin:4px 0;">Offenses describe their lineup with a two-digit code: the <b>first digit is the number of running backs</b> and the <b>second is the number of tight ends</b>. Every offense also has a quarterback and five offensive linemen, so the wide receivers fill whatever is left of the 11.</p>
+ return `<p class="narr" style="margin:4px 0;">Offenses describe their lineup with a two-digit code: the <b>first digit is the number of running backs</b> and the <b>second is the number of tight ends</b>. The code reads how many backs, tight ends and receivers take the field together.</p>
   ${zpbPersBoxesHTML()}`;
 }
 function styleListsHTML(){
@@ -8816,7 +8865,7 @@ function boardMathHTML(){
   + col('PRIORITY', 'Do I need to take him now.<br>What picking him now adds over the best you could expect to still find at that spot at your next pick. Priority changes as your roster fills and as the board thins.')
   + col('GONE', 'Is he about to leave.<br>The chance that a player will be picked by another team before your next turn')
   + '</div>'
-  + '<div class="zpb-bmcall zpb-bm-center"><b>Why can a linebacker show high priority?</b><br>Because priority is about scarcity, not just size. If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker\u2019s priority can be higher even though his Wins number is smaller.<br>The Wins column is the clean \u201chow good is he\u201d number.<br>Priority is the \u201cdo I need to take him now\u201d number.</div>'
+  + '<div class="zpb-bmcall zpb-bm-center"><b>Why can a linebacker show high priority?</b><br>Because priority is about scarcity.<br>If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker\u2019s priority can be higher even though his Wins number is smaller.<br>The Wins column is the clean \u201chow good is he\u201d number.<br>Priority is the \u201cdo I need to take him now\u201d number.</div>' // w32 (Owner): the two sentences sit on their own lines; ", not just size" is gone
   + '<div class="zpb-swgroup">'
   + zpbSw('CPU DRAFT STRATEGY', 'CPU teams draft by priority with a little personal taste for certain positions and some randomness.')
   + zpbSw('UNDO', 'The \u21b6 Undo button takes back your most recent pick')
@@ -8898,15 +8947,26 @@ function zpbBadgesGuideHTML(){
   + chip('SAF', 'Safety \u2014 two points; the line reads the defender who caused it and the player tackled in his own end zone.')
   + chip('\u2022 KC', 'Turnover \u2014 the dot marks the giveaway; the box names the team that takes over.')
   + '<h5 class="narr" style="flex-basis:100%;margin:12px 0 4px;">On the player panels</h5>'
-  + schip('5,000', 'PASSY', 'Passing yards across the season.') // w27 example values · w28 law: yards read PASSY / RUSHY / RECY
-  + schip('50', 'TD', 'Touchdowns scored or thrown.')
-  + schip('15', 'INT', 'Interceptions thrown (or caught, on defense).')
-  + schip('158.3', '20-0', 'The passer rating, carrying the site\'s perfect-season mark.')
-  + schip('250', 'RUSHY', 'Rushing yards.')
-  + schip('300', 'CAR', 'Carries \u2014 the handoffs the back took.') // w30 (Owner): carries read CAR
-  + schip('25', 'SK', 'Sacks \u2014 allowed by a quarterback, or forced by a defender.')
+  + schip('4,200', 'CMP/ATT', 'Completions over attempts \u2014 the quarterback\'s passing line.') // w32 (Owner): the panels mirror the league-leaders page, left to right, starting with the QB
+  + schip('4,600', 'PASSY', 'Passing yards across the season.')
+  + schip('38', 'TD', 'Touchdowns thrown, caught or rushed.')
+  + schip('9', 'INT', 'Interceptions thrown (or caught, on defense).')
+  + schip('105.4', 'PRTG', 'The passer rating \u2014 the only number on the site allowed a decimal.')
+  + schip('320', 'CAR', 'Carries \u2014 the handoffs the back took.')
+  + schip('1,450', 'RUSHY', 'Rushing yards.')
+  + schip('102', 'REC', 'Receptions over targets, written 102/150.')
+  + schip('1,520', 'RECY', 'Receiving yards.')
+  + schip('18', 'SK', 'Sacks \u2014 allowed by an offensive lineman, or forced by a defender.')
+  + schip('14', 'TFL', 'Tackles for loss \u2014 stops behind the line of scrimmage.')
+  + schip('42', 'PRSS', 'Pressures \u2014 hurries and hits on the quarterback.')
+  + schip('96', 'TKL', 'Tackles.')
+  + schip('5', 'FF', 'Forced fumbles.')
+  + schip('3', 'FR', 'Fumble recoveries.')
+  + schip('4', 'PD', 'Passes defensed.')
+  + schip('34', 'FG', 'Field goals made over attempts, written 34/38.')
+  + schip('612', 'KR', 'Kick-return yards on the returns he took.')
+  + schip('388', 'PR', 'Punt-return yards on the returns he took.')
   + schip('100', 'QBR', 'The season performance grade the math computes for this player against his peers.')
-  + schip('20', 'W', 'Wins.')
   + '</div>';
 }
 
@@ -8932,10 +8992,9 @@ function renderGuideHTML(){
   <ul class="gl"><li><b>Where the wins come from</b> splits the spot's total wins between its two jobs. For an offensive tackle, “77% pass · 23% run” means about three-quarters of his value comes from protecting the quarterback and a quarter from blocking for the run. Pass protection is worth more than run blocking per rating point, which is why the split leans pass.</li>
   <li><b>Share of each team rating it feeds</b> shows how big a slice of each team-wide rating this one spot is. “Pass protection 21% · run blocking 18%” means the offensive tackle makes up about a fifth of the pass-protection rating and a bit less of the run-blocking rating, because five linemen (and for run blocking, a tight end) share each rating. This number is about <i>composition</i> (how the ratings are built); the other is about <i>importance</i> (how much the rating matters for winning). That is why the two sets of percentages do not match.</li></ul>
   <p class="narr" style="margin:4px 0;">Tight ends help block for the run, running backs add value as pass catchers, and cornerbacks and free safeties each contribute roughly 10% of their value stopping the run.</p>${slotRoleTableHTML()}`;
- const coach = `<p style="margin:4px 0;"><b>Personnel codes.</b></p>${persTableHTML()}`;
+ const coach = persTableHTML(); // w32 (Owner): the extra sentence about the quarterback and the five linemen is gone \u2014 the boxes speak
  return '<div class="zpb-swgroup zpb-4words">' + zpbSw('DRAFT') + zpbSw('SEASON') + zpbSw('PLAYOFFS') + zpbSw('SUPER BOWL') + '</div>'
   + sec('DRAFTING: WHICH POSITIONS MATTER', zpbDraftGuideHTML(), true)
-  + sec('DEFENSE: 4-3, 3-4, NICKEL, DIME', zpbDefGuideHTML(), true)
   + sec('COACHING: PERSONNEL, STYLES AND GAME PLANS', zpbCoachGuideHTML(coach), true) // w27 (Owner): up below Defense, open and visible at default
   + sec('THE BADGES: READING EVERY BOX', zpbBadgesGuideHTML(), true) // w27 (Owner): up below Coaching
   + sec('READING THE DRAFT BOARD (WINS, PRIORITY, GONE)', board, true) // w27 (Owner): open and visible, visualized like the other panels
@@ -9342,9 +9401,7 @@ function renderFieldTableHTML(){
   const col = mine<=pa-4 ? 'var(--good)' : mine>=pa+6 ? 'var(--bad)' : 'var(--text)';
   return `<tr><td>${UNIT_INFO[u].label}</td><td class="score">#${pa.toFixed(0)}</td><td class="score">#${na.toFixed(0)}</td><td class="score" style="color:${col};font-weight:700;">#${mine}</td></tr>`;
  }).join('');
- return `<details class="panel" style="margin-bottom:14px;"><summary style="cursor:pointer;font-weight:700;">WHAT SEPARATED THE PLAYOFF TEAMS <span class="narr" style="font-weight:400;">(average league rank by unit)</span></summary>
-  <p class="narr" style="margin:8px 0;">Lower is better. Green = your unit was clearly better than the playoff average; red = clearly worse.</p>
-  <table><thead><tr><th>Unit</th><th>Playoff teams</th><th>Everyone else</th><th>${F.user}</th></tr></thead><tbody>${rows}</tbody></table></details>`;
+ return ''; // w32 (Owner): the WHAT SEPARATED THE PLAYOFF TEAMS panel is gone, with its green/red explainer line
 }
 
 // what the weaknesses actually cost, in points, wins, catches, sacks and QB production
@@ -9599,6 +9656,34 @@ function generateSeasonReviewRaw(){
 }
 
 
+
+// w32 (Owner): the draft pick analysis table is replaced by the draft pick GRADE table \u2014 the same
+// letter grades YOUR ROSTER carries, one row per starting spot.
+function pickGradePanelHTML(){
+ if(typeof draftSim==='undefined' || !draftSim || !draftSim.log) return '';
+ const me = draftSim.rosters[draftSim.userIndex]; if(!me) return '';
+ const realTeams = Object.keys(TEAM_DATA);
+ const zstM = (typeof zpbRowVars==='function') ? zpbRowVars(me.teamName) : '';
+ let slotRows = '';
+ [].concat(...DEPTH_CHART_GROUPS.map(g=>g[2])).forEach(s=>{
+  const def = GROUP_DEFS.find(g=>g.key===s);
+  const p = me.slots[s];
+  const e = normalizeSlotEntry(p);
+  const rnd = me.pickRounds ? me.pickRounds[s] : null;
+  if(!def) return;
+  const myVal = e ? effOvr(p, s) : 70;
+  const leagueVals = realTeams.map(t=>groupAvgForTeam(t,def).avg);
+  const rank = Math.min(32, leagueVals.filter(v=>v>myVal).length + 1);
+  const pct = ((32-rank)/31)*100;
+  const grade = letterGrade(pct);
+  const nmCell = (e && e.name) ? `<span class="${e.ovr>=90?'zpb-shm':(e.ovr>=85?'zpb-vib':'')}">${e.name}</span>` : '\u2014';
+  slotRows += `<tr class="zpb-trow" style="${zstM}"><td>${LABELS[s]||s}</td><td>${nmCell}</td><td class="score">${e?e.ovr:'\u2014'}</td><td class="narr">${rnd?('Round '+rnd):'\u2014'}</td><td class="score">#${rank}/32</td><td class="score">${grade}</td></tr>`;
+ });
+ const overallPct = ((32-(function(){ const all=buildResultEntries().draftEntries.slice().sort((a,b)=>b.score-a.score); return 1+all.findIndex(e=>e.isUser); })())/31)*100;
+ return `<details class="panel" style="margin-bottom:14px;" open><summary style="cursor:pointer;font-weight:700;">DRAFT PICK GRADES</summary>
+  <p class="narr" style="margin:8px 0;">Overall grade ${letterGrade(Math.max(0,Math.min(100,overallPct)))} \u2014 every starting spot, graded against all 32 real rosters.</p>
+  <table><thead><tr><th>Slot</th><th>Player</th><th>OVR</th><th>Drafted</th><th>League Rank</th><th>Grade</th></tr></thead><tbody>${slotRows}</tbody></table></details>`;
+}
 function renderReportCardHTML(){
  const F = factsBase(), U = F.S.unitRanks[F.user], R = F.S.unitRatings[F.user], T = F.T, t = T[F.user], g = F.gp;
  const mine = teamPlayerStats(F.user);
@@ -9649,7 +9734,7 @@ function honorCandidates(){
  });
  Object.values(S.playerStats).forEach(r=>{
   const n = (r.st.krN||0)+(r.st.prN||0); if(r.gp<8 || n<15) return;
-  cands.push({name:r.name, team:r.team, pos:'RET', group:'RET', rec:null, score:50+((r.st.retYds||0)/n-11)*4+0.2*(W[r.team]-8.5), line:`${fmtN(r.st.retYds)} return yards on ${n} returns (${((r.st.retYds||0)/n).toFixed(1)} a return)`});
+  cands.push({name:r.name, team:r.team, pos:'RET', group:'RET', rec:null, score:50+((r.st.retYds||0)/n-11)*4+0.2*(W[r.team]-8.5), line:`${fmtN(r.st.retYds)} return yards on ${n} returns (${Math.round((r.st.retYds||0)/n)} a return)`}); // w32 (Owner): integers
  });
  teamNames().forEach(t=>{
   const sm = S.teams[t].slotmap;
@@ -9674,12 +9759,12 @@ function computeRegularSeasonAwards(){
  const qbs = off.filter(c=>c.pos==='QB').sort((a,b)=>rate(b)-rate(a));
  const coach = teamNames().slice().sort((a,b)=>(W[b]-EW[b])-(W[a]-EW[a]))[0];
  const rank = (c, arr)=> arr.length ? arr.filter(x=>rate(x)>rate(c)).length+1 : 0;
- const mvpWhy = c => pick([`${rate(c).toFixed(1)}-rated ${c.pos} on a ${W[c.team]}-win team`, `the league's top-rated ${c.pos} profile, carrying ${c.team} to ${W[c.team]} wins`, `${c.pos} production (${rate(c).toFixed(1)} rating) and ${W[c.team]} wins`]);
+ const mvpWhy = c => pick([`${Math.round(rate(c))}-rated ${c.pos} on a ${W[c.team]}-win team`, `the league's top-rated ${c.pos} profile, carrying ${c.team} to ${W[c.team]} wins`, `${c.pos} production (${Math.round(rate(c))} rating) and ${W[c.team]} wins`]); // w32 (Owner): integers
  out.individual.push({title:'Most Valuable Player', c:mvp, why:mvpWhy(mvp)});
- out.individual.push({title:'Offensive Player of the Year', c:opoy, why:`the top non-quarterback on offense, rated ${rate(opoy).toFixed(1)}`});
- out.individual.push({title:'Defensive Player of the Year', c:dpoy, why:`rated ${rate(dpoy).toFixed(1)} among the league's defenders (${dpoy.pos})`});
+ out.individual.push({title:'Offensive Player of the Year', c:opoy, why:`the top non-quarterback on offense, rated ${Math.round(rate(opoy))}`}); // w32 (Owner): integers
+ out.individual.push({title:'Defensive Player of the Year', c:dpoy, why:`rated ${Math.round(rate(dpoy))} among the league's defenders (${dpoy.pos})`}); // w32 (Owner): integers
  const cw = W[coach], ce = EW[coach];
- out.individual.push({title:'Coach of the Year', team:coach, coach:headCoach(coach), why:`${headCoach(coach)} led them to ${cw} wins against ${ce.toFixed(1)} projected from the roster's own ratings (+${(cw-ce).toFixed(1)})`});
+ out.individual.push({title:'Coach of the Year', team:coach, coach:headCoach(coach), why:`${headCoach(coach)} led them to ${cw} wins against ${Math.round(ce)} projected from the roster's own ratings (+${Math.round(cw-ce)})`}); // w32 (Owner): integers
  // statistical titles
  const rows = Object.values(S.playerStats);
  const lead = (group, key, label, fmt)=>{ const r = rows.filter(x=>x.group===group && x.gp>=8).sort((a,b)=>(b.st[key]||0)-(a.st[key]||0))[0]; if(r) out.stat.push({title:label, name:r.name, team:r.team, line:fmt(r)}); };
@@ -9697,7 +9782,7 @@ function computeRegularSeasonAwards(){
  const tkl = rows.filter(x=>x.gp>=8 && ['LB','DB','DL'].includes(x.group)).sort((a,b)=>(b.st.tkl||0)-(a.st.tkl||0))[0];
  if(tkl) out.stat.push({title:'Tackles', name:tkl.name, team:tkl.team, line:`${tkl.st.tkl||0} tackles`});
  lead('K','fg','Field Goals', r=>`${r.st.fg||0} FG`);
- const retLead = rows.filter(x=>x.gp>=8 && (x.st.krN||0)+(x.st.prN||0)>=15).sort((a,b)=>(b.st.retYds||0)-(a.st.retYds||0))[0];
+ const retLead = rows.filter(x=>x.gp>=8 && (x.st.krN||0)+(x.st.prN||0)>=15).sort((a,b)=>(b._rating||0)-(a._rating||0))[0]; // w32 (Owner): returners sort by rating
  if(retLead) out.stat.push({title:'Return Yards', name:retLead.name, team:retLead.team, line:`${fmtN(retLead.st.retYds)} return yards on ${(retLead.st.krN||0)+(retLead.st.prN||0)} returns`});
  // All-Pro / Pro Bowl
  HONOR_ORDER.forEach(pos=>{
@@ -9770,13 +9855,13 @@ function renderPlayoffAwardsHTML(P){
  const user = seasonUserTeam();
  const gb = (p, g)=> `<tr><td class="narr">${g.roundLabel||''}</td><td>${honorLineHTML(p,user)} <span class="narr">${p.group} · ${p.line}</span><div class="narr">${g.away} ${g.result.awayScore}, ${g.home} ${g.result.homeScore}</div></td></tr>`;
  const sb = P.sbMvp ? `<tr><td><b>Super Bowl MVP</b></td><td>${honorLineHTML(P.sbMvp,user)} <span class="narr">${P.sbMvp.group} · ${P.sbMvp.line}</span><div class="narr">${P.sbMvp.game.away} ${P.sbMvp.game.result.awayScore}, ${P.sbMvp.game.home} ${P.sbMvp.game.result.homeScore}</div></td></tr>` : '';
- const mvp = P.mvp ? `<tr><td><b>Postseason MVP</b> <span class="narr">(cumulative impact)</span></td><td>${honorLineHTML(P.mvp,user)} <span class="narr">${P.mvp.line}</span></td></tr>` : '';
+ const mvp = P.mvp ? `<tr><td><b>Postseason MVP</b></td><td>${honorLineHTML(P.mvp,user)} <span class="narr">${P.mvp.line}</span></td></tr>` : '';
  const rounds = P.rounds.map(r=>`<h5 class="narr" style="margin:14px 0 4px;">${r.label}</h5><table><tbody>${r.items.map(i=>gb(i.p, i.g)).join('')}</tbody></table>`).join('');
  const lead = P.leaders.map(a=>`<tr><td>${a.title}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
  const team = P.team.map(a=>`<tr><td class="narr">${a.pos}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
  return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3><table><tbody>${sb}${mvp}</tbody></table>${rounds}
   <h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><table><tbody>${lead}</tbody></table>
-  <h5 class="narr" style="margin:14px 0 4px;">All-Playoff Team <span style="font-weight:400;">(by cumulative game impact)</span></h5><table><tbody>${team}</tbody></table></div>`;
+  <h5 class="narr" style="margin:14px 0 4px;">All-Playoff Team</h5><table><tbody>${team}</tbody></table></div>`;
 }
 
 function renderSeasonCompleteView(container){
@@ -9784,20 +9869,24 @@ function renderSeasonCompleteView(container){
  const champ = seasonState.champion;
  const sb = seasonState.playoffRounds.superbowl[0];
  const won = champ===user;
- let html = `<div class="champion-banner"><h2>${champ} — Super Bowl Champions</h2>
-  <p>${won ? `${user} won it all — a championship from draft day to the final whistle.` : `${user} did not bring home the Lombardi Trophy this year.`}</p></div>`;
+ let html = `<div class="champion-banner${won?' zpb-champ-won':''}">
+   <div class="zpb-champ-kicker zpb-shm">SUPER BOWL CHAMPIONS</div>
+   <div class="zpb-champ-team"><span class="zpb-champ-logo">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(champ):''}</span><span class="zpb-champ-name zpb-shine">${champ.toUpperCase()}</span></div>
+   <p class="zpb-champ-sub">${won ? `${user} won it all \u2014 a championship from draft day to the final whistle.` : `${user} did not bring home the Lombardi Trophy this year.`}</p></div>`; // w32 (Owner): no dash \u2014 the wordmark, the crest and the shine carry it
  html += renderGameResultHTML(sb, (sb.home===user||sb.away===user) ? user : null);
+ html += zpbSeasonStoryHTML(); // w32 (Owner): the end-of-season badges play one by one the moment the season ends
  if(!seasonState.showReview){
   html += renderBracketHTML() + `<div class="panel" style="margin-bottom:14px;text-align:center;"><button class="resetbtn" id="seasonReviewBtn" style="width:auto;margin:0;padding:12px 28px;">Season Review →</button><div class="narr" style="margin-top:6px;">Awards, stats, your report card and how the season was decided.</div></div>`;
-  container.innerHTML = html; wireScheduleClicks(container); wireStatsTabs();
+  container.innerHTML = html; try{ zpbWireStory(); }catch(e){} wireScheduleClicks(container); wireStatsTabs();
   document.getElementById('seasonReviewBtn').addEventListener('click', ()=>{ seasonState.showReview = true; renderSeasonTab(container); window.scrollTo(0,0); });
   return;
  }
  html = `<div class="panel" style="margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h2 style="margin:0;">Season Review</h2><span style="display:inline-flex;gap:8px;flex-wrap:wrap;align-items:center;"><button class="resetbtn" id="zpbTryAgainBtn" style="width:auto;margin:0;padding:8px 18px;">Try again to go <b class="zpb-shine">20-0</b>?</button><button class="tabbtn" id="backToSbBtn" style="width:auto;margin:0;padding:8px 18px;">← Super Bowl</button></span></div>`;
  html += `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">${user}</h3>${zpbMetricsHTML()}</div>`;
- html += renderPlayoffAwardsHTML(seasonState.awardsPO) + renderRegularAwardsHTML(seasonState.awardsRS, false) + renderReportCardHTML() + pickCritiqueHTML() + renderFieldTableHTML() + renderStatsTabsHTML('po') + renderStatsTabsHTML() + teamAdvancedHTML() + advancedStatsHTML() + renderBracketHTML() + renderUserScheduleHTML() + renderStandingsHTML() + seasonOptionsHTML();
+ html += renderPlayoffAwardsHTML(seasonState.awardsPO) + renderRegularAwardsHTML(seasonState.awardsRS, false) + pickGradePanelHTML() + renderStatsTabsHTML('po') + renderStatsTabsHTML() + teamAdvancedHTML() + advancedStatsHTML() + renderBracketHTML() + renderUserScheduleHTML() + renderStandingsHTML() + seasonOptionsHTML(); // w32 (Owner): same swaps on the Season Review
  container.innerHTML = html;
  { const b = document.getElementById('backToSbBtn'); if(b) b.addEventListener('click', ()=>{ seasonState.showReview = false; renderSeasonTab(container); window.scrollTo(0,0); }); }
+ try{ zpbWireStory(); }catch(e){} // w32 (Owner): the badge stagger runs on the Season Review too
  wireScheduleClicks(container); wireStatsTabs(); wireSeasonOptions(container);
 }
 
@@ -10110,7 +10199,7 @@ function wireRowClicks(panel, allForClick){
   const e = allForClick[idx];
   const metrics = computeDetailMetrics(e.pool);
   const wrap = document.getElementById(`detailwrap-${idx}`);
-  let html = `<h4 style="margin-top:0;">Where they belong</h4>${(window.zpbBelongMapHTML ? window.zpbBelongMapHTML(e) : '')}`; // w27 (Owner): the roster list above the cards is gone — the draft pick wears the field instead
+  let html = `<h4 style="margin-top:0;">WHERE YOUR PLAYERS LINE UP?</h4>${(window.zpbBelongMapHTML ? window.zpbBelongMapHTML(e) : '')}`; // w32 (Owner): the Owner's own title // w27 (Owner): the roster list above the cards is gone — the draft pick wears the field instead
   if(e.isUser && typeof zpbDraftBreakdownHTML === 'function') html += zpbDraftBreakdownHTML(e); // w26 (Owner): the badges breakdown
   html += renderDetailHTML(e.label, metrics).replace(/<button class="closebtn"[^>]*>[^<]*<\/button>/,'');
   if(e.isUser){
@@ -10226,22 +10315,24 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
    <h3 style="margin-top:0;">Overall Grade <span style="color:var(--accent);">${letterGrade(overallPct)}</span></h3>
    <table><thead><tr><th>Slot</th><th>Player</th><th>Effective OVR</th><th>Drafted</th><th>League Rank</th><th>Grade</th></tr></thead><tbody>${slotRows}</tbody></table>
   </div>
+  ${seasonOptionsHTML()}
  `;
  const roster = draftSim.rosters.find(r=>r.isUser), host = document.getElementById('lineupHost');
  if(host){
   host.innerHTML = lineupEditorHTML(roster, 'lineupEd');
   wireLineupEditor(roster, 'lineupEd', ()=>{ if(seasonState) refreshUserAfterLineup(); renderDraftResults(); });
  }
+ wireSeasonOptions(container); // w32 (Owner): the same two doors close every screen during the season
 }
 
 function renderComparisonTab(container, draftEntries, realEntries){
  container.innerHTML = `
   <div class="panel" style="margin-bottom:14px;">
    <div class="filters zpb-cmp-filters">
-    <label style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);">Team A
+    <label style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);" aria-label="Team A">
      <select id="cmpTeamA"></select>
     </label>
-    <label class="zpb-cmp-b" style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);">Team B
+    <label class="zpb-cmp-b" style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);" aria-label="Team B">
      <select id="cmpTeamB"></select>
     </label>
    </div>
@@ -10292,8 +10383,8 @@ function renderComparisonTab(container, draftEntries, realEntries){
   const units = unitComparisonHTML(a.pool, b.pool); // w28 (Owner): the grades/edges verdict sentence is gone — the tables speak
   resultDiv.innerHTML = `
    <div class="panel" style="margin-bottom:14px;">
-    <div style="display:flex;justify-content:space-between;align-items:center;font-size:1.1rem;font-weight:700;gap:10px;flex-wrap:wrap;">
-     <span>${a.label}</span><span class="score" style="color:var(--accent);">${a.score.toFixed(2)} vs ${b.score.toFixed(2)}</span><span>${b.label}</span>
+    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:1.1rem;font-weight:700;gap:10px;">
+     <span>${a.label}</span><span class="zpb-cmpscore" style="color:var(--accent);text-align:center;">${Math.round(a.score)} vs ${Math.round(b.score)}</span><span style="text-align:right;">${b.label}</span>
     </div>
    </div>
    <div class="panel" style="margin-bottom:14px;">
@@ -10304,11 +10395,13 @@ function renderComparisonTab(container, draftEntries, realEntries){
     <h4 style="margin-top:0;">Unit Comparison</h4>
     ${units.html}
    </div>
+   ${seasonOptionsHTML()}
   `;
  }
  selA.addEventListener('change', renderCompare);
  selB.addEventListener('change', renderCompare);
  renderCompare();
+ wireSeasonOptions(container); // w32 (Owner): new season / new draft stay reachable here too
 }
 
 initDraftSetup();
@@ -10395,6 +10488,17 @@ const FX = (function(){
  }
  return {play, toast};
 })();
+window.zpbStreakReward = function(){
+ try{
+  const S = seasonState; if(!S || !S.teams || (S.phase!=='regular' && S.phase!=='regularReview')) return;
+  const user = seasonUserTeam(); if(!user) return;
+  S.rewards = S.rewards || {}; const done = k=>{ if(S.rewards[k]) return false; S.rewards[k] = true; return true; };
+  const won = g=> g.result && (g.home===user ? g.result.homeScore>g.result.awayScore : g.result.awayScore>g.result.homeScore);
+  const mine = S.schedule.filter(g=>g.played && g.result && (g.home===user||g.away===user)); if(!mine.length) return;
+  let streak = 0; for(let i=mine.length-1;i>=0;i--){ if(won(mine[i])) streak++; else break; }
+  if(streak>=3 && streak<=17 && [3,5,7,10,13,17].includes(streak) && done('streak'+streak)) FX.play(streak>=7?'medium':'small', streak===17?'Perfect season: 17-0!':`${streak} wins in a row!`);
+ }catch(e){}
+};
 function checkRewards(){
  const S = seasonState; if(!S || !S.teams) return; const user = seasonUserTeam(); if(!user) return;
  S.rewards = S.rewards || {}; const done = k=>{ if(S.rewards[k]) return false; S.rewards[k] = true; return true; };
@@ -10402,10 +10506,10 @@ function checkRewards(){
  const lost = g=> g.result && (g.home===user ? g.result.homeScore<g.result.awayScore : g.result.awayScore<g.result.homeScore);
  if(S.phase==='regular' || S.phase==='regularReview'){
   const mine = S.schedule.filter(g=>g.played && g.result && (g.home===user||g.away===user)); if(!mine.length) return;
-  let streak = 0; for(let i=mine.length-1;i>=0;i--){ if(won(mine[i])) streak++; else break; }
   const w = mine.filter(won).length, l = mine.filter(lost).length;
-  if(streak>=3 && streak<=17 && [3,5,7,10,13,17].includes(streak) && done('streak'+streak)) FX.play(streak>=7?'medium':'small', streak===17?'Perfect season: 17-0!':`${streak} wins in a row!`);
-  else if([5,10,13].includes(w) && done('wins'+w)) FX.play('small', `${w} wins on the season`);
+  // w32 (Owner): the win-streak cinematic moved to the END of the game that achieves it —
+  // zpbStreakReward() fires from the replay's final whistle, never before the next game.
+  if([5,10,13].includes(w) && done('wins'+w)) FX.play('small', `${w} wins on the season`);
   if(S.phase==='regularReview'){
    const e = S.seeds.AFC.concat(S.seeds.NFC).find(x=>x.team===user);
    if(e){
@@ -10477,6 +10581,8 @@ window.zpbLeagueBarsHTML = function(avgW, T, N, user){
 
 // Season review: every metric, draft-board depth-chart order, clickable with a breathing explanation
 window.zpbMetricsHTML = function(){
+ // w32 (Owner): the unit tiles are badges now \u2014 the UNIT REPORT CARD. No hover: every number
+ // and its letter grade sit on the badge, the produced line underneath, exactly like the report card it replaces.
  try{
   const user = seasonUserTeam(), S = seasonState;
   const R = S.unitRatings[user], rk = S.unitRanks[user];
@@ -10485,12 +10591,35 @@ window.zpbMetricsHTML = function(){
   const KEYOF = {qb:['QB'],rb:['RB'],rec:['WR','TE'],olRun:['OL'],olPass:['OL'],passRush:['DL'],frontRun:['DL','LB'],coverage:['DB'],kicker:['K']};
   const pk = (typeof zpbPackFor==='function') ? zpbPackFor(user) : null;
   const uv = pk ? '--zrb:'+pk.accL+';--zr1:'+pk.r1+';' : '';
+  const produced = u=>{
+   const t = S.teamTotals ? null : null; // (reserved)
+   try{
+    const T = teamSeasonTotals(), t0 = T[user], gp = Math.max(1, t0.g||0);
+    if(u==='olRun') return Math.round(t0.rush/gp)+' rush yds/gm';
+    if(u==='olPass') return t0.skTaken+' sacks allowed';
+    if(u==='rb'){ const rb = mine.filter(r=>r.group==='RB').sort((a,b)=>(b.st.rushYds||0)-(a.st.rushYds||0))[0]; return rb ? rb.name+': '+fmtN(rb.st.rushYds)+' rush yds, '+(rb.st.rushTD||0)+' TD' : '\u2014'; }
+    if(u==='qb') return Math.round(t0.pass/gp)+' pass yds/gm';
+    if(u==='rec'){ const rc = mine.filter(r=>r.group==='WR'||r.group==='TE').sort((a,b)=>(b.st.recYds||0)-(a.st.recYds||0))[0]; return rc ? rc.name+': '+fmtN(rc.st.recYds)+' rec yds, '+(rc.st.recTD||0)+' TD' : '\u2014'; }
+    if(u==='passRush') return t0.skForced+' sacks';
+    if(u==='frontRun') return Math.round(t0.rushA/gp)+' rush yds allowed/gm';
+    if(u==='coverage') return Math.round(t0.passA/gp)+' pass yds allowed/gm, '+t0.take+' takeaways';
+    if(u==='kicker'){ const k = mine.find(r=>r.group==='K'); return k ? k.name+': '+(k.st.fg||0)+' FG' : '\u2014'; }
+    return '';
+   }catch(e){ return ''; }
+  };
   const tiles = ORDER.map(u=>{
-   const r0 = rk[u]||32;
-   return '<button type="button" class="zpb-met'+(r0>=25?' zpb-met-bad':'')+'" data-u="'+u+'" style="'+uv+'">'+UNIT_INFO[u].label+'<i></i></button>';
+   const rank = rk[u]||32;
+   const pct = ((32-rank)/31)*100;
+   const lg = (typeof letterGrade==='function') ? letterGrade(pct) : '';
+   const diff = Math.round((R[u]-(S.league?S.league[u]:R[u]))*1);
+   const cls = rank<=8 ? ' zpb-sb-good' : (rank>=25 ? ' zpb-sb-bad' : '');
+   return '<div class="zpb-met zpb-rcbadge'+cls+'" data-u="'+u+'" style="'+uv+'">'
+    + '<span class="zpb-rc-grade">'+lg+'</span>'
+    + '<span class="zpb-rc-body"><b>'+UNIT_INFO[u].label+'</b>'
+    + '<i>'+Math.round(R[u])+' OVR \u00b7 #'+rank+' in the league \u00b7 '+(diff>=0?'+':'\u2212')+Math.abs(diff)+' vs league</i>'
+    + '<em>'+produced(u)+'</em></span></div>';
   }).join('');
-  window.__zpbMetData = {user, ORDER, KEYOF, mine};
-  return '<div class="zpb-metgrid">'+tiles+'</div><div class="zpb-metpop" id="zpbMetPop"></div>';
+  return '<div class="zpb-rcgrid">'+tiles+'</div>';
  }catch(err){ return ''; }
 };
 (function(){
@@ -10541,9 +10670,14 @@ function starsFaceoffHTML(g){
    }
    return rows.map(r=>{
     const star90 = (r.ovr||0)>=90, col = colOf(team);
-    const chips = (!pre && r.gp>0 && typeof seasonStatLine==='function') ? seasonStatLine(r.group, r.st||{}).split(', ').filter(Boolean).slice(0,4) : [];
+    // w32 (Owner): at most three stat badges, and a stat the player does not have never shows
+    const chips = (!pre && r.gp>0 && typeof seasonStatLine==='function') ? seasonStatLine(r.group, r.st||{}).split(', ').filter(Boolean)
+      .filter(c=>!/\b0\b/.test(c.replace(/\/\d+/g, m=>m)) || /^\d+\/\d+ (FG|CMP)/.test(c))
+      .filter(c=>{ const m=/^([\d,]+)\/.([\d,]+) /.exec(c); if(m) return !(+m[1].replace(/,/g,'')===0 && +m[2].replace(/,/g,'')===0); return !/^0\b/.test(c); })
+      .slice(0,3) : [];
+    const star85 = (r.ovr||0)>=85;
     return '<div class="zpb-pcard zpb-pvcard" style="'+stv(team)+'">'
-     + '<div class="zpb-pcard-hd"><b class="'+(star90?'zpb-shm':'')+'">'+r.name+'</b>'
+     + '<div class="zpb-pcard-hd"><b class="'+(star90?'zpb-shm':(star85?'zpb-vib':''))+'">'+r.name+'</b>'
      + (star90 ? '<span class="zpb-cstar zpb-shm" style="--zrb:'+col+'">\u2605</span>' : '')
      + '<span class="zpb-poschip">'+(LABELS[r.slot] || r.group || SLOT_POS[r.slot] || r.slot || 'Starter')+'</span></div>'
      + '<div class="zpb-pcard-rt">'+(pre||!r.gp ? (r.ovr||'\u2013') : (r._rating!=null?Math.round(r._rating):Math.round(r.ovr||0)))+'<i>'+(pre||!r.gp ? 'OVR' : '#'+(r._rank||'\u2013')+' '+r.group)+'</i></div>'
@@ -10658,7 +10792,7 @@ renderPlayoffAwardsHTML = function(P){
   return '<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3>'
    + '<div class="zpb-awgrid">'+cards.join('')+'</div>'
    + (lead?'<h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><div class="zpb-awgrid">'+lead+'</div>':'')
-   + (team?'<h5 class="narr" style="margin:14px 0 4px;">All-Playoff Team <span style="font-weight:400;">(by cumulative game impact)</span></h5>'+team:'')
+   + (team?'<h5 class="narr" style="margin:14px 0 4px;">All-Playoff Team</h5>'+team:'')
    + '</div>';
  }catch(err){ return ''; }
 };
@@ -10687,6 +10821,10 @@ window.zpbFillAllLineups = function(){
 /* ---- w20: engine hardening — never blank, never stuck, always diagnosable (Brave/Chromium) ---- */
 try{
  window.addEventListener('error', function(ev){
+  // w32 (Owner): benign engine notices never become setbacks — the ResizeObserver loop
+  // notification is the browser telling us a layout pass repeated, not a broken surface.
+  var _m = String((ev && (ev.message || ev)) || '');
+  if(/ResizeObserver loop/i.test(_m) || _m==='Script error.' || /ResizeObserver loop/i.test(String((ev && ev.error && ev.error.message) || ''))) return;
   if(window.__zpbSetbackShown) return; window.__zpbSetbackShown = true;
   if(!document.body) return;
   var chip = document.createElement('button');
@@ -10879,9 +11017,8 @@ window.zpbFieldMapHTML = function(){
   + '</div>'
   + '<div class="zpb-fm-scrim"><span>LINE OF SCRIMMAGE</span></div>'
   + '<div class="zpb-fm-side zpb-fm-def">'
-  + xrow([['CB',-5],['NICKEL',-3],['CB',5]])
-  + xrow([['DIME',-3]])
-  + xrow([['DE',-3],['DT',-1],['DT',1],['DE',3]])
+  + xrow([['CB',-5],['DE',-3],['CB',5]])
+  + xrow([['NICKEL',-3],['DIME',-2.2],['DT',-1],['DT',1],['DE',3]])
   + xrow([['SAM',-2],['MIKE',0],['WILL',2]])
   + xrow([['SS',-2],['FS',2]])
   + '</div>'
@@ -11258,7 +11395,7 @@ window.zpbDraftBreakdownHTML = function(e){
   var rowVars = (typeof zpbRowVars === 'function') ? zpbRowVars : function(){ return ''; };
   var nse = (typeof normalizeSlotEntry === 'function') ? normalizeSlotEntry : function(x){ return x; };
   var tier = function(o){ return o>=90 ? 'zpb-shm' : (o>=85 ? 'zpb-vib' : ''); };
-  var out = '<div class="zpb-dbk-wrap"><h4 style="margin:14px 0 4px;">Your breakdown</h4><div class="zpb-dbk-groups">';
+  var out = '<div class="zpb-dbk-wrap">'; // w32 (Owner): the player panels list leads; the note and Your Breakdown follow
   groups.forEach(function(g){
    var slots = g[1].filter(function(s){ var en = nse(e.slotmap[s]); return en && en.name; });
    if(!slots.length) return;
@@ -11283,12 +11420,28 @@ window.zpbDraftBreakdownHTML = function(e){
     var rnd = e.pickRounds ? e.pickRounds[s] : null;
     var ovrs = rosters.map(function(r){ var e2 = r.slots ? nse(r.slots[s]) : null; return (e2 && e2.name) ? (e2.ovr || 0) : -1; });
     var rank = 1 + ovrs.filter(function(v){ return v > en.ovr; }).length;
-    out += '<span class="zpb-dbk" style="'+rowVars(e.teamName)+'"><b class="'+tier(en.ovr)+'">'+en.name+'</b><i>'+((typeof LABELS !== 'undefined' && LABELS[s]) || s)+' \u00b7 '+en.ovr+' OVR'+(rnd ? ' \u00b7 R'+rnd : '')+' \u00b7 #'+rank+'/32</i></span>';
+    out += '<span class="zpb-dbk" data-slot="'+s+'" style="'+rowVars(e.teamName)+'"><b class="'+tier(en.ovr)+'">'+en.name+'</b><i>'+((typeof LABELS !== 'undefined' && LABELS[s]) || s)+' \u00b7 '+en.ovr+' OVR'+(rnd ? ' \u00b7 R'+rnd : '')+' \u00b7 #'+rank+'/32</i></span>';
    });
    out += '</div></div>';
   });
-  out += '<p class="narr" style="margin:6px 0 0;">Position rank counts your player against the same spot on all 32 simulated teams.</p></div>';
-  return out;
+  out += '<p class="narr" style="margin:10px 0 0;">Position rank counts your player against the same spot on all 32 simulated teams.</p>';
+ out += '<h4 style="margin:14px 0 4px;">Your Breakdown</h4><div class="zpb-dbk-groups">';
+ groups.forEach(function(g){
+  var slots2 = g[1].filter(function(sl){ var en2 = nse(e.slotmap[sl]); return en2 && en2.name; });
+  if(!slots2.length) return;
+  var sum2 = 0; slots2.forEach(function(sl){ sum2 += (nse(e.slotmap[sl]).ovr || 70); });
+  var myAvg2 = sum2 / slots2.length;
+  var avgs2 = rosters.map(function(r){
+   var s3 = 0, n3 = 0;
+   slots2.forEach(function(sl){ var en3 = r.slots ? nse(r.slots[sl]) : null; if(en3 && en3.name){ s3 += en3.ovr || 70; n3++; } });
+   return n3 ? s3/n3 : 0;
+  });
+  var rank2 = 1 + avgs2.filter(function(v){ return v > myAvg2 + 0.001; }).length;
+  var cls2 = rank2 <= 8 ? ' zpb-sb-good' : (rank2 >= 25 ? ' zpb-sb-bad' : '');
+  out += '<span class="zpb-sbadge'+cls2+'" style="--beat:0"><b>#'+rank2+'</b><i>'+g[0].toUpperCase()+' \u00b7 '+Math.round(myAvg2)+' OVR</i></span>';
+ });
+ out += '</div></div>';
+ return out;
  }catch(err){ return ''; }
 };
 // 3b) sweeping stale 70-notes off the position rankings the moment a season is live
@@ -11346,10 +11499,6 @@ setTimeout(function(){
 <style id="zpb-w30-css">
 /* ============ Z-POST-BLUE W30 ============ */
 /* A (Owner): the ANCHOR chip drops the bright gold for a quiet sage-teal — same pill, far less glare */
-.zpb-anch{border-color:#5c7d74 !important;background:#a9c4bd !important;color:#22312c !important;}
-.zpb-anch b{color:inherit !important;opacity:.72;}
-.zpb-anch .zpb-anchname{color:inherit !important;}
-:root[data-theme="dark"] .zpb-anch,:root:not([data-theme="light"]) .zpb-anch{border-color:#56807a !important;background:#3d5a52 !important;color:#d8e8e2 !important;}
 /* A2 (Owner): the bold law — every 85+ player bold, everywhere */
 .zpb-shm,.zpb-vib{font-weight:800;}
 /* A3 (Owner): the four hidden ratings are gone — the browser panel narrows to its six columns */
@@ -11385,7 +11534,7 @@ window.zpbBelongMapHTML = function(entry){
    if(!e || !e.name) return '<i class="zpb-fm-ini zpb-empty"><b>&middot;</b><i>' + lab + '</i></i>';
    let ov = e.ovr; try{ if(typeof effOvr === 'function' && sl !== 'DIME') ov = effOvr(e, sl); }catch(err){}
    const cls = ov>=90 ? 'zpb-shm' : (ov>=85 ? 'zpb-vib' : '');
-   return '<i class="zpb-fm-ini ' + cls + '" title="' + String(e.name).replace(/"/g,'&quot;') + (ov ? ' \u00b7 ' + Math.round(ov) : '') + '"><b>' + ini(e.name) + '</b><i>' + lab + '</i></i>';
+   return '<i class="zpb-fm-ini ' + cls + '" data-slot="' + sl + '" title="' + String(e.name).replace(/"/g,'&quot;') + (ov ? ' \u00b7 ' + Math.round(ov) : '') + '"><b>' + ini(e.name) + '</b><i>' + lab + '</i></i>';
   };
   const lbl = s=>(typeof LABELS !== 'undefined' && LABELS[s]) ? LABELS[s] : s;
   const base34 = !!window.ZPB34;
@@ -11408,14 +11557,13 @@ window.zpbBelongMapHTML = function(entry){
    + '</div>'
    + '<div class="zpb-fm-scrim"><span>LINE OF SCRIMMAGE</span></div>'
    + '<div class="zpb-fm-side zpb-fm-def">'
-   + xrow([xL('CB1',-5),xL('CB3',-3),xL('CB2',5)])
-   + xrow([['DIME','DIME',-3]])
-   + xrow([xL('DE1',-3),['DT1',dt1,-1],['DT2',dt2,1],xL('DE2',3)])
+   + xrow([xL('CB1',-5),xL('DE1',-3),xL('CB2',5)])
+   + xrow([['NICKEL',lbl('CB3')||'NICKEL',-3],['DIME','DIME',-2.2],['DT1',dt1,-1],['DT2',dt2,1],xL('DE2',3)])
    + xrow([['SAM',sam,-2],['MIKE',mike,0],['WILL',will,2]])
    + xrow([xL('SS',-2),xL('FS',2)])
    + '</div>'
-   + '</div>'
-   + '<p class="narr" style="margin:6px 0 0;text-align:center;">Every starter wears his initials at the station he belongs to \u2014 the corners press over the line of scrimmage across from the receivers, the nickel sits left of the mike, and the dime stacks exactly where the nickel is.</p>';
+   + '</div>';
+   // w32 (Owner): the initials sentence is gone — the map speaks for itself
  }catch(err){ return ''; }
 };
 </script>
@@ -11435,6 +11583,335 @@ window.zpbBelongMapHTML = function(entry){
    }catch(err){}
   }, 200);
  });
+})();
+</script>
+<style id="zpb-w32-css">
+/* ============ Z-POST-BLUE W32 ============ */
+/* B1 (Owner): the ANCHOR chip wears pink — the sage-teal is gone */
+.zpb-anch{border-color:#c4899f !important;background:#f0bfd3 !important;color:#43202f !important;}
+.zpb-anch b{color:inherit !important;opacity:.72;}
+.zpb-anch .zpb-anchname{color:inherit !important;}
+:root[data-theme="dark"] .zpb-anch,:root:not([data-theme="light"]) .zpb-anch{border-color:#8a5f78 !important;background:#4d2f3f !important;color:#f2d7e4 !important;}
+/* B2 (Owner): the homepage breathes pink — a little more pink than brown, both themes */
+:root{
+ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0;
+ --text:#54303f; --sub:#a2687d; --rosehair:#e6c3d2;
+}
+@media (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]){ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0; --text:#54303f; --sub:#a2687d; --rosehair:#e6c3d2; }
+}
+:root[data-theme="dark"],:root:not([data-theme="light"]){
+ --bg:#1e1119; --panel:#291a24; --panel2:#35202d;
+ --sub:#c99cae; --rosehair:#4a3040;
+}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]){ --bg:#1e1119; --panel:#291a24; --panel2:#35202d; --sub:#c99cae; --rosehair:#4a3040; }
+}
+/* B3 (Owner): the player browser centers itself on the screen */
+#viewPlayers .panel{margin-left:auto;margin-right:auto;}
+#viewPlayers .filters,#viewPlayers .count,#viewPlayers .tabs,#viewPlayers .zpb-pbpager{margin-left:auto;margin-right:auto;justify-content:center;text-align:center;}
+#viewPlayers .panel .filters{display:flex;justify-content:center;}
+/* A9 (Owner): SIM SEASON is quiet until it is hovered */
+button.zpb-simseason{background:var(--panel);color:var(--sub);border:1px solid var(--border);box-shadow:none;opacity:1;}
+button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
+/* A13 (Owner): the game-report badges shrink — the score speaks, the opponent sits under it */
+.zpb-sbadge.zpb-sbadge-sm{min-width:104px;flex:0 1 130px;padding:6px 8px;}
+.zpb-sbadge.zpb-sbadge-sm b{font-size:.95rem;}
+.zpb-sbadge.zpb-sbadge-sm i{font-size:.6rem;letter-spacing:.12em;}
+/* A35 (Owner): the UNIT REPORT CARD — letter-grade badges, no hover anywhere */
+.zpb-rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;}
+.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;}
+.zpb-rcbadge.zpb-sb-good{border-color:color-mix(in srgb,var(--good,var(--accent)) 55%,var(--border));}
+.zpb-rcbadge.zpb-sb-bad{border-color:color-mix(in srgb,var(--bad,var(--accent2)) 55%,var(--border));}
+.zpb-rc-grade{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.5rem;min-width:2.4ch;text-align:center;color:var(--tA2,var(--gold3));}
+.zpb-rc-body{display:flex;flex-direction:column;gap:2px;min-width:0;}
+.zpb-rc-body b{font-size:.82rem;}
+.zpb-rc-body i{font-style:normal;font-size:.68rem;color:var(--sub);}
+.zpb-rc-body em{font-style:normal;font-size:.66rem;color:var(--sub);opacity:.85;}
+/* A32 (Owner): the champion banner — crest, wordmark, shine; no dash anywhere */
+.zpb-champ-kicker{text-align:center;font-size:.8rem;letter-spacing:.34em;font-weight:800;}
+.zpb-champ-team{display:flex;align-items:center;justify-content:center;gap:16px;margin:10px 0 4px;}
+.zpb-champ-team img{width:64px;height:64px;object-fit:contain;background:transparent;}
+.zpb-champ-name{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:2rem;letter-spacing:.08em;text-align:center;}
+.zpb-champ-sub{text-align:center;color:var(--sub);}
+.champion-banner{padding:26px 14px 18px;}
+/* A41 (Owner): the three doors of the try-again modal */
+.zpb-again-box{display:flex;flex-direction:column;align-items:stretch;min-width:min(92vw,420px);}
+.zpb-again-btn{text-align:center;}
+.zpb-again-dot{opacity:.6;margin:0 6px;}
+/* A15/A16 (Owner): the pick list — a quiet button, a dropdown that carries the number */
+.zpb-pickbtn{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 8px;font-size:.78rem;cursor:pointer;text-align:left;}
+.zpb-pickbtn:hover{border-color:var(--accent);}
+.zpb-pickbtn .zpb-pickname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-pickwrap{position:relative;min-width:0;}
+.zpb-pickmenu{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;max-height:260px;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.35);padding:4px;display:none;}
+.zpb-pickmenu.zpb-open{display:block;}
+.zpb-pickrow{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:0;background:transparent;color:var(--text);padding:6px 8px;border-radius:8px;font-size:.78rem;cursor:pointer;text-align:left;}
+.zpb-pickrow:hover{background:var(--panel2);}
+.zpb-pickrow b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-pickrow .zpb-picknum{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;}
+/* B17 (Owner): hovering a station lights the player's card under the map */
+.zpb-dbk{transition:box-shadow .3s ease,border-color .3s ease;}
+.zpb-dbk.zpb-dbk-lit{border-color:var(--accent);box-shadow:0 0 0 2px var(--accent),0 0 18px var(--glow);}
+/* B23/B24 (Owner): the prematch cinematic — one line, in, out, gone */
+.zpb-prematch{position:fixed;inset:0;z-index:96;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--bg) 86%,transparent);backdrop-filter:blur(2px);pointer-events:none;opacity:0;transition:opacity 1.1s ease;}
+.zpb-prematch.zpb-prematch-in{opacity:1;}
+.zpb-prematch-text{font-family:'Cinzel Decorative',serif;font-weight:900;letter-spacing:.24em;text-indent:.24em;font-size:clamp(1.3rem,4.6vw,2.6rem);text-align:center;color:var(--tA2,var(--gold3));text-shadow:0 0 30px var(--glow);animation:zpbprematchin 3.4s ease both;}
+@keyframes zpbprematchin{0%{opacity:0;transform:scale(.985);}22%{opacity:1;transform:scale(1);}72%{opacity:1;}100%{opacity:0;}}
+/* B4 (Owner): mobile — everything visible, nothing to scroll sideways */
+html,body{overflow-x:hidden;}
+.wrap{padding-left:10px;padding-right:10px;}
+@media (max-width:740px){
+ .draft-columns{grid-template-columns:1fr !important;}
+ .zpb-100grid,.zpb-advgrid,.zpb-awgrid{grid-template-columns:1fr !important;}
+ table{font-size:.8rem;}
+ th,td{padding:6px 4px;}
+ .zpb-lu-row{grid-template-columns:minmax(0,1fr) 3.6em minmax(0,1fr);gap:4px;}
+ .zpb-pvwrap,.zpb-stars{max-width:100%;}
+ .zst-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr)) !important;}
+ .footnav{display:flex;flex-wrap:wrap;justify-content:center;gap:4px 10px;}
+ .zpb-cmpscore{font-size:1rem;}
+ .panel h3{font-size:1.02rem;}
+}
+/* the season-in-badges rail becomes a swipe strip on mobile */
+@media (max-width:740px) and (pointer:coarse){
+ .zpb-story-zone{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;-webkit-overflow-scrolling:touch;}
+ .zpb-story-zone > *{scroll-snap-align:start;flex:0 0 auto;}
+ .zpb-sbadge{flex:0 0 auto;}
+}
+/* A17 (Owner): the depth chart — offense and defense centered side by side, special teams a horizontal pane beneath */
+.zpb-dz{grid-template-columns:1fr 1fr;max-width:980px;margin:0 auto;}
+.zpb-dz-zone.zpb-dz-st{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:center;}
+.zpb-dz-zone.zpb-dz-st h4{flex-basis:100%;}
+.zpb-dz-zone.zpb-dz-st .zpb-dz-row{display:inline-flex;gap:10px;border-top:none;}
+@media (max-width:900px){ .zpb-dz{grid-template-columns:1fr;} .zpb-dz-zone.zpb-dz-st{flex-direction:column;align-items:stretch;} }
+/* A10/A22 (Owner): light mode — tinted rows keep the deep team ink so nothing melts into its panel */
+:root:not([data-theme="dark"]) .zpb-trow, :root[data-theme="light"] .zpb-trow{color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-trow .zpb-pb-name, :root[data-theme="light"] .zpb-trow .zpb-pb-name{color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-scard .zpb-scard-hd b, :root[data-theme="light"] .zpb-scard .zpb-scard-hd b{color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-dbk b, :root[data-theme="light"] .zpb-dbk b{color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-lu-cell, :root[data-theme="light"] .zpb-lu-cell{color:var(--tnd,var(--text));}
+/* A18 (Owner): the labels themselves are already NICKEL and DIME — the row chips inherit */
+/* B5 (Owner): position rankings — no horizontal scroll, every player on the line with his number */
+#viewGroups .panel{overflow-x:hidden;}
+#viewGroups table{table-layout:fixed;width:100%;}
+#viewGroups td.narr{white-space:normal;overflow-wrap:anywhere;}
+.zpb-gplayer{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom;}
+@media (max-width:740px){
+ #viewGroups .zpb-grow{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border);}
+ #viewGroups .zpb-grow td{border:none;padding:0;}
+ #viewGroups td.rank{order:0;width:auto;}
+ #viewGroups td.team{order:1;flex:1 1 auto;font-weight:700;}
+ #viewGroups td.score{order:2;}
+ #viewGroups td.narr{order:3;flex-basis:100%;}
+}
+</style>
+<script id="zpb-w32-js">
+// ============ Z-POST-BLUE W32 (payload) ============
+// w32 (Owner): the labels read NICKEL and DIME everywhere.
+(function(){
+ if(typeof LABELS !== 'undefined'){
+  try{ if(LABELS.CB3 && LABELS.CB3.indexOf('NICKEL')<0) LABELS.CB3 = String(LABELS.CB3).toUpperCase(); LABELS.CB3='NICKEL';
+   if(LABELS.CB4) LABELS.CB4 = String(LABELS.CB4).toUpperCase();
+   if(LABELS.SS2) LABELS.SS2 = String(LABELS.SS2).toUpperCase();
+  }catch(err){}
+ }
+ // the Dime rows that render their own slotname
+ try{
+  const fix = ()=> document.querySelectorAll('.zpb-dz-row .slotname, .depth-row .slotname, .zpb-dl-chip').forEach(el=>{
+   const t = el.textContent || '';
+   if(/^dime$/i.test(t.trim())) el.textContent = 'DIME';
+   else if(/^nickel$/i.test(t.trim())) el.textContent = 'NICKEL';
+  });
+  new MutationObserver(()=>{ try{ fix(); }catch(err){} }).observe(document.body, {childList:true, subtree:true});
+ }catch(err){}
+})();
+
+// B24 (Owner): the rivalry phrase generator — the Owner's own list, deduped, one per game.
+window.zpbRivalryPhrases = ['DIVISION SHOWDOWN','DIVISION MATCHUP','BITTER RIVALRY','BITTER RIVALS','DIVISION FACE-OFF','DIVISION THROWDOWN','DIVISION COLLISION','DIVISIONAL DUEL','DIVISIONAL CLASH','CONFERENCE CLASH','HEATED RIVALRY','HISTORIC RIVALRY','HOSTILE RIVALS','THE RIVALRY','RIVALRY WEEK','FAMILIAR FOES','OLD FOES','BATTLE FOR THE DIVISION','DIVISIONAL STAKES','DIVISION ON THE LINE','THE DIVISIONAL RACE','BITTER ENEMIES','RIVALRY AT ITS FINEST','DIVISIONAL WARFARE','THE RIVALRY GAME','KEY DIVISIONAL MATCHUP','MARQUEE MATCHUP','PRIME-TIME SHOWDOWN'];
+window.zpbRivalryPhrase = function(){ return window.zpbRivalryPhrases[Math.floor(Math.random()*window.zpbRivalryPhrases.length)]; };
+
+// B23/B24 (Owner): the prematch cinematic — SEASON OPENER for game 1, a rivalry phrase for a
+// division game; it fades in, holds, fades out, and never blocks the page.
+window.zpbPrematchCine = function(g){
+ try{
+  if(!g || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(window.__zpbPrematchSeen && window.__zpbPrematchSeen.has(g)) return;
+  window.__zpbPrematchSeen = window.__zpbPrematchSeen || new Set(); window.__zpbPrematchSeen.add(g);
+  const S = seasonState;
+  let text = null;
+  if(S && S.phase==='regular' && g.week===1) text = 'SEASON OPENER';
+  else if(g.divisional) text = window.zpbRivalryPhrase();
+  if(!text) return;
+  const ov = document.createElement('div'); ov.className = 'zpb-prematch';
+  ov.innerHTML = '<div class="zpb-prematch-text">'+text+'</div>';
+  document.body.appendChild(ov);
+  requestAnimationFrame(()=> ov.classList.add('zpb-prematch-in'));
+  setTimeout(()=>{ try{ ov.classList.add('zpb-prematch-in'); ov.style.opacity='0'; }catch(err){} }, 3100);
+  setTimeout(()=>{ try{ ov.remove(); }catch(err){} }, 4400);
+ }catch(err){}
+};
+(function(){
+ if(typeof renderRegularSeasonView !== 'function') return;
+ const orig = renderRegularSeasonView;
+ renderRegularSeasonView = function(container){
+  const out = orig.apply(this, arguments);
+  try{
+   const user = seasonUserTeam(), S = seasonState;
+   const g = S && S.schedule && S.schedule.find(g=>g.week===S.currentWeek && !g.played && (g.home===user||g.away===user));
+   if(g && !S.weekSimulated) setTimeout(()=>{ try{ zpbPrematchCine(g); }catch(err){} }, 350);
+  }catch(err){}
+  return out;
+ };
+})();
+
+// A9 (Owner): SIM SEASON asks first — ARE YOU SURE YOU WANT TO SIMULATE THE REGULAR SEASON?
+(function(){
+ document.addEventListener('click', function(e){
+  const b = e.target.closest ? e.target.closest('#simSeasonBtn') : null;
+  if(!b) return;
+  e.stopPropagation(); e.preventDefault();
+  const ov = document.createElement('div'); ov.className = 'confirm-ov';
+  ov.innerHTML = '<div class="confirm-box" style="text-align:center;">'
+   + '<p style="margin-top:0;"><b>ARE YOU SURE YOU WANT TO SIMULATE THE REGULAR SEASON?</b></p>'
+   + '<p class="narr">Every remaining week plays out at once. This cannot be undone.</p>'
+   + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'
+   + '<button class="tabbtn" data-ss="no">Cancel</button>'
+   + '<button class="resetbtn" data-ss="yes" style="width:auto;margin:0;padding:8px 18px;">Yes \u2014 simulate the season</button>'
+   + '</div></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click', ev=>{
+   const t = ev.target.closest ? ev.target.closest('[data-ss]') : null;
+   if(!t && ev.target!==ov) return;
+   const yes = t && t.dataset.ss==='yes';
+   ov.remove();
+   if(!yes) return;
+   try{
+    simRestOfSeason();
+    renderSeasonTab(document.getElementById('seasonHost') || document.getElementById('draftResultsBody') || b.closest('.wrap') || document.body);
+   }catch(err){}
+  });
+ }, true); // capture: the quiet button never runs its instant handler
+})();
+
+// A15/A16 (Owner): the pick list — the box carries the name; the menu carries the number.
+window.zpbPickList = function(host, items, curVal, onPick, staticHTML){
+ // items: [{v, name, num}] — the closed box shows the name only; the opened menu shows name + number.
+ const wrap = document.createElement('div'); wrap.className = 'zpb-pickwrap';
+ const cur = items.find(x=>String(x.v)===String(curVal)) || items[0] || null;
+ const btn = document.createElement('button'); btn.type='button'; btn.className='zpb-pickbtn';
+ btn.innerHTML = (staticHTML || (cur ? '<span class="zpb-pickname">'+cur.name+'</span>' : '<span class="zpb-pickname">\u2014</span>'));
+ const menu = document.createElement('div'); menu.className = 'zpb-pickmenu';
+ items.forEach(it=>{
+  const r = document.createElement('button'); r.type='button'; r.className='zpb-pickrow';
+  r.innerHTML = '<b>'+it.name+'</b><span class="zpb-picknum">'+(it.num!=null?it.num:'')+'</span>';
+  r.addEventListener('click', ()=>{ menu.classList.remove('zpb-open'); onPick(it.v); });
+  menu.appendChild(r);
+ });
+ btn.addEventListener('click', e=>{ e.stopPropagation(); const open = menu.classList.contains('zpb-open'); document.querySelectorAll('.zpb-pickmenu.zpb-open').forEach(m=>m.classList.remove('zpb-open')); if(!open) menu.classList.add('zpb-open'); });
+ document.addEventListener('click', function close(){ if(!menu.contains(document.activeElement)) menu.classList.remove('zpb-open'); }, {once:false});
+ wrap.appendChild(btn); wrap.appendChild(menu);
+ return wrap;
+};
+// A16 (Owner): the KR/PR row — static name, the return rating on the right, "<NAME> x" in the menu.
+window.__zpbRetItems = {};
+window.returnerRowHTML = function(hostId){
+ const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S || !S.teams) return '';
+ const user = seasonUserTeam(); if(!user) return '';
+ const cands = returnerCandidates(S.teams[user].slotmap).sort((a,b)=>returnerRating(b.p)-returnerRating(a.p));
+ const cur = (S.returners||{})[user] || autoReturner(S.teams[user].slotmap);
+ const curC = cands.find(c=>c.p[0]===cur) || cands[0];
+ const items = cands.map(c=>({v:c.p[0], name:c.p[0], num:Math.round(returnerRating(c.p))}));
+ window.__zpbRetItems[hostId] = items;
+ return '<div class="depth-row lgrid" data-zpbret="1"><span class="slotname" title="Kick Returner">KR</span>'
+  + '<span data-zpbret-host="'+hostId+'"></span>'
+  + '<span class="dwar">'+(curC?Math.round(returnerRating(curC.p)):'')+'</span></div>';
+};
+window.wireLineupEditor = function(roster, hostId, onChange){
+ const host = document.getElementById(hostId); if(!host) return;
+ // KR row: mount the pick list
+ (function(){
+  const cell = host.querySelector('[data-zpbret-host]');
+  const items = (window.__zpbRetItems||{})[hostId] || [];
+  if(!cell || !items.length) return;
+  const S = seasonState, user = seasonUserTeam();
+  const cur = (S.returners||{})[user] || autoReturner(S.teams[user].slotmap);
+  const has = items.some(x=>x.v===cur);
+  const staticHTML = has ? '<span class="zpb-pickname">'+cur+'</span>' : '<span class="zpb-pickname">'+items[0].name+'</span>';
+  cell.appendChild(window.zpbPickList(cell, items, cur, v=>{
+   S.returners = S.returners||{}; S.returners[user]=v; RET_PICK.set(S.teams[user].slotmap, v); refreshUserAfterLineup(); if(onChange) onChange();
+  }, staticHTML));
+ })();
+ // lineup slots: name-only box, name+OVR menu
+ host.querySelectorAll('select[data-lineup]').forEach(sel=>{
+  const sl = sel.dataset.lineup;
+  const cur = roster.slots[sl];
+  const poolNum = name=>{ try{ const p = Object.values(roster.slots).find(q=>q && q[0]===name); return p ? Math.round(effOvr(p, sl)) : ''; }catch(err){ return ''; } };
+  const items = Array.from(sel.options).map(o=>({v:o.value, name:o.value, num:poolNum(o.value)}));
+  const wrap = window.zpbPickList(sel.parentNode, items, cur?cur[0]:'', v=>{
+   const ok = movePlayerToSlot(roster, v, sl);
+   if(!ok) FX.toast('That swap is not allowed: the player cannot flex there, or it would leave someone out of position.');
+   onChange();
+  }, cur ? '<span class="zpb-pickname">'+cur[0]+'</span>' : '<span class="zpb-pickname">—</span>');
+  sel.replaceWith(wrap);
+ });
+ const ap = document.getElementById(hostId+'Apply'); if(ap) ap.addEventListener('click', ()=>{ applyLineup(roster, lineupAdvice(roster).best); onChange(); });
+ if(typeof zpbFitLineupNames==='function') zpbFitLineupNames();
+};
+
+// B17 (Owner): hovering a station on the map lights the player's card below.
+(function(){
+ const findCard = slot=> document.querySelectorAll('.zpb-dbk[data-slot="'+slot+'"]');
+ document.addEventListener('mouseover', e=>{
+  const st = e.target.closest ? e.target.closest('.zpb-fm-ini[data-slot]') : null;
+  document.querySelectorAll('.zpb-dbk.zpb-dbk-lit').forEach(el=>el.classList.remove('zpb-dbk-lit'));
+  if(!st) return;
+  findCard(st.dataset.slot).forEach(el=>el.classList.add('zpb-dbk-lit'));
+ });
+ document.addEventListener('mouseout', e=>{
+  if(e.target.closest && e.target.closest('.zpb-fm-ini[data-slot]')){
+   document.querySelectorAll('.zpb-dbk.zpb-dbk-lit').forEach(el=>el.classList.remove('zpb-dbk-lit'));
+  }
+ });
+})();
+
+// B4 (Owner): mobile-only swipe-through — the depth chart zones, the season badges, the browser pages.
+(function(){
+ const coarse = ()=> window.matchMedia && window.matchMedia('(pointer:coarse)').matches;
+ const wire = (el, onLeft, onRight)=>{
+  if(!el || el.dataset.zsw) return; el.dataset.zsw = '1';
+  let x0=null, y0=null;
+  el.addEventListener('touchstart', e=>{ if(!coarse()) return; const t=e.touches[0]; x0=t.clientX; y0=t.clientY; }, {passive:true});
+  el.addEventListener('touchend', e=>{
+   if(!coarse() || x0==null) return;
+   const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
+   x0=y0=null;
+   if(Math.abs(dx)<44 || Math.abs(dx)<Math.abs(dy)*1.4) return;
+   if(dx<0){ try{ onLeft && onLeft(); }catch(err){} } else { try{ onRight && onRight(); }catch(err){} }
+  }, {passive:true});
+ };
+ // 1) the player browser: swipe pages
+ setInterval(()=>{
+  try{
+   const tbl = document.getElementById('playerTable'); if(tbl) wire(tbl, ()=>{ playerPage = Math.min(Math.max(1,(playerPage||1)+1), 999); renderPlayers(); }, ()=>{ playerPage = Math.max(1,(playerPage||1)-1); renderPlayers(); });
+  }catch(err){}
+ }, 1200);
+ // 2) the depth chart zones: swipe flips the zone in view (scroll-snap does the motion)
+ setInterval(()=>{
+  try{ document.querySelectorAll('.zpb-dz').forEach(z=>{ if(!coarse()) return; if(z.dataset.zswZone) return; z.dataset.zswZone='1'; z.style.scrollSnapType='x mandatory'; }); }catch(err){}
+ }, 1500);
+ // 3) the season story zones already scroll-snap on mobile (CSS) — swipe is native there.
+})();
+
+// A8/B13 (Owner): ResizeObserver loop notices never become setbacks — belt and braces at the listener too.
+(function(){
+ try{
+  const t = window.onerror;
+  window.onerror = function(msg){
+   try{ if(/ResizeObserver loop/i.test(String(msg||''))) return true; }catch(err){}
+   return t ? t.apply(this, arguments) : undefined;
+  };
+ }catch(err){}
 })();
 </script>
 </body>
