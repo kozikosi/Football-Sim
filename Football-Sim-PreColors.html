@@ -1180,6 +1180,30 @@ body{
 @media (max-width:760px){.zpb-20-0-header{position:static;text-align:center;margin:8px 0}}
 @media (prefers-reduced-motion: reduce){.zpb-cygt{animation:none;opacity:1}.zpb-shine.gold{animation:none;background-position:0 0}}
 
+
+.awards-panel{margin-bottom:16px}
+.awards-section-title{margin:18px 0 10px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.9rem;color:var(--gold)}
+.award-cards{display:flex;flex-direction:column;gap:12px}
+.award-card{position:relative;border-radius:12px;padding:14px 16px;background:linear-gradient(135deg,color-mix(in srgb,var(--team-primary, var(--gold)) 18%, transparent),transparent);border:1px solid color-mix(in srgb,var(--team-primary,var(--gold)) 55%, transparent);box-shadow:0 10px 30px rgba(0,0,0,.25)}
+.award-card.user{border-color:var(--team-primary)}
+.award-icon{font-size:1.4rem;margin-bottom:6px}
+.award-title{font-weight:800;letter-spacing:.12em;margin-bottom:8px;color:var(--gold)}
+.recipient-main{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+.recipient-name{font-weight:700;font-size:1.05rem}
+.recipient-team{font-weight:700}
+.recipient-stats{display:flex;flex-wrap:wrap;gap:6px}
+.stat-box{display:inline-block;padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);font-size:.8rem}
+.allpro-grid,.pb-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.ap-card,.pb-card{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,color-mix(in srgb,var(--team-primary) 16%, transparent),transparent);border:1px solid color-mix(in srgb,var(--team-primary) 40%, transparent)}
+.ap-avatar,.pb-avatar{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:#fff;text-transform:uppercase}
+.ap-name,.pb-name{font-weight:700}
+.ap-meta,.pb-meta{margin-left:auto;font-size:.8rem;color:var(--sub)}
+.shimmer{background:linear-gradient(90deg,var(--gold),#fff,var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:textShimmer 2.6s linear infinite}
+.vibrant{color:var(--gold)}
+.awards-user-summary{margin-top:14px;padding:10px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.06)}
+.awards-user-text{margin:0}
+@media (prefers-reduced-motion: reduce){.shimmer{animation:none;background-position:0 0}}
+
 <style id="float-override">
 *{outline:none!important;box-shadow:none!important}
 .panel, .pcard, .kp-card, .matchup-card, .score-line, .bracket-game, .mm-game, .detailpanel, .confirm-box,
@@ -6743,39 +6767,114 @@ function computePlayoffAwards(){
  return out;
 }
 function honorLineHTML(c, user){ return `<span${c.team===user?' style="color:var(--accent);font-weight:700;"':''}>${c.name}</span> <span class="narr">${nick(c.team)}</span>`; }
+function getTeamColorHex(name){ try{ const c=getTeamColors&&getTeamColors(name); if(c&&c.t1) return c.t1; }catch(e){} return '#4f8cff'; }
+function getAwardIcon(title){ const t=(title||'').toLowerCase(); if(t.includes('mvp')) return '🏆'; if(t.includes('offensive')) return '⚡'; if(t.includes('defensive')) return '🛡️'; if(t.includes('coach')) return '📋'; if(t.includes('rookie')) return '✨'; if(t.includes('comeback')) return '🔄'; return '⭐'; }
+function formatAwardStats(p, title){ if(!p) return ''; const parts=[]; if(p.pos) parts.push(`<span class="stat-box">${p.pos}</span>`); if(p.group) parts.push(`<span class="stat-box">${p.group}</span>`); if(p.line) parts.push(`<span class="stat-box">${p.line.replace(/<[^>]+>/g,'')}</span>`); if(p.ovr) parts.push(`<span class="stat-box shimmer" style="color:var(--gold)">OVR ${p.ovr}</span>`); return parts.join(''); }
+
 function renderRegularAwardsHTML(A, open){
  const user = seasonUserTeam();
- const ind = A.individual.map(a=> a.c
-  ? `<tr><td>${a.title}</td><td>${honorLineHTML(a.c,user)} <span class="narr">${a.c.pos} · ${a.c.line}</span><div class="narr">${a.why}</div></td></tr>`
-  : `<tr><td>${a.title}</td><td><span${a.team===user?' style="color:var(--accent);font-weight:700;"':''}>${a.coach?a.coach+' \u00b7 ':''}${a.team}</span><div class="narr">${a.why}</div></td></tr>`).join('');
- const stat = A.stat.map(a=>`<tr><td>${a.title}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
- const teamBox = (tm)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${tm[pos].map(c=>honorLineHTML(c,user)).join(', ')||'—'}</td></tr>`).join('');
- const pbBox = (cf)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${A.proBowl[cf][pos].map(c=>honorLineHTML(c,user)).join(', ')||'—'}</td></tr>`).join('');
- const us = A.userSummary, usTxt = us.mine.length||us.ap1||us.ap2||us.pb ? `${user}: ${us.ap1} First-Team All-Pro, ${us.ap2} Second-Team All-Pro, ${us.pb} Pro Bowl selection${us.pb===1?'':'s'}${us.mine.length?` — ${us.mine.join('; ')}`:''}.` : `No ${user} players earned league-wide honors this year.`;
- return `<details class="panel" style="margin-bottom:14px;" ${open?'open':''}><summary style="cursor:pointer;font-weight:700;">Regular-Season Awards &amp; Honors <span class="narr" style="font-weight:400;">(MVP, All-Pro, Pro Bowl)</span></summary>
-  <p class="narr" style="margin:8px 0;">${usTxt}</p>
-  <table><tbody>${ind}</tbody></table>
-  <h5 class="narr" style="margin:14px 0 4px;">Statistical champions</h5><table><tbody>${stat}</tbody></table>
-  <div class="draft-columns" style="grid-template-columns:1fr 1fr;margin-top:14px;gap:14px;">
-   <div><h5 class="narr" style="margin:0 0 4px;">First-Team All-Pro</h5><table><tbody>${teamBox(A.allPro.first)}</tbody></table></div>
-   <div><h5 class="narr" style="margin:0 0 4px;">Second-Team All-Pro</h5><table><tbody>${teamBox(A.allPro.second)}</tbody></table></div>
-   <div><h5 class="narr" style="margin:0 0 4px;">Pro Bowl — AFC</h5><table><tbody>${pbBox('AFC')}</tbody></table></div>
-   <div><h5 class="narr" style="margin:0 0 4px;">Pro Bowl — NFC</h5><table><tbody>${pbBox('NFC')}</tbody></table></div>
-  </div>
-  <p class="narr" style="margin:10px 0 0;">Skill and defensive players are ranked by their position-specific season rating plus a small credit for team wins. Defenders get extra credit for the value of the spot they play (a lockdown corner or edge rusher counts for more than a safety or linebacker with the same box score). Offensive linemen are ranked on pancakes, rushing yards behind them and sacks allowed. Rookie of the Year and Comeback Player need age and draft-class data the database does not have; Coach of the Year goes to the team that most outperformed its own projection.</p></details>`;
+ if(!A) return '';
+ let html = `<details class="panel awards-panel" style="margin-bottom:14px;" ${open?'open':''}><summary style="cursor:pointer;font-weight:700;">Regular-Season Awards &amp; Honors <span class="narr" style="font-weight:400;">(MVP, All-Pro, Pro Bowl)</span></summary>`;
+ const us = A.userSummary, usTxt = us && (us.mine.length||us.ap1||us.ap2||us.pb) ? `${user}: ${us.ap1} First-Team All-Pro, ${us.ap2} Second-Team All-Pro, ${us.pb} Pro Bowl selection${us.pb===1?'':'s'}${us.mine.length?` — ${us.mine.join('; ')}`:''}.` : `No ${user} players earned league-wide honors this year.`;
+ html += `<div class="awards-user-summary"><p class="awards-user-text">${usTxt}</p></div>`;
+ // Individual
+ if(A.individual && A.individual.length){
+   html += `<h4 class="awards-section-title">REGULAR-SEASON AWARDS</h4><div class="award-cards">`;
+   A.individual.forEach(a=>{
+     if(a.c){
+       const p=a.c, isUser=p.team===user, shimmer=(p.ovr||0)>=90?'shimmer':(p.ovr||0)>=85?'vibrant':'', col=getTeamColorHex(p.team);
+       html += `<div class="award-card ${isUser?'user':''} ${shimmer}" style="border-color:${col};--team-primary:${col}"><div class="award-icon">${getAwardIcon(a.title)}</div><div class="award-title">${a.title.toUpperCase()}</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name ${shimmer}">${p.name}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[p.team]||p.team}</span></div><div class="recipient-stats"><span class="stat-box">${p.pos}</span><span class="stat-box">${p.line||''}</span>${p.ovr?`<span class="stat-box shimmer" style="color:var(--gold)">OVR ${p.ovr}</span>`:''}</div><div class="narr" style="margin-top:6px;">${a.why||''}</div></div></div>`;
+     } else if(a.team){
+       const isUser=a.team===user, col=getTeamColorHex(a.team);
+       html += `<div class="award-card ${isUser?'user':''}" style="border-color:${col};--team-primary:${col}"><div class="award-icon">${getAwardIcon(a.title)}</div><div class="award-title">${a.title.toUpperCase()}</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name">${a.coach?a.coach+' · ':''}${a.team}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[a.team]||a.team}</span></div><div class="narr" style="margin-top:6px;">${a.why||''}</div></div></div>`;
+     }
+   });
+   html += `</div>`;
+ }
+ // Stat leaders
+ if(A.stat && A.stat.length){
+   html += `<h4 class="awards-section-title">STATISTICAL CHAMPIONS</h4><div class="award-cards">`;
+   A.stat.forEach(a=>{
+     const p=a.c||{}, isUser=p.team===user||a.team===user, col=getTeamColorHex(p.team||a.team), shimmer=(p.ovr||0)>=90?'shimmer':'';
+     html += `<div class="award-card ${isUser?'user':''}" style="border-color:${col};--team-primary:${col}"><div class="award-icon">📊</div><div class="award-title">${a.title.toUpperCase()}</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name ${shimmer}">${a.name||p.name}</span>${(p.team||a.team)?`<span class="recipient-team" style="color:${col}">${TEAM_ABBR[p.team||a.team]||(p.team||a.team)}</span>`:''}</div><div class="recipient-stats">${a.line?`<span class="stat-box">${a.line}</span>`:''}</div></div></div>`;
+   });
+   html += `</div>`;
+ }
+ // All-Pro
+ if(A.allPro){
+   ['first','second'].forEach(team=>{
+     if(A.allPro[team] && A.allPro[team].length){
+       html += `<h4 class="awards-section-title">${team.toUpperCase()}-TEAM ALL-PRO</h4><div class="allpro-grid">`;
+       A.allPro[team].forEach(c=>{
+         const isUser=c.team===user, col=getTeamColorHex(c.team), shimmer=(c.ovr||0)>=90?'shimmer':(c.ovr||0)>=85?'vibrant':'';
+         html += `<div class="ap-card ${isUser?'user':''} ${shimmer}" style="border-color:${col};--team-primary:${col}"><div class="ap-avatar" style="background:${col}">${(c.name||'').charAt(0)}</div><div><div class="ap-name ${shimmer}">${c.name}</div><div class="ap-meta">${c.pos||''} · ${TEAM_ABBR[c.team]||c.team}${c.ovr?` · ${c.ovr}`:''}</div></div></div>`;
+       });
+       html += `</div>`;
+     }
+   });
+ }
+ // Pro Bowl
+ if(A.proBowl){
+   ['AFC','NFC'].forEach(cf=>{
+     if(A.proBowl[cf] && Object.values(A.proBowl[cf]).some(arr=>arr&&arr.length)){
+       html += `<h4 class="awards-section-title">PRO BOWL — ${cf}</h4><div class="pb-grid">`;
+       HONOR_ORDER.forEach(pos=>{
+         (A.proBowl[cf][pos]||[]).forEach(c=>{
+           const isUser=c.team===user, col=getTeamColorHex(c.team), shimmer=(c.ovr||0)>=90?'shimmer':(c.ovr||0)>=85?'vibrant':'';
+           html += `<div class="pb-card ${isUser?'user':''} ${shimmer}" style="border-color:${col};--team-primary:${col}"><div class="pb-avatar" style="background:${col}">${(c.name||'').charAt(0)}</div><div><div class="pb-name ${(c.ovr||0)>=90?'shimmer':''}">${c.name}</div><div class="pb-meta">${pos} · ${TEAM_ABBR[c.team]||c.team}${c.ovr?` · ${c.ovr}`:''}</div></div></div>`;
+         });
+       });
+       html += `</div>`;
+     }
+   });
+ }
+ html += `<p class="narr" style="margin:14px 0 0;">Skill and defensive players are ranked by their position-specific season rating plus a small credit for team wins. Defenders get extra credit for the value of the spot they play (a lockdown corner or edge rusher counts for more than a safety or linebacker with the same box score). Offensive linemen are ranked on pancakes, rushing yards behind them and sacks allowed. Rookie of the Year and Comeback Player need age and draft-class data the database does not have; Coach of the Year goes to the team that most outperformed its own projection.</p></details>`;
+ return html;
 }
+
+
 function renderPlayoffAwardsHTML(P){
  const user = seasonUserTeam();
- const gb = (p, g)=> `<tr><td class="narr">${g.roundLabel||''}</td><td>${honorLineHTML(p,user)} <span class="narr">${p.group} · ${p.line}</span><div class="narr">${g.away} ${g.result.awayScore}, ${g.home} ${g.result.homeScore}</div></td></tr>`;
- const sb = P.sbMvp ? `<tr><td><b>Super Bowl MVP</b></td><td>${honorLineHTML(P.sbMvp,user)} <span class="narr">${P.sbMvp.group} · ${P.sbMvp.line}</span><div class="narr">${P.sbMvp.game.away} ${P.sbMvp.game.result.awayScore}, ${P.sbMvp.game.home} ${P.sbMvp.game.result.homeScore}</div></td></tr>` : '';
- const mvp = P.mvp ? `<tr><td><b>Postseason MVP</b> <span class="narr">(cumulative impact)</span></td><td>${honorLineHTML(P.mvp,user)} <span class="narr">${P.mvp.line}</span></td></tr>` : '';
- const rounds = P.rounds.map(r=>`<h5 class="narr" style="margin:14px 0 4px;">${r.label}</h5><table><tbody>${r.items.map(i=>gb(i.p, i.g)).join('')}</tbody></table>`).join('');
- const lead = P.leaders.map(a=>`<tr><td>${a.title}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
- const team = P.team.map(a=>`<tr><td class="narr">${a.pos}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
- return `<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3><table><tbody>${sb}${mvp}</tbody></table>${rounds}
-  <h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><table><tbody>${lead}</tbody></table>
-  <h5 class="narr" style="margin:14px 0 4px;">All-Playoff Team <span style="font-weight:400;">(by cumulative game impact)</span></h5><table><tbody>${team}</tbody></table></div>`;
+ if(!P) return '';
+ let html = `<div class="panel awards-panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3>`;
+ if(P.sbMvp){
+   const p=P.sbMvp, col=getTeamColorHex(p.team), shimmer=(p.ovr||0)>=90?'shimmer':'';
+   html += `<h4 class="awards-section-title">SUPER BOWL MVP</h4><div class="award-card" style="border-color:${col};--team-primary:${col}"><div class="award-icon">🏆</div><div class="award-title">SUPER BOWL MVP</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name ${shimmer}">${p.name}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[p.team]||p.team}</span></div><div class="recipient-stats"><span class="stat-box">${p.group||p.pos||''}</span><span class="stat-box">${p.line||''}</span></div>${P.sbMvp.game?`<div class="narr" style="margin-top:6px;">${P.sbMvp.game.away} ${P.sbMvp.game.result.awayScore}, ${P.sbMvp.game.home} ${P.sbMvp.game.result.homeScore}</div>`:''}</div></div>`;
+ }
+ if(P.mvp){
+   const p=P.mvp, col=getTeamColorHex(p.team), shimmer=(p.ovr||0)>=90?'shimmer':'';
+   html += `<h4 class="awards-section-title">POSTSEASON MVP <span class="narr" style="font-weight:400;">(cumulative impact)</span></h4><div class="award-card" style="border-color:${col};--team-primary:${col}"><div class="award-icon">⭐</div><div class="award-title">POSTSEASON MVP</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name ${shimmer}">${p.name}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[p.team]||p.team}</span></div><div class="recipient-stats"><span class="stat-box">${p.line||''}</span></div></div></div>`;
+ }
+ if(P.rounds && P.rounds.length){
+   P.rounds.forEach(r=>{
+     html += `<h4 class="awards-section-title">${(r.label||'').toUpperCase()}</h4><div class="award-cards">`;
+     (r.items||[]).forEach(i=>{
+       const p=i.p, g=i.g, col=getTeamColorHex(p.team), shimmer=(p.ovr||0)>=90?'shimmer':'';
+       html += `<div class="award-card" style="border-color:${col};--team-primary:${col}"><div class="award-icon">🎖️</div><div class="award-title">GAME BALL</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name ${shimmer}">${p.name}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[p.team]||p.team}</span></div><div class="recipient-stats"><span class="stat-box">${p.group||''}</span><span class="stat-box">${p.line||''}</span></div>${g&&g.result?`<div class="narr" style="margin-top:6px;">${g.away} ${g.result.awayScore}, ${g.home} ${g.result.homeScore}</div>`:''}</div></div>`;
+     });
+     html += `</div>`;
+   });
+ }
+ if(P.leaders && P.leaders.length){
+   html += `<h4 class="awards-section-title">POSTSEASON STATISTICAL LEADERS</h4><div class="award-cards">`;
+   P.leaders.forEach(a=>{
+     const col=getTeamColorHex(a.team), shimmer='';
+     html += `<div class="award-card" style="border-color:${col};--team-primary:${col}"><div class="award-icon">📊</div><div class="award-title">${a.title.toUpperCase()}</div><div class="award-recipient"><div class="recipient-main"><span class="recipient-name">${a.name}</span><span class="recipient-team" style="color:${col}">${TEAM_ABBR[a.team]||a.team}</span></div><div class="recipient-stats"><span class="stat-box">${a.line||''}</span></div></div></div>`;
+   });
+   html += `</div>`;
+ }
+ if(P.team && P.team.length){
+   html += `<h4 class="awards-section-title">ALL-PLAYOFF TEAM <span class="narr" style="font-weight:400;">(by cumulative game impact)</span></h4><div class="allpro-grid">`;
+   P.team.forEach(a=>{
+     const col=getTeamColorHex(a.team), shimmer='';
+     html += `<div class="ap-card" style="border-color:${col};--team-primary:${col}"><div class="ap-avatar" style="background:${col}">${(a.name||'').charAt(0)}</div><div><div class="ap-name">${a.name}</div><div class="ap-meta">${a.pos||''} · ${TEAM_ABBR[a.team]||a.team} · ${a.line||''}</div></div></div>`;
+   });
+   html += `</div>`;
+ }
+ html += `</div>`;
+ return html;
 }
+
 
 function renderSeasonCompleteView(container){
  const user = seasonUserTeam();
