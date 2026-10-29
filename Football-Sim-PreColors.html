@@ -1167,6 +1167,19 @@ body{
 
 </style>
 
+
+.zpb-cygline{font-family:'Cinzel Decorative',serif;font-size:1.1rem;font-weight:700;text-align:center;margin-top:12px;letter-spacing:.02em}
+.zpb-cygt{animation:cygFade 4s ease-in-out infinite;color:var(--team-primary,var(--gold));display:inline-block}
+.zpb-shine{display:inline-block}
+.zpb-shine.gold{background:linear-gradient(90deg,var(--gold),#fff,var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:textShimmer 2.5s linear infinite}
+@keyframes cygFade{0%,100%{opacity:1}50%{opacity:.35}}
+@keyframes textShimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.zpb-20-0-header{position:absolute;top:16px;right:16px;font-family:'Cinzel Decorative',serif;font-size:1rem;font-weight:700;z-index:10;pointer-events:none}
+.zpb-20-0-header .zpb-cygt{animation:cygFade 4s ease-in-out infinite;color:var(--team-primary,var(--gold))}
+.zpb-20-0-header .zpb-shine.gold{background:linear-gradient(90deg,var(--gold),#fff,var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:textShimmer 2.5s linear infinite;display:inline-block}
+@media (max-width:760px){.zpb-20-0-header{position:static;text-align:center;margin:8px 0}}
+@media (prefers-reduced-motion: reduce){.zpb-cygt{animation:none;opacity:1}.zpb-shine.gold{animation:none;background-position:0 0}}
+
 <style id="float-override">
 *{outline:none!important;box-shadow:none!important}
 .panel, .pcard, .kp-card, .matchup-card, .score-line, .bracket-game, .mm-game, .detailpanel, .confirm-box,
@@ -1179,7 +1192,7 @@ body{background:#120a0e !important}
 </head>
 <body>
 <div class="wrap">
- <header class="hero hero-marquee">
+ <header class="hero hero-marquee" style="position:relative;">
   <button id="heroTitleBtn" class="hero-title-btn" title="Back to home">
     <div class="marquee">
       <div class="marquee-track">
@@ -1189,6 +1202,7 @@ body{background:#120a0e !important}
     </div>
   </button>
   <ol class="stepper" id="stepper"><li data-step="draft" class="on">Draft</li><li data-step="season">Season</li><li data-step="playoffs">Playoffs</li><li data-step="champ">Champion</li></ol>
+  <div class="zpb-20-0-header" id="zpb20Header" style="display:none;"><span class="zpb-cygt">Can you go </span><b class="zpb-shine gold">20-0</b><b class="zpb-shine gold" style="font-size:1.1em;">?</b></div>
  </header>
  <div id="suppHead" class="viewhead" style="display:none;"></div>
  <div class="view" id="viewRankings">
@@ -1710,7 +1724,7 @@ function seasonToast(msg){
  document.body.appendChild(t); setTimeout(()=>t.remove(), 3400);
 }
 // ---- the Season stage: draft, preseason, regular season, playoffs and the review are phases on one primary tab ----
-function goSeason(){
+function goSeason(){ try{ if(typeof update20Header==='function') update20Header(); }catch(e){}
  const host = document.getElementById('seasonHost'); if(!host) return;
  if(seasonState){ renderSeasonTab(host); return; }
  if(draftSim && draftSim.pos >= 32*26){
@@ -7111,7 +7125,10 @@ function wireRowClicks(panel, allForClick){
  return fillDetail;
 }
 
-function renderDraftResults(){
+function update20Header(){ const h=document.getElementById('zpb20Header'); if(!h) return; const dfr=document.getElementById('draftFinalResults'); if(dfr && dfr.style.display!=='none'){ h.style.display='block'; return; } // show in season context
+ try{ if(typeof seasonState!=='undefined' && seasonState && document.getElementById('viewSeason') && document.getElementById('viewSeason').style.display!=='none'){ h.style.display='block'; return; } }catch(e){}
+ const cur=document.querySelector('.view:not([style*="display: none"])'); if(!cur){ h.style.display='none'; return; } const id=cur.id||''; if(id && (id.toLowerCase().includes('result')||id==='viewSeason')){ h.style.display='block'; return; } h.style.display='none'; }
+function renderDraftResults(){ update20Header && update20Header();
  const panel = document.getElementById('draftFinalResults');
  const {draftEntries, realEntries} = buildResultEntries();
  const myEntry = draftEntries.find(e=>e.isUser);
@@ -7119,7 +7136,11 @@ function renderDraftResults(){
  const rankAmongReal = Math.min(32, realOnlySorted.filter(e=>e.score>myEntry.score).length + 1);
 
  let h = `<div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;"><h2 style="margin-top:0;">Draft Complete</h2><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">Start a new draft…</button></div>
-  <p class="dsub">Your draft is in the books. Play the season below, or look over how the roster stacks up.</p>
+  <p class="dsub">Your draft is in the books. Coach your team to the Super Bowl.</p>
+  <div class="draft-complete-actions" style="text-align:center;margin:10px 0 16px;">
+   <button class="resetbtn zpb-playbtn" id="startSeasonFromDraftBtn" style="width:auto;padding:12px 28px;font-size:0.95rem;">Start Season</button>
+   <div class="zpb-cygline"><span class="zpb-cygt">Can you go </span><b class="zpb-shine gold">20-0</b><b class="zpb-shine gold" style="font-size:1.1em;">?</b></div>
+  </div>
   <div class="tabs" style="margin-bottom:10px;flex-wrap:wrap;">
    <button class="tabbtn ${resultsView==='season'?'active':''}" id="resultsSeasonBtn">Season</button>
    <button class="tabbtn ${resultsView==='sim'?'active':''}" id="resultsSimBtn">Vs. Simulated Teams</button>
@@ -7160,6 +7181,7 @@ function renderDraftResults(){
  document.getElementById('resultsMineBtn').addEventListener('click', ()=>{ resultsView='mine'; renderDraftResults(); });
  document.getElementById('resultsCompareBtn').addEventListener('click', ()=>{ resultsView='compare'; renderDraftResults(); });
  document.getElementById('resultsSeasonBtn').addEventListener('click', ()=>{ resultsView='season'; renderDraftResults(); });
+ const sfd = document.getElementById('startSeasonFromDraftBtn'); if(sfd){ sfd.addEventListener('click', ()=>{ resultsView='season'; renderDraftResults(); const sb=document.getElementById('resultsSeasonBtn'); if(sb) sb.click(); }); }
  document.getElementById('newDraftBtn').addEventListener('click', ()=> confirmDialog('This discards your drafted roster and any season in progress and takes you back to the draft setup.', 'Yes, start a new draft', startNewDraftFlow));
 }
 
