@@ -1,13 +1,13 @@
-// Flex guide REV 3: what a player of one role loses (in OVR points) for playing a spot of another.
-// Source of truth is tools/mathlab/flex.json (Owner's REV 2 guide of 26 Oct, then his 28 Oct rulings: edge->OLB 0,
-// TE->RB 4, P->K 4, K->P 0, QB->FS 6 with QB->SS and QB->WR removed, and every extra rule of w33 kept). This file is
+// Flex guide REV 4: what a player of one role loses (in OVR points) for playing a spot of another.
+// Source of truth is tools/mathlab/flex.json (Owner's REV 2 guide of 26 Oct, his 28 Oct rulings: edge->OLB 0, TE->RB 4,
+// P->K 4, K->P 0, every extra rule of w33 kept; and REV 4 of 29 Oct: a QB may flex ONLY to FS, at -10). This file is
 // a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
 import type { Role } from './players.ts';
 import type { Dest } from './slots.ts';
 
 type Row = Partial<Record<Dest, number>>;
 export const FLEX: Readonly<Record<Role, Row>> = {
-  QB: { RB: 6, FS: 6 },
+  QB: { FS: 10 },
   RB: { FB: 2, WR: 4, TE: 6 },
   FB: { RB: 4, TE: 4 },
   WR: { RB: 4, TE: 4, SS: 4, FS: 4, NICKEL: 4, DIME: 4, CB: 6 },

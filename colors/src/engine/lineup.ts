@@ -28,7 +28,12 @@ export interface Lineup {
   emergencyFills: number;
 }
 
-export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[]): Omit<Lineup, 'base'> {
+// 1 weight point = 0.00254 wins over a 70 -> 90 upgrade (spec section 1), so one weight x OVR unit is this many wins.
+export const WINS_PER_UNIT = 0.00254 / 20;
+
+// `stay` maps a player id to the spot he holds now; keeping him there is worth `stayBonus` units, so a move happens only
+// when it gains more than that (used by adviseLineup; the plain optimum has no stay).
+export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[], stay?: ReadonlyMap<string, SlotId>, stayBonus = 0): Omit<Lineup, 'base'> {
   const n = players.length, s = slots.length, k = n + s;
   // rows: n players, then s empty-spot fillers. columns: s spots, then n bench places.
   const cost: number[][] = [];
@@ -37,7 +42,7 @@ export function optimalLineup(players: readonly Player[], slots: readonly FieldS
     for (let j = 0; j < s; j++) {
       if (i < n) {
         const f = fit(players[i].role, slots[j].dest);
-        row[j] = f.legal ? -(PLAYS + slots[j].weight * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) : ILLEGAL;
+        row[j] = f.legal ? -(PLAYS + slots[j].weight * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) - (stay?.get(players[i].id) === slots[j].slot ? stayBonus : 0) : ILLEGAL;
       } else {
         row[j] = -slots[j].weight * EMPTY_OVR;
       }
@@ -70,4 +75,31 @@ export function placementOf(l: Lineup, slot: SlotId): Placement {
   const p = l.placements.find((x) => x.slot.slot === slot);
   if (!p) throw new Error('no such spot ' + slot);
   return p;
+}
+
+// ---- advice for the user's own lineup ----
+// Owner 29 Oct: "I drafted all my players into the positions I wanted, and then the math flexed over ten players out of
+// position." The user's lineup is never changed by the engine; this only SUGGESTS. A player is moved only if the move is
+// worth at least `minGainWins` per player moved (default 0.02 wins, the threshold Pre-Colors used to say "no better
+// arrangement"), so ten tiny reshuffles are not suggested.
+export type Assignment = Partial<Record<SlotId, Player>>;
+export interface Move { slot: SlotId; from: Player | null; to: Player | null; flexPenalty: number }
+export interface Advice { lineup: Lineup; moves: Move[]; currentValue: number; gainWins: number }
+
+export function valueOf(assign: Assignment, slots: readonly FieldSlot[]): number {
+  return slots.reduce((t, sl) => { const p = assign[sl.slot]; return t + sl.weight * (p ? p.ovr - fit(p.role, sl.dest).penalty : EMPTY_OVR); }, 0);
+}
+
+export function adviseLineup(current: Assignment, roster: readonly Player[], base: Base, minGainWins = 0.02): Advice {
+  const slots = fieldSlots(base);
+  const stay = new Map<string, SlotId>();
+  for (const sl of slots) { const p = current[sl.slot]; if (p) stay.set(p.id, sl.slot); }
+  const lineup: Lineup = { base, ...optimalLineup(roster, slots, stay, minGainWins / WINS_PER_UNIT) };
+  const moves: Move[] = [];
+  for (const pl of lineup.placements) {
+    const was = current[pl.slot.slot] ?? null;
+    if ((was?.id ?? null) !== (pl.player?.id ?? null)) moves.push({ slot: pl.slot.slot, from: was, to: pl.player, flexPenalty: pl.penalty });
+  }
+  const currentValue = valueOf(current, slots);
+  return { lineup, moves, currentValue, gainWins: (lineup.value - currentValue) * WINS_PER_UNIT };
 }

@@ -1,11 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots } from '../src/engine/slots.ts';
+import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots, DL5_SHARE } from '../src/engine/slots.ts';
 import type { SlotId, Dest } from '../src/engine/slots.ts';
 import { FLEX, fit, EMERGENCY_PENALTY } from '../src/engine/flex.ts';
 import { hungarian } from '../src/engine/hungarian.ts';
-import { optimalLineup, lineupFor, placementOf, EMPTY_OVR } from '../src/engine/lineup.ts';
+import { optimalLineup, lineupFor, placementOf, adviseLineup, valueOf, EMPTY_OVR } from '../src/engine/lineup.ts';
+import type { Assignment } from '../src/engine/lineup.ts';
 import { buildPool } from '../src/engine/players.ts';
 import type { Player, Role } from '../src/engine/players.ts';
 import { makeRng } from '../src/engine/rng.ts';
@@ -32,27 +33,26 @@ test('table: unit counts are 16 offense, 14 defense, 2 special', () => {
 });
 
 // ---- flex ----
-test('flex: the typed table equals tools/mathlab/flex.json (REV 3) rule by rule', () => {
+test('flex: the typed table equals tools/mathlab/flex.json (REV 4) rule by rule', () => {
   for (const role of flexJson.roles) assert.deepEqual(FLEX[role as Role], flexJson.flex[role], role);
   const n = Object.values(FLEX).reduce((t, r) => t + Object.keys(r).length, 0);
-  assert.equal(n, 108);
+  assert.equal(n, 107);
 });
 test('flex: every penalty is 0, 2, 4 or 6 and every role in the data has a row', () => {
   for (const r of new Set(pool.map((p) => p.role))) assert.ok(FLEX[r], r);
-  for (const row of Object.values(FLEX)) for (const v of Object.values(row)) assert.ok([0, 2, 4, 6].includes(v));
+  for (const [role, row] of Object.entries(FLEX)) for (const [d, v] of Object.entries(row)) assert.ok([0, 2, 4, 6].includes(v) || (role === 'QB' && d === 'FS' && v === 10), `${role}->${d} ${v}`);
 });
-test('flex: Owner rulings of 28 Oct (REV 3)', () => {
+test('flex: Owner rulings of 28 and 29 Oct (REV 3, REV 4)', () => {
   assert.equal(fit('EDGE', 'OLB').penalty, 0);
   assert.equal(fit('TE', 'RB').penalty, 4);
   assert.equal(fit('P', 'K').penalty, 4);
   assert.equal(fit('K', 'P').penalty, 0);
-  assert.equal(fit('QB', 'FS').penalty, 6);
-  assert.equal(fit('QB', 'RB').penalty, 6);
+  assert.equal(fit('QB', 'FS').penalty, 10);                  // 29 Oct: a QB may flex ONLY to FS, at -10
   assert.equal(fit('OT', 'RB').penalty, 6);               // a w33 extra the Owner kept
 });
-test('flex: a quarterback has no emergency fallback, anyone else has -8', () => {
-  assert.equal(fit('QB', 'SS').legal, false);
-  assert.equal(fit('QB', 'WR').legal, false);
+test('flex: a quarterback plays only QB or FS (-10); no RB, no WR, no SS, no emergency fallback; anyone else has -8', () => {
+  for (const d of ['RB', 'WR', 'SS', 'CB', 'TE', 'OT', 'K'] as Dest[]) assert.equal(fit('QB', d).legal, false, d);
+  assert.deepEqual([fit('QB', 'FS').legal, fit('QB', 'FS').emergency], [true, false]);
   const f = fit('RB', 'CB');
   assert.deepEqual([f.legal, f.emergency, f.penalty], [true, true, EMERGENCY_PENALTY]);
 });
@@ -101,14 +101,20 @@ test('hungarian: rejects a non-square matrix', () => assert.throws(() => hungari
 test('4-3: every spot plays as itself', () => {
   for (const f of fieldSlots('4-3')) { assert.equal(f.row, f.slot); assert.equal(f.weight, WEIGHT[f.slot]); }
 });
-test('3-4: DT2 becomes ILB2 rated as MIKE; WILL and SAM become OLB1 and OLB2 rated as WILL; the rest is unchanged', () => {
+test('3-4: DT2 becomes ILB2 (rated MIKE); WILL is OLB1 (WILL); SAM is OLB2 and equals DT2 in weight (Owner 29 Oct); the rest is unchanged', () => {
   const f = Object.fromEntries(fieldSlots('3-4').map((x) => [x.slot, x]));
   assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'MIKE', 260, 'ILB2']);
   assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.weight, f.WILL.label], ['OLB', 'WILL', 240, 'OLB1']);
-  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'WILL', 240, 'OLB2']);
+  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'DT2', 300, 'OLB2']);
+  assert.equal(f.SAM.weight, WEIGHT.DT2);
   assert.equal(f.DT1.label, 'NT'); assert.equal(f.MIKE.label, 'ILB1');
   const changed = fieldSlots('3-4').filter((x) => x.row !== x.slot || x.dest !== SLOTS.find((s) => s.id === x.slot)!.dest || x.weight !== WEIGHT[x.slot]).map((x) => x.slot).sort();
   assert.deepEqual(changed, ['DT2', 'SAM']);                  // WILL keeps its own row; only its label changes
+});
+test('DL5: balanced share is the measured 0.33, cautious is no lower, aggressive is higher (Owner 29 Oct)', () => {
+  assert.equal(DL5_SHARE.balanced, 0.33);
+  assert.ok(DL5_SHARE.cautious >= DL5_SHARE.balanced - 1e-12 && DL5_SHARE.aggressive > DL5_SHARE.balanced);
+  assert.ok(DL5_SHARE.aggressive <= 0.44);                    // inside the measured middle half (22%-44%)
 });
 
 // ---- lineup ----
@@ -142,9 +148,10 @@ test('lineup: with nobody legal left the emergency fill (-8) is used, and a QB i
   const ps = natural().filter((p) => p.role !== 'CB');         // no corners at all: CB1, CB2, CB3 and DIME need bodies
   ps.push(mk('QB', 99)); ps.push(mk('QB', 90));
   const l = lineupFor(ps, '4-3');
-  for (const p of l.placements) if (p.player?.role === 'QB') assert.ok(['QB', 'RB', 'FS'].includes(p.slot.dest), `QB at ${p.slot.slot}`);
+  for (const p of l.placements) if (p.player?.role === 'QB') assert.ok(['QB', 'FS'].includes(p.slot.dest), `QB at ${p.slot.slot}`);
   assert.equal(placementOf(l, 'QB').player?.ovr, 99);
-  assert.ok(l.bench.some((p) => p.ovr === 90) || ['RB', 'FS'].includes(l.placements.find((p) => p.player?.ovr === 90)!.slot.dest));
+  const second = l.placements.find((p) => p.player?.ovr === 90);
+  assert.ok(second === undefined || second.slot.dest === 'FS');       // benched, or at FS at -10
 });
 test('lineup: a short roster leaves spots empty (rated 70) and every rostered player still plays', () => {
   const ps = natural(60).slice(0, 20);
@@ -211,9 +218,9 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth 170 x 70 more in 3-4 less 260 x 4, because a DT must play ILB2 at -4', () => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth 230 x 70 more in 3-4 less 260 x 4, because a DT must play ILB2 at -4', () => {
   const flat = natural(70);                                   // one ILB only
-  assert.equal(lineupFor(flat, '3-4').value - lineupFor(flat, '4-3').value, 170 * 70 - 260 * 4);
+  assert.equal(lineupFor(flat, '3-4').value - lineupFor(flat, '4-3').value, 230 * 70 - 260 * 4);
   const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0);   // MIKE and ILB2 weigh the same, so which of the two is a tie
   assert.equal(flexed.length, 1);
   assert.deepEqual([flexed[0].player?.role, flexed[0].slot.dest, flexed[0].penalty], ['DT', 'ILB', 4]);
@@ -224,10 +231,71 @@ test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2
   assert.ok(l.placements.every((p) => p.penalty === 0));
   assert.equal(placementOf(l, 'DT2').player?.role, 'ILB');
   assert.deepEqual(l.bench.map((p) => p.role), ['DT']);
-  assert.equal(l.value - lineupFor(ps, '4-3').value, 170 * 70);
+  assert.equal(l.value - lineupFor(ps, '4-3').value, 230 * 70);
 });
 test('base: two elite inside linebackers add more to a 3-4 lineup than to a 4-3 one', () => {
   const ps = natural(70), more = [...ps, mk('ILB', 95), mk('ILB', 95)];
   const gain = (b: '4-3' | '3-4') => lineupFor(more, b).value - lineupFor(ps, b).value;
   assert.ok(gain('3-4') > gain('4-3'), `${gain('3-4')} vs ${gain('4-3')}`);
+});
+
+// ---- advice for the user's own lineup (Owner 29 Oct: "the math flexed over ten players out of position") ----
+const slotMap = (ps: Player[]): Assignment => Object.fromEntries(SLOTS.map((sl, i) => [sl.id, ps[i]])) as Assignment;
+test('advice: players rated within a few points of each other are never flexed (nothing is worth 0.02 wins per player)', () => {
+  const r = makeRng(5);
+  const ps = natural(70).map((p) => ({ ...p, ovr: r.int(68, 72) }));
+  const a = adviseLineup(slotMap(ps), ps, '4-3');
+  assert.equal(a.moves.filter((m) => m.flexPenalty > 0).length, 0);
+});
+test('advice: every suggestion pays for itself, total gain >= 0.02 wins x the players it displaces (random 60-90 ratings)', () => {
+  const r = makeRng(9);
+  for (let t = 0; t < 20; t++) {
+    const ps = natural(70).map((p) => ({ ...p, ovr: r.int(60, 90) })), cur = slotMap(ps);
+    const a = adviseLineup(cur, ps, '4-3', 0.02);
+    const now = new Map(a.lineup.placements.filter((p) => p.player).map((p) => [p.player!.id, p.slot.slot]));
+    const displaced = Object.entries(cur).filter(([slot, p]) => now.get(p!.id) !== slot).length;
+    assert.ok(a.gainWins >= 0.02 * displaced - 1e-9, `gain ${a.gainWins} < ${0.02 * displaced}`);
+  }
+});
+test('advice: a clear upgrade is suggested, a one-point difference is not', () => {
+  const ps = natural(70); const i3 = SLOTS.findIndex((s) => s.id === 'CB3');
+  ps[i3] = { ...ps[i3], ovr: 95 };                              // a 95 sitting at CB3 beside a 70 at CB1
+  const a = adviseLineup(slotMap(ps), ps, '4-3');
+  assert.ok(a.moves.some((m) => m.slot === 'CB1' && m.to?.ovr === 95));
+  assert.ok(a.gainWins >= 0.02);
+  const ps2 = natural(70); ps2[i3] = { ...ps2[i3], ovr: 71 };    // 71 at CB3 vs 70 at CB1: worth 0.02 wins in all, under two moves' threshold
+  assert.equal(adviseLineup(slotMap(ps2), ps2, '4-3').moves.length, 0);
+});
+test('advice: never worse than the current lineup, and advising the advice changes nothing', () => {
+  for (const team of ['Kansas City Chiefs', 'Detroit Lions', 'Las Vegas Raiders', 'New England Patriots']) {
+    const roster = pool.filter((p) => p.team === team);
+    const start = lineupFor(roster, '4-3');                      // start from the plain optimum with two spots deliberately swapped
+    const cur: Assignment = {}; for (const p of start.placements) if (p.player) cur[p.slot.slot] = p.player;
+    [cur.DE1, cur.DE2] = [cur.DE2, cur.DE1];
+    const a = adviseLineup(cur, roster, '4-3');
+    assert.ok(a.gainWins >= -1e-9, team);
+    const again: Assignment = {}; for (const p of a.lineup.placements) if (p.player) again[p.slot.slot] = p.player;
+    assert.equal(adviseLineup(again, roster, '4-3').moves.length, 0, team);
+  }
+});
+test('advice: on 32 real rosters from natural best-per-spot lineups it moves far fewer players than the plain optimum and keeps most of the gain', () => {
+  let plainMoves = 0, plainFlex = 0, advMoves = 0, advFlex = 0, plainGain = 0, advGain = 0;
+  for (const team of [...new Set(pool.filter((p) => !p.freeAgent).map((p) => p.team))]) {
+    const roster = pool.filter((p) => p.team === team), used = new Set<string>(), cur: Assignment = {};
+    for (const s of [...fieldSlots('4-3')].sort((a, b) => b.weight - a.weight)) {
+      const c = roster.filter((p) => !used.has(p.id) && fit(p.role, s.dest).legal && fit(p.role, s.dest).penalty === 0).sort((a, b) => b.ovr - a.ovr)[0];
+      if (c) { used.add(c.id); cur[s.slot] = c; }
+    }
+    const plain = adviseLineup(cur, roster, '4-3', 0), adv = adviseLineup(cur, roster, '4-3', 0.02);
+    plainMoves += plain.moves.length; plainFlex += plain.moves.filter((m) => m.flexPenalty > 0).length; plainGain += plain.gainWins;
+    advMoves += adv.moves.length; advFlex += adv.moves.filter((m) => m.flexPenalty > 0).length; advGain += adv.gainWins;
+  }
+  assert.ok(advMoves < plainMoves * 0.6, `${advMoves} vs ${plainMoves}`);
+  assert.ok(advFlex < plainFlex * 0.7, `${advFlex} vs ${plainFlex}`);
+  assert.ok(advGain > plainGain * 0.7, `${advGain} vs ${plainGain}`);
+});
+test('advice: valueOf agrees with the solver on its own output', () => {
+  const ps = natural(75), l = lineupFor(ps, '4-3'), a: Assignment = {};
+  for (const p of l.placements) if (p.player) a[p.slot.slot] = p.player;
+  assert.equal(valueOf(a, fieldSlots('4-3')), l.value);
 });
