@@ -57,7 +57,7 @@ Rules that replace the old "Do not" list, stated as what to do:
 - **Moving a number:** until the product has an injectable RNG (task `T-20261022-claude-2`, V23), runs are not repeatable (the product has 56–58 `Math.random()` sites and no seed), so only *structural* evidence counts: function-body hashes, diffs, and calculations from tables. Do not publish a before/after outcome from unseeded runs; once the RNG lands, compare seeded runs on the same build.
 - **PASS vs. acceptance:** a gate PASS means the checks ran clean. It is not product acceptance, and an implemented change is not an accepted one (§5).
 
-Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); QB may flex to WR, SS, FS at -6 (Owner 27 Oct); flex stays realistic and `tools/mathlab/flex.json` (REV 2) governs.
+Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); QB may flex to RB and FS at -6 (Owner 28 Oct, flex REV 3; QB->WR and QB->SS removed); flex stays realistic and `tools/mathlab/flex.json` (REV 3) governs.
 
 ## 4. Worktrees, saving work, and the shared tree (the failure we actually had)
 
