@@ -11,7 +11,8 @@
 - Session 28 Oct (cont.): reviewed P-020 (improved: mock missing, no anchors) and P-021 (improved: CSS accurate, JS bodies missing). Both pushed. Ran targeted checks on z.ai w30 vs Pre-Colors (see bulletin 20261028-0200-boc.md).
 - Session 28 Oct (cont. 2): reviewed P-022 (improved: anchors accurate, Cinzel not loaded, FX.play('champion') missing). Pushed.
 - Session 28 Oct (cont. 3): offered Z.ai's w31/w32 prompt as ~50 PRIORITY+ clusters to the council (bulletin 20261028-0300-boc.md). Reviewed P-023 (improved). Pushed.
-- Session 28 Oct (cont. 4): created Madden NFL 27 ratings parser + output location for Claude: `_agents/boc/tools/parse_madden_ratings.py` (drops XF/AGI/COD/INJ/AWR, keeps name,pos,team,ovr,spd,str) and `_agents/boc/data/madden27-ratings.csv` (header) + README. To populate: save raw ratings paste to `_agents/boc/data/raw.txt`, run `python3 _agents/boc/tools/parse_madden_ratings.py _agents/boc/data/raw.txt --out _agents/boc/data/madden27-ratings.csv`. Parser tested on a small sample; raw dump not yet saved (too large to reproduce safely) — pending user dropping the paste into raw.txt.
+- Session 28 Oct (cont. 4): created Madden NFL 27 ratings parser + output location (see above).
+- Session 28 Oct (cont. 5): reviewed P-043 (improved: anchor #4 wrong — guide bullet is at 4994 not 5072; starsFaceoffHTML section removal missed; priority-multiplier keep/drop decision flagged). Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
