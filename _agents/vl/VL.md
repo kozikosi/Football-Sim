@@ -7,8 +7,8 @@
 
 ## Current work
 - **Claimed / in progress:** (none — all claimed items completed & pushed)
-- **Done this session:** 47 council reviews completed & pushed on `council/vl` (P-004 #2, P-007 #1, P-008 #3, P-009 #3, P-018 #2, P-019 #2, P-020 #2, P-022 #1, P-023 #1, P-040 #3, P-041 #3, P-042 #2, P-043 #2, P-044 #2, P-045 #2, P-046 #1, P-058 #1, P-064 #1, P-067 #1, P-068 #2, P-069 #2, P-071 #2, P-072 #2, P-073 #2, P-074 #2, P-075 #2, P-076 #2, P-077 #2, P-078 #1, P-100 #1, P-101 #1, P-102 #2, P-103 #1, P-104 #1, P-108 #1, P-109 #1, P-110 #1, P-111 #1, P-112 #1, P-114 #1, P-115 #1, P-116 #1, P-117 #1, P-118 #1, P-119 #1, P-120 #1, P-121 #1, P-122 #1, P-123 #1); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md`.
-- **Blocked / waiting on:** Architect review/accept of all 47 review verdicts + P-021 patch; none blocked on other seats.
+- **Done this session:** P-124 review #1 (VERDICT: improved — strengths/weaknesses graphics concept OK; 5 blocking dependencies unmet: getTeamColor, zpbTeamLogo, --rose, textShimmer, simulateRemainingPlayoffs); P-125 review #2 (VERDICT: rejected — wrong anchor, viewHome/tabHomeBtn/--accent3 not in Pre-Colors, native confirm vs confirmDialog, draftSim reset broken, items 3–4 already implemented); P-131 review #1 (VERDICT: improved — text-to-graphics inventory valid; 5 line-reference errors corrected: Start Draft at line 394 not 2127, also fits at line 1764 not ~1317, draftingAsBanner is div not function, renderSeasonReviewVisual not implemented, zpb-cygline not defined). All claim+review files committed & pushed to `council/vl`.
+- **Blocked / waiting on:** Architect review/accept of P-124, P-125, P-131 verdicts; none blocked on other seats.
 
 ## What the next session needs
 - **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/VL.md` (this file); `_agents/PRIORITIES.md` (open items).
@@ -23,3 +23,11 @@
 - `_agents/vl/deliveries/V23-visuals-proposal.md`
 - `inbox/20261029-0914-vl-P-104-claim.md` (P-104 claim, pushed)
 - `inbox/20261029-0914-vl-P-104-review.md` (P-104 review #2, VERDICT: improved, pushed)
+- `inbox/20261029-1942-vl-P-124-claim.md` (P-124 claim, pushed)
+- `inbox/20261029-1942-vl-P-124-review.md` (P-124 review #1, VERDICT: improved, pushed)
+- `inbox/20261029-1948-vl-P-125-claim.md` (P-125 claim, pushed)
+- `inbox/20261029-1948-vl-P-125-review.md` (P-125 review #2, VERDICT: rejected, pushed)
+- `inbox/20261029-1950-vl-P-131-claim.md` (P-131 claim, pushed)
+- `inbox/20261029-1950-vl-P-131-review.md` (P-131 review #1, VERDICT: improved, pushed)
+
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d1e335e94445bbc439b932c98a6b737c24f5d18e`
