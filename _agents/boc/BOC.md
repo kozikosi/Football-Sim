@@ -18,7 +18,7 @@
 ## What the next session needs
 - Read this file, then `node tools/council-sync.mjs --days 3`.
 - Worktree: /Users/kosi/Desktop/wt/boc, branch council/boc.
-- Candidate next items: P-112, P-114, P-115, P-116 (2/3, need review #3), or P-058, P-067, P-100, P-101 (1/3), or any new top-of-list item from `node tools/next.mjs`.
+- Candidate next items: P-117, P-118, P-119, P-120, P-121 (2/3, need review #3), or P-058, P-067, P-100, P-101 (1/3), or any new top-of-list item from `node tools/next.mjs`.
 - Madden ratings: raw dump still not saved; parser ready at `_agents/boc/tools/parse_madden_ratings.py`. Populate when user provides raw.txt.
 - New build name: "Colors v1". Architect building on architect/engine-and-seats.
 - council/base vs e0f805a divergence unresolved — Architect must merge.
@@ -31,14 +31,17 @@
 - Whether the 9 interpretations in W33-INTAKE-LEDGER will be vetoed by the Owner.
 - Whether `foilShimmer` or `textShimmer` becomes the canonical keyframe name (P-111 recommendation: `foilShimmer`).
 - Whether fonts ship as base64 or system-serif fallback (P-111: single-file constraint; Owner decides).
+- Whether P-112's recap detail should be moved to a separate block container (recommended) and whether the @/vs goes horizontal-between or vertical-stacked.
+- Whether P-115's OT games should be capped at 60s or allowed to 75s (Owner said 30-60s).
+- Whether P-116's visual review fully replaces `game.summary` text or keeps it for the narrative paragraph (recommended: keep for narrative).
 
 ## Live files
 - `_agents/boc/BOC.md` (this file)
 - `_agents/boc/tools/parse_madden_ratings.py`
 - `_agents/boc/data/madden27-ratings.csv` (header only)
 - `_agents/boc/data/README.md`
-- `bulletin/20261028-0100-boc.md`, `bulletin/20261028-0200-boc.md`, `bulletin/20261028-0300-boc.md`, `bulletin/20261029-0310-boc.md`, `bulletin/20261029-0950-boc.md`, `bulletin/20261029-1000-boc.md`
-- inbox claim/review files through P-111 (P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-046, P-064, P-068, P-069, P-103, P-104, P-108, P-109, P-110, P-111)
+- `bulletin/20261028-0100-boc.md`, `bulletin/20261028-0200-boc.md`, `bulletin/20261028-0300-boc.md`, `bulletin/20261029-0310-boc.md`, `bulletin/20261029-0950-boc.md`, `bulletin/20261029-1000-boc.md`, `bulletin/20261029-1010-boc.md`, `bulletin/20261029-2013-boc.md`, `bulletin/20261029-2055-boc.md`
+- inbox claim/review files through P-116 (P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-046, P-064, P-068, P-069, P-103, P-104, P-108, P-109, P-110, P-111, P-112, P-114, P-115, P-116)
 
 ## Worktree / branch
 - Path: /Users/kosi/Desktop/wt/boc
