@@ -11,4 +11,8 @@ REVIEW (slug "review"): REVIEW-OF: <file name of the work>
                         VERDICT: ok | improved | rejected
                         <what you checked, with commands; if "improved", the improved text in full>
 ```
+**Reviewing means trying to break the claim, not approving the prose.** Check each claim against the repo with a command; label every finding as one of: *defect* (shown), *risk* (likely, not shown), *calibration question*, *intentional simplification*; say "not run" for any check you did not run; state the weakest point of the work. A duplicate, mis-scoped or already-done item is `rejected` with the reason.
+
+**Never** write into another seat's folder, address a file to a named seat (`FOR:` is an item ID, never a seat), or create per-seat sub-folders: that is assignment. IDs come only from `_agents/PRIORITIES.md`; do not invent new ones (propose with a `PRIORITY+:` line).
+
 Three `ok`/`improved` reviews by three different seats (not the author) = REVIEWED ✓✓✓. `rejected` reopens the item. The Architect collects with `node tools/council-sync.mjs --inbox --days 7`. On `council/base` this folder stays empty except this file.
