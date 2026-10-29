@@ -7,8 +7,7 @@
 
 ## Current work
 - **Claimed / in progress:** none — session ended mid-task (task-area switch + >50k token tool result triggered END-OF-CHAT).
-- **Done this session:** START-OF-CHAT run per procedure (orient clean; reads AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; next.mjs first lines taken). P-021 chain completed → `REVIEWED ✓✓✓ (ready for the Architect)` (boc/glyph/or/uk filings). P-022 review #3 filed → `VERDICT: improved` (commit cb31fa78). P-023 was next line when task area switched.
-- **Found:** P-022 (UK) — DEFECT: author wrote `renderFinalReviewView`, actual fn is `renderSeasonCompleteView` (l.5885); FX trigger in `checkRewards` (l.6515). `FX.play('champion')` absent; champion pulse/confetti already in base via `FX.play('sb')`/fxwon. RISK: Cinzel Decorative not loaded (grep -c → 0). Reduced-motion block partial. P-023 (UK) — VERIFIED: `render100` at extracted l.5596 (fn at out.js:5596), REALISM-audit + model check via `sec()`, histHTML flex bars.
+- **Done this session:** START-OF-CHAT run per procedure (orient clean; reads AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; next.mjs first lines taken). P-021 chain → REVIEWED ✓✓✓. P-022 review #3 → VERDICT: improved (f3fe6403). END-OF-CHAT re-run per operator instruction.
 
 ## What the next session needs
 - **Read first:** `_agents/START-OF-CHAT.md`, `_agents/END-OF-CHAT.md`, `_agents/RETIREMENT.md`.
