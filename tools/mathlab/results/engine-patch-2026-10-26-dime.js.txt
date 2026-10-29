@@ -1,0 +1,38 @@
+// RATING_SPECS (protected) — new composition weights
+const RATING_SPECS = {
+ olRun: {OT1:1.1, OT2:1.03, OG1:1.08, OG2:1.08, C:1.19, TE1:0.47, FB:0.34},
+ olPass: {OT1:1.55, OT2:1.44, OG1:0.9, OG2:0.9, C:1},
+ rb: {RB1:1.86, RB2:0.54},
+ qb: {QB:1},
+ rec: {WR1:1.4, WR2:1.28, WR3:0.74, TE1:0.71, RB1:0.19},
+ passRush: {DE1:2.05, DE2:1.5, DT1:1.12, DT2:0.84, MIKE:0.27, WILL:0.28},
+ frontRun: {DT1:1.68, DT2:1.26, DE1:1.02, DE2:0.94, MIKE:1.07, WILL:0.93, SAM:0.95, SS:0.34, CB1:0.7, CB2:0.51, CB3:0.19, FS:0.48},
+ coverage: {CB1:1.39, CB2:1.06, CB3:0.86, SS:0.69, FS:0.77, MIKE:0.36, WILL:0.37, SAM:0.41},
+ kicker: {K:1},
+};
+// DEF_SPECS (protected)
+const DEF_SPECS = {
+ frontBase: {DT1:1.68, DT2:1.26, DE1:1.02, DE2:0.94, MIKE:1.07, WILL:0.93, SAM:1.36, SS:0.34, CB1:0.7, CB2:0.51, CB3:0.1, FS:0.48},
+ frontNick: {DT1:1.68, DT2:1.26, DE1:1.02, DE2:0.94, MIKE:1.07, WILL:0.93, SAM:0.14, SS:0.52, CB1:0.7, CB2:0.51, CB3:0.19, FS:0.48},
+ covBase: {CB1:1.39, CB2:1.06, CB3:0.24, SS:0.69, FS:0.77, MIKE:0.36, WILL:0.37, SAM:0.55},
+ covNick: {CB1:1.39, CB2:1.06, CB3:0.96, SS:0.69, FS:0.77, MIKE:0.36, WILL:0.37, SAM:0.07},
+ covDime: {CB1:1.39, CB2:1.06, CB3:0.96, DIME:1.07, SS:0.69, FS:0.77, MIKE:0.36},
+};
+// PERS_REC (personnel receiving specs; TE/WR/RB shares follow the same fit)
+const PERS_REC = {
+ '12': {WR1:1.4, WR2:1.28, TE1:0.71, TE2:0.58, RB1:0.19},
+ '13': {WR1:1.4, TE1:0.71, TE2:0.58, TE3:0.5, RB1:0.19},
+ '21': {WR1:1.4, WR2:1.28, TE1:0.71, RB1:0.19, RB2:0.54},
+ '22': {WR1:1.4, TE1:0.71, TE2:0.58, RB1:0.19, RB2:0.54},
+};
+// MC (protected) — changed keys only; every other key keeps its current value
+//   qb: 0.00766 -> 0.00655 | toQb: 0.0172 -> 0.01471 | kick: 0.069 -> 0.04861 | rb: 0.0249 -> 0.02316 | olRun: 0.0516 -> 0.05191 | front: 0.0559 -> 0.05357 | rec: 0.0173 -> 0.01939 | olPass: 0.0149 -> 0.01356 | rush: 0.0138 -> 0.01395 | cov: 0.0283 -> 0.01869
+// NEW terms inside matchupModel (added to structPts; qbRun and wrBlk also to channels.run):
+const QB_RUN_C = 0.0194;   // points per QB OVR point vs league: scrambles and designed runs
+const WR_BLK_C = 0.01147, WR_BLK_W = [1,1,1];   // points per average-WR1..3 OVR point: perimeter blocking and the light-box effect
+const PUNT_PTS = 1.084;   // was 1.6
+// DIME: ROSTER_SLOTS gets 'DIME' (29 slots; TOTAL_ROUNDS follows); SLOT_FAMILY.DIME = 'DIME'; DEF_SPECS.covDime above; NOT a DEF_OPTS package.
+const DIME_W = 0.15;   // = 10% snap share (Owner) x 1.5 passing-down leverage (INFERRED, P-196)
+// in applyDefPlan, after coverage is computed (league AND team, so the baseline is consistent): out.coverage = (1-DIME_W)*out.coverage + DIME_W*D.covDime;
+// in teamRatings: r.qbRunR = slotOvr(sm,"QB"); r.wrBlk = weighted mean of WR1..3 OVR using WR_BLK_W
+// in matchupModel: qbRun = QB_RUN_C*(O0.qbRunR - lg.qbRunR); wrBlk = WR_BLK_C*(O0.wrBlk - lg.wrBlk); structPts += qbRun + wrBlk;
