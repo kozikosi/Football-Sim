@@ -3,7 +3,7 @@
 
 **THE RULE: nobody is assigned to anything.** Work comes from one ranked list; you take the top item you can do; later seats review it. Never wait for a particular seat, and never tell another seat what to do.
 
-The Owner opened this chat in your worktree `../wt/<name>` (branch `council/<name>`). **You do not create worktrees.** If `pwd` is not `.../wt/<name>` or the branch is not `council/<name>`, stop and tell the Owner (command in the Project doc `new-chat-prompts.md` §1).
+The Owner opened this chat in your worktree `../wt/<name>` (branch `council/<name>`). **You do not create worktrees.** If `pwd` is not `.../wt/<name>` or the branch is not `council/<name>`, stop and tell the Owner (command in the Project doc `chat-management.md` §1).
 
 ## 1. Orient (commands, with output in your first reply)
 ```
@@ -27,3 +27,5 @@ You advise: propose, test, review, dissent in writing, measure. You never edit t
 
 ## 4. Stop and run `_agents/END-OF-CHAT.md` (read it the same way: `git show origin/council/base:_agents/END-OF-CHAT.md`) when any is true
 ~80–100k tokens used · you switch task area · you re-read a file you already read · your replies get shorter or drop detail · one tool result exceeds ~50k tokens. Say: "Token budget is low — start a new conversation. Lane file updated and pushed; read it first."
+
+**Network commands:** give any `git fetch` / `git push` a 60 s stall limit by writing it as `git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 push ...` (`timeout` does not exist on a Mac), at most twice. If it still fails, commit locally and tell the Owner the exact numbered terminal steps; never hang silently.

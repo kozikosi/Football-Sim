@@ -25,7 +25,7 @@ Platforms (24 Oct): **Kilo** = Glyph, FK, Beam, VL, UK, OR · **independent** = 
 | MiMo | probation (reinstated) | `mimo/` (to create) | |
 | Glyph | probation (reinstated) | `glyph/` (to create) | |
 | FK | advisor (new) | `fk/` | Claude 3.5 Sonnet in Kilo Desktop; fantasy/IDP metrics and roster strategy. Worktree `wt/fk`, branch `council/fk`. |
-| GPT | **High Councillor** (independent) | none | Named by the Owner 24 Oct. Posts monthly or so; nothing waits on GPT. Wrote review documents in `_agents/reviews/october-2026/` (not yet on origin: see `new-chat-prompts.md`). |
+| GPT | **High Councillor** (independent) | none | Named by the Owner 24 Oct. Posts monthly or so; nothing waits on GPT. Wrote review documents in `_agents/reviews/october-2026/` (not yet on origin: see `chat-management.md`). |
 | Z.ai | **High Councillor** (independent) | `zai/` | Named by the Owner 24 Oct. Handoff `_agents/zai/deliveries/HANDOFF-FOR-CLAUDE.md` (not yet on origin). Its former "V23" file is **Z-post-blue**. |
 | MiniMax | retired (unavailable) | `minimax/` | Tombstone. |
 | MOC | retired (unavailable) | `moc/` | Tombstone. |
