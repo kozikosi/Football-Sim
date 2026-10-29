@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P-020 season review mock (DS)</title>
+<style>
+:root{--bg:#0d0a0e;--text:#f5f0f0;--sub:#c9b8bc;--muted:#8a7a80;--gold:#d4af37;--rose:#f0dce2;--panel:rgba(255,255,255,.04);--panel2:rgba(255,255,255,.06);--line:rgba(255,255,255,.08);--team:#e31837}
+@media (prefers-color-scheme:light){:root{--bg:#fdf5f7;--text:#241a1e;--sub:#5b4a50;--muted:#7a6a70;--gold:#8f6a0e;--rose:#8f6a0e;--panel:rgba(0,0,0,.03);--panel2:rgba(0,0,0,.05);--line:rgba(0,0,0,.09)}}
+*{box-sizing:border-box}html,body{margin:0;max-width:100%;overflow-x:hidden}
+body{background:var(--bg);color:var(--text);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding:16px}
+.mock{font-size:.66rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);border:1px dashed var(--line);border-radius:8px;padding:6px 10px;display:inline-block}
+h1{font-size:1.6rem;margin:14px 0 4px;letter-spacing:.04em}
+h2{font-size:.78rem;text-transform:uppercase;letter-spacing:.11em;color:var(--gold);margin:26px 0 8px;font-weight:800}
+h3{font-size:.7rem;text-transform:uppercase;letter-spacing:.09em;color:var(--sub);margin:0 0 6px;font-weight:700}
+p{margin:0 0 10px;color:var(--sub);font-size:.8rem}
+.shimmer{background:linear-gradient(90deg,var(--gold),var(--rose),var(--text),var(--rose),var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+@media (prefers-reduced-motion:reduce){.shimmer{animation:none;background:none;-webkit-text-fill-color:var(--gold);color:var(--gold)}}
+.confs,.grid,.bracket,.awards,.badges,.col{display:grid;gap:10px}
+.conf{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
+.div{background:var(--panel2);border-radius:12px;padding:10px}
+.div.user{border:1px solid color-mix(in srgb,var(--team) 45%,transparent)}
+.div.user h3{color:var(--gold)}
+table{width:100%;border-collapse:collapse;font-variant-numeric:tabular-nums}
+th,td{text-align:right;padding:3px 2px;font-size:.74rem;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{color:var(--muted);font-weight:600;font-size:.62rem;text-transform:uppercase;letter-spacing:.05em}
+tr.hi td{color:var(--gold);font-weight:700}
+.div.user td,.div.user th{font-size:.84rem;padding:5px 3px}
+td.n{color:var(--gold)}
+.round{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px}
+.game{display:flex;justify-content:space-between;gap:8px;border:1px solid var(--line);border-radius:9px;padding:6px 9px;margin-bottom:6px;font-size:.76rem;background:var(--panel2)}
+.game.you{border-color:var(--gold)}.game .w{color:var(--gold);font-weight:700;font-variant-numeric:tabular-nums}
+.sb{border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
+.aw{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:12px 14px}
+.aw .t{font-size:.62rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.aw .p{font-weight:800;font-size:.95rem;margin:2px 0}.aw .s{font-size:.72rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.b{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+.b .v{font-weight:800;color:var(--gold);font-variant-numeric:tabular-nums;font-size:.95rem}
+.b .w{font-size:.72rem;color:var(--sub);margin-top:2px}
+@media (min-width:640px){body{padding:22px}.grid.afc{grid-template-columns:2fr 1fr;align-items:start}.confs{grid-template-columns:1fr 1fr}.bracket{grid-template-columns:repeat(4,1fr)}.awards,.badges{grid-template-columns:repeat(3,1fr)}}
+</style></head><body>
+<span class="mock">Mock · demonstration numbers only · not product data</span>
+<h1 class="shimmer">SEASON REVIEW</h1>
+<p>Layout only. Sizing of your division (exactly twice the others) is P-161's change; this shows where it sits.</p>
+
+<h2>Conference standings</h2>
+<div class="confs">
+<section class="conf"><h3>AFC</h3>
+<div class="grid afc">
+<div class="div user"><h3>AFC East · your division</h3>
+<table><thead><tr><th>Team</th><th>W-L</th><th>PF/G</th><th>PA/G</th><th>Diff</th></tr></thead><tbody>
+<tr class="hi"><td>Bills</td><td class="n">11-6</td><td class="n">26.0</td><td>24.0</td><td class="n">+2.1</td></tr>
+<tr><td>Dolphins</td><td>9-8</td><td>23.4</td><td>23.9</td><td>−0.5</td></tr>
+<tr><td>Jets</td><td>7-10</td><td>20.8</td><td>24.6</td><td>−3.8</td></tr>
+<tr><td>Patriots</td><td>5-12</td><td>18.2</td><td>26.1</td><td>−7.9</td></tr>
+</tbody></table></div>
+<div class="col">
+<div class="div"><h3>AFC North</h3><table><tbody>
+<tr><td>Ravens</td><td class="n">10-7</td><td>+2.7</td></tr>
+<tr><td>Bengals</td><td>9-8</td><td>+0.5</td></tr>
+<tr><td>Steelers</td><td>8-9</td><td>−1.2</td></tr>
+<tr><td>Browns</td><td>6-11</td><td>−5.6</td></tr>
+</tbody></table></div>
+<div class="div"><h3>AFC South</h3><table><tbody>
+<tr><td>Texans</td><td class="n">10-7</td><td>+2.8</td></tr>
+<tr><td>Colts</td><td>8-9</td><td>−1.2</td></tr>
+<tr><td>Jaguars</td><td>7-10</td><td>−3.3</td></tr>
+<tr><td>Titans</td><td>4-13</td><td>−9.3</td></tr>
+</tbody></table></div>
+<div class="div"><h3>AFC West</h3><table><tbody>
+<tr><td>Chiefs</td><td class="n">12-5</td><td>+6.4</td></tr>
+<tr><td>Chargers</td><td>9-8</td><td>+0.3</td></tr>
+<tr><td>Broncos</td><td>8-9</td><td>−1.6</td></tr>
+<tr><td>Raiders</td><td>5-12</td><td>−7.4</td></tr>
+</tbody></table></div>
+</div></div></section>
+
+<section class="conf"><h3>NFC</h3>
+<div class="grid">
+<div class="div"><h3>NFC East</h3><table><tbody>
+<tr><td>Eagles</td><td class="n">11-6</td><td>+3.7</td></tr>
+<tr><td>Commanders</td><td>9-8</td><td>+0.1</td></tr>
+<tr><td>Cowboys</td><td>7-10</td><td>−3.2</td></tr>
+<tr><td>Giants</td><td>4-13</td><td>−8.4</td></tr>
+</tbody></table></div>
+<div class="div"><h3>NFC North</h3><table><tbody>
+<tr><td>Lions</td><td class="n">12-5</td><td>+5.2</td></tr>
+<tr><td>Packers</td><td>10-7</td><td>+2.3</td></tr>
+<tr><td>Vikings</td><td>8-9</td><td>−1.5</td></tr>
+<tr><td>Bears</td><td>6-11</td><td>−5.3</td></tr>
+</tbody></table></div>
+<div class="div"><h3>NFC South</h3><table><tbody>
+<tr><td>Buccaneers</td><td class="n">10-7</td><td>+1.8</td></tr>
+<tr><td>Falcons</td><td>8-9</td><td>−1.0</td></tr>
+<tr><td>Saints</td><td>6-11</td><td>−5.5</td></tr>
+<tr><td>Panthers</td><td>5-12</td><td>−6.2</td></tr>
+</tbody></table></div>
+<div class="div"><h3>NFC West</h3><table><tbody>
+<tr><td>Rams</td><td class="n">11-6</td><td>+3.6</td></tr>
+<tr><td>49ers</td><td>9-8</td><td>+0.4</td></tr>
+<tr><td>Seahawks</td><td>8-9</td><td>−1.4</td></tr>
+<tr><td>Cardinals</td><td>5-12</td><td>−6.7</td></tr>
+</tbody></table></div>
+</div></section>
+</div>
+
+<h2>Playoff bracket</h2>
+<div class="bracket">
+<div class="round"><h3>Wildcard</h3>
+<div class="game you"><span>#2 Ravens</span><span class="w">27-20</span></div>
+<div class="game"><span>#5 Bills</span><span class="w">24-23</span></div>
+<div class="game"><span>#3 Texans</span><span class="w">21-17</span></div>
+<div class="game"><span>#1 Chiefs</span><span class="w">bye</span></div></div>
+<div class="round"><h3>Divisional</h3>
+<div class="game"><span>#1 Chiefs</span><span class="w">31-24</span></div>
+<div class="game you"><span>#2 Ravens</span><span class="w">23-20</span></div></div>
+<div class="round"><h3>Championship</h3>
+<div class="game you"><span>#1 Chiefs</span><span class="w">26-20</span></div></div>
+<div class="round sb"><h3>Super Bowl</h3>
+<div class="game"><span>Chiefs</span><span class="w">28-25</span></div>
+<div class="game"><span>Lions</span><span class="w">—</span></div></div>
+</div>
+
+<h2>Gold awards</h2>
+<div class="awards">
+<div class="aw"><div class="t">MVP</div><div class="p shimmer">Quarterback</div><div class="s">4,373 yds · 37 TD · 7 INT · 99.3</div></div>
+<div class="aw"><div class="t">Defensive player</div><div class="p shimmer">Edge rusher</div><div class="s">46 sacks · 71 pressures</div></div>
+<div class="aw"><div class="t">Offensive player</div><div class="p shimmer">Running back</div><div class="s">1,584 yds · 14 TD</div></div>
+<div class="aw"><div class="t">Rookie of the year</div><div class="p shimmer">Wide receiver</div><div class="s">1,102 yds · 9 TD</div></div>
+<div class="aw"><div class="t">Defensive rookie</div><div class="p shimmer">Linebacker</div><div class="s">112 tackles · 3 INT</div></div>
+<div class="aw"><div class="t">Coach of the year</div><div class="p shimmer">Your staff</div><div class="s">11-6 · AFC #5</div></div>
+</div>
+
+<h2>Badge with its one-line why</h2>
+<div class="badges">
+<div class="b"><div class="v">+2.1 PPG</div><div class="w">Why: you outscored opponents by 2.1 a game but went 6-5 in one-score games, so the record rested on close games.</div></div>
+<div class="b"><div class="v">#30 run blocking</div><div class="w">Why: the line opened little room, so 92 rushing yards a game came mostly from the back.</div></div>
+<div class="b"><div class="v">#2 sacks, #18 pass rush</div><div class="w">Why: the total flatters the front — most of those sacks came from coverage, not individual wins.</div></div>
+</div>
+</body></html>
