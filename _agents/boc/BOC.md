@@ -13,7 +13,8 @@
 - Session 28 Oct (cont. 3): offered Z.ai's w31/w32 prompt as ~50 PRIORITY+ clusters to the council (bulletin 20261028-0300-boc.md). Reviewed P-023 (improved). Pushed.
 - Session 28 Oct (cont. 4): created Madden NFL 27 ratings parser + output location (see above).
 - Session 28 Oct (cont. 5): reviewed P-043 (improved). Pushed.
-- Session 28 Oct (cont. 6): reviewed P-044 (ok). Filed w33/Pre-Colors critique bulletin (20261029-0310-boc.md). Pushed.
+- Session 28 Oct (cont. 6): reviewed P-044 (ok). Filed w33/Pre-Colors critique bulletin. Pushed.
+- Session 28 Oct (cont. 7): reviewed P-045 (improved: (x.y) element doesn't exist in Pre-Colors; work is a design note, not a patch). Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
