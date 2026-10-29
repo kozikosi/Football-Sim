@@ -1,5 +1,5 @@
 {
- "_source": "Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot.",
+ "_source": "Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot. | REV 3, Owner 28 Oct 17:27 HST: edge->OLB 0; TE->RB 4; P->K 4, K->P 0; QB->FS 6, QB->SS and QB->WR removed; every w33 extra kept (OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB/TE/RB). FS->CB 4, SS->CB 6, WR->RB 4 were already so. Owner: 'All the Extra in w33 rules are good. Follow w33 there.'",
  "roles": [
   "QB",
   "RB",
@@ -21,8 +21,7 @@
  ],
  "flex": {
   "QB": {
-   "WR": 6,
-   "SS": 6,
+   "RB": 6,
    "FS": 6
   },
   "RB": {
@@ -46,7 +45,7 @@
   "TE": {
    "WR": 2,
    "FB": 2,
-   "RB": 6,
+   "RB": 4,
    "C": 6,
    "OG": 6,
    "OT": 6,
@@ -63,30 +62,36 @@
    "OG": 0,
    "C": 0,
    "DT": 4,
-   "FB": 4
+   "FB": 4,
+   "RB": 6
   },
   "OG": {
    "C": 0,
    "OT": 4,
    "DT": 4,
-   "FB": 4
+   "FB": 4,
+   "RB": 6
   },
   "C": {
    "OG": 0,
    "OT": 4,
    "DT": 4,
-   "FB": 4
+   "FB": 4,
+   "RB": 6
   },
   "DT": {
    "OG": 4,
    "C": 4,
    "EDGE": 4,
    "FB": 4,
-   "OT": 6
+   "OT": 6,
+   "ILB": 4,
+   "OLB": 4,
+   "RB": 6
   },
   "EDGE": {
    "DT": 2,
-   "OLB": 2,
+   "OLB": 0,
    "ILB": 4,
    "FB": 4,
    "TE": 6,
@@ -134,20 +139,28 @@
    "DIME": 0,
    "SS": 2,
    "CB": 4,
-   "WR": 4
+   "WR": 4,
+   "ILB": 4,
+   "OLB": 4,
+   "TE": 6,
+   "RB": 6
   },
   "CB": {
    "FS": 0,
    "NICKEL": 0,
    "DIME": 0,
    "SS": 2,
-   "WR": 4
+   "WR": 4,
+   "ILB": 6,
+   "OLB": 4,
+   "TE": 6,
+   "RB": 6
   },
   "K": {
    "P": 0
   },
   "P": {
-   "K": 2
+   "K": 4
   }
  },
  "_notes": {

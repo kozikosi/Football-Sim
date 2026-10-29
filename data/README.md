@@ -1,0 +1,5 @@
+# data/ — Madden NFL 27 ratings (Week 6) as pasted by the Owner, 28 Oct 2026
+- `madden27-raw-paste.txt`: the Owner's paste, untouched (it also holds the Owner's flex notes at the top; the file is the source of record).
+- `madden27-ratings.csv`: `name,pos,team,ovr,spd,str`, made by `node tools/data/parse-madden.mjs data/madden27-raw-paste.txt data/madden27-ratings.csv` (exit 0 = every block parsed). AGI, COD, INJ, AWR and the ability tag are dropped on purpose (Owner: the browser shows only OVR, STR, SPD).
+- **Count: 1,880 players parsed, the page says 1,941 (61 short, VERIFIED by counting blocks in the paste: 1,960 name pairs minus 80 navigation lines = 1,880).** The paste itself lacks them; position counts: WR 198, QB 89, TE 132, HB 122, FB 15, K 31, P 33, LS 32, CB 192, DT 193, LEDG 94, REDG 85, LT 70, LG 67, C 67, RG 70, RT 60, MIKE 76, WILL 77, SAM 16, SS 82, FS 79. Lowest OVR 54, 32 teams, 53–65 players each. Footnote numbers in the paste (1-6, 11) are dropped; real ratings are never below 10.
+- Positions as the page uses them: HB, LEDG/REDG, LT/LG/C/RG/RT, MIKE/WILL/SAM, LS. The engine maps them in the data loader; nothing here is renamed.
