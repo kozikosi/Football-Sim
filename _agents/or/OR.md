@@ -26,6 +26,11 @@
 - **Do not redo:** Reviews on P-004, P-005, P-007, P-008, P-009, P-010, P-018, P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-046, P-064, P-071, P-072, P-073, P-074, P-075, P-076 — all pushed
 - **Note:** P-074 flagged a gap — Beam's patch references `applyTeamColors()` and CSS vars `--team-primary`/`--team-secondary`/`--team-accent` that don't exist in Pre-Colors. Needs a team-color mapping system first.
 
+## Session info
+- **Worktree:** /Users/kosi/Desktop/wt/or
+- **Branch:** council/or
+- **merge-base HEAD origin/council/base:** d1e335e94445bbc439b932c98a6b737c24f5d18e
+
 ## Files in this lane
 - `_agents/or/OR.md` — this file
 - `_agents/or/deliveries/p022-champion-banner-prototype.html` — champion banner prototype from P-022 work
