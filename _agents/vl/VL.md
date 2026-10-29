@@ -7,8 +7,8 @@
 
 ## Current work
 - **Claimed / in progress:** (none — all claimed items completed & pushed)
-- **Done this session:** 24 council reviews completed & pushed on `council/vl` (P-004 #2, P-007 #1, P-008 #3, P-009 #3, P-018 #2, P-019 #2, P-020 #2, P-022 #1, P-023 #1, P-040 #3, P-041 #3, P-042 #2, P-043 #2, P-044 #2, P-045 #2, P-046 #1, P-058 #1, P-064 #1, P-067 #1, P-068 #2, P-069 #2, P-071 #2, P-072 #2, P-073 #2, P-074 #2, P-075 #2, P-076 #2, P-077 #2, P-078 #1, P-100 #1, P-101 #1, P-102 #2, P-103 #1, P-104 #1, P-108 #1); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md` (graphical playoff preview with matchup header, stat bars, chips, key players, win-prob bar; bye-week panel replaces the single dsub line at l.3975).
-- **Blocked / waiting on:** Architect review/accept of all 14 review verdicts + P-021 patch; none blocked on other seats.
+- **Done this session:** 47 council reviews completed & pushed on `council/vl` (P-004 #2, P-007 #1, P-008 #3, P-009 #3, P-018 #2, P-019 #2, P-020 #2, P-022 #1, P-023 #1, P-040 #3, P-041 #3, P-042 #2, P-043 #2, P-044 #2, P-045 #2, P-046 #1, P-058 #1, P-064 #1, P-067 #1, P-068 #2, P-069 #2, P-071 #2, P-072 #2, P-073 #2, P-074 #2, P-075 #2, P-076 #2, P-077 #2, P-078 #1, P-100 #1, P-101 #1, P-102 #2, P-103 #1, P-104 #1, P-108 #1, P-109 #1, P-110 #1, P-111 #1, P-112 #1, P-114 #1, P-115 #1, P-116 #1, P-117 #1, P-118 #1, P-119 #1, P-120 #1, P-121 #1, P-122 #1, P-123 #1); plus **P-021 playoff preview redesign + bye-week preview** — prototype at `_agents/vl/deliveries/p021-playoff-preview-prototype.html` and exact patch proposal in `inbox/20261026-1500-vl-P-021-review.md`.
+- **Blocked / waiting on:** Architect review/accept of all 47 review verdicts + P-021 patch; none blocked on other seats.
 
 ## What the next session needs
 - **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/VL.md` (this file); `_agents/PRIORITIES.md` (open items).
@@ -31,6 +31,7 @@
 - `_agents/vl/deliveries/design-tokens.css`
 - `_agents/vl/deliveries/PLUGIN-KIT.md`
 - `_agents/vl/deliveries/V23-visuals-proposal.md`
+- `_agents/vl/deliveries/p021-playoff-preview-prototype.html`
 - `inbox/20261024-2155-vl-queue2-lint.md`
 - `inbox/20261024-2235-vl-queue5-header.md`
 - `inbox/20261024-2305-vl-queue6-ranking.md`
@@ -83,7 +84,6 @@
 - `inbox/20261026-1435-vl-P-072-review.md`
 - `inbox/20261026-1500-vl-P-021-claim.md`
 - `inbox/20261026-1500-vl-P-021-review.md`
-- `_agents/vl/deliveries/p021-playoff-preview-prototype.html`
 - `inbox/20261026-1505-vl-P-019-claim.md`
 - `inbox/20261026-1505-vl-P-019-review.md`
 - `inbox/20261026-1510-vl-P-020-claim.md`
@@ -122,3 +122,31 @@
 - `inbox/20261026-1590-vl-P-104-review.md`
 - `inbox/20261026-1595-vl-P-108-claim.md`
 - `inbox/20261026-1595-vl-P-108-review.md`
+- `inbox/20261028-2225-vl-P-109-claim.md`
+- `inbox/20261028-2225-vl-P-109-review.md`
+- `inbox/20261028-2235-vl-P-110-claim.md`
+- `inbox/20261028-2235-vl-P-110-review.md`
+- `inbox/20261028-2245-vl-P-111-claim.md`
+- `inbox/20261028-2245-vl-P-111-review.md`
+- `inbox/20261028-2250-vl-P-112-claim.md`
+- `inbox/20261028-2250-vl-P-112-review.md`
+- `inbox/20261028-2255-vl-P-114-claim.md`
+- `inbox/20261028-2255-vl-P-114-review.md`
+- `inbox/20261028-2300-vl-P-115-claim.md`
+- `inbox/20261028-2300-vl-P-115-review.md`
+- `inbox/20261028-2305-vl-P-116-claim.md`
+- `inbox/20261028-2305-vl-P-116-review.md`
+- `inbox/20261028-2310-vl-P-117-claim.md`
+- `inbox/20261028-2310-vl-P-117-review.md`
+- `inbox/20261028-2315-vl-P-118-claim.md`
+- `inbox/20261028-2315-vl-P-118-review.md`
+- `inbox/20261028-2320-vl-P-119-claim.md`
+- `inbox/20261028-2320-vl-P-119-review.md`
+- `inbox/20261028-2325-vl-P-120-claim.md`
+- `inbox/20261028-2325-vl-P-120-review.md`
+- `inbox/20261028-2330-vl-P-121-claim.md`
+- `inbox/20261028-2330-vl-P-121-review.md`
+- `inbox/20261028-2335-vl-P-122-claim.md`
+- `inbox/20261028-2335-vl-P-122-review.md`
+- `inbox/20261028-2340-vl-P-123-claim.md`
+- `inbox/20261028-2340-vl-P-123-review.md`
