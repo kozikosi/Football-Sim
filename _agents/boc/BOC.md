@@ -19,7 +19,8 @@
 - Session 28 Oct (cont. 9): reviewed P-064 (ok). Pushed.
 - Session 28 Oct (cont. 10): reviewed P-068 (ok). Pushed.
 - Session 28 Oct (cont. 11): reviewed P-069 (improved). Pushed.
-- Session 28 Oct (cont. 12): reviewed P-103 (improved: anchor off by 447, Cinzel missing). Pushed.
+- Session 28 Oct (cont. 12): reviewed P-103 (improved). Pushed.
+- Session 28 Oct (cont. 13): reviewed P-104 (improved: back-to-season fix good, Cinzel missing). Pushed.
 - Key findings this session:
   - P-030: Math.random count is 56 occurrences on 38 lines (Beam reported 38). Corrected inventory pushed.
   - P-032: "ILB2 (second MIKE)" slot does not exist (roster has MIKE/WILL/SAM/LB4); group averaging is position-based, not slot-based; DEFENSE n stays 13 (Beam said 12).
