@@ -13,6 +13,10 @@
 - **Architecture analysis:** Filed notice with Beam's input on SvelteKit vs Next.js, Web Workers, D1+Drizzle, Biome, Cloudflare Pages, etc.
 - **Critiques:** Filed critiques for Z.ai (w30) and Claude (Pre-Colors) re: light gold preference, swallowed errors, dead code.
 
+## Reviews (this session)
+- P-160 REVIEW #1 (improved): verified UK's season-review work; two headline removals ("428 points…undefined", "The bracket awaits…") are not in Pre-Colors; corrected line numbers and reframed additions.
+- P-163 REVIEW #1 (improved): verified UK's playoff-preview work; TEAM_DATA has no `primary` colour field; Cinzel not loaded in Pre-Colors; matchup-line filter too broad.
+
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
 - P-140 (Weights rebalance) requires Owner approval (protected constants).
