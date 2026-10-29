@@ -8,7 +8,7 @@
 
 ---
 
-## Session Work Summary (2026-10-26)
+## Session Work Summary (2026-10-28)
 
 ### Reviews Completed (All Pushed to `council/uk`)
 
@@ -36,10 +36,12 @@
 | **P-125** | #1 | **ok** | "Start A New Draft" button at bottom of draft board: shimmering pill style, confirm dialog "Are you sure? Your current draft will be erased.", returns home. Update existing buttons to match style. |
 | **P-153** | #1 | **improved** | Draft board controls: 22 sub-items. 1-14 covered. 15: sort menu words (no "Sort:"). 16: team logo filter (needs implementation). 17: search "Search" right-aligned. 18: Table/Cards toggle works. 19: overflow-x:auto mobile only. 20: all/none bubbles as graphic icons. 21: "↶ Undo". 22: Priority broken — `prioOf` returns 1, `PRIO_MULT` dead code, `score = pri`. Fix: remove dead code, simplify. |
 | **P-183** | #1 | **improved** | Sitewide Style Law: 18 rules (no white text, integers only, Cinzel Decorative, fade titles, ALL CAPS buttons, foil shimmer 90+, hover position names, banned phrases, no blue panels, no orange, no emojis, open/airy glass, value here background only, team colours on team elements only, no permanent green, reduced motion, 390px floor, shimmer text emphasis). Conflicts flagged for Owner. |
+| **P-160** | #1 | **WORK** | Season review copy and metrics cleanup. Removed "Team rankings are regular-season only...", "428 points for...undefined", "The bracket awaits...", long paragraph. Updated header to "SEASON REVIEW" once. QUARTERBACK PLAY only, RUN BLOCKING/PASS PROTECTION names, QB first, depth-chart order. Metrics clickable with fading notes. Integers only. 2-Pt Conversions "x of y". "IN DA CLUTCH" section. INDIVIDUAL SKILL, SUBPAR BLOCKING, EXCELLENT COVERAGE labels. Top-right "20-0?" + "Try again to go 20-0?" button. |
+| **P-166** | #1 | **CLAIM** | Game animation log lines: panel 50% larger, more space between quarters, no lines, palette text, format "<team> <play> <yds>", shimmering TD/FG tags, score "x - y", turnovers as "x int y", "x fum", "y FF", "z FR", "x strips y & x recovers", always with time, never print "Touchdown" or "Turnover", fix glitches. |
 
 ### GitHub Pushes
 
-- All 23 reviews pushed to `council/uk` branch (commits: `61076002`, `ea3b2255`, `8c7ab9a0`, `4a6be338`, `6e03ccc6`, `8384c02d`, `dbb616e8`, `f176125d`, `c31b4612`, `d2a6f541`, and earlier)
+- All reviews and work pushed to `council/uk` branch (commits: `b6520bcb`, `b9144591`, `8c7ab9a0`, `4a6be338`, `6e03ccc6`, `8384c02d`, `dbb616e8`, `f176125d`, `c31b4612`, `d2a6f541`, and earlier)
 
 ---
 
@@ -51,6 +53,8 @@
 - **P-153** Priority fix: `prioOf(g)` always returns 1 (stars removed), `PRIO_MULT[1] = 1`, so `score = pri`. Remove dead code.
 - **P-183** Style Law: 18 canonical rules. Conflicts with current code flagged (warm white vs cool white, blue panels vs rose/gold, green vs gold, Cinzel not loaded).
 - **z-post-blue draft board**: Race condition in `setActiveTab` vs async `renderDraftLive` (from earlier session) — needs Architect triage.
+- **P-160**: Season review text cleanup spec written — remove "Team rankings...", "428 points...undefined", "The bracket awaits...", long paragraph; fix headers, metrics, integers, 2-Pt format, "IN DA CLUTCH", "20-0?" panel.
+- **P-166**: Game animation log lines format spec claimed — panel 50% larger, palette text, format spec, glitch fixes.
 
 ---
 
@@ -72,7 +76,7 @@
 
 ## Next Session Should Read
 
-1. **`inbox/20261026-1312-uk-P-019-review.md` through `20261026-1326-uk-P-007-review.md`** — This session's 23 reviews
+1. **`inbox/20261028-2244-uk-P-160-work.md` through `20261028-2244-uk-P-166-claim.md`** — This session's work
 2. **`_agents/PRIORITIES.md`** — Master priority list
 3. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
 
