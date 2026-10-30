@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beamer V1 — 20-0</title>
+<style>
+:root{--bg:#0d0a0e;--panel:rgba(255,255,255,.04);--panel2:rgba(255,255,255,.06);--text:#f5f0f0;--sub:#c9b8bc;--muted:#8a7a80;--border:rgba(255,255,255,.08);--border-hover:rgba(255,255,255,.16);--gold:#d4af37;--rose:#f0dce2;--team:#e31837;--team2:#ffb81c;--good:#3ecf8e;--bad:#ff6b6b;--motion:250ms ease;--ease:cubic-bezier(.34,1.56,.64,1)}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%);background-attachment:fixed;color:var(--text);padding:16px;line-height:1.5;min-height:100vh}
+.shimmer{background:linear-gradient(90deg,var(--gold) 0%,var(--rose) 25%,#fff 50%,var(--rose) 75%,var(--gold) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+h1{font-size:1.5rem;margin:0 0 2px;display:inline-block}
+.sub{color:var(--sub);font-size:.8rem;margin:0 0 14px}
+.card{background:var(--panel);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:16px;padding:16px;margin-bottom:12px;box-shadow:0 4px 24px rgba(0,0,0,.25);transition:transform var(--motion),border-color var(--motion)}
+.card:hover{border-color:var(--border-hover);transform:translateY(-1px)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.picker{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.pbtn{padding:5px 10px;border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:6px;cursor:pointer;font-size:.75rem;transition:all var(--motion)}
+.pbtn.active{border-color:var(--gold);color:var(--gold);box-shadow:0 0 0 2px var(--gold)}
+.board{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.pcard{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px;border-left:3px solid var(--team);transition:all var(--motion)}
+.pcard:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.pcard .name{font-weight:700;font-size:.85rem;margin-bottom:2px}
+.pcard .meta{font-size:.7rem;color:var(--sub);margin-bottom:6px}
+.pcard .ovr{float:right;font-weight:800;font-size:.85rem;color:var(--gold)}
+.pcard .pos{display:inline-block;font-size:.65rem;padding:1px 6px;border-radius:4px;background:rgba(212,175,55,.12);color:var(--gold);margin-right:4px}
+.pcard.shimmer .name{animation:sh 2.5s ease-in-out infinite;background:linear-gradient(90deg,var(--gold),var(--rose),#fff,var(--rose),var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.stat{display:flex;align-items:center;gap:10px;background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:8px 10px}
+.stat .ovr{font-size:1.2rem;font-weight:800;width:36px;text-align:center;color:var(--gold)}
+.stat .bar{flex:1;height:6px;background:rgba(255,255,255,.05);border-radius:3px;overflow:hidden}
+.stat .fill{height:100%;border-radius:3px;transition:width var(--motion)}
+.stat .lbl{font-size:.7rem;color:var(--sub)}
+.banner{position:relative;overflow:hidden;border-radius:16px;background:linear-gradient(135deg,#8a6a10,#b8941f,#8a6a10);background-size:200% auto;color:#fff;text-align:center;padding:28px 20px;margin:12px 0;box-shadow:0 20px 50px -8px rgba(138,106,16,.25);animation:sh 3s ease-in-out infinite}
+.banner h2{margin:0 0 4px;font-size:1.5rem;text-transform:uppercase;letter-spacing:.05em;color:#fff}
+.banner p{margin:0;font-size:.95rem;opacity:.95;color:#fff}
+.sparkle{position:absolute;width:5px;height:5px;background:var(--gold);border-radius:50%;animation:sp 2s ease-in-out infinite;pointer-events:none}
+@keyframes sp{0%,100%{opacity:.6;transform:scale(1)}50%{opacity:1;transform:scale(1.6)}}
+.score{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}
+.sbox{flex:1;min-width:120px;border-radius:12px;padding:12px 14px;color:#fff}
+.sbox.user{background:linear-gradient(135deg,var(--team),var(--team2))}
+.sbox.opp{background:linear-gradient(135deg,#003594,#869397)}
+.sbox .tn{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.9}
+.sbox .sc{font-size:1.8rem;font-weight:900}
+.sbox .dt{margin-top:4px;font-size:.7rem;opacity:.9}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.tab{padding:6px 12px;border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:6px;cursor:pointer;font-size:.75rem}
+.tab.active{border-color:var(--gold);color:var(--gold)}
+@media(prefers-reduced-motion:reduce){.shimmer,.banner,.sparkle{animation:none!important}}
+@media(max-width:480px){.board{grid-template-columns:repeat(auto-fill,minmax(130px,1fr))}}
+</style></head><body>
+<h1 class="shimmer">20-0</h1><p class="sub">Beamer V1 — creative prototype (rose/gold/white, team-themed, foil shimmer)</p>
+
+<div class="picker"><strong style="color:var(--sub);font-size:.75rem">Team theming:</strong>
+<button class="pbtn active" onclick="setTeam('#e31837','#ffb81c')">Chiefs</button>
+<button class="pbtn" onclick="setTeam('#002244','#69be28')">Seahawks</button>
+<button class="pbtn" onclick="setTeam('#003594','#869397')">Cowboys</button>
+</div>
+
+<div class="card">
+<div class="row" style="justify-content:space-between;margin-bottom:8px">
+<span style="font-weight:700;font-size:.9rem">Draft Board — Round 12</span>
+<span class="shimmer" style="font-size:.75rem">Can you go 20-0?</span>
+</div>
+<div class="board">
+<div class="pcard" style="--team:#e31837"><div class="name shimmer">Patrick Mahomes</div><div class="meta"><span class="pos">QB</span>KC · 99 OVR</div><div class="ovr">99</div></div>
+<div class="pcard" style="--team:#002244"><div class="name">DK Metcalf</div><div class="meta"><span class="pos">WR1</span>SEA · 91 OVR</div><div class="ovr">91</div></div>
+<div class="pcard" style="--team:#003594"><div class="name">CeeDee Lamb</div><div class="meta"><span class="pos">WR2</span>DAL · 96 OVR</div><div class="ovr">96</div></div>
+<div class="pcard" style="--team:#e31837"><div class="name">Travis Kelce</div><div class="meta"><span class="pos">TE1</span>KC · 91 OVR</div><div class="ovr">91</div></div>
+<div class="pcard" style="--team:#002244"><div class="name">Devon Witherspoon</div><div class="meta"><span class="pos">CB1</span>SEA · 88 OVR</div><div class="ovr">88</div></div>
+<div class="pcard" style="--team:#003594"><div class="name">Micah Parsons</div><div class="meta"><span class="pos">DE1</span>DAL · 96 OVR</div><div class="ovr">96</div></div>
+</div></div>
+
+<div class="card">
+<div class="row" style="justify-content:space-between;margin-bottom:8px">
+<span style="font-weight:700;font-size:.9rem">Game Preview — KC vs SEA</span>
+<span style="font-size:.7rem;color:var(--sub)">Week 14 · Home</span>
+</div>
+<div class="score">
+<div class="sbox user"><div class="tn">Chiefs</div><div class="sc">24</div><div class="dt">+3.2 WINS · 9-4</div></div>
+<div class="sbox opp"><div class="tn">Seahawks</div><div class="sc">21</div><div class="dt">+1.8 WINS · 8-5</div></div>
+</div>
+<div class="stat"><div class="ovr">91</div><div style="flex:1"><div class="lbl">QB Matchup</div><div class="bar"><div class="fill" style="width:91%;background:var(--gold)"></div></div></div></div>
+<div class="stat"><div class="ovr">88</div><div style="flex:1"><div class="lbl">Secondary</div><div class="bar"><div class="fill" style="width:88%;background:var(--team)"></div></div></div></div>
+</div>
+
+<div class="tabs">
+<button class="tab active">Season</button><button class="tab">Playoffs</button><button class="tab">Champion</button><button class="tab">100 Seasons</button>
+</div>
+
+<div class="banner">
+<span class="sparkle" style="top:18%;left:12%"></span>
+<span class="sparkle" style="top:70%;left:85%;animation-delay:.6s"></span>
+<h2>Super Bowl Champions!</h2>
+<p>The <span class="shimmer">Kansas City Chiefs</span> are Super Bowl champions!</p>
+</div>
+
+<div class="card">
+<div style="font-weight:700;font-size:.85rem;margin-bottom:8px">Key Players (85+)</div>
+<div class="stat"><div class="ovr">99</div><div style="flex:1"><div class="lbl shimmer">Patrick Mahomes · QB</div><div class="bar"><div class="fill" style="width:99%;background:var(--gold)"></div></div></div></div>
+<div class="stat"><div class="ovr">96</div><div style="flex:1"><div class="lbl shimmer">CeeDee Lamb · WR1</div><div class="bar"><div class="fill" style="width:96%;background:var(--team)"></div></div></div></div>
+</div>
+
+<p style="color:var(--muted);font-size:.7rem;text-align:center;margin-top:14px">Beamer V1 prototype · rose/gold/white · team-themed · reduced-motion respected · single-file</p>
+<script>
+function setTeam(t,t2){document.documentElement.style.setProperty('--team',t);document.documentElement.style.setProperty('--team2',t2);document.querySelectorAll('.pbtn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active')}
+</script></body></html>
