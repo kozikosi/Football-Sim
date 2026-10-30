@@ -1,0 +1,11 @@
+:root {
+  --bg:#0d0a0e; --panel:rgba(255,255,255,0.04); --panel2:rgba(255,255,255,0.06);
+  --text:#f5f0f0; --sub:#c9b8bc; --muted:#8a7a80;
+  --border:rgba(255,255,255,0.08); --border-hover:rgba(255,255,255,0.16);
+  --gold:#d4af37; --rose:#f0dce2; --good:#3ecf8e; --bad:#ff6b6b;
+  --motion:250ms ease; --ease:cubic-bezier(0.34,1.56,0.64,1);
+  --team:var(--gold); --team2:var(--rose);
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif; background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%); background-attachment:fixed; color:var(--text); }
+@media (prefers-reduced-motion: reduce) { * { animation:none !important; transition:none !important; } }
