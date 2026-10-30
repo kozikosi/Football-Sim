@@ -5,39 +5,75 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>VLC V1 — NFL Draft Simulator</title>
 <style>
-  /* ============ VLC V1 DESIGN TOKENS ============ */
+  /* ============ VLC V1 — FLOATY, LESS BOXY ============ */
   :root {
-    --vl-bg: #0b0c10;
-    --vl-panel: #12141b;
-    --vl-panel2: #191c27;
+    --vl-bg: #0a0b10;
+    --vl-panel: rgba(20, 22, 30, 0.6);
+    --vl-panel2: rgba(28, 31, 42, 0.5);
     --vl-ink: #e8eaf2;
     --vl-sub: #9aa3b2;
-    --vl-border: #262b38;
+    --vl-border: rgba(255, 255, 255, 0.08);
     --vl-gold: #c9a227;
-    --vl-gold-soft: rgba(201, 162, 39, 0.14);
+    --vl-gold-soft: rgba(201, 162, 39, 0.12);
     --vl-accent: #7dd3fc;
-    --vl-accent-soft: rgba(125, 211, 252, 0.12);
-    --vl-ink-accent: #e8eaf2;
+    --vl-accent-soft: rgba(125, 211, 252, 0.10);
     --vl-success: #34d399;
     --vl-danger: #f87171;
     --vl-warn: #fbbf24;
-    --vl-radius: 14px;
-    --vl-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
-    --vl-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-radius: 20px;
+    --vl-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6);
+    --vl-transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --vl-font-display: 'Cinzel Decorative', 'Bodoni Moda', Georgia, serif;
     --vl-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    --vl-gold-glow: rgba(201, 162, 39, 0.35);
-    --vl-accent-glow: rgba(125, 211, 252, 0.30);
+    --vl-gold-glow: rgba(201, 162, 39, 0.30);
+    --vl-accent-glow: rgba(125, 211, 252, 0.25);
+    --vl-float-dur: 6s;
   }
 
-  /* Team takeover: Kansas City Chiefs example */
+  /* Team takeover: each team remaps the whole site */
   [data-team="kc"] {
     --vl-accent: #e31837;
-    --vl-accent-soft: rgba(227, 24, 55, 0.12);
-    --vl-ink-accent: #ff8c1f;
+    --vl-accent-soft: rgba(227, 24, 55, 0.10);
     --vl-gold: #ff8c1f;
-    --vl-gold-soft: rgba(255, 140, 31, 0.14);
-    --vl-gold-glow: rgba(255, 140, 31, 0.35);
+    --vl-gold-soft: rgba(255, 140, 31, 0.12);
+    --vl-gold-glow: rgba(255, 140, 31, 0.30);
+    --vl-tint: rgba(227, 24, 55, 0.16);
+    --vl-tint-sub: rgba(227, 24, 55, 0.06);
+  }
+  [data-team="sf"] {
+    --vl-accent: #aa0000;
+    --vl-gold: #b2001d;
+    --vl-gold-glow: rgba(170, 0, 0, 0.30);
+    --vl-tint: rgba(170, 0, 0, 0.16);
+    --vl-tint-sub: rgba(170, 0, 0, 0.06);
+  }
+  [data-team="bal"] {
+    --vl-accent: #241773;
+    --vl-gold: #97c32e;
+    --vl-gold-glow: rgba(151, 195, 46, 0.30);
+    --vl-tint: rgba(36, 23, 115, 0.16);
+    --vl-tint-sub: rgba(36, 23, 115, 0.06);
+  }
+  [data-team="buf"] {
+    --vl-accent: #00338d;
+    --vl-gold: #c60c30;
+    --vl-gold-glow: rgba(198, 12, 48, 0.30);
+    --vl-tint: rgba(0, 51, 141, 0.16);
+    --vl-tint-sub: rgba(0, 51, 141, 0.06);
+  }
+  [data-team="det"] {
+    --vl-accent: #0b6e4f;
+    --vl-gold: #b0b7bd;
+    --vl-gold-glow: rgba(176, 183, 189, 0.30);
+    --vl-tint: rgba(11, 110, 79, 0.16);
+    --vl-tint-sub: rgba(11, 110, 79, 0.06);
+  }
+  [data-team="phi"] {
+    --vl-accent: #004c54;
+    --vl-gold: #a5aca7;
+    --vl-gold-glow: rgba(165, 172, 167, 0.30);
+    --vl-tint: rgba(0, 76, 84, 0.16);
+    --vl-tint-sub: rgba(0, 76, 84, 0.06);
   }
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,7 +86,10 @@
     margin: 0;
     padding: 0;
     font-family: var(--vl-font-body);
-    background: var(--vl-bg);
+    background:
+      radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--vl-accent-soft) 70%, transparent), transparent 40%),
+      radial-gradient(circle at 85% 80%, color-mix(in srgb, var(--vl-gold-soft) 50%, transparent), transparent 40%),
+      var(--vl-bg);
     color: var(--vl-ink);
     min-height: 100vh;
     overflow-x: hidden;
@@ -58,7 +97,7 @@
 
   /* ============ ANIMATIONS ============ */
   @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(12px); }
+    from { opacity: 0; transform: translateY(14px); }
     to { opacity: 1; transform: translateY(0); }
   }
   @keyframes shimmer {
@@ -66,15 +105,27 @@
     100% { transform: translateX(100%); }
   }
   @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.5; }
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--vl-gold-glow); }
+    50% { opacity: 0.7; box-shadow: 0 0 16px var(--vl-gold-glow); }
   }
   @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-6px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    33% { transform: translateY(-8px) rotate(1deg); }
+    66% { transform: translateY(-4px) rotate(-1deg); }
+  }
+  @keyframes drift {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(12px, -12px); }
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes glowIn {
+    from { opacity: 0; filter: blur(12px); transform: scale(0.95); }
+    to { opacity: 1; filter: blur(0); transform: scale(1); }
   }
 
-  .fade-in { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .fade-in { animation: fadeInUp 0.7s cubic-bezier(0.23, 1, 0.32, 1) both; }
+  .float { animation: float var(--vl-float-dur) ease-in-out infinite; }
+  .drift { animation: drift 5s ease-in-out infinite; }
   .shimmer-text {
     position: relative;
     overflow: hidden;
@@ -86,61 +137,65 @@
     top: 0; left: 0; width: 100%; height: 100%;
     background: linear-gradient(90deg, transparent, var(--vl-gold), transparent);
     transform: translateX(-100%);
-    animation: shimmer 2.5s infinite;
+    animation: shimmer 3s infinite;
     pointer-events: none;
   }
 
-  /* ============ LAYOUT ============ */
+  /* ============ LAYOUT — FLOATY, LESS BOXY ============ */
   .shell {
-    max-width: 1000px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 16px;
+    padding: 0 20px;
   }
 
   header {
     position: sticky;
     top: 0;
-    z-index: 50;
-    background: color-mix(in srgb, var(--vl-bg) 85%, transparent);
-    backdrop-filter: blur(12px);
+    z-index: 60;
+    background: color-mix(in srgb, var(--vl-bg) 70%, transparent);
+    backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--vl-border);
+    border-image: linear-gradient(90deg, transparent, var(--vl-accent-soft), transparent) 1;
   }
   .bar {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 56px;
-    padding: 0 16px;
+    height: 60px;
+    padding: 0 20px;
   }
   .wordmark {
     font-family: var(--vl-font-display);
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 700;
-    letter-spacing: 0.02em;
+    letter-spacing: -0.01em;
     color: var(--vl-ink);
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
+    float: var(--vl-float-dur);
   }
   .wordmark .vlc {
     color: var(--vl-gold);
+    filter: drop-shadow(0 0 8px var(--vl-gold-glow));
   }
   .bar-actions {
     display: flex;
     gap: 10px;
+    align-items: center;
   }
 
-  /* ============ BUTTONS ============ */
+  /* ============ BUTTONS — PILL SHAPES ============ */
   .btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    height: 40px;
-    padding: 0 18px;
+    gap: 8px;
+    height: 44px;
+    padding: 0 24px;
     border-radius: 999px;
     border: 1px solid var(--vl-border);
-    background: var(--vl-panel);
+    background: color-mix(in srgb, var(--vl-panel) 80%, transparent);
     color: var(--vl-ink);
     font-family: var(--vl-font-body);
     font-size: 0.875rem;
@@ -148,8 +203,14 @@
     cursor: pointer;
     transition: var(--vl-transition);
     white-space: nowrap;
+    backdrop-filter: blur(8px);
   }
-  .btn:hover { border-color: var(--vl-gold); color: var(--vl-gold); }
+  .btn:hover {
+    border-color: var(--vl-gold);
+    color: var(--vl-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
+  }
   .btn-primary {
     background: linear-gradient(100deg, var(--vl-gold), #b8941f 55%, var(--vl-gold));
     color: #2a1e0c;
@@ -158,373 +219,576 @@
     box-shadow: 0 0 0 0 var(--vl-gold-glow);
     animation: pulse 2.5s infinite;
   }
-  .btn-primary:hover { box-shadow: 0 0 12px var(--vl-gold-glow); transform: translateY(-1px); }
-  .btn-ghost { background: transparent; }
-  .btn-ghost:hover { background: var(--vl-panel2); }
+  .btn-primary:hover {
+    box-shadow: 0 0 20px var(--vl-gold-glow);
+    transform: translateY(-2px);
+  }
+  .btn-ghost {
+    background: color-mix(in srgb, var(--vl-panel) 70%, transparent);
+  }
+  .btn-ghost:hover {
+    background: color-mix(in srgb, var(--vl-panel2) 80%, transparent);
+    border-color: var(--vl-gold);
+  }
 
-  /* ============ HOME SCREEN ============ */
+  /* ============ HOME SCREEN — FLOATY HERO ============ */
   .home {
-    padding: 40px 16px 80px;
+    padding: 48px 20px 96px;
     text-align: center;
-  }
-  .hero-title {
-    font-family: var(--vl-font-display);
-    font-size: clamp(2rem, 6vw, 3.5rem);
-    font-weight: 700;
-    color: var(--vl-ink);
-    margin-bottom: 8px;
-    letter-spacing: -0.02em;
-  }
-  .hero-sub {
-    color: var(--vl-sub);
-    font-size: 1.125rem;
-    margin-bottom: 32px;
-    max-width: 560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  .hero-actions {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-  .team-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-    max-width: 720px;
-    margin: 0 auto;
-  }
-  .team-card {
-    aspect-ratio: 1;
-    background: var(--vl-panel);
-    border: 1px solid var(--vl-border);
-    border-radius: var(--vl-radius);
-    cursor: pointer;
-    transition: var(--vl-transition);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--vl-sub);
     position: relative;
     overflow: hidden;
   }
-  .team-card:hover {
-    border-color: var(--vl-gold);
-    color: var(--vl-gold);
-    transform: translateY(-2px);
-    box-shadow: var(--vl-shadow);
+  .home::before {
+    content: '';
+    position: absolute;
+    top: -20%; left: -20%;
+    width: 140%; height: 140%;
+    background: radial-gradient(circle at 30% 30%, color-mix(in srgb, var(--vl-accent-soft) 60%, transparent), transparent 50%);
+    z-index: -1;
+    animation: drift 8s ease-in-out infinite;
   }
-  .team-card.selected {
-    border-color: var(--vl-accent);
-    color: var(--vl-accent);
-    background: color-mix(in srgb, var(--vl-accent-soft) 60%, var(--vl-panel));
+  .hero-title {
+    font-family: var(--vl-font-display);
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 700;
+    color: var(--vl-ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
   }
-  .team-logo {
-    width: 48px; height: 48px;
-    border-radius: 12px;
-    background: var(--vl-panel2);
+  .hero-sub {
+    color: var(--vl-sub);
+    font-size: 1.25rem;
+    margin-bottom: 40px;
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+    line-height: 1.6;
+  }
+  .hero-sub b { color: var(--vl-accent); }
+  .hero-actions {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 56px;
+  }
+  .team-picker {
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.5rem;
-    margin-bottom: 6px;
+    gap: 10px;
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+  .team-picker-label {
+    font-family: var(--vl-font-display);
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--vl-sub);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  select.team-select {
+    height: 48px;
+    padding: 0 20px;
+    border-radius: 999px;
+    border: 1px solid var(--vl-border);
+    background: color-mix(in srgb, var(--vl-panel) 80%, transparent);
+    color: var(--vl-accent);
+    font-family: var(--vl-font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--vl-transition);
+    outline: none;
+    appearance: none;
+    min-width: 200px;
+  }
+  select.team-select option {
+    background: var(--vl-panel);
+    color: var(--vl-ink);
+    padding: 12px;
+  }
+  select.team-select:focus { border-color: var(--vl-accent); }
+  .team-hint {
+    color: color-mix(in srgb, var(--vl-sub) 60%, transparent);
+    font-size: 0.85rem;
+    margin-top: 8px;
+    font-style: italic;
   }
 
-  /* ============ CARDS / PANELS ============ */
+  /* ============ CARDS — GLASS, FLOATY ============ */
   .panel {
     background: var(--vl-panel);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--vl-border);
     border-radius: var(--vl-radius);
-    padding: 20px;
-    margin-bottom: 20px;
+    padding: 24px;
+    margin-bottom: 24px;
     box-shadow: var(--vl-shadow);
+    float: var(--vl-float-dur);
+  }
+  .panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(90deg, var(--vl-accent-soft), var(--vl-gold-soft));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0.4;
   }
   .panel-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 16px;
-    padding-bottom: 12px;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
     border-bottom: 1px solid var(--vl-border);
   }
   .panel-title {
     font-family: var(--vl-font-display);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--vl-ink);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
   .panel-sub {
     color: var(--vl-sub);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
 
-  /* ============ DRAFT BOARD ============ */
+  /* ============ DRAFT BOARD — FLOATY CARDS ============ */
   .draft-board {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 14px;
   }
   .pick-card {
-    background: var(--vl-panel2);
+    background: color-mix(in srgb, var(--vl-panel2) 85%, transparent);
     border: 1px solid var(--vl-border);
-    border-radius: 10px;
-    padding: 12px;
+    border-radius: 14px;
+    padding: 16px;
     cursor: pointer;
     transition: var(--vl-transition);
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 10px;
+    float: 5s;
   }
   .pick-card:hover {
     border-color: var(--vl-gold);
-    background: color-mix(in srgb, var(--vl-gold-soft) 50%, var(--vl-panel2));
+    background: color-mix(in srgb, var(--vl-gold-soft) 40%, var(--vl-panel2));
+    transform: translateY(-4px);
+    box-shadow: var(--vl-shadow);
   }
   .pick-card.selected {
     border-color: var(--vl-accent);
-    background: color-mix(in srgb, var(--vl-accent-soft) 60%, var(--vl-panel2));
+    background: color-mix(in srgb, var(--vl-accent-soft) 50%, var(--vl-panel2));
   }
   .pick-round {
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-size: 0.68rem;
+    font-weight: 800;
     color: var(--vl-sub);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
   }
   .pick-name {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--vl-ink);
-    font-size: 0.95rem;
+    font-size: 1rem;
+    line-height: 1.2;
   }
   .pick-pos {
-    font-size: 0.8rem;
+    font-size: 0.78rem;
     color: var(--vl-sub);
   }
   .pick-ovr {
-    font-size: 0.8rem;
-    font-weight: 700;
+    font-size: 0.82rem;
+    font-weight: 800;
     color: var(--vl-gold);
   }
   .pick-tag {
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     font-size: 0.65rem;
-    font-weight: 700;
-    padding: 2px 8px;
+    font-weight: 800;
+    padding: 3px 10px;
     border-radius: 999px;
     background: var(--vl-border);
     color: var(--vl-sub);
     margin-top: 4px;
+    align-self: flex-start;
   }
   .pick-tag.best { background: var(--vl-success); color: #052e16; }
   .pick-tag.flex { background: var(--vl-accent); color: #052633; }
+  .pick-tag.ok { background: var(--vl-warn); color: #2a1e0c; }
 
   /* ============ LINEUP ============ */
   .lineup-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 14px;
   }
   .slot-card {
-    background: var(--vl-panel2);
+    background: color-mix(in srgb, var(--vl-panel2) 85%, transparent);
     border: 1px solid var(--vl-border);
-    border-radius: 10px;
-    padding: 14px;
+    border-radius: 14px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
+    float: 5s;
+  }
+  .slot-card.flexed {
+    border-color: var(--vl-warn);
+    background: color-mix(in srgb, var(--vl-warn) 8%, var(--vl-panel2));
   }
   .slot-label {
-    font-size: 0.7rem;
-    font-weight: 700;
+    font-size: 0.68rem;
+    font-weight: 800;
     color: var(--vl-sub);
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.1em;
   }
   .slot-name {
-    font-weight: 700;
+    font-weight: 800;
     color: var(--vl-ink);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
+    line-height: 1.2;
   }
   .slot-ovr {
     font-size: 0.8rem;
-    font-weight: 700;
+    font-weight: 800;
     color: var(--vl-gold);
   }
   .slot-empty {
     color: var(--vl-sub);
-    font-size: 0.8rem;
+    font-size: 0.82rem;
     font-style: italic;
   }
+  .slot-hint {
+    font-size: 0.68rem;
+    color: var(--vl-warn);
+    margin-top: 4px;
+  }
 
-  /* ============ GAME PREVIEW ============ */
+  /* ============ MATCHUP ============ */
   .matchup {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 16px;
+    justify-content: center;
+    gap: 32px;
     background: var(--vl-panel2);
+    backdrop-filter: blur(12px);
     border: 1px solid var(--vl-border);
     border-radius: var(--vl-radius);
-    padding: 24px;
-    margin-bottom: 20px;
+    padding: 32px 24px;
+    margin-bottom: 24px;
+    float: 5s;
   }
   .team-side {
     text-align: center;
     flex: 1;
+    float: 4s;
   }
   .team-name {
-    font-weight: 700;
-    font-size: 1.1rem;
+    font-weight: 800;
+    font-size: 1.4rem;
     color: var(--vl-ink);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
+    letter-spacing: -0.02em;
   }
   .team-record {
     color: var(--vl-sub);
-    font-size: 0.875rem;
+    font-size: 0.9rem;
   }
   .vs-badge {
     font-family: var(--vl-font-display);
-    font-weight: 700;
+    font-weight: 900;
     color: var(--vl-gold);
-    font-size: 1.5rem;
+    font-size: 2rem;
     white-space: nowrap;
+    float: 4s;
   }
+
+  /* ============ SCOUTING / CHIPS ============ */
   .chips-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 10px;
     margin-top: 16px;
   }
   .chip {
     background: var(--vl-panel);
     border: 1px solid var(--vl-border);
-    border-radius: 8px;
-    padding: 8px 12px;
-    font-size: 0.8rem;
-    font-weight: 600;
+    border-radius: 12px;
+    padding: 10px 14px;
+    font-size: 0.82rem;
+    font-weight: 700;
     color: var(--vl-ink);
+    transition: var(--vl-transition);
   }
+  .chip:hover { transform: translateY(-2px); border-color: var(--vl-gold); }
   .chip.strong { border-color: var(--vl-success); color: var(--vl-success); background: color-mix(in srgb, var(--vl-success) 10%, var(--vl-panel)); }
   .chip.weak { border-color: var(--vl-danger); color: var(--vl-danger); background: color-mix(in srgb, var(--vl-danger) 10%, var(--vl-panel)); }
   .chip.neutral { border-color: var(--vl-border); color: var(--vl-sub); }
 
-  /* ============ SCOUTING ============ */
   .scouting-row {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 10px 0;
-    border-bottom: 1px solid color-mix(in srgb, var(--vl-border) 50%, transparent);
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--vl-border) 40%, transparent);
   }
   .scouting-row:last-child { border-bottom: none; }
   .scouting-label {
     flex: 0 0 150px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--vl-sub);
-    font-size: 0.875rem;
+    font-size: 0.85rem;
   }
   .scouting-bar {
     flex: 1;
+    height: 6px;
+    background: var(--vl-border);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .scouting-fill {
+    height: 100%;
+    border-radius: 3px;
+    background: linear-gradient(90deg, var(--vl-gold), #b8941f);
+  }
+  .scouting-value {
+    flex: 0 0 42px;
+    font-weight: 800;
+    color: var(--vl-ink);
+    font-size: 0.85rem;
+    text-align: right;
+  }
+
+  /* ============ WINS BADGE ============ */
+  .wins-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--vl-gold) 12%, var(--vl-panel));
+    border: 1px solid var(--vl-gold);
+    color: var(--vl-gold);
+    font-weight: 800;
+    font-size: 1.1rem;
+    letter-spacing: 0.05em;
+    margin-top: 12px;
+    float: 4s;
+  }
+
+  /* ============ GAME ANIMATION LOG ============ */
+  .game-log {
+    max-height: 320px;
+    overflow-y: auto;
+    border: 1px solid var(--vl-border);
+    border-radius: 14px;
+    background: color-mix(in srgb, #000 40%, var(--vl-bg));
+    padding: 16px;
+    font-family: 'Menlo', monospace;
+    font-size: 0.85rem;
+  }
+  .log-line {
+    padding: 6px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--vl-border) 40%, transparent);
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    animation: fadeInUp 0.3s both;
+  }
+  .log-line:last-child { border-bottom: none; }
+  .log-time {
+    flex: 0 0 50px;
+    color: var(--vl-sub);
+    font-size: 0.8rem;
+  }
+  .log-team { font-weight: 800; font-size: 0.9rem; }
+  .log-play { color: var(--vl-sub); }
+  .log-yards { font-weight: 800; color: var(--vl-gold); }
+  .log-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--vl-border);
+    color: var(--vl-sub);
+    margin-left: 8px;
+  }
+  .log-tag.td { background: var(--vl-success); color: #052e16; animation: pulse 2s infinite; }
+  .log-tag.fg { background: var(--vl-accent); color: #052633; }
+
+  /* ============ SEASON REVIEW ============ */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 16px;
+  }
+  .review-card {
+    background: color-mix(in srgb, var(--vl-panel2) 85%, transparent);
+    border: 1px solid var(--vl-border);
+    border-radius: 16px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    float: 5s;
+  }
+  .review-card a-team { border-color: var(--vl-accent); color: var(--vl-accent); }
+  .review-card .card-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--vl-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+  .review-card .card-value {
+    font-weight: 900;
+    font-size: 2rem;
+    color: var(--vl-ink);
+    letter-spacing: -0.03em;
+  }
+  .review-card .card-sub {
+    font-size: 0.78rem;
+    color: var(--vl-sub);
+    line-height: 1.4;
+  }
+
+  /* ============ 100-SEASON ============ */
+  .sim-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--vl-border) 40%, transparent);
+  }
+  .sim-bar:last-child { border-bottom: none; }
+  .sim-logo {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: var(--vl-panel2);
+    border: 1px solid var(--vl-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex: 0 0 32px;
+  }
+  .sim-name { flex: 1; font-weight: 700; color: var(--vl-ink); font-size: 0.85rem; }
+  .sim-bar-bg {
+    flex: 0 0 140px;
     height: 8px;
     background: var(--vl-border);
     border-radius: 4px;
     overflow: hidden;
   }
-  .scouting-fill {
+  .sim-bar-fill {
     height: 100%;
     border-radius: 4px;
     background: linear-gradient(90deg, var(--vl-gold), #b8941f);
   }
-  .scouting-value {
-    flex: 0 0 40px;
-    font-weight: 700;
+  .sim-val {
+    flex: 0 0 44px;
+    font-weight: 800;
     color: var(--vl-ink);
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     text-align: right;
   }
 
   /* ============ MOBILE ============ */
   @media (max-width: 390px) {
-    .shell { padding: 0 12px; }
-    .panel { padding: 16px; }
-    .hero-title { font-size: 1.75rem; }
-    .matchup { padding: 16px; flex-direction: column; text-align: center; }
+    .shell { padding: 0 14px; }
+    .panel { padding: 18px; border-radius: 16px; }
+    .hero-title { font-size: 2rem; }
+    .matchup { flex-direction: column; text-align: center; gap: 16px; padding: 24px 16px; }
     .vs-badge { margin: 12px 0; }
-    .chips-grid { grid-template-columns: 1fr 1fr; }
     .draft-board { grid-template-columns: 1fr 1fr; }
     .lineup-grid { grid-template-columns: 1fr 1fr; }
-  }
-
-  /* ============ NAV / TABS ============ */
-  .tabs {
-    display: flex;
-    gap: 2px;
-    border-bottom: 1px solid var(--vl-border);
-    margin-bottom: 20px;
-    overflow-x: auto;
-  }
-  .tab {
-    padding: 10px 16px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--vl-sub);
-    cursor: pointer;
-    border-bottom: 2px solid transparent;
-    white-space: nowrap;
-    transition: var(--vl-transition);
-  }
-  .tab:hover { color: var(--vl-ink); }
-  .tab.active {
-    color: var(--vl-gold);
-    border-bottom-color: var(--vl-gold);
+    .review-grid { grid-template-columns: 1fr; }
+    select.team-select { min-width: 160px; font-size: 1rem; }
   }
 
   /* ============ UTILS ============ */
   .muted { color: var(--vl-sub); font-size: 0.85rem; }
   .center { text-align: center; }
-  .mb-8 { margin-bottom: 8px; }
   .mb-16 { margin-bottom: 16px; }
   .mb-24 { margin-bottom: 24px; }
+  .mb-32 { margin-bottom: 32px; }
+  .hidden { display: none !important; }
   .flex { display: flex; }
   .items-center { align-items: center; }
   .gap-8 { gap: 8px; }
   .gap-16 { gap: 16px; }
-  .hidden { display: none !important; }
 
   /* Skip button */
   .skip-btn {
     position: fixed;
     top: 16px;
     right: 16px;
-    z-index: 60;
+    z-index: 70;
     background: var(--vl-panel);
     border: 1px solid var(--vl-border);
     color: var(--vl-ink);
     padding: 8px 16px;
-    border-radius: 8px;
+    border-radius: 999px;
     font-size: 0.8rem;
     cursor: pointer;
     transition: var(--vl-transition);
+    backdrop-filter: blur(8px);
   }
-  .skip-btn:hover { border-color: var(--vl-gold); color: var(--vl-gold); }
+  .skip-btn:hover { border-color: var(--vl-gold); color: var(--vl-gold); transform: translateY(-1px); }
 
   .loader {
-    width: 32px; height: 32px;
+    width: 34px; height: 34px;
     border: 3px solid var(--vl-border);
     border-top-color: var(--vl-gold);
     border-radius: 50%;
     animation: spin 0.8s linear infinite;
     margin: 40px auto;
   }
-  @keyframes spin { to { transform: rotate(360deg); } }
+
+  .intro-cover {
+    position: fixed;
+    inset: 0;
+    background: var(--vl-bg);
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+  }
+  .intro-word {
+    font-family: var(--vl-font-display);
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 900;
+    color: var(--vl-gold);
+    margin-bottom: 12px;
+    letter-spacing: -0.03em;
+    animation: glowIn 1s both;
+  }
 </style>
 </head>
 <body>
+
+<!-- Intro cinematic -->
+<div id="introCover" class="intro-cover">
+  <div class="intro-word">WELCOME</div>
+  <div class="intro-word" id="introWord2" style="opacity:0;animation:none">TO THE</div>
+  <div class="intro-word" id="introWord3" style="opacity:0;animation:none">DRAFT</div>
+</div>
 
 <!-- Skip button -->
 <button class="skip-btn hidden" id="skipBtn">Skip intro</button>
@@ -532,10 +796,10 @@
 <!-- Header -->
 <header>
   <div class="bar">
-    <div class="wordmark"><span class="vlc">VLC</span> DRAFT SIM</div>
+    <div class="wordmark"><span class="vlc">VLC</span> Colors</div>
     <div class="bar-actions">
       <button class="btn btn-ghost" onclick="toggleTheme()">Theme</button>
-      <button class="btn btn-primary" onclick="goHome()">Home</button>
+      <button class="btn btn-primary" onclick="showScreen('home')">Home</button>
     </div>
   </div>
 </header>
@@ -545,45 +809,30 @@
   <section id="screen-home" class="fade-in">
     <div class="home">
       <h1 class="hero-title shimmer-text"><span class="vlc">VLC</span> Colors</h1>
-      <p class="hero-sub">Build your roster. Win 20 games. Can you go <span style="font-weight:700;color:var(--vl-gold)">20-0</span>?</p>
+      <p class="hero-sub">Build your roster. Win 20 games. Can you go <b style="color:var(--vl-gold)">20-0</b>?</p>
       <div class="hero-actions">
-        <button class="btn btn-primary" onclick="selectTeam('kc')">Start Draft — Kansas City</button>
-        <button class="btn btn-ghost" onclick="selectTeam('sf')">Start Draft — San Francisco</button>
-        <button class="btn btn-ghost" onclick="selectTeam('bal')">Start Draft — Baltimore</button>
+        <button class="btn btn-primary" onclick="startDraft()">Start Draft</button>
       </div>
-      <div class="team-grid" id="teamGrid">
-        <div class="team-card" onclick="selectTeam('kc')" data-team="kc">
-          <div class="team-logo">🏈</div>
-          <div>Chiefs</div>
-        </div>
-        <div class="team-card" onclick="selectTeam('sf')" data-team="sf">
-          <div class="team-logo">🏈</div>
-          <div>49ers</div>
-        </div>
-        <div class="team-card" onclick="selectTeam('bal')" data-team="bal">
-          <div class="team-logo">🏈</div>
-          <div>Ravens</div>
-        </div>
-        <div class="team-card" onclick="selectTeam('buf')" data-team="buf">
-          <div class="team-logo">🏈</div>
-          <div>Bills</div>
-        </div>
-        <div class="team-card" onclick="selectTeam('det')" data-team="det">
-          <div class="team-logo">🏈</div>
-          <div>Lions</div>
-        </div>
-        <div class="team-card" onclick="selectTeam('phi')" data-team="phi">
-          <div class="team-logo">🏈</div>
-          <div>Eagles</div>
-        </div>
+      <div class="team-picker">
+        <span class="team-picker-label">Team</span>
+        <select class="team-select" id="teamSelect" onchange="selectTeam(this.value)">
+          <option value="kc">Kansas City Chiefs</option>
+          <option value="sf">San Francisco 49ers</option>
+          <option value="bal">Baltimore Ravens</option>
+          <option value="buf">Buffalo Bills</option>
+          <option value="det">Detroit Lions</option>
+          <option value="phi">Philadelphia Eagles</option>
+          <option value="dal">Dallas Cowboys</option>
+          <option value="gb">Green Bay Packers</option>
+        </select>
       </div>
-      <p class="muted mt-24" style="margin-top:24px">VLC V1 · Midnight-ink identity · Claude engine · Team color takeover</p>
+      <div class="team-hint">Each team remaps the whole site to its colors · Dark mode keeps tinted team text</div>
     </div>
   </section>
 
   <!-- DRAFT SCREEN -->
   <section id="screen-draft" class="hidden fade-in">
-    <div class="panel-header mb-16">
+    <div class="panel-header mb-32">
       <div>
         <h2 class="panel-title">Draft Board</h2>
         <p class="panel-sub">Round 1 · Pick 31 · Kansas City Chiefs</p>
@@ -591,13 +840,7 @@
       <button class="btn btn-ghost" onclick="showScreen('home')">← Home</button>
     </div>
 
-    <div class="tabs">
-      <div class="tab active" onclick="setTab(this,'draft-board')">Board</div>
-      <div class="tab" onclick="setTab(this,'draft-results')">Results</div>
-      <div class="tab" onclick="setTab(this,'draft-analysis')">Analysis</div>
-    </div>
-
-    <div id="draft-board" class="draft-board">
+    <div class="draft-board">
       <div class="pick-card selected best">
         <div class="pick-round">R1 · #31</div>
         <div class="pick-name">Caleb Williams</div>
@@ -610,7 +853,7 @@
         <div class="pick-name">Drake Maye</div>
         <div class="pick-pos">QB · UNC</div>
         <div class="pick-ovr">88 OVR</div>
-        <span class="pick-tag">Fine</span>
+        <span class="pick-tag ok">OK</span>
       </div>
       <div class="pick-card">
         <div class="pick-round">R2 · #63</div>
@@ -624,9 +867,9 @@
         <div class="pick-name">Brian Thomas Jr.</div>
         <div class="pick-pos">WR · LSU</div>
         <div class="pick-ovr">84 OVR</div>
-        <span class="pick-tag">OK</span>
+        <span class="pick-tag ok">OK</span>
       </div>
-      <div class="pick-card flex">
+      <div class="pick-card flexed">
         <div class="pick-round">R3 · #95</div>
         <div class="pick-name">Cooper Kupp</div>
         <div class="pick-pos">WR · Flex</div>
@@ -634,32 +877,14 @@
         <span class="pick-tag flex">Flex → FS (−10)</span>
       </div>
     </div>
-
-    <div id="draft-results" class="hidden">
-      <div class="panel">
-        <div class="panel-header">
-          <h3 class="panel-title">Draft Results</h3>
-        </div>
-        <p class="muted">Draft complete. Your roster grades #7 of 32 overall.</p>
-      </div>
-    </div>
-
-    <div id="draft-analysis" class="hidden">
-      <div class="panel">
-        <div class="panel-header">
-          <h3 class="panel-title">Pick Analysis</h3>
-        </div>
-        <p class="muted">Every pick evaluated against regret threshold. Costly misses only when off by ≥0.10 wins.</p>
-      </div>
-    </div>
   </section>
 
   <!-- LINEUP SCREEN -->
   <section id="screen-lineup" class="hidden fade-in">
-    <div class="panel-header mb-16">
+    <div class="panel-header mb-32">
       <div>
         <h2 class="panel-title">Lineup</h2>
-        <p class="panel-sub">Set your starters. QB may flex only to FS at −10.</p>
+        <p class="panel-sub">QB may flex only to FS at −10 wins</p>
       </div>
       <button class="btn btn-ghost" onclick="showScreen('draft')">← Draft</button>
     </div>
@@ -689,23 +914,18 @@
         <div class="slot-label">WR3</div>
         <div class="slot-empty">Empty</div>
       </div>
-      <div class="slot-card">
-        <div class="slot-label">TE1</div>
-        <div class="slot-name">Trey McBride</div>
-        <div class="slot-ovr">85 OVR</div>
-      </div>
-      <div class="slot-card">
+      <div class="slot-card flexed">
         <div class="slot-label">FS (Flex)</div>
         <div class="slot-name">Justin Simmons</div>
         <div class="slot-ovr">81 OVR</div>
-        <div style="font-size:0.7rem;color:var(--vl-warn);margin-top:2px">Flex → −10 wins</div>
+        <div class="slot-hint">Flex → −10 wins</div>
       </div>
     </div>
   </section>
 
   <!-- GAME PREVIEW SCREEN -->
   <section id="screen-preview" class="hidden fade-in">
-    <div class="panel-header mb-16">
+    <div class="panel-header mb-32">
       <div>
         <h2 class="panel-title">Game Preview</h2>
         <p class="panel-sub">Kansas City vs San Francisco · Week 1</p>
@@ -726,9 +946,7 @@
     </div>
 
     <div class="panel">
-      <div class="panel-header">
-        <h3 class="panel-title">Scouting</h3>
-      </div>
+      <div class="panel-header"><h3 class="panel-title">Scouting</h3></div>
       <div class="scouting-row">
         <div class="scouting-label">Quarterback Play</div>
         <div class="scouting-bar"><div class="scouting-fill" style="width:78%"></div></div>
@@ -756,10 +974,8 @@
       </div>
     </div>
 
-    <div class="panel mb-24">
-      <div class="panel-header">
-        <h3 class="panel-title">Matchup Math</h3>
-      </div>
+    <div class="panel mb-32">
+      <div class="panel-header"><h3 class="panel-title">Matchup Math</h3></div>
       <div class="chips-grid">
         <div class="chip strong">Strong Pass Rush</div>
         <div class="chip strong">Strong Quarterback</div>
@@ -768,73 +984,217 @@
         <div class="chip weak">Weak Pass Coverage</div>
         <div class="chip strong">Strong Special Teams</div>
       </div>
-      <div style="margin-top:16px;font-weight:700;color:var(--vl-gold);font-size:1.1rem">+2 WINS</div>
+      <div class="wins-badge">+2 WINS</div>
+    </div>
+  </section>
+
+  <!-- SEASON REVIEW SCREEN -->
+  <section id="screen-review" class="hidden fade-in">
+    <div class="panel-header mb-32">
+      <div>
+        <h2 class="panel-title">Season Review</h2>
+        <p class="panel-sub">20-0 · Super Bowl Champions</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('home')">← Home</button>
+    </div>
+
+    <div class="review-grid">
+      <div class="review-card a-team">
+        <div class="card-label">Record</div>
+        <div class="card-value">20-0</div>
+        <div class="card-sub">Super Bowl LIX Champions</div>
+      </div>
+      <div class="review-card">
+        <div class="card-label">Points For</div>
+        <div class="card-value">582</div>
+        <div class="card-sub">#1 of 32</div>
+      </div>
+      <div class="review-card">
+        <div class="card-label">Points Against</div>
+        <div class="card-value">312</div>
+        <div class="card-sub">#3 of 32</div>
+      </div>
+      <div class="review-card">
+        <div class="card-label">Turnover Margin</div>
+        <div class="card-value">+14</div>
+        <div class="card-sub">#1 of 32</div>
+      </div>
+      <div class="review-card">
+        <div class="card-label">Game Ball</div>
+        <div class="card-value" style="color:var(--vl-gold)">★ C. Williams</div>
+        <div class="card-sub">QB · 4,890 YDS · 42 TD</div>
+      </div>
+      <div class="review-card">
+        <div class="card-label">Best Unit</div>
+        <div class="card-value">Pass Rush</div>
+        <div class="card-sub">#1 of 32 · 62 sacks</div>
+      </div>
+    </div>
+    <div class="panel mb-32 center">
+      <div class="wins-badge" style="font-size:1.3rem">Try again to go 20-0?</div>
+      <div class="hero-actions" style="margin-top:16px">
+        <button class="btn btn-primary" onclick="startDraft()">Start a New Draft</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME ANIMATION SCREEN -->
+  <section id="screen-game" class="hidden fade-in">
+    <div class="panel-header mb-24">
+      <div>
+        <h2 class="panel-title">Game Animation</h2>
+        <p class="panel-sub">Kansas City 29 — 34 San Francisco · Q4 0:12</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('preview')">← Preview</button>
+    </div>
+
+    <div class="game-log" id="gameLog">
+      <div class="log-line"><span class="log-time">14:52</span><span class="log-team" style="color:#e31837">KC</span><span class="log-play">Pass</span><span class="log-yards">22 yds</span><span class="log-tag td">TD</span></div>
+      <div class="log-line"><span class="log-time">13:10</span><span class="log-team" style="color:#aa0000">SF</span><span class="log-play">Run</span><span class="log-yards">8 yds</span></div>
+      <div class="log-line"><span class="log-time">12:03</span><span class="log-team" style="color:#e31837">KC</span><span class="log-play">FG</span><span class="log-yards">44 yds</span><span class="log-tag fg">FG</span></div>
+      <div class="log-line"><span class="log-time">10:44</span><span class="log-team" style="color:#aa0000">SF</span><span class="log-play">INT</span><span class="log-yards">—</span><span class="log-tag td">TD</span></div>
+      <div class="log-line"><span class="log-time">8:20</span><span class="log-team" style="color:#e31837">KC</span><span class="log-play">Pass</span><span class="log-yards">11 yds</span></div>
+      <div class="log-line"><span class="log-time">6:33</span><span class="log-team" style="color:#aa0000">SF</span><span class="log-play">Fum</span><span class="log-yards">—</span><span class="log-tag td">TD</span></div>
+      <div class="log-line"><span class="log-time">4:15</span><span class="log-team" style="color:#e31837">KC</span><span class="log-play">Run</span><span class="log-yards">3 yds</span></div>
+      <div class="log-line"><span class="log-time">2:01</span><span class="log-team" style="color:#aa0000">SF</span><span class="log-play">Pass</span><span class="log-yards">18 yds</span><span class="log-tag td">TD</span></div>
+      <div class="log-line" style="border-bottom:none"><span class="log-time">0:12</span><span class="log-team" style="color:#aa0000">SF</span><span class="log-play">FG</span><span class="log-yards">32 yds</span><span class="log-tag fg">FG</span></div>
+    </div>
+    <div class="hero-actions" style="margin-top:24px">
+      <button class="btn btn-primary">Skip</button>
+    </div>
+  </section>
+
+  <!-- 100-SEASON SIM SCREEN -->
+  <section id="screen-sim" class="hidden fade-in">
+    <div class="panel-header mb-32">
+      <div>
+        <h2 class="panel-title">100-Season Sim</h2>
+        <p class="panel-sub">Kansas City Chiefs · STATS</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('home')">← Home</button>
+    </div>
+
+    <div class="panel">
+      <div class="sim-bar">
+        <div class="sim-logo">🏈</div>
+        <div class="sim-name">Chiefs</div>
+        <div class="sim-bar-bg"><div class="sim-bar-fill" style="width:92%"></div></div>
+        <div class="sim-val">92%</div>
+      </div>
+      <div class="sim-bar">
+        <div class="sim-logo">🏈</div>
+        <div class="sim-name">49ers</div>
+        <div class="sim-bar-bg"><div class="sim-bar-fill" style="width:87%"></div></div>
+        <div class="sim-val">87%</div>
+      </div>
+      <div class="sim-bar">
+        <div class="sim-logo">🏈</div>
+        <div class="sim-name">Ravens</div>
+        <div class="sim-bar-bg"><div class="sim-bar-fill" style="width:81%"></div></div>
+        <div class="sim-val">81%</div>
+      </div>
+      <div class="sim-bar">
+        <div class="sim-logo">🏈</div>
+        <div class="sim-name">Bills</div>
+        <div class="sim-bar-bg"><div class="sim-bar-fill" style="width:74%"></div></div>
+        <div class="sim-val">74%</div>
+      </div>
+    </div>
+
+    <div class="panel mb-32">
+      <div class="panel-header"><h3 class="panel-title">Compact Personnel</h3></div>
+      <div class="scouting-row">
+        <div class="scouting-label">11 personnel</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:68%"></div></div>
+        <div class="scouting-value">RUN+</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">EVEN</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:52%"></div></div>
+        <div class="scouting-value">PASS+</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Personnel split</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:44%"></div></div>
+        <div class="scouting-value">EVEN</div>
+      </div>
+    </div>
+    <div class="hero-actions">
+      <button class="btn btn-primary" disabled style="opacity:0.6">Re-Run (after sim start)</button>
     </div>
   </section>
 </div>
 
 <script>
-  // Team takeover: apply selected team colors to :root
+  /* Team takeover — selected team remaps the whole site */
   function selectTeam(team) {
     document.documentElement.setAttribute('data-team', team);
-    // Mark selected card
-    document.querySelectorAll('.team-card').forEach(c => {
-      c.classList.remove('selected');
-      if (c.dataset.team === team) c.classList.add('selected');
-    });
-    // Show a subtle toast
-    const t = document.createElement('div');
-    t.style.position = 'fixed';
-    t.style.bottom = '24px';
-    t.style.left = '50%';
-    t.style.transform = 'translateX(-50%)';
-    t.style.background = 'var(--vl-panel2)';
-    t.style.border = '1px solid var(--vl-border)';
-    t.style.color = 'var(--vl-ink)';
-    t.style.padding = '12px 24px';
-    t.style.borderRadius = '999px';
-    t.style.fontSize = '0.9rem';
-    t.style.zIndex = '100';
-    t.style.boxShadow = 'var(--vl-shadow)';
-    t.textContent = 'Team selected · Colors applied to shell';
-    document.body.appendChild(t);
-    setTimeout(() => t.remove(), 1500);
+    const hint = document.querySelector('.team-hint');
+    const names = { kc:'Kansas City Chiefs', sf:'San Francisco 49ers', bal:'Baltimore Ravens', buf:'Buffalo Bills', det:'Detroit Lions', phi:'Philadelphia Eagles', dal:'Dallas Cowboys', gb:'Green Bay Packers' };
+    hint.textContent = names[team] + ' · Site remapped to team colors · Dark mode keeps tinted team text';
+    hint.classList.remove('fade-in');
+    void hint.offsetWidth;
+    hint.classList.add('fade-in');
   }
 
+  function startDraft() { showScreen('draft'); }
   function goHome() { showScreen('home'); }
   function showScreen(id) {
     document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
     const s = document.getElementById('screen-' + id);
-    if (s) s.classList.remove('hidden');
-  }
-  function setTab(el, target) {
-    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-    el.classList.add('active');
-    ['draft-board','draft-results','draft-analysis'].forEach(id => {
-      document.getElementById(id).classList.toggle('hidden', id !== target);
-    });
+    if (s) {
+      s.classList.remove('hidden');
+      s.classList.add('fade-in');
+      void s.offsetWidth;
+      s.classList.remove('fade-in');
+    }
   }
   function toggleTheme() {
     const dark = document.documentElement.getAttribute('data-theme') === 'dark';
     document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
-    document.body.style.background = dark ? '#f3f4f6' : 'var(--vl-bg)';
+    document.body.style.background = dark ?
+      'radial-gradient(circle at 15% 20%, rgba(255,255,255,0.1), transparent 40%), radial-gradient(circle at 85% 80%, rgba(255,255,255,0.06), transparent 40%), #f3f4f6' :
+      'radial-gradient(circle at 15% 20%, color-mix(in srgb, var(--vl-accent-soft) 70%, transparent), transparent 40%), radial-gradient(circle at 85% 80%, color-mix(in srgb, var(--vl-gold-soft) 50%, transparent), transparent 40%), var(--vl-bg)';
     document.body.style.color = dark ? '#111827' : 'var(--vl-ink)';
   }
 
-  // Skip button demo
-  const skipBtn = document.getElementById('skipBtn');
-  setTimeout(() => {
-    skipBtn.classList.remove('hidden');
-    skipBtn.classList.add('fade-in');
-  }, 1500);
-  skipBtn.addEventListener('click', () => {
-    alert('Skip intro → lands on first play. Wording flips to "Skip" once the game begins.');
-  });
+  /* Intro cinematic: WELCOME → TO THE → DRAFT */
+  const words = document.querySelectorAll('.intro-word');
+  let wi = 0;
+  function nextWord() {
+    words[wi].style.opacity = '0';
+    words[wi].style.animation = 'none';
+    wi++;
+    if (wi < words.length) {
+      words[wi].style.opacity = '1';
+      words[wi].style.animation = 'glowIn 1s both';
+      setTimeout(nextWord, 1400);
+    } else {
+      setTimeout(endIntro, 900);
+    }
+  }
+  function endIntro() {
+    const cover = document.getElementById('introCover');
+    cover.style.opacity = '0';
+    setTimeout(() => { cover.remove(); document.getElementById('skipBtn').classList.remove('hidden'); }, 600);
+    setTimeout(() => { document.getElementById('skipBtn').classList.add('fade-in'); }, 100);
+  }
+  setTimeout(nextWord, 300);
 
-  // Intercept team card clicks to show loading then navigate
+  const skipBtn = document.getElementById('skipBtn');
+  skipBtn.addEventListener('click', () => {
+    coverRemove();
+  });
+  function coverRemove() {
+    const cover = document.getElementById('introCover');
+    if (cover) cover.remove();
+    document.getElementById('skipBtn').classList.remove('hidden');
+    document.getElementById('skipBtn').classList.add('fade-in');
+  }
+
+  /* Team card clicks -> loading -> draft */
   document.querySelectorAll('.team-card').forEach(c => {
     c.addEventListener('click', function() {
-      const btn = this.querySelector('button') || this;
       const loader = document.createElement('div');
       loader.className = 'loader';
       this.style.position = 'relative';
@@ -843,7 +1203,7 @@
         loader.remove();
         showScreen('draft');
         window.scrollTo(0,0);
-      }, 900);
+      }, 700);
     });
   });
 </script>
