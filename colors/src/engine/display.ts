@@ -7,3 +7,20 @@ export function goneDisplay(probability: number): number {
   const pct = Math.round(Math.min(1, Math.max(0, probability)) * 100);
   return Math.min(99, pct);
 }
+
+// Owner 29 Oct: "All numbers on the entire project should be represented as integers to the user except for QBR, WINS
+// (which should really only be a part of the draft board), and Priority which these three can go to one decimal place."
+// Every number the UI prints goes through one of these. The engine keeps full precision; only the text is rounded.
+// Half rounds away from zero (so -2.5 and 2.5 are the same size), and a value that rounds to zero never prints as "-0".
+export function showInt(n: number): string {
+  if (!Number.isFinite(n)) throw new Error('showInt: not a number: ' + n);
+  const r = Math.sign(n) * Math.round(Math.abs(n));
+  return String(r === 0 ? 0 : r);
+}
+export type OneDecimalKind = 'qbr' | 'wins' | 'priority';
+export const ONE_DECIMAL_KINDS: readonly OneDecimalKind[] = ['qbr', 'wins', 'priority'];
+export function showDecimal(_kind: OneDecimalKind, n: number): string {
+  if (!Number.isFinite(n)) throw new Error('showDecimal: not a number: ' + n);
+  const r = Math.sign(n) * Math.round(Math.abs(n) * 10) / 10;
+  return (r === 0 ? 0 : r).toFixed(1);
+}

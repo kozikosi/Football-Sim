@@ -44,3 +44,8 @@ Don't try to confirm that these are true. I guarantee this information is correc
 One small comment: Never list the Gone% on the table as 100%. List it as 99% instead. In case there is a slight chance that you calculated wrong and that player is available next round.
 
 SORTING (Architect): (1) Owner-supplied data, AGENTS.md section 7. data/madden27-ratings.csv already had Harrison (Texans), Jurgens (Ravens), Porter (Cowboys), McCarthy (Giants); Simmons -> Chicago Bears, Buckner -> San Francisco 49ers, Nelson -> Seattle Seahawks changed in this commit (ratings untouched; player id name|pos|team changes with the team). Not verified against any outside source, on the Owner's instruction. (2) Gone% display cap: colors/src/engine/display.ts goneDisplay(), tested; the CPU draft board (step 8) must show Gone% only through it.
+
+==== Owner, 29 Oct 19:25 HST (verbatim) ====
+Go ahead. All numbers on the entire project should be represented as integers to the user except for QBR, WINS (which should really only be a part of the draft board), and Priority which  these three can go to one decimal place.
+
+SORTING (Architect): display rule. colors/src/engine/display.ts showInt() and showDecimal('qbr'|'wins'|'priority'), tested. The UI must print every number through them. Wins appear only on the draft board (design rule for step 8 / UI).
