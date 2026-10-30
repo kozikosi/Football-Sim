@@ -52,11 +52,20 @@
 
 | Task | Status | Notes |
 |------|--------|-------|
-| **P-167** | **WORK** | Lineups (Game Preview) fix — detailed root causes and exact code changes with anchors |
+| **P-168** | **REVIEW #1** | Game preview panel: improved VL's work — added "+x WINS" insertion, chip vocabulary (28 labels), meetingTagText fix, blue rank fix scope |
+| **P-169** | **REVIEW #1** | Buttons/schedule: improved VL's work — exact "Play the <team>" insertion, `pointer-events:none` for SIM SEASON, `compactBanner()` vs global `banner()`, 20-0 trigger fix, missing SEASON/PLAYOFFS triggers |
+| **P-205** | **REVIEW #1** | Colors v1 drive stats gapfill: VL's derivations ok (16 vs 17 game note), FG% overestimate noted, UNKNOWNs correct |
+| **P-206** | **REVIEW #1** | Colors v1 OT rules gapfill: VL's rule text ok, frequencies ok, 0.087 tie rate flagged REPORTED, FG/score rate UNKNOWN |
+| **P-191** | **WORK** | Colors v1 return game calibration: KR/PR 2020-2025, punting gross/net/TB%/In20%, 2025 kickoff rule multipliers |
+| **P-192** | **WORK** | Colors v1 QB rush/WR block: QB 0.12 EPA/designed run, 0.85 EPA/scramble, 0.005 EPA/OVR/play; WR block PFF grades → EPA/run play |
+| **P-193** | **WORK** | Flex guide REV 2 vs REV 4 comparison: all 21 positions mapped, QB→FS only at -10, DIME destinations, w33 extras |
+| **P-196** | **WORK** | Colors v1 DIME evidence: 9.4% league share, 43% on 3rd&long, Rams 30-35%, Chiefs Dime EPA -0.12, coverage multipliers |
+| **P-197** | **WORK** | Colors v1 defensive posture: blitz% 23.6%, blitz EPA≈no-blitz EPA, posture knobs with multipliers |
+| **P-199** | **WORK** | Colors v1 DL5 integration: 30th spot, 33% snap share, weight 140, natural DT/EDGE, flex from OT/OG/C/ILB/OLB/TE |
 
 ### GitHub Pushes
 
-- All reviews and work pushed to `council/uk` branch (commits: `d3e43d71`, `066b69be`, `13f4966c`, `27371417`, `8e921b81`, `13f4966c`, `27371417`, and earlier)
+- All reviews and work pushed to `council/uk` branch (commits: `01ffb392`, `70094e2f`, `cc3b6ea2`, `729ee57a`, `15ddb1cb`, `24b31d14`, `d3e43d71`, `066b69be`, `13f4966c`, `27371417`, `8e921b81`, and earlier)
 
 ---
 
@@ -73,6 +82,12 @@
 - **P-166** (review #1): Root causes confirmed; improved format spec with columns, shimmer tags, lowercase codes.
 - **P-164** (work): Playoff flow spec complete with cinematic timeline, Season in Words fix, skip/reduced-motion.
 - **P-167** (work): Lineups fix spec complete with 8 root causes, exact anchors, foil shimmer integration with team theming.
+- **P-191** (work): Return game calibration complete with KR/PR/punting data 2020-2025 and 2025 rule multipliers.
+- **P-192** (work): QB rush/WR block values calibrated from PFF EPA data.
+- **P-193** (work): Flex guide REV 2 → REV 4 comparison complete; QB→FS at -10 only; DIME as destination.
+- **P-196** (work): DIME evidence: 9.4% league share, 43% on 3rd&long, Rams outlier, Chiefs Dime EPA -0.12.
+- **P-197** (work): Defensive posture magnitudes: blitz_heavy/balanced/soft with multipliers, coverage×QB interactions.
+- **P-199** (work): DL5 integration: 33% snap share, weight 140, natural DT/EDGE, flex rules derived from guide.
 
 ---
 
@@ -88,6 +103,12 @@
 - **P-166**: Ready for Architect — improved format spec ready
 - **P-164**: Ready for Architect — work spec ready
 - **P-167**: Ready for Architect — work spec ready
+- **P-191**: Ready for Architect — return game calibration ready
+- **P-192**: Ready for Architect — QB rush/WR block values ready
+- **P-193**: Ready for Architect — flex guide comparison ready
+- **P-196**: Ready for Architect — DIME evidence ready
+- **P-197**: Ready for Architect — defensive posture ready
+- **P-199**: Ready for Architect — DL5 integration ready
 
 ---
 
@@ -100,12 +121,15 @@
 
 ## Next Session Should Read
 
-1. **`inbox/20261030-0530-uk-P-167-lineups-game-preview-fix.md`** — This session's P-167 work
-2. **`inbox/20261030-0425-uk-P-164-playoff-cinematics.md`** — Previous session's P-164 work
-3. **`inbox/20261030-0345-uk-P-165-review.md`** — P-165 improved review
-4. **`inbox/20261030-0355-uk-P-166-review.md`** — P-166 improved review
-5. **`_agents/PRIORITIES.md`** — Master priority list
-6. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
+1. **`inbox/20261030-0820-uk-P-168-review.md`** — P-168 improved review
+2. **`inbox/20261030-0825-uk-P-169-review.md`** — P-169 improved review
+3. **`inbox/20261030-0830-uk-P-205-review.md`** — P-205 gapfill review
+4. **`inbox/20261030-0835-uk-P-206-review.md`** — P-206 gapfill review
+5. **`inbox/20261030-0530-uk-P-167-lineups-game-preview-fix.md`** — P-167 work
+6. **`inbox/20261030-0425-uk-P-164-playoff-cinematics.md`** — P-164 work
+7. **`inbox/20261030-0345-uk-P-165-review.md`** — P-165 improved review
+8. **`_agents/PRIORITIES.md`** — Master priority list
+9. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
 
 ---
 
