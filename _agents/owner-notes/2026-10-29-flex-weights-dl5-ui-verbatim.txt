@@ -29,3 +29,18 @@ You need to test your automatic flexing habits. I drafted all my players into th
 --- Architect's sorting (29 Oct) ---
 ENGINE (acted on 29 Oct): (1) QB flexes ONLY to FS, at -10 (flex REV 4; QB->RB removed). (2) 3-4 OLB2 equals DT2 in weight; "whatever seems balanced", Owner allows changing both weights and refactoring weights at any time as the math is tested: STANDING APPROVAL to re-weight the table when testing shows a reason, each change recorded in the spec. (3) DL5 = rotation and heavy sets (run stops on x & short, goal line); more snaps when the user picks aggressive defence. (4) The lineup helper must not flex a user's drafted lineup without a clear gain ("flexed over ten players out of position").
 UI (Colors design, inspiration only, w34 is not a spec, Pre-Colors is NOT a visual guide): draft review "where your players line up" spans the full panel; no duplicated badge sets (the light-up effect belongs on the first set); "JR" is never a last name; Season button goes to the preseason (no extra draft-review page); during a game key players appear one at a time, spread out; rewards/champion cinematic only after the game ends; Season Review button visible at the top once the season ends; playoff awards: titles centred on top, winners at the bottom; lineup editing: change anything, then one APPLY THE CHANGES.
+
+==== Owner, 29 Oct 19:17 HST (verbatim) ====
+As an update, these players are all on different teams as of today.
+Date	Player	Position	From	To
+Oct. 29	Jeffery Simmons	DT	Titans	Bears
+Oct. 27	DeForest Buckner	DT	Colts	49ers
+Oct. 27	Quenton Nelson	G	Colts	Seahawks
+Oct. 12	Marvin Harrison Jr.	WR	Cardinals	Texans
+Oct. 7	Cam Jurgens	C	Eagles	Ravens
+Oct. 1	Joey Porter Jr.	CB	Steelers	Cowboys
+Sept. 28	J.J. McCarthy	QB	Vikings	Giants
+Don't try to confirm that these are true. I guarantee this information is correct.
+One small comment: Never list the Gone% on the table as 100%. List it as 99% instead. In case there is a slight chance that you calculated wrong and that player is available next round.
+
+SORTING (Architect): (1) Owner-supplied data, AGENTS.md section 7. data/madden27-ratings.csv already had Harrison (Texans), Jurgens (Ravens), Porter (Cowboys), McCarthy (Giants); Simmons -> Chicago Bears, Buckner -> San Francisco 49ers, Nelson -> Seattle Seahawks changed in this commit (ratings untouched; player id name|pos|team changes with the team). Not verified against any outside source, on the Owner's instruction. (2) Gone% display cap: colors/src/engine/display.ts goneDisplay(), tested; the CPU draft board (step 8) must show Gone% only through it.
