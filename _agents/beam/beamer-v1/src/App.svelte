@@ -2,6 +2,7 @@
   import { team, setTeam } from './stores/team.js';
   import Home from './components/Home.svelte';
   import DraftBoard from './components/DraftBoard.svelte';
+  import GamePreview from './components/GamePreview.svelte';
   let route = 'home';
 </script>
 
@@ -21,9 +22,10 @@
   <nav class="tabs">
     <button class:active={route==='home'} on:click={()=>route='home'}>Home</button>
     <button class:active={route==='draft'} on:click={()=>route='draft'}>Draft</button>
+    <button class:active={route==='preview'} on:click={()=>route='preview'}>Preview</button>
   </nav>
   <main>
-    {#if route==='home'}<Home/>{:else}<DraftBoard/>{/if}
+    {#if route==='home'}<Home/>{:else if route==='draft'}<DraftBoard/>{:else}<GamePreview/>{/if}
   </main>
 </div>
 
