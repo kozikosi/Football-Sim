@@ -1,0 +1,37 @@
+# CHECKSUMS — z-post-blue-wave37-2026-10-30-w37 · md5
+PRODUCT: Football-Sim-Z-post-blue-w37.html = 8625e4ff02dc7d5e1245711b6d74c8af (1,461,211 B)
+
+7b1705b550abf228f36256bc4bdeeb1f  ./CLAUDE-HANDOFF/HANDOFF-TO-CLAUDE.md
+a2fb0c962e224b32100c2dbcdfa00766  ./CLAUDE-HANDOFF/WAVE-HISTORY.md
+8625e4ff02dc7d5e1245711b6d74c8af  ./Football-Sim-Z-post-blue-w37.html
+e65abb7af22725b74819e52d6b42fba6  ./UPDATE-README.md
+faadba4796e4199efe3a8ec4accaf8eb  ./_agents/zai/END-OF-CHAT-ZAI.md
+2b79216504d16293c7c7c7e99cb923ec  ./_agents/zai/START-OF-CHAT-ZAI.md
+76c955a86dda51aa9c90862edf135de3  ./_agents/zai/ZAI.md
+d08675a2d6e6d161725b203b35b846b0  ./_agents/zai/notes/W37-BUILD-REPORT.md
+cf77276841fa57c3cf95d1c26057100f  ./_agents/zai/notes/W37-INTAKE-LEDGER.md
+da98f71cb3571eaefd3970e07f4fe847  ./_agents/zai/notes/evidence/w37-awards-rows.png
+91b6eb77a267e810fa8b9ac86043da6e  ./_agents/zai/notes/evidence/w37-books-honors-first.png
+8df8c249a4ac71ee88bcdfd6ce5e2b5c  ./_agents/zai/notes/evidence/w37-books-verdict-risen.png
+c9764d36c99f6b9e58d491b4c3f97425  ./_agents/zai/notes/evidence/w37-champion-topbar.png
+453a1be06d109eb302e5900ae9dfab43  ./_agents/zai/notes/evidence/w37-intro-stars.png
+76dbcedbfd406ad09029b6f3204f039d  ./_agents/zai/notes/evidence/w37-map-nickel-dark.png
+31dd7ffdf99cf97aec483a21ed199776  ./_agents/zai/notes/evidence/w37-map-nickel-light.png
+50f71c82f0adc091d1b72d775076c2b2  ./_agents/zai/notes/evidence/w37-map-wr4.png
+4d5175c88792216fe1d8adc21126aa9b  ./_agents/zai/notes/evidence/w37-mobile-map.png
+4476479e917a9b18a74836f029ff6aa7  ./_agents/zai/notes/evidence/w37-opener-cinematic.png
+100bb91fd3d38530ed39fbdc81610c65  ./_agents/zai/notes/evidence/w37-recon-map-dark.png
+f588898707e5133cf56c3ac04fd3b981  ./_agents/zai/notes/evidence/w37-recon-map-light.png
+07e5d1c7b03ea4d41666d2762f9c0df6  ./_agents/zai/notes/evidence/w37-review-honors-first.png
+7c65467c5179546bbb41f61e64db0fd1  ./_agents/zai/notes/evidence/w37-unit-report-card.png
+b0716bf72839fdc833fea6262e645084  ./_agents/zai/tools/w36_mobile.js
+c7b9b0856c2d5c81560ca070927acc02  ./_agents/zai/tools/w36_probe.js
+b27ebcf969ba60447b881d14fb6c2427  ./_agents/zai/tools/w36_stress.js
+d174c178e07b79e5679673a15de77857  ./_agents/zai/tools/w36_verify.js
+d740b823ded2c611e245bfcdb6315ada  ./_agents/zai/tools/w37_diag.js
+4ee932ee0108eec45ecd9397a9a41d53  ./_agents/zai/tools/w37_evidence.js
+5fd9769da598053d2e86e4e678a68bba  ./_agents/zai/tools/w37_mobile.js
+173bbea09e8b7c57581abd42b51f13a9  ./_agents/zai/tools/w37_probe.js
+62963e20d8db193212f3629107819583  ./_agents/zai/tools/w37_recon.js
+afd86744c18ef1408a1a90e64e4010aa  ./_agents/zai/tools/w37_stress.js
+5c91b1320d335255d6ad0a62b410e6ea  ./_agents/zai/tools/w37_verify.js
