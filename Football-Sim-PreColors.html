@@ -1204,6 +1204,65 @@ body{
 .awards-user-text{margin:0}
 @media (prefers-reduced-motion: reduce){.shimmer{animation:none;background-position:0 0}}
 
+
+/* Season In Words - P-121 */
+.siw-dropdown{margin-bottom:14px}
+.siw-summary{cursor:pointer;font-weight:700;display:flex;align-items:center;gap:10px;padding:10px 14px}
+.siw-toggle{transition:transform .3s ease}
+.siw-dropdown[open] .siw-toggle{transform:rotate(180deg)}
+.siw-title{font-family:'Cinzel Decorative',serif;font-weight:800;letter-spacing:.08em;color:var(--gold)}
+.siw-count{margin-left:auto;font-size:.75rem;color:var(--sub);background:var(--panel2);padding:3px 8px;border-radius:999px}
+.siw-content{display:flex;flex-direction:column;gap:14px;padding:0 12px 12px}
+.siw-card{opacity:0;transform:translateY(20px);transition:opacity .6s cubic-bezier(.25,.46,.45,.94),transform .6s cubic-bezier(.25,.46,.45,.94);background:var(--panel);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+.siw-card.siw-visible{opacity:1;transform:translateY(0)}
+.siw-card-header{display:flex;align-items:center;gap:10px;padding:12px 16px;background:linear-gradient(135deg,var(--panel2),var(--panel));border-bottom:1px solid var(--border)}
+.siw-icon{font-size:1.3rem}
+.siw-card-title{font-family:'Cinzel Decorative',serif;font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:var(--gold)}
+.siw-card-body{padding:16px}
+.arc-header{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap;margin-bottom:12px}
+.arc-record{font-family:'Cinzel Decorative',serif;font-size:2rem;font-weight:900;color:var(--gold)}
+.arc-meta{display:flex;gap:8px;flex-wrap:wrap}
+.arc-badge{padding:6px 10px;border-radius:8px;background:var(--panel2);border:1px solid var(--border);font-size:.75rem;font-weight:700}
+.arc-badge.div{border-color:var(--gold);color:var(--gold)}
+.arc-badge.seed{border-color:var(--accent);color:var(--accent)}
+.arc-badge.miss{border-color:var(--bad);color:var(--bad)}
+.arc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}
+.arc-stat{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:10px;text-align:center}
+.arc-stat-val{display:block;font-family:'Cinzel Decorative',serif;font-size:1.3rem;font-weight:800}
+.arc-stat-lbl{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.04em;color:var(--sub)}
+.pythag-bar{height:6px;background:var(--border);border-radius:999px;overflow:hidden;margin-top:6px}
+.pythag-fill{height:100%}
+.pythag-fill.pos{background:linear-gradient(90deg,var(--gold),#fff3b0)}
+.pythag-fill.neg{background:linear-gradient(90deg,var(--bad),#ff8a65)}
+.moments-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px}
+.moment-card{background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:12px;border-left:4px solid var(--border)}
+.moment-card.blowout{border-left-color:var(--bad)}
+.moment-card.bestwin{border-left-color:var(--gold)}
+.moment-card.worstloss{border-left-color:var(--bad)}
+.moment-card.frustrating{border-left-color:var(--accent2)}
+.moment-card.closegames{border-left-color:var(--gold)}
+.moment-card.division,.moment-card.homeroad,.moment-card.vsplayoffs{border-left-color:var(--accent)}
+.moment-card h5{font-size:.65rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);margin:0 0 8px;font-family:'Cinzel Decorative',serif}
+.moment-score{font-family:'Cinzel Decorative',serif;font-size:1.5rem;font-weight:800;color:var(--gold);margin-bottom:4px}
+.moment-opp{font-weight:700;font-size:.85rem;margin-bottom:4px}
+.moment-week{font-size:.7rem;color:var(--sub)}
+.moment-desc{font-size:.65rem;color:var(--sub);margin-top:4px}
+.why-waterfall{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:16px}
+.why-waterfall h5{font-family:'Cinzel Decorative',serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--gold);margin-bottom:12px}
+.waterfall{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:center}
+.wf-step{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 12px;background:var(--panel);border:1px solid var(--border);border-radius:8px;min-width:80px}
+.wf-step.pos{border-color:var(--gold);background:rgba(255,196,60,.05)}
+.wf-step.neg{border-color:var(--bad);background:rgba(255,107,74,.05)}
+.wf-final{background:linear-gradient(135deg,var(--gold),#fff8e1);border-color:var(--gold)}
+.wf-label{font-size:.55rem;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);font-family:'Cinzel Decorative',serif;white-space:nowrap}
+.wf-val{font-family:'Cinzel Decorative',serif;font-size:1.1rem;font-weight:800}
+.wf-val.pos{color:var(--gold)}
+.wf-val.neg{color:var(--bad)}
+.wf-final .wf-val{color:var(--gold)}
+.wf-arrow{color:var(--sub);font-size:1.2rem}
+.why-note{margin-top:12px;font-size:.75rem;color:var(--sub);text-align:center}
+@media (prefers-reduced-motion: reduce){.siw-card{opacity:1;transform:none;transition:none}}
+
 <style id="float-override">
 *{outline:none!important;box-shadow:none!important}
 .panel, .pcard, .kp-card, .matchup-card, .score-line, .bracket-game, .mm-game, .detailpanel, .confirm-box,
@@ -6609,7 +6668,22 @@ function generateRegularSeasonRecap(){
  const S0 = seasonState; if(S0 && S0.cacheRecap && S0.cacheRecapKey===S0.schedule.filter(g=>g.played).length) return S0.cacheRecap;
  const out0 = generateRegularSeasonRecapRaw(); if(S0){ S0.cacheRecap = out0; S0.cacheRecapKey = S0.schedule.filter(g=>g.played).length; } return out0;
 }
+function initSIWScrollFade(){ try{ const cards=document.querySelectorAll('.siw-card'); if(!cards.length) return; const obs=new IntersectionObserver((entries)=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('siw-visible'); else e.target.classList.remove('siw-visible'); }); },{threshold:0.15,rootMargin:'0px 0px -50px 0px'}); cards.forEach(c=>obs.observe(c)); }catch(e){} }
+function factsBase(){ const S=seasonState||{}; const user=seasonUserTeam(), log=S.schedule?S.schedule.filter(g=>g.played&&g.home&&g.away):[], T=S.teamStats||{}, U=S.unitRanks||{}, R=S.unitRatings||{}, gp=log.length||17; const me=T[user]||{wins:0,losses:0,ties:0,pf:0,pa:0}; const N={}; Object.keys(T).forEach(k=>N[k]={w:T[k].wins||0,l:T[k].losses||0,t:T[k].ties||0,pf:T[k].pf||0,pa:T[k].pa||0}); return {S,user,log,T,U,R,gp,me,N}; }
+function renderArcVisual(F){ const {user,me,S,gp}=F; const div=divisionOfTeam(user), conf=conferenceOfTeam(user); let divPlace=4, seedEntry=null; try{ const dr=divisionStandings(div,F.st,S.schedule); divPlace=dr.findIndex(r=>r.team===user)+1||4; if(S.seeds && S.seeds[conf]) seedEntry=S.seeds[conf].find(x=>x.team===user); }catch(e){} const e=2.37, expW=gp?gp*Math.pow(me.pf||1,e)/(Math.pow(me.pf||1,e)+Math.pow(me.pa||1,e)):0, actW=(me.wins||0)+(me.ties||0)*.5, gap=actW-expW; const rec=`${me.wins||0}-${me.losses||0}${me.ties?'-'+me.ties:''}`; return `<div class="siw-arc"><div class="arc-header"><div class="arc-record shimmer">${rec}</div><div class="arc-meta"><span class="arc-badge div">${divPlace===1?'🏆 WON':divPlace===0?'—':'#'+divPlace} ${div}</span>${seedEntry?`<span class="arc-badge seed">#${seedEntry.seed} SEED</span>`:`<span class="arc-badge miss">MISSED PLAYOFFS</span>`}</div></div><div class="arc-stats"><div class="arc-stat"><span class="arc-stat-val">${rec}</span><span class="arc-stat-lbl">RECORD</span></div><div class="arc-stat"><span class="arc-stat-val">${gp?((me.pf||0)/gp).toFixed(1):'-'}/${gp?((me.pa||0)/gp).toFixed(1):'-'}</span><span class="arc-stat-lbl">PPG / PAPG</span></div><div class="arc-stat"><span class="arc-stat-val">${gp?(((me.pf||0)-(me.pa||0))/gp).toFixed(1):'-'}</span><span class="arc-stat-lbl">MARGIN</span></div><div class="arc-stat pythag"><span class="arc-stat-val">${gap>=0?'+':''}${gap.toFixed(1)}</span><span class="arc-stat-lbl">VS PYTHAG</span><div class="pythag-bar"><div class="pythag-fill ${gap>=0?'pos':'neg'}" style="width:${Math.min(Math.abs(gap)*18,100)}%"></div></div></div></div></div>`; }
+function renderMomentsVisual(F){ const {log,st,S}=F,user=seasonUserTeam(), wins=log.filter(g=>g.margin>0), losses=log.filter(g=>g.margin<0), big=wins.slice().sort((a,b)=>b.margin-a.margin)[0], marquee=wins.slice().sort((a,b)=>(st[b.opp]?.wins||0)-(st[a.opp]?.wins||0))[0], worst=losses.slice().sort((a,b)=>a.margin-b.margin)[0], bad=losses.slice().sort((a,b)=>(st[a.opp]?.wins||0)-(st[b.opp]?.wins||0))[0], close=log.filter(g=>Math.abs(g.margin)<=8), cw=close.filter(g=>g.margin>0).length, conf=conferenceOfTeam(user), div=divisionOfTeam(user), dv=log.filter(g=>divisionOfTeam(g.opp)===div), dw=dv.filter(g=>g.margin>0).length, home=log.filter(g=>g.home===user), hw=home.filter(g=>g.margin>0).length, road=log.filter(g=>g.away===user), rw=road.filter(g=>g.margin>0).length, poTeams=new Set(); try{ if(S.seeds){ [...S.seeds.AFC,...S.seeds.NFC].forEach(x=>poTeams.add(x.team)); } }catch(e){} const vs=log.filter(g=>poTeams.has(g.opp)), vw=vs.filter(g=>g.margin>0).length; const card=(cls,icon,h,body)=>`<article class="moment-card ${cls}"><span class="moment-icon">${icon}</span><h5>${h}</h5>${body}</article>`; let html='<div class="moments-grid">'; if(big) html+=card('blowout','💥','BIGGEST BLOWOUT',`<div class="moment-score">${big.fs}–${big.os}</div><div class="moment-opp">vs ${nick(big.opp)}</div><div class="moment-week">Week ${big.week}</div>`); if(marquee) html+=card('bestwin','⭐','BEST WIN',`<div class="moment-score">${marquee.fs}–${marquee.os}</div><div class="moment-opp">vs ${nick(marquee.opp)} (${st[marquee.opp]?.wins||0}-${st[marquee.opp]?.losses||0})</div><div class="moment-week">Week ${marquee.week}</div>`); if(worst) html+=card('worstloss','💀','WORST LOSS',`<div class="moment-score">${worst.fs}–${worst.os}</div><div class="moment-opp">vs ${nick(worst.opp)}</div><div class="moment-week">Week ${worst.week}</div>`); if(bad) html+=card('frustrating','😤','FRUSTRATING LOSS',`<div class="moment-score">${bad.fs}–${bad.os}</div><div class="moment-opp">vs ${nick(bad.opp)} (${st[bad.opp]?.wins||0}-${st[bad.opp]?.losses||0})</div><div class="moment-week">Week ${bad.week}</div>`); html+=card('closegames','⚖️','1-SCORE GAMES',`<div class="moment-score shimmer">${cw}-${close.length-cw}</div><div class="moment-desc">${cw>close.length-cw?'Found a way':'Mixed results'}</div>`); html+=card('division','🏈','DIVISION',`<div class="moment-score">${dw}-${dv.length-dw}</div><div class="moment-desc">${dv.length} games</div>`); html+=card('homeroad','🏠/✈️','HOME / ROAD',`<div class="moment-score">${hw}-${home.length-hw} / ${rw}-${road.length-rw}</div>`); html+=card('vsplayoffs','🏆','VS PLAYOFF TEAMS',`<div class="moment-score">${vw}-${vs.length-vw}</div>`); html+='</div>'; return html; }
+function renderWhyOffenseVisual(F){ const user=seasonUserTeam(), T=F.T||{}, gp=F.gp||17, t=T[user]||{}, lg=F.S&&F.S.league?F.S.league:{}, off=lg.offense||((t.pf||0)/Math.max(1,gp)); const act=(t.pf||0)/Math.max(1,gp); const diff=act-off; return `<div class="why-waterfall"><h5>OFFENSE: RATINGS → ACTUAL</h5><div class="waterfall"><div class="wf-step"><span class="wf-label">LEAGUE AVG</span><span class="wf-val">${off.toFixed(1)}</span></div><span class="wf-arrow">→</span><div class="wf-step ${diff>=0?'pos':'neg'}"><span class="wf-label">VS AVG</span><span class="wf-val ${diff>=0?'pos':'neg'}">${diff>=0?'+':''}${diff.toFixed(1)}</span></div><span class="wf-arrow">→</span><div class="wf-step wf-final"><span class="wf-label">ACTUAL PPG</span><span class="wf-val">${act.toFixed(1)}</span></div></div><div class="why-note">Schedule, plans, execution and luck feed in; shown as net effect.</div></div>`; }
+function renderWhyDefenseVisual(F){ const user=seasonUserTeam(), T=F.T||{}, gp=F.gp||17, t=T[user]||{}, lg=F.S&&F.S.league?F.S.league:{}, def=lg.defense||((t.pa||0)/Math.max(1,gp)); const act=(t.pa||0)/Math.max(1,gp); const diff=act-def; return `<div class="why-waterfall"><h5>DEFENSE: RATINGS → ACTUAL</h5><div class="waterfall"><div class="wf-step"><span class="wf-label">LEAGUE AVG PA</span><span class="wf-val">${def.toFixed(1)}</span></div><span class="wf-arrow">→</span><div class="wf-step ${diff<=0?'pos':'neg'}"><span class="wf-label">VS AVG</span><span class="wf-val ${diff<=0?'pos':'neg'}">${diff>=0?'+':''}${diff.toFixed(1)}</span></div><span class="wf-arrow">→</span><div class="wf-step wf-final"><span class="wf-label">ACTUAL PAPG</span><span class="wf-val">${act.toFixed(1)}</span></div></div><div class="why-note">Lower is better; shown as net effect vs league average.</div></div>`; }
+function renderSeasonInWordsHTML(){ try{ const F=factsBase(); const parts=[{id:'arc',title:'SEASON ARC',icon:'📈',html:renderArcVisual(F)},{id:'moments',title:'DEFINING MOMENTS',icon:'⚡',html:renderMomentsVisual(F)},{id:'offense',title:'OFFENSE',icon:'🏈',html:(typeof renderOffenseVisual==='function'?renderOffenseVisual(F):'')},{id:'defense',title:'DEFENSE',icon:'🛡️',html:(typeof renderDefenseVisual==='function'?renderDefenseVisual(F):'')},{id:'playoffField',title:'PLAYOFF FIELD',icon:'🏆',html:(typeof renderPlayoffFieldVisual==='function'?renderPlayoffFieldVisual(F):'')},{id:'weakness',title:'WEAKNESS COST',icon:'⚠️',html:(typeof renderWeaknessVisual==='function'?renderWeaknessVisual(F):'')},{id:'outlook',title:'OUTLOOK',icon:'🔮',html:(typeof renderOutlookVisual==='function'?renderOutlookVisual(F):'')},{id:'whyOffense',title:'WHY OFFENSE',icon:'📊',html:renderWhyOffenseVisual(F)},{id:'whyDefense',title:'WHY DEFENSE',icon:'📊',html:renderWhyDefenseVisual(F)},{id:'whyRecord',title:'WHY RECORD',icon:'📈',html:(typeof renderWhyRecordVisual==='function'?renderWhyRecordVisual(F):'')},{id:'whyPassRush',title:'WHY PASS RUSH',icon:'💨',html:(typeof renderWhyPassRushVisual==='function'?renderWhyPassRushVisual(F):'')},{id:'olStory',title:'OL STORY',icon:'🧱',html:(typeof renderOLStoryVisual==='function'?renderOLStoryVisual(F):'')}].filter(p=>p.html&&p.html.trim()); return `<details class="panel siw-dropdown" open><summary class="siw-summary"><span class="siw-toggle">▼</span><span class="siw-title">SEASON IN WORDS</span><span class="siw-count">${parts.length} parts</span></summary><div class="siw-content" id="siwContent">${parts.map(p=>`<article class="siw-card" data-id="${p.id}"><header class="siw-card-header"><span class="siw-icon">${p.icon}</span><h4 class="siw-card-title">${p.title}</h4></header><div class="siw-card-body">${p.html}</div></article>`).join('')}</div></details>`; }catch(e){ return ''; } }
+
 function generateRegularSeasonRecapRaw(){
+ try{
+   const html = renderSeasonInWordsHTML && renderSeasonInWordsHTML();
+   if(html && html.trim()){
+     setTimeout(function(){ try{ if(typeof initSIWScrollFade==='function') initSIWScrollFade(); }catch(e){} }, 0);
+     return html;
+   }
+ }catch(e){}
  const F = factsBase();
  return [fragArc(F), fragMoments(F), fragOffense(F), fragDefense(F), fragPlayoffField(F), fragWeaknessCost(F), fragOutlook(F,false)]
   .map(t=>`<p class="detail-item">${t}</p>`).join('') + whyBoxHTML(F);
