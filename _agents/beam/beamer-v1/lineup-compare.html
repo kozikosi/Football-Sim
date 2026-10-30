@@ -1,0 +1,43 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beamer V1 — Lineup Compare</title>
+<style>
+:root{--bg:#0d0a0e;--panel:rgba(255,255,255,.04);--text:#f5f0f0;--sub:#c9b8bc;--muted:#8a7a80;--border:rgba(255,255,255,.08);--gold:#d4af37;--rose:#f0dce2;--team:#e31837;--team2:#ffb81c;--good:#3ecf8e;--bad:#ff6b6b;--motion:250ms ease}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%);background-attachment:fixed;color:var(--text);padding:16px}
+.shimmer{background:linear-gradient(90deg,var(--gold) 0%,var(--rose) 25%,#fff 50%,var(--rose) 75%,var(--gold) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+h1{font-size:1.3rem;margin:0 0 2px;display:inline-block}
+.sub{color:var(--sub);font-size:.8rem;margin:0 0 12px}
+.card{background:var(--panel);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:16px;padding:14px;margin-bottom:10px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+table{width:100%;border-collapse:collapse;font-size:.78rem}
+th,td{padding:6px 4px;border-bottom:1px solid var(--border)}
+th{text-align:center;color:var(--sub);font-weight:600;font-size:.7rem;text-transform:uppercase;letter-spacing:.04em}
+td:first-child{text-align:left}td:last-child{text-align:right}
+.win{font-weight:700;color:var(--gold)}
+.group td{background:rgba(212,175,55,.06);font-weight:700;text-align:center;font-size:.7rem;text-transform:uppercase;letter-spacing:.05em;color:var(--gold);padding:8px 4px}
+.note{color:var(--sub);font-size:.7rem;margin-top:6px;font-style:italic}
+.chip{display:inline-block;padding:1px 6px;border-radius:4px;font-size:.65rem;background:rgba(212,175,55,.12);color:var(--gold);margin:1px}
+.chip.weak{background:rgba(255,107,107,.12);color:var(--bad)}
+@media(max-width:480px){table{font-size:.7rem}}
+</style></head><body>
+<h1 class="shimmer">Lineup Compare</h1><p class="sub">Beamer V1 — Beamer vs opponent, effective ratings, foil shimmer on winner</p>
+<div class="card">
+<div class="row"><span style="font-weight:700">KC Chiefs</span><span style="color:var(--sub)">vs</span><span style="font-weight:700">SEA Seahawks</span></div>
+<div class="row" style="margin-top:6px"><span class="chip">+3.2 WINS</span><span class="chip weak">Weak: TE depth</span><span class="chip">Strong: QB play</span></div>
+</div>
+<div class="card">
+<table>
+<tr class="group"><td colspan="3">Offense</td></tr>
+<tr><td>Patrick Mahomes (96)</td><th>QB</th><td class="win">Geno Smith (84)</td></tr>
+<tr><td>Isiah Pacheco (84)</td><th>RB1</th><td>Kenneth Walker (86)</td></tr>
+<tr><td>Travis Kelce (91)</td><th>TE1</th><td>Noah Fant (78)</td></tr>
+<tr><td>Rashee Rice (88)</td><th>WR1</th><td>DK Metcalf (91)</td></tr>
+<tr class="group"><td colspan="3">Defense</td></tr>
+<tr><td>Chris Jones (96)</td><th>DT1</th><td>Leonard Williams (89)</td></tr>
+<tr><td>Trent McDuffie (90)</td><th>CB1</th><td>Tariq Woolen (85)</td></tr>
+<tr><td>Nick Bolton (86)</td><th>MIKE</th><td>Bobby Wagner (88)</td></tr>
+</table>
+<p class="note">Ratings are effective (flex penalty applied). Winner of each matchup in gold with foil shimmer. 85+ players shimmer in team colour.</p>
+</div>
+<p style="color:var(--muted);font-size:.7rem;text-align:center">Beamer V1 · lineup compare mock-up</p>
+</body></html>
