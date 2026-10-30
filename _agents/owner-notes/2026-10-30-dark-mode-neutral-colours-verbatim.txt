@@ -1,0 +1,3 @@
+Owner message, 30 Oct 2026 13:03 HST (verbatim, Owner's part only):
+"When I said I love the neutral colors in the homepage dropdown, I mean the colors that appear for the team names when dark mode is enabled, by the way."
+Decision/clarification: the team-tinted neutral colours to reproduce in Colors v1 are the ones the homepage team dropdown shows for team NAMES in DARK mode (w33's zpbPackFor output, brightened tints). Applies to COLORS-V1-DESIGN.md "Colour" paragraph. UI work, later.
