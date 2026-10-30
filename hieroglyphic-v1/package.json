@@ -2,7 +2,7 @@
   "name": "vlc-v1",
   "version": "0.1.0",
   "type": "module",
-  "description": "VLC V1 - A cleaner architecture for NFL Draft Simulator combining Claude's engine with refined UX",
+  "description": "HieroGlyphic v1 - A cleaner architecture for NFL Draft Simulator combining Claude's engine with refined UX",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

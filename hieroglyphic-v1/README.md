@@ -1,4 +1,4 @@
-# VLC V1
+# HieroGlyphic v1
 
 A cleaner, more modern architecture for the NFL Draft Simulator. Combines Claude's engine (from Colors) with refined UX inspired by w37/w38, reimagined with better code organization.
 
