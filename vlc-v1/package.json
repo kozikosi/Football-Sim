@@ -1,0 +1,15 @@
+{
+  "name": "vlc-v1",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "VLC V1 - A cleaner architecture for NFL Draft Simulator combining Claude's engine with refined UX",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "node --test --experimental-strip-types"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}
