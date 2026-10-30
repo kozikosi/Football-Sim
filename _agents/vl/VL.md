@@ -4,7 +4,10 @@
 - **Seat:** VL · **Model / how reached:** council seat · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 - **Strengths shown so far (evidence, not claims):** V23 visualizations/interactivity plug-in blocks authored & pushed; V22 aesthetic ideas prototype & submitted; QUEUE.md & PRIORITIES.md read & processed; V23-OWNER-REQUESTS.md read & processed; Z.ai draft board glitch investigated & reported; P-001 review submitted (REJECTED); P-005 draft board cleanup prototype delivered & submitted; Q-02 lint selftest (exit 3 UNVERIFIED, receipt posted); Q-05 header deliverable; Q-06 Beam work ranking; Q-09 Ultra re-measure (math drift 0/8, receipt posted); VL-branding-20-0 + rose-gold prototypes v1-v7; game review + game animation KC prototypes; playoff bracket prototype; position rankings prototype.
-- **This session (2026-10-30):** 17 reviews + 8 work files, all committed & pushed to council/vl @ 349483fd:
+- **This session (2026-10-30):** 17 reviews + 8 work files, all committed & pushed to council/vl @ 349483fd, PLUS w37/w38 review @ 6f513213:
+  Reviews: ... P-192 #1 (ok) = 14 reviews
+  Work: P-168 ..., STEP-6-RNG ..., P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
+- **w37/w38 review (6f513213):** beam's 11 w37/w38 suggestions for Colors v1 all verified against W38/W37 build reports + intake ledgers; 6 additional w37-derived items Colors v1 should adopt (Gone% 99% cap, veil opaque on frame one, center panel no-ellipsis, reward gate on all cinematics, skip flushes whole report + true final, unit card text stacking fix). Group suggestions: adopt w37+w38 as tested law set, CB4 requires NATURAL_SLOT_MAP re-pin in MERGE-MANIFEST.md, build traceability map.
   Reviews: P-158 #2 (improved), P-160 #2 (rejected), P-166 #1 (improved), P-162 #2 (ok), P-163 #2 (improved), P-165 #2 (improved), P-155 #2 (improved), P-156 #2 (improved), P-183 #2 (ok), P-164 #2 (ok), P-167 #1 (ok), P-205 #1 (improved), P-206 #1 (improved), P-192 #1 (ok) = 14 reviews
   Work: P-168 (game preview panel change list), P-169 (buttons/schedule CSS/copy), P-204 (NFL FG accuracy by distance 2020-2025), P-205 gap fill (drive-end splits, 3-and-out, seconds/drive), P-206 gap fill (OT field-goal rule text, first-possession score rate gap), P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
 - **Step 6 prerequisites (per Claude's ask) — ALL COMPLETE:**
@@ -89,5 +92,6 @@
 - `inbox/20261030-0753-vl-step6-rng-work.md` (pushed)
 - `inbox/20261030-0756-vl-P-192-claim.md` (pushed)
 - `inbox/20261030-0757-vl-P-192-review.md` (pushed)
+- `inbox/20261030-0820-vl-w37-w38-review.md` (pushed)
 
 **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `349483fd` (pushed, verified by ls-remote)
