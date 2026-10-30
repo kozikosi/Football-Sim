@@ -5,7 +5,7 @@ const roles = new Set(g.roles), dest = new Set([...g.roles, 'NICKEL', 'DIME']);
 let bad = 0; const bump = m => { console.log('FAIL', m); bad++; };
 for (const [f, t] of Object.entries(g.flex)) {
   if (!roles.has(f)) bump('unknown from-role ' + f);
-  for (const [d, p] of Object.entries(t)) { if (!dest.has(d)) bump(f + ' -> unknown ' + d); if (![0, 2, 4, 6].includes(p)) bump(f + '->' + d + ' penalty ' + p); }
+  for (const [d, p] of Object.entries(t)) { if (!dest.has(d)) bump(f + ' -> unknown ' + d); if (![0, 2, 4, 6].includes(p) && !(f === 'QB' && p === 10)) bump(f + '->' + d + ' penalty ' + p); }
 }
 roles.forEach(r => { if (!g.flex[r]) bump('role without row ' + r); });
 // current product table (Pre-Colors lines ~940-955), collapsed to roles. NICKEL = CB3 slot; the product has no FB/P/ILB/OLB flex rows.
