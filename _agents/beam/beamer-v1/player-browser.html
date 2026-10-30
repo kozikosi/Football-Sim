@@ -1,0 +1,41 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Beamer V1 — Player Browser</title>
+<style>
+:root{--bg:#0d0a0e;--panel:rgba(255,255,255,.04);--text:#f5f0f0;--sub:#c9b8bc;--muted:#8a7a80;--border:rgba(255,255,255,.08);--gold:#d4af37;--rose:#f0dce2;--team:#e31837;--motion:250ms ease}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:radial-gradient(ellipse at top,#1a1014 0%,#0d0a0e 60%);background-attachment:fixed;color:var(--text);padding:16px}
+.shimmer{background:linear-gradient(90deg,var(--gold) 0%,var(--rose) 25%,#fff 50%,var(--rose) 75%,var(--gold) 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:sh 2.5s ease-in-out infinite}
+@keyframes sh{0%{background-position:200% 0}100%{background-position:-200% 0}}
+h1{font-size:1.3rem;margin:0 0 2px;display:inline-block}
+.sub{color:var(--sub);font-size:.8rem;margin:0 0 12px}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.filters select,.filters input{padding:6px 10px;border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:6px;font-size:.75rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px}
+.pc{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:10px;border-left:3px solid var(--team);transition:all var(--motion)}
+.pc:hover{border-color:var(--border-hover);transform:translateY(-2px)}
+.pc .name{font-weight:700;font-size:.85rem;margin-bottom:2px}
+.pc .meta{font-size:.7rem;color:var(--sub);margin-bottom:6px}
+.pc .ovr{float:right;font-weight:800;font-size:.85rem;color:var(--gold)}
+.pc .pos{display:inline-block;font-size:.65rem;padding:1px 6px;border-radius:4px;background:rgba(212,175,55,.12);color:var(--gold);margin-right:4px}
+.pc.shimmer .name{animation:sh 2.5s ease-in-out infinite;background:linear-gradient(90deg,var(--gold),var(--rose),#fff,var(--rose),var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.pager{display:flex;gap:8px;align-items:center;justify-content:center;margin-top:12px;font-size:.75rem;color:var(--sub)}
+.pager button{padding:4px 10px;border:1px solid var(--border);background:var(--panel);color:var(--text);border-radius:4px;cursor:pointer}
+@media(max-width:480px){.grid{grid-template-columns:repeat(2,1fr)}}
+</style></head><body>
+<h1 class="shimmer">Player Browser</h1><p class="sub">Beamer V1 — 15 per page, sticky filters, position dropdown</p>
+<div class="filters">
+<input placeholder="Search players...">
+<select><option>All positions</option><option>QB</option><option>WR</option><option>CB</option></select>
+<select><option>Sort: OVR</option><option>Sort: Name</option></select>
+<select><option>Team: All</option><option>Chiefs</option></select>
+</div>
+<div class="grid">
+<div class="pc shimmer" style="--team:#e31837"><div class="name">Patrick Mahomes</div><div class="meta"><span class="pos">QB</span>KC · 99 OVR</div><div class="ovr">99</div></div>
+<div class="pc" style="--team:#e31837"><div class="name">Travis Kelce</div><div class="meta"><span class="pos">TE1</span>KC · 91 OVR</div><div class="ovr">91</div></div>
+<div class="pc shimmer" style="--team:#003594"><div class="name">CeeDee Lamb</div><div class="meta"><span class="pos">WR1</span>DAL · 96 OVR</div><div class="ovr">96</div></div>
+<div class="pc" style="--team:#002244"><div class="name">DK Metcalf</div><div class="meta"><span class="pos">WR1</span>SEA · 91 OVR</div><div class="ovr">91</div></div>
+<div class="pc" style="--team:#002244"><div class="name">Devon Witherspoon</div><div class="meta"><span class="pos">CB1</span>SEA · 88 OVR</div><div class="ovr">88</div></div>
+<div class="pc" style="--team:#003594"><div class="name">Micah Parsons</div><div class="meta"><span class="pos">DE1</span>DAL · 96 OVR</div><div class="ovr">96</div></div>
+</div>
+<div class="pager"><button>‹</button><span>Page 1 of 81</span><button>›</button></div>
+<p style="color:var(--muted);font-size:.7rem;text-align:center;margin-top:14px">Beamer V1 · player browser mock-up</p>
+</body></html>
