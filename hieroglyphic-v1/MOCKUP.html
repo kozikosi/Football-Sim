@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HieroGlyphic v1 - Design Mockup</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0d0a0e;
+      --panel: #151218;
+      --panel2: #1a171d;
+      --border: #2a242d;
+      --text: #f5f0f0;
+      --sub: #b8a9b5;
+      --gold: #d4af37;
+      --gold2: #f0d98c;
+      --rose: #d4a574;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 40px 20px;
+      line-height: 1.6;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    h1 {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, var(--gold), #fff, var(--gold));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 2.5s ease-in-out infinite;
+    }
+    @keyframes shimmer {
+      0%, 100% { background-position: 200% 0; }
+      50% { background-position: -200% 0; }
+    }
+    .subtitle {
+      text-align: center;
+      color: var(--sub);
+      margin-bottom: 40px;
+      font-size: 1.1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+    .card h2 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--gold);
+      margin-bottom: 12px;
+      font-size: 1.3rem;
+    }
+    .card ul {
+      list-style: none;
+      padding: 0;
+    }
+    .card li {
+      padding: 8px 0;
+      padding-left: 20px;
+      position: relative;
+      color: var(--text);
+    }
+    .card li:before {
+      content: "▸";
+      position: absolute;
+      left: 0;
+      color: var(--gold);
+    }
+    .architecture {
+      background: var(--panel2);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+    .architecture h2 {
+      font-family: 'Cinzel Decorative', serif;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .arch-diagram {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .arch-layer {
+      background: var(--panel);
+      border: 2px solid var(--gold);
+      border-radius: 8px;
+      padding: 16px 32px;
+      text-align: center;
+      min-width: 200px;
+      font-weight: 600;
+    }
+    .arch-arrow {
+      color: var(--gold);
+      font-size: 1.5rem;
+    }
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 16px;
+    }
+    .feature {
+      background: var(--panel);
+      padding: 16px;
+      border-radius: 8px;
+      border-left: 3px solid var(--gold);
+    }
+    .feature h3 {
+      color: var(--gold2);
+      margin-bottom: 8px;
+      font-size: 1rem;
+    }
+    .feature p {
+      color: var(--sub);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>HieroGlyphic v1</h1>
+    <p class="subtitle">A cleaner architecture for NFL Draft Simulator</p>
+    
+    <div class="grid">
+      <div class="card">
+        <h2>🎯 Design Philosophy</h2>
+        <ul>
+          <li>Clean separation of concerns</li>
+          <li>Engine remains pure (no DOM)</li>
+          <li>Learn from w37/w38 beauty, fix bugs</li>
+          <li>Future-ready for React/Svelte</li>
+          <li>Preserve all game mechanics</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h2>⚡ Engine (from Colors)</h2>
+        <ul>
+          <li>Seeded RNG (deterministic)</li>
+          <li>Optimal lineup solver (Hungarian)</li>
+          <li>Flex penalty system</li>
+          <li>Drive generator (P-205)</li>
+          <li>Realistic kicking curves (P-204)</li>
+          <li>Overtime rules (P-206)</li>
+        </ul>
+      </div>
+      
+      <div class="card">
+        <h2>✨ UI Inspiration</h2>
+        <ul>
+          <li>Rose-gold aesthetic from w37/w38</li>
+          <li>Cinzel Decorative typography</li>
+          <li>Shimmer effects for elites (90+)</li>
+          <li>Team-colored elements</li>
+          <li>Clean, polished components</li>
+          <li>Better than Pre-Colors</li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="architecture">
+      <h2>Architecture</h2>
+      <div class="arch-diagram">
+        <div class="arch-layer">UI Layer (Components)</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">State Management</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">Game Logic / Orchestration</div>
+        <div class="arch-arrow">↓</div>
+        <div class="arch-layer">Pure Engine (Colors-based)</div>
+      </div>
+    </div>
+    
+    <h2 style="font-family: 'Cinzel Decorative', serif; color: var(--gold); text-align: center; margin-bottom: 24px;">Key Improvements</h2>
+    <div class="features">
+      <div class="feature">
+        <h3>Modular Design</h3>
+        <p>Clear separation between engine, UI, and state for easier testing and maintenance</p>
+      </div>
+      <div class="feature">
+        <h3>Type Safety Ready</h3>
+        <p>Structure designed for easy TypeScript migration</p>
+      </div>
+      <div class="feature">
+        <h3>Framework Agnostic</h3>
+        <p>Can migrate to React or Svelte with minimal engine changes</p>
+      </div>
+      <div class="feature">
+        <h3>Fixed w37/w38 Bugs</h3>
+        <p>Learning from their issues while keeping the beauty</p>
+      </div>
+      <div class="feature">
+        <h3>Performance Focused</h3>
+        <p>Optimized rendering, memoization where needed</p>
+      </div>
+      <div class="feature">
+        <h3>Engine Purity</h3>
+        <p>All game logic is pure and deterministic with seeded RNG</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
