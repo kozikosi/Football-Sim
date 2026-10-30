@@ -8,7 +8,7 @@
 
 ---
 
-## Session Work Summary (2026-10-29)
+## Session Work Summary (2026-10-30)
 
 ### Reviews Completed (All Pushed to `council/uk`)
 
@@ -41,15 +41,22 @@
 | **P-162** | #1 | **improved** | Card design proposal: reusable card component for stats/awards/leaders/draft bubbles; correct userStatsInner anchor line 3651 (was listed 3642 in work doc); removal of "why" text from awards; consistent palette colours not white. |
 | **P-162** | #1 | **improved** | Verdict: improved (calibration defect in anchors found; design direction sound; no runtime checks run). |
 | **P-165** | #1 | **CLAIM + WORK** | Game review and result line: always shimmering player of the game; remove "PLAYER OF THE GAME"; final line "TB 29-34 NO" with each score in team colour; YOU WON/YOU LOST with shimmering star; remove "FINAL ... You winTurnovers ..." and second set of team names; no "Turnovers - ARI 2 - 1 NO". Claims pushed; work spec in inbox. |
+| **P-163** | #1 | **CLAIM + WORK** | Playoff preview redesign: key players as vertical cards (one per line), shimmering at 90+ (no drifting names); remove "quarterback play +3.3 pass protection"; whole preview in Cinzel Decorative; star emojis team-coloured and shimmering; playoff picture text in palette colours. Anchors: `starsFaceoffHTML` (5397-5404), `playoffPreview` matchup lines filter (5380-5383), `renderPreviewPanel` Cinzel wrapper (5405-5409), CSS shimmer keyframes. Files: `inbox/20261029-1949-uk-P-163-claim.md`, `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`. |
+| **P-125** | #1 | **ok** | 'Start A New Draft' button at bottom of draft page: exact anchor at lines 434-438, uses `confirmDialog` + `startNewDraftFlow`, CSS gradient `--accent`/`--gold`. No duplication with existing buttons. |
+| **P-165** | #1 | **improved** | Game review & result line: root causes confirmed (mvp guard at 3735, unconditional mvp at 3188, simulateGame pool empty). Improved spec: dedicated `renderGameBallHTML` function, week-1 OVR guard, preview vs review context, foil shimmer complementary colour, final score "x - y" with team colours, YOU WON/LOST with shimmering star. |
+| **P-166** | #1 | **improved** | Game animation log lines: root causes confirmed (duplicate lines from synthetic turn times, missing MM:SS times, bare "touchdown" word, en-dash score, "Turnover" prose). Improved format spec: 10 lines with columns play|time|score, TD/FG shimmer tags, lowercase turnover codes, no "Touchdown"/"Turnover" words. |
 
-### Current Session (2026-10-29)
+### Current Session (2026-10-30)
 
 | Task | Status | Notes |
 |------|--------|-------|
-| **P-163** | **CLAIM + WORK** | Playoff preview redesign: key players as vertical cards (one per line), shimmering at 90+ (no drifting names); remove "quarterback play +3.3 pass protection"; whole preview in Cinzel Decorative; star emojis team-coloured and shimmering; playoff picture text in palette colours. Anchors: `starsFaceoffHTML` (5397-5404), `playoffPreview` matchup lines filter (5380-5383), `renderPreviewPanel` Cinzel wrapper (5405-5409), CSS shimmer keyframes. Files: `inbox/20261029-1949-uk-P-163-claim.md`, `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`. |
+| **P-165** | **REVIEW #1** | Improved beam's work: added exact anchors, week guard, context detection, foil shimmer complementary colour algorithm, turnover text removal anchor. |
+| **P-125** | **REVIEW #1** | Verified beam's corrected proposal: exact anchor, confirmDialog, startNewDraftFlow, no viewHome/tabHomeBtn/--accent3. |
+| **P-166** | **REVIEW #1** | Improved beam's format spec: corrected score format (numbers only), added TD/FG shimmer tags, lowercase turnover codes, 10-line reference spec. |
+
 ### GitHub Pushes
 
-- All reviews and work pushed to `council/uk` branch (commits: `2dee0f90`, `78fa3d64`, `96446bcc`, `cfaf2437`, `4de0624d`, and earlier)
+- All reviews and work pushed to `council/uk` branch (commits: `8e921b81`, `13f4966c`, `27371417`, and earlier)
 
 ---
 
@@ -62,7 +69,8 @@
 - **P-183** Style Law: 18 canonical rules. Conflicts with current code flagged (warm white vs cool white, blue panels vs rose/gold, green vs gold, Cinzel not loaded).
 - **P-158** (review #1): Code inspection: threshold inconsistency in `pickCritiqueHTML` corrected; "Fine" → "OK" label applied.
 - **P-162** (review #1): Design inspection: card spec validated; anchor line 3651 confirmed; award text removal confirmed.
-- **P-165** (review #1): Claim + work spec completed: review/result line alignment; "PLAYER OF THE GAME" removal; final line "TB 29-34 NO"; win/loss stars.
+- **P-165** (review #1): Root causes confirmed; improved spec with `renderGameBallHTML`, week guard, foil shimmer complement.
+- **P-166** (review #1): Root causes confirmed; improved format spec with columns, shimmer tags, lowercase codes.
 
 ---
 
@@ -73,6 +81,9 @@
 - **P-005**: Ready for Architect (Beam's work complete, my review #3 done)
 - **z-post-blue draft board**: Race condition needs triage
 - **P-163**: Ready for Architect review — presentational changes only, safe alone
+- **P-125**: Ready for Architect — beam's work verified ok
+- **P-165**: Ready for Architect — improved spec ready
+- **P-166**: Ready for Architect — improved format spec ready
 
 ---
 
@@ -85,9 +96,11 @@
 
 ## Next Session Should Read
 
-1. **`inbox/20261029-1949-uk-P-163-claim.md` and `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`** — This session's P-163 work
-2. **`_agents/PRIORITIES.md`** — Master priority list
-3. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
+1. **`inbox/20261030-0340-uk-P-165-claim.md` and `inbox/20261030-0345-uk-P-165-review.md`** — This session's P-165 review
+2. **`inbox/20261030-0342-uk-P-125-claim.md` and `inbox/20261030-0350-uk-P-125-review.md`** — This session's P-125 review
+3. **`inbox/20261030-0343-uk-P-166-claim.md` and `inbox/20261030-0355-uk-P-166-review.md`** — This session's P-166 review
+4. **`_agents/PRIORITIES.md`** — Master priority list
+5. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
 
 ---
 
@@ -104,7 +117,7 @@
 
 - **Worktree path:** `/Users/kosi/Desktop/wt/uk`
 - **Branch:** `council/uk`
-- **Merge-base with origin/council/base:** `d1e335e94445bbc439b932c98a6b737c24f5d18e`
+- **Merge-base with origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d`
 
 ---
 
