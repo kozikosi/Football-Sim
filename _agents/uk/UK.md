@@ -43,20 +43,20 @@
 | **P-165** | #1 | **CLAIM + WORK** | Game review and result line: always shimmering player of the game; remove "PLAYER OF THE GAME"; final line "TB 29-34 NO" with each score in team colour; YOU WON/YOU LOST with shimmering star; remove "FINAL ... You winTurnovers ..." and second set of team names; no "Turnovers - ARI 2 - 1 NO". Claims pushed; work spec in inbox. |
 | **P-163** | #1 | **CLAIM + WORK** | Playoff preview redesign: key players as vertical cards (one per line), shimmering at 90+ (no drifting names); remove "quarterback play +3.3 pass protection"; whole preview in Cinzel Decorative; star emojis team-coloured and shimmering; playoff picture text in palette colours. Anchors: `starsFaceoffHTML` (5397-5404), `playoffPreview` matchup lines filter (5380-5383), `renderPreviewPanel` Cinzel wrapper (5405-5409), CSS shimmer keyframes. Files: `inbox/20261029-1949-uk-P-163-claim.md`, `inbox/20261029-1949-uk-P-163-playoff-preview-redesign.md`. |
 | **P-125** | #1 | **ok** | 'Start A New Draft' button at bottom of draft page: exact anchor at lines 434-438, uses `confirmDialog` + `startNewDraftFlow`, CSS gradient `--accent`/`--gold`. No duplication with existing buttons. |
-| **P-165** | #1 | **improved** | Game review & result line: root causes confirmed (mvp guard at 3735, unconditional mvp at 3188, simulateGame pool empty). Improved spec: dedicated `renderGameBallHTML` function, week-1 OVR guard, preview vs review context, foil shimmer complementary colour, final score "x - y" with team colours, YOU WON/LOST with shimmering star. |
+| **P-165** | #1 | **improved** | Game review & result line: root causes confirmed (mvp guard at 3735, unconditional mvp at 3188, simulateGame pool empty → undefined mvp). Improved spec adds `renderGameBallHTML`, week-1 OVR guard, foil shimmer complementary colour. |
 | **P-166** | #1 | **improved** | Game animation log lines: root causes confirmed (duplicate lines from synthetic turn times, missing MM:SS times, bare "touchdown" word, en-dash score, "Turnover" prose). Improved format spec: 10 lines with columns play|time|score, TD/FG shimmer tags, lowercase turnover codes, no "Touchdown"/"Turnover" words. |
+| **P-164** | #1 | **WORK** | Playoff flow and cinematics: playoff button "Play the <opponent>", SIM PLAYOFFS after elimination, cinematic timeline (regular=playoff intro, playoff=Super Bowl cinematic, Super Bowl=1 min), "Season in Words" glitch fix (persistent panel in playoffs view), skip behaviour, reduced motion. |
+| **P-167** | #1 | **WORK** | Lineups (Game Preview) fix: root causes for "undefined" (normalizeSlotEntry), dark colours (use team-aware foil shimmer), missing slots (fallback in lineupCell), ratings parentheses (already present), centred headers (add text-align:center), effective ratings note (keep narr but readable), team identity visible (change details to div), foil shimmer on matchup winners and 85+ players in team colour. Anchors: lineupCell (3341), renderLineupTableHTML (3351), starsFaceoffHTML (5397), renderIdentityPanel (5192). |
 
-### Current Session (2026-10-30)
+### Current Session (2026-10-30 continued)
 
 | Task | Status | Notes |
 |------|--------|-------|
-| **P-165** | **REVIEW #1** | Improved beam's work: added exact anchors, week guard, context detection, foil shimmer complementary colour algorithm, turnover text removal anchor. |
-| **P-125** | **REVIEW #1** | Verified beam's corrected proposal: exact anchor, confirmDialog, startNewDraftFlow, no viewHome/tabHomeBtn/--accent3. |
-| **P-166** | **REVIEW #1** | Improved beam's format spec: corrected score format (numbers only), added TD/FG shimmer tags, lowercase turnover codes, 10-line reference spec. |
+| **P-167** | **WORK** | Lineups (Game Preview) fix — detailed root causes and exact code changes with anchors |
 
 ### GitHub Pushes
 
-- All reviews and work pushed to `council/uk` branch (commits: `8e921b81`, `13f4966c`, `27371417`, and earlier)
+- All reviews and work pushed to `council/uk` branch (commits: `d3e43d71`, `066b69be`, `13f4966c`, `27371417`, `8e921b81`, `13f4966c`, `27371417`, and earlier)
 
 ---
 
@@ -71,6 +71,8 @@
 - **P-162** (review #1): Design inspection: card spec validated; anchor line 3651 confirmed; award text removal confirmed.
 - **P-165** (review #1): Root causes confirmed; improved spec with `renderGameBallHTML`, week guard, foil shimmer complement.
 - **P-166** (review #1): Root causes confirmed; improved format spec with columns, shimmer tags, lowercase codes.
+- **P-164** (work): Playoff flow spec complete with cinematic timeline, Season in Words fix, skip/reduced-motion.
+- **P-167** (work): Lineups fix spec complete with 8 root causes, exact anchors, foil shimmer integration with team theming.
 
 ---
 
@@ -84,6 +86,8 @@
 - **P-125**: Ready for Architect — beam's work verified ok
 - **P-165**: Ready for Architect — improved spec ready
 - **P-166**: Ready for Architect — improved format spec ready
+- **P-164**: Ready for Architect — work spec ready
+- **P-167**: Ready for Architect — work spec ready
 
 ---
 
@@ -96,11 +100,12 @@
 
 ## Next Session Should Read
 
-1. **`inbox/20261030-0340-uk-P-165-claim.md` and `inbox/20261030-0345-uk-P-165-review.md`** — This session's P-165 review
-2. **`inbox/20261030-0342-uk-P-125-claim.md` and `inbox/20261030-0350-uk-P-125-review.md`** — This session's P-125 review
-3. **`inbox/20261030-0343-uk-P-166-claim.md` and `inbox/20261030-0355-uk-P-166-review.md`** — This session's P-166 review
-4. **`_agents/PRIORITIES.md`** — Master priority list
-5. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
+1. **`inbox/20261030-0530-uk-P-167-lineups-game-preview-fix.md`** — This session's P-167 work
+2. **`inbox/20261030-0425-uk-P-164-playoff-cinematics.md`** — Previous session's P-164 work
+3. **`inbox/20261030-0345-uk-P-165-review.md`** — P-165 improved review
+4. **`inbox/20261030-0355-uk-P-166-review.md`** — P-166 improved review
+5. **`_agents/PRIORITIES.md`** — Master priority list
+6. **`_agents/V23-OWNER-REQUESTS.md`** — Owner's direct requests
 
 ---
 
