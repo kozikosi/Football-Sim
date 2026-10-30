@@ -95,3 +95,4 @@ export function fieldSlots(base: Base): FieldSlot[] {
 // The drive generator (step 6) raises it per play on short-yardage and goal-line downs; this is the season-long average.
 export type Posture = 'cautious' | 'balanced' | 'aggressive';
 export const DL5_SHARE: Readonly<Record<Posture, number>> = { cautious: 0.33, balanced: 0.33, aggressive: 0.40 };
+// w38: CB4 added as real draft spot
