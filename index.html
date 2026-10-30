@@ -971,6 +971,7 @@ details.zpb-dd[open]>summary::before{content:'\25BE\00A0';}
 .zpb-rep-final b{display:block;font-family:'Cinzel Decorative',serif;font-size:1.3rem;}
 .zpb-rep-final span{color:var(--sub);font-size:.8rem;}
 .zpb-rep-ft{padding:12px 16px;border-top:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.zpb-replay .zpb-rep-ft{position:relative;z-index:6;} /* w38 (R12, Owner): ONE skip button — the footer door sits above the intro cover */
 .zpb-rep-prog{flex:1;height:5px;border-radius:3px;background:var(--border);overflow:hidden;}
 .zpb-rep-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--tG5,var(--g5)),var(--tG2,var(--g2)));transition:width .4s linear;}
 @media (max-width:640px){
@@ -1285,8 +1286,13 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-replay.done .zrl-skip{display:none !important;}
 /* w33 (R27): the pre-game stage — key players fade in and out while the logos breathe */
 .zpb-intro-stars{position:absolute;inset:0;pointer-events:none;}
-.zpb-intro-star{position:absolute;left:var(--sx,50%);top:var(--sy,86%);transform:translate(-50%,-50%);white-space:nowrap;font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:800;font-size:1.02rem;letter-spacing:.06em;opacity:0;animation:zpbStarInOut 2.5s ease both;} /* w37 (R6, Owner): every name owns a station around the middle panel */
-.zpb-intro-star i{font-style:normal;font-size:.68rem;letter-spacing:.12em;opacity:.85;}
+.zpb-intro-star{position:absolute;left:var(--sx,50%);top:var(--sy,86%);transform:translate(-50%,-50%);white-space:nowrap;font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:800;font-size:1.02rem;letter-spacing:.06em;opacity:0;animation:zpbStarInOut 3.4s ease both;} /* w38 (R7, Owner): the fade in-and-out runs a little slower */
+.zpb-intro-star b{display:block;color:var(--tnd,#f2e4c8);font-size:1.02rem;}
+.zpb-intro-star b.zpb-vib{color:var(--tnd,#f2e4c8);}
+.zpb-intro-star i{font-style:normal;display:block;font-size:.62rem;letter-spacing:.12em;opacity:.92;color:var(--zrb,var(--gold3));margin-top:3px;}
+/* w38 (R8, Owner): every pregame name wears the SAME player panel — the story-card frame */
+.zpb-intro-star{background:rgba(16,9,4,.62);border:1px solid rgba(217,169,76,.4);border-radius:12px;padding:8px 13px;box-shadow:0 4px 18px rgba(0,0,0,.35);}
+.zpb-intro-star.zpb-st-side,.zpb-intro-star.zpb-st-side-r{background:rgba(16,9,4,.5);}
 @keyframes zpbStarInOut{0%{opacity:0;transform:translate(-50%,-50%) translateY(8px);}18%{opacity:1;transform:translate(-50%,-50%) translateY(0);}78%{opacity:1;transform:translate(-50%,-50%);}100%{opacity:0;transform:translate(-50%,-50%) translateY(-6px);}}
 /* w33 (R19): the LAST DRIVES recap — the ending reads like a drive chart */
 .zpb-rep-drivecard{margin:8px 0 4px;text-align:center;}
@@ -1339,7 +1345,6 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 @keyframes zpbtitlein{from{opacity:0;letter-spacing:.6em;transform:translateY(10px)}to{opacity:1}}
 .zpb-intro-sub{font-size:.78rem;letter-spacing:.3em;color:var(--sub);text-transform:uppercase;animation:zpbtitlein 1s ease 1.3s both;}
 .zpb-replay.zpb-sb .zpb-intro-sub{animation-delay:4.4s;}
-.zpb-intro-skip{position:absolute;right:16px;bottom:14px;opacity:.75;}
 /* 17) rest-of-season summary overlay */
 .zpb-restov{position:fixed;inset:0;z-index:90;display:flex;align-items:center;justify-content:center;background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-filter:blur(4px);}
 .zpb-restov .zpb-restbox{position:relative;text-align:center;padding:34px 44px;border-radius:22px;border:1px solid var(--rosehair);
@@ -2496,11 +2501,13 @@ function groupAvgForTeam(team, def){
  return groupAvgFromPool(PLAYERS.filter(p=>p[2]===team), def);
 }
 
-function computeDetailMetrics(pool){
+function computeDetailMetrics(pool, basisPools){
+ // w38 (R5, Owner): ONE basis per page — pass basisPools (the 32 draft boards) and every unit
+ // ranks against them, so the bars, the strengths and Your Breakdown quote the same Secondary.
  const allTeams = Object.keys(TEAM_DATA);
  return DETAIL_KEYS.map(key=>{
   const def = GROUP_DEFS.find(g=>g.key===key);
-  const teamVals = allTeams.map(t=>groupAvgForTeam(t, def).avg);
+  const teamVals = (Array.isArray(basisPools) && basisPools.length) ? basisPools.map(bp=>groupAvgFromPool(bp, def).avg) : allTeams.map(t=>groupAvgForTeam(t, def).avg);
   const myVal = groupAvgFromPool(pool, def);
   const rank = Math.min(32, teamVals.filter(v=>v>myVal.avg).length + 1);
   const pct = ((32-rank)/31*100);
@@ -2524,7 +2531,7 @@ function renderDetailHTML(title, metrics){
   ? `<div class="zpb-sw-grid">` + strengths.map(m=>`<div class="zpb-swbadge zpb-sw-good"><span class="zpb-sw-rank">#${m.rank}</span><span class="zpb-sw-body"><b>${m.label}</b><i>led by ${m.top[0] ? m.top[0][0] : 'a thin room'}</i></span></div>`).join('') + `</div>`
   : `<div class="zpb-sw-grid"><div class="zpb-swbadge"><span class="zpb-sw-body"><b>No unit cracks the league top 8</b></span></div></div>`;
  let weaknessItems = weaknesses.length
-  ? `<div class="zpb-sw-grid">` + weaknesses.map(m=>`<div class="zpb-swbadge zpb-sw-bad"><span class="zpb-sw-rank">#${m.rank}</span><span class="zpb-sw-body"><b>${m.label}</b><i>a bottom-tier unit this year</i></span></div>`).join('') + `</div>`
+  ? `<div class="zpb-sw-grid">` + weaknesses.map(m=>`<div class="zpb-swbadge zpb-sw-bad"><span class="zpb-sw-rank">#${m.rank}</span><span class="zpb-sw-body"><b>${m.label}</b></span></div>`).join('') + `</div>`
   : `<div class="zpb-sw-grid"><div class="zpb-swbadge"><span class="zpb-sw-body"><b>No glaring bottom-tier weakness</b></span></div></div>`;
 
  return `
@@ -2659,7 +2666,7 @@ function renderPlayers(){
   let cls = '';
   if(ovr>=90 && ovr===topOfTeam[team] && !shimUsed[team]){ cls = 'zpb-shm'; shimUsed[team] = 1; }
   else if(ovr>=85){ cls = 'zpb-vib'; }
-  h += `<tr style="${zpbTv}"><td class="zpb-pb-name ${cls}">${name}</td><td><span class="zpb-poschip">${pos}</span></td><td class="zpb-pb-team">${team}</td><td class="score">${ovr}</td><td class="num">${spd}</td><td class="num">${str_}</td></tr>`; // w30 (Owner): AGI, COD, INJ and AWR are gone from the site
+  h += `<tr style="${zpbTv}"><td class="zpb-pb-name zpb-gname ${cls}">${name}</td><td><span class="zpb-poschip">${pos}</span></td><td class="zpb-pb-team">${team}</td><td class="score">${ovr}</td><td class="num">${spd}</td><td class="num">${str_}</td></tr>`; // w30 (Owner): AGI, COD, INJ and AWR are gone from the site
  });
  if(!pageRows.length) h = `<tr><td colspan="6" style="text-align:center;color:var(--sub);padding:18px 0;">No players match your filters.</td></tr>`;
  body.innerHTML = h;
@@ -2908,7 +2915,8 @@ function zpbRowVars(name){
  const pk=zpbPackFor(name); if(!pk) return '';
  return '--zr1:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.76):pk.accL),0.07)+'; // w32 (Owner): light mode lifts the tint further so the team ink always reads--zr2:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.03)+';--zr3:'+zpbRgba((window.zpbLift?zpbLift(pk.raw[2],0.58):pk.raw[2]),0.10)+';--zrb:'+pk.accL+
   ';--zr1d:'+zpbRgba(pk.accD,0.15)+';--zr2d:'+zpbRgba(pk.accD,0.04)+';--zr3d:'+zpbRgba(pk.raw[2],0.12)+';--zrbd:'+pk.accD+
-  ';--tA2:'+pk.accL+';--tG2:'+(window.zpbLift?zpbLift(pk.accL,0.35):pk.accL)+';--glow:'+zpbRgba(pk.accL,0.35)+';--tn:'+pk.txL+';--tnd:'+pk.accD+';'; // w20: tier palette rides every row · w27: --tnd = the team color tuned for the dark theme
+  ';--tA2:'+pk.accL+';--tG2:'+(window.zpbLift?zpbLift(pk.accL,0.35):pk.accL)+';--glow:'+zpbRgba(pk.accL,0.35)+';--tn:'+pk.txL+';--tnd:'+pk.accD+
+  ';--nm:'+pk.txL+';--nmd:'+pk.txd+';--nu:'+pk.accL+';--nud:'+(window.zpbLift?zpbLift(pk.accL,0.55):pk.accL)+';'; // w20: tier palette rides every row · w27: --tnd = the team color tuned for the dark theme · w38 (R1, Owner): the rankings' name ink rides every row
 }
 function zpbUserRowVars(){ return zpbState.teamName ? zpbRowVars(zpbState.teamName) : ''; }
 // w34 (Owner): the player browser and the draft board wear the homepage dropdown's exact
@@ -2918,7 +2926,8 @@ function zpbNeutralRowVars(name){
  const nl=(window.zpbLift?zpbLift(pk.txL,0.62):pk.txL), nd=pk.txd;
  return '--zr1:'+zpbRgba(nl,0.09)+';--zr2:'+zpbRgba(nl,0.03)+';--zr3:'+zpbRgba(nl,0.10)+';--zrb:'+nl+
   ';--zr1d:'+zpbRgba(nd,0.14)+';--zr2d:'+zpbRgba(nd,0.04)+';--zr3d:'+zpbRgba(nd,0.12)+';--zrbd:'+nd+
-  ';--tA2:'+nl+';--tG2:'+nl+';--glow:'+zpbRgba(nl,0.26)+';--tn:'+nl+';--tnd:'+nd+';';
+  ';--tA2:'+nl+';--tG2:'+nl+';--glow:'+zpbRgba(nl,0.26)+';--tn:'+nl+';--tnd:'+nd+
+  ';--nm:'+pk.txL+';--nmd:'+pk.txd+';--nu:'+pk.accL+';--nud:'+(window.zpbLift?zpbLift(pk.accL,0.55):pk.accL)+';'; // w38 (R1, Owner): the name ink keeps the rankings format on the neutral rows too
 }
 function zpbNeutralUserRowVars(){ return zpbState.teamName ? zpbNeutralRowVars(zpbState.teamName) : ''; }
 // VL-style marquee: both tracks carry duplicated content for a seamless -50% loop
@@ -3285,7 +3294,7 @@ function zpbGameReplay(g, focusTeam){
   const QN = {1:'1ST QUARTER', 2:'2ND QUARTER', 3:'3RD QUARTER', 4:'4TH QUARTER'};
   const clockOf = e=>{ const m = Math.max(0, Math.min(15, 15*(1-(e.t||0)))); const mm = Math.floor(m), ss = Math.floor((m-mm)*60); return mm + ':' + String(ss).padStart(2,'0'); };
   let hs = 0, as = 0, timers = [], finished = false, clutch = false, flushRest = null; // w37 (R12): Skip hands the rest of the report to flushRest
-  const close = ()=>{ timers.forEach(t=>clearTimeout(t)); const x = document.querySelector('.zpb-replay-ov'); if(x) x.remove(); document.removeEventListener('keydown', esc); try{ if(typeof zpbFxDrain==='function') zpbFxDrain(); }catch(err){} }; // w37 (R11): a queued reward lands once the game leaves the screen
+  const close = ()=>{ timers.forEach(t=>clearTimeout(t)); const x = document.querySelector('.zpb-replay-ov'); if(x) x.remove(); document.removeEventListener('keydown', esc); try{ if(typeof zpbFxDrain==='function') zpbFxDrain(false); }catch(err){} }; // w38 (R13, Owner): an early close never fires the champions — they wait for the whistle
   const esc = e=>{ if(e.key==='Escape') close(); };
   document.addEventListener('keydown', esc);
   ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
@@ -3296,10 +3305,12 @@ function zpbGameReplay(g, focusTeam){
   // ---- cinematic intro: 5 s for playoff games, 30 s for the Super Bowl ----
   const INTRO_MS = isSB ? 60000 : (roundLabel ? 30000 : 5000);
   let introDone = !INTRO_MS;
+  if(skip) skip.textContent = INTRO_MS ? 'Skip intro' : 'Skip'; // w38 (R12, Owner): the wording leads with the intro
   const startTimeline = ()=>{
    if(introDone) return;
    introDone = true;
    const intro = box.querySelector('.zpb-rep-intro'); if(intro) intro.remove();
+   if(skip) skip.textContent = 'Skip'; // w38 (R12, Owner): SKIP INTRO becomes SKIP at kickoff
    runEvents();
   };
   if(INTRO_MS){
@@ -3313,7 +3324,7 @@ function zpbGameReplay(g, focusTeam){
      ROSTER_SLOTS.forEach(sl=>{
       const e = effEntry(sm, sl); if(!e || e.ovr<85) return;
       const _g2 = SLOT_GROUP[sl]; if(_g2==='K') return; // the 80+ law keeps kickers off the stage
-      stars.push({n:e.name, o:Math.round(e.ovr), pos:(LABELS[sl]||sl), team:abbr(t), col:colOf(t)});
+      stars.push({n:e.name, o:Math.round(e.ovr), pos:(LABELS[sl]||sl), team:abbr(t), full:t, col:colOf(t)});
      });
     });
    }catch(err){}
@@ -3321,30 +3332,42 @@ function zpbGameReplay(g, focusTeam){
    const showStars = stars.slice(0, Math.max(6, Math.min(10, Math.round(INTRO_MS/2600))));
    // w37 (R6, Owner): the names spread AROUND the middle panel — each team's best on the top and
    // the bottom, the others on opposite sides (away left, home right) — never stacked on one spot.
+   // w38 (R7, Owner): MORE SYMMETRY — the others stand in mirrored PAIRS at the SAME height
+   // (away left, home right) and every pair shares one beat, so they line up against each other.
    const awayStars = showStars.filter(s=>s.team===abbr(g.away)), homeStars = showStars.filter(s=>s.team===abbr(g.home));
+   // w38 (R7, Owner): the units LINE UP — both sides cap at the same count, so every name but the
+   // bests stands in a mirrored pair at the same height, fading together against his opposite.
+   const pairable = Math.max(1, Math.min(awayStars.length, homeStars.length) - 1);
+   awayStars.length = Math.min(awayStars.length, pairable + 1);
+   homeStars.length = Math.min(homeStars.length, pairable + 1);
+   const pairs = pairable;
+   const stepY = pairs>1 ? (44/(pairs-1)) : 0;
+   const pairY = i=> i<=1 ? 50 : (28 + (i-2)*stepY);
+   const pairDelay = i=> 1.2 + Math.min(i, pairs+1)*((INTRO_MS-3600)/Math.max(1, pairs+1));
    const slots = [];
-   awayStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 26, sy: i===0 ? 9 : (30 + i*15), side: i===0 ? '' : ' zpb-st-side'})));
-   homeStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 74, sy: i===0 ? 91 : (70 - i*15), side: i===0 ? '' : ' zpb-st-side-r'})));
+   awayStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 20, sy: i===0 ? 9 : pairY(i), beat: i, side: i===0 ? '' : ' zpb-st-side'})));
+   homeStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 80, sy: i===0 ? 91 : pairY(i), beat: i, side: i===0 ? '' : ' zpb-st-side-r'}))); // w38 (R8): the side panels clear the middle panel's crests
    const starHTML = slots.map((s,i)=>{
     let fsz = '';
     if(s.side){ // w37 (R6, Owner): a side name fits its lane — the font steps down until the line stays inside
-     let f = 16.3; const est = ff => (s.n.length*0.66 + 15) * ff;
-     while(f > 9.5 && est(f) > 340) f -= 0.5;
-     if(f < 16.25) fsz = 'font-size:' + (Math.round(f*10)/10) + 'px;';
+     let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
+     while(f > 9.5 && est(f) > 250) f -= 0.5;
+     if(f < 15.35) fsz = 'font-size:' + (Math.round(f*10)/10) + 'px;';
     }
-    return '<span class="zpb-intro-star' + (s.side||'') + '" style="--sx:' + s.sx + '%;--sy:' + s.sy + '%;animation-delay:' + (1.2 + i*(INTRO_MS-3600)/Math.max(1,slots.length)) + 'ms;' + fsz + 'color:' + s.col + ';">' + s.n + ' <i>' + s.pos + ' \u00b7 ' + s.o + ' OVR \u00b7 ' + s.team + '</i></span>';
+    const rv = (s.full && typeof zpbRowVars==='function') ? zpbRowVars(s.full) : ''; // w38 (R8): the panel wears the team palette
+    const _t = (s.o>=90) ? 'zpb-shm' : ((s.o>=85) ? 'zpb-vib' : '');
+    return '<span class="zpb-intro-star' + (s.side||'') + '" style="--sx:' + s.sx + '%;--sy:' + s.sy + '%;animation-delay:' + pairDelay(s.beat) + 'ms;' + fsz + rv + '"><b class="' + _t + '">' + s.n + '</b><i>' + s.pos + ' \u00b7 ' + s.o + ' OVR \u00b7 ' + s.team + '</i></span>';
    }).join('');
    intro.innerHTML = '<div class="zpb-intro-flash"></div>'
     + '<div class="zpb-intro-title">' + roundLabel.toUpperCase() + '</div>'
     + '<div class="zpb-intro-logos"><span class="zpb-intro-l">' + crest(g.away) + '</span><span class="zpb-intro-vs">VS</span><span class="zpb-intro-r">' + crest(g.home) + '</span></div>'
     + '<div class="zpb-intro-sub">' + (isSB ? 'the everything game' : abbr(g.away) + ' @ ' + abbr(g.home)) + '</div>' // w32 (Owner): during the game, AT is @
     + '<div class="zpb-intro-stars">' + starHTML + '</div>'
-    + '<button class="tabbtn zpb-intro-skip" id="zrepIntroSkip">Skip intro</button>';
+;
    box.appendChild(intro);
    const flash = ()=>{ const f = intro.querySelector('.zpb-intro-flash'); if(f){ f.style.opacity = '.95'; setTimeout(()=>{ f.style.transition = 'opacity .7s ease'; f.style.opacity = '0'; }, 240); } };
    if(isSB){ [3400,12000,22000,34000,46000].forEach(ms=>timers.push(setTimeout(flash, ms))); }
    else { timers.push(setTimeout(flash, 3400)); }
-   const iSkip = intro.querySelector('#zrepIntroSkip'); if(iSkip) iSkip.addEventListener('click', zpbSkipAll);
    timers.push(setTimeout(startTimeline, INTRO_MS));
   }
   const finish = (skipRest)=>{
@@ -3372,7 +3395,7 @@ function zpbGameReplay(g, focusTeam){
    // w32 (Owner): the streak cinematic belongs to the final whistle — it plays here, once,
    // only when this game just completed the streak, never on the way into the next one.
    if(focusTeam && typeof zpbStreakReward==='function'){ setTimeout(()=>{ try{ zpbStreakReward(); }catch(err){} }, 1300); }
-   setTimeout(()=>{ try{ if(typeof zpbFxDrain==='function') zpbFxDrain(); }catch(err){} }, 1600); // w37 (R11, Owner): the playoff rewards fire at the END of the game — never over the intro
+   setTimeout(()=>{ try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){} }, 1600); // w38 (R13, Owner): the champions land at the final whistle
   };
   const runEvents = ()=>{
    const total0 = all.length;
@@ -3622,8 +3645,8 @@ function zpbRestSummary(){
       Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:'PRO BOWL', n:c.name, pos:pos}); }); }); });
     }
   }catch(e){}
-  const honorHTML = honors.map((c,i)=>'<div class="zpb-scard zpb-shonor" style="--beat:'+i+'">'
-    + '<div class="zpb-scard-hd"><b class="'+(function(){var pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null;return pv&&pv[3]>=90?'zpb-shm':(pv&&pv[3]>=85?'zpb-vib':'');})()+'">' + c.n + '</b>' + (c.pos?'<span class="zpb-poschip">'+c.pos+'</span>':'') + '</div>'
+  const honorHTML = honors.map((c,i)=>'<div class="zpb-scard zpb-shonor" style="'+((typeof zpbUserRowVars==='function')?zpbUserRowVars():'')+'--beat:'+i+'">'
+    + '<div class="zpb-scard-hd"><b class="zpb-gname '+(function(){var pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null;return pv&&pv[3]>=90?'zpb-shm':(pv&&pv[3]>=85?'zpb-vib':'');})()+'">' + c.n + '</b>' + (c.pos?'<span class="zpb-poschip">'+c.pos+'</span>':'') + '</div>'
     + '<div class="zpb-shonor-t">' + c.t + '</div>' + (c.sub?'<div class="zpb-shonor-w">'+c.sub+'</div>':'') + '</div>').join('');
   const honorStage = honors.length ? '<div class="zpb-resthonors"><div class="zpb-resthonors-k zpb-shm">HONORS EARNED</div>' + honorHTML + '</div>' : '';
   ov.innerHTML = honorStage
@@ -3642,7 +3665,7 @@ function zpbRestSummary(){
   if(honors.length){
     setTimeout(()=> ov.classList.add('zpb-rest-ready'), Math.max(honors.length*900 + 1600, 3600)); // w33 (R24, Owner): the honors finish first — every one of them — then the book closes
   } else ov.classList.add('zpb-rest-ready');
-  ov.querySelector('#zpbRestGo').addEventListener('click', ()=>{ ov.remove(); try{ if(typeof zpbFxDrain==='function') zpbFxDrain(); }catch(err){} }); // w37 (R11): queued celebrations land after the books close
+  ov.querySelector('#zpbRestGo').addEventListener('click', ()=>{ ov.remove(); try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){} try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){} }); // w38 (R10, Owner): Continue releases the badge cascade and the queued celebrations
  }catch(err){}
 }
 (function(){
@@ -3650,6 +3673,7 @@ function zpbRestSummary(){
  const orig = simRestOfSeason;
  simRestOfSeason = function(){
   window.__zpbSilent = true;
+  window.__zpbStoryHold = true; // w38 (R10, Owner): the review cards wait for the Honors earned cinematic's Continue
   try{ orig(); } finally { window.__zpbSilent = false; }
   try{ zpbRestSummary(); }catch(err){}
  };
@@ -3951,7 +3975,7 @@ userStatsInner = function(){
   const chips = seasonStatLine(r.group, r.st).split(', ').filter(Boolean).slice(0, 6);
   const rtg = r._rating!=null ? r._rating.toFixed(1) : '—';
   return '<div class="zpb-pcard" style="' + uvars + '">'
-   + '<div class="zpb-pcard-hd"><b class="' + (r.ovr>=90 ? 'zpb-shm' : (r.ovr>=85 ? 'zpb-vib' : '')) + '">' + r.name + '</b><span class="zpb-poschip">' + r.group + '</span></div>'
+   + '<div class="zpb-pcard-hd"><b class="zpb-gname ' + (r.ovr>=90 ? 'zpb-shm' : (r.ovr>=85 ? 'zpb-vib' : '')) + '">' + r.name + '</b><span class="zpb-poschip">' + r.group + '</span></div>'
    + '<div class="zpb-pcard-rt">' + rtg + '<i>#' + (r._rank || '–') + ' ' + r.group + '</i></div>'
    + '<div class="zpb-pcard-stats">' + chips.map(c=>'<span>' + c + '</span>').join('') + '</div>'
    + '</div>';
@@ -3962,13 +3986,14 @@ userStatsInner = function(){
 // the two advanced menus become one panel: metric cards + sack-cause bars
 teamAdvancedHTML = function(){
  const S = seasonState, user = seasonUserTeam(), T = {};
- teamNames().forEach(t=>{ T[t] = {g:0, to:0, tk:0, top:0, run:0, plays:0, td:0, fg:0, tpa:0, tpm:0, close:0, closeW:0, ret:0}; });
+ teamNames().forEach(t=>{ T[t] = {g:0, to:0, tk:0, top:0, run:0, plays:0, td:0, fg:0, tpa:0, tpm:0, close:0, closeW:0, ret:0, pf:0, att:0}; });
  S.schedule.forEach(g=>{
   if(!g.played || !g.result || !g.detail) return;
   ['home','away'].forEach(sd=>{
    const t = g[sd], x = T[t], r = g.result, st = sd==='home' ? r.homeStats : r.awayStats, ost = sd==='home' ? r.awayStats : r.homeStats;
    const my = sd==='home' ? r.homeScore : r.awayScore, op = sd==='home' ? r.awayScore : r.homeScore;
-   x.g++; x.to += st.turnovers; x.tk += ost.turnovers; x.top += st.top; x.run += st.rushYards; x.plays += st.rushYards + st.passYards;
+   x.g++; x.pf += my; x.to += st.turnovers; x.tk += ost.turnovers; x.top += st.top; x.run += st.rushYards; x.plays += st.rushYards + st.passYards;
+   if(g.detail[sd] && g.detail[sd].plays) x.att += (g.detail[sd].plays.rush||0) + (g.detail[sd].plays.pass||0); // w38 (R22, Owner): play attempts feed Yards / play
    (r[sd+'Events']||[]).forEach(e=>{ if(e.type==='TD'){ x.td++; if(e.pts===8 || (e.pts===6 && e.tpTry)){ x.tpa++; if(e.pts===8) x.tpm++; } } else if(e.type==='FG'){ x.fg++; } });
    if(Math.abs(my-op) <= 7){ x.close++; if(my > op) x.closeW++; }
    const rt = g.detail[sd].returner; if(rt) x.ret += (rt.kry||0) + (rt.pry||0);
@@ -3986,12 +4011,18 @@ teamAdvancedHTML = function(){
   ['Turnover margin', String(me.tk - me.to), 'takeaways ' + me.tk + ' · giveaways ' + me.to, me.tk > me.to],
   ['Time of possession', fmtTop(me.top/me.g), 'per game', null],
   ['Rushing share', rushSh.toFixed(0) + '%', 'league ' + rushLg.toFixed(0) + '%', null],
-  ['Touchdowns / g', Math.round(me.td/me.g), 'all touchdowns', me.td/me.g > leagueAvg(x=>x.td/x.g)],
-  ['Field goals / g', Math.round(me.fg/me.g), 'made', null],
+  ['Touchdowns / g', Math.round(me.td/me.g), '', me.td/me.g > leagueAvg(x=>x.td/x.g)], // w38 (R21, Owner): 'all touchdowns' is gone
+  ['Field goals / g', Math.round(me.fg/me.g), '', null], // w38 (R21, Owner): 'made' is gone
   ['2-Pt Conversions', twoPt, 'conversions', null],
    ['CLUTCH GAMES', close, 'within 7 points', me.close ? me.closeW*2 > me.close : null], // w32 (Owner): the label is CLUTCH GAMES
   ['Return yards / g', Math.round(me.ret/me.g), 'kick + punt', null]
- ].map(c=>'<div class="zpb-adcard' + (c[3]===true ? ' zpb-adgood' : c[3]===false ? ' zpb-adbad' : '') + '"><span>' + c[0] + '</span><b>' + c[1] + '</b><i>' + c[2] + '</i></div>').join('');
+ ].map(c=>'<div class="zpb-adcard' + (c[3]===true ? ' zpb-adgood' : c[3]===false ? ' zpb-adbad' : '') + '"><span>' + c[0] + '</span><b>' + c[1] + '</b>' + (c[2] ? '<i>' + c[2] + '</i>' : '') + '</div>').join('');
+ const moreCards = [
+  ['Points / g', Math.round(me.pf/me.g), 'scored', null],
+  ['Total yards / g', fmtN(Math.round(me.plays/me.g)), 'rush + pass', null],
+  ['Yards / play', me.att ? (me.plays/me.att).toFixed(1) : '—', 'every snap', null],
+  ['Takeaways / g', Math.round(me.tk/me.g), 'forced', me.tk >= me.to]
+ ].map(c=>'<div class="zpb-adcard' + (c[3]===true ? ' zpb-adgood' : c[3]===false ? ' zpb-adbad' : '') + '"><span>' + c[0] + '</span><b>' + c[1] + '</b>' + (c[2] ? '<i>' + c[2] + '</i>' : '') + '</div>').join(''); // w38 (R22, Owner): more advanced stats from the data the engine produces
  // sack causes, drawn as bars
  const tally = (team, key)=>{ const c = {rush:0, ol:0, cov:0}; S.schedule.forEach(g=>{ if(!g.played || !g.detail) return; ['home','away'].forEach(sd=>{ if(g[sd]===team && g.detail[sd].sackCauses) g.detail[sd].sackCauses[key].forEach(x=>{ c[x] = (c[x]||0)+1; }); }); }); return c; };
  const made = tally(user, 'made'), taken = tally(user, 'taken');
@@ -4005,7 +4036,8 @@ teamAdvancedHTML = function(){
    + (nt ? barRow('RUSHER WON', taken.rush, nt) + barRow('SUBPAR BLOCKING', taken.ol, nt) + barRow('EXCELLENT COVERAGE', taken.cov, nt) : '<p class="narr" style="margin:4px 0;">No sacks allowed yet.</p>'); // w32 (Owner): RUSHER WON in caps
  }
  return '<div class="panel zpb-glowpanel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Advanced stats</h4>'
-  + '<div class="zpb-advgrid">' + cards + '</div>' + sackHTML + '</div>';
+  + '<div class="zpb-advgrid">' + cards + '</div>'
+  + '<div class="zpb-advgrid zpb-advgrid2">' + moreCards + '</div>' + sackHTML + '</div>';
 };
 advancedStatsHTML = function(){ return ''; };
 
@@ -4016,9 +4048,10 @@ pickCritiqueHTML = function(inner){
  const verdict = r=> r.regret <= 0.05 ? ['Best available', 'zpb-pv-best'] : r.regret < 0.10 ? ['OK', 'zpb-pv-fine'] : r.regret < 0.50 ? ['Costly Miss', 'zpb-pv-bad'] : ['Giveaway', 'zpb-pv-give'];
  const body = rows.map(r=>{
   const vt = verdict(r);
+  const _pvVars = (typeof zpbRowVars==='function') ? zpbRowVars(r.player[2]) : ''; // w38 (R1, Owner): the pick rows wear the rankings ink
   return '<div class="zpb-pvrow ' + vt[1] + '">'
    + '<span class="zpb-pv-rd narr">R' + r.round + '.' + String(r.pickInRound).padStart(2, '0') + '</span>'
-   + '<span class="zpb-pv-p"><b>' + r.player[0] + '</b><i>' + (POS_DISPLAY[r.player[1]] || r.player[1]) + ' · ' + slotName(r.slot) + '</i></span>'
+   + '<span class="zpb-pv-p"><b class="zpb-gname" style="' + _pvVars + '">' + r.player[0] + '</b><i>' + (POS_DISPLAY[r.player[1]] || r.player[1]) + ' · ' + slotName(r.slot) + '</i></span>'
    + '<span class="zpb-pv-val score">' + fmtWar(r.v) + '</span>'
    + '<span class="zpb-pv-alt">' + (r.best && !r.wasBest ? '<b>' + r.best.p[0] + '</b><i>' + (POS_DISPLAY[r.best.p[1]] || r.best.p[1]) + ' · ' + fmtWar(r.best.v) + '</i>' : '<i>your pick</i>') + '</span>'
    + '<span class="zpb-pv-verdict">' + vt[0] + '</span>'
@@ -4048,7 +4081,7 @@ renderKeyPlayersHTML = function(g){
    const st = (typeof zpbRowVars==='function' && p.team) ? zpbRowVars(p.team) : '';
    return '<div class="zpb-kprow' + (star ? ' kp-mvp' : '') + '" style="' + st + '">'
     + '<span class="pos">' + p.group + '</span>'
-    + '<span class="zpb-kpmain"><b class="' + shine + '">' + p.name + '</b>' + (star ? '<span class="zpb-kpstar">★</span>' : '')
+    + '<span class="zpb-kpmain"><b class="zpb-gname ' + shine + '">' + p.name + '</b>' + (star ? '<span class="zpb-kpstar">★</span>' : '')
     + '<i>' + p.line.replace(/, /g, ' · ') + '</i></span></div>';
   }).join('');
   return '<div class="kp-card"><div class="kp-title">' + team + '</div>' + rows + '</div>';
@@ -4845,19 +4878,19 @@ function renderSeriesGroups(nStr){
 initGroupRankings();
 
 // ---- Draft Simulator (32-team snake draft) ----
-const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','WR3','WR4','TE1','TE2','TE3','FB','OT1','OT2','OG1','OG2','C','DE1','DE2','DL5','DT1','DT2','MIKE','WILL','SAM','CB1','CB2','CB3','SS','FS','K','P'];
-const TOTAL_ROUNDS = ROSTER_SLOTS.length; // 31 — w33 (Owner): WR4, TE3 and DL5 are drafted now — three new rounds on the draft board
+const ROSTER_SLOTS = ['QB','RB1','RB2','WR1','WR2','WR3','WR4','TE1','TE2','TE3','FB','OT1','OT2','OG1','OG2','C','DE1','DE2','DL5','DT1','DT2','MIKE','WILL','SAM','CB1','CB2','CB3','CB4','SS','FS','K','P'];
+const TOTAL_ROUNDS = ROSTER_SLOTS.length; // 32 — w38 (R4, Owner): the Dime is drafted — CB4 joins the board
 // ---- FLEX RULES ----------------------------------------------------------------------------------------------
 // A player may start at a spot that is not his natural position. The penalty is the number of rating points he loses there.
 // FLEX[tag] lists the other spots he may play: by exact slot (CB3) or by slot family (OT, OG, C, DE, DT, CB, WR, TE, RB, SS, FS, MIKE, WILL, SAM).
 // Anything not listed is not allowed (except in the "last spot" emergency, see userEmergency).
-const SLOT_FAMILY = {QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',WR4:'WR',TE1:'TE',TE2:'TE',TE3:'TE',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',DE1:'DE',DE2:'DE',DL5:'DE',DT1:'DT',DT2:'DT',MIKE:'MIKE',WILL:'WILL',SAM:'SAM',CB1:'CB',CB2:'CB',CB3:'CB',SS:'SS',FS:'FS',K:'K'}; // w33 (Owner): the WR4 / TE3 / DL5 slots join the flex families
+const SLOT_FAMILY = {QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',WR4:'WR',TE1:'TE',TE2:'TE',TE3:'TE',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',DE1:'DE',DE2:'DE',DL5:'DE',DT1:'DT',DT2:'DT',MIKE:'MIKE',WILL:'WILL',SAM:'SAM',CB1:'CB',CB2:'CB',CB3:'CB',CB4:'CB',SS:'SS',FS:'FS',K:'K'}; // w33 (Owner): the WR4 / TE3 / DL5 slots join the flex families
 const NATURAL_SLOT_MAP = {
  QB:['QB'], HB:['RB1','RB2','FB'], WR:['WR1','WR2','WR3','WR4'], TE:['TE1','TE2','TE3'],
  LT:['OT1','OT2'], RT:['OT1','OT2'], LG:['OG1','OG2'], RG:['OG1','OG2'], C:['C'],
  DT:['DT1','DT2','DL5'], REDG:['DE1','DE2','DL5'], LEDG:['DE1','DE2','DL5'],
  MIKE:['MIKE','WILL','SAM'], WILL:['WILL','MIKE','SAM'], SAM:['SAM','MIKE','WILL'],
- CB:['CB1','CB2','CB3'], SS:['SS'], FS:['FS'],
+ CB:['CB1','CB2','CB3','CB4'], SS:['SS'], FS:['FS'],  // w38 (R4, Owner): the Dime's slot is natural
  K:['K'], P:['P'], FB:['FB']
 };
 const LB_FLEX = {DE:6, DT:4, CB3:4, SS:2, FS:4, TE:6, RB:6}; // MIKE: DT -4, SS -2 (Owner)
@@ -5289,7 +5322,7 @@ function refreshUserAfterLineup(){
 
 // ================= WINS VALUE (how much each player is worth to winning, from the neutral sim math) =================
 // Slot groups and player-tag groups: replacement level is measured within a position group.
-const WV_SLOT_GROUP = {DE1:'EDGE',DE2:'EDGE',DL5:'EDGE',DT1:'DT',DT2:'DT',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',MIKE:'LB',WILL:'LB',SAM:'LB',CB1:'CB',CB2:'CB',CB3:'CB',SS:'SS',FS:'FS',QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',WR4:'WR',TE1:'TE',TE2:'TE',TE3:'TE',K:'K',FB:'RB',P:'K'};
+const WV_SLOT_GROUP = {DE1:'EDGE',DE2:'EDGE',DL5:'EDGE',DT1:'DT',DT2:'DT',OT1:'OT',OT2:'OT',OG1:'OG',OG2:'OG',C:'C',MIKE:'LB',WILL:'LB',SAM:'LB',CB1:'CB',CB2:'CB',CB3:'CB',CB4:'CB',SS:'SS',FS:'FS',QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',WR4:'WR',TE1:'TE',TE2:'TE',TE3:'TE',K:'K',FB:'RB',P:'K'};
 const WV_TAG_GROUP = {QB:'QB',HB:'RB',WR:'WR',TE:'TE',LT:'OT',RT:'OT',LG:'OG',RG:'OG',C:'C',DT:'DT',REDG:'EDGE',LEDG:'EDGE',MIKE:'LB',WILL:'LB',SAM:'LB',CB:'CB',SS:'SS',FS:'FS',K:'K'};
 const WV_OFF_SLOTS = new Set(['QB','RB1','RB2','WR1','WR2','WR3','TE1','TE2','FB','OT1','OT2','OG1','OG2','C','K']);   // FB is an offensive slot (wave 11: lead-blocker wins)
 let _wpoCache = null, _wTable = null;
@@ -5346,7 +5379,7 @@ function staticReplacement(){
 // It depends only on the player and the sim math — never on any roster, draft board or flex.
 const WINS_BASE = 70;
 const STATIC_SLOTS = {QB:['QB'], HB:['RB1'], WR:['WR1','WR2','WR3'], TE:['TE1'], LT:['OT1','OT2'], RT:['OT1','OT2'], LG:['OG1','OG2'], RG:['OG1','OG2'], C:['C'],
- DT:['DT1','DT2'], REDG:['DE1','DE2'], LEDG:['DE1','DE2'], MIKE:['MIKE','WILL'], WILL:['MIKE','WILL'], SAM:['MIKE','WILL'], CB:['CB1','CB2','CB3'], SS:['SS'], FS:['FS'], K:['K']};
+ DT:['DT1','DT2'], REDG:['DE1','DE2'], LEDG:['DE1','DE2'], MIKE:['MIKE','WILL'], WILL:['MIKE','WILL'], SAM:['MIKE','WILL'], CB:['CB1','CB2','CB3','CB4'], SS:['SS'], FS:['FS'], K:['K']}; // w38 (R4, Owner): the Dime's slot is natural
 // Wins of a player at a specific slot (includes the flex penalty if he is out of position there).
 function winsAt(p, slot, base){ return slotWins(slot, effOvr(p, slot)) - slotWins(slot, base==null?WINS_BASE:base); }
 const _warCache = new Map();
@@ -5780,7 +5813,7 @@ function renderDraftBoard2(){
    list.forEach(r=>{
     const w = Math.max(r.v,0), gp = sim ? Math.max(0,Math.min(w,r.pri)) : 0;
     const _cc = (r.p[3]>=85 && typeof zpbTeamChips==='function') ? zpbTeamChips(r.p[2])+' ' : '';
-    h += `<div class="prow zpb-trow" style="${typeof zpbNeutralRowVars==='function'?zpbNeutralRowVars(r.p[2]):''}"><div>${topTag(r)}<b class="${r.p[3]>=90?'zpb-shm':(r.p[3]>=85?'zpb-vib':'')}">${r.p[0]}</b> <span class="narr">${r.p[3]} OVR ${_cc}· ${typeof zpbTeamCell==='function'?zpbTeamCell(r.p[2]):(TEAM_ABBR[r.p[2]]||r.p[2])}${r.gone!=null?' · '+pctTxt(r.gone)+' gone':''}</span><div class="mbar"><i style="width:${gp/mx*100}%;background:var(--accent);"></i><i style="width:${(w-gp)/mx*100}%;background:var(--sub);opacity:.55;"></i></div></div><div class="zpb-pickcol"><div class="score" title="Wins at this spot on your roster (flex penalty included)">${r.v!=null?fmtWar1(r.v):wavg(r.v)}</div>${btn(r)}</div></div>`;
+    h += `<div class="prow zpb-trow" style="${typeof zpbNeutralRowVars==='function'?zpbNeutralRowVars(r.p[2]):''}"><div>${topTag(r)}<b class="zpb-gname ${r.p[3]>=90?'zpb-shm':(r.p[3]>=85?'zpb-vib':'')}">${r.p[0]}</b> <span class="narr">${r.p[3]} OVR ${_cc}· ${typeof zpbTeamCell==='function'?zpbTeamCell(r.p[2]):(TEAM_ABBR[r.p[2]]||r.p[2])}${r.gone!=null?' · '+pctTxt(r.gone)+' gone':''}</span><div class="mbar"><i style="width:${gp/mx*100}%;background:var(--accent);"></i><i style="width:${(w-gp)/mx*100}%;background:var(--sub);opacity:.55;"></i></div></div><div class="zpb-pickcol"><div class="score" title="Wins at this spot on your roster (flex penalty included)">${r.v!=null?fmtWar1(r.v):wavg(r.v)}</div>${btn(r)}</div></div>`;
    });
    h += '</div></div>';
   });
@@ -5839,7 +5872,7 @@ function renderDraftRoster2(){
  const row = (sl, p, rnd, extra)=>{
   const oop = p && isOutOfPosition(p[1], sl);
   const war = p ? `<span class="narr" style="margin-left:6px;" title="Wins above a replacement-level player at this slot">${fmtWar(winsAt(p, sl))}</span>` : '';
-  return `<div class="depth-row dgrid zpb-trow" style="${p&&typeof zpbNeutralUserRowVars==='function'?zpbNeutralUserRowVars():''}"><span class="slotname">${extra||''}${LABELS[sl]||sl}</span><span class="${p?'playername':'empty'} ${p&&p[3]>=90?'zpb-shm':(p&&p[3]>=85?'zpb-vib':'')}">${p?p[0]:''}</span><span class="dovr">${p?p[3]:''}</span><span class="narr dwar">${p?fmtWar(winsAt(p, sl)):''}</span></div>`; // w19 (Owner): a filled position shimmers; 90+ names shimmer, 85+ burn brighter
+  return `<div class="depth-row dgrid zpb-trow" style="${p&&typeof zpbNeutralUserRowVars==='function'?zpbNeutralUserRowVars():''}"><span class="slotname">${extra||''}${LABELS[sl]||sl}</span><span class="${p?'playername':'empty'} zpb-gname ${p&&p[3]>=90?'zpb-shm':(p&&p[3]>=85?'zpb-vib':'')}">${p?p[0]:''}</span><span class="dovr">${p?p[3]:''}</span><span class="narr dwar">${p?fmtWar(winsAt(p, sl)):''}</span></div>`; // w19 (Owner): a filled position shimmers; 90+ names shimmer, 85+ burn brighter
  };
  if(draftUI.rosterView==='pick'){
   const mine = draftSim.log.filter(l=>l.isUser);
@@ -6342,7 +6375,7 @@ function simulateGame(homeSM, awaySM, isPlayoff, lg, plans){
 
 // ---- player-level detail for a game: who scored, who turned it over, who forced it, who sacked ----
 const SLOT_GROUP = {QB:'QB',RB1:'RB',RB2:'RB',WR1:'WR',WR2:'WR',WR3:'WR',WR4:'WR',TE1:'TE',TE2:'TE',TE3:'TE',DL5:'DL',K:'K',OT1:'OL',OT2:'OL',OG1:'OL',OG2:'OL',C:'OL',
- DE1:'DL',DE2:'DL',DT1:'DL',DT2:'DL',MIKE:'LB',WILL:'LB',SAM:'LB',CB1:'DB',CB2:'DB',CB3:'DB',SS:'DB',FS:'DB'};
+ DE1:'DL',DE2:'DL',DT1:'DL',DT2:'DL',MIKE:'LB',WILL:'LB',SAM:'LB',CB1:'DB',CB2:'DB',CB3:'DB',CB4:'DB',SS:'DB',FS:'DB'};
 
 function statImpact(s){
  return (s.passYds||0)*0.04 + (s.passTD||0)*4 - (s.int||0)*2 + (s.rushYds||0)*0.1 + (s.rushTD||0)*6
@@ -7679,7 +7712,7 @@ function seasonStatLine(group, s){
  else if(group==='RB'){ parts.push(`${fmtN(s.car)} CAR`, `${fmtN(s.rushYds)} RUSHY`, `${s.rushTD||0} TD`); if(s.recYds) parts.push(`${fmtN(s.recYds)} RECY`); if(s.recTD) parts.push(`${s.recTD} REC TD`); }
  else if(group==='WR'||group==='TE'){ parts.push(`${fmtN(s.rec)}/${fmtN(s.tgt)} REC`, `${fmtN(s.recYds)} RECY`, `${s.recTD||0} TD`); if(s.rushTD) parts.push(`${s.rushTD} RUSH TD`); }
  else if(group==='K'){ parts.push(`${s.fg||0}/${s.fga||0} FG`); }
- else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} RUSHY`, `${s.pk||0} PK`, `${s.sa||0} SK`, `${s.pa||0} PRSS`); } // w32 (Owner): SK and PRSS \u2014 never SK A, never PRSS A
+ else if(group==='OL'){ parts.push(`${fmtN(s.rbk)} RUSHY`, `${s.pk||0} PC`, `${s.sa||0} SK`, `${s.pa||0} PRSS`); } // w32 (Owner): SK and PRSS \u2014 never SK A, never PRSS A
  else if(group==='DL'){ parts.push(`${s.sack||0} SK`, `${s.tfl||0} TFL`, `${s.hur||0} PRSS`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
  else if(group==='LB'){ parts.push(`${s.tkl||0} TKL`, `${s.tfl||0} TFL`, `${s.sack||0} SK`); if(s.dint) parts.push(`${s.dint} INT`); if(s.pd) parts.push(`${s.pd} PD`); if(s.ff) parts.push(`${s.ff} FF`); }
  else { parts.push(`${s.dint||0} INT`, `${s.pd||0} PD`, `${s.tkl||0} TKL`); if(s.ff) parts.push(`${s.ff} FF`); }
@@ -7871,14 +7904,17 @@ function seedLabel(g, sideKey){
 // game clicks open into its review.
 window.zpbTreeCardHTML = function(g, rk, i){
  // w33 (R28): the tree cards read the schedule's own compact form — nickname + score, seeds as a whisper
+ // w38 (R16, Owner): the SEED LEADS — seed chip, crest, then the nickname — on every row
  const tag = (s,k)=> g[k+'Seed'] ? `<i class="zpb-tseed">${g[k+'Conf']?g[k+'Conf'].slice(0,1):''}${g[k+'Seed']}</i>` : '';
  const played = !!(g.result);
  const homeWon = played && g.result.homeScore>g.result.awayScore;
  const N = t=> (typeof nick==='function') ? nick(t) : t;
+ const lg2 = t=> (typeof zpbTeamLogo==='function') ? '<span class="zpb-tlogo">'+zpbTeamLogo(t)+'</span>' : '';
+ const teamCell = (t,k)=> tag(t,k) + lg2(t) + '<span class="zpb-tname">'+N(t)+'</span>';
  const row = (a, b, aw)=>`<span class="zpb-trow2"><em class="${aw?'zpb-twin':''}">${a}</em><b class="${aw?'zpb-twin':''}">${b}</b></span>`;
  const inner = played
-  ? row(N(g.away), g.result.awayScore + tag(g,'away'), !homeWon) + row(g.result.homeScore + tag(g,'home'), N(g.home), homeWon)
-  : row(N(g.away), g.neutral?'vs':'@', false) + row(N(g.home), tag(g,'home')||'', false);
+  ? row(teamCell(g.away,'away'), g.result.awayScore, !homeWon) + row(teamCell(g.home,'home'), g.result.homeScore, homeWon)
+  : row(teamCell(g.away,'away'), g.neutral?'vs':'@', false) + row(teamCell(g.home,'home'), '', false);
  const full = g.away + (played ? ' ' + g.result.awayScore + ' — ' + g.result.homeScore + ' ' : ' @ ') + g.home;
  return `<div class="bracket-game bg3 zpb-tree-card${played?' zpb-tree-live':''}" data-pog="${rk}|${i}" title="${played?('Review: '+full):full}">${inner}</div>`;
 };
@@ -8129,7 +8165,7 @@ function zpbSeasonStoryHTML(){
   });
   Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:'PRO BOWL', n:c.name, pos:pos}); }); }); });
  }
- const starCard = (r, i, sideCls)=>`<div class="zpb-scard ${sideCls||''}" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${i}" data-beat="${i}"><div class="zpb-scard-hd"><b class="${(r.ovr||0)>=90?'zpb-shm':(r.ovr||0)>=85?'zpb-vib':''}">${r.name}</b><span class="zpb-poschip">${r.pos||r.group}</span></div><div class="zpb-schiprow">${zpbStatChipsHTML(r)}</div></div>`;
+ const starCard = (r, i, sideCls)=>`<div class="zpb-scard ${sideCls||''}" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${i}" data-beat="${i}"><div class="zpb-scard-hd"><b class="zpb-gname ${(r.ovr||0)>=90?'zpb-shm':(r.ovr||0)>=85?'zpb-vib':''}">${r.name}</b><span class="zpb-poschip">${r.pos||r.group}</span></div><div class="zpb-schiprow">${zpbStatChipsHTML(r)}</div></div>`;
  const badgeHTML = (b, i)=>`<span class="zpb-sbadge ${b.cls}" style="--beat:${i}" data-beat="${i}"><b>${b.v}</b><i>${b.k}</i></span>`;
  let beat = 0, oHTML = '', dHTML = '', kHTML = '', hHTML = '';
  OFF.forEach(b=>{ oHTML += badgeHTML(b, beat++); });
@@ -8139,13 +8175,13 @@ function zpbSeasonStoryHTML(){
  dHTML += `<span class="zpb-sbreak" data-beat="${beat++}"></span>`;
  defStars.forEach(r=>{ dHTML += starCard(r, beat++); });
  KEYF.forEach(b=>{ kHTML += badgeHTML(b, beat++); });
- honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':''); hHTML += `<div class="zpb-scard zpb-shonor" style="--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
+ honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':''); hHTML += `<div class="zpb-scard zpb-shonor" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="zpb-gname ${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
  const beats = beat;
  const perfect = F.me.losses===0 && F.me.ties===0;
  return `<div class="panel zpb-storypanel${perfect?' zpb-story-perfect':''}" style="margin-bottom:14px;" id="zpbStoryPanel">
   <div class="zpb-story-kicker zpb-shm">THE SEASON IN BADGES</div>
-  <div class="zpb-story-rail" data-total="${beats}">
-   ${honorCards.length?`<div class="zpb-story-zone zpb-story-honors">${hHTML}</div>`:''} // w37 (R10, Owner): HONORS EARNED leads the rail
+  <div class="zpb-story-rail${(window.__zpbStoryHold || (S.phase==='complete' && window.__zpbSBFinPending))?' zpb-story-hold':''}" data-total="${beats}">
+   ${honorCards.length?`<div class="zpb-story-zone zpb-story-honors">${hHTML}</div>`:''}
    <div class="zpb-story-zone">${oHTML}</div>
    <div class="zpb-story-zone">${dHTML}</div>
    <div class="zpb-story-zone"><span class="zpb-szonehead" style="--beat:${beat++}">KEY FACTORS</span>${kHTML}</div>
@@ -8327,28 +8363,28 @@ function zpbStatChipsHTML(rec){
  const chip = (v, k)=>'<span class="zpb-schip"><b>' + v + '</b><i>' + k + '</i></span>';
  if(g==='QB'){
   out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.cmp) + '/' + fmtN(s.att) + '</b></span>');
+  if(s.att) out.push(chip(Math.round(s.cmp/s.att*100) + '%', 'CMP')); // w38 (R22, Owner): the rate stats the data produces
   out.push(chip(fmtN(s.passYds||0), 'PASSY'));
   out.push(chip(s.passTD||0, 'TD'));
   out.push(chip(s.int||0, 'INT'));
   out.push(chip(passerRating(s.cmp,s.att,s.passYds,s.passTD||0,s.int||0).toFixed(1), '20-0'));
   if(s.rushYds) out.push(chip(fmtN(s.rushYds), 'RUSHY'));
   if(s.sackd) out.push(chip(s.sackd, 'SK'));
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
+  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR')); // w38 (R15, Owner): the QBR chip is a QB chip
  } else if(g==='RB'){
   out.push(chip(fmtN(s.car||0), 'C'), chip(fmtN(s.rushYds||0), 'RUSHY'), chip(s.rushTD||0, 'TD')); // w28 (Owner): carries read C
+  if(s.car) out.push(chip((s.rushYds/Math.max(1,s.car)).toFixed(1), 'YPC')); // w38 (R22, Owner)
   if(s.recYds) out.push(chip(fmtN(s.recYds), 'RECY'));
   if(s.recTD) out.push(chip(s.recTD, 'REC TD'));
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  } else if(g==='WR'||g==='TE'){
   out.push(chip(fmtN(s.recYds||0), 'RECY'), chip(s.recTD||0, 'TD'));
   if(s.rec) out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.rec) + '/' + fmtN(s.tgt) + '</b></span>');
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
- } else if(g==='OL'){
-  out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PK'), chip(s.sa||0, 'SK'), chip(s.pa||0, 'PRSS')); // w32 (Owner): SK / PRSS chips
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
+  if(s.tgt) out.push(chip(Math.round(s.rec/s.tgt*100) + '%', 'CATCH')); // w38 (R22, Owner)
+  } else if(g==='OL'){
+  out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PC'), chip(s.sa||0, 'SK'), chip(s.pa||0, 'PRSS')); // w32 (Owner): SK / PRSS chips · w38 (R23, Owner): pancake reads PC
  } else if(g==='K'){
   out.push(chip((s.fg||0) + '/' + (s.fga||s.fg||0), 'FG'), chip(s.pat||0, 'XP'));
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
+  if(s.fga) out.push(chip(Math.round(s.fg/s.fga*100) + '%', 'FG%')); // w38 (R22, Owner)
  } else {
   if(s.sack) out.push(chip(s.sack, 'SK'));
   if(s.tkl) out.push(chip(s.tkl, 'TKL'));
@@ -8356,7 +8392,6 @@ function zpbStatChipsHTML(rec){
   if(s.dint) out.push(chip(s.dint, 'INT'));
   if(s.pd) out.push(chip(s.pd, 'PD'));
   if(s.ff) out.push(chip(s.ff, 'FF'));
-  if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR'));
  }
  return out.join('<span class="zpb-sdot">·</span>');
 }
@@ -10220,7 +10255,7 @@ function computePlayoffAwards(){
   const games = (S.playoffRounds[rk]||[]).filter(g=>g.detail);
   if(games.length) out.rounds.push({label, items:games.map(g=>({g, p:g.detail.mvp}))});
  });
- const lead = (groups, key, label, fmt)=>{ const r = book.filter(x=>groups.includes(x.group)).sort((a,b)=>(b.st[key]||0)-(a.st[key]||0))[0]; if(r && (r.st[key]||0)>0) out.leaders.push({title:label, name:r.name, team:r.team, line:fmt(r)}); };
+ const lead = (groups, key, label, fmt)=>{ const r = book.filter(x=>groups.includes(x.group)).sort((a,b)=>(b.st[key]||0)-(a.st[key]||0))[0]; if(r && (r.st[key]||0)>0) out.leaders.push({title:label, name:r.name, team:r.team, group:r.group, line:fmt(r), rec:r}); }; // w38 (R18, Owner): the group rides so the badge row knows its player
  lead(['QB'],'passYds','Postseason Passing Yards', r=>`${fmtN(r.st.passYds)} yds, ${r.st.passTD||0} TD, ${r.st.int||0} INT in ${r.gp} games`);
  lead(['RB'],'rushYds','Postseason Rushing Yards', r=>`${fmtN(r.st.rushYds)} yds, ${r.st.rushTD||0} TD in ${r.gp} games`);
  lead(['WR','TE'],'recYds','Postseason Receiving Yards', r=>`${r.st.rec||0}/${r.st.tgt||0} rec, ${fmtN(r.st.recYds)} yds, ${r.st.recTD||0} TD`);
@@ -10229,12 +10264,12 @@ function computePlayoffAwards(){
  // all-playoff team by cumulative game impact
  const spec = [['QB','QB',1],['RB','RB',1],['WR','WR',2],['TE','TE',1],['DL','DL',3],['LB','LB',2],['DB','DB',3],['K','K',1]];
  spec.forEach(([label,group,n])=>{
-  book.filter(x=>x.group===group).sort((a,b)=>(b.zSum||0)-(a.zSum||0)).slice(0,n).forEach(r=>out.team.push({pos:label, name:r.name, team:r.team, line:seasonStatLine(r.group, r.st)+` (${r.gp} G)`}));
+  book.filter(x=>x.group===group).sort((a,b)=>(b.zSum||0)-(a.zSum||0)).slice(0,n).forEach(r=>out.team.push({pos:label, name:r.name, team:r.team, line:seasonStatLine(r.group, r.st)+` (${r.gp} G)`, rec:r}));
  });
  // the postseason MVP comes from a Super Bowl team: the champion's best player, unless the runner-up's was clearly better
  let pool = book; { const sbg = (seasonState.playoffRounds.superbowl||[])[0]; if(sbg && sbg.result){ const champ = sbg.result.homeScore>sbg.result.awayScore ? sbg.home : sbg.away, ru = champ===sbg.home ? sbg.away : sbg.home; const best = t=>book.filter(x=>x.team===t).sort((a,b)=>(b.zSum||0)-(a.zSum||0))[0]; const c = best(champ), r = best(ru); pool = (r && c && (r.zSum||0) > 1.3*(c.zSum||0)) ? [r] : (c ? [c] : book); } }
  const top = pool.slice().sort((a,b)=>(b.zSum||0)-(a.zSum||0))[0];
- if(top) out.mvp = {name:top.name, team:top.team, line:seasonStatLine(top.group, top.st)+` (${top.gp} G)`};
+ if(top) out.mvp = {name:top.name, team:top.team, group:top.group, rec:top, line:seasonStatLine(top.group, top.st)+` (${top.gp} G)`};
  return out;
 }
 function honorLineHTML(c, user, shm){
@@ -10578,6 +10613,7 @@ window.zpbPostSuperBowlCine = function(){
  try{
   const S = seasonState; if(!S || !S.champion || !S.sbFinal) return;
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ window.__zpbSBFinPending = false; try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){} try{ if(window.__zpbSBRewardOwed){ window.__zpbSBRewardOwed = false; FX.play('sb'); } }catch(err){} return; }
   const champ = S.champion, pk = (typeof zpbPackFor==='function') ? zpbPackFor(champ) : null;
   const pkA = (typeof zpbPackFor==='function') ? zpbPackFor(S.sbFinal.away) : null;
   const pkH = (typeof zpbPackFor==='function') ? zpbPackFor(S.sbFinal.home) : null;
@@ -10597,7 +10633,9 @@ window.zpbPostSuperBowlCine = function(){
    + '</div>';
   document.body.appendChild(ov);
   requestAnimationFrame(()=> ov.classList.add('zpb-sbfin-in'));
-  const go = ()=> ov.remove();
+  const go = ()=>{ ov.remove(); window.__zpbSBFinPending = false; try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){}
+   try{ if(window.__zpbSBRewardOwed){ window.__zpbSBRewardOwed = false; FX.play('sb'); setTimeout(()=>{ const b = document.querySelector('.champion-banner'); if(b) b.classList.add('fxwon'); }, 60); } }catch(err){}
+   try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){} }; // w38 (R14, Owner): Continue moves on from the Super Bowl — then the badges fade in and the champions play
   ov.querySelector('.zpb-sbfin-go').addEventListener('click', go);
  }catch(err){}
 };
@@ -10707,7 +10745,8 @@ window.zpbWireReverseHighlight = function(host){
 function wireRowClicks(panel, allForClick){
  function fillDetail(idx){
   const e = allForClick[idx];
-  const metrics = computeDetailMetrics(e.pool);
+  const _simPools = (typeof draftSim!=='undefined' && draftSim && draftSim.rosters) ? draftSim.rosters.map(r=>Object.values(r.slots).filter(Boolean)) : null; // w38 (R5, Owner): the review's units rank against the 32 draft boards
+  const metrics = computeDetailMetrics(e.pool, _simPools);
   const wrap = document.getElementById(`detailwrap-${idx}`);
   // w36 (R2, Owner): the field leads; the cards that float in draft order sit under it — the top set is gone
   if(e.isUser && window.zpbSetDraftOrder) window.zpbSetDraftOrder(e);
@@ -11050,20 +11089,26 @@ window.zpbStreakReward = function(){
 // the round veil, the Super Bowl stage or the books overlay is on screen the reward waits in the
 // queue, and the final whistle drains it. The w32 streak law, extended to every reward.
 window.__zpbFxPending = window.__zpbFxPending || [];
-function zpbFxGate(kind, msg){
+function zpbFxGate(kind, msg, big){
  try{
-  if(document.querySelector('.zpb-replay-ov, .zpb-prematch, .zpb-sbfin, .zpb-restov')){
-   window.__zpbFxPending.push({kind:kind, msg:msg});
-   if(!window.__zpbFxSafety){ window.__zpbFxSafety = setTimeout(()=>{ window.__zpbFxSafety = null; try{ zpbFxDrain(); }catch(err){} }, 15000); }
+  // w38 (R13, Owner): a champions celebration NEVER plays before the game is over — the big
+  // rewards queue even with nothing on screen and drain only at a big point (the whistle, the
+  // books Continue, the Super Bowl stage Continue, the safety timer).
+  if(document.querySelector('.zpb-replay-ov, .zpb-prematch, .zpb-sbfin, .zpb-restov') || big){
+   window.__zpbFxPending.push({kind:kind, msg:msg, big:!!big});
+   if(!window.__zpbFxSafety){ window.__zpbFxSafety = setTimeout(()=>{ window.__zpbFxSafety = null; try{ zpbFxDrain(true); }catch(err){} }, 15000); }
    return;
   }
   FX.play(kind, msg);
  }catch(err){ try{ FX.play(kind, msg); }catch(e2){} }
 }
-function zpbFxDrain(){
+function zpbFxDrain(includeBig){
  try{
-  const q = (window.__zpbFxPending || []).splice(0);
-  q.forEach((x,i)=>{ setTimeout(()=>{ try{ FX.play(x.kind, x.msg); }catch(err){} }, i*1100); });
+  const q = (window.__zpbFxPending || []), run = [], keep = [];
+  q.forEach(x=>{ ((includeBig || !x.big) ? run : keep).push(x); });
+  window.__zpbFxPending = keep;
+  run.forEach((x,i)=>{ setTimeout(()=>{ try{ FX.play(x.kind, x.msg); }catch(err){} }, i*1100); });
+  if(!keep.length && window.__zpbFxSafety){ clearTimeout(window.__zpbFxSafety); window.__zpbFxSafety = null; }
  }catch(err){}
 }
 function checkRewards(){
@@ -11096,10 +11141,10 @@ function checkRewards(){
   }
  } else if(S.phase==='playoffs'){
   const g = (S.playoffRounds.champ||[]).find(x=>x.result && (x.home===user||x.away===user));
-  if(g && won(g) && done('conf')) zpbFxGate('conf');
-  else { for(const rk of ['wildcard','divisional']){ const gg = (S.playoffRounds[rk]||[]).find(x=>x.result && (x.home===user||x.away===user)); if(gg && won(gg) && done('po'+rk)) zpbFxGate('small', rk==='wildcard'?'Playoff win! On to the divisional round':'Divisional round won! One win from the Super Bowl'); } } // w37 (R11, Owner): the reward waits for the final whistle
+  if(g && won(g) && done('conf')) zpbFxGate('conf', null, true); // w38 (R13, Owner): the Conference Champions never plays before the game
+  else { for(const rk of ['wildcard','divisional']){ const gg = (S.playoffRounds[rk]||[]).find(x=>x.result && (x.home===user||x.away===user)); if(gg && won(gg) && done('po'+rk)) zpbFxGate('small', rk==='wildcard'?'Playoff win! On to the divisional round':'Divisional round won! One win from the Super Bowl', true); } } // w38 (R13, Owner): every playoff celebration waits for the whistle
  } else if(S.phase==='complete'){
-  if(S.champion===user && !S.showReview && done('sb')){ FX.play('sb'); setTimeout(()=>{ const b = document.querySelector('.champion-banner'); if(b) b.classList.add('fxwon'); }, 50); }
+  if(S.champion===user && !S.showReview && done('sb')){ window.__zpbSBRewardOwed = true; } // w38 (R13/R14, Owner): the Super Bowl champions animation fires at the stage Continue — after the game is over
  }
 }
 // ---- phone layout: any table that would need sideways scrolling becomes a stack of labelled cards ----
@@ -11192,7 +11237,7 @@ window.zpbMetricsHTML = function(){
    return '<div class="zpb-met zpb-rcbadge'+cls+'" data-u="'+u+'" style="'+uv+'--beat:'+(_bi++)+';">'
     + '<span class="zpb-rc-grade">'+lg+'</span>'
     + '<span class="zpb-rc-body"><b>'+UNIT_INFO[u].label+'</b>'
-    + '<i>'+Math.round(R[u])+' OVR \u00b7 #'+rank+' in the league \u00b7 '+(diff>=0?'+':'\u2212')+Math.abs(diff)+' vs league</i>'
+    + '<i>'+Math.round(R[u])+' OVR \u00b7 #'+rank+'</i>'
     + '<em>'+produced(u)+'</em></span></div>';
   }).join('');
   return '<div class="zpb-rc-title">UNIT REPORT CARD</div><div class="zpb-rcgrid">'+tiles+'</div>';
@@ -11264,7 +11309,7 @@ renderKeyPlayersHTML = function(g){
    const col = colOf(p.team||team);
    const chips = (p.line||'').split(', ').filter(Boolean).slice(0,5);
    return '<div class="zpb-pcard zpb-pvcard" style="'+stv(p.team||team)+'">'
-    + '<div class="zpb-pcard-hd"><b class="'+(star?'zpb-shm':'')+'">'+p.name+'</b>'
+    + '<div class="zpb-pcard-hd"><b class="zpb-gname '+(star?'zpb-shm':'')+'">'+p.name+'</b>'
     + (star ? '<span class="zpb-cstar zpb-shm" style="--zrb:'+((typeof zpbPackFor==='function'&&zpbPackFor(p.team||team))?(zpbPackFor(p.team||team).acc2L||col):col)+'">\u2605</span>' : '')
     + '<span class="zpb-poschip">'+(p.group||'')+'</span></div>'
     + (chips.length ? '<div class="zpb-pcard-stats">'+chips.map(c=>'<span class="zpb-pstat">'+c+'</span>').join('')+'</div>' : '')
@@ -11293,12 +11338,12 @@ renderRegularAwardsHTML = function(A, open){
  try{
   const user = seasonUserTeam();
   const stv = (typeof zpbRowVars==='function') ? zpbRowVars : function(){ return ''; };
-  const aw = (title, name, team, sub, why, star, rec, stackTitle)=>'<div class="zpb-pcard zpb-awcard" style="'+stv(team||'')+'">'
+  const aw = (title, name, team, sub, why, star, rec, stackTitle)=>'<div class="zpb-pcard zpb-awcard zpb-awgold" style="'+stv(team||'')+'">'
    + (stackTitle
       ? '<span class="zpb-awt"><span class="zpb-mvptitle zpb-shm">Most<br>Valuable<br>Player</span></span>'
       : '<span class="zpb-awt">'+title+'</span>')
    + '<span class="zpb-awm">'
-   + '<b class="'+(star?'zpb-shm':'')+'">'+name+'</b>'
+   + '<b class="zpb-gname '+(star?'zpb-shm':'')+'">'+name+'</b>'
    + (sub?'<span class="narr">'+sub+'</span>':'') + (why?'<span class="narr">'+why+'</span>':'')
    + (rec?'<div class="zpb-schiprow" style="margin-top:6px;">'+zpbStatChipsHTML(rec)+'</div>':'')
    + '</span></div>'; // w19 (Owner): the stat line reads as badges; the MVP title stacks three shimmering words
@@ -11311,7 +11356,7 @@ renderRegularAwardsHTML = function(A, open){
    ? (user+': '+us.ap1+' First-Team All-Pro, '+us.ap2+' Second-Team All-Pro, '+us.pb+' Pro Bowl selection'+(us.pb===1?'':'s')+(us.mine.length?' — '+us.mine.join('; '):'')+'.')
    : ('No '+user+' players earned league-wide honors this year.');
   const posRows = (box, shm)=> HONOR_ORDER.map(pos=>'<div class="zpb-aprow"><span class="zpb-apos">'+pos+'</span>'
-    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip" style="'+stv(c.team)+'">'+(shm?'<b class="zpb-shm">'+c.name+'</b>':c.name)+' <i class="narr">'+nick(c.team)+'</i></span>').join('') : '<span class="narr">\u2014</span>')+'</div>').join(''); // w19: first-team All-Pro names always shimmer
+    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip" style="'+stv(c.team)+'"><b class="zpb-gname '+(shm?'zpb-shm':'')+'">'+c.name+'</b> <i class="narr">'+nick(c.team)+'</i></span>').join('') : '<span class="narr">\u2014</span>')+'</div>').join(''); // w19: first-team All-Pro names always shimmer · w38 (R1, Owner): the rankings ink on every chip
   return '<details class="panel" style="margin-bottom:14px;" '+(open?'open':'')+'><summary style="cursor:pointer;font-weight:700;">REGULAR-SEASON AWARDS &amp; HONORS</summary>'
    + '<p class="narr" style="margin:8px 0;">'+usTxt+'</p>'
    + '<div class="zpb-awrows">'+ind+'</div>' // w37 (R9, Owner): the w19 horizontal row format restored — one award per line
@@ -11329,16 +11374,20 @@ renderPlayoffAwardsHTML = function(P){
  try{
   const user = seasonUserTeam();
   const stv = (typeof zpbRowVars==='function') ? zpbRowVars : function(){ return ''; };
-  const aw = (title, p, sub2, star)=>'<div class="zpb-pcard zpb-awcard" style="'+stv(p?p.team:'')+'">'
-   + '<span class="zpb-awt">'+title+'</span><span class="zpb-awm">'
-   + (p?'<b class="'+(star?'zpb-shm':'')+'">'+p.name+'</b><span class="narr">'+(p.group?p.group+' \u00b7 ':'')+(p.line||sub2||'')+'</span>':('<b>'+(sub2||'\u2014')+'</b>'))
-   + '</span></div>';
+  const aw = (title, p, sub2, star)=>'<div class="zpb-pcard zpb-awcard zpb-awgold zpb-awcol" style="'+stv(p?p.team:'')+'">'
+   + '<span class="zpb-awt">'+title+'</span>' // w38 (R19, Owner): the award on top, the name below, the badges below that
+   + (p?(function(){ var _rec = p.rec || p; // w38 (R18, Owner): the game-ball entries carry their stats on themselves
+        return '<b class="zpb-gname zpb-awname '+(star?'zpb-shm':'')+'">'+p.name+'</b>'
+        +(p.group?'<span class="zpb-poschip">'+p.group+'</span>':'')
+        +((_rec && _rec.st && typeof zpbStatChipsHTML==='function')?'<div class="zpb-schiprow zpb-awchips" style="margin-top:7px;">'+zpbStatChipsHTML(_rec)+'</div>':'<span class="narr">'+(p.line||sub2||'')+'</span>'); })()
+       :('<b class="zpb-awname">'+(sub2||'\u2014')+'</b>'))
+   + '</div>';
   const cards = [];
   if(P.sbMvp) cards.push(aw('Super Bowl MVP', P.sbMvp, (P.sbMvp.game? P.sbMvp.game.away+' '+P.sbMvp.game.result.awayScore+', '+P.sbMvp.game.home+' '+P.sbMvp.game.result.homeScore : ''), P.sbMvp.team===user));
   if(P.mvp) cards.push(aw('Postseason MVP', P.mvp, 'cumulative impact', P.mvp.team===user));
   (P.rounds||[]).forEach(r=> r.items.forEach(i=> cards.push(aw(i.g.roundLabel||r.label, i.p, i.g.away+' '+i.g.result.awayScore+', '+i.g.home+' '+i.g.result.homeScore, i.p && i.p.team===user))));
   const lead = (P.leaders||[]).map(a=>aw(a.title, a, '', a.team===user)).join('');
-  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip" style="'+stv(a.team)+'">'+a.name+' <i class="narr">'+nick(a.team)+'</i></span></div>').join('');
+  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip" style="'+stv(a.team)+'"><b class="zpb-gname">'+a.name+'</b> <i class="narr">'+nick(a.team)+'</i></span></div>').join('');
   return '<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3>'
    + '<div class="zpb-awgrid">'+cards.join('')+'</div>'
    + (lead?'<h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><div class="zpb-awgrid">'+lead+'</div>':'')
@@ -11968,7 +12017,7 @@ window.zpbDraftBreakdownHTML = function(e){
     var ovrs = rosters.map(function(r){ var e2 = r.slots ? nse(r.slots[s]) : null; return (e2 && e2.name) ? (e2.ovr || 0) : -1; });
     var rank = 1 + ovrs.filter(function(v){ return v > en.ovr; }).length;
     var _beat = (window.zpbBeatOf ? window.zpbBeatOf(en.name) : '') || ''; // w36 (R2, Owner): the top cards' instructions — float in one by one, in the order the picks were made
-    out += '<span class="zpb-dbk zpb-dfc2" data-slot="'+s+'"'+(_beat ? ' data-beat="'+_beat+'" style="--beat:'+_beat+';'+rowVars(e.teamName)+'"' : ' style="'+rowVars(e.teamName)+'"')+'><b class="'+tier(en.ovr)+'">'+en.name+'</b><i>'+((typeof LABELS !== 'undefined' && LABELS[s]) || s)+' \u00b7 '+en.ovr+' OVR'+(rnd ? ' \u00b7 R'+rnd : '')+' \u00b7 #'+rank+'/32</i></span>';
+    out += '<span class="zpb-dbk zpb-dfc2" data-slot="'+s+'"'+(_beat ? ' data-beat="'+_beat+'" style="--beat:'+_beat+';'+rowVars(e.teamName)+'"' : ' style="'+rowVars(e.teamName)+'"')+'><b class="zpb-gname '+tier(en.ovr)+'">'+en.name+'</b><i>'+((typeof LABELS !== 'undefined' && LABELS[s]) || s)+' \u00b7 '+en.ovr+' OVR'+(rnd ? ' \u00b7 R'+rnd : '')+' \u00b7 #'+rank+'/32</i></span>';
    });
    out += '</div></div>';
   });
@@ -11977,14 +12026,24 @@ window.zpbDraftBreakdownHTML = function(e){
  groups.forEach(function(g){
   var slots2 = g[1].filter(function(sl){ var en2 = nse(e.slotmap[sl]); return en2 && en2.name; });
   if(!slots2.length) return;
+  var myAvg2 = null, rank2 = null;
+  if(g[0]==='Secondary'){ // w38 (R5, Owner): ONE Secondary number — the metric the unit bars quote
+   try{
+    var _simPools2 = (typeof draftSim!=='undefined' && draftSim && draftSim.rosters) ? draftSim.rosters.map(function(r){ return Object.values(r.slots).filter(Boolean); }) : null;
+    var _m2 = computeDetailMetrics(e.pool || [], _simPools2), _sec2 = _m2.filter(function(m){ return m.key==='SEC'; })[0];
+    if(_sec2){ myAvg2 = _sec2.avg; rank2 = _sec2.rank; }
+   }catch(err){}
+  }
+  if(myAvg2==null){
   var sum2 = 0; slots2.forEach(function(sl){ sum2 += (nse(e.slotmap[sl]).ovr || 70); });
-  var myAvg2 = sum2 / slots2.length;
+  myAvg2 = sum2 / slots2.length;
   var avgs2 = rosters.map(function(r){
    var s3 = 0, n3 = 0;
    slots2.forEach(function(sl){ var en3 = r.slots ? nse(r.slots[sl]) : null; if(en3 && en3.name){ s3 += en3.ovr || 70; n3++; } });
    return n3 ? s3/n3 : 0;
   });
-  var rank2 = 1 + avgs2.filter(function(v){ return v > myAvg2 + 0.001; }).length;
+  rank2 = 1 + avgs2.filter(function(v){ return v > myAvg2 + 0.001; }).length;
+  }
   var cls2 = rank2 <= 8 ? ' zpb-sb-good' : (rank2 >= 25 ? ' zpb-sb-bad' : '');
   out += '<span class="zpb-sbadge'+cls2+'" style="--beat:0"><b>#'+rank2+'</b><i>'+g[0].toUpperCase()+' \u00b7 '+Math.round(myAvg2)+' OVR</i></span>';
  });
@@ -12080,7 +12139,7 @@ window.zpbBelongMapHTML = function(entry){
   const nse = (typeof normalizeSlotEntry === 'function') ? normalizeSlotEntry : function(x){ return x; };
   const vars = (entry.teamName && typeof zpbRowVars === 'function') ? zpbRowVars(entry.teamName) : '';
   // w33 (R6, Owner): last names, not initials — the map is wide enough now
-  const ini = n=>{ if(!n) return ''; const w = String(n).trim().split(/\s+/); return (w.length>1 ? w[w.length-1] : w[0]); };
+  const ini = n=>{ if(!n) return ''; const w = String(n).trim().split(/\s+/); if(w.length<2) return w[0]; const SUF = /^(jr|sr|ii|iii|iv|v)\.?$/i; const PART = /^(st|st\.|van|von|de|da|di|del|della|la|le|mac|mc|o')\.?$/i; const suf = []; while(w.length>1 && SUF.test(w[w.length-1])) suf.unshift(w.pop()); let last = w[w.length-1]; if(w.length>1 && PART.test(w[w.length-2])) last = w[w.length-2]+' '+last; return suf.length ? last+' '+suf.join(' ') : last; }; // w38 (R3, Owner): Jr. is not a last name — the last name and the Jr.
   // w33 (R6, Owner): the bubble ink is chosen against the real bubble color, so Vikings purple never swallows its label
   // w37 (R4, Owner): the ink is computed against the REAL bubble paint — the page's gold (offense)
   // and rose (defense) bubbles, per theme — so a Chiefs name reads on the nickel and the position
@@ -12375,7 +12434,7 @@ window.zpbPrematchCine = function(g, opts){
 // w33 (R31, Owner): each playoff round opens with its own line, in the rivalry cinematic's voice
 window.zpbPlayoffRoundPhrases = {
  wildcard:['WILD CARD WEEKEND','WIN OR GO HOME','THE SECOND SEASON BEGINS','ONE AND DONE'],
- divisional:['DIVISIONAL ROUND','EIGHT TEAMS LEFT','THE BYES RETURN','TWO WINS FROM THE TITLE'],
+ divisional:['DIVISIONAL ROUND','EIGHT TEAMS LEFT','TWO WINS FROM THE TITLE'],
  champ:['CONFERENCE CHAMPIONSHIPS','FOUR TEAMS REMAIN','ONE WIN FROM THE SUPER BOWL','CHAMPIONSHIP SUNDAY'],
  superbowl:['SUPER BOWL','THE EVERYTHING GAME','ONE GAME FOR IT ALL','THE SUPER BOWL']
 };
@@ -12615,9 +12674,44 @@ window.wireLineupEditor = function(roster, hostId, onChange){
 /* R6 (Owner): phones — the constellation pulls its side names inboard so nothing clips */
 @media (max-width:600px){
  .zpb-intro-star{font-size:.8rem;}
- .zpb-intro-star.zpb-st-side{--sx:28%;}
- .zpb-intro-star.zpb-st-side-r{--sx:72%;}
+ .zpb-intro-star.zpb-st-side{--sx:25%;}
+ .zpb-intro-star.zpb-st-side-r{--sx:75%;}
 }
 </style>
+<style id="zpb-w38-css">
+/* ============ Z-POST-BLUE W38 ============ */
+/* w38 (R10/R14, Owner): the season-in-review cards hold their first frame while a cinematic owns
+   the screen — the Honors earned cinematic's Continue (and the Super Bowl stage's) releases them */
+.zpb-story-hold .zpb-sbadge,.zpb-story-hold .zpb-scard,.zpb-story-hold .zpb-szonehead,.zpb-story-hold .zpb-sbreak{animation-play-state:paused !important;}
+@media (prefers-reduced-motion: reduce){ .zpb-story-hold .zpb-sbadge,.zpb-story-hold .zpb-scard,.zpb-story-hold .zpb-szonehead,.zpb-story-hold .zpb-sbreak{animation-play-state:running !important;} }
+/* w38 (R20, Owner): every award panel is a winner's panel — the gold border */
+.zpb-awcard.zpb-awgold{border-color:#d9a94c !important;box-shadow:0 0 0 1px rgba(217,169,76,.30) inset;}
+:root[data-theme="dark"] .zpb-awcard.zpb-awgold,:root:not([data-theme="light"]) .zpb-awcard.zpb-awgold{border-color:#b98d3e !important;box-shadow:0 0 0 1px rgba(217,169,76,.22) inset;}
+/* w38 (R19, Owner): the playoff award card stands vertical — award, name, badges */
+.zpb-awcol{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
+.zpb-awcol .zpb-awt{width:auto;}
+.zpb-awname{font-size:1.02rem;overflow-wrap:anywhere;}
+.zpb-awchips{max-width:100%;}
+/* w38 (R22, Owner): the panels widen a touch — the badges breathe into two rows */
+.zpb-awgrid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr)) !important;}
+/* w38 (R22, Owner): the advanced-stat badges sit four across — two rows, wider cards */
+.zpb-advgrid{grid-template-columns:repeat(4,1fr) !important;}
+@media (max-width:900px){ .zpb-advgrid{grid-template-columns:repeat(2,1fr) !important;} }
+@media (max-width:560px){ .zpb-advgrid{grid-template-columns:1fr !important;} }
+/* w38 (R16, Owner): the tree row reads seed -> crest -> nickname; nothing clips */
+.zpb-trow2 em{display:flex;align-items:center;gap:4px;min-width:0;flex-wrap:wrap;}
+.zpb-tlogo{display:inline-flex;flex:none;}
+.zpb-tlogo img{width:15px;height:15px;object-fit:contain;}
+.zpb-tseed{margin-right:1px;}
+</style>
+<script id="zpb-w38-js">
+// ============ Z-POST-BLUE W38 JS ============
+// w38 (R10/R14, Owner): one release door for the badge cascade — the Honors earned cinematic's
+// Continue and the Super Bowl stage's Continue both call it; nothing else un-holds the rail.
+window.zpbStoryRelease = function(){
+ window.__zpbStoryHold = false;
+ try{ document.querySelectorAll('.zpb-story-hold').forEach(el=>el.classList.remove('zpb-story-hold')); }catch(err){}
+};
+</script>
 </body>
 </html>

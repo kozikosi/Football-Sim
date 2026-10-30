@@ -1,0 +1,12 @@
+# z-post-blue-wave38-2026-10-30-w38 — CHECKSUMS (md5)
+# verify: md5sum -c CHECKSUMS.txt
+4bf6254710e4d7556df916850f9a8b9b  Football-Sim-Z-post-blue-w38.html
+a0ec8c781c54c41450a1af190379ab1d  UPDATE-README.md
+217bfc911877836c60d8c5f85f8c12f2  CLAUDE-HANDOFF/CLAUDE-UPDATE-since-w33.md
+9cc4d827311f708e9ddc5935996a4f35  _agents/zai/notes/W38-INTAKE-LEDGER.md
+f96ed3c885dc975ea0ef4200e4466483  _agents/zai/notes/W38-BUILD-REPORT.md
+690e6634b0e5c29213ab368d0d82b552  _agents/zai/START-OF-CHAT-ZAI.md
+16f8cc2826c7d5fa4404364b3494da5c  _agents/zai/END-OF-CHAT-ZAI.md
+9b9daa9987e8ecf6fea559cce84f9f34  _agents/zai/ZAI.md
+# base this wave built on:
+# 8625e4ff02dc7d5e1245711b6d74c8af  Football-Sim-Z-post-blue-w37.html (the w37 package, courier commit 2fba4f1 on council/zai)
