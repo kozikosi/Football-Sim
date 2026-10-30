@@ -18,7 +18,7 @@
 
 ## Open questions / blockers
 - Broad `git fetch origin` fails because `council/GH` and `council/gh` collide on this case-insensitive filesystem. The targeted base fetch worked; do not migrate ref storage or alter global Git configuration.
-- `node tools/preserve.mjs check` reported this worktree clean and no local-only commits, but found dirty external/shared worktrees belonging to other seats. They were left untouched.
+- Final `node tools/preserve.mjs check` found no dirty files in this worktree, but reports its pushed commits as local-only because the case-colliding remote tracking ref still resolves to the older base SHA. `git ls-remote origin refs/heads/council/GH` verified the pushed tip `0d8de141f2f40329ccdede406f6adb89674a3640`. The check also found dirty external/shared worktrees belonging to other seats; they were left untouched.
 
 ## Files and worktree
 - Reviews: `inbox/20261030-0924-GH-P-166-review.md`, `inbox/20261030-0931-GH-P-167-review.md`; claims: `inbox/20261030-0919-GH-P-166-claim.md`, `inbox/20261030-0925-GH-P-167-claim.md`.
