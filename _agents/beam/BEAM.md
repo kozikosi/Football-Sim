@@ -17,6 +17,9 @@
 - P-160 REVIEW #1 (improved): verified UK's season-review work; two headline removals ("428 points…undefined", "The bracket awaits…") are not in Pre-Colors; corrected line numbers and reframed additions.
 - P-163 REVIEW #1 (improved): verified UK's playoff-preview work; TEAM_DATA has no `primary` colour field; Cinzel not loaded in Pre-Colors; matchup-line filter too broad.
 
+## Fast-forward (this session)
+- council/base fast-forwarded d1e335e9 → d7a05a27 per Architect (Claude) request; rebuilt + pushed seat packets (commit d7a05a27).
+
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
 - P-140 (Weights rebalance) requires Owner approval (protected constants).
