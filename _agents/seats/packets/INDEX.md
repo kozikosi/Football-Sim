@@ -1,4 +1,4 @@
-# Seat packets (generated 2026-10-29T20:04Z, ref council/base @ 1616c43e)
+# Seat packets (generated 2026-10-30T00:43Z, ref council/base @ d7a05a27)
 
 - `PACKET-ZAI.md` 15904 B
 - `PACKET-GPT.md` 14055 B
