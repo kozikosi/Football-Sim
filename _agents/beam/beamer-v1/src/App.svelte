@@ -1,6 +1,7 @@
 <script>
   import { team, setTeam } from './stores/team.js';
   import Home from './components/Home.svelte';
+  import TeamPicker from './components/TeamPicker.svelte';
   import DraftBoard from './components/DraftBoard.svelte';
   import GamePreview from './components/GamePreview.svelte';
   let route = 'home';
@@ -13,11 +14,7 @@
 <div class="shell" style="--team:{$team.primary};--team2:{$team.secondary}">
   <header class="topbar">
     <h1 class="shimmer">20-0</h1>
-    <select class="team-select" value={$team.key} on:change={(e)=>setTeam(e.target.value)}>
-      {#each teams as t}
-        <option value={t.key}>{t.name}</option>
-      {/each}
-    </select>
+    <TeamPicker/>
   </header>
   <nav class="tabs">
     <button class:active={route==='home'} on:click={()=>route='home'}>Home</button>
