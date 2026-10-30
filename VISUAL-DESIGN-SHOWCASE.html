@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NFL Draft Simulator — Visual Design Showcase</title>
+<style>
+:root{
+  --bg:#0b0e14; --panel:#141922; --panel2:#1b2230; --text:#e8ecf3; --sub:#9fb0c0;
+  --accent:#4f8cff; --accent2:#ff6b4a; --border:#2a3142; --good:#3ecf8e; --bad:#ff6b6b;
+  --gold:#ffc43c;
+}
+*{box-sizing:border-box}
+body{margin:0;font:15px -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;background:radial-gradient(1200px 600px at 20% -10%,rgba(79,140,255,.18),transparent),radial-gradient(900px 500px at 80% 0%,rgba(255,107,74,.12),transparent),var(--bg);color:var(--text);line-height:1.6}
+header{padding:60px 20px 40px;text-align:center}
+header h1{font-size:3rem;margin:0;background:linear-gradient(90deg,var(--text),#9cc2ff 50%,var(--gold));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:-.02em}
+header p{color:var(--sub);font-size:1.1rem;margin:10px 0 0}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px 80px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px}
+.card{background:linear-gradient(180deg,rgba(255,255,255,.02),transparent),var(--panel);border:1px solid var(--border);border-radius:16px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.4);transition:transform .3s ease,box-shadow .3s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.card-header{padding:24px 28px 16px;border-bottom:1px solid var(--border)}
+.card-header h2{margin:0;font-size:1.4rem}
+.card-header p{margin:6px 0 0;color:var(--sub)}
+.card-body{padding:24px 28px}
+.demo{background:var(--panel2);border:1px solid var(--border);border-radius:12px;padding:16px;margin-bottom:16px}
+.vscard{position:relative;display:flex;align-items:center;justify-content:space-between;padding:20px 28px;border-radius:12px;overflow:hidden;background:linear-gradient(135deg,#E31837 0%,#E31837 45%,transparent 45%,transparent 55%,#AA0000 55%,#AA0000 100%);border:2px solid transparent;background-clip:padding-box}
+.vscard::before{content:'';position:absolute;inset:-2px;background:linear-gradient(135deg,#E31837,#AA0000);border-radius:14px;z-index:-1}
+.vscard-side{display:flex;flex-direction:column;align-items:center;z-index:1}
+.vscard-team-name{font-weight:800;font-size:1.3rem;color:#fff;text-shadow:0 2px 6px rgba(0,0,0,.6)}
+.vscard-vs{font-weight:900;font-size:1.8rem;color:rgba(255,255,255,.95);text-shadow:0 3px 8px rgba(0,0,0,.7);font-style:italic;z-index:2}
+.teamframe{position:relative;border-radius:12px;background:var(--panel2);border:1px solid var(--border);overflow:hidden}
+.teamframe::before{content:'';position:absolute;left:0;top:0;bottom:0;width:6px;background:linear-gradient(180deg,#00338D,#4f8cff)}
+.teamframe-header{display:flex;align-items:center;gap:14px;padding:16px 20px 16px 26px;background:linear-gradient(90deg,rgba(0,51,141,.25),transparent);border-bottom:1px solid var(--border)}
+.teamframe-badge{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,#00338D,#4f8cff);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;box-shadow:0 4px 16px rgba(0,51,141,.4)}
+.teamframe-name{font-weight:800;font-size:1.2rem}
+.teamframe-content{padding:18px 20px 18px 26px}
+.row{display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border)}
+.row:last-child{border-bottom:none}
+.stripe{width:4px;height:32px;border-radius:2px;background:linear-gradient(180deg,#4F2683,#7c4dff)}
+.chip{display:inline-flex;padding:4px 12px;border-radius:999px;border:1px solid #E31837;background:rgba(227,24,55,.15);color:#ff4757;font-weight:700;font-size:.85rem}
+.champion{position:relative;text-align:center;padding:40px;background:radial-gradient(circle at center,rgba(255,196,60,.25),transparent 70%),linear-gradient(135deg,rgba(255,196,60,.18),rgba(255,196,60,.06));border:2px solid var(--gold);border-radius:16px;overflow:hidden}
+.champion::before{content:'🏆';position:absolute;top:20px;left:50%;transform:translateX(-50%);font-size:2.5rem;filter:drop-shadow(0 0 20px rgba(255,196,60,.6))}
+.champion h3{margin:60px 0 8px;font-size:2rem;background:linear-gradient(90deg,#8a6a00,#FFD76A 30%,#FFF6D8 50%,#FFD76A 70%,#8a6a00);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 4s linear infinite}
+@keyframes shine{0%{background-position:-200% 0}100%{background-position:200% 0}}
+.bracket-mini{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.bracket-mini .game{padding:10px 14px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;font-size:.9rem;text-align:center}
+.bracket-mini .game.winner{border-color:var(--good);box-shadow:0 0 0 1px rgba(62,207,142,.3)}
+footer{padding:40px 20px;text-align:center;color:var(--sub);border-top:1px solid var(--border)}
+</style>
+</head>
+<body>
+<header>
+  <h1>Stadium Broadcast Aesthetic</h1>
+  <p>Team identity as information • Motion with purpose • Beauty through restraint</p>
+</header>
+<div class="wrap">
+  <div class="grid">
+    <div class="card">
+      <div class="card-header">
+        <h2>Rivalry Matchup Card</h2>
+        <p>S11 - Diagonal split with team colors</p>
+      </div>
+      <div class="card-body">
+        <div class="demo">
+          <div class="vscard">
+            <div class="vscard-side"><span class="vscard-team-name">Chiefs</span></div>
+            <span class="vscard-vs">vs</span>
+            <div class="vscard-side"><span class="vscard-team-name">49ers</span></div>
+          </div>
+        </div>
+        <p style="color:var(--sub);margin:0">Two saturated colors max, names always visible, diagonal creates energy without filling backgrounds.</p>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Team Frame System</h2>
+        <p>S4/S20 - Left edge identifies team</p>
+      </div>
+      <div class="card-body">
+        <div class="teamframe">
+          <div class="teamframe-header">
+            <div class="teamframe-badge">BUF</div>
+            <span class="teamframe-name">Drafting as Buffalo Bills</span>
+          </div>
+          <div class="teamframe-content">
+            <div class="row"><div class="stripe"></div><span>Round 1 • Pick 12</span></div>
+            <div class="row"><div class="stripe"></div><span>Next up: Best available</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Board Identity</h2>
+        <p>S2 - Color travels with the team</p>
+      </div>
+      <div class="card-body">
+        <div class="demo">
+          <div class="row"><div class="stripe" style="background:linear-gradient(180deg,#4F2683,#9b59b6)"></div><strong>Justin Jefferson</strong> <span style="color:var(--sub)">WR • MIN</span> <span class="chip">Vikings</span></div>
+          <div class="row"><div class="stripe" style="background:linear-gradient(180deg,#E31837,#ff4757)"></div><strong>Travis Kelce</strong> <span style="color:var(--sub)">TE • KC</span> <span class="chip">Chiefs</span></div>
+          <div class="row"><div class="stripe" style="background:linear-gradient(180deg,#00338D,#4f8cff)"></div><strong>Josh Allen</strong> <span style="color:var(--sub)">QB • BUF</span> <span class="chip">Bills</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <h2>Champion Moment</h2>
+        <p>P11-10 - Gold shimmer, celebration</p>
+      </div>
+      <div class="card-body">
+        <div class="champion">
+          <h3>SUPER BOWL CHAMPIONS</h3>
+          <p style="color:var(--sub);margin:0">Kansas City Chiefs • 17-0 Season</p>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="grid-column:1/-1">
+      <div class="card-header">
+        <h2>Playoff Bracket</h2>
+        <p>Enhanced with team colors and your path highlighted</p>
+      </div>
+      <div class="card-body">
+        <div class="bracket-mini">
+          <div class="game">KC #1 vs MIA #7</div>
+          <div class="game winner">KC</div>
+          <div class="game winner">KC</div>
+          <div class="game winner" style="border-color:var(--gold);box-shadow:0 0 20px rgba(255,196,60,.3)">🏆 KC CHAMPS</div>
+          <div class="game">BUF #2 vs PIT #6</div>
+          <div class="game">BUF</div>
+          <div class="game"></div>
+          <div class="game"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<footer>
+  <p>NFL Draft Simulator • Stadium Broadcast Design System • Color identifies, never decorates</p>
+</footer>
+</body>
+</html>
