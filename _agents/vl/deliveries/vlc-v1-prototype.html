@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VLC V1 — NFL Draft Simulator</title>
+<style>
+  /* ============ VLC V1 DESIGN TOKENS ============ */
+  :root {
+    --vl-bg: #0b0c10;
+    --vl-panel: #12141b;
+    --vl-panel2: #191c27;
+    --vl-ink: #e8eaf2;
+    --vl-sub: #9aa3b2;
+    --vl-border: #262b38;
+    --vl-gold: #c9a227;
+    --vl-gold-soft: rgba(201, 162, 39, 0.14);
+    --vl-accent: #7dd3fc;
+    --vl-accent-soft: rgba(125, 211, 252, 0.12);
+    --vl-ink-accent: #e8eaf2;
+    --vl-success: #34d399;
+    --vl-danger: #f87171;
+    --vl-warn: #fbbf24;
+    --vl-radius: 14px;
+    --vl-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.5);
+    --vl-transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --vl-font-display: 'Cinzel Decorative', 'Bodoni Moda', Georgia, serif;
+    --vl-font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    --vl-gold-glow: rgba(201, 162, 39, 0.35);
+    --vl-accent-glow: rgba(125, 211, 252, 0.30);
+  }
+
+  /* Team takeover: Kansas City Chiefs example */
+  [data-team="kc"] {
+    --vl-accent: #e31837;
+    --vl-accent-soft: rgba(227, 24, 55, 0.12);
+    --vl-ink-accent: #ff8c1f;
+    --vl-gold: #ff8c1f;
+    --vl-gold-soft: rgba(255, 140, 31, 0.14);
+    --vl-gold-glow: rgba(255, 140, 31, 0.35);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html {
+    scroll-padding-top: env(safe-area-inset-top, 0);
+    padding-top: env(safe-area-inset-top, 0);
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--vl-font-body);
+    background: var(--vl-bg);
+    color: var(--vl-ink);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+
+  .fade-in { animation: fadeInUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) both; }
+  .shimmer-text {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  .shimmer-text::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: linear-gradient(90deg, transparent, var(--vl-gold), transparent);
+    transform: translateX(-100%);
+    animation: shimmer 2.5s infinite;
+    pointer-events: none;
+  }
+
+  /* ============ LAYOUT ============ */
+  .shell {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--vl-bg) 85%, transparent);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--vl-border);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+    padding: 0 16px;
+  }
+  .wordmark {
+    font-family: var(--vl-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--vl-ink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .wordmark .vlc {
+    color: var(--vl-gold);
+  }
+  .bar-actions {
+    display: flex;
+    gap: 10px;
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    height: 40px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid var(--vl-border);
+    background: var(--vl-panel);
+    color: var(--vl-ink);
+    font-family: var(--vl-font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--vl-transition);
+    white-space: nowrap;
+  }
+  .btn:hover { border-color: var(--vl-gold); color: var(--vl-gold); }
+  .btn-primary {
+    background: linear-gradient(100deg, var(--vl-gold), #b8941f 55%, var(--vl-gold));
+    color: #2a1e0c;
+    border: none;
+    font-weight: 700;
+    box-shadow: 0 0 0 0 var(--vl-gold-glow);
+    animation: pulse 2.5s infinite;
+  }
+  .btn-primary:hover { box-shadow: 0 0 12px var(--vl-gold-glow); transform: translateY(-1px); }
+  .btn-ghost { background: transparent; }
+  .btn-ghost:hover { background: var(--vl-panel2); }
+
+  /* ============ HOME SCREEN ============ */
+  .home {
+    padding: 40px 16px 80px;
+    text-align: center;
+  }
+  .hero-title {
+    font-family: var(--vl-font-display);
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    color: var(--vl-ink);
+    margin-bottom: 8px;
+    letter-spacing: -0.02em;
+  }
+  .hero-sub {
+    color: var(--vl-sub);
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    max-width: 560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .team-card {
+    aspect-ratio: 1;
+    background: var(--vl-panel);
+    border: 1px solid var(--vl-border);
+    border-radius: var(--vl-radius);
+    cursor: pointer;
+    transition: var(--vl-transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--vl-sub);
+    position: relative;
+    overflow: hidden;
+  }
+  .team-card:hover {
+    border-color: var(--vl-gold);
+    color: var(--vl-gold);
+    transform: translateY(-2px);
+    box-shadow: var(--vl-shadow);
+  }
+  .team-card.selected {
+    border-color: var(--vl-accent);
+    color: var(--vl-accent);
+    background: color-mix(in srgb, var(--vl-accent-soft) 60%, var(--vl-panel));
+  }
+  .team-logo {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    background: var(--vl-panel2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    margin-bottom: 6px;
+  }
+
+  /* ============ CARDS / PANELS ============ */
+  .panel {
+    background: var(--vl-panel);
+    border: 1px solid var(--vl-border);
+    border-radius: var(--vl-radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: var(--vl-shadow);
+  }
+  .panel-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--vl-border);
+  }
+  .panel-title {
+    font-family: var(--vl-font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--vl-ink);
+    letter-spacing: -0.01em;
+  }
+  .panel-sub {
+    color: var(--vl-sub);
+    font-size: 0.875rem;
+  }
+
+  /* ============ DRAFT BOARD ============ */
+  .draft-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+  }
+  .pick-card {
+    background: var(--vl-panel2);
+    border: 1px solid var(--vl-border);
+    border-radius: 10px;
+    padding: 12px;
+    cursor: pointer;
+    transition: var(--vl-transition);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .pick-card:hover {
+    border-color: var(--vl-gold);
+    background: color-mix(in srgb, var(--vl-gold-soft) 50%, var(--vl-panel2));
+  }
+  .pick-card.selected {
+    border-color: var(--vl-accent);
+    background: color-mix(in srgb, var(--vl-accent-soft) 60%, var(--vl-panel2));
+  }
+  .pick-round {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--vl-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .pick-name {
+    font-weight: 700;
+    color: var(--vl-ink);
+    font-size: 0.95rem;
+  }
+  .pick-pos {
+    font-size: 0.8rem;
+    color: var(--vl-sub);
+  }
+  .pick-ovr {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--vl-gold);
+  }
+  .pick-tag {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 999px;
+    background: var(--vl-border);
+    color: var(--vl-sub);
+    margin-top: 4px;
+  }
+  .pick-tag.best { background: var(--vl-success); color: #052e16; }
+  .pick-tag.flex { background: var(--vl-accent); color: #052633; }
+
+  /* ============ LINEUP ============ */
+  .lineup-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 12px;
+  }
+  .slot-card {
+    background: var(--vl-panel2);
+    border: 1px solid var(--vl-border);
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .slot-label {
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--vl-sub);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .slot-name {
+    font-weight: 700;
+    color: var(--vl-ink);
+    font-size: 0.9rem;
+  }
+  .slot-ovr {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--vl-gold);
+  }
+  .slot-empty {
+    color: var(--vl-sub);
+    font-size: 0.8rem;
+    font-style: italic;
+  }
+
+  /* ============ GAME PREVIEW ============ */
+  .matchup {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    background: var(--vl-panel2);
+    border: 1px solid var(--vl-border);
+    border-radius: var(--vl-radius);
+    padding: 24px;
+    margin-bottom: 20px;
+  }
+  .team-side {
+    text-align: center;
+    flex: 1;
+  }
+  .team-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--vl-ink);
+    margin-bottom: 4px;
+  }
+  .team-record {
+    color: var(--vl-sub);
+    font-size: 0.875rem;
+  }
+  .vs-badge {
+    font-family: var(--vl-font-display);
+    font-weight: 700;
+    color: var(--vl-gold);
+    font-size: 1.5rem;
+    white-space: nowrap;
+  }
+  .chips-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .chip {
+    background: var(--vl-panel);
+    border: 1px solid var(--vl-border);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--vl-ink);
+  }
+  .chip.strong { border-color: var(--vl-success); color: var(--vl-success); background: color-mix(in srgb, var(--vl-success) 10%, var(--vl-panel)); }
+  .chip.weak { border-color: var(--vl-danger); color: var(--vl-danger); background: color-mix(in srgb, var(--vl-danger) 10%, var(--vl-panel)); }
+  .chip.neutral { border-color: var(--vl-border); color: var(--vl-sub); }
+
+  /* ============ SCOUTING ============ */
+  .scouting-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    border-bottom: 1px solid color-mix(in srgb, var(--vl-border) 50%, transparent);
+  }
+  .scouting-row:last-child { border-bottom: none; }
+  .scouting-label {
+    flex: 0 0 150px;
+    font-weight: 600;
+    color: var(--vl-sub);
+    font-size: 0.875rem;
+  }
+  .scouting-bar {
+    flex: 1;
+    height: 8px;
+    background: var(--vl-border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .scouting-fill {
+    height: 100%;
+    border-radius: 4px;
+    background: linear-gradient(90deg, var(--vl-gold), #b8941f);
+  }
+  .scouting-value {
+    flex: 0 0 40px;
+    font-weight: 700;
+    color: var(--vl-ink);
+    font-size: 0.875rem;
+    text-align: right;
+  }
+
+  /* ============ MOBILE ============ */
+  @media (max-width: 390px) {
+    .shell { padding: 0 12px; }
+    .panel { padding: 16px; }
+    .hero-title { font-size: 1.75rem; }
+    .matchup { padding: 16px; flex-direction: column; text-align: center; }
+    .vs-badge { margin: 12px 0; }
+    .chips-grid { grid-template-columns: 1fr 1fr; }
+    .draft-board { grid-template-columns: 1fr 1fr; }
+    .lineup-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  /* ============ NAV / TABS ============ */
+  .tabs {
+    display: flex;
+    gap: 2px;
+    border-bottom: 1px solid var(--vl-border);
+    margin-bottom: 20px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--vl-sub);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: var(--vl-transition);
+  }
+  .tab:hover { color: var(--vl-ink); }
+  .tab.active {
+    color: var(--vl-gold);
+    border-bottom-color: var(--vl-gold);
+  }
+
+  /* ============ UTILS ============ */
+  .muted { color: var(--vl-sub); font-size: 0.85rem; }
+  .center { text-align: center; }
+  .mb-8 { margin-bottom: 8px; }
+  .mb-16 { margin-bottom: 16px; }
+  .mb-24 { margin-bottom: 24px; }
+  .flex { display: flex; }
+  .items-center { align-items: center; }
+  .gap-8 { gap: 8px; }
+  .gap-16 { gap: 16px; }
+  .hidden { display: none !important; }
+
+  /* Skip button */
+  .skip-btn {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 60;
+    background: var(--vl-panel);
+    border: 1px solid var(--vl-border);
+    color: var(--vl-ink);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: var(--vl-transition);
+  }
+  .skip-btn:hover { border-color: var(--vl-gold); color: var(--vl-gold); }
+
+  .loader {
+    width: 32px; height: 32px;
+    border: 3px solid var(--vl-border);
+    border-top-color: var(--vl-gold);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 40px auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+
+<!-- Skip button -->
+<button class="skip-btn hidden" id="skipBtn">Skip intro</button>
+
+<!-- Header -->
+<header>
+  <div class="bar">
+    <div class="wordmark"><span class="vlc">VLC</span> DRAFT SIM</div>
+    <div class="bar-actions">
+      <button class="btn btn-ghost" onclick="toggleTheme()">Theme</button>
+      <button class="btn btn-primary" onclick="goHome()">Home</button>
+    </div>
+  </div>
+</header>
+
+<div class="shell" id="app">
+  <!-- HOME SCREEN -->
+  <section id="screen-home" class="fade-in">
+    <div class="home">
+      <h1 class="hero-title shimmer-text"><span class="vlc">VLC</span> Colors</h1>
+      <p class="hero-sub">Build your roster. Win 20 games. Can you go <span style="font-weight:700;color:var(--vl-gold)">20-0</span>?</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" onclick="selectTeam('kc')">Start Draft — Kansas City</button>
+        <button class="btn btn-ghost" onclick="selectTeam('sf')">Start Draft — San Francisco</button>
+        <button class="btn btn-ghost" onclick="selectTeam('bal')">Start Draft — Baltimore</button>
+      </div>
+      <div class="team-grid" id="teamGrid">
+        <div class="team-card" onclick="selectTeam('kc')" data-team="kc">
+          <div class="team-logo">🏈</div>
+          <div>Chiefs</div>
+        </div>
+        <div class="team-card" onclick="selectTeam('sf')" data-team="sf">
+          <div class="team-logo">🏈</div>
+          <div>49ers</div>
+        </div>
+        <div class="team-card" onclick="selectTeam('bal')" data-team="bal">
+          <div class="team-logo">🏈</div>
+          <div>Ravens</div>
+        </div>
+        <div class="team-card" onclick="selectTeam('buf')" data-team="buf">
+          <div class="team-logo">🏈</div>
+          <div>Bills</div>
+        </div>
+        <div class="team-card" onclick="selectTeam('det')" data-team="det">
+          <div class="team-logo">🏈</div>
+          <div>Lions</div>
+        </div>
+        <div class="team-card" onclick="selectTeam('phi')" data-team="phi">
+          <div class="team-logo">🏈</div>
+          <div>Eagles</div>
+        </div>
+      </div>
+      <p class="muted mt-24" style="margin-top:24px">VLC V1 · Midnight-ink identity · Claude engine · Team color takeover</p>
+    </div>
+  </section>
+
+  <!-- DRAFT SCREEN -->
+  <section id="screen-draft" class="hidden fade-in">
+    <div class="panel-header mb-16">
+      <div>
+        <h2 class="panel-title">Draft Board</h2>
+        <p class="panel-sub">Round 1 · Pick 31 · Kansas City Chiefs</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('home')">← Home</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" onclick="setTab(this,'draft-board')">Board</div>
+      <div class="tab" onclick="setTab(this,'draft-results')">Results</div>
+      <div class="tab" onclick="setTab(this,'draft-analysis')">Analysis</div>
+    </div>
+
+    <div id="draft-board" class="draft-board">
+      <div class="pick-card selected best">
+        <div class="pick-round">R1 · #31</div>
+        <div class="pick-name">Caleb Williams</div>
+        <div class="pick-pos">QB · USC</div>
+        <div class="pick-ovr">92 OVR</div>
+        <span class="pick-tag best">Best available</span>
+      </div>
+      <div class="pick-card">
+        <div class="pick-round">R1 · #32</div>
+        <div class="pick-name">Drake Maye</div>
+        <div class="pick-pos">QB · UNC</div>
+        <div class="pick-ovr">88 OVR</div>
+        <span class="pick-tag">Fine</span>
+      </div>
+      <div class="pick-card">
+        <div class="pick-round">R2 · #63</div>
+        <div class="pick-name">Malik Nabers</div>
+        <div class="pick-pos">WR · LSU</div>
+        <div class="pick-ovr">86 OVR</div>
+        <span class="pick-tag best">Best available</span>
+      </div>
+      <div class="pick-card">
+        <div class="pick-round">R2 · #64</div>
+        <div class="pick-name">Brian Thomas Jr.</div>
+        <div class="pick-pos">WR · LSU</div>
+        <div class="pick-ovr">84 OVR</div>
+        <span class="pick-tag">OK</span>
+      </div>
+      <div class="pick-card flex">
+        <div class="pick-round">R3 · #95</div>
+        <div class="pick-name">Cooper Kupp</div>
+        <div class="pick-pos">WR · Flex</div>
+        <div class="pick-ovr">81 OVR</div>
+        <span class="pick-tag flex">Flex → FS (−10)</span>
+      </div>
+    </div>
+
+    <div id="draft-results" class="hidden">
+      <div class="panel">
+        <div class="panel-header">
+          <h3 class="panel-title">Draft Results</h3>
+        </div>
+        <p class="muted">Draft complete. Your roster grades #7 of 32 overall.</p>
+      </div>
+    </div>
+
+    <div id="draft-analysis" class="hidden">
+      <div class="panel">
+        <div class="panel-header">
+          <h3 class="panel-title">Pick Analysis</h3>
+        </div>
+        <p class="muted">Every pick evaluated against regret threshold. Costly misses only when off by ≥0.10 wins.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEUP SCREEN -->
+  <section id="screen-lineup" class="hidden fade-in">
+    <div class="panel-header mb-16">
+      <div>
+        <h2 class="panel-title">Lineup</h2>
+        <p class="panel-sub">Set your starters. QB may flex only to FS at −10.</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('draft')">← Draft</button>
+    </div>
+
+    <div class="lineup-grid">
+      <div class="slot-card">
+        <div class="slot-label">QB</div>
+        <div class="slot-name">Caleb Williams</div>
+        <div class="slot-ovr">92 OVR</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">RB1</div>
+        <div class="slot-name">Bijan Robinson</div>
+        <div class="slot-ovr">88 OVR</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">WR1</div>
+        <div class="slot-name">Malik Nabers</div>
+        <div class="slot-ovr">86 OVR</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">WR2</div>
+        <div class="slot-name">Brian Thomas Jr.</div>
+        <div class="slot-ovr">84 OVR</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">WR3</div>
+        <div class="slot-empty">Empty</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">TE1</div>
+        <div class="slot-name">Trey McBride</div>
+        <div class="slot-ovr">85 OVR</div>
+      </div>
+      <div class="slot-card">
+        <div class="slot-label">FS (Flex)</div>
+        <div class="slot-name">Justin Simmons</div>
+        <div class="slot-ovr">81 OVR</div>
+        <div style="font-size:0.7rem;color:var(--vl-warn);margin-top:2px">Flex → −10 wins</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GAME PREVIEW SCREEN -->
+  <section id="screen-preview" class="hidden fade-in">
+    <div class="panel-header mb-16">
+      <div>
+        <h2 class="panel-title">Game Preview</h2>
+        <p class="panel-sub">Kansas City vs San Francisco · Week 1</p>
+      </div>
+      <button class="btn btn-ghost" onclick="showScreen('home')">← Home</button>
+    </div>
+
+    <div class="matchup">
+      <div class="team-side">
+        <div class="team-name" style="color:#e31837">Chiefs</div>
+        <div class="team-record">11-6 · #2 AFC</div>
+      </div>
+      <div class="vs-badge">vs</div>
+      <div class="team-side">
+        <div class="team-name" style="color:#aa0000">49ers</div>
+        <div class="team-record">12-5 · #1 NFC</div>
+      </div>
+    </div>
+
+    <div class="panel">
+      <div class="panel-header">
+        <h3 class="panel-title">Scouting</h3>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Quarterback Play</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:78%"></div></div>
+        <div class="scouting-value">+3.3</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Run Blocking</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:62%"></div></div>
+        <div class="scouting-value">+1.1</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Pass Protection</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:55%"></div></div>
+        <div class="scouting-value">+0.8</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Pass Rush</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:84%"></div></div>
+        <div class="scouting-value">+4.2</div>
+      </div>
+      <div class="scouting-row">
+        <div class="scouting-label">Pass Coverage</div>
+        <div class="scouting-bar"><div class="scouting-fill" style="width:71%"></div></div>
+        <div class="scouting-value">+2.6</div>
+      </div>
+    </div>
+
+    <div class="panel mb-24">
+      <div class="panel-header">
+        <h3 class="panel-title">Matchup Math</h3>
+      </div>
+      <div class="chips-grid">
+        <div class="chip strong">Strong Pass Rush</div>
+        <div class="chip strong">Strong Quarterback</div>
+        <div class="chip weak">Weak Run Blocking</div>
+        <div class="chip neutral">Balanced Matchup</div>
+        <div class="chip weak">Weak Pass Coverage</div>
+        <div class="chip strong">Strong Special Teams</div>
+      </div>
+      <div style="margin-top:16px;font-weight:700;color:var(--vl-gold);font-size:1.1rem">+2 WINS</div>
+    </div>
+  </section>
+</div>
+
+<script>
+  // Team takeover: apply selected team colors to :root
+  function selectTeam(team) {
+    document.documentElement.setAttribute('data-team', team);
+    // Mark selected card
+    document.querySelectorAll('.team-card').forEach(c => {
+      c.classList.remove('selected');
+      if (c.dataset.team === team) c.classList.add('selected');
+    });
+    // Show a subtle toast
+    const t = document.createElement('div');
+    t.style.position = 'fixed';
+    t.style.bottom = '24px';
+    t.style.left = '50%';
+    t.style.transform = 'translateX(-50%)';
+    t.style.background = 'var(--vl-panel2)';
+    t.style.border = '1px solid var(--vl-border)';
+    t.style.color = 'var(--vl-ink)';
+    t.style.padding = '12px 24px';
+    t.style.borderRadius = '999px';
+    t.style.fontSize = '0.9rem';
+    t.style.zIndex = '100';
+    t.style.boxShadow = 'var(--vl-shadow)';
+    t.textContent = 'Team selected · Colors applied to shell';
+    document.body.appendChild(t);
+    setTimeout(() => t.remove(), 1500);
+  }
+
+  function goHome() { showScreen('home'); }
+  function showScreen(id) {
+    document.querySelectorAll('section').forEach(s => s.classList.add('hidden'));
+    const s = document.getElementById('screen-' + id);
+    if (s) s.classList.remove('hidden');
+  }
+  function setTab(el, target) {
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    el.classList.add('active');
+    ['draft-board','draft-results','draft-analysis'].forEach(id => {
+      document.getElementById(id).classList.toggle('hidden', id !== target);
+    });
+  }
+  function toggleTheme() {
+    const dark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', dark ? 'light' : 'dark');
+    document.body.style.background = dark ? '#f3f4f6' : 'var(--vl-bg)';
+    document.body.style.color = dark ? '#111827' : 'var(--vl-ink)';
+  }
+
+  // Skip button demo
+  const skipBtn = document.getElementById('skipBtn');
+  setTimeout(() => {
+    skipBtn.classList.remove('hidden');
+    skipBtn.classList.add('fade-in');
+  }, 1500);
+  skipBtn.addEventListener('click', () => {
+    alert('Skip intro → lands on first play. Wording flips to "Skip" once the game begins.');
+  });
+
+  // Intercept team card clicks to show loading then navigate
+  document.querySelectorAll('.team-card').forEach(c => {
+    c.addEventListener('click', function() {
+      const btn = this.querySelector('button') || this;
+      const loader = document.createElement('div');
+      loader.className = 'loader';
+      this.style.position = 'relative';
+      this.appendChild(loader);
+      setTimeout(() => {
+        loader.remove();
+        showScreen('draft');
+        window.scrollTo(0,0);
+      }, 900);
+    });
+  });
+</script>
+</body>
+</html>
