@@ -1,0 +1,35 @@
+<!-- ALL-IN-ONE PLUGINS FOR CLAUDE'S PROTOTYPE -->
+<!-- Copy these blocks into Football-Sim-PreColors.html or new prototype -->
+
+<!-- ========== ADD TO <head> OR <style> ========== -->
+<style>
+/* Include TEAM-COLORS-STYLES.css content here, or link it */
+/* Paste contents of TEAM-COLORS-STYLES.css */
+</style>
+
+<!-- ========== ADD BEFORE </body> or in <script> ========== -->
+<script>
+// Paste contents of TEAM-COLORS-PLUGINS.js
+// Paste contents of INTERACTIVE-BEAUTY-PLUGINS.js
+</script>
+
+<!-- ========== USAGE EXAMPLES ========== -->
+<script>
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', ()=>{
+  // Emit team colors
+  if(typeof emitTeamColorCSS === 'function') emitTeamColorCSS();
+  
+  // Add motion
+  if(typeof addMotionKeyframes === 'function') addMotionKeyframes();
+  if(typeof addHoverEffects === 'function') addHoverEffects();
+  
+  // Style champion banner if exists
+  if(typeof styleChampionBanner === 'function') styleChampionBanner();
+  
+  // Stagger cards
+  setTimeout(()=>{
+    if(typeof staggerCards === 'function') staggerCards('.panel, .pcard, .kp-card, .teamframe, .bracket-game');
+  }, 100);
+});
+</script>
