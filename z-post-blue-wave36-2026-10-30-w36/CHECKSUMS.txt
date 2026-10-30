@@ -1,0 +1,24 @@
+# CHECKSUMS — z-post-blue-wave36-2026-10-30-w36 · md5
+d0e06392e359ec0dd95caf95a918852d  ./Football-Sim-Z-post-blue-w36.html
+fdce1d5ada29fd4a162b252ca16345b7  ./UPDATE-README.md
+086aa3be6169bf8123803a3137e1924c  ./CLAUDE-HANDOFF/HANDOFF-TO-CLAUDE.md
+346db2deae91a35af6f98cb15c320eac  ./CLAUDE-HANDOFF/WAVE-HISTORY.md
+77a953ac5f4275346fb7093eccefdfdc  ./_agents/zai/END-OF-CHAT-ZAI.md
+d44d43aac831ecc7817131eb4019f5e9  ./_agents/zai/START-OF-CHAT-ZAI.md
+15cd19316562141b91bfa43a0ba2329e  ./_agents/zai/ZAI.md
+3adf7c5ed3f18e9404c97162f8209329  ./_agents/zai/notes/W36-BUILD-REPORT.md
+63fd68b42343b02e69303a22fe53e8f6  ./_agents/zai/notes/W36-INTAKE-LEDGER.md
+f6e1f5cf7a690b0466c0adfdae260eca  ./_agents/zai/notes/evidence/w36-opener-cinematic.png
+22d1f51a06cbd6a3249345cf97091648  ./_agents/zai/notes/evidence/w36-pickmenu-open.png
+c47154fac98727b0fc91a26aa123d8c3  ./_agents/zai/notes/evidence/w36-review-map-wide.png
+3f8a5dfb249cb2f21de9aa9e7858ea9f  ./_agents/zai/notes/evidence/w36-roster-tab-map.png
+0953ced126aca71cbe8695e16c758816  ./_agents/zai/notes/evidence/w36-season-tab-preseason.png
+4cc53dcba8c948cf04338a0bd05e32ad  ./_agents/zai/notes/evidence/w36-week1-after-begin.png
+b0716bf72839fdc833fea6262e645084  ./_agents/zai/tools/w36_mobile.js
+c7b9b0856c2d5c81560ca070927acc02  ./_agents/zai/tools/w36_probe.js
+8f2cb0f92dac43acc0e6d34d38ed2aff  ./_agents/zai/tools/w36_recon.js
+c255204d25a75dc0d92ab723b1fce957  ./_agents/zai/tools/w36_recon2.js
+e0e16480bb498c27dd27220e740a5ca8  ./_agents/zai/tools/w36_recon3.js
+b29e4098cc82fb776cd610a86c49def1  ./_agents/zai/tools/w36_recon4.js
+b27ebcf969ba60447b881d14fb6c2427  ./_agents/zai/tools/w36_stress.js
+d174c178e07b79e5679673a15de77857  ./_agents/zai/tools/w36_verify.js
