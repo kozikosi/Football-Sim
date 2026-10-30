@@ -7,10 +7,11 @@
 - **This session (2026-10-30):** 17 reviews + 8 work files + VLC V1 (3 artifacts), all committed & pushed to council/vl @ 2084f1fe:
   Reviews: ... P-192 #1 (ok) = 14 reviews
   Work: P-168 ..., STEP-6-RNG ..., P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
-- **VLC V1 (Colors v1 vision — merged Claude engine + creative UI), committed @ 2084f1fe:**
+- **VLC V1 (Colors v1 vision — merged Claude engine + creative UI), committed @ f07b5163:**
   - `vlc-v1-architecture.md` — React 18 + Vite architecture, midnight-ink identity, engine integration strategy, screen inventory, component tree, cinematic law, protected-constants protocol
-  - `vlc-v1-prototype.html` — self-contained visual prototype: Home (20-0 hero, team takeover), Draft (board cards, pick tags, flex), Lineup (slot cards, flex → FS −10), Game Preview (matchup, scouting chips, scouting bars, +x WINS); mobile-responsive, skip button, theme toggle
+  - `vlc-v1-prototype.html` — self-contained floaty prototype: Home (20-0 hero, w38 team-dropdown that remaps whole site, tinted dark-mode text), Draft (floaty board cards, pick tags, flex), Lineup (floaty slot cards, flex → FS −10), Game Preview (matchup, scouting chips/bars, +x WINS), Game Animation (log lines "<team> <play> <yds>", shimmering TD/FG tags, skip button), Season Review (graphical cards, "Try again to 20-0?"), 100-Season Sim (logo bars, compact personnel); mobile-responsive, skip button, theme toggle
   - `vlc-v1-group-suggestions.md` — w37/w38 review (beam's 11 points verified + 6 w37 items added); group suggestions P0/P1/P2; CB4 protected-constants protocol; traceability map proposal
+  - `vlc-v1/` — full React/Vite project: package.json, vite.config.js, index.html, src/main.tsx, src/App.tsx + App.css, src/engine/{weights,ratings,flex,index}.ts (Claude's engine, untouched), src/hooks/{useEngine,useTeamTheme}.ts, src/lib/tokens.ts, src/types/engine.ts, src/components/{layout,home,draft,lineup,game,review}/*.tsx
 - **w37/w38 review (6f513213):** beam's 11 w37/w38 suggestions for Colors v1 all verified against W38/W37 build reports + intake ledgers; 6 additional w37-derived items Colors v1 should adopt (Gone% 99% cap, veil opaque on frame one, center panel no-ellipsis, reward gate on all cinematics, skip flushes whole report + true final, unit card text stacking fix). Group suggestions: adopt w37+w38 as tested law set, CB4 requires NATURAL_SLOT_MAP re-pin in MERGE-MANIFEST.md, build traceability map.
   Reviews: P-158 #2 (improved), P-160 #2 (rejected), P-166 #1 (improved), P-162 #2 (ok), P-163 #2 (improved), P-165 #2 (improved), P-155 #2 (improved), P-156 #2 (improved), P-183 #2 (ok), P-164 #2 (ok), P-167 #1 (ok), P-205 #1 (improved), P-206 #1 (improved), P-192 #1 (ok) = 14 reviews
   Work: P-168 (game preview panel change list), P-169 (buttons/schedule CSS/copy), P-204 (NFL FG accuracy by distance 2020-2025), P-205 gap fill (drive-end splits, 3-and-out, seconds/drive), P-206 gap fill (OT field-goal rule text, first-possession score rate gap), P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
@@ -101,4 +102,4 @@
 - `_agents/vl/deliveries/vlc-v1-prototype.html` (pushed)
 - `_agents/vl/deliveries/vlc-v1-group-suggestions.md` (pushed)
 
-**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `2084f1fe` (pushed, verified by ls-remote)
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `f07b5163` (pushed, verified by ls-remote)
