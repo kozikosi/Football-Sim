@@ -1286,8 +1286,8 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-replay.done .zrl-skip{display:none !important;}
 /* w33 (R27): the pre-game stage — key players fade in and out while the logos breathe */
 .zpb-intro-stars{position:absolute;inset:0;pointer-events:none;}
-.zpb-intro-star{position:absolute;left:var(--sx,50%);top:var(--sy,86%);transform:translate(-50%,-50%);white-space:nowrap;font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:800;font-size:1.02rem;letter-spacing:.06em;opacity:0;animation:zpbStarInOut 3.4s ease both;} /* w38 (R7, Owner): the fade in-and-out runs a little slower */
-.zpb-intro-star b{display:block;color:var(--tnd,#f2e4c8);font-size:1.02rem;}
+.zpb-intro-star{position:absolute;left:var(--sx,50%);top:var(--sy,86%);transform:translate(-50%,-50%);white-space:nowrap;font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:800;font-size:1.02rem;letter-spacing:.06em;opacity:0;animation:zpbStarInOut 4.4s ease both;} /* w39 (Owner, A5): every action takes one second longer — 3.4s → 4.4s */
+.zpb-intro-star b{display:block;color:var(--tnd,#f2e4c8);font-size:1em;} /* w39 (A4): the name wears the panel's fitted size — the lane-fit law is real now */
 .zpb-intro-star b.zpb-vib{color:var(--tnd,#f2e4c8);}
 .zpb-intro-star i{font-style:normal;display:block;font-size:.62rem;letter-spacing:.12em;opacity:.92;color:var(--zrb,var(--gold3));margin-top:3px;}
 /* w38 (R8, Owner): every pregame name wears the SAME player panel — the story-card frame */
@@ -2226,6 +2226,7 @@ html{scrollbar-gutter:stable;}
     <div id="draftChips"></div>
     <div id="draftFitSummary"></div>
     <div id="draftCards" style="display:none;"></div>
+    <div id="draftCompactSort" role="group" aria-label="Sort the board"><button type="button" class="zpb-csbtn" data-zsort="name">Player</button><button type="button" class="zpb-csbtn" data-zsort="pos">Pos</button><button type="button" class="zpb-csbtn" data-zsort="team">Team</button><button type="button" class="zpb-csbtn" data-zsort="ovr">OVR</button><button type="button" class="zpb-csbtn" data-zsort="wins">Wins</button><button type="button" class="zpb-csbtn" data-zsort="priority">Priority</button><button type="button" class="zpb-csbtn" data-zsort="gone">Gone</button></div>
     <div id="draftTableWrap" class="tablewrap">
     <table id="draftTable2" data-nostack="1">
      <thead><tr><th data-sort="name" class="sortable">Player</th><th data-sort="pos" class="sortable">Pos</th><th data-sort="team" class="sortable">Team</th><th data-sort="ovr" class="sortable">OVR</th><th data-sort="wins" class="sortable" title="Static: extra wins per season this player adds over a 70-rated player at his position. Identical for every team and every moment of the draft.">Wins</th><th data-sort="priority" class="sortable" title="What picking him now adds over waiting for your next pick. High = waiting costs you.">Priority</th><th data-sort="gone" class="sortable" title="Chance a player of this type is gone by your next pick.">Gone</th><th>Fills</th><th></th></tr></thead>
@@ -2913,7 +2914,8 @@ function zpbTeamChips(name){
 // inline custom props consumed by .zpb-trow (light + dark sets, swapped by CSS)
 function zpbRowVars(name){
  const pk=zpbPackFor(name); if(!pk) return '';
- return '--zr1:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.76):pk.accL),0.07)+'; // w32 (Owner): light mode lifts the tint further so the team ink always reads--zr2:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.03)+';--zr3:'+zpbRgba((window.zpbLift?zpbLift(pk.raw[2],0.58):pk.raw[2]),0.10)+';--zrb:'+pk.accL+
+ // w32 (Owner): light mode lifts the tint further so the team ink always reads — w39 (recon): the note rides OUTSIDE the string (it silently ate --zr2)
+ return '--zr1:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.76):pk.accL),0.07)+';--zr2:'+zpbRgba((window.zpbLift?zpbLift(pk.accL,0.58):pk.accL),0.03)+';--zr3:'+zpbRgba((window.zpbLift?zpbLift(pk.raw[2],0.58):pk.raw[2]),0.10)+';--zrb:'+pk.accL+
   ';--zr1d:'+zpbRgba(pk.accD,0.15)+';--zr2d:'+zpbRgba(pk.accD,0.04)+';--zr3d:'+zpbRgba(pk.raw[2],0.12)+';--zrbd:'+pk.accD+
   ';--tA2:'+pk.accL+';--tG2:'+(window.zpbLift?zpbLift(pk.accL,0.35):pk.accL)+';--glow:'+zpbRgba(pk.accL,0.35)+';--tn:'+pk.txL+';--tnd:'+pk.accD+
   ';--nm:'+pk.txL+';--nmd:'+pk.txd+';--nu:'+pk.accL+';--nud:'+(window.zpbLift?zpbLift(pk.accL,0.55):pk.accL)+';'; // w20: tier palette rides every row · w27: --tnd = the team color tuned for the dark theme · w38 (R1, Owner): the rankings' name ink rides every row
@@ -2926,7 +2928,7 @@ function zpbNeutralRowVars(name){
  const nl=(window.zpbLift?zpbLift(pk.txL,0.62):pk.txL), nd=pk.txd;
  return '--zr1:'+zpbRgba(nl,0.09)+';--zr2:'+zpbRgba(nl,0.03)+';--zr3:'+zpbRgba(nl,0.10)+';--zrb:'+nl+
   ';--zr1d:'+zpbRgba(nd,0.14)+';--zr2d:'+zpbRgba(nd,0.04)+';--zr3d:'+zpbRgba(nd,0.12)+';--zrbd:'+nd+
-  ';--tA2:'+nl+';--tG2:'+nl+';--glow:'+zpbRgba(nl,0.26)+';--tn:'+nl+';--tnd:'+nd+
+  ';--tA2:'+nl+';--tG2:'+nl+';--glow:'+zpbRgba(nl,0.26)+';--tn:'+nl+';--tnd:'+nd+';--zn:1'+
   ';--nm:'+pk.txL+';--nmd:'+pk.txd+';--nu:'+pk.accL+';--nud:'+(window.zpbLift?zpbLift(pk.accL,0.55):pk.accL)+';'; // w38 (R1, Owner): the name ink keeps the rankings format on the neutral rows too
 }
 function zpbNeutralUserRowVars(){ return zpbState.teamName ? zpbNeutralRowVars(zpbState.teamName) : ''; }
@@ -3329,30 +3331,37 @@ function zpbGameReplay(g, focusTeam){
     });
    }catch(err){}
    stars.sort((a,b)=>b.o-a.o);
-   const showStars = stars.slice(0, Math.max(6, Math.min(10, Math.round(INTRO_MS/2600))));
-   // w37 (R6, Owner): the names spread AROUND the middle panel — each team's best on the top and
-   // the bottom, the others on opposite sides (away left, home right) — never stacked on one spot.
-   // w38 (R7, Owner): MORE SYMMETRY — the others stand in mirrored PAIRS at the SAME height
-   // (away left, home right) and every pair shares one beat, so they line up against each other.
-   const awayStars = showStars.filter(s=>s.team===abbr(g.away)), homeStars = showStars.filter(s=>s.team===abbr(g.home));
-   // w38 (R7, Owner): the units LINE UP — both sides cap at the same count, so every name but the
-   // bests stands in a mirrored pair at the same height, fading together against his opposite.
-   const pairable = Math.max(1, Math.min(awayStars.length, homeStars.length) - 1);
-   awayStars.length = Math.min(awayStars.length, pairable + 1);
-   homeStars.length = Math.min(homeStars.length, pairable + 1);
-   const pairs = pairable;
-   const stepY = pairs>1 ? (44/(pairs-1)) : 0;
-   const pairY = i=> i<=1 ? 50 : (28 + (i-2)*stepY);
-   const pairDelay = i=> 1.2 + Math.min(i, pairs+1)*((INTRO_MS-3600)/Math.max(1, pairs+1));
+   // w39 (Owner, A4): the top/bottom stations are RETIRED — the top THREE players on each side
+   // line up on their own flank (away left, home right) ACROSS from each other: the bests face
+   // each other over the middle panel, the second pair above, the third below. Every pair
+   // shares one beat — they fade in and out together, lined up against each other.
+   const awayStars = stars.filter(s=>s.team===abbr(g.away)).slice(0, 3);
+   const homeStars = stars.filter(s=>s.team===abbr(g.home)).slice(0, 3);
+   const cnt = Math.min(awayStars.length, homeStars.length, 3); // both sides cap at the same count
+   const plan = cnt<1 ? [] : (cnt===1 ? [[0,50]] : (cnt===2 ? [[0,34],[1,66]] : [[0,50],[1,22],[2,78]]));
+   // w39 (Owner, A5): EVERY action in the pregame takes one second longer — the first star
+   // waits 2.2s (was 1.2s), every beat gap gains a second, the fade cycle runs 4.4s (CSS).
+   const SLOW = 1000;
+   let INTRO_MS_EFF = INTRO_MS;
+   if(!isSB && !roundLabel){ // the regular-game intro grows to fit the slower actions
+    const stp = ((INTRO_MS-3600)/Math.max(1,cnt+1)) + SLOW;
+    INTRO_MS_EFF = Math.max(INTRO_MS, Math.round(2200 + Math.max(0,cnt-1)*stp + 4400 + 700));
+   }
+   const pairDelay = i=> 2200 + Math.min(i, plan.length)*(((INTRO_MS_EFF-3600)/Math.max(1,plan.length+1)) + SLOW);
+   const narrow = (window.innerWidth||1280) <= 600;
+   const laneA = narrow ? 28 : 18, laneH = narrow ? 72 : 82; // the lanes clear the middle panel
+   const fitF = s=>{ if(!s) return 15.4; const laneMax = narrow ? Math.min(160, Math.round((window.innerWidth||1280) * 0.36)) : 340;
+    let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
+    while(f > 9.5 && est(f) > laneMax) f -= 0.5; return f; }; // w39: the fit budget is the lane it sits in
    const slots = [];
-   awayStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 20, sy: i===0 ? 9 : pairY(i), beat: i, side: i===0 ? '' : ' zpb-st-side'})));
-   homeStars.forEach((s,i)=>slots.push(Object.assign({}, s, {sx: i===0 ? 50 : 80, sy: i===0 ? 91 : pairY(i), beat: i, side: i===0 ? '' : ' zpb-st-side-r'}))); // w38 (R8): the side panels clear the middle panel's crests
+   plan.forEach((st,beat)=>{
+    slots.push(Object.assign({}, awayStars[st[0]], {sx:laneA, sy:st[1], beat:beat, side:' zpb-st-side', f:fitF(awayStars[st[0]])}));
+    slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])}));
+   });
    const starHTML = slots.map((s,i)=>{
     let fsz = '';
-    if(s.side){ // w37 (R6, Owner): a side name fits its lane — the font steps down until the line stays inside
-     let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
-     while(f > 9.5 && est(f) > 250) f -= 0.5;
-     if(f < 15.35) fsz = 'font-size:' + (Math.round(f*10)/10) + 'px;';
+    if(s.side && s.f != null){ // w39 (A4): the fitted size was computed with the slot — the lane law holds on phones too
+     if(s.f < 15.35) fsz = 'font-size:' + (Math.round(s.f*10)/10) + 'px;';
     }
     const rv = (s.full && typeof zpbRowVars==='function') ? zpbRowVars(s.full) : ''; // w38 (R8): the panel wears the team palette
     const _t = (s.o>=90) ? 'zpb-shm' : ((s.o>=85) ? 'zpb-vib' : '');
@@ -3366,9 +3375,9 @@ function zpbGameReplay(g, focusTeam){
 ;
    box.appendChild(intro);
    const flash = ()=>{ const f = intro.querySelector('.zpb-intro-flash'); if(f){ f.style.opacity = '.95'; setTimeout(()=>{ f.style.transition = 'opacity .7s ease'; f.style.opacity = '0'; }, 240); } };
-   if(isSB){ [3400,12000,22000,34000,46000].forEach(ms=>timers.push(setTimeout(flash, ms))); }
-   else { timers.push(setTimeout(flash, 3400)); }
-   timers.push(setTimeout(startTimeline, INTRO_MS));
+   if(isSB){ [4400,13000,23000,35000,47000].forEach(ms=>timers.push(setTimeout(flash, ms))); } // w39 (Owner, A5): every action one second slower
+   else { timers.push(setTimeout(flash, 4400)); } // w39 (Owner, A5): the flash lands a second later
+   timers.push(setTimeout(startTimeline, INTRO_MS_EFF || INTRO_MS)); // w39 (Owner, A5): the envelope fits the slower actions
   }
   const finish = (skipRest)=>{
    if(finished) return;
@@ -5747,6 +5756,7 @@ function renderDraftBoard2(){
  const search = document.getElementById('draftSearch2').value.toLowerCase();
  const posF0 = document.getElementById('draftPosFilter2').value; const needsOnly = posF0==='all'; // all positions: only spots you still need; a chosen position shows everyone at it
  const sortBy = document.getElementById('draftSort2').value, view = document.getElementById('draftView2').value;
+ try{ const _cs = document.getElementById('draftCompactSort'); if(_cs) _cs.querySelectorAll('[data-zsort]').forEach(b=>b.classList.toggle('zpb-cs-on', b.dataset.zsort===sortBy)); }catch(_e){} // w39 (Owner, A3): the compact chips mark the active sort
  const posF = document.getElementById('draftPosFilter2').value;
  const {sim, entries} = boardEntries();
  if(draftUI.teamFilter && !entries.some(r => r.p[2] === draftUI.teamFilter)){
@@ -9305,8 +9315,8 @@ function boardMathHTML(){
   + '<div class="narr">'+body+'</div></div>';
  return '<div class="zpb-bmgrid zpb-bm-center">'
   + col('WINS', 'How many more games per season a player adds than a 70-rated player at his position<br>WINS are static.')
-  + col('PRIORITY', 'Do I need to take him now.<br>What picking him now adds over the best you could expect to still find at that spot at your next pick. Priority changes as your roster fills and as the board thins.')
-  + col('GONE', 'Is he about to leave.<br>The chance that a player will be picked by another team before your next turn')
+  + col('PRIORITY', 'Should I take this player now?<br>What picking him now adds over the best you could expect to still find at that spot at your next pick. Priority changes as your roster fills and as the board thins.')
+  + col('GONE', 'Will this player be available next round?<br>The chance that a player will be picked by another team before your next turn')
   + '</div>'
   + '<div class="zpb-bmcall zpb-bm-center"><b>Why can a linebacker show high priority?</b><br>Because priority is about scarcity.<br>If the best edge rushers will still be there at your next pick but the elite linebackers will not, the linebacker\u2019s priority can be higher even though his Wins number is smaller.<br>The Wins column is the clean \u201chow good is he\u201d number.<br>Priority is the \u201cdo I need to take him now\u201d number.</div>' // w32 (Owner): the two sentences sit on their own lines; ", not just size" is gone
   + '<div class="zpb-swgroup">'
@@ -12379,8 +12389,18 @@ html,body{overflow-x:hidden;}
 .zpb-dz-zone.zpb-dz-st .zpb-dz-row{display:inline-flex;gap:10px;border-top:none;}
 @media (max-width:900px){ .zpb-dz{grid-template-columns:1fr;} .zpb-dz-zone.zpb-dz-st{flex-direction:column;align-items:stretch;} }
 /* A10/A22 (Owner): light mode — tinted rows keep the deep team ink so nothing melts into its panel */
-:root:not([data-theme="dark"]) .zpb-trow, :root[data-theme="light"] .zpb-trow{color:var(--tnd,var(--text));}
-:root:not([data-theme="dark"]) .zpb-trow .zpb-pb-name, :root[data-theme="light"] .zpb-trow .zpb-pb-name{color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-trow:not([style*="--zn:1"]), :root[data-theme="light"] .zpb-trow:not([style*="--zn:1"]){color:var(--tnd,var(--text));}
+:root:not([data-theme="dark"]) .zpb-trow:not([style*="--zn:1"]) .zpb-pb-name, :root[data-theme="light"] .zpb-trow:not([style*="--zn:1"]) .zpb-pb-name{color:var(--tnd,var(--text));}
+/* w39 (Owner, A1): the draft board's light-mode text melted into the panel — the A10 rule above
+   was feeding it --tnd, which the w34 neutral swap filled with the DARK theme's pale ink
+   (~1.35:1 on the light panel). The neutral rows now obey the homepage dropdown's mapping per
+   theme: light rows read --tn (the dropdown's light ink), dark rows read --tnd (the dark-mode
+   dropdown colors he loves). The vivid rows keep their own A10 law untouched. */
+:root:not([data-theme="dark"]) [style*="--zn:1"].zpb-trow, :root[data-theme="light"] [style*="--zn:1"].zpb-trow{color:var(--tn,var(--text));}
+:root[data-theme="dark"] [style*="--zn:1"].zpb-trow, :root:not([data-theme="light"]) [style*="--zn:1"].zpb-trow{color:var(--tnd,var(--text));}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) [style*="--zn:1"].zpb-trow{color:var(--tnd,var(--text));}
+}
 :root:not([data-theme="dark"]) .zpb-scard .zpb-scard-hd b, :root[data-theme="light"] .zpb-scard .zpb-scard-hd b{color:var(--tnd,var(--text));}
 :root:not([data-theme="dark"]) .zpb-dbk b, :root[data-theme="light"] .zpb-dbk b{color:var(--tnd,var(--text));}
 :root:not([data-theme="dark"]) .zpb-lu-cell, :root[data-theme="light"] .zpb-lu-cell{color:var(--tnd,var(--text));}
@@ -12674,9 +12694,7 @@ window.wireLineupEditor = function(roster, hostId, onChange){
 /* R6 (Owner): phones — the constellation pulls its side names inboard so nothing clips */
 @media (max-width:600px){
  .zpb-intro-star{font-size:.8rem;}
- .zpb-intro-star.zpb-st-side{--sx:25%;}
- .zpb-intro-star.zpb-st-side-r{--sx:75%;}
-}
+} /* w39 (A4): the dead --sx overrides retired — the lane is computed in JS now (inline --sx always won) */
 </style>
 <style id="zpb-w38-css">
 /* ============ Z-POST-BLUE W38 ============ */
@@ -12712,6 +12730,78 @@ window.zpbStoryRelease = function(){
  window.__zpbStoryHold = false;
  try{ document.querySelectorAll('.zpb-story-hold').forEach(el=>el.classList.remove('zpb-story-hold')); }catch(err){}
 };
+</script>
+<style id="zpb-w39-css">
+/* ================= Z-POST-BLUE W39 (the Owner's round-39 directives) ================= */
+/* A1 (Owner): the draft board's NAME leads the row in the rankings format — the team's deep
+   text ink in light, the dark-theme team ink in dark (the homepage dropdown's team-name ink). */
+#draftTable2 td.dc-name{color:var(--nm,var(--text));}
+:root[data-theme="dark"] #draftTable2 td.dc-name,:root:not([data-theme="light"]) #draftTable2 td.dc-name{color:var(--nmd,var(--text));}
+/* A1 (Owner): the board's numbers must read on the light panel — the tokens deepen in light;
+   the dark theme keeps its tokens untouched (the ink he loves stays). */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:var(--gold3,#a8791c);}
+:root:not([data-theme="dark"]) #draftTable2 td.dc-gone,:root[data-theme="light"] #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,#cf8a60) 62%,var(--text));}
+:root:not([data-theme="dark"]) #draftTable2 td.dc-wins,:root[data-theme="light"] #draftTable2 td.dc-wins{color:color-mix(in srgb,var(--good,#4c9a67) 78%,var(--text));}
+/* A2 (Owner): the compact cards tighten — the board stops ballooning in a small window. */
+@media (max-width:1120px){
+ #draftTable2 tr{padding:4px 7px;gap:1px 4px;}
+ #draftTable2 td{font-size:0.74rem;}
+ #draftTable2 td[data-label]::before{font-size:0.52rem;}
+ #draftTable2 td.dc-name{font-size:0.84rem;}
+ #draftTable2 td.dc-ovr{font-size:0.92rem;padding:1px 7px !important;}
+ #draftTable2 td.dc-btn button{padding:3px 8px;font-size:0.68rem;}
+}
+/* A3 (Owner): the compact board keeps its headers — the chip row rides above the cards. */
+#draftCompactSort{display:none;flex-wrap:wrap;gap:4px;margin:2px 0 8px;}
+.zpb-csbtn{display:inline-flex;align-items:center;border:1px solid var(--border);background:var(--panel2);color:var(--sub);border-radius:8px;padding:3px 8px;cursor:pointer;font-family:inherit;font-size:0.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;}
+.zpb-csbtn:hover{border-color:var(--accent);color:var(--text);}
+.zpb-csbtn.zpb-cs-on{border-color:var(--accent);color:var(--text);box-shadow:0 0 9px var(--glow);}
+@media (max-width:1120px){ #draftCompactSort{display:flex;} }
+/* A6 (Owner): the Honors earned cinematic scrolls ITSELF — at a reduced window height the
+   Continue sits at the end of the scroll and is always reachable, and the wheel stays inside
+   the overlay (overscroll-behavior:contain) instead of scrolling the review page behind it.
+   The flex spacers center the stage when it fits and collapse when it must scroll, so the
+   top of the honors never clips either. The stage and the box never SHRINK — the overlay
+   scrolls instead (a shrunken box painted its Continue below its own layout box). */
+.zpb-restov{overflow-y:auto;overscroll-behavior:contain;justify-content:flex-start;padding:16px 10px;-webkit-overflow-scrolling:touch;}
+.zpb-restov::before,.zpb-restov::after{content:"";flex:1 0 0;}
+.zpb-restov .zpb-restbox,.zpb-restov .zpb-resthonors{flex-shrink:0;}
+@media (max-width:560px){ .zpb-restov{padding:12px 8px;gap:12px;} .zpb-restov .zpb-restbox{padding:22px 18px;} }
+/* A4 (Owner): on a phone the crest row leaves room for the lineup (the Super Bowl keeps its law) */
+@media (max-width:600px){ .zpb-replay:not(.zpb-sb) .zpb-intro-logos img{width:56px;height:56px;} .zpb-replay:not(.zpb-sb) .zpb-intro-vs{font-size:1.3rem;} .zpb-replay:not(.zpb-sb) .zpb-intro-logos{gap:16px;} }
+/* B3 (Owner): the Position Rankings panel scrolls when its table cannot fit — the w35 clip
+   becomes a scrollbar; nothing is cut silently. The GROUP dropdown stops being its own
+   1529px scrollbar-maker (its widest series option sized the closed select; the w35 clip
+   hid the overhang silently — his "no side scroll bar appears"). */
+#viewGroups .panel{overflow-x:auto;}
+#viewGroups .filters select{max-width:100%;}
+/* B3 (Owner): the stacked rankings cards wrap their player chips — the nowrap line no longer
+   inflates the page behind the body's overflow clip. */
+#viewGroups td.narr{flex-wrap:wrap;row-gap:3px;}
+/* B1 (Owner): stacked cards wrap their content — the team name keeps its line, the chips wrap
+   under it, nothing crushes to a letter per line and nothing inflates the page wider than the
+   window (the Madden rankings' "stretched and wonky" cards). */
+table.mstack td{flex-wrap:wrap;row-gap:2px;}
+/* B2 (Owner): the player browser keeps its own scroll when the rows stack — every name and
+   the pager stay reachable in a small window. */
+#viewPlayers #playerTable.mstack{overflow-y:auto !important;}
+</style>
+<script id="zpb-w39-js">
+// ================= Z-POST-BLUE w39 (the Owner's round-39 directives) =================
+// A3 (Owner): the compact sort chips drive the same machinery as the table headers —
+// one click sorts, a second click flips the direction; the accent marks the active sort.
+(function(){
+ try{
+  const bar = document.getElementById('draftCompactSort'); if(!bar) return;
+  bar.addEventListener('click', e=>{
+   const b = e.target.closest('[data-zsort]'); if(!b) return;
+   if(typeof draftSim === 'undefined' || !draftSim) return;
+   const sel = document.getElementById('draftSort2'), k = b.dataset.zsort;
+   if(sel.value===k) draftUI.sortAsc = !draftUI.sortAsc; else { sel.value = k; draftUI.sortAsc = ['name','pos','team'].includes(k); }
+   renderDraftBoard2();
+  });
+ }catch(err){}
+})();
 </script>
 </body>
 </html>
