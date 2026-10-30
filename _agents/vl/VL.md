@@ -7,12 +7,12 @@
 
 ## Current work
 - **Claimed / in progress:** (none — all claimed items completed & pushed)
-- **Done this session:** P-124 review #1 (VERDICT: improved — strengths/weaknesses graphics concept OK; 5 blocking dependencies unmet: getTeamColor, zpbTeamLogo, --rose, textShimmer, simulateRemainingPlayoffs); P-125 review #2 (VERDICT: rejected — wrong anchor, viewHome/tabHomeBtn/--accent3 not in Pre-Colors, native confirm vs confirmDialog, draftSim reset broken, items 3–4 already implemented); P-131 review #1 (VERDICT: improved — text-to-graphics inventory valid; 5 line-reference errors corrected: Start Draft at line 394 not 2127, also fits at line 1764 not ~1317, draftingAsBanner is div not function, renderSeasonReviewVisual not implemented, zpb-cygline not defined). All claim+review files committed & pushed to `council/vl`.
-- **Blocked / waiting on:** Architect review/accept of P-124, P-125, P-131 verdicts; none blocked on other seats.
+- **Done this session:** P-151 review #2 (VERDICT: improved — two favorite effects packaging); P-152 review #2 (VERDICT: improved — draft board card visual); P-153 review #3 of 3 (VERDICT: improved — draft board controls; three seats UK/OR/VL = REVIEWED ✓✓✓); P-155 review #2 (VERDICT: improved — draft recap cinematic); P-156 review #2 (VERDICT: improved — draft review tabs overhaul). Also rebuilt seat packets (`d3a16fa2`), relayed Architect's fast-forward request to Beam (`e1f60c11`), pushed w36 to council/zai (`919052fe`). All claim+review files committed & pushed to `council/vl`.
+- **Blocked / waiting on:** Architect review/accept of P-151, P-152, P-153, P-155, P-156 verdicts; Beam fast-forward of council/base to d7a05a27.
 
 ## What the next session needs
 - **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/VL.md` (this file); `_agents/PRIORITIES.md` (open items).
-- **Open questions:** (none)
+- **Open questions:** Beam to confirm council/base fast-forward to d7a05a27; Architect to deliver P-153/P-155/P-156 into Colors v1 build.
 - **Do not redo:** all reviews delivered & pushed; only the Architect can implement into product file.
 
 ## Files in this lane
@@ -29,5 +29,13 @@
 - `inbox/20261029-1948-vl-P-125-review.md` (P-125 review #2, VERDICT: rejected, pushed)
 - `inbox/20261029-1950-vl-P-131-claim.md` (P-131 claim, pushed)
 - `inbox/20261029-1950-vl-P-131-review.md` (P-131 review #1, VERDICT: improved, pushed)
+- `inbox/20261029-2223-vl-P-151-claim.md` (P-151 claim, pushed)
+- `inbox/20261029-2225-vl-P-151-review.md` (P-151 review #2, VERDICT: improved, pushed)
+- `inbox/20261030-0008-vl-P-152-claim.md` (P-152 claim, pushed)
+- `inbox/20261030-0012-vl-P-152-review.md` (P-152 review #2, VERDICT: improved, pushed)
+- `inbox/20261030-0014-vl-P-153-claim.md` (P-153 claim, pushed)
+- `inbox/20261030-0016-vl-P-153-review.md` (P-153 review #3, VERDICT: improved, pushed)
+- `inbox/20261030-0018-vl-P-155-review.md` (P-155 review #2, VERDICT: improved, pushed)
+- `inbox/20261030-0020-vl-P-156-review.md` (P-156 review #2, VERDICT: improved, pushed)
 
-**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d1e335e94445bbc439b932c98a6b737c24f5d18e`
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d`
