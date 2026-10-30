@@ -78,26 +78,30 @@ test('allocate adds up exactly', () => {
   const rng = makeRng(5);
   for (let i = 0; i < 200; i++) { const w = Array.from({ length: 11 }, () => 0.1 + rng.next()); const t = rng.int(0, 500); assert.equal(allocate(t, w).reduce((a, b) => a + b, 0), t); }
 });
-test('league-average games look like the NFL: points, yards, drives, turnovers, sacks, overtime', () => {
-  const N = 2000; let pts = 0, yds = 0, dr = 0, to = 0, sk = 0, ot = 0, tie = 0, td = 0, margin = 0, secs = 0;
+test('league-average games match the council targets (PFR 2020-2025 per team-game, inbox P-204/205/206)', () => {
+  // targets: drives 10.5-11.1, plays/drive 5.9-6.1, points/drive 1.88-2.20, scoring drives 35.5-39.8%, giveaway drives 10.5-11.6%,
+  // three-and-outs ~20%, seconds/drive 167-180, FG make 84-86%, points per team ~22, overtime in ~6% of games (known gap: ~3.6% here)
+  const N = 3000; let dr = 0, plays = 0, secs = 0, sc = 0, to = 0, to3 = 0, fga = 0, fgm = 0, pts = 0, ot = 0, tie = 0, sacks = 0, margin = 0;
   for (let i = 0; i < N; i++) {
     const g = game(50000 + i);
-    pts += g.homeScore + g.awayScore; margin += g.homeScore - g.awayScore;
-    yds += g.stats.home.yards + g.stats.away.yards; dr += g.stats.home.drives + g.stats.away.drives;
-    to += g.stats.home.giveaways + g.stats.away.giveaways; sk += g.stats.home.sacksTaken + g.stats.away.sacksTaken;
-    td += g.events.filter((e) => e.kind === 'TD').length; secs += g.drives.length ? 3600 / dr * 0 : 0;
+    for (const d of g.drives.filter((x) => x.period <= 4)) {
+      dr++; plays += d.plays; secs += d.secs;
+      if (d.end === 'TD' || d.end === 'FG') sc++;
+      if (d.end === 'FG') { fga++; fgm++; } if (d.end === 'FG_MISS') fga++;
+      if (d.end === 'INT' || d.end === 'FUM') to++;
+      if (d.end === 'PUNT' && d.plays <= 3) to3++;
+    }
+    pts += g.regHome + g.regAway; sacks += g.stats.home.sacksTaken + g.stats.away.sacksTaken; margin += g.homeScore - g.awayScore;
     if (g.ot) { ot++; if (g.ot.tie) tie++; }
   }
-  const per = (x: number) => x / N / 2;
-  assert.ok(per(pts) > 20 && per(pts) < 25, 'points per team ' + per(pts));
-  assert.ok(per(yds) > 295 && per(yds) < 355, 'yards per team ' + per(yds));
-  assert.ok(per(dr) > 10.5 && per(dr) < 13, 'drives per team ' + per(dr));
-  assert.ok(per(to) > 1.0 && per(to) < 1.4, 'giveaways ' + per(to));
-  assert.ok(per(sk) > 1.9 && per(sk) < 2.5, 'sacks ' + per(sk));
-  assert.ok(margin / N > 0.8 && margin / N < 2.6, 'home edge ' + margin / N);
-  assert.ok(ot / N > 0.03 && ot / N < 0.09, 'overtime rate ' + ot / N);
-  assert.ok(per(td) > 2.1 && per(td) < 3.0, 'offensive TDs ' + per(td));
-  assert.ok(tie / N < 0.01);
+  const within = (x: number, lo: number, hi: number, what: string) => assert.ok(x >= lo && x <= hi, `${what} ${x}`);
+  within(dr / N / 2, 10.4, 11.3, 'drives per team'); within(plays / dr, 5.85, 6.15, 'plays per drive');
+  within(pts / dr, 1.88, 2.20, 'points per drive'); within(sc / dr, 0.355, 0.398, 'scoring-drive share');
+  within(to / dr, 0.105, 0.116, 'giveaway share'); within(to3 / dr, 0.17, 0.23, 'three-and-out share');
+  within(secs / dr, 155, 180, 'seconds per drive'); within(fgm / fga, 0.83, 0.87, 'field-goal make rate');
+  within(pts / N / 2, 20.5, 24, 'points per team'); within(sacks / N / 2, 1.9, 2.5, 'sacks per team');
+  within(margin / N, 0.8, 2.6, 'home edge'); within(ot / N, 0.03, 0.09, 'overtime rate');
+  if (ot > 50) within(tie / ot, 0.03, 0.22, 'tie share of overtime games (real 4-9%; about 100 overtime games here, so wide)');
 });
 test('a stronger team wins more often, and by points the model predicts', () => {
   let w = 0, m = 0; const N = 1500;

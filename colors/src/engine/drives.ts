@@ -104,7 +104,7 @@ export function decompose(S: number, oppGiveaways: number, rng: Rng): Comp {
   if (!offFeasible(R)) { sf = 0; dTD = 0; }
   const rest = S - 7 * dTD - 2 * sf;
   if (!offFeasible(rest)) throw new Error('decompose: cannot score ' + S);
-  const bT = (rest * 0.28) / 3;
+  const bT = (rest * 0.24) / 3;
   const cands: { b: number; n: number; w: number }[] = [];
   for (let b = 0; 3 * b <= rest; b++) {
     const rt = rest - 3 * b;
@@ -127,7 +127,7 @@ export function decompose(S: number, oppGiveaways: number, rng: Rng): Comp {
 }
 
 // ---- step 3 and 4: drives ----
-const YARDS_W: Record<DriveEnd, number> = { TD: 68, FG: 46, FG_MISS: 44, PUNT: 18, INT: 26, FUM: 25, DOWNS: 32, HALF: 24, SAFETY: 14 };
+const YARDS_W: Record<DriveEnd, number> = { TD: 68, FG: 46, FG_MISS: 44, PUNT: 24, INT: 26, FUM: 25, DOWNS: 32, HALF: 24, SAFETY: 14 };
 const MIN_PLAYS: Record<DriveEnd, number> = { TD: 1, FG: 3, FG_MISS: 3, PUNT: 3, INT: 2, FUM: 2, DOWNS: 4, HALF: 2, SAFETY: 2 };
 interface Slot { end: DriveEnd; conv?: Conv; defTD?: boolean }
 
@@ -162,9 +162,9 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   const dn = { home: poisson(rD, 0.35), away: poisson(rD, 0.35) };
   // missed field goals are drawn here so the drive count can fit them
   const mfDraw = { home: 0, away: 0 };
-  for (const s of ['home', 'away'] as const) for (let i = 0; i < comp[s].fg; i++) if (chance(rD, 0.15)) mfDraw[s]++;
-  const m0 = clamp(Math.round(11.4 + 1.0 * rD.normal()), 9, 14);
-  const m = Math.max(m0, needed(comp.home, agg.home.to, comp.away, dn.home, mfDraw.home) + 2, needed(comp.away, agg.away.to, comp.home, dn.away, mfDraw.away) + 2);
+  for (const s of ['home', 'away'] as const) for (let i = 0; i < comp[s].fg; i++) if (chance(rD, 0.176)) mfDraw[s]++;
+  const m0 = clamp(Math.round(10.8 + 0.9 * rD.normal()), 9, 13);
+  const m = Math.max(m0, needed(comp.home, agg.home.to, comp.away, dn.home, mfDraw.home) + 1, needed(comp.away, agg.away.to, comp.home, dn.away, mfDraw.away) + 1);
   const k1 = m % 2 === 0 ? clamp(m / 2 + rD.pick([-1, 0, 0, 1]), 3, m - 3) : (chance(rD, 0.5) ? (m - 1) / 2 : (m + 1) / 2);
   const firstH1: Side = chance(rD, 0.5) ? 'home' : 'away';
   const eoh = [chance(rD, 0.55), chance(rD, 0.55)];
@@ -190,7 +190,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
     const wR = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal())), wP = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal()));
     const rs = allocate(agg[s].rush, wR), ps = allocate(agg[s].pass, wP);
     mine.forEach((d, i) => { d.rush = rs[i]; d.pass = ps[i]; });
-    mine.forEach((d) => { d.plays = clamp(Math.max(MIN_PLAYS[d.end], Math.round((d.rush + d.pass) / 5.3 + 0.9 * rD.normal())), 1, 22); });
+    mine.forEach((d) => { d.plays = clamp(Math.max(MIN_PLAYS[d.end], Math.round((d.rush + d.pass) / 5.15 + 0.9 * rD.normal())), 1, 22); });
     for (let k = 0; k < agg[s].sacks; k++) {
       const i = weightedIndex(rD, mine.map((d) => d.plays));
       if (mine[i].sacks >= mine[i].plays - 1) mine[i].plays++;
@@ -216,11 +216,11 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
     const model = { home: mh, away: ma };
     const play = (side: Side, maxSecs: number, winWalk: (pts: number) => boolean): Drive => {
       const r = model[side].structPts / BASE_PTS, u = rO.next();
-      const pTD = clamp(0.22 * r, 0.08, 0.45), pFG = clamp(0.14 * Math.sqrt(r), 0.06, 0.25), pGive = clamp(0.11 / Math.sqrt(r), 0.05, 0.2);
+      const pTD = clamp(0.27 * r, 0.1, 0.5), pFG = clamp(0.2 * Math.sqrt(r), 0.08, 0.3), pGive = clamp(0.11 / Math.sqrt(r), 0.05, 0.2);
       let end: DriveEnd = 'PUNT';
       if (u < pTD) end = 'TD'; else if (u < pTD + pFG) end = chance(rO, 0.87) ? 'FG' : 'FG_MISS'; else if (u < pTD + pFG + pGive) end = chance(rO, 0.65) ? 'INT' : 'FUM'; else if (u < pTD + pFG + pGive + 0.03) end = 'DOWNS';
       const defTD = (end === 'INT' || end === 'FUM') && chance(rO, 0.10);
-      let secs = clamp(Math.round(170 + 55 * rO.normal()), 30, 330);
+      let secs = clamp(Math.round(150 + 50 * rO.normal()), 30, 330);
       secs = Math.min(secs, maxSecs);
       const yards = Math.max(1, Math.round((YARDS_W[end] * Math.exp(0.4 * rO.normal()))));
       const rush = Math.round(yards * clamp(0.4 + 0.1 * rO.normal(), 0.15, 0.7)), pass = yards - rush;
