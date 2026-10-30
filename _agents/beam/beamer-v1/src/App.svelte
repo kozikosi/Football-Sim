@@ -4,6 +4,7 @@
   import TeamPicker from './components/TeamPicker.svelte';
   import DraftBoard from './components/DraftBoard.svelte';
   import GamePreview from './components/GamePreview.svelte';
+  import Season from './components/Season.svelte';
   let route = 'home';
 </script>
 
@@ -20,9 +21,10 @@
     <button class:active={route==='home'} on:click={()=>route='home'}>Home</button>
     <button class:active={route==='draft'} on:click={()=>route='draft'}>Draft</button>
     <button class:active={route==='preview'} on:click={()=>route='preview'}>Preview</button>
+    <button class:active={route==='season'} on:click={()=>route='season'}>Season</button>
   </nav>
   <main>
-    {#if route==='home'}<Home/>{:else if route==='draft'}<DraftBoard/>{:else}<GamePreview/>{/if}
+    {#if route==='home'}<Home/>{:else if route==='draft'}<DraftBoard/>{:else if route==='preview'}<GamePreview/>{:else}<Season/>{/if}
   </main>
 </div>
 
