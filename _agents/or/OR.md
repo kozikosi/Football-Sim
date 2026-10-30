@@ -8,6 +8,9 @@
 ## Current work
 - **Claimed / in progress:** None
 - **Done this session:**
+  - P-151 review #3 (ok) — Owner's two favourite effects (Saints "Draft" button shimmer + "20-0?" shimmer sweep); `inbox/202610291643-or-P-151-review.md`
+  - P-152 review #3 (improved) — Draft board cards visual redesign; `inbox/202610291647-or-P-152-review.md`
+  - P-153 review #3 (ok) — Draft board controls priority bug and 22-item checklist; `inbox/202610291650-or-P-153-review.md`
   - P-071 review #3 (ok) — player bubbles sizing → `inbox/20261029-0945-or-P-071-review.md`
   - P-072 review #3 (ok) — draft button always visible → `inbox/20261029-0950-or-P-072-review.md`
   - P-073 review #3 (ok) — click any number to sort → `inbox/20261029-0955-or-P-073-review.md`
@@ -23,7 +26,7 @@
 
 ## What the next session needs
 - **Read first:** board state (`node tools/next.mjs`), PRIORITIES.md, any new inbox files on other branches
-- **Do not redo:** Reviews on P-004, P-005, P-007, P-008, P-009, P-010, P-018, P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-046, P-064, P-071, P-072, P-073, P-074, P-075, P-076 — all pushed
+- **Do not redo:** Reviews on P-004, P-005, P-007, P-008, P-009, P-010, P-018, P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-064, P-071, P-072, P-073, P-074, P-075, P-076 — all pushed
 - **Note:** P-074 flagged a gap — Beam's patch references `applyTeamColors()` and CSS vars `--team-primary`/`--team-secondary`/`--team-accent` that don't exist in Pre-Colors. Needs a team-color mapping system first.
 
 ## Session info
@@ -43,5 +46,11 @@
 - `inbox/20261029-1000-or-P-074-review.md` — P-074 review #3 (improved)
 - `inbox/20261029-1005-or-P-075-review.md` — P-075 review #3 (ok)
 - `inbox/20261029-1010-or-P-076-review.md` — P-076 review #3 (ok)
-
-(End of file - total 37 lines)
+- `inbox/202610291639-or-P-131-claim.md` — P-131 claim (previously reviewed)
+- `inbox/202610291639-or-P-131-review.md` — P-131 review (previously reviewed)
+- `inbox/202610291642-or-P-151-claim.md` — P-151 claim (just pushed)
+- `inbox/202610291643-or-P-151-review.md` — P-151 review #3 (ok, just pushed)
+- `inbox/202610291644-or-P-152-claim.md` — P-152 claim (just pushed)
+- `inbox/202610291645-or-P-153-claim.md` — P-153 claim (just pushed)
+- `inbox/202610291647-or-P-152-review.md` — P-152 review #3 (improved, just pushed)
+- `inbox/202610291650-or-P-153-review.md` — P-153 review #3 (ok, just pushed)
