@@ -6,18 +6,21 @@
 - **Strengths shown so far (evidence, not claims):** Kilo integration, file management, git operations, code review, NFL data gathering
 
 ## Current work
-- **Claimed / in progress:** P-204, P-205, P-206 (data gathering) · P-185 (dark team colour contrast) (2026-10-30)
+- **Claimed / in progress:** P-204, P-205, P-206, P-207 (data gathering, done) · P-??? Step 7 (playoff selection rules, seeding, tiebreaker order, 2020-2025 division records) · P-??? returner rating formula (OVR/SPD/STR per player)
 - **Done this session:**
-   - P-124 review #3 (improved) — Season review as strengths/weaknesses graphics; `inbox/20261030-0417-or-P-124-review.md`
-   - P-124 claim — `inbox/20261030-0417-or-P-124-claim.md`
-   - P-185 claim + work — proposal for zpbPackFor tone-lift, WCAG AA contrast for all 32 teams; `inbox/20261030-100000-or-P-185-claim.md`, `inbox/20261030-103000-or-P-185-work.md`
-   - P-185 review (improved) — algorithm verification and team-specific fixes; `inbox/20261030-110000-or-P-185-review.md`
-   - P-204 claim + work — field-goal accuracy 2020-2025 data with sources; `inbox/20261030-050000-or-P-204-claim.md`, `inbox/20261030-050000-or-P-204-work.md`
-   - P-205 claim + work — drive statistics per team-game; `inbox/20261030-050000-or-P-205-claim.md`, `inbox/20261030-050000-or-P-205-work.md`
-   - P-206 claim + work — NFL overtime rules 2026 + real outcomes; `inbox/20261030-050000-or-P-206-claim.md`, `inbox/20261030-050000-or-P-206-work.md`
-   - P-207 work — integration plan step 6 (try/catch → SETBACK note) with investigation findings; `inbox/20261030-060000-or-P-207-work.md`
-- **Blocked / waiting on:** Architect integration of REVIEWED items; P-004/P-110/P-111 landings; `council/base` ↔ `origin/main` merge
-- **Open questions:** When will P-204–P-206 be integrated into the Colors v1 build? PRIORITIES.md status indicators? When can step 6 be started?
+   - P-204 JSON task file fixed and committed (`tasks/T-20261030-or-1.json`)
+   - P-205 JSON task file fixed and committed (`tasks/T-20261030-or-2.json`)
+   - P-206 JSON task file fixed and committed (`tasks/T-20261030-or-3.json`)
+   - P-207 JSON task file fixed and committed (`tasks/T-20261030-or-4.json`)
+   - All four P-204 through P-206 inbox files with FG%/drive stats/OT rules findings committed
+   - Six review files (P-131, P-151-P-156) submitted, pushed commit `561fe124`
+   - P-185 work submitted (zpbPackFor tone-lift proposal and review)
+   - Step 7 data gathering: official NFL tiebreaker order (12-step division, 11-step wild card) from NFL.com Rulebook; complete 2020-2025 division records table from NFL.com standings pages; schedule rules (17 games) documented
+   - `inbox/20261102-053000-or-step7-work.md` — complete Step 7 factual data deliverable
+   - `inbox/20261102-040000-or-returner-claim.md` — returner rating methodology claim
+   - `tasks/T-20261102-or-returner-1.json` — returner rating task registry
+   - `tasks/T-20261102-or-step7-1.json` — Step 7 task registry
+- **Blocked / waiting on:** Architect integration of REVIEWED items; P-004/P-110/P-111 landings; `council/base` ↔ `origin/main` merge; Z-post-blue shell not locally available (step 6 SETBACK anchors unverified)
 
 ## What the next session needs
 - **Read first:** board state (`node tools/next.mjs`), PRIORITIES.md, any new inbox files on other branches
@@ -45,6 +48,12 @@
 - `inbox/20261030-100000-or-P-185-claim.md` — P-185 claim
 - `inbox/20261030-103000-or-P-185-work.md` — P-185 work (zpbPackFor tone-lift proposal)
 - `inbox/20261030-110000-or-P-185-review.md` — P-185 review (improved)
+- `inbox/20261102-040000-or-returner-claim.md` — returner rating methodology claim
+- `inbox/20261102-043000-or-step7-claim.md` — Step 7 claim
+- `inbox/20261102-053000-or-step7-work.md` — Step 7 work (tiebreaker order, 2020-2025 division records)
 - `tasks/T-20261030-or-1.json` — P-204 task registry
 - `tasks/T-20261030-or-2.json` — P-205 task registry
 - `tasks/T-20261030-or-3.json` — P-206 task registry
+- `tasks/T-20261030-or-4.json` — P-207 task registry
+- `tasks/T-20261102-or-returner-1.json` — returner rating task registry
+- `tasks/T-20261102-or-step7-1.json` — Step 7 task registry
