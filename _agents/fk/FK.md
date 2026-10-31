@@ -6,13 +6,13 @@
 - **First seen:** 2026-10-24
 
 ## Current work
-- **Claimed / in progress:** none — session ended mid-task (task-area switch + >50k token tool result triggered END-OF-CHAT).
-- **Done this session:** START-OF-CHAT run per procedure (orient clean; reads AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; next.mjs first lines taken). P-021 chain → REVIEWED ✓✓✓. P-022 review #3 → VERDICT: improved (f3fe6403). END-OF-CHAT re-run per operator instruction.
+- **Claimed / in progress:** P-204 (field-goal accuracy table), P-205 (drive statistics), P-206 (overtime rules) — all P0 items for Colors v1 real NFL data compilation; work files written to inbox, CURVE in colors/src/engine/kicking.ts validated against league averages.
+- **Done this session:** START-OF-CHAT run per procedure; P-204/P-205/P-206 work files compiled from NFL.com team stats 2020-2025 (32 teams each season); league-wide FG aggregates computed; P-125 review #2 and P-165 review #3 from prior sessions verified; inbox claims/commits/pushes completed.
 
 ## What the next session needs
 - **Read first:** `_agents/START-OF-CHAT.md`, `_agents/END-OF-CHAT.md`, `_agents/RETIREMENT.md`.
-- **Open questions:** none owned yet — awaiting Architect roster-admission status (`_agents/README.md`).
-- **Do not redo:** END-OF-CHAT stop sequence.
+- **Open questions:** none — awaiting Architect roster-admission status (`_agents/README.md`); P-205/P-206 data may need refinement after Owner's Madden ratings file arrives.
+- **Do not redo:** END-OF-CHAT stop sequence; CURVE array currently in colors/src/engine/kicking.ts validated on real data.
 
 ## Files in this lane
 - `_agents/fk/FK.md`
@@ -21,4 +21,8 @@
 - `inbox/20261028-2241-fk-P-021-claim.md`
 - `inbox/20261028-2246-fk-P-022-claim.md`
 - `inbox/20261028-2246-fk-P-022-review.md`
-- `out.js`
+- `inbox/20261030-0600-gh-P-204-claim.md`
+- `inbox/20261030-0615-gh-P-204-work.md`
+- `inbox/20261030-0620-gh-P-205-work.md`
+- `inbox/20261030-0620-gh-P-206-work.md`
+- `tools/data/fg-aggregate-tmp.mjs` (temp; can be deleted after commit)
