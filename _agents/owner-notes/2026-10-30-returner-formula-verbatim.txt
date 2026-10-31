@@ -1,0 +1,6 @@
+Owner message, 30 Oct 2026 18:03 HST (verbatim, Owner's part only; the council replies in the same attachment are summarised in COLORS-V1-DESIGN.md step 7 notes):
+"Me, owner, Kosi's preferred formula for returners.. Returner_Value = (SPD × 0.80) + (OVR × 0.10) + (STR × 0.10) (capped at 99).
+You can mention that in the guide or on a hover over pop up but don't display directly on the lineup editor.
+Please let me know if you plan on integrate STR and SPD elsewhere in the math. I do think it would be strain if only return value was affected by strength and speed, but I don't know where else you would include it.
+Continue with your build. Feel free to turn anything else you want help with into work requests for the council"
+Decision: returner rating = the formula above (Owner-supplied, AGENTS.md section 7). Implemented in colors/src/engine/returner.ts; feeds Ratings.ret. Not shown in the lineup editor; Guide / hover only.

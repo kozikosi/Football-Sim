@@ -37,7 +37,8 @@ function rowOvr(spots: readonly Spot[], row: SlotId): number {
   return sp ? sp.ovr : EMPTY_OVR;
 }
 
-export function teamRatings(spots: readonly Spot[]): Ratings {
+// returner: the returner's value (returner.ts); the neutral 82 when the caller has none (the golden tests, flat rosters)
+export function teamRatings(spots: readonly Spot[], returner: number = RET_NEUTRAL): Ratings {
   const g = (spec: Spec) => wavg(spots, spec);
   const o = { TE1: rowOvr(spots, 'TE1'), TE2: rowOvr(spots, 'TE2'), P: rowOvr(spots, 'P'), QB: rowOvr(spots, 'QB'), WR1: rowOvr(spots, 'WR1'), WR2: rowOvr(spots, 'WR2'), WR3: rowOvr(spots, 'WR3') };
   const rec = g(RATING_SPECS.rec);
@@ -47,7 +48,7 @@ export function teamRatings(spots: readonly Spot[]): Ratings {
     rec12: g(PERS_REC['12']), rec13: g(PERS_REC['13']), rec21: g(PERS_REC['21']), rec22: g(PERS_REC['22']), rec11: rec,
     frontBase: g(DEF_SPECS.frontBase), frontNick: g(DEF_SPECS.frontNick), covBase: g(DEF_SPECS.covBase), covNick: g(DEF_SPECS.covNick), covDime: g(DEF_SPECS.covDime),
     te1: o.TE1, te2: o.TE2, rbHeavy: g(RB_HEAVY),
-    ret: RET_NEUTRAL, p: o.P, qbRunR: o.QB,
+    ret: returner, p: o.P, qbRunR: o.QB,
     wrBlk: (o.WR1 * WR_BLK_W[0] + o.WR2 * WR_BLK_W[1] + o.WR3 * WR_BLK_W[2]) / (WR_BLK_W[0] + WR_BLK_W[1] + WR_BLK_W[2]),
     passOff: 0, runOff: 0, off: 0, def: 0,
   } satisfies Ratings;
