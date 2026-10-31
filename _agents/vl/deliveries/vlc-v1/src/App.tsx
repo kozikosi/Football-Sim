@@ -5,13 +5,14 @@ import { useState } from 'react';
 import Shell from './layout/Shell';
 import Home from './home/Home';
 import DraftBoard from './draft/DraftBoard';
+import DraftRecap from './draft/DraftRecap';
 import Lineup from './lineup/Lineup';
 import GamePreview from './game/GamePreview';
 import GameLog from './game/GameLog';
 import SeasonReview from './review/SeasonReview';
 
 export default function App() {
-  const [screen, setScreen] = useState<'home' | 'draft' | 'lineup' | 'preview' | 'game' | 'review'>('home');
+  const [screen, setScreen] = useState<'home' | 'draft' | 'draft-recap' | 'lineup' | 'preview' | 'game' | 'review'>('home');
 
   return (
     <Shell>
@@ -25,6 +26,9 @@ export default function App() {
             </button>
           </div>
         </>
+      )}
+      {screen === 'draft-recap' && (
+        <DraftRecap onStartSeason={() => setScreen('review')} />
       )}
       {screen === 'lineup' && (
         <>

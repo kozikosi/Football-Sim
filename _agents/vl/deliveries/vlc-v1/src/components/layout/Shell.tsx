@@ -1,17 +1,17 @@
 // VLC V1 — Layout: Shell
-// Sticky header + team picker (w38 lesson: team choice remaps the whole site)
+// Wraps everything in the team-colored theme. Team picker remaps the whole site.
 
 import { useEffect } from 'react';
 import { useTeamTheme } from '../../hooks/useTeamTheme';
-import TeamPicker from './TeamPicker';
+import TeamDropdown from './TeamDropdown';
 
 export default function Shell({ children }: { children: React.ReactNode }) {
   const { teamId, colors, toggleTheme } = useTeamTheme();
 
   useEffect(() => {
-    // Apply team colors to :root so the whole site tints
     const root = document.documentElement;
     if (colors) {
+      root.setAttribute('data-team', teamId!);
       root.style.setProperty('--vl-accent', colors.primary);
       root.style.setProperty('--vl-accent-soft', `rgba(${hex(colors.primary)}, 0.10)`);
       root.style.setProperty('--vl-gold', colors.secondary);
@@ -20,8 +20,10 @@ export default function Shell({ children }: { children: React.ReactNode }) {
       root.style.setProperty('--vl-tint', `rgba(${hex(colors.primary)}, 0.16)`);
       root.style.setProperty('--vl-tint-sub', `rgba(${hex(colors.primary)}, 0.06)`);
       root.style.setProperty('--vl-tint-text', colors.primary);
+    } else {
+      root.removeAttribute('data-team');
     }
-  }, [colors]);
+  }, [colors, teamId]);
 
   return (
     <div className="shell">
@@ -43,7 +45,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
 
       <div className="body">
         {children}
-        <TeamPicker current={teamId} />
+        <TeamDropdown current={teamId} />
       </div>
     </div>
   );

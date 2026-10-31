@@ -1,7 +1,9 @@
-// VLC V1 — Layout: Home screen
-// w38 lesson: "Can you go 20-0?" hero, team color takeover, floating selectors
+// VLC V1 — Home (w38 lesson)
+// Homepage hero with 20-0 wordmark, shimmer, team picker that remaps the whole site.
+// Floating selectors side by side at any width.
 
-import { useState } from 'react';
+import { Shimmer20_0 } from './Shimmer20_0';
+import { useTeamTheme } from '../../hooks/useTeamTheme';
 
 const TEAMS: { id: string; name: string }[] = [
   { id: 'kc', name: 'Kansas City Chiefs' },
@@ -15,18 +17,21 @@ const TEAMS: { id: string; name: string }[] = [
 ];
 
 export default function Home({ onStartDraft }: { onStartDraft: (id: string) => void }) {
-  const [selected, setSelected] = useState<string | null>(null);
+  const { teamId, colors } = useTeamTheme();
+  const [selected, setSelected] = useState(teamId || null);
 
   return (
     <section className="home-screen">
       <div className="hero">
-        <h1 className="hero-title">
+        <h1 className="hero-title shimmer-text">
           <span className="vlc">VLC</span> Colors
         </h1>
         <p className="hero-sub">
           Build your roster. Win 20 games. Can you go{' '}
           <b className="gold">20-0</b>?
         </p>
+
+        <Shimmer20_0 variant="headline" />
 
         <div className="hero-actions">
           <button
@@ -41,17 +46,24 @@ export default function Home({ onStartDraft }: { onStartDraft: (id: string) => v
         <div className="team-picker-row">
           <label className="picker-label">Team</label>
           <div className="team-grid">
-            {TEAMS.map((t) => (
-              <button
-                key={t.id}
-                className={`team-card ${selected === t.id ? 'selected' : ''}`}
-                onClick={() => setSelected(t.id)}
-                style={{ borderColor: selected === t.id ? 'var(--vl-accent)' : 'var(--vl-border)' }}
-              >
-                <span className="team-logo">{getLogo(t.id)}</span>
-                <span className="team-name">{t.name}</span>
-              </button>
-            ))}
+            {TEAMS.map((t) => {
+              const sel = selected === t.id;
+              const color = sel ? (colors ? colors.primary : 'var(--vl-accent)') : 'transparent';
+              return (
+                <button
+                  key={t.id}
+                  className={`team-card ${sel ? 'selected' : ''}`}
+                  onClick={() => setSelected(t.id)}
+                  style={{
+                    borderColor: sel ? 'var(--vl-accent)' : 'var(--vl-border)',
+                    backgroundColor: sel ? 'color-mix(in srgb, var(--vl-accent-soft) 50%, var(--vl-panel))' : 'transparent',
+                  }}
+                >
+                  <span className="team-logo">🏈</span>
+                  <span className="team-name">{t.name}</span>
+                </button>
+              );
+            })}
           </div>
         </div>
 
@@ -61,11 +73,4 @@ export default function Home({ onStartDraft }: { onStartDraft: (id: string) => v
       </div>
     </section>
   );
-}
-
-function getLogo(id: string): string {
-  const m: Record<string, string> = {
-    kc: '🏈', sf: '🏈', bal: '🏈', buf: '🏈', det: '🏈', phi: '🏈', dal: '🏈', gb: '🏈',
-  };
-  return m[id] ?? '🏈';
 }
