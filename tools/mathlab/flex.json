@@ -1,5 +1,5 @@
 {
- "_source": "Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot. | REV 3, Owner 28 Oct 17:27 HST: edge->OLB 0; TE->RB 4; P->K 4, K->P 0; QB->FS 6, QB->SS and QB->WR removed; every w33 extra kept (OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB/TE/RB). FS->CB 4, SS->CB 6, WR->RB 4 were already so. Owner: 'All the Extra in w33 rules are good. Follow w33 there.'",
+ "_source": "REV 4, Owner 29 Oct 10:00 HST: QB flexes ONLY to FS, at -10 (QB->RB removed). Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot. | REV 3, Owner 28 Oct 17:27 HST: edge->OLB 0; TE->RB 4; P->K 4, K->P 0; QB->FS 6, QB->SS and QB->WR removed; every w33 extra kept (OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB/TE/RB). FS->CB 4, SS->CB 6, WR->RB 4 were already so. Owner: 'All the Extra in w33 rules are good. Follow w33 there.'",
  "roles": [
   "QB",
   "RB",
@@ -21,8 +21,7 @@
  ],
  "flex": {
   "QB": {
-   "RB": 6,
-   "FS": 6
+   "FS": 10
   },
   "RB": {
    "FB": 2,
@@ -164,7 +163,7 @@
   }
  },
  "_notes": {
-  "QB": "Owner's guide lets a QB play WR/S at -6; earlier rulings said 'QB cannot flex'. Latest Owner word wins (confirmation Q-FLEX-1).",
+  "QB": "REV 4 (Owner 29 Oct): a QB may play FS only, at -10. Earlier: REV 3 QB->RB 6 and FS 6; REV 2 WR/S at -6; before that 'QB cannot flex'. Latest Owner word wins.",
   "NICKEL": "Nickel is the CB3 slot. CB->NICKEL is free because CB is its natural position group; SS/FS->NICKEL free per guide.",
   "3-4": "In a 3-4 base the slots are DE1, NT(=DT1), DE2, OLB1, ILB1, ILB2, OLB2. ILB slots use the ILB (MIKE) row; OLB slots the OLB (WILL/SAM) row.",
   "DIME": "DIME is a slot (6th DB), not a position in the 1,200-player dataset: the dataset has no 'DIME' tag, so the 4th-best CB or a flexed S/CB fills it. Plays ~10% of snaps (Owner), on 3rd/4th and long and late in games.",

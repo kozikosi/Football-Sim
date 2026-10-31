@@ -1,0 +1,31 @@
+Owner message, Thu 29 Oct 2026 10:00 HST (verbatim; the council status reports that followed it in the same message are not the Owner's words and are omitted):
+
+Let's take away the QB being able to play RB. can only flex to FS and for -10. Let's make an OLB2 equal with a DT2. Whatever seems balanced; you can change both weights. You can refactor your weights at any time as you're testing the math and making discoveries. 
+. DL5 is for rotation and any heavy defensive sets. Stopping the run on x & short, especially near the goal line. DL5 could also come on the field more if the user selects to be aggressive on defense and blitzes a lot. 
+
+The following text after this paragraph are some more comments i've had to z.ai about his w33 version, just so you're aware. You are now able to see his w34 changes, but don't take them literally; he frqeuently makes a lot of mistakes. Again that doesn't matter very much becasue you are being creative and only taking screen shots from his wX series as inspiration. Please don't use "pre-colors" at all as a visual guide. z.ai's wX versions are objectively more beauitful than pre-colors. Again you are creating something completely new. Be creative please. 
+
+"Extend the Where your players line up in the draft review screen horizontally across the entire panel. 
+
+You copied the players badges here twice. Remove the second set but you need to move the light up effect to the first set of names.
+Makes sure you know that JR isn’t a last name by itself. 
+
+When you hit the season button, you should go to the preseason. You added in an extra draft review page when you hit the season button.
+
+The key players name should appear one by one on the main panel during the game. Right now they all appear at once on top of each other at the bottom of the during the game cinematic. That is not good enough. Spread the players out. 
+You implemented it pretty well during the playoffs but the regular season one is a mess. 
+
+The Super Bowl champion cinematic is excellent. 
+But you show that before the game is even played. Please delay the rewards until the end of every game. 
+
+The season review button should also be visible at the top of the screen once the season is over. 
+
+The playoff awards are badly formatted. Center the titles on top and the winners on the bottom of the panels 
+
+When the user is trying to change his lineup, allow the user to change whatever player he wants, in the short term, and then needs to hit “APPLY THE CHANGES” at the end. 
+
+You need to test your automatic flexing habits. I drafted all my players into the positions I wanted, and then the math flexed over ten players out of position. That’s probably not mathematically effiicient." 
+
+--- Architect's sorting (29 Oct) ---
+ENGINE (acted on 29 Oct): (1) QB flexes ONLY to FS, at -10 (flex REV 4; QB->RB removed). (2) 3-4 OLB2 equals DT2 in weight; "whatever seems balanced", Owner allows changing both weights and refactoring weights at any time as the math is tested: STANDING APPROVAL to re-weight the table when testing shows a reason, each change recorded in the spec. (3) DL5 = rotation and heavy sets (run stops on x & short, goal line); more snaps when the user picks aggressive defence. (4) The lineup helper must not flex a user's drafted lineup without a clear gain ("flexed over ten players out of position").
+UI (Colors design, inspiration only, w34 is not a spec, Pre-Colors is NOT a visual guide): draft review "where your players line up" spans the full panel; no duplicated badge sets (the light-up effect belongs on the first set); "JR" is never a last name; Season button goes to the preseason (no extra draft-review page); during a game key players appear one at a time, spread out; rewards/champion cinematic only after the game ends; Season Review button visible at the top once the season ends; playoff awards: titles centred on top, winners at the bottom; lineup editing: change anything, then one APPLY THE CHANGES.
