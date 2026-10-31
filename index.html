@@ -2844,7 +2844,11 @@ function zpbPackFor(name){
  const acc2L=zpbReadable(q,bgL,false,4.2), acc3L=zpbReadable(r,bgL,false,4.2);
  const acc2D=zpbReadable(q,bgD,true,4.2),  acc3D=zpbReadable(r,bgD,true,4.2);
  const txL=zpbReadable(eng,bgL,false,7.0);
- const _txc=zpbHsl(txL); const txM=(_txc && _txc.l<0.52) ? zpbFromHsl(_txc.h,_txc.s,0.52) : txL; // w43 (N3/N5/N13, Owner): the light-mode ink — between the washed pale and the crayola vivid, clearly the team's color (computed inline — packs may build before zpbLift exists)
+ const _txc=zpbHsl(txL); const txM=(function(){ try{ // w44 (O1, Owner): the halfway ink — half of the way from the page's own warm ink to the crayola tone the light mode wore; the cartoonish saturation retires, dark keeps txd untouched
+  const _base = (_txc && _txc.l<0.52) ? zpbFromHsl(_txc.h,_txc.s,0.52) : txL; // the crayola anchor
+  const _m=zpbMix('#53382b',_base,0.5), _c=zpbHsl(_m);
+  return zpbFromHsl(_c.h, Math.min(0.85,Math.max(0.22,_c.s)), Math.min(0.52,Math.max(0.30,_c.l)));
+ }catch(err){ return (_txc && _txc.l<0.52) ? zpbFromHsl(_txc.h,_txc.s,0.52) : txL; } })();
  const txd=zpbMix('#f5e9dd',accD,0.14), sud=zpbMix('#c8a48f',accD,0.2);
  const hairL=zpbMix(accL,bgL,0.42), hairD=zpbMix(accD,bgD,0.4);
  const pk={ raw:[P,Q,R], accL,accD,acc2L,acc2D,acc3L,acc3D,
@@ -3309,7 +3313,7 @@ function zpbGameReplay(g, focusTeam){
   if(skip) skip.addEventListener('click', zpbSkipAll);
   if(go) go.addEventListener('click', close);
   // ---- cinematic intro: 5 s for playoff games, 30 s for the Super Bowl ----
-  const INTRO_MS = isSB ? 60000 : (roundLabel ? 36000 : 5000); // w41 (W2, Owner): the playoff pregame runs slower — gravity and pressure, no new material
+  const INTRO_MS = isSB ? 60000 : (roundLabel ? 22000 : 5000); // w41 (W2, Owner): the playoff pregame runs slower — w44 (O3, Owner): still a little too slow, 36s becomes 22s; the Super Bowl keeps its 60s
   let introDone = !INTRO_MS;
   if(skip) skip.textContent = INTRO_MS ? 'Skip intro' : 'Skip'; // w38 (R12, Owner): the wording leads with the intro
   const startTimeline = ()=>{
@@ -3673,13 +3677,18 @@ function zpbRestSummary(){
         if(a.c && a.c.team===user) honors.push({t:a.title, n:a.c.name, pos:a.c.pos, sub:a.why});
         else if(!a.c && a.team===user) honors.push({t:a.title, n:(a.coach?a.coach+' \u00b7 ':'')+a.team, sub:a.why});
       });
-      ['first','second'].forEach((k,i)=>{ Object.keys(A.allPro[k]||{}).forEach(pos=>{ (A.allPro[k][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:(i===0?'FIRST-TEAM':'SECOND-TEAM')+' ALL-PRO', n:c.name, pos:pos}); }); }); });
-      Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:'PRO BOWL', n:c.name, pos:pos}); }); }); });
+      const _ap1g = new Set(); Object.keys((A.allPro&&A.allPro.first)||{}).forEach(pos=>{ ((A.allPro.first[pos])||[]).forEach(c=>_ap1g.add(c.name)); }); // w44 (O2, Owner): the first-team gold register
+      ['first','second'].forEach((k,i)=>{ Object.keys(A.allPro[k]||{}).forEach(pos=>{ (A.allPro[k][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:(i===0?'FIRST-TEAM':'SECOND-TEAM')+' ALL-PRO', n:c.name, pos:pos, gold:i===0}); }); }); });
+      Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:'PRO BOWL', n:c.name, pos:pos, gold:_ap1g.has(c.name)}); }); }); });
     }
   }catch(e){}
-  const honorHTML = honors.map((c,i)=>'<div class="zpb-scard zpb-shonor" style="'+((typeof zpbUserRowVars==='function')?zpbUserRowVars():'')+'--beat:'+i+'">'
-    + '<div class="zpb-scard-hd"><b class="zpb-gname '+(function(){var pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null;return pv&&pv[3]>=90?'zpb-shm':(pv&&pv[3]>=85?'zpb-vib':'');})()+'">' + c.n + '</b>' + (c.pos?'<span class="zpb-poschip">'+c.pos+'</span>':'') + '</div>'
-    + '<div class="zpb-shonor-t">' + c.t + '</div>' + (c.sub?'<div class="zpb-shonor-w">'+c.sub+'</div>':'') + '</div>').join('');
+  const honorHTML = honors.map((c,i)=>{
+    var pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; // w44 (O2, Owner): the first-team gold — the card shimmers wherever the name is listed
+    var _cls = c.gold ? 'zpb-shm' : (pv&&pv[3]>=90 ? 'zpb-shm' : (pv&&pv[3]>=85 ? 'zpb-vib' : ''));
+    return '<div class="zpb-scard zpb-shonor" style="'+((typeof zpbUserRowVars==='function')?zpbUserRowVars():'')+'--beat:'+i+'">'
+      + '<div class="zpb-scard-hd"><b class="zpb-gname '+_cls+'">' + c.n + '</b>' + (c.pos?'<span class="zpb-poschip">'+c.pos+'</span>':'') + '</div>'
+      + '<div class="zpb-shonor-t">' + c.t + '</div>' + (c.sub?'<div class="zpb-shonor-w">'+c.sub+'</div>':'') + '</div>';
+  }).join('');
   const honorStage = honors.length ? '<div class="zpb-resthonors"><div class="zpb-resthonors-k zpb-shm">HONORS EARNED</div>' + honorHTML + '</div>' : '';
   ov.innerHTML = honorStage
    + '<div class="zpb-restbox' + (made ? ' zpb-restpo' : '') + (one ? ' zpb-restone' : '') + '">'
@@ -7845,7 +7854,7 @@ function renderTeamStatsHTML(g){
  const r = g.result, h = r.homeStats, a = r.awayStats;
  const rows = [
   ['Total Yards', a.totalYards, h.totalYards], ['Passing Yards', a.passYards, h.passYards], ['Rushing Yards', a.rushYards, h.rushYards],
-  ['Turnovers', a.turnovers, h.turnovers], ['Sacks Taken', a.sacks, h.sacks], ['Defensive TDs', g.detail?(g.detail.away.defScores||[]).length:'—', g.detail?(g.detail.home.defScores||[]).length:'—'], ['RUSH/PASS', g.detail?`${g.detail.away.plays.rush}/${g.detail.away.plays.pass}`:'—', g.detail?`${g.detail.home.plays.rush}/${g.detail.home.plays.pass}`:'—'], ['Time of Possession', fmtTOP(a.top), fmtTOP(h.top)]
+  ['Turnovers', a.turnovers, h.turnovers], ['Sacks Taken', a.sacks, h.sacks], ['Defensive TDs', g.detail?(g.detail.away.defScores||[]).length:'—', g.detail?(g.detail.home.defScores||[]).length:'—'], ['Rush / Pass', g.detail?`${g.detail.away.plays.rush}/${g.detail.away.plays.pass}`:'—', g.detail?`${g.detail.home.plays.rush}/${g.detail.home.plays.pass}`:'—'], ['Time of Possession', fmtTOP(a.top), fmtTOP(h.top)]
  ].map(x=>`<tr><td>${x[1]}</td><td class="narr" style="text-align:center;">${x[0]}</td><td style="text-align:right;">${x[2]}</td></tr>`).join('');
  const pkSA = (typeof zpbPackFor==='function') ? zpbPackFor(g.away) : null, pkSH = (typeof zpbPackFor==='function') ? zpbPackFor(g.home) : null; // w43 (N9): the stats columns read their teams
  return `<table class="zpb-tsstat" style="margin-top:10px;--scA:${pkSA?pkSA.accL:'inherit'};--scAd:${pkSA?pkSA.accD:'inherit'};--scH:${pkSH?pkSH.accL:'inherit'};--scHd:${pkSH?pkSH.accD:'inherit'};"><tbody>${rows}</tbody></table>`; // w43 (N9, Owner): the away column wears the away team, the home column the home team
@@ -7907,11 +7916,12 @@ function renderGameResultHTML(game, focusTeam){
  const outcome = fs>os ? 'WIN' : fs<os ? 'LOSS' : 'TIE';
  const color = outcome==='WIN' ? 'var(--good)' : outcome==='LOSS' ? 'var(--bad)' : 'var(--sub)';
  const title = game.roundLabel ? game.roundLabel : `Week ${game.week}`;
+ // w43 (N9, Owner): each side's score wears its own team's color, both themes (w44 O5: the note rides outside the template — it printed on the review)
  return `<div class="panel" style="margin-bottom:14px;">
   <h4 style="margin-top:0;">${title}${game.divisional?' · Division Game':''} <span style="color:${color};font-weight:800;margin-left:8px;">${focusTeam?outcome:''}</span></h4>
   <div class="score-line">
    <div class="sl-team" style="text-align:right;${(typeof zpbNeutralRowVars==='function')?zpbNeutralRowVars(game.away):''}"><span class="zpb-sl2name${game.away===focusTeam?' zpb-usteam':''}">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(game.away):''}${game.away}</span></div>
-   <div class="sl-score"${(function(){ const a=(typeof zpbPackFor==='function')?zpbPackFor(game.away):null, h=(typeof zpbPackFor==='function')?zpbPackFor(game.home):null; return a||h ? ` style="--scA:${a?a.accL:'inherit'};--scAd:${a?a.accD:'inherit'};--scH:${h?h.accL:'inherit'};--scHd:${h?h.accD:'inherit'};"` : ''; })()}><span class="zpb-slsc-aw ${game.away===focusTeam?'zpb-usscore':''}">${r.awayScore}</span> – <span class="zpb-slsc-hm ${game.home===focusTeam?'zpb-usscore':''}">${r.homeScore}</span>${r.ot?' <span class="narr" style="font-size:0.7rem;">OT</span>':''}</div> // w43 (N9, Owner): each side's score wears its own team's color, both themes
+   <div class="sl-score"${(function(){ const a=(typeof zpbPackFor==='function')?zpbPackFor(game.away):null, h=(typeof zpbPackFor==='function')?zpbPackFor(game.home):null; return a||h ? ` style="--scA:${a?a.accL:'inherit'};--scAd:${a?a.accD:'inherit'};--scH:${h?h.accL:'inherit'};--scHd:${h?h.accD:'inherit'};"` : ''; })()}><span class="zpb-slsc-aw ${game.away===focusTeam?'zpb-usscore':''}">${r.awayScore}</span> – <span class="zpb-slsc-hm ${game.home===focusTeam?'zpb-usscore':''}">${r.homeScore}</span>${r.ot?' <span class="narr" style="font-size:0.7rem;">OT</span>':''}</div>
    <div class="sl-team" style="${(typeof zpbNeutralRowVars==='function')?zpbNeutralRowVars(game.home):''}"><span class="zpb-sl2name${game.home===focusTeam?' zpb-usteam':''}">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(game.home):''}${game.home}</span></div>
   </div>
   ${renderLineScoreHTML(game)}
@@ -8221,7 +8231,8 @@ function zpbSeasonStoryHTML(){
   ['first','second'].forEach((k,i)=>{
    Object.keys(A.allPro[k]||{}).forEach(pos=>{ (A.allPro[k][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:(i===0?'FIRST-TEAM':'SECOND-TEAM')+' ALL-PRO', n:c.name, pos:pos, gold:i===0}); }); });
   });
-  Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:'PRO BOWL', n:c.name, pos:pos}); }); }); });
+  const _ap1g = new Set(); Object.keys((A.allPro&&A.allPro.first)||{}).forEach(pos=>{ ((A.allPro.first[pos])||[]).forEach(c=>_ap1g.add(c.name)); }); // w44 (O2, Owner): the first-team gold register
+  Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:'PRO BOWL', n:c.name, pos:pos, gold:_ap1g.has(c.name)}); }); }); });
  }
  const starCard = (r, i, sideCls)=>`<div class="zpb-scard ${sideCls||''}" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${i}" data-beat="${i}"><div class="zpb-scard-hd"><b class="zpb-gname ${(r.ovr||0)>=90?'zpb-shm':(r.ovr||0)>=85?'zpb-vib':''}">${r.name}</b><span class="zpb-poschip">${r.pos||r.group}</span></div><div class="zpb-schiprow">${zpbStatChipsHTML(r)}</div></div>`;
  const badgeHTML = (b, i)=>`<span class="zpb-sbadge ${b.cls}" style="--beat:${i}" data-beat="${i}"><b>${b.v}</b><i>${b.k}</i></span>`;
@@ -8233,7 +8244,7 @@ function zpbSeasonStoryHTML(){
  dHTML += `<span class="zpb-sbreak" data-beat="${beat++}"></span>`;
  defStars.forEach(r=>{ dHTML += starCard(r, beat++); });
  KEYF.forEach(b=>{ kHTML += badgeHTML(b, beat++); });
- honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':''); hHTML += `<div class="zpb-scard zpb-shonor" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="zpb-gname ${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
+ honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=c.gold?'zpb-shm':(_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':'')); hHTML += `<div class="zpb-scard zpb-shonor" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="zpb-gname ${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
  const beats = beat;
  const perfect = F.me.losses===0 && F.me.ties===0;
  return `<div class="panel zpb-storypanel${perfect?' zpb-story-perfect':''}" style="margin-bottom:14px;" id="zpbStoryPanel">
@@ -10295,6 +10306,7 @@ function computeRegularSeasonAwards(){
   out.allPro.first[pos] = list.slice(0,n1); out.allPro.second[pos] = list.slice(n1,n1+n2);
   ['AFC','NFC'].forEach(cf=>{ out.proBowl[cf][pos] = list.filter(c=>conf(c.team)===cf).slice(0,npb); });
  });
+ out.ap1Names = []; HONOR_ORDER.forEach(pos=>{ ((out.allPro&&out.allPro.first[pos])||[]).forEach(c=>{ out.ap1Names.push(c.name); }); }); // w44 (O2, Owner): the All-Pro first team — gold wherever the name is listed
  out.mvpName = mvp.name;
  // user honors
  const user = seasonUserTeam(), mine = [];
@@ -10336,9 +10348,16 @@ function computePlayoffAwards(){
 function honorLineHTML(c, user, shm){
  // w33 (R26, Owner): YOUR award players wear a border line around the name and the shimmer.
  // w33 (R36, Owner): everybody else wears a neutral drawn from his own team's colors — never white.
+ // w44 (O2, Owner): an All-Pro FIRST-TEAM name is gold everywhere it is listed — the Pro Bowl rows included.
  const pk = (typeof zpbPackFor==='function') ? zpbPackFor(c.team) : null;
+ const _ap1 = (function(){ try{
+  if(window.__zpbAp1Gold && window.__zpbAp1Gold.size) return window.__zpbAp1Gold;
+  const rs = (typeof seasonState!=='undefined') && seasonState && seasonState.awardsRS;
+  if(rs && rs.ap1Names){ rs.ap1NamesSet = rs.ap1NamesSet || new Set(rs.ap1Names); return rs.ap1NamesSet; }
+ }catch(err){} return null; })();
+ const _gold = !!(_ap1 && c.name && _ap1.has(c.name));
  if(c.team===user){
-  return `<span class="zpb-awme zpb-shm" style="--zrb:var(--accent);">${c.name}</span> <span class="narr">${nick(c.team)}</span>`;
+  return `<span class="zpb-awme zpb-shm" style="--zrb:${_gold?'var(--gold3,#9a6b1f)':'var(--accent)'};">${c.name}</span> <span class="narr">${nick(c.team)}</span>`;
  }
  let color = '';
  try{
@@ -10346,11 +10365,14 @@ function honorLineHTML(c, user, shm){
   const dark = _t==='dark' || (!_t && !(window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches));
   if(pk) color = dark ? pk.txd : (pk.txM||pk.txd); // w42 (I2/I4): the ONE-INK law — w43 (N13, Owner): light reads txM, dark keeps txd
  }catch(err){}
- const attr = (shm && pk) ? ` class="zpb-shm" style="--zrb:${pk.accL};--zshim:var(--zshim,${pk.accL});color:var(--zshim,${pk.accL});"` : (color ? ` style="color:${color};"` : ''); // w43 (N4, Owner): the shimmer reads the constant gold unless a surface pins its own --zshim
+ const attr = _gold
+  ? ` class="zpb-shm"` // w44 (O2, Owner): the first-team gold — the constant --zshim law wears it in both themes
+  : ((shm && pk) ? ` class="zpb-shm" style="--zrb:${pk.accL};--zshim:var(--zshim,${pk.accL});color:var(--zshim,${pk.accL});"` : (color ? ` style="color:${color};"` : '')); // w43 (N4, Owner): the shimmer reads the constant gold unless a surface pins its own --zshim
  return `<span${attr}>${c.name}</span> <span class="narr">${nick(c.team)}</span>`;
 }
 // w33 (R26): the bordered, shimmering award chip for the Owner's own players
 function renderRegularAwardsHTML(A, open){
+ try{ window.__zpbAp1Gold = new Set(); HONOR_ORDER.forEach(pos=>{ (((A.allPro||{}).first||{})[pos]||[]).forEach(c=>window.__zpbAp1Gold.add(c.name)); }); }catch(err){} // w44 (O2, Owner): the first-team gold register
  const user = seasonUserTeam();
  const ind = A.individual.map(a=> a.c
   ? `<tr><td>${a.title==='Most Valuable Player'?'<div class="zpb-mvptitle zpb-shm">Most<br>Valuable<br>Player</div>':a.title}</td><td>${honorLineHTML(a.c,user)} <span class="narr">${a.c.pos}</span><div class="zpb-schiprow" style="margin-top:5px;">${a.c.rec?zpbStatChipsHTML(a.c.rec):''}</div><div class="narr">${a.why}</div></td></tr>`
@@ -11159,7 +11181,9 @@ function zpbFxGate(kind, msg, big){
   // books Continue, the Super Bowl stage Continue, the safety timer).
   if(document.querySelector('.zpb-replay-ov, .zpb-prematch, .zpb-sbfin, .zpb-restov') || big){
    window.__zpbFxPending.push({kind:kind, msg:msg, big:!!big});
-   if(!window.__zpbFxSafety){ window.__zpbFxSafety = setTimeout(()=>{ window.__zpbFxSafety = null; try{ zpbFxDrain(true); }catch(err){} }, 15000); }
+   if(!window.__zpbFxSafety){ window.__zpbFxSafety = setTimeout(function _zpbFxSafe(){ // w44 (O4, Owner): no confetti and congratulations until the end of the game — the safety re-arms while the replay, the prematch, the stage or the books is up; the whistle still drains it
+     try{ if(document.querySelector('.zpb-replay-ov, .zpb-prematch, .zpb-sbfin, .zpb-restov')){ window.__zpbFxSafety = setTimeout(_zpbFxSafe, 6000); return; } }catch(err){}
+     window.__zpbFxSafety = null; try{ zpbFxDrain(true); }catch(err){} }, 15000); }
    return;
   }
   FX.play(kind, msg);
@@ -11400,6 +11424,7 @@ renderKeyPlayersHTML = function(g){
 // Awards: the same card language, no white, no prose
 renderRegularAwardsHTML = function(A, open){
  try{
+  try{ window.__zpbAp1Gold = new Set(); HONOR_ORDER.forEach(pos=>{ (((A.allPro||{}).first||{})[pos]||[]).forEach(c=>window.__zpbAp1Gold.add(c.name)); }); }catch(err){} // w44 (O2, Owner): the first-team gold register
   const user = seasonUserTeam();
   const stv = (typeof zpbNeutralRowVars==='function') ? zpbNeutralRowVars : function(){ return ''; }; // w42 (I4, Owner): the awards wear the dropdown's neutral ink — the vivid vars retire here, the All-Pro chips and the winner cards with them
   const aw = (title, name, team, sub, why, star, rec, stackTitle)=>'<div class="zpb-pcard zpb-awcard zpb-awgold" style="'+stv(team||'')+'">'
@@ -11407,7 +11432,7 @@ renderRegularAwardsHTML = function(A, open){
       ? '<span class="zpb-awt"><span class="zpb-mvptitle zpb-shm">Most<br>Valuable<br>Player</span></span>'
       : '<span class="zpb-awt">'+title+'</span>')
    + '<span class="zpb-awm">'
-   + '<b class="zpb-gname '+(star?'zpb-shm':'')+'">'+name+'</b>'
+   + '<b class="zpb-gname '+((star||(window.__zpbAp1Gold&&window.__zpbAp1Gold.has(name)))?'zpb-shm':'')+'">'+name+'</b>' // w44 (O2, Owner): the first-team gold rides the award cards too
    + (sub?'<span class="narr">'+sub+'</span>':'') + (why?'<span class="narr">'+why+'</span>':'')
    + (rec?'<div class="zpb-schiprow" style="margin-top:6px;">'+zpbStatChipsHTML(rec)+'</div>':'')
    + '</span></div>'; // w19 (Owner): the stat line reads as badges; the MVP title stacks three shimmering words
@@ -11420,7 +11445,7 @@ renderRegularAwardsHTML = function(A, open){
    ? (user+': '+us.ap1+' First-Team All-Pro, '+us.ap2+' Second-Team All-Pro, '+us.pb+' Pro Bowl selection'+(us.pb===1?'':'s')+(us.mine.length?' — '+us.mine.join('; '):'')+'.')
    : ('No '+user+' players earned league-wide honors this year.');
   const posRows = (box, shm)=> HONOR_ORDER.map(pos=>'<div class="zpb-aprow"><span class="zpb-apos">'+pos+'</span>'
-    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip" style="'+stv(c.team)+'"><b class="zpb-gname '+(shm?'zpb-shm':'')+'">'+c.name+'</b> <i class="narr">'+nick(c.team)+'</i></span>').join('') : '<span class="narr">\u2014</span>')+'</div>').join(''); // w19: first-team All-Pro names always shimmer · w38 (R1, Owner): the rankings ink on every chip
+    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip" style="'+stv(c.team)+'"><b class="zpb-gname '+((shm||(window.__zpbAp1Gold&&window.__zpbAp1Gold.has(c.name)))?'zpb-shm':'')+'">'+c.name+'</b> <i class="narr">'+nick(c.team)+'</i></span>').join('') : '<span class="narr">\u2014</span>')+'</div>').join(''); // w19: first-team All-Pro names always shimmer · w38 (R1, Owner): the rankings ink on every chip · w44 (O2, Owner): an All-Pro first-team name is gold in the Pro Bowl placement too
   return '<details class="panel" style="margin-bottom:14px;" '+(open?'open':'')+'><summary style="cursor:pointer;font-weight:700;">REGULAR-SEASON AWARDS &amp; HONORS</summary>'
    + '<p class="narr" style="margin:8px 0;">'+usTxt+'</p>'
    + '<div class="zpb-awrows">'+ind+'</div>' // w37 (R9, Owner): the w19 horizontal row format restored — one award per line
@@ -11437,11 +11462,12 @@ renderRegularAwardsHTML = function(A, open){
 renderPlayoffAwardsHTML = function(P){
  try{
   const user = seasonUserTeam();
+  const _ap1g = (function(){ try{ if(window.__zpbAp1Gold && window.__zpbAp1Gold.size) return window.__zpbAp1Gold; const rs=(typeof seasonState!=='undefined')&&seasonState&&seasonState.awardsRS; if(rs&&rs.ap1Names){ rs.ap1NamesSet=rs.ap1NamesSet||new Set(rs.ap1Names); return rs.ap1NamesSet; } }catch(err){} return new Set(); })(); // w44 (O2, Owner): the first-team gold register
   const stv = (typeof zpbNeutralRowVars==='function') ? zpbNeutralRowVars : function(){ return ''; }; // w41 (P5, Owner): the award winners wear the dropdown's ink
   const aw = (title, p, sub2, star)=>'<div class="zpb-pcard zpb-awcard zpb-awgold zpb-awcol" style="'+stv(p?p.team:'')+(star?';--zrb:var(--accent)':'')+'">' // w41: the user's shimmer keeps the accent law
    + '<span class="zpb-awt">'+title+'</span>' // w38 (R19, Owner): the award on top, the name below, the badges below that
    + (p?(function(){ var _rec = p.rec || p; // w38 (R18, Owner): the game-ball entries carry their stats on themselves
-        return '<b class="zpb-gname zpb-awname '+(star?'zpb-shm':'')+'">'+p.name+'</b>'
+        return '<b class="zpb-gname zpb-awname '+((star||_ap1g.has(p.name))?'zpb-shm':'')+'">'+p.name+'</b>' // w44 (O2, Owner): an All-Pro first-team name is gold on the playoff awards too
         +(p.group?'<span class="zpb-poschip">'+p.group+'</span>':'')
         +((_rec && _rec.st && typeof zpbStatChipsHTML==='function')?'<div class="zpb-schiprow zpb-awchips" style="margin-top:7px;">'+zpbStatChipsHTML(_rec)+'</div>':'<span class="narr">'+(p.line||sub2||'')+'</span>'); })()
        :('<b class="zpb-awname">'+(sub2||'\u2014')+'</b>'))
@@ -11452,7 +11478,7 @@ renderPlayoffAwardsHTML = function(P){
   if(P.mvp) lines.push('<div class="zpb-awline zpb-awline-mvp">'+aw('Postseason MVP', P.mvp, 'cumulative impact', P.mvp.team===user)+'</div>');
   (P.rounds||[]).forEach(r=>{ if(r.items && r.items.length) lines.push('<div class="zpb-awline"><span class="zpb-awround">'+rl(r.label)+'</span>'+r.items.map(i=>aw(rl(r.label), i.p, i.g.away+' '+i.g.result.awayScore+', '+i.g.home+' '+i.g.result.homeScore, i.p && i.p.team===user)).join('')+'</div>'); });
   const lead = (P.leaders||[]).map(a=>aw(a.title, a, '', a.team===user)).join('');
-  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip" style="'+stv(a.team)+'"><b class="zpb-gname">'+a.name+'</b> <i class="narr">'+nick(a.team)+'</i></span></div>').join('');
+  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip" style="'+stv(a.team)+'"><b class="zpb-gname '+((_ap1g&&_ap1g.has(a.name))?'zpb-shm':'')+'">'+a.name+'</b> <i class="narr">'+nick(a.team)+'</i></span></div>').join(''); // w44 (O2, Owner): the All-Playoff chips read the first-team gold too
   return '<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3>'
    + lines.join('') // w41 (W7, Owner): the MVPs centered on their own lines; each round on one line
    + (lead?'<h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><div class="zpb-awgrid">'+lead+'</div>':'')
@@ -13047,7 +13073,7 @@ window.zpbCardInCssOk = true; // w42: the look-gate runs only when this block (a
    seen; the pick-order cascade compresses to 0.15s per beat (26 picks breathe in ~4s, still in
    pick order); while the opening cinematic runs, the cinematic's remaining time rides the gate. */
 .zpb-fm:not(.zpb-seen) .zpb-fm-ini{opacity:0;animation:none;}
-.zpb-fm.zpb-seen .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.15s);}
+.zpb-fm.zpb-seen .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.5s);} /* w44 (O8, Owner): half a second per player — the 0.15s sprint retires */
 .zpb-dbk-g:not(.zpb-seen) .zpb-dfc2{opacity:0;animation:none;}
 .zpb-dbk-g.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.15s);}
 @media (prefers-reduced-motion: reduce){
@@ -13108,6 +13134,20 @@ table.mstack td.rank{width:auto !important;min-width:0;white-space:nowrap !impor
 table.mstack td.rank::before{flex:0 0 auto;margin-right:7px;}
 .metricrow>div:last-child{white-space:nowrap;}
 .zpb-sw-rank{white-space:nowrap;}
+</style>
+<style id="zpb-w44-css">
+/* ================= Z-POST-BLUE W44 (the Owner's round-44) ================= */
+/* O9 (Owner): the during-game header scores wear their teams in LIGHT too — the replay's old
+   color:inherit law (.zpb-replay span, specificity 0,1,1) out-ranked the single-class w43 rules
+   (0,1,0); dark only won on the :root[data-theme] lift. Two classes beat the inherit law. */
+.zpb-replay span.zpb-slsc-aw{color:var(--scA,var(--text));}
+.zpb-replay span.zpb-slsc-hm{color:var(--scH,var(--text));}
+:root[data-theme="dark"] .zpb-replay span.zpb-slsc-aw{color:var(--scAd,var(--scA,var(--text)));}
+:root[data-theme="dark"] .zpb-replay span.zpb-slsc-hm{color:var(--scHd,var(--scH,var(--text)));}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-replay span.zpb-slsc-aw{color:var(--scAd,var(--scA,var(--text)));}
+ :root:not([data-theme="light"]) .zpb-replay span.zpb-slsc-hm{color:var(--scHd,var(--scH,var(--text)));}
+}
 </style>
 </body>
 </html>
