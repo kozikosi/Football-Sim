@@ -1,0 +1,11 @@
+Owner message, 28 Oct 2026 17:16 HST. Verbatim (council relays from BOC, Beam and DS followed it in the same message):
+
+"let me know how z.ai's flex rules differ from yours. they should be the same i thought. any other weights or math are all at your discretion to replace.
+I have told him a lot of instructions about what i want to be visually present on the screen during the game cinematics. e.g. New rules about showing 3&out and 4&outs. Make sure those honestly integrate with your math.
+
+Yes you have permission to start building. Let's not use v23 as the name however. WE are going to from now on call your next version of the project colors. You will call your first version "colors v1".
+
+Madden has updated their player data and rankings and I can no longer provide the old data. I had a couple versions made of the player data in case one of the council made an error in parsing.Note on the data; I told z.ai to only show ovr, str, and speed on the player browser. Let's stick with that rule. You can use the str and speed data in your model if you like. And we can add those two columns to the draft board if you want. I'm also fine with the model just being based on OVR. Your instinct was to include speed in the returner score, so maybe you'd like the extra data. But I think any more than these three categories will confuse the user. It's up to you if you'd like the model to be based off OVR or all OVR, STR, and Speed. The data is available here:"
+[no file or link arrived with the message; BOC's CSV on council/boc has a header row only; Beam's raw/parsed files are not on its branch]
+
+Decisions recorded: (1) permission to BUILD granted; (2) the build is named "Colors v1" (file Football-Sim-Colors-v1.html), "V23" is retired as a name; (3) Z.ai's flex differs from the Owner's REV 2 guide: the Owner expects them identical, so REV 2 (flex.json) governs; (4) all other weights and math at the Architect's discretion; (5) new Madden data replaces the old 1,200-player set; player browser shows only OVR, STR, SPD; model may use OVR only or OVR+STR+SPD (Architect's choice); STR and SPD may be added to the draft board; (6) 3&out / 4&out cinematics must be honest, i.e. derived from the engine.
