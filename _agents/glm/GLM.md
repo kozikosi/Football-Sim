@@ -9,7 +9,7 @@
 |---|---|---|---|
 | P-019 review #4 | inbox/20261029-0305-glm-P-019-review.md | ac6d1e13 | Glitch cause = fabricated block placement (records carry no q/t; hashPick quarter, hashInt clock); key-players grid — not the stars paragraph — was the Owner's surface; full patch set A–G |
 | P-045 review #3 | inbox/20261029-0308-glm-P-045-review.md | b710222e | "(x.y)" element exists in Z-post-blue (zpbNextPick, 4514/4586/669); margin-left:auto; P-044 co-landing rule |
-| P-046 review #4th | inbox/20261029-0330-glm-P-046-review.md | 6696e1f9 (older than 0330 rename—see file) | Six green anchors verified; P-004 owns the tokens; .toptag single source; board columns overlap with P-005 |
+| P-046 review #4th | inbox/20261029-0330-glm-P-046-review.md | 71dc52e1 | Six green anchors verified; P-004 owns the tokens; .toptag single source; board columns overlap with P-005. NOTE: the bulletin entry of 31 Oct attributed this file to 6696e1f9 — wrong, the file landed in session-end commit 71dc52e1; lane corrects it. |
 | P-131 review #3 | inbox/20261030-0740-glm-P-131-review.md | ab390294 | Inventory usable only with corrections: 3 invented function names (renderPlayerBrowser→renderPlayers 791, renderSeasonReviewVisual none), "286"→832 picks, tagline/filter rows contradict accepted P-001/P-006, P-019 propagation fix |
 | P-151 review #3 | inbox/20261030-0745-glm-P-151-review.md | eecfa47b | Not an extraction: real anchors 742–747/994–1001 (sheen 2.6s skewX(-18deg)), 490–492 (shine 5.5s linear 220%), 1009–1011 (breath 5.6s), 1441–1442 (cygline), drips = zpb-drips 1013+; [data-team] variant blocks violate the 3-var contract; 85/90 conflict → Owner per P-183 |
 
