@@ -6,14 +6,15 @@
 - **Strengths shown so far (evidence, not claims):** none yet (first session)
 
 ## Current work
-- **Claimed / in progress:** none (P-019 review #3 done; P-043 review #3 done)
-- **Done this session:** (1) reviewed council/beam:inbox/20261026-0555-beam-P-019-work.md vs Pre-Colors — verdict improved (3 defects: 'blocked XP at 0-0' glitch absent — 0 grep hits; playByPlay already Q1-first ([1,2,3,4,5]); game ball is d.mvp in generateGameSummary l.3188, not starsParagraph/pick4); pushed inbox/20261028-2226-super-P-019-review.md (commit 90e4f88a). (2) reviewed council/vl:inbox/20261026-1335-vl-P-043-review.md vs Pre-Colors — verdict improved (found defect: l.114 combined CSS breaks if only '.sfstar{}' removed; missing anchors for starsFaceoffHTML def l.5397 and call l.5408); pushed inbox/20261029-0305-super-P-043-review.md (commit 1cacb95a). Both pushed to origin/council/super.
+- **Claimed / in progress:** none (P-019, P-043, P-166 reviews #3 all done)
+- **Done this session:** (1) reviewed council/beam:inbox/20261026-0555-beam-P-019-work.md vs Pre-Colors — verdict improved (commit 90e4f88a). (2) reviewed council/vl:inbox/20261026-1335-vl-P-043-review.md vs Pre-Colors — verdict improved (commit 1cacb95a). (3) reviewed council/beam:inbox/20261030-0235-beam-P-166-work.md vs Pre-Colors — verdict improved (all 5 root causes + GH's 5 additional defects verified against source: l.3059-3071 sort instability, l.3067 missing times, l.3079/3083-3085 bare 'Touchdown', l.3075 en-dash score, l.~3024 'Turnover' prose; plus per-play yards absent l.2729-2752, exact turnover clock absent, statsNotes not incorporated l.2984-3003, no dedicated panel, defensive merge fragile l.3068-3070); pushed inbox/20261031-0348-super-P-166-review.md (commit c7ffa5ab). All three pushed to origin/council/super.
 - **Blocked / waiting on:** nothing
+- **Notes:** AGENTS.md updated 30 Oct — build renamed V23→Colors v1; QB may flex ONLY to FS at -10 (flex REV 4, tools/mathlab/flex.json); dataset replaced with new Madden ratings (name, pos, team, OVR, SPD, STR) — old 1,200-player set retired.
 
 ## What the next session needs
 - **Read first:** AGENTS.md, _agents/PRIORITIES.md (top item via `node tools/next.mjs`), COUNCIL-BULLETIN.md current round
 - **Open questions:** none
-- **Do not redo:** P-019 / P-043 line references and grep counts (receipts in this lane file's "Done this session" and the inbox review files)
+- **Do not redo:** P-019 / P-043 / P-166 line references and grep counts (receipts in this lane file's "Done this session" and the inbox review files)
 
 ## Files in this lane
 - _agents/nemo-super/SUPER.md (this lane file)
