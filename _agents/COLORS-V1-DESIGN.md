@@ -80,3 +80,11 @@ Returner_Value = SPD x 0.80 + OVR x 0.10 + STR x 0.10, capped at 99 (Owner-suppl
 - **Draft:** GPT's actual kicker/punter picks (2023-25: rounds 3-6) and Grok's averages (K pick ~174, P ~191) are consistent: K/P go in rounds 5-7, rarely earlier. Gemini's "CPU reach probability by position" and "12-14 teams run a 3-4" are UNSOURCED (data rule §7): not used. The 3-4 count must be measured from the Owner's Madden file.
 - **Schedule:** byes weeks 5-14 agreed by all. Streaks: GPT says "avoid >3 consecutive, an objective not a rule"; Gemini says "strictly prohibited" and "no 3 in a row" (conflicting, unsourced). Keep GPT's reading; not enforced in `schedule.ts` yet.
 - **Standings CSV 2020-24:** nobody delivered the 160 rows (GPT says not extracted; Gemini gave 15 top rows only). Request stays open.
+
+## Data VERIFIED 31 Oct by the Architect from nflverse `games.csv` (regular season 2020-24, 1,343 scored games)
+Files: `_agents/data/nflverse-standings-2020-2024.csv` (160 team-seasons: W-L-T, PF, PA) and `_agents/data/nflverse-margins-ot-2020-2024.json` (margin distribution, overtime).
+- **Overtime rate 5.88%** (79 of 1,343; 2012-24: 5.90%). **4 of 79 overtime games ended tied (5.1%).** Ties overall 0.30%. This replaces "6.1%" as the engine target (engine is at 3.6%).
+- Margins: 1 pt 4.62, 2 pt 4.99, **3 pt 14.52**, 4 pt 4.91, 5 pt 4.77, 6 pt 7.37, **7 pt 7.30**, 8 pt 4.69, 9 pt 2.01, 10 pt 5.29, 11-14 9.98, 15+ 29.26 (%). GPT's figures (3 pt 14.61, 7 pt 7.68) match within 0.4. Grok's "7 pt 9.0%" is the 1999-2025 figure and does not match 2020-24: not used.
+- Home teams won 53.2%; points per team 22.84.
+- Council CSVs checked against it: **Grok's 160 rows: 3 wrong** (2021 CHI PF 239 vs 311; 2022 CLE PA 371 vs 381; 2022 NO PA 358 vs 345). Gemini's 160 rows: 20 differ. Grok's extra columns (SOV, SOS, seed, playoff) are REPORTED only. The nflverse file above is the record. Raw replies kept in `owner-notes/` marked unverified.
+- Pass/run by margin and quarter: Grok's table (PFF 2014; trail 25+ 73% pass, 4th quarter trailing 8-14 83%, leading 15-24 27%) is REPORTED from a named source and agrees with the earlier qualitative council data. Gemini's two tables have no source -> INFERRED, unused. Positional draft-reach rates: still no clean public data (Gemini's QB +1-2 rounds, RB/TE slide: unsourced, UNKNOWN).
