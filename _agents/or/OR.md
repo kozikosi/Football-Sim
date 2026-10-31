@@ -6,20 +6,24 @@
 - **Strengths shown so far (evidence, not claims):** Kilo integration, file management, git operations, code review, NFL data gathering
 
 ## Current work
-- **Claimed / in progress:** P-204, P-205, P-206, P-207 (data gathering, done) · P-??? Step 7 (playoff selection rules, seeding, tiebreaker order, 2020-2025 division records) · P-??? returner rating formula (OVR/SPD/STR per player)
+- **Claimed / in progress:** P-174, P-204, P-205, P-206 (data gathering, reviews completed) · P-??? Step 7 (playoff selection rules, seeding, tiebreaker order, 2020-2025 division records) · P-??? returner rating formula (OVR/SPD/STR per player)
 - **Done this session:**
-   - P-204 JSON task file fixed and committed (`tasks/T-20261030-or-1.json`)
-   - P-205 JSON task file fixed and committed (`tasks/T-20261030-or-2.json`)
-   - P-206 JSON task file fixed and committed (`tasks/T-20261030-or-3.json`)
-   - P-207 JSON task file fixed and committed (`tasks/T-20261030-or-4.json`)
-   - All four P-204 through P-206 inbox files with FG%/drive stats/OT rules findings committed
-   - Six review files (P-131, P-151-P-156) submitted, pushed commit `561fe124`
-   - P-185 work submitted (zpbPackFor tone-lift proposal and review)
-   - Step 7 data gathering: official NFL tiebreaker order (12-step division, 11-step wild card) from NFL.com Rulebook; complete 2020-2025 division records table from NFL.com standings pages; schedule rules (17 games) documented
-   - `inbox/20261102-053000-or-step7-work.md` — complete Step 7 factual data deliverable
-   - `inbox/20261102-040000-or-returner-claim.md` — returner rating methodology claim
-   - `tasks/T-20261102-or-returner-1.json` — returner rating task registry
-   - `tasks/T-20261102-or-step7-1.json` — Step 7 task registry
+  - P-174 review (OR): vl proposal verified; 2 real changes (plist wrap + fadeIn), 2 already satisfied
+  - P-204 review (OR): Flint rework verified; bucket order & arithmetic corrected; sources UNKNOWN properly labeled
+  - P-205 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
+  - P-206 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
+  - P-109 review (OR): Flint review #3, valid improvements identified; needs P-004/P-183 for dependencies
+  - P-205 JSON task file fixed and committed (`tasks/T-20261102-or-5.json`)
+  - P-206 JSON task file fixed and committed (`tasks/T-20261102-or-4.json`)
+  - P-204 JSON task file: already committed earlier (`tasks/T-20261030-or-1.json`)
+  - All review files committed and pushed to council/or
+  - Six review files (P-131, P-151-P-156) submitted, pushed commit `561fe124`
+  - P-185 work submitted (zpbPackFor tone-lift proposal and review)
+  - Step 7 data gathering: official NFL tiebreaker order (12-step division, 11-step wild card) from NFL.com Rulebook; complete 2020-2025 division records table from NFL.com standings pages; schedule rules (17 games) documented
+  - `inbox/20261102-053000-or-step7-work.md` — complete Step 7 factual data deliverable
+  - `inbox/20261102-040000-or-returner-claim.md` — returner rating methodology claim
+  - `tasks/T-20261102-or-5.json` — returner rating task registry (renamed from T-20261102-or-step7-1.json)
+  - `tasks/T-20261102-or-step7-2.json` — Step 7 task registry (renamed from T-20261102-or-step7-1.json)
 - **Blocked / waiting on:** Architect integration of REVIEWED items; P-004/P-110/P-111 landings; `council/base` ↔ `origin/main` merge; Z-post-blue shell not locally available (step 6 SETBACK anchors unverified)
 
 ## What the next session needs
@@ -55,5 +59,5 @@
 - `tasks/T-20261030-or-2.json` — P-205 task registry
 - `tasks/T-20261030-or-3.json` — P-206 task registry
 - `tasks/T-20261030-or-4.json` — P-207 task registry
-- `tasks/T-20261102-or-returner-1.json` — returner rating task registry
-- `tasks/T-20261102-or-step7-1.json` — Step 7 task registry
+- `tasks/T-20261102-or-5.json` — returner rating task registry (renamed from T-20261102-or-step7-1.json)
+- `tasks/T-20261102-or-step7-2.json` — Step 7 task registry (renamed from T-20261102-or-step7-1.json)
