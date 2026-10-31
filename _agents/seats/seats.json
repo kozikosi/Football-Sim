@@ -1,0 +1,189 @@
+{
+  "_comment": "Registry of seats that cannot run git on the Owner's machine. Edit here, then run: node tools/build-seat-packets.mjs. Nobody is assigned to anything; this file says only how a seat is reached and how its work comes back.",
+  "zai": {
+    "name": "Z.ai",
+    "role": "High Councillor",
+    "authority": "Below the Architect, above advisors. May edit work that is not the Architect's, with a note of who/when/what/why/confidence. Never edits the product HTML, AGENTS.md, PRIORITIES.md or protected constants.",
+    "branch": "council/zai",
+    "lane": "_agents/zai/ZAI.md",
+    "mode": "git-read",
+    "reach": "Chat sandbox with its own Linux files that RESET between chats. Can read public GitHub over HTTPS. Cannot push and cannot touch the Owner's machine.",
+    "get": "Fetch your packet at the start of every chat (link in the Owner's prompt). One small file; no repository clone.",
+    "returnVia": "A RETURN BLOCK printed in your final reply. Add a zip ONLY if a binary or large file changed (a text change never needs a zip).",
+    "starter": "You are Z.ai. Read {{RAW}}/_agents/seats/packets/PACKET-ZAI.md and follow it exactly. If you cannot open the link, say so in one line and I will attach the file.",
+    "files": [
+      {
+        "path": "_agents/ENGINE-MATH-SPEC.md",
+        "why": "the math proposal, table, tests, open approvals"
+      },
+      {
+        "path": "tools/mathlab/design.json",
+        "why": "the position-value table as data (QB 1000)"
+      },
+      {
+        "path": "tools/mathlab/flex.json",
+        "why": "the Owner's flex guide REV 2 as data (95 rules)"
+      },
+      {
+        "path": "_agents/owner-notes/2026-10-26-dime-and-flex-guide-rev2.txt",
+        "why": "the Owner's message and flex guide, verbatim"
+      },
+      {
+        "path": "BASELINES.md",
+        "why": "which file is which build (hashes)"
+      },
+      {
+        "path": "_agents/TEMPLATE-LANE.md",
+        "why": "the shape of your lane file"
+      },
+      {
+        "path": "tools/mathlab/results/engine-patch-2026-10-26-dime.js.txt",
+        "why": "exact engine literals the build will paste"
+      },
+      {
+        "path": "tools/mathlab/results/flex-engine.js.txt",
+        "why": "the flex guide compiled to the engine's table form"
+      },
+      {
+        "path": "_agents/PRIORITIES.md",
+        "why": "the full ranked list (large: read only rows you need)"
+      },
+      {
+        "path": "AGENTS.md",
+        "why": "full council rules (large: only if a rule in the packet is unclear)"
+      },
+      {
+        "path": "tools/mathlab/README.md",
+        "why": "how to run the lab"
+      },
+      {
+        "path": "tools/mathlab/cfg.json",
+        "why": "fit settings"
+      },
+      {
+        "path": "_agents/ARCHITECTURE-DIRECTION.md",
+        "why": "the staged path to an interviewable project (review item P-198)"
+      },
+      {
+        "path": "tools/mathlab/results/defposture-product.js.txt",
+        "why": "the defensive aggressiveness code, exactly as the lab tests it"
+      }
+    ]
+  },
+  "gpt": {
+    "name": "GPT",
+    "role": "High Councillor",
+    "authority": "Below the Architect, above advisors. May edit work that is not the Architect's, with a note of who/when/what/why/confidence. Never edits the product HTML, AGENTS.md, PRIORITIES.md or protected constants.",
+    "branch": "council/gpt",
+    "lane": "_agents/gpt/GPT.md",
+    "mode": "attach",
+    "reach": "Chat only. Cannot read GitHub and cannot push. Reads files the Owner attaches. May or may not be able to run code; say which.",
+    "get": "The Owner attaches BUNDLE-GPT.md (packet plus every file you need, in one file), your latest lane file GPT.md if one exists, and the latest HTML build.",
+    "returnVia": "A RETURN BLOCK printed in your final reply. If your interface can produce downloadable files, also offer each file in the block as a separate .md download.",
+    "starter": "You are GPT. Read the attached BUNDLE-GPT.md and follow it exactly. The latest HTML build is attached too.",
+    "files": [
+      {
+        "path": "_agents/ENGINE-MATH-SPEC.md",
+        "why": "the math proposal, table, tests, open approvals"
+      },
+      {
+        "path": "tools/mathlab/design.json",
+        "why": "the position-value table as data (QB 1000)"
+      },
+      {
+        "path": "tools/mathlab/flex.json",
+        "why": "the Owner's flex guide REV 2 as data (95 rules)"
+      },
+      {
+        "path": "_agents/owner-notes/2026-10-26-dime-and-flex-guide-rev2.txt",
+        "why": "the Owner's message and flex guide, verbatim"
+      },
+      {
+        "path": "BASELINES.md",
+        "why": "which file is which build (hashes)"
+      },
+      {
+        "path": "_agents/TEMPLATE-LANE.md",
+        "why": "the shape of your lane file"
+      },
+      {
+        "path": "tools/mathlab/results/engine-patch-2026-10-26-dime.js.txt",
+        "why": "exact engine literals the build will paste"
+      },
+      {
+        "path": "tools/mathlab/results/flex-engine.js.txt",
+        "why": "the flex guide compiled to the engine's table form"
+      },
+      {
+        "path": "tools/mathlab/README.md",
+        "why": "how to run the lab, if you can run code"
+      },
+      {
+        "path": "_agents/ARCHITECTURE-DIRECTION.md",
+        "why": "the staged path to an interviewable project (review item P-198)"
+      },
+      {
+        "path": "tools/mathlab/results/defposture-product.js.txt",
+        "why": "the defensive aggressiveness code, exactly as the lab tests it"
+      }
+    ]
+  },
+  "grok": {
+    "name": "Grok (candidate)",
+    "role": "Candidate seat, treated as an Advisor until the Owner admits it",
+    "authority": "Investigates, proposes, tests, dissents in writing. No edits to anyone's files. The Owner decides admission.",
+    "branch": "council/grok",
+    "lane": "_agents/grok/GROK.md",
+    "mode": "attach",
+    "reach": "UNKNOWN until its first chat. Assume chat only: no GitHub, no push. Say in your first reply what you can and cannot do (read links, run code, make files).",
+    "get": "The Owner attaches BUNDLE-GROK.md (packet plus every file you need, in one file) and the latest HTML build.",
+    "returnVia": "A RETURN BLOCK printed in your final reply.",
+    "starter": "You are Grok, a candidate council seat. Read the attached BUNDLE-GROK.md and follow it exactly. The latest HTML build is attached too.",
+    "files": [
+      {
+        "path": "_agents/ENGINE-MATH-SPEC.md",
+        "why": "the math proposal, table, tests, open approvals"
+      },
+      {
+        "path": "tools/mathlab/design.json",
+        "why": "the position-value table as data (QB 1000)"
+      },
+      {
+        "path": "tools/mathlab/flex.json",
+        "why": "the Owner's flex guide REV 2 as data (95 rules)"
+      },
+      {
+        "path": "_agents/owner-notes/2026-10-26-dime-and-flex-guide-rev2.txt",
+        "why": "the Owner's message and flex guide, verbatim"
+      },
+      {
+        "path": "BASELINES.md",
+        "why": "which file is which build (hashes)"
+      },
+      {
+        "path": "_agents/TEMPLATE-LANE.md",
+        "why": "the shape of your lane file"
+      },
+      {
+        "path": "tools/mathlab/results/engine-patch-2026-10-26-dime.js.txt",
+        "why": "exact engine literals the build will paste"
+      },
+      {
+        "path": "tools/mathlab/results/flex-engine.js.txt",
+        "why": "the flex guide compiled to the engine's table form"
+      },
+      {
+        "path": "tools/mathlab/README.md",
+        "why": "how to run the lab, if you can run code"
+      },
+      {
+        "path": "_agents/ARCHITECTURE-DIRECTION.md",
+        "why": "the staged path to an interviewable project (review item P-198)"
+      },
+      {
+        "path": "tools/mathlab/results/defposture-product.js.txt",
+        "why": "the defensive aggressiveness code, exactly as the lab tests it"
+      }
+    ]
+  }
+}
