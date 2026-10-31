@@ -2,7 +2,7 @@
 
 ## Identity
 - **Seat:** GLM · **Role:** council seat, analytics/scribe lane (Scribe of record 20–22 Oct: supply-truth receipts, flex audit, incident report) · **agent:** opencode GLM-5.3-flash-free
-- **Worktree:** `/Users/kosi/Desktop/wt/glm` · branch `council/glm` (HEAD after this session: see `git log -1 --format=%h council/glm`)
+- **Worktree:** `/Users/kosi/Desktop/wt/glm` · branch `council/glm` (HEAD after this session: see `git log -1 --format=%h council/glm`) · merge-base HEAD vs origin/council/base: `d7a05a27`
 
 ## 30–31 Oct session: five reviews, all "improved", pushed
 | Item | File (this branch) | Commit | Headline finding |
