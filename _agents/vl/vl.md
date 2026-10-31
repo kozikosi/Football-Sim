@@ -4,7 +4,7 @@
 - **Seat:** VL · **Model / how reached:** council seat · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 - **Strengths shown so far (evidence, not claims):** V23 visualizations/interactivity plug-in blocks authored & pushed; V22 aesthetic ideas prototype & submitted; QUEUE.md & PRIORITIES.md read & processed; V23-OWNER-REQUESTS.md read & processed; Z.ai draft board glitch investigated & reported; P-001 review submitted (REJECTED); P-005 draft board cleanup prototype delivered & submitted; Q-02 lint selftest (exit 3 UNVERIFIED, receipt posted); Q-05 header deliverable; Q-06 Beam work ranking; Q-09 Ultra re-measure (math drift 0/8, receipt posted); VL-branding-20-0 + rose-gold prototypes v1-v7; game review + game animation KC prototypes; playoff bracket prototype; position rankings prototype.
-- **This session (2026-10-31):** VLC V1 React architecture completed and pushed to council/vl @ ce328b74:
+- **This session (2026-10-31):** lane renamed _agents/vl/VL.md -> _agents/vl/vl.md (AGENTS.md §2); P-171 review #1 of 3 REJECTED (TEAM_LOGOS undefined, stPts nonexistent, fabricated WHERE-7 deltas, WHERE-8 not actionable); P-174 review #1 of 3 REJECTED (no emoji in product badge, '${xf}' may render 'true', imperceptible row-delay stagger); pushed to council/vl @ 0f4cf253 (verified by ls-remote).
   - 17 reviews delivered (P-158 #2 improved, P-160 #2 rejected, P-166 #1 improved, P-162 #2 ok, P-163 #2 improved, P-165 #2 improved, P-155 #2 improved, P-156 #2 improved, P-183 #2 ok, P-164 #2 ok, P-167 #1 ok, P-205 #1 improved, P-206 #1 improved, P-192 #1 ok, P-151 #2, P-152 #2, P-153 #2) = 17 reviews
   - 8 work files (P-168, P-169, P-204, P-205 gap fill, P-206 gap fill, P-204/P-205/P-206 data package, STEP-6-RNG, w37/w38 review)
   - VLC V1 full React/Vite project: package.json, vite.config.js, index.html, src/main.tsx, src/App.tsx + App.css, src/engine/{weights,ratings,flex,index}.ts (Claude's engine, untouched), src/hooks/{useEngine,useTeamTheme}.ts, src/lib/tokens.ts, src/types/engine.ts, src/components/{layout,home,draft,lineup,game,review}/*.tsx including TeamDropdown (w38 team-colored theming), Shimmer20_0, DraftRecap cinematic, GameLog ("<team> <play> <yds>", shimmering TD/FG tags), SeasonReview (graphical cards)
@@ -23,9 +23,9 @@
 - **Blocked / waiting on:** none
 
 ## What the next session needs
-- **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/VL.md` (this file); `_agents/PRIORITIES.md` (open items); then `node tools/next.mjs`.
-- **Open reviews remaining:** P-125 needs #3 (I did #2 on 10/29 — barred; needs 3rd different seat). P-167 needs #2/#3 (I did #1 — barred; needs different seats). P-192 needs #2/#3 (I did #1 — barred). P-160 rework belongs to uk (author).
-- **Open WORK items:** P-171 (100 Season Sim page), P-174 (player browser), P-177 (preseason layout) — all OPEN, unclaimed. None step-6 related.
+- **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/vl.md` (this file); `_agents/PRIORITIES.md` (open items); then `node tools/next.mjs`.
+- **Open reviews remaining:** P-125 needs #3 (I did #2 on 10/29 — barred; needs 3rd different seat). P-167 needs #2/#3 (I did #1 — barred; needs different seats). P-171 needs #2/#3 (I did #1 — barred; rejected item back to OPEN). P-192 needs #2/#3 (I did #1 — barred). P-160 rework belongs to uk (author).
+- **Open WORK items:** P-171 (100 Season Sim page), P-174 (player browser), P-177 (preseason layout) — all OPEN, unclaimed (P-171/P-174 returned to OPEN by my rejections). None step-6 related.
 
 ## Do not redo
 - All reviews delivered & pushed; only the Architect can implement into the product file. P-160 rework belongs to uk.
@@ -119,5 +119,10 @@
 - `inbox/20261030-0756-vl-P-192-claim.md` (pushed)
 - `inbox/20261030-0757-vl-P-192-review.md` (pushed)
 - `inbox/20261030-0820-vl-w37-w38-review.md` (pushed)
+- `inbox/20261031-1007-vl-P-171-claim.md` (pushed)
+- `inbox/20261031-1008-vl-P-171-review.md` (pushed)
+- `inbox/20261031-1014-vl-P-174-claim.md` (pushed)
+- `inbox/20261031-1016-vl-P-174-review.md` (pushed)
+- `bulletin/20261031-1018-vl.md` (pushed)
 
-**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `ce328b74` (pushed, verified by ls-remote)
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `0f4cf253` (pushed, verified by ls-remote)
