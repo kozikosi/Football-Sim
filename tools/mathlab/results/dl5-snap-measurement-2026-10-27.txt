@@ -1,0 +1,28 @@
+DL5 SNAP-SHARE MEASUREMENT — 27 Oct 2026 (VERIFIED: script dl5-snaps.py, nflverse snap_counts 2023-2025, regular season)
+
+team-games=1632 (REG, 2023-2025)
+sum of DL snap shares per team-game (4.0 = four linemen on field every snap): mean 3.21
+ rank 1: mean  75.8%  median  76.0%  p25  68.0%  p75  83.0%
+ rank 2: mean  65.1%  median  65.0%  p25  58.0%  p75  72.0%
+ rank 3: mean  54.5%  median  55.0%  p25  47.0%  p75  62.0%
+ rank 4: mean  43.9%  median  46.0%  p25  35.0%  p75  54.0%
+ rank 5: mean  32.8%  median  35.0%  p25  22.0%  p75  44.0%
+ rank 6: mean  22.1%  median  26.0%  p25   3.0%  p75  36.0%
+ rank 7: mean  14.7%  median  14.0%  p25   0.0%  p75  28.0%
+ rank 8: mean   9.0%  median   0.0%  p25   0.0%  p75  19.0%
+ rank5 mean in 2023 32.3% n 544
+ rank5 mean in 2024 33.8% n 544
+ rank5 mean in 2025 32.3% n 544
+
+READING: the 5th-ranked defensive lineman is on the field for about 33% of defensive snaps (median 35%, middle half 22%-44%), stable across the
+three seasons. DL5_SHARE = 0.33 (MEASURED). Caveat: edge rushers labelled LB in the source are not counted, so ranks 1-4 look lower than a
+Madden DE/DT starter would; the rank-5 figure is the one used. Who he replaces while on the field (uniform over DE1, DE2, DT1, DT2) is INFERRED.
+
+SENSITIVITY (VERIFIED, fitlm.js with only the share changed; the other 29 spots refit to <=1.8% each time):
+  share 0.22 -> DL5 0.232 wins (70->90) = weight  91
+  share 0.28 -> DL5 0.292 wins          = weight 115
+  share 0.33 -> DL5 0.347 wins          = weight 137  -> table value 140
+  share 0.40 -> DL5 0.424 wins          = weight 167
+  share 0.44 -> DL5 0.467 wins          = weight 184
+The measured middle half (22%-44%) therefore maps to a table weight of about 90-180. Sanity: a full-time lineman is worth ~0.9-1.0 wins in the table
+(DE2/DT1 1.02), and 0.33 x that is 0.30-0.34 wins, the same as the engine gives.

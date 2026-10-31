@@ -1,1 +1,0 @@
-s/Lineup & flex<\/h4>/Lineup & flex (returner in Special Teams)<\/h4>/g

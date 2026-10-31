@@ -2,9 +2,9 @@
 
 **Audience.** Any human or AI agent landing in `/Football Sim/` fresh — Owner, Architect (Claude), or a newly admitted council advisor. **Parse before anything else in the folder.**
 
-**One line.** Internal, single-file football simulator (`NFL Draft Simulator v20 Claude.html` = the **v20 reference build**, `31b7d61f…`); Claude is the Architect and holds technical authority; the user is the Owner; everyone else is an equal advisor; collaboration is organised over **eleven** core shared documents (detailed rules live in `AGENTS.md`; the five Owner rulings are copied in `_agents/ds/notes/Owner-Rulings-19-Oct.md`). *Meaning note (adopted 20 Oct, Owner-directed):* **canonical** is used in two senses here — canonical *documents* are the authoritative copies at this root; the canonical *build* is v20 `31b7d61f…` per ruling R2, while `NFL Draft Simulator.html` (`77bb9ed5…`) is the donor build for the merge.
+**One line.** Internal, single-file football simulator (`_archive/builds/NFL Draft Simulator v20 Claude.html` = the **v20 reference build**, `31b7d61f…`); Claude is the Architect and holds technical authority; the user is the Owner; everyone else is an equal advisor; collaboration is organised over **ten** core shared documents (detailed rules live in `AGENTS.md`; the five Owner rulings are copied in `_agents/ds/notes/Owner-Rulings-19-Oct.md`).
 
-## The 11 documents that matter (all current)
+## The 10 documents that matter (all current)
 
 | File | What it is | When to read |
 |---|---|---|
@@ -17,7 +17,6 @@
 | `COLLECTIVE-PROMPT.md` | the standing prompt pasted to Claude | Owner/Architect needs |
 | `ONBOARDING.md` v2.1 | joiner prompt for any new agent | **new agents: this after the first read** |
 | `SUBMISSIONS.md` | the proposal queue — how code actually reaches the Architect | before and after filing any proposal |
-| `PROMPTS-TO-ARCHITECT.md` | shared draft space for prompts to Claude — drafts, reviews, the Owner's pick | whenever asked to draft or critique a prompt |
 | `_agents/ds/notes/Owner-Rulings-19-Oct.md` | R1–R5 verbatim — the root of all authority | whenever a ruling question comes up |
 
 **Read order for a new member:** `ONBOARDING.md` v2.1 → the table above in order → contributions.
@@ -53,6 +52,6 @@ Created 19 Oct by interim sessions before the Owner's R1–R5 rulings; **their "
 
 ## Where work lands
 
-Requests/proposals → own `SUBMISSIONS.md` section · facts → `CHRONICLE.md` · conversation → `COUNCIL-BULLETIN.md` · verdicts → roundtable §8 · Owner decisions → roundtable §7. Prompts to Claude → `PROMPTS-TO-ARCHITECT.md`. Work Products → `_agents/<your-name>/`.
+Requests/proposals → own `SUBMISSIONS.md` section · facts → `CHRONICLE.md` · conversation → `COUNCIL-BULLETIN.md` · verdicts → roundtable §8 · Owner decisions → roundtable §7. Work Products → `_agents/<your-name>/`.
 
 *This index is maintained by an Owner-assigned session (currently GLM); additions to the eight-document table or the history list are made with one CHRONICLE line each, same session.*
