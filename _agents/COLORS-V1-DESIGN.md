@@ -66,3 +66,17 @@ Returner_Value = SPD x 0.80 + OVR x 0.10 + STR x 0.10, capped at 99 (Owner-suppl
 - Tiebreaker order is from Groq's and GPT's council lists (they agree); Q's list omits steps and was not used. REPORTED until a seat checks it against the NFL rulebook text.
 - Mutation checks: 15 mutations of season/schedule/standings, all killed after adding tests for SOV/SOS order (both modes), wild-card common-games minimum, net-TD direction, division rotation, Super Bowl neutral field.
 - Open: late-game script, margin distribution for OT rate (3.6% vs 6.1%), SPD/STR beyond the returner needs the Owner's yes.
+
+## SPD / STR beyond the returner (Owner 31 Oct: APPROVED, verbatim note `owner-notes/2026-10-31-spd-str-permission-verbatim.txt`)
+- Approved philosophy: SPD and STR decide **who gets credit** for plays (carries, sacks, pressures, run blocks); they do **not** change team strength. Standing permission: if I later want SPD/STR in other interactions or in the math, I may add them and tell the Owner afterwards.
+- Implemented when step 9 (awards/recaps) assigns plays to players; not in `teamRatings`.
+
+## Intake of council replies 31 Oct (GPT, Grok, Gemini) — what the engine may use
+- **Tiebreakers:** all three agree with `standings.ts`. VERIFIED by agreement only (source: nfl.com/operations text cited by GPT and Grok); the rulebook check request stays open.
+- **FG by distance (use, with label):** GPT 2025: <30 98.1, 30-39 93.0, 40-49 84.3, 50+ 68.8; 2020-25 50-54 72.9, 55-59 62.2 (REPORTED, chart.ly/nflverse). Grok agrees within ~2 points. Gemini's (40-49 78.5, 56-59 58, 60+ 31.5) is unsourced multi-year; kept as a lower bound only.
+- **Fourth-down by distance (use, REPORTED):** GPT table 2021-25 (conv % 67.8/58.3/50.4/50.3/35.3/22.1 for 1/2/3/4-5/6-9/10+; attempt rate 69.2/39.8/26.8/17.3/8.4/7.4).
+- **Margins (use, REPORTED):** GPT 3-pt 14.61, 7-pt 7.68, tie 0.31 (2020-25, nebulainsights; not reproduced); Grok 15.0 / 9.0 (1999-2025). Both agree on 3 and 7 clustering. OT rate 5.4-6.3% across Grok, Gemini and the earlier council data.
+- **Pass/run by situation:** Grok (PFF 2014: trailing big 73-86% pass, leading 27-32%) agrees with the qualitative council data; Gemini's table has round numbers and no row-level source -> INFERRED, not used as measured data.
+- **Draft:** GPT's actual kicker/punter picks (2023-25: rounds 3-6) and Grok's averages (K pick ~174, P ~191) are consistent: K/P go in rounds 5-7, rarely earlier. Gemini's "CPU reach probability by position" and "12-14 teams run a 3-4" are UNSOURCED (data rule §7): not used. The 3-4 count must be measured from the Owner's Madden file.
+- **Schedule:** byes weeks 5-14 agreed by all. Streaks: GPT says "avoid >3 consecutive, an objective not a rule"; Gemini says "strictly prohibited" and "no 3 in a row" (conflicting, unsourced). Keep GPT's reading; not enforced in `schedule.ts` yet.
+- **Standings CSV 2020-24:** nobody delivered the 160 rows (GPT says not extracted; Gemini gave 15 top rows only). Request stays open.

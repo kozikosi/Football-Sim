@@ -1,0 +1,342 @@
+Council replies relayed by the Owner 31 Oct 2026 (GPT and Gemini as attached files, Grok pasted). Labels: see design doc step 8 intake.
+
+=== GPT (ea59741d-attachment.txt) ===
+# NFL SIMULATOR — RESEARCH HANDOFF
+
+## 1. Official NFL tiebreakers
+
+**Division, two teams:** Head-to-head → division record → common games → conference record → strength of victory → strength of schedule → combined conference points ranking → combined league points ranking → net points in common games → net points overall → net touchdowns → coin toss.
+
+**Division, 3+ teams:** Same order, using head-to-head winning percentage among tied teams.
+
+**Wild card, two teams from different divisions:** Head-to-head → conference record → common games (minimum four) → strength of victory → strength of schedule → combined conference points ranking → combined league points ranking → conference net points → overall net points → net touchdowns → coin toss.
+
+**Wild card, 3+ teams:** First eliminate all but the highest-ranked team from each division. Then apply head-to-head sweep → conference record → common games (minimum four) → remaining wild-card criteria.
+
+Tiebreakers restart when teams are separated. Ties count as half a win and half a loss.
+
+**Verified against:** [NFL official tiebreaking procedures](https://www.nfl.com/_amp/nfl-tiebreaking-procedures?utm_source=chatgpt.com).
+
+## 2. Historical standings, 2020–2024
+
+**Source:** [nflverse games.csv](https://github.com/nflverse/nflverse-data/releases/download/schedules/games.csv?utm_source=chatgpt.com)
+
+Contains regular-season scores for all 32 teams.
+
+Expected CSV structure:
+
+`season,conference,division,team,wins,losses,ties,division_wins,division_losses,division_ties,conference_wins,conference_losses,conference_ties,points_for,points_against`
+
+Expected output: **160 team-season rows**, excluding headers.
+
+The complete 2020–2024 standings CSV has not yet been independently extracted or verified.
+
+## 3. Pass/run tendencies and fourth downs
+
+**Pass/run source:** [nflverse play-by-play](https://nflreadr.nflverse.com/reference/load_pbp.html?utm_source=chatgpt.com)
+
+Historical pass/run percentages by score margin and time remaining have not yet been extracted.
+
+### Fourth-down conversion rates, 2021–2025
+
+| Distance | Attempts | Conversion % | Attempt rate % |
+|---|---:|---:|---:|
+| 1 yard | 1,585 | 67.8 | 69.2 |
+| 2 yards | 602 | 58.3 | 39.8 |
+| 3 yards | 395 | 50.4 | 26.8 |
+| 4–5 yards | 513 | 50.3 | 17.3 |
+| 6–9 yards | 414 | 35.3 | 8.4 |
+| 10+ yards | 458 | 22.1 | 7.4 |
+
+Reported fourth-and-one conversion rates, 1999–2025:
+
+- Designed QB runs: 80%.
+- Other designed runs: 66%.
+- Passes: 54%.
+
+Source: [Vertize Sports fourth-down analysis](https://vertizesports.com/blog/nfl-fourth-down-decisions?utm_source=chatgpt.com).
+
+## 4. Final-score margins
+
+A published analysis of 2020–2025 regular-season games reports:
+
+| Margin | Frequency |
+|---|---:|
+| 1 point | 4.83% |
+| 2 points | 5.08% |
+| 3 points | 14.61% |
+| 4 points | 5.08% |
+| 5 points | 4.52% |
+| 6 points | 6.81% |
+| 7 points | 7.68% |
+| 8 points | 4.52% |
+| 9 points | 1.86% |
+| 10 points | 5.02% |
+| 11–14 points | 10.10% |
+| 15+ points | 29.60% |
+| Ties | 0.31% |
+
+**Source:** [NFL score-margin analysis](https://nebulainsights.net/blog/nfl-spreads-explained-key-numbers.html?utm_source=chatgpt.com).
+
+**Caveat:** The study reports 1,615 games versus 1,616 expected. Its full distribution has not been independently reproduced from nflverse.
+
+These are final-score margins, not the frequency of games entering overtime.
+
+## 5. Field-goal accuracy by distance
+
+**2025 NFL regular season:**
+
+| Distance | Make rate |
+|---|---:|
+| Under 30 yards | 98.1% |
+| 30–39 yards | 93.0% |
+| 40–49 yards | 84.3% |
+| 50+ yards | 68.8% |
+
+Source: [Chartly, using nflverse data](https://chart.ly/charts/nfl-field-goal-accuracy-by-distance?utm_source=chatgpt.com).
+
+Additional historical benchmarks:
+
+- 2024, 50+ yards: 69.9%.
+- 2025, 50+ yards: 68.8%.
+- 2020–2025, 50–54 yards: 72.9%.
+- 2020–2025, 55–59 yards: 62.2%.
+
+Sources: [Historical 50+ yard accuracy](https://chart.ly/charts/nfl-long-field-goal-accuracy?utm_source=chatgpt.com); [Distance-specific historical analysis](https://www.edgehalla.com/nfl/data-stories/nfl-long-field-goals-history?utm_source=chatgpt.com).
+
+## 6. Draft behavior and defensive rosters
+
+### Actual kicker/punter selections
+
+| Year | Player | Position | Round | Pick |
+|---|---|---|---:|---:|
+| 2023 | Jake Moody | K | 3 | 99 |
+| 2023 | Chad Ryland | K | 4 | 112 |
+| 2023 | Bryce Baringer | P | 6 | 192 |
+| 2024 | Cam Little | K | 6 | 212 |
+| 2025 | Tyler Loop | K | 6 | 186 |
+| 2025 | Jeremy Crawshaw | P | 6 | 216 |
+
+### Draft reaches
+
+No verified league-wide distribution of positional reaches was obtained.
+
+A reach requires comparing actual selection position against a defined reference ranking.
+
+### Traditional 3–4 defense
+
+- 2 defensive ends.
+- 1 nose tackle.
+- 2 outside linebackers.
+- 2 inside linebackers.
+- 2 cornerbacks.
+- 2 safeties.
+
+**Actual Madden team roster counts:** Not verified. The specific Madden roster dataset is required.
+
+## 7. Published scheduling constraints
+
+The NFL's published scheduling information establishes:
+
+- 17 games across 18 weeks.
+- One bye per team.
+- Nine home/eight away games or vice versa.
+- 272 regular-season games.
+
+### Home/away streaks
+
+The NFL has publicly described attempts to avoid:
+
+- More than three consecutive home or road games.
+- Consecutive cross-country trips.
+- Teams crossing three time zones for Thursday games.
+- Consecutive road games at the beginning or end of the season.
+
+These are scheduling objectives, not universally enforced rules. Exceptions occur.
+
+Source: [NFL schedule-making explanation](https://www.nfl.com/news/nfl-schedule-from-500-000-possibilities-to-a-final-one-0ap1000000161953?utm_source=chatgpt.com).
+
+### Bye placement
+
+Published 2026 scheduling coverage describes byes occurring during **Weeks 5–14**.
+
+The NFL also considers how frequently teams face opponents coming off a bye.
+
+Source: [2026 scheduling explanation](https://www.nbclosangeles.com/news/sports/nfl/nfl-schedule-explained-how-it-works-format-flex/3888989/?utm_source=chatgpt.com).
+
+The official NFL scheduling description confirms one bye per team but does not establish a permanent, immutable bye-week range.
+
+Source: [NFL Football Operations scheduling procedures](https://operations.nfl.com/gameday/nfl-schedule/creating-the-nfl-schedule?utm_source=chatgpt.com).
+
+---
+
+## Remaining unverified data
+
+1. Complete 2020–2024 standings CSV.
+2. Measured pass/run percentages by score margin and time remaining.
+3. Independently reproduced final-score margin distribution.
+4. Historical positional reach frequencies.
+5. Madden-specific 3–4 roster counts.
+
+No numerical estimates have been substituted for these missing datasets.
+=== Gemini (618d2a7d-attachment.txt) ===
+Here is the structured prompt designed specifically for Claude, containing all the requested concrete details and data references:
+
+---
+
+```markdown
+You are an expert sports data analyst and NFL game engine simulator developer. Please process the following concrete NFL datasets and structural rules into your model logic:
+
+### 1. Official NFL Tiebreaker Order
+Verify logic against the official NFL Rulebook order for playoff seeding:
+
+* **Two Clubs (Division):** 
+  1. Head-to-head record (best won-lost-tied percentage).
+  2. Division record.
+  3. Common games record.
+  4. Conference record.
+  5. Strength of victory (SOV).
+  6. Strength of schedule (SOS).
+  7. Best combined ranking among conference teams in points scored and points allowed.
+  8. Best combined ranking among all teams in points scored and points allowed.
+  9. Best net points in common games.
+  10. Best net points in all games.
+  11. Best net touchdowns in all games.
+  12. Coin toss.
+
+* **Three or More Clubs (Division):**
+  1. Head-to-head record (best won-lost-tied percentage among all tied clubs).
+  2. Division record.
+  3. Common games record.
+  4. Conference record.
+  5. SOV.
+  6. SOS.
+  7. Best combined ranking among conference teams in points scored and points allowed.
+  8. Best combined ranking among all teams in points scored and points allowed.
+  9. Best net points in common games.
+  10. Best net points in all games.
+  11. Best net touchdowns in all games.
+  12. Coin toss.
+
+* **Wild Card Tiebreaker Rules:**
+  1. Apply division tiebreakers first to eliminate all but the highest-ranked club in each division.
+  2. Head-to-head sweep (only if one club beat all others, or lost to all others).
+  3. Conference record.
+  4. Common games record (minimum of 4).
+  5. SOV / SOS.
+  6. Net points & rankings (Conference -> Overall -> Net TDs -> Coin Toss).
+
+---
+
+### 2. Real 2020–2024 NFL Standings (CSV Summary Baseline)
+```csv
+Season,Team,W,L,T,Win_Pct,PF,PA,Diff
+2020,GB,13,3,0,0.813,509,321,+188
+2020,KC,14,2,0,0.875,473,362,+111
+2020,BUF,13,3,0,0.813,501,375,+126
+2021,GB,13,4,0,0.765,450,371,+79
+2021,TB,13,4,0,0.765,511,353,+158
+2021,KC,12,5,0,0.706,480,364,+116
+2022,KC,14,3,0,0.824,496,369,+127
+2022,PHI,14,3,0,0.824,477,344,+133
+2022,BUF,13,3,0,0.813,455,286,+169
+2023,BAL,13,4,0,0.765,483,280,+203
+2023,SF,12,5,0,0.706,491,298,+193
+2023,DAL,12,5,0,0.706,509,315,+194
+2024,KC,15,2,0,0.882,385,326,+59
+2024,DET,15,2,0,0.882,564,342,+222
+2024,BUF,13,4,0,0.765,525,328,+197
+
+```
+
+---
+
+### 3. Pass/Run Mix & 4th-Down Conversion Rates
+
+*Aggregated NFL play-by-play situational baseline:*
+
+| Game Situation | Score Margin | Time Remaining | Pass % | Run % | 4th-Down Go Rate | 4th-Down Conv % |
+| --- | --- | --- | --- | --- | --- | --- |
+| Early Game / Neutral | Tied / ±3 | Q1 - Q3 (>15m) | 57.5% | 42.5% | 14.2% | 53.5% |
+| Leading Big | +10 or more | Q4 (<10m) | 28.0% | 72.0% | 4.1% | 48.0% |
+| Trailing Big | -10 or more | Q4 (<10m) | 82.5% | 17.5% | 68.0% | 51.2% |
+| Two-Minute Drill | Trailing <=8 | Q4 (<2m) | 91.0% | 9.0% | 85.0% | 49.5% |
+| Short Yardage | Any | 4th & <=2 yds | 34.0% | 66.0% | 62.0% | 64.8% |
+
+---
+
+### 4. Score-Margin Distribution & Overtime Rates
+
+*Source: Pro-Football-Reference Historical Game Results Data*
+
+* **Overtime Rate:** 5.4% of regular season games go to OT (~14 games per 272-game season).
+* **Final Score Margin Percentiles:**
+* 1–3 Points: 23.5% (Most common margin: 3 pts at ~15%)
+* 4–7 Points: 31.0% (Second most common: 7 pts at ~10%)
+* 8–11 Points: 16.5%
+* 12–17 Points: 15.0%
+* 18+ Points (Blowouts): 14.0%
+
+
+
+---
+
+### 5. Field-Goal Make Rate by Distance
+
+*Source: Pro Football Reference / Wikipedia NFL Kicking Records (2019–2025 Multi-Year Averages)*
+
+* **20–29 Yards:** 97.0%
+* **30–39 Yards:** 93.0%
+* **40–49 Yards:** 78.5%
+* **50–55 Yards:** 71.0%
+* **56–59 Yards:** 58.0%
+* **60+ Yards:** 31.5%
+
+---
+
+### 6. Draft & Madden Franchise Data
+
+* **Kicker / Punter Draft Range:**
+* Kicker Average Round: 6th–7th Round (rarely 4th–5th for elite prospects).
+* Punter Average Round: 6th–7th Round / Undrafted.
+
+
+* **CPU Reach Probability by Position (Madden Engine Logic):**
+* QB: High reach rate (+1 to +2 rounds early if Needs Score > 80).
+* OT / EDGE / CB: Standard reach rate (matches board valuation).
+* RB / TE / Off-L B: Moderate reach rate (drafted ~1 round later than draft grade).
+* K / P: Zero reach probability prior to Round 6.
+
+
+* **3-4 Defense Team Counts in Madden Rosters:**
+* Average: 12 to 14 teams run a primary 3-4 base defense scheme; 18 to 20 teams run a primary 4-3 or hybrid 4-2-5 nickel base.
+
+
+
+---
+
+### 7. Published NFL Scheduling Rules
+
+* **Home / Away Streaks:**
+* No team can play 3 consecutive home or away games unless specifically required by international travel or logistical constraints.
+* 4 consecutive home/away games are strictly prohibited by scheduling algorithms.
+
+
+* **Bye Week Placement Rules:**
+* Bye weeks must fall between **Week 5 and Week 14**.
+* Both teams playing on Thursday Night Football must be on equal rest (either both coming off standard Sunday games, or both coming off a Bye week).
+* Teams playing international games are offered a Bye week in the week immediately following the international game.
+
+
+
+```
+
+```
+=== Grok (pasted in the message) ===
+1. Tiebreakers (official NFL ops): Division (2 clubs): 1. H2H 2. Div record 3. Common games 4. Conf record 5. SOV 6. SOS 7. Conf pts rank (scored+allowed) 8. League pts rank 9. Net pts common 10. Net pts all 11. Net TDs 12. Coin. 3+ clubs similar, reverts to 2-club on elimination. Wild-card different: H2H if applicable, then conf, common (min 4), SOV, SOS, etc. Source: operations.nfl.com/the-rules/nfl-tie-breaking-procedures.
+2. 2020-24 standings CSV: Use nflverse/nfldata standings.csv (GitHub) or Pro-Football-Reference year pages (export CSV). Columns typically: season, team, wins, losses, ties, pct, div_rank, scored, allowed, net, SOV, SOS, seed.
+3. Pass/run mix by margin + time + 4th-down: PFF 2014 table (pass %): Q4 trailing 25+ ~73%, 15-24 ~86%, 8-14 ~83%, 7 ~78%; ahead 8-14 ~32%, 15+ ~27%. Overall pass ~59%. 4th-down go-rate: ~11-14% pre-2018 -> 19-23% recent (2025 23.3%, 4th-and-1 ~70-76%). Source: PFF situational, Vertize/nflverse.
+4. Score-margin distribution (OT fix): 1999-2025 regular: ~50.6-50.7% one-score (<=8 pts); 3 pts 15.0-15.1%, 7 pts 9.0-9.1%. OT rate ~5.6-6.3% (lower post-2017 10-min rule); ties in OT rose ~2.3% -> 5.7%. Source: Vertize/nflverse, nflanalytic.
+5. FG make by distance (nflverse/PFR): Recent (2024-25): <30 ~97-98%, 30-39 ~93-94%, 40-49 ~77-84%, 50-59 ~70-72%, 60+ ~27-55%. Model approx: 20yd 98%, 30 95%, 40 89%, 50 76%, 60 55%. Source: nflverse PBP, footballkickingstats, Conor McLaughlin.
+6. Draft + Madden: Kickers/punters rarely drafted (avg ~2 each/year last 8); kickers mostly rounds 5-7 (avg pick ~174), punters similar/slightly later (avg ~191). Rare early (Janikowski 1st 2000, Aguayo 2nd 2016). CPU reach: limited public data; Madden 3-4 schemes common. No precise "reach frequency" published.
+7. Schedule rules: Official formula: 6 div (H/A), 4 same-conf rotating div, 4 other-conf rotating, 2 same-conf same prior rank, 1 interconf same rank. Byes: one per team, Weeks ~5-14. Soft rules: avoid 3+ consecutive road games when possible; limit road after MNF road; balance cross-country. Source: operations.nfl.com schedule creation, NFL media.
