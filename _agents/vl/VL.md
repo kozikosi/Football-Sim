@@ -4,24 +4,18 @@
 - **Seat:** VL · **Model / how reached:** council seat · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 - **Strengths shown so far (evidence, not claims):** V23 visualizations/interactivity plug-in blocks authored & pushed; V22 aesthetic ideas prototype & submitted; QUEUE.md & PRIORITIES.md read & processed; V23-OWNER-REQUESTS.md read & processed; Z.ai draft board glitch investigated & reported; P-001 review submitted (REJECTED); P-005 draft board cleanup prototype delivered & submitted; Q-02 lint selftest (exit 3 UNVERIFIED, receipt posted); Q-05 header deliverable; Q-06 Beam work ranking; Q-09 Ultra re-measure (math drift 0/8, receipt posted); VL-branding-20-0 + rose-gold prototypes v1-v7; game review + game animation KC prototypes; playoff bracket prototype; position rankings prototype.
-- **This session (2026-10-30):** 17 reviews + 8 work files + VLC V1 (3 artifacts), all committed & pushed to council/vl @ 2084f1fe:
-  Reviews: ... P-192 #1 (ok) = 14 reviews
-  Work: P-168 ..., STEP-6-RNG ..., P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
-- **VLC V1 (Colors v1 vision — merged Claude engine + creative UI), committed @ f07b5163:**
-  - `vlc-v1-architecture.md` — React 18 + Vite architecture, midnight-ink identity, engine integration strategy, screen inventory, component tree, cinematic law, protected-constants protocol
-  - `vlc-v1-prototype.html` — self-contained floaty prototype: Home (20-0 hero, w38 team-dropdown that remaps whole site, tinted dark-mode text), Draft (floaty board cards, pick tags, flex), Lineup (floaty slot cards, flex → FS −10), Game Preview (matchup, scouting chips/bars, +x WINS), Game Animation (log lines "<team> <play> <yds>", shimmering TD/FG tags, skip button), Season Review (graphical cards, "Try again to 20-0?"), 100-Season Sim (logo bars, compact personnel); mobile-responsive, skip button, theme toggle
-  - `vlc-v1-group-suggestions.md` — w37/w38 review (beam's 11 points verified + 6 w37 items added); group suggestions P0/P1/P2; CB4 protected-constants protocol; traceability map proposal
-  - `vlc-v1/` — full React/Vite project: package.json, vite.config.js, index.html, src/main.tsx, src/App.tsx + App.css, src/engine/{weights,ratings,flex,index}.ts (Claude's engine, untouched), src/hooks/{useEngine,useTeamTheme}.ts, src/lib/tokens.ts, src/types/engine.ts, src/components/{layout,home,draft,lineup,game,review}/*.tsx
-- **w37/w38 review (6f513213):** beam's 11 w37/w38 suggestions for Colors v1 all verified against W38/W37 build reports + intake ledgers; 6 additional w37-derived items Colors v1 should adopt (Gone% 99% cap, veil opaque on frame one, center panel no-ellipsis, reward gate on all cinematics, skip flushes whole report + true final, unit card text stacking fix). Group suggestions: adopt w37+w38 as tested law set, CB4 requires NATURAL_SLOT_MAP re-pin in MERGE-MANIFEST.md, build traceability map.
-  Reviews: P-158 #2 (improved), P-160 #2 (rejected), P-166 #1 (improved), P-162 #2 (ok), P-163 #2 (improved), P-165 #2 (improved), P-155 #2 (improved), P-156 #2 (improved), P-183 #2 (ok), P-164 #2 (ok), P-167 #1 (ok), P-205 #1 (improved), P-206 #1 (improved), P-192 #1 (ok) = 14 reviews
-  Work: P-168 (game preview panel change list), P-169 (buttons/schedule CSS/copy), P-204 (NFL FG accuracy by distance 2020-2025), P-205 gap fill (drive-end splits, 3-and-out, seconds/drive), P-206 gap fill (OT field-goal rule text, first-possession score rate gap), P-204/P-205/P-206 step-6 data package, STEP-6-RNG (all 38 Math.random sites categorized) = 8 work files
+- **This session (2026-10-31):** VLC V1 React architecture completed and pushed to council/vl @ ce328b74:
+  - 17 reviews delivered (P-158 #2 improved, P-160 #2 rejected, P-166 #1 improved, P-162 #2 ok, P-163 #2 improved, P-165 #2 improved, P-155 #2 improved, P-156 #2 improved, P-183 #2 ok, P-164 #2 ok, P-167 #1 ok, P-205 #1 improved, P-206 #1 improved, P-192 #1 ok, P-151 #2, P-152 #2, P-153 #2) = 17 reviews
+  - 8 work files (P-168, P-169, P-204, P-205 gap fill, P-206 gap fill, P-204/P-205/P-206 data package, STEP-6-RNG, w37/w38 review)
+  - VLC V1 full React/Vite project: package.json, vite.config.js, index.html, src/main.tsx, src/App.tsx + App.css, src/engine/{weights,ratings,flex,index}.ts (Claude's engine, untouched), src/hooks/{useEngine,useTeamTheme}.ts, src/lib/tokens.ts, src/types/engine.ts, src/components/{layout,home,draft,lineup,game,review}/*.tsx including TeamDropdown (w38 team-colored theming), Shimmer20_0, DraftRecap cinematic, GameLog ("<team> <play> <yds>", shimmering TD/FG tags), SeasonReview (graphical cards)
 - **Step 6 prerequisites (per Claude's ask) — ALL COMPLETE:**
   - P-204: FG accuracy by distance bucket 2020-2025 (StatMuse/PFR/CBS Sports)
   - P-205: drive statistics + gap fill (drives/game 10.5-11.1, plays/drive ~6.0, yds/drive ~31, pts/drive ~2.1, Sc% 35.5-39.8%, TO% 10.5-11.6%, 3-and-out 20% 2025, time/drive ~2:47-3:00)
   - P-206: overtime rules + gap fill (10-min reg/both-possess; 15-min playoffs/play-to-winner; FG rule text verified; tie rates)
   - P-192: QB rushing value per OVR point + WR blocking value (PFF EPA data, verified ok)
-  - STEP-6-RNG: all 38 Math.random() sites categorized (drive/game 25, draft 9, UI 4+); poisson(1922) identified as linchpin; LAMBDA.fg=1.05×AG.fg at line 2701
-- Step 6 code itself (injectable RNG via rnd(), seeded drive generator, realised game) is Architect build work (T-20261022-claude-2), NOT done by council — research/data package delivered.
+  - STEP-6-RNG: all 38 Math.random() sites categorized (drive/game 25, draft 9, UI 4+); poisson(1922) linchpin; LAMBDA.fg=1.05×AG.fg at line 2701
+- **Step 6 code itself** (injectable RNG via rnd(), seeded drive generator, realised game) is Architect build work (T-20261022-claude-2), NOT done by council — research/data package delivered.
+- **Claude's council suggestions relayed:** Returner rating = nearest 5 of (0.5×SPD + 0.3×OVR + 0.2×STR), floor 5; until decided, every team's returner is neutral 82 and return term is zero. Step 7/8 suggestions (playoff seeding/tiebreakers, 17-game schedule, division records 2020-2025, pass/run mix by margin, 4th-down/2-point/onside success rates, final-score distributions, CPU draft reach/position runs, 3-4 roster composition) noted for Architect prioritization.
 - Every claim re-checked against Football-Sim-PreColors.html sha256 40233d6be00e987c with command receipts.
 
 ## Current work
@@ -42,6 +36,33 @@
 - `_agents/vl/deliveries/design-tokens.css`
 - `_agents/vl/deliveries/PLUGIN-KIT.md`
 - `_agents/vl/deliveries/V23-visuals-proposal.md`
+- `_agents/vl/deliveries/vlc-v1-architecture.md` (pushed)
+- `_agents/vl/deliveries/vlc-v1-prototype.html` (pushed)
+- `_agents/vl/deliveries/vlc-v1-group-suggestions.md` (pushed)
+- `_agents/vl/deliveries/vlc-v1/package.json` (pushed)
+- `_agents/vl/deliveries/vlc-v1/vite.config.js` (pushed)
+- `_agents/vl/deliveries/vlc-v1/index.html` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/main.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/App.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/App.css` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/types/engine.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/lib/tokens.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/engine/weights.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/engine/ratings.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/engine/flex.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/engine/index.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/hooks/useEngine.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/hooks/useTeamTheme.ts` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/layout/Shell.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/layout/TeamDropdown.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/home/Home.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/home/Shimmer20_0.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/draft/DraftBoard.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/draft/DraftRecap.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/lineup/Lineup.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/game/GamePreview.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/game/GameLog.tsx` (pushed)
+- `_agents/vl/deliveries/vlc-v1/src/components/review/SeasonReview.tsx` (pushed)
 - `inbox/20261029-0914-vl-P-104-claim.md` (pushed)
 - `inbox/20261029-0914-vl-P-104-review.md` (pushed)
 - `inbox/20261029-1942-vl-P-124-claim.md` (pushed)
@@ -98,8 +119,5 @@
 - `inbox/20261030-0756-vl-P-192-claim.md` (pushed)
 - `inbox/20261030-0757-vl-P-192-review.md` (pushed)
 - `inbox/20261030-0820-vl-w37-w38-review.md` (pushed)
-- `_agents/vl/deliveries/vlc-v1-architecture.md` (pushed)
-- `_agents/vl/deliveries/vlc-v1-prototype.html` (pushed)
-- `_agents/vl/deliveries/vlc-v1-group-suggestions.md` (pushed)
 
-**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `f07b5163` (pushed, verified by ls-remote)
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `ce328b74` (pushed, verified by ls-remote)
