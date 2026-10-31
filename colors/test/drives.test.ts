@@ -80,7 +80,7 @@ test('allocate adds up exactly', () => {
 });
 test('league-average games match the council targets (PFR 2020-2025 per team-game, inbox P-204/205/206)', () => {
   // targets: drives 10.5-11.1, plays/drive 5.9-6.1, points/drive 1.88-2.20, scoring drives 35.5-39.8%, giveaway drives 10.5-11.6%,
-  // three-and-outs ~20%, seconds/drive 167-180, FG make 84-86%, points per team ~22, overtime in ~6% of games (known gap: ~3.6% here)
+  // three-and-outs ~20%, seconds/drive 167-180, FG make 84-86%, points per team ~22, overtime in 5.88% of games (nflverse 2020-24; margin model, step 9a)
   const N = 3000; let dr = 0, plays = 0, secs = 0, sc = 0, to = 0, to3 = 0, fga = 0, fgm = 0, pts = 0, ot = 0, tie = 0, sacks = 0, margin = 0;
   for (let i = 0; i < N; i++) {
     const g = game(50000 + i);
@@ -100,7 +100,7 @@ test('league-average games match the council targets (PFR 2020-2025 per team-gam
   within(to / dr, 0.105, 0.116, 'giveaway share'); within(to3 / dr, 0.17, 0.23, 'three-and-out share');
   within(secs / dr, 155, 180, 'seconds per drive'); within(fgm / fga, 0.83, 0.87, 'field-goal make rate');
   within(pts / N / 2, 20.5, 24, 'points per team'); within(sacks / N / 2, 1.9, 2.5, 'sacks per team');
-  within(margin / N, 0.8, 2.6, 'home edge'); within(ot / N, 0.03, 0.09, 'overtime rate');
+  within(margin / N, 0.8, 2.6, 'home edge'); within(ot / N, 0.045, 0.075, 'overtime rate');
   if (ot > 50) within(tie / ot, 0.03, 0.22, 'tie share of overtime games (real 4-9%; about 100 overtime games here, so wide)');
 });
 test('a stronger team wins more often, and by points the model predicts', () => {

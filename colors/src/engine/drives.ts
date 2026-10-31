@@ -12,6 +12,7 @@
 // owners approved it, 10-minute period); a tie after both possessions goes to sudden death. Playoffs: 15-minute periods, play
 // until there is a winner. A regular-season game can still end tied when the 10 minutes run out (INFERRED, the source is silent).
 import { clamp } from './matchup.ts';
+import { reshapeScores } from './margin.ts';
 import type { Matchup } from './matchup.ts';
 import type { Rng } from './rng.ts';
 import { BASE_PTS, HOME_FIELD, LAM_SACK, LAM_TO, PASS_BASE, PT_PASS, PT_RUSH, PT_SACK, PT_TO, PTS_NOISE, RUSH_BASE } from './specs.ts';
@@ -155,7 +156,10 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   const rA = rng.fork('aggregates');
   const agg = { home: realise(mh, rA), away: realise(ma, rA) };
   const ptsOf = (m: Matchup, r: typeof agg.home, h: number) => clamp(BASE_PTS + h + PT_RUSH * (r.rush - RUSH_BASE) + PT_PASS * (r.pass - PASS_BASE) - PT_TO * (r.to - LAM_TO) - PT_SACK * (r.sacks - LAM_SACK) + m.channels.kick - m.planCost + PTS_NOISE * m.vm * rA.normal(), 0, 58);
-  const regHome = realisticScore(Math.round(ptsOf(mh, agg.home, hf)), rA), regAway = realisticScore(Math.round(ptsOf(ma, agg.away, 0)), rA);
+  const rawHome = ptsOf(mh, agg.home, hf), rawAway = ptsOf(ma, agg.away, 0);
+  const rounded = [realisticScore(Math.round(rawHome), rA), realisticScore(Math.round(rawAway), rA)];
+  // step 9a: the margin of the regulation score follows the real distribution (ties, the 3 and 7 clustering); the winner does not change
+  const [regHome, regAway] = reshapeScores(rounded[0], rounded[1], rawHome >= rawAway, rng.fork('margin'));
 
   const rD = rng.fork('drives');
   const comp = { home: decompose(regHome, agg.away.to, rD), away: decompose(regAway, agg.home.to, rD) };
