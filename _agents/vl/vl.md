@@ -1,128 +1,56 @@
 # VL — lane file (rewrite at the end of every session, never append)
 
 ## Identity
-- **Seat:** VL · **Model / how reached:** council seat · **State:** active (roster in `_agents/README.md` is the truth)
+- **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
-- **Strengths shown so far (evidence, not claims):** V23 visualizations/interactivity plug-in blocks authored & pushed; V22 aesthetic ideas prototype & submitted; QUEUE.md & PRIORITIES.md read & processed; V23-OWNER-REQUESTS.md read & processed; Z.ai draft board glitch investigated & reported; P-001 review submitted (REJECTED); P-005 draft board cleanup prototype delivered & submitted; Q-02 lint selftest (exit 3 UNVERIFIED, receipt posted); Q-05 header deliverable; Q-06 Beam work ranking; Q-09 Ultra re-measure (math drift 0/8, receipt posted); VL-branding-20-0 + rose-gold prototypes v1-v7; game review + game animation KC prototypes; playoff bracket prototype; position rankings prototype.
-- **This session (2026-10-31):** lane renamed _agents/vl/VL.md -> _agents/vl/vl.md (AGENTS.md §2); P-171 review #1 of 3 REJECTED (TEAM_LOGOS undefined, stPts nonexistent, fabricated WHERE-7 deltas, WHERE-8 not actionable); P-174 review #1 of 3 REJECTED (no emoji in product badge, '${xf}' may render 'true', imperceptible row-delay stagger); pushed to council/vl @ 0f4cf253 (verified by ls-remote).
-  - 17 reviews delivered (P-158 #2 improved, P-160 #2 rejected, P-166 #1 improved, P-162 #2 ok, P-163 #2 improved, P-165 #2 improved, P-155 #2 improved, P-156 #2 improved, P-183 #2 ok, P-164 #2 ok, P-167 #1 ok, P-205 #1 improved, P-206 #1 improved, P-192 #1 ok, P-151 #2, P-152 #2, P-153 #2) = 17 reviews
-  - 8 work files (P-168, P-169, P-204, P-205 gap fill, P-206 gap fill, P-204/P-205/P-206 data package, STEP-6-RNG, w37/w38 review)
-  - VLC V1 full React/Vite project: package.json, vite.config.js, index.html, src/main.tsx, src/App.tsx + App.css, src/engine/{weights,ratings,flex,index}.ts (Claude's engine, untouched), src/hooks/{useEngine,useTeamTheme}.ts, src/lib/tokens.ts, src/types/engine.ts, src/components/{layout,home,draft,lineup,game,review}/*.tsx including TeamDropdown (w38 team-colored theming), Shimmer20_0, DraftRecap cinematic, GameLog ("<team> <play> <yds>", shimmering TD/FG tags), SeasonReview (graphical cards)
-- **Step 6 prerequisites (per Claude's ask) — ALL COMPLETE:**
-  - P-204: FG accuracy by distance bucket 2020-2025 (StatMuse/PFR/CBS Sports)
-  - P-205: drive statistics + gap fill (drives/game 10.5-11.1, plays/drive ~6.0, yds/drive ~31, pts/drive ~2.1, Sc% 35.5-39.8%, TO% 10.5-11.6%, 3-and-out 20% 2025, time/drive ~2:47-3:00)
-  - P-206: overtime rules + gap fill (10-min reg/both-possess; 15-min playoffs/play-to-winner; FG rule text verified; tie rates)
-  - P-192: QB rushing value per OVR point + WR blocking value (PFF EPA data, verified ok)
-  - STEP-6-RNG: all 38 Math.random() sites categorized (drive/game 25, draft 9, UI 4+); poisson(1922) linchpin; LAMBDA.fg=1.05×AG.fg at line 2701
-- **Step 6 code itself** (injectable RNG via rnd(), seeded drive generator, realised game) is Architect build work (T-20261022-claude-2), NOT done by council — research/data package delivered.
-- **Claude's council suggestions relayed:** Returner rating = nearest 5 of (0.5×SPD + 0.3×OVR + 0.2×STR), floor 5; until decided, every team's returner is neutral 82 and return term is zero. Step 7/8 suggestions (playoff seeding/tiebreakers, 17-game schedule, division records 2020-2025, pass/run mix by margin, 4th-down/2-point/onside success rates, final-score distributions, CPU draft reach/position runs, 3-4 roster composition) noted for Architect prioritization.
-- Every claim re-checked against Football-Sim-PreColors.html sha256 40233d6be00e987c with command receipts.
+- **Housekeeping this session:** lane renamed `_agents/vl/VL.md` → `_agents/vl/vl.md` (AGENTS.md §2).
 
-## Current work
-- **Claimed / in progress:** (none)
-- **Blocked / waiting on:** none
+## This session (2026-10-31) — 11 reviews, all pushed to council/vl
+- P-171 review #1 of 3 — REJECTED (`inbox/20261031-1008-vl-P-171-review.md`): TEAM_LOGOS undefined (0 occurrences; ReferenceError), stPts nonexistent (0 occurrences), WHERE-7 fabricated deltas (+12.3 vs. avg etc.), WHERE-8 no actionable anchor. Anchors 1-7 verified exact.
+- P-174 review #1 of 3 — REJECTED (`inbox/20261031-1016-vl-P-174-review.md`): no emoji exists in product badge (plain `XF`; uk premise false), `${xf}` may render `true`, row-delay math gives imperceptible -1ms/-2ms not ~600ms. Anchors verified exact.
+- P-177 review #2 of 3 — ok (`inbox/20261031-1025-vl-P-177-review.md`): preseason mock-up covers all brief elements; defects: 22.9 KB > ~10 KB mock-up guideline, bubbles small/mid-page not "large bubbles at bottom", fadeOut unused, decimals vs P-183 integers-only law, QB→FS at −10 matches Owner REV 4 but product `FLEX.QB={}` (protected constant, not yet in product).
+- P-185 review #2 of 3 — ok (`inbox/20261031-1032-vl-P-185-review.md`): contrast table colors REPORTED (beam/notes/team-color-theming.md not found), WCAC math refuted (BAL #241773 vs white = 14.5:1 not 2.1:1), TEAM_COLORS undefined (0 occurrences; tone-lift JS would throw). Corroborated beam's #1.
+- P-186 review #1 of 3 — ok (`inbox/20261031-1039-vl-P-186-review.md`): all anchors exact; TEAM_COLORS undefined → `updateSetupColors` throws TypeError; `rgba(var(--team-accent-rgb, 79,140,255),0.2)` invalid CSS; line 249 `!important` overrides new button styles.
+- P-193 review #2 of 3 — ok (`inbox/20261031-1055-vl-P-193-review.md`): uk's REV-2→REV-4 table matches both sources row-for-row; QB→FS 10 implements Owner's 29 Oct ruling. Defects: rule count is 107 not 95; RB→TE status text contradicts JSON (6 unchanged); flexcheck.mjs run by me: rules 107, ADDED 42 / REMOVED 2 / CHANGED 16 / ONE-WAY 24, FLEXDL5 OK.
+- P-196 review #2 of 3 — ok (`inbox/20261031-1104-vl-P-196-review.md`): real data attached (PFF ~9.4% dime 2025) but no URLs, estimates not uniformly labeled, engine 0.10×1.5=0.15 arithmetic not validated.
+- P-199 review #2 of 3 — ok (`inbox/20261031-1114-vl-P-199-review.md`): ran run-all.sh myself — E1/E2 PASS, E3b OK, E3d OK, E4 PASS, E10 derives DL5 140; E3a/E3c FAIL but those are intended REV-4 vs REV-2 deviations, not DL5 defects. Owner approved DL5=140 on 27 Oct; product DEFAULT_WEIGHTS still DL5:5 (build work).
+- P-002 review #3 of 3 — ok (`inbox/20261031-1144-vl-P-002-review.md`): all three "NFL Draft Simulator"→"20-0" anchors exact (lines 7, 10, 319); minor count slip in uk's file noted.
+- P-205 review #2 of 3 — REJECTED (`inbox/20261031-1152-vl-P-205-review.md`): seconds per drive missing entirely; 4th-down attempts/game contradicts itself (2.1 vs ~5.2); source labeling contradicts data presented.
+- P-206 review #2 of 3 — REJECTED (`inbox/20261031-1201-vl-P-206-review.md`): rule text wrong ("no coin toss" false; playoffs "sudden death from start" false since 2022); "Games ~1,032/season" false (272); sources not citable.
 
-## What the next session needs
-- **Read first:** `AGENTS.md`; `V23-OWNER-REQUESTS.md`; `_agents/vl/vl.md` (this file); `_agents/PRIORITIES.md` (open items); then `node tools/next.mjs`.
-- **Open reviews remaining:** P-125 needs #3 (I did #2 on 10/29 — barred; needs 3rd different seat). P-167 needs #2/#3 (I did #1 — barred; needs different seats). P-171 needs #2/#3 (I did #1 — barred; rejected item back to OPEN). P-192 needs #2/#3 (I did #1 — barred). P-160 rework belongs to uk (author).
-- **Open WORK items:** P-171 (100 Season Sim page), P-174 (player browser), P-177 (preseason layout) — all OPEN, unclaimed (P-171/P-174 returned to OPEN by my rejections). None step-6 related.
+## This session — 5 WORK proposals (proposals only; Architect builds)
+- P-160 season-review rework proposal (`inbox/20261031-1211-vl-P-160-work.md`): anchors at lines 3951/3954/4281-4316/1949-1956/2382/4302-4303/455; removal strings "428 points for...undefined", "The bracket awaits...", "Team rankings are regular-season only..." NOT FOUND in Pre-Colors (flagged to Architect); clickable-metric mock-up included.
+- P-171 100 Season Sim rework proposal (`inbox/20261031-1223-vl-P-171-work.md`): names-with-room instead of TEAM_LOGOS (0 occurrences), bars capped at 70%, "Full seasons…" line removed, "REALISM CHECK"→"STATS", compact personnel line, more bottom bubbles, Re-Run gating already satisfied.
+- P-174 player-browser rework proposal (`inbox/20261031-1231-vl-P-174-work.md`): wrap table in `.plist` (exists at line 189, unused), fade-in 0.7s + 55ms staggered `animation-delay`, keep plain `XF` badge (no emoji exists).
+- P-190 math-phase report (`inbox/20261031-1246-vl-P-190-work.md`): ran run-all.sh + check-design + realcheck on Pre-Colors (Z-post-blue wave-13 not in repo): E1/E2 PASS, E3b/E3d OK, E4 PASS (r 0.672→0.662), E10 DL5=140; E3a/E3c FAIL = intended REV-4 deviations; no market/EPA evidence reachable (sandbox blocks raw GitHub); no `slot: old -> new` change proposed; DL5=140 vs product DL5:5 flagged for Architect build.
+- P-200 personnel 10/13 calibration (`inbox/20261031-1258-vl-P-200-work.md`): exact snippets (PERS `10` entry `pc:0.47` inferred, PERS_REC `10`, OFF_OPTS add `10`); targets ~0.5% usage (real NFL 0.4-0.6%, measured 0.52%), TE1 value preserved; `applyOffPlan` blocking-term caveat flagged (§14.6d).
 
-## Do not redo
-- All reviews delivered & pushed; only the Architect can implement into the product file. P-160 rework belongs to uk.
+## Barred from re-review (this seat already reviewed these items)
+P-109 #1, P-125 #2, P-155 ×2, P-158 #1, P-164 #1, P-167 #1, P-171 #1, P-174 #1, P-177 #2, P-183 #1, P-185 #2, P-186 #1, P-192 #1, P-193 #2, P-196 #2, P-199 #2, P-002 #3, P-205 #2, P-206 #2. Open reviews need three DIFFERENT seats.
 
-## Files in this lane
-- `_agents/vl/notes/v20-hands-on-critique.md`
-- `_agents/vl/notes/workflow-proposals.md`
-- `_agents/vl/deliveries/design-tokens.css`
-- `_agents/vl/deliveries/PLUGIN-KIT.md`
-- `_agents/vl/deliveries/V23-visuals-proposal.md`
-- `_agents/vl/deliveries/vlc-v1-architecture.md` (pushed)
-- `_agents/vl/deliveries/vlc-v1-prototype.html` (pushed)
-- `_agents/vl/deliveries/vlc-v1-group-suggestions.md` (pushed)
-- `_agents/vl/deliveries/vlc-v1/package.json` (pushed)
-- `_agents/vl/deliveries/vlc-v1/vite.config.js` (pushed)
-- `_agents/vl/deliveries/vlc-v1/index.html` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/main.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/App.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/App.css` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/types/engine.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/lib/tokens.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/engine/weights.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/engine/ratings.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/engine/flex.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/engine/index.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/hooks/useEngine.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/hooks/useTeamTheme.ts` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/layout/Shell.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/layout/TeamDropdown.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/home/Home.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/home/Shimmer20_0.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/draft/DraftBoard.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/draft/DraftRecap.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/lineup/Lineup.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/game/GamePreview.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/game/GameLog.tsx` (pushed)
-- `_agents/vl/deliveries/vlc-v1/src/components/review/SeasonReview.tsx` (pushed)
-- `inbox/20261029-0914-vl-P-104-claim.md` (pushed)
-- `inbox/20261029-0914-vl-P-104-review.md` (pushed)
-- `inbox/20261029-1942-vl-P-124-claim.md` (pushed)
-- `inbox/20261029-1942-vl-P-124-review.md` (pushed)
-- `inbox/20261029-1948-vl-P-125-claim.md` (pushed)
-- `inbox/20261029-1948-vl-P-125-review.md` (pushed)
-- `inbox/20261029-1950-vl-P-131-claim.md` (pushed)
-- `inbox/20261029-1950-vl-P-131-review.md` (pushed)
-- `inbox/20261029-2223-vl-P-151-claim.md` (pushed)
-- `inbox/20261029-2225-vl-P-151-review.md` (pushed)
-- `inbox/20261030-0008-vl-P-152-claim.md` (pushed)
-- `inbox/20261030-0012-vl-P-152-review.md` (pushed)
-- `inbox/20261030-0014-vl-P-153-claim.md` (pushed)
-- `inbox/20261030-0016-vl-P-153-review.md` (pushed)
-- `inbox/20261030-0018-vl-P-155-review.md` (pushed)
-- `inbox/20261030-0020-vl-P-156-review.md` (pushed)
-- `inbox/20261030-0338-vl-P-158-review.md` (pushed)
-- `inbox/20261030-0339-vl-P-160-claim.md` (pushed)
-- `inbox/20261030-0340-vl-P-160-review.md` (pushed)
-- `inbox/20261030-0342-vl-P-166-claim.md` (pushed)
-- `inbox/20261030-0343-vl-P-166-review.md` (pushed)
-- `inbox/20261030-0346-vl-P-162-claim.md` (pushed)
-- `inbox/20261030-0347-vl-P-162-review.md` (pushed)
-- `inbox/20261030-0416-vl-P-163-claim.md` (pushed)
-- `inbox/20261030-0417-vl-P-163-review.md` (pushed)
-- `inbox/20261030-0420-vl-P-165-claim.md` (pushed)
-- `inbox/20261030-0421-vl-P-165-review.md` (pushed)
-- `inbox/20261030-0422-vl-P-155-claim.md` (pushed)
-- `inbox/20261030-0422-vl-P-155-review.md` (pushed)
-- `inbox/20261030-0423-vl-P-156-claim.md` (pushed)
-- `inbox/20261030-0423-vl-P-156-review.md` (pushed)
-- `inbox/20261030-0425-vl-P-183-claim.md` (pushed)
-- `inbox/20261030-0426-vl-P-183-review.md` (pushed)
-- `inbox/20261030-0430-vl-P-164-claim.md` (pushed)
-- `inbox/20261030-0431-vl-P-164-review.md` (pushed)
-- `inbox/20261030-0433-vl-P-167-claim.md` (pushed)
-- `inbox/20261030-0434-vl-P-167-review.md` (pushed)
-- `inbox/20261030-0436-vl-P-168-claim.md` (pushed)
-- `inbox/20261030-0437-vl-P-168-work.md` (pushed)
-- `inbox/20261030-0440-vl-P-169-claim.md` (pushed)
-- `inbox/20261030-0441-vl-P-169-work.md` (pushed)
-- `inbox/20261030-0544-vl-P-204-claim.md` (pushed)
-- `inbox/20261030-0546-vl-P-204-work.md` (pushed)
-- `inbox/20261030-0546-vl-P-205-claim.md` (pushed)
-- `inbox/20261030-0547-vl-P-205-review.md` (pushed)
-- `inbox/20261030-0548-vl-P-206-claim.md` (pushed)
-- `inbox/20261030-0549-vl-P-206-review.md` (pushed)
-- `inbox/20261030-0554-vl-P-205-gapfill-claim.md` (pushed)
-- `inbox/20261030-0555-vl-P-205-gapfill-work.md` (pushed)
-- `inbox/20261030-0557-vl-P-206-gapfill-claim.md` (pushed)
-- `inbox/20261030-0558-vl-P-206-gapfill-work.md` (pushed)
-- `inbox/20261030-0752-vl-step6-rng-claim.md` (pushed)
-- `inbox/20261030-0753-vl-step6-rng-work.md` (pushed)
-- `inbox/20261030-0756-vl-P-192-claim.md` (pushed)
-- `inbox/20261030-0757-vl-P-192-review.md` (pushed)
-- `inbox/20261030-0820-vl-w37-w38-review.md` (pushed)
-- `inbox/20261031-1007-vl-P-171-claim.md` (pushed)
-- `inbox/20261031-1008-vl-P-171-review.md` (pushed)
-- `inbox/20261031-1014-vl-P-174-claim.md` (pushed)
-- `inbox/20261031-1016-vl-P-174-review.md` (pushed)
-- `bulletin/20261031-1018-vl.md` (pushed)
+## Open WORK items
+- P-160 / P-171 / P-174 rework proposals delivered (above); Architect decides build.
+- P-190 / P-200 delivered; Architect decides build.
+- Every review above awaits #2/#3 by two other seats (except P-002 #3 = complete REVIEWED ✓✓✓).
 
-**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `0f4cf253` (pushed, verified by ls-remote)
+## Files in this lane (this session, all pushed)
+- inbox/20261031-1007-vl-P-171-claim.md · inbox/20261031-1008-vl-P-171-review.md
+- inbox/20261031-1014-vl-P-174-claim.md · inbox/20261031-1016-vl-P-174-review.md
+- inbox/20261031-1022-vl-P-177-claim.md · inbox/20261031-1025-vl-P-177-review.md
+- inbox/20261031-1030-vl-P-185-claim.md · inbox/20261031-1032-vl-P-185-review.md
+- inbox/20261031-1036-vl-P-186-claim.md · inbox/20261031-1039-vl-P-186-review.md
+- inbox/20261031-1043-vl-P-187-claim.md · inbox/20261031-1046-vl-P-187-review.md
+- inbox/20261031-1050-vl-P-193-claim.md · inbox/20261031-1055-vl-P-193-review.md
+- inbox/20261031-1100-vl-P-196-claim.md · inbox/20261031-1104-vl-P-196-review.md
+- inbox/20261031-1108-vl-P-199-claim.md · inbox/20261031-1114-vl-P-199-review.md
+- inbox/20261031-1140-vl-P-002-claim.md · inbox/20261031-1144-vl-P-002-review.md
+- inbox/20261031-1148-vl-P-205-claim.md · inbox/20261031-1152-vl-P-205-review.md
+- inbox/20261031-1156-vl-P-206-claim.md · inbox/20261031-1201-vl-P-206-review.md
+- inbox/20261031-1211-vl-P-160-work.md
+- inbox/20261031-1223-vl-P-171-work.md
+- inbox/20261031-1231-vl-P-174-work.md
+- inbox/20261031-1238-vl-P-190-claim.md · inbox/20261031-1246-vl-P-190-work.md
+- inbox/20261031-1251-vl-P-200-claim.md · inbox/20261031-1258-vl-P-200-work.md
+- bulletin/20261031-1018-vl.md (pushed); bulletin/20261031-12xx-vl.md (this session, pushed below)
+
+**Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d` · **HEAD:** `96f4ac10` (pushed, verified by ls-remote)
