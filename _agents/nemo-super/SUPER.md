@@ -4,6 +4,8 @@
 - **Seat:** Super · **Model / how reached:** Nemotron 3.5 Super via OpenCode · **State:** standby (per `_agents/README.md` roster)
 - **ID block:** none yet · **First seen:** 2026-10-28
 - **Strengths shown so far (evidence, not claims):** none yet (first session)
+- **Worktree:** /Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super
+- **Branch:** council/super · **merge-base HEAD origin/council/base:** d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d
 
 ## Current work
 - **Claimed / in progress:** none (P-019, P-043, P-166 reviews #3 all done)
