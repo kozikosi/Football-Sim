@@ -5,7 +5,7 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier.
 
 ## Current work (as of 2026-10-31)
-- **Reviews completed this session:** P-164 (improved), P-167 (improved), P-204 second (rejected, OR's impossible counts).
+- **Reviews completed this session:** P-164 (improved), P-167 (improved), P-204 second (rejected, OR's impossible counts), P-168 #2 (improved, 10 findings), P-169 #2 (improved, 10 findings), P-174 #1 (improved, 10 findings), P-177 #1 (improved, 15 findings).
 - **Work filed this session:** P-125 rework (corrected anchors/JS/CSS), P-204/P-205/P-206 data tables, P-204 merged (exact counts from sportsdataverse parquet), P-204 review of VL's work (improved).
 - **Beamer V1 (new build):** Svelte 5 + Vite + vite-plugin-singlefile scaffold in `_agents/beam/beamer-v1/` (single-file output, 59.8 KB). Components: App, Home, DraftBoard, GamePreview, Season, TeamPicker, FoilShimmer. Stores: team. Engine: constants.js (protected constants + seeded mulberry32 RNG). Mock-ups: index, lineup-compare, season-review, game-anim, player-browser. ARCHITECTURE.md filed.
 - **Colors v1 suggestions:** 11-item inbox doc (CB4 slot, unit-basis unification, cinematic timing, name-ink, suffix helper, award panels, advanced stats, bracket tree, fade timing, sim-season hold, protected-constant note) + Beamer V1 prototype notice.
