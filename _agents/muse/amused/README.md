@@ -63,7 +63,11 @@ Season sim follows in v2. Framework decision (SvelteKit vs React) is with the Ow
 - [ ] Framework decision: BOTH — framework-agnostic core, SvelteKit leads, React proof-of-portability later (Owner 2026-11-01)
 - [ ] v1 scope: draft experience first, season sim v2 (Owner: "whatever you want")
 - [ ] w52 theme: lift tokens/design language via copy-paste kit, rebuild as components (Owner: free choice)
-- [ ] app shell + design tokens from w52
+- [x] Design tokens lifted from w52 (light + dark, 50 tokens each) as framework-free
+      `apps/web/src/lib/design/tokens.ts` — 3 invariant tests pass (same keys both themes,
+      no white/black text per the w52 palette law)
+- [x] Roster data pinned: `data/nfl/madden27-ratings.csv` (1,941 players) +
+      `free-agents-old-ratings.csv` (12) copied from council/base data/
 - [ ] draft experience v1
 - [ ] localStorage saves
 - [ ] simulate(): PENDING Architect's game-model interface (asked 2026-11-01)
