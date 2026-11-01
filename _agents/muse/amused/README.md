@@ -59,9 +59,11 @@ Season sim follows in v2. Framework decision (SvelteKit vs React) is with the Ow
 ## Status
 
 - [x] Plan written; engine-core Rng + types ported (attributed)
-- [ ] Framework decision (Owner)
-- [ ] v1 scope confirmation (Owner)
-- [ ] sport-nfl data port (slots/flex/weights from colors/src/engine + mathlab)
+- [x] sport-nfl data port (slots/flex/weights from colors/src/engine + mathlab) — 4 port tests pass
+- [ ] Framework decision: BOTH — framework-agnostic core, SvelteKit leads, React proof-of-portability later (Owner 2026-11-01)
+- [ ] v1 scope: draft experience first, season sim v2 (Owner: "whatever you want")
+- [ ] w52 theme: lift tokens/design language via copy-paste kit, rebuild as components (Owner: free choice)
 - [ ] app shell + design tokens from w52
 - [ ] draft experience v1
 - [ ] localStorage saves
+- [ ] simulate(): PENDING Architect's game-model interface (asked 2026-11-01)
