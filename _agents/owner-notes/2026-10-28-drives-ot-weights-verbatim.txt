@@ -1,0 +1,8 @@
+Owner message, 28 Oct 2026 18:04 HST (verbatim, Owner's part only; Z.ai's replies are in the attachment, kept by the Architect's summary in COLORS-V1-INTEGRATION-PLAN.md):
+"1. No penalties
+2. Overtime should be as realistic as possible. Make sure you use the new playoff rules where both teams get a chance to score
+3. Yes but if the math does change then that's ok too
+...
+3. From Kosi to his third reply: Completely disregard his weights. Use your own.
+I don't know what to say about the missing 61 players. I looked manually at the data. I had beam and VL compare the old data with the new data and they can't figure it out. They think the gap is in the 85s, but I don't see it. Let me know if you need something else from me about this. Do you see an obvious gap in the OVR ratings somewhere or with the page numbers? But maybe it would be better if you should compare the new data set to the old data and let me know if there are some obvious names missing in the new data set that are present in the old one. Otherwise you should always use the new dataset. Several of the players' ratings have been updated due to their peroformance in the actual nfl this season."
+Decisions: drives model without penalties; overtime with current playoff rules (both teams possess); drive totals may change the existing math; Z.ai's weights are disregarded, the Architect's table governs; the new dataset is always used.

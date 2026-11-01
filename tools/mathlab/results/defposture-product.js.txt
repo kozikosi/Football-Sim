@@ -1,0 +1,29 @@
+// ===== DEFENSIVE POSTURE (aggressiveness) — paste after matchupModel's helpers; the lab runs THIS exact text. =====
+// plan.def.aggr = 'cautious' | 'balanced' | 'aggressive'. Omitted = balanced = the engine is bit-identical to before.
+// Aggressive = blitz-heavy: more sacks and takeaways, more big plays allowed, a wider range of outcomes. Cautious is the exact mirror.
+// Linear in b (-1/0/+1), EV-neutral at a league-average matchup; the choice pays off by matchup: a strong secondary survives the blitz,
+// an elite quarterback punishes it, and the wider range helps an underdog. Run yards are untouched (INFERRED simplification).
+const DAGGR_INFO = {
+ cautious:  {b:-1, label:'Cautious',   desc:'Plays soft and keeps everything in front. Fewer sacks and takeaways, fewer big plays allowed, a narrower range of outcomes.'},
+ balanced:  {b: 0, label:'Balanced',   desc:'A mix of rushing four and sending extra rushers. No change to sacks, takeaways or big plays.'},
+ aggressive:{b: 1, label:'Aggressive', desc:'Blitz-heavy. More sacks and takeaways, more big plays allowed, a wider range of outcomes.'}
+};
+const DEF_POSTURE_K = {sack:0.22, to:0.13, big:0.059, vari:0.06, cov:0.25, qb:0.20};   // takeaways INFERRED; big solved so the net is 0 at a league-average matchup
+function applyDefPosture(m, O0, D0, lg, pd, K){
+ K = K || DEF_POSTURE_K;
+ const info = DAGGR_INFO[(pd && pd.aggr) || 'balanced'], b = info ? info.b : 0;
+ if(!b) return m;
+ const cl = x => Math.max(-1.5, Math.min(1.5, x));
+ const zc = cl((applyDefPlan(D0, pd, false).coverage - applyDefPlan(lg, pd, true).coverage)/10);   // this defense's coverage vs league
+ const zq = cl(((O0.qb!=null?O0.qb:80) - (lg.qb!=null?lg.qb:80))/10);                              // the opposing QB vs league
+ const nSack = m.lamSack*(1+K.sack*b), nTO = m.lamTO*(1+K.to*b);
+ const nPass = m.expPass*(1+K.big*b*(1-K.cov*zc)*(1+K.qb*zq));
+ const dPass = PT_PASS*(nPass-m.expPass), dSack = -PT_SACK*(nSack-m.lamSack), dTO = -PT_TO*(nTO-m.lamTO);
+ const vm = m.vm*(1+K.vari*b);
+ return Object.assign({}, m, {expPass:nPass, lamSack:nSack, lamTO:nTO, vm, sd:8.0*vm, structPts:m.structPts+dPass+dSack+dTO,
+  channels:Object.assign({}, m.channels, {pass:m.channels.pass+dPass, sack:m.channels.sack+dSack, to:m.channels.to+dTO}),
+  posture:{b, zc, zq, dPass, dSack, dTO, net:dPass+dSack+dTO}});
+}
+// BUILD ANCHOR (matchupModel, last line): `return {expRush, expPass, lamTO, lamSack, structPts, channels, swings:Object.values(raw), sd:8.0*vm, vm, sT, planCost, plan:{off:po, def:pd}, skC:{...}};`
+//   -> `return applyDefPosture({ ...the same object... }, O0, D0, lg, pd);`
+// CALLERS: simulateGame sets plans.<side>.def.aggr from seasonState.dAggr[team] (user choice, else the CPU rule); nothing else changes.

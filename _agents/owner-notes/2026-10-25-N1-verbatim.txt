@@ -1,0 +1,659 @@
+Prompt to Z.ai   
+"FB and Punter are now draft slots (28 rounds). They currently contribute
+~0 modeled wins — the Owner said the underlying special-teams/FB math will be
+designed by Claude; this brief's §6 harness should include them as
+"expected ≈0" until that work lands." 
+You can go ahead and design the math now if you like and please inform everyone and update any relevant documents. 
+
+
+
+Is it possible to brighten certain logos. I understand if it'll be difficult. But the Giants logo and the Rams  logo are particuarly dark.
+
+"Undo my last pick" should just read "Undo" with that cool arrow. You can still only use it once. That should probably be made clear in the guide. 
+
+The game preview mathcup panel with the team logos and the @ sign; the team on the right' heavy border should be right alighned instead of both team's card's having a heavy border on the left. 
+"4th in the NFC · 4th in the NFC South" no words here. Just "#x <division>" is good here. You cadd a shimmering "1^st <Conference>" if they are number 1 only and that replaces the ""#x <division>""
+
+Remove this: "Same division: the first of 2 meetings, and a tiebreaker that can decide the race."
+
+ON the during the game animation, no white text. should be the light colored text that aligns with the palette." 
+
+When a score is written like "FINAL 29–34" like at the bottom of the during the game animation should have the colors for each team's score. and be written "x y-z alpha" where x is a team abberviaton like "TB" and alpha is the opponents abbreviaton and y and z are the respective scores. 
+But remove "FINAL · 29–34
+You winTurnovers · TB 0 – 2 NO" completely and just put a "YOU WON" OR "YOU LOST" WITH A SHIMMERING YOU WON AND A XHIMMERING STAR.  
+
+On the end of regular season cinematic, Remove "428 points for · 401 against · undefined" and remove this"The bracket awaits. Four quarters at a time from here" 
+
+The "Season in Words" was very glitchy. the words disappear completely and never come back. 
+
+The player cards in the Your season stats are amazing. Remove the white text. should fit the color palette. Use the same style of cards for the Regular Season Awards and Playoff Awards. 
+
+On the Playoff picture, remove the white text. All text should be in the pallete scheme. 
+
+On the player cards "#25 at RB · 17 GP" should be changed to "#x <position>" Remove "at" and 17 GP and the dot. 
+
+"Skill and defensive players are ranked by their position-specific season rating plus a small credit for team wins. Defenders get extra credit for the value of the spot they play (a lockdown corner or edge rusher counts for more than a safety or linebacker with the same box score). Offensive linemen are ranked on pancakes, rushing yards behind them and sacks allowed. Rookie of the Year and Comeback Player need age and draft-class data the database does not have; Coach of the Year goes to the team that most outperformed its own projection." Remove this completely. "Rookie of the Year" "Comeback Player of the Year" and "Coach of the Year" can all go in the glossar on the guide page. 
+
+Remove this "(0.6 wins left)" from the Draft Pick Analysis. Replace "Left value behind" with  a one or two word phrase. I can't even tell from the numbers how "left value behind" and "Costly Miss" differ. You can label all "left value behind"s as "Costly Miss"es.
+Replace "FINE" with "OK" 
+
+"Turnover margin / g 
++0.00
+league -0.00"
+Strange result. But main critique here is integers only. Dont make it per game.
+
+Literally create more space between each quarter on the during the game menu and remove horizontal lines and all lines. Everything should feel more floaty. 
+
+"2"-Pt Conversions
+100% of 5
+success rate"
+shoud be changed to "2-Pt Conversions
+x of y" Remove success rate
+
+Replace "Close games" with " IN DA CLUTCH" 
+
+REPLACE "Beaten the blocker" WITH "INDIVIDUAL SKILL" 
+REPLACE "Line broke down" WITH "SUBPAR BLOCKING"
+REPLACE "Coverage held" to "EXCELLENT COVERAGE" 
+
+IN YOU STANDING DIVSION, MAKE YOUR DIVISION PANEL EXACTLY TWICE THE SIZE OF THE OTHER PANELS. PF AND AND PA should be in integers and be totals. 
+
+I don't like the drifiting of the names in the Playoff Preview stars. I think they players should look more like the your season stats cards but just one per line and again shimmering if 90+. Remove this "arterback play
++3.3
+pass protection" 
+the font of the name shere should be Cinzel Decorative for everything in the game preview. The star emojis look dorky as is but could look cooler if they were team colored and shimmering. 
+
+In the playoffs, "Simulate wild card round" should be "Play the x" where x is the opponent team's name like it was in the reuglar season. 
+
+In intro cinematic on the playoff game is amazing. You should actually make every regular season game use that cinematic. Use the superbowl cinematic for the every playoff game and create and extra long one minute cinematic the superbowl . 
+
+The shimmer on the post review for the player of the game is good but have that maybe happen within the player cards. should list season stats (unless week 1, just OVR) in the game preivew and the game stats on the game review page.  
+
+Some post game reviews don't have a player of the game highlighed. That shouldn't be possible. There should always be shimmering player of the game after every single game. 
+
+After you lose the wild card wound or any other game of the playoff excpet the superbowl, the button to move should be "SIM PLAYOFFS" 
+
+On the season review page, "quarterback play
+#2 in the league
++16.0 vs league" This should be condensed to just "QUARTERBACK PLAY" 
+
+Rank your team by their performance by every metric and in general order of the draft board depth chart. Maybe you can click on these metric to get a small explanation (e.g. if you click on "Run Blocking" and you're very above average, you can highlight a key player "x led the team to #x" in the league" but that text should ideally fade in and out or only be hoverable. 
+
+Remove the entire long paragrpah of text from the season review page. 
+
+Remove this as well: "Team rankings are regular-season only; player totals shown here are regular season; playoff production is in the Playoff Awards panel." 
+
+Replace with "Try AGAIN TO GO 20-0?" That should be in the top right. panel 
+
+Continue with work from previous prompt I don't have this: download/z-post-blue-netlify/ or this: desktop/wt/zai/Football-Sim-Z-post-blue.html.
+
+You created the wt folder somewhere off of my computer.
+
+  Share every document and tools and sections of code and that claude can copy and paste separately and any document possible worth sharing from the work you've done in this chat and push them to the github or let me know how i can push them to the github. But I would just prefer download links for all of the files in a zip folder or however is most convenient for you to share. 
+
+On the homepage, Remove the logo on the dropdown menu for the draft position and replace the colors in the dropdown menu with that color of the other team. It looks great static except for the extra logo but once you click on "RANDOM" the colors in the dropdown menu are rosegold in stead of the selected team's color. Please make "Pick 1" and "Pick 2" etc all match the selected team's color
+
+On the draft board "All" and "None" are right aligned instead of the in the cetner of the bubble. The text in all the bubbles looks too far right. 
+
+Remove this text: "4-3 front: four down linemen and three linebackers. From 4-3 to Nickel a linebacker comes off and the Nickel comes on." 
+
+When you hover over "4-3" the user should see "4 Defensive Linemen <dot> 3 Linebackers" and when you hover over "3-4" the user should see "3 Defensive Linemen <dot> 4 Linebackers. 
+
+Currently the 3-4/4-3 toggle does nothing. I don't see the NT come on or the Linebackers switch to OLB1, ILB1, ILB2, OLB2.
+
+Revaluate window compression again. A lot of the panels paradoxically expand in size when the window is compressed when everything should try to stay in alignment but get smaller and tighter. 
+
+Replace "Use Models Weights" with "Model Weights" and "Back to My Weights with "SAVE MY WEIGHTS" This panel is visually shown it's uncklickable until the user manually changes one of the weights. Once "SAVE MY WEIGHTS " is effectively pressed, a third button should appear called "MY WEIGHTS" and "SAVE MY WEIGHTS" should beocme visually evident again that it's uncklickable until a nother manual weight is changed If the user changes another number and hits "SAVE MY WIEGHTS AGAIN" then 'MY WEIGHTS" IS ONCE AGAIN UPDATED. 
+
+You didn't creae the series of postion clusters i asked you to in Positon Rankings. These are supposed to be in th Position Rankings dropdown and they should all work with the position rankings system
+
+1
+QB
+2
+QB + CB1
+3
+QB + CB1 + DE1
+4
+QB + CB1 + DE1 + CB2
+5
+QB + CB1 + DE1 + CB2 + WR1
+6
+QB + CB1 + DE1 + CB2 + WR1 + DE2
+7
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1
+8
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2
+9
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT
+10
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel
+11
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS
+12
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1
+13
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS
+14
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1
+15
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2
+16
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C
+17
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2
+18
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1
+19
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1
+20
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K
+21
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1
+22
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1 + WR2
+23
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1 + WR2 + WR3
+24
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1 + WR2 + WR3 + RB2
+25
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1 + WR2 + WR3 + RB2 + TE2
+26
+QB + CB1 + DE1 + CB2 + WR1 + DE2 + OT1 + OT2 + NT + Nickel + SS + ILB1 + FS + OG1 + OG2 + C + ILB2 + TE1 + OLB1 + K + RB1 + WR2 + WR3 + RB2 + TE2 + OLB2"
+
+for this on the guide page "When to wait.
+A position is worth waiting on when a nearly-as-good player will probably still be there at your next pick. Take him now when the next-best option is a big step down.
+Do not forget you can flex.
+If a good lineman is available at a position you have already filled, he may still help you at another spot — the board shows his value at the spot he would actually fill, flex penalty included." Delete everything. Add in it's place "YOU CAN FLEX" 
+
+THIS should fade in and out of the screen and should be centered and with a lot more indentations (i.e the questions are their own paragraph)  "What is a flex? Every starting spot has a natural position: a left tackle plays tackle, a strong safety plays strong safety. A flex means starting a player at a spot that is not his natural position — for example, your best guard playing tackle.
+
+The flex table could use an ui upgrade and please sort the players in the draft board depth chart order. 
+
+Remove this: "Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use."
+
+This is printed twice on the guide page. The lower second version is much better and should be kept: "Who decides? You do. The math suggests the arrangement that wins the most games, and you can accept it, change any spot yourself, or deliberately play less efficiently. The computer teams always use the math's best arrangement, and their drafting weighs every flex above. You can re-arrange your lineup any time during the season.
+Who decides? You do.
+The math suggests the arrangement that wins the most games. Accept it, change any spot yourself, or deliberately play less efficiently. The computer teams always use the math’s best arrangement."
+
+Remove any menton of the star system from the guide reading the draft board dropdown. 
+
+Remove this: "Where the wins come from.
+Each spot’s value splits between its two jobs — an offensive tackle’s is mostly pass protection, a running back’s mostly the run. Composition (how ratings are built) and importance (how much the rating matters) answer different questions."
+
+I really love the formation cards for the "Base · 4-3". Let's just remove any reference to the work "BASE" though for the user. The little dots rectangles and flat on bottom round on top shapres should be used to better indicate the personell. Make the rectangles the dl, the flat on bottom round on top the linebakers, and the dots the dbs. 4-3 should have 4 rectangles, 3 flat on bottom round on tops, and 4 dots in that order.
+3-4 shows 3 rectanglees,  flat on bottoms and round on tops, and 4 dots, in that order.
+Nickel has three retangles, three flat on bottoms round on tops, and 5 dots. 
+
+Make the Focus badges "P+" "R+" and make even three identical vertical lines -- simlar to tehe three lines in your previosu badges but make all the lines the same length. 
+
+"Draft.
+Season.
+Playoffs.
+Super Bowl." remove the eriods. and Super Bowl should be shimmering. Take them out of th "Sim Guid Paneel. They should be floating above "DRAFTING WHICH POSITONS MATTER" all of these dropdown menu titels should be fully capitalized. 
+
+I think the flex table would look a lot better as some type of tree. Innovate here. Love the way everything fades in and out on the guide page. Remove "Back to Simulator" in every instance. 
+
+On the Draft board header, say the team name next tot he logo in the team colors. 
+
+"(2.24)" Shouldn't have parentsesis. Use the same cinel decorative font on the pick priority.and table cards 
+Nickel has t
+
+Why would you? Spots are not equally valuable, and sometimes the best player left is at the wrong position. A strong player at a spot worth more wins can help you even after the penalty.
+
+What does it cost? The player's rating is reduced while he plays out of position. The full rules:"
+The two default teams on the TEam Comparioson page should be the Kansas City Chiefs and the Las Vegas Raiders. 
+
+Replace "+3.69 wins above a replacement-level lineup" with " +x WINS" 
+
+ON THE POST DRAFT CINEMATIC, go a little faster on the first two transitions, but let "can you go 20-0?" linger twice as long. on the "How your draft ranks' you can show one decimal position. THE TEXT SHOULD JUST BE "SEASON" "PLAYOFFS" "SUPER BOWL"  "CAN YOU GO 20-0?" 
+
+THESE SHOULD ALL BE A LOT SMALLER, ALL ONEL LNE HORIZONTAL AT THE REST OF THE PANEL, 
+
+ON the VS. Actual NFL Teams, only the user' s team should be highlighted in his taem's color. The real nfl team with the same name should be listed in a neutral color. 
+
+"SIM REST OF SEASON" SHOUDL BE RENAMED TO "SIM SEASON" AND SHOULD BE MUTED AND IN NOW WAY ATTACTIVE TO CLICK. "PLAY THE TITANS" SHOULD  APPEAR AT THE BOTTOM OF THE TOP PANEL OR IN BETWEEN THOSE TWO PANELS. 
+
+THE LINEUPS ARE STILL EXTREMELY BROKEN. SOME OF THE COLORS ARE TOO DARK AND SOME SAY "UNDEFINED" 
+
+YOUR TEAM'S IDENITTY SHOULD BE NOT VISIBLE UNLESS CLICKED ON. 
+
+the new duringt he game animation is amazing. lists "x yds" after runs, receptions, or FGS. THE TITANS BLUE COLOR IS WAY TOO DARK. IT LOOKS LIKE TH RAMS BLUE COLOR.  THEY SHOULD BE LIGHT BLUE. 
+
+THERE STILL SOME GLITCHES WITH THE OUTPUT OF THE DURING TH GAME MENU. I GOT THIS:
+
+1Q 12:40
+KC
+KC
+Rigoberto Sanchez field goal
+FG
+0 - 3
+1Q 12:31
+KC
+KC
+Rigoberto Sanchez field goal
+FG
+0 - 6
+1Q 5:36
+TEN
+TEN
+Tress Way field goal
+FG
+3 - 6
+1Q 3:17
+KC
+KC
+TO
+3RD QUARTER
+3Q 10:26
+TEN
+TEN
+De'Von Achane run
+TD
+10 - 6
+3Q 7:30
+KC
+KC
+TO
+4TH QUARTER
+4Q 11:41
+KC
+KC
+TO
+"
+"
+Some pretty obvious glithes. Make sure you use my turnover examples of how to construct. 
+
+Quarterback — ranked #1 in the league, led by Josh Allen.
+
+Tight Ends — ranked #3 in the league, led by Mark Andrews.
+
+Weaknesses
+Wide Receivers — #30 of 32 in the league.
+
+Offensive Line — #25 of 32 in the league.
+
+Run Game — #25 of 32 in the league."
+Use Cinzel decorative here for all text.
+
+Replace " — #25 of 32 in the league." with "#x y" where where x is the ranking and y is the Position or Position Group 
+
+Remove this "8
+of 32 vs. real NFL rosters · score 83" from Your Roster. 
+
+"Unit Rankings (vs. the 32 real NFL teams)" Remove this whole section from the "YOU ROSTER" FOLLOW YOUR GUIDELINES. THE 90+ PLAYERS NAMES' SHOULD BE SHIMMERING 
+
+On rhw flex slection menu, Include first and last namees if adequate space for ehthe longest player name. If the window is smaller than that. Reduce the names to first initial and last name. Only go to only last. names unless really small (probably mobile only). I don't think you should play with the flex menu in  Remove this from the "header" "Your draft is in the books. Play the season. Coach your team to the Super Bowl."
+
+THE STARS MATCHUP NEEDS TO BE REDONE AS CARDS. 
+
+REMOVE "PLAYER OF THE GAME" FROM THE GAME REVIEWS. THE STAR STUFFICS AND SHOULD BE THE OPPOSITE COLOR IN THE TEAM'S PLAETTE 
+
+THIS IS GOOD: "The playoffs will play out without you. The draft is where next year starts." BUT INSTEAD WRITE "THE PLAYOFF SIWL PLAY OFF WITHOUT YOU
+" LOWER AND CENTERED" 
+"DRAFT AGAIN TO GO 20-0?" 
+
+"OFFESASON COMES EARLY" NEED TO BE FULLY CPAITLIZED LIKE ALL THIS TEXT. 
+
+"DELETE THIS EVERYTHWERHE STATIC PLEASE " Your draft is in the books. Play the season. Coach your team to the Super Bowl.'
+
+THE DRAFT REVIEW SHOULDNT BE ALL COSTLY MISSES"Let's say a "COSTLY MISS" IF OFF BY .10 WINS (or priority -- whateve ryou're using here" . of by .50 wins Clarify what that + number is. 
+
+This button: "Try again to go 20-0?"  on the last page should just be "20-0?"  Remove the higher “SEASON REVEIW” ON THE SEASON REVIEW PAGE. THERE ARE TWO ON TOP OF EACH OTHER.   Looks like Priority is completely broken on the draft. Board. Please try to fix.   Align table  cards with the size of the other bubbles. Around it.  
+You don’t need a horizontal scroll for the players cards on desktop. 
+  “R1.31 (#31) “ This on the draft board. Change to just “R1.31” Get rid of the other ranked numbering.
+
+On the post-draft cinematic, the “20-0?” Should be perfectly centered and linger on the screen after “Can you go” disappears for at least three seconds. 
+
+Create a cinematic between the homepage and the draft that slowly fades in and out on “WELCOME’ and then “TO THE DRAFT” appear and linger “ and then only “DRAFT” stays and lingers on the screen. “Welcome” and “Draft should be equidistant from the center of the window ; welcome slightly to the left and dragt slightly to the right.   ON the homepage, the Random box should match the color of whatever team is selected on the other dropdown menu. Remove the pink from "Light" and "Dark from the footer 
+
+this at the bottom of the page needs to be completely removed, "see guide for details 20-0" 
+
+Final page "Try again to 20-0?" should be "Try again to go 20-0?"
+
+Playing as the Saints this time. You chose a stange blue in the dynamic bubbles that isn't in the saints color palette at all. Make sure the test is visible on all thee dynamic buttons as well. You can't read "PICK ORDER" or "DEPTH CHART" with the way the button is colored. 
+
+Expand using Cinzel decorative even more all over the draft board. Player names, positions. Everything including the footer. 
+
+Move the colored bubbles to under the OVR number and only for players with 85+. Expand the size of the logos a little bit to fill in that remaining gap. 
+
+The "Draft" button the Saints is incredibly immaculate. Just amazing work.  fIf you can package this effect for everyone on the council to use, i'd really apprecaite it and stress that it and the "20-0?" shimmer sweep are the owne'r f avorite examples of style goals. 
+
+Remove the arrow from when you sort by OVR or WINS or PRIORITY. Just remove that visual arrow. Unnecessary. 
+
+When you click on a team icon, like the saints, the draft board should sort by saints only and clicking a saint icon again should resume how the board should be sorted in the absence of that team only restriction. 
+
+Remove this text: "On the clock — Round 1 of 26, Pick 8 (overall 8 of 832)" 
+
+Remove this text "Pick priority, The CPU teams are picking — your recommendations refresh when you are on the clock" and this panel entirely when the cpu is picking. 
+
+"100 SEASONS" is way better than "100 SEASONS SIM." Keep "100 SEASONS" 
+
+And again, the footer -- "SIMULATOR, MADDEN RANKINGS, ETC" -- needs to stay at the bottom of the page, where the bottom "20-0" has been. Lets make everything capitalized on that footer menu like i spelled it in this paragraph. Any One or two words button should be fully capitalized. 
+
+The dropdown menu of the teams is amazing but the color is too dark on several of the teams. I can't read "New Englad Patriots for example." Expand the box for the bigger team names so that every team name is alwasy on only one line. As much as possible get the other dropdown menu of the pick order position to look just like the teams drop down menu. If the chiefs are selected, the dropdown menu of the picks should be red. 
+
+YOu did an awesome job extending the header to the edge of the screen but the static "20-0" and the moving "20-0" also need to extend to the edge of the screen. 
+
+The whole panel that the two dropdown menus and the draft button sit in shouldn't have it's own scrollbar. Remove that. 
+
+Draft Page.
+
+I don't think it needs a horizonal slide bar. Maybe on mobile only? All the advice I've given you has been on desktop by the way. I haven't looked at mobile at all. 
+
+On the "100 Seasons", when this appears on the ranking "1. Chiefs" just list the teams name or maybe just logo. Remove the numbered list. If you keep the team names, then you need to give them enough space. Don't compress commanders under the bar. I think the logos would problaby look better here though. The bars are too long on this whole page. they routinely cover up the text on the right. 
+
+Remove this text: "Full seasons (17 games + playoffs) with your drafted rosters. Back to season takes you back to your league." 
+
+Replace "REALISM CHECK" with "STATS" 
+
+"11 personnel
+run-heavy 53.6%balanced 48.9%pass-heavy 47.0%" This is way too jumbled up. trim it down
+
+"11 personnel
+RUN+ x
+EVEN x
+PASS+ x"  Apply this formatting to most of the personnel mentioning. "RUN+" "PASS+" and "EVEN". Most of the time I'd prefer if you just leave off "EVEN' completely like on the game preview game plan section (e.g "11 personnel, balanced"  should be replaced by just "11 personnel" dont include Even here). But here for listing the stats even is better than nothing. 
+
+Awesome formatting of the page overall though. Add any more stats in similarly sized and formatted bubbles at the bottom of the page. 
+
+": The Cardinals are a balanced offense team by nature, and the model expects 12 personnel, balanced this week — neither the run nor the pass has a clear edge in this matchup, so a balanced mix is the safest call and the pair of tight ends (Cole Kmet 78 and Darien Porter 68) can do the job. The Saints are a pass-heavy offense team by nature, and the model expects 11 personnel, pass-heavy this week — the opposing secondary ranks #25. Defensively, expect the Cardinals in Nickel · pass-defense (a nickel defense focused on the pass) and the Saints in Nickel · pass-defense (a nickel defense focused on the pass).
+
+Offense and defense are chosen separately, and every coach (you included) is scored against what the opponent is expected to do; nobody reacts to a plan they cannot see. A trailing team opens it up late. Your coaching philosophy is still open on the Preseason page. The Guide tab has the math of each choice." 
+This section needs to be visually separated into the two teams with their advantages and disadvantages (e.g. Strong Tight Ends or Strong Running Backs or Weak Tight Ends) Remove the entire paragraph structure. The "Presason Page" link should be in the team's color palette. 
+
+A random blue "#8" appeared on the opponent scouting report for the arizona cardinals under "Receivers & Tight End" which should be renamed "RECEIVING CORPS" The blue #8 is a glitch. Please fix. should be red or gold. 
+
+On the Matchup Math, "72.0
+#32" remove the ranking and leave the number which should just be an integer no decimal.  The integers for the team on the right should be right aligned. 
+
+On matchup math, remove all of these: "Ground game
+−0.6
+−3.0
+Passing game
++3.5
+−1.1
+Turnovers
++0.6
+−0.1
+Sacks
+−0.6
++0.6
+Kicking
+"Remove these
+
+Change "Your Schedule & Results (tap a played week for the recap)" to just "SCHEDULE"
+Incredible job on the design. Seriously. 
+
+In the Standings, move the W-L to the left side of the teams names. Change "Standings (your division first)" to "STANDINGS"
+
+Back to the Lineups on the Game Preview page,  make sure you're applying this rule: "shimmer sweep — an animated gradient sheen over the text (the same recipe as the 20-0). It's now a reusable style: lineup winners, every 85+ player, game-ball stars, and card names all wear it in their team's color." 
+
+During the game animation
+
+"1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO"
+A lot of fixes here. Every TD should have a shimmering "TD" on that line and FGs should also appear in the same spot in the team's color but not shimmering unless it's a game winning FG."
+1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO
+
+ For "Offensive line — run blocking" and "Offensive line — pass protection" rename "RUN BLOCKING" and "PASS PROTECTION". Quarterback should be first in this list. Sort by the depth chart on the draft for all of the positions here. Remove "(Front Seven)"
+
+"How your draft ranks
+All 32 simulated rosters, best to worst. Click any row for its full roster." This should fade in and out and be a lot shinier.
+
+Remove "-- Fantasy Draft" and "-- Actual Roster" User will know by the tab he's on.
+
+This rule is not present on "YOUR ROSTER" tab; "Shimmer sweep...It's now a reusable style: lineup winners, every 85+ player, game-ball stars, and card names all wear it in their team's color." Please make sure this is true here. 
+
+On the button "START SEASON" rename to "SEASON" a button should also appear saying "SEASON" next to "NEW DRAFT" 
+
+"How your draft ranks
+All 32 simulated rosters, best to worst. Click any row for its full roster." 
+
+This including the table should fade in under the button as you scroll down. Remove the horizontal lines from the HOW YOUR DRAFT RANKS table. 
+
+Remove all of this on this game preview page "quarterback play
++2.9
+pass protection
+−1.9
+ARICardinals
+Saints
+NO" 
+NO need for the second set of Team names. 
+
+The Lineup board is beautiful but there are a lot glitches with getting the right players in the right spots with their OVR ranking. The ratings shouldn't be in parentheses. and for exmaple the cardinals WR1 isn't present. Every slot on for the simulated drafted positions in the season should be filled. "OFFENSE" and "DEFENSE" on the lineups menu should be center aligned. 
+
+"Ratings shown are effective ratings — players flexed out of position carry their penalty." This should be way smaller and fade in and out. 
+
+During the game animation:
+
+"1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO"
+
+A lot of changes here. Expand the whole panel about 50%. 
+A shimmering "TD" in that team's color should appear on whatever line has a Touchdown scored. A "FG" should appear on the same place on FGs also in that team's color but not shimmering. Turnovers shoudld be more "x int y" or "x fum" "y FF" "z FR" or if it's a strip sack and a recovery by the same player then write "x strips y & x recovers"  and you clearly glitched. and just printed 'Touchdown' in the 3rd Quarter and you didn't print the time on all the turnovers. Don't write out "Touchdown" or "Turnover" here" 
+Remove "+7" and write the score with a more standard spaced "x - y" 
+
+Remove this from the bottom: "Turnovers · ARI 2 – 1 NO"  

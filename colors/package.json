@@ -1,0 +1,10 @@
+{
+  "name": "colors",
+  "private": true,
+  "type": "module",
+  "description": "Colors v1 (20-0): the Architect's build. Source is TypeScript modules; build/build.mjs emits one self-contained HTML file. No runtime dependencies; TypeScript is used only to strip types at build time.",
+  "scripts": {
+    "test": "node --test --experimental-strip-types \"test/*.test.ts\"",
+    "build": "node build/build.mjs"
+  }
+}

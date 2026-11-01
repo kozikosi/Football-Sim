@@ -1,0 +1,986 @@
+Prompt to Claude  Continue  More random guidelines to z.ai 
+
+ON the homepage, the Random box should match the color of whatever team is selected on the other dropdown menu. Remove the pink from "Light" and "Dark from the footer 
+
+this at the bottom of the page needs to be completely removed, "see guide for details 20-0" 
+
+Final page "Try again to 20-0?" should be "Try again to go 20-0?"
+
+Playing as the Saints this time. You chose a stange blue in the dynamic bubbles that isn't in the saints color palette at all. Make sure the test is visible on all thee dynamic buttons as well. You can't read "PICK ORDER" or "DEPTH CHART" with the way the button is colored. 
+
+Expand using Cinzel decorative even more all over the draft board. Player names, positions. Everything including the footer. 
+
+Move the colored bubbles to under the OVR number and only for players with 85+. Expand the size of the logos a little bit to fill in that remaining gap. 
+
+The "Draft" button the Saints is incredibly immaculate. Just amazing work.  fIf you can package this effect for everyone on the council to use, i'd really apprecaite it and stress that it and the "20-0?" shimmer sweep are the owne'r f avorite examples of style goals. 
+
+Remove the arrow from when you sort by OVR or WINS or PRIORITY. Just remove that visual arrow. Unnecessary. 
+
+When you click on a team icon, like the saints, the draft board should sort by saints only and clicking a saint icon again should resume how the board should be sorted in the absence of that team only restriction. 
+
+Remove this text: "On the clock — Round 1 of 26, Pick 8 (overall 8 of 832)" 
+
+Remove this text "Pick priority, The CPU teams are picking — your recommendations refresh when you are on the clock" and this panel entirely when the cpu is picking. 
+
+"100 SEASONS" is way better than "100 SEASONS SIM." Keep "100 SEASONS" 
+
+And again, the footer -- "SIMULATOR, MADDEN RANKINGS, ETC" -- needs to stay at the bottom of the page, where the bottom "20-0" has been. Lets make everything capitalized on that footer menu like i spelled it in this paragraph. Any One or two words button should be fully capitalized. 
+
+The dropdown menu of the teams is amazing but the color is too dark on several of the teams. I can't read "New Englad Patriots for example." Expand the box for the bigger team names so that every team name is alwasy on only one line. As much as possible get the other dropdown menu of the pick order position to look just like the teams drop down menu. If the chiefs are selected, the dropdown menu of the picks should be red. 
+
+YOu did an awesome job extending the header to the edge of the screen but the static "20-0" and the moving "20-0" also need to extend to the edge of the screen. 
+
+The whole panel that the two dropdown menus and the draft button sit in shouldn't have it's own scrollbar. Remove that. 
+
+Draft Page.
+
+I don't think it needs a horizonal slide bar. Maybe on mobile only? All the advice I've given you has been on desktop by the way. I haven't looked at mobile at all. 
+
+On the "100 Seasons", when this appears on the ranking "1. Chiefs" just list the teams name or maybe just logo. Remove the numbered list. If you keep the team names, then you need to give them enough space. Don't compress commanders under the bar. I think the logos would problaby look better here though. The bars are too long on this whole page. they routinely cover up the text on the right. 
+
+Remove this text: "Full seasons (17 games + playoffs) with your drafted rosters. Back to season takes you back to your league." 
+
+Replace "REALISM CHECK" with "STATS" 
+
+"11 personnel
+run-heavy 53.6%balanced 48.9%pass-heavy 47.0%" This is way too jumbled up. trim it down
+
+"11 personnel
+RUN+ x
+EVEN x
+PASS+ x"  Apply this formatting to most of the personnel mentioning. "RUN+" "PASS+" and "EVEN". Most of the time I'd prefer if you just leave off "EVEN' completely like on the game preview game plan section (e.g "11 personnel, balanced"  should be replaced by just "11 personnel" dont include Even here). But here for listing the stats even is better than nothing. 
+
+Awesome formatting of the page overall though. Add any more stats in similarly sized and formatted bubbles at the bottom of the page. 
+
+": The Cardinals are a balanced offense team by nature, and the model expects 12 personnel, balanced this week — neither the run nor the pass has a clear edge in this matchup, so a balanced mix is the safest call and the pair of tight ends (Cole Kmet 78 and Darien Porter 68) can do the job. The Saints are a pass-heavy offense team by nature, and the model expects 11 personnel, pass-heavy this week — the opposing secondary ranks #25. Defensively, expect the Cardinals in Nickel · pass-defense (a nickel defense focused on the pass) and the Saints in Nickel · pass-defense (a nickel defense focused on the pass).
+
+Offense and defense are chosen separately, and every coach (you included) is scored against what the opponent is expected to do; nobody reacts to a plan they cannot see. A trailing team opens it up late. Your coaching philosophy is still open on the Preseason page. The Guide tab has the math of each choice." 
+This section needs to be visually separated into the two teams with their advantages and disadvantages (e.g. Strong Tight Ends or Strong Running Backs or Weak Tight Ends) Remove the entire paragraph structure. The "Presason Page" link should be in the team's color palette. 
+
+A random blue "#8" appeared on the opponent scouting report for the arizona cardinals under "Receivers & Tight End" which should be renamed "RECEIVING CORPS" The blue #8 is a glitch. Please fix. should be red or gold. 
+
+On the Matchup Math, "72.0
+#32" remove the ranking and leave the number which should just be an integer no decimal.  The integers for the team on the right should be right aligned. 
+
+On matchup math, remove all of these: "Ground game
+−0.6
+−3.0
+Passing game
++3.5
+−1.1
+Turnovers
++0.6
+−0.1
+Sacks
+−0.6
++0.6
+Kicking
+"Remove these
+
+Change "Your Schedule & Results (tap a played week for the recap)" to just "SCHEDULE"
+Incredible job on the design. Seriously. 
+
+In the Standings, move the W-L to the left side of the teams names. Change "Standings (your division first)" to "STANDINGS"
+
+Back to the Lineups on the Game Preview page,  make sure you're applying this rule: "shimmer sweep — an animated gradient sheen over the text (the same recipe as the 20-0). It's now a reusable style: lineup winners, every 85+ player, game-ball stars, and card names all wear it in their team's color." 
+
+During the game animation
+
+"1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO"
+A lot of fixes here. Every TD should have a shimmering "TD" on that line and FGs should also appear in the same spot in the team's color but not shimmering unless it's a game winning FG."
+1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO
+
+ For "Offensive line — run blocking" and "Offensive line — pass protection" rename "RUN BLOCKING" and "PASS PROTECTION". Quarterback should be first in this list. Sort by the depth chart on the draft for all of the positions here. Remove "(Front Seven)"
+
+"How your draft ranks
+All 32 simulated rosters, best to worst. Click any row for its full roster." This should fade in and out and be a lot shinier.
+
+Remove "-- Fantasy Draft" and "-- Actual Roster" User will know by the tab he's on.
+
+This rule is not present on "YOUR ROSTER" tab; "Shimmer sweep...It's now a reusable style: lineup winners, every 85+ player, game-ball stars, and card names all wear it in their team's color." Please make sure this is true here. 
+
+On the button "START SEASON" rename to "SEASON" a button should also appear saying "SEASON" next to "NEW DRAFT" 
+
+"How your draft ranks
+All 32 simulated rosters, best to worst. Click any row for its full roster." 
+
+This including the table should fade in under the button as you scroll down. Remove the horizontal lines from the HOW YOUR DRAFT RANKS table. 
+
+Remove all of this on this game preview page "quarterback play
++2.9
+pass protection
+−1.9
+ARICardinals
+Saints
+NO" 
+NO need for the second set of Team names. 
+
+The Lineup board is beautiful but there are a lot glitches with getting the right players in the right spots with their OVR ranking. The ratings shouldn't be in parentheses. and for exmaple the cardinals WR1 isn't present. Every slot on for the simulated drafted positions in the season should be filled. "OFFENSE" and "DEFENSE" on the lineups menu should be center aligned. 
+
+"Ratings shown are effective ratings — players flexed out of position carry their penalty." This should be way smaller and fade in and out. 
+
+During the game animation:
+
+"1ST QUARTER
+1Q 8:57
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–7
+2ND QUARTER
+2Q 11:04
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–14
+2Q
+ARI
+ARI
+Turnover
+TO
+2Q 3:10
+NO
+NO
+Breece Hall run
++7
+0–21
+2Q 2:59
+NO
+NO
+Matthew Stafford to Xavier Worthy
++7
+0–28
+2Q 1:52
+NO
+NO
+Matthew Stafford to Rashid Shaheed
++7
+0–35
+3RD QUARTER
+3Q 14:15
+NO
+NO
+Touchdown
++7
+0–42
+3Q
+NO
+NO
+Turnover
+TO
+3Q 7:04
+ARI
+ARI
+Touchdown
++7
+7–42
+3Q 6:27
+ARI
+ARI
+Chris Boswell field goal
++3
+10–42
+3Q 5:05
+ARI
+ARI
+Chris Boswell field goal
++3
+13–42
+4TH QUARTER
+4Q
+ARI
+ARI
+Turnover
+TO
+★
+FINAL · 13–42
+You winTurnovers · ARI 2 – 1 NO"
+
+A lot of changes here. Expand the whole panel about 50%. 
+A shimmering "TD" in that team's color should appear on whatever line has a Touchdown scored. A "FG" should appear on the same place on FGs also in that team's color but not shimmering. Turnovers shoudld be more "x int y" or "x fum" "y FF" "z FR" or if it's a strip sack and a recovery by the same player then write "x strips y & x recovers"  and you clearly glitched. and just printed 'Touchdown' in the 3rd Quarter and you didn't print the time on all the turnovers. Don't write out "Touchdown" or "Turnover" here" 
+Remove "+7" and write the score with a more standard spaced "x - y" 
+
+Remove this from the bottom: "Turnovers · ARI 2 – 1 NO" 
+ From Claude "Z.ai’s handoff is on GitHub, but his prototype code and your logo folder are not, so I’ve built a one-command tool to publish them." 
+Please make sure you publish latest version of the main html and any useful piece of code or tool or anything that Claude or the Council could use. 
+
+On the final post-playoff review page, the "Re-Run" button shouldn't appear unless you actually Start a "100 Season Sim". Also this should always be written as "100 Season Sim" just like that from now on and wherever it is mentioned on the project or site. The 100 Season page needs the same thoroughness of design principles applied to it as well as you've appleid elsewhere. I won't even go into details until I see a much improved version from you. Obviously way less white text and more graphics.
+
+By the footer I mean where it says "Simulator, Madden Rankings, Player Browser etc." That panel should always be on the bottom of the page and remove the panel lines. The start button should be about half of the button's length above the centerpoint of the window. On the homepage, The two  dropdown menus should be just slightly higher above the draft button than it currenlty is.
+
+The 20-0 dynamic header is again amazing but it needs to be extended all the way to the edges of the window in every view. It is currently at a fixed distance. Expand it to the edges of the screen. On the numbers that are moving, 
+
+On Madden Rankings, i love the colors and the way the text fades in to the page. Have all text fade in even slower. At least half speed but as slow as possible basically without it being obnoxious. Remove the emojis from the "Cant Run Badge" and all the badges. The badges pane should be much smaller and moved to the bottom of the page under the weights.
+
+Remove this text: "he default is the model weights: what each spot is really worth in wins, scaled so the biggest spot (QB) is 700 and rounded to the nearest 5. Edit any number to build your own set; the buttons switch between the two."
+
+The shape of the player browser is amazing. My only critique is please have the players scrollable within their own panel. Remove the static pages and the next feature. But keep the players like that in their own panel. 
+
+This at the bottom of the page "see guide for details 20-0" Remove in every instance. Remove the "See guide for details" on the home page as well. 
+
+Remove every instance of "Back to the Simulator" 
+
+Stars above 90+ on the positon rankings page should be shimmering like "20-0?" Players 85+ should be slightly more vibrant but not fully shimmering. 
+
+Remove this text in every instance "On your current weights, Baltimore Ravens grades 1.33 points ahead of Kansas City Chiefs. Kansas City Chiefs holds the edge at 11 starting spots to Baltimore Ravens's 14, and wins 6 of 14 unit comparisons to Baltimore Ravens's 8." from the Team Comparison page. Remove the colored boxes around the players and instead apply the same rules about players' names: Stars above 90+ on the positon rankings page should be shimmering like "20-0?" Players 85+ should be slightly more vibrant but not fully shimmering. 
+
+"82.92 vs 84.25" Let's only use integers on the entire website unless there Align the tow numbers better with the vs directly over the position nemaes below and the numbers aligned with the players below them. 
+
+Remove this "Guide
+Short reference sections for the terms the sim uses. Click through only what you need." whole panel from the Guide page. 
+
+in the Sim Guide panel remove the numbered list and Reduce it to Draft, Season, Playoffs, Super Bowl. 
+
+instead of that text in "Draft which positions matter" let's create a beautiful graphic of the positions ranked. I want you to reweight the players based on the analysis appended at the bottom of this prompt. Rules about for your reweight. The top position can be 1000 or any integer base with a last number 0 below. All numbers should be base ten unless having the last didgit as a 5 makes the weight math a lot more accurate. I don't know if you've adjusted the math engine yet. I'd like you take a shot at it, but if you feel more comfortable with Claude editing the math engine, that is fine. You  let me know. Obviously changing the numbers changes the math of all the games a lot. Claude and the council have worked on these problems and their work should be easily accessible if you want to consult the work of your peers before tackling this problem. If this seems to big to tackle right now with all of the other ui/ux requests, create a document prompting anyone to tackle the complete problem of rebalancing the weights and visualizing it beautifully. I can always prompt you back again on it later. If you feel like you'd like to tackle it now, go ahead. 
+
+Remove all this text: "Draft. Choose your team and where you pick. When you are on the clock, pick from the board. Every player shows a Wins number and a Priority number (explained below), and the computer teams draft with the same math.
+Preseason. Choose your coaching philosophy (how you like to play) and decide where each of your players lines up, including any flexes.
+Play the season. Season, Playoffs, Super Bowl. Can you go 20-0? Seventeen games, a 14-team playoff — leave your game plan on Auto or set it yourself each week.
+Review. Game recaps, awards, advanced stats (what caused sacks and big runs), a critique of your picks, and a 100-season simulation that shows how much of your result was skill and how much was luck.
+Drafting: which positions matter
+The goal is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (the number in brackets is the extra wins per season from upgrading that spot from a 70 to a 90):
+
+Franchise-changing (2.5 wins from a 70→90 upgrade): Quarterback.
+High value (1.4–1.0 wins from a 70→90 upgrade): Cornerback 1, Edge rusher 1, Cornerback 2, Wide receiver 1, Edge rusher 2, Offensive tackle 1, Offensive tackle 2.
+Solid value (0.9–0.7 wins from a 70→90 upgrade): Defensive tackle 1, Cornerback 3 (nickel), Strong safety, Middle linebacker (MIKE), Free safety, Guard 1, Guard 2, Center, Weakside linebacker (WILL), Tight end 1, Defensive tackle 2, Kicker.
+Role players (0.7–0.4 wins from a 70→90 upgrade): Running back 1, Wide receiver 2, Wide receiver 3.
+Depth spots (0.2–0.1 wins from a 70→90 upgrade): Running back 2, Tight end 2, Strongside linebacker (SAM).
+In short: quarterback is in a class by itself. After that, the edge rushers and cornerbacks are the most valuable defenders, and the offensive tackles and top wide receiver are the most valuable non-quarterbacks on offense. Safeties and interior linemen are solid; running backs, tight ends and linebackers matter less than most fans expect.
+
+When to wait. A position is worth waiting on when a nearly-as-good player will probably still be there at your next pick. It is worth taking now when the next-best option is a big step down, or when you expect the computer teams to take the good ones before you pick again. The Priority column measures exactly that (see “Reading the draft board” below).
+
+Do not forget you can flex. If a good lineman is available at a position you have already filled, he may still help you at another spot. The board shows each player's value at the spot he would actually fill, flex penalty included."
+
+Most of hthe reading the draft board text is actually good but make it a lot more beautiful and have it fade in and out of the screen, again extremely slowly. REmove the Stars section -- we are completely removing that feature from the site. 
+
+The Flexing players, explained text is good but it doesn't need to be it's own drop down menu. I think the guide page shouldn't have drop this section dropdowned. It should appear right under the beautiful graphic of the  positon rankings and flexes and it should fade in and out under the graphic as an explantion kind of centered on the screen stars wars style. 
+
+I don't know if i included it in my other rules, but offensive lineman and QBs can play RB. Both -6.  QBs can play WR for -6. 
+
+This, "ho decides? You do. The math suggests the arrangement that wins the most games, and you can accept it, change any spot yourself, or deliberately play less efficiently. The computer teams always use the math's best arrangement, and their drafting weighs every flex above. You can re-arrange your lineup any time during the season." should also fade in and out somwhere
+
+This "Where the wins come from splits the spot's total wins between its two jobs. For an offensive tackle, “77% pass · 23% run” means about three-quarters of his value comes from protecting the quarterback and a quarter from blocking for the run. Pass protection is worth more than run blocking per rating point, which is why the split leans pass.
+Share of each team rating it feeds shows how big a slice of each team-wide rating this one spot is. “Pass protection 21% · run blocking 18%” means the tackle makes up about a fifth of the pass-protection rating and a bit less of the run-blocking rating, because five linemen (and for run blocking, a tight end) share each rating. This number is about composition (how the ratings are built); the other is about importance (how much the rating matters for winning). That is why the two sets of percentages do not match.
+Tight ends help block for the run, running backs add value as pass catchers, and cornerbacks and free safeties each contribute roughly 10% of their value stopping the run." can be shortened and should fade in and out of the bottom of the player cards
+
+The personnel cards shouldn't be cards. They could be more boxes akin to schedule boxes veritcally aligned like 
+"11
+RB 1 
+TE 1 
+WR 3" 
+
+Completely remove the "What it means" 
+
+Remove all this text "What each style means
+Offensive styles
+Balanced offense — One back, one tight end and three receivers on the field with about 4 runs in every 10 plays.
+Run-heavy offense — One back, one tight end and three receivers on the field and you hand the ball off far more often: fewer turnovers, a narrower range of outcomes, the biggest payoff from a strong line and backs.
+Pass-heavy offense — One back, one tight end and three receivers on the field and you throw much more: it pays off when the quarterback, receivers and protection beat the defense, at the price of more sacks and turnovers.
+Balanced offense with two tight ends — One back, two tight ends and two receivers on the field with about 4 runs in every 10 plays.
+Run-heavy offense with two tight ends — One back, two tight ends and two receivers on the field and you hand the ball off far more often: fewer turnovers, a narrower range of outcomes, the biggest payoff from a strong line and backs.
+Pass-heavy offense with two tight ends — One back, two tight ends and two receivers on the field and you throw much more: it pays off when the quarterback, receivers and protection beat the defense, at the price of more sacks and turnovers.
+Balanced offense with three tight ends — One back, three tight ends and one receiver on the field with about 4 runs in every 10 plays.
+Run-heavy offense with three tight ends — One back, three tight ends and one receiver on the field and you hand the ball off far more often: fewer turnovers, a narrower range of outcomes, the biggest payoff from a strong line and backs.
+Pass-heavy offense with three tight ends — One back, three tight ends and one receiver on the field and you throw much more: it pays off when the quarterback, receivers and protection beat the defense, at the price of more sacks and turnovers.
+Balanced offense with two backs — Two backs, one tight end and two receivers on the field with about 4 runs in every 10 plays.
+Run-heavy offense with two backs — Two backs, one tight end and two receivers on the field and you hand the ball off far more often: fewer turnovers, a narrower range of outcomes, the biggest payoff from a strong line and backs.
+Pass-heavy offense with two backs — Two backs, one tight end and two receivers on the field and you throw much more: it pays off when the quarterback, receivers and protection beat the defense, at the price of more sacks and turnovers.
+Balanced offense with two backs and two tight ends — Two backs, two tight ends and one receiver on the field with about 4 runs in every 10 plays.
+Run-heavy offense with two backs and two tight ends — Two backs, two tight ends and one receiver on the field and you hand the ball off far more often: fewer turnovers, a narrower range of outcomes, the biggest payoff from a strong line and backs.
+Pass-heavy offense with two backs and two tight ends — Two backs, two tight ends and one receiver on the field and you throw much more: it pays off when the quarterback, receivers and protection beat the defense, at the price of more sacks and turnovers.
+Defensive styles
+Base defense — Four down linemen and three linebackers. Stronger against the run, a little thinner in pass coverage.
+Base defense focused on the run — Base personnel with the safeties and linebackers committed to stopping the run. The most predictable look, so offenses adjust to it.
+Base defense focused on the pass — Base personnel that plays more pass coverage and rushes four. Rarely the right call.
+Nickel defense — Five defensive backs: the third cornerback replaces a linebacker. Better in coverage, a little softer against the run. The modern default.
+Nickel defense focused on the run — Nickel personnel, but the safeties and linebackers play downhill to stop the run and attack ball carriers behind the line.
+Nickel defense focused on the pass — Nickel personnel that gives up some run defense to take away the pass. Predictable, so it pays a small penalty." 
+
+Add this:  A visualization of these positions moving in and out of the personnel packages:  Base, 4-3, 3-4 (a DT comes off for a linebacker) and explain that Nickel takes off a LB and put puts on a CB.  if you can  visualize different kind of badges that shows that it's nickel with a pass protection emphasis or a run defense empahsis. Should be easy to produce two badges within the team colors or the homepage colors that indicate Pass vs Run empahasis vs Balanced. Dont write out "Balanced in it's entirety" Think of a symbol or badge or something more visual.  
+
+Remove this text: "Auto (recommended) — each week the model picks the best plan from both rosters. It never reacts to a plan it cannot see, and it opens up the offense late when trailing.
+Custom — you lock in your own personnel, strategy and defense every week." 
+
+You can keep thsi but it should float in instead of being at the bottom of a dropdown: "Coaching philosophy — your default style on offense and defense, set on the Preseason page. If you leave it on Auto, the math picks the style that does best for your roster against an average team. Opponents scout your philosophy, and the recaps point out when you stray from it."
+
+"(a built-in cost of 0.2–0.5 points)" This should be written as "-x" negative numbers. 
+
+IN general these badges are great but remove the white text and make it less boxy. 
+
+Changes "Football and site terms" to "Glossary" and brainstorm here if yo'd like to add any more entries. Anything a twelve year old who has only watchd the super bowl once wouldn't know that is a term anywhere on the site. Noramlzie the color of the text. Not so white.
+
+ON the draft board:
+
+Center the logos above the three color bubbles better. The logos look right aligned now
+
+ Use the stylitic font i like for every player name like you have on the homepage start button. NO white text anywhere. The numbers and the text on the draft board should fit the color palette of the selected team. You should be able to click on any number and it will sort the table by that number. Make the "Draft" buttons a little more dynamic than static. I like how it maybe the top choices Draft buttons should be shimmering. Be careful with some of the teams that the text isn't too dark. For instance when you highlight the draft button the ravens, the purple is almost so dark that you can't read the button at all. 
+
+"Your Roster
+Pick orderDepth chart" These shouldnt be so vertical. they should all be on one line or speareate lines if they need them to fit more beautifully. Give a little bit more a gap between offense and defense and special teams on the "Your Roster" 
+
+In the "Search available" box, just have it say "Search". The One Table/Position Cards should be renamed " Table / Cards "and displayed like that with both clickable and you can click on each to switch to each
+
+Remove "Sort:" from the whole menu. should all be one word. "OVERALL, PRIORITY, WINS, GONE, NAME, POSITION, TEAM" 
+
+The "QB x/y" bubbles need to be redesigned and made a lot more beautiful. If you can think of a graphical way to show all or none than replace that over having the actualy words there but idk. 
+
+Sorting by position should be in the order of the positions in "Your roster" on the side panel. 
+
+REmove this "Drafting as" from the top panel on the draft page. 
+
+These two "LB3 / SAM" and "CB3 / Nickel" should just be written from now on as "SAM" or "Nickel" but especially on the "your roster" if you move your cursor over those two words, "Strong Side Linebacker" and "CB3" appear, repectively. If you hover over "WILL" " 'It should say "Weak Side Linebacker." If you hover over "MIKE" it should say "Middle Linebacker." for every other position a hover should say the positon name in full english. For example, "QB" on the hover says "Quarterback" and "RB1" on the hover says "Running Back 1" and so on. These hover explanation should aslo happen if you hover over the position abbreviations on the draft board in under positions or fill. "ILB1"  should reald "Interior Linebacker 1" Place the 3-4 or 4-3 toggle by your roster or where "Search" currently is and move search to the very right.
+
+Remove the change button. Instead you can click on the fills position directly to change it. 
+
+Draft Review Page: 
+
+When the draft finishes, you should have an animation like during the game animation where in the center of the page, this text super slowly fades in, one at a time. with the previous sentence completely fading before the next one appears. 
+"Play the season. 
+Coach your team to the Super Bowl. 
+Can you go 20-0?" 
+
+Remove this text in the top left, "Draft Complete" 
+
+
+the Start Season Button needs to be  centered and under it glimmering should be 'Can you go 20-0?" 
+
+Remove "Run" from "100 SEASON SIM" It should be up next to "Start a new draft..." which you should replace with "NEW DRAFT." All the words on the tabs should be fully capitalized.
+
+Apply the critiques and guidance from the TEAM COMPARISON page on the footer to this team comparison menu as well. 
+
+Remove this text: "Every Starter, Graded vs. the League"
+
+remove this text from the top of Your roster page "(81.14, #18 of 32 vs. real NFL rosters)"  visualize it somewhere else on the page. Leave the "Overall Grade" but remove the colon. Keep the colored letter score. Remove the horizontal line from the main roster table. 
+
+Remove the "Vs Siulated Teams tab" The comparison is already present on the eaosn button. 
+
+"Strengths
+No unit cracks the league top 8.
+
+Weaknesses
+Running Backs — #32 of 32 in the league.
+
+Run Game — #31 of 32 in the league.
+
+Offense — #28 of 32 in the league." 
+Definitely visualize this information here but again no white text anywhere on the site and the purple (or whatever team's color -- i'm on the ravens right now) coloring on the position groups should be neutral 
+
+Remove the "type" category on the simulated teams comparison and "CPU draft" but leave "You" but make it shimmer 
+
+"How your draft ranks
+All 32 simulated rosters, best to worst. Click any row for its full roster." this text should fade in and out of the page like so much of the text that i don't alway mention but the fading in and out should appear almost everywhere but esepcially for  titles and subtitles 
+
+Preason Page: 
+
+"Selected: Balanced offense (11 personnel, balanced) · Nickel defense focused on the pass (Nickel · pass-defense)
+Why this style? (the simple math)
+Why Auto? (the simple math)
+Offense: every style with your roster
+Defense: every style with your roster
+What do these terms mean? (personnel, styles)" 
+The text size here is way too large and way too white. These should be large bubbles. They should appear acrros the screen on one horizontal line of the bottom of the entire panel like "see guide for details" (which again "see guide for details" should be completely eliminated from the site" 
+
+"No better arrangement exists — within 0.00 wins of optimal." This should appear more simplified like "x wins of optimal"  in more of a player card format or button under the returner. Write "Ret" as "KR" and "PR." Make Automatically make the Punt Returner the second best returner. 
+Remove the horizontal line between "K" and "KR" 
+
+"New to flexing? Read this first
+Group scores (flex penalties included)"
+These should appear on one horizontal line at the bottom of this panel 
+
+Remove this completely: "This changes how your team scores, not how many points it is worth: the real-world numbers say a bold coach and a careful one come out about even, so the sim treats them as roughly equal and the difference shows up in the box score and in game-to-game swings." 
+
+"Goes for 2 early and often, and goes for it on 4th down instead of kicking. More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs." This shoudl fade in and out. Make this panel more beuatiful. and usethe full "conversion" in this menu instead of "Conv" 
+
+Make this way small and more fading in and out, "How a 2-Pt Conv works
+Kick
+1 point · makes it about 94% of the time
+Go for 2
+2 points from the 2-yard line · makes it about 48% of the time
+Both choices are worth about the same over many tries, so the call is about the game situation. One rule above all: losing by 8 or 11 late, every team goes for 2 — that is the try that ties the game or leaves a field goal to tie. Every other team has its own style too, and the recap says when a team went for 2." 
+
+One the dropdown menu for coaching, remove "(x teams run it)" 
+Remove this text "Team A Team B" From the Team comparison page. Align the two dropdown menus better over the veritcal players
+Remove the permanent green from the unit comparison panel .on the Team Comparison Page. The better unit's should be in the color of their teams
+In the combined section of position rankings dropdown please create a series of "x y + z + alpha + beta" where x is the number of the the last position in the series of every position ranked's  mathematical ranking of importance and y through beta are the  the position name  for example  the beginning of the series begins:
+"1 QB
+2 QB + CB1
+3 QB + CB1 + DE1" 
+
+Continue that series all the way down to RB2
+
+
+
+We need to add the fullback slot and the punter position to the draft.
+
+I am taking the following directly from a former prompt to claude to remember these scattered thoughts. Use these to create a beautiful graphic that shows the positions ranked as well as what they can flex to and for what. Try to make it all in one graphic but if you need to show the flex differently from the position rankings then that is fine
+
+2. On a phone, Start Draft should be visible without scrolling.
+3. FB and Punters need to be created. Any Running back or full back are available to play FB at no flex cost. Kickers and punters are avaialbe to be punters at no draft cost. The underlying math for how they work will be created by claude, but maybe other agents can help set the foundations for him. I had DS tackle this problem a little bit 
+You take charge of implementing the following . Report this to all the other agents as things to work on and review. 
+
+“Your coaching philosophy and aggressiveness are locked in once you simulate Week 1”
+Why? These should be available all season long. Please fix that and change the description here to reflect the changes. 
+
+On the draft page and/or preseason page, User should be able to select if he’d like his base to be 3-4 or 4-3. 
+
+the 3-4 allows the user to swap out a DT for another Linebacker. This should be a toggle or maybe be a recommended thing based on what is left on the draft board 
+
+From 3-4 to Nickel, the lowest rated Linebacker comes off for CB3 / Nickel
+
+Edges no longer get a penalty for playing OLB/WILL/SAM. 
+
+OLB/WILL/SAM can play FS/for -6, SS/DT for -4 , Edge and CB3/Nickel for -2, 
+
+MIKES CAN PLAY defensive tackle for -4, SS - 2
+
+SS can play CB3/Nickel for free, FS/OLB/WILL/SAM for -2. 
+
+“Third corner” in the guide should say “CB3 / Nickel”
+
+Cornerbacks to OLB/WILL/SAM is -4. CBs to MIKE is -6. 
+
+TEs can be WRs for -2 and running backs for -4.   If I didn’t mention something, keep the same flex rules as before. Again the chart needs to be redesigned and in the order of the draft roster.
+
+If in 3-4, the positions should be 
+DE1
+DT1 (Nose Tackle)
+DE2
+OLB1 (Outside Linebacker)
+ILB1 ((Inside Linebacker)
+ILB2
+OLB2 
+
+When It comes to establish wins values or any other math, OLB are treated the  same as WILLs
+When It comes to establish wins values or any other math, ILB are treated the same as MIKEs
+
+This should be explained on the guide and in the preseason menu. 
+
+Also explain that when the CB3/Nickel comes on the field, the LB3/SAM comes off the field.
+
+“Anyone except an offensive lineman, a kicker or a quarterback can play running back at −6. If you reach your last open spot and nobody left can legally play it, you may take any remaining player (except a quarterback) there at −8, the same fallback the computer teams use.”
+Remove this text from the preseason menu.
+
+“Your coaching philosophy is how your team likes to play by default, on offense and on defense. It names your team's style all season, and opponents scout it. In any single game the plan can still change when a matchup calls for it, and the recaps say when it does and why.”
+
+Remove “, on offense and on defense. It names your team's style all season, and” Capitazlize the O in Opponents.
+
+
+“Selected: Balanced offense with two tight ends (12 personnel, balanced) · Nickel defense focused on the pass (Nickel · pass-defense)”
+
+Just improve the ui of this. It’s ugly as is. 
+
+“The model tried all 15 offensive setups for your roster against a league-average opponent and keeps the one with the best win chance. Your strongest units are run defense (#1) and secondary (#1); the weakest is offensive line (run blocking) (#30). The top three: 12 personnel, balanced (+0.01 pts vs. balanced 11, win chance vs. an average team 72.1%), 11 personnel, balanced (+0.00 pts vs. balanced 11, win chance vs. an average team 71.7%), and 12 personnel, pass-heavy (+0.14 pts vs. balanced 11, win chance vs. an average team 71.4%). The label stays the same all season because it describes your usual approach — the plan used in a given game can differ when a matchup calls for it, and the recaps say when it does.”
+
+Change to the “the model tries”
+
+Create some indentation or something for Your Strongest Units and Your weakest units. Maybe these can appear side by side if it makes sense?
+
+The top 3 should also appear in 3 distinct beautiful ui designed areas, not as one sentence. 
+
+“The label stays the same all season because it describes your usual approach — the plan used in a given game can differ when a matchup calls for it, and the recaps say when it does.” Remove the second or first instance of this. You choose.
+
+“Why we recommend Auto. Auto tests every offensive setup (15 combinations of personnel and run/pass lean) and every defensive one (6) against an average opponent, with your lineup, and keeps whichever gives the best chance of winning. It also re-checks each week against the actual opponent. Picking something else is allowed, and the tables below show what it costs on paper, but it will rarely win more games than the math's pick. Some reasons to override anyway: you want to see how a heavy-run team plays, you want a bigger gamble as an underdog, or you just like a style.”
+
+Remove this completely. 
+
+In the dropdown menu where you select balanced, advanced, aggressive, significantly increase the size of the text.
+
+“Kicks the extra point almost every time and takes the field goal on most 4th downs inside the 35. Fewer 2-Pt Convs, a few more field goals, fewer touchdowns.”
+
+Should read “fewer field goals” instead of “a few more”
+
+“Follows the usual NFL chart: kicks the extra point most of the time, goes for 2 in situations where the numbers say to, and goes for it on 4th down when it is short and the field position is good.”
+
+Remove “Follows the usual NFL chart:” and replace with “Balanced Approach:”
+
+Replace “and goes for it on 4th down when it is short and the field position is good.” with “and goes for it on 4th & short when in opponent’s territory.” 
+
+Verify the math to make sure this is true. 
+
+“Goes for 2 early and often, and goes for it on 4th down instead of kicking. More 2-Pt Convs, more touchdowns, fewer field goals, and a few more failed 4th downs.”
+
+Rewrite: “More 2-Pt Conversions, More touchdowns, Fewer field goals, and a few more failed 4th downs.” And then fthe following text can be smaller “Almost always goes for 2-pt conversion unless you need an XP to win the game. Almost always goes for 4th down unless behind your own 30yd line or if you have a big lead in the 4th Quarter. ” 
+
+“How a 2-Pt Conv works”
+
+Write out “Conversion” here. The rest of that section is good.  All these descriptions after your dropdown selection need to be made more beautiful. Ugly currently
+
+
+  Here is analysis again that you should use to decide how to reweigh the positions  Analysis 1  This detailed list outlines a wins-above-replacement (WAR) or value-added simulation model that evaluates positional importance and roster composition.
+
+While the core math and composition percentages reflect sound football principles (such as pass-protection leaning heavily toward pass game value), the overall ranking hierarchy contains major discrepancies when compared to modern NFL analytics, conventional roster-building, and real-world salary markets.
+
+Key Accuracy Errors vs. Conventional Logic & NFL Salaries
+
+1. Severe Undervaluation of WR1 & WR2
+
+⚬     Model's Valuation: WR1 is ranked 5th ($1.10$), WR2 is ranked 22nd ($0.60$), and WR3 is 23rd ($0.38$).
+⚬     Conventional Logic & Financial Reality: Passing game weapons drive modern NFL EPA (Expected Points Added). In real-world NFL salary markets, Wide Receiver is the 3rd highest-paid position group (top WRs command $\$32\text{M}$–$\$42\text{M}+$ APY), trailing only QB and Edge Rusher. Ranking WR1 behind three separate CBs and two Edge Rushers—and ranking WR2 behind Kickers, Guards, Centers, and Linebackers—severely undervalues pass-catching weapons.
+
+2. Inflation of Kickers Over RB1 and WR2
+
+⚬     Model's Valuation: Kicker is placed at 20th ($0.72$), ranking above RB1 ($0.67$), WR2 ($0.60$), and WR3 ($0.38$).
+⚬     Conventional Logic & Financial Reality: Specialists carry the lowest draft capital and cap allocation in the NFL (top Kickers max out around $\$6\text{M}$–$\$7\text{M}$ APY). While kicker accuracy decides close games, field goals are secondary scoring events compared to offensive drive continuity driven by WRs and RBs.
+
+3. Overvaluation of Secondary (CB1/CB2) vs. Edge & Off-Ball LBs vs. Offense
+
+⚬     Model's Valuation: CB1 ($1.44$) is placed above Edge 1 ($1.30$), and Cornerbacks account for 3 of the top 10 most valuable individual roster spots. Off-ball Linebackers (MIKE/WILL) and Safeties sit equal to or above WR2 and TE1.
+⚬     Conventional Logic & Financial Reality: Pass rush (Edge) consistently commands higher draft priority and cap space ($\$35\text{M}$–$\$50\text{M}$ APY) than Cornerbacks ($\$24\text{M}$–$\$33\text{M}$ APY). Additionally, Off-ball Linebackers and Safeties are lower-priority positional markets compared to starting Wide Receivers and Offensive Tackles.
+
+Corrected Positional Hierarchy Ranking
+
+When adjusting this table to align with modern NFL analytics, Expected Points Added (EPA), draft capital valuation, and salary cap distribution, the 26 starting spots order as follows:
+
+Rank	Starting Spot	Value Tier	Primary Rationale / Market Benchmark
+1	Quarterback	Tier 1: Franchise	Highest EPA impact (\$50\text{M}–\$63\text{M} APY).
+2	Edge Rusher 1	Tier 2: Premium Impact	Primary disruptor of passing game (\$30\text{M}–\$50\text{M} APY).
+3	Wide Receiver 1	Tier 2: Premium Impact	Explosive play engine (\$28\text{M}–\$42\text{M} APY).
+4	Cornerback 1	Tier 2: Premium Impact	Primary pass coverage eraser (\$24\text{M}–\$33\text{M} APY).
+5	Offensive Tackle 1 (LT)	Tier 2: Premium Impact	QB blindside protection (\$25\text{M}–\$30\text{M} APY).
+6	Edge Rusher 2	Tier 3: High Impact	Secondary pass rush (\$20\text{M}–\$30\text{M} APY).
+7	Wide Receiver 2	Tier 3: High Impact	Essential for 11-personnel passing (\$20\text{M}–\$28\text{M} APY).
+8	Defensive Tackle 1 (3-Tech)	Tier 3: High Impact	Interior pass rush & run stop (\$22\text{M}–\$38\text{M} APY).
+9	Offensive Tackle 2 (RT)	Tier 3: High Impact	Frontside protection & edge run blocking (\$20\text{M}–\$29\text{M} APY).
+10	Cornerback 2	Tier 3: High Impact	Essential secondary coverage (\$16\text{M}–\$22\text{M} APY).
+11	Cornerback 3 (Nickel)	Tier 3: High Impact	On field for ~70% of snaps (\$12\text{M}–\$18\text{M} APY).
+12	Guard 1	Tier 4: Core Starters	Interior pocket cleanliness (\$18\text{M}–\$25\text{M} APY).
+13	Center	Tier 4: Core Starters	Protection calls & interior blocking (\$15\text{M}–\$27\text{M} APY).
+14	Tight End 1	Tier 4: Core Starters	Dual-threat receiving & blocking (\$14\text{M}–\$19\text{M} APY).
+15	Guard 2	Tier 4: Core Starters	Interior run & pass blocking (\$14\text{M}–\$20\text{M} APY).
+16	Running Back 1	Tier 4: Core Starters	High usage, higher replacement availability (\$12\text{M}–\$22\text{M} APY).
+17	Safety 1 (Free Safety)	Tier 4: Core Starters	Deep coverage & communication (\$14\text{M}–\$25\text{M} APY).
+18	Middle Linebacker (MIKE)	Tier 4: Core Starters	Front-seven run/pass communicator (\$14\text{M}–\$21\text{M} APY).
+19	Wide Receiver 3	Tier 4: Core Starters	Slot weapon in 11-personnel (\$10\text{M}–\$15\text{M} APY).
+20	Defensive Tackle 2 (Nose)	Tier 5: Role Players	Primary run plugger (\$10\text{M}–\$16\text{M} APY).
+21	Safety 2 (Strong Safety)	Tier 5: Role Players	Box defender & tight end coverage (\$10\text{M}–\$16\text{M} APY).
+22	Weakside Linebacker (WILL)	Tier 5: Role Players	Pursuit & space coverage (\$8\text{M}–\$13\text{M} APY).
+23	Kicker	Tier 6: Specialists	Scoring conversion specialist (\$4\text{M}–\$7\text{M} APY).
+24	Running Back 2	Tier 6: Specialists	Committee rotational back (\$3\text{M}–\$6\text{M} APY).
+25	Tight End 2	Tier 6: Specialists	Blocking / 12-personnel specialist (\$3\text{M}–\$6\text{M} APY).
+26	Strongside Linebacker (SAM)	Tier 6: Role/Sub	Played on <30% of modern NFL snaps (\$3\text{M}–\$6\text{M} APY).
+Recommended Adjustments for Your Simulator's Weight Model
+
+1.     Boost WR2 & WR3 Value Weights: Increase WR2's weight so it sits comfortably above Linebackers, Safeties, and Kickers.
+2.     Move Kicker Below RB1 & WR2: Drop Kicker to the bottom tier alongside secondary running backs and specialists.
+3.     Elevate Edge 1 Over CB1: Ensure Edge 1 carries slightly higher baseline value than CB1 to reflect pass-rush primacy.
+  Analysis 2   Short answer: The table is internally consistent as a model ranking, but it shouldn’t be presented as a conventional ranking of NFL positional value or salary. It puts the kicker above RB1 and WR2, which is hard to defend by either of those standards.
+What the table says
+Taking its “wins” figures at face value, the order is simply the listed order:
+QB → CB1 → Edge 1 → CB2 → WR1 → Edge 2 → tackles → DT1 → nickel CB → strong safety → MIKE → free safety → guards/center → WILL → TE1 → DT2 → kicker → RB1 → WR2 → WR3 → RB2 → TE2 → SAM.
+That can be a valid output from a particular model. But the numbers don’t explain enough to establish that they measure real-world value: there’s no source or method for converting ratings into wins, and the salary comparisons depend on whether you mean average player pay, starter pay, top contracts, or cap spending.
+Where it conflicts with conventional logic and salary
+* WR2 below kicker and RB1: That’s the clearest mismatch. The table gives WR2 0.60 wins, versus 0.72 for the kicker and 0.67 for RB1. Yet the top-paid WR contracts are far above top-paid contracts at either position: in 2025, Ja’Marr Chase’s average annual value was $40.3M, compared with Saquon Barkley’s $20.6M; 2025 kicker/punter franchise tags were $6.218M, versus $13.437M for running backs. Those are different salary measures, but they illustrate why the table’s kicker-over-WR2 order is not a typical salary ranking. NFL.com’s 2025 contract roundup · 2025 franchise-tag figures
+* Kicker’s rank needs qualification: A kicker can decide a close game, so the position matters. But “kicking only” doesn’t by itself establish that the starter is more valuable overall than a regular receiving target or starting running back. The model may be assigning high value to kicking outcomes; that assumption needs to be stated and supported.
+* The defensive backs rank unusually high: CB1 and CB2 outrank WR1, the tackles, and almost every other spot. Elite corners are extremely valuable, but a conventional overall ranking would usually put QB first and then place top pass rushers, tackles, receivers, and corners in a closer tier. The exact order depends heavily on the player and scheme.
+* The table is about modeled contribution, not pay: A player’s salary reflects scarcity, bargaining leverage, contract timing, position-group depth, and the way teams allocate cap space—not just how many wins a model assigns. The NFL’s own 2025 top-paid list, for example, puts leading tackle and interior-line contracts well above the leading RB contract. NFL.com
+A conventional blended ranking
+If I combine typical on-field importance and market pay—rather than claiming this is a precise mathematical result—I’d use broad tiers:
+1. QB
+2. Top edge rusher, OT, WR1, and CB1 — the order varies by player and team
+3. Other starting tackles, top defensive tackles, CB2, WR2
+4. Starting interior linemen, safeties, linebackers, TE1
+5. RB1 and kicker — close and context-dependent; RB1 generally contributes more snaps, while kicker has high leverage on scoring plays
+6. WR3, RB2, TE2, SAM
+So the table’s main idea—that roles contribute different amounts and in different ways—is reasonable. Its specific win values and ordering should be labeled as model output, not as an established conventional or salary ranking. I’d especially revisit CB1/CB2’s placement, the kicker above WR2/RB1, and the near-zero values for TE2 and SAM.
+
+
+Analysis 3  
+Two searches hit a concurrency limit — retrying the offensive tackle and cornerback ones since those anchor the CB2 comparison.
+
+The salary data is in. Let me save the analysis findings to project memory, then give you the full assessment.
+
+**Verdict: the table is structurally sound and about 80% aligned with the market, but it has three ordinal misses — and the biggest one is the exact trio we settled last time. Your table ranks K > RB1 > WR2; conventional logic and the salary market say WR2 > RB1 > K.**
+
+First, what the table gets right, because it's most of the list:
+
+- **QB at ~2x the next spot** — matches both the salary ratio and every win-contribution model. The gap (2.54 vs 1.44) is the single most important number in the table and it's correct.
+- **The "big four" cluster after QB** (CB, EDGE, WR, OT in the 1.0–1.4 band, well clear of everything else) — that's the consensus premium-position tier.
+- **Nickel CB3 as a near-starter (0.94)** — correct for 11-personnel-is-base football.
+- **SAM at 0.07, dead last** — correct; SAMs play ~a third of snaps.
+- **OT1 = OT2** — I'd have called this a flaw a year ago, but in 2026 an RT (Darnell Wright, $29M) is literally the [second-highest-paid tackle](https://www.spotrac.com/nfl/rankings/player/_/year/2026/position/t/sort/contract_average), so equal treatment now matches the market.
+- **The pass/run splits are directionally right everywhere**: OT 77/23, EDGE 79/21, DT 56/44, MIKE 62/38, RB1 21/79. And your composition layer is internally consistent — every unit's shares sum to ~100 (pass pro 24×2+17×3, run block with TE1's 10%, receiving corps, pass rush, run defense all check out). The two-percentage design is coherent.
+
+Now the misses, ranked by severity:
+
+| Spot | Table | My value | Market evidence |
+|---|---|---|---|
+| **CB2** | 1.18 (above WR1!) | ~0.95 | #2 corners are $10–18M players; [WR1s are $35–42M](https://sports.yahoo.com/articles/nfls-highest-paid-wide-receivers-135736052.html). CB2 at #4 overall is the table's clearest error. |
+| **Kicker** | 0.72 (above RB1 & WR2) | ~0.45 | Top kicker $7M, average ~$2M — the market prices kickers at a fraction of a starting RB or WR2. 0.72 wins would be a $15M+ player. |
+| **RB1 / WR2** | 0.67 / 0.60 (wrong order) | ~0.58 / ~0.65 | The flip we agreed on: 79% of RB1's value is rushing, the most replaceable, OL-driven skill — he shouldn't outrank the #2 receiver. (Caveat stands: a Gibbs/Bijan-tier RB1 at $22M would outrank a *mid* WR2, but for a generic spot table WR2 first is right.) |
+| **EDGE1 vs CB1** | CB1 above EDGE1 | EDGE1 ~1.40, CB1 ~1.35 | Edge rushers are the highest-paid defenders in football — [Anderson $50M, Parsons $46.5M, Hutchinson $45M](https://overthecap.com/position/edge-rusher) vs [Gonzalez $33.75M](https://www.espn.com/nfl/story/_/id/49865736/sources-christian-gonzalez-patriots-reach-4-year-135m-deal). Pressure trumps coverage; EDGE1 should top the defense. |
+| **DT1** | 0.95 (9th) | ~1.05 | Interior rush has exploded: [Jalen Carter $38M, Chris Jones ~$32M](https://www.azcentral.com/story/sports/nfl/2026/08/31/nfl-highest-paid-defensive-linemen-2026-season/91376999007) — out-earning every tackle. A half-tier bump is warranted. |
+
+One structural reason the kicker skews high: he owns 100% of his rating (like the QB owns his), so he accumulates wins without the dilution that shared ratings impose on RB1/WR2 — his per-rating-point coefficient needs to be discounted accordingly. That's exactly the composition/importance conflation your legend warns about, applied to the one row where it bites.
+
+**My ranking** (values on your scale, moves marked):
+
+1. **QB 2.54** *(unchanged)*
+2. **EDGE1 1.40** *(↑ from 1.30 — top defender)*
+3. **CB1 1.35** *(↓ slightly)*
+4. **WR1 1.15**
+5. **DT1 1.05** *(↑ from 0.95)*
+6. **OT1 1.04 · OT2 1.00**
+7. **EDGE2 1.00**
+8. **CB2 0.95** *(↓ from 1.18)*
+9. **CB3 0.90 · SS 0.88 · MIKE 0.86 · FS 0.85 · G1/G2/C 0.85 · WILL 0.80 · TE1 0.82** *(TE1 nudged up; [Kittle/McBride $19M](https://www.azcentral.com/story/sports/nfl/2026/08/31/nfl-highest-paid-tight-ends-2026-season/91376307007) sits right at the safety/LB tier, so 0.80 was a touch low)*
+10. **DT2 0.76**
+11. **WR2 0.65** *(↑ from 0.60)* · **RB1 0.58** *(↓ from 0.67)*
+12. **WR3 0.40 · K 0.45** *(roughly tied — market says WR3's $10–15M beats the kicker's $7M; win-swing logic keeps them close)*
+13. **RB2 0.22 · TE2 ~0.18 · SAM 0.07**
+
+Two smaller notes: RB1's 5% of the receiving corps is light — league-wide RBs draw ~15–20% of targets, so 8–10% is more realistic and would partially self-correct his value through the pass game. And **TE2's "0% pass · 0% run" with no composition weights at all looks like a zeroed weights row, not a design choice** — a real TE2 should read something like 60% run · 40% pass feeding run-blocking ~7% and receiving ~5%. Given the rWeights history, that row is worth a look in the sim's weights table.
+ There needs to be a "Start A New Draft" button at the bottom of the draft that returns you to the homepage after asking are you sure. That way you don't have to hit sim to end to get out of the draft page. 
+
+On the dropdown menus for the teams, please make it beautiful like how it looks static on the screen. Every team should be listed in their colors. 
+
+The amazing 20-0 dynamic header bars needs to always extend to the edges ofthe scree. It is currently too small.
+
+the draft board needs to extend to the bottom of its panel. 
+
+nfl-team-logos is the correct spelling.
+
+on teh Draft review page, the run 100 season simulation shoould appear on the same level as the other tabs like "vs. Simulated teams" 
+The start season button should be centered like on the home page and shimmering more. 
+
+The 100 season simulation needs the similar treatment of switching to grpahical representations of the data. Reduce all sentences. The back to season button from the 100 season simulation returns you to page that doesn't show your team in the rankings with the other teams. Glitchy. Please fix. 
+
+The size of the text in the player bubbles on the flex selection needs to be quite a bit smaller. 
+
+"1 personnel, balanced
+53%
+11 personnel, pass-heavy
+53%
+12 personnel, pass-heavy
+51%
+Bars show the chance of beating an average team. The label stays the same all season — the plays called can still change each week when the matchup asks for it."
+The bars don't make a lot of sense here because they're all within 3% of each other. Try a different graphic presentation. 
+
+Remove the whole "Why Auto" section
+
+Under Offense: every style with your roster, lets slightly reduce the text size and sort by personnel. Same for defense. Sort by "setup used" which you should rename to "Personnel"
+
+There's a lot to love about the new game preview page. Again let's try to get logos out of the bubbles. 
+
+Remove this: "model 22.9"
+
+"pass rush
+++3.3" this should appear aligned with the team's side that it applies to. 
+
+The bar showing the percentage of victory should be a lot more dynamic. Maybe more of a parallelogram than a bubble. move the numbers off of the bar and them on either side of the bar. Take away the "%". 
+
+I'd like to see the key players be less of a table with lines and much more dynamic, maybe oscillating player names almost as if they are football players excited to get into the game. 
+
+Instead of "+0.0 pts vs. balanced 11" says "x pts vs. auto"
+
+"11 personnel, balanced" this text in the game plan on the game preview page should be the same size and color and font as the other text in the bubble, not white and larger. 
+
+In the opponent scouting report: the bars just look opposite of how they should look. The #1 bars look faded and #32 bars look vibrant. Please redesign so it is a lot more obvious to tell if the bar is showing you that they're good or the worst in the league. 
+
+Remove this: "23.0
+model · home field +1.7
+22.6 Browns" from the Matchup math 
+
+I don't know if we'll ever show that home field gives +1.7 in the actual season game but make that number is represented on the Guide page. 
+
+The lineups should be directly below the key players. On the lineups page, the better player in the position matchup should get their team's primary color as the color that player's name is written in. If that player is also a key player, he should get the shimmering style like you created in the "Can you go 20-0" on the "20-0." If two players in the same position are both key players, then the both shimmer in their respective team's primary color. Any player who is above 85; when their name is shown, they should be written in this shimmering style. If there is a more accurate word for this shimmering that would help you idenitfy this style from now on, let me know what it is.
+
+The matchup math order is still not sorted by the  "Your roster" order. 
+
+This is improperly aligned on the lineups: "(Seattle Seahawks left · Cleveland Browns right)" Just show the logo or the team name above each liner up in proper alignement and remove that parenthetical. 
+
+The fonts are inconsistent. Let's primarily stay with the font your use for the homepage Start Draft button and the names in the lineups menu. Please use that almost everywhere. Tell me its name. 
+
+The Scheudle looks amazing. Move the "@" or "Vs" to underneath the logos and remove all the circles/bullet points. Maybe fill in and make shimmer whatever the current match up is and have a different filled in color for wins and losses that stays with the user's team's colors. 
+
+The standings also looks amazing. My only gripe is "Washington Commanders" and some of the other teams with longer names distort the score. Maybe let's go with the team name or think of a way to more naturally shorten everything. 
+
+The button sizes for and coloring for  "Simulate Week 1" and "Sim Rest of Season ▸ Review" are reversed. We should want the user to play each week at a time and sim the rest of the season is an alternate option. And change "Simulate Week 1' to "Play the x" where x is the team name you're playing that week. 
+
+Oh my god the animation of the actual game being played is absolutely perfect. I love you for this. It's incredible. The only thing I ask is you make it a llittle slower. Maybe more like 30-60 seconds total. 
+
+Please record all turnover as well in this during the game animation. 
+
+When someone scores and there is a "+x" the color of the "+x" should be the team that scored. the "y-z" should also represent the colors of the two teams. And again try to remove the bubble and white/cream color around the logos. Either no bubble or transparent. 
+
+The "SKIP" button should disappear once the game is over. If you won, maybe something congraulatory appears there. Not text but sometype of shimmering star in the team's color or something like that. The whole center graphic should stay on the screen until the user selects "CONTINUE." It should never time out. Let it stay on the screen it's gorgeous. I'm so proud of you. Thank you so much.
+
+The game review page:
+
+Take away the lines of the table. Same critique as the key players on the game preview page. These should be more floating and dynamic. The game baller player's name should be shimmering (add that player's color if on the opposite team. Again all stars should always be shimmering. But maybe they don't shimmer here on the game review page if they are on the losing team and didn't get the game ball. Remove the "(⭐ game ball)" text. Just put the star by that player and the star should also be in that team's color palette and shimmering.
+
+the box score should look more like the during the game page. Maybe you can click on the quarter to show the key plays of that quarter. 
+
+Remove the team's names from the schedule menu. in the score "x-y" always have the user's team score in their team's color
+
+Remove this text "Your draft is in the books. Play the season. Coach your team to the Super Bowl." on every page other than the draft review page. Leave "Can you go 20-0?" Please have the "Can you go x?" very slowly disappear and reappear on the page while the shimmering "20-0" always stays. The question mark should be in the same colored shimmer as the "20-0" but the question mark fades in and out with the text. The "Can you go" should be in a better color than white. Something that blends in to the background that obviously adjusts with whatever the color palette is. 
+
+By the way, " I love the dripping color effect on the static "20-0" in the bar in the top left corner but can that dripping effect go more 360 around it, not just down. If not, maybe pick a new similar effect.
+
+try to remove the neutral white color wherever it is used as a defualt, like on the current Your Plays season stats. That text should be in one of the color palette colors. Can you more graphically design each stat. I don't want it to just look like a list of stats. Maybe you go to more of a player card format like sleeper uses...idk something other than lateral list of stats like it is now. The same should apply to the regular season awards, playoff awards, etc. 
+
+Remove all this text from the draft critique "Replaying the draft, your 26 picks left about 14.6 wins a season on the board compared with always taking the best-available fit for your open spots (those wins are not all recoverable: a team cannot take everyone). The table shows each pick, what it was worth at the spot he filled (against a 75-rated player), and the best alternative that was still available.
+
+The best calls were Drake Maye (round 6, +2.38 wins): the highest-value player available for your open spots at the time.
+
+The costliest decisions: round 1, Trent Williams (Guard 1, +1.13) when Lamar Jackson (Quarterback, +3.23) was available, round 3, Erik McCoy (Guard 2, +0.72) when Dak Prescott (Quarterback, +2.70) was available, and round 2, Derwin James Jr (Strong safety, +1.01) when Patrick Mahomes (Quarterback, +2.99) was available. Early picks that are worth little to winning matter most, because those picks are the hardest to replace later." 
+This should all be visualized. The colors in the vertical each draft pick analysis should better reflect good picks and bad picks. Again take away any table lines like there are here. 
+
+Combine the two advanced stats menus. no reason for them to be separated. Make them more beautiful according to all the other guidelines. Even if you do keep this text at all "Turnover margin per game
+takeaways minus giveaways" all the subtitles should be removed. 
+
+ 
+
+The sim the rest of the season button shouldn't take you to the during the game animation. I should take you to a similar panel however in the middle of the screen that shows you the very basics of your regular season and celebrates if you advanced to the playoffs and has a super special set of animations if you earn the #1 seed
+
+The season in words can stay where it is in the dropdown menu but please follow the other comments about white text and can you please text fade in and out of the screen more. As you scroll down toward the text it appears more vividly and when you scroll away from it disappears. 
+
+The text should be much more graphic though. Graphics should accompany every piece of text. No complete sentences. Maybe organize it as a narrative of the season and then show the key stats at the end of the season. The why better or worse than the ratings should also be much more grpahic and dynamic. 
+
+For playoff games, can you add more accents and color and maybe like some vibrating sense of pressure. Games that enter the clutch "Within 7 points after the ten minute mark of the 4th Quarter" during the regular season should also recieve multiple visual indicators of excitement and pressure. The cluch moment of playoff games should be even more intense. The superbowl should have a lot of extra golden accents and maybe a whole intro sequence of the logos entering the screen and clashing or something super dynamic and cinematic like this. At least a 5 second intro to playoff games and up a 30 second intro to the game for the Super Bowl.
+
+If you lose in the Playoffs, you automatically go to the Superbowl completed page. 
+
+The seaosn review; same critiques as elsewhere. Way too much text and it's incorreclty white. More graphics to show the season performance. Maybe not a narrative but more in strenghts and weaknesses. If you win the Suerp Bowl, ignore all weaknesses. 
+
+After you show the graphics for the weaknesses, maybe have a dynamic panel enter like during the games that asks "Try again to 20-0?" with the ydnamic color again on "20-0?" which starts a new draft.   Before you do anything else, give me a link to download the latest version and make sure you've pushed everything you can to git or give me the full terminal instructions. 
+
+"FB and Punter are now draft slots (28 rounds). They currently contribute
+~0 modeled wins — the Owner said the underlying special-teams/FB math will be
+designed by Claude; this brief's §6 harness should include them as
+"expected ≈0" until that work lands." 
+You can go ahead and design the math now if you like and please inform everyone and update any relevant documents. 
+
+Give me the actual cli instructions for the terminal and how to push whatever you want me to push step by step. 
+
+Make sure the Weights guide you created is heavilly promoted in the relevant documents. 
+
+Is it possible to brighten certain logos. I understand if it'll be difficult. But the Giants logo and the Rams  logo are particuarly dark.
+
+"Undo my last pick" should just read "Undo" with that cool arrow. You can still only use it once. That should probably be made clear in the guide. 
+
+The game preview mathcup panel with the team logos and the @ sign; the team on the right' heavy border should be right alighned instead of both team's card's having a heavy border on the left. 
+"4th in the NFC · 4th in the NFC South" no words here. Just "#x <division>" is good here. You cadd a shimmering "1^st <Conference>" if they are number 1 only and that replaces the ""#x <division>""
+
+Remove this: "Same division: the first of 2 meetings, and a tiebreaker that can decide the race."
+
+ON the during the game animation, no white text. should be the light colored text that aligns with the palette." 
+
+When a score is written like "FINAL 29–34" like at the bottom of the during the game animation should have the colors for each team's score. and be written "x y-z alpha" where x is a team abberviaton like "TB" and alpha is the opponents abbreviaton and y and z are the respective scores. 
+But remove "FINAL · 29–34
+You winTurnovers · TB 0 – 2 NO" completely and just put a "YOU WON" OR "YOU LOST" WITH A SHIMMERING YOU WON AND A XHIMMERING STAR.  
+
+On the end of regular season cinematic, Remove "428 points for · 401 against · undefined" and remove this"The bracket awaits. Four quarters at a time from here" 
+
+The "Season in Words" was very glitchy. the words disappear completely and never come back. 
+
+The player cards in the Your season stats are amazing. Remove the white text. should fit the color palette. Use the same style of cards for the Regular Season Awards and Playoff Awards. 
+
+On the Playoff picture, remove the white text. All text should be in the pallete scheme. 
+
+On the player cards "#25 at RB · 17 GP" should be changed to "#x <position>" Remove "at" and 17 GP and the dot. 
+
+"Skill and defensive players are ranked by their position-specific season rating plus a small credit for team wins. Defenders get extra credit for the value of the spot they play (a lockdown corner or edge rusher counts for more than a safety or linebacker with the same box score). Offensive linemen are ranked on pancakes, rushing yards behind them and sacks allowed. Rookie of the Year and Comeback Player need age and draft-class data the database does not have; Coach of the Year goes to the team that most outperformed its own projection." Remove this completely. "Rookie of the Year" "Comeback Player of the Year" and "Coach of the Year" can all go in the glossar on the guide page. 
+
+Remove this "(0.6 wins left)" from the Draft Pick Analysis. Replace "Left value behind" with  a one or two word phrase. I can't even tell from the numbers how "left value behind" and "Costly Miss" differ. You can label all "left value behind"s as "Costly Miss"es.
+Replace "FINE" with "OK" 
+
+"Turnover margin / g 
++0.00
+league -0.00"
+Strange result. But main critique here is integers only. Dont make it per game.
+
+Literally create more space between each quarter on the during the game menu and remove horizontal lines and all lines. Everything should feel more floaty. 
+
+"2"-Pt Conversions
+100% of 5
+success rate"
+shoud be changed to "2-Pt Conversions
+x of y" Remove success rate
+
+Replace "Close games" with " IN DA CLUTCH" 
+
+REPLACE "Beaten the blocker" WITH "INDIVIDUAL SKILL" 
+REPLACE "Line broke down" WITH "SUBPAR BLOCKING"
+REPLACE "Coverage held" to "EXCELLENT COVERAGE" 
+
+IN YOU STANDING DIVSION, MAKE YOUR DIVISION PANEL EXACTLY TWICE THE SIZE OF THE OTHER PANELS. PF AND AND PA should be in integers and be totals. 
+
+I don't like the drifiting of the names in the Playoff Preview stars. I think they players should look more like the your season stats cards but just one per line and again shimmering if 90+. Remove this "arterback play
++3.3
+pass protection" 
+the font of the name shere should be Cinzel Decorative for everything in the game preview. The star emojis look dorky as is but could look cooler if they were team colored and shimmering. 
+
+In the playoffs, "Simulate wild card round" should be "Play the x" where x is the opponent team's name like it was in the reuglar season. 
+
+In intro cinematic on the playoff game is amazing. You should actually make every regular season game use that cinematic. Use the superbowl cinematic for the every playoff game and create and extra long one minute cinematic the superbowl . 
+
+The shimmer on the post review for the player of the game is good but have that maybe happen within the player cards. should list season stats (unless week 1, just OVR) in the game preivew and the game stats on the game review page.  
+
+Some post game reviews don't have a player of the game highlighed. That shouldn't be possible. There should always be shimmering player of the game after every single game. 
+
+After you lose the wild card wound or any other game of the playoff excpet the superbowl, the button to move should be "SIM PLAYOFFS" 
+
+On the season review page, "quarterback play
+#2 in the league
++16.0 vs league" This should be condensed to just "QUARTERBACK PLAY" 
+
+Rank your team by their performance by every metric and in general order of the draft board depth chart. Maybe you can click on these metric to get a small explanation (e.g. if you click on "Run Blocking" and you're very above average, you can highlight a key player "x led the team to #x" in the league" but that text should ideally fade in and out or only be hoverable. 
+
+Remove the entire long paragrpah of text from the season review page. 
+
+Remove this as well: "Team rankings are regular-season only; player totals shown here are regular season; playoff production is in the Playoff Awards panel." 
+
+Continue with work from previous prompt
+
