@@ -5,6 +5,8 @@
 	import { rowVars } from '$lib/design/row-vars.ts';
 	import { crestFor } from '$lib/design/crests.ts';
 	import { Draft, ROUNDS, type Pick } from '$lib/draft/engine.ts';
+	import { saveDraft } from '$lib/save.ts';
+	import { goto } from '$app/navigation';
 	import { fly, fade } from 'svelte/transition';
 
 	const team = $derived($page.url.searchParams.get('team') || 'Kansas City Chiefs');
@@ -19,7 +21,7 @@
 
 	$effect(() => {
 		const t = team;
-		const d = new Draft(t, (Math.random() * 1e9) | 0);
+		const d = new Draft(t, seed);
 		d.autoAdvance();
 		draft = d;
 		tickerPicks = [...d.picks].slice(-8).reverse();
@@ -63,6 +65,14 @@
 		done = true;
 		browserOpen = false;
 	}
+
+	function beginSeason() {
+		if (!draft) return;
+		saveDraft(team, seed, draft.allRosters());
+		goto('/season');
+	}
+
+	let seed = $state((Math.random() * 1e9) | 0);
 
 	let available = $derived(
 		draft ? draft.available(posFilter ?? undefined, 40) : []
@@ -155,6 +165,7 @@
 						<span class="rchip"><b>{p.name}</b><i>{p.pos} · {p.ovr}</i></span>
 					{/each}
 				</div>
+				<button class="pill cta big" onclick={beginSeason}>begin the season →</button>
 			</div>
 		{/if}
 	</main>
@@ -245,6 +256,12 @@
 		cursor: pointer;
 	}
 	.ghost { background: transparent; }
+	.cta {
+		background: linear-gradient(135deg, var(--b2), var(--b4));
+		color: #3a2b12;
+		border: none;
+		font-weight: 600;
+	}
 
 	/* the flow */
 	.flow { position: relative; padding: 0.6rem 1.6rem 12rem; max-width: 880px; margin: 0 auto; }
@@ -354,6 +371,7 @@
 
 	.finale { padding: 2rem 0; text-align: center; }
 	.finale h2 { font-family: 'Cinzel Decorative', serif; }
+	.cta.big { margin-top: 1.6rem; font-size: 1.05rem; padding: 0.85rem 2rem; }
 	.roster { display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center; margin-top: 1rem; }
 	.rchip {
 		display: inline-flex;
