@@ -1,7 +1,8 @@
+// Svelte uses the maintained esbuild-svelte package (esbuild-plugin-svelte 0.1.1 is a 2020 package for esbuild 0.8 and Svelte 3).
 // Bundles one entry (TypeScript, optionally with Svelte or React components) into dist/. UNVERIFIED: written without
 // esbuild in the sandbox; the first real run on a machine with node_modules is its test.
 // usage: node build/build.mjs <entry> [--html] [--svelte]   e.g. node build/build.mjs src/ui/svelte/main.ts --svelte --html
-// No network use: everything resolves from ./node_modules (esbuild, esbuild-plugin-svelte, svelte, react, react-dom).
+// No network use: everything resolves from ./node_modules (esbuild, esbuild-svelte, svelte, react, react-dom).
 import { build } from 'esbuild';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -11,7 +12,7 @@ if (!entry || !fs.existsSync(entry)) { console.error('build: entry file not foun
 const html = flags.includes('--html'), svelte = flags.includes('--svelte');
 const plugins = [];
 if (svelte) {
-  const { default: sveltePlugin } = await import('esbuild-plugin-svelte');
+  const { default: sveltePlugin } = await import('esbuild-svelte');
   plugins.push(sveltePlugin({ compilerOptions: { css: 'injected' } }));
 }
 const outdir = 'dist', name = path.basename(entry).replace(/\.[^.]+$/, '');
