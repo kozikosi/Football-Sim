@@ -1,0 +1,14 @@
+# CHECKSUMS — z-post-blue-wave49-2026-11-01-w49
+# md5 (verify the hash, never the location)
+6bf627b017c1e26281e2bb4fa70d4a60  Football-Sim-Z-post-blue-w49.html
+a0773f488e3a43957e8f21816fd43785  UPDATE-README.md
+22c713a7531b827ff6021f38da8bafc7  _agents/zai/START-OF-CHAT-ZAI.md
+5d24eb9c9be58bb794e3735300dd4622  _agents/zai/ZAI.md
+8cf04d68aad436920711c112744d040c  _agents/zai/W49-INTAKE-LEDGER.md
+63bd12bc0d947f44630ffdae44e0701c  _agents/zai/W49-BUILD-REPORT.md
+2a8a08ea0522667db91907f9289b173c  _agents/zai/tools/zpb_v49.py
+42e1ea583c8994f1c0bb93a66688b119  _agents/zai/tools/w49_live.js
+70bf3f765716ec6ca612e5cb8b8f3532  _agents/zai/tools/w49_audit_shimmer.js
+583286d9b63a82afa22102e06f29beed  _agents/zai/tools/w49_domcheck.js
+d3e692f8a110285ea58bb0aad0ad0536  _agents/zai/tools/w49_nodecheck.js
+faa986f7009a5c5da720ea2ffabe2b00  _agents/zai/tools/w49_mobile.js
