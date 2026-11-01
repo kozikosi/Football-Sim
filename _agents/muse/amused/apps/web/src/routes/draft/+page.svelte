@@ -137,10 +137,14 @@
 					{#if isUserTurn}· <span class="yourturn">your turn</span>{/if}
 				{:else if done}
 					draft complete — {myRoster.length} drafted
+				{:else}
+					<span class="loading">setting up the draft…</span>
 				{/if}
 			</p>
 		</div>
 	</header>
+	<!-- diagnostics: which build is this, and what state is the draft in -->
+	<p class="diag">v3 · {draft ? `team=${team} pick=${draft.picks.length + 1} yourturn=${isUserTurn} done=${done}` : 'draft not loaded'}</p>
 
 	<main class="flow">
 		<!-- YOUR PICK: the one thing to do on this page. No popup, no layers. -->
@@ -278,6 +282,15 @@
 	.mast p { margin: 0.2rem 0 0; font-size: 0.9rem; opacity: 0.75; }
 	.mast b { font-variant-numeric: tabular-nums; }
 	.yourturn { color: var(--b1); font-weight: 700; }
+	.loading { opacity: 0.6; font-style: italic; }
+	.diag {
+		max-width: 880px;
+		margin: 0 auto;
+		padding: 0 1.6rem;
+		font-size: 0.72rem;
+		opacity: 0.45;
+		font-family: ui-monospace, monospace;
+	}
 	.back {
 		display: inline-flex;
 		align-items: center;
