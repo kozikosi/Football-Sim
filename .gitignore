@@ -15,3 +15,7 @@ backup-before-reorg/
 
 # Biome product-lint scratch (extracted script; regenerated each run)
 tools/biome-product/scratch/
+
+# Colors build output and installed packages
+node_modules/
+colors/dist/
