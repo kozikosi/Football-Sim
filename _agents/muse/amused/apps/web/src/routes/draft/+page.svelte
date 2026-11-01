@@ -7,6 +7,7 @@
 	import { Draft, ROUNDS, type Pick } from '$lib/draft/engine.ts';
 	import { saveDraft } from '$lib/save.ts';
 	import { goto } from '$app/navigation';
+	import SiteFooter from '$lib/SiteFooter.svelte';
 	import { fly, fade } from 'svelte/transition';
 
 	const team = $derived($page.url.searchParams.get('team') || 'Kansas City Chiefs');
@@ -16,6 +17,7 @@
 	let draft = $state<Draft | null>(null);
 	let tickerPicks = $state<Pick[]>([]);
 	let browserOpen = $state(false);
+	let browsing = $state(false);
 	let posFilter = $state<string | null>(null);
 	let done = $state(false);
 
@@ -82,6 +84,22 @@
 		draft ? [...new Set(draft.available(undefined, 400).map((p) => p.pos))].sort() : []
 	);
 
+	// depth chart: roster grouped by unit, always visible
+	const UNITS: [string, string[]][] = [
+		['Offense', ['QB','RB','HB','FB','WR','TE']],
+		['Line', ['OT','OG','C','LT','RT','LG','RG']],
+		['Front', ['DE','DT','LEDG','REDG','NT','DT2']],
+		['Backers', ['LB','MIKE','WILL','SAM','ILB','OLB']],
+		['Secondary', ['CB','S','FS','SS','NB']],
+		['Kicking', ['K','P']],
+	];
+	let depth = $derived(
+		UNITS.map(([unit, poss]) => ({
+			unit,
+			players: myRoster.filter((p) => poss.includes(p.pos)),
+		})).filter((g) => g.players.length > 0)
+	);
+
 	const roundName = (r: number) =>
 		['One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten','Eleven','Twelve'][r - 1] ?? String(r);
 </script>
@@ -132,6 +150,21 @@
 
 	<!-- the flow: rounds as Cinzel headers, picks as typographic rows -->
 	<main class="flow">
+		{#if depth.length}
+			<section class="depth" in:fade>
+				<h2 class="round">Depth Chart</h2>
+				<div class="dgroups">
+					{#each depth as g}
+						<div class="dgroup">
+							<span class="dunit">{g.unit}</span>
+							{#each g.players as p}
+								<span class="dchip"><b>{p.name}</b><i>{p.pos} · {p.ovr}</i></span>
+							{/each}
+						</div>
+					{/each}
+				</div>
+			</section>
+		{/if}
 		{#if draft}
 			{#each Array.from({ length: draft.round }, (_, ri) => ri + 1).reverse() as r}
 				{@const rpicks = draft.picks.filter((p) => p.round === r).reverse()}
@@ -170,30 +203,41 @@
 		{/if}
 	</main>
 
-	<!-- your turn: the browser rises as a sheet, gold-bloomed -->
-	{#if browserOpen && draft?.isUserTurn && !done}
-		<div class="sheet" transition:fly={{ y: 120, duration: 420 }}>
+	<SiteFooter />
+
+	<!-- your turn: the browser is always mounted; it rises on your turn -->
+	{#if draft && !done}
+		<div class="sheet" class:up={browserOpen && draft.isUserTurn} transition:fly={{ y: 120, duration: 420 }}>
 			<div class="sheetbloom" aria-hidden="true"></div>
 			<div class="sheethead">
-				<h3>Your pick <span>#{draft.picks.length + 1}</span></h3>
-				<button class="pill ghost" onclick={skipAhead}>auto-finish</button>
-			</div>
-			<div class="filters">
-				<button class="fchip" class:on={!posFilter} onclick={() => (posFilter = null)}>all</button>
-				{#each positions as pos}
-					<button class="fchip" class:on={posFilter === pos} onclick={() => (posFilter = posFilter === pos ? null : pos)}>
-						{pos}
+				{#if draft.isUserTurn}
+					<h3>Your pick <span>#{draft.picks.length + 1}</span></h3>
+					<button class="pill ghost" onclick={skipAhead}>auto-finish</button>
+				{:else}
+					<h3 class="waiting">Pick #{draft.picks.length + 1} · {draft.currentTeam} on the clock</h3>
+					<button class="pill ghost" onclick={() => (browsing = !browsing)}>
+						{browsing ? 'hide board' : 'browse'}
 					</button>
-				{/each}
+				{/if}
 			</div>
-			<div class="plist">
-				{#each available as p (p.name)}
-					<button class="prow" onclick={() => draftPlayer(p)}>
-						<b>{p.name}</b>
-						<span class="pmeta"><i>{p.pos}</i><em>{p.ovr}</em></span>
-					</button>
-				{/each}
-			</div>
+			{#if (browserOpen && draft.isUserTurn) || browsing}
+				<div class="filters">
+					<button class="fchip" class:on={!posFilter} onclick={() => (posFilter = null)}>all</button>
+					{#each positions as pos}
+						<button class="fchip" class:on={posFilter === pos} onclick={() => (posFilter = posFilter === pos ? null : pos)}>
+							{pos}
+						</button>
+					{/each}
+				</div>
+				<div class="plist">
+					{#each available as p, i (p.name + i)}
+						<button class="prow" disabled={!draft.isUserTurn} onclick={() => draftPlayer(p)}>
+							<b>{p.name}</b>
+							<span class="pmeta"><i>{p.pos}</i><em>{p.ovr}</em></span>
+						</button>
+					{/each}
+				</div>
+			{/if}
 		</div>
 	{/if}
 </div>
@@ -271,6 +315,28 @@
 		margin: 1.8rem 0 0.4rem;
 		color: var(--sub);
 	}
+	/* depth chart: your roster by unit, always visible */
+	.depth { margin-bottom: 0.6rem; }
+	.dgroups { display: flex; flex-direction: column; gap: 0.35rem; }
+	.dgroup { display: flex; flex-wrap: wrap; gap: 0.45rem; align-items: baseline; }
+	.dunit {
+		font-size: 0.72rem;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+		opacity: 0.55;
+		min-width: 4.6rem;
+	}
+	.dchip {
+		display: inline-flex;
+		gap: 0.45rem;
+		align-items: baseline;
+		border-radius: 999px;
+		padding: 0.32rem 0.8rem;
+		background: linear-gradient(90deg, var(--zr1), transparent);
+		border: 1px solid color-mix(in srgb, var(--rosehair) 55%, transparent);
+		font-size: 0.8rem;
+	}
+	.dchip i { font-style: normal; opacity: 0.6; font-size: 0.72rem; font-variant-numeric: tabular-nums; }
 	.pickrow {
 		position: relative;
 		display: flex;
@@ -300,7 +366,7 @@
 	}
 	.pickrow.userpick .who b { color: var(--b1); }
 
-	/* the sheet: browser rises, gold-bloomed */
+	/* the sheet: always mounted; rises gold-bloomed on your turn */
 	.sheet {
 		position: fixed;
 		left: 0; right: 0; bottom: 0;
@@ -313,7 +379,10 @@
 		box-shadow: 0 -18px 60px rgba(0, 0, 0, 0.25);
 		z-index: 20;
 		overflow: hidden;
+		transform: translateY(calc(100% - 4.2rem));
+		transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
 	}
+	.sheet.up { transform: translateY(0); }
 	.sheetbloom {
 		position: absolute;
 		inset: 0;
@@ -329,6 +398,7 @@
 	}
 	.sheethead h3 { font-family: 'Cinzel Decorative', serif; margin: 0; font-size: 1.2rem; }
 	.sheethead h3 span { font-variant-numeric: tabular-nums; color: var(--b1); }
+	.sheethead h3.waiting { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
 	.sheethead .pill { margin-left: auto; }
 	.filters {
 		position: relative;
@@ -363,7 +433,9 @@
 		text-align: left;
 		font-size: 0.95rem;
 	}
-	.prow:hover b { color: var(--b1); }
+	.prow:disabled { cursor: default; }
+	.prow:disabled:hover b { color: var(--text); }
+	.prow:not(:disabled):hover b { color: var(--b1); }
 	.prow b { font-weight: 600; }
 	.pmeta { display: flex; gap: 0.7rem; align-items: baseline; }
 	.pmeta i { font-style: normal; font-size: 0.78rem; opacity: 0.6; }
