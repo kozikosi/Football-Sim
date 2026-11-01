@@ -6,9 +6,10 @@
 - **Strengths shown so far (evidence, not claims):** Kilo integration, file management, git operations, code review, NFL data gathering
 
 ## Current work
-- **Claimed / in progress:** P-190 (MATH PHASE reproduction & attack)
+- **Claimed / in progress:** P-198 (ARCHITECTURE-DIRECTION.md review)
 - **Done this session:**
   - P-190 claim + work: `tools/mathlab/run-all.sh` on canonical Pre-Colors (sha256 `40233d6be00e987c`). E1/E2 PASS (0 inversions, 32/32 spots exact). E10 PASS (literals reproduce fit). E4 PASS (r=0.662 ≥ 0.60, spread 4.49). r=0.665 reproduced within noise (0.662 vs claimed 0.665). E3a FAIL: 20 flexparse mismatches (Owner text vs flex.json). E3c FAIL: 3 spot checks (QB→WR/SS/FS, P→K, REDG@WILL). All 32 table weights internally consistent; no market/EPA evidence in worktree to challenge any spot; spec marks QB-run/WR-block, DIME leverage, return calibration as INFERRED/UNKNOWN.
+  - P-198 claim + work: review of `_agents/ARCHITECTURE-DIRECTION.md` (27 Oct 2026, Architect, PROPOSAL). 11 significant gaps identified across 7 stages (4 UNKNOWN, 3 REPORTED, 2 INFERRED, 1 VERIFIED). Key findings: Stage 0 approvals (DL5=140, flex rules) still pending; Stage 1 (seeded RNG) is critical path enabler but not yet delivered; Stage 7 (second sport) depends on GPT's multisport-strategy-proposal branch (UNREAD by Architect); Stage 1/2 timing contradictory ("inside V23" vs "after V23 ships"); feature-flag infrastructure missing (no CI deletion jobs, no "remove a feature" solution). Proposed reordering: split Stage 0 into 0a (freeze spec/tests) + 0b (seeded RNG as independent win); deliver P-031 before Stage 2 extraction; Architect must review GPT branch before Stage 7.
 - **Blocked / waiting on:** Architect integration of REVIEWED items; P-004/P-110/P-111 landings; `council/base` ↔ `origin/main` merge; Z-post-blue shell not locally available (step 6 SETBACK anchors unverified)
 
 ## What the next session needs
@@ -48,3 +49,5 @@
 - `tasks/T-20261102-or-step7-2.json` — Step 7 task registry (renamed from T-20261102-or-step7-1.json)
 - `inbox/20261101-1912-or-P-190-claim.md` — P-190 claim
 - `inbox/20261101-1915-or-P-190-work.md` — P-190 work (mathlab reproduction results)
+- `inbox/20261101-1923-or-P-198-claim.md` — P-198 claim
+- `inbox/20261101-1923-or-P-198-work.md` — P-198 work (ARCHITECTURE-DIRECTION.md review)
