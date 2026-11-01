@@ -63,9 +63,16 @@ Season sim follows in v2. Framework decision (SvelteKit vs React) is with the Ow
 - [ ] Framework decision: BOTH — framework-agnostic core, SvelteKit leads, React proof-of-portability later (Owner 2026-11-01)
 - [ ] v1 scope: draft experience first, season sim v2 (Owner: "whatever you want")
 - [ ] w52 theme: lift tokens/design language via copy-paste kit, rebuild as components (Owner: free choice)
-- [x] Design tokens lifted from w52 (light + dark, 50 tokens each) as framework-free
-      `apps/web/src/lib/design/tokens.ts` — 3 invariant tests pass (same keys both themes,
-      no white/black text per the w52 palette law)
+- [x] Design tokens lifted from w52 (light + dark, cascade-resolved incl. the w50
+      halfway-ink law: light --text is #8e5566) as framework-free
+      `apps/web/src/lib/design/tokens.ts` — 3 invariant tests pass
+- [x] Color math lifted (COPY-PASTE-KIT-w52.md #2): `color-math.ts` (HSL utils) +
+      `team-pack.ts` (zpbPackFor port) + `team-colors-data.ts` (32 brand triples) —
+      diffed var-by-var vs the original w52 code, 32 teams × 82 vars = 2,624 values,
+      0 mismatches; 3 pin tests pass
+- [ ] Entry points (#3): applyTeamTheme/clearTeamTheme are written; row/anchor vars
+      + crests (#7) + dot law (#5) + shimmer (#4) next, per the kit's lift order
+- [ ] Look-gate (#8): skipped per the kit (coupled to the review map)
 - [x] Roster data pinned: `data/nfl/madden27-ratings.csv` (1,941 players) +
       `free-agents-old-ratings.csv` (12) copied from council/base data/
 - [ ] draft experience v1

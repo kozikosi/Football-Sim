@@ -5,9 +5,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { light, dark, themes, wordmarkGradient } from './tokens.ts';
 
-test('light and dark define exactly the same token keys', () => {
-  assert.deepEqual(Object.keys(light).sort(), Object.keys(dark).sort());
-  assert.ok(Object.keys(light).length >= 40, 'expected the full w52 token set');
+test('every dark token key exists in light (dark is a light override)', () => {
+  for (const k of Object.keys(dark)) assert.ok(k in light, `dark token ${k} missing from light`);
+  assert.ok(Object.keys(light).length >= 50, 'expected the full w52 token set');
 });
 
 test('no white text, no black text (the w52 palette law)', () => {
