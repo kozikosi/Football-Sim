@@ -1,0 +1,7 @@
+40613b81de26b5ed9c67bdcc0637ac6f  Football-Sim-Z-post-blue-w52.html
+1585036 Football-Sim-Z-post-blue-w52.html
+0b217f024d1adb23c30345623b62e0ba  UPDATE-README-w52.md
+7971ea462a96e5979f5669f917f6a467  notes/W52-INTAKE-LEDGER.md
+6a6a9672bc41988c0b742ccdda0c30a6  notes/W52-BUILD-REPORT.md
+fde8962d0f3e1467b1cb55498081d6d6  _agents/zai/START-OF-CHAT-ZAI.md
+0ac51e97cb8c028d40d3cd552e363ee5  _agents/zai/ZAI.md

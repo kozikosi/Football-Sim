@@ -1,0 +1,19 @@
+# ZAI — lane file (rewrite at the end of every session, never append)
+
+## Identity
+- **Seat:** ZAI · **Model / how reached:** Z.ai, IM chat; the sandbox has no git push — the Owner relays the end-of-chat zip. · **State:** **High Councillor** (below the Architect, above advisors; Owner, 24 Oct 2026)
+- **First seen:** 2026-10-24 · **Strengths shown (evidence):** built the Z-post-blue prototype through wave 52; headless verify suites v8..v11 + the per-wave live batteries (w46..w52); style guide; FB/Punter math; the halfway-ink law; the runtime dot-law sweep; the look-gate one-clock sync.
+
+## Current work
+- **Wave 52 shipped** (the Owner's round-52): the LOOK-GATE SYNC — the draft-review map's look releases every breakdown group and depth zone on the map's exact clock (the old `:not([data-zseen])` filter matched nothing because data-zseen means OBSERVED, not SEEN — that was his "line of scrimmage first" delay), with the mirror law (cards first → the map follows) and a 900ms failsafe; the quarter clock rides `var(--text)` — the cream retires by his own words; COTY reads YOU for his team and the ratings sentence is gone; every award leads with the `#X Y` position badge (rank at the position by rating) and the plaintext position is gone; chip borders are solid only; the statistical champions carry their badges with the stat they won leading (RETY exists now) and "Scrimmage" is gone from the TD title; the matchup-math track never rides the takeover (the red-on-red was the franchise hairline under the red fill) and the fills face off from their outer edges — all 32 teams × both themes swept clean; every "/ g" reads "PER GAME" and every advanced number wears one ink; the bye week's top game is the most likely opponent (the lowest seed playing); the featured-game sentence is gone; THE SUPER BOWL IS PLAYED — the during-game cinematic opens first for his team, the winner storm waits for the whistle, the pregame wears the cup + LIVE banner + bursts + fourteen embers, and the game earns a HALFTIME SHOW card between the halves; the bracket @ obeys the card's own width (container queries); the unit report card is unit analysis (all backs, whole corps, nameless kicker). Verified 30/30 + 10/10 + 25/25 + 64/64 + 5/5, zero pageerrors.
+
+## What the next session needs
+- **Read first:** `_agents/zai/START-OF-CHAT-ZAI.md` REV 13 (§3 LAST-KNOWN-STATE + §5 the w52 mechanics — do not re-derive the sync sweep, the SB hold/release flow, or the clock law), `notes/W52-INTAKE-LEDGER.md` (his words verbatim + the reading + the vetoes), `UPDATE-README-w52.md`, `notes/W52-BUILD-REPORT.md`.
+- **Do not redo:** the one-clock release law (select by .zpb-seen, never by :not([data-zseen])); the clock law (var(--text), the cream stays retired); the SB order law (the game leads, the storm waits); the awards badge law (#X Y leads, no plaintext position); the bar track law (never var(--border)); the w50/w51 laws verified intact on w52 (the draft inks, the continue pill, the map twins, the beneficiary colors, the shimmer cascade).
+- **Watch for:** the w51 regression battery's R1a now asserts the w52 clock law — if a future wave changes the clock ink, THAT is the assert to update, not the old cream values. The headless probes resolve margin-left:auto as a px value — assert geometry, not the literal. The w52_live rig wraps playGame ONCE before the season sim (a second wrap recurses — the stress is recorded in the build report). The mobile check must click tabDraftBtn before scrolling to the review map, or the hidden view never intersects.
+
+## Files in this lane
+- `notes/` prompts, corrections, worklog, the per-wave INTAKE LEDGERS + BUILD REPORTS
+- `builds/` the wave HTML files (NOT product builds; pins in START-OF-CHAT §4)
+- `tools/` the verify suites (w52_syncbattery.js + w52_live.js + w51reg_live.js + w52_evidence.js + w52_mobile.js are the current headline batteries)
+- `deliveries/` the style guide and playbook
