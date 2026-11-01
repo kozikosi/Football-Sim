@@ -1,0 +1,14 @@
+Football-Sim-Z-post-blue-w51.html  md5 e40732a235aa621002bc268c59b36bd0  1571506 bytes
+UPDATE-README-w51.md  (see sha256 below)
+ce816a64d8b61d8d6f0cc7800467649003679d7b811d500d7c944d4a7c442253  UPDATE-README-w51.md
+e3d3210eb27f6ddb14dff14d713f4034d96fb9173245a651d914b31dd50428d0  notes/W51-INTAKE-LEDGER.md
+f02c9f9f114846fbd707d838d1c839765ec8dac448bdeba5da18226d80586a3b  notes/W51-BUILD-REPORT.md
+3f50d9333496f478396edbf8ecfa69eec0cdc7842bfa05e1539faae8b08131ca  _agents/zai/START-OF-CHAT-ZAI.md
+47b2d2956663bfd2da4bdf4894a3dccd5a50d2062b3fbc101f11fa803a94b370  _agents/zai/ZAI.md
+d21060915879ed6fbd17adf4136b96b3  EVIDENCE w51-draftbtn-light-default.png
+ba9e004ab93eb857b537dd26c3165394  EVIDENCE w51-draftbtn-light-team.png
+6715aec1a5e707d4fc59b9c157a5ed26  EVIDENCE w51-hub-continue-gold.png
+0fe08083059401d9c1592a80645bda6e  EVIDENCE w51-map-nickel-dime.png
+60a3e0c611810f1f635daa678bb8693e  EVIDENCE w51-po-dark-beam.png
+63dcb9c8f97a90995ef0989733ea29f5  EVIDENCE w51-po-light-velvet.png
+46e71e49cac069c688ae2eb18df1ff5a  EVIDENCE w51-replay-chips.png
