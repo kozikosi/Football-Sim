@@ -13,6 +13,8 @@
   - P-205 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
   - P-206 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
   - P-109 review (OR): Flint review #3, valid improvements identified; needs P-004/P-183 for dependencies
+  - P-160 review #3 (OR): Flint rework verified; "428 points"/"bracket awaits" strings NOT in Pre-Colors (already removed); header not all caps; clickable metrics/fading notes/20-0 panel/IN DA CLUTCH all absent — implementation gaps noted
+  - P-171 review #3 (OR): Flint rework verified; TEAM_LOGOS object existence UNKNOWN; WHERE 8 style reduction omitted; "single season can land" sentence confirmed present; "Realism audit" needs rename to "Stats"; "Key metrics" section absent; personnel bubble absent; histogram cap absent — implementation gaps noted
   - P-205 JSON task file fixed and committed (`tasks/T-20261102-or-5.json`)
   - P-206 JSON task file fixed and committed (`tasks/T-20261102-or-4.json`)
   - P-204 JSON task file: already committed earlier (`tasks/T-20261030-or-1.json`)
