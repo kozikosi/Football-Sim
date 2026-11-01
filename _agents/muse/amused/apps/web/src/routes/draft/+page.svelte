@@ -16,10 +16,9 @@
 	// Draft state — created once per visit
 	let draft = $state<Draft | null>(null);
 	let tickerPicks = $state<Pick[]>([]);
-	let browserOpen = $state(false);
-	let browsing = $state(false);
 	let posFilter = $state<string | null>(null);
 	let done = $state(false);
+	let seed = $state((Math.random() * 1e9) | 0);
 
 	$effect(() => {
 		const t = team;
@@ -27,7 +26,7 @@
 		d.autoAdvance();
 		draft = d;
 		tickerPicks = [...d.picks].slice(-8).reverse();
-		browserOpen = d.isUserTurn;
+		if (d.done) done = true;
 	});
 
 	function styleFor(name: string): string {
@@ -39,25 +38,19 @@
 
 	let pageStyle = $derived(styleFor(team));
 	let crest = $derived(crestFor(team));
+	let isUserTurn = $derived(draft ? draft.isUserTurn : false);
 
 	function draftPlayer(p: (typeof draft)['picks'][number]['player']) {
-		if (!draft) return;
+		if (!draft || !draft.isUserTurn) return;
 		const pick = draft.userPick(p);
 		if (!pick) return;
+		// league flows forward instantly to your next turn (or the end)
+		draft.autoAdvance();
 		tickerPicks = [...draft.picks].slice(-8).reverse();
-		browserOpen = false;
-		// let the moment land, then flow the league forward
-		setTimeout(() => {
-			if (!draft) return;
-			draft.autoAdvance();
-			tickerPicks = [...draft.picks].slice(-8).reverse();
-			if (draft.done) done = true;
-			else browserOpen = draft.isUserTurn;
-		}, 650);
+		if (draft.done) done = true;
 	}
 
 	function skipAhead() {
-		// auto-pick for the user until the draft ends (demo)
 		if (!draft) return;
 		while (!draft.done) {
 			draft.autoAdvance();
@@ -65,7 +58,6 @@
 		}
 		tickerPicks = [...draft.picks].slice(-8).reverse();
 		done = true;
-		browserOpen = false;
 	}
 
 	function beginSeason() {
@@ -74,11 +66,7 @@
 		goto('/season');
 	}
 
-	let seed = $state((Math.random() * 1e9) | 0);
-
-	let available = $derived(
-		draft ? draft.available(posFilter ?? undefined, 40) : []
-	);
+	let available = $derived(draft ? draft.available(posFilter ?? undefined, 40) : []);
 	let myRoster = $derived(draft ? draft.rosterOf(team) : []);
 	let positions = $derived(
 		draft ? [...new Set(draft.available(undefined, 400).map((p) => p.pos))].sort() : []
@@ -137,7 +125,7 @@
 			<p>
 				{#if draft && !done}
 					round <b>{draft.round}</b> of {ROUNDS} · pick <b>{draft.picks.length + 1}</b> of {ROUNDS * 32}
-					{#if draft.isUserTurn}· <span class="yourturn">your turn</span>{/if}
+					{#if isUserTurn}· <span class="yourturn">your turn</span>{/if}
 				{:else if done}
 					draft complete — {myRoster.length} drafted
 				{/if}
@@ -145,8 +133,34 @@
 		</div>
 	</header>
 
-	<!-- the flow: rounds as Cinzel headers, picks as typographic rows -->
 	<main class="flow">
+		<!-- YOUR PICK: the one thing to do on this page. No popup, no layers. -->
+		{#if draft && isUserTurn && !done}
+			<section class="pickpanel" in:fade>
+				<div class="pp-head">
+					<h2>Your pick <span>#{draft.picks.length + 1}</span></h2>
+					<button class="pill ghost" onclick={skipAhead}>auto-finish</button>
+				</div>
+				<p class="pp-hint">Tap a player to draft them. Filter by position if you like.</p>
+				<div class="filters">
+					<button class="fchip" class:on={!posFilter} onclick={() => (posFilter = null)}>all</button>
+					{#each positions as pos}
+						<button class="fchip" class:on={posFilter === pos} onclick={() => (posFilter = posFilter === pos ? null : pos)}>
+							{pos}
+						</button>
+					{/each}
+				</div>
+				<div class="plist">
+					{#each available as p, i (p.name + i)}
+						<button class="prow" onclick={() => draftPlayer(p)}>
+							<b>{p.name}</b>
+							<span class="pmeta"><i>{p.pos}</i><em>{p.ovr}</em></span>
+						</button>
+					{/each}
+				</div>
+			</section>
+		{/if}
+
 		{#if depth.length}
 			<section class="depth" in:fade>
 				<h2 class="round">Depth Chart</h2>
@@ -162,6 +176,7 @@
 				</div>
 			</section>
 		{/if}
+
 		{#if draft}
 			{#each Array.from({ length: draft.round }, (_, ri) => ri + 1).reverse() as r}
 				{@const rpicks = draft.picks.filter((p) => p.round === r).reverse()}
@@ -187,6 +202,7 @@
 				{/if}
 			{/each}
 		{/if}
+
 		{#if done}
 			<div class="finale" in:fade>
 				<h2>Your {team}</h2>
@@ -201,42 +217,6 @@
 	</main>
 
 	<SiteFooter />
-
-	<!-- your turn: the browser is always mounted; it rises on your turn -->
-	{#if draft && !done}
-		<div class="sheet" class:up={browserOpen && draft.isUserTurn} transition:fly={{ y: 120, duration: 420 }}>
-			<div class="sheetbloom" aria-hidden="true"></div>
-			<div class="sheethead">
-				{#if draft.isUserTurn}
-					<h3>Your pick <span>#{draft.picks.length + 1}</span></h3>
-					<button class="pill ghost" onclick={skipAhead}>auto-finish</button>
-				{:else}
-					<h3 class="waiting">Pick #{draft.picks.length + 1} · {draft.currentTeam} on the clock</h3>
-					<button class="pill ghost" onclick={() => (browsing = !browsing)}>
-						{browsing ? 'hide board' : 'browse'}
-					</button>
-				{/if}
-			</div>
-			{#if (browserOpen && draft.isUserTurn) || browsing}
-				<div class="filters">
-					<button class="fchip" class:on={!posFilter} onclick={() => (posFilter = null)}>all</button>
-					{#each positions as pos}
-						<button class="fchip" class:on={posFilter === pos} onclick={() => (posFilter = posFilter === pos ? null : pos)}>
-							{pos}
-						</button>
-					{/each}
-				</div>
-				<div class="plist">
-					{#each available as p, i (p.name + i)}
-						<button class="prow" disabled={!draft.isUserTurn} onclick={() => draftPlayer(p)}>
-							<b>{p.name}</b>
-							<span class="pmeta"><i>{p.pos}</i><em>{p.ovr}</em></span>
-						</button>
-					{/each}
-				</div>
-			{/if}
-		</div>
-	{/if}
 </div>
 
 <style>
@@ -247,6 +227,8 @@
 		color: var(--text);
 		font-family: system-ui, sans-serif;
 		overflow-x: hidden;
+		display: flex;
+		flex-direction: column;
 	}
 	.bloom {
 		position: fixed;
@@ -278,13 +260,15 @@
 		align-items: center;
 		gap: 1rem;
 		padding: 1.4rem 1.6rem 0.6rem;
+		max-width: 880px;
+		margin: 0 auto;
+		width: 100%;
 	}
 	.crest { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 6px 18px var(--glow)); }
 	.mast h1 { font-family: 'Cinzel Decorative', serif; font-size: 1.7rem; margin: 0; }
 	.mast p { margin: 0.2rem 0 0; font-size: 0.9rem; opacity: 0.75; }
 	.mast b { font-variant-numeric: tabular-nums; }
 	.yourturn { color: var(--b1); font-weight: 700; }
-	.mast .pill { margin-left: auto; }
 
 	.pill {
 		border-radius: 999px;
@@ -305,13 +289,69 @@
 	}
 
 	/* the flow */
-	.flow { position: relative; padding: 0.6rem 1.6rem 12rem; max-width: 880px; margin: 0 auto; }
+	.flow { position: relative; padding: 0.6rem 1.6rem 3rem; max-width: 880px; margin: 0 auto; width: 100%; flex: 1; }
 	.round {
 		font-family: 'Cinzel Decorative', serif;
 		font-size: 1.15rem;
 		margin: 1.8rem 0 0.4rem;
 		color: var(--sub);
 	}
+
+	/* YOUR PICK — the hero section. Gold-bloomed, impossible to miss. */
+	.pickpanel {
+		position: relative;
+		border-radius: 24px;
+		padding: 1.4rem 1.4rem 1rem;
+		margin: 1rem 0 0.5rem;
+		background:
+			radial-gradient(ellipse 80% 100% at 50% 0%, color-mix(in srgb, var(--b2) 22%, transparent), transparent 70%),
+			color-mix(in srgb, var(--panel) 70%, transparent);
+		border: 1px solid color-mix(in srgb, var(--b2) 45%, transparent);
+		box-shadow: 0 12px 44px color-mix(in srgb, var(--b2) 18%, transparent);
+	}
+	.pp-head { display: flex; align-items: center; justify-content: space-between; }
+	.pp-head h2 { font-family: 'Cinzel Decorative', serif; margin: 0; font-size: 1.35rem; }
+	.pp-head h2 span { font-variant-numeric: tabular-nums; color: var(--b1); }
+	.pp-hint { margin: 0.35rem 0 0; font-size: 0.88rem; opacity: 0.7; }
+	.filters {
+		display: flex;
+		gap: 0.5rem;
+		padding: 0.9rem 0 0.4rem;
+		overflow-x: auto;
+	}
+	.fchip {
+		border-radius: 999px;
+		border: 1px solid var(--rosehair);
+		background: transparent;
+		color: var(--text);
+		padding: 0.35rem 0.85rem;
+		font-size: 0.8rem;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	.fchip.on { background: var(--b2); border-color: var(--b2); color: #3a2b12; font-weight: 600; }
+	.plist { max-height: 46vh; overflow-y: auto; padding-bottom: 0.6rem; }
+	.prow {
+		display: flex;
+		align-items: baseline;
+		justify-content: space-between;
+		width: 100%;
+		padding: 0.62rem 0.3rem;
+		background: none;
+		border: none;
+		border-bottom: 1px solid color-mix(in srgb, var(--rosehair) 45%, transparent);
+		color: var(--text);
+		cursor: pointer;
+		text-align: left;
+		font-size: 0.95rem;
+	}
+	.prow:hover { background: linear-gradient(90deg, color-mix(in srgb, var(--b2) 14%, transparent), transparent 70%); }
+	.prow:hover b { color: var(--b1); }
+	.prow b { font-weight: 600; }
+	.pmeta { display: flex; gap: 0.7rem; align-items: baseline; }
+	.pmeta i { font-style: normal; font-size: 0.78rem; opacity: 0.6; }
+	.pmeta em { font-style: normal; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--b1); }
+
 	/* depth chart: your roster by unit, always visible */
 	.depth { margin-bottom: 0.6rem; }
 	.dgroups { display: flex; flex-direction: column; gap: 0.35rem; }
@@ -334,6 +374,7 @@
 		font-size: 0.8rem;
 	}
 	.dchip i { font-style: normal; opacity: 0.6; font-size: 0.72rem; font-variant-numeric: tabular-nums; }
+
 	.pickrow {
 		position: relative;
 		display: flex;
@@ -343,7 +384,6 @@
 		border-bottom: 1px solid color-mix(in srgb, var(--rosehair) 55%, transparent);
 		background: linear-gradient(90deg, var(--zr1), transparent 65%);
 	}
-	/* team-color bleed: no border, the color fades in from the edge */
 	.bleed {
 		position: absolute;
 		left: 0; top: 0; bottom: 0;
@@ -357,86 +397,10 @@
 	.who b { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 	.who i { font-style: normal; font-size: 0.8rem; opacity: 0.65; font-variant-numeric: tabular-nums; }
 	.tname { font-size: 0.78rem; opacity: 0.55; white-space: nowrap; }
-	/* your picks: gold earns its moment */
 	.pickrow.userpick {
 		background: linear-gradient(90deg, color-mix(in srgb, var(--b2) 26%, transparent), transparent 70%);
 	}
 	.pickrow.userpick .who b { color: var(--b1); }
-
-	/* the sheet: always mounted; rises gold-bloomed on your turn */
-	.sheet {
-		position: fixed;
-		left: 0; right: 0; bottom: 0;
-		max-height: 62vh;
-		display: flex;
-		flex-direction: column;
-		border-radius: 28px 28px 0 0;
-		background: color-mix(in srgb, var(--panel) 82%, transparent);
-		backdrop-filter: blur(18px);
-		box-shadow: 0 -18px 60px rgba(0, 0, 0, 0.25);
-		z-index: 20;
-		overflow: hidden;
-		transform: translateY(calc(100% - 4.2rem));
-		transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
-	}
-	.sheet.up { transform: translateY(0); }
-	.sheetbloom {
-		position: absolute;
-		inset: 0;
-		background: radial-gradient(ellipse 70% 90% at 50% 115%, var(--b2), transparent 70%);
-		opacity: 0.5;
-		pointer-events: none;
-	}
-	.sheethead {
-		position: relative;
-		display: flex;
-		align-items: center;
-		padding: 1.1rem 1.4rem 0.4rem;
-	}
-	.sheethead h3 { font-family: 'Cinzel Decorative', serif; margin: 0; font-size: 1.2rem; }
-	.sheethead h3 span { font-variant-numeric: tabular-nums; color: var(--b1); }
-	.sheethead h3.waiting { font-family: system-ui, sans-serif; font-size: 0.95rem; font-weight: 500; opacity: 0.8; }
-	.sheethead .pill { margin-left: auto; }
-	.filters {
-		position: relative;
-		display: flex;
-		gap: 0.5rem;
-		padding: 0.6rem 1.4rem;
-		overflow-x: auto;
-	}
-	.fchip {
-		border-radius: 999px;
-		border: 1px solid var(--rosehair);
-		background: transparent;
-		color: var(--text);
-		padding: 0.35rem 0.85rem;
-		font-size: 0.8rem;
-		cursor: pointer;
-		white-space: nowrap;
-	}
-	.fchip.on { background: var(--b2); border-color: var(--b2); color: #3a2b12; font-weight: 600; }
-	.plist { position: relative; overflow-y: auto; padding: 0 1.4rem 1.6rem; }
-	.prow {
-		display: flex;
-		align-items: baseline;
-		justify-content: space-between;
-		width: 100%;
-		padding: 0.6rem 0.2rem;
-		background: none;
-		border: none;
-		border-bottom: 1px solid color-mix(in srgb, var(--rosehair) 45%, transparent);
-		color: var(--text);
-		cursor: pointer;
-		text-align: left;
-		font-size: 0.95rem;
-	}
-	.prow:disabled { cursor: default; }
-	.prow:disabled:hover b { color: var(--text); }
-	.prow:not(:disabled):hover b { color: var(--b1); }
-	.prow b { font-weight: 600; }
-	.pmeta { display: flex; gap: 0.7rem; align-items: baseline; }
-	.pmeta i { font-style: normal; font-size: 0.78rem; opacity: 0.6; }
-	.pmeta em { font-style: normal; font-variant-numeric: tabular-nums; font-weight: 700; color: var(--b1); }
 
 	.finale { padding: 2rem 0; text-align: center; }
 	.finale h2 { font-family: 'Cinzel Decorative', serif; }
