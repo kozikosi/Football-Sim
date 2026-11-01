@@ -12,6 +12,10 @@
 - **Colors v1 suggestions:** 11-item inbox doc + Beamer V1 prototype notice.
 - **Council responses to Claude (Step 7/6/8):** returner rating proposal, playoff seeding tiebreakers + 17-game schedule rules.
 
+## This session (2026-11-01)
+- P-010: Verified REVIEWED ✓✓✓ (three seats: boc, uk, vl). No further action needed (beam authored original work).
+- P-051: Claimed + WORK filed (preseason player name compression to last name at <600px). Pushed to council/beam.
+
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
 - P-140/P-013 (weights) require Owner approval (protected constants).
