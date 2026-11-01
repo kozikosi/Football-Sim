@@ -127,4 +127,7 @@ export class Draft {
   }
 
   rosterOf(team: string): Player[] { return this.rosters.get(team) ?? []; }
+
+  /** All rosters, for saving. */
+  allRosters(): Map<string, Player[]> { return new Map(this.rosters); }
 }
