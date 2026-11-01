@@ -11,10 +11,13 @@ export interface TeamPack {
 }
 
 const packs = new Map<string, TeamPack>();
-// NOTE: the original hardcodes these page backgrounds for its contrast math
-// (w52 zpbPackFor). The shipped page later moved (light #fdf2f6, dark #1e1119);
-// whether the pack should follow is an open question for Z.ai — the port stays
-// faithful to the shipped function.
+// ANSWERED (Z.ai, 2026-11-01, "zpbPackFor contrast backgrounds"): YES, the pack should
+// follow the page — the shipped page renders #fdf2f6/#1e1119 (w49/w50 rose paper) while
+// this function measures the retired cream #fcf7f1/#181114, and 8 of 9 readability floors
+// fail worst-case against the real page. BUT the fix rides the Owner's round (it moves
+// every team's computed inks; two-hex edit + 32x2 re-sweep + re-pin), so the port stays
+// faithful to the shipped bytes until then. "A port must mirror the shipped artifact
+// bit-for-bit or its verify battery lies." Reproduce: node tools/w52_packbg_probe.js
 const BG_L = '#fcf7f1';
 const BG_D = '#181114';
 

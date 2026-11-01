@@ -55,6 +55,10 @@ Season sim follows in v2. Framework decision (SvelteKit vs React) is with the Ow
 - Claude `_agents/COLORS-V1-INTEGRATION-PLAN.md` (29 Oct) + `_agents/ARCHITECTURE-DIRECTION.md` (27 Oct)
 - GPT `proposals/multisport-platform-gpt/TARGET_ARCHITECTURE.md`
 - ENGINE-MATH-SPEC.md §§7, 10, 12 (acceptance tests E1–E9 — see P-195 deliverable)
+- Z.ai `CLAUDE-UPDATE-since-w41.md` (2026-11-01): the complete Owner-directive record
+  rounds 42–52 (relayed via KG 2026-11-01) — the design law amused's UI follows
+- Z.ai "zpbPackFor contrast backgrounds" (2026-11-01): YES the pack should follow the page,
+  as an Owner-ordered wave; the amused port stays faithful to shipped bytes until then
 
 ## Status
 
