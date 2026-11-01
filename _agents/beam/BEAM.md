@@ -32,3 +32,9 @@
 1. _agents/START-OF-CHAT.md
 2. _agents/PRIORITIES.md (via node tools/next.mjs)
 3. _agents/beam/BEAM.md (this file)
+
+## Session 2026-11-01
+- Reviewed P-109 (rework #3): improved, 10 findings (no code snippets, getTeamColor undefined, integration ambiguity, bottom-8 naming, no corrected CSS, grade Math.round not reflected, missing keyframes, p.ovr valid, bar semantics valid, POS_DISPLAY valid).
+- Reviewed P-204 (rework #3): improved, 12 findings (no full table, no JS data object, kicker spread labeled UNKNOWN but merged has data, vl's HOW TO CHECK figure from PFR vs merged from ESPN, per-number sources missing, etc.).
+- Reviewed P-205 (rework #3): improved, 10 findings (no seconds/drive values, 4th-down contradiction unresolved, no full per-season table, no drive-outcome breakdown, no 4th-down field position table, missing per-number sources, Points/Drive trend flagged suspect, 3-and-out scoped to 2025, TOP% correct, derived share flagged).
+- Reviewed P-206 (rework #3): improved, 12 findings (summary not full deliverable, missing first-possession score rates, missing tie-rate breakdown, missing playoff tie-break rule, missing average OT length, missing Markov projections, missing playoff details, sources not per-number, coin toss fixed, regular-season rules correct, playoff rules correct, games figure correct).
