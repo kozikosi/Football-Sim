@@ -1,0 +1,59 @@
+teams: 32
+  Arizona Cardinals → accD,txd,sud,hairL,hairD,bgL,bgD,--tSu,--tHr,--tBg,--tBgd
+  Atlanta Falcons → acc3L,hairL,hairD,bgL,bgD,--tA3,--tHr,--tBg,--tBgd
+  Baltimore Ravens → accD,txd,sud,hairL,hairD,bgL,bgD,onD,--tSu,--tHr,--tBg,--tBgd
+  Buffalo Bills → txL,txM,txMd,hairL,hairD,bgL,bgD,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  Carolina Panthers → accL,accD,acc3L,txd,sud,hairL,hairD,bgL,bgD,--tA,--tA3,--tHr,--tBg,--tBgd
+  Chicago Bears → accD,txL,txd,sud,hairL,hairD,bgL,bgD,onD,--tTx,--tHr,--tBg,--tBgd
+  Cincinnati Bengals → acc2D,acc3L,hairL,hairD,bgL,bgD,--tA3,--tHr,--tBg,--tBgd
+  Cleveland Browns → accL,acc3L,txM,hairL,hairD,bgL,bgD,--tA,--tA3,--tHr,--tTxM,--tBg,--tBgd
+  Dallas Cowboys → hairL,hairD,bgL,bgD,--tSu,--tHr,--tBg,--tBgd
+  Denver Broncos → acc2D,acc3L,hairL,hairD,bgL,bgD,--tA3,--tHr,--tBg,--tBgd
+  Detroit Lions → accL,accD,txL,txM,txd,sud,hairL,hairD,bgL,bgD,--tA,--tTx,--tHr,--tTxM,--tBg,--tBgd
+  Green Bay Packers → txL,txM,txMd,hairL,hairD,bgL,bgD,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  Houston Texans → accL,acc2D,acc3D,txL,txMd,hairL,hairD,bgL,bgD,--tA,--tTx,--tHr,--tTxMd,--tBg,--tBgd
+  Indianapolis Colts → accD,txL,txM,txd,sud,hairL,hairD,bgL,bgD,--tTx,--tSu,--tHr,--tTxM,--tBg,--tBgd
+  Jacksonville Jaguars → accD,sud,hairL,hairD,bgL,bgD,--tHr,--tBg,--tBgd
+  Kansas City Chiefs → accL,hairL,hairD,bgL,bgD,--tA,--tHr,--tBg,--tBgd
+  Las Vegas Raiders → acc2D,hairL,hairD,bgL,bgD,--tHr,--tBg,--tBgd
+  Los Angeles Chargers → accL,accD,acc2L,acc3L,txL,txM,txMd,txd,sud,hairL,hairD,bgL,bgD,--tA,--tA2,--tA3,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  Los Angeles Rams → acc3L,txL,txM,txMd,hairL,hairD,bgL,bgD,--tA3,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  Miami Dolphins → acc2L,txM,hairL,hairD,bgL,bgD,--tA2,--tHr,--tTxM,--tBg,--tBgd
+  Minnesota Vikings → accD,acc3L,txd,sud,hairL,hairD,bgL,bgD,--tA3,--tSu,--tHr,--tBg,--tBgd
+  New England Patriots → hairL,hairD,bgL,bgD,--tSu,--tHr,--tBg,--tBgd
+  New Orleans Saints → acc3L,hairL,hairD,bgL,bgD,--tA3,--tHr,--tBg,--tBgd
+  NY Giants → accD,acc2D,acc3D,txL,txM,txMd,txd,sud,hairL,hairD,bgL,bgD,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  NY Jets → hairL,hairD,bgL,bgD,--tHr,--tBg,--tBgd
+  Philadelphia Eagles → accL,acc3L,txL,txM,txMd,hairL,hairD,bgL,bgD,--tA,--tA3,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  Pittsburgh Steelers → acc3L,txL,txM,txMd,hairL,hairD,bgL,bgD,--tA3,--tTx,--tHr,--tTxM,--tTxMd,--tBg,--tBgd
+  San Francisco 49ers → accD,acc2L,acc3L,txd,sud,hairL,hairD,bgL,bgD,--tA2,--tA3,--tHr,--tBg,--tBgd
+  Seattle Seahawks → acc2D,acc3L,hairL,hairD,bgL,bgD,--tA3,--tSu,--tHr,--tBg,--tBgd
+  Tampa Bay Buccaneers → accD,txd,sud,hairL,hairD,bgL,bgD,--tHr,--tBg,--tBgd
+  Tennessee Titans → acc3D,txL,hairL,hairD,bgL,bgD,--tTx,--tHr,--tBg,--tBgd
+  Washington Commanders → acc2D,txL,hairL,hairD,bgL,bgD,--tTx,--tHr,--tBg,--tBgd
+teams whose pack changes at all: 32/32
+
+=== floor audit vs SHIPPED page (#fdf2f6/#1e1119), packs computed with OLD refs ===
+accL vs #fdf2f6: worst 4.49 (Los Angeles Chargers) FAIL (floor 4.6)
+acc2L vs #fdf2f6: worst 4.13 (Los Angeles Chargers) FAIL (floor 4.2)
+acc3L vs #fdf2f6: worst 4.11 (Cleveland Browns) FAIL (floor 4.2)
+txL vs #fdf2f6: worst 6.83 (Buffalo Bills) FAIL (floor 7)
+txM vs #fdf2f6: worst 4.89 (Philadelphia Eagles) FAIL (floor 5)
+accD vs #1e1119: worst 4.52 (Minnesota Vikings) FAIL (floor 4.6)
+acc2D vs #1e1119: worst 4.13 (Seattle Seahawks) FAIL (floor 4.2)
+acc3D vs #1e1119: worst 4.18 (Tennessee Titans) FAIL (floor 4.2)
+txMd vs #1e1119: worst 6.42 (Baltimore Ravens) PASS (floor 4.5)
+=== floor audit vs SHIPPED page, packs computed with NEW refs ===
+accL vs #fdf2f6: worst 4.60 (Cincinnati Bengals) PASS (floor 4.6)
+acc2L vs #fdf2f6: worst 4.21 (Dallas Cowboys) PASS (floor 4.2)
+acc3L vs #fdf2f6: worst 4.21 (Indianapolis Colts) PASS (floor 4.2)
+txL vs #fdf2f6: worst 7.00 (New England Patriots) PASS (floor 7)
+txM vs #fdf2f6: worst 5.02 (Las Vegas Raiders) PASS (floor 5)
+accD vs #1e1119: worst 4.60 (Seattle Seahawks) PASS (floor 4.6)
+acc2D vs #1e1119: worst 4.20 (Green Bay Packers) PASS (floor 4.2)
+acc3D vs #1e1119: worst 4.21 (Detroit Lions) PASS (floor 4.2)
+txMd vs #1e1119: worst 6.42 (Baltimore Ravens) PASS (floor 4.5)
+
+#8e5566 vs #fcf7f1 = 5.414 | vs #fdf2f6 = 5.275
+KC --tBg light: old #fbede9 | new #fbe8ed
+KC --tBgd dark: old #2b151a | new #30151f
