@@ -13,7 +13,6 @@
 - Session 31 Oct (cont. 24): review #3 of P-152 (improved) — draft board cards. Corrected 11 findings: missing helpers (getTeamColor/getTeamLogo/--team-primary/Cinzel/textShimmer all absent), "three colour bubbles" ambiguity (recommend 3 team-colour swatches only for 85+), logo-centring not implemented, white-text-in-shimmer, parentheses only fixed in table not card, missing helper signatures, topTag green→gold, OVR conditional, fitNoteHTML no-op, mobile unverified, safe-alone partial. Supplied corrected card implementation + CSS. Pushed inbox/20261031-1012-boc-P-152-review.md.
 - Session 31 Oct (cont. 25): review #3 of P-153 (improved) — draft board controls. Corrected work's false root cause: PRIO_MULT/prioOf are NOT dead code (stars functional, l.1131); real bug is sort-by-score vs display-pri mismatch. Also corrected false "zpb-tfilter already exists" (0 hits). Provided corrected Priority fix (pri*m for all signs, consistent sort/display) and new team-filter implementation. Pushed inbox/20261031-1030-boc-P-153-review.md.
 - Session 31 Oct (cont. 26-50): reviewed P-155, P-156, P-158, P-162, P-163, P-164, P-167, P-168, P-169, P-177, P-183, P-185, P-186, P-187, P-192, P-193, P-196, P-002, P-199, P-109, P-160, P-171, P-174, P-201, P-204, P-205, P-206 — all VERDICT: improved, all pushed. Each review verified anchors against Pre-Colors and flagged defects. Ran run-all.sh for P-199 (2 FAILED: E3a, E3c — expected evolution). Courier work: w44 pushed to council/zai + gh-pages updated. All 27 items now REVIEWED ✓✓✓.
-- Session 31 Oct (cont. courier): pushed w44 to origin/council/zai (dfb33e10) and updated origin/gh-pages to w44 (524cb6e6).
 - Session 31 Oct (cont. courier): pushed w44 package to origin/council/zai (dfb33e10) and updated origin/gh-pages to w44 (524cb6e6) at Owner's request.
 - Full history of sessions 14–20 (P-109–P-116 reviews) in prior lane versions; see git log of council/boc for review files.
 
@@ -42,7 +41,7 @@
 - `_agents/boc/tools/parse_madden_ratings.py`
 - `_agents/boc/data/madden27-ratings.csv` (header only)
 - `_agents/boc/data/README.md`
-- `bulletin/20261028-0100-boc.md`, `bulletin/20261028-0200-boc.md`, `bulletin/20261028-0300-boc.md`, `bulletin/20261029-0310-boc.md`, `bulletin/20261029-0950-boc.md`, `bulletin/20261029-1000-boc.md`, `bulletin/20261029-1010-boc.md`, `bulletin/20261029-2013-boc.md`, `bulletin/20261029-2055-boc.md`, `bulletin/20261029-2105-boc.md`, `bulletin/20261031-1045-boc.md`, `bulletin/20261031-1930-boc.md`
+- `bulletin/20261028-0100-boc.md`, `bulletin/20261028-0200-boc.md`, `bulletin/20261028-0300-boc.md`, `bulletin/20261029-0310-boc.md`, `bulletin/20261029-0950-boc.md`, `bulletin/20261029-1000-boc.md`, `bulletin/20261029-1010-boc.md`, `bulletin/20261029-2013-boc.md`, `bulletin/20261029-2055-boc.md`, `bulletin/20261029-2105-boc.md`, `bulletin/20261031-1045-boc.md`, `bulletin/20261031-1930-boc.md`, `bulletin/20261101-0000-boc.md`, `bulletin/20261101-0045-boc.md`
 - inbox claim/review files through P-131 (P-019, P-020, P-021, P-022, P-023, P-042, P-043, P-044, P-045, P-046, P-064, P-068, P-069, P-103, P-104, P-108, P-109, P-110, P-111, P-112, P-114, P-115, P-116, P-131) plus claude-research
 
 ## Worktree / branch
