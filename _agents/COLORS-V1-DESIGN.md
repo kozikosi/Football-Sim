@@ -1,0 +1,37 @@
+# COLORS V1: design and build plan (Architect, 28 Oct 2026). Supersedes the "transplant into the w33 shell" plan in COLORS-V1-INTEGRATION-PLAN.md.
+Owner, 28 Oct 21:57: w33 is buggy; do not rely on it for architecture or function; Colors is mine; verbatim in `owner-notes/2026-10-28-colors-creative-freedom-verbatim.txt`. I build from scratch, with the Owner's two fixed style points (team-tinted neutral colours; rose/gold fallback) and his page-level notes.
+
+## Architecture (decided; ordinary, reversible)
+- `colors/`: TypeScript source, no runtime dependencies. `src/engine/` is pure (no DOM, no Math.random, seeded `Rng`), `src/ui/` is the page, `build/build.mjs` strips types (TypeScript's own `transpileModule`) and emits **one self-contained `Football-Sim-Colors-v1.html`** (the delivered artifact stays one file; AGENTS.md §3 reading confirmed by the Owner's earlier answer).
+- Tests: `node --test --experimental-strip-types "test/*.test.ts"` (VERIFIED working, 10 pass). `npm install` is unreachable in this sandbox (registry ENOTFOUND, VERIFIED), so no esbuild/Vitest; the global TypeScript is enough.
+- Data: `data/madden27-ratings.csv` (1,941) + `data/free-agents-old-ratings.csv` (12) compiled into the build; players are identified by `name|pos|team`, never name alone (3 duplicate names).
+- Colour: the 32-team table (3 hexes each, Owner's 22 Oct table; read from `ZPB_TEAM_COLORS` in w33 and checked against the Owner's table before use). Per-team UI palette: neutral, tinted, brightened when dark; the algorithm is a port of w33's `zpbPackFor` so the homepage dropdown colours match, tested for contrast. Fallback theme: soft rose near-white, gold accents. Light/dark toggle fixed in the footer on every page.
+
+## Engine order (each step has a test that can fail)
+1. Seeded RNG (done, 3 tests). 2. Kicking model: in-season rating (done; 82 who goes 2/4 -> 78.5, a 78 who goes 7/7 with two from 55+ -> 81.6). 3. Data loader + player identity (done). 4. 32-spot table, REV 3 flex, optimal lineup, 3-4 / 4-3 base, NICKEL/DIME fields (**done 29 Oct**: `slots.ts`, `flex.ts`, `hungarian.ts`, `lineup.ts`, `test/lineup.test.ts`, 27 tests; see "Step 4 notes"). 5. Team ratings + matchup model + game: ported from the lab's fitted literals. 6. **Drive generator** (no penalties; clock; 3&O/4&O real; overtime with the current rules, playoff overtime gives both teams a possession). 7. Season, standings, tiebreakers, playoffs. 8. CPU draft (GM traits, round-1 floors, no busts). 9. Awards and recaps built from the same drives.
+Identities asserted in tests: drive points = final score; drive yards = team yards; punts, takeaways, sacks in the drives = the box score; clock sums to 60 minutes (+ overtime).
+
+## UI (my design; Owner's fixed points above)
+Cinematic: scene transitions, text that arrives and leaves, the draft room, game days as a live drive ticker, a champion's night. Mobile first (390 px, no sideways scroll). Details are decided as screens are built; w33's screenshots are the general style reference only.
+
+## Council work (requests in PRIORITIES.md, not blocking)
+P-204 real field-goal accuracy by distance, P-205 real drive statistics, P-206 current overtime rules and outcomes. Later: Playwright screenshots at 390 and 1280 px of each screen and a verifier run of every test order.
+
+## Step 4 notes (Architect, 29 Oct 2026)
+- **Flex source is `tools/mathlab/flex.json` REV 3 (108 rules), not `results/flex-compiled.json`**, which is still REV 2 (QB may still play WR/SS there). `flex.ts` is a typed copy; a test compares it with flex.json rule by rule. Flex is now **REV 4 (Owner 29 Oct): a QB may flex only to FS, at -10**; AGENTS.md section 3 matches.
+- **Objective:** sum of spot weight x (OVR - flex penalty), solved exactly. Priorities in `lineup.ts`: a QB is never forced into an unlisted spot; every rostered player plays before any empty spot gets a 70 replacement; fewest -8 emergency fills; then value. Verified against brute force (60 random small cases) and a greedy baseline on three real rosters.
+- **Real data (VERIFIED, `lineupFor` on all 32 rosters, rosters of 56-67):** 0 emergency fills in 4-3 and in 3-4; 64 lineups in 0.29 s.
+- **Finding, for step 5 and the Owner:** the totals of the two formations are not comparable. The spec's rule "OLB rated as WILL, ILB as MIKE" gives 3-4 a spot SAM (30 -> 240) and DT2 (300 -> 260), so a flat roster is worth 170 x 70 more in 3-4 before any flex. A CPU "pick the higher total" base choice would always pick 3-4, so `bestBase` was removed; the base is to be chosen by team rating in step 5. Whether the model should give a 3-4 OLB2 the full WILL value is a product call to confirm with the Owner (default: yes, as the Owner wrote it).
+- Not checked: DL5 under a 3-4 (kept as a rotational lineman, INFERRED); how the draft UI will present the swapped spots; diffctx (PyPI unreachable here).
+
+## Owner 29 Oct (verbatim: `owner-notes/2026-10-29-flex-weights-dl5-ui-verbatim.txt`)
+- **Flex REV 4:** QB -> FS only, at -10 (`flex.json`, `flex.ts`; tests changed with it). `flexparse.mjs` (E3a) has failed against `flex.json` since REV 3 because it parses the Owner's 26 Oct text; it needs the later rulings added before it means anything again.
+- **3-4 OLB2 = DT2:** the 3-4 OLB2 (the SAM spot) is rated as DT2 (weight 300). The Owner gave **standing approval to re-weight the table whenever testing shows a reason ("whatever seems balanced; you can change both weights")**; every change is to be recorded in the spec. Now a flat 4-3 roster is worth 230 x 70 more in 3-4 before flex, so the weights are PROVISIONAL: step 5 compares the bases by team rating and moves DT2 and OLB2 together if one dominates.
+- **DL5** = rotation and heavy sets: run stops on x & short, goal line; more snaps on aggressive defence. `DL5_SHARE` (balanced 0.33 MEASURED, aggressive 0.40 INFERRED, cautious = balanced). The drive generator raises it per play on short-yardage and goal-line downs.
+- **Automatic flexing:** the Owner drafted his players where he wanted and the old math flexed over ten. Reproduced: from a natural best-per-spot lineup the plain optimum moves 9.9 of 32 spots per team and flexes 3.4 (VERIFIED, 32 real rosters). `adviseLineup` suggests a move only if it is worth 0.02 wins per player displaced: 3.6 moves and 1.7 flexed per team, keeping 85% of the gain (0.187 of 0.219 wins per team). The engine never changes the user's lineup by itself; the UI lets him edit freely and apply once ("APPLY THE CHANGES").
+- **UI notes** from the Owner's Z.ai comments are sorted in the verbatim note (inspiration only; w34 is not a spec; Pre-Colors is not a visual guide).
+
+## Portability rules (from the Next.js port review, 29 Oct; `_agents/NEXTJS-REVIEW-2026-10-29.md`)
+1. `src/engine` imports only sibling engine modules and touches no DOM, `Math.random`, `Date.now`, storage or `process` (enforced by `test/purity.test.ts`). The UI framework (Svelte 5 is the recommendation) is a shell around it.
+2. Engine state is plain JSON (no `Set`/`Map`/classes), versioned, and validated at load; saves are seed + decisions + checkpoints with the engine version stored; the product stays one offline HTML file with save-to-file; any sync backend is optional and later (OCC `version` contract from the port, on Cloudflare).
+3. HTML is made in one escaping place only, never by interpolating state strings into templates (the port's stored-injection hole).

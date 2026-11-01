@@ -20,7 +20,7 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 **An instruction that names a file, branch or command says where it exists** (branch or commit). A step that depends on something the seat cannot see is not a step.
 
-**Only the Architect builds.** Nobody else writes `Football-Sim-*.html` (V23 included), on any branch, ever; there are no candidate builds. The council supplies **ideas, exact code snippets, mock-ups and measurements** (to its own `inbox/`) and, after a build exists, **tests**. A seat that "just applied it" to the product has not helped.
+**Only the Architect builds.** Nobody else writes `Football-Sim-*.html` (Colors v1 included), on any branch, ever; there are no candidate builds. The council supplies **ideas, exact code snippets, mock-ups and measurements** (to its own `inbox/`) and, after a build exists, **tests**. A seat that "just applied it" to the product has not helped.
 
 **Work is never assigned to a named agent, anywhere** (not in prompts, not in docs, not in task rows). One ranked list (`_agents/PRIORITIES.md`), one command (`node tools/next.mjs`), one chain: the first seat to arrive does the top item; later seats **review** it (three different seats, each may improve it); after three confirmations it carries **REVIEWED ✓✓✓** and goes to the Architect. A review you can do beats new work in the same tier. Seats are often unavailable (OpenChamber was down for a day), so nothing may wait for one. The Architect may suggest *what* matters most, never *who*.
 
@@ -30,14 +30,14 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 ## 2. Build truth
 
-**Two histories exist (VERIFIED 25 Oct).** `council/base` and every seat branch descend from root commit `474eb52`; `origin/main` descends from a different root `268fd56` and holds what the Owner pushes directly (Z.ai's package in `z-core/`, the logo folders, `CLAUDE-START-HERE.md`). They do not merge cleanly into each other. Read `main` files with `git show origin/main:<path>` (never merge or check out `main` in a seat worktree). The Architect will reconcile the two with one deliberate unrelated-histories merge when V23 ships; the Owner need do nothing now.
+**Two histories exist (VERIFIED 25 Oct).** `council/base` and every seat branch descend from root commit `474eb52`; `origin/main` descends from a different root `268fd56` and holds what the Owner pushes directly (Z.ai's package in `z-core/`, the logo folders, `CLAUDE-START-HERE.md`). They do not merge cleanly into each other. Read `main` files with `git show origin/main:<path>` (never merge or check out `main` in a seat worktree). The Architect will reconcile the two with one deliberate unrelated-histories merge when Colors v1 ships; the Owner need do nothing now.
 
 A name is bound to one sha256. If the bytes differ, it is not that build.
 
 | Name | File | sha256 (first 16) | Bytes | State |
 |---|---|---|---|---|
 | **Pre-Colors** | `Football-Sim-PreColors.html` | `40233d6be00e987c` | 657,486 | **The current verified build.** Every anchor, patch and gate starts here. Rebuildable: `node tools/build-merged.js "<v20>" "<donor>" out.html` (inputs in `_archive/builds/`). |
-| **V23** | `Football-Sim-V23.html` | — | — | The Architect's next build (the Owner's V22 work list plus everything after it). Does not exist until the Architect builds it. |
+| **Colors v1** | `Football-Sim-Colors-v1.html` | — | — | The Architect's next build (Owner named it 28 Oct; "V23" is a retired name): Z.ai's shell with the Architect's engine. Building started 28 Oct on `architect/engine-and-seats`. Plan: `_agents/COLORS-V1-INTEGRATION-PLAN.md`. |
 | V20 | `_archive/builds/NFL Draft Simulator v20 Claude.html` | `31b7d61f42a53f3b` | 649,032 | Archived reference (re-measured 22 Oct from the file in git). |
 | Donor | `_archive/builds/NFL Draft Simulator.html` | `77bb9ed59ffa2294` | 650,127 | Archived. The Owner's disk copy of this name has been reported as `8f0f8d50…` (649,490 B): two different files under one name, UNKNOWN which carries which patches. Irrelevant for new work, because Pre-Colors already contains the patches. |
 | "V21" (council copy) | — | `044d1759…` | 656,746 | **Retired name, not a build.** An unverified modified copy (hand edit changes model output). Findings measured against it are `REPORTED` until re-anchored to Pre-Colors. |
@@ -57,7 +57,7 @@ Rules that replace the old "Do not" list, stated as what to do:
 - **Moving a number:** until the product has an injectable RNG (task `T-20261022-claude-2`, V23), runs are not repeatable (the product has 56–58 `Math.random()` sites and no seed), so only *structural* evidence counts: function-body hashes, diffs, and calculations from tables. Do not publish a before/after outcome from unseeded runs; once the RNG lands, compare seeded runs on the same build.
 - **PASS vs. acceptance:** a gate PASS means the checks ran clean. It is not product acceptance, and an implemented change is not an accepted one (§5).
 
-Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); QB cannot flex; flex stays realistic.
+Style that the Owner has fixed: plain informative language in recaps (no "expected scoring", no "before kickoff"); every turnover named; overtime events only in the overtime block, never "sudden death"; "2-Pt Conv" except in the Guide; user's team in blue (`.ub`); a QB may flex ONLY to FS, at -10 (Owner 29 Oct, flex REV 4); flex stays realistic and `tools/mathlab/flex.json` (REV 4) governs; the engine never re-lineups the user's team on its own (advice only, `adviseLineup`).
 
 ## 4. Worktrees, saving work, and the shared tree (the failure we actually had)
 
@@ -99,7 +99,7 @@ Default to focused inspection of the 650 KB product: `grep -n`, read a function 
 
 ## 7. Data integrity
 
-One rule: **no factual data is invented, estimated or silently "corrected".** Factual data = players, ratings, teams, rosters, real statistics. **Frozen:** the 1,200-player dataset (Owner-verified 22 Oct): never question or re-audit it. **Authoritative:** the Owner's 22 Oct 32-team colour table.
+One rule: **no factual data is invented, estimated or silently "corrected".** Factual data = players, ratings, teams, rosters, real statistics. **Dataset:** the Owner replaced the 1,200-player set with the new Madden ratings (28 Oct: name, pos, team, OVR, SPD, STR); the old set is retired and the new file is frozen once the Owner supplies it. **Authoritative:** the Owner's 22 Oct 32-team colour table.
 
 | Kind | May be added or changed when |
 |---|---|

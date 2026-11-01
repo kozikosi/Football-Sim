@@ -1,0 +1,11 @@
+SPEAKER: Owner (Kosi) | ROLE: Owner | TASK: weights philosophy | DATE: 2026-10-25 20:20 HST — saved verbatim by the Architect. The flex guide in that message is superseded by REV 2 (2026-10-26-dime-and-flex-guide-rev2.txt).
+
+I saw this line in Z's reweigh brief: "**Owner scaling rule:** divide by 2.54". I never said this. I think that comes from your weights.
+
+I am fine with redesigning the math as we like. You used to have a bias toward my initial player weights influencing the model. I think we should get away from that. Let's go with modern theory. I think z.ai's document summed up the current actual NFL salary market well because I had him synthesize different datasets of players' salaries.
+
+But you don't need to necessarily use his exact weights. The position ranking overall is pretty accurate but pick your own weights. Again I think 1000 should be the maximum of how much you value QB. QB is obviously the most important postition. Design the math as you want, but preferably all last digits of the weights should end in zero.
+
+(updated Flex guide followed: superseded by REV 2)
+
+Earlier the same day (relayed): integrate the returners (a punt returner was added who defaults to the second best returner in the ratings), fullbacks and punters, and generally improve the core of the mathematical engine; do not worry about UI until architecture, pathway, governance and mathematical engine decisions are completed. Create a boot pathway so Z.ai (sandbox, resets between chats, can read GitHub) and GPT (no GitHub, attachments only) share one structure; create a branch for a possible agent Grok.
