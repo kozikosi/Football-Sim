@@ -119,6 +119,7 @@
 	{/if}
 
 	<header class="mast">
+		<a class="back" href="/" aria-label="Back to home">←</a>
 		{#if crest}<img class="crest" src={crest} alt="" />{/if}
 		<div>
 			<h1>The Draft</h1>
@@ -269,6 +270,20 @@
 	.mast p { margin: 0.2rem 0 0; font-size: 0.9rem; opacity: 0.75; }
 	.mast b { font-variant-numeric: tabular-nums; }
 	.yourturn { color: var(--b1); font-weight: 700; }
+	.back {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.2rem;
+		height: 2.2rem;
+		border-radius: 999px;
+		border: 1px solid var(--rosehair);
+		color: var(--text);
+		text-decoration: none;
+		font-size: 1.1rem;
+		flex-shrink: 0;
+	}
+	.back:hover { border-color: var(--b2); color: var(--b1); }
 
 	.pill {
 		border-radius: 999px;

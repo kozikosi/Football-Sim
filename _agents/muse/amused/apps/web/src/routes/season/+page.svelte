@@ -74,6 +74,7 @@
 	<div class="bloom" aria-hidden="true"></div>
 
 	<header class="mast">
+		<a class="back" href="/" aria-label="Back to home">←</a>
 		{#if crest}<img class="crest" src={crest} alt="" />{/if}
 		<div>
 			<h1>The Season</h1>
@@ -189,6 +190,20 @@
 	}
 	.crest { width: 52px; height: 52px; object-fit: contain; filter: drop-shadow(0 6px 18px var(--glow)); }
 	.mast h1 { font-family: 'Cinzel Decorative', serif; font-size: 1.7rem; margin: 0; }
+	.back {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		width: 2.2rem;
+		height: 2.2rem;
+		border-radius: 999px;
+		border: 1px solid var(--rosehair);
+		color: var(--text);
+		text-decoration: none;
+		font-size: 1.1rem;
+		flex-shrink: 0;
+	}
+	.back:hover { border-color: var(--b2); color: var(--b1); }
 	.record { margin: 0.2rem 0 0; display: flex; gap: 0.8rem; align-items: baseline; }
 	.record b { font-size: 1.5rem; font-variant-numeric: tabular-nums; }
 	.chase { color: var(--b1); font-weight: 700; font-size: 0.95rem; }
