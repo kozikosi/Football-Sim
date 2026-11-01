@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { light, dark, type ThemeName } from '$lib/design/tokens.ts';
+	import { light, dark } from '$lib/design/tokens.ts';
 	import { packFor } from '$lib/design/team-pack.ts';
 	import { rowVars } from '$lib/design/row-vars.ts';
 	import { crestFor } from '$lib/design/crests.ts';
@@ -8,10 +8,10 @@
 	import { saveDraft } from '$lib/save.ts';
 	import { goto } from '$app/navigation';
 	import SiteFooter from '$lib/SiteFooter.svelte';
+	import { theme } from '$lib/theme.svelte.ts';
 	import { fly, fade } from 'svelte/transition';
 
 	const team = $derived($page.url.searchParams.get('team') || 'Kansas City Chiefs');
-	let mode = $state<ThemeName>('light');
 
 	// Draft state — created once per visit
 	let draft = $state<Draft | null>(null);
@@ -31,7 +31,7 @@
 	});
 
 	function styleFor(name: string): string {
-		const v = { ...(mode === 'light' ? light : dark), ...packFor(name)?.vars, ...rowVars(name) };
+		const v = { ...(theme.current === 'light' ? light : dark), ...packFor(name)?.vars, ...rowVars(name) };
 		return Object.entries(v)
 			.map(([k, val]) => `${k}:${val}`)
 			.join(';');
@@ -143,9 +143,6 @@
 				{/if}
 			</p>
 		</div>
-		<button class="pill ghost" onclick={() => (mode = mode === 'light' ? 'dark' : 'light')}>
-			{mode === 'light' ? 'night' : 'day'}
-		</button>
 	</header>
 
 	<!-- the flow: rounds as Cinzel headers, picks as typographic rows -->

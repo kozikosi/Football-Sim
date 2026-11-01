@@ -1,17 +1,17 @@
 <script lang="ts">
-	import { light, dark, type ThemeName } from '$lib/design/tokens';
+	import { light, dark } from '$lib/design/tokens';
 	import { packFor } from '$lib/design/team-pack';
 	import { rowVars, neutralRowVars, anchorVars } from '$lib/design/row-vars';
 	import { crestFor } from '$lib/design/crests';
 	import { TEAM_COLORS } from '$lib/design/team-colors-data';
 	import SiteFooter from '$lib/SiteFooter.svelte';
+	import { theme } from '$lib/theme.svelte.ts';
 
 	const teams = Object.keys(TEAM_COLORS).sort();
 	let team = $state('Kansas City Chiefs');
-	let mode = $state<ThemeName>('light');
 
 	let vars = $derived({
-		...(mode === 'light' ? light : dark),
+		...(theme.current === 'light' ? light : dark),
 		...packFor(team)?.vars,
 		...rowVars(team),
 		...neutralRowVars(team),
@@ -49,9 +49,6 @@
 					{#each teams as t}<option value={t}>{t}</option>{/each}
 				</select>
 			</label>
-			<button class="pill mode" onclick={() => (mode = mode === 'light' ? 'dark' : 'light')}>
-				{mode === 'light' ? 'night' : 'day'}
-			</button>
 			<a class="pill cta" href="/draft?team={encodeURIComponent(team)}">draft →</a>
 		</div>
 

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { light, dark, type ThemeName } from '$lib/design/tokens.ts';
+	import { light, dark } from '$lib/design/tokens.ts';
 	import { packFor } from '$lib/design/team-pack.ts';
 	import { rowVars } from '$lib/design/row-vars.ts';
 	import { crestFor } from '$lib/design/crests.ts';
@@ -7,9 +7,9 @@
 	import { loadDraft } from '$lib/save.ts';
 	import { Draft } from '$lib/draft/engine.ts';
 	import SiteFooter from '$lib/SiteFooter.svelte';
+	import { theme } from '$lib/theme.svelte.ts';
 	import { fly, fade } from 'svelte/transition';
 
-	let mode = $state<ThemeName>('light');
 	let team = $state('Kansas City Chiefs');
 	let season = $state<Season | null>(null);
 	let week = $state(0);                    // weeks revealed so far
@@ -33,7 +33,7 @@
 	});
 
 	function styleFor(name: string): string {
-		const v = { ...(mode === 'light' ? light : dark), ...packFor(name)?.vars, ...rowVars(name) };
+		const v = { ...(theme.current === 'light' ? light : dark), ...packFor(name)?.vars, ...rowVars(name) };
 		return Object.entries(v).map(([k, v]) => `${k}:${v}`).join(';');
 	}
 	let pageStyle = $derived(styleFor(team));
@@ -84,9 +84,6 @@
 				{/if}
 			</p>
 		</div>
-		<button class="pill ghost" onclick={() => (mode = mode === 'light' ? 'dark' : 'light')}>
-			{mode === 'light' ? 'night' : 'day'}
-		</button>
 	</header>
 
 	<main>
