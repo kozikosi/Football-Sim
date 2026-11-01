@@ -82,13 +82,16 @@
 		display: flex;
 		flex-direction: column;
 	}
-	/* the takeover: your franchise's color breathing behind everything */
+	/* the takeover: your franchise's color breathing behind everything.
+	   KG's rule: no blank neutral space — every surface wears team colour
+	   (homepage rose-and-gold before a team is chosen). */
 	.bloom {
 		position: absolute;
 		inset: -20%;
 		background:
-			radial-gradient(ellipse 60% 45% at 50% 30%, var(--tGl), transparent 70%),
-			radial-gradient(ellipse 40% 35% at 80% 75%, var(--tGb), transparent 70%);
+			radial-gradient(ellipse 65% 50% at 50% 32%, var(--tGl), transparent 72%),
+			radial-gradient(ellipse 45% 38% at 82% 78%, var(--tGb), transparent 72%),
+			radial-gradient(ellipse 45% 38% at 18% 72%, var(--tGa), transparent 72%);
 		pointer-events: none;
 		transition: background 0.8s ease;
 	}
