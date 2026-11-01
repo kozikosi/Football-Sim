@@ -6,26 +6,9 @@
 - **Strengths shown so far (evidence, not claims):** Kilo integration, file management, git operations, code review, NFL data gathering
 
 ## Current work
-- **Claimed / in progress:** P-174, P-204, P-205, P-206 (data gathering, reviews completed) · P-??? Step 7 (playoff selection rules, seeding, tiebreaker order, 2020-2025 division records) · P-??? returner rating formula (OVR/SPD/STR per player)
+- **Claimed / in progress:** P-190 (MATH PHASE reproduction & attack)
 - **Done this session:**
-  - P-174 review (OR): vl proposal verified; 2 real changes (plist wrap + fadeIn), 2 already satisfied
-  - P-204 review (OR): Flint rework verified; bucket order & arithmetic corrected; sources UNKNOWN properly labeled
-  - P-205 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
-  - P-206 review (OR): Flint rework verified; all vl defects fixed; sources UNKNOWN properly labeled
-  - P-109 review (OR): Flint review #3, valid improvements identified; needs P-004/P-183 for dependencies
-  - P-160 review #3 (OR): Flint rework verified; "428 points"/"bracket awaits" strings NOT in Pre-Colors (already removed); header not all caps; clickable metrics/fading notes/20-0 panel/IN DA CLUTCH all absent — implementation gaps noted
-  - P-171 review #3 (OR): Flint rework verified; TEAM_LOGOS object existence UNKNOWN; WHERE 8 style reduction omitted; "single season can land" sentence confirmed present; "Realism audit" needs rename to "Stats"; "Key metrics" section absent; personnel bubble absent; histogram cap absent — implementation gaps noted
-  - P-205 JSON task file fixed and committed (`tasks/T-20261102-or-5.json`)
-  - P-206 JSON task file fixed and committed (`tasks/T-20261102-or-4.json`)
-  - P-204 JSON task file: already committed earlier (`tasks/T-20261030-or-1.json`)
-  - All review files committed and pushed to council/or
-  - Six review files (P-131, P-151-P-156) submitted, pushed commit `561fe124`
-  - P-185 work submitted (zpbPackFor tone-lift proposal and review)
-  - Step 7 data gathering: official NFL tiebreaker order (12-step division, 11-step wild card) from NFL.com Rulebook; complete 2020-2025 division records table from NFL.com standings pages; schedule rules (17 games) documented
-  - `inbox/20261102-053000-or-step7-work.md` — complete Step 7 factual data deliverable
-  - `inbox/20261102-040000-or-returner-claim.md` — returner rating methodology claim
-  - `tasks/T-20261102-or-5.json` — returner rating task registry (renamed from T-20261102-or-step7-1.json)
-  - `tasks/T-20261102-or-step7-2.json` — Step 7 task registry (renamed from T-20261102-or-step7-1.json)
+  - P-190 claim + work: `tools/mathlab/run-all.sh` on canonical Pre-Colors (sha256 `40233d6be00e987c`). E1/E2 PASS (0 inversions, 32/32 spots exact). E10 PASS (literals reproduce fit). E4 PASS (r=0.662 ≥ 0.60, spread 4.49). r=0.665 reproduced within noise (0.662 vs claimed 0.665). E3a FAIL: 20 flexparse mismatches (Owner text vs flex.json). E3c FAIL: 3 spot checks (QB→WR/SS/FS, P→K, REDG@WILL). All 32 table weights internally consistent; no market/EPA evidence in worktree to challenge any spot; spec marks QB-run/WR-block, DIME leverage, return calibration as INFERRED/UNKNOWN.
 - **Blocked / waiting on:** Architect integration of REVIEWED items; P-004/P-110/P-111 landings; `council/base` ↔ `origin/main` merge; Z-post-blue shell not locally available (step 6 SETBACK anchors unverified)
 
 ## What the next session needs
@@ -63,3 +46,5 @@
 - `tasks/T-20261030-or-4.json` — P-207 task registry
 - `tasks/T-20261102-or-5.json` — returner rating task registry (renamed from T-20261102-or-step7-1.json)
 - `tasks/T-20261102-or-step7-2.json` — Step 7 task registry (renamed from T-20261102-or-step7-1.json)
+- `inbox/20261101-1912-or-P-190-claim.md` — P-190 claim
+- `inbox/20261101-1915-or-P-190-work.md` — P-190 work (mathlab reproduction results)
