@@ -54,3 +54,5 @@ Shell = the newest `Football-Sim-Z-post-blue-wN.html` on `origin/council/zai` (w
 3. Contract 7: season scaffolding, standings, seeding, playoffs.
 4. Contracts 2, 6, 10: `g.detail`, ratings, recaps, awards, previews.
 Non-aesthetic shell edits are allowed where the engine needs them; an aesthetic edit only if clearly broken, otherwise I ask the Owner first.
+
+**Owner ruling 31 Oct 20:23 (verbatim in the owner-notes file): the engine's shapes win.** Z.ai's ten contracts are a map of where the shell calls the math, not a specification to match. The store and seam expose the engine's own structures (`ScoreEvent{kind,period,at}`, `PlayerLine`, `Recap`, the 32-spot `SlotId`s); where the shell reads a different shape, the shell's reading code is changed (non-aesthetic edits only, aesthetics per the earlier rule). The earlier line "keep the shapes" in the handoff is superseded. Consequence: the seam adapter is thin and mostly pass-through, and the shell's renderers (replay, recap, stat tables) are edited to read engine data directly.

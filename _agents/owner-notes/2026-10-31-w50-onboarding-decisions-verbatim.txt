@@ -8,3 +8,6 @@ Owner (Kosi), 31 Oct 2026, ~20:11-20:19 HST, verbatim:
 3. Whatever is the most recent wX is the right version. z.ai and i are continually improving the ui/ux so right now w50 is best but w51 will be out soon. Always check for the latest wX version to merge your math with."
 
 Architect's reading: weights are the Architect's to set (QB <= 1000, every other weight an integer ending in 0 or 5); the shell is the newest wX on council/zai (w50 now); the engine is wrapped in a framework-neutral store (getState/subscribe/dispatch) so React or Svelte can bind to it; work in stages, testing requests go to PRIORITIES.md.
+
+Owner (Kosi), 31 Oct 2026, 20:23 HST, verbatim:
+"Remember that w50 is merely a ui/ux shell. Don't try to necessarily match z.ai's game scoring events and the per-game stat keys match the shell's shapes. You can modify the structure to fit your engine, rather than the other way around."
