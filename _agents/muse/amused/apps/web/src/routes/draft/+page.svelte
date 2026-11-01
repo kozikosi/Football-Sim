@@ -13,12 +13,16 @@
 
 	const team = $derived($page.url.searchParams.get('team') || 'Kansas City Chiefs');
 
-	// Draft state — created once per visit
+	// Draft state — created once per visit.
+	// `tick` is bumped after every mutation so the UI recomputes explicitly;
+	// no reliance on deep-proxy subtleties.
 	let draft = $state<Draft | null>(null);
 	let tickerPicks = $state<Pick[]>([]);
 	let posFilter = $state<string | null>(null);
 	let done = $state(false);
 	let seed = $state((Math.random() * 1e9) | 0);
+	let tick = $state(0);
+	const bump = () => tick++;
 
 	$effect(() => {
 		const t = team;
@@ -27,6 +31,7 @@
 		draft = d;
 		tickerPicks = [...d.picks].slice(-8).reverse();
 		if (d.done) done = true;
+		bump();
 	});
 
 	function styleFor(name: string): string {
@@ -38,7 +43,8 @@
 
 	let pageStyle = $derived(styleFor(team));
 	let crest = $derived(crestFor(team));
-	let isUserTurn = $derived(draft ? draft.isUserTurn : false);
+	// every derived below reads `tick`, so bumping it recomputes them all
+	let isUserTurn = $derived(tick >= 0 && draft ? draft.isUserTurn : false);
 
 	function draftPlayer(p: (typeof draft)['picks'][number]['player']) {
 		if (!draft || !draft.isUserTurn) return;
@@ -48,6 +54,7 @@
 		draft.autoAdvance();
 		tickerPicks = [...draft.picks].slice(-8).reverse();
 		if (draft.done) done = true;
+		bump();
 	}
 
 	function skipAhead() {
@@ -58,6 +65,7 @@
 		}
 		tickerPicks = [...draft.picks].slice(-8).reverse();
 		done = true;
+		bump();
 	}
 
 	function beginSeason() {
@@ -66,10 +74,10 @@
 		goto('/season');
 	}
 
-	let available = $derived(draft ? draft.available(posFilter ?? undefined, 40) : []);
-	let myRoster = $derived(draft ? draft.rosterOf(team) : []);
+	let available = $derived(tick >= 0 && draft ? draft.available(posFilter ?? undefined, 40) : []);
+	let myRoster = $derived(tick >= 0 && draft ? draft.rosterOf(team) : []);
 	let positions = $derived(
-		draft ? [...new Set(draft.available(undefined, 400).map((p) => p.pos))].sort() : []
+		tick >= 0 && draft ? [...new Set(draft.available(undefined, 400).map((p) => p.pos))].sort() : []
 	);
 
 	// depth chart: roster grouped by unit, always visible
