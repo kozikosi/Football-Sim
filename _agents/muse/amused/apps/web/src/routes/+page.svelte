@@ -4,6 +4,7 @@
 	import { rowVars, neutralRowVars, anchorVars } from '$lib/design/row-vars';
 	import { crestFor } from '$lib/design/crests';
 	import { TEAM_COLORS } from '$lib/design/team-colors-data';
+	import SiteFooter from '$lib/SiteFooter.svelte';
 
 	const teams = Object.keys(TEAM_COLORS).sort();
 	let team = $state('Kansas City Chiefs');
@@ -22,7 +23,6 @@
 			.map(([k, v]) => `${k}:${v}`)
 			.join(';')
 	);
-	let ticker = $derived(teams.map((t) => ({ t, c: crestFor(t) })));
 </script>
 
 <svelte:head>
@@ -39,7 +39,7 @@
 
 	<main>
 		{#if crest}<img class="crest" src={crest} alt="" />{/if}
-		<h1 class="wordmark"><span class="shimmer">amused</span></h1>
+		<h1 class="wordmark"><span class="shimmer">20-0</span></h1>
 		<p class="tagline">the draft, as a current — not a grid</p>
 
 		<div class="controls">
@@ -61,14 +61,7 @@
 		</p>
 	</main>
 
-	<!-- crest ticker: the league drifts by -->
-	<div class="ticker" aria-hidden="true">
-		<div class="track">
-			{#each [...ticker, ...ticker] as { t, c }}
-				{#if c}<img src={c} alt="" title={t} />{/if}
-			{/each}
-		</div>
-	</div>
+	<SiteFooter />
 </div>
 
 <style>
@@ -190,24 +183,6 @@
 	}
 	.inkline { margin-top: 2rem; opacity: 0.7; font-size: 0.95rem; }
 	.inkline em { font-style: normal; font-weight: 600; }
-	/* the league drifts by, slow */
-	.ticker {
-		position: relative;
-		overflow: hidden;
-		padding: 1.2rem 0 1.6rem;
-		-webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-		mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
-	}
-	.track {
-		display: flex;
-		gap: 2.2rem;
-		width: max-content;
-		animation: drift 90s linear infinite;
-	}
-	.track img { width: 34px; height: 34px; object-fit: contain; opacity: 0.55; }
-	@keyframes drift {
-		to { transform: translateX(-50%); }
-	}
 	@media (prefers-reduced-motion: reduce) {
 		.shimmer, .crest, .track { animation: none; }
 	}
