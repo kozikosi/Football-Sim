@@ -52,7 +52,7 @@
 			<button class="pill mode" onclick={() => (mode = mode === 'light' ? 'dark' : 'light')}>
 				{mode === 'light' ? 'night' : 'day'}
 			</button>
-			<a class="pill cta" href="#draft">draft →</a>
+			<a class="pill cta" href="/draft?team={encodeURIComponent(team)}">draft →</a>
 		</div>
 
 		<p class="inkline">
