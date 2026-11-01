@@ -6,6 +6,7 @@
 	import { Season, WEEKS, type GameResult } from '$lib/season/engine.ts';
 	import { loadDraft } from '$lib/save.ts';
 	import { Draft } from '$lib/draft/engine.ts';
+	import SiteFooter from '$lib/SiteFooter.svelte';
 	import { fly, fade } from 'svelte/transition';
 
 	let mode = $state<ThemeName>('light');
@@ -162,6 +163,8 @@
 			</section>
 		{/if}
 	</main>
+
+	<SiteFooter />
 </div>
 
 <style>
