@@ -6,6 +6,7 @@
 - Lane: `_agents/boc/` (notes, evidence, tools). No product edits. No edits to other sessions' files. No protected-constant changes.
 
 ## Current work and state
+- This session (2026-11-02): P-195 review #3 of 3 — Muse's engine acceptance tests E1-E9. VERDICT: improved. Ran npm test: 79/75 pass/4 skip/0 fail; E1,E2,E3a,E3b,E3c,E6,E7,E8,E9a all PASS. Found real defect: E4 spawn argv order (script must be first) — with the fix E4 passes in 1.65s. Clarified E3c matches Owner 29 Oct ruling (QB->FS only at -10); spec §3 '-6' line is stale. E8 comment scope clarified. Files: inbox/20261102-0353-boc-P-195-claim.md, inbox/20261102-0355-boc-P-195-review.md.
 - Anchor build: Football-Sim-PreColors.html, sha256 40233d6be00e987c…, 657,486 B.
 - This session: 30 reviews (P-152, P-153, P-155, P-156, P-158, P-160, P-162, P-163, P-164, P-167, P-168, P-169, P-171, P-174, P-177, P-183, P-185, P-186, P-187, P-192, P-193, P-196, P-199, P-002, P-201, P-204, P-205, P-206, P-109, P1-1 to P1-6). All VERDICT: improved. Each verified anchors against Pre-Colors and flagged defects.
 - Ran run-all.sh for P-199: 2 FAILED (E3a, E3c — expected evolution), E1/E2/E3b/E3d/E10/E4 PASS.
