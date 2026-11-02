@@ -6,17 +6,19 @@
 - **Strengths shown so far (evidence, not claims):** Kilo integration, file management, git operations, code review, NFL data gathering
 
 ## Current work
-- **Claimed / in progress:** (none)
+- **Claimed / in progress:**
+  - T-20261102-or-5 (accepted): P-??? Colors v1 returner rating formula with OVR/SPD/STR per player — work file `inbox/20261102-040000-or-returner-claim.md`
+  - T-20261102-or-2 (proposed): P-??? Colors v1 Step 7 playoff selection rules, seeding, tiebreaker order, 2020-2025 division records — work file `inbox/20261102-053000-or-step7-work.md`
 - **Done this session:**
-  - P-197 review #1 (improved): beam's defensive posture magnitudes calibration against 2025 data. Cross-checked against ENGINE-MATH-SPEC.md §11 and tools/mathlab/defaggr.js. Verdict: improved, fills spec gap.
-  - P-200 review #3 (improved): VL's offensive personnel calibration (10/13 personnel plans). Labeled INFERRED vs VERIFIED; INFERRED weights/costs need Architect decision. Verdict: improved.
-  - E-211 review #1 (improved): VL's baseline-newest-shell nodecheck. SHA256 `59f41eadd5c004b166d2a7cf3351aabb5309d1a8bd2af2b1c361d53884e70541`, 13 scripts parse 0 fail, 43 Math.random. Browser tests require chromium/playwright. Verdict: improved.
-  - P-008 review #1 (improved): gold star change for lineup names — neutral text, bold + gold ★ for higher-OVR per Owner request. Safe alone, CSS/JS only. Verdict: improved.
-  - P-142 review #1 (improved): flex rules table reconciliation — 22 slots in draft-board order, resolves 27 Oct vs 29 Oct QB ruling conflict, consistent with NATURAL_SLOT_MAP, FLEX protected constant. Verdict: improved.
-  - Lane file update: added P-197, P-200, E-211, P-008, P-142 reviews to session ledger.
+  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh merged 4 files from council/base; pushed council/or
+  - Read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, V23-OWNER-REQUESTS.md, OR.md
+  - Task inventory: 6 Colors v1 tasks for OR (T-20261030-or-1..4 accepted, T-20261102-or-2 proposed, T-20261102-or-5 accepted); all have task JSONs and work files
+  - Confirmed existing work files for P-204 FG%, P-205 drive stats, P-206 OT rules, P-207 SETBACK note, returner formula, playoff step 7
+  - No new reviews performed this session
 
 ## Blocked / waiting on:
-- Architect integration of REVIEWED items (P-197, P-200, E-211, P-008, P-142)
+- Architect integration of REVIEWED items (P-197, P-200, E-211, P-008, P-142) from prior sessions
+- Architect acceptance of T-20261102-or-2 (proposed → accepted)
 - PRIORITIES.md next session read
 - Any new inbox files on other branches
 
@@ -58,3 +60,6 @@
 - `inbox/20261102-2357-or-E-211-review.md` — E-211 baseline-newest-shell nodecheck review (improved)
 - `inbox/20261103-0005-or-P-008-review.md` — P-008 lineup gold star review (improved)
 - `inbox/20261103-0015-or-P-142-review.md` — P-142 flex rules reconciliation review (improved)
+- `inbox/20261102-040000-or-returner-claim.md` — Returner rating formula claim + methodology
+- `inbox/20261102-043000-or-step7-claim.md` — Step 7 playoff rules claim
+- `inbox/20261102-053000-or-step7-work.md` — Step 7 playoff rules detailed work (tiebreakers, 2020-2025 division records, schedule rules)
