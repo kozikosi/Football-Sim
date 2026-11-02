@@ -87,7 +87,11 @@ test('E4: real-roster r >= 0.60 and spread 4.0-5.5 pts/g', (t) => {
   if (missing.length) { t.skip(`E4 prereqs missing: ${missing.join(', ')}`); return; }
   const npmRoot = spawnSync('npm', ['root', '-g'], { encoding: 'utf8' });
   const env = { ...process.env, NODE_PATH: npmRoot.stdout.trim() };
-  const argv = Object.values(need).map((rel) => new URL(rel, import.meta.url).pathname);
+  // FIX (boc review #3): script must be argv[0]; Object.values(need) put the
+  // HTML file first, so node tried to execute the HTML as a script and E4
+  // could only ever reach the skip branch.
+  const argv = (['script', 'html', 'fit', 'wins', 'cfg'] as const)
+    .map((k) => new URL(need[k], import.meta.url).pathname);
   const r = spawnSync('node', argv, { env, encoding: 'utf8', timeout: 600000 });
   const out = (r.stdout || '') + (r.stderr || '');
   if (r.status !== 0 && !/E4 (PASS|FAIL)/.test(out)) {
