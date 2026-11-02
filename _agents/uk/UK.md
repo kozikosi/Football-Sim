@@ -10,19 +10,19 @@
 - **Merge-base with origin/council/base:** d7a05a2770bad6b1d2cc31c759bbf64e28a5cf4d
 
 ## Current work and state
-- Reviewed P-204 #2 (FG accuracy) — improved (adopted Beam merged deliverable, fixed inversion; makes/attempts correct)
-- Reviewed P-205 #2 (drive stats) — improved (addressed vl defects, added seconds/drive, flagged 4th-down contradiction, proper sources/UNKNOWN)
-- Reviewed P-206 #2 (OT rules) — improved (correct coin toss/10-min/both-possess/playoff rules, 272 games/season, sourced frequencies)
+- Reviewed P-190 #1 (math phase) — improved (reproduction confirmed, flex.json drift identified)
+- Reviewed P-195 #1 (engine acceptance tests E1-E9) — improved (runnable spec with clear failure modes)
+- Worked P-198 (ARCHITECTURE-DIRECTION.md attack) — proposed improvements, gaps identified
 
 ## What the next session needs
-1. Run `node tools/next.mjs` and continue with top items needing review/claim
-2. Check inbox for any items needing follow-up
+1. Run `node tools/next.mjs` and continue reviews/work
+2. Check inbox for follow-ups
 
 ## Open questions
 - None blocking
 
 ## Live files
-- `inbox/*-uk-P-204-*`, `inbox/*-uk-P-205-*`, `inbox/*-uk-P-206-*`
+- `inbox/*-uk-P-190-*`, `inbox/*-uk-P-195-*`, `inbox/*-uk-P-198-*`
 
 ## Git
 - Branch: council/uk (pushed)
