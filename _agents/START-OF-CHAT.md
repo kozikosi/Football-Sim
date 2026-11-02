@@ -1,5 +1,5 @@
 # START OF CHAT — every council seat, every chat
-(Your prompt told you to read this from `origin/council/base`, so it is always the current version, whatever state your branch is in.)
+(Your prompt reads this from `origin/architect/engine-and-seats`, so it is always the current version, whatever state your branch is in.)
 
 **THE RULE: nobody is assigned to anything.** Work comes from one ranked list; you take the top item you can do; later seats review it. Never wait for a particular seat, and never tell another seat what to do.
 
@@ -18,10 +18,11 @@ git fetch -q origin && git show origin/council/base:tools/sync-base.sh | sh
 ## 3. Work
 You advise: propose, test, review, dissent in writing, measure. You never edit the product file, `AGENTS.md`, `CLAUDE.md`, `PRIORITIES.md`, `STATUS.md`, `CHRONICLE.md`, `PROJECT-KNOWLEDGE.md` or protected constants, and you never assign work to a named seat. (High Councillors GPT and Z.ai may also edit others' work as `AGENTS.md` §1 says.) Label every claim VERIFIED / REPORTED / INFERRED / UNKNOWN; "done" needs a command and its output.
 
-1. Run `node tools/next.mjs`. It prints your next actions, highest tier first; **a REVIEW beats new work in the same tier**. Take the first line. (If the tool fails: read the table in `_agents/PRIORITIES.md` and take the top OPEN item.)
-2. **Claim it first:** push `inbox/<UTC yyyymmdd-hhmm>-<name>-<ID>-claim.md` containing `CLAIM: <ID> | <scope in one line>`, say so in one line in chat.
-3. **WORK items:** write `inbox/<UTC>-<name>-<ID>-<slug>.md` per `inbox/README.md` (exact snippet, anchor string, how to check, evidence label). Mock-ups are static HTML ≤10 KB in your lane; no images, no build copies.
-4. **REVIEW items:** read the author's file, check every claim against `Football-Sim-PreColors.html` or the repo with commands, then write `inbox/<UTC>-<name>-<ID>-review.md` (`REVIEW-OF:`, `VERDICT: ok|improved|rejected`, what you ran; if you improve it, the full improved text). You may not review your own work or review the same item twice. Three confirmations from three seats make it REVIEWED ✓✓✓.
+0. **Use the current tool, whatever your branch holds:** `git fetch -q origin && git show origin/architect/engine-and-seats:tools/council.mjs > /tmp/council.mjs` (run it as `node /tmp/council.mjs <command>` from your worktree). The protocol is one page: `git show origin/architect/engine-and-seats:_agents/COUNCIL.md`.
+1. Run `node /tmp/council.mjs next`. It prints your next actions: research questions (ASK) first, then reviews, then work, by tier. Take the first line you can do well. **There are no claims**: do it and push it, or leave it for someone else; nothing is locked.
+2. **Keep the queue clean as you go** (this is your job too, not only the Architect's): `retire` an item you can prove built or superseded, `add` a P2/P3 idea you think is missing, `keep` an idea you still want, `revive` a mistaken retirement. Each is one command that writes one inbox file (`node /tmp/council.mjs --help`).
+3. **WORK items:** write `inbox/<UTC yyyymmdd-hhmm>-<name>-<ID>-<slug>.md` per `inbox/README.md` (exact snippet, anchor string, how to check, evidence label). Mock-ups are static HTML <=10 KB in your lane; no images, no build copies.
+4. **REVIEW items:** read the author's file, check every claim against the repo with commands, then write `inbox/<UTC>-<name>-<ID>-review.md` (`REVIEW-OF:`, `VERDICT: ok|improved|rejected`, what you ran; if you improve it, the full improved text). You may not review your own work or the same item twice. Two confirmations from two seats make it REVIEWED.
 5. Save as you go: `git add -- <your paths>`, commit, `git push origin council/<name>` after every finished file. Your own `council/<name>` is the only branch you push. **Never force-push, never `git stash`** (WIP commit instead). Destructive git needs `node tools/preserve.mjs check` first (`AGENTS.md` §4).
 6. Take the next line. Before idling, run the standing chores: `node tools/preserve.mjs check --fetch`; `node tools/check-tasks.mjs`; trim your own lane if it is over 300 KB.
 
