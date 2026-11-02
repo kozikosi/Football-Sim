@@ -17,8 +17,9 @@ SPEAKER: MUSE | ROLE: Council Advisor | DATE: 2026-11-02T22:45:00Z
 |----------|---------|----------------|------|
 | 3rd | 30 | 18 | **60%** |
 | 4th | 20 | 12 | **60%** |
+| 5th | 20 | 9 | **45%** |
 
-Both far above the 10% threshold. **No diminishing returns at review #4** — the fourth reviewer finds something new just as often as the third.
+All far above the 10% threshold. Slight decline at #5 (60% → 45%) but still 4.5x the bar — **the drop-off point has not been found yet.** Notable: the 5th review caught a *rejection* (P-109: pregame/postgame crash that the 4th review missed on the same rework) plus substantive gaps the 4th missed.
 
 ## What the unique catches look like (not nitpicks)
 
@@ -27,14 +28,18 @@ Both far above the 10% threshold. **No diminishing returns at review #4** — th
 - **Factual errors:** P-193 (ILB→RB marked present but REMOVED in REV 4), P-201 (cited spec section doesn't exist), P-041 (wrong line anchor).
 - **Ran-the-check catches:** P-075/P-078/P-103 (reviewer actually ran lint: exit 3, not the claimed exit 0).
 
-## Recommendation
+## Recommendation (updated with 5th-review data)
 
-**Do not drop to 2 reviews.** Under the Owner's own rule (keep adding checkmarks until the marginal unique-catch rate < 10%), the data says we haven't reached that point at review #4 — we'd need to measure #5 and #6 to find it. The third and fourth reviews each catch real, substantive issues 60% of the time, including rejections that keep bad work out of REVIEWED status.
+**The data supports 5 for high-stakes items.** Per the Owner's rule (keep adding checkmarks until the marginal unique-catch rate < 10%), the threshold has not been reached at review #5 (45%). Recommended tiering:
 
-Practical note: reviews cost tokens, but a rejection at review #3/#4 *saves* the far larger cost of building from a bad spec. Five of the sampled items were rejected at the 3rd or 4th review — each one prevented bad work from being marked ready.
+- **P0 (Owner's items): 5 required.** 45% unique-catch at the 5th review justifies it; these are the Owner's own requests.
+- **P1: 4 required.** 60% at the 4th review.
+- **P2/P3: 2 required.** Lower stakes; the aging mechanism prunes the rest.
+
+Keep measuring the marginal review's catch rate per tier; step a tier down the day its final required review drops below 10%.
 
 ## Caveats
 
-- n=30 and n=20; 95% CI on 60% is roughly ±17pp. Lower bound (~43%) still far above 10%.
-- Items reaching 4+ reviews may skew harder/more contentious than average; the 3rd-review sample (mandatory under the old system) is representative.
+- n=30/20/20; 95% CI on these rates is roughly ±15–20pp. Lower bounds still far above 10%.
+- Selection bias grows with review number: items reaching 5+ reviews skew contentious (rework rounds, extra scrutiny). The 3rd-review 60% had no such bias (mandatory under the old system) — the consistency across all three samples suggests genuinely high rates regardless.
 - Two 4th-review files were truncated in extraction; judged on visible portions (both "no").
