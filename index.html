@@ -2733,6 +2733,7 @@ function setActiveTab(viewId, btnId){
   ['viewRankings','viewPlayers','viewGroups','viewCompare','viewDraft','viewGuide'].forEach(v=>{ const el=document.getElementById(v); if(el) el.classList.toggle('active', v===viewId); });
   ['tabRankingsBtn','tabPlayersBtn','tabGroupsBtn','tabCompareBtn','tabDraftBtn','tabGuideBtn'].forEach(b=>{ const el=document.getElementById(b); if(el){ el.classList.toggle('active', b===btnId); if(b===btnId && window.matchMedia && matchMedia('(pointer:coarse)').matches){ try{ el.scrollIntoView({block:'nearest',inline:'center',behavior:'smooth'}); }catch(err){} } } }); // w46b: the swipe nav centers the tab you chose (touch only)
  }catch(e){}
+ try{ if(document.readyState!=='loading'){ localStorage.setItem('zpb:tab', viewId+'|'+btnId); } }catch(e){} // w55 (Owner): a refresh comes back to the tab you were on — boot-time defaults (still parsing) never clobber the saved tab
  try{ if(viewId==='viewRankings'){ const _rb=document.getElementById('resultsBody'); if(_rb && !_rb.children.length) render(); } }catch(e){ zpbViewFail('viewRankings', e); }
  try{ if(btnId==='tabCompareBtn') renderHomeComparison(); }catch(e){ zpbViewFail('viewCompare', e); }
  try{ if(btnId==='tabGuideBtn') document.getElementById('guideBody').innerHTML = guideHTMLCached(); }catch(e){ zpbViewFail('viewGuide', e); }
@@ -5498,10 +5499,13 @@ function lineupEditorHTML(roster, hostId){
  const formOn = (window.zpbStagedForm!=null) ? !!window.zpbStagedForm : !!window.ZPB34; // w50 (Owner): the staged formation paints the rows — the toggle does something the eye can see
  const LB = (typeof zpbLabelsFor==='function' && zpbLabelsFor(formOn)) || LABELS;
  const players = Object.values(smap).filter(Boolean).sort((a,b)=>cmpPlayers(a,b));
- const dimeEd = ()=>{ // w50 (Owner): DIME sits directly below NICKEL on the SAME defense depth chart — never off the list
-  const d = window.zpbDimeOf ? window.zpbDimeOf(smap) : null;
-  const cls = d ? (d[3]>=90?'zpb-shm':(d[3]>=85?'zpb-vib':'')) : '';
-  return `<div class="depth-row lgrid"><span class="slotname">DIME</span><span class="${d?'playername':'empty'} ${cls}">${d?d[0]:''}</span><span class="dwar">${d?Math.round(d[3]):''}</span></div>`; // w19 law: the tier classes ride the resolved name
+ const dimeEd = ()=>{ // w50 (Owner): DIME sits directly below NICKEL on the SAME defense depth chart — never off the list · w55 (Owner): the Dime is CHANGEABLE like every slot — the same picker, the same staging, the same APPLY
+  const cur = smap['CB4'];
+  const opts = players.filter(p=>eligibleSlotsFor(p).includes('CB4') || (cur && p[0]===cur[0])).map(p=>{
+   return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''}>${p[0]}</option>`; // the box carries the name, nothing else
+  }).join('') || '<option value="" disabled>\u00b7</option>'; // a depth slot with no eligible player yet still shows its row
+  const cls = cur ? (cur[3]>=90?'zpb-shm':(cur[3]>=85?'zpb-vib':'')) : ''; // w27: the tier law rides the picker's row like every sibling
+  return `<div class="depth-row lgrid"><span class="slotname">DIME</span><select data-lineup="CB4" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${opts}</select><span class="dwar">${cur?effOvr(cur,'CB4'):''}</span></div>`;
  };
  const groups = DEPTH_CHART_GROUPS.map(([gname, gcls, slots])=>{
   const rows = window.zpbOrderSlots(gcls, slots, formOn).map(sl=>{
@@ -8037,7 +8041,7 @@ function renderLineScoreHTML(g){
  const row = (name, q, tot)=>{ const q4 = (q[3]||0); const cells = q.slice(0, r.ot?5:4).map(x=>`<td class="score">${x||0}</td>`).join('');
   const otCell = r.ot ? `<td class="score">${otOf(q, tot, q4)}</td>` : ''; return `<tr class="zpb-trow" style="${(typeof zpbNeutralRowVars==='function')?zpbNeutralRowVars(name):''}"><td class="zpb-ls-team">${name}</td>${cells}${otCell}<td class="score" style="font-weight:800;">${tot}</td></tr>`; }; // w41 (P4, Owner): the box score wears post-blue — team washes, the dropdown ink, the gold final
  const hasOT = !!r.ot;
- return `<table class="linescore"><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th>${hasOT?'<th>OT</th>':''}<th>F</th></tr></thead><tbody>${row(g.away, r.awayQ, r.awayScore)}${row(g.home, r.homeQ, r.homeScore)}</tbody></table>`;
+ return `<table class="linescore" data-nostack="1"><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th>${hasOT?'<th>OT</th>':''}<th>F</th></tr></thead><tbody>${row(g.away, r.awayQ, r.awayScore)}${row(g.home, r.homeQ, r.homeScore)}</tbody></table>`;
 }
 function renderTeamStatsHTML(g){
  const r = g.result, h = r.homeStats, a = r.awayStats;
@@ -8427,6 +8431,10 @@ function zpbSeasonStoryHTML(){
  const starCard = (r, i, sideCls)=>`<div class="zpb-scard ${sideCls||''}" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${i}" data-beat="${i}"><div class="zpb-scard-hd"><b class="zpb-gname ${(r.ovr||0)>=90?'zpb-shm':(r.ovr||0)>=85?'zpb-vib':''}">${r.name}</b><span class="zpb-poschip">${r.pos||r.group}</span></div><div class="zpb-schiprow">${zpbStatChipsHTML(r)}</div></div>`;
  const badgeHTML = (b, i)=>`<span class="zpb-sbadge ${b.cls}" style="--beat:${i}" data-beat="${i}"><b>${String(b.v).replace(/(\d)\s*-\s*(\d)/g,'$1\u00b7$2')}</b><i>${b.k}</i></span>`; // w50 (Owner): every dash on the season-review badges becomes a middle dot — RECORD 10·7, the scores 31·17, the pain record — all of them
  let beat = 0, oHTML = '', dHTML = '', kHTML = '', hHTML = '';
+ // w55 (Owner): the honors lead the rail — the top zone fills first, the blank stage is gone.
+ // The appearance order now matches the vertical order; the one-second beat pace and the total
+ // are untouched (every card keeps exactly one beat).
+ honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=c.gold?'zpb-shm':(_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':'')); hHTML += `<div class="zpb-scard zpb-shonor" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="zpb-gname ${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
  OFF.forEach(b=>{ oHTML += badgeHTML(b, beat++); });
  oHTML += `<span class="zpb-sbreak" data-beat="${beat++}"></span>`;
  offStars.forEach(r=>{ oHTML += starCard(r, beat++); });
@@ -8434,7 +8442,6 @@ function zpbSeasonStoryHTML(){
  dHTML += `<span class="zpb-sbreak" data-beat="${beat++}"></span>`;
  defStars.forEach(r=>{ dHTML += starCard(r, beat++); });
  KEYF.forEach(b=>{ kHTML += badgeHTML(b, beat++); });
- honorCards.forEach(c=>{ const _pv=(typeof PLAYERS!=='undefined')?PLAYERS.find(function(p){return p[0]===c.n;}):null; const _cls=c.gold?'zpb-shm':(_pv&&_pv[3]>=90?'zpb-shm':(_pv&&_pv[3]>=85?'zpb-vib':'')); hHTML += `<div class="zpb-scard zpb-shonor" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${beat}" data-beat="${beat++}"><div class="zpb-scard-hd"><b class="zpb-gname ${_cls}">${c.n}</b><span class="zpb-poschip">${c.pos||''}</span></div><div class="zpb-shonor-t">${c.t}</div>${c.sub?`<div class="zpb-shonor-w">${c.sub}</div>`:''}</div>`; });
  const beats = beat;
  const perfect = F.me.losses===0 && F.me.ties===0;
  return `<div class="panel zpb-storypanel${perfect?' zpb-story-perfect':''}" style="margin-bottom:14px;" id="zpbStoryPanel">
@@ -10445,7 +10452,7 @@ function renderReportCardHTML(){
   olPass: `${t.skTaken} sacks allowed (#${rankIn(T,'skTaken',F.user,true)} fewest)`,
   rb: _bs.length ? `${fmtN(_ry)} rush yds · ${_rtd} TD · ${fmtN(_rca)} carries (all backs)` : '·',
   qb: `${(t.pass/g).toFixed(0)} pass yds/gm (#${rankIn(T,'pass',F.user,false)})`,
-  rec: _rc2.length ? `${fmtN(_cy)} rec yds · ${_cat} catches · ${_ctd} TD (whole corps)` : '·',
+  rec: _rc2.length ? `${fmtN(_cy)} rec yds · ${_cat} catches · ${_ctd} TD` : '·',
   passRush: `${t.skForced} sacks (#${rankIn(T,'skForced',F.user,false)})`,
   frontRun: `${(t.rushA/g).toFixed(0)} rush yds allowed/gm (#${rankIn(T,'rushA',F.user,true)} fewest)`,
   coverage: `${(t.passA/g).toFixed(0)} pass yds allowed/gm (#${rankIn(T,'passA',F.user,true)}), ${t.take} takeaways`,
@@ -11548,7 +11555,7 @@ window.zpbMetricsHTML = function(){
     if(u==='olPass') return t0.skTaken+' sacks allowed';
     if(u==='rb'){ const bs = mine.filter(r=>r.group==='RB'); const ry = bs.reduce((a,r)=>a+(r.st.rushYds||0),0), td = bs.reduce((a,r)=>a+(r.st.rushTD||0),0), ca = bs.reduce((a,r)=>a+(r.st.car||0),0); return bs.length ? fmtN(ry)+' rush yds · '+td+' TD · '+fmtN(ca)+' carries (all backs)' : '\u00b7'; } // w52 (Owner, M14): ALL backs, never one name
     if(u==='qb') return Math.round(t0.pass/gp)+' pass yds/gm';
-    if(u==='rec'){ const rs = mine.filter(r=>r.group==='WR'||r.group==='TE'); const ry = rs.reduce((a,r)=>a+(r.st.recYds||0),0), td = rs.reduce((a,r)=>a+(r.st.recTD||0),0), rc = rs.reduce((a,r)=>a+(r.st.rec||0),0); return rs.length ? fmtN(ry)+' rec yds · '+rc+' catches · '+td+' TD (whole corps)' : '\u00b7'; } // w52 (Owner, M14): the corps as one
+    if(u==='rec'){ const rs = mine.filter(r=>r.group==='WR'||r.group==='TE'); const ry = rs.reduce((a,r)=>a+(r.st.recYds||0),0), td = rs.reduce((a,r)=>a+(r.st.recTD||0),0), rc = rs.reduce((a,r)=>a+(r.st.rec||0),0); return rs.length ? fmtN(ry)+' rec yds · '+rc+' catches · '+td+' TD' : '\u00b7'; } // w52 (Owner, M14): the corps as one · w55 (Owner): the parenthetical retires
     if(u==='passRush') return t0.skForced+' sacks';
     if(u==='frontRun') return Math.round(t0.rushA/gp)+' rush yds allowed/gm';
     if(u==='coverage') return Math.round(t0.passA/gp)+' pass yds allowed/gm, '+t0.take+' takeaways';
@@ -13832,6 +13839,92 @@ window.zpbPlayoffRunCine = function(story){
  .zpb-replay.zpb-sb .zpb-intro-banner{opacity:1;}
 }
 </style>
+<style id="zpb-w55-css">
+/* ================= Z-POST-BLUE W55 (the Owner's round-55) =================
+   The phone pass: the draft card reads in two lines, the box score stays ONE table, the
+   stars face off one per line, the SB champion name centers, and the page can never be
+   panned by a wide child again. Desktop is untouched except where named. */
+
+/* 1 · the wrap never shrinks-to-fit its widest child — body is a flex column and the auto
+   margins let .wrap size to min-content; the preview's star face-off row needed ~530px and
+   panned the document 221px at 390px. Small windows only: a wide window may still scroll
+   sideways so the whole footer stays reachable (the B4 law). */
+@media (max-width:1024px){ .wrap{width:100%;} }
+
+/* 2 · THE BOX SCORE IS ONE TABLE — the generic phone law (display:block) split the linescore
+   into anonymous tables (two panels, the quarters running down the side). The desktop shape
+   returns, compact: one table, the quarters across. */
+@media (max-width:760px){
+ table.linescore{display:table;min-width:0;width:100%;font-size:.72rem;}
+ table.linescore th,table.linescore td{padding:4px 4px;}
+ table.linescore td:first-child,table.linescore th:first-child{padding-left:8px;}
+ table.zpb-tsstat{display:table;width:100%;font-size:.74rem;}
+ table.zpb-tsstat td,table.zpb-tsstat th{padding:5px 4px;}
+}
+
+/* 3 · THE DRAFT CARD READS IN TWO LINES — name · OVR · Draft, then one quiet stat line.
+   The mini field labels retire on the phone; the values' order carries them (the desktop
+   board keeps its full table). */
+@media (max-width:760px){
+ #draftTable2 tr{row-gap:1px;padding:5px 8px;}
+ #draftTable2 td[data-label]::before{display:none;}
+ #draftTable2 td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #draftTable2 td.dc-name{grid-column:1/8;grid-row:1;font-size:.88rem;align-self:center;}
+ #draftTable2 td.dc-ovr{grid-column:8/10;grid-row:1;font-size:.9rem;padding:1px 0 !important;}
+ #draftTable2 .zpb-ovrstack{gap:1px;}
+ #draftTable2 td.dc-btn{grid-column:10/13;grid-row:1;text-align:right !important;}
+ #draftTable2 td.dc-btn button{padding:4px 9px;font-size:.72rem;max-width:100%;}
+ #draftTable2 td:nth-child(2),#draftTable2 td:nth-child(3),#draftTable2 td.dc-wins,#draftTable2 td.dc-val,#draftTable2 td.dc-pri,#draftTable2 td.dc-gone,#draftTable2 td.dc-fills{grid-row:2;font-size:.6rem;padding:0 !important;min-width:0;}
+ #draftTable2 td:nth-child(2){grid-column:1/2;}
+ #draftTable2 td:nth-child(3){grid-column:2/4;}
+ #draftTable2 td.dc-wins{grid-column:4/6;}
+ #draftTable2 td.dc-val{grid-column:6/8;}
+ #draftTable2 td.dc-pri{grid-column:8/10;}
+ #draftTable2 td.dc-gone{grid-column:10/11;text-align:center !important;}
+ #draftTable2 td.dc-fills{grid-column:11/13;text-align:right !important;}
+ /* the team cell reads as one small crest + abbr on the stat line, never a stacked column */
+ #draftTable2 td[data-label="Team"] .zpb-teamcol{flex-direction:row;gap:3px;}
+ #draftTable2 td[data-label="Team"] img{max-height:12px;max-width:20px;object-fit:contain;}
+ /* the cards view: the name leads, one narr line under it, the pick column rides right, the bar retires */
+ #draftCards .prow{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;}
+ #draftCards .prow .mbar{display:none;}
+ #draftCards .prow>div:first-child{min-width:0;}
+ #draftCards .prow .narr{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+}
+
+/* 4 · THE STARS FACE OFF ONE PER LINE on the phone — the paired cards' min-content (~530px)
+   stretched the whole page AND bunched the rating number on the position badge. One per line
+   the header breathes and the rating rides right; the review's Key Players lead with the name,
+   the stat chips wrap below — no mid-word breaks. */
+@media (max-width:640px){
+ .zpb-pvfrow{grid-template-columns:1fr !important;}
+ .zpb-pvcard .zpb-pcard-hd{min-width:0;}
+ .kp-grid .zpb-pvcard{flex-wrap:wrap;}
+ .kp-grid .zpb-pvcard .zpb-pcard-hd{flex:1 1 100%;}
+ .kp-grid .zpb-pvcard .zpb-pcard-stats{flex:1 1 100%;justify-content:flex-start;margin-top:2px;}
+}
+
+/* 5 · THE SUPER BOWL CHAMPION NAME CENTERS — the crest stacks above the wordmark on the phone,
+   so a long Cinzel name can never drag the pair off-center (the storm AND the banner). */
+@media (max-width:740px){
+ .zpb-sbfin-champ{flex-direction:column;gap:8px;}
+ .zpb-sbfin-champ img{width:60px;height:60px;}
+ .zpb-sbfin-name{font-size:clamp(1.35rem,7vw,2.3rem);letter-spacing:.06em;}
+ .zpb-sbfin-stage{padding:20px 12px;}
+ .zpb-sbfin-crests{gap:14px;} .zpb-sbfin-crests img{width:50px;height:50px;}
+ .zpb-sbfin-score{gap:9px;} .zpb-sbfin-score b{font-size:1.12rem;}
+ .zpb-champ-team{flex-direction:column;gap:6px;}
+ .zpb-champ-name{font-size:1.35rem;}
+}
+
+/* 6 · the preview strip squeezes instead of panning on the narrowest phones */
+@media (max-width:360px){
+ .zpb-strip{gap:6px;}
+ .zpb-strip-team b{font-size:.72rem;}
+ .zpb-strip-bar{width:80px;}
+ .zpb-strip-pct{font-size:.9rem;}
+}
+</style>
 <script id="zpb-w51-js">
 // ============ Z-POST-BLUE W51 JS ============
 // w51 (Owner): THE DOT LAW — every colon and semicolon in DISPLAYED text renders as the middle dot.
@@ -13896,6 +13989,20 @@ window.zpbPlayoffRunCine = function(story){
   });
  });
  mo.observe(document.documentElement, {childList:true, characterData:true, subtree:true, attributes:true, attributeFilter:SPOKEN});
+})();
+</script>
+<script id="zpb-w55-restore">
+// w55 (Owner): small localStorage — a refresh lands on the tab you left. Runs as the last body
+// script so the boot's own default (SIMULATOR) can never override it; the simulator tab IS the
+// default, so only the five support tabs ever restore.
+(function(){
+ try{
+  var t = localStorage.getItem('zpb:tab');
+  if(!t) return;
+  var i = t.indexOf('|'); if(i < 1) return;
+  var v = t.slice(0, i), b = t.slice(i+1);
+  if(v && b && v !== 'viewDraft' && document.getElementById(v) && document.getElementById(b)) setActiveTab(v, b);
+ }catch(e){}
 })();
 </script>
 </body>
