@@ -1,0 +1,67 @@
+<!doctype html><html><head><meta charset="utf-8"><title>P-152 draft-board card mock-up (GLM)</title><style>
+:root{--bg:#0d0a0e;--panel:#171218;--panel2:#1e1720;--text:#f5f0f0;--muted:#b9aeb4;--gold:#d4af37;--rosegold:#f0dce2;--border:#2a222d;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Georgia,'Times New Roman',serif;padding:14px;}
+.foot{color:var(--muted);font-size:11px;margin:10px 0;}
+.wrap{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:1280px;}
+@media(max-width:900px){.wrap{grid-template-columns:1fr}}
+.gcard{border:1px solid var(--border);border-radius:10px;background:var(--panel2);padding:10px 12px;}
+.gcard h4{margin:0 0 6px;font-size:.8em;display:flex;justify-content:space-between;align-items:center;font-family:'Cinzel Decorative',Georgia,serif;color:var(--gold);letter-spacing:.04em;}
+.toptag{font-size:.58em;font-weight:800;background:var(--gold);color:#141018;border-radius:4px;padding:0 4px;vertical-align:1px;font-family:Georgia,serif;}
+.prow{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:5px 0;border-top:1px solid var(--border);font-size:.72em;}
+.prow b{font-family:'Cinzel Decorative',Georgia,serif;font-weight:700;font-size:.95em;letter-spacing:.01em;color:var(--text);}
+.narr{color:var(--muted);}
+.sh{background:linear-gradient(90deg,var(--gold),var(--rosegold),var(--gold));background-size:200% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:foil 2.6s linear infinite;}
+@keyframes foil{0%{background-position:0%}100%{background-position:200%}}
+.logosing{width:34px;height:34px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:10px;font-weight:800;color:#fff;border:2px solid;box-sizing:border-box;letter-spacing:.02em;}
+.ovrdots{display:inline-flex;gap:3px;margin-left:6px;vertical-align:1px;}
+.ovrdots i{width:7px;height:7px;border-radius:50%;display:inline-block;}
+.score{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:800;}
+.mbar{width:70px;height:6px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden;}
+.mbar i{display:block;height:100%;float:left;}
+.btn{background:var(--gold);color:#141018;border:0;border-radius:6px;padding:4px 10px;font-weight:700;font-size:.7em;cursor:pointer;}
+.gfoot{display:flex;justify-content:space-between;font-size:.68em;color:var(--muted);margin-top:6px;font-family:'Cinzel Decorative',Georgia,serif;}
+.gfoot .pick{color:var(--gold);font-weight:700;}
+.logo{display:flex;gap:8px;align-items:center;margin-bottom:6px;}
+.tname{font-family:'Cinzel Decorative',Georgia,serif;font-size:.78em;}
+.light{background:#fdf6f8;color:#332430;max-width:1280px;padding:12px;border-radius:10px;margin-top:14px;}
+.light .gcard{background:#fff;}
+.light .prow{border-top-color:#ead9de;}
+.light .prow b{color:#332430;}
+.light .narr{color:#7a6b72;}
+.light .toptag{background:#8a6d1f;color:#fff8e8;}
+.light .score,.light .gcard h4{color:#8a6d1f;}
+@media(prefers-reduced-motion:reduce){.sh{animation:none}}
+</style></head><body>
+<div class="foot">GLM lane mock-up for P-152 (illustrative numbers; Cinzel Decorative shown via installed font, serif fallback otherwise; logos = initials placeholders until P-040 delivers the set — no images in council lanes).</div>
+<div class="wrap">
+  <div class="gcard" style="--t:#241773;--t2:#000;--t3:#9E7C0C" data-team="Baltimore Ravens">
+    <h4>QUARTERBACKS <span>1/2 · <span class="toptag">TOP</span></span></h4>
+    <div class="logo"><span class="logosing" style="background:#241773;border-color:#9E7C0C">BAL</span><span class="tname" style="color:#9E7C0C">Ravens</span></div>
+    <div class="prow"><span><b class="sh">Lamar Jackson</b> <span class="narr">QB · BAL · 96 OVR<span class="ovrdots"><i style="background:#241773"></i><i style="background:#000"></i><i style="background:#9E7C0C"></i></span> · 4% gone</span></span><div class="mbar"><i style="width:88%;background:var(--gold)"></i><i style="width:12%;background:var(--sub,#5a4a52)"></i></div><span class="score">+3.10</span></div>
+    <div class="prow"><span><b>Cooper Rush</b> <span class="narr">QB · BAL · 69 OVR · 72% gone</span></span><div class="mbar"><i style="width:40%;background:var(--gold)"></i><i style="width:60%;background:var(--sub,#5a4a52)"></i></div><span class="score">+0.35</span></div>
+    <div class="gfoot"><span class="pick">R1.31</span><span>+2.24</span><button class="btn">DRAFT</button></div>
+  </div>
+  <div class="gcard" style="--t:#008E97;--t2:#F58220;--t3:#FFF" data-team="Miami Dolphins">
+    <h4>QUARTERBACKS <span>1/2 · <span class="toptag">TOP</span></span></h4>
+    <div class="logo"><span class="logosing" style="background:#008E97;border-color:#F58220">MIA</span><span class="tname" style="color:#F58220">Dolphins</span></div>
+    <div class="prow"><span><b class="sh">Tua Tagovailoa</b> <span class="narr">QB · MIA · 86 OVR<span class="ovrdots"><i style="background:#008E97"></i><i style="background:#F58220"></i><i style="background:#FFF"></i></span> · 9% gone</span></span><div class="mbar"><i style="width:70%;background:var(--gold)"></i><i style="width:30%;background:var(--sub,#5a4a52)"></i></div><span class="score">+1.85</span></div>
+    <div class="prow"><span><b>Skyler Thompson</b> <span class="narr">QB · MIA · 64 OVR · 81% gone</span></span><div class="mbar"><i style="width:28%;background:var(--gold)"></i><i style="width:72%;background:var(--sub,#5a4a52)"></i></div><span class="score">+0.10</span></div>
+    <div class="gfoot"><span class="pick">R2.07</span><span>+0.90</span><button class="btn">DRAFT</button></div>
+  </div>
+  <div class="gcard" style="--t:#D3BC8D;--t2:#101820;--t3:#FFF" data-team="New Orleans Saints">
+    <h4>QUARTERBACKS <span>1/2 · <span class="toptag">TOP</span></span></h4>
+    <div class="logo"><span class="logosing" style="background:#D3BC8D;border-color:#101820;color:#141018">NO</span><span class="tname" style="color:#D3BC8D">Saints</span></div>
+    <div class="prow"><span><b>Tyler Shough</b> <span class="narr">QB · NO · 74 OVR · 44% gone</span></span><div class="mbar"><i style="width:52%;background:var(--gold)"></i><i style="width:48%;background:var(--sub,#5a4a52)"></i></div><span class="score">+0.85</span></div>
+    <div class="prow"><span><b>Spencer Rattler</b> <span class="narr">QB · NO · 70 OVR · 67% gone</span></span><div class="mbar"><i style="width:36%;background:var(--gold)"></i><i style="width:64%;background:var(--sub,#5a4a52)"></i></div><span class="score">+0.25</span></div>
+    <div class="gfoot"><span class="pick">R3.19</span><span>+0.40</span><button class="btn">DRAFT</button></div>
+  </div>
+</div>
+<div class="foot">Decisions rendered: group header Cinzel gold; TOP tag gold with dark ink (no green, no white); three team-dot bubbles appear ONLY under the 85+ rows; the sub-85 rows have none; value cells keep fmtWar's signed form (“+2.24”, never “(2.24)”); holds the sorted header — no drawn arrow anywhere (native select glyph is P-153's control).</div>
+<div class="light"><div class="foot" style="color:#7a6b72">Light mode preview (deep gold `#8a6d1f` for small text per Q-V23-2 contrast rule): the same card with Ravens' palette.</div>
+<div class="gcard" style="border-top-color:#ead9de">
+  <h4 style="color:#8a6d1f">QUARTERBACKS <span>1/2 · <span class="toptag">TOP</span></span></h4>
+  <div class="prow"><span><b>Lamar Jackson</b> <span class="narr">QB · BAL · 96 OVR<span class="ovrdots"><i style="background:#241773"></i><i style="background:#000"></i><i style="background:#9E7C0C"></i></span></span></span><div class="mbar" style="background:rgba(0,0,0,.06);"><i style="width:88%;background:#8a6d1f"></i></div><span class="score">+3.10</span></div>
+  <div class="gfoot"><span class="pick" style="color:#8a6d1f">R1.31</span><span>+2.24</span><button class="btn" style="background:#8a6d1f;color:#fff8e8">DRAFT</button></div>
+</div></div>
+<div class="foot">@media(prefers-reduced-motion: reduce) disables the foil shimmer. 390 px: the wrap collapses to one column and dots shrink.</div>
+</body></html>
