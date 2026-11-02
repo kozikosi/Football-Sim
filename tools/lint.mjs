@@ -68,6 +68,8 @@ function findBiome() {
   if (r.status === 0) return { bin: 'npx --no-install biome', version: r.stdout.trim(), npx: true };
   return null;
 }
+// cwd: the product lint runs from tools/biome-product so Biome finds ONLY that nested root config (VERIFIED on 2.6.2, 1 Nov:
+// `--config-path` from the repo root fails with "nested root configuration ... already a root configuration").
 function runBiome(biome, args, cwd = root) {
   const full = ['lint', '--reporter=json', '--colors=off', ...args];
   const r = biome.npx ? spawnSync('npx', ['--no-install', 'biome', ...full], { encoding: 'utf8', cwd, maxBuffer: 1 << 28 })
@@ -82,22 +84,15 @@ export function parseReport(stdout) {
   const i = stdout.indexOf('{'); if (i < 0) return null;
   let j; try { j = JSON.parse(stdout.slice(i)); } catch { return null; }
   if (!Array.isArray(j.diagnostics)) return null;
-  return j.diagnostics.map((d) => {
-    let start = null;
-    if (Array.isArray(d.location?.span)) {
-      start = d.location.span[0];
-    } else if (d.location?.start && typeof d.location.start.line === 'number') {
-      // Biome 2.x with line/column location
-      start = { line: d.location.start.line, column: d.location.start.column };
-    }
-    return {
-      rule: String(d.category || '').replace(/^lint\//, ''),
-      severity: d.severity || 'error',
-      message: d.description || '',
-      file: d.location?.path?.file ?? d.location?.path ?? '',
-      start,
-    };
-  }).filter((d) => d.rule.startsWith('lint') || d.rule.includes('/') || d.rule);
+  return j.diagnostics.map((d) => ({
+    rule: String(d.category || '').replace(/^lint\//, ''),
+    severity: d.severity || 'error',
+    message: d.description || d.message || '',
+    file: d.location?.path?.file ?? d.location?.path ?? '',
+    start: Array.isArray(d.location?.span) ? d.location.span[0] : null,
+    // Biome 2.6.2 (VERIFIED 1 Nov): location = { path: "<file>", start: {line, column}, end } and no byte span
+    startLine: Number.isInteger(d.location?.start?.line) ? d.location.start.line : null,
+  })).filter((d) => d.rule.startsWith('lint') || d.rule.includes('/') || d.rule);
 }
 const lineOfOffset = (buf, off) => { let n = 1; for (let k = 0; k < off && k < buf.length; k++) if (buf[k] === 10) n++; return n; };
 const norm = (s) => s.replace(/\s+/g, ' ').trim().slice(0, 200);
@@ -140,25 +135,13 @@ function lintProduct(file) {
   const scratch = path.join(SCRATCH_DIR, 'product-script.js'); fs.writeFileSync(scratch, script);
   const scratchBuf = Buffer.from(script, 'utf8');
   const b = needBiome();
-  const r = runBiome(b, [`--config-path=${PRODUCT_CFG_DIR}`, scratch], PRODUCT_CFG_DIR);
+  const r = runBiome(b, [path.relative(PRODUCT_CFG_DIR, scratch)], PRODUCT_CFG_DIR);
   const after = sha(fs.readFileSync(file));
   if (after !== h0) { console.error(`FAIL: ${file} changed during the lint run (${h0.slice(0, 12)} -> ${after.slice(0, 12)}).`); process.exit(5); }
   const diags = parseReport(r.stdout || '');
   if (!diags) { console.error('UNVERIFIED: could not read Biome\'s JSON report. Raw output follows; this is not a pass.\n' + (r.stdout || '') + (r.stderr || '')); process.exit(3); }
   const lines = scratchBuf.toString('utf8').split('\n');
-  const all = diags.map((d) => {
-    let sl; // 1-based line number in scratch file
-    if (d.start == null) {
-      sl = 1; // fallback: raw line number from diagnostic, if no position info
-    } else if (typeof d.start === 'number') {
-      sl = lineOfOffset(scratchBuf, d.start);
-    } else if (d.start && typeof d.start.line === 'number') {
-      sl = d.start.line;
-    } else {
-      sl = 1;
-    }
-    return { ...d, target: path.basename(file), line: map[sl - 1] ?? sl, text: norm(lines[sl - 1] || '') };
-  });
+  const all = diags.map((d) => { const sl = d.startLine ?? (d.start == null ? 1 : lineOfOffset(scratchBuf, d.start)); return { ...d, target: path.basename(file), line: map[sl - 1] ?? sl, text: norm(lines[sl - 1] || '') }; });
   console.log(`product ${file}  sha256 ${h0.slice(0, 16)}  ${blocks} inline script block(s)  biome ${b.version}  (file unchanged: verified)`);
   return all;
 }
@@ -171,10 +154,7 @@ function lintFiles(files) {
   if (!diags) { console.error('UNVERIFIED: could not read Biome\'s JSON report.\n' + (r.stdout || '') + (r.stderr || '')); process.exit(3); }
   for (const d of diags) {
     const f = path.resolve(root, d.file); const buf = fs.existsSync(f) ? fs.readFileSync(f) : Buffer.alloc(0);
-    const ln = d.start == null ? 1
-      : typeof d.start === 'number' ? lineOfOffset(buf, d.start)
-      : (d.start && typeof d.start.line === 'number') ? d.start.line
-      : 1;
+    const ln = d.startLine ?? (d.start == null ? 1 : lineOfOffset(buf, d.start));
     all.push({ ...d, target: path.relative(root, f), line: ln, text: norm(buf.toString('utf8').split('\n')[ln - 1] || '') });
   }
   return all;

@@ -1,0 +1,7 @@
+Owner message to the Architect, 1 Nov 2026 09:17 HST, saved verbatim:
+
+"no whitespace though. everything should be within the selected team's color scheme or should default to the light rose and gold theme of the homepage before a team is selected.
+
+Z.ai has provided a lot of screenshots in his folders. i think they are usually in the folders titled evidence"
+
+Architect's reading: no blank neutral/white areas anywhere. Every surface, panel, gap and background carries the selected team's colour scheme (the franchise takeover); before a team is selected the whole app uses the homepage's light rose-and-gold theme. This corrects my "whitespace" wording of 09:15. Z.ai's screenshots: council/zai, folders z-post-blue-wave<N>-*/(_agents/zai/)notes/evidence/*.png (w33, w34 and w52 packages seen).

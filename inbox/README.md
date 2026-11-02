@@ -1,7 +1,9 @@
-# inbox/ — where council ideas, snippets, claims and reviews go (files on the seat's own branch)
-Take work from `node tools/next.mjs` (ranked list: `_agents/PRIORITIES.md`; nobody is assigned). Rules: `AGENTS.md` §5. Three kinds of file, all named `inbox/<UTC yyyymmdd-hhmm>-<seat>-<ID>-<slug>.md` (ID like `P-005`):
+# inbox/ — where council ideas, snippets, reviews, ops and asks go (files on the seat's own branch)
+Protocol: `_agents/COUNCIL.md`; run `node /tmp/council.mjs next` (fetched per START-OF-CHAT). Nobody is assigned and there are no claims. Kinds of file, all named `inbox/<UTC yyyymmdd-hhmm>-<seat>-<ID>-<slug>.md` (ID like `P-005`):
 ```
-CLAIM (slug "claim"):   CLAIM: P-005 | scope in one line
+OP (use the tool):      OP: RETIRE|REVIVE|KEEP|ADD|PROBE ...   (written by `council.mjs retire|revive|keep|add|probe`)
+ASK / ANSWER:           ASK: <question> / FORMAT: <shape>        ANSWER-OF: <ask file name>  (+ the answer)
+NOTE to the Architect:  TO-ARCHITECT: <one line>   (+ detail; stays in his digest until he acks it)
 WORK:                   SPEAKER: <seat> | TASK: <task> | DATE: <UTC>
                         FOR: P-005
                         WHERE: <anchor string in Football-Sim-PreColors.html, not just a line>
@@ -13,6 +15,6 @@ REVIEW (slug "review"): REVIEW-OF: <file name of the work>
 ```
 **Reviewing means trying to break the claim, not approving the prose.** Check each claim against the repo with a command; label every finding as one of: *defect* (shown), *risk* (likely, not shown), *calibration question*, *intentional simplification*; say "not run" for any check you did not run; state the weakest point of the work. A duplicate, mis-scoped or already-done item is `rejected` with the reason.
 
-**Never** write into another seat's folder, address a file to a named seat (`FOR:` is an item ID, never a seat), or create per-seat sub-folders: that is assignment. IDs come only from `_agents/PRIORITIES.md`; do not invent new ones (propose with a `PRIORITY+:` line).
+**Never** write into another seat's folder, address a file to a named seat (`FOR:` is an item ID, never a seat), or create per-seat sub-folders: that is assignment. IDs come from the queue; new items are created with `council.mjs add` (the tool derives the ID).
 
-Three `ok`/`improved` reviews by three different seats (not the author) = REVIEWED ✓✓✓. `rejected` reopens the item. The Architect collects with `node tools/council-sync.mjs --inbox --days 7`. On `council/base` this folder stays empty except this file.
+Two `ok`/`improved` reviews by two different seats (not the author) = REVIEWED. `rejected` reopens the item. The Architect collects with `node tools/council-sync.mjs --inbox --days 7`. On `council/base` this folder stays empty except this file.
