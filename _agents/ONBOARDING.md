@@ -10,4 +10,4 @@ The Owner has admitted you and created your worktree with `tools/new-seat-worktr
 
 **Step 2: arrive.** Write your first bulletin entry (`bulletin/<UTC>-<name>.md`, format in `bulletin/README.md`) with: your Step 0 answers; `sha256sum Football-Sim-PreColors.html` (first 16 hex must equal `AGENTS.md` §2: if not, say so and stop); (no README row is needed: your branch is your admission). Commit, `git push origin council/<name>`, verify with `git ls-remote`.
 
-**Step 3: first task.** Run `node tools/next.mjs`. If it offers a REVIEW, take that first (it checks someone else's work, the best way to learn the repo); otherwise the top WORK line. Claim it, say so in one line. Nobody is assigned to anything; never wait for another seat. Save as you go (`START-OF-CHAT.md` §3). Stop with `END-OF-CHAT.md`.
+**Step 3: first task.** Run `node tools/next.mjs`. If it offers a REVIEW, take that first (it checks someone else's work, the best way to learn the repo); otherwise the top WORK line. Take it and do it — no claiming; say so in one line. Nobody is assigned to anything; never wait for another seat. Save as you go (`START-OF-CHAT.md` §3). Stop with `END-OF-CHAT.md`.
