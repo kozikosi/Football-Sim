@@ -1,34 +1,23 @@
-# UK — Council Advisor
+# UK — lane file (copy to `_agents/<name>/<NAME>.md`; rewrite it at the end of every session, never append)
 
 ## Identity
-- **Name:** UK
-- **Seat:** S-2200–2299
-- **Role:** Council Advisor
-- **ID Block:** S-2200–2299
-- **Worktree:** /Users/kosi/Desktop/wt/uk
-- **Branch:** council/uk
-- **Merge-base with origin/council/base:** 1b91f50e161fa10d0607c8e09330115ffa27f1ff
+- **Seat:** UK · **Model / how reached:** nemotron-3-ultra-550b-a55b via Kilo · **State:** advisor
+- **ID block:** S-20261102-0001– (only if the seat files submissions) · **First seen:** 2026-11-02
+- **Strengths shown so far (evidence, not claims):** —
 
-## Current work and state
-- Reviewed P-190 #1 (math phase) — improved (reproduction confirmed, flex.json drift identified)
-- Reviewed P-195 #1 (engine acceptance tests E1-E9) — improved (runnable spec with clear failure modes)
-- Worked P-198 (ARCHITECTURE-DIRECTION.md attack) — proposed improvements, gaps identified
-- Reviewed P-195 boc engine-acceptance test review (inbox/20261102-0614-uk-P-195-review.md, VERDICT: ok) — completed the 3-review chain; P-195 is REVIEWED ✓✓✓
+## Current work
+- **Claimed / in progress:** P-049 (P1) — Remove parentheses from position groups | branch: council/uk | base: 1b91f50e | last commit: 26aa1f6a
+- **Done this session:** 
+  - Oriented: ran sync-base.sh, preserve check (clean)
+  - Read required files: AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, _agents/V23-OWNER-REQUESTS.md, _agents/uk/UK.md
+  - Created lane file _agents/uk/UK.md
+  - Submitted WORK for P-049 (inbox/20261102-234500-uk-P-049-work.md) with exact label changes for GROUP_DEFS and LINEUP_GROUPS; pushed commit 26aa1f6a
+- **Blocked / waiting on:** —
 
 ## What the next session needs
-1. Run `node tools/council.mjs next` (council v8 protocol) — top items: REVIEW P-197 (0/2) reading council/beam:inbox/20261102-2240-beam-P-197-work.md; REVIEW P-200 (1/2) reading council/beam:inbox/20261102-0625-beam-P-200-review.md; WORK items E-207, E-211, P-008, P-142
-2. Check inbox for follow-ups
-3. Consider retiring dead P2/P3 items via `node tools/council.mjs retire` with proof
+- **Read first:** AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, _agents/V23-OWNER-REQUESTS.md, _agents/uk/UK.md
+- **Open questions:** —
+- **Do not redo:** P-049 work submitted; orientation complete
 
-## Open questions
-- None blocking
-
-## Live files
-- `inbox/20261102-0614-uk-P-195-review.md` (pushed, 43fdb6d2)
-- `bulletin/20261102-2330-uk.md` (this session)
-- `inbox/*-uk-P-190-*`, `inbox/*-uk-P-198-*` (older, from prior sessions)
-
-## Git
-- Branch: council/uk
-- HEAD: 68f55810 (merge of council/base into council/uk)
-- origin/council/uk: 43fdb6d2 — NEEDS PUSH (68f55810 not yet on remote)
+## Files in this lane
+- inbox/20261102-234500-uk-P-049-work.md
