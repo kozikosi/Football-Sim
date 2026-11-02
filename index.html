@@ -248,7 +248,7 @@ tr.detailrow .detailwrap{padding:14px 16px;background:var(--panel2);}
 .zpb-dz-row{display:grid;grid-template-columns:3.2em minmax(0,1fr) 2.4em;gap:8px;align-items:baseline;padding:3px 0;border-top:1px solid var(--border);font-size:0.8rem;}
 .zpb-dz-row:first-of-type{border-top:none;}
 .zpb-dz-row .slotname{color:var(--sub);font-size:0.68rem;font-weight:800;letter-spacing:.06em;}
-.zpb-dz-row .zpb-dz-name{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-dz-row .zpb-dz-name{font-weight:600;min-width:0;}
 .zpb-dz-row .zpb-dz-ovr{text-align:right;font-weight:600;}
 .zpb-dz-row .narr{font-size:0.68rem;}
 /* position rankings: Cinzel Decorative everywhere, two team colors per player */
@@ -335,7 +335,7 @@ h2{letter-spacing:-.005em;}
  #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);} /* w57 (Owner): the 4px accent bar at the card's left edge retires — the line obscured the first letter of the names; the card keeps its wash and its 1px frame */
  #draftTable2 td{display:block;border:0 !important;padding:0 !important;text-align:left !important;min-width:0;font-size:0.8rem;}
  #draftTable2 td[data-label]::before{content:attr(data-label);display:block;font-size:0.56rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);font-weight:700;line-height:1.1;}
- #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:anywhere;}
+ #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:normal;}
  #draftTable2 td.dc-ovr{grid-column:9 / 11;grid-row:1;text-align:center !important;font-size:1.15rem;font-weight:900;background:color-mix(in srgb,var(--tA,var(--accent)) 15%,transparent);border-radius:8px;padding:2px 0 !important;}
  #draftTable2 td.dc-btn{grid-column:11 / 13;grid-row:1;text-align:right !important;align-self:center;}
  #draftTable2 td:nth-child(2){grid-column:1 / 3;grid-row:2;} #draftTable2 td:nth-child(3){grid-column:3 / 5;grid-row:2;}
@@ -640,7 +640,7 @@ body[data-home="1"] .hero{display:none;}
 .resetbtn:hover{border-color:var(--accent);color:var(--ongold);
  background:linear-gradient(90deg,var(--tTA,rgba(230,198,125,.25)),var(--tTC,rgba(201,162,75,.18)));
  transform:translateY(-1px);box-shadow:0 8px 22px var(--glow);}
-#startSeasonBtn,#beginSeasonBtn,#beginSeasonBtn2,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn, /* w51 (Owner): SIM SEASON gives its color away — it stays in its spot, quiet again · w57 (Owner): BEGIN PLAYOFFS wears the same gold pill */
+#startSeasonBtn,#beginSeasonBtn,#beginSeasonBtn2,#seasonReviewBtn,#beginPlayoffsBtn, /* w51 (Owner): SIM SEASON gives its color away — it stays in its spot, quiet again · w57 (Owner): BEGIN PLAYOFFS wears the same gold pill · w60 (Owner): SIM PLAYOFFS leaves the pill — it is not colored in at all */
 #nextWeekBtn,#nextRoundBtn,#zrepGo,#zpbRestGo,#goDraftResumeBtn,.zpb-sbfin-go,.zpb-goldcta{ /* w51 (Owner): the gold franchise pill is the CONTINUE color — every button that says Continue wears it */
  background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));color:var(--ongold);
  border:1px solid var(--tBSb);box-shadow:0 10px 26px var(--glow);}
@@ -867,7 +867,7 @@ a.slotchg:hover{color:var(--accent);border-bottom-color:var(--accent);}
 .zst-wk{position:absolute;top:4px;left:7px;font-size:.6rem;color:var(--sub);font-weight:700;}
 .zst-at{font-size:.62rem;letter-spacing:.08em;color:var(--sub);text-transform:uppercase;}
 .zst-logo img{width:34px;height:34px;}
-.zst-opp{font-size:.7rem;font-weight:700;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.zst-opp{font-size:.7rem;font-weight:700;max-width:100%;min-width:0;}
 .zst-res{font-weight:900;font-size:.95rem;line-height:1;}
 .zst-w{color:var(--good);} .zst-l{color:var(--bad);} .zst-t{color:var(--sub);}
 .zst-score{font-size:.66rem;color:var(--sub);font-variant-numeric:tabular-nums;}
@@ -899,7 +899,7 @@ a.slotchg:hover{color:var(--accent);border-bottom-color:var(--accent);}
 .zpb-lu-grp{margin:12px 0 4px;text-transform:uppercase;letter-spacing:.06em;font-size:.68rem;color:var(--sub);font-weight:700;}
 .zpb-lu-row{display:grid;grid-template-columns:1fr 64px 1fr;align-items:center;gap:8px;padding:6px 6px;border-radius:12px;transition:background .2s ease,transform .2s ease;}
 .zpb-lu-row:hover{background:var(--selwash1,var(--panel2));transform:translateX(2px);}
-.zpb-lu-cell{font-size:.8rem;min-width:0;padding:4px 6px;border-radius:9px;overflow-wrap:anywhere;}
+.zpb-lu-cell{font-size:.8rem;min-width:0;padding:4px 6px;border-radius:9px;overflow-wrap:normal;}
 .zpb-lu-l{text-align:right;} .zpb-lu-r{text-align:left;}
 .zpb-lu-win{box-shadow:inset 0 0 0 1px var(--zrb,var(--accent)),0 0 12px var(--zr1,transparent);} /* w27 (Owner): the win edge is color, never bold */
 .zpb-lu-c{text-align:center;font-size:.64rem;color:var(--sub);letter-spacing:.08em;text-transform:uppercase;}
@@ -920,7 +920,7 @@ details.zpb-dd>summary::-webkit-details-marker{display:none;}
 details.zpb-dd>summary::before{content:'\25B8\00A0';color:var(--rose);}
 details.zpb-dd[open]>summary::before{content:'\25BE\00A0';}
 .zpb-whyrow{display:grid;grid-template-columns:150px 1fr 42px;gap:8px;align-items:center;margin:5px 0;font-size:.8rem;}
-.zpb-whyname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-whyname{min-width:0;}
 .zpb-whybar{height:9px;border-radius:5px;background:var(--border);overflow:hidden;}
 .zpb-whybar i{display:block;height:100%;border-radius:5px;background:linear-gradient(90deg,var(--g5),var(--g2));}
 .zpb-modes{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px;}
@@ -1047,7 +1047,7 @@ nav.footnav{order:8;width:100%;}
  #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);} /* w57 (Owner): the 4px accent bar at the card's left edge retires — the line obscured the first letter of the names; the card keeps its wash and its 1px frame */
  #draftTable2 td{display:block;border:0 !important;padding:0 !important;text-align:left !important;min-width:0;font-size:0.8rem;}
  #draftTable2 td[data-label]::before{content:attr(data-label);display:block;font-size:0.56rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);font-weight:700;line-height:1.1;}
- #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:anywhere;}
+ #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:normal;}
  #draftTable2 td.dc-ovr{grid-column:9 / 11;grid-row:1;text-align:center !important;font-size:1.1rem;font-weight:900;background:color-mix(in srgb,var(--tA,var(--accent)) 15%,transparent);border-radius:8px;padding:2px 9px !important;justify-self:start;}
  #draftTable2 td.dc-btn{grid-column:11 / 13;grid-row:1;text-align:right !important;align-self:center;}
  #draftTable2 td:nth-child(2){grid-column:1 / 3;grid-row:2;} #draftTable2 td:nth-child(3){grid-column:3 / 5;grid-row:2;}
@@ -1322,7 +1322,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-tree-col h6{margin:2px 0 4px;font-size:.56rem;letter-spacing:.16em;color:var(--sub);text-align:center;font-weight:800;}
 .zpb-tree .bracket-game{display:flex;flex-direction:column;gap:2px;font-size:.68rem;padding:6px 8px;}
 .zpb-tree .bracket-game .zpb-trow2{display:flex;justify-content:space-between;gap:6px;align-items:baseline;min-width:0;}
-.zpb-tree .bracket-game .zpb-trow2 em{font-style:normal;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.zpb-tree .bracket-game .zpb-trow2 em{font-style:normal;min-width:0;}
 .zpb-tree .bracket-game .zpb-trow2 b{font-variant-numeric:tabular-nums;}
 .zpb-tree .bracket-game .zpb-twin{font-weight:800;}
 /* w52 (Owner, M13): the un-played bracket @ — compressed cards stack it on its OWN line between
@@ -1756,7 +1756,7 @@ body[data-home="1"] #startDraftBtn{margin-top:min(17vh,175px) !important;}
 @media (prefers-color-scheme: dark){
  :root:not([data-theme="light"]) .zpb-selopt{color:var(--zaD,var(--zaL,inherit));}
 }
-.zpb-selbtn span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:200px;}
+.zpb-selbtn span{max-width:200px;white-space:normal;}
 
 /* ---- 4. board: bigger logos, chips under the OVR number, team-icon filter ---- */
 .zpb-teamcol .zpb-logo{width:27px;height:27px;}
@@ -2147,7 +2147,7 @@ html{scrollbar-gutter:stable;}
 .zpb-lu-row :where(.zpb-lu-cell){color:var(--tn,inherit);}
 .zpb-pcard :where(.zpb-pcard-hd b){color:var(--tn,var(--text));}
 /* position rankings (Groups): names wrap, never drift the row wide */
-.zpb-gname{font-size:0.8rem;overflow-wrap:anywhere;}
+.zpb-gname{font-size:0.8rem;overflow-wrap:normal;}
 .zpb-gnum{font-size:0.78rem;}
 /* phones: the week-scores strip wraps instead of scrolling sideways */
 @media (max-width:760px){
@@ -3366,15 +3366,14 @@ function zpbGameReplay(g, focusTeam){
   const clockOf = e=>{ const m = Math.max(0, Math.min(15, 15*(1-(e.t||0)))); const mm = Math.floor(m), ss = Math.floor((m-mm)*60); return mm + '\u00b7' + String(ss).padStart(2,'0'); }; // w51 (Owner): the dot law reaches the clock — 12·34, never a colon
   const crest2 = nm2=> (typeof zpbTeamLogo==='function') ? zpbTeamLogo(nm2) : ''; // w45 (O6, Owner): the block lines wear the crest like every line
   let hs = 0, as = 0, timers = [], finished = false, clutch = false, flushRest = null; // w37 (R12): Skip hands the rest of the report to flushRest
-  const close = ()=>{ timers.forEach(t=>clearTimeout(t)); const x = document.querySelector('.zpb-replay-ov'); if(x) x.remove(); document.removeEventListener('keydown', esc); try{ if(typeof zpbFxDrain==='function') zpbFxDrain(false); }catch(err){}
+  const close = ()=>{ timers.forEach(t=>clearTimeout(t)); const x = document.querySelector('.zpb-replay-ov'); if(x) x.remove(); try{ if(typeof zpbFxDrain==='function') zpbFxDrain(false); }catch(err){}
    if(window.__zpbSBReplayHold){ // w52 (Owner, M12): the final whistle hands the screen to the winner storm
     window.__zpbSBReplayHold = false;
     if(window.__zpbSBFinPending && seasonState && seasonState.champion){ window.__zpbSBFinPending = false; try{ zpbPostSuperBowlCine(); }catch(err){} }
    }
   }; // w38 (R13, Owner): an early close never fires the champions — they wait for the whistle · w52 (Owner, M12): except the Super Bowl's own storm, which waits for THIS whistle
-  const esc = e=>{ if(e.key==='Escape') close(); };
-  document.addEventListener('keydown', esc);
-  ov.addEventListener('click', e=>{ if(e.target===ov) close(); });
+  /* w60 (Owner): the dim and Escape are NOT exits — a stray click outside the during-the-game
+     panel must never end the cinematic. Skip and Continue are the only doors. */
   // w33 (R27, Owner): SKIP is available at any time — during the intro it ends the intro; during the game it ends the game
   const zpbSkipAll = ()=>{ if(finished) return; if(!introDone){ startTimeline(); return; } try{ if(flushRest) flushRest(); else finish(true); }catch(err){ finish(true); } }; // w37 (R12, Owner): Skip shows the whole game report — every remaining play, then the true final
   if(skip) skip.addEventListener('click', zpbSkipAll);
@@ -3427,7 +3426,7 @@ function zpbGameReplay(g, focusTeam){
    const syMap0 = {50:38, 27:60, 78:82, 34:40, 66:68}; // w59 (best of w57, Owner): on a phone the marquee pins to the top and the pairs fan out BELOW it - the first pair never lands on the logos
    const syMap = {}; for (const k in syMap0) syMap[k] = syMap0[k] + (isSB ? 5 : 0); // w59: the Super Bowl marquee wears the bigger title - its fan sits a touch deeper
    const laneA = narrow ? 28 : 18, laneH = narrow ? 72 : 82; // the lanes clear the middle panel
-   const fitF = s=>{ if(!s) return 15.4; const laneMax = narrow ? Math.min(160, Math.round((window.innerWidth||1280) * 0.36)) : 340;
+   const fitF = s=>{ if(!s) return 15.4; const laneMax = narrow ? Math.min(180, Math.round((window.innerWidth||1280) * 0.44)) : 340; /* w60: the budget is the face-off row's half-width */
     let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
     while(f > 9.5 && est(f) > laneMax) f -= 0.5; return f; }; // w39: the fit budget is the lane it sits in
    const slots = [];
@@ -3436,7 +3435,7 @@ function zpbGameReplay(g, focusTeam){
     slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])})); // w59 (best of w57, Owner): the narrow fan (syMap)
    });
    const _fitAll = Math.min.apply(null, slots.map(s=>(s.f==null)?15.4:s.f)); // w45 (O5, Owner): ONE fitted size for the whole stage — the lane fit of the longest name on it
-   const starHTML = slots.map((s,i)=>{
+   const starCards = slots.map((s,i)=>{
     let fsz = '';
     if(s.side && s.f != null){ // w39 (A4): the fitted size was computed with the slot — w45 (O5, Owner): every panel wears the SAME fitted size
      fsz = 'font-size:' + (Math.round(_fitAll*10)/10) + 'px;';
@@ -3444,7 +3443,11 @@ function zpbGameReplay(g, focusTeam){
     const rv = (s.full && typeof zpbRowVars==='function') ? zpbRowVars(s.full) : ''; // w38 (R8): the panel wears the team palette
     const _t = (s.o>=90) ? 'zpb-shm' : ((s.o>=85) ? 'zpb-vib' : '');
     return '<span class="zpb-intro-star' + (s.side||'') + '" style="--sx:' + s.sx + '%;--sy:' + s.sy + '%;animation-delay:' + pairDelay(s.beat) + 'ms;' + fsz + rv + '"><b class="' + _t + '">' + s.n + '</b><i>' + s.pos + ' \u00b7 ' + s.o + ' OVR \u00b7 ' + s.team + '</i></span>';
-   }).join('');
+   });
+   const starHTML = starCards.reduce(function(acc,card,i){ /* w60 (Owner): the pairs are face-off rows in flow — the static pregame screen is never covered */
+    if(i%2===0){ acc.push('<div class="zpb-intro-brow">'+card); } else { acc[acc.length-1] += card + '</div>'; }
+    return acc;
+   }, []).join('');
    const stageDeco = roundLabel ? (()=>{ // w51 (Owner): the playoffs cinematic dresses the stage — beams, rays, embers, drama
     let deco = '';
     try{ const pA = (typeof zpbPackFor==='function') ? zpbPackFor(g.away) : null, pH = (typeof zpbPackFor==='function') ? zpbPackFor(g.home) : null;
@@ -8310,7 +8313,7 @@ function renderRegularSeasonView(container){
 }
 // Destructive actions live at the bottom of the page, away from the simulate buttons, and always ask first.
 function seasonOptionsHTML(){
- return `<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;"><button class="tabbtn" id="restartSeasonBtn">Start a new season (same roster)…</button><button class="tabbtn" id="newDraftFromSeasonBtn">Start a new draft…</button></div>`;
+ return `<div class="zpb-seasonopts"><button class="tabbtn" id="restartSeasonBtn" style="width:auto;">RUN IT BACK <span class="zpb-again-dot">·</span> <span class="zpb-rosterline">SAME ROSTER</span></button><button class="tabbtn" id="newDraftFromSeasonBtn" style="width:auto;">NEW DRAFT</button></div>`;
 }
 function startNewDraftFlow(){
  if(typeof zpbClearTeamTheme==='function') zpbClearTeamTheme();
@@ -10774,14 +10777,14 @@ function runLeague100(N, container){
  const L = {teams, schedule:[], currentWeek:1, phase:'regular', playerStats:{}, playerStatsPO:{}, league, unitRatings, unitRanks:computeUnitRanks(unitRatings), identity:{}, planCache:(base&&base.planCache)||{}, userPlan:{mode:'auto',pers:'auto',strat:'auto',pkg:'auto',focus:'auto'}};
  names.forEach(n=>{ L.identity[n] = teamIdentity(unitRatings[n], league); });
  const user = names.find(n=>teams[n].isUser), agg = newAgg(names, user);
- container.innerHTML = `<div class="panel"><h3 style="margin-top:0;">Running 100 seasons…</h3><div style="background:var(--border,#ccc);height:10px;border-radius:5px;overflow:hidden;"><div id="sim100Bar" style="height:10px;width:0%;background:var(--accent);"></div></div><p class="narr" id="sim100Txt">Starting…</p></div>`;
+ container.innerHTML = `<div class="panel"><h3 style="margin-top:0;">Running 100 seasons</h3><div style="background:var(--border,#ccc);height:10px;border-radius:5px;overflow:hidden;"><div id="sim100Bar" style="height:10px;width:0%;background:var(--accent);"></div></div><p class="narr" id="sim100Txt">Starting…</p></div>`;
  let done = 0;
  const step = ()=>{
   const prev = seasonState; seasonState = L;
   try{ const t0 = Date.now(); while(done<N && Date.now()-t0<120){ liteSeason(L, agg); done++; } }
   finally{ seasonState = prev; }
   const bar = document.getElementById('sim100Bar'), txt = document.getElementById('sim100Txt');
-  if(bar) bar.style.width = (done/N*100)+'%'; if(txt) txt.textContent = `Season ${done} of ${N}…`;
+  if(bar) bar.style.width = (done/N*100)+'%'; if(txt) txt.textContent = `Season ${done} of ${N}`;
   if(done<N) setTimeout(step, 0);
   else { league100 = {agg, L:{unitRatings, unitRanks:L.unitRanks, league, identity:L.identity, teams, names}, user, N, scores:null}; render100(container); }
  };
@@ -12231,7 +12234,7 @@ tr.zpb-top3 button.resetbtn{animation:zpbBtnPulse 1.5s ease-in-out infinite;}
 @media (min-width:761px) and (max-width:1080px){
  #draftTable2 th,#draftTable2 td{padding-left:3px !important;padding-right:3px !important;}
  #draftTable2 td{font-size:0.72rem;}
- #draftTable2 td.dc-fills .zpb-fillab{display:inline-block;max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom;}
+ #draftTable2 td.dc-fills .zpb-fillab{display:inline-block;max-width:100%;vertical-align:bottom;}
 }
 /* 9) the reading-the-draft-board panels */
 .zpb-bmgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:10px 0;}
@@ -12708,7 +12711,7 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 .zpb-awpanel{display:flex;flex-direction:column;gap:3px;border:1px solid var(--rosehair,var(--border));border-radius:13px;background:var(--panel2);padding:9px 12px;min-width:0;}
 .zpb-awpanel .zpb-poschip{align-self:flex-start;}
 .zpb-awpanel-name{min-width:0;}
-.zpb-awpanel i.narr{font-style:normal;font-size:.66rem;overflow-wrap:anywhere;}
+.zpb-awpanel i.narr{font-style:normal;font-size:.66rem;overflow-wrap:break-word;} /* w60: the award lines carry names — words split only as the last resort, never by the layout */
 /* A35 (Owner): the UNIT REPORT CARD — letter-grade badges, no hover anywhere */
 .zpb-rc-title{text-align:center;font-family:'Cinzel Decorative',serif;font-weight:800;letter-spacing:.22em;font-size:.92rem;margin:0 0 10px;color:var(--tA2,var(--gold3));}
 .zpb-rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;}
@@ -12735,13 +12738,13 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 /* A15/A16 (Owner): the pick list — a quiet button, a dropdown that carries the number */
 .zpb-pickbtn{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 8px;font-size:.78rem;cursor:pointer;text-align:left;}
 .zpb-pickbtn:hover{border-color:var(--accent);}
-.zpb-pickbtn .zpb-pickname{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-pickbtn .zpb-pickname{min-width:0;}
 .zpb-pickwrap{position:relative;min-width:0;}
 .zpb-pickmenu{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;max-height:260px;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:10px;box-shadow:0 14px 40px rgba(0,0,0,.35);padding:4px;display:none;}
 .zpb-pickmenu.zpb-open{display:block;}
 .zpb-pickrow{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;border:0;background:transparent;color:var(--text);padding:6px 8px;border-radius:8px;font-size:.78rem;cursor:pointer;text-align:left;}
 .zpb-pickrow:hover{background:var(--panel2);}
-.zpb-pickrow b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.zpb-pickrow b{font-weight:600;min-width:0;}
 .zpb-pickrow .zpb-picknum{font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums;}
 /* B17 (Owner): hovering a station lights the player's card under the map */
 .zpb-dbk{transition:box-shadow .3s ease,border-color .3s ease;}
@@ -12832,8 +12835,8 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 #viewGroups thead th:nth-child(1){width:44px;}
 #viewGroups thead th:nth-child(2){width:250px;}
 #viewGroups thead th:nth-child(3){width:120px;}
-#viewGroups td.narr{white-space:normal;overflow-wrap:anywhere;}
-.zpb-gplayer{display:inline-block;max-width:100%;overflow:hidden;text-overflow:ellipsis;vertical-align:bottom;}
+#viewGroups td.narr{white-space:normal;overflow-wrap:break-word;} /* w60: the ranking cards flow PLAYER NAMES — whole words only */
+.zpb-gplayer{vertical-align:bottom;}
 @media (max-width:740px){
  #viewGroups .zpb-grow{display:flex;flex-wrap:wrap;gap:4px 10px;align-items:baseline;padding:6px 0;border-bottom:1px solid var(--border);}
  #viewGroups .zpb-grow td{border:none;padding:0;}
@@ -13136,7 +13139,7 @@ window.wireLineupEditor = function(roster, hostId, onChange){
 /* w38 (R19, Owner): the playoff award card stands vertical — award, name, badges */
 .zpb-awcol{display:flex;flex-direction:column;align-items:flex-start;gap:6px;}
 .zpb-awcol .zpb-awt{width:auto;}
-.zpb-awname{font-size:1.02rem;overflow-wrap:anywhere;}
+.zpb-awname{font-size:1.02rem;overflow-wrap:normal;}
 .zpb-awchips{max-width:100%;}
 /* w38 (R22, Owner): the panels widen a touch — the badges breathe into two rows */
 .zpb-awgrid{grid-template-columns:repeat(auto-fill,minmax(270px,1fr)) !important;}
@@ -13873,7 +13876,7 @@ window.zpbPlayoffRunCine = function(story){
 @media (max-width:760px){
  #draftTable2 tr{row-gap:1px;padding:5px 8px;}
  #draftTable2 td[data-label]::before{display:none;}
- #draftTable2 td{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #draftTable2 td{white-space:nowrap;}
  #draftTable2 td.dc-name{grid-column:1/8;grid-row:1;font-size:.88rem;align-self:center;}
  #draftTable2 td.dc-ovr{grid-column:8/10;grid-row:1;font-size:.9rem;padding:1px 0 !important;}
  #draftTable2 .zpb-ovrstack{gap:1px;}
@@ -13894,7 +13897,7 @@ window.zpbPlayoffRunCine = function(story){
  #draftCards .prow{grid-template-columns:minmax(0,1fr) auto auto;gap:6px;}
  #draftCards .prow .mbar{display:none;}
  #draftCards .prow>div:first-child{min-width:0;}
- #draftCards .prow .narr{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #draftCards .prow .narr{display:block;white-space:normal;}
 }
 
 /* 4 · THE STARS FACE OFF ONE PER LINE on the phone — the paired cards' min-content (~530px)
@@ -13945,9 +13948,9 @@ window.zpbPlayoffRunCine = function(story){
    grade as the big badge, the name leading, and the OVR / round / rank badges under it. */
 .zpb-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
 .zpb-pg-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:9px 10px;min-width:0;}
-.zpb-pg-slot{font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ongold,var(--text));background:var(--gold2,var(--accent));border:1px solid var(--gold3,var(--border));border-radius:999px;padding:1px 8px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.zpb-pg-slot{font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ongold,var(--text));background:var(--gold2,var(--accent));border:1px solid var(--gold3,var(--border));border-radius:999px;padding:1px 8px;max-width:100%;}
 .zpb-pg-grade{position:absolute;top:7px;right:9px;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.17rem; /* w59 (best of w57, Owner): the large-text bar */line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);border-radius:9px;padding:6px 7px;}
-.zpb-pg-name{font-size:.82rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere;padding-right:44px;margin-top:2px;}
+.zpb-pg-name{font-size:.82rem;font-weight:700;line-height:1.15;overflow-wrap:normal;padding-right:44px;margin-top:2px;}
 .zpb-pg-badges{display:flex;gap:4px;flex-wrap:wrap;}
 .zpb-pg-badges i{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.03em;color:var(--sub);background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid var(--border);border-radius:999px;padding:2px 7px;white-space:nowrap;}
 
@@ -14044,7 +14047,7 @@ window.zpbPlayoffRunCine = function(story){
  .zpb-pvfrow{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:5px;}
  .zpb-pvfrow .zpb-pvcard{flex-wrap:wrap;min-width:0;padding:7px 8px;gap:5px 8px;}
  .zpb-pvfrow .zpb-pcard-hd{flex:1 1 auto;min-width:0;flex-wrap:nowrap;gap:5px;}
- .zpb-pvfrow .zpb-pcard-hd b{font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+ .zpb-pvfrow .zpb-pcard-hd b{font-size:.76rem;min-width:0;}
  .zpb-pvfrow .zpb-poschip{font-size:.52rem;padding:1px 6px;letter-spacing:.05em;flex:0 0 auto;}
  .zpb-pvfrow .zpb-cstar{font-size:.82em;margin-left:4px;}
  .zpb-pvfrow .zpb-pcard-rt{font-size:1.02rem;min-width:34px;text-align:right;flex:0 0 auto;}
@@ -14066,9 +14069,9 @@ window.zpbPlayoffRunCine = function(story){
 /* 2 · NAMES NEVER BREAK LETTER-BY-LETTER — overflow-wrap:anywhere let a squeezed lane compute
    its min-content as ONE CHARACTER (one letter per line). break-word keeps the min-content at
    the widest word: names wrap at spaces, a mid-word break only when one word cannot fit. */
-.zpb-gname{overflow-wrap:break-word;} /* w57 (Owner): the global name class */
+.zpb-gname{overflow-wrap:normal;} /* w57 (Owner): the global name class — w60: the engine guarantees fit, words stay whole */
 .zrl-play{overflow-wrap:break-word;} /* w57 (Owner): the replay log's play text carries the names */
-.zpb-lu-cell{overflow-wrap:break-word;} /* w57 (Owner): the lineup cells */
+.zpb-lu-cell{overflow-wrap:normal;} /* w57 (Owner): the lineup cells — w60: the engine guarantees fit, words stay whole */
 
 /* 3 · THE REVIEW + UNIT REPORT BADGES KEEP THE BEAT, FASTER — one beat ×0.6s (was ×1s).
    The field map and depth chart keep their one-second beats (the w44/w46 laws). */
@@ -14286,11 +14289,11 @@ window.zpbPlayoffRunCine = function(story){
  #playerTable.mstack tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"name pos ovr" "team spd str";gap:1px 8px;align-items:center;padding:6px 10px;}
  #playerTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
  #playerTable.mstack td::before{content:none !important;}
- #playerTable.mstack td.zpb-pb-name{grid-area:name;font-size:.92rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td.zpb-pb-name{grid-area:name;font-size:.92rem;min-width:0;}
  #playerTable.mstack td:nth-child(2){grid-area:pos;}
  #playerTable.mstack td:nth-child(2) .zpb-poschip{font-size:.6rem;}
  #playerTable.mstack td.score{grid-area:ovr;text-align:right !important;font-weight:800;}
- #playerTable.mstack td.zpb-pb-team{grid-area:team;font-size:.68rem;color:var(--tn,var(--text));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td.zpb-pb-team{grid-area:team;font-size:.68rem;color:var(--tn,var(--text));min-width:0;}
  #playerTable.mstack td:nth-of-type(5){grid-area:spd;text-align:right !important;}
  #playerTable.mstack td:nth-of-type(6){grid-area:str;text-align:right !important;}
  #playerTable.mstack td:nth-of-type(5),#playerTable.mstack td:nth-of-type(6){font-size:.68rem;color:var(--tn,var(--text));font-variant-numeric:tabular-nums;white-space:nowrap;}
@@ -14360,6 +14363,222 @@ body.zpb-cinelock .wrap, body.zpb-cinelock nav.footnav, body.zpb-cinelock .zpb-f
  try{ new MutationObserver(sync).observe(document.body, {childList:true, subtree:true}); }catch(e){}
  sync();
 })();
+</script>
+
+
+<style id="zpb-w60-css">
+/* ================= Z-POST-BLUE W60 · THE FLUID PANELS, THE NAME LADDER, THE FACE-OFF ROWS,
+   THE PLAYOFFS BUTTONS, THE SEASON FOOTER PAIR, THE ADVANCE RAIL ================= */
+
+/* 1 · THE UNIT COMPARISON IS FLUID (Owner: "expand and contract more dynamically to fit with
+   the window size and the panel above it") — the w59 data-nostack guard stopped the JS stacker
+   but the generic phone law table{display:block} still shrink-wrapped the cells into a narrow
+   strip (measured: 28·95·28 px inside a 704 px table). The table re-asserts its real display
+   and fixed proportional columns (25 · 50 · 25): the three columns share the panel's width
+   CONTINUOUSLY at every size, matching the panel above. The type/padding steps stay gradual. */
+table.zpb-unitcmp{display:table;width:100%;table-layout:fixed;border-collapse:collapse;}
+table.zpb-unitcmp td{width:25%;}
+table.zpb-unitcmp td.narr{width:50%;white-space:normal;}
+
+/* 2 · THE NAME LADDER (Owner: full name horizontal → full name vertical → LAST NAME →
+   INITIALS; never "…"; single words in names never split; "JR. is not a last name") — the
+   engine (zpb-w60-js) walks every carrier through the ladder and measures, so the CSS only
+   has to guarantee words stay whole: overflow-wrap:normal, min-width:0, no ellipsis paints. */
+.zpb-lu-cell,.zpb-gname,.zpb-awname,.zpb-awme,.zpb-dz-name,.zpb-whyname,
+.zpb-tree .bracket-game .zpb-trow2 em,.zpb-fillab,.zpb-pickname,.zpb-pickrow b,
+.zpb-pcard-hd b,.zpb-pb-name,.zpb-pb-team,.zpb-intro-star b,td.dc-name,.zst-opp,
+.zpb-selbtn span{overflow-wrap:normal;min-width:0;}
+
+/* 3 · THE PREGAME KEY PLAYERS ARE FACE-OFF ROWS (Owner: the cards may sit below/above the
+   play-by-play panel; they must never cover the static pregame screen "in weird ways") — the
+   absolute % lanes and the w59 phone fan retire. The intro is a flow: the static block on top,
+   then one row per beat (away left · home right), fading on the same beats as before. */
+.zpb-intro-stars{position:static;display:flex;flex-direction:column;gap:10px;width:min(100%,540px);margin:2px auto 0;flex:0 1 auto;min-height:0;overflow:hidden;z-index:3;}
+.zpb-intro-brow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;}
+.zpb-intro-star{position:static;left:auto;top:auto;transform:none;white-space:normal;text-align:center;width:auto;animation-name:zpbStarInOutFlow;}
+@keyframes zpbStarInOutFlow{0%{opacity:0;transform:translateY(8px);}18%{opacity:1;transform:translateY(0);}78%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){ .zpb-intro-star{animation:none;opacity:1;} }
+@media (max-width:600px){ .zpb-intro-brow{gap:6px;} .zpb-intro-stars{gap:7px;} }
+
+/* 4 · THE PLAYOFFS BUTTONS (Owner: BEGIN PLAYOFFS wears the moving shimmer that SIM PLAYOFFS
+   used to own; SIM PLAYOFFS is not colored in at all) — the w51 gold-pill shorthand reset
+   background-size, which is why the sweep never ran on the ID-listed buttons. */
+#beginPlayoffsBtn{background-size:220% 100% !important;animation:zpbbtnshine 3.4s linear infinite;}
+@media (prefers-reduced-motion: reduce){ #beginPlayoffsBtn{animation:none;background-size:100% 100%;} }
+#simPlayoffsBtn{background:transparent;color:var(--gold3);border:1px solid var(--tBSb);box-shadow:none;animation:none;background-size:100% 100%;}
+#simPlayoffsBtn:hover{background:color-mix(in srgb,var(--gold3) 12%,transparent);box-shadow:none;transform:none;}
+
+/* 5 · THE SEASON FOOTER PAIR (Owner: "RUN IT BACK · SAME ROSTER" — SAME ROSTER on its own line
+   in compressed screens — beside "NEW DRAFT"; side by side at full width, stacked when narrow) */
+.zpb-seasonopts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:stretch;}
+.zpb-seasonopts .zpb-again-dot{display:inline;}
+@media (max-width:520px){ .zpb-seasonopts{flex-direction:column;align-items:stretch;} .zpb-seasonopts .zpb-rosterline{display:block;} .zpb-seasonopts .zpb-again-dot{display:none;} }
+
+/* 6 · THE ADVANCE RAIL (Owner: any glowing advance button is also reachable at the top of the
+   screen — "shouldn't have to scroll back up or scroll down") — a slim fixed bar that mirrors
+   the current season screen's advance button. It lives inside .wrap, so the w59 cinematic lock
+   locks it with the page; it is never on the homepage or the footer pages (no CTA there). */
+#zpbAdvRail{position:fixed;top:0;left:0;right:0;z-index:50;display:none;justify-content:center;align-items:center;padding:7px 10px;padding-top:calc(7px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--border);pointer-events:none;}
+body.zpb-advrail #zpbAdvRail{display:flex;}
+#zpbAdvRail button{pointer-events:auto;width:auto;margin:0;padding:9px 26px;max-width:92vw;}
+body.zpb-advrail .wrap{padding-top:64px;}
+
+</style>
+
+
+<script id="zpb-w60-js">
+// ================= Z-POST-BLUE W60 · THE NAME LADDER + THE ADVANCE RAIL =================
+// w60 (Owner): "once the window size is too constrained for full names horizontally, then it
+// shows full names vertically. Then if the window size is too constrained to show the names
+// vertically, to then default to showing last names, and then if the screen is too compressed
+// for last names, then the screen shows players' initials. No more '…' anywhere on the website."
+// "SINGLE WORDS IN NAMES SHOULD BE ON THEIR OWN LINE" and "REMEMBER THAT JR. IS NOT A LAST NAME,
+// IT STANDS FOR JUNIOR." The ladder measures each carrier's own box (not the viewport), caches
+// the full name, and is stateless — growing the window restores the fuller form. Suffixes
+// (Jr./Sr./II/III/IV/V) are stripped before the last-name step, so a suffix alone is never the
+// last name. The CSS guarantees words stay whole (overflow-wrap:normal); the ellipsis paints
+// are removed everywhere.
+(function(){
+'use strict';
+ var SEL = '.zpb-lu-cell,.zpb-gname,.zpb-awname,.zpb-awme,.zpb-dz-name,.zpb-whyname,'
+  + '.zpb-tree .bracket-game .zpb-trow2 em,.zpb-fillab,.zpb-pickname,.zpb-pickrow b,'
+  + '.zpb-pcard-hd b,.zpb-pb-name,.zpb-pb-team,.zpb-intro-star b,td.dc-name,.zst-opp';
+ var SUF = /^(?:jr|sr|ii|iii|iv|v)\.?$/i;
+ var meas = null, busy = false, queued = false;
+ function measurerFor(el){
+  if(!meas || !meas.parentNode){
+   meas = document.createElement('span');
+   meas.setAttribute('aria-hidden','true');
+   meas.style.cssText = 'position:fixed;left:-9999px;top:0;visibility:hidden;white-space:nowrap;z-index:-1;';
+   document.body.appendChild(meas);
+  }
+  var cs = getComputedStyle(el);
+  meas.style.font = cs.font;
+  meas.style.letterSpacing = cs.letterSpacing;
+  meas.style.textTransform = cs.textTransform;
+  meas.style.fontVariant = cs.fontVariantCaps || cs.fontVariant;
+  return meas;
+ }
+ function widthOf(text, el){ var m = measurerFor(el); m.textContent = text; return m.getBoundingClientRect().width; }
+ function avail(el){ var w = el.clientWidth; if(!w){ var p = el.parentElement; w = p ? p.clientWidth : 0; } return w; }
+ function parse(full){
+  var toks = full.split(/\s+/).filter(Boolean), rest = [];
+  while(toks.length && /^[0-9]+$/.test(toks[toks.length-1])) rest.unshift(toks.pop());
+  return { nm: toks, rest: rest.length ? ' ' + rest.join(' ') : '' };
+ }
+ function longestTok(tokens){
+  var best = '';
+  for(var i=0;i<tokens.length;i++){
+   var parts = String(tokens[i]).split('-');
+   for(var j=0;j<parts.length;j++){ if(parts[j].length > best.length) best = parts[j]; }
+  }
+  return best;
+ }
+ // The pure ladder — exposed for the battery. fits(text) answers "does this text fit one line
+ // in the carrier's box?" (the caller measures). Returns {text, mode}: one = single line,
+ // wrap = whole-word vertical.
+ function ladder(full, fits){
+  var p = parse(full);
+  if(!p.nm.length) return { text: full, mode: 'one' };
+  if(fits(p.nm.join(' ') + p.rest)) return { text: full, mode: 'one' };
+  if(fits(longestTok(p.nm))) return { text: p.nm.join(' ') + p.rest, mode: 'wrap' };
+  var lt = p.nm.slice();
+  while(lt.length > 1 && SUF.test(lt[lt.length-1].replace(/\./g,''))) lt.pop();
+  var ln = lt[lt.length-1] || p.nm[p.nm.length-1] || '';
+  if(fits(ln) || fits(longestTok([ln]))) return { text: ln + p.rest, mode: 'one' };
+  var ini = p.nm.filter(function(t){ return !SUF.test(t.replace(/\./g,'')); })
+    .map(function(t){ return t.charAt(0); }).join('').toUpperCase();
+  return { text: (ini || ln) + p.rest, mode: 'one' };
+ }
+ function fit(el){
+  var full = el.getAttribute('data-nmfull');
+  if(!full){ full = (el.textContent || '').replace(/\s+/g,' ').trim(); if(!full) return; el.setAttribute('data-nmfull', full); }
+  var w = avail(el);
+  if(w <= 0) return;
+  var d = ladder(full, function(txt){ return widthOf(txt, el) <= w; });
+  if(el.textContent !== d.text) el.textContent = d.text;
+  el.style.whiteSpace = d.mode === 'one' ? 'nowrap' : 'normal';
+  el.style.overflowWrap = 'normal';
+ }
+ function scan(){
+  if(busy) return; busy = true;
+  try{
+   var list = document.querySelectorAll(SEL);
+   for(var i=0;i<list.length;i++) fit(list[i]);
+  } finally { busy = false; }
+ }
+ function schedule(){
+  if(queued || busy) return; queued = true;
+  setTimeout(function(){ queued = false; scan(); }, 120);
+ }
+ try{ new MutationObserver(schedule).observe(document.body, {childList:true, subtree:true}); }catch(e){}
+ window.addEventListener('resize', schedule, {passive:true});
+ window.zpbNameFit = { ladder: ladder, scan: scan };
+ scan();
+})();
+
+// ---- THE ADVANCE RAIL ----
+// w60 (Owner): "ANY GLOWING BUTTON THAT HELP ADVANCE YOU TO THE NEXT PAGE SHOULD ALSO BE
+// AVAILABLE FOR THE USER TO CLICK AT THE TOP AND BOTTOM OF EVERY SCREEN DURING THE SEASON
+// (EXCEPT THE HOMEPAGE AND FOOTER PAGES). THE USER SHOULDN'T HAVE TO SCROLL BACK UP OR SCROLL
+// DOWN TO ADVANCE TO THE NEXT PAGE." The rail mirrors the current season screen's advance
+// button — same label, same glow, same action — fixed at the very top, so the action is
+// reachable at any scroll position. No registered button on screen (homepage, draft setup,
+// the footer pages) → no rail. Inside .wrap, so the cinematic lock locks it with the page.
+(function(){
+'use strict';
+ var IDS = ['simWeekBtn','nextWeekBtn','nextRoundBtn','beginPlayoffsBtn','seasonReviewBtn','beginSeasonBtn','beginSeasonBtn2'];
+ var rail = null, cur = null, queued = false;
+ function findCta(){
+  var view = document.getElementById('viewDraft');
+  if(!view || !view.classList.contains('active')) return null;
+  for(var i=0;i<IDS.length;i++){
+   var b = document.getElementById(IDS[i]);
+   if(b && b.offsetParent !== null) return b;
+  }
+  return null;
+ }
+ function build(b){
+  var c = b.cloneNode(true);
+  c.id = 'zpbAdvRailBtn';
+  c.removeAttribute('data-nmfull');
+  c.addEventListener('click', function(ev){ ev.preventDefault(); try{ b.click(); }catch(e){} });
+  return c;
+ }
+ function sync(){
+  var b = findCta();
+  if(!b){
+   if(rail) rail.style.display = 'none';
+   document.body.classList.remove('zpb-advrail');
+   cur = null;
+   return;
+  }
+  if(!rail){
+   var wrap = document.querySelector('.wrap');
+   if(!wrap) return;
+   rail = document.createElement('div');
+   rail.id = 'zpbAdvRail';
+   wrap.appendChild(rail);
+  }
+  if(!cur || cur.__src !== b || cur.textContent !== b.textContent){
+   while(rail.firstChild) rail.removeChild(rail.firstChild);
+   cur = build(b);
+   cur.__src = b;
+   rail.appendChild(cur);
+  }
+  rail.style.display = 'flex';
+  document.body.classList.add('zpb-advrail');
+ }
+ function schedule(){
+  if(queued) return; queued = true;
+  setTimeout(function(){ queued = false; try{ sync(); }catch(e){} }, 80);
+ }
+ try{ new MutationObserver(schedule).observe(document.body, {childList:true, subtree:true}); }catch(e){}
+ window.addEventListener('resize', schedule, {passive:true});
+ window.zpbAdvRail = { sync: sync };
+ sync();
+})();
+
 </script>
 
 

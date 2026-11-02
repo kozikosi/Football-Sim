@@ -1,0 +1,55 @@
+/* ================= Z-POST-BLUE W60 · THE FLUID PANELS, THE NAME LADDER, THE FACE-OFF ROWS,
+   THE PLAYOFFS BUTTONS, THE SEASON FOOTER PAIR, THE ADVANCE RAIL ================= */
+
+/* 1 · THE UNIT COMPARISON IS FLUID (Owner: "expand and contract more dynamically to fit with
+   the window size and the panel above it") — the w59 data-nostack guard stopped the JS stacker
+   but the generic phone law table{display:block} still shrink-wrapped the cells into a narrow
+   strip (measured: 28·95·28 px inside a 704 px table). The table re-asserts its real display
+   and fixed proportional columns (25 · 50 · 25): the three columns share the panel's width
+   CONTINUOUSLY at every size, matching the panel above. The type/padding steps stay gradual. */
+table.zpb-unitcmp{display:table;width:100%;table-layout:fixed;border-collapse:collapse;}
+table.zpb-unitcmp td{width:25%;}
+table.zpb-unitcmp td.narr{width:50%;white-space:normal;}
+
+/* 2 · THE NAME LADDER (Owner: full name horizontal → full name vertical → LAST NAME →
+   INITIALS; never "…"; single words in names never split; "JR. is not a last name") — the
+   engine (zpb-w60-js) walks every carrier through the ladder and measures, so the CSS only
+   has to guarantee words stay whole: overflow-wrap:normal, min-width:0, no ellipsis paints. */
+.zpb-lu-cell,.zpb-gname,.zpb-awname,.zpb-awme,.zpb-dz-name,.zpb-whyname,
+.zpb-tree .bracket-game .zpb-trow2 em,.zpb-fillab,.zpb-pickname,.zpb-pickrow b,
+.zpb-pcard-hd b,.zpb-pb-name,.zpb-pb-team,.zpb-intro-star b,td.dc-name,.zst-opp,
+.zpb-selbtn span{overflow-wrap:normal;min-width:0;}
+
+/* 3 · THE PREGAME KEY PLAYERS ARE FACE-OFF ROWS (Owner: the cards may sit below/above the
+   play-by-play panel; they must never cover the static pregame screen "in weird ways") — the
+   absolute % lanes and the w59 phone fan retire. The intro is a flow: the static block on top,
+   then one row per beat (away left · home right), fading on the same beats as before. */
+.zpb-intro-stars{position:static;display:flex;flex-direction:column;gap:10px;width:min(100%,540px);margin:2px auto 0;flex:0 1 auto;min-height:0;overflow:hidden;z-index:3;}
+.zpb-intro-brow{display:grid;grid-template-columns:1fr 1fr;gap:10px;align-items:stretch;}
+.zpb-intro-star{position:static;left:auto;top:auto;transform:none;white-space:normal;text-align:center;width:auto;animation-name:zpbStarInOutFlow;}
+@keyframes zpbStarInOutFlow{0%{opacity:0;transform:translateY(8px);}18%{opacity:1;transform:translateY(0);}78%{opacity:1;transform:translateY(0);}100%{opacity:0;transform:translateY(0);}}
+@media (prefers-reduced-motion: reduce){ .zpb-intro-star{animation:none;opacity:1;} }
+@media (max-width:600px){ .zpb-intro-brow{gap:6px;} .zpb-intro-stars{gap:7px;} }
+
+/* 4 · THE PLAYOFFS BUTTONS (Owner: BEGIN PLAYOFFS wears the moving shimmer that SIM PLAYOFFS
+   used to own; SIM PLAYOFFS is not colored in at all) — the w51 gold-pill shorthand reset
+   background-size, which is why the sweep never ran on the ID-listed buttons. */
+#beginPlayoffsBtn{background-size:220% 100% !important;animation:zpbbtnshine 3.4s linear infinite;}
+@media (prefers-reduced-motion: reduce){ #beginPlayoffsBtn{animation:none;background-size:100% 100%;} }
+#simPlayoffsBtn{background:transparent;color:var(--gold3);border:1px solid var(--tBSb);box-shadow:none;animation:none;background-size:100% 100%;}
+#simPlayoffsBtn:hover{background:color-mix(in srgb,var(--gold3) 12%,transparent);box-shadow:none;transform:none;}
+
+/* 5 · THE SEASON FOOTER PAIR (Owner: "RUN IT BACK · SAME ROSTER" — SAME ROSTER on its own line
+   in compressed screens — beside "NEW DRAFT"; side by side at full width, stacked when narrow) */
+.zpb-seasonopts{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;align-items:stretch;}
+.zpb-seasonopts .zpb-again-dot{display:inline;}
+@media (max-width:520px){ .zpb-seasonopts{flex-direction:column;align-items:stretch;} .zpb-seasonopts .zpb-rosterline{display:block;} .zpb-seasonopts .zpb-again-dot{display:none;} }
+
+/* 6 · THE ADVANCE RAIL (Owner: any glowing advance button is also reachable at the top of the
+   screen — "shouldn't have to scroll back up or scroll down") — a slim fixed bar that mirrors
+   the current season screen's advance button. It lives inside .wrap, so the w59 cinematic lock
+   locks it with the page; it is never on the homepage or the footer pages (no CTA there). */
+#zpbAdvRail{position:fixed;top:0;left:0;right:0;z-index:50;display:none;justify-content:center;align-items:center;padding:7px 10px;padding-top:calc(7px + env(safe-area-inset-top,0px));background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(9px);border-bottom:1px solid var(--border);pointer-events:none;}
+body.zpb-advrail #zpbAdvRail{display:flex;}
+#zpbAdvRail button{pointer-events:auto;width:auto;margin:0;padding:9px 26px;max-width:92vw;}
+body.zpb-advrail .wrap{padding-top:64px;}
