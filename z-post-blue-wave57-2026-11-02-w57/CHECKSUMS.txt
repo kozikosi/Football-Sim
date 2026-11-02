@@ -1,0 +1,19 @@
+# W57 CHECKSUMS — md5 · bytes · path (the package ships these exact bytes)
+
+765ee5cffb65db03dabf183e3f72c0c4    1611548  Football-Sim-Z-post-blue-w57.html
+b2b6ba211052bb2597feab42d142c514       6566  UPDATE-README-w57.md
+6eb0da61c85361b1282defb450545d72       7683  notes/W57-BUILD-REPORT.md
+6c506d3c7a6208759baf351b4ede8989       5145  notes/W57-INTAKE-LEDGER.md
+bc05dc7d289e4956365715aec8031367      22546  tools/zpb_w57.py
+84cfaf9f17e1cfc1068f754e929ba278      39886  tools/w57_mobile.js
+ff5e4e70a2bead50d844bd59c7f78914      12546  tools/w57_live.js
+d58887f06b33d388bbc093446eeff3e5       5468  tools/w57_sweep.js
+3ad70eb7286ed1d3564077222957b949      14842  tools/w57_contrast.js
+67e357c25df26d9e76ab32e71f08fe7c        665  tools/w57_nodecheck.js
+9fe62738dc1f3d7de5b336a1ca6c7528       2930  tools/w57_d4cmp.js
+44c425bc02dcd9330d1428590c2cd67e       6022  tools/w57_inklaw.js
+5b50a5383fad0b6978c61cfa02365ec0       5734  tools/w57_otc.js
+c74509545f26c1c8c958d1ded2cf6c4c       4895  tools/w57_shots.js
+8bf247b418f0f6bd695c85dc15304217      15256  _agents/zai/START-OF-CHAT-ZAI.md
+6a3bf296818bc85e43c3d258cecbacc1       2524  _agents/zai/END-OF-CHAT-ZAI.md
+ff3dbbe90c3f2a8265a80d23a1771c6c       3542  _agents/zai/ZAI.md

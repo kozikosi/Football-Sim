@@ -477,7 +477,7 @@ th.sortable{cursor:pointer;user-select:none;} th.sortable:hover{text-decoration:
 /* ---- team-color takeover: franchise tokens remap the whole identity ---- */
 :root[data-zpbteam]{
  --accent:var(--tA); --accent2:var(--tA2); --rose:var(--tA3);
- --text:var(--tTx); --sub:var(--tSu); --border:var(--tHr); --rosehair:var(--tHr);
+ --text:var(--tTx); --sub:color-mix(in srgb,var(--tSu) 55%,var(--zcream,#53382b)); --border:var(--tHr); --rosehair:var(--tHr); /* w57 (Owner): the team soft muted tone deepens toward the neutral cream */
  --glassbd:var(--tGb); --glow:var(--tGl); --glowA:var(--tGa); --glowB:var(--tGw);
  --bg:var(--tBg); --ongold:var(--tOn);
  --g1:var(--tG1); --g2:var(--tG2); --g3:var(--tG3); --g4:var(--tG4); --g5:var(--tG5); --g6:var(--tG6);
@@ -1183,8 +1183,8 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-story-kicker{text-align:center;font-size:0.8rem;letter-spacing:.34em;font-weight:800;margin:2px 0 14px;}
 .zpb-story-rail{display:flex;flex-direction:column;gap:14px;}
 .zpb-story-zone{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;}
-.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .7s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
-.zpb-sbadge b{font-size:1.06rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;}
+.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .7s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */
+.zpb-sbadge b{font-size:1.17rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;} /* w57 (Owner): 18.7px bold - the large-text bar; the ink he loves stays */
 .zpb-sbadge i{font-style:normal;font-size:0.56rem;letter-spacing:.16em;color:var(--sub);text-align:center;}
 .zpb-sbadge.zpb-sb-gold{border-color:var(--gold3,var(--accent));box-shadow:0 0 14px var(--gold2,var(--accent)) inset;}
 .zpb-sbadge.zpb-sb-good b{color:var(--good,var(--accent));}
@@ -1194,7 +1194,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-sbadge.zpb-sb-perfect{border-color:var(--gold3,var(--accent));background:linear-gradient(160deg,var(--gold2,var(--accent)),var(--panel2));}
 .zpb-sbreak{flex-basis:100%;height:0;}
 .zpb-szonehead{flex-basis:100%;text-align:center;font-size:0.62rem;letter-spacing:.3em;color:var(--sub);padding:4px 0;}
-.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
+.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */
 .zpb-scard-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
 .zpb-scard-hd b{font-size:0.95rem;}
 .zpb-schiprow{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
@@ -3424,14 +3424,16 @@ function zpbGameReplay(g, focusTeam){
    }
    const pairDelay = i=> 2200 + Math.min(i, plan.length)*(((INTRO_MS_EFF-3600)/Math.max(1,plan.length+1)) + SLOW);
    const narrow = (window.innerWidth||1280) <= 600;
+   const syMap0 = {50:38, 27:60, 78:82, 34:40, 66:68}; // w57 (Owner): on a phone the marquee pins to the top and the pairs fan out BELOW it — the first pair never lands on the logos
+   const syMap = {}; for (const k in syMap0) syMap[k] = syMap0[k] + (isSB ? 5 : 0); // w57: the Super Bowl marquee wears the bigger title - its fan sits a touch deeper
    const laneA = narrow ? 28 : 18, laneH = narrow ? 72 : 82; // the lanes clear the middle panel
    const fitF = s=>{ if(!s) return 15.4; const laneMax = narrow ? Math.min(160, Math.round((window.innerWidth||1280) * 0.36)) : 340;
     let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
     while(f > 9.5 && est(f) > laneMax) f -= 0.5; return f; }; // w39: the fit budget is the lane it sits in
    const slots = [];
    plan.forEach((st,beat)=>{
-    slots.push(Object.assign({}, awayStars[st[0]], {sx:laneA, sy:st[1], beat:beat, side:' zpb-st-side', f:fitF(awayStars[st[0]])}));
-    slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])}));
+    slots.push(Object.assign({}, awayStars[st[0]], {sx:laneA, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side', f:fitF(awayStars[st[0]])})); // w57: the narrow fan (syMap) — desktop keeps the w39 lanes
+    slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])})); // w57: the narrow fan (syMap) — desktop keeps the w39 lanes
    });
    const _fitAll = Math.min.apply(null, slots.map(s=>(s.f==null)?15.4:s.f)); // w45 (O5, Owner): ONE fitted size for the whole stage — the lane fit of the longest name on it
    const starHTML = slots.map((s,i)=>{
@@ -8189,13 +8191,13 @@ function renderBracketHTML(){
  };
  const pair = (games, rk, cf)=> (games||[]).map((g,i)=>({g, rk, i, cf: confOf(g,'home')===cf || confOf(g,'away')===cf})).filter(x=>x.cf);
  const tree =
-  col('AFC · '+ROUND_LABELS.wildcard, pair(wc,'wildcard','AFC'), 'zpb-tree-afc')
-  + col('AFC · '+ROUND_LABELS.divisional, pair(dv,'divisional','AFC'), 'zpb-tree-afc')
-  + col('AFC · '+ROUND_LABELS.champ, pair(cm,'champ','AFC'), 'zpb-tree-afc')
-  + col(ROUND_LABELS.superbowl, (sb||[]).map((g,i)=>({g, rk:'superbowl', i})), 'zpb-tree-sb')
-  + col('NFC · '+ROUND_LABELS.champ, pair(cm,'champ','NFC'), 'zpb-tree-nfc')
-  + col('NFC · '+ROUND_LABELS.divisional, pair(dv,'divisional','NFC'), 'zpb-tree-nfc')
-  + col('NFC · '+ROUND_LABELS.wildcard, pair(wc,'wildcard','NFC'), 'zpb-tree-nfc');
+  col('AFC · '+ROUND_LABELS.wildcard, pair(wc,'wildcard','AFC'), 'zpb-tree-afc zpb-trnd-wc') // w56: the per-round classes drive the phone's vertical funnel — inert on desktop
+  + col('AFC · '+ROUND_LABELS.divisional, pair(dv,'divisional','AFC'), 'zpb-tree-afc zpb-trnd-dv')
+  + col('AFC · '+ROUND_LABELS.champ, pair(cm,'champ','AFC'), 'zpb-tree-afc zpb-trnd-cm')
+  + col(ROUND_LABELS.superbowl, (sb||[]).map((g,i)=>({g, rk:'superbowl', i})), 'zpb-tree-sb zpb-trnd-sb')
+  + col('NFC · '+ROUND_LABELS.champ, pair(cm,'champ','NFC'), 'zpb-tree-nfc zpb-trnd-cm')
+  + col('NFC · '+ROUND_LABELS.divisional, pair(dv,'divisional','NFC'), 'zpb-tree-nfc zpb-trnd-dv')
+  + col('NFC · '+ROUND_LABELS.wildcard, pair(wc,'wildcard','NFC'), 'zpb-tree-nfc zpb-trnd-wc');
  if(!tree) return '';
  return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Playoff Bracket</h4><div class="zpb-tree">${tree}</div><div id="zpbTreeDetail" style="display:none;margin-top:12px;"></div></div>`; // w43 (N12, Owner): the hint line is removed from the bracket panel
 }
@@ -8463,7 +8465,7 @@ window.zpbWireStory = function(){
  const veil = panel.querySelector('.zpb-story-veil');
  const show = ()=>{ if(!veil) return; veil.classList.add('zpb-veil-on'); const b = document.getElementById('zpbStoryGo'); if(b) b.focus(); };
  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) show();
- else setTimeout(show, Math.min(total*1000 + 1200, 90000));
+ else setTimeout(show, Math.min(total*1000 + 650, 90000)); // w57 (Owner): the veil follows the faster cascade — the last badge lands at (total-1)s+0.45, +1.2s of air
  const go = document.getElementById('zpbStoryGo');
  if(go) go.addEventListener('click', ()=>{ veil.classList.remove('zpb-veil-on'); veil.classList.add('zpb-veil-off'); try{ FX.play('small','On to the playoffs'); }catch(e){} });
 };
@@ -10412,12 +10414,12 @@ function generateSeasonReviewRaw(){
 
 // w32 (Owner): the draft pick analysis table is replaced by the draft pick GRADE table \u2014 the same
 // letter grades YOUR ROSTER carries, one row per starting spot.
-function pickGradePanelHTML(){
+function pickGradePanelHTML(){ // w56 (Owner): the grades read as CARDS + BADGES — one card per starting spot; the 6-column table retires (the exact same data: slot, name, OVR, round, rank, grade)
  if(typeof draftSim==='undefined' || !draftSim || !draftSim.log) return '';
  const me = draftSim.rosters[draftSim.userIndex]; if(!me) return '';
  const realTeams = Object.keys(TEAM_DATA);
  const zstM = (typeof zpbRowVars==='function') ? zpbRowVars(me.teamName) : '';
- let slotRows = '';
+ let cards = '';
  [].concat(...DEPTH_CHART_GROUPS.map(g=>g[2])).forEach(s=>{
   const def = GROUP_DEFS.find(g=>g.key===s);
   const p = me.slots[s];
@@ -10429,13 +10431,13 @@ function pickGradePanelHTML(){
   const rank = Math.min(32, leagueVals.filter(v=>v>myVal).length + 1);
   const pct = ((32-rank)/31)*100;
   const grade = letterGrade(pct);
-  const nmCell = (e && e.name) ? `<span class="${e.ovr>=90?'zpb-shm':(e.ovr>=85?'zpb-vib':'')}">${e.name}</span>` : '\u00b7';
-  slotRows += `<tr class="zpb-trow" style="${zstM}"><td>${LABELS[s]||s}</td><td>${nmCell}</td><td class="score">${e?e.ovr:'\u00b7'}</td><td class="narr">${rnd?('Round '+rnd):'\u00b7'}</td><td class="score">#${rank}/32</td><td class="score">${grade}</td></tr>`;
+  const nm = (e && e.name) ? `<b class="zpb-pg-name ${e.ovr>=90?'zpb-shm':(e.ovr>=85?'zpb-vib':'')}">${e.name}</b>` : '<b class="zpb-pg-name">\u00b7</b>';
+  cards += `<div class="zpb-pg-card" style="${zstM}"><span class="zpb-pg-slot">${LABELS[s]||s}</span><span class="zpb-pg-grade" title="League rank #${rank} of 32">${grade}</span>${nm}<span class="zpb-pg-badges"><i>${e?(e.ovr+' OVR'):'\u00b7'}</i><i>${rnd?('RD '+rnd):'\u00b7'}</i><i>#${rank}/32</i></span></div>`;
  });
  const overallPct = ((32-(function(){ const all=buildResultEntries().draftEntries.slice().sort((a,b)=>b.score-a.score); return 1+all.findIndex(e=>e.isUser); })())/31)*100;
  return `<details class="panel" style="margin-bottom:14px;" open><summary style="cursor:pointer;font-weight:700;">DRAFT PICK GRADES</summary>
   <p class="narr" style="margin:8px 0;">Overall grade ${letterGrade(Math.max(0,Math.min(100,overallPct)))} \u00b7 every starting spot, graded against all 32 real rosters.</p>
-  <table><thead><tr><th>Slot</th><th>Player</th><th>OVR</th><th>Drafted</th><th>League Rank</th><th>Grade</th></tr></thead><tbody>${slotRows}</tbody></table></details>`;
+  <div class="zpb-pg-grid">${cards}</div></details>`;
 }
 function renderReportCardHTML(){
  const F = factsBase(), U = F.S.unitRanks[F.user], R = F.S.unitRatings[F.user], T = F.T, t = T[F.user], g = F.gp;
@@ -10989,7 +10991,7 @@ window.zpbPostSuperBowlCine = function(){
 })();
 function renderSeasonTabInner(container){
  if(!seasonState){
-  container.innerHTML = `<div class="zpb-stageintro">
+  container.innerHTML = `<div class="zpb-stageintro zpb-stageintro-slim"> <!-- w56 (Owner): the review's 20-0 stage compresses and leads the page — the home hero keeps its full 42vh stage -->
    <button class="resetbtn zpb-startbtn" id="startSeasonBtn">SEASON</button>
    <p class="zpb-cygline"><span class="zpb-cygt">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine" style="font-size:1.1em;">?</b></p>
   </div>`;
@@ -11148,7 +11150,7 @@ function renderDraftResults(){ // w37 (R2, Owner): the players hold until the op
   renderSeasonTab(body);
   if(!seasonState){
    const rk = draftEntries.slice().sort((a,b)=>b.score-a.score), mi = rk.findIndex(e=>e.isUser);
-   const w = document.createElement('div'); w.style.marginTop = '18px';
+   const w = document.createElement('div'); w.style.marginTop = '8px'; // w56 (Owner): HOW YOUR DRAFT RANKS moves up — right under the compressed 20-0 stage
    w.innerHTML = `<div class="zpb-ranks-fade"><h3 class="zpb-shm" style="margin:0 0 6px;">How your draft ranks</h3><p class="zpb-swmini">All 32 simulated rosters, best to worst. Click any row for its full roster.</p><table><thead><tr><th>#</th><th>Team</th><th>Score</th></tr></thead><tbody>${entryRowsHTML(rk,0)}</tbody></table></div>`;
    body.appendChild(w); const _wfd = wireRowClicks(w, rk);
    { const _mi = rk.findIndex(e=>e.isUser); // w26 (Owner): your breakdown drops down by itself
@@ -12034,7 +12036,7 @@ window.zpbDimeRow = function(slotmap){
 };
 window.zpbDimeDrafRow = function(roster){
  const d = window.zpbDimeOf ? window.zpbDimeOf(roster.slots) : null;
- const zst = (typeof zpbNeutralUserRowVars==='function') ? zpbNeutralUserRowVars() : ''; // w50 (Owner): the DIME row wears the SAME row tokens as every sibling — the vivid user wash that read as a detached row retires
+ const zst = d ? ((typeof zpbNeutralUserRowVars==='function') ? zpbNeutralUserRowVars() : '') : ''; // w50 (Owner): the DIME row wears the SAME row tokens as every sibling · w56 (Owner): and ONLY when a dime player exists — before a dime is selected the row is clean like every empty slot, no bracket
  const cls = d ? (d[3]>=90?'zpb-shm':(d[3]>=85?'zpb-vib':'')) : ''; // w27: the Dime follows the tier law like every other row
  return `<div class="depth-row dgrid zpb-trow"${zst?` style="${zst}"`:''}><span class="slotname">DIME</span><span class="${d?'playername':'empty'} ${cls}">${d?d[0]:''}</span><span class="dovr">${d?d[3]:''}</span><span class="narr dwar"></span></div>`; // w19 (Owner): no box, no dash, no PKG chip · w30 (Owner): standard row format, DIME like the rest · w50: the zpb-trow paint joins its siblings
 };
@@ -12676,11 +12678,11 @@ window.zpbBelongMapHTML = function(entry){
    his law: no black text anywhere, the neutral ink rides the halfway selection */
 :root{
  --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0;
- --text:#8e5566; --sub:#a2687d; --rosehair:#e6c3d2;
+ --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; /* w57 (Owner): the muted ink deepens one step - 3.7:1 to 5.0:1 on the panels, the same rose family */
  --zcream:#53382b; /* w50 (Owner): the during-game's neutral words — the takeover never recolors this token */
 }
 @media (prefers-color-scheme: light){
- :root:not([data-theme="dark"]){ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0; --text:#8e5566; --sub:#a2687d; --rosehair:#e6c3d2; --zcream:#53382b; }
+ :root:not([data-theme="dark"]){ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0; --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; --zcream:#53382b; } /* w57: the muted ink deepens with it */
 }
 :root[data-theme="dark"]{
  --bg:#1e1119; --panel:#291a24; --panel2:#35202d;
@@ -12710,7 +12712,7 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 /* A35 (Owner): the UNIT REPORT CARD — letter-grade badges, no hover anywhere */
 .zpb-rc-title{text-align:center;font-family:'Cinzel Decorative',serif;font-weight:800;letter-spacing:.22em;font-size:.92rem;margin:0 0 10px;color:var(--tA2,var(--gold3));}
 .zpb-rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;}
-.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);} /* w33 (R35, Owner): one tile at a time, like the season badges */
+.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */ /* w33 (R35, Owner): one tile at a time, like the season badges */
 @media (prefers-reduced-motion: reduce){ .zpb-rcbadge{animation:none;opacity:1;transform:none;} }
 .zpb-rcbadge.zpb-sb-good{border-color:color-mix(in srgb,var(--good,var(--accent)) 55%,var(--border));}
 .zpb-rcbadge.zpb-sb-bad{border-color:color-mix(in srgb,var(--bad,var(--accent2)) 55%,var(--border));}
@@ -13165,9 +13167,9 @@ window.zpbStoryRelease = function(){
 :root[data-theme="dark"] #draftTable2 td.dc-name,:root:not([data-theme="light"]) #draftTable2 td.dc-name{color:var(--nmd,var(--text));}
 /* A1 (Owner): the board's numbers must read on the light panel — the tokens deepen in light;
    the dark theme keeps its tokens untouched (the ink he loves stays). */
-:root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:var(--gold3,#a8791c);}
-:root:not([data-theme="dark"]) #draftTable2 td.dc-gone,:root[data-theme="light"] #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,#cf8a60) 62%,var(--text));}
-:root:not([data-theme="dark"]) #draftTable2 td.dc-wins,:root[data-theme="light"] #draftTable2 td.dc-wins{color:color-mix(in srgb,var(--good,#4c9a67) 78%,var(--text));}
+:root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57 (Owner): the priority wears the gone/wins ink everywhere, not just the card - the exact gone mix */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-gone,:root[data-theme="light"] #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57: deepens 4.4 -> 5.3 */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-wins,:root[data-theme="light"] #draftTable2 td.dc-wins{color:color-mix(in srgb,var(--good,#4c9a67) 65%,var(--zcream,#53382b));} /* w57: deepens 4.0 -> 4.7 */
 /* A2 (Owner): the compact cards tighten — the board stops ballooning in a small window. */
 @media (max-width:1120px){
  #draftTable2 tr{padding:4px 7px;gap:1px 4px;}
@@ -13924,6 +13926,208 @@ window.zpbPlayoffRunCine = function(story){
  .zpb-strip-bar{width:80px;}
  .zpb-strip-pct{font-size:.9rem;}
 }
+</style>
+<style id="zpb-w56-css">
+/* ================= Z-POST-BLUE W56 (the Owner's round-56) =================
+   The draft card's labels return and OVR never stacks the Priority; the review's 20-0 stage
+   compresses; the SB panel's top name centers; the bracket reads as a vertical funnel on the
+   phone; the pick grades become cards + badges. Desktop untouched except the pick grades. */
+
+/* 1 · THE REVIEW'S 20-0 STAGE COMPRESSES — the draft review instance only (zpb-stageintro-slim);
+   the home hero keeps its cinematic 42vh stage. The ranks panel follows right under. */
+.zpb-stageintro-slim{min-height:0;padding:16px 4px 6px;}
+.zpb-stageintro-slim .zpb-cygline{margin-top:6px;}
+
+/* 2 · THE PICK GRADES ARE CARDS + BADGES — one card per starting spot: the slot chip, the letter
+   grade as the big badge, the name leading, and the OVR / round / rank badges under it. */
+.zpb-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
+.zpb-pg-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:9px 10px;min-width:0;}
+.zpb-pg-slot{font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ongold,var(--text));background:var(--gold2,var(--accent));border:1px solid var(--gold3,var(--border));border-radius:999px;padding:1px 8px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.zpb-pg-grade{position:absolute;top:7px;right:9px;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.17rem; /* w57 (Owner): the large-text bar */line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);border-radius:9px;padding:6px 7px;}
+.zpb-pg-name{font-size:.82rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere;padding-right:44px;margin-top:2px;}
+.zpb-pg-badges{display:flex;gap:4px;flex-wrap:wrap;}
+.zpb-pg-badges i{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.03em;color:var(--sub);background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid var(--border);border-radius:999px;padding:2px 7px;white-space:nowrap;}
+
+/* 3 · THE PHONE DRAFT CARD — the labels return (POS · TEAM · WINS · GONE · PRIORITY · FILLS) and
+   the card reads in three lines: name · OVR · Draft / pos · team · wins · gone / priority · fills.
+   The OVR chip and the Priority value share no column and no row. */
+@media (max-width:760px){
+ #draftTable2 td[data-label]::before{display:block;line-height:1.05;}
+ #draftTable2 td.dc-ovr::before{display:inline;margin-right:4px;}
+ #draftTable2 tr{row-gap:1px;padding:4px 8px;}
+ #draftTable2 td.dc-name{grid-column:1/8;grid-row:1;}
+ #draftTable2 td.dc-ovr{grid-column:8/10;grid-row:1;padding:2px 0 !important;}
+ #draftTable2 td.dc-btn{grid-column:10/13;grid-row:1;}
+ #draftTable2 td:nth-child(2),#draftTable2 td:nth-child(3),#draftTable2 td.dc-wins,#draftTable2 td.dc-pri,#draftTable2 td.dc-gone,#draftTable2 td.dc-fills{font-size:.68rem;}
+ #draftTable2 td:nth-child(2){grid-column:1/3;grid-row:2;}
+ #draftTable2 td:nth-child(3){grid-column:3/6;grid-row:2;}
+ #draftTable2 td.dc-wins{grid-column:6/9;grid-row:2;}
+ #draftTable2 td.dc-gone{grid-column:9/12;grid-row:2;text-align:left !important;}
+ #draftTable2 td.dc-pri{grid-column:1/4;grid-row:3;}
+ #draftTable2 td.dc-fills{grid-column:4/13;grid-row:3;text-align:left !important;}
+}
+
+/* 4 · THE SUPER BOWL PANEL'S TOP NAME CENTERS — the w47 desktop sides law
+   (.score-line .sl-team:first-child{text-align:right !important}) out-specifies the generic
+   phone centering, so the away name hung right on the stacked layout. Matching specificity,
+   later in the cascade: both team rows center on the phone, the name box wraps gracefully. */
+@media (max-width:760px){
+ .score-line .sl-team:first-child,.score-line .sl-team:last-child{text-align:center !important;}
+ .score-line .sl-team .zpb-sl2name{justify-content:center !important;flex-wrap:wrap;}
+}
+
+/* 5 · THE BRACKET IS A VERTICAL FUNNEL on the phone — the same seven panels and the same text,
+   rearranged to read top-down: Wild Card (AFC, then NFC) → Divisional → Championships → Super Bowl.
+   display:contents lifts the cards into one grid; order arranges the rounds; paired rounds sit
+   two cards side by side, single-card rounds center. Desktop keeps its mirrored tree untouched. */
+@media (max-width:560px){
+ .zpb-tree{display:grid;grid-template-columns:1fr 1fr;gap:10px 8px;}
+ .zpb-tree-col{display:contents;}
+ .zpb-tree-col h6{grid-column:1/-1;margin:8px 0 0;font-size:.6rem;}
+ .zpb-tree-afc.zpb-trnd-wc h6{order:0;}
+ .zpb-tree-afc.zpb-trnd-wc .bracket-game:nth-of-type(1){order:1;}
+ .zpb-tree-afc.zpb-trnd-wc .bracket-game:nth-of-type(2){order:2;}
+ .zpb-tree-afc.zpb-trnd-wc .bracket-game:nth-of-type(3){order:3;grid-column:1/-1;}
+ .zpb-tree-nfc.zpb-trnd-wc h6{order:10;}
+ .zpb-tree-nfc.zpb-trnd-wc .bracket-game:nth-of-type(1){order:11;}
+ .zpb-tree-nfc.zpb-trnd-wc .bracket-game:nth-of-type(2){order:12;}
+ .zpb-tree-nfc.zpb-trnd-wc .bracket-game:nth-of-type(3){order:13;grid-column:1/-1;}
+ .zpb-tree-afc.zpb-trnd-dv h6{order:20;}
+ .zpb-tree-afc.zpb-trnd-dv .bracket-game:nth-of-type(1){order:21;}
+ .zpb-tree-afc.zpb-trnd-dv .bracket-game:nth-of-type(2){order:22;}
+ .zpb-tree-nfc.zpb-trnd-dv h6{order:30;}
+ .zpb-tree-nfc.zpb-trnd-dv .bracket-game:nth-of-type(1){order:31;}
+ .zpb-tree-nfc.zpb-trnd-dv .bracket-game:nth-of-type(2){order:32;}
+ .zpb-tree-afc.zpb-trnd-cm h6{order:40;}
+ .zpb-tree-afc.zpb-trnd-cm .bracket-game{order:41;grid-column:1/-1;justify-self:center;width:min(100%,250px);}
+ .zpb-tree-nfc.zpb-trnd-cm h6{order:50;}
+ .zpb-tree-nfc.zpb-trnd-cm .bracket-game{order:51;grid-column:1/-1;justify-self:center;width:min(100%,250px);}
+ .zpb-trnd-sb h6{order:60;}
+ .zpb-trnd-sb .bracket-game{order:61;grid-column:1/-1;justify-self:center;width:min(100%,270px);}
+}
+
+/* 6 · THE CARD'S VALUE INK — the OVR number and the plain stat values inherited the board
+   wrapper's ink, and on silver-ink teams (Raiders silver, Jets white) the number vanished
+   into its own chip on the light board. They wear the row's one-ink law instead — the same
+   ink the player's name carries (txM light / txd dark), the dc-name pattern verbatim. */
+#draftTable2 td.dc-ovr,#draftTable2 td[data-label="Pos"],#draftTable2 td[data-label="Team"]{color:var(--nm,var(--tn,var(--text)));}
+:root[data-theme="dark"] #draftTable2 td.dc-ovr,:root:not([data-theme="light"]) #draftTable2 td.dc-ovr,
+:root[data-theme="dark"] #draftTable2 td[data-label="Pos"],:root:not([data-theme="light"]) #draftTable2 td[data-label="Pos"],
+:root[data-theme="dark"] #draftTable2 td[data-label="Team"],:root:not([data-theme="light"]) #draftTable2 td[data-label="Team"]{color:var(--nmd,var(--tnd,var(--text)));}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) #draftTable2 td.dc-ovr,:root:not([data-theme="light"]) #draftTable2 td[data-label="Pos"],
+ :root:not([data-theme="light"]) #draftTable2 td[data-label="Team"]{color:var(--nmd,var(--tnd,var(--text)));}
+}
+:root[data-theme="light"] #draftTable2 td.dc-ovr,:root[data-theme="light"] #draftTable2 td[data-label="Pos"],
+:root[data-theme="light"] #draftTable2 td[data-label="Team"]{color:var(--nm,var(--tn,var(--text)));}
+@media (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]) #draftTable2 td.dc-ovr,:root:not([data-theme="dark"]) #draftTable2 td[data-label="Pos"],
+ :root:not([data-theme="dark"]) #draftTable2 td[data-label="Team"]{color:var(--nm,var(--tn,var(--text)));}
+}
+</style>
+<style id="zpb-w57-css">
+/* ================= Z-POST-BLUE W57 (the Owner's round-57) =================
+   The draft card returns to TWO lines — name · Draft on top, the six stats spread on the
+   bottom (FILLS sits right under the button) — the priority number wears the gone/wins ink,
+   the pregame marquee pins to the top of the phone stage so the key players never cover the
+   logos, and the badge cascade runs 0.25s faster. Desktop untouched. */
+
+/* 1 · THE PHONE DRAFT CARD — two lines, labeled, in the Owner's order:
+   pos · team · ovr · wins · priority · gone, with FILLS right under the Draft button. */
+@media (max-width:760px){
+ #draftTable2 td[data-label]::before{display:block;line-height:1.05;margin-right:0;}
+ #draftTable2 td.dc-ovr::before{display:block;margin-right:0;}
+ #draftTable2 tr{row-gap:2px;padding:4px 8px;}
+ #draftTable2 td.dc-name{grid-column:1/9;grid-row:1;}
+ #draftTable2 td.dc-btn{grid-column:9/13;grid-row:1;}
+ #draftTable2 td[data-label="Pos"]{grid-column:1/2;grid-row:2;}
+ #draftTable2 td[data-label="Team"]{grid-column:2/4;grid-row:2;}
+ #draftTable2 td.dc-ovr{grid-column:4/5;grid-row:2;font-size:.68rem;padding:0 !important;background:none !important;border-radius:0;} /* w57: the w55 chip wash retires from the plain bottom-line stat */
+ #draftTable2 td.dc-wins{grid-column:5/6;grid-row:2;}
+ #draftTable2 td.dc-pri{grid-column:6/8;grid-row:2;}
+ #draftTable2 td.dc-gone{grid-column:8/10;grid-row:2;text-align:left !important;} /* w57: 2 cols — the GONE label must fit (1 col clipped it to GONI) */
+ #draftTable2 td.dc-fills{grid-column:10/13;grid-row:2;text-align:right !important;}
+ #draftTable2 td:nth-child(2),#draftTable2 td:nth-child(3),#draftTable2 td.dc-wins,#draftTable2 td.dc-pri,#draftTable2 td.dc-gone,#draftTable2 td.dc-fills{font-size:.68rem;}
+ #draftTable2 td .zpb-ovrchips{display:none;} /* the team chips retire from the phone OVR cell — the Team cell carries the crest */
+}
+
+/* 2 · THE PRIORITY NUMBER WEARS THE GONE/WINS INK — the accent2 family, the exact same
+   declarations the gone value carries, in every theme state (the w56 gold retires on the card). */
+@media (max-width:760px){
+ #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+ :root[data-theme="dark"] #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+ :root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57: the gone/wins mixes deepen to the same bar - pri matches gone exactly */
+}
+@media (max-width:760px) and (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]) #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));}
+}
+@media (max-width:760px) and (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+}
+
+/* 3 · THE PREGAME MARQUEE PINS TO THE TOP on a phone — the title · logos · sub block sits at
+   the top of the stage and the key-player pairs fan out BELOW it, so the first pair can never
+   land on the logos again (the w52 Super Bowl logos shrink to fit the same law). */
+@media (max-width:600px){
+ .zpb-rep-intro{justify-content:flex-start;padding-top:22px;gap:9px;}
+ .zpb-intro-logos{gap:12px;}
+ .zpb-replay:not(.zpb-sb) .zpb-intro-logos img{width:50px;height:50px;}
+ .zpb-replay.zpb-sb .zpb-intro{padding-top:56px;} /* w57: the rising cup keeps the sky above the marquee */
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:54px;height:54px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.5rem;}
+ .zpb-replay.zpb-sb .zpb-intro-title{font-size:1.3rem;} /* w57: the SB marquee tightens so the fan clears it with room for the fade drift */
+ .zpb-replay.zpb-sb .zpb-intro-cup{top:2%;font-size:2.1rem;}
+ .zpb-replay.zpb-sb .zpb-intro-banner{bottom:2%;} /* w57: the landed banner clears the last fan pair (the entrance slides it up 12px) */
+}
+
+/* 4 - THE CONTRAST PASS - the audit's failing pairs, light and dark, every team. */
+
+/* 4a - the raw --tA2 consumers read the LIGHT accent in dark today (the rc-title measured 1.1:1 -
+   invisible); the takeover's own dark accents already ride tA2d - the raw var joins them */
+:root[data-theme="dark"][data-zpbteam]{--tA2:var(--tA2d) !important;} /* !important: the pack paints --tA2 inline on the root */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"])[data-zpbteam]{--tA2:var(--tA2d) !important;} }
+
+/* 4b - the UNIT REPORT CARD title + grade wear the halfway ink in light, gold2 in dark */
+.zpb-rc-title{color:var(--tTxM,var(--tA2,var(--gold3)));}
+:root[data-theme="dark"] .zpb-rc-title,:root:not([data-theme="light"]) .zpb-rc-title{color:var(--gold2,#e8c87e);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-rc-title{color:var(--gold2,#e8c87e);} }
+:root[data-theme="light"] .zpb-rc-grade,:root:not([data-theme="dark"]) .zpb-rc-grade{color:var(--tTxM,var(--tA2,var(--gold3)));}
+:root[data-theme="dark"] .zpb-rc-grade,:root:not([data-theme="light"]) .zpb-rc-grade{color:var(--tTxMd,var(--tA2d,var(--gold3)));} /* w57: the tile's own row vars paint --tA2 inline - the dark grade rides tTxMd above them */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-rc-grade{color:var(--tTxMd,var(--tA2d,var(--gold3)));} }
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-rc-grade{color:var(--tTxM,var(--tA2,var(--gold3)));} }
+
+/* 4c - the pick-grade slot chip's ink - ongold resolves cream for dark-accent franchises (1.6:1) */
+.zpb-pg-slot{color:#2c1e0c;}
+
+/* 4d - the DRAFT button joins the halfway-rose law it already carries on the start button */
+#draftTable2 td.dc-btn .resetbtn{color:var(--tTxM,var(--tA2,var(--accent2,var(--accent))));}
+:root[data-theme="dark"] #draftTable2 td.dc-btn .resetbtn,:root:not([data-theme="light"]) #draftTable2 td.dc-btn .resetbtn{color:var(--tTxMd,var(--tA2d,var(--accent2,var(--accent))));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 td.dc-btn .resetbtn{color:var(--tTxMd,var(--tA2d,var(--accent2,var(--accent))));} }
+
+/* 4e - the card's colored values (wins . priority . gone) lift to the halfway mix in dark */
+:root[data-theme="dark"] #draftTable2 td.dc-wins,:root:not([data-theme="light"]) #draftTable2 td.dc-wins,
+:root[data-theme="dark"] #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-pri,
+:root[data-theme="dark"] #draftTable2 td.dc-gone,:root:not([data-theme="light"]) #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,var(--accent)) 50%,var(--text));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 td.dc-wins,:root:not([data-theme="light"]) #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,var(--accent)) 50%,var(--text));} }
+
+/* 4f - the FILLS link rides the halfway ink too */
+#draftTable2 a.slotchg{color:var(--tTxM,var(--tA2,var(--selfg)));}
+:root[data-theme="dark"] #draftTable2 a.slotchg,:root:not([data-theme="light"]) #draftTable2 a.slotchg{color:var(--tTxMd,var(--tA2d,var(--selfg)));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 a.slotchg{color:var(--tTxMd,var(--tA2d,var(--selfg)));} }
+
+/* 4g - the honor title (FIRST-TEAM ALL-PRO) - the halfway gold mix in light, gold2 in dark */
+.zpb-shonor-t{color:color-mix(in srgb,var(--gold3,#9a6b1f) 45%,var(--text));}
+:root[data-theme="dark"] .zpb-shonor-t,:root:not([data-theme="light"]) .zpb-shonor-t{color:var(--gold2,#e8c87e);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-shonor-t{color:var(--gold2,#e8c87e);} }
+
+/* 4i - the anchor's muted line rides the theme's own sub ink (the tSud/anchId pair dipped) */
+.zpb-anch .narr{color:color-mix(in srgb,var(--anchI,var(--sub,#6b4634)) 72%,var(--zcream,#53382b));} /* w57: the light anchor mixes its own ink toward the deep cream */
+:root[data-theme="dark"] .zpb-anch .narr,:root:not([data-theme="light"]) .zpb-anch .narr{color:color-mix(in srgb,var(--anchId,var(--sub,#c99cae)) 72%,var(--zcream,#53382b));} /* w57: the dark anchor mixes its lighter ink toward the light cream */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-anch .narr{color:color-mix(in srgb,var(--anchId,var(--sub,#c99cae)) 72%,var(--zcream,#53382b));} }
+
+/* 4h - the shimmer's light sweep deepens to the burnished bronze pair; the dark sweep untouched */
+:root[data-theme="light"] .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} /* w57: fixed bronze - the pale zshim default dragged the mean to 2.7 */
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} }
 </style>
 <script id="zpb-w51-js">
 // ============ Z-POST-BLUE W51 JS ============

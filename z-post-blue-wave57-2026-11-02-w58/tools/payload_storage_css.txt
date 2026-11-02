@@ -1,0 +1,137 @@
+<style id="zpb-storage-css">
+/* ================= Z-POST-BLUE STORAGE · PHASE 0 UI KIT (w57) =================
+   The design surface for the storage wave — the Owner's mandate: "focus on making UI/UX for
+   the storage … design how this all looks." Every piece speaks the site's language: the gold
+   CONTINUE pill, the rose hairlines, Cinzel Decorative for the big words, the middle dot, no
+   white text. The real screens adopt these classes at the wiring commit; ?storage=1 mounts
+   the walkthrough. */
+
+/* — shared bones — */
+.zpb-st-card{background:var(--panel2);border:1px solid var(--rosehair);border-radius:14px;padding:14px 16px;min-width:0;}
+.zpb-st-kicker{font-size:.6rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--sub);}
+.zpb-st-kicker.zpb-st-gold{color:var(--zrb,var(--accent));}
+.zpb-st-big{font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:900;letter-spacing:.04em;color:var(--text);}
+.zpb-st-sub{font-size:.74rem;color:var(--sub);line-height:1.5;}
+.zpb-st-row{display:flex;align-items:center;gap:10px;min-width:0;}
+.zpb-st-row img{width:24px;height:24px;object-fit:contain;background:transparent;box-shadow:none;}
+.zpb-st-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 26px;font-weight:800;font-size:.92rem;
+ background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));color:var(--ongold);border:1px solid var(--tBSb);
+ box-shadow:0 10px 26px var(--glow);cursor:pointer;font-family:'Cinzel','Bodoni Moda',Georgia,serif;letter-spacing:.12em;}
+.zpb-st-pill:hover{transform:translateY(-1px);}
+.zpb-st-quiet{background:transparent;border:1px solid var(--glassbd);color:var(--sub);border-radius:999px;padding:8px 18px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;align-self:center;}
+.zpb-st-quiet:hover{color:var(--text);border-color:var(--rosehair);}
+
+/* — 1 · the Continue moment: the page opens with the run you left — */
+.zpb-st-continue{position:relative;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:10px;text-align:center;padding:20px 18px 16px;}
+.zpb-st-continue .zpb-st-teamname{font-size:1.3rem;}
+.zpb-st-continue .zpb-st-phaseline{font-size:.8rem;color:var(--sub);letter-spacing:.06em;}
+.zpb-st-continue .zpb-st-slotrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
+.zpb-st-slotchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:999px;padding:4px 11px 4px 5px;
+ background:var(--glass);font-size:.72rem;font-weight:700;color:var(--text);cursor:pointer;min-width:0;}
+.zpb-st-slotchip img{width:17px;height:17px;}
+.zpb-st-slotchip b{font-family:'Cinzel',Georgia,serif;color:var(--zrb,var(--accent));}
+.zpb-st-slotchip.zpb-st-on{border-color:var(--zrb,var(--accent));box-shadow:0 0 10px var(--zr1,transparent);}
+
+/* — 2 · the slot selector: three runs, side by side — */
+.zpb-st-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+@media (max-width:640px){ .zpb-st-slots{grid-template-columns:1fr;} }
+.zpb-st-slot{position:relative;display:flex;flex-direction:column;gap:7px;align-items:flex-start;background:var(--panel2);
+ border:1px solid var(--border);border-radius:14px;padding:12px 14px;min-width:0;cursor:pointer;transition:border-color .15s ease,transform .15s ease;}
+.zpb-st-slot:hover{transform:translateY(-2px);border-color:var(--zrb,var(--accent));}
+.zpb-st-slot .zpb-st-letter{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.5rem;line-height:1;color:var(--zrb,var(--accent));}
+.zpb-st-slot.zpb-st-isactive{border-color:var(--zrb,var(--accent));box-shadow:0 0 0 1px var(--zrb,var(--accent)) inset,0 0 18px var(--zr1,transparent);}
+.zpb-st-slot.zpb-st-isempty{border-style:dashed;background:transparent;}
+.zpb-st-slot.zpb-st-isempty .zpb-st-letter{color:var(--sub);}
+.zpb-st-slot .zpb-st-teamname{font-size:.92rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:7px;min-width:0;}
+.zpb-st-slot .zpb-st-teamname img{width:19px;height:19px;}
+.zpb-st-slot .zpb-st-phase{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);}
+.zpb-st-slot .zpb-st-saved{font-size:.64rem;color:var(--sub);opacity:.85;}
+.zpb-st-slot .zpb-st-kinds{display:flex;gap:4px;flex-wrap:wrap;}
+.zpb-st-kindchip{font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--zrb,var(--accent));
+ border:1px solid var(--zrb,var(--accent));border-radius:999px;padding:1px 8px;}
+.zpb-st-kindchip.zpb-st-kdim{color:var(--sub);border-color:var(--border);}
+
+/* — 3 · the overwrite caution: all three slots full — */
+.zpb-st-ocards{display:flex;flex-direction:column;gap:8px;margin:12px 0 4px;}
+.zpb-st-orow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--glass);border:1px solid var(--border);
+ border-radius:12px;padding:10px 12px;cursor:pointer;font-family:inherit;color:var(--text);min-width:0;}
+.zpb-st-orow:hover{border-color:var(--zrb,var(--accent));}
+.zpb-st-orow .zpb-st-letter{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.15rem;color:var(--zrb,var(--accent));min-width:20px;}
+.zpb-st-orow .zpb-st-oright{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.zpb-st-orow .zpb-st-arm{font-size:.6rem;font-weight:800;letter-spacing:.18em;color:var(--ongold);background:var(--bad);
+ border-radius:999px;padding:3px 10px;display:none;}
+.zpb-st-orow.zpb-st-armed{border-color:var(--bad);}
+.zpb-st-orow.zpb-st-armed .zpb-st-arm{display:inline-block;}
+.zpb-st-olaw{font-size:.7rem;color:var(--sub);line-height:1.55;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+
+/* — 4 · the profile panel: the career, keyed by franchise — */
+.zpb-st-profile{display:flex;flex-direction:column;gap:12px;}
+.zpb-st-legend{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.zpb-st-legend b{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:2rem;color:var(--zrb,var(--accent));font-variant-numeric:tabular-nums;}
+.zpb-st-achips{display:flex;gap:6px;flex-wrap:wrap;}
+.zpb-st-achip{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;font-weight:700;color:var(--text);
+ background:color-mix(in srgb,var(--accent) 9%,transparent);border:1px solid var(--rosehair);border-radius:999px;padding:3px 10px;}
+.zpb-st-achip b{color:var(--zrb,var(--accent));font-family:'Cinzel',Georgia,serif;}
+.zpb-st-ftable{width:100%;border-collapse:collapse;font-size:.76rem;}
+.zpb-st-ftable th{font-family:'Cinzel',Georgia,serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sub);
+ text-align:left;padding:5px 6px;border-bottom:1px solid var(--rosehair);}
+.zpb-st-ftable td{padding:5px 6px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;}
+.zpb-st-ftable tr.zpb-st-fme td{color:var(--zrb,var(--accent));font-weight:800;}
+.zpb-st-ftable img{width:15px;height:15px;vertical-align:-2px;margin-right:5px;}
+.zpb-st-avwrap{position:relative;display:inline-flex;}
+.zpb-st-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
+ background:var(--panel2);border:1px solid var(--rosehair);box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:'Cinzel Decorative',serif;font-weight:900;color:var(--zrb,var(--accent));font-size:.9rem;}
+.zpb-st-avatar img{width:26px;height:26px;object-fit:contain;}
+.zpb-st-avatar .zpb-st-avdot{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--panel);}
+
+/* — 5 · settings: the save data panel — */
+.zpb-st-setrow{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid var(--border);min-width:0;}
+.zpb-st-setrow:last-of-type{border-bottom:0;}
+.zpb-st-setrow .zpb-st-oright{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.zpb-st-sizechip{font-size:.6rem;color:var(--sub);border:1px solid var(--border);border-radius:999px;padding:2px 9px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.zpb-st-meter{flex:1 1 120px;height:6px;border-radius:4px;background:var(--border);overflow:hidden;min-width:80px;}
+.zpb-st-meter i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--tG5,var(--g5)),var(--tG2,var(--g2)));}
+.zpb-st-toggle{position:relative;width:44px;height:24px;border-radius:999px;border:1px solid var(--rosehair);background:var(--glass);cursor:pointer;flex:0 0 auto;}
+.zpb-st-toggle i{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--sub);transition:left .18s ease,background .18s ease;}
+.zpb-st-toggle.zpb-st-son{background:color-mix(in srgb,var(--accent) 22%,transparent);}
+.zpb-st-toggle.zpb-st-son i{left:22px;background:var(--zrb,var(--accent));}
+.zpb-st-danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 55%,var(--border));}
+
+/* — 6 · the brag share — */
+.zpb-st-bragbox{display:flex;flex-direction:column;gap:9px;}
+.zpb-st-bragtext{font-size:.86rem;line-height:1.6;color:var(--text);background:var(--glass);border:1px dashed var(--rosehair);
+ border-radius:10px;padding:10px 13px;}
+.zpb-st-bragtext b{color:var(--zrb,var(--accent));}
+.zpb-st-copied{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--good);display:none;}
+.zpb-st-copied.zpb-st-show{display:inline-block;}
+
+/* — 7 · the four honest states (never a promise of recovery) — */
+.zpb-st-states{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.zpb-st-state{border-radius:12px;padding:11px 13px;border:1px solid var(--border);background:var(--panel2);min-width:0;}
+.zpb-st-state b.zpb-st-sth{display:block;font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px;}
+.zpb-st-state p{margin:0;font-size:.76rem;line-height:1.55;color:var(--text);}
+.zpb-st-state.zpb-st-empty b.zpb-st-sth{color:var(--sub);}
+.zpb-st-state.zpb-st-corrupt b.zpb-st-sth{color:var(--bad);}
+.zpb-st-state.zpb-st-newer b.zpb-st-sth{color:var(--zrb,var(--accent));}
+.zpb-st-state.zpb-st-unavail b.zpb-st-sth{color:var(--sub);}
+.zpb-st-hostlaw{font-size:.68rem;color:var(--sub);line-height:1.6;border-top:1px solid var(--border);margin-top:12px;padding-top:10px;}
+
+/* — 8 · the multi-tab warning bar — */
+.zpb-st-tabbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:140;display:flex;align-items:center;gap:10px;
+ background:var(--panel2);border:1px solid var(--accent);color:var(--text);padding:10px 16px;border-radius:999px;font-size:.76rem;font-weight:700;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:92vw;}
+
+/* — the showcase shell (?storage=1) — */
+.zpb-st-shell{position:fixed;inset:0;z-index:150;background:radial-gradient(ellipse at 50% 0%,rgba(60,30,40,.35),transparent 60%),var(--bg);
+ overflow-y:auto;padding:18px 14px 60px;}
+.zpb-st-shell .zpb-st-wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+.zpb-st-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.zpb-st-tabs button{background:var(--glass);border:1px solid var(--border);color:var(--sub);border-radius:999px;padding:7px 15px;
+ font-weight:700;font-size:.72rem;letter-spacing:.08em;cursor:pointer;font-family:'Cinzel',Georgia,serif;}
+.zpb-st-tabs button.zpb-st-tnote-on{background:linear-gradient(100deg,var(--g5),var(--g2) 55%,var(--g4));color:var(--ongold);border-color:var(--tBSb);}
+.zpb-st-demohead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.zpb-st-demohead h2{margin:0;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.2rem;color:var(--text);letter-spacing:.08em;}
+.zpb-st-spec{display:flex;flex-direction:column;gap:10px;}
+.zpb-st-speclabel{font-size:.6rem;letter-spacing:.26em;color:var(--sub);text-transform:uppercase;text-align:center;}
+@media (prefers-reduced-motion: reduce){ .zpb-st-slot,.zpb-st-pill{transition:none;} }
+</style>
