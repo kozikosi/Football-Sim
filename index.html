@@ -24,6 +24,11 @@
 html{font-size:21px;}
 html,body{margin:0;padding:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;}
 body{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);}
+/* w53 WM1 · the touch polish: no text inflation on rotate, no grey tap flash (the site
+   paints its own states), no double-tap zoom delay on the controls. Desktop-invisible. */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+body{-webkit-tap-highlight-color:transparent;}
+button,select,summary,.tabbtn,.footlink{touch-action:manipulation;}
 .wrap{max-width:1200px;margin:0 auto;padding:20px 16px 14px;}
 h1{font-size:1.4rem;margin:0 0 4px;}
 .sub{color:var(--sub);font-size:0.85rem;margin-bottom:18px;}
@@ -1568,6 +1573,7 @@ table.zpb-styletb td,table.zpb-styletb th{font-size:.78rem !important;}
 /* ---- Madden Rankings: weights + badges collapse to a quiet full-width
    strip under the results ---- */
 #viewRankings .layout{display:flex;flex-direction:column;}
+#viewRankings .layout>.panel{min-width:0;contain:inline-size;} /* w53 WM4 · compress-first (the w43 principle, the footnav's own cure): the nowrap team rows fed a 306px min-content up the intrinsic chain and panned the document 6px at 320px — containment cuts the feed, the panel scrolls its rows internally like the draft tables */
 #viewRankings #controls{order:2;width:100%;max-width:100%;margin-top:14px;}
 #viewRankings .layout > .panel:not(#controls){order:1;width:100%;max-width:100%;}
 .synergy-box{display:inline-flex;flex-direction:column;gap:2px;padding:6px 10px;margin:4px 6px 4px 0;
@@ -12459,6 +12465,9 @@ setTimeout(function(){
  .zpb-seg button{min-height:38px;padding:8px 16px;}
  .zpb-csbtn{min-height:36px;}
  .zpb-srbtn{min-height:38px;} /* the spot chips (QB 0/1…) join the thumb floor */
+ .posbtn{min-height:38px;} /* w53 WM2: the browser position filter joins the floor (the 600px-era 30px floor retires on phones) */
+ .zpb-selbtn{min-height:38px;} /* w53 WM2: the home + compare floating selectors join the floor */
+ summary{min-height:40px;} /* w53 WM2: the guide accordions grow a thumb-sized tap row (phones) */
  .zpb-basetoggle button,.zpb-viewtoggle button{min-height:34px;padding:6px 12px;} /* the 4-3 / 3-4 and roster view toggles */
  #draftSlotSelect,#draftPickNumberSelect{min-height:44px;}
  #draftTable2 td.dc-btn button{min-height:40px;padding:8px 14px;}
