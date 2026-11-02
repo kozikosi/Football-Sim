@@ -1,22 +1,36 @@
-# MUSE — lane file (rewritten 2026-11-01; rewrite at end of every session, never append)
+# MUSE — lane file (rewritten 2026-11-02; rewrite at end of every session, never append)
 
 ## Identity
-- **Seat:** MUSE · **Model / how reached:** Muse Spark (Meta), via the Owner's personal Muse agent (chat relay; no direct repo shell on the Owner's Mac) · **State:** advisor
-- **ID block:** — (council/base uses P-IDs from `_agents/PRIORITIES.md`, not S-ranges) · **First seen:** 2026-11-01
-- **Strengths shown so far (evidence, not claims):** P-010 review #2 of 3 (commit 7211d8bb on council/muse): verified 8/10 of Flint's claims against Pre-Colors with grep/sed receipts; upgraded item 10 to VERIFIED; corrected item 6's anchor to #draftFitSummary.
+- **Seat:** MUSE · **Model:** Muse Spark (Meta), via the Owner's personal Muse agent · **State:** advisor
+- **First seen:** 2026-11-01 · **Standing permission (Owner, 2026-11-01):** always push to github.com/kozikosi/Football-Sim myself; per-call approval cards are connector behavior, cannot suppress. Also (2026-11-01): may add proposals to PRIORITIES.md directly.
+- **Worktree:** `~/workspace/football-sim-muse`, branch `council/muse` (VM mirror; NOT Beam's Mac worktree). Base: `council/base`. Never touch product HTML, other branches, or the Mac.
+- **Push path:** NO git credential — `git push` fails. Push via GitHub API `push_files` from python subprocess (bash ARG_MAX ~128KB per arg; split large files). Push calls often time out yet land — ALWAYS verify content on origin before retrying. Then `git reset --hard origin/council/muse`. Lost commits recoverable via reflog.
 
-## Current work
-- **Claimed / in progress:** nothing (P-010 review #2 done and pushed)
-- **Done this session:** admitted by Owner → synced council/base@d7a05a27 → read START-OF-CHAT/AGENTS.md/PROJECT-KNOWLEDGE.md/COUNCIL-BULLETIN.md/V23-OWNER-REQUESTS.md/lane → re-measured Pre-Colors sha256 40233d6be00e987c… (657,486 B, matches AGENTS.md §2) → ran `node tools/next.mjs` → claimed P-010 → filed review (VERDICT: improved) → pushed 7211d8bb to origin council/muse
-- **Blocked / waiting on:** nothing
+## Work completed (2026-11-01 → 02)
 
-## What the next session needs
-- **Read first:** this lane file; then `node tools/next.mjs` (the ranked list moves fast)
-- **Open questions:** (1) P-010 review count: Flint's header says "review #3 of 3", board said NEEDS-REVIEW 1/3 — Architect to resolve; (2) whether the Architect wants the #draftFitSummary summary-line anchor as specified
-- **Do not redo:** P-010 review #2 (inbox/20261101-0953-muse-P-010-review.md, commit 7211d8bb); Pre-Colors hash re-measurement; the council/muse ↔ origin push path on this machine is the GitHub API (push_files), not git push (no credential)
+**Reviews:** P-010 #2 (improved, 7211d8bb) · P-001–P-006 for Claude (SUPERSEDED, d5a31a3f) · P-198 #2 (improved, 0159a353) · P-191 #3 final (rejected, confirming beam, 4282408a) · P-195 #2 (improved, ee1975ff; corrected OR's E3c flag) · P-195 boc review (improved; applied boc's E4 argv fix, 2481f1f0) · P-197 #2 (rejected, confirming OR + cross-sectional/marginal + log-symmetry additions, 125fa45c) · P-207 #1 (improved — 4 gaps: atomic stats update, achievements API, soft-delete semantics, SlotMeta; 363a7c20).
+
+**Original work:** P-195 engine acceptance tests E1–E9 (`_agents/muse/deliveries/engine-acceptance.test.ts`, b6b44d21) · Z.ai kit audit (ok, 7545fd1f) · P-208 v1 stat list (10 stats, 6ebc9e0b) · P-209 brag share spec (09cd5dda) · P-210 origin/browser research (2177fed8; Safari blocks file:// storage entirely; 7-day ITP eviction CONFIRMED) · P-211 batch verification of 135 P0/P1 items vs shipped build (a05de458: 14 STILL OPEN, 23 CANDIDATE BUILT, 13 UNCLEAR, 60 need manual review).
+
+**Governance (Owner-directed, 2026-11-01):** removed the claim system (next.mjs, PRIORITIES header, START-OF-CHAT, ONBOARDING, END-OF-CHAT); added SUPERSEDED/BUILT terminal states + RETIRED section (next.mjs stops parsing at `## RETIRED`); retired P-001–P-006, P-011; added P-207–P-211 to the live table (c836f415). Review rule now: >3 reviews fine, no seat reviews twice (tool already dedupes by seat).
+
+**Storage wave:** final prompt rewritten per DS's factual fix, sent parallel to Claude + Z.ai. Claude's contract + assessment read (branch architect/engine-and-seats). Owner B6 = run-it-back (b), saved verbatim (6154c4ef). Amused save-seam field report filed for Z.ai's Phase 0.
+
+## Current state / next
+
+- **In progress:** nothing — lane clean, all work pushed.
+- **Waiting on (not mine):** Claude to merge council/muse → council/base (next.mjs reads PRIORITIES.md from base; my governance/priority changes take effect on merge). Z.ai's Phase 0 plan. Owner/Architect to confirm P-211's 23 CANDIDATE BUILT items.
+- **Next session:** read this file; run `node tools/next.mjs`; note P-207/208/209/210 need 2 more reviews each by *other* seats (I can't re-review my own work).
+- **Open:** P-010 review-count discrepancy (still unresolved); spec §6 stale "QB → WR/S −6" note (two reviewers recommend striking; Architect to action).
+- **Amused:** PAUSED by Owner — do not resume unless told.
+
+## Standing lessons
+
+- KG dislikes multi-step terminal flows: one command per line, no trailing `#` comments.
+- KG's #1 gripe is dead priorities accumulating — the RETIRED mechanism + P-211 exist for this; keep the queue honest.
+- Owner rounds of discussion are valued (not to be shortened); narrow the question per round instead.
+- Verify push content on origin after API timeouts; never assume.
+- Evidence labels on everything (VERIFIED / REPORTED / INFERRED / UNKNOWN).
 
 ## Files in this lane
-- `_agents/muse/MUSE.md` (this file)
-
-## Role
-Advisor: propose, test, dissent, measure. Strong at verification with command receipts (grep/sed/awk against the product file), anchor precision, and plain-language review write-ups. Admitted by the Owner on 2026-11-01. No git credential on this machine — pushes go through the GitHub API with the Owner's approval; local branch is reconciled to the API commit afterwards.
+- `_agents/muse/MUSE.md` (this file) · `_agents/muse/deliveries/` (engine-acceptance.test.ts) · `_agents/muse/amused/` (PAUSED experiment) · `inbox/2026110*-muse-*` (all pushed)
