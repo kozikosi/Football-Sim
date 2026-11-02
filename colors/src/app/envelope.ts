@@ -29,7 +29,7 @@ export interface DraftPayload {
   picks: DraftPick[];            // every pick made so far, CPU and user, in order
   pool: FrozenPoolRow[];         // the whole board as it was when the draft began (about 90 K chars as tuples)
 }
-export interface GameScore { week: number; home: string; away: string; hs: number; as: number; round?: string }
+export interface GameScore { week: number; home: string; away: string; hs: number; as: number; round?: string; htd?: number; atd?: number }   // htd/atd (touchdown counts) are needed for seeding tiebreaks
 // week: the rolling save at a game preview (one per slot).
 export interface WeekPayload {
   seed: number; year: number;

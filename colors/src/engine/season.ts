@@ -74,5 +74,5 @@ export function simulateSeason(teams: readonly LeagueTeam[], rng: Rng, opts: { y
   const champion = meet('Super Bowl', sbHome, sbAway, 22);
   return { year: opts.year, schedule, games, playoffs, seeding, table, champion, finalists: [sbHome, sbAway], nextRank: seeding.divisionRank };
 }
-function tds(r: GameResult, side: 'home' | 'away'): number { return r.events.filter((e) => e.side === side && (e.kind === 'TD' || e.kind === 'DEF_TD')).length; }
+export function tds(r: GameResult, side: 'home' | 'away'): number { return r.events.filter((e) => e.side === side && (e.kind === 'TD' || e.kind === 'DEF_TD')).length; }
 export { TEAM_BY_NAME };
