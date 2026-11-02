@@ -1,0 +1,13 @@
+OWNER DECISION — verbatim (2026-11-01, via MUSE seat)
+
+Question (Claude, storage assessment §B6 / §E): run-it-back = (a) a new draft
+from the same player pool, or (b) the same drafted roster again with a new
+schedule? Context: seeds 5 and 6 give identical home/away matchups; opponents
+come from the year and last season's division ranks, so "different schedule"
+does not come free from a seed change.
+
+Owner's answer: "b."
+
+Interpretation: run-it-back keeps the same drafted roster and needs a new
+schedule (different opponents), which requires a different year/prevRank input
+or equivalent — removed players must be handled per the frozen-roster rule.
