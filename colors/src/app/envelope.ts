@@ -114,7 +114,7 @@ export function parsePayload(env: Envelope): ParseResult<AnyEnvelope> {
 }
 
 // Serialize: stamps the envelope and returns the JSON string storage writes. Throws on anything JSON would silently change (undefined, NaN, Infinity, Map/Set).
-export function serialize<K extends SaveKind, P>(kind: K, slot: SlotName, versions: { engineVersion: string; dataVersion: string }, payload: P, now: Date = new Date()): string {
+export function serialize<K extends SaveKind, P>(kind: K, slot: SlotName, versions: { engineVersion: string; dataVersion: string }, payload: P, now: Date): string {
   const env: Envelope<K, P> = { kind, schemaVersion: SCHEMA_VERSION, engineVersion: versions.engineVersion, dataVersion: versions.dataVersion, slot, savedAt: now.toISOString(), payload };
   assertPlain(env, 'envelope');
   return JSON.stringify(env);

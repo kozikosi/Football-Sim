@@ -5,6 +5,7 @@ import { SCHEMA_VERSION, parseEnvelope, parsePayload, restore, serialize } from 
 import type { FrozenPlayer, SeasonPayload, WeekPayload } from '../src/app/envelope.ts';
 
 const V = { engineVersion: 'e1', dataVersion: 'd1' };
+const T = new Date('2026-11-02T00:00:00Z');
 const fp = (i: number): FrozenPlayer => ({ id: 'P' + i + '|QB|KC', name: 'P' + i, pos: 'QB', role: 'QB', team: 'KC', ovr: 80, spd: 70, str: 60, freeAgent: false });
 const roster = Array.from({ length: 32 }, (_, i) => fp(i));
 const week = (): WeekPayload => ({ seed: 5, year: 2026, run: 0, gameSeed: 99, nextWeek: 3, userTeam: 'Kansas City Chiefs', roster, ratings: { x: { a: 1 } },
@@ -13,8 +14,7 @@ const season = (): SeasonPayload => ({ seed: 5, year: 2026, run: 1, userTeam: 'K
   userResults: [], champion: 'A', userOutcome: 'champion', statsRecorded: true });
 
 test('envelope: week and season round-trip byte for byte through serialize and restore', () => {
-  const now = new Date('2026-11-02T00:00:00Z');
-  const w = serialize('week', 'B', V, week(), now), s = serialize('season', 'A', V, season(), now);
+  const w = serialize('week', 'B', V, week(), T), s = serialize('season', 'A', V, season(), T);
   const rw = restore(w), rs = restore(s);
   assert.ok(rw.ok && rs.ok);
   if (rw.ok) { assert.equal(rw.value.kind, 'week'); assert.equal(rw.value.slot, 'B'); assert.equal(rw.value.savedAt, '2026-11-02T00:00:00.000Z'); assert.equal(JSON.stringify(rw.value.payload), JSON.stringify(week())); }
@@ -22,11 +22,11 @@ test('envelope: week and season round-trip byte for byte through serialize and r
 });
 test('envelope: a draft payload with a compact pool round-trips', () => {
   const d = { seed: 8, userTeam: 11, picks: [{ overall: 1, team: 0, pid: 'a|QB|X', slot: 'QB' }], pool: [['a', 'QB', 'X', 90, 70, 60, 0], ['b', 'HB', 'Free Agent', 70, 80, 50, 1]] };
-  const r = restore(serialize('draft', 'C', V, d));
+  const r = restore(serialize('draft', 'C', V, d, T));
   assert.ok(r.ok); if (r.ok) assert.deepEqual(r.value.payload, d);
 });
 test('envelope: outer shape errors are reported as corrupt, and a newer schema is its own verdict', () => {
-  const good = JSON.parse(serialize('week', 'A', V, week()));
+  const good = JSON.parse(serialize('week', 'A', V, week(), T));
   const cases: [string, (e: Record<string, unknown>) => void][] = [
     ['kind', (e) => { e.kind = 'tournament'; }], ['slot', (e) => { e.slot = 'D'; }], ['savedAt', (e) => { e.savedAt = 'yesterday'; }],
     ['engineVersion', (e) => { e.engineVersion = ''; }], ['dataVersion', (e) => { delete e.dataVersion; }], ['payload', (e) => { e.payload = [1]; }], ['schemaVersion', (e) => { e.schemaVersion = 0; }],
@@ -50,7 +50,7 @@ test('envelope: inner shape errors are caught (roster size, scores, outcome, fla
 });
 test('envelope: serialize refuses what JSON would silently change', () => {
   for (const bad of [{ ...week(), seed: NaN }, { ...week(), plan: { m: new Map() } }, { ...week(), plan: { u: undefined } }, { ...week(), plan: { s: new Set() } }, { ...week(), gameSeed: Infinity }])
-    assert.throws(() => serialize('week', 'A', V, bad), /not plain JSON/);
+    assert.throws(() => serialize('week', 'A', V, bad, T), /not plain JSON/);
 });
 test('envelope: the file imports nothing, so storage can copy it', () => {
   const src = fs.readFileSync(new URL('../src/app/envelope.ts', import.meta.url), 'utf8');
