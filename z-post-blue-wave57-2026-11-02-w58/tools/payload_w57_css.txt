@@ -1,0 +1,109 @@
+<style id="zpb-w57-css">
+/* ================= Z-POST-BLUE W57 (the Owner's round-57) =================
+   The player cards read clean to their left edge; the preview's key players face each other
+   at every width; the plan card loses its fx line; the box score's final sits under F again;
+   BEGIN PLAYOFFS wears the SIM PLAYOFFS pill; the review badges keep the beat, faster; the
+   run cine flows into the storm (the JS side); names stop breaking letter-by-letter; and the
+   whole during-game cinematic family learns the super-compressed windows. */
+
+/* 1 · THE KEY PLAYERS FACE OFF AT EVERY WIDTH — the Owner's override of the w55 one-per-line
+   law (he named the preview screen): the pairs stay on their team's side, two across, and the
+   cards themselves compress — tighter padding, a one-line ellipsis name (never a mid-word
+   break), smaller chip and numeral, the season chips wrapping under. */
+@media (max-width:640px){
+ .zpb-pvfrow{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:5px;}
+ .zpb-pvfrow .zpb-pvcard{flex-wrap:wrap;min-width:0;padding:7px 8px;gap:5px 8px;}
+ .zpb-pvfrow .zpb-pcard-hd{flex:1 1 auto;min-width:0;flex-wrap:nowrap;gap:5px;}
+ .zpb-pvfrow .zpb-pcard-hd b{font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+ .zpb-pvfrow .zpb-poschip{font-size:.52rem;padding:1px 6px;letter-spacing:.05em;flex:0 0 auto;}
+ .zpb-pvfrow .zpb-cstar{font-size:.82em;margin-left:4px;}
+ .zpb-pvfrow .zpb-pcard-rt{font-size:1.02rem;min-width:34px;text-align:right;flex:0 0 auto;}
+ .zpb-pvfrow .zpb-pcard-rt i{font-size:.5rem;letter-spacing:.06em;}
+ .zpb-pvfrow .zpb-pcard-stats{flex:1 1 100%;justify-content:flex-start;margin-top:0;gap:4px;}
+ .zpb-pvfrow .zpb-pstat{font-size:.56rem;padding:1px 6px;}
+ .zpb-pvempty{min-height:52px;}
+}
+@media (max-width:360px){
+ .zpb-pvfrow{gap:4px;}
+ .zpb-pvfrow .zpb-pvcard{padding:6px 7px;}
+ .zpb-pvfrow .zpb-pcard-stats{display:none;} /* the OVR is the story at the narrowest */
+}
+@media (max-width:480px){
+ .zpb-stars-hd>div{font-size:.78rem;padding:7px 8px;gap:6px;}
+ .zpb-stars-hd img{width:18px;height:18px;}
+}
+
+/* 2 · NAMES NEVER BREAK LETTER-BY-LETTER — overflow-wrap:anywhere let a squeezed lane compute
+   its min-content as ONE CHARACTER (one letter per line). break-word keeps the min-content at
+   the widest word: names wrap at spaces, a mid-word break only when one word cannot fit. */
+.zpb-gname{overflow-wrap:break-word;} /* w57 (Owner): the global name class */
+.zrl-play{overflow-wrap:break-word;} /* w57 (Owner): the replay log's play text carries the names */
+.zpb-lu-cell{overflow-wrap:break-word;} /* w57 (Owner): the lineup cells */
+
+/* 3 · THE REVIEW + UNIT REPORT BADGES KEEP THE BEAT, FASTER — one beat ×0.6s (was ×1s).
+   The field map and depth chart keep their one-second beats (the w44/w46 laws). */
+.zpb-sbadge,.zpb-scard,.zpb-rcbadge{animation-delay:calc(var(--beat,0)*.6s);} /* w57 (Owner): a little faster */
+.zpb-restov .zpb-scard{animation-delay:calc(var(--beat,0)*.6s);}
+
+/* 4 · THE CINEMATICS LEARN THE SUPER-COMPRESSED WINDOW — the replay overlay, its intro, the
+   Super Bowl storm and the playoff-run cine. Measured at 320px, 280px and 500×420. */
+.zpb-replay{max-height:min(96svh,860px);} /* the panel never outgrows a short window */
+@media (max-width:480px){
+ .zpb-replay-ov{padding:8px;}
+ .zpb-replay{width:100%;border-radius:16px;}
+ .zpb-rep-hd{padding:9px 10px;gap:6px;}
+ .zpb-rep-team{gap:5px;min-width:0;}
+ .zpb-rep-team img{width:20px;height:20px;}
+ .zpb-rep-team b{font-size:.72rem;letter-spacing:.02em;}
+ .zpb-rep-sc{font-size:1.06rem;}
+ .zpb-rep-qchip{font-size:.56rem;letter-spacing:.16em;}
+ .zpb-rep-log{padding:8px 9px;min-height:170px;}
+ .zpb-rep-q{font-size:.56rem;letter-spacing:.18em;margin:8px 0 3px;}
+ .zpb-rep-line{font-size:.74rem;padding:4px 7px;gap:5px;margin:2px 0;border-radius:8px;flex-wrap:wrap;}
+ .zrl-play{flex:1 1 100%;order:4;} /* w57 (Owner): the play text takes its own full row on a compressed window — a name's column never drops below the longest word, so no letter ever moves to its own line */
+ .zpb-rep-line img{width:15px;height:15px;}
+ .zrl-t{min-width:38px;font-size:.62rem;}
+ .zrl-team{font-size:.62rem;}
+ .zrl-chip{font-size:.6rem;padding:1px 5px;}
+ .zrl-badge{font-size:.62rem;min-width:26px;}
+ .zrl-pts{font-size:.72rem;}
+ .zrl-sc{font-size:.62rem;}
+ .zpb-rep-final{padding:10px 4px 6px;}
+ .zpb-rep-final b{font-size:1.1rem;}
+ .zpb-rep-ft{padding:9px 10px;gap:8px;}
+ .zpb-rep-ft .resetbtn{padding:8px 18px !important;}
+ .zpb-intro-logos{gap:14px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:64px;height:64px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.5rem;}
+ .zpb-replay.zpb-sb .zpb-intro-title{font-size:1.15rem;letter-spacing:.22em;}
+ .zpb-replay.zpb-sb .zpb-intro-banner{gap:7px;font-size:.6rem;letter-spacing:.14em;}
+ .zpb-intro-star{padding:5px 8px;border-radius:9px;}
+ .zpb-porun-stage{padding:18px 8px;}
+ .zpb-porun-score{gap:7px;flex-wrap:wrap;}
+ .zpb-porun-score b img{width:24px;height:24px;}
+ .zpb-porun-score .zpb-porun-num{font-size:1.2rem;}
+ .zpb-sbfin-stage{padding:16px 8px;max-width:94vw;}
+ .zpb-sbfin-score{gap:8px;margin:8px 0 2px;}
+ .zpb-sbfin-score b{font-size:1.05rem;}
+ .zpb-sbfin-line{font-size:.62rem;letter-spacing:.3em;}
+ .zpb-sbfin-mvp{font-size:.7rem;letter-spacing:.06em;margin-bottom:12px;}
+}
+@media (max-width:360px){
+ .zpb-replay-ov{padding:5px;}
+ .zpb-replay{border-radius:12px;}
+ .zpb-rep-team img{width:16px;height:16px;}
+ .zpb-rep-team b{font-size:.62rem;}
+ .zpb-rep-sc{font-size:.92rem;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:48px;height:48px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos{gap:9px;}
+ .zpb-sbfin-champ img{width:46px;height:46px;}
+ .zpb-sbfin-name{font-size:clamp(1.1rem,6.2vw,1.35rem);}
+}
+@media (max-height:620px){
+ .zpb-replay{max-height:98svh;}
+ .zpb-rep-log{min-height:110px;max-height:none;flex:1 1 auto;} /* the log takes what the window leaves; the panel never scrolls the page */
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:56px;height:56px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.2rem;}
+ .zpb-intro-cup{display:none;}
+}
+</style>

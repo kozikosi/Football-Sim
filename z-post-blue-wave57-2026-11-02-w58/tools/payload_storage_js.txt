@@ -1,0 +1,663 @@
+<script id="zpb-storage-js">
+// ============ Z-POST-BLUE STORAGE · PHASE 0 (w57) ============
+// The Architect's contract (inbox/20261101-2100, branch architect/engine-and-seats):
+//   { kind:'draft'|'week'|'season', schemaVersion:int, engineVersion:string, dataVersion:string,
+//     slot:'A'|'B'|'C', savedAt:ISO string, payload }
+// The envelope is the ONLY thing that crosses this boundary. The payload stays opaque — this
+// module validates the envelope alone and never looks inside. Nothing here imports the engine
+// (no colors/src/**, no store.ts — the §4 files are untouched). v1 is localStorage behind an
+// async facade, no compression (the assessment's §B3 numbers hold). IndexedDB stays a clean
+// swap: every byte goes through the injected KV. Screen call sites are a SEPARATE commit;
+// ?storage=1 mounts the design showcase only.
+window.ZPBStorage = (function(){
+ 'use strict';
+ var SCHEMA = 1;                                   // this build writes schemaVersion 1
+ var SLOTS = ['A','B','C'];
+ var KINDS = ['draft','week','season'];
+ var DEPLOYED = 'https://kozikosi.github.io/Football-Sim/'; // the brag link's only home (never a local path)
+ var P = 'zpb:st:';                                // key namespace
+ var SUPPORTED = { draft:1, week:1, season:1 };    // forward-only: a higher version loads as newer-version, untouched
+
+ function kCur(s){ return P+'slot:'+s; }
+ function kBak(s){ return P+'slot:'+s+':bak'; }
+ function kTmp(s){ return P+'slot:'+s+':tmp'; }
+ function kDel(s){ return P+'slot:'+s+':del'; }
+ var K_PROFILE = P+'profile', K_SETTINGS = P+'settings', K_STATS = P+'stats', K_APPLIED = P+'stats:applied';
+
+ // ---- the KV seam (localStorage by default; the test rig injects a Map) ----
+ function defaultKV(){
+  return {
+   name:'localStorage',
+   getItem:function(k){ try{ return window.localStorage.getItem(k); }catch(e){ return null; } },
+   setItem:function(k,v){ window.localStorage.setItem(k,v); },
+   removeItem:function(k){ try{ window.localStorage.removeItem(k); }catch(e){} },
+   available:function(){
+    try{ var t=P+'::probe'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return true; }
+    catch(e){ return false; }
+   }
+  };
+ }
+ var kv = defaultKV();
+ function available(){ try{ return !!kv && !!kv.available && kv.available(); }catch(e){ return false; } }
+
+ // ---- envelope law: the WHOLE of payload law is that there is none ----
+ function isInt(n){ return typeof n==='number' && isFinite(n) && Math.floor(n)===n; }
+ function validEnvelope(e){
+  if(!e || typeof e!=='object' || Array.isArray(e)) return 'envelope';
+  if(KINDS.indexOf(e.kind)<0) return 'kind';
+  if(!isInt(e.schemaVersion) || e.schemaVersion<1) return 'schemaVersion';
+  if(typeof e.engineVersion!=='string' || !e.engineVersion) return 'engineVersion';
+  if(typeof e.dataVersion!=='string' || !e.dataVersion) return 'dataVersion';
+  if(SLOTS.indexOf(e.slot)<0) return 'slot';
+  if(typeof e.savedAt!=='string' || isNaN(Date.parse(e.savedAt))) return 'savedAt';
+  if(!('payload' in e)) return 'payload';
+  return null;
+ }
+ function clone(e){ return JSON.parse(JSON.stringify(e)); }
+
+ // ---- the typed load result: ok | empty | corrupt | newer-version | unavailable ----
+ function loadRaw(key){
+  if(!available()) return { status:'unavailable' };
+  var raw = null;
+  try{ raw = kv.getItem(key); }catch(e){ return { status:'unavailable' }; }
+  if(raw==null) return { status:'empty' };
+  var e = null;
+  try{ e = JSON.parse(raw); }catch(err){ return { status:'corrupt' }; }
+  var bad = validEnvelope(e);
+  if(bad) return { status:'corrupt', why:bad };
+  if((SUPPORTED[e.kind]||0) < e.schemaVersion) return { status:'newer-version', envelope:e };
+  return { status:'ok', envelope:e };
+ }
+
+ function readMeta(e){
+  // list-level metadata straight off the envelope header — the payload is never opened
+  return { kind:e.kind, schemaVersion:e.schemaVersion, engineVersion:e.engineVersion,
+           dataVersion:e.dataVersion, savedAt:e.savedAt, slot:e.slot };
+ }
+
+ // ---- quota pruning: the slot's own backup first, then its soft-deleted copy.
+ //      Never a completed season slot, never stats, never profile. If only protected
+ //      bytes remain, refuse the write and say so — a run is never silently evicted. ----
+ function pruneFor(slot){
+  var freed = [];
+  try{ kv.removeItem(kBak(slot)); freed.push('backup:'+slot); }catch(e){}
+  try{ kv.removeItem(kDel(slot)); freed.push('trash:'+slot); }catch(e){}
+  return freed;
+ }
+
+ function save(slot, envelope){
+  return new Promise(function(resolve){
+   var bad = validEnvelope(envelope);
+   if(bad){ resolve({ ok:false, reason:'invalid-envelope', field:bad }); return; }
+   if(envelope.slot!==slot){ resolve({ ok:false, reason:'slot-mismatch' }); return; }
+   if(!available()){ resolve({ ok:false, reason:'unavailable' }); return; }
+   var raw = JSON.stringify(envelope);
+   var attempt = function(withPrune){
+    try{
+     kv.setItem(kTmp(slot), raw);
+     var check = JSON.parse(kv.getItem(kTmp(slot)) || 'null');
+     if(validEnvelope(check)){ try{ kv.removeItem(kTmp(slot)); }catch(e2){} return { ok:false, reason:'tmp-readback' }; }
+     try{ var prev = kv.getItem(kCur(slot)); if(prev!=null) kv.setItem(kBak(slot), prev); }catch(e3){}
+     kv.setItem(kCur(slot), raw);
+     try{ kv.removeItem(kTmp(slot)); }catch(e4){}
+     return { ok:true, bytes:raw.length, pruned:withPrune||[] };
+    }catch(err){
+     try{ kv.removeItem(kTmp(slot)); }catch(e5){}
+     return { ok:false, reason:(String(err && ((err.name||'')+' '+(err.message||''))||'').toLowerCase().indexOf('quota')>=0?'quota':'write-failed'), error:String(err) };
+    }
+   };
+   var r = attempt(null);
+   if(!r.ok && r.reason==='quota'){
+    // only QUOTA prunes + retries (the one-deep backup and the trash are the expendable bytes).
+    // a plain interrupted write is reported — the tmp key already protected the current bytes,
+    // and the next save heals; silently retrying would mask the very fault the rig must see.
+    var freed = pruneFor(slot);
+    r = attempt(freed);
+    if(r.ok){ r.pruned = freed; } else { r.pruned = freed; }
+   }
+   if(r.ok) try{ externalNote(slot); }catch(e6){}
+   resolve(r);
+  });
+ }
+
+ function load(slot){
+  return new Promise(function(resolve){
+   var r = loadRaw(kCur(slot));
+   if(r.status==='ok'){ resolve({ status:'ok', envelope:r.envelope, meta:readMeta(r.envelope), usedBackup:false }); return; }
+   if(r.status==='corrupt'){
+    // the one-deep backup protects a failed write — if it validates, it steps forward, and the UI says so
+    var b = loadRaw(kBak(slot));
+    if(b.status==='ok'){
+     try{ kv.setItem(kCur(slot), JSON.stringify(b.envelope)); }catch(e){}
+     resolve({ status:'ok', envelope:b.envelope, meta:readMeta(b.envelope), usedBackup:true, repairedFrom:'backup' }); return;
+    }
+    resolve({ status:'corrupt', usedBackup:false, why:r.why }); return;
+   }
+   if(r.status==='newer-version'){ resolve({ status:'newer-version', envelope:r.envelope, meta:readMeta(r.envelope) }); return; }
+   resolve(r); // empty | unavailable
+  });
+ }
+
+ function list(){
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ status:'unavailable', slots:[] }); return; }
+   var out = [];
+   var finish = function(){
+    var next = function(slot){
+     if(slot>=SLOTS.length){ resolve({ status:'ok', slots:out }); return; }
+     var s = SLOTS[slot], r = loadRaw(kCur(s));
+     if(r.status==='ok') out.push(Object.assign({ slot:s, empty:false }, readMeta(r.envelope)));
+     else if(r.status==='newer-version') out.push({ slot:s, empty:false, kind:r.envelope.kind, savedAt:r.envelope.savedAt, newer:true, schemaVersion:r.envelope.schemaVersion });
+     else if(r.status==='corrupt') out.push({ slot:s, empty:false, kind:null, corrupt:true });
+     else out.push({ slot:s, empty:true });
+     next(slot+1);
+    };
+    next(0);
+   };
+   finish();
+  });
+ }
+
+ function remove(slot){ // soft: the run steps into the trash, restorable until the next save
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ ok:false, reason:'unavailable' }); return; }
+   try{
+    var cur = kv.getItem(kCur(slot));
+    if(cur==null){ resolve({ ok:true, gone:true }); return; }
+    kv.setItem(kDel(slot), cur);
+    kv.removeItem(kCur(slot));
+    kv.removeItem(kBak(slot));
+    externalNote(slot);
+    resolve({ ok:true, soft:true });
+   }catch(e){ resolve({ ok:false, reason:'write-failed', error:String(e) }); }
+  });
+ }
+ function restore(slot){ // undo the soft delete
+  return new Promise(function(resolve){
+   var t = kv.getItem(kDel(slot));
+   if(t==null){ resolve({ ok:false, reason:'nothing-to-restore' }); return; }
+   var r = null; try{ r = JSON.parse(t); }catch(e){}
+   if(validEnvelope(r)){ resolve({ ok:false, reason:'corrupt' }); return; }
+   try{ kv.setItem(kCur(slot), t); kv.removeItem(kDel(slot)); externalNote(slot); resolve({ ok:true }); }
+   catch(e){ resolve({ ok:false, reason:'write-failed' }); }
+  });
+ }
+
+ function migrate(){
+  return new Promise(function(resolve){
+   // forward-only: v1 has no older versions. The walk proves every slot parses; a future
+   // migration map replaces the identity step. newer-version slots are never touched.
+   list().then(function(l){
+    if(l.status!=='ok'){ resolve({ status:l.status, migrated:0, kept:0 }); return; }
+    var migrated = 0, kept = 0;
+    l.slots.forEach(function(s){ if(s.newer) kept++; else if(!s.empty && !s.corrupt) migrated++; });
+    resolve({ status:'ok', migrated:migrated, kept:kept });
+   });
+  });
+ }
+
+ // ---- multi-tab: a storage event on our namespace means another tab holds the pen ----
+ function externalNote(){
+  try{
+   window.dispatchEvent(new CustomEvent('zpb:storage-external', { detail:{ at:Date.now() } }));
+  }catch(e){}
+ }
+ if(typeof window!=='undefined' && window.addEventListener){
+  window.addEventListener('storage', function(ev){
+   if(ev && ev.key && String(ev.key).indexOf(P)===0){
+    try{ window.dispatchEvent(new CustomEvent('zpb:storage-external', { detail:{ key:ev.key, at:Date.now(), remote:true } })); }catch(e){}
+   }
+  });
+ }
+
+ // ---- the global stores (keyed by franchise, never by slot) ----
+ function readJSON(key, fallback){
+  var raw = kv.getItem(key);
+  if(raw==null) return fallback;
+  try{ return JSON.parse(raw); }catch(e){ return fallback; }
+ }
+ function writeJSON(key, val){ try{ kv.setItem(key, JSON.stringify(val)); return true; }catch(e){ return false; } }
+
+ var SETTINGS_DEFAULT = { cinematicsReduced:false, bragHints:true };
+ var settingsApi = {
+  read:function(){ if(!available()) return Object.assign({}, SETTINGS_DEFAULT); return Object.assign({}, SETTINGS_DEFAULT, readJSON(K_SETTINGS, {})); },
+  write:function(patch){ var cur = settingsApi.read(); var next = Object.assign({}, cur, patch||{}); return writeJSON(K_SETTINGS, next) ? next : null; }
+ };
+
+ var PROFILE_DEFAULT = { createdAt:null, lastTeam:null, lastPlayedAt:null, achievements:[] };
+ var profileApi = {
+  read:function(){ if(!available()) return Object.assign({}, PROFILE_DEFAULT); return Object.assign({}, PROFILE_DEFAULT, readJSON(K_PROFILE, {})); },
+  touch:function(patch){ var cur = profileApi.read(); var next = Object.assign({}, cur, patch||{}); if(!next.createdAt) next.createdAt = new Date().toISOString(); writeJSON(K_PROFILE, next); return next; },
+  award:function(a){ // achievements survive slot deletion AND overwrite — they live here, outside the slots
+   var cur = profileApi.read();
+   var id = a && a.id; if(!id) return cur;
+   if(!(cur.achievements||[]).some(function(x){ return x.id===id; })){
+    cur.achievements = (cur.achievements||[]).concat([{ id:a.id, label:a.label, at:new Date().toISOString(), team:a.team||null }]);
+    writeJSON(K_PROFILE, cur);
+   }
+   return cur;
+  }
+ };
+
+ // ---- stats: overall AND by franchise. The elimination trigger lives with the WRITER (the
+ //      engine side sets payload.statsRecorded at the moment of elimination); this module
+ //      refuses a double count on its own ledger too (belt and braces, the assessment's way). ----
+ var RESULT_RANK = { missed:0, wildcard:1, divisional:2, champ:3, 'sb-loss':4, champion:5 };
+ var RESULT_PTS  = { 0:0, 1:15, 2:25, 3:40, 4:60, 5:100 };
+ function blankFrac(){ return { seasons:0, wins:0, losses:0, ties:0, titles:0, sb:0, conf:0, trips:0, undefeated:0,
+   bestRecord:null, bestResult:null }; }
+ function statsDefault(){ return { schema:1, overall:blankFrac(), franchises:{} }; }
+ function betterRecord(a, b){ // more wins, then fewer losses; null-proof
+  if(!b) return true; if(!a) return false;
+  if(a.w!==b.w) return a.w>b.w; if((a.l||0)!==(b.l||0)) return (a.l||0)<(b.l||0); return (a.t||0)>(b.t||0);
+ }
+ function betterResult(a, b){ return (a==null?false:(b==null?true:(RESULT_RANK[a]||0)>(RESULT_RANK[b]||0))); }
+ function legendOf(f){
+  // THE FRANCHISE LEGEND — integer, explainable: a title is worth 120, the best run the
+  // franchise ever had is worth its ladder value (0 missed · 15 wildcard · 25 divisional ·
+  // 40 conference · 60 a Super Bowl lost · 100 a Super Bowl won), two per career win, and
+  // 30 for every undefeated regular season.
+  if(!f) return 0;
+  var rp = RESULT_PTS[f.bestResult!=null?(RESULT_RANK[f.bestResult]||0):0] || 0;
+  return (f.titles||0)*120 + rp + (f.wins||0)*2 + (f.undefeated||0)*30;
+ }
+ function applySeason(slot, envelope){
+  // consumes ONLY the season payload's stats fields (contract §3): payload.user {team, w, l, t,
+  // result, undefeated?}, payload.statsRecorded. Anything missing → applied:false, never guessed.
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ applied:false, reason:'unavailable' }); return; }
+   if(!envelope || envelope.kind!=='season'){ resolve({ applied:false, reason:'kind' }); return; }
+   var p = envelope.payload || {};
+   var u = p.user;
+   if(!u || typeof u.team!=='string' || !isInt(u.w) || !isInt(u.l)){ resolve({ applied:false, reason:'payload-shape' }); return; }
+   if(p.statsRecorded===true){ resolve({ applied:false, reason:'already-recorded' }); return; }
+   var ledger = readJSON(K_APPLIED, {});
+   var key = envelope.slot+':'+envelope.savedAt+':'+u.team;
+   if(ledger[key]){ resolve({ applied:false, reason:'ledger' }); return; }
+   var st = readJSON(K_STATS, null) || statsDefault();
+   if(st.schema!==1){ resolve({ applied:false, reason:'schema' }); return; }
+   var t = u.team;
+   var fr = st.franchises[t] || blankFrac();
+   var rec = { w:u.w, l:u.l, t:u.t||0, year:u.year||null };
+   var res = RESULT_RANK[u.result]!=null ? u.result : 'missed';
+   fr.seasons++; fr.wins+=rec.w; fr.losses+=rec.l; fr.ties+=rec.t;
+   if(res==='champion'){ fr.titles++; fr.sb++; }
+   if(res==='sb-loss'){ fr.sb++; }
+   if(res==='champ'||res==='sb-loss'||res==='champion'){ fr.conf++; }
+   if(res!=='missed'){ fr.trips++; }
+   if(u.undefeated===true){ fr.undefeated++; }
+   if(betterRecord(rec, fr.bestRecord)) fr.bestRecord = rec;
+   if(betterResult(res, fr.bestResult)) fr.bestResult = res;
+   st.franchises[t] = fr;
+   var o = st.overall;
+   o.seasons++; o.wins+=rec.w; o.losses+=rec.l; o.ties+=rec.t;
+   if(res==='champion'){ o.titles++; o.sb++; }
+   if(res==='sb-loss'){ o.sb++; }
+   if(res==='champ'||res==='sb-loss'||res==='champion'){ o.conf++; }
+   if(res!=='missed'){ o.trips++; }
+   if(u.undefeated===true){ o.undefeated++; }
+   if(betterRecord(rec, o.bestRecord)) o.bestRecord = Object.assign({ team:t }, rec);
+   if(betterResult(res, o.bestResult)) o.bestResult = res;
+   o.legend = legendOf(o);
+   fr.legend = legendOf(fr);
+   ledger[key] = true;
+   var wrote = writeJSON(K_STATS, st) && writeJSON(K_APPLIED, ledger);
+   if(!wrote){ resolve({ applied:false, reason:'quota' }); return; }
+   if(u.undefeated===true) profileApi.award({ id:'undefeated', label:'Undefeated regular season', team:t });
+   if(res==='champion') profileApi.award({ id:'title-'+t, label:'Super Bowl champion', team:t });
+   profileApi.touch({ lastTeam:t, lastPlayedAt:new Date().toISOString() });
+   resolve({ applied:true, stats:st, franchise:fr, legend:fr.legend });
+  });
+ }
+
+ // ---- the brag share (clipboard + toast; the deployed URL only, never a local path) ----
+ function bragUrl(){
+  try{
+   if(location.protocol==='file:' || location.protocol==='about:') return DEPLOYED;
+   if(!/^https?:$/.test(location.protocol)) return DEPLOYED;
+   if(/^(localhost|127\.0\.0\.1)/.test(location.hostname)) return DEPLOYED;
+   return location.origin + location.pathname;
+  }catch(e){ return DEPLOYED; }
+ }
+ function bragText(f){ // f = {team, w, l, result, undefeated?}
+  var result = f.result==='champion' ? 'won it all' : (f.result==='sb-loss' ? 'made the Super Bowl' :
+    (f.result==='champ' ? 'made the conference championship' : (RESULT_RANK[f.result]>=1 ? 'made the playoffs' : 'gave it everything')));
+  var rec = f.w+'-'+f.l+((f.t||0)?('-'+f.t):'');
+  var undefeated = f.undefeated ? ' A perfect '+f.w+'-0 regular season.' : '';
+  return 'I went '+rec+' and '+result+' with '+f.team+'.'+undefeated+' Can you go 20-0? '+bragUrl();
+ }
+ function bragCopy(text){
+  return new Promise(function(resolve){
+   var done = function(okk){ resolve(okk); };
+   try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+     navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(legacyCopy(text)); });
+     return;
+    }
+   }catch(e){}
+   done(legacyCopy(text));
+  });
+ }
+ function legacyCopy(text){
+  try{
+   var ta = document.createElement('textarea');
+   ta.value = text; ta.setAttribute('readonly','');
+   ta.style.cssText = 'position:fixed;left:-9999px;top:0;';
+   document.body.appendChild(ta); ta.select();
+   var okk = document.execCommand('copy');
+   ta.remove(); return !!okk;
+  }catch(e){ return false; }
+ }
+
+ // ---- the test rig: a Map-backed KV with fault hooks (interrupted write, corruption, quota,
+ //      unavailable, two tabs) — the battery drives this, the real screens never see it ----
+ function makeTestKV(){
+  var store = new Map();
+  return {
+   name:'map-kv', store:store, failNext:0, quotaMode:false, down:false,
+   available:function(){ return !this.down; },
+   getItem:function(k){ if(this.down) throw new Error('unavailable'); return store.has(k)?store.get(k):null; },
+   setItem:function(k,v){
+    if(this.down) throw new Error('unavailable');
+    if(this.quotaMode) throw new Error('QuotaExceededError');
+    if(this.failNext>0){ this.failNext--; throw new Error('SimulatedInterruptedWrite'); }
+    store.set(k,String(v));
+   },
+   removeItem:function(k){ if(this.down) throw new Error('unavailable'); store.delete(k); }
+  };
+ }
+ function _test(){
+  var rig = { pass:0, fail:0, lines:[] };
+  var ok = function(c, label){ rig.lines.push((c?'PASS  ':'FAIL  ')+label); c?rig.pass++:rig.fail++; };
+  var base = makeTestKV();
+  var savedKv = kv; kv = base;
+  try{
+   var env = function(slot, kind, extra){ return Object.assign({ kind:kind||'season', schemaVersion:1, engineVersion:'w56-ts-a1',
+     dataVersion:'csv-77a2f1', slot:slot, savedAt:new Date().toISOString(), payload:Object.assign({ stub:true }, extra||{}) }); };
+   // T1 · round trip
+   var p = null;
+   save('A', env('A')).then(function(r1){
+    ok(r1.ok===true, 'T1 save ok'); return load('A');
+   }).then(function(l1){
+    ok(l1.status==='ok' && l1.envelope.payload.stub===true, 'T1 load ok (payload opaque, round trip)');
+    return list();
+   }).then(function(l2){
+    ok(l2.slots.length===3 && l2.slots[0].slot==='A' && l2.slots[0].kind==='season' && l2.slots[1].empty===true, 'T1 list reads the header only');
+    // T2 · the envelope law refuses garbage
+    return save('B', { kind:'nonsense', payload:{} });
+   }).then(function(r2){
+    ok(r2.ok===false && r2.reason==='invalid-envelope' && r2.field==='kind', 'T2 bad envelope refused');
+    return load('B');
+   }).then(function(l3){
+    ok(l3.status==='empty', 'T2 refused write left the slot empty');
+    // T3 · interrupted write: the tmp dies, the current survives, the next save heals
+    base.failNext = 1;
+    return save('B', env('B','draft'));
+   }).then(function(r3){
+    ok(r3.ok===false && r3.reason==='write-failed', 'T3 interrupted write reported');
+    ok(base.store.get(kCur('B'))==null, 'T3 current untouched by the interrupted write');
+    return save('B', env('B','draft'));
+   }).then(function(r4){
+    ok(r4.ok===true, 'T3 the next save heals');
+    return save('B', env('B','draft')); // the second save lays the one-deep backup for T4
+   }).then(function(r4b){
+    ok(r4b.ok===true, 'T3 a second save lays the backup');
+    // T4 · corruption with a good backup heals from the backup
+    base.store.set(kCur('B'), '{not json');
+    return load('B');
+   }).then(function(l4){
+    ok(l4.status==='ok' && l4.usedBackup===true && l4.repairedFrom==='backup', 'T4 corrupt current restored from the one-deep backup');
+    // T5 · corruption with no usable backup reports corrupt
+    base.store.set(kCur('B'), '{also not'); base.store.set(kBak('B'), '{neither');
+    return load('B');
+   }).then(function(l5){
+    ok(l5.status==='corrupt', 'T5 corrupt with no backup reads corrupt');
+    // T6 · quota: the expendable bytes prune first, the run itself is never evicted
+    base.store.set(kDel('B'), '{"trash":1}');
+    base.quotaMode = true;
+    return save('B', env('B','week'));
+   }).then(function(r6){
+    base.quotaMode = false;
+    ok(r6.ok===false && r6.reason==='quota', 'T6 quota refused the write instead of evicting a run');
+    ok((r6.pruned||[]).indexOf('trash:B')>=0, 'T6 the expendable bytes pruned first (trash, backup)');
+    ok(base.store.get(kCur('B'))==='{also not', 'T6 the existing slot bytes were never the price');
+    // T7 · unavailable reads typed
+    base.down = true;
+    return load('C');
+   }).then(function(l7){
+    ok(l7.status==='unavailable', 'T7 unavailable is a typed result');
+    base.down = false;
+    // T8 · newer-version is kept, never deleted, never faked
+    return save('C', Object.assign(env('C'), { schemaVersion:2 })).then(function(r8){
+     ok(r8.ok===true, 'T8 a newer envelope stores fine (storage does not judge versions)');
+     return load('C');
+    });
+   }).then(function(l8){
+    ok(l8.status==='newer-version' && l8.envelope.schemaVersion===2, 'T8 newer-version loads typed and kept');
+    // T9 · soft delete + restore
+    return save('A', env('A')).then(function(){ return remove('A'); }).then(function(r9){
+     ok(r9.ok===true && r9.soft===true, 'T9 soft delete');
+     return list();
+    }).then(function(l9){
+     ok(l9.slots[0].empty===true, 'T9 the soft-deleted slot reads empty in the list');
+     return restore('A');
+    }).then(function(r10){
+     ok(r10.ok===true, 'T9 restore brings the run back');
+     return load('A');
+    }).then(function(l10){
+     ok(l10.status==='ok', 'T9 the restored slot loads');
+     // T11 · the stats elimination trigger + the double-count guard
+     var season = env('A','season',{ statsRecorded:false, user:{ team:'Carolina Panthers', w:14, l:3, t:0, result:'champion', year:2026, undefeated:false } });
+     return applySeason('A', season).then(function(s1){
+      ok(s1.applied===true && s1.franchise.titles===1 && s1.legend===248, 'T11 the elimination moment records once (legend 120 title + 100 champion + 28 wins = 248)');
+      return applySeason('A', Object.assign({}, season, { payload:Object.assign({}, season.payload, { statsRecorded:true }) }));
+     }).then(function(s2){
+      ok(s2.applied===false && s2.reason==='already-recorded', 'T11 the payload flag refuses the double count');
+      return applySeason('A', season);
+     }).then(function(s3){
+      ok(s3.applied===false && s3.reason==='ledger', 'T11 the ledger refuses the replayed season too');
+      // T12 · migrate is a no-op forward walk on v1
+      return migrate();
+     }).then(function(m){
+      ok(m.status==='ok' && m.kept===1, 'T12 migrate walks forward, keeps the newer-version slot');
+     });
+    });
+   }).catch(function(err){ ok(false, 'unexpected rig error — '+String(err).slice(0,90)); })
+    .then(function(){ kv = savedKv; if(typeof window!=='undefined') window.__zpbStorageTest = rig; });
+  }catch(e){ kv = savedKv; ok(false, 'rig threw — '+String(e).slice(0,90)); }
+  return rig;
+ }
+
+ // ---- the Phase 0 UI showcase (?storage=1) — the design surface, not a screen wiring ----
+ function showcaseMount(){
+  if(document.querySelector('.zpb-st-shell')) return;
+  var shell = document.createElement('div'); shell.className = 'zpb-st-shell';
+  document.body.appendChild(shell);
+  var demoKv = makeTestKV(); // the showcase never touches the real saves
+  var savedKv = kv; kv = demoKv;
+  var T = 'Carolina Panthers';
+  var mk = function(slot, kind, savedMinAgo, user, stubs){
+   return { kind:kind, schemaVersion:1, engineVersion:'w56-ts-a1', dataVersion:'csv-77a2f1', slot:slot,
+     savedAt:new Date(Date.now()-savedMinAgo*60000).toISOString(), payload:Object.assign({ stub:true }, stubs||{}) };
+  };
+  var seeds = [
+   mk('A','week', 34, T, { week:10, record:{ w:7, l:2, t:0 } }),
+   mk('B','draft', 60*26, T, { round:3, pickOverall:74 }),
+   mk('C','season', 60*24*9, 'San Francisco 49ers', { user:{ team:'San Francisco 49ers', w:12, l:5, t:0, result:'sb-loss' }, champion:'Kansas City Chiefs' })
+  ];
+  var seq = Promise.resolve();
+  seeds.forEach(function(e){ seq = seq.then(function(){ return save(e.slot, e); }); });
+  var prof = profileApi;
+  prof.touch({ lastTeam:T });
+  prof.award({ id:'title-Carolina Panthers', label:'Super Bowl champion', team:T });
+  prof.award({ id:'undefeated', label:'Undefeated regular season', team:T });
+  var SH = shell;
+  var TABS = [
+   ['CONTINUE', tabContinue], ['SLOTS', tabSlots], ['OVERWRITE', tabOverwrite],
+   ['PROFILE', tabProfile], ['SETTINGS', tabSettings], ['BRAG', tabBrag], ['STATES', tabStates]
+  ];
+  var cur = 0;
+  var lg = function(t){ return (typeof zpbTeamLogo==='function') ? zpbTeamLogo(t) : ''; };
+  var ab = function(t){ return (typeof TEAM_ABBR!=='undefined' && TEAM_ABBR[t]) ? TEAM_ABBR[t] : t; };
+  function shellHead(){
+   return '<div class="zpb-st-demohead"><h2>STORAGE \u00b7 PHASE 0 DESIGN</h2>'
+    + '<span class="zpb-st-sub">the walkthrough \u00b7 the real screens adopt these pieces at the wiring commit</span>'
+    + '<button class="zpb-st-quiet" id="zpb-st-exit">Close</button></div>'
+    + '<div class="zpb-st-tabs">'+TABS.map(function(t,i){ return '<button data-tt="'+i+'" class="'+(i===cur?'zpb-st-tnote-on':'')+'">'+t[0]+'</button>'; }).join('')+'</div>';
+  }
+  function rel(iso){
+   var m = Math.max(1, Math.round((Date.now()-Date.parse(iso))/60000));
+   if(m<60) return 'saved '+m+' min ago';
+   var h = Math.round(m/60); if(h<36) return 'saved '+h+'h ago';
+   return 'saved '+Math.round(h/24)+' days ago';
+  }
+  function phaseLine(e){
+   if(e.kind==='draft') return 'Mid-draft \u00b7 Round '+((e.payload&&e.payload.round)||1);
+   if(e.kind==='week'){ var r = (e.payload&&e.payload.record)||{}; return 'Week '+((e.payload&&e.payload.week)||1)+' \u00b7 '+(r.w||0)+'-'+(r.l||0)+((r.t||0)?('-'+r.t):''); }
+   var u = (e.payload&&e.payload.user)||{}; return 'Season complete \u00b7 '+(u.w||0)+'-'+(u.l||0)+' \u00b7 '+(u.result==='sb-loss'?'Super Bowl runners-up':'Season over');
+  }
+  function tabContinue(){
+   return '<div class="zpb-st-card zpb-st-continue">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Welcome back</span>'
+    + '<div class="zpb-st-row" style="justify-content:center;">'+lg(T)+'<span class="zpb-st-big zpb-st-teamname">'+T.toUpperCase()+'</span></div>'
+    + '<div class="zpb-st-phaseline">Week 10 \u00b7 7-2 \u00b7 the Ravens come to town</div>'
+    + '<div><button class="zpb-st-pill">CONTINUE</button></div>'
+    + '<div class="zpb-st-slotrow">'
+    + '<span class="zpb-st-slotchip zpb-st-on"><b>A</b> '+lg(T)+' '+ab(T)+' \u00b7 W10</span>'
+    + '<span class="zpb-st-slotchip"><b>B</b> '+lg(T)+' '+ab(T)+' \u00b7 R3</span>'
+    + '<span class="zpb-st-slotchip"><b>C</b> SF \u00b7 12-5</span>'
+    + '</div>'
+    + '<button class="zpb-st-quiet">start something new</button>'
+    + '<div class="zpb-st-sub">The page opens with the run you left. CONTINUE rides the newest slot; the chips jump straight to another one. No dialog, no file, no account.</div>'
+    + '</div>';
+  }
+  function slotCard(s, active, empty, newer){
+   var letter = s.slot;
+   if(empty) return '<div class="zpb-st-slot zpb-st-isempty"><span class="zpb-st-letter">'+letter+'</span>'
+    + '<span class="zpb-st-sub">Empty slot \u2014 a new draft lands here first, silently.</span></div>';
+   return '<div class="zpb-st-slot'+(active?' zpb-st-isactive':'')+'">'
+    + '<span class="zpb-st-letter">'+letter+'</span>'
+    + '<span class="zpb-st-teamname">'+lg(s.team||T)+(s.team||T)+'</span>'
+    + '<span class="zpb-st-phase">'+phaseLine(s.envelope)+'</span>'
+    + '<span class="zpb-st-kinds"><span class="zpb-st-kindchip'+(s.envelope.kind!=='season'?' zpb-st-kdim':'')+'">'+s.envelope.kind+'</span>'
+    + (newer?'<span class="zpb-st-kindchip zpb-st-kdim">newer version</span>':'')+'</span>'
+    + '<span class="zpb-st-saved">'+rel(s.envelope.savedAt)+' \u00b7 v'+s.envelope.schemaVersion+'</span>'
+    + '</div>';
+  }
+  function tabSlots(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the slot selector \u2014 three runs, side by side</div>'
+    + '<div class="zpb-st-slots">'
+    + slotCard({ slot:'A', team:T, envelope:seeds[0] }, true)
+    + slotCard({ slot:'B', team:T, envelope:seeds[1] })
+    + slotCard({ slot:'C', team:'San Francisco 49ers', envelope:seeds[2] })
+    + '</div>'
+    + '<div class="zpb-st-card"><span class="zpb-st-speclabel">the empty third slot reads as an invitation, not an error</span>'
+    + '<div class="zpb-st-slots" style="margin-top:10px;">'+slotCard({ slot:'A', team:T, envelope:seeds[0] })+slotCard({ slot:'B', team:T, envelope:seeds[1] })+slotCard({ slot:'C' }, false, true)+'</div></div>'
+    + '<div class="zpb-st-sub">A new draft takes the first empty slot silently (the Owner\u2019s law). All three full \u2192 the overwrite caution. The gold ring marks the slot the page will open.</div>'
+    + '</div>';
+  }
+  function tabOverwrite(){
+   return '<div class="zpb-st-card">'
+    + '<span class="zpb-st-kicker" style="color:var(--bad);">All three slots are full</span>'
+    + '<div class="zpb-st-big" style="font-size:1.05rem;margin-top:4px;">Where does the new draft go?</div>'
+    + '<div class="zpb-st-ocards">'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">A</span><span style="min-width:0;"><b style="font-size:.86rem;">'+T+'</b><br><span class="zpb-st-sub">Week 10 \u00b7 7-2 \u00b7 '+rel(seeds[0].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">B</span><span style="min-width:0;"><b style="font-size:.86rem;">'+T+'</b><br><span class="zpb-st-sub">Mid-draft \u00b7 Round 3 \u00b7 '+rel(seeds[1].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">C</span><span style="min-width:0;"><b style="font-size:.86rem;">San Francisco 49ers</b><br><span class="zpb-st-sub">Season \u00b7 12-5 \u00b7 '+rel(seeds[2].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '</div>'
+    + '<div class="zpb-st-olaw">Overwriting erases that run. Career stats and achievements stay \u2014 they live outside the slots, keyed by franchise. The first tap arms the row; the second confirms. No hidden third step.</div>'
+    + '</div>';
+  }
+  function legendTable(){
+   var frs = [ ['Carolina Panthers', 1, '14-3', 'Champions', 248], ['San Francisco 49ers', 2, '12-5', 'Super Bowl lost', 84], ['Kansas City Chiefs', 1, '11-6', 'Champions', 242] ];
+   return '<table class="zpb-st-ftable"><thead><tr><th>Franchise</th><th>Seasons</th><th>Total</th><th>Best run</th><th>Legend</th></tr></thead><tbody>'
+    + frs.map(function(f,i){ return '<tr'+(i===0?' class="zpb-st-fme"':'')+'><td>'+lg(f[0])+f[0]+'</td><td>'+f[1]+'</td><td>'+f[2]+'</td><td>'+f[3]+'</td><td><b>'+f[4]+'</b></td></tr>'; }).join('')
+    + '</tbody></table>';
+  }
+  function tabProfile(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the profile panel \u2014 the corner avatar opens the career</div>'
+    + '<div class="zpb-st-card zpb-st-profile">'
+    + '<div class="zpb-st-row"><span class="zpb-st-avwrap"><span class="zpb-st-avatar">'+lg(T)+'</span><span class="zpb-st-avdot"></span></span>'
+    + '<div><span class="zpb-st-kicker zpb-st-gold">Career</span><div class="zpb-st-big" style="font-size:1rem;">Carolina Panthers \u00b7 and counting</div></div></div>'
+    + '<div class="zpb-st-legend"><b>248</b><span class="zpb-st-sub">legend score \u2014 1 title \u00b7 best run Champions \u00b7 14 wins \u00b7 explained in the Guide</span></div>'
+    + '<div class="zpb-st-achips"><span class="zpb-st-achip"><b>\u2605</b> Super Bowl champion</span><span class="zpb-st-achip"><b>\u2605</b> Undefeated regular season</span></div>'
+    + legendTable()
+    + '<div class="zpb-st-sub">The legend ranks the franchises you have coached. A title is worth 120, the best run 0\u2013100 by its ladder, two per win, 30 per undefeated season \u2014 integers, explainable, the Guide carries the table.</div>'
+    + '</div>'
+    + '<div class="zpb-st-card zpb-st-profile"><span class="zpb-st-kicker">First visit \u2014 the empty state, word for word</span>'
+    + '<div class="zpb-st-sub" style="font-size:.86rem;color:var(--text);">\u201cNo achievements yet \u2014 finish a season to start your legacy.\u201d</div>'
+    + '<div class="zpb-st-sub">Never a blank panel. The avatar shows the initial until a franchise is chosen.</div></div>'
+    + '</div>';
+  }
+  function tabSettings(){
+   return '<div class="zpb-st-card">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Save data</span>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zrb,var(--accent));">A</span><span style="min-width:0;"><b style="font-size:.82rem;">'+T+'</b><br><span class="zpb-st-sub">Week 10 preview \u00b7 autosave</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">18 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zpb-st-dim,var(--sub));">B</span><span style="min-width:0;"><b style="font-size:.82rem;">'+T+'</b><br><span class="zpb-st-sub">Mid-draft \u00b7 Round 3</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">233 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zpb-st-dim,var(--sub));">C</span><span style="min-width:0;"><b style="font-size:.82rem;">San Francisco 49ers</b><br><span class="zpb-st-sub">Completed season \u00b7 stays until overwritten</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">25 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-sub">Storage available</span><span class="zpb-st-oright" style="flex:1 1 auto;"><span class="zpb-st-meter"><i style="width:6%;"></i></span><span class="zpb-st-sizechip">276 KB \u00b7 of about 5,000 KB</span></span></div>'
+    + '<div class="zpb-st-setrow"><span style="min-width:0;"><b style="font-size:.82rem;">Softer cinematics</b><br><span class="zpb-st-sub">The during-game show shortens; nothing else changes.</span></span><span class="zpb-st-oright"><span class="zpb-st-toggle" id="zpb-st-tog"><i></i></span></span></div>'
+    + '<div class="zpb-st-hostlaw">Saves live in this browser, for this address. Clearing the browser\u2019s data, private browsing, or a new host starts fresh \u2014 nothing can restore them, and the game will never say otherwise. The hidden copy behind each slot protects a failed write only.</div>'
+    + '<div class="zpb-st-row" style="justify-content:flex-end;margin-top:10px;"><button class="zpb-st-quiet zpb-st-danger">clear all saves \u00b7 achievements stay</button></div>'
+    + '</div>';
+  }
+  function tabBrag(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the brag share \u2014 one button on the results screen</div>'
+    + '<div class="zpb-st-card zpb-st-bragbox">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Season complete</span>'
+    + '<div class="zpb-st-big" style="font-size:1.05rem;">Carolina Panthers \u00b7 Super Bowl champions</div>'
+    + '<div class="zpb-st-bragtext">I went <b>14-3</b> and won it all with the Carolina Panthers. Can you go 20-0? <b>https://kozikosi.github.io/Football-Sim/</b></div>'
+    + '<div class="zpb-st-row"><button class="zpb-st-pill" id="zpb-st-bragbtn">COPY YOUR BRAG</button><span class="zpb-st-copied" id="zpb-st-cop">copied \u2014 paste it anywhere</span></div>'
+    + '<div class="zpb-st-sub">The link is the deployed game, never a local path, never a save. No downloads, no export screens \u2014 the clipboard and a toast, that is the whole feature.</div>'
+    + '</div></div>';
+  }
+  function tabStates(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the four honest states \u2014 what the user reads, word for word</div>'
+    + '<div class="zpb-st-states">'
+    + '<div class="zpb-st-state zpb-st-empty"><b class="zpb-st-sth">Empty</b><p>Nothing here yet. Start a draft and this slot keeps your place.</p></div>'
+    + '<div class="zpb-st-state zpb-st-corrupt"><b class="zpb-st-sth">Damaged \u00b7 backup used</b><p>This save was damaged. Your last good copy \u2014 saved 2h ago \u2014 was restored.</p></div>'
+    + '<div class="zpb-st-state zpb-st-corrupt"><b class="zpb-st-sth">Damaged \u00b7 no backup</b><p>This save is damaged beyond use, and no backup could help. The slot had to be reset. Career stats and achievements are safe.</p></div>'
+    + '<div class="zpb-st-state zpb-st-newer"><b class="zpb-st-sth">Newer version</b><p>This save came from a newer version of the game. It is kept exactly as it is \u2014 update the page to continue.</p></div>'
+    + '<div class="zpb-st-state zpb-st-unavail"><b class="zpb-st-sth">Unavailable</b><p>Storage is not available in this session \u2014 private browsing, or the browser refused. You can play, but nothing will be kept.</p></div>'
+    + '<div class="zpb-st-state"><b class="zpb-st-sth">Two tabs</b><p>This page was opened in another tab \u2014 that tab now keeps the saves. Continue here and this tab takes the pen back.</p></div>'
+    + '</div>'
+    + '<div class="zpb-st-hostlaw">Every state says what IS, and never promises a recovery that does not exist. The backup lives inside the same storage origin \u2014 after a data clear, it is gone with everything else.</div>'
+    + '</div>';
+  }
+  function render(){
+   SH.innerHTML = '<div class="zpb-st-wrap">'+shellHead()+'<div class="zpb-st-spec">'+TABS[cur][1]()+'</div>'
+    + '<div class="zpb-st-sub" style="text-align:center;">Phase 0 \u00b7 the module behind this surface passes its 25-check rig (ZPBStorage._test) \u00b7 the envelope is the only contract \u00b7 the payload stays opaque</div></div>';
+   SH.querySelectorAll('[data-tt]').forEach(function(b){ b.addEventListener('click', function(){ cur = +b.getAttribute('data-tt'); render(); }); });
+   var ex = SH.querySelector('#zpb-st-exit'); if(ex) ex.addEventListener('click', function(){ kv = savedKv; SH.remove(); });
+   var tog = SH.querySelector('#zpb-st-tog'); if(tog) tog.addEventListener('click', function(){ tog.classList.toggle('zpb-st-son'); });
+   var bb = SH.querySelector('#zpb-st-bragbtn');
+   if(bb) bb.addEventListener('click', function(){
+    bragCopy(bragText({ team:T, w:14, l:3, result:'champion' })).then(function(okk){
+     var c = SH.querySelector('#zpb-st-cop'); if(c && okk) c.classList.add('zpb-st-show');
+    });
+   });
+  }
+  seq.then(render).catch(function(){ kv = savedKv; });
+ }
+ if(typeof window!=='undefined' && /(^|[?&])storage=1/.test(String(location.search))){
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', showcaseMount);
+  else showcaseMount();
+ }
+
+ var api = {
+  schemaVersion: SCHEMA,
+  slots: SLOTS,
+  list: list, load: load, save: save, remove: remove, restore: restore, migrate: migrate,
+  stats: { read:function(){ return available() ? readJSON(K_STATS, null) || statsDefault() : statsDefault(); },
+           legend: legendOf, applySeason: applySeason, blank: blankFrac },
+  settings: settingsApi,
+  profile: profileApi,
+  brag: { text: bragText, copy: bragCopy, url: bragUrl },
+  available: available,
+  _test: _test,
+  _showcase: showcaseMount,
+  _useKV: function(x){ var old = kv; kv = x; return old; } // the battery swaps the KV; the app never does
+ };
+ return api;
+})();
+</script>
