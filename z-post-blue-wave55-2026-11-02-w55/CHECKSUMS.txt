@@ -1,0 +1,11 @@
+49161f118e587701f1d639346e22d4d2  Football-Sim-Z-post-blue-w55.html
+ede3da63ae2220ec72689524d348d905  UPDATE-README-w55.md
+a120a6b9df356812a5c6a3ee871381ca  notes/W55-INTAKE-LEDGER.md
+12fc01ca2379c8d2001f749e720becbc  notes/W55-BUILD-REPORT.md
+98ca942308848aed578a67b67c4f04cc  tools/zpb_w55.py
+92a2e1b48b318825ffc3ef62e555710d  tools/w55_mobile.js
+6f4830d100d1317c80b28cf5d76a90e2  tools/w55_live.js
+96d34102a7376f8fc3157d8848c1d755  tools/w55_nodecheck.js
+8b633ebc1b2eff191d21599915efd3ab  _agents/zai/START-OF-CHAT-ZAI.md
+5e0e7f30d79af81d7e2df19ca071e9b8  _agents/zai/ZAI.md
+06a077d41b968da37933871a8b21adb5  _agents/zai/END-OF-CHAT-ZAI.md
