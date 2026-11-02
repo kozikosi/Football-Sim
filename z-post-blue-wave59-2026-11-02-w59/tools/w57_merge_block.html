@@ -1,0 +1,104 @@
+<style id="zpb-w57-css">
+/* ================= Z-POST-BLUE W57 (the Owner's round-57) =================
+   The draft card returns to TWO lines — name · Draft on top, the six stats spread on the
+   bottom (FILLS sits right under the button) — the priority number wears the gone/wins ink,
+   the pregame marquee pins to the top of the phone stage so the key players never cover the
+   logos, and the badge cascade runs 0.25s faster. Desktop untouched. */
+
+/* 1 · THE PHONE DRAFT CARD — two lines, labeled, in the Owner's order:
+   pos · team · ovr · wins · priority · gone, with FILLS right under the Draft button. */
+@media (max-width:760px){
+ #draftTable2 td[data-label]::before{display:block;line-height:1.05;margin-right:0;}
+ #draftTable2 td.dc-ovr::before{display:block;margin-right:0;}
+ #draftTable2 tr{row-gap:2px;padding:4px 8px;}
+ #draftTable2 td.dc-name{grid-column:1/9;grid-row:1;}
+ #draftTable2 td.dc-btn{grid-column:9/13;grid-row:1;}
+ #draftTable2 td[data-label="Pos"]{grid-column:1/2;grid-row:2;}
+ #draftTable2 td[data-label="Team"]{grid-column:2/4;grid-row:2;}
+ #draftTable2 td.dc-ovr{grid-column:4/5;grid-row:2;font-size:.68rem;padding:0 !important;background:none !important;border-radius:0;} /* w57: the w55 chip wash retires from the plain bottom-line stat */
+ #draftTable2 td.dc-wins{grid-column:5/6;grid-row:2;}
+ #draftTable2 td.dc-pri{grid-column:6/8;grid-row:2;}
+ #draftTable2 td.dc-gone{grid-column:8/10;grid-row:2;text-align:left !important;} /* w57: 2 cols — the GONE label must fit (1 col clipped it to GONI) */
+ #draftTable2 td.dc-fills{grid-column:10/13;grid-row:2;text-align:right !important;}
+ #draftTable2 td:nth-child(2),#draftTable2 td:nth-child(3),#draftTable2 td.dc-wins,#draftTable2 td.dc-pri,#draftTable2 td.dc-gone,#draftTable2 td.dc-fills{font-size:.68rem;}
+ #draftTable2 td .zpb-ovrchips{display:none;} /* the team chips retire from the phone OVR cell — the Team cell carries the crest */
+}
+
+/* 2 · THE PRIORITY NUMBER WEARS THE GONE/WINS INK — the accent2 family, the exact same
+   declarations the gone value carries, in every theme state (the w56 gold retires on the card). */
+@media (max-width:760px){
+ #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+ :root[data-theme="dark"] #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+ :root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57: the gone/wins mixes deepen to the same bar - pri matches gone exactly */
+}
+@media (max-width:760px) and (prefers-color-scheme: light){
+ :root:not([data-theme="dark"]) #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));}
+}
+@media (max-width:760px) and (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) #draftTable2 td.dc-pri{color:var(--accent2,var(--accent));}
+}
+
+/* 3 · THE PREGAME MARQUEE PINS TO THE TOP on a phone — the title · logos · sub block sits at
+   the top of the stage and the key-player pairs fan out BELOW it, so the first pair can never
+   land on the logos again (the w52 Super Bowl logos shrink to fit the same law). */
+@media (max-width:600px){
+ .zpb-rep-intro{justify-content:flex-start;padding-top:22px;gap:9px;}
+ .zpb-intro-logos{gap:12px;}
+ .zpb-replay:not(.zpb-sb) .zpb-intro-logos img{width:50px;height:50px;}
+ .zpb-replay.zpb-sb .zpb-intro{padding-top:56px;} /* w57: the rising cup keeps the sky above the marquee */
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:54px;height:54px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.5rem;}
+ .zpb-replay.zpb-sb .zpb-intro-title{font-size:1.3rem;} /* w57: the SB marquee tightens so the fan clears it with room for the fade drift */
+ .zpb-replay.zpb-sb .zpb-intro-cup{top:2%;font-size:2.1rem;}
+ .zpb-replay.zpb-sb .zpb-intro-banner{bottom:2%;} /* w57: the landed banner clears the last fan pair (the entrance slides it up 12px) */
+}
+
+/* 4 - THE CONTRAST PASS - the audit's failing pairs, light and dark, every team. */
+
+/* 4a - the raw --tA2 consumers read the LIGHT accent in dark today (the rc-title measured 1.1:1 -
+   invisible); the takeover's own dark accents already ride tA2d - the raw var joins them */
+:root[data-theme="dark"][data-zpbteam]{--tA2:var(--tA2d) !important;} /* !important: the pack paints --tA2 inline on the root */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"])[data-zpbteam]{--tA2:var(--tA2d) !important;} }
+
+/* 4b - the UNIT REPORT CARD title + grade wear the halfway ink in light, gold2 in dark */
+.zpb-rc-title{color:var(--tTxM,var(--tA2,var(--gold3)));}
+:root[data-theme="dark"] .zpb-rc-title,:root:not([data-theme="light"]) .zpb-rc-title{color:var(--gold2,#e8c87e);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-rc-title{color:var(--gold2,#e8c87e);} }
+:root[data-theme="light"] .zpb-rc-grade,:root:not([data-theme="dark"]) .zpb-rc-grade{color:var(--tTxM,var(--tA2,var(--gold3)));}
+:root[data-theme="dark"] .zpb-rc-grade,:root:not([data-theme="light"]) .zpb-rc-grade{color:var(--tTxMd,var(--tA2d,var(--gold3)));} /* w57: the tile's own row vars paint --tA2 inline - the dark grade rides tTxMd above them */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-rc-grade{color:var(--tTxMd,var(--tA2d,var(--gold3)));} }
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-rc-grade{color:var(--tTxM,var(--tA2,var(--gold3)));} }
+
+/* 4c - the pick-grade slot chip's ink - ongold resolves cream for dark-accent franchises (1.6:1) */
+.zpb-pg-slot{color:#2c1e0c;}
+
+/* 4d - the DRAFT button joins the halfway-rose law it already carries on the start button */
+#draftTable2 td.dc-btn .resetbtn{color:var(--tTxM,var(--tA2,var(--accent2,var(--accent))));}
+:root[data-theme="dark"] #draftTable2 td.dc-btn .resetbtn,:root:not([data-theme="light"]) #draftTable2 td.dc-btn .resetbtn{color:var(--tTxMd,var(--tA2d,var(--accent2,var(--accent))));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 td.dc-btn .resetbtn{color:var(--tTxMd,var(--tA2d,var(--accent2,var(--accent))));} }
+
+/* 4e - the card's colored values (wins . priority . gone) lift to the halfway mix in dark */
+:root[data-theme="dark"] #draftTable2 td.dc-wins,:root:not([data-theme="light"]) #draftTable2 td.dc-wins,
+:root[data-theme="dark"] #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-pri,
+:root[data-theme="dark"] #draftTable2 td.dc-gone,:root:not([data-theme="light"]) #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,var(--accent)) 50%,var(--text));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 td.dc-wins,:root:not([data-theme="light"]) #draftTable2 td.dc-pri,:root:not([data-theme="light"]) #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,var(--accent)) 50%,var(--text));} }
+
+/* 4f - the FILLS link rides the halfway ink too */
+#draftTable2 a.slotchg{color:var(--tTxM,var(--tA2,var(--selfg)));}
+:root[data-theme="dark"] #draftTable2 a.slotchg,:root:not([data-theme="light"]) #draftTable2 a.slotchg{color:var(--tTxMd,var(--tA2d,var(--selfg)));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #draftTable2 a.slotchg{color:var(--tTxMd,var(--tA2d,var(--selfg)));} }
+
+/* 4g - the honor title (FIRST-TEAM ALL-PRO) - the halfway gold mix in light, gold2 in dark */
+.zpb-shonor-t{color:color-mix(in srgb,var(--gold3,#9a6b1f) 45%,var(--text));}
+:root[data-theme="dark"] .zpb-shonor-t,:root:not([data-theme="light"]) .zpb-shonor-t{color:var(--gold2,#e8c87e);}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-shonor-t{color:var(--gold2,#e8c87e);} }
+
+/* 4i - the anchor's muted line rides the theme's own sub ink (the tSud/anchId pair dipped) */
+.zpb-anch .narr{color:color-mix(in srgb,var(--anchI,var(--sub,#6b4634)) 72%,var(--zcream,#53382b));} /* w57: the light anchor mixes its own ink toward the deep cream */
+:root[data-theme="dark"] .zpb-anch .narr,:root:not([data-theme="light"]) .zpb-anch .narr{color:color-mix(in srgb,var(--anchId,var(--sub,#c99cae)) 72%,var(--zcream,#53382b));} /* w57: the dark anchor mixes its lighter ink toward the light cream */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-anch .narr{color:color-mix(in srgb,var(--anchId,var(--sub,#c99cae)) 72%,var(--zcream,#53382b));} }
+
+/* 4h - the shimmer's light sweep deepens to the burnished bronze pair; the dark sweep untouched */
+:root[data-theme="light"] .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} /* w57: fixed bronze - the pale zshim default dragged the mean to 2.7 */
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} }
+</style>

@@ -1,0 +1,46 @@
+<script id="zpb-w59-js">
+// ================= Z-POST-BLUE W59 · THE CINEMATICS LOCK =================
+// w59 (Owner): "I can actually click on the buttons behind the cinematic. That is not good.
+// I summed an entire season I was trying to play because I hit that button in the background.
+// The background page should not actually be accessible during the cinematics."
+// While any cinematic overlay is up the page behind is locked twice — pointer-events:none AND
+// the inert attribute (keyboard included). The overlays themselves stay live: the
+// click-to-fast-forward the Owner likes is untouched. When the LAST cinematic closes, a 300ms
+// invisible shield swallows the one accidental click that used to land on a sim button.
+// The story veil covers the page itself; it counts as a cinematic for the shield only.
+(function(){
+'use strict';
+ var SEL = '.zpb-replay-ov,.zpb-prematch,.zpb-sbfin,.zpb-porun,.zpb-restov,.zpb-fin,.zpb-caution-ov,.zpb-st-shell,.confirm-ov';
+ var wasCine = false, shield = null, shieldT = null;
+ function dropShield(){
+  if(shieldT){ clearTimeout(shieldT); shieldT = null; }
+  if(shield && shield.parentNode) shield.parentNode.removeChild(shield);
+  shield = null;
+ }
+ function armShield(){
+  if(shield) return;
+  shield = document.createElement('div');
+  shield.className = 'zpb-clickshield';
+  shield.addEventListener('pointerdown', function(e){ e.stopPropagation(); }, true);
+  shield.addEventListener('click', function(e){ e.stopPropagation(); }, true);
+  document.body.appendChild(shield);
+  shieldT = setTimeout(dropShield, 300);
+ }
+ function sync(){
+  var cine = !!document.querySelector(SEL) || !!document.querySelector('.zpb-story-veil.zpb-veil-on');
+  var wrap = document.querySelector('.wrap');
+  if(cine){
+   dropShield();
+   document.body.classList.add('zpb-cinelock');
+   if(wrap){ try{ wrap.inert = true; }catch(e){} }
+  } else {
+   document.body.classList.remove('zpb-cinelock');
+   if(wrap){ try{ wrap.inert = false; }catch(e){} }
+   if(wasCine) armShield(); // the transition out — the next 300ms of clicks land on the shield
+  }
+  wasCine = cine;
+ }
+ try{ new MutationObserver(sync).observe(document.body, {childList:true, subtree:true}); }catch(e){}
+ sync();
+})();
+</script>

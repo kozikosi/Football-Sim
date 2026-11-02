@@ -1,0 +1,70 @@
+<style id="zpb-w59-css">
+/* ================= Z-POST-BLUE W59 (the Owner's round-59) =================
+   The three ranking pages read as natural cards on the phone (the draft-card treatment),
+   the unit comparison compresses in graduated steps instead of switching to a narrow table,
+   and the cinematics lock the page behind them (a fast click can never sim a season again). */
+
+/* 1 · THE MADDEN RANKINGS CARD — #N · Team · score on ONE line, the anchor story and the
+   bar ride under. The word labels retire ('#' and the score value sit beside the team, not
+   strands at the far right of a wide card); fewer lines, smaller format. */
+@media (max-width:760px){
+ #resultsTable.mstack tr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"rank team score" "story story story" "bar bar bar";gap:2px 8px;align-items:center;padding:7px 10px;}
+ #resultsTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #resultsTable.mstack td::before{content:none !important;}
+ #resultsTable.mstack td.rank{grid-area:rank;font-weight:800;}
+ #resultsTable.mstack td.rank::before{content:'#' !important;}
+ #resultsTable.mstack td:nth-child(2){display:contents;}
+ #resultsTable.mstack td:nth-child(2) .team{grid-area:team;min-width:0;}
+ #resultsTable.mstack td:nth-child(2) .narr{grid-area:story;display:block;margin-top:3px;}
+ #resultsTable.mstack td:nth-child(2) .bar-bg{grid-area:bar;margin-top:5px;}
+ #resultsTable.mstack td.score{grid-area:score;text-align:right !important;font-weight:800;font-variant-numeric:tabular-nums;}
+ #resultsTable.mstack td:nth-child(4){display:none;}
+}
+
+/* 2 · THE POSITION RANKINGS CARD — #N · Crest Team · avg on one line, the player names flow
+   left-aligned beneath like text. No label column dragging everything to weird offsets. */
+@media (max-width:760px){
+ #groupTable.mstack tr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"rank team score" "players players players";gap:2px 8px;align-items:center;padding:7px 10px;}
+ #groupTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #groupTable.mstack td::before{content:none !important;}
+ #groupTable.mstack td.rank{grid-area:rank;font-weight:800;}
+ #groupTable.mstack td.rank::before{content:'#' !important;}
+ #groupTable.mstack td.team{grid-area:team;min-width:0;}
+ #groupTable.mstack td.score{grid-area:score;text-align:right !important;font-weight:800;font-variant-numeric:tabular-nums;}
+ #groupTable.mstack td.narr{grid-area:players;margin-top:3px;display:block;}
+}
+
+/* 3 · THE PLAYER BROWSER CARD — two lines, the draft-card treatment: name · pos · OVR, then
+   Team · SPD · STR compact. Six labelled lines become two, so the card can no longer GROW
+   as the window shrinks. */
+@media (max-width:760px){
+ #playerTable.mstack tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"name pos ovr" "team spd str";gap:1px 8px;align-items:center;padding:6px 10px;}
+ #playerTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #playerTable.mstack td::before{content:none !important;}
+ #playerTable.mstack td.zpb-pb-name{grid-area:name;font-size:.92rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td:nth-child(2){grid-area:pos;}
+ #playerTable.mstack td:nth-child(2) .zpb-poschip{font-size:.6rem;}
+ #playerTable.mstack td.score{grid-area:ovr;text-align:right !important;font-weight:800;}
+ #playerTable.mstack td.zpb-pb-team{grid-area:team;font-size:.68rem;color:var(--tn,var(--text));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td:nth-of-type(5){grid-area:spd;text-align:right !important;}
+ #playerTable.mstack td:nth-of-type(6){grid-area:str;text-align:right !important;}
+ #playerTable.mstack td:nth-of-type(5),#playerTable.mstack td:nth-of-type(6){font-size:.68rem;color:var(--tn,var(--text));font-variant-numeric:tabular-nums;white-space:nowrap;}
+ #playerTable.mstack td:nth-of-type(5)::before,#playerTable.mstack td:nth-of-type(6)::before{content:attr(data-label) ' ' !important;font-size:.6rem;}
+}
+
+/* 4 · THE UNIT COMPARISON COMPRESSES IN STEPS — a full-width table at EVERY width; the
+   paddings and type step down at 1024 · 760 · 480, so the transition is gradual instead of
+   the sudden full-window-to-narrow switch. data-nostack keeps it a real table. */
+table.zpb-unitcmp{width:100%;border-collapse:collapse;}
+table.zpb-unitcmp td{padding:8px 10px;}
+@media (max-width:1024px){ table.zpb-unitcmp td{padding:7px 8px;font-size:.95rem;} }
+@media (max-width:760px){ table.zpb-unitcmp td{padding:6px 6px;font-size:.9rem;} table.zpb-unitcmp td.narr{font-size:.74rem;letter-spacing:.02em;} }
+@media (max-width:480px){ table.zpb-unitcmp td{padding:5px 4px;font-size:.86rem;} table.zpb-unitcmp td.narr{font-size:.7rem;} }
+
+/* 5 · THE CINEMATICS LOCK THE PAGE — while a cinematic overlay is up (the replay, the
+   pregame marquee, the SB storm, the playoff run, the rest stage, the draft finale, the
+   caution, the storage shell, the confirm) the page behind cannot be clicked or tabbed
+   into. The overlays themselves stay live — the click-to-fast-forward is untouched. */
+body.zpb-cinelock .wrap, body.zpb-cinelock nav.footnav, body.zpb-cinelock .zpb-foottheme{pointer-events:none;}
+.zpb-clickshield{position:fixed;inset:0;z-index:89;background:transparent;}
+</style>

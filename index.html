@@ -320,7 +320,7 @@ body{background:
 .tabbtn.active{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));box-shadow:0 4px 14px var(--glow);}
 .resetbtn{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));border-radius:999px;font-weight:700;box-shadow:0 6px 18px var(--glow);transition:transform .12s ease, box-shadow .12s ease;}
 .resetbtn:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px var(--glow);}
-#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#simSeasonBtn,#simPlayoffsBtn,#seasonReviewBtn{font-size:1rem !important;padding:13px 30px !important;}
+#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#simSeasonBtn,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn{font-size:1rem !important;padding:13px 30px !important;} /* w57 (Owner): BEGIN PLAYOFFS wears the SIM PLAYOFFS size */
 
 th.sortable:hover{text-decoration:none;color:var(--text);}
 h2{letter-spacing:-.005em;}
@@ -332,7 +332,7 @@ h2{letter-spacing:-.005em;}
  .footnav{border-radius:16px;margin-top:24px;} .viewhead h2{font-size:1.3rem;}
  #draftTable2,#draftTable2 tbody{display:block;overflow:visible !important;width:100%;}
  #draftTable2 thead{display:none;}
- #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);}
+ #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);} /* w57 (Owner): the 4px accent bar at the card's left edge retires — the line obscured the first letter of the names; the card keeps its wash and its 1px frame */
  #draftTable2 td{display:block;border:0 !important;padding:0 !important;text-align:left !important;min-width:0;font-size:0.8rem;}
  #draftTable2 td[data-label]::before{content:attr(data-label);display:block;font-size:0.56rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);font-weight:700;line-height:1.1;}
  #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:anywhere;}
@@ -477,7 +477,7 @@ th.sortable{cursor:pointer;user-select:none;} th.sortable:hover{text-decoration:
 /* ---- team-color takeover: franchise tokens remap the whole identity ---- */
 :root[data-zpbteam]{
  --accent:var(--tA); --accent2:var(--tA2); --rose:var(--tA3);
- --text:var(--tTx); --sub:color-mix(in srgb,var(--tSu) 55%,var(--zcream,#53382b)); --border:var(--tHr); --rosehair:var(--tHr); /* w57 (Owner): the team soft muted tone deepens toward the neutral cream */
+ --text:var(--tTx); --sub:color-mix(in srgb,var(--tSu) 55%,var(--zcream,#53382b)); --border:var(--tHr); --rosehair:var(--tHr); /* w59 (best of w57, Owner): the team soft muted tone deepens toward the neutral cream */
  --glassbd:var(--tGb); --glow:var(--tGl); --glowA:var(--tGa); --glowB:var(--tGw);
  --bg:var(--tBg); --ongold:var(--tOn);
  --g1:var(--tG1); --g2:var(--tG2); --g3:var(--tG3); --g4:var(--tG4); --g5:var(--tG5); --g6:var(--tG6);
@@ -640,7 +640,7 @@ body[data-home="1"] .hero{display:none;}
 .resetbtn:hover{border-color:var(--accent);color:var(--ongold);
  background:linear-gradient(90deg,var(--tTA,rgba(230,198,125,.25)),var(--tTC,rgba(201,162,75,.18)));
  transform:translateY(-1px);box-shadow:0 8px 22px var(--glow);}
-#startSeasonBtn,#beginSeasonBtn,#beginSeasonBtn2,#simPlayoffsBtn,#seasonReviewBtn, /* w51 (Owner): SIM SEASON gives its color away — it stays in its spot, quiet again */
+#startSeasonBtn,#beginSeasonBtn,#beginSeasonBtn2,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn, /* w51 (Owner): SIM SEASON gives its color away — it stays in its spot, quiet again · w57 (Owner): BEGIN PLAYOFFS wears the same gold pill */
 #nextWeekBtn,#nextRoundBtn,#zrepGo,#zpbRestGo,#goDraftResumeBtn,.zpb-sbfin-go,.zpb-goldcta{ /* w51 (Owner): the gold franchise pill is the CONTINUE color — every button that says Continue wears it */
  background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));color:var(--ongold);
  border:1px solid var(--tBSb);box-shadow:0 10px 26px var(--glow);}
@@ -700,9 +700,9 @@ table.kp tr.kp-mvp{background:var(--tTA,rgba(201,162,75,.12));}
 .zpb-trow{--zr1:transparent;--zr2:transparent;--zr3:transparent;--zrb:transparent;
  --zr1d:transparent;--zr2d:transparent;--zr3d:transparent;--zrbd:transparent;}
 .prow.zpb-trow{background:linear-gradient(90deg,var(--zr1),var(--zr2) 46%,var(--zr3));
- border-left:3px solid var(--zrb);border-radius:10px;padding-left:8px;}
+ border-radius:10px;padding-left:8px;} /* w57 (Owner): the cards-view row loses its 3px left bar — the player card reads clean to its edge */
 tr.zpb-trow{background:linear-gradient(90deg,var(--zr1),var(--zr2) 46%,var(--zr3)) !important;}
-tr.zpb-trow td:first-child{box-shadow:inset 3px 0 0 var(--zrb);}
+tr.zpb-trow td:first-child{box-shadow:none;} /* w57 (Owner): the 3px inset bar rode ON the first letter of every name cell (the phone name cell carries no padding) — the line retires, the wash stays */
 .depth-row.zpb-trow{background:linear-gradient(90deg,var(--zr1),transparent 72%);
  border-left:3px solid var(--zrb);border-radius:8px;padding-left:7px;}
 td.zpb-trow{background:linear-gradient(90deg,var(--zr1),transparent);box-shadow:inset 3px 0 0 var(--zrb);}
@@ -1044,7 +1044,7 @@ nav.footnav{order:8;width:100%;}
 @media (max-width:1120px){
  #draftTable2,#draftTable2 tbody{display:block;overflow:visible !important;width:100%;}
  #draftTable2 thead{display:none;}
- #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);}
+ #draftTable2 tr{display:grid;grid-template-columns:repeat(12,1fr);gap:2px 4px;align-items:end;border:1px solid var(--border);border-radius:10px;margin:5px 0;padding:6px 8px;background:var(--panel2);} /* w57 (Owner): the 4px accent bar at the card's left edge retires — the line obscured the first letter of the names; the card keeps its wash and its 1px frame */
  #draftTable2 td{display:block;border:0 !important;padding:0 !important;text-align:left !important;min-width:0;font-size:0.8rem;}
  #draftTable2 td[data-label]::before{content:attr(data-label);display:block;font-size:0.56rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub);font-weight:700;line-height:1.1;}
  #draftTable2 td.dc-name{grid-column:1 / 9;grid-row:1;font-weight:800;font-size:0.92rem;align-self:center;overflow-wrap:anywhere;}
@@ -1183,8 +1183,8 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-story-kicker{text-align:center;font-size:0.8rem;letter-spacing:.34em;font-weight:800;margin:2px 0 14px;}
 .zpb-story-rail{display:flex;flex-direction:column;gap:14px;}
 .zpb-story-zone{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;}
-.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .7s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */
-.zpb-sbadge b{font-size:1.17rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;} /* w57 (Owner): 18.7px bold - the large-text bar; the ink he loves stays */
+.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .7s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
+.zpb-sbadge b{font-size:1.17rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;} /* w59 (best of w57, Owner): 18.7px bold - the large-text bar */
 .zpb-sbadge i{font-style:normal;font-size:0.56rem;letter-spacing:.16em;color:var(--sub);text-align:center;}
 .zpb-sbadge.zpb-sb-gold{border-color:var(--gold3,var(--accent));box-shadow:0 0 14px var(--gold2,var(--accent)) inset;}
 .zpb-sbadge.zpb-sb-good b{color:var(--good,var(--accent));}
@@ -1194,7 +1194,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-sbadge.zpb-sb-perfect{border-color:var(--gold3,var(--accent));background:linear-gradient(160deg,var(--gold2,var(--accent)),var(--panel2));}
 .zpb-sbreak{flex-basis:100%;height:0;}
 .zpb-szonehead{flex-basis:100%;text-align:center;font-size:0.62rem;letter-spacing:.3em;color:var(--sub);padding:4px 0;}
-.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */
+.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
 .zpb-scard-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
 .zpb-scard-hd b{font-size:0.95rem;}
 .zpb-schiprow{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
@@ -2326,9 +2326,9 @@ const TEAM_DATA = {"Cincinnati Bengals":{"DE1":{"ovr":78,"name":"Boye Mafe"},"DE
 })();
 const DEFAULT_WEIGHTS = {"QB": 320, "RB1": 100, "RB2": 40, "WR1": 60, "WR2": 40, "WR3": 20, "WR4": 5, "TE1": 80, "TE2": 20, "TE3": 5, "OT1": 295, "OT2": 295, "OG1": 295, "OG2": 295, "C": 295, "DE1": 350, "DL5": 5, "DE2": 350, "DT1": 320, "DT2": 300, "DL5": 5, "MIKE": 100, "WILL": 100, "SAM": 60, "LB4": 5, "CB1": 350, "CB2": 295, "CB3": 80, "CB4": 20, "SS": 80, "SS2": 5, "FS": 60, "FS2": 5, "K": 5, "P": 1, "FB": 1};
 const LABELS = { // w34: the label law — NICKEL / DIME, always caps, everywhere
-"DE1": "DE1", "DE2": "DE2", "DT1": "DT1", "DT2": "DT2", "CB1": "CB1", "CB2": "CB2", "CB3": "NICKEL", "CB4": "CB4 / DIME", "OG1": "OG1", "OG2": "OG2", "C": "C", "OT1": "OT1", "OT2": "OT2", "MIKE": "MIKE", "WILL": "WILL", "SAM": "SAM", "LB4": "LB4", "DL5": "DL5", "RB1": "RB1", "RB2": "RB2", "TE1": "TE1", "TE2": "TE2", "SS": "SS", "SS2": "SS2 / Big Nickel", "QB": "QB", "FS": "FS", "FS2": "FS2 / Quarter", "WR1": "WR1", "WR2": "WR2", "WR3": "WR3", "WR4": "WR4", "K": "K", "P": "P", "FB": "FB"};
+"DE1": "DE1", "DE2": "DE2", "DT1": "DT1", "DT2": "DT2", "CB1": "CB1", "CB2": "CB2", "CB3": "NICKEL", "CB4": "DIME", "OG1": "OG1", "OG2": "OG2", "C": "C", "OT1": "OT1", "OT2": "OT2", "MIKE": "MIKE", "WILL": "WILL", "SAM": "SAM", "LB4": "LB4", "DL5": "DL5", "RB1": "RB1", "RB2": "RB2", "TE1": "TE1", "TE2": "TE2", "SS": "SS", "SS2": "SS2 / Big Nickel", "QB": "QB", "FS": "FS", "FS2": "FS2 / Quarter", "WR1": "WR1", "WR2": "WR2", "WR3": "WR3", "WR4": "WR4", "K": "K", "P": "P", "FB": "FB"};
 const GROUPS = [["Quarterback & Skill Positions", ["QB", "RB1", "RB2", "FB", "WR1", "WR2", "WR3", "WR4", "TE1", "TE2"]], ["Offensive Line", ["OT1", "OT2", "OG1", "OG2", "C"]], ["Defensive Line", ["DE1", "DE2", "DT1", "DT2", "DL5"]], ["Linebackers", ["MIKE", "WILL", "SAM", "LB4"]], ["Secondary", ["CB1", "CB2", "CB3", "CB4", "SS", "SS2", "FS", "FS2"]], ["Specialists", ["K", "P"]]]; // w27 (Owner): FB is a skill position
-const GROUP_DEFS = [{"key":"QB","label":"Quarterback","pos":["QB"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB1","label":"RB1","pos":["HB"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB2","label":"RB2","pos":["HB"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"WR1","label":"WR1","pos":["WR"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"WR2","label":"WR2","pos":["WR"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"WR3","label":"WR3","pos":["WR"],"n":1,"rankIndex":2,"cat":"Offense  ·  Positions"},{"key":"WR4","label":"WR4","pos":["WR"],"n":1,"rankIndex":3,"cat":"Offense  ·  Positions"},{"key":"TE1","label":"TE1","pos":["TE"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"TE2","label":"TE2","pos":["TE"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"OT1","label":"OT1","pos":["LT","RT"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"OT2","label":"OT2","pos":["LT","RT"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"OG1","label":"OG1","pos":["LG","RG"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"OG2","label":"OG2","pos":["LG","RG"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"C","label":"Center","pos":["C"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB","label":"Running Backs","pos":["HB"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"WR","label":"Wide Receivers","pos":["WR"],"n":3,"cat":"Offense  ·  Team Units"},{"key":"TE","label":"Tight Ends","pos":["TE"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"RECV","label":"Receiving Corps","pos":["WR","TE"],"n":4,"cat":"Offense  ·  Team Units"},{"key":"OT","label":"Offensive Tackles","pos":["LT","RT"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"OGUARDS","label":"Offensive Guards","pos":["LG","RG"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"OG","label":"Interior OL","pos":["LG","RG","C"],"n":3,"cat":"Offense  ·  Team Units"},{"key":"OL","label":"Offensive Line","pos":["LT","RT","LG","RG","C"],"n":5,"cat":"Offense  ·  Team Units"},{"key":"RUN","label":"Run Game","pos":["LT","RT","LG","RG","C","HB"],"n":7,"cat":"Offense  ·  Team Units"},{"key":"PASS","label":"Pass Game","pos":["LT","RT","LG","RG","C","QB","WR","TE"],"n":10,"cat":"Offense  ·  Team Units"},{"key":"SKILL","label":"Skill Positions","pos":["HB","WR","TE"],"n":6,"cat":"Offense  ·  Team Units"},{"key":"OFFENSE","label":"Offense","pos":["QB","HB","WR","TE","LT","RT","LG","RG","C"],"n":13,"cat":"Offense  ·  Team Units"},{"key":"DE1","label":"DE1","pos":["REDG","LEDG"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"DE2","label":"DE2","pos":["REDG","LEDG"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"DL5","label":"DL5","pos":["DT","REDG","LEDG"],"n":1,"rankIndex":4,"cat":"Defense  ·  Positions"},{"key":"DT1","label":"DT1","pos":["DT"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"DT2","label":"DT2","pos":["DT"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"MIKE","label":"MIKE","pos":["MIKE"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"WILL","label":"WILL","pos":["WILL"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"SAM","label":"SAM","pos":["SAM"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"LB4","label":"LB4","pos":["MIKE","WILL","SAM"],"n":1,"rankIndex":3,"cat":"Defense  ·  Positions"},{"key":"CB1","label":"CB1","pos":["CB"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"CB2","label":"CB2","pos":["CB"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"CB3","label":"Nickel","pos":["CB"],"n":1,"rankIndex":2,"cat":"Defense  ·  Positions"},{"key":"CB4","label":"CB4 / Dime","pos":["CB"],"n":1,"rankIndex":3,"cat":"Defense  ·  Positions"},{"key":"SS","label":"SS","pos":["SS"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"SS2","label":"SS2 / Big Nickel","pos":["SS"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"FS","label":"FS","pos":["FS"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"FS2","label":"FS2 / Quarter","pos":["FS"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"EDGE","label":"Edge Rushers","pos":["REDG","LEDG"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"DT","label":"Defensive Tackles","pos":["DT"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"DL","label":"Defensive Line","pos":["DT","REDG","LEDG"],"n":4,"cat":"Defense  ·  Team Units"},{"key":"LB","label":"Linebackers","pos":["MIKE","WILL","SAM"],"n":3,"cat":"Defense  ·  Team Units"},{"key":"FRONT7","label":"Front Seven","pos":["DT","REDG","LEDG","MIKE","WILL","SAM"],"n":7,"cat":"Defense  ·  Team Units"},{"key":"CB","label":"Cornerbacks","pos":["CB"],"n":4,"cat":"Defense  ·  Team Units"},{"key":"S","label":"Safeties","pos":["FS","SS"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"SEC","label":"Secondary","pos":["CB","FS","SS"],"n":6,"cat":"Defense  ·  Team Units"},{"key":"PRIMCOV","label":"Primary Coverage","pos":["DT","REDG","LEDG","CB"],"n":5,"parts":[{"pos":["CB"],"n":1},{"pos":["DT","REDG","LEDG"],"n":4}],"cat":"Defense  ·  Team Units"},{"key":"DLCB","label":"DL + CBs","pos":["DT","REDG","LEDG","CB"],"n":8,"cat":"Defense  ·  Team Units"},{"key":"RUND","label":"Run Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","SS","CB"],"n":9,"cat":"Defense  ·  Team Units"},{"key":"PASSD","label":"Pass Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense  ·  Team Units"},{"key":"ZONE","label":"Zone Defense","pos":["CB","MIKE","WILL","SAM","FS","SS"],"n":8,"cat":"Defense  ·  Team Units"},{"key":"DEFENSE","label":"Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense  ·  Team Units"},{"key":"TRENCHES","label":"Trenches","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG"],"n":9,"cat":"Combined Units"},{"key":"TRENCHES_CB","label":"Trenches + CBs","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG","CB"],"n":13,"cat":"Combined Units"},{"key":"K","label":"Kicker","pos":["K"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"P","label":"Punter","pos":["P"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"FB","label":"Fullback","pos":["FB"],"n":1,"rankIndex":0,"cat":"Specialists"}];
+const GROUP_DEFS = [{"key":"QB","label":"Quarterback","pos":["QB"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB1","label":"RB1","pos":["HB"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB2","label":"RB2","pos":["HB"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"WR1","label":"WR1","pos":["WR"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"WR2","label":"WR2","pos":["WR"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"WR3","label":"WR3","pos":["WR"],"n":1,"rankIndex":2,"cat":"Offense  ·  Positions"},{"key":"WR4","label":"WR4","pos":["WR"],"n":1,"rankIndex":3,"cat":"Offense  ·  Positions"},{"key":"TE1","label":"TE1","pos":["TE"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"TE2","label":"TE2","pos":["TE"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"OT1","label":"OT1","pos":["LT","RT"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"OT2","label":"OT2","pos":["LT","RT"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"OG1","label":"OG1","pos":["LG","RG"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"OG2","label":"OG2","pos":["LG","RG"],"n":1,"rankIndex":1,"cat":"Offense  ·  Positions"},{"key":"C","label":"Center","pos":["C"],"n":1,"rankIndex":0,"cat":"Offense  ·  Positions"},{"key":"RB","label":"Running Backs","pos":["HB"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"WR","label":"Wide Receivers","pos":["WR"],"n":3,"cat":"Offense  ·  Team Units"},{"key":"TE","label":"Tight Ends","pos":["TE"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"RECV","label":"Receiving Corps","pos":["WR","TE"],"n":4,"cat":"Offense  ·  Team Units"},{"key":"OT","label":"Offensive Tackles","pos":["LT","RT"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"OGUARDS","label":"Offensive Guards","pos":["LG","RG"],"n":2,"cat":"Offense  ·  Team Units"},{"key":"OG","label":"Interior OL","pos":["LG","RG","C"],"n":3,"cat":"Offense  ·  Team Units"},{"key":"OL","label":"Offensive Line","pos":["LT","RT","LG","RG","C"],"n":5,"cat":"Offense  ·  Team Units"},{"key":"RUN","label":"Run Game","pos":["LT","RT","LG","RG","C","HB"],"n":7,"cat":"Offense  ·  Team Units"},{"key":"PASS","label":"Pass Game","pos":["LT","RT","LG","RG","C","QB","WR","TE"],"n":10,"cat":"Offense  ·  Team Units"},{"key":"SKILL","label":"Skill Positions","pos":["HB","WR","TE"],"n":6,"cat":"Offense  ·  Team Units"},{"key":"OFFENSE","label":"Offense","pos":["QB","HB","WR","TE","LT","RT","LG","RG","C"],"n":13,"cat":"Offense  ·  Team Units"},{"key":"DE1","label":"DE1","pos":["REDG","LEDG"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"DE2","label":"DE2","pos":["REDG","LEDG"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"DL5","label":"DL5","pos":["DT","REDG","LEDG"],"n":1,"rankIndex":4,"cat":"Defense  ·  Positions"},{"key":"DT1","label":"DT1","pos":["DT"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"DT2","label":"DT2","pos":["DT"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"MIKE","label":"MIKE","pos":["MIKE"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"WILL","label":"WILL","pos":["WILL"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"SAM","label":"SAM","pos":["SAM"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"LB4","label":"LB4","pos":["MIKE","WILL","SAM"],"n":1,"rankIndex":3,"cat":"Defense  ·  Positions"},{"key":"CB1","label":"CB1","pos":["CB"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"CB2","label":"CB2","pos":["CB"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"CB3","label":"Nickel","pos":["CB"],"n":1,"rankIndex":2,"cat":"Defense  ·  Positions"},{"key":"CB4","label":"Dime","pos":["CB"],"n":1,"rankIndex":3,"cat":"Defense  ·  Positions"},{"key":"SS","label":"SS","pos":["SS"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"SS2","label":"SS2 / Big Nickel","pos":["SS"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"FS","label":"FS","pos":["FS"],"n":1,"rankIndex":0,"cat":"Defense  ·  Positions"},{"key":"FS2","label":"FS2 / Quarter","pos":["FS"],"n":1,"rankIndex":1,"cat":"Defense  ·  Positions"},{"key":"EDGE","label":"Edge Rushers","pos":["REDG","LEDG"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"DT","label":"Defensive Tackles","pos":["DT"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"DL","label":"Defensive Line","pos":["DT","REDG","LEDG"],"n":4,"cat":"Defense  ·  Team Units"},{"key":"LB","label":"Linebackers","pos":["MIKE","WILL","SAM"],"n":3,"cat":"Defense  ·  Team Units"},{"key":"FRONT7","label":"Front Seven","pos":["DT","REDG","LEDG","MIKE","WILL","SAM"],"n":7,"cat":"Defense  ·  Team Units"},{"key":"CB","label":"Cornerbacks","pos":["CB"],"n":4,"cat":"Defense  ·  Team Units"},{"key":"S","label":"Safeties","pos":["FS","SS"],"n":2,"cat":"Defense  ·  Team Units"},{"key":"SEC","label":"Secondary","pos":["CB","FS","SS"],"n":6,"cat":"Defense  ·  Team Units"},{"key":"PRIMCOV","label":"Primary Coverage","pos":["DT","REDG","LEDG","CB"],"n":5,"parts":[{"pos":["CB"],"n":1},{"pos":["DT","REDG","LEDG"],"n":4}],"cat":"Defense  ·  Team Units"},{"key":"DLCB","label":"DL + CBs","pos":["DT","REDG","LEDG","CB"],"n":8,"cat":"Defense  ·  Team Units"},{"key":"RUND","label":"Run Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","SS","CB"],"n":9,"cat":"Defense  ·  Team Units"},{"key":"PASSD","label":"Pass Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense  ·  Team Units"},{"key":"ZONE","label":"Zone Defense","pos":["CB","MIKE","WILL","SAM","FS","SS"],"n":8,"cat":"Defense  ·  Team Units"},{"key":"DEFENSE","label":"Defense","pos":["DT","REDG","LEDG","MIKE","WILL","SAM","CB","FS","SS"],"n":13,"cat":"Defense  ·  Team Units"},{"key":"TRENCHES","label":"Trenches","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG"],"n":9,"cat":"Combined Units"},{"key":"TRENCHES_CB","label":"Trenches + CBs","pos":["LT","RT","LG","RG","C","DT","REDG","LEDG","CB"],"n":13,"cat":"Combined Units"},{"key":"K","label":"Kicker","pos":["K"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"P","label":"Punter","pos":["P"],"n":1,"rankIndex":0,"cat":"Specialists"},{"key":"FB","label":"Fullback","pos":["FB"],"n":1,"rankIndex":0,"cat":"Specialists"}];
 let weights = {...DEFAULT_WEIGHTS};
 let personalWeights = null;
 // Model weights: each roster spot's wins per rating point, scaled so the largest (QB) equals 700; extra depth spots stay tiny.
@@ -3424,16 +3424,16 @@ function zpbGameReplay(g, focusTeam){
    }
    const pairDelay = i=> 2200 + Math.min(i, plan.length)*(((INTRO_MS_EFF-3600)/Math.max(1,plan.length+1)) + SLOW);
    const narrow = (window.innerWidth||1280) <= 600;
-   const syMap0 = {50:38, 27:60, 78:82, 34:40, 66:68}; // w57 (Owner): on a phone the marquee pins to the top and the pairs fan out BELOW it — the first pair never lands on the logos
-   const syMap = {}; for (const k in syMap0) syMap[k] = syMap0[k] + (isSB ? 5 : 0); // w57: the Super Bowl marquee wears the bigger title - its fan sits a touch deeper
+   const syMap0 = {50:38, 27:60, 78:82, 34:40, 66:68}; // w59 (best of w57, Owner): on a phone the marquee pins to the top and the pairs fan out BELOW it - the first pair never lands on the logos
+   const syMap = {}; for (const k in syMap0) syMap[k] = syMap0[k] + (isSB ? 5 : 0); // w59: the Super Bowl marquee wears the bigger title - its fan sits a touch deeper
    const laneA = narrow ? 28 : 18, laneH = narrow ? 72 : 82; // the lanes clear the middle panel
    const fitF = s=>{ if(!s) return 15.4; const laneMax = narrow ? Math.min(160, Math.round((window.innerWidth||1280) * 0.36)) : 340;
     let f = 15.4; const est = ff => (s.n.length*0.62 + 13) * ff;
     while(f > 9.5 && est(f) > laneMax) f -= 0.5; return f; }; // w39: the fit budget is the lane it sits in
    const slots = [];
    plan.forEach((st,beat)=>{
-    slots.push(Object.assign({}, awayStars[st[0]], {sx:laneA, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side', f:fitF(awayStars[st[0]])})); // w57: the narrow fan (syMap) — desktop keeps the w39 lanes
-    slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])})); // w57: the narrow fan (syMap) — desktop keeps the w39 lanes
+    slots.push(Object.assign({}, awayStars[st[0]], {sx:laneA, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side', f:fitF(awayStars[st[0]])})); // w59 (best of w57, Owner): the narrow fan (syMap) - desktop keeps the w39 lanes
+    slots.push(Object.assign({}, homeStars[st[0]], {sx:laneH, sy:(narrow && syMap[st[1]]!=null)?syMap[st[1]]:st[1], beat:beat, side:' zpb-st-side-r', f:fitF(homeStars[st[0]])})); // w59 (best of w57, Owner): the narrow fan (syMap)
    });
    const _fitAll = Math.min.apply(null, slots.map(s=>(s.f==null)?15.4:s.f)); // w45 (O5, Owner): ONE fitted size for the whole stage — the lane fit of the longest name on it
    const starHTML = slots.map((s,i)=>{
@@ -7654,7 +7654,7 @@ function unitComparisonHTML(poolA, poolB, nameA, nameB){
   if(ma.avg>mb.avg) aUnits++; else if(mb.avg>ma.avg) bUnits++;
   rows += `<tr><td style="${stA}${ma.avg>mb.avg?'font-weight:700;color:var(--tA2,var(--accent));':''}">${Math.round(ma.avg)}</td><td class="narr" style="text-align:center;">${ma.label}</td><td style="${stB}${mb.avg>ma.avg?'font-weight:700;color:var(--tA2,var(--accent));':''}text-align:right;">${Math.round(mb.avg)}</td></tr>`;
  });
- return {html:`<table><tbody>${rows}</tbody></table>`, aUnits, bUnits, total:mA.length};
+ return {html:`<table class="zpb-unitcmp" data-nostack="1"><tbody>${rows}</tbody></table>`, aUnits, bUnits, total:mA.length}; /* w59 (Owner): the unit table wears its own graduated law - a full-width table at every width, never the sudden narrow stack */
 }
 
 // ---- Home-page Team Comparison tab: actual NFL rosters only ----
@@ -8040,7 +8040,7 @@ function renderLineScoreHTML(g){
  const r = g.result;
  // w33 (R29, Owner): the OT column shows what each team scored in overtime only — never the running total
  const otOf = (q, tot, q4)=>{ if(!r.ot) return 0; const listed = q.slice(4).reduce((s,x)=>s+(x||0),0); return listed>0 ? listed : Math.max(0, tot-q4); };
- const row = (name, q, tot)=>{ const q4 = (q[3]||0); const cells = q.slice(0, r.ot?5:4).map(x=>`<td class="score">${x||0}</td>`).join('');
+ const row = (name, q, tot)=>{ const q4 = (q[3]||0); const cells = q.slice(0, 4).map(x=>`<td class="score">${x||0}</td>`).join(''); /* w57 (Owner): the OT score used to ride in the sliced cells AND in the otOf cell — the OT number repeated and the final fell off the header row; four quarter cells always, the OT column belongs to otOf alone */
   const otCell = r.ot ? `<td class="score">${otOf(q, tot, q4)}</td>` : ''; return `<tr class="zpb-trow" style="${(typeof zpbNeutralRowVars==='function')?zpbNeutralRowVars(name):''}"><td class="zpb-ls-team">${name}</td>${cells}${otCell}<td class="score" style="font-weight:800;">${tot}</td></tr>`; }; // w41 (P4, Owner): the box score wears post-blue — team washes, the dropdown ink, the gold final
  const hasOT = !!r.ot;
  return `<table class="linescore" data-nostack="1"><thead><tr><th></th><th>1</th><th>2</th><th>3</th><th>4</th>${hasOT?'<th>OT</th>':''}<th>F</th></tr></thead><tbody>${row(g.away, r.awayQ, r.awayScore)}${row(g.home, r.homeQ, r.homeScore)}</tbody></table>`;
@@ -8465,7 +8465,7 @@ window.zpbWireStory = function(){
  const veil = panel.querySelector('.zpb-story-veil');
  const show = ()=>{ if(!veil) return; veil.classList.add('zpb-veil-on'); const b = document.getElementById('zpbStoryGo'); if(b) b.focus(); };
  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) show();
- else setTimeout(show, Math.min(total*1000 + 650, 90000)); // w57 (Owner): the veil follows the faster cascade — the last badge lands at (total-1)s+0.45, +1.2s of air
+ else setTimeout(show, Math.min(total*600 + 800, 90000)); /* w59 (best of w57, Owner): the veil follows the faster cascade - the last badge lands at (total-1)*0.6s+0.7s */
  const go = document.getElementById('zpbStoryGo');
  if(go) go.addEventListener('click', ()=>{ veil.classList.remove('zpb-veil-on'); veil.classList.add('zpb-veil-off'); try{ FX.play('small','On to the playoffs'); }catch(e){} });
 };
@@ -8478,7 +8478,7 @@ function renderRegularReviewView(container){
  const made = seasonState.seeds[conf].some(x=>x.team===user);
  let html = `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
    <h3 style="margin:0;">Regular Season Review</h3>
-   <div style="display:flex;gap:8px;flex-wrap:wrap;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;padding:10px 24px;">Begin Playoffs</button>':''}<button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;">Begin Playoffs</button>':''} <!-- w57 (Owner): the inline padding retires — the standing law sizes this button --><button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
    <p class="dsub" style="margin-top:8px;">${user}: ${s.wins}-${s.losses}${s.ties?'-'+s.ties:''} · ${s.pf} PF · ${s.pa} PA</p>
   </div>`;
  html = html + zpbSeasonStoryHTML(); // w32 (Owner): the Regular Season Review panel (and its SIM PLAYOFFS button) sits ABOVE the badges
@@ -9379,8 +9379,7 @@ function planCardsHTML(g){
    <div class="zpb-plan-hd">${lg(team)}<div><b>${mine?'You · ':''}${team}</b><span class="narr">${capFirst(offStyleName(id.off))} · ${capFirst(defStyleName(id.def))}</span></div></div>
    <div class="zpb-plan-row"><span class="narr">Offense</span><b>${planText(p.off)}</b></div>
    <div class="zpb-plan-row"><span class="narr">Defense</span><b>${defPlanText(p.def)}</b></div>
-   <div class="zpb-plan-fx">${fx.pts>=0?'+':'−'}${Math.abs(fx.pts).toFixed(1)} pts vs. auto</div>
-  </div>`;
+  </div>`; // w57 (Owner): the per-card "+X.X pts vs. auto" line retires — the plan story keeps the cumulative line where his w33 law put it
  };
  return `<div class="zpb-plans">${card(g.away,'away')}${card(g.home,'home')}</div>`;
 }
@@ -12201,10 +12200,11 @@ window.zpb100More = function(myW, N, mine){
 /* 2) the winner edge is color only; bold belongs to the tier law */
 /* 3) player browser: every name and every number in the team's color, both themes */
 .zpb-pb-name.zpb-vib{color:var(--tn,var(--tA2,var(--accent)));}
-:root[data-theme="dark"] .zpb-pb-name.zpb-vib,:root:not([data-theme="light"]) .zpb-pb-name.zpb-vib{color:var(--tnd,var(--text));}
+:root[data-theme="dark"] .zpb-pb-name.zpb-vib{color:var(--tnd,var(--text));} /* w59 fix: dark-scoped only - the bare not-light variant melted the 85+ names on system-light pages */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-pb-name.zpb-vib{color:var(--tnd,var(--text));} }
 #playerBody td.score,#playerBody td.num{color:var(--tn,var(--text));}
-:root[data-theme="dark"] #playerBody td.score,:root:not([data-theme="light"]) #playerBody td.score,
-:root[data-theme="dark"] #playerBody td.num,:root:not([data-theme="light"]) #playerBody td.num{color:var(--tnd,var(--text));}
+:root[data-theme="dark"] #playerBody td.score,:root[data-theme="dark"] #playerBody td.num{color:var(--tnd,var(--text));} /* w59 fix: the bare not-light variants painted the DARK pale ink on system-light pages with no stored theme - the melt family; the media-scoped pair rides with the w45 dark block */
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) #playerBody td.score, :root:not([data-theme="light"]) #playerBody td.num{color:var(--tnd,var(--text));} }
 #playerBody .zpb-pb-name.zpb-vib{font-weight:800;}
 /* 4) comparison: a colored panel behind EVERY player, winner cells included */
 /* w29 (Owner): the old ring on every cell is retired — every player sits on a backing panel (a ::before, so the 90+ shimmer survives) and the highlighted border is the 85+ tier alone */
@@ -12678,11 +12678,11 @@ window.zpbBelongMapHTML = function(entry){
    his law: no black text anywhere, the neutral ink rides the halfway selection */
 :root{
  --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0;
- --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; /* w57 (Owner): the muted ink deepens one step - 3.7:1 to 5.0:1 on the panels, the same rose family */
+ --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; /* w59 (best of w57, Owner): the muted ink deepens one step - 3.7:1 to 5.0:1 on the panels, the same rose family */
  --zcream:#53382b; /* w50 (Owner): the during-game's neutral words — the takeover never recolors this token */
 }
 @media (prefers-color-scheme: light){
- :root:not([data-theme="dark"]){ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0; --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; --zcream:#53382b; } /* w57: the muted ink deepens with it */
+ :root:not([data-theme="dark"]){ --bg:#fdf2f6; --panel:#ffffff; --panel2:#f9e9f0; --text:#8e5566; --sub:#885261; --rosehair:#e6c3d2; /* w59 (best of w57, Owner): the muted ink deepens one step - 3.7:1 to 5.0:1 on the panels, the same rose family */ --zcream:#53382b; }
 }
 :root[data-theme="dark"]{
  --bg:#1e1119; --panel:#291a24; --panel2:#35202d;
@@ -12712,7 +12712,7 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 /* A35 (Owner): the UNIT REPORT CARD — letter-grade badges, no hover anywhere */
 .zpb-rc-title{text-align:center;font-family:'Cinzel Decorative',serif;font-weight:800;letter-spacing:.22em;font-size:.92rem;margin:0 0 10px;color:var(--tA2,var(--gold3));}
 .zpb-rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;}
-.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s - .25s);} /* w57 (Owner): the cascade runs 0.25s faster — the cut still leads it */ /* w33 (R35, Owner): one tile at a time, like the season badges */
+.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);} /* w33 (R35, Owner): one tile at a time, like the season badges */
 @media (prefers-reduced-motion: reduce){ .zpb-rcbadge{animation:none;opacity:1;transform:none;} }
 .zpb-rcbadge.zpb-sb-good{border-color:color-mix(in srgb,var(--good,var(--accent)) 55%,var(--border));}
 .zpb-rcbadge.zpb-sb-bad{border-color:color-mix(in srgb,var(--bad,var(--accent2)) 55%,var(--border));}
@@ -13167,9 +13167,9 @@ window.zpbStoryRelease = function(){
 :root[data-theme="dark"] #draftTable2 td.dc-name,:root:not([data-theme="light"]) #draftTable2 td.dc-name{color:var(--nmd,var(--text));}
 /* A1 (Owner): the board's numbers must read on the light panel — the tokens deepen in light;
    the dark theme keeps its tokens untouched (the ink he loves stays). */
-:root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57 (Owner): the priority wears the gone/wins ink everywhere, not just the card - the exact gone mix */
-:root:not([data-theme="dark"]) #draftTable2 td.dc-gone,:root[data-theme="light"] #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w57: deepens 4.4 -> 5.3 */
-:root:not([data-theme="dark"]) #draftTable2 td.dc-wins,:root[data-theme="light"] #draftTable2 td.dc-wins{color:color-mix(in srgb,var(--good,#4c9a67) 65%,var(--zcream,#53382b));} /* w57: deepens 4.0 -> 4.7 */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-pri,:root[data-theme="light"] #draftTable2 td.dc-pri{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w59 (best of w57, Owner): the priority wears the gone/wins ink everywhere, not just the card */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-gone,:root[data-theme="light"] #draftTable2 td.dc-gone{color:color-mix(in srgb,var(--accent2,#cf8a60) 45%,var(--zcream,#53382b));} /* w59 (best of w57, Owner): deepens 4.4 -> 5.3 */
+:root:not([data-theme="dark"]) #draftTable2 td.dc-wins,:root[data-theme="light"] #draftTable2 td.dc-wins{color:color-mix(in srgb,var(--good,#4c9a67) 65%,var(--zcream,#53382b));} /* w59 (best of w57, Owner): deepens 4.0 -> 4.7 */
 /* A2 (Owner): the compact cards tighten — the board stops ballooning in a small window. */
 @media (max-width:1120px){
  #draftTable2 tr{padding:4px 7px;gap:1px 4px;}
@@ -13626,12 +13626,15 @@ window.zpbPlayoffRunCine = function(story){
   const show = ()=>{
    if(i >= story.length){
     window.__zpbPoRunHold = false;
-    ov.style.opacity = '0';
-    setTimeout(()=>{
-     try{ ov.remove(); }catch(err){}
+    // w57 (Owner): the run cine FLOWS into the champion storm — the storm mounts while the run
+    // overlay is still on screen (the storm is opaque from its first frame and sits one layer
+    // beneath), then the run overlay fades to reveal the storm, never the page underneath.
+    if(window.__zpbSBFinPending && seasonState && seasonState.champion){
      window.__zpbSBFinPending = false;
-     try{ if(seasonState && seasonState.champion) zpbPostSuperBowlCine(); }catch(err){}
-    }, 560);
+     try{ zpbPostSuperBowlCine(); }catch(err){}
+    }
+    ov.style.opacity = '0';
+    setTimeout(()=>{ try{ ov.remove(); }catch(err){} }, 560);
     return;
    }
    const st = story[i++];
@@ -13943,7 +13946,7 @@ window.zpbPlayoffRunCine = function(story){
 .zpb-pg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px;}
 .zpb-pg-card{position:relative;display:flex;flex-direction:column;align-items:flex-start;gap:5px;background:var(--panel2);border:1px solid var(--border);border-radius:10px;padding:9px 10px;min-width:0;}
 .zpb-pg-slot{font-size:.56rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--ongold,var(--text));background:var(--gold2,var(--accent));border:1px solid var(--gold3,var(--border));border-radius:999px;padding:1px 8px;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
-.zpb-pg-grade{position:absolute;top:7px;right:9px;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.17rem; /* w57 (Owner): the large-text bar */line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);border-radius:9px;padding:6px 7px;}
+.zpb-pg-grade{position:absolute;top:7px;right:9px;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.17rem; /* w59 (best of w57, Owner): the large-text bar */line-height:1;color:var(--accent);background:color-mix(in srgb,var(--accent) 14%,transparent);border:1px solid color-mix(in srgb,var(--accent) 34%,transparent);border-radius:9px;padding:6px 7px;}
 .zpb-pg-name{font-size:.82rem;font-weight:700;line-height:1.15;overflow-wrap:anywhere;padding-right:44px;margin-top:2px;}
 .zpb-pg-badges{display:flex;gap:4px;flex-wrap:wrap;}
 .zpb-pg-badges i{font-style:normal;font-size:.6rem;font-weight:700;letter-spacing:.03em;color:var(--sub);background:color-mix(in srgb,var(--accent) 7%,transparent);border:1px solid var(--border);border-radius:999px;padding:2px 7px;white-space:nowrap;}
@@ -14027,10 +14030,120 @@ window.zpbPlayoffRunCine = function(story){
 </style>
 <style id="zpb-w57-css">
 /* ================= Z-POST-BLUE W57 (the Owner's round-57) =================
+   The player cards read clean to their left edge; the preview's key players face each other
+   at every width; the plan card loses its fx line; the box score's final sits under F again;
+   BEGIN PLAYOFFS wears the SIM PLAYOFFS pill; the review badges keep the beat, faster; the
+   run cine flows into the storm (the JS side); names stop breaking letter-by-letter; and the
+   whole during-game cinematic family learns the super-compressed windows. */
+
+/* 1 · THE KEY PLAYERS FACE OFF AT EVERY WIDTH — the Owner's override of the w55 one-per-line
+   law (he named the preview screen): the pairs stay on their team's side, two across, and the
+   cards themselves compress — tighter padding, a one-line ellipsis name (never a mid-word
+   break), smaller chip and numeral, the season chips wrapping under. */
+@media (max-width:640px){
+ .zpb-pvfrow{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:5px;}
+ .zpb-pvfrow .zpb-pvcard{flex-wrap:wrap;min-width:0;padding:7px 8px;gap:5px 8px;}
+ .zpb-pvfrow .zpb-pcard-hd{flex:1 1 auto;min-width:0;flex-wrap:nowrap;gap:5px;}
+ .zpb-pvfrow .zpb-pcard-hd b{font-size:.76rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;}
+ .zpb-pvfrow .zpb-poschip{font-size:.52rem;padding:1px 6px;letter-spacing:.05em;flex:0 0 auto;}
+ .zpb-pvfrow .zpb-cstar{font-size:.82em;margin-left:4px;}
+ .zpb-pvfrow .zpb-pcard-rt{font-size:1.02rem;min-width:34px;text-align:right;flex:0 0 auto;}
+ .zpb-pvfrow .zpb-pcard-rt i{font-size:.5rem;letter-spacing:.06em;}
+ .zpb-pvfrow .zpb-pcard-stats{flex:1 1 100%;justify-content:flex-start;margin-top:0;gap:4px;}
+ .zpb-pvfrow .zpb-pstat{font-size:.56rem;padding:1px 6px;}
+ .zpb-pvempty{min-height:52px;}
+}
+@media (max-width:360px){
+ .zpb-pvfrow{gap:4px;}
+ .zpb-pvfrow .zpb-pvcard{padding:6px 7px;}
+ .zpb-pvfrow .zpb-pcard-stats{display:none;} /* the OVR is the story at the narrowest */
+}
+@media (max-width:480px){
+ .zpb-stars-hd>div{font-size:.78rem;padding:7px 8px;gap:6px;}
+ .zpb-stars-hd img{width:18px;height:18px;}
+}
+
+/* 2 · NAMES NEVER BREAK LETTER-BY-LETTER — overflow-wrap:anywhere let a squeezed lane compute
+   its min-content as ONE CHARACTER (one letter per line). break-word keeps the min-content at
+   the widest word: names wrap at spaces, a mid-word break only when one word cannot fit. */
+.zpb-gname{overflow-wrap:break-word;} /* w57 (Owner): the global name class */
+.zrl-play{overflow-wrap:break-word;} /* w57 (Owner): the replay log's play text carries the names */
+.zpb-lu-cell{overflow-wrap:break-word;} /* w57 (Owner): the lineup cells */
+
+/* 3 · THE REVIEW + UNIT REPORT BADGES KEEP THE BEAT, FASTER — one beat ×0.6s (was ×1s).
+   The field map and depth chart keep their one-second beats (the w44/w46 laws). */
+.zpb-sbadge,.zpb-scard,.zpb-rcbadge{animation-delay:calc(var(--beat,0)*.6s - .25s);} /* w59 (best of w57, Owner): the x0.6s beat keeps the 0.25s head start */
+.zpb-restov .zpb-scard{animation-delay:calc(var(--beat,0)*.6s);}
+
+/* 4 · THE CINEMATICS LEARN THE SUPER-COMPRESSED WINDOW — the replay overlay, its intro, the
+   Super Bowl storm and the playoff-run cine. Measured at 320px, 280px and 500×420. */
+.zpb-replay{max-height:min(96svh,860px);} /* the panel never outgrows a short window */
+@media (max-width:480px){
+ .zpb-replay-ov{padding:8px;}
+ .zpb-replay{width:100%;border-radius:16px;}
+ .zpb-rep-hd{padding:9px 10px;gap:6px;}
+ .zpb-rep-team{gap:5px;min-width:0;}
+ .zpb-rep-team img{width:20px;height:20px;}
+ .zpb-rep-team b{font-size:.72rem;letter-spacing:.02em;}
+ .zpb-rep-sc{font-size:1.06rem;}
+ .zpb-rep-qchip{font-size:.56rem;letter-spacing:.16em;}
+ .zpb-rep-log{padding:8px 9px;min-height:170px;}
+ .zpb-rep-q{font-size:.56rem;letter-spacing:.18em;margin:8px 0 3px;}
+ .zpb-rep-line{font-size:.74rem;padding:4px 7px;gap:5px;margin:2px 0;border-radius:8px;flex-wrap:wrap;}
+ .zrl-play{flex:1 1 100%;order:4;} /* w57 (Owner): the play text takes its own full row on a compressed window — a name's column never drops below the longest word, so no letter ever moves to its own line */
+ .zpb-rep-line img{width:15px;height:15px;}
+ .zrl-t{min-width:38px;font-size:.62rem;}
+ .zrl-team{font-size:.62rem;}
+ .zrl-chip{font-size:.6rem;padding:1px 5px;}
+ .zrl-badge{font-size:.62rem;min-width:26px;}
+ .zrl-pts{font-size:.72rem;}
+ .zrl-sc{font-size:.62rem;}
+ .zpb-rep-final{padding:10px 4px 6px;}
+ .zpb-rep-final b{font-size:1.1rem;}
+ .zpb-rep-ft{padding:9px 10px;gap:8px;}
+ .zpb-rep-ft .resetbtn{padding:8px 18px !important;}
+ .zpb-intro-logos{gap:14px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:64px;height:64px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.5rem;}
+ .zpb-replay.zpb-sb .zpb-intro-title{font-size:1.15rem;letter-spacing:.22em;}
+ .zpb-replay.zpb-sb .zpb-intro-banner{gap:7px;font-size:.6rem;letter-spacing:.14em;}
+ .zpb-intro-star{padding:5px 8px;border-radius:9px;}
+ .zpb-porun-stage{padding:18px 8px;}
+ .zpb-porun-score{gap:7px;flex-wrap:wrap;}
+ .zpb-porun-score b img{width:24px;height:24px;}
+ .zpb-porun-score .zpb-porun-num{font-size:1.2rem;}
+ .zpb-sbfin-stage{padding:16px 8px;max-width:94vw;}
+ .zpb-sbfin-score{gap:8px;margin:8px 0 2px;}
+ .zpb-sbfin-score b{font-size:1.05rem;}
+ .zpb-sbfin-line{font-size:.62rem;letter-spacing:.3em;}
+ .zpb-sbfin-mvp{font-size:.7rem;letter-spacing:.06em;margin-bottom:12px;}
+}
+@media (max-width:360px){
+ .zpb-replay-ov{padding:5px;}
+ .zpb-replay{border-radius:12px;}
+ .zpb-rep-team img{width:16px;height:16px;}
+ .zpb-rep-team b{font-size:.62rem;}
+ .zpb-rep-sc{font-size:.92rem;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:48px;height:48px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos{gap:9px;}
+ .zpb-sbfin-champ img{width:46px;height:46px;}
+ .zpb-sbfin-name{font-size:clamp(1.1rem,6.2vw,1.35rem);}
+}
+@media (max-height:620px){
+ .zpb-replay{max-height:98svh;}
+ .zpb-rep-log{min-height:110px;max-height:none;flex:1 1 auto;} /* the log takes what the window leaves; the panel never scrolls the page */
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:56px;height:56px;}
+ .zpb-replay.zpb-sb .zpb-intro-vs{font-size:1.2rem;}
+ .zpb-intro-cup{display:none;}
+}
+</style>
+
+<style id="zpb-w59-merge-css">
+/* ================= Z-POST-BLUE W59 - MERGED FROM W57 (the Owner-pushed draft-board round) =================
    The draft card returns to TWO lines — name · Draft on top, the six stats spread on the
    bottom (FILLS sits right under the button) — the priority number wears the gone/wins ink,
    the pregame marquee pins to the top of the phone stage so the key players never cover the
-   logos, and the badge cascade runs 0.25s faster. Desktop untouched. */
+   logos, and the badge cascade runs 0.25s faster. Desktop untouched. Merged into w59 by the Owner's ruling ("take the best of w57"). */
 
 /* 1 · THE PHONE DRAFT CARD — two lines, labeled, in the Owner's order:
    pos · team · ovr · wins · priority · gone, with FILLS right under the Draft button. */
@@ -14126,9 +14239,932 @@ window.zpbPlayoffRunCine = function(story){
 @media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-anch .narr{color:color-mix(in srgb,var(--anchId,var(--sub,#c99cae)) 72%,var(--zcream,#53382b));} }
 
 /* 4h - the shimmer's light sweep deepens to the burnished bronze pair; the dark sweep untouched */
-:root[data-theme="light"] .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} /* w57: fixed bronze - the pale zshim default dragged the mean to 2.7 */
-@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;background-size:230% 100% !important;} }
+:root[data-theme="light"] .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;-webkit-background-clip:text !important;background-clip:text !important;background-size:230% 100% !important;} /* w57: fixed bronze - the pale zshim default dragged the mean to 2.7 · w59 FIX (Owner: "solid blocks of gold"): the background shorthand reset background-clip to border-box and the gradient painted the whole box BEHIND the transparent fill - the name vanished into a gold block; the clip rides inside the override, the sweep reads on the letters again */
+@media (prefers-color-scheme: light){ :root:not([data-theme="dark"]) .zpb-shm{background:linear-gradient(100deg,#8a5f18 12%,#b98a2e 32%,#8a5f18 52%,#c9a24b 70%,#8a5f18 88%) !important;-webkit-background-clip:text !important;background-clip:text !important;background-size:230% 100% !important;} } /* w59 FIX: the clip re-declared here too */
 </style>
+
+<style id="zpb-w59-css">
+/* ================= Z-POST-BLUE W59 (the Owner's round-59) =================
+   The three ranking pages read as natural cards on the phone (the draft-card treatment),
+   the unit comparison compresses in graduated steps instead of switching to a narrow table,
+   and the cinematics lock the page behind them (a fast click can never sim a season again). */
+
+/* 1 · THE MADDEN RANKINGS CARD — #N · Team · score on ONE line, the anchor story and the
+   bar ride under. The word labels retire ('#' and the score value sit beside the team, not
+   strands at the far right of a wide card); fewer lines, smaller format. */
+@media (max-width:760px){
+ #resultsTable.mstack tr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"rank team score" "story story story" "bar bar bar";gap:2px 8px;align-items:center;padding:7px 10px;}
+ #resultsTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #resultsTable.mstack td::before{content:none !important;}
+ #resultsTable.mstack td.rank{grid-area:rank;font-weight:800;}
+ #resultsTable.mstack td.rank::before{content:'#' !important;}
+ #resultsTable.mstack td:nth-child(2){display:contents;}
+ #resultsTable.mstack td:nth-child(2) .team{grid-area:team;min-width:0;}
+ #resultsTable.mstack td:nth-child(2) .narr{grid-area:story;display:block;margin-top:3px;}
+ #resultsTable.mstack td:nth-child(2) .bar-bg{grid-area:bar;margin-top:5px;}
+ #resultsTable.mstack td.score{grid-area:score;text-align:right !important;font-weight:800;font-variant-numeric:tabular-nums;}
+ #resultsTable.mstack td:nth-child(4){display:none;}
+}
+
+/* 2 · THE POSITION RANKINGS CARD — #N · Crest Team · avg on one line, the player names flow
+   left-aligned beneath like text. No label column dragging everything to weird offsets. */
+@media (max-width:760px){
+ #groupTable.mstack tr{display:grid;grid-template-columns:auto minmax(0,1fr) auto;grid-template-areas:"rank team score" "players players players";gap:2px 8px;align-items:center;padding:7px 10px;}
+ #groupTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #groupTable.mstack td::before{content:none !important;}
+ #groupTable.mstack td.rank{grid-area:rank;font-weight:800;}
+ #groupTable.mstack td.rank::before{content:'#' !important;}
+ #groupTable.mstack td.team{grid-area:team;min-width:0;}
+ #groupTable.mstack td.score{grid-area:score;text-align:right !important;font-weight:800;font-variant-numeric:tabular-nums;}
+ #groupTable.mstack td.narr{grid-area:players;margin-top:3px;display:block;}
+}
+
+/* 3 · THE PLAYER BROWSER CARD — two lines, the draft-card treatment: name · pos · OVR, then
+   Team · SPD · STR compact. Six labelled lines become two, so the card can no longer GROW
+   as the window shrinks. */
+@media (max-width:760px){
+ #playerTable.mstack tr{display:grid;grid-template-columns:minmax(0,1fr) auto auto;grid-template-areas:"name pos ovr" "team spd str";gap:1px 8px;align-items:center;padding:6px 10px;}
+ #playerTable.mstack td{display:block;padding:0 !important;text-align:left !important;}
+ #playerTable.mstack td::before{content:none !important;}
+ #playerTable.mstack td.zpb-pb-name{grid-area:name;font-size:.92rem;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td:nth-child(2){grid-area:pos;}
+ #playerTable.mstack td:nth-child(2) .zpb-poschip{font-size:.6rem;}
+ #playerTable.mstack td.score{grid-area:ovr;text-align:right !important;font-weight:800;}
+ #playerTable.mstack td.zpb-pb-team{grid-area:team;font-size:.68rem;color:var(--tn,var(--text));white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+ #playerTable.mstack td:nth-of-type(5){grid-area:spd;text-align:right !important;}
+ #playerTable.mstack td:nth-of-type(6){grid-area:str;text-align:right !important;}
+ #playerTable.mstack td:nth-of-type(5),#playerTable.mstack td:nth-of-type(6){font-size:.68rem;color:var(--tn,var(--text));font-variant-numeric:tabular-nums;white-space:nowrap;}
+ #playerTable.mstack td:nth-of-type(5)::before,#playerTable.mstack td:nth-of-type(6)::before{content:attr(data-label) ' ' !important;font-size:.6rem;}
+}
+
+/* 4 · THE UNIT COMPARISON COMPRESSES IN STEPS — a full-width table at EVERY width; the
+   paddings and type step down at 1024 · 760 · 480, so the transition is gradual instead of
+   the sudden full-window-to-narrow switch. data-nostack keeps it a real table. */
+table.zpb-unitcmp{width:100%;border-collapse:collapse;}
+table.zpb-unitcmp td{padding:8px 10px;}
+@media (max-width:1024px){ table.zpb-unitcmp td{padding:7px 8px;font-size:.95rem;} }
+@media (max-width:760px){ table.zpb-unitcmp td{padding:6px 6px;font-size:.9rem;} table.zpb-unitcmp td.narr{font-size:.74rem;letter-spacing:.02em;} }
+@media (max-width:480px){ table.zpb-unitcmp td{padding:5px 4px;font-size:.86rem;} table.zpb-unitcmp td.narr{font-size:.7rem;} }
+
+/* 5 · THE CINEMATICS LOCK THE PAGE — while a cinematic overlay is up (the replay, the
+   pregame marquee, the SB storm, the playoff run, the rest stage, the draft finale, the
+   caution, the storage shell, the confirm) the page behind cannot be clicked or tabbed
+   into. The overlays themselves stay live — the click-to-fast-forward is untouched. */
+body.zpb-cinelock .wrap, body.zpb-cinelock nav.footnav, body.zpb-cinelock .zpb-foottheme{pointer-events:none;}
+.zpb-clickshield{position:fixed;inset:0;z-index:89;background:transparent;}
+</style>
+
+
+<script id="zpb-w59-js">
+// ================= Z-POST-BLUE W59 · THE CINEMATICS LOCK =================
+// w59 (Owner): "I can actually click on the buttons behind the cinematic. That is not good.
+// I summed an entire season I was trying to play because I hit that button in the background.
+// The background page should not actually be accessible during the cinematics."
+// While any cinematic overlay is up the page behind is locked twice — pointer-events:none AND
+// the inert attribute (keyboard included). The overlays themselves stay live: the
+// click-to-fast-forward the Owner likes is untouched. When the LAST cinematic closes, a 300ms
+// invisible shield swallows the one accidental click that used to land on a sim button.
+// The story veil covers the page itself; it counts as a cinematic for the shield only.
+(function(){
+'use strict';
+ var SEL = '.zpb-replay-ov,.zpb-prematch,.zpb-sbfin,.zpb-porun,.zpb-restov,.zpb-fin,.zpb-caution-ov,.zpb-st-shell,.confirm-ov';
+ var wasCine = false, shield = null, shieldT = null;
+ function dropShield(){
+  if(shieldT){ clearTimeout(shieldT); shieldT = null; }
+  if(shield && shield.parentNode) shield.parentNode.removeChild(shield);
+  shield = null;
+ }
+ function armShield(){
+  if(shield) return;
+  shield = document.createElement('div');
+  shield.className = 'zpb-clickshield';
+  shield.addEventListener('pointerdown', function(e){ e.stopPropagation(); }, true);
+  shield.addEventListener('click', function(e){ e.stopPropagation(); }, true);
+  document.body.appendChild(shield);
+  shieldT = setTimeout(dropShield, 300);
+ }
+ function sync(){
+  var cine = !!document.querySelector(SEL) || !!document.querySelector('.zpb-story-veil.zpb-veil-on');
+  var wrap = document.querySelector('.wrap');
+  if(cine){
+   dropShield();
+   document.body.classList.add('zpb-cinelock');
+   if(wrap){ try{ wrap.inert = true; }catch(e){} }
+  } else {
+   document.body.classList.remove('zpb-cinelock');
+   if(wrap){ try{ wrap.inert = false; }catch(e){} }
+   if(wasCine) armShield(); // the transition out — the next 300ms of clicks land on the shield
+  }
+  wasCine = cine;
+ }
+ try{ new MutationObserver(sync).observe(document.body, {childList:true, subtree:true}); }catch(e){}
+ sync();
+})();
+</script>
+
+
+<style id="zpb-storage-css">
+/* ================= Z-POST-BLUE STORAGE · PHASE 0 UI KIT (w57) =================
+   The design surface for the storage wave — the Owner's mandate: "focus on making UI/UX for
+   the storage … design how this all looks." Every piece speaks the site's language: the gold
+   CONTINUE pill, the rose hairlines, Cinzel Decorative for the big words, the middle dot, no
+   white text. The real screens adopt these classes at the wiring commit; ?storage=1 mounts
+   the walkthrough. */
+
+/* — shared bones — */
+.zpb-st-card{background:var(--panel2);border:1px solid var(--rosehair);border-radius:14px;padding:14px 16px;min-width:0;}
+.zpb-st-kicker{font-size:.6rem;font-weight:800;letter-spacing:.28em;text-transform:uppercase;color:var(--sub);}
+.zpb-st-kicker.zpb-st-gold{color:var(--zrb,var(--accent));}
+.zpb-st-big{font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:900;letter-spacing:.04em;color:var(--text);}
+.zpb-st-sub{font-size:.74rem;color:var(--sub);line-height:1.5;}
+.zpb-st-row{display:flex;align-items:center;gap:10px;min-width:0;}
+.zpb-st-row img{width:24px;height:24px;object-fit:contain;background:transparent;box-shadow:none;}
+.zpb-st-pill{display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:11px 26px;font-weight:800;font-size:.92rem;
+ background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));color:var(--ongold);border:1px solid var(--tBSb);
+ box-shadow:0 10px 26px var(--glow);cursor:pointer;font-family:'Cinzel','Bodoni Moda',Georgia,serif;letter-spacing:.12em;}
+.zpb-st-pill:hover{transform:translateY(-1px);}
+.zpb-st-quiet{background:transparent;border:1px solid var(--glassbd);color:var(--sub);border-radius:999px;padding:8px 18px;font-weight:700;font-size:.8rem;cursor:pointer;font-family:inherit;align-self:center;}
+.zpb-st-quiet:hover{color:var(--text);border-color:var(--rosehair);}
+
+/* — 1 · the Continue moment: the page opens with the run you left — */
+.zpb-st-continue{position:relative;max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:10px;text-align:center;padding:20px 18px 16px;}
+.zpb-st-continue .zpb-st-teamname{font-size:1.3rem;}
+.zpb-st-continue .zpb-st-phaseline{font-size:.8rem;color:var(--sub);letter-spacing:.06em;}
+.zpb-st-continue .zpb-st-slotrow{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:4px;}
+.zpb-st-slotchip{display:inline-flex;align-items:center;gap:7px;border:1px solid var(--border);border-radius:999px;padding:4px 11px 4px 5px;
+ background:var(--glass);font-size:.72rem;font-weight:700;color:var(--text);cursor:pointer;min-width:0;}
+.zpb-st-slotchip img{width:17px;height:17px;}
+.zpb-st-slotchip b{font-family:'Cinzel',Georgia,serif;color:var(--zrb,var(--accent));}
+.zpb-st-slotchip.zpb-st-on{border-color:var(--zrb,var(--accent));box-shadow:0 0 10px var(--zr1,transparent);}
+
+/* — 2 · the slot selector: three runs, side by side — */
+.zpb-st-slots{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;}
+@media (max-width:640px){ .zpb-st-slots{grid-template-columns:1fr;} }
+.zpb-st-slot{position:relative;display:flex;flex-direction:column;gap:7px;align-items:flex-start;background:var(--panel2);
+ border:1px solid var(--border);border-radius:14px;padding:12px 14px;min-width:0;cursor:pointer;transition:border-color .15s ease,transform .15s ease;}
+.zpb-st-slot:hover{transform:translateY(-2px);border-color:var(--zrb,var(--accent));}
+.zpb-st-slot .zpb-st-letter{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.5rem;line-height:1;color:var(--zrb,var(--accent));}
+.zpb-st-slot.zpb-st-isactive{border-color:var(--zrb,var(--accent));box-shadow:0 0 0 1px var(--zrb,var(--accent)) inset,0 0 18px var(--zr1,transparent);}
+.zpb-st-slot.zpb-st-isempty{border-style:dashed;background:transparent;}
+.zpb-st-slot.zpb-st-isempty .zpb-st-letter{color:var(--sub);}
+.zpb-st-slot .zpb-st-teamname{font-size:.92rem;font-weight:800;color:var(--text);display:flex;align-items:center;gap:7px;min-width:0;}
+.zpb-st-slot .zpb-st-teamname img{width:19px;height:19px;}
+.zpb-st-slot .zpb-st-phase{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--sub);}
+.zpb-st-slot .zpb-st-saved{font-size:.64rem;color:var(--sub);opacity:.85;}
+.zpb-st-slot .zpb-st-kinds{display:flex;gap:4px;flex-wrap:wrap;}
+.zpb-st-kindchip{font-size:.54rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--zrb,var(--accent));
+ border:1px solid var(--zrb,var(--accent));border-radius:999px;padding:1px 8px;}
+.zpb-st-kindchip.zpb-st-kdim{color:var(--sub);border-color:var(--border);}
+
+/* — 3 · the overwrite caution: all three slots full — */
+.zpb-st-ocards{display:flex;flex-direction:column;gap:8px;margin:12px 0 4px;}
+.zpb-st-orow{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--glass);border:1px solid var(--border);
+ border-radius:12px;padding:10px 12px;cursor:pointer;font-family:inherit;color:var(--text);min-width:0;}
+.zpb-st-orow:hover{border-color:var(--zrb,var(--accent));}
+.zpb-st-orow .zpb-st-letter{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.15rem;color:var(--zrb,var(--accent));min-width:20px;}
+.zpb-st-orow .zpb-st-oright{margin-left:auto;display:flex;flex-direction:column;align-items:flex-end;gap:2px;}
+.zpb-st-orow .zpb-st-arm{font-size:.6rem;font-weight:800;letter-spacing:.18em;color:var(--ongold);background:var(--bad);
+ border-radius:999px;padding:3px 10px;display:none;}
+.zpb-st-orow.zpb-st-armed{border-color:var(--bad);}
+.zpb-st-orow.zpb-st-armed .zpb-st-arm{display:inline-block;}
+.zpb-st-olaw{font-size:.7rem;color:var(--sub);line-height:1.55;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);}
+
+/* — 4 · the profile panel: the career, keyed by franchise — */
+.zpb-st-profile{display:flex;flex-direction:column;gap:12px;}
+.zpb-st-legend{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.zpb-st-legend b{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:2rem;color:var(--zrb,var(--accent));font-variant-numeric:tabular-nums;}
+.zpb-st-achips{display:flex;gap:6px;flex-wrap:wrap;}
+.zpb-st-achip{display:inline-flex;align-items:center;gap:6px;font-size:.66rem;font-weight:700;color:var(--text);
+ background:color-mix(in srgb,var(--accent) 9%,transparent);border:1px solid var(--rosehair);border-radius:999px;padding:3px 10px;}
+.zpb-st-achip b{color:var(--zrb,var(--accent));font-family:'Cinzel',Georgia,serif;}
+.zpb-st-ftable{width:100%;border-collapse:collapse;font-size:.76rem;}
+.zpb-st-ftable th{font-family:'Cinzel',Georgia,serif;font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--sub);
+ text-align:left;padding:5px 6px;border-bottom:1px solid var(--rosehair);}
+.zpb-st-ftable td{padding:5px 6px;border-bottom:1px solid var(--border);font-variant-numeric:tabular-nums;}
+.zpb-st-ftable tr.zpb-st-fme td{color:var(--zrb,var(--accent));font-weight:800;}
+.zpb-st-ftable img{width:15px;height:15px;vertical-align:-2px;margin-right:5px;}
+.zpb-st-avwrap{position:relative;display:inline-flex;}
+.zpb-st-avatar{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
+ background:var(--panel2);border:1px solid var(--rosehair);box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:'Cinzel Decorative',serif;font-weight:900;color:var(--zrb,var(--accent));font-size:.9rem;}
+.zpb-st-avatar img{width:26px;height:26px;object-fit:contain;}
+.zpb-st-avatar .zpb-st-avdot{position:absolute;top:-2px;right:-2px;width:11px;height:11px;border-radius:50%;background:var(--accent);border:2px solid var(--panel);}
+
+/* — 5 · settings: the save data panel — */
+.zpb-st-setrow{display:flex;align-items:center;gap:10px;padding:9px 2px;border-bottom:1px solid var(--border);min-width:0;}
+.zpb-st-setrow:last-of-type{border-bottom:0;}
+.zpb-st-setrow .zpb-st-oright{margin-left:auto;display:flex;align-items:center;gap:8px;}
+.zpb-st-sizechip{font-size:.6rem;color:var(--sub);border:1px solid var(--border);border-radius:999px;padding:2px 9px;font-variant-numeric:tabular-nums;white-space:nowrap;}
+.zpb-st-meter{flex:1 1 120px;height:6px;border-radius:4px;background:var(--border);overflow:hidden;min-width:80px;}
+.zpb-st-meter i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--tG5,var(--g5)),var(--tG2,var(--g2)));}
+.zpb-st-toggle{position:relative;width:44px;height:24px;border-radius:999px;border:1px solid var(--rosehair);background:var(--glass);cursor:pointer;flex:0 0 auto;}
+.zpb-st-toggle i{position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--sub);transition:left .18s ease,background .18s ease;}
+.zpb-st-toggle.zpb-st-son{background:color-mix(in srgb,var(--accent) 22%,transparent);}
+.zpb-st-toggle.zpb-st-son i{left:22px;background:var(--zrb,var(--accent));}
+.zpb-st-danger{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 55%,var(--border));}
+
+/* — 6 · the brag share — */
+.zpb-st-bragbox{display:flex;flex-direction:column;gap:9px;}
+.zpb-st-bragtext{font-size:.86rem;line-height:1.6;color:var(--text);background:var(--glass);border:1px dashed var(--rosehair);
+ border-radius:10px;padding:10px 13px;}
+.zpb-st-bragtext b{color:var(--zrb,var(--accent));}
+.zpb-st-copied{font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--good);display:none;}
+.zpb-st-copied.zpb-st-show{display:inline-block;}
+
+/* — 7 · the four honest states (never a promise of recovery) — */
+.zpb-st-states{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:10px;}
+.zpb-st-state{border-radius:12px;padding:11px 13px;border:1px solid var(--border);background:var(--panel2);min-width:0;}
+.zpb-st-state b.zpb-st-sth{display:block;font-size:.6rem;font-weight:800;letter-spacing:.22em;text-transform:uppercase;margin-bottom:5px;}
+.zpb-st-state p{margin:0;font-size:.76rem;line-height:1.55;color:var(--text);}
+.zpb-st-state.zpb-st-empty b.zpb-st-sth{color:var(--sub);}
+.zpb-st-state.zpb-st-corrupt b.zpb-st-sth{color:var(--bad);}
+.zpb-st-state.zpb-st-newer b.zpb-st-sth{color:var(--zrb,var(--accent));}
+.zpb-st-state.zpb-st-unavail b.zpb-st-sth{color:var(--sub);}
+.zpb-st-hostlaw{font-size:.68rem;color:var(--sub);line-height:1.6;border-top:1px solid var(--border);margin-top:12px;padding-top:10px;}
+
+/* — 8 · the multi-tab warning bar — */
+.zpb-st-tabbar{position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:140;display:flex;align-items:center;gap:10px;
+ background:var(--panel2);border:1px solid var(--accent);color:var(--text);padding:10px 16px;border-radius:999px;font-size:.76rem;font-weight:700;
+ box-shadow:0 10px 30px rgba(0,0,0,.4);max-width:92vw;}
+
+/* — the showcase shell (?storage=1) — */
+.zpb-st-shell{position:fixed;inset:0;z-index:150;background:radial-gradient(ellipse at 50% 0%,rgba(60,30,40,.35),transparent 60%),var(--bg);
+ overflow-y:auto;padding:18px 14px 60px;}
+.zpb-st-shell .zpb-st-wrap{max-width:880px;margin:0 auto;display:flex;flex-direction:column;gap:14px;}
+.zpb-st-tabs{display:flex;gap:6px;flex-wrap:wrap;justify-content:center;}
+.zpb-st-tabs button{background:var(--glass);border:1px solid var(--border);color:var(--sub);border-radius:999px;padding:7px 15px;
+ font-weight:700;font-size:.72rem;letter-spacing:.08em;cursor:pointer;font-family:'Cinzel',Georgia,serif;}
+.zpb-st-tabs button.zpb-st-tnote-on{background:linear-gradient(100deg,var(--g5),var(--g2) 55%,var(--g4));color:var(--ongold);border-color:var(--tBSb);}
+.zpb-st-demohead{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.zpb-st-demohead h2{margin:0;font-family:'Cinzel Decorative',serif;font-weight:900;font-size:1.2rem;color:var(--text);letter-spacing:.08em;}
+.zpb-st-spec{display:flex;flex-direction:column;gap:10px;}
+.zpb-st-speclabel{font-size:.6rem;letter-spacing:.26em;color:var(--sub);text-transform:uppercase;text-align:center;}
+@media (prefers-reduced-motion: reduce){ .zpb-st-slot,.zpb-st-pill{transition:none;} }
+</style>
+
+<script id="zpb-storage-js">
+// ============ Z-POST-BLUE STORAGE · PHASE 0 (w57) ============
+// The Architect's contract (inbox/20261101-2100, branch architect/engine-and-seats):
+//   { kind:'draft'|'week'|'season', schemaVersion:int, engineVersion:string, dataVersion:string,
+//     slot:'A'|'B'|'C', savedAt:ISO string, payload }
+// The envelope is the ONLY thing that crosses this boundary. The payload stays opaque — this
+// module validates the envelope alone and never looks inside. Nothing here imports the engine
+// (no colors/src/**, no store.ts — the §4 files are untouched). v1 is localStorage behind an
+// async facade, no compression (the assessment's §B3 numbers hold). IndexedDB stays a clean
+// swap: every byte goes through the injected KV. Screen call sites are a SEPARATE commit;
+// ?storage=1 mounts the design showcase only.
+window.ZPBStorage = (function(){
+ 'use strict';
+ var SCHEMA = 1;                                   // this build writes schemaVersion 1
+ var SLOTS = ['A','B','C'];
+ var KINDS = ['draft','week','season'];
+ var DEPLOYED = 'https://kozikosi.github.io/Football-Sim/'; // the brag link's only home (never a local path)
+ var P = 'zpb:st:';                                // key namespace
+ var SUPPORTED = { draft:1, week:1, season:1 };    // forward-only: a higher version loads as newer-version, untouched
+
+ function kCur(s){ return P+'slot:'+s; }
+ function kBak(s){ return P+'slot:'+s+':bak'; }
+ function kTmp(s){ return P+'slot:'+s+':tmp'; }
+ function kDel(s){ return P+'slot:'+s+':del'; }
+ var K_PROFILE = P+'profile', K_SETTINGS = P+'settings', K_STATS = P+'stats', K_APPLIED = P+'stats:applied';
+
+ // ---- the KV seam (localStorage by default; the test rig injects a Map) ----
+ function defaultKV(){
+  return {
+   name:'localStorage',
+   getItem:function(k){ try{ return window.localStorage.getItem(k); }catch(e){ return null; } },
+   setItem:function(k,v){ window.localStorage.setItem(k,v); },
+   removeItem:function(k){ try{ window.localStorage.removeItem(k); }catch(e){} },
+   available:function(){
+    try{ var t=P+'::probe'; window.localStorage.setItem(t,'1'); window.localStorage.removeItem(t); return true; }
+    catch(e){ return false; }
+   }
+  };
+ }
+ var kv = defaultKV();
+ function available(){ try{ return !!kv && !!kv.available && kv.available(); }catch(e){ return false; } }
+
+ // ---- envelope law: the WHOLE of payload law is that there is none ----
+ function isInt(n){ return typeof n==='number' && isFinite(n) && Math.floor(n)===n; }
+ function validEnvelope(e){
+  if(!e || typeof e!=='object' || Array.isArray(e)) return 'envelope';
+  if(KINDS.indexOf(e.kind)<0) return 'kind';
+  if(!isInt(e.schemaVersion) || e.schemaVersion<1) return 'schemaVersion';
+  if(typeof e.engineVersion!=='string' || !e.engineVersion) return 'engineVersion';
+  if(typeof e.dataVersion!=='string' || !e.dataVersion) return 'dataVersion';
+  if(SLOTS.indexOf(e.slot)<0) return 'slot';
+  if(typeof e.savedAt!=='string' || isNaN(Date.parse(e.savedAt))) return 'savedAt';
+  if(!('payload' in e)) return 'payload';
+  return null;
+ }
+ function clone(e){ return JSON.parse(JSON.stringify(e)); }
+
+ // ---- the typed load result: ok | empty | corrupt | newer-version | unavailable ----
+ function loadRaw(key){
+  if(!available()) return { status:'unavailable' };
+  var raw = null;
+  try{ raw = kv.getItem(key); }catch(e){ return { status:'unavailable' }; }
+  if(raw==null) return { status:'empty' };
+  var e = null;
+  try{ e = JSON.parse(raw); }catch(err){ return { status:'corrupt' }; }
+  var bad = validEnvelope(e);
+  if(bad) return { status:'corrupt', why:bad };
+  if((SUPPORTED[e.kind]||0) < e.schemaVersion) return { status:'newer-version', envelope:e };
+  return { status:'ok', envelope:e };
+ }
+
+ function readMeta(e){
+  // list-level metadata straight off the envelope header — the payload is never opened
+  return { kind:e.kind, schemaVersion:e.schemaVersion, engineVersion:e.engineVersion,
+           dataVersion:e.dataVersion, savedAt:e.savedAt, slot:e.slot };
+ }
+
+ // ---- quota pruning: the slot's own backup first, then its soft-deleted copy.
+ //      Never a completed season slot, never stats, never profile. If only protected
+ //      bytes remain, refuse the write and say so — a run is never silently evicted. ----
+ function pruneFor(slot){
+  var freed = [];
+  try{ kv.removeItem(kBak(slot)); freed.push('backup:'+slot); }catch(e){}
+  try{ kv.removeItem(kDel(slot)); freed.push('trash:'+slot); }catch(e){}
+  return freed;
+ }
+
+ function save(slot, envelope){
+  return new Promise(function(resolve){
+   var bad = validEnvelope(envelope);
+   if(bad){ resolve({ ok:false, reason:'invalid-envelope', field:bad }); return; }
+   if(envelope.slot!==slot){ resolve({ ok:false, reason:'slot-mismatch' }); return; }
+   if(!available()){ resolve({ ok:false, reason:'unavailable' }); return; }
+   var raw = JSON.stringify(envelope);
+   var attempt = function(withPrune){
+    try{
+     kv.setItem(kTmp(slot), raw);
+     var check = JSON.parse(kv.getItem(kTmp(slot)) || 'null');
+     if(validEnvelope(check)){ try{ kv.removeItem(kTmp(slot)); }catch(e2){} return { ok:false, reason:'tmp-readback' }; }
+     try{ var prev = kv.getItem(kCur(slot)); if(prev!=null) kv.setItem(kBak(slot), prev); }catch(e3){}
+     kv.setItem(kCur(slot), raw);
+     try{ kv.removeItem(kTmp(slot)); }catch(e4){}
+     return { ok:true, bytes:raw.length, pruned:withPrune||[] };
+    }catch(err){
+     try{ kv.removeItem(kTmp(slot)); }catch(e5){}
+     return { ok:false, reason:(String(err && ((err.name||'')+' '+(err.message||''))||'').toLowerCase().indexOf('quota')>=0?'quota':'write-failed'), error:String(err) };
+    }
+   };
+   var r = attempt(null);
+   if(!r.ok && r.reason==='quota'){
+    // only QUOTA prunes + retries (the one-deep backup and the trash are the expendable bytes).
+    // a plain interrupted write is reported — the tmp key already protected the current bytes,
+    // and the next save heals; silently retrying would mask the very fault the rig must see.
+    var freed = pruneFor(slot);
+    r = attempt(freed);
+    if(r.ok){ r.pruned = freed; } else { r.pruned = freed; }
+   }
+   if(r.ok) try{ externalNote(slot); }catch(e6){}
+   resolve(r);
+  });
+ }
+
+ function load(slot){
+  return new Promise(function(resolve){
+   var r = loadRaw(kCur(slot));
+   if(r.status==='ok'){ resolve({ status:'ok', envelope:r.envelope, meta:readMeta(r.envelope), usedBackup:false }); return; }
+   if(r.status==='corrupt'){
+    // the one-deep backup protects a failed write — if it validates, it steps forward, and the UI says so
+    var b = loadRaw(kBak(slot));
+    if(b.status==='ok'){
+     try{ kv.setItem(kCur(slot), JSON.stringify(b.envelope)); }catch(e){}
+     resolve({ status:'ok', envelope:b.envelope, meta:readMeta(b.envelope), usedBackup:true, repairedFrom:'backup' }); return;
+    }
+    resolve({ status:'corrupt', usedBackup:false, why:r.why }); return;
+   }
+   if(r.status==='newer-version'){ resolve({ status:'newer-version', envelope:r.envelope, meta:readMeta(r.envelope) }); return; }
+   resolve(r); // empty | unavailable
+  });
+ }
+
+ function list(){
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ status:'unavailable', slots:[] }); return; }
+   var out = [];
+   var finish = function(){
+    var next = function(slot){
+     if(slot>=SLOTS.length){ resolve({ status:'ok', slots:out }); return; }
+     var s = SLOTS[slot], r = loadRaw(kCur(s));
+     if(r.status==='ok') out.push(Object.assign({ slot:s, empty:false }, readMeta(r.envelope)));
+     else if(r.status==='newer-version') out.push({ slot:s, empty:false, kind:r.envelope.kind, savedAt:r.envelope.savedAt, newer:true, schemaVersion:r.envelope.schemaVersion });
+     else if(r.status==='corrupt') out.push({ slot:s, empty:false, kind:null, corrupt:true });
+     else out.push({ slot:s, empty:true });
+     next(slot+1);
+    };
+    next(0);
+   };
+   finish();
+  });
+ }
+
+ function remove(slot){ // soft: the run steps into the trash, restorable until the next save
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ ok:false, reason:'unavailable' }); return; }
+   try{
+    var cur = kv.getItem(kCur(slot));
+    if(cur==null){ resolve({ ok:true, gone:true }); return; }
+    kv.setItem(kDel(slot), cur);
+    kv.removeItem(kCur(slot));
+    kv.removeItem(kBak(slot));
+    externalNote(slot);
+    resolve({ ok:true, soft:true });
+   }catch(e){ resolve({ ok:false, reason:'write-failed', error:String(e) }); }
+  });
+ }
+ function restore(slot){ // undo the soft delete
+  return new Promise(function(resolve){
+   var t = kv.getItem(kDel(slot));
+   if(t==null){ resolve({ ok:false, reason:'nothing-to-restore' }); return; }
+   var r = null; try{ r = JSON.parse(t); }catch(e){}
+   if(validEnvelope(r)){ resolve({ ok:false, reason:'corrupt' }); return; }
+   try{ kv.setItem(kCur(slot), t); kv.removeItem(kDel(slot)); externalNote(slot); resolve({ ok:true }); }
+   catch(e){ resolve({ ok:false, reason:'write-failed' }); }
+  });
+ }
+
+ function migrate(){
+  return new Promise(function(resolve){
+   // forward-only: v1 has no older versions. The walk proves every slot parses; a future
+   // migration map replaces the identity step. newer-version slots are never touched.
+   list().then(function(l){
+    if(l.status!=='ok'){ resolve({ status:l.status, migrated:0, kept:0 }); return; }
+    var migrated = 0, kept = 0;
+    l.slots.forEach(function(s){ if(s.newer) kept++; else if(!s.empty && !s.corrupt) migrated++; });
+    resolve({ status:'ok', migrated:migrated, kept:kept });
+   });
+  });
+ }
+
+ // ---- multi-tab: a storage event on our namespace means another tab holds the pen ----
+ function externalNote(){
+  try{
+   window.dispatchEvent(new CustomEvent('zpb:storage-external', { detail:{ at:Date.now() } }));
+  }catch(e){}
+ }
+ if(typeof window!=='undefined' && window.addEventListener){
+  window.addEventListener('storage', function(ev){
+   if(ev && ev.key && String(ev.key).indexOf(P)===0){
+    try{ window.dispatchEvent(new CustomEvent('zpb:storage-external', { detail:{ key:ev.key, at:Date.now(), remote:true } })); }catch(e){}
+   }
+  });
+ }
+
+ // ---- the global stores (keyed by franchise, never by slot) ----
+ function readJSON(key, fallback){
+  var raw = kv.getItem(key);
+  if(raw==null) return fallback;
+  try{ return JSON.parse(raw); }catch(e){ return fallback; }
+ }
+ function writeJSON(key, val){ try{ kv.setItem(key, JSON.stringify(val)); return true; }catch(e){ return false; } }
+
+ var SETTINGS_DEFAULT = { cinematicsReduced:false, bragHints:true };
+ var settingsApi = {
+  read:function(){ if(!available()) return Object.assign({}, SETTINGS_DEFAULT); return Object.assign({}, SETTINGS_DEFAULT, readJSON(K_SETTINGS, {})); },
+  write:function(patch){ var cur = settingsApi.read(); var next = Object.assign({}, cur, patch||{}); return writeJSON(K_SETTINGS, next) ? next : null; }
+ };
+
+ var PROFILE_DEFAULT = { createdAt:null, lastTeam:null, lastPlayedAt:null, achievements:[] };
+ var profileApi = {
+  read:function(){ if(!available()) return Object.assign({}, PROFILE_DEFAULT); return Object.assign({}, PROFILE_DEFAULT, readJSON(K_PROFILE, {})); },
+  touch:function(patch){ var cur = profileApi.read(); var next = Object.assign({}, cur, patch||{}); if(!next.createdAt) next.createdAt = new Date().toISOString(); writeJSON(K_PROFILE, next); return next; },
+  award:function(a){ // achievements survive slot deletion AND overwrite — they live here, outside the slots
+   var cur = profileApi.read();
+   var id = a && a.id; if(!id) return cur;
+   if(!(cur.achievements||[]).some(function(x){ return x.id===id; })){
+    cur.achievements = (cur.achievements||[]).concat([{ id:a.id, label:a.label, at:new Date().toISOString(), team:a.team||null }]);
+    writeJSON(K_PROFILE, cur);
+   }
+   return cur;
+  }
+ };
+
+ // ---- stats: overall AND by franchise. The elimination trigger lives with the WRITER (the
+ //      engine side sets payload.statsRecorded at the moment of elimination); this module
+ //      refuses a double count on its own ledger too (belt and braces, the assessment's way). ----
+ var RESULT_RANK = { missed:0, wildcard:1, divisional:2, champ:3, 'sb-loss':4, champion:5 };
+ var RESULT_PTS  = { 0:0, 1:15, 2:25, 3:40, 4:60, 5:100 };
+ function blankFrac(){ return { seasons:0, wins:0, losses:0, ties:0, titles:0, sb:0, conf:0, trips:0, undefeated:0,
+   bestRecord:null, bestResult:null }; }
+ function statsDefault(){ return { schema:1, overall:blankFrac(), franchises:{} }; }
+ function betterRecord(a, b){ // more wins, then fewer losses; null-proof
+  if(!b) return true; if(!a) return false;
+  if(a.w!==b.w) return a.w>b.w; if((a.l||0)!==(b.l||0)) return (a.l||0)<(b.l||0); return (a.t||0)>(b.t||0);
+ }
+ function betterResult(a, b){ return (a==null?false:(b==null?true:(RESULT_RANK[a]||0)>(RESULT_RANK[b]||0))); }
+ function legendOf(f){
+  // THE FRANCHISE LEGEND — integer, explainable: a title is worth 120, the best run the
+  // franchise ever had is worth its ladder value (0 missed · 15 wildcard · 25 divisional ·
+  // 40 conference · 60 a Super Bowl lost · 100 a Super Bowl won), two per career win, and
+  // 30 for every undefeated regular season.
+  if(!f) return 0;
+  var rp = RESULT_PTS[f.bestResult!=null?(RESULT_RANK[f.bestResult]||0):0] || 0;
+  return (f.titles||0)*120 + rp + (f.wins||0)*2 + (f.undefeated||0)*30;
+ }
+ function applySeason(slot, envelope){
+  // consumes ONLY the season payload's stats fields (contract §3): payload.user {team, w, l, t,
+  // result, undefeated?}, payload.statsRecorded. Anything missing → applied:false, never guessed.
+  return new Promise(function(resolve){
+   if(!available()){ resolve({ applied:false, reason:'unavailable' }); return; }
+   if(!envelope || envelope.kind!=='season'){ resolve({ applied:false, reason:'kind' }); return; }
+   var p = envelope.payload || {};
+   var u = p.user;
+   if(!u || typeof u.team!=='string' || !isInt(u.w) || !isInt(u.l)){ resolve({ applied:false, reason:'payload-shape' }); return; }
+   if(p.statsRecorded===true){ resolve({ applied:false, reason:'already-recorded' }); return; }
+   var ledger = readJSON(K_APPLIED, {});
+   var key = envelope.slot+':'+envelope.savedAt+':'+u.team;
+   if(ledger[key]){ resolve({ applied:false, reason:'ledger' }); return; }
+   var st = readJSON(K_STATS, null) || statsDefault();
+   if(st.schema!==1){ resolve({ applied:false, reason:'schema' }); return; }
+   var t = u.team;
+   var fr = st.franchises[t] || blankFrac();
+   var rec = { w:u.w, l:u.l, t:u.t||0, year:u.year||null };
+   var res = RESULT_RANK[u.result]!=null ? u.result : 'missed';
+   fr.seasons++; fr.wins+=rec.w; fr.losses+=rec.l; fr.ties+=rec.t;
+   if(res==='champion'){ fr.titles++; fr.sb++; }
+   if(res==='sb-loss'){ fr.sb++; }
+   if(res==='champ'||res==='sb-loss'||res==='champion'){ fr.conf++; }
+   if(res!=='missed'){ fr.trips++; }
+   if(u.undefeated===true){ fr.undefeated++; }
+   if(betterRecord(rec, fr.bestRecord)) fr.bestRecord = rec;
+   if(betterResult(res, fr.bestResult)) fr.bestResult = res;
+   st.franchises[t] = fr;
+   var o = st.overall;
+   o.seasons++; o.wins+=rec.w; o.losses+=rec.l; o.ties+=rec.t;
+   if(res==='champion'){ o.titles++; o.sb++; }
+   if(res==='sb-loss'){ o.sb++; }
+   if(res==='champ'||res==='sb-loss'||res==='champion'){ o.conf++; }
+   if(res!=='missed'){ o.trips++; }
+   if(u.undefeated===true){ o.undefeated++; }
+   if(betterRecord(rec, o.bestRecord)) o.bestRecord = Object.assign({ team:t }, rec);
+   if(betterResult(res, o.bestResult)) o.bestResult = res;
+   o.legend = legendOf(o);
+   fr.legend = legendOf(fr);
+   ledger[key] = true;
+   var wrote = writeJSON(K_STATS, st) && writeJSON(K_APPLIED, ledger);
+   if(!wrote){ resolve({ applied:false, reason:'quota' }); return; }
+   if(u.undefeated===true) profileApi.award({ id:'undefeated', label:'Undefeated regular season', team:t });
+   if(res==='champion') profileApi.award({ id:'title-'+t, label:'Super Bowl champion', team:t });
+   profileApi.touch({ lastTeam:t, lastPlayedAt:new Date().toISOString() });
+   resolve({ applied:true, stats:st, franchise:fr, legend:fr.legend });
+  });
+ }
+
+ // ---- the brag share (clipboard + toast; the deployed URL only, never a local path) ----
+ function bragUrl(){
+  try{
+   if(location.protocol==='file:' || location.protocol==='about:') return DEPLOYED;
+   if(!/^https?:$/.test(location.protocol)) return DEPLOYED;
+   if(/^(localhost|127\.0\.0\.1)/.test(location.hostname)) return DEPLOYED;
+   return location.origin + location.pathname;
+  }catch(e){ return DEPLOYED; }
+ }
+ function bragText(f){ // f = {team, w, l, result, undefeated?}
+  var result = f.result==='champion' ? 'won it all' : (f.result==='sb-loss' ? 'made the Super Bowl' :
+    (f.result==='champ' ? 'made the conference championship' : (RESULT_RANK[f.result]>=1 ? 'made the playoffs' : 'gave it everything')));
+  var rec = f.w+'-'+f.l+((f.t||0)?('-'+f.t):'');
+  var undefeated = f.undefeated ? ' A perfect '+f.w+'-0 regular season.' : '';
+  return 'I went '+rec+' and '+result+' with '+f.team+'.'+undefeated+' Can you go 20-0? '+bragUrl();
+ }
+ function bragCopy(text){
+  return new Promise(function(resolve){
+   var done = function(okk){ resolve(okk); };
+   try{
+    if(navigator.clipboard && navigator.clipboard.writeText){
+     navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(legacyCopy(text)); });
+     return;
+    }
+   }catch(e){}
+   done(legacyCopy(text));
+  });
+ }
+ function legacyCopy(text){
+  try{
+   var ta = document.createElement('textarea');
+   ta.value = text; ta.setAttribute('readonly','');
+   ta.style.cssText = 'position:fixed;left:-9999px;top:0;';
+   document.body.appendChild(ta); ta.select();
+   var okk = document.execCommand('copy');
+   ta.remove(); return !!okk;
+  }catch(e){ return false; }
+ }
+
+ // ---- the test rig: a Map-backed KV with fault hooks (interrupted write, corruption, quota,
+ //      unavailable, two tabs) — the battery drives this, the real screens never see it ----
+ function makeTestKV(){
+  var store = new Map();
+  return {
+   name:'map-kv', store:store, failNext:0, quotaMode:false, down:false,
+   available:function(){ return !this.down; },
+   getItem:function(k){ if(this.down) throw new Error('unavailable'); return store.has(k)?store.get(k):null; },
+   setItem:function(k,v){
+    if(this.down) throw new Error('unavailable');
+    if(this.quotaMode) throw new Error('QuotaExceededError');
+    if(this.failNext>0){ this.failNext--; throw new Error('SimulatedInterruptedWrite'); }
+    store.set(k,String(v));
+   },
+   removeItem:function(k){ if(this.down) throw new Error('unavailable'); store.delete(k); }
+  };
+ }
+ function _test(){
+  var rig = { pass:0, fail:0, lines:[] };
+  var ok = function(c, label){ rig.lines.push((c?'PASS  ':'FAIL  ')+label); c?rig.pass++:rig.fail++; };
+  var base = makeTestKV();
+  var savedKv = kv; kv = base;
+  try{
+   var env = function(slot, kind, extra){ return Object.assign({ kind:kind||'season', schemaVersion:1, engineVersion:'w56-ts-a1',
+     dataVersion:'csv-77a2f1', slot:slot, savedAt:new Date().toISOString(), payload:Object.assign({ stub:true }, extra||{}) }); };
+   // T1 · round trip
+   var p = null;
+   save('A', env('A')).then(function(r1){
+    ok(r1.ok===true, 'T1 save ok'); return load('A');
+   }).then(function(l1){
+    ok(l1.status==='ok' && l1.envelope.payload.stub===true, 'T1 load ok (payload opaque, round trip)');
+    return list();
+   }).then(function(l2){
+    ok(l2.slots.length===3 && l2.slots[0].slot==='A' && l2.slots[0].kind==='season' && l2.slots[1].empty===true, 'T1 list reads the header only');
+    // T2 · the envelope law refuses garbage
+    return save('B', { kind:'nonsense', payload:{} });
+   }).then(function(r2){
+    ok(r2.ok===false && r2.reason==='invalid-envelope' && r2.field==='kind', 'T2 bad envelope refused');
+    return load('B');
+   }).then(function(l3){
+    ok(l3.status==='empty', 'T2 refused write left the slot empty');
+    // T3 · interrupted write: the tmp dies, the current survives, the next save heals
+    base.failNext = 1;
+    return save('B', env('B','draft'));
+   }).then(function(r3){
+    ok(r3.ok===false && r3.reason==='write-failed', 'T3 interrupted write reported');
+    ok(base.store.get(kCur('B'))==null, 'T3 current untouched by the interrupted write');
+    return save('B', env('B','draft'));
+   }).then(function(r4){
+    ok(r4.ok===true, 'T3 the next save heals');
+    return save('B', env('B','draft')); // the second save lays the one-deep backup for T4
+   }).then(function(r4b){
+    ok(r4b.ok===true, 'T3 a second save lays the backup');
+    // T4 · corruption with a good backup heals from the backup
+    base.store.set(kCur('B'), '{not json');
+    return load('B');
+   }).then(function(l4){
+    ok(l4.status==='ok' && l4.usedBackup===true && l4.repairedFrom==='backup', 'T4 corrupt current restored from the one-deep backup');
+    // T5 · corruption with no usable backup reports corrupt
+    base.store.set(kCur('B'), '{also not'); base.store.set(kBak('B'), '{neither');
+    return load('B');
+   }).then(function(l5){
+    ok(l5.status==='corrupt', 'T5 corrupt with no backup reads corrupt');
+    // T6 · quota: the expendable bytes prune first, the run itself is never evicted
+    base.store.set(kDel('B'), '{"trash":1}');
+    base.quotaMode = true;
+    return save('B', env('B','week'));
+   }).then(function(r6){
+    base.quotaMode = false;
+    ok(r6.ok===false && r6.reason==='quota', 'T6 quota refused the write instead of evicting a run');
+    ok((r6.pruned||[]).indexOf('trash:B')>=0, 'T6 the expendable bytes pruned first (trash, backup)');
+    ok(base.store.get(kCur('B'))==='{also not', 'T6 the existing slot bytes were never the price');
+    // T7 · unavailable reads typed
+    base.down = true;
+    return load('C');
+   }).then(function(l7){
+    ok(l7.status==='unavailable', 'T7 unavailable is a typed result');
+    base.down = false;
+    // T8 · newer-version is kept, never deleted, never faked
+    return save('C', Object.assign(env('C'), { schemaVersion:2 })).then(function(r8){
+     ok(r8.ok===true, 'T8 a newer envelope stores fine (storage does not judge versions)');
+     return load('C');
+    });
+   }).then(function(l8){
+    ok(l8.status==='newer-version' && l8.envelope.schemaVersion===2, 'T8 newer-version loads typed and kept');
+    // T9 · soft delete + restore
+    return save('A', env('A')).then(function(){ return remove('A'); }).then(function(r9){
+     ok(r9.ok===true && r9.soft===true, 'T9 soft delete');
+     return list();
+    }).then(function(l9){
+     ok(l9.slots[0].empty===true, 'T9 the soft-deleted slot reads empty in the list');
+     return restore('A');
+    }).then(function(r10){
+     ok(r10.ok===true, 'T9 restore brings the run back');
+     return load('A');
+    }).then(function(l10){
+     ok(l10.status==='ok', 'T9 the restored slot loads');
+     // T11 · the stats elimination trigger + the double-count guard
+     var season = env('A','season',{ statsRecorded:false, user:{ team:'Carolina Panthers', w:14, l:3, t:0, result:'champion', year:2026, undefeated:false } });
+     return applySeason('A', season).then(function(s1){
+      ok(s1.applied===true && s1.franchise.titles===1 && s1.legend===248, 'T11 the elimination moment records once (legend 120 title + 100 champion + 28 wins = 248)');
+      return applySeason('A', Object.assign({}, season, { payload:Object.assign({}, season.payload, { statsRecorded:true }) }));
+     }).then(function(s2){
+      ok(s2.applied===false && s2.reason==='already-recorded', 'T11 the payload flag refuses the double count');
+      return applySeason('A', season);
+     }).then(function(s3){
+      ok(s3.applied===false && s3.reason==='ledger', 'T11 the ledger refuses the replayed season too');
+      // T12 · migrate is a no-op forward walk on v1
+      return migrate();
+     }).then(function(m){
+      ok(m.status==='ok' && m.kept===1, 'T12 migrate walks forward, keeps the newer-version slot');
+     });
+    });
+   }).catch(function(err){ ok(false, 'unexpected rig error — '+String(err).slice(0,90)); })
+    .then(function(){ kv = savedKv; if(typeof window!=='undefined') window.__zpbStorageTest = rig; });
+  }catch(e){ kv = savedKv; ok(false, 'rig threw — '+String(e).slice(0,90)); }
+  return rig;
+ }
+
+ // ---- the Phase 0 UI showcase (?storage=1) — the design surface, not a screen wiring ----
+ function showcaseMount(){
+  if(document.querySelector('.zpb-st-shell')) return;
+  var shell = document.createElement('div'); shell.className = 'zpb-st-shell';
+  document.body.appendChild(shell);
+  var demoKv = makeTestKV(); // the showcase never touches the real saves
+  var savedKv = kv; kv = demoKv;
+  var T = 'Carolina Panthers';
+  var mk = function(slot, kind, savedMinAgo, user, stubs){
+   return { kind:kind, schemaVersion:1, engineVersion:'w56-ts-a1', dataVersion:'csv-77a2f1', slot:slot,
+     savedAt:new Date(Date.now()-savedMinAgo*60000).toISOString(), payload:Object.assign({ stub:true }, stubs||{}) };
+  };
+  var seeds = [
+   mk('A','week', 34, T, { week:10, record:{ w:7, l:2, t:0 } }),
+   mk('B','draft', 60*26, T, { round:3, pickOverall:74 }),
+   mk('C','season', 60*24*9, 'San Francisco 49ers', { user:{ team:'San Francisco 49ers', w:12, l:5, t:0, result:'sb-loss' }, champion:'Kansas City Chiefs' })
+  ];
+  var seq = Promise.resolve();
+  seeds.forEach(function(e){ seq = seq.then(function(){ return save(e.slot, e); }); });
+  var prof = profileApi;
+  prof.touch({ lastTeam:T });
+  prof.award({ id:'title-Carolina Panthers', label:'Super Bowl champion', team:T });
+  prof.award({ id:'undefeated', label:'Undefeated regular season', team:T });
+  var SH = shell;
+  var TABS = [
+   ['CONTINUE', tabContinue], ['SLOTS', tabSlots], ['OVERWRITE', tabOverwrite],
+   ['PROFILE', tabProfile], ['SETTINGS', tabSettings], ['BRAG', tabBrag], ['STATES', tabStates]
+  ];
+  var cur = 0;
+  var lg = function(t){ return (typeof zpbTeamLogo==='function') ? zpbTeamLogo(t) : ''; };
+  var ab = function(t){ return (typeof TEAM_ABBR!=='undefined' && TEAM_ABBR[t]) ? TEAM_ABBR[t] : t; };
+  function shellHead(){
+   return '<div class="zpb-st-demohead"><h2>STORAGE \u00b7 PHASE 0 DESIGN</h2>'
+    + '<span class="zpb-st-sub">the walkthrough \u00b7 the real screens adopt these pieces at the wiring commit</span>'
+    + '<button class="zpb-st-quiet" id="zpb-st-exit">Close</button></div>'
+    + '<div class="zpb-st-tabs">'+TABS.map(function(t,i){ return '<button data-tt="'+i+'" class="'+(i===cur?'zpb-st-tnote-on':'')+'">'+t[0]+'</button>'; }).join('')+'</div>';
+  }
+  function rel(iso){
+   var m = Math.max(1, Math.round((Date.now()-Date.parse(iso))/60000));
+   if(m<60) return 'saved '+m+' min ago';
+   var h = Math.round(m/60); if(h<36) return 'saved '+h+'h ago';
+   return 'saved '+Math.round(h/24)+' days ago';
+  }
+  function phaseLine(e){
+   if(e.kind==='draft') return 'Mid-draft \u00b7 Round '+((e.payload&&e.payload.round)||1);
+   if(e.kind==='week'){ var r = (e.payload&&e.payload.record)||{}; return 'Week '+((e.payload&&e.payload.week)||1)+' \u00b7 '+(r.w||0)+'-'+(r.l||0)+((r.t||0)?('-'+r.t):''); }
+   var u = (e.payload&&e.payload.user)||{}; return 'Season complete \u00b7 '+(u.w||0)+'-'+(u.l||0)+' \u00b7 '+(u.result==='sb-loss'?'Super Bowl runners-up':'Season over');
+  }
+  function tabContinue(){
+   return '<div class="zpb-st-card zpb-st-continue">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Welcome back</span>'
+    + '<div class="zpb-st-row" style="justify-content:center;">'+lg(T)+'<span class="zpb-st-big zpb-st-teamname">'+T.toUpperCase()+'</span></div>'
+    + '<div class="zpb-st-phaseline">Week 10 \u00b7 7-2 \u00b7 the Ravens come to town</div>'
+    + '<div><button class="zpb-st-pill">CONTINUE</button></div>'
+    + '<div class="zpb-st-slotrow">'
+    + '<span class="zpb-st-slotchip zpb-st-on"><b>A</b> '+lg(T)+' '+ab(T)+' \u00b7 W10</span>'
+    + '<span class="zpb-st-slotchip"><b>B</b> '+lg(T)+' '+ab(T)+' \u00b7 R3</span>'
+    + '<span class="zpb-st-slotchip"><b>C</b> SF \u00b7 12-5</span>'
+    + '</div>'
+    + '<button class="zpb-st-quiet">start something new</button>'
+    + '<div class="zpb-st-sub">The page opens with the run you left. CONTINUE rides the newest slot; the chips jump straight to another one. No dialog, no file, no account.</div>'
+    + '</div>';
+  }
+  function slotCard(s, active, empty, newer){
+   var letter = s.slot;
+   if(empty) return '<div class="zpb-st-slot zpb-st-isempty"><span class="zpb-st-letter">'+letter+'</span>'
+    + '<span class="zpb-st-sub">Empty slot \u2014 a new draft lands here first, silently.</span></div>';
+   return '<div class="zpb-st-slot'+(active?' zpb-st-isactive':'')+'">'
+    + '<span class="zpb-st-letter">'+letter+'</span>'
+    + '<span class="zpb-st-teamname">'+lg(s.team||T)+(s.team||T)+'</span>'
+    + '<span class="zpb-st-phase">'+phaseLine(s.envelope)+'</span>'
+    + '<span class="zpb-st-kinds"><span class="zpb-st-kindchip'+(s.envelope.kind!=='season'?' zpb-st-kdim':'')+'">'+s.envelope.kind+'</span>'
+    + (newer?'<span class="zpb-st-kindchip zpb-st-kdim">newer version</span>':'')+'</span>'
+    + '<span class="zpb-st-saved">'+rel(s.envelope.savedAt)+' \u00b7 v'+s.envelope.schemaVersion+'</span>'
+    + '</div>';
+  }
+  function tabSlots(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the slot selector \u2014 three runs, side by side</div>'
+    + '<div class="zpb-st-slots">'
+    + slotCard({ slot:'A', team:T, envelope:seeds[0] }, true)
+    + slotCard({ slot:'B', team:T, envelope:seeds[1] })
+    + slotCard({ slot:'C', team:'San Francisco 49ers', envelope:seeds[2] })
+    + '</div>'
+    + '<div class="zpb-st-card"><span class="zpb-st-speclabel">the empty third slot reads as an invitation, not an error</span>'
+    + '<div class="zpb-st-slots" style="margin-top:10px;">'+slotCard({ slot:'A', team:T, envelope:seeds[0] })+slotCard({ slot:'B', team:T, envelope:seeds[1] })+slotCard({ slot:'C' }, false, true)+'</div></div>'
+    + '<div class="zpb-st-sub">A new draft takes the first empty slot silently (the Owner\u2019s law). All three full \u2192 the overwrite caution. The gold ring marks the slot the page will open.</div>'
+    + '</div>';
+  }
+  function tabOverwrite(){
+   return '<div class="zpb-st-card">'
+    + '<span class="zpb-st-kicker" style="color:var(--bad);">All three slots are full</span>'
+    + '<div class="zpb-st-big" style="font-size:1.05rem;margin-top:4px;">Where does the new draft go?</div>'
+    + '<div class="zpb-st-ocards">'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">A</span><span style="min-width:0;"><b style="font-size:.86rem;">'+T+'</b><br><span class="zpb-st-sub">Week 10 \u00b7 7-2 \u00b7 '+rel(seeds[0].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">B</span><span style="min-width:0;"><b style="font-size:.86rem;">'+T+'</b><br><span class="zpb-st-sub">Mid-draft \u00b7 Round 3 \u00b7 '+rel(seeds[1].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '<button class="zpb-st-orow"><span class="zpb-st-letter">C</span><span style="min-width:0;"><b style="font-size:.86rem;">San Francisco 49ers</b><br><span class="zpb-st-sub">Season \u00b7 12-5 \u00b7 '+rel(seeds[2].savedAt)+'</span></span><span class="zpb-st-oright"><span class="zpb-st-arm">tap again to overwrite</span></span></button>'
+    + '</div>'
+    + '<div class="zpb-st-olaw">Overwriting erases that run. Career stats and achievements stay \u2014 they live outside the slots, keyed by franchise. The first tap arms the row; the second confirms. No hidden third step.</div>'
+    + '</div>';
+  }
+  function legendTable(){
+   var frs = [ ['Carolina Panthers', 1, '14-3', 'Champions', 248], ['San Francisco 49ers', 2, '12-5', 'Super Bowl lost', 84], ['Kansas City Chiefs', 1, '11-6', 'Champions', 242] ];
+   return '<table class="zpb-st-ftable"><thead><tr><th>Franchise</th><th>Seasons</th><th>Total</th><th>Best run</th><th>Legend</th></tr></thead><tbody>'
+    + frs.map(function(f,i){ return '<tr'+(i===0?' class="zpb-st-fme"':'')+'><td>'+lg(f[0])+f[0]+'</td><td>'+f[1]+'</td><td>'+f[2]+'</td><td>'+f[3]+'</td><td><b>'+f[4]+'</b></td></tr>'; }).join('')
+    + '</tbody></table>';
+  }
+  function tabProfile(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the profile panel \u2014 the corner avatar opens the career</div>'
+    + '<div class="zpb-st-card zpb-st-profile">'
+    + '<div class="zpb-st-row"><span class="zpb-st-avwrap"><span class="zpb-st-avatar">'+lg(T)+'</span><span class="zpb-st-avdot"></span></span>'
+    + '<div><span class="zpb-st-kicker zpb-st-gold">Career</span><div class="zpb-st-big" style="font-size:1rem;">Carolina Panthers \u00b7 and counting</div></div></div>'
+    + '<div class="zpb-st-legend"><b>248</b><span class="zpb-st-sub">legend score \u2014 1 title \u00b7 best run Champions \u00b7 14 wins \u00b7 explained in the Guide</span></div>'
+    + '<div class="zpb-st-achips"><span class="zpb-st-achip"><b>\u2605</b> Super Bowl champion</span><span class="zpb-st-achip"><b>\u2605</b> Undefeated regular season</span></div>'
+    + legendTable()
+    + '<div class="zpb-st-sub">The legend ranks the franchises you have coached. A title is worth 120, the best run 0\u2013100 by its ladder, two per win, 30 per undefeated season \u2014 integers, explainable, the Guide carries the table.</div>'
+    + '</div>'
+    + '<div class="zpb-st-card zpb-st-profile"><span class="zpb-st-kicker">First visit \u2014 the empty state, word for word</span>'
+    + '<div class="zpb-st-sub" style="font-size:.86rem;color:var(--text);">\u201cNo achievements yet \u2014 finish a season to start your legacy.\u201d</div>'
+    + '<div class="zpb-st-sub">Never a blank panel. The avatar shows the initial until a franchise is chosen.</div></div>'
+    + '</div>';
+  }
+  function tabSettings(){
+   return '<div class="zpb-st-card">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Save data</span>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zrb,var(--accent));">A</span><span style="min-width:0;"><b style="font-size:.82rem;">'+T+'</b><br><span class="zpb-st-sub">Week 10 preview \u00b7 autosave</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">18 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zpb-st-dim,var(--sub));">B</span><span style="min-width:0;"><b style="font-size:.82rem;">'+T+'</b><br><span class="zpb-st-sub">Mid-draft \u00b7 Round 3</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">233 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-letter" style="font-family:\'Cinzel Decorative\',serif;font-weight:900;color:var(--zpb-st-dim,var(--sub));">C</span><span style="min-width:0;"><b style="font-size:.82rem;">San Francisco 49ers</b><br><span class="zpb-st-sub">Completed season \u00b7 stays until overwritten</span></span><span class="zpb-st-oright"><span class="zpb-st-sizechip">25 KB</span><button class="zpb-st-quiet" style="padding:5px 12px;font-size:.64rem;">forget</button></span></div>'
+    + '<div class="zpb-st-setrow"><span class="zpb-st-sub">Storage available</span><span class="zpb-st-oright" style="flex:1 1 auto;"><span class="zpb-st-meter"><i style="width:6%;"></i></span><span class="zpb-st-sizechip">276 KB \u00b7 of about 5,000 KB</span></span></div>'
+    + '<div class="zpb-st-setrow"><span style="min-width:0;"><b style="font-size:.82rem;">Softer cinematics</b><br><span class="zpb-st-sub">The during-game show shortens; nothing else changes.</span></span><span class="zpb-st-oright"><span class="zpb-st-toggle" id="zpb-st-tog"><i></i></span></span></div>'
+    + '<div class="zpb-st-hostlaw">Saves live in this browser, for this address. Clearing the browser\u2019s data, private browsing, or a new host starts fresh \u2014 nothing can restore them, and the game will never say otherwise. The hidden copy behind each slot protects a failed write only.</div>'
+    + '<div class="zpb-st-row" style="justify-content:flex-end;margin-top:10px;"><button class="zpb-st-quiet zpb-st-danger">clear all saves \u00b7 achievements stay</button></div>'
+    + '</div>';
+  }
+  function tabBrag(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the brag share \u2014 one button on the results screen</div>'
+    + '<div class="zpb-st-card zpb-st-bragbox">'
+    + '<span class="zpb-st-kicker zpb-st-gold">Season complete</span>'
+    + '<div class="zpb-st-big" style="font-size:1.05rem;">Carolina Panthers \u00b7 Super Bowl champions</div>'
+    + '<div class="zpb-st-bragtext">I went <b>14-3</b> and won it all with the Carolina Panthers. Can you go 20-0? <b>https://kozikosi.github.io/Football-Sim/</b></div>'
+    + '<div class="zpb-st-row"><button class="zpb-st-pill" id="zpb-st-bragbtn">COPY YOUR BRAG</button><span class="zpb-st-copied" id="zpb-st-cop">copied \u2014 paste it anywhere</span></div>'
+    + '<div class="zpb-st-sub">The link is the deployed game, never a local path, never a save. No downloads, no export screens \u2014 the clipboard and a toast, that is the whole feature.</div>'
+    + '</div></div>';
+  }
+  function tabStates(){
+   return '<div class="zpb-st-spec"><div class="zpb-st-speclabel">the four honest states \u2014 what the user reads, word for word</div>'
+    + '<div class="zpb-st-states">'
+    + '<div class="zpb-st-state zpb-st-empty"><b class="zpb-st-sth">Empty</b><p>Nothing here yet. Start a draft and this slot keeps your place.</p></div>'
+    + '<div class="zpb-st-state zpb-st-corrupt"><b class="zpb-st-sth">Damaged \u00b7 backup used</b><p>This save was damaged. Your last good copy \u2014 saved 2h ago \u2014 was restored.</p></div>'
+    + '<div class="zpb-st-state zpb-st-corrupt"><b class="zpb-st-sth">Damaged \u00b7 no backup</b><p>This save is damaged beyond use, and no backup could help. The slot had to be reset. Career stats and achievements are safe.</p></div>'
+    + '<div class="zpb-st-state zpb-st-newer"><b class="zpb-st-sth">Newer version</b><p>This save came from a newer version of the game. It is kept exactly as it is \u2014 update the page to continue.</p></div>'
+    + '<div class="zpb-st-state zpb-st-unavail"><b class="zpb-st-sth">Unavailable</b><p>Storage is not available in this session \u2014 private browsing, or the browser refused. You can play, but nothing will be kept.</p></div>'
+    + '<div class="zpb-st-state"><b class="zpb-st-sth">Two tabs</b><p>This page was opened in another tab \u2014 that tab now keeps the saves. Continue here and this tab takes the pen back.</p></div>'
+    + '</div>'
+    + '<div class="zpb-st-hostlaw">Every state says what IS, and never promises a recovery that does not exist. The backup lives inside the same storage origin \u2014 after a data clear, it is gone with everything else.</div>'
+    + '</div>';
+  }
+  function render(){
+   SH.innerHTML = '<div class="zpb-st-wrap">'+shellHead()+'<div class="zpb-st-spec">'+TABS[cur][1]()+'</div>'
+    + '<div class="zpb-st-sub" style="text-align:center;">Phase 0 \u00b7 the module behind this surface passes its 25-check rig (ZPBStorage._test) \u00b7 the envelope is the only contract \u00b7 the payload stays opaque</div></div>';
+   SH.querySelectorAll('[data-tt]').forEach(function(b){ b.addEventListener('click', function(){ cur = +b.getAttribute('data-tt'); render(); }); });
+   var ex = SH.querySelector('#zpb-st-exit'); if(ex) ex.addEventListener('click', function(){ kv = savedKv; SH.remove(); });
+   var tog = SH.querySelector('#zpb-st-tog'); if(tog) tog.addEventListener('click', function(){ tog.classList.toggle('zpb-st-son'); });
+   var bb = SH.querySelector('#zpb-st-bragbtn');
+   if(bb) bb.addEventListener('click', function(){
+    bragCopy(bragText({ team:T, w:14, l:3, result:'champion' })).then(function(okk){
+     var c = SH.querySelector('#zpb-st-cop'); if(c && okk) c.classList.add('zpb-st-show');
+    });
+   });
+  }
+  seq.then(render).catch(function(){ kv = savedKv; });
+ }
+ if(typeof window!=='undefined' && /(^|[?&])storage=1/.test(String(location.search))){
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', showcaseMount);
+  else showcaseMount();
+ }
+
+ var api = {
+  schemaVersion: SCHEMA,
+  slots: SLOTS,
+  list: list, load: load, save: save, remove: remove, restore: restore, migrate: migrate,
+  stats: { read:function(){ return available() ? readJSON(K_STATS, null) || statsDefault() : statsDefault(); },
+           legend: legendOf, applySeason: applySeason, blank: blankFrac },
+  settings: settingsApi,
+  profile: profileApi,
+  brag: { text: bragText, copy: bragCopy, url: bragUrl },
+  available: available,
+  _test: _test,
+  _showcase: showcaseMount,
+  _useKV: function(x){ var old = kv; kv = x; return old; } // the battery swaps the KV; the app never does
+ };
+ return api;
+})();
+</script>
+
 <script id="zpb-w51-js">
 // ============ Z-POST-BLUE W51 JS ============
 // w51 (Owner): THE DOT LAW — every colon and semicolon in DISPLAYED text renders as the middle dot.
