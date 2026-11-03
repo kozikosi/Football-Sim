@@ -18,6 +18,8 @@
   - Reviewed P-154 (roster panel) -> inbox/20261103-0230-or-P-154-review.md (improved: openSlotReassign gap, ILB1/ILB2 aliases)
   - Reviewed P-170 (team comparison) -> inbox/20261103-0235-or-P-170-review.md (improved: undefined --teamA/--teamB, missing shimmer classes)
   - Reviewed P-172 (weights page) -> inbox/20261103-0240-or-P-172-review.md (improved: personalWeights naming conflict, auto-save conflict)
+  - Reviewed P-194 (boot-packet system) -> inbox/20261103-0330-or-P-194-review.md (improved: corrected misattributed finding 7, corrected finding 11 scope, verified findings)
+  - Reviewed P-047 (season header text) -> inbox/20261103-0345-or-P-047-review.md (improved: item 2 superseded by Owner's tagline-removal ruling, missing shimmer-text.gold CSS)
 
 ## Blocked / waiting on:
 - Architect integration of REVIEWED items (P-197, P-200, E-211, P-008, P-142) from prior sessions
