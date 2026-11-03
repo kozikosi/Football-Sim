@@ -1183,7 +1183,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-story-kicker{text-align:center;font-size:0.8rem;letter-spacing:.34em;font-weight:800;margin:2px 0 14px;}
 .zpb-story-rail{display:flex;flex-direction:column;gap:14px;}
 .zpb-story-zone{display:flex;flex-wrap:wrap;gap:8px;align-items:stretch;}
-.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .7s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
+.zpb-sbadge{display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-width:118px;flex:1 0 104px;border:1px solid var(--border);border-radius:12px;padding:8px 10px;background:var(--panel2);opacity:0;transform:translateY(10px) scale(.96);animation:zpbsbeat .55s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*0.5s);}
 .zpb-sbadge b{font-size:1.17rem;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums;} /* w59 (best of w57, Owner): 18.7px bold - the large-text bar */
 .zpb-sbadge i{font-style:normal;font-size:0.56rem;letter-spacing:.16em;color:var(--sub);text-align:center;}
 .zpb-sbadge.zpb-sb-gold{border-color:var(--gold3,var(--accent));box-shadow:0 0 14px var(--gold2,var(--accent)) inset;}
@@ -1194,7 +1194,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-sbadge.zpb-sb-perfect{border-color:var(--gold3,var(--accent));background:linear-gradient(160deg,var(--gold2,var(--accent)),var(--panel2));}
 .zpb-sbreak{flex-basis:100%;height:0;}
 .zpb-szonehead{flex-basis:100%;text-align:center;font-size:0.62rem;letter-spacing:.3em;color:var(--sub);padding:4px 0;}
-.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);}
+.zpb-scard{flex:1 0 220px;border:1px solid var(--border);border-radius:14px;padding:10px 12px;background:var(--panel2);opacity:0;transform:translateY(14px);animation:zpbsbeat .6s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*0.5s);}
 .zpb-scard-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:6px;}
 .zpb-scard-hd b{font-size:0.95rem;}
 .zpb-schiprow{display:flex;flex-wrap:wrap;gap:5px;align-items:center;}
@@ -1941,8 +1941,8 @@ nav.footnav .footlink,.zpb-foot .footlink{text-transform:uppercase;letter-spacin
 
 /* 9) awards: card-ified, palette-locked */
 .zpb-awgrid{display:flex;flex-direction:column;gap:8px;}
-.zpb-awcard{display:flex;align-items:center;gap:12px;padding:10px 14px;}
-.zpb-awcard .zpb-awt{font-size:.6rem;font-weight:800;letter-spacing:.14em;color:var(--sub);width:170px;flex:none;text-transform:uppercase;}
+.zpb-awcard{display:flex;flex-direction:column;align-items:flex-start;gap:6px;padding:10px 14px;} /* w63 (Owner): the award stacks — title, name, badges; the title column retires */
+.zpb-awcard .zpb-awt{font-size:.6rem;font-weight:800;letter-spacing:.14em;color:var(--sub);width:auto;text-transform:uppercase;}
 .zpb-awcard .zpb-awm{flex:1;min-width:0;}
 .zpb-awcard .zpb-awm b{font-size:.95rem;}
 .zpb-awcard .zpb-awm .narr{display:block;font-size:.72rem;}
@@ -2027,7 +2027,7 @@ img{max-width:100%;}
 .zpb-fm-row i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:32px;padding:0 9px;border-radius:999px;font-weight:800;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;}
 /* w33 (R7): cards and bubbles land one per second, in the order the Owner drafted them */
 @keyframes zpbCardIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
-.zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*1s);} /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
+.zpb-dfc2{opacity:0;animation:zpbCardIn .4s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.35s);} /* w63 (Owner): the depth chart fades at least half a second faster */ /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
 .zpb-fm .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*1s);} /* w37 (R2, Owner): the map's players share the same hold */
 /* w33 (R5): hover a player card and his station lights up — and the old law holds both ways */
 .zpb-fm-ini.zpb-fm-hot{box-shadow:inset 0 0 0 2px var(--zrb,var(--accent)),0 0 14px var(--glow,rgba(217,169,76,.4));transform:scale(1.12);}
@@ -2594,7 +2594,7 @@ function showTeamDetail(team){
 const PCOLS = ['name','pos','team','ovr','spd','str','agi','cod','inj','awr'];
 let playerSort = {col:'ovr', dir:-1};
 let playerFilters = {search:'', pos: new Set(), team:''};
-let playerPage = 1; const PLAYER_PAGE_SIZE = 1000000; // every player in one scrollable panel
+let playerPage = 1; const PLAYER_PAGE_SIZE = 60; // w63 (Muse P0): the browser paginates — 60 a page keeps the DOM light (the one-scrollable-panel law retires)
 
 const QUICK_GROUPS = GROUP_DEFS.filter(g=> g.rankIndex === undefined);
 
@@ -2705,7 +2705,14 @@ function renderPlayers(){
  const pager = document.getElementById('playerPager');
  if(pager){
   pager.innerHTML = '';
-
+  if(total > 1){
+   const mk = (lbl, fn, dis) => { const b = document.createElement('button'); b.className = 'pagbtn'; b.type = 'button'; b.textContent = lbl; b.disabled = !!dis; b.addEventListener('click', () => { fn(); try{ const t = document.getElementById('playerTable'); if(t) t.scrollTop = 0; }catch(e){} }); return b; };
+   pager.appendChild(mk('\u2039 PREV', () => { playerPage--; renderPlayers(); }, playerPage <= 1));
+   const info = document.createElement('span'); info.className = 'paginfo';
+   info.textContent = `PAGE ${playerPage} OF ${total} \u00b7 SHOWING ${start + 1}\u2013${Math.min(start + PLAYER_PAGE_SIZE, rows.length)} OF ${rows.length}`;
+   pager.appendChild(info);
+   pager.appendChild(mk('NEXT \u203a', () => { playerPage++; renderPlayers(); }, playerPage >= total));
+  }
  }
 }
 
@@ -2751,7 +2758,7 @@ function goSeason(){
  if(seasonState){ renderSeasonTab(host); return; }
  if(draftSim && draftSim.pos >= 32*26){
   host.innerHTML = `<div class="zpb-stageintro">
-   <button class="resetbtn zpb-startbtn" id="startSeasonHeroBtn">SEASON</button>
+   <button class="resetbtn zpb-startbtn" id="startSeasonHeroBtn">START PRESEASON →</button>
    <p class="zpb-cygline"><span class="zpb-cygt">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine" style="font-size:1.1em;">?</b></p>
    <p class="narr" style="margin-top:6px;"><button class="tabbtn" id="backToResultsBtn" style="width:auto;padding:4px 10px;font-size:0.8rem;">Draft results</button></p>
   </div>`;
@@ -3162,7 +3169,7 @@ function zpbGameReplay(g, focusTeam){
    }
    return 'Score';
   };
-  const ov = document.createElement('div'); ov.className = 'zpb-replay-ov';
+  const ov = document.createElement('div'); var _zrd = 'regular'; try{ if(g.roundLabel){ _zrd = /Super Bowl/i.test(g.roundLabel) ? 'superbowl' : /Conference/i.test(g.roundLabel) ? 'champ' : /Divisional/i.test(g.roundLabel) ? 'divisional' : 'wildcard'; } }catch(e){} ov.className = 'zpb-replay-ov zpb-rd-' + _zrd; // w63 (Owner): each round plays under its own sky
   const crest = n=> (typeof zpbTeamLogo==='function') ? zpbTeamLogo(n) : '';
   ov.innerHTML = '<div class="zpb-replay">'
    + '<div class="zpb-rep-hd"><div class="zpb-rep-team">' + crest(g.away) + '<b>' + (TEAM_ABBR[g.away]||g.away) + '</b><span class="zpb-rep-sc" id="zrepSa">0</span></div>'
@@ -3348,7 +3355,7 @@ function zpbGameReplay(g, focusTeam){
   { let li = -1, le = null; all.forEach((e,i)=>{ if((e.pts||0)>0){ li = i; le = e; } });
     if(le && le.type==='FG'){ const my = le.side==='home' ? finH : finA, op = le.side==='home' ? finA : finH;
       if(my>op && (my-3)<=op) gwIdx = li; } }
-  const ov = document.createElement('div'); ov.className = 'zpb-replay-ov';
+  const ov = document.createElement('div'); var _zrd = 'regular'; try{ if(g.roundLabel){ _zrd = /Super Bowl/i.test(g.roundLabel) ? 'superbowl' : /Conference/i.test(g.roundLabel) ? 'champ' : /Divisional/i.test(g.roundLabel) ? 'divisional' : 'wildcard'; } }catch(e){} ov.className = 'zpb-replay-ov zpb-rd-' + _zrd; // w63 (Owner): each round plays under its own sky
   // w33 (R17, Owner): the abbreviations wear their team colors everywhere on the during-game screen
   ov.innerHTML = '<div class="zpb-replay' + (isSB ? ' zpb-sb' : (roundLabel ? ' zpb-po' : '')) + '">'
    + '<div class="zpb-rep-hd"><div class="zpb-rep-team">' + crest(g.away) + '<b style="color:' + colOf(g.away) + ';">' + abbr(g.away) + '</b><span class="zpb-rep-sc zpb-slsc-aw" style="--scA:' + (pkA?(pkA.txM||pkA.accL):'inherit') + ';--scAd:' + (pkA?(pkA.txMd||pkA.txd||pkA.accD):'inherit') + ';" id="zrepSa">0</span></div>'
@@ -3785,7 +3792,7 @@ function zpbRestSummary(){
     if(A){
       A.individual.forEach(a=>{
         if(a.c && a.c.team===user) honors.push({t:a.title, n:a.c.name, pos:a.c.pos, sub:a.why});
-        else if(!a.c && a.team===user) honors.push({t:a.title, n:(a.coach?a.coach+' \u00b7 ':'')+a.team, sub:a.why});
+        else if(!a.c && a.team===user) honors.push({t:a.title, n:(a.coach?'YOU':a.team), sub:a.why}); // w63 (Owner): the user's own COTY reads YOU
       });
       const _ap1g = new Set(); Object.keys((A.allPro&&A.allPro.first)||{}).forEach(pos=>{ ((A.allPro.first[pos])||[]).forEach(c=>_ap1g.add(c.name)); }); // w44 (O2, Owner): the first-team gold register
       ['first','second'].forEach((k,i)=>{ Object.keys(A.allPro[k]||{}).forEach(pos=>{ (A.allPro[k][pos]||[]).forEach(c=>{ if(c.team===user) honors.push({t:(i===0?'FIRST-TEAM':'SECOND-TEAM')+' ALL-PRO', n:c.name, pos:pos, gold:i===0}); }); }); });
@@ -4157,7 +4164,7 @@ teamAdvancedHTML = function(){
  const fmtTop = s=> Math.floor(s/60) + ':' + String(Math.round(s%60)).padStart(2, '0');
  const toM = (me.tk-me.to)/me.g, toLg = leagueAvg(x=>(x.tk-x.to)/x.g);
  const rushSh = me.run/Math.max(me.plays, 1)*100, rushLg = leagueAvg(x=>x.run/Math.max(x.plays, 1))*100;
- const twoPt = me.tpa ? me.tpm + ' of ' + me.tpa : '·';
+ const twoPt = me.tpa ? me.tpm + ' / ' + me.tpa : '·'; // w63 (Owner): x / y — the word OF retires
  const close = me.close ? me.closeW + '·' + (me.close-me.closeW) : '·';
  const cards = [
   ['Turnover margin', String(me.tk - me.to), 'takeaways ' + me.tk + ' · giveaways ' + me.to, me.tk > me.to],
@@ -4475,7 +4482,7 @@ window.zpbPosRankHTML = function(){
   h += `<div class="zpb-prrow${i===0?' zpb-prtop':''}"><span class="zpb-prank">${i+1}</span>`
      + `<span class="zpb-prname"${i>=0?' data-zslot="'+r.s+'"':''}>${(typeof LABELS!=='undefined'&&LABELS[r.s])||r.s}</span>`
      + `<span class="zpb-prbar" style="width:${Math.max(2.5, r.w/mx*100).toFixed(1)}%"></span>`
-     + `<span class="zpb-prval" title="Wins added per season by upgrading this spot from a 70 to a 90">${r.w.toFixed(1)} wins</span></div>`;
+     + `<span class="zpb-prval" title="Wins added per season by upgrading this position from a 70 to a 90">${r.w.toFixed(1)} wins</span></div>`;
  });
  h += '</div>';
  return h;
@@ -6092,7 +6099,7 @@ function renderDraftBoard2(){
    h += `<tr class="zpb-trow${top3.has(r.p[0])?' zpb-top3':''}" style="${typeof zpbNeutralRowVars==='function'?zpbNeutralRowVars(r.p[2]):''}"><td class="dc-name">${topTag(r)}${r.p[0]}</td><td data-label="Pos">${POS_DISPLAY[r.p[1]]||r.p[1]}</td><td data-label="Team"><span class="zpb-teamcol zpb-tfilter" data-ztf="${r.p[2]}" title="Show only ${r.p[2]} players  ·  click again to clear">${_tc}</span></td><td class="score dc-ovr" data-label="OVR"><span class="zpb-ovrstack">${r.p[3]}${_oc}</span></td><td class="score dc-wins" data-label="Wins">${r.w!=null?fmtWar1(r.w):wavg(r.w)}</td><td class="score dc-pri" data-label="Priority">${r.pri!=null&&sim?fmtWar1(r.pri):'·'}</td><td class="score dc-gone" data-label="Gone">${pctTxt(r.gone)}</td><td class="narr dc-fills" data-label="Fills">${fills}</td><td class="dc-btn">${btn(r)}</td></tr>`;
   });
   if(held) h += `<tr><td colspan="10" style="text-align:center;padding:10px 4px;"><button class="tabbtn" style="width:auto;padding:6px 18px;" data-showall="1">SHOW ALL ${totalRows} PLAYERS</button><span class="narr" style="margin-left:8px;">${CAP} shown for speed \u00b7 search or filter to narrow</span></td></tr>`;
-  document.getElementById('draftBody2').innerHTML = h || `<tr><td colspan="10" class="narr">No players match.</td></tr>`;
+  zpbChunkBoard(document.getElementById('draftBody2'), h || `<tr><td colspan="10" class="narr">No players match.</td></tr>`); // w63 (Muse P1): the board streams in slices — the first click never freezes
   document.getElementById('draftFitSummary').innerHTML = '';
  }
  if(view==='cards') document.getElementById('draftFitSummary').innerHTML = '';
@@ -8029,7 +8036,7 @@ function leadersPane(mode){
  const user = seasonUserTeam();
  const cards = leaderBoards(mode).map(b=>{
   const head = ['Rtg'].concat(b.cols.map(c=>c[0])).map(h=>`<th>${h}</th>`).join('');
-  const body = b.rows.map((r,i)=>`<tr class="${r.team===user?'user-row':''}"><td class="narr">${i+1}</td><td>${r.name} <span class="narr">${nick(r.team)}</span></td><td class="score" style="font-weight:700;">${r._rating!=null?Math.round(r._rating):'\u00b7'}</td>${b.cols.map(c=>`<td class="score">${c[1](r)}</td>`).join('')}</tr>`).join('');
+  const body = b.rows.map((r,i)=>`<tr class="${r.team===user?'user-row':''}"><td class="narr zpb-ldr-rk">${i+1}</td><td class="zpb-ldr-name">${r.name} <span class="narr">${nick(r.team)}</span></td><td class="score zpb-ldr-rtg" data-label="RTG" style="font-weight:700;">${r._rating!=null?Math.round(r._rating):'\u00b7'}</td>${b.cols.map(c=>`<td class="score zpb-ldr-st" data-label="${c[0]}">${c[1](r)}</td>`).join('')}</tr>`).join(''); // w63 (Owner): the leaders wear the player-card format on the phone
   return `<div class="divtable"><h5>${b.title}</h5><table><thead><tr><th></th><th>Player</th>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
  }).join('');
  return `<div class="draft-columns" style="grid-template-columns:1fr 1fr;">${cards}</div>`;
@@ -8281,9 +8288,7 @@ function renderRegularSeasonView(container){
   }
  } else {
   const last = week>=17;
-  html += `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
-    <h3 style="margin:0;">Week ${week} Results</h3>
-    <div style="display:flex;gap:10px;flex-wrap:wrap;"><button class="resetbtn" id="nextWeekBtn" style="width:auto;margin:0;padding:10px 24px;">${last?'Continue to Regular Season Review':`Continue to Week ${week+1}`}</button>${last?'':'<button class="tabbtn zpb-ctasmall zpb-simseason" id="simSeasonBtn">SIM SEASON</button>'}</div></div></div>`;
+  html += `<div class="panel" style="margin-bottom:14px;"><button class="resetbtn" id="nextWeekBtn" style="width:100%;margin:0;padding:12px 24px;">${last?'Continue to Regular Season Review':`Continue to Week ${week+1}`}</button></div>`; // w63 (Owner): the results title retires — CONTINUE takes the whole line; SIM SEASON moves up to the tab row and down to the footer
   if(myGame) html += '<div id="zpbGameReviewNow">' + renderGameResultHTML(myGame, user) + '</div>'; // w30 (Owner): SIM GAME lands here
   const weekGames = seasonState.schedule.filter(g=>g.week===week);
   const scoreRows = weekGames.map(g=>{
@@ -8312,8 +8317,13 @@ function renderRegularSeasonView(container){
  });
 }
 // Destructive actions live at the bottom of the page, away from the simulate buttons, and always ask first.
-function seasonOptionsHTML(){
- return `<div class="zpb-seasonopts"><button class="tabbtn" id="restartSeasonBtn" style="width:auto;">RUN IT BACK <span class="zpb-again-dot">·</span> <span class="zpb-rosterline">SAME ROSTER</span></button><button class="tabbtn" id="newDraftFromSeasonBtn" style="width:auto;">NEW DRAFT</button></div>`;
+function seasonOptionsHTML(){ // w63 (Owner): CONTINUE and SIM close the page at the bottom too — the labels are filled at wire time from the real buttons
+ const S = seasonState;
+ const cta = (S && S.phase==='regular') ? '<button class="resetbtn" id="nextWeekBtnFoot" style="width:auto;margin:0;"></button>'
+          : (S && S.phase==='playoffs') ? '<button class="resetbtn" id="nextRoundBtnFoot" style="width:auto;margin:0;"></button>' : '';
+ const sim = (S && S.phase==='regular') ? '<button class="tabbtn" id="simSeasonBtnFoot" style="width:auto;">SIM SEASON</button>'
+          : (S && S.phase==='playoffs') ? '<button class="tabbtn" id="simPlayoffsBtnFoot" style="width:auto;">SIM THE PLAYOFFS</button>' : '';
+ return `<div class="zpb-seasonopts">${cta}${sim}<button class="tabbtn" id="restartSeasonBtn" style="width:auto;">RUN IT BACK <span class="zpb-again-dot">·</span> <span class="zpb-rosterline">SAME ROSTER</span></button><button class="tabbtn" id="newDraftFromSeasonBtn" style="width:auto;">NEW DRAFT</button></div>`;
 }
 function startNewDraftFlow(){
  if(typeof zpbClearTeamTheme==='function') zpbClearTeamTheme();
@@ -8325,6 +8335,17 @@ function startNewDraftFlow(){
  setActiveTab('viewDraft','tabDraftBtn');
 }
 function wireSeasonOptions(container){
+ try{ // w63 (Owner): the bottom CTAs act through the real buttons — one wiring, every surface
+  const nb = document.getElementById('nextWeekBtn'), nr = document.getElementById('nextRoundBtn');
+  const fb = document.getElementById('nextWeekBtnFoot'), fr = document.getElementById('nextRoundBtnFoot');
+  if(fb && nb){ fb.textContent = nb.textContent; fb.addEventListener('click', function(){ nb.click(); }); } else if(fb){ fb.style.display = 'none'; }
+  if(fr && nr){ fr.textContent = nr.textContent; fr.addEventListener('click', function(){ nr.click(); }); } else if(fr){ fr.style.display = 'none'; }
+  const sTop = document.getElementById('simPlayoffsBtnTop'), pb = document.getElementById('simRestBtn');
+  const sFoot = document.getElementById('simSeasonBtnFoot'), pFoot = document.getElementById('simPlayoffsBtnFoot');
+  if(sFoot){ const s = document.getElementById('simSeasonBtn'); if(s) sFoot.addEventListener('click', function(){ s.click(); }); else sFoot.style.display = 'none'; }
+  if(pb){ if(pFoot) pFoot.addEventListener('click', function(){ pb.click(); }); if(sTop) sTop.addEventListener('click', function(){ pb.click(); }); }
+  else { if(pFoot) pFoot.style.display = 'none'; if(sTop) sTop.style.display = 'none'; }
+ }catch(e){}
  const a = document.getElementById('restartSeasonBtn'), b = document.getElementById('newDraftFromSeasonBtn');
  if(a) a.addEventListener('click', ()=> zpbCaution('Yes, start a new season', ()=>{ startSeason(); renderSeasonTab(container); }));
  if(b) b.addEventListener('click', ()=>{
@@ -8425,7 +8446,7 @@ function zpbSeasonStoryHTML(){
  if(A){
   A.individual.forEach(a=>{
    if(a.c && a.c.team===user) honorCards.push({t:a.title, n:a.c.name, pos:a.c.pos, sub:a.why, gold:true});
-   else if(!a.c && a.team===user) honorCards.push({t:a.title, n:(a.coach?a.coach+' · ':'')+a.team, sub:a.why, gold:true});
+   else if(!a.c && a.team===user) honorCards.push({t:a.title, n:(a.coach?'YOU':a.team), sub:a.why, gold:true}); // w63 (Owner): the user's own COTY reads YOU
   });
   ['first','second'].forEach((k,i)=>{
    Object.keys(A.allPro[k]||{}).forEach(pos=>{ (A.allPro[k][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:(i===0?'FIRST-TEAM':'SECOND-TEAM')+' ALL-PRO', n:c.name, pos:pos, gold:i===0}); }); });
@@ -8551,9 +8572,7 @@ function renderPlayoffsView(container){
  } else {
   const mine = games.find(g=>g.home===user||g.away===user);
   const myLost = !!(mine && mine.result && ((mine.home===user && mine.result.awayScore>mine.result.homeScore) || (mine.away===user && mine.result.homeScore>mine.result.awayScore)));
-  html += `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
-    <h3 style="margin:0;">${ROUND_LABELS[rk]} Results</h3>
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;"><button class="resetbtn" id="nextRoundBtn" style="width:auto;padding:10px 24px;">${myLost?'SIM PLAYOFFS':'Continue to '+NEXT_ROUND_LABEL[rk]}</button>${rk!=='superbowl' && !myLost?'<button class="tabbtn" id="simRestBtn">Sim Playoffs</button>':''}</div></div></div>`;
+  html += `<div class="panel" style="margin-bottom:14px;"><button class="resetbtn" id="nextRoundBtn" style="width:100%;margin:0;padding:12px 24px;">${myLost?'SIM PLAYOFFS':'Continue to '+NEXT_ROUND_LABEL[rk]}</button>${rk!=='superbowl' && !myLost?'<div style="margin-top:8px;text-align:right;"><button class="tabbtn" id="simRestBtn">Sim Playoffs</button></div>':''}</div>`; // w63 (Owner): the round-results titles retire — CONTINUE takes the line, the sim door rides the tab row and the footer
   // w41 (W3, Owner): no duplicate — on a loss the shimmer button leads alone (w45, O10: the note rides OUTSIDE the string — it printed on the playoffs)
   if(mine) html += renderGameResultHTML(mine, user);
   else html += `<div class="panel" style="margin-bottom:14px;"><p class="dsub" style="margin:0;">${user} weren't in this round.</p></div>`;
@@ -8674,14 +8693,16 @@ function zpbStatChipsHTML(rec, winKey){
   if(s.sackd) out.push(chip(s.sackd, 'SK'));
   if(rec._rating!=null) out.push(chip(rec._rating.toFixed(1), 'QBR')); // w38 (R15, Owner): the QBR chip is a QB chip
  } else if(g==='RB'){
-  out.push(chip(fmtN(s.car||0), 'C'), chip(fmtN(s.rushYds||0), 'RUSHY'), chip(s.rushTD||0, 'TD')); // w28 (Owner): carries read C
+  out.push(chip(fmtN(s.car||0), 'CAR'), chip(fmtN(s.rushYds||0), 'RUSHY'), chip(s.rushTD||0, 'TD')); // w63 (Owner): carries read CAR
   if(s.car) out.push(chip((s.rushYds/Math.max(1,s.car)).toFixed(1), 'YPC')); // w38 (R22, Owner)
+  if(s.rec && s.recYds) out.push(chip((s.recYds/Math.max(1,s.rec)).toFixed(1), 'YPR')); // w63 (Owner): YPR
   if(s.recYds) out.push(chip(fmtN(s.recYds), 'RECY'));
   if(s.recTD) out.push(chip(s.recTD, 'REC TD'));
  } else if(g==='WR'||g==='TE'){
   out.push(chip(fmtN(s.recYds||0), 'RECY'), chip(s.recTD||0, 'TD'));
   if(s.rec) out.push('<span class="zpb-schip zpb-splain"><b>' + fmtN(s.rec) + '/' + fmtN(s.tgt) + '</b></span>');
   if(s.tgt) out.push(chip(Math.round(s.rec/s.tgt*100) + '%', 'CATCH')); // w38 (R22, Owner)
+  if(s.rec && s.recYds) out.push(chip((s.recYds/Math.max(1,s.rec)).toFixed(1), 'YPR')); // w63 (Owner): YPR — yards per reception
   } else if(g==='OL'){
   out.push(chip(fmtN(s.rbk||0), 'RUSHY'), chip(s.pk||0, 'PC'), chip(s.sa||0, 'SK'), chip(s.pa||0, 'PRSS')); // w32 (Owner): SK / PRSS chips · w38 (R23, Owner): pancake reads PC
  } else if(g==='K'){
@@ -9536,7 +9557,7 @@ const slotName = s=> SLOT_FRIENDLY[s] || LABELS[s] || s;
 function slotRoleTableHTML(){
  const rows = slotRoleRows().map(r=>Object.assign({up:slotWins(r.slot,90)-slotWins(r.slot,70)}, r)).sort((a,b)=>b.up-a.up);
  const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
- return `<div class="tablewrap"><table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this spot goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table></div>`;
+ return `<div class="tablewrap"><table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this position goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 // What every game-plan choice does to a league-average team, measured on the model itself.
 function planMathHTML(){
@@ -9708,7 +9729,7 @@ function zpbBadgesGuideHTML(){
   + schip('320', 'CAR', 'Carries \u00b7 the handoffs the back took.')
   + schip('1,450', 'RUSHY', 'Rushing yards.')
   + schip('105', 'REC', 'Receptions over targets, written 105/150.')
-  + schip('1,520', 'RECY', 'Receiving yards.')
+  + schip('1,520', 'RECY', 'Receiving yards.') + schip('12.4', 'YPR', 'Yards per reception · receiving yards divided by catches.')
   + schip('15', 'SK', 'Sacks \u00b7 allowed by an offensive lineman, or forced by a defender.')
   + schip('15', 'TFL', 'Tackles for loss \u00b7 stops behind the line of scrimmage.')
   + schip('40', 'PRSS', 'Pressures \u00b7 hurries and hits on the quarterback.')
@@ -9734,7 +9755,7 @@ function renderGuideHTML(){
   <li><b>Play the season.</b> Season, Playoffs, Super Bowl. Can you go <b class="zpb-shine">20-0</b>? Seventeen games, a 14-team playoff  ·  leave your game plan on Auto or set it yourself each week.</li>
   <li><b>Review.</b> Game recaps, awards, advanced stats (what caused sacks and big runs), a critique of your picks, and 100 SEASONS, which shows how much of your result was skill and how much was luck.</li>
  </ol>`;
- const draft = `<p style="margin:4px 0;"><b>The goal</b> is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (the number in brackets is the extra wins per season from upgrading that spot from a 70 to a 90):</p>
+ const draft = `<p style="margin:4px 0;"><b>The goal</b> is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (the number in brackets is the extra wins per season from upgrading that position from a 70 to a 90):</p>
   ${valueTiersHTML()}
   <p style="margin:4px 0;">In short: <b>quarterback is in a class by itself</b>. After that, the <b>edge rushers and cornerbacks are the most valuable defenders</b>, and the <b>offensive tackles and top wide receiver</b> are the most valuable non-quarterbacks on offense. Safeties and interior linemen are solid; running backs, tight ends and linebackers matter less than most fans expect.</p>
   <div class="zpb-bigfade"><span class="zpb-shine">YOU CAN FLEX</span></div>
@@ -10994,7 +11015,8 @@ window.zpbPostSuperBowlCine = function(){
 function renderSeasonTabInner(container){
  if(!seasonState){
   container.innerHTML = `<div class="zpb-stageintro zpb-stageintro-slim"> <!-- w56 (Owner): the review's 20-0 stage compresses and leads the page — the home hero keeps its full 42vh stage -->
-   <button class="resetbtn zpb-startbtn" id="startSeasonBtn">SEASON</button>
+   <button class="resetbtn zpb-startbtn" id="startSeasonBtn">START PRESEASON →</button>
+   <p class="narr" style="margin:2px 0 0;">Roster locked — preseason setup is the next step.</p>
    <p class="zpb-cygline"><span class="zpb-cygt">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine" style="font-size:1.1em;">?</b></p>
   </div>`;
   document.getElementById('startSeasonBtn').addEventListener('click', ()=>{ startSeason(); renderSeasonTab(document.getElementById('draftResultsBody') || container); }); // w36 (Owner): startSeason re-renders the review — the fresh body is the live one
@@ -11128,7 +11150,7 @@ function renderDraftResults(){ // w37 (R2, Owner): the players hold until the op
    <button class="tabbtn ${resultsView==='season'?'active':''}" id="resultsSeasonBtn">SEASON</button>
    ${seasonState?'':`<button class="tabbtn ${resultsView==='nfl'?'active':''}" id="resultsNflBtn">VS. ACTUAL NFL TEAMS</button>`}
    <button class="tabbtn ${resultsView==='mine'?'active':''}" id="resultsMineBtn">YOUR ROSTER</button>
-   <button class="tabbtn ${resultsView==='compare'?'active':''}" id="resultsCompareBtn">TEAM COMPARISON</button>
+   <button class="tabbtn ${resultsView==='compare'?'active':''}" id="resultsCompareBtn">TEAM COMPARISON</button>${seasonState&&seasonState.phase!=='playoffs'?'<button class="tabbtn" id="simSeasonBtn" style="width:auto;">SIM SEASON</button>':''}${seasonState&&seasonState.phase==='playoffs'?'<button class="tabbtn" id="simPlayoffsBtnTop" style="width:auto;">SIM PLAYOFFS</button>':''}
   </div>
   <div id="draftResultsBody"></div>
   `;
@@ -11210,10 +11232,7 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
    <h4 style="margin-top:0;">Your Full Depth Chart</h4>
    ${zpbDepthZonesHTML(myEntry.slotmap, myEntry.pickRounds, myEntry.teamName)}
   </div>
-  <div class="panel" style="margin-bottom:14px;">
-   <h3 style="margin-top:0;">Overall Grade <span style="color:var(--accent);">${letterGrade(overallPct)}</span></h3>
-   <table><thead><tr><th>Slot</th><th>Player</th><th>Effective OVR</th><th>Drafted</th><th>League Rank</th><th>Grade</th></tr></thead><tbody>${slotRows}</tbody></table>
-  </div>
+  ${pickGradePanelHTML()}${'' /* w63 (Owner): the Overall Grade table retires — the draft-pick grade cards take its place */}
   ${seasonOptionsHTML()}
  `;
  const roster = draftSim.rosters.find(r=>r.isUser), host = document.getElementById('lineupHost');
@@ -12715,7 +12734,7 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
 /* A35 (Owner): the UNIT REPORT CARD — letter-grade badges, no hover anywhere */
 .zpb-rc-title{text-align:center;font-family:'Cinzel Decorative',serif;font-weight:800;letter-spacing:.22em;font-size:.92rem;margin:0 0 10px;color:var(--tA2,var(--gold3));}
 .zpb-rcgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:10px;}
-.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .8s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*1s);} /* w33 (R35, Owner): one tile at a time, like the season badges */
+.zpb-rcbadge{display:flex;gap:10px;align-items:center;border:1px solid var(--border);border-radius:14px;background:var(--panel2);padding:10px 12px;min-width:0;opacity:0;transform:translateY(14px);animation:zpbsbeat .6s cubic-bezier(.2,.7,.3,1) forwards;animation-delay:calc(var(--beat,0)*0.5s);} /* w33 (R35, Owner): one tile at a time, like the season badges */
 @media (prefers-reduced-motion: reduce){ .zpb-rcbadge{animation:none;opacity:1;transform:none;} }
 .zpb-rcbadge.zpb-sb-good{border-color:color-mix(in srgb,var(--good,var(--accent)) 55%,var(--border));}
 .zpb-rcbadge.zpb-sb-bad{border-color:color-mix(in srgb,var(--bad,var(--accent2)) 55%,var(--border));}
@@ -14488,6 +14507,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
   if(fits(ln) || fits(longestTok([ln]))) return { text: ln + p.rest, mode: 'one' };
   var ini = p.nm.filter(function(t){ return !SUF.test(t.replace(/\./g,'')); })
     .map(function(t){ return t.charAt(0); }).join('').toUpperCase();
+  if(ini && ini.length < 2) ini = ln; // w63 (Owner): never a lone initial — both initials, or the last name
   return { text: (ini || ln) + p.rest, mode: 'one' };
  }
  function fit(el){
@@ -14527,7 +14547,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
 // the footer pages) → no rail. Inside .wrap, so the cinematic lock locks it with the page.
 (function(){
 'use strict';
- var IDS = ['simWeekBtn','nextWeekBtn','nextRoundBtn','beginPlayoffsBtn','seasonReviewBtn','beginSeasonBtn','beginSeasonBtn2'];
+ var IDS = ['startSeasonBtn','simWeekBtn','nextWeekBtn','nextRoundBtn','beginPlayoffsBtn','seasonReviewBtn','beginSeasonBtn','beginSeasonBtn2']; // w63 (Muse P1): the review's START PRESEASON pill rides the rail too
  var rail = null, cur = null, queued = false;
  function findCta(){
   var view = document.getElementById('viewDraft');
@@ -14566,7 +14586,9 @@ body.zpb-advrail .wrap{padding-top:64px;}
    cur.__src = b;
    rail.appendChild(cur);
   }
-  rail.style.display = 'flex';
+  var vr = b.getBoundingClientRect();
+  var inView = vr.bottom > 0 && vr.top < (window.innerHeight || document.documentElement.clientHeight);
+  rail.style.display = inView ? 'none' : 'flex'; // w63 (Muse P1): the button is never twice — the rail steps aside while the real CTA is on screen
   document.body.classList.add('zpb-advrail');
  }
  function schedule(){
@@ -14575,6 +14597,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
  }
  try{ new MutationObserver(schedule).observe(document.body, {childList:true, subtree:true}); }catch(e){}
  window.addEventListener('resize', schedule, {passive:true});
+ window.addEventListener('scroll', schedule, {passive:true}); // w63 (Muse P1): the rail follows the scroll
  window.zpbAdvRail = { sync: sync };
  sync();
 })();
@@ -15450,6 +15473,179 @@ window.ZPBStorage = (function(){
  mo.observe(document.documentElement, {childList:true, characterData:true, subtree:true, attributes:true, attributeFilter:SPOKEN});
 })();
 </script>
+<script id="zpb-w63-js">
+// ================= Z-POST-BLUE W63 · THE MEASURED QA ROUND (Muse's five) =================
+// W63-3 (Muse P1): the 150-row draft board paints in ~20-row slices — the first Draft click
+// never freezes the page. A generation token kills the stale chain when a newer render takes
+// the table (the sim re-renders on every pick).
+window.zpbChunkBoard = function(el, html){
+ if(!el) return;
+ el._zpbGen = (el._zpbGen || 0) + 1;
+ var gen = el._zpbGen;
+ if(html.indexOf('No players match.') >= 0 || html.indexOf('<tr') !== 0){ el.innerHTML = html; return; }
+ var parts = null;
+ try{ parts = html.match(/<tr[\s\S]*?<\/tr>/g); }catch(e){}
+ if(!parts || parts.length < 25){ el.innerHTML = html; return; } // small tables paint whole
+ var STEP = 20;
+ el.innerHTML = parts.slice(0, STEP).join('');
+ var i = STEP;
+ var more = function(){
+  if(el._zpbGen !== gen) return; // a newer render took the table — this chain dies
+  if(i >= parts.length) return;
+  el.insertAdjacentHTML('beforeend', parts.slice(i, i + STEP).join(''));
+  i += STEP;
+  if(i < parts.length){ if(window.requestAnimationFrame) window.requestAnimationFrame(more); else setTimeout(more, 16); }
+ };
+ if(window.requestAnimationFrame) window.requestAnimationFrame(more); else setTimeout(more, 16);
+};
+// W63-5 (Muse P1): the honest autosave. The standing guidance parked the storage wiring on the
+// Architect's E2 envelope types — the Owner's directive ("add an autosave indicator that updates
+// on save") unblocks the SAVE side only: seasonState rides the module's versioned envelope into
+// slot A. The restore/Continue UI still waits for E2/E3b/E1 — nothing here reads the slot back.
+(function(){
+ 'use strict';
+ var chip = null, timer = null, fadeT = null, lastSig = '';
+ function GSS(){ try{ return seasonState; }catch(e){ return undefined; } } // seasonState is a top-level let — a global lexical binding, never a window property
+ function ensureChip(){
+  if(chip && chip.isConnected) return chip;
+  chip = document.createElement('div');
+  chip.className = 'zpb-autosave';
+  chip.setAttribute('role', 'status');
+  chip.setAttribute('aria-live', 'polite');
+  document.body.appendChild(chip);
+  return chip;
+ }
+ function show(txt, off){
+  var c = ensureChip();
+  c.textContent = txt;
+  c.classList.toggle('zpb-avoff', !!off);
+  c.classList.add('zpb-avshow');
+  if(fadeT) clearTimeout(fadeT);
+  fadeT = setTimeout(function(){ if(chip) chip.classList.remove('zpb-avshow'); }, off ? 6000 : 4200);
+ }
+ function hide(){ if(chip){ chip.classList.remove('zpb-avshow'); } }
+ function save(){
+  try{
+   var S = GSS();
+   if(!S || typeof window.ZPBStorage !== 'object' || !window.ZPBStorage || typeof window.ZPBStorage.save !== 'function') return;
+   var envelope = { kind:'week', schemaVersion:1, engineVersion:'zpb-w63', dataVersion:'1', slot:'A', savedAt:new Date().toISOString(), payload: S };
+   window.ZPBStorage.save('A', envelope).then(function(res){
+    if(res && res.ok){ show('AUTOSAVED \u2713', false); } else { show('AUTOSAVE OFF', true); }
+   })['catch'](function(){ show('AUTOSAVE OFF', true); });
+  }catch(e){ try{ show('AUTOSAVE OFF', true); }catch(e2){} }
+ }
+ function queue(){
+  try{
+   var S = GSS();
+   if(!S){ hide(); lastSig = ''; return; }
+   var sig = S.phase + '|' + S.currentWeek + '|' + JSON.stringify(S).length;
+   if(sig === lastSig) return;
+   lastSig = sig;
+   if(timer) clearTimeout(timer);
+   timer = setTimeout(save, 700); // debounce the render storms (the cinematic beats re-render)
+  }catch(e){}
+ }
+ function wrap(name, after){
+  try{
+   var orig = window[name];
+   if(typeof orig !== 'function' || orig._zpbW63) return;
+   var g = function(){ var r = orig.apply(this, arguments); try{ after(); }catch(e){} return r; };
+   g._zpbW63 = true;
+   window[name] = g;
+  }catch(e){}
+ }
+ wrap('renderSeasonTab', queue);    // every season screen refresh (week advance, rounds, review)
+ wrap('startSeason', function(){ lastSig = ''; queue(); }); // the season exists → the first save
+ wrap('renderDraftResults', function(){ try{ if(!GSS()) hide(); }catch(e){} }); // a fresh draft retires the chip
+})();
+</script>
+<script id="zpb-w63b-js">
+// ================= Z-POST-BLUE W63B · THE OWNER'S UI ROUND (payload) =================
+// A1 (Owner): the team tooltip — logos and team cells speak, in the team's color and its 0.50 ink.
+(function(){
+ 'use strict';
+ if(window.matchMedia && window.matchMedia('(hover: none)').matches) return;
+ var bub = null;
+ function teamOf(t){
+  var el = t.closest ? t.closest('[data-ztf]') : null;
+  if(el && el.getAttribute('data-ztf')) return el.getAttribute('data-ztf');
+  el = t.closest ? t.closest('img.zpb-logo') : null;
+  if(el && el.getAttribute('title')) return el.getAttribute('title');
+  el = t.closest ? t.closest('[title]') : null;
+  if(el){ var tt = el.getAttribute('title'); if(tt && typeof TEAM_DATA === 'object' && TEAM_DATA[tt]) return tt; }
+  return null;
+ }
+ function ensure(){
+  if(!bub){ bub = document.createElement('div'); bub.className = 'zpb-tt'; bub.setAttribute('aria-hidden','true'); document.body.appendChild(bub); }
+  return bub;
+ }
+ function show(team, x, y){
+  try{
+   var vars = (typeof zpbRowVars === 'function') ? (zpbRowVars(team) || '') : '';
+   var b = ensure();
+   b.setAttribute('style', vars);
+   b.textContent = team;
+   b.classList.add('zpb-tt-on');
+   var r = b.getBoundingClientRect();
+   var px = Math.max(8, Math.min(x + 14, window.innerWidth - r.width - 8));
+   var py = y - r.height - 12; if(py < 8) py = y + 20;
+   b.style.left = px + 'px'; b.style.top = py + 'px';
+  }catch(e){}
+ }
+ function hide(){ if(bub) bub.classList.remove('zpb-tt-on'); }
+ document.addEventListener('mouseover', function(e){ var team = teamOf(e.target); if(team) show(team, e.clientX, e.clientY); else hide(); }, true);
+ window.addEventListener('scroll', hide, true);
+ document.addEventListener('mousedown', hide, true);
+})();
+// D1 (Owner): the lineup dropdowns wear the ladder — full name if it fits, then the last name,
+// then initials that are always both (or three), never a lone initial. The value never changes.
+(function(){
+ 'use strict';
+ var meas = null;
+ function ensureMeas(){
+  if(!meas){ meas = document.createElement('span'); meas.style.cssText = 'position:absolute;visibility:hidden;white-space:nowrap;left:-9999px;top:0;'; document.body.appendChild(meas); }
+  return meas;
+ }
+ function fitSelect(sel){
+  if(!sel || !sel.options || !sel.options.length) return;
+  var w = sel.clientWidth - 18; if(w < 40) return;
+  var m = ensureMeas();
+  m.style.font = getComputedStyle(sel).font;
+  function fits(txt){ m.textContent = txt; return m.getBoundingClientRect().width <= w; }
+  for(var i = 0; i < sel.options.length; i++){
+   var o = sel.options[i];
+   var full = o.getAttribute('data-nmfull');
+   if(!full){ full = o.textContent; o.setAttribute('data-nmfull', full); }
+   if(fits(full)){ if(o.textContent !== full) o.textContent = full; continue; }
+   var toks = full.replace(/\./g, ' ').trim().split(/\s+/).filter(Boolean);
+   var SUF = /^(jr|sr|ii|iii|iv|v)$/i;
+   while(toks.length > 1 && SUF.test(toks[toks.length-1])) toks.pop();
+   var ln = toks[toks.length-1] || full;
+   var want;
+   if(fits(ln)) want = ln;
+   else{
+    var ini = toks.map(function(t){ return t.charAt(0); }).join('').toUpperCase();
+    if(ini.length < 2) ini = ln; // w63 (Owner): never a lone initial
+    want = ini;
+   }
+   if(o.textContent !== want) o.textContent = want;
+  }
+ }
+ function fitAll(root){
+  try{ (root || document).querySelectorAll('select[data-lineup], .zpb-retrow select').forEach(fitSelect); }catch(e){}
+ }
+ var t0 = null;
+ window.addEventListener('resize', function(){ if(t0) clearTimeout(t0); t0 = setTimeout(function(){ fitAll(document); }, 180); });
+ try{
+  var orig = window.wireLineupEditor;
+  if(typeof orig === 'function' && !orig._zpbW63b){
+   var g = function(){ var r = orig.apply(this, arguments); try{ fitAll(document); }catch(e){} return r; };
+   g._zpbW63b = true; window.wireLineupEditor = g;
+  }
+ }catch(e){}
+ if(document.readyState !== 'loading') fitAll(document); else document.addEventListener('DOMContentLoaded', function(){ fitAll(document); });
+})();
+</script>
 <script id="zpb-w55-restore">
 // w55 (Owner): small localStorage — a refresh lands on the tab you left. Runs as the last body
 // script so the boot's own default (SIMULATOR) can never override it; the simulator tab IS the
@@ -15490,6 +15686,121 @@ window.ZPBStorage = (function(){
 @media (max-width:429px){
  .zpb-cygops{flex-direction:column-reverse;align-items:flex-start;gap:2px;}
  .zpb-cygops .zpb-cygdsub{margin:0;}
+}
+</style>
+<style id="zpb-w63-css">
+/* ============ Z-POST-BLUE W63 ============ */
+/* W63-1 (Muse P0): the browser pager buttons join the thumb floor; the active page reads gold. */
+.pagbtn{min-height:38px;}
+.pagbtn.zpb-pagon{border-color:var(--rose);color:var(--rose);}
+@media (max-width:560px){ .paginfo{font-size:0.7rem;} }
+/* W63-4 (Muse P1): the explicit pill must hold one line on a phone. */
+@media (max-width:480px){
+ .zpb-startbtn{font-size:0.9rem !important;padding:12px 20px !important;letter-spacing:.14em;text-indent:.14em;}
+}
+/* W63-5 (Muse P1): the honest autosave chip — the season really saves (slot A), the chip really says so.
+   The ink is the takeover's accessible team tone (tTA light / tTAd dark — the site's exact dark gates). */
+.zpb-autosave{position:fixed;right:12px;bottom:calc(12px + env(safe-area-inset-bottom,0px));z-index:55;
+ font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:900;letter-spacing:.14em;text-indent:.14em;font-size:0.62rem;
+ padding:7px 14px;border-radius:999px;pointer-events:none;
+ color:var(--tTA,var(--accent));border:1px solid color-mix(in srgb,var(--tTA,var(--accent)) 45%,transparent);
+ background:color-mix(in srgb,var(--panel) 88%,transparent);backdrop-filter:blur(8px);
+ opacity:0;transform:translateY(6px);transition:opacity .35s ease,transform .35s ease;}
+.zpb-autosave.zpb-avshow{opacity:1;transform:none;}
+.zpb-autosave.zpb-avoff{color:var(--sub,var(--text));border-color:var(--border);}
+:root[data-theme="dark"] .zpb-autosave{color:var(--tTAd,var(--accent));border-color:color-mix(in srgb,var(--tTAd,var(--accent)) 45%,transparent);}
+:root[data-theme="dark"] .zpb-autosave.zpb-avoff{color:var(--sub,var(--text));border-color:var(--border);}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-autosave{color:var(--tTAd,var(--accent));border-color:color-mix(in srgb,var(--tTAd,var(--accent)) 45%,transparent);}
+ :root:not([data-theme="light"]) .zpb-autosave.zpb-avoff{color:var(--sub,var(--text));border-color:var(--border);}
+}
+@media (max-width:560px){ .zpb-autosave{right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));font-size:0.58rem;} }
+.zpb-autosave{transition:none;}
+}
+</style>
+<style id="zpb-w63b-css">
+/* ============ Z-POST-BLUE W63B · THE OWNER'S UI ROUND ============ */
+/* A1 (Owner): the team tooltip — Cinzel Decorative, the team's 0.50 ink, its own color framing. */
+.zpb-tt{position:fixed;z-index:80;pointer-events:none;opacity:0;transform:translateY(4px);
+ transition:opacity .18s ease,transform .18s ease;
+ font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:900;letter-spacing:.12em;text-indent:.12em;font-size:0.78rem;
+ padding:8px 14px;border-radius:999px;color:var(--nm,var(--tTA,var(--accent)));
+ background:color-mix(in srgb,var(--panel) 92%,transparent);backdrop-filter:blur(8px);
+ border:1px solid color-mix(in srgb,var(--nm,var(--tTA,var(--accent))) 55%,transparent);
+ box-shadow:0 10px 30px rgba(0,0,0,.35);white-space:nowrap;}
+.zpb-tt.zpb-tt-on{opacity:1;transform:none;}
+:root[data-theme="dark"] .zpb-tt{color:var(--nmd,var(--tTAd,var(--accent)));}
+:root[data-theme="dark"] .zpb-tt{border-color:color-mix(in srgb,var(--nmd,var(--tTAd,var(--accent))) 55%,transparent);}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-tt{color:var(--nmd,var(--tTAd,var(--accent)));border-color:color-mix(in srgb,var(--nmd,var(--tTAd,var(--accent))) 55%,transparent);}
+}
+@media (hover: none){ .zpb-tt{display:none;} }
+@media (prefers-reduced-motion: reduce){ .zpb-tt{transition:none;} }
+/* B2 (Owner): the matchup bar takes its own line on a phone — it never covers the team name. */
+@media (max-width:560px){
+ .zpb-mcell{flex-wrap:wrap;}
+ .zpb-mcell .zpb-mbar{flex:1 1 100%;order:9;margin-top:4px;}
+}
+/* B3 (Owner): the during-the-game panel stands tall from the pregame on — the log scrolls inside. */
+.zpb-replay{min-height:min(72vh,600px);z-index:1;}
+.zpb-rep-log{flex:1 1 auto;min-height:0;}
+@media (max-width:480px){
+ .zpb-rep-hd{padding:10px 10px;}
+ .zpb-rep-team b{font-size:.74rem;}
+ .zpb-rep-sc{font-size:1.2rem;}
+}
+/* B5 (Owner): the badge cards wrap tighter on a phone — the panel never pans. */
+@media (max-width:560px){
+ .zpb-sbadge{min-width:96px;flex:1 0 86px;padding:7px 8px;}
+ .zpb-story-zone{gap:6px;}
+}
+/* B8 (Owner): the league leaders wear the player-card format on the phone. */
+@media (max-width:760px){
+ #ldrRtg .draft-columns{grid-template-columns:1fr !important;}
+ #ldrRtg .divtable{background:none;border:none;padding:0;box-shadow:none;}
+ #ldrRtg .divtable h5{text-align:center;letter-spacing:.2em;}
+ #ldrRtg table,#ldrRtg tbody,#ldrRtg tr,#ldrRtg td{display:block;background:none;border:none;}
+ #ldrRtg thead{display:none;}
+ #ldrRtg tbody{display:flex;flex-direction:column;gap:8px;}
+ #ldrRtg tr{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;padding:10px 12px;border:1px solid var(--border);border-radius:14px;background:var(--panel2);}
+ #ldrRtg tr.user-row{border-color:color-mix(in srgb,var(--accent) 55%,transparent);}
+ #ldrRtg td{border:none;padding:0;}
+ #ldrRtg .zpb-ldr-rk{font-weight:800;color:var(--sub);min-width:20px;}
+ #ldrRtg .zpb-ldr-name{flex:1 1 auto;min-width:0;font-weight:700;}
+ #ldrRtg .zpb-ldr-rtg{font-family:'Cinzel Decorative',serif;font-weight:900;}
+ #ldrRtg .zpb-ldr-st{display:inline-flex !important;margin-top:4px;padding:3px 10px;border:1px solid var(--border);border-radius:999px;font-size:.72rem;font-weight:700;font-variant-numeric:tabular-nums;}
+ #ldrRtg .zpb-ldr-st::before{content:attr(data-label) "  ";color:var(--sub);font-weight:800;letter-spacing:.08em;}
+}
+/* B10 (Owner): the try-again question reads the page ink in every theme — Miami dark included. */
+.zpb-again-box .zpb-again-q,.zpb-again-box .zpb-again-q b{color:var(--text);}
+/* G1 (Owner): four skies for four rounds — the drama and the gold rise toward the Super Bowl. */
+.zpb-replay-ov{isolation:isolate;}
+.zpb-replay-ov::before,.zpb-replay-ov::after{content:"";position:absolute;inset:-25%;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.4s ease;}
+.zpb-replay-ov.zpb-rd-regular::before{opacity:1;
+ background:radial-gradient(58% 46% at 28% 22%,color-mix(in srgb,var(--accent) 13%,transparent),transparent 70%),
+            radial-gradient(52% 42% at 74% 78%,color-mix(in srgb,var(--accent) 9%,transparent),transparent 70%);
+ animation:zpbRdDrift 16s ease-in-out infinite alternate;}
+@keyframes zpbRdDrift{from{transform:translate3d(-2%,-1%,0) scale(1)}to{transform:translate3d(2%,2%,0) scale(1.07)}}
+.zpb-replay-ov.zpb-rd-wildcard::before,.zpb-replay-ov.zpb-rd-divisional::before{opacity:1;
+ background:conic-gradient(from 0deg at 30% 30%,transparent 0deg,color-mix(in srgb,var(--accent) 15%,transparent) 90deg,transparent 210deg),
+            conic-gradient(from 180deg at 72% 68%,transparent 0deg,color-mix(in srgb,var(--gold2,#c9a24b) 12%,transparent) 110deg,transparent 230deg);
+ animation:zpbRdSpin 30s linear infinite;}
+@keyframes zpbRdSpin{to{transform:rotate(360deg)}}
+.zpb-replay-ov.zpb-rd-champ::before{opacity:1;
+ background:conic-gradient(from 90deg at 50% 42%,transparent 0deg,color-mix(in srgb,var(--gold2,#c9a24b) 17%,transparent) 70deg,transparent 160deg),
+            conic-gradient(from 270deg at 50% 58%,transparent 0deg,color-mix(in srgb,var(--accent) 13%,transparent) 80deg,transparent 180deg),
+            radial-gradient(70% 55% at 50% 50%,color-mix(in srgb,var(--gold2,#c9a24b) 10%,transparent),transparent 75%);
+ animation:zpbRdSpin 22s linear infinite,zpbRdBreathe 5.5s ease-in-out infinite alternate;}
+@keyframes zpbRdBreathe{from{filter:brightness(.92)}to{filter:brightness(1.12)}}
+.zpb-replay-ov.zpb-rd-superbowl::before{opacity:1;
+ background:conic-gradient(from 0deg at 50% 50%,transparent 0deg,color-mix(in srgb,var(--gold2,#c9a24b) 15%,transparent) 55deg,transparent 130deg,color-mix(in srgb,var(--accent) 10%,transparent) 190deg,transparent 260deg),
+            radial-gradient(60% 48% at 50% 50%,color-mix(in srgb,var(--gold2,#c9a24b) 16%,transparent),transparent 72%);
+ animation:zpbRdSpin 17s linear infinite,zpbRdBreathe 3.8s ease-in-out infinite alternate;}
+.zpb-replay-ov.zpb-rd-superbowl::after{opacity:.9;
+ background:repeating-conic-gradient(from 0deg at 50% 50%,transparent 0deg 6deg,color-mix(in srgb,var(--gold2,#c9a24b) 6%,transparent) 6deg 7.5deg);
+ animation:zpbRdSpin 52s linear infinite reverse;}
+@media (prefers-reduced-motion: reduce){
+ .zpb-replay-ov::before,.zpb-replay-ov::after{animation:none !important;}
 }
 </style>
 </body>
