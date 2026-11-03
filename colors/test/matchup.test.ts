@@ -33,8 +33,10 @@ test('golden: every unit rating equals the original engine (all teams, all keys 
   const keys = Object.keys(R[0]);
   // MUSE audit finding 1 (Owner-approved 2 Nov): the defensive backs' run-support weights were reordered (SS > FS > CB1 > CB2), so the
   // four ratings that read them left the original engine by at most 0.82 points; every other unit rating is still exact.
-  const REORDERED = new Set(['frontRun', 'frontBase', 'frontNick', 'def']);
-  const same = (a: number, b: number, k: string, what: string) => (REORDERED.has(k) ? assert.ok(Math.abs(a - b) < 1, `${what} ${k}: ${a} vs ${b}`) : close(a, b, `${what} ${k}`));
+  // 3 Nov (Owner-approved): the receiving spec was lowered for WR2 (0.91 to 0.70) and WR3 (0.53 to 0.45), so the receiving rating, and the
+  // passing and overall ratings that read it, left the original engine (at most 4 points on these teams).
+  const REORDERED = new Set(['frontRun', 'frontBase', 'frontNick', 'def']), RECSPEC = new Set(['rec', 'rec11', 'passOff', 'off']);
+  const same = (a: number, b: number, k: string, what: string) => (REORDERED.has(k) ? assert.ok(Math.abs(a - b) < 1, `${what} ${k}: ${a} vs ${b}`) : RECSPEC.has(k) ? assert.ok(Math.abs(a - b) < 4, `${what} ${k}: ${a} vs ${b}`) : close(a, b, `${what} ${k}`));
   for (let t = 0; t < R.length; t++) for (const k of keys) { assert.ok(k in golden.ratings[t], 'oracle lacks ' + k); same((R[t] as any)[k], golden.ratings[t][k], k, `team ${t}`); }
   for (const k of keys) same((lg as any)[k], golden.league[k], k, 'league');
 });
@@ -46,8 +48,13 @@ test('golden: every unit rating equals the original engine (all teams, all keys 
 test('golden: matchupModel equals the original engine on turnovers, sacks, spread and plan cost; yards and points stay within the audit bounds', () => {
   golden.cases.forEach((c, i) => {
     const m = matchupModel(R[c.o], R[c.d], lg, c.plan), tag = `#${i} ${c.o}v${c.d} ${JSON.stringify(c.plan)}`;
-    for (const k of ['lamTO', 'lamSack', 'sd', 'vm', 'planCost'] as const) close(m[k], c[k], `${tag} ${k}`);
-    for (const k of ['to', 'sack', 'kick', 'plan']) close((m.channels as any)[k], c.channels[k], `${tag} channel ${k}`);
+    // 3 Nov (Owner-approved): a leaning defence pays a smaller 'predictability' charge (PLAN_K.defPredict 0.4 to 0.15), so the plan cost
+    // is the original's plus 0.25 for a run or pass focus; the guess itself now carries the risk (tests in audit-fixes).
+    const dl = 0.25 * Math.abs({ run: 1, neutral: 0, pass: -1 }[c.plan.def.focus as 'run' | 'neutral' | 'pass']);
+    for (const k of ['lamTO', 'lamSack', 'sd', 'vm'] as const) close(m[k], c[k], `${tag} ${k}`);
+    close(m.planCost, c.planCost + dl, `${tag} planCost`);
+    for (const k of ['to', 'sack', 'kick']) close((m.channels as any)[k], c.channels[k], `${tag} channel ${k}`);
+    close(m.channels.plan, c.channels.plan - dl, `${tag} channel plan`);
     assert.ok(Math.abs(m.expRush - c.expRush) / c.expRush < 0.65, `${tag} expRush ${m.expRush} vs ${c.expRush}`);
     assert.ok(Math.abs(m.expPass - c.expPass) / c.expPass < 0.3, `${tag} expPass ${m.expPass} vs ${c.expPass}`);
     assert.ok(Math.abs(m.structPts - c.structPts) / c.structPts < 0.3, `${tag} structPts ${m.structPts} vs ${c.structPts}`);
@@ -81,7 +88,9 @@ test('formation: 3-4 offence and special spots measure the same as in 4-3 (withi
     if (unit !== 'defense') assert.ok(Math.abs(b[f.slot] - a[f.slot]) <= 1, `${f.slot} ${a[f.slot]} vs ${b[f.slot]}`);
   }
   // the 3-4 defence now reads the table (within 1%): the same position carries the same weight in both bases (Owner 2 Nov)
-  const ratios = fieldSlots('3-4').filter((f) => SLOTS.find((s) => s.id === f.slot)!.unit === 'defense').map((f) => b[f.slot] / f.weight);
+  const def34 = fieldSlots('3-4').filter((f) => SLOTS.find((s) => s.id === f.slot)!.unit === 'defense');
+  for (const f of def34) assert.ok(Math.abs(b[f.slot] - f.weight) <= 3, `${f.slot}: table ${f.weight}, measured ${b[f.slot].toFixed(1)}`);   // small spots (SAM 35, DIME 40, DL5 145) are judged by absolute error: the quantisation step is 5
+  const ratios = def34.filter((f) => f.weight >= 200).map((f) => b[f.slot] / f.weight);
   assert.ok(Math.max(...ratios) - Math.min(...ratios) < 0.04, ratios.map((r) => r.toFixed(3)).join(' '));
   assert.ok(Math.max(...ratios) < 1.02 && Math.min(...ratios) > 0.99, ratios.map((r) => r.toFixed(3)).join(' '));   // the old uniform 5.5% shortfall is gone: same position, same weight
 });

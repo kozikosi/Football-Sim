@@ -11,7 +11,7 @@ export const RATING_SPECS = {
   olPass: { OT1: 1.53, OT2: 1.43, OG1: 0.9, OG2: 0.9, C: 1 },
   rb: { RB1: 1.95, RB2: 0.48 },
   qb: { QB: 1 },
-  rec: { WR1: 0.99, WR2: 0.91, WR3: 0.53, TE1: 0.53, RB1: 0.19, TE3: 0.02, WR4: 0.02 },
+  rec: { WR1: 0.99, WR2: 0.70, WR3: 0.45, TE1: 0.53, RB1: 0.19, TE3: 0.02, WR4: 0.02 },
   passRush: { DE1: 1.9, DE2: 1.4, DT1: 1.05, DT2: 0.79, MIKE: 0.26, WILL: 0.27, DL5: 0.45 },
   frontRun: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.94, SS: 0.7, CB1: 0.48, CB2: 0.34, CB3: 0.19, FS: 0.5, DL5: 0.39 },
   coverage: { CB1: 1.39, CB2: 1.06, CB3: 0.86, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.4 },
@@ -59,7 +59,7 @@ export const DEF_FOCUS: Record<Focus, { label: string; f: number }> = {
 };
 
 export const PLAN_K = {
-  kRun: 1.4, kPass: 0.85, kTo: 1.0, kSack: 0.9, rAmp: 3.0, pAmp: 2.5, vm: 1.3, kBlock: 1, predict: 0.38, defPredict: 0.4,
+  kRun: 1.4, kPass: 0.85, kTo: 1.0, kSack: 0.9, rAmp: 3.0, pAmp: 2.5, vm: 1.3, kBlock: 1, predict: 0.38, defPredict: 0.15,
   baseRunPct: 0.39, nickRun: 0.05, baseRunVsHeavy: -0.025, basePass: 0.03, defFront: 2.0, defCov: 1.5, defRush: 0.6, pkgFront: 0.8, pkgCov: 0.8,
 };
 
