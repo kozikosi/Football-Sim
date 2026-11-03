@@ -1,0 +1,44 @@
+# Engine test coverage map
+
+Which parts of the engine have been stress-tested, and which are dark. Updated as tests land.
+Source: `colors/src/engine/` on `origin/architect/engine-and-seats` (E3).
+
+## Tested — holds
+
+| Area | Test | Result |
+|---|---|---|
+| Positional values | 80→99 sweep, all positions, 1500 games each | Ranking established (QB +4.31 … SAM +0.13); tiers robust, fine ordinals noisy |
+| Turnover model | Elite QB vs elite CB1/DE1 | Sane: QB protects (0.89), CB1 forces (1.33), strength-vs-strength resolves (0.97) |
+| Sack model | DE1 80→99 | 2.22 → 2.60/gm, sane |
+| Extremes | all-99 vs all-60 | 31.4–6.8, 98.8%, no explosion, clamp holds at 58 |
+| Elite vs elite | 99 O vs 99 D | 24.1 PF vs ~22 avg — slight offensive bias, acceptable |
+| SAM package dependence | Base vs nickel | +1.11 in base, +0.13 in nickel — correctly modeled, not a bug |
+| channels ↔ structPts | Reconciliation | Exact (gap 0.000) — matchup internally consistent |
+
+## Tested — BROKEN (fixes queued as P-219..P-222)
+
+| Area | Test | Finding |
+|---|---|---|
+| DB run support | Spec audit vs conventional logic | Inverted: CB1 (0.70) > SS (0.34). P-219 |
+| Run saturation | MIKE 80→99 vs run-O sweep | 19.6 yds vs avg → 0.0 vs elite. P-220 |
+| Dead terms | Punter/returner/QB-run/WR-blk in games | Modeled, never simulated; wpFrom off by 1.2pp. P-221 |
+| Focus dial | Pass focus vs elite pass O | 1.9 yds saved (6 vs avg). P-222 |
+
+## Dark — never tested
+
+| Area | Why it matters | Suggested test |
+|---|---|---|
+| 4th-down logic | Core game decision | Chart go/punt/kick boundary by yard line & distance |
+| Clock management | Late-game realism | 2-min drill, timeouts, kneel-downs — anything explode? |
+| Home field | 1.7 pts assumed | Identical teams home/away — realized edge vs NFL ~55–57%? |
+| Turnover stickiness | Skill vs luck | Split-half correlation of forced TOs |
+| Special teams | Beyond K (dead: P, RET) | Kickoffs, onside kicks — modeled? phantom? |
+| `lean` term | Identity feedback loop | Does a roster's run-identity distort its own matchup? |
+| Tiebreakers | Playoff seeding | Construct ties — deterministic and sane? |
+| Blowout threshold | Competitiveness | 99 vs 70/75/80 — where does it break? |
+| Overtime | Uses structPts (dead terms live!) | OT vs regulation model divergence — quantify |
+| Schedule | Fairness | Strength-of-schedule variance across seeds |
+
+## How to claim a dark cell
+
+File `inbox/<UTC>-<seat>-test-<slug>.md`, run it with the harness (`_agents/muse/deliveries/engine-test-harness.ts`), report. Move the row to Tested when done.
