@@ -34,12 +34,27 @@ test('golden: every unit rating equals the original engine (all teams, all keys 
   for (let t = 0; t < R.length; t++) for (const k of keys) { assert.ok(k in golden.ratings[t], 'oracle lacks ' + k); close((R[t] as any)[k], golden.ratings[t][k], `team ${t} ${k}`); }
   for (const k of keys) close((lg as any)[k], golden.league[k], 'league ' + k);
 });
-test('golden: matchupModel equals the original engine on every case (yards, turnovers, sacks, points, channels, spread)', () => {
-  for (const c of golden.cases) {
-    const m = matchupModel(R[c.o], R[c.d], lg, c.plan), tag = `${c.o}v${c.d} ${JSON.stringify(c.plan)}`;
-    for (const k of ['expRush', 'expPass', 'lamTO', 'lamSack', 'structPts', 'sd', 'vm', 'planCost'] as const) close(m[k], c[k], `${tag} ${k}`);
-    for (const k of Object.keys(c.channels)) close((m.channels as any)[k], c.channels[k], `${tag} channel ${k}`);
-  }
+// The oracle is the ORIGINAL engine. On 2 Nov 2026 (MUSE audit finding 2, Owner-relayed) the yard model deliberately left it: the
+// offense is capped first and the defense subtracted after, so a defender stays worth something against a strong offense, and the
+// outer run cap moved 0.42 -> 0.33 so every spot of the table still measures within 2.5 (tests below). That changes expRush,
+// expPass and structPts (and the channels built from them) in the saturated region only: exact on the cases listed here, bounded
+// elsewhere. Turnovers, sacks, spread and plan cost are untouched and stay exact on all cases.
+const UNCHANGED_BY_AUDIT2 = new Set([2, 3, 5, 6, 8, 9, 10, 11, 12, 13, 21]);
+test('golden: matchupModel equals the original engine (exact on the unsaturated cases; turnovers, sacks, spread, plan cost on all)', () => {
+  golden.cases.forEach((c, i) => {
+    const m = matchupModel(R[c.o], R[c.d], lg, c.plan), tag = `#${i} ${c.o}v${c.d} ${JSON.stringify(c.plan)}`;
+    for (const k of ['lamTO', 'lamSack', 'sd', 'vm', 'planCost'] as const) close(m[k], c[k], `${tag} ${k}`);
+    for (const k of ['to', 'sack', 'kick', 'plan']) close((m.channels as any)[k], c.channels[k], `${tag} channel ${k}`);
+    if (UNCHANGED_BY_AUDIT2.has(i)) {
+      for (const k of ['expRush', 'expPass', 'structPts'] as const) close(m[k], c[k], `${tag} ${k}`);
+      for (const k of ['run', 'pass']) close((m.channels as any)[k], c.channels[k], `${tag} channel ${k}`);
+    } else {
+      // the audit changed it, but not past what the model change explains
+      assert.ok(Math.abs(m.expRush - c.expRush) / c.expRush < 0.6, `${tag} expRush ${m.expRush} vs ${c.expRush}`);
+      assert.ok(Math.abs(m.expPass - c.expPass) / c.expPass < 0.25, `${tag} expPass ${m.expPass} vs ${c.expPass}`);
+      assert.ok(Math.abs(m.structPts - c.structPts) / c.structPts < 0.25, `${tag} structPts ${m.structPts} vs ${c.structPts}`);
+    }
+  });
 });
 
 // ---- the spot table is what the model implies ----

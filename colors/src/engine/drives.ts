@@ -155,7 +155,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   const hf = opts.homeField ?? HOME_FIELD;
   const rA = rng.fork('aggregates');
   const agg = { home: realise(mh, rA), away: realise(ma, rA) };
-  const ptsOf = (m: Matchup, r: typeof agg.home, h: number) => clamp(BASE_PTS + h + PT_RUSH * (r.rush - RUSH_BASE) + PT_PASS * (r.pass - PASS_BASE) - PT_TO * (r.to - LAM_TO) - PT_SACK * (r.sacks - LAM_SACK) + m.channels.kick - m.planCost + PTS_NOISE * m.vm * rA.normal(), 0, 58);
+  const ptsOf = (m: Matchup, r: typeof agg.home, h: number) => clamp(BASE_PTS + h + PT_RUSH * (r.rush - RUSH_BASE) + PT_PASS * (r.pass - PASS_BASE) - PT_TO * (r.to - LAM_TO) - PT_SACK * (r.sacks - LAM_SACK) + m.channels.kick + m.extraPts - m.planCost + PTS_NOISE * m.vm * rA.normal(), 0, 58);
   const rawHome = ptsOf(mh, agg.home, hf), rawAway = ptsOf(ma, agg.away, 0);
   const rounded = [realisticScore(Math.round(rawHome), rA), realisticScore(Math.round(rawAway), rA)];
   // step 9a: the margin of the regulation score follows the real distribution (ties, the 3 and 7 clustering); the winner does not change

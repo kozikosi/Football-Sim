@@ -56,7 +56,8 @@ export interface Swing { unit: string; owner: 'off' | 'def'; pts: number; kinds:
 export interface Channels { run: number; pass: number; to: number; sack: number; kick: number; plan: number }
 export interface Matchup {
   expRush: number; expPass: number; lamTO: number; lamSack: number;
-  structPts: number; channels: Channels; swings: Swing[];
+  structPts: number; extraPts: number; channels: Channels; swings: Swing[];
+  // punter, returner, QB runs and WR blocking: points the structural model counts and regulation scoring must count too (drives.ts)
   sd: number; vm: number; sT: number; planCost: number; plan: Plan;
 }
 
@@ -79,10 +80,14 @@ export function matchupModel(O0: Ratings, D0: Ratings, lg: Ratings, plan: Plan =
   const toParts: Part[] = [['qb', 'off', -MC.toQb * dQB], ['coverage', 'def', MC.toCov * dCov], ['passRush', 'def', MC.toRush * dRush], ['scheme', 'off', -PLAN_K.kTo * sT]];
   const skParts: Part[] = [['passRush', 'def', MC.skRush * dRush], ['olPass', 'off', -MC.skOl * dOLp], ['coverage', 'def', MC.skCov * dCov], ['scheme', 'off', -PLAN_K.kSack * sT]];
   const sum = (ps: Part[]) => ps.reduce((s, p) => s + p[2], 0);
-  // unit strength saturates first, then the game plan amplifies what is left, so leaning on a strength always pays
-  const rU = softCap(MC.rb * dRB + MC.olRun * dOLr - MC.front * dFront, -1.1, 0.4);
-  const pU = softCap(MC.qb * dQB + MC.rec * dRec + MC.olPass * dOLp - MC.rush * dRush - MC.cov * dCov, -0.8, 0.27);
-  const rushLog = softCap(rU * rAmp + lean + schemeRun, -1.3, 0.42), passLog = softCap(pU * pAmp - lean + schemePass, -1.0, 0.29);
+  // The OFFENSE saturates (a unit can only be so good), then the game plan amplifies what is left; the DEFENSE is subtracted after
+  // the cap, so a better defender is always worth something, even against an elite offense (audit 2: softCap on the net unit
+  // strength zeroed a run defender's value once the offense was good). Inside the linear zone this equals the old formula. The
+  // outer run cap is 0.33 (was 0.42 on the net): fitted so every spot of the Owner-approved table still measures within 2.5 (QB 999.3, RB2 79.8).
+  const rOff = softCap(MC.rb * dRB + MC.olRun * dOLr, -1.1, 0.4);
+  const pOff = softCap(MC.qb * dQB + MC.rec * dRec + MC.olPass * dOLp, -0.8, 0.27);
+  const rushLog = softCap(rOff * rAmp + lean + schemeRun, -1.3, 0.33) - MC.front * dFront * rAmp;
+  const passLog = softCap(pOff * pAmp - lean + schemePass, -1.0, 0.29) - (MC.rush * dRush + MC.cov * dCov) * pAmp;
   const toLog = softCap(sum(toParts), -0.7, 0.7), skLog = softCap(sum(skParts), -0.8, 0.4);
   const expRush = RUSH_BASE * Math.exp(rushLog), expPass = PASS_BASE * Math.exp(passLog);
   const lamTO = LAM_TO * Math.exp(toLog), lamSack = LAM_SACK * Math.exp(skLog);
@@ -107,8 +112,10 @@ export function matchupModel(O0: Ratings, D0: Ratings, lg: Ratings, plan: Plan =
   if (Math.abs(kickPts) > 0.01) raw['kicker|off'] = { unit: 'kicker', owner: 'off', pts: kickPts, kinds: { 'field goals': kickPts } };
   // leaning hard either way makes a team predictable: a small efficiency cost; a non-11 set takes a receiver off the field
   const planCost = PLAN_K.predict * Math.pow(STRAT[po.strat].s / 0.08, 2) - PLAN_K.defPredict * Math.abs(DEF_FOCUS[pd.focus].f) + PERS[po.pers].pc;
-  const structPts = BASE_PTS + PT_RUSH * (expRush - RUSH_BASE) + PT_PASS * (expPass - PASS_BASE) - PT_TO * (lamTO - LAM_TO) - PT_SACK * (lamSack - LAM_SACK) + kickPts + retPts + puntPts + qbRun + wrBlk - planCost;
+  // the terms the realised yards cannot carry (they are not yards the team gains): one sum, read by structPts AND by regulation scoring
+  const extraPts = retPts + puntPts + qbRun + wrBlk;
+  const structPts = BASE_PTS + PT_RUSH * (expRush - RUSH_BASE) + PT_PASS * (expPass - PASS_BASE) - PT_TO * (lamTO - LAM_TO) - PT_SACK * (lamSack - LAM_SACK) + kickPts + extraPts - planCost;
   const channels: Channels = { run: PT_RUSH * (expRush - RUSH_BASE) + qbRun + wrBlk, pass: PT_PASS * (expPass - PASS_BASE), to: -PT_TO * (lamTO - LAM_TO), sack: -PT_SACK * (lamSack - LAM_SACK), kick: kickPts, plan: -planCost };
   const vm = clamp(1 - PLAN_K.vm * sT, 0.7, 1.2);
-  return { expRush, expPass, lamTO, lamSack, structPts, channels, swings: Object.values(raw), sd: 8.0 * vm, vm, sT, planCost, plan: { off: po, def: pd } };
+  return { expRush, expPass, lamTO, lamSack, structPts, extraPts, channels, swings: Object.values(raw), sd: 8.0 * vm, vm, sT, planCost, plan: { off: po, def: pd } };
 }
