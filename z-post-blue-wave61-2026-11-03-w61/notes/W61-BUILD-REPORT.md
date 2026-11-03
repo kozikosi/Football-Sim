@@ -1,0 +1,34 @@
+# W61 BUILD REPORT — the formation floor, the one-ink depth cards, the tagline that leads
+
+**Product:** `Football-Sim-Z-post-blue-w61.html` · md5 `5b0f1ef3330983cf1dcceeaa8003ffce` · 1,663,542 bytes
+**Baseline:** the newest reachable bytes — `Football-Sim-Z-post-blue-w58.html` md5 `7d1e07ddb8b23ef6f03968a8fe26d6cc` (council/vl root). **The Owner's w59/w60 zips are not on GitHub** (council/zai tops at w55, council/vl at w58) — every w61 anchor asserts its exact text, so the SAME generator re-runs against the w60 file if the Owner sends it, with no re-derivation.
+**Generator:** `tools/zpb_w61.py` — 4 asserted replacements + 17 post-checks; re-ran clean from the pristine baseline.
+
+## The fix table
+
+| # | The Owner's words | Root cause (measured on the live page) | The fix | The proof |
+|---|---|---|---|---|
+| 1 | "the whole panel should just disappear if the window size can't let the 5 offensive linemen be on the same line" | The map's rows are absolutely positioned on the w29 7.7%-grid ≥741px — the five OL always hold one line there. At ≤740px the w37 wrap law turns the rows into flex-wrap lists; the LOS row (10 cells) folds to 2–4 interleaved lines from ~700px down (name-dependent) — the OL five land split, the formation reads false. | One law: `@media (max-width:740px){ .zpb-lumap-panel{display:none !important;} }` — the whole panel (the h4 + the map) steps aside at the exact seam where the formation promise dies. The draft-pick detail's map (w27/w36) joins it. The positions were NOT touched — a single display toggle, no `--x` moves. The player cards below (YOUR FULL DEPTH CHART) stay. | w61_mobile M1: the panel gone at 280/320/360/390/430/700/740, the 32 depth rows still visible at every width; the fillDetail map gone at 320, present at 1280. w61_live L2: present at 1280, the five OL one line, zero name collisions. Shots: `w61-1280-map-present.png`, `w61-320-row-exact.png` |
+| 2 | "change the black and that red to a more natural color … the 0.50 color is probably best" | The depth-zone rows carry the row vars (`--tA2` = the team's halfway ink since w45) but the name span had NO color rule of its own and the 85+ tier fell through to the generic `.zpb-vib` tint — the plain names and the 85+ names could read as two different inks (on the Owner's w60: black vs bold red; on the w58 bytes both already read the halfway tone, but the 85+ bold was being overridden and dark mode read the light halfway ink). | The depth zones join the ONE-INK law verbatim (the dc-name pattern): `.zpb-dz-row .zpb-dz-name{color:var(--nm,var(--text))}` + `.zpb-vib → var(--nmS,…)` light, `--nmd/--nmSd` dark, gated exactly like the site's own dark rules. `font-weight:800` restored for the 85+ rung (the w30 A2 law — every 85+ bold everywhere). The 90+ shimmer untouched. | w61_mobile M3: light plain == vib == the row's `--nm` (#9e2d36 on KC); dark plain == vib == `--nmd` (#f4d1cb); the 85+ weight = 800. Shot: `w61-1280-depth-oneink.png` (SAM row reads the same ink as every row; the 90+ gold shimmer intact) |
+| 3 | "'Can you go 20-0?' … on its own line above everything (right below the moving 20-0 header)" | The review header is a flex space-between: `#zpbDraftOps` (NEW DRAFT, and 100 SEASONS appends into the same span) left, the tagline right. Measured fold onset: ≤420px (same-row holds at 430). | Below 429px the row goes `column-reverse` — the tagline (last in DOM) paints first: its own full-width line directly under the moving 20-0 marquee, above NEW DRAFT / 100 SEASONS. Above 429px: untouched. | w61_mobile M4: above at 280/320/360/390; same-row at 430/440/700/740. Shots: `w61-320-row-exact.png` (marquee → tagline → NEW DRAFT + 100 SEASONS), `w61-440-review-unchanged.png` |
+| 4 | "keep testing and auditing … make sure everything looks as good on mobile as possible" | The standing audit re-run on the new bytes. | The four batteries (below) + the phone sweep at 430/390/360/320/280 (+ 320×640/280×560 in the flow) + the storage walkthrough at 390/320/280. No sideways scroll anywhere on the review; zero page errors in every run. | w61_mobile M5/M6/M7 |
+| 5 | "continue to improve them and follow any updated guidance" (storage) | The standing guidance (the Phase 0 plan §6 + the w58 NEXT ACTION): the screen wiring WAITS for the Architect's E2 envelope types (then E3's week API, E1's pids, E5's version stamps) — the guidance is followed, not overridden; no premature wiring this wave. | The module re-proven on the w61 bytes: the contract surface (list/load/save/remove/restore/migrate, schema 1, slots A/B/C, the stats schema + profile/settings/brag globals, engine-free), the full 25-check fault rig green in the real page, the write+parse bench (83 KB envelope · 0.4+0.3 ms this run; the w57-era 247 KB numbers stand — checkpoint work, never mid-animation), the showcase smoke on ?storage=1 at 1280 + 390/320/280. | w61_storage 7/7 (the rig's own 25 checks, 0 fail). Shot: `w61-storage-showcase.png` |
+
+## The batteries
+
+| Suite | Result | What it covers |
+|---|---|---|
+| `w61_nodecheck` | **14/14** | every inline script parses |
+| `w61_mobile` | **41/41** | M1 the formation floor (7 widths + the detail map) · M2 the desktop floor keeps the map · M3 the one-ink law (light + dark, ink identity asserted against the row's own vars) · M4 the tagline leads ≤429 / shares ≥430 · M5 no sideways scroll · M6 the storage walkthrough fits a phone · M7 zero page errors |
+| `w61_live` | **7/7** | the 1280 desktop: the tagline shares the ops row as always (direction `row`, both buttons), the other tagline surfaces byte-identical, the map panel on with the five OL one line and zero name collisions, the tables render, zero errors |
+| `w61_storage` | **7/7** | the module surface + the 25-check fault rig in the real page + the bench + the showcase smoke |
+
+## The measured thresholds (why 740 and 429)
+
+- **740** — the w37 wrap law's own seam. Above it the absolute law guarantees one line; below it the row folds (measured: 2 lines at ~650–700 with real name sets, 4 lines by 320). Hiding the panel below the seam is the only width that NEVER shows a folded formation. Between 741–1280 nothing changed (swept 760/800/850/900/1000/1280 — the OL one line at every step).
+- **429** — the measured fold onset of the review header (420 folds, 430 holds; the 421–429 band is covered by the breakpoint so no fold ever shows).
+
+## Not done here (on purpose)
+
+- No wiring of the storage screens into the real page — the Architect's E2 envelope types are the gate (the plan §6; the w58 NEXT ACTION). The module, the looks and the rig are whole; the wiring commit maps them onto the shell in one small patch when the types land.
+- No position moves on the field map — the Owner's law: the desktop lineup is perfect and stands exactly as it was (verified byte-identical rules: the w29 clamp and the w37 wrap law both assert-untouched in the generator's post-checks).

@@ -1,0 +1,8 @@
+5b0f1ef3330983cf1dcceeaa8003ffce  Football-Sim-Z-post-blue-w61.html
+5d1abad2a73dd2e965995477c4337901  notes/W61-BUILD-REPORT.md
+da1a0e4242fd8bfe786b0038e478b1a6  notes/W61-INTAKE-LEDGER.md
+f45ba045c1de9e8f7c9c943660539b8b  tools/w61_live.js
+f43d991320f333397522aa6036c246b7  tools/w61_mobile.js
+1a5986ea922a07cfe98ce74e712f2af9  tools/w61_nodecheck.js
+bc1e0b49da92ee8ca52f40c6e0f4b5e1  tools/w61_storage.js
+81b6ac7d28b417849d8ee00ea894b0cb  tools/zpb_w61.py
