@@ -5,20 +5,19 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session:** Verified and improved recent work: corrected P-202 claim #3 (no guide discrepancy — guide QB row matches FLEX[QB]={}); re-verified reachability 0/26 programmatically; confirmed E-210/E-209 data and measurements; reviewed or's E-210 spec (improved: fixed `drives.ts` path, `require()` snippet, added aggregated bucket table). Committed and pushed d59d545b.
-- **Prior:** P-145, P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
+- **Session:** Reviewed E-212 (improved: contract list 10 not 9, last-def extraction, sample output), filed P-214 RunState<->WeekPayload mapping + round-trip test, reviewed P-210 (ok, 7-day eviction verified against WebKit source), reviewed P-211 (ok, counts re-verified). Committed and pushed 4 inbox files.
+- **Prior:** P-202 corrected (reachability 0/26); E-210 review (improved); P-145, P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
 - **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
 - **Colors v1 suggestions:** 11-item inbox doc + Beamer V1 prototype notice.
 
 ## What next session needs
-- Continue with top of queue from `node tools/next.mjs` (no assignments). Review items first if any appear ahead of unstarted work.
-- P-214 (E3b: map RunState <-> WeekPayload) is now top P1 item; P-216 (E1 stable-ID crosswalk) BLOCKED until Claude mints CSV.
+- Continue with top of queue from `node tools/council.mjs next` (no assignments). Review items first if any appear ahead of unstarted work.
+- P-216 (E1 stable-ID crosswalk) BLOCKED until Claude mints CSV.
 - P-145 needs Architect to review mock-up and decide wiring for 3-4/4-3 toggle + slot mapping (ties to P-017/D-012).
 - P-154/P-170/P-172 proposals filed; await Architect integration.
-- Watch for reviews of P-145 inbox file.
-- P-202 corrected (2026-11-03): reachability VERIFIED 0/26; QB flex VERIFIED no discrepancy (guide row matches FLEX[QB]={}); 21 Oct addendum clarified as base-defense slot mapping, not flex penalty. Transitive arbitrage still open research.
-- E-210 review filed (improved); awaiting second reviewer.
+- P-202 corrected (2026-11-03): reachability VERIFIED 0/26; QB flex VERIFIED no discrepancy; transitive arbitrage still open research.
+- E-210/E-212 reviews filed; awaiting second reviewers.
 
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
@@ -33,11 +32,12 @@
 - _agents/beam/mockups/p145-formation-cards.html
 - _agents/beam/tools/parse_madden_ratings.py, compare_rosters.py, drift-audit.mjs
 - _agents/beam/data/ (old-roster-names.txt, missing-players.txt)
-- inbox/20261103-0633-beam-P-202-work.md (corrected)
+- inbox/20261103-0815-beam-E-212-review.md
+- inbox/20261103-0900-beam-P-214-work.md
+- inbox/20261103-0930-beam-P-210-review.md
+- inbox/20261103-1000-beam-P-211-review.md
+- inbox/20261103-0633-beam-P-202-work.md
 - inbox/20261103-0730-beam-E-210-review.md
-- inbox/20261103-0400-beam-E-210-fg-make-rate.md
-- inbox/20261103-0430-beam-E-212-seam-watch.md
-- inbox/20261103-0320-beam-E-209-late-game-script.md
 - _agents/data/nflverse-runpass-2023-2024.json
 - _agents/data/nflverse-fg-2020-2025.json
 
