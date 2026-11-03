@@ -24,7 +24,7 @@ test('work then 2 distinct reviews = REVIEWED; same seat twice does not count; r
   const r = (t, s, v) => f(t, s, `REVIEW-OF: x\nVERDICT: ${v}`, 'P-001-review');
   assert.equal(st([w, r('20261119-1100', 'b', 'ok')]).items.get('P-001').status, 'NEEDS-REVIEW');
   assert.equal(st([w, r('20261119-1100', 'b', 'ok'), r('20261119-1200', 'b', 'ok')]).items.get('P-001').status, 'NEEDS-REVIEW');
-  assert.equal(st([w, r('20261119-1100', 'b', 'ok'), r('20261119-1200', 'c', 'improved')]).items.get('P-001').status, 'REVIEWED');
+  assert.equal(st([w, r('20261119-1100', 'b', 'ok'), r('20261119-1200', 'c', 'ok')]).items.get('P-001').status, 'REVIEWED');
   assert.equal(st([w, r('20261119-1100', 'b', 'ok'), r('20261119-1200', 'c', 'rejected')]).items.get('P-001').status, 'REWORK');
 });
 test('dependants unblock and move up a tier when the dependency is REVIEWED', () => {
@@ -83,7 +83,7 @@ test('ASKs go to every seat except the asker until answered; notes need an ACK',
   assert.equal(st([note]).acked.size, 0);
   assert.equal(st([note, f('20261119-1200', 'architect', `ACK: ${note.base}`, 'ACK-x')]).acked.has(note.base), true);
 });
-test('config', () => { assert.equal(CFG.reviews, 2); });
+test('config', () => { assert.deepEqual([CFG.floor, CFG.softCap, CFG.governor], [2, 8, 0.1]); });
 test('the author cannot review their own work', () => {
   const w = f('20261119-1000', 'a', 'FOR: P-001', 'P-001-x');
   const own = f('20261119-1100', 'a', 'REVIEW-OF: x\nVERDICT: ok', 'P-001-review');
@@ -93,4 +93,40 @@ test('the author cannot review their own work', () => {
 test('prose mentioning the RETIRED header mid-line does not truncate the table', () => {
   const t = parseTable('Rows below `## RETIRED` are archived.\n| P-500 | P2 | x |  | y | council |\n## RETIRED\n| P-501 | P2 | z |  | y | council |');
   assert.deepEqual([...t.keys()], ['P-500']);
+});
+
+// ---- continuous-trust reviews (3 Nov 2026) ----
+const W = () => f('20261119-1000', 'a', 'FOR: P-001', 'P-001-x');
+const R = (hhmm, seat, v, extra = '') => f('20261119-' + hhmm, seat, `REVIEW-OF: x\nVERDICT: ${v}${extra ? '\n' + extra : ''}`, 'P-001-review');
+const S = (...recs) => st([W(), ...recs]).items.get('P-001');
+test('governor: a review that catches something new keeps the item open; the next review that finds <10% new closes it', () => {
+  assert.equal(S(R('1100', 'b', 'ok'), R('1200', 'c', 'improved')).status, 'NEEDS-REVIEW');
+  assert.equal(S(R('1100', 'b', 'ok'), R('1200', 'c', 'improved'), R('1300', 'd', 'ok')).status, 'REVIEWED');
+  assert.equal(S(R('1100', 'b', 'improved', 'FOUND: 10\nNEW: 1'), R('1200', 'c', 'improved', 'FOUND: 10\nNEW: 2')).status, 'NEEDS-REVIEW');   // 20% new
+  assert.equal(S(R('1100', 'b', 'improved', 'FOUND: 4\nNEW: 4'), R('1200', 'c', 'improved', 'FOUND: 12\nNEW: 1')).status, 'REVIEWED');     // 8% new
+});
+test('floor: one clean review is never enough', () => { assert.equal(S(R('1100', 'b', 'ok')).status, 'NEEDS-REVIEW'); });
+test('soft cap: 8 reviews close the item even if the last one still found something', () => {
+  const rs2 = 'bcdefghi'.split('').map((s, i) => R(String(1100 + i * 10), s, 'improved'));
+  assert.equal(S(...rs2.slice(0, 7)).status, 'NEEDS-REVIEW');
+  assert.equal(S(...rs2).status, 'REVIEWED'); assert.equal(S(...rs2).capped, true);
+});
+test('no double reviews: a seat counts once, its latest verdict stands', () => {
+  const it = S(R('1100', 'b', 'improved'), R('1200', 'b', 'ok'), R('1300', 'b', 'ok'));
+  assert.equal(it.nrev, 1); assert.equal(it.status, 'NEEDS-REVIEW');
+});
+test('verdicts survive later work; only an unanswered rejection reopens, new work answers it', () => {
+  const w2 = f('20261119-1400', 'a', 'FOR: P-001', 'P-001-y');
+  const base = [R('1100', 'b', 'ok'), R('1200', 'c', 'ok')];
+  assert.equal(st([W(), ...base, w2]).items.get('P-001').status, 'REVIEWED');   // a tweak after review does not wipe the verdicts
+  const rej = R('1300', 'd', 'rejected');
+  assert.equal(st([W(), ...base, rej]).items.get('P-001').status, 'REWORK');
+  const after = st([W(), ...base, rej, w2]).items.get('P-001');
+  assert.equal(after.status, 'REVIEWED');   // rework filed; b and c still stand; d's rejection is answered
+  assert.ok(nextFor(st([W(), ...base, rej, w2]), 'd').some((x) => /REVIEW P-001/.test(x.text)) || st([W(), ...base, rej, w2]).items.get('P-001').status === 'REVIEWED');
+  assert.equal(st([W(), ...base, rej, w2, R('1500', 'd', 'ok')]).items.get('P-001').lastReview.seat, 'd');   // the rejecter re-reviews; the verdict is replaced
+});
+test('any earlier work author is excluded from voting, not only the last one', () => {
+  const w2 = f('20261119-1050', 'b', 'FOR: P-001', 'P-001-y');
+  assert.equal(st([W(), w2, R('1100', 'b', 'ok'), R('1200', 'c', 'ok')]).items.get('P-001').nrev, 1);
 });

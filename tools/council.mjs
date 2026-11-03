@@ -17,7 +17,9 @@ import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
 
-export const CFG = { reviews: 2, staleDays: 21, warnDays: 14, recentDays: 3, ownerNeeds: 2, architect: 'architect' };
+// Continuous-trust reviews (3 Nov 2026): no fixed count per tier. A review's unique-catch rate = NEW/FOUND (its findings no earlier review had).
+// Reviews keep coming until the latest one finds <10% new (the governor), but never fewer than `floor` distinct seats and never more than `softCap`.
+export const CFG = { floor: 2, softCap: 8, governor: 0.10, staleDays: 21, warnDays: 14, recentDays: 3, ownerNeeds: 2, architect: 'architect' };
 const args = process.argv.slice(2);
 const flag = (f) => args.includes(f);
 const val = (f) => { const i = args.indexOf(f); return i >= 0 ? args[i + 1] : null; };
@@ -35,6 +37,14 @@ export const parseTable = (md) => {
 };
 const hdr = (txt, k) => ((txt.match(new RegExp(`^${k}:\\s*(.+)$`, 'im')) || [])[1] || '').trim();
 const stamp = (name) => { const m = name.match(/(\d{8})-(\d{4})-/); return m ? Date.UTC(+m[1].slice(0, 4), +m[1].slice(4, 6) - 1, +m[1].slice(6, 8), +m[2].slice(0, 2), +m[2].slice(2, 4)) : 0; };
+// FOUND: <n> findings in the review, NEW: <n> of them no earlier review had. Defaults: ok = 0/0; improved or rejected = 1/1 (counts as a full catch).
+const catches = (h) => {
+  const v = (hdr(h, 'VERDICT').match(/ok|improved|rejected/i) || [''])[0].toLowerCase(), n = (k) => { const m = hdr(h, k).match(/^\d+/); return m ? +m[0] : null; };
+  let found = n('FOUND'), neu = n('NEW');
+  if (found === null && neu === null) { found = v === 'ok' || !v ? 0 : 1; neu = found; }
+  else if (neu === null) neu = found; else if (found === null) found = neu;
+  return { found, neu: Math.min(neu, found) };
+};
 // file = { name, ref, seat, head }  -> classified record
 export const classify = (f) => {
   const base = f.name.split('/').pop(), t = stamp(base), h = f.head;
@@ -51,7 +61,7 @@ export const classify = (f) => {
   if (/^ANSWER-OF:/im.test(h)) return { ...rec, kind: 'answer', of: hdr(h, 'ANSWER-OF') };
   if (/^ACK:/im.test(h)) return { ...rec, kind: 'ack', of: hdr(h, 'ACK') };
   if (/^TO-ARCHITECT:/im.test(h)) return { ...rec, kind: 'note', text: hdr(h, 'TO-ARCHITECT') };
-  if (/^REVIEW-OF:/im.test(h)) return { ...rec, kind: 'review', id: forId, verdict: (hdr(h, 'VERDICT').match(/ok|improved|rejected/i) || [''])[0].toLowerCase() };
+  if (/^REVIEW-OF:/im.test(h)) return { ...rec, kind: 'review', id: forId, verdict: (hdr(h, 'VERDICT').match(/ok|improved|rejected/i) || [''])[0].toLowerCase(), ...catches(h) };
   return { ...rec, kind: 'work', id: forId };
 };
 
@@ -96,11 +106,20 @@ export const derive = (table, recs, { now = Date.now(), build = null, epoch = 0 
     const age = (now - touched) / 864e5;
     if (!it.retired && /^P[23]$/.test(it.tier) && age >= CFG.staleDays) it.retired = { why: 'STALE', by: 'auto', ev: `no activity for ${Math.floor(age)} days; any seat can KEEP or REVIVE`, t: now };
     else if (!it.retired && /^P[23]$/.test(it.tier) && age >= CFG.warnDays) it.staleIn = Math.ceil(CFG.staleDays - age);
-    const works = it.files.filter((x) => x.kind === 'work'), lastWork = works.at(-1);
-    const after = lastWork ? it.files.filter((x) => x.kind === 'review' && x.t >= lastWork.t) : [];
-    const good = new Map(); for (const r of after) if (r.verdict !== 'rejected' && r.seat !== lastWork.seat) good.set(r.seat, r);
-    it.lastWork = lastWork; it.nrev = good.size; it.reviewers = [...good.keys()]; it.lastReview = [...good.values()].at(-1);
-    it.status = !lastWork ? 'OPEN' : after.some((x) => x.verdict === 'rejected') ? 'REWORK' : it.nrev >= CFG.reviews ? 'REVIEWED' : 'NEEDS-REVIEW';
+    const works = it.files.filter((x) => x.kind === 'work'), lastWork = works.at(-1), authors = new Set(works.map((x) => x.seat));
+    // verdicts survive later work: each seat's LATEST verdict stands (one vote per seat, no double reviews); the author(s) never vote.
+    // A rejection is answered by work filed after it; the rejecter may then review again (their new verdict replaces the old one).
+    const latest = new Map();
+    for (const r of it.files.filter((x) => x.kind === 'review' && !authors.has(x.seat))) latest.set(r.seat, r);
+    const verdicts = [...latest.values()].sort((a, b) => a.t - b.t);
+    const open = verdicts.filter((r) => r.verdict === 'rejected' && lastWork && r.t >= lastWork.t);   // rejected and not yet answered by new work
+    const good = verdicts.filter((r) => r.verdict !== 'rejected');
+    const last = good.at(-1), lastRate = last ? (last.found ? last.neu / last.found : 0) : null;
+    // reviewers = seats with a standing verdict; an answered rejecter may review again
+    it.lastWork = lastWork; it.nrev = good.length; it.authors = [...authors]; it.reviewers = verdicts.filter((r) => r.verdict !== 'rejected' || open.includes(r)).map((r) => r.seat); it.lastReview = last; it.lastRate = lastRate;
+    it.capped = good.length >= CFG.softCap;
+    it.governed = good.length >= CFG.floor && lastRate !== null && lastRate < CFG.governor;
+    it.status = !lastWork ? 'OPEN' : open.length ? 'REWORK' : it.capped || it.governed ? 'REVIEWED' : 'NEEDS-REVIEW';
   }
   const live = (id) => items.get(id) && !items.get(id).retired;
   for (const it of items.values()) {
@@ -120,7 +139,7 @@ export const nextFor = (state, me) => {
   for (const it of state.items.values()) {
     if (it.retired || it.blocked.length || it.status === 'REVIEWED') continue;
     if (it.status === 'OPEN' || it.status === 'REWORK') out.push({ score: 1, eff: it.eff, it, text: `WORK ${it.id} [P${it.eff}${it.up ? '↑' : ''}] ${it.title}\n   BRIEF: ${it.work}` });
-    else if (it.lastWork.seat !== me && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, text: `REVIEW ${it.id} [P${it.eff}] (${it.nrev}/${CFG.reviews}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}` });
+    else if (!it.authors.includes(me) && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, text: `REVIEW ${it.id} [P${it.eff}] (${it.nrev} done${it.lastRate === null ? '' : `, last catch ${Math.round(it.lastRate * 100)}%`}; stops at <${CFG.governor * 100}% once ${CFG.floor}+, cap ${CFG.softCap}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}` });
   }
   return out.sort((a, b) => a.eff - b.eff || a.score - b.score || (a.it?.id || '').localeCompare(b.it?.id || ''));
 };
@@ -180,8 +199,8 @@ function main() {
     const st = loadState();
     if (flag('--json')) { console.log(JSON.stringify([...st.items.values()].map(({ files, ops, ...i }) => i), null, 1)); process.exit(0); }
     const live = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id));
-    console.log(`BOARD: ${live.length} live, ${st.items.size - live.length} retired, reviews needed ${CFG.reviews}`);
-    for (const i of live) console.log(`${i.blocked.length ? `BLOCKED(${i.blocked.join(',')}) ` : ''}${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.status}${i.status === 'NEEDS-REVIEW' ? ` ${i.nrev}/${CFG.reviews}` : ''}${i.staleIn ? ` (auto-retires in ${i.staleIn}d unless kept)` : ''}${i.pending ? ` (${i.pending})` : ''}  ${i.title.slice(0, 90)}`);
+    console.log(`BOARD: ${live.length} live, ${st.items.size - live.length} retired, review governor: ${CFG.floor}+ reviews, stop when the last finds <${CFG.governor * 100}% new, cap ${CFG.softCap}`);
+    for (const i of live) console.log(`${i.blocked.length ? `BLOCKED(${i.blocked.join(',')}) ` : ''}${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.status}${i.status === 'NEEDS-REVIEW' ? ` ${i.nrev} done${i.lastRate === null ? '' : `, last catch ${Math.round(i.lastRate * 100)}%`}` : ''}${i.staleIn ? ` (auto-retires in ${i.staleIn}d unless kept)` : ''}${i.pending ? ` (${i.pending})` : ''}  ${i.title.slice(0, 90)}`);
   }
   else if (cmd === 'show') {
     const st = loadState(), it = st.items.get(pos[0]); if (!it) { console.error('no such item'); process.exit(1); }

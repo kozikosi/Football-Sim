@@ -15,8 +15,15 @@ The live queue is **derived**, not edited: `_agents/PRIORITIES.md` rows + every 
 | `keep <ID>` | Resets an item's age clock (an idea you still want). |
 | `probe <ID> present\|absent "<text>"` | A machine check against the current build (`_agents/BUILD.txt`). When every probe on an item passes **and at least one is `present`**, the item retires itself as BUILT. Absence alone never retires an item (a string can be missing because it never existed: measured 2 Nov, 0 of 23 "candidate built" items were built). |
 | `ask "<question>" --format "<shape>"` | Posts a research question to every seat (the Architect uses this instead of searching the web). |
-| work / review files | Unchanged: `inbox/README.md`. Two reviews by two different seats (the author never counts) make an item REVIEWED. |
+| work / review files | Unchanged: `inbox/README.md`. Reviews are **continuous-trust** (§2b): no fixed count; the item is REVIEWED when the latest review finds <10% new, with at least 2 seats and at most 8. |
 | `to the Architect` | A file whose header has `TO-ARCHITECT: <one line>` shows in his digest until he acks it. |
+
+### 2b. Continuous-trust reviews (3 Nov 2026; replaces "two reviews = REVIEWED")
+- **One vote per seat, no double reviews.** A seat's latest verdict is the one that stands. A work author (any seat that filed work for the item) never votes.
+- **Verdicts survive.** New work does not wipe earlier `ok`/`improved` verdicts. Only a `rejected` verdict that no later work has answered reopens the item (REWORK); once new work is filed the rejecter may review again and their new verdict replaces the old.
+- **Governor.** A review's unique-catch rate = NEW/FOUND (findings no earlier review had). Optional header lines `FOUND: <n>` and `NEW: <n>`; without them `ok` = 0/0 and `improved` = 1/1. The item is REVIEWED when the latest review's rate is below 10% **and** at least 2 distinct seats have reviewed. Otherwise it stays NEEDS-REVIEW and `next` shows the count and the last rate.
+- **Soft cap 8.** At 8 standing reviews the item is REVIEWED regardless (diminishing returns; MUSE study 2 Nov: unique catch 60%, 60%, 45% at the 3rd to 5th review).
+- Constants: `CFG.floor`, `CFG.softCap`, `CFG.governor` in `tools/council.mjs`. Interpretation note: the KG relay gave only the one-line description; the 2-seat floor and the FOUND/NEW headers are the Architect's reading, changeable in one line.
 
 ## 3. Dead items cannot accumulate
 1. **Built** → the Architect runs `retire <ID...> --why BUILT --evidence <commit>` in the same turn he ships (one command, batch).

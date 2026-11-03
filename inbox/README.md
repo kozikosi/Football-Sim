@@ -17,4 +17,4 @@ REVIEW (slug "review"): REVIEW-OF: <file name of the work>
 
 **Never** write into another seat's folder, address a file to a named seat (`FOR:` is an item ID, never a seat), or create per-seat sub-folders: that is assignment. IDs come from the queue; new items are created with `council.mjs add` (the tool derives the ID).
 
-Two `ok`/`improved` reviews by two different seats (not the author) = REVIEWED. `rejected` reopens the item. The Architect collects with `node tools/council-sync.mjs --inbox --days 7`. On `council/base` this folder stays empty except this file.
+Reviews are continuous-trust (_agents/COUNCIL.md §2b): add optional `FOUND: <n>` and `NEW: <n>` lines (findings in your review, and how many no earlier review had); the item is REVIEWED once the latest review finds <10% new (min 2 seats, cap 8). `rejected` reopens the item. The Architect collects with `node tools/council-sync.mjs --inbox --days 7`. On `council/base` this folder stays empty except this file.
