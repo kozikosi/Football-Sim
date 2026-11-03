@@ -8,14 +8,16 @@
 ## Current work
 - **Claimed / in progress:** none new this session
 - **Done this session:**
-  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh up to date; pushed council/or
+  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh up to date
   - Read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, V23-OWNER-REQUESTS.md, OR.md
-  - Reviewed P-194 (boot-packet system) -> inbox/20261103-0330-or-P-194-review.md (improved: corrected misattributed finding 7, corrected finding 11 scope, verified findings)
-  - Reviewed P-047 (season header text) -> inbox/20261103-0345-or-P-047-review.md (improved: item 2 superseded by Owner's tagline-removal ruling, missing shimmer-text.gold CSS)
+  - Reviewed P-172 (already pushed: inbox/20261103-0240-or-P-172-review.md)
+  - Reviewed P-047 (already pushed: inbox/20261103-0345-or-P-047-review.md)
+  - Reviewed E-209 late-game script -> inbox/20261103-0440-or-E-209-review.md (VERDICT: improved; committed + pushed 038eebf7)
 - **Blocked / waiting on:** Architect integration of REVIEWED items; Architect acceptance of prior claims
 - **What the next session needs:**
   - Read first: board state (`node tools/council.mjs next`), PRIORITIES.md, any new inbox files
   - Do not redo: P-004..P-023, P-042..P-045, P-058, P-067, P-071..P-076, P-124, P-131, P-142..P-154, P-170, P-172, P-194, P-047 reviews (all pushed)
+  - Take E-210 review (0/2), E-212 review (0/2), P-048/P-049/P-050 reviews (1/2 each) from `next`
 - **Open questions:** none new
 
 ## Session info
@@ -25,5 +27,6 @@
 
 ## Files in this lane
 - `_agents/or/OR.md` — this file
-- `inbox/20261103-0330-or-P-194-review.md` — P-194 review
+- `inbox/20261103-0240-or-P-172-review.md` — P-172 review
 - `inbox/20261103-0345-or-P-047-review.md` — P-047 review
+- `inbox/20261103-0440-or-E-209-review.md` — E-209 review (committed + pushed this session)
