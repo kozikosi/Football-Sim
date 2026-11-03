@@ -5,23 +5,26 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session:** P-208 review (improved: stats 8/9 data-availability gaps), P-212 review (ok), P-213 review (ok), P-215 review (ok, suite 227/227 verified), P-218 review (ok; flagged CB3 numeric error), E-209 (late-game script measurement + proposal; nflverse pbp 2023-2024, 67,427 plays), E-210 (FG make rate by distance; nflverse pbp 2020-2025, 6,609 attempts; data file _agents/data/nflverse-fg-2020-2025.json). E-212 (seam watch w55 vs w57: all ten seam contracts unchanged; report + extractor). P-209 review (ok).
-- **Prior:** P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
+- **Session:** P-202 work (Flex guide REV 2 completeness checks: reachability VERIFIED, QB->WR/S discrepancy REPORTED, 21 Oct addendum INFERRED). Inbox file committed and pushed.
+- **Prior:** P-145, P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
 - **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
 - **Colors v1 suggestions:** 11-item inbox doc + Beamer V1 prototype notice.
 
 ## What next session needs
 - Continue with top of queue from `node tools/next.mjs` (no assignments). Review items first if any appear ahead of unstarted work.
+- P-214 (E3b: map RunState <-> WeekPayload) is now top P1 item; P-216 (E1 stable-ID crosswalk) BLOCKED until Claude mints CSV.
 - P-145 needs Architect to review mock-up and decide wiring for 3-4/4-3 toggle + slot mapping (ties to P-017/D-012).
 - P-154/P-170/P-172 proposals filed; await Architect integration.
 - Watch for reviews of P-145 inbox file.
+- P-202 findings need Architect review (QB flex discrepancy, 21 Oct addendum alignment).
 
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
 - P-140/P-013 (weights) require Owner approval (protected constants).
 - Beamer V1 is a prototype in my lane; product-file authority stays with the Architect.
 - Madden ratings raw scrape still incomplete.
+- P-210 and P-211 reviews pending (need 2 reviewers each).
 
 ## Live files
 - _agents/beam/BEAM.md (this file)
@@ -29,6 +32,7 @@
 - _agents/beam/mockups/p145-formation-cards.html
 - _agents/beam/tools/parse_madden_ratings.py, compare_rosters.py, drift-audit.mjs
 - _agents/beam/data/ (old-roster-names.txt, missing-players.txt)
+- inbox/20261103-0633-beam-P-202-work.md
 - inbox/20261103-0159-beam-P-145-work.md
 - inbox/20261103-0215-beam-P-154-work.md
 - inbox/20261103-0230-beam-P-170-work.md
