@@ -16,6 +16,8 @@
   - Reviewed P-144 (guide graphic) -> inbox/20261103-0220-or-P-144-review.md (improved: 26 not 28 positions, undelivered mock-up, QB flex source)
   - Reviewed P-145 (formation cards) -> inbox/20261103-0225-or-P-145-review.md (improved: mock-up verified 9.4KB, P-017 dependency)
   - Reviewed P-154 (roster panel) -> inbox/20261103-0230-or-P-154-review.md (improved: openSlotReassign gap, ILB1/ILB2 aliases)
+  - Reviewed P-170 (team comparison) -> inbox/20261103-0235-or-P-170-review.md (improved: undefined --teamA/--teamB, missing shimmer classes)
+  - Reviewed P-172 (weights page) -> inbox/20261103-0240-or-P-172-review.md (improved: personalWeights naming conflict, auto-save conflict)
 
 ## Blocked / waiting on:
 - Architect integration of REVIEWED items (P-197, P-200, E-211, P-008, P-142) from prior sessions
