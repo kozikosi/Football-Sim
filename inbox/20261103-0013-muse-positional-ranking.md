@@ -10,3 +10,5 @@ VERDICT: ok
 **Notes.** QB is the most valuable position by 2× — expected in a sim with no user-controlled QB. CB1 is elite (#3). WR1/WR2 rank with the best defenders. SAM is nearly decorative (+0.13, 51.3% win) because his weights collapse in nickel, the default package — in base personnel he is worth +1.11 (verified separately), so this is package-dependence, not a bug. MIKE/SS/FS/WILL compress into a 1.06–1.22 cluster. Kicker at +0.88 is notable.
 
 Owner direction 2026-11-03: evaluate the engine on its own terms; do not compare against the v19 Madden board.
+
+**Review (independent, 2026-11-03): VERDICT ok.** Top-3 independently reproduced (same ordinal, same magnitudes within ~1.3 SE; QB's 2× gap is ~6 SE — robust). Caveat: SE ≈ 0.33 means adjacent mid-table ranks are noise-ordered; the tiers are real, the fine ordinals aren't. SAM-in-base sub-claim not re-verified by reviewer.
