@@ -66,8 +66,8 @@ test('view layer purity: src/view has no DOM, storage, clock or Math.random', as
     for (const bad of [/\bdocument\b/, /\bwindow\b/, /\blocalStorage\b/, /\bMath\.random\b/, /\bDate\.now\b/, /\bnew Date\b/]) assert.ok(!bad.test(src), f + ' ' + bad);
   }
 });
-test('board VM: a tight end is listed at TE1 even though the flex spot WR1 is worth more (found by search: seed 1, first pick)', () => {
-  const st = toUser(1, 0), vm = boardVM(st, USER, goneOdds(st, USER, makeRng(9), 4), { limit: 400 });
+test('board VM: a tight end is listed at TE1 even though the flex spot WR1 is worth more (found by search: seed 2, first pick; seed 1 moved when the audit reordered the DB weights and a CPU took him)', () => {
+  const st = toUser(2, 0), vm = boardVM(st, USER, goneOdds(st, USER, makeRng(9), 4), { limit: 400 });
   const row = vm.rows.find((r) => r.name === 'Trey McBride');
   assert.ok(row, 'player is on the board'); assert.equal(row.slotId, 'TE1'); assert.ok(row.natural);
   assert.ok(row.alsoFits.every((f) => f.slotId !== 'TE1'));

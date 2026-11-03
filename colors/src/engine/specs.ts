@@ -13,14 +13,14 @@ export const RATING_SPECS = {
   qb: { QB: 1 },
   rec: { WR1: 0.99, WR2: 0.91, WR3: 0.53, TE1: 0.53, RB1: 0.19, TE3: 0.02, WR4: 0.02 },
   passRush: { DE1: 1.9, DE2: 1.4, DT1: 1.05, DT2: 0.79, MIKE: 0.26, WILL: 0.27, DL5: 0.45 },
-  frontRun: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.94, SS: 0.34, CB1: 0.7, CB2: 0.51, CB3: 0.19, FS: 0.48, DL5: 0.39 },
+  frontRun: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.94, SS: 0.7, CB1: 0.48, CB2: 0.34, CB3: 0.19, FS: 0.5, DL5: 0.39 },
   coverage: { CB1: 1.39, CB2: 1.06, CB3: 0.86, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.4 },
   kicker: { K: 1 },
 } as const satisfies Record<string, Spec>;
 
 export const DEF_SPECS = {
-  frontBase: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 1.34, SS: 0.34, CB1: 0.7, CB2: 0.51, CB3: 0.1, FS: 0.48, DL5: 0.39 },
-  frontNick: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.13, SS: 0.51, CB1: 0.7, CB2: 0.51, CB3: 0.19, FS: 0.48, DL5: 0.39 },
+  frontBase: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 1.34, SS: 0.7, CB1: 0.48, CB2: 0.34, CB3: 0.1, FS: 0.5, DL5: 0.39 },
+  frontNick: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.13, SS: 0.7, CB1: 0.49, CB2: 0.48, CB3: 0.19, FS: 0.5, DL5: 0.39 },
   covBase: { CB1: 1.39, CB2: 1.06, CB3: 0.24, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.54 },
   covNick: { CB1: 1.39, CB2: 1.06, CB3: 0.96, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.07 },
   covDime: { CB1: 1.39, CB2: 1.06, CB3: 0.96, DIME: 1.09, SS: 0.69, FS: 0.77, MIKE: 0.34 },
