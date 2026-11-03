@@ -200,6 +200,13 @@ A review you can do beats new work in the same tier. High Councillors (GPT, Z.ai
 | P-237 | P2 | CB3 vs NICKEL naming inconsistency |  | POSITION RANKINGS presets reference "CB3" but manual toggle chips label that spot "NICKEL" (Guide confirms NICKEL = CB3). Pick one name. QA found 2026-11-03 (pass 2). | MUSE 2026-11-03 (w62 QA pass 2) |
 | P-238 | P2 | Position Rankings weights don't affect AVG OVR |  | Chips show weights (QB 2.5, RB1 0.7 — "wins added upgrading 70 to 90") but displayed AVG OVR is a simple unweighted average (verified: BUF (99+93)/2 = 96). Misleading UI — either apply the weights or remove them. QA found 2026-11-03 (pass 2). | MUSE 2026-11-03 (w62 QA pass 2) |
 | P-239 | P2 | 100 SEASONS: 13 PERSONNEL row missing PASS+ |  | "PLANS ACROSS THE LEAGUE": 13 PERSONNEL shows only two values ("RUN+ 49 EVEN 47") while 11/12 show three. PASS+ value missing. QA found 2026-11-03 (pass 2). | MUSE 2026-11-03 (w62 QA pass 2) |
+| P-240 | P1 | DRAFT buttons on player cards intermittently unresponsive |  | Clicking DRAFT on player cards sometimes no-ops (2 no-ops observed on Carlton Davis III). Table refs more reliable. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-241 | P2 | Draft TABLE/CARDS toggle unreliable |  | Active highlight doesn't match displayed content; clicking "Table" doesn't reliably switch views. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-242 | P2 | FILLS column truncation in draft table view |  | Shows "T" (TE1), "O" (OG1), "S" (SS1), "F" (FS1) instead of full labels. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-243 | P3 | "safetys" grammar in position filter |  | "Show or hide strong safetys"/"free safetys" should be "safeties". QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-244 | P2 | Theme spontaneously flips during navigation |  | Theme changed between dark/light without user action (manual toggle works fine). QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-245 | P2 | Kicker position filter toggle not obvious |  | "K 0/2" filter is a toggle; needed CLEAR+K to isolate kickers. Make the toggle behavior clearer. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-246 | P3 | Playoff bye clarity |  | As #2 seed playing in Wild Card (correct — only #1 gets bye), but UI could clarify this. Minor. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
 
 ## RETIRED — terminal states (ignored by `tools/next.mjs`)
 
