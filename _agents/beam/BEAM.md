@@ -5,7 +5,7 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session:** P-208 review (improved: stats 8/9 data-availability gaps), P-212 review (ok), P-213 review (ok), P-215 review (ok, suite 227/227 verified), P-218 review (ok; flagged CB3 numeric error), E-209 (late-game script measurement + proposal; nflverse pbp 2023-2024, 67,427 plays).
+- **Session:** P-208 review (improved: stats 8/9 data-availability gaps), P-212 review (ok), P-213 review (ok), P-215 review (ok, suite 227/227 verified), P-218 review (ok; flagged CB3 numeric error), E-209 (late-game script measurement + proposal; nflverse pbp 2023-2024, 67,427 plays), E-210 (FG make rate by distance; nflverse pbp 2020-2025, 6,609 attempts; data file _agents/data/nflverse-fg-2020-2025.json).
 - **Prior:** P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
 - **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
