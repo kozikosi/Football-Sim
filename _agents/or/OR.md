@@ -32,7 +32,7 @@
 ## Session info
 - **Worktree:** /Users/kosi/Desktop/wt/or
 - **Branch:** council/or
-- **merge-base HEAD origin/council/base:** 40233d6be00e987c (Pre-Colors verified build)
+- **merge-base HEAD origin/council/base:** 1b91f50e161fa10d0607c8e09330115ffa27f1ff
 
 ## Files in this lane
 - `_agents/or/OR.md` — this file
