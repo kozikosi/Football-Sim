@@ -1,0 +1,9 @@
+# CHECKSUMS — z-post-blue-wave62-2026-11-03-w62 · 2026-11-03 (HST)
+# md5 (md5sum format: hash  path)
+
+468e6883d4e18afb07eab6a08862b972  Football-Sim-Z-post-blue-w62.html
+# lineage pins (for the §4 truth table)
+7d1e07ddb8b23ef6f03968a8fe26d6cc  Football-Sim-Z-post-blue-w58.html (the Owner's baseline; w61's base)
+889e531b9418fa7a2604d3e8ab4d23b4  Football-Sim-Z-post-blue-w59.html (gh-pages)
+bc841fb9fefb619438075e43bb45f975  Football-Sim-Z-post-blue-w60.html (w62's base)
+5b0f1ef3330983cf1dcceeaa8003ffce  Football-Sim-Z-post-blue-w61.html (reproduced from w58 by Proof A)
