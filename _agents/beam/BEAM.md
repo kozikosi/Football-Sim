@@ -5,9 +5,9 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session:** Reviewed E-212 (improved: contract list 10 not 9, last-def extraction, sample output), filed P-214 RunState<->WeekPayload mapping + round-trip test, reviewed P-210 (ok, 7-day eviction verified against WebKit source), reviewed P-211 (ok, counts re-verified). Committed and pushed 4 inbox files.
+- **Session:** Reviewed P-151 (improved: button gradient 6-stop fidelity, theme vars, invented subtle variants, demo one-shimmer rule); filed `inbox/20261103-1200-beam-P-151-review.md` (commit 24499de5). Ran Z.ai document courier: staged and pushed `Football-Sim-Z-post-blue-w64.html` + `z-post-blue-wave63-2026-11-03-w64/` to `origin/gh-pages` (commit 7c00bda7) and updated `index.html` to w64 (commit 0a6816e1); gh-pages now at 0a6816e1.
 - **Prior:** P-202 corrected (reachability 0/26); E-210 review (improved); P-145, P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
-- **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
+- **Z.ai document courier:** Pushed w56-w64 to gh-pages; GitHub Pages serves w64. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
 - **Colors v1 suggestions:** 11-item inbox doc + Beamer V1 prototype notice.
 
@@ -32,7 +32,7 @@
 - _agents/beam/mockups/p145-formation-cards.html
 - _agents/beam/tools/parse_madden_ratings.py, compare_rosters.py, drift-audit.mjs
 - _agents/beam/data/ (old-roster-names.txt, missing-players.txt)
-- inbox/20261103-0815-beam-E-212-review.md
+- inbox/20261103-1200-beam-P-151-review.md
 - inbox/20261103-0900-beam-P-214-work.md
 - inbox/20261103-0930-beam-P-210-review.md
 - inbox/20261103-1000-beam-P-211-review.md
