@@ -5,7 +5,7 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session end:** Filed P-145 (personnel formation cards) mock-up + inbox proposal.
+- **Session:** P-154 (Your Roster panel proposal), P-170 (team comparison extras), P-172 (weights page state machine), P-194 (boot-packet review), P-207 review (storage contract gaps).
 - **Prior:** E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
 - **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
@@ -14,6 +14,7 @@
 ## What next session needs
 - Continue with top of queue from `node tools/next.mjs` (no assignments). Review items first if any appear ahead of unstarted work.
 - P-145 needs Architect to review mock-up and decide wiring for 3-4/4-3 toggle + slot mapping (ties to P-017/D-012).
+- P-154/P-170/P-172 proposals filed; await Architect integration.
 - Watch for reviews of P-145 inbox file.
 
 ## Open questions
@@ -29,6 +30,11 @@
 - _agents/beam/tools/parse_madden_ratings.py, compare_rosters.py, drift-audit.mjs
 - _agents/beam/data/ (old-roster-names.txt, missing-players.txt)
 - inbox/20261103-0159-beam-P-145-work.md
+- inbox/20261103-0215-beam-P-154-work.md
+- inbox/20261103-0230-beam-P-170-work.md
+- inbox/20261103-0245-beam-P-172-work.md
+- inbox/20261103-0300-beam-P-194-review.md
+- inbox/20261103-0315-beam-P-207-review.md
 
 ## Worktree path
 /Users/kosi/Desktop/wt/beam · branch council/beam · merge-base with origin/council/base: 1b91f50e161fa10d0607c8e09330115ffa27f1ff
