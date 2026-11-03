@@ -14,6 +14,10 @@ Source: `colors/src/engine/` on `origin/architect/engine-and-seats` (E3).
 | Elite vs elite | 99 O vs 99 D | 24.1 PF vs ~22 avg — slight offensive bias, acceptable |
 | SAM package dependence | Base vs nickel | +1.11 in base, +0.13 in nickel — correctly modeled, not a bug |
 | channels ↔ structPts | Reconciliation | Exact (gap 0.000) — matchup internally consistent |
+| Flex penalties | Code review vs REV 4 guide | Holds — asymmetries football-plausible or Owner rulings; QB→FS -10 is generous but Owner's rule |
+| Schedule | Code review vs NFL formula | Holds — 17 games, 9/8 home split alternates by conference, byes fair, Week 18 all-division |
+| Tiebreakers | Code review vs NFL procedure | Holds — follows NFL steps correctly (head-to-head → division → common → conf → SOV → SOS → points) |
+| Kicking model | Code review vs NFL data | Holds — curve matches NFL, Bayesian update sensible; asymmetric clamp (lose 16/gain 10) unexplained but not wrong |
 
 ## Tested — BROKEN (fixes queued as P-219..P-222)
 
@@ -37,7 +41,9 @@ Source: `colors/src/engine/` on `origin/architect/engine-and-seats` (E3).
 | Tiebreakers | Playoff seeding | Construct ties — deterministic and sane? |
 | Blowout threshold | Competitiveness | 99 vs 70/75/80 — where does it break? |
 | Overtime | Uses structPts (dead terms live!) | OT vs regulation model divergence — quantify |
-| Schedule | Fairness | Strength-of-schedule variance across seeds |
+| Schedule | Fairness | **HOLDS**: NFL formula correct, home/away balanced, byes fair. No action. |
+| 3-4 calibration | Provisional weights | **GAP**: "Step 5" (validate neither base dominates) referenced in slots.ts but never built. DT2→MIKE 260, SAM→DT2 300 are uncalibrated. Needs Owner/Architect decision. |
+| lineup.ts NOTE | Documentation | **STALE**: describes pre-Oct-29 3-4 mapping (SAM→WILL 240); code implements Oct-29 change (SAM→DT2 300). Doc fix needed. |
 
 ## How to claim a dark cell
 
