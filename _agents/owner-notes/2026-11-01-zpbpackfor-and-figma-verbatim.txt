@@ -1,0 +1,7 @@
+Owner messages to the Architect, 1 Nov 2026 09:11 HST, saved verbatim (answers to the Architect's three questions):
+
+"2. Do you mean different from pre-colors or different from w52 or differnt from the color hexes? I'm fine with the colors being slightly altered either way, but clearly w52 is superior. We settled on some colors after testing that the darker hexes for some of the teams, especially the dark blues were not very accessible"
+
+"3. I don't think you have access to figma after all for this project. Remove that from your tools list"
+
+Architect's reading: zpbPackFor may follow the shipped page's background colours (scope in claude/00-READ-FIRST.md section 2); w52 is the reference; the 32 team hexes stay; Figma is not to be used.

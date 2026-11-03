@@ -1,0 +1,5 @@
+Owner reply to the Architect's three run-it-back questions, 1 Nov 2026, verbatim:
+
+1. The new run would automatically go to a new slot and the user wouldn't even notice. If all slots are full, then they should be asked which slot they would like to overwrite.
+2. new draft always uses latest player database. Do whatever else you need to do to make sure a player can resume an old save slot without triggering any nulls or glitches because of the database shifting.
+3. Yes. Stats should be saved as soon as the user's team is eliminated. that could be at different stages
