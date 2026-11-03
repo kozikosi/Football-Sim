@@ -10,11 +10,12 @@
   - T-20261102-or-5 (accepted): P-??? Colors v1 returner rating formula with OVR/SPD/STR per player — work file `inbox/20261102-040000-or-returner-claim.md`
   - T-20261102-or-2 (proposed): P-??? Colors v1 Step 7 playoff selection rules, seeding, tiebreaker order, 2020-2025 division records — work file `inbox/20261102-053000-or-step7-work.md`
 - **Done this session:**
-  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh merged 4 files from council/base; pushed council/or
+  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh up to date; pushed council/or
   - Read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, V23-OWNER-REQUESTS.md, OR.md
-  - Task inventory: 6 Colors v1 tasks for OR (T-20261030-or-1..4 accepted, T-20261102-or-2 proposed, T-20261102-or-5 accepted); all have task JSONs and work files
-  - Confirmed existing work files for P-204 FG%, P-205 drive stats, P-206 OT rules, P-207 SETBACK note, returner formula, playoff step 7
-  - No new reviews performed this session
+  - Reviewed P-143 (guide rebuild) -> inbox/20261103-0215-or-P-143-review.md (improved: mis-scoped Stars removal, missing YOU CAN FLEX copy, vacuous Back to Simulator)
+  - Reviewed P-144 (guide graphic) -> inbox/20261103-0220-or-P-144-review.md (improved: 26 not 28 positions, undelivered mock-up, QB flex source)
+  - Reviewed P-145 (formation cards) -> inbox/20261103-0225-or-P-145-review.md (improved: mock-up verified 9.4KB, P-017 dependency)
+  - Reviewed P-154 (roster panel) -> inbox/20261103-0230-or-P-154-review.md (improved: openSlotReassign gap, ILB1/ILB2 aliases)
 
 ## Blocked / waiting on:
 - Architect integration of REVIEWED items (P-197, P-200, E-211, P-008, P-142) from prior sessions
