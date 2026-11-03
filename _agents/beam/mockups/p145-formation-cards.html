@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>P-145 Formation Cards Mock-up</title>
+  <style>
+    :root { --bg:#0b1020; --panel:#11182a; --text:#e6e8ee; --muted:#9aa0b4; --border:#1f253d; --accent:#9fc3ff; }
+    *{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+    header{padding:16px 20px;border-bottom:1px solid var(--border);background:linear-gradient(180deg,rgba(159,195,255,.08),transparent)}
+    main{max-width:980px;margin:0 auto;padding:18px 20px;display:grid;gap:16px}
+    .panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .panel h2{margin:0;padding:10px 12px;border-bottom:1px solid var(--border);font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:12px}
+    .card{border:1px solid var(--border);border-radius:10px;padding:10px;display:grid;gap:8px}
+    .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .label{font-weight:700}
+    .hover{color:var(--muted);font-size:12px}
+    svg{width:220px;height:90px;display:block}
+    .badge-row{display:flex;gap:6px;align-items:center}
+    .badge{border:1px solid var(--border);border-radius:999px;padding:2px 8px;font-size:12px}
+    .vert{display:flex;flex-direction:column;gap:4px;align-items:center}
+    .vline{width:2px;height:10px;background:var(--accent);border-radius:2px}
+    .plist{display:flex;flex-direction:column;gap:4px}
+    .pbox{border:1px solid var(--border);border-radius:8px;padding:4px 8px;display:flex;gap:10px;align-items:center}
+    .pbox code{font:12px/1 ui-monospace,Menlo,Consolas,monospace}
+    .muted{color:var(--muted)}
+    .note{padding:0 12px 12px;color:var(--muted);font-size:12px}
+  </style>
+</head>
+<body>
+  <header>
+    <div style="font-weight:700">P-145 — Personnel formation cards (mock-up)</div>
+    <div class="muted">No word "BASE". Shapes per spec. Hover copy, badges, personnel list.</div>
+  </header>
+  <main>
+    <section class="panel">
+      <h2>Defensive formations</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="row">
+            <div class="label">4-3</div>
+            <div class="hover" title="4 Defensive Linemen . 3 Linebackers">hover: "4 Defensive Linemen . 3 Linebackers"</div>
+          </div>
+          <svg viewBox="0 0 220 90" aria-label="4-3 formation">
+            <!-- 4 rectangles (DL) -->
+            <rect x="10" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="50" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="90" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="130" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <!-- 3 flat-bottom round-top shapes (LB) -->
+            <path d="M 30 65 L 58 65 Q 44 50 30 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 88 65 L 116 65 Q 102 50 88 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 146 65 L 174 65 Q 160 50 146 65 Z" fill="none" stroke="currentColor"/>
+            <!-- 4 dots (DB) -->
+            <circle cx="40" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="80" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="140" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="180" cy="18" r="4" fill="none" stroke="currentColor"/>
+          </svg>
+          <div class="muted">4 rectangles (DL), 3 flat-bottom round-top shapes (LB), 4 dots (DB)</div>
+        </article>
+        <article class="card">
+          <div class="row">
+            <div class="label">3-4</div>
+            <div class="hover" title="3 Defensive Linemen . 4 Linebackers">hover: "3 Defensive Linemen . 4 Linebackers"</div>
+          </div>
+          <svg viewBox="0 0 220 90" aria-label="3-4 formation">
+            <!-- 3 rectangles (DL) -->
+            <rect x="30" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="96" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="162" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <!-- 4 flat-bottom round-top shapes (LB) -->
+            <path d="M 20 65 L 48 65 Q 34 50 20 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 74 65 L 102 65 Q 88 50 74 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 128 65 L 156 65 Q 142 50 128 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 182 65 L 210 65 Q 196 50 182 65 Z" fill="none" stroke="currentColor"/>
+            <!-- 4 dots (DB) -->
+            <circle cx="40" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="80" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="140" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="180" cy="18" r="4" fill="none" stroke="currentColor"/>
+          </svg>
+          <div class="muted">3 rectangles (DL), 4 flat-bottom round-top shapes (LB), 4 dots (DB)</div>
+        </article>
+        <article class="card">
+          <div class="row">
+            <div class="label">Nickel</div>
+            <div class="hover">hover: "3 Defensive Linemen . 3 Linebackers . 5 Defensive Backs" (or as specified)</div>
+          </div>
+          <svg viewBox="0 0 220 90" aria-label="Nickel formation">
+            <!-- 3 rectangles (DL) -->
+            <rect x="30" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="96" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <rect x="162" y="35" width="28" height="18" rx="3" fill="none" stroke="currentColor"/>
+            <!-- 3 flat-bottom round-top shapes (LB) -->
+            <path d="M 50 65 L 78 65 Q 64 50 50 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 104 65 L 132 65 Q 118 50 104 65 Z" fill="none" stroke="currentColor"/>
+            <path d="M 158 65 L 186 65 Q 172 50 158 65 Z" fill="none" stroke="currentColor"/>
+            <!-- 5 dots (DB) -->
+            <circle cx="30" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="70" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="110" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="150" cy="18" r="4" fill="none" stroke="currentColor"/>
+            <circle cx="190" cy="18" r="4" fill="none" stroke="currentColor"/>
+          </svg>
+          <div class="muted">3 rectangles (DL), 3 flat-bottom round-top shapes (LB), 5 dots (DB)</div>
+        </article>
+      </div>
+      <div class="note">Toggle 3-4/4-3 must update the diagram and labels; currently a no-op (needs wiring). Slots that appear in one base and not other (e.g. NT/OLB1/ILB1/ILB2/OLB2 context) must be represented when base changes.</div>
+    </section>
+
+    <section class="panel">
+      <h2>Badges & focus indicators</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="label">Focus badges</div>
+          <div class="badge-row">
+            <span class="badge">P+</span>
+            <span class="badge">R+</span>
+          </div>
+          <div class="muted">Replace previous badge text with "P+" and "R+" (no emojis).</div>
+        </article>
+        <article class="card">
+          <div class="label">Three identical vertical lines</div>
+          <div class="vert">
+            <div class="vline"></div>
+            <div class="vline"></div>
+            <div class="vline"></div>
+          </div>
+          <div class="muted">Use three identical vertical lines as the focus indicator.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Personnel list</h2>
+      <div class="grid">
+        <article class="card">
+          <div class="label">Vertical boxes (no "What it means")</div>
+          <div class="plist">
+            <div class="pbox"><code>11</code><span>RB <b>1</b></span><span>TE <b>1</b></span><span>WR <b>3</b></span></div>
+            <div class="pbox"><code>12</code><span>RB <b>1</b></span><span>TE <b>2</b></span><span>WR <b>2</b></span></div>
+            <div class="pbox"><code>21</code><span>RB <b>2</b></span><span>TE <b>1</b></span><span>WR <b>2</b></span></div>
+          </div>
+          <div class="muted">Display as vertical boxes like "11  RB 1  TE 1  WR 3". Remove "What it means" text/section.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Root cause / notes (toggle bug)</h2>
+      <div class="note">
+        <ul>
+          <li><b>Toggle does nothing:</b> 3-4/4-3 base toggle is not wired to update defensive slot mapping/rendering. NT/OLB1/ILB1/ILB2/OLB2 not appearing because UI never switches between base definitions.</li>
+          <li><b>Mapping:</b> Follow D-012 / P-017. Nickel removes LB3/SAM in 4-3 context as specified.</li>
+          <li><b>Copy:</b> No word "BASE" anywhere in the UI for this feature.</li>
+          <li><b>Badges:</b> Focus badges → "P+" and "R+"; indicator → three identical vertical lines.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
