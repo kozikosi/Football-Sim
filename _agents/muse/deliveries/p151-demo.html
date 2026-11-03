@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-151 Demo: Owner's Favourite Effects</title>
+<link rel="stylesheet" href="p151-shimmer-text.css">
+<link rel="stylesheet" href="p151-shimmer-button.css">
+<style>
+  body { font-family: Georgia, serif; background: #1a1a2e; color: #eee; padding: 40px; text-align: center; }
+  h1 { font-size: 2rem; margin-bottom: 10px; }
+  .demo-section { margin: 50px 0; padding: 30px; border: 1px solid #333; border-radius: 12px; }
+  .team-label { font-size: 0.9rem; opacity: 0.7; margin-bottom: 20px; }
+  .chiefs { --c1: #e8c87e; --c2: #c97a8e; --c3: #ffffff; --b1: #c97a8e; --b2: #e8c87e; --b3: #ffffff; }
+  .saints { --c1: #d4af37; --c2: #000000; --c3: #ffffff; --b1: #000000; --b2: #d4af37; --b3: #ffffff; }
+  .dolphins { --c1: #00a9b5; --c2: #ff6b35; --c3: #ffffff; --b1: #00a9b5; --b2: #ff6b35; --b3: #ffffff; }
+  .big-text { font-size: 4rem; font-weight: 900; margin: 20px 0; }
+</style>
+</head>
+<body>
+  <h1>P-151: Owner's Favourite Effects</h1>
+  <p>Two copy-paste snippets. Change the CSS variables to recolour for any team.</p>
+
+  <div class="demo-section chiefs">
+    <div class="team-label">KANSAS CITY CHIEFS (rose / gold / white)</div>
+    <div class="big-text"><span class="shm-text">20-0</span></div>
+    <button class="shm-btn">DRAFT</button>
+  </div>
+
+  <div class="demo-section saints">
+    <div class="team-label">NEW ORLEANS SAINTS (black / gold / white)</div>
+    <div class="big-text"><span class="shm-text">20-0</span></div>
+    <button class="shm-btn">DRAFT</button>
+  </div>
+
+  <div class="demo-section dolphins">
+    <div class="team-label">MIAMI DOLPHINS (aqua / orange / white)</div>
+    <div class="big-text"><span class="shm-text">20-0</span></div>
+    <button class="shm-btn">DRAFT</button>
+  </div>
+
+  <div class="demo-section">
+    <div class="team-label">85+ SUBTLE VARIANTS (slower, less intense)</div>
+    <div class="big-text"><span class="shm-text subtle chiefs">85 OVR</span></div>
+    <button class="shm-btn subtle chiefs">SECONDARY</button>
+  </div>
+</body>
+</html>

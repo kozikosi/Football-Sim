@@ -1,0 +1,33 @@
+/* 20-0 TEXT SHIMMER — the Owner's favourite text effect.
+   Apply .shm-text to any text element. Takes 3 team colours as CSS variables.
+   Usage: <span class="shm-text">20-0</span>
+   Set --c1, --c2, --c3 to your team's colours (defaults: gold/rose/white). */
+
+.shm-text {
+  --c1: #e8c87e;  /* primary team colour (default: gold) */
+  --c2: #c97a8e;  /* secondary team colour (default: rose) */
+  --c3: #ffffff;  /* highlight (default: white) */
+  background: linear-gradient(100deg,
+    var(--c1) 18%, #ffe9c6 38%,
+    var(--c1) 55%, #fff6e3 72%,
+    var(--c1) 88%);
+  background-size: 230% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent !important;
+  animation: shm-sweep 3.4s linear infinite;
+}
+@keyframes shm-sweep {
+  0% { background-position: 0% 0; }
+  100% { background-position: -230% 0; }
+}
+/* 85+/90+ usage note: 90+ names get full shimmer (.shm-text).
+   85+ names get a subtler version — reduce animation to 6s and lower
+   the highlight stops to 30% opacity. */
+.shm-text.subtle {
+  animation-duration: 6s;
+  opacity: 0.85;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shm-text { animation: none; }
+}

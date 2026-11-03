@@ -1,0 +1,73 @@
+/* DRAFT BUTTON LIQUID-METAL SHIMMER — the Owner's favourite button effect.
+   Apply .shm-btn to any <button>. Takes 3 team colours as CSS variables.
+   Usage: <button class="shm-btn">DRAFT</button>
+   Set --b1 through --b3 to your team's gradient colours. */
+
+.shm-btn {
+  --b1: #c97a8e;  /* gradient start (default: rose) */
+  --b2: #e8c87e;  /* gradient mid (default: gold) */
+  --b3: #ffffff;  /* gradient end (default: white) */
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  font-weight: 900;
+  font-size: 1.5rem;
+  letter-spacing: .3em;
+  text-indent: .3em;
+  padding: 20px 62px;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.15);
+  color: #3a2600;
+  cursor: pointer;
+  background: linear-gradient(100deg,
+    var(--b1), var(--b2) 26%, var(--b3) 44%,
+    var(--b2) 62%, var(--b1) 82%, var(--b2));
+  background-size: 240% 100%;
+  animation: shm-bg 6.5s linear infinite;
+  box-shadow: 0 14px 38px rgba(0,0,0,.25),
+              inset 0 1px 0 rgba(255,255,255,.6);
+  transition: transform .16s ease, box-shadow .16s ease;
+}
+/* Moving sheen overlay */
+.shm-btn::after {
+  content: "";
+  position: absolute;
+  top: -20%; bottom: -20%; left: -45%;
+  width: 38%;
+  background: linear-gradient(100deg,
+    rgba(255,255,255,0),
+    rgba(255,255,255,.8),
+    rgba(255,255,255,0));
+  transform: skewX(-18deg);
+  animation: shm-sheen 3.4s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes shm-bg {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes shm-sheen {
+  0%, 52% { left: -45%; }
+  88%, 100% { left: 135%; }
+}
+.shm-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 20px 48px rgba(0,0,0,.35),
+              inset 0 1px 0 rgba(255,255,255,.6);
+}
+.shm-btn:active {
+  transform: translateY(0) scale(.99);
+}
+/* 85+/90+ usage note: Use .shm-btn for primary CTAs only (90+ importance).
+   For secondary actions (85+), use .shm-btn.subtle with animation-duration: 10s
+   and no ::after sheen. */
+.shm-btn.subtle {
+  animation-duration: 10s;
+}
+.shm-btn.subtle::after {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .shm-btn, .shm-btn::after { animation: none; }
+}
