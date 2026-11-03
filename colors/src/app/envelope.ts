@@ -40,9 +40,11 @@ export interface WeekPayload {
   roster: FrozenPlayer[];        // the user's 32 frozen players
   ratings: Record<string, unknown>;       // team name to frozen ratings (shape owned by the engine, opaque to storage)
   schedule: { week: number; home: string; away: string; kind: string }[];
-  scores: GameScore[];           // results so far
+  scores: GameScore[];           // results so far: regular season in play order, then playoff games (those carry `round`)
   plan: Record<string, unknown> | null;   // the user's plan state once step 9 ports it
   statsRecorded: boolean;
+  prevRank?: Record<string, number>;      // last year's ranks: next run-it-back's schedule input (written by app/weekmap.ts; older saves lack it)
+  homeField?: number;                      // the season's home-field points when the engine was given one
 }
 // season: finished, pruned. No drives, no game logs.
 export interface SeasonPayload {
@@ -103,6 +105,8 @@ export function parsePayload(env: Envelope): ParseResult<AnyEnvelope> {
       if (!Array.isArray(p.schedule) || !p.schedule.every((g) => isObj(g) && isInt(g.week) && isStr(g.home) && isStr(g.away) && isStr(g.kind))) return bad('week: bad schedule');
       if (!scoresOk(p.scores)) return bad('week: bad scores');
       if (p.plan !== null && !isObj(p.plan)) return bad('week: bad plan');
+      if (p.prevRank !== undefined && !(isObj(p.prevRank) && Object.values(p.prevRank).every(isInt))) return bad('week: bad prevRank');
+      if (p.homeField !== undefined && !(typeof p.homeField === 'number' && Number.isFinite(p.homeField))) return bad('week: bad homeField');
     } else {
       if (!Array.isArray(p.table) || !p.table.every((r) => isObj(r) && isStr(r.team) && isInt(r.w) && isInt(r.l) && isInt(r.t) && isInt(r.pf) && isInt(r.pa))) return bad('season: bad table');
       if (!scoresOk(p.userResults)) return bad('season: bad userResults');

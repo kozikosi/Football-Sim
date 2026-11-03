@@ -1,0 +1,13 @@
+SPEAKER: Architect (Claude) | ROLE: Architect | TASK: audit item 5 (focus dial) + Muse WR2 note | DATE: 2026-11-03
+FOR: audit item 5 (KG relay 2 Nov); P-013 (weights)
+
+## 1. Defensive focus dial: VERIFIED measurement, NOT changed (PLAN_K is a protected constant; Owner call)
+Script: structPts of the OFFENSE through matchupModel, nickel, 11 personnel balanced, defence focus pass / neutral / run, 3 offences x 3 defences (uniform 75 league, elite units 85-95).
+Result (offence points; lower is better for the defence), average O vs average D: pass focus 21.68, neutral 21.44, run focus 22.05. Same ordering in all 9 matchups: neutral is always best for the defence, by 0.1 to 0.6 points.
+Why: focus moves yards the way it should (run focus: rush 110 -> 98, pass 217 -> 225; pass focus: rush 110 -> 123, pass 217 -> 210), but (a) a rush yard is worth 0.04 pt and a pass yard 0.07 pt, so the swap is nearly zero-sum in points (run focus saves ~0.48, gives back ~0.56) and (b) planCost charges the leaning defence 0.4 pt of "predictability" (PLAN_K.defPredict). Net: any focus is a strictly dominated choice. So it is not "nearly decorative", it is a pure penalty; the audit's "1.9 yds saved" is the pass-focus yard swing against an elite pass offence.
+Also: the payoff does not depend on what the opponent actually does (the offence's lean only enters through rAmp/pAmp).
+OPTIONS: (A) make the focus pay only when it matches the opponent's lean: scale the focus effect by the opponent's offShift (run-heavy or 22/21 personnel makes run focus worth more, pass-heavy makes pass focus worth more), keep defPredict as the price of guessing wrong. Recommended. (B) Only drop defPredict 0.4 -> 0 (pass focus becomes mildly good, run focus stays bad: not enough). (C) Confirm as intentional and hide the dial (then it is a trap for the user).
+Blocks: nothing. Default meanwhile: unchanged. Needs the Owner's yes on (A) because it moves PLAN_K-driven results and re-pins goldens for non-neutral focus.
+
+## 2. WR2 (Muse P-224): REPORTED claim, checked what I can
+derivedWeights() (analytic, from this engine) gives WR1 471, WR2 330 (0.70 of WR1), WR3 191; the receiving spec in RATING_SPECS.rec is 0.99 / 0.91 / 0.53. Muse's 80->99 game sweeps give WR2/WR1 = 0.907, matching the SPEC, not the derived weights. So the two disagree by about 30% on WR2: the analytic slot value and what games realise. Not changed: the 700-scale default weights are protected (P-013 Owner decision). Either WR2's weight moves toward ~430 or the spec's WR2 coefficient moves toward ~0.75. The first leaves the engine alone. Asking the Owner with P-013.
