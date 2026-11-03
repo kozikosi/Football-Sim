@@ -3,33 +3,36 @@
 ## Identity
 - **Seat:** DS · **Model:** deepseek-v4.1-flash-free via OpenChamber · **State:** advisor
 - **First seen:** 2026-10-25 · **ID block:** none used
-- **Strengths shown (evidence):** w33 shell critique with seam manifest and palette measurements (31 Oct, `473d4e88`); P-020 review #3 — found the two "best win" badges, the two conflicting one-score rules and the missing 20-0 condition that no other seat caught, and supplied the 28-badge source table, 16 'why' rules and a 9,278 B mock (29 Oct, `4fa73d4b`); P-001/P-003/P-005 review #1s with measured contrast (25 Oct, `aefb8e3c`, `73e46643`, `0290ad8a`); P-153 correction review (2 Nov, this commit) — four wrong sub-items in a work file the chain had already passed 3/3.
+- **Strengths shown (evidence):** P-195 correction #6 (3 Nov, `30150663`) — ran Muse's acceptance file against the real `colors/src` modules and showed four of its tests named E1/E5/E7/E8 test something other than §7's same-named test, including a fit with an inversion that its "E1" passes; w33 shell critique with seam manifest and palette measurements (31 Oct, `473d4e88`); P-020 review #3 (28-badge table, 16 'why' rules, 20-0 contract; 29 Oct, `4fa73d4b`); P-153 correction — four wrong sub-items in a work file the chain had already passed 3/3 (2 Nov).
 
 ## Where
-- **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (the OpenCode pool path for this seat; there is no `../wt/ds` on disk — the old `/Users/kosi/Desktop/wt/ds` is orphaned, do not use it; `wt/dsd` is a different seat)
-- **Branch:** `council/ds` · **merge-base HEAD origin/council/base:** `d7a05a27`
-- **Last session end:** 2026-11-02 02:48 UTC
+- **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (the OpenCode pool path; there is no `../wt/ds` on disk — `/Users/kosi/Desktop/wt/ds` is orphaned, `wt/dsd` is a different seat)
+- **Branch:** `council/ds` · **merge-base HEAD origin/council/base:** `1b91f50e`
+- **Last session end:** 2026-11-03 01:52 UTC
 
-## Current state (2 Nov 2026)
-- **No claim held.** The P-153 claim (`inbox/20261031-0930-ds-P-153-claim.md`) aged out at the 24 h P0 limit while the session sat; the chain then closed 3/3 (uk, vl, boc) and P-153 is **REVIEWED ✓✓✓**. The review below was delivered anyway because the closed text is wrong in four places.
-- **Delivered this session:** `inbox/20261102-0248-ds-P-153-review.md` — VERDICT improved, but as a *correction*, not a fourth confirmation.
-- **Skipped deliberately:** P-152 — GLM claimed review #3 at 09:28 UTC on 31 Oct, two minutes before this seat reached the top line. `AGENTS.md` §5: another seat's work on the same ID is reviewed, not repeated.
+## Current state (3 Nov 2026)
+- **Rules changed mid-session (v8, `_agents/COUNCIL.md`, 2 Nov):** no claims, two reviews by two different seats close an item, the tool is `node tools/council.mjs` (`next`/`board`/`show`/`digest`). My P-195 claim file (v7 protocol) was deleted as obsolete; nothing else about it was lost.
+- **Delivered this session:** `inbox/20261103-0155-ds-P-195-correction.md` — P-195 was already REVIEWED, so this is a correction, not a confirmation. It agrees with pickle (`council/pickle:inbox/20261103-0145-pickle-P-195-review.md`) that OR's "−6 flex" issue is retracted; it adds what pickle did not test: whether E1/E5/E7/E8 test their §7 names.
+- **Not taken:** the queue's top lines at session end were REVIEW E-211 (1/2), P-143 (1/2), P-144 (1/2), then WORK P-145, P-154, P-170.
 
 ### Verified findings others should not re-derive
-1. **`tools/next.mjs` silently ignores inbox files whose timestamp is not exactly `YYYYMMDD-HHMM`** (`AGENTS.md`/`inbox/README.md` format). The filename regex is `inbox\/(\d{8})-(\d{4})-([a-z0-9]+)-?(.*)\.md$` (l.30). A 12-digit stamp (`202610291647-or-P-152-review.md`) or a 6-digit time (`20261030-081200-glyph-P-152-review.md`) fails the match and the file never counts. Consequence measured 31 Oct: P-152 read **2/3** while five review files existed (beam, vl counted; glyph, or ×2 invisible); P-153 read **2/3** with uk, vl, boc, or ×3, glyph on disk. Nothing warns. The tool is the Architect's; this is a report, not a fix.
-2. **P-153 against Pre-Colors:** `zpb-teamcol`/`zpb-tfilter` = 0 occurrences and `grep -ci logo` = 0 → Beam's "team filter already exists" is a z.ai-shell string, and the team-logo click is blocked on P-040. `PRIO_MULT`/`prioOf` are **live** (star click l.1131, `mkEntry` l.1639, chip l.1705, card l.1727) — the dead-code claim is false and deleting them makes `score` NaN. The real Priority defect is sort key `r.score` (l.1674) vs printed `r.pri` (l.1768), plus the silent `sortKey='wins'` fallback when `!sim` (l.1672).
-3. **Build truth unchanged:** `Football-Sim-PreColors.html` = `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B, 6,553 lines (re-measured this session).
+1. **Muse's current delivery runs green:** `node --test --experimental-strip-types test/engine-acceptance.test.ts` (scratch tree symlinked to `colors/src`, `tools/`, `Football-Sim-PreColors.html`; Node v24.22.0, Playwright present) → **13 tests, 10 pass, 3 skip, 0 fail**. E4 works after boc's argv fix (~3 s).
+2. **Four E-names test something else than §7** (VERIFIED against the 175-line delivery): **E1** compares `SLOTS` to `design.json` and never reads a fit — perturbing `final.QB` ×0.62 (derived 620 vs design 1000) makes `check-design.mjs` FAIL while `✔ E1` and `✔ E8` still pass; **E5** asserts its own literals `1.50+0.86=2.36` and reports PASS; **E7** is E1 minus the duplicate-id check and never touches Guide/draft board/Position Rankings; **E8** re-implements the comparison instead of exercising E1.
+3. **The canonical check passes:** `node tools/mathlab/check-design.mjs tools/mathlab/results/fit-precolors-2026-10-28-recv.json` → `slots 32 max |derived-design| 0 inversions 0` / `E1/E2 PASS` (the green baseline for a corrected E1b).
+4. **`colors/` today:** 7 modules under `colors/src/engine/`, **no** `colors/build/`, no UI, no `RATING_SPECS`/`DEF_SPECS`. So §7 **E7**'s consumer half and **E6**'s "OLB result = WILL result" are untestable now; E6 cannot catch the `zpbAdjSpec` ILB2 bug that §5 documents. `cd colors && npm test` → **66/66 pass**, including `rng.test.ts` and `purity.test.ts` (so OR's P-031 gap is already covered; P-031 is a separate item, not a §7 test).
+5. **E3b's hard-coded DL5 values are correct today** (derived from `tools/mathlab/flex.json` REV 4: OT/OG/C 4, TE 6, ILB 4, OLB 4) but cannot catch guide drift; §12.2 requires derivation.
+6. **Build truth unchanged:** `Football-Sim-PreColors.html` = `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B.
 
 ## What the next session needs
-- **Read first:** `node tools/next.mjs` (only queue), `AGENTS.md` §1/§3/§5, this lane.
-- **Do not redo:** P-020 (a seat may not review the same item twice); the 25 Oct P-001/P-003/P-005 reviews; P-152 (closed 3/3, GLM held the last review); P-153 (closed 3/3; correction filed).
-- **Next candidates:** P-151, P-155, P-156, P-158, P-162 were at NEEDS-REVIEW 2/3 at session end — check `--board` first, several may have closed. P-204/205/206 are the Colors v1 data requests (P-0, sources required) and fit this seat's evidence style.
-- **Open questions carried:** (1) `<title>`/og:title — the w33 shell answers "20-0"; Pre-Colors still has 3 old-name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — still unconfirmed. (3) One-score rule — recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
+- **Read first:** `_agents/COUNCIL.md` (v8 — the rules that govern now), `node tools/council.mjs next`, this lane.
+- **Do not redo:** P-195 (REVIEWED; correction filed 3 Nov), P-020, the 25 Oct P-001/P-003/P-005 reviews, P-152, P-153.
+- **Next candidates:** E-211, P-143, P-144 (all 1/2) then P-145, P-154, P-170 — whichever `next` prints first.
+- **Carried open questions:** (1) `<title>`/og:title — the w33 shell answers "20-0", Pre-Colors still has 3 old-name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — unconfirmed. (3) One-score rule — recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
 
 ## Files in this lane
 | path | what it is |
 |---|---|
-| `inbox/20261102-0248-ds-P-153-review.md` | P-153 correction: four wrong sub-items, exact replacements for 15/16/17/20/22 |
+| `inbox/20261103-0155-ds-P-195-correction.md` | P-195: four E-names test something else than §7; exact replacement snippets for E1/E5/E7/E8, E3b drift-proofing |
 | `inbox/20261031-0350-ds-critique-precolors-w33.md` | Owner-requested critique of Pre-Colors + z.ai w33 shell for the Colors v1 transplant |
 | `inbox/20261029-0306-ds-P-020-review.md` | P-020 review #3 (28-badge table, 16 'why' rules, 20-0 contract) |
 | `notes/season-review-mock-ds.html` | P-020 mock: standings, bracket, 6 gold awards, 3 badge rows; 9,278 B |
