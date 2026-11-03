@@ -30,7 +30,7 @@ Source: `colors/src/engine/` on `origin/architect/engine-and-seats` (E3).
 |---|---|---|
 | 4th-down logic | Core game decision | Chart go/punt/kick boundary by yard line & distance |
 | Clock management | Late-game realism | 2-min drill, timeouts, kneel-downs — anything explode? |
-| Home field | 1.7 pts assumed | Identical teams home/away — realized edge vs NFL ~55–57%? |
+| Home field | 1.7 pts assumed | **HOLDS**: 55.7% home win (NFL 55–57%), 1.65-pt diff. No action. |
 | Turnover stickiness | Skill vs luck | Split-half correlation of forced TOs |
 | Special teams | Beyond K (dead: P, RET) | Kickoffs, onside kicks — modeled? phantom? |
 | `lean` term | Identity feedback loop | Does a roster's run-identity distort its own matchup? |
