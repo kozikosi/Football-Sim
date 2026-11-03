@@ -67,9 +67,9 @@ export function lineupFor(players: readonly Player[], base: Base): Lineup {
   return { base, ...optimalLineup(players, fieldSlots(base)) };
 }
 
-// NOTE: no "best base" here on purpose. Totals of the two formations are not comparable: a flat roster scores higher in
-// 3-4 because SAM (30) is rated as WILL (240) there while DT2 (300) is rated as MIKE (260), exactly as the Owner's
-// "OLB are treated as WILLs, ILB as MIKEs" rule says. The base is chosen by team rating (step 5), not by this total.
+// NOTE: no "best base" here on purpose. A formation changes who stands in a spot, never what the spot is worth: since the Owner's
+// 2 Nov ruling the same position has the same weight in both bases (ILB2 is rated as DT2 = 300, OLB2 as SAM = 30), so 4-3 or
+// 3-4 is a pure personnel decision, and the base is chosen by team rating (step 5), not by comparing totals here.
 
 export function placementOf(l: Lineup, slot: SlotId): Placement {
   const p = l.placements.find((x) => x.slot.slot === slot);

@@ -83,16 +83,17 @@ test('formation: 3-4 offence and special spots measure the same as in 4-3 (withi
     const unit = SLOTS.find((s) => s.id === f.slot)!.unit;
     if (unit !== 'defense') assert.ok(Math.abs(b[f.slot] - a[f.slot]) <= 1, `${f.slot} ${a[f.slot]} vs ${b[f.slot]}`);
   }
-  // the 3-4 defence reads a uniform few percent below the table; the proportions (measured / table weight) agree within 2%
+  // the 3-4 defence now reads the table (within 1%): the same position carries the same weight in both bases (Owner 2 Nov)
   const ratios = fieldSlots('3-4').filter((f) => SLOTS.find((s) => s.id === f.slot)!.unit === 'defense').map((f) => b[f.slot] / f.weight);
   assert.ok(Math.max(...ratios) - Math.min(...ratios) < 0.04, ratios.map((r) => r.toFixed(3)).join(' '));
-  assert.ok(Math.max(...ratios) < 1.0 && Math.min(...ratios) > 0.9, ratios.map((r) => r.toFixed(3)).join(' '));
+  assert.ok(Math.max(...ratios) < 1.02 && Math.min(...ratios) > 0.99, ratios.map((r) => r.toFixed(3)).join(' '));   // the old uniform 5.5% shortfall is gone: same position, same weight
 });
-test('formation: 3-4 ILB1 and ILB2 are worth the same (both MIKE), OLB2 is worth about a 4-3 DT2 and more than OLB1', () => {
+test('formation: in a 3-4 each position measures what it does in a 4-3: ILB1 = MIKE, ILB2 = DT2, OLB1 = WILL, OLB2 = SAM (Owner 2 Nov)', () => {
   const a = derivedWeights('4-3'), b = derivedWeights('3-4');
-  assert.ok(Math.abs(b.DT2 - b.MIKE) < 1, `ILB2 ${b.DT2} vs ILB1 ${b.MIKE}`);
-  assert.ok(Math.abs(b.SAM - a.DT2) / a.DT2 < 0.08, `OLB2 ${b.SAM} vs 4-3 DT2 ${a.DT2}`);
-  assert.ok(b.SAM > b.WILL, `OLB2 ${b.SAM} vs OLB1 ${b.WILL}`);
+  assert.ok(Math.abs(b.MIKE - a.MIKE) < 1, `ILB1 ${b.MIKE} vs MIKE ${a.MIKE}`);
+  assert.ok(Math.abs(b.DT2 - a.DT2) < 1, `ILB2 ${b.DT2} vs 4-3 DT2 ${a.DT2}`);
+  assert.ok(Math.abs(b.WILL - a.WILL) < 1, `OLB1 ${b.WILL} vs WILL ${a.WILL}`);
+  assert.ok(Math.abs(b.SAM - a.SAM) < 1, `OLB2 ${b.SAM} vs SAM ${a.SAM}`);
 });
 
 // ---- matchup properties that can fail ----
@@ -162,15 +163,16 @@ function roster(olb2: number): Player[] {
 test('formation: a real 3-4 lineup is graded by spec row (spotsOf follows the formation, not the spot names)', () => {
   const l = lineupFor(roster(80), '3-4');
   const rows = new Map(spotsOf(l).map((s, i) => [l.placements[i].slot.slot, s.row]));
-  assert.equal(rows.get('DT2'), 'MIKE'); assert.equal(rows.get('SAM'), 'DT2'); assert.equal(rows.get('WILL'), 'WILL');
+  assert.equal(rows.get('DT2'), 'DT2'); assert.equal(rows.get('SAM'), 'SAM'); assert.equal(rows.get('WILL'), 'WILL');
   const l4 = lineupFor(roster(80), '4-3');
   assert.ok(spotsOf(l4).every((s, i) => s.row === l4.placements[i].slot.slot));
 });
-test('formation: a better player in the SAM spot adds to the pass rush in a 3-4 (OLB2, graded as DT2) and not in a 4-3 (the SAM row has no pass-rush weight)', () => {
-  const gain = (base: '4-3' | '3-4') => {
-    const at = (v: number) => teamRatings(fieldSlots(base).map((f) => ({ row: f.row, ovr: f.slot === 'SAM' ? v : 80 }))).passRush;
+test('formation: a better ILB2 (the DT2 spot) adds to the pass rush in a 3-4 as DT2 does in a 4-3, and OLB2 (SAM) adds none in either base', () => {
+  const gain = (base: '4-3' | '3-4', slot: SlotId) => {
+    const at = (v: number) => teamRatings(fieldSlots(base).map((f) => ({ row: f.row, ovr: f.slot === slot ? v : 80 }))).passRush;
     return at(95) - at(70);
   };
-  assert.ok(gain('3-4') > 0.5, String(gain('3-4')));
-  assert.ok(Math.abs(gain('4-3')) < 0.05, String(gain('4-3')));
+  assert.ok(gain('3-4', 'DT2') > 0.5, String(gain('3-4', 'DT2')));
+  assert.ok(Math.abs(gain('3-4', 'DT2') - gain('4-3', 'DT2')) < 1e-9, 'ILB2 is graded exactly as DT2');
+  assert.ok(Math.abs(gain('3-4', 'SAM')) < 0.05 && Math.abs(gain('4-3', 'SAM')) < 0.05, 'SAM carries no pass-rush weight in either base');
 });

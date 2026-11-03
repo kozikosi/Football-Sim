@@ -101,15 +101,16 @@ test('hungarian: rejects a non-square matrix', () => assert.throws(() => hungari
 test('4-3: every spot plays as itself', () => {
   for (const f of fieldSlots('4-3')) { assert.equal(f.row, f.slot); assert.equal(f.weight, WEIGHT[f.slot]); }
 });
-test('3-4: DT2 becomes ILB2 (rated MIKE); WILL is OLB1 (WILL); SAM is OLB2 and equals DT2 in weight (Owner 29 Oct); the rest is unchanged', () => {
+test('3-4: DT2 becomes ILB2 (rated DT2, 300); WILL is OLB1 (WILL); SAM is OLB2 and keeps the SAM rating (30); the rest is unchanged (Owner 2 Nov)', () => {
   const f = Object.fromEntries(fieldSlots('3-4').map((x) => [x.slot, x]));
-  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'MIKE', 260, 'ILB2']);
+  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'DT2', 300, 'ILB2']);
   assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.weight, f.WILL.label], ['OLB', 'WILL', 240, 'OLB1']);
-  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'DT2', 300, 'OLB2']);
-  assert.equal(f.SAM.weight, WEIGHT.DT2);
+  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'SAM', 30, 'OLB2']);
   assert.equal(f.DT1.label, 'NT'); assert.equal(f.MIKE.label, 'ILB1');
-  const changed = fieldSlots('3-4').filter((x) => x.row !== x.slot || x.dest !== SLOTS.find((s) => s.id === x.slot)!.dest || x.weight !== WEIGHT[x.slot]).map((x) => x.slot).sort();
-  assert.deepEqual(changed, ['DT2', 'SAM']);                  // WILL keeps its own row; only its label changes
+  // the same position carries the same weight and rating row in both bases: only the standing of DT2 (now an ILB spot) differs
+  for (const x of fieldSlots('3-4')) { assert.equal(x.row, x.slot); assert.equal(x.weight, WEIGHT[x.slot]); }
+  const changed = fieldSlots('3-4').filter((x) => x.dest !== SLOTS.find((s) => s.id === x.slot)!.dest).map((x) => x.slot).sort();
+  assert.deepEqual(changed, ['DT2']);                         // WILL and SAM keep their own rows; only their labels change
 });
 test('DL5: balanced share is the measured 0.33, cautious is no lower, aggressive is higher (Owner 29 Oct)', () => {
   assert.equal(DL5_SHARE.balanced, 0.33);
@@ -218,20 +219,19 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth 230 x 70 more in 3-4 less 260 x 4, because a DT must play ILB2 at -4', () => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth 260 x 2 + 30 x 4 less in 3-4: its one ILB leaves an OLB at ILB1 (-2) and a DT at OLB2 (-4)', () => {
   const flat = natural(70);                                   // one ILB only
-  assert.equal(lineupFor(flat, '3-4').value - lineupFor(flat, '4-3').value, 230 * 70 - 260 * 4);
-  const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0);   // MIKE and ILB2 weigh the same, so which of the two is a tie
-  assert.equal(flexed.length, 1);
-  assert.deepEqual([flexed[0].player?.role, flexed[0].slot.dest, flexed[0].penalty], ['DT', 'ILB', 4]);
+  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 260 * 2 + 30 * 4);
+  const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty]).sort();
+  assert.deepEqual(flexed, [['MIKE', 'OLB', 2], ['SAM', 'DT', 4]]);   // the natural ILB takes the heavier ILB2 spot (300)
 });
-test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, and a DT sits', () => {
+test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same', () => {
   const ps = [...natural(70), mk('ILB', 70)];
   const l = lineupFor(ps, '3-4');
   assert.ok(l.placements.every((p) => p.penalty === 0));
   assert.equal(placementOf(l, 'DT2').player?.role, 'ILB');
   assert.deepEqual(l.bench.map((p) => p.role), ['DT']);
-  assert.equal(l.value - lineupFor(ps, '4-3').value, 230 * 70);
+  assert.equal(l.value - lineupFor(ps, '4-3').value, 0);      // the same position, the same weight: a pure personnel decision
 });
 test('base: two elite inside linebackers add more to a 3-4 lineup than to a 4-3 one', () => {
   const ps = natural(70), more = [...ps, mk('ILB', 95), mk('ILB', 95)];

@@ -66,11 +66,11 @@ const LABEL: Partial<Record<SlotId, string>> = {
   WR1: 'WR1', MIKE: 'MIKE', WILL: 'WILL', SAM: 'SAM', CB3: 'Nickel', DE1: 'DE1', DE2: 'DE2',
 };
 
-// 4-3: every spot plays as itself. 3-4 (Owner 25 Oct): DT2 is traded for ILB2 (rated as MIKE); WILL becomes OLB1 (rated as
-// WILL); SAM becomes OLB2 and, Owner 29 Oct, "an OLB2 equal with a DT2", is rated as DT2 (weight 300); DT1 is the nose
-// tackle; MIKE is ILB1. PROVISIONAL (Owner 29 Oct: "whatever seems balanced; you can change both weights"): step 5 checks
-// that neither base dominates under the team rating and may move DT2 and OLB2 together. DL5 and the DB spots are
-// unchanged in a 3-4 (a 3-4 DL5 is INFERRED to stay a rotational lineman; not measured).
+// 4-3: every spot plays as itself. 3-4 (Owner 2 Nov, relayed by KG; supersedes the 25 and 29 Oct rulings): the same position
+// carries the same weight in both bases, so 4-3 or 3-4 is a pure personnel decision. DT2 is traded for ILB2, who is rated as
+// DT2 (weight 300); WILL becomes OLB1 (rated as WILL); SAM becomes OLB2 and keeps the SAM rating (weight 30); DT1 is the nose
+// tackle; MIKE is ILB1. The old "OLB2 equal with DT2" ruling is dead. DL5 and the DB spots are unchanged in a 3-4 (a 3-4 DL5
+// is INFERRED to stay a rotational lineman; not measured).
 export function fieldSlots(base: Base): FieldSlot[] {
   return SLOTS.map((s): FieldSlot => {
     const plain: FieldSlot = { slot: s.id, dest: s.dest, row: s.id, weight: s.weight, label: LABEL[s.id] ?? s.id };
@@ -78,9 +78,9 @@ export function fieldSlots(base: Base): FieldSlot[] {
     switch (s.id) {
       case 'DT1': return { ...plain, label: 'NT' };
       case 'MIKE': return { ...plain, label: 'ILB1' };
-      case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'MIKE', weight: WEIGHT.MIKE, label: 'ILB2' };
+      case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', weight: WEIGHT.DT2, label: 'ILB2' };
       case 'WILL': return { slot: 'WILL', dest: 'OLB', row: 'WILL', weight: WEIGHT.WILL, label: 'OLB1' };
-      case 'SAM': return { slot: 'SAM', dest: 'OLB', row: 'DT2', weight: WEIGHT.DT2, label: 'OLB2' };
+      case 'SAM': return { ...plain, label: 'OLB2' };
       default: return plain;
     }
   });

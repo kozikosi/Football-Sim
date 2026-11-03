@@ -61,3 +61,37 @@ test('audit 2: the average-offense case is unchanged (the linear zone equals the
   const a = matchupModel(runO(78), R(78, { MIKE: 80 }), lg78, DEFAULT_PLAN), b = matchupModel(runO(78), R(78, { MIKE: 99 }), lg78, DEFAULT_PLAN);
   assert.ok(Math.abs(a.expRush - b.expRush - 11.87) < 0.05, `${(a.expRush - b.expRush).toFixed(2)}`);
 });
+
+// Finding 4: no late-game play-calling. Beam E-209 (nflverse 2023-24): Q4 run share 0.20 trailing by 9-16, 0.72 leading by 17+.
+import { lateGameK } from '../src/engine/drives.ts';
+test('audit 4: lateGameK is 1 before the fourth quarter and monotone in the score in it', () => {
+  for (const d of [-20, -5, 0, 5, 20]) assert.equal(lateGameK(d, 3), 1);
+  let prev = 0;
+  for (const d of [-20, -10, -5, -2, 0, 2, 5, 10, 20]) { const k = lateGameK(d, 4); assert.ok(k >= prev, `diff ${d}: ${k} < ${prev}`); prev = k; }
+  assert.equal(lateGameK(0, 4), 1);
+  assert.ok(lateGameK(-10, 4) < 0.6 && lateGameK(20, 4) > 1.8);
+});
+test('audit 4: in the last quarter of the game a trailing team runs less and a leading team runs more, totals unchanged', () => {
+  const lgq = R(80);
+  let trailRush = 0, trailAll = 0, leadRush = 0, leadAll = 0, nT = 0, nL = 0;
+  for (let i = 0; i < 600; i++) {
+    const g = simulateGame(mm(lgq, lgq), mm(lgq, lgq), makeRng(5000 + i), { playoff: false });
+    const reg = g.drives.filter((d) => d.period <= 4);
+    const run = { home: 0, away: 0 };
+    reg.forEach((d, idx) => {
+      const diff = run[d.side] - run[d.side === 'home' ? 'away' : 'home'];
+      if (idx >= reg.length * 0.75 && d.rush + d.pass > 0) {
+        if (diff <= -9) { trailRush += d.rush; trailAll += d.rush + d.pass; nT++; }
+        if (diff >= 9) { leadRush += d.rush; leadAll += d.rush + d.pass; nL++; }
+      }
+      run[d.side] += d.pts; run[d.side === 'home' ? 'away' : 'home'] += d.oppPts;
+    });
+    for (const s of ['home', 'away'] as const) {   // the realised totals are still hit exactly
+      assert.equal(reg.filter((d) => d.side === s).reduce((t, d) => t + d.rush, 0), g.agg[s].rush);
+      assert.equal(reg.filter((d) => d.side === s).reduce((t, d) => t + d.pass, 0), g.agg[s].pass);
+    }
+  }
+  assert.ok(nT > 200 && nL > 200, `samples ${nT}, ${nL}`);
+  const trail = trailRush / trailAll, lead = leadRush / leadAll;
+  assert.ok(lead - trail > 0.12, `late run-yard share: trailing ${trail.toFixed(3)}, leading ${lead.toFixed(3)}`);
+});

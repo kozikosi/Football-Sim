@@ -127,6 +127,23 @@ export function decompose(S: number, oppGiveaways: number, rng: Rng): Comp {
   return { td: c.n, fg: c.b, convs: shuffle(rng, convs), dTD, sf };
 }
 
+// ---- late-game script (MUSE audit finding 4; measurement and coefficients: Beam E-209, nflverse 2023-24, 67,427 plays) ----
+// Teams trailing by 9+ in the fourth quarter ran on 20-25% of plays, teams leading by 17+ on 72%. The game's rush and pass TOTALS
+// stay what the matchup model realised (so scoring, margins and overtime do not move); what changes is WHERE they fall: in the
+// fourth quarter a drive's rush yards are weighted by k and its pass yards by 1/k, so its run:pass ratio moves by k squared.
+// k is Beam's starting table (a design, not a fit): below 1 passes more, above 1 runs more. `diff` is own score minus the other's.
+export function lateGameK(diff: number, quarter: number): number {
+  if (quarter < 4) return 1;
+  if (diff <= -9) return 0.55;
+  if (diff <= -4) return 0.75;
+  if (diff >= 17) return 1.85;
+  if (diff >= 9) return 1.55;
+  if (diff >= 4) return 1.25;
+  if (diff <= -1) return 0.9;
+  if (diff >= 1) return 1.1;
+  return 1;
+}
+
 // ---- step 3 and 4: drives ----
 const YARDS_W: Record<DriveEnd, number> = { TD: 68, FG: 46, FG_MISS: 44, PUNT: 24, INT: 26, FUM: 25, DOWNS: 32, HALF: 24, SAFETY: 14 };
 const MIN_PLAYS: Record<DriveEnd, number> = { TD: 1, FG: 3, FG_MISS: 3, PUNT: 3, INT: 2, FUM: 2, DOWNS: 4, HALF: 2, SAFETY: 2 };
@@ -188,10 +205,20 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
     const sl = slotsBy[q.side][q.idx];
     return { side: q.side, period: 1, start: 0, secs: 0, plays: 0, rush: 0, pass: 0, sacks: 0, end: sl.end, pts: sl.end === 'TD' ? 6 + convPts(sl.conv!) : sl.end === 'FG' ? 3 : 0, conv: sl.conv, oppPts: sl.end === 'SAFETY' ? 2 : sl.defTD ? 7 : 0, defTD: !!sl.defTD };
   });
+  // score and clock at the start of each drive, read off the planned results (the quarter is the position in the game; the real
+  // clock is laid down below). Scores here are the drives' own points, so the tilt cannot disagree with the final score.
+  const tilt = new Map<Drive, number>();
+  {
+    const run = { home: 0, away: 0 };
+    drives.forEach((d, i) => {
+      tilt.set(d, lateGameK(run[d.side] - run[other(d.side)], 1 + Math.floor((i / drives.length) * 4)));
+      run[d.side] += d.pts; run[other(d.side)] += d.oppPts;
+    });
+  }
   // yards: rush and pass separately, weighted by how each drive ended, so the drives add up to the realised totals
   for (const s of ['home', 'away'] as const) {
     const mine = drives.map((d, i) => [d, i] as const).filter(([d]) => d.side === s).map(([d]) => d);
-    const wR = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal())), wP = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal()));
+    const wR = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal()) * tilt.get(d)!), wP = mine.map((d) => (YARDS_W[d.end] * Math.exp(0.5 * rD.normal())) / tilt.get(d)!);
     const rs = allocate(agg[s].rush, wR), ps = allocate(agg[s].pass, wP);
     mine.forEach((d, i) => { d.rush = rs[i]; d.pass = ps[i]; });
     mine.forEach((d) => { d.plays = clamp(Math.max(MIN_PLAYS[d.end], Math.round((d.rush + d.pass) / 5.15 + 0.9 * rD.normal())), 1, 22); });
