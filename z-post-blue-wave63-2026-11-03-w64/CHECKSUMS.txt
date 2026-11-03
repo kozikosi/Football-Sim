@@ -1,0 +1,4 @@
+8b601f06ad2938960a636f53e709148d  Football-Sim-Z-post-blue-w63.html
+# lineage pins
+468e6883d4e18afb07eab6a08862b972  Football-Sim-Z-post-blue-w62.html (the baseline)
+6f44de211d111af555a1ae6658b8836d  stage-1 (the Muse QA round on w62)
