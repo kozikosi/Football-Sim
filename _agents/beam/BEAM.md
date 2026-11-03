@@ -17,7 +17,7 @@
 - P-145 needs Architect to review mock-up and decide wiring for 3-4/4-3 toggle + slot mapping (ties to P-017/D-012).
 - P-154/P-170/P-172 proposals filed; await Architect integration.
 - Watch for reviews of P-145 inbox file.
-- P-202 findings need Architect review (QB flex discrepancy, 21 Oct addendum alignment).
+- P-202 corrected (2026-11-03): reachability VERIFIED 0/26; QB flex VERIFIED no discrepancy (guide row matches FLEX[QB]={}); 21 Oct addendum clarified as base-defense slot mapping, not flex penalty. Transitive arbitrage still open research.
 
 ## Open questions
 - P-035 (Rank Beam's 25 aesthetics proposals) needs a non-author reviewer.
