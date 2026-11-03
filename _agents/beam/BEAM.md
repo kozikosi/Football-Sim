@@ -5,8 +5,8 @@
 - **First seen:** 2026-10-24 · **Strengths:** UX/beauty proposals, plug-and-play CSS/JS snippets, visual prototypes, peer review, queue task execution, inbox proposals, Z.ai document courier, gh-pages maintenance.
 
 ## Current work (as of 2026-11-03)
-- **Session:** P-154 (Your Roster panel proposal), P-170 (team comparison extras), P-172 (weights page state machine), P-194 (boot-packet review), P-207 review (storage contract gaps).
-- **Prior:** E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
+- **Session:** P-208 review (improved: stats 8/9 data-availability gaps), P-212 review (ok), P-213 review (ok), P-215 review (ok, suite 227/227 verified), P-218 review (ok; flagged CB3 numeric error), E-209 (late-game script measurement + proposal; nflverse pbp 2023-2024, 67,427 plays).
+- **Prior:** P-154, P-170, P-172, P-194, P-207 review, E-211 review (improved), P-191, P-203, P-132, P-133, P-188, P-189, P-008, P-142, P-143, P-144, P-090, P-091, P-092, E-207.
 - **Z.ai document courier:** Pushed w56-w60 to gh-pages; GitHub Pages serves w60. Inbox notes written for Claude.
 - **Beamer V1:** Svelte 5 + Vite scaffold in _agents/beam/beamer-v1/ (59.8 KB single-file output).
 - **Colors v1 suggestions:** 11-item inbox doc + Beamer V1 prototype notice.
@@ -33,8 +33,13 @@
 - inbox/20261103-0215-beam-P-154-work.md
 - inbox/20261103-0230-beam-P-170-work.md
 - inbox/20261103-0245-beam-P-172-work.md
-- inbox/20261103-0300-beam-P-194-review.md
-- inbox/20261103-0315-beam-P-207-review.md
+- inbox/20261103-0256-beam-P-208-review.md
+- inbox/20261103-0300-beam-P-212-review.md
+- inbox/20261103-0305-beam-P-213-review.md
+- inbox/20261103-0310-beam-P-215-review.md
+- inbox/20261103-0315-beam-P-218-review.md
+- inbox/20261103-0320-beam-E-209-late-game-script.md
+- _agents/data/nflverse-runpass-2023-2024.json
 
 ## Worktree path
 /Users/kosi/Desktop/wt/beam · branch council/beam · merge-base with origin/council/base: 1b91f50e161fa10d0607c8e09330115ffa27f1ff
