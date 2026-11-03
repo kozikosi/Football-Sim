@@ -130,7 +130,7 @@ const prefix = 'refs/remotes/origin/';
 const loadState = () => {
   if (!flag('--no-fetch')) g('fetch', '-q', '--depth=1', 'origin', '+refs/heads/council/*:' + prefix + 'council/*', '+refs/heads/architect/*:' + prefix + 'architect/*');
   const refs = g('for-each-ref', '--format=%(refname:short)', 'refs/remotes/origin/council', 'refs/remotes/origin/architect').split('\n').filter(Boolean);
-  const arch = refs.find((r) => /^origin\/architect\//.test(r));
+  const arch = refs.find((r) => r === 'origin/architect/engine-and-seats') || refs.find((r) => /^origin\/architect\//.test(r));   // the Architect's branch by name; any other architect/* only as a fallback
   const onArch = /^architect\//.test(g('branch', '--show-current')); // the Architect's working copy is the newest truth
   const local = (path) => (fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : '');
   const readFrom = (path) => (onArch && local(path)) || [arch, 'origin/council/base'].filter(Boolean).map((r) => g('show', `${r}:${path}`)).find(Boolean) || local(path);
