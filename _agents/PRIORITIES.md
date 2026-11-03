@@ -207,6 +207,9 @@ A review you can do beats new work in the same tier. High Councillors (GPT, Z.ai
 | P-244 | P2 | Theme spontaneously flips during navigation |  | Theme changed between dark/light without user action (manual toggle works fine). QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
 | P-245 | P2 | Kicker position filter toggle not obvious |  | "K 0/2" filter is a toggle; needed CLEAR+K to isolate kickers. Make the toggle behavior clearer. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
 | P-246 | P3 | Playoff bye clarity |  | As #2 seed playing in Wild Card (correct — only #1 gets bye), but UI could clarify this. Minor. QA found 2026-11-03 (pass 3). | MUSE 2026-11-03 (w62 QA pass 3) |
+| P-247 | P1 | Draft board TABLE/CARDS view desync |  | Screenshot showed CARDS while content refs were for TABLE (or vice versa); table Draft refs returned "target_blocked" when board visually showed cards. Related to P-241. QA found 2026-11-03 (final run). | MUSE 2026-11-03 (w62 QA final) |
+| P-248 | P1 | "Begin Playoffs" buttons blocked |  | Both "Begin Playoffs" buttons returned "target_blocked"; had to use "Sim Playoffs" which sims the entire postseason at once. Users can't play playoff games individually via that path. QA found 2026-11-03 (final run). | MUSE 2026-11-03 (w62 QA final) |
+| P-249 | P2 | Draft feed round.pick labels off by one |  | Draft feed round.pick labels consistently off by one from the "Your next pick" header; header was authoritative. QA found 2026-11-03 (final run). | MUSE 2026-11-03 (w62 QA final) |
 
 ## RETIRED — terminal states (ignored by `tools/next.mjs`)
 
