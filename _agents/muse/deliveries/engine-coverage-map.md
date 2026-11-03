@@ -32,14 +32,15 @@ Source: `colors/src/engine/` on `origin/architect/engine-and-seats` (E3).
 
 | Area | Why it matters | Suggested test |
 |---|---|---|
-| 4th-down logic | Core game decision | Chart go/punt/kick boundary by yard line & distance |
-| Clock management | Late-game realism | 2-min drill, timeouts, kneel-downs — anything explode? |
+| 4th-down logic | N/A — engine is top-down | **NOT A FEATURE**: no down-by-down simulation; "turnover on downs" is an allocated drive ending. Removed from test list. |
+| Clock management | Partially modeled | Drives have timestamps but no 2-min drill, timeouts, or kneel-downs. Emergent only. |
 | Home field | 1.7 pts assumed | **HOLDS**: 55.7% home win (NFL 55–57%), 1.65-pt diff. No action. |
 | Turnover stickiness | Skill vs luck | Split-half correlation of forced TOs |
 | Special teams | Beyond K (dead: P, RET) | Kickoffs, onside kicks — modeled? phantom? |
 | `lean` term | Identity feedback loop | Does a roster's run-identity distort its own matchup? |
 | Tiebreakers | Playoff seeding | Construct ties — deterministic and sane? |
 | Blowout threshold | Competitiveness | 99 vs 70/75/80 — where does it break? |
+| Drive distribution | Top-down allocation | **MEASURED**: PUNT 41.5% (NFL 35%), DOWNS 3.1% (NFL 6%), score SD 8.2 (NFL 10%). Punt rate 6.5pp high; variance low (inherent). See WR-1, WR-2. |
 | Overtime | Uses structPts (dead terms live!) | OT vs regulation model divergence — quantify |
 | Schedule | Fairness | **HOLDS**: NFL formula correct, home/away balanced, byes fair. No action. |
 | 3-4 calibration | Provisional weights | **GAP**: "Step 5" (validate neither base dominates) referenced in slots.ts but never built. DT2→MIKE 260, SAM→DT2 300 are uncalibrated. Needs Owner/Architect decision. |
