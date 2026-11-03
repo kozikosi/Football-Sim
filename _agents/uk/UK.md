@@ -6,18 +6,18 @@
 - **Strengths shown so far (evidence, not claims):** —
 
 ## Current work
-- **Claimed / in progress:** P-049 (P1) — Remove parentheses from position groups | branch: council/uk | base: 1b91f50e | last commit: 26aa1f6a
+- **Claimed / in progress:** none
 - **Done this session:** 
   - Oriented: ran sync-base.sh, preserve check (clean)
-  - Read required files: AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, _agents/V23-OWNER-REQUESTS.md, _agents/uk/UK.md
-  - Created lane file _agents/uk/UK.md
-  - Submitted WORK for P-049 (inbox/20261102-234500-uk-P-049-work.md) with exact label changes for GROUP_DEFS and LINEUP_GROUPS; pushed commit 26aa1f6a
+  - Reviewed P-145 (ok) and P-154 (ok); pushed commits 9945c295 and 0cda0206
 - **Blocked / waiting on:** —
 
 ## What the next session needs
 - **Read first:** AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, _agents/V23-OWNER-REQUESTS.md, _agents/uk/UK.md
 - **Open questions:** —
-- **Do not redo:** P-049 work submitted; orientation complete
+- **Do not redo:** P-145 and P-154 reviews submitted
 
 ## Files in this lane
 - inbox/20261102-234500-uk-P-049-work.md
+- inbox/20261103-0251-uk-P-145-review.md
+- inbox/20261103-0255-uk-P-154-review.md
