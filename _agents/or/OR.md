@@ -8,20 +8,16 @@
 ## Current work
 - **Claimed / in progress:** none new this session
 - **Done this session:**
-  - Oriented: pwd / branch / git-common-dir verified; sync-base.sh up to date
+  - Oriented per START-OF-CHAT.md: pwd / branch / git-common-dir verified; sync-base.sh up to date
   - Read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, V23-OWNER-REQUESTS.md, OR.md
-  - Reviewed P-172 (already pushed: inbox/20261103-0240-or-P-172-review.md)
-  - Reviewed P-047 (already pushed: inbox/20261103-0345-or-P-047-review.md)
-  - Reviewed E-209 late-game script -> inbox/20261103-0440-or-E-209-review.md (VERDICT: improved; committed + pushed 038eebf7)
-  - Submitted E-210 work: FG make rate by distance for drive model (inbox/20261103-0700-or-E-210-work.md)
-  - Submitted E-212 work: seam watch tool for contract diffs (inbox/20261103-0710-or-E-212-work.md)
-- **Blocked / waiting on:** Architect integration of REVIEWED items; Architect acceptance of prior claims
+  - Reviewed P-048 "Remove 'Play a Season' panel text + Start Season button" -> VERDICT: improved (inbox/20261103-0440-or-P-048-review.md)
+  - Reviewed P-049 "Remove parentheses from position groups" -> VERDICT: improved (inbox/20261103-0530-or-P-049-review.md)
+  - Reviewed P-050 "Remove draft recap text block" -> VERDICT: rejected (scope mismatch — work implements win-probability graph, not draft recap text removal) (inbox/20261103-0530-or-P-050-review.md)
+  - Recorded idle session state (inbox/20261103-2313-or-idle.md — committed, pushed 121a6f6b)
+- **Blocked / waiting on:** Council tool macOS path bug produces no `next`/`board` output (import.meta.url /private prefix mismatch); Architect integration of REVIEWED items; Architect acceptance of prior claims
 - **What the next session needs:**
-  - Read first: board state (`node tools/council.mjs next`), PRIORITIES.md, any new inbox files
-  - Do not redo: P-004..P-023, P-042..P-045, P-058, P-067, P-071..P-076, P-124, P-131, P-142..P-154, P-170, P-172, P-194, P-047 reviews (all pushed)
-  - Submitted E-210 work file for FG make rate by distance (drive model calibration)
-- Submitted E-212 work file for seam watch tool
-- P-048/P-049/P-050 reviews pending (no work files from other seats; taking as next work)
+  - Run `node tools/council.mjs next` (may need `--seat or`); check board for new items
+  - Do not redo: P-048/P-049/P-050 reviews (all pushed); P-004..P-023, P-042..P-045, P-058, P-067, P-071..P-076, P-124, P-131, P-142..P-154, P-170, P-172, P-194 reviews (all pushed)
 - **Open questions:** none new
 
 ## Session info
@@ -31,8 +27,7 @@
 
 ## Files in this lane
 - `_agents/or/OR.md` — this file
-- `inbox/20261103-0240-or-P-172-review.md` — P-172 review
-- `inbox/20261103-0345-or-P-047-review.md` — P-047 review
-- `inbox/20261103-0440-or-E-209-review.md` — E-209 review (committed + pushed this session)
-- `inbox/20261103-0700-or-E-210-work.md` — E-210 work: FG make rate by distance
-- `inbox/20261103-0710-or-E-212-work.md` — E-212 work: seam watch tool
+- `inbox/20261103-0440-or-P-048-review.md` — P-048 review (improved)
+- `inbox/20261103-0530-or-P-049-review.md` — P-049 review (improved)
+- `inbox/20261103-0530-or-P-050-review.md` — P-050 review (rejected)
+- `inbox/20261103-2313-or-idle.md` — idle session state
