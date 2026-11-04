@@ -1,0 +1,67 @@
+--- council.mjs	2026-11-03 18:27:34.930331713 -1000
++++ council-new.mjs	2026-11-03 18:28:16.044331397 -1000
+@@ -62,6 +62,8 @@
+   if (/^ACK:/im.test(h)) return { ...rec, kind: 'ack', of: hdr(h, 'ACK') };
+   if (/^TO-ARCHITECT:/im.test(h)) return { ...rec, kind: 'note', text: hdr(h, 'TO-ARCHITECT') };
+   if (/^REVIEW-OF:/im.test(h)) return { ...rec, kind: 'review', id: forId, verdict: (hdr(h, 'VERDICT').match(/ok|improved|rejected/i) || [''])[0].toLowerCase(), ...catches(h) };
++  const disc = h.match(/^(IDEA|CONFUSED|STUCK):/im);
++  if (disc) return { ...rec, kind: 'discussion', prefix: disc[1].toUpperCase(), text: hdr(h, disc[1].toUpperCase()) };
+   return { ...rec, kind: 'work', id: forId };
+ };
+ 
+@@ -132,15 +134,28 @@
+   return { items, recs: sorted, answered, acked, events };
+ };
+ 
++// machine-derived one-line reason for a next item (BUILD-2: never hand-written)
++const reasonFor = (it, me, state) => {
++  if (it.status === 'OPEN') return 'no work yet';
++  if (it.status === 'REWORK') return 'rejected, new work filed after';
++  const myOld = state.recs.filter((r) => r.kind === 'review' && r.id === it.id && r.seat === me).sort((a, b) => b.t - a.t)[0];
++  if (myOld && it.lastWork && it.lastWork.t > myOld.t) return `${it.lastWork.seat} filed new work after your ${myOld.verdict}`;
++  return `${it.nrev} review${it.nrev === 1 ? '' : 's'} so far`;
++};
++
+ // what to do next for one seat
+ export const nextFor = (state, me) => {
+   const out = [];
+   for (const r of state.recs) if (r.kind === 'ask' && !state.answered.has(r.base) && r.seat !== me) out.push({ score: -1, eff: -1, text: `ANSWER ${r.base}: ${r.text}${r.format ? `  [format: ${r.format}]` : ''}` });
+   for (const it of state.items.values()) {
+     if (it.retired || it.blocked.length || it.status === 'REVIEWED') continue;
+-    if (it.status === 'OPEN' || it.status === 'REWORK') out.push({ score: 1, eff: it.eff, it, text: `WORK ${it.id} [P${it.eff}${it.up ? '↑' : ''}] ${it.title}\n   BRIEF: ${it.work}` });
+-    else if (!it.authors.includes(me) && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, text: `REVIEW ${it.id} [P${it.eff}] (${it.nrev} done${it.lastRate === null ? '' : `, last catch ${Math.round(it.lastRate * 100)}%`}; stops at <${CFG.governor * 100}% once ${CFG.floor}+, cap ${CFG.softCap}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}` });
+-  }
++    const reason = reasonFor(it, me, state);
++    if (it.status === 'OPEN' || it.status === 'REWORK') out.push({ score: 1, eff: it.eff, it, text: `WORK ${it.id} [P${it.eff}${it.up ? '↑' : ''}] ${it.title} (${reason})\n   BRIEF: ${it.work}` });
++    else if (!it.authors.includes(me) && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, text: `REVIEW ${it.id} [P${it.eff}] (${reason}; ${it.nrev} done${it.lastRate === null ? '' : `, last catch ${Math.round(it.lastRate * 100)}%`}; stops at <${CFG.governor * 100}% once ${CFG.floor}+, cap ${CFG.softCap}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}` });
++  }
++  // BUILD-1: discussion section — top 5 unacknowledged, appended after work list
++  const disc = state.recs.filter((r) => r.kind === 'discussion' && !state.acked.has(r.base)).sort((a, b) => b.t - a.t).slice(0, 5);
++  for (const r of disc) out.push({ score: 2, eff: 99, text: `DISCUSS ${r.prefix} ${r.base} (${r.seat}): ${r.text.slice(0, 120)}` });
+   return out.sort((a, b) => a.eff - b.eff || a.score - b.score || (a.it?.id || '').localeCompare(b.it?.id || ''));
+ };
+ 
+@@ -189,9 +204,21 @@
+   else if (cmd === 'ack') { for (const f of pos) put(`ACK-${slug(f).slice(0, 20)}`, `ACK: ${f.replace(/^.*\//, '')}`); }
+   else if (cmd === 'next') {
+     const st = loadState(), me = mySeat(), list = nextFor(st, me);
++    const onlyDisc = flag('--discussion');
++    const main = list.filter((x) => !x.text.startsWith('DISCUSS'));
++    const disc = list.filter((x) => x.text.startsWith('DISCUSS'));
+     console.log(`NEXT FOR ${me}: nobody is assigned; take the first line. Refused work is fine (no claims); you may also ADD/RETIRE/KEEP items (tools/council.mjs --help in the header).`);
+-    if (!list.length) console.log('Nothing open or awaiting you. Run the standing chore: look for dead items (node tools/council.mjs board) and RETIRE any you can prove built or superseded.');
+-    for (const x of list.slice(0, 6)) console.log('\n' + x.text);
++    if (onlyDisc) {
++      if (!disc.length) console.log('No unacknowledged discussion items.');
++      for (const x of disc) console.log('\n' + x.text);
++    } else {
++      if (!main.length && !disc.length) console.log('Nothing open or awaiting you. Run the standing chore: look for dead items (node tools/council.mjs board) and RETIRE any you can prove built or superseded.');
++      for (const x of main.slice(0, 6)) console.log('\n' + x.text);
++      if (disc.length) {
++        console.log('\nDISCUSSION (unacknowledged IDEA/CONFUSED/STUCK; `ack <file>` to clear):');
++        for (const x of disc) console.log('\n' + x.text);
++      }
++    }
+     const dead = [...st.items.values()].filter((i) => i.retired && i.retired.by === 'auto' && Date.now() - i.retired.t < 864e5 * 0);
+     void dead;
+   }
