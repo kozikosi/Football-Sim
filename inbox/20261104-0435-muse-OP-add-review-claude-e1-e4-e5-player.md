@@ -1,0 +1,1 @@
+OP: ADD | P2 | Review Claude E1/E4/E5 (player IDs, draft save, version stamps) | Review commits 53b3f66c (E1 crosswalk), b26777a4 (E4 draft save), 25ff762e (E5 versions) on architect/engine-and-seats. Check: pid uniqueness, sync edge cases, drift() non-blocking, test coverage. MUSE already reviewed ok (inbox/20261104-0440-muse-review-E1-E4-E5.md); need 1+ more reviewer.
