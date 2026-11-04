@@ -320,7 +320,7 @@ body{background:
 .tabbtn.active{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));box-shadow:0 4px 14px var(--glow);}
 .resetbtn{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));border-radius:999px;font-weight:700;box-shadow:0 6px 18px var(--glow);transition:transform .12s ease, box-shadow .12s ease;}
 .resetbtn:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px var(--glow);}
-#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#simSeasonBtn,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn{font-size:1rem !important;padding:13px 30px !important;} /* w57 (Owner): BEGIN PLAYOFFS wears the SIM PLAYOFFS size */
+#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn{font-size:1rem !important;padding:13px 30px !important;} /* w57 (Owner): BEGIN PLAYOFFS wears the SIM PLAYOFFS size · w65 (Owner): SIM SEASON leaves the big law — it rides the tab row at the SIM GAME size */
 
 th.sortable:hover{text-decoration:none;color:var(--text);}
 h2{letter-spacing:-.005em;}
@@ -1708,8 +1708,8 @@ button.slotdraft:hover{filter:brightness(1.26) saturate(1.08);}
 /* strengths tiles (neutral group ink) */
 .zpb-sttile.ntru b{color:var(--text);}
 .zpb-sttile.ntru{border-color:var(--rosehair);}
-/* removals safety: no stray pager */
-.pagbtn,.paginfo{display:none !important;}
+/* w65 (Muse P0, measured): the old "no stray pager" law hid the browser's real pager too —
+   the w63 pager (PREV · PAGE X OF 20 · NEXT) now shows and carries the Owner's page law. */
 @media (prefers-reduced-motion: reduce){
  .zpb-shm,.zpb-fin p b,tr.zpb-top3 button.slotdraft::after,.zpb-shimbtn::after{animation:none;}
  .zpb-sw,.zpb-swmini{transition-duration:.8s;}
@@ -2027,7 +2027,7 @@ img{max-width:100%;}
 .zpb-fm-row i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:32px;padding:0 9px;border-radius:999px;font-weight:800;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;}
 /* w33 (R7): cards and bubbles land one per second, in the order the Owner drafted them */
 @keyframes zpbCardIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
-.zpb-dfc2{opacity:0;animation:zpbCardIn .4s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.35s);} /* w63 (Owner): the depth chart fades at least half a second faster */ /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
+.zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.12s);} /* w65 (Owner): at least half a second faster again — the beat is 0.12s, so row N lands 0.23·N + 0.1s sooner than w64 */ /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
 .zpb-fm .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*1s);} /* w37 (R2, Owner): the map's players share the same hold */
 /* w33 (R5): hover a player card and his station lights up — and the old law holds both ways */
 .zpb-fm-ini.zpb-fm-hot{box-shadow:inset 0 0 0 2px var(--zrb,var(--accent)),0 0 14px var(--glow,rgba(217,169,76,.4));transform:scale(1.12);}
@@ -2183,9 +2183,9 @@ html{scrollbar-gutter:stable;}
  <div class="view" id="viewPlayers">
   <div class="panel">
    <div class="filters">
-    <input id="playerSearch" placeholder="Search player name...">
+    <input id="playerSearch" placeholder="SEARCH PLAYER NAME">
     <div class="posdrop">
-     <button class="posbtn" id="posBtn">All Positions</button>
+     <button class="posbtn" id="posBtn">ALL POSITIONS</button>
      <div class="poslist" id="posList"></div>
     </div>
     <select id="teamFilter"><option value="">All Teams</option></select>
@@ -2325,6 +2325,12 @@ const TEAM_DATA = {"Cincinnati Bengals":{"DE1":{"ovr":78,"name":"Boye Mafe"},"DE
  }catch(err){}
 })();
 const DEFAULT_WEIGHTS = {"QB": 320, "RB1": 100, "RB2": 40, "WR1": 60, "WR2": 40, "WR3": 20, "WR4": 5, "TE1": 80, "TE2": 20, "TE3": 5, "OT1": 295, "OT2": 295, "OG1": 295, "OG2": 295, "C": 295, "DE1": 350, "DL5": 5, "DE2": 350, "DT1": 320, "DT2": 300, "DL5": 5, "MIKE": 100, "WILL": 100, "SAM": 60, "LB4": 5, "CB1": 350, "CB2": 295, "CB3": 80, "CB4": 20, "SS": 80, "SS2": 5, "FS": 60, "FS2": 5, "K": 5, "P": 1, "FB": 1};
+// w65 (Owner): the DISPLAYED weight scale is Claude's re-measured table (architect/engine-and-seats
+// de60e05, Owner-approved 3 Nov): wins-value per OVR point, QB anchored at 1000, 1 unit = 0.00254 wins
+// over a 70 -> 90 upgrade. The engine keeps its own math; every EXPLICITLY LABELED weight on the site
+// (the Position Rankings buttons, the Guide's tier viz and slot table, the MODEL preset) reads this.
+const ZPB_SLOTS_W = {"QB": 1000, "WR1": 525, "DE1": 520, "OT1": 430, "CB1": 430, "DE2": 405, "OT2": 400, "DT1": 410, "CB2": 340, "C": 320, "WR2": 295, "TE1": 295, "OG1": 290, "OG2": 290, "RB1": 235, "DT2": 305, "WR3": 180, "MIKE": 265, "FS": 265, "SS": 265, "WILL": 245, "CB3": 280, "CB4": 40, "DL5": 145, "K": 200, "P": 100, "RB2": 80, "TE2": 60, "TE3": 10, "WR4": 10, "FB": 30, "SAM": 35, "SS2": 10, "FS2": 10, "LB4": 10};
+function zpbSlotWins70to90(s){ return ZPB_SLOTS_W[s] != null ? ZPB_SLOTS_W[s]*0.00254 : (typeof slotWins==='function' ? slotWins(s,90)-slotWins(s,70) : 0); }
 const LABELS = { // w34: the label law — NICKEL / DIME, always caps, everywhere
 "DE1": "DE1", "DE2": "DE2", "DT1": "DT1", "DT2": "DT2", "CB1": "CB1", "CB2": "CB2", "CB3": "NICKEL", "CB4": "DIME", "OG1": "OG1", "OG2": "OG2", "C": "C", "OT1": "OT1", "OT2": "OT2", "MIKE": "MIKE", "WILL": "WILL", "SAM": "SAM", "LB4": "LB4", "DL5": "DL5", "RB1": "RB1", "RB2": "RB2", "TE1": "TE1", "TE2": "TE2", "SS": "SS", "SS2": "SS2 / Big Nickel", "QB": "QB", "FS": "FS", "FS2": "FS2 / Quarter", "WR1": "WR1", "WR2": "WR2", "WR3": "WR3", "WR4": "WR4", "K": "K", "P": "P", "FB": "FB"};
 const GROUPS = [["Quarterback & Skill Positions", ["QB", "RB1", "RB2", "FB", "WR1", "WR2", "WR3", "WR4", "TE1", "TE2"]], ["Offensive Line", ["OT1", "OT2", "OG1", "OG2", "C"]], ["Defensive Line", ["DE1", "DE2", "DT1", "DT2", "DL5"]], ["Linebackers", ["MIKE", "WILL", "SAM", "LB4"]], ["Secondary", ["CB1", "CB2", "CB3", "CB4", "SS", "SS2", "FS", "FS2"]], ["Specialists", ["K", "P"]]]; // w27 (Owner): FB is a skill position
@@ -2333,8 +2339,9 @@ let weights = {...DEFAULT_WEIGHTS};
 let personalWeights = null;
 // Model weights: each roster spot's wins per rating point, scaled so the largest (QB) equals 700; extra depth spots stay tiny.
 function modelWeights(){
- const w = slotWinsPerOvr(), mx = Math.max(...Object.values(w)), out = {...DEFAULT_WEIGHTS};
- Object.keys(out).forEach(k=>{ out[k] = w[k]!=null ? Math.max(5, Math.round(w[k]/mx*700/5)*5) : Math.min(out[k],5); });
+ // w65 (Owner): the MODEL preset now reads Claude's re-measured table (QB = 700 scale), not the old derivation.
+ const mx = 1000, out = {...DEFAULT_WEIGHTS};
+ Object.keys(out).forEach(k=>{ out[k] = ZPB_SLOTS_W[k]!=null ? Math.max(5, Math.round(ZPB_SLOTS_W[k]/mx*700/5)*5) : Math.min(out[k],5); });
  return out;
 }
 
@@ -2657,7 +2664,7 @@ function initPlayerBrowser(){
 
 function updatePosBtnLabel(){
  const btn = document.getElementById('posBtn');
- if(playerFilters.pos.size === 0) btn.textContent = 'All Positions';
+ if(playerFilters.pos.size === 0) btn.textContent = 'ALL POSITIONS'; // w65 (Owner)
  else if(playerFilters.pos.size <= 3) btn.textContent = [...playerFilters.pos].join(', ');
  else btn.textContent = `${playerFilters.pos.size} positions selected`;
 }
@@ -3877,6 +3884,7 @@ render100 = function(container){
  const tt = A.totals;
  const ppg = tt.pts/tt.g/2, ypg = tt.yds/tt.g/2;
  const champPct = pctS(mine.champ/N, 1), poPct = pctS(mine.po/N), divPct = pctS(mine.div/N), sbPct = pctS(mine.sbApp/N, 1);
+ const w65Twelve = Math.round(myW.filter(function(x){ return x>=12; }).length / N * 100), w65Conv = mine.po ? Math.round(mine.champ / mine.po * 100) : 0; // w65 (Owner): the advanced badges join the hero
  const back = ()=>{
   try{ setActiveTab('viewDraft', 'tabDraftBtn'); }catch(err){}
   try{
@@ -3888,12 +3896,14 @@ render100 = function(container){
  container.innerHTML = '<div class="panel zpb-glowpanel" style="margin-bottom:14px;">'
   + '<div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h2 style="margin:0;">100 SEASONS: ' + user + '</h2>'
   + '<div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="tabbtn" id="rerun100Btn">Re-run</button><button class="resetbtn" id="back100Btn" style="width:auto;padding:10px 24px;">Back to season</button></div></div>'
-  + '<div class="zpb-100hero">'
+  + '<div class="zpb-100hero zpb-100hero2">' /* w65 (Owner): the graphical hero carries the hero2 hooks too */
   + '<div class="zpb-100me" style="' + uvars + '"><b>' + Math.round(myAvg) + '</b><span>avg wins · #' + myRank + ' of 32</span></div>'
   + '<div><b>' + poPct + '</b><span>playoff seasons</span></div>'
   + '<div><b>' + divPct + '</b><span>division titles</span></div>'
   + '<div><b>' + sbPct + '</b><span>Super Bowl trips</span></div>'
   + '<div><b>' + champPct + '</b><span>championships</span></div>'
+  + '<div><b>' + w65Twelve + '%</b><span>12+ win seasons</span></div>'
+  + '<div><b>' + w65Conv + '%</b><span>playoff trips that became titles</span></div>'
   + '</div>'
   + '<div class="zpb-100sec">Your ' + N + ' seasons by record</div><div class="zpb-100bars">' + histRows + '</div>'
   + '<div class="zpb-100sec">The league, by average wins</div><div class="zpb-100bars">' + leagueRows + '</div>'
@@ -3966,7 +3976,7 @@ add100Button = function(container){
    const tt = tintTeam(sel);
    const st = pack(tt || v);
    const vars = st ? '--zaL:' + (st.txM||st.txd) + ';--zaD:' + st.txd + ';' : ''; // w42 (I3): one ink both themes — w43 (N3, Owner): the light face takes a little more of the team's color (txM), the dark face keeps the dropdown ink
-   const face = isPick ? (v==='random' ? 'Random' : 'Pick ' + v) : (v==='__random' ? 'Random team' : (v || '\u00b7'));
+   const face = isPick ? (v==='random' ? 'Random' : 'Pick ' + v) : (v==='__random' ? 'Random team' : (sel.id==='teamFilter' && !v) ? 'ALL TEAMS' : (v || '\u00b7')); // w65 (Owner): the lone-dot face retires — the team filter reads ALL TEAMS
    // w19 (Owner): the pick box never wears a logo; the team box wears the popup's lighter color —
    // full name when the window allows it, logo + abbreviation when the bar is compressed.
    if(isPick) btn.innerHTML = '<span class="zpb-face" style="' + vars + '">' + face + '</span>';
@@ -3986,10 +3996,10 @@ add100Button = function(container){
     : '--zw:rgba(120,120,120,.12)';
    const items = isPick
     ? ['random'].concat(Array.from({length:32}, (_,k)=>String(k+1)))
-    : [...TEAMS].sort((a,b)=>a.localeCompare(b)); // w26 (Owner): alphabetical everywhere the homepage dropdown is used
+    : (sel.id==='teamFilter' ? [''].concat([...TEAMS].sort((a,b)=>a.localeCompare(b))) : [...TEAMS].sort((a,b)=>a.localeCompare(b))); // w26 (Owner): alphabetical everywhere the homepage dropdown is used · w65: ALL TEAMS leads the team filter's menu
    pop.innerHTML = items.map(t=>{
     const st = isPick ? tst : pack(t);
-    const txt = isPick ? (t==='random' ? 'Random' : 'Pick ' + t) : t;
+    const txt = isPick ? (t==='random' ? 'Random' : 'Pick ' + t) : (sel.id==='teamFilter' && t==='') ? 'ALL TEAMS' : t;
     return '<button type="button" class="zpb-selopt" data-v="' + t + '" style="' + optVars(st) + '">'
      + (isPick ? '' : logo(t)) + '<span>' + txt + '</span></button>';
    }).join('');
@@ -5104,20 +5114,24 @@ const NATURAL_SLOT_MAP = {
  CB:['CB1','CB2','CB3','CB4'], SS:['SS'], FS:['FS'],  // w38 (R4, Owner): the Dime's slot is natural
  K:['K'], P:['P'], FB:['FB']
 };
-const LB_FLEX = {DE:6, DT:4, CB3:4, SS:2, FS:4, TE:6, RB:6}; // MIKE: DT -4, SS -2 (Owner)
-const OLB_FLEX = {DE:2, DT:4, CB3:2, SS:4, FS:6, TE:6, RB:6}; // Owner: OLB/WILL/SAM -> edge -2, DT/SS -4, FS -6, Nickel -2
+// w65 (P-232, the Owner's 29 Oct word via KG): the whole table is KG's REV 4 (tools/mathlab/flex.json on
+// architect/engine-and-seats), translated to the site's tags: OT->LT/RT, OG->LG/RG, EDGE->REDG/LEDG,
+// ILB->MIKE, OLB->WILL/SAM, RB->HB, NICKEL->CB3, DIME->CB4. A QB flexes ONLY to FS, at -10 (the old
+// QB->RB/WR entries are gone — they were the model-lineup absurdities Muse measured). P->K now costs 4.
+const LB_FLEX = {WILL:0, SAM:0, DT:4, FB:4, DE:6, TE:6, SS:6, FS:6, CB3:6, CB4:6}; // ILB (the MIKE row)
+const OLB_FLEX = {MIKE:2, DE:4, CB3:4, DT:6, TE:6, SS:6, FS:6, FB:6, CB4:6}; // OLB (WILL and SAM share the row)
 const FLEX = {
- LT:{OG:0, C:0, DT:4, RB:6}, RT:{OG:0, C:0, DT:4, RB:6},   // a tackle plays any line spot free; OL->RB -6 (Owner)
- LG:{C:0, OT:4, DT:4, RB:6}, RG:{C:0, OT:4, DT:4, RB:6}, C:{OG:0, OT:4, DT:4, RB:6},
- DT:{DE:4, MIKE:4, WILL:4, SAM:4, OG:4, C:4, OT:6, RB:6},
- REDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6}, LEDG:{DT:2, MIKE:4, WILL:0, SAM:0, TE:6, RB:6}, // edges play OLB free (Owner)
+ LT:{OG:0, C:0, DT:4, FB:4, RB:6}, RT:{OG:0, C:0, DT:4, FB:4, RB:6},
+ LG:{C:0, OT:4, DT:4, FB:4, RB:6}, RG:{C:0, OT:4, DT:4, FB:4, RB:6}, C:{OG:0, OT:4, DT:4, FB:4, RB:6},
+ DT:{OG:4, C:4, DE:4, FB:4, OT:6, MIKE:4, WILL:4, SAM:4, RB:6},
+ REDG:{DT:2, WILL:0, SAM:0, MIKE:4, FB:4, TE:6, RB:6, CB3:6}, LEDG:{DT:2, WILL:0, SAM:0, MIKE:4, FB:4, TE:6, RB:6, CB3:6},
  MIKE:LB_FLEX, WILL:OLB_FLEX, SAM:OLB_FLEX,
- CB:{SS:2, FS:0, MIKE:6, WILL:4, SAM:4, WR:4, TE:6, RB:6},  // CB->MIKE -6 (Owner)
- SS:{FS:2, CB:4, CB3:0, MIKE:4, WILL:2, SAM:2, WR:4, TE:6, RB:6}, // SS -> Nickel free (Owner)
- FS:{SS:2, CB:4, MIKE:4, WILL:4, SAM:4, WR:4, TE:6, RB:6},
- WR:{TE:4, SS:4, FS:4, CB:4, RB:6},
- TE:{WR:2, RB:4, MIKE:6, WILL:6, SAM:6, SS:6, FS:6}, // TE -> WR -2, RB -4 (Owner)
- HB:{TE:6}, FB:{}, QB:{RB:6, WR:6}, K:{P:0}, P:{K:0}  // QB/OL -> RB -6, QB -> WR -6, K<->P free (Owner)
+ CB:{FS:0, CB3:0, CB4:0, SS:2, WR:4, MIKE:6, WILL:4, SAM:4, TE:6, RB:6},
+ SS:{CB3:0, CB4:0, FS:2, WILL:4, SAM:4, CB:6, MIKE:6, WR:6, TE:6, RB:6, FB:6},
+ FS:{CB3:0, CB4:0, SS:2, CB:4, WR:4, MIKE:4, WILL:4, SAM:4, TE:6, RB:6},
+ WR:{RB:4, TE:4, SS:4, FS:4, CB3:4, CB4:4, CB:6},
+ TE:{WR:2, FB:2, RB:4, C:6, OG:6, OT:6, DE:6, DT:6, MIKE:6, WILL:6, SAM:6, SS:6, FS:6, CB3:6, CB4:6},
+ HB:{FB:2, WR:4, TE:6}, FB:{RB:4, TE:4}, QB:{FS:10}, K:{P:0}, P:{K:4}
 };
 const EMERGENCY_PENALTY = 8;       // only when no remaining player can legally fill a spot you still need
 function isNaturalSlot(pos, slot){ if(typeof window!=='undefined' && window.ZPB34 && (pos==='MIKE'||pos==='WILL'||pos==='SAM') && slot==='DT2') return true; const nat = NATURAL_SLOT_MAP[pos]; return !!(nat && nat.includes(slot)); }
@@ -6311,7 +6325,7 @@ const DEF_SPECS = {
  covBase:   {CB1:1.4, CB2:1.15, CB3:0.25, SS:0.8, FS:0.8, MIKE:0.4, WILL:0.4, SAM:0.4},
  covNick:   {CB1:1.4, CB2:1.15, CB3:1.0, SS:0.8, FS:0.8, MIKE:0.4, WILL:0.4, SAM:0.05}
 };
-const PLAN_K = { kRun:1.4, kPass:0.85, kTo:1.0, kSack:0.9, rAmp:3.0, pAmp:2.5, vm:1.3, kBlock:1, predict:0.38, defPredict:0.40, baseRunPct:0.39,
+const PLAN_K = { kRun:1.4, kPass:0.85, kTo:1.0, kSack:0.9, rAmp:3.0, pAmp:2.5, vm:1.3, kBlock:1, predict:0.38, defPredict:0.15, baseRunPct:0.39, // w65: the architect's de60e05 focus-dial fix — defense pays for the focus only where it bites
                  nickRun:0.05, baseRunVsHeavy:-0.025, basePass:0.03, defFront:2.0, defCov:1.5, defRush:0.6, pkgFront:0.8, pkgCov:0.8 };
 const DEFAULT_PLAN_PAIR = {home:{off:{pers:'11',strat:'neutral'}, def:{pkg:'nickel',focus:'neutral'}}, away:{off:{pers:'11',strat:'neutral'}, def:{pkg:'nickel',focus:'neutral'}}};
 const NEUTRAL_OFF = {pers:'11', strat:'neutral'}, DEFAULT_DEF = {pkg:'nickel', focus:'neutral'};
@@ -7696,9 +7710,9 @@ function renderHomeComparison(){
  document.getElementById('homeCmpResult').innerHTML = `
   <div class="panel" style="margin-bottom:14px;">
    <div class="zpb-cmphead">
-    <span class="zpb-cmpside" id="zpbCmpSlotA"></span>
+    <span class="zpb-cmpside zpb-cmpside-a" id="zpbCmpSlotA"></span>
     <span class="zpb-cmpscore"><span class="zpb-cmpnum"${pkA?` style="--pkc:${pkA.txM||pkA.accL};--pkcd:${pkA.txd}"`:''}>${Math.round(scoreA)}</span> <span class="zpb-cmpsub">vs</span> <span class="zpb-cmpnum"${pkB?` style="--pkc:${pkB.txM||pkB.accL};--pkcd:${pkB.txd}"`:''}>${Math.round(scoreB)}</span></span>
-    <span class="zpb-cmpside" id="zpbCmpSlotB"></span>
+    <span class="zpb-cmpside zpb-cmpside-b" id="zpbCmpSlotB"></span>
    </div>
    
    ${renderLineupTableHTML(TEAM_DATA[a], TEAM_DATA[b], a, b, false)}
@@ -8275,7 +8289,7 @@ function renderRegularSeasonView(container){
  const myGame = seasonState.schedule.find(g=>g.week===week && (g.home===user||g.away===user));
  let html = '';
  if(!seasonState.weekSimulated){
-  html += `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h3 style="margin:0;">Week ${week} of 17</h3><div style="display:flex;gap:10px;flex-wrap:wrap;">${myGame?'':'<button class="resetbtn zpb-ctabig" id="simWeekBtn" style="width:auto;margin:0;padding:12px 30px;">Simulate Week '+week+'</button>'}${myGame?'<button class="tabbtn zpb-ctasmall zpb-simgame" id="simGameBtn">SIM GAME</button>':''}<button class="tabbtn zpb-ctasmall zpb-simseason" id="simSeasonBtn">SIM SEASON</button></div></div>`;
+  html += `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;"><h3 style="margin:0;">Week ${week} of 17</h3><div style="display:flex;gap:10px;flex-wrap:wrap;">${myGame?'':'<button class="resetbtn zpb-ctabig" id="simWeekBtn" style="width:auto;margin:0;padding:12px 30px;">Simulate Week '+week+'</button>'}</div></div>`; // w65 (Owner): SIM GAME and SIM SEASON moved up to the header tab row — one small size, a separate panel above Play the X
   if(myGame){
    const st = computeStandings(seasonState.schedule, teamNames());
    html += matchupCardHTML(myGame, (g,k)=>recFull(st, g[k])) + matchupTagHTML(myGame);
@@ -8298,7 +8312,8 @@ function renderRegularSeasonView(container){
   }).join('');
   html += `<details class="panel" style="margin-bottom:14px;"><summary style="cursor:pointer;font-weight:700;">AROUND THE LEAGUE  ·  WEEK ${week} SCORES</summary><div style="margin-top:8px;">${scoreRows}</div></details>`;
  }
- html += lineupPanelHTML() + renderUserScheduleHTML() + renderStandingsHTML() + renderStatsTabsHTML() + seasonOptionsHTML(); // w19 (Owner): Your Team's Identity repeated the math — gone
+ const _anyPlayed = seasonState.schedule.some(g=>g.played); // w65 (Owner): the empty Season stats panel retires from the Week 1 preview — it returns once a game has been played
+ html += lineupPanelHTML() + renderUserScheduleHTML() + renderStandingsHTML() + (_anyPlayed ? renderStatsTabsHTML() : '') + seasonOptionsHTML(); // w19 (Owner): Your Team's Identity repeated the math — gone
  container.innerHTML = html;
  wireScheduleClicks(container); wireStatsTabs(); wireGamePlanPanel(container); wireSeasonOptions(container); wireLineupPanel(container);
  const sim = document.getElementById('simWeekBtn');
@@ -9528,6 +9543,7 @@ const DEF_RUN_KEYS = ['frontRun','frontBase','frontNick'], DEF_PASS_KEYS = ['pas
 function slotRoleRows(){
  const base = {}; ROSTER_SLOTS.forEach(s=>{ base[s] = {ovr:80}; });
  const lg = teamRatings(base), b0 = matchupModel(lg, lg, lg).structPts, STEP = 4, wpo = slotWinsPerOvr(), rows = [];
+ const wpoLab = s=> ZPB_SLOTS_W[s]!=null ? ZPB_SLOTS_W[s]*0.00254/20 : wpo[s]; // w65 (Owner): the labeled wins-per-+1 rides the new table
  ROSTER_SLOTS.forEach(s=>{
   const sm = Object.assign({}, base); sm[s] = {ovr:80+STEP};
   const R = teamRatings(sm), isOff = WV_OFF_SLOTS.has(s);
@@ -9545,7 +9561,7 @@ function slotRoleRows(){
   const tot = Math.max(1e-9, Math.abs(runPts)+Math.abs(passPts)+Math.abs(kick));
   const roles = [];
   Object.keys(RATING_SPECS).forEach(u=>{ const sp = RATING_SPECS[u]; if(sp[s]!=null){ const sum = Object.values(sp).reduce((a,b)=>a+b,0); roles.push(`${UNIT_INFO[u].short} ${(sp[s]/sum*100).toFixed(0)}%`); } });
-  rows.push({slot:s, wpo:wpo[s], runShare:Math.abs(runPts)/tot, passShare:Math.abs(passPts)/tot, kick:Math.abs(kick)/tot, roles});
+  rows.push({slot:s, wpo:wpoLab(s), runShare:Math.abs(runPts)/tot, passShare:Math.abs(passPts)/tot, kick:Math.abs(kick)/tot, roles}); // w65 (Owner)
  });
  return rows;
 }
@@ -9555,7 +9571,7 @@ const SLOT_FRIENDLY = {QB:'Quarterback', RB1:'Running back 1', RB2:'Running back
 const slotName = s=> SLOT_FRIENDLY[s] || LABELS[s] || s;
 // One row per starting spot, sorted by what a 70 → 90 upgrade is worth.
 function slotRoleTableHTML(){
- const rows = slotRoleRows().map(r=>Object.assign({up:slotWins(r.slot,90)-slotWins(r.slot,70)}, r)).sort((a,b)=>b.up-a.up);
+ const rows = slotRoleRows().map(r=>Object.assign({up:zpbSlotWins70to90(r.slot)}, r)).sort((a,b)=>b.up-a.up); // w65 (Owner): the 70->90 column wears the new weights
  const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
  return `<div class="tablewrap"><table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this position goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
@@ -9624,7 +9640,7 @@ function flexExplainHTML(){
   </div>`;
 }
 function valueTiersHTML(){
- const rows = ROSTER_SLOTS.map(s=>({s, w:slotWins(s,90)-slotWins(s,70)})).sort((a,b)=>b.w-a.w);
+ const rows = ROSTER_SLOTS.map(s=>({s, w:zpbSlotWins70to90(s)})).sort((a,b)=>b.w-a.w); // w65 (Owner): the Guide's tier viz wears the new weights
  const tiers = [['Franchise-changing', r=>r.w>=2],['High value', r=>r.w>=1&&r.w<2],['Solid value', r=>r.w>=0.7&&r.w<1],['Role players', r=>r.w>=0.3&&r.w<0.7],['Depth spots', r=>r.w<0.3]];
  return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'·'+l[l.length-1].w.toFixed(1):''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
 }
@@ -10684,7 +10700,7 @@ function renderSeasonCompleteView(container){
  const sb = seasonState.playoffRounds.superbowl[0];
  const won = champ===user;
  const pkC = (typeof zpbPackFor==='function') ? zpbPackFor(champ) : null; // w43 (N11, Owner): the champions shimmer in THEIR colors, never the user's
- let html = `<div class="zpb-sr-topbar"><button class="resetbtn" id="seasonReviewBtn" style="width:auto;margin:0;padding:12px 28px;">Season Review →</button></div>` + `<div class="champion-banner${won?' zpb-champ-won':''}" style="--zshimL:${pkC?pkC.accL:'#c9a24b'};--zshimD:${pkC?pkC.accD:'#8a5f18'};">
+ let html = `<div class="panel zpb-sr-own" style="margin-bottom:24px;text-align:center;padding:18px 12px;"><button class="resetbtn zpb-ctabig" id="seasonReviewBtn" style="width:auto;margin:0;padding:13px 34px;">SEASON REVIEW</button></div>` + `<div class="champion-banner${won?' zpb-champ-won':''}" style="--zshimL:${pkC?pkC.accL:'#c9a24b'};--zshimD:${pkC?pkC.accD:'#8a5f18'};">
    <div class="zpb-champ-kicker zpb-shm">SUPER BOWL CHAMPIONS</div>
    <div class="zpb-champ-team"><span class="zpb-champ-logo">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(champ):''}</span><span class="zpb-champ-name zpb-shm">${champ.toUpperCase()}</span></div>
    <p class="zpb-champ-sub">${won ? `${user} won it all \u00b7 a championship from draft day to the final whistle.` : `${user} did not bring home the Lombardi Trophy this year.`}</p></div>`; // w32 (Owner): no dash \u2014 the wordmark, the crest and the shine carry it
@@ -10930,7 +10946,7 @@ function render100(container){
   ${nar.map(t=>`<p class="detail-item">${t}</p>`).join('')}</div>`
  + sec('Your win distribution & playoff path', `<div class="draft-columns" style="grid-template-columns:1fr 1fr;gap:18px;"><div><h5 class="narr" style="margin:0 0 6px;">Seasons by win total</h5>${histHTML}</div><div><h5 class="narr" style="margin:0 0 6px;">How far you got</h5><table><tbody><tr><td>Missed playoffs</td><td class="score">${pctS(reachN[0]/N)}</td></tr><tr><td>Lost Wild Card</td><td class="score">${pctS(reachN[1]/N)}</td></tr><tr><td>Lost Divisional</td><td class="score">${pctS(reachN[2]/N)}</td></tr><tr><td>Lost Conference Championship</td><td class="score">${pctS(reachN[3]/N)}</td></tr><tr><td>Lost Super Bowl</td><td class="score">${pctS(reachN[4]/N)}</td></tr><tr><td><b>Won Super Bowl</b></td><td class="score">${pctS(reachN[5]/N,1)}</td></tr></tbody></table><p class="narr">Playoff seeds earned: ${[1,2,3,4,5,6,7].map(s=>`#${s} ${pctS((mine.seedCnt[s]||0)/N)}`).join(' · ')}</p></div></div>`, true)
  + sec('The league, by average wins', zpbLeagueBarsHTML(avgW, T, N, user), false)
- + (window.zpb100More ? zpb100More(myW, N, mine) : '')
+ + (window.zpb100More ? zpb100More(myW, N, mine, A) : '') /* w65 (Owner): the aggregate feeds the per-game badges */
  + sec('What actually drove winning (neutral model, 32 rosters)', `<div class="draft-columns" style="grid-template-columns:1fr 1fr;gap:18px;"><div><h5 class="narr" style="margin:0 0 6px;">Each unit's link to average wins</h5><table><thead><tr><th>Unit</th><th>r</th><th>Wins/SD, others equal</th><th>Model-implied wins/SD</th></tr></thead><tbody>${unitRows}</tbody></table><p class="narr">Raw correlation (r) is muddied because drafting trade-offs make strong lines come with weaker secondaries. The middle column is a ridge regression holding the other units equal; the last column is what the matchup model's own coefficients imply for one standard deviation of that unit.</p></div><div><h5 class="narr" style="margin:0 0 6px;">Position groups <span style="font-weight:400;">(r, wins per +1 SD)</span></h5><table><thead><tr><th></th><th>r</th><th>Wins / SD</th></tr></thead><tbody>${grpRows}</tbody></table></div></div>`, true)
  + sec('Game plans: personnel × strategy', `<table><thead><tr><th>Personnel</th><th>Strategy</th><th>Share</th><th>Pts/gm</th><th>Giveaways</th><th>Rush / pass yds</th><th>Win%</th></tr></thead><tbody>${planRows}</tbody></table><h5 class="narr" style="margin:14px 0 4px;">Defensive packages</h5><table><thead><tr><th>Package</th><th>Focus</th><th>Share</th><th>Pts allowed</th><th>Sacks</th><th>Takeaways</th><th>Win%</th></tr></thead><tbody>${defRows}</tbody></table><h5 class="narr" style="margin:14px 0 4px;">Late-game script</h5><table><tbody>${scriptRows||'<tr><td class="narr">No data</td></tr>'}</tbody></table><p class="narr">Win% by plan is confounded by who chooses it: favorites run more, underdogs throw more, so read these as style fingerprints, not as proof that one plan wins.</p>`, false)
  + sec('Your draft: pick-by-pick critique', pickCritiqueHTML(true), false)
@@ -11016,7 +11032,6 @@ function renderSeasonTabInner(container){
  if(!seasonState){
   container.innerHTML = `<div class="zpb-stageintro zpb-stageintro-slim"> <!-- w56 (Owner): the review's 20-0 stage compresses and leads the page — the home hero keeps its full 42vh stage -->
    <button class="resetbtn zpb-startbtn" id="startSeasonBtn">START PRESEASON →</button>
-   <p class="narr" style="margin:2px 0 0;">Roster locked — preseason setup is the next step.</p>
    <p class="zpb-cygline"><span class="zpb-cygt">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine" style="font-size:1.1em;">?</b></p>
   </div>`;
   document.getElementById('startSeasonBtn').addEventListener('click', ()=>{ startSeason(); renderSeasonTab(document.getElementById('draftResultsBody') || container); }); // w36 (Owner): startSeason re-renders the review — the fresh body is the live one
@@ -11076,7 +11091,8 @@ window.zpbSetDraftOrder = function(entry){
   const seen = new Set(); const idx = {};
   order.forEach(n=>{ if(!seen.has(n)){ seen.add(n); idx[n] = seen.size; } });
   // any starter who never shows in the log (undo edges) lands after the drafted ones
-  Object.keys(entry.slotmap||{}).forEach(s=>{ const en = entry.slotmap[s]; const nm = en && en[0]; if(nm && !idx[nm]) idx[nm] = 90 + Object.keys(idx).length; });
+  var zhb = Math.max(32, Object.keys(idx).length), zhx = 0; // w65 (Owner): the fillers land right after the drafted beats — the old 90+ floor made the depth chart's tail wait 15s even at the 0.12s pace (w64: two minutes)
+  Object.keys(entry.slotmap||{}).forEach(s=>{ const en = entry.slotmap[s]; const nm = en && en[0]; if(nm && !idx[nm]) idx[nm] = zhb + (++zhx); });
   window.zpbBeatOf = n=> idx[n] || '';
   return idx;
  }catch(err){ window.zpbBeatOf = function(){ return ''; }; return {}; }
@@ -11145,12 +11161,13 @@ function renderDraftResults(){ // w37 (R2, Owner): the players hold until the op
  const realOnlySorted = realEntries.slice().sort((a,b)=>b.score-a.score);
  const rankAmongReal = Math.min(32, realOnlySorted.filter(e=>e.score>myEntry.score).length + 1);
 
+ // w65 (Owner): SIM GAME joins the tab row (the host fills at render time) and SIM SEASON shows only while the regular season is live — never on the Super Bowl review page
  let h = `<div class="zpb-cygops" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;"><span class="zpb-draftops" id="zpbDraftOps"><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">NEW DRAFT</button></span><p class="dsub zpb-cygdsub" style="margin:0;"><span class="zpb-cyg">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine zpb-cygq">?</b></p></div>
   <div class="tabs" style="margin-bottom:10px;flex-wrap:wrap;">
    <button class="tabbtn ${resultsView==='season'?'active':''}" id="resultsSeasonBtn">SEASON</button>
    ${seasonState?'':`<button class="tabbtn ${resultsView==='nfl'?'active':''}" id="resultsNflBtn">VS. ACTUAL NFL TEAMS</button>`}
    <button class="tabbtn ${resultsView==='mine'?'active':''}" id="resultsMineBtn">YOUR ROSTER</button>
-   <button class="tabbtn ${resultsView==='compare'?'active':''}" id="resultsCompareBtn">TEAM COMPARISON</button>${seasonState&&seasonState.phase!=='playoffs'?'<button class="tabbtn" id="simSeasonBtn" style="width:auto;">SIM SEASON</button>':''}${seasonState&&seasonState.phase==='playoffs'?'<button class="tabbtn" id="simPlayoffsBtnTop" style="width:auto;">SIM PLAYOFFS</button>':''}
+   <button class="tabbtn ${resultsView==='compare'?'active':''}" id="resultsCompareBtn">TEAM COMPARISON</button><span id="zpbSimTabsHost" class="zpb-simtabs"></span>${seasonState&&seasonState.phase==='regular'?'<button class="tabbtn zpb-ctasmall zpb-simseason" id="simSeasonBtn">SIM SEASON</button>':''}${seasonState&&seasonState.phase==='playoffs'?'<button class="tabbtn zpb-ctasmall" id="simPlayoffsBtnTop">SIM PLAYOFFS</button>':''}
   </div>
   <div id="draftResultsBody"></div>
   `;
@@ -11179,6 +11196,12 @@ function renderDraftResults(){ // w37 (R2, Owner): the players hold until the op
    body.appendChild(w); const _wfd = wireRowClicks(w, rk);
    { const _mi = rk.findIndex(e=>e.isUser); // w26 (Owner): your breakdown drops down by itself
      if(_mi>=0){ try{ _wfd(_mi); }catch(e){} const _dr = document.getElementById('detailrow-'+_mi); if(_dr) _dr.style.display = 'table-row'; } }
+   { const _fs = document.createElement('div'); _fs.style.marginTop = '14px'; // w65 (Owner): START PRESEASON rides the bottom of the page too — the linear-progress law
+     _fs.innerHTML = '<div class="panel" style="text-align:center;padding:16px 12px;"><button class="resetbtn zpb-startbtn" id="startSeasonBtnFoot" style="width:auto;margin:0;padding:12px 30px;">START PRESEASON →</button></div>';
+     body.appendChild(_fs);
+     const _fb = document.getElementById('startSeasonBtnFoot');
+     if(_fb) _fb.addEventListener('click', ()=>{ startSeason(); renderSeasonTab(document.getElementById('draftResultsBody') || body); window.scrollTo(0,0); });
+   }
   }
  }
 
@@ -11235,6 +11258,7 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
   ${pickGradePanelHTML()}${'' /* w63 (Owner): the Overall Grade table retires — the draft-pick grade cards take its place */}
   ${seasonOptionsHTML()}
  `;
+ container.insertAdjacentHTML('afterbegin', '<div class="panel zpb-bts-top" style="margin-bottom:14px;text-align:center;"><button class="resetbtn zpb-bts" data-bts="1" style="width:auto;margin:0;padding:10px 26px;">BACK TO SEASON</button></div>'); // w65 (Owner): the glowing door back, at the top of the tab
  const roster = draftSim.rosters.find(r=>r.isUser), host = document.getElementById('lineupHost');
  if(host){
   host.innerHTML = lineupEditorHTML(roster, 'lineupEd');
@@ -11245,19 +11269,16 @@ function renderYourRosterTab(container, myEntry, rankAmongReal){
 }
 
 function renderComparisonTab(container, draftEntries, realEntries){
- container.innerHTML = `
-  <div class="panel" style="margin-bottom:14px;">
-   <div class="filters zpb-cmp-filters">
-    <label style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);" aria-label="Team A">
-     <select id="cmpTeamA"></select>
-    </label>
-    <label class="zpb-cmp-b" style="display:flex;flex-direction:column;gap:4px;font-size:0.85rem;color:var(--sub);" aria-label="Team B">
-     <select id="cmpTeamB"></select>
-    </label>
+ container.insertAdjacentHTML('afterbegin', '<div class="panel zpb-bts-top" style="margin-bottom:14px;text-align:center;"><button class="resetbtn zpb-bts" data-bts="1" style="width:auto;margin:0;padding:10px 26px;">BACK TO SEASON</button></div>'); // w65 (Owner): the glowing door back, at the top of the tab
+ container.insertAdjacentHTML('beforeend', `
+  <div class="panel zpb-cmp-own" style="margin-bottom:14px;">
+   <div class="zpb-cmphead">
+    <span class="zpb-cmpside zpb-cmpside-a" id="zpbTabSlotA"><select id="cmpTeamA" aria-label="Team A"></select></span>
+    <span class="zpb-cmpscore" id="zpbTabScore"><span class="zpb-cmpsub">pick two teams</span></span>
+    <span class="zpb-cmpside zpb-cmpside-b" id="zpbTabSlotB"><select id="cmpTeamB" aria-label="Team B"></select></span>
    </div>
-  </div>
-  <div id="cmpResult"></div>
- `;
+  </div>`);
+ container.insertAdjacentHTML('beforeend', '<div id="cmpResult"></div>'); // w65 (Owner): the tab copies the footer page — the two pill dropdowns and the X vs Y score share one header panel
  // w29 (Owner): the bar reads the team NAME — "Chiefs", never a partial word — and
  // steps up to the full name when the screen is at maximum width.
  function buildOptions(sel, defaultVal){
@@ -11276,6 +11297,8 @@ function renderComparisonTab(container, draftEntries, realEntries){
  }
  const selA = document.getElementById('cmpTeamA');
  const selB = document.getElementById('cmpTeamB');
+ { const _sa = document.getElementById('zpbTabSlotA'), _sb = document.getElementById('zpbTabSlotB'); // w65 (Owner): the dropdowns sit in the header row, the footer page's composition
+   if(_sa) _sa.appendChild(selA); if(_sb) _sb.appendChild(selB); }
  buildOptions(selA, 'YOU');
  { // w29 (Owner): crossing the width threshold repaints the labels, selection preserved
   const zpbCmpRelabel = ()=>{ const va = selA.value, vb = selB.value; selA.innerHTML=''; selB.innerHTML=''; buildOptions(selA, va); buildOptions(selB, vb); };
@@ -11323,12 +11346,10 @@ function renderComparisonTab(container, draftEntries, realEntries){
   const resultDiv = document.getElementById('cmpResult');
   if(!a || !b){ resultDiv.innerHTML=''; return; }
   const units = unitComparisonHTML(a.pool, b.pool, a.teamName, b.teamName); // w28 (Owner): the grades/edges verdict sentence is gone · w46 (O7): the rows wear the teams' halfway ink
+  { const sc = document.getElementById('zpbTabScore'); // w65 (Owner): the X vs Y score lives in the header panel, exactly like the footer page
+   if(sc){ const pkA2 = (typeof zpbPackFor==='function') ? zpbPackFor(a.teamName) : null, pkB2 = (typeof zpbPackFor==='function') ? zpbPackFor(b.teamName) : null;
+    sc.innerHTML = '<span class="zpb-cmpnum"'+(pkA2?` style="--pkc:${pkA2.txM||pkA2.accL};--pkcd:${pkA2.txd}"`:'')+'>'+Math.round(a.score)+'</span> <span class="zpb-cmpsub">vs</span> <span class="zpb-cmpnum"'+(pkB2?` style="--pkc:${pkB2.txM||pkB2.accL};--pkcd:${pkB2.txd}"`:'')+'>'+Math.round(b.score)+'</span>'; } }
   resultDiv.innerHTML = `
-   <div class="panel" style="margin-bottom:14px;">
-    <div style="display:grid;grid-template-columns:1fr auto 1fr;align-items:center;font-size:1.1rem;font-weight:700;gap:10px;">
-     <span>${a.label}</span><span class="zpb-cmpscore" style="color:var(--accent);text-align:center;">${Math.round(a.score)} vs ${Math.round(b.score)}</span><span style="text-align:right;">${b.label}</span>
-    </div>
-   </div>
    <div class="panel" style="margin-bottom:14px;">
     <h4 style="margin-top:0;">Starter-by-Starter</h4>
     ${renderLineupTableHTML(a.slotmap, b.slotmap, a.teamName, b.teamName)}
@@ -11782,9 +11803,17 @@ window.zpbFillAllLineups = function(){
    let best = null, bestO = -1e9;
    (draftSim.pool||[]).forEach(p=>{
     if(used.has(p[0])) return;
-    const fit = (WV_TAG_GROUP[p[1]]===g) ? p[3] : p[3]-9;
+    if(flexRule(p[1], s) == null) return; // w65 (P-232): the auto-fill obeys the flex table — no flat -9 into any spot
+    const fit = p[3] - flexPenaltyFor(p[1], s);
     if(fit > bestO){ bestO = fit; best = p; }
    });
+   if(!best){ // the w38 last-spot emergency: nobody legal remains, so anyone may take it, honestly penalized
+    (draftSim.pool||[]).forEach(p=>{
+     if(used.has(p[0])) return;
+     const fit = p[3] - 9;
+     if(fit > bestO){ bestO = fit; best = p; }
+    });
+   }
    if(best){ sm[s] = [best[0], best[1], best[2], best[3]]; used.add(best[0]); }
   });
  });
@@ -12106,19 +12135,28 @@ window.zpbFlexTree = function(){
   + '<p class="narr" style="margin:8px 0 0;">Hover any card for the job it does; the chips show what playing elsewhere costs.</p>';
 };
 // W13-19: a second row of same-size stat bubbles under the 100-seasons report
-window.zpb100More = function(myW, N, mine){
+window.zpb100More = function(myW, N, mine, agg){
  try{
   if(!Array.isArray(myW) || !myW.length || !N) return '';
   const best = Math.max.apply(null, myW), worst = Math.min.apply(null, myW);
   const ten = Math.round(myW.filter(x=>x>=10).length / N * 100);
   const los = Math.round(myW.filter(x=>x<8).length / N * 100);
   const po = (mine && mine.po != null) ? Math.round(mine.po / N * 100) : null;
+  const twelve = Math.round(myW.filter(function(x){ return x>=12; }).length / N * 100); // w65 (Owner): the advanced badges join the 100-season badges
+  const conv = (mine && mine.po && mine.champ != null) ? Math.round(mine.champ / mine.po * 100) : null;
+  const tt = (agg && agg.totals) ? agg.totals : null;
+  const tog = (tt && tt.g) ? (tt.to / tt.g / 2).toFixed(1) : null;
+  const skg = (tt && tt.g) ? (tt.sacks / tt.g / 2).toFixed(1) : null;
   return '<div class="zpb-100hero zpb-100hero2">'
    + '<div><b>'+best+'</b><span>best season</span></div>'
    + '<div><b>'+worst+'</b><span>worst season</span></div>'
    + '<div><b>'+ten+'%</b><span>10+ win seasons</span></div>'
    + '<div><b>'+los+'%</b><span>losing seasons</span></div>'
    + (po!=null ? '<div><b>'+po+'%</b><span>playoff rate</span></div>' : '')
+   + '<div><b>'+twelve+'%</b><span>12+ win seasons</span></div>'
+   + (conv!=null ? '<div><b>'+conv+'%</b><span>playoff trips that became titles</span></div>' : '')
+   + (tog!=null ? '<div><b>'+tog+'</b><span>turnovers per game</span></div>' : '')
+   + (skg!=null ? '<div><b>'+skg+'</b><span>sacks per game</span></div>' : '')
    + '</div>';
  }catch(err){ return ''; }
 };
@@ -12322,7 +12360,7 @@ function zpbBuildRankBtns(){
  if(typeof ROSTER_SLOTS === 'undefined' || typeof LABELS === 'undefined') return;
  ROSTER_SLOTS.forEach(function(s){
   var wv = '';
-  try{ if(typeof slotWins === 'function') wv = (slotWins(s,90)-slotWins(s,70)).toFixed(1); }catch(e){}
+  try{ wv = zpbSlotWins70to90(s).toFixed(1); }catch(e){} // w65 (Owner): the button values wear Claude's re-measured weights
   row.insertAdjacentHTML('beforeend','<button type="button" class="zpb-srbtn" data-rslot="'+s+'" title="Toggle '+(LABELS[s]||s)+' in or out of the ranking"><b>'+(LABELS[s]||s)+'</b><i>'+wv+'</i></button>');
  });
 }
@@ -12823,12 +12861,12 @@ button.zpb-simseason:hover{border-color:var(--accent);color:var(--text);}
  .zpb-story-zone > *{scroll-snap-align:start;flex:0 0 auto;}
  .zpb-sbadge{flex:0 0 auto;}
 }
-/* A17 (Owner): the depth chart — offense and defense centered side by side, special teams a horizontal pane beneath */
+/* A17 (Owner), w65 amendment: the special-teams pane keeps its full-width row beneath the two
+   zones, but its rows read exactly like the offense and the defense — left-aligned on the same
+   grid, with the horizontal lines. The centered inline-flex pane was crossing its right border. */
 .zpb-dz{grid-template-columns:1fr 1fr;max-width:980px;margin:0 auto;}
-.zpb-dz-zone.zpb-dz-st{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:14px;align-items:baseline;justify-content:center;}
-.zpb-dz-zone.zpb-dz-st h4{flex-basis:100%;}
-.zpb-dz-zone.zpb-dz-st .zpb-dz-row{display:inline-flex;gap:10px;border-top:none;}
-@media (max-width:900px){ .zpb-dz{grid-template-columns:1fr;} .zpb-dz-zone.zpb-dz-st{flex-direction:column;align-items:stretch;} }
+.zpb-dz-zone.zpb-dz-st{grid-column:1 / -1;}
+@media (max-width:900px){ .zpb-dz{grid-template-columns:1fr;} }
 /* A10/A22 (Owner): light mode — tinted rows keep the deep team ink so nothing melts into its panel */
 :root:not([data-theme="dark"]) .zpb-trow:not([style*="--zn:1"]), :root[data-theme="light"] .zpb-trow:not([style*="--zn:1"]){color:var(--tnd,var(--text));}
 :root:not([data-theme="dark"]) .zpb-trow:not([style*="--zn:1"]) .zpb-pb-name, :root[data-theme="light"] .zpb-trow:not([style*="--zn:1"]) .zpb-pb-name{color:var(--tnd,var(--text));}
@@ -13475,7 +13513,7 @@ window.zpbCardInCssOk = true; // w42: the look-gate runs only when this block (a
 .zpb-fm:not(.zpb-seen) .zpb-fm-ini{opacity:0;animation:none;}
 .zpb-fm.zpb-seen .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*1s);} /* w44 (O8, Owner): half a second per player · w46 (O4, Owner): a half second slower · one second per beat */
 .zpb-dbk-g:not(.zpb-seen) .zpb-dfc2{opacity:0;animation:none;}
-.zpb-dbk-g.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*1s);} /* w46 (O4, Owner): the panels ride the map's beat · synced */
+.zpb-dbk-g.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.12s);} /* w46 (O4, Owner): the panels ride the map's beat · w65 (Owner): the review cards join the faster beat */
 @media (prefers-reduced-motion: reduce){
  .zpb-fm .zpb-fm-ini,.zpb-dbk-g .zpb-dfc2{opacity:1 !important;animation:none !important;}
 }
@@ -13704,7 +13742,7 @@ window.zpbPlayoffRunCine = function(story){
 #draftViewSeg{margin-left:auto;}
 /* w47 (Owner): the depth-chart rows land with their players — released by the map's gate, one beat each */
 .zpb-dz:not(.zpb-seen) .zpb-dfc2{opacity:0;animation:none;}
-.zpb-dz.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*1s);}
+.zpb-dz.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.12s);} /* w65 (Owner): at least half a second faster — this is the rule that paints the depth chart */
 @media (prefers-reduced-motion: reduce){ .zpb-dz .zpb-dfc2{opacity:1 !important;animation:none !important;} }
 /* w47 (Owner): the plan captions stay readable at night for every team */
 :root[data-theme="dark"] .zpb-plan .narr,:root:not([data-theme="light"]) .zpb-plan .narr{color:var(--tnd,var(--sub));}
@@ -14204,7 +14242,7 @@ window.zpbPlayoffRunCine = function(story){
    the top of the stage and the key-player pairs fan out BELOW it, so the first pair can never
    land on the logos again (the w52 Super Bowl logos shrink to fit the same law). */
 @media (max-width:600px){
- .zpb-rep-intro{justify-content:flex-start;padding-top:22px;gap:9px;}
+ .zpb-rep-intro{justify-content:flex-start;padding-top:64px;gap:9px;} /* w65 (Owner): the logos and the key players sit lower — the header line shows clean above them */
  .zpb-intro-logos{gap:12px;}
  .zpb-replay:not(.zpb-sb) .zpb-intro-logos img{width:50px;height:50px;}
  .zpb-replay.zpb-sb .zpb-intro{padding-top:56px;} /* w57: the rising cup keeps the sky above the marquee */
@@ -15528,7 +15566,11 @@ window.zpbChunkBoard = function(el, html){
   try{
    var S = GSS();
    if(!S || typeof window.ZPBStorage !== 'object' || !window.ZPBStorage || typeof window.ZPBStorage.save !== 'function') return;
-   var envelope = { kind:'week', schemaVersion:1, engineVersion:'zpb-w63', dataVersion:'1', slot:'A', savedAt:new Date().toISOString(), payload: S };
+   var draftSnap = null; // w65: RESTORE needs the pick rounds — the slots stay single-sourced in seasonState.teams[n].slotmap
+   try{
+    if(typeof draftSim !== 'undefined' && draftSim && draftSim.rosters){ draftSnap = { rosters: draftSim.rosters.map(function(r){ return { teamName:r.teamName, pickRounds:r.pickRounds||{}, isUser:!!r.isUser }; }) }; }
+   }catch(eD){}
+   var envelope = { kind:'week', schemaVersion:1, engineVersion:'zpb-w65', dataVersion:'1', slot:'A', savedAt:new Date().toISOString(), payload: { zpbRestore:2, seasonState: S, draft: draftSnap } };
    window.ZPBStorage.save('A', envelope).then(function(res){
     if(res && res.ok){ show('AUTOSAVED \u2713', false); } else { show('AUTOSAVE OFF', true); }
    })['catch'](function(){ show('AUTOSAVE OFF', true); });
@@ -15644,6 +15686,269 @@ window.zpbChunkBoard = function(el, html){
   }
  }catch(e){}
  if(document.readyState !== 'loading') fitAll(document); else document.addEventListener('DOMContentLoaded', function(){ fitAll(document); });
+})();
+</script>
+<script id="zpb-w65-js">
+// ================= Z-POST-BLUE W65 · THE OWNER'S UI ROUND + MUSE'S W64 QA =================
+// W65-A (Owner): SIM GAME rides the header tab row (the host the tabs render), wired like the old body button.
+(function(){
+ 'use strict';
+ if(typeof renderRegularSeasonView !== 'function' || renderRegularSeasonView._zpbW65) return;
+ var orig = renderRegularSeasonView;
+ var g = function(container){
+  var out = orig.apply(this, arguments);
+  try{
+   var host = document.getElementById('zpbSimTabsHost');
+   if(host){
+    var S = seasonState, showGame = false;
+    if(S && S.phase==='regular' && !S.preseason && !S.weekSimulated && S.schedule){
+     var user = seasonUserTeam();
+     showGame = S.schedule.some(function(gt){ return gt.week===S.currentWeek && (gt.home===user||gt.away===user); });
+    }
+    host.innerHTML = showGame ? '<button class="tabbtn zpb-ctasmall zpb-simgame" id="simGameBtn">SIM GAME</button>' : '';
+    var b = document.getElementById('simGameBtn');
+    if(b && !b._zpbW65){
+     b._zpbW65 = true;
+     b.addEventListener('click', function(){
+      window.__zpbSilent = true;
+      try{ simulateCurrentWeek(); } finally { window.__zpbSilent = false; }
+      renderSeasonTab(container);
+      var rv = document.getElementById('zpbGameReviewNow'); if(rv) rv.scrollIntoView({block:'start', behavior:'smooth'});
+     });
+    }
+   }
+  }catch(err){}
+  return out;
+ };
+ g._zpbW65 = true;
+ renderRegularSeasonView = g;
+})();
+// W65-B (Muse P0, the honest completion): RESTORE — the autosave gets its second half. On boot with
+// no live season and no live draft, slot A offers the season back. w65 envelopes carry the draft's
+// pick rounds; w63-era envelopes (a raw seasonState payload) restore through the same door.
+(function(){
+ 'use strict';
+ function liveSeason(){ try{ return !!seasonState; }catch(e){ return false; } }
+ function midDraft(){ try{ return !!(typeof draftSim!=='undefined' && draftSim && draftSim.order && draftSim.pos < draftSim.order.length); }catch(e){ return false; } }
+ function boot(){
+  if(!window.ZPBStorage || typeof window.ZPBStorage.load !== 'function') return;
+  window.ZPBStorage.load('A').then(function(r){
+   try{
+    if(!r || r.status!=='ok' || !r.envelope || !r.envelope.payload) return;
+    var p = r.envelope.payload;
+    var S = (p && p.zpbRestore===2) ? p.seasonState : p;
+    if(!S || !S.phase || !S.teams || !S.schedule) return;
+    if(liveSeason() || midDraft()) return;
+    window.zpbRestoreSave = r.envelope;
+    showChip();
+   }catch(e){}
+  })['catch'](function(){});
+ }
+ function showChip(){
+  if(document.getElementById('zpbRestoreChip')) return;
+  var c = document.createElement('button');
+  c.type = 'button'; c.id = 'zpbRestoreChip'; c.className = 'zpb-autosave zpb-restore';
+  c.setAttribute('role','status'); c.setAttribute('aria-live','polite');
+  c.textContent = 'RESTORE SAVED SEASON';
+  c.addEventListener('click', restore);
+  document.body.appendChild(c);
+  requestAnimationFrame(function(){ try{ c.classList.add('zpb-avshow'); }catch(e){} });
+ }
+ function restore(){
+  try{
+   var keep = window.zpbRestoreSave; if(!keep) return;
+   var p = keep.payload;
+   var S = (p && p.zpbRestore===2) ? p.seasonState : p;
+   if(!S || !S.teams) return;
+   var rosters = [], ui = 0;
+   if(p && p.zpbRestore===2){
+    var _dr = (p.draft && Array.isArray(p.draft.rosters)) ? p.draft.rosters : [];
+    rosters = Object.keys(S.teams).map(function(n){ // the slots live in seasonState.teams[n].slotmap — one source, no duplication
+     var t = S.teams[n], m = _dr.find(function(r){ return r.teamName===n; }) || {};
+     return { teamName:n, slots:t.slotmap || {}, pickRounds:m.pickRounds||{}, isUser:!!(m.isUser || t.isUser), pool:t.pool || Object.values(t.slotmap||{}).filter(Boolean) };
+    });
+    ui = rosters.findIndex(function(r){ return r.isUser; }); if(ui < 0) ui = 0;
+   } else {
+    Object.keys(S.teams).forEach(function(n){
+     var t = S.teams[n];
+     rosters.push({ teamName:n, slots:t.slotmap || {}, pickRounds:{}, isUser:!!t.isUser, pool:t.pool || Object.values(t.slotmap||{}).filter(Boolean) });
+     if(t.isUser) ui = rosters.length - 1;
+    });
+   }
+   draftSim = { rosters:rosters, userIndex:ui, pos:999999, pool:[], order:[], log:[], awaitingUser:false, undoUsedRound:null };
+   seasonState = S;
+   resultsView = 'season';
+   window.__zpb100View = false;
+   window.zpbRestoreSave = null;
+   var chip = document.getElementById('zpbRestoreChip'); if(chip) chip.remove();
+   if(typeof setActiveTab === 'function') setActiveTab('viewDraft','tabDraftBtn');
+   // a fresh page has no #draftResultsBody (the results panel ships empty) — rebuild the shell
+   // first, then render through renderDraftResults exactly like finishDraft2 does. Never .wrap:
+   // rendering into the wrap wipes the app shell.
+   var panel = document.getElementById('draftFinalResults');
+   if(panel && !document.getElementById('draftResultsBody')){ panel.style.display = 'block'; panel.innerHTML = '<div id="draftResultsBody"></div>'; }
+   else if(panel){ panel.style.display = 'block'; }
+   var dl = document.getElementById('draftLive'); if(dl) dl.style.display = 'none';
+   var ds = document.getElementById('draftSetup'); if(ds) ds.style.display = 'none';
+   if(typeof renderDraftResults === 'function') renderDraftResults();
+   else if(document.getElementById('draftResultsBody')) renderSeasonTab(document.getElementById('draftResultsBody'));
+   window.scrollTo(0,0);
+  }catch(e){}
+ }
+ if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
+})();
+// W65-C (Owner): the universal BACK TO SEASON — one glowing button at the bottom of every page that
+// is not the season itself, plus the top doors on Your Roster / Team Comparison (delegated data-bts).
+(function(){
+ 'use strict';
+ var bar = null;
+ function seasonLive(){ try{ return !!seasonState; }catch(e){ return false; } }
+ function onSeasonTab(){
+  try{
+   var vd = document.getElementById('viewDraft');
+   if(!vd || !vd.classList.contains('active')) return false;
+   if(window.__zpb100View) return false;
+   return (typeof resultsView !== 'undefined') && resultsView === 'season';
+  }catch(e){ return false; }
+ }
+ function paint(){
+  var wrap = document.querySelector('.wrap'), nav = wrap ? wrap.querySelector('nav.footnav') : null;
+  if(!wrap || !nav) return;
+  if(!bar || !bar.isConnected){ bar = document.createElement('div'); bar.id = 'zpbBackSeasonBar'; wrap.insertBefore(bar, nav); }
+  var show = seasonLive() && !onSeasonTab();
+  if(!show){ if(bar.innerHTML){ bar.style.display = 'none'; bar.innerHTML = ''; } return; }
+  bar.style.display = '';
+  if(!bar.innerHTML){
+   bar.className = 'zpb-btsbar';
+   bar.innerHTML = '<button class="resetbtn zpb-bts" data-bts="1" style="width:auto;margin:0;padding:12px 34px;">BACK TO SEASON</button>';
+  }
+ }
+ function ensureShell(){
+  var panel = document.getElementById('draftFinalResults');
+  if(panel && !document.getElementById('draftResultsBody')){ panel.style.display = 'block'; panel.innerHTML = '<div id="draftResultsBody"></div>'; }
+  else if(panel){ panel.style.display = 'block'; }
+  var dl = document.getElementById('draftLive'); if(dl) dl.style.display = 'none';
+  var ds = document.getElementById('draftSetup'); if(ds) ds.style.display = 'none';
+ }
+ function go(){
+  try{
+   window.__zpb100View = false;
+   if(typeof setActiveTab === 'function') setActiveTab('viewDraft','tabDraftBtn');
+   resultsView = 'season';
+   ensureShell();
+   if(typeof renderDraftResults === 'function') renderDraftResults();
+   else if(document.getElementById('draftResultsBody')) renderSeasonTab(document.getElementById('draftResultsBody'));
+   window.scrollTo(0,0);
+  }catch(e){}
+ }
+ document.addEventListener('click', function(e){
+  var b = e.target.closest ? e.target.closest('[data-bts]') : null;
+  if(!b) return;
+  e.preventDefault();
+  go();
+ });
+ function wrap(name, after){
+  try{
+   var orig = window[name];
+   if(typeof orig !== 'function' || orig._zpbW65b) return;
+   var g = function(){ var r = orig.apply(this, arguments); try{ after(); }catch(e){} return r; };
+   g._zpbW65b = true;
+   window[name] = g;
+  }catch(e){}
+ }
+ function syncSimTabs(){ // w65 (Owner): the header doors follow the phase — SIM SEASON the moment the season starts, gone at the Super Bowl
+  try{
+   var S = seasonState; if(!S) return;
+   var tabs = document.querySelector('#draftFinalResults .tabs'); if(!tabs) return;
+   var ss = document.getElementById('simSeasonBtn'), pt = document.getElementById('simPlayoffsBtnTop');
+   if(S.phase==='regular' && !ss){
+    var b = document.createElement('button'); b.className = 'tabbtn zpb-ctasmall zpb-simseason'; b.id = 'simSeasonBtn'; b.textContent = 'SIM SEASON';
+    tabs.appendChild(b);
+   }
+   if(S.phase!=='regular' && ss) ss.remove();
+   if(S.phase==='playoffs' && !pt){
+    var b2 = document.createElement('button'); b2.className = 'tabbtn zpb-ctasmall'; b2.id = 'simPlayoffsBtnTop'; b2.textContent = 'SIM PLAYOFFS';
+    b2.addEventListener('click', function(){ var pb = document.getElementById('simRestBtn'); if(pb) pb.click(); });
+    tabs.appendChild(b2);
+   }
+   if(S.phase!=='playoffs' && pt) pt.remove();
+  }catch(e){}
+ }
+ wrap('renderDraftResults', function(){ try{ if(typeof render100 !== 'undefined' && window.__zpb100View) {} }catch(e){} paint(); });
+ wrap('renderSeasonTab', function(){ paint(); syncSimTabs(); });
+ wrap('setActiveTab', function(){ paint(); });
+ window.addEventListener('resize', paint, {passive:true});
+ paint();
+ window.zpbBackToSeason = { paint: paint, go: go };
+})();
+// W65-D (Owner): the SIM PLAYOFFS warning — the A9 format, only while your team is still alive in the bracket.
+(function(){
+ 'use strict';
+ document.addEventListener('click', function(e){
+  if(window.__zpbPoSimConfirmed){ window.__zpbPoSimConfirmed = false; return; } // the confirmed click passes through
+  var t = e.target.closest ? e.target.closest('#simRestBtn,#simPlayoffsBtnTop,#simPlayoffsBtnFoot') : null;
+  if(!t) return;
+  var S = null; try{ S = seasonState; }catch(err){ return; }
+  if(!S || S.phase!=='playoffs') return;
+  var user = null; try{ user = seasonUserTeam(); }catch(err){ return; }
+  var alive = false;
+  try{
+   alive = Object.keys(S.playoffRounds||{}).some(function(rk){
+    return (S.playoffRounds[rk]||[]).some(function(g){ return g && !g.result && (g.home===user||g.away===user); });
+   });
+  }catch(err){ alive = false; }
+  if(!alive) return; // your team is out — spectating needs no warning
+  e.stopPropagation(); e.preventDefault();
+  var ov = document.createElement('div'); ov.className = 'confirm-ov';
+  ov.innerHTML = '<div class="confirm-box" style="text-align:center;">'
+   + '<p style="margin-top:0;"><b>ARE YOU SURE YOU WANT TO SIMULATE THE PLAYOFFS?</b></p>'
+   + '<p class="narr">Every remaining round plays out at once. This cannot be undone.</p>'
+   + '<div style="display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">'
+   + '<button class="resetbtn" data-po="yes" style="width:auto;margin:0;padding:8px 18px;order:1;">YES \u00b7 SIMULATE THE PLAYOFFS</button>'
+   + '<button class="tabbtn" data-po="no" style="order:2;">Cancel</button>'
+   + '</div></div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click', function(ev){
+   var b2 = ev.target.closest ? ev.target.closest('[data-po]') : null;
+   if(!b2 && ev.target!==ov) return;
+   var yes = b2 && b2.dataset.po==='yes';
+   ov.remove();
+   if(!yes) return;
+   var real = document.getElementById('simRestBtn');
+   if(real){ window.__zpbPoSimConfirmed = true; real.click(); }
+   else{
+    try{
+     var order = ['wildcard','divisional','champ','superbowl'];
+     for(var i=order.indexOf(S.currentPlayoffRound); i<4; i++){
+      if(!S.playoffRoundSimulated) simulatePlayoffRound();
+      if(order[i]!=='superbowl') advancePlayoffRound();
+     }
+    }catch(err){}
+    renderSeasonTab(document.getElementById('draftResultsBody') || document.body);
+   }
+  });
+ }, true);
+})();
+// W65-E (Owner): retired in chain step 7 — zpb100More carries the advanced badges natively
+// (12+ win seasons, playoff trips that became titles, turnovers per game, sacks per game);
+// the string-injection wrapper would have doubled the two badges it added.
+// W65-F (Owner, the 100-seasons door): the report's header button wears the glowing team ink + label.
+(function(){
+ 'use strict';
+ if(typeof render100 !== 'function' || render100._zpbW65) return;
+ var orig = render100;
+ var g = function(container){
+  window.__zpb100View = true; // the bottom BACK TO SEASON shows on this page
+  var out = orig.apply(this, arguments);
+  try{
+   var b = document.getElementById('back100Btn');
+   if(b && !b._zpbW65){ b._zpbW65 = true; b.classList.add('zpb-bts'); b.textContent = 'BACK TO SEASON'; b.style.width = 'auto'; }
+  }catch(e){}
+  try{ if(window.zpbBackToSeason && window.zpbBackToSeason.paint) window.zpbBackToSeason.paint(); }catch(e){}
+  return out;
+ };
+ g._zpbW65 = true;
+ render100 = g;
 })();
 </script>
 <script id="zpb-w55-restore">
@@ -15801,6 +16106,63 @@ window.zpbChunkBoard = function(el, html){
  animation:zpbRdSpin 52s linear infinite reverse;}
 @media (prefers-reduced-motion: reduce){
  .zpb-replay-ov::before,.zpb-replay-ov::after{animation:none !important;}
+}
+</style>
+<style id="zpb-w65-css">
+/* ============ Z-POST-BLUE W65 ============ */
+/* W65-1 (Owner): the footer stops encroaching — the pill nav sits in flow, pushed well down;
+   the sticky thumb-reach law retires at every narrow width (the Owner's small window included),
+   and the strip keeps its horizontal scroll. Rendering into .wrap is forbidden to every door. */
+@media (max-width:760px){
+ nav.footnav{position:static;bottom:auto;margin-top:56px;background:var(--panel);border:1px solid var(--border);box-shadow:0 10px 26px rgba(0,0,0,.20);}
+}
+nav.footnav{margin-top:64px;}
+/* W65-2 (Owner): the DRAFT button keeps its air on both sides — below it a floor before the footer,
+   and on very short windows the 17vh above eases off so the composition still fits. */
+body[data-home="1"] #draftSetup{margin-bottom:40px;}
+@media (max-height:560px){ body[data-home="1"] #startDraftBtn{margin-top:9vh !important;} }
+/* W65-3 (Owner): the comparison dropdowns — one size (the bigger), the DRAFT button's pill shape. */
+.zpb-cmp-own .zpb-cmpside{min-width:0;}
+.zpb-cmp-own select,#homeCmpResult .zpb-cmpside select{appearance:none;-webkit-appearance:none;min-height:42px;padding:9px 34px 9px 16px;border:1px solid var(--border);border-radius:999px;background:var(--panel2);color:var(--text);font-weight:700;font-size:.85rem;width:100%;max-width:none;}
+.zpb-cmp-own select:focus,#homeCmpResult .zpb-cmpside select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 12px var(--zr1,rgba(201,162,75,.35));}
+.zpb-cmp-own .zpb-cmpscore{font-size:1.15rem;}
+/* W65-4 (Owner): on a narrow window the X vs Y score takes its own centered line above the two
+   dropdowns — never covered (the w63 "the scores can go on their own line" law, both surfaces). */
+@media (max-width:760px){
+ .zpb-cmphead{grid-template-columns:1fr 1fr;grid-template-areas:"score score" "a b";row-gap:12px;}
+ .zpb-cmphead .zpb-cmpscore{grid-area:score;justify-self:center;white-space:nowrap;}
+ .zpb-cmphead .zpb-cmpside-a{grid-area:a;}
+ .zpb-cmphead .zpb-cmpside-b{grid-area:b;}
+}
+/* W65-5 (Owner): BACK TO SEASON — the glowing team-ink door (the autosave chip's tokens). */
+.zpb-bts{font-family:'Cinzel Decorative','Cinzel',Georgia,serif !important;font-weight:900;letter-spacing:.12em;text-indent:.12em;border-radius:999px !important;
+ color:var(--tTA,var(--accent)) !important;border:1px solid color-mix(in srgb,var(--tTA,var(--accent)) 55%,transparent) !important;
+ background:color-mix(in srgb,var(--tTA,var(--accent)) 10%,var(--panel)) !important;
+ box-shadow:0 0 16px color-mix(in srgb,var(--tTA,var(--accent)) 38%,transparent);animation:zpbBtsGlow 2.8s ease-in-out infinite;}
+@keyframes zpbBtsGlow{0%,100%{box-shadow:0 0 12px color-mix(in srgb,var(--tTA,var(--accent)) 28%,transparent);}50%{box-shadow:0 0 24px color-mix(in srgb,var(--tTA,var(--accent)) 55%,transparent);}}
+:root[data-theme="dark"] .zpb-bts{color:var(--tTAd,var(--accent)) !important;border-color:color-mix(in srgb,var(--tTAd,var(--accent)) 55%,transparent) !important;background:color-mix(in srgb,var(--tTAd,var(--accent)) 10%,var(--panel)) !important;}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-bts{color:var(--tTAd,var(--accent)) !important;border-color:color-mix(in srgb,var(--tTAd,var(--accent)) 55%,transparent) !important;background:color-mix(in srgb,var(--tTAd,var(--accent)) 10%,var(--panel)) !important;} }
+@media (prefers-reduced-motion: reduce){ .zpb-bts{animation:none;} }
+.zpb-btsbar{display:flex;justify-content:center;margin:48px 0 30px;}
+.zpb-bts-top{border-color:color-mix(in srgb,var(--tTA,var(--accent)) 30%,var(--border));}
+/* W65-6 (Owner): the draft board's first-letter bar retires in every theme (the w57 law finally covers dark). */
+#draftTable2 tr.zpb-trow td:first-child{box-shadow:none !important;}
+/* W65-7 (Owner): the SEASON REVIEW panel keeps its distance from the champion banner. */
+.zpb-sr-own{border-color:color-mix(in srgb,var(--tTA,var(--accent)) 32%,var(--border));}
+/* W65-8 (Owner): the header sim doors hold one line on a phone. */
+.zpb-simtabs{display:inline-flex;gap:8px;align-items:center;} /* w65 (Owner): the host stopped stretching SIM GAME — both doors wear the SIM GAME size */
+.tabs > .zpb-ctasmall{align-self:center;} /* w65 (Owner): the doors keep the SIM GAME height on the shared tab line — the row's tall tabs don't stretch them */
+@media (max-width:480px){ .zpb-ctasmall.zpb-simseason,.zpb-ctasmall#simPlayoffsBtnTop,.zpb-ctasmall#simGameBtn{font-size:.66rem !important;padding:5px 9px !important;} }
+/* W65-9 (Owner): the restore chip — the honest second half of the autosave promise. */
+.zpb-autosave.zpb-restore{pointer-events:auto;cursor:pointer;appearance:none;-webkit-appearance:none;}
+.zpb-autosave.zpb-restore:hover{border-color:var(--tTA,var(--accent));}
+:root[data-theme="dark"] .zpb-autosave.zpb-restore:hover{border-color:var(--tTAd,var(--accent));}
+@media (prefers-reduced-motion: reduce){ .zpb-autosave.zpb-restore{transition:none;} }
+/* W65-10 (Owner): a very short window trims the pregame fan so everything still fits below the line. */
+@media (max-width:600px) and (max-height:620px){
+ .zpb-replay:not(.zpb-sb) .zpb-intro-logos img{width:44px;height:44px;}
+ .zpb-intro-stars{gap:5px;}
+ .zpb-rep-intro{padding-top:56px;}
 }
 </style>
 </body>
