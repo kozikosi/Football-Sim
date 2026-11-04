@@ -91,3 +91,43 @@ Wants to verify WR2 fix (1,500 games × 24 positions). VM is slow. 3 hours. Can'
 We're using a "council" metaphor — proposals, reviews, votes. But what we actually have is a distributed build system with human nodes. The inefficiencies come from forcing human collaboration patterns onto what is essentially CI/CD with AI agents.
 
 **Question for Claude:** Do we need the council metaphor, or do we need throughput? What if "reviews" became "checks" (automated where possible)? What if "the bulletin" became a "dashboard"? The metaphor gives legitimacy but costs efficiency.
+
+## 6. Additional ideas (Owner-approved)
+
+### Idea 25: Definition of Done templates
+Every P-item gets a DoD checklist when created: "What does 'done' look like? How will we verify?" Right now, "done" is ambiguous — the author decides. A template forces clarity upfront.
+
+Example: "P-219 is done when: (1) frontRun weights are SS>FS>CB1>CB2, (2) 80→99 sweep confirms, (3) 2 seats verify."
+
+### Idea 26: Council health dashboard
+Track: median time from WORK to REVIEWED, % of items that get stuck, reviewer distribution (is one seat doing 80% of reviews?), P0 age. Not to punish — to see. If P0s are aging, that's a signal. If one seat is burning out, that's a signal.
+
+### Idea 27: "What changed" diff for the engine
+When Claude pushes a new engine version, auto-generate a diff: "These constants changed, these tests were added, these behaviors shifted." Right now seats manually `git show` and compare. A tool that says "de60e05 changed defPredict 0.4→0.15, which affects these 3 matchups" would save hours.
+
+### Idea 30: Sunset clause for P-items
+Every P-item gets a "revisit by" date. If still open after 30 days, auto-escalates: "P-219 is 30 days old. Still relevant? Retire or reaffirm?" Prevents dead-priority accumulation. The system already has P2/P3 aging; extend to P0/P1 with longer fuse.
+
+### Idea 31: Review template with checkboxes
+Long reviews lose track. Instead of freeform "VERDICT:" text, use a structured form: "Claim 1: [ ] verified [ ] failed — evidence: ___". Forces incremental progress. You can stop mid-review and resume without re-reading.
+
+### Idea 32: Plain-language core instructions
+Remove idioms from START-OF-CHAT. Not dumbing down — removing cultural subtext. "Take the first item you are qualified to complete. If you cannot, skip it. Do not wait for permission." Instead of "take the top line you can do well."
+
+### Idea 33: Challenge priority as first-class action
+If a seat thinks a P0 should be P2, they can file a challenge with reasoning. Doesn't block the work — someone else can still do it — but surfaces misalignment between priority and perceived value.
+
+### Idea 35: Bulletin context lines
+Bulletin entries should include a one-line "what this is" for non-obvious items. Not just "P-219 blocked" but "P-219 (DB run weights inverted — SS should be > FS > CB) blocked on Owner approval." Costs 10 extra words. Saves every new seat 20 minutes of searching.
+
+### Idea 36: Specific review feedback
+Reviews should include one line: "Strongest part: ___. Weakest part: ___." Not a grade — a signal. Helps seats calibrate and improve.
+
+### Idea 37: "Last verified" timestamp on PRIORITIES.md rows
+Each row shows when the item was last touched. Stale items are visually obvious. Right now, you can't tell if a P0 is actively being worked or abandoned without digging.
+
+### Idea 40: "Why" field for P-items
+Every P-item gets a one-sentence "why does this matter?" Not the *what* (that's the title), but the *so what*. "P-232: Because mispositioned players break immersion and make the game look broken." Helps new seats prioritize when everything is P0.
+
+### Idea 41: Auto-link related items
+When P-219 is fixed, the system suggests "P-223 (re-verify after P-219) may now be unblocked." Currently dependencies are in "BLOCKED(X)" prefix, but there's no forward link. The system should tell you what your fix unblocks.
