@@ -8,12 +8,13 @@
 ## Where
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (the OpenCode pool path; there is no `../wt/ds` on disk — `/Users/kosi/Desktop/wt/ds` is orphaned, `wt/dsd` is a different seat)
 - **Branch:** `council/ds` · **merge-base HEAD origin/council/base:** `1b91f50e`
-- **Last session end:** 2026-11-03 01:52 UTC
+- **Last session end:** 2026-11-04 01:37 UTC
 
-## Current state (3 Nov 2026)
-- **Rules changed mid-session (v8, `_agents/COUNCIL.md`, 2 Nov):** no claims, two reviews by two different seats close an item, the tool is `node tools/council.mjs` (`next`/`board`/`show`/`digest`). My P-195 claim file (v7 protocol) was deleted as obsolete; nothing else about it was lost.
-- **Delivered this session:** `inbox/20261103-0155-ds-P-195-correction.md` — P-195 was already REVIEWED, so this is a correction, not a confirmation. It agrees with pickle (`council/pickle:inbox/20261103-0145-pickle-P-195-review.md`) that OR's "−6 flex" issue is retracted; it adds what pickle did not test: whether E1/E5/E7/E8 test their §7 names.
-- **Not taken:** the queue's top lines at session end were REVIEW E-211 (1/2), P-143 (1/2), P-144 (1/2), then WORK P-145, P-154, P-170.
+## Current state (4 Nov 2026)
+- **Orientation-only session:** start-of-chat read in full (AGENTS, PROJECT-KNOWLEDGE, bulletin, V23-OWNER-REQUESTS, lane, COUNCIL.md v8), `sync-base.sh` → up to date with `1b91f50e`, preservation gate run; the Owner ended the session before a queue item was taken. **No work, review or op was filed.**
+- **Flaw in the prescribed tool invocation (VERIFIED 4 Nov):** `node /tmp/council.mjs <cmd>` prints **nothing on macOS**. `/tmp` is a symlink to `/private/tmp`, so Node's ESM URL is `file:///private/tmp/council.mjs` while `process.argv[1]` is `/tmp/council.mjs`; the tool's `main()` guard (`import.meta.url === \`file://${process.argv[1]}\``) never matches and it exits 0 silently — no queue, no error. Workaround: `node "$(realpath /tmp/council.mjs)" <cmd>`. Note filed to the Architect (see Files). Any seat that reports an empty `next` on macOS is hitting this, not an empty queue.
+- **Queue at session start (`next`, via realpath):** REVIEW E-211 (1/2) · REVIEW P-143 (1/2) · REVIEW P-144 (1/2) · REVIEW P-145 (0/2) · WORK P-154 · WORK P-170.
+- **E-211 bookkeeping oddity:** `board` printed `E-211 NEEDS-REVIEW 1/2` and `show E-211` printed **two** non-author, non-rejected reviews after the last work file (or `2357`, pickle `0202`), both `improved` — so the item should read REVIEWED. Not diagnosed further (session ended); whoever takes E-211 should re-run `board` before assuming a review is still needed. Under v8 a third review would not move it anyway.
 
 ### Verified findings others should not re-derive
 1. **Muse's current delivery runs green:** `node --test --experimental-strip-types test/engine-acceptance.test.ts` (scratch tree symlinked to `colors/src`, `tools/`, `Football-Sim-PreColors.html`; Node v24.22.0, Playwright present) → **13 tests, 10 pass, 3 skip, 0 fail**. E4 works after boc's argv fix (~3 s).
@@ -24,14 +25,15 @@
 6. **Build truth unchanged:** `Football-Sim-PreColors.html` = `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B.
 
 ## What the next session needs
-- **Read first:** `_agents/COUNCIL.md` (v8 — the rules that govern now), `node tools/council.mjs next`, this lane.
+- **Read first:** `_agents/COUNCIL.md` (v8), START-OF-CHAT (from `origin/architect/engine-and-seats`), `node "$(realpath /tmp/council.mjs)" next`, this lane.
 - **Do not redo:** P-195 (REVIEWED; correction filed 3 Nov), P-020, the 25 Oct P-001/P-003/P-005 reviews, P-152, P-153.
-- **Next candidates:** E-211, P-143, P-144 (all 1/2) then P-145, P-154, P-170 — whichever `next` prints first.
+- **Next candidates:** E-211 (check the 1/2 vs two-reviews discrepancy above first), P-143, P-144, P-145, then P-154/P-170.
 - **Carried open questions:** (1) `<title>`/og:title — the w33 shell answers "20-0", Pre-Colors still has 3 old-name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — unconfirmed. (3) One-score rule — recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
 
 ## Files in this lane
 | path | what it is |
 |---|---|
+| `inbox/20261104-0137-ds-tool-council-tool-tmp-symlink.md` | NOTE to the Architect: `node /tmp/council.mjs` is a silent no-op on macOS; one-line fix |
 | `inbox/20261103-0155-ds-P-195-correction.md` | P-195: four E-names test something else than §7; exact replacement snippets for E1/E5/E7/E8, E3b drift-proofing |
 | `inbox/20261031-0350-ds-critique-precolors-w33.md` | Owner-requested critique of Pre-Colors + z.ai w33 shell for the Colors v1 transplant |
 | `inbox/20261029-0306-ds-P-020-review.md` | P-020 review #3 (28-badge table, 16 'why' rules, 20-0 contract) |
