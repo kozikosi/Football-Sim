@@ -19,10 +19,11 @@ Claude approves/denies concepts. The council (or MUSE seat) generates the code. 
 
 ### 1. DISCUSSION section in `next`
 **Problem:** Ideas, questions, bug reports are invisible. Inbox files with IDEA:/CONFUSED:/STUCK: prefixes fall through to `work` kind (verified: no classify() branch exists).
-**Concept:** Add `discussion` kind to council.mjs classify() with prefixes IDEA:/CONFUSED:/STUCK:. `next` shows top 5 unacknowledged discussion items after ASK/REVIEW. ACK path clears them (mechanism exists).
+**Concept:** Add `discussion` kind to council.mjs classify() with prefixes IDEA:/CONFUSED:/STUCK:. `next` appends a DISCUSSION section after the work list (correction per VL: current `next` prints a single list, not ASK/REVIEW sections). Show only recent, unanswered discussion files (no ACK/answer yet); stale/answered ones don't reappear. ACK path clears them (mechanism exists). Cap at top 5.
 **Reviewer refinements:**
 - OR: Define prefixes clearly (IDEA=proposals, CONFUSED=needs clarification, STUCK=blocked waiting). QUESTION: redundant with ASK — drop it. Add `next --discussion` filter. Success metric: "IDEA files get ≥1 response before next round" (measurable; "48h" is not).
 - Beam: Cap at top 5, show only unacknowledged. Reasons must be machine-derived.
+- VL: Frame as appended section after work list, not "third section after ASK/REVIEW" (those sections don't exist in current `next`).
 **Ask:** Approve the concept with these refinements?
 **Success:** IDEA files get ≥1 response before next round.
 
@@ -37,37 +38,41 @@ Claude approves/denies concepts. The council (or MUSE seat) generates the code. 
 
 ### 3. Simple board by default
 **Problem:** 168 items unnavigable for amnesiacs.
-**Concept:** Default `board` shows: top 5 by effective tier (P0, then P1, then P2), blocked items, recently-shipped (retired BUILT in last 7d). Full view at `board --full` (flag needs implementing; keep current output exact for power users).
+**Concept:** Default `board` shows: top 5 by effective tier (P0, then P1, then P2), blocked items, recently-shipped (retired BUILT in last 7d). Full view at `board --full` (flag needs implementing; keep current output exact for power users). Blocked/shipped derive from existing fields (blocked dependency list; retired=BUILT), not new tracking.
 **Reviewer refinements:**
 - OR: Define "top 5 P0s" — if no P0s exist, fall back to top 5 by age × priority weight.
 - Beam: Don't rewrite titles in "plain language" (subjective; 90-char truncation already exists). Wider default set than just P0s.
+- VL: P0 titles must be plain language (jargon defeats the purpose).
 **Ask:** Approve the flipped default with wider set?
 **Success:** New seat identifies top 3 priorities in <60 seconds.
 
-### 4. Sunset clause (scoped)
+### 4. Sunset clause (scoped, 40-day for P0/P1)
 **Problem:** Owner's #1 gripe: dead priorities accumulate.
-**Concept:** Two-tier (per Beam's correction):
+**Concept:** Two-tier (Owner decision 2026-11-03: 40 days for P0/P1):
 - P2/P3: keep existing 21-day auto-retire (already shipped in council.mjs CFG.staleDays).
-- P0/P1: 30-day reaffirm *prompt* surfaced in digest/board. Does NOT auto-retire (AGENTS.md: P0/P1 "never age out; leave only by proof"). Any seat can `keep` (reaffirm) or propose retire; Owner decides.
+- P0/P1: 40-day reaffirm *prompt* surfaced in digest/board. Does NOT auto-retire (AGENTS.md: P0/P1 "never age out; leave only by proof"). Any seat can `keep` (reaffirm) or propose retire; Owner decides. Reaffirm/retire decision documented in the item file.
 - `board --sunset` lists items past revisit date.
 **Reviewer refinements:**
 - OR: Auto-add `revisit-by` on creation. If unattended 7 days past sunset, auto-retire with note (applies to P2/P3; P0/P1 Owner decides).
-- Beam: 30-day timeframe fine for the prompt. Do not auto-retire P0/P1.
-**Ask:** Approve the scoped concept?
+- Beam: 30-day timeframe fine for the prompt. Do not auto-retire P0/P1. (Owner settled 40 days.)
+- VL: 30 days too aggressive for P0/P1 (Architect sometimes unavailable). Suggested 60. (Owner settled 40.)
+**Ask:** Approve the scoped concept at 40 days?
 **Success:** P2/P3 auto-retire functions; P0/P1 reaffirm prompts appear.
 
-### 5. Definition of Done templates (typed, scoped)
+### 5. Definition of Done templates (typed, scoped, flexible)
 **Problem:** "Done" is ambiguous. Leads to rework.
 **Concept:** Typed templates, auto-applied via `council.mjs add --type X`:
-- ENGINE-FIX: (1) tests pass, (2) no benchmark regression, (3) docs updated
-- UI: (1) 390px check passes, (2) no console errors, (3) accessibility audit
-- DATA: (1) schema validated, (2) sample queries run, (3) lineage documented
+- ENGINE-FIX: tests pass, no benchmark regression, docs updated
+- UI: 390px check passes, no console errors, accessibility audit
+- DATA: schema validated, sample queries run, lineage documented
+- "Done when:" with 1–3 criteria (not rigidly 3; simple items need 1, complex need verifiable checks).
+- Each criterion must be checkable (command + expected output), e.g. "Done when: `node tools/council.mjs show P-005` prints REVIEWED by two seats."
 - Required for P0/P1 and items with concrete deliverables. Optional for P2/P3 (brief suffices).
-- When present, require ≥1 verifiable check (command + expected output).
 **Reviewer refinements:**
 - OR: Typed by category (not generic "(1)___, (2)___, (3)___").
-- Beam: Optional except P0/P1. Overhead concern is real for 168 items.
-**Ask:** Approve typed + scoped?
+- Beam: Optional except P0/P1. Overhead concern is real for 168 items. Require ≥1 verifiable check when present.
+- VL: 1–3 criteria, not exactly 3. Each checkable.
+**Ask:** Approve typed + scoped + flexible?
 **Success:** Zero "is it done?" disputes per month.
 
 ## Tier 2: High Value (Revised per VL)
