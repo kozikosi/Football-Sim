@@ -1,0 +1,6 @@
+948f789da6d3ccf064104212ec748f3a  Football-Sim-Z-post-blue-w65.html
+
+# lineage pins
+8b601f06ad2938960a636f53e709148d  Football-Sim-Z-post-blue-w64.html (the baseline)
+88cfe4126168fc609859106c36e0c1ba  stage-5 (the w65 round on w64, steps 1-6)
+8154627340b6e21246ca471630745c5b  stage-6 (steps 1-6 complete)
