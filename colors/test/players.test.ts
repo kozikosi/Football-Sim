@@ -4,7 +4,8 @@ import fs from 'node:fs';
 import { buildPool, parseCsv } from '../src/engine/players.ts';
 const R = fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8');
 const F = fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8');
-const pool = buildPool(R, F);
+const I = fs.readFileSync(new URL('../../data/player-ids.csv', import.meta.url), 'utf8');
+const pool = buildPool(R, F, I);
 test('pool size: 1,941 rated + 12 free agents, all ids unique', () => {
   assert.equal(pool.length, 1953);
   assert.equal(new Set(pool.map((p) => p.id)).size, 1953);

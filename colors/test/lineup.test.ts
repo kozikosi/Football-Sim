@@ -14,7 +14,7 @@ import { makeRng } from '../src/engine/rng.ts';
 const read = (p: string) => fs.readFileSync(new URL(p, import.meta.url), 'utf8');
 const design = JSON.parse(read('../../tools/mathlab/design.json')) as Record<string, number>;
 const flexJson = JSON.parse(read('../../tools/mathlab/flex.json')) as { roles: string[]; flex: Record<string, Record<string, number>> };
-const pool = buildPool(read('../../data/madden27-ratings.csv'), read('../../data/free-agents-old-ratings.csv'));
+const pool = buildPool(read('../../data/madden27-ratings.csv'), read('../../data/free-agents-old-ratings.csv'), read('../../data/player-ids.csv'));
 
 let uid = 0;
 const mk = (role: Role, ovr: number): Player => ({ id: `t${uid++}|${role}|T`, name: `t${uid}`, pos: role, role, team: 'T', ovr, spd: 70, str: 70, freeAgent: false });

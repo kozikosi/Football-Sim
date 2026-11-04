@@ -7,7 +7,7 @@ import { fit } from '../src/engine/flex.ts';
 import { makeRng } from '../src/engine/rng.ts';
 import { ROUNDS, TEAMS_N, applyPick, candidates, cpuChoose, newDraft, runDraft, snakeOrder, DEFAULT_CONFIG } from '../src/engine/draft.ts';
 
-const pool = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'));
+const pool = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/player-ids.csv', import.meta.url), 'utf8'));
 
 test('snake order: 32 rounds, each team once per round, direction flips', () => {
   const o = snakeOrder();

@@ -1,7 +1,8 @@
+import { idMap, parseIds } from './playerids.ts';
 // Player pool. Identity is `name|pos|team` (the new Madden file has three repeated names), never the name alone.
 export type Role = 'QB' | 'RB' | 'FB' | 'WR' | 'TE' | 'OT' | 'OG' | 'C' | 'DT' | 'EDGE' | 'ILB' | 'OLB' | 'SS' | 'FS' | 'CB' | 'K' | 'P' | 'LS';
 export interface Player {
-  id: string;            // name|pos|team
+  id: string;            // stable pid from data/player-ids.csv (p00001 ...). parseCsv alone gives the name|pos|team key; buildPool swaps in the pid.
   name: string;
   pos: string;           // the pos as Madden prints it (HB, LEDG, MIKE ...)
   role: Role;            // the flex-guide role
@@ -27,9 +28,16 @@ export function parseCsv(text: string, freeAgent: boolean): Player[] {
   }
   return out;
 }
-export function buildPool(ratingsCsv: string, freeAgentsCsv: string): Player[] {
-  const pool = [...parseCsv(ratingsCsv, false), ...parseCsv(freeAgentsCsv, true)];
-  const seen = new Set<string>();
-  for (const p of pool) { if (seen.has(p.id)) throw new Error('duplicate player id ' + p.id); seen.add(p.id); }
-  return pool;
+export function buildPool(ratingsCsv: string, freeAgentsCsv: string, idsCsv: string): Player[] {
+  const keyed = [...parseCsv(ratingsCsv, false), ...parseCsv(freeAgentsCsv, true)];
+  const ids = idMap(parseIds(idsCsv)), pids = new Set<string>(), keys = new Set<string>();
+  return keyed.map((p) => {
+    if (keys.has(p.id)) throw new Error('duplicate player ' + p.id);
+    keys.add(p.id);
+    const pid = ids.get(p.id);
+    if (!pid) throw new Error('no stable id for ' + p.id + ' (run tools/player-ids.ts sync)');
+    if (pids.has(pid)) throw new Error('duplicate pid ' + pid);
+    pids.add(pid);
+    return { ...p, id: pid };
+  });
 }

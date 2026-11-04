@@ -19,7 +19,7 @@ import type { GameResult } from '../src/engine/drives.ts';
 import { buildBoxScore } from '../src/engine/boxscore.ts';
 import type { BoxScore, GameSide } from '../src/engine/boxscore.ts';
 
-export const pool: Player[] = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'));
+export const pool: Player[] = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/player-ids.csv', import.meta.url), 'utf8'));
 
 export interface FTeam { name: string; lineup: Lineup; ratings: Ratings; roster: Player[] }
 export function fixtureLeague(seed = 777): { teams: FTeam[]; lg: Ratings } {

@@ -14,7 +14,7 @@ import { netPts } from '../src/engine/value.ts';
 import { TEAMS } from '../src/engine/league.ts';
 import { simulateSeason } from '../src/engine/season.ts';
 
-const pool = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'));
+const pool = buildPool(fs.readFileSync(new URL('../../data/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/free-agents-old-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../data/player-ids.csv', import.meta.url), 'utf8'));
 const N = +(process.argv[2] ?? 40);
 const policies = (process.argv[3] ?? 'greedy,top30,favorites').split(',') as UserPolicy[];
 const cfg: DraftConfig = { ...DEFAULT_CONFIG };
