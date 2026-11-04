@@ -1,0 +1,68 @@
+--- council-b5.mjs	2026-11-03 19:01:04.872316229 -1000
++++ council-b6.mjs	2026-11-03 19:01:56.644315830 -1000
+@@ -171,9 +171,36 @@
+ };
+ 
+ // ---------- git IO ----------
++// BUILD-6: Wave ledger — digest reads _agents/waves/LEDGER.md from origin/gh-pages via git.
++// Format: lines like "- P-232: FAILED - auto lineup still broken" or "- P-232: VERIFIED" or "- P-232: CLAIMED"
++// Only VERIFIED hides an item from "ready to build". FAILED shows open with note. CLAIMED shows "awaiting QA".
++// Fallback: if no LEDGER.md, parse the embedded <!-- WAVE: wXX / CLAIMS: ... --> comments from wave HTML files.
++const loadWaveLedger = () => {
++  const ledger = new Map();
++  const text = g('show', 'origin/gh-pages:_agents/waves/LEDGER.md');
++  if (text) {
++    for (const line of text.split('\n')) {
++      const m = /^\s*-\s*(P-\d+)\s*:\s*(CLAIMED|VERIFIED|FAILED)\s*(?:-\s*(.*))?$/.exec(line);
++      if (m) ledger.set(m[1], { state: m[2], note: (m[3] || '').trim() });
++    }
++    return ledger;
++  }
++  // Fallback: parse WAVE comments from HTML files on gh-pages
++  const files = g('ls-tree', '-r', '--name-only', 'origin/gh-pages').split('\n').filter((f) => f.endsWith('.html'));
++  for (const f of files.slice(0, 20)) { // cap at 20 files to avoid slow fetch
++    const html = g('show', `origin/gh-pages:${f}`);
++    const m = /<!--\s*WAVE:\s*(\w+)\s*\/\s*CLAIMS:\s*(.*?)\s*-->/.exec(html);
++    if (m && m[2].trim().toLowerCase() !== 'none') {
++      for (const cm of m[2].matchAll(/(P-\d+)/g)) {
++        if (!ledger.has(cm[1])) ledger.set(cm[1], { state: 'CLAIMED', note: `claimed in ${m[1]} (no ledger)` });
++      }
++    }
++  }
++  return ledger;
++};
+ const prefix = 'refs/remotes/origin/';
+ const loadState = () => {
+-  if (!flag('--no-fetch')) g('fetch', '-q', '--depth=1', 'origin', '+refs/heads/council/*:' + prefix + 'council/*', '+refs/heads/architect/*:' + prefix + 'architect/*');
++  if (!flag('--no-fetch')) g('fetch', '-q', '--depth=1', 'origin', '+refs/heads/council/*:' + prefix + 'council/*', '+refs/heads/architect/*:' + prefix + 'architect/*', '+refs/heads/gh-pages:' + prefix + 'gh-pages');
+   const refs = g('for-each-ref', '--format=%(refname:short)', 'refs/remotes/origin/council', 'refs/remotes/origin/architect').split('\n').filter(Boolean);
+   const arch = refs.find((r) => r === 'origin/architect/engine-and-seats') || refs.find((r) => /^origin\/architect\//.test(r));   // the Architect's branch by name; any other architect/* only as a fallback
+   const onArch = /^architect\//.test(g('branch', '--show-current')); // the Architect's working copy is the newest truth
+@@ -299,7 +326,13 @@
+   }
+   else if (cmd === 'digest') {
+     const st = loadState(), items = [...st.items.values()], now = Date.now();
+-    const ready = items.filter((i) => !i.retired && i.status === 'REVIEWED' && !i.blocked.length).sort((a, b) => a.eff - b.eff);
++    const ledger = loadWaveLedger(); // BUILD-6: wave ledger from origin/gh-pages
++    const ready = items.filter((i) => {
++      if (i.retired || i.status !== 'REVIEWED' || i.blocked.length) return false;
++      const w = ledger.get(i.id);
++      if (w && w.state === 'VERIFIED') return false; // VERIFIED hides from ready-to-build
++      return true;
++    }).sort((a, b) => a.eff - b.eff);
+     const myAsks = st.recs.filter((r) => r.kind === 'ask' && r.seat === CFG.architect);
+     const answers = st.recs.filter((r) => r.kind === 'answer' && myAsks.some((a) => a.base === r.of.replace(/^.*\//, '')) && !st.acked.has(r.base));
+     const open = myAsks.filter((a) => !st.answered.has(a.base));
+@@ -312,7 +345,11 @@
+     if (flag('--json')) { console.log(JSON.stringify({ ready: ready.map((i) => i.id), answers: answers.map((r) => r.base), notes: notes.map((r) => r.base) })); process.exit(0); }
+     console.log(`COUNCIL DIGEST (${new Date().toISOString().slice(0, 16)}Z): ${ready.length} ready to build · ${answers.length} answers · ${notes.length} notes to you · ${open.length} of your asks pending · ${tobuild} awaiting last review`);
+     const sec = (t, a, cap = 15) => a.length && console.log(`\n${t}\n` + a.slice(0, cap).map((x) => '  ' + x).join('\n') + (a.length > cap ? `\n  ... +${a.length - cap} more (node tools/council.mjs board)` : ''));
+-    sec('READY TO BUILD (reviewed; `node tools/council.mjs show <ID>` prints the final spec; when built: retire <ID> --why BUILT --evidence <hash>)', ready.map((i) => `${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.title.slice(0, 90)}`));
++    sec('READY TO BUILD (reviewed; `node tools/council.mjs show <ID>` prints the final spec; when built: retire <ID> --why BUILT --evidence <hash>)', ready.map((i) => {
++      const w = ledger.get(i.id);
++      const suffix = w && w.state === 'FAILED' ? ` (FAILED: ${w.note})` : w && w.state === 'CLAIMED' ? ' (awaiting QA)' : '';
++      return `${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.title.slice(0, 90)}${suffix}`;
++    }));
+     sec('ANSWERS TO YOUR ASKS (read, use, then `ack <file>`)', answers.map((r) => `${r.ref}:${r.name}`));
+     sec('NOTES TO YOU (`ack <file>` when handled)', notes.map((r) => `${r.seat}: ${r.text.slice(0, 100)}  [${r.ref}:${r.name}]`));
+     sec('SEAT CHANGES, LAST ' + CFG.recentDays + ' DAYS (informational; `revive <ID>` undoes any)', recent.map((r) => `${r.verb} ${r.id || ''} ${(r.arg || []).join(' | ').slice(0, 100)} (${r.seat}, ${age(r.t)} ago)`));
