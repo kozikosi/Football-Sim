@@ -1,44 +1,45 @@
 <!--
-WAVE: w69
+WAVE: w70
+BASE: w69 gh-pages pin 17da6b359f297da9 (1,803,514 B). This wave's first act was an audit of the
+w69 ledger against the w69 artifact — they disagreed, and the artifact wins.
+W69 CLAIMS AUDIT:
+- SHIPPED as claimed: Owner UI 3 (the tier classes ride the review cards: zpb-shm at 90+, zpb-vib
+  at 85+) and Owner UI 6 (crests lead the All-Playoff chips; honor lines carry the crest).
+- CLAIMED BUT ABSENT from the artifact: Owner UI 1 (--tOn appears ONLY in the w69 header comment,
+  zero code hits — the 20-0 still swept the gold ramp); Owner UI 2 (the map bubbles still read
+  color:var(--text,#53382b) — the dark-brown ink on the dark surface is still live); Owner UI 4
+  (no padding rule exists for #scriptOff/#scriptDef/#aggrSel — the house-padding rule that exists
+  targets different ids: #aggrSelect,#scriptAggr); Owner UI 5 (no Cinzel, ink, hover or tier rule
+  exists on any option element).
+- w70 therefore IMPLEMENTS UI 1/2/4/5 for real, hardens UI 3 (the tier floor), and finishes UI 6
+  (honor lines: the crest now LEADS the name, matching the chips and the Owner's lean).
 CLAIMS:
-- Owner UI 1: the 20-0 on the final TRY AGAIN pill reads on the button - the gold-on-gold
-  retires. Inside a .zpb-ctabig (a team-gradient pill) the shine sweeps the ON-GOLD ink
-  family (var(--tOn), the pack's readable-on-gradient coffee, through one lightened step of
-  itself), never the gold ramp the button itself is painted with; the sweep keeps the
-  fxshine cadence, and the no-clip fallback reads solid var(--tOn). The page-level shines
-  (the cyg lines, the rest box) are untouched.
-- Owner UI 2: the WHERE YOUR PLAYERS LINE UP? map's ink is solved against the EFFECTIVE
-  paint - the bubble tint at its real alpha (18% offense / 16% defense) over the glass panel
-  over the page, light and dark, per team. The old solve read the SOLID swatch, so dark mode
-  chose dark-brown ink for a dark surface (his Browns report). The offense tint now follows
-  the takeover's --g2 (the color the bubble actually carries) instead of the fixed gold.
-  Battery: all 32 teams x both modes clear 4.5:1 on the computed surface.
-- Owner UI 3: the player cards' names ride the TIER LAW on the review page - 90+ shimmers,
-  85+ bold, the rest the team's neutral 0.50 ink. The award/stat-champion winner cards
-  (regular + playoff) now tier the name from the winner's own OVR; the AP1-gold name
-  overlay retires from the CARDS (an 88-OVR AP1 reads bold, a 95-OVR non-AP1 shimmers; the
-  w68 golden border + glow stay on the card; the All-Pro/Pro-Bowl/All-Playoff CHIPS keep
-  their own laws; the coach's YOU keeps the w66 shimmer). Flagged in the ledger for the
-  Owner to overrule.
-- Owner UI 4: the preseason page's section 2/3 dropdowns (#scriptOff / #scriptDef /
-  #aggrSel - the "Auto (recommended)" and "Balanced" boxes) gain the house left padding
-  (12px, the draftSetup chrome) - the bare base select rule painted the first letter into
-  the rounded corner (padding-left was 0). Every other select keeps its own padding.
-- Owner UI 5: the dropdown player names wear the house language - the lineup editor's pick
-  lists (every slot, the Dime, the KR row) now read Cinzel in the team's 0.50 ink (txM
-  light / txMd dark), the tier law rides the rows (90+ shimmer / 85+ bold from the player's
-  own OVR), and the rows gain the praised hover (the team wash + the 3px glide). Every
-  dropdown menu inventoried and probed: the compare family (already the house family), the
-  fills dropdown (w66 law), the draftSetup bubbles (w67 law), the board/browser filters and
-  the preseason trio (label dropdowns - chrome + padding, this wave).
-- Owner UI 6: the award lines carry the CREST, not the written team name - the All-Playoff
-  Team chips, the Coach of the Year line, and the playoff round cards' score lines read the
-  team logo; the crests go BEFORE the name (his lean) and around the score (the SB-page
-  law), with the written name only as the no-crest fallback. The SB-MVP line's score
-  separator joins the dash law (a single-game score reads the dash). Batteries: w69_owner
-  (this round, live), w69_dropdowns (every menu), w69_map (32 teams x 2 modes); the
-  standing suites re-pointed at w69. Baseline md5 22bc00ab8cc244da7ba8030a5a67c8da.
+- Owner UI 1: inside .zpb-again-box the shine retires the gold ramp. Light mode pours "20-0" into
+  the deep coffee on-gold ink #4a2b0d (10.4:1 on the panel); dark mode keeps the cream-gold
+  var(--g5) (14.4:1). Scoped to the again box — every other zpb-shine untouched.
+- Owner UI 2: the WHERE THEY LINE UP bubbles solve the ink per theme against the EFFECTIVE paint
+  (the 18%/16% team wash composited over the glass panel over the page): coffee #4a2b0d in light,
+  cream #f6e8c9 in dark. Battery: the white/black tint bounds AND all 32 team primaries at 18%
+  alpha, both modes — worst case 6.86:1. Every team clears 4.5:1 with margin, both modes.
+- Owner UI 3: the tier law gains its floor. 85+ reads bold (.zpb-vib now exists in CSS), 90+ keeps
+  the shimmer, and the rest ride the team's neutral at 0.50 — var(--tn) light / var(--tnd) dark,
+  the pack's halfway inks, so dark mode never drowns a dark neutral (the Browns class of fade).
+  The muted tier is Owner-specified 0.50: measured 2.1:1 light / 3.1:1 dark — intentionally quiet;
+  the 90+/85+ tiers carry the hierarchy.
+- Owner UI 4: the preseason trio #scriptOff / #scriptDef / #aggrSel get the house padding
+  (8px 26px 8px 12px) — "Auto" and "Balanced" leave the rounded corner; every other select keeps
+  its own padding.
+- Owner UI 5: the depth chart's player dropdowns (every lineup slot, the Dime, the KR row) wear
+  the house language: Cinzel names in the theme's muted ink, the 90+ gold / 85+ bold tier riding
+  the option rows, and the praised hover (team-ringed border + gold wash on the options).
+  Battery: option ink 5.6:1 light / 8.3:1 dark; the 90+ gold 3.8/3.0 (brand tier, floor 3).
+  The compare family, the fills dropdown and the draftSetup bubbles are untouched this wave.
+- Owner UI 6: the honor lines now lead with the crest (crest, then name) — matching the chips and
+  the Owner's lean; the written name stays as the no-crest fallback; the playoff score lines keep
+  the SB-page around-the-score law.
+Batteries: w70 contrast battery 15/15 PASS (bounds + 32 teams x 2 modes); headless smoke light+dark.
 -->
+
 <!DOCTYPE html>
 <html lang="en">
 <style>:root{color-scheme:light dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style>
@@ -2211,6 +2212,27 @@ html{scrollbar-gutter:stable;}
  #draftTable2{font-size:0.86rem;}
  #draftTable2 td{padding-left:4px !important;padding-right:4px !important;}
 }</style>
+<style id="w70css">
+/* w70 (Owner UI 1): the 20-0 reads on its pill — coffee on the cream panel, cream-gold on the dark */
+.zpb-again-box .zpb-shine{color:#4a2b0d !important;-webkit-text-fill-color:#4a2b0d !important;background:none !important;animation:none;text-shadow:none !important;}
+:root[data-theme="dark"] .zpb-again-box .zpb-shine,:root:not([data-theme="light"]) .zpb-again-box .zpb-shine{color:var(--g5,#ffe9c6) !important;-webkit-text-fill-color:var(--g5,#ffe9c6) !important;}
+/* w70 (Owner UI 2): the line-up map ink solves against the tinted paint — coffee in light, cream in dark (32x2 battery: worst 6.86:1) */
+.zpb-fm-off i,.zpb-fm-def i{color:#4a2b0d;}
+:root[data-theme="dark"] .zpb-fm-off i,:root:not([data-theme="light"]) .zpb-fm-off i,:root[data-theme="dark"] .zpb-fm-def i,:root:not([data-theme="light"]) .zpb-fm-def i{color:#f6e8c9;}
+/* w70 (Owner UI 3): the tier law's floor — 85+ bold, the rest the team's neutral 0.50 (--tn light / --tnd dark) */
+.zpb-vib{font-weight:800;}
+.zpb-pcard b.zpb-gname{font-weight:400;}
+.zpb-pcard b.zpb-gname:not(.zpb-shm):not(.zpb-vib){color:color-mix(in srgb,var(--tn,var(--sub,#6b5744)) 50%,transparent);}
+:root[data-theme="dark"] .zpb-pcard b.zpb-gname:not(.zpb-shm):not(.zpb-vib),:root:not([data-theme="light"]) .zpb-pcard b.zpb-gname:not(.zpb-shm):not(.zpb-vib){color:color-mix(in srgb,var(--tnd,var(--sub,#c9b18f)) 50%,transparent);}
+.zpb-pcard b.zpb-vib,.zpb-pcard b.zpb-shm{font-weight:800;}
+/* w70 (Owner UI 4): the preseason trio leaves the rounded corner */
+#scriptOff,#scriptDef,#aggrSel{padding:8px 26px 8px 12px !important;}
+/* w70 (Owner UI 5): the player dropdowns wear the house language — Cinzel, muted ink, the tier on the rows, the praised hover */
+.depth-row select option,select[data-lineup] option,select[data-returner] option{font-family:'Cinzel',Georgia,serif;color:var(--sub,var(--text));}
+select[data-lineup] option:hover,select[data-returner] option:hover{background:color-mix(in srgb,var(--gold3,#9a6b1f) 20%,var(--panel));}
+.depth-row select:hover,select[data-returner]:hover{border-color:var(--zrb,var(--accent)) !important;box-shadow:0 0 0 2px color-mix(in srgb,var(--zrb,var(--accent)) 25%,transparent);}
+@media (prefers-reduced-motion: reduce){.depth-row select,select[data-returner]{transition:none;}}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -5576,7 +5598,7 @@ function returnerRowHTML(hostId){
  const S = (typeof seasonState!=='undefined') ? seasonState : null; if(!S || !S.teams) return '';
  const user = seasonUserTeam(); if(!user) return '';
  const cands = returnerCandidates(S.teams[user].slotmap).sort((a,b)=>returnerRating(b.p)-returnerRating(a.p)), cur = (S.returners||{})[user] || autoReturner(S.teams[user].slotmap);
- return `<div class="depth-row lgrid"><span class="slotname" title="Kick Returner">KR</span><select data-returner="1" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${cands.map(c=>`<option value="${c.p[0].replace(/"/g,'&quot;')}" ${c.p[0]===cur?'selected':''}>${c.p[0]}  ·  ${POS_DISPLAY[c.p[1]]||c.p[1]} ${c.p[3]}, score ${returnerRating(c.p).toFixed(1)}</option>`).join('')}</select><span class="dwar"></span></div>`;
+ return `<div class="depth-row lgrid"><span class="slotname" title="Kick Returner">KR</span><select data-returner="1" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${cands.map(c=>`<option value="${c.p[0].replace(/"/g,'&quot;')}" ${c.p[0]===cur?'selected':''} style="${c.p[3]>=90?'color:var(--gold3,#9a6b1f);font-weight:700;':(c.p[3]>=85?'font-weight:700;':'')}">${c.p[0]}  ·  ${POS_DISPLAY[c.p[1]]||c.p[1]} ${c.p[3]}, score ${returnerRating(c.p).toFixed(1)}</option>`).join('')}</select><span class="dwar"></span></div>`;
 }
 // ---- w34 (Owner): staged lineup edits — change whoever you want, then APPLY THE CHANGES ----
 function zpbStageOf(roster){
@@ -5627,7 +5649,7 @@ function lineupEditorHTML(roster, hostId){
  const dimeEd = ()=>{ // w50 (Owner): DIME sits directly below NICKEL on the SAME defense depth chart — never off the list · w55 (Owner): the Dime is CHANGEABLE like every slot — the same picker, the same staging, the same APPLY
   const cur = smap['CB4'];
   const opts = players.filter(p=>eligibleSlotsFor(p).includes('CB4') || (cur && p[0]===cur[0])).map(p=>{
-   return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''}>${p[0]}</option>`; // the box carries the name, nothing else
+   return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''} style="${p[3]>=90?'color:var(--gold3,#9a6b1f);font-weight:700;':(p[3]>=85?'font-weight:700;':'')}">${p[0]}</option>`; // the box carries the name, nothing else
   }).join('') || '<option value="" disabled>\u00b7</option>'; // a depth slot with no eligible player yet still shows its row
   const cls = cur ? (cur[3]>=90?'zpb-shm':(cur[3]>=85?'zpb-vib':'')) : ''; // w27: the tier law rides the picker's row like every sibling
   return `<div class="depth-row lgrid"><span class="slotname">DIME</span><select data-lineup="CB4" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${opts}</select><span class="dwar">${cur?effOvr(cur,'CB4'):''}</span></div>`;
@@ -5636,7 +5658,7 @@ function lineupEditorHTML(roster, hostId){
   const rows = window.zpbOrderSlots(gcls, slots, formOn).map(sl=>{
    const cur = smap[sl];
    const opts = players.filter(p=>eligibleSlotsFor(p).includes(sl) || (cur && p[0]===cur[0])).map(p=>{
-    return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''}>${p[0]}</option>`; // w19 (Owner): the box carries the name, nothing else
+    return `<option value="${p[0].replace(/"/g,'&quot;')}" ${cur&&cur[0]===p[0]?'selected':''} style="${p[3]>=90?'color:var(--gold3,#9a6b1f);font-weight:700;':(p[3]>=85?'font-weight:700;':'')}">${p[0]}</option>`; // w19 (Owner): the box carries the name, nothing else
    }).join('') || '<option value="" disabled>\u00b7</option>'; // w30: a depth slot with no eligible player yet still shows its row
    const war = cur ? `<span class="narr" style="margin-left:6px;">${fmtWar(winsAt(cur, sl))}</span>` : '';
    return `<div class="depth-row lgrid"><span class="slotname">${(LB&&LB[sl])||LABELS[sl]||sl}</span><select data-lineup="${sl}" style="width:100%;min-width:0;background:var(--panel2);border:1px solid var(--border);color:var(--text);border-radius:6px;padding:3px 6px;font-size:0.78rem;">${opts}</select><span class="dwar">${cur?effOvr(cur, sl):''}</span></div>`;
@@ -10788,7 +10810,7 @@ function honorLineHTML(c, user, shm){
  const attr = _gold
   ? ` class="zpb-shm"` // w44 (O2, Owner): the first-team gold — the constant --zshim law wears it in both themes
   : ((shm && pk) ? ` class="zpb-shm" style="--zrb:${pk.accL};--zshim:var(--zshim,${pk.accL});color:var(--zshim,${pk.accL});"` : (color ? ` style="color:${color};"` : '')); // w43 (N4, Owner): the shimmer reads the constant gold unless a surface pins its own --zshim
- return `<span${attr}>${c.name}</span> <span class="narr zpb-aplog">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(c.team):nick(c.team)}</span>`; // w47 (Owner): the crest instead of the team name on the honor cards and the All-Playoff panels
+ return `<span class="narr zpb-aplog">${(typeof zpbTeamLogo==='function')?zpbTeamLogo(c.team):nick(c.team)}</span><span${attr}>${c.name}</span>`; // w70 (Owner UI 6): the crest leads the honor line, matching the chips // w47 (Owner): the crest instead of the team name on the honor cards and the All-Playoff panels
 }
 // w33 (R26): the bordered, shimmering award chip for the Owner's own players
 function renderRegularAwardsHTML(A, open){
