@@ -1,0 +1,14 @@
+41d2cb10ab3608fcc879816e61e20002  Football-Sim-Z-post-blue-w66.html
+
+# lineage pins
+948f789da6d3ccf064104212ec748f3a  Football-Sim-Z-post-blue-w65.html (the baseline)
+c07988f29298000922297f4ec549acdf  stage-11 (the Owner's first round complete, steps 1-11)
+b6f9ac56d4e8b5b2bcb563e1e726ee43  stage-12 (N1+N2, the round-2 opens)
+06ecd4873ba2808536897bd70dafbb9c  stage-14 (N5+N6+N7, the upper-line law)
+217c1b625370cb277a70f7aa0b3acf98  stage-15 (N8, the silent run + the solemn screen)
+c79bcd5abd3a3141e05b20310ebbab60  stage-16 (N9+N10)
+70ead5fc196040bc39e5d62ed39083e1  stage-17 (the CLAIMS header carries both rounds)
+54ccb70d3f95193da135d9ef5ddd2bef  stage-18 (the review-door end screen)
+6e8cdbcf5a79c5ace0bf4d2c151526e8  stage-19 (the ${user} scope fix)
+b253982d680f7c94266647790f57c66d  stage-20 (the skill-slot escape retires)
+41d2cb10ab3608fcc879816e61e20002  stage-21 (the last escape retires — SHIPPED)
