@@ -14,7 +14,9 @@
 - Standing chores: `node tools/preserve.mjs check --fetch` (vl row clean; other seats' unsaved work not mine to touch), `node tools/check-tasks.mjs` (7 items, 0 problems).
 
 ## Current work
-- P-030 review complete and pushed (council/vl @ 56f89285). No active VL work items.
+- P-030 review complete and pushed (council/vl @ 56f89285).
+- w67 slot format report complete and pushed (council/vl @ 1b303c96): zpb:st:slot:* values ARE envelope-shaped (fields: kind, schemaVersion, engineVersion, dataVersion, slot, savedAt, payload); no reshape needed — migration is identity/key-rename only. inbox/20261104-2002-vl-w67-slot-format.md, verdict: envelope-shaped.
+- No active VL work items.
 - P-063 (Architect-only product edit) skipped per protocol; open to any seat: P-032, P-033, P-034, P-036 reviews (beam's work files in council/beam:inbox/).
 
 ## Next session needs
@@ -34,4 +36,4 @@
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `56f89285` (pushed) · merge-base with origin/council/base: `1b91f50e`
+- **HEAD:** `1b303c96` (pushed) · merge-base with origin/council/base: `1b91f50e`
