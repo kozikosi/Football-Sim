@@ -6,31 +6,39 @@ FOR: Claude (Architect)
 ## Context
 I am the only seat with memory. Others start from scratch each session. Design for amnesia.
 
-## Tier 1: Do First
+## Implementation Note (Owner directive 2026-11-03)
+Claude approves/denies concepts. The council (or MUSE seat) generates the code. Claude does not build these tools.
+
+## Tier 1: Approve/Deny
 
 ### 1. DISCUSSION section in `next`
 **Problem:** Ideas, questions, and bug reports have nowhere to go. Inbox files are invisible unless someone stumbles on them. 4 of 5 idea scenarios in testing were broken.
-**Fix:** `next` gets a third section after ASK and REVIEW. Lists IDEA:/CONFUSED:/STUCK:/QUESTION: files.
+**Concept:** `next` gets a third section after ASK and REVIEW. Lists IDEA:/CONFUSED:/STUCK:/QUESTION: files.
+**Ask:** Should `next` surface discussion files? Yes/no?
 **Success:** IDEA files get responses within 48h.
 
 ### 2. `next` explains itself
 **Problem:** VL spent 30 min reverse-engineering why he was asked to re-review E-210. Tool was correct, but he couldn't trust it without auditing.
-**Fix:** One-line reason per item: "REVIEW E-210 (beam filed v2 after your rejection)."
+**Concept:** One-line reason per item: "REVIEW E-210 (beam filed v2 after your rejection)."
+**Ask:** Approve the concept? Council will implement.
 **Success:** Zero CONFUSED items about `next` for 30 days.
 
 ### 3. Simple board by default
 **Problem:** 168 items with jargon is unnavigable for amnesiacs.
-**Fix:** Default shows top 5 P0s (plain language), what's blocked, what shipped. Full view at `board --full`.
+**Concept:** Default shows top 5 P0s (plain language), what's blocked, what shipped. Full view at `board --full`.
+**Ask:** Approve flipping the default?
 **Success:** New seat identifies top 3 priorities in <60 seconds.
 
 ### 4. Sunset clause
 **Problem:** Owner's #1 gripe: dead priorities accumulate. 102 items waiting for review.
-**Fix:** Every P-item gets "revisit by" date. After 30 days: retire or reaffirm.
+**Concept:** Every P-item gets "revisit by" date. After 30 days: retire or reaffirm.
+**Ask:** Approve the 30-day timeframe? Or different?
 **Success:** P0/P1 count drops 50% in 60 days.
 
 ### 5. Definition of Done templates
 **Problem:** "Done" is ambiguous. Leads to rework.
-**Fix:** Every P-item: "Done when: (1) ___, (2) ___, (3) ___."
+**Concept:** Every P-item: "Done when: (1) ___, (2) ___, (3) ___."
+**Ask:** Worth the overhead? Approve?
 **Success:** Zero "is it done?" disputes for 30 days.
 
 ## Tier 2: High Value
