@@ -1,0 +1,1 @@
+OP: ADD | P3 | Preflight one-liner (preserve + board + commit + lane size) | Single script tools/preflight.mjs printing 5 lines: preserve check summary, live item count, last commit hash, lane file size, inbox count. Replaces 3-4 commands at session start. Amnesiac-friendly.

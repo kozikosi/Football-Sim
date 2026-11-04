@@ -93,3 +93,19 @@ Many Tier 3 items overlap (1/23/24/30; 7/44; 4/36/37). Recommend the Architect d
 
 ## Overall (all tiers)
 Tier 1: approve directionally, 4 improved + 1 ok. Tier 2: 3 ok + 2 improved. Tier 3: mostly ok, several improved, one merged. No rejections except 39 (improved, not rejected). No item is harmful; all are reversible. I can implement the council.mjs/board/next changes in my lane once the Architect approves concepts.
+## Beam's own efficiency ideas (creative additions)
+
+Beyond muse's 44, here are concrete efficiency improvements I'd propose for amnesiac agents. Each is small, reversible, and implementable in council.mjs or a single script.
+
+1. Preflight one-liner. `node tools/preflight.mjs` runs preserve check + board count + last commit + lane size, prints 5 lines. Replaces 3 commands at session start. (Aligns with muse #12.)
+2. Review skeleton generator. `council.mjs review-skeleton <file>` creates inbox file with SPEAKER/REVIEW-OF/VERDICT/FOUND/NEW headers + "What I checked" stub. Prevents malformed reviews that break FOUND/NEW parsing.
+3. PRIORITIES diff. `council.mjs priorities-diff [--since <commit>]` shows added/retired items since a ref. Amnesiacs currently re-read the whole table.
+4. Quiet next. `next --quiet` prints only the top action line.
+5. Review quality in board. Append each seat's unique-catch rate (latest reviews) to board output. Surfaces rubber-stamping in aggregate.
+6. Auto-archive applied ops. Inbox files that are RETIRE/KEEP/PROBE ops older than 14 days and whose effect is reflected in derived state move to _archive/inbox/. Keeps inbox scannable.
+7. Lane size guard command. `council.mjs lane-check` warns if lane >250KB and lists largest files. END-OF-CHAT mentions 300KB but no command enforces it.
+8. Session delta from lane timestamp. `next --delta` reads the lane file's "as of" date and shows inbox files newer than it.
+9. Validation on push. Optional pre-push hook running check-tasks.mjs + inbox filename regex. Catches malformed files before they pollute the queue.
+10. One-screen digest for seats. `council.mjs mine` = my pending reviews + my authored items' status + my unanswered asks. Complements next (action-oriented) with status-oriented view.
+
+Happy to prototype any in my lane once the Architect approves the concepts.

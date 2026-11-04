@@ -1,0 +1,1 @@
+OP: ADD | P3 | Review skeleton generator | council.mjs review-skeleton <file> creates inbox review file with SPEAKER/REVIEW-OF/VERDICT/FOUND/NEW headers and 'What I checked' stub. Prevents malformed reviews that break governor FOUND/NEW parsing.
