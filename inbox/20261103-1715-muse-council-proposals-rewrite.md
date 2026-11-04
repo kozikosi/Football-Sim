@@ -45,8 +45,12 @@ Two commands confuse new seats. `next` shows top 3 actions. `next --all` shows t
 ### 6. Dependency graph
 `board --graph` renders BLOCKED() relationships visually. Bottlenecks become obvious.
 
-### 7. Auto-generated digest
-Kill the manual bulletin. `board --digest` auto-generates: "This week: 12 shipped, 3 P0s aging." It's a query, not writing.
+### 7. Auto-generated digest + discussion section (revised)
+Kill the manual status-update bulletin. Replace with two things:
+1. `board --digest`: auto-generated stats ("12 shipped, 3 P0s aging"). It's a query, not writing.
+2. `next` gets a third section: after ASK and REVIEW, add DISCUSSION. Lists IDEA:/CONFUSED:/STUCK: files. Makes ideas/questions discoverable without a separate bulletin file.
+
+The problem with killing the bulletin entirely: there's no notification system. Inbox files are invisible unless someone stumbles on them. The DISCUSSION section solves discovery.
 
 ---
 
@@ -67,8 +71,8 @@ Remove idioms. "Take the first item you are qualified to complete. If you cannot
 ### 12. One-line setup
 `setup-seat.sh <name>` → clones, checks out, syncs, creates lane file, prints "run `next`." Current: ~15 manual steps.
 
-### 13. Seats own their branches
-(Owner directive 2026-11-03): Seats have universal control over their own branch. Conflicts in own files: resolve yourself (yours wins), commit, note in lane file. Only escalate for shared files or protected paths. Do not "stop and tell the Owner."
+### 13. Seats own their branches [DECIDED - Owner directive 2026-11-03]
+Seats have universal control over their own branch. Conflicts in own files: resolve yourself (yours wins), commit, note in lane file. Only escalate for shared files or protected paths. This is already decided, not a proposal.
 
 ### 14. Example-driven docs
 Instead of "write per `inbox/README.md`," show: "Good inbox file: [link]. Bad one: [link]. Here's why." Examples beat specifications for amnesiacs.
@@ -138,8 +142,8 @@ Structured form: "Claim 1: [ ] verified [ ] failed — evidence: ___." Resumable
 ### 31. Specific review feedback
 "Strongest: ___. Weakest: ___." Helps calibration. Not a grade.
 
-### 32. Bulletin context lines
-"P-219 (DB weights inverted) blocked on Owner." Not just "P-219 blocked." 10 words saves 20 minutes of searching.
+### 32. Bulletin context lines [SUPERSEDED by Idea 7]
+If bulletin survives, entries need context. But Idea 7 (revised) replaces the bulletin with auto-digest + DISCUSSION section. This idea is moot if 7 is implemented.
 
 ### 33. Owner directive template
 `DECISION: | REASON: | SUPERSEDES: | SCOPE:`. Makes conflicts impossible.
@@ -158,22 +162,22 @@ For non-committal speculation. Lowers the bar for wild ideas.
 ## Summary (ranked by impact)
 
 **Tier 1 — Do first:**
-1. **`next` explanations** (#1) — saves 30 min per confusion, affects everyone daily
-2. **Simple board default** (#2) — 168-item view is unnavigable for amnesiacs
-3. **Sunset clause** (#23) — addresses Owner's #1 gripe (dead priorities accumulating)
-4. **DoD templates** (#15) — prevents "is this done?" debates
-5. **150-line rule in docs** (#9) — kills tribal knowledge (verified missing)
+1. **`next` explanations** (#1) — saves 30 min per confusion, affects everyone daily. *Success: no CONFUSED items about `next` output for 30 days.*
+2. **Simple board default** (#2) — 168-item view is unnavigable for amnesiacs. *Success: new seat can identify top 3 priorities in <60 seconds.*
+3. **Sunset clause** (#23) — addresses Owner's #1 gripe (dead priorities accumulating). *Success: P0/P1 count drops by 50% in 60 days.*
+4. **DoD templates** (#15) — prevents "is this done?" debates. *Success: no "is it done?" disputes for 30 days.*
+5. **150-line rule in docs** (#9) — kills tribal knowledge (verified missing). *Success: zero misfiled large files for 30 days.*
 
 **Tier 2 — High value:**
-6. **Branch ownership** (#13) — Owner directive 2026-11-03, stops unnecessary escalation
-7. **"Needs approval" obvious** (#40) — Owner needs this to track blockers
-8. **Engine diff tool** (#24) — saves hours per Claude push
-9. **Auto-generate filenames** (#18) — eliminates timestamp errors
-10. **Define "can do well"** (#10) — amnesiacs can't self-assess without guidance
+6. **"Needs approval" obvious** (#40) — Owner needs this to track blockers. *Success: Owner can answer "what needs me?" in 10 seconds.*
+7. **Engine diff tool** (#24) — saves hours per Claude push. *Success: MUSE seat stops manually diffing.*
+8. **Auto-generate filenames** (#18) — eliminates timestamp errors. *Success: zero filename collisions for 30 days.*
+9. **Define "can do well"** (#10) — amnesiacs can't self-assess without guidance. *Success: no seat picks an item they're unqualified for.*
+10. **DISCUSSION section in `next`** (#7 revised) — makes ideas/questions discoverable. *Success: IDEA: files get responses within 48h.*
 
-**Tier 3 — Good:** Remaining 34 ideas in the doc above.
+**Tier 3 — Good:** Remaining ideas in the doc above.
 
-All 44 ideas are Owner-reviewed.
+All ideas are Owner-reviewed. Decided items (e.g., #13 branch ownership) are marked.
 
 ---
 
