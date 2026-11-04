@@ -1,75 +1,40 @@
 <!--
-WAVE: w66
+WAVE: w67
 CLAIMS:
-- P-232: the AUTO lineup is natural-first — stage one assigns every player to a slot his
-  real NFL position plays (Hungarian over natural slots only); stage two fills a slot that
-  would otherwise sit empty with the best IN-UNIT flex only (ZPB_AUTO_UNITS: OL->OL,
-  HB/FB, WR-only, TE-only, DL internal, LB->LB, secondary internal, K->K(+P for the fill),
-  P->P; no OT->RB1, no P->K, no LB->DE, no DE->LB, no WR->TE, no RB->WR). The FLEX table
-  itself is UNTOUCHED (REV 4 stands for the user's manual flexing). The DRAFT brain obeys
-  the same law: cpuPick values in-unit placements only, the user's auto-picks land
-  natural-first (zpbAutoFindSlot), nobody drafts a second specialist or a third TE early,
-  an unfilled real slot pays a growing premium (rounds 15+), the last resort accepts only
-  near-free (<=2) conversions and never into the skill/specialist slots
-  (TE/WR/FB/K/P — and the audit caught the LAST path twice: cpuPick's anyone-anywhere
-  escape put a DT at TE2/TE3 on the user's own board, whose lineup is never re-optimized;
-  the escape is retired entirely — a pick with no legal landing passes and the slot sits
-  honestly empty), and zpbFillAllLineups fills in-unit (the flat -9 anyone-anywhere
-  emergency is retired). MEASURED POOL FACT the claims rest on: the
-  embedded 1,188-player pool carries only 53 tight ends for 96 TE slots — the model leaves
-  the surplus TE slots honestly EMPTY (70-OVR default in the math) instead of flexing wide
-  receivers into them, which is the exact absurdity class P-232 flags.
-- P-174: the Player Browser is an infinite scroll — renderPlayers shows the first 60 and an
-  IntersectionObserver sentinel (#pbSentinel, rootMargin 160px) appends the next 60 while
-  scrolling; no PREV/NEXT buttons, no "PAGE X OF Y", the #playerPager div is gone, and the
-  false "carries the Owner's page law" comment is replaced with the truth. Madden Rankings
-  has no pager and is untouched.
-- P-175 (partial): the draft board obeys the mid-window law — .draft-columns keeps its
-  340px rail only above 861px (the unconditional override retires; 761-860 stacks the rail
-  below the board like <=760 already does) and 761-1120px reads the w57 two-line card
-  (line one: name · OVR · Draft; line two: pos · team · ovr · wins · pri · gone · fills),
-  so the Draft button can never clip behind the panel's right edge.
-- P-124 (partial): the Season Review page's "Try again to go 20-0?" leaves the top bar and
-  rides its own centered panel at the bottom, filled + shimmering (zpb-ctabig family, the
-  zpb-shine 20-0 kept); the strengths/weaknesses graphics themselves are unchanged.
-No P-item (Owner UI round): every Draft button pulses (zpbBtnPulse); the top-3 priority
-Draft buttons upgrade to the filled team-gradient sheen (zpb-ctabig, the Play-the-X
-treatment) · the field map ("where each position lines up") and the guide's flex-cost
-chips wear the team theme with 0.5-strength team ink (--accent2), never the fixed
-yellow/black · the pregame marquee clears the replay header line at every size
-(.zpb-rep-intro top:67px; the <=600px paddings rebalanced) · "RETURN TO MODEL LINEUP" is
-renamed RETURN TO AUTO LINEUP and hidden until the user has actually touched the lineup
-(roster._zpbTouched) · "Shakiest" reads "WEAKEST" in WHY THIS STYLE · a team that misses
-the playoffs gets the standalone centered SEASON REVIEW panel on the regular-season review
-page (phase regularReview), opening the same shared review page — no playoff sim required.
-No P-item (Owner UI round 2): the draft board's fills cell reads ONE label ("FS (-10 FLEX)")
-inside a custom dropdown (zpb-slotdd/zpb-slotpop — Cinzel, the homepage team-picker's
-principles, the user team's 0.5 ink) listing every open spot with honest flex costs; the
-raw <select class="slotsel"> is retired · the roster summary sentence ("2 of 32 starters ·
-+5 wins above a replacement-level lineup") renders as two team-tinted Cinzel badges
-(zpb-rbadge) · the draft-review card cascade obeys one clock: .3s per beat with ZERO gap
-(card N+1 starts exactly when card N finishes), the field map and the depth zones keyed to
-the CARDS' clock (the cards are the master; the map follows), on mobile and desktop alike ·
-the "(change who plays where at any time)" aside is removed at its single source · the
-season-tab Team Comparison dropdowns join the homepage custom family (zpbEnhanceCmpSel —
-optgroup headers, per-team 0.5 inks, Cinzel; the raw OS menu and its purple wash are gone) ·
-SIM GAME / SIM SEASON / BACK TO SEASON live on the top panel's upper line next to 100
-SEASONS (#zpbSimTabsHost + #zpbBtsHost); BACK TO SEASON is never its own panel, wears the
-SIM SEASON tab's classes, and the standalone .zpb-bts-top panels and the bottom
-zpbBackSeasonBar retire · in the playoffs the second SIM PLAYOFFS button next to "Play the
-X" is gone; the ONE top-panel door runs zpbSimRestOfPlayoffs — the whole rest of the
-bracket with __zpbQuietSim (the during-the-game cinematic panel can never fire from it),
-then mounts the Super Bowl screen if the user's team made it, or the solemn zpbPlayoffElimCine
-(the round lost, the opponent, the score, the Super Bowl final + champion + MVP — no
-confetti, no celebration) if it didn't · the user's COTY "YOU" shimmers like the other
-honors-earned winners (gold:true on the Super Bowl story honors; the awards table's YOU
-rides zpb-shm) · the player-profile name feature: zpbProfStore (localStorage
-zpbPlayerProfiles), a profile-name editor on every Player Browser name cell, the saved name
-riding the player's name as a 0.5-ink suffix (the first slab of the profiles track) ·
-RUN IT BACK drops "SAME ROSTER" from the button; its caution panel states the mechanism
-("You will begin the season again at the preseason with the same roster you have right now.
-The current season's results, stats and awards are erased.") — zpbCaution gained an opts
-parameter; the other callers keep the default copy.
+- Owner UI 1: the two homepage dropdown bubbles read as ONE size at rest and after every
+  selection - #draftSetup .zpb-selbtn carries one fixed width (--zpbSelW 260px, bigger than
+  either old default); the team face keeps the w27 fit law (full name -> abbreviation,
+  MEASURED by the extended fitFace + .zpb-fit-t, never a clipped word); the <=1180px face
+  swap retires (the fixed box decides, not the window) and the <=640px shrink cannot beat
+  the id law. Battery: all 32 teams x 3 widths, widths equal and faces unclipped.
+- Owner UI 2: the player browser stops flashing on small screens - #playerTable is
+  data-nostack (the Owner prefers the smaller, narrower table at every width) and the
+  phone-stacker counts columns colspan-aware (the P-174 sentinel row is colspan=6 but read
+  as one cell, which flipped the fit verdict on every pass - the measure/toggle loop that
+  flashed the panel between the stacked cards and the compact table is dead).
+- Owner UI 3: the Series subtitle reads on TWO lines - "RANKING BY THE N MOST VALUABLE
+  POSITIONS" over the slot list (QB + CB1 + ...), the "spots" wording retired, every N.
+- Owner UI 4: the fills dropdown's ink follows the neutral dropdown family - dark mode
+  swaps --tTxM (the light halfway ink, a dark navy on the dark panel for the Panthers)
+  to --tTxd, the same family the popup options and the homepage picker already wear.
+- Owner UI 5: ONE reveal clock at the season-in-badges pace - that rail paces 0.6s per
+  beat (measured: delay = beat*0.6s - 0.25s head start), so the player cards, the
+  field-map markers and the depth rows all ride 0.6s (the w66 0.3s card clock and the
+  1s map fallback retire); entrance .55s, one card at a time, map and depth in step.
+- Owner UI 6: the pregame star cards read the neutral halfway ink on their always-dark
+  stage (the meta line rides --tnd; the 90+ shimmer sweeps tnd -> cream instead of the
+  light-tuned --zrb accent), the Key Players titles and shimmer rows swap to the
+  dark-tuned --zrbd in dark mode, and the matchup-math bars ride --zrbd in dark -
+  measured for all 32 teams in both modes.
+- Owner UI 7: the pregame stage ends at the footer - the intro's bottom inset is measured
+  to the footer's height at mount (the w66 top clamp's mirror), so no star pair can cross
+  the skip button or its hairline at any window size; swept at six sizes.
+- Owner UI 8: the upper line is one left-aligned cluster - NEW DRAFT / 100 SEASONS /
+  SIM GAME / SIM SEASON (/ SIM PLAYOFFS / BACK TO SEASON) shoulder to shoulder; the 20-0
+  line keeps the far right; the 100-SEASONS wrapper stops inflating its own box.
+- Owner UI 9: SIM PLAYOFFS leaves the w57 big-button law (the same retirement SIM SEASON
+  made in w65) - the review page reads BEGIN PLAYOFFS as the big filled pill and SIM
+  PLAYOFFS clearly smaller beside it. Measured before/after.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -393,7 +358,7 @@ body{background:
 .tabbtn.active{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));box-shadow:0 4px 14px var(--glow);}
 .resetbtn{background:linear-gradient(90deg,var(--accent),var(--accent2,var(--accent)));border-radius:999px;font-weight:700;box-shadow:0 6px 18px var(--glow);transition:transform .12s ease, box-shadow .12s ease;}
 .resetbtn:hover{opacity:1;transform:translateY(-1px);box-shadow:0 10px 24px var(--glow);}
-#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#simPlayoffsBtn,#seasonReviewBtn,#beginPlayoffsBtn{font-size:1rem !important;padding:13px 30px !important;} /* w57 (Owner): BEGIN PLAYOFFS wears the SIM PLAYOFFS size · w65 (Owner): SIM SEASON leaves the big law — it rides the tab row at the SIM GAME size */
+#beginSeasonBtn,#beginSeasonBtn2,#startDraftBtn,#seasonReviewBtn,#beginPlayoffsBtn{font-size:1rem !important;padding:13px 30px !important;} /* w57 (Owner): BEGIN PLAYOFFS wears the SIM PLAYOFFS size · w65 (Owner): SIM SEASON leaves the big law — it rides the tab row at the SIM GAME size · W67 (Owner): SIM PLAYOFFS leaves the big law too — the review page reads BEGIN PLAYOFFS as the big pill and SIM PLAYOFFS clearly smaller beside it */
 
 th.sortable:hover{text-decoration:none;color:var(--text);}
 h2{letter-spacing:-.005em;}
@@ -1199,15 +1164,20 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 @media (prefers-color-scheme: dark){
  :root:not([data-theme="light"]) .zpb-selbtn .zpb-face{color:var(--zaD,var(--zaL,inherit));}
 }
-.zpb-selwrap.zpb-teamwrap .zpb-selbtn{min-width:150px;max-width:none;}
+/* W67 (Owner): the two homepage dropdown bubbles read as ONE size at rest and after every
+   selection - one fixed width for both (the #draftSetup law below wins over every media),
+   and the team face keeps the w27 fit law by MEASUREMENT (full name -> city -> abbreviation,
+   never a clipped word, never a second line); the <=1180px swap retires - the fixed box
+   decides, not the window. */
 .zpb-selwrap.zpb-teamwrap .zpb-selbtn span{max-width:none;}
-.zpb-selwrap.zpb-teamwrap .zpb-face-abbr{display:none;}
-@media (max-width:1180px){
- .zpb-selwrap.zpb-teamwrap .zpb-face-full{display:none;}
- .zpb-selwrap.zpb-teamwrap .zpb-face-abbr{display:inline;}
- .zpb-selwrap.zpb-teamwrap .zpb-selbtn{min-width:0;max-width:150px;}
- .zpb-selwrap.zpb-teamwrap .zpb-selbtn span{max-width:150px;}
-}
+.zpb-selwrap.zpb-teamwrap .zpb-face-full,.zpb-selwrap.zpb-teamwrap .zpb-face-city,.zpb-selwrap.zpb-teamwrap .zpb-face-abbr{white-space:nowrap;}
+.zpb-selwrap.zpb-teamwrap .zpb-face-city,.zpb-selwrap.zpb-teamwrap .zpb-face-abbr{display:none;}
+.zpb-face.zpb-fit-t .zpb-face-full{display:none;}
+.zpb-face.zpb-fit-t .zpb-face-city{display:inline;}
+.zpb-face.zpb-fit-t2 .zpb-face-city{display:none;}
+.zpb-face.zpb-fit-t2 .zpb-face-abbr{display:inline;}
+#draftSetup{--zpbSelW:260px;} /* W67 (Owner): both bubbles bigger than either old default, and always equal */
+#draftSetup .zpb-selbtn{min-width:var(--zpbSelW);max-width:var(--zpbSelW);width:var(--zpbSelW);height:46px;} /* W67 (Owner): one height too - the logo used to inflate the team bubble 4px past the pick bubble at the tap-floor widths */
 .zpb-selbtn{line-height:1.25;}
 .zpb-selpop{display:none;position:absolute;z-index:80;top:calc(100% + 6px);left:0;min-width:280px;max-width:320px;max-height:342px;overflow:auto;
  padding:6px;border-radius:14px;border:1px solid var(--rosehair);background:var(--panel);
@@ -1378,7 +1348,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-intro-star{position:absolute;left:var(--sx,50%);top:var(--sy,86%);transform:translate(-50%,-50%);white-space:nowrap;font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:800;font-size:1.02rem;letter-spacing:.06em;opacity:0;animation:zpbStarInOut 4.4s ease both;} /* w39 (Owner, A5): every action takes one second longer — 3.4s → 4.4s */
 .zpb-intro-star b{display:block;color:var(--tnd,#f2e4c8);font-size:1em;} /* w39 (A4): the name wears the panel's fitted size — the lane-fit law is real now */
 .zpb-intro-star b.zpb-vib{color:var(--tnd,#f2e4c8);}
-.zpb-intro-star i{font-style:normal;display:block;font-size:.62rem;letter-spacing:.12em;opacity:.92;color:var(--zrb,var(--gold3));margin-top:3px;}
+.zpb-intro-star i{font-style:normal;display:block;font-size:.62rem;letter-spacing:.12em;opacity:.92;color:var(--tnd,#f2e4c8);margin-top:3px;} /* W67 (Owner): the stage is dark in BOTH modes - the meta line reads the neutral halfway ink, never the light-tuned --zrb accent (the Jaguars' teal vanished on it) */
 /* w38 (R8, Owner): every pregame name wears the SAME player panel — the story-card frame */
 .zpb-intro-star{background:rgba(16,9,4,.62);border:1px solid rgba(217,169,76,.4);border-radius:12px;padding:8px 13px;box-shadow:0 4px 18px rgba(0,0,0,.35);}
 .zpb-intro-star.zpb-st-side,.zpb-intro-star.zpb-st-side-r{background:rgba(16,9,4,.5);}
@@ -1660,7 +1630,7 @@ table.zpb-styletb td,table.zpb-styletb th{font-size:.78rem !important;}
 #viewPlayers .panel{max-height:74vh;overflow:hidden;display:flex;flex-direction:column;}
 #viewPlayers .panel .filters,
 #viewPlayers .panel .count{flex:0 0 auto;}
-#viewPlayers #playerTable{flex:1 1 auto;overflow-y:auto;display:block;max-height:none;}
+#viewPlayers #playerTable{flex:1 1 auto;overflow-y:auto;overflow-x:auto;display:block;max-height:none;} /* W67 (Owner): the browser stays the smaller, narrower table at every width - the SPD column scrolls into view on a phone instead of clipping silently */
 #viewPlayers #playerTable thead th{position:sticky;top:0;background:var(--panel);z-index:2;}
 /* ---- Team Comparison: integers aligned over the position names ---- */
 .zpb-cmphead{display:grid;grid-template-columns:1fr auto 1fr;align-items:baseline;gap:12px;}
@@ -2100,8 +2070,8 @@ img{max-width:100%;}
 .zpb-fm-row i{font-style:normal;display:inline-flex;align-items:center;justify-content:center;min-width:46px;height:32px;padding:0 9px;border-radius:999px;font-weight:800;font-size:.74rem;letter-spacing:.04em;white-space:nowrap;}
 /* w33 (R7): cards and bubbles land one per second, in the order the Owner drafted them */
 @keyframes zpbCardIn{from{opacity:0;transform:translateY(7px);}to{opacity:1;transform:none;}}
-.zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.3s);} /* w66 (Owner): one clock everywhere — the 0.3s zero-gap beat; row N lands 0.3·N, each row exactly when the previous one settles */ /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
-.zpb-fm .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*1s);} /* w37 (R2, Owner): the map's players share the same hold */
+.zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.6s);} /* w66 (Owner): one clock everywhere — the 0.3s zero-gap beat; row N lands 0.3·N, each row exactly when the previous one settles */ /* w37 (R2, Owner): the base holds the cards until the opening cinematic fades out */
+.zpb-fm .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-base,0s) + var(--beat,0)*0.6s);} /* w37 (R2, Owner): the map's players share the same hold */
 /* w33 (R5): hover a player card and his station lights up — and the old law holds both ways */
 .zpb-fm-ini.zpb-fm-hot{box-shadow:inset 0 0 0 2px var(--zrb,var(--accent)),0 0 14px var(--glow,rgba(217,169,76,.4));transform:scale(1.12);}
 .zpb-fm-ini{transition:transform .18s ease, box-shadow .18s ease;}
@@ -2267,7 +2237,7 @@ html{scrollbar-gutter:stable;}
     <select id="teamFilter"><option value="">All Teams</option></select>
    </div>
    <div class="count" id="playerCount"></div>
-   <table id="playerTable">
+   <table id="playerTable" data-nostack="1"> <!-- W67 (Owner): the browser keeps the smaller, narrower table at every width - the stacked cards made the panel flash bigger -->
     <thead><tr>
      <th data-col="name">Player</th><th data-col="pos">Pos</th><th data-col="team">Team</th>
      <th data-col="ovr">OVR</th><th data-col="spd">SPD</th><th data-col="str">STR</th>
@@ -3484,6 +3454,7 @@ function zpbGameReplay(g, focusTeam){
   if(INTRO_MS){
    const intro = document.createElement('div'); intro.className = 'zpb-rep-intro';
    try{ const _hd = box.querySelector('.zpb-rep-hd'); if(_hd) intro.style.top = _hd.offsetHeight + 'px'; }catch(err){} // W66 (Owner): the header wraps to two rows at mid widths (90px, not 67) — the marquee always starts under the REAL line
+   try{ const _ft = box.querySelector('.zpb-rep-ft'); if(_ft) intro.style.bottom = _ft.offsetHeight + 'px'; }catch(err){} // W67 (Owner): the stage ends at the footer — the third star pair can never ride over the skip button or its hairline, at any window size
    // w33 (R27, Owner): the long pre-game stretch fills with badges and key players fading in and out
    const stars = [];
    try{
@@ -4012,7 +3983,7 @@ add100Button = function(container){
  const tabs = (document.getElementById('draftFinalResults') && document.getElementById('draftFinalResults').querySelector('.tabs'))
   || (container.querySelector ? container.querySelector('.tabs') : null);
  const b = document.createElement('button');
- b.className = 'tabbtn'; b.id = 'sim100Btn'; b.textContent = '100 SEASONS';
+ b.className = 'tabbtn zpb-ctasmall'; b.id = 'sim100Btn'; b.textContent = '100 SEASONS'; // W67 (Owner): the reassignment is the button that ships - it wears the SIM GAME size like every door on the line
  b.addEventListener('click', ()=>{ if(league100) render100(container); else runLeague100(100, container); });
  const ops = document.getElementById('zpbDraftOps'); if(ops){ ops.appendChild(b); } else if(tabs){ tabs.appendChild(b); }
  else{
@@ -4045,7 +4016,13 @@ add100Button = function(container){
   wrap.appendChild(btn); wrap.appendChild(pop);
   const isPick = sel.id==='draftPickNumberSelect';
   const cityOf = n=>{ const w = (n||'').split(' '); return w.length>1 ? w.slice(0,-1).join(' ') : ''; }; // w27 (Owner): 'Kansas City' when the full name will not fit
-  const fitFace = b=>{ const f = b && b.querySelector ? b.querySelector('.zpb-face') : null; if(!f || !f.querySelector('.zpb-fl')) return;
+  const fitFace = b=>{ const f = b && b.querySelector ? b.querySelector('.zpb-face') : null; if(!f) return;
+   if(f.querySelector('.zpb-face-full')){ // W67 (Owner): the team bubble's measured fit - the full name while it fits, then the city, then the abbreviation (the w27 law, measured, never a clipped word, never a second line)
+    f.classList.remove('zpb-fit-t','zpb-fit-t2');
+    if(f.scrollWidth > f.clientWidth + 1){ f.classList.add('zpb-fit-t');
+     if(f.scrollWidth > f.clientWidth + 1) f.classList.add('zpb-fit-t2'); }
+    return; }
+   if(!f.querySelector('.zpb-fl')) return;
    f.classList.remove('zpb-fit-c','zpb-fit-a');
    if(f.scrollWidth > f.clientWidth + 1){ f.classList.add('zpb-fit-c');
     if(f.scrollWidth > f.clientWidth + 1) f.classList.add('zpb-fit-a'); } }; // w27: full -> city -> abbreviation, measured, never a clipped word
@@ -4059,12 +4036,13 @@ add100Button = function(container){
    // w19 (Owner): the pick box never wears a logo; the team box wears the popup's lighter color —
    // full name when the window allows it, logo + abbreviation when the bar is compressed.
    if(isPick) btn.innerHTML = '<span class="zpb-face" style="' + vars + '">' + face + '</span>';
-   else if(sel.id==='draftSlotSelect') btn.innerHTML = logo(v) + '<span class="zpb-face" style="' + vars + '"><span class="zpb-face-full">' + face + '</span><span class="zpb-face-abbr">' + (v==='__random' ? 'RND' : abbrOf(v)) + '</span></span>';
+   else if(sel.id==='draftSlotSelect') btn.innerHTML = logo(v) + '<span class="zpb-face" style="' + vars + '"><span class="zpb-face-full">' + face + '</span><span class="zpb-face-city">' + (v==='__random' ? 'RND' : (cityOf(v) || abbrOf(v))) + '</span><span class="zpb-face-abbr">' + (v==='__random' ? 'RND' : abbrOf(v)) + '</span></span>'; // W67 (Owner): the middle station of the measured fit - the city when the full name cannot sit on the one line
    else if(/ /.test(v || '') && v !== '__random'){
     btn.innerHTML = logo(v) + '<span class="zpb-face" style="' + vars + '"><span class="zpb-fl">' + face + '</span><span class="zpb-fc">' + (cityOf(v) || abbrOf(v)) + '</span><span class="zpb-fa">' + abbrOf(v) + '</span></span>';
     fitFace(btn); // w27 (Owner): the static box shows complete words only
    }
    else btn.innerHTML = logo(v) + '<span class="zpb-face" style="' + vars + '">' + face + '</span>';
+   fitFace(btn); // W67 (Owner): every repaint re-measures - the fixed box never clips a word
   };
   if('ResizeObserver' in window){ try{ let _raf=0; new ResizeObserver(()=>{ if(_raf) return; _raf=requestAnimationFrame(()=>{ _raf=0; try{ fitFace(btn); }catch(err){} }); }).observe(btn); }catch(e){ } } // w32 (Owner): the observer is rAF-debounced — the loop notification can never fire
   window.addEventListener('resize', ()=>fitFace(btn));
@@ -5161,7 +5139,7 @@ function renderSeriesGroups(nStr){
   return {team, avg: slots.length ? sum/slots.length : 0, names};
  });
  results.sort((a,b)=>b.avg-a.avg);
- document.getElementById('groupCount').textContent = 'Ranking by the ' + slots.length + ' most valuable spots \u00b7 ' + slots.join(' + '); // w51 (Owner): the dot law — the colon retires at source too
+ document.getElementById('groupCount').innerHTML = '<span class="zpb-gcl">RANKING BY THE ' + slots.length + ' MOST VALUABLE POSITIONS</span><span class="zpb-gcl zpb-gcl2">' + slots.join(' + ') + '</span>'; // W67 (Owner): the Owner's two lines - the headline over the slot list; the one-line "spots" face retires
  const body = document.getElementById('groupBody');
  let h = '';
  results.forEach((r, idx)=>{
@@ -8658,7 +8636,7 @@ function renderRegularReviewView(container){
  const made = seasonState.seeds[conf].some(x=>x.team===user);
  let html = `<div class="panel" style="margin-bottom:14px;"><div style="display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;">
    <h3 style="margin:0;">Regular Season Review</h3>
-   <div style="display:flex;gap:8px;flex-wrap:wrap;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;">Begin Playoffs</button>':''} <!-- w57 (Owner): the inline padding retires — the standing law sizes this button --><button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
+   <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center;">${made?'<button class="resetbtn" id="beginPlayoffsBtn" style="width:auto;">Begin Playoffs</button>':''} <!-- w57 (Owner): the inline padding retires — the standing law sizes this button · W67 (Owner): the row centers its children — BEGIN PLAYOFFS keeps its big pill, SIM PLAYOFFS keeps its smaller box, neither stretches to match the other --><button class="tabbtn" id="simPlayoffsBtn">Sim Playoffs</button></div></div>
    <p class="dsub" style="margin-top:8px;">${user}: ${s.wins}-${s.losses}${s.ties?'-'+s.ties:''} · ${s.pf} PF · ${s.pa} PA</p>
   </div>`;
  if(!made) html = `<div class="panel zpb-sr-own" style="margin-bottom:24px;text-align:center;padding:18px 12px;"><button class="resetbtn zpb-ctabig" id="seasonReviewBtn" style="width:auto;margin:0;padding:13px 34px;">SEASON REVIEW</button></div>` + html; // W66 (Owner): the shiny door sits on its own panel, first on the page — the user never has to sim the playoffs to reach the review
@@ -11112,9 +11090,10 @@ function render100(container){
 
 function add100Button(container){
  if(!draftSim) return;
- const d = document.createElement('div'); d.style.cssText = 'margin:0 0 12px;text-align:right;';
- d.innerHTML = `<button class="tabbtn" id="sim100Btn">100 SEASONS</button>${league100?' <button class="tabbtn" id="sim100Re">Re-run</button>':''}`;
- const ops = document.getElementById('zpbDraftOps'); if(ops) ops.appendChild(d); else container.insertBefore(d, container.firstChild);
+ const ops = document.getElementById('zpbDraftOps');
+ const d = document.createElement('div'); d.style.cssText = ops ? 'margin:0;text-align:left;display:inline-flex;gap:8px;align-items:center;' : 'margin:0 0 12px;text-align:right;'; // W67 (Owner): inside the upper-line cluster the 100-SEASONS box stops inflating itself (it read 42px tall next to 34px buttons)
+ d.innerHTML = `<button class="tabbtn zpb-ctasmall" id="sim100Btn">100 SEASONS</button>${league100?' <button class="tabbtn zpb-ctasmall" id="sim100Re">Re-run</button>':''}`; // W67 (Owner): the 100-SEASONS door wears the SIM GAME size - the whole upper line reads one height
+ if(ops) ops.appendChild(d); else container.insertBefore(d, container.firstChild);
  const b = document.getElementById('sim100Btn'); if(b) b.addEventListener('click', ()=>{ if(league100) render100(container); else runLeague100(100, container); });
  const r = document.getElementById('sim100Re'); if(r) r.addEventListener('click', ()=>{ league100 = null; runLeague100(100, container); });
 }
@@ -11315,7 +11294,7 @@ function renderDraftResults(){ // w37 (R2, Owner): the players hold until the op
  const rankAmongReal = Math.min(32, realOnlySorted.filter(e=>e.score>myEntry.score).length + 1);
 
  // w65 (Owner): SIM GAME joins the tab row (the host fills at render time) and SIM SEASON shows only while the regular season is live — never on the Super Bowl review page
- let h = `<div class="zpb-cygops" style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;flex-wrap:wrap;"><span class="zpb-draftops" id="zpbDraftOps"><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">NEW DRAFT</button></span><span class="zpb-simtabs" id="zpbSimTabsHost">${seasonState&&seasonState.phase==='regular'?'<button class="tabbtn zpb-ctasmall zpb-simseason" id="simSeasonBtn">SIM SEASON</button>':''}${seasonState&&seasonState.phase==='playoffs'?'<button class="tabbtn zpb-ctasmall" id="simPlayoffsBtnTop">SIM PLAYOFFS</button>':''}</span><span class="zpb-simtabs" id="zpbBtsHost"></span><p class="dsub zpb-cygdsub" style="margin:0;"><span class="zpb-cyg">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine zpb-cygq">?</b></p></div>
+ let h = `<div class="zpb-cygops" style="display:flex;justify-content:flex-start;align-items:center;gap:10px;flex-wrap:wrap;"> <!-- W67 (Owner): ONE left-aligned cluster - the sim doors sit right next to 100 SEASONS, never centered mid-panel --><span class="zpb-draftops" id="zpbDraftOps"><button class="tabbtn" id="newDraftBtn" style="font-size:0.78rem;padding:5px 10px;">NEW DRAFT</button></span><span class="zpb-simtabs" id="zpbSimTabsHost">${seasonState&&seasonState.phase==='regular'?'<button class="tabbtn zpb-ctasmall zpb-simseason" id="simSeasonBtn">SIM SEASON</button>':''}${seasonState&&seasonState.phase==='playoffs'?'<button class="tabbtn zpb-ctasmall" id="simPlayoffsBtnTop">SIM PLAYOFFS</button>':''}</span><span class="zpb-simtabs" id="zpbBtsHost"></span><p class="dsub zpb-cygdsub" style="margin:0 0 0 auto;"><span class="zpb-cyg">Can you go </span><b class="zpb-shine">20-0</b><b class="zpb-shine zpb-cygq">?</b></p></div>
   <div class="tabs" style="margin-bottom:10px;flex-wrap:wrap;">
    <button class="tabbtn ${resultsView==='season'?'active':''}" id="resultsSeasonBtn">SEASON</button>
    ${seasonState?'':`<button class="tabbtn ${resultsView==='nfl'?'active':''}" id="resultsNflBtn">VS. ACTUAL NFL TEAMS</button>`}
@@ -11691,7 +11670,7 @@ function checkRewards(){
     if(!mq.matches){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
     if(t.dataset.nostack) return;
     const bodyRows = t.querySelectorAll('tbody tr');
-    const cols = t.rows.length ? t.rows[t.rows.length-1].cells.length : 0;
+    const cols = t.rows.length ? Array.from(t.rows[t.rows.length-1].cells).reduce((a,c)=>a+(c.colSpan||1),0) : 0; // W67 (Owner): colspan-aware - the infinite-scroll sentinel row (colspan=6) read as ONE cell, so a stacked table with a sentinel "fit with 1 column" and un-stacked itself, then re-stacked on the next pass: the browser flashed between the two panels forever
     const parentW = t.parentElement ? t.parentElement.clientWidth : 0;
     const fits = t.scrollWidth <= parentW + 1;
     // Once a table is stacked it stays stacked, unless it genuinely fits with few columns.
@@ -13665,9 +13644,9 @@ window.zpbCardInCssOk = true; // w42: the look-gate runs only when this block (a
    seen; the pick-order cascade compresses to 0.15s per beat (26 picks breathe in ~4s, still in
    pick order); while the opening cinematic runs, the cinematic's remaining time rides the gate. */
 .zpb-fm:not(.zpb-seen) .zpb-fm-ini{opacity:0;animation:none;}
-.zpb-fm.zpb-seen .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.3s);} /* w66 (Owner): the map syncs TO the cards, never the other way around — a player's marker starts the exact moment his card does, on the cards' 0.3s clock (mobile and desktop share the beat) */
+.zpb-fm.zpb-seen .zpb-fm-ini{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.6s);} /* w66 (Owner): the map syncs TO the cards, never the other way around — a player's marker starts the exact moment his card does, on the cards' 0.3s clock (mobile and desktop share the beat) */
 .zpb-dbk-g:not(.zpb-seen) .zpb-dfc2{opacity:0;animation:none;}
-.zpb-dbk-g.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.3s);} /* w66 (Owner): ONE card at a time at ZERO gap — the beat equals the card's own .3s entrance, so card N+1 starts the exact moment card N finishes; the cards are the master clock */
+.zpb-dbk-g.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.6s);} /* w66 (Owner): ONE card at a time at ZERO gap — the beat equals the card's own .3s entrance, so card N+1 starts the exact moment card N finishes; the cards are the master clock */
 @media (prefers-reduced-motion: reduce){
  .zpb-fm .zpb-fm-ini,.zpb-dbk-g .zpb-dfc2{opacity:1 !important;animation:none !important;}
 }
@@ -13895,7 +13874,7 @@ window.zpbPlayoffRunCine = function(story){
 #draftViewSeg{margin-left:auto;}
 /* w47 (Owner): the depth-chart rows land with their players — released by the map's gate, one beat each */
 .zpb-dz:not(.zpb-seen) .zpb-dfc2{opacity:0;animation:none;}
-.zpb-dz.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .3s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.3s);} /* w66 (Owner): the depth rows ride the cards' 0.3s zero-gap clock — row N lands with card N */
+.zpb-dz.zpb-seen .zpb-dfc2{opacity:0;animation:zpbCardIn .55s ease both;animation-delay:calc(var(--dfc-cine,0s) + var(--beat,0)*0.6s);} /* w66 (Owner): the depth rows ride the cards' 0.3s zero-gap clock — row N lands with card N */
 @media (prefers-reduced-motion: reduce){ .zpb-dz .zpb-dfc2{opacity:1 !important;animation:none !important;} }
 /* w47 (Owner): the plan captions stay readable at night for every team */
 :root[data-theme="dark"] .zpb-plan .narr,:root:not([data-theme="light"]) .zpb-plan .narr{color:var(--tnd,var(--sub));}
@@ -16349,6 +16328,15 @@ body[data-home="1"] #draftSetup{margin-bottom:40px;}
  padding:2px 20px 2px 8px;cursor:pointer;position:relative;white-space:nowrap;transition:border-color .15s ease,box-shadow .15s ease;}
 .zpb-slotdd::after{content:"";position:absolute;right:7px;top:50%;width:6px;height:6px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-70%) rotate(45deg);}
 .zpb-slotdd:hover,.zpb-slotdd:focus{border-color:var(--tTxM,var(--tA2,var(--accent)));outline:none;box-shadow:0 0 10px color-mix(in srgb,var(--tTxM,var(--tA2,var(--accent))) 30%,transparent);}
+/* W67 (Owner): the closed fills button reads the NEUTRAL dropdown ink in dark mode - the light
+   halfway ink (--tTxM) is a dark navy on the dark panel for the Panthers; --tTxd is the same
+   family the popup options and the homepage picker already wear (0.50 neutral, team-tinted). */
+:root[data-theme="dark"] .zpb-slotdd{color:var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg))));background:color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 8%,transparent);border-color:color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 40%,transparent);}
+:root[data-theme="dark"] .zpb-slotdd:hover,:root[data-theme="dark"] .zpb-slotdd:focus{border-color:var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg))));box-shadow:0 0 10px color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 30%,transparent);}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-slotdd{color:var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg))));background:color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 8%,transparent);border-color:color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 40%,transparent);}
+ :root:not([data-theme="light"]) .zpb-slotdd:hover,:root:not([data-theme="light"]) .zpb-slotdd:focus{border-color:var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg))));box-shadow:0 0 10px color-mix(in srgb,var(--tTxd,var(--tTxMd,var(--tA2d,var(--selfg)))) 30%,transparent);}
+}
 .zpb-slotpop{position:fixed;z-index:130;min-width:180px;max-width:280px;padding:6px;border-radius:12px;border:1px solid var(--rosehair,var(--border));background:var(--panel);
  box-shadow:0 18px 44px rgba(60,30,40,.25);animation:zpbpopin .22s ease;}
 .zpb-slotpop-h{font-size:.56rem;letter-spacing:.16em;font-weight:800;color:var(--sub);padding:4px 8px 5px;text-align:left;font-family:'Cinzel','Bodoni Moda',Georgia,serif;}
@@ -16649,5 +16637,53 @@ window.zpbPlayoffEndScreen = function(){
  }catch(err){}
 };
 </script>
+<style id="zpb-w67-css">
+/* ============ Z-POST-BLUE W67 · THE OWNER'S ROUND ============ */
+/* UI 6 (Owner): the pregame star cards sit on an ALWAYS-dark stage - the 90+ shimmer sweeps
+   the neutral halfway ink (tnd) to cream, never the light-tuned team accent (--zrb): the
+   Jaguars' dark teal was invisible on it. Readable for all 32 teams in both modes; the team
+   theme stays in the tint and in the card's gradient backdrop. */
+.zpb-intro-star b.zpb-shm{color:var(--tnd,#f2e4c8) !important;-webkit-text-fill-color:var(--tnd,#f2e4c8) !important;background:none !important;animation:none;}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+.zpb-intro-star b.zpb-shm{background:linear-gradient(100deg,var(--tnd,#f2e4c8) 18%,#fff6e3 38%,var(--tnd,#f2e4c8) 55%,#ffe9c6 72%,var(--tnd,#f2e4c8) 88%) !important;background-size:230% 100% !important;-webkit-background-clip:text !important;background-clip:text !important;color:transparent !important;-webkit-text-fill-color:transparent !important;animation:zpbshmsweep 3.4s linear infinite;}}
+/* UI 6 (Owner): dark mode reads the dark-tuned row inks - the Key Players card title and its
+   90+ shimmer rows swap --zrb (tuned for the cream page) to --zrbd; the matchup-math bars too
+   (the Jaguars' bar graph was too dark in dark mode). */
+:root[data-theme="dark"] .kp-title{color:var(--zrbd,var(--accent));}
+:root[data-theme="dark"] .zpb-kprow b.zpb-shm{color:var(--zrbd,var(--nmd,var(--text))) !important;-webkit-text-fill-color:var(--zrbd,var(--nmd,var(--text))) !important;background:none !important;animation:none;}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+:root[data-theme="dark"] .zpb-kprow b.zpb-shm{background:linear-gradient(100deg,var(--zrbd,#c9a24b) 18%,#ffe9c6 38%,var(--zrbd,#c9a24b) 55%,#fff6e3 72%,var(--zrbd,#c9a24b) 88%) !important;background-size:230% 100% !important;-webkit-background-clip:text !important;background-clip:text !important;color:transparent !important;-webkit-text-fill-color:transparent !important;animation:zpbshmsweep 3.4s linear infinite;}}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .kp-title{color:var(--zrbd,var(--accent));}
+ :root:not([data-theme="light"]) .zpb-kprow b.zpb-shm{color:var(--zrbd,var(--nmd,var(--text))) !important;-webkit-text-fill-color:var(--zrbd,var(--nmd,var(--text))) !important;background:none !important;animation:none;}
+}
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-kprow b.zpb-shm{background:linear-gradient(100deg,var(--zrbd,#c9a24b) 18%,#ffe9c6 38%,var(--zrbd,#c9a24b) 55%,#fff6e3 72%,var(--zrbd,#c9a24b) 88%) !important;background-size:230% 100% !important;-webkit-background-clip:text !important;background-clip:text !important;color:transparent !important;-webkit-text-fill-color:transparent !important;animation:zpbshmsweep 3.4s linear infinite;}}}
+:root[data-theme="dark"] .zpb-mbar i{background:var(--zrbd,var(--zrb,var(--accent)));}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .zpb-mbar i{background:var(--zrbd,var(--zrb,var(--accent)));} }
+/* UI 3 (Owner): the Series subtitle's two lines */
+.zpb-gcl{display:block;}
+.zpb-gcl2{font-size:.88em;letter-spacing:.02em;color:var(--sub);margin-top:2px;}
+/* UI 7 (Owner): at short windows the pregame's static block compresses so ALL THREE face-off
+   rows fit ABOVE the footer - the stage ends at the footer (the mount's bottom clamp) and no
+   row is left half-clipped on the line. The Super Bowl keeps its bigger dress. */
+@media (max-height:740px){
+ .zpb-intro-logos img{width:76px;height:76px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:88px;height:88px;}
+ .zpb-intro-stars{gap:7px;}
+ .zpb-intro-brow{gap:8px;}
+}
+@media (max-height:660px){
+ .zpb-intro-logos img{width:54px;height:54px;}
+ .zpb-replay.zpb-sb .zpb-intro-logos img{width:68px;height:68px;}
+ .zpb-intro-title{font-size:.92rem;}
+ .zpb-replay.zpb-sb .zpb-intro-title{font-size:1.3rem;}
+ .zpb-intro-sub{font-size:.68rem;letter-spacing:.22em;}
+ .zpb-rep-intro{gap:7px;padding-top:4px;}
+ .zpb-intro-stars{gap:5px;}
+ .zpb-intro-star{padding:4px 8px;}
+}
+</style>
 </body>
 </html>
