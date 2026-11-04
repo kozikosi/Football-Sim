@@ -1,0 +1,4 @@
+Owner message, 30 Oct 2026 13:13 HST (verbatim, Owner's part only):
+"Regular season games end in a tie if the 10 minutes of overtime expires.
+Please be more proactive in looking for council contributions. They have responsed to drive counts, time per play, how drives end and the overtime odds are my estimates until the council delivers P-204, P-205 and P-206. The council members have completed a lot of work recently. Please let me know if there are other critical work requests for the next few stages and I will have them work on those requests specifically"
+Decisions: regular-season tie rule CONFIRMED (no longer INFERRED). Standing: the Architect checks council branches (git fetch council/*, inbox/) at the start of each work package and uses delivered data. The Owner may direct specific requests to the council for the next stages (see the Architect's list of 30 Oct).

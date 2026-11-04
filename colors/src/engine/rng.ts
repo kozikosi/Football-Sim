@@ -7,7 +7,7 @@ export interface Rng {
   pick<T>(xs: readonly T[]): T;
   fork(label: string): Rng;             // independent stream; same seed+label => same stream
 }
-function hashString(s: string): number {
+export function hashString(s: string): number {
   let h = 2166136261 >>> 0;
   for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619) >>> 0; }
   return h >>> 0;
@@ -38,3 +38,5 @@ export function makeRng(seed: number): Rng {
     fork: (label) => makeRng((seed ^ hashString(label)) >>> 0),
   };
 }
+// The seed of fork(label): a plain integer, so a game's seed can be stored and replayed with makeRng(forkSeed(seed, label)).
+export function forkSeed(seed: number, label: string): number { return ((seed >>> 0) ^ hashString(label)) >>> 0; }

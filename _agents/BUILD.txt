@@ -1,0 +1,2 @@
+Football-Sim-PreColors.html
+# First line = the build probes are run against (council.mjs). Change it when Colors v1 ships.

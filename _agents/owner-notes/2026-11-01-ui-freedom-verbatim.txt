@@ -1,0 +1,5 @@
+Owner message to the Architect, 1 Nov 2026 09:15 HST, saved verbatim:
+
+"You can try to design w52 from scratch, just looking at the screenshots and trying to recreate things yourself iff yo uthink you can do them better. But your first figma propoal was far too boxy. I do like where we're at with w52 aesthetically but if you think you can improve on features here or there or have a creative idea to change how something looks or works, you do have the freedom to execute what you like. You don't neeed to rely on anythingn form w52 strictly. it is an aesthetic guide."
+
+Architect's reading: w52 is an aesthetic guide, not a spec. Supersedes the "w52 shell is the UI spec" line of 1 Nov 09:11 (section 3, step 4 of claude/00-READ-FIRST.md). Free to redesign or improve any screen or feature. Constraint from the Owner: avoid the boxy look of the first Figma proposal. Still binding: the Owner's standing laws in the Z.ai chain (one-ink text, no black text, integers on screen, team-colour takeover, 90+ gold shimmer, his exact label words, 390 px with no dead ends).
