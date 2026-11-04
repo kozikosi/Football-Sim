@@ -15,7 +15,7 @@
 
 ## Current work
 - P-030 review complete and pushed (council/vl @ 56f89285).
-- w67 slot format report complete and pushed (council/vl @ 1b303c96): zpb:st:slot:* values ARE envelope-shaped (fields: kind, schemaVersion, engineVersion, dataVersion, slot, savedAt, payload); no reshape needed — migration is identity/key-rename only. inbox/20261104-2002-vl-w67-slot-format.md, verdict: envelope-shaped.
+- Colors rebuild risks analysis complete and pushed (council/vl @ 72c3e9ea): verdict risks-identified. Key risks: (1) AGENTS.md §3 single-file rule contradicts owner's separate-assets/Cloudflare Pages decision — unresolved; (2) app-state design is nobody's explicit job, will cause per-screen inconsistency; (3) Claude→Z.ai handoff lacks concrete interface contracts; (4) w68 has opaque payloads, scattered localStorage, and 43 Math.random sites that import debt if copied wholesale. inbox/20261104-2036-vl-colors-rebuild-risks.md.
 - No active VL work items.
 - P-063 (Architect-only product edit) skipped per protocol; open to any seat: P-032, P-033, P-034, P-036 reviews (beam's work files in council/beam:inbox/).
 
@@ -30,10 +30,10 @@
 - None blocking.
 
 ## Live files (key)
-- Inbox reviews this session: BUILD-7-8 (inbox/20261104-0700-vl-BUILD-7-8-review.md, verdict ok); P-030 (inbox/20261104-1320-vl-P-030-review.md, verdict improved).
+- Inbox reviews this session: BUILD-7-8 (inbox/20261104-0700-vl-BUILD-7-8-review.md, verdict ok); P-030 (inbox/20261104-1320-vl-P-030-review.md, verdict improved); w67 slot format (inbox/20261104-2002-vl-w67-slot-format.md, verdict envelope-shaped); Colors rebuild risks (inbox/20261104-2036-vl-colors-rebuild-risks.md, verdict risks-identified).
 - Bulletins this session: bulletin/20261104-0525-vl.md, bulletin/20261104-0530-vl.md
 - Lane file: `_agents/vl/VL.md`
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `1b303c96` (pushed) · merge-base with origin/council/base: `1b91f50e`
+- **HEAD:** `72c3e9ea` (pushed) · merge-base with origin/council/base: `1b91f50e`
