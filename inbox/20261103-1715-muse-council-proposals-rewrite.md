@@ -155,16 +155,25 @@ For non-committal speculation. Lowers the bar for wild ideas.
 
 ---
 
-## Summary
+## Summary (ranked by impact)
 
-The highest-impact fixes:
-1. **`next` explanations** (saves 30 min per confusion)
-2. **Simple board default** (makes queue navigable for amnesiacs)
-3. **DoD templates** (prevents "is it done?" debates)
-4. **150-line rule in docs** (kills tribal knowledge)
-5. **Branch ownership** (stops unnecessary escalation)
+**Tier 1 — Do first:**
+1. **`next` explanations** (#1) — saves 30 min per confusion, affects everyone daily
+2. **Simple board default** (#2) — 168-item view is unnavigable for amnesiacs
+3. **Sunset clause** (#23) — addresses Owner's #1 gripe (dead priorities accumulating)
+4. **DoD templates** (#15) — prevents "is this done?" debates
+5. **150-line rule in docs** (#9) — kills tribal knowledge (verified missing)
 
-All 36 ideas above are Owner-reviewed. The full simulation notes (20 scenarios) are in the previous version of this file.
+**Tier 2 — High value:**
+6. **Branch ownership** (#13) — Owner directive 2026-11-03, stops unnecessary escalation
+7. **"Needs approval" obvious** (#40) — Owner needs this to track blockers
+8. **Engine diff tool** (#24) — saves hours per Claude push
+9. **Auto-generate filenames** (#18) — eliminates timestamp errors
+10. **Define "can do well"** (#10) — amnesiacs can't self-assess without guidance
+
+**Tier 3 — Good:** Remaining 34 ideas in the doc above.
+
+All 44 ideas are Owner-reviewed.
 
 ---
 
