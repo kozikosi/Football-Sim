@@ -6,23 +6,24 @@
 - **Strengths shown so far (evidence, not claims):** Pre-Colors hash gate `40233d6be00e987c…` (657,486 B); P-005/P-006/P-008 review #1s VERDICT improved; council.mjs BUILD-3 review VERDICT ok (FOUND 0 / NEW 0).
 
 ## Current work
-- **Claimed / in progress:** none — 2026-11-04: filed **flint-BUILD-3-review** (`inbox/20261104-0544-flint-BUILD-3-review.md`) → VERDICT ok (FOUND 0 / NEW 0); council chain: vl-BUILD-1+2 ok + flint-BUILD-3 ok, next un-reviewed BUILD = 4/5/6/7+8.
+- **Claimed / in progress:** none — 2026-11-04: filed council reviews **P-019** (`inbox/20261104-1338-flint-P-019-review.md`) and **P-020** (`inbox/20261104-1345-flint-P-020-review.md`); both committed and pushed on `council/flint` (be2cb8dc, cd078e3f). Next: take the top line from the council tool.
 
 ## What I did this session
-- START-OF-CHAT orient receipts (branch `council/flint`, common dir ok); sync-base STOPPED on `inbox/README.md` conflict, nothing changed (owner direction pending).
-- BUILD-3 review: applied architect `tools/council.mjs` + BUILD-1+2 + BUILD-3 to scratch copies; `node --check` PASS; default board shape ✓; `board --full` ≡ old default (empty diff, 166 = 1+165) ✓; `--json` unchanged ✓; next/digest smoke ✓; → VERDICT ok, FOUND 0 / NEW 0.
-- Session commit: `fe37537b` ("inbox") pushed clean to origin.
+- START-OF-CHAT §1-§3 followed: orient (branch `council/flint`, common dir ok); sync-base STOPPED on `inbox/README.md` conflict, nothing changed (owner direction pending); reads AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; council tool via `origin/architect/engine-and-seats:tools/council.mjs` → `/tmp/council.mjs`, run from `/Users/kosi/.local/share/opencode/council-tool/` (guard needs non-`/tmp` path here).
+- Took first lines: REVIEW P-019 (VERDICT improved) then REVIEW P-020 (VERDICT improved); each filed, committed, pushed.
+- Standing chores at session end: `node tools/preserve.mjs check --fetch` (UNSAVED WORK reported, not touched); `node tools/check-tasks.mjs` (7 items, 0 problems).
 
 ## What the next session needs
-- Take top line from `node tools/council.mjs next` / `node tools/next.mjs`.
-- Next council-structure review: BUILD-4/5/6/7+8, or second review for BUILD-1+2.
+- Take the top line from the council tool (`node /Users/kosi/.local/share/opencode/council-tool/council.mjs next`).
+- Resolve/await owner direction on the `inbox/README.md` sync-base conflict before any merge-based orient.
 
 ## Open questions
-- none open for flint at session end. (sync-base conflict in `inbox/README.md` — owner direction pending.)
+- Owner direction pending on the sync-base conflict in `inbox/README.md` (flagged STOP, nothing changed).
 
 ## Files in this lane
-- Inbox: `inbox/20261104-0544-flint-BUILD-3-review.md`.
-- Worktree: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-flint` · branch `council/flint` · HEAD `fe37537b` · merge-base with origin/council/base: none reported (exit 1).
+- Inbox: `inbox/20261104-1338-flint-P-019-review.md`, `inbox/20261104-1345-flint-P-020-review.md`.
+- Worktree: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-flint` · branch `council/flint` · HEAD `cd078e3f`.
 
 ## Receipts
-- BUILD-3: VERDICT ok (FOUND 0 / NEW 0) — see bulletin entry + `inbox/20261104-0544-flint-BUILD-3-review.md`.
+- P-019: VERDICT improved — anchors verified (3109/3056/3027…), `node --check` PASS, glitch string absent, order/stars/game-ball findings.
+- P-020: VERDICT improved — mock path/size/content verified, HOW TO CHECK defect, badge numbers gap.
