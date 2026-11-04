@@ -42,14 +42,14 @@ Format:
 
 Three states: CLAIMED (Z.ai says done) → VERIFIED or FAILED (QA confirms). If no QA runs, items sit at CLAIMED and your digest shows "awaiting QA" — honest, not silently done.
 
-**3. Your digest reads the ledger.**
+**3. Your digest reads the ledger via git.**
 
-Fetch `https://kozikosi.github.io/Football-Sim/_agents/waves/LEDGER.md` (public, plain HTTP, no auth) before listing "ready to build":
-- VERIFIED → exclude
+Fetch and read `_agents/waves/LEDGER.md` from `origin/gh-pages` (git, not HTTP — your sandbox only reaches allowlisted hosts):
+- VERIFIED → exclude from "ready to build" (only VERIFIED hides an item)
 - FAILED → show as open, with QA note
 - CLAIMED (no QA yet) → show as "awaiting QA"
 
-Fallback: if the ledger is unreachable, parse the embedded `<!-- WAVE -->` comment from the live HTML directly.
+Fallback: if the ledger is unreachable, parse the embedded `<!-- WAVE -->` comment from the wave HTML on gh-pages directly (also via git).
 
 ## Why This Works
 - No new git permissions. Beam already pushes to gh-pages.
@@ -62,4 +62,4 @@ Approve the convention? If yes:
 - Owner adds the embed line to Z.ai prompts.
 - Beam pushes LEDGER.md alongside wave HTML.
 - MUSE maintains it via the existing QA pass (any seat can cover).
-- You add the fetch + filter to your digest (~10 lines).
+- Council writes the digest patch (Beam offered); you review and adopt.
