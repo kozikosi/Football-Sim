@@ -1,0 +1,162 @@
+[
+  {
+    "id": "speedSlowBtn",
+    "text": "Slow"
+  },
+  {
+    "id": "speedInstantBtn",
+    "text": "Instant"
+  },
+  {
+    "id": "simToEndBtn",
+    "text": "Sim to End"
+  },
+  {
+    "id": "",
+    "text": "Table"
+  },
+  {
+    "id": "",
+    "text": "Cards"
+  },
+  {
+    "id": "",
+    "text": "QB0/1"
+  },
+  {
+    "id": "",
+    "text": "RB0/3"
+  },
+  {
+    "id": "",
+    "text": "WR0/4"
+  },
+  {
+    "id": "",
+    "text": "TE0/3"
+  },
+  {
+    "id": "",
+    "text": "OT0/2"
+  },
+  {
+    "id": "",
+    "text": "OG0/2"
+  },
+  {
+    "id": "",
+    "text": "C0/1"
+  },
+  {
+    "id": "",
+    "text": "EDGE0/3"
+  },
+  {
+    "id": "",
+    "text": "DT0/2"
+  },
+  {
+    "id": "",
+    "text": "LB0/3"
+  },
+  {
+    "id": "",
+    "text": "CB0/4"
+  },
+  {
+    "id": "",
+    "text": "SS0/1"
+  },
+  {
+    "id": "",
+    "text": "FS0/1"
+  },
+  {
+    "id": "",
+    "text": "K0/2"
+  },
+  {
+    "id": "",
+    "text": "ALLshow"
+  },
+  {
+    "id": "",
+    "text": "CLEARhide"
+  },
+  {
+    "id": "",
+    "text": "QB"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "QB"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "DE1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "WR1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "WR1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "TE1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "DE1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "OT1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "CB1"
+  },
+  {
+    "id": "",
+    "text": "Draft"
+  },
+  {
+    "id": "",
+    "text": "WR1"
+  }
+]

@@ -1,0 +1,70 @@
+[
+  {
+    "id": "modelWBtn",
+    "text": "MODEL WEIGHTS"
+  },
+  {
+    "id": "personalWBtn",
+    "text": "SAVE MY WEIGHTS"
+  },
+  {
+    "id": "zpbMyWBtn",
+    "text": "MY WEIGHTS"
+  },
+  {
+    "id": "posBtn",
+    "text": "ALL POSITIONS"
+  },
+  {
+    "id": "startDraftBtn",
+    "text": "DRAFT"
+  },
+  {
+    "id": "speedSlowBtn",
+    "text": "Slow"
+  },
+  {
+    "id": "speedInstantBtn",
+    "text": "Instant"
+  },
+  {
+    "id": "undoPickBtn",
+    "text": "↶ Undo"
+  },
+  {
+    "id": "simToEndBtn",
+    "text": "Sim to End"
+  },
+  {
+    "id": "rosterPickBtn",
+    "text": "Pick order"
+  },
+  {
+    "id": "rosterDepthBtn",
+    "text": "Depth chart"
+  },
+  {
+    "id": "tabDraftBtn",
+    "text": "SIMULATOR"
+  },
+  {
+    "id": "tabRankingsBtn",
+    "text": "MADDEN RANKINGS"
+  },
+  {
+    "id": "tabPlayersBtn",
+    "text": "PLAYER BROWSER"
+  },
+  {
+    "id": "tabGroupsBtn",
+    "text": "POSITION RANKINGS"
+  },
+  {
+    "id": "tabCompareBtn",
+    "text": "TEAM COMPARISON"
+  },
+  {
+    "id": "tabGuideBtn",
+    "text": "GUIDE"
+  }
+]

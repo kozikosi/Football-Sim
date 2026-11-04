@@ -1,0 +1,138 @@
+[
+  {
+    "id": "speedSlowBtn",
+    "text": "Slow"
+  },
+  {
+    "id": "speedInstantBtn",
+    "text": "Instant"
+  },
+  {
+    "id": "simToEndBtn",
+    "text": "Sim to End"
+  },
+  {
+    "id": "",
+    "text": "Table"
+  },
+  {
+    "id": "",
+    "text": "Cards"
+  },
+  {
+    "id": "",
+    "text": "QB0/1"
+  },
+  {
+    "id": "",
+    "text": "RB0/3"
+  },
+  {
+    "id": "",
+    "text": "WR0/4"
+  },
+  {
+    "id": "",
+    "text": "TE0/3"
+  },
+  {
+    "id": "",
+    "text": "OT0/2"
+  },
+  {
+    "id": "",
+    "text": "OG0/2"
+  },
+  {
+    "id": "",
+    "text": "C0/1"
+  },
+  {
+    "id": "",
+    "text": "EDGE0/3"
+  },
+  {
+    "id": "",
+    "text": "DT0/2"
+  },
+  {
+    "id": "",
+    "text": "LB0/3"
+  },
+  {
+    "id": "",
+    "text": "CB0/4"
+  },
+  {
+    "id": "",
+    "text": "SS0/1"
+  },
+  {
+    "id": "",
+    "text": "FS0/1"
+  },
+  {
+    "id": "",
+    "text": "K0/2"
+  },
+  {
+    "id": "",
+    "text": "ALLshow"
+  },
+  {
+    "id": "",
+    "text": "CLEARhide"
+  },
+  {
+    "id": "",
+    "text": "SHOW ALL 1148 PLAYERS"
+  },
+  {
+    "id": "",
+    "text": "4-3"
+  },
+  {
+    "id": "",
+    "text": "3-4"
+  },
+  {
+    "id": "rosterPickBtn",
+    "text": "Pick order"
+  },
+  {
+    "id": "rosterDepthBtn",
+    "text": "Depth chart"
+  },
+  {
+    "id": "zpbNewDraftBtn",
+    "text": "Start A New Draft"
+  },
+  {
+    "id": "tabDraftBtn",
+    "text": "SIMULATOR"
+  },
+  {
+    "id": "tabRankingsBtn",
+    "text": "MADDEN RANKINGS"
+  },
+  {
+    "id": "tabPlayersBtn",
+    "text": "PLAYER BROWSER"
+  },
+  {
+    "id": "tabGroupsBtn",
+    "text": "POSITION RANKINGS"
+  },
+  {
+    "id": "tabCompareBtn",
+    "text": "TEAM COMPARISON"
+  },
+  {
+    "id": "tabGuideBtn",
+    "text": "GUIDE"
+  },
+  {
+    "id": "themeToggleBtn",
+    "text": "LIGHT"
+  }
+]

@@ -1,0 +1,15 @@
+{
+  "name": "football-sim-sync",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-11-01",
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "football-sim-sync",
+      "database_id": "OWNER-CREATES-THIS",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // Free tier covers the sync plan's traffic by orders of magnitude (one user).
+  "observability": { "enabled": false }
+}

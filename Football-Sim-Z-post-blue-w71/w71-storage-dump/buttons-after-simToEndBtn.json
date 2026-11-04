@@ -1,0 +1,62 @@
+[
+  {
+    "id": "newDraftBtn",
+    "text": "NEW DRAFT"
+  },
+  {
+    "id": "sim100Btn",
+    "text": "100 SEASONS"
+  },
+  {
+    "id": "resultsSeasonBtn",
+    "text": "SEASON"
+  },
+  {
+    "id": "resultsNflBtn",
+    "text": "VS. ACTUAL NFL TEAMS"
+  },
+  {
+    "id": "resultsMineBtn",
+    "text": "YOUR ROSTER"
+  },
+  {
+    "id": "resultsCompareBtn",
+    "text": "TEAM COMPARISON"
+  },
+  {
+    "id": "startSeasonBtn",
+    "text": "START PRESEASON →"
+  },
+  {
+    "id": "startSeasonBtnFoot",
+    "text": "START PRESEASON →"
+  },
+  {
+    "id": "tabDraftBtn",
+    "text": "SIMULATOR"
+  },
+  {
+    "id": "tabRankingsBtn",
+    "text": "MADDEN RANKINGS"
+  },
+  {
+    "id": "tabPlayersBtn",
+    "text": "PLAYER BROWSER"
+  },
+  {
+    "id": "tabGroupsBtn",
+    "text": "POSITION RANKINGS"
+  },
+  {
+    "id": "tabCompareBtn",
+    "text": "TEAM COMPARISON"
+  },
+  {
+    "id": "tabGuideBtn",
+    "text": "GUIDE"
+  },
+  {
+    "id": "themeToggleBtn",
+    "text": "LIGHT"
+  }
+]

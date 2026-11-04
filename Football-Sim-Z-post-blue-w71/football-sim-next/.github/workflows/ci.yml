@@ -1,0 +1,73 @@
+# Football-Sim — next build pipeline (proof-of-toolchain, w71)
+# Proves: install → typecheck → unit tests → build → artifact hash → draft Release on tag.
+# Deploy to Cloudflare Pages runs as a separate gated job (needs Owner's CF token secret);
+# nothing auto-deploys — go-live stays a deliberate Owner act, per the 4 Nov rulings.
+name: ci
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write   # draft releases on tag (tags are created by CI, per Owner decision 4)
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run check
+      - run: npm run test
+      - run: npm run build
+      - name: Hash the built artifact (pin discipline)
+        run: |
+          sha256sum dist/assets/* | tee dist/SHA256SUMS
+      - uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          path: dist/
+
+  release-draft:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: softprops/action-gh-release@v2
+        with:
+          draft: true
+          files: |
+            dist/**
+          body: "Draft release created by CI. Go-live is an Owner act."
+
+  # Deploys to Cloudflare Pages. Needs repository secrets:
+  #   CLOUDFLARE_API_TOKEN  (Pages: Edit permission)
+  #   CLOUDFLARE_ACCOUNT_ID
+  # Owner runs this explicitly (workflow_dispatch) — never on push.
+  deploy-pages:
+    if: github.event_name == 'workflow_dispatch'
+    needs: verify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/download-artifact@v4
+        with:
+          name: dist
+          path: dist
+      - uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy dist --project-name=football-sim
