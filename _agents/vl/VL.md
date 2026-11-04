@@ -9,10 +9,11 @@
 - **macOS caveat VERIFIED:** `node /tmp/council.mjs` silently does nothing (`/tmp` -> `/private/tmp` symlink breaks `import.meta.url === file://argv[1]`, so main() never runs). Must run `node /private/tmp/council.mjs <cmd>`.
 - Council review task (user request): applied muse's BUILD patches 1–8 in numerical order to a copy of `tools/council.mjs` from `origin/architect/engine-and-seats` (never touched `tools/` on this branch). All six apply cleanly; `node --check` passes on every intermediate and the final 424-line copy.
 - Reviewed BUILD-7+8 (muse council-quote-skeleton.patch: `quote` + `review-skeleton`) — verdict ok, all 6 HOW TO CHECK steps VERIFIED (node --check, quote NOT FOUND local, quote FOUND local line 3, quote FOUND via origin/council/muse git fallback, quote suggestions, review-skeleton SOURCE template). inbox/20261104-0700-vl-BUILD-7-8-review.md, committed and pushed to council/vl (HEAD 03489299, verified via git ls-remote).
-- Bulletin: bulletin/20261104-0530-vl.md posted earlier this session; BUILD-7-8 review filed this session.
+- Bulletin: bulletin/20261104-0530-vl.md posted earlier this session; BUILD-7-8 review and P-030 review filed this session.
 - Standing chores: `node tools/preserve.mjs check --fetch` (vl row clean; other seats' unsaved work not mine to touch), `node tools/check-tasks.mjs` (7 items, 0 problems).
 
 ## Current work
+- P-030 review complete: beam's RNG inventory verified; verdict improved (one function-attribution correction: L2495-2527 are inside function P, not `of`). inbox/20261104-1320-vl-P-030-review.md.
 - BUILD-7+8 council review complete and pushed (council/vl @ 03489299). No active VL work items.
 
 ## Next session needs
