@@ -1,0 +1,9 @@
+512d1885ac0a69120bedcaf8e9041f2b  Football-Sim-Z-post-blue-w53.html
+345f4528469fcb5e9dd3a6efb3e11e93  UPDATE-README-w53.md
+17a667ef5ec1f104bc3e21db48ac5fbb  notes/W53-INTAKE-LEDGER.md
+dbcf79355168504b8cd83475deadb917  notes/W53-BUILD-REPORT.md
+fbe9b1d97817cd7bdf04b99f9a5f68d2  _agents/zai/START-OF-CHAT-ZAI.md
+ee8dd8458f9a32731b0ae829e480ad94  _agents/zai/ZAI.md
+bfa4d1a2ac93bb06b4c57dd45713920f  CLAUDE-HANDOFF/HANDOFF-TO-CLAUDE-w53.md
+037ca3d8d2b5766e7fc1d69e3b9f1eaa  CLAUDE-HANDOFF/engine-seam.json
+1586055 Football-Sim-Z-post-blue-w53.html

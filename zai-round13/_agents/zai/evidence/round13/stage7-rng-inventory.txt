@@ -1,0 +1,40 @@
+38 lines carry Math.random() (56 sites total)
+
+ 1015  shuffleArr                       x1  function shuffleArr(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()
+ 1077  buildFullSchedule                x1  const flip = Math.random()<0.5;
+ 1392  cpuBias                          x4  if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.rand
+ 1396  cpuNoise                         x1  function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null)
+ 1397  cpuMiss                          x1  function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftS
+ 1431  cpuPick                          x1  if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){
+ 1460  startDraft2                      x1  if(userTeamName==='__random'){ const all = Object.keys(TEAM_DATA); userTeamName = all[Math.floor(Math.random()
+ 1466  startDraft2                      x1  for(let i=shuffled.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [shuffled[i],shuffled[j]]=[shuf
+ 1471  startDraft2                      x1  for(let i=others.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [others[i],others[j]]=[others[j],
+ 1835  pick                             x1  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+ 1920  randNormal                       x2  function randNormal(){ let u=0,v=0; while(u===0) u=Math.random(); while(v===0) v=Math.random(); return Math.sq
+ 1922  poisson                          x1  function poisson(lambda){ if(lambda<=0) return 0; const L=Math.exp(-lambda); let k=0,p=1; do{ k++; p*=Math.ran
+ 1926  weightedPick                     x1  let r = Math.random()*total;
+ 1980  aggrOf                           x1  if(!S.aggr[t]){ const u = Math.random(); S.aggr[t] = S.teams[t].isUser ? 'balanced' : (u<0.22?'cautious':u>0.7
+ 2171  realisticScore                   x1  if(s===1) return Math.random()<0.5 ? 0 : 3;
+ 2173  realisticScore                   x1  if(s===4) return Math.random()<0.5 ? 3 : 6;
+ 2174  realisticScore                   x1  if(s===5) return Math.random()<0.5 ? 6 : 3;
+ 2321  simulateGame                     x1  if(homeScore===awayScore && (isPlayoff || Math.random()>0.08)){
+ 2322  simulateGame                     x2  ot = true; const homeWinsOT = Math.random() < normCdf((homeProj-awayProj)/9), add = Math.random()<0.35 ? 7 : 3
+ 2330  simulateGame                     x1  if(otAdd) (otAdd.side==='home'?homeEvents:awayEvents).push({pts:otAdd.add, type:otAdd.add===7?'TD':'FG', q:5, 
+ 2495  buildOffenseDetail               x1  if(Math.random()<passTDprob && catchers.length){
+ 2511  buildOffenseDetail               x1  if(!made){ if(ev.pts!==6) return; if(ev.tpTry===undefined) ev.tpTry = ev.forced ? true : Math.random()<Math.mi
+ 2512  buildOffenseDetail               x1  if(Math.random()<0.55 && catchers.length && qb){
+ 2527  buildOffenseDetail               x1  if(Math.random()<0.52 && qb){
+ 2586  buildDefenseDetail               x1  const rs = Math.random()<0.5 ? s : weightedPick(Object.keys(recW).filter(x=>bySlot[x]).map(x=>({item:x, w:recW
+ 2593  buildDefenseDetail               x1  (extra.oppOwnFum||[]).forEach(()=>{ if(Math.random()<0.5){ const cands = Object.keys(ffW).filter(x=>bySlot[x])
+ 2637  addReturns                       x1  for(let i=0;i<krN;i++) kry += clampNum(Math.round(19.5*f*Math.exp(gaussNoise(0.32)) + (Math.random()<0.012?55:
+ 2638  addReturns                       x1  for(let i=0;i<prN;i++) pry += clampNum(Math.round(7.4*f*Math.exp(gaussNoise(0.55)-0.1) + (Math.random()<0.01?4
+ 2645  buildGameDetail                  x1  const defTDn = (evs, oppTO)=>{ const tds = evs.filter(e=>e.type==='TD').length; let n=0; for(let i=0;i<oppTO;i
+ 2663  buildGameDetail                  x1  causes.forEach(c=>{ if(Math.random()<share[c]){ const x = pickOL(); x.st.sa = (x.st.sa||0)+1; x.st.pa = (x.st.
+ 2665  buildGameDetail                  x1  for(let i=0;i<press;i++){ if(Math.random()<0.85){ const x = pickOL(); x.st.pa = (x.st.pa||0)+1; } }
+ 2742  makeScoringEvents                x1  events.forEach(e=>{ e.ag = ag||'balanced'; e.q = weightedPick([{item:1,w:1},{item:2,w:1.05},{item:3,w:1},{item
+ 3473  accumulatePlayerStats            x1  if(book===seasonState.playerStats) Object.keys(SEASON_RECORD_CAPS).forEach(k=>{ if(rec.st[k]>SEASON_RECORD_CAP
+ 5243  formBits                         x2  let hi = Math.floor(Math.random()*HOT_T.length), ci = Math.floor(Math.random()*COLD_T.length);
+ 5559  edgeLine                         x1  const i = (pool.length?pool:T.map((t,j)=>j))[Math.floor(Math.random()*(pool.length||T.length))];
+ 6456  const FX                         x9  function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.rand
+ 6457  const FX                         x4  function firework(x, y, colors){ const n = 70; for(let i=0;i<n;i++){ const a = Math.PI*2*i/n + Math.random()*.
+ 6483  const FX                         x2  [300,900,1500,2100,2700,3300].forEach(t=>setTimeout(()=>{ if(!cv) ensure(); firework(W*(0.15+Math.random()*0.7

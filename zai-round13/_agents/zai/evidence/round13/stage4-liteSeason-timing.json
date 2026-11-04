@@ -1,0 +1,19 @@
+{
+ "times": [
+  283.4,
+  218,
+  184.9
+ ],
+ "lastAgg": {
+  "seasons": 1,
+  "games": 272,
+  "avgPts": 22.34,
+  "ties": 0,
+  "homeWinPct": 60.3,
+  "avgPass": 411,
+  "avgRush": 247,
+  "avgTO": 2.49,
+  "avgSacks": 4.53
+ },
+ "err": null
+}

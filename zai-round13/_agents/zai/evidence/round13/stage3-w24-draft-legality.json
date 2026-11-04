@@ -1,0 +1,20 @@
+{
+ "tag": "w24",
+ "res": {
+  "runs": 3,
+  "illegal": 0,
+  "illegalPairs": {},
+  "qbIllegal": [],
+  "emergency": 0,
+  "emergencyPairs": {},
+  "flexLegal": 533,
+  "maye": [
+   "run1 Tampa Bay Buccaneers QB pen0",
+   "run2 Pittsburgh Steelers QB pen0",
+   "run3 Jacksonville Jaguars QB pen0"
+  ],
+  "examples": [],
+  "userRows": []
+ },
+ "consoleErrors": []
+}

@@ -1,0 +1,15 @@
+246ae3f3f954f1f6b89a2e7822ccc337  _agents/zai/evidence/v15-roster-tab.png
+5a65959915d2c0e36653465f84049ee5  _agents/zai/evidence/v15-season-roster-krpr.png
+ef0f2c8fed9cfa735510c3dd076e7856  _agents/zai/evidence/v14-board-live.png
+558dc86f49b382caf53a3f2f7fee3377  _agents/zai/evidence/v14-cine-fade-7.9s.png
+c12196a5e6c8e040442fc6e6bbaadb4e  _agents/zai/evidence/v15-board-live.png
+4aa5efa86bfd5c30e407d2e382698c57  _agents/zai/evidence/v14-cine-stack-2.0s.png
+9e3110777de1c229cc990a862054e002  _agents/zai/deliveries/OWNER-ROUND-8-INTAKE.md
+d61c5ae6d274d98d3939ecdd9bd080ea  _agents/zai/START-OF-CHAT-ZAI.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+80e038c5bd4826ce1bcb8d9bdd4d853a  _agents/zai/tools/v15_hardening.js
+de8a1843b9091ef00d3edb1120fe236c  _agents/zai/tools/v15_verify.js
+94105b39ee272a4682d7dc28b9185e07  _agents/zai/tools/zpb_v15.py
+713be48683ea57ebd1deb6569a9a77aa  _agents/zai/ZAI.md
+3e516906c71583fc4940bd0b6bad9555  UPDATE-README.md
+d053d4fe194a3f56525c89ca99799fc5  Football-Sim-Z-post-blue.html

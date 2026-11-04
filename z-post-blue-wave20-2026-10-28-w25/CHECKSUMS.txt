@@ -1,0 +1,17 @@
+787ab13320a6c765646af4af34e3ee8d  UPDATE-README.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+e7c95cbb223c1454e99d09ad6968ceec  _agents/zai/START-OF-CHAT-ZAI.md
+baf563eab0666d06fe60a5074fbd94b9  _agents/zai/ZAI.md
+60addfcab50496ea54511530577a734d  _agents/zai/deliveries/Football-Sim-Z-post-blue.html
+aebacacfb2819aaedcbb64716beb7163  _agents/zai/deliveries/HANDOFF-FOR-CLAUDE.md
+fe22e9b167d10a528c63678b1c1e2fcd  _agents/zai/deliveries/OWNER-ROUND-8-INTAKE.md
+2cfcae27d9764c17e46cfcf7a660b981  _agents/zai/evidence/w20/boot-probe.png
+1cbaaede9fb20eeda7afc1a78245a306  _agents/zai/evidence/w20/w20-draft-1280.png
+2d39983b7f27c94209298042942bd9fe  _agents/zai/evidence/w20/w20-groups-1280.png
+e312d63b27428e06cec8766752125f0d  _agents/zai/evidence/w20/w20-groups-390.png
+a24ae8d7dab20f8369ad64744ce12515  _agents/zai/evidence/w20/w20-home-1280.png
+fcaf851323d3a0a7deaf2e256cfd0b31  _agents/zai/evidence/w20/w20-home-390.png
+c2a1ab309ffd251b0bb7a14574d2a220  _agents/zai/evidence/w20/w20-players-1280.png
+7ce47c5b2bc2ee6ca6af583376d20bd9  _agents/zai/evidence/w20/w20-setback-chip.png
+414785144c15944e1ce11b19210cef34  _agents/zai/tools/w20_patch.py
+0e5c57f4fb6e6abe1ae641db906a20ec  _agents/zai/tools/w20_verify.js

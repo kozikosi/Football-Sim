@@ -1,0 +1,69 @@
+{
+  "generated": "2026-11-02",
+  "by": "Z.ai (High Councillor, seat ZAI)",
+  "product": {
+    "w53": { "md5": "512d1885ac0a69120bedcaf8e9041f2b", "bytes": 1586055 },
+    "w52": { "md5": "40613b81de26b5ed9c67bdcc0637ac6f", "bytes": 1585036 },
+    "w51": { "md5": "e40732a235aa621002bc268c59b36bd0", "bytes": 1571506 }
+  },
+  "payloadBlockOrder": ["zpb-w13", "zpb-w26-js", "zpb-w27-js", "zpb-w29-js", "zpb-w32-js", "zpb-w38-js", "zpb-w39-js", "zpb-w42", "zpb-w47-js", "zpb-w51-js"],
+  "scriptBlocksTotal": 12,
+  "engineContracts": {
+    "gameCore": ["simulateGame", "buildGameDetail", "buildOffenseDetail", "buildDefenseDetail", "matchupModel"],
+    "unitRatings": ["teamRatings"],
+    "winsValue": ["slotWins", "slotWinsTable", "effOvr", "flexPenaltyFor", "isNaturalSlot", "playerWar", "winsAt", "lineupWins", "optimalLineup"],
+    "plan": ["planFxLive", "unitValuePerPoint", "samplePlans", "choosePlans"],
+    "season": ["ensureRatings", "computeStandings", "computeSeeding", "buildWildCardRound", "buildDivisionalRound", "buildConfChampRound", "buildSuperBowl", "playGame", "simulateCurrentWeek", "advanceWeek", "simulatePlayoffRound", "startPlayoffs"],
+    "cpuDraft": ["cpuPick", "executePick", "startDraft2", "processUntilUserTurn", "simToEnd"],
+    "rankingsAwards": ["modelWeights", "computeScore", "honorCandidates", "computeRegularSeasonAwards", "computePlayoffAwards"],
+    "seasonStats": ["seasonStatLine"]
+  },
+  "verification": {
+    "eachEngineFunctionOccursExactlyOnce": true,
+    "mathRandomCallSites": 62,
+    "checkedAgainst": "Football-Sim-Z-post-blue-w53.html",
+    "checkedDate": "2026-11-02"
+  },
+  "uiFlagContract": {
+    "__zpbSBReplayHold": "SB replay gate; the replay close() releases it; set before opening zpbGameReplay for the user's SB",
+    "__zpbSBFinPending": "the winner storm waits for the whistle",
+    "__zpbPoRunHold": "the playoff-run hold; zpbPostSuperBowlCine.__held defers the storm",
+    "__zpbSBRewardOwed": "SB reward owed to the complete view",
+    "__zpbSilent": "SIM SEASON suppresses replays",
+    "__zpbFxSafety": "effect failsafe",
+    "__zpbFxPending": "effect pending",
+    "__zpbPrematchSeen": "prematch cinematic seen",
+    "__zpbPoCineSeen": "playoff run cine seen",
+    "__zpbStoryHold": "season story hold",
+    "__zpbSeriesSteps": "series stepper state",
+    "__zpbAp": "adjacency/plan scratch",
+    "zpbAdjCache": "3-4 adjacency cache (renamed from w32 __zpbAdjCache; must exist before the first 3-4 lookup)",
+    "zpbAdjSpec": "3-4 adjacency spec"
+  },
+  "uiSurfaceDoNotRebind": ["zpbGameReplay", "zpbPostSuperBowlCine", "_zpbSyncSweep", "zpbReleaseLookGate", "zpbAnchorVars", "zpbStatChipsHTML", "posRankOf", "zpbNeutralRowVars", "zpbCineYds", "zpbOrderSlots", "zpbEnsureSeriesOptions"],
+  "payloadRebinds": [{ "function": "renderSeasonCompleteView", "boundBy": "zpb-w51-js", "note": "overrides must come after zpb-w51-js" }],
+  "standingLaws": {
+    "clock": "the Q + time ride var(--text); the w50/w51 cream law is retired (--zcream exists unused)",
+    "dot": "every displayed colon/semicolon renders as the middle dot via the runtime sweep",
+    "lookGate": "releases select by .zpb-seen class state, never :not([data-zseen]) (data-zseen = OBSERVED); the map's look releases every group/zone in scope on ONE clock; mirror law both ways",
+    "shimmer": "one shimmer: zpbshmsweep deep gold breathing to --gold2; 90+ shimmer, 85+ bold",
+    "bars": ".zpb-mbar track = color-mix(in srgb, var(--text) 13%, var(--panel2)), never var(--border); home fill margin-left:auto",
+    "sb": "the user's SB: the during-game cinematic OPENS first, the storm waits for the whistle; SIM PLAYOFFS stays quiet",
+    "awards": "#X Y position badge leads; no plaintext position; solid chip borders; champions carry zpbStatChipsHTML rows, winning stat first",
+    "mobile": "thumb floor table (<=760px) is the single source; #viewRankings .layout>.panel needs min-width:0;contain:inline-size; the touch polish (text-size-adjust, tap-highlight, touch-action:manipulation) never removed; the w43 N6 root law (wide clip / small may pan) is the Owner's"
+  },
+  "batteryMap": [
+    { "tool": "w53_nodecheck.js", "expect": "12/12" },
+    { "tool": "w53_syncbattery.js", "expect": "10/10" },
+    { "tool": "w53_live.js", "expect": "30/30" },
+    { "tool": "w51reg_live.js", "expect": "25/25" },
+    { "tool": "w53_evidence.js", "expect": "64/64" },
+    { "tool": "w53_mobile.js", "expect": "5/5" },
+    { "tool": "w53_mobile_probe.js", "expect": "32/32" }
+  ],
+  "environment": {
+    "playwright": "playwright-core@1.57.0",
+    "chromium": "/home/z/.cache/ms-playwright/chromium_headless_shell-1200/chrome-headless-shell-linux64/chrome-headless-shell",
+    "note": "the batteries launch with --no-sandbox and drive the file:// product directly"
+  }
+}

@@ -1,0 +1,12 @@
+3eed4cc5b223449b345de1cd52264b7d  Football-Sim-Z-post-blue-w39.html
+c061c2f62aa97a8373e34095dbe8807b  CLAUDE-HANDOFF/CLAUDE-UPDATE-since-w33.md
+e91d4c295874f39acedd6572311f8134  UPDATE-README.md
+cc1642a3532f3782af3ed31c64511644  _agents/zai/notes/W39-BUILD-REPORT.md
+0b35f6fd4099b3498b0aa1680863176a  _agents/zai/notes/W39-INTAKE-LEDGER.md
+83a4233d20384a825467d76d2db2ad41  _agents/zai/START-OF-CHAT-ZAI.md
+ae55a014b95623c9c88efb432f1c140a  _agents/zai/END-OF-CHAT-ZAI.md
+9b9daa9987e8ecf6fea559cce84f9f34  _agents/zai/ZAI.md
+5238bc91e1d4032e444a71fd3434bbac  _agents/zai/tools/w39_live.js
+fb3f7ce34e9ea8294fdc338b7a7b42e3  _agents/zai/tools/w39_mobile.js
+49e47efcf75dcecd48fa7a7b173d02e9  _agents/zai/tools/w39_stress.js
+392e67378550f040d9ff7d35b9a73630  _agents/zai/tools/w39_verify.js
