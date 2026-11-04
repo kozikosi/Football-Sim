@@ -1,0 +1,48 @@
+--- council-new.mjs	2026-11-03 18:28:16.044331397 -1000
++++ council-b3.mjs	2026-11-03 18:32:15.215329554 -1000
+@@ -191,6 +191,34 @@
+ const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').slice(0, 30).replace(/^-|-$/g, '') || 'x';
+ const put = (kind, body) => { fs.mkdirSync('inbox', { recursive: true }); const p = `inbox/${utc()}-${mySeat()}-${kind}.md`; if (fs.existsSync(p)) { console.error('exists: ' + p); process.exit(1); } fs.writeFileSync(p, body + '\n'); console.log('wrote ' + p + '  (commit and push your branch)'); };
+ 
++// ---------- board rendering (BUILD-3) ----------
++const boardLine = (i) => `${i.blocked.length ? `BLOCKED(${i.blocked.join(',')}) ` : ''}${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.status}${i.status === 'NEEDS-REVIEW' ? ` ${i.nrev} done${i.lastRate === null ? '' : `, last catch ${Math.round(i.lastRate * 100)}%`}` : ''}${i.staleIn ? ` (auto-retires in ${i.staleIn}d unless kept)` : ''}${i.pending ? ` (${i.pending})` : ''}  ${i.title.slice(0, 90)}`;
++const boardFull = (st) => {
++  const live = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id));
++  const lines = [`BOARD: ${live.length} live, ${st.items.size - live.length} retired, review governor: ${CFG.floor}+ reviews, stop when the last finds <${CFG.governor * 100}% new, cap ${CFG.softCap}`];
++  for (const i of live) lines.push(boardLine(i));
++  return lines;
++};
++const boardSimple = (st) => {
++  const now = Date.now();
++  const live = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id));
++  const lines = [`BOARD: ${live.length} live, ${st.items.size - live.length} retired`];
++  lines.push(`TOP 5:`);
++  for (const i of live.slice(0, 5)) lines.push('  ' + boardLine(i));
++  const blocked = live.filter((i) => i.blocked.length);
++  if (blocked.length) {
++    lines.push(`BLOCKED (${blocked.length}):`);
++    for (const i of blocked.slice(0, 5)) lines.push('  ' + boardLine(i));
++  }
++  const shipped = [...st.items.values()].filter((i) => i.retired && i.retired.why === 'BUILT' && now - (i.retired.t || 0) < 7 * 864e5).sort((a, b) => (b.retired.t || 0) - (a.retired.t || 0));
++  if (shipped.length) {
++    lines.push(`SHIPPED (last 7d):`);
++    for (const i of shipped.slice(0, 5)) lines.push(`  ${i.id} ${i.title.slice(0, 80)}`);
++  }
++  lines.push(`Run 'board --full' for all ${live.length} items.`);
++  return lines;
++};
++
+ // ---------- commands ----------
+ const cmd = args[0], pos = args.slice(1).filter((a, i, arr) => !a.startsWith('--') && !(arr[i - 1] || '').startsWith('--'));
+ const age = (t) => `${Math.max(0, Math.floor((Date.now() - t) / 36e5))}h`;
+@@ -225,9 +253,7 @@
+   else if (cmd === 'board') {
+     const st = loadState();
+     if (flag('--json')) { console.log(JSON.stringify([...st.items.values()].map(({ files, ops, ...i }) => i), null, 1)); process.exit(0); }
+-    const live = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id));
+-    console.log(`BOARD: ${live.length} live, ${st.items.size - live.length} retired, review governor: ${CFG.floor}+ reviews, stop when the last finds <${CFG.governor * 100}% new, cap ${CFG.softCap}`);
+-    for (const i of live) console.log(`${i.blocked.length ? `BLOCKED(${i.blocked.join(',')}) ` : ''}${i.id} [P${i.eff}${i.up ? '↑' : ''}] ${i.status}${i.status === 'NEEDS-REVIEW' ? ` ${i.nrev} done${i.lastRate === null ? '' : `, last catch ${Math.round(i.lastRate * 100)}%`}` : ''}${i.staleIn ? ` (auto-retires in ${i.staleIn}d unless kept)` : ''}${i.pending ? ` (${i.pending})` : ''}  ${i.title.slice(0, 90)}`);
++    for (const l of (flag('--full') ? boardFull(st) : boardSimple(st))) console.log(l);
+   }
+   else if (cmd === 'show') {
+     const st = loadState(), it = st.items.get(pos[0]); if (!it) { console.error('no such item'); process.exit(1); }
