@@ -18,8 +18,9 @@ export interface Envelope<K extends SaveKind = SaveKind, P = unknown> {
 
 // A player frozen at the moment of the save (same fields as engine Player; copied so resume never touches the live pool).
 export interface FrozenPlayer { id: string; name: string; pos: string; role: string; team: string; ovr: number; spd: number; str: number; freeAgent: boolean }
-// Compact pool row for the mid-draft freeze: [name, pos, team, ovr, spd, str, freeAgent 0|1]. Role is rederived from pos by the engine's table.
-export type FrozenPoolRow = [string, string, string, number, number, number, 0 | 1];
+// Compact pool row for the mid-draft freeze: [pid, name, pos, team, ovr, spd, str, freeAgent 0|1]. Role is rederived from pos by the engine's table.
+// The pid (E1) is in the row so a resume never needs the live crosswalk. (Layout changed from 7 to 8 columns on 3 Nov 2026, before any save shipped; schemaVersion stays 1.)
+export type FrozenPoolRow = [string, string, string, string, number, number, number, 0 | 1];
 
 export interface DraftPick { overall: number; team: number; pid: string; slot: string }
 
@@ -86,14 +87,21 @@ export function parseEnvelope(x: unknown): ParseResult<Envelope> {
 const frozenOk = (p: unknown): boolean => isObj(p) && isStr(p.id) && isStr(p.name) && isStr(p.pos) && isStr(p.role) && isStr(p.team) && isInt(p.ovr) && isInt(p.spd) && isInt(p.str) && typeof p.freeAgent === 'boolean';
 const scoresOk = (a: unknown): boolean => Array.isArray(a) && a.every((g) => isObj(g) && isInt(g.week) && isStr(g.home) && isStr(g.away) && isInt(g.hs) && isInt(g.as));
 
+// Shape check for a draft payload (also used by the store when it loads a record). Returns the first problem, or null.
+export function draftPayloadProblem(p: Record<string, unknown>): string | null {
+  if (!isInt(p.seed)) return 'payload: bad seed';
+  if (!isInt(p.userTeam) || p.userTeam < 0 || p.userTeam > 31) return 'draft: bad userTeam';
+  if (!Array.isArray(p.picks) || !p.picks.every((k) => isObj(k) && isInt(k.overall) && isInt(k.team) && isStr(k.pid) && isStr(k.slot))) return 'draft: bad picks';
+  if (!Array.isArray(p.pool) || !p.pool.every((r) => Array.isArray(r) && r.length === 8 && isStr(r[0]) && isStr(r[1]) && isStr(r[2]) && isStr(r[3]) && isInt(r[4]) && isInt(r[5]) && isInt(r[6]) && (r[7] === 0 || r[7] === 1))) return 'draft: bad pool';
+  return null;
+}
 // Inner shape, by kind. Engine side only (storage must not need it). Returns the same envelope typed, or the first problem found.
 export function parsePayload(env: Envelope): ParseResult<AnyEnvelope> {
   const p = env.payload as unknown as Record<string, unknown>;
   if (!isInt(p.seed)) return bad('payload: bad seed');
   if (env.kind === 'draft') {
-    if (!isInt(p.userTeam) || p.userTeam < 0 || p.userTeam > 31) return bad('draft: bad userTeam');
-    if (!Array.isArray(p.picks) || !p.picks.every((k) => isObj(k) && isInt(k.overall) && isInt(k.team) && isStr(k.pid) && isStr(k.slot))) return bad('draft: bad picks');
-    if (!Array.isArray(p.pool) || !p.pool.every((r) => Array.isArray(r) && r.length === 7 && isStr(r[0]) && isStr(r[1]) && isStr(r[2]) && isInt(r[3]) && isInt(r[4]) && isInt(r[5]) && (r[6] === 0 || r[6] === 1))) return bad('draft: bad pool');
+    const why = draftPayloadProblem(p);
+    if (why) return bad(why);
   } else {
     if (!isInt(p.year) || !isInt(p.run) || p.run < 0) return bad(env.kind + ': bad year/run');
     if (!isStr(p.userTeam)) return bad(env.kind + ': bad userTeam');

@@ -14,6 +14,7 @@ const ROLE: Record<string, Role> = {
   QB: 'QB', HB: 'RB', FB: 'FB', WR: 'WR', TE: 'TE', LT: 'OT', RT: 'OT', LG: 'OG', RG: 'OG', C: 'C',
   DT: 'DT', LEDG: 'EDGE', REDG: 'EDGE', MIKE: 'ILB', WILL: 'OLB', SAM: 'OLB', CB: 'CB', SS: 'SS', FS: 'FS', K: 'K', P: 'P', LS: 'LS',
 };
+export const roleOf = (pos: string): Role | undefined => ROLE[pos];
 export function parseCsv(text: string, freeAgent: boolean): Player[] {
   const out: Player[] = [];
   const lines = text.split(/\r?\n/).filter((l) => l.trim().length > 0);

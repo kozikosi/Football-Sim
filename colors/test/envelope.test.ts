@@ -21,7 +21,7 @@ test('envelope: week and season round-trip byte for byte through serialize and r
   if (rs.ok) assert.equal(JSON.stringify(rs.value.payload), JSON.stringify(season()));
 });
 test('envelope: a draft payload with a compact pool round-trips', () => {
-  const d = { seed: 8, userTeam: 11, picks: [{ overall: 1, team: 0, pid: 'a|QB|X', slot: 'QB' }], pool: [['a', 'QB', 'X', 90, 70, 60, 0], ['b', 'HB', 'Free Agent', 70, 80, 50, 1]] };
+  const d = { seed: 8, userTeam: 11, picks: [{ overall: 1, team: 0, pid: 'a|QB|X', slot: 'QB' }], pool: [['p00001', 'a', 'QB', 'X', 90, 70, 60, 0], ['p00002', 'b', 'HB', 'Free Agent', 70, 80, 50, 1]] };
   const r = restore(serialize('draft', 'C', V, d, T));
   assert.ok(r.ok); if (r.ok) assert.deepEqual(r.value.payload, d);
 });
