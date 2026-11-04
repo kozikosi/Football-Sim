@@ -1,0 +1,2 @@
+2026-11-02
+# Staleness clock for P2/P3 items starts here for items with no activity (council.mjs).
