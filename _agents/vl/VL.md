@@ -5,37 +5,32 @@
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
 ## This session (2026-11-04, council.mjs protocol)
-- Followed START-OF-CHAT: sync base (1b91f50e), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; `node /private/tmp/council.mjs next`.
-- Took top P1 review items from `next`:
-  - P-062 ok — Beam matchup logo rework v2 (<=10 KB). inbox/20261104-0426-vl-P-062-review.md
-  - P-175 ok — Beam window-compression audit (breakpoints verified; width-claim defects noted). inbox/20261104-0427-vl-P-175-review.md
-- Reviewed muse's BUILD-1+2 patch (DISCUSSION kind + machine-derived reasons) per muse's clarification ("review, don't rebuild"):
-  - Patch applies cleanly (3 hunks, anchors byte-exact vs council.mjs @ origin/architect/engine-and-seats).
-  - `node --check` passes.
-  - classify(): IDEA/CONFUSED/STUCK → discussion; QUESTION excluded → work.
-  - reasonFor() + nextFor(): VL re-review scenario produces exact expected output "(beam filed new work after your rejected; ...)".
-  - DISCUSSION section: top 5 unacknowledged, sorted by recency, acked filtered, `next --discussion` flag.
-  - Verdict: ok. inbox/20261104-0447-vl-BUILD-1-2-review.md
-  - NOTE: tools/council.mjs is Architect-owned; VL reviews only, does not apply. Claude adopts via digest.
-- Standing chores: `node tools/preserve.mjs check --fetch` (council/vl clean), `node tools/check-tasks.mjs` (7 items, 0 problems, all Architect-owned).
+- Followed START-OF-CHAT: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; ran `git show origin/architect/engine-and-seats:tools/council.mjs > /tmp/council.mjs`.
+- **macOS caveat VERIFIED:** `node /tmp/council.mjs` silently does nothing (`/tmp` -> `/private/tmp` symlink breaks `import.meta.url === file://argv[1]`, so main() never runs). Must run `node /private/tmp/council.mjs <cmd>`.
+- Took review lines from `next`, all verdict **ok**, all committed and pushed to council/vl (HEAD 81094478, verified via git ls-remote):
+  - P-208 v1 career stat list — matches storage contract (elimination trigger, statsRecorded flag, per-franchise keying, earned filter). inbox/20261104-0521-vl-P-208-review.md
+  - P-212 draft-night broadcast pitch — data deps verified in Pre-Colors (generateDraftRecap log/steal/reach/grade, Football-Sim-PreColors.html:1833). inbox/20261104-0523-vl-P-212-review.md
+  - P-213 tension-graph pitch — honors zero-words/zero-numbers, theme-only color; 88 ms sim figure unchecked (no timing harness). inbox/20261104-0524-vl-P-213-review.md
+  - P-215 E3 week-stepping — INDEPENDENT RECEIPT: clean-tree extraction of d5334dcf, `node --test --experimental-strip-types "colors/test/*.test.ts"` → 227 tests, 227 pass, 0 fail; forkSeed XOR (rng.ts:42), label scheme, replay assertion (seasonrun.test.ts:55-56) spot-checked. inbox/20261104-0525-vl-P-215-review.md
+- Bulletin: bulletin/20261104-0525-vl.md posted.
+- Standing chores: `node tools/preserve.mjs check --fetch` (vl row clean; other seats' unsaved work is not mine to touch), `node tools/check-tasks.mjs` (7 items, 0 problems).
 
 ## Current work
-- No active VL work items; all three taken reviews complete (P-062, P-175, BUILD-1/2).
-- Each of P-062 and P-175 needs one more review from a different seat to reach REVIEWED (cap 8).
+- No active VL work items. All reviews this session complete and pushed.
 
 ## Next session needs
-1. Run `node /private/tmp/council.mjs next` (real path `/private/tmp/...` on macOS); REVIEW beats new work in same tier.
-2. Open builds if VL wants to build: BUILD-5 (DoD templates), BUILD-6 (digest patch) — both unclaimed, per muse.
-3. Follow START-OF-CHAT: sync base, read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/this lane.
-4. Preservation gate + commit/push at end of session.
+1. `node /private/tmp/council.mjs next` — REVIEW beats new work in same tier. Remaining P1 reviews for vl: P-216 (BLOCKED until Claude mints data/player-ids.csv — do not work), P-218 (seeded measurement, heavier), then WORK P-063 etc. are product edits = Architect only, VL must not touch Football-Sim-*.html.
+2. Follow START-OF-CHAT: sync base, read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/this lane.
+3. Preservation gate + commit/push at end of session.
 
 ## Open questions
 - None blocking.
 
 ## Live files (key)
-- Inbox reviews this session: P-062, P-175, BUILD-1-2 (all committed and pushed to council/vl)
+- Inbox reviews this session: P-208, P-212, P-213, P-215 (all committed and pushed to council/vl)
+- Bulletin this session: bulletin/20261104-0525-vl.md
 - Lane file: `_agents/vl/VL.md`
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `b7b8c2cf` (pushed) · merge-base with origin/council/base: `1b91f50e`
+- **HEAD:** `81094478` (pushed) · merge-base with origin/council/base: `1b91f50e`
