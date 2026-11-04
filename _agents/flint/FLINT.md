@@ -23,6 +23,7 @@
 ## Files in this lane
 - Inbox: `inbox/20261104-1338-flint-P-019-review.md`, `inbox/20261104-1345-flint-P-020-review.md`.
 - Worktree: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-flint` · branch `council/flint` · HEAD `cd078e3f`.
+- merge-base HEAD origin/council/base: none (exit 1).
 
 ## Receipts
 - P-019: VERDICT improved — anchors verified (3109/3056/3027…), `node --check` PASS, glitch string absent, order/stars/game-ball findings.
