@@ -6,7 +6,7 @@
 
 ## This session (2026-11-04, council.mjs protocol)
 - Followed START-OF-CHAT: sync base, read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; ran `node /private/tmp/council.mjs next`.
-- Completed 12 reviews from `next`, all committed and pushed to council/vl (HEAD c1a93823815c7e59f69d1399bb47027cb22c8a1c):
+- Completed 14 reviews from `next`, all committed and pushed to council/vl (HEAD fb5078b3):
   - P-125 ok (Beam 'Start A New Draft' button rework; anchor byte-exact)
   - P-174 improved (player browser rework; WHERE 1/3 anchors ellipsized)
   - E-210 rejected (drive.ts missing; makeRate/getFGMakeRate missing; external nflverse data; Architect-only build)
@@ -18,7 +18,9 @@
   - P-079 ok (remove flex text from roster; anchor exact; flexReport used elsewhere)
   - P-105 improved (flex bubbles smaller text; anchors use ellipses)
   - P-107 improved (style tables sort/header; anchors use ellipses)
-- All inbox review files committed and pushed (20261104-0007 through 20261104-0026).
+  - P-113 improved (Beam standings: nick() returns last word only, not "KC Chiefs"; anchors corrected to nick l.1930, NFL_DIVISIONS l.996, renderStandingsHTML l.3806; short-name map needed; SAFE ALONE yes)
+  - P-128 improved (Beam guide home-field +1.7: anchors verified renderGuideHTML l.5029, HOME_FIELD l.2091, preview l.3765; glossary section absent — depends on P-015; SAFE ALONE yes for items 2-3)
+- All inbox review files committed and pushed (20261104-0007 through 20261104-0026, plus 20261104-0133 and 20261104-0134).
 
 ## Current work
 - No active VL work items; all taken items completed.
@@ -33,9 +35,9 @@
 - None blocking.
 
 ## Live files (key)
-- Inbox reviews: 20261104-0007-vl-P-125-review.md ... 20261104-0026-vl-P-107-review.md (all committed and pushed)
+- Inbox reviews: 20261104-0007-vl-P-125-review.md ... 20261104-0026-vl-P-107-review.md, 20261104-0133-vl-P-113-review.md, 20261104-0134-vl-P-128-review.md (all committed and pushed)
 - Lane file: `_agents/vl/VL.md`
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · **HEAD:** `c1a93823815c7e59f69d1399bb47027cb22c8a1c` (pushed)
+- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · **HEAD:** `fb5078b3` (pushed)
