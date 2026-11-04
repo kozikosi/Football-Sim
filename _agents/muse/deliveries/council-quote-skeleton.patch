@@ -1,0 +1,70 @@
+--- council-b6.mjs	2026-11-03 19:01:56.644315830 -1000
++++ council-b7.mjs	2026-11-03 19:32:35.327301665 -1000
+@@ -281,6 +281,67 @@
+     console.log(`DoD (${type}):`);
+     for (const c of tpl) console.log(`- [ ] ${c}`);
+   }
++  // BUILD-7: quote verification — check if a quoted string actually appears in the cited file.
++  // Usage: node tools/council.mjs quote <file> <text>
++  // Prevents misquoting: if you dispute a reported value, verify the quote first.
++  else if (cmd === 'quote') {
++    const file = pos[0], text = pos.slice(1).join(' ');
++    if (!file || !text) { console.error('usage: quote <file> <text>'); process.exit(1); }
++    let content = '';
++    if (fs.existsSync(file)) content = fs.readFileSync(file, 'utf8');
++    else {
++      // Try council branches via git
++      for (const b of ['muse', 'vl', 'or', 'beam', 'ds', 'base']) {
++        content = g('show', `origin/council/${b}:${file}`);
++        if (content) break;
++      }
++    }
++    if (!content) { console.error(`cannot read ${file} (tried local and origin/council/*)`); process.exit(1); }
++    const lines = content.split('\n'), hits = [];
++    lines.forEach((ln, i) => { if (ln.includes(text)) hits.push(i + 1); });
++    if (hits.length) {
++      console.log(`FOUND: "${text}" in ${file} at line(s) ${hits.join(', ')}`);
++      for (const h of hits.slice(0, 3)) console.log(`  L${h}: ${lines[h - 1].trim().slice(0, 120)}`);
++    } else {
++      console.log(`NOT FOUND: "${text}" does not appear in ${file}`);
++      // Suggest lines containing the numbers from the quote
++      const nums = text.match(/\d+\.\d+|\d+/g) || [];
++      const sug = [];
++      lines.forEach((ln, i) => {
++        if (sug.length >= 3) return;
++        if (nums.some((n) => ln.includes(n)) && !ln.includes(text)) sug.push([i + 1, ln.trim().slice(0, 100)]);
++      });
++      if (sug.length) {
++        console.log('Did you mean:');
++        for (const [n, ln] of sug) console.log(`  L${n}: ${ln}`);
++      }
++    }
++  }
++  // BUILD-8: review skeleton generator with required SOURCE field.
++  // Usage: node tools/council.mjs review-skeleton <ID>
++  // Every finding must cite its source (file:line "exact quote") — no paraphrasing numbers from memory.
++  else if (cmd === 'review-skeleton') {
++    const id = pos[0] || 'P-XXX';
++    const d = new Date().toISOString().slice(0, 16) + 'Z';
++    console.log(`SPEAKER: <seat> | ROLE: Council Advisor | TASK: Review ${id} | DATE: ${d}`);
++    console.log(`REVIEW-OF: ${id}`);
++    console.log(`VERDICT: ok|improved|rejected`);
++    console.log(`FOUND: 0`);
++    console.log(`NEW: 0`);
++    console.log(``);
++    console.log(`## Findings`);
++    console.log(``);
++    console.log(`### 1. <finding title>`);
++    console.log(`<description of what you checked and found>`);
++    console.log(`SOURCE: <file>:<line> "<exact quote from the source>"`);
++    console.log(`EVIDENCE: VERIFIED|REPORTED|INFERRED`);
++    console.log(``);
++    console.log(`### 2. <next finding>`);
++    console.log(`...`);
++    console.log(``);
++    console.log(`## Verdict`);
++    console.log(`<one-line summary>`);
++  }
+   else if (cmd === 'retire') { const ids = pos; const why = (val('--why') || '').toUpperCase(), ev = val('--evidence'); if (!ids.length || !/^(BUILT|SUPERSEDED|DUPLICATE|STALE)$/.test(why) || !ev) { console.error('usage: retire <ID...> --why BUILT|SUPERSEDED|DUPLICATE|STALE --evidence "<proof: commit, file, command>"'); process.exit(1); } for (const id of ids) put(`OP-retire-${id}`, `OP: RETIRE ${id} | ${why} | ${ev}`); }
+   else if (cmd === 'revive' || cmd === 'keep') { for (const id of pos) put(`OP-${cmd}-${id}`, `OP: ${cmd.toUpperCase()} ${id} | ${val('--evidence') || ''}`); }
+   else if (cmd === 'probe') { put(`OP-probe-${pos[0]}`, `OP: PROBE ${pos[0]} | ${pos[1]} | ${pos[2]}`); }
