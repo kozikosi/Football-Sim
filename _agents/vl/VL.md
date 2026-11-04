@@ -21,7 +21,8 @@
   - P-113 improved (Beam standings: nick() returns last word only, not "KC Chiefs"; anchors corrected to nick l.1930, NFL_DIVISIONS l.996, renderStandingsHTML l.3806; short-name map needed; SAFE ALONE yes)
   - P-128 improved (Beam guide home-field +1.7: anchors verified renderGuideHTML l.5029, HOME_FIELD l.2091, preview l.3765; glossary section absent — depends on P-015; SAFE ALONE yes for items 2-3)
 - Re-reviewed E-210 v2 (beam, 20261104-0140): **improved** — all 5 v1 defects resolved; bucket math verified exact (97.8/93.4/79.8/73.3/62.4/39.2, overall 85.17%); drives.ts line numbers wrong on target branch architect/engine-and-seats (186/250-252 not beam's 169/223-225). Review file: inbox/20261104-0150-vl-E-210-review.md.
-- All inbox review files committed and pushed (20261104-0007 through 20261104-0026, plus 20261104-0133, 20261104-0134, 20261104-0150).
+- Reviewed P-140 (beam, 20261026-0035): **improved** — all 6 old-value anchors verify byte-exact vs Pre-Colors; DEFAULT_WEIGHTS@452 and MC.kick=0.069 confirmed; MATERIAL ERROR: beam understates Owner-approval — Fix 1/2/3 touch protected RATING_SPECS yet marked "SAFE ALONE?: yes". Review file: inbox/20261104-0210-vl-P-140-review.md.
+- All inbox review files committed and pushed (20261104-0007 through 20261104-0026, plus 20261104-0133, 20261104-0134, 20261104-0150, 20261104-0210).
 
 ## Current work
 - No active VL work items; all taken items completed.
