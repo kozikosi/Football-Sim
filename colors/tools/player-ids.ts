@@ -1,10 +1,10 @@
 // Usage (from colors/): node --experimental-strip-types tools/player-ids.ts sync|check
-//   sync  updates ../data/player-ids.csv from the two rating files (new players get new pids; a player who changed team keeps his pid) and prints what changed
+//   sync  updates ../data/nfl/player-ids.csv from the two rating files (new players get new pids; a player who changed team keeps his pid) and prints what changed
 //   check exits 1 if the crosswalk does not cover the current data exactly (no missing rows, no duplicates)
 import fs from 'node:fs';
-import { parseCsv } from '../src/engine/players.ts';
-import { formatIds, parseIds, syncIds } from '../src/engine/playerids.ts';
-const f = (n: string) => new URL('../../data/' + n, import.meta.url);
+import { parseCsv } from '../src/sports/nfl/engine/players.ts';
+import { formatIds, parseIds, syncIds } from '../src/sports/nfl/engine/playerids.ts';
+const f = (n: string) => new URL('../../data/nfl/' + n, import.meta.url);
 const players = [...parseCsv(fs.readFileSync(f('madden27-ratings.csv'), 'utf8'), false), ...parseCsv(fs.readFileSync(f('free-agents-old-ratings.csv'), 'utf8'), true)];
 const cur = players.map((p) => ({ name: p.name, pos: p.pos, team: p.team }));
 const have = fs.existsSync(f('player-ids.csv'));

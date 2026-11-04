@@ -4,7 +4,7 @@
   "type": "module",
   "description": "Colors v1 (20-0): the Architect build. Engine, view-models and UI source are TypeScript; build/build.mjs bundles them with esbuild. The engine and view layers have no runtime dependencies; react, react-dom and svelte are used only by the UI adapters.",
   "scripts": {
-    "test": "node --test --experimental-strip-types \"test/*.test.ts\"",
+    "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
     "build": "node build/build.mjs"
   },
   "dependencies": {
