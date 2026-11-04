@@ -1,40 +1,45 @@
 <!--
-WAVE: w67
+WAVE: w68
 CLAIMS:
-- Owner UI 1: the two homepage dropdown bubbles read as ONE size at rest and after every
-  selection - #draftSetup .zpb-selbtn carries one fixed width (--zpbSelW 260px, bigger than
-  either old default); the team face keeps the w27 fit law (full name -> abbreviation,
-  MEASURED by the extended fitFace + .zpb-fit-t, never a clipped word); the <=1180px face
-  swap retires (the fixed box decides, not the window) and the <=640px shrink cannot beat
-  the id law. Battery: all 32 teams x 3 widths, widths equal and faces unclipped.
-- Owner UI 2: the player browser stops flashing on small screens - #playerTable is
-  data-nostack (the Owner prefers the smaller, narrower table at every width) and the
-  phone-stacker counts columns colspan-aware (the P-174 sentinel row is colspan=6 but read
-  as one cell, which flipped the fit verdict on every pass - the measure/toggle loop that
-  flashed the panel between the stacked cards and the compact table is dead).
-- Owner UI 3: the Series subtitle reads on TWO lines - "RANKING BY THE N MOST VALUABLE
-  POSITIONS" over the slot list (QB + CB1 + ...), the "spots" wording retired, every N.
-- Owner UI 4: the fills dropdown's ink follows the neutral dropdown family - dark mode
-  swaps --tTxM (the light halfway ink, a dark navy on the dark panel for the Panthers)
-  to --tTxd, the same family the popup options and the homepage picker already wear.
-- Owner UI 5: ONE reveal clock at the season-in-badges pace - that rail paces 0.6s per
-  beat (measured: delay = beat*0.6s - 0.25s head start), so the player cards, the
-  field-map markers and the depth rows all ride 0.6s (the w66 0.3s card clock and the
-  1s map fallback retire); entrance .55s, one card at a time, map and depth in step.
-- Owner UI 6: the pregame star cards read the neutral halfway ink on their always-dark
-  stage (the meta line rides --tnd; the 90+ shimmer sweeps tnd -> cream instead of the
-  light-tuned --zrb accent), the Key Players titles and shimmer rows swap to the
-  dark-tuned --zrbd in dark mode, and the matchup-math bars ride --zrbd in dark -
-  measured for all 32 teams in both modes.
-- Owner UI 7: the pregame stage ends at the footer - the intro's bottom inset is measured
-  to the footer's height at mount (the w66 top clamp's mirror), so no star pair can cross
-  the skip button or its hairline at any window size; swept at six sizes.
-- Owner UI 8: the upper line is one left-aligned cluster - NEW DRAFT / 100 SEASONS /
-  SIM GAME / SIM SEASON (/ SIM PLAYOFFS / BACK TO SEASON) shoulder to shoulder; the 20-0
-  line keeps the far right; the 100-SEASONS wrapper stops inflating its own box.
-- Owner UI 9: SIM PLAYOFFS leaves the w57 big-button law (the same retirement SIM SEASON
-  made in w65) - the review page reads BEGIN PLAYOFFS as the big filled pill and SIM
-  PLAYOFFS clearly smaller beside it. Measured before/after.
+- Owner UI 1: the key players read FULL NAMES at full window size - the name ladder's
+  avail() now measures the carrier's true available line (parent width minus siblings minus
+  gaps; the old self-measure let a once-shortened name shrink its own box and lock), and at
+  window >= 1025px the ladder never drops below the full name (full vertical is the floor;
+  last names/initials stay for narrow windows <= 1024px). Battery: the CL lock reproduced
+  before and healed after; full names asserted at 1025/1280/1440; the narrow law intact.
+- Owner UI 2: THE DASH/DOT LAW - W-L-T records and single-game scores read DASHES
+  ("10-6-1", "31-17", "tied 14-10"), any other data keeps the middle dot. The w50 blanket
+  digit-dash-digit convert retires from the season-in-badges rail (it ate the shared digit:
+  10-6-1 became 10-6-1's broken cousin 10+dot+6-1); the W-L split badges (ONE SCORE,
+  VS DIVISION, AT HOME, ON THE ROAD, VS PLAYOFF TEAMS) join the dash law; the replay
+  story's game scores (the tie, the half, the third quarter, the OT line, the fourth-quarter
+  run, every final), the season-in-words scores, the schedule tiles, the h2h/preview story,
+  the playoff retrospectives and the Super Bowl/replay/round-card score separators all read
+  dashes. Projections, ratings and ranges keep the dot (flagged in the ledger).
+- Owner UI 3: the season-awards summary paragraph retires whole - the "TEAM · N First-Team
+  All-Pro · ..." counts sentence and its indented honor lines (the Owner's example carried
+  "Pittsburgh Steelers coaching staff · Coach of the Year") leave REGULAR-SEASON AWARDS &
+  HONORS; the award cards, the statistical champions and the All-Pro/Pro Bowl tables stay.
+- Owner UI 4: the user's award winners GLOW - every award card, All-Pro/Pro Bowl chip and
+  All-Playoff chip whose winner is the user's wears the golden border AND the outer glow
+  (both), the chip names take the shimmer for any award (not just First-Team), and the
+  season-in-badges honor cards gain the glow. The gold is the zpb-sb-gold celebration metal.
+- Owner UI 5: the run-ends screen retires - EVERY sim-playoffs path (the review door, the
+  mid-playoffs SIM REST door, the shared end-screen decider) lands on the Super Bowl page
+  (SUPER BOWL - FINAL, the score, the crests, the champion, the MVP); zpbPlayoffElimCine
+  and its .zpb-pofin face leave the file (the N5 comparison CSS in that style block stays).
+- Owner UI 6: the sim-playoffs run cine requires a CONTINUE per round - the 3400ms
+  auto-advance retires; every round card carries the gold Continue pill; the last card's
+  Continue flows into the Super Bowl page (mount first, fade second - the w57 storm law).
+- Owner UI 7: the user-wins-the-Super-Bowl page - when the champion is the user's team the
+  SB page's Continue mounts zpbSuperBowlVictoryCine (before the SB overlay fades - opaque
+  from the first painted frame): charcoal-gold stage, twin god-ray wheels, team-gold
+  confetti, rising embers, a breathing glow, the crest through three burst rings, the huge
+  shimmering wordmark, the dash-law score, the MVP line, the gold Continue - all on the
+  Owner's 0.6s reveal cadence; its Continue plays the standing SUPER BOWL CHAMPIONS reward.
+Batteries: w68_owner (this round, live), w68_names (the ladder), w68_text (dash/dot),
+w68_playoffs (continue gate + SB page + victory page), w68_awards (gold + removal);
+the standing suites re-pointed at w68. Baseline md5 ecf2b295b97739b88e7f60068b588b84.
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -679,7 +684,7 @@ body[data-home="1"] .hero{display:none;}
  background:linear-gradient(90deg,var(--tTA,rgba(230,198,125,.25)),var(--tTC,rgba(201,162,75,.18)));
  transform:translateY(-1px);box-shadow:0 8px 22px var(--glow);}
 #startSeasonBtn,#beginSeasonBtn,#beginSeasonBtn2,#seasonReviewBtn,#beginPlayoffsBtn, /* w51 (Owner): SIM SEASON gives its color away — it stays in its spot, quiet again · w57 (Owner): BEGIN PLAYOFFS wears the same gold pill · w60 (Owner): SIM PLAYOFFS leaves the pill — it is not colored in at all */
-#nextWeekBtn,#nextRoundBtn,#zrepGo,#zpbRestGo,#goDraftResumeBtn,.zpb-sbfin-go,.zpb-goldcta{ /* w51 (Owner): the gold franchise pill is the CONTINUE color — every button that says Continue wears it */
+#nextWeekBtn,#nextRoundBtn,#zrepGo,#zpbRestGo,#goDraftResumeBtn,.zpb-sbfin-go,.zpb-porun-go,.zpb-victory-go,.zpb-goldcta{ /* w51 (Owner): the gold franchise pill is the CONTINUE color — every button that says Continue wears it · W68 (Owner): the run-cine round gate and the victory page join */
  background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));color:var(--ongold);
  border:1px solid var(--tBSb);box-shadow:0 10px 26px var(--glow);}
 .zpb-sbfin-go:hover,.zpb-goldcta:hover{background:linear-gradient(100deg,var(--g5),var(--g2) 45%,var(--g4));}
@@ -1248,7 +1253,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
    zpb-splain class stays in the markup as a hook, but it paints nothing of its own now. */
 .zpb-splain{border-style:solid;}
 .zpb-sdot{color:var(--sub);opacity:.6;}
-.zpb-shonor{border-color:var(--gold3,var(--accent));}
+.zpb-shonor{border-color:var(--gold3,var(--accent));box-shadow:0 0 14px color-mix(in srgb,var(--gold2,var(--accent)) 42%,transparent),0 0 5px color-mix(in srgb,var(--gold2,var(--accent)) 38%,transparent) inset;} /* W68 (Owner): the user's honored players glow — the golden border AND the glow */
 .zpb-shonor-t{font-size:0.66rem;letter-spacing:.22em;color:var(--gold3,var(--accent));font-weight:800;}
 .zpb-shonor-w{font-size:0.7rem;color:var(--sub);margin-top:4px;}
 .zpb-story-perfect{background:linear-gradient(180deg,color-mix(in srgb,var(--gold2,var(--accent)) 16%,var(--panel)),var(--panel));}
@@ -1439,7 +1444,7 @@ button.resetbtn,button.tabbtn{font-weight:700;letter-spacing:.06em;}
 .zpb-pcard:hover{transform:translateY(-3px);box-shadow:0 12px 26px var(--zr1,rgba(201,162,75,.2));}
 .zpb-pcard-hd{display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .zpb-pcard-hd b{font-size:.92rem;}
-.zpb-poschip{font-size:.62rem;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:999px;border:1px solid var(--zrb,var(--accent));color:var(--zrb,var(--accent));}
+.zpb-poschip{font-size:.62rem;font-weight:800;letter-spacing:.1em;padding:3px 8px;border-radius:999px;border:1px solid var(--zrb,var(--accent));color:var(--zrb,var(--accent));flex:0 0 auto;white-space:nowrap;} /* W68 (Owner): a wrapping name cannot squeeze the chip */
 .zpb-pcard-rt{font-family:'Cinzel Decorative','Cinzel',Georgia,serif;font-weight:900;font-size:1.5rem;margin:6px 0 2px;color:var(--zrb,var(--accent));}
 .zpb-pcard-rt i{font-style:normal;font-family:'Cinzel',Georgia,serif;font-size:.62rem;color:var(--sub);display:block;letter-spacing:.08em;}
 .zpb-pcard-stats{display:flex;flex-wrap:wrap;gap:5px;margin-top:7px;}
@@ -3558,7 +3563,7 @@ function zpbGameReplay(g, focusTeam){
    const fin = document.createElement('div'); fin.className = 'zpb-rep-final';
    const uWon = focusTeam && ((g.home===focusTeam && hs>as) || (g.away===focusTeam && as>hs));
    const _cA = colOf(g.away), _cH = colOf(g.home), _abA = abbr(g.away), _abH = abbr(g.home);
-   const scoreLine = '<div class="zpb-rep-fscore"><b style="color:' + _cA + ';">' + _abA + '</b> <span style="color:' + _cA + ';">' + as + '</span> <i>·</i> <span style="color:' + _cH + ';">' + hs + '</span> <b style="color:' + _cH + ';">' + _abH + '</b></div>';
+   const scoreLine = '<div class="zpb-rep-fscore"><b style="color:' + _cA + ';">' + _abA + '</b> <span style="color:' + _cA + ';">' + as + '</span> <i>-</i> <span style="color:' + _cH + ';">' + hs + '</span> <b style="color:' + _cH + ';">' + _abH + '</b></div>'; // W68 (Owner): a single-game score reads the DASH
    const resLine = focusTeam
     ? '<div class="zpb-rep-fres">' + (uWon
        ? '<span class="zpb-rep-star zpb-shm" style="--zrb:' + colOf(focusTeam) + '">★</span><span class="zpb-rep-you zpb-shm" style="--zrb:' + colOf(focusTeam) + '">YOU WON</span>'
@@ -4111,7 +4116,7 @@ renderUserScheduleHTML = function(){
    const fs = home ? g.result.homeScore : g.result.awayScore, os = home ? g.result.awayScore : g.result.homeScore;
    const o = fs>os ? 'W' : fs<os ? 'L' : 'T';
    cls += ' zst-played zst-' + o.toLowerCase();
-   res = '<span class="zst-res"><b class="zst-mine">' + fs + '</b><span> · </span><span>' + os + '</span><em class="zst-o">' + o + '</em></span>';
+   res = '<span class="zst-res"><b class="zst-mine">' + fs + '</b><span> - </span><span>' + os + '</span><em class="zst-o">' + o + '</em></span>'; // W68 (Owner): a single-game score reads the DASH (the battery caught this live tile renderer)
   } else if(isNow){ cls += ' zst-now'; }
   return '<div class="' + cls + '" data-wk="' + g.week + '" style="' + uvars + '" title="Week ' + g.week + (g.divisional ? ' · division game' : '') + '">'
    + '<span class="zst-wk">' + g.week + '</span><span class="zst-logo">' + lg(opp) + '</span>'
@@ -7305,7 +7310,7 @@ function dramaticEnding(g, ctx){
  const kicker = wPl.find(p=>p.group==='K'), lk = lPl.find(p=>p.group==='K'), lqb = lPl.find(p=>p.group==='QB');
  const lrec = top(lPl.filter(p=>p.group==='WR'||p.group==='TE'), p=>p.st.recYds||0);
  const dl = top(wPl.filter(p=>p.group==='DL'||p.group==='LB'), p=>(p.st.sack||0)*2+(p.ovr||70)/100), db = top(wPl.filter(p=>p.group==='DB'), p=>(p.st.dint||0)*3+(p.st.pd||0)+(p.ovr||70)/100);
- const fin = `${Math.max(hs,as)}·${Math.min(hs,as)}`, B = n=>`<b>${n}</b>`;
+ const fin = `${Math.max(hs,as)}-${Math.min(hs,as)}`, B = n=>`<b>${n}</b>`; // W68 (Owner): the game score reads the DASH
  const yl = hashInt(g,'yl',21,48), gain = hashInt(g,'gain',9,27), ex = sb||po;
  // what the trailing team did with its last possession (needs: a field goal, or a touchdown)
  const lastDrive = (secs, start, m)=>{
@@ -7489,7 +7494,7 @@ function playByPlay(g, pEnd, halfTxt, collapse){
  mixed.sort((a,b)=>a.q-b.q||a.t-b.t);
  let h=0, a=0; const Q = {1:'First quarter', 2:'Second quarter', 3:'Third quarter', 4:'Fourth quarter', 5:'Overtime'};
  const out = {}; const add = (q,t)=>{ (out[q]=out[q]||[]).push(t); };
- const tag = ()=> h===a ? `tied ${h}·${a}` : h>a ? `${nick(g.home)} ${h}·${a}` : `${nick(g.away)} ${a}·${h}`;
+ const tag = ()=> h===a ? `tied ${h}-${a}` : h>a ? `${nick(g.home)} ${h}-${a}` : `${nick(g.away)} ${a}-${h}`; // W68 (Owner): the series score reads the DASH
  mixed.forEach(m=>{
   if(m.kind==='turn'){ if(m.def){ const dd = m.def.x; if(dd.side==='home') h += dd.e.pts; else a += dd.e.pts; add(m.q, m.txt.replace(/([.!])$/, ` (${tag()}).`).replace(/\)\.\.$/,').')); } else add(m.q, m.txt); return; }
   const {side:sd, e, sc, kick} = m.x, tm = 'the '+nick(nameOf(sd));
@@ -7542,7 +7547,7 @@ function generateGameSummary(g, ctx){
  // ----- paragraph 1: how the game unfolded -----
  let p1;
  if(!side){
-  p1 = `${prefix}${T('home')} and ${T('away')} played to a ${hs}·${as} tie.`;
+  p1 = `${prefix}${T('home')} and ${T('away')} played to a ${hs}-${as} tie.`; // W68 (Owner)
  } else {
   const W = side, L = other(side), wn = T(W), ln = T(L), wS = scoreOf(W), lS = scoreOf(L);
   const wA3 = ptsAfter(W,3), lA3 = ptsAfter(L,3), q4W = wS-wA3, q4L = lS-lA3;
@@ -7550,7 +7555,7 @@ function generateGameSummary(g, ctx){
   const evsAll = r.homeEvents.map(e=>({...e,side:'home'})).concat(r.awayEvents.map(e=>({...e,side:'away'}))).sort((a,b)=>a.q-b.q||a.t-b.t);
   const sc = (q,s)=> ptsAfter(s,q);
   const leaderAt = q => A[q].h>A[q].a ? 'home' : A[q].a>A[q].h ? 'away' : null;
-  const hiLo = q => `${Math.max(A[q].h,A[q].a)}·${Math.min(A[q].h,A[q].a)}`;
+  const hiLo = q => `${Math.max(A[q].h,A[q].a)}-${Math.min(A[q].h,A[q].a)}`; // W68 (Owner): quarter scores read the DASH
   // 1) the opening score
   let open = '';
   if(evsAll.length){
@@ -7559,35 +7564,35 @@ function generateGameSummary(g, ctx){
   } else open = `${prefix}neither offense could score early.`;
   // 2) the half
   const lh = leaderAt(2);
-  const half = lh ? pick([`${capFirst(T(lh))} led ${hiLo(2)} at the half.`, `At the break it was ${nick(nameOf(lh))} ${hiLo(2)}.`]) : `It was tied ${A[2].h}·${A[2].a} at the half.`;
+  const half = lh ? pick([`${capFirst(T(lh))} led ${hiLo(2)} at the half.`, `At the break it was ${nick(nameOf(lh))} ${hiLo(2)}.`]) : `It was tied ${A[2].h}-${A[2].a} at the half.`; // W68 (Owner)
   // 3) the third quarter
   const d3h = A[3].h-A[2].h, d3a = A[3].a-A[2].a, l3 = leaderAt(3);
   let third;
   const big3 = Math.abs(d3h-d3a)>=7 ? (d3h>d3a?'home':'away') : null;
-  if(big3) third = `${capFirst(T(big3))} outscored ${T(other(big3))} ${Math.max(d3h,d3a)}·${Math.min(d3h,d3a)} in the third quarter ${l3===big3?'to go up':'to '+(l3?'close within':'tie it at')} ${l3?hiLo(3):A[3].h+'·'+A[3].a}.`;
+  if(big3) third = `${capFirst(T(big3))} outscored ${T(other(big3))} ${Math.max(d3h,d3a)}-${Math.min(d3h,d3a)} in the third quarter ${l3===big3?'to go up':'to '+(l3?'close within':'tie it at')} ${l3?hiLo(3):A[3].h+'-'+A[3].a}.`; // W68 (Owner)
   else if(d3h+d3a===0) third = 'Neither offense scored in the third quarter.';
-  else third = l3 ? `${capFirst(T(l3))} still led ${hiLo(3)} after three quarters.` : `It was tied ${A[3].h}·${A[3].a} after three quarters.`;
+  else third = l3 ? `${capFirst(T(l3))} still led ${hiLo(3)} after three quarters.` : `It was tied ${A[3].h}-${A[3].a} after three quarters.`; // W68 (Owner)
   // 4) the finish
   let fin;
   if(r.ot){
-   fin = `Regulation ended tied ${A[4].h}·${A[4].a}, and ${wn} won it in overtime, ${wS}·${lS}.`;
+   fin = `Regulation ended tied ${A[4].h}-${A[4].a}, and ${wn} won it in overtime, ${wS}-${lS}.`; // W68 (Owner)
    third = '';
   } else if(lead(W,3)<0){
    collapse = L;
-   fin = pick([`Then ${wn} closed on a ${q4W}·${q4L} run to steal a ${wS}·${lS} win.`, `${capFirst(wn)} outscored ${ln} ${q4W}·${q4L} down the stretch and won ${wS}·${lS}.`]);
+   fin = pick([`Then ${wn} closed on a ${q4W}-${q4L} run to steal a ${wS}-${lS} win.`, `${capFirst(wn)} outscored ${ln} ${q4W}-${q4L} down the stretch and won ${wS}-${lS}.`]); // W68 (Owner)
   } else if(lead(W,3)===0){
-   fin = margin<=3 ? `${capFirst(wn)} edged it ${wS}·${lS} in a game that came down to the final possession.` : `${capFirst(wn)} pulled away in the fourth quarter, ${wS}·${lS}.`;
+   fin = margin<=3 ? `${capFirst(wn)} edged it ${wS}-${lS} in a game that came down to the final possession.` : `${capFirst(wn)} pulled away in the fourth quarter, ${wS}-${lS}.`; // W68 (Owner)
   } else if(margin<=4){
-   fin = pick([`${capFirst(wn)} held on for a ${wS}·${lS} win.`, `${capFirst(wn)} survived a tense finish, ${wS}·${lS}.`]);
+   fin = pick([`${capFirst(wn)} held on for a ${wS}-${lS} win.`, `${capFirst(wn)} survived a tense finish, ${wS}-${lS}.`]); // W68 (Owner)
   } else if(margin>=17){
-   fin = (wS-wA3) > (lS-lA3) ? `${capFirst(wn)} kept pouring it on and won going away, ${wS}·${lS}.` : `${capFirst(wn)} coasted home, ${wS}·${lS}.`;
+   fin = (wS-wA3) > (lS-lA3) ? `${capFirst(wn)} kept pouring it on and won going away, ${wS}-${lS}.` : `${capFirst(wn)} coasted home, ${wS}-${lS}.`; // W68 (Owner)
   } else if(flow.changes>=3){
-   fin = `The lead changed hands ${flow.changes} times before ${wn} finally pulled away, ${wS}·${lS}.`;
+   fin = `The lead changed hands ${flow.changes} times before ${wn} finally pulled away, ${wS}-${lS}.`; // W68 (Owner)
   } else if(total>=58){
-   fin = `Both offenses moved the ball at will, but ${wn} had the last answer in a ${wS}·${lS} shootout.`;
+   fin = `Both offenses moved the ball at will, but ${wn} had the last answer in a ${wS}-${lS} shootout.`; // W68 (Owner)
   } else if(total<=33){
-   fin = `Points were hard to come by, and ${wn} did just enough to win ${wS}·${lS}.`;
-  } else fin = `${capFirst(wn)} finished it off, ${wS}·${lS}.`;
+   fin = `Points were hard to come by, and ${wn} did just enough to win ${wS}-${lS}.`; // W68 (Owner)
+  } else fin = `${capFirst(wn)} finished it off, ${wS}-${lS}.`; // W68 (Owner)
   const ri = longestRun(r);
   const runTxt = (ri && ri.pts>=14 && ri.startQ>=2 && ri.endQ<=3) ? ` ${capFirst(T(ri.side))} had ripped off ${ri.pts} unanswered points ${ri.startQ===ri.endQ?`in ${qTxt(ri.startQ)}`:`between the ${ordinalQ(ri.startQ)} and ${ordinalQ(ri.endQ)} quarters`} along the way.` : '';
   const pEnd = dramaticEnding(g, ctx);
@@ -8387,7 +8392,7 @@ function renderUserScheduleHTML(){
   if(g.played){
    const fs = home?g.result.homeScore:g.result.awayScore, os = home?g.result.awayScore:g.result.homeScore;
    const o = fs>os?'W':fs<os?'L':'T';
-   res = `<span class="zst-res zst-${o.toLowerCase()}">${o}</span><span class="zst-score">${fs}·${os}</span>`;
+   res = `<span class="zst-res zst-${o.toLowerCase()}">${o}</span><span class="zst-score">${fs}-${os}</span>`; // W68 (Owner): the tile score reads the DASH
    cls += ' zst-played';
   }
   return `<div class="${cls}" data-wk="${g.week}" title="Week ${g.week}${g.divisional?' · division game':''}" style="${(typeof zpbNeutralRowVars==='function')?zpbNeutralRowVars(opp):''}"><span class="zst-wk">${g.week}</span><span class="zst-at">${home?'vs':'@'}</span><span class="zst-logo">${lg(opp)}</span><span class="zst-opp">${opp}</span>${res}</div>`; // w41 (N1, Owner): the opponent wears the dropdown's ink
@@ -8541,11 +8546,11 @@ function zpbSeasonStoryHTML(){
   (marquee && (!big || marquee.week!==big.week)) ? badge('vs '+nick(marquee.opp).toUpperCase(), marquee.fs+'-'+marquee.os, 'zpb-sb-good zpb-sbadge-sm') : null, // w32 (Owner): same two-line law
   worst ? badge((worst.home?'vs ':'@ ')+nick(worst.opp).toUpperCase(), worst.fs+'-'+worst.os, 'zpb-sb-bad zpb-sbadge-sm') : null, // w32 (Owner): same two-line law
   (bad && (!worst || bad.week!==worst.week) && F.st[bad.opp].wins<=7) ? badge('vs '+nick(bad.opp).toUpperCase(), F.st[bad.opp].wins+'-'+F.st[bad.opp].losses, 'zpb-sb-bad zpb-sbadge-sm') : null, // w32 (Owner): PAIN shows the victim's record the same way
-  close.length>=3 ? badge('ONE SCORE', cw+'·'+(close.length-cw)) : null,
-  dv.length ? badge('VS DIVISION', dw+'·'+(dv.length-dw)) : null,
-  badge('AT HOME', hw+'·'+(home.length-hw)),
-  badge('ON THE ROAD', rw+'·'+(road.length-rw)),
-  vs.length>=3 ? badge('VS PLAYOFF TEAMS', vw+'·'+(vs.length-vw)) : null,
+  close.length>=3 ? badge('ONE SCORE', cw+'-'+(close.length-cw)) : null, // W68 (Owner): wins-losses splits read DASHES — the W-L record law
+  dv.length ? badge('VS DIVISION', dw+'-'+(dv.length-dw)) : null, // W68 (Owner)
+  badge('AT HOME', hw+'-'+(home.length-hw)), // W68 (Owner)
+  badge('ON THE ROAD', rw+'-'+(road.length-rw)), // W68 (Owner)
+  vs.length>=3 ? badge('VS PLAYOFF TEAMS', vw+'-'+(vs.length-vw)) : null, // W68 (Owner)
   badge('PTS SCORED PER GAME', Math.round(ppg)+' · #'+rankOf('pf', false)), // w32 (Owner): integers on the review badges
   badge('RUSH YARDS PER GAME', Math.round(t.rush/gp)+' · #'+rankOf('rush', false)),
   badge('PASS YARDS PER GAME', Math.round(t.pass/gp)+' · #'+rankOf('pass', false)),
@@ -8589,7 +8594,7 @@ function zpbSeasonStoryHTML(){
   Object.keys(A.proBowl||{}).forEach(cf=>{ Object.keys(A.proBowl[cf]).forEach(pos=>{ (A.proBowl[cf][pos]||[]).forEach(c=>{ if(c.team===user) honorCards.push({t:'PRO BOWL', n:c.name, pos:pos, gold:_ap1g.has(c.name)}); }); }); });
  }
  const starCard = (r, i, sideCls)=>`<div class="zpb-scard ${sideCls||''}" style="${(typeof zpbRowVars==='function')?zpbRowVars(user):''}--beat:${i}" data-beat="${i}"><div class="zpb-scard-hd"><b class="zpb-gname ${(r.ovr||0)>=90?'zpb-shm':(r.ovr||0)>=85?'zpb-vib':''}">${r.name}</b><span class="zpb-poschip">${r.pos||r.group}</span></div><div class="zpb-schiprow">${zpbStatChipsHTML(r)}</div></div>`;
- const badgeHTML = (b, i)=>`<span class="zpb-sbadge ${b.cls}" style="--beat:${i}" data-beat="${i}"><b>${String(b.v).replace(/(\d)\s*-\s*(\d)/g,'$1\u00b7$2')}</b><i>${b.k}</i></span>`; // w50 (Owner): every dash on the season-review badges becomes a middle dot — RECORD 10·7, the scores 31·17, the pain record — all of them
+ const badgeHTML = (b, i)=>`<span class="zpb-sbadge ${b.cls}" style="--beat:${i}" data-beat="${i}"><b>${b.v}</b><i>${b.k}</i></span>`; // W68 (Owner): the dash/dot law — records and game scores carry their DASHES, other data keeps the middle dot at source; the w50 blanket convert retires (it ate the shared digit: 10-6-1 printed 10·6-1)
  let beat = 0, oHTML = '', dHTML = '', kHTML = '', hHTML = '';
  // w55 (Owner): the honors lead the rail — the top zone fills first, the blank stage is gone.
  // The appearance order now matches the vertical order; the one-second beat pace and the total
@@ -9006,17 +9011,17 @@ function fragMoments(F){
   const big = wins.slice().sort((a,b)=>b.margin-a.margin)[0];
   const marquee = wins.slice().sort((a,b)=>st[b.opp].wins-st[a.opp].wins)[0];
   parts.push(pick([
-   `The signature blowout came in Week ${big.week}, a ${big.fs}·${big.os} rout of the ${nick(big.opp)}.`,
-   `Nothing was more convincing than the ${big.fs}·${big.os} demolition of the ${nick(big.opp)} in Week ${big.week}.`
+   `The signature blowout came in Week ${big.week}, a ${big.fs}-${big.os} rout of the ${nick(big.opp)}.`,
+   `Nothing was more convincing than the ${big.fs}-${big.os} demolition of the ${nick(big.opp)} in Week ${big.week}.` // W68 (Owner)
   ]));
-  if(marquee.week!==big.week) parts.push(`The best win on paper was the ${marquee.fs}·${marquee.os} victory over the ${nick(marquee.opp)} (${st[marquee.opp].wins}-${st[marquee.opp].losses}) in Week ${marquee.week}.`);
+  if(marquee.week!==big.week) parts.push(`The best win on paper was the ${marquee.fs}-${marquee.os} victory over the ${nick(marquee.opp)} (${st[marquee.opp].wins}-${st[marquee.opp].losses}) in Week ${marquee.week}.`); // W68 (Owner)
  }
  if(losses.length){
   const worst = losses.slice().sort((a,b)=>a.margin-b.margin)[0];
   const bad = losses.slice().sort((a,b)=>st[a.opp].wins-st[b.opp].wins)[0];
   parts.push(pick([
-   `The low point was a ${worst.fs}·${worst.os} loss to the ${nick(worst.opp)} in Week ${worst.week}.`,
-   `The ugliest result came in Week ${worst.week}, a ${worst.os}·${worst.fs} beating at the hands of the ${nick(worst.opp)}.`
+   `The low point was a ${worst.fs}-${worst.os} loss to the ${nick(worst.opp)} in Week ${worst.week}.`,
+   `The ugliest result came in Week ${worst.week}, a ${worst.os}-${worst.fs} beating at the hands of the ${nick(worst.opp)}.` // W68 (Owner)
   ]));
   if(bad.week!==worst.week && st[bad.opp].wins<=7) parts.push(`The most frustrating loss was Week ${bad.week} against the ${nick(bad.opp)}, a ${st[bad.opp].wins}-${st[bad.opp].losses} team.`);
  }
@@ -9261,13 +9266,13 @@ function fragPlayoffRun(F){
  if(sb && sb.result && !champ){
   const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away, l = w===sb.home ? sb.away : sb.home;
   const ws = Math.max(sb.result.homeScore, sb.result.awayScore), ls = Math.min(sb.result.homeScore, sb.result.awayScore);
-  sbLine = ` The ${nick(w)} went on to win the Super Bowl, beating the ${nick(l)} ${ws}·${ls}.`;
+  sbLine = ` The ${nick(w)} went on to win the Super Bowl, beating the ${nick(l)} ${ws}-${ls}.`; // W68 (Owner)
  }
  if(!plog.length){
   const inField = S.seeds.AFC.concat(S.seeds.NFC).some(x=>x.team===user);
   return (inField ? `The ${N} earned a first-round bye but never reached a game the bracket recorded for them.` : `The ${N} finished outside the playoff field, so their season ended after Week 17.`) + sbLine;
  }
- const games = plog.map(g=>`${g.won?'beat':'fell to'} the ${nick(g.opp)} ${g.won?g.fs:g.os}·${g.won?g.os:g.fs} in the ${g.round}`);
+ const games = plog.map(g=>`${g.won?'beat':'fell to'} the ${nick(g.opp)} ${g.won?g.fs:g.os}-${g.won?g.os:g.fs} in the ${g.round}`); // W68 (Owner)
  const last = plog[plog.length-1];
  const verdict = champ ? `That run through the bracket ended with a Super Bowl title.`
   : last.round==='Super Bowl' ? `They got all the way to the Super Bowl before falling short.`
@@ -10131,7 +10136,7 @@ function regularPreview(g){
   const story = c => { const bits = [streakPhrase(c), seedPhrase(c)].filter(Boolean); return bits.length ? `The ${c.N} arrive ${joinList(bits)}.` : `The ${c.N} come in at ${c.rec}.`; };
   const prior = h2hGames(g.home, g.away).filter(m=>m!==g && m.played)[0];
   let h2h = '';
-  if(prior){ const w = prior.result.homeScore>prior.result.awayScore ? prior.home : prior.away, sc = scoreFor(prior, w); h2h = ` They have already met once: the ${nick(w)} won ${sc.fs}·${sc.os} in Week ${prior.week}${g.divisional?', and the division race remembers it':''}.`; }
+  if(prior){ const w = prior.result.homeScore>prior.result.awayScore ? prior.home : prior.away, sc = scoreFor(prior, w); h2h = ` They have already met once: the ${nick(w)} won ${sc.fs}-${sc.os} in Week ${prior.week}${g.divisional?', and the division race remembers it':''}.`; } // W68 (Owner)
   const closer = pick(['For one of these teams, Sunday will feel like a turning point.','One result, two very different weeks ahead.','Somebody leaves this game with real momentum.']);
   p1 = `${pick(opener)} The ${A.N} (${A.rec}) travel to face the ${H.N} (${H.rec})${g.divisional?' in a divisional game that carries extra weight':''}. ${story(A)} ${story(H)}${h2h} ${closer}`;
  }
@@ -10212,10 +10217,10 @@ function playoffPreview(g){
  const hist = [];
  [A,H].forEach(c=>{
   const prev = playoffGamesOf(c.team).slice(-1)[0];
-  if(prev){ const sc = scoreFor(prev, c.team), mvp = prev.detail.mvp; hist.push(`The ${c.N} got here by ${sc.fs>sc.os?'beating':'surviving'} the ${nick(sc.opp)} ${sc.fs}·${sc.os}, with ${mvp.name} (${mvp.group}) taking the game ball.`); }
+  if(prev){ const sc = scoreFor(prev, c.team), mvp = prev.detail.mvp; hist.push(`The ${c.N} got here by ${sc.fs>sc.os?'beating':'surviving'} the ${nick(sc.opp)} ${sc.fs}-${sc.os}, with ${mvp.name} (${mvp.group}) taking the game ball.`); } // W68 (Owner)
  });
  const meets = h2hGames(g.home, g.away).filter(m=>m!==g);
- if(meets.length){ const one = m=>{ const w = m.result.homeScore>m.result.awayScore ? m.home : m.away, sc = scoreFor(m, w); return `Week ${m.week}, when the ${nick(w)} won ${sc.fs}·${sc.os}${m.result.ot?' in overtime':''}`; };
+ if(meets.length){ const one = m=>{ const w = m.result.homeScore>m.result.awayScore ? m.home : m.away, sc = scoreFor(m, w); return `Week ${m.week}, when the ${nick(w)} won ${sc.fs}-${sc.os}${m.result.ot?' in overtime':''}`; }; // W68 (Owner)
   hist.push(meets.length>1 ? `They met twice in the regular season: ${meets.map(one).join(' and ')}. Both coaching staffs will have worn out the film from those two games.` : `They also met in ${one(meets[0])}  ·  ${pick(['and nobody in the losing locker room has forgotten it','a result both coaching staffs will have circled on the film'])}.`); }
  else hist.push(`They did not meet in the regular season, so there is no tape to lean on and no revenge to claim.`);
  parts.push(hist.join(' '));
@@ -10380,10 +10385,10 @@ function fragFinalVerdict(F){
   : pick([`A ${rec} season was not enough: the ${N} finished outside the field and spent January watching other teams play for the title.`, `The ${N} went ${rec} and missed the playoffs, so the story of their year ends in the standings rather than the bracket.`]);
  const last = plog[plog.length-1], s = scoreFor(last.game, user);
  return last.round==='Super Bowl'
-  ? `The ${N} went ${rec} and made it all the way to the Super Bowl, but lost ${s.os}·${s.fs} when it mattered most.`
+  ? `The ${N} went ${rec} and made it all the way to the Super Bowl, but lost ${s.os}-${s.fs} when it mattered most.` // W68 (Owner)
   : (plog.filter(g=>g.won).length===0
-     ? `The ${N} went ${rec} and made the postseason, but it lasted one game: they lost to the ${nick(s.opp)} in the ${last.round}, ${s.os}·${s.fs}.`
-     : `The ${N} went ${rec} and won ${numWord(plog.filter(g=>g.won).length)} playoff game${plog.filter(g=>g.won).length===1?'':'s'} before their run ended against the ${nick(s.opp)} in the ${last.round}, ${s.os}·${s.fs}.`);
+     ? `The ${N} went ${rec} and made the postseason, but it lasted one game: they lost to the ${nick(s.opp)} in the ${last.round}, ${s.os}-${s.fs}.` // W68 (Owner)
+     : `The ${N} went ${rec} and won ${numWord(plog.filter(g=>g.won).length)} playoff game${plog.filter(g=>g.won).length===1?'':'s'} before their run ended against the ${nick(s.opp)} in the ${last.round}, ${s.os}-${s.fs}.`); // W68 (Owner)
 }
 
 // Varied, specific explanations of the biggest unit swing in a playoff game (never the same sentence twice in one recap).
@@ -10429,7 +10434,7 @@ function fragPlayoffDeep(F){
  const {user, S} = F, plog = userPlayoffLog();
  if(!plog.length){
   const sb = S.playoffRounds.superbowl && S.playoffRounds.superbowl[0];
-  if(sb && sb.result){ const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away; return `The bracket played out without them. The ${nick(w)} won the Super Bowl, ${Math.max(sb.result.homeScore,sb.result.awayScore)}·${Math.min(sb.result.homeScore,sb.result.awayScore)}.`; }
+  if(sb && sb.result){ const w = sb.result.homeScore>sb.result.awayScore ? sb.home : sb.away; return `The bracket played out without them. The ${nick(w)} won the Super Bowl, ${Math.max(sb.result.homeScore,sb.result.awayScore)}-${Math.min(sb.result.homeScore,sb.result.awayScore)}.`; } // W68 (Owner)
   return '';
  }
  const usedEdge = new Set();
@@ -10441,7 +10446,7 @@ function fragPlayoffDeep(F){
   if(Math.abs(myTO-oppTO)>=2) why = myTO>oppTO ? `Turnovers sank them (${myTO} giveaways to ${oppTO}).` : `Turnovers tilted it their way (${oppTO} takeaways to ${myTO} giveaways).`;
   else if(mine) why = edgeLine(g.game, mine, g.won, user, usedEdge);
   const ballFor = mvp.team===user ? `${mvp.name} took the game ball (${mvp.line})` : `${mvp.name} of the ${nick(mvp.team)} took the game ball (${mvp.line})`;
-  return `${g.round}: ${g.won?'beat':'lost to'} the ${nick(s.opp)} ${g.won?s.fs:s.os}·${g.won?s.os:s.fs}. ${ballFor}. ${why}`;
+  return `${g.round}: ${g.won?'beat':'lost to'} the ${nick(s.opp)} ${g.won?s.fs:s.os}-${g.won?s.os:s.fs}. ${ballFor}. ${why}`; // W68 (Owner)
  });
  return bits.join(' ');
 }
@@ -10479,7 +10484,7 @@ function fragExitCause(F){
  if(S.champion===user){
   const closest = plog.slice().sort((a,b)=>Math.abs(scoreFor(a.game,user).fs-scoreFor(a.game,user).os)-Math.abs(scoreFor(b.game,user).fs-scoreFor(b.game,user).os))[0];
   const s = scoreFor(closest.game, user);
-  return `Even champions have close calls. The nearest the ${N} came to losing was the ${closest.round} against the ${nick(s.opp)}, a ${s.fs}·${s.os} game that could have gone either way.`;
+  return `Even champions have close calls. The nearest the ${N} came to losing was the ${closest.round} against the ${nick(s.opp)}, a ${s.fs}-${s.os} game that could have gone either way.`; // W68 (Owner)
  }
  const plain = F.log.filter(g=>Math.abs(g.margin)<=8), lostClose = plain.filter(g=>g.margin<0).length;
  return `What kept the ${N} out of the bracket was not one bad game but a pattern: ${lostClose} of their ${plain.length} one-score games went the wrong way, and the weaknesses detailed in the regular-season review never got fixed.`;
@@ -10789,9 +10794,7 @@ function renderRegularAwardsHTML(A, open){
  const stat = A.stat.map(a=>`<tr><td>${a.title}</td><td>${honorLineHTML(a,user)} <span class="narr">${a.line}</span></td></tr>`).join('');
  const teamBox = (tm)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${tm[pos].map(c=>honorLineHTML(c,user)).join(', ')||'·'}</td></tr>`).join('');
  const pbBox = (cf)=> HONOR_ORDER.map(pos=>`<tr><td class="narr">${pos}</td><td>${A.proBowl[cf][pos].map(c=>honorLineHTML(c,user)).join(', ')||'·'}</td></tr>`).join('');
- const us = A.userSummary, usTxt = us.mine.length||us.ap1||us.ap2||us.pb ? `${user}: ${us.ap1} First-Team All-Pro, ${us.ap2} Second-Team All-Pro, ${us.pb} Pro Bowl selection${us.pb===1?'':'s'}${us.mine.length?`  ·  ${us.mine.join('; ')}`:''}.` : `No ${user} players earned league-wide honors this year.`;
  return `<details class="panel" style="margin-bottom:14px;" ${open?'open':''}><summary style="cursor:pointer;font-weight:700;">REGULAR-SEASON AWARDS &amp; HONORS</summary>
-  <p class="narr" style="margin:8px 0;">${usTxt}</p>
   <table><tbody>${ind}</tbody></table>
   <h5 class="narr" style="margin:14px 0 4px;">Statistical champions</h5><table><tbody>${stat}</tbody></table>
   <div class="draft-columns" style="grid-template-columns:1fr 1fr;margin-top:14px;gap:14px;">
@@ -11127,7 +11130,7 @@ window.zpbPostSuperBowlCine = function(){
   ov.innerHTML = '<div class="zpb-sbfin-conf">' + confetti + '</div>'
    + '<div class="zpb-sbfin-stage">'
    + '<div class="zpb-sbfin-kicker zpb-shm">SUPER BOWL \u00b7 FINAL</div>'
-   + '<div class="zpb-sbfin-score"><b style="color:' + (pkA ? (pkA.txd||pkA.accD) : 'var(--accent)') + ';">' + (TEAM_ABBR[S.sbFinal.away]||S.sbFinal.away) + ' ' + S.sbFinal.as + '</b><i>\u00b7</i><b style="color:' + (pkH ? (pkH.txd||pkH.accD) : 'var(--accent)') + ';">' + S.sbFinal.hs + ' ' + (TEAM_ABBR[S.sbFinal.home]||S.sbFinal.home) + '</b></div>'
+   + '<div class="zpb-sbfin-score"><b style="color:' + (pkA ? (pkA.txd||pkA.accD) : 'var(--accent)') + ';">' + (TEAM_ABBR[S.sbFinal.away]||S.sbFinal.away) + ' ' + S.sbFinal.as + '</b><i>-</i><b style="color:' + (pkH ? (pkH.txd||pkH.accD) : 'var(--accent)') + ';">' + S.sbFinal.hs + ' ' + (TEAM_ABBR[S.sbFinal.home]||S.sbFinal.home) + '</b></div>' // W68 (Owner): the Super Bowl final reads the DASH
    + '<div class="zpb-sbfin-crests"><span>' + lg(S.sbFinal.away) + '</span><span class="zpb-sbfin-trophy zpb-shm">\u2605</span><span>' + lg(S.sbFinal.home) + '</span></div>'
    + '<div class="zpb-sbfin-line">THE SUPER BOWL CHAMPIONS</div>'
    + '<div class="zpb-sbfin-champ"><span class="zpb-sbfin-crest">' + lg(champ) + '</span><span class="zpb-sbfin-name zpb-shm">' + champ.toUpperCase() + '</span></div>'
@@ -11136,7 +11139,12 @@ window.zpbPostSuperBowlCine = function(){
    + '</div>';
   document.body.appendChild(ov);
   requestAnimationFrame(()=> ov.classList.add('zpb-sbfin-in'));
-  const go = ()=>{ ov.remove(); window.__zpbSBFinPending = false; try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){}
+  const go = ()=>{ // W68 (Owner): the user's title earns the victory page — it mounts BEFORE the SB overlay fades (opaque from the first painted frame, the w43 law), then the storm releases
+   let _won = false; try{ _won = S.champion === seasonUserTeam(); }catch(err){}
+   if(_won && typeof window.zpbSuperBowlVictoryCine==='function'){ try{ window.zpbSuperBowlVictoryCine(); }catch(err){} }
+   ov.remove(); window.__zpbSBFinPending = false;
+   if(_won && document.querySelector('.zpb-victory')) return; // the victory page plays its own Continue — the reward rides there
+   try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){}
    try{ if(window.__zpbSBRewardOwed){ window.__zpbSBRewardOwed = false; FX.play('sb'); setTimeout(()=>{ const b = document.querySelector('.champion-banner'); if(b) b.classList.add('fxwon'); }, 60); } }catch(err){}
    try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){} }; // w38 (R14, Owner): Continue moves on from the Super Bowl — then the badges fade in and the champions play
   ov.querySelector('.zpb-sbfin-go').addEventListener('click', go);
@@ -11853,7 +11861,7 @@ renderRegularAwardsHTML = function(A, open){
   try{ window.__zpbAp1Gold = new Set(); HONOR_ORDER.forEach(pos=>{ (((A.allPro||{}).first||{})[pos]||[]).forEach(c=>window.__zpbAp1Gold.add(c.name)); }); }catch(err){} // w44 (O2, Owner): the first-team gold register
   const user = seasonUserTeam();
   const stv = (typeof zpbNeutralRowVars==='function') ? zpbNeutralRowVars : function(){ return ''; }; // w42 (I4, Owner): the awards wear the dropdown's neutral ink — the vivid vars retire here, the All-Pro chips and the winner cards with them
-  const aw = (title, name, team, sub, why, star, rec, stackTitle, winKey)=>'<div class="zpb-pcard zpb-awcard zpb-awgold" style="'+stv(team||'')+'">'
+  const aw = (title, name, team, sub, why, star, rec, stackTitle, winKey)=>'<div class="zpb-pcard zpb-awcard zpb-awgold'+(star?' zpb-mygold':'')+'" style="'+stv(team||'')+'">' // W68 (Owner): the user's award winners wear the golden border AND the glow
    + (stackTitle
       ? '<span class="zpb-awt"><span class="zpb-mvptitle zpb-shm">Most<br>Valuable<br>Player</span></span>'
       : '<span class="zpb-awt">'+title+'</span>')
@@ -11867,16 +11875,10 @@ renderRegularAwardsHTML = function(A, open){
    ? aw(a.title, a.c.name, a.c.team, '', _why, a.c.team===user, a.c.rec||null, a.title==='Most Valuable Player') // w52 (Owner, M4): the plaintext position retires — the position leads the badge row as '#X Y'
    : aw(a.title, (a.coach? (a.team===user?'YOU':a.coach)+' \u00b7 ':'')+(a.team||''), a.team, '', _why, a.team===user); }).join(''); // w52 (Owner, M3): the coach's name reads YOU when it is his team
   const stat = A.stat.map(a=>aw(a.title, a.name, a.team, '', '', a.team===user, a.rec||null, false, a.winKey)).join(''); // w47 (Owner): the champions' numbers render as badges, not plaintext · w52 (Owner, M6): every champion's badges beside him, his stat leading
-  const us = A.userSummary;
-  const usTxt = (us.mine.length||us.ap1||us.ap2||us.pb)
-   ? (user+'  ·  '+us.ap1+' First-Team All-Pro  ·  '+us.ap2+' Second-Team All-Pro  ·  '+us.pb+' Pro Bowl selection'+(us.pb===1?'':'s')+'.'
-      +(us.mine.length? '<span class="zpb-uslines">'+us.mine.map(m=>'<span class="zpb-usline">'+m+'</span>').join('')+'</span>' : '')) // w47 (Owner): each honor on its own indented line
-   : ('No '+user+' players earned league-wide honors this year.');
   const posRows = (box, shm)=> HONOR_ORDER.map(pos=>'<div class="zpb-aprow"><span class="zpb-apos">'+pos+'</span>'
-    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip" style="'+stv(c.team)+'"><b class="zpb-gname '+((shm||(window.__zpbAp1Gold&&window.__zpbAp1Gold.has(c.name)))?'zpb-shm':'')+'">'+c.name+'</b> <i class="narr zpb-aplog">'+((typeof zpbTeamLogo==='function')?zpbTeamLogo(c.team):nick(c.team))+'</i></span>').join('') : '<span class="narr">\u00b7</span>')+'</div>').join(''); // w47 (Owner): the crest leads the chip — the team name retires from the honor rows // w19: first-team All-Pro names always shimmer · w38 (R1, Owner): the rankings ink on every chip · w44 (O2, Owner): an All-Pro first-team name is gold in the Pro Bowl placement too
+    + ((box[pos]||[]).length ? box[pos].map(c=>'<span class="zpb-apchip'+(c.team===user?' zpb-mygold':'')+'" style="'+stv(c.team)+'"><b class="zpb-gname '+((shm||(window.__zpbAp1Gold&&window.__zpbAp1Gold.has(c.name))||c.team===user)?'zpb-shm':'')+'">'+c.name+'</b> <i class="narr zpb-aplog">'+((typeof zpbTeamLogo==='function')?zpbTeamLogo(c.team):nick(c.team))+'</i></span>').join('') : '<span class="narr">\u00b7</span>')+'</div>').join(''); // W68 (Owner): the user's players glow for ANY award — the golden border + the glow, the name shimmers // w47 (Owner): the crest leads the chip — the team name retires from the honor rows // w19: first-team All-Pro names always shimmer · w38 (R1, Owner): the rankings ink on every chip · w44 (O2, Owner): an All-Pro first-team name is gold in the Pro Bowl placement too
   return '<details class="panel" style="margin-bottom:14px;" '+(open?'open':'')+'><summary style="cursor:pointer;font-weight:700;">REGULAR-SEASON AWARDS &amp; HONORS</summary>'
-   + '<p class="narr" style="margin:8px 0;">'+usTxt+'</p>'
-   + '<div class="zpb-awrows">'+ind+'</div>' // w37 (R9, Owner): the w19 horizontal row format restored — one award per line
+   + '<div class="zpb-awrows">'+ind+'</div>' // W68 (Owner): the summary paragraph (the counts sentence + its honor lines) retires — the award cards speak // w37 (R9, Owner): the w19 horizontal row format restored — one award per line
    + '<h5 class="narr" style="margin:14px 0 4px;">Statistical champions</h5><div class="zpb-awrows">'+stat+'</div>'
    + '<div class="draft-columns" style="grid-template-columns:1fr 1fr;margin-top:14px;gap:14px;">'
    + '<div><h5 class="narr" style="margin:0 0 4px;">First-Team All-Pro</h5>'+posRows(A.allPro.first, true)+'</div>'
@@ -11892,7 +11894,7 @@ renderPlayoffAwardsHTML = function(P){
   const user = seasonUserTeam();
   const _ap1g = (function(){ try{ if(window.__zpbAp1Gold && window.__zpbAp1Gold.size) return window.__zpbAp1Gold; const rs=(typeof seasonState!=='undefined')&&seasonState&&seasonState.awardsRS; if(rs&&rs.ap1Names){ rs.ap1NamesSet=rs.ap1NamesSet||new Set(rs.ap1Names); return rs.ap1NamesSet; } }catch(err){} return new Set(); })(); // w44 (O2, Owner): the first-team gold register
   const stv = (typeof zpbNeutralRowVars==='function') ? zpbNeutralRowVars : function(){ return ''; }; // w41 (P5, Owner): the award winners wear the dropdown's ink
-  const aw = (title, p, sub2, star)=>'<div class="zpb-pcard zpb-awcard zpb-awgold zpb-awcol" style="'+stv(p?p.team:'')+(star?';--zrb:var(--accent)':'')+'">' // w41: the user's shimmer keeps the accent law
+  const aw = (title, p, sub2, star)=>'<div class="zpb-pcard zpb-awcard zpb-awgold zpb-awcol'+(star?' zpb-mygold':'')+'" style="'+stv(p?p.team:'')+(star?';--zrb:var(--accent)':'')+'">' // W68 (Owner): the user's award winners glow // w41: the user's shimmer keeps the accent law
    + '<span class="zpb-awt">'+title+'</span>' // w38 (R19, Owner): the award on top, the name below, the badges below that
    + (p?(function(){ var _rec = p.rec || p; // w38 (R18, Owner): the game-ball entries carry their stats on themselves
         var _rk2 = ''; try{ // w52 (Owner, M4): the '#X Y' position badge — the rank at his position by rating, from the season book
@@ -11914,7 +11916,7 @@ renderPlayoffAwardsHTML = function(P){
   if(P.mvp) lines.push('<div class="zpb-awline zpb-awline-mvp">'+aw('Postseason MVP', P.mvp, 'cumulative impact', P.mvp.team===user)+'</div>');
   (P.rounds||[]).forEach(r=>{ if(r.items && r.items.length) lines.push('<div class="zpb-awline"><span class="zpb-awround">'+rl(r.label)+'</span>'+r.items.map(i=>aw(rl(r.label), i.p, i.g.away+' '+i.g.result.awayScore+', '+i.g.home+' '+i.g.result.homeScore, i.p && i.p.team===user)).join('')+'</div>'); });
   const lead = (P.leaders||[]).map(a=>aw(a.title, a, '', a.team===user)).join('');
-  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip" style="'+stv(a.team)+'"><b class="zpb-gname '+((_ap1g&&_ap1g.has(a.name))?'zpb-shm':'')+'">'+a.name+'</b> <i class="narr">'+nick(a.team)+'</i></span></div>').join(''); // w44 (O2, Owner): the All-Playoff chips read the first-team gold too
+  const team = (P.team||[]).map(a=>'<div class="zpb-aprow"><span class="zpb-apos">'+a.pos+'</span><span class="zpb-apchip'+(a.team===user?' zpb-mygold':'')+'" style="'+stv(a.team)+'"><b class="zpb-gname '+((_ap1g&&_ap1g.has(a.name))||a.team===user?'zpb-shm':'')+'">'+a.name+'</b> <i class="narr">'+nick(a.team)+'</i></span></div>').join(''); // W68 (Owner): the user's All-Playoff players glow // w44 (O2, Owner): the All-Playoff chips read the first-team gold too
   return '<div class="panel" style="margin-bottom:14px;"><h3 style="margin-top:0;">Playoff Awards</h3>'
    + lines.join('') // w41 (W7, Owner): the MVPs centered on their own lines; each round on one line
    + (lead?'<h5 class="narr" style="margin:14px 0 4px;">Postseason statistical leaders</h5><div class="zpb-awgrid">'+lead+'</div>':'')
@@ -13816,19 +13818,19 @@ window.zpbPlayoffRunCine = function(story){
   if(pkU) ov.style.setProperty('--pk', pkU.accD);
   document.body.appendChild(ov);
   let i = 0;
-  const show = ()=>{
-   if(i >= story.length){
-    window.__zpbPoRunHold = false;
-    // w57 (Owner): the run cine FLOWS into the champion storm — the storm mounts while the run
-    // overlay is still on screen (the storm is opaque from its first frame and sits one layer
-    // beneath), then the run overlay fades to reveal the storm, never the page underneath.
-    if(window.__zpbSBFinPending && seasonState && seasonState.champion){
-     if(window.zpbPlayoffEndScreen) window.zpbPlayoffEndScreen(); // w66 (Owner): the run flows into the N8 end screen — the champion storm only for a Super Bowl participant
-    }
-    ov.style.opacity = '0';
-    setTimeout(()=>{ try{ ov.remove(); }catch(err){} }, 560);
-    return;
+  const finish = ()=>{
+   window.__zpbPoRunHold = false;
+   // w57 (Owner): the run cine FLOWS into the champion storm — the storm mounts while the run
+   // overlay is still on screen (the storm is opaque from its first frame and sits one layer
+   // beneath), then the run overlay fades to reveal the storm, never the page underneath.
+   if(window.__zpbSBFinPending && seasonState && seasonState.champion){
+    if(window.zpbPlayoffEndScreen) window.zpbPlayoffEndScreen(); // W68 (Owner): the Super Bowl page ends EVERY run
    }
+   ov.style.opacity = '0';
+   setTimeout(()=>{ try{ ov.remove(); }catch(err){} }, 560);
+  };
+  const show = ()=>{
+   if(i >= story.length){ finish(); return; }
    const st = story[i++];
    const teamInk = (pkU && pkU.txMd) ? pkU.txMd : 'var(--text)';
    const ab = t => (typeof TEAM_ABBR !== 'undefined' && TEAM_ABBR[t]) ? TEAM_ABBR[t] : t;
@@ -13837,12 +13839,14 @@ window.zpbPlayoffRunCine = function(story){
    ov.innerHTML = '<div class="zpb-porun-stage' + (st.win ? ' zpb-porun-win' : ' zpb-porun-loss') + '">'
     + '<div class="zpb-porun-kicker">' + (RL[st.rk] || String(st.rk).toUpperCase()) + '</div>'
     + '<div class="zpb-porun-big" style="color:' + (st.win ? teamInk : 'var(--sub)') + ';">' + big + '</div>'
-    + '<div class="zpb-porun-score"><b>' + lg(user) + ' ' + ab(user) + '</b><b class="zpb-porun-num">' + st.fs + '</b><i>\u00b7</i><b class="zpb-porun-num">' + st.os + '</b><b>' + ab(st.opp) + ' ' + lg(st.opp) + '</b></div>'
+    + '<div class="zpb-porun-score"><b>' + lg(user) + ' ' + ab(user) + '</b><b class="zpb-porun-num">' + st.fs + '</b><i>-</i><b class="zpb-porun-num">' + st.os + '</b><b>' + ab(st.opp) + ' ' + lg(st.opp) + '</b></div>' // W68 (Owner): the round card's score reads the DASH
     + '<div class="zpb-porun-sub">' + (st.win ? 'ONE STEP CLOSER' : 'THE RUN ENDS HERE') + '</div>'
+    + '<button class="resetbtn zpb-porun-go" style="width:auto;margin:14px 0 0;padding:11px 30px;">Continue</button>' // W68 (Owner): every round waits for the CONTINUE
     + '</div>';
    ov.classList.add('zpb-porun-in');
    ov.classList.remove('zpb-porun-swap'); void ov.offsetWidth; ov.classList.add('zpb-porun-swap');
-   setTimeout(show, 3400);
+   const _last = i >= story.length;
+   ov.querySelector('.zpb-porun-go').addEventListener('click', ()=>{ if(_last) finish(); else show(); }); // W68 (Owner): the continue gate — the 3400ms auto-advance retires
   };
   show();
  }catch(err){
@@ -13927,7 +13931,10 @@ window.zpbPlayoffRunCine = function(story){
        the neutral cream; the quarter chip, the quarter marks, the play words and the TO/INT/FF
        boxes wear the color of the team that benefits, never the cream.
    7 · THE BADGES CARRY DOTS. Every digit-dash-digit on a season-review badge renders as a
-       middle dot: RECORD 10·7, the scores 31·17, the pain record — all of them. */
+       middle dot: RECORD 10·7, the scores 31·17, the pain record — all of them.
+       W68 (Owner): AMENDED — W-L-T records and single-game scores read DASHES now
+       ("10-6-1", "31-17"); the blanket convert retired (it ate the shared digit and
+       printed 10·6-1); any other data keeps the middle dot. */
 /* w50 (Owner): the token block above carries --zcream and the halfway ink; the rules below are
    the wave's markers that live outside their surfaces' own blocks. */
 /* w50 (Owner): the Madden rankings' rank column keeps its gold; nothing else on the page moved */
@@ -14649,7 +14656,23 @@ body.zpb-advrail .wrap{padding-top:64px;}
   return meas;
  }
  function widthOf(text, el){ var m = measurerFor(el); m.textContent = text; return m.getBoundingClientRect().width; }
- function avail(el){ var w = el.clientWidth; if(!w){ var p = el.parentElement; w = p ? p.clientWidth : 0; } return w; }
+ function avail(el){
+   var w = el.clientWidth;
+   try{ // W68 (Owner): a content-sized flex child measured ITSELF — a once-shortened name
+    var p = el.parentElement; // shrank its own box and locked (a preview name read CL forever,
+    var pd = p ? getComputedStyle(p).display : ''; // every scan re-measuring the shrunken box).
+    var fb = getComputedStyle(el).flexBasis; // Measure the TRUE available line instead:
+    if((pd==='flex'||pd==='inline-flex') && (fb==='auto'||fb==='content') && p){
+     var gap = parseFloat(getComputedStyle(p).columnGap) || 0;
+     var tot = p.clientWidth, sibs = 0, n = 0;
+     for(var i=0;i<p.children.length;i++){ if(p.children[i]===el) continue; sibs += p.children[i].getBoundingClientRect().width; n++; }
+     var av = tot - sibs - gap*n;
+     if(av > 0) return av;
+    }
+   }catch(e){}
+   if(!w){ var p2 = el.parentElement; w = p2 ? p2.clientWidth : 0; }
+   return w;
+  } // W68 (Owner): stateless and self-healing — a regrown window restores the fuller form
  function parse(full){
   var toks = full.split(/\s+/).filter(Boolean), rest = [];
   while(toks.length && /^[0-9]+$/.test(toks[toks.length-1])) rest.unshift(toks.pop());
@@ -14666,7 +14689,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
  // The pure ladder — exposed for the battery. fits(text) answers "does this text fit one line
  // in the carrier's box?" (the caller measures). Returns {text, mode}: one = single line,
  // wrap = whole-word vertical.
- function ladder(full, fits){
+ function ladder(full, fits, floor){ // W68 (Owner): the third arg is the full-size floor
   var p = parse(full);
   if(!p.nm.length) return { text: full, mode: 'one' };
   if(fits(p.nm.join(' ') + p.rest)) return { text: full, mode: 'one' };
@@ -14674,6 +14697,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
   var lt = p.nm.slice();
   while(lt.length > 1 && SUF.test(lt[lt.length-1].replace(/\./g,''))) lt.pop();
   var ln = lt[lt.length-1] || p.nm[p.nm.length-1] || '';
+  if(floor) return { text: p.nm.join(' ') + p.rest, mode: 'wrap' }; // W68 (Owner): at full size the FULL name (vertical allowed) is the floor — never last names, never initials
   if(fits(ln) || fits(longestTok([ln]))) return { text: ln + p.rest, mode: 'one' };
   var ini = p.nm.filter(function(t){ return !SUF.test(t.replace(/\./g,'')); })
     .map(function(t){ return t.charAt(0); }).join('').toUpperCase();
@@ -14685,7 +14709,7 @@ body.zpb-advrail .wrap{padding-top:64px;}
   if(!full){ full = (el.textContent || '').replace(/\s+/g,' ').trim(); if(!full) return; el.setAttribute('data-nmfull', full); }
   var w = avail(el);
   if(w <= 0) return;
-  var d = ladder(full, function(txt){ return widthOf(txt, el) <= w; });
+  var d = ladder(full, function(txt){ return widthOf(txt, el) <= w; }, (window.innerWidth||1280) >= 1025 ? 'wrap' : null); // W68 (Owner): window >= 1025 = full size — the full name is the floor
   if(el.textContent !== d.text) el.textContent = d.text;
   el.style.whiteSpace = d.mode === 'one' ? 'nowrap' : 'normal';
   el.style.overflowWrap = 'normal';
@@ -16405,15 +16429,8 @@ window.zpbSlotPop = function(anchor, name){
 window.zpbRosterBadgeVars = function(){ try{ return (typeof zpbNeutralUserRowVars==='function') ? zpbNeutralUserRowVars() : ''; }catch(err){ return ''; } };
 </script>
 <style id="zpb-w66n-css">
-/* N8 (Owner): the solemn run-ends screen — the Super Bowl stage's bones, the celebration stripped:
-   charcoal stage, no confetti, no gold storm, crests at rest. */
-.zpb-pofin{background:radial-gradient(ellipse at 50% 30%, #191519 0%, #100d11 55%, #0a090b 100%) !important;}
-.zpb-pofin .zpb-sbfin-kicker{color:var(--zshim,#b9a58a);}
-.zpb-pofin .zpb-sbfin-crests img{filter:grayscale(.55) drop-shadow(0 0 14px rgba(0,0,0,.6));animation:none;}
-.zpb-pofin .zpb-sbfin-crests img{width:64px;height:64px;}
-.zpb-pofin .zpb-sbfin-line,.zpb-pofin .zpb-sbfin-score{color:#cfc4b4;}
-.zpb-pofin .zpb-pofin-sbline{letter-spacing:.42em;font-size:.66rem;color:#8f8676;margin:16px 0 2px;animation:zpbSbRise 1.5s ease both;}
-.zpb-pofin .zpb-sbfin-mvp{color:#b9ac97;}
+/* W68 (Owner): the run-ends screen's face (.zpb-pofin) RETIRES with its cinematic —
+   the Super Bowl page ends every run. The N5 comparison rules below stay. */
 /* N5 (Owner): the comparison tab's dropdowns — the homepage family's group headers and widths */
 .zpb-selgrp{font-size:.58rem;letter-spacing:.16em;font-weight:800;color:var(--sub);padding:6px 10px 4px;font-family:'Cinzel','Bodoni Moda',Georgia,serif;text-align:left;}
 .zpb-cmp-own .zpb-selwrap{display:inline-flex;max-width:100%;}
@@ -16438,57 +16455,15 @@ window.zpbSimRestOfPlayoffs = function(){
   }catch(err){}
   window.__zpbQuietSim = false;
   renderSeasonTab(document.getElementById('draftResultsBody') || document.body);
-  const inSB = (S.playoffRounds.superbowl||[]).some(g=>g && (g.home===_user||g.away===_user));
   if(window.__zpbSBFinPending && S.champion){
    window.__zpbSBFinPending = false;
-   if(inSB){ try{ zpbPostSuperBowlCine(); }catch(err){} } // made the Super Bowl → the Super Bowl screen
-   else if(typeof window.zpbPlayoffElimCine==='function'){ try{ window.zpbPlayoffElimCine(); }catch(err){} } // out earlier → the solemn screen
+   try{ zpbPostSuperBowlCine(); }catch(err){} // W68 (Owner): the Super Bowl page ends the run on every path
   }
   window.__zpbSimRestRun = false;
  }catch(err){ window.__zpbQuietSim = false; window.__zpbSimRestRun = false; }
 };
-// N8 (Owner): the run-ends cinematic — what round, to whom, the score, and everything the
-// Super Bowl victory page transmits — without the celebrations and confetti.
-window.zpbPlayoffElimCine = function(){
- try{
-  const S = seasonState; if(!S || !S.champion || !S.sbFinal) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){ try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){} return; }
-  const user = seasonUserTeam();
-  const RL = {wildcard:'THE WILD CARD ROUND', divisional:'THE DIVISIONAL ROUND', champ:'THE CONFERENCE CHAMPIONSHIP'};
-  let loss = null, playedAny = false;
-  ['wildcard','divisional','champ'].forEach(rk=>{
-   (S.playoffRounds[rk]||[]).forEach(g=>{
-    if(!g || !g.result || (g.home!==user && g.away!==user)) return;
-    playedAny = true;
-    if(loss) return;
-    const hw = g.result.homeScore>g.result.awayScore;
-    const won = g.home===user ? hw : !hw;
-    if(!won) loss = {rk, home:g.home, away:g.away, hs:g.result.homeScore, as:g.result.awayScore, opp:(g.home===user?g.away:g.home)};
-   });
-  });
-  const pkC = (typeof zpbPackFor==='function') ? zpbPackFor(S.champion) : null;
-  const lg = n=> (typeof zpbTeamLogo==='function') ? zpbTeamLogo(n) : '';
-  const mvp = S.sbFinal.mvp;
-  const ov = document.createElement('div'); ov.className = 'zpb-sbfin zpb-pofin';
-  ov.innerHTML = '<div class="zpb-sbfin-stage">'
-   + (loss
-      ? '<div class="zpb-sbfin-kicker">YOUR RUN ENDS IN ' + (RL[loss.rk]||loss.rk.toUpperCase()) + '</div>'
-       + '<div class="zpb-sbfin-score"><b>' + (TEAM_ABBR[loss.home]||loss.home) + ' ' + loss.hs + '</b><i>\u00b7</i><b>' + loss.as + ' ' + (TEAM_ABBR[loss.away]||loss.away) + '</b></div>'
-       + '<div class="zpb-sbfin-line">ELIMINATED BY THE ' + String(loss.opp||'').toUpperCase() + '</div>'
-      : '<div class="zpb-sbfin-kicker">THE PLAYOFFS RODE ON WITHOUT YOU</div>'
-       + '<div class="zpb-sbfin-line">' + (playedAny ? '' : String(user||'').toUpperCase() + ' DID NOT MAKE THE PLAYOFFS') + '</div>')
-   + '<div class="zpb-pofin-sbline">THE SUPER BOWL \u00b7 FINAL</div>'
-   + '<div class="zpb-sbfin-crests"><span>' + lg(S.sbFinal.away) + '</span><span>' + lg(S.sbFinal.home) + '</span></div>'
-   + '<div class="zpb-sbfin-score"><b style="color:' + (pkC ? (pkC.txd||pkC.accD) : 'var(--accent)') + ';">' + (TEAM_ABBR[S.sbFinal.away]||S.sbFinal.away) + ' ' + S.sbFinal.as + '</b><i>\u00b7</i><b style="color:' + (pkC ? (pkC.txd||pkC.accD) : 'var(--accent)') + ';">' + S.sbFinal.hs + ' ' + (TEAM_ABBR[S.sbFinal.home]||S.sbFinal.home) + '</b></div>'
-   + '<div class="zpb-sbfin-line">SUPER BOWL CHAMPIONS \u00b7 ' + String(S.champion).toUpperCase() + '</div>'
-   + (mvp ? '<div class="zpb-sbfin-mvp">SUPER BOWL MVP \u00b7 <b>' + mvp.name + '</b>' + (mvp.group ? ' <i>' + mvp.group + '</i>' : '') + '</div>' : '')
-   + '<button class="resetbtn zpb-sbfin-go" style="width:auto;margin:0;padding:11px 30px;">Continue</button>'
-   + '</div>';
-  document.body.appendChild(ov);
-  requestAnimationFrame(()=> ov.classList.add('zpb-sbfin-in'));
-  ov.querySelector('.zpb-sbfin-go').addEventListener('click', ()=>{ ov.remove(); try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){} try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){} });
- }catch(err){ try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(e2){} }
-};
+// W68 (Owner): the run-ends cinematic (zpbPlayoffElimCine) RETIRES — every sim-playoffs path
+// ends at the Super Bowl page now, per the Owner's round-68 word.
 // N5 (Owner): the comparison tab's two dropdowns join the homepage family — optgroups read
 // as headers, every option wears its team's 0.5 ink, the closed box rides the halfway ink.
 window.zpbEnhanceCmpSel = function(sel, resolve){
@@ -16629,11 +16604,7 @@ window.zpbPlayoffEndScreen = function(){
   const S = seasonState; if(!S || !S.champion) return;
   if(!window.__zpbSBFinPending) return;
   window.__zpbSBFinPending = false;
-  const u = seasonUserTeam();
-  const sb = ((S.playoffRounds && S.playoffRounds.superbowl) || [])[0] || null;
-  const inSB = !!(sb && (sb.home===u || sb.away===u));
-  if(inSB){ try{ zpbPostSuperBowlCine(); }catch(err){} }
-  else if(typeof window.zpbPlayoffElimCine==='function'){ try{ window.zpbPlayoffElimCine(); }catch(err){} }
+  try{ zpbPostSuperBowlCine(); }catch(err){} // W68 (Owner): EVERY run ends at the Super Bowl page — the solemn run-ends screen retires
  }catch(err){}
 };
 </script>
@@ -16685,5 +16656,114 @@ window.zpbPlayoffEndScreen = function(){
  .zpb-intro-star{padding:4px 8px;}
 }
 </style>
+<style id="zpb-w68-css">
+/* ============ Z-POST-BLUE W68 · THE OWNER'S ROUND ============ */
+/* UI 4 (Owner): the user's award winners GLOW — the golden border AND the outer glow, both.
+   The gold is the celebration metal (the zpb-sb-gold badge language); never white. */
+.zpb-mygold{border-color:var(--gold3,#d9a94c) !important;box-shadow:0 0 14px color-mix(in srgb,var(--gold2,#d9a94c) 52%,transparent),0 0 5px color-mix(in srgb,var(--gold2,#d9a94c) 40%,transparent) inset !important;}
+:root[data-theme="dark"] .zpb-mygold{box-shadow:0 0 18px color-mix(in srgb,var(--gold2,#d9a94c) 62%,transparent),0 0 6px color-mix(in srgb,var(--gold2,#d9a94c) 48%,transparent) inset !important;}
+@media (prefers-color-scheme: dark){
+ :root:not([data-theme="light"]) .zpb-mygold{box-shadow:0 0 18px color-mix(in srgb,var(--gold2,#d9a94c) 62%,transparent),0 0 6px color-mix(in srgb,var(--gold2,#d9a94c) 48%,transparent) inset !important;}
+}
+</style>
+<style id="zpb-w68v-css">
+/* UI 7 (Owner): the user-wins-the-Super-Bowl page — the second act after the SB page's
+   Continue. Opaque from the first painted frame; charcoal-gold; no white text (the cream
+   gold family the Super Bowl stage already wears); Cinzel Decorative; the shimmer is the
+   celebration; the 0.6s reveal cadence the Owner chose in w67; slow soft motion. */
+.zpb-victory{position:fixed;inset:0;z-index:126;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 50% 30%,#31230e 0%,#1c1307 52%,#0d0903 100%);overflow:hidden;opacity:0;transition:opacity .6s ease;}
+.zpb-victory.zpb-victory-in{opacity:1;}
+.zpb-victory-flash{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 38%,rgba(255,220,130,.92),rgba(255,220,130,0) 62%);opacity:0;pointer-events:none;}
+.zpb-victory.zpb-victory-in .zpb-victory-flash{animation:zpbVicFlash 1.5s ease both;}
+@keyframes zpbVicFlash{0%{opacity:.95;}100%{opacity:0;}}
+.zpb-victory-rays,.zpb-victory-rays2{position:absolute;left:50%;top:42%;width:220vmax;height:220vmax;transform:translate(-50%,-50%);pointer-events:none;background:repeating-conic-gradient(from 0deg,rgba(217,169,76,.08) 0deg 7deg,transparent 7deg 18deg);-webkit-mask-image:radial-gradient(circle at 50% 50%,#000 0%,rgba(0,0,0,.5) 7%,transparent 19%);mask-image:radial-gradient(circle at 50% 50%,#000 0%,rgba(0,0,0,.5) 7%,transparent 19%);} /* W68 (Owner): the rays glow around the crest and fade before the edges — the full-screen wash was too loud */
+.zpb-victory.zpb-victory-in .zpb-victory-rays{opacity:.5;animation:zpbVicSpin 68s linear infinite;}
+.zpb-victory-rays2{background:repeating-conic-gradient(from 180deg,rgba(217,169,76,.06) 0deg 11deg,transparent 11deg 26deg);}
+.zpb-victory.zpb-victory-in .zpb-victory-rays2{opacity:.42;animation:zpbVicSpinR 92s linear infinite;}
+@keyframes zpbVicSpin{to{transform:translate(-50%,-50%) rotate(360deg);}}
+@keyframes zpbVicSpinR{to{transform:translate(-50%,-50%) rotate(-360deg);}}
+.zpb-victory-glow{position:absolute;left:50%;top:40%;width:130vmax;height:130vmax;transform:translate(-50%,-50%);pointer-events:none;background:radial-gradient(circle,color-mix(in srgb,var(--vg,#d9a94c) 16%,transparent) 0%,transparent 58%);}
+.zpb-victory.zpb-victory-in .zpb-victory-glow{animation:zpbVicBreathe 7.5s ease-in-out infinite alternate;}
+@keyframes zpbVicBreathe{from{opacity:.5;}to{opacity:1;}}
+.zpb-victory-conf{position:absolute;inset:0;pointer-events:none;}
+.zpb-victory-conf i{position:absolute;top:-5vh;width:8px;height:14px;opacity:.85;animation:zpbVicFall 5.6s linear infinite;}
+@keyframes zpbVicFall{0%{transform:translateY(-6vh) rotate(0deg);}100%{transform:translateY(108vh) rotate(560deg);}}
+.zpb-victory-embers{position:absolute;inset:0;pointer-events:none;}
+.zpb-victory-embers i{position:absolute;bottom:-3vh;width:6px;height:6px;border-radius:50%;background:var(--vg,#d9a94c);filter:blur(1px);opacity:0;animation:zpbVicRise 7.5s linear infinite;}
+@keyframes zpbVicRise{0%{transform:translateY(0) translateX(0);opacity:0;}12%{opacity:.8;}100%{transform:translateY(-108vh) translateX(6vw);opacity:0;}}
+.zpb-victory-stage{position:relative;text-align:center;padding:26px;max-width:min(92vw,760px);}
+.zpb-victory.zpb-victory-in .zpb-victory-stage{animation:zpbVicStage 14s ease-in-out infinite alternate;}
+@keyframes zpbVicStage{from{transform:scale(1);}to{transform:scale(1.035);}}
+.zpb-victory-kicker{font-family:'Cinzel Decorative',serif;letter-spacing:.42em;font-size:.9rem;color:#f3d78a;animation:zpbSbRise 1.1s ease both;animation-delay:.25s;}
+.zpb-victory-orb{position:relative;width:150px;height:150px;margin:18px auto 8px;display:flex;align-items:center;justify-content:center;animation:zpbVicOrb 1.5s cubic-bezier(.2,.8,.25,1) both;animation-delay:.85s;}
+@keyframes zpbVicOrb{from{opacity:0;transform:translateY(34px) scale(.55);}to{opacity:1;transform:none;}}
+.zpb-victory-orb img{width:104px;height:104px;object-fit:contain;filter:drop-shadow(0 0 34px color-mix(in srgb,var(--vg,#d9a94c) 68%,transparent));animation:zpbSbZoom 5s ease-in-out infinite alternate;}
+.zpb-victory-ring{position:absolute;inset:0;border-radius:50%;border:2px solid color-mix(in srgb,var(--vg,#d9a94c) 65%,transparent);opacity:0;animation:zpbVicRing 2.4s ease-out infinite;}
+.zpb-victory-ring.r2{animation-delay:.65s;}
+.zpb-victory-ring.r3{animation-delay:1.3s;}
+@keyframes zpbVicRing{0%{opacity:.9;transform:scale(.42);}100%{opacity:0;transform:scale(1.65);}}
+.zpb-victory-trophy{position:absolute;right:-6px;top:-8px;font-size:1.5rem;color:#f3d78a;text-shadow:0 0 18px color-mix(in srgb,var(--vg,#d9a94c) 70%,transparent);animation:zpbSbRise 1.7s ease both;animation-delay:2s;}
+.zpb-victory-name{font-family:'Cinzel Decorative',serif;font-weight:900;font-size:clamp(2rem,7.5vw,3.6rem);letter-spacing:.08em;color:#f7e2a4;animation:zpbSbRise 1.7s ease both;animation-delay:1.45s;}
+.zpb-victory-score{display:flex;gap:14px;justify-content:center;align-items:baseline;margin:14px 0 2px;color:#f7e2a4;animation:zpbSbRise 1.6s ease both;animation-delay:2.05s;}
+.zpb-victory-score b{font-size:1.5rem;}
+.zpb-victory-score i{opacity:.6;font-style:normal;}
+.zpb-victory-final{letter-spacing:.42em;font-size:.68rem;color:#cfa84e;margin:2px 0 8px;animation:zpbSbRise 1.8s ease both;animation-delay:2.35s;}
+.zpb-victory-mvp{color:#e8d5a4;font-size:.92rem;letter-spacing:.1em;margin:2px 0 18px;animation:zpbSbRise 2.4s ease both;animation-delay:2.65s;}
+.zpb-victory-mvp b{color:#fff3d0;}
+.zpb-victory-mvp i{opacity:.75;font-style:normal;}
+.zpb-victory-go{animation:zpbSbRise 2.8s ease both;animation-delay:3.25s;}
+@media (prefers-reduced-motion: reduce){ .zpb-victory-conf i,.zpb-victory-embers i,.zpb-victory-ring,.zpb-victory-stage{animation:none !important;} }
+@media (max-width:600px){ .zpb-victory-orb{width:118px;height:118px;} .zpb-victory-orb img{width:82px;height:82px;} .zpb-victory-kicker{letter-spacing:.3em;font-size:.8rem;} .zpb-victory{padding:14px;} }
+</style>
+<script id="zpb-w68-js">
+// ============ Z-POST-BLUE W68 · THE OWNER'S ROUND ============
+// UI 7 (Owner): the user-wins-the-Super-Bowl page — the second act after the SB page's
+// Continue. The SB page stays the recurring page (the Owner's word); when the champion IS
+// the user's team, the victory page mounts over it before the storm fades. The ten
+// commandments hold: Cinzel Decorative display, no white text, integers, the shimmer as THE
+// celebration, slow soft motion, the 0.6s reveal cadence.
+window.zpbSuperBowlVictoryCine = function(){
+ try{
+  const S = seasonState; if(!S || !S.champion || !S.sbFinal) return;
+  const user = seasonUserTeam(); if(!user || S.champion !== user) return;
+  if(document.querySelector('.zpb-victory')) return; // one victory at a time
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const pk = (typeof zpbPackFor==='function') ? zpbPackFor(user) : null;
+  const lg = n=> (typeof zpbTeamLogo==='function') ? zpbTeamLogo(n) : '';
+  const mvp = S.sbFinal.mvp;
+  const ab = t => (typeof TEAM_ABBR !== 'undefined' && TEAM_ABBR[t]) ? TEAM_ABBR[t] : t;
+  const cA = (typeof zpbPackFor==='function') ? zpbPackFor(S.sbFinal.away) : null;
+  const cH = (typeof zpbPackFor==='function') ? zpbPackFor(S.sbFinal.home) : null;
+  const inkA = cA ? (cA.txd||cA.accD) : 'var(--accent)';
+  const inkH = cH ? (cH.txd||cH.accD) : 'var(--accent2, var(--rose))';
+  const confetti = Array.from({length:72}, (_,i)=>'<i style="left:' + (i*1.39).toFixed(2) + '%;animation-delay:' + ((i%13)*0.31).toFixed(2) + 's;background:' + (i%3===0 ? '#d9a94c' : i%3===1 ? (pk ? pk.accL : '#d9a94c') : '#f3d78a') + ';"></i>').join('');
+  const embers = Array.from({length:22}, (_,i)=>'<i style="left:' + ((i*4.5)%100).toFixed(1) + '%;animation-delay:' + ((i%11)*0.66).toFixed(2) + 's;"></i>').join('');
+  const ov = document.createElement('div'); ov.className = 'zpb-victory';
+  if(pk){ ov.style.setProperty('--vg', pk.accL); ov.style.setProperty('--zshim', pk.accD); } // w43 (N11): the champion display shimmers in the champion's color
+  ov.innerHTML = '<div class="zpb-victory-rays"></div><div class="zpb-victory-rays2"></div>'
+   + '<div class="zpb-victory-glow"></div>'
+   + '<div class="zpb-victory-conf">' + confetti + '</div>'
+   + '<div class="zpb-victory-embers">' + embers + '</div>'
+   + '<div class="zpb-victory-flash"></div>'
+   + '<div class="zpb-victory-stage">'
+   + '<div class="zpb-victory-kicker zpb-shm">YOU WON THE SUPER BOWL</div>'
+   + '<div class="zpb-victory-orb"><span class="zpb-victory-ring"></span><span class="zpb-victory-ring r2"></span><span class="zpb-victory-ring r3"></span>' + lg(user) + '<span class="zpb-victory-trophy">\u2605</span></div>'
+   + '<div class="zpb-victory-name zpb-shm">' + String(user).toUpperCase() + '</div>'
+   + '<div class="zpb-victory-score"><b style="color:' + inkA + ';">' + ab(S.sbFinal.away) + ' ' + S.sbFinal.as + '</b><i>-</i><b style="color:' + inkH + ';">' + S.sbFinal.hs + ' ' + ab(S.sbFinal.home) + '</b></div>'
+   + '<div class="zpb-victory-final">SUPER BOWL CHAMPIONS</div>'
+   + (mvp ? '<div class="zpb-victory-mvp">SUPER BOWL MVP \u00b7 <b>' + mvp.name + '</b>' + (mvp.group ? ' <i>' + mvp.group + '</i>' : '') + '</div>' : '')
+   + '<button class="resetbtn zpb-victory-go" style="width:auto;margin:0;padding:11px 30px;">Continue</button>'
+   + '</div>';
+  document.body.appendChild(ov);
+  requestAnimationFrame(()=> ov.classList.add('zpb-victory-in'));
+  ov.querySelector('.zpb-victory-go').addEventListener('click', ()=>{
+   ov.remove();
+   try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(err){}
+   try{ if(window.__zpbSBRewardOwed){ window.__zpbSBRewardOwed = false; FX.play('sb'); setTimeout(()=>{ const b = document.querySelector('.champion-banner'); if(b) b.classList.add('fxwon'); }, 60); } }catch(err){} // w38 (R14, Owner): the reward plays when the page lets go
+   try{ if(typeof zpbFxDrain==='function') zpbFxDrain(true); }catch(err){}
+  });
+ }catch(err){ try{ if(typeof zpbStoryRelease==='function') zpbStoryRelease(); }catch(e2){} }
+};
+</script>
 </body>
 </html>
