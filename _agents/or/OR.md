@@ -10,10 +10,11 @@
 - **Done this session:**
   - Oriented per START-OF-CHAT.md: pwd / branch / git-common-dir verified; sync-base.sh up to date
   - Read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, V23-OWNER-REQUESTS.md, OR.md
-  - Reviewed P-048 "Remove 'Play a Season' panel text + Start Season button" -> VERDICT: improved (inbox/20261103-0440-or-P-048-review.md)
+  - Reviewed P-048 "Remove \'Play a Season\' panel text + Start Season button" -> VERDICT: improved (inbox/20261103-0440-or-P-048-review.md)
   - Reviewed P-049 "Remove parentheses from position groups" -> VERDICT: improved (inbox/20261103-0530-or-P-049-review.md)
   - Reviewed P-050 "Remove draft recap text block" -> VERDICT: rejected (scope mismatch — work implements win-probability graph, not draft recap text removal) (inbox/20261103-0530-or-P-050-review.md)
   - Recorded idle session state (inbox/20261103-2313-or-idle.md — committed, pushed 121a6f6b)
+  - Reviewed Council process improvement proposals (Tier 1 items 1-5) -> VERDICTs: improved, ok, improved, ok, improved (inbox/20261104-034412-or-proposals-review.md)
 - **Blocked / waiting on:** Council tool macOS path bug produces no `next`/`board` output (import.meta.url /private prefix mismatch); Architect integration of REVIEWED items; Architect acceptance of prior claims
 - **What the next session needs:**
   - Run `node tools/council.mjs next` (may need `--seat or`); check board for new items
@@ -31,3 +32,4 @@
 - `inbox/20261103-0530-or-P-049-review.md` — P-049 review (improved)
 - `inbox/20261103-0530-or-P-050-review.md` — P-050 review (rejected)
 - `inbox/20261103-2313-or-idle.md` — idle session state
+- `inbox/20261104-034412-or-proposals-review.md` — Tier 1 process proposals review (1 improved, 2 ok, 1 improved, 1 ok, 1 improved)
