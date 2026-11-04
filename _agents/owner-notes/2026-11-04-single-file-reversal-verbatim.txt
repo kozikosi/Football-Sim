@@ -1,0 +1,17 @@
+# Owner decision verbatim — 2026-11-04
+
+## Single-file HTML output: REVERSED
+
+Kosi's directive: "No single-file HTML output — that's not the goal."
+
+The Colors rebuild will use a modern build with separate assets (JS/CSS/data chunks)
+deployed to Cloudflare Pages. The 1.78MB single-file approach was a workaround, not
+the target architecture.
+
+This reverses AGENTS.md §3 ("one self-contained HTML file, no split into several files")
+and any other repo docs asserting single-file output (COLORS-V1-DESIGN.md,
+PROJECT-KNOWLEDGE.md, CLAUDE.md). Those docs are to be updated to reflect the
+multi-asset Cloudflare Pages build.
+
+Recorded by MUSE seat per the repo rule that Owner decisions go into the repo
+the same turn. 2026-11-04.
