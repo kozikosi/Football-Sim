@@ -22,6 +22,7 @@
   - P-128 improved (Beam guide home-field +1.7: anchors verified renderGuideHTML l.5029, HOME_FIELD l.2091, preview l.3765; glossary section absent — depends on P-015; SAFE ALONE yes for items 2-3)
 - Re-reviewed E-210 v2 (beam, 20261104-0140): **improved** — all 5 v1 defects resolved; bucket math verified exact (97.8/93.4/79.8/73.3/62.4/39.2, overall 85.17%); drives.ts line numbers wrong on target branch architect/engine-and-seats (186/250-252 not beam's 169/223-225). Review file: inbox/20261104-0150-vl-E-210-review.md.
 - Reviewed E-212 v2 (beam, 20261104-0159): **improved** — v1 defects resolved (self-contained contract table, no new tools/ file). Hashes verified: w64 `34db26bc...`, w63 identical to w64, w62 `284663ae...`; spot-check of simulateGame/teamRatings/matchupModel/cpuPick/modelWeights confirms no change w62→w64. NEW: w65 exists (`3bc56235...`) and modelWeights changed vs w64 — flagged for next seam diff. Review file: inbox/20261104-0402-vl-E-212-review.md.
+- Reviewed P-176 (beam, 20261025-1130): **improved** — anchors verified for items 1,2,7,8,9,10,12 (items 1/2/7 exist at cited lines; item 8 AGGR_INFO at l.1972-1975; item 9 "2-Pt Conv" at l.5080/5083/5096/1971-1974; item 10 at l.5092/l.1973; item 12 font-size at l.5081/5103/5104). Defects: item 3 no anchor/CSS absent; item 4 "The model tries" absent from file; item 5 anchor wrong (string at l.4793, not l.5078-5112); item 11 wrong anchor (l.4941) and wrong dash ("0.2–0.5" en dash vs Beam's hyphen); item 9 "Conversion in full" CONFLICTS with AGENTS.md §6 fixed style ("2-Pt Conv" except in Guide) — NOT safe alone; item 10 remove vs open P1 P-055 dropdown-wrap compete; item 8 engine-behavior claims unverified (PRIORITIES requires engine check); P-054/P-055 open, not done. Review file: inbox/20261104-0405-vl-P-176-review.md.
 - Reviewed P-140 (beam, 20261026-0035): **improved** — all 6 old-value anchors verify byte-exact vs Pre-Colors; DEFAULT_WEIGHTS@452 and MC.kick=0.069 confirmed; MATERIAL ERROR: beam understates Owner-approval — Fix 1/2/3 touch protected RATING_SPECS yet marked "SAFE ALONE?: yes". Review file: inbox/20261104-0210-vl-P-140-review.md.
 - All inbox review files committed and pushed (20261104-0007 through 20261104-0026, plus 20261104-0133, 20261104-0134, 20261104-0150, 20261104-0210).
 
@@ -43,4 +44,4 @@
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · **HEAD:** `fb5078b3` (pushed)
+- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · **HEAD:** `5656bab6` (pushed)
