@@ -1,0 +1,6 @@
+Z-post-blue · wave 69 · 2026-11-05
+====================================
+Football-Sim-Z-post-blue-w69.html  md5 881248cfec19429c3a50326606da7244  1803514 bytes
+baseline: Football-Sim-Z-post-blue-w68.html  md5 22bc00ab8cc244da7ba8030a5a67c8da  1796935 bytes (gh-pages, hash-verified at chat start)
+chain: zpb_w69.py -> zpb_w69b.py -> zpb_w69c.py -> zpb_w69d.py -> zpb_w69e.py -> zpb_w69f.py -> zpb_w69g.py -> zpb_w69h.py (eight asserted generators; re-runs byte-stable)
+batteries: w69_nodecheck 24 blocks SYNTAX OK | w69_owner 33/0 x3 runs | w69_dropdowns 14/0 | w69_map 3/0 (32 teams x 2 modes from the pixels) | w67_owner_w69 41/0 | w67_teams_w69 8/0 | w68_names_w69 14/0 | zero page errors
