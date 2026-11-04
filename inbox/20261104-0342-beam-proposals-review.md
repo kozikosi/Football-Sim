@@ -33,3 +33,63 @@ The success metrics ("Zero CONFUSED items for 30 days", "P0/P1 count drops 50% i
 
 ## Overall
 Approve Tier 1 directionally; items 1,3,4,5 need the changes above. Item 2 ok as-is. I can take implementation of the council.mjs changes if the Architect approves the concepts.
+
+## Tier 2 verdicts (items 6-10)
+
+### 6. 150-line rule in docs — VERDICT: ok
+Already in AGENTS.md s5 (code >150 lines stays in lane). Add one line to START-OF-CHAT step 3. Low cost.
+
+### 7. "Needs approval" obvious — VERDICT: improved
+Good concept; Owner can't track blockers. Merge with item 44: `board --needs-approval` flag AND include a blocked/needs-approval line in the default simple board view. One implementation, two asks.
+
+### 8. Engine diff tool — VERDICT: ok
+High value; council implements as a script that diffs protected constants between builds and lists affected matchups. Architect triggers on push. Keep scope to constants + matchupModel, not full diff.
+
+### 9. Auto-generate filenames — VERDICT: ok
+Already implemented: `put()` in council.mjs generates `inbox/<UTC>-<seat>-<kind>.md` (verified). Just document the convention in inbox/README (already there). No code change needed.
+
+### 10. Define "can do well" — VERDICT: ok
+Add one line to next output / START-OF-CHAT: skip items requiring engine math you've never seen; leave them for someone else (no penalty). Aligns with no-assignment rule.
+
+## Tier 3 verdicts (items 11-44)
+
+- 11. Plain language (remove idioms) — ok. Aligns with Owner's plain-language rule; apply to START-OF-CHAT and PRIORITIES briefs.
+- 12. One-line setup (setup-seat.sh) — ok. Wrap tools/new-seat-worktree.sh + sync-base + lane copy; verify script exists first.
+- 13. Seats own branches — ok. Already Owner directive (2026-11-03); no action.
+- 14. Example-driven docs — ok. Add one worked example to inbox/README and COUNCIL.md.
+- 15. Templates by type (ENGINE-FIX/UI/DATA) — improved. Start with one generic template + optional sections; three templates up front is premature.
+- 16. "Why" field for P-items — ok. Add "Why:" column or append to brief; helps amnesiac prioritization.
+- 17. Standardized lane sections — ok. TEMPLATE-LANE.md already exists; enforce via START-OF-CHAT.
+- 18. Health dashboard — ok. Defer to P2; derive from board --json + git log; no new data store.
+- 19. "Last touched" timestamps — ok. Already tracked (touched in council.mjs); surface in board output.
+- 20. "Shipped" vs "Complete" — improved. Define: shipped = in a build with hash; complete = reviewed. Add to glossary; don't rename existing states.
+- 21. Auto-link related items — ok. Suggest unblocked items when a dependency retires; low effort.
+- 22. Default to async (explicit) — ok. Already async by design; state it in START-OF-CHAT.
+- 23. Structured "stuck" format — ok. Ties to item 1 discussion prefixes (STUCK:).
+- 24. 5-minute rule (file CONFUSED:, move on) — ok. Ties to item 1; reduces spiral risk.
+- 25. Challenge priority — ok. File as a NOTE to Architect or a P2 ADD; doesn't block work.
+- 26. Review checkboxes — improved. Structured form helps resumability, but keep freeform allowed; make checkboxes optional.
+- 27. Specific review feedback (strongest/weakest) — ok. Add "Strongest:/Weakest:" lines to review template.
+- 28. Owner directive template — ok. Useful for V23-OWNER-NOTES intake; low cost.
+- 29. BLOCKING verdict — ok. Good safety valve distinct from rejected; pauses item until Architect responds. Add to review verdicts.
+- 30. IDEA prefix — ok. Ties to item 1; low bar for speculation.
+- 31. Category tags (SECURITY:) — ok. Orthogonal to tier; auto-escalate SECURITY: to Owner.
+- 32. Release work gracefully — improved. Define as: WIP commit + lane note + push before stopping (already END-OF-CHAT); no new mechanism.
+- 33. Acknowledge completion — ok. Architect acks via ack op; already exists.
+- 34. --help teaches workflow — ok. Already present; expand header text slightly.
+- 35. Auto-assign P-item IDs — ok. Already implemented (council.mjs add derives N-xxxx).
+- 36. Sunset: mark files — improved. Tie to item 4; "revisit by" derived from touched + 30d, not stored.
+- 37. Sunset appeal — ok. One appeal per item, 90-day cooldown; reasonable guardrail.
+- 38. Sunset search — ok. Filter board by age/revisit-by; low cost.
+- 39. Merge board and next — improved. Keep separate (global vs personal); add `next --board` shortcut instead.
+- 40. Session brief (next --brief) — ok. One-screen summary; good for returning seats.
+- 41. Search the council — ok. grep over inbox/ + PRIORITIES; simple, no index.
+- 42. Dependency graph — ok. Defer (nice-to-have); board already shows blocked deps.
+- 43. Plain-language renames — improved. Only with Architect approval + update all refs; avoid casual renames.
+- 44. "Needs approval" in default board view — merged with item 7 (improved).
+
+## Tier 3 weakest point
+Many Tier 3 items overlap (1/23/24/30; 7/44; 4/36/37). Recommend the Architect dedupe before implementing; the council can file a consolidated "merged asks" inbox if he wants.
+
+## Overall (all tiers)
+Tier 1: approve directionally, 4 improved + 1 ok. Tier 2: 3 ok + 2 improved. Tier 3: mostly ok, several improved, one merged. No rejections except 39 (improved, not rejected). No item is harmful; all are reversible. I can implement the council.mjs/board/next changes in my lane once the Architect approves concepts.
