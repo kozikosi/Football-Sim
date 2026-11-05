@@ -6,27 +6,31 @@
 
 ## This session (2026-11-05, council.mjs protocol)
 - Followed START-OF-CHAT: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; exported council.mjs to /private/tmp/council.mjs (macOS /tmp symlink caveat VERIFIED earlier: must run `node /private/tmp/council.mjs <cmd>`).
-- **TEST 1 Vite access — VERIFIED PASS:** `git fetch origin architect/engine-and-seats` → 425f72a; `cd colors && npm ci` (46 packages); `npx vite --version` → vite/8.3.6 darwin-arm64 node-v24.22.0. `npm run build` fails on clean checkout (no entry point yet) — expected; Draft Board slice brings it. Local checkout of architect/engine-and-seats refused (branch checked out in /Users/kosi/Desktop/wt/beam); tested from throwaway branch at FETCH_HEAD; colors/ byte-identical to council/vl.
-- **TEST 2 Outcome Lab — VERIFIED:** `node --experimental-strip-types tools/outcomelab/sweep.ts` on fresh checkout of 425f72a; 440 seasons (200 fixed + 40 draft + 200 synthetic) reproduce the 2026-11-04 baseline exactly: Mode A 54052/54052 zero-sum EXACT, ppg 22.86 PASS [R], determinism PASS, home-win 55.3% FAIL [R] 53.2%±1.5pp, parity 2.20 FAIL [R] 3.0–3.5 (pre-existing findings in colors/tools/outcomelab/FINDINGS-for-architect.md).
-- calibrate-draft.ts N=100 VERIFIED: greedy 90%/20%, top30 38%/3%, favorites 20%/0%, CPU 8.4–8.6 — matches architect ASK's stated measurements; sampling-error bands CALCULATED (SE=sqrt(p(1-p)/n)).
-- **Queue:** P-252–P-260 are NOT tabled in PRIORITIES.md — absent on council/base and on architect/engine-and-seats (425f72a), absent from tasks/ and all inboxes (repo-wide grep). They cannot be taken via `node tools/next.mjs`. next.mjs top line = architect ASK "outcome-based CI gate for Colors v1" → answered with VERIFIED numbers (bands at N=100/300/1000, DraftConfig knob candidates INFERRED from draft.ts comments, ~10-min CI job) in inbox/20261105-1716-vl-answer-outcome-based-ci-gate.md. Committed and pushed council/vl @ 7e33def1 (verified via git ls-remote).
-- Bulletin: bulletin/20261105-1716-vl.md posted (RESULT: vite-access | PASS; RESULT: outcome-lab-baseline | REPRODUCES; FACT lines for both modes).
+- Preservation gate: vl worktree clean (0 dirty, 0 unpushed); local-only commit 38ca4524 (vl-vite-test, Outcome Lab scratch) saved to preserve/council-vl-vite-test-38ca4524 via `node tools/preserve.mjs commits`; `node tools/preserve.mjs check` re-run — exit=1 only from OTHER seats' dirty trees (gh-pages, boc, dsd, flint, etc.), which VL must not touch (AGENTS.md §4.4).
+- `node /private/tmp/council.mjs next` → REVIEW items P-032..P-038 (P2, one review done each, cap 8). Reviews beat new work in the same tier; none taken this session in favor of the assigned brainstorm.
+- **Brainstorm delivered (this session's work):** inox/20261105-1843-vl-transition-tools-brainstorm.md (3 sections: tools ranked top-3 = contract:check quantisation verifier, cutover queue-survival verifier, save-envelope conformance tester; engine+w70 analysis with file:line citations; council architecture proposals incl. conditional digest, cutover freeze of council/base, tooling-maintainer/calibration-lead/exhibit-editor roles). Bulletin: bulletin/20261105-1843-vl.md posted.
+
+## CODE ANALYSIS RECEIPTS (all VERIFIED by reading / running)
+- `npm test` in colors/ at 425f72a → 227 pass / 0 fail / ~7.7 s. (Architect-cited 284 tests at 551af1b is REPORTED/stale.)
+- w70: 60 Math.random() sites in /tmp/w70-main.js (grep -c).
+- colors/src/app/store.ts:16-21 AppState/Action; :39-57 replay(); envelope.ts:1-135 WeekPayload:34-46 / SeasonPayload:48-57; draftBoard.ts:44-46 `alsoFits` still present (contradicts Owner ruling); awards.ts unwired (no caller); seasonPayload stat-book gap confirmed; tsconfig.json, appstate.ts, StorageModule, enumeration, 'dataset-changed', FeedEvent, hydration, DatasetLoader all ABSENT; drives.ts:249 "sudden death" comment violates recap.ts:7.
+- w70 survival anchors: zpbGameReplay :833/:963; zpbSimRestOfPlayoffs :6128; zpbSeasonStoryHTML :6158/:6290/:8474; zpbSlotWins70to90 :17; modelWeights() :25-28 (700/5/5); w70 TEAM_DATA :4 has real names, non-real teams (Garrett DE1 99 on Rams) — provenance UNKNOWN, must not be ported; Colors real source = data/madden27-ratings.csv (1,941 players, tracked, unmodified per data/README.md:8).
+- data/ tracked & clean (git ls-files). bulletin 20261105-1804-muse.md NOT FOUND (glob *muse* empty) — council-home question open (§3.5 of brainstorm).
 
 ## Current work
-- None active on tabled items (P-254–P-260 not tabled; P-252 lab landing verified via TEST 2; P-253 Vite toolchain closed via TEST 1).
+- Brainstorm file + bulletin committed and pushed to council/vl this session.
 
 ## Next session needs
-1. `node tools/preserve.mjs check` + commit/push at end of session (done this session for bulletin/inbox).
-2. If P-254–P-260 get tabled in PRIORITIES.md, take the top line per `node /private/tmp/council.mjs next`.
-3. Lane rewrite + bulletin + commit/push `council/vl` before chat end.
+- If taking queue work: `node /private/tmp/council.mjs next`, top line = P-032 review (council/beam:inbox/20261025-0530-beam-P-032-work.md).
+- End-of-session: rewrite lane file, post bulletin, commit + push `council/vl`; `node tools/preserve.mjs check` before any clean-up.
+- If P-254–P-260 get tabled in PRIORITIES.md, take top line per council tool.
 
 ## Open questions
 - None blocking.
 
 ## Live files (this session)
-- bulletin/20261105-1716-vl.md (TEST results); inbox/20261105-1716-vl-answer-outcome-based-ci-gate.md (ANSWER-OF: 20261105-0105-architect-ASK-outcome-based-ci-gate-for-colo.md).
-- Prior lane entries remain valid: P-030 review (improved, pushed 56f89285); BUILD-7-8 review (ok); Kosi open-discussion response (input-with-concerns, mentions P-250 calibration and the Outcome Lab).
+- inox/20261105-1843-vl-transition-tools-brainstorm.md; bulletin/20261105-1843-vl.md.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `7e33def1` (pushed) · merge-base with origin/council/base: `1b91f50e`
+- **HEAD:** (about to commit brainstorm + bulletin) · merge-base with origin/council-base: `1b91f50e`
