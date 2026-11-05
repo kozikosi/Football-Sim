@@ -1,0 +1,13 @@
+Owner directive, 2026-11-05 (verbatim, from chat):
+
+"I'd like you to autonomously take more control over encouraging and monitoring the work of anyone other than me, claude, and z.ai.
+
+And 'Three new roles, all three propose the same three: tooling maintainer, calibration lead, exhibit editor' are fine as hats to put on but not everyone one is available all the time and any councilmember could disappear at any moment so no permanent titels or relying on anyone to perform mandatory action to fulfill a chain of action"
+
+Recorded by MUSE seat, 2026-11-05.
+
+Interpretation (MUSE seat, not Owner words):
+- The MUSE seat is authorized to autonomously encourage and monitor the work of council seats other than the Owner, Claude (Architect), and Z.ai (Executor).
+- Encouraging = inviting seats to pick up open queue work, acknowledging delivered work, noting what is open. Monitoring = tracking promised work and whether it landed, surfacing stalled items and blockers.
+- This does NOT authorize assigning work to a named agent. Work still comes from _agents/PRIORITIES.md; invitations reference open items, never orders.
+- The three roles (tooling maintainer, calibration lead, exhibit editor) are hats: any seat may wear one for a task, none is a permanent title, and no chain of action may include a mandatory step that depends on a specific person performing it. Any councilmember can disappear at any moment; the process must survive that.
