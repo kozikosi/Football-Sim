@@ -16,7 +16,8 @@
 ## Current work
 - P-030 review complete and pushed (council/vl @ 56f89285).
 - Colors rebuild risks analysis complete and pushed (council/vl @ 72c3e9ea).
-- Colors rebuild briefing review complete and pushed (council/vl @ da9b9700): verdict input-with-concerns. Key findings: (1) AGENTS.md §3 single-file rule contradicts owner's separate-assets decision — unresolved, must be Owner-approved before any split-assets work (remove the briefing's instruction to update AGENTS.md/PROJECT-KNOWLEDGE/CLAUDE.md — only Architect edits those, and only after Owner approval); (2) Madden ratings are private dev reference — public repo needs independently generated ratings with documented provenance (AGENTS.md §7); (3) Q8: single RNG stream, Promise<Result> yes, sport discriminator deferred to post-v1.1, fold injectable RNG into contract step (a); (4) "no separate adapter module" is self-contradictory — view-model-as-boundary IS an adapter, rename to single contract layer. Filed: inbox/20261104-2348-vl-colors-briefing-review.md.
+- Colors rebuild briefing review complete and pushed (council/vl @ da9b9700).
+- Kosi open-discussion response complete and pushed (council/vl @ 7475e19c): verdict input-with-concerns. Key findings: (1) AGENTS.md §3 single-file rule contradicts owner's separate-assets decision — unresolved, blocking; (2) determinism contradiction — "save/reload = exact same results" requires RNG state serialization, but "full seed replay not v1 priority" — needs reconciliation; (3) Svelte 5 runes-only enforcement needed (no one on council shipped large Svelte 5 app); (4) wave system doesn't fit multi-file rebuild — shift to contract-based units of work; (5) Claude→Z.ai handoff needs formal escalation for unbuildable contracts; (6) queue backlog (33 ready, 88 awaiting review) needs triage; (7) Outcome Lab should establish calibration bands at scale before tuning to 80/25/10. Filed: inbox/20261105-1004-vl-kosi-open-discussion.md.
 - No active VL work items.
 - P-063 (Architect-only product edit) skipped per protocol; open to any seat: P-032, P-033, P-034, P-036 reviews (beam's work files in council/beam:inbox/).
 
@@ -31,10 +32,10 @@
 - None blocking.
 
 ## Live files (key)
-- Inbox reviews this session: BUILD-7-8 (inbox/20261104-0700-vl-BUILD-7-8-review.md, verdict ok); P-030 (inbox/20261104-1320-vl-P-030-review.md, verdict improved); w67 slot format (inbox/20261104-2002-vl-w67-slot-format.md, verdict envelope-shaped); Colors rebuild risks (inbox/20261104-2036-vl-colors-rebuild-risks.md, verdict risks-identified); Colors rebuild briefing review (inbox/20261104-2348-vl-colors-briefing-review.md, verdict input-with-concerns).
+- Inbox reviews this session: BUILD-7-8 (inbox/20261104-0700-vl-BUILD-7-8-review.md, verdict ok); P-030 (inbox/20261104-1320-vl-P-030-review.md, verdict improved); w67 slot format (inbox/20261104-2002-vl-w67-slot-format.md, verdict envelope-shaped); Colors rebuild risks (inbox/20261104-2036-vl-colors-rebuild-risks.md, verdict risks-identified); Colors rebuild briefing review (inbox/20261104-2348-vl-colors-briefing-review.md, verdict input-with-concerns); Kosi open-discussion response (inbox/20261105-1004-vl-kosi-open-discussion.md, verdict input-with-concerns).
 - Bulletins this session: bulletin/20261104-0525-vl.md, bulletin/20261104-0530-vl.md
 - Lane file: `_agents/vl/VL.md`
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `da9b9700` (pushed) · merge-base with origin/council/base: `1b91f50e`
+- **HEAD:** `7475e19c` (pushed) · merge-base with origin/council/base: `1b91f50e`
