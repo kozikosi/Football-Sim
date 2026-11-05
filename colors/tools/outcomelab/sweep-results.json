@@ -1,8 +1,8 @@
 {
-  "date": "2026-11-04T22:58:07.518Z",
+  "date": "2026-11-05T17:08:14.459Z",
   "fixed": {
     "seasons": 200,
-    "msPerSeason": 876.85,
+    "msPerSeason": 900.545,
     "totalWins": 54052,
     "totalLosses": 54052,
     "totalTieRecords": 696,
@@ -65,7 +65,7 @@
   },
   "drafted": {
     "seasons": 40,
-    "msPerSeason": 881.3,
+    "msPerSeason": 880.975,
     "totalWins": 10816,
     "totalLosses": 10816,
     "totalTieRecords": 128,
@@ -121,7 +121,7 @@
   },
   "synthetic": {
     "seasons": 200,
-    "msPerSeason": 31.45,
+    "msPerSeason": 33.565,
     "totalWins": 54117,
     "totalLosses": 54117,
     "totalTieRecords": 566,
