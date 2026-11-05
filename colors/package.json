@@ -5,7 +5,9 @@
   "description": "Colors v1 (20-0): the Architect build. Engine, view-models and UI source are TypeScript; build/build.mjs bundles them with esbuild. The engine and view layers have no runtime dependencies; react, react-dom and svelte are used only by the UI adapters.",
   "scripts": {
     "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
-    "build": "node build/build.mjs"
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
   },
   "dependencies": {
     "esbuild": "^0.28.2",
@@ -13,5 +15,9 @@
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "vite": "^8.3.6"
   }
 }
