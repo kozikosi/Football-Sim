@@ -48,7 +48,7 @@ Never call a build by another name, never create a "merged", "final" or dated co
 
 ## 3. Product rules
 
-The product is **one self-contained HTML file**: no paid API, no CDN, no build step for the user, no split into several files. Do not change the product to make a linter or test pass; fix the cause or record the finding.
+The product ships as **separate static assets on Cloudflare Pages** (Owner 4 Nov 2026 reversed the one-file rule): no paid API, no CDN, no build step for the user, works offline via a service worker. Do not change the product to make a linter or test pass; fix the cause or record the finding.
 
 **Protected** (change only to the exact value the Owner approved, citing the approval): `DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, and the contract that `modelWeights()` is the monotone quantisation of `slotWinsPerOvr()` (700 scale, nearest 5, floor 5, so error ≤ 2.5 per slot and no rank inversions beyond rounding ties). It is not an exact inverse and must not be tested as one. A change to any of them, or to `teamRatings`, re-pins its hash in `MERGE-MANIFEST.md` in the same commit.
 

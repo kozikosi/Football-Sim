@@ -10,7 +10,7 @@ See `_agents/START-OF-CHAT.md` (read from `origin/council/base`). In short: `AGE
 **Council base:** `origin/council/base` (the Architect moves it; seats merge it with `git merge --no-edit origin/council/base` at chat start). Until the PR to `main` is merged this is the only correct base; never base on a task branch.
 
 ## Identity
-Product shows as **20-0** (header, footer, title, copy). Repo, branches, files stay "Football Sim". Single self-contained HTML file; no paid API, no CDN, no build step for the user. Owner: Kosi. Architect: Claude. Council: advisory seats listed in `_agents/README.md` (roster, states, retired seats).
+Brand is under reconsideration: nothing user-visible bakes in "20-0" until settled. Repo, branches, files stay "Football Sim". Ships as separate static assets on Cloudflare Pages, offline-first (Owner 4 Nov 2026 reversed the single-file rule); no paid API, no CDN. Owner: Kosi. Architect: Claude. Council: advisory seats listed in `_agents/README.md` (roster, states, retired seats).
 
 ## Build truth (details in `AGENTS.md` §2 — re-measure with `sha256sum`)
 Verified build **Pre-Colors**: `Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B. Next build **V23** (Architect writes it). "V21"/"V22" are retired as build names. Canonical branch `claude/v21-and-council-ops` (quote the SHA from `git ls-remote`, never trust the name); `main` is behind it until the Owner approves the PR.

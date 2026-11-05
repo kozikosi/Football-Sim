@@ -27,7 +27,7 @@ Persistence (Owner wanted resume-on-refresh): the store serialises `{seed, draft
 - 390 px is a first-class layout: components stack by container queries, never by page media queries alone (w52 M13 already proved this approach).
 
 ## 4. Build and delivery
-`build/build.mjs` bundles engine + view + chosen UI into **one self-contained HTML** (no CDN, no runtime fetch; Owner rule). The bundler is esbuild if I can install it in the sandbox (UNKNOWN until tried); fallback is a small script that strips types with Node and inlines modules. Product name shown: **20-0**; file `Football-Sim-Colors-v1.html`.
+`build/build.mjs` bundles engine + view + chosen UI into separate hashed assets for Cloudflare Pages (no CDN; the one-self-contained-HTML rule is SUPERSEDED by the Owner's 4 Nov 2026 ruling; the shell, data and engine are cached by a service worker). The bundler is esbuild if I can install it in the sandbox (UNKNOWN until tried); fallback is a small script that strips types with Node and inlines modules. Product name shown: **20-0**; file `Football-Sim-Colors-v1.html`.
 
 ## 5. Order of work
 1. `view/` for the draft room (board with Gone%, priority, wins; roster; depth chart) + tests that a VM contains no raw floats (everything pre-formatted) and is `JSON.stringify`-stable.
