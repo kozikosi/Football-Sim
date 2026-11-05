@@ -1,0 +1,42 @@
+SPEAKER: GLM | ROLE: council seat, analytics/scribe lane | TASK: ASK data licensing | DATE: 2026-11-05T10:31Z
+
+ANSWER-OF: 20261105-0105-architect-ASK-data-licensing-for-a-public-mi.md
+
+Four numbered answers, each with source URLs and labels; one-line recommendation at the end. Web search quota was exhausted this session (HTTP 402 on both websearch calls), so every check below is a direct fetch of the cited URL.
+
+## (1) Real NFL player names + team names in a public MIT, free, non-commercial sim
+
+- **The controlling precedent holds in the Owner's favour for names+stats used in a game context.** *CBC Distribution & Marketing v. MLB Advanced Media*, 8th Cir. 2007: player names and performance records used in fantasy games are "not copyrightable … federal copyright law does not pre-empt the players' claimed right of publicity", and the court held CBC could use names and stats without MLBPA licensing; the industry norm (ESPN, CBS, Yahoo, DraftKings/FanDuel) runs on this precedent. Source: https://en.wikipedia.org/wiki/Fantasy_sport#CDM_vs._MLBAM (read this session, summarises the ruling with citations) — **REPORTED** (secondary source; I did not fetch the opinion itself: *CBC Distribution & Marketing, Inc. v. MLB Advanced Media, L.P.*, 505 F.3d 818 (8th Cir. 2007); case number from model memory — **UNKNOWN** until verified).
+- **Right-of-publicity exposure is real but group-licensing-shaped, not blocking.** The NFLPA's commercial licensing arm ("NFL Players Inc. — leveraging the power of NFL players in the world of licensing & marketing", plus a published "Partnership & Endorsement Policy") confirms player identities are commercially licensed as a group product. Source: https://www.nflpa.com/ and https://www.nflpa.com/about — **VERIFIED** for the licensing arm's existence (pages read this session; the /players/group-licensing path the question assumed 404s, so no public price/terms page found — **UNKNOWN** what a license costs or whether a free game qualifies).
+- **Team names/wordmarks/logos are trademark territory, and CC BY does not solve this** (see (2)'s §2(b)(2): "Patent and trademark rights are not licensed"). Text use of team names in a sim UI sits in the same expressive-work space as the player names; **logos/wordmark art should not be committed to the public repo** — consistent with the Owner's own practice (logo folders held off GitHub; internal doc `_agents/V23-OWNER-REQUESTS.md` line "not yet on GitHub: tools/publish-assets.sh" — **REPORTED** from the doc).
+- **Bottom line for (1):** a free, non-commercial MIT repo shipping real player names and team names is the same legal position as every open fantasy/mock-draft project on GitHub; the residual risk is publicity/licensing greyness, not copyright. Mitigation the Owner can adopt cheaply: keep ratings/names in a separate data directory so a fictional-names data file can replace it without touching code (defines the boundary if the Owner ever wants zero-risk distribution).
+
+## (2) nflverse data: can ratings DERIVED from it by a published formula be committed and redistributed under MIT?
+
+**VERIFIED — yes, with attribution, and the MIT repo may still be MIT overall.** `nflverse/nflverse-data` (the automated release repo for all nflverse scraped data) carries **CC BY 4.0**. I fetched the full license text: https://raw.githubusercontent.com/nflverse/nflverse-data/main/LICENSE.md (repo shows "CC-BY-4.0 license" on https://github.com/nflverse/nflverse-data). Decisive clauses, quoted from that file:
+
+- §1(c)/(f) include **Sui Generis Database Rights** in "Copyright and Similar Rights", so the data releases are license-covered as data, not just prose.
+- §2(a)(1): "the Licensor hereby grants You a worldwide, royalty-free, non-sublicensable, non-exclusive, irrevocable license to … **reproduce and Share the Licensed Material, in whole or in part; and produce, reproduce, and Share Adapted Material**."
+- §3(a)(1): conditions are attribution only — credit the creator(s) and source, state modifications and the license of the data with a link. **No share-alike clause exists in CC BY 4.0** (that is BY-SA; nflverse-data is plain BY), so derived tables do NOT have to be relicensed CC BY-SA and may live in an MIT repo.
+- §4(a): "Section 2(a)(1) **grants You the right to extract, reuse, reproduce, and Share all or a substantial portion of the contents of the database**" — covers exactly the "aggregate stats → rating per player by a published formula" pipeline.
+- Also explicit: §2(b)(1)-(2) "publicity, privacy … rights; are not licensed" and "Patent and trademark rights are not licensed" — i.e. CC BY answers the data-copyright layer (2) fully but does NOT answer the publicity layer in (1). Both layers are separate; the answer to (2) stands regardless.
+
+**Mechanics for the repo:** code = MIT; add a `DATA-LICENSE.md` (or comment header) naming the nflverse-data releases the ratings derive from, the formula file, and the attribution block ("Data derived from nflverse (https://github.com/nflverse/nflverse-data), licensed CC BY 4.0"). The nflfastR project itself is precedent for this split: code MIT (https://github.com/nflverse/nflfastR, MIT license shown on repo), data CC BY via nflverse-data releases (both read this session — **VERIFIED**).
+
+## (3) Permissively licensed football player-ratings dataset covering OL, kickers and punters
+
+**None found.** My checks this session: GitHub repo search for `nfl player ratings dataset` returned **0 results** (https://api.github.com/search/repositories?q=nfl+player+ratings+dataset — **VERIFIED**, query run 5 Nov); Madden-rate datasets (maddendata-style sites) are the standard source but are EA-derived with no license grant (— **UNKNOWN/inconclusive**: no license text found on any candidate site without a search engine); PFF grades are commercial (**REPORTED** — widely known, not fetched this session); college sites (CollegeFootballData) cover college only (**REPORTED** — not fetched this session). And the Owner has already ruled this is **his** job ("I will generate the ratings myself later — the council does not work on ratings" — **VERIFIED**, Owner letter 5 Nov). So: there is no shippable third-party ratings set covering OL/K/P; the Owner's self-generated ratings are the plan, and nflverse stats are the permissive substrate if any data grounding is wanted later.
+
+## (4) How other public sports-sim repos handle it
+
+From GitHub repo searches run this session (https://api.github.com/search/repositories?q=football+simulation+franchise+manager and ?q=nfl+draft+simulator — **VERIFIED** queries and results):
+
+- **The dominant pattern in public football sims is real data + no claimed license or no data at all.** Of six "nfl draft simulator" hits: one MIT repo actively shipping nflverse-derived real-player data (`hadantes-lab/ff-model`, "NFL fantasy draft board and player props simulator (nflverse + The Odds API)", MIT — **VERIFIED** via API metadata); `Carterc7/FantasyApp` (real-time NFL data, **no LICENSE file**); four more small sims with no license.
+- The strongest precedent repo for the *fictional-default + import* pattern is **Basketball GM/Football GM** by Zengm: basketball-gm is open (MIT) and ships fictional players with a custom-roster import path; its football product is **closed-source** (no public repo found under `zengm-games/football` or `zengm/football` — both 404, **VERIFIED**) — consistent with real-name football products staying closed.
+- Commercial tabletop sims that DO license real players (APBA, Strat-O-Matic) do it *through the players association*; that route is the one a free MIT repo cannot justify paying for (**INFERRED** from the APBA/Strat-O-Matic history section of the same Wikipedia article).
+
+So the honest pattern read: **an MIT football sim either publishes real names on the CBC-precedent greyness (with attribution hygiene) or goes fictional**; nobody in the public OSS world pays NFLPA license fees. The Owner's "real names public default" is defensible and precedented; the clean-room option that keeps it reversible is the separate data-file boundary from (1).
+
+## Recommendation (one line)
+
+Ship real player/team names as the public default with a `DATA-LICENSE.md` (nflverse-data CC BY 4.0 attribution for any derived ratings; no logos, no wordmark art), keep the ratings generation Owner-owned, and structure the roster as a swappable data file so a fully fictional league file is a drop-in replacement if publicity risk ever needs to go to zero.
