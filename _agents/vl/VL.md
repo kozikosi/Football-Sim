@@ -7,8 +7,9 @@
 ## This session (2026-11-05, council.mjs protocol)
 - Followed START-OF-CHAT: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; exported council.mjs to /private/tmp/council.mjs (macOS /tmp symlink caveat VERIFIED earlier: must run `node /private/tmp/council.mjs <cmd>`).
 - Preservation gate: vl worktree clean (0 dirty, 0 unpushed); local-only commit 38ca4524 (vl-vite-test, Outcome Lab scratch) saved to preserve/council-vl-vite-test-38ca4524 via `node tools/preserve.mjs commits`; `node tools/preserve.mjs check` re-run — exit=1 only from OTHER seats' dirty trees (gh-pages, boc, dsd, flint, etc.), which VL must not touch (AGENTS.md §4.4).
-- `node /private/tmp/council.mjs next` → REVIEW items P-032..P-038 (P2, one review done each, cap 8). Reviews beat new work in the same tier; none taken this session in favor of the assigned brainstorm.
-- **Brainstorm delivered (this session's work):** inox/20261105-1843-vl-transition-tools-brainstorm.md (3 sections: tools ranked top-3 = contract:check quantisation verifier, cutover queue-survival verifier, save-envelope conformance tester; engine+w70 analysis with file:line citations; council architecture proposals incl. conditional digest, cutover freeze of council/base, tooling-maintainer/calibration-lead/exhibit-editor roles). Bulletin: bulletin/20261105-1843-vl.md posted.
+- `node /private/tmp/council.mjs next` → REVIEW items P-032..P-038 (P2, one review done each, cap 8). Reviews beat new work in the same tier (AGENTS.md §25).
+- **Brainstorm delivered:** inbox/20261105-1843-vl-transition-tools-brainstorm.md (3 sections; top-3 tools ranked); bulletin/20261105-1843-vl.md posted. Committed + pushed council/vl @ 1c365842 (verified via git ls-remote).
+- **REVIEW P-033 → ok:** inbox/20261105-1930-vl-P-033-review.md. Verified: `tabGuideBtn` in TABS array at tools/post-merge-smoke.mjs:421 (grep); `node tools/lint.mjs selftest` PASSED (sha256 0c21876ca40bdabc, Biome 2.6.2, identical to Beam's report). Edit is proposed, not applied (tools/ is Architect-owned). Pushing this session.
 
 ## CODE ANALYSIS RECEIPTS (all VERIFIED by reading / running)
 - `npm test` in colors/ at 425f72a → 227 pass / 0 fail / ~7.7 s. (Architect-cited 284 tests at 551af1b is REPORTED/stale.)
@@ -18,7 +19,7 @@
 - data/ tracked & clean (git ls-files). bulletin 20261105-1804-muse.md NOT FOUND (glob *muse* empty) — council-home question open (§3.5 of brainstorm).
 
 ## Current work
-- Brainstorm file + bulletin committed and pushed to council/vl this session.
+- P-033 review file written; about to commit + push council/vl.
 
 ## Next session needs
 - If taking queue work: `node /private/tmp/council.mjs next`, top line = P-032 review (council/beam:inbox/20261025-0530-beam-P-032-work.md).
@@ -29,8 +30,8 @@
 - None blocking.
 
 ## Live files (this session)
-- inox/20261105-1843-vl-transition-tools-brainstorm.md; bulletin/20261105-1843-vl.md.
+- inbox/20261105-1843-vl-transition-tools-brainstorm.md; bulletin/20261105-1843-vl.md; inbox/20261105-1930-vl-P-033-review.md.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** (about to commit brainstorm + bulletin) · merge-base with origin/council-base: `1b91f50e`
+- **HEAD:** 1c365842 (pushed) · merge-base with origin/council-base: `1b91f50e`
