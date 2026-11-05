@@ -12,12 +12,18 @@ export const SAVE_KINDS: Readonly<Record<SportId, readonly string[]>> = { nfl: [
 export type SlotName = 'A' | 'B' | 'C';
 export const SLOT_NAMES: readonly SlotName[] = ['A', 'B', 'C'];   // slots belong to a sport: nfl slot A and a later sport's slot A are different saves
 
-export interface Envelope<S extends string = SportId, K extends string = string, P = unknown> {
+// Identity and ordering of one save (a lineage: a draft and the seasons played from it). Minted by the app, never by storage.
+export interface SaveMeta {
+  engineVersion: string;  // ruleset stamp (the sport's own). Informational on resume (the save carries frozen values).
+  dataVersion: string;    // canonical SHA-256 of the player dataset the save was made from ('sha256:<64 hex>', see core/hash.ts canonicalHash). Informational on resume.
+  saveId: string;         // uuid minted when a draft starts (and again on run-it-back's new slot). The lineage key for sync history and "keep both".
+  saveRevision: number;   // integer >= 1, +1 on every committed transition of this save (a pick, an undo, a week). Never decreases, not even on undo.
+  createdAt: string;      // ISO 8601, set once with saveId and never changed by later writes.
+}
+export interface Envelope<S extends string = SportId, K extends string = string, P = unknown> extends SaveMeta {
   sport: S;               // which game this save belongs to. Written always; a save from before this field existed (never shipped) reads as 'nfl'.
   kind: K;
   schemaVersion: number;  // layout of this envelope + payloads. Higher than SCHEMA_VERSION = written by a newer build: never overwrite it.
-  engineVersion: string;  // ruleset stamp (the sport's own). Stamped on write, informational on resume (the save carries frozen values).
-  dataVersion: string;    // hash of the sport's data files the save was made from. A resume never reads the live database.
   slot: SlotName;
   savedAt: string;        // ISO 8601
   payload: P;
@@ -39,6 +45,9 @@ export function parseEnvelope(x: unknown): ParseResult<Envelope> {
   if (x.schemaVersion > SCHEMA_VERSION) return { ok: false, reason: 'newer-version', message: 'envelope: written by a newer build (schema ' + x.schemaVersion + ')' };
   if (!isStr(x.engineVersion) || !x.engineVersion) return bad('envelope: bad engineVersion');
   if (!isStr(x.dataVersion) || !x.dataVersion) return bad('envelope: bad dataVersion');
+  if (!isStr(x.saveId) || !x.saveId) return bad('envelope: bad saveId');
+  if (!isInt(x.saveRevision) || x.saveRevision < 1) return bad('envelope: bad saveRevision');
+  if (!isStr(x.createdAt) || Number.isNaN(Date.parse(x.createdAt))) return bad('envelope: bad createdAt');
   if (!isStr(x.slot) || !(SLOT_NAMES as readonly string[]).includes(x.slot)) return bad('envelope: bad slot');
   if (!isStr(x.savedAt) || Number.isNaN(Date.parse(x.savedAt))) return bad('envelope: bad savedAt');
   if (!isObj(x.payload)) return bad('envelope: payload is not an object');
@@ -46,9 +55,9 @@ export function parseEnvelope(x: unknown): ParseResult<Envelope> {
 }
 
 // Serialize: stamps the envelope and returns the JSON string storage writes. Throws on anything JSON would silently change (undefined, NaN, Infinity, Map/Set).
-export function serialize<S extends SportId, K extends string, P>(sport: S, kind: K, slot: SlotName, versions: { engineVersion: string; dataVersion: string }, payload: P, now: Date): string {
+export function serialize<S extends SportId, K extends string, P>(sport: S, kind: K, slot: SlotName, meta: SaveMeta, payload: P, now: Date): string {
   if (!SAVE_KINDS[sport].includes(kind)) throw new Error(`envelope: ${sport} has no save kind '${kind}'`);
-  const env: Envelope<S, K, P> = { sport, kind, schemaVersion: SCHEMA_VERSION, engineVersion: versions.engineVersion, dataVersion: versions.dataVersion, slot, savedAt: now.toISOString(), payload };
+  const env: Envelope<S, K, P> = { sport, kind, schemaVersion: SCHEMA_VERSION, engineVersion: meta.engineVersion, dataVersion: meta.dataVersion, saveId: meta.saveId, saveRevision: meta.saveRevision, createdAt: meta.createdAt, slot, savedAt: now.toISOString(), payload };
   assertPlain(env, 'envelope');
   return JSON.stringify(env);
 }

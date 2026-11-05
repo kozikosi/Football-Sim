@@ -1,7 +1,7 @@
 // NFL save payloads (the sport-specific half of the save envelope; the outer envelope is core/envelope.ts).
 // Plain JSON only. Storage never imports this file: it moves envelopes and treats `payload` as opaque.
 import { parseEnvelope, serialize as serializeEnvelope } from '../../../core/envelope.ts';
-import type { Envelope, ParseResult, SlotName } from '../../../core/envelope.ts';
+import type { Envelope, ParseResult, SaveMeta, SlotName } from '../../../core/envelope.ts';
 export const SPORT = 'nfl' as const;
 export type SaveKind = 'draft' | 'week' | 'season';
 
@@ -102,8 +102,8 @@ export function parsePayload(env: Envelope<'nfl'>): ParseResult<AnyEnvelope> {
 
 
 // Serialize an NFL save: stamps the envelope (sport 'nfl') and returns the JSON string storage writes.
-export function serialize<K extends SaveKind, P>(kind: K, slot: SlotName, versions: { engineVersion: string; dataVersion: string }, payload: P, now: Date): string {
-  return serializeEnvelope(SPORT, kind, slot, versions, payload, now);
+export function serialize<K extends SaveKind, P>(kind: K, slot: SlotName, meta: SaveMeta, payload: P, now: Date): string {
+  return serializeEnvelope(SPORT, kind, slot, meta, payload, now);
 }
 // Restore an NFL save: JSON text to a validated, typed envelope (outer + inner). Never throws. A save from another sport is refused, not read.
 export function restore(text: string): ParseResult<AnyEnvelope> {

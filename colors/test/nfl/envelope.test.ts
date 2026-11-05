@@ -5,7 +5,7 @@ import { SCHEMA_VERSION, parseEnvelope } from '../../src/core/envelope.ts';
 import { parsePayload, restore, serialize } from '../../src/sports/nfl/app/saves.ts';
 import type { FrozenPlayer, SeasonPayload, WeekPayload } from '../../src/sports/nfl/app/saves.ts';
 
-const V = { engineVersion: 'e1', dataVersion: 'd1' };
+const V = { engineVersion: 'e1', dataVersion: 'd1', saveId: 'sv-1', saveRevision: 1, createdAt: '2026-11-03T00:00:00Z' };
 const T = new Date('2026-11-02T00:00:00Z');
 const fp = (i: number): FrozenPlayer => ({ id: 'P' + i + '|QB|KC', name: 'P' + i, pos: 'QB', role: 'QB', team: 'KC', ovr: 80, spd: 70, str: 60, freeAgent: false });
 const roster = Array.from({ length: 32 }, (_, i) => fp(i));
@@ -30,7 +30,7 @@ test('envelope: outer shape errors are reported as corrupt, and a newer schema i
   const good = JSON.parse(serialize('week', 'A', V, week(), T));
   const cases: [string, (e: Record<string, unknown>) => void][] = [
     ['kind', (e) => { e.kind = 'tournament'; }], ['slot', (e) => { e.slot = 'D'; }], ['savedAt', (e) => { e.savedAt = 'yesterday'; }],
-    ['engineVersion', (e) => { e.engineVersion = ''; }], ['dataVersion', (e) => { delete e.dataVersion; }], ['payload', (e) => { e.payload = [1]; }], ['schemaVersion', (e) => { e.schemaVersion = 0; }],
+    ['engineVersion', (e) => { e.engineVersion = ''; }], ['dataVersion', (e) => { delete e.dataVersion; }], ['saveId', (e) => { e.saveId = ''; }], ['saveRevision', (e) => { e.saveRevision = 0; }], ['saveRevision (fraction)', (e) => { e.saveRevision = 1.5; }], ['createdAt', (e) => { e.createdAt = 'soon'; }], ['payload', (e) => { e.payload = [1]; }], ['schemaVersion', (e) => { e.schemaVersion = 0; }],
   ];
   for (const [name, f] of cases) { const e = structuredClone(good); f(e); const r = parseEnvelope(e); assert.ok(!r.ok && r.reason === 'corrupt', name); }
   const n = structuredClone(good); n.schemaVersion = SCHEMA_VERSION + 1;

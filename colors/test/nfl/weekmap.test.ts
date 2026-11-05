@@ -23,7 +23,7 @@ function league(seed: number): LeagueTeam[] {
 const USER = TEAMS[0].name;
 const roster: FrozenPlayer[] = Array.from({ length: 32 }, (_, i) => ({ id: 'P' + i + '|QB|KC', name: 'P' + i, pos: 'QB', role: 'QB', team: 'KC', ovr: 80, spd: 70, str: 60, freeAgent: false }));
 const ctx = { userTeam: USER, roster, plan: null, statsRecorded: false };
-const V = { engineVersion: 'e1', dataVersion: 'd1' }, T = new Date('2026-11-03T00:00:00Z');
+const V = { engineVersion: 'e1', dataVersion: 'd1', saveId: 'sv-1', saveRevision: 1, createdAt: '2026-11-03T00:00:00Z' }, T = new Date('2026-11-03T00:00:00Z');
 // a save and a load through the real envelope: JSON text in the middle
 function viaStorage(s: RunState, teams: LeagueTeam[]) {
   const r = restore(serialize('week', 'A', V, toWeekPayload(s, teams, ctx), T));

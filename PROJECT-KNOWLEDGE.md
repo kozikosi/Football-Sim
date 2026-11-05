@@ -28,3 +28,5 @@ Biome 2.6.2 (native binary), node 22+, python, git, gh (authenticated), Mermaid 
 
 ## If stuck
 Question for the Architect or Owner → `QUESTIONS-FOR-THE-ARCHITECT.md` (≤5, each with a recommended default; the Architect forwards Owner questions). A bug: write it up for the Architect, do not fix the product file. An idea: `SUBMISSIONS.md` with exact change, blast radius and evidence.
+
+**Outcome targets (Owner 31 Oct 2026, refined 5 Nov): see `_agents/CALIBRATION-TARGETS.md`.** A fairly optimal user reaches the playoffs about 90% and wins the title 10-25%; the user should beat the average NFL team; parity and home-win rate are not goals.

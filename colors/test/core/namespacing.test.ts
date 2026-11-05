@@ -51,7 +51,7 @@ test('profile migration: the shell\'s flat profile moves under sports.nfl, once,
 
 test('envelope: every save names its sport and the sport\'s kinds are checked; another sport\'s save is refused by the NFL reader', () => {
   assert.deepEqual([...SPORT_IDS], ['nfl']);
-  const V = { engineVersion: 'nfl1.x', dataVersion: 'd' }, T = new Date('2026-11-04T00:00:00Z');
+  const V = { engineVersion: 'nfl1.x', dataVersion: 'd', saveId: 'sv-1', saveRevision: 1, createdAt: '2026-11-03T00:00:00Z' }, T = new Date('2026-11-04T00:00:00Z');
   const text = serializeNfl('draft', 'A', V, { seed: 1, userTeam: 0, picks: [], pool: [] }, T);
   assert.equal(JSON.parse(text).sport, 'nfl');
   assert.throws(() => serialize('nfl', 'quarter' as never, 'A', V, {}, T), /no save kind/);

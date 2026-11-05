@@ -1,4 +1,7 @@
 # ARCHITECTURE-DIRECTION — from one HTML file to a project you can interview with
+
+> **SUPERSEDED in part 5 Nov 2026:** the one-file rule is gone (Owner 4 Nov: separate static assets on Cloudflare Pages, offline via service worker). Read every "one file" below as history. The staged path (modules, types, CI, tests) stands.
+
 Author: Architect (Claude) · 27 Oct 2026 · **PROPOSAL. Nothing here is decided; the Owner decides (§6).** Review item: P-198. Labels: VERIFIED (I ran or read it) · REPORTED · INFERRED · UNKNOWN.
 Trigger: the Owner's 26 Oct call with a senior engineer (questions kept verbatim in the Owner's message; the list is answered in §4).
 

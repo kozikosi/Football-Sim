@@ -1,7 +1,8 @@
 // E5: the two stamps every save carries (envelope.engineVersion, envelope.dataVersion).
 // They are informational on resume: a save holds frozen players and materialised results, so an old save still opens. The stamps let the
 // app say "this save is from an earlier version" and let tests prove that a change to the rules or the data is visible.
-import { hash53 } from '../../../core/hash.ts';
+import { datasetHash, hash53 } from '../../../core/hash.ts';
+import type { FrozenPoolRow } from './saves.ts';
 import { DEFAULT_CONFIG } from '../engine/draft.ts';
 import { EMERGENCY_PENALTY, FLEX } from '../engine/flex.ts';
 import { SLOTS } from '../engine/slots.ts';
@@ -18,14 +19,12 @@ export function rulesText(): string {
 }
 export const engineVersion = (): string => ENGINE_LABEL + '.' + hash53(rulesText());
 
-// The data stamp: the three data files exactly as shipped (ratings, free agents, player-id crosswalk). Line endings are normalised so a
-// Windows checkout does not change it.
-export function dataVersion(ratingsCsv: string, freeAgentsCsv: string, idsCsv: string): string {
-  const norm = (t: string) => t.replace(/\r\n/g, '\n');
-  return hash53(norm(ratingsCsv) + '\u0001' + norm(freeAgentsCsv) + '\u0001' + norm(idsCsv));
+// The data stamp: the canonical SHA-256 of the player dataset (core/hash.ts datasetHash), computed over the frozen-pool rows the saves carry, so the stamp
+// is about the PLAYERS, not about CSV spelling. Async (Web Crypto): the dataset loader computes it once at load and the app keeps it.
+export const dataVersion = (rows: readonly FrozenPoolRow[]): Promise<string> => datasetHash(rows);
+export async function stamps(rows: readonly FrozenPoolRow[]): Promise<{ engineVersion: string; dataVersion: string }> {
+  return { engineVersion: engineVersion(), dataVersion: await dataVersion(rows) };
 }
-export const stamps = (ratingsCsv: string, freeAgentsCsv: string, idsCsv: string): { engineVersion: string; dataVersion: string } =>
-  ({ engineVersion: engineVersion(), dataVersion: dataVersion(ratingsCsv, freeAgentsCsv, idsCsv) });
 
 // How a stamped save compares with this build. Never blocks a resume.
 export interface Drift { engine: boolean; data: boolean; any: boolean }

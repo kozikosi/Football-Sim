@@ -95,7 +95,7 @@
 | P-032 | P2 | FB / P slots and the D-012 math (3-4 trades DT2 for ILB2) |  | Exact slot and weight handling; protected values need Owner approval. Z.ai designed and shipped FB/P math in Z-post-blue (origin/main:z-core/03-guides/REWEIGHT-BRIEF.md section 7b): start there (see P-141). | Owner; D-012 |
 | P-033 | P2 | Gate and lint: update the TAB list for the removed Guide tab; run lint selftest on a machine with Biome |  | Post the commands and verbatim output. | AGENTS section 9; QUEUE-2 |
 | P-034 | P2 | Review the saved shared-tree snapshot (preserve/shared-tree-*): keep / archive / drop per group |  | Per group decision with reason; check figma/tokens.json against the Owner's 22 Oct colour table row by row. | QUEUE-4 |
-| P-035 | P2 | Rank Beam's 25 aesthetics proposals by effort and impact (one page) |  | A reviewer who is not the author; constraints: single file, no CDN, 390 px. | QUEUE-6 |
+| P-035 | P2 | Rank Beam's 25 aesthetics proposals by effort and impact (one page) |  | A reviewer who is not the author; constraints: no CDN, 390 px (the single-file rule was dropped 4 Nov 2026). | QUEUE-6 |
 | P-036 | P2 | Advanced stats ideas with 'why you did well / poorly' explanations |  | A list of 10 candidate stats computable from data already in the product, each with formula and one-line explanation. | Owner 21 Oct |
 | P-037 | P2 | Mobile audit at 390 px of every view |  | List of overflows/overlaps with selector and screenshot description (no images in lanes). | master list B |
 | P-038 | P2 | Re-measure the preserved math-core hash gate and seeds against the current build |  | Which items reproduce, with commands. | QUEUE-9 |
