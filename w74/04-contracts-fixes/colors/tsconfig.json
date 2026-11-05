@@ -1,0 +1,30 @@
+{
+  // 4(a) — the first type-checker contract for colors/. Written by Z.ai (w74 item 4a).
+  // Scope: type-check EVERYTHING under src/ (engine, core, app contracts, view models) with
+  // strict on, because the contracts in core/app.ts + sports/nfl/app/*.ts are the load-bearing
+  // surface and were UNVERIFIED by any type-checker before this file (Claude, 551af1b).
+  // NodeNext + allowImportingTsExtensions matches the repo's `.ts`-extension import style
+  // (node --experimental-strip-types runs it untranspiled; tsc only checks).
+  // noEmit: tsc is a checker here, never a build step — the build is Vite's.
+  // exclude test/ for now: the tests import node:test, which needs @types/node; adding that is
+  // a one-line devDep the Architect can approve separately (noted in TSC-REPORT.md).
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "allowImportingTsExtensions": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedLocals": false,
+    "skipLibCheck": true,
+    "types": ["vite/client"],
+    "noEmit": true
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "test", "tools"]
+}

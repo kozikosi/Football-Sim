@@ -1,0 +1,75 @@
+{
+  "date": "2026-11-05T18:38:54.238Z",
+  "preregistration": {
+    "argv": [
+      "--n",
+      "1000",
+      "--policies",
+      "greedy,top30,favorites",
+      "--out",
+      "tools/outcomelab/results/baseline-n1000.json"
+    ],
+    "n": 1000,
+    "policies": [
+      "greedy",
+      "top30",
+      "favorites"
+    ],
+    "configOverrides": {},
+    "baseConfig": {
+      "topFloor": 5,
+      "topFloorRounds": 4,
+      "midFloor": 10,
+      "midFloorRounds": 8,
+      "kpFirstRound": 6,
+      "noiseMax": 1.5,
+      "missMax": 0.6,
+      "biasSd": 0.5,
+      "hyperP": 0.15,
+      "replFloor": 72
+    },
+    "seedFormula": "makeRng(1000+i), paired across policies"
+  },
+  "msTotal": 4321532,
+  "curve": {
+    "greedy": {
+      "n": 1000,
+      "pPlayoffs": 0.895,
+      "ci95pp": 1.9,
+      "pSB": 0.33,
+      "pTitle": 0.216,
+      "meanWins": 11.43,
+      "meanCpuWins": 8.41,
+      "winSdMean": 2.229,
+      "winSdMin": 1.346,
+      "winSdMax": 3.142,
+      "shareSeasonsWith2MinusTeam": 0.084
+    },
+    "top30": {
+      "n": 1000,
+      "pPlayoffs": 0.485,
+      "ci95pp": 3.1,
+      "pSB": 0.071,
+      "pTitle": 0.03,
+      "meanWins": 8.72,
+      "meanCpuWins": 8.49,
+      "winSdMean": 2.171,
+      "winSdMin": 1.369,
+      "winSdMax": 3.02,
+      "shareSeasonsWith2MinusTeam": 0.063
+    },
+    "favorites": {
+      "n": 1000,
+      "pPlayoffs": 0.174,
+      "ci95pp": 2.35,
+      "pSB": 0.02,
+      "pTitle": 0.007,
+      "meanWins": 6.72,
+      "meanCpuWins": 8.56,
+      "winSdMean": 2.19,
+      "winSdMin": 1.323,
+      "winSdMax": 3.082,
+      "shareSeasonsWith2MinusTeam": 0.08
+    }
+  }
+}

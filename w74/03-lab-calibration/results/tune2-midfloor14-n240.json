@@ -1,0 +1,54 @@
+{
+  "date": "2026-11-05T21:34:31.822Z",
+  "preregistration": {
+    "argv": [
+      "--n",
+      "240",
+      "--policies",
+      "top30",
+      "--midFloor=14",
+      "--out",
+      "tools/outcomelab/results/tune2-midfloor14-n240.json"
+    ],
+    "n": 240,
+    "seedRange": [
+      0,
+      240
+    ],
+    "policies": [
+      "top30"
+    ],
+    "configOverrides": {
+      "midFloor": 14
+    },
+    "baseConfig": {
+      "topFloor": 5,
+      "topFloorRounds": 4,
+      "midFloor": 10,
+      "midFloorRounds": 8,
+      "kpFirstRound": 6,
+      "noiseMax": 1.5,
+      "missMax": 0.6,
+      "biasSd": 0.5,
+      "hyperP": 0.15,
+      "replFloor": 72
+    },
+    "seedFormula": "makeRng(1000+i), paired across policies"
+  },
+  "msTotal": 236104,
+  "curve": {
+    "top30": {
+      "n": 240,
+      "pPlayoffs": 0.4666666666666667,
+      "ci95pp": 6.31,
+      "pSB": 0.05416666666666667,
+      "pTitle": 0.020833333333333332,
+      "meanWins": 8.54,
+      "meanCpuWins": 8.5,
+      "winSdMean": 2.156,
+      "winSdMin": 1.476,
+      "winSdMax": 3.119,
+      "shareSeasonsWith2MinusTeam": 0.08333333333333333
+    }
+  }
+}

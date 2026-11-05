@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outcome Lab — the conversion curve</title>
+<style>
+  /* The Outcome Lab as a public static page (w74 item 3h, Pickle's idea). No server, no build: this file is
+     the whole deliverable — the data below is the VERIFIED baseline run (results/baseline-n1000.json) and the
+     corrected tuning rungs, embedded. The slider moves the Owner's bar; everything recomputes locally. */
+  :root { color-scheme: light; }
+  body { font-family: system-ui, sans-serif; color: #243447; background: #F8FAFC; margin: 0; }
+  main { max-width: 62rem; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+  h1 { font-size: 1.4rem; margin: 0.4rem 0; }
+  p.lede { margin: 0.2rem 0 1rem; color: #526071; }
+  .card { background: #fff; border-radius: 12px; padding: 1rem 1.2rem; box-shadow: 0 1px 3px rgba(16,24,32,.08); margin-bottom: 1rem; }
+  .band { display: flex; align-items: center; gap: 0.8rem; margin: 0.4rem 0; }
+  .band label { min-width: 15rem; }
+  .band input { flex: 1; accent-color: #4C6EF5; }
+  .band output { font-variant-numeric: tabular-nums; font-weight: 700; min-width: 3.2rem; text-align: right; }
+  svg { width: 100%; height: auto; display: block; }
+  table { border-collapse: collapse; width: 100%; font-size: 0.9rem; }
+  th, td { text-align: left; padding: 0.35rem 0.5rem; border-bottom: 1px solid #EDF1F5; }
+  td.n { font-variant-numeric: tabular-nums; }
+  .gap { color: #B00020; font-weight: 700; }
+  .note { font-size: 0.85rem; color: #526071; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Outcome Lab — the conversion curve</h1>
+  <p class="lede">What share of drafted teams reach each stage, by how well the user drafts. N = 1,000 paired seeds per policy (the same seed drafts the same world for every policy — only the drafting differs). Move the sliders to move the Owner's bar; the gaps recompute.</p>
+
+  <div class="card">
+    <div class="band"><label for="bPO">Playoffs target</label><input id="bPO" type="range" min="40" max="95" value="80"><output id="oPO">80%</output></div>
+    <div class="band"><label for="bSB">Super Bowl appearance target</label><input id="bSB" type="range" min="5" max="60" value="25"><output id="oSB">25%</output></div>
+    <div class="band"><label for="bTI">Title target</label><input id="bTI" type="range" min="2" max="40" value="10"><output id="oTI">10%</output></div>
+    <p class="note" id="verdict"></p>
+    <svg id="chart" viewBox="0 0 960 430" role="img" aria-label="Measured conversion rates for three drafting policies against the owner's target bands"></svg>
+  </div>
+
+  <div class="card">
+    <h2 style="font-size:1.05rem">The tuning finding (P-250): the proposed lever is flat</h2>
+    <p class="note">The Architect's lever — widen the later-round CPU draft floor (rounds 5–8 pick within <em>midFloor</em> OVR of best available) — does NOT move the top-30 rates. Four rungs, one story:</p>
+    <table>
+      <thead><tr><th>midFloor</th><th>N</th><th>Playoffs</th><th>±95% CI</th><th>SB appearance</th><th>Title</th><th>Mean wins</th><th>League win-SD</th></tr></thead>
+      <tbody>
+        <tr><td class="n">10 (default)</td><td class="n">1000</td><td class="n">48.5%</td><td class="n">±3.1</td><td class="n">7.1%</td><td class="n">3.0%</td><td class="n">8.72</td><td class="n">2.171</td></tr>
+        <tr><td class="n">14</td><td class="n">240</td><td class="n">46.7%</td><td class="n">±6.3</td><td class="n">5.4%</td><td class="n">2.1%</td><td class="n">8.54</td><td class="n">2.156</td></tr>
+        <tr><td class="n">18</td><td class="n">240</td><td class="n">44.2%</td><td class="n">±6.3</td><td class="n">8.3%</td><td class="n">4.2%</td><td class="n">8.59</td><td class="n">2.178</td></tr>
+        <tr><td class="n">24</td><td class="n">240</td><td class="n">50.8%</td><td class="n">±6.3</td><td class="n">9.6%</td><td class="n">5.4%</td><td class="n">8.77</td><td class="n">2.158</td></tr>
+      </tbody>
+    </table>
+    <p class="note">With a 1,953-player pool, a 14–24 OVR floor below best-available never runs out of acceptable players — the floor does not bind, so CPU pick quality (and the user's edge) barely moves, and league parity never leaves ~2.17 win-SD (the 3.0–3.5 band is untouched too). The gap to 80/25/10 is a <strong>draft-quality</strong> gap: the naive drafter proves the engine can express 89.5% playoffs. Pre-registered next experiments: a band-cap policy reading (best-value with a top-30 cap, vs today's random-in-30) and a game-noise sweep — both need the Architect's ruling first. Parity and home-win rate are report-only (Owner ruling, 5 Nov 2026).</p>
+  </div>
+
+  <div class="card note">
+    Measured 5 Nov 2026 by the Outcome Lab (colors/tools/outcomelab/), engine called headless via its public API, zero engine files touched. Every run pre-registers its argv + config inside the output JSON. CI tolerance note: at N=100 a band tighter than ±8 pp is not measurable; these bands need N≈1,000 per policy.
+  </div>
+</main>
+<script>
+const DATA = {
+  policies: [
+    { key: 'greedy',    label: 'greedy — naive best-OVR',      po: 89.5, poCi: 1.9, sb: 33.0, sbCi: 2.9, ti: 21.6, tiCi: 2.6 },
+    { key: 'top30',     label: 'top30 — skilled depth-aware',  po: 48.5, poCi: 3.1, sb: 7.1,  sbCi: 1.6, ti: 3.0,  tiCi: 1.1 },
+    { key: 'favorites', label: 'favorites — deliberately bad', po: 17.4, poCi: 2.4, sb: 2.0,  sbCi: 0.9, ti: 0.7,  tiCi: 0.5 },
+  ],
+};
+const SERIES = [ ['po','Playoffs','#4C6EF5'], ['sb','Super Bowl appearance','#7A93E0'], ['ti','Title','#B9C6EE'] ];
+const svg = document.getElementById('chart');
+const Y = v => 370 - v * 3.4;
+function draw() {
+  const targets = { po: +bPO.value, sb: +bSB.value, ti: +bTI.value };
+  oPO.value = targets.po + '%'; oSB.value = targets.sb + '%'; oTI.value = targets.ti + '%';
+  let s = '';
+  // grid
+  for (const t of [0, 25, 50, 75, 100]) s += `<line x1="60" x2="940" y1="${Y(t)}" y2="${Y(t)}" stroke="#E8EDF2"/><text x="52" y="${Y(t)+4}" text-anchor="end" font-size="11" fill="#8A97A6">${t}%</text>`;
+  // bars + CI + labels
+  DATA.policies.forEach((p, i) => {
+    const cx = 190 + i * 290;
+    SERIES.forEach(([k, lab, color], j) => {
+      const v = p[k], ci = p[k + 'Ci'], x = cx + (j - 1) * 62;
+      s += `<rect x="${x-24}" y="${Y(v)}" width="48" height="${370 - Y(v)}" rx="4" fill="${color}"></rect>`;
+      s += `<line x1="${x}" x2="${x}" y1="${Y(v-ci)}" y2="${Y(v+ci)}" stroke="#243447" stroke-width="1.4"/><line x1="${x-6}" x2="${x+6}" y1="${Y(v+ci)}" y2="${Y(v+ci)}" stroke="#243447" stroke-width="1.4"/><line x1="${x-6}" x2="${x+6}" y1="${Y(v-ci)}" y2="${Y(v-ci)}" stroke="#243447" stroke-width="1.4"/>`;
+      s += `<text x="${x}" y="${Y(v+ci)-6}" text-anchor="middle" font-size="12" fill="#243447" font-weight="${j===0?'700':'400'}">${v}%</text>`;
+    });
+    // target rungs over THIS policy's bars (the bar for the user's own policy matters most; rungs show on all)
+    SERIES.forEach(([k], j) => {
+      const x = cx + (j - 1) * 62;
+      s += `<line x1="${x-30}" x2="${x+30}" y1="${Y(targets[k])}" y2="${Y(targets[k])}" stroke="#B00020" stroke-width="2" stroke-dasharray="5 3"/>`;
+      const d = (p[k] - targets[k]);
+      s += `<text x="${x+34}" y="${Y(targets[k])+4}" font-size="10.5" fill="#B00020" class="gap">${d >= 0 ? '+' : ''}${d.toFixed(1)} pp</text>`;
+    });
+    s += `<text x="${cx}" y="398" text-anchor="middle" font-size="13" fill="#243447" font-weight="600">${p.label.split(' — ')[0]}</text>`;
+    s += `<text x="${cx}" y="415" text-anchor="middle" font-size="11" fill="#526071">${p.label.split(' — ')[1]}</text>`;
+  });
+  s += `<text x="60" y="20" font-size="12" fill="#526071">% of drafted teams · error bars = 95% CI · red rungs = your target bars, tags = measured gap</text>`;
+  svg.innerHTML = s;
+  const t = DATA.policies[1], gaps = { po: t.po - targets.po, sb: t.sb - targets.sb, ti: t.ti - targets.ti };
+  document.getElementById('verdict').innerHTML =
+    `Top-30 pickers vs your bars: playoffs <span class="gap">${gaps.po >= 0 ? 'meets' : 'misses by ' + (-gaps.po).toFixed(1) + ' pp'}</span>, ` +
+    `Super Bowl <span class="gap">${gaps.sb >= 0 ? 'meets' : 'misses by ' + (-gaps.sb).toFixed(1) + ' pp'}</span>, ` +
+    `title <span class="gap">${gaps.ti >= 0 ? 'meets' : 'misses by ' + (-gaps.ti).toFixed(1) + ' pp'}</span>. ` +
+    `At the 5 Nov ruling (80/25/10) the closure path is draft-quality or game-noise — not the CPU-draft floor (flat, above).`;
+}
+for (const id of ['bPO', 'bSB', 'bTI']) document.getElementById(id).addEventListener('input', draw);
+draw();
+</script>
+</body>
+</html>

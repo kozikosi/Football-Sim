@@ -1,0 +1,2 @@
+seed 4242 team 3 → h53:10e7e55b2c
+  PICK dev1082:QB

@@ -1,0 +1,66 @@
+{
+  "date": "2026-11-05T23:04:09.952Z",
+  "partial": true,
+  "fixed": {
+    "seasons": 6,
+    "msPerSeason": 972.5,
+    "totalWins": 1626,
+    "totalLosses": 1626,
+    "totalTieRecords": 12,
+    "meanWinsPerTeam": 8.46875,
+    "ppg": 23.141850490196077,
+    "homeWinRate": 0.5453431372549019,
+    "winSdMean": 2.1874700645018668,
+    "winSdMin": 1.5599979967935855,
+    "winSdMax": 2.6924010543565013,
+    "shareSeasons15Plus": 0.3333333333333333,
+    "shareSeasons2Minus": 0,
+    "meanTiesPerSeason": 1,
+    "champs": {
+      "Indianapolis Colts": 2,
+      "Houston Texans": 2,
+      "Buffalo Bills": 1,
+      "New Orleans Saints": 1
+    },
+    "champSeeds": {
+      "seed 6": 1,
+      "seed 1": 2,
+      "seed 4": 1,
+      "seed 2": 2
+    },
+    "champConf": {
+      "AFC": 5,
+      "NFC": 1
+    },
+    "determinism": true
+  },
+  "drafted": {
+    "seasons": 2,
+    "msPerSeason": 985,
+    "totalWins": 541,
+    "totalLosses": 541,
+    "totalTieRecords": 6,
+    "meanWinsPerTeam": 8.453125,
+    "ppg": 23.15625,
+    "homeWinRate": 0.5900735294117647,
+    "winSdMean": 2.153226562276127,
+    "winSdMin": 2.028844729766179,
+    "winSdMax": 2.277608394786075,
+    "shareSeasons15Plus": 0,
+    "shareSeasons2Minus": 0,
+    "meanTiesPerSeason": 1.5,
+    "champs": {
+      "Indianapolis Colts": 1,
+      "Baltimore Ravens": 1
+    },
+    "champSeeds": {
+      "seed 1": 1,
+      "seed 5": 1
+    },
+    "champConf": {
+      "AFC": 2,
+      "NFC": 0
+    },
+    "determinism": true
+  }
+}

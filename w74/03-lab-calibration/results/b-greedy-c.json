@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-05T19:04:22.311Z",
+  "preregistration": {
+    "argv": [
+      "--from",
+      "760",
+      "--to",
+      "1000",
+      "--policies",
+      "greedy",
+      "--out",
+      "tools/outcomelab/results/b-greedy-c.json"
+    ],
+    "n": 240,
+    "seedRange": [
+      760,
+      1000
+    ],
+    "policies": [
+      "greedy"
+    ],
+    "configOverrides": {},
+    "baseConfig": {
+      "topFloor": 5,
+      "topFloorRounds": 4,
+      "midFloor": 10,
+      "midFloorRounds": 8,
+      "kpFirstRound": 6,
+      "noiseMax": 1.5,
+      "missMax": 0.6,
+      "biasSd": 0.5,
+      "hyperP": 0.15,
+      "replFloor": 72
+    },
+    "seedFormula": "makeRng(1000+i), paired across policies"
+  },
+  "msTotal": 319287,
+  "curve": {
+    "greedy": {
+      "n": 240,
+      "pPlayoffs": 0.9125,
+      "ci95pp": 3.57,
+      "pSB": 0.32083333333333336,
+      "pTitle": 0.22083333333333333,
+      "meanWins": 11.51,
+      "meanCpuWins": 8.4,
+      "winSdMean": 2.226,
+      "winSdMin": 1.519,
+      "winSdMax": 3.142,
+      "shareSeasonsWith2MinusTeam": 0.075
+    }
+  }
+}
