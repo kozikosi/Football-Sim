@@ -4,34 +4,27 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## This session (2026-11-05, council.mjs protocol)
-- Followed START-OF-CHAT: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; exported council.mjs to /private/tmp/council.mjs (macOS /tmp symlink caveat VERIFIED earlier: must run `node /private/tmp/council.mjs <cmd>`).
-- Preservation gate: vl worktree clean (0 dirty, 0 unpushed); local-only commit 38ca4524 (vl-vite-test, Outcome Lab scratch) saved to preserve/council-vl-vite-test-38ca4524 via `node tools/preserve.mjs commits`; `node tools/preserve.mjs check` re-run — exit=1 only from OTHER seats' dirty trees (gh-pages, boc, dsd, flint, etc.), which VL must not touch (AGENTS.md §4.4).
-- `node /private/tmp/council.mjs next` → REVIEW items P-032..P-038 (P2, one review done each, cap 8). Reviews beat new work in the same tier (AGENTS.md §25).
-- **Brainstorm delivered:** inbox/20261105-1843-vl-transition-tools-brainstorm.md (3 sections; top-3 tools ranked); bulletin/20261105-1843-vl.md posted. Committed + pushed council/vl @ 1c365842 (verified via git ls-remote).
-- **REVIEW P-033 → ok:** inbox/20261105-1930-vl-P-033-review.md. Verified: `tabGuideBtn` in TABS array at tools/post-merge-smoke.mjs:421 (grep); `node tools/lint.mjs selftest` PASSED (sha256 0c21876ca40bdabc, Biome 2.6.2, identical to Beam's report). Edit is proposed, not applied (tools/ is Architect-owned). Pushing this session.
+## This session (2026-11-05, council.mjs v8 via /private/tmp/council.mjs)
+- START-OF-CHAT followed: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; muse council-home bulletin `20261105-1804-muse.md` fetched from origin/council/muse (NOT in origin/council/base — lives on council/muse branch cf8dfbb).
+- Queue work taken: REVIEW P-037 (Beam 390px mobile audit) → VERDICT ok, FOUND 3 NEW 3; all 15 selectors verified against Football-Sim-PreColors.html sha256 40233d6be00e987c (grep receipts in bulletin). inbox/20261105-2130-vl-P-037-review.md.
+- REVIEW P-038 (math-core hash gate re-measurement) → VERDICT ok, FOUND 1 NEW 1; all 8 function hashes + build hash/size + 56 Math.random() + DEFAULT_WEIGHTS/modelWeights/slotWinsPerOvr reproduced exactly; shared hash dc54e4210ce1 = awk first-`}` truncation artifact; MATH_CORE_HASH_GATE.md absent from repo. inbox/20261105-2140-vl-P-038-review.md.
+- P-036 already reviewed by VL (ababb424, inbox/0820-11-05-vl-P-036-review.md) — not re-reviewed (one review per seat; `next` lists it only because that file lacks REVIEW-OF).
+- Bulletin: bulletin/20261105-2136-vl.md (one entry per session; RESULT lines for every command run). Committed + pushed.
+- Branch state: ba53a74e pushed, verified via `git ls-remote origin council/vl`. Worktree clean (`node tools/preserve.mjs check`: vl = 0 dirty, 0 OK; exit=1 only from other seats' trees, untouched per AGENTS.md §4.4).
+- `node tools/check-tasks.mjs`: 7 items, 0 problems (all T-20261022-claude-*, Architect-owned, accepted).
 
-## CODE ANALYSIS RECEIPTS (all VERIFIED by reading / running)
-- `npm test` in colors/ at 425f72a → 227 pass / 0 fail / ~7.7 s. (Architect-cited 284 tests at 551af1b is REPORTED/stale.)
-- w70: 60 Math.random() sites in /tmp/w70-main.js (grep -c).
-- colors/src/app/store.ts:16-21 AppState/Action; :39-57 replay(); envelope.ts:1-135 WeekPayload:34-46 / SeasonPayload:48-57; draftBoard.ts:44-46 `alsoFits` still present (contradicts Owner ruling); awards.ts unwired (no caller); seasonPayload stat-book gap confirmed; tsconfig.json, appstate.ts, StorageModule, enumeration, 'dataset-changed', FeedEvent, hydration, DatasetLoader all ABSENT; drives.ts:249 "sudden death" comment violates recap.ts:7.
-- w70 survival anchors: zpbGameReplay :833/:963; zpbSimRestOfPlayoffs :6128; zpbSeasonStoryHTML :6158/:6290/:8474; zpbSlotWins70to90 :17; modelWeights() :25-28 (700/5/5); w70 TEAM_DATA :4 has real names, non-real teams (Garrett DE1 99 on Rams) — provenance UNKNOWN, must not be ported; Colors real source = data/madden27-ratings.csv (1,941 players, tracked, unmodified per data/README.md:8).
-- data/ tracked & clean (git ls-files). bulletin 20261105-1804-muse.md NOT FOUND (glob *muse* empty) — council-home question open (§3.5 of brainstorm).
+## Queue remaining (0-done reviews, P2): P-070, P-127, P-132, P-133, P-188 — P-133 (Pre-Colors baseline facts) is a good next take for VL; full receipts needed per review rules.
 
-## Current work
-- P-033 review file written; about to commit + push council/vl.
+## Council-home discussion (open, bulletin 20261105-1804-muse.md on council/muse)
+- Cutover decision made (wait for Colors v1, then fresh repo; old repo read-only archive). Options A–E on the table; VL has not yet answered. Answer format: inbox/<UTC>-vl-council-home-discussion.md + note in bulletin; must fetch council/muse and read the actual bulletin first (done for reading; answer not yet filed).
 
-## Next session needs
-- If taking queue work: `node /private/tmp/council.mjs next`, top line = P-032 review (council/beam:inbox/20261025-0530-beam-P-032-work.md).
-- End-of-session: rewrite lane file, post bulletin, commit + push `council/vl`; `node tools/preserve.mjs check` before any clean-up.
-- If P-254–P-260 get tabled in PRIORITIES.md, take top line per council tool.
+## CODE ANALYSIS RECEIPTS (from this session, all VERIFIED by grep/sha256/wc against Football-Sim-PreColors.html)
+- P-037 selectors all present: #startSeasonBtn l.249-250; #draftTable2 tr repeat(12,1fr) l.261; .stepper li l.257; .filters l.57-59; .bracket-game.bg3 l.144 (1fr 78px 1fr, not 1fr auto); .hero l.256; .footnav l.239; .draftingas l.179-180; .chipbar l.183; .score-line l.281; .viewhead h2 l.258; .panel l.277; .depth-row.dgrid l.299. Generic table{overflow-x} rule not verbatim (closest .panel l.116/287). Step count "17" not statically verifiable (INFERRED).
+- P-038: sha256 40233d6be00e987c / 657486 B; function hashes: slotWins 4b191ab6238d, slotWinsPerOvr b686e04550bd, modelWeights c0023182ddac, effOvr e65b6006831d, optimalLineup 51b55aa8adaf, matchupModel 8e9ae4b8929d, simulateGame 416426ea14c6, teamRatings 0a10fd25614f (beam's awk loop reproduced verbatim); Math.random() = 56; DEFAULT_WEIGHTS l.452 (33 slots); modelWeights quantisation l.460-461; slotWinsPerOvr l.1346-1348 `(slotWins(s,90)-slotWins(s,70))/20`.
 
 ## Open questions
-- None blocking.
-
-## Live files (this session)
-- inbox/20261105-1843-vl-transition-tools-brainstorm.md; bulletin/20261105-1843-vl.md; inbox/20261105-1930-vl-P-033-review.md.
+- None blocking. Council-home answer still outstanding.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** 1c365842 (pushed) · merge-base with origin/council-base: `1b91f50e`
+- **HEAD:** ba53a74e (pushed, verified via git ls-remote) · merge-base with origin/council-base: 1b91f50e
