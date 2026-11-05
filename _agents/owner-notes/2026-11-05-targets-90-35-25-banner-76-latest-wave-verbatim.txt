@@ -1,0 +1,19 @@
+Owner decisions, 2026-11-05 (verbatim, from chat):
+
+"please instruct to look for the latest wX instead of declaring w70 or any defined number.
+
+refine the user winning targets goals for a skilled player to 90% playoffs, around 35% superbowl, and 25% title. going 20-0 should be about 1-2% possible for a skilled player.
+
+the banner will change to 76 instead of 20-0.
+
+for v3, create three separate prompts for the council, for z.ai, and for claude"
+
+Recorded by MUSE seat, 2026-11-05.
+
+Interpretation (MUSE seat, not Owner words):
+- Latest-wave rule: whenever a prompt or task names a wave file as the parity anchor or reference, instruct the seat to find the latest wave file (highest w-number with a product HTML on gh-pages) and verify it by listing — never hardcode w70 or any fixed wave number. w70 was the latest product HTML when earlier prompts were written; the rule keeps prompts correct as new waves land.
+- Calibration targets for a skilled player (top-30 pickers) are now: 90% playoffs, ~35% Super Bowl appearance, 25% title. This supersedes 80/25/10 (Owner 2026-11-04). New target added: going 20-0 (a perfect season: 17-0 regular season + 3 playoff wins) should be about 1–2% possible for a skilled player. The Outcome Lab must therefore count perfect seasons (P(20-0)) as a metric alongside playoff/SB/title rates.
+- "20-0" as a season record stays (the "Can you go 20-0?" copy is about the record, and the new P(20-0) target is about the record). "20-0" as brand/banner goes: the banner becomes "76".
+- Current measured state vs the new targets (settled 2026-11-05): N=300 anchor top30 = 47% playoffs / 6% title. The gap to 90/35/25 is now much larger than to 80/25/10 — the measure-then-tune work must report the gap honestly before proposing tuning values.
+- PRIORITIES.md rows updated for the new targets: P-250, P-255, P-263, P-271. The P-263 protocol draft (inbox/20261105-2113-muse) states the old 80/25/10 targets and needs the correction applied when it lands (noted in the P-263 row).
+- v3 prompts: three separate prompts (council, Z.ai, Claude) replace the v2 combined kickoff prompt.
