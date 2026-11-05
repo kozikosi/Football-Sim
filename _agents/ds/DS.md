@@ -8,10 +8,39 @@
 ## Where
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (the OpenCode pool path; there is no `../wt/ds` on disk — `/Users/kosi/Desktop/wt/ds` is orphaned, `wt/dsd` is a different seat)
 - **Branch:** `council/ds` · **merge-base HEAD origin/council/base:** `1b91f50e`
-- **Last session end:** 2026-11-04 01:37 UTC
+- **Last session end:** 2026-11-05 10:06 UTC
 
-## Current state (4 Nov 2026)
-- **Orientation-only session:** start-of-chat read in full (AGENTS, PROJECT-KNOWLEDGE, bulletin, V23-OWNER-REQUESTS, lane, COUNCIL.md v8), `sync-base.sh` → up to date with `1b91f50e`, preservation gate run; the Owner ended the session before a queue item was taken. **No work, review or op was filed.**
+## Current state (5 Nov 2026)
+- **E-211 closed as BUILT** (my review + second retire, after glm's proposal on 4 Nov). The chain had measured
+  a superseded shell: **w64** (`gh-pages` commit `0a6816e1`, sha256 `34db26bc…`, 1,716,179 B) is the newest, and
+  it is **byte-identical to the wave63 folder's w63 file** (`shasum -a 256` on both) — one hash, two names, so a
+  baseline line must carry the hash, never the wave name. All eight batteries ran path-adapted (4 `sed`
+  substitutions only, no assertion touched) on unmodified w64 bytes: **nodecheck 18 scripts / live 7 / mobile 41 /
+  verify 13 / storage 7 (25-check rig inside) / sweep 13 / cine 27 / owner 19 → 145 checks, 0 fail**, exit 0;
+  **0 page errors and 0 console errors** at 1280 and 390 over 18 tab clicks; `Math.random` **62 occ / 43 lines**
+  (same as w55 — the seeded RNG has not reached that lineage). Muse's two central claims did not reproduce
+  (pager is present and flips to page 2; 7 of 8 batteries run locally). Also recorded: pager copy `PAGE 1 OF 20`
+  contradicts a REPORTED Owner directive "no page numbers" — a calibration question for the Architect, not a
+  baseline defect.
+- **Owner's Colors-v1 open discussion answered** (`inbox/20261105-1006-ds-owner-colors-v1-discussion.md`). Core
+  argument, with the arithmetic: fair shares in a 32-team, 14-place league are **43.75% / 6.25% / 3.125%**, so the
+  current 38%/3% means a skilled drafter has **no edge** (3% is exactly fair share), and the Lab's own parity
+  finding (win SD **2.20** drafted vs band **3.0–3.5**, only the synthetic population at 3.10 passes) names the
+  mechanism: the league is too flat for drafting to pay. Therefore: measure `P(playoffs|rank)` / `P(SB|rank)` first,
+  widen draft leverage second, read the 80/25/10 bands off the curve last. Also: 440 seasons gives ±4.2pp at 2σ
+  for a 25% rate, so tuning to a band without paired seeds is fitting noise.
+- **Owner debt numbers (w70, sha256 `f031dfd3…`, 1,806,245 B), measured with units:** `Math.random` 62 occ / **43
+  lines** ✓ · `window.` 526 occ / 362 lines (brief says 185) ✗ · top-level `let/var/const` 144 lines (brief says
+  ~40) ✗ · `window.__` 119 occ (brief says 22) ✗. Also 0 `serviceWorker`, 0 `indexedDB`, 0 `fetch(`.
+- **Decision/code mismatch:** Owner says "no storage migration"; `colors/src/sports/nfl/app/legacy.ts` (68 lines,
+  4 tests in `test/core/namespacing.test.ts`) implements one, `keys.ts:4` documents it as live, and
+  `migrateLegacy` is called from **nowhere** in `colors/src` — dead code contradicting a stated decision.
+- **Lab reachability gap:** `colors/tools/outcomelab/sweep.ts` exists only at
+  `gh-pages:Football-Sim-Z-post-blue-w71/outcomelab/`; a seat synced to base cannot run it.
+- **Queue at session start** (`next`, via realpath): REVIEW E-211 (taken, retired), then P-008, P-018, P-019,
+  P-021, P-022, P-023. **Board:** 165 live / 41 REVIEWED / 115 NEEDS-REVIEW / 8 OPEN.
+- **Still true from 4 Nov:** `node /tmp/council.mjs <cmd>` is a silent no-op on macOS (`/tmp` → `/private/tmp`
+  breaks the `import.meta.url` guard); use `node "$(realpath /tmp/council.mjs)" <cmd>` or every `next` looks empty.
 - **Flaw in the prescribed tool invocation (VERIFIED 4 Nov):** `node /tmp/council.mjs <cmd>` prints **nothing on macOS**. `/tmp` is a symlink to `/private/tmp`, so Node's ESM URL is `file:///private/tmp/council.mjs` while `process.argv[1]` is `/tmp/council.mjs`; the tool's `main()` guard (`import.meta.url === \`file://${process.argv[1]}\``) never matches and it exits 0 silently — no queue, no error. Workaround: `node "$(realpath /tmp/council.mjs)" <cmd>`. Note filed to the Architect (see Files). Any seat that reports an empty `next` on macOS is hitting this, not an empty queue.
 - **Queue at session start (`next`, via realpath):** REVIEW E-211 (1/2) · REVIEW P-143 (1/2) · REVIEW P-144 (1/2) · REVIEW P-145 (0/2) · WORK P-154 · WORK P-170.
 - **E-211 bookkeeping oddity:** `board` printed `E-211 NEEDS-REVIEW 1/2` and `show E-211` printed **two** non-author, non-rejected reviews after the last work file (or `2357`, pickle `0202`), both `improved` — so the item should read REVIEWED. Not diagnosed further (session ended); whoever takes E-211 should re-run `board` before assuming a review is still needed. Under v8 a third review would not move it anyway.
@@ -27,13 +56,16 @@
 ## What the next session needs
 - **Read first:** `_agents/COUNCIL.md` (v8), START-OF-CHAT (from `origin/architect/engine-and-seats`), `node "$(realpath /tmp/council.mjs)" next`, this lane.
 - **Do not redo:** P-195 (REVIEWED; correction filed 3 Nov), P-020, the 25 Oct P-001/P-003/P-005 reviews, P-152, P-153.
-- **Next candidates:** E-211 (check the 1/2 vs two-reviews discrepancy above first), P-143, P-144, P-145, then P-154/P-170.
+- **Next candidates:** P-008 (6 reviews, last catch 60%), then P-018, P-019, P-021, P-022, P-023 — all P0 reviews of beam/uk/vl work files. Reviewing a *family* in one read is the only way the 115-awaiting-review queue drains (my recommendation to the Owner, 5 Nov).
 - **Carried open questions:** (1) `<title>`/og:title — the w33 shell answers "20-0", Pre-Colors still has 3 old-name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — unconfirmed. (3) One-score rule — recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
 
 ## Files in this lane
 | path | what it is |
 |---|---|
 | `inbox/20261104-0137-ds-tool-council-tool-tmp-symlink.md` | NOTE to the Architect: `node /tmp/council.mjs` is a silent no-op on macOS; one-line fix |
+| `inbox/20261105-1006-ds-owner-colors-v1-discussion.md` | Owner's Colors-v1 discussion: calibration curve vs bands, debt-count corrections, `legacy.ts` mismatch, Lab is not in the repo, Svelte 5 guards, batch reviews |
+| `inbox/20261104-0205-ds-E-211-review.md` | E-211 review: newest shell is w64 (= w63 bytes), 145/145 green, 0 console errors, 62 RNG occ/43 lines |
+| `inbox/20261104-0157-ds-OP-retire-E-211.md` | E-211 retire (BUILT), second seat after glm |
 | `inbox/20261103-0155-ds-P-195-correction.md` | P-195: four E-names test something else than §7; exact replacement snippets for E1/E5/E7/E8, E3b drift-proofing |
 | `inbox/20261031-0350-ds-critique-precolors-w33.md` | Owner-requested critique of Pre-Colors + z.ai w33 shell for the Colors v1 transplant |
 | `inbox/20261029-0306-ds-P-020-review.md` | P-020 review #3 (28-badge table, 16 'why' rules, 20-0 contract) |
