@@ -80,7 +80,8 @@ fail the healthy build ~33% of nights (P(measured <21 | true≈21.6, SE 1.32pp) 
 | favorites playoffs | 20.0% (VERIFIED my N=100) | 20.0 ± 6pp (N=500+; N=100 tier ±8) | ≤25 | punished: gap to best-value ≈ −70pp |
 | favorites title | 0.0% (VERIFIED my N=100) | stay ≤3pp at any N | ≤10 | punished |
 | CPU rounds 1-4 ovr gap | median 3 / p90 5 / max 5 | count(ovrGap>5) in rounds 1-4 == 0 (structural) | ≤5 per Owner 31 Oct | ✅ |
-| Player-team seasons w/ ≤2-win CPU team | 7.3% (my N=100, policies pooled) | report-only; target band decided after the knob sweep lands | MORE losers | 8%→12-25% proposal pending measure |
+| best-value under the measured tuning combo (novelty row) | 95.0/40.0/25.8, 12.17 wins (VERIFIED N=120, knob-combo run) | n/a (not a gate row) | 90/35/25 | candidate tuning base for P-250; needs N=1000 |
+| ≤2-win CPU team share under the combo | 6.7% (VERIFIED N=120; baseline 7.0%) | report-only | MORE losers | **combo did not move the bottom** — see (b) |
 
 The ±tolerances above are sized by the **power rule** (so the gate neither cries nor sleeps): tolerance =
 detection depth + 1.28·SE(N) (90% power, α≈1% two-sided). Plug-in example: playoffs at N=1000 (SE 0.95pp)
@@ -127,6 +128,23 @@ rounds-1-4 max-gap line as the break-check, against the DEFAULT_CONFIG baseline 
 **Beam's N=40 combo probe (noise 2.5 / miss 0.8 / bias 0.8 / hyper 0.25) already kept max gap at 5**
 (his answer, REPORTED); my knob runs fill the tail columns his harness could not report (he says so
 himself).
+
+**Measured combo result (VERIFIED this session, N=120 greedy-only, config
+noiseMax=2.5/missMax=0.8/biasSd=0.8/hyperP=0.25; `tests/bands-knob-combo-N120.txt`):**
+rounds-1-4 gap median 3 / p90 5 / **max 5** (rule intact, as both Beam and the structure predicted);
+best-value lands **95.0% playoffs / 40.0% appearance / 25.8% title / 12.17 mean wins** — at or above all
+three Owner targets (title +0.8pp on an N=120 SE of ~4pp: direction verified, size not — needs the
+N=1000 tier) — **but the CPU bottom did NOT move: ≤2-win seasons 6.7% (baseline 7.0%), within-season
+CPU winSD 2.18 (baseline 2.16).** Read: the four taste knobs at these values are a **user-strength
+channel** (they lift the skilled drafter's outcome), not a **bottom-widening channel**. That is exactly
+the split the Owner's 5 Nov note draws ("the user beats the average NFL team" AND "more losers at the
+bottom" are two dials, not one). For the bottom dial, the draft knobs as measured are NOT the lever —
+the next lever family to measure is the season/matchup spread side (`matchup.ts`/`margin.ts` sweeps:
+how the season converts rating spread into win spread — the Outcome Lab's Mode-A winSd 2.2 vs Mode-C
+3.1 comparison in the 4 Nov report already points there), and P-250's tuning work should sequence
+accordingly. My knob lines are proposal-grade evidence (N=120, one config); the full per-knob ladder
+(noiseMax-only, missMax-only, hyperP-only at three values each) is a ~45 min measured job the P-250
+tuner can run with the same probe.
 
 ## (c) The smallest CI job — three tiers + the stamp rule
 

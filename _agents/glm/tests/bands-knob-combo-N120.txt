@@ -1,0 +1,2 @@
+probe: drafts per policy 120, policies greedy, 214 s, cfg {"topFloor":5,"topFloorRounds":4,"midFloor":10,"midFloorRounds":8,"kpFirstRound":6,"noiseMax":2.5,"missMax":0.8,"biasSd":0.8,"hyperP":0.25,"replFloor":72}
+greedy      |  n=120  |  wins 12.17 (CPU avg 8.38)  |  playoffs 95.0% appear 40.0% title 25.8%  |  20-0 0.0% (+21-0 0.0%)  |  CPU tail: <=2-win seasons 6.7%, season-min-wins mean 3.91, CPU winSD mean 2.18, CPU max-wins mean 12.88  |  rounds 1-4 gap: median 3, p90 5, p99 5, max 5
