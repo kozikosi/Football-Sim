@@ -1,0 +1,73 @@
+{
+  "$comment": "The cutover DOM contract — the surfaces the acceptance battery binds to in the w76 shell. If 76 Pancakes reproduces these hooks 1:1, the reference adapter (adapters/w76.js) runs unchanged. If it renames them, the port fills adapters/pancakes.js instead. Either way the 84 assertions are identical.",
+  "reference": {
+    "build": "Football-Sim-Z-post-blue-w76.html",
+    "md5": "4f363452a4ad33709244ca08d4ab3b00",
+    "bytes": 1830164,
+    "adapter": "adapters/w76.js",
+    "verified": "84 pass · 0 fail · labels byte-identical to tools/w76/verify_w76.js"
+  },
+  "ids": {
+    "draftSlotSelect": "the draft-slot select (battery sets 'Pittsburgh Steelers' + change)",
+    "startDraftBtn": "boots the draft",
+    "draftPosFilter2": "the positions dropdown (order = the depth chart; OG reads 'Offensive Guard')",
+    "draftView2": "the board view select (values 'cards' | 'table')",
+    "draftTable2": "the table view (fills cells td.dc-fills; the picker trigger .zpb-slotdd)",
+    "draftChips": "the position chip row (.zpb-srbtn[data-tog], .on when lit; [data-all] i 'all on'; [data-none] i 'all off')",
+    "draftResultsBody": "the season render host (fallback: #seasonHost)",
+    "simSeasonBtn": "SIM SEASON (transparent at rest, family fill/border with SIM GAME)",
+    "startSeasonBtn": "starts the season into the preseason",
+    "tabGuideBtn/tabDraftBtn/tabRankingsBtn/tabPlayersBtn/tabGroupsBtn/tabCompareBtn": "the footer-page tabs",
+    "viewGuide/viewDraft/viewRankings/viewPlayers/viewGroups/viewCompare": "the footer-page views (each carries exactly two .zpb-backbar, first+last child)"
+  },
+  "lawStrings": [
+    "DRAFT COMMAND CENTER",
+    "Cutdown Day",
+    "SEASON RATING",
+    "PRIORITIZE THESE POSITIONS NEXT DRAFT TO GO 20-0",
+    "20-0",
+    "BACK TO DRAFT / BACK TO PRESEASON / BACK TO WEEK 17 / BACK TO SUPER BOWL",
+    "HOW A 2 POINT CONVERSION WORKS",
+    "2-Pt Conversions (in-season) / 2 Point Conversions (preseason + guide)",
+    "Offensive Guard",
+    "WILD CARD ROUND",
+    "SUPER BOWL",
+    "all on / all off",
+    "NATURAL",
+    "EVERY ROOM AT A B OR BETTER (the empty state — flagged, see CUTOVER-BATTERIES.md §5)"
+  ],
+  "retiredStrings": [
+    "EVERY ROOM BELOW A B · BEST TO WORST (U1)",
+    "THE LINE IS THE AVERAGE SEASON … · KICKER OR HIGHER (U2 — the math still runs)",
+    "−N vs his NN OVR (U5/V-c, .zpb-fx-gapnum, dead CSS with it)",
+    "FLEX (V-a + V15 — no chip, no fills cell)",
+    "counts the points he fell short (the retired explainer wording)",
+    "the database's median OVR (the retired explainer wording)"
+  ],
+  "frozenValues": {
+    "medianOvr": 77,
+    "allDatabaseMedianOvr": 76,
+    "draftedPoolTake": 1024,
+    "ovrBadgeFontSize": "13.02px (== the position badge's, same class)",
+    "seasonRatingFontSize": "15.12px (within 3px of the badge)",
+    "subtitleSizeLaw": "sec 12.6px < cdtitle 16.8px < title 19.32px",
+    "nm60LightColor": "rgb(122, 31, 43)",
+    "halfwayRose": "rgb(142, 85, 102)",
+    "displayBounds": "0..99, integers, mean within 3 of 77",
+    "cutFadeAnimation": "zpbCutFade",
+    "shineAnimation": "fxshine"
+  },
+  "engineGlobals_w76": [
+    "zpbMedianOvr() / window.__zpbMedOvr",
+    "zpbDispRating(r)",
+    "zpbTrueOvr(name)",
+    "zpbStageLabel()",
+    "zpbSlotPop(el, name)",
+    "PLAYERS / POS_SLOT_MAP / TOTAL_ROUNDS",
+    "draftSim{pool,rosters,userIndex,pos} / openSlotsFor",
+    "seasonState{phase,preseason,scriptLocked,weekSimulated,showReview,playerStats,playoffRounds,champion,_rtgMean}",
+    "simToEnd / startSeason / simulateCurrentWeek / advanceWeek / simRestOfSeason / startPlayoffs / zpbSimRestOfPlayoffs",
+    "renderSeasonTab(host) / seasonUserTeam() / generateRegularSeasonRecap() (retired, override-shadowed — see the w76 build report)",
+    "window.__zpbQuietSim / window.__zpbSBFinPending / window._zpbWelCleanup"
+  ]
+}

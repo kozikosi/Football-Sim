@@ -1,0 +1,23 @@
+# CHECKSUMS — z-post-blue-cutover-2026-11-06 · md5 · generated 2026-11-06
+#
+# UNTOUCHED REFERENCE (verified from gh-pages 367d8e3e, unchanged this chat)
+4f363452a4ad33709244ca08d4ab3b00  Football-Sim-Z-post-blue-w76.html (1,830,164 B — NOT in this zip; lives on gh-pages)
+#
+# PACKAGE FILES
+33e7817edb90984d3d5b0a63f7b2b4d1  batteries/accept.js
+b003ef312c5f8d24d8664d20f218f863  batteries/adapters/w76.js
+c8057137399fe30fe60dae939b98428c  batteries/adapters/pancakes.stub.js
+3cd56e4e69de1a5534f352b561d09882  contract.json
+dfe8142611494502a7966896ee0b8bf5  CUTOVER-BATTERIES.md
+fcf20313e965458defedbfa3a712a54a  RUNBOOK.md
+cb0a0a7f9126b3f9d50d359875ba5dbc  20261106-zai-answers-to-muse.md
+c800e57086264c270650facd3359ea75  UPDATE-README.md
+84d270d6764b017105ad17ee011a7f6e  _agents/zai/START-OF-CHAT-ZAI.md
+bcf62cfc4ae7ed77c4804ab80940aeb7  _agents/zai/ZAI.md
+852f85f37f5480179259a2ec0b6bd3f9  _agents/zai/END-OF-CHAT-ZAI.md
+91527492aab997bf8c89c76fead06e90  shots/chips_390.png
+25be510a7ab3a24a1ea6fbc4c9fa24e7  shots/chips_desktop.png
+00553ffa1c3622ea266ee4ba8005ffae  shots/command_center.png
+fa945972476576b318a724949e01e788  shots/guide_ladder_32.png
+78ed6ec5bd564977879cd7d332c092e0  shots/porun_round.png
+d7668be2dbeca4891972f6fddcb32307  shots/preseason_plain_headers.png
