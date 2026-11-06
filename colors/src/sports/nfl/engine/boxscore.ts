@@ -10,6 +10,7 @@
 // yards. Labelled as such in the design doc; none of it feeds back into the score.
 // Pure: an Rng comes in, nothing else is read (test/purity.test.ts).
 import { allocate } from './drives.ts';
+import { at as ix } from '../../../core/at.ts';  // checked index (the local `at` in makeUnit is a different thing)
 import type { Conv, Drive, GameResult, Side } from './drives.ts';
 import type { Lineup } from './lineup.ts';
 import type { Player } from './players.ts';
@@ -109,7 +110,7 @@ function makeUnit(g: GameSide, side: Side): Unit {
   const offense = (table: Partial<Record<SlotId, number>>, a: number): W => { const w = offList(table, a); return w.length ? w : [[qb, 1]]; };
   const defense = (kind: keyof typeof DEF, a: number, b: number, c: number): W => all.filter((s) => s.kind).map((s) => [s, DEF[kind][s.kind as Kind] * tilt(s, a, b, c)] as [Starter, number]).filter((x) => x[1] > 0);
   const runTkl = defense('run', .02, .003, .005), passTkl = defense('pass', .02, .004, .002);
-  const merge = (a: W, b: W): W => a.map(([s, w], i) => [s, (w + b[i][1]) / 2] as [Starter, number]);
+  const merge = (a: W, b: W): W => a.map(([s, w], i) => [s, (w + ix(b, i)[1]) / 2] as [Starter, number]);
   const ret = pickReturner(g.lineup, g.returnerId);
   return {
     side, team: g.team, qb, k, pt, returner: ret ? all.find((s) => s.p.id === ret.player.id) ?? null : null, retValue: ret?.value ?? 82,
@@ -123,7 +124,7 @@ function wpick(r: Rng, items: W): Starter {
   let t = 0; for (const x of items) t += x[1];
   let u = r.next() * t;
   for (const [s, w] of items) { u -= w; if (u < 0) return s; }
-  return items[items.length - 1][0];
+  return ix(items, items.length - 1)[0];
 }
 const ref = (s: Starter): PlayerRef => ({ id: s.p.id, name: s.p.name, team: s.line.team, label: s.line.label });
 const speedYards = (s: Starter): number => Math.exp(0.012 * (s.p.spd - 80) + 0.004 * (s.p.str - 80));
@@ -139,7 +140,8 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
     tdPass = d.pass > 0 && (d.rush === 0 || r.next() < 0.28 + (0.55 * d.pass) / (d.pass + d.rush));
     if (scrim === 0) scrim = 1;
   }
-  let [runs, att] = scrim ? allocate(scrim, [d.rush / 4.3 + 0.15, d.pass / 6.6 + 0.15]) : [0, 0];
+  const split = scrim ? allocate(scrim, [d.rush / 4.3 + 0.15, d.pass / 6.6 + 0.15]) : [0, 0];
+  let runs = ix(split, 0), att = ix(split, 1);
   const intEnd = d.end === 'INT' ? 1 : 0;
   const needCmp = d.pass > 0 || tdPass ? 1 : 0;
   if (d.rush > 0 || (d.end === 'TD' && !tdPass)) runs = Math.max(runs, 1);
@@ -155,13 +157,13 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
   let tdRunner: Starter | null = null;
   if (d.end === 'TD' && !tdPass) { tdRunner = wpick(r, O.carryRz); carriers[runs - 1] = tdRunner; }
   const ry = runs ? allocate(d.rush, carriers.map((c) => Math.exp(0.6 * r.normal()) * speedYards(c))) : [];
-  const lift = (arr: number[], at: number): void => {   // a touchdown play gains at least a yard when the drive gained any
-    if (arr[at] >= 1) return;
-    let j = -1; for (let q = 0; q < arr.length; q++) if (q !== at && arr[q] > 1 && (j < 0 || arr[q] > arr[j])) j = q;
-    if (j >= 0) { arr[j]--; arr[at]++; }
+  const lift = (arr: number[], pos: number): void => {   // a touchdown play gains at least a yard when the drive gained any
+    if (ix(arr, pos) >= 1) return;
+    let j = -1; for (let q = 0; q < arr.length; q++) if (q !== pos && ix(arr, q) > 1 && (j < 0 || ix(arr, q) > ix(arr, j))) j = q;
+    if (j >= 0) { arr[j] = ix(arr, j) - 1; arr[pos] = ix(arr, pos) + 1; }
   };
   if (tdRunner) lift(ry, runs - 1);
-  carriers.forEach((c, k) => { c.line.stats.car++; c.line.stats.ryd += ry[k]; });
+  carriers.forEach((c, k) => { c.line.stats.car++; c.line.stats.ryd += ix(ry, k); });
   if (tdRunner) tdRunner.line.stats.rtd++;
 
   // receptions
@@ -171,7 +173,7 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
   if (tdPass) { tdRecv = wpick(r, O.targetRz); recvs[cmp - 1] = tdRecv; }
   const py = cmp ? allocate(d.pass, recvs.map((x) => Math.exp(0.55 * r.normal()) * (YPR[x.slot] ?? 0.7) * Math.exp(0.012 * (x.p.spd - 80)))) : [];
   if (tdRecv) lift(py, cmp - 1);
-  recvs.forEach((x, k) => { x.line.stats.tgt++; x.line.stats.rec++; x.line.stats.recYd += py[k]; });
+  recvs.forEach((x, k) => { x.line.stats.tgt++; x.line.stats.rec++; x.line.stats.recYd += ix(py, k); });
   if (tdRecv) tdRecv.line.stats.recTd++;
   const miss: Starter[] = [];
   for (let k = 0; k < att - cmp; k++) { const t = wpick(r, O.target); t.line.stats.tgt++; miss.push(t); }
@@ -182,7 +184,7 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
   carriers.forEach((c, k) => {
     if (c === tdRunner && k === runs - 1) return;
     const t = wpick(r, D.runTkl); t.line.stats.tkl++;
-    if (r.next() < (ry[k] <= 1 ? 0.2 : ry[k] <= 3 ? 0.06 : 0)) t.line.stats.tfl++;
+    if (r.next() < (ix(ry, k) <= 1 ? 0.2 : ix(ry, k) <= 3 ? 0.06 : 0)) t.line.stats.tfl++;
   });
   recvs.forEach((x, k) => { if (x === tdRecv && k === cmp - 1) return; wpick(r, D.passTkl).line.stats.tkl++; });
   for (let k = 0; k < d.sacks; k++) { const s = wpick(r, D.sack).line.stats; s.sack++; s.press++; s.tkl++; s.tfl++; }
@@ -192,8 +194,8 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
   const cr: DriveCredit = { drive: i, side: d.side, period: d.period, kind: d.end === 'TD' ? (tdPass ? 'PASS_TD' : 'RUSH_TD') : d.end === 'FG' ? 'FG' : d.end === 'FG_MISS' ? 'FG_MISS' : d.end === 'INT' ? 'INT' : d.end === 'FUM' ? 'FUM' : d.end === 'SAFETY' ? 'SAFETY' : d.end === 'PUNT' ? 'PUNT' : d.end === 'DOWNS' ? 'DOWNS' : 'HALF' };
   if (d.end === 'TD') {
     const sc = (tdPass ? tdRecv : tdRunner) as Starter;
-    cr.scorer = ref(sc); cr.tdYards = tdPass ? py[cmp - 1] : ry[runs - 1]; if (tdPass) cr.passer = ref(O.qb);
-    const ks = O.k.line.stats; cr.conv = d.conv;
+    cr.scorer = ref(sc); cr.tdYards = tdPass ? ix(py, cmp - 1) : ix(ry, runs - 1); if (tdPass) cr.passer = ref(O.qb);
+    const ks = O.k.line.stats; if (d.conv !== undefined) cr.conv = d.conv;
     if (d.conv === 'xp') { ks.xpa++; ks.xpm++; cr.convKicker = ref(O.k); }
     else if (d.conv === 'xp_miss') { ks.xpa++; cr.convKicker = ref(O.k); }
     else if (d.conv === 'two' || d.conv === 'two_fail') {
@@ -212,7 +214,7 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
     cr.giver = ref(O.qb); cr.taker = ref(t); cr.retYards = y; cr.defTD = d.defTD;
   }
   if (d.end === 'FUM') {
-    const pool = [...carriers, ...recvs]; const g = pool.length ? pool[r.int(0, pool.length - 1)] : O.qb;
+    const pool = [...carriers, ...recvs]; const g = pool.length ? ix(pool, r.int(0, pool.length - 1)) : O.qb;
     g.line.stats.fumLost++;
     const f = wpick(r, D.ff); f.line.stats.ff++;
     const t = wpick(r, D.fr); t.line.stats.fr++;
@@ -228,10 +230,10 @@ function playDrive(d: Drive, i: number, O: Unit, D: Unit, r: Rng): DriveCredit {
 function returns(res: GameResult, units: Record<Side, Unit>, r: Rng): void {
   const ds = res.drives;
   for (let i = 0; i < ds.length; i++) {
-    const side = ds[i].side, U = units[side];
+    const di = ix(ds, i), side = di.side, U = units[side];
     if (!U.returner) continue;
-    const prev = i > 0 ? ds[i - 1] : null;
-    const kickoff = !prev || (ds[i].start >= 1800 && prev.start < 1800) || (ds[i].period >= 5 && prev.period < 5) || prev.pts > 0 || prev.oppPts > 0;
+    const prev = i > 0 ? ix(ds, i - 1) : null;
+    const kickoff = !prev || (di.start >= 1800 && prev.start < 1800) || (di.period >= 5 && prev.period < 5) || prev.pts > 0 || prev.oppPts > 0;
     const afterOpp = prev && prev.side !== side;
     const s = U.returner.line.stats;
     if (kickoff && r.next() < 0.45) { s.kr++; s.krYd += clampN(Math.round(24 + 0.13 * (U.retValue - 82) + 5 * r.normal()), 10, 55); }
