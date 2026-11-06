@@ -28,7 +28,7 @@ statistics question — see (c) for the stamp rule this implies.**
 | MUSE best-value N=1000 (REPORTED-VERIFIED, P-255 row) | unstated | 1000 | 89.5/33.0(appear)/21.6/11.43 wins | — | — |
 | Beam N=100 (REPORTED) | unstated | 100 | 89/21 | 53/11 | 18/0 |
 | OR+VLOC N=300 (REPORTED, agree exactly) | unstated | 300 | 88/20 | 47/6 | 16/0 |
-| My N=400 run (in flight this session — fills the table on landing) | tip | 400 | — | — | — |
+| ~~My N=400 run~~ cancelled by the Owner 6 Nov (command preserved in the lane file; candidates: rerun this exact probe, or fold the four new metrics into tools/calibrate-draft.ts and run the nightly Tier-2 shape) | tip | 400 | — | — | — |
 
 My run **reproduces the ASK and the MUSE line** (appear 33.0 at N=100 vs 33.0 at N=1000 — exact, which
 also confirms both sat on the same build family). The 53/11 and 47/6 anchors are **UNANCHORED** (no
