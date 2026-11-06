@@ -11,6 +11,7 @@
 // Overtime: the 2025 rule change gives BOTH teams a possession in regular-season overtime too (VERIFIED by search 30 Oct:
 // owners approved it, 10-minute period); a tie after both possessions goes to sudden death. Playoffs: 15-minute periods, play
 // until there is a winner. A regular-season game can still end tied when the 10 minutes run out (INFERRED, the source is silent).
+import { at } from '../../../core/at.ts';
 import { clamp } from './matchup.ts';
 import { reshapeScores } from './margin.ts';
 import type { Matchup } from './matchup.ts';
@@ -58,11 +59,11 @@ function chance(rng: Rng, p: number): boolean { return rng.next() < p; }
 function weightedIndex(rng: Rng, w: readonly number[]): number {
   let t = 0; for (const x of w) t += x;
   let r = rng.next() * t;
-  for (let i = 0; i < w.length; i++) { r -= w[i]; if (r < 0) return i; }
+  for (let i = 0; i < w.length; i++) { r -= at(w, i); if (r < 0) return i; }
   return w.length - 1;
 }
 function shuffle<T>(rng: Rng, xs: T[]): T[] {
-  for (let i = xs.length - 1; i > 0; i--) { const j = rng.int(0, i); [xs[i], xs[j]] = [xs[j], xs[i]]; }
+  for (let i = xs.length - 1; i > 0; i--) { const j = rng.int(0, i); const t = at(xs, i); xs[i] = at(xs, j); xs[j] = t; }
   return xs;
 }
 // integer shares of `total` in proportion to w (largest remainder), so the parts add up exactly
@@ -70,8 +71,8 @@ export function allocate(total: number, w: readonly number[]): number[] {
   const s = w.reduce((a, b) => a + b, 0);
   const raw = w.map((x) => (total * x) / s), fl = raw.map(Math.floor);
   let rem = total - fl.reduce((a, b) => a + b, 0);
-  const order = raw.map((x, i) => [x - fl[i], i] as const).sort((a, b) => b[0] - a[0]);
-  for (let j = 0; rem > 0; j++, rem--) fl[order[j % order.length][1]]++;
+  const order = raw.map((x, i) => [x - at(fl, i), i] as const).sort((a, b) => b[0] - a[0]);
+  for (let j = 0; rem > 0; j++, rem--) { const k = at(order, j % order.length)[1]; fl[k] = at(fl, k) + 1; }
   return fl;
 }
 export function realisticScore(s: number, rng: Rng): number {
@@ -116,7 +117,7 @@ export function decompose(S: number, oppGiveaways: number, rng: Rng): Comp {
       cands.push({ b, n, w: Math.exp(-0.5 * ((b - bT) / 1.0) ** 2) * Math.exp(-1.4 * zeros) + 1e-6 });
     }
   }
-  const c = cands[weightedIndex(rng, cands.map((x) => x.w))];
+  const c = at(cands, weightedIndex(rng, cands.map((x) => x.w)));
   const rt = rest - 3 * c.b, e = rt - 6 * c.n;
   let twos = Math.max(e - c.n, 0), ones = e - 2 * twos;
   while (ones >= 2 && twos + ones - 1 <= c.n && chance(rng, 0.22)) { ones -= 2; twos += 1; }
@@ -162,7 +163,7 @@ function slotsFor(comp: Comp, give: number, oppComp: Comp, dn: number, mf: numbe
   for (const p of eohAt) if (p >= 0 && list.length < m - 1) out[p] = { end: 'HALF' };
   shuffle(rng, list);
   let li = 0;
-  for (let i = 0; i < m; i++) if (!out[i]) out[i] = li < list.length ? list[li++] : { end: 'PUNT' };
+  for (let i = 0; i < m; i++) if (!out[i]) out[i] = li < list.length ? at(list, li++) : { end: 'PUNT' };
   return out as Slot[];
 }
 
@@ -174,7 +175,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   const agg = { home: realise(mh, rA), away: realise(ma, rA) };
   const ptsOf = (m: Matchup, r: typeof agg.home, h: number) => clamp(BASE_PTS + h + PT_RUSH * (r.rush - RUSH_BASE) + PT_PASS * (r.pass - PASS_BASE) - PT_TO * (r.to - LAM_TO) - PT_SACK * (r.sacks - LAM_SACK) + m.channels.kick + m.extraPts - m.planCost + PTS_NOISE * m.vm * rA.normal(), 0, 58);
   const rawHome = ptsOf(mh, agg.home, hf), rawAway = ptsOf(ma, agg.away, 0);
-  const rounded = [realisticScore(Math.round(rawHome), rA), realisticScore(Math.round(rawAway), rA)];
+  const rounded: [number, number] = [realisticScore(Math.round(rawHome), rA), realisticScore(Math.round(rawAway), rA)];
   // step 9a: the margin of the regulation score follows the real distribution (ties, the 3 and 7 clustering); the winner does not change
   const [regHome, regAway] = reshapeScores(rounded[0], rounded[1], rawHome >= rawAway, rng.fork('margin'));
 
@@ -188,7 +189,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   const m = Math.max(m0, needed(comp.home, agg.home.to, comp.away, dn.home, mfDraw.home) + 1, needed(comp.away, agg.away.to, comp.home, dn.away, mfDraw.away) + 1);
   const k1 = m % 2 === 0 ? clamp(m / 2 + rD.pick([-1, 0, 0, 1]), 3, m - 3) : (chance(rD, 0.5) ? (m - 1) / 2 : (m + 1) / 2);
   const firstH1: Side = chance(rD, 0.5) ? 'home' : 'away';
-  const eoh = [chance(rD, 0.55), chance(rD, 0.55)];
+  const eoh: [boolean, boolean] = [chance(rD, 0.55), chance(rD, 0.55)];
   // the team that has the ball last in a half is the second team in that half
   const lastH1 = other(firstH1), lastH2 = firstH1;
   const eohFor = (s: Side) => [eoh[0] && lastH1 === s, eoh[1] && lastH2 === s];
@@ -202,8 +203,8 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
     for (let i = 0; i < per; i++) for (const s of [first, other(first)]) seq.push({ side: s, idx: idx[s]++, half });
   }
   const drives: Drive[] = seq.map((q) => {
-    const sl = slotsBy[q.side][q.idx];
-    return { side: q.side, period: 1, start: 0, secs: 0, plays: 0, rush: 0, pass: 0, sacks: 0, end: sl.end, pts: sl.end === 'TD' ? 6 + convPts(sl.conv!) : sl.end === 'FG' ? 3 : 0, conv: sl.conv, oppPts: sl.end === 'SAFETY' ? 2 : sl.defTD ? 7 : 0, defTD: !!sl.defTD };
+    const sl = at(slotsBy[q.side], q.idx);
+    return { side: q.side, period: 1, start: 0, secs: 0, plays: 0, rush: 0, pass: 0, sacks: 0, end: sl.end, pts: sl.end === 'TD' ? 6 + convPts(sl.conv!) : sl.end === 'FG' ? 3 : 0, ...(sl.conv !== undefined ? { conv: sl.conv } : {}), oppPts: sl.end === 'SAFETY' ? 2 : sl.defTD ? 7 : 0, defTD: !!sl.defTD };
   });
   // score and clock at the start of each drive, read off the planned results (the quarter is the position in the game; the real
   // clock is laid down below). Scores here are the drives' own points, so the tilt cannot disagree with the final score.
@@ -220,20 +221,21 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
     const mine = drives.map((d, i) => [d, i] as const).filter(([d]) => d.side === s).map(([d]) => d);
     const wR = mine.map((d) => YARDS_W[d.end] * Math.exp(0.5 * rD.normal()) * tilt.get(d)!), wP = mine.map((d) => (YARDS_W[d.end] * Math.exp(0.5 * rD.normal())) / tilt.get(d)!);
     const rs = allocate(agg[s].rush, wR), ps = allocate(agg[s].pass, wP);
-    mine.forEach((d, i) => { d.rush = rs[i]; d.pass = ps[i]; });
+    mine.forEach((d, i) => { d.rush = at(rs, i); d.pass = at(ps, i); });
     mine.forEach((d) => { d.plays = clamp(Math.max(MIN_PLAYS[d.end], Math.round((d.rush + d.pass) / 5.15 + 0.9 * rD.normal())), 1, 22); });
     for (let k = 0; k < agg[s].sacks; k++) {
       const i = weightedIndex(rD, mine.map((d) => d.plays));
-      if (mine[i].sacks >= mine[i].plays - 1) mine[i].plays++;
-      mine[i].sacks++;
+      const dr = at(mine, i);
+      if (dr.sacks >= dr.plays - 1) dr.plays++;
+      dr.sacks++;
     }
   }
   // clock: each half is exactly 1800 seconds, shared in proportion to plays
   let clock = 0;
   for (let half = 0; half < 2; half++) {
-    const own = drives.filter((_, i) => seq[i].half === half);
+    const own = drives.filter((_, i) => at(seq, i).half === half);
     const secs = allocate(1800, own.map((d) => d.plays * 26 * Math.exp(0.28 * rD.normal()) + (d.end === 'HALF' ? 10 : 0)));
-    own.forEach((d, i) => { d.start = clock; d.secs = secs[i]; d.period = Math.min(4, Math.floor(clock / 900) + 1); clock += secs[i]; });
+    own.forEach((d, i) => { d.start = clock; d.secs = at(secs, i); d.period = Math.min(4, Math.floor(clock / 900) + 1); clock += at(secs, i); });
   }
 
   // ---- step 5: overtime ----
@@ -257,7 +259,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
       const rush = Math.round(yards * clamp(0.4 + 0.1 * rO.normal(), 0.15, 0.7)), pass = yards - rush;
       let pts = 0, conv: Conv | undefined;
       if (end === 'TD') { const walk = winWalk(6); conv = walk ? 'none' : 'xp'; pts = walk ? 6 : 7; } else if (end === 'FG') pts = 3;
-      return { side, period, start: 3600 + otSecs, secs, plays: Math.max(MIN_PLAYS[end], Math.round(yards / 5.3)), rush, pass, sacks: 0, end, pts, conv, oppPts: defTD ? 7 : 0, defTD };
+      return { side, period, start: 3600 + otSecs, secs, plays: Math.max(MIN_PLAYS[end], Math.round(yards / 5.3)), rush, pass, sacks: 0, end, pts, ...(conv !== undefined ? { conv } : {}), oppPts: defTD ? 7 : 0, defTD };
     };
     const add = (d: Drive) => {
       drives.push(d); otSecs += d.secs; inPeriod += d.secs; count++;
@@ -291,7 +293,7 @@ export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptio
   // ---- read everything back off the drives ----
   const events: ScoreEvent[] = [];
   drives.forEach((d, i) => {
-    if (d.pts > 0) events.push({ side: d.side, kind: d.end === 'TD' ? 'TD' : 'FG', pts: d.pts, conv: d.conv, drive: i, period: d.period, at: d.start + d.secs });
+    if (d.pts > 0) events.push({ side: d.side, kind: d.end === 'TD' ? 'TD' : 'FG', pts: d.pts, ...(d.conv !== undefined ? { conv: d.conv } : {}), drive: i, period: d.period, at: d.start + d.secs });
     if (d.oppPts > 0) events.push({ side: other(d.side), kind: d.defTD ? 'DEF_TD' : 'SAFETY', pts: d.oppPts, drive: i, period: d.period, at: d.start + d.secs });
   });
   const blank = (): TeamGameStats => ({ rush: 0, pass: 0, yards: 0, plays: 0, giveaways: 0, takeaways: 0, sacksTaken: 0, drives: 0, top: 0, fgMade: 0, fgMissed: 0 });

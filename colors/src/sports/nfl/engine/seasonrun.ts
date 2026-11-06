@@ -11,6 +11,7 @@ import type { Plan } from './specs.ts';
 import { teamIdentity } from './plans.ts';
 import { leagueBaseline } from './ratings.ts';
 import type { Ratings } from './ratings.ts';
+import { at } from '../../../core/at.ts';
 import { forkSeed, makeRng } from '../../../core/rng.ts';
 import { buildSchedule } from './schedule.ts';
 import type { Game } from './schedule.ts';
@@ -24,7 +25,7 @@ export const PLAYOFF_ROUNDS: readonly Round[] = ['Wild Card', 'Divisional', 'Con
 export interface Score { week: number; home: string; away: string; hs: number; as: number; htd: number; atd: number; round?: Round }
 export interface RunState {
   seed: number; year: number; run: number;            // opponents and the Super Bowl host come from year + run: run-it-back changes the schedule
-  prevRank: Record<string, number>; homeField?: number;
+  prevRank: Record<string, number>; homeField?: number | undefined;   // present-with-undefined is the pinned round-trip shape (test/nfl/weekmap.test.ts E3b)
   schedule: Game[];
   nextWeek: number;                                    // 1..22; 23 = finished
   scores: Score[];                                     // regular season, in play order
@@ -34,7 +35,7 @@ export interface RunState {
 }
 const effYear = (s: Pick<RunState, 'year' | 'run'>): number => s.year + s.run;
 export const isFinished = (s: RunState): boolean => s.nextWeek > 22;
-export const roundOfWeek = (week: number): Round | null => (week >= 19 && week <= 22 ? PLAYOFF_ROUNDS[week - 19] : null);
+export const roundOfWeek = (week: number): Round | null => (week >= 19 && week <= 22 ? (PLAYOFF_ROUNDS[week - 19] ?? null) : null);
 
 export function startSeason(teams: readonly LeagueTeam[], o: { seed: number; year: number; run?: number; prevRank?: Record<string, number>; homeField?: number }): RunState {
   check(teams);
@@ -52,7 +53,7 @@ export function fixtures(s: RunState): { week: number; round: Round | null; home
   const w = s.nextWeek, round = roundOfWeek(w);
   const pairs = round ? bracket(s, round) : s.schedule.filter((g) => g.week === w).map((g) => [g.home, g.away] as [string, string]);
   const hf = round === 'Super Bowl' ? 0 : s.homeField;
-  return pairs.map(([home, away]) => ({ week: w, round, home, away, seed: gameSeed(s.seed, w, home), homeField: hf }));
+  return pairs.map(([home, away]) => ({ week: w, round, home, away, seed: gameSeed(s.seed, w, home), ...(hf !== undefined ? { homeField: hf } : {}) }));
 }
 
 // Plays the next week for every game. Pure: returns a new state and the full results (drives, events) of this week only.
@@ -67,19 +68,20 @@ export function playWeek(teams: readonly LeagueTeam[], s: RunState): { state: Ru
   const games = fx.map((f) => {
     const H = by.get(f.home)!, A = by.get(f.away)!;
     const mh = matchupModel(H, A, lg, { off: plan.get(f.home)!.off, def: plan.get(f.away)!.def }), ma = matchupModel(A, H, lg, { off: plan.get(f.away)!.off, def: plan.get(f.home)!.def });
-    return { home: f.home, away: f.away, round, result: simulateGame(mh, ma, makeRng(f.seed), { playoff: round !== null, homeField: f.homeField }) };
+    return { home: f.home, away: f.away, round, result: simulateGame(mh, ma, makeRng(f.seed), { playoff: round !== null, ...(f.homeField !== undefined ? { homeField: f.homeField } : {}) }) };
   });
   const scored: Score[] = games.map((g) => ({ week: s.nextWeek, home: g.home, away: g.away, hs: g.result.homeScore, as: g.result.awayScore, htd: tds(g.result, 'home'), atd: tds(g.result, 'away'), ...(g.round ? { round: g.round } : {}) }));
   const next: RunState = { ...s, scores: round ? s.scores : [...s.scores, ...scored], playoffs: round ? [...s.playoffs, ...scored] : s.playoffs, nextWeek: s.nextWeek + 1 };
   if (s.nextWeek === LAST_REGULAR_WEEK) next.seeding = seedPlayoffs(next.scores as Played[], makeRng(s.seed).fork('seeding'));
-  if (round === 'Super Bowl') next.champion = winner(scored[0]);
+  if (round === 'Super Bowl') next.champion = winner(at(scored, 0));
   return { state: next, games };
 }
 
 export function table(s: RunState): Record<string, { w: number; l: number; t: number; pf: number; pa: number }> {
   const t = Object.fromEntries(TEAMS.map((x) => [x.name, { w: 0, l: 0, t: 0, pf: 0, pa: 0 }]));
+  const row = (n: string) => { const r = t[n]; if (!r) throw new Error('season: unknown team ' + n); return r; };
   for (const p of s.scores) {
-    const h = t[p.home], a = t[p.away];
+    const h = row(p.home), a = row(p.away);
     h.pf += p.hs; h.pa += p.as; a.pf += p.as; a.pa += p.hs;
     if (p.hs > p.as) { h.w++; a.l++; } else if (p.hs < p.as) { a.w++; h.l++; } else { h.t++; a.t++; }
   }
@@ -90,19 +92,19 @@ const winner = (p: Score): string => (p.hs > p.as ? p.home : p.away);
 function bracket(s: RunState, round: Round): [string, string][] {
   const sd = s.seeding;
   if (!sd) throw new Error('season: playoffs before the regular season is done');
-  const won = (r: Round, conf: Conf) => s.playoffs.filter((p) => p.round === r && TEAM_BY_NAME[p.home].conf === conf).map(winner);
+  const won = (r: Round, conf: Conf) => s.playoffs.filter((p) => p.round === r && TEAM_BY_NAME[p.home]?.conf === conf).map(winner);
   if (round === 'Super Bowl') {
-    const c = (conf: Conf) => won('Conference', conf)[0], hostIsAfc = effYear(s) % 2 === 1;
+    const c = (conf: Conf) => at(won('Conference', conf), 0), hostIsAfc = effYear(s) % 2 === 1;
     return [hostIsAfc ? [c('AFC'), c('NFC')] : [c('NFC'), c('AFC')]];
   }
   const out: [string, string][] = [];
   for (const conf of ['AFC', 'NFC'] as const) {
     const seeds = sd.seeds[conf], seedOf = (t: string) => seeds.indexOf(t) + 1;
-    if (round === 'Wild Card') for (const [h, l] of [[2, 7], [3, 6], [4, 5]]) out.push([seeds[h - 1], seeds[l - 1]]);
+    if (round === 'Wild Card') for (const [h, l] of [[2, 7], [3, 6], [4, 5]] as [number, number][]) out.push([at(seeds, h - 1), at(seeds, l - 1)]);
     else if (round === 'Divisional') {
-      const alive = [seeds[0], ...won('Wild Card', conf)].sort((a, b) => seedOf(a) - seedOf(b));
-      out.push([alive[0], alive[alive.length - 1]], [alive[1], alive[2]]);
-    } else { const dv = won('Divisional', conf).sort((a, b) => seedOf(a) - seedOf(b)); out.push([dv[0], dv[1]]); }
+      const alive = [at(seeds, 0), ...won('Wild Card', conf)].sort((a, b) => seedOf(a) - seedOf(b));
+      out.push([at(alive, 0), at(alive, alive.length - 1)], [at(alive, 1), at(alive, 2)]);
+    } else { const dv = won('Divisional', conf).sort((a, b) => seedOf(a) - seedOf(b)); out.push([at(dv, 0), at(dv, 1)]); }
   }
   return out;
 }
