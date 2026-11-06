@@ -15,6 +15,7 @@ export const SLOT_NAMES: readonly SlotName[] = ['A', 'B', 'C'];   // slots belon
 // Identity and ordering of one save (a lineage: a draft and the seasons played from it). Minted by the app, never by storage.
 export interface SaveMeta {
   engineVersion: string;  // ruleset stamp (the sport's own). Informational on resume (the save carries frozen values).
+                          // F5 (ruled 6 Nov): resume determinism holds within the build that wrote the save; across builds, logged picks hold and un-made picks may differ.
   dataVersion: string;    // canonical SHA-256 of the player dataset the save was made from ('sha256:<64 hex>', see core/hash.ts canonicalHash). Informational on resume.
   saveId: string;         // uuid minted when a draft starts (and again on run-it-back's new slot). The lineage key for sync history and "keep both".
   saveRevision: number;   // integer >= 1, +1 on every committed transition of this save (a pick, an undo, a week). Never decreases, not even on undo.

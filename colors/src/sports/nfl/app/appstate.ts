@@ -4,6 +4,12 @@
 //   DERIVED    - computed by a selector from persisted data; never stored, never cached across dispatches.
 //   EPHEMERAL  - UI-only (sort, open sheet, selection); lost on reload by design.
 // Forbidden in state: game results (regenerable from gameSeed, 1.13 MB/season), Date/Math.random, DOM handles, functions.
+//
+// w74 item 4 patch (F10): ui.boardSort is the BoardSort union, not a bare string. The union's home is HERE (the
+// contract layer) and view/draftBoard.ts imports it from here — one definition, no drift between what the reducer
+// accepts and what the view model switches on. (F10 follow-up for the view, 2 lines: delete the local
+// `export type BoardSort` there and `import type { BoardSort } from '../../../core/../sports/nfl/app/appstate.ts'`
+// — exact path in the 04 README.)
 import type { BootPhase, SaveStatus } from '../../../core/app.ts';
 import type { SlotName } from '../../../core/envelope.ts';
 import type { SlotId } from '../engine/slots.ts';
@@ -14,6 +20,7 @@ export interface PlanState { offense: string | null; defense: string | null; not
 
 export type Screen = 'teamSelect' | 'draft' | 'season' | 'standings' | 'playoffs' | 'summary';
 export type Phase = 'noSave' | 'drafting' | 'draftDone' | 'inSeason' | 'playoffs' | 'seasonOver';
+export type BoardSort = 'wins' | 'ovr' | 'priority';   // F10: same union the board view model sorts by
 
 export interface SaveIdentity { saveId: string; saveRevision: number; createdAt: string }
 
@@ -29,7 +36,7 @@ export interface AppState {
   plan: PlanState | null;                        // PERSISTED inside the week payload
   saveStatus: SaveStatus;                        // EPHEMERAL, owned by the saver
   notice: { kind: 'corrupt' | 'newer-version' | 'storage-unavailable' | 'dataset-changed'; slot: SlotName } | null;   // EPHEMERAL
-  ui: { screen: Screen; boardSort: string; sheet: string | null };   // EPHEMERAL
+  ui: { screen: Screen; boardSort: BoardSort; sheet: string | null };   // EPHEMERAL
 }
 
 export type Action =
@@ -52,5 +59,5 @@ export type Action =
   | { type: 'NEW_GAME' }
   // ephemeral UI
   | { type: 'NAVIGATE'; screen: Screen }
-  | { type: 'SORT_BOARD'; sort: string }
+  | { type: 'SORT_BOARD'; sort: BoardSort }
   | { type: 'DISMISS_NOTICE' };

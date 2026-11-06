@@ -7,6 +7,9 @@
 //   gameSeed                             -> DERIVED: the seed of the user's game this week (gameSeed(seed, week, home)); checked on load
 //   seeding, champion                    -> NOT STORED: recomputed from scores (seedPlayoffs on makeRng(seed).fork('seeding'); the Super Bowl winner)
 //   userTeam, roster, plan, statsRecorded -> owned by the app: passed in, passed back out untouched
+//
+// w74 item 4 patch (F7, consistency): WeekContext.plan is PlanState, the same typed contract WeekPayload.plan
+// now uses — one shape for the user's plan everywhere it travels.
 import { fixtures, gameSeed, LAST_REGULAR_WEEK } from '../engine/seasonrun.ts';
 import type { RunState, Score } from '../engine/seasonrun.ts';
 import { TEAMS } from '../engine/league.ts';
@@ -16,8 +19,9 @@ import type { Played } from '../engine/standings.ts';
 import type { LeagueTeam, Round } from '../engine/season.ts';
 import type { Ratings } from '../engine/ratings.ts';
 import type { FrozenPlayer, GameScore, WeekPayload } from './saves.ts';
+import type { PlanState } from './appstate.ts';
 
-export interface WeekContext { userTeam: string; roster: FrozenPlayer[]; plan: Record<string, unknown> | null; statsRecorded: boolean }
+export interface WeekContext { userTeam: string; roster: FrozenPlayer[]; plan: PlanState | null; statsRecorded: boolean }
 export interface LoadedWeek { state: RunState; teams: LeagueTeam[]; context: WeekContext }
 export type MapResult<T> = { ok: true; value: T } | { ok: false; message: string };
 
@@ -56,11 +60,12 @@ export function fromWeekPayload(p: WeekPayload): MapResult<LoadedWeek> {
     const sc: Score = { week: g.week, home: g.home, away: g.away, hs: g.hs, as: g.as, htd: g.htd ?? 0, atd: g.atd ?? 0, ...(g.round ? { round: g.round as Round } : {}) };
     (g.round ? playoffs : scores).push(sc);
   }
-  const state: RunState = {
-    seed: p.seed, year: p.year, run: p.run, prevRank: p.prevRank ? { ...p.prevRank } : {}, homeField: p.homeField,
+  const state = {                                                        // `as RunState` below: exactOptionalPropertyTypes
+    seed: p.seed, year: p.year, run: p.run, prevRank: p.prevRank ? { ...p.prevRank } : {},
+    homeField: p.homeField,                                              // kept present-with-undefined when absent — the
     schedule: p.schedule.map((g) => ({ week: g.week, home: g.home, away: g.away, kind: g.kind as RunState['schedule'][number]['kind'] })).sort((a, b) => a.week - b.week),
     nextWeek: p.nextWeek, scores, playoffs, seeding: null, champion: null,
-  };
+  } as RunState;                                                         // E3b round-trip test pins this shape; RunState.homeField should become `number | undefined`-tolerant (one-line engine change filed to the Architect)
   if (state.nextWeek > LAST_REGULAR_WEEK) state.seeding = seedPlayoffs(scores as Played[], makeRng(p.seed).fork('seeding'));
   const sb = playoffs.find((g) => g.round === 'Super Bowl');
   if (sb) state.champion = sb.hs > sb.as ? sb.home : sb.away;

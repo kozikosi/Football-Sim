@@ -1,7 +1,17 @@
 // NFL save payloads (the sport-specific half of the save envelope; the outer envelope is core/envelope.ts).
 // Plain JSON only. Storage never imports this file: it moves envelopes and treats `payload` as opaque.
+//
+// w74 item 4 patches (Z.ai drafts, awaiting Architect ruling):
+//   F7 — WeekPayload.plan is PlanState (the typed contract), not Record<string, unknown> | null. One import,
+//        type-only, from appstate.ts; appstate.ts already imports this file's payload types, so the cycle is
+//        type-only and erased at runtime (verbatimModuleSyntax keeps it erased — no runtime import).
+//   F8 — assertSlotMatchesKey(env, key): the pre-write assertion envelope.slot === slotOfKey(key). Called by the
+//        storage module (core/storage-local.ts) on every enveloped write, so a mis-slotted envelope cannot land
+//        under a key naming another slot, even from a future caller that forgets to check.
 import { parseEnvelope, serialize as serializeEnvelope } from '../../../core/envelope.ts';
 import type { Envelope, ParseResult, SaveMeta, SlotName } from '../../../core/envelope.ts';
+import { slotOfKey } from '../../../core/keys.ts';
+import type { PlanState } from './appstate.ts';
 export const SPORT = 'nfl' as const;
 export type SaveKind = 'draft' | 'week' | 'season';
 
@@ -31,7 +41,7 @@ export interface WeekPayload {
   ratings: Record<string, unknown>;       // team name to frozen ratings (shape owned by the engine, opaque to storage)
   schedule: { week: number; home: string; away: string; kind: string }[];
   scores: GameScore[];           // results so far: regular season in play order, then playoff games (those carry `round`)
-  plan: Record<string, unknown> | null;   // the user's plan state once step 9 ports it
+  plan: PlanState | null;                 // F7: the user's per-game plan (typed; was Record<string, unknown> | null)
   statsRecorded: boolean;
   prevRank?: Record<string, number>;      // last year's ranks: next run-it-back's schedule input (written by app/weekmap.ts; older saves lack it)
   homeField?: number;                      // the season's home-field points when the engine was given one
@@ -113,4 +123,12 @@ export function restore(text: string): ParseResult<AnyEnvelope> {
   if (!outer.ok) return outer;
   if (outer.value.sport !== SPORT) return bad('envelope: this is a ' + outer.value.sport + ' save, not an nfl save');
   return parsePayload(outer.value as Envelope<'nfl'>);
+}
+
+// F8: a key that names a slot (sim:nfl:slot:A) must never hold an envelope stamped for a different slot.
+// Returns a message on mismatch, null when the pair is fine (including non-slot keys, which carry no slot claim).
+export function assertSlotMatchesKey(slot: SlotName, key: string): string | null {
+  const k = slotOfKey(key);
+  if (k && k !== slot) return 'envelope: slot ' + slot + ' written under ' + key + ' (that key is slot ' + k + ')';
+  return null;
 }

@@ -4,6 +4,13 @@
 // never reads the live player data and never re-runs a CPU decision: logged picks are applied as they were. Only picks that have
 // not happened yet are drawn, from a fork of the seed per pick position, from a state restored out of the log (see `settle`).
 // Undo is "cut the log back to just before the user's last pick".
+//
+// F1 (w74 item 4c): this file's local `AppState`/`Action` pair is RETIRED — renamed `DraftStoreState`/`DraftStoreAction`
+// — because appstate.ts is the ONLY AppState in the product (the whole-app contract the screens and reducers share).
+// DECISION POINT for the Architect: if he rules the other way (store.ts keeps the AppState name and appstate.ts's
+// whole-app state is the rename), the change reverts cleanly: this is a rename of two exported type aliases plus this
+// comment — no behaviour, no field, no call site changes. Every internal use was updated; `Store` (the factory return)
+// is unchanged.
 import { sportKey } from '../../../core/keys.ts';
 import { draftPayloadProblem } from './saves.ts';
 import type { DraftPayload, FrozenPoolRow } from './saves.ts';
@@ -14,18 +21,18 @@ import { roleOf } from '../engine/players.ts';
 import type { Player } from '../engine/players.ts';
 import { makeRng } from '../../../core/rng.ts';
 import { SLOTS } from '../engine/slots.ts';
-import type { SlotId } from '../engine/slots.ts';
+import type { Dest, SlotId } from '../engine/slots.ts';
 
 export type SaveRecord = DraftPayload;
 export type Status = 'idle' | 'drafting' | 'done';
-export interface AppState { record: SaveRecord | null; draft: DraftState | null; status: Status; error: string | null }
-export type Action =
+export interface DraftStoreState { record: SaveRecord | null; draft: DraftState | null; status: Status; error: string | null }
+export type DraftStoreAction =
   | { type: 'START'; seed: number; userTeam: number }
   | { type: 'PICK'; playerId: string; slot: SlotId }
   | { type: 'UNDO' }
   | { type: 'LOAD'; record: unknown };
 
-const DEST = Object.fromEntries(SLOTS.map((s) => [s.id, s.dest]));
+const DEST = Object.fromEntries(SLOTS.map((s) => [s.id, s.dest])) as Record<string, Dest>;
 const SLOT_SET = new Set<string>(SLOTS.map((s) => s.id));
 
 // The pool as the draft sees it (long snappers are never drafted), frozen as compact rows and thawed back to players.
@@ -62,7 +69,8 @@ export function restoreDraft(rec: SaveRecord): DraftState {
     if (k.overall !== st.pos + 1 || k.team !== st.order[st.pos]) throw new Error('save: pick ' + k.overall + ' is out of order');
     const player = st.pool.find((p) => p.id === k.pid);
     if (!player) throw new Error('restore: player not available: ' + k.pid);
-    if (!SLOT_SET.has(k.slot) || !fit(player.role, DEST[k.slot]).legal) throw new Error('restore: illegal fit');
+    const dest = SLOT_SET.has(k.slot) ? DEST[k.slot] : undefined;
+    if (!dest || !fit(player.role, dest).legal) throw new Error('restore: illegal fit');
     applyPick(st, k.team, player, k.slot as SlotId);
   }
   return st;
@@ -70,21 +78,23 @@ export function restoreDraft(rec: SaveRecord): DraftState {
 // The CPU teams pick, in order, until the user is on the clock or the draft is over.
 function advance(st: DraftState, seed: number, userTeam: number): void {
   const cpu = makeRng(seed).fork('cpu');
-  while (st.pos < st.order.length && st.order[st.pos] !== userTeam) {
-    const c = cpuChoose(st, st.order[st.pos], cpu.fork('p' + st.pos));
-    applyPick(st, st.order[st.pos], c.player, c.slot);
+  while (st.pos < st.order.length) {
+    const team = st.order[st.pos];
+    if (team === undefined || team === userTeam) break;
+    const c = cpuChoose(st, team, cpu.fork('p' + st.pos));
+    applyPick(st, team, c.player, c.slot);
   }
 }
 
 export function createStore(players: readonly Player[]) {
-  let state: AppState = { record: null, draft: null, status: 'idle', error: null };
-  const subs = new Set<(s: AppState) => void>();
-  const set = (s: AppState) => { state = s; subs.forEach((f) => f(state)); };
+  let state: DraftStoreState = { record: null, draft: null, status: 'idle', error: null };
+  const subs = new Set<(s: DraftStoreState) => void>();
+  const set = (s: DraftStoreState) => { state = s; subs.forEach((f) => f(state)); };
   // What the user sees is always the draft as RESTORED from the log, never the live object the CPU just advanced: the engine caches a
   // replacement level that is only refreshed every few picks, so the two differ slightly. Settling on the restored form makes the screen
   // before and after a refresh identical, and every later CPU draw start from the same state however the draft was reached.
-  const settle = (st: DraftState, rec: SaveRecord): AppState => { const d = restoreDraft(rec); return { record: rec, draft: d, status: d.pos >= d.order.length ? 'done' : 'drafting', error: null }; };
-  const dispatch = (a: Action): void => {
+  const settle = (st: DraftState, rec: SaveRecord): DraftStoreState => { const d = restoreDraft(rec); return { record: rec, draft: d, status: d.pos >= d.order.length ? 'done' : 'drafting', error: null }; };
+  const dispatch = (a: DraftStoreAction): void => {
     try {
       if (a.type === 'START') {
         if (!Number.isInteger(a.seed) || !Number.isInteger(a.userTeam) || a.userTeam < 0 || a.userTeam > 31) throw new Error('start: bad seed or team');
@@ -102,7 +112,8 @@ export function createStore(players: readonly Player[]) {
         if (!SLOT_SET.has(a.slot)) throw new Error('bad slot');
         const st = restoreDraft(rec), player = st.pool.find((p) => p.id === a.playerId);
         if (!player) throw new Error('player not available: ' + a.playerId);
-        if (!fit(player.role, DEST[a.slot]).legal) throw new Error('illegal fit');
+        const dest = DEST[a.slot];
+        if (!dest || !fit(player.role, dest).legal) throw new Error('illegal fit');
         applyPick(st, rec.userTeam, player, a.slot);
         advance(st, rec.seed, rec.userTeam);
         set(settle(st, toRecord(st, rec.seed, rec.userTeam, rec.pool)));
@@ -117,7 +128,7 @@ export function createStore(players: readonly Player[]) {
       set({ ...state, error: (e as Error).message });
     }
   };
-  return { getState: () => state, dispatch, subscribe: (f: (s: AppState) => void) => { subs.add(f); return () => subs.delete(f); } };
+  return { getState: () => state, dispatch, subscribe: (f: (s: DraftStoreState) => void) => { subs.add(f); return () => subs.delete(f); } };
 }
 export type Store = ReturnType<typeof createStore>;
 
