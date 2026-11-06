@@ -49,8 +49,9 @@ follow v3 where it differs. Read the whole prompt before starting anything.
   The engine's win-SD target (win-SD = standard deviation of team wins across
   the league in a season) is HIGHER than real NFL: clear losers for the user
   to beat up on and at least 3 other top teams for skilled users to compete
-  against, whatever best fits the skilled-success percentages (90/35/25 +
-  P(20-0) 1–2%). The DS band (3.07 ± 0.35) is the real-NFL REFERENCE, not the
+  against — at least 2 in the opposite conference and at least 1 in the user's
+  conference (Owner refinement 2026-11-05) — whatever best fits the
+  skilled-success percentages (90/35/25 + P(20-0) 1–2%). The DS band (3.07 ± 0.35) is the real-NFL REFERENCE, not the
   engine target. The Lab DERIVES the engine's win-SD target from the
   skilled-success percentages, then finds a lever that moves win-SD toward it.
   The CPU-draft lever (midFloor) is FLAT — do not re-propose it. Difficulty
