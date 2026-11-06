@@ -1,0 +1,1 @@
+OP: ADD | P3 | Property-based determinism gate for the engine (arbitrary inputs, replay bit-for-bit) | One-line spec: a test that runs the season sim over randomized inputs and asserts byte-identical replay; lives in colors/test/nfl/; complements the 1,088-game interleaving gate.
