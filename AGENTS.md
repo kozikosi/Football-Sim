@@ -2,7 +2,7 @@
 
 **NEVER ASSIGN WORK TO INDIVIDUAL AGENTS. Work comes from one ranked list, `_agents/PRIORITIES.md`; whoever opens a chat runs the council tool (`_agents/COUNCIL.md`), takes the top line, and the next agents review it. Nothing waits for a particular seat, and there are no claims.**
 
-Read this first, then take work from the queue (`_agents/COUNCIL.md`; `node tools/next.mjs` still works). `V22-Suggestions.md` (330 KB) is frozen history: never read it whole; only the section a PRIORITIES row cites. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
+Read this first, then take work from the queue (`_agents/COUNCIL.md`; `node tools/next.mjs` still works). `_archive/v22-suggestions.md` (330 KB, moved from the repo root 6 Nov) is frozen history: never read it whole; only the section a PRIORITIES row cites. The file name is kept; builds are named in §2. Roster, states and clean-up: `_agents/README.md`, `_agents/RETIREMENT.md`. Labels used everywhere: **VERIFIED** (you ran it, the receipt is in the text) · **REPORTED** (someone else says so) · **INFERRED** (reasoned, not run) · **UNKNOWN**. Shared posts begin `SPEAKER: <seat> | ROLE: <role> | TASK: <task> | DATE: <UTC>`. English only.
 
 ## 1. Authority
 
@@ -126,7 +126,7 @@ Duplicate player records, fabricated teams and unsupported corrections fall unde
 | `_agents/README.md`, `RETIREMENT.md`, `TEMPLATE-LANE.md`, `START-OF-CHAT.md`, `END-OF-CHAT.md`, `ONBOARDING.md`, `MIGRATION.md` | Architect |
 | `CHRONICLE.md` | Architect, append-only; seats put verified facts on `FACT:` lines in their bulletin entry |
 | `tasks/<id>.json` | The seat that holds the item writes its own file; `accepted` is set by the Architect, `verified` by the Verifier (in `verification`), `owner-accepted` by the Architect quoting the Owner. Never edit another seat's file; add a new item instead. |
-| `SUBMISSIONS.md`, `V22-Suggestions.md` | **Frozen history** (24 Oct): no new entries. Proposals, snippets and reviews go in `inbox/`; the Architect's build lifecycle lives in `tasks/`; the ranked queue is `PRIORITIES.md`. One home per kind of thing, no parallel registries. |
+| `SUBMISSIONS.md`, `_archive/v22-suggestions.md` | **Frozen history** (24 Oct): no new entries. Proposals, snippets and reviews go in `inbox/`; the Architect's build lifecycle lives in `tasks/`; the ranked queue is `PRIORITIES.md`. One home per kind of thing, no parallel registries. |
 | `_agents/<seat>/` | That seat only (a retired seat's lane is a tombstone: nobody writes there) |
 | `STATUS.md`, `MERGE-MANIFEST.md` | Architect (build hash lines by a Verifier) |
 | `_reference/`, `_archive/` | Frozen |
@@ -146,7 +146,7 @@ Every change ships with a **receipt**: the command and its output. "I believe it
 - `node tools/lint.mjs files <paths>` / `npx biome check` use the root `biome.json` for council tooling only (`tests/`, `tools/`, `_agents/**/tools/`); it excludes every `.html`.
 - Do not "fix" a product finding to quiet the linter, and do not add `biome-ignore` to hide one; a genuine problem is a work-order entry.
 
-Mermaid renders in the repository (diagrams in the work order). Figma is available to the Architect: hand him a palette, a state list, the data and what each screen must say.
+Mermaid renders in the repository (diagrams in the work order). Figma is NOT available for this project (Owner ruling: paywall); design in code and check at 390 px and desktop.
 
 **Finding code:** `boardEntries`, `renderDraftBoard2` (draft board) · `cpuPick`, `cpuBias` (CPU) · `simulateGame`, `playGame`, `simulateCurrentWeek` (season) · `matchupModel`, `applyOffPlan`, `applyDefPlan` · `optimalLineup`, `effOvr`, `flexPenaltyFor` · `ensureGamePlans`, `teamIdentity`, `planWhy` · `generateGameSummary`, `playByPlay` · `computeRegularSeasonAwards` · `modelWeights`, `slotWinsPerOvr`, `teamRatings`.
 
