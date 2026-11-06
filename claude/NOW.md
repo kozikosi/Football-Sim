@@ -1,13 +1,13 @@
 # NOW — the single state file (read at boot, rewrite at end of every chat, max 15 lines)
-Updated: 2026-11-06 (boot-v3 + w74 rulings chat). Code last changed at 425f72a; later commits are docs/continuity/Lab tooling/tsconfig only.
+Updated: 2026-11-06 (tsc ratchet + guard pass 1 chat). Code last changed at b734433; later commits are docs/continuity only.
 - Brand: 76 Pancakes (locked 2026-11-05); banner "76"; "20-0" as a season record stays; slogan "Can you go x?" per sport.
 - Targets (skilled player): 90% playoffs, ~35% Super Bowl, 25% title; P(20-0) ~1-2%.
-- Tests: 284 pass @ 425f72a (`cd colors && npm test`).
-- DONE: P-262 at 90dcd6e (sweep.ts = Muse delivery; bands [D] = REAL-NFL reference, not the engine target; undecided: <=4-wins centre 4.6 vs 4.5, home-win report-only). tsconfig at b27571a (Z.ai w74/04 draft; w75 has none). Cleanups done: V22-Suggestions.md -> `_archive/v22-suggestions.md`, AGENTS.md Figma line, Project boot doc reworded.
-- tsc: 298 errors after w74/04 landed (`cd colors && npm ci && npx tsc --noEmit`; typescript is now a devDep; NO_PROXY override). 0 in contract files. Tests 284 pass.
-- Engine parity target (Owner, 2026-11-05): win-SD HIGHER than real NFL (clear losers + >=3 other top teams, >=2 in the opposite conference, >=1 in the user's); target is a separate Lab derivation from the skilled-success percentages.
-- NEXT (exact): pin a tsc baseline (per-file counts) as the CI gate, then guard passes (drives, schedule, seasonrun = 96 of 298); then the Draft Board slice against `appstate.ts` + `DraftStoreState` (root reducer delegates draft actions to the store). Z.ai: unblocked, rulings in `claude/rulings/2026-11-06-w74-rulings.md`.
-- Blockers: none for Z.ai. Owner may overrule the 3 envelope answers (rulings file). Held: hydration wiring/tests, CI-gate pick.
-- DONE 6 Nov (boot-v3): bootstrap widens refspec (council/*, gh-pages) and prints a NOW-CHECK freshness verdict; rules live in repo `claude/00-READ-FIRST.md` (authoritative), Project doc = boot stub; AGENTS.md split into a 10 KB core + `claude/ref/agents-*.md` (HTML-era passages corrected). vite IS already a devDep (^8.3.6); only typescript is missing.
+- Engine parity target (Owner, 2026-11-05): win-SD HIGHER than real NFL (clear losers + >=3 other top teams, >=2 in the opposite conference, >=1 in the user's); separate Lab derivation from the skilled-success percentages. P-262 sweep.ts bands [D] = real-NFL reference, not the engine target; undecided: <=4-wins centre 4.6 vs 4.5, home-win report-only.
+- Tests: 284 pass @ b734433 (`cd colors && npm test`).
+- tsc RATCHET (cb5e042): `colors/tsc-baseline.json` pins per-file counts; `npm run tsc:check` fails if any file grows or a new one errors; `npm run tsc:ratchet` locks in improvements (refuses to raise). Now 202 (was 298). Install: `NO_PROXY='*' npm ci`.
+- Guard pass 1 DONE (b734433): drives, schedule, seasonrun = 0 errors. New `src/core/at.ts` (checked index, throws). RunState.homeField is `number | undefined` (E3b pins that shape). VERIFIED: 5 full seeded seasons hash-identical to the pre-change commit.
+- NEXT (exact): guard passes by size, one commit each + `tsc:ratchet`: boxscore 26, recap 25, season 24, standings 19, draft 17, core/hungarian 15, lineup 14, then the rest (<=11 each). Re-run the old-vs-new seeded hash check for any engine file (script idea: hash startSeason+playWeek over seeds 1,4,9,17,33 on `git archive HEAD` vs working tree). Then the Draft Board slice against `appstate.ts` + `DraftStoreState` (root reducer delegates draft actions to the store).
+- Then build `tools/seat-check.sh` per `claude/rulings/2026-11-06-seat-stale-lane-check-proposal.md` (LANE-CHECK, RULES-CHECK, SEAT-STATE; Muse may amend).
+- Blockers: none. Held (Owner): CI-gate pick (no .github exists; the gate is an npm script, a pre-commit call is the cheap option), hydration wiring/tests. Z.ai unblocked: `claude/rulings/2026-11-06-w74-rulings.md`.
 - Do NOT apply council/muse path fixes (inbox/20261106-0305-muse-repo-cleanup-path-fixes.md) here: files have not moved on this branch.
 - On demand only: UI brief `claude/V22-work-order.md` (grep) · Owner prompts `claude/chat-management.md` · old READ-FIRST `_archive/project-docs/00-READ-FIRST-2026-11-02-full.md` (grep) · council digest only for queue work.
