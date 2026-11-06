@@ -1,0 +1,43 @@
+{
+  "meta": {
+    "source": "Owner directive, 2026-11-06 (Beam chat). Salary = approximately/very rounded $M for a slightly above average player at that position. Weight = Owner-chosen coefficient, QB=1000 scale, shown to user as default model weights. Salary data is INTERNAL REFERENCE ONLY; never display to user.",
+    "scale": "QB = 1000",
+    "salary_unit": "USD millions (rounded)",
+    "weight_unit": "coefficient (QB=1000)",
+    "tolerance": "Claude's engine slotWinsPerOvr revealed impact should land within +/-50 of these weights."
+  },
+  "slots": [
+    {"slot":"QB","salary_M":40,"weight":1000},
+    {"slot":"RB1","salary_M":10,"weight":250},
+    {"slot":"RB2","salary_M":4,"weight":100},
+    {"slot":"FB","salary_M":1,"weight":25},
+    {"slot":"WR1","salary_M":25,"weight":650},
+    {"slot":"WR2","salary_M":15,"weight":400},
+    {"slot":"WR3","salary_M":4,"weight":100},
+    {"slot":"WR4","salary_M":2,"weight":50},
+    {"slot":"TE1","salary_M":10,"weight":250},
+    {"slot":"TE2","salary_M":5,"weight":150},
+    {"slot":"TE3","salary_M":2,"weight":50},
+    {"slot":"OT1","salary_M":20,"weight":500},
+    {"slot":"OG1","salary_M":15,"weight":400},
+    {"slot":"C","salary_M":5,"weight":150},
+    {"slot":"OG2","salary_M":10,"weight":250},
+    {"slot":"OT2","salary_M":12,"weight":300},
+    {"slot":"DE1","salary_M":25,"weight":650},
+    {"slot":"DE2","salary_M":12,"weight":300},
+    {"slot":"DT1","salary_M":20,"weight":500},
+    {"slot":"DT2","salary_M":10,"weight":300},
+    {"slot":"DL5","salary_M":5,"weight":150},
+    {"slot":"MIKE","salary_M":12,"weight":300},
+    {"slot":"WILL","salary_M":6,"weight":150},
+    {"slot":"SAM","salary_M":3,"weight":100},
+    {"slot":"CB1","salary_M":15,"weight":400},
+    {"slot":"SS","salary_M":12,"weight":300},
+    {"slot":"FS","salary_M":12,"weight":300},
+    {"slot":"CB2","salary_M":10,"weight":250},
+    {"slot":"NICKEL","salary_M":4,"weight":100},
+    {"slot":"DIME","salary_M":2,"weight":50},
+    {"slot":"K","salary_M":2,"weight":50},
+    {"slot":"P","salary_M":2,"weight":50}
+  ]
+}
