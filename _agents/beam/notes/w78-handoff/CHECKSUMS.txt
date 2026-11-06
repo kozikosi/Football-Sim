@@ -1,0 +1,17 @@
+851742db217f40b3ee0d80520f3a6a66  20261106-w77-build-report.md  5578
+db7f8eb7ea25a4e67f208c4890480bdd  20261106-w77-intake-ledger.md  8478
+74b284e5fda0c21f40714abe7efff670  Football-Sim-Z-post-blue-w77.html  1831313
+8eed79eefc1b074f713912b1e0349b6f  UPDATE-README.md  3633
+196d1cd5b631687dc25b67d05fb4cb0e  _agents/zai/END-OF-CHAT-ZAI.md  2477
+0606f9b9cfb1936e6dd991361e19631e  _agents/zai/START-OF-CHAT-ZAI.md  14555
+282253109de246802d0c6502fe061362  _agents/zai/ZAI.md  3109
+f223a3020d8fc6ce2c469813923e069f  notes/W77-WEIGHTS-OPINION.md  4690
+d2c3c71800df47a59d2e8e3f8ee767e4  shots/board_disclosure.png  101002
+8dde177dacd4626132adbff58f57b312  shots/guide_ladder_owner_order.png  89349
+153315b2d202085da7b5573122616fd5  shots/weights_owner_table.png  114664
+43f5136d7252414be6345007627d3cc7  shots/weights_specialists.png  111961
+0ebeb3294182b0e02b2736febc9fd919  tools/w77/verify_w77.js  46259
+c74690ab96d444518ed24933972bcf05  tools/w77/w67_teams_w69.js  8042
+88e2d53c3606d41c44cf8e76d27ee3f7  tools/w77/w68_names_w69.js  6363
+6cbfc171d02fc6149317a09938917216  tools/w77/w69_dropdowns.js  12406
+eeeac4a45115ae0fd8a34819f6742f24  tools/w77/w69_owner.js  25780
