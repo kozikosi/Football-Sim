@@ -1,0 +1,24 @@
+SUPERSEDED 20 Oct (Round 3): this output used the truncated-body scanner. The full-body result is 17 functions + the #glue phone block; see `_agents/ds/reviews/Round3-MergedSurface.md` and `funcdiff-full.js`. Do not use these body hashes as the merge pin.
+
+A: NFL Draft Simulator v20 Claude.html
+   409 top-level functions
+B: NFL Draft Simulator.html
+   412 top-level functions
+common 408 | identical 394 | differing 14
+A-only 1: updateStepper
+B-only 4: seasonToast, goSeason, meetingInfo, meetingTagText
+differing common:
+  setActiveTab  A@385(9L)  B@377(8L)
+  cpuPick  A@921(19L)  B@943(28L)
+  fitNoteHTML  A@1169(9L)  B@1206(3L)
+  renderDraftBoard2  A@1179(33L)  B@1210(32L)
+  buildDefenseDetail  A@2054(31L)  B@2084(31L)
+  turnoverParagraph  A@2447(23L)  B@2477(23L)
+  playByPlay  A@2532(52L)  B@2598(53L)
+  matchupTagHTML  A@2980(6L)  B@3078(6L)
+  renderGuideHTML  A@4473(34L)  B@4571(34L)
+  render100  A@5487(95L)  B@5585(95L)
+  renderSeasonTab  A@5591(5L)  B@5689(4L)
+  renderSeasonTabInner  A@5596(11L)  B@5693(11L)
+  finishDraft2  A@5629(10L)  B@5726(16L)
+  renderDraftResults  A@5677(42L)  B@5780(38L)

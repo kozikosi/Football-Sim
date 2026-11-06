@@ -1,0 +1,32 @@
+| # | function | v20 lines | donor lines | v20/donor ln | same body |
+|---|---|---|---|---|---|
+| 1 | `setActiveTab` | 832-840 | 776-783 | 9/8 | no |
+| 2 | `cpuPick` | 1368-1386 | 1342-1369 | 19/28 | no |
+| 3 | `fitNoteHTML` | 1616-1624 | 1605-1607 | 9/3 | no |
+| 4 | `renderDraftBoard2` | 1626-1658 | 1609-1640 | 33/32 | no |
+| 5 | `buildDefenseDetail` | 2501-2531 | 2483-2513 | 31/31 | no |
+| 6 | `turnoverParagraph` | 2894-2916 | 2876-2898 | 23/23 | no |
+| 7 | `playByPlay` | 2979-3030 | 2997-3049 | 52/53 | no |
+| 8 | `matchupTagHTML` | 3427-3432 | 3477-3482 | 6/6 | no |
+| 9 | `renderGuideHTML` | 4920-4953 | 4970-5003 | 34/34 | no |
+| 10 | `render100` | 5934-6028 | 5984-6078 | 95/95 | no |
+| 11 | `renderSeasonTab` | 6038-6042 | 6088-6091 | 5/4 | no |
+| 12 | `renderSeasonTabInner` | 6043-6053 | 6092-6102 | 11/11 | no |
+| 13 | `finishDraft2` | 6076-6085 | 6125-6140 | 10/16 | no |
+| 14 | `renderDraftResults` | 6124-6165 | 6179-6216 | 42/38 | no |
+
+Set diffs (not in the 14):
+- `updateStepper`: v20 824-831; donor —; hashes 53f8bddf4768/—
+- `seasonToast`: v20 —; donor 784-787; hashes —/2899a60794ed
+- `goSeason`: v20 —; donor 789-803; hashes —/6133ec1d9bc6
+- `meetingInfo`: v20 —; donor 3447-3466; hashes —/b9cf6919cf54
+- `meetingTagText`: v20 —; donor 3467-3476; hashes —/88f76590181b
+
+S-102 anchors (v20):
+- `startDraft2`: v20 1408-1429; donor 1397-1418; hashes 294cb08771c9/294cb08771c9
+- `startSeason`: v20 3371-3381; donor 3391-3401; hashes 0bc9d3ac5940/0bc9d3ac5940
+- `runLeague100`: v20 5880-5903; donor 5930-5953; hashes 81e43aa86d90/81e43aa86d90
+
+Phone-layout #glue block (located by the JS comment, not the CSS one):
+- v20: 6409-6432 (24 lines); sha256 078fe4152a4e; default tab 6433: setActiveTab('viewDraft','tabDraftBtn');
+- donor: 6458-6488 (31 lines); sha256 93fef50ce977; default tab 6489: setActiveTab('viewSeason','tabSeasonBtn');

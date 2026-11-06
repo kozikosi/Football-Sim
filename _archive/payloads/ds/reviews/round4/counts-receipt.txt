@@ -1,0 +1,45 @@
+Round 4 — count/unit reconciliation
+Top-level function census (node, /^function/m) is the 408-common unit; all-declaration census (/function name(/) is GLM 430-name unit.
+
+v20: all declarations 435, unique 431; top-level 409, unique 409
+donor: all declarations 438, unique 434; top-level 412, unique 412
+all-name common 430; top-level common 408; extra non-top-level common 22
+extra non-top-level names: add, realize, pts, P, outcome, card, fillDetail, buildOptions, resolve, renderCompare, build, pass, schedule, ensure, size, confetti, firework, loop, start, toast, banner, play
+  add: first build v20; nested=check
+  realize: first build v20; nested=check
+  pts: first build v20; nested=check
+  P: first build v20; nested=check
+  outcome: first build v20; nested=check
+  card: first build v20; nested=check
+  fillDetail: first build v20; nested=check
+  buildOptions: first build v20; nested=check
+  resolve: first build v20; nested=check
+  renderCompare: first build v20; nested=check
+  build: first build v20; nested=check
+  pass: first build v20; nested=check
+  schedule: first build v20; nested=check
+  ensure: first build v20; nested=check
+  size: first build v20; nested=check
+  confetti: first build v20; nested=check
+  firework: first build v20; nested=check
+  loop: first build v20; nested=check
+  start: first build v20; nested=check
+  toast: first build v20; nested=check
+  banner: first build v20; nested=check
+  play: first build v20; nested=check
+
+checkRewards body diff (v20 6381-6408 vs donor 6430-6457):
+clean (identical)
+
+funcdiff-full raw totals (18 differing includes the checkRewards boundary artifact):
+A: 409 functions; B: 412 functions
+common 408 | identical 390 | differing 18
+A-only 1: updateStepper
+B-only 4: goSeason, meetingInfo, meetingTagText, seasonToast
+differing:
+
+Corrected top-level split: 408 common = 391 identical + 17 differing.
+All-declaration scope: 430 = 408 + 22 nested; 413 identical = 391 + 22; 17 differing unchanged.
+
+Nested proof (22/22 have leading whitespace on their declaration line):
+nested confirmed 22/22

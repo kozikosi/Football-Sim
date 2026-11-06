@@ -21,7 +21,7 @@ A model that is no longer reachable is retired at once. A reachable model is ret
 2. **Rescue what is live.** Anything another process still calls (a gate script, a probe, a spec a task cites) is moved to `tools/` or the shared doc that owns it, in the same commit. Check with `grep -rn "_agents/<seat>" . --include=*.md --include=*.mjs --include=*.json --include=*.sh` outside the lane. Nothing may keep pointing into a tombstone.
 3. **Compress the lane.** `node tools/retire-seat.mjs _agents/<seat> --label "<Seat>" --reason "<why>" --base <sha>` (dry-run first; add `--apply`). It writes `TOMBSTONE.md` and `git rm`s everything else. Then fill in "Lasting findings": at most 5 bullets, each naming the file or commit that proves it. Unknown stays `UNKNOWN`.
 4. **Tag the full copy** so it cannot be garbage collected: `git tag retired/<seat>-<date> <base>` and push the tag with the branch. Without a tag, a squash-merge plus branch deletion can orphan the commit.
-5. **Unlink.** Delete the seat's `_agents-payload/<seat>/` if any. Fix any live doc that says "ask <seat>". Do not touch other seats' notes that merely mention it.
+5. **Unlink.** Delete the seat's `_archive/payloads/<seat>/` if any. Fix any live doc that says "ask <seat>". Do not touch other seats' notes that merely mention it.
 6. **Commit** (per-path adds). Message: `retire <seat>: lane → tombstone (full copy at <tag>)`.
 
 The Owner may also approve a retirement sweep *without* retiring anyone, for a seat that is kept but bloated (§4).

@@ -17,7 +17,7 @@ Platforms (24 Oct): **Kilo** = Glyph, FK, Beam, VL, UK, OR · **independent** = 
 | VL | standby | `vl/` | Lane file lives at `_agents/vl/notes/vl.md`: `git mv` it to `_agents/vl/VL.md`. |
 | VLOC | standby | `vloc/` (to create) | |
 | Super | standby | `nemo-super/` | |
-| OR | standby | `or/` (to create) | Only `_agents-payload/or/` exists. |
+| OR | standby | `or/` (to create) | Only `_archive/payloads/or/` exists. |
 | GLM | standby (reinstated) | `glm/` | 20 Oct scorecard rank 3. |
 | Ultra | standby (reinstated) | `nemotron-3-ultra-free/` | Folder mapping REPORTED by Beam; see `ULTRA.md`. |
 | Flint | probation | `flint/` (to create) | Owner wants more evidence. |

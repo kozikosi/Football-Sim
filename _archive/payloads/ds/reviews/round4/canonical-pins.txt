@@ -1,0 +1,9 @@
+Round 4 canonical pins — extraction rule: span lines joined by \n, no trailing newline.
+(surface-lines.js uses the same join; sed | shasum values include a trailing newline and are not canonical pins.)
+
+v20 #glue 6409-6432	078fe4152a4e	078fe4152a4ef584c1f440e7a50964e37fb1ae1b09a4d31cb0fc47d13a76e6a5	24 lines
+donor #glue 6458-6488	93fef50ce977	93fef50ce977a4910a179139f2e283b128f75e434b5548cae70943319c3158b4	31 lines
+v20 default tab 6433	df5c04597278	df5c045972786720e441d220149d0810c5db31eb3dac2753cc678b5a81c13331	1 lines
+donor default tab 6489	fc90d34aa00c	fc90d34aa00c2024121f1602e839eaf1620eb6abe4c8ac837a6f6f3d82be73e2	1 lines
+strict donor+v20 tab	04b90cb68fcf	04b90cb68fcf441fdbcb00a9822172e26bcc34d8c430447b24befbe6bc7c1343	32 lines
+primary A (donor+nostack+v20 tab)	ec6306eb79df	ec6306eb79df37dea4087087655c181f7bc643b25ae68da14fc2d0edd5d98592	33 lines

@@ -14,7 +14,7 @@ from pathlib import Path
 from typing import Any
 
 ROOT = Path(__file__).resolve().parents[1]
-LEDGER = ROOT / "council" / "scorecard" / "events.jsonl"
+LEDGER = ROOT / "_agents" / "scorecard" / "events.jsonl"
 OUTPUT = ROOT / "COUNCIL-SCORECARD.md"
 CONFIDENCE = {"higher", "moderate", "low", "unassessed"}
 EVIDENCE_STATUS = {"VERIFIED", "REPORTED", "INFERRED", "UNKNOWN"}

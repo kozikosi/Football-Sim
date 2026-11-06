@@ -1,0 +1,55 @@
+Round 4 F1 — #glue phone block receipt
+Builds: v20 31b7d61f… 649,032 B; donor 77bb9ed5… 650,127 B
+Spans from surface-lines.js (Round-4 finder): v20 6409-6432; donor 6458-6488
+T-9 note: the `sed | shasum` values below include a trailing newline; they are auxiliary
+fingerprints, not canonical pins. Canonical no-newline pins: v20 078fe4152a4e; donor
+93fef50ce977; variant B 04b90cb68fcf; variant A ec6306eb79df. See canonical-pins.txt.
+
+sha256 of spans:
+v20 6409-6432  72a24555c9df8e6da372b8fc0c395da395b6dabe99780c2cd6ac5d74284574b1  -
+donor 6458-6488 efe6d427accf48bc72fe1dbe57fc341d7b0da18219a43d77f6127430db29e55d  -
+v20 default tab 6433 c169c4fe4b8303d7bb8ff9f607f51ef0d7750b2ebfc689cddce71eae9805a0d9  -
+donor default tab 6489 8ac9684525ae6f7f99b16b95064ad72ffbe6c3cde8b37dd8e67ced24afd91500  -
+merged donor block + v20 tab cf596d8c5ba56c38efc671a9310de984b8de42423db2863eb0302cd2b137710c  -
+
+marker counts (v20 / donor):
+msChecked      2
+msChecked      0
+data-nostack   1
+data-nostack   0
+bodyRows       0
+bodyRows       3
+firstRow       0
+firstRow       2
+
+Unified diff (v20 span -> donor span):
+--- v20 6409-6432
++++ donor 6458-6488
+@@ -6,14 +6,21 @@
+   try{
+    document.querySelectorAll('table').forEach(t=>{
+     if(!mq.matches){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
+-    if(t.classList.contains('mstack') || t.dataset.nostack) return;
+-    if(t.dataset.msChecked && t.dataset.msChecked===String(t.rows.length)) return;
+-    t.dataset.msChecked = String(t.rows.length);
++    const bodyRows = t.querySelectorAll('tbody tr');
+     const cols = t.rows.length ? t.rows[t.rows.length-1].cells.length : 0;
+-    if(t.scrollWidth <= t.parentElement.clientWidth + 1 && cols<=3) return;
+-    if(t.scrollWidth <= t.parentElement.clientWidth + 1 && !t.tHead) return;
++    const parentW = t.parentElement ? t.parentElement.clientWidth : 0;
++    const fits = t.scrollWidth <= parentW + 1;
++    // Once a table is stacked it stays stacked, unless it genuinely fits with few columns.
++    const stack = !(fits && (cols<=3 || !t.tHead));
++    if(!stack){ if(t.classList.contains('mstack')) t.classList.remove('mstack'); return; }
+     const heads = t.tHead && t.tHead.rows.length ? Array.from(t.tHead.rows[t.tHead.rows.length-1].cells).map(c=>c.textContent.trim()) : [];
+-    t.querySelectorAll('tbody tr').forEach(r=>{ Array.from(r.cells).forEach((c,i)=>{ if(heads[i] && !c.dataset.label) c.dataset.label = heads[i]; }); });
++    // Every render replaces the cells, so labels have to be reapplied each time. Checking
++    // the first row is cheap and catches a re-render that keeps the same row count, which
++    // a row-count signature missed: wide tables then showed bare numbers on phones with
++    // no way to tell the columns apart.
++    const firstRow = bodyRows[0];
++    const missing = !!(firstRow && heads.length && Array.from(firstRow.cells).some((c,i)=>heads[i] && c.dataset.label!==heads[i]));
++    if(missing) bodyRows.forEach(r=>{ Array.from(r.cells).forEach((c,i)=>{ if(heads[i] && c.dataset.label!==heads[i]) c.dataset.label = heads[i]; }); });
+     t.classList.add('mstack');
+    });
+   } finally { busy = false; }

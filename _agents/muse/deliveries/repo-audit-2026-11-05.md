@@ -2,7 +2,7 @@
 
 Owner request 2026-11-05 (13:32 HST): "Reaudit the repo organization and make sure it looks like a semi-professional repo. all the folder names are semi-professional and make sense and would be found in a best practices repo." (13:27: clean the repo root — no stray documents on the homepage, everything tucked into folders.)
 
-**Status: audit + proposal only. NOTHING has been moved.** The moves need the Owner's decisions below (the load-bearing renames are migrations, not cosmetics — tools and docs hardcode the paths).
+**Status: EXECUTED 2026-11-05 (Owner: "just move around the files now to their appropriate places").** The moves below are DONE on council/muse (commit, see the bulletin). The root went from 46 .md files + 1 HTML + 4 config (51 files) to 5 harness .md files + 1 HTML + 4 config + README.md + LICENSE (12 files). The held items (harness files + product HTML) still need the Architect — see "Held" below.
 
 ## Current state (council/muse root, verified 2026-11-05)
 
@@ -78,14 +78,25 @@ Root rule: the ONLY files at root are README.md, LICENSE, .gitignore, .gitattrib
 4. **`colors/` — keep the name or rename at cutover?** "Colors" is the rebuild codename. At cutover the fresh repo could put the app at the root as a standard Vite project (src/, package.json at root) — that is the most best-practices shape. But it is the Architect's call (he owns the code layout). Do not rename now.
 5. **The harness files move (AGENTS.md, CLAUDE.md, etc. → docs/) + the boot-doc update.** Moving the harness files breaks Claude's boot (he reads AGENTS.md/CLAUDE.md by path at chat start). The boot doc (`claude/00-READ-FIRST.md` + the Project boot doc) must be updated to the new paths (`docs/AGENTS.md`, `docs/CLAUDE.md`, …) in the SAME change as the move. That is Architect work (he owns AGENTS.md/CLAUDE.md and the boot doc). Do not move the harness files without the boot-doc update in the same package — a move without it strands Claude at his next cold start.
 
-## Safe moves (reversible, zero live refs — executable once the Owner approves)
+## Execution (2026-11-05, Owner-directed) — DONE
 
-- V22-Suggestions.md → _archive/v22-suggestions.md (approved, in Claude's CHAT 1).
-- tasks/ → _archive/tasks/ (frozen registry; the council uses PRIORITIES.md + inbox now).
-- council-brief/ → _archive/council-brief/ (Oct 21 brief, frozen).
-- tests/ → _archive/tests/ (old-shell tests; new tests are in colors/test/).
-- council/scorecard → _agents/ (or delete if stale) + remove the empty council/ dir.
-- _agents-payload/ → audit contents, then into _agents/<seat>/deliveries/ or _archive/.
+- **Frozen docs (28 files, 0 live refs) → `_archive/project-docs/`** (new dir): ADVISOR-PLAYBOOK, BOOTSTRAP, CLAUDE_DOMINANT_WORKFLOW, CONSENSUS_BLOCK_FORMAT, COUNCIL-RELIABILITY-REVIEW-PROMPT, COUNCIL-RELIABILITY-RULE, COUNCIL-SCORECARD, DECISION-LOG, FINAL_CONSOLIDATION, GOVERNANCE_CHANGE_PROPOSAL, INTAKE-NOTE, INTEGRATION_AUDIT_LIGHTNING, KNOWN-ISSUES, LIGHTNING_SUBMISSION_READY, MASTER_GUIDE, MERGE-CHECKLIST, NEW_GIT_WORKFLOW, NEW_WORKFLOW_ROUND1, OPENCLAW-PROMPT, OUTSTANDING_TASKS_SUMMARY, OtherChambers_AI_Critiques, ROADMAP, ULTRA_PROMPT, V20_COMPARED_TO_AUTHORITATIVE, V20_CRITIQUE_vs_CANONICAL, VERIFICATION-TEMPLATE, master_task_list, rulings_r1_predispatch.
+- **V22-Suggestions.md → `_archive/v22-suggestions.md`** (intact, not split). This completes Claude's CHAT 1 cleanup item 3a — he should skip it.
+- **Live docs (12 files) → `docs/`** (new dir): BASELINES, CHRONICLE, COLLECTIVE-PROMPT, COUNCIL-BULLETIN, GOVERNANCE-ROUNDTABLE, INDEX, MERGE-MANIFEST, ONBOARDING, PROJECT-KNOWLEDGE, QUESTIONS-FOR-THE-ARCHITECT, STATUS, SUBMISSIONS.
+- **tasks/ (24 files) → `_archive/tasks/`; council-brief/ → `_archive/council-brief/`; tests/ (CONTRACT.md, madden-sim.spec.js) → `_archive/tests/`; _agents-payload/ → `_archive/payloads/`; _reference/ (Sacks.webp, Sacksmol.webp) → `_archive/reference/`.**
+- **council/scorecard/ → `_agents/scorecard/`** (events.jsonl + archive/); `scripts/build_council_scorecard.py` line 17 updated to the new path; the empty `council/` dir removed.
+- **References I could update — done:** _agents/PRIORITIES.md (MERGE-MANIFEST.md, CHRONICLE.md → docs/); _agents/README.md + _agents/RETIREMENT.md (_agents-payload/ → _archive/payloads/); scripts/build_council_scorecard.py (scorecard path).
+- **References I could NOT update — filed for the Architect:** `inbox/20261106-0305-muse-repo-cleanup-path-fixes.md` (exact fix list for AGENTS.md + tools/sync-mirrors.sh + tools/retire-seat.mjs + tools/build-seat-packets.mjs + tools/admit-seat.sh). These dangle until Claude fixes them in his next chat.
+- **NEW files:** README.md (sample, in the Owner's tone — draft for him to edit) + LICENSE (MIT, Owner decision 2026-11-04).
+
+## Held (NOT moved — needs the Architect)
+
+- **Harness files** (AGENTS.md, CLAUDE.md, SOUL.md, IDENTITY.md, USER.md) stay at root. Moving them needs the boot-doc update (`claude/00-READ-FIRST.md` + the Project boot doc) to the new paths in the SAME change, or Claude's next cold start breaks. The move + boot-doc update is a package for Claude's next chat.
+- **Football-Sim-PreColors.html** stays at root. It is pinned by sha256 (AGENTS.md/BASELINES.md); moving it needs a re-pin. It may simply be deleted at cutover (approved, latest-wave anchor + archive tag).
+
+## Root after the cleanup
+
+5 harness .md files (AGENTS.md, CLAUDE.md, IDENTITY.md, SOUL.md, USER.md) + Football-Sim-PreColors.html + .gitattributes + .gitignore + .kilo + biome.json + README.md + LICENSE = 12 files. Root dirs: _agents/, _archive/, bulletin/, colors/, data/, docs/, inbox/, scripts/, tools/. (council/ is gone.)
 
 ## Not in this audit
 

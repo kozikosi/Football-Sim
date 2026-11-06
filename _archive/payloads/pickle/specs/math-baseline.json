@@ -1,0 +1,66 @@
+{
+  "_comment": "Pickle — Round 4 (M-26), compiler-ready merge gate. Accept in one word and drop into tests/math-baseline.json. Every pin below is produced by ONE stated extraction rule (see _extraction_rule) so it is reproducible byte-for-byte.",
+  "_created": "2026-10-20",
+  "_author": "Pickle (S-800-899)",
+  "_reference": {
+    "v20": "NFL Draft Simulator v20 Claude.html",
+    "v20_sha256_prefix": "31b7d61f",
+    "v20_bytes": 649032,
+    "donor": "NFL Draft Simulator.html",
+    "donor_sha256_prefix": "77bb9ed5",
+    "donor_bytes": 650127
+  },
+  "_extraction_rule": {
+    "canonical": "Project rule (DS funcdiff-full.js, agreed council tool): split the single inline <script> on '\\n'; a function's body runs from its column-0 'function NAME(' line through the LAST line whose trim()==='}' before the NEXT column-0 'function' line; join with '\\n' and hash WITHOUT a trailing newline.",
+    "why_stated": "Two earlier pin sets existed and disagreed only because of unit ambiguity: (a) 'first ^} close' truncated multi-line bodies; (b) 'awk | shasum' added a trailing newline, moving every hash. A pin without its extraction rule is not a pin.",
+    "known_artefact": "The canonical rule over-reads a function whose body is followed by a column-0 IIFE/glue statement (no column-0 'function' before the real next function). checkRewards is the one such case here — see _check_rewards_note. Exclude it from a differing-function tally, or scan with the first-'^}' close for that name only.",
+    "verification": "Reproduced against DS's own tool: `node _agents/ds/tools/funcdiff-full.js <v20> <donor> --hashes` prints identical values (cpuPick 3dc9d12f500a / 94b878605b73)."
+  },
+  "_gate_semantics": "exit 1 on any mismatch, naming the symbol. All 8 MATH functions + all 6 CONSTANTS are identical in both parents, so expect_from='identical' and the merged build must equal the single pinned hash. cpuPick is donor-only.",
+  "_supersedes": "The older cpuPick pins a2b8190e98f8 / fa6d752969e4 were TRUNCATED-body pins (first-'^}' close) and are superseded by the full-body pins below. The older math/constant hashes from awk|shasum differed from these only by a trailing newline and are likewise superseded.",
+
+  "math_functions": [
+    { "name": "slotWins",       "hash": "d23c4018c238", "expect_from": "identical", "note": "wins/season added at slot vs 70 baseline" },
+    { "name": "slotWinsPerOvr", "hash": "9a2b49d5a603", "expect_from": "identical", "note": "marginal wins per +1 OVR, cached" },
+    { "name": "modelWeights",   "hash": "6d8b83587cc2", "expect_from": "identical", "note": "inverse of slotWinsPerOvr; 0-700 scale" },
+    { "name": "effOvr",         "hash": "4e1cf1a46cae", "expect_from": "identical", "note": "flex-penalty effective OVR" },
+    { "name": "optimalLineup",  "hash": "5e74c957e4c8", "expect_from": "identical", "note": "Hungarian max-wins slot assignment" },
+    { "name": "matchupModel",   "hash": "774cfe2073cc", "expect_from": "identical", "note": "expected points from unit ratings + plan" },
+    { "name": "simulateGame",   "hash": "0148887cea42", "expect_from": "identical", "note": "realises yards/TOs/sacks from the model" },
+    { "name": "teamRatings",    "hash": "4d2cdcc5d8f5", "expect_from": "identical", "note": "nine unit ratings from the lineup" }
+  ],
+
+  "cpu_pick": {
+    "name": "cpuPick",
+    "hash": "94b878605b73",
+    "expect_from": "donor",
+    "reject": "3dc9d12f500a",
+    "spans": { "v20": "1368-1395", "donor": "1342-1384" },
+    "note": "DONOR is the keep target: curRound/topAvail/ovrFloor + first-sight posBest gate (rounds <=3) + floor-checked bounded miss (reach = 3 + min(9, ...)). v20's 3dc9d12f500a has no floors and an unbounded miss up to 92 deep. Full-body pins; the old a2b8190e98f8 / fa6d752969e4 were truncated-body pins and are void."
+  },
+
+  "constants": [
+    { "name": "DEFAULT_WEIGHTS",    "hash": "2d56789ac040", "expect_from": "identical" },
+    { "name": "FLEX",               "hash": "e0166584b07b", "expect_from": "identical" },
+    { "name": "NATURAL_SLOT_MAP",   "hash": "b2cf069e96f3", "expect_from": "identical" },
+    { "name": "POINTS_PER_WIN",     "hash": "c4bd184b1fba", "expect_from": "identical", "note": "= 32.5; declaration line 4756 in v20" },
+    { "name": "SEASON_RECORD_CAPS", "hash": "f006a6b1e918", "expect_from": "identical" },
+    { "name": "RATING_SPECS",       "hash": "bfe71dc9d863", "expect_from": "identical" }
+  ],
+
+  "_constants_extraction": "A constant's pin is the sha256 of its FIRST declaration line (`grep -m1 '^const NAME'`), trailing newline stripped, whitespace NOT normalised (byte-exact as written).",
+
+  "_also_protected_not_hashed_here": [
+    "MC and PLAN_K are named as protected in AGENTS.md but are single-line consts inside the math region; the 8 functions above already depend on them, so a change to either would move matchupModel/simulateGame's hash. Add them as direct pins if the Architect wants: MC = {rb:0.0249,...} (v20:2046), PLAN_K = {kRun:1.4,...} (v20:2009)."
+  ],
+
+  "_assertion_sketch": "for each entry: extract the symbol's body by _extraction_rule, sha256 (no trailing newline), compare to pin; on mismatch print 'MATH GATE FAIL <name>: <got> != <pin>' and exit 1. cpuPick compares against the donor hash and additionally fails if it equals the v20 reject hash.",
+
+  "_check_rewards_note": "checkRewards is NOT a real diff: its TRUE body (first-'^}' close) is identical both parents — v20 6381-6408 = donor 6430-6457 = 0a000ce52783. Under the canonical rule its span over-reads the adjacent column-0 `#glue` phone IIFE (v20 6409-6432 / donor 6458-6488), and THOSE glue blocks differ, which is why a canonical-rule scan lists checkRewards as 'differing' (11da3c4e25c6 / 86cf4a62c2cc). It is excluded from the pin set and from the 17-count; the glue block is handled on the architecture surface, not here.",
+
+  "_cross_refs": {
+    "full_body_run": "409 v20 / 412 donor; 408 common; 390 identical; 17 REAL function diffs (canonical-rule scan shows 18 = the 17 + checkRewards artefact); v20-only updateStepper; donor-only goSeason/meetingInfo/meetingTagText/seasonToast.",
+    "the_17": "buildDefenseDetail, cpuPick, dramaticEnding, finishDraft2, fitNoteHTML, generateGameSummary, matchupTagHTML, playByPlay, render100, renderDraftBoard2, renderDraftResults, renderGuideHTML, renderPlayoffsView, renderSeasonTab, renderSeasonTabInner, setActiveTab, turnoverParagraph",
+    "M-25_render100_verdict": "grep rWeights = 1 in v20, 0 in donor; donor render100 (canonical pin v20 1ea6e8414397 / donor cc1016eacc78) is the crash fix candidate."
+  }
+}
