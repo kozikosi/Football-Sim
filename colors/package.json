@@ -7,7 +7,9 @@
     "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
     "build": "vite build",
     "dev": "vite",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "tsc:check": "node tools/tsc-baseline.mjs",
+    "tsc:ratchet": "node tools/tsc-baseline.mjs --write"
   },
   "dependencies": {
     "esbuild": "^0.28.2",

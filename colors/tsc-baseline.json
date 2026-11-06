@@ -1,0 +1,29 @@
+{
+  "total": 298,
+  "files": {
+    "src/core/hash.ts": 7,
+    "src/core/hungarian.ts": 15,
+    "src/core/ids.ts": 2,
+    "src/core/rng.ts": 1,
+    "src/sports/nfl/app/legacy.ts": 2,
+    "src/sports/nfl/engine/boxscore.ts": 26,
+    "src/sports/nfl/engine/draft.ts": 17,
+    "src/sports/nfl/engine/drives.ts": 37,
+    "src/sports/nfl/engine/goneodds.ts": 2,
+    "src/sports/nfl/engine/kicking.ts": 3,
+    "src/sports/nfl/engine/lineup.ts": 14,
+    "src/sports/nfl/engine/margin.ts": 10,
+    "src/sports/nfl/engine/plans.ts": 1,
+    "src/sports/nfl/engine/playerids.ts": 11,
+    "src/sports/nfl/engine/players.ts": 9,
+    "src/sports/nfl/engine/ratings.ts": 1,
+    "src/sports/nfl/engine/recap.ts": 25,
+    "src/sports/nfl/engine/schedule.ts": 32,
+    "src/sports/nfl/engine/season.ts": 24,
+    "src/sports/nfl/engine/seasonrun.ts": 27,
+    "src/sports/nfl/engine/standings.ts": 19,
+    "src/sports/nfl/view/draftBoard.ts": 8,
+    "src/sports/nfl/view/roster.ts": 2,
+    "src/sports/nfl/view/theme.ts": 3
+  }
+}
