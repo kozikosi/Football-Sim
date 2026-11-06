@@ -6,19 +6,20 @@
 
 ## This session (2026-11-06, council.mjs v8 via /tmp/council.mjs)
 - START-OF-CHAT followed: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane/PRIORITIES.
-- MUSE briefing (§1–§5) taken as the open work; PRIORITIES.md does NOT list P-275–P-278 (ends at P-218/E-212) — IDs taken from MUSE; queue gap noted in each review.
-- REVIEW P-275 (Z.ai w75 M1–M15 dispositions) → VERDICT ok. inbox/20261106-0500-vl-P-275-review.md. Verified: w75 = latest wave on gh-pages by listing; md5 9f990ab74fb0acba9e55b82395e60647; 1,826,882 B (byte-count flag RESOLVED); M1–M15 dispositions checked; M6 stale refs confirmed still present on gh-pages w74 (80/25/10 in CALIBRATION.md l3/l11/l28, FINDINGS-P-250.md, timeline.md l33); 284 pass @ 425f72a matches NOW.md; deno not installed so w75 battery (134/0) and P-276 repro not executable.
-- REVIEW P-276 (w75 reproduction M14 + two-cluster split) → VERDICT ok. inbox/20261106-0510-vl-P-276-review.md. Baseline commit 425f72a VERIFIED exists. CSVs (§5) VERIFIED on council/base (85,008 B / 489 B), absent on gh-pages → reproduction not blocked on data; blocked on tooling (no deno). VL's N=100 sampling-noise hypothesis SUPPORTED by CALIBRATION.md ±8pp CI at N=100 (p=0.5).
-- REVIEW P-277 (apply M6 stale-reference dispositions to w74 docs) → VERDICT improved. inbox/20261106-0520-vl-P-277-review.md. Exact line replacements listed (CALIBRATION.md l3/l11/l28, FINDINGS-P-250.md, timeline.md l33); test-count pinning 288/286/284 (284 corroborated by NOW.md).
-- REVIEW P-278 (three veto points) → VERDICT ok + flag. inbox/20261106-0530-vl-P-278-review.md. (a) DECIDED ok (FS −10, FLEX retired — build report P16); (b) PENDING Owner's call (40% sample floor + TRUE OVR <80 — build report P11); (c) DECIDED ok + flag (build report veto #2 card delta text vs decision to remove deltas from visible cards — needs Architect reconciliation; expanded-pool once-only median not byte-checkable locally).
-- REVIEW Claude's latest → VERDICT ok. inbox/20261106-0540-vl-claude-latest-review.md. NOW.md 3f976d8f VERIFIED (P-262 done, NEXT=tsconfig then cleanups); tsconfig b27571ae VERIFIED byte-identical to gh-pages w74/04 version (only tsconfig on gh-pages); tsc 305 errors/0 config REPORTED only (tsc not installed, not a devDep); cleanups c577fb2f VERIFIED (V22 move 100% byte-identical; AGENTS.md Figma NOT available + 2 path refs updated); RECOMMEND add typescript+vite as devDependencies (Owner decides).
-- Council-home answer (Option A) ALREADY committed+pushed (5dc6ae39 = origin/council/vl HEAD) — lane was stale on this; now corrected.
-- deno NOT installed locally → cannot run w75 battery (`verify_w75.js`) or P-276 reproduction commands. tsc NOT installed → cannot re-run type counts.
+- Took P-282 (P1, Owner-directed, MUSE 2026-11-06): WR2 verification + weights reevaluation + test new tools + respond to Claude/Z.ai proposals. Deliverable: `inbox/20261106-103107-vl-P-282-test-weights-tools-proposals.md`.
+- P-282 Part 1 (WR2): de60e05 fix (2026-11-03, Owner-approved) VERIFIED present in current engine code on `origin/architect/engine-and-seats` (`colors/src/sports/nfl/engine/specs.ts` rec.WR2 0.91→0.70, WR3 0.53→0.45; `slots.ts` WR1 470→525, WR2 330→295; ratio 0.562). Discrepancy resolved at table level (0.562 inside 0.4–0.6 salary band). Spec knob ratio 0.707 above band. Recommendation: HOLD spec WR2 0.70; do not cut toward ~0.50 until a trustworthy P-224 positional sweep exists (it does not — P-224 is standing "invent new engine tests"; my 80→99 probes were below the PTS_NOISE floor and are reported as probes, not findings). This worktree's `colors/` snapshot predates de60e05 (still shows WR2 0.91).
+- P-282 Part 2 (broader weights): full 32-spot table reviewed; flags (INFERRED, salary context): K 200 (rank 22 vs ~29–31 salary), RB1 235 (rank 21 vs ~25–27), TE1 295 (rank 12 vs ~16–18); DL5 145 impact unverified. Consistent: QB/WR1/DE1 top-3; CB/DT/DE/OT/OL/LB/S sensible.
+- P-282 Part 3 (new tools): Z.ai cutover batteries artifact VERIFIED present on gh-pages `z-post-blue-cutover-2026-11-06 w77/` (accept.js, w76.js, pancakes.stub.js, contract.json; 84 assertions V0–V17; w76.html md5 4f363452… = spec exact; 1,830,164 B). Live 84/0/0 reference run NOT executable here (playwright not requireable, no Chromium) → environment gap. Claude tsc baseline gate VERIFIED structurally (`colors/tsc-baseline.json` total 176/24; `tsc-baseline.mjs` check fails on growth, --write refuses to raise); live run NOT executable here (tsc/typescript not installed) → environment gap. cb5e0427 (298→176 ratchet) is a dangling commit, not on a fetched branch.
+- P-282 Part 4 (proposals): Claude seat stale-lane check proposal → VERDICT ok (LANE-CHECK/RULES-CHECK/SEAT-STATE; END-OF-CHAT-refuses-unless-tip sound). PROJECT-KNOWLEDGE.md: recommend do NOT add to RULES-CHECK (single-writer current-facts doc, not a seat-facing rule). Z.ai cutover batteries → VERDICT ok; five flag views (veto-b floor+TRUE OVR, twin header, Cinzel caps, SEASON RATING label, explainer's home) → all VERDICT ok, measured, decisions left to Owner.
+
+## Earlier session (2026-11-06, MUSE briefing) — retained for context
+- REVIEW P-275 → ok; P-276 → ok; P-277 → improved; P-278 → ok + flag; Claude latest → ok. (inbox/20261106-0500..0540)
+- Council-home answer (Option A) committed+pushed (5dc6ae39 = origin/council/vl HEAD).
+- deno NOT installed locally (cannot run w75 battery / P-276 repro). tsc NOT installed (cannot re-run type counts).
 
 ## Queue remaining
-- P-275–P-278 need to be added to PRIORITIES.md by Architect/Owner (queue gap noted).
-- P-070, P-127, P-132, P-133, P-188 remain (P-275–P-278 take precedence this session per MUSE).
+- P-275–P-282 need to be in PRIORITIES.md (P-282 is on origin/council/muse; not on council/base). P-070, P-127, P-132, P-133, P-188 remain.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** to be set on commit of this session's review files + this lane file.
+- **HEAD:** to be set on commit of this session's inbox + lane file.
