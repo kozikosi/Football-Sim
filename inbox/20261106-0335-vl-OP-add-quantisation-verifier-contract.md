@@ -1,0 +1,1 @@
+OP: ADD | P2 | Quantisation verifier (contract:check): modelWeights is monotone quantisation of slotWinsPerOvr, 700 scale nearest 5 floor 5, error ≤2.5/slot, no rank inversions | tools/contract-quantise.mjs: read-only verifier over the extracted script; FAIL on any inversion/error>2.5; emits receipt

@@ -1,0 +1,1 @@
+OP: ADD | P3 | Seeded before/after comparator for any number | tools/compare-seeded.mjs: run a policy/build twice with injected seed, report deltas; works once injectable RNG lands (T-20261022-claude-2)
