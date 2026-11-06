@@ -4,27 +4,21 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## This session (2026-11-05, council.mjs v8 via /private/tmp/council.mjs)
-- START-OF-CHAT followed: `git fetch -q origin`, sync base (1b91f50e, up to date), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane; muse council-home bulletin `20261105-1804-muse.md` fetched from origin/council/muse (NOT in origin/council/base — lives on council/muse branch cf8dfbb).
-- Queue work taken: REVIEW P-037 (Beam 390px mobile audit) → VERDICT ok, FOUND 3 NEW 3; all 15 selectors verified against Football-Sim-PreColors.html sha256 40233d6be00e987c (grep receipts in bulletin). inbox/20261105-2130-vl-P-037-review.md.
-- REVIEW P-038 (math-core hash gate re-measurement) → VERDICT ok, FOUND 1 NEW 1; all 8 function hashes + build hash/size + 56 Math.random() + DEFAULT_WEIGHTS/modelWeights/slotWinsPerOvr reproduced exactly; shared hash dc54e4210ce1 = awk first-`}` truncation artifact; MATH_CORE_HASH_GATE.md absent from repo. inbox/20261105-2140-vl-P-038-review.md.
-- P-036 already reviewed by VL (ababb424, inbox/0820-11-05-vl-P-036-review.md) — not re-reviewed (one review per seat; `next` lists it only because that file lacks REVIEW-OF).
-- Bulletin: bulletin/20261105-2136-vl.md (one entry per session; RESULT lines for every command run). Committed + pushed.
-- Branch state: ba53a74e pushed, verified via `git ls-remote origin council/vl`. Worktree clean (`node tools/preserve.mjs check`: vl = 0 dirty, 0 OK; exit=1 only from other seats' trees, untouched per AGENTS.md §4.4).
-- `node tools/check-tasks.mjs`: 7 items, 0 problems (all T-20261022-claude-*, Architect-owned, accepted).
+## This session (2026-11-06, council.mjs v8 via /tmp/council.mjs)
+- START-OF-CHAT followed: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane/PRIORITIES.
+- MUSE briefing (§1–§5) taken as the open work; PRIORITIES.md does NOT list P-275–P-278 (ends at P-218/E-212) — IDs taken from MUSE; queue gap noted in each review.
+- REVIEW P-275 (Z.ai w75 M1–M15 dispositions) → VERDICT ok. inbox/20261106-0500-vl-P-275-review.md. Verified: w75 = latest wave on gh-pages by listing; md5 9f990ab74fb0acba9e55b82395e60647; 1,826,882 B (byte-count flag RESOLVED); M1–M15 dispositions checked; M6 stale refs confirmed still present on gh-pages w74 (80/25/10 in CALIBRATION.md l3/l11/l28, FINDINGS-P-250.md, timeline.md l33); 284 pass @ 425f72a matches NOW.md; deno not installed so w75 battery (134/0) and P-276 repro not executable.
+- REVIEW P-276 (w75 reproduction M14 + two-cluster split) → VERDICT ok. inbox/20261106-0510-vl-P-276-review.md. Baseline commit 425f72a VERIFIED exists. CSVs (§5) VERIFIED on council/base (85,008 B / 489 B), absent on gh-pages → reproduction not blocked on data; blocked on tooling (no deno). VL's N=100 sampling-noise hypothesis SUPPORTED by CALIBRATION.md ±8pp CI at N=100 (p=0.5).
+- REVIEW P-277 (apply M6 stale-reference dispositions to w74 docs) → VERDICT improved. inbox/20261106-0520-vl-P-277-review.md. Exact line replacements listed (CALIBRATION.md l3/l11/l28, FINDINGS-P-250.md, timeline.md l33); test-count pinning 288/286/284 (284 corroborated by NOW.md).
+- REVIEW P-278 (three veto points) → VERDICT ok + flag. inbox/20261106-0530-vl-P-278-review.md. (a) DECIDED ok (FS −10, FLEX retired — build report P16); (b) PENDING Owner's call (40% sample floor + TRUE OVR <80 — build report P11); (c) DECIDED ok + flag (build report veto #2 card delta text vs decision to remove deltas from visible cards — needs Architect reconciliation; expanded-pool once-only median not byte-checkable locally).
+- REVIEW Claude's latest → VERDICT ok. inbox/20261106-0540-vl-claude-latest-review.md. NOW.md 3f976d8f VERIFIED (P-262 done, NEXT=tsconfig then cleanups); tsconfig b27571ae VERIFIED byte-identical to gh-pages w74/04 version (only tsconfig on gh-pages); tsc 305 errors/0 config REPORTED only (tsc not installed, not a devDep); cleanups c577fb2f VERIFIED (V22 move 100% byte-identical; AGENTS.md Figma NOT available + 2 path refs updated); RECOMMEND add typescript+vite as devDependencies (Owner decides).
+- Council-home answer (Option A) ALREADY committed+pushed (5dc6ae39 = origin/council/vl HEAD) — lane was stale on this; now corrected.
+- deno NOT installed locally → cannot run w75 battery (`verify_w75.js`) or P-276 reproduction commands. tsc NOT installed → cannot re-run type counts.
 
-## Queue remaining (0-done reviews, P2): P-070, P-127, P-132, P-133, P-188 — P-133 (Pre-Colors baseline facts) is a good next take for VL; full receipts needed per review rules.
-
-## Council-home discussion (open, bulletin 20261105-1804-muse.md on council/muse)
-- Cutover decision made (wait for Colors v1, then fresh repo; old repo read-only archive). Options A–E on the table; VL has not yet answered. Answer format: inbox/<UTC>-vl-council-home-discussion.md + note in bulletin; must fetch council/muse and read the actual bulletin first (done for reading; answer not yet filed).
-
-## CODE ANALYSIS RECEIPTS (from this session, all VERIFIED by grep/sha256/wc against Football-Sim-PreColors.html)
-- P-037 selectors all present: #startSeasonBtn l.249-250; #draftTable2 tr repeat(12,1fr) l.261; .stepper li l.257; .filters l.57-59; .bracket-game.bg3 l.144 (1fr 78px 1fr, not 1fr auto); .hero l.256; .footnav l.239; .draftingas l.179-180; .chipbar l.183; .score-line l.281; .viewhead h2 l.258; .panel l.277; .depth-row.dgrid l.299. Generic table{overflow-x} rule not verbatim (closest .panel l.116/287). Step count "17" not statically verifiable (INFERRED).
-- P-038: sha256 40233d6be00e987c / 657486 B; function hashes: slotWins 4b191ab6238d, slotWinsPerOvr b686e04550bd, modelWeights c0023182ddac, effOvr e65b6006831d, optimalLineup 51b55aa8adaf, matchupModel 8e9ae4b8929d, simulateGame 416426ea14c6, teamRatings 0a10fd25614f (beam's awk loop reproduced verbatim); Math.random() = 56; DEFAULT_WEIGHTS l.452 (33 slots); modelWeights quantisation l.460-461; slotWinsPerOvr l.1346-1348 `(slotWins(s,90)-slotWins(s,70))/20`.
-
-## Open questions
-- None blocking. Council-home answer still outstanding.
+## Queue remaining
+- P-275–P-278 need to be added to PRIORITIES.md by Architect/Owner (queue gap noted).
+- P-070, P-127, P-132, P-133, P-188 remain (P-275–P-278 take precedence this session per MUSE).
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** ba53a74e (pushed, verified via git ls-remote) · merge-base with origin/council-base: 1b91f50e
+- **HEAD:** to be set on commit of this session's review files + this lane file.
