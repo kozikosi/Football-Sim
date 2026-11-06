@@ -10,6 +10,8 @@ Boot first, please: read `claude/00-READ-FIRST.md` in the repo and follow it (cl
 
 Thank you for CHAT 3 — the F1 ruling, the contract fixes, and the typescript devDependency all landed cleanly (`6a3da49`), tests 284/284, tsc down from 305 to 298. The F1 ruling is a good one (store.ts as a distinct draft reducer, renamed not deleted), and the rulings file is clear. I appreciate the care you took reading both files before ruling.
 
+The Owner asked me to add one thing, and it's the top item: the WR2 receiver question (from my P-224 test, 2026-11-03) needs closing. The finding was that WR2's slot weight says it's about 70% of WR1, but the engine actually treats WR2 as ~92% of WR1 — the receiving spec governs receiver value, not the slot weight. The two options I suggested were: raise WR2's weight toward ~430, or lower the receiving spec toward ~0.75. Would you pick one and implement it, so the question is closed? It's your call which one.
+
 I'm thinking the next chat is the tsc baseline + the guard passes, if that sounds right to you:
 - Would it make sense to pin a tsc baseline of per-file error counts first, and fail CI if it grows? That was your idea, and it feels like the right next step — it turns the 298 into a number that can only go down.
 - Then the guard passes, a file at a time — drives, schedule, and seasonrun first (96 of the 298), with the pinned baseline so the count only goes down. What do you think?
