@@ -31,30 +31,36 @@ Owner request 2026-11-05 (13:32 HST): "Reaudit the repo organization and make su
 | `tools/` | ~20 files (council.mjs, next.mjs, council-sync.mjs, preserve.mjs, lint.mjs, etc.) | KEEP as-is. Best-practices repos have tools/. |
 | `colors/` | package.json, src, test | The Svelte 5 + Vite app. KEEP (the name "colors" is the rebuild codename; at cutover the fresh repo may put the app at the root as a standard Vite project — the Architect's call). |
 
-## Root .md files — three buckets
+## Root files — the Owner's rule (revised 2026-11-05 16:48 HST): NO LOOSE FILES. Everything in folders.
 
-- **KEEP at root (harness operating set + product):** AGENTS.md, CLAUDE.md, SOUL.md, IDENTITY.md, USER.md, ONBOARDING.md, biome.json, .gitattributes, .gitignore, .kilo, Football-Sim-PreColors.html. (Claude reads AGENTS.md/CLAUDE.md at chat start by path; moving them breaks his boot unless the boot doc is updated — the Architect's job.)
-- **MOVE to docs/ (live docs, referenced):** CHRONICLE.md, COUNCIL-BULLETIN.md, SUBMISSIONS.md, STATUS.md, INDEX.md, BASELINES.md, MERGE-MANIFEST.md, COLLECTIVE-PROMPT.md, PROJECT-KNOWLEDGE.md, DECISION-LOG.md, and the other live-but-referenced docs. This needs a reference sweep first (AGENTS.md, tools/, PRIORITIES.md, COUNCIL.md reference them by path) + a coordinated update. The Architect owns AGENTS.md/tools/, so this is a package, not a solo move.
+The Owner's rule is absolute for documents: no loose files at the root. The ONLY files that stay at root are the standard root files that best-practices repos (and the tools themselves) require there — README.md, LICENSE, .gitignore, .gitattributes, biome.json, .kilo. (README.md is the homepage GitHub renders; LICENSE is the root license; .gitignore/.gitattributes/biome.json/.kilo are config the tools read from the root. Every best-practices repo has these at root — they are the root's own files, not "loose" documents.) Everything else goes into a folder.
+
+- **MOVE to docs/ (the harness operating set + live docs):** AGENTS.md, CLAUDE.md, SOUL.md, IDENTITY.md, USER.md, ONBOARDING.md — the harness files Claude and every seat read at chat start — go into `docs/` (with the live docs: CHRONICLE.md, COUNCIL-BULLETIN.md, SUBMISSIONS.md, STATUS.md, INDEX.md, BASELINES.md, MERGE-MANIFEST.md, COLLECTIVE-PROMPT.md, PROJECT-KNOWLEDGE.md, DECISION-LOG.md, and the other live-but-referenced docs). **This breaks Claude's boot unless the boot doc is updated** — he reads AGENTS.md/CLAUDE.md by path at chat start. The boot doc (`claude/00-READ-FIRST.md` + the Project boot doc) must be updated to the new paths (`docs/AGENTS.md`, `docs/CLAUDE.md`, …). That is Architect work (he owns AGENTS.md/CLAUDE.md and the boot doc), done as a package with the move. This also needs a reference sweep first (AGENTS.md, tools/, PRIORITIES.md, COUNCIL.md reference the docs by path) + a coordinated update.
 - **MOVE to _archive/ (frozen Oct-era, zero live references):** V22-Suggestions.md (already approved — move intact, do not split), master_task_list.md, rulings_r1_predispatch.md, GOVERNANCE-ROUNDTABLE.md, GOVERNANCE_CHANGE_PROPOSAL.md, NEW_WORKFLOW_ROUND1.md, OPENCLAW-PROMPT.md, and the other frozen-batch files (verified: all live-file references are 0 except V22's two tombstone refs in AGENTS.md + retire-seat.mjs). The V22 move is in Claude's CHAT 1 (approved, queued).
+- **MOVE the product file to builds/ (or delete at cutover):** Football-Sim-PreColors.html (657,486 B, pinned by AGENTS.md/BASELINES.md) goes into `builds/` — it is a build artifact, not a document. It is pinned by sha256, so moving it needs re-pinning (Architect work). Note: the old shell is approved for deletion at cutover (latest-wave anchor + archive tag), so this file may simply be deleted then instead of moved. Do not move it now without the re-pin.
 
 ## Target structure (best-practices, for the fresh repo at cutover)
 
 ```
 76-pancakes/                  # fresh repo (Owner confirms the name at cutover)
-├── README.md                 # NEW — the homepage: what it is, how to run it, 76 Pancakes brand, how to contribute
-├── LICENSE                   # NEW — MIT (Owner decision 2026-11-04)
+├── README.md                 # the homepage (GitHub renders it) — NEW
+├── LICENSE                   # MIT (Owner decision 2026-11-04) — NEW
+├── .gitignore .gitattributes # config (tools read them from root)
+├── biome.json .kilo          # config (tools read them from root)
 ├── .github/                  # NEW — workflows (CI-gate), issue/PR templates
-├── AGENTS.md CLAUDE.md ...   # harness operating set (kept at root — Claude reads them by path)
-├── biome.json .gitignore     # config
+├── builds/                   # the current verified build (PreColors HTML, re-pinned) — or deleted at cutover
 ├── colors/                   # the Svelte 5 + Vite app (or the app at root as a standard Vite project — Architect's call)
 │   ├── package.json src test
 ├── data/                     # the dataset (madden27-ratings.csv, 1,941 players)
-├── docs/                     # NEW — the live docs (CHRONICLE, COUNCIL-BULLETIN, SUBMISSIONS, STATUS, INDEX, BASELINES, ...)
+├── docs/                     # ALL documents — the harness operating set (AGENTS.md, CLAUDE.md, SOUL.md, IDENTITY.md,
+│                             # USER.md, ONBOARDING.md) + the live docs (CHRONICLE, COUNCIL-BULLETIN, SUBMISSIONS,
+│                             # STATUS, INDEX, BASELINES, MERGE-MANIFEST, ...) — NO loose .md files at root
 ├── tools/                    # council tooling (council.mjs, next.mjs, preserve.mjs, lint.mjs, ...)
 ├── _agents/                  # council system (see below — rename question)
 ├── inbox/ bulletin/          # council message board (see below — rename question)
 └── _archive/                 # frozen history (V22-Suggestions, master_task_list, tasks/, tests/, council-brief/, ...)
 ```
+Root rule: the ONLY files at root are README.md, LICENSE, .gitignore, .gitattributes, biome.json, .kilo. Everything else — every .md, every HTML — lives in a folder.
 
 ## Decisions needed (Owner — these are the load-bearing ones)
 
@@ -70,6 +76,7 @@ Owner request 2026-11-05 (13:32 HST): "Reaudit the repo organization and make su
    My recommendation: **(b) wait for cutover** (the fresh repo is the clean root; cleaning the old branches is churn). But do the **safe, reversible** moves on council/muse now if the Owner wants visible progress: the V22 → _archive move (already approved, in Claude's CHAT 1) + tasks/ → _archive/ + council-brief/ → _archive/ (both frozen, zero live refs).
 3. **README.md + LICENSE + .github/.** These are NEW files (they do not exist on any branch). The README is a portfolio surface (the Owner's pitch is "I managed AI agents building a complex product" — the README should tell that story). The LICENSE is MIT (decided). The .github workflows are the CI-gate (the Architect picks the design). Who writes the README? The Owner said the interview-ready README is deferred late-stage work he will handle or narrate himself. So: do NOT write the README now (defer to the Owner); DO add the LICENSE (MIT, one-line, no decision needed) and the .github CI workflow (once the Architect picks the CI-gate design).
 4. **`colors/` — keep the name or rename at cutover?** "Colors" is the rebuild codename. At cutover the fresh repo could put the app at the root as a standard Vite project (src/, package.json at root) — that is the most best-practices shape. But it is the Architect's call (he owns the code layout). Do not rename now.
+5. **The harness files move (AGENTS.md, CLAUDE.md, etc. → docs/) + the boot-doc update.** Moving the harness files breaks Claude's boot (he reads AGENTS.md/CLAUDE.md by path at chat start). The boot doc (`claude/00-READ-FIRST.md` + the Project boot doc) must be updated to the new paths (`docs/AGENTS.md`, `docs/CLAUDE.md`, …) in the SAME change as the move. That is Architect work (he owns AGENTS.md/CLAUDE.md and the boot doc). Do not move the harness files without the boot-doc update in the same package — a move without it strands Claude at his next cold start.
 
 ## Safe moves (reversible, zero live refs — executable once the Owner approves)
 
