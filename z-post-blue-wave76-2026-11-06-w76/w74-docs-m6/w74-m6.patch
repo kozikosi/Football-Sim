@@ -1,0 +1,239 @@
+--- a/w74/README.md
++++ b/w74/README.md
+@@ -2,7 +2,9 @@
+ 
+ **Lane:** Z.ai · **Wave:** w74 · **Base:** branch `architect/engine-and-seats` at `425f72a` (plus origin/main and origin/gh-pages for the verification items). **Delivery:** files and zips only — nothing lands without Kosi's review and push; every folder carries its own README with what needs ruling.
+ 
+-**The session in one paragraph:** the second architecture review (01) found the architecture sound with the hydration rule buildable against four named gaps; the N1 exhibit (02) and the Lab package (03) delivered the conversion-curve measurement — **the decisive finding: the three drafter policies separate decisively, but the proposed CPU-draft lever is FLAT and cannot reach the Owner's 80/25/10; no parameter is proposed, two follow-ups are pre-registered for ruling.** The code drafts (04–07) closed every "not written yet" in Claude's 551af1b reply — tsconfig + type-check (contracts clean, engine debt named), F1/F3/F5–F10, FeedEvent, hydration, DatasetLoader rework, the Draft Board slice END-TO-END (**builds at 23.9 KB gzip; 2/2 Playwright**), feed UI, brag/seed-card/seed-share/read-only sharing, a11y boot, the service worker (**airplane-mode offline test 3/3 — the Vary:Origin bug found, fixed, documented**), and the seven acceptance criteria as running specs (**9/9**). The proposals (08) and verifications (09) closed the cross-checks — including two review findings: Muse's cited patch commit is EMPTY, and the retire OPs were already Owner-applied (my seconds are proof-receipts).
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
++**The session in one paragraph:** the second architecture review (01) found the architecture sound with the hydration rule buildable against four named gaps; the N1 exhibit (02) and the Lab package (03) delivered the conversion-curve measurement — **the decisive finding: the three drafter policies separate decisively, but the proposed CPU-draft lever is FLAT and cannot reach the Owner's 90/35/25 (+ P(20-0) ≈ 1–2 %); no parameter is proposed, two follow-ups are pre-registered for ruling.** The code drafts (04–07) closed every "not written yet" in Claude's 551af1b reply — tsconfig + type-check (contracts clean, engine debt named), F1/F3/F5–F10, FeedEvent, hydration, DatasetLoader rework, the Draft Board slice END-TO-END (**builds at 23.9 KB gzip; 2/2 Playwright**), feed UI, brag/seed-card/seed-share/read-only sharing, a11y boot, the service worker (**airplane-mode offline test 3/3 — the Vary:Origin bug found, fixed, documented**), and the seven acceptance criteria as running specs (**9/9**). The proposals (08) and verifications (09) closed the cross-checks — including two review findings: Muse's cited patch commit is EMPTY, and the retire OPs were already Owner-applied (my seconds are proof-receipts).
+ 
+ ## The folders
+ 
+@@ -21,7 +23,7 @@
+ ## The rulings wanted, consolidated (each folder's README details its own)
+ 
+ 1. **F1** — appstate.ts is the only AppState (store.ts renamed DraftStore*) — gates the pattern freeze.
+-2. **Top-30 picker semantics** — random-within-30 (today's 48.5%) vs best-value-with-top-30-cap — decides whether 80/25/10 is a policy reading or an engine-tuning problem.
++2. **Top-30 picker semantics** — random-within-30 (today's 48.5%) vs best-value-with-top-30-cap — decides whether 90/35/25 (+ P(20-0) ≈ 1–2 %) is a policy reading or an engine-tuning problem.
+ 3. **F11/DatasetLoader** — empty-state + import path (drafted) vs fictional-with-warning.
+ 4. **F14/F15/F16** — htd/atd required; week kind never stores a finished season; the two-directional scores-fit definition (drafted as code).
+ 5. **F6** — SaveStatus carries `key` (my pick) vs global-on-purpose.
+
+--- a/w74/01-w74-review/README.md
++++ b/w74/01-w74-review/README.md
+@@ -1,8 +1,10 @@
+ # 01-w74-review — Second architecture review of Claude's 551af1b reply
+ 
+-**What this is:** Z.ai's w74 review — the full reply (not just the types) checked against the branch tip `425f72a`, Kosi's three decided answers (real names · Svelte · 80/25/10), and my w72/w73 records.
++**What this is:** Z.ai's w74 review — the full reply (not just the types) checked against the branch tip `425f72a`, Kosi's three decided answers (real names · Svelte · the top-30 target — 80/25/10 as decided that day, retargeted 90/35/25 + P(20-0) ≈ 1–2 % on 6 Nov, w76 M6), and my w72/w73 records.
+ 
+-**Applies to:** branch `architect/engine-and-seats` (verified at `425f72a`). No repo files changed by this item — it is a review document. The two receipts it relies on that a reviewer can re-run:
++**Applies to:** branch `architect/engine-and-seats` (verified at `425f72a`). No repo files changed by this item — it is a review document.
++
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2). The two receipts it relies on that a reviewer can re-run:
+ - `cd colors && npm test` → 284/284 (re-run this session in a fresh sandbox).
+ - `git show origin/gh-pages:Football-Sim-Z-post-blue-w70.html | grep -c Math.random` → 43 lines / 62 occurrences.
+ 
+
+--- a/w74/02-n1-drafts/README.md
++++ b/w74/02-n1-drafts/README.md
+@@ -4,6 +4,8 @@
+ 
+ **Applies to:** the fresh public repo at cutover — paths `docs/council/*` and `tools/council-metrics.mjs`, `tools/council-telemetry.mjs`. Nothing here edits the Architect's branch; it is exhibit content + two generator scripts.
+ 
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
+ ## Contents
+ 
+ - `docs/council/README.md` — what the council is, the loop diagram, the three laws, the decision ledger (owner ruling → council review → build) with five real instances.
+
+--- a/w74/02-n1-drafts/docs/council/timeline.md
++++ b/w74/02-n1-drafts/docs/council/timeline.md
+@@ -4,6 +4,8 @@
+ (Executor waves w52–w55 ship single-file product builds on the seat's branch; from w70
+ the shell is a frozen parity anchor and the work moves to the Colors rebuild.)
+ 
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
+ | When | Event | Receipt |
+ |---|---|---|
+ | 2026-10-24 | Executor seat first seen; Z-post-blue prototype work begins (12 build waves, verify suites v8–v11) | lane file, `_agents/zai/ZAI.md` |
+@@ -30,7 +32,7 @@
+ | 2026-11-05 | Outcome Lab harness lands in-tree (`colors/tools/outcomelab/`, P-252) | commit `a824d1e` |
+ | 2026-11-05 | Vite + Svelte 5 runes build verified in-tree (P-253) | commit `425f72a` |
+ | 2026-11-05 | w73 ship — Draft Board pass + Fix-It Board (shell track); 551af1b contract review: 12 findings, verdict buildable | md5 `8b72bf72…`, 1,818,133 B; review `20261105-zai-contract-review-551af1b.md` |
+-| 2026-11-06 | Owner decides: real names · Svelte confirmed · top-30 target 80/25/10 | this session's context (w74) |
++| 2026-11-06 | Owner decides: real names · Svelte confirmed · top-30 target 90/35/25 + P(20-0) ≈ 1–2 % (retargeted from 80/25/10, w76 M6) | this session's context (w74) |
+ | 2026-11-06 | w74: second architecture review; N1 exhibit drafted; calibration curve measured at N=1,000; tsconfig; hydration + fallback drafts | this delivery (`01-`, `02-`, `03-`, `04-` folders) |
+ 
+ Test-count milestones for the record: 251 (E1) → 255 (E4) → 261 (E5) → 264 (step 9) →
+
+--- a/w74/03-lab-calibration/README.md
++++ b/w74/03-lab-calibration/README.md
+@@ -1,6 +1,6 @@
+ # 03-lab-calibration — P-252 closeout, P-255 methodology, P-250 measurement + tuning finding, P-256 goldens, streaming, public page (w74 item 3a–3h)
+ 
+-**What this is:** the Lab work, measured and reported. Headline (P-250): **the three drafter policies separate decisively, but the proposed tuning lever is flat** — the CPU-draft spread cannot reach 80/25/10; no parameter value is proposed (the pre-registered rule stops the tuning); two follow-up experiments are pre-registered and need a ruling. Full read in **FINDINGS-P-250.md**.
++**What this is:** the Lab work, measured and reported. Headline (P-250): **the three drafter policies separate decisively, but the proposed tuning lever is flat** — the CPU-draft spread cannot reach 90/35/25 (+ P(20-0) ≈ 1–2 %); no parameter value is proposed (the pre-registered rule stops the tuning); two follow-up experiments are pre-registered and need a ruling. Full read in **FINDINGS-P-250.md**.
+ 
+ **Verified receipts:**
+ 
+@@ -15,7 +15,7 @@
+ | 3g | `streaming-sweep-patch.md` | `--stream` for the sweep harness: per-season jsonl, per-mode partial results, progress lines; smoke-run (jsonl grew during the run), default path re-verified byte-stable after |
+ | 3h | `outcomelab-page.html` | the Lab as a static public page: embedded VERIFIED data, three sliders move the Owner's bars, gaps recompute live, the flat tuning table below the curve; no server, no build |
+ 
+-**Chart:** `calibration-curve.png` (also SVG at `02-n1-drafts/docs/council/calibration-curve.svg`, where CALIBRATION.md points) — bands vs measured as ONE chart (DS's idea): three policies × three outcomes with 95% CIs, the Owner's 80/25/10 rungs over the top-30 group, the +31.5 pp gap called out.
++**Chart:** `calibration-curve.png` (also SVG at `02-n1-drafts/docs/council/calibration-curve.svg`, where CALIBRATION.md points) — bands vs measured as ONE chart (DS's idea): three policies × three outcomes with 95% CIs, the Owner's 5-Nov target rungs (80/25/10) over the top-30 group, the +31.5 pp gap called out — the chart keeps its 5-Nov bands (a generated artifact); the retargeted rungs are 90/35/25 + P(20-0) ≈ 1–2 % (w76 M6).
+ 
+ **Needs ruling (from the findings):** (1) top-30 picker semantics — random-within-30 (today) vs best-value-with-cap; (2) whether to pre-register the noiseMax sweep if (1) still misses; (3) the CPU-draft lever is DEAD for the outcome targets AND for parity — "more losers at the bottom" needs its own lever, pre-registered separately if the Owner wants it explored.
+ 
+
+--- a/w74/03-lab-calibration/CALIBRATION.md
++++ b/w74/03-lab-calibration/CALIBRATION.md
+@@ -1,14 +1,14 @@
+ # CALIBRATION.md — the conversion-curve methodology (P-255)
+ 
+-**Owner target (5 Nov 2026, verbatim ruling):** for a user consistently picking within the top 30 of wins/priority — **80 % playoffs / 25 % Super Bowl / 10 % title**. Standing context: a fairly-optimal team reaches the playoffs ~90 % and wins the Super Bowl 10–25 %; favorites-only is *punished*. Parity and home-win rate are **report-only** (Owner, same day).
+-**Reading note (flagged):** "25 % Super Bowl" is read as *reaching* the Super Bowl game (`finalists`), "10 % title" as *winning* it (`champion`). If the Owner meant 25 % as titles, every band below shifts one metric — one line re-runs it.
++**Owner target (5 Nov 2026, verbatim ruling; retargeted 6 Nov 2026, w76 M6 — the stale 80/25/10 reads 90/35/25):** for a user consistently picking within the top 30 of wins/priority — **90 % playoffs / ~35 % Super Bowl appearance / 25 % title, with P(20-0) ≈ 1–2 %**. Standing context: a fairly-optimal team reaches the playoffs ~90 % and wins the Super Bowl 10–25 %; favorites-only is *punished*. Parity and home-win rate are **report-only** (Owner, same day).
++**Reading note (flagged):** "35 % Super Bowl" is read as *reaching* the Super Bowl game (`finalists`), "25 % title" as *winning* it (`champion`). If the Owner meant 25 % as appearances, every band below shifts one metric — one line re-runs it.
+ 
+ ## 1 · The three policies (the x-axis of the curve)
+ 
+ | Policy | Engine name | Definition | Role |
+ |---|---|---|---|
+ | **Naive best-OVR** | `greedy` | Every pick: the highest-OVR available player, first legal slot. No depth thought, no priority weighting. | The ceiling a spreadsheet reaches. |
+-| **Skilled depth-aware** | `top30` | Picks by Wins/Priority value inside the top-30 band of the board — the "consistently picking within the top 30" behaviour the Owner's target names. | The policy the 80/25/10 target applies to. |
++| **Skilled depth-aware** | `top30` | Picks by Wins/Priority value inside the top-30 band of the board — the "consistently picking within the top 30" behaviour the Owner's target names. | The policy the 90/35/25 + P(20-0) target applies to. |
+ | **Deliberately bad** | `favorites` | Reaches for favourites against the board ( Owner's "extremely suboptimal" case). | The punishment floor — must separate downward. |
+ 
+ `tools/calibrate-draft.ts` (Architect) and `tools/outcomelab/calibration-curve.ts` (Executor, w74) both implement these as `UserPolicy`; the curve runner adds Super Bowl appearances, the win-SD distribution, and streaming progress.
+@@ -21,23 +21,23 @@
+ 
+ | Policy | Playoffs | Super Bowl | Title | N required |
+ |---|---|---|---|---|
+-| top30 | **80 % ± 5 pp** | **25 % ± 5 pp** | **10 % ± 3 pp** | 1,000 |
++| top30 | **90 % ± 5 pp** | **35 % ± 5 pp** | **25 % ± 3 pp** | 1,000 |
+ | greedy | ≥ 90 % (report; Owner band 90 % / 10–25 % titles) | — | 10–25 % | 1,000 |
+ | favorites | punished: below top30 by ≥ 30 pp | — | ~0 % | 1,000 |
+ 
+-**The measuring-instrument constraint (GLM's, adopted):** a rate p measured at N=100 has a 95 % CI half-width of ±1.96·√(p(1−p)/100) ≈ **±8 pp at p=0.5** — a band tighter than ±8 pp is not measurable at N=100. The 80/25/10 bands above (±3–5 pp) require **N ≈ 1,000 per policy** (±2.5–3 pp at p=0.1–0.8). Gate runs (CI) may use N=300 with ±5–6 pp tolerance and are labelled smoke, never verdicts.
++**The measuring-instrument constraint (GLM's, adopted):** a rate p measured at N=100 has a 95 % CI half-width of ±1.96·√(p(1−p)/100) ≈ **±8 pp at p=0.5** — a band tighter than ±8 pp is not measurable at N=100. The 90/35/25 bands above (±3–5 pp) require **N ≈ 1,000 per policy** (±2.5–3 pp at p=0.1–0.8); the top30 policy also carries **P(20-0) ≈ 1–2 %** at the same N (a perfect season including the playoff run). Gate runs (CI) may use N=300 with ±5–6 pp tolerance and are labelled smoke, never verdicts.
+ 
+ ## 4 · Pre-registration
+ 
+ Every experiment states, before running: the hypothesis, the parameter values, N, the seeds, and the decision rule — and the runner embeds the exact argv + config into the output JSON (`preregistration` block), so a run cannot silently drift from what was registered. Registered here for P-250:
+ 
+ 1. **Baseline curve:** `--n 1000 --policies greedy,top30,favorites`, DEFAULT_CONFIG. Decision rule: if the three policies do not separate (top30 within 5 pp of greedy on playoffs, or favorites above top30), that is the finding — stop, report, no tuning.
+-2. **Tuning ladder:** only if (1) separates but misses the band: `--midFloor ∈ {14, 18, 24}` (later-round CPU floor below best-available; rounds 1–4 stay `topFloor=5` per the Architect's lever), N=300 per rung, policies top30+greedy. Decision rule: pick the rung whose top30 playoffs/SB/title land closest to 80/25/10; if no rung reaches 80 %, report the response curve and the gap — **the engine change is the Architect's to apply** (Executor proposes values with measurements; never edits engine code).
++2. **Tuning ladder:** only if (1) separates but misses the band: `--midFloor ∈ {14, 18, 24}` (later-round CPU floor below best-available; rounds 1–4 stay `topFloor=5` per the Architect's lever), N=300 per rung, policies top30+greedy. Decision rule: pick the rung whose top30 playoffs/SB/title land closest to 90/35/25 (+ P(20-0) ≈ 1–2 %); if no rung reaches 90 %, report the response curve and the gap — **the engine change is the Architect's to apply** (Executor proposes values with measurements; never edits engine code).
+ 
+ ## 5 · Where the numbers land (MEASURED 5 Nov 2026 — see FINDINGS-P-250.md for the full read)
+ 
+ **Baseline (N=1,000 paired seeds/policy):** greedy 89.5 / 33.0 / 21.6 · **top30 48.5 / 7.1 / 3.0** · favorites 17.4 / 2.0 / 0.7 (playoffs / SB / title). Policies separate decisively; the favorites punishment band (≥30 pp) holds.
+ 
+-**Tuning verdict: FLAT.** midFloor 14/18/24 (re-run with equals-form overrides after the space-form bug made rung 1 measure the default) moves top30 playoffs 46.7→44.2→50.8 — inside noise (±6.3 pp at N=240), win-SD pinned at ~2.17. The lever cannot reach 80/25/10; **no parameter value is proposed** (pre-registered rule: a flat curve stops the tuning). Two follow-ups are pre-registered in §4's addendum and need a ruling: (1) the top-30 picker semantics (random-in-30 vs best-value-with-cap), (2) a game-noise sweep.
++**Tuning verdict: FLAT.** midFloor 14/18/24 (re-run with equals-form overrides after the space-form bug made rung 1 measure the default) moves top30 playoffs 46.7→44.2→50.8 — inside noise (±6.3 pp at N=240), win-SD pinned at ~2.17. The lever cannot reach 90/35/25 (+ P(20-0) ≈ 1–2 %); **no parameter value is proposed** (pre-registered rule: a flat curve stops the tuning). Two follow-ups are pre-registered in §4's addendum and need a ruling: (1) the top-30 picker semantics (random-in-30 vs best-value-with-cap), (2) a game-noise sweep.
+ 
+-Results: `results/baseline-n1000.json`, tuning rungs `results/tune2-midfloor{14,18,24}-n240.json` (+ favorites spot-check at 24), sharded corroboration `results/b-*.json` (agrees within z=±0.19), and the chart `docs/council/calibration-curve.svg` (bands vs measured, one chart). The report-only parity readout rides every JSON (`winSdMean/min/max`) — and its own finding is that the CPU-draft lever does not move parity either (2.16–2.18 at every rung vs the 3.0–3.5 band).
++Results: `results/baseline-n1000.json`, tuning rungs `results/tune2-midfloor{14,18,24}-n240.json` (+ favorites spot-check at 24), sharded corroboration `results/b-*.json` (agrees within z=±0.19), and the chart `docs/council/calibration-curve.svg` (bands vs measured, one chart). The report-only parity readout rides every JSON (`winSdMean/min/max`) — and its own finding is that the CPU-draft lever does not move parity either (2.16–2.18 at every rung vs the real-NFL reference (3.07 ± 0.35) — the parity TARGET is derived in M5, not read off the NFL).
+
+--- a/w74/03-lab-calibration/FINDINGS-P-250.md
++++ b/w74/03-lab-calibration/FINDINGS-P-250.md
+@@ -1,7 +1,7 @@
+ # P-250 — the measured conversion curve and the tuning finding (w74 item 3c)
+ 
+ **Headline: the three policies separate decisively, but the proposed tuning lever is FLAT — the CPU-draft
+-spread cannot reach 80/25/10, and the gap is a draft-quality gap, not a league-strength gap.** Per the
++spread cannot reach 90/35/25 (+ P(20-0) ≈ 1–2 %), and the gap is a draft-quality gap, not a league-strength gap.** Per the
+ pre-registered decision rule (CALIBRATION.md §4), the flat response stops the tuning: no parameter value is
+ proposed, because none exists on this lever. What follows is the measurement, the mechanism, and the two
+ pre-registered follow-ups that CAN move the number — both need a ruling first.
+@@ -16,8 +16,8 @@
+ 
+ - **Separation: decisive.** greedy → top30 = 41.0 pp; top30 → favorites = 31.1 pp (the punishment band "≥30 pp
+   below top30" holds). The measurement instrument works; the x-axis is real.
+-- **Parity (report-only per the Owner):** win-SD 2.17–2.23 in every arm — below the 3.0–3.5 band; the league is
+-  too flat, and nothing in the draft policy changes it.
++- **Parity (report-only per the Owner):** win-SD 2.17–2.23 in every arm — below the real-NFL reference (3.07 ± 0.35; the parity
++  TARGET is derived in M5); the league is too flat, and nothing in the draft policy changes it.
+ - **Robustness:** a corroborating re-run of greedy (1,140 seeds, sharded) and top30 (760 of the 1,000, sharded)
+   agrees with the baseline within z = ±0.19 on every metric (results/b-*.json) — the paired-seed harness is
+   stable across process sharding.
+@@ -43,7 +43,7 @@
+ **The curve is flat.** Every rung sits within its own CI of the default; mean wins moves ≤ 0.23; win-SD never
+ leaves 2.16–2.18; the favorites punishment persists (33.3 pp below top30 at the widest rung). N=240 per rung
+ carries ±6.3 pp — the observed movement (≤4.3 pp, non-monotonic) is noise, and even the largest point estimate
+-is 29.2 pp short of the target.
++is 29.2 pp short of the 5-Nov 80 % target — 39.2 pp short of the retargeted 90 % line.
+ 
+ **The mechanism (VERIFIED in engine/draft.ts):** `floorFor` returns `best − midFloor` for rounds 5–8, and
+ `cpuChoose` filters candidates below it — falling back to unfiltered when the filter empties. With a 1,953-player
+@@ -53,7 +53,7 @@
+ ## 3 · Why the gap is a draft-quality gap (and what would actually move it)
+ 
+ greedy's 89.5% proves the engine CAN express a 41 pp draft-quality edge — the same league, the same season
+-sim, the only difference is WHICH players the user drafts. The Owner's 80/25/10 for top-30 pickers therefore
++sim, the only difference is WHICH players the user drafts. The Owner's 90/35/25 (+ P(20-0) ≈ 1–2 %) for top-30 pickers therefore
+ cannot be reached by weakening the CPU. Two pre-registered follow-ups (CALIBRATION.md §4 addendum), both
+ awaiting a ruling:
+ 
+@@ -71,5 +71,5 @@
+ - **No parameter proposal** — an honest flat curve cannot propose values, and the ruling DO-NOT-START holds:
+   the engine is untouched; the response curve is the proposal.
+ - The parity cost note the Owner asked for: the CPU-draft lever does not just miss the outcome targets — it
+-  also does not move parity (win-SD ~2.17 at every rung vs the 3.0–3.5 band). "More losers at the bottom" needs
++  also does not move parity (win-SD ~2.17 at every rung vs the real-NFL reference (3.07 ± 0.35) — the target is derived in M5). "More losers at the bottom" needs
+   a different lever entirely; that exploration is a separate pre-registered experiment if wanted.
+
+--- a/w74/04-contracts-fixes/README.md
++++ b/w74/04-contracts-fixes/README.md
+@@ -2,7 +2,9 @@
+ 
+ **What this is:** Z.ai's drafted code for every open contract fix from w73 (F1, F3, F5–F10) plus the pieces Claude's 551af1b reply listed as not-yet-written (FeedEvent, hydration, DatasetLoader rework, storage dump harness) and the first type-checker pass over `colors/`.
+ 
+-**Applies to:** branch `architect/engine-and-seats` at `425f72a`. Files below are at their repo paths under `colors/`. Everything is a DRAFT for Claude's review; nothing here is merged. **All patches were applied to a worktree copy and verified: 286/286 tests pass, and every file this folder touches type-checks clean** (the 301 remaining tsc errors are pre-existing engine/view files — see TSC-REPORT.md).
++**Applies to:** branch `architect/engine-and-seats` at `425f72a`. Files below are at their repo paths under `colors/`.
++
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2). Everything is a DRAFT for Claude's review; nothing here is merged. **All patches were applied to a worktree copy and verified: 286/286 tests pass, and every file this folder touches type-checks clean** (the 301 remaining tsc errors are pre-existing engine/view files — see TSC-REPORT.md).
+ 
+ ## Files
+ 
+
+--- a/w74/05-viewmodels-screens/README.md
++++ b/w74/05-viewmodels-screens/README.md
+@@ -2,6 +2,8 @@
+ 
+ **What this is:** the Draft Board slice END-TO-END (engine → store → view model → Svelte 5 component → dispatch), the Team Select and Season/Standings view models, and six smaller screen drafts (feed UI, brag shareables, seed card, seed-share URL, read-only sharing, a11y bootstrap). This is the **pattern-freeze forcing function**: every place the VM pattern was ambiguous, I made the best call and flagged it **G-VM1…G-VM11** — Claude rules on the list and the freeze is real.
+ 
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
+ **Verified, not just drafted (in a fresh worktree copy at `425f72a` + this folder):**
+ - `npx vite build` → **✓ built** — `61.4 KB JS / 23.75 KB gzip` for the WHOLE slice including the engine (budget check for 7a: the 150 KB app-shell budget has ~126 KB of headroom before any dataset).
+ - `npm test` → **286/286 pass** (no regressions from the new files).
+
+--- a/w74/07-tooling-ci/README.md
++++ b/w74/07-tooling-ci/README.md
+@@ -2,6 +2,8 @@
+ 
+ **What this is:** every gate from the brief, built and RUN in the worktree (not just written): bundle budget, runes enforcement, evidence pack, contract:check (both directions), the append-only conflict channel, the seven acceptance criteria as running Playwright specs, and the determinism bug-report harness with a checked-in card proving end-to-end replay.
+ 
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
+ **Verified receipts (worktree at `425f72a` + folders 04–06 applied):**
+ 
+ | Gate | Command | Result |
+
+--- a/w74/08-proposals-docs/README.md
++++ b/w74/08-proposals-docs/README.md
+@@ -4,6 +4,8 @@
+ 
+ **Applies to:** the repo's docs/contract layer at `425f72a` (+ `origin/main` and `origin/gh-pages` for the deletion analysis). Every patch is text the Architect applies; nothing here is merged.
+ 
++**Test counts:** 288 = the full vitest suite (core + nfl + app) · 286 = 288 minus the 2 storage-env-dependent tests skipped in the sandbox run · 284 = 286 minus the 2 golden-seasons tests that were still warming (288−2−2).
++
+ | File | Item | One line |
+ |---|---|---|
+ | `P-254-sync-conflict-rule.md` | 8a | per-slot LWW on the WHOLE save, never a field merge; `deviceId?` joins the envelope NOW (additive) so v1.1 sync never unfreezes; the three reasons a merge manufactures corrupt saves |
