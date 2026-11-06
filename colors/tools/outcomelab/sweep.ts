@@ -10,7 +10,10 @@
 // Out:   tools/outcomelab/sweep-results.json + model-report-<date>.md (+ stdout)
 //
 // Labels: band values marked [R] are the Architect's stated targets, not re-derived from
-// nflverse by this tool. Re-deriving them from _agents/data/nflverse-* is a pending item.
+// nflverse by this tool. Bands marked [D] were re-derived from nflverse by DS (2026-11-05,
+// inbox/20261105-1710-ds-P-250-nflverse-band-rederivation.md, P-262): home win 54.0% ± 2.5pp
+// (2021-24, 1,087 games; 2020 excluded — COVID + 16-game season), parity 3.07 ± 0.35,
+// teams with ≤4 wins 4.6 per season (range 4-6, all 10 seasons 2015-24).
 
 import fs from 'node:fs';
 import { makeRng } from '../../src/core/rng.ts';
@@ -59,6 +62,8 @@ interface SeasonStats {
   winSd: number;
   has15Plus: boolean;
   has2Minus: boolean;
+  teamsLE4: number;         // teams with ≤4 wins this season (bottom-of-league metric, DS §5)
+  minWins: number;          // fewest wins by any team this season (DS §6)
 }
 
 function seasonStats(teams: readonly LeagueTeam[], seed: number, year: number): SeasonStats {
@@ -82,6 +87,8 @@ function seasonStats(teams: readonly LeagueTeam[], seed: number, year: number): 
     winSd: Math.sqrt(wins.reduce((a, b) => a + (b - mean) ** 2, 0) / n),
     has15Plus: wins.some((w) => w >= 15),
     has2Minus: wins.some((w) => w <= 2),
+    teamsLE4: wins.filter((w) => w <= 4).length,
+    minWins: Math.min(...wins),
   };
 }
 
@@ -95,6 +102,7 @@ interface Sweep {
   homeWinRate: number;
   winSdMean: number; winSdMin: number; winSdMax: number;
   shareSeasons15Plus: number; shareSeasons2Minus: number;
+  meanTeamsLE4: number; meanMinWins: number;
   meanTiesPerSeason: number;
   champs: Record<string, number>;
   champSeeds: Record<string, number>;
@@ -150,6 +158,8 @@ function runSweep(N: number, leagueOf: (seed: number) => LeagueTeam[], freshDraf
     winSdMin: Math.min(...sds), winSdMax: Math.max(...sds),
     shareSeasons15Plus: all.filter((s) => s.has15Plus).length / N,
     shareSeasons2Minus: all.filter((s) => s.has2Minus).length / N,
+    meanTeamsLE4: all.reduce((a, s) => a + s.teamsLE4, 0) / N,
+    meanMinWins: all.reduce((a, s) => a + s.minWins, 0) / N,
     meanTiesPerSeason: all.reduce((a, s) => a + s.tieGames, 0) / N,
     champs, champSeeds, champConf, determinism,
   };
@@ -171,10 +181,12 @@ function report(name: string, sw: Sweep): string {
   const expMean = 8.5 - sw.meanTiesPerSeason / 32;
   L.push(`- Mean wins per team: **${sw.meanWinsPerTeam.toFixed(3)}** → tie-adjusted expectation ${(expMean).toFixed(3)} (8.5 − ties/32; with ${sw.meanTiesPerSeason.toFixed(2)} tied games/season, 8.500 is unreachable by arithmetic) → ${Math.abs(sw.meanWinsPerTeam - expMean) < 5e-4 ? '**PASS**' : '**FAIL**'}`);
   L.push(`- Points per team-game: **${sw.ppg.toFixed(2)}** → band [R] 22.8 ± 0.7 → ${Math.abs(sw.ppg - 22.8) <= 0.7 ? '**PASS**' : '**FAIL**'}`);
-  L.push(`- Home win rate: **${pct(sw.homeWinRate)}** (95% CI ±${pct(ci95(sw.homeWinRate, sw.seasons * 272))}) → band [R] 53.2% ± 1.5pp → ${Math.abs(sw.homeWinRate - 0.532) <= 0.015 ? '**PASS**' : '**FAIL**'}`);
-  L.push(`- Parity: mean SD of team wins **${sw.winSdMean.toFixed(2)}** (per-season range ${sw.winSdMin.toFixed(2)}–${sw.winSdMax.toFixed(2)}) → band [R] 3.0–3.5 → ${sw.winSdMean >= 3.0 && sw.winSdMean <= 3.5 ? '**PASS**' : '**FAIL**'}`);
-  L.push(`- Seasons with a 15+-win team: **${pct(sw.shareSeasons15Plus)}** (95% CI ±${pct(ci95(sw.shareSeasons15Plus, sw.seasons))}) → report-only, band pending nflverse re-derivation`);
-  L.push(`- Seasons with a ≤2-win team: **${pct(sw.shareSeasons2Minus)}** (95% CI ±${pct(ci95(sw.shareSeasons2Minus, sw.seasons))}) → report-only, band pending nflverse re-derivation`);
+  L.push(`- Home win rate: **${pct(sw.homeWinRate)}** (95% CI ±${pct(ci95(sw.homeWinRate, sw.seasons * 272))}) → reference [D] 54.0% ± 2.5pp (nflverse 2021-2024, 1,087 games; 2020 excluded: COVID + 16-game season) → ${Math.abs(sw.homeWinRate - 0.540) <= 0.025 ? '**PASS**' : '**FAIL**'} [report-only per CALIBRATION-TARGETS.md]`);
+  L.push(`- Parity: mean SD of team wins **${sw.winSdMean.toFixed(2)}** (per-season range ${sw.winSdMin.toFixed(2)}–${sw.winSdMax.toFixed(2)}) → reference [D] 3.07 (95% CI 2.49-3.64 over 4 seasons; 2.90-3.30 over 10) → ${Math.abs(sw.winSdMean - 3.07) <= 0.35 ? '**PASS**' : '**FAIL**'}`);
+  L.push(`- Seasons with a 15+-win team: **${pct(sw.shareSeasons15Plus)}** (95% CI ±${pct(ci95(sw.shareSeasons15Plus, sw.seasons))}) → reference [D] 25% of 17-game seasons (20% of 10) → report-only`);
+  L.push(`- Seasons with a ≤2-win team: **${pct(sw.shareSeasons2Minus)}** (95% CI ±${pct(ci95(sw.shareSeasons2Minus, sw.seasons))}) → report-only (rare-tail event; the bottom-of-league metric is teams with ≤4 wins, below)`);
+  L.push(`- Teams with ≤4 wins: **${sw.meanTeamsLE4.toFixed(2)} per season** → reference [D] 4.6 (range 4-6 in all 10 seasons 2015-2024) → ${Math.abs(sw.meanTeamsLE4 - 4.6) <= 1.5 ? '**PASS**' : '**FAIL**'}`);
+  L.push(`- Season minimum wins: **${sw.meanMinWins.toFixed(2)}** (mean across seasons) → reference [D] 2-3 (2015-2024 range 0-3) → report-only`);
   L.push(`- Tied games per season (mean): **${sw.meanTiesPerSeason.toFixed(2)}**`);
   L.push(`- Determinism (same league + same season seed twice → identical table and champion): ${sw.determinism ? '**PASS**' : '**FAIL**'}`);
   L.push('');
@@ -228,9 +240,12 @@ const md = [
   '  population the Q7 bands were most plausibly measured on. It isolates "engine off band" from',
   '  "population off band".',
   '', 'Bands marked **[R]** are the Architect\'s stated simulation invariants (architect branch,',
-  '`inbox/20261104-1910-architect-to-muse-architecture-review.md` §Q7); re-deriving them from the',
-  'nflverse snapshots in `_agents/data/` is the pending v1 item. Every FAIL below is a finding',
-  'for the Architect to rule on — this tool never touches the engine.', '',
+  '`inbox/20261104-1910-architect-to-muse-architecture-review.md` §Q7). Bands marked **[D]** were',
+  're-derived from nflverse by DS (2026-11-05, P-262; home 54.0% ± 2.5pp, parity 3.07 ± 0.35,',
+  'teams with ≤4 wins 4.6/season). The home-win FAIL from the 2026-11-04 report (Finding 1) is',
+  'withdrawn: it was a band artifact — the engine\'s 54.7–55.4% sits inside the data-supported',
+  'range. Every FAIL below is a finding for the Architect to rule on — this tool never touches',
+  'the engine.', '',
   '---', '', fixedText, '---', '', draftedText, '---', '', syntheticText,
 ].join('\n');
 fs.writeFileSync(outDir + `model-report-${new Date().toISOString().slice(0, 10)}.md`, md);
