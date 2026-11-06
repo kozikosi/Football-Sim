@@ -1,11 +1,11 @@
 // Measurement harness (not a test): margin distribution and overtime rate of the drive generator over league-like games.
 // Usage: node --experimental-strip-types tools/margins.ts [seasons=60]
-import { SLOT_IDS } from '../src/engine/slots.ts';
-import type { SlotId } from '../src/engine/slots.ts';
-import { teamRatings, spotsFromRecord, leagueBaseline } from '../src/engine/ratings.ts';
-import { TEAMS } from '../src/engine/league.ts';
-import { simulateSeason } from '../src/engine/season.ts';
-import { makeRng } from '../src/engine/rng.ts';
+import { SLOT_IDS } from '../src/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../src/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord, leagueBaseline } from '../src/sports/nfl/engine/ratings.ts';
+import { TEAMS } from '../src/sports/nfl/engine/league.ts';
+import { simulateSeason } from '../src/sports/nfl/engine/season.ts';
+import { makeRng } from '../src/core/rng.ts';
 
 const N = +(process.argv[2] ?? 60);
 const bins: Record<string, number> = {}, fin: Record<string, number> = {}, otm: Record<string, number> = {}; let games = 0, ot = 0, tie = 0, pts = 0, homeWins = 0, decided = 0;
