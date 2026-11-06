@@ -1,0 +1,87 @@
+# Repo re-audit — semi-professional / best-practices standard
+
+Owner request 2026-11-05 (13:32 HST): "Reaudit the repo organization and make sure it looks like a semi-professional repo. all the folder names are semi-professional and make sense and would be found in a best practices repo." (13:27: clean the repo root — no stray documents on the homepage, everything tucked into folders.)
+
+**Status: audit + proposal only. NOTHING has been moved.** The moves need the Owner's decisions below (the load-bearing renames are migrations, not cosmetics — tools and docs hardcode the paths).
+
+## Current state (council/muse root, verified 2026-11-05)
+
+- **~45 .md files at root** (frozen Oct-era docs + live governance docs). Largest: V22-Suggestions.md 329K, CHRONICLE.md 186K, SUBMISSIONS.md 116K, GOVERNANCE-ROUNDTABLE.md 60K.
+- **Product:** Football-Sim-PreColors.html (657,486 B, sha256 40233d6b…, pinned by AGENTS.md/BASELINES.md).
+- **Config:** .gitattributes, .gitignore, .kilo, biome.json (1,065 B).
+- **13 dirs:** _agents, _agents-payload, _archive, _reference, bulletin, colors, council-brief, council, data, inbox, scripts, tasks, tests. (claude/ exists on base/architect, NOT on council/muse.)
+- **Missing (best-practices):** NO README.md, NO LICENSE, NO .github, NO docs/ on any council branch.
+- **main (the GitHub homepage):** HAS README.md, but NO LICENSE, NO .github. Root is the same ~45 .md files + 2 HTML product files + logo folders (mlb/nba/nfl/soccer-team-logos) + z-core + z-post-blue-* dirs. The homepage is cluttered — the "stray documents" problem lives on main, not just council/muse.
+
+## Folder contents (one level deep, verified)
+
+| Dir | Contents | Verdict |
+|---|---|---|
+| `council/` | Only `scorecard/` (one subdir) | Confusing name (collides with "the council"); the scorecard is the only thing here. Move it and remove the dir. |
+| `council-brief/` | Only `2026-10-21/` (dated dir) | Frozen (Oct 21 brief). → _archive/. |
+| `_agents-payload/` | Seat subdirs: beam, ds, nemo-super, or, pickle, vl | Old seat payloads/deliveries. Audit contents; move to the seat lanes (`_agents/<seat>/deliveries/`) or _archive/. |
+| `_reference/` | Sacks.webp, Sacksmol.webp (2 images) | Reference images. Move to docs/assets/ if referenced, else _archive/. |
+| `data/` | README.md, free-agents-old-ratings.csv, madden27-ratings.csv, madden27-raw-paste.txt, old-names-absent-in-new.txt | KEEP. This is the dataset (1,941 players, tracked, unmodified). Note: the CSVs ARE on council/base and on every seat branch — Beam's P-263 claim that they are "not in this worktree" is wrong; his worktree is stale or he did not look in data/. The Q10 reproduction is NOT blocked by missing data. |
+| `scripts/` | build_council_scorecard.py (1 file) | Merge into tools/ (it is a council tool) or keep (best-practices repos have scripts/). |
+| `tasks/` | CRITIQUES-DIGEST.md, ROUND-1-*.md, T-20261022/23-claude-*.json, T1–T12 .md | Frozen history (the council now uses PRIORITIES.md + inbox). → _archive/. |
+| `tests/` | CONTRACT.md, madden-sim.spec.js | Old-shell tests. The new tests live in colors/test/. → _archive/ (or delete at cutover with the old shell). |
+| `_agents/` | ~20 .md (governance + design docs) + seat lanes (beam, ds, glm, minimax, moc, muse, nemo-super, nemo-ultra, nemotron-3-ultra-free, owner-notes, pickle, seats, vl) + TEST-ORDERS | The council's working system. See the rename question below. |
+| `inbox/` | 173 files | The council's inbox (one file per idea/snippet). See the rename question below. |
+| `bulletin/` | 41 files | The council's message board (one entry per session). See the rename question below. |
+| `tools/` | ~20 files (council.mjs, next.mjs, council-sync.mjs, preserve.mjs, lint.mjs, etc.) | KEEP as-is. Best-practices repos have tools/. |
+| `colors/` | package.json, src, test | The Svelte 5 + Vite app. KEEP (the name "colors" is the rebuild codename; at cutover the fresh repo may put the app at the root as a standard Vite project — the Architect's call). |
+
+## Root .md files — three buckets
+
+- **KEEP at root (harness operating set + product):** AGENTS.md, CLAUDE.md, SOUL.md, IDENTITY.md, USER.md, ONBOARDING.md, biome.json, .gitattributes, .gitignore, .kilo, Football-Sim-PreColors.html. (Claude reads AGENTS.md/CLAUDE.md at chat start by path; moving them breaks his boot unless the boot doc is updated — the Architect's job.)
+- **MOVE to docs/ (live docs, referenced):** CHRONICLE.md, COUNCIL-BULLETIN.md, SUBMISSIONS.md, STATUS.md, INDEX.md, BASELINES.md, MERGE-MANIFEST.md, COLLECTIVE-PROMPT.md, PROJECT-KNOWLEDGE.md, DECISION-LOG.md, and the other live-but-referenced docs. This needs a reference sweep first (AGENTS.md, tools/, PRIORITIES.md, COUNCIL.md reference them by path) + a coordinated update. The Architect owns AGENTS.md/tools/, so this is a package, not a solo move.
+- **MOVE to _archive/ (frozen Oct-era, zero live references):** V22-Suggestions.md (already approved — move intact, do not split), master_task_list.md, rulings_r1_predispatch.md, GOVERNANCE-ROUNDTABLE.md, GOVERNANCE_CHANGE_PROPOSAL.md, NEW_WORKFLOW_ROUND1.md, OPENCLAW-PROMPT.md, and the other frozen-batch files (verified: all live-file references are 0 except V22's two tombstone refs in AGENTS.md + retire-seat.mjs). The V22 move is in Claude's CHAT 1 (approved, queued).
+
+## Target structure (best-practices, for the fresh repo at cutover)
+
+```
+76-pancakes/                  # fresh repo (Owner confirms the name at cutover)
+├── README.md                 # NEW — the homepage: what it is, how to run it, 76 Pancakes brand, how to contribute
+├── LICENSE                   # NEW — MIT (Owner decision 2026-11-04)
+├── .github/                  # NEW — workflows (CI-gate), issue/PR templates
+├── AGENTS.md CLAUDE.md ...   # harness operating set (kept at root — Claude reads them by path)
+├── biome.json .gitignore     # config
+├── colors/                   # the Svelte 5 + Vite app (or the app at root as a standard Vite project — Architect's call)
+│   ├── package.json src test
+├── data/                     # the dataset (madden27-ratings.csv, 1,941 players)
+├── docs/                     # NEW — the live docs (CHRONICLE, COUNCIL-BULLETIN, SUBMISSIONS, STATUS, INDEX, BASELINES, ...)
+├── tools/                    # council tooling (council.mjs, next.mjs, preserve.mjs, lint.mjs, ...)
+├── _agents/                  # council system (see below — rename question)
+├── inbox/ bulletin/          # council message board (see below — rename question)
+└── _archive/                 # frozen history (V22-Suggestions, master_task_list, tasks/, tests/, council-brief/, ...)
+```
+
+## Decisions needed (Owner — these are the load-bearing ones)
+
+1. **The council system names (`_agents/`, `inbox/`, `bulletin/`).** Three options:
+   (a) **Keep the underscore/root names** (`_agents/`, `inbox/`, `bulletin/`). The underscore prefix is a clear "not part of the product" signal (like `_archive`, `_reference`). It is unusual but honest and clear, and it costs nothing (no path changes, no tool changes).
+   (b) **Nest them under one council dir** (`council/inbox/`, `council/bulletin/`, `council/queue/` for _agents/PRIORITIES.md + lanes). Cleaner and more professional-looking, but it is a migration: `tools/council.mjs`, `tools/next.mjs`, `tools/council-sync.mjs`, AGENTS.md, and every inbox/bulletin reference hardcode the current paths. The Architect must do it (tools/ is Architect-owned) and every seat branch must rebase.
+   (c) **Rename to dot-prefixed meta dirs** (`.agents/`, `.council/`). Best-practices repos use dot-prefixed dirs for meta (.github, .vscode). Same migration cost as (b).
+   My recommendation: **(a) keep the names for now** (the underscore convention is defensible and costs nothing), and revisit at the fresh-repo cutover if the council system is still the same shape. The visible win is the root .md cleanup + README/LICENSE/.github, not the council dir names.
+2. **The branch question (where the cleanup lands).** The GitHub homepage shows `main`, not council/muse. Cleaning council/muse does NOT change the homepage until merged. Options:
+   (a) **Clean council/muse now** (as a mergeable proposal) — the fresh repo inherits a clean structure at cutover.
+   (b) **Wait for the fresh-repo cutover** — the fresh repo starts clean (README/LICENSE/.github/docs/ + the app + the council system), and the old repo becomes a read-only archive (already decided). No cleanup work on the old branches.
+   (c) **Clean main directly** — changes the homepage now, but main has a different history (unrelated root) and is the Owner's direct-push branch; the council branches cannot merge into it cleanly.
+   My recommendation: **(b) wait for cutover** (the fresh repo is the clean root; cleaning the old branches is churn). But do the **safe, reversible** moves on council/muse now if the Owner wants visible progress: the V22 → _archive move (already approved, in Claude's CHAT 1) + tasks/ → _archive/ + council-brief/ → _archive/ (both frozen, zero live refs).
+3. **README.md + LICENSE + .github/.** These are NEW files (they do not exist on any branch). The README is a portfolio surface (the Owner's pitch is "I managed AI agents building a complex product" — the README should tell that story). The LICENSE is MIT (decided). The .github workflows are the CI-gate (the Architect picks the design). Who writes the README? The Owner said the interview-ready README is deferred late-stage work he will handle or narrate himself. So: do NOT write the README now (defer to the Owner); DO add the LICENSE (MIT, one-line, no decision needed) and the .github CI workflow (once the Architect picks the CI-gate design).
+4. **`colors/` — keep the name or rename at cutover?** "Colors" is the rebuild codename. At cutover the fresh repo could put the app at the root as a standard Vite project (src/, package.json at root) — that is the most best-practices shape. But it is the Architect's call (he owns the code layout). Do not rename now.
+
+## Safe moves (reversible, zero live refs — executable once the Owner approves)
+
+- V22-Suggestions.md → _archive/v22-suggestions.md (approved, in Claude's CHAT 1).
+- tasks/ → _archive/tasks/ (frozen registry; the council uses PRIORITIES.md + inbox now).
+- council-brief/ → _archive/council-brief/ (Oct 21 brief, frozen).
+- tests/ → _archive/tests/ (old-shell tests; new tests are in colors/test/).
+- council/scorecard → _agents/ (or delete if stale) + remove the empty council/ dir.
+- _agents-payload/ → audit contents, then into _agents/<seat>/deliveries/ or _archive/.
+
+## Not in this audit
+
+- The product code layout (colors/src/) — the Architect's domain.
+- The CI-gate design (the Architect picks from OR/Beam/VL/VLOC/GLM answers).
+- The README content (deferred to the Owner, late-stage).
