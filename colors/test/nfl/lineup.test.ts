@@ -101,11 +101,11 @@ test('hungarian: rejects a non-square matrix', () => assert.throws(() => hungari
 test('4-3: every spot plays as itself', () => {
   for (const f of fieldSlots('4-3')) { assert.equal(f.row, f.slot); assert.equal(f.weight, WEIGHT[f.slot]); }
 });
-test('3-4: DT2 becomes ILB2 (rated DT2, 305); WILL is OLB1 (WILL); SAM is OLB2 and keeps the SAM rating (35); the rest is unchanged (Owner 2 Nov)', () => {
+test('3-4: DT2 becomes ILB2 (rated DT2, 300); WILL is OLB1 (WILL); SAM is OLB2 and keeps the SAM rating (100); the rest is unchanged (Owner 2 Nov; weights 6 Nov)', () => {
   const f = Object.fromEntries(fieldSlots('3-4').map((x) => [x.slot, x]));
-  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'DT2', 305, 'ILB2']);
-  assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.weight, f.WILL.label], ['OLB', 'WILL', 245, 'OLB1']);
-  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'SAM', 35, 'OLB2']);
+  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'DT2', 300, 'ILB2']);
+  assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.weight, f.WILL.label], ['OLB', 'WILL', 150, 'OLB1']);
+  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'SAM', 100, 'OLB2']);
   assert.equal(f.DT1.label, 'NT'); assert.equal(f.MIKE.label, 'ILB1');
   // the same position carries the same weight and rating row in both bases: only the standing of DT2 (now an ILB spot) differs
   for (const x of fieldSlots('3-4')) { assert.equal(x.row, x.slot); assert.equal(x.weight, WEIGHT[x.slot]); }
@@ -128,9 +128,12 @@ test('lineup: a natural roster puts every player in a spot of his own role with 
 });
 test('lineup: the best player takes the most valuable spot of his role, whatever slot he was drafted into', () => {
   const ps = natural(); const cbs = ps.filter((p) => p.role === 'CB');
-  cbs[2].ovr = 90;                                            // drafted as CB3, should play CB1 (450 > 280)
+  cbs[2].ovr = 90;                                            // drafted as CB3, should play a spot at least as valuable as CB1 (400 > 100)
   const l = lineupFor(ps, '4-3');
-  assert.equal(placementOf(l, 'CB1').player, cbs[2]);
+  // 6 Nov 2026: WR1 (650) now outweighs CB1 (400) and a CB flexes to WR at -4, so the optimum may put him at WR1 (a finding for the Owner:
+  // the flex table was built for the old weights). Either way he never sits at a spot worth less than CB1.
+  const at = l.placements.find((p) => p.player === cbs[2])!;
+  assert.ok(at.slot.weight >= WEIGHT.CB1, `${at.slot.slot} ${at.slot.weight}`);
 });
 test('lineup: flex happens only when worth it; a 95 OT beats a 70 at a flex-4 price and does not leave his spot', () => {
   const ps = natural(); const ot = ps.filter((p) => p.role === 'OT'); ot[0].ovr = 95;
@@ -221,15 +224,18 @@ test('lineup: the optimum is never below the natural-order assignment (best play
 });
 test('base: totals are not comparable. A roster of 4-3 natives is worth MIKE x 2 + SAM x 4 less in 3-4: its one ILB leaves an OLB at ILB1 (-2) and a DT at OLB2 (-4)', () => {
   const flat = natural(70);                                   // one ILB only
+  assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
   assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, WEIGHT.MIKE * 2 + WEIGHT.SAM * 4);
-  const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty]).sort();
-  assert.deepEqual(flexed, [['MIKE', 'OLB', 2], ['SAM', 'DT', 4]]);   // the natural ILB takes the heavier ILB2 spot (DT2)
+  const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
+  assert.deepEqual(flexed.map((f) => [f[1], f[2]]).sort(), [['DT', 4], ['OLB', 2]]);
+  assert.ok(['MIKE', 'DT2'].includes(flexed.find((f) => f[1] === 'OLB')![0]!));   // the OLB stands in at one of the two ILB spots
+  assert.equal(flexed.find((f) => f[1] === 'DT')![0], 'SAM');
 });
 test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same', () => {
   const ps = [...natural(70), mk('ILB', 70)];
   const l = lineupFor(ps, '3-4');
   assert.ok(l.placements.every((p) => p.penalty === 0));
-  assert.equal(placementOf(l, 'DT2').player?.role, 'ILB');
+  assert.equal(placementOf(l, 'DT2').player?.role, 'ILB'); assert.equal(placementOf(l, 'MIKE').player?.role, 'ILB');   // both inside spots are 300 now (6 Nov 2026)
   assert.deepEqual(l.bench.map((p) => p.role), ['DT']);
   assert.equal(l.value - lineupFor(ps, '4-3').value, 0);      // the same position, the same weight: a pure personnel decision
 });
@@ -261,7 +267,7 @@ test('advice: a clear upgrade is suggested, a one-point difference is not', () =
   const ps = natural(70); const i3 = SLOTS.findIndex((s) => s.id === 'CB3');
   ps[i3] = { ...ps[i3], ovr: 95 };                              // a 95 sitting at CB3 beside a 70 at CB1
   const a = adviseLineup(slotMap(ps), ps, '4-3');
-  assert.ok(a.moves.some((m) => m.slot === 'CB1' && m.to?.ovr === 95));
+  assert.ok(a.moves.some((m) => m.to?.ovr === 95 && WEIGHT[m.slot] >= WEIGHT.CB1));   // 6 Nov 2026: the 95 may be sent to WR1 (650) as well as CB1 (400)
   assert.ok(a.gainWins >= 0.02);
   const ps2 = natural(70); ps2[i3] = { ...ps2[i3], ovr: 71 };    // 71 at CB3 vs 70 at CB1: worth 0.02 wins in all, under two moves' threshold
   assert.equal(adviseLineup(slotMap(ps2), ps2, '4-3').moves.length, 0);

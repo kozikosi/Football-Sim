@@ -7,34 +7,34 @@ import type { SlotId } from './slots.ts';
 export type Spec = Partial<Record<SlotId, number>>;
 
 export const RATING_SPECS = {
-  olRun: { OT1: 1.09, OT2: 1.02, OG1: 1.08, OG2: 1.08, C: 1.19, TE1: 0.35, FB: 0.36 },
-  olPass: { OT1: 1.53, OT2: 1.43, OG1: 0.9, OG2: 0.9, C: 1 },
-  rb: { RB1: 1.95, RB2: 0.48 },
+  olRun: { OT1: 0.579, OT2: 0.348, OG1: 0.705, OG2: 0.441, C: 0.263, TE1: 1.436, FB: 0.188 },
+  olPass: { OT1: 0.812, OT2: 0.488, OG1: 0.588, OG2: 0.368, C: 0.221 },
+  rb: { RB1: 43.113, RB2: 12.177 },
   qb: { QB: 1 },
-  rec: { WR1: 0.99, WR2: 0.70, WR3: 0.45, TE1: 0.53, RB1: 0.19, TE3: 0.02, WR4: 0.02 },
-  passRush: { DE1: 1.9, DE2: 1.4, DT1: 1.05, DT2: 0.79, MIKE: 0.26, WILL: 0.27, DL5: 0.45 },
-  frontRun: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.94, SS: 0.7, CB1: 0.48, CB2: 0.34, CB3: 0.19, FS: 0.5, DL5: 0.39 },
-  coverage: { CB1: 1.39, CB2: 1.06, CB3: 0.86, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.4 },
+  rec: { WR1: 25.682, WR2: 19.86, WR3: 3.251, TE1: 2.174, RB1: 4.201, TE3: 1.264, WR4: 1.6 },
+  passRush: { DE1: 0.583, DE2: 0.255, DT1: 0.303, DT2: 0.182, MIKE: 0.053, WILL: 0.03, DL5: 0.114 },
+  frontRun: { DT1: 0.456, DT2: 0.273, DE1: 0.292, DE2: 0.158, MIKE: 0.208, WILL: 0.099, SAM: 0.234, SS: 0.115, CB1: 0.06, CB2: 0.034, CB3: 0.009, FS: 0.08, DL5: 0.099 },
+  coverage: { CB1: 0.175, CB2: 0.107, CB3: 0.041, SS: 0.113, FS: 0.122, MIKE: 0.069, WILL: 0.039, SAM: 0.1 },
   kicker: { K: 1 },
 } as const satisfies Record<string, Spec>;
 
 export const DEF_SPECS = {
-  frontBase: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 1.34, SS: 0.7, CB1: 0.48, CB2: 0.34, CB3: 0.1, FS: 0.5, DL5: 0.39 },
-  frontNick: { DT1: 1.58, DT2: 1.18, DE1: 0.95, DE2: 0.87, MIKE: 1.03, WILL: 0.9, SAM: 0.13, SS: 0.7, CB1: 0.49, CB2: 0.48, CB3: 0.19, FS: 0.5, DL5: 0.39 },
-  covBase: { CB1: 1.39, CB2: 1.06, CB3: 0.24, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.54 },
-  covNick: { CB1: 1.39, CB2: 1.06, CB3: 0.96, SS: 0.69, FS: 0.77, MIKE: 0.34, WILL: 0.36, SAM: 0.07 },
-  covDime: { CB1: 1.39, CB2: 1.06, CB3: 0.96, DIME: 1.09, SS: 0.69, FS: 0.77, MIKE: 0.34 },
+  frontBase: { DT1: 0.456, DT2: 0.273, DE1: 0.292, DE2: 0.158, MIKE: 0.208, WILL: 0.099, SAM: 0.334, SS: 0.115, CB1: 0.06, CB2: 0.034, CB3: 0.005, FS: 0.08, DL5: 0.099 },
+  frontNick: { DT1: 0.456, DT2: 0.273, DE1: 0.292, DE2: 0.158, MIKE: 0.208, WILL: 0.099, SAM: 0.032, SS: 0.115, CB1: 0.062, CB2: 0.048, CB3: 0.009, FS: 0.08, DL5: 0.099 },
+  covBase: { CB1: 0.175, CB2: 0.107, CB3: 0.011, SS: 0.113, FS: 0.122, MIKE: 0.069, WILL: 0.039, SAM: 0.135 },
+  covNick: { CB1: 0.175, CB2: 0.107, CB3: 0.045, SS: 0.113, FS: 0.122, MIKE: 0.069, WILL: 0.039, SAM: 0.017 },
+  covDime: { CB1: 0.175, CB2: 0.107, CB3: 0.045, DIME: 0.184, SS: 0.113, FS: 0.122, MIKE: 0.069 },
 } as const satisfies Record<string, Spec>;
 
 // Receiving spec when the plan changes the personnel group ('11' uses RATING_SPECS.rec).
 export const PERS_REC = {
-  '12': { WR1: 0.99, WR2: 0.96, TE1: 0.53, TE2: 0.41, RB1: 0.19 },
-  '13': { WR1: 0.99, TE1: 0.53, TE2: 0.41, TE3: 0.24, RB1: 0.19 },
-  '21': { WR1: 0.99, WR2: 0.96, TE1: 0.53, RB1: 0.19, RB2: 0.48 },
-  '22': { WR1: 0.99, TE1: 0.53, TE2: 0.41, RB1: 0.19, RB2: 0.48 },
+  '12': { WR1: 25.682, WR2: 27.236, TE1: 2.174, TE2: 22.844, RB1: 4.201 },
+  '13': { WR1: 25.682, TE1: 2.174, TE2: 22.844, TE3: 15.173, RB1: 4.201 },
+  '21': { WR1: 25.682, WR2: 27.236, TE1: 2.174, RB1: 4.201, RB2: 12.177 },
+  '22': { WR1: 25.682, TE1: 2.174, TE2: 22.844, RB1: 4.201, RB2: 12.177 },
 } as const satisfies Record<string, Spec>;
 
-export const RB_HEAVY: Spec = { RB1: 2.0, RB2: 1.2 };
+export const RB_HEAVY: Spec = { RB1: 44.218, RB2: 30.441 };
 
 export type Pers = '11' | '12' | '13' | '21' | '22';
 export type Strat = 'run' | 'neutral' | 'pass';
@@ -66,7 +66,7 @@ export const PLAN_K = {
 // Final fitted knobs (lab 28 Oct): changed keys take the fit, the rest are Pre-Colors' values.
 export const MC = {
   rb: 0.0208, olRun: 0.0495, front: 0.05577, qb: 0.00655, rec: 0.02045, olPass: 0.01403, rush: 0.01579, cov: 0.0184, lean: 0.013,
-  toQb: 0.01471, toCov: 0.0204, toRush: 0.0105, skRush: 0.0268, skOl: 0.0336, skCov: 0.012, kick: 0.04859,
+  toQb: 0.01471, toCov: 0.0204, toRush: 0.0105, skRush: 0.0268, skOl: 0.0336, skCov: 0.012, kick: 0.01215,
 };
 
 export const RUSH_BASE = 105, PASS_BASE = 220;
@@ -80,7 +80,7 @@ export const RET_NEUTRAL = 82;
 export const QB_RUN_C = 0.0194;
 export const WR_BLK_C = 0.01147;
 export const WR_BLK_W = [1, 1, 1] as const;
-export const PUNT_PTS = 1.084;
+export const PUNT_PTS = 0.542;
 export const DIME_W = 0.15;
 export const POINTS_PER_WIN = 32.5;
 export const GAMES = 17;

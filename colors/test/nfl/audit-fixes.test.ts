@@ -59,7 +59,7 @@ test('audit 2: a pass rusher and a corner keep their value against an elite pass
 test('audit 2: the average-offense case is unchanged (the linear zone equals the old formula)', () => {
   const lg78 = R(78);
   const a = matchupModel(runO(78), R(78, { MIKE: 80 }), lg78, DEFAULT_PLAN), b = matchupModel(runO(78), R(78, { MIKE: 99 }), lg78, DEFAULT_PLAN);
-  assert.ok(Math.abs(a.expRush - b.expRush - 11.87) < 0.05, `${(a.expRush - b.expRush).toFixed(2)}`);
+  assert.ok(Math.abs(a.expRush - b.expRush - 11.70) < 0.05, `${(a.expRush - b.expRush).toFixed(2)}`);
 });
 
 // Finding 4: no late-game play-calling. Beam E-209 (nflverse 2023-24): Q4 run share 0.20 trailing by 9-16, 0.72 leading by 17+.

@@ -12,13 +12,17 @@ import { teamIdentity, projectGame } from '../../src/sports/nfl/engine/plans.ts'
 import { bestUnitPts, derivedWeights, flat, slotWins } from '../../src/sports/nfl/engine/value.ts';
 import { RATING_SPECS, DEF_SPECS, PERS_REC } from '../../src/sports/nfl/engine/specs.ts';
 import { HOME_FIELD } from '../../src/sports/nfl/engine/specs.ts';
+import { withLegacyCoefficients } from './golden/legacy-coefficients.ts';
 
 const golden = JSON.parse(fs.readFileSync(new URL('./golden/matchup-precolors.json', import.meta.url), 'utf8')) as {
   precolorsSha16: string; names: SlotId[]; teams: number[][]; ratings: Record<string, number>[]; league: Record<string, number>;
   cases: { o: number; d: number; plan: any; expRush: number; expPass: number; lamTO: number; lamSack: number; structPts: number; channels: Record<string, number>; sd: number; vm: number; planCost: number }[];
 };
 const rec = (o: number[]) => Object.fromEntries(golden.names.map((n, i) => [n, o[i]])) as Record<SlotId, number>;
-const R: Ratings[] = golden.teams.map((o) => teamRatings(spotsFromRecord(rec(o))));
+// The oracle is the original engine, so its team ratings are rebuilt on the coefficients it had (golden/legacy-coefficients.ts): the Owner's
+// salary-weight ruling of 6 Nov 2026 moved every spec row on purpose. The ratings are plain numbers, so the tests below that only need a
+// plausible league (identity, projection) read them unchanged.
+const R: Ratings[] = withLegacyCoefficients(() => golden.teams.map((o) => teamRatings(spotsFromRecord(rec(o)))));
 const lg = leagueBaseline(R);
 const close = (a: number, b: number, what: string) => assert.ok(Math.abs(a - b) <= 1e-9 * Math.max(1, Math.abs(b)), `${what}: ${a} vs ${b}`);
 
@@ -47,7 +51,7 @@ test('golden: every unit rating equals the original engine (all teams, all keys 
 // sacks, spread and plan cost do not read those terms and stay exact on all cases.
 test('golden: matchupModel equals the original engine on turnovers, sacks, spread and plan cost; yards and points stay within the audit bounds', () => {
   golden.cases.forEach((c, i) => {
-    const m = matchupModel(R[c.o], R[c.d], lg, c.plan), tag = `#${i} ${c.o}v${c.d} ${JSON.stringify(c.plan)}`;
+    const m = withLegacyCoefficients(() => matchupModel(R[c.o], R[c.d], lg, c.plan)), tag = `#${i} ${c.o}v${c.d} ${JSON.stringify(c.plan)}`;
     // 3 Nov (Owner-approved): a leaning defence pays a smaller 'predictability' charge (PLAN_K.defPredict 0.4 to 0.15), so the plan cost
     // is the original's plus 0.25 for a run or pass focus; the guess itself now carries the risk (tests in audit-fixes).
     const dl = 0.25 * Math.abs({ run: 1, neutral: 0, pass: -1 }[c.plan.def.focus as 'run' | 'neutral' | 'pass']);
@@ -62,9 +66,12 @@ test('golden: matchupModel equals the original engine on turnovers, sacks, sprea
 });
 
 // ---- the spot table is what the model implies ----
-test('table: all 32 spots measured on the model land within 2.5 of the Owner-approved weight (the modelWeights contract)', () => {
+// Owner 6 Nov 2026 (claude/rulings/2026-11-06-owner-salary-weights.md): the table is the Owner's salary-based intent, and the measured
+// slotWinsPerOvr may deviate from it by at most 50 per spot (the old contract was 2.5). The calibrator (tools/mathlab/calibrate-weights.mjs)
+// lands every spot within 25.
+test('table: all 32 spots measured on the model land within 50 of the Owner-approved weight (Owner 6 Nov 2026)', () => {
   const d = derivedWeights('4-3');
-  for (const s of SLOTS) assert.ok(Math.abs(d[s.id] - s.weight) <= 2.5, `${s.id}: table ${s.weight}, measured ${d[s.id].toFixed(1)}`);
+  for (const s of SLOTS) assert.ok(Math.abs(d[s.id] - s.weight) <= 50, `${s.id}: table ${s.weight}, measured ${d[s.id].toFixed(1)}`);
 });
 test('table: measured order has no inversion against the table (a heavier table spot is never measured lighter)', () => {
   const d = derivedWeights('4-3');
@@ -89,10 +96,10 @@ test('formation: 3-4 offence and special spots measure the same as in 4-3 (withi
   }
   // the 3-4 defence now reads the table (within 1%): the same position carries the same weight in both bases (Owner 2 Nov)
   const def34 = fieldSlots('3-4').filter((f) => SLOTS.find((s) => s.id === f.slot)!.unit === 'defense');
-  for (const f of def34) assert.ok(Math.abs(b[f.slot] - f.weight) <= 3, `${f.slot}: table ${f.weight}, measured ${b[f.slot].toFixed(1)}`);   // small spots (SAM 35, DIME 40, DL5 145) are judged by absolute error: the quantisation step is 5
+  for (const f of def34) assert.ok(Math.abs(b[f.slot] - f.weight) <= 50, `${f.slot}: table ${f.weight}, measured ${b[f.slot].toFixed(1)}`);   // within the Owner's 50 (6 Nov 2026), judged by absolute error
   const ratios = def34.filter((f) => f.weight >= 200).map((f) => b[f.slot] / f.weight);
   assert.ok(Math.max(...ratios) - Math.min(...ratios) < 0.04, ratios.map((r) => r.toFixed(3)).join(' '));
-  assert.ok(Math.max(...ratios) < 1.02 && Math.min(...ratios) > 0.99, ratios.map((r) => r.toFixed(3)).join(' '));   // the old uniform 5.5% shortfall is gone: same position, same weight
+  assert.ok(Math.max(...ratios) < 1.06 && Math.min(...ratios) > 0.97, ratios.map((r) => r.toFixed(3)).join(' '));   // same position, same weight in both bases; since 6 Nov 2026 the defence reads about 4% above the table (each spec's coefficients sum to a fixed total, so the Owner's targets cannot all be met exactly), well inside the 50 room
 });
 test('formation: in a 3-4 each position measures what it does in a 4-3: ILB1 = MIKE, ILB2 = DT2, OLB1 = WILL, OLB2 = SAM (Owner 2 Nov)', () => {
   const a = derivedWeights('4-3'), b = derivedWeights('3-4');
@@ -112,14 +119,14 @@ test('model: raising any single spot never lowers its own side\'s value (offence
     assert.ok(b >= a - 1e-12, `${s.id}: ${a} -> ${b}`);
   }
 });
-test('model: points scale as the table says (weight x 0.00254 wins per 20 OVR, 32.5 points a win): QB +10 and punter +10', () => {
+test('model: points scale as the table says (weight x 0.00254 wins per 20 OVR, 32.5 points a win): QB +10 and punter +10 (QB 1000, P 50)', () => {
   const ptsPerOvr = (w: number) => (w * 0.00254) / 20 * (32.5 / 17);   // points per game per OVR point
   const lo = teamRatings(spotsFromRecord(flat(80))), q = flat(80); q.QB = 90;
   const dq = matchupModel(teamRatings(spotsFromRecord(q)), lo, lo).structPts - matchupModel(lo, lo, lo).structPts;
   assert.ok(Math.abs(dq - 10 * ptsPerOvr(1000)) < 0.1 * 10 * ptsPerOvr(1000), `QB ${dq} vs ${10 * ptsPerOvr(1000)}`);
   const p = flat(80); p.P = 90;
   const dp = matchupModel(lo, lo, lo).structPts - matchupModel(lo, teamRatings(spotsFromRecord(p)), lo).structPts;
-  assert.ok(Math.abs(dp - 10 * ptsPerOvr(100)) < 0.15 * 10 * ptsPerOvr(100), `P ${dp} vs ${10 * ptsPerOvr(100)}`);
+  assert.ok(Math.abs(dp - 10 * ptsPerOvr(50)) < 0.15 * 10 * ptsPerOvr(50), `P ${dp} vs ${10 * ptsPerOvr(50)}`);   // punter weight 50 (Owner 6 Nov 2026; was 100)
 });
 test('model: softCap is the identity inside 60% of the cap and never exceeds the cap', () => {
   assert.equal(softCap(0.1, -1, 0.4), 0.1);

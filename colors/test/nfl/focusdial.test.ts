@@ -24,10 +24,11 @@ test('focus dial: guessing wrong costs (at least 0.3 points a game)', () => {
 test('focus dial: against a balanced offence neutral is the safe choice (neither lean saves more than 0.1)', () => {
   assert.ok(gain('11', 'neutral', 'pass') < 0.1 && gain('11', 'neutral', 'run') < 0.1);
 });
-test('receiving spec: WR2 is worth about 70% of WR1 and WR3 under half (3 Nov, Owner-approved)', () => {
+// 6 Nov 2026 (Owner salary weights): the receiving spec is refitted so WR2 measures 400 against WR1 650 and WR3 100 (was 70% / 45%).
+test('receiving spec: WR2 is worth about 77% of WR1 and WR3 under a fifth (6 Nov, Owner salary weights)', () => {
   const r = RATING_SPECS.rec;
-  assert.ok(r.WR2 / r.WR1 > 0.65 && r.WR2 / r.WR1 < 0.75, String(r.WR2 / r.WR1));
-  assert.ok(r.WR3 / r.WR1 < 0.5);
+  assert.ok(r.WR2 / r.WR1 > 0.72 && r.WR2 / r.WR1 < 0.82, String(r.WR2 / r.WR1));
+  assert.ok(r.WR3 / r.WR1 < 0.2, String(r.WR3 / r.WR1));
   const w = (id: string) => SLOTS.find((s) => s.id === id)!.weight;
-  assert.ok(w('WR2') / w('WR1') > 0.5 && w('WR2') / w('WR1') < 0.62, String(w('WR2') / w('WR1')));   // the table keeps the plan-hedged ratio (a team can hide a weak WR2 in 12 personnel)
+  assert.ok(w('WR2') / w('WR1') > 0.6 && w('WR2') / w('WR1') < 0.63, String(w('WR2') / w('WR1')));   // the table keeps the plan-hedged ratio (a team can hide a weak WR2 in 12 personnel)
 });

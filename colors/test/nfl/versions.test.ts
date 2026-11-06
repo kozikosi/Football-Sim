@@ -13,7 +13,7 @@ const META = { saveId: 'test-save', saveRevision: 1, createdAt: '2026-11-03T00:0
 
 // PINS. These change on purpose, never by accident: a failure here means the rules (slots, weights, flex table, specs, plan constants, draft
 // config) or the data files changed. If that was intended, update the pin in the same commit (and re-pin MERGE-MANIFEST.md for protected constants).
-const PIN_ENGINE = 'nfl1.0a5c8e4358a1f5', PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
+const PIN_ENGINE = 'nfl1.0e237387b2647f', PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
 test('E5 pins: the engine and data stamps are what the last deliberate change left them', async () => {
   assert.equal(engineVersion(), PIN_ENGINE, 'rules changed: update PIN_ENGINE on purpose');
   assert.equal(await dataVersion(ROWS), PIN_DATA, 'data changed: update PIN_DATA on purpose');
