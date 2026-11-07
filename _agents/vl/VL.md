@@ -4,23 +4,24 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## This session (2026-11-06, council.mjs v8 via /tmp/council.mjs)
-- START-OF-CHAT followed: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK), read AGENTS/PROJECT-KNOWLEDGE/COUNCIL-BULLETIN/V23-OWNER-REQUESTS/lane/PRIORITIES.
-- Took P-282 (P1, Owner-directed, MUSE 2026-11-06): WR2 verification + weights reevaluation + test new tools + respond to Claude/Z.ai proposals. Deliverable: `inbox/20261106-103107-vl-P-282-test-weights-tools-proposals.md`.
-- Additionally answered the council prompt v5 addendum's open test item: independently re-ran Claude's guard-pass-2 112-game boxscore verification (commit `568e6c04`, tip of `origin/architect/engine-and-seats`). 8 seeds × 7 matchups × regular/playoff = 112 games; sha256 identical across two independent runs (`27a09e70…`). Filed via `inbox/20261106-103542-vl-test-112game-boxscore-verification.md`.
-- P-282 Part 1 (WR2): de60e05 fix (2026-11-03, Owner-approved) VERIFIED present in current engine code on `origin/architect/engine-and-seats` (`colors/src/sports/nfl/engine/specs.ts` rec.WR2 0.91→0.70, WR3 0.53→0.45; `slots.ts` WR1 470→525, WR2 330→295; ratio 0.562). Discrepancy resolved at table level (0.562 inside 0.4–0.6 salary band). Spec knob ratio 0.707 above band. Recommendation: HOLD spec WR2 0.70; do not cut toward ~0.50 until a trustworthy P-224 positional sweep exists (it does not — P-224 is standing "invent new engine tests"; my 80→99 probes were below the PTS_NOISE floor and are reported as probes, not findings). This worktree's `colors/` snapshot predates de60e05 (still shows WR2 0.91).
-- P-282 Part 2 (broader weights): full 32-spot table reviewed; flags (INFERRED, salary context): K 200 (rank 22 vs ~29–31 salary), RB1 235 (rank 21 vs ~25–27), TE1 295 (rank 12 vs ~16–18); DL5 145 impact unverified. Consistent: QB/WR1/DE1 top-3; CB/DT/DE/OT/OL/LB/S sensible.
-- P-282 Part 3 (new tools): Z.ai cutover batteries artifact VERIFIED present on gh-pages `z-post-blue-cutover-2026-11-06 w77/` (accept.js, w76.js, pancakes.stub.js, contract.json; 84 assertions V0–V17; w76.html md5 4f363452… = spec exact; 1,830,164 B). Live 84/0/0 reference run NOT executable here (playwright not requireable, no Chromium) → environment gap. Claude tsc baseline gate VERIFIED structurally (`colors/tsc-baseline.json` total 176/24; `tsc-baseline.mjs` check fails on growth, --write refuses to raise); live run NOT executable here (tsc/typescript not installed) → environment gap. cb5e0427 (298→176 ratchet) is a dangling commit, not on a fetched branch.
-- P-282 Part 4 (proposals): Claude seat stale-lane check proposal → VERDICT ok (LANE-CHECK/RULES-CHECK/SEAT-STATE; END-OF-CHAT-refuses-unless-tip sound). PROJECT-KNOWLEDGE.md: recommend do NOT add to RULES-CHECK (single-writer current-facts doc, not a seat-facing rule). Z.ai cutover batteries → VERDICT ok; five flag views (veto-b floor+TRUE OVR, twin header, Cinzel caps, SEASON RATING label, explainer's home) → all VERDICT ok, measured, decisions left to Owner.
-
-## Earlier session (2026-11-06, MUSE briefing) — retained for context
-- REVIEW P-275 → ok; P-276 → ok; P-277 → improved; P-278 → ok + flag; Claude latest → ok. (inbox/20261106-0500..0540)
-- Council-home answer (Option A) committed+pushed (5dc6ae39 = origin/council/vl HEAD).
-- deno NOT installed locally (cannot run w75 battery / P-276 repro). tsc NOT installed (cannot re-run type counts).
+## This session (2026-11-07, per START-HERE from origin/council/muse)
+- Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK).
+- Took the Owner's 7 Nov weights/flex request (flex cap -10, raise lower weights so 85+ players play natural roles; UI updates; Madden rankings dropdown; mobile scroll). Not an assigned P-item; filed as FOR: P-013 in inbox (P-013 is an OWNER DECISION — protected constants, never applied without approval).
+- BUILT the testing apparatus: `_agents/vl/deliveries/flexweight.mjs` (new lane tool). Imports the real engine (`colors/src/engine`), applies weights + flex table IN MEMORY ONLY, re-runs seeded CPU drafts (rosters re-price with the table), builds both bases' lineups via the engine's own `lineupFor`, and reports every 85+ player placed off-role into a heavier spot per rule with examples. Supports `--weights=` (change one weight, see downstream effects), `--tune/--check` seed ranges, `--no-tune` (evaluate a fixed set), `--fail-if=N` (regression gate). Never touches product files.
+- RAN three measured scenarios on this tree (VERIFIED; receipts in _agents/vl/deliveries/results/):
+  * Scenario 1 — Owner 6 Nov weights + flex cap 10, no raises: 1007 tune / 978 fresh 85+ promotions (25/28 rules); RB>WR1 -4 x236, DT>DE1 -4 x112, TE>WR -10 still lands TEs at WR1 (McBride et al.).
+  * Scenario 2 — pairwise -10 raises (TE1/RB1/CB1/DT1/MIKE/WILL 600, C/OG1 450): 687/651 — untouched 4s leak (RB>WR1 -4 x236 base).
+  * Scenario 3 — fixed-600 set (+SS/FS/OG1 600, C 450): 175/203.
+  * Scenario 4 — raise-until-stuck loop (frozen QB/WR1/DE1/OT1/FB; steps of 50; never above dest weight): every natural slot -> 650; 36/35 promotions remain, all in frozen-low rules FB>TE1/RB1 and OT>DT1 at -4.
+- CONCLUSION (INFERRED): at -10 cap with 2s/4s untouched, "all 85+ players natural" is unreachable with differentiated weights — flattening to 650 still leaves 35-36 on frozen FB=25/OT1=500. Recommendation: adopt cap-10 flex table; keep Owner 6 Nov table as model/ratings/WINS weights; weight raises are selection-only; 3 residual rule families need a separate Owner decision.
+- Proposed cap-10 flex table: `_agents/vl/deliveries/flex.cap10.json` (to go into flex.json + flex.ts together by the Architect).
+- WROTE inbox proposal `inbox/20261107-103030-vl-P-013-flex-cap-weights-ui.md` (apparatus, scenarios, conclusion, exact patch spec for flex table, weights options, product HTML UI anchors: buildControls depth-chart order + draft-board toggle buttons, setActiveTab mobile scroll-to-top, DEFAULT_WEIGHTS/FLEX display values).
+- Receipts: colors `npm test` = 227 pass / 0 fail (VERIFIED in this env); flexweight gate runs exit clean; apparatus written.
+- NOT done (by design, per council rules): no edits to Football-Sim-PreColors.html, flex.json, flex.ts, slots.ts, design.json, or any protected constant — Architect integrates; no commit yet of product files.
 
 ## Queue remaining
-- P-275–P-282 need to be in PRIORITIES.md (P-282 is on origin/council/muse; not on council/base). P-070, P-127, P-132, P-133, P-188 remain.
+- P-070, P-127, P-132, P-133, P-188 (from earlier session, untouched this session).
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** to be set on commit of this session's inbox + lane file.
+- **HEAD:** to be set on commit of this session's inbox + lane file + deliveries.
