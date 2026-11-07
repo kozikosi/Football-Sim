@@ -1,5 +1,5 @@
 {
- "_source": "REV 4, Owner 29 Oct 10:00 HST: QB flexes ONLY to FS, at -10 (QB->RB removed). Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot. | REV 3, Owner 28 Oct 17:27 HST: edge->OLB 0; TE->RB 4; P->K 4, K->P 0; QB->FS 6, QB->SS and QB->WR removed; every w33 extra kept (OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB/TE/RB). FS->CB 4, SS->CB 6, WR->RB 4 were already so. Owner: 'All the Extra in w33 rules are good. Follow w33 there.'",
+ "_source": "REV 5, Owner 7 Nov 10:05 HST: flex penalty cap at 10. All 6s -> 10, all 12s -> 10 (none existed). 2s and 4s unchanged. CB->WR=10, TE->WR=10, RB->WR=10. This is the w79 flex table.",
  "roles": [
   "QB",
   "RB",
@@ -25,8 +25,8 @@
   },
   "RB": {
    "FB": 2,
-   "WR": 4,
-   "TE": 6
+   "WR": 10,
+   "TE": 10
   },
   "FB": {
    "RB": 4,
@@ -39,99 +39,99 @@
    "FS": 4,
    "NICKEL": 4,
    "DIME": 4,
-   "CB": 6
+   "CB": 10
   },
   "TE": {
-   "WR": 2,
+   "WR": 10,
    "FB": 2,
    "RB": 4,
-   "C": 6,
-   "OG": 6,
-   "OT": 6,
-   "EDGE": 6,
-   "DT": 6,
-   "ILB": 6,
-   "OLB": 6,
-   "SS": 6,
-   "FS": 6,
-   "NICKEL": 6,
-   "DIME": 6
+   "C": 10,
+   "OG": 10,
+   "OT": 10,
+   "EDGE": 10,
+   "DT": 10,
+   "ILB": 10,
+   "OLB": 10,
+   "SS": 10,
+   "FS": 10,
+   "NICKEL": 10,
+   "DIME": 10
   },
   "OT": {
    "OG": 0,
    "C": 0,
    "DT": 4,
    "FB": 4,
-   "RB": 6
+   "RB": 10
   },
   "OG": {
    "C": 0,
    "OT": 4,
    "DT": 4,
    "FB": 4,
-   "RB": 6
+   "RB": 10
   },
   "C": {
    "OG": 0,
    "OT": 4,
    "DT": 4,
    "FB": 4,
-   "RB": 6
+   "RB": 10
   },
   "DT": {
    "OG": 4,
    "C": 4,
    "EDGE": 4,
    "FB": 4,
-   "OT": 6,
+   "OT": 10,
    "ILB": 4,
    "OLB": 4,
-   "RB": 6
+   "RB": 10
   },
   "EDGE": {
    "DT": 2,
    "OLB": 0,
    "ILB": 4,
    "FB": 4,
-   "TE": 6,
-   "RB": 6,
-   "NICKEL": 6
+   "TE": 10,
+   "RB": 10,
+   "NICKEL": 10
   },
   "ILB": {
    "ILB": 0,
    "OLB": 0,
    "DT": 4,
    "FB": 4,
-   "EDGE": 6,
-   "TE": 6,
-   "SS": 6,
-   "FS": 6,
-   "NICKEL": 6,
-   "DIME": 6
+   "EDGE": 10,
+   "TE": 10,
+   "SS": 10,
+   "FS": 10,
+   "NICKEL": 10,
+   "DIME": 10
   },
   "OLB": {
    "OLB": 0,
    "ILB": 2,
    "EDGE": 4,
    "NICKEL": 4,
-   "DT": 6,
-   "TE": 6,
-   "SS": 6,
-   "FS": 6,
-   "FB": 6,
-   "DIME": 6
+   "DT": 10,
+   "TE": 10,
+   "SS": 10,
+   "FS": 10,
+   "FB": 10,
+   "DIME": 10
   },
   "SS": {
    "NICKEL": 0,
    "DIME": 0,
    "FS": 2,
    "OLB": 4,
-   "CB": 6,
-   "ILB": 6,
-   "WR": 6,
-   "TE": 6,
-   "RB": 6,
-   "FB": 6
+   "CB": 10,
+   "ILB": 10,
+   "WR": 10,
+   "TE": 10,
+   "RB": 10,
+   "FB": 10
   },
   "FS": {
    "NICKEL": 0,
@@ -141,19 +141,19 @@
    "WR": 4,
    "ILB": 4,
    "OLB": 4,
-   "TE": 6,
-   "RB": 6
+   "TE": 10,
+   "RB": 10
   },
   "CB": {
    "FS": 0,
    "NICKEL": 0,
    "DIME": 0,
    "SS": 2,
-   "WR": 4,
-   "ILB": 6,
+   "WR": 10,
+   "ILB": 10,
    "OLB": 4,
-   "TE": 6,
-   "RB": 6
+   "TE": 10,
+   "RB": 10
   },
   "K": {
    "P": 0
@@ -167,6 +167,7 @@
   "NICKEL": "Nickel is the CB3 slot. CB->NICKEL is free because CB is its natural position group; SS/FS->NICKEL free per guide.",
   "3-4": "In a 3-4 base the slots are DE1, NT(=DT1), DE2, OLB1, ILB1, ILB2, OLB2. ILB slots use the ILB (MIKE) row; OLB slots the OLB (WILL/SAM) row.",
   "DIME": "DIME is a slot (6th DB), not a position in the 1,200-player dataset: the dataset has no 'DIME' tag, so the 4th-best CB or a flexed S/CB fills it. Plays ~10% of snaps (Owner), on 3rd/4th and long and late in games.",
-  "RB": "25 Oct guide had RB -6 S and RB->WR -4; 26 Oct guide drops RB->S and adds RB->TE -6."
+  "RB": "25 Oct guide had RB -6 S and RB->WR -4; 26 Oct guide drops RB->S and adds RB->TE -6.",
+  "REV5_CAP": "Owner 7 Nov: every flex penalty is capped at 10. Values of 6 become 10; values of 12 become 10. 2s and 4s are left alone. The three named exceptions (CB->WR, TE->WR, RB->WR) are set to 10 explicitly because the Owner wants no 85+ player flexed off his natural position into WR1, DE1 or OT1 under a -10 cap."
  }
 }
