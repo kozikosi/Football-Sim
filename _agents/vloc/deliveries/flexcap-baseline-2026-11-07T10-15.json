@@ -1,0 +1,7275 @@
+{
+ "mode": "baseline",
+ "weights": {
+  "QB": 1000,
+  "RB1": 250,
+  "RB2": 100,
+  "FB": 25,
+  "WR1": 650,
+  "WR2": 400,
+  "WR3": 100,
+  "WR4": 50,
+  "TE1": 300,
+  "TE2": 150,
+  "OT1": 500,
+  "OT2": 300,
+  "OG1": 500,
+  "OG2": 250,
+  "C": 150,
+  "DE1": 650,
+  "DE2": 300,
+  "DT1": 500,
+  "DT2": 300,
+  "DL5": 150,
+  "MIKE": 300,
+  "WILL": 150,
+  "SAM": 100,
+  "LB4": 5,
+  "CB1": 400,
+  "CB2": 250,
+  "CB3": 100,
+  "CB4": 50,
+  "SS": 300,
+  "SS2": 5,
+  "FS": 300,
+  "FS2": 5,
+  "K": 50,
+  "P": 50
+ },
+ "byPos": {
+  "QB": {
+   "naturalSlot": "QB",
+   "naturalW": 1000,
+   "nPlayers": 40,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "HB": {
+   "naturalSlot": "RB1",
+   "naturalW": 250,
+   "nPlayers": 89,
+   "nFlex": 89,
+   "nFlex85": 17,
+   "flexByOVR": {
+    "85+": 17,
+    "80-84": 19,
+    "75-79": 25,
+    "<75": 28
+   },
+   "attractors": [
+    {
+     "slot": "TE1",
+     "w": 300,
+     "pen": 10
+    }
+   ],
+   "players": [
+    {
+     "name": "Jahmyr Gibbs",
+     "team": "Detroit Lions",
+     "ovr": 98,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 269.39,
+     "gain": 1900
+    },
+    {
+     "name": "Christian McCaffrey",
+     "team": "San Francisco 49ers",
+     "ovr": 97,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 269.07,
+     "gain": 1850
+    },
+    {
+     "name": "Bijan Robinson",
+     "team": "Atlanta Falcons",
+     "ovr": 96,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.75,
+     "gain": 1800
+    },
+    {
+     "name": "Jonathan Taylor",
+     "team": "Indianapolis Colts",
+     "ovr": 96,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.75,
+     "gain": 1800
+    },
+    {
+     "name": "Derrick Henry",
+     "team": "Baltimore Ravens",
+     "ovr": 94,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.09,
+     "gain": 1700
+    },
+    {
+     "name": "James Cook III",
+     "team": "Buffalo Bills",
+     "ovr": 93,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.74,
+     "gain": 1650
+    },
+    {
+     "name": "Saquon Barkley",
+     "team": "Philadelphia Eagles",
+     "ovr": 92,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.39,
+     "gain": 1600
+    },
+    {
+     "name": "Kenneth Walker",
+     "team": "Kansas City Chiefs",
+     "ovr": 91,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.03,
+     "gain": 1550
+    },
+    {
+     "name": "Josh Jacobs",
+     "team": "Green Bay Packers",
+     "ovr": 90,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 266.67,
+     "gain": 1500
+    },
+    {
+     "name": "Kyren Williams",
+     "team": "Los Angeles Rams",
+     "ovr": 89,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 266.29,
+     "gain": 1450
+    },
+    {
+     "name": "De'Von Achane",
+     "team": "Miami Dolphins",
+     "ovr": 88,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.91,
+     "gain": 1400
+    },
+    {
+     "name": "Breece Hall",
+     "team": "NY Jets",
+     "ovr": 87,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.52,
+     "gain": 1350
+    },
+    {
+     "name": "Travis Etienne Jr",
+     "team": "New Orleans Saints",
+     "ovr": 87,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.52,
+     "gain": 1350
+    },
+    {
+     "name": "D'Andre Swift",
+     "team": "Chicago Bears",
+     "ovr": 86,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.12,
+     "gain": 1300
+    },
+    {
+     "name": "Javonte Williams",
+     "team": "Dallas Cowboys",
+     "ovr": 86,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.12,
+     "gain": 1300
+    },
+    {
+     "name": "Ashton Jeanty",
+     "team": "Las Vegas Raiders",
+     "ovr": 85,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 264.71,
+     "gain": 1250
+    },
+    {
+     "name": "Bucky Irving",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 85,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 264.71,
+     "gain": 1250
+    },
+    {
+     "name": "Rico Dowdle",
+     "team": "Pittsburgh Steelers",
+     "ovr": 84,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 264.29,
+     "gain": 1200
+    },
+    {
+     "name": "Chase Brown",
+     "team": "Cincinnati Bengals",
+     "ovr": 83,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.86,
+     "gain": 1150
+    },
+    {
+     "name": "David Montgomery",
+     "team": "Houston Texans",
+     "ovr": 83,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.86,
+     "gain": 1150
+    },
+    {
+     "name": "Jaylen Warren",
+     "team": "Pittsburgh Steelers",
+     "ovr": 83,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.86,
+     "gain": 1150
+    },
+    {
+     "name": "Tony Pollard",
+     "team": "Tennessee Titans",
+     "ovr": 83,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.86,
+     "gain": 1150
+    },
+    {
+     "name": "Zach Charbonnet",
+     "team": "Seattle Seahawks",
+     "ovr": 83,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.86,
+     "gain": 1150
+    },
+    {
+     "name": "Cam Skattebo",
+     "team": "NY Giants",
+     "ovr": 82,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.41,
+     "gain": 1100
+    },
+    {
+     "name": "J.K. Dobbins",
+     "team": "Denver Broncos",
+     "ovr": 82,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.41,
+     "gain": 1100
+    },
+    {
+     "name": "Jeremiyah Love",
+     "team": "Arizona Cardinals",
+     "ovr": 82,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.41,
+     "gain": 1100
+    },
+    {
+     "name": "Quinshon Judkins",
+     "team": "Cleveland Browns",
+     "ovr": 82,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.41,
+     "gain": 1100
+    },
+    {
+     "name": "TreVeyon Henderson",
+     "team": "New England Patriots",
+     "ovr": 82,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 263.41,
+     "gain": 1100
+    },
+    {
+     "name": "Chuba Hubbard",
+     "team": "Carolina Panthers",
+     "ovr": 81,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.96,
+     "gain": 1050
+    },
+    {
+     "name": "Omarion Hampton",
+     "team": "Los Angeles Chargers",
+     "ovr": 81,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.96,
+     "gain": 1050
+    },
+    {
+     "name": "Tyler Allgeier",
+     "team": "Arizona Cardinals",
+     "ovr": 81,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.96,
+     "gain": 1050
+    },
+    {
+     "name": "Woody Marks",
+     "team": "Houston Texans",
+     "ovr": 81,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.96,
+     "gain": 1050
+    },
+    {
+     "name": "Aaron Jones Sr",
+     "team": "Minnesota Vikings",
+     "ovr": 81,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.96,
+     "gain": 1050
+    },
+    {
+     "name": "James Conner",
+     "team": "Arizona Cardinals",
+     "ovr": 80,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.5,
+     "gain": 1000
+    },
+    {
+     "name": "Jordan Mason",
+     "team": "Minnesota Vikings",
+     "ovr": 80,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.5,
+     "gain": 1000
+    },
+    {
+     "name": "RJ Harvey",
+     "team": "Denver Broncos",
+     "ovr": 80,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.5,
+     "gain": 1000
+    },
+    {
+     "name": "Alvin Kamara",
+     "team": "New Orleans Saints",
+     "ovr": 79,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.03,
+     "gain": 950
+    },
+    {
+     "name": "Jacory Croskey-Merritt",
+     "team": "Washington Commanders",
+     "ovr": 79,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.03,
+     "gain": 950
+    },
+    {
+     "name": "Kenny Gainwell",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 79,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.03,
+     "gain": 950
+    },
+    {
+     "name": "Kyle Monangai",
+     "team": "Chicago Bears",
+     "ovr": 79,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.03,
+     "gain": 950
+    },
+    {
+     "name": "Rhamondre Stevenson",
+     "team": "New England Patriots",
+     "ovr": 79,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 262.03,
+     "gain": 950
+    },
+    {
+     "name": "Bhayshul Tuten",
+     "team": "Jacksonville Jaguars",
+     "ovr": 78,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.54,
+     "gain": 900
+    },
+    {
+     "name": "Blake Corum",
+     "team": "Los Angeles Rams",
+     "ovr": 78,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.54,
+     "gain": 900
+    },
+    {
+     "name": "Brian Robinson Jr",
+     "team": "Atlanta Falcons",
+     "ovr": 78,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.54,
+     "gain": 900
+    },
+    {
+     "name": "Rachaad White",
+     "team": "Washington Commanders",
+     "ovr": 78,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.54,
+     "gain": 900
+    },
+    {
+     "name": "Tyrone Tracy Jr",
+     "team": "NY Giants",
+     "ovr": 78,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.54,
+     "gain": 900
+    },
+    {
+     "name": "Justice Hill",
+     "team": "Baltimore Ravens",
+     "ovr": 77,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.04,
+     "gain": 850
+    },
+    {
+     "name": "Kimani Vidal",
+     "team": "Los Angeles Chargers",
+     "ovr": 77,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.04,
+     "gain": 850
+    },
+    {
+     "name": "Najee Harris",
+     "team": "NY Giants",
+     "ovr": 77,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.04,
+     "gain": 850
+    },
+    {
+     "name": "Tank Bigsby",
+     "team": "Philadelphia Eagles",
+     "ovr": 77,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.04,
+     "gain": 850
+    },
+    {
+     "name": "Tyjae Spears",
+     "team": "Tennessee Titans",
+     "ovr": 77,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 261.04,
+     "gain": 850
+    },
+    {
+     "name": "Isiah Pacheco",
+     "team": "Detroit Lions",
+     "ovr": 76,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260.53,
+     "gain": 800
+    },
+    {
+     "name": "Jadarian Price",
+     "team": "Seattle Seahawks",
+     "ovr": 76,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260.53,
+     "gain": 800
+    },
+    {
+     "name": "Jonathon Brooks",
+     "team": "Carolina Panthers",
+     "ovr": 76,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260.53,
+     "gain": 800
+    },
+    {
+     "name": "Kendre Miller",
+     "team": "New Orleans Saints",
+     "ovr": 76,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260.53,
+     "gain": 800
+    },
+    {
+     "name": "Devin Singletary",
+     "team": "NY Giants",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "Dylan Sampson",
+     "team": "Cleveland Browns",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "Keaton Mitchell",
+     "team": "Los Angeles Chargers",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "Ray Davis",
+     "team": "Buffalo Bills",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "Samaje Perine",
+     "team": "Cincinnati Bengals",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "Ty Johnson",
+     "team": "Buffalo Bills",
+     "ovr": 75,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 260,
+     "gain": 750
+    },
+    {
+     "name": "A.J. Dillon",
+     "team": "Carolina Panthers",
+     "ovr": 74,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 259.46,
+     "gain": 700
+    },
+    {
+     "name": "Brashard Smith",
+     "team": "Kansas City Chiefs",
+     "ovr": 74,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 259.46,
+     "gain": 700
+    },
+    {
+     "name": "Emanuel Wilson",
+     "team": "Seattle Seahawks",
+     "ovr": 74,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 259.46,
+     "gain": 700
+    },
+    {
+     "name": "Kaleb Johnson",
+     "team": "Green Bay Packers",
+     "ovr": 74,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 259.46,
+     "gain": 700
+    },
+    {
+     "name": "Will Shipley",
+     "team": "Philadelphia Eagles",
+     "ovr": 74,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 259.46,
+     "gain": 700
+    },
+    {
+     "name": "Ameer Abdullah",
+     "team": "Jacksonville Jaguars",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Braelon Allen",
+     "team": "NY Jets",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Jaylen Wright",
+     "team": "Miami Dolphins",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Jonah Coleman",
+     "team": "Denver Broncos",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Jordan James",
+     "team": "San Francisco 49ers",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Kaelon Black",
+     "team": "San Francisco 49ers",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Malik Davis",
+     "team": "Dallas Cowboys",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Ollie Gordon II",
+     "team": "Miami Dolphins",
+     "ovr": 73,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.9,
+     "gain": 650
+    },
+    {
+     "name": "Chris Rodriguez Jr",
+     "team": "Jacksonville Jaguars",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "Isaac Guerendo",
+     "team": "San Francisco 49ers",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "Jeremy McNichols",
+     "team": "Washington Commanders",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "MarShawn Lloyd",
+     "team": "Green Bay Packers",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "Mike Washington Jr",
+     "team": "Las Vegas Raiders",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "Ty Chandler",
+     "team": "New Orleans Saints",
+     "ovr": 72,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 258.33,
+     "gain": 600
+    },
+    {
+     "name": "Emmett Johnson",
+     "team": "Kansas City Chiefs",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Jaleel McLaughlin",
+     "team": "Cleveland Browns",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Kaytron Allen",
+     "team": "Washington Commanders",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "LeQuint Allen Jr",
+     "team": "Jacksonville Jaguars",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Roschon Johnson",
+     "team": "Chicago Bears",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Sean Tucker",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Tahj Brooks",
+     "team": "Cincinnati Bengals",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Trevor Etienne",
+     "team": "Carolina Panthers",
+     "ovr": 71,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.75,
+     "gain": 550
+    },
+    {
+     "name": "Bam Knight",
+     "team": "Arizona Cardinals",
+     "ovr": 70,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 257.14,
+     "gain": 500
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Jahmyr Gibbs",
+     "team": "Detroit Lions",
+     "ovr": 98,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 269.39,
+     "gain": 1900
+    },
+    {
+     "name": "Christian McCaffrey",
+     "team": "San Francisco 49ers",
+     "ovr": 97,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 269.07,
+     "gain": 1850
+    },
+    {
+     "name": "Bijan Robinson",
+     "team": "Atlanta Falcons",
+     "ovr": 96,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.75,
+     "gain": 1800
+    },
+    {
+     "name": "Jonathan Taylor",
+     "team": "Indianapolis Colts",
+     "ovr": 96,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.75,
+     "gain": 1800
+    },
+    {
+     "name": "Derrick Henry",
+     "team": "Baltimore Ravens",
+     "ovr": 94,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 268.09,
+     "gain": 1700
+    },
+    {
+     "name": "James Cook III",
+     "team": "Buffalo Bills",
+     "ovr": 93,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.74,
+     "gain": 1650
+    },
+    {
+     "name": "Saquon Barkley",
+     "team": "Philadelphia Eagles",
+     "ovr": 92,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.39,
+     "gain": 1600
+    },
+    {
+     "name": "Kenneth Walker",
+     "team": "Kansas City Chiefs",
+     "ovr": 91,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 267.03,
+     "gain": 1550
+    },
+    {
+     "name": "Josh Jacobs",
+     "team": "Green Bay Packers",
+     "ovr": 90,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 266.67,
+     "gain": 1500
+    },
+    {
+     "name": "Kyren Williams",
+     "team": "Los Angeles Rams",
+     "ovr": 89,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 266.29,
+     "gain": 1450
+    },
+    {
+     "name": "De'Von Achane",
+     "team": "Miami Dolphins",
+     "ovr": 88,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.91,
+     "gain": 1400
+    },
+    {
+     "name": "Breece Hall",
+     "team": "NY Jets",
+     "ovr": 87,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.52,
+     "gain": 1350
+    },
+    {
+     "name": "Travis Etienne Jr",
+     "team": "New Orleans Saints",
+     "ovr": 87,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.52,
+     "gain": 1350
+    },
+    {
+     "name": "D'Andre Swift",
+     "team": "Chicago Bears",
+     "ovr": 86,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.12,
+     "gain": 1300
+    },
+    {
+     "name": "Javonte Williams",
+     "team": "Dallas Cowboys",
+     "ovr": 86,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 265.12,
+     "gain": 1300
+    },
+    {
+     "name": "Ashton Jeanty",
+     "team": "Las Vegas Raiders",
+     "ovr": 85,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 264.71,
+     "gain": 1250
+    },
+    {
+     "name": "Bucky Irving",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 85,
+     "flexSlot": "TE1",
+     "flexW": 300,
+     "flexPen": 10,
+     "minWn": 264.71,
+     "gain": 1250
+    }
+   ]
+  },
+  "WR": {
+   "naturalSlot": "WR1",
+   "naturalW": 650,
+   "nPlayers": 151,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "TE": {
+   "naturalSlot": "TE1",
+   "naturalW": 300,
+   "nPlayers": 53,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "LT": {
+   "naturalSlot": "OT1",
+   "naturalW": 500,
+   "nPlayers": 39,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "RT": {
+   "naturalSlot": "OT1",
+   "naturalW": 500,
+   "nPlayers": 39,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "LG": {
+   "naturalSlot": "OG1",
+   "naturalW": 500,
+   "nPlayers": 38,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "RG": {
+   "naturalSlot": "OG1",
+   "naturalW": 500,
+   "nPlayers": 43,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "C": {
+   "naturalSlot": "C",
+   "naturalW": 150,
+   "nPlayers": 31,
+   "nFlex": 31,
+   "nFlex85": 6,
+   "flexByOVR": {
+    "85+": 6,
+    "80-84": 5,
+    "75-79": 9,
+    "<75": 11
+   },
+   "attractors": [
+    {
+     "slot": "OG1",
+     "w": 500,
+     "pen": 0
+    },
+    {
+     "slot": "OG2",
+     "w": 250,
+     "pen": 0
+    },
+    {
+     "slot": "OT1",
+     "w": 500,
+     "pen": 4
+    },
+    {
+     "slot": "OT2",
+     "w": 300,
+     "pen": 4
+    },
+    {
+     "slot": "DT1",
+     "w": 500,
+     "pen": 4
+    },
+    {
+     "slot": "DT2",
+     "w": 300,
+     "pen": 4
+    }
+   ],
+   "players": [
+    {
+     "name": "Creed Humphrey",
+     "team": "Kansas City Chiefs",
+     "ovr": 95,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 33250
+    },
+    {
+     "name": "Aaron Brewer",
+     "team": "Miami Dolphins",
+     "ovr": 90,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 31500
+    },
+    {
+     "name": "Tyler Linderbaum",
+     "team": "Las Vegas Raiders",
+     "ovr": 88,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30800
+    },
+    {
+     "name": "Erik McCoy",
+     "team": "New Orleans Saints",
+     "ovr": 87,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30450
+    },
+    {
+     "name": "Tanor Bortolini",
+     "team": "Indianapolis Colts",
+     "ovr": 86,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30100
+    },
+    {
+     "name": "Zach Frazier",
+     "team": "Pittsburgh Steelers",
+     "ovr": 85,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 29750
+    },
+    {
+     "name": "Elgton Jenkins",
+     "team": "Cleveland Browns",
+     "ovr": 84,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 29400
+    },
+    {
+     "name": "Hjalte Froholdt",
+     "team": "Arizona Cardinals",
+     "ovr": 83,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 29050
+    },
+    {
+     "name": "Ryan Neuzil",
+     "team": "Atlanta Falcons",
+     "ovr": 82,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 28700
+    },
+    {
+     "name": "Connor McGovern",
+     "team": "Buffalo Bills",
+     "ovr": 81,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 28350
+    },
+    {
+     "name": "Tyler Biadasz",
+     "team": "Los Angeles Chargers",
+     "ovr": 80,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 28000
+    },
+    {
+     "name": "Coleman Shelton",
+     "team": "Los Angeles Rams",
+     "ovr": 78,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 27300
+    },
+    {
+     "name": "Jake Brendel",
+     "team": "San Francisco 49ers",
+     "ovr": 77,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26950
+    },
+    {
+     "name": "Luke Wattenberg",
+     "team": "Denver Broncos",
+     "ovr": 77,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26950
+    },
+    {
+     "name": "Cam Jurgens",
+     "team": "Philadelphia Eagles",
+     "ovr": 76,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26600
+    },
+    {
+     "name": "Garrett Bradbury",
+     "team": "Chicago Bears",
+     "ovr": 76,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26600
+    },
+    {
+     "name": "Graham Barton",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 76,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26600
+    },
+    {
+     "name": "Ted Karras",
+     "team": "Cincinnati Bengals",
+     "ovr": 76,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26600
+    },
+    {
+     "name": "Cooper Beebe",
+     "team": "Dallas Cowboys",
+     "ovr": 75,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26250
+    },
+    {
+     "name": "Lloyd Cushenberry",
+     "team": "Buffalo Bills",
+     "ovr": 75,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 26250
+    },
+    {
+     "name": "Cade Mays",
+     "team": "Detroit Lions",
+     "ovr": 74,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25900
+    },
+    {
+     "name": "Robert Hainsey",
+     "team": "Jacksonville Jaguars",
+     "ovr": 74,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25900
+    },
+    {
+     "name": "Jake Slaughter",
+     "team": "Los Angeles Chargers",
+     "ovr": 73,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25550
+    },
+    {
+     "name": "Evan Brown",
+     "team": "Houston Texans",
+     "ovr": 72,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25200
+    },
+    {
+     "name": "John Michael Schmitz Jr",
+     "team": "NY Giants",
+     "ovr": 72,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25200
+    },
+    {
+     "name": "Josh Myers",
+     "team": "NY Jets",
+     "ovr": 72,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25200
+    },
+    {
+     "name": "Logan Jones",
+     "team": "Chicago Bears",
+     "ovr": 72,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25200
+    },
+    {
+     "name": "Nick Allegretti",
+     "team": "Washington Commanders",
+     "ovr": 72,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 25200
+    },
+    {
+     "name": "Blake Brandel",
+     "team": "Minnesota Vikings",
+     "ovr": 71,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 24850
+    },
+    {
+     "name": "Jake Andrews",
+     "team": "Houston Texans",
+     "ovr": 71,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 24850
+    },
+    {
+     "name": "Luke Fortner",
+     "team": "Carolina Panthers",
+     "ovr": 71,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 24850
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Creed Humphrey",
+     "team": "Kansas City Chiefs",
+     "ovr": 95,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 33250
+    },
+    {
+     "name": "Aaron Brewer",
+     "team": "Miami Dolphins",
+     "ovr": 90,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 31500
+    },
+    {
+     "name": "Tyler Linderbaum",
+     "team": "Las Vegas Raiders",
+     "ovr": 88,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30800
+    },
+    {
+     "name": "Erik McCoy",
+     "team": "New Orleans Saints",
+     "ovr": 87,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30450
+    },
+    {
+     "name": "Tanor Bortolini",
+     "team": "Indianapolis Colts",
+     "ovr": 86,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 30100
+    },
+    {
+     "name": "Zach Frazier",
+     "team": "Pittsburgh Steelers",
+     "ovr": 85,
+     "flexSlot": "OG1",
+     "flexW": 500,
+     "flexPen": 0,
+     "minWn": 500,
+     "gain": 29750
+    }
+   ]
+  },
+  "DT": {
+   "naturalSlot": "DT1",
+   "naturalW": 500,
+   "nPlayers": 125,
+   "nFlex": 125,
+   "nFlex85": 17,
+   "flexByOVR": {
+    "85+": 17,
+    "80-84": 17,
+    "75-79": 38,
+    "<75": 53
+   },
+   "attractors": [
+    {
+     "slot": "DE1",
+     "w": 650,
+     "pen": 4
+    }
+   ],
+   "players": [
+    {
+     "name": "Derrick Brown",
+     "team": "Carolina Panthers",
+     "ovr": 96,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.92,
+     "gain": 11800
+    },
+    {
+     "name": "Aaron Donald",
+     "team": "Los Angeles Rams",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Cam Heyward",
+     "team": "Pittsburgh Steelers",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Jeffery Simmons",
+     "team": "Tennessee Titans",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Chris Jones",
+     "team": "Kansas City Chiefs",
+     "ovr": 94,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 11500
+    },
+    {
+     "name": "Vita Vea",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 94,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 11500
+    },
+    {
+     "name": "Dexter Lawrence II",
+     "team": "Cincinnati Bengals",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 11350
+    },
+    {
+     "name": "DeForest Buckner",
+     "team": "Indianapolis Colts",
+     "ovr": 92,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 11200
+    },
+    {
+     "name": "Quinnen Williams",
+     "team": "Dallas Cowboys",
+     "ovr": 91,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 11050
+    },
+    {
+     "name": "Nnamdi Madubuike",
+     "team": "Baltimore Ravens",
+     "ovr": 90,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 10900
+    },
+    {
+     "name": "Jalen Carter",
+     "team": "Philadelphia Eagles",
+     "ovr": 89,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 10750
+    },
+    {
+     "name": "Jonathan Allen",
+     "team": "Cincinnati Bengals",
+     "ovr": 88,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 10600
+    },
+    {
+     "name": "Leonard Williams",
+     "team": "Seattle Seahawks",
+     "ovr": 88,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 10600
+    },
+    {
+     "name": "Zach Allen",
+     "team": "Denver Broncos",
+     "ovr": 87,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 10450
+    },
+    {
+     "name": "Milton Williams",
+     "team": "New England Patriots",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 10300
+    },
+    {
+     "name": "Byron Murphy II",
+     "team": "Seattle Seahawks",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 10150
+    },
+    {
+     "name": "Kobie Turner",
+     "team": "Los Angeles Rams",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 10150
+    },
+    {
+     "name": "D.J. Reader",
+     "team": "NY Giants",
+     "ovr": 84,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 10000
+    },
+    {
+     "name": "Daron Payne",
+     "team": "Washington Commanders",
+     "ovr": 84,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 10000
+    },
+    {
+     "name": "Alim McNeill",
+     "team": "Detroit Lions",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 9850
+    },
+    {
+     "name": "Grover Stewart",
+     "team": "Indianapolis Colts",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 9850
+    },
+    {
+     "name": "Poona Ford",
+     "team": "Los Angeles Rams",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 9850
+    },
+    {
+     "name": "Zach Sieler",
+     "team": "Miami Dolphins",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 9850
+    },
+    {
+     "name": "Calais Campbell",
+     "team": "Baltimore Ravens",
+     "ovr": 82,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 9700
+    },
+    {
+     "name": "Ed Oliver",
+     "team": "Buffalo Bills",
+     "ovr": 82,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 9700
+    },
+    {
+     "name": "Jordan Davis",
+     "team": "Philadelphia Eagles",
+     "ovr": 82,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 9700
+    },
+    {
+     "name": "DaQuan Jones",
+     "team": "New England Patriots",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 9550
+    },
+    {
+     "name": "Grady Jarrett",
+     "team": "Chicago Bears",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 9550
+    },
+    {
+     "name": "Sheldon Rankins",
+     "team": "Houston Texans",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 9550
+    },
+    {
+     "name": "Braden Fiske",
+     "team": "Los Angeles Rams",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 9400
+    },
+    {
+     "name": "Javon Hargrave",
+     "team": "Green Bay Packers",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 9400
+    },
+    {
+     "name": "John Franklin-Myers",
+     "team": "Tennessee Titans",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 9400
+    },
+    {
+     "name": "Mason Graham",
+     "team": "Cleveland Browns",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 9400
+    },
+    {
+     "name": "Christian Barmore",
+     "team": "New England Patriots",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 9250
+    },
+    {
+     "name": "Gervon Dexter Sr",
+     "team": "Atlanta Falcons",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 9250
+    },
+    {
+     "name": "Jalen Redmond",
+     "team": "Minnesota Vikings",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 9400
+    },
+    {
+     "name": "Kenny Clark",
+     "team": "Dallas Cowboys",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 9250
+    },
+    {
+     "name": "T'Vondre Sweat",
+     "team": "NY Jets",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 9250
+    },
+    {
+     "name": "Travis Jones",
+     "team": "Baltimore Ravens",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 9250
+    },
+    {
+     "name": "David Onyemata",
+     "team": "NY Jets",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Davon Godchaux",
+     "team": "New Orleans Saints",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Devonte Wyatt",
+     "team": "Green Bay Packers",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Harrison Phillips",
+     "team": "NY Jets",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Jarran Reed",
+     "team": "Seattle Seahawks",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Sebastian Joseph-Day",
+     "team": "Pittsburgh Steelers",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "Walter Nolen III",
+     "team": "Arizona Cardinals",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 9100
+    },
+    {
+     "name": "A'Shawn Robinson",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Calijah Kancey",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Derrick Harmon",
+     "team": "Pittsburgh Steelers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Keeanu Benton",
+     "team": "Pittsburgh Steelers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Maliek Collins",
+     "team": "Cleveland Browns",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Osa Odighizuwa",
+     "team": "San Francisco 49ers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Shelby Harris",
+     "team": "NY Giants",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Teair Tart",
+     "team": "Los Angeles Chargers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 8950
+    },
+    {
+     "name": "Arik Armstead",
+     "team": "Jacksonville Jaguars",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "B.J. Hill",
+     "team": "Cincinnati Bengals",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Caleb Banks",
+     "team": "Minnesota Vikings",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Charles Omenihu",
+     "team": "Washington Commanders",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "D.J. Jones",
+     "team": "Denver Broncos",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Deatrich Wise Jr",
+     "team": "Washington Commanders",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Jer'Zhan Newton",
+     "team": "Washington Commanders",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Peter Woods",
+     "team": "Kansas City Chiefs",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Tyleik Williams",
+     "team": "Detroit Lions",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 8800
+    },
+    {
+     "name": "Bryan Bresee",
+     "team": "New Orleans Saints",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Christen Miller",
+     "team": "New Orleans Saints",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Dalvin Tomlinson",
+     "team": "Los Angeles Chargers",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "John Jenkins",
+     "team": "Baltimore Ravens",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Kayden McDonald",
+     "team": "Houston Texans",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Kenneth Grant",
+     "team": "Miami Dolphins",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Malcolm Roach",
+     "team": "Denver Broncos",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Moro Ojomo",
+     "team": "Philadelphia Eagles",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Tommy Togiai",
+     "team": "Houston Texans",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 8650
+    },
+    {
+     "name": "Bobby Brown III",
+     "team": "Carolina Panthers",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Brandon Dorlus",
+     "team": "Atlanta Falcons",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Da'Shawn Hand",
+     "team": "Atlanta Falcons",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Deone Walker",
+     "team": "Buffalo Bills",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Folorunso Fatukasi",
+     "team": "Las Vegas Raiders",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Jowon Briggs",
+     "team": "NY Jets",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Kris Jenkins Jr",
+     "team": "Cincinnati Bengals",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Landon Jackson",
+     "team": "Buffalo Bills",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Lee Hunter",
+     "team": "Carolina Panthers",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Levi Onwuzurike",
+     "team": "Detroit Lions",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Logan Hall",
+     "team": "Houston Texans",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Nathan Shepherd",
+     "team": "New Orleans Saints",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Tershawn Wharton",
+     "team": "Carolina Panthers",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Tyler Davis",
+     "team": "Los Angeles Rams",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 8500
+    },
+    {
+     "name": "Adam Butler",
+     "team": "Las Vegas Raiders",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Albert Regis",
+     "team": "Jacksonville Jaguars",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Andrew Billings",
+     "team": "Arizona Cardinals",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Chauncey Golston",
+     "team": "NY Giants",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Chris McClellan",
+     "team": "Green Bay Packers",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "DaVon Hamilton",
+     "team": "Jacksonville Jaguars",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Domonique Orange",
+     "team": "Minnesota Vikings",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Greg Gaines",
+     "team": "Buffalo Bills",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Jonathan Bullard",
+     "team": "Dallas Cowboys",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Justin Eboigbe",
+     "team": "Los Angeles Chargers",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Khyiris Tonga",
+     "team": "Kansas City Chiefs",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Ruke Orhorhoro",
+     "team": "Jacksonville Jaguars",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "T.J. Sanders",
+     "team": "Buffalo Bills",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Tyler Onyedim",
+     "team": "Denver Broncos",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Zach Harrison",
+     "team": "Atlanta Falcons",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 8350
+    },
+    {
+     "name": "Alfred Collins",
+     "team": "San Francisco 49ers",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Darius Alexander",
+     "team": "NY Giants",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Darrell Jackson Jr",
+     "team": "NY Jets",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Gracen Halton",
+     "team": "San Francisco 49ers",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Javon Kinlaw",
+     "team": "Washington Commanders",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Mario Edwards Jr",
+     "team": "Houston Texans",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Mike Hall Jr",
+     "team": "Cleveland Browns",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Roy Lopez",
+     "team": "Arizona Cardinals",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Roy Robertson-Harris",
+     "team": "NY Giants",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Solomon Thomas",
+     "team": "Tennessee Titans",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Tim Settle Jr",
+     "team": "Washington Commanders",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Ty Robinson",
+     "team": "Philadelphia Eagles",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 8200
+    },
+    {
+     "name": "Broderick Washington",
+     "team": "Baltimore Ravens",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Dante Stills",
+     "team": "Arizona Cardinals",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Jamaree Caldwell",
+     "team": "Los Angeles Chargers",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Jerry Tillery",
+     "team": "Indianapolis Colts",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Jordan Phillips",
+     "team": "Miami Dolphins",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Joshua Farmer",
+     "team": "New England Patriots",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Kaleb Proctor",
+     "team": "Arizona Cardinals",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "LT Overton",
+     "team": "Dallas Cowboys",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Neville Gallimore",
+     "team": "Chicago Bears",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Omarr Norman-Lott",
+     "team": "Kansas City Chiefs",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Shy Tuttle",
+     "team": "Washington Commanders",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    },
+    {
+     "name": "Ty Hamilton",
+     "team": "Los Angeles Rams",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 8050
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Derrick Brown",
+     "team": "Carolina Panthers",
+     "ovr": 96,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.92,
+     "gain": 11800
+    },
+    {
+     "name": "Aaron Donald",
+     "team": "Los Angeles Rams",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Cam Heyward",
+     "team": "Pittsburgh Steelers",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Jeffery Simmons",
+     "team": "Tennessee Titans",
+     "ovr": 95,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.63,
+     "gain": 11650
+    },
+    {
+     "name": "Chris Jones",
+     "team": "Kansas City Chiefs",
+     "ovr": 94,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 11500
+    },
+    {
+     "name": "Vita Vea",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 94,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 11500
+    },
+    {
+     "name": "Dexter Lawrence II",
+     "team": "Cincinnati Bengals",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 11350
+    },
+    {
+     "name": "DeForest Buckner",
+     "team": "Indianapolis Colts",
+     "ovr": 92,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 11200
+    },
+    {
+     "name": "Quinnen Williams",
+     "team": "Dallas Cowboys",
+     "ovr": 91,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 11050
+    },
+    {
+     "name": "Nnamdi Madubuike",
+     "team": "Baltimore Ravens",
+     "ovr": 90,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 10900
+    },
+    {
+     "name": "Jalen Carter",
+     "team": "Philadelphia Eagles",
+     "ovr": 89,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 10750
+    },
+    {
+     "name": "Jonathan Allen",
+     "team": "Cincinnati Bengals",
+     "ovr": 88,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 10600
+    },
+    {
+     "name": "Leonard Williams",
+     "team": "Seattle Seahawks",
+     "ovr": 88,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 10600
+    },
+    {
+     "name": "Zach Allen",
+     "team": "Denver Broncos",
+     "ovr": 87,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 10450
+    },
+    {
+     "name": "Milton Williams",
+     "team": "New England Patriots",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 10300
+    },
+    {
+     "name": "Byron Murphy II",
+     "team": "Seattle Seahawks",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 10150
+    },
+    {
+     "name": "Kobie Turner",
+     "team": "Los Angeles Rams",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 10150
+    }
+   ]
+  },
+  "REDG": {
+   "naturalSlot": "DE1",
+   "naturalW": 650,
+   "nPlayers": 58,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "LEDG": {
+   "naturalSlot": "DE1",
+   "naturalW": 650,
+   "nPlayers": 71,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  },
+  "MIKE": {
+   "naturalSlot": "MIKE",
+   "naturalW": 300,
+   "nPlayers": 43,
+   "nFlex": 43,
+   "nFlex85": 9,
+   "flexByOVR": {
+    "85+": 9,
+    "80-84": 12,
+    "75-79": 13,
+    "<75": 9
+   },
+   "attractors": [
+    {
+     "slot": "DT1",
+     "w": 500,
+     "pen": 4
+    },
+    {
+     "slot": "DE1",
+     "w": 650,
+     "pen": 10
+    }
+   ],
+   "players": [
+    {
+     "name": "Fred Warner",
+     "team": "San Francisco 49ers",
+     "ovr": 98,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 583.67,
+     "gain": 27800
+    },
+    {
+     "name": "Roquan Smith",
+     "team": "Baltimore Ravens",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 580.11,
+     "gain": 26050
+    },
+    {
+     "name": "Demario Davis",
+     "team": "NY Jets",
+     "ovr": 90,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 577.78,
+     "gain": 25000
+    },
+    {
+     "name": "Jack Campbell",
+     "team": "Detroit Lions",
+     "ovr": 87,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 575.29,
+     "gain": 23950
+    },
+    {
+     "name": "Devin Bush",
+     "team": "Chicago Bears",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Foyesade Oluokun",
+     "team": "Jacksonville Jaguars",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Nate Landman",
+     "team": "Los Angeles Rams",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Alex Singleton",
+     "team": "Denver Broncos",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    },
+    {
+     "name": "Robert Spillane",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    },
+    {
+     "name": "Ernest Jones IV",
+     "team": "Seattle Seahawks",
+     "ovr": 84,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 572.62,
+     "gain": 22900
+    },
+    {
+     "name": "Terrel Bernard",
+     "team": "Buffalo Bills",
+     "ovr": 84,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 572.62,
+     "gain": 22900
+    },
+    {
+     "name": "Azeez Al-Shaair",
+     "team": "Houston Texans",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Carson Schwesinger",
+     "team": "Cleveland Browns",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Leo Chenal",
+     "team": "Washington Commanders",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Tremaine Edmunds",
+     "team": "NY Giants",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Bobby Okereke",
+     "team": "Carolina Panthers",
+     "ovr": 82,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 570.73,
+     "gain": 22200
+    },
+    {
+     "name": "Blake Cashman",
+     "team": "Minnesota Vikings",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 569.75,
+     "gain": 21850
+    },
+    {
+     "name": "Mack Wilson Sr",
+     "team": "Arizona Cardinals",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 569.75,
+     "gain": 21850
+    },
+    {
+     "name": "Nick Bolton",
+     "team": "Kansas City Chiefs",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 569.75,
+     "gain": 21850
+    },
+    {
+     "name": "Divine Deablo",
+     "team": "Atlanta Falcons",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 568.75,
+     "gain": 21500
+    },
+    {
+     "name": "Patrick Queen",
+     "team": "Pittsburgh Steelers",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 568.75,
+     "gain": 21500
+    },
+    {
+     "name": "Jihaad Campbell",
+     "team": "Philadelphia Eagles",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 567.72,
+     "gain": 21150
+    },
+    {
+     "name": "Zaire Franklin",
+     "team": "Green Bay Packers",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 567.72,
+     "gain": 21150
+    },
+    {
+     "name": "Cody Barton",
+     "team": "Tennessee Titans",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Jacob Rodriguez",
+     "team": "Miami Dolphins",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Nakobe Dean",
+     "team": "Las Vegas Raiders",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Sonny Styles",
+     "team": "Washington Commanders",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Denzel Perryman",
+     "team": "Los Angeles Chargers",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 564.47,
+     "gain": 20100
+    },
+    {
+     "name": "Ivan Pace Jr",
+     "team": "Minnesota Vikings",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 564.47,
+     "gain": 20100
+    },
+    {
+     "name": "DeMarvion Overshown",
+     "team": "Dallas Cowboys",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Jahlani Tavai",
+     "team": "Jacksonville Jaguars",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Josiah Trotter",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Micah McFadden",
+     "team": "NY Giants",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Pete Werner",
+     "team": "New Orleans Saints",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "CJ Allen",
+     "team": "Indianapolis Colts",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Trevin Wallace",
+     "team": "NY Jets",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Anthony Hill Jr.",
+     "team": "Tennessee Titans",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Jack Gibbens",
+     "team": "Arizona Cardinals",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Akeem Davis-Gaither",
+     "team": "Indianapolis Colts",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 559.72,
+     "gain": 18700
+    },
+    {
+     "name": "SirVocea Dennis",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 559.72,
+     "gain": 18700
+    },
+    {
+     "name": "Christian Harris",
+     "team": "Atlanta Falcons",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Damone Clark",
+     "team": "Detroit Lions",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Jack Sanborn",
+     "team": "Chicago Bears",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Fred Warner",
+     "team": "San Francisco 49ers",
+     "ovr": 98,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 583.67,
+     "gain": 27800
+    },
+    {
+     "name": "Roquan Smith",
+     "team": "Baltimore Ravens",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 580.11,
+     "gain": 26050
+    },
+    {
+     "name": "Demario Davis",
+     "team": "NY Jets",
+     "ovr": 90,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 577.78,
+     "gain": 25000
+    },
+    {
+     "name": "Jack Campbell",
+     "team": "Detroit Lions",
+     "ovr": 87,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 575.29,
+     "gain": 23950
+    },
+    {
+     "name": "Devin Bush",
+     "team": "Chicago Bears",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Foyesade Oluokun",
+     "team": "Jacksonville Jaguars",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Nate Landman",
+     "team": "Los Angeles Rams",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Alex Singleton",
+     "team": "Denver Broncos",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    },
+    {
+     "name": "Robert Spillane",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    }
+   ]
+  },
+  "WILL": {
+   "naturalSlot": "MIKE",
+   "naturalW": 300,
+   "nPlayers": 43,
+   "nFlex": 43,
+   "nFlex85": 4,
+   "flexByOVR": {
+    "85+": 4,
+    "80-84": 8,
+    "75-79": 17,
+    "<75": 14
+   },
+   "attractors": [
+    {
+     "slot": "DT1",
+     "w": 500,
+     "pen": 4
+    },
+    {
+     "slot": "DE1",
+     "w": 650,
+     "pen": 10
+    }
+   ],
+   "players": [
+    {
+     "name": "Zack Baun",
+     "team": "Philadelphia Eagles",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 580.11,
+     "gain": 26050
+    },
+    {
+     "name": "Drue Tranquill",
+     "team": "Kansas City Chiefs",
+     "ovr": 89,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 576.97,
+     "gain": 24650
+    },
+    {
+     "name": "Devin Lloyd",
+     "team": "Carolina Panthers",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Dre Greenlaw",
+     "team": "San Francisco 49ers",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    },
+    {
+     "name": "Jordyn Brooks",
+     "team": "Miami Dolphins",
+     "ovr": 84,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 572.62,
+     "gain": 22900
+    },
+    {
+     "name": "Jeremiah Owusu-Koramoah",
+     "team": "Cleveland Browns",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Kaden Elliss",
+     "team": "New Orleans Saints",
+     "ovr": 83,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 571.69,
+     "gain": 22550
+    },
+    {
+     "name": "Daiyan Henley",
+     "team": "Los Angeles Chargers",
+     "ovr": 82,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 570.73,
+     "gain": 22200
+    },
+    {
+     "name": "Alex Anzalone",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 568.75,
+     "gain": 21500
+    },
+    {
+     "name": "T.J. Edwards",
+     "team": "Chicago Bears",
+     "ovr": 81,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 569.75,
+     "gain": 21850
+    },
+    {
+     "name": "Edgerrin Cooper",
+     "team": "Green Bay Packers",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 568.75,
+     "gain": 21500
+    },
+    {
+     "name": "Quay Walker",
+     "team": "Las Vegas Raiders",
+     "ovr": 80,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 568.75,
+     "gain": 21500
+    },
+    {
+     "name": "Arvell Reese",
+     "team": "NY Giants",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 567.72,
+     "gain": 21150
+    },
+    {
+     "name": "Frankie Luvu",
+     "team": "Washington Commanders",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 567.72,
+     "gain": 21150
+    },
+    {
+     "name": "Quincy Williams",
+     "team": "Cleveland Browns",
+     "ovr": 79,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 567.72,
+     "gain": 21150
+    },
+    {
+     "name": "Cedric Gray",
+     "team": "Tennessee Titans",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Omar Speights",
+     "team": "Los Angeles Rams",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Trenton Simpson",
+     "team": "Baltimore Ravens",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Dee Winters",
+     "team": "Dallas Cowboys",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 565.58,
+     "gain": 20450
+    },
+    {
+     "name": "Eric Wilson",
+     "team": "Minnesota Vikings",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 565.58,
+     "gain": 20450
+    },
+    {
+     "name": "Tyrel Dodson",
+     "team": "Carolina Panthers",
+     "ovr": 77,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 565.58,
+     "gain": 20450
+    },
+    {
+     "name": "Jamien Sherwood",
+     "team": "NY Jets",
+     "ovr": 76,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 564.47,
+     "gain": 20100
+    },
+    {
+     "name": "Christian Elliss",
+     "team": "New England Patriots",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Cole Holcomb",
+     "team": "Pittsburgh Steelers",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Drake Thomas",
+     "team": "Seattle Seahawks",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Henry To'oTo'o",
+     "team": "Houston Texans",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Payton Wilson",
+     "team": "Pittsburgh Steelers",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Teddye Buchanan",
+     "team": "Baltimore Ravens",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Tyrice Knight",
+     "team": "Seattle Seahawks",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Dorian Williams",
+     "team": "Buffalo Bills",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Jake Golday",
+     "team": "Minnesota Vikings",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Justin Strnad",
+     "team": "Denver Broncos",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Malcolm Rodriguez",
+     "team": "Detroit Lions",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Christian Rozeboom",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Demetrius Knight Jr",
+     "team": "Cincinnati Bengals",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Devin White",
+     "team": "Detroit Lions",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Jaishawn Barham",
+     "team": "Dallas Cowboys",
+     "ovr": 73,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 560.96,
+     "gain": 19050
+    },
+    {
+     "name": "Jamal Adams",
+     "team": "Minnesota Vikings",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 559.72,
+     "gain": 18700
+    },
+    {
+     "name": "D'Marco Jackson",
+     "team": "Chicago Bears",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Kaleb Elarms-Orr",
+     "team": "Buffalo Bills",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Nick Martin",
+     "team": "San Francisco 49ers",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Ronnie Harrison Jr",
+     "team": "Miami Dolphins",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    },
+    {
+     "name": "Troy Dye",
+     "team": "Los Angeles Chargers",
+     "ovr": 71,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 558.45,
+     "gain": 18350
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Zack Baun",
+     "team": "Philadelphia Eagles",
+     "ovr": 93,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 580.11,
+     "gain": 26050
+    },
+    {
+     "name": "Drue Tranquill",
+     "team": "Kansas City Chiefs",
+     "ovr": 89,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 576.97,
+     "gain": 24650
+    },
+    {
+     "name": "Devin Lloyd",
+     "team": "Carolina Panthers",
+     "ovr": 86,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 574.42,
+     "gain": 23600
+    },
+    {
+     "name": "Dre Greenlaw",
+     "team": "San Francisco 49ers",
+     "ovr": 85,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 573.53,
+     "gain": 23250
+    }
+   ]
+  },
+  "SAM": {
+   "naturalSlot": "MIKE",
+   "naturalW": 300,
+   "nPlayers": 5,
+   "nFlex": 5,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 3,
+    "<75": 2
+   },
+   "attractors": [
+    {
+     "slot": "DT1",
+     "w": 500,
+     "pen": 4
+    },
+    {
+     "slot": "DE1",
+     "w": 650,
+     "pen": 10
+    }
+   ],
+   "players": [
+    {
+     "name": "Isaiah McDuffie",
+     "team": "Green Bay Packers",
+     "ovr": 78,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 566.67,
+     "gain": 20800
+    },
+    {
+     "name": "Derrick Barnes",
+     "team": "Detroit Lions",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "E.J. Speed",
+     "team": "Houston Texans",
+     "ovr": 75,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 563.33,
+     "gain": 19750
+    },
+    {
+     "name": "Dennis Gardeck",
+     "team": "Jacksonville Jaguars",
+     "ovr": 74,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 562.16,
+     "gain": 19400
+    },
+    {
+     "name": "Willie Gay Jr",
+     "team": "Miami Dolphins",
+     "ovr": 72,
+     "flexSlot": "DE1",
+     "flexW": 650,
+     "flexPen": 10,
+     "minWn": 559.72,
+     "gain": 18700
+    }
+   ],
+   "violations85": []
+  },
+  "CB": {
+   "naturalSlot": "CB1",
+   "naturalW": 400,
+   "nPlayers": 141,
+   "nFlex": 141,
+   "nFlex85": 19,
+   "flexByOVR": {
+    "85+": 19,
+    "80-84": 24,
+    "75-79": 52,
+    "<75": 46
+   },
+   "attractors": [
+    {
+     "slot": "WR1",
+     "w": 650,
+     "pen": 4
+    }
+   ],
+   "players": [
+    {
+     "name": "Christian Gonzalez",
+     "team": "New England Patriots",
+     "ovr": 98,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 623.47,
+     "gain": 21900
+    },
+    {
+     "name": "Pat Surtain II",
+     "team": "Denver Broncos",
+     "ovr": 97,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 623.2,
+     "gain": 21650
+    },
+    {
+     "name": "Trent McDuffie",
+     "team": "Los Angeles Rams",
+     "ovr": 94,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 20900
+    },
+    {
+     "name": "Denzel Ward",
+     "team": "Cleveland Browns",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 20650
+    },
+    {
+     "name": "Derek Stingley Jr",
+     "team": "Houston Texans",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 20400
+    },
+    {
+     "name": "Devon Witherspoon",
+     "team": "Seattle Seahawks",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 20150
+    },
+    {
+     "name": "Quinyon Mitchell",
+     "team": "Philadelphia Eagles",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 19900
+    },
+    {
+     "name": "Sauce Gardner",
+     "team": "Indianapolis Colts",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 19900
+    },
+    {
+     "name": "Cooper DeJean",
+     "team": "Philadelphia Eagles",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 19650
+    },
+    {
+     "name": "Jaylon Johnson",
+     "team": "Chicago Bears",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 19650
+    },
+    {
+     "name": "A.J. Terrell Jr",
+     "team": "Atlanta Falcons",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 19400
+    },
+    {
+     "name": "Charvarius Ward Sr",
+     "team": "Indianapolis Colts",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 19400
+    },
+    {
+     "name": "Jaycee Horn",
+     "team": "Carolina Panthers",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 19150
+    },
+    {
+     "name": "Kamari Lassiter",
+     "team": "Houston Texans",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 19150
+    },
+    {
+     "name": "Jalen Pitre",
+     "team": "Houston Texans",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 18900
+    },
+    {
+     "name": "Jamel Dean",
+     "team": "Pittsburgh Steelers",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 18900
+    },
+    {
+     "name": "Carlton Davis III",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    },
+    {
+     "name": "Joey Porter",
+     "team": "Pittsburgh Steelers",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    },
+    {
+     "name": "Marlon Humphrey",
+     "team": "Baltimore Ravens",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    },
+    {
+     "name": "Byron Murphy Jr",
+     "team": "Minnesota Vikings",
+     "ovr": 84,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 18400
+    },
+    {
+     "name": "Chidobe Awuzie",
+     "team": "Baltimore Ravens",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "D.J. Reed",
+     "team": "Detroit Lions",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "DaRon Bland",
+     "team": "Dallas Cowboys",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "DJ Turner II",
+     "team": "Cincinnati Bengals",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "Jourdan Lewis",
+     "team": "Jacksonville Jaguars",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "Kyler Gordon",
+     "team": "Chicago Bears",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "Taron Johnson",
+     "team": "Las Vegas Raiders",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "Travis Hunter",
+     "team": "Jacksonville Jaguars",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 18150
+    },
+    {
+     "name": "Christian Benford",
+     "team": "Buffalo Bills",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 17900
+    },
+    {
+     "name": "Marcus Jones",
+     "team": "New England Patriots",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 17900
+    },
+    {
+     "name": "Nate Wiggins",
+     "team": "Baltimore Ravens",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 17900
+    },
+    {
+     "name": "Riq Woolen",
+     "team": "Philadelphia Eagles",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 17900
+    },
+    {
+     "name": "Cam Taylor-Britt",
+     "team": "Indianapolis Colts",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Cobie Durant",
+     "team": "Dallas Cowboys",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Deommodore Lenoir",
+     "team": "San Francisco 49ers",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Donte Jackson",
+     "team": "Los Angeles Chargers",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Isaiah Rodgers Sr",
+     "team": "Minnesota Vikings",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Mike Jackson",
+     "team": "Carolina Panthers",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 17650
+    },
+    {
+     "name": "Cor'Dale Flott",
+     "team": "Tennessee Titans",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 17400
+    },
+    {
+     "name": "L'Jarius Sneed",
+     "team": "Kansas City Chiefs",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 17400
+    },
+    {
+     "name": "Tarheeb Still",
+     "team": "Los Angeles Chargers",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 17400
+    },
+    {
+     "name": "Zyon McCollum",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 17400
+    },
+    {
+     "name": "Alontae Taylor",
+     "team": "Tennessee Titans",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Greg Newsome II",
+     "team": "NY Giants",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 17150
+    },
+    {
+     "name": "Ja'Quan McMillian",
+     "team": "Denver Broncos",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 17150
+    },
+    {
+     "name": "Jacob Parrish",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 17150
+    },
+    {
+     "name": "Jaylen Watson",
+     "team": "Los Angeles Rams",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 17400
+    },
+    {
+     "name": "Mansoor Delane",
+     "team": "Kansas City Chiefs",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 17150
+    },
+    {
+     "name": "Tyson Campbell",
+     "team": "Cleveland Browns",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 17150
+    },
+    {
+     "name": "Amik Robertson",
+     "team": "Washington Commanders",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Dax Hill",
+     "team": "Cincinnati Bengals",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Dru Phillips",
+     "team": "NY Giants",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Garrett Williams",
+     "team": "Arizona Cardinals",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Jarrian Jones",
+     "team": "Jacksonville Jaguars",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Josh Jobe",
+     "team": "Seattle Seahawks",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Maxwell Hairston",
+     "team": "Buffalo Bills",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Riley Moss",
+     "team": "Denver Broncos",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 16900
+    },
+    {
+     "name": "Benjamin St-Juste",
+     "team": "Green Bay Packers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Carrington Valentine",
+     "team": "Green Bay Packers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Eric Stokes",
+     "team": "Las Vegas Raiders",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "James Pierre",
+     "team": "Minnesota Vikings",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Keisean Nixon",
+     "team": "Green Bay Packers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Kristian Fulton",
+     "team": "Kansas City Chiefs",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Rasul Douglas",
+     "team": "Washington Commanders",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Renardo Green",
+     "team": "San Francisco 49ers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Trey Amos",
+     "team": "Washington Commanders",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Will Johnson",
+     "team": "Arizona Cardinals",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 16650
+    },
+    {
+     "name": "Asante Samuel Jr",
+     "team": "Pittsburgh Steelers",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Brandon Stephens",
+     "team": "NY Jets",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Chris Johnson",
+     "team": "Miami Dolphins",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Dee Alford",
+     "team": "Buffalo Bills",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Deonte Banks",
+     "team": "NY Giants",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Jack Jones",
+     "team": "San Francisco 49ers",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Jarvis Brownlee Jr",
+     "team": "NY Jets",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Kool-Aid McKinstry",
+     "team": "New Orleans Saints",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Mekhi Blackmon",
+     "team": "Cleveland Browns",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Nate Hobbs",
+     "team": "San Francisco 49ers",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Paulson Adebo",
+     "team": "NY Giants",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Roger McCreary",
+     "team": "Detroit Lions",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Terrion Arnold",
+     "team": "Seattle Seahawks",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Tyrique Stevenson Sr",
+     "team": "Chicago Bears",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 16400
+    },
+    {
+     "name": "Avieon Terrell",
+     "team": "Atlanta Falcons",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Benjamin Morrison",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Brandin Echols",
+     "team": "Pittsburgh Steelers",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Clark Phillips III",
+     "team": "Chicago Bears",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Colton Hood",
+     "team": "NY Giants",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "D'Angelo Ponds",
+     "team": "NY Jets",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Emmanuel Forbes Jr",
+     "team": "Los Angeles Rams",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Jahdae Barron",
+     "team": "Denver Broncos",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Joshua Williams",
+     "team": "Tennessee Titans",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Martin Emerson Jr",
+     "team": "New Orleans Saints",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Mike Sainristil",
+     "team": "Washington Commanders",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Mike Hughes",
+     "team": "Atlanta Falcons",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Nahshon Wright",
+     "team": "NY Jets",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Upton Stout",
+     "team": "San Francisco 49ers",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 16150
+    },
+    {
+     "name": "Azareye'h Thomas",
+     "team": "NY Jets",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Darien Porter",
+     "team": "Las Vegas Raiders",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Darrell Baker Jr",
+     "team": "Miami Dolphins",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Davison Igbinosun",
+     "team": "Buffalo Bills",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Jermod McCoy",
+     "team": "Las Vegas Raiders",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Kei'Trel Clark",
+     "team": "Arizona Cardinals",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Max Melton",
+     "team": "Arizona Cardinals",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Montaric Brown",
+     "team": "Jacksonville Jaguars",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Nohl Williams",
+     "team": "Kansas City Chiefs",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 15900
+    },
+    {
+     "name": "Billy Bowman Jr",
+     "team": "Atlanta Falcons",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Cam Hart",
+     "team": "Los Angeles Chargers",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Chau Smith-Wade",
+     "team": "Carolina Panthers",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Jakorian Bennett",
+     "team": "Philadelphia Eagles",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Jaylon Jones",
+     "team": "Tennessee Titans",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Keionte Scott",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Kelee Ringo",
+     "team": "Philadelphia Eagles",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Kris Abrams-Draine",
+     "team": "Denver Broncos",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Quincy Riley",
+     "team": "New Orleans Saints",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Starling Thomas V",
+     "team": "Arizona Cardinals",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 15650
+    },
+    {
+     "name": "Brandon Cisse",
+     "team": "Green Bay Packers",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Daylen Everette",
+     "team": "Pittsburgh Steelers",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Ennis Rakestraw Jr",
+     "team": "Detroit Lions",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Isaac Yiadom",
+     "team": "Washington Commanders",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Ja'Marcus Ingram",
+     "team": "Houston Texans",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Jonathan Jones",
+     "team": "Philadelphia Eagles",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "JuJu Brents",
+     "team": "Miami Dolphins",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Mike Ford Jr",
+     "team": "Atlanta Falcons",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Shavon Revel Jr",
+     "team": "Dallas Cowboys",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 15400
+    },
+    {
+     "name": "Akayleb Evans",
+     "team": "Carolina Panthers",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Caelen Carson",
+     "team": "Dallas Cowboys",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Chandler Rivers",
+     "team": "Baltimore Ravens",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Denzel Burke",
+     "team": "Arizona Cardinals",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Devin Moore",
+     "team": "Dallas Cowboys",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Fabian Moreau",
+     "team": "Washington Commanders",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Ja'Sir Taylor",
+     "team": "Cincinnati Bengals",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Josh Newton",
+     "team": "Cincinnati Bengals",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Julian Neal",
+     "team": "Seattle Seahawks",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Mac McWilliams",
+     "team": "Philadelphia Eagles",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Malik Muhammad II",
+     "team": "Chicago Bears",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Marcus Harris",
+     "team": "Tennessee Titans",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Nehemiah Pritchett",
+     "team": "Seattle Seahawks",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Noah Igbinoghene",
+     "team": "Cleveland Browns",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Rock Ya-Sin",
+     "team": "Detroit Lions",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Tacario Davis",
+     "team": "Cincinnati Bengals",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Tre Brown",
+     "team": "NY Jets",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    },
+    {
+     "name": "Will Lee III",
+     "team": "Carolina Panthers",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 15150
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Christian Gonzalez",
+     "team": "New England Patriots",
+     "ovr": 98,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 623.47,
+     "gain": 21900
+    },
+    {
+     "name": "Pat Surtain II",
+     "team": "Denver Broncos",
+     "ovr": 97,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 623.2,
+     "gain": 21650
+    },
+    {
+     "name": "Trent McDuffie",
+     "team": "Los Angeles Rams",
+     "ovr": 94,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 20900
+    },
+    {
+     "name": "Denzel Ward",
+     "team": "Cleveland Browns",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 20650
+    },
+    {
+     "name": "Derek Stingley Jr",
+     "team": "Houston Texans",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 20400
+    },
+    {
+     "name": "Devon Witherspoon",
+     "team": "Seattle Seahawks",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 20150
+    },
+    {
+     "name": "Quinyon Mitchell",
+     "team": "Philadelphia Eagles",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 19900
+    },
+    {
+     "name": "Sauce Gardner",
+     "team": "Indianapolis Colts",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 19900
+    },
+    {
+     "name": "Cooper DeJean",
+     "team": "Philadelphia Eagles",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 19650
+    },
+    {
+     "name": "Jaylon Johnson",
+     "team": "Chicago Bears",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 19650
+    },
+    {
+     "name": "A.J. Terrell Jr",
+     "team": "Atlanta Falcons",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 19400
+    },
+    {
+     "name": "Charvarius Ward Sr",
+     "team": "Indianapolis Colts",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 19400
+    },
+    {
+     "name": "Jaycee Horn",
+     "team": "Carolina Panthers",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 19150
+    },
+    {
+     "name": "Kamari Lassiter",
+     "team": "Houston Texans",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 19150
+    },
+    {
+     "name": "Jalen Pitre",
+     "team": "Houston Texans",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 18900
+    },
+    {
+     "name": "Jamel Dean",
+     "team": "Pittsburgh Steelers",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 18900
+    },
+    {
+     "name": "Carlton Davis III",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    },
+    {
+     "name": "Joey Porter",
+     "team": "Pittsburgh Steelers",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    },
+    {
+     "name": "Marlon Humphrey",
+     "team": "Baltimore Ravens",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 18650
+    }
+   ]
+  },
+  "SS": {
+   "naturalSlot": "SS",
+   "naturalW": 300,
+   "nPlayers": 54,
+   "nFlex": 54,
+   "nFlex85": 9,
+   "flexByOVR": {
+    "85+": 9,
+    "80-84": 12,
+    "75-79": 18,
+    "<75": 15
+   },
+   "attractors": [
+    {
+     "slot": "WR1",
+     "w": 650,
+     "pen": 4
+    },
+    {
+     "slot": "WR2",
+     "w": 400,
+     "pen": 4
+    },
+    {
+     "slot": "CB1",
+     "w": 400,
+     "pen": 4
+    }
+   ],
+   "players": [
+    {
+     "name": "Derwin James Jr",
+     "team": "Los Angeles Chargers",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 29950
+    },
+    {
+     "name": "Kyle Hamilton",
+     "team": "Baltimore Ravens",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 29600
+    },
+    {
+     "name": "Xavier McKinney",
+     "team": "Green Bay Packers",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 29600
+    },
+    {
+     "name": "Brian Branch",
+     "team": "Detroit Lions",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 29250
+    },
+    {
+     "name": "Budda Baker",
+     "team": "Arizona Cardinals",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 28900
+    },
+    {
+     "name": "Minkah Fitzpatrick",
+     "team": "NY Jets",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 28550
+    },
+    {
+     "name": "Talanoa Hufanga",
+     "team": "Denver Broncos",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 28200
+    },
+    {
+     "name": "Nick Emmanwori",
+     "team": "Seattle Seahawks",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 27500
+    },
+    {
+     "name": "Jalen Thompson",
+     "team": "Dallas Cowboys",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 27150
+    },
+    {
+     "name": "Kam Curl",
+     "team": "Los Angeles Rams",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 26450
+    },
+    {
+     "name": "Caleb Downs",
+     "team": "Dallas Cowboys",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 26100
+    },
+    {
+     "name": "Grant Delpit",
+     "team": "Cleveland Browns",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 26100
+    },
+    {
+     "name": "Jeremy Chinn",
+     "team": "Las Vegas Raiders",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 26100
+    },
+    {
+     "name": "Josh Metellus",
+     "team": "Minnesota Vikings",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 26100
+    },
+    {
+     "name": "Quentin Lake",
+     "team": "Los Angeles Rams",
+     "ovr": 82,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.29,
+     "gain": 26100
+    },
+    {
+     "name": "Antonio Johnson",
+     "team": "Jacksonville Jaguars",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 25750
+    },
+    {
+     "name": "Craig Woodson",
+     "team": "New England Patriots",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 25750
+    },
+    {
+     "name": "Jaquan Brisker",
+     "team": "Pittsburgh Steelers",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 25400
+    },
+    {
+     "name": "Nick Cross",
+     "team": "Washington Commanders",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 25750
+    },
+    {
+     "name": "DeShon Elliott",
+     "team": "Pittsburgh Steelers",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 25400
+    },
+    {
+     "name": "Tony Jefferson",
+     "team": "Los Angeles Chargers",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 25400
+    },
+    {
+     "name": "Reed Blankenship",
+     "team": "Houston Texans",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 25050
+    },
+    {
+     "name": "Tykee Smith",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 25050
+    },
+    {
+     "name": "Amani Hooker",
+     "team": "Tennessee Titans",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Chuck Clark",
+     "team": "Detroit Lions",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Julian Blackmon",
+     "team": "New Orleans Saints",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Xavier Watts",
+     "team": "Atlanta Falcons",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Dillon Thieneman",
+     "team": "Chicago Bears",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Javon Bullard",
+     "team": "Green Bay Packers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Jonas Sanker",
+     "team": "New Orleans Saints",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Jordan Battle",
+     "team": "Cincinnati Bengals",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Chamarri Conner",
+     "team": "Kansas City Chiefs",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "Dane Belton",
+     "team": "NY Jets",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "Kyle Dugger",
+     "team": "Cincinnati Bengals",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "C.J. Gardner-Johnson",
+     "team": "Buffalo Bills",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Marcus Epps",
+     "team": "Philadelphia Eagles",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Nick Scott",
+     "team": "Carolina Panthers",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Tony Adams",
+     "team": "Tennessee Titans",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Tyler Nubin",
+     "team": "NY Giants",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "A.J. Haulcy",
+     "team": "Indianapolis Colts",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Cam Lewis",
+     "team": "Chicago Bears",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Christian Izien",
+     "team": "Detroit Lions",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Jaden Hicks",
+     "team": "Kansas City Chiefs",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Malik Mustapha",
+     "team": "San Francisco 49ers",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Marques Sigle",
+     "team": "San Francisco 49ers",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Michael Carter II",
+     "team": "Philadelphia Eagles",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Jadon Canady",
+     "team": "Kansas City Chiefs",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Jakobe Thomas",
+     "team": "Minnesota Vikings",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Jason Pinnock",
+     "team": "NY Giants",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Genesis Smith",
+     "team": "Los Angeles Chargers",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 22600
+    },
+    {
+     "name": "Markquese Bell",
+     "team": "Dallas Cowboys",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 22600
+    },
+    {
+     "name": "Sydney Brown",
+     "team": "Atlanta Falcons",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 22600
+    },
+    {
+     "name": "Jay Ward",
+     "team": "Minnesota Vikings",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    },
+    {
+     "name": "Kyle Louis",
+     "team": "Miami Dolphins",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Derwin James Jr",
+     "team": "Los Angeles Chargers",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 29950
+    },
+    {
+     "name": "Kyle Hamilton",
+     "team": "Baltimore Ravens",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 29600
+    },
+    {
+     "name": "Xavier McKinney",
+     "team": "Green Bay Packers",
+     "ovr": 92,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.74,
+     "gain": 29600
+    },
+    {
+     "name": "Brian Branch",
+     "team": "Detroit Lions",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 29250
+    },
+    {
+     "name": "Budda Baker",
+     "team": "Arizona Cardinals",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 28900
+    },
+    {
+     "name": "Minkah Fitzpatrick",
+     "team": "NY Jets",
+     "ovr": 89,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.79,
+     "gain": 28550
+    },
+    {
+     "name": "Talanoa Hufanga",
+     "team": "Denver Broncos",
+     "ovr": 88,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.45,
+     "gain": 28200
+    },
+    {
+     "name": "Nick Emmanwori",
+     "team": "Seattle Seahawks",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 27500
+    },
+    {
+     "name": "Jalen Thompson",
+     "team": "Dallas Cowboys",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 27150
+    }
+   ]
+  },
+  "FS": {
+   "naturalSlot": "FS",
+   "naturalW": 300,
+   "nPlayers": 53,
+   "nFlex": 53,
+   "nFlex85": 7,
+   "flexByOVR": {
+    "85+": 7,
+    "80-84": 8,
+    "75-79": 20,
+    "<75": 18
+   },
+   "attractors": [
+    {
+     "slot": "WR1",
+     "w": 650,
+     "pen": 4
+    },
+    {
+     "slot": "WR2",
+     "w": 400,
+     "pen": 4
+    },
+    {
+     "slot": "CB1",
+     "w": 400,
+     "pen": 4
+    }
+   ],
+   "players": [
+    {
+     "name": "Jessie Bates III",
+     "team": "Atlanta Falcons",
+     "ovr": 94,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 30300
+    },
+    {
+     "name": "Antoine Winfield Jr",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 29950
+    },
+    {
+     "name": "Kerby Joseph",
+     "team": "Detroit Lions",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 29250
+    },
+    {
+     "name": "Jalen Ramsey",
+     "team": "Pittsburgh Steelers",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 28900
+    },
+    {
+     "name": "Harrison Smith",
+     "team": "Minnesota Vikings",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 27850
+    },
+    {
+     "name": "Julian Love",
+     "team": "Seattle Seahawks",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 27500
+    },
+    {
+     "name": "Kevin Byard III",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 27150
+    },
+    {
+     "name": "Calen Bullock",
+     "team": "Houston Texans",
+     "ovr": 84,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 26800
+    },
+    {
+     "name": "Camryn Bynum",
+     "team": "Indianapolis Colts",
+     "ovr": 84,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 26800
+    },
+    {
+     "name": "Jevon Holland",
+     "team": "NY Giants",
+     "ovr": 84,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 26800
+    },
+    {
+     "name": "Justin Reid",
+     "team": "New Orleans Saints",
+     "ovr": 84,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.05,
+     "gain": 26800
+    },
+    {
+     "name": "Brandon Jones",
+     "team": "Denver Broncos",
+     "ovr": 83,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 618.67,
+     "gain": 26450
+    },
+    {
+     "name": "Tre'von Moehrig",
+     "team": "Carolina Panthers",
+     "ovr": 81,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.9,
+     "gain": 25750
+    },
+    {
+     "name": "Bryan Cook",
+     "team": "Cincinnati Bengals",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 25400
+    },
+    {
+     "name": "Cole Bishop",
+     "team": "Buffalo Bills",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 25050
+    },
+    {
+     "name": "Kamren Kinchens",
+     "team": "Los Angeles Rams",
+     "ovr": 80,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.5,
+     "gain": 25400
+    },
+    {
+     "name": "Alohi Gilman",
+     "team": "Kansas City Chiefs",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 25050
+    },
+    {
+     "name": "Elijah Molden",
+     "team": "Los Angeles Chargers",
+     "ovr": 79,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 617.09,
+     "gain": 25050
+    },
+    {
+     "name": "Ar'Darius Washington",
+     "team": "NY Giants",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Malaki Starks",
+     "team": "Baltimore Ravens",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Malik Hooker",
+     "team": "Dallas Cowboys",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Xavier Woods",
+     "team": "Chicago Bears",
+     "ovr": 78,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.67,
+     "gain": 24700
+    },
+    {
+     "name": "Andre Cisco",
+     "team": "NY Jets",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Andrew Wingard",
+     "team": "Arizona Cardinals",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Coby Bryant",
+     "team": "Chicago Bears",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Jaylinn Hawkins",
+     "team": "Baltimore Ravens",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Quan Martin",
+     "team": "Washington Commanders",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Rayshawn Jenkins",
+     "team": "Pittsburgh Steelers",
+     "ovr": 77,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 616.23,
+     "gain": 24350
+    },
+    {
+     "name": "Evan Williams",
+     "team": "Green Bay Packers",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "Ronnie Hickman",
+     "team": "Cleveland Browns",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "Treydan Stukes",
+     "team": "Las Vegas Raiders",
+     "ovr": 76,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.79,
+     "gain": 24000
+    },
+    {
+     "name": "Bud Clark",
+     "team": "Seattle Seahawks",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Emmanuel McNeil-Warren",
+     "team": "Cleveland Browns",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Kevin Winston Jr",
+     "team": "Tennessee Titans",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Ty Okada",
+     "team": "Seattle Seahawks",
+     "ovr": 75,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 615.33,
+     "gain": 23650
+    },
+    {
+     "name": "Andrew Mukuba",
+     "team": "Philadelphia Eagles",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Eric Murray",
+     "team": "Jacksonville Jaguars",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Ji'Ayir Brown",
+     "team": "San Francisco 49ers",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Jordan Howden",
+     "team": "New Orleans Saints",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "P.J. Locke",
+     "team": "Dallas Cowboys",
+     "ovr": 74,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.86,
+     "gain": 23300
+    },
+    {
+     "name": "Ashtyn Davis",
+     "team": "San Francisco 49ers",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Avonte Maddox",
+     "team": "Detroit Lions",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Caleb Ransaw",
+     "team": "Jacksonville Jaguars",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Damar Hamlin",
+     "team": "Buffalo Bills",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Isaiah Simmons",
+     "team": "Carolina Panthers",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Jeremy Reaves",
+     "team": "Washington Commanders",
+     "ovr": 73,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 614.38,
+     "gain": 22950
+    },
+    {
+     "name": "Dadrion Taylor-Demerson",
+     "team": "Arizona Cardinals",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 22600
+    },
+    {
+     "name": "Kamari Ramsey",
+     "team": "Houston Texans",
+     "ovr": 72,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.89,
+     "gain": 22600
+    },
+    {
+     "name": "Darrick Forrest",
+     "team": "San Francisco 49ers",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    },
+    {
+     "name": "Isaiah Pola-Mao",
+     "team": "Las Vegas Raiders",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    },
+    {
+     "name": "Jonathan Owens",
+     "team": "Indianapolis Colts",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    },
+    {
+     "name": "Malachi Moore",
+     "team": "NY Jets",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    },
+    {
+     "name": "Terrell Burgess",
+     "team": "Tennessee Titans",
+     "ovr": 71,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 613.38,
+     "gain": 22250
+    }
+   ],
+   "violations85": [
+    {
+     "name": "Jessie Bates III",
+     "team": "Atlanta Falcons",
+     "ovr": 94,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.34,
+     "gain": 30300
+    },
+    {
+     "name": "Antoine Winfield Jr",
+     "team": "Tampa Bay Buccaneers",
+     "ovr": 93,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 622.04,
+     "gain": 29950
+    },
+    {
+     "name": "Kerby Joseph",
+     "team": "Detroit Lions",
+     "ovr": 91,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.43,
+     "gain": 29250
+    },
+    {
+     "name": "Jalen Ramsey",
+     "team": "Pittsburgh Steelers",
+     "ovr": 90,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 621.11,
+     "gain": 28900
+    },
+    {
+     "name": "Harrison Smith",
+     "team": "Minnesota Vikings",
+     "ovr": 87,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 620.11,
+     "gain": 27850
+    },
+    {
+     "name": "Julian Love",
+     "team": "Seattle Seahawks",
+     "ovr": 86,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.77,
+     "gain": 27500
+    },
+    {
+     "name": "Kevin Byard III",
+     "team": "New England Patriots",
+     "ovr": 85,
+     "flexSlot": "WR1",
+     "flexW": 650,
+     "flexPen": 4,
+     "minWn": 619.41,
+     "gain": 27150
+    }
+   ]
+  },
+  "K": {
+   "naturalSlot": "K",
+   "naturalW": 50,
+   "nPlayers": 32,
+   "nFlex": 0,
+   "nFlex85": 0,
+   "flexByOVR": {
+    "85+": 0,
+    "80-84": 0,
+    "75-79": 0,
+    "<75": 0
+   },
+   "attractors": [],
+   "players": [],
+   "violations85": []
+  }
+ },
+ "summary": [
+  {
+   "pos": "CB",
+   "naturalSlot": "CB1",
+   "naturalW": 400,
+   "nFlex": 141,
+   "nFlex85": 19,
+   "requiredMinNaturalW": 623.47,
+   "attractors": "WR1 w=650 pen=4"
+  },
+  {
+   "pos": "DT",
+   "naturalSlot": "DT1",
+   "naturalW": 500,
+   "nFlex": 125,
+   "nFlex85": 17,
+   "requiredMinNaturalW": 622.92,
+   "attractors": "DE1 w=650 pen=4"
+  },
+  {
+   "pos": "HB",
+   "naturalSlot": "RB1",
+   "naturalW": 250,
+   "nFlex": 89,
+   "nFlex85": 17,
+   "requiredMinNaturalW": 269.39,
+   "attractors": "TE1 w=300 pen=10"
+  },
+  {
+   "pos": "SS",
+   "naturalSlot": "SS",
+   "naturalW": 300,
+   "nFlex": 54,
+   "nFlex85": 9,
+   "requiredMinNaturalW": 622.04,
+   "attractors": "WR1 w=650 pen=4; WR2 w=400 pen=4; CB1 w=400 pen=4"
+  },
+  {
+   "pos": "MIKE",
+   "naturalSlot": "MIKE",
+   "naturalW": 300,
+   "nFlex": 43,
+   "nFlex85": 9,
+   "requiredMinNaturalW": 583.67,
+   "attractors": "DT1 w=500 pen=4; DE1 w=650 pen=10"
+  },
+  {
+   "pos": "FS",
+   "naturalSlot": "FS",
+   "naturalW": 300,
+   "nFlex": 53,
+   "nFlex85": 7,
+   "requiredMinNaturalW": 622.34,
+   "attractors": "WR1 w=650 pen=4; WR2 w=400 pen=4; CB1 w=400 pen=4"
+  },
+  {
+   "pos": "C",
+   "naturalSlot": "C",
+   "naturalW": 150,
+   "nFlex": 31,
+   "nFlex85": 6,
+   "requiredMinNaturalW": 500,
+   "attractors": "OG1 w=500 pen=0; OG2 w=250 pen=0; OT1 w=500 pen=4; OT2 w=300 pen=4; DT1 w=500 pen=4; DT2 w=300 pen=4"
+  },
+  {
+   "pos": "WILL",
+   "naturalSlot": "MIKE",
+   "naturalW": 300,
+   "nFlex": 43,
+   "nFlex85": 4,
+   "requiredMinNaturalW": 580.11,
+   "attractors": "DT1 w=500 pen=4; DE1 w=650 pen=10"
+  }
+ ],
+ "nPositions": 19,
+ "when": "2026-11-07T10-15",
+ "build": "/Users/kosi/Desktop/wt/vloc/Football-Sim-PreColors.html",
+ "flexCap": 10,
+ "pageErrors": 0
+}
