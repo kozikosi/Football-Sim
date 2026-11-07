@@ -45,9 +45,37 @@ export function assertWrapped(obj) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  // self-test
-  const r = wrap({ samples: [0.1, 0.12, 0.09, 0.11, 0.10], threshold: 0.05, label: 'demo' });
-  console.log(JSON.stringify(r, null, 2));
-  assertWrapped(r);
-  console.log('selftest: OK');
+  const fs = await import('node:fs');
+  const arg = process.argv[2];
+  if (arg && arg.endsWith('.json')) {
+    let lab; try { lab = JSON.parse(fs.readFileSync(arg,'utf8')); } catch(e){ console.error(e.message); process.exit(2); }
+    const hist = Array.isArray(lab.hist) ? lab.hist : null;
+    let slots = Array.isArray(lab.slots) ? lab.slots : (lab.slots && typeof lab.slots === 'object' ? Object.values(lab.slots) : []);
+    if (!slots.length && lab.fitted && typeof lab.fitted === 'object') {
+      for (const k of Object.keys(lab.fitted)) {
+        slots.push({ slot: k, rawWins: lab.fitted[k], fittedWins: (lab.final||{})[k], designWins: null });
+      }
+    }
+    const out = { source: arg, reportingLaw: 'T12', slots: {}, summary: { slotsReported: slots.length }, notes: [] };
+    for (const s of slots) {
+      const slot = s.slot || s.name;
+      if (!slot) continue;
+      const vals = [s.rawWins, s.fittedWins, s.designWins, s.calibratedWins700].filter((x)=>typeof x==='number' && Number.isFinite(x));
+      const w = wrap({ samples: vals.length ? vals : [s.rawWins||0], threshold: 0.1, label: slot, unit: 'wins' });
+      out.slots[slot] = w;
+    }
+    if (hist && hist.length) {
+      const last = hist[hist.length-1];
+      out.summary.fitIterations = hist.length;
+      out.summary.finalRmsLogError = last;
+      out.summary.fitConverged = last < 0.004;
+      out.notes.push(`Fit histogram: ${hist.length} iterations, final RMS log-error ${(last*100).toFixed(2)}%.`);
+    }
+    console.log(JSON.stringify(out, null, 2));
+  } else {
+    const r = wrap({ samples: [0.1, 0.12, 0.09, 0.11, 0.10], threshold: 0.05, label: 'demo' });
+    console.log(JSON.stringify(r, null, 2));
+    assertWrapped(r);
+    console.log('selftest: OK');
+  }
 }
