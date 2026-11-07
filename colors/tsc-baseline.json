@@ -1,5 +1,5 @@
 {
-  "total": 151,
+  "total": 127,
   "files": {
     "src/core/hash.ts": 7,
     "src/core/hungarian.ts": 15,
@@ -15,7 +15,6 @@
     "src/sports/nfl/engine/playerids.ts": 11,
     "src/sports/nfl/engine/players.ts": 9,
     "src/sports/nfl/engine/ratings.ts": 1,
-    "src/sports/nfl/engine/season.ts": 24,
     "src/sports/nfl/engine/standings.ts": 19,
     "src/sports/nfl/view/draftBoard.ts": 8,
     "src/sports/nfl/view/roster.ts": 2,

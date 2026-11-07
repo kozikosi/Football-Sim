@@ -6,3 +6,11 @@ export function at<T>(xs: ArrayLike<T>, i: number): T {
   if (v === undefined) throw new Error(`at(): no element at index ${i} (length ${xs.length})`);
   return v;
 }
+
+// Same idea for a string-keyed record: `need(rec, key)` returns rec[key] or throws, so a missing key (a team name that is not in the table)
+// fails where it happens. Use it where the key is meant to exist; keep `?.`/`??` where absence is a legal state.
+export function need<T>(rec: Readonly<Record<string, T>>, key: string): T {
+  const v = rec[key];
+  if (v === undefined) throw new Error(`need(): no entry for key "${key}"`);
+  return v;
+}

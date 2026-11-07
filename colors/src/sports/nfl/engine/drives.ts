@@ -45,7 +45,7 @@ export interface GameResult {
   ot: null | { first: Side; periods: number; tie: boolean };
   otSecs: number;
 }
-export interface GameOptions { playoff: boolean; homeField?: number; otLimit?: number }   // otLimit: overtime period length in seconds (tests shorten it)
+export interface GameOptions { playoff: boolean; homeField?: number | undefined; otLimit?: number }   // otLimit: overtime period length in seconds (tests shorten it)
 
 const other = (s: Side): Side => (s === 'home' ? 'away' : 'home');
 

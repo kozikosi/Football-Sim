@@ -11,6 +11,7 @@ import { teamIdentity } from './plans.ts';
 import { leagueBaseline } from './ratings.ts';
 import type { Ratings } from './ratings.ts';
 import type { Rng } from '../../../core/rng.ts';
+import { at, need } from '../../../core/at.ts';
 import { buildSchedule } from './schedule.ts';
 import type { Game } from './schedule.ts';
 import { seedPlayoffs } from './standings.ts';
@@ -18,7 +19,7 @@ import type { Played, Seeding } from './standings.ts';
 
 export interface LeagueTeam { name: string; ratings: Ratings }
 export type Round = 'Wild Card' | 'Divisional' | 'Conference' | 'Super Bowl';
-export interface GameLog { week: number; round?: Round; kind: Game['kind'] | 'playoff'; home: string; away: string; homeField?: number; result: GameResult }
+export interface GameLog { week: number; round?: Round; kind: Game['kind'] | 'playoff'; home: string; away: string; homeField?: number | undefined; result: GameResult }
 export interface Record3 { w: number; l: number; t: number; pf: number; pa: number }
 export interface SeasonResult {
   year: number; schedule: Game[]; games: GameLog[]; playoffs: GameLog[]; seeding: Seeding;
@@ -28,7 +29,7 @@ export interface SeasonResult {
 // last season's division finish for a first season: by team strength (offence + defence)
 export function initialRanks(teams: readonly LeagueTeam[]): Record<string, number> {
   const by = Object.fromEntries(teams.map((t) => [t.name, t.ratings])) as Record<string, Ratings>, rank: Record<string, number> = {};
-  for (const c of ['AFC', 'NFC'] as const) for (const d of DIVS) divisionTeams(c, d).sort((a, b) => by[b].off + by[b].def - by[a].off - by[a].def).forEach((n, i) => (rank[n] = i + 1));
+  for (const c of ['AFC', 'NFC'] as const) for (const d of DIVS) divisionTeams(c, d).sort((a, b) => need(by, b).off + need(by, b).def - need(by, a).off - need(by, a).def).forEach((n, i) => (rank[n] = i + 1));
   return rank;
 }
 
@@ -49,7 +50,7 @@ export function simulateSeason(teams: readonly LeagueTeam[], rng: Rng, opts: { y
   const played: Played[] = games.map((g) => ({ home: g.home, away: g.away, hs: g.result.homeScore, as: g.result.awayScore, htd: tds(g.result, 'home'), atd: tds(g.result, 'away') }));
   const table: Record<string, Record3> = Object.fromEntries(TEAMS.map((t) => [t.name, { w: 0, l: 0, t: 0, pf: 0, pa: 0 }]));
   for (const p of played) {
-    const h = table[p.home], a = table[p.away];
+    const h = need(table, p.home), a = need(table, p.away);
     h.pf += p.hs; h.pa += p.as; a.pf += p.as; a.pa += p.hs;
     if (p.hs > p.as) { h.w++; a.l++; } else if (p.hs < p.as) { a.w++; h.l++; } else { h.t++; a.t++; }
   }
@@ -63,11 +64,11 @@ export function simulateSeason(teams: readonly LeagueTeam[], rng: Rng, opts: { y
   const champs: Record<Conf, string> = { AFC: '', NFC: '' };
   for (const conf of ['AFC', 'NFC'] as const) {
     const s = seeding.seeds[conf], seedOf = (t: string) => s.indexOf(t) + 1;
-    const wc = [[2, 7], [3, 6], [4, 5]].map(([h, l]) => meet('Wild Card', s[h - 1], s[l - 1], 19));
-    const alive = [s[0], ...wc].sort((a, b) => seedOf(a) - seedOf(b));      // the #1 seed and the three winners
-    const lowest = alive[alive.length - 1];
-    const dv = [meet('Divisional', alive[0], lowest, 20), meet('Divisional', alive[1], alive[2], 20)].sort((a, b) => seedOf(a) - seedOf(b));
-    champs[conf] = meet('Conference', dv[0], dv[1], 21);
+    const wc = ([[2, 7], [3, 6], [4, 5]] as const).map(([h, l]) => meet('Wild Card', at(s, h - 1), at(s, l - 1), 19));
+    const alive = [at(s, 0), ...wc].sort((a, b) => seedOf(a) - seedOf(b));      // the #1 seed and the three winners
+    const lowest = at(alive, alive.length - 1);
+    const dv = [meet('Divisional', at(alive, 0), lowest, 20), meet('Divisional', at(alive, 1), at(alive, 2), 20)].sort((a, b) => seedOf(a) - seedOf(b));
+    champs[conf] = meet('Conference', at(dv, 0), at(dv, 1), 21);
   }
   const hostIsAfc = opts.year % 2 === 1;   // the designated home team of the Super Bowl alternates; there is no home-field edge
   const [sbHome, sbAway] = hostIsAfc ? [champs.AFC, champs.NFC] : [champs.NFC, champs.AFC];
