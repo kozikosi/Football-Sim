@@ -6,6 +6,7 @@ Curated list of where recent council reviews on the engine question live. All pa
 - `_agents/beam/notes/bias-audit-2026-11-07.md` — where Owner weights enter; RATING_SPECS & MC fitted; secondary 18.7% vs QB 11.6%; why slotWinsPerOvr can't validate.
 - `_agents/beam/notes/bias-preregistration-2026-11-07.md` — 6 metrics (M1–M6), thresholds, decision rules, evidence standard.
 - `_agents/beam/notes/bias-results-2026-11-07.md` — M4 volume (nflverse 2023/24): secondary not biased; TE/LB underweighted, DL overweighted. M5 by-OVR: QB & TE match engine; WR slightly high; RB much too high.
+- `_agents/beam/notes/zai-response-critique-2026-11-07.md` — critique of Z.ai's advisory: agreements, disagreements (WR1 EPA, TE marginal), 10 tool ideas, 4 Owner questions.
 
 ## Owner's final weights table + tests
 - `_agents/beam/data/owner-weights-2026-11-06.json` — Owner's 32-slot weights (salary internal ref).
