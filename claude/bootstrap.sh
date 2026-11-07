@@ -2,7 +2,7 @@
 # boot-v3. One command for every boot (the Project boot stub calls it; the stub says "boot-v3").
 # Clones if missing, else fetch + ff-only merge (skipped if dirty). Never reset --hard, stash, force, or rm.
 # Prints: branch/head/dirty, a NOW.md freshness verdict, claude/NOW.md, then claude/00-READ-FIRST.md (the rules).
-URL="https://github.com/kozikosi/football-sim"; BR="architect/engine-and-seats"; DEPTH=50
+URL="https://github.com/kozikosi/Football-Sim"; BR="architect/engine-and-seats"; DEPTH=50
 D="${FOOTBALL_SIM_DIR:-$(cd "$(dirname "$0")/.." && pwd)}"
 net() { git -c http.lowSpeedLimit=1000 -c http.lowSpeedTime=60 "$@"; }
 if [ ! -d "$D/.git" ]; then
