@@ -6,22 +6,29 @@
 
 ## This session (2026-11-07, per START-HERE from origin/council/muse)
 - Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK).
-- Owner's bias question: ran bias-protocol steps 1 (audit) and 2 (pre-registration), both read-only, committed before any diagnostic runs. Then critiqued z.ai's DATA-ANCHOR-WEIGHTS-ADVISORY and produced an engine/tool improvement plan.
-- DONE: `_agents/vl/notes/bias-audit-2026-11-07.md` (step 1, committed 242a8a9d). VERIFIED by reading named files: slots.ts SLOTS == design.json exactly; design.json provenance = Architect spec 20dde5a2 + measured DL5 5e993c0f + measured TE3/WR4 972dfeb1 (NOT from 6 Nov salary table); fitlm.js fit specs/MC so derivedWeights reproduces design.json (circularity confirmed); current table vs Owner's 6 Nov salary table differ on ~20/32 slots; P-013 = Owner decision, VL may propose/test never apply.
-- DONE: `_agents/vl/notes/bias-pre-registration-2026-11-07.md` (step 2, committed 38e87e72). Pre-registers metrics M1–M4, thresholds T1–T4 (≥4pp group tilt, ≥2 anchors, group-level not single-star, survives 700-scale rounding), held-out 2025, Owner-supplied anchors (nflverse snaps/targets/yards by position 2023–25 with named sources; 2025 team wins from tests/2025_standings.js, source TBD), Owner priors before results, independent Verifier seat. Nothing run yet.
-- DONE: `_agents/vl/deliveries/vl-zai-critique-report-2026-11-07.md` (committed 5fd712b2) + `inbox/20261107-221000-vl-P-013-zai-critique.md` (FOR: P-013, committed a8b56034). Critique: converges with z.ai on salary≠wins, circularity, one-way calibration, McBride direction; z.ai's data claims (calibrate-weights.mjs, z-post-blue source, nflverse numbers, flexscan/flextune) are REPORTED to me, not present/verifiable in this tree; Tier A only meaningful after L1 validation; blocker = Owner must push/zip 7 Nov workspace before L1 audit.
-- All pushed to origin/council/vl: HEAD a8b56034 (verified via git ls-remote). No engine or product file touched; no simulation run.
+- Owner's bias question (P-013): bias-audit steps 1–2 already done earlier (committed 242a8a9d, 38e87e72). This session built + ran tooling on the modelWeights problem (read-only; no product file or protected constant touched):
+  - BUILT `tools/mathlab/raw-curve-witness.mjs` (T3) — per-slot raw `slotWins(s, ovr)` curves (ovr 50–99) beside calibrated `modelWeights()` (700 scale), per build, archived to `tools/mathlab/results/`, with AGENTS §3 quantisation-contract check. RUN on Pre-Colors: n=32, page errors 0, **maxQuantError700 = 0, outOfContract = 0 (contract holds exactly)**, raw↔calibrated Spearman r = 0.992 → `results/raw-curve-witness-40233d6be00e987c-2026-11-07.{json,md}` (VERIFIED).
+  - BUILT `tools/mathlab/triangulation.mjs` (T3) — per-slot multi-anchor Rosetta table: raw span · calibrated700 · derived1000 · volume/EPA/AV/salary-derived (all UNKNOWN until real-data run) · rank per anchor · spread · disagreement flag. RUN: raw↔calibrated Spearman r = 0.995, 0 disagreement flags → `results/*-triangulation.{md,json}` (VERIFIED).
+  - BUILT `tools/mathlab/uncertainty.mjs` (T12) — reporting law n/mean/median/sd/se/CI95/threshold/verdict; `--selftest` PASS; wrap on witness `rows.spanWins`: n=32, CI95 [0.552,0.908], threshold 0.5 → PASS (VERIFIED).
+  - BUILT `tools/mathlab/replacement-level-audit.mjs` (T4) — engine replacement baseline per slot (flat 80 OVR = no position-specific replacement); DL5 VERIFIED at 0.33 snap share stable 2023–25; depth slots UNKNOWN → `results/replacement-level-audit-2026-11-07.{md,json}` (runs clean, VERIFIED).
+- Governance artifacts written: `_agents/vl/notes/{hypothesis-ledger,discrepancy-register,ruling-log,held-out-lint}-2026-11-07.md` (H-001–H-008, D-001–D-008, ruling log, held-out lint).
+- Delivered revised Claude-facing prompt: `_agents/vl/deliveries/prompt-for-claude-2026-11-07-vl-revision.md` + inbox pointer `inbox/20261107-2352-vl-P-013-claude-prompt-revision.md` (FOR: P-013).
 
-## Open needs (to ask the Owner)
-- Real anchor data with named sources: nflverse snap counts + target share/catches/yards by position (WR/TE/RB) 2023–2025; defensive snap share by group 2023–2025; confirmation of tests/2025_standings.js source. 2025 held out.
-- Push/zip of 7 Nov workspace (NOW.md, tools/mathlab/*, flex.json, claude/rulings/*) and confirmation on origin/council/zai (25e3b2f) so L1 audit can run.
-- Owner's position-group importance priors before any diagnostic result.
-- P-013 ruling: engine default = Tier A measured weights after L1 validation, personal table = display preset; drop "zero 85+ cases" flex chase, keep −10 cap interim.
+## Updated understanding (P-013 modelWeights problem)
+- Fit target = the OLD personal table (lab 28 Oct; `design.json` = QB 1000, WR1 470, TE1 270, CB1 450, FS 260, SS 240), NOT the salary table (arrived 6 Nov). Two inconsistent targets (mechanics fit to old personal; display weights = salary), neither validated. `modelWeights()` inherits the old preference via fitted `RATING_SPECS`/`MC` — Tier A cannot self-validate.
+- Owner permission (binding, P-013): abandon old personal table AND salary table as calibration targets/foundations; keep as display presets/independent anchors only. `DEFAULT_WEIGHTS` may be repositioned/retired (Architect implements + re-pins MERGE-MANIFEST in same commit).
+- New display presets: QB = 1000, other slots from engine math, increments of 50. Do not hard-code old tables.
+
+## Open needs (to ask Claude/Architect)
+- Fit JSONs (`results/fit-*.json`) + `calibrate-weights.mjs` output from `architect/engine-and-seats` for the Q2 parameter diff (layer-audit format; receiver = `triangulation.mjs` rows).
+- Confirmation of `colors/src/engine/rng.ts` seed injection point (unseeded shell until T-20261022-claude-2 lands).
+- Rosetta schema agreement (shared keys + `track` column shell/colors/real).
+- Claude's answers to Q1–Q3 and a–d; his step order/waves.
 
 ## Queue remaining
-- P-070, P-127, P-132, P-133, P-188 (from earlier session, untouched).
-- P-013 weights recalibration is the Owner's live request; VL side = bias diagnostic + critique, awaiting Owner decision/an/data before any weight change.
+- P-070, P-127, P-132, P-133, P-188 (earlier session, untouched).
+- P-013 is the Owner's live request; VL side = tooling + critique, awaiting Claude's answers before any further weight work.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `a8b56034` (pushed to origin/council/vl)
+- **HEAD:** `a8b56034` (pushed to origin/council/vl) — this session's commit follows.
