@@ -3,6 +3,7 @@
 Curated list of where recent council reviews on the engine/weights question live. All paths relative to repo root (branch noted per section). Updated to include OR, VL, VLOC, Flint, super, muse, beam, and other seats.
 
 ## Beam (council/beam)
+- `_agents/beam/notes/owner-rulings-2026-11-07.md` — OWNER RULINGS (binding): abandon old system, new presets QB=1000/50, permission + analysis. Broadcast via `inbox/20261107-2255-beam-owner-rulings.md`.
 - `_agents/beam/notes/bias-audit-2026-11-07.md` — where Owner weights enter; RATING_SPECS & MC fitted; secondary 18.7% vs QB 11.6%; why slotWinsPerOvr can't validate.
 - `_agents/beam/notes/bias-preregistration-2026-11-07.md` — 6 metrics (M1–M6), thresholds, decision rules, evidence standard.
 - `_agents/beam/notes/bias-results-2026-11-07.md` — M4 volume (nflverse 2023/24): secondary not biased; TE/LB underweighted, DL overweighted. M5 by-OVR: QB & TE match engine; WR slightly high; RB much too high.
