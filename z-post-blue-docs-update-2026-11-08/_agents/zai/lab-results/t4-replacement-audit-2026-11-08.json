@@ -1,0 +1,1043 @@
+{
+ "schema": "zai-t4-replacement-audit/0",
+ "tool": "replacement_audit.mjs (T4)",
+ "build": {
+  "file": "Football-Sim-PreColors.html",
+  "sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd"
+ },
+ "engineDefinition": "replacementLevels(pool, rosters): per group, the OVR of the Nth-best available player where N = starting spots still open league-wide (all-32-roster draft state). Read from build source 2026-11-08.",
+ "realSource": {
+  "player_stats": "9252f6e6b9bcdd2d05a8bdbb8e26a0afc9f07434a6de2ffaffa73d183ade240e",
+  "snap_counts": "a2aa58efe093f8aa0ad5aadf09f81d8ec690a1183bd2dde68d20e7f109a9c335",
+  "player_stats_def": "2e3235bfbd7c992035c4940563efddfe497763f6c7ca956eb1282e86e7c11861",
+  "depth_charts": "f210a33774611f7f78a89af789b61c6289a2631a21227a1a3c63c973c23588b7",
+  "origin": "github.com/nflverse/nflverse-data releases (downloaded 2026-11-08, offline after pinning)"
+ },
+ "audit": {
+  "EDGE": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 76.25,
+    "median": 76,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     76,
+     76.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 27.25,
+    "median": 27,
+    "sd": 7.932003,
+    "se": 3.966001,
+    "ci95": [
+     20.75,
+     34
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "DL",
+   "realPlayersPerTeam_ge100snaps": 8.28,
+   "realPlayersLeague_ge100snaps": 265,
+   "deploymentGap": 237.7,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "RB": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74,
+    "median": 74,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     74,
+     74
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 33.5,
+    "median": 34,
+    "sd": 1.914854,
+    "se": 0.957427,
+    "ci95": [
+     32,
+     35
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "RB",
+   "realPlayersPerTeam_ge100snaps": 2.88,
+   "realPlayersLeague_ge100snaps": 92,
+   "deploymentGap": 58.7,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "SS": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75.25,
+    "median": 75,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     75,
+     75.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 14.75,
+    "median": 15,
+    "sd": 1.258306,
+    "se": 0.629153,
+    "ci95": [
+     13.5,
+     15.75
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "DB",
+   "realPlayersPerTeam_ge100snaps": 8.59,
+   "realPlayersLeague_ge100snaps": 275,
+   "deploymentGap": 260.1,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "TE": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71,
+    "median": 71,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     71,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 44.5,
+    "median": 43.5,
+    "sd": 4.041452,
+    "se": 2.020726,
+    "ci95": [
+     41.5,
+     48
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "TE",
+   "realPlayersPerTeam_ge100snaps": 3.09,
+   "realPlayersLeague_ge100snaps": 99,
+   "deploymentGap": 54.4,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "LB": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71.25,
+    "median": 71,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     71,
+     71.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 54.25,
+    "median": 55,
+    "sd": 7.410578,
+    "se": 3.705289,
+    "ci95": [
+     48.25,
+     60
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "LB",
+   "realPlayersPerTeam_ge100snaps": 6.22,
+   "realPlayersLeague_ge100snaps": 199,
+   "deploymentGap": 144.8,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "WR": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74.25,
+    "median": 74,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     74,
+     74.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 46.25,
+    "median": 46,
+    "sd": 4.425306,
+    "se": 2.212653,
+    "ci95": [
+     42.5,
+     50
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "WR",
+   "realPlayersPerTeam_ge100snaps": 5.56,
+   "realPlayersLeague_ge100snaps": 178,
+   "deploymentGap": 131.7,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "FS": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75.75,
+    "median": 75.5,
+    "sd": 0.957427,
+    "se": 0.478714,
+    "ci95": [
+     75,
+     76.5
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 13,
+    "median": 13.5,
+    "sd": 3.559026,
+    "se": 1.779513,
+    "ci95": [
+     10,
+     16
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "DB",
+   "realPlayersPerTeam_ge100snaps": 8.59,
+   "realPlayersLeague_ge100snaps": 275,
+   "deploymentGap": 261.9,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "DT": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75,
+    "median": 75,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     75,
+     75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 29.75,
+    "median": 29,
+    "sd": 2.362908,
+    "se": 1.181454,
+    "ci95": [
+     28,
+     31.75
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "DL",
+   "realPlayersPerTeam_ge100snaps": 8.28,
+   "realPlayersLeague_ge100snaps": 265,
+   "deploymentGap": 235.2,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "CB": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74.75,
+    "median": 75,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     74.25,
+     75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 37.75,
+    "median": 41.5,
+    "sd": 7.847505,
+    "se": 3.923752,
+    "ci95": [
+     30,
+     42
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "DB",
+   "realPlayersPerTeam_ge100snaps": 8.59,
+   "realPlayersLeague_ge100snaps": 275,
+   "deploymentGap": 237.1,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "OG": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 73,
+    "median": 73,
+    "sd": 0.816497,
+    "se": 0.408248,
+    "ci95": [
+     72.25,
+     73.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 32.25,
+    "median": 32.5,
+    "sd": 3.304038,
+    "se": 1.652019,
+    "ci95": [
+     29.25,
+     35
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "OL",
+   "realPlayersPerTeam_ge100snaps": 8.34,
+   "realPlayersLeague_ge100snaps": 267,
+   "deploymentGap": 234.6,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "QB": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 73,
+    "median": 73,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     73,
+     73
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 12.5,
+    "median": 12,
+    "sd": 1,
+    "se": 0.5,
+    "ci95": [
+     12,
+     13.5
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "QB",
+   "realPlayersPerTeam_ge100snaps": 1.59,
+   "realPlayersLeague_ge100snaps": 51,
+   "deploymentGap": 38.4,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "OT": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 70.75,
+    "median": 71,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     70.25,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 34.5,
+    "median": 34.5,
+    "sd": 4.654747,
+    "se": 2.327373,
+    "ci95": [
+     30.75,
+     38.25
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "OL",
+   "realPlayersPerTeam_ge100snaps": 8.34,
+   "realPlayersLeague_ge100snaps": 267,
+   "deploymentGap": 232.4,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "C": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 72,
+    "median": 71.5,
+    "sd": 1.414214,
+    "se": 0.707107,
+    "ci95": [
+     71,
+     73.25
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 17,
+    "median": 18,
+    "sd": 4.320494,
+    "se": 2.160247,
+    "ci95": [
+     13,
+     20
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "OL",
+   "realPlayersPerTeam_ge100snaps": 8.34,
+   "realPlayersLeague_ge100snaps": 267,
+   "deploymentGap": 249.9,
+   "verdict": "engine replacement LOWER than real deployment (more real players used than draft-open slots) — slope may be understated"
+  },
+  "K": {
+   "engineReplacementOvr": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71,
+    "median": 71,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     71,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "engineOpenSlots_midDraft": {
+    "n": 4,
+    "unit": "open slots league-wide at mid-draft",
+    "mean": 18.75,
+    "median": 19,
+    "sd": 1.5,
+    "se": 0.75,
+    "ci95": [
+     17.5,
+     20
+    ],
+    "threshold": 1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "realCensusGroup": "K",
+   "realPlayersLeague_ge100snaps": null,
+   "deploymentGap": "real data missing",
+   "verdict": "UNKNOWN — needs real census"
+  }
+ },
+ "sensitivity": {
+  "EDGE": {
+   "openSlots_series": [
+    [
+     33,
+     18,
+     6
+    ],
+    [
+     47,
+     29,
+     8
+    ],
+    [
+     48,
+     37,
+     11
+    ],
+    [
+     42,
+     25,
+     4
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 76.25,
+    "median": 76,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     76,
+     76.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "RB": {
+   "openSlots_series": [
+    [
+     53,
+     35,
+     12
+    ],
+    [
+     49,
+     31,
+     15
+    ],
+    [
+     53,
+     33,
+     14
+    ],
+    [
+     52,
+     35,
+     16
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74,
+    "median": 74,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     74,
+     74
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "SS": {
+   "openSlots_series": [
+    [
+     23,
+     16,
+     6
+    ],
+    [
+     21,
+     15,
+     7
+    ],
+    [
+     24,
+     13,
+     5
+    ],
+    [
+     25,
+     15,
+     6
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75.25,
+    "median": 75,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     75,
+     75.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "TE": {
+   "openSlots_series": [
+    [
+     51,
+     41,
+     9
+    ],
+    [
+     55,
+     50,
+     16
+    ],
+    [
+     55,
+     45,
+     13
+    ],
+    [
+     52,
+     42,
+     8
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71,
+    "median": 71,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     71,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "LB": {
+   "openSlots_series": [
+    [
+     85,
+     62,
+     41
+    ],
+    [
+     70,
+     45,
+     27
+    ],
+    [
+     82,
+     52,
+     33
+    ],
+    [
+     85,
+     58,
+     39
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71.25,
+    "median": 71,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     71,
+     71.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "WR": {
+   "openSlots_series": [
+    [
+     80,
+     51,
+     24
+    ],
+    [
+     68,
+     42,
+     17
+    ],
+    [
+     73,
+     49,
+     26
+    ],
+    [
+     73,
+     43,
+     20
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74.25,
+    "median": 74,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     74,
+     74.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "FS": {
+   "openSlots_series": [
+    [
+     22,
+     9,
+     3
+    ],
+    [
+     24,
+     16,
+     5
+    ],
+    [
+     21,
+     16,
+     6
+    ],
+    [
+     23,
+     11,
+     5
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75.75,
+    "median": 75.5,
+    "sd": 0.957427,
+    "se": 0.478714,
+    "ci95": [
+     75,
+     76.5
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "DT": {
+   "openSlots_series": [
+    [
+     46,
+     28,
+     9
+    ],
+    [
+     50,
+     33,
+     7
+    ],
+    [
+     54,
+     28,
+     8
+    ],
+    [
+     49,
+     30,
+     10
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 75,
+    "median": 75,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     75,
+     75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "CB": {
+   "openSlots_series": [
+    [
+     72,
+     42,
+     21
+    ],
+    [
+     70,
+     42,
+     25
+    ],
+    [
+     52,
+     26,
+     17
+    ],
+    [
+     60,
+     41,
+     22
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 74.75,
+    "median": 75,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     74.25,
+     75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OG": {
+   "openSlots_series": [
+    [
+     49,
+     32,
+     17
+    ],
+    [
+     56,
+     33,
+     22
+    ],
+    [
+     43,
+     28,
+     10
+    ],
+    [
+     50,
+     36,
+     15
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 73,
+    "median": 73,
+    "sd": 0.816497,
+    "se": 0.408248,
+    "ci95": [
+     72.25,
+     73.75
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "QB": {
+   "openSlots_series": [
+    [
+     16,
+     14,
+     8
+    ],
+    [
+     21,
+     12,
+     8
+    ],
+    [
+     19,
+     12,
+     8
+    ],
+    [
+     19,
+     12,
+     8
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 73,
+    "median": 73,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     73,
+     73
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OT": {
+   "openSlots_series": [
+    [
+     43,
+     33,
+     31
+    ],
+    [
+     39,
+     29,
+     27
+    ],
+    [
+     45,
+     36,
+     31
+    ],
+    [
+     48,
+     40,
+     38
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 70.75,
+    "median": 71,
+    "sd": 0.5,
+    "se": 0.25,
+    "ci95": [
+     70.25,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "C": {
+   "openSlots_series": [
+    [
+     23,
+     17,
+     9
+    ],
+    [
+     28,
+     19,
+     11
+    ],
+    [
+     27,
+     21,
+     13
+    ],
+    [
+     20,
+     11,
+     4
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 72,
+    "median": 71.5,
+    "sd": 1.414214,
+    "se": 0.707107,
+    "ci95": [
+     71,
+     73.25
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "K": {
+   "openSlots_series": [
+    [
+     28,
+     18,
+     12
+    ],
+    [
+     26,
+     20,
+     13
+    ],
+    [
+     28,
+     20,
+     13
+    ],
+    [
+     26,
+     17,
+     13
+    ]
+   ],
+   "replacementOvr_series_median": {
+    "n": 4,
+    "unit": "OVR",
+    "mean": 71,
+    "median": 71,
+    "sd": 0,
+    "se": 0,
+    "ci95": [
+     71,
+     71
+    ],
+    "threshold": 0.5,
+    "practicalFlag": "MEANINGFUL"
+   }
+  }
+ },
+ "console_errors": [],
+ "generated": "2026-11-08"
+}

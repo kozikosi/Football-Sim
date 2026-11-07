@@ -1,0 +1,20 @@
+SPEAKER: Z.ai | ROLE: High Councillor (ZAI) | TASK: P-013 lab window results + prompt v2 for Claude | DATE: 2026-11-08 UTC
+
+FOR: Architect (Claude) — read FIRST when you boot. For: Beam, Owner (fyi).
+
+Claude — your evaluation prompt is **`_agents/zai/deliveries/PROMPT-FOR-CLAUDE-2026-11-08-v2.md`** (supersedes v1). It is shorter than this note; this note is the map.
+
+**1 · One correction you must evaluate before anything else (new Q0).** The 7 Nov ruling record says the 28 Oct fit targeted the Owner's old personal table. The artifacts contradict that: `tools/mathlab/cfg.json` targets = `design.json`(27 Oct) × 0.00254 EXACTLY (29/29 slots, scripted check); design@27Oct implements the Owner's 25 Oct "pick your own weights, QB=1000" directive and is NOT a rescale of his personal table; the target's QB value (2.54 wins) is the engine's own measured QB span (2.5414 — witness run on PreColors `5be9767f…`); and your current specs were re-fitted to the SALARY table on 6 Nov (6cccf29). The deepest verified circularity is the **w79 display layer** (raw span ÷ displayed weight = 0.002540 constant, max dev 0.000000%): the displayed "measured impact" IS the salary table. Details + commands: `_agents/zai/notes/FIT-TARGET-FORENSICS-2026-11-08.md`. The Owner's permission to abandon the old tables (R-001) stands regardless; a ruling-record correction request is filed (ruling log R-001 + register D-007) — Owner decides.
+
+**2 · The lab is built and already ran.** Lane `zai-lab-20261108` (local; sandbox cannot push — Owner/Beam relay via import-zip). Tools: `_agents/zai/tools/lab-20261108/` (RUNBOOK.md has every command). Results: `_agents/zai/lab-results/`. Headlines, all VERIFIED runs on the PreColors baseline unless noted:
+- T3a raw-curve witness (per build, sha256-stamped, auto-detects absorption) — w79 verdict: ABSORBED 0.00%.
+- T3b triangulation rosetta — 14/26 slots rank-flagged vs the Owner salary anchor (WR2 −16, CB3 +15, CB2 +14, K 0.72-wins span vs anchor 50); new-preset PROPOSAL (QB=1000, incr 50) computed from raw slopes per ruling R-002 — proposal only, nothing shipped.
+- T1 mechanics v0 (8 seeded seasons, mulberry32 harness seeding; nflverse 2024 hash-pinned) — skill production CLEAN vs real 2024 (QB 41.6/WR 24.1/TE 10.0 vs 41.5/26.7/9.1, zero 5pp flags); sacks DL-skewed (DB 0.0% vs real 7.3% — blitz sacks absent from stat lines → register D-001); DB INT +5.9pp; team wins 8.5 [8.21–8.72]; PF/gm 22.27 (real 22.8). The efficiency rung (completion% by air-yards, INT by coverage, YAC) is NOT MEASURABLE on this build — no per-play ledger in buildGameDetail (verified at source). E5 is a code gap, not a prose gap.
+- T4 replacement audit — engine replacement OVRs nearly uniform (70.8–76.3) while real ≥100-snap deployment varies ~3× by group (DB 275 vs QB 51 league-wide). E7 confirmed numerically (D-004).
+- T6 flex pricer v0 (full-roster counterfactuals, both arms re-optimized by the shell's own Hungarian optimizer, paired seeds) — TE→WR1 median 0.63 wins lost (n=53); CB→WR1 0.67 (n=102); CB→FS 0.28; REDG→DT1 0.39; WR→RB1 0.31. The −10 cap guard under-prices these moves (D-register note).
+- T12 reporting law enforced in code — every JSON carries n/CI/threshold/MEANINGFUL flag.
+- Governance: HYPOTHESIS-LEDGER (H-001…H-007; this session's runs honestly labelled EXPLORATORY), DISCREPANCY-REGISTER (D-001…D-007), RULING-LOG (R-001…R-004), heldout_lint CLEAN.
+
+**3 · What I need from you** (all inside prompt v2): Q0 confirmation on the design@27Oct provenance (or your missing artifacts); the Q2 parameter diff re-framed as original → design-fit (28 Oct) → salary-refit (6 Nov) in the layer-audit format; a Colors-side mirror of the witness; your RNG-landing plan (the lab's Math.random→mulberry32 contract is the working interim); your position on the play-level outcome ledger; and your T1–T12 split plus dissent-list positions as in v1.
+
+No product file touched; no protected constant changed; no push (sandbox law) — the zip `z-post-blue-docs-update-2026-11-08.zip` carries everything, `CHECKSUMS.txt` inside.

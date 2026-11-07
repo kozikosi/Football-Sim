@@ -1,0 +1,7562 @@
+{
+ "schema": "zai-t1-mech-validate/0",
+ "tool": "mech_validate.mjs (T1 v0)",
+ "build": {
+  "file": "Football-Sim-PreColors.html",
+  "sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd"
+ },
+ "method": {
+  "seeds": 8,
+  "rng": "mulberry32 replaces Math.random before every engine call (harness-level; product RNG T-20261022-claude-2 open)",
+  "perSeed": "draft(snake, cpuPick) → optimizeCpuLineups → startSeason → 17 wk → playoffs"
+ },
+ "bands": {
+  "groupShareTolerancePP": 5,
+  "teamWinsMeanBand": [
+   7,
+   10
+  ],
+  "pfMeanBand": [
+   17,
+   27
+  ],
+  "practicalEffectWins": 0.5
+ },
+ "seasons": [
+  {
+   "seed": 20261108,
+   "phase": "complete",
+   "champion": "Baltimore Ravens",
+   "nGames": 272,
+   "elapsedMs": 876
+  },
+  {
+   "seed": 20269027,
+   "phase": "complete",
+   "champion": "Denver Broncos",
+   "nGames": 272,
+   "elapsedMs": 742
+  },
+  {
+   "seed": 20276946,
+   "phase": "complete",
+   "champion": "Miami Dolphins",
+   "nGames": 272,
+   "elapsedMs": 742
+  },
+  {
+   "seed": 20284865,
+   "phase": "complete",
+   "champion": "Chicago Bears",
+   "nGames": 272,
+   "elapsedMs": 756
+  },
+  {
+   "seed": 20292784,
+   "phase": "complete",
+   "champion": "Indianapolis Colts",
+   "nGames": 272,
+   "elapsedMs": 706
+  },
+  {
+   "seed": 20300703,
+   "phase": "complete",
+   "champion": "Detroit Lions",
+   "nGames": 272,
+   "elapsedMs": 670
+  },
+  {
+   "seed": 20308622,
+   "phase": "complete",
+   "champion": "Tennessee Titans",
+   "nGames": 272,
+   "elapsedMs": 709
+  },
+  {
+   "seed": 20316541,
+   "phase": "complete",
+   "champion": "Washington Commanders",
+   "nGames": 272,
+   "elapsedMs": 680
+  }
+ ],
+ "teamLevel": {
+  "winsPerTeam": {
+   "n": 256,
+   "unit": "wins/season",
+   "mean": 8.5,
+   "median": 8,
+   "sd": 2.1967,
+   "se": 0.137294,
+   "ci95": [
+    8.212891,
+    8.716797
+   ],
+   "threshold": 0.5,
+   "practicalFlag": "MEANINGFUL",
+   "band": [
+    7,
+    10
+   ]
+  },
+  "pfPerGame": {
+   "n": 256,
+   "unit": "points/game",
+   "mean": 22.272518,
+   "median": 22.205882,
+   "sd": 2.797553,
+   "se": 0.174847,
+   "ci95": [
+    21.900506,
+    22.591222
+   ],
+   "threshold": 0.5,
+   "practicalFlag": "MEANINGFUL",
+   "band": [
+    17,
+    27
+   ]
+  },
+  "paPerGame": {
+   "n": 256,
+   "unit": "points/game",
+   "mean": 22.272518,
+   "median": 22.176471,
+   "sd": 2.452041,
+   "se": 0.153253,
+   "ci95": [
+    21.988281,
+    22.555147
+   ],
+   "threshold": 0.5,
+   "practicalFlag": "MEANINGFUL"
+  }
+ },
+ "slotMeans": {
+  "QB": {
+   "nTeams": 8,
+   "rushYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 14.120175,
+    "median": 14.09375,
+    "sd": 0.480292,
+    "se": 0.169809,
+    "ci95": [
+     13.808134,
+     14.431985
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7681.375,
+    "median": 7667,
+    "sd": 261.278689,
+    "se": 92.375967,
+    "ci95": [
+     7511.625,
+     7851
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.629366,
+    "median": 2.637868,
+    "sd": 0.076792,
+    "se": 0.02715,
+    "ci95": [
+     2.581112,
+     2.678768
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1430.375,
+    "median": 1435,
+    "sd": 41.774693,
+    "se": 14.769584,
+    "ci95": [
+     1404.125,
+     1457.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "passYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 206.490349,
+    "median": 206.045037,
+    "sd": 2.320309,
+    "se": 0.820353,
+    "ci95": [
+     204.914063,
+     208.017233
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "passYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 112330.75,
+    "median": 112088.5,
+    "sd": 1262.247966,
+    "se": 446.272048,
+    "ci95": [
+     111473.25,
+     113161.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "cmp": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 20.778263,
+    "median": 20.715074,
+    "sd": 0.230653,
+    "se": 0.081548,
+    "ci95": [
+     20.634191,
+     20.932445
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "cmp_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11303.375,
+    "median": 11269,
+    "sd": 125.475026,
+    "se": 44.362121,
+    "ci95": [
+     11225,
+     11387.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "att": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 32.921415,
+    "median": 32.850184,
+    "sd": 0.407347,
+    "se": 0.144019,
+    "ci95": [
+     32.664062,
+     33.18796
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "att_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 17909.25,
+    "median": 17870.5,
+    "sd": 221.596641,
+    "se": 78.346244,
+    "ci95": [
+     17769.25,
+     18054.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.119026,
+    "median": 0.122243,
+    "sd": 0.014958,
+    "se": 0.005288,
+    "ci95": [
+     0.108226,
+     0.126838
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 64.75,
+    "median": 66.5,
+    "sd": 8.137216,
+    "se": 2.87694,
+    "ci95": [
+     58.875,
+     69
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "passTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.397289,
+    "median": 1.395221,
+    "sd": 0.039857,
+    "se": 0.014092,
+    "ci95": [
+     1.372243,
+     1.423713
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "passTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 760.125,
+    "median": 759,
+    "sd": 21.682366,
+    "se": 7.665874,
+    "ci95": [
+     746.5,
+     774.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sackd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.28171,
+    "median": 2.29136,
+    "sd": 0.06786,
+    "se": 0.023992,
+    "ci95": [
+     2.237822,
+     2.324678
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sackd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1241.25,
+    "median": 1246.5,
+    "sd": 36.915928,
+    "se": 13.051751,
+    "ci95": [
+     1217.375,
+     1264.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "int": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.633502,
+    "median": 0.657169,
+    "sd": 0.040452,
+    "se": 0.014302,
+    "ci95": [
+     0.60455,
+     0.65602
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "int_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 344.625,
+    "median": 357.5,
+    "sd": 22.006087,
+    "se": 7.780327,
+    "ci95": [
+     328.875,
+     356.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.115349,
+    "median": 0.113971,
+    "sd": 0.012497,
+    "se": 0.004418,
+    "ci95": [
+     0.107996,
+     0.123392
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 62.75,
+    "median": 62,
+    "sd": 6.798109,
+    "se": 2.403494,
+    "ci95": [
+     58.75,
+     67.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.215303,
+    "median": 0.213235,
+    "sd": 0.009649,
+    "se": 0.003411,
+    "ci95": [
+     0.209329,
+     0.221737
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 117.125,
+    "median": 116,
+    "sd": 5.24915,
+    "se": 1.855855,
+    "ci95": [
+     113.875,
+     120.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.130974,
+    "median": 0.130515,
+    "sd": 0.009204,
+    "se": 0.003254,
+    "ci95": [
+     0.12546,
+     0.136949
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 71.25,
+    "median": 71,
+    "sd": 5.007138,
+    "se": 1.770291,
+    "ci95": [
+     68.25,
+     74.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.086167,
+    "median": 0.084559,
+    "sd": 0.009847,
+    "se": 0.003482,
+    "ci95": [
+     0.079963,
+     0.092371
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 46.875,
+    "median": 46,
+    "sd": 5.356905,
+    "se": 1.893952,
+    "ci95": [
+     43.5,
+     50.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "RB1": {
+   "nTeams": 8,
+   "rushYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 69.235524,
+    "median": 69.448529,
+    "sd": 1.544991,
+    "se": 0.546237,
+    "ci95": [
+     68.139017,
+     70.075827
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 37664.125,
+    "median": 37780,
+    "sd": 840.47511,
+    "se": 297.152825,
+    "ci95": [
+     37067.625,
+     38121.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 20.592371,
+    "median": 20.795037,
+    "sd": 1.037122,
+    "se": 0.366678,
+    "ci95": [
+     19.872932,
+     21.203125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11202.25,
+    "median": 11312.5,
+    "sd": 564.194432,
+    "se": 199.472854,
+    "ci95": [
+     10810.875,
+     11534.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.131204,
+    "median": 3.172794,
+    "sd": 0.165207,
+    "se": 0.05841,
+    "ci95": [
+     3.014246,
+     3.227252
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1703.375,
+    "median": 1726,
+    "sd": 89.872827,
+    "se": 31.774843,
+    "ci95": [
+     1639.75,
+     1755.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.953355,
+    "median": 4.012868,
+    "sd": 0.191741,
+    "se": 0.067791,
+    "ci95": [
+     3.820542,
+     4.06204
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2150.625,
+    "median": 2183,
+    "sd": 104.307153,
+    "se": 36.878148,
+    "ci95": [
+     2078.375,
+     2209.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 19.072381,
+    "median": 19.163603,
+    "sd": 0.348322,
+    "se": 0.12315,
+    "ci95": [
+     18.830193,
+     19.268153
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 10375.375,
+    "median": 10425,
+    "sd": 189.487231,
+    "se": 66.993853,
+    "ci95": [
+     10243.625,
+     10481.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.639017,
+    "median": 0.637868,
+    "sd": 0.042626,
+    "se": 0.01507,
+    "ci95": [
+     0.610524,
+     0.665671
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 347.625,
+    "median": 347,
+    "sd": 23.188282,
+    "se": 8.198296,
+    "ci95": [
+     332.125,
+     362.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.27045,
+    "median": 0.269301,
+    "sd": 0.029939,
+    "se": 0.010585,
+    "ci95": [
+     0.251838,
+     0.290211
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 147.125,
+    "median": 146.5,
+    "sd": 16.287046,
+    "se": 5.75834,
+    "ci95": [
+     137,
+     157.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.503217,
+    "median": 0.51011,
+    "sd": 0.035315,
+    "se": 0.012486,
+    "ci95": [
+     0.480009,
+     0.524357
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 273.75,
+    "median": 277.5,
+    "sd": 19.211232,
+    "se": 6.792196,
+    "ci95": [
+     261.125,
+     285.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.142693,
+    "median": 0.139706,
+    "sd": 0.013928,
+    "se": 0.004924,
+    "ci95": [
+     0.134191,
+     0.152114
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 77.625,
+    "median": 76,
+    "sd": 7.576986,
+    "se": 2.678869,
+    "ci95": [
+     73,
+     82.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.098575,
+    "median": 0.100184,
+    "sd": 0.013648,
+    "se": 0.004825,
+    "ci95": [
+     0.089844,
+     0.106847
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 53.625,
+    "median": 54.5,
+    "sd": 7.424621,
+    "se": 2.625,
+    "ci95": [
+     48.875,
+     58.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.068015,
+    "median": 0.063419,
+    "sd": 0.010719,
+    "se": 0.00379,
+    "ci95": [
+     0.061811,
+     0.075597
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 37,
+    "median": 34.5,
+    "sd": 5.830952,
+    "se": 2.061553,
+    "ci95": [
+     33.625,
+     41.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.138097,
+    "median": 0.14614,
+    "sd": 0.081254,
+    "se": 0.028728,
+    "ci95": [
+     0.084329,
+     0.190028
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 75.125,
+    "median": 79.5,
+    "sd": 44.202254,
+    "se": 15.627857,
+    "ci95": [
+     45.875,
+     103.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.626149,
+    "median": 3.988051,
+    "sd": 2.076793,
+    "se": 0.734257,
+    "ci95": [
+     2.267233,
+     4.925092
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1972.625,
+    "median": 2169.5,
+    "sd": 1129.77557,
+    "se": 399.435983,
+    "ci95": [
+     1233.375,
+     2679.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.173713,
+    "median": 0.194853,
+    "sd": 0.100444,
+    "se": 0.035512,
+    "ci95": [
+     0.107077,
+     0.234835
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 94.5,
+    "median": 106,
+    "sd": 54.64169,
+    "se": 19.318755,
+    "ci95": [
+     58.25,
+     127.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.837316,
+    "median": 2.029412,
+    "sd": 1.053322,
+    "se": 0.372406,
+    "ci95": [
+     1.146829,
+     2.477022
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 999.5,
+    "median": 1104,
+    "sd": 573.007105,
+    "se": 202.588605,
+    "ci95": [
+     623.875,
+     1347.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.463465,
+    "median": 5.997243,
+    "sd": 3.122058,
+    "se": 1.103814,
+    "ci95": [
+     3.404412,
+     7.40625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2972.125,
+    "median": 3262.5,
+    "sd": 1698.399451,
+    "se": 600.474885,
+    "ci95": [
+     1852,
+     4029
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "RB2": {
+   "nTeams": 8,
+   "rushYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 22.935662,
+    "median": 22.586397,
+    "sd": 1.441203,
+    "se": 0.509542,
+    "ci95": [
+     22.119945,
+     23.962316
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 12477,
+    "median": 12287,
+    "sd": 784.014213,
+    "se": 277.190883,
+    "ci95": [
+     12033.25,
+     13035.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.829733,
+    "median": 3.797794,
+    "sd": 0.361958,
+    "se": 0.127972,
+    "ci95": [
+     3.618566,
+     4.075597
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2083.375,
+    "median": 2066,
+    "sd": 196.905298,
+    "se": 69.616536,
+    "ci95": [
+     1968.5,
+     2217.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.084789,
+    "median": 1.068015,
+    "sd": 0.041681,
+    "se": 0.014736,
+    "ci95": [
+     1.060892,
+     1.1142
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 590.125,
+    "median": 581,
+    "sd": 22.674325,
+    "se": 8.016584,
+    "ci95": [
+     577.125,
+     606.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.53171,
+    "median": 1.525735,
+    "sd": 0.060192,
+    "se": 0.021281,
+    "ci95": [
+     1.491958,
+     1.570772
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 833.25,
+    "median": 830,
+    "sd": 32.744683,
+    "se": 11.576994,
+    "ci95": [
+     811.625,
+     854.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.35455,
+    "median": 6.283088,
+    "sd": 0.425966,
+    "se": 0.150602,
+    "ci95": [
+     6.119485,
+     6.654871
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "car_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3456.875,
+    "median": 3418,
+    "sd": 231.725476,
+    "se": 81.927328,
+    "ci95": [
+     3329,
+     3620.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.20818,
+    "median": 0.203125,
+    "sd": 0.029767,
+    "se": 0.010524,
+    "ci95": [
+     0.189568,
+     0.227022
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rushTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 113.25,
+    "median": 110.5,
+    "sd": 16.193032,
+    "se": 5.725101,
+    "ci95": [
+     103.125,
+     123.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.029182,
+    "median": 0.027574,
+    "sd": 0.008867,
+    "se": 0.003135,
+    "ci95": [
+     0.023667,
+     0.034926
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 15.875,
+    "median": 15,
+    "sd": 4.823677,
+    "se": 1.705427,
+    "ci95": [
+     12.875,
+     19
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.020221,
+    "median": 0.02114,
+    "sd": 0.007737,
+    "se": 0.002735,
+    "ci95": [
+     0.015165,
+     0.025046
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11,
+    "median": 11.5,
+    "sd": 4.208834,
+    "se": 1.488048,
+    "ci95": [
+     8.25,
+     13.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.029871,
+    "median": 0.03125,
+    "sd": 0.009813,
+    "se": 0.00347,
+    "ci95": [
+     0.023208,
+     0.036305
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 16.25,
+    "median": 17,
+    "sd": 5.338539,
+    "se": 1.887459,
+    "ci95": [
+     12.625,
+     19.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "WR1": {
+   "nTeams": 8,
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 51.966222,
+    "median": 51.866728,
+    "sd": 0.858514,
+    "se": 0.303531,
+    "ci95": [
+     51.456572,
+     52.571691
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 28269.625,
+    "median": 28215.5,
+    "sd": 467.031641,
+    "se": 165.12062,
+    "ci95": [
+     27992.375,
+     28599
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.841452,
+    "median": 4.82261,
+    "sd": 0.085013,
+    "se": 0.030057,
+    "ci95": [
+     4.795496,
+     4.903952
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2633.75,
+    "median": 2623.5,
+    "sd": 46.247008,
+    "se": 16.350786,
+    "ci95": [
+     2608.75,
+     2667.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 7.141774,
+    "median": 7.127757,
+    "sd": 0.110964,
+    "se": 0.039232,
+    "ci95": [
+     7.076287,
+     7.222426
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3885.125,
+    "median": 3877.5,
+    "sd": 60.364222,
+    "se": 21.341975,
+    "ci95": [
+     3849.5,
+     3929
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.167509,
+    "median": 0.173713,
+    "sd": 0.020362,
+    "se": 0.007199,
+    "ci95": [
+     0.153493,
+     0.179917
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 91.125,
+    "median": 94.5,
+    "sd": 11.076842,
+    "se": 3.916255,
+    "ci95": [
+     83.5,
+     97.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.382583,
+    "median": 0.380515,
+    "sd": 0.01939,
+    "se": 0.006856,
+    "ci95": [
+     0.370404,
+     0.394991
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 208.125,
+    "median": 207,
+    "sd": 10.548358,
+    "se": 3.729408,
+    "ci95": [
+     201.5,
+     214.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.086397,
+    "median": 0.082721,
+    "sd": 0.01538,
+    "se": 0.005438,
+    "ci95": [
+     0.076057,
+     0.096967
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 47,
+    "median": 45,
+    "sd": 8.3666,
+    "se": 2.95804,
+    "ci95": [
+     41.375,
+     52.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.037454,
+    "median": 0.038603,
+    "sd": 0.009624,
+    "se": 0.003403,
+    "ci95": [
+     0.03102,
+     0.043888
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 20.375,
+    "median": 21,
+    "sd": 5.235524,
+    "se": 1.851037,
+    "ci95": [
+     16.875,
+     23.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.024586,
+    "median": 0.02114,
+    "sd": 0.007283,
+    "se": 0.002575,
+    "ci95": [
+     0.019991,
+     0.029642
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 13.375,
+    "median": 11.5,
+    "sd": 3.961872,
+    "se": 1.400733,
+    "ci95": [
+     10.875,
+     16.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.532629,
+    "median": 0.502757,
+    "sd": 0.177501,
+    "se": 0.062756,
+    "ci95": [
+     0.428079,
+     0.658318
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 289.75,
+    "median": 273.5,
+    "sd": 96.560492,
+    "se": 34.139289,
+    "ci95": [
+     232.875,
+     358.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 14.350184,
+    "median": 13.711397,
+    "sd": 4.658258,
+    "se": 1.646943,
+    "ci95": [
+     11.637868,
+     17.633272
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7806.5,
+    "median": 7459,
+    "sd": 2534.092455,
+    "se": 895.93698,
+    "ci95": [
+     6331,
+     9592.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.613511,
+    "median": 0.596507,
+    "sd": 0.224714,
+    "se": 0.079448,
+    "ci95": [
+     0.478401,
+     0.77045
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 333.75,
+    "median": 324.5,
+    "sd": 122.244194,
+    "se": 43.219849,
+    "ci95": [
+     260.25,
+     419.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.349954,
+    "median": 6.097426,
+    "sd": 2.320361,
+    "se": 0.820372,
+    "ci95": [
+     4.926011,
+     7.948759
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3454.375,
+    "median": 3317,
+    "sd": 1262.276508,
+    "se": 446.282139,
+    "ci95": [
+     2679.75,
+     4324.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 20.700138,
+    "median": 19.808824,
+    "sd": 6.968254,
+    "se": 2.46365,
+    "ci95": [
+     16.545956,
+     25.599265
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11260.875,
+    "median": 10776,
+    "sd": 3790.730289,
+    "se": 1340.225547,
+    "ci95": [
+     9001,
+     13926
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "WR2": {
+   "nTeams": 8,
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 37.549403,
+    "median": 37.525735,
+    "sd": 1.044452,
+    "se": 0.36927,
+    "ci95": [
+     36.860754,
+     38.188189
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 20426.875,
+    "median": 20414,
+    "sd": 568.181922,
+    "se": 200.882645,
+    "ci95": [
+     20052.25,
+     20774.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.491268,
+    "median": 3.488051,
+    "sd": 0.091421,
+    "se": 0.032322,
+    "ci95": [
+     3.431526,
+     3.546875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1899.25,
+    "median": 1897.5,
+    "sd": 49.732858,
+    "se": 17.58322,
+    "ci95": [
+     1866.75,
+     1929.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.408548,
+    "median": 5.407169,
+    "sd": 0.143176,
+    "se": 0.05062,
+    "ci95": [
+     5.315028,
+     5.495175
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2942.25,
+    "median": 2941.5,
+    "sd": 77.88774,
+    "se": 27.537474,
+    "ci95": [
+     2891.375,
+     2989.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.274127,
+    "median": 0.282169,
+    "sd": 0.027695,
+    "se": 0.009792,
+    "ci95": [
+     0.256204,
+     0.289982
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 149.125,
+    "median": 153.5,
+    "sd": 15.065927,
+    "se": 5.326609,
+    "ci95": [
+     139.375,
+     157.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.060202,
+    "median": 0.061581,
+    "sd": 0.00679,
+    "se": 0.002401,
+    "ci95": [
+     0.055377,
+     0.064338
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 32.75,
+    "median": 33.5,
+    "sd": 3.693624,
+    "se": 1.305893,
+    "ci95": [
+     30.125,
+     35
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.10432,
+    "median": 0.106618,
+    "sd": 0.010008,
+    "se": 0.003538,
+    "ci95": [
+     0.097426,
+     0.110524
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 56.75,
+    "median": 58,
+    "sd": 5.444525,
+    "se": 1.92493,
+    "ci95": [
+     53,
+     60.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.027344,
+    "median": 0.027574,
+    "sd": 0.004757,
+    "se": 0.001682,
+    "ci95": [
+     0.024357,
+     0.030331
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 14.875,
+    "median": 15,
+    "sd": 2.587746,
+    "se": 0.914906,
+    "ci95": [
+     13.25,
+     16.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.016544,
+    "median": 0.016544,
+    "sd": 0.003259,
+    "se": 0.001152,
+    "ci95": [
+     0.014476,
+     0.018612
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9,
+    "median": 9,
+    "sd": 1.772811,
+    "se": 0.626783,
+    "ci95": [
+     7.875,
+     10.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.18727,
+    "median": 0.174632,
+    "sd": 0.059163,
+    "se": 0.020917,
+    "ci95": [
+     0.150506,
+     0.227022
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 101.875,
+    "median": 95,
+    "sd": 32.184457,
+    "se": 11.378924,
+    "ci95": [
+     81.875,
+     123.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.921875,
+    "median": 4.534007,
+    "sd": 1.648614,
+    "se": 0.582873,
+    "ci95": [
+     3.902574,
+     6.050322
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2677.5,
+    "median": 2466.5,
+    "sd": 896.846061,
+    "se": 317.082966,
+    "ci95": [
+     2123,
+     3291.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.220129,
+    "median": 0.224265,
+    "sd": 0.050978,
+    "se": 0.018024,
+    "ci95": [
+     0.186811,
+     0.251608
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 119.75,
+    "median": 122,
+    "sd": 27.732137,
+    "se": 9.804791,
+    "ci95": [
+     101.625,
+     136.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.20818,
+    "median": 2.150735,
+    "sd": 0.465444,
+    "se": 0.164559,
+    "ci95": [
+     1.908778,
+     2.499311
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1201.25,
+    "median": 1170,
+    "sd": 253.201642,
+    "se": 89.520299,
+    "ci95": [
+     1038.375,
+     1359.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 7.130055,
+    "median": 6.829044,
+    "sd": 2.079575,
+    "se": 0.735241,
+    "ci95": [
+     5.838006,
+     8.54182
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3878.75,
+    "median": 3715,
+    "sd": 1131.288867,
+    "se": 399.971015,
+    "ci95": [
+     3175.875,
+     4646.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "WR3": {
+   "nTeams": 8,
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 28.8017,
+    "median": 28.401654,
+    "sd": 1.395992,
+    "se": 0.493558,
+    "ci95": [
+     27.966912,
+     29.686811
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 15668.125,
+    "median": 15450.5,
+    "sd": 759.419597,
+    "se": 268.495374,
+    "ci95": [
+     15214,
+     16149.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.703355,
+    "median": 2.675551,
+    "sd": 0.127068,
+    "se": 0.044925,
+    "ci95": [
+     2.626838,
+     2.786075
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1470.625,
+    "median": 1455.5,
+    "sd": 69.125016,
+    "se": 24.439384,
+    "ci95": [
+     1429,
+     1515.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.326746,
+    "median": 4.294118,
+    "sd": 0.174826,
+    "se": 0.06181,
+    "ci95": [
+     4.217831,
+     4.4375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2353.75,
+    "median": 2336,
+    "sd": 95.10558,
+    "se": 33.6249,
+    "ci95": [
+     2294.5,
+     2414
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.214614,
+    "median": 0.20864,
+    "sd": 0.019986,
+    "se": 0.007066,
+    "ci95": [
+     0.201976,
+     0.227022
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 116.75,
+    "median": 113.5,
+    "sd": 10.872639,
+    "se": 3.844058,
+    "ci95": [
+     109.875,
+     123.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.017463,
+    "median": 0.016544,
+    "sd": 0.007153,
+    "se": 0.002529,
+    "ci95": [
+     0.013557,
+     0.022518
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9.5,
+    "median": 9,
+    "sd": 3.891382,
+    "se": 1.375811,
+    "ci95": [
+     7.375,
+     12.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.012408,
+    "median": 0.01011,
+    "sd": 0.005708,
+    "se": 0.002018,
+    "ci95": [
+     0.009191,
+     0.016314
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 6.75,
+    "median": 5.5,
+    "sd": 3.105295,
+    "se": 1.097888,
+    "ci95": [
+     5,
+     8.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.08341,
+    "median": 0.090993,
+    "sd": 0.044215,
+    "se": 0.015632,
+    "ci95": [
+     0.052849,
+     0.109605
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 45.375,
+    "median": 49.5,
+    "sd": 24.053141,
+    "se": 8.504069,
+    "ci95": [
+     28.75,
+     59.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.192785,
+    "median": 2.456801,
+    "sd": 1.248504,
+    "se": 0.441413,
+    "ci95": [
+     1.340993,
+     2.950827
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1192.875,
+    "median": 1336.5,
+    "sd": 679.185949,
+    "se": 240.128495,
+    "ci95": [
+     729.5,
+     1605.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.101333,
+    "median": 0.112132,
+    "sd": 0.058638,
+    "se": 0.020732,
+    "ci95": [
+     0.061351,
+     0.136719
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 55.125,
+    "median": 61,
+    "sd": 31.899116,
+    "se": 11.27804,
+    "ci95": [
+     33.375,
+     74.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.083869,
+    "median": 1.076287,
+    "sd": 0.671273,
+    "se": 0.237331,
+    "ci95": [
+     0.63511,
+     1.496553
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 589.625,
+    "median": 585.5,
+    "sd": 365.172733,
+    "se": 129.108058,
+    "ci95": [
+     345.5,
+     814.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.276654,
+    "median": 3.482537,
+    "sd": 1.89087,
+    "se": 0.668523,
+    "ci95": [
+     1.960478,
+     4.423024
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1782.5,
+    "median": 1894.5,
+    "sd": 1028.633074,
+    "se": 363.676711,
+    "ci95": [
+     1066.5,
+     2406.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "TE1": {
+   "nTeams": 8,
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 40.370404,
+    "median": 40.054228,
+    "sd": 1.365435,
+    "se": 0.482754,
+    "ci95": [
+     39.52114,
+     41.329044
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 21961.5,
+    "median": 21789.5,
+    "sd": 742.796646,
+    "se": 262.618273,
+    "ci95": [
+     21499.5,
+     22483
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.273438,
+    "median": 4.256434,
+    "sd": 0.150901,
+    "se": 0.053352,
+    "ci95": [
+     4.17739,
+     4.376838
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2324.75,
+    "median": 2315.5,
+    "sd": 82.090107,
+    "se": 29.023236,
+    "ci95": [
+     2272.5,
+     2381
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.106388,
+    "median": 6.136029,
+    "sd": 0.19865,
+    "se": 0.070233,
+    "ci95": [
+     5.974954,
+     6.237592
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3321.875,
+    "median": 3338,
+    "sd": 108.065374,
+    "se": 38.206879,
+    "ci95": [
+     3250.375,
+     3393.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.048713,
+    "median": 0.050551,
+    "sd": 0.009059,
+    "se": 0.003203,
+    "ci95": [
+     0.042739,
+     0.054228
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 26.5,
+    "median": 27.5,
+    "sd": 4.928054,
+    "se": 1.74233,
+    "ci95": [
+     23.25,
+     29.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.087086,
+    "median": 0.086397,
+    "sd": 0.013824,
+    "se": 0.004887,
+    "ci95": [
+     0.078125,
+     0.095818
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 47.375,
+    "median": 47,
+    "sd": 7.520211,
+    "se": 2.658796,
+    "ci95": [
+     42.5,
+     52.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.293658,
+    "median": 0.29136,
+    "sd": 0.028575,
+    "se": 0.010103,
+    "ci95": [
+     0.275276,
+     0.313879
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 159.75,
+    "median": 158.5,
+    "sd": 15.544866,
+    "se": 5.49594,
+    "ci95": [
+     149.75,
+     170.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.027114,
+    "median": 0.029412,
+    "sd": 0.009564,
+    "se": 0.003382,
+    "ci95": [
+     0.02045,
+     0.033088
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 14.75,
+    "median": 16,
+    "sd": 5.203021,
+    "se": 1.839546,
+    "ci95": [
+     11.125,
+     18
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.016085,
+    "median": 0.015625,
+    "sd": 0.005792,
+    "se": 0.002048,
+    "ci95": [
+     0.012178,
+     0.019531
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 8.75,
+    "median": 8.5,
+    "sd": 3.150964,
+    "se": 1.114034,
+    "ci95": [
+     6.625,
+     10.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.094899,
+    "median": 0.070772,
+    "sd": 0.062754,
+    "se": 0.022187,
+    "ci95": [
+     0.056985,
+     0.137868
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 51.625,
+    "median": 38.5,
+    "sd": 34.138112,
+    "se": 12.069645,
+    "ci95": [
+     31,
+     75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.578814,
+    "median": 1.982537,
+    "sd": 1.671051,
+    "se": 0.590806,
+    "ci95": [
+     1.578355,
+     3.714154
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1402.875,
+    "median": 1078.5,
+    "sd": 909.051694,
+    "se": 321.398309,
+    "ci95": [
+     858.625,
+     2020.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.122702,
+    "median": 0.107537,
+    "sd": 0.065985,
+    "se": 0.023329,
+    "ci95": [
+     0.08318,
+     0.167969
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 66.75,
+    "median": 58.5,
+    "sd": 35.895682,
+    "se": 12.69104,
+    "ci95": [
+     45.25,
+     91.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.318474,
+    "median": 1.113051,
+    "sd": 0.68328,
+    "se": 0.241576,
+    "ci95": [
+     0.894991,
+     1.777114
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 717.25,
+    "median": 605.5,
+    "sd": 371.704472,
+    "se": 131.417376,
+    "ci95": [
+     486.875,
+     966.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.897289,
+    "median": 3.0625,
+    "sd": 2.3435,
+    "se": 0.828552,
+    "ci95": [
+     2.511489,
+     5.487362
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2120.125,
+    "median": 1666,
+    "sd": 1274.864187,
+    "se": 450.732556,
+    "ci95": [
+     1366.25,
+     2985.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "TE2": {
+   "nTeams": 8,
+   "recYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 8.9375,
+    "median": 8.890625,
+    "sd": 0.650617,
+    "se": 0.230028,
+    "ci95": [
+     8.513787,
+     9.371094
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 4862,
+    "median": 4836.5,
+    "sd": 353.93583,
+    "se": 125.135213,
+    "ci95": [
+     4631.5,
+     5097.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.240809,
+    "median": 1.235294,
+    "sd": 0.052776,
+    "se": 0.018659,
+    "ci95": [
+     1.206801,
+     1.278033
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rec_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 675,
+    "median": 672,
+    "sd": 28.710376,
+    "se": 10.150651,
+    "ci95": [
+     656.5,
+     695.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.016314,
+    "median": 1.993566,
+    "sd": 0.077552,
+    "se": 0.027419,
+    "ci95": [
+     1.967831,
+     2.070542
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tgt_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1096.875,
+    "median": 1084.5,
+    "sd": 42.188142,
+    "se": 14.91576,
+    "ci95": [
+     1070.5,
+     1126.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.059743,
+    "median": 0.063419,
+    "sd": 0.015629,
+    "se": 0.005526,
+    "ci95": [
+     0.049862,
+     0.069623
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "recTD_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 32.5,
+    "median": 34.5,
+    "sd": 8.502101,
+    "se": 3.005946,
+    "ci95": [
+     27.125,
+     37.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.02068,
+    "median": 0.023897,
+    "sd": 0.007,
+    "se": 0.002475,
+    "ci95": [
+     0.016085,
+     0.025046
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fum_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11.25,
+    "median": 13,
+    "sd": 3.807887,
+    "se": 1.346291,
+    "ci95": [
+     8.75,
+     13.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.011029,
+    "median": 0.011949,
+    "sd": 0.004051,
+    "se": 0.001432,
+    "ci95": [
+     0.008502,
+     0.013557
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fumLost_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 6,
+    "median": 6.5,
+    "sd": 2.203893,
+    "se": 0.779194,
+    "ci95": [
+     4.625,
+     7.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005055,
+    "median": 0.005515,
+    "sd": 0.003068,
+    "se": 0.001085,
+    "ci95": [
+     0.002987,
+     0.006893
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2.75,
+    "median": 3,
+    "sd": 1.669046,
+    "se": 0.590097,
+    "ci95": [
+     1.625,
+     3.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.003217,
+    "median": 0.002757,
+    "sd": 0.002735,
+    "se": 0.000967,
+    "ci95": [
+     0.001608,
+     0.004825
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tpc_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1.75,
+    "median": 1.5,
+    "sd": 1.488048,
+    "se": 0.526104,
+    "ci95": [
+     0.875,
+     2.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OT1": {
+   "nTeams": 8,
+   "rbk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 28.281939,
+    "median": 28.264706,
+    "sd": 0.76436,
+    "se": 0.270242,
+    "ci95": [
+     27.803539,
+     28.77068
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rbk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 15385.375,
+    "median": 15376,
+    "sd": 415.811749,
+    "se": 147.011654,
+    "ci95": [
+     15125.125,
+     15651.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.231158,
+    "median": 6.215074,
+    "sd": 0.14271,
+    "se": 0.050456,
+    "ci95": [
+     6.137638,
+     6.324219
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3389.75,
+    "median": 3381,
+    "sd": 77.634216,
+    "se": 27.44784,
+    "ci95": [
+     3338.875,
+     3440.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.086167,
+    "median": 3.060662,
+    "sd": 0.117833,
+    "se": 0.04166,
+    "ci95": [
+     3.011259,
+     3.161075
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1678.875,
+    "median": 1665,
+    "sd": 64.101343,
+    "se": 22.663247,
+    "ci95": [
+     1638.125,
+     1719.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.377528,
+    "median": 1.365809,
+    "sd": 0.089398,
+    "se": 0.031607,
+    "ci95": [
+     1.315028,
+     1.43796
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 749.375,
+    "median": 743,
+    "sd": 48.632551,
+    "se": 17.194203,
+    "ci95": [
+     715.375,
+     782.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.217831,
+    "median": 0.217831,
+    "sd": 0.021005,
+    "se": 0.007426,
+    "ci95": [
+     0.205423,
+     0.231847
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 118.5,
+    "median": 118.5,
+    "sd": 11.426786,
+    "se": 4.039979,
+    "ci95": [
+     111.75,
+     126.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OG1": {
+   "nTeams": 8,
+   "rbk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 36.988051,
+    "median": 37.002757,
+    "sd": 0.657464,
+    "se": 0.232449,
+    "ci95": [
+     36.585248,
+     37.398438
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rbk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 20121.5,
+    "median": 20129.5,
+    "sd": 357.660653,
+    "se": 126.452137,
+    "ci95": [
+     19902.375,
+     20344.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 8.088695,
+    "median": 8.086397,
+    "sd": 0.127753,
+    "se": 0.045168,
+    "ci95": [
+     8.007353,
+     8.168428
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 4400.25,
+    "median": 4399,
+    "sd": 69.497688,
+    "se": 24.571143,
+    "ci95": [
+     4356,
+     4443.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.518153,
+    "median": 2.534007,
+    "sd": 0.099165,
+    "se": 0.03506,
+    "ci95": [
+     2.456572,
+     2.585478
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1369.875,
+    "median": 1378.5,
+    "sd": 53.945574,
+    "se": 19.072641,
+    "ci95": [
+     1336.375,
+     1406.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.783318,
+    "median": 1.769301,
+    "sd": 0.097837,
+    "se": 0.03459,
+    "ci95": [
+     1.719899,
+     1.849265
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 970.125,
+    "median": 962.5,
+    "sd": 53.223082,
+    "se": 18.817201,
+    "ci95": [
+     935.625,
+     1006
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.273438,
+    "median": 0.269301,
+    "sd": 0.024775,
+    "se": 0.008759,
+    "ci95": [
+     0.26034,
+     0.290441
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 148.75,
+    "median": 146.5,
+    "sd": 13.477494,
+    "se": 4.765014,
+    "ci95": [
+     141.625,
+     158
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "C": {
+   "nTeams": 8,
+   "rbk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 11.865579,
+    "median": 11.883272,
+    "sd": 0.349957,
+    "se": 0.123729,
+    "ci95": [
+     11.647518,
+     12.089614
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rbk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 6454.875,
+    "median": 6464.5,
+    "sd": 190.376647,
+    "se": 67.308309,
+    "ci95": [
+     6336.25,
+     6576.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.722886,
+    "median": 2.723346,
+    "sd": 0.061588,
+    "se": 0.021775,
+    "ci95": [
+     2.684283,
+     2.761949
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1481.25,
+    "median": 1481.5,
+    "sd": 33.503731,
+    "se": 11.845358,
+    "ci95": [
+     1460.25,
+     1502.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.107996,
+    "median": 2.095588,
+    "sd": 0.104147,
+    "se": 0.036822,
+    "ci95": [
+     2.039752,
+     2.173713
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1146.75,
+    "median": 1140,
+    "sd": 56.656232,
+    "se": 20.031003,
+    "ci95": [
+     1109.625,
+     1182.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.181526,
+    "median": 2.201287,
+    "sd": 0.109881,
+    "se": 0.038849,
+    "ci95": [
+     2.109145,
+     2.251149
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1186.75,
+    "median": 1197.5,
+    "sd": 59.775174,
+    "se": 21.133715,
+    "ci95": [
+     1147.375,
+     1224.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.328814,
+    "median": 0.324449,
+    "sd": 0.026097,
+    "se": 0.009227,
+    "ci95": [
+     0.311811,
+     0.346967
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 178.875,
+    "median": 176.5,
+    "sd": 14.196956,
+    "se": 5.019382,
+    "ci95": [
+     169.625,
+     188.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OG2": {
+   "nTeams": 8,
+   "rbk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 28.594899,
+    "median": 28.272059,
+    "sd": 0.605483,
+    "se": 0.21407,
+    "ci95": [
+     28.231618,
+     29
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rbk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 15555.625,
+    "median": 15380,
+    "sd": 329.382512,
+    "se": 116.454304,
+    "ci95": [
+     15358,
+     15776
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.513327,
+    "median": 6.498162,
+    "sd": 0.09132,
+    "se": 0.032287,
+    "ci95": [
+     6.456112,
+     6.570542
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3543.25,
+    "median": 3535,
+    "sd": 49.67825,
+    "se": 17.563914,
+    "ci95": [
+     3512.125,
+     3574.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.273897,
+    "median": 2.272978,
+    "sd": 0.084456,
+    "se": 0.02986,
+    "ci95": [
+     2.215993,
+     2.330423
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1237,
+    "median": 1236.5,
+    "sd": 45.944065,
+    "se": 16.24368,
+    "ci95": [
+     1205.5,
+     1267.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.98943,
+    "median": 2.017463,
+    "sd": 0.09372,
+    "se": 0.033135,
+    "ci95": [
+     1.92693,
+     2.049173
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1082.25,
+    "median": 1097.5,
+    "sd": 50.983891,
+    "se": 18.025528,
+    "ci95": [
+     1048.25,
+     1114.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.304228,
+    "median": 0.300551,
+    "sd": 0.016588,
+    "se": 0.005865,
+    "ci95": [
+     0.293658,
+     0.315487
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 165.5,
+    "median": 163.5,
+    "sd": 9.023778,
+    "se": 3.190387,
+    "ci95": [
+     159.75,
+     171.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "OT2": {
+   "nTeams": 8,
+   "rbk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 19.890395,
+    "median": 19.660846,
+    "sd": 0.565429,
+    "se": 0.199909,
+    "ci95": [
+     19.55239,
+     20.24954
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rbk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 10820.375,
+    "median": 10695.5,
+    "sd": 307.593395,
+    "se": 108.750688,
+    "ci95": [
+     10636.5,
+     11015.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.670267,
+    "median": 4.631434,
+    "sd": 0.083136,
+    "se": 0.029393,
+    "ci95": [
+     4.622472,
+     4.724035
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "rcar_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2540.625,
+    "median": 2519.5,
+    "sd": 45.226217,
+    "se": 15.989882,
+    "ci95": [
+     2514.625,
+     2569.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.545496,
+    "median": 2.557904,
+    "sd": 0.083228,
+    "se": 0.029426,
+    "ci95": [
+     2.495175,
+     2.602482
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1384.75,
+    "median": 1391.5,
+    "sd": 45.276137,
+    "se": 16.007532,
+    "ci95": [
+     1357.375,
+     1415.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.740349,
+    "median": 1.750919,
+    "sd": 0.077229,
+    "se": 0.027305,
+    "ci95": [
+     1.690717,
+     1.788833
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 946.75,
+    "median": 952.5,
+    "sd": 42.012753,
+    "se": 14.853751,
+    "ci95": [
+     919.75,
+     973.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.267693,
+    "median": 0.268382,
+    "sd": 0.018512,
+    "se": 0.006545,
+    "ci95": [
+     0.255974,
+     0.279412
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sa_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 145.625,
+    "median": 146,
+    "sd": 10.070289,
+    "se": 3.560385,
+    "ci95": [
+     139.25,
+     152
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "K": {
+   "nTeams": 8,
+   "fg": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.620404,
+    "median": 1.634191,
+    "sd": 0.08598,
+    "se": 0.030398,
+    "ci95": [
+     1.566406,
+     1.676241
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fg_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 881.5,
+    "median": 889,
+    "sd": 46.773008,
+    "se": 16.536756,
+    "ci95": [
+     852.125,
+     911.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "MIKE": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.733226,
+    "median": 6.73989,
+    "sd": 0.160044,
+    "se": 0.056584,
+    "ci95": [
+     6.629825,
+     6.835248
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3662.875,
+    "median": 3666.5,
+    "sd": 87.063913,
+    "se": 30.781742,
+    "ci95": [
+     3606.625,
+     3718.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.63511,
+    "median": 0.630515,
+    "sd": 0.052483,
+    "se": 0.018556,
+    "ci95": [
+     0.601792,
+     0.669577
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 345.5,
+    "median": 343,
+    "sd": 28.550707,
+    "se": 10.094199,
+    "ci95": [
+     327.375,
+     364.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.738051,
+    "median": 0.732537,
+    "sd": 0.032171,
+    "se": 0.011374,
+    "ci95": [
+     0.721278,
+     0.7608
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 401.5,
+    "median": 398.5,
+    "sd": 17.50102,
+    "se": 6.187545,
+    "ci95": [
+     392.375,
+     413.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.088235,
+    "median": 0.094669,
+    "sd": 0.021772,
+    "se": 0.007698,
+    "ci95": [
+     0.073529,
+     0.101333
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 48,
+    "median": 51.5,
+    "sd": 11.844227,
+    "se": 4.187567,
+    "ci95": [
+     40,
+     55.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.235294,
+    "median": 0.238971,
+    "sd": 0.018435,
+    "se": 0.006518,
+    "ci95": [
+     0.223346,
+     0.246324
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 128,
+    "median": 130,
+    "sd": 10.028531,
+    "se": 3.545621,
+    "ci95": [
+     121.5,
+     134
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.113741,
+    "median": 0.116728,
+    "sd": 0.011768,
+    "se": 0.004161,
+    "ci95": [
+     0.105928,
+     0.120864
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 61.875,
+    "median": 63.5,
+    "sd": 6.40173,
+    "se": 2.263353,
+    "ci95": [
+     57.625,
+     65.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.047335,
+    "median": 0.045956,
+    "sd": 0.011192,
+    "se": 0.003957,
+    "ci95": [
+     0.039982,
+     0.054917
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 25.75,
+    "median": 25,
+    "sd": 6.088631,
+    "se": 2.152656,
+    "ci95": [
+     21.75,
+     29.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.053768,
+    "median": 0.055147,
+    "sd": 0.010104,
+    "se": 0.003572,
+    "ci95": [
+     0.047335,
+     0.060202
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 29.25,
+    "median": 30,
+    "sd": 5.496752,
+    "se": 1.943395,
+    "ci95": [
+     25.75,
+     32.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.164063,
+    "median": 0.159926,
+    "sd": 0.014599,
+    "se": 0.005161,
+    "ci95": [
+     0.155561,
+     0.173713
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 89.25,
+    "median": 87,
+    "sd": 7.941752,
+    "se": 2.807833,
+    "ci95": [
+     84.625,
+     94.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.097886,
+    "median": 0.099265,
+    "sd": 0.008438,
+    "se": 0.002983,
+    "ci95": [
+     0.092371,
+     0.102941
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 53.25,
+    "median": 54,
+    "sd": 4.590363,
+    "se": 1.622938,
+    "ci95": [
+     50.25,
+     56
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.067785,
+    "median": 0.068015,
+    "sd": 0.008591,
+    "se": 0.003037,
+    "ci95": [
+     0.06227,
+     0.073529
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 36.875,
+    "median": 37,
+    "sd": 4.673252,
+    "se": 1.652244,
+    "ci95": [
+     33.875,
+     40
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.006893,
+    "median": 0.006434,
+    "sd": 0.004476,
+    "se": 0.001582,
+    "ci95": [
+     0.004136,
+     0.009881
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.75,
+    "median": 3.5,
+    "sd": 2.434866,
+    "se": 0.860855,
+    "ci95": [
+     2.25,
+     5.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.009651,
+    "median": 0.01011,
+    "sd": 0.003509,
+    "se": 0.00124,
+    "ci95": [
+     0.007353,
+     0.011719
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 5.25,
+    "median": 5.5,
+    "sd": 1.908627,
+    "se": 0.674802,
+    "ci95": [
+     4,
+     6.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005055,
+    "median": 0.003676,
+    "sd": 0.003222,
+    "se": 0.001139,
+    "ci95": [
+     0.002987,
+     0.007353
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2.75,
+    "median": 2,
+    "sd": 1.752549,
+    "se": 0.61962,
+    "ci95": [
+     1.625,
+     4
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "WILL": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.555836,
+    "median": 5.546875,
+    "sd": 0.106925,
+    "se": 0.037804,
+    "ci95": [
+     5.482077,
+     5.624081
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3022.375,
+    "median": 3017.5,
+    "sd": 58.167093,
+    "se": 20.565173,
+    "ci95": [
+     2982.25,
+     3059.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.456112,
+    "median": 0.452206,
+    "sd": 0.028839,
+    "se": 0.010196,
+    "ci95": [
+     0.43773,
+     0.475184
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 248.125,
+    "median": 246,
+    "sd": 15.688371,
+    "se": 5.546677,
+    "ci95": [
+     238.125,
+     258.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.774816,
+    "median": 0.786765,
+    "sd": 0.048126,
+    "se": 0.017015,
+    "ci95": [
+     0.741958,
+     0.804917
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 421.5,
+    "median": 428,
+    "sd": 26.180691,
+    "se": 9.256272,
+    "ci95": [
+     403.625,
+     437.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.079733,
+    "median": 0.080882,
+    "sd": 0.011414,
+    "se": 0.004035,
+    "ci95": [
+     0.072151,
+     0.086857
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 43.375,
+    "median": 44,
+    "sd": 6.209152,
+    "se": 2.195267,
+    "ci95": [
+     39.25,
+     47.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.134651,
+    "median": 0.132353,
+    "sd": 0.015182,
+    "se": 0.005368,
+    "ci95": [
+     0.12523,
+     0.144531
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 73.25,
+    "median": 72,
+    "sd": 8.259194,
+    "se": 2.920066,
+    "ci95": [
+     68.125,
+     78.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.083869,
+    "median": 0.082721,
+    "sd": 0.016586,
+    "se": 0.005864,
+    "ci95": [
+     0.073989,
+     0.095358
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 45.625,
+    "median": 45,
+    "sd": 9.022789,
+    "se": 3.190038,
+    "ci95": [
+     40.25,
+     51.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.224035,
+    "median": 0.227941,
+    "sd": 0.014389,
+    "se": 0.005087,
+    "ci95": [
+     0.214844,
+     0.232996
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 121.875,
+    "median": 124,
+    "sd": 7.827379,
+    "se": 2.767396,
+    "ci95": [
+     116.875,
+     126.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.051011,
+    "median": 0.053309,
+    "sd": 0.011822,
+    "se": 0.00418,
+    "ci95": [
+     0.043199,
+     0.058594
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 27.75,
+    "median": 29,
+    "sd": 6.430952,
+    "se": 2.273685,
+    "ci95": [
+     23.5,
+     31.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.066866,
+    "median": 0.066176,
+    "sd": 0.010017,
+    "se": 0.003542,
+    "ci95": [
+     0.060432,
+     0.073529
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 36.375,
+    "median": 36,
+    "sd": 5.449443,
+    "se": 1.926669,
+    "ci95": [
+     32.875,
+     40
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.106158,
+    "median": 0.10386,
+    "sd": 0.010247,
+    "se": 0.003623,
+    "ci95": [
+     0.099954,
+     0.113051
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 57.75,
+    "median": 56.5,
+    "sd": 5.574175,
+    "se": 1.970769,
+    "ci95": [
+     54.375,
+     61.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.039982,
+    "median": 0.039522,
+    "sd": 0.006037,
+    "se": 0.002134,
+    "ci95": [
+     0.036305,
+     0.044118
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 21.75,
+    "median": 21.5,
+    "sd": 3.284161,
+    "se": 1.161126,
+    "ci95": [
+     19.75,
+     24
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.009881,
+    "median": 0.009191,
+    "sd": 0.002588,
+    "se": 0.000915,
+    "ci95": [
+     0.008502,
+     0.011719
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 5.375,
+    "median": 5,
+    "sd": 1.407886,
+    "se": 0.497763,
+    "ci95": [
+     4.625,
+     6.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.0108,
+    "median": 0.01011,
+    "sd": 0.004332,
+    "se": 0.001532,
+    "ci95": [
+     0.008272,
+     0.013787
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 5.875,
+    "median": 5.5,
+    "sd": 2.356602,
+    "se": 0.833185,
+    "ci95": [
+     4.5,
+     7.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "SAM": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.475184,
+    "median": 3.454963,
+    "sd": 0.12605,
+    "se": 0.044565,
+    "ci95": [
+     3.394301,
+     3.557445
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1890.5,
+    "median": 1879.5,
+    "sd": 68.571131,
+    "se": 24.243556,
+    "ci95": [
+     1846.5,
+     1935.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.272978,
+    "median": 0.282169,
+    "sd": 0.027424,
+    "se": 0.009696,
+    "ci95": [
+     0.253217,
+     0.288603
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 148.5,
+    "median": 153.5,
+    "sd": 14.918828,
+    "se": 5.274602,
+    "ci95": [
+     137.75,
+     157
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.447381,
+    "median": 0.445772,
+    "sd": 0.019675,
+    "se": 0.006956,
+    "ci95": [
+     0.434283,
+     0.460708
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 243.375,
+    "median": 242.5,
+    "sd": 10.70297,
+    "se": 3.784071,
+    "ci95": [
+     236.25,
+     250.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.058364,
+    "median": 0.056985,
+    "sd": 0.015087,
+    "se": 0.005334,
+    "ci95": [
+     0.048713,
+     0.068015
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 31.75,
+    "median": 31,
+    "sd": 8.20714,
+    "se": 2.901662,
+    "ci95": [
+     26.5,
+     37
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.163833,
+    "median": 0.170956,
+    "sd": 0.019638,
+    "se": 0.006943,
+    "ci95": [
+     0.149816,
+     0.175551
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 89.125,
+    "median": 93,
+    "sd": 10.68293,
+    "se": 3.776986,
+    "ci95": [
+     81.5,
+     95.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.070313,
+    "median": 0.069853,
+    "sd": 0.012688,
+    "se": 0.004486,
+    "ci95": [
+     0.061811,
+     0.078814
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 38.25,
+    "median": 38,
+    "sd": 6.902381,
+    "se": 2.44036,
+    "ci95": [
+     33.625,
+     42.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.04182,
+    "median": 0.04136,
+    "sd": 0.008552,
+    "se": 0.003024,
+    "ci95": [
+     0.036305,
+     0.047335
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 22.75,
+    "median": 22.5,
+    "sd": 4.652188,
+    "se": 1.644797,
+    "ci95": [
+     19.75,
+     25.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.0517,
+    "median": 0.051471,
+    "sd": 0.006325,
+    "se": 0.002236,
+    "ci95": [
+     0.048024,
+     0.056066
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 28.125,
+    "median": 28,
+    "sd": 3.440826,
+    "se": 1.216516,
+    "ci95": [
+     26.125,
+     30.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.019991,
+    "median": 0.02114,
+    "sd": 0.007183,
+    "se": 0.002539,
+    "ci95": [
+     0.014936,
+     0.024586
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 10.875,
+    "median": 11.5,
+    "sd": 3.907411,
+    "se": 1.381478,
+    "ci95": [
+     8.125,
+     13.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.001608,
+    "median": 0.001838,
+    "sd": 0.001534,
+    "se": 0.000542,
+    "ci95": [
+     0.000689,
+     0.002757
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 0.875,
+    "median": 1,
+    "sd": 0.834523,
+    "se": 0.295048,
+    "ci95": [
+     0.375,
+     1.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005974,
+    "median": 0.005515,
+    "sd": 0.003509,
+    "se": 0.00124,
+    "ci95": [
+     0.003906,
+     0.008272
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.25,
+    "median": 3,
+    "sd": 1.908627,
+    "se": 0.674802,
+    "ci95": [
+     2.125,
+     4.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005055,
+    "median": 0.004596,
+    "sd": 0.002735,
+    "se": 0.000967,
+    "ci95": [
+     0.003217,
+     0.006664
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2.75,
+    "median": 2.5,
+    "sd": 1.488048,
+    "se": 0.526104,
+    "ci95": [
+     1.75,
+     3.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "SS": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.388557,
+    "median": 5.373162,
+    "sd": 0.120861,
+    "se": 0.042731,
+    "ci95": [
+     5.315487,
+     5.470818
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2931.375,
+    "median": 2923,
+    "sd": 65.748303,
+    "se": 23.245535,
+    "ci95": [
+     2891.625,
+     2976.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.205423,
+    "median": 0.193934,
+    "sd": 0.028575,
+    "se": 0.010103,
+    "ci95": [
+     0.188649,
+     0.225414
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 111.75,
+    "median": 105.5,
+    "sd": 15.544866,
+    "se": 5.49594,
+    "ci95": [
+     102.625,
+     122.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.391085,
+    "median": 0.398897,
+    "sd": 0.024461,
+    "se": 0.008648,
+    "ci95": [
+     0.37454,
+     0.40671
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 212.75,
+    "median": 217,
+    "sd": 13.306819,
+    "se": 4.704671,
+    "ci95": [
+     203.75,
+     221.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.107767,
+    "median": 0.108456,
+    "sd": 0.014737,
+    "se": 0.00521,
+    "ci95": [
+     0.098805,
+     0.118107
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 58.625,
+    "median": 59,
+    "sd": 8.016724,
+    "se": 2.83434,
+    "ci95": [
+     53.75,
+     64.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.099035,
+    "median": 0.098346,
+    "sd": 0.010872,
+    "se": 0.003844,
+    "ci95": [
+     0.092142,
+     0.105699
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 53.875,
+    "median": 53.5,
+    "sd": 5.91457,
+    "se": 2.091116,
+    "ci95": [
+     50.125,
+     57.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.061581,
+    "median": 0.061581,
+    "sd": 0.008509,
+    "se": 0.003009,
+    "ci95": [
+     0.056066,
+     0.066866
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 33.5,
+    "median": 33.5,
+    "sd": 4.6291,
+    "se": 1.636634,
+    "ci95": [
+     30.5,
+     36.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.015165,
+    "median": 0.013787,
+    "sd": 0.008088,
+    "se": 0.002859,
+    "ci95": [
+     0.01034,
+     0.02045
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 8.25,
+    "median": 7.5,
+    "sd": 4.399675,
+    "se": 1.55552,
+    "ci95": [
+     5.625,
+     11.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "FS": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.275046,
+    "median": 4.282169,
+    "sd": 0.114309,
+    "se": 0.040414,
+    "ci95": [
+     4.1983,
+     4.346048
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2325.625,
+    "median": 2329.5,
+    "sd": 62.183915,
+    "se": 21.985334,
+    "ci95": [
+     2283.875,
+     2364.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.093061,
+    "median": 0.09375,
+    "sd": 0.014539,
+    "se": 0.00514,
+    "ci95": [
+     0.08318,
+     0.102252
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 50.625,
+    "median": 51,
+    "sd": 7.909082,
+    "se": 2.796283,
+    "ci95": [
+     45.25,
+     55.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.381434,
+    "median": 0.375919,
+    "sd": 0.03247,
+    "se": 0.01148,
+    "ci95": [
+     0.361673,
+     0.403033
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 207.5,
+    "median": 204.5,
+    "sd": 17.663522,
+    "se": 6.244998,
+    "ci95": [
+     196.75,
+     219.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.108686,
+    "median": 0.109375,
+    "sd": 0.01338,
+    "se": 0.004731,
+    "ci95": [
+     0.099954,
+     0.117188
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 59.125,
+    "median": 59.5,
+    "sd": 7.278883,
+    "se": 2.573474,
+    "ci95": [
+     54.375,
+     63.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.023897,
+    "median": 0.023897,
+    "sd": 0.005558,
+    "se": 0.001965,
+    "ci95": [
+     0.02045,
+     0.027803
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 13,
+    "median": 13,
+    "sd": 3.023716,
+    "se": 1.069045,
+    "ci95": [
+     11.125,
+     15.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.013327,
+    "median": 0.013787,
+    "sd": 0.004986,
+    "se": 0.001763,
+    "ci95": [
+     0.009881,
+     0.016314
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7.25,
+    "median": 7.5,
+    "sd": 2.712405,
+    "se": 0.95898,
+    "ci95": [
+     5.375,
+     8.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "CB1": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.188189,
+    "median": 4.175551,
+    "sd": 0.044704,
+    "se": 0.015805,
+    "ci95": [
+     4.159697,
+     4.21921
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2278.375,
+    "median": 2271.5,
+    "sd": 24.318937,
+    "se": 8.598043,
+    "ci95": [
+     2262.875,
+     2295.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.105469,
+    "median": 0.102941,
+    "sd": 0.012465,
+    "se": 0.004407,
+    "ci95": [
+     0.097197,
+     0.113971
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 57.375,
+    "median": 56,
+    "sd": 6.781013,
+    "se": 2.39745,
+    "ci95": [
+     52.875,
+     62
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.733456,
+    "median": 0.733456,
+    "sd": 0.035414,
+    "se": 0.012521,
+    "ci95": [
+     0.711857,
+     0.756893
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 399,
+    "median": 399,
+    "sd": 19.265068,
+    "se": 6.81123,
+    "ci95": [
+     387.25,
+     411.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.466452,
+    "median": 0.496324,
+    "sd": 0.141623,
+    "se": 0.050071,
+    "ci95": [
+     0.373392,
+     0.554458
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 253.75,
+    "median": 270,
+    "sd": 77.043123,
+    "se": 27.238857,
+    "ci95": [
+     203.125,
+     301.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 12.410616,
+    "median": 13.033088,
+    "sd": 3.880547,
+    "se": 1.37198,
+    "ci95": [
+     9.877528,
+     14.884881
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 6751.375,
+    "median": 7090,
+    "sd": 2111.017354,
+    "se": 746.357343,
+    "ci95": [
+     5373.375,
+     8097.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.5625,
+    "median": 0.613051,
+    "sd": 0.203835,
+    "se": 0.072066,
+    "ci95": [
+     0.433134,
+     0.690947
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 306,
+    "median": 333.5,
+    "sd": 110.886042,
+    "se": 39.204136,
+    "ci95": [
+     235.625,
+     375.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.77091,
+    "median": 6.546875,
+    "sd": 2.172141,
+    "se": 0.767968,
+    "ci95": [
+     4.395221,
+     7.115119
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3139.375,
+    "median": 3561.5,
+    "sd": 1181.644488,
+    "se": 417.774415,
+    "ci95": [
+     2391,
+     3870.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 18.181526,
+    "median": 19.717831,
+    "sd": 5.956803,
+    "se": 2.106048,
+    "ci95": [
+     14.247702,
+     21.857307
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9890.75,
+    "median": 10726.5,
+    "sd": 3240.5007,
+    "se": 1145.69001,
+    "ci95": [
+     7750.75,
+     11890.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.081342,
+    "median": 0.086397,
+    "sd": 0.012223,
+    "se": 0.004322,
+    "ci95": [
+     0.0733,
+     0.088695
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 44.25,
+    "median": 47,
+    "sd": 6.649382,
+    "se": 2.350912,
+    "ci95": [
+     39.875,
+     48.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.164982,
+    "median": 0.162684,
+    "sd": 0.01265,
+    "se": 0.004472,
+    "ci95": [
+     0.15671,
+     0.173024
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 89.75,
+    "median": 88.5,
+    "sd": 6.881653,
+    "se": 2.433032,
+    "ci95": [
+     85.25,
+     94.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.047105,
+    "median": 0.046875,
+    "sd": 0.008392,
+    "se": 0.002967,
+    "ci95": [
+     0.04182,
+     0.052619
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 25.625,
+    "median": 25.5,
+    "sd": 4.565007,
+    "se": 1.613974,
+    "ci95": [
+     22.75,
+     28.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.016544,
+    "median": 0.016544,
+    "sd": 0.002779,
+    "se": 0.000983,
+    "ci95": [
+     0.014936,
+     0.018612
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9,
+    "median": 9,
+    "sd": 1.511858,
+    "se": 0.534522,
+    "ci95": [
+     8.125,
+     10.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "CB2": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.268382,
+    "median": 3.250919,
+    "sd": 0.09974,
+    "se": 0.035263,
+    "ci95": [
+     3.213235,
+     3.341912
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1778,
+    "median": 1768.5,
+    "sd": 54.25864,
+    "se": 19.183326,
+    "ci95": [
+     1748,
+     1818
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.089844,
+    "median": 0.08364,
+    "sd": 0.014916,
+    "se": 0.005273,
+    "ci95": [
+     0.081112,
+     0.099954
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 48.875,
+    "median": 45.5,
+    "sd": 8.114141,
+    "se": 2.868782,
+    "ci95": [
+     44.125,
+     54.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.631204,
+    "median": 0.631434,
+    "sd": 0.014439,
+    "se": 0.005105,
+    "ci95": [
+     0.621783,
+     0.640395
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 343.375,
+    "median": 343.5,
+    "sd": 7.854707,
+    "se": 2.777058,
+    "ci95": [
+     338.25,
+     348.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.017693,
+    "median": 0.017463,
+    "sd": 0.002394,
+    "se": 0.000846,
+    "ci95": [
+     0.016085,
+     0.019072
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9.625,
+    "median": 9.5,
+    "sd": 1.30247,
+    "se": 0.460493,
+    "ci95": [
+     8.75,
+     10.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.107307,
+    "median": 0.101103,
+    "sd": 0.016557,
+    "se": 0.005854,
+    "ci95": [
+     0.097656,
+     0.118566
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 58.375,
+    "median": 55,
+    "sd": 9.006942,
+    "se": 3.184435,
+    "ci95": [
+     53.125,
+     64.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.013097,
+    "median": 0.013787,
+    "sd": 0.003984,
+    "se": 0.001408,
+    "ci95": [
+     0.01034,
+     0.015395
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7.125,
+    "median": 7.5,
+    "sd": 2.167124,
+    "se": 0.766194,
+    "ci95": [
+     5.625,
+     8.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.173254,
+    "median": 0.153493,
+    "sd": 0.098673,
+    "se": 0.034886,
+    "ci95": [
+     0.11489,
+     0.244715
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 94.25,
+    "median": 83.5,
+    "sd": 53.678274,
+    "se": 18.978136,
+    "ci95": [
+     62.5,
+     133.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 4.644761,
+    "median": 4.219669,
+    "sd": 2.667439,
+    "se": 0.943082,
+    "ci95": [
+     3.076287,
+     6.602022
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2526.75,
+    "median": 2295.5,
+    "sd": 1451.086859,
+    "se": 513.036679,
+    "ci95": [
+     1673.5,
+     3591.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.210018,
+    "median": 0.180147,
+    "sd": 0.116425,
+    "se": 0.041163,
+    "ci95": [
+     0.142004,
+     0.294577
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 114.25,
+    "median": 98,
+    "sd": 63.335276,
+    "se": 22.392401,
+    "ci95": [
+     77.25,
+     160.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.013097,
+    "median": 1.735294,
+    "sd": 1.116496,
+    "se": 0.394741,
+    "ci95": [
+     1.347886,
+     2.809743
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1095.125,
+    "median": 944,
+    "sd": 607.373841,
+    "se": 214.739081,
+    "ci95": [
+     733.25,
+     1528.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 6.657858,
+    "median": 5.954963,
+    "sd": 3.769526,
+    "se": 1.332729,
+    "ci95": [
+     4.469439,
+     9.394761
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3621.875,
+    "median": 3239.5,
+    "sd": 2050.622027,
+    "se": 725.00437,
+    "ci95": [
+     2431.375,
+     5110.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "CB3": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.320772,
+    "median": 2.311581,
+    "sd": 0.068977,
+    "se": 0.024387,
+    "ci95": [
+     2.28079,
+     2.368336
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1262.5,
+    "median": 1257.5,
+    "sd": 37.523326,
+    "se": 13.266499,
+    "ci95": [
+     1240.75,
+     1288.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.043428,
+    "median": 0.042279,
+    "sd": 0.008334,
+    "se": 0.002946,
+    "ci95": [
+     0.038373,
+     0.049173
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 23.625,
+    "median": 23,
+    "sd": 4.533605,
+    "se": 1.602871,
+    "ci95": [
+     20.875,
+     26.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.392004,
+    "median": 0.401654,
+    "sd": 0.032197,
+    "se": 0.011383,
+    "ci95": [
+     0.369715,
+     0.411305
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "pd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 213.25,
+    "median": 218.5,
+    "sd": 17.515299,
+    "se": 6.192594,
+    "ci95": [
+     201.125,
+     223.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.066176,
+    "median": 0.066176,
+    "sd": 0.01002,
+    "se": 0.003543,
+    "ci95": [
+     0.059513,
+     0.072381
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dint_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 36,
+    "median": 36,
+    "sd": 5.451081,
+    "se": 1.927248,
+    "ci95": [
+     32.375,
+     39.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005744,
+    "median": 0.006434,
+    "sd": 0.001822,
+    "se": 0.000644,
+    "ci95": [
+     0.004596,
+     0.006893
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.125,
+    "median": 3.5,
+    "sd": 0.991031,
+    "se": 0.350382,
+    "ci95": [
+     2.5,
+     3.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.142923,
+    "median": 0.118566,
+    "sd": 0.128747,
+    "se": 0.045519,
+    "ci95": [
+     0.059513,
+     0.222426
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 77.75,
+    "median": 64.5,
+    "sd": 70.038255,
+    "se": 24.762262,
+    "ci95": [
+     32.375,
+     121
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.744715,
+    "median": 3.145221,
+    "sd": 3.394405,
+    "se": 1.200103,
+    "ci95": [
+     1.560892,
+     5.887178
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "krYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2037.125,
+    "median": 1711,
+    "sd": 1846.556211,
+    "se": 652.856209,
+    "ci95": [
+     849.125,
+     3202.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.170956,
+    "median": 0.154412,
+    "sd": 0.155586,
+    "se": 0.055008,
+    "ci95": [
+     0.071002,
+     0.272289
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prN_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 93,
+    "median": 84,
+    "sd": 84.638728,
+    "se": 29.924309,
+    "ci95": [
+     38.625,
+     148.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.633732,
+    "median": 1.530331,
+    "sd": 1.451054,
+    "se": 0.513025,
+    "ci95": [
+     0.683594,
+     2.564338
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "prYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 888.75,
+    "median": 832.5,
+    "sd": 789.373305,
+    "se": 279.085608,
+    "ci95": [
+     371.875,
+     1395
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 5.378447,
+    "median": 4.675551,
+    "sd": 4.836779,
+    "se": 1.710059,
+    "ci95": [
+     2.247472,
+     8.40648
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "retYds_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2925.875,
+    "median": 2543.5,
+    "sd": 2631.207514,
+    "se": 930.272338,
+    "ci95": [
+     1222.625,
+     4573.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.0108,
+    "median": 0.011029,
+    "sd": 0.005331,
+    "se": 0.001885,
+    "ci95": [
+     0.007353,
+     0.014706
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 5.875,
+    "median": 6,
+    "sd": 2.900123,
+    "se": 1.025348,
+    "ci95": [
+     4,
+     8
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.005744,
+    "median": 0.005515,
+    "sd": 0.001534,
+    "se": 0.000542,
+    "ci95": [
+     0.004825,
+     0.006664
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.125,
+    "median": 3,
+    "sd": 0.834523,
+    "se": 0.295048,
+    "ci95": [
+     2.625,
+     3.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "DE1": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 3.623851,
+    "median": 3.64614,
+    "sd": 0.093334,
+    "se": 0.032999,
+    "ci95": [
+     3.558134,
+     3.682445
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1971.375,
+    "median": 1983.5,
+    "sd": 50.773833,
+    "se": 17.951261,
+    "ci95": [
+     1935.625,
+     2003.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.707261,
+    "median": 0.694853,
+    "sd": 0.038052,
+    "se": 0.013453,
+    "ci95": [
+     0.683134,
+     0.732996
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 384.75,
+    "median": 378,
+    "sd": 20.700242,
+    "se": 7.318641,
+    "ci95": [
+     371.625,
+     398.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.698759,
+    "median": 2.686581,
+    "sd": 0.0555,
+    "se": 0.019622,
+    "ci95": [
+     2.664292,
+     2.735524
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1468.125,
+    "median": 1461.5,
+    "sd": 30.191945,
+    "se": 10.674465,
+    "ci95": [
+     1449.375,
+     1488.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.086627,
+    "median": 0.085478,
+    "sd": 0.007764,
+    "se": 0.002745,
+    "ci95": [
+     0.081572,
+     0.091452
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 47.125,
+    "median": 46.5,
+    "sd": 4.223658,
+    "se": 1.493289,
+    "ci95": [
+     44.375,
+     49.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.153493,
+    "median": 0.151654,
+    "sd": 0.015629,
+    "se": 0.005526,
+    "ci95": [
+     0.143153,
+     0.163373
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 83.5,
+    "median": 82.5,
+    "sd": 8.502101,
+    "se": 3.005946,
+    "ci95": [
+     77.875,
+     88.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 80.484375,
+    "median": 80.5625,
+    "sd": 0.244624,
+    "se": 0.086488,
+    "ci95": [
+     80.310547,
+     80.622656
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 43783.5,
+    "median": 43826,
+    "sd": 133.075521,
+    "se": 47.049302,
+    "ci95": [
+     43688.9375,
+     43858.725
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.563189,
+    "median": 0.556985,
+    "sd": 0.034669,
+    "se": 0.012257,
+    "ci95": [
+     0.54136,
+     0.585938
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 306.375,
+    "median": 303,
+    "sd": 18.859916,
+    "se": 6.667987,
+    "ci95": [
+     294.5,
+     318.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.288373,
+    "median": 0.289522,
+    "sd": 0.02766,
+    "se": 0.009779,
+    "ci95": [
+     0.271599,
+     0.306756
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 156.875,
+    "median": 157.5,
+    "sd": 15.04695,
+    "se": 5.3199,
+    "ci95": [
+     147.75,
+     166.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.155101,
+    "median": 0.155331,
+    "sd": 0.015963,
+    "se": 0.005644,
+    "ci95": [
+     0.144761,
+     0.164982
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 84.375,
+    "median": 84.5,
+    "sd": 8.683934,
+    "se": 3.070234,
+    "ci95": [
+     78.75,
+     89.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.119715,
+    "median": 0.118566,
+    "sd": 0.011308,
+    "se": 0.003998,
+    "ci95": [
+     0.113511,
+     0.127987
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 65.125,
+    "median": 64.5,
+    "sd": 6.151365,
+    "se": 2.174836,
+    "ci95": [
+     61.75,
+     69.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.018153,
+    "median": 0.017463,
+    "sd": 0.005849,
+    "se": 0.002068,
+    "ci95": [
+     0.014476,
+     0.022059
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 9.875,
+    "median": 9.5,
+    "sd": 3.181981,
+    "se": 1.125,
+    "ci95": [
+     7.875,
+     12
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.008961,
+    "median": 0.009191,
+    "sd": 0.003861,
+    "se": 0.001365,
+    "ci95": [
+     0.006434,
+     0.011489
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 4.875,
+    "median": 5,
+    "sd": 2.10017,
+    "se": 0.742522,
+    "ci95": [
+     3.5,
+     6.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.007813,
+    "median": 0.005515,
+    "sd": 0.006349,
+    "se": 0.002245,
+    "ci95": [
+     0.004136,
+     0.012178
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 4.25,
+    "median": 3,
+    "sd": 3.453776,
+    "se": 1.221094,
+    "ci95": [
+     2.25,
+     6.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "DE2": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.855009,
+    "median": 2.857537,
+    "sd": 0.122482,
+    "se": 0.043304,
+    "ci95": [
+     2.772289,
+     2.929228
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1553.125,
+    "median": 1554.5,
+    "sd": 66.629975,
+    "se": 23.557254,
+    "ci95": [
+     1508.125,
+     1593.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.509881,
+    "median": 0.515625,
+    "sd": 0.029705,
+    "se": 0.010502,
+    "ci95": [
+     0.48966,
+     0.527803
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 277.375,
+    "median": 280.5,
+    "sd": 16.159363,
+    "se": 5.713197,
+    "ci95": [
+     266.375,
+     287.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.017004,
+    "median": 2.020221,
+    "sd": 0.035013,
+    "se": 0.012379,
+    "ci95": [
+     1.994026,
+     2.039292
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1097.25,
+    "median": 1099,
+    "sd": 19.046935,
+    "se": 6.734108,
+    "ci95": [
+     1084.75,
+     1109.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.47955,
+    "median": 0.482537,
+    "sd": 0.016513,
+    "se": 0.005838,
+    "ci95": [
+     0.46898,
+     0.490349
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 260.875,
+    "median": 262.5,
+    "sd": 8.983119,
+    "se": 3.176012,
+    "ci95": [
+     255.125,
+     266.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.233686,
+    "median": 0.232537,
+    "sd": 0.020195,
+    "se": 0.00714,
+    "ci95": [
+     0.221278,
+     0.247243
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 127.125,
+    "median": 126.5,
+    "sd": 10.986193,
+    "se": 3.884206,
+    "ci95": [
+     120.375,
+     134.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.110524,
+    "median": 0.115809,
+    "sd": 0.020291,
+    "se": 0.007174,
+    "ci95": [
+     0.096737,
+     0.123162
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 60.125,
+    "median": 63,
+    "sd": 11.038083,
+    "se": 3.902552,
+    "ci95": [
+     52.625,
+     67
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 80.484375,
+    "median": 80.5625,
+    "sd": 0.244624,
+    "se": 0.086488,
+    "ci95": [
+     80.310547,
+     80.622656
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 43783.5,
+    "median": 43826,
+    "sd": 133.075521,
+    "se": 47.049302,
+    "ci95": [
+     43688.9375,
+     43858.725
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.138557,
+    "median": 0.136949,
+    "sd": 0.014506,
+    "se": 0.005128,
+    "ci95": [
+     0.130055,
+     0.149357
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 75.375,
+    "median": 74.5,
+    "sd": 7.890998,
+    "se": 2.789889,
+    "ci95": [
+     70.75,
+     81.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.064568,
+    "median": 0.066176,
+    "sd": 0.012714,
+    "se": 0.004495,
+    "ci95": [
+     0.056066,
+     0.07307
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 35.125,
+    "median": 36,
+    "sd": 6.916595,
+    "se": 2.445386,
+    "ci95": [
+     30.5,
+     39.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.004136,
+    "median": 0.003676,
+    "sd": 0.002907,
+    "se": 0.001028,
+    "ci95": [
+     0.002298,
+     0.005974
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2.25,
+    "median": 2,
+    "sd": 1.581139,
+    "se": 0.559017,
+    "ci95": [
+     1.25,
+     3.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.107307,
+    "median": 0.106618,
+    "sd": 0.014671,
+    "se": 0.005187,
+    "ci95": [
+     0.097656,
+     0.116728
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 58.375,
+    "median": 58,
+    "sd": 7.981004,
+    "se": 2.821711,
+    "ci95": [
+     53.125,
+     63.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.003676,
+    "median": 0.003676,
+    "sd": 0.003107,
+    "se": 0.001099,
+    "ci95": [
+     0.001838,
+     0.005744
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 2,
+    "median": 2,
+    "sd": 1.690309,
+    "se": 0.597614,
+    "ci95": [
+     1,
+     3.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.013327,
+    "median": 0.011949,
+    "sd": 0.00414,
+    "se": 0.001464,
+    "ci95": [
+     0.0108,
+     0.016085
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7.25,
+    "median": 6.5,
+    "sd": 2.251983,
+    "se": 0.796196,
+    "ci95": [
+     5.875,
+     8.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "DT1": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.705193,
+    "median": 2.695772,
+    "sd": 0.037761,
+    "se": 0.013351,
+    "ci95": [
+     2.679458,
+     2.728401
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1471.625,
+    "median": 1466.5,
+    "sd": 20.542204,
+    "se": 7.262766,
+    "ci95": [
+     1457.625,
+     1484.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.465533,
+    "median": 0.465993,
+    "sd": 0.017924,
+    "se": 0.006337,
+    "ci95": [
+     0.453585,
+     0.476792
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 253.25,
+    "median": 253.5,
+    "sd": 9.750458,
+    "se": 3.447307,
+    "ci95": [
+     246.75,
+     259.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 1.446691,
+    "median": 1.459559,
+    "sd": 0.032927,
+    "se": 0.011642,
+    "ci95": [
+     1.424632,
+     1.467142
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 787,
+    "median": 794,
+    "sd": 17.912486,
+    "se": 6.33302,
+    "ci95": [
+     775,
+     798.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.358686,
+    "median": 0.35386,
+    "sd": 0.027572,
+    "se": 0.009748,
+    "ci95": [
+     0.341452,
+     0.377528
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 195.125,
+    "median": 192.5,
+    "sd": 14.999405,
+    "se": 5.30309,
+    "ci95": [
+     185.75,
+     205.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.102711,
+    "median": 0.102022,
+    "sd": 0.011092,
+    "se": 0.003922,
+    "ci95": [
+     0.095129,
+     0.109605
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 55.875,
+    "median": 55.5,
+    "sd": 6.034129,
+    "se": 2.133387,
+    "ci95": [
+     51.75,
+     59.625
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 80.484375,
+    "median": 80.5625,
+    "sd": 0.244624,
+    "se": 0.086488,
+    "ci95": [
+     80.310547,
+     80.622656
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 43783.5,
+    "median": 43826,
+    "sd": 133.075521,
+    "se": 47.049302,
+    "ci95": [
+     43688.9375,
+     43858.725
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.085248,
+    "median": 0.086397,
+    "sd": 0.014932,
+    "se": 0.005279,
+    "ci95": [
+     0.075368,
+     0.094669
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 46.375,
+    "median": 47,
+    "sd": 8.122939,
+    "se": 2.871893,
+    "ci95": [
+     41,
+     51.5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.092371,
+    "median": 0.092831,
+    "sd": 0.007595,
+    "se": 0.002685,
+    "ci95": [
+     0.087086,
+     0.096967
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "ff_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 50.25,
+    "median": 50.5,
+    "sd": 4.131759,
+    "se": 1.460797,
+    "ci95": [
+     47.375,
+     52.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.170726,
+    "median": 0.170037,
+    "sd": 0.024691,
+    "se": 0.008729,
+    "ci95": [
+     0.154642,
+     0.18704
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 92.875,
+    "median": 92.5,
+    "sd": 13.431706,
+    "se": 4.748825,
+    "ci95": [
+     84.125,
+     101.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.057215,
+    "median": 0.059743,
+    "sd": 0.009135,
+    "se": 0.00323,
+    "ci95": [
+     0.050551,
+     0.06227
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 31.125,
+    "median": 32.5,
+    "sd": 4.96955,
+    "se": 1.757001,
+    "ci95": [
+     27.5,
+     33.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.0108,
+    "median": 0.011029,
+    "sd": 0.003465,
+    "se": 0.001225,
+    "ci95": [
+     0.008732,
+     0.013097
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 5.875,
+    "median": 6,
+    "sd": 1.885092,
+    "se": 0.666481,
+    "ci95": [
+     4.75,
+     7.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.019991,
+    "median": 0.019301,
+    "sd": 0.005849,
+    "se": 0.002068,
+    "ci95": [
+     0.016314,
+     0.024357
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 10.875,
+    "median": 10.5,
+    "sd": 3.181981,
+    "se": 1.125,
+    "ci95": [
+     8.875,
+     13.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.006664,
+    "median": 0.006434,
+    "sd": 0.003798,
+    "se": 0.001343,
+    "ci95": [
+     0.004136,
+     0.009191
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "dtd_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.625,
+    "median": 3.5,
+    "sd": 2.065879,
+    "se": 0.730399,
+    "ci95": [
+     2.25,
+     5
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  },
+  "DT2": {
+   "nTeams": 8,
+   "tkl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 2.033318,
+    "median": 2.023897,
+    "sd": 0.096974,
+    "se": 0.034286,
+    "ci95": [
+     1.976333,
+     2.103171
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tkl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 1106.125,
+    "median": 1101,
+    "sd": 52.753978,
+    "se": 18.651348,
+    "ci95": [
+     1075.125,
+     1144.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.30239,
+    "median": 0.30239,
+    "sd": 0.018198,
+    "se": 0.006434,
+    "ci95": [
+     0.290441,
+     0.314338
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "tfl_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 164.5,
+    "median": 164.5,
+    "sd": 9.899495,
+    "se": 3.5,
+    "ci95": [
+     158,
+     171
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.934053,
+    "median": 0.923713,
+    "sd": 0.032521,
+    "se": 0.011498,
+    "ci95": [
+     0.914982,
+     0.955882
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "hur_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 508.125,
+    "median": 502.5,
+    "sd": 17.691301,
+    "se": 6.25482,
+    "ci95": [
+     497.75,
+     520
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.257123,
+    "median": 0.261949,
+    "sd": 0.027747,
+    "se": 0.00981,
+    "ci95": [
+     0.238281,
+     0.275506
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "sack_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 139.875,
+    "median": 142.5,
+    "sd": 15.094346,
+    "se": 5.336657,
+    "ci95": [
+     129.625,
+     149.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.119715,
+    "median": 0.117647,
+    "sd": 0.013524,
+    "se": 0.004781,
+    "ci95": [
+     0.111213,
+     0.128906
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skE_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 65.125,
+    "median": 64,
+    "sd": 7.356969,
+    "se": 2.601082,
+    "ci95": [
+     60.5,
+     70.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 80.484375,
+    "median": 80.5625,
+    "sd": 0.244624,
+    "se": 0.086488,
+    "ci95": [
+     80.310547,
+     80.622656
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "opOL_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 43783.5,
+    "median": 43826,
+    "sd": 133.075521,
+    "se": 47.049302,
+    "ci95": [
+     43688.9375,
+     43858.725
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.074908,
+    "median": 0.073529,
+    "sd": 0.013535,
+    "se": 0.004785,
+    "ci95": [
+     0.066176,
+     0.084329
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skO_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 40.75,
+    "median": 40,
+    "sd": 7.363035,
+    "se": 2.603226,
+    "ci95": [
+     36,
+     45.875
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.0625,
+    "median": 0.0625,
+    "sd": 0.009972,
+    "se": 0.003526,
+    "ci95": [
+     0.055836,
+     0.068704
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "skC_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 34,
+    "median": 34,
+    "sd": 5.424811,
+    "se": 1.91796,
+    "ci95": [
+     30.375,
+     37.375
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.006893,
+    "median": 0.005515,
+    "sd": 0.003643,
+    "se": 0.001288,
+    "ci95": [
+     0.004825,
+     0.009651
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "saf_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 3.75,
+    "median": 3,
+    "sd": 1.982062,
+    "se": 0.700765,
+    "ci95": [
+     2.625,
+     5.25
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.014246,
+    "median": 0.014706,
+    "sd": 0.002907,
+    "se": 0.001028,
+    "ci95": [
+     0.012178,
+     0.016085
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "blk_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 7.75,
+    "median": 8,
+    "sd": 1.581139,
+    "se": 0.559017,
+    "ci95": [
+     6.625,
+     8.75
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr": {
+    "n": 8,
+    "unit": "per-game",
+    "mean": 0.02091,
+    "median": 0.022978,
+    "sd": 0.008039,
+    "se": 0.002842,
+    "ci95": [
+     0.015625,
+     0.025965
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "fr_seasonMean": {
+    "n": 8,
+    "unit": "season-total-per-team",
+    "mean": 11.375,
+    "median": 12.5,
+    "sd": 4.373214,
+    "se": 1.546165,
+    "ci95": [
+     8.5,
+     14.125
+    ],
+    "threshold": 0,
+    "practicalFlag": "MEANINGFUL"
+   }
+  }
+ },
+ "ladder": {
+  "note": "like-for-like production rungs (yard+TD units skill; sacks and INTs defense). Snap shares recorded as reference only.",
+  "realSource": {
+   "player_stats": "9252f6e6b9bcdd2d05a8bdbb8e26a0afc9f07434a6de2ffaffa73d183ade240e",
+   "snap_counts": "a2aa58efe093f8aa0ad5aadf09f81d8ec690a1183bd2dde68d20e7f109a9c335",
+   "player_stats_def": "2e3235bfbd7c992035c4940563efddfe497763f6c7ca956eb1282e86e7c11861"
+  },
+  "realGroupSnapShare_reference": {
+   "DB": 0.2197,
+   "DL": 0.147,
+   "FB": 0.0039,
+   "K": 0,
+   "LB": 0.1332,
+   "OL": 0.2287,
+   "QB": 0.0455,
+   "RB": 0.0455,
+   "TE": 0.0606,
+   "WR": 0.116
+  },
+  "skillProduction": {
+   "engine": {
+    "QB": 0.416,
+    "RB": 0.243,
+    "WR": 0.241,
+    "TE": 0.1
+   },
+   "real2024": {
+    "QB": 0.415,
+    "RB": 0.2266,
+    "WR": 0.2674,
+    "TE": 0.091
+   },
+   "flags": []
+  },
+  "defenseSacks": {
+   "engine": {
+    "DL": 0.727,
+    "LB": 0.273,
+    "DB": 0
+   },
+   "real2024": {
+    "DL": 0.5767,
+    "LB": 0.3502,
+    "DB": 0.0732
+   },
+   "flags": [
+    {
+     "group": "DL",
+     "enginePP": 72.7,
+     "realPP": 57.7,
+     "deltaPP": 15
+    },
+    {
+     "group": "LB",
+     "enginePP": 27.3,
+     "realPP": 35,
+     "deltaPP": -7.7
+    },
+    {
+     "group": "DB",
+     "enginePP": 0,
+     "realPP": 7.3,
+     "deltaPP": -7.3
+    }
+   ]
+  },
+  "defenseINTs": {
+   "engine": {
+    "DL": 0,
+    "LB": 0.138,
+    "DB": 0.862
+   },
+   "real2024": {
+    "DL": 0.0452,
+    "LB": 0.1516,
+    "DB": 0.8032
+   },
+   "flags": [
+    {
+     "group": "DB",
+     "enginePP": 86.2,
+     "realPP": 80.3,
+     "deltaPP": 5.9
+    }
+   ]
+  },
+  "notMeasurableThisBuild": [
+   "efficiency ladder rung (no per-play air-yards/YAC/coverage ledger in buildGameDetail — verified at source 2026-11-08)",
+   "completion% by air-yard bucket",
+   "INT rate by coverage role",
+   "YAC by slot"
+  ]
+ },
+ "console_errors": [],
+ "generated": "2026-11-08"
+}

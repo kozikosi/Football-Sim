@@ -1,0 +1,178 @@
+{
+ "schema": "zai-t6-flex-pricer/0",
+ "tool": "flex_pricer.mjs (T6 v0)",
+ "build": {
+  "file": "Football-Sim-PreColors.html",
+  "sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd"
+ },
+ "method": {
+  "arms": "natural vs flexed, both re-optimized by the shell optimalLineup (Hungarian over slotWins·effOvr)",
+  "paired": "same draft seed both arms; each seed is an independent supporting cast",
+  "winsProxy": "bestUnitPts(off)+bestUnitPts(def) vs all-80 league baseline × 17/POINTS_PER_WIN — the slotWinsTable() surface",
+  "practicalThresholdWins": 0.1
+ },
+ "cases": [
+  {
+   "case": {
+    "tag": "TE",
+    "flexSlot": "WR1",
+    "why": "the McBride question — elite TE into WR1"
+   },
+   "n": 53,
+   "loss": {
+    "n": 53,
+    "unit": "wins/season lost",
+    "mean": 0.669553,
+    "median": 0.6319,
+    "sd": 0.338014,
+    "se": 0.04643,
+    "ci95": [
+     0.582881,
+     0.770357
+    ],
+    "threshold": 0.1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "percentiles": {
+    "p10": 0.271,
+    "p25": 0.4339,
+    "p50": 0.6319,
+    "p75": 0.8263,
+    "p90": 0.9696,
+    "p95": 1.4798
+   },
+   "gainCount": 0,
+   "why": "the McBride question — elite TE into WR1"
+  },
+  {
+   "case": {
+    "tag": "CB",
+    "flexSlot": "WR1",
+    "why": "CB>WR 10 penalty (Owner 7 Nov) — does the price hold?"
+   },
+   "n": 102,
+   "loss": {
+    "n": 102,
+    "unit": "wins/season lost",
+    "mean": 0.7159,
+    "median": 0.6685,
+    "sd": 0.414143,
+    "se": 0.041006,
+    "ci95": [
+     0.638628,
+     0.803728
+    ],
+    "threshold": 0.1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "percentiles": {
+    "p10": 0.219,
+    "p25": 0.4084,
+    "p50": 0.6715,
+    "p75": 0.987,
+    "p90": 1.3468,
+    "p95": 1.4038
+   },
+   "gainCount": 2,
+   "why": "CB>WR 10 penalty (Owner 7 Nov) — does the price hold?"
+  },
+  {
+   "case": {
+    "tag": "CB",
+    "flexSlot": "FS",
+    "why": "same-group safety flex"
+   },
+   "n": 102,
+   "loss": {
+    "n": 102,
+    "unit": "wins/season lost",
+    "mean": 0.292933,
+    "median": 0.2784,
+    "sd": 0.204174,
+    "se": 0.020216,
+    "ci95": [
+     0.256657,
+     0.329816
+    ],
+    "threshold": 0.1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "percentiles": {
+    "p10": 0.0792,
+    "p25": 0.1715,
+    "p50": 0.2785,
+    "p75": 0.4194,
+    "p90": 0.541,
+    "p95": 0.6174
+   },
+   "gainCount": 4,
+   "why": "same-group safety flex"
+  },
+  {
+   "case": {
+    "tag": "REDG",
+    "flexSlot": "DT1",
+    "why": "edge inside — super-team cramming probe"
+   },
+   "n": 68,
+   "loss": {
+    "n": 68,
+    "unit": "wins/season lost",
+    "mean": 0.395804,
+    "median": 0.382,
+    "sd": 0.351836,
+    "se": 0.042666,
+    "ci95": [
+     0.312172,
+     0.472687
+    ],
+    "threshold": 0.1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "percentiles": {
+    "p10": 0.064,
+    "p25": 0.2241,
+    "p50": 0.3906,
+    "p75": 0.5275,
+    "p90": 0.9069,
+    "p95": 1.0344
+   },
+   "gainCount": 4,
+   "why": "edge inside — super-team cramming probe"
+  },
+  {
+   "case": {
+    "tag": "WR",
+    "flexSlot": "RB1",
+    "why": "receiver into backfield (rare but priced)"
+   },
+   "n": 128,
+   "loss": {
+    "n": 128,
+    "unit": "wins/season lost",
+    "mean": 0.313044,
+    "median": 0.3027,
+    "sd": 0.213071,
+    "se": 0.018833,
+    "ci95": [
+     0.275459,
+     0.345601
+    ],
+    "threshold": 0.1,
+    "practicalFlag": "MEANINGFUL"
+   },
+   "percentiles": {
+    "p10": 0.0664,
+    "p25": 0.1606,
+    "p50": 0.3056,
+    "p75": 0.4272,
+    "p90": 0.5874,
+    "p95": 0.7215
+   },
+   "gainCount": 4,
+   "why": "receiver into backfield (rare but priced)"
+  }
+ ],
+ "generated": "2026-11-08",
+ "console_errors": []
+}
