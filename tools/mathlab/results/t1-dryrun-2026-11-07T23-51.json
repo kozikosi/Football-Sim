@@ -1,0 +1,63 @@
+{
+ "generatedUtc": "2026-11-07T23:51:33.517ZZ",
+ "product": "Football-Sim-PreColors.html 40233d6be00e987c",
+ "labels": "VERIFIED = dry-run measured from the named build by this script (deterministic, n=1, NO sim, NO external data); group shares REPORTED from Owner final table (named file). This is NOT the full T1 harness — see status.",
+ "status": "SKELETON ONLY. Full T1 (N seeded seasons, per-slot targets/yards/snaps/EPA, 4-level ladder vs nflverse, play-level outcome distributions, pre-registered tolerance bands) is BLOCKED on: (1) injectable/seeded RNG — task T-20261022-claude-2; (2) nflverse snap/target/EPA data — data ask. Nothing here simulates a season.",
+ "method": "Dry run: slotWinsPerOvr() shares of total measured value, grouped, vs Owner final 11-06 weight shares. No randomness, no simulation.",
+ "rows": [
+  {
+   "group": "QB",
+   "engineImpliedShare": 11.07,
+   "ownerFinalShare": 12.2,
+   "delta": -1.12
+  },
+  {
+   "group": "RB",
+   "engineImpliedShare": 3.86,
+   "ownerFinalShare": 4.27,
+   "delta": -0.41
+  },
+  {
+   "group": "WR",
+   "engineImpliedShare": 9.09,
+   "ownerFinalShare": 14.02,
+   "delta": -4.93
+  },
+  {
+   "group": "TE",
+   "engineImpliedShare": 4.11,
+   "ownerFinalShare": 4.88,
+   "delta": -0.77
+  },
+  {
+   "group": "OL",
+   "engineImpliedShare": 3.71,
+   "ownerFinalShare": 1.83,
+   "delta": 1.88
+  },
+  {
+   "group": "DL",
+   "engineImpliedShare": 17.89,
+   "ownerFinalShare": 21.34,
+   "delta": -3.45
+  },
+  {
+   "group": "LB",
+   "engineImpliedShare": 7.58,
+   "ownerFinalShare": 6.71,
+   "delta": 0.87
+  },
+  {
+   "group": "DB",
+   "engineImpliedShare": 23.09,
+   "ownerFinalShare": 16.46,
+   "delta": 6.62
+  },
+  {
+   "group": "ST",
+   "engineImpliedShare": 3.14,
+   "ownerFinalShare": 0.61,
+   "delta": 2.54
+  }
+ ]
+}

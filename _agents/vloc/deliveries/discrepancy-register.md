@@ -1,0 +1,14 @@
+# Discrepancy register — engine vs real data / engine vs anchors (VLOC, 2026-11-07)
+
+Per Z.ai synthesis §4 (discrepancy register: engine-vs-NFL disagreements with suspected cause and status — some are scope, some are bugs; the record is the point). Every entry labelled with evidence.
+
+| ID | Discrepancy | Suspected cause | Status | Evidence |
+|---|---|---|---|---|
+| D-001 | Raw curve: CB1 (397) > WR1 (304) on 700 scale; Owner table has WR1 650 >> CB1 400 | RATING_SPECS/MC fitted to design.json (28-Oct lab), not to the Owner's table; two inconsistent targets in play (mechanics fit to design.json, display = salary/owner table) | Open — candidate L1 re-examination | VERIFIED: tools/mathlab/results/triangulate-2026-11-07T23-46.json; audit vloc 20261107-2059 (fit to design.json, not Owner 11-06) |
+| D-002 | WR1 anchor disagreement: raw 304 vs Owner 650 vs design 470 vs salary 625 (spread 346) | No external validation of L1; each anchor built independently | Open — T1 needed | VERIFIED: T3 output |
+| D-003 | Flat FLEX penalty underprices SAM flex (CB->SAM 95 OVR: 0.993 wins lost vs flat 4) and CB->FS (flat 0, costs 0.42 wins at 95) | Flat table never derived from measured slot values | Open — candidate flex-table ruling | VERIFIED: tools/mathlab/results/flex-pricer-2026-11-07T23-50.json (H-003) |
+| D-004 | No seeded RNG: paired before/after, proper CIs, and the T1/T6 seeded variants impossible | Product has 56-58 Math.random() sites, no seed | Blocked — task T-20261022-claude-2 | AGENTS.md §3 (no injectable RNG); beam critique tool #3 |
+| D-005 | No nflverse snap/target/EPA data in workspace; real-snap replacement comparison impossible | Data ask not yet filled | Open — data ask | T4 output: replacement matches Madden 27 pool Nth-best (gap 0) but real-snap comparison UNKNOWN |
+| D-006 | WINS_BASE = 70 (slotWinsPerOvr baseline) vs engine staticReplacement per group (69-77): alignment unchecked | WINS_BASE is a reference, not a replacement level (Z.ai E7) | Open — T4 sensitivity | VERIFIED engine replacement: tools/mathlab/results/replacement-audit-2026-11-07T23-49.json |
+
+Rule: discrepancies are reported, never silently resolved. Any change to a protected constant needs Owner approval via P-013 + MERGE-MANIFEST re-pin in the same commit.
