@@ -6,22 +6,26 @@
 
 ## This session (2026-11-07, per START-HERE from origin/council/muse)
 - Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK).
-- Took the Owner's 7 Nov weights/flex request (flex cap -10, raise lower weights so 85+ players play natural roles; UI updates; Madden rankings dropdown; mobile scroll). Not an assigned P-item; filed as FOR: P-013 in inbox (P-013 is an OWNER DECISION — protected constants, never applied without approval).
-- BUILT the testing apparatus: `_agents/vl/deliveries/flexweight.mjs` (new lane tool). Imports the real engine (`colors/src/engine`), applies weights + flex table IN MEMORY ONLY, re-runs seeded CPU drafts (rosters re-price with the table), builds both bases' lineups via the engine's own `lineupFor`, and reports every 85+ player placed off-role into a heavier spot per rule with examples. Supports `--weights=` (change one weight, see downstream effects), `--tune/--check` seed ranges, `--no-tune` (evaluate a fixed set), `--fail-if=N` (regression gate). Never touches product files.
-- RAN three measured scenarios on this tree (VERIFIED; receipts in _agents/vl/deliveries/results/):
-  * Scenario 1 — Owner 6 Nov weights + flex cap 10, no raises: 1007 tune / 978 fresh 85+ promotions (25/28 rules); RB>WR1 -4 x236, DT>DE1 -4 x112, TE>WR -10 still lands TEs at WR1 (McBride et al.).
-  * Scenario 2 — pairwise -10 raises (TE1/RB1/CB1/DT1/MIKE/WILL 600, C/OG1 450): 687/651 — untouched 4s leak (RB>WR1 -4 x236 base).
-  * Scenario 3 — fixed-600 set (+SS/FS/OG1 600, C 450): 175/203.
-  * Scenario 4 — raise-until-stuck loop (frozen QB/WR1/DE1/OT1/FB; steps of 50; never above dest weight): every natural slot -> 650; 36/35 promotions remain, all in frozen-low rules FB>TE1/RB1 and OT>DT1 at -4.
-- CONCLUSION (INFERRED): at -10 cap with 2s/4s untouched, "all 85+ players natural" is unreachable with differentiated weights — flattening to 650 still leaves 35-36 on frozen FB=25/OT1=500. Recommendation: adopt cap-10 flex table; keep Owner 6 Nov table as model/ratings/WINS weights; weight raises are selection-only; 3 residual rule families need a separate Owner decision.
-- Proposed cap-10 flex table: `_agents/vl/deliveries/flex.cap10.json` (to go into flex.json + flex.ts together by the Architect).
-- WROTE inbox proposal `inbox/20261107-103030-vl-P-013-flex-cap-weights-ui.md` (apparatus, scenarios, conclusion, exact patch spec for flex table, weights options, product HTML UI anchors: buildControls depth-chart order + draft-board toggle buttons, setActiveTab mobile scroll-to-top, DEFAULT_WEIGHTS/FLEX display values).
-- Receipts: colors `npm test` = 227 pass / 0 fail (VERIFIED in this env); flexweight gate runs exit clean; apparatus written.
-- NOT done (by design, per council rules): no edits to Football-Sim-PreColors.html, flex.json, flex.ts, slots.ts, design.json, or any protected constant — Architect integrates; no commit yet of product files.
+- Owner's bias question: before testing whether the engine is biased toward the secondary, run bias-protocol steps 1 (audit) and 2 (pre-registration), both read-only, committed before any diagnostic runs.
+- DONE step 1 (audit): `_agents/vl/notes/bias-audit-2026-11-07.md`. Key findings (VERIFIED by reading named files):
+  * `colors/src/engine/slots.ts` `SLOTS` == `tools/mathlab/design.json` exactly (test compares key by key). This is the model-weight table shown to the user; QB=1000, multiples of 10.
+  * `design.json` provenance (git log VERIFIED): Architect engine-math spec `20dde5a2` (29 spots), DL5 measured 0.33 share `5e993c0f`, TE3/WR4 measured shares `972dfeb1` — NOT derived from the Owner's 6 Nov salary table.
+  * Current table vs Owner's 6 Nov salary table differ on ~20 of 32 slots (e.g. WR1 470 vs 650, OT1 430 vs 500, TE1 270 vs 250, DE1 520 vs 650, DT1 400 vs 500, K 200 vs 50, P 100 vs 50).
+  * `tools/mathlab/fitlm.js` fit `RATING_SPECS`/`DEF_SPECS`/`PERS_REC`/moved `MC` knobs + new terms (QB_RUN_C, WR_BLK_C, PUNT_PTS, DIME_W) so `derivedWeights()` reproduces `design.json`; snapped literals became `colors/src/engine/specs.ts`. Result: `results/fit-precolors-2026-10-28-recv.json` + `results/engine-patch-2026-10-28-recv.js.txt`.
+  * Circularity (the bias risk): the engine's measured slot values ARE a fit to `design.json`, so they cannot independently confirm it. Secondary share = CB1+CB2+CB3+SS+FS+DIME = 1,610 of ≈8,575 ≈ 19% (> QB), produced by the fit, not validated against real football.
+  * What's independent (not tuned to table): `MC` knobs not in mcKnobs (lean, toCov, toRush, skRush, skOl, skCov), `PLAN_K`, `PERS`, `STRAT`, `DEF_FOCUS`, model constants, `FLEX`/flex.json REV 4, `NATURAL_SLOT_MAP`.
+  * P-013 = Owner decision on protected constants; VL may propose/test, never apply (AGENTS.md §3).
+- DONE step 2 (pre-registration): `_agents/vl/notes/bias-pre-registration-2026-11-07.md`. Commits (before any diagnostic) to metrics M1–M4 (weight share, measured wins/OVR per slot, group share of measured wins, four-anchor sensitivity), thresholds T1–T4 (≥4 pp group tilt, ≥2 anchors, group-level not single-star, survives 700-scale rounding), held-out 2025, Owner-supplied anchors (nflverse snaps/targets/yards by position 2023–25 + named source; 2025 team wins from `tests/2025_standings.js`), Owner priors written before results, independent Verifier seat reviews. Nothing run yet; no engine or product file touched.
+- Committed and pushed `242a8a9d` (vl: bias-protocol step 1 audit and step 2 pre-registration). Verified via `git ls-remote origin council/vl`.
+
+## Open needs (to ask the Owner)
+- Real anchor data with named sources: nflverse snap counts + target share/catches/yards by position (WR/TE/RB) 2023–2025; defensive snap share by group 2023–2025; confirmation of `tests/2025_standings.js` source. 2025 is held out.
+- Owner's position-group importance priors, written before any diagnostic result.
 
 ## Queue remaining
-- P-070, P-127, P-132, P-133, P-188 (from earlier session, untouched this session).
+- P-070, P-127, P-132, P-133, P-188 (from earlier session, untouched).
+- P-013 weights recalibration is the Owner's live request (6 Nov salary table + flex cap -10 + raise lower weights so 85+ stars play natural roles, upper frozen); VL side = the bias diagnostic above, then wait for Owner decision before any weight change.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** to be set on commit of this session's inbox + lane file + deliveries.
+- **HEAD:** `242a8a9d` (pushed to origin/council/vl)
