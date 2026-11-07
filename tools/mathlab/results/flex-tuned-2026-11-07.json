@@ -1,0 +1,1239 @@
+{
+ "_status": "TUNED CANDIDATE, not adopted",
+ "_method": "flextune.mjs: star line 85, tune seeds 1001-1008, fresh check 3001-3016; promotion = penalised off-role placement into a spot heavier than the player's best own-role spot; steps of 2, never lowered",
+ "_set": "CB>WR=10,TE>WR=6",
+ "_history": [
+  {
+   "round": 0,
+   "key": "TE>WR",
+   "from": 6,
+   "to": 8,
+   "cases": 44
+  },
+  {
+   "round": 0,
+   "key": "RB>WR",
+   "from": 10,
+   "to": 12,
+   "cases": 37
+  },
+  {
+   "round": 0,
+   "key": "C>OG",
+   "from": 4,
+   "to": 6,
+   "cases": 37
+  },
+  {
+   "round": 0,
+   "key": "C>OT",
+   "from": 6,
+   "to": 8,
+   "cases": 33
+  },
+  {
+   "round": 0,
+   "key": "OG>OT",
+   "from": 4,
+   "to": 6,
+   "cases": 32
+  },
+  {
+   "round": 0,
+   "key": "DT>EDGE",
+   "from": 6,
+   "to": 8,
+   "cases": 26
+  },
+  {
+   "round": 0,
+   "key": "RB>SS",
+   "from": 6,
+   "to": 8,
+   "cases": 26
+  },
+  {
+   "round": 0,
+   "key": "C>DT",
+   "from": 4,
+   "to": 6,
+   "cases": 25
+  },
+  {
+   "round": 0,
+   "key": "ILB>EDGE",
+   "from": 6,
+   "to": 8,
+   "cases": 24
+  },
+  {
+   "round": 0,
+   "key": "SS>WR",
+   "from": 6,
+   "to": 8,
+   "cases": 24
+  },
+  {
+   "round": 0,
+   "key": "OG>DT",
+   "from": 4,
+   "to": 6,
+   "cases": 15
+  },
+  {
+   "round": 0,
+   "key": "FS>WR",
+   "from": 6,
+   "to": 8,
+   "cases": 14
+  },
+  {
+   "round": 0,
+   "key": "OLB>EDGE",
+   "from": 6,
+   "to": 8,
+   "cases": 12
+  },
+  {
+   "round": 0,
+   "key": "RB>FS",
+   "from": 6,
+   "to": 8,
+   "cases": 11
+  },
+  {
+   "round": 0,
+   "key": "TE>SS",
+   "from": 4,
+   "to": 6,
+   "cases": 10
+  },
+  {
+   "round": 0,
+   "key": "TE>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 10
+  },
+  {
+   "round": 0,
+   "key": "FB>TE",
+   "from": 4,
+   "to": 6,
+   "cases": 9
+  },
+  {
+   "round": 0,
+   "key": "FS>CB",
+   "from": 6,
+   "to": 8,
+   "cases": 6
+  },
+  {
+   "round": 0,
+   "key": "FB>RB",
+   "from": 2,
+   "to": 4,
+   "cases": 4
+  },
+  {
+   "round": 0,
+   "key": "OLB>TE",
+   "from": 6,
+   "to": 8,
+   "cases": 4
+  },
+  {
+   "round": 0,
+   "key": "FB>ILB",
+   "from": 6,
+   "to": 8,
+   "cases": 3
+  },
+  {
+   "round": 0,
+   "key": "CB>WR",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 0,
+   "key": "OT>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 0,
+   "key": "OG>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 1,
+   "key": "TE>WR",
+   "from": 8,
+   "to": 10,
+   "cases": 32
+  },
+  {
+   "round": 1,
+   "key": "C>DT",
+   "from": 6,
+   "to": 8,
+   "cases": 28
+  },
+  {
+   "round": 1,
+   "key": "C>OT",
+   "from": 8,
+   "to": 10,
+   "cases": 27
+  },
+  {
+   "round": 1,
+   "key": "RB>SS",
+   "from": 8,
+   "to": 10,
+   "cases": 27
+  },
+  {
+   "round": 1,
+   "key": "RB>WR",
+   "from": 12,
+   "to": 14,
+   "cases": 24
+  },
+  {
+   "round": 1,
+   "key": "C>OG",
+   "from": 6,
+   "to": 8,
+   "cases": 23
+  },
+  {
+   "round": 1,
+   "key": "OG>OT",
+   "from": 6,
+   "to": 8,
+   "cases": 18
+  },
+  {
+   "round": 1,
+   "key": "ILB>EDGE",
+   "from": 8,
+   "to": 10,
+   "cases": 9
+  },
+  {
+   "round": 1,
+   "key": "RB>FS",
+   "from": 8,
+   "to": 10,
+   "cases": 8
+  },
+  {
+   "round": 1,
+   "key": "FB>RB",
+   "from": 4,
+   "to": 6,
+   "cases": 7
+  },
+  {
+   "round": 1,
+   "key": "FS>WR",
+   "from": 8,
+   "to": 10,
+   "cases": 7
+  },
+  {
+   "round": 1,
+   "key": "DT>EDGE",
+   "from": 8,
+   "to": 10,
+   "cases": 7
+  },
+  {
+   "round": 1,
+   "key": "OLB>EDGE",
+   "from": 8,
+   "to": 10,
+   "cases": 7
+  },
+  {
+   "round": 1,
+   "key": "SS>CB",
+   "from": 6,
+   "to": 8,
+   "cases": 7
+  },
+  {
+   "round": 1,
+   "key": "FB>TE",
+   "from": 6,
+   "to": 8,
+   "cases": 6
+  },
+  {
+   "round": 1,
+   "key": "TE>FS",
+   "from": 4,
+   "to": 6,
+   "cases": 6
+  },
+  {
+   "round": 1,
+   "key": "SS>WR",
+   "from": 8,
+   "to": 10,
+   "cases": 4
+  },
+  {
+   "round": 1,
+   "key": "TE>EDGE",
+   "from": 12,
+   "to": 14,
+   "cases": 4
+  },
+  {
+   "round": 1,
+   "key": "FB>ILB",
+   "from": 8,
+   "to": 10,
+   "cases": 3
+  },
+  {
+   "round": 1,
+   "key": "TE>SS",
+   "from": 6,
+   "to": 8,
+   "cases": 2
+  },
+  {
+   "round": 1,
+   "key": "TE>OT",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 1,
+   "key": "OG>EDGE",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 2,
+   "key": "C>OG",
+   "from": 8,
+   "to": 10,
+   "cases": 23
+  },
+  {
+   "round": 2,
+   "key": "TE>WR",
+   "from": 10,
+   "to": 12,
+   "cases": 16
+  },
+  {
+   "round": 2,
+   "key": "RB>SS",
+   "from": 10,
+   "to": 12,
+   "cases": 14
+  },
+  {
+   "round": 2,
+   "key": "C>OT",
+   "from": 10,
+   "to": 12,
+   "cases": 12
+  },
+  {
+   "round": 2,
+   "key": "C>DT",
+   "from": 8,
+   "to": 10,
+   "cases": 11
+  },
+  {
+   "round": 2,
+   "key": "RB>WR",
+   "from": 14,
+   "to": 16,
+   "cases": 10
+  },
+  {
+   "round": 2,
+   "key": "OG>OT",
+   "from": 8,
+   "to": 10,
+   "cases": 8
+  },
+  {
+   "round": 2,
+   "key": "FB>TE",
+   "from": 8,
+   "to": 10,
+   "cases": 8
+  },
+  {
+   "round": 2,
+   "key": "ILB>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 7
+  },
+  {
+   "round": 2,
+   "key": "OG>DT",
+   "from": 6,
+   "to": 8,
+   "cases": 4
+  },
+  {
+   "round": 2,
+   "key": "FB>ILB",
+   "from": 10,
+   "to": 12,
+   "cases": 4
+  },
+  {
+   "round": 2,
+   "key": "DT>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 4
+  },
+  {
+   "round": 2,
+   "key": "TE>EDGE",
+   "from": 14,
+   "to": 16,
+   "cases": 4
+  },
+  {
+   "round": 2,
+   "key": "RB>FS",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "FB>OLB",
+   "from": 6,
+   "to": 8,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "OLB>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "CB>WR",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "FS>WR",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "TE>SS",
+   "from": 8,
+   "to": 10,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "FS>CB",
+   "from": 8,
+   "to": 10,
+   "cases": 2
+  },
+  {
+   "round": 2,
+   "key": "TE>ILB",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 2,
+   "key": "TE>OT",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 2,
+   "key": "SS>WR",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 2,
+   "key": "FB>EDGE",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 2,
+   "key": "FB>RB",
+   "from": 6,
+   "to": 8,
+   "cases": 1
+  },
+  {
+   "round": 3,
+   "key": "C>OT",
+   "from": 12,
+   "to": 14,
+   "cases": 9
+  },
+  {
+   "round": 3,
+   "key": "C>OG",
+   "from": 10,
+   "to": 12,
+   "cases": 7
+  },
+  {
+   "round": 3,
+   "key": "FB>OLB",
+   "from": 8,
+   "to": 10,
+   "cases": 6
+  },
+  {
+   "round": 3,
+   "key": "TE>WR",
+   "from": 12,
+   "to": 14,
+   "cases": 5
+  },
+  {
+   "round": 3,
+   "key": "FB>ILB",
+   "from": 12,
+   "to": 14,
+   "cases": 5
+  },
+  {
+   "round": 3,
+   "key": "TE>DT",
+   "from": 12,
+   "to": 14,
+   "cases": 5
+  },
+  {
+   "round": 3,
+   "key": "TE>OG",
+   "from": 12,
+   "to": 14,
+   "cases": 4
+  },
+  {
+   "round": 3,
+   "key": "FB>TE",
+   "from": 10,
+   "to": 12,
+   "cases": 4
+  },
+  {
+   "round": 3,
+   "key": "C>DT",
+   "from": 10,
+   "to": 12,
+   "cases": 4
+  },
+  {
+   "round": 3,
+   "key": "RB>FS",
+   "from": 12,
+   "to": 14,
+   "cases": 4
+  },
+  {
+   "round": 3,
+   "key": "OLB>SS",
+   "from": 6,
+   "to": 8,
+   "cases": 3
+  },
+  {
+   "round": 3,
+   "key": "TE>FS",
+   "from": 6,
+   "to": 8,
+   "cases": 3
+  },
+  {
+   "round": 3,
+   "key": "SS>WR",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 3,
+   "key": "TE>OT",
+   "from": 16,
+   "to": 18,
+   "cases": 2
+  },
+  {
+   "round": 3,
+   "key": "RB>SS",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 3,
+   "key": "RB>WR",
+   "from": 16,
+   "to": 18,
+   "cases": 2
+  },
+  {
+   "round": 3,
+   "key": "FB>DT",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 3,
+   "key": "OLB>TE",
+   "from": 8,
+   "to": 10,
+   "cases": 1
+  },
+  {
+   "round": 3,
+   "key": "OG>DT",
+   "from": 8,
+   "to": 10,
+   "cases": 1
+  },
+  {
+   "round": 3,
+   "key": "DT>EDGE",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 3,
+   "key": "ILB>EDGE",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 4,
+   "key": "C>OG",
+   "from": 12,
+   "to": 14,
+   "cases": 8
+  },
+  {
+   "round": 4,
+   "key": "FB>OLB",
+   "from": 10,
+   "to": 12,
+   "cases": 6
+  },
+  {
+   "round": 4,
+   "key": "C>OT",
+   "from": 14,
+   "to": 16,
+   "cases": 6
+  },
+  {
+   "round": 4,
+   "key": "FB>TE",
+   "from": 12,
+   "to": 14,
+   "cases": 4
+  },
+  {
+   "round": 4,
+   "key": "FB>ILB",
+   "from": 14,
+   "to": 16,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "FB>RB",
+   "from": 8,
+   "to": 10,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "TE>WR",
+   "from": 14,
+   "to": 16,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "FB>DT",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "TE>FS",
+   "from": 8,
+   "to": 10,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "C>DT",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 4,
+   "key": "TE>ILB",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 5,
+   "key": "C>OG",
+   "from": 14,
+   "to": 16,
+   "cases": 8
+  },
+  {
+   "round": 5,
+   "key": "FB>OLB",
+   "from": 12,
+   "to": 14,
+   "cases": 7
+  },
+  {
+   "round": 5,
+   "key": "FB>TE",
+   "from": 14,
+   "to": 16,
+   "cases": 5
+  },
+  {
+   "round": 5,
+   "key": "C>OT",
+   "from": 16,
+   "to": 18,
+   "cases": 4
+  },
+  {
+   "round": 5,
+   "key": "FB>RB",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 5,
+   "key": "OG>OT",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 5,
+   "key": "RB>SS",
+   "from": 14,
+   "to": 16,
+   "cases": 2
+  },
+  {
+   "round": 5,
+   "key": "TE>OT",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 5,
+   "key": "RB>FS",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 5,
+   "key": "FB>DL5",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 6,
+   "key": "FB>OLB",
+   "from": 14,
+   "to": 16,
+   "cases": 8
+  },
+  {
+   "round": 6,
+   "key": "C>OT",
+   "from": 18,
+   "to": 20,
+   "cases": 3
+  },
+  {
+   "round": 6,
+   "key": "TE>SS",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 6,
+   "key": "FB>RB",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 6,
+   "key": "OG>DT",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 6,
+   "key": "OG>EDGE",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 6,
+   "key": "FB>DL5",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 7,
+   "key": "FB>OLB",
+   "from": 16,
+   "to": 18,
+   "cases": 4
+  },
+  {
+   "round": 7,
+   "key": "C>DT",
+   "from": 14,
+   "to": 16,
+   "cases": 3
+  },
+  {
+   "round": 7,
+   "key": "C>OG",
+   "from": 16,
+   "to": 18,
+   "cases": 2
+  },
+  {
+   "round": 7,
+   "key": "FB>RB",
+   "from": 14,
+   "to": 16,
+   "cases": 2
+  },
+  {
+   "round": 7,
+   "key": "RB>WR",
+   "from": 18,
+   "to": 20,
+   "cases": 2
+  },
+  {
+   "round": 7,
+   "key": "FB>TE",
+   "from": 16,
+   "to": 18,
+   "cases": 2
+  },
+  {
+   "round": 7,
+   "key": "FB>ILB",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 7,
+   "key": "TE>DT",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 8,
+   "key": "FB>OLB",
+   "from": 18,
+   "to": 20,
+   "cases": 4
+  },
+  {
+   "round": 8,
+   "key": "TE>OG",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 8,
+   "key": "TE>EDGE",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 8,
+   "key": "C>DT",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 8,
+   "key": "FB>DL5",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "FB>RB",
+   "from": 16,
+   "to": 18,
+   "cases": 2
+  },
+  {
+   "round": 9,
+   "key": "FB>DL5",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "C>DT",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "TE>ILB",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "FB>TE",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "OLB>SS",
+   "from": 8,
+   "to": 10,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "TE>EDGE",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 9,
+   "key": "FB>ILB",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 10,
+   "key": "C>OG",
+   "from": 18,
+   "to": 20,
+   "cases": 2
+  },
+  {
+   "round": 10,
+   "key": "OG>OT",
+   "from": 12,
+   "to": 14,
+   "cases": 2
+  },
+  {
+   "round": 10,
+   "key": "OG>DT",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 11,
+   "key": "SS>CB",
+   "from": 8,
+   "to": 10,
+   "cases": 1
+  },
+  {
+   "round": 11,
+   "key": "FS>CB",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  },
+  {
+   "round": 11,
+   "key": "OLB>EDGE",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 12,
+   "key": "CB>WR",
+   "from": 14,
+   "to": 16,
+   "cases": 2
+  },
+  {
+   "round": 12,
+   "key": "OG>EDGE",
+   "from": 16,
+   "to": 18,
+   "cases": 1
+  },
+  {
+   "round": 13,
+   "key": "FS>WR",
+   "from": 12,
+   "to": 14,
+   "cases": 1
+  },
+  {
+   "round": 14,
+   "key": "OG>OT",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 14,
+   "key": "ILB>EDGE",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 15,
+   "key": "SS>CB",
+   "from": 10,
+   "to": 12,
+   "cases": 2
+  },
+  {
+   "round": 15,
+   "key": "FB>RB",
+   "from": 18,
+   "to": 20,
+   "cases": 1
+  },
+  {
+   "round": 15,
+   "key": "OLB>EDGE",
+   "from": 14,
+   "to": 16,
+   "cases": 1
+  },
+  {
+   "round": 15,
+   "key": "OLB>TE",
+   "from": 10,
+   "to": 12,
+   "cases": 1
+  }
+ ],
+ "flex": {
+  "QB": {
+   "FS": 10
+  },
+  "RB": {
+   "FB": 2,
+   "WR": 20,
+   "TE": 12,
+   "SS": 16,
+   "FS": 16
+  },
+  "FB": {
+   "RB": 20,
+   "TE": 20,
+   "ILB": 20,
+   "OLB": 20,
+   "EDGE": 20,
+   "DT": 20
+  },
+  "WR": {
+   "RB": 10,
+   "TE": 4,
+   "CB": 4,
+   "FS": 4,
+   "SS": 4,
+   "NICKEL": 4,
+   "DIME": 4
+  },
+  "TE": {
+   "FB": 2,
+   "WR": 16,
+   "RB": 4,
+   "C": 12,
+   "OG": 16,
+   "OT": 20,
+   "EDGE": 20,
+   "DT": 16,
+   "OLB": 10,
+   "ILB": 18,
+   "SS": 12,
+   "FS": 10,
+   "NICKEL": 6,
+   "DIME": 6
+  },
+  "OT": {
+   "OG": 0,
+   "C": 0,
+   "DT": 4,
+   "EDGE": 12,
+   "FB": 2
+  },
+  "OG": {
+   "OT": 16,
+   "C": 0,
+   "DT": 14,
+   "EDGE": 18,
+   "FB": 2
+  },
+  "C": {
+   "OG": 20,
+   "OT": 20,
+   "DT": 20,
+   "FB": 2
+  },
+  "DT": {
+   "EDGE": 14,
+   "C": 4,
+   "OG": 4,
+   "OT": 6,
+   "FB": 2,
+   "TE": 10
+  },
+  "EDGE": {
+   "DT": 2,
+   "OLB": 2,
+   "ILB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 6,
+   "SS": 6,
+   "FS": 6,
+   "RB": 6,
+   "FB": 2,
+   "TE": 6,
+   "NICKEL": 6
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 16,
+   "SS": 6,
+   "FB": 2,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 6
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 2,
+   "EDGE": 16,
+   "SS": 10,
+   "FB": 2,
+   "TE": 12,
+   "NICKEL": 4,
+   "DIME": 6
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 12,
+   "WR": 14,
+   "ILB": 6,
+   "OLB": 6,
+   "RB": 10,
+   "TE": 6
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 12,
+   "WR": 14,
+   "OLB": 6
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "WR": 16,
+   "RB": 10
+  },
+  "K": {
+   "P": 0
+  },
+  "P": {
+   "K": 6
+  }
+ }
+}
