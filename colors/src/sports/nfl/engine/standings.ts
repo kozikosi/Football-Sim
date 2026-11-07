@@ -9,6 +9,7 @@
 import { TEAM_BY_NAME, TEAMS, DIVS, divisionTeams } from './league.ts';
 import type { Conf, Div } from './league.ts';
 import type { Rng } from '../../../core/rng.ts';
+import { at, need } from '../../../core/at.ts';
 
 export interface Played { home: string; away: string; hs: number; as: number; htd: number; atd: number }   // a finished regular-season game
 interface Row { opp: string; pf: number; pa: number; tdf: number; tda: number }
@@ -44,8 +45,9 @@ export class Book {
   total(team: string, f: 'pf' | 'pa'): number { let s = 0; for (const r of this.rows.get(team)!) s += r[f]; return s; }
 }
 
-const sameDiv = (a: string, b: string) => TEAM_BY_NAME[a].conf === TEAM_BY_NAME[b].conf && TEAM_BY_NAME[a].div === TEAM_BY_NAME[b].div;
-const sameConf = (a: string, b: string) => TEAM_BY_NAME[a].conf === TEAM_BY_NAME[b].conf;
+const teamOf = (n: string) => need(TEAM_BY_NAME, n);
+const sameDiv = (a: string, b: string) => teamOf(a).conf === teamOf(b).conf && teamOf(a).div === teamOf(b).div;
+const sameConf = (a: string, b: string) => teamOf(a).conf === teamOf(b).conf;
 
 // combined rank of points scored and points allowed within a group of teams (lower is better)
 function rankSum(book: Book, team: string, group: readonly string[]): number {
@@ -59,7 +61,7 @@ type Step = (cur: string[]) => string[] | null;
 const EPS = 1e-12;
 function keepBest(cur: string[], score: (t: string) => number): string[] | null {
   const s = cur.map(score), m = Math.max(...s);
-  const out = cur.filter((_, i) => s[i] > m - EPS);
+  const out = cur.filter((_, i) => at(s, i) > m - EPS);
   return out.length === cur.length ? null : out;
 }
 
@@ -78,19 +80,19 @@ function stepsFor(mode: Mode, book: Book): Step[] {
   const confRec: Step = (cur) => keepBest(cur, (t) => book.pct(t, (r) => sameConf(t, r.opp)));
   const common = (min: number): Step => (cur) => {
     const sets = cur.map((t) => new Set(book.rows.get(t)!.map((r) => r.opp)));
-    const com = [...sets[0]].filter((o) => !cur.includes(o) && sets.every((s) => s.has(o)));
+    const com = [...at(sets, 0)].filter((o) => !cur.includes(o) && sets.every((s) => s.has(o)));
     const keep = (r: { opp: string }) => com.includes(r.opp);
     if (!com.length || cur.some((t) => book.rec(t, keep).n < min)) return null;
     return keepBest(cur, (t) => book.pct(t, keep));
   };
   const sov: Step = (cur) => keepBest(cur, (t) => book.sov(t));
   const sos: Step = (cur) => keepBest(cur, (t) => book.sos(t));
-  const confTeams = (cur: string[]) => TEAMS.filter((x) => x.conf === TEAM_BY_NAME[cur[0]].conf).map((x) => x.name);
+  const confTeams = (cur: string[]) => TEAMS.filter((x) => x.conf === teamOf(at(cur, 0)).conf).map((x) => x.name);
   const rankConf: Step = (cur) => { const g = confTeams(cur); return keepBest(cur, (t) => -rankSum(book, t, g)); };
   const rankAll: Step = (cur) => { const g = TEAMS.map((x) => x.name); return keepBest(cur, (t) => -rankSum(book, t, g)); };
   const netCommon: Step = (cur) => {
     const sets = cur.map((t) => new Set(book.rows.get(t)!.map((r) => r.opp)));
-    const com = [...sets[0]].filter((o) => !cur.includes(o) && sets.every((s) => s.has(o)));
+    const com = [...at(sets, 0)].filter((o) => !cur.includes(o) && sets.every((s) => s.has(o)));
     return com.length ? keepBest(cur, (t) => book.net(t, (r) => com.includes(r.opp))) : null;
   };
   const netConf: Step = (cur) => keepBest(cur, (t) => book.net(t, (r) => sameConf(t, r.opp)));
@@ -110,9 +112,9 @@ function bestOf(tied: string[], mode: Mode, book: Book, rng: Rng): string {
     // coin toss: seeded by the names, so the order the clubs were passed in does not matter
     const names = cur.slice().sort();
     const r = rng.fork('coin:' + names.join('|')).next();
-    return names[Math.floor(r * names.length)];
+    return at(names, Math.floor(r * names.length));
   }
-  return cur[0];
+  return at(cur, 0);
 }
 // full order of a tie: pick the best, remove it, restart with the rest
 export function orderTied(tied: readonly string[], mode: Mode, book: Book, rng: Rng): string[] {
@@ -125,11 +127,11 @@ export function orderWildCard(tied: readonly string[], book: Book, rng: Rng): st
   const out: string[] = []; let rem = tied.slice();
   while (rem.length) {
     const cands: string[] = [];
-    for (const d of new Set(rem.map((t) => TEAM_BY_NAME[t].conf + TEAM_BY_NAME[t].div))) {
-      const grp = rem.filter((t) => TEAM_BY_NAME[t].conf + TEAM_BY_NAME[t].div === d);
-      cands.push(grp.length > 1 ? orderTied(grp, 'division', book, rng)[0] : grp[0]);
+    for (const d of new Set(rem.map((t) => teamOf(t).conf + teamOf(t).div))) {
+      const grp = rem.filter((t) => teamOf(t).conf + teamOf(t).div === d);
+      cands.push(grp.length > 1 ? at(orderTied(grp, 'division', book, rng), 0) : at(grp, 0));
     }
-    const w = cands.length === 1 ? cands[0] : bestOf(cands, 'wildcard', book, rng);
+    const w = cands.length === 1 ? at(cands, 0) : bestOf(cands, 'wildcard', book, rng);
     out.push(w); rem = rem.filter((x) => x !== w);
   }
   return out;
@@ -144,7 +146,7 @@ export interface Seeding {
 function groupByPct(teams: string[], book: Book): string[][] {
   const sorted = teams.slice().sort((a, b) => book.overall(b) - book.overall(a));
   const out: string[][] = [];
-  for (const t of sorted) { const last = out[out.length - 1]; if (last && Math.abs(book.overall(last[0]) - book.overall(t)) < EPS) last.push(t); else out.push([t]); }
+  for (const t of sorted) { const last = out[out.length - 1]; if (last && Math.abs(book.overall(at(last, 0)) - book.overall(t)) < EPS) last.push(t); else out.push([t]); }
   return out;
 }
 export function seedPlayoffs(games: readonly Played[], rng: Rng): Seeding {
@@ -155,7 +157,7 @@ export function seedPlayoffs(games: readonly Played[], rng: Rng): Seeding {
     for (const d of DIVS as readonly Div[]) {
       const order = groupByPct(divisionTeams(conf, d), book).flatMap((g) => (g.length > 1 ? orderTied(g, 'division', book, rng) : g));
       divisionOrder[`${conf} ${d}`] = order; order.forEach((t, i) => (divisionRank[t] = i + 1));
-      divisionWinners[conf].push(order[0]);
+      divisionWinners[conf].push(at(order, 0));
     }
     // seeds 1-4: division winners by record (clubs from different divisions: the wild-card procedure)
     const winners = groupByPct(divisionWinners[conf], book).flatMap((g) => (g.length > 1 ? orderWildCard(g, book, rng) : g));
