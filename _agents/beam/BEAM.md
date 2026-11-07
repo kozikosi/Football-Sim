@@ -25,3 +25,10 @@
 
 ## Session 2026-11-06 (Owner-final weights)
 - Filed inbox/20261106-1600-beam-P-284-owner-final-weights-and-test-report.md — Owner's final 32-slot weights table (salary internal reference) + engine test report (fitlm rms 0.2%, E1/E2 1 defect FB=25, E4 pass r 0.635, flex pass). Reference data: _agents/beam/data/owner-weights-2026-11-06.json, fit-owner-2026-11-06.json, cfg-owner-2026-11-06.json, design-owner-2026-11-06.json.
+
+## Session 2026-11-07 (w79 flex cap + testing apparatus)
+- Updated tools/mathlab/flex.json and colors/src/engine/flex.ts: flex penalties capped at -10 (6/12 -> 10; 0/2/4 untouched).
+- Created tools/mathlab/weights-w79.json (fixed set: TE1/RB1/CB1/DT1/OG1/SS/FS/MIKE/WILL 600, C 450; upper slots unchanged) per Claude ruling 2026-11-07-owner-flex-cap-10-weights-experiment.md.
+- Created testing apparatus tools/mathlab/w79-impact.mjs (real engine scan; promotion classes + named 85+ placements; smoke run passed: drive 0).
+- Created w79 handoff package _agents/beam/notes/w79-handoff/ with UI proposals (Madden dropdowns, mobile scroll).
+- Filed inbox/20261107-1005-beam-w79-handoff.md.

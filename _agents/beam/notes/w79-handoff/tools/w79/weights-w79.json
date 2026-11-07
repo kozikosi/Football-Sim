@@ -1,0 +1,9 @@
+{
+  "_source": "w79 (Beam): Owner's permanent weights (6 Nov) with flex-cap-10 fixed set (Claude ruling 2026-11-07-owner-flex-cap-10-weights-experiment.md). CB->WR 10, TE->WR 10, flex >=6 -> 10. Lower slot weights raised (steps of 50) so 85+ stars prefer their natural position under a -10 cap. Upper slots (QB 1000, WR1/DE1 650, OT1 500, FB 25) unchanged.",
+  "weights": {
+    "QB": 1000, "RB1": 600, "RB2": 100, "FB": 25, "WR1": 650, "WR2": 400, "WR3": 100, "WR4": 50,
+    "TE1": 600, "TE2": 150, "TE3": 50, "OT1": 500, "OT2": 300, "OG1": 600, "OG2": 250, "C": 450,
+    "DE1": 650, "DE2": 300, "DT1": 600, "DT2": 300, "DL5": 150, "MIKE": 600, "WILL": 600, "SAM": 100,
+    "CB1": 600, "CB2": 250, "CB3": 100, "CB4": 50, "SS": 600, "FS": 600, "K": 50, "P": 50
+  }
+}
