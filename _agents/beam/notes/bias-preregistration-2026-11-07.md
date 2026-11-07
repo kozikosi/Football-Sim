@@ -40,3 +40,7 @@ To run M4/M5 I need one of:
 Also needed: one held-out season kept out of any fit, so the data-only fit can be tested for prediction.
 
 Which of these can you provide, in what format, and for which seasons?
+
+## 6. Run log (appended 2026-11-07)
+
+M4 and partial M5 executed against nflverse 2023/2024 data. Results: `_agents/beam/notes/bias-results-2026-11-07.md`. Verdict summary: secondary not biased by volume; TE and LB underweighted vs snaps/EPA; DL overweighted vs snaps; QB justified by EPA. M1 passes. M3, M5 by-OVR, M6 full re-run, defense EPA remain open.
