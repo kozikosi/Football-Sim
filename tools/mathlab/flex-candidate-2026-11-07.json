@@ -1,0 +1,28 @@
+{
+ "_status": "CANDIDATE, not adopted. Owner's working table of 7 Nov 2026 (verbatim: _agents/owner-notes/2026-11-07-flex-table-verbatim.txt) encoded to engine roles/dests. flex.json and FLEX are untouched until the Owner confirms the OPEN items below.",
+ "_mapping": "MIKE row -> ILB; SAM and WILL rows -> OLB (engine has no SAM/WILL/MIKE roles; OLB->ILB takes the cheaper of WILL->MIKE 2 and SAM->MIKE 4); 'ILB/MIKE' dest -> ILB; 'OLB/WILL/SAM' dest -> OLB; NT = DT (free). A destination the table does not list is the -8 emergency fallback, as before.",
+ "_inferred": [
+  "EDGE row has 13 penalties for 12 destinations; reading with one surplus 6 removed gives DT 2, SAM 2, WILL 2, MIKE 6, C 6, OG 6, OT 6, SS 6, FS 6, RB 6, FB 2, TE 6 (FB 2 matches every other row); the same result whichever 6 is the surplus.",
+  "NICKEL and DIME rows are not in the table; every existing NICKEL/DIME entry is carried over unchanged (CB/SS/FS free).",
+  "QB: table says None; the 29 Oct ruling (QB may flex ONLY to FS at -10) is kept until the Owner says to drop it."
+ ],
+ "flex": {
+  "QB": { "FS": 10 },
+  "RB": { "FB": 2, "WR": 10, "TE": 12, "SS": 6, "FS": 6 },
+  "FB": { "RB": 2, "TE": 4, "ILB": 6, "OLB": 6, "EDGE": 10, "DT": 10 },
+  "WR": { "RB": 10, "TE": 4, "CB": 4, "FS": 4, "SS": 4, "NICKEL": 4, "DIME": 4 },
+  "TE": { "FB": 2, "WR": 4, "RB": 4, "C": 12, "OG": 12, "OT": 12, "EDGE": 10, "DT": 12, "OLB": 10, "ILB": 12, "SS": 4, "FS": 4, "NICKEL": 6, "DIME": 6 },
+  "OT": { "OG": 0, "C": 0, "DT": 4, "EDGE": 10, "FB": 2 },
+  "OG": { "OT": 4, "C": 0, "DT": 4, "EDGE": 10, "FB": 2 },
+  "C": { "OG": 4, "OT": 6, "DT": 4, "FB": 2 },
+  "DT": { "EDGE": 6, "C": 4, "OG": 4, "OT": 6, "FB": 2, "TE": 10 },
+  "EDGE": { "DT": 2, "OLB": 2, "ILB": 6, "C": 6, "OG": 6, "OT": 6, "SS": 6, "FS": 6, "RB": 6, "FB": 2, "TE": 6, "NICKEL": 6 },
+  "ILB": { "ILB": 0, "OLB": 0, "EDGE": 6, "SS": 6, "FB": 2, "TE": 6, "NICKEL": 6, "DIME": 6 },
+  "OLB": { "OLB": 0, "ILB": 2, "EDGE": 6, "SS": 6, "FB": 2, "TE": 6, "NICKEL": 4, "DIME": 6 },
+  "SS": { "NICKEL": 0, "DIME": 0, "FS": 2, "CB": 6, "WR": 6, "ILB": 6, "OLB": 6, "RB": 10, "TE": 6 },
+  "FS": { "NICKEL": 0, "DIME": 0, "SS": 2, "CB": 6, "WR": 6, "OLB": 6 },
+  "CB": { "FS": 0, "NICKEL": 0, "DIME": 0, "SS": 2, "WR": 6, "RB": 10 },
+  "K": { "P": 0 },
+  "P": { "K": 6 }
+ }
+}

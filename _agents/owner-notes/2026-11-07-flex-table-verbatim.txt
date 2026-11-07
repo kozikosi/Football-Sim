@@ -1,0 +1,22 @@
+SPEAKER: Owner (Kosi) | ROLE: Owner | TASK: flex table, working version | DATE: 2026-11-07 (pasted from mobile; verbatim)
+Owner message: "Ok this is what I have for flex. Maybe run a couple tests and make sure there aren't any glaring issues. feel free to ask questions. Having a hard time copying and pasting the table on mobile. Let me know if you're confused by formatting"
+
+Position	Can flex to	Penalty
+QB	None	None
+RB	FB, WR, TE, SS, FS	2, 10, 12, 6, 6 
+FB	RB, TE, ILB/MIKE, OLB/WILL/SAM, EDGE , DT 	2, 4, 6, 6, 10, 10
+WR	RB, TE, CB, FS, SS	10, 4, 4, 4, 4
+TE	FB, WR, RB, C, OG, OT, EDGE, DT, OLB, ILB, SS, FS	2, 4, 4, 12, 12, 12, 10, 12, 10, 12, 4, 4
+OT	OG, C, DT, EDGE, FB	Free, Free, 4, 10, 2
+OG	OT, C, DT, EDGE, FB	4, Free, 4, 10, 2
+C	OG, OT, DT, FB	4, 6, 4, 2
+EDGE	DT, SAM, WILL, MIKE, C, OG, OT, SS, FS, RB, FB, TE	2, 2, 2, 6, 6, 6, 6, 6, 6, 6, 6, 2, 6
+DT	EDGE, NT, C, OG, OT, FB, TE	6, Free, 4, 4, 6, 2, 10
+SAM	MIKE/ILB, WILL, EDGE, SS, OLB, FB, TE	4, FREE, 6, 6, FREE, 2, 6
+MIKE	WILL, SAM, EDGE, SS, ILB, OLB, FB, TE	Free, FREE, 6, 6, FREE, FREE, 2, 6
+WILL	MIKE, SAM, EDGE, SS, OLB, FB, TE	2, FREE, 6, 6, FREE, 2, 6
+CB	WR, FS, SS, RB	6, FREE, 2, 10 
+FS	SS, CB, WR, OLB	2, 6, 6, 6
+SS	FS, CB, WR, ILB/MIKE, OLB/WILL/SAM, RB, TE	2, 6, 6, 6, 6, 10, 6
+K -> P = Free
+P -> K = 6
