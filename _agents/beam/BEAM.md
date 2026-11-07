@@ -32,3 +32,7 @@
 - Created testing apparatus tools/mathlab/w79-impact.mjs (real engine scan; promotion classes + named 85+ placements; smoke run passed: drive 0).
 - Created w79 handoff package _agents/beam/notes/w79-handoff/ with UI proposals (Madden dropdowns, mobile scroll).
 - Filed inbox/20261107-1005-beam-w79-handoff.md.
+
+## Session 2026-11-07 (bias audit + pre-registration)
+- Filed read-only audit `_agents/beam/notes/bias-audit-2026-11-07.md`: where the Owner's weights enter (SLOTS/DEFAULT_WEIGHTS = target; RATING_SPECS and MC fitted to the table per code comments; PLAN_K, POINTS_PER_WIN, matchup structure built independently); structural fact secondary = 18.7% of total weight vs QB 11.6%; why slotWinsPerOvr() cannot currently validate the table.
+- Filed pre-registration `_agents/beam/notes/bias-preregistration-2026-11-07.md`: 6 metrics (M1 group share, M2 measured-vs-target r, M3 sensitivity across 4 anchors, M4 real-data volume, M5 real-data efficiency, M6 star placement), thresholds, decision rules, evidence standard. No product file touched; no constants changed; no simulations run. Asked Owner for real data (play-by-play or season aggregates by position + OVR, 2022-2025, one held-out season).
