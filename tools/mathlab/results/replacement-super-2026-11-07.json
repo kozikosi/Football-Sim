@@ -1,0 +1,17 @@
+{
+  "tool": "T4 replacement-level auditor",
+  "engineDefinition": {
+    "replacementLevels": "replacementLevels(pool, rosters): counts empty starting slots per group (dem[g]), then takes the (dem[g]-1)th OVR (0-indexed) from the group-sorted player pool — i.e. the best available player NOT yet needed as a starter, per group.",
+    "staticReplacement": "staticReplacement(): all 32 rosters have every slot empty; pool = PLAYERS filtered by POS_SLOT_MAP. Returns one replacement OVR per group.",
+    "winsBase": "WINS_BASE = 70. staticWins(p) = sum over STATIC_SLOTS[p.pos] of (slotWins(s, p.ovr) - slotWins(s, 70)).",
+    "staticSlots": "STATIC_SLOTS maps each position to the slot(s) whose value counts for that player (e.g. WR -> WR1/WR2/WR3, CB -> CB1/CB2/CB3, DT -> DT1/DT2).",
+    "groups": "WV_SLOT_GROUP / WV_TAG_GROUP assign each slot and each position to a group (OL, DL, LB, CB, S, WR, TE, RB, QB, K, P, ...).",
+    "note": "Replacement is a LEAGUE-WIDE scarcity concept: as more teams fill a group, the replacement OVR for that group rises (fewer good players left). It is NOT a fixed 70 or a fixed percentile."
+  },
+  "sensitivity": null,
+  "snapComparison": null,
+  "generatedAt": "2026-11-07T23:43:06.779ZZ",
+  "reportingLaw": "T12",
+  "nGroups": 0,
+  "note": "No pool supplied -> structural definition only. To run sensitivity, supply --pool as [{group, ovr}, ...]. To compare to real usage, supply --snaps as [{group, snapShare}, ...] from a named nflverse release (hash-pinned)."
+}

@@ -1,0 +1,436 @@
+{
+  "source": "results/fit-super-verify-2026-11-07.json",
+  "threshold": 0.05,
+  "generatedAt": "2026-11-07T23:42:25.618ZZ",
+  "reportingLaw": "T12",
+  "slots": {
+    "QB": {
+      "slot": "QB",
+      "value": 2.5413083143814355,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 2.4142428986623634,
+        "hi": 2.6683737301005075
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "RB1": {
+      "slot": "RB1",
+      "value": 0.5841880550164837,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.5549786522656596,
+        "hi": 0.6133974577673079
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "RB2": {
+      "slot": "RB2",
+      "value": 0.20326957272878732,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.19310609409234794,
+        "hi": 0.2134330513652267
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "WR1": {
+      "slot": "WR1",
+      "value": 1.1942419313018227,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 1.1345298347367314,
+        "hi": 1.253954027866914
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "WR2": {
+      "slot": "WR2",
+      "value": 0.8383172029122108,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.7964013427666002,
+        "hi": 0.8802330630578213
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "WR3": {
+      "slot": "WR3",
+      "value": 0.4828214794215754,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.4586804054504966,
+        "hi": 0.5069625533926542
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "TE1": {
+      "slot": "TE1",
+      "value": 0.6864162276403853,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.6520954162583661,
+        "hi": 0.7207370390224046
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "TE2": {
+      "slot": "TE2",
+      "value": 0.15252096770331125,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.1448949193181457,
+        "hi": 0.1601470160884768
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "OT1": {
+      "slot": "OT1",
+      "value": 1.0920154581030665,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 1.0374146851979131,
+        "hi": 1.14661623100822
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "OT2": {
+      "slot": "OT2",
+      "value": 1.0159749242022467,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.9651761779921343,
+        "hi": 1.0667736704123592
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "OG1": {
+      "slot": "OG1",
+      "value": 0.7367443258719248,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.6999071095783286,
+        "hi": 0.7735815421655211
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "OG2": {
+      "slot": "OG2",
+      "value": 0.7367443258719248,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.6999071095783286,
+        "hi": 0.7735815421655211
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "C": {
+      "slot": "C",
+      "value": 0.8127985432489182,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.7721586160864723,
+        "hi": 0.8534384704113641
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DE1": {
+      "slot": "DE1",
+      "value": 1.3205351622513808,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 1.2545084041388117,
+        "hi": 1.3865619203639499
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DE2": {
+      "slot": "DE2",
+      "value": 1.0160063275554356,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.9652060111776638,
+        "hi": 1.0668066439332076
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DT1": {
+      "slot": "DT1",
+      "value": 1.0156338747770381,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.9648521810381862,
+        "hi": 1.06641556851589
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DT2": {
+      "slot": "DT2",
+      "value": 0.7618388596564447,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.7237469166736225,
+        "hi": 0.799930802639267
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "MIKE": {
+      "slot": "MIKE",
+      "value": 0.6606267677952431,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.627595429405481,
+        "hi": 0.6936581061850052
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "WILL": {
+      "slot": "WILL",
+      "value": 0.6097520469030223,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.5792644445578712,
+        "hi": 0.6402396492481734
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "SAM": {
+      "slot": "SAM",
+      "value": 0.07615536104929718,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.07234759299683231,
+        "hi": 0.07996312910176205
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "CB1": {
+      "slot": "CB1",
+      "value": 1.1433301658299646,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 1.0861636575384663,
+        "hi": 1.2004966741214629
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "CB2": {
+      "slot": "CB2",
+      "value": 0.8639269385106247,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.8207305915850934,
+        "hi": 0.9071232854361561
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "CB3": {
+      "slot": "CB3",
+      "value": 0.7113974560549106,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.675827583252165,
+        "hi": 0.7469673288576562
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "SS": {
+      "slot": "SS",
+      "value": 0.6098728469640362,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.5793792046158344,
+        "hi": 0.640366489312238
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "FS": {
+      "slot": "FS",
+      "value": 0.6605496109511122,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.6275221304035565,
+        "hi": 0.6935770914986679
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "K": {
+      "slot": "K",
+      "value": 0.5083589053021241,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.4829409600370179,
+        "hi": 0.5337768505672303
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "FB": {
+      "slot": "FB",
+      "value": 0.07616652613387498,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.07235819982718122,
+        "hi": 0.07997485244056873
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "P": {
+      "slot": "P",
+      "value": 0.25400299146478234,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.24130284189154322,
+        "hi": 0.26670314103802145
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DIME": {
+      "slot": "DIME",
+      "value": 0.10158538932609007,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.09650611985978556,
+        "hi": 0.10666465879239458
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "DL5": {
+      "slot": "DL5",
+      "value": 0.3555852854110758,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.337806021140522,
+        "hi": 0.37336454968162963
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "TE3": {
+      "slot": "TE3",
+      "value": 0.025433292537810705,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.02416162791092017,
+        "hi": 0.02670495716470124
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    },
+    "WR4": {
+      "slot": "WR4",
+      "value": 0.025206652793110282,
+      "n": 1,
+      "sd": null,
+      "se": null,
+      "ci95": {
+        "lo": 0.023946320153454766,
+        "hi": 0.026466985432765797
+      },
+      "belowThreshold": null,
+      "label": "POINT-ESTIMATE-ONLY"
+    }
+  },
+  "summary": {
+    "slotsReported": 32,
+    "belowThreshold": 0,
+    "atOrAboveThreshold": 0,
+    "unknown": 32,
+    "fitIterations": 4,
+    "finalRmsLogError": 0.0014186693529274067,
+    "fitConverged": true
+  },
+  "notes": [
+    "Fit histogram: 4 iterations, final RMS log-error 0.14%."
+  ]
+}
