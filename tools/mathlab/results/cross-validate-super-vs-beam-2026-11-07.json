@@ -1,0 +1,306 @@
+{
+  "tool": "cross-validate (Super vs Beam, T3/T1 cross-toolchain)",
+  "superSource": "results/fit-super-verify-2026-11-07.json",
+  "beamSource": "/tmp/beam-witness-out.json",
+  "thresholdPct": 1,
+  "nSlots": 32,
+  "nCommon": 32,
+  "nAgree": 32,
+  "nMismatch": 0,
+  "nMissing": 0,
+  "allAgree": true,
+  "maxDiffPct": 0,
+  "generatedAt": "2026-11-07T23:48:38.785ZZ",
+  "reportingLaw": "T12",
+  "note": "Pre-Colors product (fitlm.js via playwright) vs Colors TS engine (raw-curve-witness.mjs). Same underlying slotWins() math; both should agree within rounding. FLAG = diff > 1%.",
+  "slots": [
+    {
+      "slot": "QB",
+      "superRawSpan": 2.540679,
+      "beamRawSpan": 2.540679,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "RB1",
+      "superRawSpan": 0.579968,
+      "beamRawSpan": 0.579968,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "RB2",
+      "superRawSpan": 0.204501,
+      "beamRawSpan": 0.204501,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "WR1",
+      "superRawSpan": 1.196478,
+      "beamRawSpan": 1.196478,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "WR2",
+      "superRawSpan": 0.837704,
+      "beamRawSpan": 0.837704,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "WR3",
+      "superRawSpan": 0.484789,
+      "beamRawSpan": 0.484789,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "TE1",
+      "superRawSpan": 0.688803,
+      "beamRawSpan": 0.688803,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "TE2",
+      "superRawSpan": 0.152111,
+      "beamRawSpan": 0.152111,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "OT1",
+      "superRawSpan": 1.090069,
+      "beamRawSpan": 1.090069,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "OT2",
+      "superRawSpan": 1.01898,
+      "beamRawSpan": 1.01898,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "OG1",
+      "superRawSpan": 0.735142,
+      "beamRawSpan": 0.735142,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "OG2",
+      "superRawSpan": 0.735142,
+      "beamRawSpan": 0.735142,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "C",
+      "superRawSpan": 0.814856,
+      "beamRawSpan": 0.814856,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DE1",
+      "superRawSpan": 1.317935,
+      "beamRawSpan": 1.317935,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DE2",
+      "superRawSpan": 1.017182,
+      "beamRawSpan": 1.017182,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DT1",
+      "superRawSpan": 1.015649,
+      "beamRawSpan": 1.015649,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DT2",
+      "superRawSpan": 0.761533,
+      "beamRawSpan": 0.761533,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "MIKE",
+      "superRawSpan": 0.658405,
+      "beamRawSpan": 0.658405,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "WILL",
+      "superRawSpan": 0.608593,
+      "beamRawSpan": 0.608593,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "SAM",
+      "superRawSpan": 0.076813,
+      "beamRawSpan": 0.076813,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "CB1",
+      "superRawSpan": 1.143952,
+      "beamRawSpan": 1.143952,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "CB2",
+      "superRawSpan": 0.865766,
+      "beamRawSpan": 0.865766,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "CB3",
+      "superRawSpan": 0.710095,
+      "beamRawSpan": 0.710095,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "SS",
+      "superRawSpan": 0.61194,
+      "beamRawSpan": 0.61194,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "FS",
+      "superRawSpan": 0.658651,
+      "beamRawSpan": 0.658651,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "K",
+      "superRawSpan": 0.508326,
+      "beamRawSpan": 0.508326,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "FB",
+      "superRawSpan": 0.076929,
+      "beamRawSpan": 0.076929,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "P",
+      "superRawSpan": 0.254086,
+      "beamRawSpan": 0.254086,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DIME",
+      "superRawSpan": 0.101975,
+      "beamRawSpan": 0.101975,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "DL5",
+      "superRawSpan": 0.356885,
+      "beamRawSpan": 0.356885,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "TE3",
+      "superRawSpan": 0.023166,
+      "beamRawSpan": 0.023166,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    },
+    {
+      "slot": "WR4",
+      "superRawSpan": 0.023166,
+      "beamRawSpan": 0.023166,
+      "diffWins": 0,
+      "diffPct": 0,
+      "flag": false,
+      "label": "AGREE"
+    }
+  ]
+}

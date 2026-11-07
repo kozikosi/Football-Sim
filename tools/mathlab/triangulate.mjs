@@ -12,7 +12,9 @@
 //   --fit   <fit JSON>   (output of fitlm.js, has .fitted/.final per slot in wins)
 //   --design <design JSON> (tools/mathlab/design.json, slot -> weight on 0-1000 scale)
 //   --calibrated <optional calibrated weights JSON> (slot -> 700-scale weight)
-//   --out   <out JSON>
+//   --out   <out JSON>   (write JSON report)
+//   --md    (also print a markdown comparison table to stdout)
+//   --threshold <frac>   (relative-spread disagreement threshold, default 0.10)
 //
 // Plain Node — no browser. Reads the fit result already produced by fitlm.js
 // (which measures the REAL engine inside headless Chromium). No product file
@@ -28,6 +30,7 @@ const fitPath = get('--fit');
 const designPath = get('--design');
 const calPath = get('--calibrated');
 const outPath = get('--out');
+const wantMd = args.includes('--md');
 const THRESHOLD = Number(get('--threshold') || 0.10); // 10% spread = disagreement
 
 if (!fitPath || !designPath) {
@@ -45,8 +48,11 @@ const fittedMap = fit.fitted || {};                   // pre-snap fit value
 // design.json is on the 0-1000 weight scale (QB=1000). Convert to wins: weight x 0.00254.
 const DESIGN_TO_WINS = 0.00254;
 
-// All slots seen across inputs.
-const slots = new Set([...Object.keys(finalMap), ...Object.keys(design), calibrated ? Object.keys(calibrated) : []]);
+// All slots seen across inputs (filter out any empty/non-string keys).
+const slots = new Set(
+  [...Object.keys(finalMap), ...Object.keys(design), calibrated ? Object.keys(calibrated) : []]
+    .filter(k => typeof k === 'string' && k.length > 0)
+);
 
 function mean(xs) { return xs.reduce((a, b) => a + b, 0) / xs.length; }
 function sd(xs) { const m = mean(xs); return Math.sqrt(xs.reduce((a, b) => a + (b - m) ** 2, 0) / Math.max(1, xs.length - 1)); }
@@ -115,3 +121,18 @@ const report = { overall, slots: rows };
 const out = JSON.stringify(report, null, 2);
 if (outPath) { fs.writeFileSync(outPath, out); console.log(`triangulate.mjs: wrote ${outPath}`); }
 else { console.log(out); }
+
+// Optional markdown table (Beam-style calibrated-vs-derived comparison), printed to stdout.
+if (wantMd) {
+  // Order slots by rawWins descending (QB first), like Beam's table.
+  const ordered = [...rows].sort((a, b) => (b.rawWins || 0) - (a.rawWins || 0));
+  const pad = (s, w) => String(s != null ? s : '—').padEnd(w);
+  console.log('\n## T3 Triangulation (per slot)');
+  console.log('| slot | rawWins | fittedWins | designWins | calW700 | nSrc | spreadWins | spreadRel | CI95-lo | CI95-hi | label |');
+  console.log('|---|---|---|---|---|---|---|---|---|---|---|');
+  for (const r of ordered) {
+    const ci = r.ci95MeanWins;
+    console.log(`| ${pad(r.slot,4)} | ${pad(r.rawWins != null ? r.rawWins.toFixed(4) : '—',7)} | ${pad(r.fittedWins != null ? r.fittedWins.toFixed(4) : '—',10)} | ${pad(r.designWins != null ? r.designWins.toFixed(4) : '—',10)} | ${pad(r.calibratedWins700 != null ? r.calibratedWins700.toFixed(4) : '—',6)} | ${pad(r.nSources,4)} | ${pad(r.spreadWins != null ? r.spreadWins.toFixed(6) : '—',10)} | ${pad(r.spreadRelative != null ? r.spreadRelative.toFixed(4) : '—',9)} | ${pad(ci.lo != null ? ci.lo.toFixed(4) : '—',7)} | ${pad(ci.hi != null ? ci.hi.toFixed(4) : '—',7)} | ${r.label} |`);
+  }
+  console.log(`\n**Summary:** ${report.overall.nSlots} slots, ${report.overall.nDisagree} disagree (>${(THRESHOLD*100).toFixed(0)}% rel spread), mean spread ${report.overall.meanSpreadWins} wins, CI95 [${report.overall.ci95Spread.lo != null ? report.overall.ci95Spread.lo.toFixed(6) : '—'}, ${report.overall.ci95Spread.hi != null ? report.overall.ci95Spread.hi.toFixed(6) : '—'}].`);
+}
