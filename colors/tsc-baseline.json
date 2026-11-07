@@ -1,12 +1,11 @@
 {
-  "total": 108,
+  "total": 91,
   "files": {
     "src/core/hash.ts": 7,
     "src/core/hungarian.ts": 15,
     "src/core/ids.ts": 2,
     "src/core/rng.ts": 1,
     "src/sports/nfl/app/legacy.ts": 2,
-    "src/sports/nfl/engine/draft.ts": 17,
     "src/sports/nfl/engine/goneodds.ts": 2,
     "src/sports/nfl/engine/kicking.ts": 3,
     "src/sports/nfl/engine/lineup.ts": 14,

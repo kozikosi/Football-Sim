@@ -6,6 +6,7 @@
 import { fit } from './flex.ts';
 import type { Player, Role } from './players.ts';
 import type { Rng } from '../../../core/rng.ts';
+import { at } from '../../../core/at.ts';
 import { SLOTS, SLOT_IDS, WEIGHT } from './slots.ts';
 import type { Dest, SlotId } from './slots.ts';
 
@@ -71,7 +72,7 @@ function replacement(st: DraftState): Partial<Record<Role, number>> {
   const by: Partial<Record<Role, number[]>> = {};
   for (const p of st.pool) (by[p.role] ??= []).push(p.ovr);
   const out: Partial<Record<Role, number>> = {};
-  for (const role of Object.keys(demand) as Role[]) { const a = by[role] ?? []; out[role] = a.length ? a[Math.min(demand[role] ?? 1, a.length) - 1] : 0; }
+  for (const role of Object.keys(demand) as Role[]) { const a = by[role] ?? []; out[role] = a.length ? at(a, Math.min(demand[role] ?? 1, a.length) - 1) : 0; }
   st.repl = out; st.replAt = st.pos;
   return out;
 }
@@ -79,7 +80,7 @@ function replacement(st: DraftState): Partial<Record<Role, number>> {
 export interface Candidate { player: Player; slot: SlotId; eff: number; wins: number }   // wins: weight x (eff - replacement), the model's value in weight-OVR units
 // Every (player, open spot) pair that is natural or a listed flex (no emergency fills), best 16 per role.
 export function candidates(st: DraftState, team: number): Candidate[] {
-  const open = openSlots(st.rosters[team]), repl = replacement(st), seen: Partial<Record<Role, number>> = {}, out: Candidate[] = [];
+  const open = openSlots(at(st.rosters, team)), repl = replacement(st), seen: Partial<Record<Role, number>> = {}, out: Candidate[] = [];
   const round = roundOf(st);
   for (const p of st.pool) {
     const n = (seen[p.role] = (seen[p.role] ?? 0) + 1);
@@ -96,12 +97,12 @@ export function candidates(st: DraftState, team: number): Candidate[] {
 }
 
 function floorFor(st: DraftState): number {
-  const top = st.pool.length ? st.pool[0].ovr : 0, r = roundOf(st), c = st.cfg;
+  const top = st.pool.length ? at(st.pool, 0).ovr : 0, r = roundOf(st), c = st.cfg;
   return r <= c.topFloorRounds ? top - c.topFloor : r <= c.midFloorRounds ? top - c.midFloor : -Infinity;
 }
 // The CPU's choice for `team`, with its own taste and noise; never below the round's floor.
 export function cpuChoose(st: DraftState, team: number, rng: Rng): { player: Player; slot: SlotId } {
-  const tr = st.traits[team], floor = floorFor(st);
+  const tr = at(st.traits, team), floor = floorFor(st);
   let cs = candidates(st, team).filter((c) => c.player.ovr >= floor);
   if (!cs.length) cs = candidates(st, team);
   if (!cs.length) return emergency(st, team);
@@ -109,24 +110,25 @@ export function cpuChoose(st: DraftState, team: number, rng: Rng): { player: Pla
   scored.sort((a, b) => b.v - a.v);
   let k = 0;
   if (scored.length > 8 && rng.next() < tr.miss) k = Math.min(scored.length - 1, 3 + Math.min(9, Math.floor(Math.abs(rng.normal()) * 4)));
-  return { player: scored[k].c.player, slot: scored[k].c.slot };
+  const chosen = at(scored, k).c;
+  return { player: chosen.player, slot: chosen.slot };
 }
 // No natural or flex fit left for any open spot: the best player left (not a QB) takes an open spot at the emergency price.
 function emergency(st: DraftState, team: number): { player: Player; slot: SlotId } {
-  const open = openSlots(st.rosters[team]);
+  const open = openSlots(at(st.rosters, team));
   for (const p of st.pool) for (const s of open) if (fit(p.role, DEST_OF[s]).legal) return { player: p, slot: s };
   throw new Error('draft: no legal pick for team ' + team);
 }
 
 export function applyPick(st: DraftState, team: number, player: Player, slot: SlotId): Pick {
   if (st.order[st.pos] !== team) throw new Error(`draft: it is not team ${team}'s pick`);
-  if (st.rosters[team][slot]) throw new Error('draft: spot already filled ' + slot);
+  if (at(st.rosters, team)[slot]) throw new Error('draft: spot already filled ' + slot);
   const i = st.pool.findIndex((p) => p.id === player.id);
   if (i < 0) throw new Error('draft: player already taken ' + player.id);
   if (!fit(player.role, DEST_OF[slot]).legal) throw new Error('draft: illegal fit');
-  const top = st.pool[0].ovr;
+  const top = at(st.pool, 0).ovr;
   st.pool.splice(i, 1);
-  st.rosters[team][slot] = player;
+  at(st.rosters, team)[slot] = player;
   const pick: Pick = { overall: st.pos + 1, round: roundOf(st), pickInRound: (st.pos % TEAMS_N) + 1, team, slot, player, ovrGap: top - player.ovr };
   st.log.push(pick); st.pos++;
   return pick;
@@ -137,20 +139,20 @@ export type UserPolicy = 'greedy' | 'top30' | 'favorites';
 export function userChoose(st: DraftState, team: number, rng: Rng, policy: UserPolicy): { player: Player; slot: SlotId } {
   const cs = candidates(st, team);
   if (!cs.length) return emergency(st, team);
-  if (policy === 'greedy') { cs.sort((a, b) => b.wins - a.wins || b.player.ovr - a.player.ovr); return cs[0]; }
+  if (policy === 'greedy') { cs.sort((a, b) => b.wins - a.wins || b.player.ovr - a.player.ovr); return at(cs, 0); }
   if (policy === 'top30') { cs.sort((a, b) => b.wins - a.wins); return rng.pick(cs.slice(0, 30)); }
   // favorites: takes the best-rated players with no regard to the spot's worth (any open spot he fits, the cheapest first)
   cs.sort((a, b) => b.player.ovr - a.player.ovr || WEIGHT[a.slot] - WEIGHT[b.slot]);
-  const best = cs[0].player.ovr, same = cs.filter((c) => c.player.ovr === best);
+  const best = at(cs, 0).player.ovr, same = cs.filter((c) => c.player.ovr === best);
   same.sort((a, b) => WEIGHT[a.slot] - WEIGHT[b.slot]);
-  return same[0];
+  return at(same, 0);
 }
 
 // Runs the whole draft; `user` (team index) picks by `policy`, everyone else by cpuChoose.
 export function runDraft(st: DraftState, rng: Rng, user?: { team: number; policy: UserPolicy }): void {
   const r = rng.fork('picks'), ru = rng.fork('user');
   while (st.pos < st.order.length) {
-    const team = st.order[st.pos];
+    const team = at(st.order, st.pos);
     const c = user && user.team === team ? userChoose(st, team, ru, user.policy) : cpuChoose(st, team, r);
     applyPick(st, team, c.player, c.slot);
   }
