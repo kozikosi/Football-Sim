@@ -42,3 +42,8 @@
 
 ## Session 2026-11-07 (bias M5 by-OVR bucket)
 - Ran by-OVR regression (Madden 27 OVR joined to nflverse 2023/2024, >=8 games). Filed in bias-results-2026-11-07.md. Findings: QB and TE per-game slopes match engine (TE 0.257 vs 0.248); WR slightly high (0.515 vs 0.649); RB much too high (0.003 vs 0.247). Per-touch: WR>QB>TE>RB. Defense OVR not testable (no defense EPA in data). Open: defense EPA, M3 sensitivity, M6 full re-run.
+
+## Session 2026-11-07 (P-013 tooling pass)
+- Built read-only tooling: raw-curve-witness.mjs (T3), triangulation.mjs (T3), metamorphic-battery.mjs (T7, 3/3 PASS), replacement-level-audit.mjs (T4 scaffold), uncertainty.mjs (T12). Governance notes: hypothesis-ledger, discrepancy-register, ruling-log, held-out-lint.
+- Filed revised Claude-facing prompt: _agents/beam/notes/PROMPT-FOR-CLAUDE-2026-11-07-beam-revision.md + inbox/20261107-2340-beam-P-013-claude-prompt-revision.md.
+- Commit eb3b4086 pushed council/beam. No product files or protected constants touched.
