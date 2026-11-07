@@ -47,3 +47,9 @@
 - Built read-only tooling: raw-curve-witness.mjs (T3), triangulation.mjs (T3), metamorphic-battery.mjs (T7, 3/3 PASS), replacement-level-audit.mjs (T4 scaffold), uncertainty.mjs (T12). Governance notes: hypothesis-ledger, discrepancy-register, ruling-log, held-out-lint.
 - Filed revised Claude-facing prompt: _agents/beam/notes/PROMPT-FOR-CLAUDE-2026-11-07-beam-revision.md + inbox/20261107-2340-beam-P-013-claude-prompt-revision.md.
 - Commit eb3b4086 pushed council/beam. No product files or protected constants touched.
+
+## Session 2026-11-07 (review pass)
+- Reviewed council/super tooling (triangulate, mechanics-harness, replacement-audit, uncertainty): all run; merged super's detailed replacement definition into replacement-level-audit.mjs; added triangulate.mjs (fit-based) alongside raw-curve-witness.
+- Upgraded uncertainty.mjs to report fit convergence (hist) and per-slot bootstrap CI from fitted/final.
+- Reviewed council/vl flexweight.mjs: found and fixed crash (dest out of scope) -> _agents/beam/tools/flexweight-fixed.mjs; filed review inbox/20261107-2359-beam-review-vl-flexweight.md.
+- Commit 86f7f38d pushed council/beam.
