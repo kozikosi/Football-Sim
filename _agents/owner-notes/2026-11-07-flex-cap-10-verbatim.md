@@ -1,0 +1,6 @@
+# Owner (Kosi), 7 Nov 2026 — flex capped at -10, raise the lower position weights (verbatim)
+
+"Let's instead think of this as if the flex penalties are capped at -10, and we adjust the models weights for position value to encourage all 85+ players to play for their natural role under a  -10 flex cap. All flex penalties from my flex list; if i called for a flex of -6, then change that flex penalty to -10. also change the -12 penalties to -10. Leave all 2s and 4s the same for now. Let me know if they cause a problem somehow in the subsequent testing
+
+For example, trey mcbride is capped at TE to WR -10. If WR1 value stays at 650, what does TE1 value need to be to so that he would naturally be preferred at TE1? Raise TE1 value from 250 in increments of 50 until Mcbride wants to stay at TE1.
+Apply this same logic for the Bijan/CMC/Gibbs and Gonzalez in terms of raising CB and RB value so that CB to WR1 -10 and RB to WR1 -10 still encourage those four players to stay at their natural position. Same for all the guys you mentioned (e.g. Thuney OG to OT -10, Humphrey C to OT -10, Derrick Brown DT to DE1 -10, Warner ILB to DE1 -10, Baun OLB to DE1 -10) Leave the upper values the same (e.g. WR1 650 and OT1 500) but raise the lower position values (by increments of 50) until all 85+ players prefer to play their natural position."

@@ -1,0 +1,577 @@
+{
+ "_status": "EXPERIMENT, not adopted",
+ "_method": "flexcap.mjs: flex >=6 -> 10 (2/4/0 kept), CB>WR 10 and TE>WR 6->10 per Owner; natural slot weights raised in steps of 50, frozen WR1,DE1,OT1,QB,FB; tune 1001-1016, fresh 3001-3016",
+ "_capped": [
+  "RB>TE 12->10",
+  "RB>SS 6->10",
+  "RB>FS 6->10",
+  "FB>ILB 6->10",
+  "FB>OLB 6->10",
+  "TE>WR 6->10",
+  "TE>C 12->10",
+  "TE>OG 12->10",
+  "TE>OT 12->10",
+  "TE>DT 12->10",
+  "TE>ILB 12->10",
+  "TE>NICKEL 6->10",
+  "TE>DIME 6->10",
+  "C>OT 6->10",
+  "DT>EDGE 6->10",
+  "DT>OT 6->10",
+  "EDGE>ILB 6->10",
+  "EDGE>C 6->10",
+  "EDGE>OG 6->10",
+  "EDGE>OT 6->10",
+  "EDGE>SS 6->10",
+  "EDGE>FS 6->10",
+  "EDGE>RB 6->10",
+  "EDGE>TE 6->10",
+  "EDGE>NICKEL 6->10",
+  "ILB>EDGE 6->10",
+  "ILB>SS 6->10",
+  "ILB>TE 6->10",
+  "ILB>NICKEL 6->10",
+  "ILB>DIME 6->10",
+  "OLB>EDGE 6->10",
+  "OLB>SS 6->10",
+  "OLB>TE 6->10",
+  "OLB>DIME 6->10",
+  "SS>CB 6->10",
+  "SS>WR 6->10",
+  "SS>ILB 6->10",
+  "SS>OLB 6->10",
+  "SS>TE 6->10",
+  "FS>CB 6->10",
+  "FS>WR 6->10",
+  "FS>OLB 6->10",
+  "P>K 6->10"
+ ],
+ "_history": [
+  {
+   "round": 0,
+   "slot": "RB1",
+   "from": 250,
+   "to": 300
+  },
+  {
+   "round": 0,
+   "slot": "TE1",
+   "from": 250,
+   "to": 300
+  },
+  {
+   "round": 0,
+   "slot": "OG1",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 0,
+   "slot": "WILL",
+   "from": 150,
+   "to": 200
+  },
+  {
+   "round": 0,
+   "slot": "CB1",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 0,
+   "slot": "C",
+   "from": 150,
+   "to": 200
+  },
+  {
+   "round": 0,
+   "slot": "DT1",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 0,
+   "slot": "FS",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 0,
+   "slot": "SS",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 1,
+   "slot": "MIKE",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 1,
+   "slot": "RB1",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 1,
+   "slot": "TE1",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 1,
+   "slot": "OG1",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 1,
+   "slot": "DT1",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 1,
+   "slot": "SS",
+   "from": 350,
+   "to": 400
+  },
+  {
+   "round": 1,
+   "slot": "WILL",
+   "from": 200,
+   "to": 250
+  },
+  {
+   "round": 1,
+   "slot": "FS",
+   "from": 350,
+   "to": 400
+  },
+  {
+   "round": 2,
+   "slot": "RB1",
+   "from": 350,
+   "to": 400
+  },
+  {
+   "round": 2,
+   "slot": "TE1",
+   "from": 350,
+   "to": 400
+  },
+  {
+   "round": 2,
+   "slot": "WILL",
+   "from": 250,
+   "to": 300
+  },
+  {
+   "round": 2,
+   "slot": "SS",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 2,
+   "slot": "DT1",
+   "from": 600,
+   "to": 650
+  },
+  {
+   "round": 2,
+   "slot": "MIKE",
+   "from": 350,
+   "to": 400
+  },
+  {
+   "round": 2,
+   "slot": "FS",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 3,
+   "slot": "TE1",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 3,
+   "slot": "RB1",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 3,
+   "slot": "CB1",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 3,
+   "slot": "WILL",
+   "from": 300,
+   "to": 350
+  },
+  {
+   "round": 3,
+   "slot": "MIKE",
+   "from": 400,
+   "to": 450
+  },
+  {
+   "round": 3,
+   "slot": "C",
+   "from": 200,
+   "to": 250
+  },
+  {
+   "round": 4,
+   "slot": "TE1",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 4,
+   "slot": "RB1",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 5,
+   "slot": "RB1",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 5,
+   "slot": "SS",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 5,
+   "slot": "TE1",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 5,
+   "slot": "OG1",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 6,
+   "slot": "MIKE",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 6,
+   "slot": "RB1",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 6,
+   "slot": "SS",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 7,
+   "slot": "SS",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 7,
+   "slot": "TE1",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 7,
+   "slot": "RB1",
+   "from": 600,
+   "to": 650
+  },
+  {
+   "round": 7,
+   "slot": "MIKE",
+   "from": 500,
+   "to": 550
+  },
+  {
+   "round": 7,
+   "slot": "FS",
+   "from": 450,
+   "to": 500
+  },
+  {
+   "round": 8,
+   "slot": "OG1",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 9,
+   "slot": "MIKE",
+   "from": 550,
+   "to": 600
+  },
+  {
+   "round": 9,
+   "slot": "OG1",
+   "from": 600,
+   "to": 650
+  },
+  {
+   "round": 9,
+   "slot": "C",
+   "from": 250,
+   "to": 300
+  }
+ ],
+ "weights": {
+  "QB": 1000,
+  "WR1": 650,
+  "OT1": 500,
+  "OT2": 300,
+  "WR2": 400,
+  "C": 300,
+  "OG1": 650,
+  "OG2": 250,
+  "TE1": 600,
+  "RB1": 650,
+  "WR3": 100,
+  "RB2": 100,
+  "TE2": 150,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 50,
+  "DE1": 650,
+  "DT1": 650,
+  "DE2": 300,
+  "DT2": 300,
+  "DL5": 150,
+  "MIKE": 600,
+  "WILL": 350,
+  "SAM": 100,
+  "CB1": 500,
+  "CB2": 250,
+  "CB3": 100,
+  "DIME": 50,
+  "FS": 500,
+  "SS": 600,
+  "K": 50,
+  "P": 50
+ },
+ "baseWeights": {
+  "QB": 1000,
+  "WR1": 650,
+  "OT1": 500,
+  "OT2": 300,
+  "WR2": 400,
+  "C": 150,
+  "OG1": 400,
+  "OG2": 250,
+  "TE1": 250,
+  "RB1": 250,
+  "WR3": 100,
+  "RB2": 100,
+  "TE2": 150,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 50,
+  "DE1": 650,
+  "DT1": 500,
+  "DE2": 300,
+  "DT2": 300,
+  "DL5": 150,
+  "MIKE": 300,
+  "WILL": 150,
+  "SAM": 100,
+  "CB1": 400,
+  "CB2": 250,
+  "CB3": 100,
+  "DIME": 50,
+  "FS": 300,
+  "SS": 300,
+  "K": 50,
+  "P": 50
+ },
+ "raised": [
+  "C 150->300",
+  "OG1 400->650",
+  "TE1 250->600",
+  "RB1 250->650",
+  "DT1 500->650",
+  "MIKE 300->600",
+  "WILL 150->350",
+  "CB1 400->500",
+  "FS 300->500",
+  "SS 300->600"
+ ],
+ "countsBefore": {
+  "drive": 229,
+  "small": 445,
+  "second": 161,
+  "emergency": 0
+ },
+ "countsFinalTune": {
+  "drive": 1,
+  "small": 540,
+  "second": 395,
+  "emergency": 0
+ },
+ "countsFinalFresh": {
+  "drive": 7,
+  "small": 526,
+  "second": 344,
+  "emergency": 0
+ },
+ "flex": {
+  "QB": {
+   "FS": 10
+  },
+  "RB": {
+   "FB": 2,
+   "WR": 10,
+   "TE": 10,
+   "SS": 10,
+   "FS": 10
+  },
+  "FB": {
+   "RB": 2,
+   "TE": 4,
+   "ILB": 10,
+   "OLB": 10,
+   "EDGE": 10,
+   "DT": 10
+  },
+  "WR": {
+   "RB": 10,
+   "TE": 4,
+   "CB": 4,
+   "FS": 4,
+   "SS": 4,
+   "NICKEL": 4,
+   "DIME": 4
+  },
+  "TE": {
+   "FB": 2,
+   "WR": 10,
+   "RB": 4,
+   "C": 10,
+   "OG": 10,
+   "OT": 10,
+   "EDGE": 10,
+   "DT": 10,
+   "OLB": 10,
+   "ILB": 10,
+   "SS": 4,
+   "FS": 4,
+   "NICKEL": 10,
+   "DIME": 10
+  },
+  "OT": {
+   "OG": 0,
+   "C": 0,
+   "DT": 4,
+   "EDGE": 10,
+   "FB": 2
+  },
+  "OG": {
+   "OT": 4,
+   "C": 0,
+   "DT": 4,
+   "EDGE": 10,
+   "FB": 2
+  },
+  "C": {
+   "OG": 4,
+   "OT": 10,
+   "DT": 4,
+   "FB": 2
+  },
+  "DT": {
+   "EDGE": 10,
+   "C": 4,
+   "OG": 4,
+   "OT": 10,
+   "FB": 2,
+   "TE": 10
+  },
+  "EDGE": {
+   "DT": 2,
+   "OLB": 2,
+   "ILB": 10,
+   "C": 10,
+   "OG": 10,
+   "OT": 10,
+   "SS": 10,
+   "FS": 10,
+   "RB": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 10
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 10,
+   "SS": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 10,
+   "DIME": 10
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 2,
+   "EDGE": 10,
+   "SS": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 4,
+   "DIME": 10
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 10,
+   "WR": 10,
+   "ILB": 10,
+   "OLB": 10,
+   "RB": 10,
+   "TE": 10
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 10,
+   "WR": 10,
+   "OLB": 10
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "WR": 10,
+   "RB": 10
+  },
+  "K": {
+   "P": 0
+  },
+  "P": {
+   "K": 10
+  }
+ }
+}
