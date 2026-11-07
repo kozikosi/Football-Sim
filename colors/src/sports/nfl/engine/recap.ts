@@ -7,9 +7,10 @@
 // always among the stars. The words "expected", "before kickoff" and "sudden death" never appear. UI styling is the shell's job.
 import type { GameResult, Side } from './drives.ts';
 import type { BoxScore, DriveCredit, PlayerLine, PlayerRef } from './boxscore.ts';
+import { at as checked } from '../../../core/at.ts';   // aliased: this file uses `at` for the game clock
 
 const other = (s: Side): Side => (s === 'home' ? 'away' : 'home');
-export const nickname = (team: string): string => team.split(' ').slice(-1)[0];
+export const nickname = (team: string): string => checked(team.split(' ').slice(-1), 0);
 
 export type Period = '1st' | '2nd' | '3rd' | '4th' | 'OT';
 export interface RecapLine {
@@ -23,7 +24,7 @@ export interface RecapLine {
   decisive: boolean;                                     // the last score of an overtime game, scored by the team that won
   text: string;                                          // the whole line as one string
 }
-export interface TurnoverLine { period: Period; at: number; clock: string; side: Side; team: string; kind: 'Interception' | 'Fumble'; giver: PlayerRef; taker: PlayerRef; forcer?: PlayerRef; retYards: number; defTD: boolean; text: string }
+export interface TurnoverLine { period: Period; at: number; clock: string; side: Side; team: string; kind: 'Interception' | 'Fumble'; giver: PlayerRef; taker: PlayerRef; forcer?: PlayerRef | undefined; retYards: number; defTD: boolean; text: string }
 export interface StarLine { id: string; name: string; team: string; side: Side; label: string; grade: number; stat: string; ball: boolean }
 export interface Recap {
   home: string; away: string; homeScore: number; awayScore: number; winner: Side | null; overtime: boolean;
@@ -83,7 +84,7 @@ function periodAt(at: number): { period: Period; clock: string } {
   const mmss = (sec: number) => `${Math.floor(sec / 60)}:${String(Math.round(sec % 60)).padStart(2, '0')}`;
   if (at > 3600) return { period: 'OT', clock: mmss(at - 3600) };
   const q = Math.min(4, Math.max(1, Math.ceil(at / 900)));
-  return { period: (['1st', '2nd', '3rd', '4th'] as const)[q - 1], clock: mmss(q * 900 - at) };
+  return { period: checked(['1st', '2nd', '3rd', '4th'] as const, q - 1), clock: mmss(q * 900 - at) };
 }
 const who = (r: PlayerRef): string => `${r.name} (${nickname(r.team)})`;
 
@@ -94,7 +95,7 @@ export function buildRecap(res: GameResult, box: BoxScore): Recap {
   const scoring: RecapLine[] = [];
   const periodBox: Record<Period, { home: number; away: number }> = { '1st': { home: 0, away: 0 }, '2nd': { home: 0, away: 0 }, '3rd': { home: 0, away: 0 }, '4th': { home: 0, away: 0 }, OT: { home: 0, away: 0 } };
   sorted.forEach((e, idx) => {
-    const c: DriveCredit = box.credits[e.drive], team = e.side === 'home' ? home : away, { period, clock } = periodAt(e.at);
+    const c: DriveCredit = checked(box.credits, e.drive), team = e.side === 'home' ? home : away, { period, clock } = periodAt(e.at);
     if (e.side === 'home') h += e.pts; else a += e.pts;
     periodBox[period][e.side] += e.pts;
     const score = h === a ? `tied ${h}-${a}` : h > a ? `${name.home} ${h}-${a}` : `${name.away} ${a}-${h}`;
@@ -114,7 +115,8 @@ export function buildRecap(res: GameResult, box: BoxScore): Recap {
       refs = [c.taker as PlayerRef]; label = 'Safety'; detail = 'sack in the end zone';
     }
     const decisive = period === 'OT' && idx === sorted.length - 1 && h !== a && (h > a) === (e.side === 'home');
-    const lead = e.kind === 'TD' && c.kind === 'PASS_TD' && refs[1] ? `${who(refs[1])} to ${who(refs[0])}` : who(refs[0]);
+    const first = checked(refs, 0), second = refs[1];
+    const lead = e.kind === 'TD' && c.kind === 'PASS_TD' && second ? `${who(second)} to ${who(first)}` : who(first);
     const text = `${label} · ${lead}${detail ? ' · ' + detail : ''} · ${name[e.side]} · ${score}`;
     scoring.push({ period, at: e.at, clock, side: e.side, team, label, who: refs, detail, score, home: h, away: a, decisive, text });
   });
@@ -123,7 +125,7 @@ export function buildRecap(res: GameResult, box: BoxScore): Recap {
   const tl: TurnoverLine[] = [];
   const cnt = { home: 0, away: 0 };
   res.drives.forEach((d, i) => {
-    const c = box.credits[i];
+    const c = checked(box.credits, i);
     if (c.kind !== 'INT' && c.kind !== 'FUM') return;
     const at = d.start + d.secs, { period, clock } = periodAt(at), taker = other(d.side);
     cnt[taker]++;
@@ -141,7 +143,7 @@ export function buildRecap(res: GameResult, box: BoxScore): Recap {
   const star = (l: PlayerLine, ball: boolean): StarLine => ({ id: l.id, name: l.name, team: l.team, side: l.side, label: l.label, grade: gradeOf(l), stat: statLine(l), ball });
   const graded = box.lines.map((l) => ({ l, g: gradeOf(l) })).sort((x, y) => y.g - x.g || (x.l.id < y.l.id ? -1 : 1));
   const pool = winner ? graded.filter((x) => x.l.side === winner) : graded;
-  const ballLine = pool.length ? pool[0].l : null;
+  const ballLine = pool.length ? checked(pool, 0).l : null;
   const ok = (l: PlayerLine) => (isOffense(l) ? (l.slot === 'QB' ? l.stats.pyd >= 150 || yardsOf(l) >= 60 : yardsOf(l) >= 60) : true);   // Owner: an offensive star has at least 60 yards
   const perTeam = { home: 0, away: 0 }, chosen: PlayerLine[] = [];
   for (const { l, g } of graded) {
