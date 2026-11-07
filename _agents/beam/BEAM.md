@@ -39,3 +39,6 @@
 
 ## Session 2026-11-07 (bias M4/M5 real-data run)
 - Found nflverse data on GitHub (snap_counts + player_stats 2023/2024). Ran M4 (volume) + partial M5 (efficiency). Filed `_agents/beam/notes/bias-results-2026-11-07.md`. Findings: secondary NOT biased by volume (44.2% snaps vs 41.3% weight, -2.9 pp, inside tolerance); TE underweighted (11.9% snaps / 20.6% skill EPA vs 7.7% weight); LB underweighted (26.7% snaps vs 13.6% weight); DL overweighted (29.1% vs 45.1%); QB justified by EPA (24.0% vs 22.7%). M1 passes. Open: M3 sensitivity, M5 by-OVR bucket, M6 full re-run, defense EPA (not in data).
+
+## Session 2026-11-07 (bias M5 by-OVR bucket)
+- Ran by-OVR regression (Madden 27 OVR joined to nflverse 2023/2024, >=8 games). Filed in bias-results-2026-11-07.md. Findings: QB and TE per-game slopes match engine (TE 0.257 vs 0.248); WR slightly high (0.515 vs 0.649); RB much too high (0.003 vs 0.247). Per-touch: WR>QB>TE>RB. Defense OVR not testable (no defense EPA in data). Open: defense EPA, M3 sensitivity, M6 full re-run.

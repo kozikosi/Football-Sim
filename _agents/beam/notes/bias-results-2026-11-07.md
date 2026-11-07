@@ -59,3 +59,21 @@ Already measured (flex-tuned report): under -10 cap, 0 promotions on tuned seeds
 Bias toward the secondary: not detected (M1 passes, M4 shows secondary matches snap share). Bias/underweight toward TE and LB: suggested by M4/M5 (TE snaps/EPA vs weight; LB snaps vs weight). QB weight justified by EPA. DL overweighted vs snaps. These are findings to take to the Architect as a proposal, not silent changes.
 
 Open items: M5 by-OVR-bucket, M3 sensitivity, M6 full re-run, defense EPA (not in this data).
+
+## M5 by-OVR bucket (run 2026-11-07)
+
+Data: Madden 27 ratings (name,pos,team,ovr) joined to nflverse player_stats 2023+2024 by (name, position), >=8 games, >=30 touches. RB mapped HB<->RB. Linear regression of EPA/game on OVR per position; n = QB 48, WR 104, TE 73, RB 61. Engine reference = fit-owner slotWinsPerOvr (wins per +1 OVR).
+
+Per-game slopes (EPA/game per OVR point) and ratio to QB:
+| Pos | slope | ratio to QB | engine ratio to QB | verdict |
+|---|---|---|---|---|
+| QB | 0.267 | 1.000 | 1.000 | match |
+| WR | 0.138 | 0.515 | 0.649 | engine slightly high |
+| TE | 0.069 | 0.257 | 0.248 | match |
+| RB | 0.001 | 0.003 | 0.247 | engine much too high |
+
+Per-touch slopes (EPA per carry/target per OVR point): WR 0.0132, QB 0.0105, TE 0.0070, RB 0.0016. Per-touch, TE is more OVR-sensitive than the engine implies, but TE's lower volume keeps per-game slope in line with the engine. RB is near-zero on both measures.
+
+Interpretation: the engine's marginal values (per-game, volume-inclusive) match real data for QB and TE. The engine overvalues RB marginal impact (real RB OVR barely moves EPA) and mildly overvalues WR. This is the opposite of the volume/EPA-share finding (which suggested TE underweighted); the two metrics disagree because TE has high volume but low marginal per-OVR. Both are reported, not resolved here.
+
+Caveats: Madden 27 OVR is the "new" ratings set (Owner 28 Oct), not historical; joining to 2023/2024 stats assumes rating stability. RB rushing EPA is negative overall (usage/role confound). Defense EPA not available in this data, so DL/LB/CB cannot be tested by OVR.
