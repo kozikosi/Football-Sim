@@ -1,0 +1,17 @@
+61acb21e55fac92a6d84eac6acb10bd1  z-post-blue-wave79-2026-11-07-w79/Football-Sim-Z-post-blue-w79.html
+8c3f53ddcd80c660e1154909ffd54ecb  z-post-blue-wave79-2026-11-07-w79/UPDATE-README.md
+fd37dba072802f9127190d07a621345e  z-post-blue-wave79-2026-11-07-w79/_agents/zai/END-OF-CHAT-ZAI.md
+e3905c7264cdfda5ae1825b534f1f14e  z-post-blue-wave79-2026-11-07-w79/_agents/zai/START-OF-CHAT-ZAI.md
+5070b1f5514df1fed4f823c629d9c577  z-post-blue-wave79-2026-11-07-w79/_agents/zai/ZAI.md
+736ed01b48f13ad4eab3a9a29581fc9c  z-post-blue-wave79-2026-11-07-w79/_agents/zai/notes/2026-11-07-owner-flex-answer-and-testing-apparatus.md
+919768664f5fc081a882925034d1a241  z-post-blue-wave79-2026-11-07-w79/_agents/zai/notes/W79-INTAKE-LEDGER.md
+4b2e426ed454e4f87bdce867015bc466  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-chips-closeup.png
+63d0a4d18214ed67f1563f74209807e8  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-flex-chart.png
+274d4e1ce37bce0a0d7d40cd2ae0a06c  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-guide-flex.png
+3723c2ac2fe03c39a5949c50b8a4b3cb  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-phone-chips.png
+ee9a7830776e8ac73054215debf71908  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-phone-rankings-top.png
+98970f2b183ddc25220a7435dc863ba6  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-position-rankings.png
+2532b3a1062bf994054db01554ac3810  z-post-blue-wave79-2026-11-07-w79/_agents/zai/shots/w79-rankings-chips.png
+6a41a9db72e2dc2b986b2b07ab5c215e  z-post-blue-wave79-2026-11-07-w79/_agents/zai/tools/zai-lab/run-lab.mjs
+5af3807df9507e904761a0028d7bbdf5  z-post-blue-wave79-2026-11-07-w79/_agents/zai/tools/zai-lab/shots.mjs
+5daee368dc0766474bb98d709386fe35  z-post-blue-wave79-2026-11-07-w79/_agents/zai/tools/zai-lab/zai-lab-inpage.js
