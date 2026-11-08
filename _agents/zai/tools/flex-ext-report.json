@@ -1,0 +1,825 @@
+{
+ "generatedUtc": "2026-11-08T00:50:30.655ZZ",
+ "product": "Football-Sim-PreColors.html 40233d6be00e987c",
+ "replication": {
+  "maxAbsDiff": 0,
+  "at": ""
+ },
+ "proposals": {
+  "QB->FS (REV 4: the only allowed QB flex, flat -10)": [
+   {
+    "natural": "QB",
+    "dest": "FS",
+    "ovr": 70,
+    "winsNat": -1.1452557351366783,
+    "winsDest": -0.4327094616577324,
+    "winsLost": 0,
+    "slope": 0.04271372872120033,
+    "ovrEq": 0
+   },
+   {
+    "natural": "QB",
+    "dest": "FS",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.04271372872120033,
+    "ovrEq": 0
+   },
+   {
+    "natural": "QB",
+    "dest": "FS",
+    "ovr": 85,
+    "winsNat": 0.6418427200138302,
+    "winsDest": 0.2121438173667187,
+    "winsLost": 0.4296989026471115,
+    "slope": 0.04271372872120033,
+    "ovrEq": 10.05997171194836
+   },
+   {
+    "natural": "QB",
+    "dest": "FS",
+    "ovr": 90,
+    "winsNat": 1.3961453133260417,
+    "winsDest": 0.4215651127662742,
+    "winsLost": 0.9745802005597676,
+    "slope": 0.04271372872120033,
+    "ovrEq": 22.816556403235502
+   },
+   {
+    "natural": "QB",
+    "dest": "FS",
+    "ovr": 95,
+    "winsNat": 2.08481851086333,
+    "winsDest": 0.6283262288390853,
+    "winsLost": 1.4564922820242447,
+    "slope": 0.04271372872120033,
+    "ovrEq": 34.098926168001256
+   }
+  ],
+  "FB->TE1 (HB is the engine pos for FB/SC-back)": [
+   {
+    "natural": "RB1",
+    "dest": "TE1",
+    "ovr": 70,
+    "winsNat": -0.2671377036897693,
+    "winsDest": -0.3918749789513387,
+    "winsLost": 0.12473727526156941,
+    "slope": 0.03999005378886973,
+    "ovrEq": 3.1192074889453396
+   },
+   {
+    "natural": "RB1",
+    "dest": "TE1",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.03999005378886973,
+    "ovrEq": 0
+   },
+   {
+    "natural": "RB1",
+    "dest": "TE1",
+    "ovr": 85,
+    "winsNat": 0.18106572238414656,
+    "winsDest": 0.20191520364951235,
+    "winsLost": 0,
+    "slope": 0.03999005378886973,
+    "ovrEq": 0
+   },
+   {
+    "natural": "RB1",
+    "dest": "TE1",
+    "ovr": 90,
+    "winsNat": 0.3981900103176534,
+    "winsDest": 0.40792609682605596,
+    "winsLost": 0,
+    "slope": 0.03999005378886973,
+    "ovrEq": 0
+   },
+   {
+    "natural": "RB1",
+    "dest": "TE1",
+    "ovr": 95,
+    "winsNat": 0.5493559486221518,
+    "winsDest": 0.6213380331761871,
+    "winsLost": 0,
+    "slope": 0.03999005378886973,
+    "ovrEq": 0
+   }
+  ],
+  "WR3->RB2 (slot-specific; FLEX table has WR->RB at 6)": [
+   {
+    "natural": "WR1",
+    "dest": "RB2",
+    "ovr": 70,
+    "winsNat": -0.5299056114961216,
+    "winsDest": -0.05941874361109198,
+    "winsLost": 0,
+    "slope": 0.010988919750875823,
+    "ovrEq": 0
+   },
+   {
+    "natural": "WR1",
+    "dest": "RB2",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.010988919750875823,
+    "ovrEq": 0
+   },
+   {
+    "natural": "WR1",
+    "dest": "RB2",
+    "ovr": 85,
+    "winsNat": 0.2810701203869754,
+    "winsDest": 0.03291440605336308,
+    "winsLost": 0.2481557143336123,
+    "slope": 0.010988919750875823,
+    "ovrEq": 22.582357498227626
+   },
+   {
+    "natural": "WR1",
+    "dest": "RB2",
+    "ovr": 90,
+    "winsNat": 0.5734201029075551,
+    "winsDest": 0.1603596514064245,
+    "winsLost": 0.4130604515011306,
+    "slope": 0.010988919750875823,
+    "ovrEq": 37.58881317412564
+   },
+   {
+    "natural": "WR1",
+    "dest": "RB2",
+    "ovr": 95,
+    "winsNat": 0.9377808380948184,
+    "winsDest": 0.33364823353088474,
+    "winsLost": 0.6041326045639337,
+    "slope": 0.010988919750875823,
+    "ovrEq": 54.97652346726656
+   }
+  ],
+  "TE2->WR3 (TE->WR not in FLEX table at all)": [
+   {
+    "natural": "TE1",
+    "dest": "WR3",
+    "ovr": 70,
+    "winsNat": -0.3918749789513387,
+    "winsDest": -0.12099461347310148,
+    "winsLost": 0,
+    "slope": 0.01914901781995434,
+    "ovrEq": 0
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR3",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.01914901781995434,
+    "ovrEq": 0
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR3",
+    "ovr": 85,
+    "winsNat": 0.20191520364951235,
+    "winsDest": 0.12978844485408472,
+    "winsLost": 0.07212675879542763,
+    "slope": 0.01914901781995434,
+    "ovrEq": 3.766603565445928
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR3",
+    "ovr": 90,
+    "winsNat": 0.40792609682605596,
+    "winsDest": 0.26198574292598537,
+    "winsLost": 0.1459403539000706,
+    "slope": 0.01914901781995434,
+    "ovrEq": 7.621297095874684
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR3",
+    "ovr": 95,
+    "winsNat": 0.6213380331761871,
+    "winsDest": 0.39663334682839513,
+    "winsLost": 0.22470468634779195,
+    "slope": 0.01914901781995434,
+    "ovrEq": 11.734528029611898
+   }
+  ],
+  "DT2->DE2 (FLEX has DT->DE family at 4)": [
+   {
+    "natural": "DT1",
+    "dest": "DE2",
+    "ovr": 70,
+    "winsNat": -0.48058902815921567,
+    "winsDest": -0.5566393795487773,
+    "winsLost": 0.07605035138956162,
+    "slope": 0.05504032836035121,
+    "ovrEq": 1.381720524842384
+   },
+   {
+    "natural": "DT1",
+    "dest": "DE2",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "DT1",
+    "dest": "DE2",
+    "ovr": 85,
+    "winsNat": 0.23511172741534622,
+    "winsDest": 0.27356255571143334,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "DT1",
+    "dest": "DE2",
+    "ovr": 90,
+    "winsNat": 0.4651492158821027,
+    "winsDest": 0.5441671876582469,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "DT1",
+    "dest": "DE2",
+    "ovr": 95,
+    "winsNat": 0.6903396483085301,
+    "winsDest": 0.8119727748458351,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   }
+  ],
+  "ILB2->MIKE (engine pos WILL; natural pair)": [
+   {
+    "natural": "WILL",
+    "dest": "MIKE",
+    "ovr": 70,
+    "winsNat": -0.40770262563468856,
+    "winsDest": -0.4397796919943341,
+    "winsLost": 0.03207706635964552,
+    "slope": 0.04315272990181257,
+    "ovrEq": 0.7433380560773786
+   },
+   {
+    "natural": "WILL",
+    "dest": "MIKE",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.04315272990181257,
+    "ovrEq": 0
+   },
+   {
+    "natural": "WILL",
+    "dest": "MIKE",
+    "ovr": 85,
+    "winsNat": 0.19907407131509516,
+    "winsDest": 0.21363597404162468,
+    "winsLost": 0,
+    "slope": 0.04315272990181257,
+    "ovrEq": 0
+   },
+   {
+    "natural": "WILL",
+    "dest": "MIKE",
+    "ovr": 90,
+    "winsNat": 0.3950736515618106,
+    "winsDest": 0.42327490604191736,
+    "winsLost": 0,
+    "slope": 0.04315272990181257,
+    "ovrEq": 0
+   },
+   {
+    "natural": "WILL",
+    "dest": "MIKE",
+    "ovr": 95,
+    "winsNat": 0.588078971503806,
+    "winsDest": 0.6290409790076303,
+    "winsLost": 0,
+    "slope": 0.04315272990181257,
+    "ovrEq": 0
+   }
+  ],
+  "OLB2->DE2 (engine pos SAM)": [
+   {
+    "natural": "SAM",
+    "dest": "DE2",
+    "ovr": 70,
+    "winsNat": -0.03709118387985189,
+    "winsDest": -0.5566393795487773,
+    "winsLost": 0.5195481956689254,
+    "slope": 0.05504032836035121,
+    "ovrEq": 9.43940945023843
+   },
+   {
+    "natural": "SAM",
+    "dest": "DE2",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "SAM",
+    "dest": "DE2",
+    "ovr": 85,
+    "winsNat": 0.018499444163665786,
+    "winsDest": 0.27356255571143334,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "SAM",
+    "dest": "DE2",
+    "ovr": 90,
+    "winsNat": 0.03696822710102459,
+    "winsDest": 0.5441671876582469,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   },
+   {
+    "natural": "SAM",
+    "dest": "DE2",
+    "ovr": 95,
+    "winsNat": 0.05540642652871963,
+    "winsDest": 0.8119727748458351,
+    "winsLost": 0,
+    "slope": 0.05504032836035121,
+    "ovrEq": 0
+   }
+  ],
+  "FS->CB2 (FLEX has FS->CB family at 4)": [
+   {
+    "natural": "FS",
+    "dest": "CB2",
+    "ovr": 70,
+    "winsNat": -0.4327094616577324,
+    "winsDest": -0.5993188464905985,
+    "winsLost": 0.16660938483286614,
+    "slope": 0.058874554745720745,
+    "ovrEq": 2.8299047959250343
+   },
+   {
+    "natural": "FS",
+    "dest": "CB2",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.058874554745720745,
+    "ovrEq": 0
+   },
+   {
+    "natural": "FS",
+    "dest": "CB2",
+    "ovr": 85,
+    "winsNat": 0.2121438173667187,
+    "winsDest": 0.2916417524855902,
+    "winsLost": 0,
+    "slope": 0.058874554745720745,
+    "ovrEq": 0
+   },
+   {
+    "natural": "FS",
+    "dest": "CB2",
+    "ovr": 90,
+    "winsNat": 0.4215651127662742,
+    "winsDest": 0.5781722484238162,
+    "winsLost": 0,
+    "slope": 0.058874554745720745,
+    "ovrEq": 0
+   },
+   {
+    "natural": "FS",
+    "dest": "CB2",
+    "ovr": 95,
+    "winsNat": 0.6283262288390853,
+    "winsDest": 0.8597621030280685,
+    "winsLost": 0,
+    "slope": 0.058874554745720745,
+    "ovrEq": 0
+   }
+  ],
+  "CB->FS (FLEX price 0 — free; hidden-cost check)": [
+   {
+    "natural": "CB1",
+    "dest": "FS",
+    "ovr": 70,
+    "winsNat": -0.7373077277059606,
+    "winsDest": -0.4327094616577324,
+    "winsLost": 0,
+    "slope": 0.04271372872120033,
+    "ovrEq": 0
+   },
+   {
+    "natural": "CB1",
+    "dest": "FS",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.04271372872120033,
+    "ovrEq": 0
+   },
+   {
+    "natural": "CB1",
+    "dest": "FS",
+    "ovr": 85,
+    "winsNat": 0.3566028698777253,
+    "winsDest": 0.2121438173667187,
+    "winsLost": 0.14445905251100663,
+    "slope": 0.04271372872120033,
+    "ovrEq": 3.382028608504659
+   },
+   {
+    "natural": "CB1",
+    "dest": "FS",
+    "ovr": 90,
+    "winsNat": 0.7055968504315655,
+    "winsDest": 0.4215651127662742,
+    "winsLost": 0.28403173766529133,
+    "slope": 0.04271372872120033,
+    "ovrEq": 6.649659165071121
+   },
+   {
+    "natural": "CB1",
+    "dest": "FS",
+    "ovr": 95,
+    "winsNat": 1.048397344916566,
+    "winsDest": 0.6283262288390853,
+    "winsLost": 0.4200711160774807,
+    "slope": 0.04271372872120033,
+    "ovrEq": 9.834569087127825
+   }
+  ],
+  "TE1->WR1 (the pair the -10 cap under-prices, per w79 T6)": [
+   {
+    "natural": "TE1",
+    "dest": "WR1",
+    "ovr": 70,
+    "winsNat": -0.3918749789513387,
+    "winsDest": -0.5299056114961216,
+    "winsLost": 0.13803063254478287,
+    "slope": 0.055166285720183825,
+    "ovrEq": 2.5020831245537574
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR1",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR1",
+    "ovr": 85,
+    "winsNat": 0.20191520364951235,
+    "winsDest": 0.2810701203869754,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR1",
+    "ovr": 90,
+    "winsNat": 0.40792609682605596,
+    "winsDest": 0.5734201029075551,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   },
+   {
+    "natural": "TE1",
+    "dest": "WR1",
+    "ovr": 95,
+    "winsNat": 0.6213380331761871,
+    "winsDest": 0.9377808380948184,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   }
+  ],
+  "CB->WR1 (the pair the -10 cap under-prices, per w79 T6)": [
+   {
+    "natural": "CB1",
+    "dest": "WR1",
+    "ovr": 70,
+    "winsNat": -0.7373077277059606,
+    "winsDest": -0.5299056114961216,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   },
+   {
+    "natural": "CB1",
+    "dest": "WR1",
+    "ovr": 80,
+    "winsNat": 0,
+    "winsDest": 0,
+    "winsLost": 0,
+    "slope": 0.055166285720183825,
+    "ovrEq": 0
+   },
+   {
+    "natural": "CB1",
+    "dest": "WR1",
+    "ovr": 85,
+    "winsNat": 0.3566028698777253,
+    "winsDest": 0.2810701203869754,
+    "winsLost": 0.07553274949074995,
+    "slope": 0.055166285720183825,
+    "ovrEq": 1.3691831615031969
+   },
+   {
+    "natural": "CB1",
+    "dest": "WR1",
+    "ovr": 90,
+    "winsNat": 0.7055968504315655,
+    "winsDest": 0.5734201029075551,
+    "winsLost": 0.13217674752401043,
+    "slope": 0.055166285720183825,
+    "ovrEq": 2.3959696723908785
+   },
+   {
+    "natural": "CB1",
+    "dest": "WR1",
+    "ovr": 95,
+    "winsNat": 1.048397344916566,
+    "winsDest": 0.9377808380948184,
+    "winsLost": 0.11061650682174762,
+    "slope": 0.055166285720183825,
+    "ovrEq": 2.0051469004605487
+   }
+  ]
+ },
+ "sensitivity": {
+  "QB->FS@90|all-70 (weak league)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 2.6592195378637116,
+   "winsDest": 0.8324885542706236,
+   "winsLost": 1.8267309835930878,
+   "slope": 0.041624427713531184,
+   "ovrEq": 43.88603240782234
+  },
+  "QB->FS@90|all-80 (engine base)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 1.3961453133260417,
+   "winsDest": 0.4215651127662742,
+   "winsLost": 0.9745802005597676,
+   "slope": 0.04271372872120033,
+   "ovrEq": 22.816556403235502
+  },
+  "QB->FS@90|all-90 (strong league)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 0,
+   "winsDest": 0,
+   "winsLost": 0,
+   "slope": 0.043854093161885904,
+   "ovrEq": 0
+  },
+  "QB->FS@90|QB-starved (QB 70, rest 80)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 2.6592195378637116,
+   "winsDest": 0.4215651127662742,
+   "winsLost": 2.2376544250974373,
+   "slope": 0.04271372872120033,
+   "ovrEq": 52.38724157525518
+  },
+  "QB->FS@90|FS-starved (FS/SS/CB3 65)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 1.3961453133260417,
+   "winsDest": 1.0341125435121998,
+   "winsLost": 0.3620327698138419,
+   "slope": 0.041098436307273965,
+   "ovrEq": 8.808918351712718
+  },
+  "QB->FS@90|WR-rich (WR1-3 90, rest 80)": {
+   "natural": "QB",
+   "dest": "FS",
+   "ovr": 90,
+   "winsNat": 1.3961453133260417,
+   "winsDest": 0.4215651127662742,
+   "winsLost": 0.9745802005597676,
+   "slope": 0.04271372872120033,
+   "ovrEq": 22.816556403235502
+  },
+  "TE->WR1@90|all-70 (weak league)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.8674354633045319,
+   "winsDest": 1.3299907076419923,
+   "winsLost": 0,
+   "slope": 0.06649953538209961,
+   "ovrEq": 0
+  },
+  "TE->WR1@90|all-80 (engine base)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.40792609682605596,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0,
+   "slope": 0.055166285720183825,
+   "ovrEq": 0
+  },
+  "TE->WR1@90|all-90 (strong league)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0,
+   "winsDest": 0,
+   "winsLost": 0,
+   "slope": 0.04618116286608713,
+   "ovrEq": 0
+  },
+  "TE->WR1@90|QB-starved (QB 70, rest 80)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.40792609682605596,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0,
+   "slope": 0.055166285720183825,
+   "ovrEq": 0
+  },
+  "TE->WR1@90|FS-starved (FS/SS/CB3 65)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.40792609682605596,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0,
+   "slope": 0.055166285720183825,
+   "ovrEq": 0
+  },
+  "TE->WR1@90|WR-rich (WR1-3 90, rest 80)": {
+   "natural": "TE1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.40792609682605596,
+   "winsDest": 0,
+   "winsLost": 0.40792609682605596,
+   "slope": 0.046181162866086936,
+   "ovrEq": 8.833170745590207
+  },
+  "CB->SAM@90|all-70 (weak league)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 1.3870313097446008,
+   "winsDest": 0.1904518363657009,
+   "winsLost": 1.1965794733789,
+   "slope": 0.009522591818285044,
+   "ovrEq": 125.6569110818399
+  },
+  "CB->SAM@90|all-80 (engine base)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0.03696822710102459,
+   "winsLost": 0.668628623330541,
+   "slope": 0.003702970549043824,
+   "ovrEq": 180.56547155180408
+  },
+  "CB->SAM@90|all-90 (strong league)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 0,
+   "winsDest": 0,
+   "winsLost": 0,
+   "slope": 0.0037152975153956574,
+   "ovrEq": 0
+  },
+  "CB->SAM@90|QB-starved (QB 70, rest 80)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0.03696822710102459,
+   "winsLost": 0.668628623330541,
+   "slope": 0.003702970549043824,
+   "ovrEq": 180.56547155180408
+  },
+  "CB->SAM@90|FS-starved (FS/SS/CB3 65)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 0.7055968504315674,
+   "winsDest": 0.03696822710102831,
+   "winsLost": 0.6686286233305391,
+   "slope": 0.003702970549043917,
+   "ovrEq": 180.56547155179905
+  },
+  "CB->SAM@90|WR-rich (WR1-3 90, rest 80)": {
+   "natural": "CB1",
+   "dest": "SAM",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0.03696822710102459,
+   "winsLost": 0.668628623330541,
+   "slope": 0.003702970549043824,
+   "ovrEq": 180.56547155180408
+  },
+  "CB->WR1@90|all-70 (weak league)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 1.3870313097446008,
+   "winsDest": 1.3299907076419923,
+   "winsLost": 0.05704060210260842,
+   "slope": 0.06649953538209961,
+   "ovrEq": 0.8577594080147911
+  },
+  "CB->WR1@90|all-80 (engine base)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0.13217674752401043,
+   "slope": 0.055166285720183825,
+   "ovrEq": 2.3959696723908785
+  },
+  "CB->WR1@90|all-90 (strong league)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0,
+   "winsDest": 0,
+   "winsLost": 0,
+   "slope": 0.04618116286608713,
+   "ovrEq": 0
+  },
+  "CB->WR1@90|QB-starved (QB 70, rest 80)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0.13217674752401043,
+   "slope": 0.055166285720183825,
+   "ovrEq": 2.3959696723908785
+  },
+  "CB->WR1@90|FS-starved (FS/SS/CB3 65)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.7055968504315674,
+   "winsDest": 0.5734201029075551,
+   "winsLost": 0.13217674752401232,
+   "slope": 0.055166285720183825,
+   "ovrEq": 2.3959696723909127
+  },
+  "CB->WR1@90|WR-rich (WR1-3 90, rest 80)": {
+   "natural": "CB1",
+   "dest": "WR1",
+   "ovr": 90,
+   "winsNat": 0.7055968504315655,
+   "winsDest": 0,
+   "winsLost": 0.7055968504315655,
+   "slope": 0.046181162866086936,
+   "ovrEq": 15.278888764183101
+  }
+ },
+ "labels": "VERIFIED (deterministic, n=1 per cell); flat penalties REPORTED from product FLEX table"
+}
