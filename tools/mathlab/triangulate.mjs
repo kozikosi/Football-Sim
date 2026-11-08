@@ -148,6 +148,15 @@ function salaryOnly() {
   const design = loadDesignJson();
   const salary = salaryOnly();
 
+  const WINS_PER_UNIT = 0.00254; // 1 weight = 0.00254 wins (QB 1000 = 2.54 wins)
+  const round5 = (x) => Math.max(5, Math.round(x / 5) * 5);
+  const round10 = (x) => Math.round(x / 10) * 10;
+  // contract: expected700 = monotone quantisation of raw span to 700 scale (nearest 5, floor 5)
+  const expected700 = (spanWins) => {
+    const spo = spanWins / 20;
+    return round5(spo / mx * 700);
+  };
+
   const anchors = { raw700, calibrated: mw, ownerFinal: owner, designJson: design, salaryOnly: salary };
   const anchorNames = Object.keys(anchors);
 
@@ -159,6 +168,20 @@ function salaryOnly() {
   };
   const ranks = {};
   for (const a of anchorNames) ranks[a] = rankOf(anchors[a]);
+  // rank by derived1000 (1000-scale raw span)
+  const der1000Vals = {}; for (const s of slots) { const c = table[s] || []; der1000Vals[s] = c.length ? round10((c[40] - c[20]) / WINS_PER_UNIT) : null; }
+  ranks.derived1000 = rankOf(der1000Vals);
+
+  // Spearman correlation raw700 vs calibrated over paired slots
+  const paired = slots.filter(s => mw[s] != null);
+  const rank = (a) => { const idx = a.map((v, i) => [v, i]).sort((p, q) => p[0] - q[0]); const rk = new Array(a.length); idx.forEach((p, k) => { rk[p[1]] = k; }); return rk; };
+  let spearman = null;
+  if (paired.length >= 3) {
+    const xr = rank(paired.map(s => raw700[s])); const yr = rank(paired.map(s => mw[s]));
+    let sxy = 0, sxx = 0, syy = 0; const mxr = xr.reduce((a, b) => a + b) / xr.length, myr = yr.reduce((a, b) => a + b) / yr.length;
+    xr.forEach((v, i) => { sxy += (v - mxr) * (yr[i] - myr); sxx += (v - mxr) ** 2; syy += (v - mxr) ** 2; });
+    spearman = +(sxy / Math.sqrt(sxx * syy)).toFixed(3);
+  }
 
   const rows = [];
   for (const s of slots) {
@@ -169,26 +192,52 @@ function salaryOnly() {
     const rs = Object.values(ranks).map(r => r[s]).filter(v => v != null);
     const rankSpread = rs.length ? Math.max(...rs) - Math.min(...rs) : null;
     const curve = table[s] || [];
+    const spanWins = curve.length ? (curve[40] - curve[20]) : null;
+    const derived1000 = spanWins != null ? round10(spanWins / WINS_PER_UNIT) : null;
+    const exp700 = spanWins != null ? expected700(spanWins) : null;
+    const quantErr = (mw[s] != null && exp700 != null) ? Number((mw[s] - exp700).toFixed(1)) : null;
+    // normalise all anchors to 1000-scale for a like-for-like spread
+    const norm = {};
+    norm.raw700 = raw700[s] != null ? raw700[s] * (1000 / 700) : null;
+    norm.calibrated = mw[s] != null ? mw[s] * (1000 / 700) : null;
+    norm.derived1000 = derived1000;
+    norm.ownerFinal = owner[s] != null ? owner[s] : null;
+    norm.designJson = design[s] != null ? design[s] : null;
+    norm.salaryOnly = salary[s] != null ? salary[s] : null;
+    const normNums = Object.values(norm).filter(v => v != null);
+    const spread1000 = normNums.length ? Math.max(...normNums) - Math.min(...normNums) : null;
+    const nrs = Object.values(ranks).map(r => r[s]).filter(v => v != null);
+    const rankSpreadN = nrs.length ? Math.max(...nrs) - Math.min(...nrs) : null;
     rows.push({
       slot: s,
       rawWinsPerOvr: wpo[s] == null ? null : Number(wpo[s].toFixed(6)),
       raw700Scale: raw700[s] == null ? null : Number(raw700[s].toFixed(2)),
+      derived1000,
       calibrated: mw[s] == null ? null : mw[s],
+      expected700: exp700 == null ? null : exp700,
+      quantError700: quantErr,
       ownerFinal: owner[s] == null ? null : owner[s],
       designJson: design[s] == null ? null : design[s],
       salaryOnly: salary[s] == null ? null : salary[s],
-      rankRaw700: ranks.raw700[s], rankCalibrated: ranks.calibrated[s],
+      rankRaw700: ranks.raw700[s], rankCalibrated: ranks.calibrated[s], rankDerived1000: ranks.derived1000[s],
       rankOwner: ranks.ownerFinal[s], rankDesign: ranks.designJson[s], rankSalary: ranks.salaryOnly[s],
       spreadPoints: spread == null ? null : Number(spread.toFixed(2)),
+      spread1000: spread1000 == null ? null : Number(spread1000.toFixed(1)),
       rankSpread,
+      disagreement700: (spread != null && spread > 100) || (rankSpread != null && rankSpread >= 6),
+      disagreement1000: (spread1000 != null && spread1000 > 150) || (rankSpreadN != null && rankSpreadN >= 6),
+      quantErrorWithinContract: quantErr != null ? Math.abs(quantErr) <= 2.5 : null,
       curveWinsAt70: curve.length ? Number(curve[20].toFixed(4)) : null,
       curveWinsAt90: curve.length ? Number(curve[40].toFixed(4)) : null,
       curveSpan70to90: curve.length ? Number((curve[40] - curve[20]).toFixed(6)) : null,
       curveOvr50: curve.length ? Number(curve[0].toFixed(4)) : null,
       curveOvr100: curve.length ? Number(curve[50].toFixed(4)) : null,
-      disagreement: (spread != null && spread > 100) || (rankSpread != null && rankSpread >= 6),
     });
   }
+
+  const nDisagree700 = rows.filter(r => r.disagreement700).length;
+  const nDisagree1000 = rows.filter(r => r.disagreement1000).length;
+  const nOutOfContract = rows.filter(r => r.quantErrorWithinContract === false).length;
 
   fs.mkdirSync(RESULTS_DIR, { recursive: true });
   const report = {
@@ -204,6 +253,14 @@ function salaryOnly() {
       salaryOnly: 'anchor C: salary $M x 25 (40M QB -> 1000), no manual +/-25 adjustments (REPORTED from Owner message)',
     },
     method: 'Node sandbox evaluation of the product inline engine (read-only); DOM/Network stubbed; deterministic — no RNG at this layer, n=1 measurement',
+    summary: {
+      nSlots: rows.length,
+      nDisagree700: nDisagree700,
+      nDisagree1000: nDisagree1000,
+      nOutOfContract: nOutOfContract,
+      spearmanRawVsCalibrated: spearman,
+      note: 'disagreement700: spread > 100 on 700-scale or rank spread >= 6 (includes Owner/design/salary anchors). disagreement1000: spread > 150 on 1000-scale or rank spread >= 6 (engine anchors only, like VL). quantErrorWithinContract: |calibrated - expected700| <= 2.5 per AGENTS section 3 contract.',
+    },
     rows,
   };
   fs.writeFileSync(OUT_JSON, JSON.stringify(report, null, 1) + '\n');
@@ -217,11 +274,12 @@ function salaryOnly() {
 
   const pad = (v) => String(v == null ? '—' : v).padEnd(10);
   console.log('\nT3 TRIANGULATION — ' + PRODUCT + ' ' + SHA_BEFORE.slice(0, 16) + ' (measured numbers VERIFIED by this run)');
-  console.log('slot   rawWins/OVR raw700  calibrated ownerFinal designJson salaryOnly spread   rankSpread disagree');
-  console.log('----   ---------- -------  ---------- ---------- ---------- ---------- ------   ---------- ----------');
+  console.log('slot   rawWins/OVR raw700 derived1000 calibrated expected700 quantErr700 spread1000  rankSpread  disagree1000');
+  console.log('----   ---------- ------- ----------- ---------- ----------- ----------- ----------  ----------  ------------');
   for (const r of rows) {
-    console.log(`${r.slot.padEnd(6)} ${pad(r.rawWinsPerOvr)} ${pad(r.raw700Scale)} ${pad(r.calibrated)} ${pad(r.ownerFinal)} ${pad(r.designJson)} ${pad(r.salaryOnly)} ${pad(r.spreadPoints)} ${pad(r.rankSpread)} ${r.disagreement ? 'FLAG' : ''}`);
+    console.log(`${r.slot.padEnd(6)} ${pad(r.rawWinsPerOvr)} ${pad(r.raw700Scale)} ${pad(r.derived1000)} ${pad(r.calibrated)} ${pad(r.expected700)} ${pad(r.quantError700)} ${pad(r.spread1000)} ${pad(r.rankSpread)} ${r.disagreement1000 ? 'FLAG' : '—'}`);
   }
-  console.log('\nWrites: ' + OUT_JSON);
+  console.log(`\nSummary: nSlots=${report.summary.nSlots} disagree700=${report.summary.nDisagree700} disagree1000=${report.summary.nDisagree1000} outOfContract=${report.summary.nOutOfContract} spearmanRawVsCalibrated=${report.summary.spearmanRawVsCalibrated}`);
+  console.log('Writes: ' + OUT_JSON);
   console.log('        ' + OUT_CSV);
 })().catch((e) => { console.error('FAILED:', e.message); process.exit(1); });
