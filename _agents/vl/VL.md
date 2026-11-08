@@ -4,25 +4,28 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## This session (2026-11-07, per START-HERE from origin/council/muse)
-- Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `node tools/preserve.mjs check` (vl = 0 dirty, OK).
-- Owner's bias question (P-013): bias-audit steps 1–2 already done earlier (committed 242a8a9d, 38e87e72). This session built + ran tooling on the modelWeights problem (read-only; no product file or protected constant touched):
-  - BUILT `tools/mathlab/raw-curve-witness.mjs` (T3) — per-slot raw `slotWins(s, ovr)` curves (ovr 50–99) beside calibrated `modelWeights()` (700 scale), per build, archived to `tools/mathlab/results/`, with AGENTS §3 quantisation-contract check. RUN on Pre-Colors: n=32, page errors 0, **maxQuantError700 = 0, outOfContract = 0 (contract holds exactly)**, raw↔calibrated Spearman r = 0.992 → `results/raw-curve-witness-40233d6be00e987c-2026-11-07.{json,md}` (VERIFIED).
-  - BUILT `tools/mathlab/triangulation.mjs` (T3) — per-slot multi-anchor Rosetta table: raw span · calibrated700 · derived1000 · volume/EPA/AV/salary-derived (all UNKNOWN until real-data run) · rank per anchor · spread · disagreement flag. RUN: raw↔calibrated Spearman r = 0.995, 0 disagreement flags → `results/*-triangulation.{md,json}` (VERIFIED).
-  - BUILT `tools/mathlab/uncertainty.mjs` (T12) — reporting law n/mean/median/sd/se/CI95/threshold/verdict; `--selftest` PASS; wrap on witness `rows.spanWins`: n=32, CI95 [0.552,0.908], threshold 0.5 → PASS (VERIFIED).
-  - BUILT `tools/mathlab/replacement-level-audit.mjs` (T4) — engine replacement baseline per slot (flat 80 OVR = no position-specific replacement); DL5 VERIFIED at 0.33 snap share stable 2023–25; depth slots UNKNOWN → `results/replacement-level-audit-2026-11-07.{md,json}` (runs clean, VERIFIED).
-- Governance artifacts written: `_agents/vl/notes/{hypothesis-ledger,discrepancy-register,ruling-log,held-out-lint}-2026-11-07.md` (H-001–H-008, D-001–D-008, ruling log, held-out lint).
-- Delivered revised Claude-facing prompt: `_agents/vl/deliveries/prompt-for-claude-2026-11-07-vl-revision.md` + inbox pointer `inbox/20261107-2352-vl-P-013-claude-prompt-revision.md` (FOR: P-013).
+## This session (2026-11-08, per START-HERE from origin/council/muse)
+- Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `git add` + WIP commit (323e2460) for the pre-existing dirty flexweight.mjs, `node tools/preserve.mjs check` (vl = 0 dirty, 1 local-only commit, NOT pushed — briefing says push nothing).
+- Innovation round (all read-only; no product/AGENTS/protected-constant edits; DEFAULT_WEIGHTS left as OR set with Owner approval):
+  - Tool 1 BUILT `tools/mathlab/flex-price-v2.mjs` (T6 flex price analyzer v2) — compares every flex.json slot-pair penalty vs actual win cost (weight delta x 0.00254), proposes fairCap = clamp(round(winCost x 10), 0, 10), flags under/over-priced. `--selftest` PASS. Run on Pre-Colors: 107 pairs, 4 underpriced (C->FB, FS->DIME, SS->DIME, K->P), 4 overpriced (SS->FB, P->K, SS->FS, FS->SS). Surfaces TE->WR1 discrepancy: design.json TE1=270/WR1=470 is a +0.508-win slot upgrade, so briefed "0.63 wins lost" must come from salary table — a discrepancy to reconcile. Receipt: `results/flex-price-v2-2026-11-08.{md,json}`.
+  - Tool 2 BUILT `tools/mathlab/raw-curve-witness-v2.mjs` (T3 raw-curve witness v2) — adds per-slot ABSORBED detection (|calibrated-expected| <= 1.25), calibration-lineage hint vs design.json, and a mechanics-independence witness comparing raw curves across two builds. `--selftest` PASS. Run on Pre-Colors witness: nAbsorbed=30/30, absorbedFraction=1.0 (FULLY ABSORBED), designAligned=6, diverges=24 (display is NOT design.json-aligned). Independence witness Pre-Colors vs Z-post-blue-w54: nCompared=32, identical=true (raw curve = mechanics, not display). Receipt: `results/raw-curve-witness-v2-40233d6be00e987c-2026-11-08.{md,json}` + `results/raw-curve-witness-v2-independence-2026-11-08.{md,json}`.
+  - Re-ran existing tools for fresh receipts: raw-curve-witness on Pre-Colors (n=32, pageErrors=0, maxQuantError700=0, outOfContract=0, Spearman 0.992); triangulation (n=32, nDisagree=0, Spearman 0.995); uncertainty wrap on rows.spanWins (n=32, CI95 [0.552,0.908], threshold 0.5, PASS); uncertainty selftest PASS; replacement-level-audit (nSlots=9, verified=1, unknown=7, partial=1).
+- Governance artifact written: `_agents/vl/notes/discrepancy-register-2026-11-08.md` — D-009 (VERIFIED): display diverges from design.json 24/30 slots, raw curve fully absorbed + mechanics-independent; display is a third unvalidated anchor.
+- Notes written: `_agents/vl/notes/innovation-2026-11-08.md` — answers to all 60 council questions (Q1–Q60), labelled VERIFIED/REPORTED/INFERRED/UNKNOWN; >40 INFERRED-or-better (requirement met).
+- Inbox entry: `inbox/20261108-<hhmm>-vl-P-innovation-2026-11-08.md` (FOR: innovation round; summarizes tools + findings + what Claude should read).
+- Zip: `download/z-post-blue-docs-update-2026-11-08-innovation.zip` with UPDATE-README + CHECKSUMS (built cleanly, no /tmp).
 
-## Updated understanding (P-013 modelWeights problem)
-- Fit target = the OLD personal table (lab 28 Oct; `design.json` = QB 1000, WR1 470, TE1 270, CB1 450, FS 260, SS 240), NOT the salary table (arrived 6 Nov). Two inconsistent targets (mechanics fit to old personal; display weights = salary), neither validated. `modelWeights()` inherits the old preference via fitted `RATING_SPECS`/`MC` — Tier A cannot self-validate.
-- Owner permission (binding, P-013): abandon old personal table AND salary table as calibration targets/foundations; keep as display presets/independent anchors only. `DEFAULT_WEIGHTS` may be repositioned/retired (Architect implements + re-pins MERGE-MANIFEST in same commit).
-- New display presets: QB = 1000, other slots from engine math, increments of 50. Do not hard-code old tables.
+## Key new findings (this session)
+- F1 (VERIFIED): Pre-Colors display is FULLY ABSORBED into the raw curve (outOfContract=0, maxQuantError700=0, n=32) — display = quantised mechanics, no independent signal.
+- F2 (VERIFIED): Display diverges from design.json (27 Oct) on 24/30 slots (only 6 DESIGN-ALIGNED) → design.json is NOT the display foundation; calibrated weights are a third unvalidated anchor.
+- F3 (VERIFIED): Raw curves IDENTICAL across Pre-Colors (40233d6) and Z-post-blue-w54 (32/32) → raw curve is mechanics-independent (display-independent). Supports running the witness as a per-build gate.
+- F4 (INFERRED): Flex −10 whitelist (REV 4) too restrictive; unified slot-pair penalty clamp(round(winCost x 10), 0, 10) more defensible (Q19/Q23/Q59).
 
 ## Open needs (to ask Claude/Architect)
-- Fit JSONs (`results/fit-*.json`) + `calibrate-weights.mjs` output from `architect/engine-and-seats` for the Q2 parameter diff (layer-audit format; receiver = `triangulation.mjs` rows).
-- Confirmation of `colors/src/engine/rng.ts` seed injection point (unseeded shell until T-20261022-claude-2 lands).
+- Fit JSONs + calibrate-weights.mjs output from `architect/engine-and-seats` for Q2 parameter diff.
+- Confirmation of `colors/src/engine/rng.ts` seed injection point (unseeded shell until T-20261022-claude-2).
 - Rosetta schema agreement (shared keys + `track` column shell/colors/real).
+- OR's branch file (395f2641) to re-run T1 on salary-based weights (Q14) and to run independence witness against it.
 - Claude's answers to Q1–Q3 and a–d; his step order/waves.
 
 ## Queue remaining
@@ -31,4 +34,4 @@
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `a8b56034` (pushed to origin/council/vl) — this session's commit follows.
+- **HEAD:** `323e2460` (local-only, not pushed) — session WIP commit follows this lane update.

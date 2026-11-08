@@ -1,0 +1,117 @@
+# Flex price analysis v2
+
+Compares each flex.json penalty vs actual win cost (weight delta x 0.00254). fairCap = clamp(round(winCost x 10), 0, 10) — slot-pair-specific penalty, REV 5 ceiling of 10.
+underpriced = penalty below fair cap (flex too cheap); overpriced = penalty above fair cap (prohibitive).
+
+| from | to | penalty | weightFrom | weightTo | winDelta (wins) | fairCap | underpriced | overpriced |
+|----|----|----|----|----|----|----|----|----|
+| QB | FS | 10 | 1000 | 260 | -1.8796 | 10 | — | — |
+| C | FB | 4 | 320 | 30 | -0.7366 | 7 | YES | — |
+| FS | DIME | 0 | 260 | 40 | -0.5588 | 6 | YES | — |
+| SS | FB | 6 | 240 | 30 | -0.5334 | 5 | — | YES |
+| SS | DIME | 0 | 240 | 40 | -0.508 | 5 | YES | — |
+| K | P | 0 | 200 | 100 | -0.254 | 3 | YES | — |
+| P | K | 4 | 100 | 200 | 0.254 | 3 | — | YES |
+| SS | FS | 2 | 240 | 260 | 0.0508 | 1 | — | YES |
+| FS | SS | 2 | 260 | 240 | -0.0508 | 1 | — | YES |
+| RB | FB | 2 | n/a | 30 | n/a | n/a | — | — |
+| RB | WR | 4 | n/a | n/a | n/a | n/a | — | — |
+| RB | TE | 6 | n/a | n/a | n/a | n/a | — | — |
+| FB | RB | 4 | 30 | n/a | n/a | n/a | — | — |
+| FB | TE | 4 | 30 | n/a | n/a | n/a | — | — |
+| WR | RB | 4 | n/a | n/a | n/a | n/a | — | — |
+| WR | TE | 4 | n/a | n/a | n/a | n/a | — | — |
+| WR | SS | 4 | n/a | 240 | n/a | n/a | — | — |
+| WR | FS | 4 | n/a | 260 | n/a | n/a | — | — |
+| WR | NICKEL | 4 | n/a | n/a | n/a | n/a | — | — |
+| WR | DIME | 4 | n/a | 40 | n/a | n/a | — | — |
+| WR | CB | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | WR | 2 | n/a | n/a | n/a | n/a | — | — |
+| TE | FB | 2 | n/a | 30 | n/a | n/a | — | — |
+| TE | RB | 4 | n/a | n/a | n/a | n/a | — | — |
+| TE | C | 6 | n/a | 320 | n/a | n/a | — | — |
+| TE | OG | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | OT | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | EDGE | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | DT | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | ILB | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | OLB | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | SS | 6 | n/a | 240 | n/a | n/a | — | — |
+| TE | FS | 6 | n/a | 260 | n/a | n/a | — | — |
+| TE | NICKEL | 6 | n/a | n/a | n/a | n/a | — | — |
+| TE | DIME | 6 | n/a | 40 | n/a | n/a | — | — |
+| OT | OG | 0 | n/a | n/a | n/a | n/a | — | — |
+| OT | C | 0 | n/a | 320 | n/a | n/a | — | — |
+| OT | DT | 4 | n/a | n/a | n/a | n/a | — | — |
+| OT | FB | 4 | n/a | 30 | n/a | n/a | — | — |
+| OT | RB | 6 | n/a | n/a | n/a | n/a | — | — |
+| OG | C | 0 | n/a | 320 | n/a | n/a | — | — |
+| OG | OT | 4 | n/a | n/a | n/a | n/a | — | — |
+| OG | DT | 4 | n/a | n/a | n/a | n/a | — | — |
+| OG | FB | 4 | n/a | 30 | n/a | n/a | — | — |
+| OG | RB | 6 | n/a | n/a | n/a | n/a | — | — |
+| C | OG | 0 | 320 | n/a | n/a | n/a | — | — |
+| C | OT | 4 | 320 | n/a | n/a | n/a | — | — |
+| C | DT | 4 | 320 | n/a | n/a | n/a | — | — |
+| C | RB | 6 | 320 | n/a | n/a | n/a | — | — |
+| DT | OG | 4 | n/a | n/a | n/a | n/a | — | — |
+| DT | C | 4 | n/a | 320 | n/a | n/a | — | — |
+| DT | EDGE | 4 | n/a | n/a | n/a | n/a | — | — |
+| DT | FB | 4 | n/a | 30 | n/a | n/a | — | — |
+| DT | OT | 6 | n/a | n/a | n/a | n/a | — | — |
+| DT | ILB | 4 | n/a | n/a | n/a | n/a | — | — |
+| DT | OLB | 4 | n/a | n/a | n/a | n/a | — | — |
+| DT | RB | 6 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | DT | 2 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | OLB | 0 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | ILB | 4 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | FB | 4 | n/a | 30 | n/a | n/a | — | — |
+| EDGE | TE | 6 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | RB | 6 | n/a | n/a | n/a | n/a | — | — |
+| EDGE | NICKEL | 6 | n/a | n/a | n/a | n/a | — | — |
+| ILB | ILB | 0 | n/a | n/a | n/a | n/a | — | — |
+| ILB | OLB | 0 | n/a | n/a | n/a | n/a | — | — |
+| ILB | DT | 4 | n/a | n/a | n/a | n/a | — | — |
+| ILB | FB | 4 | n/a | 30 | n/a | n/a | — | — |
+| ILB | EDGE | 6 | n/a | n/a | n/a | n/a | — | — |
+| ILB | TE | 6 | n/a | n/a | n/a | n/a | — | — |
+| ILB | SS | 6 | n/a | 240 | n/a | n/a | — | — |
+| ILB | FS | 6 | n/a | 260 | n/a | n/a | — | — |
+| ILB | NICKEL | 6 | n/a | n/a | n/a | n/a | — | — |
+| ILB | DIME | 6 | n/a | 40 | n/a | n/a | — | — |
+| OLB | OLB | 0 | n/a | n/a | n/a | n/a | — | — |
+| OLB | ILB | 2 | n/a | n/a | n/a | n/a | — | — |
+| OLB | EDGE | 4 | n/a | n/a | n/a | n/a | — | — |
+| OLB | NICKEL | 4 | n/a | n/a | n/a | n/a | — | — |
+| OLB | DT | 6 | n/a | n/a | n/a | n/a | — | — |
+| OLB | TE | 6 | n/a | n/a | n/a | n/a | — | — |
+| OLB | SS | 6 | n/a | 240 | n/a | n/a | — | — |
+| OLB | FS | 6 | n/a | 260 | n/a | n/a | — | — |
+| OLB | FB | 6 | n/a | 30 | n/a | n/a | — | — |
+| OLB | DIME | 6 | n/a | 40 | n/a | n/a | — | — |
+| SS | NICKEL | 0 | 240 | n/a | n/a | n/a | — | — |
+| SS | OLB | 4 | 240 | n/a | n/a | n/a | — | — |
+| SS | CB | 6 | 240 | n/a | n/a | n/a | — | — |
+| SS | ILB | 6 | 240 | n/a | n/a | n/a | — | — |
+| SS | WR | 6 | 240 | n/a | n/a | n/a | — | — |
+| SS | TE | 6 | 240 | n/a | n/a | n/a | — | — |
+| SS | RB | 6 | 240 | n/a | n/a | n/a | — | — |
+| FS | NICKEL | 0 | 260 | n/a | n/a | n/a | — | — |
+| FS | CB | 4 | 260 | n/a | n/a | n/a | — | — |
+| FS | WR | 4 | 260 | n/a | n/a | n/a | — | — |
+| FS | ILB | 4 | 260 | n/a | n/a | n/a | — | — |
+| FS | OLB | 4 | 260 | n/a | n/a | n/a | — | — |
+| FS | TE | 6 | 260 | n/a | n/a | n/a | — | — |
+| FS | RB | 6 | 260 | n/a | n/a | n/a | — | — |
+| CB | FS | 0 | n/a | 260 | n/a | n/a | — | — |
+| CB | NICKEL | 0 | n/a | n/a | n/a | n/a | — | — |
+| CB | DIME | 0 | n/a | 40 | n/a | n/a | — | — |
+| CB | SS | 2 | n/a | 240 | n/a | n/a | — | — |
+| CB | WR | 4 | n/a | n/a | n/a | n/a | — | — |
+| CB | ILB | 6 | n/a | n/a | n/a | n/a | — | — |
+| CB | OLB | 4 | n/a | n/a | n/a | n/a | — | — |
+| CB | TE | 6 | n/a | n/a | n/a | n/a | — | — |
+| CB | RB | 6 | n/a | n/a | n/a | n/a | — | — |
+
+Slots: 107 pairs · underpriced: 4 · overpriced: 4
+Note: design.json TE1=270 WR1=470 makes TE->WR1 a slot-value upgrade (+0.508 wins), so the briefed "0.63 wins lost" must come from a different weighting (salary table) — a discrepancy to reconcile, not an engine bug.
