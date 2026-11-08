@@ -1,0 +1,8 @@
+067e465b765b6f0673b6ff2476ae6aa076b8de374cadf41e1bedf9eac61f2417  _agents/or/notes/innovation-2026-11-08.md
+fc62411c503a60e581875274d24015cae1e50b505dc9a194c2b1daf4075436ce  tools/mathlab/absorber-check.mjs
+77a4496cb1ca58848a5ec63c6f3b0fc92819bc5eeee8c0aef7cc3dbe10d4c505  tools/mathlab/flex-penalty.mjs
+abf103da70a753407f1f2a25481c5f81bdcbfebbc55827ccd319ade8711a700f  _agents/or/deliveries/hypothesis-ledger.json
+60b0291b6f2b082498287bbafa8917e62b8ab5a509ab3359957f93400eec3589  _agents/or/deliveries/discrepancy-register.json
+c660d69ee54f12c3773218ffbab1804341216ce7d9b321ded627ed4c91d4e50f  inbox/20261108-0317-or-P-290-innovation-2026-11-08.md
+3d520e342e0c79e8cc19ce7b7a8ef248de648180c2c4fb512915d268d0631912  _agents/or/OR.md
+ee9f44fc2167d5765d4b50520e8cf2e2c02daf2ffc744b9257d874bdf0fcc912  download/UPDATE-README.md

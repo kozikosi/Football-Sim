@@ -1,0 +1,12 @@
+[
+  {
+    "id": "H-001",
+    "title": "L1 validation",
+    "prediction": "T1 detects EPA gap >5%",
+    "control": "control=real nflverse EPA; treatment=engine EPA",
+    "successCriteria": "p<0.05 slot-wise KS test",
+    "status": "pending",
+    "createdAt": "2026-11-08T00:04:09.751Z",
+    "updatedAt": "2026-11-08T00:04:09.751Z"
+  }
+]

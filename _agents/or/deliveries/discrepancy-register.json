@@ -1,0 +1,18 @@
+[
+  {
+    "id": "D-001",
+    "claim": "WR1 EPA 18% high",
+    "suspectedCause": "slotWins overweights WR1",
+    "status": "open",
+    "createdAt": "2026-11-08T00:04:17.484Z",
+    "updatedAt": "2026-11-08T00:04:17.484Z"
+  },
+  {
+    "id": "D-002",
+    "claim": "Manifest hash re-pinning after DEFAULT_WEIGHTS change",
+    "suspectedCause": "DEFAULT_WEIGHTS changed from personal table to salary-based (OR branch, hash 395f26411333a41f). Every tool pinning hash 40233d6be00e987c must be re-pinned to 395f26411333a41f. Tools identified: tools/lint.mjs, tools/post-merge-smoke.mjs, MERGE-MANIFEST.md, _agents/README.md.",
+    "status": "open",
+    "createdAt": "2026-11-08T03:17:10.981Z",
+    "updatedAt": "2026-11-08T03:17:10.981Z"
+  }
+]
