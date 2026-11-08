@@ -34,3 +34,12 @@ export function slotWins20(slot: SlotId, base: Base = '4-3'): number { return sl
 export function derivedWeights(base: Base = '4-3'): Record<SlotId, number> {
   return Object.fromEntries(SLOT_IDS.map((s) => [s, slotWins20(s, base) / WEIGHT_UNIT_WINS])) as Record<SlotId, number>;
 }
+
+// The default weight display (Owner 8 Nov: the salary table is retired, kept as a reference only; Muse Q7: the default display is MEASURED).
+// What the user sees is what the engine measures: derivedWeights scaled so QB = 1000 (the Owner's unit), shown to the nearest 5 (the display step).
+// It is never read back into the engine: SLOTS[].weight stays the engine's fitted input (lineup, draft), so no seeded output moves.
+// tools/mathlab/witness.mjs judge() calls this MEASURED because it differs from the table and tracks the raw curve (colors/test/nfl/witness.test.ts).
+export function measuredDisplayWeights(base: Base = '4-3'): Record<SlotId, number> {
+  const raw = derivedWeights(base), c = 1000 / raw.QB;
+  return Object.fromEntries(SLOT_IDS.map((s) => [s, Math.round((raw[s] * c) / 5) * 5])) as Record<SlotId, number>;
+}

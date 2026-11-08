@@ -15,7 +15,8 @@ export type Unit = 'offense' | 'defense' | 'special';
 
 export interface SlotDef { id: SlotId; weight: number; dest: Dest; unit: Unit }
 
-// Weights are wins-value per OVR point in one fixed unit (1 point = 0.00254 wins over a 70 -> 90 upgrade).
+// Weights are the engine's fitted inputs (lineup and draft maths), in one fixed unit (1 point = 0.00254 wins over a 70 -> 90 upgrade).
+// Owner 8 Nov: the salary table they were fitted to is retired (reference only); the DISPLAYED weights are measuredDisplayWeights() in value.ts.
 // Source: _agents/ENGINE-MATH-SPEC.md section 2 plus REV 4 (DL5 140) and REV 5 (TE3 10, WR4 10); equal to
 // tools/mathlab/design.json, which a test compares key by key.
 export const SLOTS: readonly SlotDef[] = [

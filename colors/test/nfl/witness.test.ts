@@ -6,7 +6,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { readFileSync } from 'node:fs';
-import { derivedWeights } from '../../src/sports/nfl/engine/value.ts';
+import { derivedWeights, measuredDisplayWeights } from '../../src/sports/nfl/engine/value.ts';
 import { SLOT_IDS, WEIGHT } from '../../src/sports/nfl/engine/slots.ts';
 import { withLegacyCoefficients } from './golden/legacy-coefficients.ts';
 
@@ -49,4 +49,14 @@ test('a stale fit is caught: display == table but the engine no longer tracks it
 test('the Pre-Colors default tolerance (5) is too tight for a fitted engine: the verdict flips FITTED -> ECHO without the stated 50', () => {
   assert.equal(judge(raw, display, FIT_TABLE, SLOT_IDS).verdict, 'ECHO');
   assert.equal(judge(raw, display, FIT_TABLE, SLOT_IDS, OWNER_FIT_LIMIT).verdict, 'FITTED');
+});
+
+test('the default display (measuredDisplayWeights) is MEASURED: QB 1000, nearest 5, not the table, tracks the raw curve', () => {
+  const shown: Record<string, number> = { ...measuredDisplayWeights('4-3') };
+  assert.equal(shown.QB, 1000);
+  for (const s of SLOT_IDS) assert.equal(shown[s] % 5, 0, s);
+  const r = judge(raw, shown, FIT_TABLE, SLOT_IDS);
+  assert.equal(r.verdict, 'MEASURED', `got ${r.verdict}, max dev ${r.maxDev.toFixed(1)} at ${r.worst}`);
+  assert.equal(r.echo, false);
+  assert.ok(SLOT_IDS.some((s) => shown[s] !== FIT_TABLE[s]), 'a measurement that equals the table everywhere would be an echo');
 });
