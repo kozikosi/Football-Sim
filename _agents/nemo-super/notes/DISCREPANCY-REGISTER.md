@@ -21,5 +21,7 @@ D-008 | Defense EPA by position (DL/LB/CB) unavailable in nflverse player_stats 
 D-009 | WR engine ratio-to-QB 0.649 vs real 0.515 — engine slightly high. | M5 by-OVR. | Mild overvaluation of WR marginal impact. | VERIFIED (mild) | bias-results-2026-11-07.md: WR engine 0.649 vs real 0.515. |
 D-010 | Engine FLEX.QB = {} (QB cannot flex to anything → EMERGENCY_PENALTY 8) | Owner flex.json REV 4/5: QB → FS at 10 | flexRule() / product FLEX table not updated to the Owner's REV-4 QB->FS rule; any QB flex returns EMERGENCY_PENALTY (8) instead of 10 | OPEN | flex-audit.mjs on Football-Sim-PreColors.html (sha256 40233d6be00e987c…): ADDED QB->FS 10, product cur.QB = {}; flexcheck.mjs: ADDED QB->FS 10 | 2026-11-08
 
+D-011 | Salary-based DEFAULT_WEIGHTS (OR's branch, hash 395f2641…) pinned in zero tools and never validated against real data (snap/EPA); unvalidated anchor substituted for the mechanics-based design table | nflverse snap_counts 2023/24 + player_stats 2024 | Circularity relocated, not resolved (Q5): salary table replaced the old personal table as the weight anchor, but salary ≠ marginal wins and no validation exists | OPEN | Q40 grep: `40233d6b…` pinned in 5 tools, `395f2641…` pinned nowhere; D-001/D-004 bias data (QB weight 22.7% vs QB snap 9.1%, vs QB EPA 24.0%) | 2026-11-09
+
 
 Status key: VERIFIED · REPORTED · INFERRED · OPEN.
