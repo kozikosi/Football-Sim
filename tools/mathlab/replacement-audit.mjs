@@ -3,7 +3,9 @@
 // Documents the engine's replacement definition per slot group and runs a
 // sensitivity analysis on the definition (N = starting spots still open
 // league-wide). Optionally compares engine replacement shares to real
-// snap/depth usage if nflverse snap data is provided.
+// snap/depth usage if nflverse snap data is provided. Includes Beam's
+// VERIFIED DL5 snap measurement (rank5 mean 32.8% snaps, 2023-2025, n=1632
+// team-games) from origin/council/beam.
 //
 // Engine definition (Football-Sim-PreColors.html, read-only, VERIFIED by reading):
 //   replacementLevels(pool, rosters):
@@ -72,10 +74,25 @@ function sensitivityByN(pool) {
   return { groups, byGroup: out };
 }
 
+// Beam's VERIFIED DL5 snap comparison (tools/mathlab/results/dl5-snap-measurement-2026-10-27.txt, origin/council/beam)
+const dl5 = {
+  slot: 'DL5', engineReplacement: '5th-ranked DL, rotation share 0.33 (measured)',
+  realUsage: 'rank5 mean 32.8% snaps (median 35%, p25 22%, p75 44%), 2023-2025, n=1632 team-games',
+  status: 'VERIFIED', sensitivity: 'weight 91..184 across 22%-44% share (fitlm, other spots refit <=1.8%)',
+};
+
+const known = [
+  dl5,
+  { slot: 'CB3/NICKEL', engineReplacement: '3rd CB, situational', realUsage: 'UNKNOWN — needs snap counts by DB depth', status: 'UNKNOWN', sensitivity: 'TODO' },
+  { slot: 'DIME', engineReplacement: '6th DB, situational', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+  { slot: 'SAM', engineReplacement: 'OLB2 / situational', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+  { slot: 'FB', engineReplacement: 'fullback, low share', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+  { slot: 'TE2/TE3', engineReplacement: 'backup TE, fixed share (recv)', realUsage: 'PARTIAL — personnel-shares.py covers offense personnel', status: 'PARTIAL', sensitivity: 'TODO' },
+];
+
 // --- Compare to real snap depth (if snaps supplied) ---
 // snaps: array of {group, snapShare} (real NFL snap share per group).
 function compareToSnaps(sens, snaps) {
-  const snapByGroup = {};
   for (const s of snaps) snapByGroup[s.group] = Number(s.snapShare);
   const comp = [];
   for (const g of Object.keys(sens.byGroup)) {
@@ -93,12 +110,13 @@ const comp = snaps && sens ? compareToSnaps(sens, snaps) : null;
 const report = {
   tool: 'T4 replacement-level auditor',
   engineDefinition: ENGINE_DEFINITION,
+  known,
   sensitivity: sens,
   snapComparison: comp,
   generatedAt: new Date().toISOString() + 'Z',
   reportingLaw: 'T12',
   nGroups: sens ? sens.groups.length : 0,
-  note: 'No pool supplied -> structural definition only. To run sensitivity, supply --pool as [{group, ovr}, ...]. To compare to real usage, supply --snaps as [{group, snapShare}, ...] from a named nflverse release (hash-pinned).'
+  note: 'No pool supplied -> structural definition only. Known DL5 slot is VERIFIED against Beam nflverse snap measurement (rank5 mean 32.8% snaps, 2023-2025, n=1632 team-games). To run sensitivity, supply --pool as [{group, ovr}, ...]. To compare to real usage, supply --snaps as [{group, snapShare}, ...] from a named nflverse release (hash-pinned).'
 };
 
 const out = JSON.stringify(report, null, 2);

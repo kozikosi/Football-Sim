@@ -1,0 +1,3823 @@
+{
+ "generatedUtc": "2026-11-07T23:59:16.382ZZ",
+ "product": "Football-Sim-PreColors.html 40233d6be00e987c",
+ "method": "cost(pos->dest, ovr) = slotWins(natural, ovr) - slotWins(dest, ovr); OVR-equivalent = winsLost / slotWinsPerOvr(dest). Deterministic all-else-80 matchup model; no RNG at this layer.",
+ "labels": "VERIFIED = measured from the named build by this script (deterministic, n=1 per cell); flat penalties REPORTED from product FLEX table (lines 940-952); no estimates substituted",
+ "status": "DETERMINISTIC LOOKUP ONLY. Full T6 (paired-seed lineup re-optimization across sampled supporting casts, percentile table) blocked on injectable/seeded RNG (task T-20261022-claude-2). Owner -10 flex cap stays the interim guard (Owner ruling 2026-10-29).",
+ "slope": {
+  "QB": 0.12707005242313602,
+  "RB1": 0.03326638570037114,
+  "RB2": 0.010988919750875823,
+  "WR1": 0.055166285720183825,
+  "WR2": 0.030028493549437856,
+  "WR3": 0.01914901781995434,
+  "TE1": 0.03999005378886973,
+  "TE2": 0.007188043873683353,
+  "OT1": 0.05179453893825756,
+  "OT2": 0.05179453893825756,
+  "OG1": 0.04261832749849094,
+  "OG2": 0.04261832749849094,
+  "C": 0.04261832749849094,
+  "DE1": 0.06504768532917334,
+  "DE2": 0.05504032836035121,
+  "DT1": 0.04728691220206592,
+  "DT2": 0.037955145948820226,
+  "MIKE": 0.04315272990181257,
+  "WILL": 0.040138813859824964,
+  "SAM": 0.003702970549043824,
+  "CB1": 0.07214522890687632,
+  "CB2": 0.058874554745720745,
+  "CB3": 0.04700483383269547,
+  "SS": 0.044218341339372136,
+  "FS": 0.04271372872120033,
+  "K": 0.036092307692307764
+ },
+ "rules": [
+  {
+   "pos": "LT",
+   "natural": "OT1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.50831,
+     "winsFlex": -0.48059,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.26123,
+     "winsFlex": 0.23511,
+     "winsLost": 0.02612,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.52758,
+     "winsFlex": 0.46515,
+     "winsLost": 0.06243,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.79934,
+     "winsFlex": 0.69034,
+     "winsLost": 0.109,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "RT",
+   "natural": "OT1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.50831,
+     "winsFlex": -0.48059,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.26123,
+     "winsFlex": 0.23511,
+     "winsLost": 0.02612,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.52758,
+     "winsFlex": 0.46515,
+     "winsLost": 0.06243,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.79934,
+     "winsFlex": 0.69034,
+     "winsLost": 0.109,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "LG",
+   "natural": "OG1",
+   "dest": "OT",
+   "flexSlot": "OT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.50831,
+     "winsLost": 0.09552,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.26123,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.52758,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.79934,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "LG",
+   "natural": "OG1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.48059,
+     "winsLost": 0.0678,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "RG",
+   "natural": "OG1",
+   "dest": "OT",
+   "flexSlot": "OT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.50831,
+     "winsLost": 0.09552,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.26123,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.52758,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.79934,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "RG",
+   "natural": "OG1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.48059,
+     "winsLost": 0.0678,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "C",
+   "natural": "C",
+   "dest": "OT",
+   "flexSlot": "OT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.50831,
+     "winsLost": 0.09552,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.26123,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.52758,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.79934,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "C",
+   "natural": "C",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.41279,
+     "winsFlex": -0.48059,
+     "winsLost": 0.0678,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21623,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43957,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.67048,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "DE",
+   "flexSlot": "DE1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.65774,
+     "winsLost": 0.17715,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.3233,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.64321,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.95999,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.43978,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.21364,
+     "winsLost": 0.02148,
+     "ovrEquivalent": 0.5
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.42327,
+     "winsLost": 0.04187,
+     "ovrEquivalent": 0.97
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.62904,
+     "winsLost": 0.0613,
+     "ovrEquivalent": 1.42
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.19907,
+     "winsLost": 0.03604,
+     "ovrEquivalent": 0.9
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.39507,
+     "winsLost": 0.07008,
+     "ovrEquivalent": 1.75
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.58808,
+     "winsLost": 0.10226,
+     "ovrEquivalent": 2.55
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 4,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.0185,
+     "winsLost": 0.21661,
+     "ovrEquivalent": 58.5
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.03697,
+     "winsLost": 0.42818,
+     "ovrEquivalent": 115.63
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.05541,
+     "winsLost": 0.63493,
+     "ovrEquivalent": 171.47
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "OG",
+   "flexSlot": "OG1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.41279,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.21623,
+     "winsLost": 0.01888,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.43957,
+     "winsLost": 0.02558,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.67048,
+     "winsLost": 0.01986,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "C",
+   "flexSlot": "C",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.41279,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.21623,
+     "winsLost": 0.01888,
+     "ovrEquivalent": 0.44
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.43957,
+     "winsLost": 0.02558,
+     "ovrEquivalent": 0.6
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.67048,
+     "winsLost": 0.01986,
+     "ovrEquivalent": 0.47
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "OT",
+   "flexSlot": "OT1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.50831,
+     "winsLost": 0.02772,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.26123,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.52758,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.79934,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "DT",
+   "natural": "DT1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.48059,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.23511,
+     "winsFlex": 0.18107,
+     "winsLost": 0.05405,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.46515,
+     "winsFlex": 0.39819,
+     "winsLost": 0.06696,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.69034,
+     "winsFlex": 0.54936,
+     "winsLost": 0.14098,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 2,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.48059,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.23511,
+     "winsLost": 0.08818,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.46515,
+     "winsLost": 0.17806,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.69034,
+     "winsLost": 0.26965,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.43978,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.21364,
+     "winsLost": 0.10966,
+     "ovrEquivalent": 2.54
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.42327,
+     "winsLost": 0.21993,
+     "ovrEquivalent": 5.1
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.62904,
+     "winsLost": 0.33095,
+     "ovrEquivalent": 7.67
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.19907,
+     "winsLost": 0.12422,
+     "ovrEquivalent": 3.09
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.39507,
+     "winsLost": 0.24814,
+     "ovrEquivalent": 6.18
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.58808,
+     "winsLost": 0.37192,
+     "ovrEquivalent": 9.27
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.0185,
+     "winsLost": 0.3048,
+     "ovrEquivalent": 82.31
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.03697,
+     "winsLost": 0.60624,
+     "ovrEquivalent": 163.72
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.05541,
+     "winsLost": 0.90459,
+     "ovrEquivalent": 244.29
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.20192,
+     "winsLost": 0.12138,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.40793,
+     "winsLost": 0.23528,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.62134,
+     "winsLost": 0.33866,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "REDG",
+   "natural": "DE1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.18107,
+     "winsLost": 0.14223,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.39819,
+     "winsLost": 0.24502,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.54936,
+     "winsLost": 0.41064,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 2,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.48059,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.23511,
+     "winsLost": 0.08818,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.46515,
+     "winsLost": 0.17806,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.69034,
+     "winsLost": 0.26965,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.43978,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.21364,
+     "winsLost": 0.10966,
+     "ovrEquivalent": 2.54
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.42327,
+     "winsLost": 0.21993,
+     "ovrEquivalent": 5.1
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.62904,
+     "winsLost": 0.33095,
+     "ovrEquivalent": 7.67
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.19907,
+     "winsLost": 0.12422,
+     "ovrEquivalent": 3.09
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.39507,
+     "winsLost": 0.24814,
+     "ovrEquivalent": 6.18
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.58808,
+     "winsLost": 0.37192,
+     "ovrEquivalent": 9.27
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.0185,
+     "winsLost": 0.3048,
+     "ovrEquivalent": 82.31
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.03697,
+     "winsLost": 0.60624,
+     "ovrEquivalent": 163.72
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.05541,
+     "winsLost": 0.90459,
+     "ovrEquivalent": 244.29
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.20192,
+     "winsLost": 0.12138,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.40793,
+     "winsLost": 0.23528,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.62134,
+     "winsLost": 0.33866,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "LEDG",
+   "natural": "DE1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.65774,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3233,
+     "winsFlex": 0.18107,
+     "winsLost": 0.14223,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.64321,
+     "winsFlex": 0.39819,
+     "winsLost": 0.24502,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.95999,
+     "winsFlex": 0.54936,
+     "winsLost": 0.41064,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "DE",
+   "flexSlot": "DE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.65774,
+     "winsLost": 0.21796,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.3233,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.64321,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.95999,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.48059,
+     "winsLost": 0.04081,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "CB3",
+   "flexSlot": "CB3",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.47721,
+     "winsLost": 0.03743,
+     "ovrEquivalent": 0.8
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.23318,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.46288,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.69363,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.44824,
+     "winsLost": 0.00846,
+     "ovrEquivalent": 0.19
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.21954,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.43613,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.64982,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.43271,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.21214,
+     "winsLost": 0.00149,
+     "ovrEquivalent": 0.03
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.42157,
+     "winsLost": 0.00171,
+     "ovrEquivalent": 0.04
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.62833,
+     "winsLost": 0.00071,
+     "ovrEquivalent": 0.02
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.20192,
+     "winsLost": 0.01172,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.40793,
+     "winsLost": 0.01535,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.62134,
+     "winsLost": 0.0077,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "MIKE",
+   "natural": "MIKE",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43978,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21364,
+     "winsFlex": 0.18107,
+     "winsLost": 0.03257,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42327,
+     "winsFlex": 0.39819,
+     "winsLost": 0.02508,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62904,
+     "winsFlex": 0.54936,
+     "winsLost": 0.07969,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "DE",
+   "flexSlot": "DE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.65774,
+     "winsLost": 0.25004,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.3233,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.64321,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.95999,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.48059,
+     "winsLost": 0.07289,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "CB3",
+   "flexSlot": "CB3",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.47721,
+     "winsLost": 0.06951,
+     "ovrEquivalent": 1.48
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.23318,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.46288,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.69363,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.44824,
+     "winsLost": 0.04054,
+     "ovrEquivalent": 0.92
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.21954,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.43613,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.64982,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.43271,
+     "winsLost": 0.02501,
+     "ovrEquivalent": 0.59
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.21214,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.42157,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.62833,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.20192,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.40793,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.62134,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WILL",
+   "natural": "WILL",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.4077,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.19907,
+     "winsFlex": 0.18107,
+     "winsLost": 0.01801,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39507,
+     "winsFlex": 0.39819,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.58808,
+     "winsFlex": 0.54936,
+     "winsLost": 0.03872,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "DE",
+   "flexSlot": "DE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.65774,
+     "winsLost": 0.62065,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.3233,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.64321,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.95999,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "DT",
+   "flexSlot": "DT1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.48059,
+     "winsLost": 0.4435,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.23511,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.46515,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.69034,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "CB3",
+   "flexSlot": "CB3",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.47721,
+     "winsLost": 0.44012,
+     "ovrEquivalent": 9.36
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.23318,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.46288,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.69363,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.44824,
+     "winsLost": 0.41115,
+     "ovrEquivalent": 9.3
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.21954,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.43613,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.64982,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.43271,
+     "winsLost": 0.39562,
+     "ovrEquivalent": 9.26
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.21214,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.42157,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.62833,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.39187,
+     "winsLost": 0.35478,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.20192,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.40793,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.62134,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SAM",
+   "natural": "SAM",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.03709,
+     "winsFlex": -0.26714,
+     "winsLost": 0.23005,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.0185,
+     "winsFlex": 0.18107,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.03697,
+     "winsFlex": 0.39819,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.05541,
+     "winsFlex": 0.54936,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.44824,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.21954,
+     "winsLost": 0.13706,
+     "ovrEquivalent": 3.1
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.43613,
+     "winsLost": 0.26947,
+     "ovrEquivalent": 6.09
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.64982,
+     "winsLost": 0.39858,
+     "ovrEquivalent": 9.01
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.43978,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.21364,
+     "winsLost": 0.14297,
+     "ovrEquivalent": 3.31
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.42327,
+     "winsLost": 0.28232,
+     "ovrEquivalent": 6.54
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.62904,
+     "winsLost": 0.41936,
+     "ovrEquivalent": 9.72
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.19907,
+     "winsLost": 0.15753,
+     "ovrEquivalent": 3.92
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.39507,
+     "winsLost": 0.31052,
+     "ovrEquivalent": 7.74
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.58808,
+     "winsLost": 0.46032,
+     "ovrEquivalent": 11.47
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 4,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.0185,
+     "winsLost": 0.3381,
+     "ovrEquivalent": 91.31
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.03697,
+     "winsLost": 0.66863,
+     "ovrEquivalent": 180.57
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.05541,
+     "winsLost": 0.99299,
+     "ovrEquivalent": 268.16
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "WR",
+   "flexSlot": "WR1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.52991,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.28107,
+     "winsLost": 0.07553,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.57342,
+     "winsLost": 0.13218,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.93778,
+     "winsLost": 0.11062,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.20192,
+     "winsLost": 0.15469,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.40793,
+     "winsLost": 0.29767,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.62134,
+     "winsLost": 0.42706,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "CB",
+   "natural": "CB1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.73731,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.3566,
+     "winsFlex": 0.18107,
+     "winsLost": 0.17554,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.7056,
+     "winsFlex": 0.39819,
+     "winsLost": 0.30741,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 1.0484,
+     "winsFlex": 0.54936,
+     "winsLost": 0.49904,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 2,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.43271,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.21214,
+     "winsLost": 0.0074,
+     "ovrEquivalent": 0.17
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.42157,
+     "winsLost": 0.01456,
+     "ovrEquivalent": 0.34
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.62833,
+     "winsLost": 0.02149,
+     "ovrEquivalent": 0.5
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "CB",
+   "flexSlot": "CB1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.73731,
+     "winsLost": 0.28907,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.3566,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.7056,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 1.0484,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.43978,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.21364,
+     "winsLost": 0.00591,
+     "ovrEquivalent": 0.14
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.42327,
+     "winsLost": 0.01285,
+     "ovrEquivalent": 0.3
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.62904,
+     "winsLost": 0.02078,
+     "ovrEquivalent": 0.48
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.19907,
+     "winsLost": 0.02047,
+     "ovrEquivalent": 0.51
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.39507,
+     "winsLost": 0.04105,
+     "ovrEquivalent": 1.02
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.58808,
+     "winsLost": 0.06174,
+     "ovrEquivalent": 1.54
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 2,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.0185,
+     "winsLost": 0.20104,
+     "ovrEquivalent": 54.29
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.03697,
+     "winsLost": 0.39916,
+     "ovrEquivalent": 107.79
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.05541,
+     "winsLost": 0.59441,
+     "ovrEquivalent": 160.52
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "WR",
+   "flexSlot": "WR1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.52991,
+     "winsLost": 0.08167,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.28107,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.57342,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.93778,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.20192,
+     "winsLost": 0.01763,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.40793,
+     "winsLost": 0.0282,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.62134,
+     "winsLost": 0.02848,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "SS",
+   "natural": "SS",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.44824,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21954,
+     "winsFlex": 0.18107,
+     "winsLost": 0.03848,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.43613,
+     "winsFlex": 0.39819,
+     "winsLost": 0.03794,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.64982,
+     "winsFlex": 0.54936,
+     "winsLost": 0.10046,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 2,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.44824,
+     "winsLost": 0.01553,
+     "ovrEquivalent": 0.35
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.21954,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.43613,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.64982,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "CB",
+   "flexSlot": "CB1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.73731,
+     "winsLost": 0.3046,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.3566,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.7056,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 1.0484,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.43978,
+     "winsLost": 0.00707,
+     "ovrEquivalent": 0.16
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.21364,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.42327,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.62904,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.4077,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.19907,
+     "winsLost": 0.01307,
+     "ovrEquivalent": 0.33
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.39507,
+     "winsLost": 0.02649,
+     "ovrEquivalent": 0.66
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.58808,
+     "winsLost": 0.04025,
+     "ovrEquivalent": 1
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 4,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.0185,
+     "winsLost": 0.19364,
+     "ovrEquivalent": 52.29
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.03697,
+     "winsLost": 0.3846,
+     "ovrEquivalent": 103.86
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.05541,
+     "winsLost": 0.57292,
+     "ovrEquivalent": 154.72
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "WR",
+   "flexSlot": "WR1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.52991,
+     "winsLost": 0.0972,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.28107,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.57342,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.93778,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.20192,
+     "winsLost": 0.01023,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.40793,
+     "winsLost": 0.01364,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.62134,
+     "winsLost": 0.00699,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "FS",
+   "natural": "FS",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.43271,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.21214,
+     "winsFlex": 0.18107,
+     "winsLost": 0.03108,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.42157,
+     "winsFlex": 0.39819,
+     "winsLost": 0.02338,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62833,
+     "winsFlex": 0.54936,
+     "winsLost": 0.07897,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WR",
+   "natural": "WR1",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.52991,
+     "winsFlex": -0.39187,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.28107,
+     "winsFlex": 0.20192,
+     "winsLost": 0.07915,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.57342,
+     "winsFlex": 0.40793,
+     "winsLost": 0.16549,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.93778,
+     "winsFlex": 0.62134,
+     "winsLost": 0.31644,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WR",
+   "natural": "WR1",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.52991,
+     "winsFlex": -0.44824,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.28107,
+     "winsFlex": 0.21954,
+     "winsLost": 0.06153,
+     "ovrEquivalent": 1.39
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.57342,
+     "winsFlex": 0.43613,
+     "winsLost": 0.13729,
+     "ovrEquivalent": 3.1
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.93778,
+     "winsFlex": 0.64982,
+     "winsLost": 0.28796,
+     "ovrEquivalent": 6.51
+    }
+   ]
+  },
+  {
+   "pos": "WR",
+   "natural": "WR1",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 4,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.52991,
+     "winsFlex": -0.43271,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.28107,
+     "winsFlex": 0.21214,
+     "winsLost": 0.06893,
+     "ovrEquivalent": 1.61
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.57342,
+     "winsFlex": 0.42157,
+     "winsLost": 0.15185,
+     "ovrEquivalent": 3.56
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.93778,
+     "winsFlex": 0.62833,
+     "winsLost": 0.30945,
+     "ovrEquivalent": 7.24
+    }
+   ]
+  },
+  {
+   "pos": "WR",
+   "natural": "WR1",
+   "dest": "CB",
+   "flexSlot": "CB1",
+   "flatOvrPenalty": 4,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.52991,
+     "winsFlex": -0.73731,
+     "winsLost": 0.2074,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.28107,
+     "winsFlex": 0.3566,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.57342,
+     "winsFlex": 0.7056,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.93778,
+     "winsFlex": 1.0484,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "WR",
+   "natural": "WR1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.52991,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.28107,
+     "winsFlex": 0.18107,
+     "winsLost": 0.1,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.57342,
+     "winsFlex": 0.39819,
+     "winsLost": 0.17523,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.93778,
+     "winsFlex": 0.54936,
+     "winsLost": 0.38842,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "MIKE",
+   "flexSlot": "MIKE",
+   "flatOvrPenalty": 6,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.43978,
+     "winsLost": 0.0479,
+     "ovrEquivalent": 1.11
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.21364,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.42327,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.62904,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "WILL",
+   "flexSlot": "WILL",
+   "flatOvrPenalty": 6,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.4077,
+     "winsLost": 0.01583,
+     "ovrEquivalent": 0.39
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.19907,
+     "winsLost": 0.00284,
+     "ovrEquivalent": 0.07
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.39507,
+     "winsLost": 0.01285,
+     "ovrEquivalent": 0.32
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.58808,
+     "winsLost": 0.03326,
+     "ovrEquivalent": 0.83
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "SAM",
+   "flexSlot": "SAM",
+   "flatOvrPenalty": 6,
+   "verdict": "UNDERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.03709,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.0185,
+     "winsLost": 0.18342,
+     "ovrEquivalent": 49.53
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.03697,
+     "winsLost": 0.37096,
+     "ovrEquivalent": 100.18
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.05541,
+     "winsLost": 0.56593,
+     "ovrEquivalent": 152.83
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "SS",
+   "flexSlot": "SS",
+   "flatOvrPenalty": 6,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.44824,
+     "winsLost": 0.05636,
+     "ovrEquivalent": 1.27
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.21954,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.43613,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.64982,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "FS",
+   "flexSlot": "FS",
+   "flatOvrPenalty": 6,
+   "verdict": "OVERPRICED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.43271,
+     "winsLost": 0.04083,
+     "ovrEquivalent": 0.96
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.21214,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.42157,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.62833,
+     "winsLost": 0,
+     "ovrEquivalent": 0
+    }
+   ]
+  },
+  {
+   "pos": "TE",
+   "natural": "TE1",
+   "dest": "RB",
+   "flexSlot": "RB1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.39187,
+     "winsFlex": -0.26714,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.20192,
+     "winsFlex": 0.18107,
+     "winsLost": 0.02085,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.40793,
+     "winsFlex": 0.39819,
+     "winsLost": 0.00974,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.62134,
+     "winsFlex": 0.54936,
+     "winsLost": 0.07198,
+     "ovrEquivalent": null
+    }
+   ]
+  },
+  {
+   "pos": "HB",
+   "natural": "RB1",
+   "dest": "TE",
+   "flexSlot": "TE1",
+   "flatOvrPenalty": 6,
+   "verdict": "ALIGNED",
+   "measuredAt": [
+    {
+     "ovr": 70,
+     "winsNat": -0.26714,
+     "winsFlex": -0.39187,
+     "winsLost": 0.12474,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 80,
+     "winsNat": 0,
+     "winsFlex": 0,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 85,
+     "winsNat": 0.18107,
+     "winsFlex": 0.20192,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 90,
+     "winsNat": 0.39819,
+     "winsFlex": 0.40793,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    },
+    {
+     "ovr": 95,
+     "winsNat": 0.54936,
+     "winsFlex": 0.62134,
+     "winsLost": 0,
+     "ovrEquivalent": null
+    }
+   ]
+  }
+ ],
+ "summary": {
+  "nRules": 84,
+  "nUnderpriced": 10,
+  "nOverpriced": 26,
+  "nAligned": 48
+ }
+}

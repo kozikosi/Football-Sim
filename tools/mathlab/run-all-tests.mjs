@@ -5,6 +5,8 @@
 //   T3  triangulate.mjs           (triangulation + raw-curve witness)
 //   T3b cross-validate.mjs        (Super vs Beam cross-toolchain validation)
 //   T4  replacement-audit.mjs     (replacement-level auditor)
+//   T6  flex-pricer.mjs           (flex opportunity-cost pricer, deterministic)
+//   T7  metamorphic-battery.mjs   (metamorphic checks: symmetry, monotonicity, uniformity)
 //   T12 uncertainty.mjs           (reporting law wrapper)
 //   Beam raw-curve-witness.mjs    (Colors engine raw-curve export)
 //   Beam triangulation.mjs        (Colors engine triangulation table)
@@ -98,6 +100,12 @@ run('Beam triangulation.mjs', `node /tmp/beam-triangulation.mjs --in=${beamWitne
 
 // --- T4 replacement audit ---
 run('T4 replacement-audit.mjs', `node replacement-audit.mjs --out results/replacement-runall.json`, { cwd: ROOT });
+
+// --- T6 flex pricer ---
+run('T6 flex-pricer.mjs', `node flex-pricer.mjs --out results/flex-pricer-runall.json`, { cwd: ROOT });
+
+// --- T7 metamorphic battery ---
+run('T7 metamorphic-battery.mjs', `node metamorphic-battery.mjs`, { cwd: ROOT });
 
 // --- Beam metamorphic-battery.mjs ---
 run('Beam metamorphic-battery.mjs', beamCmd('beam-metamorphic.mjs'), { cwd: REPO_ROOT });
