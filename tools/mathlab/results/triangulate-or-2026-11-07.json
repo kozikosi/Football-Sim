@@ -1,0 +1,579 @@
+{
+  "overall": {
+    "nSlots": 33,
+    "nDisagree": 0,
+    "meanSpreadWins": 0.001597,
+    "ci95Spread": {
+      "lo": 0.0012778995311864927,
+      "hi": 0.001941845915433938,
+      "n": 32
+    },
+    "threshold": 0.1,
+    "generatedAt": "2026-11-07T23:52:15.306ZZ",
+    "reportingLaw": "T12",
+    "note": "rawWins = engine-measured slotWins(s,90)-slotWins(s,70) (wins per season). designWins = design.json weight x 0.00254. calibratedWins700 = 700-scale model weight, back-converted to wins."
+  },
+  "slots": [
+    {
+      "slot": "QB",
+      "rawWins": 2.5406792745693227,
+      "fittedWins": 2.5413083143814355,
+      "designWins": 2.54,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.001308314381435416,
+      "spreadRelative": 0.0005,
+      "ci95MeanWins": {
+        "lo": 2.54,
+        "hi": 2.5413083143814355,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "RB1",
+      "rawWins": 0.5799675381556549,
+      "fittedWins": 0.5841880550164837,
+      "designWins": 0.5842,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0042324618443451145,
+      "spreadRelative": 0.0073,
+      "ci95MeanWins": {
+        "lo": 0.5799675381556549,
+        "hi": 0.5842,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "RB2",
+      "rawWins": 0.2045010498984463,
+      "fittedWins": 0.20326957272878732,
+      "designWins": 0.20320000000000002,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0013010498984462882,
+      "spreadRelative": 0.0064,
+      "ci95MeanWins": {
+        "lo": 0.20320000000000002,
+        "hi": 0.2045010498984463,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "WR1",
+      "rawWins": 1.1964784843004468,
+      "fittedWins": 1.1942419313018227,
+      "designWins": 1.1938,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.002678484300446815,
+      "spreadRelative": 0.0022,
+      "ci95MeanWins": {
+        "lo": 1.1938,
+        "hi": 1.1964784843004468,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "WR2",
+      "rawWins": 0.8377040808839724,
+      "fittedWins": 0.8383172029122108,
+      "designWins": 0.8382000000000001,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0006131220282383776,
+      "spreadRelative": 0.0007,
+      "ci95MeanWins": {
+        "lo": 0.8377040808839724,
+        "hi": 0.8383172029122109,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "WR3",
+      "rawWins": 0.4847891316146374,
+      "fittedWins": 0.4828214794215754,
+      "designWins": 0.48260000000000003,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.002189131614637352,
+      "spreadRelative": 0.0045,
+      "ci95MeanWins": {
+        "lo": 0.4826,
+        "hi": 0.4847891316146374,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "TE1",
+      "rawWins": 0.6888033757447201,
+      "fittedWins": 0.6864162276403853,
+      "designWins": 0.6858000000000001,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0030033757447199827,
+      "spreadRelative": 0.0044,
+      "ci95MeanWins": {
+        "lo": 0.6858000000000001,
+        "hi": 0.6888033757447202,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "TE2",
+      "rawWins": 0.1521113304342758,
+      "fittedWins": 0.15252096770331125,
+      "designWins": 0.1524,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.00040963726903545106,
+      "spreadRelative": 0.0027,
+      "ci95MeanWins": {
+        "lo": 0.1521113304342758,
+        "hi": 0.15252096770331125,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "OT1",
+      "rawWins": 1.0900691011868426,
+      "fittedWins": 1.0920154581030665,
+      "designWins": 1.0922,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0021308988131574225,
+      "spreadRelative": 0.002,
+      "ci95MeanWins": {
+        "lo": 1.0900691011868426,
+        "hi": 1.0922,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "OT2",
+      "rawWins": 1.0189800357820245,
+      "fittedWins": 1.0159749242022467,
+      "designWins": 1.016,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.003005111579777786,
+      "spreadRelative": 0.003,
+      "ci95MeanWins": {
+        "lo": 1.0159749242022467,
+        "hi": 1.0189800357820245,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "OG1",
+      "rawWins": 0.7351423829401084,
+      "fittedWins": 0.7367443258719248,
+      "designWins": 0.7366,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0016019429318164802,
+      "spreadRelative": 0.0022,
+      "ci95MeanWins": {
+        "lo": 0.7351423829401084,
+        "hi": 0.7367443258719248,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "OG2",
+      "rawWins": 0.7351423829401103,
+      "fittedWins": 0.7367443258719248,
+      "designWins": 0.7366,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0016019429318145928,
+      "spreadRelative": 0.0022,
+      "ci95MeanWins": {
+        "lo": 0.7351423829401101,
+        "hi": 0.7367443258719248,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "C",
+      "rawWins": 0.8148560940643477,
+      "fittedWins": 0.8127985432489182,
+      "designWins": 0.8128000000000001,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0020575508154294653,
+      "spreadRelative": 0.0025,
+      "ci95MeanWins": {
+        "lo": 0.8127985432489182,
+        "hi": 0.8148560940643477,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DE1",
+      "rawWins": 1.317934704834991,
+      "fittedWins": 1.3205351622513808,
+      "designWins": 1.3208,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0028652951650089964,
+      "spreadRelative": 0.0022,
+      "ci95MeanWins": {
+        "lo": 1.317934704834991,
+        "hi": 1.3208,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DE2",
+      "rawWins": 1.0171815648821818,
+      "fittedWins": 1.0160063275554356,
+      "designWins": 1.016,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.001181564882181796,
+      "spreadRelative": 0.0012,
+      "ci95MeanWins": {
+        "lo": 1.016,
+        "hi": 1.0171815648821818,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DT1",
+      "rawWins": 1.0156486608889164,
+      "fittedWins": 1.0156338747770381,
+      "designWins": 1.016,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0003661252229618661,
+      "spreadRelative": 0.0004,
+      "ci95MeanWins": {
+        "lo": 1.0156338747770381,
+        "hi": 1.016,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DT2",
+      "rawWins": 0.7615325896206824,
+      "fittedWins": 0.7618388596564447,
+      "designWins": 0.762,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0004674103793176343,
+      "spreadRelative": 0.0006,
+      "ci95MeanWins": {
+        "lo": 0.7615325896206824,
+        "hi": 0.762,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "MIKE",
+      "rawWins": 0.6584052799265556,
+      "fittedWins": 0.6606267677952431,
+      "designWins": 0.6604,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0022214878686874773,
+      "spreadRelative": 0.0034,
+      "ci95MeanWins": {
+        "lo": 0.6584052799265556,
+        "hi": 0.6606267677952431,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "WILL",
+      "rawWins": 0.6085932508389742,
+      "fittedWins": 0.6097520469030223,
+      "designWins": 0.6096,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0011587960640481176,
+      "spreadRelative": 0.0019,
+      "ci95MeanWins": {
+        "lo": 0.6085932508389742,
+        "hi": 0.6097520469030223,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "SAM",
+      "rawWins": 0.07681335489603247,
+      "fittedWins": 0.07615536104929718,
+      "designWins": 0.0762,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0006579938467352886,
+      "spreadRelative": 0.0086,
+      "ci95MeanWins": {
+        "lo": 0.07615536104929718,
+        "hi": 0.07681335489603247,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "CB1",
+      "rawWins": 1.1439516650390893,
+      "fittedWins": 1.1433301658299646,
+      "designWins": 1.143,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0009516650390892778,
+      "spreadRelative": 0.0008,
+      "ci95MeanWins": {
+        "lo": 1.143,
+        "hi": 1.1439516650390893,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "CB2",
+      "rawWins": 0.8657660620198748,
+      "fittedWins": 0.8639269385106247,
+      "designWins": 0.8636,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0021660620198747926,
+      "spreadRelative": 0.0025,
+      "ci95MeanWins": {
+        "lo": 0.8636,
+        "hi": 0.8657660620198748,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "CB3",
+      "rawWins": 0.7100952915782789,
+      "fittedWins": 0.7113974560549106,
+      "designWins": 0.7112,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0013021644766316731,
+      "spreadRelative": 0.0018,
+      "ci95MeanWins": {
+        "lo": 0.7100952915782789,
+        "hi": 0.7113974560549106,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "SS",
+      "rawWins": 0.6119400981951717,
+      "fittedWins": 0.6098728469640362,
+      "designWins": 0.6096,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0023400981951716693,
+      "spreadRelative": 0.0038,
+      "ci95MeanWins": {
+        "lo": 0.6096,
+        "hi": 0.6119400981951717,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "FS",
+      "rawWins": 0.6586508620985605,
+      "fittedWins": 0.6605496109511122,
+      "designWins": 0.6604,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0018987488525517016,
+      "spreadRelative": 0.0029,
+      "ci95MeanWins": {
+        "lo": 0.6586508620985605,
+        "hi": 0.6605496109511122,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "K",
+      "rawWins": 0.5083261538461548,
+      "fittedWins": 0.5083589053021241,
+      "designWins": 0.508,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.00035890530212412397,
+      "spreadRelative": 0.0007,
+      "ci95MeanWins": {
+        "lo": 0.508,
+        "hi": 0.5083589053021241,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "FB",
+      "rawWins": 0.07692902902967595,
+      "fittedWins": 0.07616652613387498,
+      "designWins": 0.0762,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0007625028958009733,
+      "spreadRelative": 0.01,
+      "ci95MeanWins": {
+        "lo": 0.07616652613387498,
+        "hi": 0.07692902902967595,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "P",
+      "rawWins": 0.2540860952926781,
+      "fittedWins": 0.25400299146478234,
+      "designWins": 0.254,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.00008609529267811222,
+      "spreadRelative": 0.0003,
+      "ci95MeanWins": {
+        "lo": 0.254,
+        "hi": 0.2540860952926781,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DIME",
+      "rawWins": 0.10197528321898452,
+      "fittedWins": 0.10158538932609007,
+      "designWins": 0.10160000000000001,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0003898938928944551,
+      "spreadRelative": 0.0038,
+      "ci95MeanWins": {
+        "lo": 0.10158538932609007,
+        "hi": 0.10197528321898452,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "DL5",
+      "rawWins": 0.356885183212868,
+      "fittedWins": 0.3555852854110758,
+      "designWins": 0.3556,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0012998978017921825,
+      "spreadRelative": 0.0037,
+      "ci95MeanWins": {
+        "lo": 0.35558528541107587,
+        "hi": 0.35688518321286794,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "TE3",
+      "rawWins": 0.023166249901090688,
+      "fittedWins": 0.025433292537810705,
+      "designWins": 0.025400000000000002,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0022670426367200174,
+      "spreadRelative": 0.0919,
+      "ci95MeanWins": {
+        "lo": 0.023166249901090688,
+        "hi": 0.025433292537810705,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": "WR4",
+      "rawWins": 0.023166249901090688,
+      "fittedWins": 0.025206652793110282,
+      "designWins": 0.025400000000000002,
+      "calibratedWins700": null,
+      "nSources": 3,
+      "spreadWins": 0.0022337500989093144,
+      "spreadRelative": 0.0908,
+      "ci95MeanWins": {
+        "lo": 0.023166249901090688,
+        "hi": 0.025400000000000002,
+        "n": 3
+      },
+      "disagreement": false,
+      "label": "AGREES"
+    },
+    {
+      "slot": [],
+      "rawWins": null,
+      "fittedWins": null,
+      "designWins": null,
+      "calibratedWins700": null,
+      "nSources": 0,
+      "spreadWins": null,
+      "spreadRelative": null,
+      "ci95MeanWins": {
+        "lo": null,
+        "hi": null,
+        "n": 0
+      },
+      "disagreement": false,
+      "label": "FEW-SOURCES"
+    }
+  ]
+}

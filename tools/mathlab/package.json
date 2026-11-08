@@ -1,0 +1,23 @@
+{
+  "name": "mathlab",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Math lab for measuring and fitting the NFL sim engine; never writes product files.",
+  "scripts": {
+    "fit": "node fitlm.js",
+    "check-design": "node check-design.mjs",
+    "realcheck": "node realcheck.js",
+    "flexcheck": "node flexcheck.mjs",
+    "triangulate": "node triangulate.mjs",
+    "mechanics": "node mechanics-harness.mjs",
+    "replacement-audit": "node replacement-audit.mjs",
+    "uncertainty": "node uncertainty.mjs",
+    "selftest": "node -e \"console.log('mathlab toolchain present')\""
+  },
+  "dependencies": {
+    "playwright": "^1.65.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
