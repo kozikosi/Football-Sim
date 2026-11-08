@@ -1,0 +1,5 @@
+# CHECKSUMS — zai-ciccp3-2026-11-08.zip — Z.ai seat ZAI — 2026-11-08
+_agents/zai/deliveries/COUNCIL-COMM-PROTOCOL-SYNTHESIS-2026-11-08.md  md5 819bb21b3272755f354aaf85abe34aca
+_agents/zai/deliveries/PROMPT-FOR-CLAUDE-CICCP3-2026-11-08.md          md5 3bc68b5c3a39c4e4fec87bbe1cba8992
+_agents/zai/ZAI.md                                                    rewritten this session (md5 at import)
+_agents/zai/END-OF-CHAT-ZAI.md                                        rewritten this session (md5 at import)
