@@ -1,0 +1,4 @@
+eb91abd22f335e34f6898dcff5e6dde6  Football-Sim-Z-post-blue-w85.html
+---
+47a14501a76ebe8efef3dc29852c0232  notes/W85-R3-INTAKE-LEDGER.md
+ab277f7c7e2d94b6fd6fb79744e4f417  UPDATE-README-w85.md
