@@ -10,6 +10,7 @@ if [ ! -d "$D/.git" ]; then
   cd "$D" || exit 1
 else
   cd "$D" || exit 1
+  [ "$(git remote get-url origin 2>/dev/null)" = "$URL" ] || git remote set-url origin "$URL"  # canonical case: no "repository moved" notices
   net fetch -q --depth="$DEPTH" origin "$BR" || echo "NOTE: fetch failed (429: wait 5 s, retry once)"
   if [ -n "$(git status --porcelain)" ]; then echo "NOTE: uncommitted changes; merge skipped"
   else git merge -q --ff-only "origin/$BR" || echo "NOTE: ff-only merge failed; do not reset, report it"; fi
