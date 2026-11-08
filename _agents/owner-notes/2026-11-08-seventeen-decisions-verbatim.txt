@@ -1,0 +1,57 @@
+Owner decisions, 2026-11-08 (verbatim, in reply to the MUSE seat's "everything that i need to answer" list of 17 items)
+
+The MUSE seat's list (for context — the numbers below are KG's answers to these items):
+1. Flex: which of the three options? (a) adopt the raised weights as model weights and refit, (b) selection-only weights, (c) flex-table fix. Plus sub-questions: C>OG/C>DT, WR>TE/SS/FS/CB at 4, FB, RB1 650 vs 600.
+2. CICCP-3: R-005, Q7 default mode, Q9 (re-apply DEFAULT_WEIGHTS as Architect build).
+3. VLOC P-013 weights audit (engine fitted to design.json, not the Nov 6 final weights; DEFAULT_WEIGHTS a third set).
+4. 34-key vs 32-slot (DEFAULT_WEIGHTS has 34 keys; the Owner's Nov 6 table is 32 slots).
+5. The five flags (P-278): veto (b), twin header, "Cutdown Day" casing, "SEASON RATING", explainer's home.
+6. F5 overrule? (Claude ruled the one-sentence doc, not the per-save freeze.)
+7. The three envelope answers (saveId/createdAt now; no datasetId; SHA-256).
+8. CI-gate pick (OR N=100, Beam PR N=40 + nightly N=100, VL N=100 + sweep, VLOC N=300→N=1000 nightly, GLM N=1000-leaning; pre-commit vs CI wiring).
+9. RULES-CHECK + PROJECT-KNOWLEDGE.md? (VLOC + Beam recommend adding it to the seat-check proposal.)
+10. Repo cutover trigger (first slice passing the look-gate vs whole Colors v1).
+11. Move P-252/P-253/P-279/P-280 to BUILT (only Owner/Architect could move items to terminal states).
+12. The 10 w74 zips (push to gh-pages or leave in Z.ai's download folder?).
+13. GitHub redirect (GitHub says the repo "has moved to kozikosi/Football-Sim").
+14. Claude's tag pushes refused + go-live permissions question unanswered.
+15. The w67 Series subtitle fix feedback (drafted, unsent).
+16. Z.ai lab-tools prompt v6 (refresh before sending? Z.ai already shipped lab work in the innovation window).
+17. Z.ai prompt item 6 (second architecture review of w74 against the latest wave file).
+
+KG's answers, verbatim:
+
+1. "my permanent salary weights are dead. we are moving on to z.ai's model first strategy. dig deeper into everything z.ai produced yesterday to understand."
+2. "no default weights. you'll have to explainn the other"
+3. "we are done with default weights or my permanent weights"
+4. "32 slots"
+5. "Ignore this. w85 is good how it is."
+6. "Sure"
+7. "Sure"
+8. "i don't understand. explain"
+9. "Sure but we want them to run lean. these documents would need to be very small."
+10. "Let's get a fully functioning colors v1"
+11. "i give you permission to do this from now on."
+12. "Ignore"
+13. "Why? is this why claude is having problems booting all of the sudden. what wa it before?"
+14. "help answer them"
+15. "probably drop it. what was it?"
+16. "refresh based on the current state."
+17. "we are reviewing w85 now. W86 is on its way."
+
+Plus, appended to the same message: "No cutting FB for now. we need and even number depth chart and i don't like cutting any of the other positions."
+
+Interpretation notes (MUSE seat, not Owner words):
+- #1 + #3 together: both the Nov 6 permanent salary weights AND DEFAULT_WEIGHTS are dead. The weights question is now Z.ai's "model first" strategy; the flex (a/b/c) question is superseded pending the model-first deep dive.
+- #2: "no default weights" = NO to Q9 (do NOT re-apply DEFAULT_WEIGHTS as an Architect build). "explainn the other" = explain R-005 and Q7 before he decides them.
+- #6 "Sure" = accept Claude's F5 ruling (the one-sentence doc, not the per-save freeze). F5 is settled.
+- #7 "Sure" = accept all three envelope answers (saveId/createdAt now; no datasetId; SHA-256).
+- #9 "Sure" = add PROJECT-KNOWLEDGE.md to RULES-CHECK, but the seat-check documents must run lean / be very small.
+- #10 = cutover trigger is a FULLY FUNCTIONING Colors v1 (not just the first slice passing the look-gate).
+- #11 = STANDING PERMISSION: the MUSE seat may move items to BUILT from now on. (Recorded in _agents/PRIORITIES.md; P-252/P-253/P-279/P-280 moved to BUILT in commit 744ce4bf.)
+- #13 = KG asks whether the GitHub redirect is why Claude is having boot problems, and what the repo was called before. Under investigation.
+- #14 = MUSE to help answer Claude's tag-push / go-live permissions question. Under investigation.
+- #15 = w67 subtitle feedback probably dropped; KG asks what it was. Under investigation.
+- #16 = refresh the Z.ai lab-tools prompt v6 for the current state (salary weights dead, model-first, w85 in review, w86 on its way).
+- #17 = item 6 (w74 architecture review) dropped; the council is reviewing w85 now and w86 is on its way.
+- FB: stays. 32 slots, even-number depth chart; KG does not want to cut any position.
