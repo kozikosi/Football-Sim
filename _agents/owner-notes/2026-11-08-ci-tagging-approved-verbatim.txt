@@ -1,0 +1,11 @@
+Owner decision, 2026-11-08 (verbatim, follow-up to the 17 decisions the same day)
+
+KG, in reply to the MUSE seat's report (model-first deep dive, R-005/Q7 explanations, GitHub redirect, tag pushes/go-live, w67 subtitle, CI-gate, w85 status):
+
+"approved CI tagging."
+
+Context: the go-live permissions question (KG, 2026-11-04): "Your tag pushes are refused by the server — we should either fix your permissions or sidestep via CI. What's the simplest path?" The two paths were (a) fix Claude's tag-push permissions, or (b) CI creates tags automatically on merge to main (after tests pass), and the Owner approves go-live by merging. MUSE recommended (b). KG approved (b).
+
+Meaning: CI creates tags automatically when code is merged to main (after tests pass). The Owner approves go-live by merging. Go-live itself stays a deliberate Owner act (CI never deploys on its own; `tools/golive wNN` copies the immutable wave to the served root and commits). Claude's tag pushes remain refused (HTTP 403, 23 Oct); a real tag push is still untested; the Owner creates tags manually until the CI path is wired.
+
+Still pending from the same KG message (asked, not decided): KG asked for the MUSE seat's opinion on Football Value as the default mode and on RNG Stage 1 (R-005 part 2). KG also said the CI-gate and the w67 subtitle had not been explained to his satisfaction — both re-explained in chat the same day.
