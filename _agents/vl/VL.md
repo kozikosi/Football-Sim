@@ -4,34 +4,33 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## This session (2026-11-08, per START-HERE from origin/council/muse)
-- Followed START-HERE exactly: `git fetch origin`, sync base (1b91f50e, up to date), `git add` + WIP commit (323e2460) for the pre-existing dirty flexweight.mjs, `node tools/preserve.mjs check` (vl = 0 dirty, 1 local-only commit, NOT pushed — briefing says push nothing).
+## This session (2026-11-09, COUNCIL INNOVATION PROMPT rewritten with all reported findings)
+- Followed START-HERE from origin/council/muse exactly: `git fetch origin`, sync base (1b91f50e, up to date), `git add` + WIP commit, `node tools/preserve.mjs check` (vl = 0 dirty, work saved locally, NOT pushed — this session says no push).
 - Innovation round (all read-only; no product/AGENTS/protected-constant edits; DEFAULT_WEIGHTS left as OR set with Owner approval):
-  - Tool 1 BUILT `tools/mathlab/flex-price-v2.mjs` (T6 flex price analyzer v2) — compares every flex.json slot-pair penalty vs actual win cost (weight delta x 0.00254), proposes fairCap = clamp(round(winCost x 10), 0, 10), flags under/over-priced. `--selftest` PASS. Run on Pre-Colors: 107 pairs, 4 underpriced (C->FB, FS->DIME, SS->DIME, K->P), 4 overpriced (SS->FB, P->K, SS->FS, FS->SS). Surfaces TE->WR1 discrepancy: design.json TE1=270/WR1=470 is a +0.508-win slot upgrade, so briefed "0.63 wins lost" must come from salary table — a discrepancy to reconcile. Receipt: `results/flex-price-v2-2026-11-08.{md,json}`.
-  - Tool 2 BUILT `tools/mathlab/raw-curve-witness-v2.mjs` (T3 raw-curve witness v2) — adds per-slot ABSORBED detection (|calibrated-expected| <= 1.25), calibration-lineage hint vs design.json, and a mechanics-independence witness comparing raw curves across two builds. `--selftest` PASS. Run on Pre-Colors witness: nAbsorbed=30/30, absorbedFraction=1.0 (FULLY ABSORBED), designAligned=6, diverges=24 (display is NOT design.json-aligned). Independence witness Pre-Colors vs Z-post-blue-w54: nCompared=32, identical=true (raw curve = mechanics, not display). Receipt: `results/raw-curve-witness-v2-40233d6be00e987c-2026-11-08.{md,json}` + `results/raw-curve-witness-v2-independence-2026-11-08.{md,json}`.
-  - Re-ran existing tools for fresh receipts: raw-curve-witness on Pre-Colors (n=32, pageErrors=0, maxQuantError700=0, outOfContract=0, Spearman 0.992); triangulation (n=32, nDisagree=0, Spearman 0.995); uncertainty wrap on rows.spanWins (n=32, CI95 [0.552,0.908], threshold 0.5, PASS); uncertainty selftest PASS; replacement-level-audit (nSlots=9, verified=1, unknown=7, partial=1).
-- Governance artifact written: `_agents/vl/notes/discrepancy-register-2026-11-08.md` — D-009 (VERIFIED): display diverges from design.json 24/30 slots, raw curve fully absorbed + mechanics-independent; display is a third unvalidated anchor.
-- Notes written: `_agents/vl/notes/innovation-2026-11-08.md` — answers to all 60 council questions (Q1–Q60), labelled VERIFIED/REPORTED/INFERRED/UNKNOWN; >40 INFERRED-or-better (requirement met).
-- Inbox entry: `inbox/20261108-<hhmm>-vl-P-innovation-2026-11-08.md` (FOR: innovation round; summarizes tools + findings + what Claude should read).
-- Zip: `download/z-post-blue-docs-update-2026-11-08-innovation.zip` with UPDATE-README + CHECKSUMS (built cleanly, no /tmp).
+  - Tool 1 BUILT `tools/mathlab/circularity-witness.mjs` (D-007/Q5 circularity witness: salary vs personal DEFAULT_WEIGHTS vs design.json fit target). `--selftest` PASS. Run on Pre-Colors (40233d6) vs OR's salary branch (395f2641): 30/34 slots changed, max|delta| 1.7272 wins, total 11.3234, rhoAB=0.7891, rhoADesign=0.8096, rhoBDesign=0.8582 → circularity RELOCATED to the salary table, not resolved. Receipt: `results/circularity-witness-2026-11-09.{md,json}`.
+  - Tool 2 BUILT `tools/mathlab/flex-unified.mjs` (Q23/Q59 unified flex evaluator: Rule A clamp(round(winCost x 10),0,10) vs Rule B min(12,4xhops) with QB/OL banned, compared to flex.json REV 4). `--selftest` PASS. Run vs flex.json: 107 pairs, 12 agree Rule A, 10 effectively banned (QB/OL), 79 mismatch (flex.json keeps Owner exceptions — expected). Receipt: `results/flex-unified-2026-11-09.{md,json}`.
+  - Re-ran existing tools on OR's branch for fresh receipts: raw-curve-witness on 395f2641 → n=32, maxQuantError700=0, outOfContract=0, Spearman 0.992 (T1 contract unchanged by salary DEFAULT_WEIGHTS); raw-curve-witness-v2 --independence Pre-Colors vs OR's branch → nCompared=32, identical=true (raw curve mechanics-independent).
+- Governance artifact: `_agents/vl/notes/discrepancy-register-2026-11-09.md` — D-011 (VERIFIED): salary DEFAULT_WEIGHTS relocates circularity to the salary table; mechanics still fit to unvalidated design.json × 0.00254; raw curve absorbed on both builds.
+- Notes: `_agents/vl/notes/innovation-2026-11-09.md` — answers to all 60 council questions, labelled VERIFIED/REPORTED/INFERRED/UNKNOWN; ≥40 INFERRED-or-better (VERIFIED: Q2, Q5, Q7, Q8, Q14, Q23/Q59 measurement, Q40, Q58 dataset check; the rest INFERRED except Q24/Q32 OR-specific/Q48-real-vs-synthetic UNKNOWN).
+- Inbox entry: `inbox/20261109-<hhmm>-vl-P-innovation-2026-11-09.md` (summarizes tools + findings + what Claude should read).
+- Zip: `download/z-post-blue-docs-update-2026-11-09-innovation.zip` with UPDATE-README + CHECKSUMS (built cleanly, no /tmp).
 
 ## Key new findings (this session)
-- F1 (VERIFIED): Pre-Colors display is FULLY ABSORBED into the raw curve (outOfContract=0, maxQuantError700=0, n=32) — display = quantised mechanics, no independent signal.
-- F2 (VERIFIED): Display diverges from design.json (27 Oct) on 24/30 slots (only 6 DESIGN-ALIGNED) → design.json is NOT the display foundation; calibrated weights are a third unvalidated anchor.
-- F3 (VERIFIED): Raw curves IDENTICAL across Pre-Colors (40233d6) and Z-post-blue-w54 (32/32) → raw curve is mechanics-independent (display-independent). Supports running the witness as a per-build gate.
-- F4 (INFERRED): Flex −10 whitelist (REV 4) too restrictive; unified slot-pair penalty clamp(round(winCost x 10), 0, 10) more defensible (Q19/Q23/Q59).
+- F1 (VERIFIED): OR's salary branch 395f2641 passes the raw-curve contract identically to Pre-Colors (maxQuantError700=0, outOfContract=0) — salary DEFAULT_WEIGHTS changes nothing in T1 mechanics (Q14).
+- F2 (VERIFIED): Circularity relocated, not resolved — personal vs salary DEFAULT_WEIGHTS differ on 30/34 slots (max |Δ| 1.73 wins); neither equals design.json fit target (rho 0.81 / 0.86). (Q5, D-011)
+- F3 (VERIFIED): Raw curves IDENTICAL across Pre-Colors and OR's salary branch (32/32) — mechanics-independent; neither build shows unabsorbed display. (Q2/Q7)
+- F4 (INFERRED): Unified flex Rule A (win-cost cap 10) vs flex.json REV 4: 12/107 agree; 10 QB/OL pairs effectively banned; 79 mismatch vs Owner's handcrafted exceptions — proposed rule, not an override. (Q23/Q59)
 
 ## Open needs (to ask Claude/Architect)
 - Fit JSONs + calibrate-weights.mjs output from `architect/engine-and-seats` for Q2 parameter diff.
 - Confirmation of `colors/src/engine/rng.ts` seed injection point (unseeded shell until T-20261022-claude-2).
 - Rosetta schema agreement (shared keys + `track` column shell/colors/real).
-- OR's branch file (395f2641) to re-run T1 on salary-based weights (Q14) and to run independence witness against it.
-- Claude's answers to Q1–Q3 and a–d; his step order/waves.
+- OR's answers to Q1–Q3 and a–d; his step order/waves (from prior 11-08 lane).
 
 ## Queue remaining
 - P-070, P-127, P-132, P-133, P-188 (earlier session, untouched).
-- P-013 is the Owner's live request; VL side = tooling + critique, awaiting Claude's answers before any further weight work.
+- P-013 is the Owner's live request; VL side = tooling + critique.
 
 ## Worktree / branch
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `323e2460` (local-only, not pushed) — session WIP commit follows this lane update.
+- **HEAD:** local-only WIP commit (session in progress) — session WIP commit follows this lane update.
