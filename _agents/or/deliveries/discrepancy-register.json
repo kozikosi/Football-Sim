@@ -14,5 +14,13 @@
     "status": "open",
     "createdAt": "2026-11-08T03:17:10.981Z",
     "updatedAt": "2026-11-08T03:17:10.981Z"
+  },
+  {
+    "id": "D-003",
+    "claim": "Uncertainty wrapper missing effect size, paired delta, practical significance, and multiple-comparison correction (T12 reporting law gap)",
+    "suspectedCause": "Original uncertainty.mjs only reports point estimates with CI based on threshold; does not compute Cohen's d effect size, paired before/after deltas, practical significance flags, or Bonferroni/Holm-BH correction across 32 slots. New uncertainty-enhanced.mjs fills this gap.",
+    "status": "open",
+    "createdAt": "2026-11-09T05:38:00.000Z",
+    "updatedAt": "2026-11-09T05:38:00.000Z"
   }
 ]

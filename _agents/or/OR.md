@@ -9,6 +9,7 @@
 - **Claimed / in progress:** P-275 w75 M1–M15 dispositions review (Z.ai non-product answers)
 - **Done this session:** Colors rebuild council response filed (`inbox/20261104-2351-or-colors-rebuild-response.md`); Colors rebuild risk assessment filed (`inbox/20261104-2038-or-colors-rebuild-risks.md`); w67 slot format verdicts filed (20261104-2001, 20261104-2005); council.mjs continuous-trust review updates committed; P-069 footer review (VERIFIED anchors); w75 byte-count flag VERIFIED (1,826,882 B md5 9f990ab74fb0acba9e55b82395e60647 matches build report); Z.ai w75 M1–M15 dispositions partially verified.
 - **Done this session (2026-11-08 innovation):** 60-question innovation briefing answered (49/60 INFERRED or better, 14 VERIFIED, 11 UNKNOWN); new tools `tools/mathlab/absorber-check.mjs` and `tools/mathlab/flex-penalty.mjs` created with self-tests; discrepancy register entry D-002 (manifest hash re-pinning); inbox entry `inbox/20261108-0317-or-P-290-innovation-2026-11-08.md`; lane file updated.
+- **Done this session (2026-11-09 innovation):** 60-question innovation briefing answered (60/60 INFERRED or better, 14 VERIFIED, 2 REPORTED, 0 UNKNOWN); new tools `tools/mathlab/uncertainty-enhanced.mjs` and `tools/mathlab/inbox-frontmatter.mjs` created with self-tests; discrepancy register entry D-003 (uncertainty wrapper T12 reporting law gap); inbox entry `inbox/20261109-0317-or-P-291-innovation-2026-11-09.md`; lane file updated.
 - **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task).
 
 ## What the next session needs
@@ -30,6 +31,12 @@
 - `bulletin/20261104-2351-or.md` — bulletin entry for council response session.
 - `bulletin/20261104-2038-or.md` — bulletin entry for risk assessment session.
 - `_agents/or/tools/replay-determinism.ts` — determinism replay harness (dev tool).
+- `inbox/20261108-0317-or-P-290-innovation-2026-11-08.md` — innovation session 2026-11-08 summary.
+- `inbox/20261109-0317-or-P-291-innovation-2026-11-09.md` — innovation session 2026-11-09 summary.
+- `tools/mathlab/absorber-check.mjs` — display-layer absorption gate tool.
+- `tools/mathlab/flex-penalty.mjs` — unified flex penalty calculator.
+- `tools/mathlab/uncertainty-enhanced.mjs` — T12 uncertainty wrapper with effect size, paired delta, practical significance, and multiple-comparison correction.
+- `tools/mathlab/inbox-frontmatter.mjs` — machine-readable frontmatter parser for council inbox files.
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
