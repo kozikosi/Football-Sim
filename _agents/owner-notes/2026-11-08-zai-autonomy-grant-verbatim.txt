@@ -1,0 +1,10 @@
+Owner decision, 2026-11-08 (verbatim, follow-up to the same day's 17 decisions, follow-up decisions, and 67 Cakepanz decision)
+
+KG, in reply to the MUSE seat's full list of everything Z.ai needs to do (67 Cakepanz, lab/tools, shell waves, CI drafting) and the UI state (shell complete as design, Colors at 0% — zero Svelte components):
+
+"Please use this to rewrite a new prompt for z.ai. also encourage him to innovate and brainsstorm himself what he needs to do and give him the permission and encouragement from me to go and execute whatever he thinks is best in 67 cakepanz"
+
+Decision (MUSE seat's reading, not Owner words):
+- **Autonomy grant (scoped to 67 Cakepanz):** Z.ai has the Owner's permission and encouragement to execute whatever he thinks is best inside 67 Cakepanz. He decides the implementation (component structure, slice order, view-model shapes, adapters, tooling), builds first and lets review catch problems after (no pre-approval needed to build inside his tree), and innovates/brainstorms what the track needs beyond the listed work — building the ideas he believes in.
+- **Scope of the grant:** 67 Cakepanz only (his tree, his implementation). It does NOT extend to the engine (Claude's), the product brand, ratings generation, or Owner decisions (calibration targets, cutover trigger, flex pick).
+- **Prompt:** rewritten as v3 (`_agents/muse/deliveries/prompts-2026-11-05/zai-colors-build-prompt-v3-2026-11-08.md`, supersedes v1 and v2) — the grant in §0, the track definition, setup, the full execution list (§3: slices, view-models, components, UI/UX adaptations), the engine rule, the parallel-work protocol, modes/targets/hard requirements, the other tracks (summary, detail in v7), the innovation mandate (§8), the boundaries (§9), delivery, and open questions.
