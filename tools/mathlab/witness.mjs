@@ -17,10 +17,12 @@
 import fs from 'node:fs';
 import crypto from 'node:crypto';
 import vm from 'node:vm';
+import path from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const TOL = 5; // quantisation step of the shipped display is 5 (nearest 5, floor 5)
 
-function sandboxEval(html) {
+export function sandboxEval(html) {
   const re = /<script\b([^>]*)>([\s\S]*?)<\/script>/g;
   let m; const parts = [];
   while ((m = re.exec(html))) { if (/\bsrc\s*=/.test(m[1])) continue; parts.push(m[2]); }
@@ -60,14 +62,16 @@ export function staticEcho(html) {
   return { found: true, body, usesRaw: /slotWinsPerOvr|slotWins\s*\(|slotWinsTable/.test(body) };
 }
 
-export function judge(raw, disp, table, slots) {
+// `tol` is the largest |disp - c*raw| still counted as "the raw curve tracks the display". Default = the Pre-Colors display step (5).
+// A fitted engine carries a fit residual instead (Colors: the Owner's limit is 50 points), so its caller states that tolerance explicitly.
+export function judge(raw, disp, table, slots, tol = TOL) {
   const ks = slots.filter((k) => raw[k] != null && disp[k] != null);
   const c = disp.QB / raw.QB;
   let maxDev = 0, worst = '';
   for (const k of ks) { const d = Math.abs(disp[k] - c * raw[k]); if (d > maxDev) { maxDev = d; worst = k; } }
   const echo = ks.every((k) => disp[k] === table[k]);
-  const verdict = echo ? (maxDev <= TOL ? 'FITTED' : 'ECHO') : (maxDev <= TOL ? 'MEASURED' : 'UNEXPLAINED');
-  return { verdict, scale: c, maxDev, worst, slots: ks.length, echo };
+  const verdict = echo ? (maxDev <= tol ? 'FITTED' : 'ECHO') : (maxDev <= tol ? 'MEASURED' : 'UNEXPLAINED');
+  return { verdict, scale: c, maxDev, worst, slots: ks.length, echo, tol };
 }
 
 function run(file, declaredPreset, jsonOut) {
@@ -106,6 +110,9 @@ function selftest() {
   t('display == table, raw does not track -> ECHO', judge(raw, { ...table }, table, slots).verdict === 'ECHO');
   t('display neither -> UNEXPLAINED', judge(raw, { QB: 700, WR1: 600, K: 400 }, table, slots).verdict === 'UNEXPLAINED');
   t('display == table and raw tracks it -> FITTED (not independent)', judge({ QB: 1, WR1: 0.65, K: 0.05 }, { ...table }, table, slots).verdict === 'FITTED');
+  const resid = { QB: 1, WR1: 0.65 + 0.02, K: 0.05 }; // display == table, raw off by 20 points at WR1 (a fit residual, not a quantisation step)
+  t('fit residual 20 pts: default tol 5 -> ECHO (does not track)', judge(resid, { ...table }, table, slots).verdict === 'ECHO');
+  t('fit residual 20 pts: stated tol 50 -> FITTED', judge(resid, { ...table }, table, slots, 50).verdict === 'FITTED');
   t('static: verbatim-table modelWeights -> echo', staticEcho('function modelWeights(){\n return {...DEFAULT_WEIGHTS};\n}').usesRaw === false);
   t('static: measuring modelWeights -> uses raw', staticEcho('function modelWeights(){ const w = slotWinsPerOvr(); return w; }').usesRaw === true);
   t('static: nested braces handled', staticEcho('function modelWeights(){ const o={a:{b:1}}; if(1){ return slotWinsPerOvr(); } } function other(){ slotWinsPerOvr(); }').usesRaw === true);
@@ -113,9 +120,12 @@ function selftest() {
   return ok ? 0 : 1;
 }
 
-const a = process.argv.slice(2);
-if (a.includes('--selftest')) process.exit(selftest());
-const ji = a.indexOf('--json');
-const file = a.find((x, i) => !x.startsWith('--') && !(ji >= 0 && i === ji + 1));
-if (!file) { console.error('usage: witness.mjs <build.html> [--declared-preset] [--json OUT] | --selftest'); process.exit(2); }
-process.exit(run(file, a.includes('--declared-preset'), ji >= 0 ? a[ji + 1] : null));
+// CLI only when run directly, so other tools and tests can import judge/staticEcho/sandboxEval without the process exiting.
+if (process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href) {
+  const a = process.argv.slice(2);
+  if (a.includes('--selftest')) process.exit(selftest());
+  const ji = a.indexOf('--json');
+  const file = a.find((x, i) => !x.startsWith('--') && !(ji >= 0 && i === ji + 1));
+  if (!file) { console.error('usage: witness.mjs <build.html> [--declared-preset] [--json OUT] | --selftest'); process.exit(2); }
+  process.exit(run(file, a.includes('--declared-preset'), ji >= 0 ? a[ji + 1] : null));
+}
