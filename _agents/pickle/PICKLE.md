@@ -79,12 +79,19 @@ Queue tool run as `node /private/tmp/council.mjs …` (fetched from `origin/arch
 - `inbox/20261104-0205-pickle-P-143-review.md` (review #3, improved)
 - `inbox/20261104-0156-pickle-OP-add-initgrouprankings-builds-62-em.md` (OP: ADD, P3)
 - `inbox/20261105-1006-pickle-IDEA-colors-v1-discussion.md` (discussion, no item ID)
+- `inbox/20261108-0314-pickle-P-013-weights-verification-and-bias-method.md` (Owner weights 32/32 in
+  the engine; circular-fit receipt; salary-anchor critique + E1–E5 objective protocol)
 - earlier: `inbox/20261103-0202-pickle-E-211-review.md`, `20261103-0145-pickle-P-195-*.md`,
   `20261102-0337-pickle-P-198-p1-p6-evidence.md`
 - No product HTML edits, ever; everything lands in `inbox/`.
 
 ## Last session
 
-2026-11-05: P-008 review (3 build-blocking fixes, 390 px measured), P-009 review #4 (item REVIEWED),
-P-143 review #3 (data rule, D-012, brief gaps, 26-vs-28 settled), one P3 add, and the Owner's Colors v1
-discussion answer. Pushed `ad84560f`.
+2026-11-08: Owner 6 Nov weight table verified in Claude's engine at `949627a6` (32/32 in five homes;
+284/284 tests; measured 32/32 within ±25, max 23.3; no inversions; K/P exact). Established the measurement
+is circular — one multiplier per spot is fitted to the table, so the same engine moves 19/32 spots >20%
+under the frozen REV-5 coefficients, and the old fit carried the secondary at 18.7% and ST at 2.9% vs
+16.3%/1.2% now. Wrote the salary-anchor critique and a six-step objective protocol with experiments E1–E5
+(distribution audit first). Filed DT2 +50 anomaly, stale REV-5 doc list, and the Guide rule (rank by
+measured `slotWins`, not weight × OVR). Pushed `b1cdd29c`. Nothing in the repo edited outside `inbox/`,
+`bulletin/` and this lane.
