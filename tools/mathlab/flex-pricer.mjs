@@ -123,6 +123,7 @@ function flexRules() {
       const flexSlot = slotForDest(dest);
       if (flexSlot === natural) continue;
       const flatPenalty = FLEX[pos][dest];
+      if (flatPenalty === 0) continue; // free flex — no cost to price
       const ovrRow = [];
       for (const ovr of OVRS) {
         const winsNat = engine.slotWins(natural, ovr);
@@ -131,7 +132,13 @@ function flexRules() {
         const ovrEq = slope[dest] ? winsLost / slope[dest] : null;
         ovrRow.push({ ovr, winsNat: Number(winsNat.toFixed(5)), winsFlex: Number(winsFlex.toFixed(5)), winsLost: Number(winsLost.toFixed(5)), ovrEquivalent: ovrEq == null ? null : Number(ovrEq.toFixed(2)) });
       }
-      rules.push({ pos, natural, dest, flatOvrPenalty: flatPenalty, measuredAt: ovrRow });
+      // verdict at mid OVR (85): flat underprices if OVR-equivalent > flat + 1; overprices if < flat - 1
+      const mid = ovrRow.find(r => r.ovr === 85) || ovrRow[ovrRow.length - 1];
+      const meq = mid.ovrEquivalent;
+      const verdict = meq != null && meq > flatPenalty + 1 ? 'UNDERPRICED'
+        : meq != null && meq < flatPenalty - 1 ? 'OVERPRICED'
+        : 'ALIGNED';
+      rules.push({ pos, natural, dest, flexSlot, flatOvrPenalty: flatPenalty, verdict, measuredAt: ovrRow });
     }
   }
 
@@ -142,18 +149,20 @@ function flexRules() {
     method: 'cost(pos->dest, ovr) = slotWins(natural, ovr) - slotWins(dest, ovr); OVR-equivalent = winsLost / slotWinsPerOvr(dest). Deterministic all-else-80 matchup model; no RNG at this layer.',
     status: 'DETERMINISTIC LOOKUP ONLY. Full T6 (paired-seed lineup re-optimization across sampled supporting casts, percentile table) blocked on injectable/seeded RNG (task T-20261022-claude-2). Owner -10 flex cap stays the interim guard (Owner ruling 2026-10-29).',
     rules,
+    summary: { nRules: rules.length, nUnderpriced: rules.filter(r => r.verdict === 'UNDERPRICED').length, nOverpriced: rules.filter(r => r.verdict === 'OVERPRICED').length, nAligned: rules.filter(r => r.verdict === 'ALIGNED').length },
   };
   fs.mkdirSync(RESULTS_DIR, { recursive: true });
   fs.writeFileSync(OUT, JSON.stringify(report, null, 1) + '\n');
 
   const pad = (v) => String(v == null ? '—' : v).padEnd(10);
   console.log('\nT6 FLEX OPPORTUNITY-COST PRICER (deterministic) — ' + SHA_BEFORE.slice(0, 16));
-  console.log('pos->dest  flatPen  @70 wLost/ovrEq  @80  @85  @90  @95   (winsLost / OVR-equivalent)');
-  console.log('---------  -------  -----------------  ---  ---  ---  ---   ---------------------------');
+  console.log('pos->dest  flatPen  verdict     @70 wLost/ovrEq  @80  @85  @90  @95   (winsLost / OVR-equivalent)');
+  console.log('---------  -------  ----------  -----------------  ---  ---  ---  ---   ---------------------------');
   for (const r of rules) {
     const cells = r.measuredAt.map(c => `${c.winsLost.toFixed(3)}/${c.ovrEquivalent == null ? '—' : c.ovrEquivalent.toFixed(1)}`).join('  ');
-    console.log(`${r.pos}->${r.dest.padEnd(6)} ${String(r.flatOvrPenalty).padEnd(7)}  ${cells}`);
+    console.log(`${r.pos}->${r.dest.padEnd(6)} ${String(r.flatOvrPenalty).padEnd(7)}  ${r.verdict.padEnd(10)}  ${cells}`);
   }
+  console.log(`\nSummary: ${report.summary.nRules} rules priced · ${report.summary.nUnderpriced} underpriced · ${report.summary.nOverpriced} overpriced · ${report.summary.nAligned} aligned`);
   console.log('\nWrites: ' + OUT);
   console.log('Reading: a flat penalty lower than the measured OVR-equivalent underprices the flex (star drifts out of position); higher overprices it. Differences vs the -10 cap regime are candidate flex-table rulings, not silent changes.');
 })().catch((e) => { console.error('FAILED:', e.message); process.exit(1); });

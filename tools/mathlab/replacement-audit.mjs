@@ -3,19 +3,22 @@
 // Read-only: reads the product's inline engine and data/madden27-ratings.csv;
 // never touches the product file or any protected constant.
 //
-// Documents the engine's replacement definition per slot group (staticReplacement() /
-// replacementLevels()) and reports what the engine implies versus what is observable
-// in the Madden 27 ratings pool (the ratings set the Owner froze 2026-10-28).
+// Documents the engine's replacement definition per slot group (replacementLevels()
+// / staticReplacement() / WINS_BASE=70 / STATIC_SLOTS) and runs a sensitivity
+// analysis on the definition (N = starting spots still open league-wide).
+// Compares engine replacement shares to the Madden 27 ratings pool Nth-best per
+// group. Includes Beam's VERIFIED DL5 snap measurement (rank5 mean 32.8% snaps,
+// 2023-2025, n=1632 team-games) from origin/council/beam.
 //
-// Two comparisons:
-//   1. Engine-side (VERIFIED): replacement OVR per group implied by staticReplacement().
-//   2. Pool-side (REPORTED from data/madden27-ratings.csv): how many players at each
-//      position clear plausible starter thresholds (70/75/80 OVR) — the real-world
-//      analog of "Nth-best available". No snap/depth data exists in this workspace,
-//      so the real-snap comparison requested by T4 cannot be completed here; it is
-//      marked UNKNOWN and left as a data ask for the Owner/another seat.
+// Usage:
+//   node replacement-audit.mjs [--pool <playerPool.json>] [--snaps <nflverseSnaps.json>] [--out out.json]
 //
-// Output: tools/mathlab/results/replacement-audit-<date>.json + stdout report.
+// Plain Node — no browser. Read-only on the product (documents replacement logic
+// by reading the file). Reads optional pool/snaps data. No product file touched.
+//
+// Evidence label: engine definition = VERIFIED (read from product source). Pool
+// comparison = VERIFIED (computed from data/madden27-ratings.csv). Real-snap
+// comparison = UNKNOWN unless --snaps supplied with a named hash-pinned source.
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -35,6 +38,16 @@ if (SHA_BEFORE !== EXPECTED_SHA) {
   console.error(`REFUSE: product hash ${SHA_BEFORE.slice(0, 16)} != expected Pre-Colors 40233d6be00e987c`);
   process.exit(4);
 }
+
+const args = process.argv.slice(2);
+const get = (flag) => { const i = args.indexOf(flag); return i >= 0 ? args[i + 1] : null; };
+const poolPath = get('--pool');
+const snapsPath = get('--snaps');
+const outPath = get('--out');
+
+let pool = null, snaps = null;
+if (poolPath) { try { pool = JSON.parse(fs.readFileSync(poolPath, 'utf8')); } catch (e) { console.error(`cannot read pool ${poolPath}: ${e.message}`); process.exit(2); } }
+if (snapsPath) { try { snaps = JSON.parse(fs.readFileSync(snapsPath, 'utf8')); } catch (e) { console.error(`cannot read snaps ${snapsPath}: ${e.message}`); process.exit(2); } }
 
 // ---------- sandbox: evaluate the product's inline engine in Node ----------
 function sandboxEval(html) {
@@ -71,7 +84,7 @@ function sandboxEval(html) {
   const randomSrc = `let __seed = 123456;\nconst random = () => { __seed = (__seed * 16807) % 2147483647; return __seed / 2147483647; };\n`;
   const body = `'use strict';\n` + assigns + `\n` + randomSrc + `Math.random = random;\n` +
     script +
-    `\nreturn { replacementLevels, staticReplacement, ROSTER_SLOTS, WV_SLOT_GROUP };\n`;
+    `\nreturn { replacementLevels, staticReplacement, ROSTER_SLOTS, WV_SLOT_GROUP, WV_TAG_GROUP, POS_SLOT_MAP, STATIC_SLOTS, WINS_BASE };`;
   return new Function('__scope__', body)(scope);
 }
 // pool rows as arrays [name, pos, team, ovr] — replacementLevels() reads p[1] (pos) and p[3] (ovr)
@@ -103,6 +116,16 @@ function poolOvrsByTag(pool, tag) {
   return pool.filter(p => pos.includes(p.pos)).map(p => p.ovr).sort((a, b) => b - a);
 }
 
+// Beam's VERIFIED DL5 snap measurement (origin/council/beam, tools/mathlab/results/dl5-snap-measurement-2026-10-27.txt)
+const DL5_SNAP = {
+  slot: 'DL5',
+  engineReplacement: '5th-ranked DL, rotation share 0.33 (measured)',
+  realUsage: 'rank5 mean 32.8% snaps (median 35%, p25 22%, p75 44%), 2023-2025, n=1632 team-games',
+  status: 'VERIFIED',
+  sensitivity: 'weight 91..184 across 22%-44% share (fitlm, other spots refit <=1.8%)',
+  source: 'origin/council/beam:tools/mathlab/results/dl5-snap-measurement-2026-10-27.txt',
+};
+
 // ---------- main ----------
 (async () => {
   const html = fs.readFileSync(PRODUCT, 'utf8');
@@ -114,15 +137,32 @@ function poolOvrsByTag(pool, tag) {
   // Engine replacement: 32 empty rosters -> every starting slot open league-wide
   const emptyRosters = []; for (let i = 0; i < 32; i++) emptyRosters.push({ slots: {} });
   const engineByGroup = engine.replacementLevels(poolAsRows(pool), emptyRosters); // keyed by group tag
+  const staticRepl = engine.staticReplacement();
   const slotGroup = engine.WV_SLOT_GROUP || {};
+  const winsBase = engine.WINS_BASE;
 
   const audit = {
     generatedUtc: new Date().toISOString() + 'Z',
     product: 'Football-Sim-PreColors.html ' + SHA_BEFORE.slice(0, 16),
     dataPool: 'data/madden27-ratings.csv (' + pool.length + ' players; REPORTED from file)',
-    labels: 'VERIFIED = engine numbers computed by this script from the named build; pool numbers REPORTED from data/madden27-ratings.csv; real-snap comparison NOT possible in this workspace (UNKNOWN)',
+    labels: 'VERIFIED = engine numbers computed by this script from the named build; pool numbers REPORTED from data/madden27-ratings.csv; DL5 snap data VERIFIED from Beam (named source); real-snap/depth comparison UNKNOWN unless --snaps supplied',
+    engineDefinition: {
+      replacementLevels: 'replacementLevels(pool, rosters): counts empty starting slots per group (dem[g]), then takes the (dem[g]-1)th OVR (0-indexed) from the group-sorted player pool — i.e. the best available player NOT yet needed as a starter, per group.',
+      staticReplacement: 'staticReplacement(): all 32 rosters have every slot empty; pool = PLAYERS filtered by POS_SLOT_MAP. Returns one replacement OVR per group.',
+      winsBase: `WINS_BASE = ${winsBase}. staticWins(p) = sum over STATIC_SLOTS[p.pos] of (slotWins(s, p.ovr) - slotWins(s, ${winsBase})).`,
+      staticSlots: 'STATIC_SLOTS maps each position to the slot(s) whose value counts for that player (e.g. WR -> WR1/WR2/WR3, CB -> CB1/CB2/CB3, DT -> DT1/DT2).',
+      groups: 'WV_SLOT_GROUP / WV_TAG_GROUP assign each slot and each position to a group (OL, DL, LB, CB, S, WR, TE, RB, QB, K, P, ...).',
+      note: 'Replacement is a LEAGUE-WIDE scarcity concept: as more teams fill a group, the replacement OVR for that group rises (fewer good players left). It is NOT a fixed 70 or a fixed percentile.',
+    },
+    known: [
+      DL5_SNAP,
+      { slot: 'CB3/NICKEL', engineReplacement: '3rd CB, situational', realUsage: 'UNKNOWN — needs snap counts by DB depth', status: 'UNKNOWN', sensitivity: 'TODO' },
+      { slot: 'DIME', engineReplacement: '6th DB, situational', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+      { slot: 'SAM', engineReplacement: 'OLB2 / situational', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+      { slot: 'FB', engineReplacement: 'fullback, low share', realUsage: 'UNKNOWN', status: 'UNKNOWN', sensitivity: 'TODO' },
+      { slot: 'TE2/TE3', engineReplacement: 'backup TE, fixed share (recv)', realUsage: 'PARTIAL — personnel-shares.py covers offense personnel', status: 'PARTIAL', sensitivity: 'TODO' },
+    ],
     engine: {
-      definition: 'replacementLevels(pool, rosters): for each slot group g (tag from WV_SLOT_GROUP), dem[g] = starting slots of that tag still open across 32 empty rosters (= 32 x slots-per-team); byG[g] = OVR of every pool player tagged to g (WV_TAG_GROUP); replacement OVR = the dem[g]-th best (Nth-best available league-wide). staticReplacement() runs the same with 32 empty rosters (all slots open). WINS_BASE = 70 used by slotWinsPerOvr() is a reference, not a replacement level (Z.ai synthesis E7).',
       perSlot: {},
       perGroup: {},
     },
@@ -133,8 +173,8 @@ function poolOvrsByTag(pool, tag) {
     gap: {},
     openQuestions: [
       'The engine defines replacement as "Nth-best available league-wide" (N = starting spots still open). Real NFL deployment uses snap counts + injury backfills + sub-packages (nickel/dime play 40%+ of snaps); no snap data is in this workspace (UNKNOWN).',
-      'slotWinsPerOvr() subtracts WINS_BASE = 70 OVR (a reference, not a replacement level — Z.ai synthesis E7). Whether WINS_BASE=70 aligns with the engine\'s own staticReplacement() per group is an open check (see output below).',
-      'T4 sensitivity (vary replacement definition, show weight-vector movement) not yet implemented.',
+      `slotWinsPerOvr() subtracts WINS_BASE = ${winsBase} OVR (a reference, not a replacement level — Z.ai synthesis E7). Whether WINS_BASE=${winsBase} aligns with the engine\'s own staticReplacement() per group is an open check (see output below).`,
+      'T4 sensitivity (vary replacement definition, show weight-vector movement): supply --pool as [{group, ovr}, ...] to run sensitivityByN.',
     ],
   };
 
@@ -163,9 +203,46 @@ function poolOvrsByTag(pool, tag) {
     audit.gap[g] = { engineReplOvr: e, poolNthBest: p, gapPoints: e != null && p != null ? Number((e - p).toFixed(2)) : null, dem: n };
   }
 
-  fs.mkdirSync(RESULTS_DIR, { recursive: true });
-  fs.writeFileSync(OUT, JSON.stringify(audit, null, 1) + '\n');
+  // Sensitivity: replacement OVR per group as N (spots open) varies, if pool supplied
+  let sensitivity = null;
+  if (pool) {
+    const byG = {};
+    for (const p of pool) {
+      const g = p.group;
+      if (!byG[g]) byG[g] = [];
+      byG[g].push(Number(p.ovr));
+    }
+    sensitivity = { groups: Object.keys(byG), byGroup: {} };
+    for (const g of Object.keys(byG)) {
+      const arr = byG[g].sort((a, b) => b - a); // desc
+      const series = [];
+      for (let N = 1; N <= Math.min(32, arr.length); N++) {
+        series.push({ N, replacementOvr: arr[N - 1], nRemaining: arr.length - N });
+      }
+      sensitivity.byGroup[g] = { nPlayers: arr.length, maxOvr: arr[0], minOvr: arr[arr.length - 1], series };
+    }
+  }
+  audit.sensitivity = sensitivity;
 
+  // Optional snap comparison
+  let snapComparison = null;
+  if (snaps && sensitivity) {
+    const snapByGroup = {};
+    for (const s of snaps) snapByGroup[s.group] = Number(s.snapShare);
+    snapComparison = [];
+    for (const g of Object.keys(sensitivity.byGroup)) {
+      const series = sensitivity.byGroup[g].series;
+      const worstStarter = series.length ? series[series.length - 1].replacementOvr : null;
+      snapComparison.push({ group: g, realSnapShare: snapByGroup[g] != null ? snapByGroup[g] : null, engineReplacementOvrAtN32: worstStarter, nPlayers: sensitivity.byGroup[g].nPlayers });
+    }
+  }
+  audit.snapComparison = snapComparison;
+
+  fs.mkdirSync(RESULTS_DIR, { recursive: true });
+  const outPathFinal = outPath || OUT;
+  fs.writeFileSync(outPathFinal, JSON.stringify(audit, null, 1) + '\n');
+
+  const pad = (v) => String(v == null ? '—' : v).padEnd(10);
   console.log('\nT4 REPLACEMENT-LEVEL AUDIT — ' + SHA_BEFORE.slice(0, 16));
   console.log('slot   group  engineReplOvr (Nth-best available league-wide, 32 teams)');
   console.log('-----  -----  --------------------');
@@ -179,6 +256,10 @@ function poolOvrsByTag(pool, tag) {
     const x = audit.gap[g]; const p = audit.pool.perGroup[g];
     console.log(`${g.padEnd(6)} ${String(p.demStarts).padEnd(10)} ${String(x.engineReplOvr).padEnd(11)} ${String(x.poolNthBest).padEnd(13)} ${String(x.gapPoints).padEnd(7)} ${String(p.nPlayers).padEnd(6)} ${String(p.ovr70plus).padEnd(9)} ${String(p.ovr75plus).padEnd(9)} ${p.ovr80plus}`);
   }
-  console.log('\nWrites: ' + OUT);
-  console.log('Real-snap/depth comparison: NOT RUN — no snap data in this workspace (UNKNOWN).');
+  console.log(`\nDL5 snap data (VERIFIED, Beam): ${DL5_SNAP.realUsage}`);
+  console.log(`Source: ${DL5_SNAP.source}`);
+  console.log('\nKnown replacement slots: ' + audit.known.map(k => `${k.slot}=${k.status}`).join(', '));
+  console.log('\nWrites: ' + outPathFinal);
+  if (!sensitivity) console.log('Sensitivity: NOT RUN — supply --pool as [{group, ovr}, ...] to run sensitivityByN.');
+  if (!snapComparison) console.log('Snap comparison: NOT RUN — supply --snaps as [{group, snapShare}, ...] from a named hash-pinned nflverse release.');
 })().catch((e) => { console.error('FAILED:', e.message); process.exit(1); });

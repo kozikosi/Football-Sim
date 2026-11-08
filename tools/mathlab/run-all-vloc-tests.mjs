@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// tools/mathlab/run-all-vloc-tests.mjs — Combined test runner for all VLOC mathlab tools (T1, T3, T4, T6, T12).
+// tools/mathlab/run-all-vloc-tests.mjs — Combined test runner for all VLOC mathlab tools (T1, T3, T4, T6, T7, T12).
 //
 // Runs every VLOC tool and reports PASS/FAIL for each. Plain Node + the proven
 // Node sandbox (no Playwright dependency). No product file touched — every tool
@@ -38,7 +38,7 @@ function run(name, cmd, opts = {}) {
   if (output) console.log(output.trim().slice(0, 1500));
 }
 
-console.log('=== VLOC combined test runner (T1/T3/T4/T6/T12) ===\n');
+console.log('=== VLOC combined test runner (T1/T3/T4/T6/T7/T12) ===\n');
 console.log('Product: Football-Sim-PreColors.html (sha pinned per tool)\n');
 
 // T3 triangulation (raw-curve witness + triangulation)
@@ -49,6 +49,9 @@ run('T4 replacement-audit.mjs', `node replacement-audit.mjs`, { cwd: MATHLAB });
 
 // T6 flex opportunity-cost pricer (deterministic)
 run('T6 flex-pricer.mjs', `node flex-pricer.mjs`, { cwd: MATHLAB });
+
+// T7 metamorphic battery
+run('T7 metamorphic-battery.mjs', `node metamorphic-battery.mjs`, { cwd: MATHLAB });
 
 // T12 uncertainty wrapper: wrap + check the latest triangulate output
 const triangulateJson = (() => {
