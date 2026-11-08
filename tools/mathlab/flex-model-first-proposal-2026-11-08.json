@@ -1,0 +1,152 @@
+{
+ "_status": "PROPOSAL (P-294), NOT adopted; flex.json and FLEX unchanged",
+ "_method": "Owner 7 Nov candidate + CB>WR 10, TE>WR 6; every penalty >=6 -> 10 (his -2/-4/-10 system, 0/2/4 untouched); then 12 on the 4 rules that still leaked >=20 times under the MEASURED curve on seeds 1001-1016,3001-3016 (tools/mathlab/flexeval.mjs).",
+ "_mode": "model-first: derived against measuredDisplayWeights (QB 1000, nearest 5). The Owner REV 4 table (flex.json) stays as the fallback flex mode.",
+ "_caveat": "flexcheck.mjs only allows penalties in {0,2,4,6}; it must learn 10/12 before adoption. 10/12 exceed EMERGENCY_PENALTY 8 (listed move costs more than an unlisted one).",
+ "raised12": [
+  "DT>EDGE",
+  "TE>EDGE",
+  "RB>WR",
+  "TE>OT"
+ ],
+ "flex": {
+  "QB": {
+   "FS": 10
+  },
+  "RB": {
+   "FB": 2,
+   "WR": 12,
+   "TE": 10,
+   "SS": 10,
+   "FS": 10
+  },
+  "FB": {
+   "RB": 2,
+   "TE": 4,
+   "ILB": 10,
+   "OLB": 10,
+   "EDGE": 10,
+   "DT": 10
+  },
+  "WR": {
+   "RB": 10,
+   "TE": 4,
+   "CB": 4,
+   "FS": 4,
+   "SS": 4,
+   "NICKEL": 4,
+   "DIME": 4
+  },
+  "TE": {
+   "FB": 2,
+   "WR": 10,
+   "RB": 4,
+   "C": 10,
+   "OG": 10,
+   "OT": 12,
+   "EDGE": 12,
+   "DT": 10,
+   "OLB": 10,
+   "ILB": 10,
+   "SS": 4,
+   "FS": 4,
+   "NICKEL": 10,
+   "DIME": 10
+  },
+  "OT": {
+   "OG": 0,
+   "C": 0,
+   "DT": 4,
+   "EDGE": 10,
+   "FB": 2
+  },
+  "OG": {
+   "OT": 4,
+   "C": 0,
+   "DT": 4,
+   "EDGE": 10,
+   "FB": 2
+  },
+  "C": {
+   "OG": 4,
+   "OT": 10,
+   "DT": 4,
+   "FB": 2
+  },
+  "DT": {
+   "EDGE": 12,
+   "C": 4,
+   "OG": 4,
+   "OT": 10,
+   "FB": 2,
+   "TE": 10
+  },
+  "EDGE": {
+   "DT": 2,
+   "OLB": 2,
+   "ILB": 10,
+   "C": 10,
+   "OG": 10,
+   "OT": 10,
+   "SS": 10,
+   "FS": 10,
+   "RB": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 10
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 10,
+   "SS": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 10,
+   "DIME": 10
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 2,
+   "EDGE": 10,
+   "SS": 10,
+   "FB": 2,
+   "TE": 10,
+   "NICKEL": 4,
+   "DIME": 10
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 10,
+   "WR": 10,
+   "ILB": 10,
+   "OLB": 10,
+   "RB": 10,
+   "TE": 10
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 10,
+   "WR": 10,
+   "OLB": 10
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "WR": 10,
+   "RB": 10
+  },
+  "K": {
+   "P": 0
+  },
+  "P": {
+   "K": 10
+  }
+ }
+}

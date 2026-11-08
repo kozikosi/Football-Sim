@@ -1,0 +1,957 @@
+{
+ "_status": "EVIDENCE for P-294, not adopted",
+ "seeds": "1001-1016,3001-3016",
+ "minOvr": 85,
+ "tables": {
+  "cap10Rules10": 56,
+  "cap12Rules12": 56,
+  "selInput": [
+   "RB>WR",
+   "TE>WR",
+   "TE>OT",
+   "TE>EDGE"
+  ],
+  "selMeasured": [
+   "RB>WR",
+   "TE>OT",
+   "TE>EDGE",
+   "DT>EDGE"
+  ]
+ },
+ "fresh": "4001-4016",
+ "measuredWeights": {
+  "QB": 1000,
+  "WR1": 630,
+  "OT1": 495,
+  "OT2": 295,
+  "WR2": 390,
+  "C": 150,
+  "OG1": 395,
+  "OG2": 245,
+  "TE1": 245,
+  "RB1": 245,
+  "WR3": 95,
+  "RB2": 95,
+  "TE2": 145,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 40,
+  "DE1": 675,
+  "DT1": 520,
+  "DE2": 310,
+  "DT2": 310,
+  "DL5": 155,
+  "MIKE": 310,
+  "WILL": 155,
+  "SAM": 105,
+  "CB1": 415,
+  "CB2": 260,
+  "CB3": 105,
+  "DIME": 50,
+  "FS": 310,
+  "SS": 310,
+  "K": 50,
+  "P": 50
+ },
+ "inputWeights": {
+  "QB": 1000,
+  "WR1": 650,
+  "OT1": 500,
+  "OT2": 300,
+  "WR2": 400,
+  "C": 150,
+  "OG1": 400,
+  "OG2": 250,
+  "TE1": 250,
+  "RB1": 250,
+  "WR3": 100,
+  "RB2": 100,
+  "TE2": 150,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 50,
+  "DE1": 650,
+  "DT1": 500,
+  "DE2": 300,
+  "DT2": 300,
+  "DL5": 150,
+  "MIKE": 300,
+  "WILL": 150,
+  "SAM": 100,
+  "CB1": 400,
+  "CB2": 250,
+  "CB3": 100,
+  "DIME": 50,
+  "FS": 300,
+  "SS": 300,
+  "K": 50,
+  "P": 50
+ },
+ "results": {
+  "input/today/tune": {
+   "highRule": {},
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 2910,
+   "flexMoves": 10611,
+   "flexPerLineup": 5.181,
+   "encouraged": {
+    "high": 0,
+    "small": 2316,
+    "second": 326,
+    "emergency": 0
+   },
+   "top": {
+    "high": [],
+    "small": [
+     "RB>WR1 x410 (-4) Derrick Henry 94 at WR1 -4",
+     "TE>WR1 x224 (-2) Dallas Goedert 89 at WR1 -2",
+     "DT>DE1 x202 (-4) Derrick Brown 96 at DE1 -4",
+     "OG>OT1 x157 (-4) Joe Thuney 96 at OT1 -4",
+     "CB>WR1 x144 (-4) Trent McDuffie 96 at WR1 -4",
+     "RB>WR2 x130 (-4) D'Andre Swift 88 at WR2 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x117 (-2) Greg Rousseau 90 at DT1 -2",
+     "RB>WR2 x41 (-4) Saquon Barkley 91 at WR2 -4",
+     "DT>OG1 x21 (-4) Leonard Williams 90 at OG1 -4",
+     "TE>OT1 x14 (-6) Dallas Goedert 89 at OT1 -6",
+     "WR>TE1 x14 (-4) A.J. Brown 87 at TE1 -4",
+     "DT>OT1 x12 (-6) Zach Allen 89 at OT1 -6"
+    ],
+    "emergency": []
+   }
+  },
+  "input/today/fresh": {
+   "highRule": {},
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 1456,
+   "flexMoves": 5335,
+   "flexPerLineup": 5.21,
+   "encouraged": {
+    "high": 0,
+    "small": 1153,
+    "second": 194,
+    "emergency": 0
+   },
+   "top": {
+    "high": [],
+    "small": [
+     "RB>WR1 x209 (-4) Christian McCaffrey 97 at WR1 -4",
+     "TE>WR1 x116 (-2) Mark Andrews 90 at WR1 -2",
+     "DT>DE1 x88 (-4) Zach Allen 89 at DE1 -4",
+     "OG>OT1 x82 (-4) Trey Smith 93 at OT1 -4",
+     "RB>WR2 x75 (-4) Jonathan Taylor 96 at WR2 -4",
+     "CB>WR1 x73 (-4) Christian Gonzalez 98 at WR1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x67 (-2) Byron Young 85 at DT1 -2",
+     "DT>OG1 x17 (-4) Vita Vea 94 at OG1 -4",
+     "CB>SS x14 (-2) Devon Witherspoon 91 at SS -2",
+     "WR>TE1 x12 (-4) Rashee Rice 85 at TE1 -4",
+     "RB>TE1 x12 (-6) Josh Jacobs 89 at TE1 -6",
+     "RB>WR2 x11 (-4) Saquon Barkley 91 at WR2 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/cap10/tune": {
+   "highRule": {
+    "RB>WR": 205,
+    "TE>WR": 20,
+    "OG>EDGE": 11,
+    "TE>OT": 50,
+    "TE>ILB": 11,
+    "OLB>EDGE": 13,
+    "TE>DT": 5,
+    "TE>EDGE": 61,
+    "CB>WR": 9,
+    "C>OT": 7,
+    "DT>EDGE": 16,
+    "RB>SS": 7,
+    "FS>WR": 9,
+    "OLB>TE": 3,
+    "SS>WR": 10,
+    "FB>ILB": 8,
+    "FS>CB": 4,
+    "OT>EDGE": 3,
+    "TE>OG": 3,
+    "ILB>EDGE": 14,
+    "FB>DT": 1
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1859,
+   "flexMoves": 10374,
+   "flexPerLineup": 5.065,
+   "encouraged": {
+    "high": 470,
+    "small": 885,
+    "second": 342,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x169 (-10) Bijan Robinson 98 at WR1 -10",
+     "TE>DE1 x60 (-10) Trey McBride 99 at DE1 -10",
+     "TE>OT1 x47 (-10) Trey McBride 99 at OT1 -10",
+     "RB>WR2 x36 (-10) Jahmyr Gibbs 97 at WR2 -10",
+     "TE>WR1 x20 (-10) George Kittle 97 at WR1 -10",
+     "DT>DE1 x16 (-10) Jeffery Simmons 96 at DE1 -10"
+    ],
+    "small": [
+     "C>OG1 x205 (-4) Creed Humphrey 96 at OG1 -4",
+     "OG>OT1 x187 (-4) Damien Lewis 87 at OT1 -4",
+     "OLB>MIKE x159 (-2) Drue Tranquill 89 at MIKE -2",
+     "C>DT1 x101 (-4) Creed Humphrey 96 at DT1 -4",
+     "OLB>DT2 x86 (-2) Drue Tranquill 89 at DT2 -2",
+     "FB>TE1 x41 (-4) Kyle Juszczyk 88 at TE1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x102 (-2) Byron Young 85 at DT1 -2",
+     "DT>OG1 x96 (-4) DeForest Buckner 92 at OG1 -4",
+     "CB>SS x29 (-2) A.J. Terrell Jr 88 at SS -2",
+     "C>OG1 x14 (-4) Erik McCoy 87 at OG1 -4",
+     "OG>OT2 x12 (-4) Tyler Smith 89 at OT2 -4",
+     "WR>CB1 x11 (-4) Malik Nabers 88 at CB1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/cap10/fresh": {
+   "highRule": {
+    "DT>EDGE": 10,
+    "RB>WR": 98,
+    "SS>WR": 9,
+    "RB>FS": 2,
+    "TE>OT": 23,
+    "TE>EDGE": 30,
+    "TE>WR": 10,
+    "OT>EDGE": 2,
+    "OLB>EDGE": 5,
+    "FB>ILB": 4,
+    "ILB>EDGE": 4,
+    "TE>OG": 3,
+    "CB>WR": 10,
+    "TE>ILB": 4,
+    "FB>EDGE": 3,
+    "RB>SS": 2,
+    "FS>WR": 2,
+    "OG>EDGE": 1,
+    "FB>DT": 1,
+    "FS>CB": 2
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 874,
+   "flexMoves": 5159,
+   "flexPerLineup": 5.038,
+   "encouraged": {
+    "high": 225,
+    "small": 409,
+    "second": 157,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x75 (-10) Kyren Williams 90 at WR1 -10",
+     "TE>DE1 x28 (-10) Trey McBride 99 at DE1 -10",
+     "RB>WR2 x23 (-10) Bijan Robinson 98 at WR2 -10",
+     "TE>OT1 x20 (-10) Brock Bowers 95 at OT1 -10",
+     "DT>DE1 x10 (-10) Jeffery Simmons 96 at DE1 -10",
+     "TE>WR1 x10 (-10) Trey McBride 99 at WR1 -10"
+    ],
+    "small": [
+     "C>OG1 x95 (-4) Ryan Neuzil 85 at OG1 -4",
+     "OLB>MIKE x76 (-2) Jordyn Brooks 87 at MIKE -2",
+     "OG>OT1 x64 (-4) Quinn Meinerz 96 at OT1 -4",
+     "OLB>DT2 x51 (-2) Jordyn Brooks 87 at DT2 -2",
+     "C>DT1 x51 (-4) Tyler Linderbaum 88 at DT1 -4",
+     "OG>DT1 x18 (-4) Trey Smith 93 at DT1 -4"
+    ],
+    "second": [
+     "DT>OG1 x45 (-4) Leonard Williams 90 at OG1 -4",
+     "EDGE>DT1 x40 (-2) DeMarcus Lawrence 87 at DT1 -2",
+     "C>OG1 x10 (-4) Erik McCoy 87 at OG1 -4",
+     "CB>SS x10 (-2) Jaylon Johnson 87 at SS -2",
+     "WR>TE1 x9 (-4) Rashee Rice 85 at TE1 -4",
+     "WR>CB1 x8 (-4) Jameson Williams 85 at CB1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/cap12/tune": {
+   "highRule": {
+    "RB>WR": 125,
+    "RB>FS": 3,
+    "TE>WR": 17,
+    "OLB>EDGE": 1,
+    "DT>EDGE": 8,
+    "TE>OT": 27,
+    "TE>ILB": 4,
+    "RB>SS": 7,
+    "TE>EDGE": 23,
+    "ILB>EDGE": 4,
+    "TE>DT": 5,
+    "C>OT": 2,
+    "TE>OG": 2,
+    "CB>WR": 2,
+    "FB>ILB": 1
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1648,
+   "flexMoves": 9889,
+   "flexPerLineup": 4.829,
+   "encouraged": {
+    "high": 231,
+    "small": 918,
+    "second": 312,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x99 (-12) Bijan Robinson 98 at WR1 -12",
+     "RB>WR2 x26 (-12) Kenneth Walker 95 at WR2 -12",
+     "TE>DE1 x23 (-12) Trey McBride 99 at DE1 -12",
+     "TE>OT1 x22 (-12) George Kittle 97 at OT1 -12",
+     "TE>WR1 x17 (-12) Trey McBride 99 at WR1 -12",
+     "DT>DE1 x8 (-12) Dexter Lawrence II 93 at DE1 -12"
+    ],
+    "small": [
+     "C>OG1 x194 (-4) Creed Humphrey 96 at OG1 -4",
+     "OG>OT1 x169 (-4) Quinn Meinerz 96 at OT1 -4",
+     "OLB>MIKE x157 (-2) Jordyn Brooks 87 at MIKE -2",
+     "C>DT1 x119 (-4) Ryan Neuzil 85 at DT1 -4",
+     "OLB>DT2 x106 (-2) Dre Greenlaw 85 at DT2 -2",
+     "TE>SS x42 (-4) George Kittle 97 at SS -4"
+    ],
+    "second": [
+     "EDGE>DT1 x88 (-2) Chase Young 87 at DT1 -2",
+     "DT>OG1 x87 (-4) Dexter Lawrence II 93 at OG1 -4",
+     "CB>SS x27 (-2) Devon Witherspoon 91 at SS -2",
+     "OG>OT2 x15 (-4) Kevin Zeitler 85 at OT2 -4",
+     "WR>CB1 x15 (-4) Nico Collins 90 at CB1 -4",
+     "WR>SS x10 (-4) Jaylen Waddle 85 at SS -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/cap12/fresh": {
+   "highRule": {
+    "TE>DT": 2,
+    "TE>OT": 17,
+    "DT>EDGE": 5,
+    "RB>WR": 46,
+    "OT>EDGE": 2,
+    "TE>EDGE": 13,
+    "ILB>EDGE": 3,
+    "FB>ILB": 4,
+    "TE>ILB": 7,
+    "TE>WR": 5,
+    "RB>SS": 3,
+    "FS>WR": 5,
+    "CB>WR": 2,
+    "FS>CB": 2,
+    "FB>EDGE": 2,
+    "OLB>EDGE": 1,
+    "RB>FS": 2,
+    "OG>EDGE": 1
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 832,
+   "flexMoves": 4974,
+   "flexPerLineup": 4.857,
+   "encouraged": {
+    "high": 122,
+    "small": 459,
+    "second": 174,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x36 (-12) Christian McCaffrey 97 at WR1 -12",
+     "TE>OT1 x16 (-12) Trey McBride 99 at OT1 -12",
+     "TE>DE1 x12 (-12) Trey McBride 99 at DE1 -12",
+     "RB>WR2 x10 (-12) Jahmyr Gibbs 97 at WR2 -12",
+     "DT>DE1 x5 (-12) Derrick Brown 96 at DE1 -12",
+     "TE>MIKE x5 (-12) Dallas Goedert 89 at MIKE -12"
+    ],
+    "small": [
+     "C>OG1 x103 (-4) Ryan Neuzil 85 at OG1 -4",
+     "OG>OT1 x92 (-4) Mike Onwenu 86 at OT1 -4",
+     "OLB>MIKE x82 (-2) Drue Tranquill 89 at MIKE -2",
+     "C>DT1 x58 (-4) Creed Humphrey 96 at DT1 -4",
+     "OLB>DT2 x49 (-2) Dre Greenlaw 85 at DT2 -2",
+     "FB>TE1 x15 (-4) Kyle Juszczyk 88 at TE1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x55 (-2) Chase Young 87 at DT1 -2",
+     "DT>OG1 x48 (-4) Alim McNeill 86 at OG1 -4",
+     "CB>SS x21 (-2) Jalen Pitre 86 at SS -2",
+     "WR>TE1 x7 (-4) Tetairoa McMillan 87 at TE1 -4",
+     "WR>SS x6 (-4) Terry McLaurin 89 at SS -4",
+     "WR>CB2 x5 (-4) Davante Adams 91 at CB2 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/sel_input/tune": {
+   "highRule": {
+    "TE>ILB": 14,
+    "SS>CB": 2,
+    "ILB>EDGE": 12,
+    "TE>EDGE": 24,
+    "RB>SS": 14,
+    "OLB>EDGE": 7,
+    "OT>EDGE": 3,
+    "C>OT": 5,
+    "TE>WR": 11,
+    "DT>EDGE": 11,
+    "TE>OT": 26,
+    "RB>WR": 81,
+    "CB>WR": 16,
+    "TE>OG": 11,
+    "FB>ILB": 6,
+    "FS>WR": 15,
+    "TE>DT": 14,
+    "SS>WR": 16,
+    "FB>EDGE": 1,
+    "OLB>TE": 1,
+    "OG>EDGE": 6,
+    "RB>FS": 8,
+    "FB>DT": 1
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1677,
+   "flexMoves": 10030,
+   "flexPerLineup": 4.897,
+   "encouraged": {
+    "high": 305,
+    "small": 905,
+    "second": 314,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x64 (-12) Bijan Robinson 98 at WR1 -12",
+     "TE>DE1 x24 (-12) Trey McBride 99 at DE1 -12",
+     "TE>OT1 x18 (-12) Mark Andrews 90 at OT1 -12",
+     "RB>WR2 x17 (-12) Jahmyr Gibbs 97 at WR2 -12",
+     "CB>WR1 x16 (-10) Pat Surtain II 97 at WR1 -10",
+     "SS>WR1 x16 (-10) Kyle Hamilton 94 at WR1 -10"
+    ],
+    "small": [
+     "C>OG1 x198 (-4) Creed Humphrey 96 at OG1 -4",
+     "OG>OT1 x166 (-4) Tyler Smith 89 at OT1 -4",
+     "OLB>MIKE x158 (-2) Zack Baun 93 at MIKE -2",
+     "OLB>DT2 x98 (-2) Zack Baun 93 at DT2 -2",
+     "C>DT1 x96 (-4) Ryan Neuzil 85 at DT1 -4",
+     "OG>DT1 x53 (-4) Quinn Meinerz 96 at DT1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x111 (-2) Jonathan Greenard 85 at DT1 -2",
+     "DT>OG1 x86 (-4) Jonathan Allen 87 at OG1 -4",
+     "CB>SS x24 (-2) A.J. Terrell Jr 88 at SS -2",
+     "WR>SS x12 (-4) Chris Olave 89 at SS -4",
+     "OG>OT2 x9 (-4) Damien Lewis 87 at OT2 -4",
+     "C>OG2 x8 (-4) Tyler Linderbaum 88 at OG2 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "input/sel_input/fresh": {
+   "highRule": {
+    "RB>WR": 44,
+    "TE>EDGE": 17,
+    "SS>WR": 12,
+    "TE>OG": 7,
+    "TE>ILB": 9,
+    "RB>FS": 4,
+    "RB>SS": 11,
+    "TE>OT": 14,
+    "TE>DT": 7,
+    "DT>EDGE": 7,
+    "ILB>EDGE": 6,
+    "SS>CB": 2,
+    "C>OT": 2,
+    "OG>EDGE": 1,
+    "FB>ILB": 2,
+    "OT>EDGE": 2,
+    "FB>DT": 1,
+    "TE>WR": 3,
+    "OLB>EDGE": 1,
+    "CB>WR": 4
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 828,
+   "flexMoves": 4997,
+   "flexPerLineup": 4.88,
+   "encouraged": {
+    "high": 156,
+    "small": 468,
+    "second": 142,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x40 (-12) Jahmyr Gibbs 97 at WR1 -12",
+     "TE>DE1 x17 (-12) Trey McBride 99 at DE1 -12",
+     "TE>OT1 x14 (-12) George Kittle 97 at OT1 -12",
+     "SS>WR1 x12 (-10) Xavier McKinney 92 at WR1 -10",
+     "RB>SS x11 (-10) Jonathan Taylor 96 at SS -10",
+     "TE>OG1 x7 (-10) Trey McBride 99 at OG1 -10"
+    ],
+    "small": [
+     "C>OG1 x110 (-4) Aaron Brewer 90 at OG1 -4",
+     "OG>OT1 x94 (-4) Tyler Smith 89 at OT1 -4",
+     "OLB>MIKE x79 (-2) Zack Baun 93 at MIKE -2",
+     "OLB>DT2 x54 (-2) Jordyn Brooks 87 at DT2 -2",
+     "C>DT1 x53 (-4) Tyler Linderbaum 88 at DT1 -4",
+     "OG>DT1 x16 (-4) Joe Thuney 96 at DT1 -4"
+    ],
+    "second": [
+     "DT>OG1 x45 (-4) Vita Vea 94 at OG1 -4",
+     "EDGE>DT1 x41 (-2) DeMarcus Lawrence 87 at DT1 -2",
+     "CB>SS x17 (-2) Joey Porter Jr 86 at SS -2",
+     "C>OG1 x6 (-4) Aaron Brewer 90 at OG1 -4",
+     "WR>CB2 x6 (-4) Jameson Williams 85 at CB2 -4",
+     "WR>CB1 x4 (-4) A.J. Brown 87 at CB1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/today/tune": {
+   "highRule": {},
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 2931,
+   "flexMoves": 10561,
+   "flexPerLineup": 5.157,
+   "encouraged": {
+    "high": 0,
+    "small": 2282,
+    "second": 375,
+    "emergency": 0
+   },
+   "top": {
+    "high": [],
+    "small": [
+     "RB>WR1 x396 (-4) Josh Jacobs 89 at WR1 -4",
+     "TE>WR1 x218 (-2) Hunter Henry 86 at WR1 -2",
+     "DT>DE1 x184 (-4) Derrick Brown 96 at DE1 -4",
+     "OG>OT1 x151 (-4) Joe Thuney 96 at OT1 -4",
+     "RB>WR2 x145 (-4) Kyren Williams 90 at WR2 -4",
+     "OLB>DE1 x111 (-4) Jordyn Brooks 87 at DE1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x129 (-2) Trey Hendrickson 88 at DT1 -2",
+     "RB>WR2 x42 (-4) Saquon Barkley 91 at WR2 -4",
+     "DT>OG1 x28 (-4) Zach Allen 89 at OG1 -4",
+     "CB>SS x23 (-2) Kamari Lassiter 85 at SS -2",
+     "DT>OT1 x22 (-6) Vita Vea 94 at OT1 -6",
+     "RB>TE1 x19 (-6) Derrick Henry 94 at TE1 -6"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/today/fresh": {
+   "highRule": {},
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 1443,
+   "flexMoves": 5349,
+   "flexPerLineup": 5.224,
+   "encouraged": {
+    "high": 0,
+    "small": 1130,
+    "second": 189,
+    "emergency": 0
+   },
+   "top": {
+    "high": [],
+    "small": [
+     "RB>WR1 x193 (-4) Christian McCaffrey 97 at WR1 -4",
+     "DT>DE1 x91 (-4) Jeffery Simmons 96 at DE1 -4",
+     "TE>WR1 x81 (-2) George Kittle 97 at WR1 -2",
+     "RB>WR2 x68 (-4) Jahmyr Gibbs 97 at WR2 -4",
+     "OLB>DE1 x61 (-4) Zack Baun 93 at DE1 -4",
+     "OG>OT1 x59 (-4) Quenton Nelson 95 at OT1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x62 (-2) Josh Hines-Allen 89 at DT1 -2",
+     "RB>WR2 x20 (-4) Derrick Henry 94 at WR2 -4",
+     "WR>SS x8 (-4) Jameson Williams 85 at SS -4",
+     "WR>TE1 x7 (-4) Courtland Sutton 86 at TE1 -4",
+     "TE>OT2 x7 (-6) Hunter Henry 86 at OT2 -6",
+     "WR>CB1 x7 (-6) Tee Higgins 88 at CB1 -6"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/cap10/tune": {
+   "highRule": {
+    "DT>EDGE": 20,
+    "TE>EDGE": 79,
+    "OLB>EDGE": 18,
+    "FB>EDGE": 3,
+    "FB>ILB": 7,
+    "RB>WR": 194,
+    "OG>EDGE": 10,
+    "TE>ILB": 15,
+    "TE>OT": 37,
+    "TE>WR": 19,
+    "RB>SS": 10,
+    "SS>CB": 5,
+    "TE>DT": 10,
+    "RB>FS": 6,
+    "SS>WR": 5,
+    "ILB>EDGE": 15,
+    "TE>OG": 2,
+    "OT>EDGE": 5,
+    "C>OT": 2,
+    "FS>WR": 4,
+    "OLB>TE": 2,
+    "CB>WR": 6
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1915,
+   "flexMoves": 10447,
+   "flexPerLineup": 5.101,
+   "encouraged": {
+    "high": 474,
+    "small": 936,
+    "second": 351,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x166 (-10) Christian McCaffrey 97 at WR1 -10",
+     "TE>DE1 x77 (-10) Brock Bowers 95 at DE1 -10",
+     "TE>OT1 x33 (-10) Trey McBride 99 at OT1 -10",
+     "RB>WR2 x28 (-10) Saquon Barkley 91 at WR2 -10",
+     "DT>DE1 x20 (-10) Vita Vea 94 at DE1 -10",
+     "TE>WR1 x19 (-10) George Kittle 97 at WR1 -10"
+    ],
+    "small": [
+     "C>OG1 x199 (-4) Aaron Brewer 90 at OG1 -4",
+     "OG>OT1 x196 (-4) Joe Thuney 96 at OT1 -4",
+     "OLB>MIKE x153 (-2) Dre Greenlaw 85 at MIKE -2",
+     "C>DT1 x107 (-4) Creed Humphrey 96 at DT1 -4",
+     "OLB>DT2 x95 (-2) Dre Greenlaw 85 at DT2 -2",
+     "FB>TE1 x41 (-4) Kyle Juszczyk 88 at TE1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x94 (-2) Alex Highsmith 86 at DT1 -2",
+     "DT>OG1 x85 (-4) Alim McNeill 86 at OG1 -4",
+     "CB>SS x47 (-2) Marlon Humphrey 85 at SS -2",
+     "WR>CB1 x21 (-4) A.J. Brown 87 at CB1 -4",
+     "C>OG1 x13 (-4) Ryan Neuzil 85 at OG1 -4",
+     "C>OG2 x11 (-4) Zach Frazier 89 at OG2 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/cap10/fresh": {
+   "highRule": {
+    "RB>SS": 10,
+    "DT>EDGE": 8,
+    "FS>WR": 4,
+    "RB>WR": 99,
+    "TE>WR": 22,
+    "TE>EDGE": 23,
+    "ILB>EDGE": 8,
+    "OG>EDGE": 3,
+    "FB>ILB": 3,
+    "TE>OT": 30,
+    "TE>DT": 5,
+    "C>OT": 2,
+    "SS>WR": 8,
+    "OLB>EDGE": 4,
+    "TE>ILB": 7,
+    "RB>FS": 1,
+    "CB>WR": 4,
+    "OT>EDGE": 4,
+    "TE>OG": 1
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 948,
+   "flexMoves": 5237,
+   "flexPerLineup": 5.114,
+   "encouraged": {
+    "high": 246,
+    "small": 466,
+    "second": 158,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x78 (-10) Bijan Robinson 98 at WR1 -10",
+     "TE>OT1 x27 (-10) George Kittle 97 at OT1 -10",
+     "TE>DE1 x23 (-10) Trey McBride 99 at DE1 -10",
+     "TE>WR1 x22 (-10) Trey McBride 99 at WR1 -10",
+     "RB>WR2 x21 (-10) Jonathan Taylor 96 at WR2 -10",
+     "RB>SS x10 (-10) Jahmyr Gibbs 97 at SS -10"
+    ],
+    "small": [
+     "OG>OT1 x98 (-4) Mike Onwenu 86 at OT1 -4",
+     "C>OG1 x84 (-4) Erik McCoy 87 at OG1 -4",
+     "OLB>MIKE x80 (-2) Devin Lloyd 88 at MIKE -2",
+     "C>DT1 x72 (-4) Erik McCoy 87 at DT1 -4",
+     "OLB>DT2 x49 (-2) Devin Lloyd 88 at DT2 -2",
+     "FB>TE1 x21 (-4) Kyle Juszczyk 88 at TE1 -4"
+    ],
+    "second": [
+     "EDGE>DT1 x45 (-2) Josh Hines-Allen 89 at DT1 -2",
+     "DT>OG1 x40 (-4) Zach Allen 89 at OG1 -4",
+     "CB>SS x18 (-2) Charvarius Ward Sr 88 at SS -2",
+     "WR>CB1 x13 (-4) Stefon Diggs 86 at CB1 -4",
+     "OLB>DT2 x6 (-2) Dre Greenlaw 85 at DT2 -2",
+     "C>OG1 x5 (-4) Zach Frazier 89 at OG1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/cap12/tune": {
+   "highRule": {
+    "RB>WR": 98,
+    "ILB>EDGE": 4,
+    "RB>FS": 1,
+    "TE>OT": 28,
+    "TE>ILB": 13,
+    "RB>SS": 9,
+    "TE>EDGE": 42,
+    "TE>WR": 7,
+    "DT>EDGE": 5,
+    "FB>ILB": 5,
+    "SS>WR": 5,
+    "OG>EDGE": 5,
+    "OLB>EDGE": 5,
+    "TE>DT": 4,
+    "FS>WR": 2
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1691,
+   "flexMoves": 9906,
+   "flexPerLineup": 4.837,
+   "encouraged": {
+    "high": 233,
+    "small": 966,
+    "second": 343,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x68 (-12) Bijan Robinson 98 at WR1 -12",
+     "TE>DE1 x42 (-12) Brock Bowers 95 at DE1 -12",
+     "RB>WR2 x30 (-12) Saquon Barkley 91 at WR2 -12",
+     "TE>OT1 x26 (-12) George Kittle 97 at OT1 -12",
+     "TE>MIKE x9 (-12) Dallas Goedert 89 at MIKE -12",
+     "RB>SS x9 (-12) Christian McCaffrey 97 at SS -12"
+    ],
+    "small": [
+     "C>OG1 x197 (-4) Creed Humphrey 96 at OG1 -4",
+     "OG>OT1 x192 (-4) Mike Onwenu 86 at OT1 -4",
+     "OLB>MIKE x155 (-2) Jordyn Brooks 87 at MIKE -2",
+     "C>DT1 x107 (-4) Ryan Neuzil 85 at DT1 -4",
+     "OLB>DT2 x104 (-2) Jordyn Brooks 87 at DT2 -2",
+     "TE>SS x55 (-4) Tucker Kraft 85 at SS -4"
+    ],
+    "second": [
+     "DT>OG1 x101 (-4) Cam Heyward 95 at OG1 -4",
+     "EDGE>DT1 x96 (-2) Byron Young 85 at DT1 -2",
+     "CB>SS x30 (-2) Trent McDuffie 96 at SS -2",
+     "WR>CB1 x26 (-4) DeVonta Smith 92 at CB1 -4",
+     "WR>SS x11 (-4) Courtland Sutton 86 at SS -4",
+     "C>OG1 x11 (-4) Ryan Neuzil 85 at OG1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/cap12/fresh": {
+   "highRule": {
+    "RB>WR": 57,
+    "TE>EDGE": 20,
+    "TE>WR": 9,
+    "TE>OT": 7,
+    "OT>EDGE": 2,
+    "FB>ILB": 4,
+    "RB>FS": 2,
+    "DT>EDGE": 4,
+    "TE>ILB": 7,
+    "OG>EDGE": 1,
+    "OLB>EDGE": 1,
+    "ILB>EDGE": 2
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 856,
+   "flexMoves": 5033,
+   "flexPerLineup": 4.915,
+   "encouraged": {
+    "high": 116,
+    "small": 499,
+    "second": 172,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x49 (-12) Christian McCaffrey 97 at WR1 -12",
+     "TE>DE1 x20 (-12) Trey McBride 99 at DE1 -12",
+     "TE>WR1 x9 (-12) Trey McBride 99 at WR1 -12",
+     "RB>WR2 x8 (-12) Bijan Robinson 98 at WR2 -12",
+     "TE>OT1 x7 (-12) Brock Bowers 95 at OT1 -12",
+     "TE>MIKE x7 (-12) George Kittle 97 at MIKE -12"
+    ],
+    "small": [
+     "C>OG1 x90 (-4) Zach Frazier 89 at OG1 -4",
+     "OG>OT1 x86 (-4) Mike Onwenu 86 at OT1 -4",
+     "OLB>MIKE x78 (-2) Devin Lloyd 88 at MIKE -2",
+     "C>DT1 x64 (-4) Erik McCoy 87 at DT1 -4",
+     "OLB>DT2 x47 (-2) Zack Baun 93 at DT2 -2",
+     "TE>SS x35 (-4) George Kittle 97 at SS -4"
+    ],
+    "second": [
+     "DT>OG1 x53 (-4) Quinnen Williams 91 at OG1 -4",
+     "EDGE>DT1 x52 (-2) DeMarcus Lawrence 87 at DT1 -2",
+     "WR>CB1 x14 (-4) DeVonta Smith 92 at CB1 -4",
+     "CB>SS x12 (-2) Jalen Pitre 86 at SS -2",
+     "WR>CB2 x6 (-4) Stefon Diggs 86 at CB2 -4",
+     "OLB>DT2 x4 (-2) Jordyn Brooks 87 at DT2 -2"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/sel_measured/tune": {
+   "highRule": {
+    "OT>EDGE": 9,
+    "RB>SS": 24,
+    "TE>WR": 36,
+    "SS>WR": 6,
+    "RB>WR": 86,
+    "OLB>EDGE": 5,
+    "RB>FS": 8,
+    "TE>ILB": 13,
+    "TE>OT": 22,
+    "TE>EDGE": 26,
+    "TE>OG": 4,
+    "TE>DT": 14,
+    "CB>WR": 12,
+    "ILB>EDGE": 25,
+    "FB>ILB": 6,
+    "C>OT": 3,
+    "OG>EDGE": 13,
+    "DT>EDGE": 2,
+    "SS>CB": 2,
+    "FS>WR": 4
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1799,
+   "flexMoves": 10317,
+   "flexPerLineup": 5.038,
+   "encouraged": {
+    "high": 320,
+    "small": 971,
+    "second": 337,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x82 (-12) Jahmyr Gibbs 97 at WR1 -12",
+     "TE>WR1 x36 (-10) George Kittle 97 at WR1 -10",
+     "TE>DE1 x25 (-12) Trey McBride 99 at DE1 -12",
+     "ILB>DE1 x25 (-10) Fred Warner 98 at DE1 -10",
+     "RB>SS x24 (-10) Jahmyr Gibbs 97 at SS -10",
+     "TE>OT1 x20 (-12) Trey McBride 99 at OT1 -12"
+    ],
+    "small": [
+     "OG>OT1 x200 (-4) Kevin Dotson 90 at OT1 -4",
+     "C>OG1 x199 (-4) Creed Humphrey 96 at OG1 -4",
+     "OLB>MIKE x155 (-2) Dre Greenlaw 85 at MIKE -2",
+     "C>DT1 x120 (-4) Creed Humphrey 96 at DT1 -4",
+     "OLB>DT2 x106 (-2) Dre Greenlaw 85 at DT2 -2",
+     "TE>SS x42 (-4) George Kittle 97 at SS -4"
+    ],
+    "second": [
+     "DT>OG1 x100 (-4) Jeffery Simmons 96 at OG1 -4",
+     "EDGE>DT1 x90 (-2) Greg Rousseau 90 at DT1 -2",
+     "CB>SS x40 (-2) Cooper DeJean 87 at SS -2",
+     "C>OG1 x19 (-4) Zach Frazier 89 at OG1 -4",
+     "RB>TE2 x13 (-10) Chuba Hubbard 85 at TE2 -10",
+     "WR>CB1 x11 (-4) Garrett Wilson 87 at CB1 -4"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/sel_measured/fresh": {
+   "highRule": {
+    "TE>OG": 4,
+    "OG>EDGE": 11,
+    "TE>EDGE": 26,
+    "TE>ILB": 11,
+    "C>OT": 2,
+    "DT>EDGE": 4,
+    "SS>WR": 6,
+    "TE>OT": 12,
+    "RB>WR": 40,
+    "RB>SS": 14,
+    "FB>ILB": 6,
+    "FS>WR": 5,
+    "TE>DT": 7,
+    "OLB>TE": 1,
+    "ILB>EDGE": 8,
+    "RB>FS": 10,
+    "TE>WR": 11,
+    "OT>EDGE": 2,
+    "CB>WR": 2,
+    "OLB>EDGE": 1
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 890,
+   "flexMoves": 5178,
+   "flexPerLineup": 5.057,
+   "encouraged": {
+    "high": 183,
+    "small": 463,
+    "second": 166,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x38 (-12) Kenneth Walker 95 at WR1 -12",
+     "TE>DE1 x26 (-12) Brock Bowers 95 at DE1 -12",
+     "RB>SS x14 (-10) Jahmyr Gibbs 97 at SS -10",
+     "OG>DE1 x11 (-10) Trey Smith 93 at DE1 -10",
+     "TE>WR1 x11 (-10) Trey McBride 99 at WR1 -10",
+     "TE>OT1 x10 (-12) George Kittle 97 at OT1 -12"
+    ],
+    "small": [
+     "C>OG1 x88 (-4) Aaron Brewer 90 at OG1 -4",
+     "OG>OT1 x82 (-4) Damien Lewis 87 at OT1 -4",
+     "OLB>MIKE x81 (-2) Zack Baun 93 at MIKE -2",
+     "C>DT1 x65 (-4) Tyler Linderbaum 88 at DT1 -4",
+     "OLB>DT2 x50 (-2) Zack Baun 93 at DT2 -2",
+     "OG>DT1 x21 (-4) Joe Thuney 96 at DT1 -4"
+    ],
+    "second": [
+     "DT>OG1 x50 (-4) Leonard Williams 90 at OG1 -4",
+     "EDGE>DT1 x49 (-2) Danielle Hunter 92 at DT1 -2",
+     "CB>SS x17 (-2) Cooper DeJean 87 at SS -2",
+     "C>OG2 x14 (-4) Ryan Neuzil 85 at OG2 -4",
+     "RB>TE1 x4 (-10) Saquon Barkley 91 at TE1 -10",
+     "WR>CB1 x4 (-4) Zay Flowers 90 at CB1 -4"
+    ],
+    "emergency": []
+   }
+  }
+ }
+}

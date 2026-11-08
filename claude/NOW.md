@@ -1,9 +1,9 @@
 # NOW (Architect)
-Updated: 2026-11-08. Boot-v3.6 worked: stub clones public repo, `bootstrap.sh` runs; push needed `add_repo` access:"push" (Owner-instructed) and then `git push origin HEAD:architect/engine-and-seats` works.
-- Owner CONFIRMED 8 Nov: salary table retired, reference only (`claude/rulings/2026-11-08-owner-salary-table-retired.md`). Muse relay conflict settled.
-- DONE: default display measured: `measuredDisplayWeights()` (value.ts) + witness MEASURED test. Engine inputs (SLOTS, design.json, specs, flex.json) untouched; seeded hashes unchanged.
-- Owner RULED 8 Nov: engine input determines the specs; NOT refitted to the curve (gap 23.7 is expected). No refit work.
-- NEXT: flex under model-first (flex.json still HOLD: ask the Owner to lift it).
-- Then `tools/seat-check.sh` per `claude/rulings/2026-11-06-seat-stale-lane-check-proposal.md`; then guard passes (core/hungarian 15, lineup 14, playerids 11, margin 10, players 9, view/draftBoard 8, core/hash 7).
-- Pending Z.ai asks (prompt v2): Q2 parameter diff in frame original -> design@27Oct -> salary-refit, witness.mjs mirror for derivedWeights, RNG landing plan (makeRng at season loop/draft order), Rosetta Colors column keys.
-- Blockers: tsc:check needs `npm ci` in colors/ (vite/client types) in a fresh clone. Held (Owner): CI gate pick, hydration wiring.
+Updated: 2026-11-08. Boot-v3.7 worked once the Owner authorized the clone + bootstrap.sh call in chat (first try: classifier "no verdict", repeat denied "Code from External"). Push: `add_repo` access:"push" (Owner-instructed) then `git push origin HEAD:architect/engine-and-seats`.
+- Owner CONFIRMED 8 Nov: salary table retired; default display MEASURED; engine input determines the specs, no refit to the curve (`claude/rulings/2026-11-08-owner-salary-table-retired.md`).
+- Owner 8 Nov: flex is MODEL-FIRST, his flex rules stay as a later fallback, likes -2/-4/-10, -12 only if it helps; HOLD lifted for P-294 work, adoption still his pick. `flex.json`/`FLEX`/`slots.ts` UNCHANGED.
+- DONE P-294 evidence: `claude/rulings/2026-11-08-p294-flex-model-first-evidence.md`, `tools/mathlab/flexeval.mjs`, `results/flexeval-2026-11-08.json`, proposal `tools/mathlab/flex-model-first-proposal-2026-11-08.json`. cap10 cuts encouraged off-role stars 34% vs today; all-12 only 10% more; 12 on RB>WR, TE>EDGE, TE>OT, DT>EDGE gets ~2/3 of that.
+- Theta formula UNKNOWN: only named in `inbox/20261108-1200-architect-to-zai-ciccp3-answers.md`; not in this branch or council/zai. Needs the formula from Z.ai/Owner, then price it with flexeval.mjs.
+- NEXT: Owner picks flex table (all 10 / targeted 12 / all 12) and the model|owner switch; then build (flex.json+flex.ts, flexcheck 10/12, re-pin hash, 7 tests). Then `tools/seat-check.sh` per `claude/rulings/2026-11-06-seat-stale-lane-check-proposal.md`; guard passes (core/hungarian 15, lineup 14, playerids 11, margin 10, players 9, view/draftBoard 8, core/hash 7).
+- Pending Z.ai asks (prompt v2): Q2 parameter diff, witness.mjs mirror for derivedWeights, RNG landing plan, Rosetta Colors column keys.
+- Blockers: tsc:check needs `npm ci` in colors/. Held (Owner): CI gate pick, hydration wiring, flex adoption.
