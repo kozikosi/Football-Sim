@@ -114,7 +114,7 @@ function priceFlex(engine) {
         const winsNat = Number(engine.slotWins(natural, ovr));
         const winsFlex = Number(engine.slotWins(flexSlot, ovr));
         const winsLost = Math.max(0, winsNat - winsFlex);
-        const ovrEq = slope[dest] ? winsLost / slope[dest] : null;
+        const ovrEq = slope[flexSlot] ? winsLost / slope[flexSlot] : null;
         ovrRow.push({ ovr, winsNat: +winsNat.toFixed(5), winsFlex: +winsFlex.toFixed(5),
           winsLost: +winsLost.toFixed(5), ovrEquivalent: ovrEq == null ? null : +ovrEq.toFixed(2) });
       }
