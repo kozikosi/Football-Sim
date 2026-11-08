@@ -129,7 +129,7 @@ function pairwise() {
     const needRaw = w * (1 - CAP / pl.ovr);
     if (needRaw > need) { need = needRaw; bind = dest; }
     }
-    if (need) lines.push(`  ${role.padEnd(5)} ${pl.name} ${pl.ovr}: natural ${naturalOf(role)?.id} now ${bestNat(role)}, needs ${Math.ceil(need / STEP) * STEP}; binding ${bind} -> ${destW(dest)}`);
+    if (need) lines.push(`  ${role.padEnd(5)} ${pl.name} ${pl.ovr}: natural ${naturalOf(role)?.id} now ${bestNat(role)}, needs ${Math.ceil(need / STEP) * STEP}; binding ${bind} -> ${destW(bind)}`);
   }
   return lines;
 }
