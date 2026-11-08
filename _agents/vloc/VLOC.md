@@ -33,9 +33,12 @@
 - `_agents/vloc/deliveries/PLAN-P-013-tooling-2026-11-07.md` (this session's plan)
 - `_agents/vloc/deliveries/uncertainty-reporting-law.md`, `H-001-mechanics-honesty.md`, `discrepancy-register.md`, `ruling-log.md`, `prompt-for-claude-P-013-revised-2026-11-07.md`
 - Earlier w79: `flexcap.mjs`, `weights-flex-proposal-w79.md`, `ui-proposals-w79.md`, `flex-proposed-cap10.json`, evidence JSONs, `weights-measure.mjs` + `weights-measure-2026-11-06.json`, `flex-measure.mjs` + `flex-measure-2026-11-06.json`
-- Tooling: `tools/mathlab/triangulate.mjs` (enhanced), `uncertainty.mjs`, `replacement-audit.mjs`, `flex-pricer.mjs`, `t1-harness.mjs`, `run-all-vloc-tests.mjs` + `tools/mathlab/results/*` evidence JSONs/CSV
-- Review filed: `inbox/20261107-0030-vloc-review-vl-P-013-tools.md` (VERDICT: ok, cross-validated vs VL)
+- Tooling: `tools/mathlab/triangulate.mjs` (enhanced: derived1000, expected700, quantError700 contract check, spread1000, Spearman), `uncertainty.mjs` (T12 reporting law), `replacement-audit.mjs` (enhanced: engine definition doc, DL5 VERIFIED snap data, known slots list, --pool/--snaps), `flex-pricer.mjs` (enhanced: verdict classification UNDERPRICED/OVERPRICED/ALIGNED, 84 rules 10/26/48), `metamorphic-battery.mjs` (NEW: T7, 6/6 PASS, max TE1 10.6%), `t1-harness.mjs`, `run-all-vloc-tests.mjs` (7/7 PASS) + `tools/mathlab/results/*` evidence JSONs/CSV
+- Reviews filed: `inbox/20261107-0030-vloc-review-vl-P-013-tools.md` (VERDICT: ok, cross-validated vs VL), `inbox/20261108-0045-vloc-review-super-P-013-tools.md` (VERDICT: ok, matches VLOC results exactly — same 10/26/48 split, same T7 results, same gapPts=0)
+- Cross-validated vs SUPER (council/super 6a7b200b): identical results on T6/T7/T4; SUPER cross-validation vs Beam: 0.0000 diff all 32 slots; SUPER run-all-tests 12/12 PASS.
+- Reviewed FLINT (council/flint 15cc151a): verified Beam's T3/T7/T4/T12 tools (all RC=0), found+fixed VL flexweight bug (RC=1→RC=0). Reviewed BEAM (council/beam bd91529f): P-284 weights sweep, 26-slot revealed table + 14 flags. Reviewed GLM (council/glm 9b1c869e): Owner's 32-slot table == engine (32/32 exact), DT2 +50 flagged. Reviewed OR (council/or a83d80b6): direct product edit flagged as D-007 (not reverted per §4.4).
+- OR product edit documented as D-007 in `discrepancy-register.md` (AGENTS §3 violation — only Architect builds product; NOT reverted per §4.4).
 
 ## Worktree / branch
 - **Worktree:** /Users/kosi/Desktop/wt/vloc · **Branch:** council/vloc
-- **merge-base with origin/council/base:** 1b91f50e · **Local commits not yet pushed:** none (this session's commit pending)
+- **merge-base with origin/council/base:** 1b91f50e · **Last pushed:** 7b3f8cbe → origin/council/vloc
