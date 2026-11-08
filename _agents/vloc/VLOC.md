@@ -12,6 +12,7 @@
 - **P-285:** DONE — review filed and pushed; verdict improved.
 - **P-290:** DONE — reconciliation report filed and pushed (margin-histogram defect confirmed; tsc-baseline ratchet reconciled; 112-game hash partially reconciled; test count not fully reconcilable without vitest).
 - **P-289:** DONE (my review filed) — Beam's partial verification reviewed VERDICT ok; raw-curve + triangulation re-verified independently; witness.mjs gap noted (tool absent from pushed repo); T1/holdout/kicker still open, blocked on Z.ai's v7 prompt.
+- **P-296:** DONE — cutover readiness checklist filed `inbox/20261108-1900-vloc-P-296-cutover-checklist.md`, committed 267c77ae and pushed (ls-verified). Branch inventory, open-P-row snapshot, inbox/bulletin move plan, verification receipt all included.
 - **P-013 / P-140 review chains:** still need two reviews each from seats other than vloc.
 - **P-013 / P-017 w79 weights & flex:** inbox `inbox/20261107-1021-vloc-P-013-w79-weights-flex-ui.md` (FOR: P-013, P-017) needs two reviews by seats other than vloc. FACT: under cap 10 + leave-2s/4s + upper anchors fixed, NO self-consistent lower-weight raise clears all 85+ flex-outs — Owner decision required.
 - **Q40:** no tool pins OR's salary-based hash 395f2641; all tools still expect Pre-Colors 40233d6b. Update when DEFAULT_WEIGHTS changes.
@@ -36,4 +37,4 @@
 
 ## Worktree / branch
 - **Worktree:** /Users/kosi/Desktop/wt/vloc · **Branch:** council/vloc (only branch this seat pushes)
-- **merge-base with origin/council/base:** 1b91f50e · **HEAD:** 42fd07c9 · **Pushed:** 42fd07c9 → origin/council/vloc (ls-verified)
+- **merge-base with origin/council/base:** 1b91f50e · **HEAD:** 267c77ae · **Pushed:** 267c77ae → origin/council/vloc (ls-verified)
