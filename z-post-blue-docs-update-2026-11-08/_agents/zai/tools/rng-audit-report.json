@@ -1,0 +1,440 @@
+{
+ "generatedUtc": "2026-11-08T00:50:28.522ZZ",
+ "product": {
+  "name": "Football-Sim-PreColors.html",
+  "sha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+  "md5": "5be9767f335654ea87e79e42440d9041",
+  "bytes": 657486
+ },
+ "occurrences": 56,
+ "distinctLines": 38,
+ "bySubsystem": {
+  "utility-shuffle": 2,
+  "schedule": 1,
+  "draft": 10,
+  "awards": 1,
+  "via-gauss": 2,
+  "via-poisson": 1,
+  "game-plan": 1,
+  "game-sim": 7,
+  "narrative": 12,
+  "stats": 3,
+  "game-narrative": 1,
+  "ui-visual": 15
+ },
+ "helperCallers": {
+  "randNormal": {
+   "draft": 3,
+   "global-scope": 1,
+   "helper:gauss": 1
+  },
+  "gaussNoise": {
+   "global-scope": 1,
+   "unclassified-fn:samplePlans": 1,
+   "game-sim": 5,
+   "unclassified-fn:splitAmong": 1,
+   "narrative": 6,
+   "stats": 2
+  },
+  "poisson": {
+   "global-scope": 1,
+   "game-sim": 2,
+   "narrative": 7,
+   "stats": 2
+  }
+ },
+ "sites": [
+  {
+   "htmlLine": 1015,
+   "col": 98,
+   "snippet": "function shuffleArr(arr){ const a=arr.slice(); for(let i=a.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [a[i],a[j]]=[a[j],a[i]]; } return a; }",
+   "fn": "shuffleArr",
+   "subsystem": "utility-shuffle"
+  },
+  {
+   "htmlLine": 1077,
+   "col": 17,
+   "snippet": "const flip = Math.random()<0.5;",
+   "fn": "buildFullSchedule",
+   "subsystem": "schedule"
+  },
+  {
+   "htmlLine": 1392,
+   "col": 32,
+   "snippet": "if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.random()*8 : Math.exp(0.5*randNormal()); // each front",
+   "fn": "cpuBias",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1392,
+   "col": 59,
+   "snippet": "if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.random()*8 : Math.exp(0.5*randNormal()); // each front",
+   "fn": "cpuBias",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1392,
+   "col": 80,
+   "snippet": "if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.random()*8 : Math.exp(0.5*randNormal()); // each front",
+   "fn": "cpuBias",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1392,
+   "col": 103,
+   "snippet": "if(b[group]==null) b[group] = Math.random()<0.33 ? 0.003+Math.random()*0.03 : Math.random()<0.35 ? 5+Math.random()*8 : Math.exp(0.5*randNormal()); // each front",
+   "fn": "cpuBias",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1396,
+   "col": 157,
+   "snippet": "function cpuNoise(teamIndex){ draftSim.noiseSd = draftSim.noiseSd || {}; if(draftSim.noiseSd[teamIndex]==null) draftSim.noiseSd[teamIndex] = 0.1 + Math.pow(Math",
+   "fn": "cpuNoise",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1397,
+   "col": 142,
+   "snippet": "function cpuMiss(teamIndex){ draftSim.missP = draftSim.missP || {}; if(draftSim.missP[teamIndex]==null) draftSim.missP[teamIndex] = Math.pow(Math.random(),0.9)*",
+   "fn": "cpuMiss",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1431,
+   "col": 23,
+   "snippet": "if(cands.length>8 && Math.random() < cpuMiss(teamIndex)){",
+   "fn": "cpuPick",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1460,
+   "col": 99,
+   "snippet": "if(userTeamName==='__random'){ const all = Object.keys(TEAM_DATA); userTeamName = all[Math.floor(Math.random()*all.length)]; }",
+   "fn": "startDraft2",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1466,
+   "col": 60,
+   "snippet": "for(let i=shuffled.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [shuffled[i],shuffled[j]]=[shuffled[j],shuffled[i]]; }",
+   "fn": "startDraft2",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1471,
+   "col": 58,
+   "snippet": "for(let i=others.length-1;i>0;i--){ const j=Math.floor(Math.random()*(i+1)); [others[i],others[j]]=[others[j],others[i]]; }",
+   "fn": "startDraft2",
+   "subsystem": "draft"
+  },
+  {
+   "htmlLine": 1835,
+   "col": 43,
+   "snippet": "function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }",
+   "fn": "pick",
+   "subsystem": "awards"
+  },
+  {
+   "htmlLine": 1920,
+   "col": 52,
+   "snippet": "function randNormal(){ let u=0,v=0; while(u===0) u=Math.random(); while(v===0) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }",
+   "fn": "randNormal",
+   "subsystem": "helper:gauss"
+  },
+  {
+   "htmlLine": 1920,
+   "col": 82,
+   "snippet": "function randNormal(){ let u=0,v=0; while(u===0) u=Math.random(); while(v===0) v=Math.random(); return Math.sqrt(-2*Math.log(u))*Math.cos(2*Math.PI*v); }",
+   "fn": "randNormal",
+   "subsystem": "helper:gauss"
+  },
+  {
+   "htmlLine": 1922,
+   "col": 103,
+   "snippet": "function poisson(lambda){ if(lambda<=0) return 0; const L=Math.exp(-lambda); let k=0,p=1; do{ k++; p*=Math.random(); }while(p>L); return k-1; }",
+   "fn": "poisson",
+   "subsystem": "helper:poisson"
+  },
+  {
+   "htmlLine": 1926,
+   "col": 10,
+   "snippet": "let r = Math.random()*total;",
+   "fn": "weightedPick",
+   "subsystem": "utility-shuffle"
+  },
+  {
+   "htmlLine": 1980,
+   "col": 28,
+   "snippet": "if(!S.aggr[t]){ const u = Math.random(); S.aggr[t] = S.teams[t].isUser ? 'balanced' : (u<0.22?'cautious':u>0.78?'aggressive':'balanced'); }",
+   "fn": "aggrOf",
+   "subsystem": "game-plan"
+  },
+  {
+   "htmlLine": 2171,
+   "col": 19,
+   "snippet": "if(s===1) return Math.random()<0.5 ? 0 : 3;",
+   "fn": "realisticScore",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2173,
+   "col": 19,
+   "snippet": "if(s===4) return Math.random()<0.5 ? 3 : 6;",
+   "fn": "realisticScore",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2174,
+   "col": 19,
+   "snippet": "if(s===5) return Math.random()<0.5 ? 6 : 3;",
+   "fn": "realisticScore",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2321,
+   "col": 44,
+   "snippet": "if(homeScore===awayScore && (isPlayoff || Math.random()>0.08)){",
+   "fn": "simulateGame",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2322,
+   "col": 33,
+   "snippet": "ot = true; const homeWinsOT = Math.random() < normCdf((homeProj-awayProj)/9), add = Math.random()<0.35 ? 7 : 3;",
+   "fn": "simulateGame",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2322,
+   "col": 87,
+   "snippet": "ot = true; const homeWinsOT = Math.random() < normCdf((homeProj-awayProj)/9), add = Math.random()<0.35 ? 7 : 3;",
+   "fn": "simulateGame",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2330,
+   "col": 118,
+   "snippet": "if(otAdd) (otAdd.side==='home'?homeEvents:awayEvents).push({pts:otAdd.add, type:otAdd.add===7?'TD':'FG', q:5, t:0.5+Math.random()*0.3});",
+   "fn": "simulateGame",
+   "subsystem": "game-sim"
+  },
+  {
+   "htmlLine": 2495,
+   "col": 6,
+   "snippet": "if(Math.random()<passTDprob && catchers.length){",
+   "fn": "buildOffenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2511,
+   "col": 92,
+   "snippet": "if(!made){ if(ev.pts!==6) return; if(ev.tpTry===undefined) ev.tpTry = ev.forced ? true : Math.random()<Math.min(0.9, 0.38*(AGGR_INFO[ev.ag||'balanced'].two)); i",
+   "fn": "buildOffenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2512,
+   "col": 6,
+   "snippet": "if(Math.random()<0.55 && catchers.length && qb){",
+   "fn": "buildOffenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2527,
+   "col": 6,
+   "snippet": "if(Math.random()<0.52 && qb){",
+   "fn": "buildOffenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2586,
+   "col": 15,
+   "snippet": "const rs = Math.random()<0.5 ? s : weightedPick(Object.keys(recW).filter(x=>bySlot[x]).map(x=>({item:x, w:recW[x]})));",
+   "fn": "buildDefenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2593,
+   "col": 41,
+   "snippet": "(extra.oppOwnFum||[]).forEach(()=>{ if(Math.random()<0.5){ const cands = Object.keys(ffW).filter(x=>bySlot[x]); if(!cands.length) return; const s = weightedPick",
+   "fn": "buildDefenseDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2637,
+   "col": 89,
+   "snippet": "for(let i=0;i<krN;i++) kry += clampNum(Math.round(19.5*f*Math.exp(gaussNoise(0.32)) + (Math.random()<0.012?55:0)), 6, 104);",
+   "fn": "addReturns",
+   "subsystem": "stats"
+  },
+  {
+   "htmlLine": 2638,
+   "col": 92,
+   "snippet": "for(let i=0;i<prN;i++) pry += clampNum(Math.round(7.4*f*Math.exp(gaussNoise(0.55)-0.1) + (Math.random()<0.01?45:0)), -3, 90);",
+   "fn": "addReturns",
+   "subsystem": "stats"
+  },
+  {
+   "htmlLine": 2645,
+   "col": 119,
+   "snippet": "const defTDn = (evs, oppTO)=>{ const tds = evs.filter(e=>e.type==='TD').length; let n=0; for(let i=0;i<oppTO;i++) if(Math.random()<0.085) n++; return Math.min(n",
+   "fn": "buildGameDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2663,
+   "col": 26,
+   "snippet": "causes.forEach(c=>{ if(Math.random()<share[c]){ const x = pickOL(); x.st.sa = (x.st.sa||0)+1; x.st.pa = (x.st.pa||0)+1; } });",
+   "fn": "buildGameDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2665,
+   "col": 32,
+   "snippet": "for(let i=0;i<press;i++){ if(Math.random()<0.85){ const x = pickOL(); x.st.pa = (x.st.pa||0)+1; } }",
+   "fn": "buildGameDetail",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 2742,
+   "col": 132,
+   "snippet": "events.forEach(e=>{ e.ag = ag||'balanced'; e.q = weightedPick([{item:1,w:1},{item:2,w:1.05},{item:3,w:1},{item:4,w:1.15}]); e.t = Math.random(); });",
+   "fn": "makeScoringEvents",
+   "subsystem": "game-narrative"
+  },
+  {
+   "htmlLine": 3473,
+   "col": 186,
+   "snippet": "if(book===seasonState.playerStats) Object.keys(SEASON_RECORD_CAPS).forEach(k=>{ if(rec.st[k]>SEASON_RECORD_CAPS[k]) rec.st[k] = Math.max(before[k], SEASON_RECOR",
+   "fn": "accumulatePlayerStats",
+   "subsystem": "stats"
+  },
+  {
+   "htmlLine": 5243,
+   "col": 22,
+   "snippet": "let hi = Math.floor(Math.random()*HOT_T.length), ci = Math.floor(Math.random()*COLD_T.length);",
+   "fn": "formBits",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 5243,
+   "col": 67,
+   "snippet": "let hi = Math.floor(Math.random()*HOT_T.length), ci = Math.floor(Math.random()*COLD_T.length);",
+   "fn": "formBits",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 5559,
+   "col": 58,
+   "snippet": "const i = (pool.length?pool:T.map((t,j)=>j))[Math.floor(Math.random()*(pool.length||T.length))];",
+   "fn": "edgeLine",
+   "subsystem": "narrative"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 103,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 144,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 227,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 251,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 272,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 291,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 312,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 345,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6456,
+   "col": 399,
+   "snippet": "function confetti(n, colors, x0, y0, spread, speed){ for(let i=0;i<n;i++){ const a = (-Math.PI/2) + (Math.random()-.5)*spread, v = speed*(0.5+Math.random()); pa",
+   "fn": "confetti",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6457,
+   "col": 97,
+   "snippet": "function firework(x, y, colors){ const n = 70; for(let i=0;i<n;i++){ const a = Math.PI*2*i/n + Math.random()*.1, v = 2.5+Math.random()*3.8; parts.push({x, y, vx",
+   "fn": "firework",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6457,
+   "col": 123,
+   "snippet": "function firework(x, y, colors){ const n = 70; for(let i=0;i<n;i++){ const a = Math.PI*2*i/n + Math.random()*.1, v = 2.5+Math.random()*3.8; parts.push({x, y, vx",
+   "fn": "firework",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6457,
+   "col": 239,
+   "snippet": "function firework(x, y, colors){ const n = 70; for(let i=0;i<n;i++){ const a = Math.PI*2*i/n + Math.random()*.1, v = 2.5+Math.random()*3.8; parts.push({x, y, vx",
+   "fn": "firework",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6457,
+   "col": 292,
+   "snippet": "function firework(x, y, colors){ const n = 70; for(let i=0;i<n;i++){ const a = Math.PI*2*i/n + Math.random()*.1, v = 2.5+Math.random()*3.8; parts.push({x, y, vx",
+   "fn": "firework",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6483,
+   "col": 97,
+   "snippet": "[300,900,1500,2100,2700,3300].forEach(t=>setTimeout(()=>{ if(!cv) ensure(); firework(W*(0.15+Math.random()*0.7), H*(0.15+Math.random()*0.35), GOLD.concat(['#4f8",
+   "fn": "play",
+   "subsystem": "ui-visual"
+  },
+  {
+   "htmlLine": 6483,
+   "col": 125,
+   "snippet": "[300,900,1500,2100,2700,3300].forEach(t=>setTimeout(()=>{ if(!cv) ensure(); firework(W*(0.15+Math.random()*0.7), H*(0.15+Math.random()*0.35), GOLD.concat(['#4f8",
+   "fn": "play",
+   "subsystem": "ui-visual"
+  }
+ ]
+}
