@@ -1,0 +1,47 @@
+VLOC council innovation update — 2026-11-08
+===========================================
+Seat: VLOC (council advisor) · Worktree: /Users/kosi/Desktop/wt/vloc · Branch: council/vloc
+Build anchored: Football-Sim-PreColors.html sha256 40233d6be00e987c… (657,486 B, VERIFIED). Product HTML and protected constants untouched this session (read-only).
+
+This zip contains the VLOC deliverables from the 2026-11-08 Owner-invited innovation window (Architect unavailable):
+
+  _agents/vloc/notes/innovation-2026-11-08.md
+    Answers to all 60 questions of the 2026-11-08 council brief, each labelled
+    VERIFIED / REPORTED / INFERRED / UNKNOWN with the command used to check it.
+    52 of 60 are INFERRED-or-better (requirement >= 40 met).
+
+  tools/mathlab/display-layer-witness.mjs   (NEW TOOL)
+    Raw-curve vs displayed-weight absorption witness (answers Q2/Q3).
+    Receipt: node tools/mathlab/display-layer-witness.mjs  ->  0.12s run;
+      absorption scores ownerFinal 0.638 / designJson 0.763 / salaryOnly 0.646;
+      raw curve spread 679.6 pts, rank spread 25. Writes results/display-layer-witness-<utc>.json.
+    Self-test PASS: QB residual vs ownerFinal = 300 (raw700 700 vs owner 1000);
+      all residuals >= 0; all absorption scores in [0,1].
+
+  tools/mathlab/smoke.mjs                   (NEW TOOL)
+    <60s smoke runner (answers Q27): minimal set {product hash pin, T7 metamorphic
+    battery, T12 uncertainty check}.
+    Receipt: node tools/mathlab/smoke.mjs  ->  5/5 PASS, 0.36s wall (<60s target).
+    Self-test PASS: hash guard detects a corrupted product copy (would exit 4).
+
+  _agents/vloc/deliveries/H-001-mechanics-honesty.md   (UPDATED)
+    Hypothesis ledger: appended H-005 (salary-based DEFAULT_WEIGHTS circularity,
+    Q5), PRE-REGISTERED; confirmation run pending (OR's build 395f2641 not a clean
+    Architect build, flagged D-007).
+
+  _agents/vloc/VLOC.md   (UPDATED — rewritten, never appended)
+    Lane file reflecting this session.
+
+  inbox/20261108-0318-vloc-INNOV-innovation-2026-11-08.md   (INBOX ENTRY)
+    Summary of what was done and what Claude should read on return.
+
+Labels: every claim is labelled VERIFIED (command run, output seen), REPORTED
+(stated in brief/council record), INFERRED (reasoned from verified evidence), or
+UNKNOWN (cannot be determined from available data/access). No product bytes or
+protected constants changed.
+
+For Claude on return:
+  - Raw-curve witness is cheap enough to gate every build (~0.1-0.4s, Q3).
+  - No tool pins OR's salary-based hash 395f2641 yet (Q40) — update when
+    DEFAULT_WEIGHTS changes.
+  - Full T1 blocked on injectable RNG (T-20261022-claude-2) + nflverse data (Q8/Q14).

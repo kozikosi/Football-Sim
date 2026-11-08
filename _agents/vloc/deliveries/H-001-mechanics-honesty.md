@@ -26,3 +26,11 @@ Written BEFORE any experiment result is examined, per the beam pre-registration 
 **Filed:** tools/mathlab/results/flex-pricer-2026-11-07T23-50.json.
 
 **Open (not run, blocked):** H-004 mechanics validation on the 4-level ladder (T1) — needs seeded RNG (T-20261022-claude-2) and nflverse snap/target/EPA data.
+
+## H-005 — Does salary-based DEFAULT_WEIGHTS reduce the raw-vs-display anchor spread? (Q5)
+**Prediction:** Repositioning DEFAULT_WEIGHTS from the old personal table (QB 320 / WR1 60 / TE1 80 / CB1 350 / SS 80 / FS 60) to OR's salary-based table (QB pinned 1000, other slots from salary $M x 25) will REDUCE the raw700↔anchor spread on headline slots (QB, WR1, DE1, OT1) but will NOT eliminate it; the mechanics (raw curve) still mismatch the display on secondary slots (CB1, CB2, CB3, SAM, K). The circularity is relocated (display target = salary, mechanics target = design.json), not resolved.
+**Control:** Baseline = Pre-Colors 40233d6b (personal-table DEFAULT_WEIGHTS), measured raw700 vs ownerFinal from `tools/mathlab/results/triangulate-*.json`. Treatment = OR's salary-based build 395f2641 (DEFAULT_WEIGHTS QB 320→1000, WR1 60→650, ...), MERGE-MANIFEST re-pinned to 395f2641 — but this product edit bypassed the Architect build gate (flagged D-007, not reverted per AGENTS §4.4).
+**Data:** raw700 from engine `slotWinsPerOvr()` (VERIFIED, this session); salaryOnly anchor = salary $M x 25 (REPORTED, `tools/mathlab/salaryOnly()`); OR's build numbers NOT yet measured (UNKNOWN — build not a clean Architect build).
+**Success criteria:** spread on QB/WR1/DE1/OT1 drops ≥30% under salary-based vs personal-table baseline; raw curve still matches no anchor on ≥10 of 26 slots (i.e., mechanics-display split persists).
+**Status:** PRE-REGISTERED (written before running the witness on OR's build). Confirmation run blocked until OR's build is a clean Architect build with MERGE-MANIFEST re-pin in the same commit (D-007).
+**Filed:** this ledger; baseline numbers in `tools/mathlab/results/display-layer-witness-2026-11-08T03-14.json` (salaryOnly meanResidual 108.3, absorption 0.646, spread 950 vs ownerFinal meanResidual 114.3, absorption 0.638, spread 950).
