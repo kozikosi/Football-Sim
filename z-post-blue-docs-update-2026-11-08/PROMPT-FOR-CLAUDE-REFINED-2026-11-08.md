@@ -125,7 +125,30 @@ P1: T5 (not yet built), T6 (built+run, extended), T7 (Beam/super versions), T8 (
 P2: T9 (not yet built), T10 (not yet built), T11 (not yet built), T12 (built+run, v2 added).
 Governance: H-001…H-008, D-001…D-009, R-001…R-005 (proposal), held-out lint (fit-vs-anchor).
 
-Constraints (Owner): read-only for you this round if answering before building. Please read, synthesize, and evaluate, and answer questions before building anything. You have permission to run tests to help you decide the best path forward.
+Constraints (Owner): read-only for you this round if answering before building. ============================================================
+CICCP-3 — COUNCIL COMMUNICATION PROTOCOL (Z.ai synthesis, Owner-relayed)
+============================================================
+
+Z.ai synthesized five council reports (GPT CICCP, DS CCP-2, Qwen CICCP v2.0, Gemini MAC-P, Groq CCIP) into CICCP-3, grounded in this repository. The one-line version: "our structure-first rules are right — finish them." Language style is decoration; handoff structure is load-bearing; every failure we actually had was lost state at handoff, not clumsy sentences. The Owner relayed it as a request to you (Architect) via PROMPT-FOR-CLAUDE-CICCP3-2026-11-08.md. Constraints: AGENTS.md stays ≈100 lines (detail in sibling docs); protected constants untouched; add by path; seatbelt respected; English only; nothing here assigns work to any seat or changes the queue's authority. If any item conflicts with something you have not seen, the repo wins — one bulletin line saying which and why.
+
+Read these two (the prompt is self-contained; the synthesis gives the evidence):
+- zai-ciccp3-2026-11-08/_agents/zai/deliveries/COUNCIL-COMM-PROTOCOL-SYNTHESIS-2026-11-08.md (the full synthesis, grounded, VERIFIED/REPORTED labels)
+- PROMPT-FOR-CLAUDE-CICCP3-2026-11-08.md (the Owner's request, copy-paste ready)
+
+What Z.ai asks you to consider — all inside files only you control (optional input per AGENTS.md §1; striking any item with a one-line reason in CHRONICLE.md is a complete answer):
+
+1. inbox/README.md — WORK block: add six fields, required for P0 items, optional elsewhere (your call on rollout): GOAL_INVARIANT (Owner's verbatim line the work serves, quoted from the intake ledger), WRITE_SCOPE (READ_ONLY | LANE_ONLY | ARCHITECT_REQUIRED), DEPENDS_ON (ids / file#anchor / decisions; "none" is a value), PRECONDITION (with the command that proves it), REPRODUCTION (full command so a reviewer can re-run), UNCERTAINTY (what was NOT run). Nothing in the existing format changes.
+2. inbox/README.md — REVIEW block: append five edge questions, keeping "state the weakest point": (1) quote the GOAL_INVARIANT and check it against the intake ledger; (2) were DEPENDS_ON/PRECONDITION run, not assumed; (3) do names and labels match the single authority; (4) is the EVIDENCE label honest — receipt present when VERIFIED; (5) can you re-run this from REPRODUCTION alone — if not, ask, don't infer.
+3. AGENTS.md — one routing paragraph (≤4 lines): dependency-chain and patch work uses the full WORK schema; open exploration stays prose with mandatory evidence labels; full transcripts are never a handoff (formalizes the existing "never read it whole"). Plus one CTE sentence: prose ≈80% ASD-STE style; technical terms, identifiers, numbers and uncertainty are always preserved; precision outranks style. No linter gate now; a soft sensor later only if you want one.
+4. AGENTS.md — the review-count fix: §1 currently says "after two confirmations it is REVIEWED", while PRIORITIES.md and inbox/README.md say three reviews (REVIEWED ✓✓✓). Z.ai verified this drift on 8 Nov. Pick the number you want (council practice reads as three) and state it once, so the invariant has one home.
+5. tasks/<id>.json + tools/check-tasks.mjs: four optional fields so nothing old breaks: goal_invariant, depends_on[], failure_class (data-gap | signal-corruption | referential-drift | capability-gap), caught_at_hop (1 review / 2 test order / 3 Owner or production). These turn the ledger into the failure-class metric the research recommends, at zero new infrastructure.
+6. CLAUDE.md + claude/00-READ-FIRST.md: one compaction line each — the handover doc is a compacted decision log (hypotheses · evidence · open questions), never a transcript.
+
+Why it matters (from the synthesis, VERIFIED against this repo): the council already has the structure-first rules (evidence labels, one-writer, worktree-per-seat, never-stash, seatbelt, only-Architect-builds, three-review chain). The gaps are (a) no goal_invariant anywhere — decomposition can silently drop the Owner's verbatim constraint; (b) dependencies/preconditions live in prose — every reviewer must reconstruct them; (c) decisions have more than one authoritative home — live drift today (§8 of the synthesis: two vs three reviews). These six items close the gaps at zero new infrastructure. Routing beats uniformity: full schema for dependency-chain work, CTE prose for open exploration, transcripts never as handoff. Full transcripts are never a handoff (Handoff Tax: summaries weakly dominate transcripts on cost–quality; full transcripts never sit on the frontier — 3.0× cost at depth 3).
+
+Please read, synthesize, and evaluate, and answer (or strike with a one-line reason in CHRONICLE.md) before building anything. You have permission to run tests to help you decide the best path forward.
+
+Please read, synthesize, and evaluate, and answer questions before building anything. You have permission to run tests to help you decide the best path forward.
 
 OWNER ADDENDUM — permission + analysis (2026-11-07, binding for P-013):
 (1) Permission to abandon old system (personal + salary tables) as calibration target/foundation; new display presets QB=1000, increments of 50; DEFAULT_WEIGHTS may be repositioned/retired (protected constant — Owner approval granted; re-pin MERGE-MANIFEST in same commit).
