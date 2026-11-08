@@ -1,0 +1,345 @@
+{
+  "tool": "T1 mechanics validation harness (deterministic L1)",
+  "source": "results/fit-runall-2026-11-08T05-39-57.json",
+  "nSlots": 32,
+  "nFail": 0,
+  "nPass": 32,
+  "preRegistered": true,
+  "rule": "FAIL -> REPORT, never auto-adjust",
+  "ladderNote": "L1 Opportunity and L3 Efficiency measured. L2 Production and play-level outcome distributions flagged NEEDS-RNG (no injectable RNG in product yet).",
+  "needsRng": {
+    "L2_production": "targets, yards, snaps, EPA by position per season — requires seeded seasons (injectable RNG, T-20261022-claude-2)",
+    "L4_teamImpact": "bestUnitPts per slot via matchupModel — deterministic per matchup but season aggregation needs RNG",
+    "playLevel": "completion% by air-yards bucket, INT rate by coverage role, pressure->sack, YAC by slot — requires play-level sim + RNG"
+  },
+  "slots": [
+    {
+      "slot": "QB",
+      "L1_opportunityWins70_90": 2.540679,
+      "L3_efficiencyWinsPerOvr": 0.127034,
+      "bandMin": 1.5,
+      "bandMax": 4,
+      "fail": false,
+      "label": "ANCHOR",
+      "note": ""
+    },
+    {
+      "slot": "RB1",
+      "L1_opportunityWins70_90": 0.579968,
+      "L3_efficiencyWinsPerOvr": 0.028998,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "RB2",
+      "L1_opportunityWins70_90": 0.204501,
+      "L3_efficiencyWinsPerOvr": 0.010225,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "WR1",
+      "L1_opportunityWins70_90": 1.196478,
+      "L3_efficiencyWinsPerOvr": 0.059824,
+      "bandMin": 0.6,
+      "bandMax": 2,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "WR2",
+      "L1_opportunityWins70_90": 0.837704,
+      "L3_efficiencyWinsPerOvr": 0.041885,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "WR3",
+      "L1_opportunityWins70_90": 0.484789,
+      "L3_efficiencyWinsPerOvr": 0.024239,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "TE1",
+      "L1_opportunityWins70_90": 0.688803,
+      "L3_efficiencyWinsPerOvr": 0.03444,
+      "bandMin": 0.3,
+      "bandMax": 1.5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "TE2",
+      "L1_opportunityWins70_90": 0.152111,
+      "L3_efficiencyWinsPerOvr": 0.007606,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "OT1",
+      "L1_opportunityWins70_90": 1.090069,
+      "L3_efficiencyWinsPerOvr": 0.054503,
+      "bandMin": 0.6,
+      "bandMax": 2,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "OT2",
+      "L1_opportunityWins70_90": 1.01898,
+      "L3_efficiencyWinsPerOvr": 0.050949,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "OG1",
+      "L1_opportunityWins70_90": 0.735142,
+      "L3_efficiencyWinsPerOvr": 0.036757,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "OG2",
+      "L1_opportunityWins70_90": 0.735142,
+      "L3_efficiencyWinsPerOvr": 0.036757,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "C",
+      "L1_opportunityWins70_90": 0.814856,
+      "L3_efficiencyWinsPerOvr": 0.040743,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DE1",
+      "L1_opportunityWins70_90": 1.317935,
+      "L3_efficiencyWinsPerOvr": 0.065897,
+      "bandMin": 0.6,
+      "bandMax": 2,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DE2",
+      "L1_opportunityWins70_90": 1.017182,
+      "L3_efficiencyWinsPerOvr": 0.050859,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DT1",
+      "L1_opportunityWins70_90": 1.015649,
+      "L3_efficiencyWinsPerOvr": 0.050782,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DT2",
+      "L1_opportunityWins70_90": 0.761533,
+      "L3_efficiencyWinsPerOvr": 0.038077,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "MIKE",
+      "L1_opportunityWins70_90": 0.658405,
+      "L3_efficiencyWinsPerOvr": 0.03292,
+      "bandMin": 0.3,
+      "bandMax": 1.5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "WILL",
+      "L1_opportunityWins70_90": 0.608593,
+      "L3_efficiencyWinsPerOvr": 0.03043,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "SAM",
+      "L1_opportunityWins70_90": 0.076813,
+      "L3_efficiencyWinsPerOvr": 0.003841,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "CB1",
+      "L1_opportunityWins70_90": 1.143952,
+      "L3_efficiencyWinsPerOvr": 0.057198,
+      "bandMin": 0.6,
+      "bandMax": 2,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "CB2",
+      "L1_opportunityWins70_90": 0.865766,
+      "L3_efficiencyWinsPerOvr": 0.043288,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "CB3",
+      "L1_opportunityWins70_90": 0.710095,
+      "L3_efficiencyWinsPerOvr": 0.035505,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "SS",
+      "L1_opportunityWins70_90": 0.61194,
+      "L3_efficiencyWinsPerOvr": 0.030597,
+      "bandMin": 0.3,
+      "bandMax": 1.5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "FS",
+      "L1_opportunityWins70_90": 0.658651,
+      "L3_efficiencyWinsPerOvr": 0.032933,
+      "bandMin": 0.3,
+      "bandMax": 1.5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "K",
+      "L1_opportunityWins70_90": 0.508326,
+      "L3_efficiencyWinsPerOvr": 0.025416,
+      "bandMin": 0.1,
+      "bandMax": 1,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "FB",
+      "L1_opportunityWins70_90": 0.076929,
+      "L3_efficiencyWinsPerOvr": 0.003846,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "P",
+      "L1_opportunityWins70_90": 0.254086,
+      "L3_efficiencyWinsPerOvr": 0.012704,
+      "bandMin": 0.05,
+      "bandMax": 0.8,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DIME",
+      "L1_opportunityWins70_90": 0.101975,
+      "L3_efficiencyWinsPerOvr": 0.005099,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "DL5",
+      "L1_opportunityWins70_90": 0.356885,
+      "L3_efficiencyWinsPerOvr": 0.017844,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "TE3",
+      "L1_opportunityWins70_90": 0.023166,
+      "L3_efficiencyWinsPerOvr": 0.001158,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    },
+    {
+      "slot": "WR4",
+      "L1_opportunityWins70_90": 0.023166,
+      "L3_efficiencyWinsPerOvr": 0.001158,
+      "bandMin": 0,
+      "bandMax": 5,
+      "fail": false,
+      "label": "OK",
+      "note": ""
+    }
+  ],
+  "generatedAt": "2026-11-08T05:40:34.101ZZ",
+  "reportingLaw": "T12",
+  "ci95": {
+    "lo": null,
+    "hi": null,
+    "n": 32
+  },
+  "note": "Each slot measured once (deterministic engine). n=1 per slot; spread/CI unavailable until repeated measurement is possible (injectable RNG). Threshold = pre-registered band; any fail is reported, never auto-adjusted."
+}
