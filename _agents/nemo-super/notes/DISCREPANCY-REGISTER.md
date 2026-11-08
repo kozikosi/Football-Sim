@@ -19,5 +19,7 @@ D-007 | modelWeights() ships as default on load and is protected by monotone-qua
 Open discrepancies (suspected, not yet quantified):
 D-008 | Defense EPA by position (DL/LB/CB) unavailable in nflverse player_stats (offense only). | n/a — data gap. | Cannot validate DL/LB/CB weights by efficiency. | OPEN | bias-results-2026-11-07.md: "Defense EPA not available in this data". |
 D-009 | WR engine ratio-to-QB 0.649 vs real 0.515 — engine slightly high. | M5 by-OVR. | Mild overvaluation of WR marginal impact. | VERIFIED (mild) | bias-results-2026-11-07.md: WR engine 0.649 vs real 0.515. |
+D-010 | Engine FLEX.QB = {} (QB cannot flex to anything → EMERGENCY_PENALTY 8) | Owner flex.json REV 4/5: QB → FS at 10 | flexRule() / product FLEX table not updated to the Owner's REV-4 QB->FS rule; any QB flex returns EMERGENCY_PENALTY (8) instead of 10 | OPEN | flex-audit.mjs on Football-Sim-PreColors.html (sha256 40233d6be00e987c…): ADDED QB->FS 10, product cur.QB = {}; flexcheck.mjs: ADDED QB->FS 10 | 2026-11-08
+
 
 Status key: VERIFIED · REPORTED · INFERRED · OPEN.

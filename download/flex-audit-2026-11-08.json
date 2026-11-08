@@ -1,0 +1,379 @@
+{
+  "tool": "flex-audit.mjs",
+  "seat": "super",
+  "date": "2026-11-08T03:18:23.600Z",
+  "product": "/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super/Football-Sim-PreColors.html",
+  "productSha256": "40233d6be00e987c",
+  "ownerFlexSource": "CUR (hardcoded Pre-Colors role table)",
+  "roles": 17,
+  "rules": 107,
+  "added": [
+    {
+      "from": "QB",
+      "to": "FS",
+      "owner": 10,
+      "product": null
+    },
+    {
+      "from": "RB",
+      "to": "FB",
+      "owner": 2,
+      "product": null
+    },
+    {
+      "from": "RB",
+      "to": "WR",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "FB",
+      "to": "RB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "FB",
+      "to": "TE",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "WR",
+      "to": "NICKEL",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "WR",
+      "to": "DIME",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "WR",
+      "owner": 2,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "FB",
+      "owner": 2,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "C",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "OG",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "OT",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "EDGE",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "DT",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "NICKEL",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "TE",
+      "to": "DIME",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "OT",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "OT",
+      "to": "RB",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "OG",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "OG",
+      "to": "RB",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "C",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "C",
+      "to": "RB",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "DT",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "EDGE",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "EDGE",
+      "to": "NICKEL",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "ILB",
+      "to": "ILB",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "ILB",
+      "to": "OLB",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "ILB",
+      "to": "FB",
+      "owner": 4,
+      "product": null
+    },
+    {
+      "from": "ILB",
+      "to": "DIME",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "OLB",
+      "to": "OLB",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "OLB",
+      "to": "ILB",
+      "owner": 2,
+      "product": null
+    },
+    {
+      "from": "OLB",
+      "to": "FB",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "OLB",
+      "to": "DIME",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "SS",
+      "to": "NICKEL",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "SS",
+      "to": "DIME",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "SS",
+      "to": "FB",
+      "owner": 6,
+      "product": null
+    },
+    {
+      "from": "FS",
+      "to": "NICKEL",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "FS",
+      "to": "DIME",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "CB",
+      "to": "NICKEL",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "CB",
+      "to": "DIME",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "K",
+      "to": "P",
+      "owner": 0,
+      "product": null
+    },
+    {
+      "from": "P",
+      "to": "K",
+      "owner": 4,
+      "product": null
+    }
+  ],
+  "removed": [
+    {
+      "from": "ILB",
+      "to": "RB",
+      "owner": null,
+      "product": 6
+    },
+    {
+      "from": "OLB",
+      "to": "RB",
+      "owner": null,
+      "product": 6
+    }
+  ],
+  "changed": [
+    {
+      "from": "WR",
+      "to": "RB",
+      "owner": 4,
+      "product": 6
+    },
+    {
+      "from": "WR",
+      "to": "CB",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "TE",
+      "to": "RB",
+      "owner": 4,
+      "product": 6
+    },
+    {
+      "from": "EDGE",
+      "to": "OLB",
+      "owner": 0,
+      "product": 2
+    },
+    {
+      "from": "ILB",
+      "to": "SS",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "ILB",
+      "to": "FS",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "ILB",
+      "to": "NICKEL",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "OLB",
+      "to": "EDGE",
+      "owner": 4,
+      "product": 6
+    },
+    {
+      "from": "OLB",
+      "to": "DT",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "OLB",
+      "to": "SS",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "OLB",
+      "to": "FS",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "SS",
+      "to": "OLB",
+      "owner": 4,
+      "product": 2
+    },
+    {
+      "from": "SS",
+      "to": "CB",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "SS",
+      "to": "ILB",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "SS",
+      "to": "WR",
+      "owner": 6,
+      "product": 4
+    },
+    {
+      "from": "CB",
+      "to": "ILB",
+      "owner": 6,
+      "product": 4
+    }
+  ],
+  "qbFsIssue": "QB->FS: Owner flex.json = 10, product FLEX.QB = {} => any QB flex = EMERGENCY_PENALTY 8. MISMATCH (D-010).",
+  "mismatchCount": 60,
+  "ok": false
+}

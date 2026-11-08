@@ -1,0 +1,101 @@
+{
+  "tool": "slotpair-flex.mjs",
+  "seat": "super",
+  "date": "2026-11-08T03:18:23.600Z",
+  "product": "/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super/Football-Sim-PreColors.html",
+  "productSha256": "40233d6be00e987c",
+  "ovr": 80,
+  "rows": [
+    {
+      "from": "QB",
+      "to": "FS",
+      "ownerPenalty": 10,
+      "rev4": 10,
+      "rev5": 10,
+      "proposal": 6,
+      "ovrCost": 30
+    },
+    {
+      "from": "TE",
+      "to": "WR1",
+      "ownerPenalty": 2,
+      "rev4": 2,
+      "rev5": 2,
+      "proposal": 2,
+      "ovrCost": null
+    },
+    {
+      "from": "CB",
+      "to": "WR1",
+      "ownerPenalty": 4,
+      "rev4": 4,
+      "rev5": 4,
+      "proposal": 4,
+      "ovrCost": null
+    },
+    {
+      "from": "CB",
+      "to": "FS",
+      "ownerPenalty": 0,
+      "rev4": 0,
+      "rev5": 0,
+      "proposal": 0,
+      "ovrCost": null
+    },
+    {
+      "from": "RB",
+      "to": "WR1",
+      "ownerPenalty": 4,
+      "rev4": 4,
+      "rev5": 4,
+      "proposal": 4,
+      "ovrCost": null
+    },
+    {
+      "from": "WR",
+      "to": "TE",
+      "ownerPenalty": 4,
+      "rev4": 4,
+      "rev5": 4,
+      "proposal": 4,
+      "ovrCost": null
+    },
+    {
+      "from": "TE",
+      "to": "RB",
+      "ownerPenalty": 4,
+      "rev4": 4,
+      "rev5": 4,
+      "proposal": 4,
+      "ovrCost": null
+    },
+    {
+      "from": "OT",
+      "to": "OG",
+      "ownerPenalty": 0,
+      "rev4": 0,
+      "rev5": 0,
+      "proposal": 0,
+      "ovrCost": null
+    },
+    {
+      "from": "SS",
+      "to": "CB",
+      "ownerPenalty": 6,
+      "rev4": 6,
+      "rev5": 6,
+      "proposal": 6,
+      "ovrCost": null
+    },
+    {
+      "from": "FS",
+      "to": "CB",
+      "ownerPenalty": 4,
+      "rev4": 4,
+      "rev5": 4,
+      "proposal": 4,
+      "ovrCost": null
+    }
+  ],
+  "note": "QB->FS: Owner REV 4 = 10, REV-5 cap = 10, proposal = 6 (QB->FS set to 6 instead of 10). Product FLEX.QB = {} => any QB flex = EMERGENCY_PENALTY 8 (mismatch, D-010)."
+}
