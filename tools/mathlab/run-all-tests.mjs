@@ -90,7 +90,11 @@ run('Beam raw-curve-witness.mjs', beamCmd('beam-raw-curve-witness.mjs') + ` --ou
 run('T1 mechanics-harness.mjs', `node mechanics-harness.mjs --fit ${fitPath} --out results/mechanics-runall.json`, { cwd: ROOT });
 
 // --- T3 triangulation ---
-run('T3 triangulate.mjs', `node triangulate.mjs --fit ${fitPath} --design design.json --threshold 0.10 --out results/triangulate-runall.json`, { cwd: ROOT });
+run('T3 triangulate.mjs (fit mode)', `node triangulate.mjs --fit ${fitPath} --design design.json --threshold 0.10 --out results/triangulate-runall.json`, { cwd: ROOT });
+
+// --- T3 triangulation (sandbox eval mode, no Playwright) ---
+const HTML_FOR_TRIANGULATE = '/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super/Football-Sim-PreColors.html';
+run('T3 triangulate.mjs (sandbox mode)', `node triangulate.mjs --html "${HTML_FOR_TRIANGULATE}" --design design.json --threshold 0.10 --out results/triangulate-sandbox-runall.json --csv results/raw-curves-runall.csv`, { cwd: ROOT });
 
 // --- T3b cross-validate (needs Beam witness, now available) ---
 run('T3b cross-validate.mjs', `node cross-validate.mjs --super ${fitPath} --beam ${beamWitness} --threshold 1.0 --out results/cross-validate-runall.json`, { cwd: ROOT });
