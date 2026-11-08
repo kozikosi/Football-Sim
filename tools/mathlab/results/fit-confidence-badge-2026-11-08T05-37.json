@@ -1,0 +1,250 @@
+{
+ "generatedUtc": "2026-11-08T05:37:12.863ZZ",
+ "source": "triangulate-2026-11-08T03-14.json",
+ "product": "Football-Sim-PreColors.html",
+ "productSha256": "40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd",
+ "method": "badge score from anchor spread + rank spread (triangulation); internals not exposed to user",
+ "labels": "VERIFIED = computed from the named triangulate JSON; badge labels High/Medium/Low; tooltip is plain language",
+ "badges": [
+  {
+   "slot": "QB",
+   "score": 100,
+   "label": "High",
+   "spread1000": 0,
+   "rankSpread": 0,
+   "disagreement": false,
+   "tooltip": "Value estimate is stable across all reference tables — safe to use for drafting QB."
+  },
+  {
+   "slot": "RB1",
+   "score": 46.3,
+   "label": "Medium",
+   "spread1000": 34.3,
+   "rankSpread": 7,
+   "disagreement": true,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat RB1 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "RB2",
+   "score": 62,
+   "label": "Medium",
+   "spread1000": 20,
+   "rankSpread": 3,
+   "disagreement": false,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat RB2 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "WR1",
+   "score": 10,
+   "label": "Low",
+   "spread1000": 220,
+   "rankSpread": 3,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat WR1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "WR2",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 164.3,
+   "rankSpread": 16,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat WR2 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "WR3",
+   "score": 54,
+   "label": "Medium",
+   "spread1000": 90,
+   "rankSpread": 1,
+   "disagreement": false,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat WR3 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "TE1",
+   "score": 44.1,
+   "label": "Medium",
+   "spread1000": 64.7,
+   "rankSpread": 3,
+   "disagreement": false,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat TE1 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "TE2",
+   "score": 22.6,
+   "label": "Low",
+   "spread1000": 93.4,
+   "rankSpread": 8,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat TE2 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "OT1",
+   "score": 32.8,
+   "label": "Low",
+   "spread1000": 92.9,
+   "rankSpread": 3,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat OT1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "OT2",
+   "score": 46,
+   "label": "Medium",
+   "spread1000": 110,
+   "rankSpread": 1,
+   "disagreement": false,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat OT2 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "OG1",
+   "score": 16,
+   "label": "Low",
+   "spread1000": 110,
+   "rankSpread": 7,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat OG1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "OG2",
+   "score": 24,
+   "label": "Low",
+   "spread1000": 90,
+   "rankSpread": 4,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat OG2 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "C",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 215,
+   "rankSpread": 10,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat C as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "DE1",
+   "score": 34,
+   "label": "Low",
+   "spread1000": 140,
+   "rankSpread": 1,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat DE1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "DE2",
+   "score": 5.7,
+   "label": "Low",
+   "spread1000": 135.7,
+   "rankSpread": 4,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat DE2 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "DT1",
+   "score": 8,
+   "label": "Low",
+   "spread1000": 130,
+   "rankSpread": 4,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat DT1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "DT2",
+   "score": 40,
+   "label": "Medium",
+   "spread1000": 50,
+   "rankSpread": 8,
+   "disagreement": true,
+   "tooltip": "Value estimate is broadly stable but shifts slightly between reference tables — treat DT2 as a solid, not a certain, pick."
+  },
+  {
+   "slot": "MIKE",
+   "score": 26.8,
+   "label": "Low",
+   "spread1000": 82.9,
+   "rankSpread": 6,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat MIKE as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "WILL",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 170,
+   "rankSpread": 5,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat WILL as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "SAM",
+   "score": 31.4,
+   "label": "Low",
+   "spread1000": 71.4,
+   "rankSpread": 5,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat SAM as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "CB1",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 195,
+   "rankSpread": 6,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat CB1 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "CB2",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 214.3,
+   "rankSpread": 14,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat CB2 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "CB3",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 271.4,
+   "rankSpread": 16,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat CB3 as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "SS",
+   "score": 16,
+   "label": "Low",
+   "spread1000": 110,
+   "rankSpread": 8,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat SS as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "FS",
+   "score": 28,
+   "label": "Low",
+   "spread1000": 80,
+   "rankSpread": 5,
+   "disagreement": false,
+   "tooltip": "Value estimate moves a lot between reference tables — treat FS as approximate; check the Owner's table and engine together before drafting."
+  },
+  {
+   "slot": "K",
+   "score": 0,
+   "label": "Low",
+   "spread1000": 235.7,
+   "rankSpread": 9,
+   "disagreement": true,
+   "tooltip": "Value estimate moves a lot between reference tables — treat K as approximate; check the Owner's table and engine together before drafting."
+  }
+ ],
+ "summary": {
+  "nSlots": 26,
+  "high": 1,
+  "medium": 6,
+  "low": 19
+ }
+}
