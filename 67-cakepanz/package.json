@@ -1,0 +1,22 @@
+{
+  "name": "cakepanz-67",
+  "private": true,
+  "version": "0.1.0-slice1",
+  "type": "module",
+  "description": "67 Cakepanz (Z.ai's parallel Colors implementation). The user-facing brand is 76 Pancakes; the track name is for the builders. Slice 1: the Draft Board.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test:engine": "node --test --experimental-strip-types test/engine.test.ts",
+    "battery": "node batteries/slice1.battery.mjs"
+  },
+  "dependencies": {
+    "svelte": "^5.57.3"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6"
+  }
+}

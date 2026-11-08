@@ -1,0 +1,50 @@
+# UPDATE-README — Football-Sim-Z-post-blue-w86 (Z.ai · High Councillor · 8 Nov 2026)
+
+**Wave:** w86 (the Owner's six asks + the P-285 items) ·
+**Base:** the live w85 (2) `Football-Sim-Z-post-blue-w85 (2).html` — md5 `eb91abd22f335e34f6898dcff5e6dde6`, 1,864,914 B —
+**Product:** `Football-Sim-Z-post-blue-w86.html` · md5 `64cbb716ae6ea4be6ca411a84c050200` · 1,880,141 B ·
+32 asserted exact replacements from pristine w85 (2) (generator `zpb_w86.py` in this package), zero hand edits.
+
+## Acceptance
+
+- **ACCEPTANCE:** `accept-w86.js` (the w77 battery + the P-303 re-points, documented in its header) + the frozen P-285 `w85-adapter.js` → **84 pass · 0 fail · 0 skip**, zero page errors.
+- **WAVE:** `w86_battery.js` (this package) → **25 pass · 0 fail** — the six asks + the P-285 items + the census + the ink sweep (32 teams × both themes), zero page errors.
+- Re-points (P-303, all four are the stale expectations the P-285 review filed, none a product change): V1 order SS-before-FS (the Owner's w79 law) + the OG option reads "Offensive guard" (P-302); V13 boxless = a computed-style law (the `zpb-dd` class name stays); V8b "BACK TO REGULAR SEASON REVIEW"; V8c the label carries the showReview state.
+
+## The six asks, in the Owner's own order
+
+1. **Light-mode ink on the colored draft buttons (the Jets case).** Two surfaces wore dark ink on dark team fill: the homepage DRAFT button (the liquid metal) and the confirm dialog's YES button (a team bubble — `--bad` = `tA3` under the takeover). Fixes: the YES button reads the team's **on-bubble 0.50 neutral** (`--tOnA3`/`--tOnA3d`, new per-pack inks: the halfway mix from cream toward the bubble, solved to ≥4:1 on the bubble itself; dark mirrors). The DRAFT button reads the team's **metal-chosen halfway** (`--tOnMetal`/`--tOnMetald`): the ink family OPPOSES the metal the eye averages — a dark metal (Jets green) takes the LIGHT halfway, a light metal keeps the dark halfway — then floors at 3.2:1 on both ramp midpoints, inside the halfway family's own range (never near-black, never pure cream; the cream halo carries the extremes). Heavy test: the wave battery sweeps **all 32 teams × both themes**, measuring the confirm-yes (≥3:1 everywhere; worst 4.16:1 Cleveland), the family law, and the dark-stop reading (the Jets' light ink reads 4.92:1 at the darkest stop). The striped metals' mid contrast stays ~2–3.3:1 in any halfway family — that is what the animated sheen + the cream halo are for (the w51 Owner-approved design); stated here so nobody rediscovers it as a bug.
+2. **The sim draft no longer leaves empty slots — the census law.** Root cause: w66 (P-232) removed the "anyone-anywhere" escape, and the league's real TEs (2 per team) all get drafted — the TE market is mathematically short, so `zpbFillAllLineups`' in-pool fill found no legal bodies and left honest empties (measured on w85: 28/32 user teams and 32/32 CPU teams ended drafts with gaps — TE1/TE2/TE3, MIKE/WILL/SAM). Fix: the completion pass gained three stages behind the w66 stage-1 pool fill — stage 2 signs the slot's own REAL-NFL body (the player who holds that job on the real roster, if nobody drafted him), stage 3 the team's best undrafted real body whose natural slots cover the need, stage 4 the cheapest LEGAL flex from the Owner's own FLEX table at its own prices (the −4 WR-at-TE closes the short TE market; nothing the table does not grant, ever). Proof: **32 seeded drafts — every team, user and CPU, ends with ZERO empty slots** (the preseason lineup menu can show no gap); the mixed draft (user picks + sim) too. The season engine's own ratings/planner run on the completed rosters with zero page errors (the acceptance battery plays a full season).
+3. **The Draft Command Center panel.** Two real defects found. (a) The DCC's guard returned an empty string whenever a restored save had lost its `unitRatings`/`unitRanks` — the panel vanished for the whole session (this is the "plain text, no panel" the Owner saw, and it matches the P-285 live-QA finding that could not find the DCC at all). The heal now rebuilds the WHOLE league's ratings (every team's ratings feed the playoff planner, not just the user's) and the panel always renders. (b) The panel is now the law: the DCC shell (title + Cutdown Day + the 20-0 footer) renders even when a section's data is missing — each section degrades on its own, the panel never retires. Proof: the wave battery renders the DCC as a panel on the Season Review and self-heals a save with the ratings deleted.
+4. **The banner: Season Review is the LAST page.** The "NEXT Season Review | The Champion" banner retires at the complete phase — the Champion/Review cycle is gone, `stageCTA` returns no door at complete, and the floating banner becomes the **"TRY AGAIN TO GO 20-0?"** link with the 20-0 shimmer riding it (gated by the page's own button per the R2-2 law). The three-door dialog is now `zpbOpenTryAgain()` and opens from the banner, the top panels, and the existing bottom button.
+5. **RUN IT BACK at the tops.** The champion page's top panel now reads **TRY AGAIN TO GO 20-0? · RUN IT BACK · SEASON REVIEW**; the Season Review's top panel adds **TRY AGAIN TO GO 20-0? · RUN IT BACK** beside "← Super Bowl"; the Regular Season Review carries **RUN IT BACK** in its header row (and beside the SEASON REVIEW door when the team missed the playoffs). RUN IT BACK keeps the existing caution (same roster, the season restarts at the preseason).
+6. **The Series order.** Verified live on w86: the Series dropdown is ENGINE-DERIVED (`zpbSeriesData()` from the live slot-wins ranking — currently QB + DE1 + WR1 + OT1 + DT1 + WR2 + OG1 for series 7), and the battery asserts the dropdown equals the live engine's order. The stale w30 comment (which still described a hard-coded w30-era default) is corrected. Nothing was hard-coded; the update is the comment truth + the assertion lock.
+
+## The P-285 items (§1c of the continuation, one line each)
+
+- **P-299 — the R2-19 rating scale:** `ZPB_MEDIAN_OVR` + `zpbSeasonRating()` return, **re-anchored to the w85 law** (the DRAFTED POOL's median, 77 — the all-database 76 stays retired per V0). `zpbSeasonRating(r)` is the canonical name over the display scale every rating already rides.
+- **P-300 — the W85-8 linescore frame:** restored — 2px + inset ring + drop shadow, 14px radius; the border still rides `var(--accent)` with the score (R2-10). Asserted computed.
+- **P-301 — the W85-4 badge specificity:** the rule is now `.zpb-pcard-stats .zpb-pstat` (0-2-0 beats the 0-1-1 `.zpb-pcard-stats span`) — the preview badges render at the claimed size.
+- **P-302 — the R2-16 guard casing:** "Offensive guard" (lowercase g) in both label tables (WV_NAMES + SLOT_FRIENDLY). The w77 battery's V1 casing expectation is re-pointed with it (documented above).
+- **P-304 — the stale doc counts:** this README carries no round-1 claims. This package: 32 replacements, 27 script blocks (all parse-checked), 6 evidence screenshots in `shots/`, the two batteries + their logs' summaries in this file. (The w85 counts stand corrected in the w85 delivery docs per the P-285 review.)
+- **P-303 — the battery re-anchor:** shipped as `accept-w86.js` (the four re-points in its header). The Owner's confirmation of SS-before-FS is on record from the w79 round (the w79 battery re-pointed it first).
+- **P-305 — Google Fonts:** status unchanged — the product still loads Google Fonts externally; NOT bundled (the Owner/Architect decision is pending). The offline tension stands as the P-285 review filed it.
+
+## The three residuals (§1b — addressed or confirmed)
+
+1. **The 49ers dark footer pill at 4.43:1:** unchanged in w86 (no replacement touches the footer pill inks). Confirmed **best allowed ink** within the palette laws (the halfway families + the gold floors); accepted, move on.
+2. **The three teams' view-toggle golds at ~3.9:1 on light washes:** unchanged in w86; same conclusion — the gold families available under the ink laws (gold2/gold3 + the halfway mixes) do not reach 4.5:1 on those washes without breaking the light-page floors. Accepted. (The w86 sweep re-measured the same ink situation; worst light washes: Detroit, Chargers, Carolina.)
+3. **The w79 calibration re-sweep against the fuller lineups (results in `results/resweep-w86.json`):** the w79 calibration identity — the revealed 70→90 impact = weight × 0.00254 — is a **per-slot property of the win math and is lineup-independent**. On w86 it reproduces **28/32 EXACT**; the four exceptions are the documented FLAT curves (WR4, TE3, CB4, DL5 — the depth slots that feed no unit; measured delta 0), exactly the w79 state. **No per-slot shift exists, so there is nothing to re-calibrate.** What the fuller lineups DO change is a LEVEL shift: the census law replaces 70-fallback empties with the team's real bodies, lifting every team's win line by the same mechanism (the seeded draft's league mean rises from −9.9 to +1.0 win-math units; all 32 teams alike — a level shift, not a ranking change). Per the muse's instruction this is **reported, not silently recalibrated**: the Owner decides accept (the fuller lineups are the point of the census law) or re-anchor the win line.
+
+## Placement (on push)
+
+Unzip at the gh-pages root → `z-post-blue-wave86-2026-11-08-w86/` beside the wave folders; make `Football-Sim-Z-post-blue-w86.html` the live `index.html` (keep the w85 backup). `_agents/zai/` via `tools/import-zip.sh zai <zip>` on `council/zai` if Beam carries it.
+
+## Files in this package
+
+- `Football-Sim-Z-post-blue-w86.html` — the product (md5 `64cbb716ae6ea4be6ca411a84c050200`, 1,880,141 B)
+- `zpb_w86.py` — the generator (32 asserted replacements; fails loudly on any anchor drift)
+- `accept-w86.js` — the w77 acceptance battery with the P-303 re-points (84 assertions)
+- `w86_battery.js` — the w86 wave battery (25 assertions)
+- `shots/` — six evidence screenshots (the Jets light confirm, the champion top panel, the review top, the DCC panel, the banner)
+- `results/` — the calibration re-sweep + the residual-ink measurements (JSON)

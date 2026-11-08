@@ -1,0 +1,163 @@
+{
+ "pass": 18,
+ "fail": 0,
+ "skip": 10,
+ "defer": 3,
+ "results": [
+  {
+   "law": "the board renders from the view model (engine state in, plain JSON out)",
+   "verdict": "PASS",
+   "detail": "60 rows"
+  },
+  {
+   "law": "the default sort is wins/priority, never raw OVR",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the on-clock indicator names the round, the pick and the overall",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "every row reads name · pos · team · OVR · wins · priority · gone%",
+   "verdict": "PASS",
+   "detail": "99%"
+  },
+  {
+   "law": "the gone-odds display is present on every row",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the sort controls offer wins / OVR / priority",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the OVR sort actually sorts",
+   "verdict": "PASS",
+   "detail": "first 99"
+  },
+  {
+   "law": "the slot picker offers the natural slot first",
+   "verdict": "PASS",
+   "detail": "Draft at QB"
+  },
+  {
+   "law": "the pick confirms before it lands",
+   "verdict": "PASS",
+   "detail": "Draft Josh Allen at QB? Confirm the pick Cancel"
+  },
+  {
+   "law": "the pick lands and the footer counts it",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the CPU teams pick on after the user's pick (the clock advances)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording)",
+   "verdict": "PASS",
+   "detail": "[]"
+  },
+  {
+   "law": "undo cuts the log back and the count returns",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the measured mode is the DEFAULT (\"Model Value\" on)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the Owner preset is one click away",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode switch is DISABLED mid-draft",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode label travels with the numbers (the subtitle carries it)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "zero page errors across the whole battery",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "V0 the median trio (the drafted-pool median, superseded 76, cached once)",
+   "verdict": "SKIP",
+   "detail": "the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests"
+  },
+  {
+   "law": "V2/V3 the chip law (all off = the full board)",
+   "verdict": "SKIP",
+   "detail": "the position chips belong to the shell board chrome — slice 1 renders the full board; the chip bar arrives with the board chrome slice"
+  },
+  {
+   "law": "V5 the phone laws at 390 (the footer nav, the pan laws)",
+   "verdict": "SKIP",
+   "detail": "the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements"
+  },
+  {
+   "law": "V6 the playoff round cinematics",
+   "verdict": "SKIP",
+   "detail": "playoffs are a later slice"
+  },
+  {
+   "law": "V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder",
+   "verdict": "SKIP",
+   "detail": "shell pages outside slice 1 (team select, season, standings, guide arrive in slices 2-3)"
+  },
+  {
+   "law": "V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks",
+   "verdict": "SKIP",
+   "detail": "season-surface laws — later slices"
+  },
+  {
+   "law": "V15 the fills column and V17 the picker chips in shell form",
+   "verdict": "SKIP",
+   "detail": "slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)"
+  },
+  {
+   "law": "V7 the display scale centers on the median",
+   "verdict": "SKIP",
+   "detail": "the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)"
+  },
+  {
+   "law": "V4 the command center / cutdown day",
+   "verdict": "SKIP",
+   "detail": "the season review screen — a later slice"
+  },
+  {
+   "law": "V1 the dropdown order + the OG casing",
+   "verdict": "SKIP",
+   "detail": "the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)"
+  },
+  {
+   "law": "the gone-odds METHOD equality (30 sims, the real CPU logic) vs the shell numbers",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  },
+  {
+   "law": "the 84-assertion DOM battery byte-parity",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  },
+  {
+   "law": "the witness export parity",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  }
+ ]
+}

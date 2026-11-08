@@ -1,0 +1,62 @@
+{
+ "team": "Cincinnati Bengals",
+ "identity": {
+  "exact": 28,
+  "of": 32,
+  "rows": [
+   [
+    "WR4",
+    0,
+    0.127,
+    false
+   ],
+   [
+    "TE3",
+    0,
+    0.127,
+    false
+   ],
+   [
+    "DL5",
+    0,
+    0.381,
+    false
+   ],
+   [
+    "CB4",
+    0,
+    0.127,
+    false
+   ],
+   [
+    "QB",
+    2.54,
+    2.54,
+    true
+   ],
+   [
+    "RB1",
+    0.635,
+    0.635,
+    true
+   ],
+   [
+    "RB2",
+    0.254,
+    0.254,
+    true
+   ]
+  ]
+ },
+ "lift": {
+  "fullWins": 0.757,
+  "hollowWins": 0.757,
+  "lift": 0,
+  "backfilledSlots": [
+   "TE2"
+  ],
+  "emptyInW85": 1,
+  "leagueMeanFull": 0.958,
+  "leagueMeanHollow": -9.913
+ }
+}
