@@ -1,0 +1,16 @@
+f2580e584815a7aab9155a9aa5348047785fbd07a567c8af03a687a3c877636d  UPDATE-README.md
+e3348c5ebe1a303890ca299f11ecdae2bf5c4c2badb123cc393caadc1d4936c3  _agents/zai/ZAI.md
+b3f46b9c5f38fd5577c4ae31cc4df5fab1442efebda9fb217d69cf4887691bf0  _agents/zai/notes/brainstorm-2026-11-08.md
+aa07836da584c68a819ff8f2c65ed0a1d0a717867016e41187bda6f51172c7c8  _agents/zai/notes/governance-2026-11-08.md
+26cd9e9ad53abcf5fc212318e28624c208b215206c0be992dc6b4f0f8b9cbf4c  _agents/zai/tools/flex-ext-2026-11-08.md
+de8e5a24ba5077fd58f6ec14a265e6aa96547e0355a4432a6ea6cbe29c1c1a70  _agents/zai/tools/flex-ext-report.json
+95c38900cbdb97ba217e03a4d53a9dcb9be6d1f1e23c1358cff0531f9a8a0255  _agents/zai/tools/flex-ext.mjs
+87dd01949a196a856a68b2752dc03b918fcfdf3a7ce0896730edd9812296dcc8  _agents/zai/tools/heldout-lint-2026-11-08.md
+0dcf0d24bd1758684b71ee7cce9eb1eb53b6758aa6002d5db13ae219eea92833  _agents/zai/tools/heldout-lint.mjs
+43a28ffa1d0b530c41648c233f4834b5900b8c2c4d13a1fc332afbfcdaceeda7  _agents/zai/tools/rng-audit-2026-11-08.md
+54148d406199c7c7498736ae3ca7b3cbabf097d48cce99c5e4d7414a14a69fee  _agents/zai/tools/rng-audit-report.json
+96a35d12fca0d39a03880876d42fb281541d7039bed60b8362b3d6648b36cfca  _agents/zai/tools/rng-audit.mjs
+2e89bdab650be947b9aff5a3b70ab1886826d8f72e8aa65d953a20a68486255c  _agents/zai/tools/uncertainty-v2-2026-11-08.md
+6f22be71654e4260dec858a564ae09a5d195b965f989cb1fa4e07248c2127f03  _agents/zai/tools/uncertainty-v2.mjs
+bd2c8300b632f4a3eafbaded6e3156e5c28ab15ca2636fa7b851400fad1ad143  inbox/20261108-0052-zai-P-013-brainstorm-2026-11-08.md
+08c34a8e8524e6fe0e9b772a5180db14136926ab8f356f4809464aadd19f345b  inbox/20261108-0052-zai-P-013-review.md
