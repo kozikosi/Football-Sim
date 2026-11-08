@@ -1,0 +1,734 @@
+{
+ "generatedUtc": "2026-11-08T03:14:12.781ZZ",
+ "product": "Football-Sim-PreColors.html 40233d6be00e987c",
+ "dataPool": "data/madden27-ratings.csv (1941 players; REPORTED from file)",
+ "labels": "VERIFIED = engine numbers computed by this script from the named build; pool numbers REPORTED from data/madden27-ratings.csv; DL5 snap data VERIFIED from Beam (named source); real-snap/depth comparison UNKNOWN unless --snaps supplied",
+ "engineDefinition": {
+  "replacementLevels": "replacementLevels(pool, rosters): counts empty starting slots per group (dem[g]), then takes the (dem[g]-1)th OVR (0-indexed) from the group-sorted player pool — i.e. the best available player NOT yet needed as a starter, per group.",
+  "staticReplacement": "staticReplacement(): all 32 rosters have every slot empty; pool = PLAYERS filtered by POS_SLOT_MAP. Returns one replacement OVR per group.",
+  "winsBase": "WINS_BASE = 70. staticWins(p) = sum over STATIC_SLOTS[p.pos] of (slotWins(s, p.ovr) - slotWins(s, 70)).",
+  "staticSlots": "STATIC_SLOTS maps each position to the slot(s) whose value counts for that player (e.g. WR -> WR1/WR2/WR3, CB -> CB1/CB2/CB3, DT -> DT1/DT2).",
+  "groups": "WV_SLOT_GROUP / WV_TAG_GROUP assign each slot and each position to a group (OL, DL, LB, CB, S, WR, TE, RB, QB, K, P, ...).",
+  "note": "Replacement is a LEAGUE-WIDE scarcity concept: as more teams fill a group, the replacement OVR for that group rises (fewer good players left). It is NOT a fixed 70 or a fixed percentile."
+ },
+ "known": [
+  {
+   "slot": "DL5",
+   "engineReplacement": "5th-ranked DL, rotation share 0.33 (measured)",
+   "realUsage": "rank5 mean 32.8% snaps (median 35%, p25 22%, p75 44%), 2023-2025, n=1632 team-games",
+   "status": "VERIFIED",
+   "sensitivity": "weight 91..184 across 22%-44% share (fitlm, other spots refit <=1.8%)",
+   "source": "origin/council/beam:tools/mathlab/results/dl5-snap-measurement-2026-10-27.txt"
+  },
+  {
+   "slot": "CB3/NICKEL",
+   "engineReplacement": "3rd CB, situational",
+   "realUsage": "UNKNOWN — needs snap counts by DB depth",
+   "status": "UNKNOWN",
+   "sensitivity": "TODO"
+  },
+  {
+   "slot": "DIME",
+   "engineReplacement": "6th DB, situational",
+   "realUsage": "UNKNOWN",
+   "status": "UNKNOWN",
+   "sensitivity": "TODO"
+  },
+  {
+   "slot": "SAM",
+   "engineReplacement": "OLB2 / situational",
+   "realUsage": "UNKNOWN",
+   "status": "UNKNOWN",
+   "sensitivity": "TODO"
+  },
+  {
+   "slot": "FB",
+   "engineReplacement": "fullback, low share",
+   "realUsage": "UNKNOWN",
+   "status": "UNKNOWN",
+   "sensitivity": "TODO"
+  },
+  {
+   "slot": "TE2/TE3",
+   "engineReplacement": "backup TE, fixed share (recv)",
+   "realUsage": "PARTIAL — personnel-shares.py covers offense personnel",
+   "status": "PARTIAL",
+   "sensitivity": "TODO"
+  }
+ ],
+ "engine": {
+  "perSlot": {
+   "QB": {
+    "group": "QB",
+    "engineReplOvr": 73
+   },
+   "RB1": {
+    "group": "RB",
+    "engineReplOvr": 74
+   },
+   "RB2": {
+    "group": "RB",
+    "engineReplOvr": 74
+   },
+   "WR1": {
+    "group": "WR",
+    "engineReplOvr": 75
+   },
+   "WR2": {
+    "group": "WR",
+    "engineReplOvr": 75
+   },
+   "WR3": {
+    "group": "WR",
+    "engineReplOvr": 75
+   },
+   "TE1": {
+    "group": "TE",
+    "engineReplOvr": 69
+   },
+   "TE2": {
+    "group": "TE",
+    "engineReplOvr": 69
+   },
+   "OT1": {
+    "group": "OT",
+    "engineReplOvr": 72
+   },
+   "OT2": {
+    "group": "OT",
+    "engineReplOvr": 72
+   },
+   "OG1": {
+    "group": "OG",
+    "engineReplOvr": 72
+   },
+   "OG2": {
+    "group": "OG",
+    "engineReplOvr": 72
+   },
+   "C": {
+    "group": "C",
+    "engineReplOvr": 71
+   },
+   "DE1": {
+    "group": "EDGE",
+    "engineReplOvr": 77
+   },
+   "DE2": {
+    "group": "EDGE",
+    "engineReplOvr": 77
+   },
+   "DT1": {
+    "group": "DT",
+    "engineReplOvr": 76
+   },
+   "DT2": {
+    "group": "DT",
+    "engineReplOvr": 76
+   },
+   "MIKE": {
+    "group": "LB",
+    "engineReplOvr": 70
+   },
+   "WILL": {
+    "group": "LB",
+    "engineReplOvr": 70
+   },
+   "SAM": {
+    "group": "LB",
+    "engineReplOvr": 70
+   },
+   "CB1": {
+    "group": "CB",
+    "engineReplOvr": 75
+   },
+   "CB2": {
+    "group": "CB",
+    "engineReplOvr": 75
+   },
+   "CB3": {
+    "group": "CB",
+    "engineReplOvr": 75
+   },
+   "SS": {
+    "group": "SS",
+    "engineReplOvr": 76
+   },
+   "FS": {
+    "group": "FS",
+    "engineReplOvr": 75
+   },
+   "K": {
+    "group": "K",
+    "engineReplOvr": 74
+   }
+  },
+  "perGroup": {
+   "QB": 73,
+   "RB": 74,
+   "WR": 75,
+   "TE": 69,
+   "OT": 72,
+   "OG": 72,
+   "C": 71,
+   "EDGE": 77,
+   "DT": 76,
+   "LB": 70,
+   "CB": 75,
+   "SS": 76,
+   "FS": 75,
+   "K": 74
+  }
+ },
+ "pool": {
+  "note": "pool analog: Nth-best available by replacement group from Madden 27 OVR (not snaps — real snap/depth data unavailable in this workspace, UNKNOWN)",
+  "perGroup": {
+   "QB": {
+    "nPlayers": 92,
+    "demStarts": 32,
+    "poolNthBest": 73,
+    "top10": [
+     99,
+     98,
+     97,
+     95,
+     94,
+     92,
+     91,
+     90,
+     89,
+     88
+    ],
+    "ovr70plus": 44,
+    "ovr75plus": 28,
+    "ovr80plus": 19
+   },
+   "RB": {
+    "nPlayers": 125,
+    "demStarts": 64,
+    "poolNthBest": 74,
+    "top10": [
+     98,
+     97,
+     97,
+     96,
+     95,
+     94,
+     92,
+     91,
+     90,
+     89
+    ],
+    "ovr70plus": 96,
+    "ovr75plus": 63,
+    "ovr80plus": 38
+   },
+   "WR": {
+    "nPlayers": 207,
+    "demStarts": 96,
+    "poolNthBest": 75,
+    "top10": [
+     99,
+     99,
+     98,
+     97,
+     96,
+     95,
+     93,
+     92,
+     91,
+     91
+    ],
+    "ovr70plus": 163,
+    "ovr75plus": 98,
+    "ovr80plus": 50
+   },
+   "TE": {
+    "nPlayers": 139,
+    "demStarts": 64,
+    "poolNthBest": 69,
+    "top10": [
+     99,
+     97,
+     95,
+     93,
+     90,
+     89,
+     88,
+     87,
+     86,
+     85
+    ],
+    "ovr70plus": 59,
+    "ovr75plus": 36,
+    "ovr80plus": 20
+   },
+   "OT": {
+    "nPlayers": 134,
+    "demStarts": 64,
+    "poolNthBest": 72,
+    "top10": [
+     98,
+     97,
+     96,
+     95,
+     94,
+     94,
+     93,
+     92,
+     91,
+     90
+    ],
+    "ovr70plus": 82,
+    "ovr75plus": 55,
+    "ovr80plus": 38
+   },
+   "OG": {
+    "nPlayers": 140,
+    "demStarts": 64,
+    "poolNthBest": 72,
+    "top10": [
+     96,
+     96,
+     95,
+     94,
+     93,
+     90,
+     89,
+     88,
+     87,
+     86
+    ],
+    "ovr70plus": 90,
+    "ovr75plus": 51,
+    "ovr80plus": 24
+   },
+   "C": {
+    "nPlayers": 68,
+    "demStarts": 32,
+    "poolNthBest": 71,
+    "top10": [
+     96,
+     90,
+     89,
+     88,
+     87,
+     85,
+     84,
+     83,
+     82,
+     81
+    ],
+    "ovr70plus": 37,
+    "ovr75plus": 20,
+    "ovr80plus": 11
+   },
+   "EDGE": {
+    "nPlayers": 186,
+    "demStarts": 64,
+    "poolNthBest": 77,
+    "top10": [
+     99,
+     98,
+     97,
+     96,
+     95,
+     94,
+     93,
+     92,
+     91,
+     90
+    ],
+    "ovr70plus": 139,
+    "ovr75plus": 91,
+    "ovr80plus": 38
+   },
+   "DT": {
+    "nPlayers": 199,
+    "demStarts": 64,
+    "poolNthBest": 76,
+    "top10": [
+     96,
+     96,
+     95,
+     95,
+     94,
+     94,
+     93,
+     92,
+     91,
+     90
+    ],
+    "ovr70plus": 142,
+    "ovr75plus": 75,
+    "ovr80plus": 34
+   },
+   "LB": {
+    "nPlayers": 173,
+    "demStarts": 96,
+    "poolNthBest": 70,
+    "top10": [
+     98,
+     93,
+     93,
+     90,
+     89,
+     88,
+     87,
+     87,
+     87,
+     86
+    ],
+    "ovr70plus": 98,
+    "ovr75plus": 66,
+    "ovr80plus": 35
+   },
+   "CB": {
+    "nPlayers": 199,
+    "demStarts": 96,
+    "poolNthBest": 75,
+    "top10": [
+     98,
+     97,
+     96,
+     94,
+     92,
+     91,
+     90,
+     89,
+     88,
+     88
+    ],
+    "ovr70plus": 153,
+    "ovr75plus": 97,
+    "ovr80plus": 43
+   },
+   "SS": {
+    "nPlayers": 83,
+    "demStarts": 32,
+    "poolNthBest": 76,
+    "top10": [
+     94,
+     93,
+     92,
+     91,
+     90,
+     89,
+     88,
+     86,
+     84,
+     84
+    ],
+    "ovr70plus": 57,
+    "ovr75plus": 42,
+    "ovr80plus": 22
+   },
+   "FS": {
+    "nPlayers": 82,
+    "demStarts": 32,
+    "poolNthBest": 75,
+    "top10": [
+     94,
+     93,
+     92,
+     88,
+     87,
+     86,
+     85,
+     85,
+     84,
+     83
+    ],
+    "ovr70plus": 61,
+    "ovr75plus": 34,
+    "ovr80plus": 16
+   },
+   "K": {
+    "nPlayers": 33,
+    "demStarts": 32,
+    "poolNthBest": 74,
+    "top10": [
+     86,
+     85,
+     84,
+     84,
+     83,
+     82,
+     82,
+     81,
+     81,
+     80
+    ],
+    "ovr70plus": 33,
+    "ovr75plus": 28,
+    "ovr80plus": 13
+   }
+  }
+ },
+ "gap": {
+  "QB": {
+   "engineReplOvr": 73,
+   "poolNthBest": 73,
+   "gapPoints": 0,
+   "dem": 32
+  },
+  "RB": {
+   "engineReplOvr": 74,
+   "poolNthBest": 74,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "WR": {
+   "engineReplOvr": 75,
+   "poolNthBest": 75,
+   "gapPoints": 0,
+   "dem": 96
+  },
+  "TE": {
+   "engineReplOvr": 69,
+   "poolNthBest": 69,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "OT": {
+   "engineReplOvr": 72,
+   "poolNthBest": 72,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "OG": {
+   "engineReplOvr": 72,
+   "poolNthBest": 72,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "C": {
+   "engineReplOvr": 71,
+   "poolNthBest": 71,
+   "gapPoints": 0,
+   "dem": 32
+  },
+  "EDGE": {
+   "engineReplOvr": 77,
+   "poolNthBest": 77,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "DT": {
+   "engineReplOvr": 76,
+   "poolNthBest": 76,
+   "gapPoints": 0,
+   "dem": 64
+  },
+  "LB": {
+   "engineReplOvr": 70,
+   "poolNthBest": 70,
+   "gapPoints": 0,
+   "dem": 96
+  },
+  "CB": {
+   "engineReplOvr": 75,
+   "poolNthBest": 75,
+   "gapPoints": 0,
+   "dem": 96
+  },
+  "SS": {
+   "engineReplOvr": 76,
+   "poolNthBest": 76,
+   "gapPoints": 0,
+   "dem": 32
+  },
+  "FS": {
+   "engineReplOvr": 75,
+   "poolNthBest": 75,
+   "gapPoints": 0,
+   "dem": 32
+  },
+  "K": {
+   "engineReplOvr": 74,
+   "poolNthBest": 74,
+   "gapPoints": 0,
+   "dem": 32
+  }
+ },
+ "openQuestions": [
+  "The engine defines replacement as \"Nth-best available league-wide\" (N = starting spots still open). Real NFL deployment uses snap counts + injury backfills + sub-packages (nickel/dime play 40%+ of snaps); no snap data is in this workspace (UNKNOWN).",
+  "slotWinsPerOvr() subtracts WINS_BASE = 70 OVR (a reference, not a replacement level — Z.ai synthesis E7). Whether WINS_BASE=70 aligns with the engine's own staticReplacement() per group is an open check (see output below).",
+  "T4 sensitivity (vary replacement definition, show weight-vector movement): supply --pool as [{group, ovr}, ...] to run sensitivityByN."
+ ],
+ "sensitivity": {
+  "groups": [
+   "undefined"
+  ],
+  "byGroup": {
+   "undefined": {
+    "nPlayers": 1941,
+    "maxOvr": 99,
+    "minOvr": 54,
+    "series": [
+     {
+      "N": 1,
+      "replacementOvr": 99,
+      "nRemaining": 1940
+     },
+     {
+      "N": 2,
+      "replacementOvr": 99,
+      "nRemaining": 1939
+     },
+     {
+      "N": 3,
+      "replacementOvr": 99,
+      "nRemaining": 1938
+     },
+     {
+      "N": 4,
+      "replacementOvr": 99,
+      "nRemaining": 1937
+     },
+     {
+      "N": 5,
+      "replacementOvr": 99,
+      "nRemaining": 1936
+     },
+     {
+      "N": 6,
+      "replacementOvr": 98,
+      "nRemaining": 1935
+     },
+     {
+      "N": 7,
+      "replacementOvr": 98,
+      "nRemaining": 1934
+     },
+     {
+      "N": 8,
+      "replacementOvr": 98,
+      "nRemaining": 1933
+     },
+     {
+      "N": 9,
+      "replacementOvr": 98,
+      "nRemaining": 1932
+     },
+     {
+      "N": 10,
+      "replacementOvr": 98,
+      "nRemaining": 1931
+     },
+     {
+      "N": 11,
+      "replacementOvr": 98,
+      "nRemaining": 1930
+     },
+     {
+      "N": 12,
+      "replacementOvr": 98,
+      "nRemaining": 1929
+     },
+     {
+      "N": 13,
+      "replacementOvr": 97,
+      "nRemaining": 1928
+     },
+     {
+      "N": 14,
+      "replacementOvr": 97,
+      "nRemaining": 1927
+     },
+     {
+      "N": 15,
+      "replacementOvr": 97,
+      "nRemaining": 1926
+     },
+     {
+      "N": 16,
+      "replacementOvr": 97,
+      "nRemaining": 1925
+     },
+     {
+      "N": 17,
+      "replacementOvr": 97,
+      "nRemaining": 1924
+     },
+     {
+      "N": 18,
+      "replacementOvr": 97,
+      "nRemaining": 1923
+     },
+     {
+      "N": 19,
+      "replacementOvr": 97,
+      "nRemaining": 1922
+     },
+     {
+      "N": 20,
+      "replacementOvr": 97,
+      "nRemaining": 1921
+     },
+     {
+      "N": 21,
+      "replacementOvr": 96,
+      "nRemaining": 1920
+     },
+     {
+      "N": 22,
+      "replacementOvr": 96,
+      "nRemaining": 1919
+     },
+     {
+      "N": 23,
+      "replacementOvr": 96,
+      "nRemaining": 1918
+     },
+     {
+      "N": 24,
+      "replacementOvr": 96,
+      "nRemaining": 1917
+     },
+     {
+      "N": 25,
+      "replacementOvr": 96,
+      "nRemaining": 1916
+     },
+     {
+      "N": 26,
+      "replacementOvr": 96,
+      "nRemaining": 1915
+     },
+     {
+      "N": 27,
+      "replacementOvr": 96,
+      "nRemaining": 1914
+     },
+     {
+      "N": 28,
+      "replacementOvr": 96,
+      "nRemaining": 1913
+     },
+     {
+      "N": 29,
+      "replacementOvr": 96,
+      "nRemaining": 1912
+     },
+     {
+      "N": 30,
+      "replacementOvr": 96,
+      "nRemaining": 1911
+     },
+     {
+      "N": 31,
+      "replacementOvr": 95,
+      "nRemaining": 1910
+     },
+     {
+      "N": 32,
+      "replacementOvr": 95,
+      "nRemaining": 1909
+     }
+    ]
+   }
+  }
+ },
+ "snapComparison": null
+}
