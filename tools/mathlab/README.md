@@ -5,6 +5,7 @@ Needs Node + Playwright (`NODE_PATH=$(npm root -g)`), and a product-like HTML (Z
 | `design.json` | the target position-value table (QB 1000, tens) = the specification |
 | `cfg.json` | fit settings: targets in wins (weight x 0.00254), new-term constants, DIME share, MC knobs allowed to move |
 | `fitlm.js` | Levenberg-Marquardt fit of composition weights + MC knobs to the table; writes `results/fit-*.json` |
+| `witness.mjs` | per-build gate (CICCP-3 Q1, 8 Nov): is the displayed default weight list a measurement of `slotWinsPerOvr()` or an echo of a table? MEASURED / FITTED / ECHO (static or dynamic) / UNEXPLAINED; exit 0 only on MEASURED (or ECHO/FITTED with `--declared-preset`); `--selftest`; runs on any build hash, seconds, read-only. Detects echo, not truth |
 | `check-design.mjs` | tests E1/E2: derived integers equal the table, no inversions, all end in 0 |
 | `after.js` | installs a fit in memory; prints the table, pass/run split, full-lineup realism |
 | `realcheck.js` | 32 real rosters vs 2025 wins (`wins2025.json`), before/after |

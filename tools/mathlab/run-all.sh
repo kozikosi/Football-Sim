@@ -6,6 +6,7 @@ PRE="${1:?usage: run-all.sh <Football-Sim-PreColors.html> [Z-post-blue.html]}"; 
 D="$(cd "$(dirname "$0")" && pwd)"; T="$(mktemp -d)"; FIT="$D/results/fit-precolors-2026-10-28-recv.json"; fail=0
 run() { printf '%-44s ' "$1"; shift; if "$@" >"$T/out" 2>&1; then tail -1 "$T/out" | cut -c1-110; else echo "FAIL"; tail -4 "$T/out"; fail=$((fail+1)); fi; }
 case "$(sha256sum "$PRE" | cut -c1-16)" in 40233d6be00e987c) ;; *) echo "NOT Pre-Colors (sha256 differs): stop"; exit 2;; esac
+run "W  witness: display is a measurement"    node "$D/witness.mjs" "$PRE"
 run "E1/E2 table = engine (derived integers)" node "$D/check-design.mjs" "$FIT"
 run "E3a flex.json = Owner text (parse)"      node "$D/flexparse.mjs"
 run "E3b flex sanity"                         node "$D/flexcheck.mjs"
