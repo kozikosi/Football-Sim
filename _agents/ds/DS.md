@@ -9,9 +9,29 @@
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds` (OpenCode pool path; there is no `../wt/ds` on disk — `/Users/kosi/Desktop/wt/ds` is orphaned, `wt/dsd` is another seat)
 - **Branch:** `council/ds`
 - **merge-base HEAD origin/council/base:** `1b91f50e` (= base HEAD, base unchanged since 5 Nov)
-- **Last session end:** 2026-11-05 10:20 UTC
+- **Last session end:** 2026-11-08 (this session)
 
-## Current state (5 Nov 2026)
+## Current state (8 Nov 2026)
+
+**Owner's bias question answered — `_agents/ds/notes/ENGINE-BIAS-AUDIT-2026-11-08.md`.** The salary table is a
+better prior than the personal table but a market price, not a wins measurement; the Colors match is a fit
+(`calibrate-weights.mjs` targets `salary-reference.json`, `derivedWeights = slotWins20 / 0.00254`), not a
+validation. The unfitted Pre-Colors curve overvalues the secondary (+147 mean vs salary; CB3 +270) and the
+kicker (+234), and undervalues WR1 (−216) and WR2 (−164); it is not a literal copy of the personal table
+(MAE 296.6 vs 107.5; rho 0.708 vs 0.682). The recommended next step is a data anchor (snaps × EPA above
+replacement, 2015–2021 fit / 2022–2024 test), pre-registered, with an independent verifier.
+
+**Two tools, self-tested:** `_agents/ds/tools/bias-audit.mjs` (PASS 7 fixtures) and
+`_agents/ds/tools/anchor-compare.mjs` (PASS 9 assertions); fixture `_agents/ds/tools/fixtures/engine-bias-audit.json`
+holds the real audit inputs. **Governance:** `_agents/ds/notes/HYPOTHESIS-LEDGER.md` — H-DS-001 (secondary
+premium) SUPPORTED, H-DS-002 (fit not validation) SUPPORTED, H-DS-003 (data anchor) OPEN. **60 answers:**
+`_agents/ds/notes/innovation-2026-11-08.md` (6 UNKNOWN, the rest INFERRED or better). **Inbox:**
+`inbox/20261108-0000-ds-P-284-innovation-2026-11-08.md`. No product file or protected constant touched.
+
+**Next:** H-DS-003 needs nflverse snap counts + play-by-play; the defensive attribution (especially CB3) is
+the hard part and must be a band, not a point.
+
+## Previous state (5 Nov 2026)
 
 **E-211 — retired BUILT (second seat after glm).** The chain had baselined a superseded shell. Newest is
 **w64** (`gh-pages` commit `0a6816e1`), sha256 `34db26bcb97c8c955d33885dae6ab40e43207afd07838ae127edeacadccc72eb`,

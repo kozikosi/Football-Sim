@@ -1,0 +1,23 @@
+{
+  "illustrative": true,
+  "note": "ILLUSTRATIVE ONLY — round numbers chosen to exercise the formula, not real nflverse aggregates. Do not cite these as data. Replace with slot-level snap shares and EPA/play above replacement, each with a named source.",
+  "anchor": "QB",
+  "scale": 1000,
+  "params": {
+    "pointsPerEpa": 4.5,
+    "winsPerPoint": 0.030769,
+    "z": 1.96
+  },
+  "slots": {
+    "QB": { "snaps": 1.0, "epaAboveReplacement": 0.1, "epaSe": 0.02 },
+    "WR1": { "snaps": 0.85, "epaAboveReplacement": 0.04, "epaSe": 0.01 },
+    "CB1": { "snaps": 0.9, "epaAboveReplacement": 0.02, "epaSe": 0.008 },
+    "K": { "snaps": 0.3, "epaAboveReplacement": 0.005, "epaSe": 0.004 }
+  },
+  "tables": {
+    "salary": { "QB": 1000, "WR1": 650, "CB1": 400, "K": 50 }
+  },
+  "pairs": [
+    { "measured": "mid", "table": "salary" }
+  ]
+}
