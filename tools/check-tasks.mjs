@@ -10,6 +10,7 @@ import path from 'node:path';
 const dirArg = process.argv.indexOf('--dir');
 const dir = dirArg > 0 ? process.argv[dirArg + 1] : 'tasks';
 const STATES = ['proposed', 'accepted', 'implemented', 'verified', 'owner-accepted'];
+const FAILURE_CLASSES = ['data-gap', 'signal-corruption', 'referential-drift', 'capability-gap'];
 const rank = (s) => STATES.indexOf(s);
 const problems = []; const seen = new Map(); const rows = [];
 const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter((f) => f.endsWith('.json')).sort() : [];
@@ -36,6 +37,11 @@ for (const f of files) {
     else if (v.seat === t.seat) bad('verification.seat must differ from seat (the implementer does not verify their own work)');
   }
   if (r >= 4 && !t.owner_decision) bad('owner-accepted needs owner_decision (quote or reference)');
+  // CICCP-3 optional fields: absent is fine (nothing old breaks); present must be well-formed
+  if ('goal_invariant' in t && (typeof t.goal_invariant !== 'string' || !t.goal_invariant.trim())) bad('goal_invariant must be a non-empty string (the Owner\'s verbatim line)');
+  if ('depends_on' in t && (!Array.isArray(t.depends_on) || t.depends_on.some((d) => typeof d !== 'string' || !d.trim()))) bad('depends_on must be an array of non-empty strings (ids, file#anchor or decisions)');
+  if ('failure_class' in t && !FAILURE_CLASSES.includes(t.failure_class)) bad(`failure_class must be one of ${FAILURE_CLASSES.join(' | ')}`);
+  if ('caught_at_hop' in t && ![1, 2, 3].includes(t.caught_at_hop)) bad('caught_at_hop must be 1 (review), 2 (test order) or 3 (Owner or production)');
   rows.push([id, t.state, t.seat || '-', (t.base_build_sha || '').slice(0, 8), t.title]);
 }
 for (const x of rows) console.log(x.join('  |  '));

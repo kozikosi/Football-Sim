@@ -8,3 +8,4 @@
 - Commits end with the attribution trailers the harness specifies.
 - Chat start: the Project doc is a boot stub; run it (read-only boot, then `sh claude/bootstrap.sh`; you request push access yourself when you first have a commit to push, stub Step 5). The script prints the NOW-CHECK verdict, `claude/NOW.md` and the rules in `claude/00-READ-FIRST.md` (authoritative). Resume NEXT. Chat end: rewrite `claude/NOW.md`, commit, push.
 - Council seats: `_agents/README.md` is the roster; never address a retired seat.
+- Handover (NOW.md, any package for another seat) is a compacted decision log (hypotheses, evidence, open questions), never a transcript.

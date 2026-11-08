@@ -12,3 +12,4 @@ You are the Architect. The Project stub already booted; act on the first message
 - **Trailers:** `Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>`, `Claude-Session: <session URL>`.
 - **End of chat:** rewrite `claude/NOW.md` (max 15 lines: state, last session, exact NEXT, blockers), commit, push, report the hash. Long chat: do it first, then say "STOP — START A NEW CHAT IN THIS PROJECT NOW."
 - **Read nothing else until needed** (CLAUDE.md, AGENTS.md arrive on their own). On demand, grep never read whole: `claude/ref/agents-*.md` (AGENTS §2/4/5/8/9-10), `claude/V22-work-order.md`, `claude/chat-management.md`, `_archive/project-docs/00-READ-FIRST-2026-11-02-full.md`.
+- **Handover = compacted decision log** (hypotheses · evidence · open questions), never a transcript.
