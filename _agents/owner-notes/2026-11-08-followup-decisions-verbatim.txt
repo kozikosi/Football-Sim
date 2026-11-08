@@ -1,0 +1,15 @@
+Owner decisions, 2026-11-08 (verbatim follow-up, same day as the 17 decisions)
+
+KG, in reply to the MUSE seat's full report (model-first deep dive, R-005/Q7 explanations, GitHub redirect, tag pushes/go-live, w67 subtitle, CI-gate, w85 status, v7 prompt):
+
+"how do you suggest building the game faster. claude has been a bottleneck with cloning repo problems and low usage. z.ai is supposed to take over building colors while claude finishes up the math and the engine. How do i prompt z.ai at this point to start building colors or does he still need to wait on claude for guidance.
+
+engine value or model value either name is fine is default. ok on rng. 100 seasons is best. who would run the test every night? ignore the subtitle critique"
+
+Decisions in this message (MUSE seat's reading, not Owner words):
+- **Q7 DECIDED:** the measured valuation mode is the default on the Rankings page. Either name is fine — "Engine Value" or "Model Value". Owner Preset stays one click away.
+- **R-005 part 2 (RNG Stage 1) APPROVED:** "ok on rng." (Part 1, the witness gate, was already built by Claude on 8 Nov. Part 3, the flex theta formula, is still price-only — adoption waits for the Owner's flex pick.)
+- **CI-gate: N=100.** "100 seasons is best." The gate runs 100 simulated seasons per check.
+- **w67 subtitle feedback: DROPPED.** "ignore the subtitle critique."
+- **Open question from KG:** "who would run the test every night?" — the nightly N=100 run. MUSE seat's answer: nobody by hand — it should be an automatic scheduled job (CI), which is part of the CI wiring; until CI exists, the stand-in is whoever holds the Lab that day (Z.ai's lab pass or a council seat with deno) running it manually and posting the result.
+- **Division of labor (KG's direction):** Z.ai takes over building Colors while Claude finishes the math and the engine. MUSE seat's answer: Z.ai does NOT need to wait on Claude for guidance to start — the Draft Board slice's contracts are already landed (appstate.ts, DraftStoreState, draft.ts, the w77 adapter pattern) and the engine is pinned at 4ca9a071. Prompt written as `_agents/muse/deliveries/prompts-2026-11-05/zai-colors-build-prompt-v1-2026-11-08.md`. Claude's remaining role on Colors is review of Z.ai's slices, answers to contract questions, and integration — plus the engine work (math/model-first rework, guard passes, FITTED-label test, Q4 diff).
