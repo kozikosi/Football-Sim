@@ -1,6 +1,5 @@
 Claude — refined prompt (2026-11-08, post-brainstorm-window). Z.ai's 8 Nov veracity synthesis + his lab window + his Claude-unavailable brainstorm window are published on gh-pages. Read in this order:
 - z-post-blue-zai-advisory-2026-11-08/_agents/zai/deliveries/VERACITY-SYNTHESIS-2026-11-08.md
-- z-post-blue-zai-advisory-2026-11-08/_agents/zai/deliveries/PROMPT-FOR-CLAUDE-2026-11-08.md
 - z-post-blue-docs-update-2026-11-08/_agents/zai/deliveries/PROMPT-FOR-CLAUDE-2026-11-08-v2.md (supersedes v1)
 - z-post-blue-docs-update-2026-11-08/_agents/zai/deliveries/VERACITY-SYNTHESIS-ADDENDUM-2026-11-08.md
 - z-post-blue-docs-update-2026-11-08/_agents/zai/notes/FIT-TARGET-FORENSICS-2026-11-08.md
