@@ -1,0 +1,227 @@
+{
+  "meta": {
+    "built": "2026-11-08T03:22:31.438Z",
+    "season": 2024,
+    "filters": {
+      "season_type": "REG"
+    },
+    "sources": {
+      "snap_counts": "raw/snap_counts_2024.csv.gz",
+      "player_stats": "raw/player_stats_2024.csv.gz"
+    },
+    "group_mapping_reported": "positional strings mapped to analysis groups; unmapped -> dropped",
+    "license": "nflverse; see DATA-LICENSE.md at repo root"
+  },
+  "snaps": {
+    "OL": {
+      "offSnaps": 178933,
+      "defSnaps": 0,
+      "stSnaps": 14852,
+      "playerRows": 4210,
+      "offShare_pct": 45.73,
+      "defShare_pct": 0
+    },
+    "QB": {
+      "offSnaps": 35571,
+      "defSnaps": 0,
+      "stSnaps": 1,
+      "playerRows": 684,
+      "offShare_pct": 9.09,
+      "defShare_pct": 0
+    },
+    "TE": {
+      "offSnaps": 47435,
+      "defSnaps": 0,
+      "stSnaps": 13401,
+      "playerRows": 1722,
+      "offShare_pct": 12.12,
+      "defShare_pct": 0
+    },
+    "WR": {
+      "offSnaps": 90750,
+      "defSnaps": 7,
+      "stSnaps": 10258,
+      "playerRows": 2796,
+      "offShare_pct": 23.19,
+      "defShare_pct": 0
+    },
+    "RB": {
+      "offSnaps": 38524,
+      "defSnaps": 137,
+      "stSnaps": 10634,
+      "playerRows": 1826,
+      "offShare_pct": 9.84,
+      "defShare_pct": 0.04
+    },
+    "DB": {
+      "offSnaps": 37,
+      "defSnaps": 171794,
+      "stSnaps": 41259,
+      "playerRows": 4977,
+      "offShare_pct": 0.01,
+      "defShare_pct": 43.9
+    },
+    "LB": {
+      "offSnaps": 41,
+      "defSnaps": 104376,
+      "stSnaps": 39543,
+      "playerRows": 3659,
+      "offShare_pct": 0.01,
+      "defShare_pct": 26.67
+    },
+    "DL": {
+      "offSnaps": 22,
+      "defSnaps": 114976,
+      "stSnaps": 16344,
+      "playerRows": 3893,
+      "offShare_pct": 0.01,
+      "defShare_pct": 29.38
+    }
+  },
+  "skill": {
+    "QB": {
+      "targets": 5,
+      "receptions": 4,
+      "recYards": 10,
+      "recEPA": 3.4189513812307277,
+      "receivingAirYards": 8,
+      "carries": 2352,
+      "rushYards": 11015,
+      "rushEPA": 280.8521990206838,
+      "passAtt": 17777,
+      "passYards": 126768,
+      "passEPA": 756.1196080466109,
+      "passINT": 385,
+      "passSacks": 1308,
+      "players": 78,
+      "skillEPAShare_pct": 27.69,
+      "targetShare_of_targets_pct": 0.03
+    },
+    "TE": {
+      "targets": 3810,
+      "receptions": 2764,
+      "recYards": 27756,
+      "recEPA": 850.506832059412,
+      "receivingAirYards": 23970,
+      "carries": 62,
+      "rushYards": 312,
+      "rushEPA": 25.67334542598111,
+      "passAtt": 4,
+      "passYards": 21,
+      "passEPA": -3.217693315427163,
+      "passINT": 1,
+      "passSacks": 0,
+      "players": 119,
+      "skillEPAShare_pct": 23.24,
+      "targetShare_of_targets_pct": 22.39
+    },
+    "DB": {
+      "targets": 5,
+      "receptions": 2,
+      "recYards": 22,
+      "recEPA": -9.389469932066278,
+      "receivingAirYards": 29,
+      "carries": 7,
+      "rushYards": 39,
+      "rushEPA": 5.194557457230994,
+      "passAtt": 1,
+      "passYards": 0,
+      "passEPA": -2.67772018973483,
+      "passINT": 0,
+      "passSacks": 0,
+      "players": 16,
+      "skillEPAShare_pct": -0.18,
+      "targetShare_of_targets_pct": 0.03
+    },
+    "RB": {
+      "targets": 2961,
+      "receptions": 2351,
+      "recYards": 17807,
+      "recEPA": 101.18306252867362,
+      "receivingAirYards": -225,
+      "carries": 11837,
+      "rushYards": 51646,
+      "rushEPA": -684.4092468589474,
+      "passAtt": 2,
+      "passYards": 3,
+      "passEPA": -1.4654423169710338,
+      "passINT": 0,
+      "passSacks": 2,
+      "players": 146,
+      "skillEPAShare_pct": -15.56,
+      "targetShare_of_targets_pct": 17.4
+    },
+    "WR": {
+      "targets": 10222,
+      "receptions": 6499,
+      "recYards": 81313,
+      "recEPA": 2436.193977923888,
+      "receivingAirYards": 107875,
+      "carries": 425,
+      "rushYards": 2137,
+      "rushEPA": -12.710130928962133,
+      "passAtt": 19,
+      "passYards": 171,
+      "passEPA": 6.539315874425535,
+      "passINT": 1,
+      "passSacks": 3,
+      "players": 227,
+      "skillEPAShare_pct": 64.68,
+      "targetShare_of_targets_pct": 60.08
+    },
+    "OL": {
+      "targets": 8,
+      "receptions": 7,
+      "recYards": 20,
+      "recEPA": 2.6863225423730883,
+      "receivingAirYards": 1,
+      "carries": 0,
+      "rushYards": 0,
+      "rushEPA": 0,
+      "passAtt": 0,
+      "passYards": 0,
+      "passEPA": -0.975853093783371,
+      "passINT": 0,
+      "passSacks": 1,
+      "players": 9,
+      "skillEPAShare_pct": 0.05,
+      "targetShare_of_targets_pct": 0.05
+    },
+    "LB": {
+      "targets": 1,
+      "receptions": 1,
+      "recYards": 34,
+      "recEPA": 4.33391802990809,
+      "receivingAirYards": 4,
+      "carries": 1,
+      "rushYards": 1,
+      "rushEPA": -2.93332363781519,
+      "passAtt": 0,
+      "passYards": 0,
+      "passEPA": 0,
+      "passINT": 0,
+      "passSacks": 0,
+      "players": 3,
+      "skillEPAShare_pct": 0.04,
+      "targetShare_of_targets_pct": 0.01
+    },
+    "DL": {
+      "targets": 1,
+      "receptions": 1,
+      "recYards": 2,
+      "recEPA": 2.04928792873397,
+      "receivingAirYards": 2,
+      "carries": 0,
+      "rushYards": 0,
+      "rushEPA": 0,
+      "passAtt": 0,
+      "passYards": 0,
+      "passEPA": 0,
+      "passINT": 0,
+      "passSacks": 0,
+      "players": 1,
+      "skillEPAShare_pct": 0.05,
+      "targetShare_of_targets_pct": 0.01
+    }
+  }
+}

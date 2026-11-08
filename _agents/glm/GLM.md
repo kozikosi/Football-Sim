@@ -1,75 +1,73 @@
-# GLM — lane file (rewritten 2026-11-07 ~02:1xZ, end of session)
+# GLM — lane file (rewritten 2026-11-08 ~end of window session)
 
 Identity: council seat `glm` — analytics / scribe lane. IK realm; direct runs against primary
 sources preferred. Labels on every claim: VERIFIED (ran/fetched) · REPORTED (named source) ·
 INFERRED (shown math) · UNKNOWN.
 
 Worktree: `/Users/kosi/Desktop/wt/glm` · branch `council/glm` · merge-base with
-`origin/council/base` = `1b91f50e` · latest pushed HEAD: `099561e1` (ls-remote verified 7 Nov).
+`origin/council/base` = `1b91f50e`. **This window: nothing pushed** (Owner's window rule:
+work reaches GitHub via the Owner or Beam's `tools/import-zip.sh`); local commit hash below.
 
-## Current work and state (7 Nov session — Owner weights directive)
+## Current work (8 Nov window — P-013, Claude unavailable)
 
-**Owner's 7 Nov salary-weights directive: verified, tested, reported — DONE, pushed `099561e1`.**
-- The Owner's 32-slot table == the engine already (`SLOTS` at tip, design.json, salary-reference.json —
-  three-way 32/32 exact; landed 6 Nov as `6cccf293`, ruling at `claude/rulings/2026-11-06-owner-salary-weights.md`).
-- Salaries never displayed: `salary-reference.json` internal-only; `grep -rn salary colors/src` empty — VERIFIED.
-- Reveal test (the Owner's ask): `_agents/glm/tests/owner-weights-verify.mts` — 32/32 inside the ±50 room on
-  both formations; max err DE1 +23.3; WR1 −18; no inversions; unit 0.00254 wins/pt; draft priority
-  QB → DE1/WR1 650 → DT1/OT1 500 → CB1/OG1/WR2 400 …; **DT2 10M→300 is +50 over the salary×25 rule**
-  (his other 10M rows are 250) — flagged for the Owner's call (taste or typo).
-- Test receipts on my bench: lineup.test 34/34, matchup.test 19/19, versions.test 7/7 (my stale root
-  design.json synced from the tip in the same commit to let the lineup test run — noted there).
-- `slots.ts` line 1 still says "error at most 2.5" (retired contract; live one is ≤50 per the ruling) —
-  one-line Architect fix flagged in the report, not edited by me (engine file).
-- Report: `inbox/20261107-0200-glm-OWNER-WEIGHTS-report.md`.
+**Hash-pinned nflverse 2024 anchor pack — built, VERIFIED, local commit.**
+- `_agents/glm/anchors/` — README (sources/hashes/formulas/receipts) + `raw-hashes.txt`; raw
+  pack: pbp 2024 (`23370d5d10f8104d…`), player_stats 2024 (`629b77e0c88d361f…`),
+  snap_counts 2024 (`fe1d819db55d6e33…`), NGS receiving (`da50b1e7fa418bf1…`). 18MB pbp NOT
+  committed anywhere but hashed; raw stays local (`private` note in README).
+- `pbp-level3.mjs` → `pbp-level3-2024.json`: **T1 ladder level 3** — completion%/INT%/YAC by
+  air-yard bucket (behind 78.7/0.8/9.5 … 21+ 33.5/6.3/5.8), pressure-proxy→sack 44.8%.
+  2024 REG = 272 games VERIFIED.
+- `group-shares-2024.mjs` → `group-shares-2024.json`: M4 volume anchors (OFF/DEF%): OL 45.7/–,
+  QB 9.1/–, WR 23.2/–, TE 12.1/–, RB 9.8 · DB 43.9, LB 26.7, DL 29.4; skill targets 60.1/22.4/17.4
+  (WR/TE/RB); skill-EPA 64.7/23.2/27.7/−15.6.
+- **Beam's M4 numbers reproduced within 0.3pp on pinned 2024 data → his findings upgraded
+  REPORTED → VERIFIED** (secondary fits snap share; DL overweighted; LB underweighted;
+  TE underweighted vs skill-EPA; QB in-band).
+- `_agents/glm/tests/heldout-lint.mjs` — governance artifact (Beam §2.2): exits 0/1/2 VERIFIED;
+  scan any fit script before trusting output.
+- Data map correction (VERIFIED): nextgen_stats has NO defense feed; player_stats has no
+  defensive EPA → defense EPA is a pbp-join task, not "unavailable".
+- Claude-facing prompt rev 2: `inbox/20261108-1800-glm-P-013-anchor-pack-and-claude-prompt.md`
+  (includes my positions: raw-curve witness YES on Colors track; RNG lands draft-first).
 
-## Prior session (6 Nov) — condensed
+## Events / exception log (window)
 
-1. **ASK 20261105-0105 (outcome-based CI gate) — ANSWERED** `inbox/20261106-0310-glm-ANSWER-outcome-ci-gate.md`
-   (commits `5ca6c747`, `010db8a3`): (a) regression bands anchored at measured + target-gap column, power rule
-   tol = depth + 1.28·SE(N), P(20-0) coarse band [0.5, 3.0], favorites separation gate; (b) DraftConfig knob map
-   + MEASURED finding: the four taste knobs are a user-strength channel, NOT bottom-widening (≤2-win share 6.7%
-   vs 7.0% unchanged; rule intact max gap 5) — bottom levers likely on the season/matchup side; (c) three-tier
-   CI job + stamp rule (commit/PIN_DATA/PIN_ENGINE/node), bands.json shape, refuse-to-evaluate on stamp mismatch.
-2. **P-261 — DONE** (`ac1b9e12`): `DATA-LICENSE.md` at repo root + `inbox/20261106-0207-glm-P-261-data-license-cbc-verified.md`
-   (CBC verified against the opinion — cite right, my 5 Nov reasoning retracted as wrong-in-direction; nflverse
-   clauses re-fetched fresh; layer table).
-3. **P-263 review — POSTED** `inbox/20261106-0310-glm-P-263-review.md` (stamps VERIFIED versions.test.ts:16;
-   425f72a↔tip byte-identity VERIFIED → 53/11+47/6 cluster UNANCHORED; NEW catch: `skilled` CLI literal falls
-   through userChoose to favorites silently — reject unknown policies).
-4. Tip-side N=100 (VERIFIED, `010db8a3`): reproduces the ASK exactly — greedy 90.0/20.0 (appear 33.0),
-   skilled 38.0/3.0 (appear 6.0), favorites 20.0/0.0 (appear 2.0), CPU avg 8.41/8.49/8.56, tail 6–9%,
-   gaps median 3/p90 5/max 5 (`tests/bands-2026-11-06-tipN100.txt`). ASK + MUSE N=1000 = tip build family.
-5. Knob-combo N=120 (VERIFIED, `010db8a3`): `tests/bands-knob-combo-N120.txt`.
-6. **P-262 retire op** (BUILT at `90dcd6e1`, read on tip; `83079d6c`) — needs second seat/Architect.
-7. Owner-letter smalls (`ac1b9e12`): cache-coherence defenses; governance staleness; Vite test
-   (npm ci clean, `vite 8.3.6` runs; `vite build` failed on tip layout at that moment — mid-flight reorg).
-8. Owner stopped the N=400 probe mid-run (~17/26 CPU-min) — not restarted; exact command below.
-9. Probe tool: `_agents/glm/tests/outcome-band-probe.mts` (committed; identical RNG streams to stock
-   calibrate VERIFIED at N=3 both directions; adds appear/20-0/CPU-tail metrics).
+- `council.mjs` call for `show E-207` timed out even with --no-fetch reads avoided (60s wall);
+  **E-207 review was NOT done this window** — P-013 anchored work took the window per Owner
+  (Claude-innovation invite). Next session: `node ./.council_tool.mjs --no-fetch show E-207`,
+  or read `council/or:inbox/20261104-0524-or-E-207-review.md` directly (1st-line route).
+- pbp `.zip` asset and `ngs_2024_defense` 404 (GitHub "Not Found" 4KB) — cleaned; the `.gz`
+  pbp and receiving-only NGS are the correct assets (expanded_assets listing VERIFIED).
+- The 4KB "Not Found" gzip binaries were discarded; hashes above are of the four real files.
 
 ## What the next session needs
 
-- The un-run **N=400 probe** (needs colors + data/nfl on disk; ~40 min wall uncontended):
-  extract work copies (`git archive origin/architect/engine-and-seats colors | tar -x` and
-  `git archive origin/architect/engine-and-seats data/nfl | tar -x`; `cd colors && npm ci`), then
-  `node --experimental-strip-types _agents/glm/tests/outcome-band-probe.mts 400 greedy,top30,favorites >
-   _agents/glm/tests/bands-2026-11-07-N400.txt` → fill the reserved row in the ANSWER snapshot table.
-- **P-255 (Z.ai's CALIBRATION.md) review when it lands** (bands as policy → target ± tolerance → N required).
-- **P-262 retire needs quorum**; knob ladder for (b) if the Owner wants per-knob curves (~6 min each).
-- Watch (not mine to edit): `skilled` harness literal, `slots.ts` line-1 stale comment, DT2 +50 call.
+- The un-run **N=400 probe** (carried over; command pattern preserved in tests dir).
+- **P-013 window artifacts to integrate:** my anchor pack + lint go to the Architect's digest
+  via `node tools/council.mjs digest` after import; E-207 review if not yet 3-seat REVIEWED.
+- M5-by-OVR (Madden27 join), defense-EPA pbp join, M3 data-only fit — all now unblocked by my
+  pack; anyone may take them (no assignment).
 
-## Open questions
+## Prior sessions — receipts that remain true (condensed)
+
+- 7 Nov owner-weights reveal: 32/32 inside ±50 (max DE1 +23.3, WR1 −18; DT2 10M→300 is +50 over
+  salary×25, Owner's call). Tests on my bench: lineup 34/34, matchup 19/19, versions 7/7.
+  Report `inbox/20261107-0200-glm-OWNER-WEIGHTS-report.md`, push `099561e1`.
+- 6 Nov: ASK outcome-CI gate answered (`5ca6c747`,`010db8a3`); P-261 DATA-LICENSE (`ac1b9e12`);
+  P-263 review posted; P-262 retire op pending quorum (`83079d6c`); tip-side N=100 VERIFIED
+  reproduces ASK; probe tool `_agents/glm/tests/outcome-band-probe.mts` (N=400 un-run, ~40 min).
+- Environment receipt: node v24.22.0, npm 11.19.1; `colors/`+`data/nfl/` are untracked work
+  copies — never `rm -rf` them; refresh: `git checkout origin/architect/engine-and-seats --
+  colors data tools/mathlab/design.json`.
+
+## Open questions (carried)
 
 - DT2 salary deviation (10M → 300): Owner's taste or a typo?
-- Owner OK with the reveal's hot pass-rush / cold WR1–2 pattern (max 23.3) as final, or wants a spec refit?
+- Is 23.3 max deviation (hot pass rush / cold WR1) accepted as final, or refit?
 
-## Environment receipt
+## Dedication rule (worked well)
 
-- `node v24.22.0`, `npm 11.19.1`; `cd colors && npm ci` rebuilds node_modules (~1 min).
-- `colors/` + `data/nfl/` are extracted work copies in this worktree (untracked; parts are tracked on my
-  branch — hence **never `rm -rf` the dirs**: yesterday's rm mistake was caught and restored from HEAD).
-  Refresh with `git checkout origin/architect/engine-and-seats -- colors data tools/mathlab/design.json`.
-- Council tool per START-HERE §3: `git show origin/architect/engine-and-seats:tools/council.mjs > ./.council_tool.mjs`,
-  run from the worktree (a /tmp run produces no output), delete before pushing; use `--no-fetch` on slow CPU.
-- Context frame (5 Nov): brand 76 Pancakes; targets 90/35/25 + P(20-0) 1–2%; skilled locked.
+Pre-register → measure → label; nothing silently resolved. Owner's priors in Beam's prereg §1
+(write your own before results). All window work kept to `_agents/glm/` + `inbox/` — no product
+files, no protected constants, no pushes, no cross-seat edits.

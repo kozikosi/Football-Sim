@@ -1,0 +1,80 @@
+{
+  "meta": {
+    "built": "2026-11-08T03:22:31.291Z",
+    "season": 2024,
+    "filters": {
+      "season_type": "REG"
+    },
+    "sources": {
+      "pbp": "raw/play_by_play_2024.csv.gz",
+      "hashes": "see raw-hashes.txt"
+    },
+    "notes": {
+      "pressure_proxy": "qb_hit==1 OR sack==1 (hit-or-sack; NFL \"pressure\" is NGS-only at feed level; unhit sacks counted as pressure via sack==1)",
+      "yac": "mean yards_after_catch over completed passes in the air-yard bucket",
+      "attempts_include_INTs": "true (completion% denominator = pass attempts incl INTs)",
+      "open": [
+        "INT-by-coverage-role (needs defensive depth-of-dataset join)",
+        "YAC by receiver slot group (needs receiver position join)",
+        "defense EPA per player"
+      ]
+    }
+  },
+  "totals": {
+    "pbp_rows": 49492,
+    "games_all": 285,
+    "reg_games": 272
+  },
+  "derived": {
+    "pass|airyards|behind": {
+      "attempts": 3250,
+      "completions": 2558,
+      "interceptions": 26,
+      "completion_pct": 78.71,
+      "int_rate_pct": 0.8,
+      "avg_air_yards": -3.61,
+      "avg_yac_per_completion": 9.49
+    },
+    "pass|airyards|0-5": {
+      "attempts": 6136,
+      "completions": 4587,
+      "interceptions": 58,
+      "completion_pct": 74.76,
+      "int_rate_pct": 0.95,
+      "avg_air_yards": 2.98,
+      "avg_yac_per_completion": 4.42
+    },
+    "pass|airyards|6-10": {
+      "attempts": 3143,
+      "completions": 1983,
+      "interceptions": 59,
+      "completion_pct": 63.09,
+      "int_rate_pct": 1.88,
+      "avg_air_yards": 7.55,
+      "avg_yac_per_completion": 3.21
+    },
+    "pass|airyards|11-20": {
+      "attempts": 3488,
+      "completions": 1900,
+      "interceptions": 131,
+      "completion_pct": 54.47,
+      "int_rate_pct": 3.76,
+      "avg_air_yards": 14.95,
+      "avg_yac_per_completion": 3.81
+    },
+    "pressure|all": {
+      "pressurized_plays": 2932,
+      "sacks": 1314,
+      "sack_rate_among_pressure_pct": 44.82
+    },
+    "pass|airyards|21+": {
+      "attempts": 1794,
+      "completions": 601,
+      "interceptions": 113,
+      "completion_pct": 33.5,
+      "int_rate_pct": 6.3,
+      "avg_air_yards": 30.04,
+      "avg_yac_per_completion": 5.82
+    }
+  }
+}
