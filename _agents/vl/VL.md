@@ -4,31 +4,27 @@
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
 
-## Current session (2026-11-08, council-any-member prompt)
+## Current session (2026-11-08, council-any-member + council-update prompts)
 - Followed START-HERE from origin/council/muse exactly: `git fetch origin`, sync base (1b91f50e, up to date), preserve check (vl = 0 dirty).
-- Took top-ranked item P-285 (review the live wave w85). Independent verification:
-  - File identity VERIFIED: md5 eb91abd22f335e34f6898dcff5e6dde6, size 1,864,914 B (exact match).
-  - nodecheck VERIFIED: 26 inline scripts parse, 0 fail.
-  - Owner's five Nov 8 comments: 4 verified cleanly; lineup return-to-horizontal PARTIAL (2 battery failures, cause not disambiguated).
-  - Z.ai's battery claims NOT reproduced: round-3 22/24 (claimed 24/24), full 26/28 (claimed 28/28); 4 full-battery failures (2 stale-test artifacts, 2 minor deviations).
-  - w77 battery NOT runnable: no w85/z-post-blue adapter for accept.js (blocked, documented).
-  - Verdict: **improved**. Deliverable: `inbox/20261108-1603-vl-P-285-review.md` — committed 1235c510, pushed @ 1235c510 (ls-remote verified).
-- Reviewed other councilmembers' work (reviews are the bottleneck):
-  - E-207 (OR's review of Beam's spec): VERDICT ok — every claim verified against Football-Sim-PreColors.html (meetingInfo@3506, meetingTagText@3526, real count via others.length, order weeks-then-playoffs, no priorMeetings, no team args, no meeting tests). Brought E-207 to 2/2 → REVIEWED. `inbox/20261108-1611-vl-E-207-review.md` — committed a6c5e3bd, pushed (ls-remote verified).
-  - P-115 (Flint's review of UK's game-animation refinements): VERDICT ok — every grep-verifiable claim confirmed (hooks at correct lines; animateGame/ANIM/team tokens absent; --accent@16 exists; reduced-motion@110 covers 3 selectors; duration>60s cap defect accepted as reported). `inbox/20261108-1613-vl-P-115-review.md` — committed c4632df4, pushed (ls-remote verified).
-- P-276 (VL's P0 in-flight, N=1000 baseline repro): BLOCKED by deno gap — `which deno` → not found, same as OR/VLOC per P-292. Cannot run the three deno reproduction commands or confirm headline numbers / two-cluster split. Blocker filed: `inbox/20261108-1614-vl-P-276-deno-blocker.md`. Workaround: wait for P-292's Node Lab runner (Z.ai), then re-run P-276 baseline through it.
+- Delivered 6 reviews this session, all committed and pushed to council/vl:
+  1. **P-285 (review live wave w85)** — VERDICT improved. File identity VERIFIED (md5 eb91abd22f335e34f6898dcff5e6dde6, 1,864,914 B); nodecheck 26/26 parse 0 fail; 4/5 Owner comments verified; Z.ai's 24/24 and 28/28 battery claims NOT reproduced (22/24, 26/28); w77 battery blocked (no w85 adapter). inbox/20261108-1603-vl-P-285-review.md (1235c510).
+  2. **E-207 (review OR's review of Beam's spec)** — VERDICT ok → E-207 reaches 2/2 = REVIEWED. All claims verified against Football-Sim-PreColors.html (meetingInfo@3506, meetingTagText@3526, real count via others.length, no priorMeetings, no team args, no meeting tests). inbox/20261108-1611-vl-E-207-review.md (a6c5e3bd).
+  3. **P-115 (review Flint's review of UK's game-animation refinements)** — VERDICT ok. All grep-verifiable claims confirmed (hooks at correct lines; animateGame/ANIM/team tokens absent; --accent@16 exists; reduced-motion@110 covers 3 selectors; 75s>60s cap defect accepted as reported). inbox/20261108-1613-vl-P-115-review.md (c4632df4).
+  4. **P-294 (review Claude's flex evidence + proposal, architect/engine-and-seats 1e6372a)** — VERDICT ok. All 8 evidence-table cells recomputed from committed results/flexeval-2026-11-08.json match the write-up exactly (fresh/tune × input/measured); proposal table matches write-up (raised12 = RB>WR, TE>EDGE, TE>OT, DT>EDGE; flex.json/FLEX unchanged). CRITICAL GAP flagged: Owner picked −2/−6/−12 which Claude did NOT measure (he measured −2/−4/−10, cap10, cap12, cap10+4rules). flexeval.mjs cannot be re-run (flex-candidate-2026-11-07.json not on branch; Colors engine source absent from council/vl; deno unavailable). Theta pricing not done. inbox/20261108-2312-vl-P-294-review.md (ce9e5311).
+  5. **P-288 (review Claude's Q4 guard passes + FITTED-label test + witness tolerance, architect/engine-and-seats 1e6372a)** — VERDICT ok. Independently ran param-diff.mjs: PARAM-DIFF OK, 122 coefficient rows, 32 slots, C max dev 23.3 ≤ 50, 32/122 coefficients flagged (>10×/<0.1×), B vs Oct target 53.2 pts at WR1, 106/120 snapped cross-check, Oct/original median 10.0%. Ran Colors suite: 290/290 pass, 0 fail (FITTED-label + MEASURED + witness-tolerance tests pass). inbox/20261108-2316-vl-P-288-review.md (f0d2b6ec).
+  6. **P-142 (review OR's crossflex measurement)** — VERDICT improved → P-142 now 1/2. VERIFIED defect: OR used council/or design.json (WR1=470, CB1=450) but architect/engine-and-seats design.json has WR1=650, CB1=400 (matching Owner's Nov 8 quote). OR's headline conclusion "CB→WR1 never attractive → no re-costing" hinges on the 470/450 basis; OR himself notes 650/400 (250 spread) "would be attractive." Re-run vs confirmed-current weights needed before Owner approval. inbox/20261108-2319-vl-P-142-review.md (cb7f525b).
 
 ## Worktree / branch (end of session)
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `c4632df4eff88b1bdf43a90300af1e6dd3fc03d3` · `git merge-base HEAD origin/council/base` = `1b91f50e161fa10d0607c8e09330115ffa27f1ff` (up to date)
-- **Working tree:** clean (0 dirty). Pushed to origin.
+- **HEAD:** `cb7f525be78efd3cb46b69977275fdceb251ed7d` · `git merge-base HEAD origin/council/base` = `1b91f50e161fa10d0607c8e09330115ffa27f1ff` (up to date)
+- **Working tree:** clean (0 dirty). Pushed to origin (ls-remote verified = HEAD).
 - Other seats' worktrees show unsaved work in preserve.mjs check — not VL's to touch.
 
 ## Next session
-- `node tools/next.mjs` (or PRIORITIES.md live table) and take the next top item VL can run.
-- P-276 remains stalled on deno; unblock when P-292's Node Lab runner lands (then re-run N=1000 baseline).
-- P-286 (67 Cakepanz Slice 1) blocked waiting for Z.ai to land Slice 1.
+- `node tools/council.mjs next` (or PRIORITIES.md live table) and take the next top item VL can do.
+- Blocked, do not re-attempt: P-276 N=1000 repro (no deno — same as OR/VLOC, P-292), P-286 (67 Cakepanz Slice 1 not landed), P-307 (w86 not on gh-pages), P-285 part (c) w77 battery (no w85 adapter).
+- P-285 needs ONE more seat review to reach REVIEWED (I cannot self-review).
 
 ## Open questions
-- P-285 part (c): w77 battery needs a w85/z-post-blue adapter for accept.js (P-286/P-291 scope).
-- P-276: deno gap unblocked only by P-292 Node runner; no ETA.
+- design.json divergence: council/or + council/vl = WR1 470 / CB1 450; architect/engine-and-seats = WR1 650 / CB1 400 (Owner's quoted values). Which is authoritative for P-142/P-294 flex work? Owner/Architect call.
+- Theta pricing (P-294): formula now known (P = clamp(round2(θ·ovrEq),0,30), θ∈{0.5,0.75,1.0}×OVR∈{85,90}) but needs flex pricer + ovrEq data; not available here.
