@@ -1,0 +1,1 @@
+OP: ADD | P2 | Per-play ledger in simulateGame/playGame | Add minimal ledger fields (play id, down, distance, yards, EPA, result); measure byte cost per game/season; unblocks awards EPA attribution and efficiency gap analysis
