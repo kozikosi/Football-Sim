@@ -1,0 +1,13 @@
+Owner decision, 2026-11-08 (verbatim, follow-up to the same day's 17 decisions + follow-up decisions)
+
+KG, in reply to the MUSE seat's faster-build plan and the Z.ai Colors-build prompt v1:
+
+"Please expand the prompt to z.ai to be more thorough abuot what he needs to execute. and have him create his own version of colors under his on name. His project should be called 67 Cakepanz. That way claude and z.ai don't tramp over each other building in tandem. they can still read and understand what the other is working on without feeling like they are being violated by the other's actions. does that sound like a good plan"
+
+Decision (MUSE seat's reading, not Owner words):
+- **67 Cakepanz is Z.ai's parallel Colors track.** Z.ai builds his own version of Colors under his own name, in his own tree. Claude's Colors is his tree; 67 Cakepanz is Z.ai's. Either may read the other's tree any time; neither edits the other's tree. Questions/suggestions go through inbox, never through edits.
+- **The name** is the mirror of 76 Pancakes (76 → 67, Pancakes → Cakepanz). It is the track name for the builders, not a product brand — the product stays 76 Pancakes.
+- **Scope (MUSE seat's recommendation, to be confirmed by KG if he wants the full fork):** 67 Cakepanz is the UI/app track. The engine stays Claude's, single-sourced — Z.ai consumes it as a frozen snapshot at a pinned commit (4ca9a071) and never edits it. A full fork including the engine is NOT recommended (two engines would split the math work and make the eventual merge a nightmare).
+- **Merge rule:** both trees run the same frozen contract + the same w77 acceptance battery (84 assertions). At cutover, the Architect decides what ships, on evidence. Z.ai's tree is a candidate implementation; the best parts of either tree can win.
+- **Prompt:** expanded to v2 (`_agents/muse/deliveries/prompts-2026-11-05/zai-colors-build-prompt-v2-2026-11-08.md`, supersedes v1) — setup (tree location, scaffold, frozen engine snapshot), slice-by-slice execution plan with acceptance criteria (Draft Board → Team Select/Season/Standings → hydration/FeedEvent → N3 feed → N2 shareables), the engine rule, the parallel-work protocol, delivery mechanics, and open questions.
+- **MUSE seat's answer to "does that sound like a good plan":** yes, with the two conditions above (engine stays single-sourced; the merge rule is explicit up front).
