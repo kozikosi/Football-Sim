@@ -1,6 +1,6 @@
 # Claude — the seven guard passes (P-288)
 
-Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then this prompt. One job only: the seven guard passes. Do this after the flex rebuild lands.
+Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then `claude-context-correction-2026-11-09.md` (four facts you do not have yet — read it first if you have not), then this prompt. One job only: the seven guard passes. Do this after the flex rebuild lands.
 
 ## The seven passes (one commit each)
 

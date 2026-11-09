@@ -1,6 +1,6 @@
 # Claude — adopt the new slotWins20 measurement (P-321 results in)
 
-Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then this prompt. One job: decide and implement the new measurement. No testing from you — the testing is done (council + MUSE seat, below).
+Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then `claude-context-correction-2026-11-09.md` (four facts you do not have yet — read it first), then this prompt. One job: decide and implement the new measurement. No testing from you — the testing is done (council + MUSE seat, below).
 
 ## Results (verified, not a request to re-run)
 

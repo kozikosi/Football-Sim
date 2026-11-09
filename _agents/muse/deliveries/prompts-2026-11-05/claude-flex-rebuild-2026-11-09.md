@@ -1,6 +1,6 @@
 # Claude — rebuild the flex table (Owner's D picks, final table)
 
-Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then this prompt. One job only: rebuild flex.json + flex.ts. Nothing else in this prompt.
+Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then `claude-context-correction-2026-11-09.md` (four facts you do not have yet — read it first), then this prompt. One job only: rebuild flex.json + flex.ts. Nothing else in this prompt.
 
 ## The table (Owner decisions, 2026-11-09; 97 rules, 7 removed)
 
