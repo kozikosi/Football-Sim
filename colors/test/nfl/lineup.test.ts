@@ -33,20 +33,26 @@ test('table: unit counts are 16 offense, 14 defense, 2 special', () => {
 });
 
 // ---- flex ----
-test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 8 Nov) rule by rule', () => {
+test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 9 Nov, 97 rules) rule by rule', () => {
   for (const role of flexJson.roles) assert.deepEqual(FLEX[role as Role], flexJson.flex[role], role);
   const n = Object.values(FLEX).reduce((t, r) => t + Object.keys(r).length, 0);
-  assert.equal(n, 104);
+  assert.equal(n, 97);
+  const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
+  for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
+  assert.deepEqual(tiers, { 0: 30, 2: 16, 6: 32, 12: 19 });       // Owner 9 Nov: 19 at 12, 32 at 6, 16 at 2, 30 at 0
+  for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
 });
 test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
   for (const r of new Set(pool.map((p) => p.role))) assert.ok(FLEX[r], r);
   for (const [role, row] of Object.entries(FLEX)) for (const [d, v] of Object.entries(row)) assert.ok([0, 2, 6, 12].includes(v), `${role}->${d} ${v}`);
 });
-test('flex: model-first pins (Owner 8 Nov: every 6+ is -12, every -4 is -6, 0 and 2 untouched)', () => {
-  assert.equal(fit('EDGE', 'OLB').penalty, 2);
+test('flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 theta 1.0 rounded to the nearest of 0/2/6/12)', () => {
+  assert.equal(fit('EDGE', 'OLB').penalty, 0);                // priced by D (0)
+  assert.equal(fit('EDGE', 'TE').penalty, 6);                 // Owner: kept at -6, not removed
   assert.equal(fit('TE', 'RB').penalty, 6);
-  assert.equal(fit('P', 'K').penalty, 12);
-  assert.equal(fit('K', 'P').penalty, 0);
+  assert.equal(fit('P', 'K').penalty, 2);                     // Owner override
+  assert.equal(fit('K', 'P').penalty, 2);                     // Owner override
+  assert.equal(fit('FB', 'EDGE').emergency, true);            // removed on 9 Nov: the -8 fallback
   assert.equal(fit('QB', 'FS').penalty, 12);                  // 29 Oct: a QB may flex ONLY to FS; priced -12 since 8 Nov
   assert.equal(fit('RB', 'WR').penalty, 12);
   assert.equal(fit('C', 'OG').penalty, 6);
@@ -59,15 +65,17 @@ test('flex: a quarterback plays only QB or FS (-12); no RB, no WR, no SS, no eme
   const f = fit('RB', 'CB');
   assert.deepEqual([f.legal, f.emergency, f.penalty], [true, true, EMERGENCY_PENALTY]);
 });
-test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 6', () => {
+test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 2 (Owner 9 Nov)', () => {
   for (const r of ['CB', 'SS', 'FS'] as Role[]) for (const d of ['NICKEL', 'DIME'] as Dest[]) assert.equal(fit(r, d).penalty, 0, r + d);
-  assert.equal(fit('WR', 'NICKEL').penalty, 6);
+  assert.equal(fit('WR', 'NICKEL').penalty, 2);
+  assert.equal(fit('WR', 'DIME').penalty, 2);
 });
 test('flex: DL5 is natural for DT and EDGE and costs the cheaper of role->DT, role->EDGE for the rest', () => {
   assert.equal(fit('DT', 'DL5').penalty, 0);
   assert.equal(fit('EDGE', 'DL5').penalty, 0);
-  const want: Partial<Record<Role, number>> = { TE: 12, OT: 6, OG: 6, C: 6, ILB: 12, OLB: 12 };
+  const want: Partial<Record<Role, number>> = { TE: 12, OT: 6, OG: 6, C: 12, ILB: 12, OLB: 12 };   // 9 Nov: C>DT is 12 (was 6); FB has neither rule left, so it takes the fallback
   for (const [r, p] of Object.entries(want)) assert.equal(fit(r as Role, 'DL5').penalty, p, r);
+  assert.equal(fit('FB', 'DL5').emergency, true);
   assert.equal(fit('CB', 'DL5').emergency, true);
 });
 test('flex: no arbitrage; going A -> B -> C through two spots is never cheaper than the listed A -> C', () => {
@@ -226,15 +234,17 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth 1850 less in 3-4: its one ILB leaves an OLB at MIKE (-2), and under the -2/-6/-12 table the spare DT plays FB (-2) while the FB covers SAM (-12)', () => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth 1800 less in 3-4: its one ILB leaves a spare EDGE at the other inside spot (EDGE>ILB is free in the 9 Nov table) and a DT plays DE2 (DT>EDGE -6)', () => {
   const flat = natural(70);                                   // one ILB only
   assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
-  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 1850);     // pinned 8 Nov 2026: the value of the three flexes below
-  const flexed = lineupFor(flat, '3-4').placements.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
-  assert.deepEqual(flexed.map((f) => [f[1], f[2]]).sort(), [['DT', 2], ['FB', 12], ['OLB', 2]]);
-  assert.ok(['MIKE', 'DT2'].includes(flexed.find((f) => f[1] === 'OLB')![0]!));   // the OLB stands in at one of the two ILB spots
-  assert.equal(flexed.find((f) => f[1] === 'FB')![0], 'SAM');
-  assert.equal(flexed.find((f) => f[1] === 'DT')![0], 'FB');
+  assert.equal(WEIGHT.DE2, 300);
+  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 1800);     // pinned 9 Nov 2026: 6 points x 300 on DE2, the only flex that costs anything
+  const placed = lineupFor(flat, '3-4').placements;
+  const flexed = placed.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
+  assert.deepEqual(flexed, [['DE2', 'DT', 6]]);
+  const edgeInside = placed.find((p) => p.player?.role === 'EDGE' && (p.slot.slot === 'MIKE' || p.slot.slot === 'DT2'))!;   // the spare EDGE stands in at one of the two ILB spots, free
+  assert.ok(edgeInside);
+  assert.equal(edgeInside.penalty, 0);
 });
 test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same', () => {
   const ps = [...natural(70), mk('ILB', 70)];

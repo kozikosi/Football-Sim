@@ -1,9 +1,6 @@
 {
  "_source": "Derived by flexdl5.mjs from flex.json (tiers -2/-6/-12, Owner 8 Nov 2026). DL5 = cheaper of role->DT and role->EDGE; DT and EDGE are natural. Follows flex.json.",
  "flex": {
-  "FB": {
-   "DL5": 12
-  },
   "TE": {
    "DL5": 12
   },
@@ -14,7 +11,7 @@
    "DL5": 6
   },
   "C": {
-   "DL5": 6
+   "DL5": 12
   },
   "ILB": {
    "DL5": 12

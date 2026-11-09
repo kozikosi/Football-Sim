@@ -1,5 +1,5 @@
 {
- "_source": "FLEX TABLE, tiers -2 / -6 / -12 (Owner 8 Nov 2026, P-294; Muse relay 9 Nov: 'new table, forget the old table', no fallback, no switch). Base = the Owner working version of 7 Nov (tools/mathlab/flex-candidate-2026-11-07.json, defaults of its 7 open items in force) + CB->WR, TE->WR. Pick: every penalty of 6 or more is -12, then every -4 is -6; 0 and 2 untouched; QB->FS -12 (QB flexes only to FS). The REV 4 guide (29 Oct, tiers 0/2/4/6, QB->FS 10) is retired; it stays in git history only. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
+ "_source": "FLEX TABLE, tiers -2 / -6 / -12, 97 rules (Owner 9 Nov 2026, D picks; Muse relay claude-flex-rebuild-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Counts: 19 at 12, 32 at 6, 16 at 2, 30 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
  "roles": [
   "QB",
   "RB",
@@ -24,104 +24,98 @@
    "FS": 12
   },
   "RB": {
-   "FB": 2,
+   "FB": 0,
    "WR": 12,
-   "TE": 12,
+   "TE": 6,
    "SS": 12,
    "FS": 12
   },
   "FB": {
    "RB": 2,
-   "TE": 6,
-   "ILB": 12,
-   "OLB": 12,
-   "EDGE": 12,
-   "DT": 12
+   "TE": 6
   },
   "WR": {
-   "RB": 12,
+   "RB": 6,
    "TE": 6,
-   "CB": 6,
-   "FS": 6,
-   "SS": 6,
-   "NICKEL": 6,
-   "DIME": 6
+   "CB": 2,
+   "FS": 2,
+   "SS": 2,
+   "NICKEL": 2,
+   "DIME": 2
   },
   "TE": {
-   "FB": 2,
+   "FB": 0,
    "WR": 12,
    "RB": 6,
-   "C": 12,
-   "OG": 12,
+   "C": 6,
+   "OG": 6,
    "OT": 12,
    "EDGE": 12,
    "DT": 12,
-   "OLB": 12,
+   "OLB": 6,
    "ILB": 12,
    "SS": 6,
    "FS": 6,
-   "NICKEL": 12,
-   "DIME": 12
+   "NICKEL": 6,
+   "DIME": 6
   },
   "OT": {
    "OG": 0,
-   "C": 0,
+   "C": 2,
    "DT": 6,
-   "EDGE": 12,
-   "FB": 2
+   "EDGE": 6,
+   "FB": 0
   },
   "OG": {
-   "OT": 6,
+   "OT": 2,
    "C": 0,
    "DT": 6,
-   "EDGE": 12,
-   "FB": 2
+   "EDGE": 6,
+   "FB": 0
   },
   "C": {
    "OG": 6,
    "OT": 12,
-   "DT": 6,
-   "FB": 2
+   "DT": 12,
+   "FB": 0
   },
   "DT": {
-   "EDGE": 12,
-   "C": 6,
-   "OG": 6,
-   "OT": 12,
-   "FB": 2,
-   "TE": 12
+   "EDGE": 6,
+   "C": 0,
+   "OG": 2,
+   "OT": 6,
+   "FB": 0
   },
   "EDGE": {
-   "DT": 2,
-   "OLB": 2,
-   "ILB": 12,
-   "C": 12,
-   "OG": 12,
-   "OT": 12,
+   "DT": 0,
+   "OLB": 0,
+   "ILB": 0,
+   "C": 2,
+   "OG": 0,
+   "OT": 0,
    "SS": 12,
-   "FS": 12,
-   "RB": 12,
-   "FB": 2,
-   "TE": 12,
-   "NICKEL": 12
+   "RB": 0,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 0
   },
   "ILB": {
    "ILB": 0,
    "OLB": 0,
    "EDGE": 12,
-   "SS": 12,
-   "FB": 2,
-   "TE": 12,
-   "NICKEL": 12,
+   "SS": 2,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
    "DIME": 12
   },
   "OLB": {
    "OLB": 0,
-   "ILB": 2,
+   "ILB": 6,
    "EDGE": 12,
-   "SS": 12,
-   "FB": 2,
-   "TE": 12,
+   "SS": 6,
+   "FB": 0,
+   "TE": 6,
    "NICKEL": 6,
    "DIME": 12
   },
@@ -129,34 +123,33 @@
    "NICKEL": 0,
    "DIME": 0,
    "FS": 2,
-   "CB": 12,
+   "CB": 6,
    "WR": 12,
-   "ILB": 12,
-   "OLB": 12,
+   "ILB": 6,
+   "OLB": 2,
    "RB": 12,
-   "TE": 12
+   "TE": 6
   },
   "FS": {
    "NICKEL": 0,
    "DIME": 0,
    "SS": 2,
-   "CB": 12,
+   "CB": 6,
    "WR": 12,
-   "OLB": 12
+   "OLB": 6
   },
   "CB": {
    "FS": 0,
    "NICKEL": 0,
    "DIME": 0,
-   "SS": 2,
-   "WR": 12,
-   "RB": 12
+   "SS": 0,
+   "WR": 6
   },
   "K": {
-   "P": 0
+   "P": 2
   },
   "P": {
-   "K": 12
+   "K": 2
   }
  }
 }
