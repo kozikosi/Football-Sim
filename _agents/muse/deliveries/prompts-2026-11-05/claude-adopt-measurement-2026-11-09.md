@@ -11,7 +11,7 @@ Read `git show origin/council/muse:_agents/START-HERE.md` (boot), then `claude-c
 
 ## Job
 
-Replace `slotWinsPerOvr()`'s 70→90 secant with the per-position local slope at ±5 (center = position's pool average from the embedded PLAYERS; everything else at position-specific averages; one shared function, parameterized by position). Re-pin protected-constant hashes in MERGE-MANIFEST.md. Report the new measured weights and confirm the test suite passes.
+Replace `slotWinsPerOvr()`'s 70→90 secant with the per-position local slope at ±5 (center = position's pool average from the embedded PLAYERS; everything else at position-specific averages; one shared function, parameterized by position). Re-pin protected-constant hashes in MERGE-MANIFEST.md. Report the new measured weights. Do not run the test suite — the council verifies it.
 
 P-318 (WILL/C bump in the engine math) is evaluated against this NEW measurement once it lands.
 
