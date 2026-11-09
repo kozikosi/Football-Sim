@@ -16,9 +16,9 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - FB>EDGE: REMOVE the rule entirely (do not set to 0 — delete it).
 - FB>DT: REMOVE the rule entirely.
 - FB>ILB: REMOVE the rule entirely.
+- FB>OLB: REMOVE the rule entirely.
 - FB>TE: KEEP at 6 (do not raise to 12 despite D 18.0 — few FBs, this is a just-in-case rule).
 - FB>RB: KEEP at 2 (do not raise to 12 despite D 18.0 — few FBs, just-in-case rule).
-- FB>OLB: not specified by the Owner — default is it stays at 12 (D 16.83 rounds to 12). Flag if you think it should also be removed with the other FB defensive rules.
 - C>DT: goes to 12 (from 6; D 14.3 rounds to 12).
 - C>OT: stays 12 (D 14 rounds to 12).
 - C>OG: KEEP at 6 (do not raise to 12 despite D 12.5 — Owner override).
@@ -26,15 +26,28 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - TE>EDGE: stays 12 (D 12.71 rounds to 12).
 - OLB>ILB: change to 6 (from 2; D 10.05 would round to 12, but the Owner overrides to 6 — see the engine change below).
 
-**Engine change — WILL slot weight:**
+**The 10 over-priced rules — these come down under the rounding rule:**
+- OT>EDGE: 12 → 6 (D 5.38 rounds to 6). OT playing edge rusher.
+- SS>CB: 12 → 6 (D 5.07 rounds to 6). Strong safety playing cornerback.
+- FS>CB: 12 → 6 (D 5.06 rounds to 6). Free safety playing cornerback.
+- DT>EDGE: 12 → 6 (D 4.61 rounds to 6). Defensive tackle playing edge rusher. (Already listed above.)
+- RB>FS: 12 → 6 (D 4.37 rounds to 6). Running back playing free safety.
+- RB>SS: 12 → 6 (D 4.35 rounds to 6). Running back playing strong safety.
+- TE>ILB: 12 → 6 (D 4.28 rounds to 6). Tight end playing inside linebacker.
+- RB>TE: 12 → 0 (D 0.21 rounds to 0). Running back playing tight end. **Becomes FREE.**
+- SS>ILB: 12 → 0 (D 0.12 rounds to 0). Strong safety playing inside linebacker. **Becomes FREE.**
+- P>K: 12 → 0 (D 0.01 rounds to 0). Punter playing kicker. **Becomes FREE.**
+
+Note: RB>TE, SS>ILB, and P>K drop to 0 because the source and destination have the same slot weight (RB1=TE1=250, SS=MIKE=300, P=K=50), so D is near 0. Under the rounding rule they become free moves. The Owner has not specified a floor — if a minimum penalty (e.g., 2) is wanted for any cross-position move, that is a further Owner call.
+
+**Engine changes — slot weights:**
 - WILL: 150 → 200 (increase by 50). This is to offset the discrepancy between the flex penalty (6) and the theta value (D 10.05) for OLB>ILB. Raising WILL's weight raises its slope, which brings D for OLB>ILB down toward 6.
+- C: 150 → 200 (increase by 50). Same reasoning — raise the center's engine value to offset the discrepancy between the flex penalties and the theta values for the C rules (C>DT D 14.3, C>OG D 12.5, C>OT D 14.0).
 - SAM: stays at 100 (no change — very few SAMs, only Isiah McDuffie is relevant).
 
 ## What this means for the rebuild
 
-Rebuild the flex table from D at θ=1.0, rounded to the nearest tier, with the Owner overrides above (FB>EDGE/DT/ILB removed, FB>TE kept at 6, FB>RB kept at 2, C>OG kept at 6, OLB>ILB set to 6). Apply the WILL 150 → 200 engine change first, then recompute D for all rules with the new weights, then apply the rounding rule + overrides. Replay the draft scan with the rebuilt table.
-
-**Note:** applying the rounding rule to all 104 rules will also change rules beyond the 12 (the "over" rules where D is below the current table — e.g., OT>EDGE, SS>CB, FS>CB, RB>FS, RB>SS, TE>ILB, RB>TE, SS>ILB, P>K would all drop). The Owner's directives above cover the 12 + DT>EDGE; the rebuild should apply the rounding rule to the full table and report every rule that moves, so the Owner can review the complete diff before it lands.
+Rebuild the flex table from D at θ=1.0, rounded to the nearest tier, with the Owner overrides above (FB>EDGE/DT/ILB/OLB removed, FB>TE kept at 6, FB>RB kept at 2, C>OG kept at 6, OLB>ILB set to 6). Apply the WILL 150 → 200 and C 150 → 200 engine changes first, then recompute D for all rules with the new weights, then apply the rounding rule + overrides. Replay the draft scan with the rebuilt table. Report every rule that moves, so the Owner can review the complete diff before it lands.
 
 ## Next after this build
 
