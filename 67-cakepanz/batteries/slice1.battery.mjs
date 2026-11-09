@@ -30,6 +30,18 @@ page.on('pageerror', (e) => errs.push(String(e)));
 await page.goto(`http://localhost:${PORT}/?dev=1`);
 await page.waitForTimeout(3500);
 
+console.log('== slice 2: the Team Select flow (the draft starts from the user\'s choice) ==');
+ok('the dev build opens at TEAM SELECT, not on a board with a random team', (await page.locator('.cp-ts').count()) === 1 && (await page.locator('.cp-row').count()) === 0);
+ok('the Team Select lists all 32 teams', (await page.locator('.cp-ts-team').count()) === 32, (await page.locator('.cp-ts-team').count()) + ' team buttons');
+ok('the 32 teams sit in the real alignment (AFC + NFC, 4 divisions each)', (await page.locator('.cp-ts-conf').allTextContents()).join(',') === 'AFC,NFC' && (await page.locator('.cp-ts-div').count()) === 8);
+ok('the measured mode is the DEFAULT on Team Select too ("Model Value" on, pre-draft)', (await page.locator('.cp-mode.cp-on').textContent()) === 'Model Value');
+ok('the mode switch is NOT disabled before the draft (the Owner preset is one click away pre-draft)', !(await page.locator('.cp-mode').first().isDisabled()));
+await page.locator('.cp-ts-team', { hasText: 'Chicago Bears' }).click(); await page.waitForTimeout(150);
+ok('selecting a team shows its details (name + the real division)', (await page.locator('.cp-ts-detail h3').textContent()) === 'Chicago Bears' && /NFC North/.test(await page.locator('.cp-ts-meta').textContent()));
+ok('the details are engine-derived (the division rivals read the real alignment)', /Detroit Lions · Green Bay Packers · Minnesota Vikings/.test(await page.locator('.cp-ts-rivals').textContent()));
+await page.locator('.cp-ts-go').click(); await page.waitForTimeout(900);
+ok('the choice flows into the Draft Board — the board drafts as the CHOSEN team', (await page.locator('.cp-team').textContent()) === 'Chicago Bears');
+
 console.log('== the laws the Draft Board carries (APPLY — run for real) ==');
 ok('the board renders from the view model (engine state in, plain JSON out)', (await page.locator('.cp-row').count()) === 60, '60 rows');
 ok('the default sort is wins/priority, never raw OVR', (await page.locator('.cp-sort.cp-on').textContent()) === 'Wins');
@@ -93,7 +105,7 @@ ok('undo cuts the log back and the count returns', (await page.locator('.cp-coun
 // the valuation modes
 ok('the measured mode is the DEFAULT ("Model Value" on)', (await page.locator('.cp-mode.cp-on').textContent()) === 'Model Value');
 ok('the Owner preset is one click away', (await page.locator('.cp-mode', { hasText: 'Owner preset' }).count()) === 1);
-ok('the mode switch is DISABLED mid-draft', await page.locator('.cp-mode').first().isDisabled());
+ok('the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)', await page.locator('.cp-mode').first().isDisabled());
 ok('the mode label travels with the numbers (the subtitle carries it)', /Model Value/.test(await page.locator('.cp-prov').textContent()));
 ok('zero page errors across the whole battery', errs.length === 0, errs.slice(0, 2).join(' | '));
 

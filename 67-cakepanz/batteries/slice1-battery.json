@@ -1,9 +1,49 @@
 {
- "pass": 18,
+ "pass": 26,
  "fail": 0,
  "skip": 10,
  "defer": 3,
  "results": [
+  {
+   "law": "the dev build opens at TEAM SELECT, not on a board with a random team",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the Team Select lists all 32 teams",
+   "verdict": "PASS",
+   "detail": "32 team buttons"
+  },
+  {
+   "law": "the 32 teams sit in the real alignment (AFC + NFC, 4 divisions each)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the measured mode is the DEFAULT on Team Select too (\"Model Value\" on, pre-draft)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode switch is NOT disabled before the draft (the Owner preset is one click away pre-draft)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "selecting a team shows its details (name + the real division)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the details are engine-derived (the division rivals read the real alignment)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the choice flows into the Draft Board — the board drafts as the CHOSEN team",
+   "verdict": "PASS",
+   "detail": ""
+  },
   {
    "law": "the board renders from the view model (engine state in, plain JSON out)",
    "verdict": "PASS",
@@ -37,12 +77,12 @@
   {
    "law": "the OVR sort actually sorts",
    "verdict": "PASS",
-   "detail": "first 98"
+   "detail": "first 99"
   },
   {
    "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording) — OBSERVED open",
    "verdict": "PASS",
-   "detail": "14 pickers probed · 39 flex chips · sample [\"-4 flex\",\"-4 flex\",\"-4 flex\"]"
+   "detail": "14 pickers probed · 44 flex chips · sample [\"-4 flex\",\"-4 flex\",\"-4 flex\"]"
   },
   {
    "law": "the slot picker offers the natural slot first",
@@ -52,7 +92,7 @@
   {
    "law": "the pick confirms before it lands",
    "verdict": "PASS",
-   "detail": "Draft Matthew Stafford at QB? Confirm the pick Cancel"
+   "detail": "Draft Patrick Mahomes at QB? Confirm the pick Cancel"
   },
   {
    "law": "the pick lands and the footer counts it",
@@ -80,7 +120,7 @@
    "detail": ""
   },
   {
-   "law": "the mode switch is DISABLED mid-draft",
+   "law": "the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)",
    "verdict": "PASS",
    "detail": ""
   },

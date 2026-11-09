@@ -17,9 +17,11 @@
   import DraftBoard from './lib/components/DraftBoard.svelte';
   import ModeSwitch from './lib/components/ModeSwitch.svelte';
   import LineupAdvice from './lib/components/LineupAdvice.svelte';
+  import TeamSelect from './lib/screens/TeamSelect.svelte';
   import { lineupFor } from './engine/sports/nfl/engine/lineup.ts';
 
   type Boot = { phase: 'loading' } | { phase: 'empty' } | { phase: 'ready'; players: Player[] };
+  type Screen = 'team' | 'board';   // slice 2: the draft flow starts at Team Select, then the board
 
   const boot = writable<Boot>({ phase: 'loading' });
   let store = makeDraftStore([] as Player[]);
@@ -29,6 +31,7 @@
   const advice = writable<{ label: string; name: string; ovr: string }[]>([]);
   let userTeam = 0;
   let seed = 777;
+  let screen = $state<Screen>('team');   // slice 2: Team Select leads; the board follows the choice
   let error = $state('');
 
   // dev dataset: the engine's own bundled ratings, DEV-BUILD ONLY (the F11 ruling: the public
@@ -43,12 +46,13 @@
     draftState = asReadable(store);
     boot.set({ phase: 'ready', players });
     (window as any).__cp = { store, refresh, valuation };
-    startDraft();
+    screen = 'team';   // slice 2: the dev build opens at Team Select — the draft starts from the user's choice
   }
 
-  function startDraft() {
+  function startDraft(teamIndex: number) {
     seed = 1000 + Math.floor(Math.random() * 9000);
-    userTeam = Math.floor(Math.random() * 32);
+    userTeam = teamIndex;
+    screen = 'board';
     store.dispatch({ type: 'START', seed, userTeam });
     valuation.lock(); // the mode switch is disabled mid-draft
     refresh();
@@ -105,6 +109,8 @@
       <p class="cp-note">Import a dataset CSV to begin — or open a dev build with <code>?dev=1</code> (the engine's own bundled ratings, labelled DEV).</p>
       <p><a class="cp-devlink" href="?dev=1">Open the dev build →</a></p>
     </section>
+  {:else if $boot.phase === 'ready' && screen === 'team'}
+    <TeamSelect onstart={startDraft} />
   {:else if $vmStore}
     {#if error}<p class="cp-error">{error}</p>{/if}
     <p class="cp-prov">Every number on this board reads <b>{MODE_LABEL[valuation.get().mode]}</b> — the label travels with the numbers.</p>
