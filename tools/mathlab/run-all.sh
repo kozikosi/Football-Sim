@@ -8,7 +8,6 @@ run() { printf '%-44s ' "$1"; shift; if "$@" >"$T/out" 2>&1; then tail -1 "$T/ou
 case "$(sha256sum "$PRE" | cut -c1-16)" in 40233d6be00e987c) ;; *) echo "NOT Pre-Colors (sha256 differs): stop"; exit 2;; esac
 run "W  witness: display is a measurement"    node "$D/witness.mjs" "$PRE"
 run "E1/E2 table = engine (derived integers)" node "$D/check-design.mjs" "$FIT"
-run "E3a flex.json = Owner text (parse)"      node "$D/flexparse.mjs"
 run "E3b flex sanity"                         node "$D/flexcheck.mjs"
 run "E3d DL5 flex derived from the guide"      node "$D/flexdl5.mjs"
 run "E3c flex in live Pre-Colors engine"      node "$D/flexengine.js" "$PRE"

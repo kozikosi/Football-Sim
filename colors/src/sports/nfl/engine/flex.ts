@@ -1,29 +1,29 @@
-// Flex guide REV 4: what a player of one role loses (in OVR points) for playing a spot of another.
-// Source of truth is tools/mathlab/flex.json (Owner's REV 2 guide of 26 Oct, his 28 Oct rulings: edge->OLB 0, TE->RB 4,
-// P->K 4, K->P 0, every extra rule of w33 kept; and REV 4 of 29 Oct: a QB may flex ONLY to FS, at -10). This file is
-// a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
+// FLEX table, tiers -2 / -6 / -12 (Owner 8 Nov 2026, P-294): what a player of one role loses (in OVR points) for playing a spot of another.
+// Source of truth is tools/mathlab/flex.json: the Owner's 7 Nov working version with his pick of 8 Nov (every penalty of 6+ is -12, then every -4 is -6;
+// 0 and 2 untouched; tiers 0 / 2 / 6 / 12; QB->FS 12). The REV 4 guide (29 Oct) is retired (Muse relay 9 Nov: new table only, no fallback); it lives in git history.
+// This file is a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
 import type { Role } from './players.ts';
 import type { Dest } from './slots.ts';
 
 type Row = Partial<Record<Dest, number>>;
 export const FLEX: Readonly<Record<Role, Row>> = {
-  QB: { FS: 10 },
-  RB: { FB: 2, WR: 4, TE: 6 },
-  FB: { RB: 4, TE: 4 },
-  WR: { RB: 4, TE: 4, SS: 4, FS: 4, NICKEL: 4, DIME: 4, CB: 6 },
-  TE: { WR: 2, FB: 2, RB: 4, C: 6, OG: 6, OT: 6, EDGE: 6, DT: 6, ILB: 6, OLB: 6, SS: 6, FS: 6, NICKEL: 6, DIME: 6 },
-  OT: { OG: 0, C: 0, DT: 4, FB: 4, RB: 6 },
-  OG: { C: 0, OT: 4, DT: 4, FB: 4, RB: 6 },
-  C: { OG: 0, OT: 4, DT: 4, FB: 4, RB: 6 },
-  DT: { OG: 4, C: 4, EDGE: 4, FB: 4, OT: 6, ILB: 4, OLB: 4, RB: 6 },
-  EDGE: { DT: 2, OLB: 0, ILB: 4, FB: 4, TE: 6, RB: 6, NICKEL: 6 },
-  ILB: { ILB: 0, OLB: 0, DT: 4, FB: 4, EDGE: 6, TE: 6, SS: 6, FS: 6, NICKEL: 6, DIME: 6 },
-  OLB: { OLB: 0, ILB: 2, EDGE: 4, NICKEL: 4, DT: 6, TE: 6, SS: 6, FS: 6, FB: 6, DIME: 6 },
-  SS: { NICKEL: 0, DIME: 0, FS: 2, OLB: 4, CB: 6, ILB: 6, WR: 6, TE: 6, RB: 6, FB: 6 },
-  FS: { NICKEL: 0, DIME: 0, SS: 2, CB: 4, WR: 4, ILB: 4, OLB: 4, TE: 6, RB: 6 },
-  CB: { FS: 0, NICKEL: 0, DIME: 0, SS: 2, WR: 4, ILB: 6, OLB: 4, TE: 6, RB: 6 },
+  QB: { FS: 12 },
+  RB: { FB: 2, WR: 12, TE: 12, SS: 12, FS: 12 },
+  FB: { RB: 2, TE: 6, ILB: 12, OLB: 12, EDGE: 12, DT: 12 },
+  WR: { RB: 12, TE: 6, CB: 6, FS: 6, SS: 6, NICKEL: 6, DIME: 6 },
+  TE: { FB: 2, WR: 12, RB: 6, C: 12, OG: 12, OT: 12, EDGE: 12, DT: 12, OLB: 12, ILB: 12, SS: 6, FS: 6, NICKEL: 12, DIME: 12 },
+  OT: { OG: 0, C: 0, DT: 6, EDGE: 12, FB: 2 },
+  OG: { OT: 6, C: 0, DT: 6, EDGE: 12, FB: 2 },
+  C: { OG: 6, OT: 12, DT: 6, FB: 2 },
+  DT: { EDGE: 12, C: 6, OG: 6, OT: 12, FB: 2, TE: 12 },
+  EDGE: { DT: 2, OLB: 2, ILB: 12, C: 12, OG: 12, OT: 12, SS: 12, FS: 12, RB: 12, FB: 2, TE: 12, NICKEL: 12 },
+  ILB: { ILB: 0, OLB: 0, EDGE: 12, SS: 12, FB: 2, TE: 12, NICKEL: 12, DIME: 12 },
+  OLB: { OLB: 0, ILB: 2, EDGE: 12, SS: 12, FB: 2, TE: 12, NICKEL: 6, DIME: 12 },
+  SS: { NICKEL: 0, DIME: 0, FS: 2, CB: 12, WR: 12, ILB: 12, OLB: 12, RB: 12, TE: 12 },
+  FS: { NICKEL: 0, DIME: 0, SS: 2, CB: 12, WR: 12, OLB: 12 },
+  CB: { FS: 0, NICKEL: 0, DIME: 0, SS: 2, WR: 12, RB: 12 },
   K: { P: 0 },
-  P: { K: 4 },
+  P: { K: 12 },
   // LS has no spot (12 long snappers in the data). Anyone not in the guide still takes the emergency fallback.
   LS: {},
 };

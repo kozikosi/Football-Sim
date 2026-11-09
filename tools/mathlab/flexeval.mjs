@@ -3,6 +3,7 @@
 // the lineup is "encouraged" to place off-role through a penalty into a spot heavier than his own role's best spot (the Owner's 7 Nov worry).
 // Tables:   today = flex.json as shipped (FLEX); cap10 / cap12 = the Owner's 7 Nov candidate + his CB>WR 10, TE>WR 6 answers, every penalty >= 6 set to the cap, 0/2/4 untouched.
 // Weights:  input = SLOTS (what lineupFor optimises today); measured = derivedWeights scaled QB 1000, nearest 5 (what the model actually measures). Model-first = measured.
+// NOTE 9 Nov: FLEX in the engine IS now the -2/-6/-12 table, so 'today' here = the new table; 'pick' = the same table rebuilt from the 7 Nov candidate (they must agree). The pre-build numbers are in results/flexeval-2026-11-08.json.
 // Never writes a product file: FLEX, SLOTS and WEIGHT are mutated in memory only.
 // Run from colors/:  node --experimental-strip-types ../tools/mathlab/flexeval.mjs --seeds=1001-1016,3001-3016 --out=../tools/mathlab/results/flexeval-2026-11-08.json
 import fs from 'node:fs';
@@ -40,7 +41,9 @@ function capTable(cap) {
   return t;
 }
 const applyTable = (t) => { for (const role of Object.keys(FLEX)) { for (const k of Object.keys(FLEX[role])) delete FLEX[role][k]; Object.assign(FLEX[role], structuredClone(t[role] ?? {})); } };
-const TABLES = { today: original, cap10: capTable(10), cap12: capTable(12) };
+// Owner pick, 8 Nov (second message): every -10 becomes -12, every -4 becomes -6 (0 and 2 untouched).
+const pickTable = () => { const t = capTable(12); for (const row of Object.values(t)) for (const d of Object.keys(row)) if (row[d] === 4) row[d] = 6; return t; };
+const TABLES = { today: original, cap10: capTable(10), cap12: capTable(12), pick: pickTable() };
 const rulesAt = (t, v) => Object.entries(t).flatMap(([r, row]) => Object.entries(row).filter(([, p]) => p === v).map(([d]) => `${r}>${d}`));
 
 const slotsOf = (role, w) => SLOTS.filter((s) => s.dest === role || (s.dest === 'DL5' && (role === 'DT' || role === 'EDGE'))).sort((a, b) => w[b.id] - w[a.id] || SLOTS.indexOf(a) - SLOTS.indexOf(b));
@@ -91,7 +94,7 @@ const line = (tag, r, secs) => {
   console.log(`${tag.padEnd(20)} lineups ${r.lineups} off-role ${r.offRole} encouraged ${JSON.stringify(r.encouraged)} total ${Object.values(r.encouraged).reduce((a, b) => a + b, 0)} flex/lineup ${r.flexPerLineup}${secs ? ` (${secs}s)` : ''}`);
   for (const c of ['high', 'small', 'second', 'emergency']) if (r.top[c].length) console.log(`    ${c.padEnd(9)} ${r.top[c].slice(0, 3).join(' | ')}`);
 };
-for (const wname of ['input', 'measured']) {
+for (const wname of arg('weights', 'input,measured').split(',')) {
   setWeights(wname === 'input' ? inputW : measuredW);
   // targeted table: cap 10 everywhere, 12 only on rules that still leak (>= SEL_MIN placements) under cap 10 with THIS weight set, found on the tune seeds
   applyTable(TABLES.cap10);
@@ -104,7 +107,7 @@ for (const wname of ['input', 'measured']) {
   }
   TABLES[`sel_${wname}`] = sel;
   console.log(`\n[${wname}] targeted table: ${upped.length} rules 10 -> 12: ${upped.join(', ')}`);
-  for (const tname of ['today', 'cap10', 'cap12', `sel_${wname}`]) {
+  for (const tname of arg('tables', 'today,cap10,cap12,sel').split(',').map((x) => (x === 'sel' ? `sel_${wname}` : x))) {
     applyTable(TABLES[tname]);
     for (const [set, list] of [['tune', seeds], ['fresh', fresh]]) {
       const t0 = Date.now(), r = scan(list);
@@ -117,7 +120,7 @@ setWeights(inputW); applyTable(original);
 const out = arg('out', '');
 if (out) {
   fs.mkdirSync(path.dirname(out), { recursive: true });
-  fs.writeFileSync(out, JSON.stringify({ _status: 'EVIDENCE for P-294, not adopted', seeds: arg('seeds', '1001-1016,3001-3016'), minOvr: MIN, tables: { cap10Rules10: rulesAt(TABLES.cap10, 10).length, cap12Rules12: rulesAt(TABLES.cap12, 12).length, selInput: rulesAt(TABLES.sel_input, 12), selMeasured: rulesAt(TABLES.sel_measured, 12) }, fresh: arg('fresh', '4001-4016'),
+  fs.writeFileSync(out, JSON.stringify({ _status: 'EVIDENCE for P-294, not adopted', seeds: arg('seeds', '1001-1016,3001-3016'), minOvr: MIN, tables: { cap10Rules10: rulesAt(TABLES.cap10, 10).length, cap12Rules12: rulesAt(TABLES.cap12, 12).length, selInput: rulesAt(TABLES.sel_input ?? {}, 12), selMeasured: rulesAt(TABLES.sel_measured ?? {}, 12) }, fresh: arg('fresh', '4001-4016'),
     measuredWeights: measuredW, inputWeights: inputW, results }, null, 1));
   console.log('wrote', out);
 }

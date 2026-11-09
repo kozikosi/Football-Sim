@@ -20,7 +20,7 @@ Object.keys(G).forEach(role => {
   if (d != null && a == null && b == null) fail(`${role}: DL5 allowed without a guide route`);
   if (d != null && d < Math.min(...[a, b].filter(v => v != null))) fail(`${role}: DL5 cheaper than the guide`);
 });
-const out = { _source: 'Derived by flexdl5.mjs from flex.json (Owner guide REV 2). DL5 = cheaper of role->DT and role->EDGE; DT and EDGE are natural. PROPOSAL until the Owner approves.', flex: {} };
+const out = { _source: 'Derived by flexdl5.mjs from flex.json (tiers -2/-6/-12, Owner 8 Nov 2026). DL5 = cheaper of role->DT and role->EDGE; DT and EDGE are natural. Follows flex.json.', flex: {} };
 Object.entries(derived).forEach(([r, p]) => { if (r !== 'DT' && r !== 'EDGE') out.flex[r] = { DL5: p }; });
 out.natural = ['DT', 'EDGE'];
 if (process.argv.includes('--write')) { fs.writeFileSync(new URL('./flex-dl5.json', dir), JSON.stringify(out, null, 1)); console.log('wrote flex-dl5.json'); }
