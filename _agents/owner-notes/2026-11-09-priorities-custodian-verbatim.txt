@@ -1,0 +1,7 @@
+Owner verbatim (KG, 2026-11-09, side chat):
+
+"feel free to slim and prune priorities.md whenever you want. i athorize you access to be the custodian of priorities.md"
+
+Context: the MUSE seat noted PRIORITIES.md was at 123,032 bytes (push payload 125,097) — right at the push ceiling — and that the next new item would need another slim-down first. The Owner responded with the above, authorizing the MUSE seat as custodian of PRIORITIES.md with standing permission to slim and prune it whenever it wants.
+
+Standing permission recorded: the MUSE seat may slim and prune _agents/PRIORITIES.md at its own discretion (archive completed/reviewed items to _agents/PRIORITIES-ARCHIVE.md, mark dead items SUPERSEDED with the reason, remove nothing without a record). Nothing is deleted — archived rows go to the archive file verbatim.
