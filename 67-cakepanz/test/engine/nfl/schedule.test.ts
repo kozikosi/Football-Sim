@@ -1,8 +1,8 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TEAMS, TEAM_BY_NAME, DIVS, divisionTeams } from '../../src/sports/nfl/engine/league.ts';
-import { buildSchedule, pairings } from '../../src/sports/nfl/engine/schedule.ts';
-import { makeRng } from '../../src/core/rng.ts';
+import { TEAMS, TEAM_BY_NAME, DIVS, divisionTeams } from '../../../src/engine/sports/nfl/engine/league.ts';
+import { buildSchedule, pairings } from '../../../src/engine/sports/nfl/engine/schedule.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 
 const randomRank = (seed: number) => {
   const rng = makeRng(seed), rank: Record<string, number> = {};

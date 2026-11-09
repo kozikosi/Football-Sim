@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { SCHEMA_VERSION, parseEnvelope } from '../../src/core/envelope.ts';
-import { parsePayload, restore, serialize } from '../../src/sports/nfl/app/saves.ts';
-import type { FrozenPlayer, SeasonPayload, WeekPayload } from '../../src/sports/nfl/app/saves.ts';
+import { SCHEMA_VERSION, parseEnvelope } from '../../../src/engine/core/envelope.ts';
+import { parsePayload, restore, serialize } from '../../../src/engine/sports/nfl/app/saves.ts';
+import type { FrozenPlayer, SeasonPayload, WeekPayload } from '../../../src/engine/sports/nfl/app/saves.ts';
 
 const V = { engineVersion: 'e1', dataVersion: 'd1', saveId: 'sv-1', saveRevision: 1, createdAt: '2026-11-03T00:00:00Z' };
 const T = new Date('2026-11-02T00:00:00Z');
@@ -54,6 +54,6 @@ test('envelope: serialize refuses what JSON would silently change', () => {
     assert.throws(() => serialize('week', 'A', V, bad, T), /not plain JSON/);
 });
 test('envelope: the file imports nothing, so storage can copy it', () => {
-  const src = fs.readFileSync(new URL('../../src/core/envelope.ts', import.meta.url), 'utf8');
+  const src = fs.readFileSync(new URL('../../../src/engine/core/envelope.ts', import.meta.url), 'utf8');
   assert.equal(/^\s*import\s/m.test(src), false);
 });

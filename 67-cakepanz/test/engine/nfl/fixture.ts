@@ -1,23 +1,23 @@
 // Shared test fixture (not a test file): a seeded 32-team draft from the real Madden file, lineups, ratings, and a game player.
 import fs from 'node:fs';
-import { buildPool } from '../../src/sports/nfl/engine/players.ts';
-import type { Player } from '../../src/sports/nfl/engine/players.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import type { Rng } from '../../src/core/rng.ts';
-import { DEFAULT_CONFIG, newDraft, runDraft } from '../../src/sports/nfl/engine/draft.ts';
-import { lineupFor } from '../../src/sports/nfl/engine/lineup.ts';
-import type { Lineup } from '../../src/sports/nfl/engine/lineup.ts';
-import { leagueBaseline, spotsOf, teamRatings } from '../../src/sports/nfl/engine/ratings.ts';
-import type { Ratings } from '../../src/sports/nfl/engine/ratings.ts';
-import { returnerRating } from '../../src/sports/nfl/engine/returner.ts';
-import { netPts } from '../../src/sports/nfl/engine/value.ts';
-import { TEAMS } from '../../src/sports/nfl/engine/league.ts';
-import { matchupModel } from '../../src/sports/nfl/engine/matchup.ts';
-import { teamIdentity } from '../../src/sports/nfl/engine/plans.ts';
-import { simulateGame } from '../../src/sports/nfl/engine/drives.ts';
-import type { GameResult } from '../../src/sports/nfl/engine/drives.ts';
-import { buildBoxScore } from '../../src/sports/nfl/engine/boxscore.ts';
-import type { BoxScore, GameSide } from '../../src/sports/nfl/engine/boxscore.ts';
+import { buildPool } from '../../../src/engine/sports/nfl/engine/players.ts';
+import type { Player } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import type { Rng } from '../../../src/engine/core/rng.ts';
+import { DEFAULT_CONFIG, newDraft, runDraft } from '../../../src/engine/sports/nfl/engine/draft.ts';
+import { lineupFor } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import type { Lineup } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import { leagueBaseline, spotsOf, teamRatings } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import type { Ratings } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { returnerRating } from '../../../src/engine/sports/nfl/engine/returner.ts';
+import { netPts } from '../../../src/engine/sports/nfl/engine/value.ts';
+import { TEAMS } from '../../../src/engine/sports/nfl/engine/league.ts';
+import { matchupModel } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { teamIdentity } from '../../../src/engine/sports/nfl/engine/plans.ts';
+import { simulateGame } from '../../../src/engine/sports/nfl/engine/drives.ts';
+import type { GameResult } from '../../../src/engine/sports/nfl/engine/drives.ts';
+import { buildBoxScore } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
+import type { BoxScore, GameSide } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
 
 export const pool: Player[] = buildPool(fs.readFileSync(new URL('../../../data/nfl/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../../data/nfl/free-agents-old-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../../data/nfl/player-ids.csv', import.meta.url), 'utf8'));
 

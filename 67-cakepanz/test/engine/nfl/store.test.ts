@@ -2,9 +2,9 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import { pool } from './fixture.ts';
-import { createStore, freezePool, loadFrom, parseRecord, restoreDraft, saveTo, thawPool, SAVE_KEY } from '../../src/sports/nfl/app/store.ts';
-import type { KeyValue } from '../../src/sports/nfl/app/store.ts';
-import { selectBoard, selectRoster } from '../../src/sports/nfl/app/selectors.ts';
+import { createStore, freezePool, loadFrom, parseRecord, restoreDraft, saveTo, thawPool, SAVE_KEY } from '../../../src/engine/sports/nfl/app/store.ts';
+import type { KeyValue } from '../../../src/engine/sports/nfl/app/store.ts';
+import { selectBoard, selectRoster } from '../../../src/engine/sports/nfl/app/selectors.ts';
 
 const mem = (): KeyValue & { m: Map<string, string> } => { const m = new Map<string, string>(); return { m, getItem: (k) => m.get(k) ?? null, setItem: (k, v) => void m.set(k, v), removeItem: (k) => void m.delete(k) }; };
 const mine = (st: ReturnType<typeof createStore>) => st.getState().record!.picks.filter((k) => k.team === st.getState().record!.userTeam);
@@ -94,7 +94,7 @@ test('roster VM: roster order, offense / defense / special, flex tag only where 
   for (const g of r.groups) for (const row of g.rows) if (row.player) assert.match(row.player.flex, /^(|-\d flex)$/);
 });
 test('app layer purity: no DOM, storage globals, clock or Math.random in src/app', () => {
-  const dir = new URL('../../src/sports/nfl/app/', import.meta.url);
+  const dir = new URL('../../../src/engine/sports/nfl/app/', import.meta.url);
   for (const f of fs.readdirSync(dir)) {
     const src = fs.readFileSync(new URL(f, dir), 'utf8').replace(/\/\/.*$/gm, '');
     for (const bad of [/\bdocument\b/, /\bwindow\b/, /\blocalStorage\b/, /\bsessionStorage\b/, /\bMath\.random\b/, /\bDate\.now\b/, /\bnew Date\b/]) assert.ok(!bad.test(src), f + ' ' + bad);

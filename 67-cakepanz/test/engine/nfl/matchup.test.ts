@@ -1,17 +1,17 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { SLOTS, SLOT_IDS, fieldSlots } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord, spotsOf, leagueBaseline } from '../../src/sports/nfl/engine/ratings.ts';
-import type { Ratings } from '../../src/sports/nfl/engine/ratings.ts';
-import { matchupModel, softCap, normCdf, OFF_OPTS, DEF_OPTS } from '../../src/sports/nfl/engine/matchup.ts';
-import { lineupFor } from '../../src/sports/nfl/engine/lineup.ts';
-import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
-import { teamIdentity, projectGame } from '../../src/sports/nfl/engine/plans.ts';
-import { bestUnitPts, derivedWeights, flat, slotWins } from '../../src/sports/nfl/engine/value.ts';
-import { RATING_SPECS, DEF_SPECS, PERS_REC } from '../../src/sports/nfl/engine/specs.ts';
-import { HOME_FIELD } from '../../src/sports/nfl/engine/specs.ts';
+import { SLOTS, SLOT_IDS, fieldSlots } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord, spotsOf, leagueBaseline } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import type { Ratings } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { matchupModel, softCap, normCdf, OFF_OPTS, DEF_OPTS } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { lineupFor } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import type { Player, Role } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { teamIdentity, projectGame } from '../../../src/engine/sports/nfl/engine/plans.ts';
+import { bestUnitPts, derivedWeights, flat, slotWins } from '../../../src/engine/sports/nfl/engine/value.ts';
+import { RATING_SPECS, DEF_SPECS, PERS_REC } from '../../../src/engine/sports/nfl/engine/specs.ts';
+import { HOME_FIELD } from '../../../src/engine/sports/nfl/engine/specs.ts';
 import { withLegacyCoefficients } from './golden/legacy-coefficients.ts';
 
 const golden = JSON.parse(fs.readFileSync(new URL('./golden/matchup-precolors.json', import.meta.url), 'utf8')) as {

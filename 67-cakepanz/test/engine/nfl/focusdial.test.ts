@@ -1,10 +1,10 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SLOT_IDS, SLOTS } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { matchupModel } from '../../src/sports/nfl/engine/matchup.ts';
-import type { Focus, Pers, Strat } from '../../src/sports/nfl/engine/specs.ts';
-import { RATING_SPECS } from '../../src/sports/nfl/engine/specs.ts';
+import { SLOT_IDS, SLOTS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { matchupModel } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import type { Focus, Pers, Strat } from '../../../src/engine/sports/nfl/engine/specs.ts';
+import { RATING_SPECS } from '../../../src/engine/sports/nfl/engine/specs.ts';
 
 // Audit item 5 (Owner-approved 3 Nov, PLAN_K.defPredict 0.4 to 0.15): the defensive focus is a guess about how the offence will play.
 const flat = (b: number) => teamRatings(spotsFromRecord(Object.fromEntries(SLOT_IDS.map((s) => [s, b])) as never));

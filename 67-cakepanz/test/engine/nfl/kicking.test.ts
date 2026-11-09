@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { inSeasonKickerRating, kickerIsKeyPlayer, leagueMakeProb } from '../../src/sports/nfl/engine/kicking.ts';
-import type { Kick } from '../../src/sports/nfl/engine/kicking.ts';
+import { inSeasonKickerRating, kickerIsKeyPlayer, leagueMakeProb } from '../../../src/engine/sports/nfl/engine/kicking.ts';
+import type { Kick } from '../../../src/engine/sports/nfl/engine/kicking.ts';
 const k = (dist: number, made: boolean): Kick => ({ dist, made });
 test('no kicks: the preseason rating stands', () => assert.equal(inSeasonKickerRating(82, []), 82));
 test('Owner case: an 82 who goes 2/4 in week 1 is not a key player', () => {

@@ -1,12 +1,12 @@
 // MUSE engine audit (relayed by KG, 2 Nov 2026), fixes verified one by one. Each test names the finding it pins.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { matchupModel, DEFAULT_PLAN } from '../../src/sports/nfl/engine/matchup.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { simulateGame } from '../../src/sports/nfl/engine/drives.ts';
+import { SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { matchupModel, DEFAULT_PLAN } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { simulateGame } from '../../../src/engine/sports/nfl/engine/drives.ts';
 
 const rec = (v: number, over: Partial<Record<SlotId, number>> = {}) => Object.fromEntries(SLOT_IDS.map((s) => [s, over[s] ?? v])) as Record<SlotId, number>;
 const R = (v: number, over: Partial<Record<SlotId, number>> = {}) => teamRatings(spotsFromRecord(rec(v, over)));
@@ -63,7 +63,7 @@ test('audit 2: the average-offense case is unchanged (the linear zone equals the
 });
 
 // Finding 4: no late-game play-calling. Beam E-209 (nflverse 2023-24): Q4 run share 0.20 trailing by 9-16, 0.72 leading by 17+.
-import { lateGameK } from '../../src/sports/nfl/engine/drives.ts';
+import { lateGameK } from '../../../src/engine/sports/nfl/engine/drives.ts';
 test('audit 4: lateGameK is 1 before the fourth quarter and monotone in the score in it', () => {
   for (const d of [-20, -5, 0, 5, 20]) assert.equal(lateGameK(d, 3), 1);
   let prev = 0;

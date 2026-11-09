@@ -34,7 +34,21 @@ console.log('== the laws the Draft Board carries (APPLY — run for real) ==');
 ok('the board renders from the view model (engine state in, plain JSON out)', (await page.locator('.cp-row').count()) === 60, '60 rows');
 ok('the default sort is wins/priority, never raw OVR', (await page.locator('.cp-sort.cp-on').textContent()) === 'Wins');
 ok('the on-clock indicator names the round, the pick and the overall', /Round \d+, Pick \d+ \(overall \d+ of \d+\)/.test(await page.locator('.cp-onclock').textContent()));
-ok('every row reads name · pos · team · OVR · wins · priority · gone%', /%$/.test((await page.locator('.cp-row .cp-gone').first().textContent()) || ''), (await page.locator('.cp-row .cp-gone').first().textContent()));
+{
+  // P-286 fix (the muse review): the law says EVERY row — check every row's every field, not just the first row's gone%.
+  const fields = await page.evaluate(() => {
+    const rows = Array.from(document.querySelectorAll('.cp-row'));
+    const bad = [];
+    for (const row of rows) {
+      const get = (sel) => (row.querySelector(sel)?.textContent || '').trim();
+      const nums = Array.from(row.querySelectorAll('.cp-main .cp-num')).map((e) => (e.textContent || '').trim());
+      const rec = { name: get('.cp-name'), pos: get('.cp-pos'), team: get('.cp-nflteam'), ovr: nums[0], wins: nums[1], pri: nums[2], gone: nums[3] };
+      if (!rec.name || !rec.pos || !rec.team || !/^\d+$/.test(rec.ovr) || !/^[+-]/.test(rec.wins) || !/^[+-]/.test(rec.pri) || !/^\d+%$/.test(rec.gone)) bad.push(rec);
+    }
+    return { n: rows.length, bad };
+  });
+  ok('every row reads name · pos · team · OVR · wins · priority · gone% (EVERY row, EVERY field)', fields.n === 60 && fields.bad.length === 0, fields.bad.length ? JSON.stringify(fields.bad.slice(0, 2)) : fields.n + ' rows, 0 bad');
+}
 ok('the gone-odds display is present on every row', (await page.locator('.cp-row .cp-gone').count()) === 60);
 ok('the sort controls offer wins / OVR / priority', JSON.stringify(await page.locator('.cp-sort').allTextContents()) === JSON.stringify(['Wins', 'Priority', 'OVR']));
 await page.locator('.cp-sort', { hasText: 'OVR' }).click(); await page.waitForTimeout(400);
@@ -42,6 +56,29 @@ const firstOvr = await page.locator('.cp-row .cp-ovr').first().textContent();
 const ovrs = await page.locator('.cp-row .cp-ovr').allTextContents();
 ok('the OVR sort actually sorts', JSON.stringify(ovrs) === JSON.stringify([...ovrs].sort((a, b) => Number(b) - Number(a))), 'first ' + firstOvr);
 await page.locator('.cp-sort', { hasText: 'Wins' }).click(); await page.waitForTimeout(300);
+// P-286 fix (the muse review): the flex-chip check must OBSERVE the chips while a picker is open —
+// never pass vacuously through a count === 0 escape. Probe the first 14 rows' pickers for real chips.
+{
+  const probe = await page.evaluate(async () => {
+    const rows = Array.from(document.querySelectorAll('.cp-row')).slice(0, 14);
+    const flexChips = []; const bad = []; let opened = 0;
+    for (const row of rows) {
+      const main = row.querySelector('.cp-main');
+      if (!main) continue;
+      main.click(); opened++;
+      await new Promise((r2) => setTimeout(r2, 60));
+      const fit = row.querySelector('.cp-fits');
+      if (fit) for (const i of fit.querySelectorAll('.cp-chip i')) {
+        const t = (i.textContent || '').trim();
+        if (/^-\d+ flex$/.test(t)) flexChips.push(t); else bad.push(t);
+      }
+      main.click();
+      await new Promise((r2) => setTimeout(r2, 40));
+    }
+    return { opened, flexChips, bad };
+  });
+  ok('the flex chips read the flex cost (the "-N" form, no "flex tax" wording) — OBSERVED open', probe.opened > 0 && probe.flexChips.length > 0 && probe.bad.length === 0, probe.opened + ' pickers probed · ' + probe.flexChips.length + ' flex chips · sample ' + JSON.stringify(probe.flexChips.slice(0, 3)) + (probe.bad.length ? ' · BAD ' + JSON.stringify(probe.bad.slice(0, 2)) : ''));
+}
 // the pick flow: open a row, take the primary chip, confirm
 await page.locator('.cp-row .cp-main').first().click(); await page.waitForTimeout(150);
 const chipLbl = await page.locator('.cp-chip.cp-primary').first().textContent();
@@ -51,7 +88,6 @@ ok('the pick confirms before it lands', await page.locator('.cp-confirm').isVisi
 await page.locator('.cp-go').click(); await page.waitForTimeout(700);
 ok('the pick lands and the footer counts it', (await page.locator('.cp-count').textContent()) === '1 of 32 starters');
 ok("the CPU teams pick on after the user's pick (the clock advances)", /Round 2/.test(await page.locator('.cp-onclock').textContent()));
-ok('the flex chips read the flex cost (the "-N" form, no "flex tax" wording)', /-\d+ flex/.test(JSON.stringify(await page.locator('.cp-chip i').allTextContents())) || (await page.locator('.cp-chip i').count()) === 0, JSON.stringify((await page.locator('.cp-chip i').allTextContents()).slice(0, 3)));
 await page.locator('.cp-undo').click(); await page.waitForTimeout(700);
 ok('undo cuts the log back and the count returns', (await page.locator('.cp-count').textContent()) === '0 of 32 starters');
 // the valuation modes

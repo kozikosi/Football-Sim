@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { play } from './fixture.ts';
-import { buildRecap, gradeOf, isOffense, nickname } from '../../src/sports/nfl/engine/recap.ts';
-import type { PlayerLine } from '../../src/sports/nfl/engine/boxscore.ts';
-import { addBox, leaders, newSeasonStats, seasonAwards } from '../../src/sports/nfl/engine/awards.ts';
+import { buildRecap, gradeOf, isOffense, nickname } from '../../../src/engine/sports/nfl/engine/recap.ts';
+import type { PlayerLine } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
+import { addBox, leaders, newSeasonStats, seasonAwards } from '../../../src/engine/sports/nfl/engine/awards.ts';
 
 const GAMES = 300;
 const all = Array.from({ length: GAMES }, (_, n) => { const g = play(n % 32, (n * 5 + 7) % 32 === n % 32 ? (n + 1) % 32 : (n * 5 + 7) % 32, 120000 + n, n % 6 === 0); return { ...g, rc: buildRecap(g.res, g.box) }; });

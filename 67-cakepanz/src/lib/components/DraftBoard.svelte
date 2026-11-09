@@ -1,6 +1,6 @@
 <!-- The board: the list of available players ranked by the chosen sort (default wins/priority, never raw OVR). -->
 <script lang="ts">
-  import type { BoardVM } from '../view/boardVM.ts';
+  import type { BoardVM } from '../../engine/sports/nfl/view/draftBoard.ts';
   import BoardHeader from './BoardHeader.svelte';
   import BoardRow from './BoardRow.svelte';
   import BoardFooter from './BoardFooter.svelte';

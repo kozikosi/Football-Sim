@@ -1,6 +1,6 @@
 <!-- The header: the draft state — round, pick, team on the clock. -->
 <script lang="ts">
-  import type { BoardHeaderVM } from '../view/boardVM.ts';
+  import type { BoardHeaderVM } from '../../engine/sports/nfl/view/draftBoard.ts';
   let { header }: { header: BoardHeaderVM } = $props();
 </script>
 

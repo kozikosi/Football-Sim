@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { TEAMS, TEAM_BY_NAME } from '../../src/sports/nfl/engine/league.ts';
-import { simulateSeason, initialRanks } from '../../src/sports/nfl/engine/season.ts';
-import type { LeagueTeam, SeasonResult } from '../../src/sports/nfl/engine/season.ts';
-import { makeRng } from '../../src/core/rng.ts';
+import { SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { TEAMS, TEAM_BY_NAME } from '../../../src/engine/sports/nfl/engine/league.ts';
+import { simulateSeason, initialRanks } from '../../../src/engine/sports/nfl/engine/season.ts';
+import type { LeagueTeam, SeasonResult } from '../../../src/engine/sports/nfl/engine/season.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 
 // a league whose team strength varies the way the real one does (a few points of OVR across the lineup)
 function league(seed: number, sd = 2.5): LeagueTeam[] {

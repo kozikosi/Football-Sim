@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { COUPLING, MARGIN_BINS, TARGET_REG, SOURCE_PCT, reshapeScores } from '../../src/sports/nfl/engine/margin.ts';
-import { makeRng } from '../../src/core/rng.ts';
+import { COUPLING, MARGIN_BINS, TARGET_REG, SOURCE_PCT, reshapeScores } from '../../../src/engine/sports/nfl/engine/margin.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 
 const binOf = (d: number) => (d <= 10 ? d : d <= 14 ? 11 : 12);
 const feasible = (s: number) => s === 0 || s === 3 || s >= 6;

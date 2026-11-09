@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { TEAMS, TEAM_BY_NAME, DIVS, divisionTeams } from '../../src/sports/nfl/engine/league.ts';
-import { Book, orderTied, orderWildCard, seedPlayoffs, pct } from '../../src/sports/nfl/engine/standings.ts';
-import type { Played } from '../../src/sports/nfl/engine/standings.ts';
-import { makeRng } from '../../src/core/rng.ts';
+import { TEAMS, TEAM_BY_NAME, DIVS, divisionTeams } from '../../../src/engine/sports/nfl/engine/league.ts';
+import { Book, orderTied, orderWildCard, seedPlayoffs, pct } from '../../../src/engine/sports/nfl/engine/standings.ts';
+import type { Played } from '../../../src/engine/sports/nfl/engine/standings.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 
 const g = (home: string, away: string, hs: number, as: number, htd = Math.floor(hs / 7), atd = Math.floor(as / 7)): Played => ({ home, away, hs, as, htd, atd });
 const BUF = 'Buffalo Bills', MIA = 'Miami Dolphins', NE = 'New England Patriots', NYJ = 'NY Jets';

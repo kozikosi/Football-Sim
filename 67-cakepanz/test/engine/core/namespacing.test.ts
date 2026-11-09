@@ -2,14 +2,14 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import path from 'node:path';
-import { formatPid, parsePid, sportOfPid } from '../../src/core/ids.ts';
-import { globalKey, isOurKey, sportKey, sportOfKey } from '../../src/core/keys.ts';
-import { emptyProfile, parseProfile, patchSport, sportBlock } from '../../src/core/profile.ts';
-import { parseEnvelope, serialize, SPORT_IDS } from '../../src/core/envelope.ts';
-import { restore, serialize as serializeNfl } from '../../src/sports/nfl/app/saves.ts';
-import { migrateFlatProfile, nflProfile, patchNfl } from '../../src/sports/nfl/app/profile.ts';
-import { migrateLegacy, PLAYER_NAMES_KEY } from '../../src/sports/nfl/app/legacy.ts';
-import type { MigratableKv } from '../../src/sports/nfl/app/legacy.ts';
+import { formatPid, parsePid, sportOfPid } from '../../../src/engine/core/ids.ts';
+import { globalKey, isOurKey, sportKey, sportOfKey } from '../../../src/engine/core/keys.ts';
+import { emptyProfile, parseProfile, patchSport, sportBlock } from '../../../src/engine/core/profile.ts';
+import { parseEnvelope, serialize, SPORT_IDS } from '../../../src/engine/core/envelope.ts';
+import { restore, serialize as serializeNfl } from '../../../src/engine/sports/nfl/app/saves.ts';
+import { migrateFlatProfile, nflProfile, patchNfl } from '../../../src/engine/sports/nfl/app/profile.ts';
+import { migrateLegacy, PLAYER_NAMES_KEY } from '../../../src/engine/sports/nfl/app/legacy.ts';
+import type { MigratableKv } from '../../../src/engine/sports/nfl/app/legacy.ts';
 
 test('ids: a player id names its sport; each sport counts from 1; bad input is refused', () => {
   assert.equal(formatPid('nfl', 1), 'nfl-p00001'); assert.equal(formatPid('nba', 123456), 'nba-p123456');
@@ -107,7 +107,7 @@ test('legacy move: a full or blocked store loses nothing (the old keys stay and 
 });
 
 // ---- layout rules, enforced ----
-const SRC = new URL('../../src/', import.meta.url).pathname;
+const SRC = new URL('../../../src/engine/', import.meta.url).pathname;
 const tsFiles = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? tsFiles(path.join(d, e.name)) : e.name.endsWith('.ts') ? [path.join(d, e.name)] : []));
 const importsOf = (f: string): string[] => [...fs.readFileSync(f, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1').matchAll(/(?:import|export)[^;'"]*?from\s*['"]([^'"]+)['"]/g)].map((m) => m[1]);
 test('layout: core imports only core; a sport imports only core and itself, never another sport', () => {

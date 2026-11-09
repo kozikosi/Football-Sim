@@ -1,11 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { dataVersion, drift, engineVersion, rulesText, stamps } from '../../src/sports/nfl/app/versions.ts';
-import { restore, serialize } from '../../src/sports/nfl/app/saves.ts';
-import { canonicalRowsText, datasetHash, hash53, sha256Hex } from '../../src/core/hash.ts';
-import { buildPool } from '../../src/sports/nfl/engine/players.ts';
-import { freezePool } from '../../src/sports/nfl/app/store.ts';
+import { dataVersion, drift, engineVersion, rulesText, stamps } from '../../../src/engine/sports/nfl/app/versions.ts';
+import { restore, serialize } from '../../../src/engine/sports/nfl/app/saves.ts';
+import { canonicalRowsText, datasetHash, hash53, sha256Hex } from '../../../src/engine/core/hash.ts';
+import { buildPool } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { freezePool } from '../../../src/engine/sports/nfl/app/store.ts';
 const rd = (n: string) => fs.readFileSync(new URL('../../../data/nfl/' + n, import.meta.url), 'utf8');
 const R = rd('madden27-ratings.csv'), F = rd('free-agents-old-ratings.csv'), I = rd('player-ids.csv');
 const ROWS = freezePool(buildPool(R, F, I));

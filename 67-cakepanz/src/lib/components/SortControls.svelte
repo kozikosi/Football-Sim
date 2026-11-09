@@ -1,6 +1,6 @@
 <!-- The sort controls: wins / OVR / priority — the default sort is wins/priority, never raw OVR. -->
 <script lang="ts">
-  import type { BoardSort } from '../view/boardVM.ts';
+  import type { BoardSort } from '../../engine/sports/nfl/view/draftBoard.ts';
   let { sort, onsort }: { sort: BoardSort; onsort: (s: BoardSort) => void } = $props();
   const OPTS: { k: BoardSort; lbl: string }[] = [
     { k: 'wins', lbl: 'Wins' },

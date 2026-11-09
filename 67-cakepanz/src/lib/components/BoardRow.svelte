@@ -1,6 +1,6 @@
 <!-- The row: name, position, OVR, wins, priority, gone-odds, the flex options (the chips read the flex cost). -->
 <script lang="ts">
-  import type { BoardRowVM } from '../view/boardVM.ts';
+  import type { BoardRowVM } from '../../engine/sports/nfl/view/draftBoard.ts';
   let { r, onpick }: { r: BoardRowVM; onpick: (id: string, slot: string) => void } = $props();
   let open = $state(false);
 </script>

@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { matchupModel, DEFAULT_PLAN } from '../../src/sports/nfl/engine/matchup.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { allocate, decompose, simulateGame } from '../../src/sports/nfl/engine/drives.ts';
-import type { GameResult, Side } from '../../src/sports/nfl/engine/drives.ts';
+import { SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { matchupModel, DEFAULT_PLAN } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { allocate, decompose, simulateGame } from '../../../src/engine/sports/nfl/engine/drives.ts';
+import type { GameResult, Side } from '../../../src/engine/sports/nfl/engine/drives.ts';
 
 const flat = (v: number) => teamRatings(spotsFromRecord(Object.fromEntries(SLOT_IDS.map((s) => [s, v])) as Record<SlotId, number>));
 const lg = flat(80), strong = flat(88), weak = flat(72);

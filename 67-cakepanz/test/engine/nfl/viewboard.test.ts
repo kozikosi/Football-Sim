@@ -1,11 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pool } from './fixture.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { applyPick, cpuChoose, newDraft } from '../../src/sports/nfl/engine/draft.ts';
-import type { DraftState } from '../../src/sports/nfl/engine/draft.ts';
-import { goneOdds } from '../../src/sports/nfl/engine/goneodds.ts';
-import { boardVM } from '../../src/sports/nfl/view/draftBoard.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { applyPick, cpuChoose, newDraft } from '../../../src/engine/sports/nfl/engine/draft.ts';
+import type { DraftState } from '../../../src/engine/sports/nfl/engine/draft.ts';
+import { goneOdds } from '../../../src/engine/sports/nfl/engine/goneodds.ts';
+import { boardVM } from '../../../src/engine/sports/nfl/view/draftBoard.ts';
 
 const USER = 3;
 function toUser(seed: number, picksOfUser: number): DraftState {
@@ -60,7 +60,7 @@ test('gone odds: a deep-board player is rarely taken, the best players often are
 });
 test('view layer purity: src/view has no DOM, storage, clock or Math.random', async () => {
   const fs = await import('node:fs');
-  const dir = new URL('../../src/sports/nfl/view/', import.meta.url);
+  const dir = new URL('../../../src/engine/sports/nfl/view/', import.meta.url);
   for (const f of fs.readdirSync(dir)) {
     const src = fs.readFileSync(new URL(f, dir), 'utf8').replace(/\/\/.*$/gm, '');
     for (const bad of [/\bdocument\b/, /\bwindow\b/, /\blocalStorage\b/, /\bMath\.random\b/, /\bDate\.now\b/, /\bnew Date\b/]) assert.ok(!bad.test(src), f + ' ' + bad);

@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { makeRng } from '../../src/core/rng.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 test('same seed, same stream', () => {
   const a = makeRng(42), b = makeRng(42);
   for (let i = 0; i < 1000; i++) assert.equal(a.next(), b.next());

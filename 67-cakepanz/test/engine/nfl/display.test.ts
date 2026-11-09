@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { goneDisplay } from '../../src/sports/nfl/engine/display.ts';
+import { goneDisplay } from '../../../src/engine/sports/nfl/engine/display.ts';
 
 test('Gone% is never shown as 100 (Owner 29 Oct): certain, near-certain and rounded-up values show 99', () => {
   assert.equal(goneDisplay(1), 99);
@@ -16,7 +16,7 @@ test('Gone% below that is the plain rounded percentage, and 0 stays 0', () => {
 });
 test('Gone% rejects NaN instead of showing a number', () => assert.throws(() => goneDisplay(Number.NaN)));
 
-import { showInt, showDecimal, ONE_DECIMAL_KINDS } from '../../src/sports/nfl/engine/display.ts';
+import { showInt, showDecimal, ONE_DECIMAL_KINDS } from '../../../src/engine/sports/nfl/engine/display.ts';
 test('integers: every ordinary number is shown whole, half away from zero, never "-0"', () => {
   assert.equal(showInt(82.4), '82'); assert.equal(showInt(82.5), '83'); assert.equal(showInt(-2.5), '-3'); assert.equal(showInt(2.5), '3');
   assert.equal(showInt(-0.4), '0'); assert.equal(showInt(0), '0'); assert.equal(showInt(1234.9), '1235');

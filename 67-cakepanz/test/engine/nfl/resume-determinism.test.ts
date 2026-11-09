@@ -5,16 +5,16 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { pool } from './fixture.ts';
-import { SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { TEAMS } from '../../src/sports/nfl/engine/league.ts';
-import type { LeagueTeam } from '../../src/sports/nfl/engine/season.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { fixtures, gameSeed, isFinished, playWeek, startSeason } from '../../src/sports/nfl/engine/seasonrun.ts';
-import type { RunState } from '../../src/sports/nfl/engine/seasonrun.ts';
-import { createStore } from '../../src/sports/nfl/app/store.ts';
-import { selectBoard } from '../../src/sports/nfl/app/selectors.ts';
+import { SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { TEAMS } from '../../../src/engine/sports/nfl/engine/league.ts';
+import type { LeagueTeam } from '../../../src/engine/sports/nfl/engine/season.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { fixtures, gameSeed, isFinished, playWeek, startSeason } from '../../../src/engine/sports/nfl/engine/seasonrun.ts';
+import type { RunState } from '../../../src/engine/sports/nfl/engine/seasonrun.ts';
+import { createStore } from '../../../src/engine/sports/nfl/app/store.ts';
+import { selectBoard } from '../../../src/engine/sports/nfl/app/selectors.ts';
 
 function league(seed: number): LeagueTeam[] {
   const r = makeRng(seed);

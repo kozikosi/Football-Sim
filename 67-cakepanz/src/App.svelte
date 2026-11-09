@@ -12,13 +12,12 @@
   import { valuation, MODE_LABEL } from './lib/valuation.ts';
   import { goneOdds } from './engine/sports/nfl/engine/goneodds.ts';
   import { makeRng as mkRng } from './engine/core/rng.ts';
-  import { boardVMFallback } from './lib/view/boardVM.ts';
-  import type { BoardVM, BoardSort } from './lib/view/boardVM.ts';
+  import { boardVM } from './engine/sports/nfl/view/draftBoard.ts';
+  import type { BoardVM, BoardSort } from './engine/sports/nfl/view/draftBoard.ts';
   import DraftBoard from './lib/components/DraftBoard.svelte';
   import ModeSwitch from './lib/components/ModeSwitch.svelte';
   import LineupAdvice from './lib/components/LineupAdvice.svelte';
   import { lineupFor } from './engine/sports/nfl/engine/lineup.ts';
-  import { slotLabel as sl } from './lib/view/boardVM.ts';
 
   type Boot = { phase: 'loading' } | { phase: 'empty' } | { phase: 'ready'; players: Player[] };
 
@@ -59,9 +58,13 @@
     const st = store.getState();
     if (st.error) error = st.error;
     if (!st.draft || st.status === 'idle') { vmStore.set(null); return; }
-    let odds = null;
-    try { odds = goneOdds(st.draft, userTeam, makeRng(seed * 7 + 13), 30); } catch { odds = null; }
-    try { vmStore.set(boardVMFallback(st.draft, userTeam, odds, { sort })); } catch (e) { error = 'VM: ' + (e as Error).message; }
+    // The SNAPSHOT's board view model (src/engine/…/view/draftBoard.ts, pinned 4ca9a071) — no stand-in.
+    // goneOdds only answers when it is the user's own pick; while the CPU is on the clock the last
+    // board stays up and this refresh recomputes the moment the user is back on the clock.
+    try {
+      const odds = goneOdds(st.draft, userTeam, makeRng(seed * 7 + 13), 30);
+      vmStore.set(boardVM(st.draft, userTeam, odds, { sort }));
+    } catch { /* CPU pick in flight — the board refreshes on the user's turn */ }
     try {
       const mine = Object.values(st.draft.rosters[userTeam]).filter(Boolean) as any[];
       const best = lineupFor(mine, '4-3');

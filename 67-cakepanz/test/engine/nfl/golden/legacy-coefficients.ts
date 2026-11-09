@@ -1,8 +1,8 @@
 // The coefficients the engine had before the Owner's salary-weight ruling of 6 Nov 2026 (REV 5 table: QB 1000, WR1 525, ... K 200), frozen here.
 // The golden tests compare the port with the ORIGINAL engine (Pre-Colors + the lab's patch), so they run it on these coefficients: the swap
 // is in place only inside `withLegacyCoefficients` and is always undone. Test-only; never imported by src/.
-import { DEF_SPECS, MC, PERS_REC, RATING_SPECS, RB_HEAVY } from '../../../src/sports/nfl/engine/specs.ts';
-import type { Spec } from '../../../src/sports/nfl/engine/specs.ts';
+import { DEF_SPECS, MC, PERS_REC, RATING_SPECS, RB_HEAVY } from '../../../../src/engine/sports/nfl/engine/specs.ts';
+import type { Spec } from '../../../../src/engine/sports/nfl/engine/specs.ts';
 
 const RATING_SPECS_LEGACY = {
   olRun: { OT1: 1.09, OT2: 1.02, OG1: 1.08, OG2: 1.08, C: 1.19, TE1: 0.35, FB: 0.36 },

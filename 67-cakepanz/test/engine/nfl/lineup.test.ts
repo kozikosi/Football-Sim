@@ -1,15 +1,15 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots, DL5_SHARE } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId, Dest } from '../../src/sports/nfl/engine/slots.ts';
-import { FLEX, fit, EMERGENCY_PENALTY } from '../../src/sports/nfl/engine/flex.ts';
-import { hungarian } from '../../src/core/hungarian.ts';
-import { optimalLineup, lineupFor, placementOf, adviseLineup, valueOf, EMPTY_OVR } from '../../src/sports/nfl/engine/lineup.ts';
-import type { Assignment } from '../../src/sports/nfl/engine/lineup.ts';
-import { buildPool } from '../../src/sports/nfl/engine/players.ts';
-import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
-import { makeRng } from '../../src/core/rng.ts';
+import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots, DL5_SHARE } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId, Dest } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { FLEX, fit, EMERGENCY_PENALTY } from '../../../src/engine/sports/nfl/engine/flex.ts';
+import { hungarian } from '../../../src/engine/core/hungarian.ts';
+import { optimalLineup, lineupFor, placementOf, adviseLineup, valueOf, EMPTY_OVR } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import type { Assignment } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import { buildPool } from '../../../src/engine/sports/nfl/engine/players.ts';
+import type { Player, Role } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
 
 const read = (p: string) => fs.readFileSync(new URL(p, import.meta.url), 'utf8');
 const design = JSON.parse(read('../../../tools/mathlab/design.json')) as Record<string, number>;

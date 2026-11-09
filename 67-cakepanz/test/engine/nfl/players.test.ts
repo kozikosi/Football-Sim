@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { buildPool, parseCsv } from '../../src/sports/nfl/engine/players.ts';
+import { buildPool, parseCsv } from '../../../src/engine/sports/nfl/engine/players.ts';
 const R = fs.readFileSync(new URL('../../../data/nfl/madden27-ratings.csv', import.meta.url), 'utf8');
 const F = fs.readFileSync(new URL('../../../data/nfl/free-agents-old-ratings.csv', import.meta.url), 'utf8');
 const I = fs.readFileSync(new URL('../../../data/nfl/player-ids.csv', import.meta.url), 'utf8');

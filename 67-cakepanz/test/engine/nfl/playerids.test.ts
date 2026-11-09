@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { buildPool, parseCsv } from '../../src/sports/nfl/engine/players.ts';
-import { formatIds, parseIds, syncIds } from '../../src/sports/nfl/engine/playerids.ts';
-import { formatPid } from '../../src/core/ids.ts';
+import { buildPool, parseCsv } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { formatIds, parseIds, syncIds } from '../../../src/engine/sports/nfl/engine/playerids.ts';
+import { formatPid } from '../../../src/engine/core/ids.ts';
 const rd = (n: string) => fs.readFileSync(new URL('../../../data/nfl/' + n, import.meta.url), 'utf8');
 const R = rd('madden27-ratings.csv'), F = rd('free-agents-old-ratings.csv'), I = rd('player-ids.csv');
 const cur = [...parseCsv(R, false), ...parseCsv(F, true)].map((p) => ({ name: p.name, pos: p.pos, team: p.team }));

@@ -1,12 +1,12 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
-import { teamRatings, spotsFromRecord } from '../../src/sports/nfl/engine/ratings.ts';
-import { matchupModel, DEFAULT_PLAN } from '../../src/sports/nfl/engine/matchup.ts';
-import { lineupFor } from '../../src/sports/nfl/engine/lineup.ts';
-import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
-import { RETURN_SLOTS, returnerValue, returnerCandidates, pickReturner, returnerRating } from '../../src/sports/nfl/engine/returner.ts';
+import { SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import type { SlotId } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { teamRatings, spotsFromRecord } from '../../../src/engine/sports/nfl/engine/ratings.ts';
+import { matchupModel, DEFAULT_PLAN } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { lineupFor } from '../../../src/engine/sports/nfl/engine/lineup.ts';
+import type { Player, Role } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { RETURN_SLOTS, returnerValue, returnerCandidates, pickReturner, returnerRating } from '../../../src/engine/sports/nfl/engine/returner.ts';
 
 const flat = (v: number, ret?: number) => teamRatings(spotsFromRecord(Object.fromEntries(SLOT_IDS.map((s) => [s, v])) as Record<SlotId, number>), ret);
 const mk = (name: string, role: Role, ovr: number, spd: number, str: number): Player => ({ id: `${name}|${role}|T`, name, pos: role, role, team: 'T', ovr, spd, str, freeAgent: false });

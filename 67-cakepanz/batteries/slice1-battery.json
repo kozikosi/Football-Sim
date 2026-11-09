@@ -20,9 +20,9 @@
    "detail": ""
   },
   {
-   "law": "every row reads name · pos · team · OVR · wins · priority · gone%",
+   "law": "every row reads name · pos · team · OVR · wins · priority · gone% (EVERY row, EVERY field)",
    "verdict": "PASS",
-   "detail": "99%"
+   "detail": "60 rows, 0 bad"
   },
   {
    "law": "the gone-odds display is present on every row",
@@ -37,7 +37,12 @@
   {
    "law": "the OVR sort actually sorts",
    "verdict": "PASS",
-   "detail": "first 99"
+   "detail": "first 98"
+  },
+  {
+   "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording) — OBSERVED open",
+   "verdict": "PASS",
+   "detail": "14 pickers probed · 39 flex chips · sample [\"-4 flex\",\"-4 flex\",\"-4 flex\"]"
   },
   {
    "law": "the slot picker offers the natural slot first",
@@ -47,7 +52,7 @@
   {
    "law": "the pick confirms before it lands",
    "verdict": "PASS",
-   "detail": "Draft Josh Allen at QB? Confirm the pick Cancel"
+   "detail": "Draft Matthew Stafford at QB? Confirm the pick Cancel"
   },
   {
    "law": "the pick lands and the footer counts it",
@@ -58,11 +63,6 @@
    "law": "the CPU teams pick on after the user's pick (the clock advances)",
    "verdict": "PASS",
    "detail": ""
-  },
-  {
-   "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording)",
-   "verdict": "PASS",
-   "detail": "[]"
   },
   {
    "law": "undo cuts the log back and the count returns",

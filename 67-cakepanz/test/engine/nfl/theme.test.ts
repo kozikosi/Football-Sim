@@ -1,9 +1,9 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { TEAMS } from '../../src/sports/nfl/engine/league.ts';
-import { TEAM_COLORS } from '../../src/sports/nfl/view/teamColors.ts';
-import { BG_DARK, BG_LIGHT, contrast, opponentVars, teamPack } from '../../src/sports/nfl/view/theme.ts';
+import { TEAMS } from '../../../src/engine/sports/nfl/engine/league.ts';
+import { TEAM_COLORS } from '../../../src/engine/sports/nfl/view/teamColors.ts';
+import { BG_DARK, BG_LIGHT, contrast, opponentVars, teamPack } from '../../../src/engine/sports/nfl/view/theme.ts';
 
 // Golden = the 82 --t* tokens that zpbPackFor in Football-Sim-Z-post-blue-w54.html (md5 512d1885...) produced for all 32
 // franchises, captured by running the shell's own functions in a Node VM (no hand copying of numbers).
@@ -73,7 +73,7 @@ test('theme: the check can fail (a planted bad pairing is caught by contrast())'
 
 test('theme: the module has no DOM, storage, randomness or clock', () => {
   for (const f of ['theme.ts', 'teamColors.ts']) {
-    const src = fs.readFileSync(new URL('../../src/sports/nfl/view/' + f, import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
+    const src = fs.readFileSync(new URL('../../../src/engine/sports/nfl/view/' + f, import.meta.url), 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');
     for (const bad of [/\bdocument\b/, /\bwindow\b/, /\blocalStorage\b/, /\bMath\.random\b/, /\bDate\.now\b/, /\bnew Date\b/]) assert.ok(!bad.test(src), `${f}: ${bad}`);
   }
 });

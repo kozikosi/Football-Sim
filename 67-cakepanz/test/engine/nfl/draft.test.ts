@@ -1,11 +1,11 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { buildPool } from '../../src/sports/nfl/engine/players.ts';
-import { SLOTS, SLOT_IDS } from '../../src/sports/nfl/engine/slots.ts';
-import { fit } from '../../src/sports/nfl/engine/flex.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { ROUNDS, TEAMS_N, applyPick, candidates, cpuChoose, newDraft, runDraft, snakeOrder, DEFAULT_CONFIG } from '../../src/sports/nfl/engine/draft.ts';
+import { buildPool } from '../../../src/engine/sports/nfl/engine/players.ts';
+import { SLOTS, SLOT_IDS } from '../../../src/engine/sports/nfl/engine/slots.ts';
+import { fit } from '../../../src/engine/sports/nfl/engine/flex.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { ROUNDS, TEAMS_N, applyPick, candidates, cpuChoose, newDraft, runDraft, snakeOrder, DEFAULT_CONFIG } from '../../../src/engine/sports/nfl/engine/draft.ts';
 
 const pool = buildPool(fs.readFileSync(new URL('../../../data/nfl/madden27-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../../data/nfl/free-agents-old-ratings.csv', import.meta.url), 'utf8'), fs.readFileSync(new URL('../../../data/nfl/player-ids.csv', import.meta.url), 'utf8'));
 

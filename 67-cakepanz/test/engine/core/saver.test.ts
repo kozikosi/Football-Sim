@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { createSaver } from '../../src/core/saver.ts';
-import type { Result, StorageModule } from '../../src/core/app.ts';
+import { createSaver } from '../../../src/engine/core/saver.ts';
+import type { Result, StorageModule } from '../../../src/engine/core/app.ts';
 
 const ok: Result<void> = { ok: true, value: undefined };
 function fake(opts: { failFirst?: number; alwaysFail?: boolean } = {}) {

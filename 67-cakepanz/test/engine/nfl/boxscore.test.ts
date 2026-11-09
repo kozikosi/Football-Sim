@@ -1,14 +1,14 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { play, league, side } from './fixture.ts';
-import { makeRng } from '../../src/core/rng.ts';
-import { simulateGame } from '../../src/sports/nfl/engine/drives.ts';
-import { matchupModel } from '../../src/sports/nfl/engine/matchup.ts';
-import { teamIdentity } from '../../src/sports/nfl/engine/plans.ts';
-import { buildBoxScore } from '../../src/sports/nfl/engine/boxscore.ts';
-import { STAT_KEYS, pointsOf } from '../../src/sports/nfl/engine/boxscore.ts';
-import type { BoxScore, PlayerLine } from '../../src/sports/nfl/engine/boxscore.ts';
-import type { GameResult, Side } from '../../src/sports/nfl/engine/drives.ts';
+import { makeRng } from '../../../src/engine/core/rng.ts';
+import { simulateGame } from '../../../src/engine/sports/nfl/engine/drives.ts';
+import { matchupModel } from '../../../src/engine/sports/nfl/engine/matchup.ts';
+import { teamIdentity } from '../../../src/engine/sports/nfl/engine/plans.ts';
+import { buildBoxScore } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
+import { STAT_KEYS, pointsOf } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
+import type { BoxScore, PlayerLine } from '../../../src/engine/sports/nfl/engine/boxscore.ts';
+import type { GameResult, Side } from '../../../src/engine/sports/nfl/engine/drives.ts';
 
 const sum = (box: BoxScore, side: Side, k: (typeof STAT_KEYS)[number]) => box.lines.filter((l) => l.side === side).reduce((t, l) => t + l.stats[k], 0);
 const other = (s: Side): Side => (s === 'home' ? 'away' : 'home');

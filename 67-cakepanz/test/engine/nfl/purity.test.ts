@@ -6,7 +6,7 @@ import path from 'node:path';
 // The engine must run anywhere (browser, Web Worker, Node, any UI framework): no DOM, no ambient randomness or clock,
 // no imports from outside this sport's engine folder except the sport-neutral core (src/core). Review of the Next.js port, 29 Oct: its engine was one closure tied to the DOM,
 // so it could be neither tested, seeded nor moved. This test keeps Colors from drifting the same way.
-const dir = new URL('../../src/sports/nfl/engine/', import.meta.url);
+const dir = new URL('../../../src/engine/sports/nfl/engine/', import.meta.url);
 const files = fs.readdirSync(dir).filter((f) => f.endsWith('.ts'));
 const strip = (s: string) => s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1');   // comments may mention the words
 
