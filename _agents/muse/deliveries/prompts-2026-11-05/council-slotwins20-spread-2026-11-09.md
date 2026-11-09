@@ -12,7 +12,7 @@ The MUSE seat proposed a 10-point spread (center ±5) for the local slope. The M
 
 > "picked 10 because it's wide enough to be stable but narrow enough to be local. But that's a judgment call — the council and Claude might find ±3 or ±7 works better, or that the slope is stable enough that the spread doesn't matter much."
 
-That is the question for the council: is ±5 the right spread, or does ±3 or ±7 work better — or does the spread not matter much at all? Evaluate it:
+That is the question for the council: is ±5 the right spread, or does ±3 or ±7 work better — or does the spread not matter much at all? **The council runs this testing — not Claude.** Standing rule (Owner, 2026-11-09): do not ask the Architect to run tests; testing is done by the council, the MUSE seat, and Z.ai. Claude decides the implementation once you report. Evaluate it:
 
 1. Verify the proposal independently: re-run the measurement at **±3, ±5, and ±7** (and ±10 as the non-linearity check) for every slot, using the same engine and pool. Do the slopes agree with Claude's numbers?
 2. Report, side by side, for every slot: the slope at each spread. Which slots move most between spreads, and why?
