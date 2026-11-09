@@ -15,18 +15,20 @@ The Owner has now decided: **adopt D at θ=1.0, round to the nearest tier (0/2/6
 - WILL 150 → 200 and C 150 → 200 (engine changes). SAM stays at 100.
 - The Owner's rules, based on historical conversion rates from X to Y in college and the NFL, SUPERSEDE the theta rule. Theta is the rounding determination; the Owner's list is the reality check. Example: WR>TE gets -6 for lack of blocking ability despite D≈0.
 
-## For Z.ai
+## Z.ai Slice 2 — REVIEWED (MUSE, VERDICT improved)
 
-**The flex table is being rebuilt.** Claude will rebuild it from D at θ=1.0 with the Owner's overrides, apply the WILL/C weight changes, recompute D, and replay the draft scan. The table WILL change (DT>EDGE to 6, 7 rules removed, many rules moving up/down, WILL/C weights up).
+Slice 2 (Team Select) landed on gh-pages as `0a9d7327`. MUSE reviewed it: **VERDICT improved** (`inbox/20261109-0445-muse-P-314-slice2-review.md`, filed as **P-314** — needs two more reviews).
 
-**What this means for you:**
-- Do NOT hardcode flex penalty values in your UI. Read them from the engine's flex.json/flex.ts (or the snapshot you consume). The values are changing.
-- Do NOT hardcode slot weights or measured weights. WILL and C are going up by 50, which will change the measured weights display (Engine Value). Read them from the engine.
-- Wait for the new snapshot. You consume Claude's engine as a frozen snapshot (currently pinned at `4ca9a071`). Do not build flex-displaying UI against the old table. When Claude lands the rebuild, he will pin a new snapshot — build against that.
-- The flex chips, draft board flex display, and any UI that shows "Flex x (-y)" will reflect the new table once you re-pin. No action needed from you until the new snapshot lands.
-- The seven guard passes and P-308 are Claude's next work after this build. They do not affect your UI track.
+**What verified:** the engine snapshot is byte-identical to the pin `4ca9a071` (52/52 files, diff clean — I checked it myself). Battery 26/0/10/3, all 8 new Team Select laws PASS through the real user flow. TeamSelect.svelte reads engine-derived data only. The App.svelte flow is correct (screen state, `START { seed, userTeam: chosen }`, valuation lock at START). The mode lock fires at START — one assertion watches it free on Team Select and disabled on the board. Boundaries respected.
 
-**Keep building 67 Cakepanz — whatever is next.** Slice 1 landed. The Owner encourages you to keep going with the next slices in order: Slice 2 (Team Select) is next, then whatever follows it in the slice plan. Do not wait for the flex table rebuild to build the next slice — the slices are UI work, and the flex/weight values will flow in when you re-pin the snapshot. Build the next slice, ship it, and keep the momentum going. If a slice needs an engine value that has not landed yet, build it against the current snapshot and note what will change when you re-pin. The Owner wants 67 Cakepanz to keep moving while Claude finishes the math.
+**Findings for Z.ai:**
+1. The flex chip count (39 → 44) is state-dependent (chosen team + random seed). The battery correctly asserts the observation, not the count — but the README's "44 chips seen" reads like a fixed number. Note in the README that the count varies by run and the law is the observation.
+2. The gone-odds tooltip + my-needs sticky row are carried to Slice 3 — good, they are not lost. **Build Slice 3 next** (P-316): the board chrome pass, including those two innovations.
+3. The pick-position choice is NOT in Slice 2 — that is an open Owner decision (should Team Select offer a pick-slot choice, or does the seed stay app-controlled?). No action until the Owner decides.
+
+## For Z.ai (continued)
+
+**Keep building 67 Cakepanz — whatever is next.** Slice 2 landed. The Owner encourages you to keep going with the next slices in order: **Slice 3 (the board chrome pass — gone-odds tooltip + my-needs sticky row) is next** (P-316), then whatever follows it in the slice plan. Do not wait for the flex table rebuild to build the next slice — the slices are UI work, and the flex/weight values will flow in when you re-pin the snapshot. Build the next slice, ship it, and keep the momentum going. If a slice needs an engine value that has not landed yet, build it against the current snapshot and note what will change when you re-pin. The Owner wants 67 Cakepanz to keep moving while Claude finishes the math.
 
 ## For the council
 
@@ -41,7 +43,7 @@ The Owner has now decided: **adopt D at θ=1.0, round to the nearest tier (0/2/6
 - **`tools/mathlab/flexcheck.mjs`** — validates flex.json: every penalty is 0/2/6/12, every role and destination is known, every role has a row, QB flexes only to FS. It reports the tier counts and the one-way asymmetries. Run it on the rebuilt flex.json and confirm FLEXCHECK OK. (It will also catch a rebuilt table that accidentally reintroduces a removed rule or a wrong tier.)
 - **`tools/mathlab/flexeval.mjs`** — replays the draft scan and reports pick counts. Run it on the rebuilt table (same seeds as P-310) and compare to the P-310 baseline.
 
-**flexrebuild.mjs does NOT exist — build it.** There is no script that rebuilds the flex table from D + the Owner's overrides deterministically. Claude's manual rebuild timed out, which is exactly the failure a script would prevent. **Proposed work order (to be filed as P-314 when there is room in PRIORITIES.md — the file is at the push ceiling):** build `tools/mathlab/flexrebuild.mjs` — a script that takes the D values (recomputed post-bump), the rounding rule (θ=1.0, cutoffs 1/4/9), and the Owner's override list as input, and generates flex.json + flex.ts deterministically. The script should be runnable by any seat in a scratch tree, and its output should be diffable against Claude's rebuilt table (if the script and Claude disagree, that is a finding, not a tie to break silently). Whoever builds it files the script and a run showing it reproduces the Owner's table. This makes the rebuild reproducible, testable, and re-runnable whenever the Owner changes a rule — instead of a manual edit that can time out.
+**flexrebuild.mjs does NOT exist — build it.** There is no script that rebuilds the flex table from D + the Owner's overrides deterministically. Claude's manual rebuild timed out, which is exactly the failure a script would prevent. **Proposed work order (to be filed as P-317 when there is room in PRIORITIES.md — the file is at the push ceiling):** build `tools/mathlab/flexrebuild.mjs` — a script that takes the D values (recomputed post-bump), the rounding rule (θ=1.0, cutoffs 1/4/9), and the Owner's override list as input, and generates flex.json + flex.ts deterministically. The script should be runnable by any seat in a scratch tree, and its output should be diffable against Claude's rebuilt table (if the script and Claude disagree, that is a finding, not a tie to break silently). Whoever builds it files the script and a run showing it reproduces the Owner's table. This makes the rebuild reproducible, testable, and re-runnable whenever the Owner changes a rule — instead of a manual edit that can time out.
 
 **Design more testing around these rules.** The flex table is the heart of the draft — it deserves more testing than a single verification pass. Three work orders are filed in PRIORITIES.md:
 - **P-311** (above): verify the rebuild.
@@ -54,7 +56,10 @@ The Owner has now decided: **adopt D at θ=1.0, round to the nearest tier (0/2/6
 - A cross-formation battery: run the same draft seeds in 4-3 and 3-4 and diff the lineups — the flex table should not produce a formation-dependent artifact (like the FB/SAM one) that the Owner has not approved.
 - A "no free lunch" sweep: for each of the 30 rules at 0, confirm the draft engine does not exploit the free flex to inflate a lineup's value beyond what the Owner intended (e.g., a heavy→light flex that gains wins for free).
 
-**Remaining open work (from the earlier prompt, still open):**
+**Remaining open work:**
+- **P-314: Review Slice 2** (this review — MUSE improved; needs two more reviews).
+- **P-315: Slice 2 deeper verification** — draft several rounds as a chosen team (try more than one team: an early-pick team and a late-pick team) and confirm the chosen team is on the clock at its slots, its picks land on its roster, the CPU teams pick on correctly around it, and the mode lock holds across the whole draft. The P-314 review verified the header name only; P-315 proves it end-to-end.
+- **P-316: Z.ai Slice 3** — the board chrome pass (gone-odds tooltip + my-needs sticky row). Encourage Z.ai to build it next; review it the same way as Slice 1/2 when it lands.
 - flexengine.js check (status UNKNOWN — needs playwright + the frozen Pre-Colors file).
 - P-276 N=1000 baseline repro (decisive; VL's repro still in flight, OR/vloc blocked on deno).
 - P-288 needs 2 more reviews (the guard passes, once Claude does them).
