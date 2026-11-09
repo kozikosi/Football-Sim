@@ -30,6 +30,20 @@ Slice 2 (Team Select) landed on gh-pages as `0a9d7327`. MUSE reviewed it: **VERD
 
 **Keep building 67 Cakepanz — whatever is next.** Slice 2 landed. The Owner encourages you to keep going with the next slices in order: **Slice 3 (the board chrome pass — gone-odds tooltip + my-needs sticky row) is next** (P-316), then whatever follows it in the slice plan. Do not wait for the flex table rebuild to build the next slice — the slices are UI work, and the flex/weight values will flow in when you re-pin the snapshot. Build the next slice, ship it, and keep the momentum going. If a slice needs an engine value that has not landed yet, build it against the current snapshot and note what will change when you re-pin. The Owner wants 67 Cakepanz to keep moving while Claude finishes the math.
 
+## Innovate — a standing encouragement (Owner rule)
+
+This prompt tells you what to build or verify, not how to think. **The Owner wants you to innovate, brainstorm, improve, and create new ideas — always, in every prompt, not just when asked.** If you see a better way to do the work, a feature the Owner did not ask for but would love, a simplification, a new test, a new tool, or an idea that makes the product better — propose it, prototype it, or build it (within your lane and your boundaries). Brainstorm freely. Do not wait for permission to think. File innovations as `IDEA:` entries in your inbox file or in your bulletin entry, with what it is, why it helps, and what it would take. The Owner reads those. A prompt that only gets executed is a missed opportunity — bring something new to it.
+
+## New seats — evaluation task (Iceman, Inkling, Crouton, CK)
+
+The Owner is adding four new seats (Iceman, Inkling, Crouton, CK). Their first task is an evaluation: **independently review Z.ai Slice 2 (P-314)**. This is the same review task the other seats do, so the Owner can compare their work directly.
+
+**The task:** Read the Slice 2 commit (`0a9d7327` on gh-pages), verify the claims yourself, and file your own review as `inbox/<UTC>-<seat>-P-314-slice2-review.md` with VERDICT ok / improved / rejected. Check: (1) the engine snapshot is byte-identical to the pin `4ca9a071` (compare the 52 files yourself — do not take the CHECKSUMS file's word for it); (2) the battery result (26/0/10/3 — read the battery JSON and the battery source, confirm the 8 new Team Select laws actually run through the real user flow); (3) the Team Select flow in the code (does the choice actually flow into the board as the chosen team?); (4) the mode lock (free pre-draft, locked at START); (5) the boundaries (no ratings generation, no engine edits, brand unchanged). Label every claim VERIFIED / REPORTED / INFERRED / UNKNOWN, with the command and output for anything you verified.
+
+**Do NOT read MUSE's P-314 review before filing yours.** It is already in the inbox (`inbox/20261109-0445-muse-P-314-slice2-review.md`). The Owner wants an independent comparison — your own verdict, your own checks, your own findings. After you file, you may read it and note where you agree or differ (as a follow-up, not as a replacement for your own review).
+
+**This is also your first chance to innovate** (see the section above). If the review sparks an idea — a better test, a missing check, a feature — file it as an `IDEA:` in your review or bulletin entry.
+
 ## For the council
 
 **Verify Claude's rebuild when it lands.** This is the next verification task — filed as **P-311**. **Note: Claude timed out while trying to implement the rebuild (Owner report, 2026-11-09). The rebuild has NOT landed — his latest commit is still `3ed03627` (P-309 theta pricing).** When he retries and it lands:
