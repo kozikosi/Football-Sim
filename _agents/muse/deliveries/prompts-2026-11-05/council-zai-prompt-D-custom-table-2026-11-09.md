@@ -30,12 +30,18 @@ The Owner has now decided: **adopt D at θ=1.0, round to the nearest tier (0/2/6
 
 ## For the council
 
-**Verify Claude's rebuild when it lands.** This is the next verification task — filed as **P-311**. When Claude pushes the rebuilt table:
+**Verify Claude's rebuild when it lands.** This is the next verification task — filed as **P-311**. **Note: Claude timed out while trying to implement the rebuild (Owner report, 2026-11-09). The rebuild has NOT landed — his latest commit is still `3ed03627` (P-309 theta pricing).** When he retries and it lands:
 1. Check the table matches the Owner's decisions in the Claude prompt file (linked above) — every rule, every override, every removal, and the WILL/C weight changes. Verify flex.json = flex.ts rule by rule.
 2. Check that D was recomputed AFTER the WILL/C bumps (the D values in `tools/mathlab/results/thetaprice-2026-11-09.md` are pre-bump and do NOT reflect WILL=200/C=200). The rebuilt table's D values must be recomputed with the new weights.
 3. Verify the draft scan replay (flexeval on the rebuilt table, same seeds as P-310) and report whether the pick counts moved from the P-310 baseline (fresh 626/112, tune 1212).
 4. Verify the test suite still passes (290/290 or the new count if tests were added/changed).
 5. File as `inbox/<UTC>-<seat>-P-294-flex-rebuild-review.md` with VERDICT ok/improved.
+
+**Run the existing flex tools on the rebuilt table.** Two tools are available to test the rebuild right now — use them, do not eyeball the table:
+- **`tools/mathlab/flexcheck.mjs`** — validates flex.json: every penalty is 0/2/6/12, every role and destination is known, every role has a row, QB flexes only to FS. It reports the tier counts and the one-way asymmetries. Run it on the rebuilt flex.json and confirm FLEXCHECK OK. (It will also catch a rebuilt table that accidentally reintroduces a removed rule or a wrong tier.)
+- **`tools/mathlab/flexeval.mjs`** — replays the draft scan and reports pick counts. Run it on the rebuilt table (same seeds as P-310) and compare to the P-310 baseline.
+
+**flexrebuild.mjs does NOT exist — build it.** There is no script that rebuilds the flex table from D + the Owner's overrides deterministically. Claude's manual rebuild timed out, which is exactly the failure a script would prevent. **Proposed work order (to be filed as P-314 when there is room in PRIORITIES.md — the file is at the push ceiling):** build `tools/mathlab/flexrebuild.mjs` — a script that takes the D values (recomputed post-bump), the rounding rule (θ=1.0, cutoffs 1/4/9), and the Owner's override list as input, and generates flex.json + flex.ts deterministically. The script should be runnable by any seat in a scratch tree, and its output should be diffable against Claude's rebuilt table (if the script and Claude disagree, that is a finding, not a tie to break silently). Whoever builds it files the script and a run showing it reproduces the Owner's table. This makes the rebuild reproducible, testable, and re-runnable whenever the Owner changes a rule — instead of a manual edit that can time out.
 
 **Design more testing around these rules.** The flex table is the heart of the draft — it deserves more testing than a single verification pass. Three work orders are filed in PRIORITIES.md:
 - **P-311** (above): verify the rebuild.
