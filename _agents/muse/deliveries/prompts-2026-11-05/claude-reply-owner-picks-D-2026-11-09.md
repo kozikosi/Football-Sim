@@ -23,7 +23,6 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 **REMOVED entirely (delete the rule, do not set to 0):**
 - FB>EDGE, FB>DT, FB>ILB, FB>OLB (all four FB defensive rules).
 - CB>RB, DT>TE, EDGE>FS.
-- EDGE>TE — **CONTRADICTION: the Owner listed EDGE>TE in both the REMOVE list and the -6 list. This prompt defaults to REMOVE (first mention). Owner clarification needed: should EDGE>TE be removed or set to -6?**
 - FS>RB — **NOTE: FS>RB is not in the flex table (no such rule exists), so there is nothing to remove. It is already not allowed.**
 
 **Set to -2:**
@@ -38,6 +37,7 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - OT>EDGE, SS>CB, FS>CB (follow the rounding rule: D 5.38/5.07/5.06 round to 6).
 - FS>OLB, ILB>NICKEL, ILB>TE, OLB>NICKEL, DT>OT, OT>DT, SS>TE, TE>C, TE>DIME, TE>NICKEL, TE>OLB, TE>RB, WR>RB, WR>TE (Owner overrides — these would round to 0 under the pure rounding rule, but the Owner sets them to 6 on real-world grounds, e.g., WR>TE gets -6 for lack of blocking ability).
 - RB>TE and SS>ILB (set to 6, not 0 — unlikeness reason: a RB playing TE or a SS playing ILB is unlikely in real life, so it carries a penalty, not free).
+- EDGE>TE (set to 6 — Owner clarification 2026-11-09: EDGE>TE is -6, NOT removed. It was listed in both the REMOVE list and the -6 list; the Owner confirms -6. D=0 for EDGE>TE, so this is an Owner override on real-world grounds, not a rounding-rule result.)
 
 **Set to / kept at -12:**
 - TE>EDGE, RB>WR, TE>OT (the three proposed rules, per the rounding rule).
