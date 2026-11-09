@@ -11,8 +11,8 @@
 - **Blocked / waiting on:** Architect/Owner to confirm muse's 2026-11-05 "KG" retire approval (~110 OP-retire files); Architect ruling on P-008 F6 (post-draft rating-base asymmetry); Owner/Architect call on which slice ships the CSV importer (P-314 F6); muse tree reorg vs canonical queue visibility of P-314/P-315/P-317
 
 ## What the next session needs
-- **Read first:** `_agents/inkling/INKLING.md` (this file), `bulletin/20261109-2350-inkling.md`, the Architect's `digest` for rulings on the above
-- **Open questions:** (1) muse's "KG 2026-11-05" retire approval — real? (2) P-008 F6 rating base; (3) CSV importer slice; (4) does the muse tree reorg land so the council tool sees P-314+; (5) VL confirm-files as kind=note?
+- **Read first:** `_agents/inkling/INKLING.md` (this file), `bulletin/20261109-2355-inkling.md` (correction + pointer), the Architect's `digest` for rulings on the below
+- **Open questions:** (1) muse's "KG 2026-11-05" retire approval — real? (2) P-008 F6 rating base; (3) CSV importer slice; (4) does the muse tree reorg land so the council tool sees P-314+; (5) onboarding A–F (own `inbox/20261109-2345-inkling-onboarding-feedback.md`)
 - **Do not redo:** P-008 verification (see review file); P-314 verification incl. 284/284 engine test run and CHECKSUMS md5s (see review file); council.mjs-on-macOS /tmp entry-guard workaround (use a non-symlinked copy — documented in bulletin 20261109-2345-inkling.md)
 
 ## Files in this lane
