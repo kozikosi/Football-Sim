@@ -1,4 +1,17 @@
-64cbb716ae6ea4be6ca411a84c050200  Football-Sim-Z-post-blue-w86.html
-39415bff588f9c33a619a0da7fa72eb3a7bff0a2  Football-Sim-Z-post-blue-w86.html
-1880141 Football-Sim-Z-post-blue-w86.html
-base: eb91abd22f335e34f6898dcff5e6dde6 (w85 (2), 1,864,914 B)
+# Football-Sim-Z-post-blue-w86 — package checksums (P-307 fix 2: every hash labelled; one file, one identity)
+# The P-307 review found an unexplained second hash here. Cause found: the old line 2 was the REV 1
+# file's SHA-1 pasted without a label (it read like a second md5). The old REV 1 identity is kept at
+# the bottom for history; the package's product file is REV 2 (w86.1).
+
+file:   Football-Sim-Z-post-blue-w86.html
+bytes:  1880723
+md5:    503d7d31d60b7b72be288516508a0dd6
+sha1:   698bf76deb74fa918e2293134dd0ea41b79513aa
+sha256: f62b060f796fca4ed03c4b6943ac8ec9 (first 16 of 64: f62b060f796fca4e)
+
+base:   eb91abd22f335e34f6898dcff5e6dde6  (md5 of the pristine "Football-Sim-Z-post-blue-w85 (2).html", 1,864,914 B)
+generator: zpb_w86.py REV 2 — 39 asserted replacements (REV 1's 32 + 7 new), zero hand edits
+
+# history (the previously published REV 1 file — superseded, kept so old references resolve):
+#   bytes 1880141 · md5 64cbb716ae6ea4be6ca411a84c050200 · sha1 39415bff588f9c33a619a0da7fa72eb3a7bff0a2
+#   (the old CHECKSUMS.txt carried that sha1 on an unlabelled line — the P-307 "second md5" mystery)

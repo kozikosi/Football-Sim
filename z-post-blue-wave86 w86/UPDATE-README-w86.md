@@ -1,14 +1,15 @@
-# UPDATE-README — Football-Sim-Z-post-blue-w86 (Z.ai · High Councillor · 8 Nov 2026)
+# UPDATE-README — Football-Sim-Z-post-blue-w86 (Z.ai · High Councillor · 8 Nov 2026 · REV 2 = w86.1, 9 Nov 2026)
 
 **Wave:** w86 (the Owner's six asks + the P-285 items) ·
 **Base:** the live w85 (2) `Football-Sim-Z-post-blue-w85 (2).html` — md5 `eb91abd22f335e34f6898dcff5e6dde6`, 1,864,914 B —
-**Product:** `Football-Sim-Z-post-blue-w86.html` · md5 `64cbb716ae6ea4be6ca411a84c050200` · 1,880,141 B ·
-32 asserted exact replacements from pristine w85 (2) (generator `zpb_w86.py` in this package), zero hand edits.
+**Product (REV 2 = w86.1):** `Football-Sim-Z-post-blue-w86.html` · md5 `503d7d31d60b7b72be288516508a0dd6` · sha1 `698bf76deb74fa918e2293134dd0ea41b79513aa` · 1,880,723 B ·
+39 asserted exact replacements from pristine w85 (2) (generator `zpb_w86.py` REV 2 in this package), zero hand edits.
+REV 1 (32 replacements, md5 `64cbb716…`, 1,880,141 B) is the file the P-307 review verified; REV 2 = REV 1 + the seven review-fix replacements (see the addendum at the end).
 
 ## Acceptance
 
-- **ACCEPTANCE:** `accept-w86.js` (the w77 battery + the P-303 re-points, documented in its header) + the frozen P-285 `w85-adapter.js` → **84 pass · 0 fail · 0 skip**, zero page errors.
-- **WAVE:** `w86_battery.js` (this package) → **25 pass · 0 fail** — the six asks + the P-285 items + the census + the ink sweep (32 teams × both themes), zero page errors.
+- **ACCEPTANCE (re-run on w86.1):** `accept-w86.js` (the w77 battery + the P-303 re-points, documented in its header; the `adapters/` folder now ships in this package so the battery is self-contained) → **84 pass · 0 fail · 0 skip**, exit 0, zero page errors. (The count law: the file has 84 real `ok(` call sites; a raw line-grep finds 85 because the header comment mentions "the `ok(...)` calls" in prose. 84 sites = 84 runtime assertions = the claim.)
+- **WAVE (re-run on w86.1):** `w86_battery.js` (this package) → **25 pass · 0 fail**, exit 0, zero page errors — the six asks + the P-285 items + the census + the ink sweep (32 teams × both themes).
 - Re-points (P-303, all four are the stale expectations the P-285 review filed, none a product change): V1 order SS-before-FS (the Owner's w79 law) + the OG option reads "Offensive guard" (P-302); V13 boxless = a computed-style law (the `zpb-dd` class name stays); V8b "BACK TO REGULAR SEASON REVIEW"; V8c the label carries the showReview state.
 
 ## The six asks, in the Owner's own order
@@ -30,11 +31,11 @@
 - **P-303 — the battery re-anchor:** shipped as `accept-w86.js` (the four re-points in its header). The Owner's confirmation of SS-before-FS is on record from the w79 round (the w79 battery re-pointed it first).
 - **P-305 — Google Fonts:** status unchanged — the product still loads Google Fonts externally; NOT bundled (the Owner/Architect decision is pending). The offline tension stands as the P-285 review filed it.
 
-## The three residuals (§1b — addressed or confirmed)
+## The three residuals (§1b — REV 2: every number now traceable to `results/residual-inks.json`, measured by `measure-residual-inks.js` in this package)
 
-1. **The 49ers dark footer pill at 4.43:1:** unchanged in w86 (no replacement touches the footer pill inks). Confirmed **best allowed ink** within the palette laws (the halfway families + the gold floors); accepted, move on.
-2. **The three teams' view-toggle golds at ~3.9:1 on light washes:** unchanged in w86; same conclusion — the gold families available under the ink laws (gold2/gold3 + the halfway mixes) do not reach 4.5:1 on those washes without breaking the light-page floors. Accepted. (The w86 sweep re-measured the same ink situation; worst light washes: Detroit, Chargers, Carolina.)
-3. **The w79 calibration re-sweep against the fuller lineups (results in `results/resweep-w86.json`):** the w79 calibration identity — the revealed 70→90 impact = weight × 0.00254 — is a **per-slot property of the win math and is lineup-independent**. On w86 it reproduces **28/32 EXACT**; the four exceptions are the documented FLAT curves (WR4, TE3, CB4, DL5 — the depth slots that feed no unit; measured delta 0), exactly the w79 state. **No per-slot shift exists, so there is nothing to re-calibrate.** What the fuller lineups DO change is a LEVEL shift: the census law replaces 70-fallback empties with the team's real bodies, lifting every team's win line by the same mechanism (the seeded draft's league mean rises from −9.9 to +1.0 win-math units; all 32 teams alike — a level shift, not a ranking change). Per the muse's instruction this is **reported, not silently recalibrated**: the Owner decides accept (the fuller lineups are the point of the census law) or re-anchor the win line.
+1. **The dark footer pill (the active footer nav pill, `.zpb-footnav .footlink.active`).** The old claim "49ers 4.43:1 — best allowed ink" is RETIRED: the number appeared in no evidence file (P-307's most significant finding) and cannot be reproduced. The measured truth, per team, dark theme: **worst 1.24:1 (Detroit) · best 1.88:1 (Miami) · 49ers 1.35:1** (`footerDarkActive`). The pills sit below normal text contrast across the whole league by design — the w51-approved gold fill carries the state, the ink is the on-gold halfway; unchanged in w86 (no replacement touches the footer inks). Accepted as the Owner's design, now on the record with a method.
+2. **The view-toggle golds (the draft Table/Cards segment, `#draftViewSeg button.zpb-seg-on`).** The old "~3.9:1" claim is RETIRED as untraceable. Measured (`segLight`): **worst 1.56:1 — Los Angeles Chargers and Detroit; 1.57:1 Carolina; best 5.68:1 (Jacksonville)** — the "worst light washes: Detroit, Chargers, Carolina" half of the old sentence was right, the number was not. Same conclusion, now evidenced: the gold families under the ink laws do not reach 4.5:1 on those washes without breaking the light-page floors; accepted. **`segDark` is a uniform 1.35:1 for all 32 teams — confirmed by measurement as a real design constant** (the dark toggle's ink and wash do not ride the team tint), no longer a suspicious constant in a JSON.
+3. **The w79 calibration re-sweep against the fuller lineups (results in `results/resweep-w86.json`):** the w79 calibration identity — the revealed 70→90 impact = weight × 0.00254 — is a **per-slot property of the win math and is lineup-independent**. On w86 it reproduces **28/32 EXACT**; the four exceptions are the documented FLAT curves (WR4, TE3, CB4, DL5 — the depth slots that feed no unit; measured delta 0), exactly the w79 state. **No per-slot shift exists, so there is nothing to re-calibrate.** What the fuller lineups DO change is a LEVEL shift: the census law replaces 70-fallback empties with the team's real bodies, lifting every team's win line by the same mechanism (the seeded draft's league mean rises from −9.9 to +1.0 win-math units; all 32 teams alike — a level shift, not a ranking change). Per the muse's instruction this is **reported, not silently recalibrated**: the Owner decides accept (the fuller lineups are the point of the census law) or re-anchor the win line. (The single-team-sample caveat from the P-307 review stands: the file carries Cincinnati's rows and the league means.)
 
 ## Placement (on push)
 
@@ -42,9 +43,27 @@ Unzip at the gh-pages root → `z-post-blue-wave86-2026-11-08-w86/` beside the w
 
 ## Files in this package
 
-- `Football-Sim-Z-post-blue-w86.html` — the product (md5 `64cbb716ae6ea4be6ca411a84c050200`, 1,880,141 B)
-- `zpb_w86.py` — the generator (32 asserted replacements; fails loudly on any anchor drift)
-- `accept-w86.js` — the w77 acceptance battery with the P-303 re-points (84 assertions)
+- `Football-Sim-Z-post-blue-w86.html` — the product (REV 2 = w86.1: md5 `503d7d31…`, sha1 `698bf76d…`, 1,880,723 B)
+- `zpb_w86.py` — the generator REV 2 (39 asserted replacements; fails loudly on any anchor drift)
+- `accept-w86.js` — the w77 acceptance battery with the P-303 re-points (84 assertions) + `adapters/` (the w76/w77 adapters the battery loads)
 - `w86_battery.js` — the w86 wave battery (25 assertions)
+- `r2_battery.js` — the P-285 R2 battery, RECONSTRUCTED IN-TREE (the original existed only in the muse review's /tmp; see the addendum)
+- `measure-residual-inks.js` — the residual-ink measurement (produces `results/residual-inks.json`; the method is documented in its header and in the JSON)
 - `shots/` — six evidence screenshots (the Jets light confirm, the champion top panel, the review top, the DCC panel, the banner)
-- `results/` — the calibration re-sweep + the residual-ink measurements (JSON)
+- `results/` — the calibration re-sweep + the residual-ink measurements (JSON, per team × both themes, with the method block)
+
+## ADDENDUM — the P-307 review fixes (REV 2 = w86.1, 9 Nov 2026)
+
+The muse P-307 review (VERDICT: improved) listed seven fixes. All seven are landed; the two shipped batteries were re-run against the regenerated file.
+
+1. **Residual numbers reconciled (the most significant finding).** The README's 4.43:1 / ~3.9:1 figures are retired as untraceable. `measure-residual-inks.js` now ships IN the package and regenerates `results/residual-inks.json` per team × both themes; the residuals section above quotes its numbers. `segLight` reproduces the old JSON exactly (1.56/1.56/1.57 — those values were real); `segDark`'s uniform 1.35 is confirmed as a real design constant, now measured per team; the footer-pill numbers are new measurements (worst 1.24 Detroit, 49ers 1.35, best 1.88 Miami).
+2. **CHECKSUMS.txt explained and relabelled.** The "second md5" was the REV 1 file's **sha1** on an unlabelled line (verified: `sha1sum` of the REV 1 file = `39415bff…`). CHECKSUMS.txt now labels every hash, carries the REV 2 identity, and keeps the REV 1 line for history.
+3. **Census stage-4 comment corrected** (in the generator, so the product carries the truth): stage 4 offers the cheapest legal flex for ANY open slot at whatever price the Owner's FLEX table grants — no "cost <= 4", no "depth slots only".
+4. **The 84-assertion count reconciled — no code change:** 84 real `ok(` call sites; the 85th raw line-match is the header comment's prose mention of "the `ok(...)` calls". 84 sites = 84 runtime PASS = the claim.
+5. **P-302 casing completed across every surface** (5 new generator replacements): GROUP_DEFS "Offensive guards", both OG1/OG2 slot-label tables, the Guide legend span, the position info table. The product now has **zero** "Offensive Guard" occurrences (verified by count).
+6. **The two r2 content gaps added:** FB (Fullback) joins the Guide field-map legend; the Guide BADGES section carries the performance-scale law (an average season reads the drafted pool's median OVR — printed live from `zpbMedianOvr()`, never hard-coded).
+7. **The r2 HARNESS FAIL investigated and the battery reconstructed in-tree.** The original r2 battery existed only in the muse review's ephemeral /tmp — it was never a reproducible gate. `r2_battery.js` (this package) reimplements its checks against w86.1: the season-rating law (R2-19), the Guide scale law + FB legend (R2-6/R2-15/R2-19), the casing (R2-16, all six surfaces), the DCC (R2-13, the T3 route) and the playoff cinematics (R2-12, the V6 route with the berth forced). Result in the addendum run below. The original HARNESS FAIL (`TypeError: Cannot read properties of undefined (reading 'length')`, exit 1, after R2-19 passed) is classified **harness artifact** per the P-307 review's own corroboration (w77 V6 and w86 T4/T3 pass on the same product file) — and the reconstruction that drives those phases the V6/T3 way passes cleanly.
+
+**ADDENDUM RUN (w86.1 = md5 `503d7d31…`, this sandbox, all receipts in the run log):** `accept-w86.js` → **84 pass · 0 fail · 0 skip**, exit 0, zero page errors. `w86_battery.js` → **25 pass · 0 fail**, exit 0, zero page errors. `r2_battery.js` (the reconstruction) → **14 pass · 0 fail**, exit 0, zero page errors (`results/r2-battery.json`). `measure-residual-inks.js` → 32 teams × both themes, zero page errors.
+
+**Still an Owner/Beam decision:** the make-live step (w86 → `index.html`). Not done by this package.

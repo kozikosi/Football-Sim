@@ -2,6 +2,13 @@
 # zpb_w86.py — the w86 generator: asserted exact replacements from the pristine w85 (2) base.
 # Base: Football-Sim-Z-post-blue-w85 (2).html · md5 eb91abd22f335e34f6898dcff5e6dde6 · 1,864,914 B
 # Every change is one asserted replacement; the script fails loudly if any anchor is absent.
+# REV 2 (w86.1, 9 Nov 2026 — the muse review fixes, P-307): (a) the census stage-4 header comment
+#   corrected (the code always read the whole FLEX table for any open slot; the comment claimed
+#   "cost <= 4" / "depth slots only"); (b) the P-302 guard casing extended to the five remaining
+#   surfaces (GROUP_DEFS, the two OG1/OG2 slot-label tables, the Guide legend span, the position
+#   info table); (c) the Guide field-map legend gains FB (Fullback); (d) the Guide BADGES section
+#   carries the performance-scale law (the season grade centers on the drafted pool's median OVR).
+#   The published w86 (md5 64cbb716…) is REV 1 (32 replacements); REV 2 emits w86.1 (39 replacements: REV 1's 32 + 7 new).
 import re, sys, hashlib
 
 SRC = '/home/z/my-project/work-w85.html'
@@ -160,8 +167,10 @@ window.zpbFillAllLineups = function(){
  //  Stage 2 signs the slot's own REAL-NFL body — the player who holds that job on the real
  //   roster (TEAM_DATA) — when nobody drafted him. The real TE2 lands at TE2, the real MIKE at MIKE.
  //  Stage 3 takes the team's best undrafted REAL body whose natural slots cover the need.
- //  Stage 4 offers a legal flex from the remaining pool (the Owner's FLEX table, cost <= 4) for
- //   the depth slots only (TE3/FB/CB4/DL5) — a real flex at a real price beats an empty slot.
+ //  Stage 4 offers the cheapest LEGAL flex from the remaining pool — for ANY open slot still
+ //   empty, at whatever price the Owner's FLEX table grants that slot (the whole table is the
+ //   authority, not a cost cap and not a depth-slot list) — a real flex at a real price beats
+ //   an empty slot.
  //  None of the w66 absurd cross-unit strays (DT at TE2, P at K) come back: stages 2-3 are the
  //   team's own real players at their real jobs, stage 4 rides the Owner's own flex law.
  (draftSim.rosters||[]).forEach(r=>{
@@ -445,6 +454,36 @@ rep("""  if(v && b && v !== 'viewDraft' && document.getElementById(v) && documen
 })();
 </script>""" + W86_BLOCK,
     'W86 payload block appended')
+
+# ============================================================
+# REV 2 (w86.1) · P-302 follow-through — the guard casing reaches every surface
+# ============================================================
+rep('{"key":"OGUARDS","label":"Offensive Guards"',
+    '{"key":"OGUARDS","label":"Offensive guards"',
+    'R2-2a GROUP_DEFS OGUARDS label')
+rep("OG1:'Offensive Guard 1', OG2:'Offensive Guard 2'",
+    "OG1:'Offensive guard 1', OG2:'Offensive guard 2'",
+    'R2-2b slot-label table (spaced form)')
+rep("OG1:'Offensive Guard 1',OG2:'Offensive Guard 2'",
+    "OG1:'Offensive guard 1',OG2:'Offensive guard 2'",
+    'R2-2c slot-label table (tight form)')
+rep("'<span><b>OG</b> Offensive Guard</span>'",
+    "'<span><b>OG</b> Offensive guard</span>'",
+    'R2-2d the Guide field-map legend OG span')
+rep("OG:{n:'Offensive Guard', tip:",
+    "OG:{n:'Offensive guard', tip:",
+    'R2-2e the position info table OG name')
+
+# ============================================================
+# REV 2 (w86.1) · the Guide gains the two r2 content gaps
+# (the muse P-307 review §2 items 5-6: FB joins the legend; the Guide carries the scale law)
+# ============================================================
+rep("+ '<span><b>RB</b> Running Back</span>'",
+    "+ '<span><b>RB</b> Running Back</span>' + '<span><b>FB</b> Fullback</span>' // w86.1 (P-307 fix): FB joins the legend — the fullback is a real rostered spot with a real modeled value",
+    'R2-3a the Guide field-map legend gains FB')
+rep("+ schip('100', 'QBR', 'The season performance grade the math computes for this player against his peers.')\n  + '</div>';",
+    "+ schip('100', 'QBR', 'The season performance grade the math computes for this player against his peers.')\n  + '<p class=\"narr\" style=\"flex-basis:100%;margin:10px 0 2px;\">THE PERFORMANCE SCALE \u00b7 an average season reads ' + (window.zpbMedianOvr ? window.zpbMedianOvr() : 76) + ' \u2014 the drafted pool\u2019s median OVR \u2014 and every season is measured against that line. The same law sets every SEASON RATING badge on the site.</p>'\n  + '</div>';",
+    'R2-3b the Guide BADGES section carries the performance-scale law')
 
 import os
 os.makedirs(os.path.dirname(OUT), exist_ok=True)
