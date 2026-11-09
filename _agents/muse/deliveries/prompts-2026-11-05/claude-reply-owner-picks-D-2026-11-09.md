@@ -26,19 +26,20 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - TE>EDGE: stays 12 (D 12.71 rounds to 12).
 - OLB>ILB: change to 6 (from 2; D 10.05 would round to 12, but the Owner overrides to 6 — see the engine change below).
 
-**The 10 over-priced rules — these come down under the rounding rule:**
-- OT>EDGE: 12 → 6 (D 5.38 rounds to 6). OT playing edge rusher.
-- SS>CB: 12 → 6 (D 5.07 rounds to 6). Strong safety playing cornerback.
-- FS>CB: 12 → 6 (D 5.06 rounds to 6). Free safety playing cornerback.
+**The 10 over-priced rules — Owner overrides (these do NOT all follow the rounding rule):**
+- OT>EDGE: 12 → 6 (D 5.38 rounds to 6). OT playing edge rusher. Follows the rounding rule.
+- SS>CB: 12 → 6 (D 5.07 rounds to 6). Strong safety playing cornerback. Follows the rounding rule.
+- FS>CB: 12 → 6 (D 5.06 rounds to 6). Free safety playing cornerback. Follows the rounding rule.
 - DT>EDGE: 12 → 6 (D 4.61 rounds to 6). Defensive tackle playing edge rusher. (Already listed above.)
-- RB>FS: 12 → 6 (D 4.37 rounds to 6). Running back playing free safety.
-- RB>SS: 12 → 6 (D 4.35 rounds to 6). Running back playing strong safety.
-- TE>ILB: 12 → 6 (D 4.28 rounds to 6). Tight end playing inside linebacker.
-- RB>TE: 12 → 0 (D 0.21 rounds to 0). Running back playing tight end. **Becomes FREE.**
-- SS>ILB: 12 → 0 (D 0.12 rounds to 0). Strong safety playing inside linebacker. **Becomes FREE.**
-- P>K: 12 → 0 (D 0.01 rounds to 0). Punter playing kicker. **Becomes FREE.**
+- RB>FS: KEEP at 12 (D 4.37 would round to 6, but the Owner overrides — a RB playing free safety is so unlikely in real life it stays heavily penalized).
+- RB>SS: KEEP at 12 (D 4.35 would round to 6, but the Owner overrides — same unlikeness reason).
+- TE>ILB: KEEP at 12 (D 4.28 would round to 6, but the Owner overrides — same unlikeness reason).
+- RB>TE: change to 6 (D 0.21 would round to 0, but the Owner overrides to 6 — a RB playing tight end is unlikely in real life, so it carries a penalty, not free).
+- SS>ILB: change to 6 (D 0.12 would round to 0, but the Owner overrides to 6 — same unlikeness reason).
+- P>K: change to 2 (D 0.01 would round to 0, but the Owner overrides to 2 — real-life reasons: a punter playing kicker is a different specialist job).
+- K>P: change to 2 (D ~0 would round to 0, but the Owner overrides to 2 — same real-life reason: a kicker playing punter is a different specialist job).
 
-Note: RB>TE, SS>ILB, and P>K drop to 0 because the source and destination have the same slot weight (RB1=TE1=250, SS=MIKE=300, P=K=50), so D is near 0. Under the rounding rule they become free moves. The Owner has not specified a floor — if a minimum penalty (e.g., 2) is wanted for any cross-position move, that is a further Owner call.
+Note: RB>TE, SS>ILB, P>K, and K>P would all round to 0 under the pure rounding rule (their D values are near 0 because source and destination have the same slot weight). The Owner overrides all four to a non-zero penalty on real-life/unlikeness grounds — no cross-position move is free.
 
 **Engine changes — slot weights:**
 - WILL: 150 → 200 (increase by 50). This is to offset the discrepancy between the flex penalty (6) and the theta value (D 10.05) for OLB>ILB. Raising WILL's weight raises its slope, which brings D for OLB>ILB down toward 6.
