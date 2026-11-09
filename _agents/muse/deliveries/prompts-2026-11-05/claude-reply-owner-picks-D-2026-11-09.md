@@ -34,6 +34,7 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - FB>TE (kept at 6 — few FBs, just-in-case rule).
 - C>OG (kept at 6 — Owner override, do not raise to 12 despite D 12.5).
 - OLB>ILB (set to 6 — D 10.05 would round to 12, but the Owner overrides to 6).
+- OLB>SS (set to 6 — D 9.99 would round to 12 at the OLD weights, but the WILL bump justifies 6: raising WILL 150→200 brings D for OLB>SS down to ~6.7, which rounds to 6. The 9.99 in the thetaprice file does NOT reflect the WILL bump; it was computed at WILL=150. After the bump, the math agrees with the Owner's -6.)
 - OT>EDGE, SS>CB, FS>CB (follow the rounding rule: D 5.38/5.07/5.06 round to 6).
 - FS>OLB, ILB>NICKEL, ILB>TE, OLB>NICKEL, DT>OT, OT>DT, SS>TE, TE>C, TE>DIME, TE>NICKEL, TE>OLB, TE>RB, WR>RB, WR>TE (Owner overrides — these would round to 0 under the pure rounding rule, but the Owner sets them to 6 on real-world grounds, e.g., WR>TE gets -6 for lack of blocking ability).
 - RB>TE and SS>ILB (set to 6, not 0 — unlikeness reason: a RB playing TE or a SS playing ILB is unlikely in real life, so it carries a penalty, not free).
@@ -47,7 +48,7 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 - EDGE>SS, ILB>DIME, OLB>DIME, QB>FS, SS>RB (set to 12 — these would round to 0 under the pure rounding rule, but the Owner sets them to 12 on real-world grounds; QB>FS is the Owner-locked flex, -12).
 
 **Engine changes — slot weights:**
-- WILL: 150 → 200 (increase by 50). To offset the discrepancy between the flex penalty (6) and the theta value (D 10.05) for OLB>ILB.
+- WILL: 150 → 200 (increase by 50). To offset the discrepancy between the flex penalty (6) and the theta value for OLB>ILB (D 10.05) and OLB>SS (D 9.99). Raising WILL's weight raises its slope, which brings D for both OLB>ILB and OLB>SS down to ~6.7, which rounds to 6 — matching the Owner's -6 for both. **Note: the D values in the thetaprice file (9.99 for OLB>SS, 10.05 for OLB>ILB) were computed at the OLD weights (WILL=150) and do NOT reflect this bump. Recompute D after applying the bump.**
 - C: 150 → 200 (increase by 50). Same reasoning — raise the center's engine value to offset the discrepancy for the C rules.
 - SAM: stays at 100 (no change — very few SAMs, only Isiah McDuffie is relevant).
 
@@ -55,7 +56,7 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 
 ## What this means for the rebuild
 
-Rebuild the flex table from D at θ=1.0, rounded to the nearest tier, with the Owner overrides above. Apply the WILL 150 → 200 and C 150 → 200 engine changes first, then recompute D for all rules with the new weights, then apply the rounding rule + overrides. Replay the draft scan with the rebuilt table. Report every rule that moves, so the Owner can review the complete diff before it lands. Resolve the EDGE>TE contradiction (REMOVE vs -6) with the Owner before landing.
+Rebuild the flex table from D at θ=1.0, rounded to the nearest tier, with the Owner overrides above. Apply the WILL 150 → 200 and C 150 → 200 engine changes first, then recompute D for all rules with the new weights, then apply the rounding rule + overrides. Replay the draft scan with the rebuilt table. Report every rule that moves, so the Owner can review the complete diff before it lands. The EDGE>TE contradiction is resolved (EDGE>TE is -6, NOT removed).
 
 ## Next after this build
 
