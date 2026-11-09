@@ -1,14 +1,24 @@
-// mathlab/flexcheck.mjs — validates flex.json and prints the diff against the product's CURRENT FLEX table (Pre-Colors, role level).
+// mathlab/flexcheck.mjs — validates flex.json against the Owner's D decision
+// (tiers 0/2/6/12, theta=1.0, cutoffs 1/4/9). QB flexes only to FS (at 12).
+// Prints the diff against the product's CURRENT FLEX table (Pre-Colors, role level).
 import fs from 'fs';
 const g = JSON.parse(fs.readFileSync(new URL('./flex.json', import.meta.url)));
 const roles = new Set(g.roles), dest = new Set([...g.roles, 'NICKEL', 'DIME']);
 let bad = 0; const bump = m => { console.log('FAIL', m); bad++; };
 for (const [f, t] of Object.entries(g.flex)) {
   if (!roles.has(f)) bump('unknown from-role ' + f);
-  for (const [d, p] of Object.entries(t)) { if (!dest.has(d)) bump(f + ' -> unknown ' + d); if (![0, 2, 4, 6].includes(p) && !(f === 'QB' && p === 10)) bump(f + '->' + d + ' penalty ' + p); }
+  for (const [d, p] of Object.entries(t)) {
+    if (!dest.has(d)) bump(f + ' -> unknown ' + d);
+    if (![0, 2, 6, 12].includes(p) && !(f === 'QB' && p === 12)) bump(f + '->' + d + ' penalty ' + p);
+  }
 }
+// every role must have a row; QB flexes only to FS
 roles.forEach(r => { if (!g.flex[r]) bump('role without row ' + r); });
-// current product table (Pre-Colors lines ~940-955), collapsed to roles. NICKEL = CB3 slot; the product has no FB/P/ILB/OLB flex rows.
+const qbRow = g.flex.QB || {};
+const qbDests = Object.keys(qbRow).filter(d => d !== 'QB');
+if (qbDests.length !== 1 || qbDests[0] !== 'FS') bump('QB flexes to destinations other than FS: ' + qbDests.join(','));
+// current product table (Pre-Colors lines ~940-955), collapsed to roles.
+// NICKEL = CB3 slot; the product has no FB/P/ILB/OLB flex rows.
 const cur = {
   QB: {}, RB: { TE: 6 }, FB: {}, WR: { TE: 4, SS: 4, FS: 4, CB: 4, RB: 6 }, TE: { ILB: 6, OLB: 6, SS: 6, FS: 6, RB: 6 },
   OT: { OG: 0, C: 0, DT: 4 }, OG: { C: 0, OT: 4, DT: 4 }, C: { OG: 0, OT: 4, DT: 4 },
