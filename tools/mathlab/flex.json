@@ -1,5 +1,5 @@
 {
- "_source": "FLEX TABLE, tiers -2 / -6 / -12, 97 rules (Owner 9 Nov 2026, D picks; Muse relay claude-flex-rebuild-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Counts: 19 at 12, 32 at 6, 16 at 2, 30 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
+ "_source": "FLEX TABLE, tiers -2 / -6 / -12, 97 rules (Owner 9 Nov 2026, D picks + 9 corrections; Muse relay claude-flex-rebuild and claude-flex-corrections-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Corrections 9 Nov (Owner overrides, not D): EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2. Counts: 19 at 12, 40 at 6, 15 at 2, 23 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
  "roles": [
   "QB",
   "RB",
@@ -68,7 +68,7 @@
   },
   "OG": {
    "OT": 2,
-   "C": 0,
+   "C": 2,
    "DT": 6,
    "EDGE": 6,
    "FB": 0
@@ -81,23 +81,23 @@
   },
   "DT": {
    "EDGE": 6,
-   "C": 0,
-   "OG": 2,
+   "C": 6,
+   "OG": 6,
    "OT": 6,
    "FB": 0
   },
   "EDGE": {
    "DT": 0,
    "OLB": 0,
-   "ILB": 0,
-   "C": 2,
-   "OG": 0,
-   "OT": 0,
+   "ILB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 6,
    "SS": 12,
-   "RB": 0,
+   "RB": 6,
    "FB": 0,
    "TE": 6,
-   "NICKEL": 0
+   "NICKEL": 6
   },
   "ILB": {
    "ILB": 0,

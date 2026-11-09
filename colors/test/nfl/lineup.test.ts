@@ -39,7 +39,7 @@ test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12,
   assert.equal(n, 97);
   const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
   for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
-  assert.deepEqual(tiers, { 0: 30, 2: 16, 6: 32, 12: 19 });       // Owner 9 Nov: 19 at 12, 32 at 6, 16 at 2, 30 at 0
+  assert.deepEqual(tiers, { 0: 23, 2: 15, 6: 40, 12: 19 });       // Owner 9 Nov after his 9 corrections: 19 at 12, 40 at 6, 15 at 2, 23 at 0
   for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
 });
 test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
@@ -234,24 +234,29 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth 1800 less in 3-4: its one ILB leaves a spare EDGE at the other inside spot (EDGE>ILB is free in the 9 Nov table) and a DT plays DE2 (DT>EDGE -6)', () => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth 2400 less in 3-4: its one ILB leaves one inside spot to a stand-in at -6 (300 x 6), the spare DT plays FB free (DT>FB 0), the natural FB covers TE3 at -6 (50 x 6) and a TE covers DIME at -6 (50 x 6)', () => {
   const flat = natural(70);                                   // one ILB only
   assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
-  assert.equal(WEIGHT.DE2, 300);
-  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 1800);     // pinned 9 Nov 2026: 6 points x 300 on DE2, the only flex that costs anything
+  assert.equal(WEIGHT.TE3, 50); assert.equal(WEIGHT.DIME, 50);
+  assert.equal(lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value, 2400);     // pinned 9 Nov 2026 after the Owner's 9 corrections (the prompt expected 3600; the lineup finds this cheaper arrangement)
   const placed = lineupFor(flat, '3-4').placements;
   const flexed = placed.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
-  assert.deepEqual(flexed, [['DE2', 'DT', 6]]);
-  const edgeInside = placed.find((p) => p.player?.role === 'EDGE' && (p.slot.slot === 'MIKE' || p.slot.slot === 'DT2'))!;   // the spare EDGE stands in at one of the two ILB spots, free
-  assert.ok(edgeInside);
-  assert.equal(edgeInside.penalty, 0);
+  assert.equal(flexed.length, 3);
+  assert.ok(flexed.every((f) => f[2] === 6));
+  const inside = flexed.find((f) => f[0] === 'MIKE' || f[0] === 'DT2')!;   // which role stands in inside (SS, EDGE or OLB all cost 6) is a tie; the price is not
+  assert.ok(inside);
+  assert.deepEqual(flexed.find((f) => f[0] === 'TE3'), ['TE3', 'FB', 6]);
+  assert.deepEqual(flexed.find((f) => f[0] === 'DIME'), ['DIME', 'TE', 6]);
+  assert.equal(placementOf(lineupFor(flat, '3-4'), 'FB').player?.role, 'DT');   // DT>FB is free
+  assert.equal(placementOf(lineupFor(flat, '3-4'), 'FB').penalty, 0);
 });
 test('base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same', () => {
   const ps = [...natural(70), mk('ILB', 70)];
   const l = lineupFor(ps, '3-4');
   assert.ok(l.placements.every((p) => p.penalty === 0));
   assert.equal(placementOf(l, 'DT2').player?.role, 'ILB'); assert.equal(placementOf(l, 'MIKE').player?.role, 'ILB');   // both inside spots are 300 now (6 Nov 2026)
-  assert.deepEqual(l.bench.map((p) => p.role), ['DT']);
+  assert.equal(l.bench.length, 1);
+  assert.ok(['DT', 'FB'].includes(l.bench[0]!.role));          // DT>FB is free since 9 Nov, so the spare DT and the natural FB tie for the one seat on the bench
   assert.equal(l.value - lineupFor(ps, '4-3').value, 0);      // the same position, the same weight: a pure personnel decision
 });
 test('base: two elite inside linebackers add more to a 3-4 lineup than to a 4-3 one', () => {

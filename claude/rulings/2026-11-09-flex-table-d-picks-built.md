@@ -14,3 +14,9 @@ Owner rules supersede theta. 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, D
 2. Base totals: 4-3 natives in the 3-4 now lose 1800: a spare EDGE plays an inside spot free, a DT plays DE2 at -6 (300 x 6). Old: 1850.
 3. K>P and P>K are both 2 (was 0 and 12).
 4. FB can go to RB (2) or TE (6) only; QB>FS stays 12.
+
+## Owner corrections applied (9 Nov, Muse `claude-flex-corrections-2026-11-09.md`)
+9 rules listed (the prompt says both "8" and "9"; the counts only reconcile for 9). Owner overrides, not D: EDGE>ILB, EDGE>OG, EDGE>OT, EDGE>RB, EDGE>NICKEL, DT>C, DT>OG, EDGE>C -> 6; OG>C -> 2.
+- VERIFIED: tiers now {0: 23, 2: 15, 6: 40, 12: 19} (97 rules). flexcheck OK, flexdl5 OK (flex-dl5.json unchanged, as predicted), `npm test` 290/290. PIN_ENGINE nfl1.108bcc20a9f253.
+- DISCREPANCY: the prompt expects the 3-4 base total 3600; the lineup gives 2400. It finds a cheaper arrangement: a stand-in inside at -6 (300 x 6), the spare DT at FB free (DT>FB 0), the natural FB at TE3 -6 (50 x 6), a TE at DIME -6 (50 x 6). Pinned at 2400.
+- Test 92 (second natural ILB): the bench is now DT or FB (a tie, since DT>FB is free); pinned as either.
