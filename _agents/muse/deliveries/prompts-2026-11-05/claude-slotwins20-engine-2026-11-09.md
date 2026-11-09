@@ -12,6 +12,10 @@ Read this first: `git show origin/council/muse:_agents/START-HERE.md` (boot), th
 
 **Why this follows from the earlier work.** Pickle's flexrebuild finding (2026-11-09) showed that slotWins20 does not use SLOTS[].weight — the measurement runs the matchup model (`RATING_SPECS`), which is independent of the input weight table. The Owner's conclusion: if the measurement is the truth (model-first), then the engine should USE the measurement everywhere, not keep a separate input table driving the user-facing values. The input table becomes a reference only. This is the logical conclusion of model-first.
 
+## Link to P-321 (the measurement baseline is under evaluation)
+
+The slotWins20 measurement itself is under evaluation (P-321, design note `_agents/muse/deliveries/slotwins20-measurement-improvement-2026-11-09.md`). The MUSE seat's proposal: per-position, pool-grounded, local slope — each position centered on its own pool average, measured at center±5, everything else at position-specific averages, one shared function parameterized by position. The WILL/C bump you build here must be evaluated against the NEW measurement once P-321 lands, not just the old 70→90. The two tracks are linked: P-318 changes what the engine values; P-321 changes how we measure it. Report both against the same (new) baseline once P-321 lands.
+
 ## What to build
 
 1. **Change the engine math so slotWins20 for WILL and C goes up** (the 50 bump, applied to the engine, not the weight table). Report what you changed and by how much slotWins20 for WILL and C moved (before/after, with the command and output).
