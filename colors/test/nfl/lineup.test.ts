@@ -33,13 +33,13 @@ test('table: unit counts are 16 offense, 14 defense, 2 special', () => {
 });
 
 // ---- flex ----
-test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 9 Nov, 97 rules) rule by rule', () => {
+test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 10 Nov, 99 rules) rule by rule', () => {
   for (const role of flexJson.roles) assert.deepEqual(FLEX[role as Role], flexJson.flex[role], role);
   const n = Object.values(FLEX).reduce((t, r) => t + Object.keys(r).length, 0);
-  assert.equal(n, 97);
+  assert.equal(n, 99);
   const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
   for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
-  assert.deepEqual(tiers, { 0: 23, 2: 15, 6: 40, 12: 19 });       // Owner 9 Nov after his 9 corrections: 19 at 12, 40 at 6, 15 at 2, 23 at 0
+  assert.deepEqual(tiers, { 0: 23, 2: 10, 6: 43, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12: 23 at 12, 43 at 6, 10 at 2, 23 at 0
   for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
 });
 test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
@@ -65,10 +65,10 @@ test('flex: a quarterback plays only QB or FS (-12); no RB, no WR, no SS, no eme
   const f = fit('RB', 'CB');
   assert.deepEqual([f.legal, f.emergency, f.penalty], [true, true, EMERGENCY_PENALTY]);
 });
-test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 2 (Owner 9 Nov)', () => {
+test('flex: NICKEL and DIME are free for CB, SS and FS; WR pays 6 (Owner 10 Nov cross-side floor)', () => {
   for (const r of ['CB', 'SS', 'FS'] as Role[]) for (const d of ['NICKEL', 'DIME'] as Dest[]) assert.equal(fit(r, d).penalty, 0, r + d);
-  assert.equal(fit('WR', 'NICKEL').penalty, 2);
-  assert.equal(fit('WR', 'DIME').penalty, 2);
+  assert.equal(fit('WR', 'NICKEL').penalty, 6);
+  assert.equal(fit('WR', 'DIME').penalty, 6);
 });
 test('flex: DL5 is natural for DT and EDGE and costs the cheaper of role->DT, role->EDGE for the rest', () => {
   assert.equal(fit('DT', 'DL5').penalty, 0);

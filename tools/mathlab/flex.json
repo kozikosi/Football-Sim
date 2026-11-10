@@ -1,5 +1,5 @@
 {
- "_source": "FLEX TABLE, tiers -2 / -6 / -12, 97 rules (Owner 9 Nov 2026, D picks + 9 corrections; Muse relay claude-flex-rebuild and claude-flex-corrections-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Corrections 9 Nov (Owner overrides, not D): EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2. Counts: 19 at 12, 40 at 6, 15 at 2, 23 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
+ "_source": "FLEX TABLE, tiers -2 / -6 / -12, 99 rules (Owner 9 Nov 2026, D picks + 9 corrections; Muse relay claude-flex-rebuild and claude-flex-corrections-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Corrections 9 Nov (Owner overrides, not D): EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2. Counts: 19 at 12, 40 at 6, 15 at 2, 23 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot. 10 Nov 2026 (Muse relay claude-flex-floor-2026-11-10): cross-side floor, WR>CB/DIME/FS/NICKEL/SS 2 to 6; item 3, TE>DIME 6 to 12, TE>FS 6 to 12, ILB>FS 12 new, OLB>FS 12 new. Item 7 (SAM rules) NOT applied: SAM is a slot whose dest is OLB, so the OLB column already prices it. Counts: 23 at 12, 43 at 6, 10 at 2, 23 at 0 (99 rules).",
  "roles": [
   "QB",
   "RB",
@@ -37,11 +37,11 @@
   "WR": {
    "RB": 6,
    "TE": 6,
-   "CB": 2,
-   "FS": 2,
-   "SS": 2,
-   "NICKEL": 2,
-   "DIME": 2
+   "CB": 6,
+   "FS": 6,
+   "SS": 6,
+   "NICKEL": 6,
+   "DIME": 6
   },
   "TE": {
    "FB": 0,
@@ -55,9 +55,9 @@
    "OLB": 6,
    "ILB": 12,
    "SS": 6,
-   "FS": 6,
+   "FS": 12,
    "NICKEL": 6,
-   "DIME": 6
+   "DIME": 12
   },
   "OT": {
    "OG": 0,
@@ -107,7 +107,8 @@
    "FB": 0,
    "TE": 6,
    "NICKEL": 6,
-   "DIME": 12
+   "DIME": 12,
+   "FS": 12
   },
   "OLB": {
    "OLB": 0,
@@ -117,7 +118,8 @@
    "FB": 0,
    "TE": 6,
    "NICKEL": 6,
-   "DIME": 12
+   "DIME": 12,
+   "FS": 12
   },
   "SS": {
    "NICKEL": 0,
