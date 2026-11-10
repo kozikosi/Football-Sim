@@ -1,0 +1,53 @@
+self-doable constraint: OK (need <= have for every job)
+
+ZAI-D1-B (SKETCH): 40 job pairs | cuts 1/4/9 | lambda 0.4 | cross-class floor 6
+derived flex prices (tier: raw  — M on duty, S):
+       C>C:  0   raw  0.00  (M  0.00 on -, S  0.00)
+      C>PF:  6   raw  7.44  (M  4.80 on SHOT3, S  6.60)
+      C>PG: 12   raw 27.28  (M 15.00 on HREP, S 30.70)
+     C>PWF: 12   raw 19.60  (M 10.40 on PLAY, S 23.00)
+     C>SB5:  6   raw  7.28  (M  4.80 on SHOT3, S  6.20)
+      C>SF: 12   raw 13.12  (M  6.00 on SHOT3, S 17.80)
+      C>SG: 12   raw 18.72  (M  8.40 on SHOT3, S 25.80)
+     C>WD3: 12   raw 11.72  (M  8.40 on SHOT3, S  8.30)
+      PF>C:  6   raw  6.02  (M  4.50 on RIM, S  3.80)
+     PF>PF:  0   raw  0.00  (M  0.00 on -, S  0.00)
+     PF>PG: 12   raw 20.42  (M 13.50 on HREP, S 17.30)
+    PF>PWF: 12   raw 13.04  (M  7.80 on PLAY, S 13.10)
+    PF>SB5:  2   raw  3.00  (M  2.00 on HELP, S  2.50)
+     PF>SF:  6   raw  4.40  (M  2.00 on PDEF, S  6.00)
+     PF>SG:  6   raw  8.92  (M  3.60 on SHOT3, S 13.30)
+    PF>WD3:  6   raw  5.24  (M  3.60 on SHOT3, S  4.10)
+      PG>C: 12   raw 19.56  (M 12.00 on RIM, S 18.90)
+     PG>PF: 12   raw 13.22  (M  7.50 on RIM, S 14.30)
+     PG>PG:  0   raw  0.00  (M  0.00 on -, S  0.00)
+    PG>PWF:  6   raw  4.02  (M  3.30 on REB, S  1.80)
+    PG>SB5: 12   raw 13.88  (M  9.00 on RIM, S 12.20)
+     PG>SF:  6   raw  6.18  (M  3.30 on REB, S  7.20)
+     PG>SG:  6   raw  4.00  (M  2.40 on SHOT3, S  4.00)
+    PG>WD3:  6   raw  5.28  (M  2.40 on SHOT3, S  7.20)
+      SF>C: 12   raw  9.36  (M  6.00 on RIM, S  8.40)
+     SF>PF:  6   raw  3.44  (M  2.20 on REB, S  3.10)
+     SF>PG: 12   raw 14.30  (M 10.50 on HREP, S  9.50)
+    SF>PWF:  6   raw  7.18  (M  4.50 on HREP, S  6.70)
+    SF>SB5:  6   raw  4.24  (M  3.00 on RIM, S  3.10)
+     SF>SF:  0   raw  0.00  (M  0.00 on -, S  0.00)
+     SF>SG:  6   raw  2.68  (M  2.40 on SHOT3, S  0.70)
+    SF>WD3:  2   raw  2.68  (M  2.40 on SHOT3, S  0.70)
+      SG>C: 12   raw 18.04  (M 12.00 on RIM, S 15.10)
+     SG>PF: 12   raw 11.70  (M  7.50 on RIM, S 10.50)
+     SG>PG: 12   raw 12.24  (M  9.00 on HREP, S  8.10)
+    SG>PWF:  6   raw  6.90  (M  3.90 on PLAY, S  7.50)
+    SG>SB5: 12   raw 12.28  (M  9.00 on RIM, S  8.20)
+     SG>SF:  6   raw  3.36  (M  2.20 on REB, S  2.90)
+     SG>SG:  0   raw  0.00  (M  0.00 on -, S  0.00)
+    SG>WD3:  6   raw  1.40  (M  1.00 on PDEF, S  1.00)
+
+lambda ablation (the S-term under correlated duties — see delivery note):
+  lambda 0.0: tier 0: 5  tier 2: 15  tier 6: 11  tier 12: 9
+  lambda 0.2: tier 0: 5  tier 2: 11  tier 6: 9  tier 12: 15
+  lambda 0.3: tier 0: 5  tier 2: 10  tier 6: 10  tier 12: 15
+  lambda 0.4: tier 0: 5  tier 2: 6  tier 6: 13  tier 12: 16
+  lambda 0.5: tier 0: 5  tier 2: 6  tier 6: 12  tier 12: 17
+  lambda 0.7: tier 0: 5  tier 2: 4  tier 6: 10  tier 12: 21
+  lambda 1.0: tier 0: 5  tier 2: 3  tier 6: 9  tier 12: 23
