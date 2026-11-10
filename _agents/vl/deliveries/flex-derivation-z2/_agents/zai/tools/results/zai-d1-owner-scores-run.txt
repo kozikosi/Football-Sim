@@ -1,0 +1,75 @@
+live table: architect/engine-and-seats flex.json — 99 rules, byte-identical to my w55 snapshot (0 diffs)
+
+=== V0 baseline (report only) ===
+self-doable: OK
+fit: exact 95 / off-by-one 3 / hard 1 / tier-error 5
+  C>OG: owner 6 -> model 2  raw 1.20  (M 1.20 on RDEF, S 0.00)  off-by-one
+  C>OT: owner 12 -> model 2  raw 2.03  (M 1.55 on PBLK, S 1.20)  HARD
+  EDGE>RB: owner 6 -> model 12  raw 10.40  (M 7.20 on CARRY, S 8.00)  off-by-one
+  TE>OT: owner 12 -> model 6  raw 8.63  (M 7.75 on PBLK, S 2.20)  off-by-one
+  residuals: ['C>OG', 'C>OT', 'EDGE>RB', 'TE>OT']
+
+=== V1 EDGE CARRY 2->4 only ===
+self-doable: OK
+fit: exact 96 / off-by-one 2 / hard 1 / tier-error 4
+  C>OG: owner 6 -> model 2  raw 1.20  (M 1.20 on RDEF, S 0.00)  off-by-one
+  C>OT: owner 12 -> model 2  raw 2.03  (M 1.55 on PBLK, S 1.20)  HARD
+  EDGE>RB: owner 6 -> model 6  raw 8.60  (M 5.40 on CARRY, S 8.00)  exact
+  TE>OT: owner 12 -> model 6  raw 8.63  (M 7.75 on PBLK, S 2.20)  off-by-one
+  residuals: ['C>OG', 'C>OT', 'TE>OT']
+
+=== V2a C PBLK 9->6 only, NEED C PBLK unchanged 8 (MUSE's run) ===
+self-doable: VIOLATED [('C', 'PBLK', 6, 8)]
+fit: exact 96 / off-by-one 3 / hard 0 / tier-error 3
+  C>OG: owner 6 -> model 6  raw 5.13  (M 4.65 on PBLK, S 1.20)  exact
+  C>OT: owner 12 -> model 6  raw 6.68  (M 6.20 on PBLK, S 1.20)  off-by-one
+  EDGE>RB: owner 6 -> model 12  raw 10.40  (M 7.20 on CARRY, S 8.00)  off-by-one
+  TE>OT: owner 12 -> model 6  raw 8.63  (M 7.75 on PBLK, S 2.20)  off-by-one
+  residuals: ['C>OT', 'EDGE>RB', 'TE>OT']
+
+=== V2b C PBLK 9->6 with paired NEED C PBLK 8->6 (the honest pair) ===
+self-doable: OK
+fit: exact 96 / off-by-one 3 / hard 0 / tier-error 3
+  C>OG: owner 6 -> model 6  raw 5.13  (M 4.65 on PBLK, S 1.20)  exact
+  C>OT: owner 12 -> model 6  raw 6.68  (M 6.20 on PBLK, S 1.20)  off-by-one
+  EDGE>RB: owner 6 -> model 12  raw 10.40  (M 7.20 on CARRY, S 8.00)  off-by-one
+  TE>OT: owner 12 -> model 6  raw 8.63  (M 7.75 on PBLK, S 2.20)  off-by-one
+  residuals: ['C>OT', 'EDGE>RB', 'TE>OT']
+
+=== V3 TE PBLK 5->4 only ===
+self-doable: OK
+fit: exact 96 / off-by-one 2 / hard 1 / tier-error 4
+  C>OG: owner 6 -> model 2  raw 1.20  (M 1.20 on RDEF, S 0.00)  off-by-one
+  C>OT: owner 12 -> model 2  raw 2.03  (M 1.55 on PBLK, S 1.20)  HARD
+  EDGE>RB: owner 6 -> model 12  raw 10.40  (M 7.20 on CARRY, S 8.00)  off-by-one
+  TE>OT: owner 12 -> model 12  raw 10.18  (M 9.30 on PBLK, S 2.20)  exact
+  residuals: ['C>OG', 'C>OT', 'EDGE>RB']
+
+=== V4 HEADLINE: EDGE CARRY 4 + C PBLK 6 (NEED 6) + TE PBLK 4 ===
+self-doable: OK
+fit: exact 98 / off-by-one 1 / hard 0 / tier-error 1
+  C>OG: owner 6 -> model 6  raw 5.13  (M 4.65 on PBLK, S 1.20)  exact
+  C>OT: owner 12 -> model 6  raw 6.68  (M 6.20 on PBLK, S 1.20)  off-by-one
+  EDGE>RB: owner 6 -> model 6  raw 8.60  (M 5.40 on CARRY, S 8.00)  exact
+  TE>OT: owner 12 -> model 12  raw 10.18  (M 9.30 on PBLK, S 2.20)  exact
+  residuals: ['C>OT']
+
+=== V5 EDGE CARRY 4 + C PBLK 7 (NEED 7) + TE PBLK 4 ===
+self-doable: OK
+fit: exact 97 / off-by-one 2 / hard 0 / tier-error 2
+  C>OG: owner 6 -> model 2  raw 3.58  (M 3.10 on PBLK, S 1.20)  off-by-one
+  C>OT: owner 12 -> model 6  raw 5.13  (M 4.65 on PBLK, S 1.20)  off-by-one
+  EDGE>RB: owner 6 -> model 6  raw 8.60  (M 5.40 on CARRY, S 8.00)  exact
+  TE>OT: owner 12 -> model 12  raw 10.18  (M 9.30 on PBLK, S 2.20)  exact
+  residuals: ['C>OG', 'C>OT']
+
+=== V6 EDGE CARRY 4 + C PBLK 4 (NEED 4) + TE PBLK 4 — the 99/99 variant, NOT the Owner's choice ===
+self-doable: OK
+fit: exact 99 / off-by-one 0 / hard 0 / tier-error 0
+  C>OG: owner 6 -> model 6  raw 8.23  (M 7.75 on PBLK, S 1.20)  exact
+  C>OT: owner 12 -> model 12  raw 9.78  (M 9.30 on PBLK, S 1.20)  exact
+  EDGE>RB: owner 6 -> model 6  raw 8.60  (M 5.40 on CARRY, S 8.00)  exact
+  TE>OT: owner 12 -> model 12  raw 10.18  (M 9.30 on PBLK, S 2.20)  exact
+  residuals: []
+
+full V4 diff written to results-v4-full-diff.md
