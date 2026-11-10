@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 // tools/council.mjs — the whole council protocol in one tool (v9, 9 Nov 2026). Spec: _agents/COUNCIL.md
-// v9 fixes (MUSE, council infrastructure owner 9 Nov 2026): (1) entry guard compares realpaths — macOS /tmp symlinks to /private/tmp so the old string comparison never fired and the tool exited silently with no output (Iceman, Inkling, VL all hit it). (2) CONFIRM: files classify as notes, not work — VL's P-008 confirm had made him an author and dropped his review (nrev 8→7). (3) a failed git fetch now prints a WARNING banner instead of silently computing a board from stale refs. (4) `next` prints the top open PRIORITIES rows as a fallback when the derived list is empty.
+// v10 fixes (MUSE, council infrastructure owner 10 Nov 2026): (1) `next` prints the P-item brief for REVIEW items and for the fallback rows — before, REVIEW printed only the file to read and the fallback only ID/status/title, so the reviewer had to grep the 132 KB PRIORITIES.md to understand the item (P-331). The brief is truncated to 200 chars in `next`; `show <ID>` prints it in full. (2) `next` weights P1 items referenced in the current council prompt above old P0 reviews — before, it sorted by tier only, so old P0 reviews surfaced before current P1 work (P-331). The latest council prompt file (`_agents/muse/deliveries/**/council-prompt-*.md` on origin/council/muse) is read and its P-IDs are boosted to the top of the list, marked ★.
 //   node tools/council.mjs next [--seat <s>]     what should this seat do now (default seat = branch name)
 //   node tools/council.mjs board                 every live item with its state
 //   node tools/council.mjs show <ID>             the item's final spec in one read: work + improved reviews
@@ -108,8 +108,13 @@ export const derive = (table, recs, { now = Date.now(), build = null, epoch = 0 
       if (it.probeOk) it.retired = { why: 'BUILT', by: 'probe', ev: `all ${it.probes.length} probe(s) pass on the current build`, t: now };
     }
     const age = (now - touched) / 864e5;
-    if (!it.retired && /^P[23]$/.test(it.tier) && age >= CFG.staleDays) it.retired = { why: 'STALE', by: 'auto', ev: `no activity for ${Math.floor(age)} days; any seat can KEEP or REVIVE`, t: now };
-    else if (!it.retired && /^P[23]$/.test(it.tier) && age >= CFG.warnDays) it.staleIn = Math.ceil(CFG.staleDays - age);
+    // v10 (P-331): do not auto-retire when touched is 0 — that means the item has no recorded
+    // activity AND no epoch (STALE-EPOCH.txt empty) AND no added date, so its age is unknowable.
+    // Before this fix, newly added P2/P3 rows (added: null, no files yet) had touched = 0, age ~20,000
+    // days, and were instantly auto-retired STALE on the next board/next run (P-330 and P-331 were
+    // both retired this way the day they were filed). A stale item needs evidence of inactivity.
+    if (!it.retired && touched > 0 && /^P[23]$/.test(it.tier) && age >= CFG.staleDays) it.retired = { why: 'STALE', by: 'auto', ev: `no activity for ${Math.floor(age)} days; any seat can KEEP or REVIVE`, t: now };
+    else if (!it.retired && touched > 0 && /^P[23]$/.test(it.tier) && age >= CFG.warnDays) it.staleIn = Math.ceil(CFG.staleDays - age);
     const works = it.files.filter((x) => x.kind === 'work'), lastWork = works.at(-1), authors = new Set(works.map((x) => x.seat));
     // verdicts survive later work: each seat's LATEST verdict stands (one vote per seat, no double reviews); the author(s) never vote.
     // A rejection is answered by work filed after it; the rejecter may then review again (their new verdict replaces the old one).
@@ -137,19 +142,39 @@ export const derive = (table, recs, { now = Date.now(), build = null, epoch = 0 
 };
 
 // what to do next for one seat
+// v10 (P-331): `state.highlights` is a Set of P-IDs mentioned in the current council prompt (set by loadState; absent in tests → no boost). Highlighted items sort first (before tier), marked ★ in the text.
 export const nextFor = (state, me) => {
+  const hl = state.highlights || new Set();
   const out = [];
-  for (const r of state.recs) if (r.kind === 'ask' && !state.answered.has(r.base) && r.seat !== me) out.push({ score: -1, eff: -1, text: `ANSWER ${r.base}: ${r.text}${r.format ? `  [format: ${r.format}]` : ''}` });
+  for (const r of state.recs) if (r.kind === 'ask' && !state.answered.has(r.base) && r.seat !== me) out.push({ score: -1, eff: -1, highlight: 0, text: `ANSWER ${r.base}: ${r.text}${r.format ? `  [format: ${r.format}]` : ''}` });
   for (const it of state.items.values()) {
     if (it.retired || it.blocked.length || it.status === 'REVIEWED') continue;
-    if (it.status === 'OPEN' || it.status === 'REWORK') out.push({ score: 1, eff: it.eff, it, text: `WORK ${it.id} [P${it.eff}${it.up ? '↑' : ''}] ${it.title}\n   BRIEF: ${it.work}` });
-    else if (!it.authors.includes(me) && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, text: `REVIEW ${it.id} [P${it.eff}] (${it.nrev} done${it.lastRate === null ? '' : `, last catch ${Math.round(it.lastRate * 100)}%`}; stops at <${CFG.governor * 100}% once ${CFG.floor}+, cap ${CFG.softCap}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}` });
+    const highlight = hl.has(it.id) ? 0 : 1;
+    const star = highlight === 0 ? '★ ' : '';
+    const brief = (it.work || '').replace(/\s+/g, ' ').trim();
+    const briefShort = brief.length > 200 ? brief.slice(0, 200) + '…' : brief;
+    if (it.status === 'OPEN' || it.status === 'REWORK') out.push({ score: 1, eff: it.eff, it, highlight, text: `${star}WORK ${it.id} [P${it.eff}${it.up ? '↑' : ''}] ${it.title}\n   BRIEF: ${it.work}` });
+    else if (!it.authors.includes(me) && !it.reviewers.includes(me)) out.push({ score: 0, eff: it.eff, it, highlight, text: `${star}REVIEW ${it.id} [P${it.eff}] (${it.nrev} done${it.lastRate === null ? '' : `, last catch ${Math.round(it.lastRate * 100)}%`}; stops at <${CFG.governor * 100}% once ${CFG.floor}+, cap ${CFG.softCap}) ${it.title}\n   READ: ${it.lastWork.ref}:${it.lastWork.name}\n   BRIEF: ${briefShort}  [full brief: node tools/council.mjs show ${it.id}]` });
   }
-  return out.sort((a, b) => a.eff - b.eff || a.score - b.score || (a.it?.id || '').localeCompare(b.it?.id || ''));
+  return out.sort((a, b) => a.highlight - b.highlight || a.eff - b.eff || a.score - b.score || (a.it?.id || '').localeCompare(b.it?.id || ''));
 };
 
 // ---------- git IO ----------
 const prefix = 'refs/remotes/origin/';
+// v10 (P-331): the P-IDs mentioned in the current council prompt's WORK section. The latest council-prompt file
+// (`_agents/muse/deliveries/**/council-prompt-*.md`, dated YYYY-MM-DD in the name) is read from
+// origin/council/muse and the P-IDs in its "Work to take" section are returned. Only that section
+// counts — the "Recent council work" section names already-reviewed items, and boosting those would
+// put old P0 reviews even higher. Empty set when no prompt file is found (or the fetch failed) —
+// `next` then behaves exactly as before.
+const promptHighlights = () => {
+  const files = g('ls-tree', '-r', '--name-only', 'origin/council/muse', '--', '_agents/muse/deliveries/').split('\n').filter((f) => /(^|\/)council-prompt-[^/]*\.md$/.test(f));
+  const dated = files.map((f) => { const base = f.split('/').pop(); return { f, d: (base.match(/(\d{4}-\d{2}-\d{2})/) || [])[1] || '' }; }).filter((x) => x.d).sort((a, b) => b.d.localeCompare(a.d));
+  if (!dated.length) return new Set();
+  const text = g('show', `origin/council/muse:${dated[0].f}`);
+  const work = (text.split(/^## Work to take/m)[1] || '').split(/^## /m)[0] || '';
+  return new Set((work.match(/\bP-\d{3}\b/g) || []));
+};
 const loadState = () => {
   // v9: a failed fetch used to be swallowed (g() returns '' on error) and the board was computed from stale refs with no warning. Track it and surface it.
   let fetchOk = true;
@@ -160,7 +185,12 @@ const loadState = () => {
   const arch = refs.find((r) => r === 'origin/architect/engine-and-seats') || refs.find((r) => /^origin\/architect\//.test(r));   // the Architect's branch by name; any other architect/* only as a fallback
   const onArch = /^architect\//.test(g('branch', '--show-current')); // the Architect's working copy is the newest truth
   const local = (path) => (fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : '');
-  const readFrom = (path) => (onArch && local(path)) || [arch, 'origin/council/base'].filter(Boolean).map((r) => g('show', `${r}:${path}`)).find(Boolean) || local(path);
+  // v10 (P-331): read council docs from origin/council/muse FIRST — that is the live queue (MUSE is
+  // custodian, Owner 2026-11-09). Before this fix, readFrom read the Architect's branch first, so a
+  // council seat running `next`/`board` read the Architect's (stale) PRIORITIES.md, not the live
+  // queue — newly filed items (P-330, P-331) never appeared. Files council/muse lacks (BUILD.txt,
+  // STALE-EPOCH.txt) fall through to the Architect's branch, then council/base, then the local file.
+  const readFrom = (path) => (onArch && local(path)) || ['origin/council/muse', arch, 'origin/council/base'].filter(Boolean).map((r) => g('show', `${r}:${path}`)).find(Boolean) || local(path);
   const table = parseTable(readFrom('_agents/PRIORITIES.md'));
   if (!table.size) { console.error('cannot read _agents/PRIORITIES.md (git fetch origin first)'); process.exit(1); }
   const seen = new Set(), recs = [];
@@ -177,6 +207,7 @@ const loadState = () => {
   const epochTxt = (readFrom('_agents/STALE-EPOCH.txt').split('\n')[0] || '').trim();
   const st = derive(table, recs, { build: build || null, epoch: epochTxt ? Date.parse(epochTxt) || 0 : 0 });
   st.fetchOk = fetchOk; st.refCount = refs.length;
+  st.highlights = promptHighlights();   // v10 (P-331): P-IDs in the current council prompt, boosted in `next`
   return st;
 };
 
@@ -206,8 +237,9 @@ function main() {
     if (!list.length) {
       console.log('Nothing open or awaiting you. Run the standing chore: look for dead items (node tools/council.mjs board) and RETIRE any you can prove built or superseded.');
       // v9: never print nothing useful — fall back to the top open PRIORITIES rows so a seat always has a next step.
+      // v10 (P-331): the fallback rows now print the brief too (truncated), so a seat need not grep PRIORITIES.md.
       const open = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id)).slice(0, 5);
-      if (open.length) { console.log('\nTop open PRIORITIES rows (fallback — derived list empty):'); for (const i of open) console.log(`  ${i.id} [P${i.eff}] ${i.status}  ${i.title.slice(0, 90)}`); }
+      if (open.length) { console.log('\nTop open PRIORITIES rows (fallback — derived list empty):'); for (const i of open) { const b = (i.work || '').replace(/\s+/g, ' ').trim(); console.log(`  ${i.id} [P${i.eff}] ${i.status}  ${i.title.slice(0, 90)}`); if (b) console.log(`     BRIEF: ${b.length > 120 ? b.slice(0, 120) + '…' : b}`); } }
     }
     for (const x of list.slice(0, 6)) console.log('\n' + x.text);
     const dead = [...st.items.values()].filter((i) => i.retired && i.retired.by === 'auto' && Date.now() - i.retired.t < 864e5 * 0);

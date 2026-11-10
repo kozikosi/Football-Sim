@@ -40,17 +40,21 @@ function expected(tag, slot) { const role = TAG_ROLE[tag]; if (compiled.NATURAL[
   let allowed = 0, cells = 0;
   Object.keys(TAG_ROLE).forEach(t => SLOTS.forEach(s => { cells++; const e = expected(t, s), g = got.o[t][s]; if (e !== g) { console.log(`FAIL engine ${t}@${s}: guide ${e}, engine ${g}`); bad++; } if (g < 8) allowed++; }));
   Object.keys(TAG_ROLE).forEach(t => { if (!compiled.NATURAL[t].length) { console.log('FAIL tag with no natural slot', t); bad++; } });
-  // spot checks from the live flex table (independent of the tables above)
-  // Spot checks from the LIVE table (Architect's branch, 97 rules, 728b2c53; P-327, Owner 2026-11-09).
-  // Values read off tools/mathlab/flex.json (role -> dest). 8 = EMERGENCY_PENALTY (rule absent = not allowed).
-  // DL5 values are the flexdl5 derivation (DT/EDGE natural 0; others cheaper of role->DT and role->EDGE).
-  const spot = [['QB', 'WR1', 8], ['HB', 'FB', 0], ['FB', 'RB1', 2], ['WR', 'CB3', 2], ['WR', 'CB1', 2], ['CB', 'DIME', 0], ['SS', 'CB3', 0], ['SS', 'CB1', 6], ['FS', 'CB1', 6], ['WILL', 'MIKE', 6], ['MIKE', 'WILL', 0],
-    ['REDG', 'WILL', 0], ['REDG', 'MIKE', 6], ['LT', 'FB', 0], ['LG', 'OT1', 2], ['P', 'K', 2], ['K', 'P', 2], ['TE', 'DIME', 6], ['TE', 'WR1', 12], ['DT', 'OT1', 6], ['WR', 'DIME', 2], ['CB', 'WR1', 6], ['QB', 'RB1', 8],
-    ['DT', 'DL5', 0], ['REDG', 'DL5', 0], ['LEDG', 'DL5', 0], ['LT', 'DL5', 6], ['LG', 'DL5', 6], ['C', 'DL5', 12], ['MIKE', 'DL5', 12], ['WILL', 'DL5', 12], ['SAM', 'DL5', 12], ['TE', 'DL5', 12], ['CB', 'DL5', 8], ['QB', 'DL5', 8], ['WR', 'DL5', 8], ['HB', 'DL5', 8], ['DT', 'DT1', 0], ['WR', 'WR4', 0], ['TE', 'TE3', 0], ['TE', 'WR4', 12]];
+  // Spot checks DERIVED from the live flex table (P-330, MUSE 2026-11-10).
+  // The (tag, slot) pairs are the interesting cases (edge cases, DL5, the
+  // TE3/WR4 families); the expected penalty is computed from
+  // tools/mathlab/flex.json at runtime via expected(), so the checks cannot
+  // go stale when the table moves (P-327 hand-rewrote 41 checks and 20 were
+  // stale). 8 = EMERGENCY_PENALTY (rule absent = not allowed). DL5 values
+  // come from the flexdl5 derivation (DT/EDGE natural 0; others cheaper of
+  // role->DT and role->EDGE), merged into G above.
+  const spotPairs = [['QB', 'WR1'], ['HB', 'FB'], ['FB', 'RB1'], ['WR', 'CB3'], ['WR', 'CB1'], ['CB', 'DIME'], ['SS', 'CB3'], ['SS', 'CB1'], ['FS', 'CB1'], ['WILL', 'MIKE'], ['MIKE', 'WILL'],
+    ['REDG', 'WILL'], ['REDG', 'MIKE'], ['LT', 'FB'], ['LG', 'OT1'], ['P', 'K'], ['K', 'P'], ['TE', 'DIME'], ['TE', 'WR1'], ['DT', 'OT1'], ['WR', 'DIME'], ['CB', 'WR1'], ['QB', 'RB1'],
+    ['DT', 'DL5'], ['REDG', 'DL5'], ['LEDG', 'DL5'], ['LT', 'DL5'], ['LG', 'DL5'], ['C', 'DL5'], ['MIKE', 'DL5'], ['WILL', 'DL5'], ['SAM', 'DL5'], ['TE', 'DL5'], ['CB', 'DL5'], ['QB', 'DL5'], ['WR', 'DL5'], ['HB', 'DL5'], ['DT', 'DT1'], ['WR', 'WR4'], ['TE', 'TE3'], ['TE', 'WR4']];
   // TE3 must behave exactly like TE2, WR4 exactly like WR3, for every dataset tag (same family, same guide destination)
   Object.keys(TAG_ROLE).forEach(t => { [['TE3', 'TE2'], ['WR4', 'WR3']].forEach(([a, b]) => { if (got.o[t][a] !== got.o[t][b]) { console.log(`FAIL ${t}@${a} is ${got.o[t][a]} but ${t}@${b} is ${got.o[t][b]}`); bad++; } }); });
-  spot.forEach(([t, s, p]) => { const g = got.o[t][s]; if (g !== p) { console.log(`FAIL spot ${t}@${s}: Owner text says ${p}, engine ${g}`); bad++; } });
-  console.log('tags', Object.keys(TAG_ROLE).length, 'slots', SLOTS.length, 'cells', cells, 'allowed (penalty<8)', allowed, 'spot checks', spot.length, 'page errors', errs.length);
+  spotPairs.forEach(([t, s]) => { const p = expected(t, s), g = got.o[t][s]; if (g !== p) { console.log(`FAIL spot ${t}@${s}: live table says ${p}, engine ${g}`); bad++; } });
+  console.log('tags', Object.keys(TAG_ROLE).length, 'slots', SLOTS.length, 'cells', cells, 'allowed (penalty<8)', allowed, 'spot checks', spotPairs.length, 'page errors', errs.length);
   const out = path.join(__dirname, 'results');
   fs.writeFileSync(path.join(out, 'flex-compiled.json'), JSON.stringify(compiled, null, 1));
   const L = o => '{' + Object.entries(o).map(([k, v]) => `${k}:${typeof v === 'object' && !Array.isArray(v) ? L(v) : JSON.stringify(v)}`).join(', ') + '}';
