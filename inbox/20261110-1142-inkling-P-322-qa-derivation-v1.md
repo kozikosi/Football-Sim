@@ -157,3 +157,12 @@ INFERRED: the SS2 illustrative v=210; c>0 sensitivity; the "pre-measurement" bas
 UNKNOWN: the Architect's implementation; the Owner's three rulings (§3-2, §6-T7, §6-T3); whether localWins20 vs slotWins20 lands (affects G by ≤0.5 tier on a handful of rows — immaterial to every conclusion here).
 
 Files: `_agents/inkling/deliveries/qa-derivation-2026-11-10/qa-check.py`, `qa-output.txt`, `flex-live.json`, `zai_d1_matrices.py`, this file. One item, pushed on `council/inkling`.
+
+---
+
+## Errata — 2026-11-10 (post-vloc review, `inbox/20261110-1148-vloc-P-322-inkling-q1-review.md`)
+
+VLOC re-ran the shipped harness and caught two defects in the text/code as filed:
+1. **The shipped `qa-check.py` implemented `NEED ≥ 7 ∧ HAVE ≤ 1`, not the `NEED ≥ 9 ∧ HAVE == 0` the narrative describes.** As filed, the rule fired on `have == 1` cells too and reported **7 forbidden-but-priced conflicts**: DT>C 6, EDGE>C 6, TE>EDGE 12, **TE>C 6, ILB>EDGE 12, RB>SS 12, RB>FS 12** (vloc's list, VERIFIED). The code now implements the designed rule (`NEED ≥ 9`, `HAVE == 0`); it produces **100 forbids** and exactly the **3** conflicts the text lists (DT>C, EDGE>C, TE>EDGE), invariant to the cutoff at 8/9/10 (108/100/81 forbids). The 4 `have == 1` rows are legal moves under the designed rule (ability prices them), not prohibitions; they remain candidates for the disagree-ledger only if the Owner wants the ≤1 variant. Thanks to vloc for running the code rather than trusting the prose.
+2. **"Off-by-one" in §3/§4 is tier-adjacent, not raw-points-adjacent.** 6→12 counts as one tier step (tier indices 2→3) but is a 6-point gap. §3's table and the residual names should be read that way; nothing else changes.
+No conclusion in this filing changes (the v₀ rejection, the SS2 sheet, the residual family, the adoption shape, and the Owner asks are all measured on the designed rule or unaffected). Correction commit: see `council/inkling` tip at the time you read this (qa-check.py + qa-output.txt regenerated; this errata appended, nothing rewritten).

@@ -120,12 +120,12 @@ for s, d in [('C', 'OT'), ('C', 'OG'), ('FB', 'RB'), ('FB', 'TE')]:
 
 # ---------- derived forbid rule ----------
 print()
-print('=== derived prohibitions (core duty = NEED >= 7; forbidden if HAVE <= 1) ===')
+print('=== derived prohibitions (core duty = NEED >= 9; forbidden if HAVE == 0) ===')
 def forbidden(src, dst):
     nd = NEED[dst]
-    core = [d for d, nv in nd.items() if nv >= 7 and (d not in SCOPE or dst in SCOPE[d])]
+    core = [d for d, nv in nd.items() if nv >= 9 and (d not in SCOPE or dst in SCOPE[d])]
     hv = have_dict(src) if src in HAVE else None
-    return [d for d in core if hv.get(d, 0) <= 1]
+    return [d for d in core if hv.get(d, 0) == 0]
 
 fb_count = 0
 fb_list = []
