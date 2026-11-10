@@ -1,0 +1,72 @@
+Claude's from-scratch derivation design (flexgates), relayed by the Owner 2026-11-09 23:45 HST. Pushed by Claude as `a26a3da` (architect/engine-and-seats). Verbatim.
+
+---
+
+Starting from scratch, then. Here is my thinking before I build anything.
+
+**What a flex price is.** A flexed player plays at `ovr − p`. Any price has to answer two separate questions:
+1. How badly does this body do that job? That is transfer loss.
+2. Can the penalty be exploited by moving talent up the value ladder? That is the guard, which I've verified is computable from slot weights alone.
+
+Those are different quantities, so they combine by `max`. A sum double-counts.
+
+**What would make it generalize.** A new sport shouldn't need anyone to author skill scores. It already has three things that define the problem:
+- slots with values (the weights)
+- a simulation spec saying which duties each slot performs (football's `specs.ts`)
+- a player table with attributes (football has `spd` and `str`)
+
+My bet is that a price can be derived from those three inputs, with the few hand-authored items listed and counted separately. I'll test that against the live table, and measure generalization by leaving out a whole role and pricing it blind.
+
+First experiment: can the engine's own spec matrix, plus the physical data, explain the 52 ability-lifted rules?
+
+The engine's spec matrix separates the groups only weakly. Zero-priced rules reach U = 1.0, and 6-priced rules start at 0.32. Before drawing a conclusion, I want to see which rules cause that.
+
+My expected count was off by one (two occurrences, not three), so the patch aborted before writing anything. Re-running with the corrected count.
+
+Now the design note, written to state plainly what worked, what didn't, and what the numbers don't show.
+
+Updating NOW.md within the 15-line cap by compressing earlier entries and adding this design.
+
+I built my own design from scratch and pushed it as `a26a3da`. It does not beat the other two on fit, and I'd rather you hear that first. It changes no engine, `flex.json` or `flex.ts` file, and Option B is still held.
+
+| | exact (of 99) | held-out accuracy |
+|---|---|—|
+| **v1, craft table written before any fit** | 70 | 65% (5-fold), 61% (leave-one-role-out) |
+| **v2, after fixing two things I saw in v1's misses** | 80 | 70% (5-fold), 67% (leave-one-role-out) |
+| **Inkling / ZAI-D1** | 88 (93 with floor) / 95 (98 with MUSE's edits) | not measured |
+
+**The design.** A flex price is `tier(G + kP·P + kC·C)`:
+- **G, a value guard.** `20 × (1 − w_src / w_dst)`, from the slot weights alone, with no fitted constants.
+- **P, a body gap.** It is measured from the player table's `spd` and `str`.
+- **C, a craft gap.** It comes from the one authored table (12 techniques, levels 0/1/2).
+- **Sport config.** The code knows no football. A sport config supplies slot weights, the player table and the craft table, so another sport only has to author the craft table.
+
+**What I think is worth keeping:**
+- **VERIFIED: D is a value guard, not an ability measure.** I computed it from slot weights with no fitting, and it matches D@90 to within 2 OVR points on all 97 rules.
+- **VERIFIED: the guard fixes two of ZAI-D1's four misses.** `C>OT` and `TE>OT` are guard rows (guard 12 and 10, owner 12). Your reason for them, that OT pass protection is worth more, is slot value, which a duty profile can't express. You said either route was fine for OT, and this one needs no score changes.
+- **Held-out accuracy is lower than in-sample.** The in-sample figures drop 5 to 13 points when the constants are fit blind to a role. I haven't run that test on ZAI-D1 or Inkling, so their out-of-sample numbers are unknown.
+- **Which flexes exist is not derivable.** The table allows 97 of 306 possible pairs. My best rule recovers about 43% of the allowed ones, so I'd keep that a rules decision.
+
+**What I tested and rejected:** a bottleneck `max` in place of the sum (additive won), and positional rooms and sides (the fit never selected them). The body gap earns only 2 rules, so craft does the work.
+
+**Caveats you should have:**
+- v2's 80 is tuned: I changed FB to a craft-free body slot and listed three waivers (`FB>RB`, `FB>TE`, `C>OG`) after seeing v1's misses. I saw the Owner's table earlier in the session, so even v1's 70 is optimistic.
+- I have 3 fiat rows, where ZAI-D1 claims 0.
+- Whether a richer sport such as basketball could replace the craft table with measured attributes is untested.
+
+**What I'd do next:**
+1. Take the guard whichever ability layer wins, since P-318 or any re-weighting would need it.
+2. Run leave-one-role-out on ZAI-D1's script.
+3. Try `G + L` under ZAI-D1's duties.
+4. An untested idea for multisport: price about 30 anchor pairs for a new sport and let the model fill in the rest.
+
+Your call on direction.
+
+Files are in `tools/mathlab/`:
+- results/flexgates-design-2026-11-10.md
+- flexgates.mjs
+- sport-football.json
+- sport-football-v1r.json
+- sport-football-v2.json
+- sport-football-v3.json
+- results/flexgates-2026-11-10.md
