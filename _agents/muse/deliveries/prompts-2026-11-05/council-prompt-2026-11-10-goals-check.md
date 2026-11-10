@@ -1,0 +1,50 @@
+# Council prompt — 2026-11-10: Slice 5 goes to Z.ai; the goals check; the queue
+
+**Read first:** `_agents/QUEUE.md` (the ranked work list — it was renamed from PRIORITIES.md; use QUEUE.md, not the old name). `AGENTS.md` (the house rules). `tools/council.mjs --help` (how to take work, file reviews, and use `next`/`board`). **Push as often as possible** — commit and push after every finished file/task, not just at session end. If mid-task and the chat is getting long, push what exists (even as a WIP commit) and say so in the bulletin entry. A timed-out chat loses unpushed work; a pushed commit survives it.
+
+## Current state
+
+- **67 Cakepanz Slices 3 + 4 landed and were reviewed.** Z.ai shipped Slice 3 (hydration + board chrome) and Slice 4 (the N3 drive-level feed) in one zip, staged on council/vl `c768b555` (`_agents/vl/deliveries/67-cakepanz-s4/`). MUSE reviewed it: **VERDICT improved** (`inbox/20261110-0346-muse-P-316-P-287-slice3-slice4-review.md`, council/muse `d3f89eda`, addendum `fb986c15`). The engine pin was verified byte-identical (52 files), the engine tests re-run 284/0, the build clean, and the battery re-run live at 61 pass · 0 fail · 10 skip · 3 defer (Playwright is now installed on the review machine, so the battery can be re-run live). **One correction:** the Slice 3 README says "12 new laws" but the battery has 17 — that fix rides along in Z.ai's Slice 5 delivery. **Two findings:** the snapshot's `feed.ts` clock() is broken for overtime (an engine bug for the next re-pin, not Z.ai's fault) and the saves panel shows the whole league log count (correct per the payload, a UX note).
+- **Slice 5 goes to Z.ai next.** The prompt (`_agents/muse/deliveries/prompts-2026-11-05/zai-slice5-2026-11-10.md`) gives him Slice 5 (N2 brag shareables + seed card) plus the Slice 3 README fix, and asks him to confirm the app is still on the overall-goals path (see the goals check below).
+- **Claude's flex build is still pending.** The prompt for items 3+7 + the cross-side floor rule (`claude-flex-floor-2026-11-10.md`) is ready for the Owner to send. Claude timed out on items 3+7 before; the floor rule folds into the same build. When it lands, P-323 verification becomes available.
+
+## The goals check (the Owner's question this round)
+
+The Owner wants a check that all the work is still being developed toward the overall goals. The goals are: **Svelte 5 + Vite** (the framework, locked), eventually leading to **Cloudflare deployment** and the **account system** (designed: local profiles first, then proper OAuth accounts with cross-device sync; offline is a hard requirement — local-first, sync-on-reconnect).
+
+**This is a review task for the council, not just a build task for Z.ai.** As you work the queue, check whether the current work still supports that path, and flag anything that does not:
+
+- **Svelte 5 + Vite:** is the 67 Cakepanz app (Slices 1–4) still a clean Svelte 5 + Vite build? Has anything drifted (a non-Vite build step, a dependency that assumes a server, a pattern that would not survive as a static build)? The slices should be the proof, not the exception.
+- **Cloudflare deployment:** the app will eventually deploy to Cloudflare. Is the app still a static build (`vite build` → `dist/`) with nothing that assumes a server, a Node runtime, or gh-pages specifically? If something in the current app would need to change for Cloudflare Pages, name it and say whether it is small or a real rework. Do not deploy anything yourself — this is a check.
+- **The account system:** does the save/envelope design still support local-profiles-first then OAuth sync? The envelope (saveId, revision, SHA-256 dataset stamp) is the portable unit; the slots A/B/C are local profiles. Is anything storing state in a place a sync could not reach? Does anything assume a save can only ever live on one machine? If the current design makes the account system harder than it should be, name the friction.
+
+File what you find as a review or a P-item (with the evidence). If the path is clean, say so with the evidence — a clean check is also a result. If you find drift, file it; do not fix the architecture yourself (that is the Architect's).
+
+## Work to take (highlights — each with its blocker, so you can tell what is actually available)
+
+- **★ P-287 — Review 67 Cakepanz Slices 3 + 4 (needs 2 more seats).** MUSE filed one review (VERDICT improved). Two more seats' ok/improved reviews are needed for REVIEWED. Read the staged tree (council/vl `c768b555`) and MUSE's review, then file your own. **Blocker: none** — the tree is staged and MUSE's review is filed. (Note: do not just concur with MUSE's review — check the claims yourself where you can, especially the battery if you have Playwright, and the w88 look if you can read the CSS.)
+- **★ P-328 — Verify Inkling's P-322 97/105 fit (needs 2 more seats).** MUSE verified it independently (97 exact, 8 off-by-one-tier, 0 hard misses). Two more seats needed for REVIEWED. **Blocker: none** — the script and review are filed.
+- **★ P-323 — Verify the flex answers (items 3+7 + floor rule) once the Architect builds them.** **Blocker: waits on Claude's build** (the prompt is ready for the Owner to send; Claude timed out before). Do not start this until the build lands — but you can prepare by re-reading the expected counts (105 rules: 23 at 12, 45 at 6, 11 at 2, 26 at 0).
+- **★ P-317 — REVISE Slice 2: add the draft position selector to Team Select.** **Blocker: the Architect's store change comes first** (accept a slot in START, build a custom order, include the slot in SaveRecord). Z.ai revises Slice 2 only after that lands. Do not build the picker until the store change is in.
+- **★ P-293 / P-303 / P-306 — the P0 highlights.** These are the top of the queue but most are blocked on a dependency chain (P-321, P-294, P-322, P-195, P-311, P-327). Check `next` for the current state and take the first line that is actually available — do not wait on a blocked item when another is open.
+- **★ P-296 — Cutover readiness checklist (council-home Option A move prep).** **Blocker: none** — this is a checklist, not a move. Prepare the branch inventory, the open-P-row snapshot, the inbox/bulletin move plan, and the verification receipt, ready for the Architect at cutover. Do not move anything yourself.
+- **★ P-325 / P-326 — the WR3 / localWins20 rechecks.** **Not for MUSE** (own-math constraint) — these need another seat. P-325's remaining question is the spec-fidelity question (which receiving mix is the Owner's truth); Inkling filed a receiving-mix fidelity filing awaiting an Owner ruling. P-326 needs the formal recheck plus confirmation of the ±10 trap (the council note is at `inbox/20261110-0245-muse-plus10-trap.md`).
+- **★ P-329 — Update ENGINE-MATH-SPEC E3 to the current flex table.** The spec still cites REV 2 / 95 rules; the live table is 97 rules (and will be 105 when Claude's build lands). **Blocker: wait for Claude's build** if you are updating to the 105-rule table; otherwise update to the current 97-rule table now and note the 105-rule update as a follow-up.
+
+## Recent council work (for context, not as highlights)
+
+- MUSE executed the queue on 2026-11-10: P-330 (flexengine derived spot checks + flex-dl5.json regenerated), P-331 (council.mjs v10 → v11: briefs in `next`, highlight boost, `readFrom` now tries council/muse first, STALE auto-retire fix), P-328 (Inkling's P-322 fit verified), P-324 live-file review (w88 confirmed live on gh-pages; one defect: the "QB anchored at 1000" caption was NOT retired in 2 display spots — fold the fix into Z.ai's next response, do not send a separate one). The queue was renamed PRIORITIES.md → QUEUE.md (Owner, 2026-11-10). The cross-side flex floor rule was decided (Owner, 2026-11-10): cross-side flexes cost at least −6; FB flexes exempt. Z.ai's Slice 3+4 prompt was sent and delivered; the Slice 5 prompt is now written.
+
+## How to work (the rules that matter most)
+
+- **Take the top line of `next` and do it, or leave it.** No claim files. If a line is blocked, say so in your bulletin entry and take the next available line.
+- **Review rule:** no minimum or maximum checkmarks — continuous trust. No agent reviews the same item twice. More checkmarks = more trust. Three different seats' ok/improved = REVIEWED.
+- **Labels:** VERIFIED (you ran it / read the code) / REPORTED (someone else's claim, you did not re-run it) / INFERRED (your reasoning from the evidence) / UNKNOWN (you could not check it). Say which one each claim is.
+- **Design proposals need a runnable script.** If you propose a design (a formula, a table, a measurement), include a script that computes it — a design without a runnable script cannot be verified.
+- **A builder's "retired/removed" claim needs a grep of the live file for the exact string, not trust.** (Self-improvement: the P-324 "QB anchored at 1000" caption was claimed retired but was still in 2 display spots.)
+- **Run `flexdl5.mjs` after any flex.json change.** It is not a gate, so a stale flex-dl5.json can survive silently (it did — P-330). If you touch flex.json, run it.
+- **Review template (use it):** SPEAKER / ROLE / TASK / FOR / REVIEW-OF / VERDICT (ok / improved / rejected) / a bottom line / what you checked (with the commands) / what must change / the evidence label.
+
+## Innovate, brainstorm, improve (lighter, for the council)
+
+You are reviewers, not builders, so the ask is lighter — but the Owner still wants your thinking, not just your checking. As you review and work the queue, think around the issue: is there a better way to verify this? A check the battery is missing? A pattern in the reviews that points to a process fix? A goals-check finding (drift toward Cloudflare or the account system) that no one has named yet? If you see a better way, say so in your review or file it as a P-item. The best reviews do not just confirm — they notice what is missing.
