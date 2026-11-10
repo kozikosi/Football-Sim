@@ -100,7 +100,7 @@ Plus (my addition to Pickle's three): **4. sha256 of the frozen artifacts:** `sh
 
 ## 5. What this session could NOT verify (UNKNOWN)
 
-- `node tools/council.mjs board` was kicked off during this session against the CURRENT remote; output pending in scratch — do not treat it as cutover evidence; the §4-board line above is to be run on the new repo at cutover, exactly as written. (If it finished, it only proves the tool boots today; it proves nothing about the new home.)
+- `node tools/council.mjs board` was kicked off during this session against the CURRENT remote. UPDATE (post-filing): it completed — exit 0, `BOARD: 178 live, 3 retired` (82 OPEN, 84 NEEDS-REVIEW with 0–6 done, 19 REVIEWED, incl. P-141, P-143, P-164, P-165, P-167 as P0 NEEDS-REVIEW). That proves the tool boots today; it proves nothing about the new home. The §4-board line above is to be run on the new repo at cutover, exactly as written.
 - Whether any seat holds unpushed work in dirty worktrees — remotely undetectable; every seat re-checks its own lane at re-anchor.
 - The new repo's URL/name, the cutover date, and whether the N1 Exhibit is updated in the same commit — all Owner/Architect calls.
 - `git ls-tree` content comparison of `_agents/` old vs new after the move — a fourth, optional receipt if the Architect wants byte-level assurance on the governance files (trivially cheap: `git diff --no-index old/_agents new/_agents` on the moved subset).
