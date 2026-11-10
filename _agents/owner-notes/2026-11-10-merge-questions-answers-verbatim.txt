@@ -35,6 +35,17 @@ The 10 questions (MUSE's, from the merge prompt `council-zai-merge-flex-2026-11-
 
 10. "not a big deal. you're stressing over tiny details."
 
+## Follow-up answers (2026-11-10, same thread)
+
+1. (Q1 — which ability layer / blend dial, after MUSE explained it): "together."
+
+8. (Q8 — new positions / emergence, after MUSE answered that Z.ai nails the results better but neither achieves true emergence): "i want emergence"
+
+## MUSE's reading (not the Owner's words — for the record)
+
+- Q1 "together": the merged formula keeps BOTH blend parameters — Z.ai's λ (0.4, the weight on the sum of the non-worst gaps) AND Claude's exponent k (the soft-max dial from "worst binds" to "add them up"). Do NOT collapse them into one dial. The designers determine the combined form (e.g., a k-norm over the worst gap and the λ-weighted sum of the rest, or another two-parameter shape). Both parameters stay.
+- Q8 "i want emergence": TRUE emergence is a REQUIREMENT, not a preference. The formula itself must decide what a new position/slot is, without anyone specifying it by hand. No hand-authored NEED tables for new positions (Z.ai's method). No hand-picked mix coefficients (Claude's method). The merge must show HOW a new position's demands are derived — from the sim's engine, from the role space, or from another mechanism — and then price the moves into it. Pricing SS2 and the DL5 blitzer after someone specifies them is not enough.
+
 ## MUSE's reading (not the Owner's words — for the record)
 
 - Q1: the Owner wants an explanation of the ability-layer / blend-dial question, not a ruling yet.
