@@ -1,0 +1,11 @@
+KG, 2026-11-10 (verbatim, from chat — direction on Claude's guard proposal):
+
+"My initial read is that this still relies too much on z.ai's model. Claude should be encouraged to start from scratch and think about the best way to make a generalizable model. innovate, brainstorm, be creative, etc"
+
+Notes (MUSE, not KG's words):
+- This is KG's direction on Claude's `max(G, L)` proposal (verbatim in `_agents/owner-notes/2026-11-10-claude-guard-proposal-verbatim.txt`). Claude's guard (G) is his own idea, but L is Z.ai's duty-deficit structure — KG wants Claude to design the WHOLE thing from scratch, including the ability/transfer side, not just bolt his guard onto Z.ai's L.
+- The generalizable-model requirement is the same as the multisport direction: the formula should work across sports (basketball: PG/SG/SF/PF/C, rim protection, ball handling, 3pt shooting), not just football.
+- The innovation encouragement is the standing rule (strongest for Claude and Z.ai as builders) — this message is an instance of it, applied to Claude's derivation design.
+- MUSE drafted a short relay to Claude (below) and updated the Claude derivation prompt with this direction. The relay is the vehicle (KG prefers short relays to Claude over file re-reads); the prompt-file update is for the record.
+- Relay text (as KG to Claude):
+  "The guard is a good idea — slot value as a separate floor is worth keeping. But don't build on Z.ai's L. I want you to start from scratch and design the whole thing yourself, including the ability side. Think about the best way to make a generalizable model — one that works across sports, not just football. Innovate, brainstorm, be creative. Bring your own ideas, even if they don't look like anyone else's design."

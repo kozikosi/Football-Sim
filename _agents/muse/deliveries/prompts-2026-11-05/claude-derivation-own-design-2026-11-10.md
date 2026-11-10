@@ -38,6 +38,12 @@ The Owner wants the derivation formula as generalizable as possible, so it can i
 
 **Design only, no building.** Basketball is not built until 76 Pancakes is finished and the repo is moved. But the formula's shape should already be general enough to take a basketball duty set later. The design note is at `_agents/basketball/README.md` on council/muse.
 
+## Update from the Owner (2026-11-10, after your guard proposal)
+
+The guard is a good idea — slot value as a separate floor is worth keeping. But don't build on Z.ai's L. The Owner wants you to **start from scratch and design the whole thing yourself, including the ability side**. Think about the best way to make a generalizable model — one that works across sports, not just football. Innovate, brainstorm, be creative. Bring your own ideas, even if they don't look like anyone else's design.
+
+That means: your guard (G) can stay as your own idea, but the transfer/ability side (L) should be yours too — your own duties or skills, your own combination, your own structure. Don't take Z.ai's 17 duties as given. Ask yourself what the best way to measure "how far apart are these two jobs" is, from first principles, in a way that would work for basketball positions and duties just as well as football ones. The comparison baselines (ZAI-D1 at 98/99 with the Owner's scores, Inkling at 88/99) are still there to measure against — but the design should be yours, end to end.
+
 ## The job: your own derivation design
 
 Design your own formula for deriving the 99 flex prices — your own skills, your own combination, your own cut points. Use ZAI-D1 as the baseline to compare against (does yours beat 98/99? does it fix C>OT? does it keep 0 fiat rows?), and Inkling's as the other baseline (88/99, 93 with the floor). The design should be yours.
