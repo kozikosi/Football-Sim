@@ -62,6 +62,14 @@ The 10 questions (MUSE's, from the merge prompt `council-zai-merge-flex-2026-11-
 
 - Q8 "emergence," refined: TRUE emergence (the engine inventing a new position's requirements on its own) is IMPOSSIBLE — the engine cannot know the requirements of a position that does not exist yet. The real model is: THE OWNER defines the basic requirements of the role (the NEED profile — what the job demands), and THE ENGINE decides which positions can flex in (the formula prices the moves from each existing role into the new role, from the defined requirements). The hard part is VALUING the new role — what slot value / Wins does a position get when it has no slot in the sim yet? That is the open problem for the merge. (This CORRECTS the "emergence is a REQUIREMENT" direction in the merge prompt. Z.ai's SS2 method — author the NEED profile, then the formula prices the moves — IS the model the Owner wants. The remaining problem is valuing the new role, not deriving its requirements.)
 
+## Fourth note (2026-11-10, same thread)
+
+Snap share (τ): "theres no way for the formula to intuit snap share and that type of number isn't consistent throughout all sports. i don't know"
+
+## MUSE's reading (not the Owner's words — for the record)
+
+- Snap share (τ) — the authored per-role number in Z.ai's derived value function v(r) = τ·Σ NEED·w·scarcity² — cannot be INTUITED by the formula (it is an empirical fact about how often a role is on the field, not derivable from what the job demands) AND is not consistent across sports (football has snaps; basketball/soccer have minutes with different distributions; baseball has plate appearances/innings — there is no single "snap share" with a consistent meaning). So a value layer that depends on τ is football-shaped and does not port. This is a point FOR the measured value layer (Claude's — measure the slot value from the sim, which captures playing time implicitly, no τ needed) and AGAINST the derived value layer (Z.ai's — needs τ authored per role). The Owner's "i don't know" is uncertainty, not a ruling — he is flagging the problem, not solving it. The merge prompt's Q2 is updated to reflect this: the derived v's τ is a portability problem, and the direction is measured v (with socialism handling the FB snap-weighting issue). The valuing-a-new-role problem (Q8) remains open, but τ-based derivation is out as a method.
+
 ## MUSE's reading (not the Owner's words — for the record)
 
 - Q1: the Owner wants an explanation of the ability-layer / blend-dial question, not a ruling yet.
