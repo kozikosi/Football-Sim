@@ -9,7 +9,7 @@ yes that's fine. there are few natural fbs and it is the least important spot. w
 My logic is that guards are better athletes and are weighed more favorably by the engine in terms of impact. the cost to snapping is less than being a better athlete and more one on one matchups with the 3-technique
 
 ## 3. Tight ends cost less than linebackers at defensive back
-I agree with your critique. TEs and LBs are equal athletes in downfield coverage, so the TE penalty should match the LB penalty at each spot. ILB and OLB are both 12 at DIME, so TE>DIME goes to 12. But they're both 6 at NICKEL, so TE>NICKEL stays at 6, and at SS OLB is 6, so TE>SS stays at 6. For FS, LBs have no rule at all — they can't play FS — so TEs can no longer play FS either. Remove TE>FS.
+I agree with your critique. TEs and LBs are equal athletes in downfield coverage, so the TE penalty should match the LB penalty at each spot. ILB and OLB are both 12 at DIME, so TE>DIME goes to 12. But they're both 6 at NICKEL, so TE>NICKEL stays at 6, and at SS OLB is 6, so TE>SS stays at 6. For FS, all linebackers and tight ends can play it for -12: set TE>FS to 12, and add ILB>FS 12 and OLB>FS 12. (SAM players flex to FS as OLBs, so no separate SAM>FS rule is needed.)
 
 ## 4. Receivers to defensive back are cheap, and the reverse is steep
 My logic is that dbs and wrs are similar atheltes but wrs are better and paid more because they can catch.
@@ -35,4 +35,4 @@ The "8 vs 9" is my error, not his.
 Test 92 tie-break is fine — accept the re-pin.
 
 ## Next step
-Apply items 3 and 7, then re-pin: report the new tier counts (expected after both changes: 20 at 12, 40 at 6, 16 at 2, 26 at 0 — 102 rules), the new 3-4 base total with the new cheapest arrangement and the real weights and penalties (TE3 is 50, not 100), and confirm the test suite passes. Then move to the guard passes.
+Apply items 3 and 7, then re-pin: report the new tier counts (expected after both changes: 23 at 12, 40 at 6, 16 at 2, 26 at 0 — 105 rules), the new 3-4 base total with the new cheapest arrangement and the real weights and penalties (TE3 is 50, not 100), and confirm the test suite passes. Then move to the guard passes.
