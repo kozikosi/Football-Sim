@@ -1,0 +1,244 @@
+ZAI-D2 · gated-market derivation · pack = ZAI-D1 appendix + Owner's
+three score changes (EDGE CARRY 4, C PBLK 6, TE PBLK 4) · no scope,
+no floor, no pairs · ability = M + 0.4*S · guard gated (R=3, M>=6) ·
+NEED and HAVE are independent axes.
+
+Derived slot values (pack + snap share, no Owner weights) vs salary:
+   QB      salary  1000  derived  14.63  gravity-prior 12.93
+   WR      salary   650  derived  12.02  gravity-prior 10.23
+   EDGE    salary   650  derived  14.45  gravity-prior 12.00
+   OT      salary   500  derived  11.05  gravity-prior  7.27
+   DT      salary   500  derived   8.93  gravity-prior  7.18
+   OG      salary   400  derived  10.29  gravity-prior  6.74
+   CB      salary   400  derived  23.54  gravity-prior 18.82
+   ILB     salary   300  derived  14.25  gravity-prior 10.03
+   SS      salary   300  derived  13.67  gravity-prior 10.59
+   FS      salary   300  derived  16.03  gravity-prior 12.46
+   RB      salary   250  derived   7.83  gravity-prior  8.78
+   TE      salary   250  derived   9.29  gravity-prior  8.91
+   C       salary   150  derived  13.28  gravity-prior  9.59
+   OLB     salary   150  derived   7.30  gravity-prior  6.03
+   NICKEL  salary   100  derived   6.81  gravity-prior  9.06
+   K       salary    50  derived   0.17  gravity-prior  3.03
+   P       salary    50  derived   0.17  gravity-prior  3.03
+   DIME    salary    50  derived   2.65  gravity-prior 12.25
+   FB      salary    25  derived   0.49  gravity-prior  2.01
+   rank correlation salary-vs-derived: rho = 0.749
+   gravity-prior ranking (hypothesis for P-335 to calibrate):
+      CB      18.82
+      QB      12.93
+      FS      12.46
+      DIME    12.25
+      EDGE    12.00
+      SS      10.59
+      WR      10.23
+      ILB     10.03
+      C        9.59
+      NICKEL   9.06
+      TE       8.91
+      RB       8.78
+      OT       7.27
+      DT       7.18
+      OG       6.74
+      OLB      6.03
+      K        3.03
+      P        3.03
+      FB       2.01
+
+--- ablation: k-norm (smooth soft-max) vs M+0.4S ---
+
+== k-norm k=1.5 (gated guard, salary) ==
+   exact 93/99 · off-by-one 6 · hard 0 · tier-error 6 · mean|err| 1.04 pts · rank-rho 0.940
+   guard fired: ['C>OT', 'C>DT', 'OLB>EDGE']
+   miss     RB>WR: owner 12 model 6 (raw 8.97, worst RTE)
+   miss     TE>WR: owner 12 model 6 (raw 8.80, worst RTE)
+   miss      TE>C: owner  6 model 12 (raw 9.10, worst PBLK)
+   miss     TE>SS: owner  6 model 12 (raw 9.25, worst ZCOV)
+   miss   EDGE>RB: owner  6 model 12 (raw 9.46, worst CARRY)
+   miss     SS>RB: owner 12 model 6 (raw 8.81, worst CARRY)
+
+== k-norm k=2.0 (gated guard, salary) ==
+   exact 92/99 · off-by-one 7 · hard 0 · tier-error 7 · mean|err| 0.99 pts · rank-rho 0.941
+   guard fired: ['C>OT', 'C>DT', 'OLB>EDGE']
+   miss     RB>WR: owner 12 model 6 (raw 8.23, worst RTE)
+   miss WR>NICKEL: owner  6 model 2 (raw 3.76, worst RDEF)
+   miss     TE>WR: owner 12 model 6 (raw 8.19, worst RTE)
+   miss     TE>DT: owner 12 model 6 (raw 8.75, worst RDEF)
+   miss   EDGE>SS: owner 12 model 6 (raw 7.70, worst ZCOV)
+   miss OLB>NICKEL: owner  6 model 2 (raw 3.99, worst DEEP)
+   miss     SS>RB: owner 12 model 6 (raw 7.85, worst CARRY)
+
+== k-norm k=3.0 (gated guard, salary) ==
+   exact 84/99 · off-by-one 15 · hard 0 · tier-error 15 · mean|err| 1.14 pts · rank-rho 0.941
+   guard fired: ['C>OT', 'C>DT', 'OLB>EDGE']
+   miss     RB>WR: owner 12 model 6 (raw 7.87, worst RTE)
+   miss     RB>SS: owner 12 model 6 (raw 8.56, worst ZCOV)
+   miss     FB>TE: owner  6 model 2 (raw 3.78, worst PBLK)
+   miss     WR>RB: owner  6 model 2 (raw 3.73, worst CARRY)
+   miss WR>NICKEL: owner  6 model 2 (raw 3.14, worst RDEF)
+   miss     TE>WR: owner 12 model 6 (raw 7.88, worst RTE)
+   miss     TE>DT: owner 12 model 6 (raw 7.79, worst RDEF)
+   miss    TE>OLB: owner  6 model 2 (raw 3.96, worst RDEF)
+   miss    TE>ILB: owner 12 model 6 (raw 7.93, worst RDEF)
+   miss   EDGE>SS: owner 12 model 6 (raw 6.30, worst ZCOV)
+   miss OLB>NICKEL: owner  6 model 2 (raw 3.39, worst DEEP)
+   miss  OLB>DIME: owner 12 model 6 (raw 8.20, worst DEEP)
+   miss    OLB>FS: owner 12 model 6 (raw 8.69, worst DEEP)
+   miss     SS>FS: owner  2 model 0 (raw 0.95, worst RNG)
+   miss     SS>RB: owner 12 model 6 (raw 7.33, worst CARRY)
+
+== D2 GATED guard, salary values (football primary) ==
+   exact 99/99 · off-by-one 0 · hard 0 · tier-error 0 · mean|err| 1.01 pts · rank-rho 0.947
+   guard fired: ['C>OT', 'C>DT', 'OLB>EDGE']
+
+== D2 GATED guard, DERIVED values (portability path) ==
+   exact 98/99 · off-by-one 1 · hard 0 · tier-error 1 · mean|err| 1.11 pts · rank-rho 0.935
+   miss      C>OT: owner 12 model 6 (raw 6.68, worst PBLK)
+
+== D2 ability only (no guard) ==
+   exact 98/99 · off-by-one 1 · hard 0 · tier-error 1 · mean|err| 1.11 pts · rank-rho 0.935
+   miss      C>OT: owner 12 model 6 (raw 6.68, worst PBLK)
+
+== D2 soft-floor beta=0.25 (ungated, continuous) ==
+   exact 97/99 · off-by-one 2 · hard 0 · tier-error 2 · mean|err| 1.10 pts · rank-rho 0.936
+   miss     FB>RB: owner  2 model 6 (raw 6.97, worst CTH)
+   miss      C>OT: owner 12 model 6 (raw 8.51, worst PBLK)
+
+== D2 soft-floor beta=0.5 (ungated, continuous) ==
+   exact 96/99 · off-by-one 2 · hard 1 · tier-error 4 · mean|err| 1.16 pts · rank-rho 0.922
+   miss     FB>RB: owner  2 model 12 (raw 10.65, worst CTH)
+   miss     FB>TE: owner  6 model 12 (raw 11.37, worst PBLK)
+   miss    OLB>SS: owner  6 model 12 (raw 9.06, worst ZCOV)
+
+== D2 soft-floor beta=0.75 (ungated, continuous) ==
+   exact 94/99 · off-by-one 4 · hard 1 · tier-error 6 · mean|err| 1.19 pts · rank-rho 0.909
+   miss     FB>RB: owner  2 model 12 (raw 12.00, worst CTH)
+   miss     FB>TE: owner  6 model 12 (raw 12.00, worst PBLK)
+   miss      C>OG: owner  6 model 12 (raw 10.66, worst PBLK)
+   miss   OLB>ILB: owner  6 model 12 (raw 9.21, worst ZCOV)
+   miss    OLB>SS: owner  6 model 12 (raw 9.53, worst ZCOV)
+
+== D2 soft-floor beta=1.0 (ungated, continuous) ==
+   exact 94/99 · off-by-one 4 · hard 1 · tier-error 6 · mean|err| 1.22 pts · rank-rho 0.906
+   miss     FB>RB: owner  2 model 12 (raw 12.00, worst CTH)
+   miss     FB>TE: owner  6 model 12 (raw 12.00, worst PBLK)
+   miss      C>OG: owner  6 model 12 (raw 12.00, worst PBLK)
+   miss   OLB>ILB: owner  6 model 12 (raw 10.00, worst ZCOV)
+   miss    OLB>SS: owner  6 model 12 (raw 10.00, worst ZCOV)
+
+Gate grid (exact/99) — salary values, M+0.4S:
+          M>=5.0  M>=5.5  M>=6.0  M>=6.5  M>=7.0
+   R=2.0:   97       98       98       98       98
+   R=2.5:   99       99       99       98       98
+   R=3.0:   99       99       99       98       98
+   R=4.0:   98       98       98       98       98
+
+=== BIG NICKEL (SS2) test — one authored NEED row, zero rules ===
+   derived value v(BIGN) = 17.65 (salary ladder: between NICKEL 100 and SS 300)
+      SS -> BIGN : raw  0.90 tier  0  (free; worst gap RUSH)
+      CB -> BIGN : raw  1.18 tier  2  (cheap; worst gap RUSH)
+      FS -> BIGN : raw  2.56 tier  2  (cheap; worst gap RUSH)
+     ILB -> BIGN : raw  6.32 tier  6  (real; worst gap DEEP)
+      WR -> BIGN : raw  7.00 tier  6  (real; worst gap ZCOV)
+     OLB -> BIGN : raw  7.62 tier  6  (real; worst gap DEEP)
+    EDGE -> BIGN : raw 10.48 tier 12  (cap/prohibited; worst gap DEEP)
+      FB -> BIGN : raw 10.52 tier 12  (cap/prohibited; worst gap MCOV)
+      TE -> BIGN : raw 10.92 tier 12  (cap/prohibited; worst gap DEEP)
+      RB -> BIGN : raw 11.44 tier 12  (cap/prohibited; worst gap MCOV)
+      QB -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+      OT -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+      OG -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+       C -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+      DT -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+       K -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+       P -> BIGN : raw 12.00 tier 12  (cap/prohibited; worst gap MCOV)
+
+=== DL5 emergence test — blitzer profile vs two-gap profile ===
+   pricing all sources -> DL5 as DL5TWO:
+       EDGE ->  0.00 (tier 0; worst None)
+         DT ->  0.00 (tier 0; worst None)
+        ILB ->  1.55 (tier 2; worst PBLK)
+        OLB ->  3.02 (tier 2; worst RDEF)
+         SS ->  9.30 (tier 12; worst RDEF)
+         CB -> 10.04 (tier 12; worst PBLK)
+   pricing all sources -> DL5 as DL5BLITZ:
+       EDGE ->  0.00 (tier 0; worst None)
+         DT ->  5.76 (tier 6; worst MCOV)
+        ILB ->  2.70 (tier 2; worst RUSH)
+        OLB ->  0.00 (tier 0; worst None)
+         SS ->  7.40 (tier 6; worst RUSH)
+         CB ->  8.02 (tier 6; worst RUSH)
+
+=== LORO: SS's HAVE row held out, rebuilt from FS+CB (blind) ===
+   SS>NICKEL: owner  0 · real-pack  0.00 (t0) · blind-pack  0.70 (t0)
+   SS>DIME: owner  0 · real-pack  0.00 (t0) · blind-pack  0.70 (t0)
+   SS>FS: owner  2 · real-pack  1.08 (t2) · blind-pack  0.40 (t0)   <-- tier differs
+   SS>CB: owner  6 · real-pack  7.98 (t6) · blind-pack  3.85 (t2)   <-- tier differs
+   SS>WR: owner 12 · real-pack 12.00 (t12) · blind-pack  8.89 (t6)   <-- tier differs
+   SS>ILB: owner  6 · real-pack  7.36 (t6) · blind-pack  8.70 (t6)
+   SS>OLB: owner  2 · real-pack  3.12 (t2) · blind-pack  3.90 (t2)
+   SS>RB: owner 12 · real-pack  9.20 (t12) · blind-pack  9.07 (t12)
+   SS>TE: owner  6 · real-pack  7.49 (t6) · blind-pack  8.02 (t6)
+   mean |err| in points: real 1.07 vs blind 1.98
+
+=== Prohibition audit — formula tier-12 vs the 99's absences ===
+   formula marks 152 omitted rows at tier 12 (soft prohibition)
+   -> absence = prohibition, consistent with the live table's shape
+   rows the formula OFFERS (tier<=6) but the live table omits:
+           FB>DT:  8.84 -> tier 6
+           DT>TE:  8.76 -> tier 6
+           CB>RB:  8.62 -> tier 6
+           OT>TE:  8.56 -> tier 6
+           OG>TE:  8.56 -> tier 6
+            C>TE:  8.56 -> tier 6
+           QB>RB:  8.38 -> tier 6
+          OT>OLB:  8.18 -> tier 6
+          OG>OLB:  8.18 -> tier 6
+       RB>NICKEL:  7.94 -> tier 6
+          CB>ILB:  7.92 -> tier 6
+          RB>OLB:  7.72 -> tier 6
+          WR>OLB:  7.64 -> tier 6
+           CB>TE:  7.56 -> tier 6
+       FB>NICKEL:  7.50 -> tier 6
+          DT>OLB:  6.86 -> tier 6
+          FB>OLB:  4.78 -> tier 6
+            K>FB:  4.08 -> tier 6
+            P>FB:  4.08 -> tier 6
+            QB>K:  4.00 -> tier 6
+            QB>P:  4.00 -> tier 6
+            RB>K:  4.00 -> tier 6
+            RB>P:  4.00 -> tier 6
+            FB>K:  4.00 -> tier 6
+            FB>P:  4.00 -> tier 6
+            WR>K:  4.00 -> tier 6
+            WR>P:  4.00 -> tier 6
+            TE>K:  4.00 -> tier 6
+            TE>P:  4.00 -> tier 6
+            OT>K:  4.00 -> tier 6
+            OT>P:  4.00 -> tier 6
+            OG>K:  4.00 -> tier 6
+            OG>P:  4.00 -> tier 6
+             C>K:  4.00 -> tier 6
+             C>P:  4.00 -> tier 6
+            DT>K:  4.00 -> tier 6
+            DT>P:  4.00 -> tier 6
+          EDGE>K:  4.00 -> tier 6
+          EDGE>P:  4.00 -> tier 6
+           ILB>K:  4.00 -> tier 6
+           ILB>P:  4.00 -> tier 6
+           OLB>K:  4.00 -> tier 6
+           OLB>P:  4.00 -> tier 6
+            SS>K:  4.00 -> tier 6
+            SS>P:  4.00 -> tier 6
+            FS>K:  4.00 -> tier 6
+            FS>P:  4.00 -> tier 6
+            CB>K:  4.00 -> tier 6
+            CB>P:  4.00 -> tier 6
+          CB>OLB:  3.12 -> tier 2
+          OLB>DT:  3.02 -> tier 2
+           FS>FB:  2.62 -> tier 2
+           CB>FB:  2.62 -> tier 2
+           QB>FB:  2.48 -> tier 2
+           WR>FB:  1.98 -> tier 2
+          ILB>DT:  1.91 -> tier 2
+           SS>FB:  1.00 -> tier 2
