@@ -1,0 +1,5 @@
+KG's directive on the DB run-support ordering (P-219), 2026-11-09 23:56 HST. Verbatim.
+
+---
+
+this should obviously be supported by the engine regardless of what system we decide:  SS > FS > CB — strong safety as the box/run defender, free safety as the last line, corners as perimeter
