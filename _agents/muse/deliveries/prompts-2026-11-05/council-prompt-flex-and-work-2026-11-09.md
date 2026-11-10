@@ -27,7 +27,20 @@ The queue holds the ranked work. Highlights (read the rows themselves for the br
 - **P-311** — draft-scan comparison vs the P-310 baseline (fresh 626 / tune 1212).
 - **P-322** — design the per-role skill profile (the IDEA): how would blocking/coverage/snapping/rushing profiles produce the Owner's flex prices? A design, not a build.
 - **P-323** — verify the flex answers (items 3 + 7) once the Architect builds them: counts (23/40/16/26, 105 rules), the base total, the tests.
+- **P-324** — review Z.ai w88 (position values in WINS, the NEW localWins20 measurement) when it lands.
+- **P-325** — resolve the WR3 question + Colors/PreColors fidelity: why does WR3 move on PreColors but not on Colors? Reconcile SAM and CB1 too.
+- **P-326** — recheck the localWins20 math + improve the method (SAM spread sensitivity, OT1 boundary, centers, ±5 vs ±3/±7, slope×20 vs centered 20-span, the name).
+- **P-327** — fix the council/muse flex tooling (Super P-193): `flexcheck.mjs` rejects penalty 12 (it only accepts [0,2,4,6] + QB=10), so it cannot validate the tier-12 table items 3+7 require; `flexengine.js` spot checks are stale vs REV 4. Update both.
 - **P-276** — the N=1000 reproduction (VL in flight); **P-289, P-290, P-293, P-296, P-303, P-306** — open review/build items. Take the top line of `next` and do it.
+
+## Recent council work (read it — it changes things)
+
+- **Super, P-193 flex-guide data review** (`inbox/20261110-0055-super-P-193-flex-guide-data-review.md`): the flex guide data lives in three inconsistent versions (council/muse REV 4, 107 rules; architect branch, 97 rules; Owner's expected post-items-3+7, 105 rules). Items 3+7 are not applied to either live version. Blockers: the council/muse `flexcheck.mjs` rejects penalty 12, and `flexengine.js` spot checks are stale. P-327 is the fix.
+- **GLM, final-105 candidate** (`_agents/glm/deliveries/flexrebuild/final-105/`): GLM built the 105-rule table (base `728b2c53` + items 3+7 verbatim = exactly 10 moves) and it lands at **105 rules {12:23, 6:40, 2:16, 0:26} — the Owner's expected counts exactly**. This independently confirms the flex-answers counts. His `flexcheck` fails only on the SAM destination (the same blocker Super found).
+- **Iceman, P-309 grid reconcile** (`inbox/20261110-0054-iceman-P-309-grid-reconcile.md`): 11/11 theta-grid cells reproduced straight from the frozen engine (including QB>FS@90 θ1.0 = 24.45). The ×20 discrepancy existed only in Super's superseded version. The D-picks foundation is solid.
+- **Inkling, w87 live verification**: w87 verified live (receipt in bulletin + lane). w88 builds on a verified w87.
+- **OR, P-116 review** (improved, 6 findings D-013–D-018). **VLOC, P-167 review** (improved — retire as superseded by w52–w62). **Glyph, E-208 review** (improved — aggregation/source precision; Glyph is filing again).
+- **The seat ranking** (`_agents/muse/deliveries/seat-ranking-2026-11-09.md`, MUSE): GPT's ranking method revisited — qualitative tiers, confidence labels, receipt-backed above volume, verified vs reported, temporal bias noted. Read it and critique it, especially the MUSE and GPT self-assessments. The ranking is provisional; a decision-changing finding moves a seat up.
 
 ## Brainstorm, innovate, improve (even if you take no queue item)
 
