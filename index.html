@@ -1,4 +1,16 @@
 <!--
+WAVE: w88 (the Owner's 2026-11-09 directive, delivered 2026-11-10)
+BASE: w87 gh-pages (1,900,033 B · md5 bffdccace803ab126b52783e0de8f2e1)
+THIS WAVE: the position values leave the QB=1000 weight scale and wear WINS — extra wins per
+season for a 20-OVR upgrade, measured at each position's LOCAL rate around its pool average
+(the P-321 method: local slope at ±5 around the CSV pool center, slope × 20; pool = the
+1,941-player Madden 27 CSV). Every slot re-measured on the Colors engine at snapshot 4ca9a071:
+all 32 reproduce the Owner's table to one decimal (OT1 = 1.2497 exact, the known rounding-
+boundary artifact, reads 1.2). The weight table (ZPB_SLOTS_W) stays as the model's internal
+law — the engine calibration still reads it — but it is no longer displayed anywhere.
+Numbers and order only: no engine change, no flex change, no layout change, no brand change.
+-->
+<!--
 WAVE: w85 (round 3 — the Owner's 2026-11-08 chat)
 BASE: w79 gh-pages pin (1,836,431 B) — the Owner's newest pushed wave, the one he calls w78:
 the DRAFT COMMAND CENTER, CUTDOWN DAY, the per-round SIM PLAYOFFS cinematics (one page per
@@ -9874,7 +9886,7 @@ const DEF_RUN_KEYS = ['frontRun','frontBase','frontNick'], DEF_PASS_KEYS = ['pas
 function slotRoleRows(){
  const base = {}; ROSTER_SLOTS.forEach(s=>{ base[s] = {ovr:80}; });
  const lg = teamRatings(base), b0 = matchupModel(lg, lg, lg).structPts, STEP = 4, wpo = slotWinsPerOvr(), rows = [];
- const wpoLab = s=> ZPB_SLOTS_W[s]!=null ? ZPB_SLOTS_W[s]*0.00254/20 : wpo[s]; // w65 (Owner): the labeled wins-per-+1 rides the new table
+ const wpoLab = s=> (typeof zpbSlotWinsLocal==='function') ? zpbSlotWinsLocal(s)/20 : wpo[s]; // w88 (Owner): the labeled wins-per-+1 rides the NEW local Wins table (the local slope)
  ROSTER_SLOTS.forEach(s=>{
   const sm = Object.assign({}, base); sm[s] = {ovr:80+STEP};
   const R = teamRatings(sm), isOff = WV_OFF_SLOTS.has(s);
@@ -9902,9 +9914,9 @@ const SLOT_FRIENDLY = {QB:'Quarterback', RB1:'Running back 1', RB2:'Running back
 const slotName = s=> SLOT_FRIENDLY[s] || LABELS[s] || s;
 // One row per starting spot, sorted by what a 70 → 90 upgrade is worth.
 function slotRoleTableHTML(){
- const rows = slotRoleRows().map(r=>Object.assign({up:zpbSlotWins70to90(r.slot)}, r)).sort((a,b)=>b.up-a.up); // w65 (Owner): the 70->90 column wears the new weights
- const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(2)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
- return `<div class="tablewrap"><table><thead><tr><th>Starting spot</th><th title="Extra wins per season if this position goes from a 70 to a 90">Wins from a 70→90 upgrade</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table></div>`;
+ const rows = slotRoleRows().map(r=>Object.assign({up:(typeof zpbSlotWinsLocal==='function')?zpbSlotWinsLocal(r.slot):zpbSlotWins70to90(r.slot)}, r)).sort((a,b)=>b.up-a.up); // w88 (Owner): the column wears the NEW local Wins table
+ const body = rows.map(r=>`<tr><td><b>${slotName(r.slot)}</b></td><td class="score">${r.up.toFixed(1)}</td><td class="score">${r.wpo>=0.0005?'+'+r.wpo.toFixed(3):'~0'}</td><td>${r.kick>0.5?'kicking only':`${(r.passShare*100).toFixed(0)}% pass · ${(r.runShare*100).toFixed(0)}% run`}</td><td class="narr">${r.roles.join(' · ')}</td></tr>`).join('');
+ return `<div class="tablewrap"><table><thead><tr><th>Starting spot</th><th title="Extra wins per season for a 20-OVR upgrade, measured at the position's local rate around its pool average">Wins per season</th><th>Wins per +1 rating</th><th title="Of this spot's wins, how many come from the passing game vs the running game (offense) or from stopping the pass vs stopping the run (defense)">Where the wins come from</th><th title="How much of each team-wide rating this one spot makes up">Share of each team rating it feeds</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 // What every game-plan choice does to a league-average team, measured on the model itself.
 function planMathHTML(){
@@ -9971,9 +9983,9 @@ function flexExplainHTML(){
   </div>`;
 }
 function valueTiersHTML(){
- const rows = ROSTER_SLOTS.map(s=>({s, w:zpbSlotWins70to90(s)})).sort((a,b)=>b.w-a.w); // w65 (Owner): the Guide's tier viz wears the new weights
+ const rows = ROSTER_SLOTS.map(s=>({s, w:(typeof zpbSlotWinsLocal==='function')?zpbSlotWinsLocal(s):zpbSlotWins70to90(s)})).sort((a,b)=>b.w-a.w); // w88 (Owner): the tier viz wears the NEW local Wins table
  const tiers = [['Franchise-changing', r=>r.w>=2],['High value', r=>r.w>=1&&r.w<2],['Solid value', r=>r.w>=0.7&&r.w<1],['Role players', r=>r.w>=0.3&&r.w<0.7],['Depth spots', r=>r.w<0.3]];
- return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'·'+l[l.length-1].w.toFixed(1):''} wins from a 70→90 upgrade): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
+ return `<ul class="gl">${tiers.map(([n,f])=>{ const l = rows.filter(f); return l.length ? `<li><b>${n}</b> (${l[0].w.toFixed(1)}${l.length>1?'·'+l[l.length-1].w.toFixed(1):''} wins per season, 20-OVR at the local rate): ${l.map(r=>slotName(r.s)).join(', ')}.</li>` : ''; }).join('')}</ul>`;
 }
 function boardMathHTML(){
  // w29 (Owner): the titles wear the same box ([WINS] like [PRIORITY] and [GONE]), every line sits
@@ -10103,14 +10115,14 @@ function renderGuideHTML(){
   <li><b>Play the season.</b> Season, Playoffs, Super Bowl. Can you go <b class="zpb-shine">20-0</b>? Seventeen games, a 14-team playoff  ·  leave your game plan on Auto or set it yourself each week.</li>
   <li><b>Review.</b> Game recaps, awards, advanced stats (what caused sacks and big runs), a critique of your picks, and 100 SEASONS, which shows how much of your result was skill and how much was luck.</li>
  </ol>`;
- const draft = `<p style="margin:4px 0;"><b>The goal</b> is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (the number in brackets is the extra wins per season from upgrading that position from a 70 to a 90):</p>
+ const draft = `<p style="margin:4px 0;"><b>The goal</b> is to build the roster that wins the most games. Every starting spot is worth a different amount, so the first job is knowing which spots matter. This is how our math ranks them, from most to least valuable (each tier shows the extra wins per season a 20-OVR upgrade is worth, measured at the position's local rate around its pool average):</p>
   ${valueTiersHTML()}
-  <p style="margin:4px 0;">In short: <b>quarterback is in a class by itself</b>. After that the <b>top wide receiver and the top edge rusher</b> are tied at 650, the <b>first offensive tackle and first defensive tackle</b> sit at 500, and the <b>400 tier</b> holds the guards, the top cornerback and the second receiver. The 300 tier is the second tackle, second end and second tackle on defense plus the linebackers and both safeties. Running backs, tight ends and specialists matter less than most fans expect.</p>
+  <p style="margin:4px 0;">In short: <b>quarterback is in a class by itself</b> (2.5 wins). After that come the <b>top edge rusher</b> (1.7) and the <b>top wide receiver</b> (1.6), then the <b>first defensive tackle</b> (1.3) and the <b>first offensive tackle</b> (1.2). The <b>1-win tier</b> holds the second receiver, the top cornerback and the first guard. The <b>0.8 tier</b> is the second offensive tackle, the second end, the second tackle on defense, the middle linebacker and both safeties. Running backs, tight ends and specialists matter less than most fans expect.</p>
   <div class="zpb-bigfade"><span class="zpb-shine">YOU CAN FLEX</span></div>
   `;
  const board = `${boardMathHTML()}`; // w29 (Owner): CPU DRAFT STRATEGY and UNDO live in their own panels inside the section now
  const flex = flexExplainHTML();
- const values = `<p class="narr" style="margin:4px 0;">One row per starting spot, sorted from the most valuable to the least. Fullbacks and punters carry real modeled value here: the fullback owns a lead-blocker share of run blocking, and the punter drives hidden-yards field position. The integer weight scale behind these numbers lives in the weights guide (REWEIGHT-BRIEF), with the quarterback anchored at 1000.</p>
+ const values = `<p class="narr" style="margin:4px 0;">One row per starting spot, sorted from the most valuable to the least. Fullbacks and punters carry real modeled value here: the fullback owns a lead-blocker share of run blocking, and the punter drives hidden-yards field position. Each number is Wins: extra games per season for a 20-OVR upgrade, measured at the position's local rate around its pool average (the 1,941-player Madden 27 pool the league is built from).</p>
   <ul class="gl"><li><b>Where the wins come from</b> splits the spot's total wins between its two jobs. For an offensive tackle, “77% pass · 23% run” means about three-quarters of his value comes from protecting the quarterback and a quarter from blocking for the run. Pass protection is worth more than run blocking per rating point, which is why the split leans pass.</li>
   <li><b>Share of each team rating it feeds</b> shows how big a slice of each team-wide rating this one spot is. “Pass protection 21% · run blocking 18%” means the offensive tackle makes up about a fifth of the pass-protection rating and a bit less of the run-blocking rating, because five linemen (and for run blocking, a tight end) share each rating. This number is about <i>composition</i> (how the ratings are built); the other is about <i>importance</i> (how much the rating matters for winning). That is why the two sets of percentages do not match.</li></ul>
   <p class="narr" style="margin:4px 0;">Tight ends help block for the run, running backs add value as pass catchers, and cornerbacks and free safeties each contribute roughly 10% of their value stopping the run.</p>${slotRoleTableHTML()}`;
@@ -13082,6 +13094,42 @@ window.zpbSlotUIRank = function(){
 })();
 </script>
 
+<script id="zpb-w88-js">
+// ============ Z-POST-BLUE W88 (Owner round, 9-10 Nov 2026) ============
+// THE WINS TABLE — the position values leave the QB=1000 weight scale and wear WINS: extra
+// wins per season for a 20-OVR upgrade, measured at the position's LOCAL rate around its pool
+// average (the P-321 method: local slope at ±5 around the CSV pool center, slope × 20; pool =
+// the 1,941-player Madden 27 CSV). Every slot re-measured on the Colors engine at snapshot
+// 4ca9a071 — all 32 reproduce the Owner's table to one decimal (OT1 = 1.2497 exact, the known
+// rounding-boundary artifact, reads 1.2). The weight table (ZPB_SLOTS_W) stays as the model's
+// internal law (the engine calibration reads it); it is no longer displayed anywhere.
+window.ZPB_SLOTS_WINS = {QB:2.4706, DE1:1.7097, WR1:1.6071, DT1:1.3158, OT1:1.2497, WR2:1.1487, CB1:1.0557, OG1:1.0001, MIKE:0.7934, DE2:0.7908, DT2:0.7896, FS:0.7893, SS:0.7887, OT2:0.7510, CB2:0.6593, OG2:0.6258, TE1:0.6181, RB1:0.6126, WILL:0.3950, DL5:0.3939, C:0.3752, TE2:0.2661, CB3:0.2610, WR3:0.2470, CB4:0.1310, SAM:0.1279, K:0.1271, P:0.1182, WR4:0.1019, RB2:0.0971, TE3:0.0805, FB:0.0626}; // w88 (Owner): the NEW Wins table (localWins20) — one decimal on display; CB4 is the product's DIME (the label law, w34) and carries the Colors engine's DIME value
+window.zpbSlotWinsLocal = function(s){ const v = window.ZPB_SLOTS_WINS[s]; return v != null ? v : 0; }; // w88: the slot's Wins — the accessor every w88 display reads
+window.ZPB_SLOT_UI_ORDER = ['QB','DE1','WR1','DT1','OT1','WR2','CB1','OG1','MIKE','DE2','DT2','FS','SS','OT2','CB2','OG2','TE1','RB1','WILL','DL5','C','TE2','CB3','WR3','CB4','SAM','K','P','WR4','RB2','TE3','FB']; // w88 (Owner): the Wins order — WR2 rises above CB1, SAM falls to 26th, RB2 to 30th (ties read the exact measured values)
+window.zpbSlotUIRank = function(){ // w88: same contract as w87 — the base order, then any future slot behind, best first
+ const base = window.ZPB_SLOT_UI_ORDER;
+ if(typeof ROSTER_SLOTS === 'undefined') return base.slice();
+ const extra = ROSTER_SLOTS.filter(s=>base.indexOf(s)<0); // any future slot the table has not met ranks behind, measured value first
+ const rows = extra.map(s=>({s, w:(typeof zpbSlotWinsLocal==='function')?zpbSlotWinsLocal(s):0}))
+   .sort((a,b)=>b.w-a.w).map(r=>r.s);
+ return base.concat(rows);
+};
+window.zpbPosRankHTML = function(){ // w88 (Owner): the guide's ranking wears WINS — the meaning sits on the row (the unit) and in the hover
+ const order = (typeof zpbSlotUIRank==='function') ? zpbSlotUIRank() : (typeof ROSTER_SLOTS!=='undefined'?ROSTER_SLOTS:[]);
+ if(!order.length) return '';
+ let h = '<div class="zpb-posrank">';
+ order.forEach((s,i)=>{
+  const w = (typeof zpbSlotWinsLocal==='function') ? zpbSlotWinsLocal(s) : 0;
+  h += `<div class="zpb-prrow${i===0?' zpb-prtop':''}"><span class="zpb-prank">${i+1}</span>`
+     + `<span class="zpb-prname" data-zslot="${s}">${(typeof LABELS!=='undefined'&&LABELS[s])||s}</span>`
+     + `<span class="zpb-prbar" style="width:${Math.max(2.5, w/2.5*100).toFixed(1)}%"></span>`
+     + `<span class="zpb-prval" title="Extra wins per season for a 20-OVR upgrade at the position's local rate around its pool average">${w.toFixed(1)} wins</span></div>`;
+ });
+ h += '</div><div class="zpb-prcap">The Wins value of every starting spot  ·  extra wins per season, 20-OVR upgrade at the local rate</div>';
+ return h;
+};
+</script>
+
 <script id="zpb-w26-js">
 // ============ Z-POST-BLUE W26 (Owner round, 28 Oct 2026) ============
 // 1) a failed panel paints a note, never a blank page (Brave hardening)
@@ -13100,10 +13148,10 @@ function zpbRankBtnSlots(){ return window.zpbRankSlots || (window.zpbRankSlots =
 function zpbBuildRankBtns(){
  var row = document.getElementById('zpbRankBtns'); if(!row || row.childElementCount) return;
  if(typeof ROSTER_SLOTS === 'undefined' || typeof LABELS === 'undefined') return;
- ROSTER_SLOTS.forEach(function(s){
+ (window.ZPB_SLOT_UI_ORDER||ROSTER_SLOTS).forEach(function(s){ if(ROSTER_SLOTS.indexOf(s)<0) return; // w88 (Owner): the buttons wear the new ranking order
   var wv = '';
-  try{ wv = String((typeof ZPB_SLOTS_W!=='undefined' && ZPB_SLOTS_W[s]!=null) ? ZPB_SLOTS_W[s] : Math.round(zpbSlotWins70to90(s)*393.7)); }catch(e){} // w87 (Owner): the buttons wear the recalculated Wins table — integers on the QB=1000 scale
-  row.insertAdjacentHTML('beforeend','<button type="button" class="zpb-srbtn" data-rslot="'+s+'" title="Toggle '+(LABELS[s]||s)+' in or out of the ranking"><b>'+(LABELS[s]||s)+'</b><i>'+wv+'</i></button>');
+  try{ wv = (typeof zpbSlotWinsLocal==='function') ? zpbSlotWinsLocal(s).toFixed(1)+' w' : ''; }catch(e){} // w88 (Owner): the buttons wear the WINS table — extra wins per season (20-OVR upgrade at the local rate)
+  row.insertAdjacentHTML('beforeend','<button type="button" class="zpb-srbtn" data-rslot="'+s+'" title="'+(LABELS[s]||s)+' · '+(typeof zpbSlotWinsLocal==='function'?zpbSlotWinsLocal(s).toFixed(1):'')+' wins per season (20-OVR upgrade at the local rate) — toggle in or out of the ranking"><b>'+(LABELS[s]||s)+'</b><i>'+wv+'</i></button>');
  });
 }
 function zpbSyncRankBtns(){

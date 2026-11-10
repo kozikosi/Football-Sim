@@ -1,0 +1,13 @@
+2f7a4654bff000e4b2365e0bd6fd1e3f  Football-Sim-Z-post-blue-w88.html
+e0f1ed455f9bfe033ef4f76258eaf551  UPDATE-README.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+2d41e7a9f327c33d4a2bac0925ba7fd9  _agents/zai/START-OF-CHAT-ZAI.md
+270c741512cb62494c0343483679eb2d  _agents/zai/ZAI.md
+5fa21ecf54ce82fb4af33f8276a13c99  _agents/zai/deliveries/ZAI-w88-build-and-verification-2026-11-10.md
+eaa3968415358402b1ad3fd262b6e7af  _agents/zai/evidence/w88-buttons.png
+6072a443a5942d6a699d37a12224efc5  _agents/zai/evidence/w88-guide.png
+6f22d3467f8cad6fb0eb48b7194b2bbe  _agents/zai/tools/build_w88.py
+88d95efea6cfb70e7851823ca400d349  _agents/zai/tools/cb4_check.mjs
+961d39da43504fbcea000e703cb62a31  _agents/zai/tools/precolors_check.mjs
+48484c17c58e2ed16104288e09c5377f  _agents/zai/tools/verify_w88.mjs
+89ebf64e45bd71f30d54bd72e28fabb4  _agents/zai/tools/verify_wins.mjs
