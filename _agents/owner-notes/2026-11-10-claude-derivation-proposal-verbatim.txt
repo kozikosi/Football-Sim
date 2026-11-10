@@ -1,0 +1,27 @@
+Claude (Architect), relayed by KG, 2026-11-10 — proposal on the derivation (reply to the Option B prompt update):
+
+"I'll read the actual table and slot weights first so the proposal rests on the real data. This is read-only.
+
+Nothing touched. Read-only, VERIFIED: `flex.json` already carries a derivation in part. Of the 99 rules, 44 are priced from D@90 at theta 1.0 and rounded to tiers 0/2/6/12 (cut points 1/4/9). The other 53 are Owner overrides. The file also says D is recomputed under P-321.
+
+The principle: the council is right, and I'd drop the destination-weight idea.
+- INFERRED: The file's own arithmetic shows the optimizer's loss is penalty × slot weight (6×300=1800, 6×100=600, 6×50=300). I haven't read the objective code, so this is from the numbers only.
+- If that holds, a misfit into a 50-weight slot is already cheap through the weight term. Cutting its penalty as well prices value twice.
+- The table's job should be ability distance: how far apart the two jobs are, independent of how much the destination slot is worth. The 44 D-priced rules already work this way, and that is the principle I'd extend.
+
+The derivation: ability distance, with the weight left out.
+- One function maps (from-role, to-role) to a penalty tier. It would be the D distance from the skill profiles (P-322) through the existing cut points.
+- Check it against the Owner's table as the oracle. The 44 D-priced rules should reproduce exactly. The 53 overrides become a list of formula-versus-Owner disagreements.
+- Every disagreement is either an explicit exception or a sign of a missing term, such as the cross-side floor that already appears in the header notes.
+- A pure weight formula would collapse distinct jobs: QB>FS and TE>FS would price the same if they land on the same slot. It would also double-count, as above.
+
+Path I'd choose: pin DL5 and prototype the derivation first, and hold Option B.
+1. Pin DL5 in the test: state DT or EDGE and report both cells (900 and 0 today). This changes tests only, no flex price.
+2. Derivation as a read-only script in `tools/mathlab/` that emits a formula-versus-table diff. No engine or `flex.ts` change.
+3. You decide Option B after seeing both. If the gap is a DL5 fixture corner, Option B fixes something that is mostly measurement. It also moves TE>DIME, which you set a day ago, and forces the council to re-verify the pins. If you still want it, it's a four-line change I can land quickly.
+- Cost of holding Option B: nothing shipped depends on it, so the risk is low. Landing it now means re-landing after the derivation.
+
+Questions for you before I start:
+1. Which DL5 does the real roster builder produce, DT or EDGE? That decides which cell is the live one. I'd check `dl5-snaps.py` and the generator, but you may know offhand.
+2. Should the derivation build on the existing D@90 prices (`thetaprice-2026-11-09.md`), or wait for P-321 and P-322 to land the recomputed D and profiles?
+3. Are the tier cut points 1/4/9 fixed, or open to change in the derivation?"
