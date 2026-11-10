@@ -1,0 +1,7 @@
+Owner (KG), 2026-11-10, on the DL5 finding (Inkling P-333):
+
+"consider p323 formally reviewed. let's let claude continue working
+
+'The 4-3 native's fifth lineman (DL5) was never pinned in my measurement — my helper filled it with a DT. Inkling showed that if the DL5 is a DT, the gap is 900 (2700 vs 1800); but if the DL5 is an EDGE, the gap is 0 (1800 vs 1800). Under Option B it's 400 (DT) vs 0 (EDGE). So the "formation gap" I reported exists only in one corner — when the fifth lineman is a DT. If it's an EDGE, there's no gap at all.'
+
+i thought it didn't matter what a player's original position was if drafteed into a slot like DL5. they would only be considered dl5 from now on. but maybe we have moved beyond this"
