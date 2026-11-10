@@ -1,0 +1,39 @@
+# Z.ai — w88 is LIVE; Slice 3 + Slice 4 are your work now (Owner, 2026-11-10)
+
+## w88 is LIVE
+
+w88 went live. The gh-pages index.html is w88 (1,904,952 B, md5 `2f7a4654bff000e4b2365e0bd6fd1e3f` — exact match to your delivery). Commit `aa7cf626` "Publish w88 as live index". The council's live-file review (P-324) will follow. Good work — the verification held up.
+
+## Your work now: Slice 3 AND Slice 4 (new task)
+
+Slice 3 is still outstanding (see the follow-up `zai-slice3-followup-2026-11-10.md` — read and queued is not done). **Slice 4 is now also yours.** Do Slice 3, then Slice 4, then respond once with both in the zip. Do not respond until both are complete (standing rule: you cannot push, so batch as much as possible per response).
+
+### Slice 3 (P-316) — hydration + board chrome pass (outstanding)
+
+Per the Slice 3 prompt on council/muse (`_agents/muse/deliveries/prompts-2026-11-05/zai-slice3-2026-11-09.md`): hydration + the board chrome pass (the gone-odds tooltip and the "my needs" sticky row). Consume the engine snapshot pinned at `4ca9a071`, do not move the pin, do not update flex values in Slice 3.
+
+### Slice 4 (NEW, P-287) — N3 drive-level feed UI
+
+Slice 4 is the drive-level feed UI. The slice order is Draft Board → Team Select → hydration → **feed** → shareables (5 slices total). Slice 4 builds the feed that shows drives at the drive level (the N3 feed: each drive as a feed event — what happened on the drive, who scored, the key plays — presented as a feed the user can scroll through, not just a box score).
+
+What to build (lean brief — the details are yours to design):
+- The feed UI: a scrollable feed of drive-level events (each drive as one feed entry: teams, score, key plays, outcome). It reads from the engine snapshot (pinned at `4ca9a071`) — the same snapshot Slice 3 uses. Do not move the pin.
+- The feed should feel like a feed (not a table): each drive as a card/entry, newest first, with the score and the story of the drive visible at a glance. The user should be able to follow a game drive by drive.
+- Boundaries (same as Slices 1–3): consume the snapshot, do not move the pin, do not generate ratings, do not touch the engine, do not touch the flex table, do not touch the brand. The feed is UI/UX only.
+- Review criteria (P-287): run the w77 battery against the slice (adapter extended), verify the snapshot is still frozen at the pinned commit, check the view-models map AppState → plain JSON, and check the delivery README. One review file per slice.
+- Slice 5 (N2 brag shareables + seed card) is queued after Slice 4. If you can do Slice 5 in the same response, do it — otherwise it stays queued and you respond after Slice 4.
+
+## Standing rule (reminder) — do not respond until ALL work is complete
+
+You cannot push, so every response costs the Owner a publish step. **Do not respond until Slice 3 AND Slice 4 are both complete.** Batch them into a single zip. If a piece is blocked, say so and explain the blocker — that is the only reason to respond with work outstanding.
+
+## Innovate — brainstorm, improve, create new ideas
+
+You are a builder, so the innovation ask is at full strength. Do not just execute the briefs literally — think around the work:
+
+- **Slice 3 (hydration + board chrome):** The gone-odds tooltip and the "my needs" sticky row are the carried innovations, but what else would make the board feel alive? What does hydration unlock that a static board cannot do? If a chrome idea would make the draft feel more like a real draft room, propose it and build it — do not wait for permission to make the board better.
+- **Slice 4 (feed):** A drive-level feed is new UI. What makes a feed worth scrolling? What would make a user re-read a drive? Think about what a fan wants to see after a drive — the score, the turning point, the player who made it happen — and design the feed entry around that. If a feed idea (a highlight, a momentum note, a "drive of the game" marker) would make the feed more fun or more true, build it. The feed is yours to invent, not just to implement.
+- **Across both slices:** Where do Slice 3 and Slice 4 meet? Does the feed belong on the board screen, or is it its own view? If the hydration work suggests a better home for the feed, say so. If a chrome idea from Slice 3 (a sticky row, a tooltip) belongs in the feed too, carry it over.
+- **The w88 lesson:** Your §4 verification found real things (TE2's fragility, the ±10-span trap, the WR3 spec-fidelity gap). That kind of thinking — finding what the brief did not ask for — is exactly what the Owner wants. Bring the same eye to Slice 3 and Slice 4: if you find a fragility, a trap, or a gap, report it in the delivery, do not hide it.
+
+The Owner's rule: every prompt to you carries a full innovation encouragement. This is it. Build the slices, and make them better than the brief.
