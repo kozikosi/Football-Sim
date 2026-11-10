@@ -1,0 +1,378 @@
+{
+ "pass": 61,
+ "fail": 0,
+ "skip": 10,
+ "defer": 3,
+ "results": [
+  {
+   "law": "the dev build opens at TEAM SELECT, not on a board with a random team",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the Team Select lists all 32 teams",
+   "verdict": "PASS",
+   "detail": "32 team buttons"
+  },
+  {
+   "law": "the 32 teams sit in the real alignment (AFC + NFC, 4 divisions each)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the measured mode is the DEFAULT on Team Select too (\"Model Value\" on, pre-draft)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode switch is NOT disabled before the draft (the Owner preset is one click away pre-draft)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "selecting a team shows its details (name + the real division)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the details are engine-derived (the division rivals read the real alignment)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the choice flows into the Draft Board — the board drafts as the CHOSEN team",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the board renders from the view model (engine state in, plain JSON out)",
+   "verdict": "PASS",
+   "detail": "60 rows"
+  },
+  {
+   "law": "the default sort is wins/priority, never raw OVR",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the on-clock indicator names the round, the pick and the overall",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "every row reads name · pos · team · OVR · wins · priority · gone% (EVERY row, EVERY field)",
+   "verdict": "PASS",
+   "detail": "60 rows, 0 bad"
+  },
+  {
+   "law": "the gone-odds display is present on every row",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the sort controls offer wins / OVR / priority",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the OVR sort actually sorts",
+   "verdict": "PASS",
+   "detail": "first 99"
+  },
+  {
+   "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording) — OBSERVED open",
+   "verdict": "PASS",
+   "detail": "14 pickers probed · 54 flex chips · sample [\"-4 flex\",\"-4 flex\",\"-4 flex\"]"
+  },
+  {
+   "law": "the slot picker offers the natural slot first",
+   "verdict": "PASS",
+   "detail": "Draft at QB"
+  },
+  {
+   "law": "the pick confirms before it lands",
+   "verdict": "PASS",
+   "detail": "Draft Patrick Mahomes at QB? Confirm the pick Cancel"
+  },
+  {
+   "law": "the pick lands and the footer counts it",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the CPU teams pick on after the user's pick (the clock advances)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "undo cuts the log back and the count returns",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the measured mode is the DEFAULT (\"Model Value\" on)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the Owner preset is one click away",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the mode label travels with the numbers (the subtitle carries it)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "zero page errors across the whole battery",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the gone% cell explains its METHOD on hover (real CPU logic · sims · picks between)",
+   "verdict": "PASS",
+   "detail": "GONE% — how often the CPU took him before your next pick: the 22 picks between now and your turn wer"
+  },
+  {
+   "law": "the tooltip names the engine's OWN picksBetween and sims (not a UI-invented story)",
+   "verdict": "PASS",
+   "detail": "engine: between=22 sims=30"
+  },
+  {
+   "law": "the needs row lists all 32 OPEN slots at the draft's start",
+   "verdict": "PASS",
+   "detail": "32 chips"
+  },
+  {
+   "law": "the needs row is STICKY (position: sticky, a real sticky row)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "clicking a need filters the board to rows that FILL it (primary or flex)",
+   "verdict": "PASS",
+   "detail": "60 -> 19 rows"
+  },
+  {
+   "law": "every filtered row provably fills the selected slot (primary label or a flex chip — pickers opened)",
+   "verdict": "PASS",
+   "detail": "19 rows opened, 0 bad"
+  },
+  {
+   "law": "ALL clears the filter (the full board returns)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the Saves panel lists the three slots (A · B · C)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the slots read empty before anything is saved",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "saving the draft lands an ENVELOPE in slot A (kind · revision · picks · team)",
+   "verdict": "PASS",
+   "detail": "Slot A DRAFT · rev 21 20 picks · Chicago Bears saved 2026-11-10 03:34 Load draft"
+  },
+  {
+   "law": "slot A is loadable",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the envelope SURVIVES a reload (same kind · rev · picks)",
+   "verdict": "PASS",
+   "detail": "Slot A DRAFT · rev 21 20 picks · Chicago Bears saved 2026-11-10 03:34 Load draft"
+  },
+  {
+   "law": "loading the draft restores the board (team + store state)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "a CORRUPT week save is REFUSED verbatim (never repaired, never defaulted)",
+   "verdict": "PASS",
+   "detail": "Slot B REFUSED (corrupt) — corrupt-never-repair week: roster must be 32 frozen players Save draft here"
+  },
+  {
+   "law": "a NEWER-VERSION envelope is refused as newer (never overwritten)",
+   "verdict": "PASS",
+   "detail": "Slot C REFUSED (newer-version) — corrupt-never-repair envelope: written by a newer build ("
+  },
+  {
+   "law": "a REAL week save (engine-built) HYDRATES: WEEK · next week · the user's fixture",
+   "verdict": "PASS",
+   "detail": "Slot C WEEK · rev 1 Buffalo Bills · next: week 3 Seattle Seahawks @ Buffalo Bills · 32 games played saved 2026-11-10 00:00 Load we"
+  },
+  {
+   "law": "the hydrated card renders the engine's LoadedWeek (trusted vs re-derived, named)",
+   "verdict": "PASS",
+   "detail": "Hydrated — week save, slot C Buffalo Bills · next week 3 · Seattle Seahawks @ Buffalo Bills 32 games played · the table,"
+  },
+  {
+   "law": "PLAY WEEK 1 is ABSENT while the draft runs",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the draft completes through the store (status done — 32 real PICK actions)",
+   "verdict": "PASS",
+   "detail": "status done"
+  },
+  {
+   "law": "PLAY WEEK 1 appears when the draft is done",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the feed renders from the finished rosters",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "the UI game IS the engine game: the final score matches the node recompute EXACTLY",
+   "verdict": "PASS",
+   "detail": "UI CHI 36 at MIN 22 FINAL gameSeed 33538538 · engine CHI 36 @ MIN 22"
+  },
+  {
+   "law": "the drive count matches the engine recompute",
+   "verdict": "PASS",
+   "detail": "22 = 22"
+  },
+  {
+   "law": "the ME glow marks exactly the user team's drives",
+   "verdict": "PASS",
+   "detail": "11 = 11"
+  },
+  {
+   "law": "the lead-change count matches the engine recompute",
+   "verdict": "PASS",
+   "detail": "22 drives · 11 mine · 4 lead changes"
+  },
+  {
+   "law": "every drive line carries clock · team chip · badges · running score (EVERY line; OT drives carry the OT stamp)",
+   "verdict": "PASS",
+   "detail": "22 lines · 27 badges · clocks+scores all in form"
+  },
+  {
+   "law": "the quarter marks ride the log (the w88 replay look)",
+   "verdict": "PASS",
+   "detail": "Q1"
+  },
+  {
+   "law": "the provenance stamp names the seed and the fixture (a number is never shown without its provenance)",
+   "verdict": "PASS",
+   "detail": "gameSeed 3353853870 · week 1 · Chicago Bears @ Minnesota Vikings · played by the pinned engine"
+  },
+  {
+   "law": "the running scores END at the final (the drives add up)",
+   "verdict": "PASS",
+   "detail": "last 36·22"
+  },
+  {
+   "law": "no yards are faked (the v1 feed shows plays and time, never an invented yard figure)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "NEWEST FIRST flips the reading (the last drive leads; every drive still present)",
+   "verdict": "PASS",
+   "detail": "Q1 15·00 -> Q4 02·01"
+  },
+  {
+   "law": "MY DRIVES filters to the user's drives only",
+   "verdict": "PASS",
+   "detail": "11 = 11"
+  },
+  {
+   "law": "zero page errors across the feed laws",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "prefers-reduced-motion: the beat-in animation is OFF (the lines land at once)",
+   "verdict": "PASS",
+   "detail": "animation-name: none"
+  },
+  {
+   "law": "zero page errors across the whole battery (slices 1-4)",
+   "verdict": "PASS",
+   "detail": ""
+  },
+  {
+   "law": "V0 the median trio (the drafted-pool median, superseded 76, cached once)",
+   "verdict": "SKIP",
+   "detail": "the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests"
+  },
+  {
+   "law": "V2/V3 the chip law (all off = the full board)",
+   "verdict": "SKIP",
+   "detail": "the position-chip BAR in shell form is not the law — slice 3 built the board chrome (the needs sticky row + the gone-odds tooltip, verified above); the shell chip bar itself arrives with the shell-form pass"
+  },
+  {
+   "law": "V5 the phone laws at 390 (the footer nav, the pan laws)",
+   "verdict": "SKIP",
+   "detail": "the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements"
+  },
+  {
+   "law": "V6 the playoff round cinematics",
+   "verdict": "SKIP",
+   "detail": "playoffs are a later slice"
+  },
+  {
+   "law": "V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder",
+   "verdict": "SKIP",
+   "detail": "shell pages outside slices 1-3 (team select landed in slice 2, the saves panel in slice 3; the season surfaces and the guide arrive in later slices)"
+  },
+  {
+   "law": "V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks",
+   "verdict": "SKIP",
+   "detail": "season-surface laws — later slices"
+  },
+  {
+   "law": "V15 the fills column and V17 the picker chips in shell form",
+   "verdict": "SKIP",
+   "detail": "slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)"
+  },
+  {
+   "law": "V7 the display scale centers on the median",
+   "verdict": "SKIP",
+   "detail": "the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)"
+  },
+  {
+   "law": "V4 the command center / cutdown day",
+   "verdict": "SKIP",
+   "detail": "the season review screen — a later slice"
+  },
+  {
+   "law": "V1 the dropdown order + the OG casing",
+   "verdict": "SKIP",
+   "detail": "the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)"
+  },
+  {
+   "law": "the gone-odds METHOD equality (30 sims, the real CPU logic) vs the shell numbers",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  },
+  {
+   "law": "the 84-assertion DOM battery byte-parity",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  },
+  {
+   "law": "the witness export parity",
+   "verdict": "DEFER",
+   "detail": "the cutover battery"
+  }
+ ]
+}
