@@ -1,0 +1,28 @@
+Owner verbatim — follow-up questionnaire answers + list feedback, 2026-11-10 01:21 HST
+
+KG answered MUSE's five follow-up questions and gave feedback on the "ideas that agree" list. His message, verbatim:
+
+---
+1. for what we have in the sim so far, their preferred position says a lot not only about the exact position they play but also what similar attributes they must have to play that position. i'm not generating a style for every player in every sport in every league. i would have to do that manually.
+2. let's not answer this until we see what the engine naturally produces
+3. Now. it might be part of the formula itself
+4. I suppose i assign it. some of the positions work can be done by an agent. for exxample nakobe dean is currently a mike for the raiders but he played will last year for the eagles. this data could be gathered. but i don't want to promise i'll do all of that myself.
+5. don't worry about it. it will happen naturally.
+z.ai d1: make sure you note these two caveats when presented to everyone
+claude's guard / value ladder: I don't want to provide the values for the other sports like i did for football. so don't assume there will be set weights to use in teh formula.
+Claude's merged shape: sounds good with the caveat
+ok to anything i didn't mention. you don't need to include the rejected ideas; maybe just note rejected concepts instead.
+
+yes especially to the position testing. there are still plenty of football positions that arent in the game. e.g You could quickly test how big nickels (SS2s) are valued and what positions naturally drift into that role and what flex penalty they get and what positions are naturally prohibited from playing that role in the math.
+---
+
+Notes on the record:
+- The five answers map to MUSE's five follow-up questions (2026-11-10): (1) "how they like to play" as an input; (2) the user-facing number scale; (3) gravity — when; (4) dual positions — who assigns and what it costs; (5) who proposes first in the convergence.
+- Q1 ruling: the preferred position itself carries the style — a position says a lot about what similar attributes a player must have to play it. NO per-player style labels; the Owner will NOT generate a style for every player in every sport in every league (he would have to do it manually). Formula inputs stay: position + OVR.
+- Q2: the user-facing scale is DEFERRED — do not answer until the engine's natural output is seen.
+- Q3: gravity is NOW (not later) — and it might be part of the formula itself. P-335 is active; gravity is a convergence topic, not a post-derivation feature.
+- Q4: the Owner assigns dual positions; an agent can help gather the position-history data (example: Nakobe Dean is currently a MIKE for the Raiders but played WILL last year for the Eagles — that data could be gathered). The Owner does NOT promise to do all of it himself.
+- Q5: the convergence process is NOT prescribed — "it will happen naturally."
+- List feedback: (a) Z.ai D1's two caveats must be noted when the list is presented to everyone; (b) the guard/value ladder must NOT assume set weights exist for other sports — the Owner will NOT provide values for other sports like he did for football; (c) Claude's merged shape sounds good with the caveat (tier labels out); (d) OK to anything not mentioned; (e) do NOT include the rejected ideas (specific designs) — note rejected CONCEPTS instead.
+- Position testing: the Owner endorses it, "especially." There are still plenty of football positions not in the game. Concrete test: big nickels (SS2s) — how are they valued, what positions naturally drift into that role, what flex penalty do they get, and what positions are naturally prohibited from playing that role in the math. Filed as P-338.
+- Typos are the Owner's as written ("exxample", "teh", "arent").

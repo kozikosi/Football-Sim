@@ -6,10 +6,11 @@
 
 ## The formula's shape
 
-1. **Z.ai's ZAI-D1 ability layer** — the formula looks at what the new job demands and what the source position can do; the price is set by the biggest gap plus a discounted bit for the rest. No exceptions, no D term, 0 fiat rows. **Agrees:** no named exceptions (Q9); positional requirements, not attributes (Q2/Q14); portable (Q3/Q5). **Caveats:** it currently carries the cross-side floor (out per Q10 — but Inkling measured the floor is inert in this family, so dropping it changes nothing) and the three score changes include the C PBLK pair (out per Q12 — but the guard now handles C>OT, so the pair may not be needed).
-2. **Claude's guard / value ladder** — a flex can't pay less than the break-even value difference, from slot weights alone (no fitted constants, no per-player data). **Agrees:** Q11(a) (the ladder explains C>OT); minimal data (Q2); portable — moves automatically when weights change (Q3).
+1. **Z.ai's ZAI-D1 ability layer** — the formula looks at what the new job demands and what the source position can do; the price is set by the biggest gap plus a discounted bit for the rest. No exceptions, no D term, 0 fiat rows. **Agrees:** no named exceptions (Q9); positional requirements, not attributes (Q2/Q14); portable (Q3/Q5). **⚠ TWO CAVEATS — NOTE WHEN PRESENTING TO EVERYONE (Owner, 2026-11-10):** (a) it currently carries the cross-side floor — the floor is OUT per Q10, but Inkling measured it is inert in this family, so dropping it changes nothing; (b) the three score changes include the C PBLK pair — the pair mechanism is OUT per Q12, but the guard now handles C>OT, so the pair may not be needed.
+2. **Claude's guard / value ladder** — a flex can't pay less than the break-even value difference, from slot weights alone (no fitted constants, no per-player data). **Agrees:** Q11(a) (the ladder explains C>OT); minimal data (Q2); portable — moves automatically when weights change (Q3). **⚠ CAVEAT (Owner, 2026-11-10): the Owner will NOT provide set weights for other sports like he did for football — do NOT assume set weights exist in the formula.** The guard as formulated reads slot weights; for other sports those weights do not exist and will not be provided. The value layer must work without Owner-provided weights for other sports — the weights would need to be derived (from the engine, from OVR, from positional concepts) or the value layer needs a different form. This is a constraint on the guard's portability, not a rejection of the guard for football.
 3. **Claude's merged shape** — compute the exact penalty underneath, show a simple integer on top; a soft-max exponent `k` as the adjustable blend. **Agrees:** crazy math hidden + simple integers shown (Q4); adjustable blend, most malleable (Q7). **Caveat:** his tier *labels* (Free/Slight/Real/Heavy) are out per Q4 — show just the number.
 4. **Inkling's merge structure — max(ability, guard)** — the price is whichever ingredient costs more. **Agrees:** one endpoint of the adjustable blend (Q7); the guard collapses C>OT (Q11a). **Caveat:** the 3 anti-D pins are out per Q9 — the structure agrees, the pins don't.
+5. **Gravity — a player who draws double teams makes teammates better; it might be part of the formula itself (Owner, 2026-11-10, follow-up Q3: NOW).** Offensive gravity (a WR1 / best player / midfielder drawing double teams) and defensive gravity (a rim protector deterring shots, a Revis-island corner). **Agrees:** the value of a position includes the attention it draws (Q8); gravity is a convergence topic now, not a post-derivation feature. **Open:** how gravity is measured and whether it enters the flex price, the guard, or the engine's team value. Filed as P-335 (active now).
 
 ## How the two ingredients mix
 
@@ -30,12 +31,14 @@
 ## How to test it
 
 12. **Leave-one-role-out testing (Inkling, Claude).** Test the formula on positions it hasn't seen, to check it generalizes. **Agrees:** portable (Q3); "done is a feeling that can be adjusted" (Q20) — LOO gives a check that the feeling will hold up in a new sport.
+13. **Position testing — test positions NOT in the game (Owner, 2026-11-10, endorsed "especially").** There are still plenty of football positions not in the game. Concrete test: big nickels (SS2s) — how are they valued, what positions naturally drift into that role, what flex penalty do they get, and what positions are naturally prohibited from playing that role in the math. **Agrees:** the formula should price new positions without hand-written rules (Q2, Q3); a position's value and its natural prohibitions should fall out of the math. Filed as P-338.
 
-## Filtered out (conflicts with the Owner's answers — do not re-propose)
+## Rejected concepts (do not re-propose — concepts, not designs)
 
-- **OR's 5-skill attribute design** (STR/SPD/HT/TK/MN) — rejected (Q14); no intangibles, no attribute vocabulary.
-- **The C PBLK pair (HAVE+NEED)** — good detective work (Inkling + Z.ai confirmed it), but the Owner said it doesn't make intuitive sense (Q12); tracking pairs is out.
-- **Inkling's 3 anti-D pins and R4's 11 pins** — out (Q9); no named exceptions.
-- **The tier labels Free/Slight/Real/Heavy** — out (Q4); just the number.
-- **Super's wasted-capability term/tax** — out per the Owner's 2026-11-10 directive; do not promote or broadcast.
-- **MUSE-D1 (harmonic coverage, 63/99)** — failed; the price is set by the worst absolute gap, not overall coverage.
+- **Physical attributes as the formula's vocabulary** — strength/speed/height as the core inputs. The formula works from positional concepts, not physical measurements.
+- **Intangibles as scores** — mentality, technique, or any intangible-type scoring. Untrackable; not in the model.
+- **Named per-row exceptions (pins)** — telling the formula "this one costs X because the Owner says so." Everything must be unified in one model.
+- **Tracking pairs** — adjusting a body score and a job score together as a pair. If a formula needs pair-tracking, it is not elegant enough.
+- **The cross-side floor** — a minimum price for switching sides. An ugly appendage; scaffolding for an inelegant formula.
+- **Named tier labels** — Free/Slight/Real/Heavy shown to the user. Just the number.
+- **The wasted-capability term/tax** — charging for capability the destination doesn't use. Out per the Owner's 2026-11-10 directive; do not promote or broadcast.
