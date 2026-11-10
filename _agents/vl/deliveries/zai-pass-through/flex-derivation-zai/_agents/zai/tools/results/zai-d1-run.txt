@@ -1,0 +1,55 @@
+self-doable constraint: OK (need <= have for every job)
+
+ZAI-D1: 99 rules | cuts 1/4/9 | lambda 0.4 | floor 6
+exact 95 | off by one tier 3 | hard misses 1 | tier-error 5
+disagreements (rule: owner -> model, raw, M on duty, S):
+  C>OG: 6 -> 2  raw 1.20  M 1.20 on RDEF  S 0.00
+  C>OT: 12 -> 2  raw 2.03  M 1.55 on PBLK  S 1.20
+  EDGE>RB: 6 -> 12  raw 10.40  M 7.20 on CARRY  S 8.00
+  TE>OT: 12 -> 6  raw 8.63  M 7.75 on PBLK  S 2.20
+
+floor OFF: exact 95 | off 3 | hard 1 | tier-error 5
+  C>OG: 6 -> 2  raw 1.20
+  C>OT: 12 -> 2  raw 2.03
+  EDGE>RB: 6 -> 12  raw 10.40
+  TE>OT: 12 -> 6  raw 8.63
+
+lambda ablation (floor on):
+  lambda 0.0: exact 81 | off 17 | hard 1 | tier-error 19
+  lambda 0.2: exact 86 | off 12 | hard 1 | tier-error 14
+  lambda 0.3: exact 90 | off  8 | hard 1 | tier-error 10
+  lambda 0.4: exact 95 | off  3 | hard 1 | tier-error 5
+  lambda 0.5: exact 88 | off 10 | hard 1 | tier-error 12
+  lambda 0.7: exact 76 | off 22 | hard 1 | tier-error 24
+  lambda 1.0: exact 68 | off 30 | hard 1 | tier-error 32
+
+cut refit on my raws (floor off): at 1/4/9 -> 95 | best 95 at 1.0/3.5/9.0
+
+quasi-metric scan of the live table (direct vs cheapest 1-stop chain):
+  13 triangle violations (direct ABOVE its cheapest chain) — the Owner's hand-set premium rows:
+    TE>RB: direct 6 > chain 2
+    TE>OT: direct 12 > chain 8
+    TE>FS: direct 12 > chain 8
+    TE>DIME: direct 12 > chain 6
+    C>OT: direct 12 > chain 8
+    EDGE>SS: direct 12 > chain 6
+    EDGE>RB: direct 6 > chain 2
+    ILB>NICKEL: direct 6 > chain 2
+    ILB>DIME: direct 12 > chain 2
+    ILB>FS: direct 12 > chain 4
+    OLB>DIME: direct 12 > chain 6
+    OLB>FS: direct 12 > chain 8
+    FS>OLB: direct 6 > chain 4
+  34 rows sit exactly AT their one-stop chain bound
+
+DL5 under the blitzer NEED profile (Owner reframing, 2026-11-10):
+  DT->DL5: tier 2  raw 3.34  (M 2.70 on RUSH, S 1.60)
+  EDGE->DL5: tier 0  raw 0.00  (no deficits)
+  OLB->DL5: tier 2  raw 1.56  (M 1.20 on RDEF, S 0.90)
+  ILB->DL5: tier 2  raw 3.60  (M 3.60 on RUSH, S 0.00)
+  SS->DL5: tier 12  raw 9.12  (M 7.20 on RUSH, S 4.80)
+  TE->DL5: tier 12  raw 10.44  (M 7.20 on RUSH, S 8.10)
+  OT->DL5: tier 6  raw 6.16  (M 3.60 on RDEF, S 6.40)
+  OG->DL5: tier 6  raw 6.16  (M 3.60 on RDEF, S 6.40)
+
+full diff table written to results/zai-d1-diff.md

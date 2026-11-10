@@ -1,0 +1,9 @@
+7928d2f80c64e6e85be949f4bf183d93  UPDATE-README.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+26c0147a977fbf74b24f1becaa50bd3a  _agents/zai/START-OF-CHAT-ZAI.md
+34ab0b27b12de3775827913239e2135c  _agents/zai/ZAI.md
+9a5519099164144632aef48a2df0e4a3  _agents/zai/deliveries/FLEX-DERIVATION-ZAI-D1-2026-11-10.md
+35860ad5fe278ebfe1b6e73e612208e9  _agents/zai/tools/results/flex-99-live-snapshot.json
+6045f9e89e2f5d7d2e2fad6dec030d1e  _agents/zai/tools/results/zai-d1-diff.md
+518c5cc99f3090b0ce071674d8998d13  _agents/zai/tools/results/zai-d1-run.txt
+30af3b54ea7077b17c5ad2ddf6df23eb  _agents/zai/tools/zai_flex_derive.py
