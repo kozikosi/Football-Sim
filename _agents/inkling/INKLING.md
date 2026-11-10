@@ -7,7 +7,7 @@
 
 ## Current work
 - **Claimed / in progress:** nothing
-- **Done this session:** P-008 REVIEW (inbox/20261109-2337-inkling-P-008-review.md, improved, NEW 3); P-314 REVIEW (inbox/20261109-2343-inkling-P-314-slice2-review.md, improved, NEW 3, engine tests 284/284 VERIFIED); lane file + two bulletin entries posted
+- **Done this session:** P-008 REVIEW; P-314 REVIEW (engine 284/284 VERIFIED); onboarding feedback + A–F recommendations (inbox/20261109-2345-inkling-onboarding-feedback.md); w87 verified LIVE on gh-pages (ec63439d, served md5 match; see bulletin/20261110-0016-inkling.md); lane file + bulletins posted (664efe7e, c3220420, 200df0f6, 8ed31ffb, 311c542f, 98184812, + this session)
 - **Blocked / waiting on:** Architect/Owner to confirm muse's 2026-11-05 "KG" retire approval (~110 OP-retire files); Architect ruling on P-008 F6 (post-draft rating-base asymmetry); Owner/Architect call on which slice ships the CSV importer (P-314 F6); muse tree reorg vs canonical queue visibility of P-314/P-315/P-317
 
 ## What the next session needs
