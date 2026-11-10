@@ -26,3 +26,23 @@ Notes on the record:
 - List feedback: (a) Z.ai D1's two caveats must be noted when the list is presented to everyone; (b) the guard/value ladder must NOT assume set weights exist for other sports — the Owner will NOT provide values for other sports like he did for football; (c) Claude's merged shape sounds good with the caveat (tier labels out); (d) OK to anything not mentioned; (e) do NOT include the rejected ideas (specific designs) — note rejected CONCEPTS instead.
 - Position testing: the Owner endorses it, "especially." There are still plenty of football positions not in the game. Concrete test: big nickels (SS2s) — how are they valued, what positions naturally drift into that role, what flex penalty do they get, and what positions are naturally prohibited from playing that role in the math. Filed as P-338.
 - Typos are the Owner's as written ("exxample", "teh", "arent").
+
+---
+
+## Second round — answers to MUSE's three small questions (2026-11-10 01:26 HST)
+
+KG answered the three remaining small questions (dual-position cost; IDEA-3 NEED-first authoring; P-325 WR3 receiving mix). His message, verbatim:
+
+---
+1. yes a dual position would play both for free; that is the point of holding both position
+2. i would have hoped that the the dl5 as a blitzer would have naturally emerged from the formula. i didn't like that i had to specify it. i don't think we should codify this type of rule in the system but if i need to clairfy things i'm always happy to
+3. the newest weights is my general feeling about it but obviously it is fluid
+
+any more questions?
+---
+
+Notes on the record:
+- Q1 (dual-position cost): CONFIRMED — a dual-position player plays both positions for free; that is the point of holding both positions. P-336 updated.
+- Q2 (IDEA-3): the Owner does NOT want NEED-first slot authoring codified as a system rule. The DL5-as-blitzer should have NATURALLY EMERGED from the formula; he didn't like having to specify it. His clarifications are guidance when needed, NOT system rules. This revises the agreeing-ideas file (IDEA-3 removed as a codified rule; the principle is now "roles emerge from the formula"). It also reframes his DL5-blitzer direction (2026-11-10): that was a clarification, not a rule to codify.
+- Q3 (P-325): the NEWEST weights (Colors, the engine of record) are his general feeling about the WR3 receiving mix — but it is fluid (can change). P-325's spec-fidelity question is resolved in favor of the newest weights, fluidly.
+- Typos are the Owner's as written ("the the", "clairfy").

@@ -26,7 +26,7 @@
 8. **Z.ai's job-first procedure (§4.1, NEED-support).** Author the jobs first; the duties are whatever the jobs demand. **Agrees:** derive new values from positional concepts (Q2); minimize new-engine work (Q5).
 9. **Glyph's G-PORT sport-pack architecture.** Swap the sport pack (positions, duties, NEED/HAVE, weights) and the same formula runs. **Agrees:** beautiful and portable (Q3/Q5). **Caveat:** his football pack is uncalibrated (60/99) — a framework, not an answer yet.
 10. **Glyph's directional-equivalence policy map.** An explicit map for which moves are allowed one-way (and which are forbidden), as general rules — not per-row exceptions. **Agrees:** fluidity + prohibition (Q15).
-11. **IDEA-3 (Z.ai) — NEED-first slot authoring.** A new job (like DL5 as a blitzer) is written as a list of demands first. **Agrees:** positional concepts (Q2); fluidity (Q15).
+11. **Roles emerge from the formula — do NOT codify NEED-first authoring as a system rule (Owner, 2026-11-10).** The Owner would have hoped the DL5-as-blitzer had naturally emerged from the formula; he didn't like having to specify it. He does not want this type of rule codified in the system — but he is always happy to clarify things when needed. **The principle:** a new job's character should fall out of the formula (from positional concepts + the data), not from a rule that says "author new jobs as NEED profiles first." His clarifications are guidance for the builders, not system rules. (This revises the earlier listing of IDEA-3 as an agreeing idea — IDEA-3 as a codified rule is out.)
 
 ## How to test it
 
