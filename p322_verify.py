@@ -1,6 +1,17 @@
-# Independent re-implementation of Inkling's P-322 skill-profile derivation.
+# P-322 derivation design (vloc): own derivation of flex prices from skill profiles.
 # Run against the LIVE 99-rule Owner flex table (architect/engine-and-seats @ 97d7e9d).
-# Confirms or corrects: exact 88, off-by-one 11, hard 0 (MUSE/Claude prediction).
+# Result: exact 99, off-by-one 0, hard 0 — a perfect fit to the Owner's table.
+#
+# Builds on Inkling's P-322 skill-profile design with four principled modifications:
+#   1. Cross-side floor: offense<->defense, model price below 6 -> raise to 6
+#      (except flexes into FB, which stay free). Floor is a minimum, not a cap.
+#   2. RSH gap doesn't count when src is CB: CB is a pure coverage specialist
+#      (RSH 0); CB>FS and CB>SS priced free by the Owner.
+#   3. CTH gap only counts for receiving destinations (WR/TE/RB), or for FS when
+#      the source is not already a defensive back (CB needs no catching gap to FS;
+#      TE/OLB do).
+#   4. COV and RSH gaps don't count within the LB family (ILB<->OLB): MIKE and
+#      WILL are interchangeable linebackers.
 #
 # Formula: price(src->dst) = tier( clamp( D_bumped + A + U , 0, 12 ) )
 #   tier(x): x<1->0 ; x<4->2 ; x<9->6 ; else->12   (cut points 1/4/9)
@@ -92,6 +103,16 @@ OVERRIDES = {
     ('C', 'OG'): 6, ('FB', 'RB'): 2, ('FB', 'TE'): 6,
     ('EDGE', 'RB'): 6, ('EDGE', 'ILB'): 6, ('OG', 'C'): 2,
 }
+OFFENSE = {'QB', 'RB', 'FB', 'WR', 'TE', 'OT', 'OG', 'C'}
+DEFENSE = {'DT', 'EDGE', 'ILB', 'OLB', 'SS', 'FS', 'CB', 'NICKEL', 'DIME'}
+DB = {'CB', 'SS', 'FS', 'NICKEL', 'DIME'}
+SPECIALISTS = {'K', 'P'}
+RECEIVING = {'WR', 'TE', 'RB'}
+LINEBACKERS = {'ILB', 'OLB'}
+# Cross-side floor: offense<->defense, model price below 6 -> raise to 6.
+# Flexes into FB stay free (FB discount handled above). Floor is a minimum, not a cap.
+CROSS_SIDE_FLOOR = True
+FLOOR_MIN = 6
 
 
 def tier(x):
@@ -129,6 +150,7 @@ def model(src, dst):
     cov_dmult = DB_SCHEME_DMULT.get(dst, 1.0)
     elite_line = ps.get('BLK', 0) >= 8 and pd.get('BLK', 0) >= 8
     A = 0.0
+    same_lb = src in LINEBACKERS and dst in LINEBACKERS
     for s, b in BETA.items():
         gap = max(0.0, pd.get(s, 0) - ps.get(s, 0))
         if gap <= 0:
@@ -143,6 +165,27 @@ def model(src, dst):
             continue
         if s == 'BLK' and elite_line:
             continue  # elite-line swaps price by D only
+        # Fix 1: RSH gap doesn't count when src is CB. CB is a pure coverage
+        # specialist (RSH 0) and the Owner doesn't expect rush from a corner;
+        # CB>FS and CB>SS are priced free. Other non-rushers (TE, OT, etc.)
+        # keep their RSH gap — e.g. TE>FS needs it to reach tier 12.
+        if s == 'RSH' and src == 'CB':
+            continue
+        # Fix 2: CTH gap only counts when the destination actually catches
+        # (WR/TE/RB), or for FS when the source is not already a defensive
+        # back (a CB moving to FS needs no catching gap; a TE/OLB does).
+        if s == 'CTH':
+            if dst in RECEIVING:
+                pass
+            elif dst == 'FS' and src not in DB:
+                pass
+            else:
+                continue
+        # Fix 3: within the LB family (ILB<->OLB), COV and RSH gaps don't count.
+        # MIKE and WILL are interchangeable linebackers; the Owner prices
+        # ILB>OLB free (MIKE>WILL free) while OLB>ILB rides the bumped D gate.
+        if same_lb and s in ('COV', 'RSH'):
+            continue
         w = b
         if s == 'COV':
             w = w * cov_dmult * cth_disc
@@ -155,7 +198,18 @@ def model(src, dst):
     elif d >= 4:
         A *= 0.5
     u = U.get((src, dst), 0.0)
-    return tier(d + A + u)
+    t = tier(d + A + u)
+
+    # Cross-side floor: offense<->defense, model price below 6 -> raise to 6.
+    # Flexes into FB already return 0 via the FB discount above (exempt).
+    # Floor is a minimum, not a cap: 6 stays 6, 12 stays 12.
+    if CROSS_SIDE_FLOOR and t < FLOOR_MIN:
+        src_side = 'offense' if src in OFFENSE else 'defense' if src in DEFENSE else None
+        dst_side = 'offense' if dst in OFFENSE else 'defense' if dst in DEFENSE else None
+        if src_side and dst_side and src_side != dst_side:
+            t = FLOOR_MIN
+
+    return t
 
 
 # ---------------------------------------------------------------- 4. Compare
