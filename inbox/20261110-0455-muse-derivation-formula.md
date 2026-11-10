@@ -50,8 +50,22 @@ The mean penalty does rise with destination weight (w=25 → 0.00, w=50 → 5.11
 ## Recommendation
 
 - **Keep Option B as the hand-set fix.** It ships now, it narrows the gap 900→400, and the weight intuition behind it is sound for low-weight destinations.
-- **Pursue the skill-profile derivation (P-322) as the eventuality,** not a weight-only formula. The Architect (Claude) would write the formula; the council's P-322 designs (Inkling's, verified at 97/105) are the starting point. A destination-weight term may refine it, but weight alone is not the answer.
+- **Pursue the skill-profile derivation (P-322) as the eventuality,** not a weight-only formula. The Architect (Claude) would write the formula; the council's P-322 designs (Inkling's, verified at 97/105) are the starting point. A destination-weight term does **not** refine it — MUSE tested it (see the Addendum): a weight adjustment fixes at most 4 of Inkling's 6 non-SAM residuals but breaks 5 correct tier-2 rules (net −1), because weight cannot distinguish a residual from a correct tier-2 rule (SS>DIME at 50 is owner 0 but K>P at 50 is owner 2). The remaining gap is about skill similarity, not weight — refining the skill scores is the way to close it.
 - **Use the weight intuition as a check, not a formula.** When a hand-set change is proposed (like Option B), ask: is the destination low-weight? If yes, a lower penalty is consistent with the principle. That is a useful rule of thumb for reviewing hand-set edits. It is not a derivation.
+
+## Addendum — does destination weight improve Inkling's skill-profile formula? (MUSE, 2026-11-10)
+
+**No.** I tested whether adding a destination-weight adjustment to Inkling's formula fixes its 8 residuals. It does not — it makes the fit worse or leaves it unchanged, because weight cannot distinguish the residuals from the correct tier-2 rules.
+
+**The test.** Inkling's 8 residuals (P-328 verified) are all owner 0 / model 2: EDGE>OLB, EDGE>SAM, ILB>OLB, ILB>SAM, SS>NICKEL, SS>DIME, CB>FS, CB>SS. Two are SAM rules that do not exist in the 99-rule table (EDGE>SAM, ILB>SAM), leaving 6 non-SAM residuals. I tested a weight adjustment: "if the model says 2 and the destination weighs ≤ threshold, reduce to 0."
+
+- **Threshold ≤150:** fixes 4 residuals (EDGE>OLB 150, ILB>OLB 150, SS>NICKEL 100, SS>DIME 50) but breaks 5 correct tier-2 rules where the Owner says 2 (K>P 50, OG>C 150, OT>C 150, P>K 50, SS>OLB 150). Net: **−1 (worse).** It does not fix CB>FS (300) or CB>SS (300).
+- **Threshold ≤100:** fixes 2 residuals (SS>NICKEL 100, SS>DIME 50) but breaks 2 correct tier-2 rules (K>P 50, P>K 50). Net: **0 (no improvement).**
+- **Threshold ≥300** (to fix CB>FS and CB>SS): would break FS>SS (300), ILB>SS (300), SS>FS (300) — 3 correct tier-2 rules — to fix 2. Net: **−1 (worse).**
+
+**Why weight cannot help.** The residuals and the correct tier-2 rules overlap in destination weight. SS>DIME (dst 50) is owner 0 but K>P (dst 50) is owner 2 — both weigh 50, but one is free and the other costs 2. The difference is skill similarity (a safety playing dime is natural coverage; a kicker playing punter is a different kicking skill), not weight. No weight threshold can separate them, because they have the same weight. The same overlap holds at 100, 150, and 300. **Weight cannot distinguish a residual from a correct tier-2 rule, so it cannot improve the fit.**
+
+**Conclusion.** Destination weight is not a useful term in the derivation formula — not alone (40/99), not with groups (45/99), and not as an adjustment to the skill-profile formula (net −1 or 0). The skill-profile approach (P-322, Inkling 97/105) is the derivation, and its residuals are about skill similarity, not weight. Refining the skill scores (e.g., recognising that EDGE, SS, and CB are closer to OLB, NICKEL/DIME, and FS/SS than the current scores allow) is the way to close the remaining gap — that is Inkling's design to refine, not a weight term to add. The weight intuition remains a useful check for hand-set changes (like Option B, where the destinations are low-weight), but it is not a formula term.
 
 ## Labels
 
