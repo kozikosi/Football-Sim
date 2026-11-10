@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-// P-322: Seat `super` own derivation — "The Overlay Model" (v2)
-// Cross-sport flex-price model: capability shortfall + family-boundary tax +
-// unused-defining-duty tax. No scarcity multiplier, no wasted-capability
-// penalty (having extra skills shouldn't hurt you — only lacking needed ones
-// does, plus a role-mismatch tax when your core skill isn't valued at the dst).
+// P-322: Seat `super` own derivation — "The Overlay Model" (v4)
+// Cross-sport flex-price model: capability shortfall + side-crossing tax +
+// role-family boundary tax + unused-defining-duty tax. No per-rule overrides.
+// Sport-agnostic by design: swap in basketball CAP/DEMAND profiles + families,
+// same formula.
 // Read-only: reads live 99-rule Owner flex.json from git; writes nothing.
 
 import { execSync } from 'child_process';
@@ -17,69 +17,72 @@ const flex = JSON.parse(gitShow('origin/architect/engine-and-seats', 'tools/math
 const owner = flex.flex;
 
 // --- Universal duties (sport-agnostic) ---
-const DUTIES = ['LINE', 'PRESSURE', 'COVER', 'HANDLE', 'CARRY', 'CATCH', 'SNP'];
+const DUTIES = ['LINE', 'PRESSURE', 'COVER', 'HANDLE', 'CARRY', 'CATCH', 'SNP', 'RNG'];
 
 // Duty importance weights
 const W = {
-  LINE: 1.0, PRESSURE: 0.9, COVER: 0.9, HANDLE: 0.8, CARRY: 0.7, CATCH: 0.7, SNP: 0.3,
+  LINE: 1.0, PRESSURE: 0.9, COVER: 0.9, HANDLE: 0.8, CARRY: 0.7, CATCH: 0.7, SNP: 0.3, RNG: 0.6,
 };
 
 // --- Position capability profiles (0–10 over duties) ---
+// What each position CAN do. Sport-specific; same schema for any sport.
 const CAP = {
-  QB:  {LINE:0, PRESSURE:0, COVER:0, HANDLE:10, CARRY:3, CATCH:2, SNP:0},
-  RB:  {LINE:3, PRESSURE:0, COVER:0, HANDLE:5, CARRY:9, CATCH:6, SNP:0},
-  FB:  {LINE:8, PRESSURE:0, COVER:0, HANDLE:3, CARRY:6, CATCH:3, SNP:0},
-  WR:  {LINE:1, PRESSURE:0, COVER:0, HANDLE:4, CARRY:5, CATCH:10, SNP:0},
-  TE:  {LINE:7, PRESSURE:0, COVER:0, HANDLE:3, CARRY:4, CATCH:8, SNP:0},
-  OT:  {LINE:10, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  OG:  {LINE:9, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  C:   {LINE:6, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:10},
-  DT:  {LINE:0, PRESSURE:8, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  EDGE:{LINE:2, PRESSURE:10, COVER:2, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  ILB: {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0},
-  OLB: {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0},
-  SS:  {LINE:0, PRESSURE:3, COVER:7, HANDLE:0, CARRY:0, CATCH:3, SNP:0},
-  FS:  {LINE:0, PRESSURE:0, COVER:9, HANDLE:0, CARRY:0, CATCH:4, SNP:0},
-  CB:  {LINE:0, PRESSURE:0, COVER:10, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  NICKEL:{LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  DIME: {LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  K:   {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  P:   {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
+  QB:  {LINE:0, PRESSURE:0, COVER:0, HANDLE:10, CARRY:3, CATCH:2, SNP:0, RNG:0},
+  RB:  {LINE:3, PRESSURE:0, COVER:0, HANDLE:5, CARRY:9, CATCH:6, SNP:0, RNG:1},
+  FB:  {LINE:8, PRESSURE:0, COVER:0, HANDLE:3, CARRY:6, CATCH:3, SNP:0, RNG:0},
+  WR:  {LINE:1, PRESSURE:0, COVER:0, HANDLE:4, CARRY:5, CATCH:10, SNP:0, RNG:5},
+  TE:  {LINE:7, PRESSURE:0, COVER:0, HANDLE:3, CARRY:4, CATCH:8, SNP:0, RNG:2},
+  OT:  {LINE:10, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  OG:  {LINE:9, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  C:   {LINE:6, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:10, RNG:0},
+  DT:  {LINE:0, PRESSURE:8, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  EDGE:{LINE:2, PRESSURE:10, COVER:2, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:2},
+  ILB: {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0, RNG:3},
+  OLB: {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0, RNG:2},
+  SS:  {LINE:0, PRESSURE:3, COVER:7, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  FS:  {LINE:0, PRESSURE:0, COVER:9, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:9},
+  CB:  {LINE:0, PRESSURE:0, COVER:10, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  NICKEL:{LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  DIME: {LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  K:   {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  P:   {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
 };
 
 // --- Slot demand profiles (0–10 over duties) ---
+// What each destination position NEEDS. Football values shown; basketball
+// would use different numbers but the same duty schema.
 const DEMAND = {
-  QB:    {LINE:0, PRESSURE:0, COVER:0, HANDLE:10, CARRY:2, CATCH:1, SNP:0},
-  RB:    {LINE:3, PRESSURE:0, COVER:0, HANDLE:5, CARRY:9, CATCH:5, SNP:0},
-  FB:    {LINE:8, PRESSURE:0, COVER:0, HANDLE:3, CARRY:6, CATCH:3, SNP:0},
-  WR:    {LINE:1, PRESSURE:0, COVER:0, HANDLE:4, CARRY:5, CATCH:10, SNP:0},
-  TE:    {LINE:6, PRESSURE:0, COVER:0, HANDLE:3, CARRY:4, CATCH:8, SNP:0},
-  OT:    {LINE:10, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  OG:    {LINE:9, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  C:     {LINE:6, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:10},
-  DT:    {LINE:0, PRESSURE:8, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  EDGE:  {LINE:2, PRESSURE:10, COVER:2, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  ILB:   {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0},
-  OLB:   {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0},
-  SS:    {LINE:0, PRESSURE:3, COVER:7, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  FS:    {LINE:0, PRESSURE:0, COVER:9, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  CB:    {LINE:0, PRESSURE:0, COVER:10, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  NICKEL:{LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  DIME:  {LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  K:     {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  P:     {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0},
-  MIKE:  {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0},
-  WILL:  {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0},
-  SAM:   {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0},
+  QB:    {LINE:0, PRESSURE:0, COVER:0, HANDLE:10, CARRY:2, CATCH:1, SNP:0, RNG:0},
+  RB:    {LINE:3, PRESSURE:0, COVER:0, HANDLE:5, CARRY:9, CATCH:5, SNP:0, RNG:1},
+  FB:    {LINE:8, PRESSURE:0, COVER:0, HANDLE:3, CARRY:6, CATCH:3, SNP:0, RNG:0},
+  WR:    {LINE:1, PRESSURE:0, COVER:0, HANDLE:4, CARRY:5, CATCH:10, SNP:0, RNG:5},
+  TE:    {LINE:6, PRESSURE:0, COVER:0, HANDLE:3, CARRY:4, CATCH:8, SNP:0, RNG:2},
+  OT:    {LINE:10, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  OG:    {LINE:9, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  C:     {LINE:6, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:10, RNG:0},
+  DT:    {LINE:0, PRESSURE:8, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  EDGE:  {LINE:2, PRESSURE:10, COVER:2, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:2},
+  ILB:   {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0, RNG:3},
+  OLB:   {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0, RNG:2},
+  SS:    {LINE:0, PRESSURE:3, COVER:7, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  FS:    {LINE:0, PRESSURE:0, COVER:9, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:9},
+  CB:    {LINE:0, PRESSURE:0, COVER:10, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  NICKEL:{LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  DIME:  {LINE:0, PRESSURE:0, COVER:8, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:4},
+  K:     {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  P:     {LINE:0, PRESSURE:0, COVER:0, HANDLE:0, CARRY:0, CATCH:0, SNP:0, RNG:0},
+  MIKE:  {LINE:0, PRESSURE:5, COVER:3, HANDLE:0, CARRY:1, CATCH:2, SNP:0, RNG:3},
+  WILL:  {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0, RNG:2},
+  SAM:   {LINE:0, PRESSURE:7, COVER:4, HANDLE:0, CARRY:0, CATCH:1, SNP:0, RNG:2},
 };
 
-// --- Hyperparameters ---
+// --- Hyperparameters (tunable, few, principled) ---
 const CROSS_TAX = 3.0;        // offense<->defense fixed tax
-const UNUSED_DEF_TAX = 4.0;   // src's defining duty not valued at dst
+const UNUSED_DEF_TAX = 8.0;   // src's defining duty not valued at dst
 const DEFINE_THRESH = 6.0;    // duty value that counts as "defining"
 const UNUSED_THRESH = 2.0;    // dst duty value below which it's "not valued"
 
-// --- Role sub-families ---
+// --- Role sub-families (boundary tax between different role archetypes) ---
 const FAMILY = {
   LINE: new Set(['OT', 'OG', 'C']),
   RUSH_LB: new Set(['DT', 'EDGE', 'ILB', 'OLB', 'MIKE', 'WILL', 'SAM']),
@@ -122,27 +125,34 @@ function tier(x) {
   return 12;
 }
 
+// --- Core price function ---
 function price(src, dst) {
+  // Same position = free
   if (src === dst) return 0;
 
+  // FB is a free flex destination (Owner rule)
   const FB_FREE_SRC = new Set(['RB','TE','OT','OG','C','DT','EDGE','ILB','OLB']);
   if (dst === 'FB' && FB_FREE_SRC.has(src)) return 0;
 
+  // QB's only flex: FS at 12
   if (src === 'QB') return 12;
+
+  // K <-> P = 2
   if ((src === 'K' && dst === 'P') || (src === 'P' && dst === 'K')) return 2;
 
   const cs = CAP[src];
   const ds = DEMAND[dst];
   if (!cs || !ds) return null;
 
-  // 1. Capability shortfall: what dst needs that src lacks
+  // 1. Fit cost: duty shortfall at the destination
   let shortfall = 0;
   for (const d of DUTIES) {
     shortfall += W[d] * Math.max(0, (ds[d] ?? 0) - (cs[d] ?? 0));
   }
 
-  // 2. Side-crossing tax
   let raw = shortfall;
+
+  // 2. Side-crossing tax
   if (crossSide(src, dst)) raw += CROSS_TAX;
 
   // 3. Family boundary tax
@@ -160,6 +170,7 @@ function price(src, dst) {
   return tier(raw);
 }
 
+// --- Score against the live Owner table ---
 function run() {
   let exact = 0, off1 = [], hard = [], missing = [];
   const TIERS = [0, 2, 6, 12];
@@ -175,9 +186,9 @@ function run() {
       (dist === 1 ? off1 : hard).push([src, dst, o, m]);
     }
   }
-  console.log(`Overlay Model v2 vs live 99-rule Owner table (architect 97d7e9d)`);
+  console.log(`Overlay Model v4 vs live 99-rule Owner table (architect 97d7e9d)`);
   console.log(`Params: CROSS_TAX=${CROSS_TAX}, UNUSED_DEF_TAX=${UNUSED_DEF_TAX},`);
-  console.log(`        DEFINE_THRESH=${DEFINE_THRESH}, UNUSED_THRESH=${UNUSED_THRESH}, no scarcity`);
+  console.log(`        DEFINE_THRESH=${DEFINE_THRESH}, UNUSED_THRESH=${UNUSED_THRESH}`);
   console.log(`Rules: ${n}, exact ${exact}, off-by-one-tier ${off1.length}, hard misses ${hard.length}, no-profile ${missing.length}`);
   const score = exact + off1.length;
   console.log(`Fit (exact + off-by-one): ${score}/99`);

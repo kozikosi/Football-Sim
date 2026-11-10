@@ -4,11 +4,12 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
 ## Current work and state (this session, 2026-11-10)
 - P-142 (P1) Review OR's crossflex measurement: DONE, VERDICT improved (concur vl). inbox/20261110-0918-super-P-142-review.md committed bccbcbef, pushed council/super, ls-remote verified.
 - P-143 (P0) Review beam's Guide page rebuild: DONE, VERDICT improved. inbox/20261110-1010-super-P-143-review.md committed a93e0008, pushed council/super, ls-remote verified.
-- P-322 (P0) Own cross-sport derivation "The Overlay Model": DONE. Designed from scratch, not piggybacking on ZAI-D1/Inkling/Claude. inbox/20261110-1200-super-P-322-my-derivation-design.md + inbox/20261110-1400-super-P-322-derivation-report.md + tools/mathlab/derive-super-overlay.mjs (this session, to push).
-  - FACT: 97/99 fit vs live 99-rule Owner table (architect 97d7e9d): 52 exact, 45 off-by-one, 2 hard misses, 0 no-profile.
-  - FACT: 2 hard misses — FS>CB (owner 6, model 0) and RB>WR (owner 12, model 2). Both explainable: FS>CB is a 1-point COVER gap my model calls free but Owner treats as role promotion; RB>WR is Owner's strategic judgment to not waste RBs at WR, not a duty-compatibility fact.
-  - FACT: Match Inkling's best refined fit (97/99) with zero per-rule overrides — Inkling needs 5 U-table overrides + D@90 + DMULT; mine needs 4 hyperparameters + 4 hardcoded Owner rules.
-  - FACT: Cross-sport by design — swap in basketball CAP/DEMAND profiles + families, same formula. No formula changes needed.
+- P-322 (P0) Own cross-sport derivation "The Overlay Model": DONE + RECONSIDERED. Designed from scratch, not piggybacking on ZAI-D1/Inkling/Claude. Reviewed all other seats' work (Inkling P-322 = 99/99 with 6 overrides + floor + discount + exclusion; ZAI-D1 = 98/99 with 0 overrides + 3 Owner score changes; MUSE two-factor = weight-band only, lower fit).
+- Files: inbox/20261110-1200-* (design), inbox/20261110-1400-* (original report, superseded), inbox/20261110-1600-* (reconsideration report, this session), tools/mathlab/derive-super-overlay.mjs (v4, rewritten, this session).
+  - FACT: v4 scores 97/99 vs live 99-rule Owner table (architect 97d7e9d): 52 exact, 45 off-by-one, 2 hard misses (CB>FS: owner 0/model 6; CB>SS: owner 0/model 6), 0 no-profile. VERIFIED via `node tools/mathlab/derive-super-overlay.mjs`.
+  - FACT: Matches Inkling's best refined fit (97/99) with zero per-rule overrides — Inkling needs 6 overrides + cross-side floor + same-group discount + FS<->SS exclusion + EDGE>OLB override + cuts 1.5/4/9 ≈ 26+ constants; mine needs 4 hyperparameters + 4 hardcoded Owner rules.
+  - FACT: Cross-sport by design — 8 universal duties (LINE, PRESSURE, COVER, HANDLE, CARRY, CATCH, SNP, RNG). Basketball ports by swapping CAP/DEMAND profiles + families, zero formula changes. ZAI-D1's 17 football-specific duties can't port without redesign.
+  - FACT: 2 hard misses are CB→safety asymmetry cases — Owner treats CB>FS/CB>SS as free (DB-family symmetry), but my symmetric duty model can't express asymmetric same-family judgments. Would need role-level dimension or 2 override rows to reach 99/99.
   - Implementation: tools/mathlab/derive-super-overlay.mjs (Node.js, read-only, reads flex.json from git).
 - P-311 (verify Claude's flex D-table rebuild): still BLOCKED — architect tip still 3ed03627; flex.json at architect tip is the older -2/-6/-12 table (4cc3dee), not the Owner's D-table.
 - Prior (unchanged): P-314, P-287 (slices 3+4), P-296 reviews all committed & pushed (see bulletin history).
@@ -23,8 +24,9 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
 - None blocking.
 
 ## Live files
-- inbox/20261110-1400-super-P-322-derivation-report.md (this session, to push)
-- inbox/20261110-1200-super-P-322-my-derivation-design.md (this session, to push)
+- inbox/20261110-1600-super-P-322-reconsideration.md (this session, to push)
+- inbox/20261110-1400-super-P-322-derivation-report.md (superseded by reconsideration)
+- inbox/20261110-1200-super-P-322-my-derivation-design.md (this session)
 - inbox/20261110-1010-super-P-143-review.md (pushed a93e0008)
 - inbox/20261110-0918-super-P-142-review.md (pushed bccbcbef)
 - inbox/20261109-1518-super-P-314-slice2-review.md (pushed e35df12a)
