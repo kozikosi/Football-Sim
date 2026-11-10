@@ -1,0 +1,41 @@
+{
+ "_source": "P-322 skill-profile design, Inkling (council/inkling inbox/20261110-0104-inkling-P-322-skill-profile-design.md), transcribed by the Architect for the flexderive.mjs prototype. PROPOSAL DATA ONLY: nothing in the engine reads this file. Scores 0-10, one vector per role; NICKEL and DIME are destination-only slots.",
+ "skills": ["BLK", "CTH", "COV", "RNG", "RSH", "RUN", "SNP", "KCK", "PNT"],
+ "profile": {
+  "QB":     { "BLK": 1,  "CTH": 2,  "COV": 2,   "RNG": 1, "RSH": 2,  "RUN": 8, "SNP": 0 },
+  "RB":     { "BLK": 3,  "CTH": 6,  "COV": 2,   "RNG": 1, "RSH": 0,  "RUN": 9, "SNP": 0 },
+  "FB":     { "BLK": 8,  "CTH": 2,  "COV": 2,   "RNG": 0, "RSH": 0,  "RUN": 6, "SNP": 0 },
+  "WR":     { "BLK": 1,  "CTH": 10, "COV": 6,   "RNG": 5, "RSH": 0,  "RUN": 4, "SNP": 0 },
+  "TE":     { "BLK": 7,  "CTH": 8,  "COV": 4,   "RNG": 2, "RSH": 0,  "RUN": 5, "SNP": 0 },
+  "OT":     { "BLK": 10, "CTH": 0,  "COV": 0,   "RNG": 0, "RSH": 0,  "RUN": 0, "SNP": 5 },
+  "OG":     { "BLK": 9,  "CTH": 0,  "COV": 0,   "RNG": 0, "RSH": 0,  "RUN": 0, "SNP": 6 },
+  "C":      { "BLK": 6,  "CTH": 0,  "COV": 0,   "RNG": 0, "RSH": 0,  "RUN": 0, "SNP": 10 },
+  "DT":     { "BLK": 0,  "CTH": 0,  "COV": 0,   "RNG": 0, "RSH": 8,  "RUN": 0, "SNP": 0 },
+  "EDGE":   { "BLK": 2,  "CTH": 0,  "COV": 3,   "RNG": 2, "RSH": 10, "RUN": 0, "SNP": 0 },
+  "ILB":    { "BLK": 0,  "CTH": 2,  "COV": 3.5, "RNG": 3, "RSH": 5,  "RUN": 1, "SNP": 0 },
+  "OLB":    { "BLK": 0,  "CTH": 2,  "COV": 4.5, "RNG": 2, "RSH": 7,  "RUN": 0, "SNP": 0 },
+  "SS":     { "BLK": 0,  "CTH": 3,  "COV": 9,   "RNG": 4, "RSH": 3,  "RUN": 0, "SNP": 0 },
+  "FS":     { "BLK": 0,  "CTH": 4,  "COV": 9,   "RNG": 9, "RSH": 1,  "RUN": 0, "SNP": 0 },
+  "CB":     { "BLK": 0,  "CTH": 7,  "COV": 10,  "RNG": 8, "RSH": 0,  "RUN": 0, "SNP": 0 },
+  "K":      { "KCK": 10 },
+  "P":      { "PNT": 10 },
+  "NICKEL": { "BLK": 0,  "CTH": 5,  "COV": 9,   "RNG": 4, "RSH": 0,  "RUN": 0, "SNP": 0 },
+  "DIME":   { "BLK": 0,  "CTH": 4,  "COV": 9.5, "RNG": 4, "RSH": 0,  "RUN": 0, "SNP": 0 }
+ },
+ "beta": { "BLK": 0.75, "CTH": 0.5, "COV": 0.5, "RNG": 0.6, "RSH": 0.8, "RUN": 1.1, "SNP": 0.4, "KCK": 0.2, "PNT": 0.2 },
+ "scope": { "RUN": ["RB"], "SNP": ["C"], "KCK": ["K"], "PNT": ["P"] },
+ "covDmult": { "NICKEL": 1.7, "DIME": 3.6, "FS": 2.0 },
+ "catcherCut": { "ctHmin": 9, "factor": 0.5, "skills": ["COV", "RNG"] },
+ "gate": { "lo": 4, "hi": 5, "midFactor": 0.5 },
+ "eliteLine": { "blkMin": 8, "_note": "Inkling section 3 states this for dst==C only, which never fires (C BLK is 6). His own gloss, 'elite-line swaps price by D only', and his 98-of-99-class fit need it for any pair with both BLK >= 8 (OT, OG). flexderive.mjs applies it to any dst; --literal restores the dst==C reading." },
+ "cuts": [1, 4, 9],
+ "U": { "RB>TE": 3.0, "SS>ILB": 5.0, "TE>ILB": 6.4, "RB>SS": 6.6, "EDGE>SS": 5.1 },
+ "override": { "C>OG": 6, "FB>RB": 2, "FB>TE": 6, "EDGE>RB": 6, "EDGE>ILB": 6 },
+ "fbFree": ["RB", "TE", "OT", "OG", "C", "DT", "EDGE", "ILB", "OLB"],
+ "dBump": { "OLB>ILB": 6.7, "OLB>SS": 6.7 },
+ "_dBump_note": "REPORTED (Owner): post-WILL/C-bump D for OLB>ILB and OLB>SS is about 6.7; the thetaprice file is pre-bump (10.05 / 9.99). OLB>EDGE post-bump D is UNKNOWN (pre-bump 15.39 kept).",
+ "side": {
+  "offense": ["QB", "RB", "FB", "WR", "TE", "OT", "OG", "C"],
+  "defense": ["DT", "EDGE", "ILB", "OLB", "SS", "FS", "CB", "NICKEL", "DIME"]
+ }
+}
