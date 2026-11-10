@@ -1,0 +1,9 @@
+KG, 2026-11-10 (verbatim, from chat):
+
+"yes i vastly prefer z.ai's model because it will also be the type of logic that will lend it to being modeled in our multisport transitions. I'd like to maybe consider now thinking about making this formula as generalizable as possible so that we can important different positions (e.g. PG, SG, SF, PR, and C) and have the skills be defined as (e.g rim protection, ball handling, 3pt shooting, etc.)"
+
+Notes (MUSE, not KG's words):
+- "important" is KG's word as written (he means "import").
+- "PR" is KG's word as written (he means "PF" — power forward).
+- The paragraph is about making the derivation formula sport-agnostic: positions and skills become inputs (basketball: PG, SG, SF, PF, C; skills: rim protection, ball handling, 3pt shooting, etc.), so the same formula derives flex prices in any sport. Z.ai's NEED/HAVE split is the mechanism that makes this possible — each sport defines its own duties and positions, and the formula (worst gap + discounted rest, through the same cuts) stays the same.
+- KG also said in the same message: he is OK with EDGE>OLB being -2 (price 2); he still wants Claude to come up with his own formula; he prefers Z.ai's model; he wants the outcomes of the best version of the formula laid out so he can evaluate whether most are acceptable.
