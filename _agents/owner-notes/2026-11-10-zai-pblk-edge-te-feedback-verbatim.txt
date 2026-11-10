@@ -1,0 +1,20 @@
+KG, 2026-11-10 (verbatim, from chat — feedback on ZAI-D1's four residuals):
+
+"the C to OT one is interesting because i agree in principle but in real football the center is usually a lot shorter and a lot worse in one on one pass protection and that pass protection is worth and extra 10 mil dollars a year. so can we just turn up the pass protection value?
+
+same logic for c to og.
+
+edge to rb is because edges are usually the best athletes on the field. i maintain that 6 is more accurate. you will have to find a way to fix this naturally.
+
+i think the same logic with te to ot. ots really are that superior in one on one pass protection and they are going against the opponent's best players atheltes usually so i maintain that ot pass protection must be more heavily prioritized by his formula."
+
+Notes (MUSE, not KG's words):
+- "worth and extra 10 mil dollars a year" is KG's phrase as written (he means pass protection is worth an extra $10M/year — the market price of the skill gap).
+- "atheltes" is KG's word as written (he means "athletes").
+- MUSE tested all three points against ZAI-D1 (script `_agents/muse/deliveries/zai-kg-feedback-2026-11-10.py`, results in `inbox/20261110-0655-muse-ZAI-D1-KG-feedback.md`):
+  - Raising the PBLK WEIGHT is the WRONG fix: PBLK 2.0 fixes TE>OT but breaks DT>OT, EDGE>OT, DT>C, EDGE>C (fit 95 -> 92). Even PBLK 1.65 breaks DT>OT and EDGE>OT (fit 94). The weight punishes defensive linemen moving to tackle.
+  - Lowering the CENTER's PBLK SCORE is the RIGHT fix for C>OT/C>OG: C PBLK 9 -> 6 fixes C>OG (6, correct) and moves C>OT from hard miss (2) to off-by-one (6). C PBLK 9 -> 4 fixes C>OT fully (12). KG's point is about the BODY (centers are shorter and worse in 1v1 pass pro), not the weight.
+  - Raising EDGE's CARRY (2 -> 4) fixes EDGE>RB naturally (6, correct), breaks nothing. Edges are the best athletes — they carry the ball better than the model credits.
+  - Lowering TE's PBLK (5 -> 4) fixes TE>OT (12, correct). TEs are poor pass blockers against the opponent's best athletes.
+  - ALL THREE score changes together (EDGE CARRY 4 + C PBLK 4 + TE PBLK 4): **99/99, tier-error 0, 0 fiat rows.** The conservative version (C PBLK 6 instead of 4): **98/99**, only C>OT off by one (6 vs 12). KG to decide whether C's PBLK should be 4 or 6.
+- KG also said in the same message: Claude still owes his own formula, and then we'll find common ground between his and Z.ai's.
