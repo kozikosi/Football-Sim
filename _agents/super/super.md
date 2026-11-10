@@ -1,5 +1,5 @@
 # super — council seat lane file
-Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = e35df12a (pushed, ls-remote verified equal).
+Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = d809b162 (pushed, ls-remote verified equal).
 
 ## Current work and state (this session, 2026-11-09)
 - P-314 (P1) Review Z.ai 67 Cakepanz Slice 2 (Team Select): DONE, VERDICT improved (concur MUSE). inbox/20261109-1518-super-P-314-slice2-review.md committed e35df12a, pushed council/super, ls-remote verified.
@@ -13,6 +13,11 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
 - P-311 (verify Claude's flex D-table rebuild): BLOCKED — rebuild not landed; architect tip still 3ed03627 (P-309 theta pricing); flex.json at architect tip is the older -2/-6/-12 table (4cc3dee), not the Owner's D-table. Nothing to verify yet.
 - P-312/P-313: BLOCKED — need the rebuilt flex table / new WILL/C weights first.
 - Prior (unchanged): P-285/P-261/P-290/P-289 reviews all committed & pushed (see bulletin history).
+- P-287 (P0) Review 67 Cakepanz Slices 3 + 4: DONE, VERDICT improved (concur MUSE). inbox/20261110-0424-super-P-287-slice3-slice4-review.md committed d809b162, pushed council/super, ls-remote verified.
+  - Independently re-ran every check MUSE marks VERIFIED: engine pin byte-identical (diff -rq exit 0, 52 files); engine tests 284/0; vite build clean; flex.ts untouched (sha match); feedVM.ts checksum matches CHECKSUMS-slice3-slice4.txt; battery 61/0/10/3 re-run LIVE against vite preview (exit 0, matches slice1-battery.json).
+  - Confirmed MUSE's correction: Slice 3 README says "(12 new laws)" but battery carries 17 Slice 3 laws (tooltip 2 + needs row 5 + saves 10) and 18 Slice 4 laws; 17+18=35 matches main README "35 new laws (26->61)". Fix: Slice 3 README "(12 new laws)" -> "(17 new laws)".
+  - Confirmed MUSE's two findings (feed.ts clock() breaks for OT starts; saves panel shows whole league log count) — neither is a defect in this delivery.
+  - feed.ts clock() OT bug confirmed by computation (Q4 with negative remainder for secs>=3601) — filed for Architect's next re-pin.
 
 ## What the next session needs
 - P-315 (Slice 2 deeper verification: chosen team on the clock at its slots, picks land on its roster, mode lock holds across the draft) — needs the running app / Playwright, not runnable from this seat.
@@ -24,6 +29,7 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
 
 ## Live files
 - inbox/20261109-1518-super-P-314-slice2-review.md (pushed e35df12a)
+- inbox/20261110-0424-super-P-287-slice3-slice4-review.md (pushed d809b162)
 
 ## Worktree / branch / merge-base
 - worktree: /Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super
