@@ -1,0 +1,13 @@
+ISOP test: exact 94 / off-by-one 5 / hard 0 / tier-error 5
+self-doable: OK
+the four feedback rows:
+  C>OG: owner 6 -> model 6  raw 7.98  (M 7.50 on ISOP, S 1.20)
+  C>OT: owner 12 -> model 12  raw 10.10  (M 9.00 on ISOP, S 2.75)
+  EDGE>RB: owner 6 -> model 6  raw 8.60  (M 5.40 on CARRY, S 8.00)
+  TE>OT: owner 12 -> model 12  raw 15.10  (M 10.50 on ISOP, S 11.50)
+rows broken or moved by ISOP vs V4 (owner -> model):
+  DT>OG: owner 6 -> model 12  raw 13.78 (M 10.50 on ISOP)
+  DT>OT: owner 6 -> model 12  raw 15.90 (M 12.00 on ISOP)
+  EDGE>OG: owner 6 -> model 12  raw 13.78 (M 10.50 on ISOP)
+  EDGE>OT: owner 6 -> model 12  raw 15.90 (M 12.00 on ISOP)
+  TE>OG: owner 6 -> model 12  raw 12.98 (M 9.00 on ISOP)

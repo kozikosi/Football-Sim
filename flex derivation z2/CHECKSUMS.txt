@@ -1,0 +1,13 @@
+2e725550c4cb22e9a2fa4248960ae04c  UPDATE-README.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+cb586f103a11d105748e9a3b9cb813d6  _agents/zai/START-OF-CHAT-ZAI.md
+bcbee2c5ce80b5b48ea4f2d3e6568b44  _agents/zai/ZAI.md
+f9bc91856d3b57f692db7880406a856f  _agents/zai/deliveries/ZAI-MULTISPORT-2026-11-10.md
+a58eacf42abdd4029b36a108b8c233f5  _agents/zai/notes/W-INTAKE-LEDGER-multisport-2026-11-10.md
+86070f7259e804dc8e5a436151f6ef5c  _agents/zai/tools/results/zai-basketball-sketch-run.txt
+cadf0f6abf202f8634484dd8a84ceaf1  _agents/zai/tools/results/zai-d1-isop-run.txt
+681abd754ae1de057e0670cc0b8a66cb  _agents/zai/tools/results/zai-d1-owner-scores-run.txt
+b90139647859cb9b1b051f7219e4b3f7  _agents/zai/tools/results/zai-d1-v4-full-diff.md
+570a479ec43e437782a316149cbd9243  _agents/zai/tools/zai_basketball_sketch.py
+e4a41596d0a205cf44b4bfb0f32a44c7  _agents/zai/tools/zai_d1_isop_test.py
+323c736b34a5b0d1c9a4e31b50139473  _agents/zai/tools/zai_d1_owner_scores.py
