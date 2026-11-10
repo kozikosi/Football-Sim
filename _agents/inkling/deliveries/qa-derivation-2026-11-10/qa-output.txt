@@ -1,0 +1,260 @@
+=== scarcity table (1 / #real roles with HAVE>=5) ===
+  RNG   σ=0.100  (10 supply roles)
+  RBLK  σ=0.125  (8 supply roles)
+  TKL   σ=0.125  (8 supply roles)
+  RDEF  σ=0.143  (7 supply roles)
+  PBLK  σ=0.167  (6 supply roles)
+  RUSH  σ=0.167  (6 supply roles)
+  CTH   σ=0.200  (5 supply roles)
+  MCOV  σ=0.200  (5 supply roles)
+  EREP  σ=0.200  (5 supply roles)
+  CARRY σ=0.250  (4 supply roles)
+  ZCOV  σ=0.250  (4 supply roles)
+  SNP   σ=0.333  (3 supply roles)
+  DEEP  σ=0.333  (3 supply roles)
+  RTE   σ=0.500  (2 supply roles)
+  KCK   σ=0.500  (2 supply roles)
+  PNT   σ=0.500  (2 supply roles)
+  THR   σ=1.000  (1 supply roles)
+
+=== v0 ladder (demand x scarcity) vs weight ladder (ratios, both ascending print) ===
+ v0: QB:15.2 > CB:14.0 > WR:9.4 > FS:8.5 > DIME:8.4 > SS:7.4 > RB:7.3 > ILB:6.9 > TE:6.8 > NICKEL:6.3 > EDGE:5.9 > C:5.1 > DL5:4.8 > OLB:4.2 > DT:4.2 > OT:4.0 > OG:3.7 > K:2.0 > P:2.0 > FB:1.4
+ VW: QB:1000 > WR:650 > EDGE:650 > OT:500 > DT:500 > OG:400 > CB:400 > DL5:350 > ILB:300 > FS:300 > SS:300 > TE:250 > RB:250 > C:200 > OLB:200 > NICKEL:100 > DIME:50 > K:50 > P:50 > FB:25
+
+=== ladder rho (Spearman) v0 vs VW ===
+  Spearman rho = +0.413  (n=20)
+
+A-only (ZAI V4 ability, no value ledger)        : exact 95/99  off-by-one 3  hard 1
+   hard rows: C>OT 12→2
+max(A, G_weights)  [the measured merge, no pins]: exact 95/99  off-by-one 3  hard 1
+   hard rows: FB>RB 2→12
+max(A, G_v0)       [demand x scarcity ladder]   : exact 89/99  off-by-one 8  hard 2
+   hard rows: FB>RB 2→12 · C>OT 12→2
+blend c=0.25: max + 0.25*min (G_v0)             : exact 80/99  off-by-one 17  hard 2
+   hard rows: FB>RB 2→12 · C>OT 12→2
+
+=== the three anti-D cells, by design, under G_v0 ===
+  C>OT: A=2.0  G_v0=0.0  G_weights=12.0  live=12
+  C>OG: A=1.2  G_v0=0.0  G_weights=10.0  live=6
+  FB>RB: A=3.3  G_v0=16.3  G_weights=18.0  live=2
+  FB>TE: A=4.7  G_v0=16.0  G_weights=18.0  live=6
+
+=== derived prohibitions (core duty = NEED >= 7; forbidden if HAVE <= 1) ===
+forbidden pairs (role-level): 166 / 323
+  RB    > QB     missing core: THR
+  FB    > QB     missing core: THR
+  WR    > QB     missing core: THR
+  TE    > QB     missing core: THR
+  OT    > QB     missing core: THR
+  OG    > QB     missing core: THR
+  C     > QB     missing core: THR
+  DT    > QB     missing core: THR
+  EDGE  > QB     missing core: THR
+  ILB   > QB     missing core: THR
+  OLB   > QB     missing core: THR
+  SS    > QB     missing core: THR
+  FS    > QB     missing core: THR
+  CB    > QB     missing core: THR
+  K     > QB     missing core: THR
+  P     > QB     missing core: THR
+  OT    > RB     missing core: CARRY
+  OG    > RB     missing core: CARRY
+  C     > RB     missing core: CARRY
+  DT    > RB     missing core: CARRY
+  FS    > RB     missing core: CARRY
+  K     > RB     missing core: CARRY
+  P     > RB     missing core: CARRY
+  QB    > WR     missing core: RTE
+  OT    > WR     missing core: CTH,RTE
+  OG    > WR     missing core: CTH,RTE
+  C     > WR     missing core: CTH,RTE
+  DT    > WR     missing core: CTH,RTE
+  EDGE  > WR     missing core: RTE
+  ILB   > WR     missing core: RTE
+  OLB   > WR     missing core: RTE
+  K     > WR     missing core: RTE
+  P     > WR     missing core: RTE
+  OT    > TE     missing core: CTH
+  OG    > TE     missing core: CTH
+  C     > TE     missing core: CTH
+  DT    > TE     missing core: CTH
+  QB    > OT     missing core: PBLK,RBLK
+  RB    > OT     missing core: PBLK
+  WR    > OT     missing core: PBLK
+  SS    > OT     missing core: PBLK
+  FS    > OT     missing core: PBLK,RBLK
+  CB    > OT     missing core: PBLK,RBLK
+  K     > OT     missing core: PBLK,RBLK
+  P     > OT     missing core: PBLK,RBLK
+  QB    > OG     missing core: PBLK,RBLK
+  RB    > OG     missing core: PBLK
+  WR    > OG     missing core: PBLK
+  SS    > OG     missing core: PBLK
+  FS    > OG     missing core: PBLK,RBLK
+  CB    > OG     missing core: PBLK,RBLK
+  K     > OG     missing core: PBLK,RBLK
+  P     > OG     missing core: PBLK,RBLK
+  QB    > C      missing core: PBLK,RBLK,SNP
+  RB    > C      missing core: PBLK,SNP
+  FB    > C      missing core: SNP
+  WR    > C      missing core: PBLK,SNP
+  TE    > C      missing core: SNP
+  DT    > C      missing core: SNP
+  EDGE  > C      missing core: SNP
+  ILB   > C      missing core: SNP
+  OLB   > C      missing core: SNP
+  SS    > C      missing core: PBLK,SNP
+  FS    > C      missing core: PBLK,RBLK,SNP
+  CB    > C      missing core: PBLK,RBLK,SNP
+  K     > C      missing core: PBLK,RBLK,SNP
+  P     > C      missing core: PBLK,RBLK,SNP
+  QB    > DT     missing core: RDEF
+  WR    > DT     missing core: RDEF
+  K     > DT     missing core: RDEF
+  P     > DT     missing core: RDEF
+  QB    > EDGE   missing core: RUSH,EREP,RDEF
+  RB    > EDGE   missing core: RUSH,EREP
+  FB    > EDGE   missing core: RUSH,EREP
+  WR    > EDGE   missing core: RUSH,EREP,RDEF
+  TE    > EDGE   missing core: RUSH,EREP
+  ILB   > EDGE   missing core: EREP
+  SS    > EDGE   missing core: RUSH,EREP
+  FS    > EDGE   missing core: RUSH,EREP
+  CB    > EDGE   missing core: RUSH,EREP
+  K     > EDGE   missing core: RUSH,EREP,RDEF
+  P     > EDGE   missing core: RUSH,EREP,RDEF
+  QB    > ILB    missing core: RDEF
+  RB    > ILB    missing core: ZCOV
+  FB    > ILB    missing core: ZCOV
+  WR    > ILB    missing core: RDEF
+  OT    > ILB    missing core: ZCOV
+  OG    > ILB    missing core: ZCOV
+  C     > ILB    missing core: ZCOV
+  DT    > ILB    missing core: ZCOV
+  K     > ILB    missing core: RDEF,ZCOV
+  P     > ILB    missing core: RDEF,ZCOV
+  RB    > SS     missing core: ZCOV
+  FB    > SS     missing core: ZCOV
+  OT    > SS     missing core: ZCOV
+  OG    > SS     missing core: ZCOV
+  C     > SS     missing core: ZCOV
+  DT    > SS     missing core: ZCOV
+  K     > SS     missing core: ZCOV
+  P     > SS     missing core: ZCOV
+  RB    > FS     missing core: ZCOV
+  FB    > FS     missing core: ZCOV
+  OT    > FS     missing core: ZCOV
+  OG    > FS     missing core: ZCOV
+  C     > FS     missing core: ZCOV
+  DT    > FS     missing core: ZCOV
+  K     > FS     missing core: ZCOV
+  P     > FS     missing core: ZCOV
+  QB    > CB     missing core: RTE
+  OT    > CB     missing core: MCOV,RTE
+  OG    > CB     missing core: MCOV,RTE
+  C     > CB     missing core: MCOV,RTE
+  DT    > CB     missing core: MCOV,RTE
+  EDGE  > CB     missing core: RTE
+  ILB   > CB     missing core: RTE
+  OLB   > CB     missing core: RTE
+  K     > CB     missing core: MCOV,RTE
+  P     > CB     missing core: MCOV,RTE
+  QB    > K      missing core: KCK
+  RB    > K      missing core: KCK
+  FB    > K      missing core: KCK
+  WR    > K      missing core: KCK
+  TE    > K      missing core: KCK
+  OT    > K      missing core: KCK
+  OG    > K      missing core: KCK
+  C     > K      missing core: KCK
+  DT    > K      missing core: KCK
+  EDGE  > K      missing core: KCK
+  ILB   > K      missing core: KCK
+  OLB   > K      missing core: KCK
+  SS    > K      missing core: KCK
+  FS    > K      missing core: KCK
+  CB    > K      missing core: KCK
+  QB    > P      missing core: PNT
+  RB    > P      missing core: PNT
+  FB    > P      missing core: PNT
+  WR    > P      missing core: PNT
+  TE    > P      missing core: PNT
+  OT    > P      missing core: PNT
+  OG    > P      missing core: PNT
+  C     > P      missing core: PNT
+  DT    > P      missing core: PNT
+  EDGE  > P      missing core: PNT
+  ILB   > P      missing core: PNT
+  OLB   > P      missing core: PNT
+  SS    > P      missing core: PNT
+  FS    > P      missing core: PNT
+  CB    > P      missing core: PNT
+  RB    > DIME   missing core: ZCOV
+  FB    > DIME   missing core: ZCOV
+  OT    > DIME   missing core: ZCOV
+  OG    > DIME   missing core: ZCOV
+  C     > DIME   missing core: ZCOV
+  DT    > DIME   missing core: ZCOV
+  K     > DIME   missing core: ZCOV
+  P     > DIME   missing core: ZCOV
+  QB    > DL5    missing core: RUSH,RDEF
+  RB    > DL5    missing core: RUSH
+  FB    > DL5    missing core: RUSH
+  WR    > DL5    missing core: RUSH,RDEF
+  TE    > DL5    missing core: RUSH
+  SS    > DL5    missing core: RUSH
+  FS    > DL5    missing core: RUSH
+  CB    > DL5    missing core: RUSH
+  K     > DL5    missing core: RUSH,RDEF
+  P     > DL5    missing core: RUSH,RDEF
+forbidden cells that the live table PRICES (should be empty): [('TE', 'C', ['SNP']), ('DT', 'C', ['SNP']), ('EDGE', 'C', ['SNP']), ('TE', 'EDGE', ['RUSH', 'EREP']), ('ILB', 'EDGE', ['EREP']), ('RB', 'SS', ['ZCOV']), ('RB', 'FS', ['ZCOV'])]
+
+=== P-338: the big nickel (SS2), priced with no hand-written rows ===
+SS2 NEED: {'RNG': 8, 'TKL': 7, 'ZCOV': 6, 'MCOV': 6, 'CTH': 4, 'RDEF': 4, 'DEEP': 2, 'RUSH': 1}
+SS2 value: v0=6.9   weight blend=210
+
+-- every role -> SS2 (who drifts in; guard uses v0) --
+  QB    A=13.8 G= 0.0 -> price 12   (12/ 0)
+  RB    A=12.3 G= 0.0 -> price 12   (12/ 0)
+  FB    A=11.4 G=16.1 -> price 12   (12/12)
+  WR    A= 6.6 G= 0.0 -> price  6   ( 6/ 0)
+  TE    A= 7.6 G= 0.3 -> price  6   ( 6/ 0)
+  OT    A=16.5 G= 8.5 -> price 12   (12/ 6)
+  OG    A=16.5 G= 9.3 -> price 12   (12/12)
+  C     A=17.0 G= 5.2 -> price 12   (12/ 6)
+  DT    A=15.6 G= 8.0 -> price 12   (12/ 6)
+  EDGE  A= 8.4 G= 2.9 -> price  6   ( 6/ 2)
+  ILB   A= 3.3 G= 0.0 -> price  2   ( 2/ 0)
+  OLB   A= 6.1 G= 8.0 -> price  6   ( 6/ 6)
+  SS    A= 0.0 G= 0.0 -> price  0   ( 0/ 0)
+  FS    A= 1.8 G= 0.0 -> price  2   ( 2/ 0)
+  CB    A= 0.7 G= 0.0 -> price  0   ( 0/ 0)
+  K     A=16.3 G=14.2 -> price 12   (12/12)
+  P     A=16.3 G=14.2 -> price 12   (12/12)
+
+-- SS2 -> every role (who SS2 can play; guard uses v0) --
+  SS2> QB    A=14.7 G=10.9 -> price 12   (12/12)
+  SS2> RB    A= 9.2 G= 0.9 -> price 12   (12/ 0)
+  SS2> FB    A= 1.0 G= 0.0 -> price  2   ( 2/ 0)
+  SS2> WR    A=12.5 G= 5.2 -> price 12   (12/ 6)
+  SS2> TE    A= 7.5 G= 0.0 -> price  6   ( 6/ 0)
+  SS2> OT    A=15.2 G= 0.0 -> price 12   (12/ 0)
+  SS2> OG    A=13.6 G= 0.0 -> price 12   (12/ 0)
+  SS2> C     A=14.2 G= 0.0 -> price 12   (12/ 0)
+  SS2> DT    A= 9.7 G= 0.0 -> price 12   (12/ 0)
+  SS2> EDGE  A=17.2 G= 0.0 -> price 12   (12/ 0)
+  SS2> ILB   A= 7.4 G= 0.0 -> price  6   ( 6/ 0)
+  SS2> OLB   A= 3.1 G= 0.0 -> price  2   ( 2/ 0)
+  SS2> SS    A= 0.0 G= 1.3 -> price  2   ( 0/ 2)
+  SS2> FS    A= 1.1 G= 3.7 -> price  2   ( 2/ 2)
+  SS2> CB    A= 8.0 G=10.1 -> price 12   ( 6/12)
+  SS2> K     A= 4.0 G= 0.0 -> price  6   ( 6/ 0)
+  SS2> P     A= 4.0 G= 0.0 -> price  6   ( 6/ 0)
+  SS2> NICKEL A= 0.0 G= 0.0 -> price  0   ( 0/ 0)
+  SS2> DIME  A= 0.0 G= 3.4 -> price  2   ( 0/ 2)
+  SS2> DL5   A= 9.1 G= 0.0 -> price 12   (12/ 0)
+
+-- derived prohibitions INTO SS2 --
+  forbidden: none
+-- derived prohibitions OUT of SS2 (SS2 body = big safety) --
+  forbidden: QB, OT, OG, C, EDGE, K, P, DL5
