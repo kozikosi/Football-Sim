@@ -1,0 +1,7 @@
+KG's thinking on the derivation direction (open-ended; presented to everyone), 2026-11-09 23:54 HST. Verbatim.
+
+---
+
+my primary thought is i don’t really care about hitting the 99/99. the 99 are a guide. i think we should take the best of everyone’s ideas and potentially merge them or decide on the best path. it is ok if the formulas don’t necesarrily hit the 99. I’m ok with more of a sliding scale of flexing; that is what i envisioned more originally. but then i thought that having the 0,2,6,12 scale makes it more user friendly because they don’t have to learn as much math. I don’t know. I’m up for the most beautiful formula that is also the most portable. 
+
+claude’s formula seems to require str and speed. which every sport could have. and height is certainly more of an atrribute in basektball. but i think these values are perhaps more arbitrary than deriving a system based more off positional requirements and values. I don’t know. I think this is all open ended and should be presetned to everyone. you can take my scattered thoughts and share them verbatim
