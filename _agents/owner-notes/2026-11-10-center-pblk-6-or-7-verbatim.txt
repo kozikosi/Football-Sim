@@ -1,0 +1,12 @@
+KG, 2026-11-10 (verbatim, from chat):
+
+"i think a 6 or 7 is ok for centers."
+
+Notes (MUSE, not KG's words):
+- This is KG's ruling on the center's pass-blocking (PBLK) score in ZAI-D1's HAVE matrix. The model had C PBLK 9 (nearly as high as OT's 10); KG's feedback was that centers are shorter and much worse in one-on-one pass protection, worth an extra $10M/year.
+- MUSE tested both values with the other two score changes (EDGE CARRY 4, TE PBLK 4):
+  - C PBLK 6: **98/99, tier-error 1** — only C>OT off by one (owner 12, model 6, raw 6.68). C>OG fixed (6, correct).
+  - C PBLK 7: **97/99, tier-error 2** — C>OT off by one (owner 12, model 6, raw 5.13) AND C>OG off by one (owner 6, model 2, raw 3.58).
+  - C PBLK 4 (for comparison): 99/99, tier-error 0 — but KG did not choose 4; he said 6 or 7 is OK.
+- Working value: **C PBLK 6** (the better fit of the two KG accepted). The ZAI-D1 + KG-scores variant is therefore **98/99, 0 fiat rows**, with C>OT as the single off-by-one. C>OT (center to tackle at 12) remains the one price the formula underprices — the center's one-on-one pass-protection gap is worth more than the model credits, and the question of how to capture it naturally (a lower C score, a separate 1v1 duty, or an accepted off-by-one) is open.
+- Recorded in `inbox/20261110-0655-muse-ZAI-D1-KG-feedback.md` and the Claude derivation prompt (`claude-derivation-own-design-2026-11-10.md`).
