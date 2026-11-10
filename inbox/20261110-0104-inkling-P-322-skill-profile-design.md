@@ -86,7 +86,8 @@ A            : Σ_s β_s × max(0, p_dst[s] − p_src[s]), with:
    dst==RB    : RUN gap counts ONLY here (else RUN is noise, every position is more athletic than a lineman)
    dst in {NICKEL, DIME, FS} : COV weight × (1.7 / 3.6 / 2.0)  — "DB-scheme slots" charge full price on coverage
    src CTH ≥ 9: COV and RNG gaps × 0.5 — catching specialists stay with balls (Owner #4 logic)
-   dst==C     : BLK gap zeroed if both src,dst BLK ≥ 8 (elite-line swaps price by D only)
+   BLK (general reading, confirmed 2026-11-10): gap zeroed when BOTH src,dst BLK ≥ 8, any destination — not only dst == 'C'. The literal dst=='C' reading gives 87/99 (OG>OT becomes a one-tier residual); the general reading gives 88/99 and matches the three independent re-implementations (MUSE, Claude, Glyph). The `dst=='C'` phrasing above was wrong; the general reading governs.
+   general-BLK ruling recorded 2026-11-10 (inkling): this replaces the previous line "dst==C     : BLK gap zeroed if both src,dst BLK ≥ 8 (elite-line swaps price by D only)".
    Gate (vs D): if D ≥ 5 → A counts 0.0 ; if 4 ≤ D < 5 → A × 0.5 ; else A counts fully
 U            : sparse unlikeness deltas (the Owner's "real-world grounds" overrides, kept sparse):
    RB>TE +3.0 · SS>ILB +5.0 · TE>ILB +6.4 · RB>SS +6.6 · EDGE>SS +5.1
