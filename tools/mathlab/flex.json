@@ -1,5 +1,5 @@
 {
- "_source": "REV 4, Owner 29 Oct 10:00 HST: QB flexes ONLY to FS, at -10 (QB->RB removed). Owner, 26 Oct 2026 01:45 HST (flex guide REV 2, adds DIME; supersedes the 25 Oct guide). from-position -> {destination: penalty}. 0 = free. S = SS+FS, LB = ILB+OLB. NICKEL = the CB3 slot. DIME = the new 6th-DB slot. | REV 3, Owner 28 Oct 17:27 HST: edge->OLB 0; TE->RB 4; P->K 4, K->P 0; QB->FS 6, QB->SS and QB->WR removed; every w33 extra kept (OL->RB 6, DT->LB 4, DT->RB 6, FS/CB->LB/TE/RB). FS->CB 4, SS->CB 6, WR->RB 4 were already so. Owner: 'All the Extra in w33 rules are good. Follow w33 there.'",
+ "_source": "FLEX TABLE, tiers -2 / -6 / -12, 97 rules (Owner 9 Nov 2026, D picks + 9 corrections; Muse relay claude-flex-rebuild and claude-flex-corrections-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Corrections 9 Nov (Owner overrides, not D): EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2. Counts: 19 at 12, 40 at 6, 15 at 2, 23 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
  "roles": [
   "QB",
   "RB",
@@ -21,37 +21,39 @@
  ],
  "flex": {
   "QB": {
-   "FS": 10
+   "FS": 12
   },
   "RB": {
-   "FB": 2,
-   "WR": 4,
-   "TE": 6
+   "FB": 0,
+   "WR": 12,
+   "TE": 6,
+   "SS": 12,
+   "FS": 12
   },
   "FB": {
-   "RB": 4,
-   "TE": 4
+   "RB": 2,
+   "TE": 6
   },
   "WR": {
-   "RB": 4,
-   "TE": 4,
-   "SS": 4,
-   "FS": 4,
-   "NICKEL": 4,
-   "DIME": 4,
-   "CB": 6
+   "RB": 6,
+   "TE": 6,
+   "CB": 2,
+   "FS": 2,
+   "SS": 2,
+   "NICKEL": 2,
+   "DIME": 2
   },
   "TE": {
-   "WR": 2,
-   "FB": 2,
-   "RB": 4,
+   "FB": 0,
+   "WR": 12,
+   "RB": 6,
    "C": 6,
    "OG": 6,
-   "OT": 6,
-   "EDGE": 6,
-   "DT": 6,
-   "ILB": 6,
+   "OT": 12,
+   "EDGE": 12,
+   "DT": 12,
    "OLB": 6,
+   "ILB": 12,
    "SS": 6,
    "FS": 6,
    "NICKEL": 6,
@@ -59,114 +61,95 @@
   },
   "OT": {
    "OG": 0,
-   "C": 0,
-   "DT": 4,
-   "FB": 4,
-   "RB": 6
+   "C": 2,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
   },
   "OG": {
-   "C": 0,
-   "OT": 4,
-   "DT": 4,
-   "FB": 4,
-   "RB": 6
+   "OT": 2,
+   "C": 2,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
   },
   "C": {
-   "OG": 0,
-   "OT": 4,
-   "DT": 4,
-   "FB": 4,
-   "RB": 6
+   "OG": 6,
+   "OT": 12,
+   "DT": 12,
+   "FB": 0
   },
   "DT": {
-   "OG": 4,
-   "C": 4,
-   "EDGE": 4,
-   "FB": 4,
+   "EDGE": 6,
+   "C": 6,
+   "OG": 6,
    "OT": 6,
-   "ILB": 4,
-   "OLB": 4,
-   "RB": 6
+   "FB": 0
   },
   "EDGE": {
-   "DT": 2,
+   "DT": 0,
    "OLB": 0,
-   "ILB": 4,
-   "FB": 4,
-   "TE": 6,
+   "ILB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 6,
+   "SS": 12,
    "RB": 6,
+   "FB": 0,
+   "TE": 6,
    "NICKEL": 6
   },
   "ILB": {
    "ILB": 0,
    "OLB": 0,
-   "DT": 4,
-   "FB": 4,
-   "EDGE": 6,
+   "EDGE": 12,
+   "SS": 2,
+   "FB": 0,
    "TE": 6,
-   "SS": 6,
-   "FS": 6,
    "NICKEL": 6,
-   "DIME": 6
+   "DIME": 12
   },
   "OLB": {
    "OLB": 0,
-   "ILB": 2,
-   "EDGE": 4,
-   "NICKEL": 4,
-   "DT": 6,
-   "TE": 6,
+   "ILB": 6,
+   "EDGE": 12,
    "SS": 6,
-   "FS": 6,
-   "FB": 6,
-   "DIME": 6
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 12
   },
   "SS": {
    "NICKEL": 0,
    "DIME": 0,
    "FS": 2,
-   "OLB": 4,
    "CB": 6,
+   "WR": 12,
    "ILB": 6,
-   "WR": 6,
-   "TE": 6,
-   "RB": 6,
-   "FB": 6
+   "OLB": 2,
+   "RB": 12,
+   "TE": 6
   },
   "FS": {
    "NICKEL": 0,
    "DIME": 0,
    "SS": 2,
-   "CB": 4,
-   "WR": 4,
-   "ILB": 4,
-   "OLB": 4,
-   "TE": 6,
-   "RB": 6
+   "CB": 6,
+   "WR": 12,
+   "OLB": 6
   },
   "CB": {
    "FS": 0,
    "NICKEL": 0,
    "DIME": 0,
-   "SS": 2,
-   "WR": 4,
-   "ILB": 6,
-   "OLB": 4,
-   "TE": 6,
-   "RB": 6
+   "SS": 0,
+   "WR": 6
   },
   "K": {
-   "P": 0
+   "P": 2
   },
   "P": {
-   "K": 4
+   "K": 2
   }
- },
- "_notes": {
-  "QB": "REV 4 (Owner 29 Oct): a QB may play FS only, at -10. Earlier: REV 3 QB->RB 6 and FS 6; REV 2 WR/S at -6; before that 'QB cannot flex'. Latest Owner word wins.",
-  "NICKEL": "Nickel is the CB3 slot. CB->NICKEL is free because CB is its natural position group; SS/FS->NICKEL free per guide.",
-  "3-4": "In a 3-4 base the slots are DE1, NT(=DT1), DE2, OLB1, ILB1, ILB2, OLB2. ILB slots use the ILB (MIKE) row; OLB slots the OLB (WILL/SAM) row.",
-  "DIME": "DIME is a slot (6th DB), not a position in the 1,200-player dataset: the dataset has no 'DIME' tag, so the 4th-best CB or a flexed S/CB fills it. Plays ~10% of snaps (Owner), on 3rd/4th and long and late in games.",
-  "RB": "25 Oct guide had RB -6 S and RB->WR -4; 26 Oct guide drops RB->S and adds RB->TE -6."
  }
 }

@@ -110,8 +110,13 @@ New council work has landed since the w88 prompt was first written. The parts th
 
 ## §6. Boundaries
 
-- w88 is built on w87 (start from the w87 file, `Football-Sim-Z-post-blue-w87.html` on `origin/gh-pages`). Publish w88 as its own file the same way w87 was published. It is a w-series wave, not a Slice — do not touch 67 Cakepanz, do not touch the engine, do not move any pin, do not generate ratings, do not touch the brand.
+- **w88 is UI/UX only. You do NOT rebuild the engine in w88.** The engine merge happens fully with **76 Pancakes** (Colors v1, the Architect's tree). Your job in w88 is to change the UI/UX — the numbers in the guide, the buttons on the position rankings page, and anywhere else the w87 weight numbers appear. You do not touch the engine, do not move any pin, do not generate ratings, do not touch the brand. The engine is the Architect's; the UI is yours.
+- w88 is built on w87 (start from the w87 file, `Football-Sim-Z-post-blue-w87.html` on `origin/gh-pages`). Publish w88 as its own file the same way w87 was published. It is a w-series wave, not a Slice — do not touch 67 Cakepanz in w88, do not touch the engine, do not move any pin, do not generate ratings, do not touch the brand.
 - The engine is untouched (as in w87). The flex table is not part of this wave — the flex values in the UI stay as they are in w87; the TE/SAM flex changes (items 3+7, the 105-rule table) are a separate Architect step. The flex-guide inconsistency in §5 is infrastructure being fixed separately; do not try to fix it in w88.
+
+## §6b. Slice 3 — begin it in parallel
+
+Slice 3 (P-316, 67 Cakepanz hydration + board chrome pass) is queued and it does **not** depend on w88 — the two tracks are independent. **Begin Slice 3 in parallel with w88.** The Slice 3 prompt is on `origin/council/muse` at `_agents/muse/deliveries/prompts-2026-11-05/zai-slice3-2026-11-09.md` — read it and start. It has the full flex briefing (so you understand the flex story before you build the board chrome), the two carried innovations (the gone-odds tooltip and the "my needs" sticky row), and the same boundaries (consume the engine snapshot pinned at `4ca9a071`, do not move the pin, do not update flex values in Slice 3). w88 and Slice 3 are separate deliverables — publish them separately, and do not let either one wait on the other.
 
 ## §7. Review — what happens when w88 lands
 
