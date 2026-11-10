@@ -1,22 +1,28 @@
-# INKLING — lane file (copy to `_agents/inkling/INKLING.md`; rewrite it at the end of every session, never append)
+# INKLING — lane file (rewrite at the end of every session; never append)
 
 ## Identity
-- **Seat:** INKLING · **Model / how reached:** Inkling 2 Small Free (opencode/inkling-2-small-free), reached via OpenChamber · **State:** advisor
-- **ID block:** none (files no submissions yet) · **First seen:** 2026-11-09
-- **Strengths shown so far (evidence, not claims):** P-008 review — 3 new findings on the lineup cue (commit 664efe7e); P-314 review — independent re-run of MUSE/super's claims, engine tests 284/284 VERIFIED, 3 new findings (commit 200df0f6)
+- **Seat:** INKLING · **Model / how reached:** Inkling 2 Small Free (opencode/inkling-2-small-free), via OpenChamber · **State:** advisor
+- **First seen:** 2026-11-09 · **Admitted by Owner** 2026-11-09
+- **Strengths shown (evidence, not claims):** P-008 review — 3 new findings (commit 664efe7e) · P-314 review — 284/284 engine tests VERIFIED + 3 new findings (200df0f6) · P-322 skill-profile design — 97/105 exact vs Owner's final flex table, 0 hard misses (a3366dc5) · P-021 review — mechanical claims VERIFIED, prototype-missing finding (a3366dc5)
 
 ## Current work
 - **Claimed / in progress:** nothing
-- **Done this session:** P-008 REVIEW; P-314 REVIEW (engine 284/284 VERIFIED); onboarding feedback + A–F recommendations (inbox/20261109-2345-inkling-onboarding-feedback.md); w87 verified LIVE on gh-pages (ec63439d, served md5 match; see bulletin/20261110-0016-inkling.md); lane file + bulletins posted (664efe7e, c3220420, 200df0f6, 8ed31ffb, 311c542f, 98184812, + this session)
-- **Blocked / waiting on:** Architect/Owner to confirm muse's 2026-11-05 "KG" retire approval (~110 OP-retire files); Architect ruling on P-008 F6 (post-draft rating-base asymmetry); Owner/Architect call on which slice ships the CSV importer (P-314 F6); muse tree reorg vs canonical queue visibility of P-314/P-315/P-317
+- **Done this session (2026-11-10T01:12Z):**
+  - **P-021 review filed** — `inbox/20261110-0104-inkling-P-021-review.md`. vl's playoff-preview/bye-week proposal: all line anchors vs Pre-Colors (`40233d6be00e987c`) VERIFIED; prototype `p021-playoff-preview-prototype.html` MISSING on council/vl (HOW TO CHECK unrunnable); CSS adds `color:#fff` twice (no-white-text law); major nit: item is REWORK + retire-proposed on board → old-shell build is mooted if Colors v1 covers it. VERDICT: improved.
+  - **P-322 skill-profile design filed** — `inbox/20261110-0104-inkling-P-322-skill-profile-design.md`. Nine priced skills (BLK CTH COV RNG RSH RUN SNP KCK/PNT) + slot-value (D, bumped WILL/C) gated; SAM aliased to OLB (item 7); FB destination free for nine; 5 unlikeness deltas + 6 Owner overrides kept. Final table (728b2c53 + items 3+7) = 105 rules, 23/40/16/26 — counts VERIFIED by my construction; single-seat, ARCHITECT-not-yet-built (P-323 is the real gate). Model: **97/105 exact, 8 one-tier (all owner-0-model-2), 0 hard misses**; D-only baseline 38/90. Options A (recommended) / B (equivalent, skip) / C (model-as-linter). FLEX protected — any build re-pins.
+- **Blocked / waiting on:** Architect decision on P-322 (A/B/C); Owner answers (a) MIKE>WILL model-2 vs 0 (±1, single U row), (b) FS>SS symmetry tax, (c) whether the no-white-text law applies here; Architect/Owner on OLB>EDGE (needs ≥9 post-bump D — UNKNOWN, Owner forbade recomputing D); retire calls pending on P-020/P-021 (MUSE proposed, needs 2 seats or Architect).
 
 ## What the next session needs
-- **Read first:** `_agents/inkling/INKLING.md` (this file), `bulletin/20261109-2355-inkling.md` (correction + pointer), the Architect's `digest` for rulings on the below
-- **Open questions:** (1) muse's "KG 2026-11-05" retire approval — real? (2) P-008 F6 rating base; (3) CSV importer slice; (4) does the muse tree reorg land so the council tool sees P-314+; (5) onboarding A–F (own `inbox/20261109-2345-inkling-onboarding-feedback.md`)
-- **Do not redo:** P-008 verification (see review file); P-314 verification incl. 284/284 engine test run and CHECKSUMS md5s (see review file); council.mjs-on-macOS /tmp entry-guard workaround (use a non-symlinked copy — documented in bulletin 20261109-2345-inkling.md)
+- **Read first:** this file; `bulletin/20261110-0112-inkling.md`; `inbox/20261110-0104-inkling-P-322-skill-profile-design.md` (the design); the Architect's `digest` for P-322/P-323 rulings.
+- **Do not redo:** the P-322 final-table construction and the 97/105 measurement (in the design file — reproduce with the commands shown, not from memory); the P-021 anchor greps (in the review file); P-314 verification incl. engine tests; the council.mjs /tmp workaround history.
+- **Watch:** P-323 (items 3+7 build) — if it lands, verify counts (105; 23/40/16/26), flex.json == flex.ts, 3-4 base total, test suite; re-measure the model against the actual FLEX bytes if the build moves any override row. Re-fit only AFTER P-321's ±5 measurement lands.
+- **Open questions for the Architect (in the P-322 file, §5):** MIKE>WILL = 0 if Owner adds one U-negative row? OLB>EDGE post-bump D ≥9? Option A vs C?
 
 ## Files in this lane
-(none — this file only)
+(none — this file only; work is in `inbox/`)
 
 ## Role
 general advisor. Admitted by the Owner on 2026-11-09. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
+
+- **worktree:** `/Users/kosi/Desktop/wt/inkling` (read-only reference: `/Users/kosi/Desktop/wt/inkling` must stay on `council/inkling`, branch `council/inkling`)
+- **branch:** `council/inkling` · tip `a3366dc5` at rewrite · `git merge-base HEAD origin/council/base` = `1b91f50e161fa10d0607c8e09330115ffa27f1ff`
