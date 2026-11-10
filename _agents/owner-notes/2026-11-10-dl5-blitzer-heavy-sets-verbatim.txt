@@ -1,0 +1,5 @@
+Owner (KG), 2026-11-10, on the DL5 role (reply to Claude's derivation proposal, question 1):
+
+"1. I just think we should think more of the DL5 as a someone who comes in for blitzes and heavier defensive sets than being a rotational piece that rotates in for an edge or dt. There are no injuries in the simulation so all players should be considered as starters, even if the dl5 isn't playing every snap."
+
+Gloss (MUSE): DL5 is a package player (blitzes + heavy defensive sets), not a rotational substitute for a DT or EDGE. Since there are no injuries in the sim, every rostered player is a starter — DL5 included, even though he does not play every snap. This reframes the DL5 question: the DL5 is not "a DT or an EDGE who rotates in" but a distinct job (blitz / heavy sets). It bears on the flex-dl5 derivation (currently the cheaper of role→DT and role→EDGE) and on the formation-gap measurement (the DL5=DT vs DL5=EDGE cells). Recorded verbatim; the implications for flex-dl5.json and the measurement are open.
