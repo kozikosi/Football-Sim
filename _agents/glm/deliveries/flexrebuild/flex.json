@@ -1,0 +1,155 @@
+{
+ "_source": "FLEX TABLE, tiers 0/2/6/12 (Owner 9 Nov 2026: D at theta 1.0 rounded to the nearest tier, cutoffs 1/4/9, Owner overrides supersede; his list is the reality check). REBUILT CANDIDATE by tools/mathlab/flexrebuild.mjs — NOT the shipped table until the Architect copies it and re-pins. D input thetaprice-2026-11-09.md sha 72dae5bcc07ce15a; base flex.json sha 4d03772cba4e8f10. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
+ "roles": [
+  "QB",
+  "RB",
+  "FB",
+  "WR",
+  "TE",
+  "OT",
+  "OG",
+  "C",
+  "DT",
+  "EDGE",
+  "ILB",
+  "OLB",
+  "SS",
+  "FS",
+  "CB",
+  "K",
+  "P"
+ ],
+ "flex": {
+  "QB": {
+   "FS": 12
+  },
+  "RB": {
+   "FB": 0,
+   "WR": 12,
+   "TE": 6,
+   "SS": 12,
+   "FS": 12
+  },
+  "FB": {
+   "RB": 2,
+   "TE": 6
+  },
+  "WR": {
+   "RB": 6,
+   "TE": 6,
+   "CB": 2,
+   "FS": 2,
+   "SS": 2,
+   "NICKEL": 2,
+   "DIME": 2
+  },
+  "TE": {
+   "FB": 0,
+   "WR": 12,
+   "RB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 12,
+   "EDGE": 12,
+   "DT": 12,
+   "OLB": 6,
+   "ILB": 12,
+   "SS": 6,
+   "FS": 6,
+   "NICKEL": 6,
+   "DIME": 6
+  },
+  "OT": {
+   "OG": 0,
+   "C": 2,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
+  },
+  "OG": {
+   "OT": 2,
+   "C": 0,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
+  },
+  "C": {
+   "OG": 6,
+   "OT": 12,
+   "DT": 12,
+   "FB": 0
+  },
+  "DT": {
+   "EDGE": 6,
+   "C": 0,
+   "OG": 2,
+   "OT": 6,
+   "FB": 0
+  },
+  "EDGE": {
+   "DT": 0,
+   "OLB": 0,
+   "ILB": 0,
+   "C": 2,
+   "OG": 0,
+   "OT": 0,
+   "SS": 12,
+   "RB": 0,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 0
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 12,
+   "SS": 2,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 12
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 6,
+   "EDGE": 12,
+   "SS": 6,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 12
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 6,
+   "WR": 12,
+   "ILB": 6,
+   "OLB": 2,
+   "RB": 12,
+   "TE": 6
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 6,
+   "WR": 12,
+   "OLB": 6
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 0,
+   "WR": 6
+  },
+  "K": {
+   "P": 2
+  },
+  "P": {
+   "K": 2
+  }
+ }
+}

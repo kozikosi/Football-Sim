@@ -1,0 +1,13 @@
+{
+  "_owner": "Owner verbatim, claude-reply-flex-answers-2026-11-09.md (council/muse): items 3 + 7. TE>DIME and TE>FS to 12 (TEs match LBs downfield); ILB>FS and OLB>FS 12 (all linebackers and tight ends can play FS for 12); SAM mirrors OLB as a destination (EDGE>SAM 0, FS>SAM 6, ILB>SAM 0, OLB>SAM 0, SS>SAM 2, TE>SAM 6). Expected counts once built: 23 at 12, 40 at 6, 16 at 2, 26 at 0 - 105 rules.",
+  "TE>DIME": 12,
+  "TE>FS": 12,
+  "ILB>FS": 12,
+  "OLB>FS": 12,
+  "EDGE>SAM": 0,
+  "FS>SAM": 6,
+  "ILB>SAM": 0,
+  "OLB>SAM": 0,
+  "SS>SAM": 2,
+  "TE>SAM": 6
+}

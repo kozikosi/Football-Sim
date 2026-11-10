@@ -1,0 +1,109 @@
+{
+ "dPath": "",
+ "dSha": "none",
+ "basePath": "/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/glm-flexrebuild/flex-728b.json",
+ "baseSha": "da582c8b1f84c202",
+ "D90": {},
+ "moves": [
+  {
+   "rule": "EDGE>SAM",
+   "old": null,
+   "neu": 0,
+   "source": "added"
+  },
+  {
+   "rule": "FS>SAM",
+   "old": null,
+   "neu": 6,
+   "source": "added"
+  },
+  {
+   "rule": "ILB>FS",
+   "old": null,
+   "neu": 12,
+   "source": "added"
+  },
+  {
+   "rule": "ILB>SAM",
+   "old": null,
+   "neu": 0,
+   "source": "added"
+  },
+  {
+   "rule": "OLB>FS",
+   "old": null,
+   "neu": 12,
+   "source": "added"
+  },
+  {
+   "rule": "OLB>SAM",
+   "old": null,
+   "neu": 0,
+   "source": "added"
+  },
+  {
+   "rule": "SS>SAM",
+   "old": null,
+   "neu": 2,
+   "source": "added"
+  },
+  {
+   "rule": "TE>DIME",
+   "old": 6,
+   "neu": 12,
+   "source": "override"
+  },
+  {
+   "rule": "TE>FS",
+   "old": 6,
+   "neu": 12,
+   "source": "override"
+  },
+  {
+   "rule": "TE>SAM",
+   "old": null,
+   "neu": 6,
+   "source": "added"
+  }
+ ],
+ "zeros": [
+  "RB>FB",
+  "TE>FB",
+  "OT>OG",
+  "OT>FB",
+  "OG>FB",
+  "C>FB",
+  "DT>FB",
+  "EDGE>DT",
+  "EDGE>OLB",
+  "EDGE>FB",
+  "ILB>ILB",
+  "ILB>OLB",
+  "ILB>FB",
+  "OLB>OLB",
+  "OLB>FB",
+  "SS>NICKEL",
+  "SS>DIME",
+  "FS>NICKEL",
+  "FS>DIME",
+  "CB>FS",
+  "CB>NICKEL",
+  "CB>DIME",
+  "CB>SS"
+ ],
+ "pending": [],
+ "tierCounts": {
+  "old": {
+   "0": 23,
+   "2": 15,
+   "6": 40,
+   "12": 19
+  },
+  "new": {
+   "0": 26,
+   "2": 16,
+   "6": 40,
+   "12": 23
+  }
+ }
+}

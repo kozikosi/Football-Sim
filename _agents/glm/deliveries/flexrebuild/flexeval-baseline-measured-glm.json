@@ -1,0 +1,204 @@
+{
+ "_status": "EVIDENCE for P-294, not adopted",
+ "seeds": "1001-1016,3001-3016",
+ "minOvr": 85,
+ "tables": {
+  "cap10Rules10": 56,
+  "cap12Rules12": 56,
+  "selInput": [],
+  "selMeasured": [
+   "RB>WR",
+   "TE>WR",
+   "TE>OT",
+   "TE>EDGE",
+   "TE>ILB",
+   "ILB>EDGE"
+  ]
+ },
+ "fresh": "4001-4016",
+ "measuredWeights": {
+  "QB": 1000,
+  "WR1": 630,
+  "OT1": 495,
+  "OT2": 295,
+  "WR2": 390,
+  "C": 150,
+  "OG1": 395,
+  "OG2": 245,
+  "TE1": 245,
+  "RB1": 245,
+  "WR3": 95,
+  "RB2": 95,
+  "TE2": 145,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 40,
+  "DE1": 675,
+  "DT1": 520,
+  "DE2": 310,
+  "DT2": 310,
+  "DL5": 155,
+  "MIKE": 310,
+  "WILL": 155,
+  "SAM": 105,
+  "CB1": 415,
+  "CB2": 260,
+  "CB3": 105,
+  "DIME": 50,
+  "FS": 310,
+  "SS": 310,
+  "K": 50,
+  "P": 50
+ },
+ "inputWeights": {
+  "QB": 1000,
+  "WR1": 650,
+  "OT1": 500,
+  "OT2": 300,
+  "WR2": 400,
+  "C": 150,
+  "OG1": 400,
+  "OG2": 250,
+  "TE1": 250,
+  "RB1": 250,
+  "WR3": 100,
+  "RB2": 100,
+  "TE2": 150,
+  "FB": 25,
+  "TE3": 50,
+  "WR4": 50,
+  "DE1": 650,
+  "DT1": 500,
+  "DE2": 300,
+  "DT2": 300,
+  "DL5": 150,
+  "MIKE": 300,
+  "WILL": 150,
+  "SAM": 100,
+  "CB1": 400,
+  "CB2": 250,
+  "CB3": 100,
+  "DIME": 50,
+  "FS": 300,
+  "SS": 300,
+  "K": 50,
+  "P": 50
+ },
+ "results": {
+  "measured/today/tune": {
+   "highRule": {
+    "OG>EDGE": 3,
+    "C>OT": 14,
+    "TE>OT": 52,
+    "RB>SS": 12,
+    "TE>WR": 14,
+    "RB>WR": 106,
+    "TE>ILB": 15,
+    "TE>DT": 3,
+    "FB>ILB": 5,
+    "DT>EDGE": 8,
+    "ILB>EDGE": 11,
+    "TE>EDGE": 33,
+    "FB>OLB": 1,
+    "OLB>EDGE": 2,
+    "SS>CB": 2,
+    "RB>FS": 2
+   },
+   "lineups": 2048,
+   "stars": 12800,
+   "offRole": 1342,
+   "flexMoves": 8798,
+   "flexPerLineup": 4.296,
+   "encouraged": {
+    "high": 283,
+    "small": 713,
+    "second": 216,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x77 (-12) Kenneth Walker 95 at WR1 -12",
+     "TE>OT1 x42 (-12) Brock Bowers 95 at OT1 -12",
+     "TE>DE1 x33 (-12) George Kittle 97 at DE1 -12",
+     "RB>WR2 x29 (-12) Derrick Henry 94 at WR2 -12",
+     "TE>WR1 x14 (-12) Trey McBride 99 at WR1 -12",
+     "C>OT1 x12 (-12) Creed Humphrey 96 at OT1 -12"
+    ],
+    "small": [
+     "C>OG1 x165 (-6) Zach Frazier 89 at OG1 -6",
+     "OLB>MIKE x157 (-2) Zack Baun 93 at MIKE -2",
+     "OLB>DT2 x109 (-2) Zack Baun 93 at DT2 -2",
+     "OG>OT1 x89 (-6) Trey Smith 93 at OT1 -6",
+     "C>DT1 x58 (-6) Creed Humphrey 96 at DT1 -6",
+     "FB>RB1 x27 (-2) Kyle Juszczyk 88 at RB1 -2"
+    ],
+    "second": [
+     "EDGE>DT1 x91 (-2) T.J. Watt 96 at DT1 -2",
+     "DT>OG1 x55 (-6) Nnamdi Madubuike 90 at OG1 -6",
+     "CB>SS x19 (-2) Derek Stingley Jr 92 at SS -2",
+     "OG>OT2 x8 (-6) Damien Lewis 87 at OT2 -6",
+     "RB>TE1 x6 (-12) Kyren Williams 90 at TE1 -12",
+     "RB>TE2 x4 (-12) Saquon Barkley 91 at TE2 -12"
+    ],
+    "emergency": []
+   }
+  },
+  "measured/today/fresh": {
+   "highRule": {
+    "DT>EDGE": 3,
+    "TE>ILB": 6,
+    "FS>WR": 2,
+    "TE>EDGE": 16,
+    "TE>DT": 4,
+    "TE>OT": 21,
+    "RB>WR": 35,
+    "FB>EDGE": 1,
+    "TE>WR": 4,
+    "ILB>EDGE": 6,
+    "RB>SS": 4,
+    "RB>FS": 3,
+    "FB>ILB": 4,
+    "OG>EDGE": 2,
+    "TE>OG": 1
+   },
+   "lineups": 1024,
+   "stars": 6400,
+   "offRole": 701,
+   "flexMoves": 4353,
+   "flexPerLineup": 4.251,
+   "encouraged": {
+    "high": 112,
+    "small": 393,
+    "second": 121,
+    "emergency": 0
+   },
+   "top": {
+    "high": [
+     "RB>WR1 x23 (-12) Jahmyr Gibbs 97 at WR1 -12",
+     "TE>OT1 x19 (-12) George Kittle 97 at OT1 -12",
+     "TE>DE1 x16 (-12) Trey McBride 99 at DE1 -12",
+     "RB>WR2 x12 (-12) Jahmyr Gibbs 97 at WR2 -12",
+     "ILB>DE1 x6 (-12) Fred Warner 98 at DE1 -12",
+     "TE>MIKE x5 (-12) Trey McBride 99 at MIKE -12"
+    ],
+    "small": [
+     "OLB>MIKE x81 (-2) Dre Greenlaw 85 at MIKE -2",
+     "C>OG1 x80 (-6) Tyler Linderbaum 88 at OG1 -6",
+     "OLB>DT2 x62 (-2) Dre Greenlaw 85 at DT2 -2",
+     "OG>OT1 x56 (-6) Quinn Meinerz 96 at OT1 -6",
+     "C>DT1 x41 (-6) Zach Frazier 89 at DT1 -6",
+     "FB>TE1 x12 (-6) Kyle Juszczyk 88 at TE1 -6"
+    ],
+    "second": [
+     "EDGE>DT1 x41 (-2) Alex Highsmith 86 at DT1 -2",
+     "DT>OG1 x28 (-6) DeForest Buckner 92 at OG1 -6",
+     "CB>SS x25 (-2) Travis Hunter 85 at SS -2",
+     "WR>CB1 x6 (-6) Stefon Diggs 86 at CB1 -6",
+     "RB>TE1 x4 (-12) James Cook III 92 at TE1 -12",
+     "WR>TE1 x4 (-6) Malik Nabers 88 at TE1 -6"
+    ],
+    "emergency": []
+   }
+  }
+ }
+}

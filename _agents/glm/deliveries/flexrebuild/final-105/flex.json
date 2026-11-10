@@ -1,0 +1,163 @@
+{
+ "_source": "FLEX TABLE, tiers 0/2/6/12 (Owner 9 Nov 2026, items 3+7 pass applied to the built table). REBUILT CANDIDATE by tools/mathlab/flexrebuild.mjs — NOT the shipped table until the Architect copies it and re-pins. base flex-728b.json sha da582c8b1f84c202. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot. SAM = the OLB2 slot in a 3-4 (mirrors OLB; comes off for the nickel).",
+ "roles": [
+  "QB",
+  "RB",
+  "FB",
+  "WR",
+  "TE",
+  "OT",
+  "OG",
+  "C",
+  "DT",
+  "EDGE",
+  "ILB",
+  "OLB",
+  "SS",
+  "FS",
+  "CB",
+  "K",
+  "P"
+ ],
+ "flex": {
+  "QB": {
+   "FS": 12
+  },
+  "RB": {
+   "FB": 0,
+   "WR": 12,
+   "TE": 6,
+   "SS": 12,
+   "FS": 12
+  },
+  "FB": {
+   "RB": 2,
+   "TE": 6
+  },
+  "WR": {
+   "RB": 6,
+   "TE": 6,
+   "CB": 2,
+   "FS": 2,
+   "SS": 2,
+   "NICKEL": 2,
+   "DIME": 2
+  },
+  "TE": {
+   "FB": 0,
+   "WR": 12,
+   "RB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 12,
+   "EDGE": 12,
+   "DT": 12,
+   "OLB": 6,
+   "ILB": 12,
+   "SS": 6,
+   "FS": 12,
+   "NICKEL": 6,
+   "DIME": 12,
+   "SAM": 6
+  },
+  "OT": {
+   "OG": 0,
+   "C": 2,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
+  },
+  "OG": {
+   "OT": 2,
+   "C": 2,
+   "DT": 6,
+   "EDGE": 6,
+   "FB": 0
+  },
+  "C": {
+   "OG": 6,
+   "OT": 12,
+   "DT": 12,
+   "FB": 0
+  },
+  "DT": {
+   "EDGE": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 6,
+   "FB": 0
+  },
+  "EDGE": {
+   "DT": 0,
+   "OLB": 0,
+   "ILB": 6,
+   "C": 6,
+   "OG": 6,
+   "OT": 6,
+   "SS": 12,
+   "RB": 6,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "SAM": 0
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 12,
+   "SS": 2,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 12,
+   "FS": 12,
+   "SAM": 0
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 6,
+   "EDGE": 12,
+   "SS": 6,
+   "FB": 0,
+   "TE": 6,
+   "NICKEL": 6,
+   "DIME": 12,
+   "FS": 12,
+   "SAM": 0
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 6,
+   "WR": 12,
+   "ILB": 6,
+   "OLB": 2,
+   "RB": 12,
+   "TE": 6,
+   "SAM": 2
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 6,
+   "WR": 12,
+   "OLB": 6,
+   "SAM": 6
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 0,
+   "WR": 6
+  },
+  "K": {
+   "P": 2
+  },
+  "P": {
+   "K": 2
+  }
+ }
+}

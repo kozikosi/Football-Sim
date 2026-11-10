@@ -71,3 +71,19 @@ work reaches GitHub via the Owner or Beam's `tools/import-zip.sh`); local commit
 Pre-register → measure → label; nothing silently resolved. Owner's priors in Beam's prereg §1
 (write your own before results). All window work kept to `_agents/glm/` + `inbox/` — no product
 files, no protected constants, no pushes, no cross-seat edits.
+
+## Session 9 Nov 2026 (afternoon, UTC) — flexrebuild.mjs: the deterministic rebuild (P-294 follow-up)
+
+**Task:** the muse relay (council-zai-prompt-D-custom-table) said "flexrebuild.mjs does NOT exist — build it" — D values + theta rounding (1.0, cutoffs 1/4/9) + the Owner's override/removal list -> flex.json + flex.ts + report, deterministically.
+
+**Built + VERIFIED (all commands + outputs in `inbox/20261109-1525-glm-P-294-flexrebuild.md`):**
+- `tools/mathlab/flexrebuild.mjs` — selftest OK; works from any cwd; writes only `--out-dir`; modes: D-rounding (default), `--keep-base` (apply Owner deltas to a built table), `--overrides-file` (flat JSON; base rules = overrides, absent rules = additions).
+- **Script == Architect:** run on the `35ce4e98` base with the committed pre-bump thetaprice D, my output is byte-equal to Claude's built D-picks table (zero diffs). The rebuild is reproducible.
+- **D-picks candidate** (`_agents/glm/deliveries/flexrebuild/`): 97 rules {0:30, 2:16, 6:32, 12:19} — the 30 zeros match the Owner's stated count exactly; FLEXCHECK OK; flex.json = flex.ts (spliced engine file, LS row kept).
+- **Final-105 candidate** (`final-105/`): base `728b2c53` + items 3+7 (Owner verbatim) = exactly 10 moves, 105 rules {12:23, 6:40, 2:16, 0:26} — the Owner's expected counts exactly. flexcheck fails ONLY on SAM dest (checker needs SAM in its dest set when 3+7 land — Architect's file).
+- **flexeval counts, table-only delta** (scratch colors/, un-bumped engine, measured weights, P-310 seeds; baseline reproduced EXACTLY first): fresh encouraged 626 -> 913, via-12 112 -> 68, flex/lineup 4.251 -> 3.024; tune 1212 -> 1753. Count report, not a verdict.
+- **D-011-PROPOSED** (`_agents/glm/deliveries/discrepancy-register-glm.json`): the WILL/C bump as a SLOTS edit is a NO-OP for theta D (slotWins20 never reads weight; derivedWeights WILL 155.29 / C 147.72 are model-fitted). Post-bump D needs a spec re-fit (protected, Architect-only) — P-311 check (2) is unsatisfiable until then. Weight-only edit also breaks design.json pin + witness 50-limit for C (52.3).
+
+**Scratch/temp (not in repo):** `/private/var/folders/.../opencode/glm-flexrebuild` (colors/ + tools/mathlab extracted from architect tips; scratch engine flex.ts restored after runs). `_agents/glm/anchors/raw/` still untracked (19 MB re-downloadable nflverse CSVs; hashes of the derived anchor pack are pinned in `019594fa`).
+
+**Open for next session:** P-323 verification (when items 3+7 build, run flexcheck with SAM added + flexeval on the final-105 table); the P-322 skill-profile design (Owner: "I SUPPORT THIS... MY FLEX TABLE IS MERELY A GUIDE"); E-207 review still not done.

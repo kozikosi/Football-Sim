@@ -1,0 +1,604 @@
+{
+ "dPath": "/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/glm-flexrebuild/tools/mathlab/results/thetaprice-2026-11-09.md",
+ "dSha": "72dae5bcc07ce15a",
+ "basePath": "/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/glm-flexrebuild/tools/mathlab/flex.json",
+ "baseSha": "4d03772cba4e8f10",
+ "D90": {
+  "FB>EDGE": 19.27,
+  "FB>DT": 19.05,
+  "FB>ILB": 18.42,
+  "FB>TE": 17.99,
+  "FB>RB": 17.97,
+  "FB>OLB": 16.83,
+  "OLB>EDGE": 15.39,
+  "C>DT": 14.3,
+  "C>OT": 14,
+  "TE>EDGE": 12.71,
+  "C>OG": 12.5,
+  "RB>WR": 12.32,
+  "TE>WR": 12.24,
+  "ILB>EDGE": 10.73,
+  "TE>DT": 10.53,
+  "SS>WR": 10.18,
+  "FS>WR": 10.17,
+  "OLB>ILB": 10.05,
+  "TE>OT": 10.03,
+  "OLB>SS": 9.99,
+  "OG>EDGE": 8.3,
+  "TE>OG": 7.54,
+  "OLB>TE": 7.34,
+  "CB>WR": 6.84,
+  "OT>EDGE": 5.38,
+  "SS>CB": 5.07,
+  "FS>CB": 5.06,
+  "OG>DT": 4.79,
+  "DT>EDGE": 4.61,
+  "RB>FS": 4.37,
+  "RB>SS": 4.35,
+  "TE>ILB": 4.28,
+  "TE>FS": 4.2,
+  "TE>SS": 4.19,
+  "OG>OT": 3.99,
+  "OT>DT": 0.99,
+  "RB>TE": 0.21,
+  "SS>ILB": 0.12,
+  "SS>FS": 0.02,
+  "P>K": 0.01,
+  "QB>FS": 0,
+  "RB>FB": 0,
+  "WR>RB": 0,
+  "WR>TE": 0,
+  "WR>CB": 0,
+  "WR>FS": 0,
+  "WR>SS": 0,
+  "WR>NICKEL": 0,
+  "WR>DIME": 0,
+  "TE>FB": 0,
+  "TE>RB": 0,
+  "TE>C": 0,
+  "TE>OLB": 0,
+  "TE>NICKEL": 0,
+  "TE>DIME": 0,
+  "OT>OG": 0,
+  "OT>C": 0,
+  "OT>FB": 0,
+  "OG>C": 0,
+  "OG>FB": 0,
+  "C>FB": 0,
+  "DT>C": 0,
+  "DT>OG": 0,
+  "DT>OT": 0,
+  "DT>FB": 0,
+  "DT>TE": 0,
+  "EDGE>DT": 0,
+  "EDGE>OLB": 0,
+  "EDGE>ILB": 0,
+  "EDGE>C": 0,
+  "EDGE>OG": 0,
+  "EDGE>OT": 0,
+  "EDGE>SS": 0,
+  "EDGE>FS": 0,
+  "EDGE>RB": 0,
+  "EDGE>FB": 0,
+  "EDGE>TE": 0,
+  "EDGE>NICKEL": 0,
+  "ILB>ILB": 0,
+  "ILB>OLB": 0,
+  "ILB>SS": 0,
+  "ILB>FB": 0,
+  "ILB>TE": 0,
+  "ILB>NICKEL": 0,
+  "ILB>DIME": 0,
+  "OLB>OLB": 0,
+  "OLB>FB": 0,
+  "OLB>NICKEL": 0,
+  "OLB>DIME": 0,
+  "SS>NICKEL": 0,
+  "SS>DIME": 0,
+  "SS>OLB": 0,
+  "SS>RB": 0,
+  "SS>TE": 0,
+  "FS>NICKEL": 0,
+  "FS>DIME": 0,
+  "FS>SS": 0,
+  "FS>OLB": 0,
+  "CB>FS": 0,
+  "CB>NICKEL": 0,
+  "CB>DIME": 0,
+  "CB>SS": 0,
+  "CB>RB": 0,
+  "K>P": 0
+ },
+ "moves": [
+  {
+   "rule": "FB>EDGE",
+   "old": 12,
+   "neu": null,
+   "D": 19.27,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "FB>DT",
+   "old": 12,
+   "neu": null,
+   "D": 19.05,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "FB>ILB",
+   "old": 12,
+   "neu": null,
+   "D": 18.42,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "FB>OLB",
+   "old": 12,
+   "neu": null,
+   "D": 16.83,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "C>DT",
+   "old": 6,
+   "neu": 12,
+   "D": 14.3,
+   "source": "override"
+  },
+  {
+   "rule": "OLB>ILB",
+   "old": 2,
+   "neu": 6,
+   "D": 10.05,
+   "source": "override"
+  },
+  {
+   "rule": "OLB>SS",
+   "old": 12,
+   "neu": 6,
+   "D": 9.99,
+   "source": "override"
+  },
+  {
+   "rule": "OG>EDGE",
+   "old": 12,
+   "neu": 6,
+   "D": 8.3,
+   "source": "rounding"
+  },
+  {
+   "rule": "TE>OG",
+   "old": 12,
+   "neu": 6,
+   "D": 7.54,
+   "source": "rounding"
+  },
+  {
+   "rule": "OLB>TE",
+   "old": 12,
+   "neu": 6,
+   "D": 7.34,
+   "source": "rounding"
+  },
+  {
+   "rule": "CB>WR",
+   "old": 12,
+   "neu": 6,
+   "D": 6.84,
+   "source": "rounding"
+  },
+  {
+   "rule": "OT>EDGE",
+   "old": 12,
+   "neu": 6,
+   "D": 5.38,
+   "source": "override"
+  },
+  {
+   "rule": "SS>CB",
+   "old": 12,
+   "neu": 6,
+   "D": 5.07,
+   "source": "override"
+  },
+  {
+   "rule": "FS>CB",
+   "old": 12,
+   "neu": 6,
+   "D": 5.06,
+   "source": "override"
+  },
+  {
+   "rule": "DT>EDGE",
+   "old": 12,
+   "neu": 6,
+   "D": 4.61,
+   "source": "rounding"
+  },
+  {
+   "rule": "OG>OT",
+   "old": 6,
+   "neu": 2,
+   "D": 3.99,
+   "source": "rounding"
+  },
+  {
+   "rule": "RB>TE",
+   "old": 12,
+   "neu": 6,
+   "D": 0.21,
+   "source": "override"
+  },
+  {
+   "rule": "SS>ILB",
+   "old": 12,
+   "neu": 6,
+   "D": 0.12,
+   "source": "override"
+  },
+  {
+   "rule": "P>K",
+   "old": 12,
+   "neu": 2,
+   "D": 0.01,
+   "source": "override"
+  },
+  {
+   "rule": "C>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "CB>RB",
+   "old": 12,
+   "neu": null,
+   "D": 0,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "CB>SS",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "DT>C",
+   "old": 6,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "DT>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "DT>OG",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "DT>OT",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "DT>TE",
+   "old": 12,
+   "neu": null,
+   "D": 0,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "EDGE>C",
+   "old": 12,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "EDGE>DT",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>FS",
+   "old": 12,
+   "neu": null,
+   "D": 0,
+   "source": "REMOVED"
+  },
+  {
+   "rule": "EDGE>ILB",
+   "old": 12,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>NICKEL",
+   "old": 12,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>OG",
+   "old": 12,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>OLB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>OT",
+   "old": 12,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>RB",
+   "old": 12,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "EDGE>TE",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "FS>OLB",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "ILB>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "ILB>NICKEL",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "ILB>SS",
+   "old": 12,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "ILB>TE",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "K>P",
+   "old": 0,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "OG>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "OLB>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "OT>C",
+   "old": 0,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "OT>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "RB>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "SS>OLB",
+   "old": 12,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "SS>TE",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "TE>C",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "TE>DIME",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "TE>FB",
+   "old": 2,
+   "neu": 0,
+   "D": 0,
+   "source": "rounding"
+  },
+  {
+   "rule": "TE>NICKEL",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "TE>OLB",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>CB",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>DIME",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>FS",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>NICKEL",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>RB",
+   "old": 12,
+   "neu": 6,
+   "D": 0,
+   "source": "override"
+  },
+  {
+   "rule": "WR>SS",
+   "old": 6,
+   "neu": 2,
+   "D": 0,
+   "source": "override"
+  }
+ ],
+ "zeros": [
+  "RB>FB",
+  "TE>FB",
+  "OT>OG",
+  "OT>FB",
+  "OG>C",
+  "OG>FB",
+  "C>FB",
+  "DT>C",
+  "DT>FB",
+  "EDGE>DT",
+  "EDGE>OLB",
+  "EDGE>ILB",
+  "EDGE>OG",
+  "EDGE>OT",
+  "EDGE>RB",
+  "EDGE>FB",
+  "EDGE>NICKEL",
+  "ILB>ILB",
+  "ILB>OLB",
+  "ILB>FB",
+  "OLB>OLB",
+  "OLB>FB",
+  "SS>NICKEL",
+  "SS>DIME",
+  "FS>NICKEL",
+  "FS>DIME",
+  "CB>FS",
+  "CB>NICKEL",
+  "CB>DIME",
+  "CB>SS"
+ ],
+ "pending": [
+  "OG>C",
+  "C>FB",
+  "DT>C",
+  "EDGE>OLB",
+  "ILB>OLB",
+  "OLB>OLB",
+  "OLB>FB",
+  "OLB>TE"
+ ],
+ "tierCounts": {
+  "old": {
+   "0": 14,
+   "2": 16,
+   "6": 18,
+   "12": 56
+  },
+  "new": {
+   "0": 30,
+   "2": 16,
+   "6": 32,
+   "12": 19
+  }
+ }
+}

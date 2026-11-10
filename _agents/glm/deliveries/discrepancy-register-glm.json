@@ -1,0 +1,10 @@
+[
+  {
+    "id": "D-011-PROPOSED",
+    "claim": "The Owner's WILL 150->200 / C 150->200 'engine change', as specified (a SLOTS[].weight edit), cannot move theta D. Editing SLOTS weight alone leaves thetaprice output byte-identical (GLM scratch run, architect tip 3ed03627, VERIFIED 9 Nov) because slotWins20() never reads SLOTS[].weight: the slope comes from the matchup model via the RATING_SPECS/DEF_SPECS rows. derivedWeights(WILL)=155.29 and derivedWeights(C)=147.72 are model-measured and weight-independent (the 150s were fitted). The weight-only edit ALSO breaks pins: witness test asserts WEIGHT == design.json per slot (WILL 200 vs 150 fails), and C's display-vs-measured dev (|200-147.7| = 52.3) exceeds the Owner's 50 limit -> verdict flips FITTED -> ECHO. It would, however, move the draft optimizer (WEIGHT drives lineupFor) - a divergence value.ts says should not exist.",
+    "suspectedCause": "The Owner's ruling assumes weight -> slope causality; in the engine the causality is spec -> measured slope -> fitted weight. Executing his intent (bring D for OLB>ILB / OLB>SS from ~10 down to ~6.7) requires the re-weighting workflow: change the WILL/C spec rows (protected constants, Architect-only, re-pin) so derivedWeights measures ~200, then set SLOTS to match, then re-run thetaprice for the real post-bump D. Until that lands, 'post-bump D' does not exist and P-311's check (2) is unsatisfiable as stated; the Owner's -6 overrides for OLB>ILB/OLB>SS stand on his authority alone. NOTE: commit 728b2c53 (9 flex corrections) does not change this - no spec re-fit happened there.",
+    "status": "open",
+    "createdAt": "2026-11-09T15:25:00.000Z",
+    "updatedAt": "2026-11-09T15:25:00.000Z"
+  }
+]
