@@ -1,7 +1,7 @@
 # OR — lane file
 
 ## Identity
-- **Seat:** or · **Model / how reached:** <…> · **State:** advisor | standby | core (core = Owner priority note in `_agents/README.md`)
+- **Seat:** or · **Model / how reached:** <…> · **State:** advisor | core (core = Owner priority note in `_agents/README.md`)
 - **ID block:** <S-nnnn–nnnn> (only if the seat files submissions) · **First seen:** 2026-11-04
 - **Strengths shown so far (evidence, not claims):**
   - Comprehensive code reviews with evidence verification
@@ -11,15 +11,15 @@
   - Technical analysis of feature requirements (like flex table rebuilding)
 
 ## Current work
-- **Claimed / in progress:** P-275 w75 M1–M15 dispositions review (Z.ai non-product answers); P-110 Lineups redesign review (3/3 reviews done)
-- **Done this session:** P-110 Lineups redesign review filed (`inbox/20261109-0445-or-P-110-review.md`); committed + pushed review with findings, approved improvements with dependencies noted.
+- **Claimed / in progress:** P-322 derivation design variants (A: skill profile 55/99, C: with cross-side floor 57/99); P-275 w75 M1–M15 dispositions review (Z.ai non-product answers); P-110 Lineups redesign review
+- **Done this session:** P-322 derivation design (55 exact / 20 off-by-one / 24 hard, variant A without floor); P-322 derivation with cross-side floor (57 exact / 32 off-by-one / 10 hard, variant C); both committed and pushed to `council/or` with script files and inbox entries; inbox files `inbox/20261110-0602-or-P-322-derivation-design.md` and `inbox/20261110-0608-or-P-322-derivation-floor.md` filed
 - **Done this session (2026-11-09 innovation):** 60-question innovation briefing answered (60/60 INFERRED or better, 14 VERIFIED, 2 REPORTED, 0 UNKNOWN); new tools `tools/mathlab/absorber-check.mjs` and `tools/mathlab/flex-penalty.mjs` created with self-tests; discrepancy register entries D-002 (manifest hash re-pinning), D-003 (uncertainty wrapper T12 gap).
-- **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task).
+- **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task); P-323 remains the gate for real build — design variants are analysis-only
 
 ## What the next session needs
 - **Read first:** `inbox/20261105-1935-or-w74-offline-verdict.md`, `inbox/20261105-1937-or-w74-n1-exhibit-verdict.md`, `inbox/20261105-1939-or-w74-proposals-verdict.md`, `inbox/20261106-01-or-w74-review-verdict.md`, `inbox/20261106-01-or-w74-viewmodels-verdict.md`, `inbox/20261106-03-or-lab-reproduction-verdict.md`, `_agents/PRIORITIES.md`
-- **Open questions:** M1 "naive best-OVR" strike in CALIBRATION.md/FINDINGS needs verification against w74 docs on council/base; M6 test-count reconciliation (288/286/284) needs confirmation in w74 docs; M14 two-cluster split resolution needs N=1000 baseline run + CI math against slot-handling hypothesis.
-- **Do not redo:** w67 slot format (already VERIFIED envelope-shaped); council.mjs continuous-trust review changes (not mine to revert); P-069 footer anchors already VERIFIED.
+- **Open questions:** M1 "naive best-OVR" strike in CALIBRATION.md/FINDINGS needs verification against w74 docs on council/base; M6 test-count reconciliation (288/286/284) needs confirmation in w74 docs; M14 two-cluster split resolution needs N=1000 baseline run + CI math against slot-handling hypothesis; whether the cross-side floor term (6 threshold) should be adopted in the engine build and how it interacts with the FB discount whitelist
+- **Do not redo:** w67 slot format (already VERIFIED envelope-shaped); council.mjs continuous-trust review changes (not mine to revert); P-069 footer anchors already VERIFIED; Inkling's P-322 formula as published — this session's work is design variants only, not a replacement
 
 ## Files in this lane
 - `inbox/20261104-2351-or-colors-rebuild-response.md` — council response to Kosi's Colors rebuild briefing.
@@ -38,6 +38,10 @@
 - `tools/mathlab/flex-penalty.mjs` — unified flex penalty calculator.
 - `tools/mathlab/uncertainty-enhanced.mjs` — T12 uncertainty wrapper with effect size, paired delta, practical significance, and multiple-comparison correction.
 - `tools/mathlab/inbox-frontmatter.mjs` — machine-readable frontmatter parser for council inbox files.
+- `inbox/20261110-0602-or-P-322-derivation-design.md` — P-322 design variant A (55 exact, 20 off-by-one, 24 hard).
+- `inbox/20261110-0608-or-P-322-derivation-floor.md` — P-322 design variant C with cross-side floor (57 exact, 32 off-by-one, 10 hard).
+- `_agents/or/deliveries/or-derive-2026-11-10.mjs` — derivation script variant A.
+- `_agents/or/deliveries/or-derive-floor-2026-11-10.mjs` — derivation script variant C.
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
