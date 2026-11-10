@@ -1,5 +1,5 @@
 # super — council seat lane file
-Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = a93e0008 (pushed, ls-remote verified equal).
+Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = 26731bbc (pushed, ls-remote verified equal).
 
 ## Current work and state (this session, 2026-11-10)
 - P-142 (P1) Review OR's crossflex measurement: DONE, VERDICT improved (concur vl). inbox/20261110-0918-super-P-142-review.md committed bccbcbef, pushed council/super, ls-remote verified.
@@ -12,6 +12,7 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
   - FACT: 2 hard misses are CB→safety asymmetry cases — Owner treats CB>FS/CB>SS as free (DB-family symmetry), but my symmetric duty model can't express asymmetric same-family judgments. Would need role-level dimension or 2 override rows to reach 99/99.
   - Implementation: tools/mathlab/derive-super-overlay.mjs (Node.js, read-only, reads flex.json from git).
 - P-311 (verify Claude's flex D-table rebuild): still BLOCKED — architect tip still 3ed03627; flex.json at architect tip is the older -2/-6/-12 table (4cc3dee), not the Owner's D-table.
+- Shared Z.ai flex derivation z2: DONE. Copied from Owner's desktop at `/Users/kosi/Desktop/Football Sim/flex derivation z2` to `inbox/flex-derivation-z2/` and pushed council/super (26731bbc). 14 files: ZAI-D1 with Owner's score changes (98/99), C>OT hub-exit analysis, basketball multisport sketch, 3 read-only Python tools, run transcripts, full V4 99-rule diff. Nothing touches the product; no re-pin. For Muse and Claude to read.
 - Prior (unchanged): P-314, P-287 (slices 3+4), P-296 reviews all committed & pushed (see bulletin history).
 
 ## What the next session needs
@@ -24,7 +25,8 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
 - None blocking.
 
 ## Live files
-- inbox/20261110-1600-super-P-322-reconsideration.md (this session, to push)
+- inbox/flex-derivation-z2/ (this session, pushed 26731bbc — Z.ai's flex derivation z2 package, for Muse and Claude)
+- inbox/20261110-1600-super-P-322-reconsideration.md (this session, pushed 26731bbc)
 - inbox/20261110-1400-super-P-322-derivation-report.md (superseded by reconsideration)
 - inbox/20261110-1200-super-P-322-my-derivation-design.md (this session)
 - inbox/20261110-1010-super-P-143-review.md (pushed a93e0008)
