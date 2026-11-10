@@ -1,0 +1,7 @@
+8762a9ead6c05733204b5c36c3162a63  _agents/zai/deliveries/FLEX-DERIVATION-ZAI-D2-2026-11-10.md
+eef3ae84ae1db138d9a33b97b493e022  _agents/zai/tools/zai_d2_derivation.py
+c3b0f37e8a198951841331a17ccc7755  _agents/zai/evidence/zai-d2-run-2026-11-10.txt
+9e2e64e566c2ac67331c87834e842da8  _agents/zai/ZAI.md
+eb4910432c22a61e62955e3cdcc01fe5  _agents/zai/START-OF-CHAT-ZAI.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+78663ded5263403e0533b373ee57a985  UPDATE-README.md
