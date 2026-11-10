@@ -4,7 +4,7 @@ Writer: the Owner or Architect. This table is the Owner's **priority notes**, no
 
 Lane file convention: `_agents/<folder>/<SEAT>.md` (e.g. `_agents/beam/BEAM.md`), the one file a seat rewrites at session end. Subfolders: `notes/`, `deliveries/`, `tools/`. No build copies or images (see `RETIREMENT.md` §4).
 
-Platforms (24 Oct): **Kilo** = Glyph, FK, Beam, VL, UK, OR · **independent** = GPT, Z.ai · **OpenChamber** = everyone else. Nobody is assigned work by seat: `PRIORITIES.md`.
+Platforms (24 Oct): **Kilo** = Glyph, FK, Beam, VL, UK, OR · **independent** = GPT, Z.ai · **OpenChamber** = everyone else. Nobody is assigned work by seat: `QUEUE.md`.
 
 ## Roster (Owner's ruling, 23 Oct 2026, second list)
 

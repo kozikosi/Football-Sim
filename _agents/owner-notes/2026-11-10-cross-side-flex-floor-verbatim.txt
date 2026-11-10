@@ -1,0 +1,28 @@
+Owner decision — cross-side flex floor (KG, 2026-11-10, three messages, verbatim)
+
+Message 1 (2026-11-09 17:15:55 HST):
+"I've changed my mind on the flex rules. any flexes that are less than -6 where a player shifts from offense to defense or defnese to offense should be -6 at minimum. any current -6s or -12 that fullill this offense to defense or defense to offense switch stay the same"
+
+Message 2 (2026-11-09 17:16:19 HST):
+"except for FB. all the players that can play FB for free can still play FB for free"
+
+Message 3 (2026-11-09 17:22:42 HST, clarifying the rule):
+"Cross side floor means -2s or frees become -6. -6s stay -6 and -12 stay -12"
+
+Interpretation confirmed by Message 3 (MUSE's first reading — that -12 cross-side rules become -6 — was WRONG; "less than -6" meant costing less than 6, i.e. 0 and -2):
+- Cross-side flexes (offense <-> defense) cost at least -6.
+- Cross-side 0 (free) -> -6, EXCEPT flexes into FB (see below).
+- Cross-side -2 -> -6.
+- Cross-side -6 stays -6.
+- Cross-side -12 stays -12.
+- FB exception: all players that can play FB for free still play FB for free (DT, EDGE, ILB, OLB > FB stay 0).
+
+Concrete effect on the live 97-rule table (computed by MUSE from tools/mathlab/flex.json, 728b2c53):
+- Only 5 rules change, all WR -> DB at -2 becoming -6: WR>CB, WR>DIME, WR>FS, WR>NICKEL, WR>SS.
+- New 97-rule tiers: {0: 23, 2: 10, 6: 45, 12: 19} (was {0: 23, 2: 15, 6: 40, 12: 19}).
+- The 4 cross-side FB flexes (DT, EDGE, ILB, OLB > FB at 0) stay 0 per the FB exception.
+- Item 3 is UNAFFECTED: TE>FS and TE>DIME at -12 stand (the floor is a minimum, not a cap); ILB>FS and OLB>FS at -12 stand (same-side).
+- 105-rule table (items 3+7 + this rule): {0: 26, 2: 11, 6: 45, 12: 23} (was expected {0: 26, 2: 16, 6: 40, 12: 23}).
+- P-323's expected counts update to {0: 26, 2: 11, 6: 45, 12: 23}.
+
+Status: Owner decision recorded. The table change itself belongs to Claude (Architect) — folds into the items 3+7 build when KG sends it. Not yet applied to any flex table.

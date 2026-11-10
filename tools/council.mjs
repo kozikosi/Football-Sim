@@ -1,6 +1,7 @@
 #!/usr/bin/env node
-// tools/council.mjs — the whole council protocol in one tool (v9, 9 Nov 2026). Spec: _agents/COUNCIL.md
-// v10 fixes (MUSE, council infrastructure owner 10 Nov 2026): (1) `next` prints the P-item brief for REVIEW items and for the fallback rows — before, REVIEW printed only the file to read and the fallback only ID/status/title, so the reviewer had to grep the 132 KB PRIORITIES.md to understand the item (P-331). The brief is truncated to 200 chars in `next`; `show <ID>` prints it in full. (2) `next` weights P1 items referenced in the current council prompt above old P0 reviews — before, it sorted by tier only, so old P0 reviews surfaced before current P1 work (P-331). The latest council prompt file (`_agents/muse/deliveries/**/council-prompt-*.md` on origin/council/muse) is read and its P-IDs are boosted to the top of the list, marked ★.
+// tools/council.mjs — the whole council protocol in one tool (v11, 10 Nov 2026). Spec: _agents/COUNCIL.md
+// v11 (MUSE, council infrastructure owner 10 Nov 2026): the queue file is renamed `_agents/PRIORITIES.md` → `_agents/QUEUE.md` (Owner 2026-11-10; the old name was confusing). `readFrom` now reads `_agents/QUEUE.md`; all references updated. The old `_agents/PRIORITIES.md` is deleted; the old `_agents/QUEUE.md` pointer file is replaced by the queue itself.
+// v10 fixes (MUSE, council infrastructure owner 10 Nov 2026): (1) `next` prints the P-item brief for REVIEW items and for the fallback rows — before, REVIEW printed only the file to read and the fallback only ID/status/title, so the reviewer had to grep the 132 KB QUEUE.md to understand the item (P-331). The brief is truncated to 200 chars in `next`; `show <ID>` prints it in full. (2) `next` weights P1 items referenced in the current council prompt above old P0 reviews — before, it sorted by tier only, so old P0 reviews surfaced before current P1 work (P-331). The latest council prompt file (`_agents/muse/deliveries/**/council-prompt-*.md` on origin/council/muse) is read and its P-IDs are boosted to the top of the list, marked ★.
 //   node tools/council.mjs next [--seat <s>]     what should this seat do now (default seat = branch name)
 //   node tools/council.mjs board                 every live item with its state
 //   node tools/council.mjs show <ID>             the item's final spec in one read: work + improved reviews
@@ -13,7 +14,7 @@
 //   node tools/council.mjs ack <inbox file name...>
 // Flags: --no-fetch (use refs already fetched), --json (machine output for board/digest).
 // The writers only create one file in ./inbox/ (commit + push your branch as usual). Nobody edits a shared file:
-// the live queue is DERIVED = PRIORITIES.md rows + every seat's ops + probes + age. There is no claiming.
+// the live queue is DERIVED = QUEUE.md rows + every seat's ops + probes + age. There is no claiming.
 import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import fs from 'node:fs';
@@ -187,12 +188,12 @@ const loadState = () => {
   const local = (path) => (fs.existsSync(path) ? fs.readFileSync(path, 'utf8') : '');
   // v10 (P-331): read council docs from origin/council/muse FIRST — that is the live queue (MUSE is
   // custodian, Owner 2026-11-09). Before this fix, readFrom read the Architect's branch first, so a
-  // council seat running `next`/`board` read the Architect's (stale) PRIORITIES.md, not the live
+  // council seat running `next`/`board` read the Architect's (stale) QUEUE.md, not the live
   // queue — newly filed items (P-330, P-331) never appeared. Files council/muse lacks (BUILD.txt,
   // STALE-EPOCH.txt) fall through to the Architect's branch, then council/base, then the local file.
   const readFrom = (path) => (onArch && local(path)) || ['origin/council/muse', arch, 'origin/council/base'].filter(Boolean).map((r) => g('show', `${r}:${path}`)).find(Boolean) || local(path);
-  const table = parseTable(readFrom('_agents/PRIORITIES.md'));
-  if (!table.size) { console.error('cannot read _agents/PRIORITIES.md (git fetch origin first)'); process.exit(1); }
+  const table = parseTable(readFrom('_agents/QUEUE.md'));
+  if (!table.size) { console.error('cannot read _agents/QUEUE.md (git fetch origin first)'); process.exit(1); }
   const seen = new Set(), recs = [];
   for (const ref of refs) {
     const seatOf = (n) => (/^origin\/architect\//.test(ref) ? CFG.architect : ref.replace('origin/council/', ''));
@@ -237,7 +238,7 @@ function main() {
     if (!list.length) {
       console.log('Nothing open or awaiting you. Run the standing chore: look for dead items (node tools/council.mjs board) and RETIRE any you can prove built or superseded.');
       // v9: never print nothing useful — fall back to the top open PRIORITIES rows so a seat always has a next step.
-      // v10 (P-331): the fallback rows now print the brief too (truncated), so a seat need not grep PRIORITIES.md.
+      // v10 (P-331): the fallback rows now print the brief too (truncated), so a seat need not grep QUEUE.md.
       const open = [...st.items.values()].filter((i) => !i.retired).sort((a, b) => a.eff - b.eff || a.id.localeCompare(b.id)).slice(0, 5);
       if (open.length) { console.log('\nTop open PRIORITIES rows (fallback — derived list empty):'); for (const i of open) { const b = (i.work || '').replace(/\s+/g, ' ').trim(); console.log(`  ${i.id} [P${i.eff}] ${i.status}  ${i.title.slice(0, 90)}`); if (b) console.log(`     BRIEF: ${b.length > 120 ? b.slice(0, 120) + '…' : b}`); } }
     }
