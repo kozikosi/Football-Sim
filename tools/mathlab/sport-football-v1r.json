@@ -1,0 +1,261 @@
+{
+ "_about": "v1 craft table UNCHANGED (pre-registered) plus a room map and a side map, both written on football logic before this run. Rooms: a positional group (QB, BACK = RB+FB, WR, TE, OL, DL, LB, DB, ST). Side: offense / defense / special teams. | Sport config for flexgates.mjs. Everything sport-specific lives here; the model code knows none of it. PRE-REGISTERED v1: the craft table below was written from football knowledge BEFORE the first fit and is not retuned to the table. The Owner table (flex.json) was in view earlier in the session, so in-sample fit is optimistic; leave-one-role-out is the honest number.",
+ "refGap": 20,
+ "_refGap": "OVR points: a 90 star over a 70 replacement (the thetaprice convention). A unit convention, not fitted.",
+ "roles": [
+  "QB",
+  "RB",
+  "FB",
+  "WR",
+  "TE",
+  "OT",
+  "OG",
+  "C",
+  "DT",
+  "EDGE",
+  "ILB",
+  "OLB",
+  "SS",
+  "FS",
+  "CB",
+  "K",
+  "P",
+  "NICKEL",
+  "DIME"
+ ],
+ "sources": [
+  "QB",
+  "RB",
+  "FB",
+  "WR",
+  "TE",
+  "OT",
+  "OG",
+  "C",
+  "DT",
+  "EDGE",
+  "ILB",
+  "OLB",
+  "SS",
+  "FS",
+  "CB",
+  "K",
+  "P"
+ ],
+ "weight": {
+  "QB": 1000,
+  "WR": 650,
+  "OT": 500,
+  "OG": 400,
+  "C": 200,
+  "TE": 250,
+  "RB": 250,
+  "FB": 25,
+  "EDGE": 650,
+  "DT": 500,
+  "ILB": 300,
+  "OLB": 200,
+  "CB": 400,
+  "NICKEL": 100,
+  "DIME": 50,
+  "FS": 300,
+  "SS": 300,
+  "K": 50,
+  "P": 50
+ },
+ "_weight": "Top slot weight per role, slots.ts at a722681, with the decided WILL 150->200 and C 150->200 bumps (P-318, not yet landed in slots.ts).",
+ "bodyOf": {
+  "NICKEL": "CB",
+  "DIME": "CB"
+ },
+ "data": {
+  "csv": "../../data/nfl/madden27-ratings.csv",
+  "posCol": "pos",
+  "attrs": [
+   "spd",
+   "str"
+  ],
+  "pos": {
+   "QB": "QB",
+   "HB": "RB",
+   "FB": "FB",
+   "WR": "WR",
+   "TE": "TE",
+   "LT": "OT",
+   "RT": "OT",
+   "LG": "OG",
+   "RG": "OG",
+   "C": "C",
+   "DT": "DT",
+   "LEDG": "EDGE",
+   "REDG": "EDGE",
+   "MIKE": "ILB",
+   "WILL": "OLB",
+   "SAM": "OLB",
+   "CB": "CB",
+   "SS": "SS",
+   "FS": "FS",
+   "K": "K",
+   "P": "P"
+  }
+ },
+ "craft": {
+  "tags": [
+   "THROW",
+   "CARRY",
+   "CATCH",
+   "RUNBLK",
+   "PASSPRO",
+   "SNAP",
+   "RUSH",
+   "RUNSTOP",
+   "COVER",
+   "RANGE",
+   "KICK",
+   "PUNT"
+  ],
+  "level": {
+   "QB": {
+    "THROW": 2,
+    "CARRY": 1
+   },
+   "RB": {
+    "CARRY": 2,
+    "CATCH": 1,
+    "PASSPRO": 1
+   },
+   "FB": {
+    "CARRY": 1,
+    "CATCH": 1,
+    "RUNBLK": 2,
+    "PASSPRO": 1
+   },
+   "WR": {
+    "CATCH": 2,
+    "CARRY": 1,
+    "RUNBLK": 1
+   },
+   "TE": {
+    "CATCH": 2,
+    "RUNBLK": 2,
+    "PASSPRO": 1
+   },
+   "OT": {
+    "RUNBLK": 2,
+    "PASSPRO": 2
+   },
+   "OG": {
+    "RUNBLK": 2,
+    "PASSPRO": 2
+   },
+   "C": {
+    "RUNBLK": 2,
+    "PASSPRO": 2,
+    "SNAP": 2
+   },
+   "DT": {
+    "RUSH": 2,
+    "RUNSTOP": 2
+   },
+   "EDGE": {
+    "RUSH": 2,
+    "RUNSTOP": 2,
+    "COVER": 1
+   },
+   "ILB": {
+    "RUNSTOP": 2,
+    "RUSH": 1,
+    "COVER": 1
+   },
+   "OLB": {
+    "RUNSTOP": 2,
+    "RUSH": 1,
+    "COVER": 1
+   },
+   "SS": {
+    "COVER": 2,
+    "RANGE": 1,
+    "RUNSTOP": 1,
+    "CATCH": 1
+   },
+   "FS": {
+    "COVER": 2,
+    "RANGE": 2,
+    "RUNSTOP": 1,
+    "CATCH": 1
+   },
+   "CB": {
+    "COVER": 2,
+    "RANGE": 1,
+    "RUNSTOP": 1,
+    "CATCH": 1
+   },
+   "NICKEL": {
+    "COVER": 2,
+    "RANGE": 1,
+    "RUNSTOP": 1,
+    "CATCH": 1
+   },
+   "DIME": {
+    "COVER": 2,
+    "RANGE": 1,
+    "CATCH": 1
+   },
+   "K": {
+    "KICK": 2,
+    "PUNT": 1
+   },
+   "P": {
+    "PUNT": 2,
+    "KICK": 1
+   }
+  }
+ },
+ "observed": {
+  "file": "flex.json",
+  "key": "flex"
+ },
+ "name": "football v1 + rooms",
+ "room": {
+  "QB": "QB",
+  "RB": "BACK",
+  "FB": "BACK",
+  "WR": "WR",
+  "TE": "TE",
+  "OT": "OL",
+  "OG": "OL",
+  "C": "OL",
+  "DT": "DL",
+  "EDGE": "DL",
+  "ILB": "LB",
+  "OLB": "LB",
+  "SS": "DB",
+  "FS": "DB",
+  "CB": "DB",
+  "NICKEL": "DB",
+  "DIME": "DB",
+  "K": "ST",
+  "P": "ST"
+ },
+ "side": {
+  "QB": "O",
+  "RB": "O",
+  "FB": "O",
+  "WR": "O",
+  "TE": "O",
+  "OT": "O",
+  "OG": "O",
+  "C": "O",
+  "DT": "D",
+  "EDGE": "D",
+  "ILB": "D",
+  "OLB": "D",
+  "SS": "D",
+  "FS": "D",
+  "CB": "D",
+  "NICKEL": "D",
+  "DIME": "D",
+  "K": "ST",
+  "P": "ST"
+ }
+}
