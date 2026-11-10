@@ -47,7 +47,7 @@ A name is bound to one sha256. If the bytes differ, it is not that build.
 
 **Model-first (Owner, 2026-11-08).** Weights come out of the engine's measured impact (slotWins20), not from a table. The measured Engine Value is the default display; the Owner Preset is one click away. The Nov 6 salary weights are dead. The v19 Madden weights are dead as a sim reference — judge the engine by the Owner's doctrine (corner singularity, run-stopping matters) and current engine state.
 
-**Flex (Owner, 2026-11-09).** The flex table is the 97-rule D-picks table (19 at 12, 32 at 6, 16 at 2, 30 at 0), built by Claude at `35ce4e98`. Nine corrections are pending (EDGE cluster + snapping rules to 6, OG>C to 2; C>OG stays 6). The flex table lives in `tools/mathlab/flex.json` / `colors/src/sports/nfl/engine/flex.ts`.
+**Flex (Owner, 2026-11-09).** The flex table is the 97-rule D-picks table (19 at 12, 32 at 6, 16 at 2, 30 at 0), built by Claude at `35ce4e98`. Nine corrections LANDED at `728b2c53` (EDGE cluster + snapping rules to 6, OG>C to 2; C>OG stays 6; tests 290/290). The Owner's answers (items 1–7) are pending: TE>DIME and TE>FS to 12, ILB>FS and OLB>FS new at 12, SAM mirrors OLB (6 new rules) — expected 23 at 12, 40 at 6, 16 at 2, 26 at 0, 105 rules. The flex table lives in `tools/mathlab/flex.json` / `colors/src/sports/nfl/engine/flex.ts`.
 
 Never call a build by another name, never create a "merged", "final" or dated copy in the root; candidates live in a lane and are named `<seat>-<what>-<date>`. A note that quotes a hash says which file and when it was measured; re-measure with `sha256sum` before relying on one. Anything not built by the Architect is `REPORTED` until diffed against Pre-Colors.
 
