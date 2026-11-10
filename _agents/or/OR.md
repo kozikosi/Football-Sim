@@ -40,8 +40,10 @@
 - `tools/mathlab/inbox-frontmatter.mjs` — machine-readable frontmatter parser for council inbox files.
 - `inbox/20261110-0602-or-P-322-derivation-design.md` — P-322 design variant A (55 exact, 20 off-by-one, 24 hard).
 - `inbox/20261110-0608-or-P-322-derivation-floor.md` — P-322 design variant C with cross-side floor (57 exact, 32 off-by-one, 10 hard).
+- `inbox/20261110-0614-or-P-322-E5-verification.md` — P-322 E5 verification (97 exact, 2 off-by-one, 0 hard — matches MUSE).
 - `_agents/or/deliveries/or-derive-2026-11-10.mjs` — derivation script variant A.
 - `_agents/or/deliveries/or-derive-floor-2026-11-10.mjs` — derivation script variant C.
+- `_agents/or/deliveries/or-verify-E5-2026-11-10.mjs` — E5 independent verification script (VERIFIED).
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
