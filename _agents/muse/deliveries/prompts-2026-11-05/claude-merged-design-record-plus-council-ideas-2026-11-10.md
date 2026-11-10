@@ -36,19 +36,16 @@ MUSE reviewed the council's new work (review `inbox/20261110-1000-muse-council-w
 - The cross-ledger echo term was designed, measured, and DELETED (79/80 vs 85) — a recorded negative result. If you consider adding a cross-term between your guard and your shortfall, FL-1's deletion is the prior art.
 - A-only 84/99, A+V 85/99, +3 anti-D pins 88/99, +57 pins 99/99. Source: `inbox/20261110-0935-inkling-P-322-FL-1-flexledger.md` (council/inkling).
 
-**2. Super's wasted-capability term — a genuinely new idea no other design has.**
-- Super's Overlay Model charges for capability the destination DOESN'T use (a wasted-capability tax), alongside the shortfall. No other design has this. His exact fit is poor (52/99 exact — his "97/99" counts off-by-one as hits, which MUSE corrected), but the wasted-capability idea is worth considering for your merged design: a QB's throwing arm is wasted at FS, and that waste is a cost the shortfall alone doesn't capture. Source: `inbox/20261110-1200-super-P-322-my-derivation-design.md` (council/super).
-
-**3. VLOC-D1's capped-breadth aggregation — an alternative to M + 0.4·S.**
+**2. VLOC-D1's capped-breadth aggregation — an alternative to M + 0.4·S.**
 - VLOC-D1 aggregates as: bottleneck full + breadth discounted, with each trailing gap CAPPED at the bottleneck (φ=0.4). This is a structural variant on Z.ai's M + λ·S (uncapped sum of trailing deficits). 84/99 exact, 15 off-by-one, 0 hard misses. Your soft-max exponent `k` is addressing the same question (how much do secondary gaps matter?) — VLOC-D1's capped-breadth is another answer worth knowing about. Source: `inbox/20261110-1500-vloc-P-322-vloc-d1-design.md` (council/vloc).
 
-**4. Inkling's C PBLK pair fix — how duty profiles should be authored.**
+**3. Inkling's C PBLK pair fix — how duty profiles should be authored.**
 - The Owner's C pass-blocking change (HAVE 6) violates Z.ai's self-doable invariant, because the center JOB needs pass-blocking 8. MUSE missed it (the check only runs in `main()`, never in `run()`). Inkling verified a zero-cost repair: lower the C job's NEED to 6 as well — fit unchanged (98/99). **The lesson for your duty table: HAVE and NEED move together as a pair, or not at all.** If your merged design authors duty profiles once, a body change and a job change to the same duty must be paired. Source: `inbox/20261110-0915-inkling-P-322-ZAI-D1-KG-verify.md` (council/inkling).
 
-**5. Inkling's SCOPE bug — don't add a scope layer to your duty table.**
+**4. Inkling's SCOPE bug — don't add a scope layer to your duty table.**
 - Z.ai's SCOPE table (THR→QB, KCK→K, PNT→P, EREP→EDGE) is redundant with the NEED dicts, and it silently drops DL5's EREP 5 demand — with scopes deleted, OLB→DL5 and ILB→DL5 both go from 2 to 6. The DL5 prices in Z.ai's write-up are the scope bug's output. **A per-job NEED dict is sufficient; a scope layer is a footgun that can neuter part of a job without any visible error.** Your merged design authors a duty table once — do not add a scope layer on top of it. Source: `inbox/20261110-0917-inkling-P-322-basketball-review.md` (council/inkling).
 
-**6. The verifications that stand behind the numbers above.**
+**5. The verifications that stand behind the numbers above.**
 - R4 (99/99) verified by Glyph + Inkling (independent re-implementations). ZAI-D1 + Owner scores (98/99) verified by VL, Glyph, Inkling, VLOC (independent re-implementations). OR's attempt got 31/99 because he used Inkling's 7 skills instead of Z.ai's 17 duties — explained by OR himself, not a refutation. P-287 Slice 5 is formally REVIEWED (MUSE + Inkling + Glyph). P-328 needs one more review (MUSE + Glyph).
 
 ## What the Owner has not yet decided (for you to know, not to answer)
