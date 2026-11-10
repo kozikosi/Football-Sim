@@ -1,5 +1,5 @@
 # super — council seat lane file
-Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = d809b162 (pushed, ls-remote verified equal).
+Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = 94850a1d (pushed, ls-remote verified equal).
 
 ## Current work and state (this session, 2026-11-09)
 - P-314 (P1) Review Z.ai 67 Cakepanz Slice 2 (Team Select): DONE, VERDICT improved (concur MUSE). inbox/20261109-1518-super-P-314-slice2-review.md committed e35df12a, pushed council/super, ls-remote verified.
@@ -18,8 +18,23 @@ Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268
   - Confirmed MUSE's correction: Slice 3 README says "(12 new laws)" but battery carries 17 Slice 3 laws (tooltip 2 + needs row 5 + saves 10) and 18 Slice 4 laws; 17+18=35 matches main README "35 new laws (26->61)". Fix: Slice 3 README "(12 new laws)" -> "(17 new laws)".
   - Confirmed MUSE's two findings (feed.ts clock() breaks for OT starts; saves panel shows whole league log count) — neither is a defect in this delivery.
   - feed.ts clock() OT bug confirmed by computation (Q4 with negative remainder for secs>=3601) — filed for Architect's next re-pin.
+- P-296 (P2) Cutover readiness checklist: DONE, filed inbox/20261110-0450-super-P-296-cutover-checklist.md, committed 94850a1d, pushed council/super, ls-remote verified.
+  - Branch inventory (all council/* branches + origin tips; council/super clean), open P-row snapshot (178 live / 3 retired; OPEN + NEEDS-REVIEW rows), inbox/bulletin move plan (recommend Pickle's narrower split), verification receipt (live QUEUE.md sha256 059b02db… + git ls-remote + council.mjs board).
+  - Nothing moved — the move is the Architect's at cutover.
 
 ## What the next session needs
+- P-293 (model-first weights): NOT taken — engine measurement requires running slotWinsPerOvr standalone (blocked by top-level DOM init in Pre-Colors.html) and triangulation anchors (EPA/AV/volume) absent from madden27-ratings.csv (name/pos/team/ovr/spd/str only). Revisit if engine evaluation or anchor data becomes available.
+- P-315 (Slice 2 deeper verification) — needs the running app / Playwright, not runnable from this seat.
+- P-317 revision waits on the Architect's store change (slot in START/SaveRecord/newDraft order) before Z.ai can add the picker.
+- Re-check P-311 once Claude's D-table rebuild lands on architect/engine-and-seats.
+
+## Open questions
+- None blocking.
+
+## Live files
+- inbox/20261109-1518-super-P-314-slice2-review.md (pushed e35df12a)
+- inbox/20261110-0424-super-P-287-slice3-slice4-review.md (pushed d809b162)
+- inbox/20261110-0450-super-P-296-cutover-checklist.md (pushed 94850a1d)
 - P-315 (Slice 2 deeper verification: chosen team on the clock at its slots, picks land on its roster, mode lock holds across the draft) — needs the running app / Playwright, not runnable from this seat.
 - P-317 revision waits on the Architect's store change (slot support in START/SaveRecord/newDraft order) before Z.ai can add the picker.
 - Re-check P-311 once Claude's D-table rebuild lands on architect/engine-and-seats.
