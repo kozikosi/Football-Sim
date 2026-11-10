@@ -1,0 +1,34 @@
+Owner verbatim — questionnaire answers (flex derivation), 2026-11-10 01:04 HST
+
+KG answered MUSE's 20-question flex-derivation questionnaire (questionnaire-flex-derivation-2026-11-10.md, pushed 4976baab). His message, verbatim:
+
+---
+1. A fun tax but it stings. Nothing unrealistic. Anything that breaks reality kills the experience. My 99 rules set the picture for what I believe is reality in football. Encourage creativity and fun. Playing this type of game is for gm minded sickos who want to experiment with combinations of players, not just run a conventional nfl season
+2. D. I really don't care about meeting these 99 at all. The key is to create the best formula that lets us be the most portable. We can either derive new values from positional concepts. I don't want to rely on a lot of precise data. I think OVR might be the only true data that needs to be inputted. I don't want to rely on knowing every player's str or speed. Just generally how good they are and how they like to play.
+3. Beautiful and portable.
+4. Generally yes. There can be crazy math hidden in the background but all information to the user should generally be presented in easy to understand integers. I like 6 in football just because of the importance of 6 in football but this 0,2,6,12 system is not necessary. I also don't want these words slight, real, heavy presented to the user. Just simple math.
+5. Basketball is generally a lot more poistionless than football, so too much reliance on the responsibilities of the SS might be the wrong direction for the other sports. Basketball doesn't need to be derived exactly from this engine, but I'd like to minimize the work of building new engines for baseball, soccer, hockey, and basketball as much as possible.
+6. Yes I like these two ingredients. Being a great athlete isn't always good enough. A great athlete can't play pitcher for instance. But I think generally in the snake draft format, we should make the last few rounds as seamless as possible. We want the user to really enjoy the first ten rounds of the draft and be able to make simple decisions in the second half, not have to do complex math or planning to make a decent roster.
+7. I think maybe both. An adjustable ratio between the two perhaps. Probably whatever is the most malleable so it is easy to tune.
+8. This is interesting but probably hard to consistently get right. Seems like an easy point of failure for the rest of the balance. But it do think we should generally think about the value of certain positions and especially double teams, which are present in almost all sports (not baseball). If a WR1 or the best player on a basketball team or in a midfield is consistently generating double teams, then they make the rest of the team better. And I think this stat of drawing double teams and usage and gravity should be formally measured as much as possible. This should be available for the user to see in advanced stats sections of the games. This is true for defensive gravity as well. For example, a great rim protector should get value not just for blocked shots, but for deterring the opponent from taking high percentage shots near the rim. Discouraging the opponent from scoring is as valuable as big play counting stats. The same with a revis island top corner. These types of offensive and defensive gravity should try to be included as much as possible into the engine and should also be able to be presented to the user in an advanced stats section.
+9. I would prefer not have any named exceptions. This feels like general relativity versus quantum mechanics. We would ideally want everything unified in one general model of physics.
+10. I think the floor is an ugly appendage; seems like scaffolding for an inelegant formula.
+11. a is the best answer to this C to OT question. Idk if it holds for every edge case but it might
+12. This doesn't make intuitive sense to me. And ideally you wouldn't have to adjust or track pairs in an elegant formula.
+13. This is more up to claude and the publishing of this Q&A verbatim (you would edit the Qs directly before my corresponding As)
+14. I don't like this at all. Mentality and technique seems untrackable. No intangibles type scoring in our model.
+15. A combination of b and c. More b. There are certainly going to be certain restrictions in some sports. Goalies are pretty different from the other players. Muggsy bogues can't play center but we might not have all the height data. I think there needs to be some prohibitions. it's tricky because you could argue Jokic is the PG but he also plays center. So I do think there needs to be a combination of fluidity and prohibition. for example travis hunter is currently a one of one in fantasy football as a good cb and receiver. We haven't even considered dual positions so far in our game. we could assign multiple positions to the same player. We need fluidity. Will be hard to get perfect
+16. I'm not getting basketball data right now. Lets not worry about this now
+17. I dont' know what you're talking about here and I feel like my other answers should provide guidance.
+18. We don't even know what we're merging. No reason to define.
+19. Claude and z.ai and I should converge on a vision. We'll keep talking about it until everyone agrees
+20. It will be feeling that can be adjusted
+21.
+---
+
+Notes on the record:
+- Q21 was blank in the message (numbered but unanswered).
+- Typos are the Owner's as written ("poistionless", "it do think", "Idk", "dont'", "gm minded sickos").
+- Q13's second sentence is a directive: publish this Q&A verbatim, with MUSE editing the questions for clarity before the Owner's answers. The cleaned Q&A is at _agents/muse/deliveries/questionnaire-flex-derivation-QA-2026-11-10.md.
+- New ideas in these answers (not previously in the queue): (a) gravity / double-teams / usage as a formally measured stat, offensive and defensive, in the engine and in an advanced-stats section for the user; (b) dual positions — a player can hold multiple positions (Travis Hunter CB+WR; Jokic PG+C); (c) late-round draft seamlessness — the last few rounds should be simple decisions, not complex math/planning.
+- Key rulings extracted (see MEMORY.md): no named exceptions/pins (Q9); floor is out (Q10); C>OT via the value ladder/guard (Q11a); OVR may be the only true data input, no per-player str/speed, no intangibles (Q2, Q14); user-facing display = simple integers, no "slight/real/heavy" labels, 0/2/6/12 system not necessary (Q4); adjustable blend between max and sum, most malleable/easiest to tune (Q7); basketball deferred, no data right now (Q16); merge not defined yet (Q18); Claude + Z.ai + Owner converge on a vision by talking until everyone agrees (Q19); "done" is a feeling that can be adjusted (Q20).
