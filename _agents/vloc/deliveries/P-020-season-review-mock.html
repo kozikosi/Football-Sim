@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Season Review — mock (P-020)</title>
+<style>
+:root{--bg:#0b0e14;--panel:#141922;--panel2:#1b2230;--text:#e8ecf3;--sub:#9fb0c0;--border:#2a3142;--good:#3ecf8e;--bad:#ff6b6b;--accent:#4f8cff}
+* {box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;font-size:14px}
+body{padding:14px}
+h1{font-size:1.35rem;margin:0 0 2px 0;letter-spacing:.02em}
+h1 .ub{color:var(--accent);font-weight:700}
+.sub{color:var(--sub);font-size:0.85rem;margin-bottom:14px}
+.note{color:var(--sub);font-size:0.78rem;margin-top:8px}
+.panel{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:12px 14px;margin-bottom:12px}
+.panel h2{margin:0 0 8px 0;font-size:0.9rem;text-transform:uppercase;letter-spacing:.06em;color:var(--sub)}
+.conf{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+.conf>div{flex:1 1 230px;min-width:210px}
+.divtable{margin-bottom:8px}
+.divtable h3{margin:0 0 6px 0;font-size:0.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);border-bottom:1px solid var(--border);padding-bottom:4px}
+table{width:100%;border-collapse:collapse;font-size:0.86rem}
+th{text-align:left;color:var(--sub);font-weight:600;font-size:0.72rem;text-transform:uppercase;letter-spacing:.04em;padding:4px 6px;border-bottom:1px solid var(--border)}
+td{padding:4px 6px;border-bottom:1px solid var(--panel2);color:var(--text)}
+tr.user-row{background:rgba(79,140,255,0.10)}
+tr.user-row td{color:var(--accent);font-weight:600}
+td.c{text-align:center}
+td.r{text-align:right}
+.bracket{display:flex;gap:10px;flex-wrap:wrap}
+.round{flex:1 1 250px;min-width:230px;border:1px solid var(--border);border-radius:10px;overflow:hidden;background:var(--panel2)}
+.round h4{margin:0;padding:7px 10px;font-size:0.8rem;text-transform:uppercase;letter-spacing:.04em;color:var(--sub);border-bottom:1px solid var(--border);background:var(--panel)}
+.game{padding:6px 10px;border-bottom:1px solid var(--panel2);display:flex;justify-content:space-between;align-items:center;gap:8px}
+.game:last-child{border-bottom:none}
+.team{flex:1;font-size:0.85rem;color:var(--text)}
+.team.ub{color:var(--accent);font-weight:700}
+.seed{font-size:0.72rem;color:var(--sub);margin-left:4px}
+.final{font-size:0.78rem;color:var(--sub);font-variant-numeric:tabular-nums}
+.winner{font-weight:700;color:var(--good)}
+.stats{max-width:760px}
+.stats th, .stats td{font-size:0.84rem}
+.stats tr:hover{background:var(--panel2)}
+.idx{font-variant-numeric:tabular-nums}
+.idx100{color:var(--sub)}
+.idxup{color:var(--good)}
+.idxdown{color:var(--bad)}
+button{background:var(--panel);border:1px solid var(--border);color:var(--text);padding:7px 14px;border-radius:8px;cursor:pointer;font-size:0.85rem}
+button:hover{border-color:var(--accent)}
+</style>
+<h1>Season Review — <span class="ub">2026 Season</span> · <span class="ub">Your Team</span></h1>
+<p class="sub">Standings, playoff bracket and advanced stats with a one-line "why you did well / poorly" rule per stat.</p>
+<p class="note">Illustrative mock data (P-020 council mock-up). Not real team data.</p>
+
+<div class="panel">
+<h2>Standings</h2>
+<div class="conf">
+<div>
+<div class="divtable">
+<h3>AFC — East</h3>
+<table>
+<thead><tr><th>Team</th><th class="c">W-L</th><th class="r">PF/G</th><th class="r">PA/G</th><th class="r">Diff</th></tr></thead>
+<tbody>
+<tr class="user-row"><td><span class="ub">Your Team</span></td><td class="c">11-6</td><td class="r">26.4</td><td class="r">21.1</td><td class="r">+5.3</td></tr>
+<tr><td>Buffalo</td><td class="c">10-7</td><td class="r">25.8</td><td class="r">22.4</td><td class="r">+3.4</td></tr>
+<tr><td>NY Jets</td><td class="c">6-11</td><td class="r">19.2</td><td class="r">25.7</td><td class="r">-6.5</td></tr>
+<tr><td>New England</td><td class="c">4-13</td><td class="r">17.5</td><td class="r">27.1</td><td class="r">-9.6</td></tr>
+</tbody></table>
+</div>
+<div class="divtable">
+<h3>AFC — North</h3>
+<table>
+<thead><tr><th>Team</th><th class="c">W-L</th><th class="r">PF/G</th><th class="r">PA/G</th><th class="r">Diff</th></tr></thead>
+<tbody>
+<tr><td>Baltimore</td><td class="c">12-5</td><td class="r">28.1</td><td class="r">20.3</td><td class="r">+7.8</td></tr>
+<tr><td>Cincinnati</td><td class="c">9-8</td><td class="r">24.5</td><td class="r">24.9</td><td class="r">-0.4</td></tr>
+<tr><td>Pittsburgh</td><td class="c">8-9</td><td class="r">22.1</td><td class="r">23.6</td><td class="r">-1.5</td></tr>
+<tr><td>Cleveland</td><td class="c">5-12</td><td class="r">19.8</td><td class="r">26.4</td><td class="r">-6.6</td></tr>
+</tbody></table>
+</div>
+</div>
+<div>
+<div class="divtable">
+<h3>NFC — East</h3>
+<table>
+<thead><tr><th>Team</th><th class="c">W-L</th><th class="r">PF/G</th><th class="r">PA/G</th><th class="r">Diff</th></tr></thead>
+<tbody>
+<tr><td>Philadelphia</td><td class="c">13-4</td><td class="r">29.0</td><td class="r">20.8</td><td class="r">+8.2</td></tr>
+<tr><td>Dallas</td><td class="c">9-8</td><td class="r">25.2</td><td class="r">24.1</td><td class="r">+1.1</td></tr>
+<tr><td>NY Giants</td><td class="c">6-11</td><td class="r">20.4</td><td class="r">26.0</td><td class="r">-5.6</td></tr>
+<tr><td>Washington</td><td class="c">5-12</td><td class="r">18.9</td><td class="r">27.3</td><td class="r">-8.4</td></tr>
+</tbody></table>
+</div>
+<div class="divtable">
+<h3>NFC — North</h3>
+<table>
+<thead><tr><th>Team</th><th class="c">W-L</th><th class="r">PF/G</th><th class="r">PA/G</th><th class="r">Diff</th></tr></thead>
+<tbody>
+<tr><td>Detroit</td><td class="c">12-5</td><td class="r">28.7</td><td class="r">21.5</td><td class="r">+7.2</td></tr>
+<tr><td>Minnesota</td><td class="c">10-7</td><td class="r">26.1</td><td class="r">22.8</td><td class="r">+3.3</td></tr>
+<tr><td>Green Bay</td><td class="c">7-10</td><td class="r">22.0</td><td class="r">24.2</td><td class="r">-2.2</td></tr>
+<tr><td>Chicago</td><td class="c">5-12</td><td class="r">19.1</td><td class="r">26.8</td><td class="r">-7.7</td></tr>
+</tbody></table>
+</div>
+</div>
+</div>
+</div>
+
+<div class="panel">
+<h2>Playoff Bracket</h2>
+<div class="bracket">
+<div class="round"><h4>Wild Card</h4>
+<div class="game"><span class="team">Baltimore <span class="seed">#3</span></span><span class="final winner">27–20</span><span class="team">NY Jets</span></div>
+<div class="game"><span class="team">Philadelphia <span class="seed">#2</span></span><span class="final winner">31–24</span><span class="team">Green Bay</span></div>
+</div>
+<div class="round"><h4>Divisional</h4>
+<div class="game"><span class="team ub">Your Team <span class="seed">#1</span></span><span class="final winner">24–17</span><span class="team">Baltimore <span class="seed">#3</span></span></div>
+<div class="game"><span class="team">Detroit <span class="seed">#1</span></span><span class="final winner">28–21</span><span class="team">Philadelphia <span class="seed">#2</span></span></div>
+</div>
+<div class="round"><h4>Conf. Champ.</h4>
+<div class="game"><span class="team ub">Your Team <span class="seed">#1</span></span><span class="final winner">20–16</span><span class="team">Detroit <span class="seed">#1</span></span></div>
+</div>
+<div class="round"><h4>Super Bowl</h4>
+<div class="game"><span class="team ub">Your Team</span><span class="final">—</span><span class="team">TBD</span></div>
+</div>
+</div>
+<p class="note">Bracket rounds unlock as games are simulated. Winner highlighted in green.</p>
+</div>
+
+<div class="panel">
+<h2>Advanced Stats — why you did well / poorly</h2>
+<p class="sub">Rate/index cards: your value vs league rate, index 100 = league average. One-line rule per stat (from verified E-208 catalogue; all league rates INFERRED pending a sourced table).</p>
+<div class="stats">
+<table>
+<thead><tr><th>Stat</th><th class="c">You</th><th class="c">League</th><th class="c">Index</th><th>Why — one line</th></tr></thead>
+<tbody>
+<tr><td>Completion %</td><td class="c">68.2</td><td class="c">64.5</td><td class="c idx idxup">106</td><td>Your passing was accurate — completions kept drives on schedule.</td></tr>
+<tr><td>Yards per pass att.</td><td class="c">7.8</td><td class="c">7.0</td><td class="c idx idxup">111</td><td>Your passing gained yards efficiently.</td></tr>
+<tr><td>Sack %</td><td class="c">5.1</td><td class="c">6.5</td><td class="c idx idxup">78</td><td>Your line kept the QB clean.</td></tr>
+<tr><td>INT rate</td><td class="c">2.1</td><td class="c">2.4</td><td class="c idx idxup">88</td><td>Your QB protected the ball.</td></tr>
+<tr><td>Yards per carry</td><td class="c">4.1</td><td class="c">4.4</td><td class="c idx idxdown">93</td><td>Your run game gained too little per carry.</td></tr>
+<tr><td>Catch %</td><td class="c">62.0</td><td class="c">65.0</td><td class="c idx idxdown">95</td><td>Too many targets fell incomplete.</td></tr>
+<tr><td>Takeaways/game</td><td class="c">1.2</td><td class="c">1.5</td><td class="c idx idxdown">80</td><td>Your defense didn't create takeaways.</td></tr>
+<tr><td>FG %</td><td class="c">87.5</td><td class="c">83.0</td><td class="c idx idxup">105</td><td>Your kicker was automatic.</td></tr>
+<tr><td>Punt avg</td><td class="c">44.2</td><td class="c">45.0</td><td class="c idx idxdown">98</td><td>Your punts were too short.</td></tr>
+</tbody></table>
+</div>
+<p class="note">Index 100 = league average. Above 100 is better for rate stats; below 100 is better for sack/INT rate. Source note: every league rate above is INFERRED (E-208, VERIFIED ok), not externally sourced.</p>
+</div>
+
+<button>Sim Rest of Season ▸ Review</button>
+</html>
