@@ -1,0 +1,15 @@
+Owner verbatim — 2026-11-10 03:39 HST (side chat, in the ZAI-D2 review thread)
+
+Context: MUSE had just explained why ZAI-D2's gate exists (the pay gap is sometimes a lie — FB>RB 2 vs C>OT 12 — and the gate is how the formula knows when to believe it). KG replied:
+
+"i feel like the engine is mostly fine here"
+
+then:
+
+"lets remove gates"
+
+Decision recorded: REMOVE THE GATES from the flex derivation. The gate mechanism (R=3.0, M_gate=6.0 — the ladder binds only when the destination pays >=3x AND the worst duty gap is real) is OUT.
+
+Consequence (MUSE, measured): without the gate, ZAI-D2 falls back to ability-only (ZAI-D1 + the three score changes) = 98/99, with C>OT the lone miss (owner 12, model 6, raw 6.68). The ungated alternative (max(A,G) always on) is worse at 93/99 (breaks FB>RB, FB>TE, OLB>ILB, OLB>SS), so ability-only is the outcome. This is consistent with the Owner's Q2 (does not care about meeting the 99) and Q3 (beautiful and portable wins), and with Z.ai's own Z2 recommendation to ship 98/99 with C>OT as the named principled off-by-one.
+
+Relay status: NOT yet relayed to Claude, Z.ai, or the council. The Owner controls when prompts are sent. MUSE to draft/relay only on the Owner's say-so.
