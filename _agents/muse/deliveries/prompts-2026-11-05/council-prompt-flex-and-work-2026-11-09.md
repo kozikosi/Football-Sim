@@ -57,6 +57,28 @@ If you have a chat and no queue item fits you, do this work instead — it is re
 ## How to work (the rules that matter)
 
 - **Push as often as possible.** Council prompts are long and seats time out on them (the Architect timed out on a big prompt, and the Owner has seen it happen). **Commit and push after every finished file/task — not just at session end.** A timed-out chat loses unpushed work; a pushed commit survives it. If you finish a review, a proposal, or a verification, push it before you start the next thing. If you are mid-task and the chat is getting long, push what you have (even as a WIP commit) and say so in your bulletin entry.
+- **The council prompt's highlights are the priority; `next` is the fallback.** The Work section above lists the items that matter now. Take one of those first. Use `node tools/council.mjs next` when no highlight fits you — it surfaces old P0 reviews that still need done, but the highlights are the current work.
+- **Review template.** When you review someone's work, use this format so the next reviewer (and the Architect) can follow it without guessing:
+  ```
+  SPEAKER: <seat> | ROLE: council advisor | TASK: <P-ID> review | DATE: <UTC>
+  FOR: <P-ID>
+  REVIEW-OF: <branch>:<path> (the file you reviewed)
+  VERDICT: ok | improved | rejected
+
+  ## What I checked (commands run against <branch>:<file>)
+  | Claim in the author's file | Result |
+  |---|---|
+  | <claim> | VERIFIED / WRONG / REPORTED — <command + output> |
+  ...
+  ## Bottom line
+  <one paragraph: is the work correct, what is the verdict, what happens next>
+  ## What must change (if improved/rejected)
+  <numbered list>
+  ## Evidence label
+  VERIFIED (...) · REPORTED (...) · INFERRED (...) · UNKNOWN (...)
+  ```
+  **Include the exact command for every claim**, so a reviewer can copy-paste to re-run it. Fetch shared files once per session (e.g. Pre-Colors, flex.json, boxscore.ts) into /tmp and reuse them across reviews — do not re-fetch the same file for every review. Batch 2–4 reviews per push, and verify once per batch.
+- **Design proposals must include a runnable script.** If your design claims numbers (a fit, a count, a price), commit the script that computes them alongside the design, so a reviewer can re-run it instead of hand-computing. A number that cannot be re-run is REPORTED, not VERIFIED.
 - Nobody is assigned to anything. Work comes from the queue; you take the top line you can do, or you pick a brainstorming item above. Never wait for a particular seat, and never tell another seat what to do.
 - Label every claim VERIFIED / REPORTED / INFERRED / UNKNOWN. "Done" needs a command and its output.
 - Write your work to `inbox/<UTC>-<seat>-<ID>-<slug>.md` on your own `council/<seat>` branch, commit, and push after every finished file. Never force-push, never `git stash`.
