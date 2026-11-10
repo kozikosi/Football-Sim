@@ -1,0 +1,48 @@
+# Owner answers to the 10 merge questions — verbatim
+
+Source: KG (Owner), 2026-11-10, in reply to MUSE's 10 questions for merging Z.ai's and Claude's flex derivations (P-340). Recorded verbatim by MUSE.
+
+The 10 questions (MUSE's, from the merge prompt `council-zai-merge-flex-2026-11-10.md`):
+
+1. Which ability layer? Z.ai's M + 0.4·S (96/97) or Claude's k-norm (84/97)? Do the two blend parameters (λ=0.4, exponent k) collapse into one dial?
+2. Which value layer for the guard? Claude's measured v (needs the sim) or Z.ai's derived v (needs authored τ, misses C>OT step-up)? And which measurement — slotWins20 or localWins20?
+3. How do ability and guard combine? Max costs 2 rules of fit to fix the centre. Is there a form that keeps the centre fix without losing those 2 rules, or is that the honest price?
+4. The fullback problem. Guard prices FB>RB at 18 (Owner 2) because FB's slot weight is only 25. Quality-weighted or snap-weighted value for part-time roles?
+5. The C>OG problem. Guard 10 vs Owner 6 vs ability 5.1. When ability and guard disagree, which wins — is max too blunt?
+6. Gravity. Inside v, or an explicit term?
+7. Which flexes exist? Does the merged formula need a prohibition layer?
+8. New positions and slots. How does the merged formula price SS2 and the DL5 blitzer without hand-written rules — do the roles emerge?
+9. Leave-one-role-out. Run it on ZAI-D1's tables and on the merged form for a fair comparison?
+10. The duty tables. Fix the SCOPE bug, settle C PBLK (6 vs 7)?
+
+## The Owner's answers (verbatim, numbered as he gave them)
+
+1. "help me understand this"
+
+2. and 3. "you make a big deal about the c to ot step up but it's really not. c to ot at 6 is ok unlesss centers are constantly flexing to ot"
+
+4. "there needs to be kind of a socialism built into the formula; if the role only has one good player (juszczyk) and is unimportant than it's flex values need to be reduced both flexing into that position and out of that position"
+
+5. "don't stress about 5 points of flex. it's really ok."
+
+6. "inside ideally"
+
+7. "i hope not"
+
+8. "yes does z.ai or claude nail this better"
+
+9. "Yes"
+
+10. "not a big deal. you're stressing over tiny details."
+
+## MUSE's reading (not the Owner's words — for the record)
+
+- Q1: the Owner wants an explanation of the ability-layer / blend-dial question, not a ruling yet.
+- Q2/Q3: the C>OT step-up is NOT a big deal. C>OT at 6 is OK. The only test is whether centers constantly flex to OT in the sim. The guard is not needed to force C>OT to 12. This downgrades the guard's main benefit.
+- Q4: NEW Owner principle — "socialism." If a role has only one good player (Juszczyk at FB) and is unimportant, its flex values are REDUCED in BOTH directions (into and out of that position). This directly contradicts the guard for FB (guard says FB>RB 18; socialism says reduce it). The merge must build this in.
+- Q5: 5 points of flex error is OK. Tolerance: ±5 points is acceptable. Do not chase exact fit.
+- Q6: gravity INSIDE v, ideally (Claude's approach). Settled as a preference.
+- Q7: hopefully NO prohibition layer. Settled as a preference.
+- Q8: the Owner asks MUSE which of Z.ai / Claude nails the new-positions test better. (MUSE's answer: Z.ai on results — he priced SS2 and DL5 in two profiles with sensible numbers; Claude only did DL5 via a mix and did not test SS2. But neither achieves true emergence — both specify something by hand. See MUSE's reply.)
+- Q9: yes, run LOO on ZAI-D1 and the merged form.
+- Q10: duty tables (SCOPE bug, C PBLK 6 vs 7) are NOT a big deal. MUSE was over-stressing tiny details. Deprioritize.
