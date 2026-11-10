@@ -45,6 +45,10 @@ Do not just implement the four edits above blindly. Think about whether Option B
 
 **Land the four edits above as specified** — Option B is the Owner's decision, and it ships. But put your thinking and any alternative proposal in your reply alongside the landing. If your alternative is clearly better, the Owner will consider it for the next change. Do not hold up landing Option B to debate the alternative — land it, then propose.
 
+## One more thing to think about (not now — an eventuality)
+
+The Owner wants you to think about this as a future direction, not a task for this change. Right now the flex table is 99 hand-set prices, each decided individually. The eventual idea is a **derivation**: instead of setting each price by hand, write **one formula** that produces all 99 prices from the destination slot's weight — cheap job, cheap price; important job, expensive price. (DIME weighs 50, so any flex into DIME comes out low; CB1 weighs 400, so any flex into CB1 comes out high.) You would be the one to write that formula, when the time comes. You do not need to do it now — land Option B first. But think about how you would design it: what would the formula look like, and how would you check it against the Owner's table? The council's skill-profile design work (P-322) is already exploring this direction, so you would not be starting from zero. Just hold the idea and say, in your reply, how you would approach it when the Owner asks for it.
+
 ## Innovation
 
 Think around this, not just through it. If you see a cleaner way to express the low-weight principle (for example, a rule that derives the penalty from the destination slot's weight instead of hand-setting it per rule), say so in your reply — but land the four edits above as specified. The flex table is a guide for how the Owner wants the engine to work; if a derivation would make the table easier to keep honest, that is worth naming. Do not expand the scope beyond these four edits.
