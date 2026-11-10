@@ -1,0 +1,42 @@
+Claude (Architect), 2026-11-10 (verbatim, relayed by KG from chat — response to the own-derivation prompt):
+
+"Fetching with the explicit refspec again, since a plain `git fetch origin` won't pick up that branch in this single-branch clone.
+
+**VERIFIED:** I fetched `origin/council/muse` (`a338d26..de9d089`) and the file printed above. I have not built anything from it and changed no flex file, engine file or test. I'm treating it as a prompt you want my answer to, which is the "own design" task you gave me before.
+
+**REPORTED (what the file says):**
+- Z.ai's formula ZAI-D1 is `tier(M + 0.4·S)` over 17 duties. It has no D term, no overrides and no fiat rows, and it scores 95/99 on the live table.
+- The Owner prefers it because the logic carries over to other sports.
+- MUSE's tests of the Owner's feedback reach 98/99, with C>OT the only remaining miss (Owner 12, model 6).
+- Design only. Option B stays held. The deliverable is a design note plus a runnable script.
+
+**VERIFIED, bearing directly on its question "does D carry something duties don't?":** Yes. The guard `G = 20 × (1 − w_src / w_dst)`, computed only from the slot-weight table with zero fitted constants, explains two of ZAI-D1's four misses.
+
+| Rule | Owner | ZAI-D1 | Guard tier |
+|---|---|---|—|
+| C>OT | 12 | 2 | **12** |
+| TE>OT | 12 | 6 | **12** |
+| C>OG | 6 | 2 | 12 (the Owner deliberately waives this one) |
+| EDGE>RB | 6 | 12 | 0 (a pure ability row) |
+
+The Owner's reason for C>OT and TE>OT was that OT pass protection is worth much more. That is slot value, which a duty profile can't represent. The weight table already encodes it, so no PBLK score has to change.
+
+**My proposed design:** `price = tier(max(G, L))`
+- **G (guard):** From slot weights only. It is sport-agnostic, because every sport has slot values.
+- **L (transfer):** A duty-deficit score in the NEED/HAVE style. ZAI-D1's structure already gives this, so I would build on it.
+- **The two are combined by `max`, not a sum.** They are two separate lower bounds on the penalty. Inkling's gate was a patch for summing them.
+- **Waivers:** The only rules priced below the guard are `FB>RB`, `FB>TE` and `C>OG`. I'd keep them as a named three-row list, since they are the places the table permits arbitrage.
+
+**INFERRED, why this beats ZAI-D1 beyond fit:**
+- When P-318 changes weights (WILL and C to 200 and so on), duty-derived prices won't move, but the guard will. Without a guard, a derived table can silently become exploitable.
+- With the guard doing the value work, the duty set (L) should shrink, because it no longer has to imitate slot value.
+- **Open:** I haven't yet run the guard against all of ZAI-D1's 99 prices, or built `max(G, L)`.
+
+**Next step:** Run ZAI-D1's script from the muse branch and count where its prices fall below `tier(G)`. If that confirms the picture, I build `max(G, L)` on his duty set and report exact, off-by-one and hard counts against 98/99. Want that, or do you prefer to respond to this take first, as the file offers?"
+
+Notes (MUSE, not Claude's words):
+- MUSE verified the guard arithmetic on the four rows Claude names (C>OT G=14.0 -> 12, TE>OT G=10.0 -> 12, C>OG G=12.5 -> 12, EDGE>RB G=-32 -> 0). All four check out with the primary-slot weights.
+- MUSE ran the guard against ALL 99 rules (script `_agents/muse/deliveries/claude-guard-verify-2026-11-10.py`, results in `inbox/20261110-0715-muse-claude-guard-verify.md`): ZAI-D1's prices fall below tier(G) on **7 rules**, not 3. The guard fixes C>OT and TE>OT (+2) but breaks **4** rules (FB>RB, FB>TE, OLB>ILB, OLB>SS). max(G, L) = **93/99** with the primary-slot mapping — WORSE than ZAI-D1's 95/99. With EDGE CARRY 4: 94/99.
+- **The open detail is the role->weight mapping.** Claude did not specify which slot weight each role maps to. MUSE used the primary "1" slots (OLB=WILL 150, CB=CB1 400, WR=WR1 650, OG=OG1 400). If Claude maps OLB to 300 (same as ILB), then OLB>ILB and OLB>SS are NOT broken by the guard, and his "only three rules below the guard" claim holds. The mapping decides whether the guard works.
+- **The "20" in the guard formula needs justification.** For C>OT and TE>OT to land at tier 12, the scale must be >= 18 (TE>OT needs scale x 0.5 >= 9). Claude chose 20, which works, but 18/19/25 would also work — the scale is a choice, not a derivation, unless it comes from somewhere. MUSE flags this as an open question, not a refutation.
+- MUSE's recommendation: let Claude proceed with his next step (run the guard count, build max(G, L)) — he needs to specify the mapping and the scale, and show the full 99-row count. The guard is a real insight (slot value is a separate lower bound from ability), but the mapping and scale decide whether it fits.
