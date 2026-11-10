@@ -40,10 +40,13 @@ function expected(tag, slot) { const role = TAG_ROLE[tag]; if (compiled.NATURAL[
   let allowed = 0, cells = 0;
   Object.keys(TAG_ROLE).forEach(t => SLOTS.forEach(s => { cells++; const e = expected(t, s), g = got.o[t][s]; if (e !== g) { console.log(`FAIL engine ${t}@${s}: guide ${e}, engine ${g}`); bad++; } if (g < 8) allowed++; }));
   Object.keys(TAG_ROLE).forEach(t => { if (!compiled.NATURAL[t].length) { console.log('FAIL tag with no natural slot', t); bad++; } });
-  // spot checks straight from the Owner's text (independent of the tables above)
-  const spot = [['QB', 'WR1', 6], ['HB', 'FB', 2], ['FB', 'RB1', 4], ['WR', 'CB3', 4], ['WR', 'CB1', 6], ['CB', 'DIME', 0], ['SS', 'CB3', 0], ['SS', 'CB1', 6], ['FS', 'CB1', 4], ['WILL', 'MIKE', 2], ['MIKE', 'WILL', 0],
-    ['REDG', 'WILL', 2], ['REDG', 'MIKE', 4], ['LT', 'FB', 4], ['LG', 'OT1', 4], ['P', 'K', 2], ['K', 'P', 0], ['TE', 'DIME', 6], ['TE', 'WR1', 2], ['DT', 'OT1', 6], ['WR', 'DIME', 4], ['CB', 'WR1', 4], ['QB', 'RB1', 8],
-    ['DT', 'DL5', 0], ['REDG', 'DL5', 0], ['LEDG', 'DL5', 0], ['LT', 'DL5', 4], ['LG', 'DL5', 4], ['C', 'DL5', 4], ['MIKE', 'DL5', 4], ['WILL', 'DL5', 4], ['SAM', 'DL5', 4], ['TE', 'DL5', 6], ['CB', 'DL5', 8], ['QB', 'DL5', 8], ['WR', 'DL5', 8], ['HB', 'DL5', 8], ['DT', 'DT1', 0], ['WR', 'WR4', 0], ['TE', 'TE3', 0], ['TE', 'WR4', 2]];
+  // spot checks from the live flex table (independent of the tables above)
+  // Spot checks from the LIVE table (Architect's branch, 97 rules, 728b2c53; P-327, Owner 2026-11-09).
+  // Values read off tools/mathlab/flex.json (role -> dest). 8 = EMERGENCY_PENALTY (rule absent = not allowed).
+  // DL5 values are the flexdl5 derivation (DT/EDGE natural 0; others cheaper of role->DT and role->EDGE).
+  const spot = [['QB', 'WR1', 8], ['HB', 'FB', 0], ['FB', 'RB1', 2], ['WR', 'CB3', 2], ['WR', 'CB1', 2], ['CB', 'DIME', 0], ['SS', 'CB3', 0], ['SS', 'CB1', 6], ['FS', 'CB1', 6], ['WILL', 'MIKE', 6], ['MIKE', 'WILL', 0],
+    ['REDG', 'WILL', 0], ['REDG', 'MIKE', 6], ['LT', 'FB', 0], ['LG', 'OT1', 2], ['P', 'K', 2], ['K', 'P', 2], ['TE', 'DIME', 6], ['TE', 'WR1', 12], ['DT', 'OT1', 6], ['WR', 'DIME', 2], ['CB', 'WR1', 6], ['QB', 'RB1', 8],
+    ['DT', 'DL5', 0], ['REDG', 'DL5', 0], ['LEDG', 'DL5', 0], ['LT', 'DL5', 6], ['LG', 'DL5', 6], ['C', 'DL5', 12], ['MIKE', 'DL5', 12], ['WILL', 'DL5', 12], ['SAM', 'DL5', 12], ['TE', 'DL5', 12], ['CB', 'DL5', 8], ['QB', 'DL5', 8], ['WR', 'DL5', 8], ['HB', 'DL5', 8], ['DT', 'DT1', 0], ['WR', 'WR4', 0], ['TE', 'TE3', 0], ['TE', 'WR4', 12]];
   // TE3 must behave exactly like TE2, WR4 exactly like WR3, for every dataset tag (same family, same guide destination)
   Object.keys(TAG_ROLE).forEach(t => { [['TE3', 'TE2'], ['WR4', 'WR3']].forEach(([a, b]) => { if (got.o[t][a] !== got.o[t][b]) { console.log(`FAIL ${t}@${a} is ${got.o[t][a]} but ${t}@${b} is ${got.o[t][b]}`); bad++; } }); });
   spot.forEach(([t, s, p]) => { const g = got.o[t][s]; if (g !== p) { console.log(`FAIL spot ${t}@${s}: Owner text says ${p}, engine ${g}`); bad++; } });
