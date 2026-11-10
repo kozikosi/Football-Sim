@@ -23,3 +23,11 @@ Follow-up — 2026-11-10 03:40 HST (same thread, verbatim):
 Owner concern recorded: with the gates removed, the worry is CENTERS CONSTANTLY FLEXING OUT OF POSITION. If that happens in the sim, it means the formula is slightly off (it underprices the center-out moves, so the optimizer exploits them). The fix must come from the formula/pack itself — NOT from bringing the gates back. This is a diagnostic: the formula is right iff centers do NOT flex out in the sim; if they do, the pack scores/weights need adjusting, not a gate.
 
 Mechanism (MUSE): ability-only prices C>OT at 6.68 → tier 6 (owner 12). A 6-point penalty lets a center beat a weak tackle when the center's OVR is >6 points higher; a 12-point penalty would not. So the concern is real as a mechanism — the frequency is measurable (run the lineup optimizer and count center flex-outs) and is the test for whether the formula is off.
+
+---
+
+Flag — 2026-11-10 03:44 HST (same thread, verbatim):
+
+"no, just flag this and let z.ai design the solution"
+
+Owner direction recorded: do NOT measure it (MUSE offered to run the optimizer and count center flex-outs; the Owner declined). FLAG the concern as a queue item and let Z.ai design the solution. Flagged as P-339 in `_agents/QUEUE.md` (P1, parent P-322): "Center flex-out diagnostic: design a gate-free fix so centers don't constantly flex out of position (Z.ai to design the solution)." The fix must come from the formula/pack itself — no gates, no guard, no floor, no named exception. Z.ai designs it; the relay to Z.ai happens when the Owner sends the prompt (KG controls when prompts are sent).
