@@ -1,0 +1,11 @@
+KG, 2026-11-10 (verbatim, from chat — correction on the guard / slot values):
+
+"i do think by the way that manipulaitng the pass protection scores was sufficient. slot values are not necessary but i don't want to discourage him from moving away from slot values in his new formula"
+
+Notes (MUSE, not KG's words):
+- "manipulaitng" is KG's word as written (he means "manipulating").
+- This corrects MUSE's relay, which said "The guard is a good idea — slot value as a separate floor is worth keeping." KG's position: the pass-protection score changes (C PBLK 6, TE PBLK 4) were SUFFICIENT to fix C>OT, C>OG, TE>OT — so the guard (slot values) is NOT necessary. Claude should NOT feel he has to keep the guard in his from-scratch design. If his new design moves away from slot values entirely, that is fine — KG does not want to discourage that.
+- The implication for the derivation: the working derivation remains ZAI-D1 + the Owner's three score changes (EDGE CARRY 4, C PBLK 6, TE PBLK 4) at 98/99, 0 fiat rows, with only C>OT off by one. The guard is an alternative mechanism for the same two rows, not a required one. Claude's from-scratch design is free to use scores, duties, slot values, or none of these — whatever makes the best generalizable model.
+- MUSE corrected the Claude prompt-file addendum (the line "The guard is a good idea — slot value as a separate floor is worth keeping" now carries this correction) and drafted a corrected short relay for KG to send.
+- Corrected relay text (as KG to Claude):
+  "One thing to add: the pass protection scores were sufficient — I don't think slot values are necessary. Don't feel you have to keep the guard in your new design. If you move away from slot values entirely, that's fine. Design the best generalizable model you can."
