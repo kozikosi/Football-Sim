@@ -1,0 +1,47 @@
+Claude (Architect), relayed by KG, 2026-11-10 — derivation prototype + DL5 pin landed (678bb06):
+
+"Approved path, read-only prototype first. I'll set up the work and look at what P-322 and the D@90 pricing actually contain.
+
+The D@90 table is a rule-by-rule distance, and Inkling's design lives on its own branch. I'm fetching it so I can implement the formula from the written spec.
+
+I have Inkling's spec in full. Before writing anything, I want to see which of the 99 live rules have a D@90 value, and what DL5 and the 3-4 test look like in the repo.
+
+Now the DL5 pin as an additive test file. It leaves the existing 2400 assertion alone, because the council owns that fix, and states the DL5 role explicitly in all four cells.
+
+All four DL5 tests pass. Now the end-of-work steps: update `claude/NOW.md` (max 15 lines), commit, and push. First, the current NOW.md and git status.
+
+NOW.md is 12 lines and has room for the new state. I'm rewriting it within the 15-line cap.
+
+Committed as `678bb06`. Pushing with tier 1 first, as the rules specify.
+
+The 403 is the documented tier-2 case. You authorized push access, and the rules say to call `add_repo` once for it.
+
+The push output shows `a722681..678bb06`. The error is from my own verification line, so I'll confirm against the remote directly.
+
+VERIFIED: Pushed as `678bb06` on `architect/engine-and-seats` (confirmed with `ls-remote`). No flex price changed, so PIN_ENGINE is unchanged. Option B is not landed.
+
+VERIFIED, DL5 pinned: New `colors/test/nfl/formation-gap.test.ts` states the DL5 role in all four cells. I ran that file alone, 4/4 pass, and did not run the full suite.
+
+| 4-3 native loses | DL5 = DT | DL5 = EDGE |
+|---|---|—|
+| 4-3 roster played in 3-4 | 2700 | 1800 |
+| 3-4 roster played in 4-3 | 1800 | 1800 |
+| Gap | 900 | 0 |
+
+The 3-4 roster always pays one price (an ILB at DL5, 12 × 150). Only the 4-3 roster depends on who plays DL5. The existing 2400 assertion in `lineup.test.ts` is untouched, since that fix belongs to the council.
+
+VERIFIED, derivation reproduces MUSE: `tools/mathlab/flexderive.mjs` plus `skill-profiles-p322.json` (read-only; `flex.json` and the engine are unchanged). Built from Inkling's written spec and the existing D@90.
+- Without the floor: 88 exact, 11 off by one, 0 hard, with the same 11 rules MUSE listed.
+- With `--floor 6`: 93/99.
+- With `--floor 6 --cuts 1.5,4,9`: 96/99. This is fit on this one table, so treat it as a candidate, not a result.
+- D alone gets 38/83 at any cut points, so the A terms and fiat rows carry the fit. 74 of the 80 formula-priced rules match; the other 19 are fiat (overrides, FB list, U deltas).
+
+Findings you should have:
+- Spec defect (VERIFIED): Inkling's elite-line rule as written (`dst==C` only) never fires, because C's BLK is 6. Read literally it gives 87, and the general reading ('elite-line swaps price by D only') gives 88. I implemented the general reading and kept `—literal`.
+- D gaps (REPORTED/UNKNOWN): `ILB>FS` and `OLB>FS` have no D row, so D = 0, and they still price 12 on skills alone. `OLB>ILB` and `OLB>SS` use the reported post-bump 6.7. Post-bump D for `OLB>EDGE` is UNKNOWN.
+- Override count (INFERRED): Inkling says 6 overrides, but I found only 5 named (`C>OG`, `FB>RB`, `FB>TE`, `EDGE>RB`, `EDGE>ILB`).
+- Fit risk (INFERRED): The roughly 26 constants were tuned to this table, so the fit reproduces his claim but isn't out-of-sample.
+
+One note on the push: `add_repo` replied by telling me to clone the repo again. I skipped that, per your tier-2 procedure of retrying from the same clone, and the push went through.
+
+Next step: Your call on Option B versus the derivation. If P-321 lands first, re-run `node tools/mathlab/flexderive.mjs --d <new table> --floor 6` and re-fit the cut points; NOW.md has this."
