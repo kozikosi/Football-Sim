@@ -1,0 +1,10 @@
+Owner ruling — FB: scarcity, not the guard (2026-11-10 15:53 HST)
+
+KG (verbatim, chat message):
+"i still think no guards. i think scarcity is probably a better way to design the math around fb. it's a bummer that jusyczk moves to TE most of the time but it's not a big deal"
+
+Context: Claude's play-level answer (architect `ccf2317a`) asked three things of the Owner. Ask #2 was "FB: scarcity (FB>RB 2, FB>TE 6) or the guard (18)". This is KG's ruling on Ask #2.
+
+Reading: FB stays at the live prices (FB>RB 2, FB>TE 6). The guard price (18) is NOT used for FB. Scarcity is the design: the pool has 16 FBs for 32 spots, so on real rosters there is no FB exploit. A stacked 88 FB (Juszczyk) flexing to TE on 28/32 teams (+0.22 wins per team-season, per Claude's census) is accepted — "a bummer" but "not a big deal".
+
+Consequence: the merged derivation (P-340) and any guard-based formula must NOT push FB>RB / FB>TE to 18. The two FB rows are settled; the remaining below-guard row is C>OG (Claude's Ask #3, still open).
