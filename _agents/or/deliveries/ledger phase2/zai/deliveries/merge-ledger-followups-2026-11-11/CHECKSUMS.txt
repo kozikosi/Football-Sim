@@ -1,0 +1,30 @@
+# CHECKSUMS.txt — merge-ledger-followups-2026-11-11 (Z.ai, seat ZAI)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# Scope: every file in this delivery folder (this file itself is self-excluded by convention).
+# The oracle flex-99-live.json is a copy of architect/engine-and-seats:tools/mathlab/flex.json (99 rules).
+# The synthetic_*.csv files are SYNTHETIC (labelled; generated from the staged shares + seeded noise).
+
+5f105d799798123ce16756784a2f1785b48b156c34092b5ffa09106d1533de37         12598  LEDGER-FOLLOWUPS-2026-11-11.md
+57da697e5403e0a7906bdb99b9b3fab8f352468c346452f0401aef80c8a58cb6         20158  MERGE-DESIGN-2026-11-11.md
+962859a7002eea571f145c48b257c88037d51b079b4d35db87876e490a6f55ba          6260  PHASE2-HARNESS-2026-11-11.md
+91339ed85ab6dffcb2916c56dc8c90e8943d282ac8f857b0cd5bd3361f697bab          3077  README.md
+7572ed7d8036bd519388ebfcca76427f9046015085cf9a4072d3591305a81d50          7212  dime_sensitivity.py
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6          2814  flex-99-live.json
+ca6c4a542b984e89ef593db68aeec1800b1d6aa3d6944fc85f69f18cfa1a9c9a           886  logs/b2_grid_log.txt
+f79d3d95f266f14c69b7ca8820027935b840f7dd6f437aa0ec17ea3d39a4473d           272  logs/b2_log.txt
+185fcd825e144c03a0194c6597eb88f0cf396e3ed1ce2a5319e30eb695f84f60           104  logs/b3_log.txt
+44d7f041861e9df06328716a3f17ab793982a8ba8db57724c5091e90db65e8db          2963  logs/dime_log.txt
+55daa143d0a7c7a2e48389d5fb08b110b2eff68b41c4e2712ec13f31c1d3bed4         12312  logs/followup_34.json
+ea6d9ca967b2390be934d2b6b9683785b52fd6cad1698016cf23909ac9b12ea0          5873  logs/followup_sit.json
+30ae04ef5f180fad33acb4376ceec58a2bbe61a1dcb38f1cbc733ffd539c3395         18473  logs/followup_wr1.json
+dc21cd09c2d89cbb2765990482b9c71f9fc3ddf5df9edd94a46f2e4a5f613470           888  logs/followup_wr1_grid.json
+d739e3b543a7c0a50a12c1bb92236f0f5eaa20ae79cae86d7931a06a86e41dfd        210721  logs/merge_results.json
+c0f30a413c3821cbd6a6d5d62f29e67e9ef771485844cadad394868c5897d764          9138  logs/merge_run_log.txt
+495b3923ceac9a25d503103479ff3de45bd95c795f361bd6f5c6cf06fd82d932           187  logs/sit_log.txt
+1d7b9d2ba21e9623e7642319b7e3fe1e7baee1d92b2524c9c62d1e098fe26872         26895  merge_prototype.py
+d739e3b543a7c0a50a12c1bb92236f0f5eaa20ae79cae86d7931a06a86e41dfd        210721  merge_results.json
+e5ff338973ef17f4dc7164271981d2762856096978fcea975ec4767be99051fb         21057  phase2_harness.py
+a177fbbedb6566af532fe84fb3c3599e11f25cf65fdec8b1ce98cad36ec7e987          8815  phase2_results.json
+c382148c4219c42dde5d3ed7eb186c19bb38a50f476fd88876abd52bbb662317         24211  stage_followup.py
+a178ce9cc05a759ab9986204219e5c828f092b8ab4ea2d0ac4094dea9f336c73       3106946  synthetic_pbp.csv
+b3b8aa49a734c1a5a247209c375f13118509c594227796e728808bc3c87ce7aa       1007688  synthetic_snap_counts.csv
