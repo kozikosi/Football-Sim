@@ -17,3 +17,16 @@ Answers:
 (d) Historical Madden ratings: NOT right now, NOT important now. (The lambda-identification risk proceeds without historical ratings; the "later join" is deferred.)
 
 Effect: Phases 0 and 1 are a GO. The second sport is basketball (deferred). Historical ratings are not a blocker. The totals-bar tolerances (b) are still open pending KG's decision after MUSE's explanation.
+
+---
+
+Owner ruling — totals-bar tolerances (2026-11-11 17:15 HST)
+
+KG (verbatim, chat message):
+"i think 10% is fine for most of those metrics. it doesn't have to look exact. as long as there is a general sense of realism, we don't need to actually model 2025 nfl data."
+
+Context: Claude's ask (b) on the engine design — the totals-bar tolerances in §8 (he proposed points per team within 1%, drives within 3%, plays within 2%, margin pmf goodness-of-fit). KG's answer loosens the bar.
+
+Reading: the Phase 1 totals bar is ~10% for most metrics (points, drives, plays), not Claude's proposed 1%/3%/2%. The standard is a general sense of realism, not exact modelling of 2025 NFL data. The engine should feel like football; it does not need to reproduce a specific season's numbers.
+
+Consequence: Phase 1 (football baseline, all lambda = 0) is gated on a ~10% totals bar. The nflverse data is still the calibration source for baseline odds, but the bar is realism, not exact 2025 reproduction. This answers Claude's ask (b) — all four asks are now answered: (a) yes, (b) ~10% / realism, (c) basketball deferred, (d) no historical ratings now.
