@@ -3,27 +3,29 @@
 ## Identity
 - **Seat:** INKLING · **Model / how reached:** Inkling 2 Small Free (opencode/inkling-2-small-free), via OpenChamber · **State:** advisor
 - **First seen / admitted:** 2026-11-09 (Owner)
-- **Strengths shown (evidence, not claims; most recent first):** P-342 review of Claude's engine design + toy kernel (2026-11-11T03:46Z; toy re-run matches exactly — 0.3722 / 0.16358 / z=0.62 / 3.0× / 3.8×; two corrections filed: §8 totals bar vs Owner's approved ~10%, lambda identification needs joint fit on team-level channel rates, not OVR-only/diagonal) · P-341 play-level answer + Z.ai re-verification (2026-11-11T00:18Z) · P-326 localWins20 recheck (pushed 2a20ea80; w88 table reproduces 32/32, ±10 trap confirmed, TE2/WR2 spread fragility) · P-322 skill-profile design (97/105, REPORTED).
+- **Strengths shown (evidence, not claims; most recent first):** P-340 LOO review + lambda-objective note + OLB/C weight-source report (2026-11-11T03:57–04:02Z; LOO re-run byte-identical; weight source: OLB 200-vs-150 = exactly 2 rows (OLB>ILB, OLB>SS), C = 0 rows; all five merged residuals guard-caused) · P-342 review (improved; toy kernel re-run matches exactly; Owner's ~10% bar + joint-fit lambda corrections) · P-326 localWins20 recheck (pushed 2a20ea80) · P-322 skill-profile design (97/105, REPORTED).
 
 ## Current work
 - **Claimed / in progress:** nothing.
-- **Done this session (2026-11-11T03:46Z):** the new-direction council prompt (`council-prompt-2026-11-11-new-direction.md`, option A):
-  - `inbox/20261111-0346-inkling-P-342-claude-design-review.md` — VERDICT **improved** (second seat; MUSE reviewed ok). Re-ran the toy kernel (matches exactly); verified engine-shape claims at `a0ddc584` (drives realise:88 / decompose:100, margin.ts quantile coupling, matchup.ts:29 softCap, rng.ts fork/forkSeed:8,38,42). **Two corrections (NEW vs MUSE):** (1) design §8/§13 still gates Phase 1 on 1%/3%/2% — the Owner's 11 Nov answer is ~10% + margin-GoF (target already in-repo: `_agents/data/nflverse-margins-ot-2020-2024.json`); (2) §12 "lambda from OVR-only data" is mis-scoped — lambda is identified from team-level channel outcome rates (nflverse, unattached, access untested) and must be a joint covariance-level/MLE fit validated on held-out seasons, not per-channel diagonal dispersion matching. Plus: Phase 0 gate lives in the Lab (product has no seeded RNG — P-031 open), the adapter is post-hoc emulation (parity = same box scores on seeded runs, not causal events), and an IDEA: pre-nflverse smoke tests from in-repo standings PF/PA (recomputed: n=160, PF mean 383.5, sd 71.1).
-  - commit `266fc69c`, pushed to council/inkling (ls-remote verified: d58c6b8a..266fc69c).
-  - Queue note for the next seat: MUSE's P-326 "formal recheck filing still owed" is already DONE by me — `inbox/20261110-0257-inkling-P-326-localwins20-recheck.md` (pushed 2a20ea80). Not mine to re-do (own work); MUSE/Architect can cross-check it. P-341 option B (Z.ai PLAYLED review) also already mine (`c12df62e`).
-- **Blocked / waiting on:** `node tools/council.mjs next` is effectively unusable on this checkout (its built-in `git fetch --depth=1` for all council/* + architect/* refs starved for >10 min under contention; I killed my own background run and read the queue + prompt directly instead). P-342 review chain now needs a third seat (or more) to reach REVIEWED. Claude's Phase 0/1 build; the nflverse data go (Owner).
+- **Done this session (2026-11-11T03:57–04:02Z, follow-up prompt `council-prompt-2026-11-11-followup-loo.md`):** the LOO + weight-source work on P-340:
+  - `inbox/20261111-0357-inkling-P-340-loo-review.md` — VERDICT **improved**, FOUND 6 / NEW 2. MUSE's LOO re-run byte-identical (194 held-out cases; ZAI-D1 1.13 OVR / 170/194; merged 1.44 / 172/194; fitted λ ≈ 0.19–0.20). Oracle verified (flex.json @ `97d7e9d`: 99 rules, tiers {0:23,2:10,6:43,12:23}; NICKEL/DIME appear only as destinations — script KeyErrors loudly if a future table sources them). Within-one-tier (new): ZAI-D1 97/97 at every λ in [0,0.40]; merged 96/97 (its one ≥2-tier miss is FB>RB). All five in-sample merged residuals are guard-caused, not ability.
+  - `inbox/20261111-0358-inkling-P-340-lambda-objective.md` — the Owner-facing lambda question: mean error (λ≈0.20) vs exact tiers (λ=0.40) vs within-one-tier (cannot discriminate λ; discriminates form — ability 97/97 vs merged 96/97). Recommend mean error, 0.40 recorded as the exact-tier alternative; either way λ must not be inherited unexamined.
+  - `inbox/20261111-0358-inkling-P-340-weight-source.md` — the OLB/C 200-vs-150 finding: sport-football.json's 200s are the decided-but-unlanded P-318 bump; slots.ts (live) and localWins20 are the 150-scale. OLB 200 recovers exactly OLB>ILB and OLB>SS (2 rows; 20/23 → 22/23 on the touched rules). **C 200 vs 150 = 0 rows** (C>OG residual under every source — ability 5.13→tier 6 exact, guard drags all three cases over the 9-cut). Correction of record: the prompt's "C>OG guard is 9.0 under the JSON" does not reproduce — 10.0 from the files (same tier, 12).
+  - committed+pushed as `15a112af` (council/inkling).
+  - Still owed by me / already mine: P-342 (done 266fc69c), P-341 (c12df62e), P-326 (2a20ea80). Do NOT redo these; the follow-up prompt lists D/E/F as open — they are not.
+- **Blocked / waiting on:** Owner's three P-340 rulings (objective; FB family outside guard; weight base + OLB scope WILL) — see the two 0358 files' defaults. The Ledger Phase 1 (Z.ai) has not landed; nflverse data go (Owner).
 
 ## What the next session needs
-- **Read first:** this file; `bulletin/20261111-0348-inkling.md`; `inbox/20261111-0346-inkling-P-342-claude-design-review.md`.
-- **Do not redo:** the toy-kernel run; the engine-shape greps (drives/margin/matchup/rng); the dispersion probe on the Madden 27 pool (QB 4.09 / OL 1.62 / ALL 1.01 sd across team means); the standings PF/PA recomputation (383.5 / 71.1).
-- **Watch:** whether Claude folds the two corrections (Owner's ~10% bar; joint-fit lambda) into the Phase 0/1 spec; the nflverse owner-go; any third-seat P-342 review (needs two different seats' ok/improved for REVIEWED; MUSE ok + mine improved).
-- **Prior session's facts (still valid):** engine pin 4ca9a071; P-322 97/105 REPORTED; P-296 NOT moved; P-333 matrix committed; seats do not share one forest root (cutover must re-create branches).
+- **Read first:** this file; `bulletin/20261111-0359-inkling.md`; the three P-340 inbox files (0357 review → within-one-tier; 0358-1 → the Owner's decision frame; 0358-2 → the full guard impact table).
+- **Do not redo:** the LOO re-run; the within-one-tier sweep; the 23-rule guard impact computation; the oracle flex.json verification.
+- **Watch:** the Owner's P-340 rulings; Z.ai's Ledger Phase 1 landing (then verify: PERS/DL5_SHARE/DIME_W, FB share, conservation test); P-339 (flexcensus re-run — still open, option H); Claude's Phase 0/1 build (timed out twice); any third-seat P-342 or P-340 review.
+- **Prior session's facts (still valid):** P-342 review filed (266fc69c); engine pin 4ca9a071; P-322 97/105 REPORTED; merge-base `1b91f50e`.
 
 ## Files in this lane
-- `deliveries/p326/localwins20-recheck.ts` · `deliveries/p333/formation-balance.mts` — runnable recheck scripts (usage headers inside).
+- `deliveries/p326/localwins20-recheck.ts` · `deliveries/p333/formation-balance.mts` — runnable recheck scripts.
 
 ## Role
 general advisor. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
 
 - **worktree:** `/Users/kosi/Desktop/wt/inkling` (must stay on `council/inkling`)
-- **branch:** `council/inkling` · tip `266fc69c` at this rewrite · `git merge-base HEAD origin/council/base` = `1b91f50e`
+- **branch:** `council/inkling` · tip `15a112af` at this rewrite · `git merge-base HEAD origin/council/base` = `1b91f50e`
