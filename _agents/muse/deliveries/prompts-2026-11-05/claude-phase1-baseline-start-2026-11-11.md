@@ -4,7 +4,7 @@
 
 ## Where you left off
 
-Phase 0 is done (`7b34a58`), and your NOW.md NEXT list is: (1) read the council answer, (2) migrate one consumer (recap or standings) to `foldLog`, (3) Phase 1 baseline, all λ = 0, gated on the ~10% totals bar. This prompt is job (1) + (3). Do the M0 fix first (separate prompt, `claude-phase0-m0-fix-2026-11-11.md`) — the baseline fits λ on the RNG's output, so the generator should be right before you fit on it.
+Phase 0 is done (`7b34a58`), and your NOW.md NEXT list is: (1) read the council answer, (2) migrate one consumer (recap or standings) to `foldLog`, (3) Phase 1 baseline, all λ = 0, gated on the ~10% totals bar. This prompt is job (1) + (3). (Note, added 2026-11-11: a Philox-multiplier question was raised against Phase 0 and resolved — no fix needed. The multiplier is the published Philox2x32 constant, verified against the Random123 KATs; the fix prompt drafted from the original finding has been withdrawn. The baseline fits λ on a correct generator.)
 
 ## What's new: the council answered (P-344)
 
