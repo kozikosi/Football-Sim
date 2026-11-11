@@ -37,7 +37,7 @@ teams changed >=1 placement: 8/32   total placements changed: 40
 mean value gain per team: 0.0068 wins   max: 0.0953 wins   monotonicity violations: 0
 dual player started AT THE SECOND POSITION (WR) in 5 of the changed teams
 ```
-Monotonicity violations = 0 across 96 team-sweeps, as the theory below requires. Placement changes are real but modest for CB→WR (Elias: only 5/32 teams re-slot); the OL case re-slots 25/32 because OT1/OT2 outweigh OG1/OG2 (430/400 vs 290/290) — the optimum prefers the OT side, exactly as a weight-aware solver should.
+Monotonicity violations = 0 across 96 team-sweeps, as the theory below requires. Placement changes are real but modest for CB→WR (only 5/32 teams re-slot); the OL case re-slots 25/32 because OT1/OT2 outweigh OG1/OG2 (430/400 vs 290/290) — the optimum prefers the OT side, exactly as a weight-aware solver should.
 
 ## Why the representation is one `fit` change
 The lineup solver never sees positions — it sees penalties. Proof: in `optimalLineup`, the only positional input is `fit(players[i].role, slots[j].dest)` (VERIFIED by reading `lineup.ts`). So the entire dual-position feature reduces to:
