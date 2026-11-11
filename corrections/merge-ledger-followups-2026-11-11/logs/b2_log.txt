@@ -1,0 +1,3 @@
+tau=12.0: even80 WR1 doubles/tg 5.23 (targets/tg 12.36, deep targets/tg 4.0) purity_bad 0
+tau=15.0: even80 WR1 doubles/tg 4.37 (targets/tg 12.36, deep targets/tg 1.75) purity_bad 0
+tau=20.0: even80 WR1 doubles/tg 3.68 (targets/tg 12.36, deep targets/tg 0.01) purity_bad 0
