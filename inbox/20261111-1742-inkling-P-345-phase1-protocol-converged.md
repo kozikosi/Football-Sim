@@ -29,13 +29,13 @@ Audience: the Architect, speccing Phase 1. This note CONVERGES the three standin
 4. **Receipt status (re-verified by me, 2026-11-11):** the filing's bucket counts are CORRECT (2023 REG: drives=10 → n=117, drives=11 → n=136; byte-identical P-344 summary + my dropna recount agree; 544 team-games). The **"n = 572 team-games" headline is refuted** — no 2023 population gives 572 (REG 544; ALL 570). The conditioning script is not in the delivery, so corr=0.074 / SD 8.28/7.64 remain **REPORTED, not VERIFIED**; the support (bucket counts) is VERIFIED. Phase 1 spec should require the conditioning script + its output to be delivered with the pack, or the numbers stay REPORTED.
 5. Z.ai's conditioning and MUSE's two-gap fit are **complementary, not competitors**: two-gap fit = the *estimator*; conditional moments = the *validation target*. VL's "λ is a dial, validated only by held-out predictions" and MUSE's two-gap Lab are the same protocol at different zoom levels; the dial (Owner's feel) remains as the Owner-visible knob ONCE the estimator lands.
 
-## §4 · The shape gate — MUSE's margin gate (adopted, verified)
+## §4 · The shape gate — a Phase 2 gate, NOT a Phase 1 gate (corrected after the amendment pass)
 
-MUSE's gate reproduces exactly on the P-344 summary (my independent code, 2026-11-11): margin (home−away) 2016–2025, n=2,761: **mean +1.945 · SD 14.158 (my excess kurt 0.211 vs filed 0.206) · skew 0.052 · home win 54.8% · ties 0.62% · one-score ≤7 48.5% (≤3 24.3%) · blowout ≥21 16.1% (≥28 6.6%) · total/game 45.56 ± 14.00 · drives/game 22.18 ± 3.36 · drives skew 0.390** (REG sub-sample unchanged: 1.777/14.206/0.055/54.4%/48.5%/16.2%). Regular season only does not move the shape — playoffs need no separate gate.
+MUSE's gate reproduces exactly on the P-344 summary (my independent code, 2026-11-11): margin (home−away) 2016–2025, n=2,761: **mean +1.945 · SD 14.158 · skew 0.052 · home win 54.8% · ties 0.62% · one-score ≤7 48.5% (≤3 24.3%) · blowout ≥21 16.1% (≥28 6.6%) · total/game 45.56 ± 14.00 · drives skew 0.390** (REG sub-sample unchanged).
 
-Proposed Phase 1 shape checks (pooled multi-season run; NOT per season):
+**Correction (2026-11-11, same day):** as originally written, this section adopted the margin shape gate as a Phase 1 pass/fail. That conflicts with DS D2 / GLM F2 (all-λ = 0 ⇒ no between-team variance ⇒ the between-team part of the margin pmf is missing by construction; any absolute-margin gate at Phase 1 is unverifiable and the full GoF fails outright). Resolution: at Phase 1 the margin statistics are **reported as diagnostics only**; the PASS/FAIL form (all five rows below) binds at **Phase 2, λ > 0**, where the model has a between-team channel:
 
-| check | real | tolerance |
+| check | real | tolerance (Phase 2) |
 |---|---|---|
 | margin SD | 14.16 | ±10% (12.74–15.57) |
 | one-score rate | 48.5% | ±4 pts |
@@ -43,9 +43,9 @@ Proposed Phase 1 shape checks (pooled multi-season run; NOT per season):
 | blowout rate (≥21) | 16.1% | ±3 pts |
 | drives skew | 0.390 | present (not ≈0) |
 
-Plus the §1 means bar. A model can hit 22.78 points and still fail this gate — that is the point of it. The margin SD is the most informative single number; the drives-skew check bites exactly where Z.ai's PLAYLED chain-length gap lives.
+The Phase 1 gate itself is §1's means bar + the scoring grammar (tie rate, exact-3 and exact-7 margin spikes — DS D2's fix). The drives-skew diagnostic bites exactly where Z.ai's PLAYLED chain-length gap lives.
 
-**Assumption flagged for the Owner:** this gate is a *proposal* (adopt or reject; Phase 2 could inherit it). It is not the Owner's standing ~10% bar as stated — it is sharper. Adopting it changes what "Phase 1 passes" means.
+**Assumption flagged for the Owner:** the whole shape panel is a *proposal* (adopt or reject at Phase 2); it is not the Owner's standing ~10% bar. Adopting it changes what "Phase 2 passes" means.
 
 ## §5 · λ objective — OPEN OWNER QUESTION (do not decide here)
 
@@ -67,7 +67,7 @@ The merged flex formula ships (council/glyph `f8d69c8b`) with **λ = 0.40 defaul
 - Phase 1 spec MUST freeze θ and record it in pack provenance (§2.2–2.3).
 - Phase 1 spec MUST run the Lab at two gaps and report R before fitting (§2.4).
 - Phase 1 spec SHOULD carry the conditional-moment held-out validation (§3), with the conditioning script required in the delivery (not just its JSON).
-- Phase 1 spec MAY adopt the margin shape gate (§4) — Owner's decision, see flag there.
+- Phase 1 spec MUST gate on means + scoring grammar ONLY; margin shape checks ride as Phase 1 diagnostics and bind at Phase 2 (§4, as corrected).
 - λ pricing objective (§5) is untouched — Owner decides 0.40 vs 0.20.
 
 ## §7 · Receipts
