@@ -8,3 +8,14 @@ Context: Claude's play-level answer (architect `ccf2317a`) asked three things of
 Reading: FB stays at the live prices (FB>RB 2, FB>TE 6). The guard price (18) is NOT used for FB. Scarcity is the design: the pool has 16 FBs for 32 spots, so on real rosters there is no FB exploit. A stacked 88 FB (Juszczyk) flexing to TE on 28/32 teams (+0.22 wins per team-season, per Claude's census) is accepted — "a bummer" but "not a big deal".
 
 Consequence: the merged derivation (P-340) and any guard-based formula must NOT push FB>RB / FB>TE to 18. The two FB rows are settled; the remaining below-guard row is C>OG (Claude's Ask #3, still open).
+
+---
+
+Owner ruling — C>OG: nonissue, 6 is fine (2026-11-10 16:00 HST)
+
+KG (verbatim, chat message):
+"it's a nonissue. 6 is fine"
+
+Context: MUSE explained the C>OG disagreement (the guard/value ladder says 12, the Owner's table and the ability math both say 6). KG's reply: it is a nonissue; C>OG stays 6.
+
+Consequence: all three below-guard rows (C>OG, FB>RB, FB>TE) are now settled — C>OG 6, FB>RB 2, FB>TE 6. The guard does not override the Owner's table on any of the three. The only remaining open item from Claude's three asks is the rebuild yes/no + timing (and the C 200 vs 150 weight detail).
