@@ -1,0 +1,19 @@
+Owner answers to Claude's four asks on the engine design (2026-11-11 17:09 HST)
+
+KG (verbatim, chat message):
+"why did he think this is the best direction?
+
+a) yes
+b) help me understand what i would say other than saying yes or no?
+c) basketball but not until we're done with football.
+d) not right now it's not important now"
+
+Context: Claude's engine design (architect `a0ddc584`) asks four things: (a) approve the direction and Phases 0 and 1; (b) the totals-bar tolerances in §8; (c) basketball or baseball as the second sport; (d) whether historical Madden ratings exist.
+
+Answers:
+(a) YES — the direction and Phases 0 and 1 are APPROVED. (Phase 0: kernel and contracts, old engine wrapped as legacy provider. Phase 1: football baseline, all lambda = 0, totals bar.)
+(b) QUESTION, not a ruling yet — KG asked MUSE to help him understand what he could say about the totals-bar tolerances other than yes or no. (The tolerances are the passing grade for Phase 1: points per team within 1%, drives within 3%, plays within 2%, margin pmf goodness-of-fit. See MUSE's explanation in chat.)
+(c) BASKETBALL as the second sport, BUT not until football is done. (Phase 4 uses basketball; deferred until the football engine is finished.)
+(d) Historical Madden ratings: NOT right now, NOT important now. (The lambda-identification risk proceeds without historical ratings; the "later join" is deferred.)
+
+Effect: Phases 0 and 1 are a GO. The second sport is basketball (deferred). Historical ratings are not a blocker. The totals-bar tolerances (b) are still open pending KG's decision after MUSE's explanation.
