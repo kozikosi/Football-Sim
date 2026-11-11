@@ -1,9 +1,9 @@
 # NOW (Architect)
-Updated: 2026-11-11. Boot-v3.8: Owner authorizes clone + bootstrap in chat; push needs `add_repo` access:"push" once (Owner "get push access", standing authorisation in the Project instructions).
-- DONE 10 Nov: flex floor + TE/ILB/OLB>FS (97d7e9d); 99 rules {0:23,2:10,6:43,12:23} Owner ACCEPTED; DL5 pinned (formation-gap test); flexgates, flexunify designs (read-only); HELD: Option B (TE/ILB/OLB>DIME, FB>TE).
-- DONE 11 Nov: ANSWERED MUSE's play-level question: `tools/mathlab/results/playlevel-answer-2026-11-10.md`. Verdict: play level does not fix flex (ability authored, value already measured); build a participation ledger + exploit census instead; play view only for gravity. Prototypes `flexcensus.mjs` (solver self-check 0 diff), `rolesurplus.mjs`.
-- VERIFIED census: live C>OT 12 => no centre flexes on real rosters; at 6, 5/32 teams (+0.012 wins); stacked elite C goes to OG 32/32 at C>OG 6. FB: 16 FBs for 32 spots, protection is scarcity; stacked 88 FB => TE on 28/32 (+0.22 wins) unless FB>TE 18.
-- Owner leans to a FULL REBUILD (11 Nov). My view is in section 10 of the answer: agree for portability/gravity, not as a flex fix; keep flex as a portable module; old engine = test oracle.
-- NEXT: Owner ruling on (1) rebuild yes/no and timing, (2) FB: scarcity vs guard 18, (3) the 3 below-guard rows (C>OG, FB>RB, FB>TE). Then ledger script (needs nflverse snap_counts + participation CSVs attached).
-- UNKNOWN: fixed-point price loop (census as oracle) not run; role weights differ between sport-football.json (C 200) and engine slots (C 150).
+Updated: 2026-11-11. Boot-v3.8 worked: clone + bootstrap needed one explicit Owner line after a classifier denial; push access granted via `add_repo` "push" (clone reused, no second clone).
+- DONE 11 Nov: Owner asked for the best long-term multisport engine, hybrid or full rebuild, cost no object. Wrote `tools/mathlab/results/engine-design-2026-11-11.md`: ONE play-level event-sourced model (duty-gap multinomial, keyed RNG, rules as data, model packs), two views (Monte Carlo + exact solver), delivered as a strangler; old engine = plumbing oracle only.
+- CHANGED my 10 Nov view: the 32-spot table is NOT a gate (Owner 8 Nov: engine input determines specs, curve is output). Rebuild is justified by portability and one source of truth, not by flex.
+- VERIFIED (toy, NOT football): `tools/mathlab/toykernel.mjs`; solver = simulator (z 0.62); solver derivative exact; pairing cuts pricing variance 3.0x, keyed+inverse CDF 3.8x (only 1.26x over paired sequential).
+- Rulings recorded: `claude/rulings/2026-11-11-owner-rebuild-direction.md` (FB scarcity, C>OG nonissue relayed by MUSE; REPORTED).
+- NEXT: Owner (1) approve the direction and Phases 0-1; (2) totals-bar tolerances (design section 8); (3) basketball or baseball as second sport; (4) historical Madden ratings exist? Then council ask for nflverse PBP/participation/snap counts (not sent; waits for the go).
+- UNKNOWN: whether the proxy lets the shell reach nflverse releases (untested); lambda identification from OVR-only data (largest risk); chain-solver pricing without score/clock state.
 - Blockers: tsc:check needs `npm ci` in colors/. Held (Owner): CI gate pick, hydration wiring. E3c flexengine not run. Pending Z.ai asks: P-308 FB/P/CB4 snaps, RNG landing plan, Rosetta keys.

@@ -1,0 +1,7 @@
+# toykernel.mjs output, 11 Nov 2026 (node v22.23.4). TOY PARAMETERS, NOT CALIBRATED: only ratios between estimators and the solver/simulator agreement mean anything.
+SOLVER  value of A at 1st&10 own 25 = 0.3722 net pts to next score; d/d(pass gap) = 0.16358  (sweeps 188/190/202, 17.7s, no noise)
+CHECK   simulator mean at neutral = 0.3794 +- 0.0116 (solver 0.3722; z = 0.62)
+MC      60 replicates x 4000 chains per world (6s); target d/d(pass gap) = 0.16358
+  unpaired sequential                  mean 0.16630  sd across replicates 0.03202  variance ratio vs unpaired 1.0x
+  paired sequential (variable draws)   mean 0.16135  sd across replicates 0.01837  variance ratio vs unpaired 3.0x
+  paired keyed + inverse CDF           mean 0.16611  sd across replicates 0.01633  variance ratio vs unpaired 3.8x
