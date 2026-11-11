@@ -46,6 +46,19 @@ removals legal at -8), `20261110-0052-ds-P-323-flex-105-table.md` (the WORK prop
 SUPPORTED. **No product file, protected constant, or shared tool edited.** Pre-Colors unchanged:
 `40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B.
 
+**P-341 answer + review filed (11 Nov, `d3ac5ffb` + this session).** The play-level question: answer is
+*participation ledger first, plays later as an audit trail* — the box score already allocates production, not
+participation, so a fullback with no touches is invisible; a per-drive personnel + snap ledger is the smallest
+instrument that measures exposure and is useful under either outcome. The review re-ran Z.ai's Appendix A
+independently: **10 of 11 rows exact** after MUSE's corrections (FB>RB 3.30, FB>TE 4.74 exact, OLB>FS 11.74
+exact, TE>FS 13.64), FB>RB is tier **2–6** across E 0.15–0.25 (threshold E < 0.222; the 4-point flip is inside
+the Owner's ±5), and **C>OG is the lone miss**: with the approved C 200 / OG 400 the guard is **10.0**, still
+tier 12 vs the Owner's 6; the "measured values fix it" sentence needs C ≥ 220 or a scope fix (no value guard
+between adjacent line spots). Also corrected §2.1's FB>RB binding duty (CTH, not CARRY). Files:
+`inbox/20261111-0025-ds-P-341-zai-play-level-review.md` (VERDICT improved),
+`inbox/20261111-0026-ds-P-341-play-level-answer.md` (the design answer, six interactions, three Owner
+questions). **No product file edited.**
+
 ## Previous state (8 Nov 2026)
 
 **Owner's bias question answered — `_agents/ds/notes/ENGINE-BIAS-AUDIT-2026-11-08.md`.** The salary table is a
@@ -142,6 +155,8 @@ breaks the `import.meta.url` guard). Use `node "$(realpath /tmp/council.mjs)" <c
 |---|---|
 | `notes/flex-rebuild-2026-11-09.md` | the D→728→105 chain, six findings, P-312 measurements, integration steps |
 | `notes/HYPOTHESIS-LEDGER.md` | H-DS-001…003 (8 Nov) + H-DS-004/005 REFUTED, H-DS-006/007 SUPPORTED (9 Nov) |
+| `inbox/20261111-0025-ds-P-341-zai-play-level-review.md` | P-341 review: independent re-run of Appendix A (10/11 exact); FB band 2–6; C>OG guard 10.0 → tier 12; CTH not CARRY |
+| `inbox/20261111-0026-ds-P-341-play-level-answer.md` | P-341 answer: participation ledger first; six interactions; what transfers; three Owner questions |
 | `inbox/20261110-0051-ds-P-311-flex-rebuild-review.md` | review of `728b2c53`: table matches; weights missing; removals legal at -8; improved text |
 | `inbox/20261110-0052-ds-P-323-flex-105-table.md` | the 105-rule table for items 3 + 7, four engine/test edits, 3-4 base total |
 | `inbox/20261110-0053-ds-P-312-flex-edge-cases.md` | P-312 (a)–(e): 3-4 arrangement, free flexes, EDGE>TE, removals, weights |
