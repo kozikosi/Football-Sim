@@ -1,0 +1,389 @@
+{
+  "files": {
+    "play_by_play_2016.parquet": {
+      "rows": 47651,
+      "columns": 372,
+      "seasons_in_file": [
+        2016
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2017.parquet": {
+      "rows": 47245,
+      "columns": 372,
+      "seasons_in_file": [
+        2017
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2018.parquet": {
+      "rows": 47109,
+      "columns": 372,
+      "seasons_in_file": [
+        2018
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2019.parquet": {
+      "rows": 47260,
+      "columns": 372,
+      "seasons_in_file": [
+        2019
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2020.parquet": {
+      "rows": 47705,
+      "columns": 372,
+      "seasons_in_file": [
+        2020
+      ],
+      "games": 269,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2021.parquet": {
+      "rows": 49922,
+      "columns": 372,
+      "seasons_in_file": [
+        2021
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2022.parquet": {
+      "rows": 49434,
+      "columns": 372,
+      "seasons_in_file": [
+        2022
+      ],
+      "games": 284,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2023.parquet": {
+      "rows": 49665,
+      "columns": 372,
+      "seasons_in_file": [
+        2023
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2024.parquet": {
+      "rows": 49492,
+      "columns": 372,
+      "seasons_in_file": [
+        2024
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "play_by_play_2025.parquet": {
+      "rows": 48771,
+      "columns": 372,
+      "seasons_in_file": [
+        2025
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "pbp_participation_2016.parquet": {
+      "rows": 48434,
+      "columns": 20,
+      "seasons_in_file": [
+        2016
+      ],
+      "games": 267,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2017.parquet": {
+      "rows": 47998,
+      "columns": 20,
+      "seasons_in_file": [
+        2017
+      ],
+      "games": 267,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2018.parquet": {
+      "rows": 47875,
+      "columns": 20,
+      "seasons_in_file": [
+        2018
+      ],
+      "games": 267,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2019.parquet": {
+      "rows": 48034,
+      "columns": 20,
+      "seasons_in_file": [
+        2019
+      ],
+      "games": 267,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2020.parquet": {
+      "rows": 48513,
+      "columns": 20,
+      "seasons_in_file": [
+        2020
+      ],
+      "games": 269,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2021.parquet": {
+      "rows": 50714,
+      "columns": 20,
+      "seasons_in_file": [
+        2021
+      ],
+      "games": 285,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2022.parquet": {
+      "rows": 50150,
+      "columns": 20,
+      "seasons_in_file": [
+        2022
+      ],
+      "games": 284,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2023.parquet": {
+      "rows": 46168,
+      "columns": 26,
+      "seasons_in_file": [
+        2023
+      ],
+      "games": 285,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2024.parquet": {
+      "rows": 45919,
+      "columns": 26,
+      "seasons_in_file": [
+        2024
+      ],
+      "games": 285,
+      "game_id_column": "nflverse_game_id"
+    },
+    "pbp_participation_2025.parquet": {
+      "rows": 45184,
+      "columns": 26,
+      "seasons_in_file": [
+        2025
+      ],
+      "games": 285,
+      "game_id_column": "nflverse_game_id"
+    },
+    "snap_counts_2016.parquet": {
+      "rows": 23890,
+      "columns": 16,
+      "seasons_in_file": [
+        2016
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2017.parquet": {
+      "rows": 23862,
+      "columns": 16,
+      "seasons_in_file": [
+        2017
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2018.parquet": {
+      "rows": 23877,
+      "columns": 16,
+      "seasons_in_file": [
+        2018
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2019.parquet": {
+      "rows": 23862,
+      "columns": 16,
+      "seasons_in_file": [
+        2019
+      ],
+      "games": 267,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2020.parquet": {
+      "rows": 24999,
+      "columns": 16,
+      "seasons_in_file": [
+        2020
+      ],
+      "games": 269,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2021.parquet": {
+      "rows": 26468,
+      "columns": 16,
+      "seasons_in_file": [
+        2021
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2022.parquet": {
+      "rows": 26381,
+      "columns": 16,
+      "seasons_in_file": [
+        2022
+      ],
+      "games": 284,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2023.parquet": {
+      "rows": 26540,
+      "columns": 16,
+      "seasons_in_file": [
+        2023
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2024.parquet": {
+      "rows": 26615,
+      "columns": 16,
+      "seasons_in_file": [
+        2024
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    },
+    "snap_counts_2025.parquet": {
+      "rows": 26613,
+      "columns": 16,
+      "seasons_in_file": [
+        2025
+      ],
+      "games": 285,
+      "game_id_column": "game_id"
+    }
+  },
+  "missing_fields": {
+    "pbp_2025": [],
+    "participation_2025": [],
+    "snap_counts_2025": [
+      "season_type"
+    ],
+    "pbp_by_year": {},
+    "participation_by_year": {},
+    "snap_counts_by_year": {
+      "2016": [
+        "season_type"
+      ],
+      "2017": [
+        "season_type"
+      ],
+      "2018": [
+        "season_type"
+      ],
+      "2019": [
+        "season_type"
+      ],
+      "2020": [
+        "season_type"
+      ],
+      "2021": [
+        "season_type"
+      ],
+      "2022": [
+        "season_type"
+      ],
+      "2023": [
+        "season_type"
+      ],
+      "2024": [
+        "season_type"
+      ],
+      "2025": [
+        "season_type"
+      ]
+    }
+  },
+  "notes": [],
+  "pbp_optional_cols_2025": {
+    "punt_attempt": true,
+    "kickoff_attempt": true,
+    "kickoff_returner_player_id": true,
+    "drive_game_clock_start": true,
+    "drive_game_clock_end": true,
+    "drive_time_of_possession": true,
+    "drive_play_count": true,
+    "drive_start_yard_line": true,
+    "drive_end_transition": true,
+    "penalty_team": true,
+    "penalty_yards": true,
+    "old_game_id": true,
+    "total_home_score": true,
+    "total_away_score": true,
+    "desc": true,
+    "play_id": true
+  },
+  "part_optional_cols_2025": {
+    "offense_players": true,
+    "defense_players": true,
+    "offense_formation": true,
+    "defense_formation": false
+  },
+  "games_per_season": {
+    "2016": {
+      "REG": 256,
+      "POST": 11
+    },
+    "2017": {
+      "REG": 256,
+      "POST": 11
+    },
+    "2018": {
+      "REG": 256,
+      "POST": 11
+    },
+    "2019": {
+      "REG": 256,
+      "POST": 11
+    },
+    "2020": {
+      "REG": 256,
+      "POST": 13
+    },
+    "2021": {
+      "REG": 272,
+      "POST": 13
+    },
+    "2022": {
+      "REG": 271,
+      "POST": 13
+    },
+    "2023": {
+      "REG": 272,
+      "POST": 13
+    },
+    "2024": {
+      "REG": 272,
+      "POST": 13
+    },
+    "2025": {
+      "REG": 272,
+      "POST": 13
+    }
+  },
+  "totals": {
+    "pbp_rows": 484254,
+    "part_rows": 478989,
+    "snap_rows": 253107,
+    "team_games_full": 5522,
+    "team_games_nopenalty": 5522
+  }
+}
