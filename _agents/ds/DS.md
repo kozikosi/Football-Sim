@@ -157,6 +157,7 @@ breaks the `import.meta.url` guard). Use `node "$(realpath /tmp/council.mjs)" <c
 | `notes/HYPOTHESIS-LEDGER.md` | H-DS-001…003 (8 Nov) + H-DS-004/005 REFUTED, H-DS-006/007 SUPPORTED (9 Nov) |
 | `inbox/20261111-0025-ds-P-341-zai-play-level-review.md` | P-341 review: independent re-run of Appendix A (10/11 exact); FB band 2–6; C>OG guard 10.0 → tier 12; CTH not CARRY |
 | `inbox/20261111-0026-ds-P-341-play-level-answer.md` | P-341 answer: participation ledger first; six interactions; what transfers; three Owner questions |
+| `inbox/20261111-0034-ds-P-341-pickle-answer-review.md` | review of Pickle's answer: 15 rows re-run and confirmed; per-slot C>OG needs an Owner decision (single rule vs OG1/OG2 split) |
 | `inbox/20261110-0051-ds-P-311-flex-rebuild-review.md` | review of `728b2c53`: table matches; weights missing; removals legal at -8; improved text |
 | `inbox/20261110-0052-ds-P-323-flex-105-table.md` | the 105-rule table for items 3 + 7, four engine/test edits, 3-4 base total |
 | `inbox/20261110-0053-ds-P-312-flex-edge-cases.md` | P-312 (a)–(e): 3-4 arrangement, free flexes, EDGE>TE, removals, weights |
