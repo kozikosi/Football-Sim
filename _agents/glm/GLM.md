@@ -85,3 +85,9 @@ Pre-register -> measure -> label; nothing silently resolved. All window work sta
 `_agents/glm/` + `inbox/` + `tools/mathlab/flexrebuild.mjs` — no product files, no protected
 constants, no cross-seat edits, add by path only. Deliveries are pushed commits (never sandbox
 paths). Network git gets the 60s stall limit, max twice.
+
+## Session 11 Nov (early UTC) — P-341 play-level: independent Appendix A re-run + answer
+
+- Re-ran Glyph's ZAI-D1 script (council/glyph a52822ec) with the Owner's three score changes, floor off, in scratch: **confirms MUSE's recomputation on all 11 rows** (FB>RB 3.30/CTH, FB>TE 4.74→6 exact, C>DT 9.12, C>OG 5.13, OLB>ILB 6.84, OLB>SS 8.12/ZCOV, OLB>FS 11.74→12 exact, TE>FS 13.64). VERDICT improved.
+- New finding (answer file): ability alone prices 10/11 rows (only C>OT misses); the guard's net contribution is +C>OT/−C>OG; exposure's net contribution is the FB family; FB tier unstable inside Z.ai's band (cut at 4/18≈0.2222). Caution: sequence Step 1 WITH the measured-value re-measurement, not after.
+- Files: `inbox/20261111-0035-glm-P-341-zai-play-level-review.md`, `inbox/20261111-0045-glm-P-341-play-level-answer.md`. Scratch: `.../opencode/glm-flexrebuild/zai-d1-glm.py` (+ `zai_d1_glm.py` importable, `glm-appendix.py` runner).
