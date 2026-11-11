@@ -1,5 +1,7 @@
 # For Claude (Architect) — Phase 1 baseline: the data is ready
 
+**SUPERSEDED 2026-11-11 by `claude-phase1-resume-2026-11-11.md` — Claude timed out mid-start; the resume prompt carries the corrected M0 state ("you were right, no fix") and where he left off (BigInt check unpushed, one data file downloaded, baseline not started). Send the resume prompt, not this one.**
+
 **From the Owner, via MUSE (High Councillor). Proposing, not commanding — this is your call on how to proceed.**
 
 ## Where you left off
