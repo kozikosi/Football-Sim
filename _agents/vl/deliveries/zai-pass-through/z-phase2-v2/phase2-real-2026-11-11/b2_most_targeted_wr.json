@@ -1,0 +1,52 @@
+{
+ "2016": {
+  "most_targeted_WR_targets_per_tg": 7.9,
+  "most_targeted_WR_deep15_per_tg": 2.16,
+  "n_teams": 30
+ },
+ "2017": {
+  "most_targeted_WR_targets_per_tg": 7.31,
+  "most_targeted_WR_deep15_per_tg": 2.04,
+  "n_teams": 31
+ },
+ "2018": {
+  "most_targeted_WR_targets_per_tg": 7.28,
+  "most_targeted_WR_deep15_per_tg": 1.96,
+  "n_teams": 31
+ },
+ "2019": {
+  "most_targeted_WR_targets_per_tg": 7.36,
+  "most_targeted_WR_deep15_per_tg": 1.99,
+  "n_teams": 31
+ },
+ "2020": {
+  "most_targeted_WR_targets_per_tg": 7.23,
+  "most_targeted_WR_deep15_per_tg": 1.82,
+  "n_teams": 32
+ },
+ "2021": {
+  "most_targeted_WR_targets_per_tg": 7.25,
+  "most_targeted_WR_deep15_per_tg": 1.89,
+  "n_teams": 32
+ },
+ "2022": {
+  "most_targeted_WR_targets_per_tg": 7.18,
+  "most_targeted_WR_deep15_per_tg": 1.9,
+  "n_teams": 32
+ },
+ "2023": {
+  "most_targeted_WR_targets_per_tg": 7.55,
+  "most_targeted_WR_deep15_per_tg": 2.15,
+  "n_teams": 32
+ },
+ "2024": {
+  "most_targeted_WR_targets_per_tg": 6.97,
+  "most_targeted_WR_deep15_per_tg": 2.01,
+  "n_teams": 32
+ },
+ "2025": {
+  "most_targeted_WR_targets_per_tg": 6.7,
+  "most_targeted_WR_deep15_per_tg": 1.85,
+  "n_teams": 32
+ }
+}

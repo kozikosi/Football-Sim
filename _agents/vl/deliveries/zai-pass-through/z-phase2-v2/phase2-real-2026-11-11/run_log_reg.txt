@@ -1,0 +1,51 @@
+mode: REAL DATA — nflverse P-344 release, 30/30 files sha256-verified against the manifest; basis: regular season only (game_type=REG)
+loader equivalence vs shipped map_spots on SYNTHETIC: max diff 0.000000 () -> PASS
+POOLED 2016-2025 spot comparison: 1/30 within ±3 pts
+   DE2: real 0.403 vs staged 1.000  delta -59.7 pts OVER
+   DE1: real 0.576 vs staged 1.000  delta -42.4 pts OVER
+   OG2: real 0.623 vs staged 1.000  delta -37.7 pts OVER
+   TE1: real 0.628 vs staged 1.000  delta -37.2 pts OVER
+   OT2: real 0.661 vs staged 1.000  delta -33.9 pts OVER
+   WR1: real 0.689 vs staged 1.000  delta -31.1 pts OVER
+   CB2: real 0.694 vs staged 1.000  delta -30.6 pts OVER
+   DL5: real 0.023 vs staged 0.311  delta -28.8 pts OVER
+   DT2: real 0.415 vs staged 0.689  delta -27.4 pts OVER
+   RB1: real 0.524 vs staged 0.780  delta -25.6 pts OVER
+
+B1 DIME (dime = >=6 DBs, from participation personnel_d) by season vs staged 0.0694:
+  2016: base 0.294 nickel 0.561 dime 0.125 (strict6 0.121) DL5>=5DL 0.015 unknown_d 13/32391
+  2017: base 0.326 nickel 0.521 dime 0.136 (strict6 0.126) DL5>=5DL 0.012 unknown_d 3/32068
+  2018: base 0.246 nickel 0.603 dime 0.141 (strict6 0.130) DL5>=5DL 0.014 unknown_d 0/31880
+  2019: base 0.268 nickel 0.559 dime 0.159 (strict6 0.150) DL5>=5DL 0.019 unknown_d 0/32157
+  2020: base 0.238 nickel 0.598 dime 0.147 (strict6 0.137) DL5>=5DL 0.030 unknown_d 0/32575
+  2021: base 0.235 nickel 0.615 dime 0.138 (strict6 0.134) DL5>=5DL 0.023 unknown_d 1/34139
+  2022: base 0.251 nickel 0.627 dime 0.106 (strict6 0.098) DL5>=5DL 0.025 unknown_d 0/33770
+  2023: base 0.208 nickel 0.665 dime 0.117 (strict6 0.109) DL5>=5DL 0.034 unknown_d 0/33957
+  2024: base 0.232 nickel 0.656 dime 0.100 (strict6 0.097) DL5>=5DL 0.024 unknown_d 0/33470
+  2025: base 0.295 nickel 0.597 dime 0.094 (strict6 0.091) DL5>=5DL 0.033 unknown_d 0/32941
+
+B3 FB play share by season vs staged 0.1265:
+  2016: 0.1426
+  2017: 0.1259
+  2018: 0.0881
+  2019: 0.0899
+  2020: 0.0996
+  2021: 0.0898
+  2022: 0.0952
+  2023: 0.0852
+  2024: 0.0819
+  2025: 0.0814
+
+B2 WR1 deep targets/team-game by season:
+  2016: deep12 2.85 deep15 2.15 deep20 1.17  targets/tg 7.6  conc 0.633
+  2017: deep12 2.97 deep15 2.24 deep20 1.32  targets/tg 7.2  conc 0.645
+  2018: deep12 2.80 deep15 2.09 deep20 1.23  targets/tg 7.2  conc 0.677
+  2019: deep12 3.03 deep15 2.19 deep20 1.32  targets/tg 7.7  conc 0.71
+  2020: deep12 2.71 deep15 2.03 deep20 1.21  targets/tg 7.1  conc 0.656
+  2021: deep12 2.78 deep15 2.09 deep20 1.35  targets/tg 7.5  conc 0.75
+  2022: deep12 2.82 deep15 2.06 deep20 1.20  targets/tg 7.3  conc 0.719
+  2023: deep12 2.83 deep15 2.17 deep20 1.31  targets/tg 7.5  conc 0.781
+  2024: deep12 2.77 deep15 2.12 deep20 1.21  targets/tg 7.0  conc 0.719
+  2025: deep12 2.69 deep15 2.03 deep20 1.14  targets/tg 7.0  conc 0.719
+
+wrote /home/z/my-project/work/phase2-real-2026-11-11/phase2_real_results_reg.json
