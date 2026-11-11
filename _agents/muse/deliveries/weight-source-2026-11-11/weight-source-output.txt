@@ -1,0 +1,41 @@
+cross-role pairs: 97
+
+=== Ratio check (measured localWins20 vs the two input sources) ===
+  C/OG: measured 0.375 | slots.ts (150/400) 0.375 | sport-football (200/400) 0.500
+  OLB/ILB: measured 0.498 | slots.ts (150/300) 0.500 | sport-football (200/300) 0.667
+  C/OT: measured 0.300 | slots.ts (150/500) 0.300 | sport-football (200/500) 0.400
+  OLB/SS: measured 0.501 | slots.ts (150/300) 0.500 | sport-football (200/300) 0.667
+
+=== Guard tier differences between weight sources ===
+  rows where the guard tier differs between sources: 12
+  RB>SS: owner 12 | sport-football G 3.33 -> tier 2 | slots.ts G 3.33 -> tier 2 | measured G 4.47 -> tier 6
+  RB>FS: owner 12 | sport-football G 3.33 -> tier 2 | slots.ts G 3.33 -> tier 2 | measured G 4.48 -> tier 6
+  TE>ILB: owner 12 | sport-football G 3.33 -> tier 2 | slots.ts G 3.33 -> tier 2 | measured G 4.42 -> tier 6
+  TE>SS: owner 6 | sport-football G 3.33 -> tier 2 | slots.ts G 3.33 -> tier 2 | measured G 4.33 -> tier 6
+  TE>FS: owner 12 | sport-football G 3.33 -> tier 2 | slots.ts G 3.33 -> tier 2 | measured G 4.34 -> tier 6
+  OT>DT: owner 6 | sport-football G 0.00 -> tier 0 | slots.ts G 0.00 -> tier 0 | measured G 1.00 -> tier 2
+  OG>DT: owner 6 | sport-football G 4.00 -> tier 2 | slots.ts G 4.00 -> tier 2 | measured G 4.80 -> tier 6
+  OLB>ILB: owner 6 | sport-football G 6.67 -> tier 6 | slots.ts G 10.00 -> tier 12 | measured G 10.04 -> tier 12
+  OLB>SS: owner 6 | sport-football G 6.67 -> tier 6 | slots.ts G 10.00 -> tier 12 | measured G 9.98 -> tier 12
+  OLB>TE: owner 6 | sport-football G 4.00 -> tier 2 | slots.ts G 8.00 -> tier 6 | measured G 7.22 -> tier 6
+  OLB>FS: owner 12 | sport-football G 6.67 -> tier 6 | slots.ts G 10.00 -> tier 12 | measured G 9.99 -> tier 12
+  P>K: owner 2 | sport-football G 0.00 -> tier 0 | slots.ts G 0.00 -> tier 0 | measured G 1.40 -> tier 2
+  rows where the guard value differs but the tier is the same: 4
+  C>OG: owner 6 | sport-football G 10.00 | slots.ts G 12.50 (same tier 12)
+  C>OT: owner 12 | sport-football G 12.00 | slots.ts G 14.00 (same tier 12)
+  C>DT: owner 12 | sport-football G 12.00 | slots.ts G 14.00 (same tier 12)
+  OLB>EDGE: owner 12 | sport-football G 13.85 | slots.ts G 15.38 (same tier 12)
+
+=== All rows with C or OLB as source (guard under each source) ===
+  C>OG: owner 6 | sport-football G 10.00 (tier 12) | slots.ts G 12.50 (tier 12) | measured G 12.50 (tier 12)
+  C>OT: owner 12 | sport-football G 12.00 (tier 12) | slots.ts G 14.00 (tier 12) | measured G 14.00 (tier 12)
+  C>DT: owner 12 | sport-football G 12.00 (tier 12) | slots.ts G 14.00 (tier 12) | measured G 14.30 (tier 12)
+  C>FB: owner 0 | sport-football G 0.00 (tier 0) | slots.ts G 0.00 (tier 0) | measured G 0.00 (tier 0)
+  OLB>ILB: owner 6 | sport-football G 6.67 (tier 6) | slots.ts G 10.00 (tier 12) | measured G 10.04 (tier 12)
+  OLB>EDGE: owner 12 | sport-football G 13.85 (tier 12) | slots.ts G 15.38 (tier 12) | measured G 15.38 (tier 12)
+  OLB>SS: owner 6 | sport-football G 6.67 (tier 6) | slots.ts G 10.00 (tier 12) | measured G 9.98 (tier 12)
+  OLB>FB: owner 0 | sport-football G 0.00 (tier 0) | slots.ts G 0.00 (tier 0) | measured G 0.00 (tier 0)
+  OLB>TE: owner 6 | sport-football G 4.00 (tier 2) | slots.ts G 8.00 (tier 6) | measured G 7.22 (tier 6)
+  OLB>NICKEL: owner 6 | sport-football G 0.00 (tier 0) | slots.ts G 0.00 (tier 0) | measured G 0.00 (tier 0)
+  OLB>DIME: owner 12 | sport-football G 0.00 (tier 0) | slots.ts G 0.00 (tier 0) | measured G 0.00 (tier 0)
+  OLB>FS: owner 12 | sport-football G 6.67 (tier 6) | slots.ts G 10.00 (tier 12) | measured G 9.99 (tier 12)
