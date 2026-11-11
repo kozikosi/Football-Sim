@@ -1,0 +1,711 @@
+{
+ "mode": "SYNTHETIC self-test (no real data attached; nothing was fetched)",
+ "note": null,
+ "synthetic_files": {
+  "snaps": "synthetic_snap_counts.csv",
+  "pbp": "synthetic_pbp.csv",
+  "label": "SYNTHETIC \u2014 generated from the staged shares + seeded noise; not real football"
+ },
+ "spot_comparison": {
+  "tolerance_pts": 3.0,
+  "n_spots": 30,
+  "n_within": 30,
+  "rows": [
+   {
+    "spot": "CB2",
+    "real": 0.9753,
+    "staged": 1.0,
+    "delta_pts": -2.47,
+    "within_tol": true
+   },
+   {
+    "spot": "CB1",
+    "real": 1.0204,
+    "staged": 1.0,
+    "delta_pts": 2.04,
+    "within_tol": true
+   },
+   {
+    "spot": "SS",
+    "real": 1.0125,
+    "staged": 1.0,
+    "delta_pts": 1.25,
+    "within_tol": true
+   },
+   {
+    "spot": "OT2",
+    "real": 1.0124,
+    "staged": 1.0,
+    "delta_pts": 1.24,
+    "within_tol": true
+   },
+   {
+    "spot": "FS",
+    "real": 0.9894,
+    "staged": 1.0,
+    "delta_pts": -1.06,
+    "within_tol": true
+   },
+   {
+    "spot": "DT2",
+    "real": 0.6793,
+    "staged": 0.6889,
+    "delta_pts": -0.96,
+    "within_tol": true
+   },
+   {
+    "spot": "TE1",
+    "real": 0.991,
+    "staged": 1.0,
+    "delta_pts": -0.9,
+    "within_tol": true
+   },
+   {
+    "spot": "RB1",
+    "real": 0.7709,
+    "staged": 0.7798,
+    "delta_pts": -0.89,
+    "within_tol": true
+   },
+   {
+    "spot": "TE3",
+    "real": 0.0813,
+    "staged": 0.0897,
+    "delta_pts": -0.84,
+    "within_tol": true
+   },
+   {
+    "spot": "C",
+    "real": 1.0071,
+    "staged": 1.0,
+    "delta_pts": 0.71,
+    "within_tol": true
+   },
+   {
+    "spot": "WR2",
+    "real": 0.8726,
+    "staged": 0.8675,
+    "delta_pts": 0.51,
+    "within_tol": true
+   },
+   {
+    "spot": "DL5",
+    "real": 0.316,
+    "staged": 0.3111,
+    "delta_pts": 0.5,
+    "within_tol": true
+   },
+   {
+    "spot": "OT1",
+    "real": 0.9951,
+    "staged": 1.0,
+    "delta_pts": -0.49,
+    "within_tol": true
+   },
+   {
+    "spot": "MIKE",
+    "real": 1.0045,
+    "staged": 1.0,
+    "delta_pts": 0.45,
+    "within_tol": true
+   },
+   {
+    "spot": "OG2",
+    "real": 1.0042,
+    "staged": 1.0,
+    "delta_pts": 0.42,
+    "within_tol": true
+   },
+   {
+    "spot": "QB",
+    "real": 1.0031,
+    "staged": 1.0,
+    "delta_pts": 0.31,
+    "within_tol": true
+   },
+   {
+    "spot": "DE1",
+    "real": 1.0024,
+    "staged": 1.0,
+    "delta_pts": 0.24,
+    "within_tol": true
+   },
+   {
+    "spot": "OG1",
+    "real": 0.9978,
+    "staged": 1.0,
+    "delta_pts": -0.22,
+    "within_tol": true
+   },
+   {
+    "spot": "WILL",
+    "real": 0.9284,
+    "staged": 0.9306,
+    "delta_pts": -0.22,
+    "within_tol": true
+   },
+   {
+    "spot": "DIME",
+    "real": 0.0714,
+    "staged": 0.0694,
+    "delta_pts": 0.21,
+    "within_tol": true
+   },
+   {
+    "spot": "SAM",
+    "real": 0.3827,
+    "staged": 0.3806,
+    "delta_pts": 0.21,
+    "within_tol": true
+   },
+   {
+    "spot": "CB3",
+    "real": 0.6174,
+    "staged": 0.6194,
+    "delta_pts": -0.2,
+    "within_tol": true
+   },
+   {
+    "spot": "WR1",
+    "real": 1.0019,
+    "staged": 1.0,
+    "delta_pts": 0.19,
+    "within_tol": true
+   },
+   {
+    "spot": "DT1",
+    "real": 1.0016,
+    "staged": 1.0,
+    "delta_pts": 0.16,
+    "within_tol": true
+   },
+   {
+    "spot": "DE2",
+    "real": 0.9985,
+    "staged": 1.0,
+    "delta_pts": -0.15,
+    "within_tol": true
+   },
+   {
+    "spot": "WR4",
+    "real": 0.2037,
+    "staged": 0.2026,
+    "delta_pts": 0.11,
+    "within_tol": true
+   },
+   {
+    "spot": "FB",
+    "real": 0.1256,
+    "staged": 0.1264,
+    "delta_pts": -0.09,
+    "within_tol": true
+   },
+   {
+    "spot": "TE2",
+    "real": 0.1999,
+    "staged": 0.2007,
+    "delta_pts": -0.09,
+    "within_tol": true
+   },
+   {
+    "spot": "RB2",
+    "real": 0.3068,
+    "staged": 0.306,
+    "delta_pts": 0.08,
+    "within_tol": true
+   },
+   {
+    "spot": "WR3",
+    "real": 0.4266,
+    "staged": 0.4272,
+    "delta_pts": -0.05,
+    "within_tol": true
+   }
+  ]
+ },
+ "package_comparison": {
+  "staged_pkg_share": {
+   "11": 0.6298,
+   "12": 0.1237,
+   "13": 0.0343,
+   "21": 0.114,
+   "22": 0.0982
+  },
+  "real_pkg_share": {
+   "11": 0.6273,
+   "12": 0.1271,
+   "13": 0.0352,
+   "21": 0.1121,
+   "22": 0.0982
+  },
+  "staged_pkg_run": {
+   "11": 0.2689,
+   "12": 0.5501,
+   "13": 0.6009,
+   "21": 0.6631,
+   "22": 0.6298
+  },
+  "real_pkg_run": {
+   "11": 0.2674,
+   "12": 0.5485,
+   "13": 0.5949,
+   "21": 0.6689,
+   "22": 0.6289
+  },
+  "staged_dpkg_share": {
+   "base": 0.3806,
+   "nickel": 0.55,
+   "dime": 0.0694
+  },
+  "real_dpkg_share": {
+   "base": 0.383,
+   "dime": 0.0698,
+   "nickel": 0.5472
+  },
+  "unknown_personnel_rows": {
+   "personnel_o": 0,
+   "personnel_d": 0
+  },
+  "run_rate_abs_diff": {
+   "11": 0.0015,
+   "12": 0.0016,
+   "13": 0.006,
+   "21": 0.0058,
+   "22": 0.0009
+  }
+ },
+ "mapping_spec": {
+  "spots": {
+   "QB": [
+    [
+     "QB"
+    ],
+    "the only QB"
+   ],
+   "RB1": [
+    [
+     "HB",
+     "RB"
+    ],
+    "most offensive snaps among RBs"
+   ],
+   "RB2": [
+    [
+     "HB",
+     "RB"
+    ],
+    "2nd"
+   ],
+   "FB": [
+    [
+     "FB"
+    ],
+    "FB snaps"
+   ],
+   "WR1": [
+    [
+     "WR"
+    ],
+    "most offensive snaps among WRs"
+   ],
+   "WR2": [
+    [
+     "WR"
+    ],
+    "2nd"
+   ],
+   "WR3": [
+    [
+     "WR"
+    ],
+    "3rd"
+   ],
+   "WR4": [
+    [
+     "WR"
+    ],
+    "4th"
+   ],
+   "TE1": [
+    [
+     "TE"
+    ],
+    "most offensive snaps among TEs"
+   ],
+   "TE2": [
+    [
+     "TE"
+    ],
+    "2nd"
+   ],
+   "TE3": [
+    [
+     "TE"
+    ],
+    "3rd"
+   ],
+   "OT1": [
+    [
+     "LT",
+     "RT"
+    ],
+    "most OT snaps"
+   ],
+   "OT2": [
+    [
+     "LT",
+     "RT"
+    ],
+    "2nd"
+   ],
+   "OG1": [
+    [
+     "LG",
+     "RG"
+    ],
+    "most OG snaps"
+   ],
+   "OG2": [
+    [
+     "LG",
+     "RG"
+    ],
+    "2nd"
+   ],
+   "C": [
+    [
+     "C"
+    ],
+    "center snaps"
+   ],
+   "DE1": [
+    [
+     "LEDG",
+     "REDG"
+    ],
+    "most EDGE snaps"
+   ],
+   "DE2": [
+    [
+     "LEDG",
+     "REDG"
+    ],
+    "2nd"
+   ],
+   "DT1": [
+    [
+     "DT"
+    ],
+    "most DT snaps"
+   ],
+   "DT2": [
+    [
+     "DT"
+    ],
+    "2nd"
+   ],
+   "DL5": [
+    [
+     "DT",
+     "LEDG",
+     "REDG"
+    ],
+    "DL snaps beyond the four LineOf slots (the rotation seat)"
+   ],
+   "MIKE": [
+    [
+     "MIKE"
+    ],
+    "MIKE snaps"
+   ],
+   "WILL": [
+    [
+     "WILL"
+    ],
+    "WILL snaps"
+   ],
+   "SAM": [
+    [
+     "SAM"
+    ],
+    "SAM snaps"
+   ],
+   "CB1": [
+    [
+     "CB"
+    ],
+    "most CB snaps"
+   ],
+   "CB2": [
+    [
+     "CB"
+    ],
+    "2nd"
+   ],
+   "CB3": [
+    [
+     "CB"
+    ],
+    "3rd (the NICKEL slot)"
+   ],
+   "DIME": [
+    [
+     "CB",
+     "SS",
+     "FS"
+    ],
+    "DB snaps beyond the six base/nickel DB seats (the 6th DB)"
+   ],
+   "SS": [
+    [
+     "SS"
+    ],
+    "SS snaps"
+   ],
+   "FS": [
+    [
+     "FS"
+    ],
+    "FS snaps"
+   ],
+   "K": [
+    [
+     "K"
+    ],
+    "K snaps (ST events)"
+   ],
+   "P": [
+    [
+     "P"
+    ],
+    "P snaps (ST events)"
+   ]
+  },
+  "depth_rule": [
+   [
+    "QB",
+    [
+     "QB"
+    ],
+    1
+   ],
+   [
+    "RB1",
+    [
+     "HB",
+     "RB"
+    ],
+    1
+   ],
+   [
+    "RB2",
+    [
+     "HB",
+     "RB"
+    ],
+    2
+   ],
+   [
+    "FB",
+    [
+     "FB"
+    ],
+    1
+   ],
+   [
+    "WR1",
+    [
+     "WR"
+    ],
+    1
+   ],
+   [
+    "WR2",
+    [
+     "WR"
+    ],
+    2
+   ],
+   [
+    "WR3",
+    [
+     "WR"
+    ],
+    3
+   ],
+   [
+    "WR4",
+    [
+     "WR"
+    ],
+    4
+   ],
+   [
+    "TE1",
+    [
+     "TE"
+    ],
+    1
+   ],
+   [
+    "TE2",
+    [
+     "TE"
+    ],
+    2
+   ],
+   [
+    "TE3",
+    [
+     "TE"
+    ],
+    3
+   ],
+   [
+    "OT1",
+    [
+     "LT",
+     "RT"
+    ],
+    1
+   ],
+   [
+    "OT2",
+    [
+     "LT",
+     "RT"
+    ],
+    2
+   ],
+   [
+    "OG1",
+    [
+     "LG",
+     "RG"
+    ],
+    1
+   ],
+   [
+    "OG2",
+    [
+     "LG",
+     "RG"
+    ],
+    2
+   ],
+   [
+    "C",
+    [
+     "C"
+    ],
+    1
+   ],
+   [
+    "DE1",
+    [
+     "LEDG",
+     "REDG"
+    ],
+    1
+   ],
+   [
+    "DE2",
+    [
+     "LEDG",
+     "REDG"
+    ],
+    2
+   ],
+   [
+    "DT1",
+    [
+     "DT"
+    ],
+    1
+   ],
+   [
+    "DT2",
+    [
+     "DT"
+    ],
+    2
+   ],
+   [
+    "MIKE",
+    [
+     "MIKE"
+    ],
+    1
+   ],
+   [
+    "WILL",
+    [
+     "WILL"
+    ],
+    1
+   ],
+   [
+    "SAM",
+    [
+     "SAM"
+    ],
+    1
+   ],
+   [
+    "CB1",
+    [
+     "CB"
+    ],
+    1
+   ],
+   [
+    "CB2",
+    [
+     "CB"
+    ],
+    2
+   ],
+   [
+    "CB3",
+    [
+     "CB"
+    ],
+    3
+   ],
+   [
+    "SS",
+    [
+     "SS"
+    ],
+    1
+   ],
+   [
+    "FS",
+    [
+     "FS"
+    ],
+    1
+   ],
+   [
+    "K",
+    [
+     "K"
+    ],
+    1
+   ],
+   [
+    "P",
+    [
+     "P"
+    ],
+    1
+   ]
+  ],
+  "notes": [
+   "one row per player per team-game; depth order by season snap totals",
+   "DL5 = the leftover DL snaps after the four line seats (the rotation seat)",
+   "DIME = the leftover DB snaps after CB1-3/SS/FS (the 6th DB)",
+   "K/P are ST events and are excluded from scrimmage share bases"
+  ]
+ }
+}

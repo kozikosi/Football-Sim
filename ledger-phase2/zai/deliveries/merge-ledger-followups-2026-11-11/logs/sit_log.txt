@@ -1,0 +1,10 @@
+{
+ "early": 0.7036,
+ "third": 0.1898,
+ "long": 0.1066,
+ "heavy_suppressed": 0.2466,
+ "heavy_early": 0.1718,
+ "heavy_third": 0.0513,
+ "heavy_long": 0.0234
+}
+dime share: 0.0695 DL5: 0.3105
