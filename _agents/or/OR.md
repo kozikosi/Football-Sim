@@ -45,6 +45,7 @@
 - `_agents/or/deliveries/or-verify-E5-2026-11-10.mjs` — E5 independent verification script (VERIFIED).
 - `inbox/20261111-0340-or-P-141-review.md` — P-141 review of VL's FB/Punter investigation (VERDICT: ok).
 - `inbox/20261111-0340-or-P-340-review.md` — P-340 LOO review of MUSE's ZAI-D1 + merged filing (VERDICT: ok).
+- `_agents/or/deliveries/ledger-phase1-2026-11-11/` — Z.ai's Play Ledger Phase 1 delivery (snap ledger, staging engine, R1–R5 receipts; shipped 2026-11-11). Delivery pushed per Owner instruction; contents verified readable.
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
