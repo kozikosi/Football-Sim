@@ -12,7 +12,7 @@
 
 ## Current work
 - **Claimed / in progress:** P-322 derivation design variants (A: skill profile 55/99, C: with cross-side floor 57/99); P-275 w75 M1–M15 dispositions review (Z.ai non-product answers); P-110 Lineups redesign review
-- **Done this session:** P-141 review — Z.ai FB/Punter math + 28-round draft investigation (VERDICT: ok; all claims verified, 2 live docs corrected)
+- **Done this session:** P-141 review (VERDICT: ok; all claims verified, 2 live docs corrected) and P-340 LOO review (VERDICT: ok; lambda trade-off, guard-FB, OLB 2-row findings confirmed)
 - **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task); P-323 remains the gate for real build — design variants are analysis-only
 
 ## What the next session needs
@@ -44,6 +44,7 @@
 - `_agents/or/deliveries/or-derive-floor-2026-11-10.mjs` — derivation script variant C.
 - `_agents/or/deliveries/or-verify-E5-2026-11-10.mjs` — E5 independent verification script (VERIFIED).
 - `inbox/20261111-0340-or-P-141-review.md` — P-141 review of VL's FB/Punter investigation (VERDICT: ok).
+- `inbox/20261111-0340-or-P-340-review.md` — P-340 LOO review of MUSE's ZAI-D1 + merged filing (VERDICT: ok).
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
