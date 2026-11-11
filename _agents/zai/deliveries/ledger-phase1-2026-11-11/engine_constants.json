@@ -1,0 +1,381 @@
+{
+ "PERS": {
+  "11": {
+   "label": "11 personnel",
+   "run": 0,
+   "runB": 0,
+   "passB": 0,
+   "heavy": 0,
+   "tbw": 0,
+   "pc": 0
+  },
+  "12": {
+   "label": "12 personnel",
+   "run": 0.03,
+   "runB": 0.03,
+   "passB": -0.015,
+   "heavy": 0.5,
+   "tbw": 0.08,
+   "pc": 0.22
+  },
+  "13": {
+   "label": "13 personnel",
+   "run": 0.06,
+   "runB": 0.055,
+   "passB": -0.035,
+   "heavy": 1,
+   "tbw": 0.14,
+   "pc": 0.42
+  },
+  "21": {
+   "label": "21 personnel",
+   "run": 0.05,
+   "runB": 0.04,
+   "passB": -0.03,
+   "heavy": 0.6,
+   "tbw": 0.03,
+   "pc": 0.38
+  },
+  "22": {
+   "label": "22 personnel",
+   "run": 0.08,
+   "runB": 0.07,
+   "passB": -0.045,
+   "heavy": 1,
+   "tbw": 0.1,
+   "pc": 0.48
+  }
+ },
+ "DIME_W": 0.15,
+ "DL5_SHARE": {
+  "cautious": 0.33,
+  "balanced": 0.33,
+  "aggressive": 0.4
+ },
+ "SLOTS": [
+  {
+   "id": "QB",
+   "weight": 1000,
+   "dest": "QB",
+   "unit": "offense"
+  },
+  {
+   "id": "WR1",
+   "weight": 650,
+   "dest": "WR",
+   "unit": "offense"
+  },
+  {
+   "id": "OT1",
+   "weight": 500,
+   "dest": "OT",
+   "unit": "offense"
+  },
+  {
+   "id": "OT2",
+   "weight": 300,
+   "dest": "OT",
+   "unit": "offense"
+  },
+  {
+   "id": "WR2",
+   "weight": 400,
+   "dest": "WR",
+   "unit": "offense"
+  },
+  {
+   "id": "C",
+   "weight": 150,
+   "dest": "C",
+   "unit": "offense"
+  },
+  {
+   "id": "OG1",
+   "weight": 400,
+   "dest": "OG",
+   "unit": "offense"
+  },
+  {
+   "id": "OG2",
+   "weight": 250,
+   "dest": "OG",
+   "unit": "offense"
+  },
+  {
+   "id": "TE1",
+   "weight": 250,
+   "dest": "TE",
+   "unit": "offense"
+  },
+  {
+   "id": "RB1",
+   "weight": 250,
+   "dest": "RB",
+   "unit": "offense"
+  },
+  {
+   "id": "WR3",
+   "weight": 100,
+   "dest": "WR",
+   "unit": "offense"
+  },
+  {
+   "id": "RB2",
+   "weight": 100,
+   "dest": "RB",
+   "unit": "offense"
+  },
+  {
+   "id": "TE2",
+   "weight": 150,
+   "dest": "TE",
+   "unit": "offense"
+  },
+  {
+   "id": "FB",
+   "weight": 25,
+   "dest": "FB",
+   "unit": "offense"
+  },
+  {
+   "id": "TE3",
+   "weight": 50,
+   "dest": "TE",
+   "unit": "offense"
+  },
+  {
+   "id": "WR4",
+   "weight": 50,
+   "dest": "WR",
+   "unit": "offense"
+  },
+  {
+   "id": "DE1",
+   "weight": 650,
+   "dest": "EDGE",
+   "unit": "defense"
+  },
+  {
+   "id": "DT1",
+   "weight": 500,
+   "dest": "DT",
+   "unit": "defense"
+  },
+  {
+   "id": "DE2",
+   "weight": 300,
+   "dest": "EDGE",
+   "unit": "defense"
+  },
+  {
+   "id": "DT2",
+   "weight": 300,
+   "dest": "DT",
+   "unit": "defense"
+  },
+  {
+   "id": "DL5",
+   "weight": 150,
+   "dest": "DL5",
+   "unit": "defense"
+  },
+  {
+   "id": "MIKE",
+   "weight": 300,
+   "dest": "ILB",
+   "unit": "defense"
+  },
+  {
+   "id": "WILL",
+   "weight": 150,
+   "dest": "OLB",
+   "unit": "defense"
+  },
+  {
+   "id": "SAM",
+   "weight": 100,
+   "dest": "OLB",
+   "unit": "defense"
+  },
+  {
+   "id": "CB1",
+   "weight": 400,
+   "dest": "CB",
+   "unit": "defense"
+  },
+  {
+   "id": "CB2",
+   "weight": 250,
+   "dest": "CB",
+   "unit": "defense"
+  },
+  {
+   "id": "CB3",
+   "weight": 100,
+   "dest": "NICKEL",
+   "unit": "defense"
+  },
+  {
+   "id": "DIME",
+   "weight": 50,
+   "dest": "DIME",
+   "unit": "defense"
+  },
+  {
+   "id": "FS",
+   "weight": 300,
+   "dest": "FS",
+   "unit": "defense"
+  },
+  {
+   "id": "SS",
+   "weight": 300,
+   "dest": "SS",
+   "unit": "defense"
+  },
+  {
+   "id": "K",
+   "weight": 50,
+   "dest": "K",
+   "unit": "special"
+  },
+  {
+   "id": "P",
+   "weight": 50,
+   "dest": "P",
+   "unit": "special"
+  }
+ ],
+ "RATING_SPECS": {
+  "olRun": {
+   "OT1": 0.579,
+   "OT2": 0.348,
+   "OG1": 0.705,
+   "OG2": 0.441,
+   "C": 0.263,
+   "TE1": 1.436,
+   "FB": 0.188
+  },
+  "olPass": {
+   "OT1": 0.812,
+   "OT2": 0.488,
+   "OG1": 0.588,
+   "OG2": 0.368,
+   "C": 0.221
+  },
+  "rb": {
+   "RB1": 43.113,
+   "RB2": 12.177
+  },
+  "qb": {
+   "QB": 1
+  },
+  "rec": {
+   "WR1": 25.682,
+   "WR2": 19.86,
+   "WR3": 3.251,
+   "TE1": 2.174,
+   "RB1": 4.201,
+   "TE3": 1.264,
+   "WR4": 1.6
+  },
+  "passRush": {
+   "DE1": 0.583,
+   "DE2": 0.255,
+   "DT1": 0.303,
+   "DT2": 0.182,
+   "MIKE": 0.053,
+   "WILL": 0.03,
+   "DL5": 0.114
+  },
+  "frontRun": {
+   "DT1": 0.456,
+   "DT2": 0.273,
+   "DE1": 0.292,
+   "DE2": 0.158,
+   "MIKE": 0.208,
+   "WILL": 0.099,
+   "SAM": 0.234,
+   "SS": 0.115,
+   "CB1": 0.06,
+   "CB2": 0.034,
+   "CB3": 0.009,
+   "FS": 0.08,
+   "DL5": 0.099
+  },
+  "coverage": {
+   "CB1": 0.175,
+   "CB2": 0.107,
+   "CB3": 0.041,
+   "SS": 0.113,
+   "FS": 0.122,
+   "MIKE": 0.069,
+   "WILL": 0.039,
+   "SAM": 0.1
+  },
+  "kicker": {
+   "K": 1
+  }
+ },
+ "DEF_SPECS": {
+  "frontBase": {
+   "DT1": 0.456,
+   "DT2": 0.273,
+   "DE1": 0.292,
+   "DE2": 0.158,
+   "MIKE": 0.208,
+   "WILL": 0.099,
+   "SAM": 0.334,
+   "SS": 0.115,
+   "CB1": 0.06,
+   "CB2": 0.034,
+   "CB3": 0.005,
+   "FS": 0.08,
+   "DL5": 0.099
+  },
+  "frontNick": {
+   "DT1": 0.456,
+   "DT2": 0.273,
+   "DE1": 0.292,
+   "DE2": 0.158,
+   "MIKE": 0.208,
+   "WILL": 0.099,
+   "SAM": 0.032,
+   "SS": 0.115,
+   "CB1": 0.062,
+   "CB2": 0.048,
+   "CB3": 0.009,
+   "FS": 0.08,
+   "DL5": 0.099
+  },
+  "covBase": {
+   "CB1": 0.175,
+   "CB2": 0.107,
+   "CB3": 0.011,
+   "SS": 0.113,
+   "FS": 0.122,
+   "MIKE": 0.069,
+   "WILL": 0.039,
+   "SAM": 0.135
+  },
+  "covNick": {
+   "CB1": 0.175,
+   "CB2": 0.107,
+   "CB3": 0.045,
+   "SS": 0.113,
+   "FS": 0.122,
+   "MIKE": 0.069,
+   "WILL": 0.039,
+   "SAM": 0.017
+  },
+  "covDime": {
+   "CB1": 0.175,
+   "CB2": 0.107,
+   "CB3": 0.045,
+   "DIME": 0.184,
+   "SS": 0.113,
+   "FS": 0.122,
+   "MIKE": 0.069
+  }
+ }
+}

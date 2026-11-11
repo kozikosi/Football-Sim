@@ -1,0 +1,513 @@
+{
+ "receipts": {
+  "R1_purity": {
+   "even80": {
+    "rush": {
+     "exact_pct": 87.1,
+     "max_abs_delta": 15.0,
+     "sum_abs_delta": 598.447
+    },
+    "pass": {
+     "exact_pct": 90.0,
+     "max_abs_delta": 16.0,
+     "sum_abs_delta": 628.862
+    },
+    "plays": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "sacks": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "points": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "giveaways": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    }
+   },
+   "home_plus8": {
+    "rush": {
+     "exact_pct": 80.75,
+     "max_abs_delta": 13.0,
+     "sum_abs_delta": 675.762
+    },
+    "pass": {
+     "exact_pct": 87.625,
+     "max_abs_delta": 16.5,
+     "sum_abs_delta": 657.548
+    },
+    "plays": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "sacks": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "points": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "giveaways": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    }
+   },
+   "identities": {
+    "rush": {
+     "exact_pct": 88.0,
+     "max_abs_delta": 11.0,
+     "sum_abs_delta": 426.025
+    },
+    "pass": {
+     "exact_pct": 90.0,
+     "max_abs_delta": 13.0,
+     "sum_abs_delta": 485.758
+    },
+    "plays": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "sacks": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "points": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    },
+    "giveaways": {
+     "exact_pct": 100.0,
+     "max_abs_delta": 0,
+     "sum_abs_delta": 0
+    }
+   }
+  },
+  "R2_constants": {
+   "R2a_DL5": {
+    "ledger_play_share": 0.311082,
+    "engine_balanced_MEASURED": 0.33,
+    "engine_aggressive_INFERRED": 0.4,
+    "delta_vs_balanced_pts": -1.891831,
+    "note": "the staging rotation rule is ANCHORED to the engine's measured 0.33; the receipt verifies the fold lands on the anchor"
+   },
+   "R2b_DIME": {
+    "ledger_play_share": 0.069353,
+    "ledger_dime_package_share": 0.069353,
+    "engine_DIME_W": 0.15,
+    "delta_pts": -8.064729,
+    "note": "DISAGREEMENT: the engine's coverage blend holds dime at 15% of the rating; the INFERRED down-and-distance tables stage it at ~7% of snaps. Either the tables under-use dime or DIME_W overstates it \u2014 needs real personnel data (Phase 2), not an edit in either file."
+   },
+   "R2c_PERS": {
+    "table": {
+     "11": {
+      "staged_share": 0.629794,
+      "staged_run_rate": 0.268913,
+      "PERS_run": 0,
+      "PERS_runB": 0,
+      "PERS_passB": 0
+     },
+     "12": {
+      "staged_share": 0.123675,
+      "staged_run_rate": 0.550096,
+      "PERS_run": 0.03,
+      "PERS_runB": 0.03,
+      "PERS_passB": -0.015
+     },
+     "13": {
+      "staged_share": 0.034291,
+      "staged_run_rate": 0.600943,
+      "PERS_run": 0.06,
+      "PERS_runB": 0.055,
+      "PERS_passB": -0.035
+     },
+     "21": {
+      "staged_share": 0.114027,
+      "staged_run_rate": 0.663134,
+      "PERS_run": 0.05,
+      "PERS_runB": 0.04,
+      "PERS_passB": -0.03
+     },
+     "22": {
+      "staged_share": 0.098214,
+      "staged_run_rate": 0.629771,
+      "PERS_run": 0.08,
+      "PERS_runB": 0.07,
+      "PERS_passB": -0.045
+     }
+    },
+    "spearman_run_rate_vs_PERS_run": 0.7,
+    "note": "direction agrees (heavy packages run far more; 11 is the spread base); the 21/22 order swaps vs PERS.run \u2014 the package tables are INFERRED, PERS prices efficiency, not usage"
+   }
+  },
+  "R3_slot_weights": {
+   "weights_source": "architect/engine-and-seats colors/src/sports/nfl/engine/slots.ts (live-read; FB 25)",
+   "unit_weight_totals": {
+    "offense": 4625,
+    "defense": 3850
+   },
+   "table": [
+    {
+     "spot": "QB",
+     "unit": "offense",
+     "weight": 1000,
+     "weight_share": 0.216216,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 1000.0
+    },
+    {
+     "spot": "RB1",
+     "unit": "offense",
+     "weight": 250,
+     "weight_share": 0.054054,
+     "team_snap_share": 0.070892,
+     "play_share": 0.779813,
+     "value_per_play_share": 320.589546
+    },
+    {
+     "spot": "RB2",
+     "unit": "offense",
+     "weight": 100,
+     "weight_share": 0.021622,
+     "team_snap_share": 0.027816,
+     "play_share": 0.305977,
+     "value_per_play_share": 326.821733
+    },
+    {
+     "spot": "FB",
+     "unit": "offense",
+     "weight": 25,
+     "weight_share": 0.005405,
+     "team_snap_share": 0.011495,
+     "play_share": 0.12645,
+     "value_per_play_share": 197.707019
+    },
+    {
+     "spot": "WR1",
+     "unit": "offense",
+     "weight": 650,
+     "weight_share": 0.140541,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 650.0
+    },
+    {
+     "spot": "WR2",
+     "unit": "offense",
+     "weight": 400,
+     "weight_share": 0.086486,
+     "team_snap_share": 0.078863,
+     "play_share": 0.867496,
+     "value_per_play_share": 461.097457
+    },
+    {
+     "spot": "WR3",
+     "unit": "offense",
+     "weight": 100,
+     "weight_share": 0.021622,
+     "team_snap_share": 0.038833,
+     "play_share": 0.427161,
+     "value_per_play_share": 234.103568
+    },
+    {
+     "spot": "WR4",
+     "unit": "offense",
+     "weight": 50,
+     "weight_share": 0.010811,
+     "team_snap_share": 0.018421,
+     "play_share": 0.202632,
+     "value_per_play_share": 246.752151
+    },
+    {
+     "spot": "TE1",
+     "unit": "offense",
+     "weight": 250,
+     "weight_share": 0.054054,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 250.0
+    },
+    {
+     "spot": "TE2",
+     "unit": "offense",
+     "weight": 150,
+     "weight_share": 0.032432,
+     "team_snap_share": 0.01825,
+     "play_share": 0.200748,
+     "value_per_play_share": 747.207227
+    },
+    {
+     "spot": "TE3",
+     "unit": "offense",
+     "weight": 50,
+     "weight_share": 0.010811,
+     "team_snap_share": 0.008157,
+     "play_share": 0.089723,
+     "value_per_play_share": 557.271956
+    },
+    {
+     "spot": "OT1",
+     "unit": "offense",
+     "weight": 500,
+     "weight_share": 0.108108,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 500.0
+    },
+    {
+     "spot": "OT2",
+     "unit": "offense",
+     "weight": 300,
+     "weight_share": 0.064865,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 300.0
+    },
+    {
+     "spot": "OG1",
+     "unit": "offense",
+     "weight": 400,
+     "weight_share": 0.086486,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 400.0
+    },
+    {
+     "spot": "OG2",
+     "unit": "offense",
+     "weight": 250,
+     "weight_share": 0.054054,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 250.0
+    },
+    {
+     "spot": "C",
+     "unit": "offense",
+     "weight": 150,
+     "weight_share": 0.032432,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 150.0
+    },
+    {
+     "spot": "DE1",
+     "unit": "defense",
+     "weight": 650,
+     "weight_share": 0.168831,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 650.0
+    },
+    {
+     "spot": "DE2",
+     "unit": "defense",
+     "weight": 300,
+     "weight_share": 0.077922,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 300.0
+    },
+    {
+     "spot": "DT1",
+     "unit": "defense",
+     "weight": 500,
+     "weight_share": 0.12987,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 500.0
+    },
+    {
+     "spot": "DT2",
+     "unit": "defense",
+     "weight": 300,
+     "weight_share": 0.077922,
+     "team_snap_share": 0.062629,
+     "play_share": 0.688918,
+     "value_per_play_share": 435.465274
+    },
+    {
+     "spot": "DL5",
+     "unit": "defense",
+     "weight": 150,
+     "weight_share": 0.038961,
+     "team_snap_share": 0.02828,
+     "play_share": 0.311082,
+     "value_per_play_share": 482.188454
+    },
+    {
+     "spot": "MIKE",
+     "unit": "defense",
+     "weight": 300,
+     "weight_share": 0.077922,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 300.0
+    },
+    {
+     "spot": "WILL",
+     "unit": "defense",
+     "weight": 150,
+     "weight_share": 0.038961,
+     "team_snap_share": 0.084604,
+     "play_share": 0.930647,
+     "value_per_play_share": 161.17814
+    },
+    {
+     "spot": "SAM",
+     "unit": "defense",
+     "weight": 100,
+     "weight_share": 0.025974,
+     "team_snap_share": 0.034602,
+     "play_share": 0.38062,
+     "value_per_play_share": 262.729046
+    },
+    {
+     "spot": "CB1",
+     "unit": "defense",
+     "weight": 400,
+     "weight_share": 0.103896,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 400.0
+    },
+    {
+     "spot": "CB2",
+     "unit": "defense",
+     "weight": 250,
+     "weight_share": 0.064935,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 250.0
+    },
+    {
+     "spot": "CB3",
+     "unit": "defense",
+     "weight": 100,
+     "weight_share": 0.025974,
+     "team_snap_share": 0.056307,
+     "play_share": 0.61938,
+     "value_per_play_share": 161.451844
+    },
+    {
+     "spot": "DIME",
+     "unit": "defense",
+     "weight": 50,
+     "weight_share": 0.012987,
+     "team_snap_share": 0.006305,
+     "play_share": 0.069353,
+     "value_per_play_share": 720.952404
+    },
+    {
+     "spot": "SS",
+     "unit": "defense",
+     "weight": 300,
+     "weight_share": 0.077922,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 300.0
+    },
+    {
+     "spot": "FS",
+     "unit": "defense",
+     "weight": 300,
+     "weight_share": 0.077922,
+     "team_snap_share": 0.090909,
+     "play_share": 1.0,
+     "value_per_play_share": 300.0
+    }
+   ],
+   "spearman_weight_vs_play_share": {
+    "offense": 0.799545,
+    "defense": 0.810872
+   },
+   "FB_socialism": {
+    "FB_play_share": 0.12645,
+    "FB_weight": 25,
+    "FB_weight_share": 0.005405,
+    "FB_value_per_play_share": 197.707019,
+    "RB1_play_share": 0.779813,
+    "RB1_value_per_play_share": 320.589546,
+    "TE1_play_share": 1.0,
+    "TE1_value_per_play_share": 250.0,
+    "ruling_context": "Owner: FB = scarcity (FB>RB 2, FB>TE 6 stay; guard 18 NOT used; Juszczyk-to-TE accepted). Muse asked: does the FB share match the engine's weight (FB 25)?"
+   }
+  },
+  "R4_gravity": {
+   "even80": {
+    "DT1_double_teams_per_team_game": 32.025,
+    "DT1_doubled_share_of_def_snaps": 0.486982,
+    "DE1_double_teams_per_team_game": 19.44,
+    "DE1_doubled_share_of_def_snaps": 0.295553,
+    "WR1_double_teams_per_team_game": 0.154
+   },
+   "home_plus8": {
+    "DT1_double_teams_per_team_game": 33.23625,
+    "DT1_doubled_share_of_def_snaps": 0.492188,
+    "DE1_double_teams_per_team_game": 20.1,
+    "DE1_doubled_share_of_def_snaps": 0.297951,
+    "WR1_double_teams_per_team_game": 0.2025
+   },
+   "identities": {
+    "DT1_double_teams_per_team_game": 34.21625,
+    "DT1_doubled_share_of_def_snaps": 0.489656,
+    "DE1_double_teams_per_team_game": 20.515,
+    "DE1_doubled_share_of_def_snaps": 0.293923,
+    "WR1_double_teams_per_team_game": 0.2125
+   },
+   "_labels": "rates are INFERRED placeholders (PLAYLED): WR1 0.22 on deep catches (+0.12 weak mates), DT1 0.50/DE1 0.30 per defensive snap; reported as placeholders, not measurements",
+   "_finding_WR1": "the trigger (deep CATCH >= 18 yds) almost never fires under the staged catch-shape (CMP_MIX mean 7.3/14.5): WR1 doubles ~0.15/team-game vs real ~3-6 \u2014 Phase 2 should re-trigger on deep TARGETS/route structure, or take rates from charted data",
+   "_finding_DT1": "DT1 doubled on ~49% of defensive snaps: plausible for an elite interior blocker-eater on PASS downs (real stars 55-70% of pass-rush snaps) but applied to ALL snaps here \u2014 the placeholder rate needs a pass/run split in Phase 2"
+  },
+  "R5_determinism": {
+   "same_seed_same_output": true,
+   "matches_shipped_pipeline_row": true,
+   "engine_rng": "mulberry32 (core/rng.ts), staging seeds derived game+side+drive"
+  },
+  "R6_identity_cells": {
+   "note": "the engine's plan layer chose 11 personnel for BOTH identity rosters at these ratings (PERS plan-cost prices heavy plans out) \u2014 so the plan-pers boost is neutral this run; the ledger staged both sides with the same natural rotation rules",
+   "even80_vs_identities_DL5": {
+    "even80": 0.311082,
+    "identities": 0.312327
+   },
+   "package_shares": {
+    "11": {
+     "even80": 0.629794,
+     "identities": 0.629882
+    },
+    "12": {
+     "even80": 0.123675,
+     "identities": 0.122595
+    },
+    "13": {
+     "even80": 0.034291,
+     "identities": 0.03495
+    },
+    "21": {
+     "even80": 0.114027,
+     "identities": 0.114817
+    },
+    "22": {
+     "even80": 0.098214,
+     "identities": 0.097756
+    }
+   }
+  }
+ }
+}
