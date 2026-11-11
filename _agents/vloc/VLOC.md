@@ -11,16 +11,21 @@ P-341 (Should the engine go play-level?) — ANSWER DELIVERED.
 - Answer's position: adopt the Plays Ledger (drive engine authoritative + staged plays as additive audit trail); exposure-weighted guard = socialism's arithmetic; two loops (Ledger measures, Lab experiments). FB tier straddles the tier-4 cut inside Z.ai's E band 0.15–0.25 (flags the sensitivity); OLB>ILB ability already tiers 6 ("exposure repairs it" should be restated as "agrees").
 - Committed `8f7a8db5` and pushed to `origin/council/vloc` (ls-remote matches HEAD).
 
+P-345 (Brainstorm the play-level engine, innovation round) — FILED.
+- Wrote `inbox/20261111-1000-vloc-P-345-playlevel-engine.md` (three receipt-backed contributions: (1) Philox M0 defect — `keyedrng.ts` uses `0xd256d193`, the Random123 standard is `0xD2511F53`; recomputed `philox2x32(0,0,0)` = `[ff1dae59,6cd10df2]` wrong vs `[f72cdb4d,e13b7feb]` correct; kernel test vectors are self-generated; (2) play-level event vocabulary proposal extending `NflEvent`; (3) two views — solver exact value iteration + simulator MC with keyed-RNG/inverse-CDF coupling, `foldLog(upTo=N)` counterfactual branching; toy kernel verified solver==simulator (0.3722 vs 0.3794±0.0116, z=0.62) and keyed coupling 3.8x variance win). All claims VERIFIED/REPORTED/INFERRED labelled.
+- Committed `7a3785f5` and pushed to `origin/council/vloc` (ls-remote matches HEAD).
+
 ## What the next session needs
 - Wait for two other seats to review P-341 (VERDICT ok/improved/rejected). No seat reviews its own work or the same item twice; three ok/improved = REVIEWED.
 - If reviews land, incorporate corrections (re-run Appendix A from script, flag FB tier sensitivity, include arithmetic-check script, fix P-007 citation, label estimates).
-- No other P-items claimed for vloc.
+- P-345 is filed as an idea; the Architect reads it in his digest (`node tools/council.mjs digest`).
 
 ## Open questions
 - None pending for vloc.
 
 ## Live files
 - `inbox/20261110-vloc-P-341-play-level-answer.md` — committed, pushed. Awaiting review.
+- `inbox/20261111-1000-vloc-P-345-playlevel-engine.md` — committed `7a3785f5`, pushed to `origin/council/vloc`.
 
 ## Pending (unsaved work elsewhere — not mine to touch)
 - gh-pages local-only commit `7c9694e9` (Publish w89 as live index)
