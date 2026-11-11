@@ -1,0 +1,54 @@
+pairs: 97 (cross-role only)
+in-sample lam=0.4 zai (n/a): mean err 1.34 | exact 96/97
+in-sample lam=0.4 merged (meas): mean err 1.65 | exact 92/97
+in-sample lam=0.4 merged (input): mean err 1.67 | exact 92/97
+
+=== LOO zai (lambda refit per fold, cuts 1/4/9 fixed) ===
+  held-out mean error 1.13 OVR over 194 cases, exact tiers 170/194 (87.6%)
+  fitted lambda per fold: min 0.20 max 0.25 mean 0.20 (Z.ai value 0.40)
+  worst roles (held-out mean err): C 1.6(9) lam=0.20 ex=7/9, WR 1.5(12) lam=0.20 ex=9/12, OT 1.5(10) lam=0.20 ex=9/10, RB 1.4(10) lam=0.20 ex=8/10, DIME 1.3(7) lam=0.20 ex=6/7
+  best roles: K 0.0(2), P 0.0(2), FB 0.3(11), OG 0.7(10), CB 0.9(8)
+         C: lam=0.20 held-out err 1.61 exact 7/9
+        CB: lam=0.20 held-out err 0.95 exact 8/8
+      DIME: lam=0.20 held-out err 1.30 exact 6/7
+        DT: lam=0.20 held-out err 1.26 exact 8/10
+      EDGE: lam=0.25 held-out err 1.11 exact 16/17
+        FB: lam=0.20 held-out err 0.34 exact 10/11
+        FS: lam=0.20 held-out err 1.11 exact 13/14
+       ILB: lam=0.20 held-out err 1.06 exact 12/12
+         K: lam=0.20 held-out err 0.00 exact 2/2
+    NICKEL: lam=0.20 held-out err 0.98 exact 6/8
+        OG: lam=0.20 held-out err 0.66 exact 10/10
+       OLB: lam=0.20 held-out err 1.19 exact 11/13
+        OT: lam=0.20 held-out err 1.48 exact 9/10
+         P: lam=0.20 held-out err 0.00 exact 2/2
+        QB: lam=0.20 held-out err 1.04 exact 1/1
+        RB: lam=0.20 held-out err 1.42 exact 8/10
+        SS: lam=0.20 held-out err 1.16 exact 14/17
+        TE: lam=0.20 held-out err 1.28 exact 18/21
+        WR: lam=0.20 held-out err 1.53 exact 9/12
+
+=== LOO merged (lambda refit per fold, cuts 1/4/9 fixed) ===
+  held-out mean error 1.44 OVR over 194 cases, exact tiers 172/194 (88.7%)
+  fitted lambda per fold: min 0.15 max 0.20 mean 0.19 (Z.ai value 0.40)
+  worst roles (held-out mean err): RB 2.7(10) lam=0.15 ex=8/10, FB 2.6(11) lam=0.20 ex=9/11, OLB 1.9(13) lam=0.20 ex=9/13, C 1.6(9) lam=0.20 ex=8/9, TE 1.6(21) lam=0.15 ex=20/21
+  best roles: K 0.0(2), P 0.0(2), CB 0.9(8), DT 0.9(10), WR 1.0(12)
+         C: lam=0.20 held-out err 1.64 exact 8/9
+        CB: lam=0.20 held-out err 0.87 exact 8/8
+      DIME: lam=0.20 held-out err 1.30 exact 6/7
+        DT: lam=0.20 held-out err 0.90 exact 10/10
+      EDGE: lam=0.20 held-out err 1.19 exact 16/17
+        FB: lam=0.20 held-out err 2.63 exact 9/11
+        FS: lam=0.20 held-out err 1.08 exact 13/14
+       ILB: lam=0.20 held-out err 1.39 exact 11/12
+         K: lam=0.20 held-out err 0.00 exact 2/2
+    NICKEL: lam=0.15 held-out err 1.12 exact 6/8
+        OG: lam=0.20 held-out err 1.52 exact 9/10
+       OLB: lam=0.20 held-out err 1.89 exact 9/13
+        OT: lam=0.20 held-out err 1.24 exact 10/10
+         P: lam=0.20 held-out err 0.00 exact 2/2
+        QB: lam=0.20 held-out err 1.04 exact 1/1
+        RB: lam=0.15 held-out err 2.75 exact 8/10
+        SS: lam=0.15 held-out err 1.40 exact 13/17
+        TE: lam=0.15 held-out err 1.58 exact 20/21
+        WR: lam=0.20 held-out err 0.95 exact 11/12
