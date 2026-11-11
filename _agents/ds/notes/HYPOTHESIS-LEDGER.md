@@ -78,3 +78,96 @@ This file is append-only. Do not rewrite an entry; add a new one and cross-refer
 - H-DS-003 is the next experiment; it is not a result and must not be cited as one.
 - Related: P-284 (Owner salary weights), P-255 (methodology), P-250 (calibration bands), D-007 (forensic
   correction, REPORTED), R-001 (Owner permission to abandon the old tables).
+
+---
+
+## H-DS-004 — Raising the WILL and C slot weights changes the flex D values (REFUTED)
+
+- **Registered:** 2026-11-09, *retrospectively*. The question came from the Owner's relay ("the bump brings
+  D for OLB>ILB and OLB>SS to ~6.7, so the math agrees with -6"); the run preceded this entry, so this is a
+  recorded result, not a pre-registered confirmation. Treat it as weaker than H-DS-001.
+- **Question:** Does `SLOTS[].weight` (WILL 150→200, C 150→200) feed `slotWinsPerOvr` and therefore the flex
+  D table?
+- **Prediction (the relay's):** D for OLB>ILB and OLB>SS falls from ~10 to ~6.7.
+- **Metric:** number of the enumerable D values that move at all under the bump.
+- **Threshold:** any change > 0.005 would support the relay; 0 refutes it.
+- **Test:** scratch copy of `728b2c53`, `sed` the two weights in `slots.ts` to 200, rerun
+  `node --experimental-strip-types ../tools/mathlab/thetaprice.mjs`; compare the D@90 columns.
+- **Result (2026-11-09):** **rules 97, changed 0**. Every D identical to 4 dp; OLB>ILB stays 10.0487,
+  OLB>SS stays 9.9917. `git diff 3ed03627 728b2c53 -- slots.ts specs.ts value.ts matchup.ts` is empty, so
+  the result holds for the engine the relay described too.
+- **Conclusion:** the slot weights are lineup/draft valuation inputs, not matchup inputs. `OLB>ILB 6` and
+  `OLB>SS 6` are Owner overrides; the record must not attribute them to the weight bump.
+- **What would change my mind:** a code path from `SLOTS[].weight` into `RATING_SPECS`/`matchupModel` that I
+  missed; the empty diff and the 0/97 result make that unlikely, but a named call path would reopen it.
+
+---
+
+## H-DS-005 — A removed flex rule makes the placement illegal (REFUTED)
+
+- **Registered:** 2026-11-09, *retrospectively* (same caveat as H-DS-004). The question is P-312 test (d) and
+  the Owner's "delete the rule, do not set it to 0".
+- **Question:** When a rule is deleted from `FLEX`, what does `fit()` return for that role/destination?
+- **Prediction (P-312's):** deleted rules are rejected, or at least cost more than the -12 they replace.
+- **Metric:** `fit(role, dest)` after deleting `FB>EDGE` from the typed table.
+- **Threshold:** `legal:false`, or a penalty > 12, supports the prediction; a lower penalty refutes it.
+- **Test:** scratch copy of the engine; delete `FB>EDGE` from `FLEX`; call `fit('FB','EDGE')`.
+- **Result (2026-11-09):** `{"penalty":8,"emergency":true,"legal":true}` — the move is **cheaper** (8 < 12)
+  and still legal. `EMERGENCY_PENALTY = 8` is the fallback for every unlisted non-QB rule.
+- **Conclusion:** "removed" is not "banned" in the current engine. The generated `flex.ts` therefore emits
+  `FLEX_BANNED` + `BANNED_ARE_ILLEGAL = true`; without that, the seven removals do not do what the P-312 test
+  asserts. The Owner must choose between "removed = unlisted at -8" and "removed = illegal"; the two give
+  different draft behaviour.
+- **What would change my mind:** a `fit()` path that consults the rule list rather than the object keys — there
+  is none in `728b2c53` (`fit` reads `FLEX[role][dest]`).
+
+---
+
+## H-DS-006 — A deterministic rebuild reproduces the Architect's landed flex tables exactly (SUPPORTED)
+
+- **Registered:** 2026-11-09. Prediction made before the first run: if the decision list is complete and the
+  rounding rule is the one used, the generator will match `35ce4e98` rule for rule.
+- **Question:** Can `tools/mathlab/flexrebuild.mjs` reproduce the Architect's manual D rebuild from the same
+  inputs, with no hand edits?
+- **Metric:** number of differing rules between the generated table and the Architect's `flex.json`.
+- **Threshold:** 0 differences on 97/97 rules supports; any difference refutes or exposes a missing decision.
+- **Test:** `node tools/mathlab/flexrebuild.mjs --spec=tools/mathlab/flex-spec-owner-2026-11-09.json`
+  and `...-corrected.json`; diff against `git show 35ce4e98:tools/mathlab/flex.json` and `728b2c53:...`.
+- **Result (2026-11-09):** stage 1 **97 rules, 30/16/32/19, 0 diffs**; stage 2 **97 rules, 23/15/40/19,
+  0 diffs**. The independent `flexassert.mjs` agrees: `OK 97 rules, 23 at 0, 7 banned, 97 checked`.
+- **Conclusion:** the decision list + rounding rule are complete for both landed tables; a rebuild is
+  reproducible and cannot time out. The remaining work is the Owner's items 3 and 7, which are additions, not
+  a rebuild (H-DS-007).
+- **What would change my mind:** a later Architect table with a rule that is in neither the D output nor the
+  spec. So far there is none.
+
+---
+
+## H-DS-007 — Items 3 and 7 produce 105 rules with the Owner's counts (SUPPORTED)
+
+- **Registered:** 2026-11-09, before generating the table. Prediction taken from the Owner's own arithmetic
+  in `claude-reply-flex-answers-2026-11-09.md`: 23 at 12, 40 at 6, 16 at 2, 26 at 0 — 105 rules.
+- **Question:** Do the four item-3 rules and the six item-7 SAM rules, applied to `728b2c53`, land on the
+  Owner's expected counts, and do they work in the engine?
+- **Metric:** rule count and tier histogram; `fit()` values for the ten rules; a natural-roster lineup.
+- **Threshold:** 105 rules and an exact histogram match supports; any mismatch refutes an assumption in the
+  item list.
+- **Test:** `node tools/mathlab/flexrebuild.mjs --table=tools/mathlab/flex-2026-11-09-728.json \
+  --spec=tools/mathlab/flex-spec-owner-2026-11-09-items3-7.json --mode=apply`, then `flexassert`, then load
+  the generated `flex.ts` in a scratch copy of `728b2c53` with `Dest` + `SAM` and the SAM slot dest change.
+- **Result (2026-11-09):** **105 rules, 26/16/40/23**; `FLEXASSERT OK 105 rules, 26 at 0, 0 banned,
+  105 checked`; engine returns TE>DIME 12, TE>FS 12, ILB>FS 12, OLB>FS 12, EDGE>SAM 0, ILB>SAM 0,
+  OLB>SAM 0, SS>SAM 2, TE>SAM 6, FS>SAM 6; natural roster 32 placements, 0 emergency, 0 non-zero penalties.
+- **Conclusion:** the table is fully determined and buildable. It needs the four engine/test edits in
+  `_agents/ds/notes/flex-rebuild-2026-11-09.md` §3 D-DS-004; without them the SAM rows are dead data.
+- **What would change my mind:** an Owner ruling that SAM is not a destination (then the six rules go and the
+  table is 99, not 105).
+
+---
+
+## Cross-references (added 2026-11-09)
+
+- H-DS-004/005 are the evidence behind D-DS-001/002 in `_agents/ds/notes/flex-rebuild-2026-11-09.md`.
+- H-DS-006/007 are the receipts for the two generated tables in `_agents/ds/deliveries/flex-rebuild-2026-11-09{,-corrected,-items3-7}/`.
+- The three tables and their hashes are inputs, not results: `flex-2026-11-08.json` (sha256 `4d03772c…`),
+  `flex-2026-11-09-728.json` (from `728b2c53`), `results/thetaprice-2026-11-09.md` (sha256 `72dae5bc…`).

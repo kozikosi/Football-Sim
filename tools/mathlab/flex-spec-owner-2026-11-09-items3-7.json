@@ -1,0 +1,32 @@
+{
+  "_source": "Owner verbatim answers 2026-11-09, `claude-reply-flex-answers-2026-11-09.md` items 3 and 7 (via council/muse). Apply to the 728b2c53 table (97 rules, 19/40/15/23). Item 3: TE>DIME 12; TE>FS 12; add ILB>FS 12 and OLB>FS 12 (SAM flexes as an OLB, so no SAM>FS rule). Item 7: SAM becomes a destination mirroring OLB: EDGE>SAM 0, FS>SAM 6, ILB>SAM 0, OLB>SAM 0, SS>SAM 2, TE>SAM 6. Expected after both: 23 at 12, 40 at 6, 16 at 2, 26 at 0 — 105 rules (Owner's own arithmetic).",
+  "date": "2026-11-09",
+  "mode": "apply",
+  "theta": 1.0,
+  "tiers": [0, 2, 6, 12],
+  "cutoffs": [1, 4, 9],
+  "remove": [],
+  "groups": [
+    {
+      "penalty": 12,
+      "why": "Item 3: TEs and LBs are equal athletes in downfield coverage, so the TE penalty matches the LB penalty at each spot. ILB and OLB are both 12 at DIME -> TE>DIME 12. For FS, all linebackers and tight ends can play it for -12: TE>FS 12, and the two new LB rules ILB>FS 12, OLB>FS 12.",
+      "rules": ["TE>DIME", "TE>FS", "ILB>FS", "OLB>FS"]
+    },
+    {
+      "penalty": 0,
+      "why": "Item 7: SAM mirrors OLB as a destination. OLB>OLB is free and EDGE>OLB / ILB>OLB are free, so EDGE>SAM, ILB>SAM and OLB>SAM are free.",
+      "rules": ["EDGE>SAM", "ILB>SAM", "OLB>SAM"]
+    },
+    {
+      "penalty": 6,
+      "why": "Item 7: SAM mirrors OLB. OLB's prices to FS and TE are 6, so FS>SAM 6 and TE>SAM 6.",
+      "rules": ["FS>SAM", "TE>SAM"]
+    },
+    {
+      "penalty": 2,
+      "why": "Item 7: SAM mirrors OLB. SS>OLB is 2, so SS>SAM 2.",
+      "rules": ["SS>SAM"]
+    }
+  ],
+  "engine_change": "Dest must gain 'SAM' (colors/src/sports/nfl/engine/slots.ts:8) and the SAM slot's dest must become 'SAM' (slots.ts:46, today dest:'OLB'). Without those two edits the generated flex.ts does not type-check and the SAM rules are never read. Test pins that must move: lineup.test.ts expects 104 rules and the 8 Nov pins; the new table is 105 rules."
+}

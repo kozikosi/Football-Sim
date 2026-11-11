@@ -1,0 +1,162 @@
+{
+ "_source": "FLEX TABLE, tiers -2 / -6 / -12 (Owner 8 Nov 2026, P-294; Muse relay 9 Nov: 'new table, forget the old table', no fallback, no switch). Base = the Owner working version of 7 Nov (tools/mathlab/flex-candidate-2026-11-07.json, defaults of its 7 open items in force) + CB->WR, TE->WR. Pick: every penalty of 6 or more is -12, then every -4 is -6; 0 and 2 untouched; QB->FS -12 (QB flexes only to FS). The REV 4 guide (29 Oct, tiers 0/2/4/6, QB->FS 10) is retired; it stays in git history only. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot.",
+ "roles": [
+  "QB",
+  "RB",
+  "FB",
+  "WR",
+  "TE",
+  "OT",
+  "OG",
+  "C",
+  "DT",
+  "EDGE",
+  "ILB",
+  "OLB",
+  "SS",
+  "FS",
+  "CB",
+  "K",
+  "P"
+ ],
+ "flex": {
+  "QB": {
+   "FS": 12
+  },
+  "RB": {
+   "FB": 2,
+   "WR": 12,
+   "TE": 12,
+   "SS": 12,
+   "FS": 12
+  },
+  "FB": {
+   "RB": 2,
+   "TE": 6,
+   "ILB": 12,
+   "OLB": 12,
+   "EDGE": 12,
+   "DT": 12
+  },
+  "WR": {
+   "RB": 12,
+   "TE": 6,
+   "CB": 6,
+   "FS": 6,
+   "SS": 6,
+   "NICKEL": 6,
+   "DIME": 6
+  },
+  "TE": {
+   "FB": 2,
+   "WR": 12,
+   "RB": 6,
+   "C": 12,
+   "OG": 12,
+   "OT": 12,
+   "EDGE": 12,
+   "DT": 12,
+   "OLB": 12,
+   "ILB": 12,
+   "SS": 6,
+   "FS": 6,
+   "NICKEL": 12,
+   "DIME": 12
+  },
+  "OT": {
+   "OG": 0,
+   "C": 0,
+   "DT": 6,
+   "EDGE": 12,
+   "FB": 2
+  },
+  "OG": {
+   "OT": 6,
+   "C": 0,
+   "DT": 6,
+   "EDGE": 12,
+   "FB": 2
+  },
+  "C": {
+   "OG": 6,
+   "OT": 12,
+   "DT": 6,
+   "FB": 2
+  },
+  "DT": {
+   "EDGE": 12,
+   "C": 6,
+   "OG": 6,
+   "OT": 12,
+   "FB": 2,
+   "TE": 12
+  },
+  "EDGE": {
+   "DT": 2,
+   "OLB": 2,
+   "ILB": 12,
+   "C": 12,
+   "OG": 12,
+   "OT": 12,
+   "SS": 12,
+   "FS": 12,
+   "RB": 12,
+   "FB": 2,
+   "TE": 12,
+   "NICKEL": 12
+  },
+  "ILB": {
+   "ILB": 0,
+   "OLB": 0,
+   "EDGE": 12,
+   "SS": 12,
+   "FB": 2,
+   "TE": 12,
+   "NICKEL": 12,
+   "DIME": 12
+  },
+  "OLB": {
+   "OLB": 0,
+   "ILB": 2,
+   "EDGE": 12,
+   "SS": 12,
+   "FB": 2,
+   "TE": 12,
+   "NICKEL": 6,
+   "DIME": 12
+  },
+  "SS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "FS": 2,
+   "CB": 12,
+   "WR": 12,
+   "ILB": 12,
+   "OLB": 12,
+   "RB": 12,
+   "TE": 12
+  },
+  "FS": {
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "CB": 12,
+   "WR": 12,
+   "OLB": 12
+  },
+  "CB": {
+   "FS": 0,
+   "NICKEL": 0,
+   "DIME": 0,
+   "SS": 2,
+   "WR": 12,
+   "RB": 12
+  },
+  "K": {
+   "P": 0
+  },
+  "P": {
+   "K": 12
+  }
+ }
+}

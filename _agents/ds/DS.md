@@ -11,7 +11,42 @@
 - **merge-base HEAD origin/council/base:** `1b91f50e` (= base HEAD, base unchanged since 5 Nov)
 - **Last session end:** 2026-11-08 (this session)
 
-## Current state (8 Nov 2026)
+## Current state (9 Nov 2026)
+
+**Flex rebuild delivered — the table the Architect timed out on, generated and independently checked.**
+`tools/mathlab/flexrebuild.mjs` (`--selftest` PASS 36/36) reproduces the Architect's landed tables **rule for
+rule**: `35ce4e98` (97 rules, 30/16/32/19) and `728b2c53` (97 rules, 23/15/40/19), **0 diffs each**. Applied to
+`728b2c53`, the Owner's items 3 + 7 produce the **105-rule** table with the Owner's own counts
+**23 at 12 / 40 at 6 / 16 at 2 / 26 at 0**, verified by a second, independent checker
+(`tools/mathlab/flexassert.mjs`, `--selftest` PASS 14/14, `OK 105 rules, 26 at 0`). The generated `flex.ts` loads
+in a scratch copy of the engine and returns the Owner's exact values for TE>DIME/TE>FS/ILB>FS/OLB>FS and the six
+SAM rules.
+
+**Findings (all in `notes/flex-rebuild-2026-11-09.md`, labels per claim):**
+1. **D-DS-001** — the WILL/C weight bump does **not** move D: 0 of 97 D values change (the prompt's "~6.7"
+   explanation is false); `OLB>ILB 6` / `OLB>SS 6` are Owner overrides.
+2. **D-DS-002** — "removed" is not "illegal": a deleted -12 rule becomes the emergency fallback **-8, legal**
+   (`fit('FB','EDGE')`); P-312(d) fails unless a banned set is added.
+3. **D-DS-003** — four cross-unit zeros remain (`DT>FB`, `EDGE>FB`, `ILB>FB`, `OLB>FB`); `EDGE>DT 0` also lets
+   an elite EDGE play DT for free.
+4. **D-DS-004** — items 3 + 7 need four engine/test edits (`Dest` += SAM; SAM slot dest; `natural()` SAM→OLB;
+   count 97→105), all verified against the engine.
+5. **D-DS-005** — the Owner's WILL/C bump **never landed**: `slots.ts` is 150/150 on all three commits; SAM 100.
+6. **D-DS-006** — the counts in the Owner's note are exactly reproducible (35ce 19/32/16/30 → 728 19/40/15/23 →
+   target 23/40/16/26).
+7. **3-4 base total** — 728 is **2400** (6 × (50+300+50)); the 105 table is **2700** (6 × (50+300+100)) because
+   `TE>DIME` rises to 12 while `TE>SAM` is 6, so the TE goes to SAM and a DB takes DIME free. The prompt's 2400
+   is correct for the landed table, not for the target.
+8. **P-312** — the 3-4's cheapest arrangement is a spare DT at FB (0), the FB at TE3 (6), an OLB/SS at DT2 (6)
+   and a TE at SAM/DIME (6); EDGE>TE 6 does happen with a spare EDGE and weak TEs; the removals do **not** hold.
+
+**Inbox:** `20261110-0051-ds-P-311-flex-rebuild-review.md` (VERDICT improved — table matches, weights missing,
+removals legal at -8), `20261110-0052-ds-P-323-flex-105-table.md` (the WORK proposal with the four edits),
+`20261110-0053-ds-P-312-flex-edge-cases.md` (the playtest). **Ledger:** H-DS-004/005 REFUTED, H-DS-006/007
+SUPPORTED. **No product file, protected constant, or shared tool edited.** Pre-Colors unchanged:
+`40233d6be00e987c472cf6b1126b0ab7f11c123006277466bd23391b308795fd`, 657,486 B.
+
+## Previous state (8 Nov 2026)
 
 **Owner's bias question answered — `_agents/ds/notes/ENGINE-BIAS-AUDIT-2026-11-08.md`.** The salary table is a
 better prior than the personal table but a market price, not a wins measurement; the Colors match is a fit
@@ -83,23 +118,42 @@ breaks the `import.meta.url` guard). Use `node "$(realpath /tmp/council.mjs)" <c
    the Outcome Lab is absent from both base and the architect branch (see above).
 
 ## What the next session needs
-- **Read first:** `_agents/COUNCIL.md` (v8), START-OF-CHAT (from `origin/architect/engine-and-seats`), this lane,
-  then `node "$(realpath /tmp/council.mjs)" next`.
-- **Do not redo:** E-211 (retired BUILT), P-195 (REVIEWED; correction filed 3 Nov), P-020, the 25 Oct P-001/P-003/P-005 reviews, P-152, P-153, the Owners Colors-v1 discussion answer.
-- **Next candidates:** P-008 (6 reviews, last catch 60% — the best remaining review value), then P-018, P-019, P-021, P-022, P-023. **Review by family, not one-by-one**: 115 items await review, defects cluster by feature, and per-item verdict lines from one family read is the only way the queue drains (my recommendation to the Owner, 5 Nov).
-- **Carried open questions:** (1) `<title>`/og:title — the w33 shell answers "20-0", Pre-Colors still has 3 old-name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — unconfirmed. (3) One-score rule — recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
-- **If the Owner picks up the discussion:** the two things needing his word are `legacy.ts` (delete or wire) and whether the Lab lands in `colors/tools/outcomelab/`.
+- **Read first:** `_agents/COUNCIL.md`, START-OF-CHAT (from `origin/architect/engine-and-seats`), this lane,
+  then `node "$(realpath /tmp/council.mjs)" next` (or `node tools/council.mjs next` from the live tree).
+- **Do not redo:** E-211 (retired BUILT), P-195 (REVIEWED; correction filed 3 Nov), P-020, the 25 Oct
+  P-001/P-003/P-005 reviews, P-152, P-153, the Owner's Colors-v1 discussion answer, the flex rebuild/playtest
+  filed 9 Nov (P-311/P-312/P-323 inbox files).
+- **Flex follow-up (the one thing to watch):** if the Architect lands items 3 + 7, rerun
+  `node tools/mathlab/flexassert.mjs --table=<landed flex.json> --spec=tools/mathlab/flex-spec-owner-2026-11-09-items3-7.json --base=tools/mathlab/flex-2026-11-09-728.json --no-d`
+  and compare with `_agents/ds/deliveries/flex-rebuild-2026-11-09-items3-7/flex.json`; also check the WILL/C
+  weights actually moved (`slots.ts` 200/200) and that the removals are either banned or the P-312(d) test is
+  rewritten. `flexeval` is still absent from this tree, so a draft replay is **UNKNOWN** until the Architect
+  supplies it.
+- **Next candidates:** P-008 (6 reviews, last catch 60%), then P-018, P-019, P-021, P-022, P-023. Review by
+  family, not one-by-one.
+- **Carried open questions:** (1) `<title>`/og:title — the w33 shell answers "20-0", Pre-Colors still has 3 old
+  name occurrences. (2) `#8f6a0e` for small light-mode gold (4.62:1) — unconfirmed. (3) One-score rule —
+  recommend ≤7. (4) Title for a 21-0 season — recommend its own title, brand line unchanged.
+- **If the Owner picks up the discussion:** `legacy.ts` (delete or wire) and whether the Lab lands in
+  `colors/tools/outcomelab/` are still the two needing his word.
 
 ## Files in this lane
 | path | what it is |
 |---|---|
-| `inbox/20261105-1006-ds-owner-colors-v1-discussion.md` | Owner's Colors-v1 answer: calibration curve vs bands, debt-count corrections, `legacy.ts`, Lab not in repo, Svelte 5 guards, batch reviews |
-| `inbox/20261104-0205-ds-E-211-review.md` | E-211 review: w64 = w63 bytes, 145/145 green, 0 console errors, 62 RNG occ / 43 lines |
+| `notes/flex-rebuild-2026-11-09.md` | the D→728→105 chain, six findings, P-312 measurements, integration steps |
+| `notes/HYPOTHESIS-LEDGER.md` | H-DS-001…003 (8 Nov) + H-DS-004/005 REFUTED, H-DS-006/007 SUPPORTED (9 Nov) |
+| `inbox/20261110-0051-ds-P-311-flex-rebuild-review.md` | review of `728b2c53`: table matches; weights missing; removals legal at -8; improved text |
+| `inbox/20261110-0052-ds-P-323-flex-105-table.md` | the 105-rule table for items 3 + 7, four engine/test edits, 3-4 base total |
+| `inbox/20261110-0053-ds-P-312-flex-edge-cases.md` | P-312 (a)–(e): 3-4 arrangement, free flexes, EDGE>TE, removals, weights |
+| `deliveries/flex-rebuild-2026-11-09{,-corrected,-items3-7}/` | generated `flex.json`, `flex.ts`, `report.md` for stages 1–3 |
+| `tools/mathlab/flexrebuild.mjs`, `flexassert.mjs`, `flex-spec-owner-2026-11-09*.json`, `flex-2026-11-09-728.json` | generator, independent checker, decision specs, base table |
+| `inbox/20261105-1006-ds-owner-colors-v1-discussion.md` | Owner's Colors-v1 answer: calibration curve vs bands, `legacy.ts`, Lab not in repo, Svelte 5 guards |
+| `inbox/20261104-0205-ds-E-211-review.md` | E-211 review: w64 = w63 bytes, 145/145 green, 0 console errors |
 | `inbox/20261104-0157-ds-OP-retire-E-211.md` | E-211 retire (BUILT), second seat after glm |
 | `inbox/20261104-0137-ds-tool-council-tool-tmp-symlink.md` | NOTE to the Architect: `node /tmp/council.mjs` is a silent no-op on macOS |
-| `inbox/20261103-0155-ds-P-195-correction.md` | P-195: four E-names test something else than §7; replacement snippets, E3b drift-proofing |
+| `inbox/20261103-0155-ds-P-195-correction.md` | P-195: four E-names test something else than §7 |
 | `inbox/20261031-0350-ds-critique-precolors-w33.md` | Owner-requested critique of Pre-Colors + z.ai w33 shell |
 | `inbox/20261029-0306-ds-P-020-review.md` | P-020 review #3 (28-badge table, 16 'why' rules, 20-0 contract) |
-| `notes/season-review-mock-ds.html`, `notes/MATHCORE-VS-PRECOLORS.md`, `notes/OWNER-RULINGS-2026-10-22-PROVENANCE-COLOURS.md` | mock; 26-slot comparison + `PERS['11']` causal proof; frozen dataset + 32×3 palette |
-| `tools/*.mjs`, `tools/*.js` | probes and audits from 24 Oct (`ln2-probe`, `mathcore-probe`, `verify-build-pins`, `task-validator-probe`, `arch-probe`, `funcdiff-*`, `surface-lines`) |
+| `notes/season-review-mock-ds.html`, `notes/MATHCORE-VS-PRECOLORS.md`, `notes/OWNER-RULINGS-2026-10-22-PROVENANCE-COLOURS.md` | mock; 26-slot comparison; frozen dataset + 32×3 palette |
+| `tools/*.mjs`, `tools/*.js` | probes and audits from 24 Oct (`ln2-probe`, `mathcore-probe`, `verify-build-pins`, `arch-probe`, `funcdiff-*`) |
 | `reviews/`, `deliveries/`, `snapshots/` | older reviews, doctrine docs; snapshots are legacy build copies (deletion candidates once the Owner confirms) |

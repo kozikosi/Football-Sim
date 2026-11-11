@@ -1,0 +1,128 @@
+{
+ "_source": "Owner decisions relayed 2026-11-09 (KG -> Muse -> Architect prompt 'council-zai-prompt-D-custom-table-2026-11-09.md' and 'claude-reply-owner-picks-D-2026-11-09.md'). Adopt D at theta=1.0, round to the nearest tier 0/2/6/12 (cutoffs 1/4/9), then apply the Owner's overrides. The Owner's list SUPERSEDES theta; each group below carries the Owner's own reason. Do not edit: this file is the decision record, not a draft. | REV 2 (corrections): incorporates the 9 Owner corrections that landed as 728b2c53. Two of them revise an earlier -2 in this file: DT>OG 2->6 and EDGE>C 2->6. The chain 8 Nov base -> this spec -> the table that landed at 728b2c53 (97 rules, 19/40/15/23) is reproduced exactly by tools/mathlab/flexrebuild.mjs.",
+ "date": "2026-11-09",
+ "theta": 1,
+ "tiers": [
+  0,
+  2,
+  6,
+  12
+ ],
+ "cutoffs": [
+  1,
+  4,
+  9
+ ],
+ "remove": [
+  "FB>EDGE",
+  "FB>DT",
+  "FB>ILB",
+  "FB>OLB",
+  "CB>RB",
+  "DT>TE",
+  "EDGE>FS"
+ ],
+ "remove_note": {
+  "FS>RB": "The Owner listed FS>RB as removed but no such rule exists in the 8 Nov table; no-op, recorded so the list is complete.",
+  "EDGE>TE": "The first version listed EDGE>TE in both the remove list and the -6 list. Owner clarification 2026-11-09: EDGE>TE is -6, NOT removed. See group 'override-6'."
+ },
+ "groups": [
+  {
+   "penalty": 2,
+   "why": "Owner set to -2 (2026-11-09). DT>OG and EDGE>C were -2 in the first version and are -6 after the 9 corrections; see the corrections group.",
+   "rules": [
+    "FS>SS",
+    "SS>FS",
+    "ILB>SS",
+    "OT>C",
+    "SS>OLB",
+    "WR>CB",
+    "WR>DIME",
+    "WR>NICKEL",
+    "WR>FS",
+    "WR>SS",
+    "FB>RB",
+    "K>P",
+    "P>K"
+   ]
+  },
+  {
+   "penalty": 6,
+   "why": "Owner set to -6 (2026-11-09). FB>TE and FB>RB are kept as just-in-case rules; C>OG, OLB>ILB and OLB>SS are Owner overrides DOWN from the rounding value (12); the rest are Owner overrides UP from the rounding value (0), on real-world grounds (blocking, unlikeness, specialist skills). EDGE>TE is -6 per the Owner's clarification.",
+   "rules": [
+    "FB>TE",
+    "C>OG",
+    "OLB>ILB",
+    "OLB>SS",
+    "OT>EDGE",
+    "SS>CB",
+    "FS>CB",
+    "FS>OLB",
+    "ILB>NICKEL",
+    "ILB>TE",
+    "OLB>NICKEL",
+    "DT>OT",
+    "OT>DT",
+    "SS>TE",
+    "TE>C",
+    "TE>DIME",
+    "TE>NICKEL",
+    "TE>OLB",
+    "TE>RB",
+    "WR>RB",
+    "WR>TE",
+    "RB>TE",
+    "SS>ILB",
+    "EDGE>TE"
+   ]
+  },
+  {
+   "penalty": 12,
+   "why": "Owner set to or kept at -12 (2026-11-09). TE>EDGE, RB>WR and TE>OT are the rounding rule on D (12.71/12.32/10.03); C>DT (14.3), C>OT (14.0) and OLB>EDGE (15.39) round to 12. RB>FS, RB>SS and TE>ILB are kept at 12 although D rounds to 6: the moves are so unlikely they stay heavily penalised. EDGE>SS, ILB>DIME, OLB>DIME, QB>FS and SS>RB are overrides UP from 0. QB>FS is the Owner-locked flex, -12.",
+   "rules": [
+    "TE>EDGE",
+    "RB>WR",
+    "TE>OT",
+    "C>DT",
+    "C>OT",
+    "OLB>EDGE",
+    "RB>FS",
+    "RB>SS",
+    "TE>ILB",
+    "EDGE>SS",
+    "ILB>DIME",
+    "OLB>DIME",
+    "QB>FS",
+    "SS>RB"
+   ]
+  },
+  {
+   "penalty": 2,
+   "why": "Owner corrections 2026-11-09 (728b2c53): OG>C 2 (guards are better athletes; snapping costs less than the athletic gap).",
+   "rules": [
+    "OG>C"
+   ]
+  },
+  {
+   "penalty": 6,
+   "why": "Owner corrections 2026-11-09 (728b2c53): DT>C 6, DT>OG 6 (revises the earlier -2), EDGE>ILB 6, EDGE>C 6 (revises the earlier -2), EDGE>OG 6, EDGE>OT 6, EDGE>RB 6, EDGE>NICKEL 6.",
+   "rules": [
+    "DT>C",
+    "DT>OG",
+    "EDGE>ILB",
+    "EDGE>C",
+    "EDGE>OG",
+    "EDGE>OT",
+    "EDGE>RB",
+    "EDGE>NICKEL"
+   ]
+  }
+ ],
+ "rounding_note": "Every rule not listed in remove or in a group keeps the tier the rounding rule gives: d < 1 -> 0, d < 4 -> 2, d < 9 -> 6, otherwise 12. The 8 Nov table already equals this rule for the rules the Owner did not mention, so the diff is exactly the Owner's 60 decisions.",
+ "engine_changes": {
+  "WILL": "150 -> 200 (Owner 2026-11-09).",
+  "C": "150 -> 200 (Owner 2026-11-09).",
+  "SAM": "stays 100.",
+  "finding": "The Owner's prompt says the bump brings D for OLB>ILB/OLB>SS down to ~6.7 so 'the math agrees with -6'. That is not true of this engine: SLOTS[].weight is not an input to the matchup model, so D does not move at all when WILL/C are bumped (measured: 0 of 107 rules change; _agents/ds/notes/innovation-2026-11-09.md, D-DS-001). Both rules are therefore OWNER OVERRIDES, not rounding results."
+ }
+}
