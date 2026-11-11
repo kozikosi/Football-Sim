@@ -12,8 +12,7 @@
 
 ## Current work
 - **Claimed / in progress:** P-322 derivation design variants (A: skill profile 55/99, C: with cross-side floor 57/99); P-275 w75 M1–M15 dispositions review (Z.ai non-product answers); P-110 Lineups redesign review
-- **Done this session:** P-322 derivation design (55 exact / 20 off-by-one / 24 hard, variant A without floor); P-322 derivation with cross-side floor (57 exact / 32 off-by-one / 10 hard, variant C); both committed and pushed to `council/or` with script files and inbox entries; inbox files `inbox/20261110-0602-or-P-322-derivation-design.md` and `inbox/20261110-0608-or-P-322-derivation-floor.md` filed
-- **Done this session (2026-11-09 innovation):** 60-question innovation briefing answered (60/60 INFERRED or better, 14 VERIFIED, 2 REPORTED, 0 UNKNOWN); new tools `tools/mathlab/absorber-check.mjs` and `tools/mathlab/flex-penalty.mjs` created with self-tests; discrepancy register entries D-002 (manifest hash re-pinning), D-003 (uncertainty wrapper T12 gap).
+- **Done this session:** P-141 review — Z.ai FB/Punter math + 28-round draft investigation (VERDICT: ok; all claims verified, 2 live docs corrected)
 - **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task); P-323 remains the gate for real build — design variants are analysis-only
 
 ## What the next session needs
@@ -44,6 +43,7 @@
 - `_agents/or/deliveries/or-derive-2026-11-10.mjs` — derivation script variant A.
 - `_agents/or/deliveries/or-derive-floor-2026-11-10.mjs` — derivation script variant C.
 - `_agents/or/deliveries/or-verify-E5-2026-11-10.mjs` — E5 independent verification script (VERIFIED).
+- `inbox/20261111-0340-or-P-141-review.md` — P-141 review of VL's FB/Punter investigation (VERDICT: ok).
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
