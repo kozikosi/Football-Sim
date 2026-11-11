@@ -2,33 +2,25 @@
 
 Identity: council seat `vloc`, worktree `/Users/kosi/Desktop/wt/vloc`, branch `council/vloc`.
 `git merge-base HEAD origin/council/base` = `1b91f50e161fa10d0607c8e09330115ffa27f1ff`.
-HEAD = `8f7a8db580e7f86912966474c2480cbefd12316d` (pushed to origin/council/vloc — VERIFIED by ls-remote).
+HEAD = `de42daf63162df6c9242b0054b324714f4cfed1e` (pushed to origin/council/vloc — VERIFIED by ls-remote).
 
 ## Current work and state
-P-341 (Should the engine go play-level?) — ANSWER DELIVERED.
-- Wrote `inbox/20261110-vloc-P-341-play-level-answer.md` (my council answer to the Owner's play-level question, informed by Z.ai's landed Plays Ledger answer and MUSE's review of it).
-- Independently re-ran the ZAI-D1 verification script (`origin/council/glyph:_agents/glyph/deliveries/zai-d1-kg-verify-2026-11-10.py`) against the live flex table snapshot (`origin/council/muse:tools/mathlab/flex.json`, 97 rules) with the Owner's three score changes (EDGE CARRY 4, C PBLK 6, TE PBLK 4). **All of MUSE's corrected Appendix A numbers reproduce exactly** (FB>RB 3.30/t2, FB>TE 4.74/t6, C>OT 6.68/t6, C>DT 9.12/t12, C>OG 5.13/t6, OLB>ILB 6.84/t6, OLB>SS 8.12/t6, OLB>FS 11.74/t12, TE>FS 13.64/t12, RB>FB 0/t0, TE>FB 0/t0). Guard numbers reproduce (C>OT/C>DT 14.0, C>OG 12.5, FB>RB/FB>TE 18.0, OLB>* 10.0, TE>FS 3.3).
-- Answer's position: adopt the Plays Ledger (drive engine authoritative + staged plays as additive audit trail); exposure-weighted guard = socialism's arithmetic; two loops (Ledger measures, Lab experiments). FB tier straddles the tier-4 cut inside Z.ai's E band 0.15–0.25 (flags the sensitivity); OLB>ILB ability already tiers 6 ("exposure repairs it" should be restated as "agrees").
-- Committed `8f7a8db5` and pushed to `origin/council/vloc` (ls-remote matches HEAD).
-
-P-345 (Brainstorm the play-level engine, innovation round) — FILED.
-- Wrote `inbox/20261111-1000-vloc-P-345-playlevel-engine.md` (three receipt-backed contributions: (1) Philox M0 defect — `keyedrng.ts` uses `0xd256d193`, the Random123 standard is `0xD2511F53`; recomputed `philox2x32(0,0,0)` = `[ff1dae59,6cd10df2]` wrong vs `[f72cdb4d,e13b7feb]` correct; kernel test vectors are self-generated; (2) play-level event vocabulary proposal extending `NflEvent`; (3) two views — solver exact value iteration + simulator MC with keyed-RNG/inverse-CDF coupling, `foldLog(upTo=N)` counterfactual branching; toy kernel verified solver==simulator (0.3722 vs 0.3794±0.0116, z=0.62) and keyed coupling 3.8x variance win). All claims VERIFIED/REPORTED/INFERRED labelled.
-- Committed `7a3785f5` and pushed to `origin/council/vloc` (ls-remote matches HEAD).
+P-342 (Claude's Phase 0 kernel + legacy adapter) — REVIEW FILED, VERDICT ok.
+- Re-ran from a clean extraction of `origin/architect/engine-and-seats` at `7b34a581`: kernel tests 17/17, legacy-provider tests 5/5, full suite 316/318 with exactly two pre-existing failures (`versions.test.ts` E5 pin stamp mismatch; `lineup.test.ts` DL5 staleness 2700 vs 2400). Both failures confirmed identical on parent `a0ddc584` (292/294) — not Phase 0's to fix.
+- Independently re-derived Philox2x32-10 from the published algorithm (exact integer math, did not copy MUSE's vectors): standard multiplier `M0 = 0xD2511F53` reproduces the true Random123 vectors on all three inputs (`philox2x32(0,0,0)` = `[0xf72cdb4d, 0xe13b7feb]`, etc.); Claude's `0xd256d193` reproduces only his own self-generated test vectors. M0 defect confirmed.
+- Verdict: MUSE's P-342 review confirmed (`ok`). Correction (M0 `0xd256d193` → `0xD2511F53`; replace three test vectors; fix NOW.md line) is correct and costless pre-Phase 1 — must land before Phase 1 fits λ on this RNG.
+- Filed `inbox/20261111-1750-vloc-P-342-review.md`, committed `de42daf6`, pushed to `origin/council/vloc` (ls-remote matches HEAD). P-342 needs 2 more reviews (from two other seats) to reach REVIEWED.
 
 ## What the next session needs
-- Wait for two other seats to review P-341 (VERDICT ok/improved/rejected). No seat reviews its own work or the same item twice; three ok/improved = REVIEWED.
-- If reviews land, incorporate corrections (re-run Appendix A from script, flag FB tier sensitivity, include arithmetic-check script, fix P-007 citation, label estimates).
-- P-345 is filed as an idea; the Architect reads it in his digest (`node tools/council.mjs digest`).
+- Wait for two other seats to review P-342 (no seat reviews its own work or the same item twice; three ok/improved = REVIEWED). If a review lands as `improved`, incorporate; if `rejected`, reopen and respond.
+- No other vloc work in flight.
 
 ## Open questions
 - None pending for vloc.
 
 ## Live files
-- `inbox/20261110-vloc-P-341-play-level-answer.md` — committed, pushed. Awaiting review.
-- `inbox/20261111-1000-vloc-P-345-playlevel-engine.md` — committed `7a3785f5`, pushed to `origin/council/vloc`.
+- `inbox/20261111-1750-vloc-P-342-review.md` — committed `de42daf6`, pushed. P-342 review, VERDICT ok.
 
 ## Pending (unsaved work elsewhere — not mine to touch)
 - gh-pages local-only commit `7c9694e9` (Publish w89 as live index)
-- council/ds, council/pickle, council/super, council/boc, council/dsd, council/flint, council/GH, council/glm, council/inkling, council/mimo, council/or, council/q worktrees dirty
-- architect-colors detached dirty
-- kilo worktrees (collective, hallowed-shell, slime-galley) dirty, snapshotted on origin/preserve
+- council/or and council/q worktrees dirty (1 and 1831 unsaved files); all other council/* worktrees OK
