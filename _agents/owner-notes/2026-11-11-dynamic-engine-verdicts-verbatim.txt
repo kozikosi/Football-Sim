@@ -1,0 +1,67 @@
+Owner verbatim — verdicts on MUSE's "what else is static?" 12-item list
+Recorded by MUSE, 2026-11-11 23:22 HST. KG's reply to MUSE's 12-item list
+(slot values, flex prices, drive/play parameters, home-field advantage,
+player ratings/form, group synergies, gravity/double-teams, calibration,
+game state/clutch, noise/variance, draft slot value, flex legality).
+MUSE's list is the 12 numbered items in the 22:56 HST reply; KG's numbers
+below refer to those items. Verbatim:
+
+1. yes. plass this analysis on to everyone. my only critique here is that there still needs to be truth in the static values that the user sees on the draft board other than ovr. wins are wins. a qb generally still needs to be the most important player. but yes a top qb  with a weak offensive line against a top defensive line should face a steep drop in value if he has no time to throw. i think i would like to see potentially an additional option for the player to choose a focus for the game "west coast, deep passing, rpos, ground & pound, etc" where a player could notice that his qb will have no time to throw in this game so the qb doesn't try to throw deep and instead benefits from a  user selecting west coast or rpos or ground and pound more so than deep passing. does that make sense. this is a big new potential  feature and should be broadcast to everyone as such
+2. mmm i'm more opposed to this one actually. we want the user's decisions to follow slightly more static pathways. we want the user to take an action and know what exactly he is trying to manipulate. we don't want the buttons and options to lose value to the user because the values are extremely dynamic. and flex values should stay consistent throughout the year i think. if they wildly change from round to rounf that will confuse the user.
+3. yes. pass this on to everyone.
+4. yes. it would be worth trying to find the data to show if home field advantage is more or elss significant in the playoffs. In genreal, everyone shoudl look for more dtat to suppport a more dynamic engine for any metric.
+5. i do think a player's OVR should fluctuate based on form. There are no injuries in the game. I think we have to keep them off in every sport because i don't want player's drafting 3rd string QBs. I think 32 rounds is already excessive for football but i like the positons we have avaialble to draft. I'm not sure how the player ratings would fluctuate on matchup or big games. i will not be defining  metrics for every player's clutchness, etc. theoretically a player's ovr could fluctuate by the focus of an offense. for example wr3 and TEs are more valuable as recieviers in a west coast offense environemtn and rb2s are more valuable in a ground and pound environment. I do think form should be tracked however and i do think player's ovr could fluctuate by around 5-6 during the season based on form.
+6 Yes. definitely. please broadcast this to everyone.
+7. Yes. especially with double teams. and doubleteams drawn should be available for the user to see in the advanced stats section.
+8. yeah but those fixed targets of user success are farily static as an overall mesaure to test by.
+9. Yes. Definitely. broadcast to everyone. i also think everyone should work on a better visual expereince to provide to the user to represent clutch time, especially z.ai.
+10. are upsets more likely in rivalry games? stars are never out (due to injury) but yes i think variance could fluctuate if we find good reasons for it.
+11. draft class is the same every time so i don't understand you much here
+12. Yes theoretically i like this idea. top stars could come on the field on the opposite side of the field (defensive players on offense and offensive players on defense)
+13. i'm fine with new features . i think that you did a great job brainstorming here. either continue to brainstorm and ask me more questions if you have sincere follow-ups, or write the prompts to the claude, z.ai, and the council to also brainstorm and innovate ideas as well. or both. thank you muse for everything of course
+
+--- End of verbatim record ---
+
+MUSE's summary of the rulings (not verbatim — for the prompts and MEMORY.md):
+- Item 1 (slot values): APPROVED to broadcast. Static truth must remain on the
+  draft board (Wins are wins; QB generally still the most important player),
+  but matchup-aware value is wanted (top QB + weak OL vs top DL = steep drop).
+  NEW FEATURE: offensive focus per game (west coast, deep passing, RPOs,
+  ground & pound, etc.) — the user picks a focus; a QB with no time to throw
+  benefits from west coast/RPOs/ground & pound over deep passing. BIG new
+  potential feature — broadcast to everyone as such.
+- Item 2 (flex prices): REJECTED / OPPOSED. Flex values stay CONSISTENT
+  throughout the year. The user's decisions must follow slightly more static
+  pathways — the user takes an action and knows exactly what he is trying to
+  manipulate; wildly changing values round to round would confuse the user.
+- Item 3 (drive/play parameters): APPROVED to broadcast.
+- Item 4 (home-field advantage): APPROVED. Find data on whether home-field
+  advantage is more or less significant in the playoffs. STANDING DIRECTIVE:
+  everyone should look for more data to support a more dynamic engine for any
+  metric.
+- Item 5 (player ratings/form): APPROVED with constraints. OVR fluctuates by
+  form (~5-6 during the season); form should be tracked. NO INJURIES in any
+  sport (players must not draft 3rd string QBs). 32 rounds is already excessive
+  but KG likes the positions available to draft. KG will NOT define per-player
+  clutch metrics. OVR could fluctuate by offensive focus (WR3/TE more valuable
+  in west coast; RB2 more valuable in ground & pound). Matchup/big-game OVR
+  fluctuation is unresolved (KG is unsure how it would work).
+- Item 6 (group synergies): APPROVED, definitely. Broadcast to everyone.
+- Item 7 (gravity/double-teams): APPROVED, especially double teams.
+  Double-teams drawn should be user-visible in the ADVANCED STATS section.
+- Item 8 (calibration targets): the fixed targets stay as a static overall
+  measure to test by. NOT a dynamic item.
+- Item 9 (game state/clutch): APPROVED, definitely. Broadcast to everyone.
+  Everyone should work on a better VISUAL experience to represent clutch time,
+  especially Z.ai.
+- Item 10 (noise/variance): variance could fluctuate IF good reasons are
+  found. Open question: are upsets more likely in rivalry games? (needs data).
+  Stars are never out (no injuries).
+- Item 11 (draft slot value): MOOT — the draft class is the same every time
+  (fixed pool), so draft slot value does not fluctuate by the pool.
+- Item 12 (flex legality): APPROVED in theory. Top stars could come on the
+  field on the opposite side (defensive players on offense and vice versa).
+- Item 13: KG is fine with new features; MUSE did a great job brainstorming;
+  MUSE may continue to brainstorm and ask sincere follow-ups, and/or write
+  the prompts to Claude, Z.ai, and the council to brainstorm and innovate.
+  MUSE is doing BOTH.
