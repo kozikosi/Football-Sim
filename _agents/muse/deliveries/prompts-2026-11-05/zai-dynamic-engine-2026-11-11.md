@@ -121,22 +121,31 @@ Wins). So: Wins = static truth, Priority = contextual / focus-aware, and the
 4th quarter is engine-driven by situation, overriding the user's focus.
 Propose the design inside those answers: what are the focuses (west coast,
 deep passing, RPOs, ground & pound, and what else — is there a defensive
-focus too?); **open question — pre-game + halftime, or halftime only?** Does
-the user pick a focus before the game and then get one change at halftime, or
-is the focus only chosen at halftime (first half on default)?; **open question
-— does the focus affect the DRAFT BOARD** (a player's Priority under the
-current focus, re-ranking the board) **or only the GAME** (the lineup / which
-player to start under this focus)? Is the focus a team identity (set once,
-affects the board) or a per-game choice (affects only the game) — or both?;
-how does a focus interact with **form** (a WR3's OVR in a west coast
-environment, a RB2's in ground & pound) and with **matchup** (a top QB with a
-weak OL vs a top DL — how steep is the drop, and how much does the right
-focus recover?); what does the user see when he picks a focus (what the screen
-says, in one sentence a normal fan understands — sketch the screen, don't just
-describe it); and what is the **receipt** — how would you test whether the
-focus makes the game better (more interesting decisions, not just more wins)?
-Name the failure mode: when does a focus choice become a no-brainer, or a
-trap?
+focus too?); **the Owner has answered the timing and board questions (2026-11-12 00:18 HST, verbatim at
+`_agents/owner-notes/2026-11-12-focus-pregame-halftime-auto-verbatim.txt`):**
+**pre-game AND halftime** — the user picks a focus before the game and gets
+one change at halftime. **AUTO is the default** — most users will use auto,
+so auto should be optimized for; if a user selects auto, ideally do NOT
+prompt them to make changes at halftime; there could be a **toggle** to ask
+the user if they'd like to make halftime changes or not; default is **AUTO
+EVERYTHING**; active-management players can adjust pre-game and at halftime.
+**The focus re-ranks the DRAFT BOARD (Priority) AND affects the game** — it
+is BOTH a team identity and a per-game choice. **CPU teams get focuses too**
+— random, or true to their real-life system/coach (coach names are used in
+the Coach of the Year awards). **Open questions for you to propose:** how
+does **auto** pick the focus (what does it look at — matchup, roster,
+situation?); what is the **toggle's** form (a season setting? a per-game
+setting? where does it live — sketch it); **random vs true-to-life CPU
+focuses** (what does true-to-life cost — knowing each real coach's system —
+and is it worth it?); how does a focus interact with **form** (a WR3's OVR
+in a west coast environment, a RB2's in ground & pound) and with **matchup**
+(a top QB with a weak OL vs a top DL — how steep is the drop, and how much
+does the right focus recover?); what does the user see when he picks a focus
+(what the screen says, in one sentence a normal fan understands — sketch the
+screen, don't just describe it); and what is the **receipt** — how would you
+test whether the focus makes the game better (more interesting decisions, not
+just more wins)? Name the failure mode: when does a focus choice become a
+no-brainer, or a trap?
 
 **D.2 — Matchup-aware slot values, with static truth on the board.** The
 Owner wants both: the draft board shows static truth (Wins are wins; QB

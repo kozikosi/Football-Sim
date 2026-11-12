@@ -22,9 +22,13 @@ and the most representative one. It needs everything the stage demands:
   for 2 down 14, difficult 4th downs, longer passes down big late — automatic
   regardless of what the user selected).
 - **UI:** the focus picker (west coast, deep passing, RPOs, ground & pound),
-  the halftime choice (one change, at halftime, no more than that for now),
-  and the form arrow (simple green for hot, simple red for cold, in each
-  team's color palette — no emojis, no 'HOT'/'cold' text).
+  the pre-game choice + one change at halftime, the **auto default** (most
+  users use auto — optimized for; auto users are NOT prompted at halftime;
+  a **toggle** for halftime changes; active managers adjust pre-game and at
+  halftime), and the form arrow (simple green for hot, simple red for cold, in
+  each team's color palette — no emojis, no 'HOT'/'cold' text). The focus
+  re-ranks the draft board (Priority) AND affects the game; CPU teams get
+  focuses too (random, or true to their real-life system/coach).
 - **State:** the focus per game, and the Priority-not-Wins split (the focus
   changes Priority values but NONE of the static values, including Wins).
 - **Engine integration:** the engine must accept the focus as a **defined

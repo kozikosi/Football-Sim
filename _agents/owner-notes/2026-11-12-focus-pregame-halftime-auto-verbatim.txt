@@ -1,0 +1,30 @@
+Owner verbatim — focus: pre-game + halftime, auto default, CPU team focuses
+Recorded by MUSE, 2026-11-12 00:18 HST. KG's reply to MUSE's two follow-up
+questions (asked 2026-11-11 23:49 HST). Verbatim:
+
+1. pre-game and halftime. obviously auto would be used by most users and therefore should be optimized for. If a user selects auto; ideally don't prompt them to make changes at halftime. this could be a toggle somewhere to ask if the user if they'd like to make halftime chnages or not. definteily default would be auto everything. Particularly active manangement players could adjust pregame and halftime.
+2. yes. and other team's could be assigned random focuses or could be true to their real life system or coach since we are using coach's names in the coach of the year awards.
+
+--- End of verbatim record ---
+
+MUSE's summary of the rulings (not verbatim — for the prompts and MEMORY.md):
+- FOCUS TIMING: pre-game AND halftime. The user picks a focus before the game
+  and gets one change at halftime.
+- AUTO IS THE DEFAULT: most users will use auto, so auto should be optimized
+  for. If a user selects auto, ideally do NOT prompt them to make changes at
+  halftime (do not interrupt auto users). There could be a TOGGLE somewhere to
+  ask the user if they'd like to make halftime changes or not. Default is AUTO
+  EVERYTHING. Active-management players can adjust pre-game and at halftime
+  (manual mode is for active managers).
+- FOCUS + PRIORITY: YES — the focus re-ranks the draft board (a player's
+  Priority under the current focus) AND affects the game. The focus is BOTH a
+  team identity (affects the board) and a per-game choice (affects the game).
+- CPU TEAMS GET FOCUSES TOO: other teams could be assigned RANDOM focuses, or
+  focuses TRUE TO THEIR REAL-LIFE system/coach — since coach names are used in
+  the Coach of the Year awards. (Open: random vs true-to-life — the builders
+  should propose, noting the cost of true-to-life is knowing each real coach's
+  system.)
+- MUSE has no more sincere follow-up questions right now (2026-11-12 00:18
+  HST). The remaining details (the toggle's exact form, random vs true-to-life
+  CPU focuses, how auto picks the focus) are in the prompts as open questions
+  for the builders to propose.

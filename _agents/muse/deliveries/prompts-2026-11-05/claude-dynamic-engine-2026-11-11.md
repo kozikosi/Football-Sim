@@ -67,14 +67,19 @@ tests, no code, no build. The note should answer, in your own shape:
 1. **The offensive focus.** What is it, as an engine object — given the
    Owner's answers (choices at halftime, no more than that for now; 4th
    quarter automatic by situation, overriding the focus; focus changes
-   Priority, never Wins)? Two open questions: **pre-game + halftime, or
-   halftime only?** (Does the user pick a focus before the game and then get
-   one change at halftime, or is the focus only chosen at halftime?) And
-   **does the focus affect the DRAFT BOARD** (a player's Priority under the
-   current focus) **or only the GAME** (the lineup)? Is it a team identity or
-   a per-game choice — or both? How does it interact with form and with
-   matchup (the QB-with-no-time case)? What is the cleanest shape that keeps
-   the engine beautiful?
+   Priority, never Wins; **pre-game AND halftime** — the user picks a focus
+   before the game and gets one change at halftime; **AUTO is the default** —
+   most users will use auto, so auto should be optimized for, and auto users
+   are ideally NOT prompted at halftime; there could be a **toggle** for
+   halftime changes; default is **AUTO EVERYTHING**; active-management players
+   can adjust pre-game and at halftime; **the focus re-ranks the DRAFT BOARD
+   (Priority) AND affects the game** — it is BOTH a team identity and a
+   per-game choice; **CPU teams get focuses too** — random, or true to their
+   real-life system/coach)? Open questions for your note: how does **auto**
+   pick the focus (what does it look at?); what is the **toggle's** form;
+   **random vs true-to-life CPU focuses** (what does true-to-life cost?); how
+   does the focus interact with form and with matchup (the QB-with-no-time
+   case)? What is the cleanest shape that keeps the engine beautiful?
 2. **What else is static?** The Owner's question, verbatim: "think of what
    else would make the engine dynamic." Name the static assumptions in your
    engine (beyond the 12 above) that should fluctuate — and say what each
