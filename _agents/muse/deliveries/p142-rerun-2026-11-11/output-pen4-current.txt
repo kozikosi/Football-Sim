@@ -1,0 +1,46 @@
+CROSS-POSITION FLEX — minimum OVR gap for an alternative role to displace a natural player at each spot
+Only penalties shown in the first 10 rounds (-2 and -4 flex) are listed.
+
+SPOT  weight  ALT -> SPOT   pen   min OVR gap to flex
+----------------------------------------------------------------
+RB1      250  FB   -> RB1      2   gap:   3
+OT1      500  OG   -> OT1      2   gap: never
+OT2      300  OG   -> OT2      2   gap: never
+C        150  OT   -> C        2   gap: never
+C        150  OG   -> C        2   gap: never
+OG1      400  OT   -> OG1      0   gap: never
+OG2      250  OT   -> OG2      0   gap: never
+RB2      100  FB   -> RB2      2   gap: never
+FB        25  RB   -> FB       0   gap: never
+FB        25  TE   -> FB       0   gap: never
+FB        25  OT   -> FB       0   gap: never
+FB        25  OG   -> FB       0   gap: never
+FB        25  C    -> FB       0   gap: never
+FB        25  DT   -> FB       0   gap: never
+FB        25  EDGE -> FB       0   gap: never
+FB        25  ILB  -> FB       0   gap: never
+FB        25  OLB  -> FB       0   gap: never
+DT1      500  EDGE -> DT1      0   gap: never
+DT2      300  EDGE -> DT2      0   gap: never
+WILL     150  EDGE -> WILL     0   gap: never
+WILL     150  ILB  -> WILL     0   gap: never
+WILL     150  SS   -> WILL     2   gap: never
+SAM      100  EDGE -> SAM      0   gap: never
+SAM      100  ILB  -> SAM      0   gap: never
+SAM      100  SS   -> SAM      2   gap: never
+CB3      100  SS   -> CB3      0   gap: never
+CB3      100  FS   -> CB3      0   gap: never
+CB3      100  CB   -> CB3      0   gap: never
+DIME      50  SS   -> DIME     0   gap: never
+DIME      50  FS   -> DIME     0   gap: never
+DIME      50  CB   -> DIME     0   gap: never
+FS       300  SS   -> FS       2   gap: never
+FS       300  CB   -> FS       0   gap: never
+SS       300  ILB  -> SS       2   gap: never
+SS       300  FS   -> SS       2   gap: never
+SS       300  CB   -> SS       0   gap: never
+K         50  P    -> K        2   gap: never
+P         50  K    -> P        2   gap: never
+
+Positions where a flex is attractive within a 20 OVR gap: 1 of 38
+These are the positions most likely to flex OUT early (first 10 rounds).
