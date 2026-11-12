@@ -53,7 +53,7 @@ Five kinds of input, each with ONE owner and ONE source:
 | `w(package)` | who performs which duty, by personnel package | nflverse participation + snap counts (replaces `PERS`, `PERS_REC`, `DL5_SHARE`, `DIME_W`) | data |
 | `z` | rating to league scale; `effOVR` includes the flex penalty | existing ability layer + Owner flex table | Owner |
 | `theta` | shape: how a duty gap splits across a node's outcomes (sack vs completion vs INT) | legacy elasticity ratios as prior, `MC.toQb/qb` etc. | prior, re-estimable |
-| `lambda_c` | impact scale of one standard deviation of duty c (about 12 numbers) | dispersion matching: real team-level spread of that channel's outcome vs the spread of team duty gaps in the Madden data | derived, Owner-visible dial |
+| `lambda_c` | impact scale of one standard deviation of duty c (about 12 numbers) | two-gap Lab plus conditional regression (P-347, proposed; dispersion matching is biased, DS D4: +0.23/+0.43/+0.75), validated by conditional moments on held-out 2023-2025 | derived, Owner-visible dial |
 
 Why this form: it is the odds-ratio (log5) method generalised, the standard baseball PA model, and the same family the current matchup model already uses; probabilities saturate on their own, so the `softCap` hack disappears; it is a multinomial GLM, so it fits by convex maximum likelihood with free uncertainty; it is differentiable, which is what the solver view needs (section 6). The existing channels (`olRun`, `olPass`, `rb`, `qb`, `rec`, `passRush`, `frontRun`, `coverage`, `kicker`) are the starting duty set, so Owner vocabulary carries over.
 
@@ -122,7 +122,7 @@ Portability test the Owner set: the second sport ships with a duty table, rules,
 
 0. **Kernel and contracts:** keyed RNG, event schema, folds, pack format. Wrap the old drive engine as a legacy provider emitting the new event schema, so UI and stats migrate to log consumers early. Gate: the adapter reproduces today's box scores for seeded games.
 1. **Football baseline, all lambda = 0:** neutral rosters must reproduce real league distributions on held-out seasons. Gate: the totals bar. Needs the data in section 11.
-2. **Ratings in:** duty layer, lambda by dispersion matching, solver view, MEASURED curve, census. Gate: properties plus Owner review of the curve and break-evens.
+2. **Ratings in:** duty layer, lambda by the two-gap Lab (not dispersion matching), solver view, MEASURED curve, census. Gate: properties plus Owner review of the curve and break-evens.
 3. **Attribution:** usage, snap counts, box scores, recap from the log. Gate: snap shares within 2 points of nflverse (the Ledger's original test, as an output).
 4. **Second sport** to prove portability (Owner named basketball; baseball is the best solver showcase). Gate: no kernel change.
 5. **Cutover:** retire legacy provider, `drives.ts`, `margin.ts`; re-pin goldens; versioned saves.

@@ -1,0 +1,23 @@
+# Phase 1 football baseline, all lambda = 0 (Architect, 12 Nov 2026)
+
+Code: `tools/mathlab/phase1/` (`sh fetch.sh; python3 -I run_all.py`, 2 min). Full output: `phase1-baseline-run-2026-11-12.txt`. Data: nflverse pbp 2016-2025 (MUSE P-344; raw download works from this shell, 20,534,088 B for 2023 matches the manifest). Labels: VERIFIED (run), INFERRED, UNKNOWN.
+
+## What was built
+A lab simulator (Python, not the TS engine yet): neutral teams, every node drawn from stratified pools of REAL penalty-free plays (`penalty==1` and `no_play` rows deleted, as in MUSE's nopenalty table). Nodes: call | (down, distance, field, score, clock); play record (yards, turnover/TD flags, next-drive spot) | (call, down, distance, field); clock | (outcome, gain, half, score) late and non-late; next down/distance from the real next kept play. Fit 2016-2022 (kickoffs 2018-2022), tested on held-out 2023-2025 REG, 12,000 simulated games per cell. This is the saturated-MLE baseline; GLM nodes replace pools when lambda enters (Phase 2).
+
+## Gate: the ~10% totals bar (Owner, 11 Nov)
+VERIFIED PASS on every held-out season: points 2023 +8.3 / 2024 +2.9 / 2025 +2.4 %; drives +2.9 / +6.3 / +8.7; plays +1.4 / +2.9 / +4.9; offensive plays +0.8 / +2.3 / +4.0; yards +4.2 / +2.5 / +5.7; TOP -0.5 / -0.5 / +0.3. In-sample 2016-2022: points +3.0, drives +2.2, plays +0.8, yards -0.1, TOP -0.9.
+My own stricter proposal (1% points, 3% drives, 2% plays, design doc section 8) FAILS on held-out and I withdraw it as a gate: the real mean moves more than that by itself (points 21.7 in 2017 vs 24.8 in 2020; the standard error of one season's mean is 1.9%). INFERRED: the right gate is the Owner's 10% on held-out plus about 3% in-sample.
+
+## Findings that change the plan
+1. **Drift is policy and success, not clock (VERIFIED).** Real drives fall 11.43 (2016) to 10.47 (2025), plays 76.4 to 72.7, seconds per drive 159 to 171. Refitting only the clock on the held-out season does not recover it (2025 drives 11.28 sim vs 10.47). The pack must be era-aware: IDEA: per-era packs or a season-trend term, with an Owner-visible era choice.
+2. **Neutral play leaves a measurable variance budget (VERIFIED).** Real vs neutral-sim SD: points 9.98 vs 9.20 (15% of variance unexplained), yards 22%, pass attempts 40%, completions 42%. Phase 2's lambda can only explain the part ratings drive. Pass attempts and completions are mostly team style (call rate), not quality: INFERRED, test in Phase 2 by regressing them on duty gaps. Team call-rate dials (the Owner's plan options) are the channel for that part.
+3. **Penalties off, measured (the design doc's UNKNOWN).** Product world D vs the penalty-on calibration A: points -2.8%, drives +0.7%, plays +4.4%, offensive plays +4.6%, yards +5.5%. Two opposing parts: removing penalty time frees 159 s per game (+4.8% drives), removing automatic first downs and penalty yards costs -7.2% points, -3.5% drives. My pre-registered guess of +3% plays was wrong in size (the clock effect is 4.4% once timeouts are kept). Caveat INFERRED: deleting penalized plays also deletes their outcomes (negated big gains, nullified turnovers), so the "penalty-free" play pool is selected.
+4. **Penalty-free transitions need the real next state.** Computing first downs from yards alone gave punts +10.6%, points -4.6% vs real. The calibration pack therefore reads the next down and distance from the next kept play; the product world switches to computed transitions (variant D).
+5. **Kickoff regime (VERIFIED, small):** refitting the kickoff pool on 2024/2025 moves the mean start from 73.8 to 69.5/68.6 yd and raises points, so kickoff rules do not explain the drive drift.
+
+## Known gaps (UNKNOWN until fixed)
+Giveaways -7.4% in-sample (kick-return fumbles unmodelled); sacks -10.9% in 2023 only; points +3.0% in-sample bias; overtime crude; margin pmf not tested (shape-only per the ruling); coach policy is a pool, not a fitted model; TS port with the keyed RNG not started. Solver view not started.
+
+## Lambda protocol (P-347, proposed) read
+C2 (`origin/council/or` a9eda133): in controlled worlds the two-gap fit is unbiased (bias 0.000 to 0.001, sd 0.011 to 0.020) while one-gap Wins10 is biased -0.004 to -0.153 and dispersion matching is biased +0.232/+0.427/+0.751; regression bias 0.002. It holds up for what it tests, and I will use it in Phase 2: two-gap Lab (gaps 10 and 20, report R = Wins20/Wins10 first), validated by conditional moments on held-out 2023-2025, never dispersion matching. Not yet tested: the engine-consumed fit (C2 says it runs once Phase 1 lands). Design doc section 3 row for lambda amended.

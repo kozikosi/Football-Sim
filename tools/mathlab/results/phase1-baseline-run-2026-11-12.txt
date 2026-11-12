@@ -1,0 +1,90 @@
+PACK: nonparametric stratified pools of real penalty-free plays (nflverse), fit 2016-2022, kickoffs 2018-2022; sim N=12000 neutral games, seed 1
+pack records 258282 | call/record/clock pools; transitions=empirical; clock=folded (penalty time folded into kept plays)
+
+=== HELD-OUT 2023 REG (n=544 team-games) ===
+                 sim     real    pct     z  real_sd  sim_sd
+points         23.58    21.77   8.30  4.21    10.02    9.20
+drives         11.38    11.07   2.85  4.27     1.72    1.64
+plays          76.24    75.20   1.37  2.81     8.59    8.49
+off_plays      62.00    61.53   0.76  1.35     8.12    8.06
+pass_att       35.81    35.94  -0.36 -0.39     7.56    6.69
+rush_att       25.95    26.50  -2.07 -1.72     7.44    6.56
+completions    21.45    21.40   0.24  0.22     5.46    4.58
+yards         340.51   326.65   4.24  3.78    85.52   73.53
+sacks           2.30     2.58 -10.86 -3.57     1.83    1.53
+giveaways       1.19     1.31  -9.09 -2.35     1.19    1.09
+top_dt       1795.70  1805.50  -0.54 -0.83   275.54  259.59
+
+=== HELD-OUT 2024 REG (n=544 team-games) ===
+                 sim     real   pct     z  real_sd  sim_sd
+points         23.58    22.91  2.90  1.58     9.80    9.20
+drives         11.38    10.70  6.33  9.81     1.61    1.64
+plays          76.24    74.08  2.91  5.89     8.53    8.49
+off_plays      62.00    60.59  2.33  4.06     8.11    8.06
+pass_att       35.81    34.90  2.62  2.56     8.34    6.69
+rush_att       25.95    26.56 -2.31 -1.94     7.39    6.56
+completions    21.45    21.06  1.86  1.64     5.56    4.58
+yards         340.51   332.33  2.46  2.31    82.70   73.53
+sacks           2.30     2.40 -4.31 -1.35     1.78    1.53
+giveaways       1.19     1.17  2.06  0.51     1.10    1.09
+top_dt       1795.70  1804.83 -0.51 -0.77   276.93  259.59
+
+=== HELD-OUT 2025 REG (n=544 team-games) ===
+                 sim     real   pct      z  real_sd  sim_sd
+points         23.58    23.01  2.44   1.32     9.94    9.20
+drives         11.38    10.47  8.72  14.14     1.51    1.64
+plays          76.24    72.66  4.93   9.38     8.90    8.49
+off_plays      62.00    59.61  4.01   6.55     8.50    8.06
+pass_att       35.81    34.11  4.98   4.85     8.17    6.69
+rush_att       25.95    26.44 -1.85  -1.56     7.32    6.56
+completions    21.45    20.32  5.58   4.85     5.45    4.58
+yards         340.51   322.08  5.72   5.14    83.65   73.53
+sacks           2.30     2.35 -2.36  -0.73     1.78    1.53
+giveaways       1.19     1.11  7.29   1.69     1.12    1.09
+top_dt       1795.70  1790.04  0.32   0.47   281.80  259.59
+
+=== IN-SAMPLE 2016-2022 REG ===
+                 sim     real   pct  real_sd  sim_sd  var_gap_pct
+points         23.58    22.89  2.98     9.98    9.20        15.13
+drives         11.38    11.14  2.21     1.66    1.64         2.74
+plays          76.24    75.63  0.80     8.85    8.49         7.99
+off_plays      62.00    61.81  0.31     8.34    8.06         6.62
+pass_att       35.81    36.56 -2.05     8.61    6.69        39.67
+rush_att       25.95    26.15 -0.75     7.48    6.56        23.08
+completions    21.45    21.75 -1.38     6.00    4.58        41.79
+yards         340.51   340.80 -0.08    83.30   73.53        22.08
+sacks           2.30     2.33 -1.28     1.71    1.53        19.02
+giveaways       1.19     1.29 -7.44     1.17    1.09        13.75
+top_dt       1795.70  1811.32 -0.86   286.23  259.59        17.74
+
+=== PER-SEASON REAL PACE TABLE (REG, penalty-free kept plays) ===
+        points  drives  plays  pass_rate  sec_per_scrim_play  sec_per_drive
+season                                                                     
+2016     22.77   11.43  76.36       0.60               28.01         158.74
+2017     21.72   11.52  75.50       0.58               28.17         156.81
+2018     23.34   11.22  74.95       0.60               28.56         161.36
+2019     22.81   11.20  75.55       0.60               28.31         161.67
+2020     24.79   10.89  76.79       0.59               27.94         166.40
+2021     22.98   10.80  75.31       0.59               28.39         168.02
+2022     21.88   10.92  75.02       0.57               28.41         165.78
+2023     21.77   11.07  75.20       0.58               28.28         163.15
+2024     22.91   10.70  74.08       0.57               28.84         168.61
+2025     23.01   10.47  72.66       0.57               29.03         170.99
+
+=== CLOCK-ONLY REFIT ON THE HELD-OUT SEASON (is the drift pace?) ===
+2023 drives sim 11.46 real 11.07 | plays sim 76.76 real 75.20 | points sim 23.65 real 21.77
+2024 drives sim 11.38 real 10.70 | plays sim 76.00 real 74.08 | points sim 23.48 real 22.91
+2025 drives sim 11.28 real 10.47 | plays sim 75.34 real 72.66 | points sim 23.32 real 23.01
+
+=== PENALTY-OFF MEASUREMENT (pack 2016-2022; compare rows against A) ===
+                                                             points  drives  plays  off_plays   yards   top_dt
+A calibration: empirical trans, folded clock                  23.58   11.38  76.24      62.00  340.51  1795.70
+B computed trans, folded clock                                21.88   10.98  76.19      62.01  343.20  1796.06
+C empirical trans, penalty time removed                       24.70   11.93  79.63      64.76  355.89  1797.92
+D PRODUCT penalty-off: computed trans, penalty time removed   22.91   11.46  79.63      64.86  359.17  1799.75
+pct vs A:
+                                                             points  drives  plays  off_plays  yards  top_dt
+A calibration: empirical trans, folded clock                    0.0     0.0    0.0        0.0    0.0     0.0
+B computed trans, folded clock                                 -7.2    -3.5   -0.1        0.0    0.8     0.0
+C empirical trans, penalty time removed                         4.8     4.8    4.4        4.5    4.5     0.1
+D PRODUCT penalty-off: computed trans, penalty time removed    -2.8     0.7    4.4        4.6    5.5     0.2

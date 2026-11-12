@@ -1,11 +1,9 @@
 # NOW (Architect)
-Updated: 2026-11-11. Boot-v3.8 OK. Push works from the boot clone (add_repo "push" done once this session).
-- DONE: Phase 0 kernel + legacy provider, pushed 7b34a58. Kernel in `colors/src/core/` (keyedrng, events, fold, pack); `colors/src/sports/nfl/engine/legacyprovider.ts` wraps the old drive engine as events + folds.
-- VERIFIED gate: fold(log) deep-equals old GameResult and BoxScore on 60 seeded games incl. playoff and OT; Philox2x32 matches the published Random123 kat_vectors (M0 0xd256d193 confirmed vs philox.h; M0 0xD2511F53 is the 4x32 constant, MUSE fix withdrawn) and an independent BigInt reference; 320 tests, 318 pass (2 fail: flex-base totals + E5 stamp pins, Owner re-pin pending); tsc ratchet 91/91.
-- Owner answers recorded: `claude/rulings/2026-11-11-owner-answers-design-13.md`. Phases 0-1 GO; totals bar ~10% (general realism, not exact 2025); 2nd sport basketball, after football; no historical Madden ratings needed.
-- Honest limit: the adapter replays the old engine's facts as events; it is not play-level. Phase 1 builds the real play-level football model.
-- PRE-EXISTING failures at a0ddc58 (also on clean HEAD): `test/nfl/versions.test.ts` E5 pin and `test/nfl/lineup.test.ts` "totals are not comparable". Owner decides re-pin after the 10 Nov flex-floor change.
-- DONE: council ask SENT `inbox/20261111-0902-architect-ASK-phase-1-football-baseline-data.md` (nflverse PBP/participation/snaps + team-game targets, 2016-2025). Waits for council answer.
-- NEXT: (1) read the council answer (`council.mjs digest`); (2) Phase 0 tail: migrate one consumer (recap or standings) to `foldLog`; (3) Phase 1 baseline, all lambda = 0, gate = ~10% totals bar.
-- UNKNOWN: proxy access to nflverse releases; lambda identification from OVR-only data (largest risk).
+Updated: 2026-11-12. Boot-v3.8 OK. Push works from the boot clone (add_repo "push" done).
+- DONE: Phase 0 kernel + legacy provider (7b34a58); Philox2x32 M0 0xd256d193 confirmed vs Random123 philox.h and kat_vectors, BigInt reference test added (2c43bc1). MUSE's M0 fix was withdrawn; no change needed.
+- DONE: Phase 1 baseline, all lambda = 0, `tools/mathlab/phase1/` + `tools/mathlab/results/phase1-baseline-2026-11-12.md`. VERIFIED gate: ~10% totals bar PASSES on held-out 2023-2025 (worst: 2023 points +8.3%, 2025 drives +8.7%). My 1%/3%/2% proposal withdrawn (season drift exceeds it).
+- Findings: drift is policy not clock (era-aware pack needed); neutral play leaves 15% of points variance (pass attempts 40%) for lambda/style; penalties off = points -2.8%, plays +4.4%, drives +0.7% vs penalty-on.
+- Owner decisions: re-pin E5 stamp + flex-base totals (2 pre-existing failures, 318/320 pass); CI gate pick; hydration wiring; whether product-world totals (penalty-off) are the bar.
+- NEXT: (1) port the baseline nodes to TS on the keyed RNG (colors/src/sports/nfl/engine), pools to a pack with hash; (2) fix gaps: kick-return fumbles, overtime, era packs; (3) migrate recap or standings to `foldLog`; (4) Phase 2 lambda by two-gap Lab (P-347) once the TS engine exists.
 - Blockers: Held (Owner): CI gate pick, hydration wiring. E3c flexengine not run. Pending Z.ai asks: P-308 FB/P/CB4 snaps, RNG landing plan, Rosetta keys.
+- UNKNOWN: lambda identification from OVR-only data (largest risk); P-347 awaits Owner ratification.
