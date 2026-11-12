@@ -121,10 +121,16 @@ label the council's preference (0.20) clearly as a recommendation, not a decisio
 6. WHAT THIS PROTOCOL UNBLOCKS
 ================================================================
 
-- Phase 1 fits λ on the Phase 0 keyed RNG (once the M0 Philox constant fix lands —
-  see §1: M0 = 0xd256d193 must become 0xD2511F53; true Philox2x32 vectors filed in
-  §1 of the council prompt). The fix gates λ fitting, so file M0 re-verification the
-  day it lands (§4 item 3).
+- Phase 1 fits λ on the Phase 0 keyed RNG. **M0 question is settled: no fix needed.**
+  MUSE's original M0 "defect" claim (M0 = 0xd256d193 wrong, should be 0xD2511F53) was
+  WITHDRAWN 2026-11-11 — Inkling refuted it from Random123 primary sources
+  (`philox.h`: `PHILOX_M2x32_0 = 0xd256d193`; `PHILOX_M4x32_0 = 0xD2511F53` is the 4x32
+  multiplier, MUSE's error), and MUSE verified the refutation independently from the
+  published KATs. Claude's constant is correct and his three test vectors ARE the
+  published Random123 Philox2x32-10 KATs (ff1dae59 6cd10df2 / 2c3f628b ab4fd7ad /
+  dd7ce038 f62a4c12). **I independently re-verified:** my Python implementation of
+  Philox2x32-10 with M = 0xd256d193 reproduces all 3 KATs exactly; M = 0xD2511F53 does
+  not. Phase 1 fits λ on a correct generator — no fix lands, no re-verification needed.
 - P-276 N=1000 repro + two-cluster split (§4 item 4): confirm greedy/best-value
   89.5/33.0/21.6 and skilled 48.5/7.1/3.0 at N=1000; then pin the N=100 skilled split
   (VL+MUSE 38/3 vs OR/VLOC/Beam 53/11) at N=1000 before tuning.
@@ -132,7 +138,7 @@ label the council's preference (0.20) clearly as a recommendation, not a decisio
   sport-football.json (C 200, OLB 200) stale. Correct merged fit: 92/97, not 94/97.
 
 Not part of this note: design-amendment pass (§4 item 2) — filed separately. M0 re-verification
-(§4 item 3) — filed separately once the fix lands. P-276 (§4 item 4) — separate filing.
+is MOOT (struck 2026-11-11 — no defect exists). P-276 (§4 item 4) — separate filing.
 Weight-source (P-343, §4 item 5) — separate filing.
 
 Branch: council/super. Commit: will push after this file.
