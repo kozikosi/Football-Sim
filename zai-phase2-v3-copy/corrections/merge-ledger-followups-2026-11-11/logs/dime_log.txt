@@ -1,0 +1,47 @@
+measured situation mix (Ledger Phase 1 engine games, even80-class walk):
+  early: freq 0.7036  P(heavy pkg 13/21/22 | sit) 0.2442
+  third: freq 0.1898  P(heavy pkg 13/21/22 | sit) 0.2703
+   long: freq 0.1066  P(heavy pkg 13/21/22 | sit) 0.2195
+
+closed-form dime share with the INFERRED tables as shipped: 0.0690  (the staged walk measured 0.0694-0.0695 — agreement)
+
+-- (a) sensitivities --
+per-bucket: dime share if ONLY that bucket's dime weight scaled to k (other buckets fixed):
+  early: bucket contributes 0.0182 of the 0.0690 (freq 0.704, P(dime|sit) 0.0259)
+  third: bucket contributes 0.0194 of the 0.0690 (freq 0.190, P(dime|sit) 0.1024)
+   long: bucket contributes 0.0314 of the 0.0690 (freq 0.107, P(dime|sit) 0.2943)
+
+scale k on ALL three dime weights (bisection) -> what k yields 0.15:
+  uniform k = 2.8x  (dime weights -> early 0.08, third 0.33, long 0.92)  check 0.1500
+  (the dime weight is a RELATIVE weight: scaling it crowds out base/nickel —
+   a k this large means the tables are not 'under-using' dime, they are a different shape)
+
+suppression OFF (heavy packages no longer halve dime):
+  dime share 0.0791 (vs 0.0690) — worth +1.00 points; NOT the gap
+
+per-bucket single moves that each reach 0.15 alone:
+  early: dime weight would need 0.2 (now 0.03) — 6x
+  third: dime weight would need 1.2 (now 0.12) — 10x
+   long: IMPOSSIBLE alone — even at P(dime|long)=1 the overall share caps at 0.1326 (the bucket is only 10.7% of plays)
+
+the ceiling: even with dime weight -> infinity, P(dime|sit) saturates at
+  early: unsuppressed cap 1.0, suppressed cap 0.5 -> overall ceiling 0.8768
+  third: unsuppressed cap 1.0, suppressed cap 0.5 -> overall ceiling 0.8768
+   long: unsuppressed cap 1.0, suppressed cap 0.5 -> overall ceiling 0.8768
+
+-- (b) the mapping answer --
+DIME_W = 0.15 is a RATING WEIGHT: matchup.ts line 51 blends the covDime unit
+rating into coverage on EVERY down (comment: 'a fixed passing-down share of
+coverage, not a plan option'). A rating weight becomes a snap share only if
+(i) dime personnel were on the field 15% of snaps AND (ii) the blend fired only
+when they were AND (iii) the package tables agreed. (i) is the Phase 2 question;
+(ii) is false in the engine today (the blend is unconditional); (iii) is the
+INFERRED tables' 0.0694. The 8-point gap is a CATEGORY difference, not a tuning
+residue: the tables put dime on the field on long passing downs (~11% of plays,
+P(dime|long) 0.24-0.36); DIME_W assumes a flat 15% rating share on every play,
+run downs included. What would settle it: (1) real dime snap share 2023-25
+(Phase 2 data request item 1/2); (2) if the Owner wants DIME_W to carry a snap
+share, re-derive it as the situation-weighted blend the engine already implies:
+    DIME_W_eff = sum_sit freq x P(dime|sit) = 0.0690 on the staged tables
+  — i.e. make the blend conditional on the package, or make the package tables
+  the measured input and retire the flat constant. No file was edited.

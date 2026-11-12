@@ -1,0 +1,11 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+074c1ec966896bb3d02c7126d6dffc3b2ad1fa81dd42e27f199e670ef2f1b17b       7497  C2-CONDITIONAL-LAMBDA-2026-11-12.md
+0ef95054b6e40116440e20e77aa94df8c20ba88d02cd75ed813cf7d2276239ee      25610  c2_lab_and_validation.py
+e02fe6f8fa733498a0668a30937af258889cdf8c3a82e264d697ec7fb2553629       9267  c2_results.json
+81964fa7dbc1b8335b06930892df65948c0603c921dad85fcd90708b0fe8f448       3592  run_log_c2.txt
