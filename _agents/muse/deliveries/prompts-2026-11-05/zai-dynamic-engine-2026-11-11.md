@@ -220,6 +220,17 @@ dynamic."
 
 ## §3 — Bounds (do not re-decide these)
 
+- **The server-ready engine principle (the Owner, standing, 2026-11-12):**
+  "design the simulation engine as if it will eventually run on a centralized
+  server, even though it currently runs locally. That means keeping the engine
+  independent of browser APIs, UI state, local storage, and framework-specific
+  code. It should accept defined inputs and produce defined outputs. Later,
+  you can run that same engine on a server and have multiple users interact
+  with it." Every proposal in this prompt must keep the engine server-ready —
+  a focus, a form mechanism, or a group synergy that depends on browser APIs,
+  UI state, local storage, or framework-specific code is not a proposal. The
+  engine takes defined inputs and produces defined outputs; the UI and the
+  platform layer sit outside it.
 - **This is a brainstorm prompt — filings, not builds.** The offensive focus,
   form, group synergies, the clutch visual, and cross-side stars are
   **proposals**; the Owner decides what ships, the Architect decides what

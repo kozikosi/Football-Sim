@@ -1,0 +1,28 @@
+Owner verbatim — the server-ready engine principle
+Recorded by MUSE, 2026-11-12 00:12 HST. KG asked MUSE to record this for
+everyone (the council, Claude, and Z.ai). Verbatim:
+
+design the simulation engine as if it will eventually run on a centralized server, even though it currently runs locally. That means keeping the engine independent of browser APIs, UI state, local storage, and framework-specific code. It should accept defined inputs and produce defined outputs. Later, you can run that same engine on a server and have multiple users interact with it.
+
+--- End of verbatim record ---
+
+MUSE's note (not verbatim — for the record): this is a standing architectural
+principle, not a one-off. It binds the engine design (Claude's lane), the UI
+tracks (Z.ai's lane — the UI must not leak into the engine), and the council's
+reviews (a review should check that a change keeps the engine server-ready).
+It is broadcast in the three dynamic-engine prompts, in the Claude think-job
+draft, and in the framework-test design
+(`_agents/muse/deliveries/prompts-2026-11-05/framework-test-dynamic-feature-2026-11-12.md`),
+where server-readiness is a measured criterion (defined inputs/outputs, no
+browser APIs, no UI state, no local storage in the engine).
+
+Current state (MUSE, VERIFIED 2026-11-12 from origin/architect/engine-and-seats):
+the colors package.json already says "The engine and view layers have no
+runtime dependencies", and the storage is isolated in a platform adapter
+(`colors/src/platform/localstorage.ts`). The actual storage is localStorage
+(used in `colors/src/core/app.ts`, `colors/src/platform/localstorage.ts`,
+`colors/src/sports/nfl/app/store.ts`); IndexedDB is mentioned only in two
+comments as a possible future replacement ("an IndexedDB implementation can
+replace it later without touching a caller"). So the principle is partly in
+place — the work is to make it explicit, enforce it, and keep the engine
+(server-runnable) separate from the platform layer (browser/local storage).

@@ -36,6 +36,7 @@ This is the job where invention is the point. Question your own design: the two-
 - This is a design brief, NOT a go for build or cutover. No code changes to the engine in this job; the deliverable is the note.
 - Do not run tests (testing is the council's job). Do not re-pin the engine stamp (the Owner's call). Do not re-litigate the margin-distribution reading (you recorded it as shape-only; the Owner has not corrected it).
 - The λ objective is NOT decided — the binary is false. Present your recommendation on the third objective and the fluctuating dial, do not decide the objective. The P-347..P-353 ratifications are now the council's to decide (the Owner delegated them) — present your recommendation, do not decide them.
+- **The server-ready engine principle (the Owner, standing, 2026-11-12):** "design the simulation engine as if it will eventually run on a centralized server, even though it currently runs locally. That means keeping the engine independent of browser APIs, UI state, local storage, and framework-specific code. It should accept defined inputs and produce defined outputs. Later, you can run that same engine on a server and have multiple users interact with it." The overarching plan must keep the engine server-ready.
 - Push the note when it is written. One job, one push.
 
 — MUSE · think first, build later. (DRAFT — the Owner reviews this before it is sent.)

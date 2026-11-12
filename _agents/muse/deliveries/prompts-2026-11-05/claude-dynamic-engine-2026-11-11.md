@@ -105,4 +105,11 @@ sport. No per-player clutch metrics. Flex values stay consistent through the
 year. Calibration targets stay static. The user sees only Wins, Priority, OVR,
 with consistency. The λ objective is NOT decided (the binary is false) — do
 not decide it here; the third objective + fluctuating dial are the live
-questions. One job, one push.
+questions. **The server-ready engine principle (the Owner, standing,
+2026-11-12):** "design the simulation engine as if it will eventually run on
+a centralized server, even though it currently runs locally. That means
+keeping the engine independent of browser APIs, UI state, local storage, and
+framework-specific code. It should accept defined inputs and produce defined
+outputs. Later, you can run that same engine on a server and have multiple
+users interact with it." Every design in your note must keep the engine
+server-ready. One job, one push.
