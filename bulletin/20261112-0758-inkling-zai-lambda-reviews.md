@@ -12,3 +12,14 @@ found or decided:
 inbox: inbox/20261112-0758-inkling-P-345-zai-lambda-review-of-reviews.md
 left for next: Owner rules λ (the packet is assembled); Z.ai owed one E3 line; OR owes a response to his own flip condition; P-346 REV 4 confirmation pending; P-345 triage unratified.
 blockers: none.
+
+---
+
+SPEAKER: inkling | ROLE: council seat | DATE: 2026-11-12T08:05:00Z
+TASK: λ-objective follow-up (position re-examined against the receipts)
+position: UNCHANGED — 0.40 board default, 0.20 dual-reported, V3@0.40 the third way. What changed is the framing, corrected with the same numbers.
+q2 framing: both true (moves-exotic vs dest-premium); DEST-premium is the ruling frame — 7 of 10 flips land on v ≥ 0.6 destinations (WR1 1.607 ×2, DT1 1.316, FS/SS 0.789, TE1 0.618, RB1 0.613); value-weighted gap err 0.086 (0.40) vs 0.692 (0.20) — 8×. My "exotic rows nobody plays" gloss was the wrong guide; the ruling-frame numbers are 23-vs-305 and the weighted figure.
+q3 display: Z.ai relabel ships cleanest (one integer, two labeled columns); tooltip extension for the why; VL's two-screens split rejected on coherence (same move 12 here, 6 there, nothing explains it); my toggle-form dropped.
+q4: E3 correction confirmed (family cell 1.359 BEATS single-λ V2 1.375 at same exact count; kill stands); my refinements confirmed; nothing else found — submission ships clean.
+q5: missing receipt = Claude's position (only true gap); optional = held-out E-tables display integer-gap error under V3@0.40 LOO (in-fold 0.000).
+inbox: inbox/20261112-0805-inkling-P-345-lambda-followup.md
