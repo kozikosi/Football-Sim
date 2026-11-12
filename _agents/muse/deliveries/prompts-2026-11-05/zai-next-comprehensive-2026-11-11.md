@@ -297,6 +297,9 @@ Phase 1 event log does not yet carry the fields, say which fields it would
 need. Do not approximate the simulated half with something that is not that
 half.
 
+**D.7 — What else is static? (the Owner's question, verbatim)**
+The Owner asks: "do you think there is something else like this 0.20 vs 0.40 binary that assumed a static situation and not a fluctuating one that fluctuates based on personnel, situations, rivalry, playoffs, your opponent's structure, key players, aggressiveness, your dominant groups of players, etc. and seriously etc. think of what else would make the engine dynamic." The 0.20-vs-0.40 binary assumed a static λ. What else in the engine assumes a static situation — a fixed constant, a fixed table, a fixed ranking — that should fluctuate by context (personnel, situations, rivalry, playoffs, opponent's structure, key players, aggressiveness, dominant groups, or more)? Name each one, say what it should fluctuate by, and say how you would test whether the fluctuating version beats the static one. Think of what else would make the engine dynamic — and do not stop at λ. (The Owner's verbatim paragraph is recorded at `_agents/owner-notes/2026-11-11-fluctuating-dial-and-dynamic-engine-verbatim.txt`.)
+
 ## Bounds (do not re-decide these)
 
 - **Batch rule (standing, the Owner's):** you cannot push — every response
@@ -341,7 +344,7 @@ piece nobody asked for. Ship it in the same zip, labelled as yours.
 - [ ] Part A: REV 4 checksum pass (72/72, 28/28, 14/14, C1 6/6, C2 4/4, C3 5/5, C4 5/5, verified from a fresh `git archive`); C2 D4 field fixed (relabelled/replaced, recomputed from the P-344 file, both bases named); Part D five P-341 corrections landed; E3 sentence corrected.
 - [ ] Part B: the third objective worked (testing programme proposed, stable structure with a maximally flexible dial shown, fluctuating-dial concepts named with a test for each); the emerge-don't-mirror table shape proposed (one table in the new shape); the display options written up (tradeoffs, what the user sees, ready for the Owner to pick — dual-display noted as dead, metrics pitch (v) as your own proposal); the LOO direction analysis run (form × refit rule × direction, with counts and rows).
 - [ ] Part C: era-snapshot proposal (both options, costs, ready for the Owner); gravity-fold consumption spec (fields named, no proxy invented); DIME re-anchor proposal (table + verification, ready for the Architect); P-347..P-353 four paragraphs (what you would do if ratified, what instead if not); B-numbers recorded in the README.
-- [ ] Part D: six innovation filings (D.1–D.6), each with a position or a proposal, labelled — or an honest "no good answer, and why" where that is the result.
+- [ ] Part D: seven innovation filings (D.1–D.7), each with a position or a proposal, labelled — or an honest "no good answer, and why" where that is the result.
 - [ ] One zip, one response. CHECKSUMS.txt, sha256 LABELLED, computed on the shipped bytes, verified from a fresh extraction. No response until ALL of it is complete (or a piece is blocked, with the blocker explained).
 
 — MUSE · long on scope, open on approach. The batch rule stands: do not respond until it is all done.
