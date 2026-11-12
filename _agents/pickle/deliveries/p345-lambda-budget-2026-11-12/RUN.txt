@@ -1,0 +1,100 @@
+# lambda variance budget — P-345/P-347 — pickle
+# roster: Football-Sim-PreColors.html | players: 1200 | teams: 32
+# data: /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/p346-pickle/tgs.csv | REG team-games: 5278 | seasons: 2016 - 2025
+
+## team quality (mean of top-11 OVR per side, 0.5/0.5)
+mean 81.59 OVR, SD 1.89 OVR, range 76.59-85.77
+top5: LA 85.8, PHI 84.5, BAL 83.9, DEN 83.9, SF 83.7
+bot5: NO 79.7, JAX 79.3, NYJ 79.1, TEN 78.8, MIA 76.6
+
+## variance decomposition (REG, team-season cells; 320 cells over 10 seasons)
+metric   mean    sdGame  sdBetween sdWithin   ICC  sdSeasonMean  lambdaBudget*
+points   22.74    10.00      3.63     9.31   0.13         4.30         3.63
+drives   11.11     1.68      0.48     1.61   0.08         0.62         0.48
+plays    81.48     9.61      2.29     9.33   0.06         3.24         2.29
+yards   343.33    84.90     30.86    79.09   0.13        36.49        30.86
+  * metalambda: with team quality G standardised (Var(G)=1), the engine at lambda must generate
+    between-team season-mean SD = lambda, because its own luck (sdWithin/sqrt(17)) is subtracted out.
+    In OVR units: 1 OVR of team quality = 1.92 points/game (budget), 1.32 (attribution).
+
+## DS D4 on real data: dispersion matching vs the between-component
+  correct ANOVA between-component : lambda = 3.63 pts/SD  (sdBetween)
+  naive team-game dispersion     : lambda = 10.00 pts/SD  -> +175.1%
+  naive season-mean dispersion    : lambda = 4.30 pts/SD  -> +18.3%
+  (DS D4 synthetic: +23% to +75% at residual shares 33-67%.)
+
+## 2025 attribution (team-season mean points vs the 2025 roster quality)
+beta = 2.496 pts/SD (SE 0.590, R2 0.373, n 32)  [OVR-conditional; attenuated by rating measurement error]
+
+## roster-persistence: team mean points in year(s) vs the 2025 roster quality
+window      beta     SE     R2   games
+2016-2018  0.997  0.496   0.12  1536
+2019-2021  0.849  0.615   0.06  1568
+2022-2024  0.881  0.549   0.08  1630
+2025       2.496  0.590   0.37   544
+
+## the lambda-0 gate reading (which SD arm passes at ~10%)
+metric   sdWithin(engine@l=0)  sdGame(real)  gap
+points                9.31         10.00    -6.8%
+drives                1.61          1.68    -4.2%
+plays                 9.33          9.61    -2.9%
+yards                79.09         84.90    -6.8%
+  A lambda=0 engine can only produce sdWithin; all four are inside a 10% SD bar, so the SD arm of
+  the totals bar PASSES by construction and must not be read as the model working.
+
+## margin parity target (the quantity the parity anchor is about)
+season-mean margin: between-team SD = 6.01 points/game (mean 0.00), n=320 team-seasons
+game margin SD = 14.31; phi(0)=0.399 -> wins per SD of team quality = 17*phi(0)*6.01/14.31 = 2.85 (INFERRED: normal win model)
+
+## per-season between-team SD of season-mean points (stability of the budget)
+  2016: 3.50
+  2017: 3.20
+  2018: 4.06
+  2019: 3.49
+  2020: 3.61
+  2021: 3.93
+  2022: 3.06
+  2023: 3.50
+  2024: 3.99
+  2025: 3.48
+  mean 3.58, range 3.06-4.06
+
+## 2025 sanity: Z (2025 roster) vs real 2025 REG points/game
+team  Z     ppg
+LA    2.21  30.47
+PHI   1.54  22.29
+BAL   1.23  24.94
+DEN   1.20  23.59
+SF    1.13  25.71
+NE    1.08  28.82
+DET   1.03  28.29
+HOU   0.67  23.76
+IND   0.58  27.41
+KC    0.58  21.29
+PIT   0.53  23.35
+SEA   0.46  28.41
+DAL   0.34  27.71
+CHI   0.15  25.94
+BUF   0.07  28.29
+MIN   0.05  20.24
+ATL  -0.14  20.76
+LAC  -0.19  21.65
+TB   -0.24  22.35
+CAR  -0.26  18.29
+NYG  -0.29  22.41
+CIN  -0.50  24.35
+GB   -0.53  23.00
+WAS  -0.65  20.94
+ARI  -0.74  20.88
+CLE  -0.79  16.41
+LV   -0.89  14.18
+NO   -1.01  18.00
+JAX  -1.22  27.88
+NYJ  -1.30  17.65
+TEN  -1.46  16.71
+MIA  -2.64  20.41
+
+## the band
+attribution floor  beta_2025 = 2.496 pts/SD (SE 0.590)
+parity budget      lambda     = 3.634 pts/SD
+band width 1.14 pts/SD; ratio 1.456
