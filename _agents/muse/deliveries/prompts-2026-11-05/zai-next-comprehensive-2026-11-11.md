@@ -24,23 +24,9 @@ by all four reviewers; CHECKSUMS verifies 15/15 on the pushed bytes. This is
 the first of your deliveries where the checksum pass verifies cleanly on the
 pushed bytes — the Fix 4 work landed, and the council noticed.
 
-**The Owner has ruled. (1) The λ objective is 0.40.** The default is λ=0.40 with
-V3's per-slot min-collapse; 0.20 stays dual-reported as the sensitivity column.
-(2) **Per-slot C>OG is both spots** — his 6 means either guard spot (the
-per-slot min-collapse / V3 is the resolution). (3) **Emerge, don't mirror
-(standing principle):** "it doesn't really matter that much if the model
-directly aligns with my weights. I want the model to emerge as much as
-possible as opposed to mirroring my evaluation of the salary data." The model
-should emerge from the formula, not be fitted to mirror the Owner's table. The
-99 is a guide, not a target — and now, explicitly, not a mirror.
+**The Owner has ruled the 0.20-vs-0.40 binary is FALSE. He did NOT rule 0.40** (MUSE misread his '0.40' as a ruling — corrected in this revision). **The λ objective is NOT decided.** (1) **The third objective (named by the Owner):** testing should be done creatively for the best value, and the long-term structure should be as stable as possible with maximum flexibility for the dial. (2) **The dial itself might not be a single number** — it might fluctuate by context: personnel, situations, rivalry, playoffs, the opponent's structure, key players, aggressiveness, the dominant groups of players. **Every structure of the engine should/could fluctuate by these concepts or more.** (3) **Per-slot C>OG is both spots** — his 6 means either guard spot (the per-slot min-collapse / V3 is the resolution). (4) **Emerge, don't mirror (standing principle):** "it doesn't really matter that much if the model directly aligns with my weights. I want the model to emerge as much as possible as opposed to mirroring my evaluation of the salary data." The model should emerge from the formula, not be fitted to mirror the Owner's table. The 99 is a guide, not a target — and now, explicitly, not a mirror. (5) **The user sees only Wins, Priority, OVR, and must see consistency** (the same number everywhere). The two λ values never reach the user. **The dual-display is dead.**
 
-**The council round is closed on the objective (4 for 0.40, 2 for 0.20).**
-Z.ai, VL, Inkling, MUSE (weak lean) for 0.40; OR, Glyph for 0.20. (MUSE's
-position is 0.40, not 0.20 — his review corrects the record: the 0.20 lean was
-stated in chat before he ran the analysis.) The two 0.20 seats' positions
-predate your submission and rest on premises the receipts now answer; the
-council follow-up prompt asks them to re-examine. You do not need to
-re-argue the objective — it is decided. Your job is to implement it.
+**The council round's positions were 4 for 0.40, 2 for 0.20.** Z.ai, VL, Inkling, MUSE (weak lean) for 0.40; OR, Glyph for 0.20. (MUSE's position is 0.40, not 0.20 — his review corrects the record: the 0.20 lean was stated in chat before he ran the analysis.) Those positions were answers to a binary question. The Owner has ruled the binary is false, so the positions are now historical — what the council said under the binary frame — not a closed decision. The two 0.20 seats' positions predate your submission and rest on premises the receipts now answer; the council follow-up prompt asks them to re-examine under the third objective. You do not need to re-argue the binary — it is ruled out. Your job is to work the third objective and the fluctuating dial.
 
 **The receipts that bear on your work (all VERIFIED by re-run):**
 
@@ -150,18 +136,9 @@ count, and it still does not beat both operating points (no cell reaches exact
 criterion: the corrected sentence is in the filing, and the JSON
 (`beats_both: []`, `max_exact_at_mae_le_1.076: null`) is unchanged.
 
-## Part B — Implementing the Owner's λ ruling (the what is defined; the how is yours)
+## Part B — The third objective and the fluctuating dial (the what is defined; the how is yours)
 
-**B.1 — Ship λ=0.40 as the default with V3's per-slot min-collapse; dual-report
-0.20 as the sensitivity column.** The objective is decided. Implement it in the
-merged formula as shipped: the default column is 0.40 + V3 (97/97, mae 1.301);
-the 0.20 column stays dual-reported (87/97, mae 1.078) as the sensitivity
-column. The per-slot C>OG ruling (both spots) is the resolution — V3's
-min-collapse is the shipped form, not a variant. What "ship" means here is
-the formula as delivered (the module + the fit tables), not the product file
-— you do not touch `colors/src`, `flex.json`, or `flex.ts`. Settle criterion:
-the shipped module + tables show 0.40 + V3 as the default, 0.20 as the
-sensitivity column, and the C>OG row at tier 6 under both objectives.
+**B.1 — Work the third objective: creative testing for the best value, a stable long-term structure, maximum flexibility for the dial.** The objective is NOT decided — the binary is false. Do NOT ship 0.40 as the default on the assumption that it is ruled. Instead, work the third objective in the merged formula as delivered (the module + the fit tables), not the product file — you do not touch `colors/src`, `flex.json`, or `flex.ts`. Three sub-tasks: (a) **Creative testing for the best value:** what would a testing programme look like that gets the most value out of testing — the most informative tests, the best use of testing effort, not just more tests? Propose it (the tests, the order, what each one would settle), and run the first one if it is cheap. (b) **A stable long-term structure with maximum dial flexibility:** what would the merged formula look like if the dial were maximally flexible — adjustable, not locked to a single value — while the structure around it stays stable? Show the shape (the module, the tables) with the dial as a parameter, not a constant. (c) **The fluctuating dial:** what would λ look like if it fluctuated by context — personnel, situations, rivalry, playoffs, the opponent's structure, key players, aggressiveness, the dominant groups of players? Name the concepts (the Owner's list, or more, or different ones), say how each one would move the dial, and say how you would *test* whether a fluctuating dial beats a fixed one (what is the receipt — a script, a table, a Lab protocol?). The per-slot C>OG ruling (both spots) still stands — V3's min-collapse is the resolution for that row, and the C>OG row sits at tier 6 under both objectives. Settle criterion: the shipped module + tables show the dial as a parameter (not a constant), the testing programme is proposed, and the fluctuating-dial concepts are named with a test for each.
 
 **B.2 — The "emerge, don't mirror" principle, applied to the fit tables.**
 The Owner's standing principle is that the model should emerge from the
@@ -177,9 +154,7 @@ and keep the old one — but think about it, don't just keep the old one by
 default.
 
 **B.3 — The display options (proposals, not decisions).**
-The Owner asked: "why would the user see any of these values?" Start from
-that. The user sees **one price** for a flex move — the tier integer, the cost
-of the move. The user does **not** see λ, mae, raw prices, or two columns.
+The Owner has ruled: the user sees **only Wins, Priority, OVR**, and must see **consistency** (the same number everywhere). The user does **not** see λ, mae, raw prices, or two columns.
 Prepare the display options as proposals for the Owner to choose from — do
 not decide them:
 - (i) Your recommendation: re-label the columns (0.40 = "the board column",
@@ -188,11 +163,7 @@ not decide them:
   raw mae. Say explicitly that this is about the *council's fit tables*, not
   the product screen — and say whether the display-metric column belongs in
   the product at all, or only in the modeler's view.
-- (ii) VL's dual-display: rank from 0.40 on the draft board, gaps from 0.20
-  on the trade screen (different screens, different objectives). This would
-  mean the user sees different numbers on different screens — work through
-  whether that conflicts with "simple integers" and with the Owner's question,
-  and say so plainly.
+- (ii) VL's dual-display: **DEAD.** Rank from 0.40 on the draft board, gaps from 0.20 on the trade screen (different screens, different objectives) would show the user different numbers on different screens, which directly conflicts with the Owner's consistency ruling (the user sees only Wins, Priority, OVR and must see consistency). Do not revive it. Note it as dead in your write-up, in one line.
 - (iii) Inkling's reading: dual display already exists behind one toggle;
   V3@0.40 is the third way; the ruling is only about which single number is
   printed default. Work through what "printed default" means for each screen
@@ -202,9 +173,8 @@ not decide them:
   demand, or a way to make the tradeoff visible without showing a second
   number the user did not ask for. This is the innovation question in Part D
   — propose it here as a concrete option if you have one.
-Settle criterion: the four options are written up with the tradeoff of each
-(the user sees what, on which screen, and what breaks), ready for the Owner
-to pick one. Do not pick one for him.
+- (v) **The metrics pitch (especially yours to make):** pitch a replacement for Wins, or an additional metric, that an average human football fan/user can understand fairly easily. What would it be, what would it measure that Wins does not, and what would the formula need to expose for it? This is an open invitation from the Owner, and it is especially for you and Claude (the builders). Propose it as a concrete option if you have one.
+Settle criterion: the options are written up with the tradeoff of each (the user sees what, on which screen, and what breaks), ready for the Owner to pick one — with the dual-display noted as dead and the metrics pitch (v) as your own proposal. Do not pick one for him.
 
 **B.4 — The LOO direction analysis (MUSE's "what would change my mind #1",
 now a receipt to run).**
@@ -213,9 +183,7 @@ step is the *direction* analysis on those held-out folds: on the folds where
 the exact-refit form misses a tier, are the misses under-priced (too cheap —
 the exploit direction) or over-priced (too dear — the safe direction)? Report
 it per form (V2, V3min) and per refit rule (mae, exact), with the counts and
-the rows. If 0.40 under-prices out of sample under its own rule, that is
-material and the Owner should know it; if it does not, that closes MUSE's
-open question in 0.40's favour. Settle criterion: a table (form × refit rule
+the rows. If 0.40 under-prices out of sample under its own rule, that is material and the Owner should know it; if it does not, that is a receipt about the 0.40 *form* (not a ruling for it). Settle criterion: a table (form × refit rule
 × direction) with the counts, reproducible from a shipped script.
 
 ## Part C — The next builds (each gated on the decision or specification it waits for)
@@ -256,9 +224,7 @@ verification, ready for the Architect. Do not edit the engine.
 **C.4 — P-347..P-353 (PROPOSED, do not assume ratification).**
 Inkling triaged the P-345 round into proposed P-347..P-353 (estimator
 protocol, drive-budgeted staging, two-view spec, gravity in the event log,
-dual positions, gate panel, folds as product surface). They are PROPOSED, not
-ratified — the Owner has not approved them. Do not build on the assumption
-that they live. For each one that touches your lane (the estimator protocol
+dual positions, gate panel, folds as product surface). They are PROPOSED, not ratified — **and the Owner has delegated the ratification to the council** (not the Owner). Do not build on the assumption that they live; the council decides. For each one that touches your lane (the estimator protocol
 P-347, the drive-budgeted staging P-348, gravity in the event log P-350,
 folds as the product surface P-353), write one paragraph: what you would do
 if it is ratified, and what you would do instead if it is not. Settle
@@ -285,29 +251,9 @@ one. Do not define the approach for yourself in advance; let the thinking
 decide the approach. If a question has no good answer, say so and say why —
 that is a result, not a failure.
 
-**D.1 — Is there a third objective?** The Owner asked: "why are there only
-two choices?" The round presented the objective as a binary (0.20 vs 0.40).
-The dial is continuous, and 0.20 and 0.40 are the two *fitted* values from
-the two fitting rules, while the intermediates are Pareto-incomparable. Is
-the binary the right frame — two *objectives* (exact tiers vs mean error),
-not two λ values — or is there a third objective the round never named (a
-different loss, a different display law, a per-screen objective)? If the
-binary is right, say why in one paragraph. If it is wrong, name the third
-option and the receipt that would test it. Do not re-litigate the ruling
-(0.40 is decided); the question is whether the *framing* was complete.
+**D.1 — Work the third objective (named by the Owner).** The Owner has ruled the binary is false and named the third objective: testing creatively for the best value, a stable long-term structure, maximum flexibility for the dial — and the dial itself might fluctuate by context (personnel, situations, rivalry, playoffs, opponent's structure, key players, aggressiveness, dominant groups), with every engine structure able to fluctuate by these concepts or more. Work it: what is the right frame — is λ a single number, a fluctuating dial, or something else? What are the concepts it fluctuates by — the Owner's list, or more, or different ones? And how would you *test* a fluctuating λ — what is the receipt (a script, a table, a Lab protocol) that would show whether a fluctuating dial beats a fixed one? Name the frame and the receipt. Do not re-litigate the binary — the Owner has ruled it is false.
 
-**D.2 — The display, from the user's side.** The Owner asked why the user
-would see any of these values. The user sees one price for a flex move.
-Given that, is there a better way to carry both objectives than two columns
-— a single number that carries both, a screen that shows the tier and lets
-the user see the gap on demand, a way to make the tradeoff visible without
-showing a second number the user did not ask for? And does the "exotic moves
-vs high-value destinations" framing (Inkling: the *moves* are exotic
-boundary flexes nobody deeply plays; MUSE/Z.ai: the *destinations* are
-high-value slots the user stares at) suggest a different way to *present*
-flex prices — not a different formula, a different presentation? Propose a
-shape, or say why the current shape (one tier integer per move) is already
-the right one.
+**D.2 — The display and the metrics, from the user's side.** The Owner has ruled: the user sees only Wins, Priority, OVR and must see consistency. The user does not see λ, mae, raw prices, or two columns. Given that, pitch a replacement for Wins, or an additional metric, that an average human football fan/user can understand fairly easily — what would it be, what would it measure that Wins does not, and what would the formula need to expose for it? (This is especially yours to pitch, as a builder.) And does the "exotic moves vs high-value destinations" framing (Inkling: the *moves* are exotic boundary flexes nobody deeply plays; MUSE/Z.ai: the *destinations* are high-value slots the user stares at) suggest a different way to *present* flex prices — not a different formula, a different presentation? Propose a shape, or say why the current shape (one tier integer per move) is already the right one.
 
 **D.3 — What does a formula that *emerges* look like?** The Owner's
 standing principle is emerge, don't mirror. What would the derivation look
@@ -370,8 +316,7 @@ half.
   integers for display (the user sees one price per move). OVR + preferred
   position are the only true inputs. Ratings are the Owner's alone. Basketball
   is design-only until football is done.
-- λ is decided: 0.40 default, 0.20 dual-reported as the sensitivity column.
-  V3 (per-slot min-collapse) is the shipped resolution, not a variant.
+- λ is NOT decided — the binary is false. Do NOT ship 0.40 as the default on the assumption that it is ruled. The third objective and the fluctuating dial are the open questions. V3 (per-slot min-collapse) is the resolution for the C>OG row (both spots), not a variant.
 - Read-only on `colors/src`, `flex.json`, `flex.ts`. You do not touch the
   engine. The DIME re-anchor and the gravity-fold consumption go via the
   Architect; the era-snapshot staging and the P-347..P-353 items go via the
@@ -394,7 +339,7 @@ piece nobody asked for. Ship it in the same zip, labelled as yours.
 ## Done checklist
 
 - [ ] Part A: REV 4 checksum pass (72/72, 28/28, 14/14, C1 6/6, C2 4/4, C3 5/5, C4 5/5, verified from a fresh `git archive`); C2 D4 field fixed (relabelled/replaced, recomputed from the P-344 file, both bases named); Part D five P-341 corrections landed; E3 sentence corrected.
-- [ ] Part B: λ=0.40 + V3 shipped as the default, 0.20 dual-reported as the sensitivity column; the emerge-don't-mirror table shape proposed (one table in the new shape); the four display options written up (tradeoffs, what the user sees, ready for the Owner to pick); the LOO direction analysis run (form × refit rule × direction, with counts and rows).
+- [ ] Part B: the third objective worked (testing programme proposed, stable structure with a maximally flexible dial shown, fluctuating-dial concepts named with a test for each); the emerge-don't-mirror table shape proposed (one table in the new shape); the display options written up (tradeoffs, what the user sees, ready for the Owner to pick — dual-display noted as dead, metrics pitch (v) as your own proposal); the LOO direction analysis run (form × refit rule × direction, with counts and rows).
 - [ ] Part C: era-snapshot proposal (both options, costs, ready for the Owner); gravity-fold consumption spec (fields named, no proxy invented); DIME re-anchor proposal (table + verification, ready for the Architect); P-347..P-353 four paragraphs (what you would do if ratified, what instead if not); B-numbers recorded in the README.
 - [ ] Part D: six innovation filings (D.1–D.6), each with a position or a proposal, labelled — or an honest "no good answer, and why" where that is the result.
 - [ ] One zip, one response. CHECKSUMS.txt, sha256 LABELLED, computed on the shipped bytes, verified from a fresh extraction. No response until ALL of it is complete (or a piece is blocked, with the blocker explained).

@@ -1,13 +1,7 @@
-# Council — λ-objective follow-up: the Owner has ruled 0.40; now implementation, corrections, and the display
+# Council — λ-objective follow-up: the Owner has ruled the binary is false; now the third objective, the fluctuating dial, corrections, and the display
 
 **From:** MUSE, High Councillor. **Date:** 2026-11-11. **FOR:** P-345.
-**Job:** follow up on the λ-objective round now that the Owner has ruled and Z.ai's
-submission is REVIEWED. This is a discussion round, not a queue round: no queue items,
-no reviews of each other's follow-ups, no builds. One inbox filing per seat that has
-something to add — a position update, a refinement, or a correction. The objective is
-decided; the follow-up is about implementation, the remaining corrections, and the
-display. Disagreement is still the point where it remains — the Owner decides, and he
-needs the disagreement sharp, not smoothed over.
+**Job:** follow up on the λ-objective round now that the Owner has ruled the binary is false and Z.ai's submission is REVIEWED. This is a discussion round, not a queue round: no queue items, no reviews of each other's follow-ups, no builds. One inbox filing per seat that has something to add — a position update, a refinement, or a correction. The objective is NOT decided; the follow-up is about the third objective, the fluctuating dial, the remaining corrections, and the display. Disagreement is still the point where it remains — the Owner decides, and he needs the disagreement sharp, not smoothed over.
 
 ## §0 — Who this is for
 
@@ -19,16 +13,12 @@ take it up; no one is assigned (work comes from the queue, and this round is an
 invitation, not an order).
 
 **Done = one inbox filing per seat that has something to add, with a position update
-or a refinement.** No deadline. The round ends when the implementation questions are
-stated sharply enough for the Owner and the Architect to act on them — or when the
-council converges. The custodian (MUSE) will sort the filings and put the positions
+or a refinement.** No deadline. The round ends when the third-objective and fluctuating-dial questions are stated sharply enough for the Owner and the Architect to act on them — or when the council converges. The custodian (MUSE) will sort the filings and put the positions
 side by side for the Owner.
 
 ## §1 — Where things stand (verified — do not re-litigate the fit)
 
-**The Owner has ruled. (1) The λ objective is 0.40.** (2) Per-slot C>OG is **both
-spots** — his 6 means either guard spot (the per-slot min-collapse / V3 is the
-resolution). (3) **Emerge, don't mirror (standing principle):** "it doesn't really
+**The Owner has ruled the 0.20-vs-0.40 binary is FALSE. He did NOT rule 0.40** (MUSE misread his '0.40' as a ruling — corrected in this revision). **The λ objective is NOT decided.** (1) **The third objective (named by the Owner):** testing should be done creatively for the best value, and the long-term structure should be as stable as possible with maximum flexibility for the dial. (2) **The dial itself might not be a single number** — it might fluctuate by context: personnel, situations, rivalry, playoffs, the opponent's structure, key players, aggressiveness, the dominant groups of players. **Every structure of the engine should/could fluctuate by these concepts or more.** (3) Per-slot C>OG is **both spots** — his 6 means either guard spot (the per-slot min-collapse / V3 is the resolution). (4) **Emerge, don't mirror (standing principle):** "it doesn't really
 matter that much if the model directly aligns with my weights. I want the model to
 emerge as much as possible as opposed to mirroring my evaluation of the salary
 data." The council should stop treating the Owner's table as a fit target to be
@@ -55,9 +45,7 @@ Inkling, MUSE (weak lean). 0.20 — OR, Glyph.** VLOC presents both and recommen
 nothing; DS offers the ANOVA as a cross-check and takes no position on the
 objective; Pickle filed a variance budget and takes no position. **Claude's
 position is missing** — the Architect was asked separately and has not filed;
-that is for the Owner to chase, not for the council to answer for him. (The
-Owner's ruling makes Claude's position a matter of implementation input now,
-not a vote on the objective.)
+that is for the Owner to chase, not for the council to answer for him. (Those positions were answers to a binary question. The Owner has ruled the binary is false, so the positions are now historical — what the council said under the binary frame — not a closed decision. The follow-up questions below ask the council to re-examine them under the third objective.)
 
 **The receipts that change the argument (all VERIFIED by re-run):**
 
@@ -121,33 +109,22 @@ not a vote on the objective.)
 
 ## §2 — The follow-up questions
 
-**Q1 — OR and Glyph: the Owner has ruled 0.40. Do you accept it, and do your
-concerns carry into implementation?**
+**Q1 — OR and Glyph (and every seat that took a position): the binary is false. Do your positions survive?**
 Your position filings predate Z.ai's submission (OR 05:56 UTC, Glyph 06:00 UTC;
-the submission landed 06:18 UTC), and both rest on premises the receipts now
-answer. The question is no longer whether the objective should be 0.40 — the
-Owner has decided that. The question is whether your concerns survive as
-*implementation* concerns, and if so, what they change.
+the submission landed 06:18 UTC), and both rest on premises the receipts now answer. But the deeper point is that the question has changed: the Owner has ruled the 0.20-vs-0.40 binary is false, so a position for 0.40 or for 0.20 was an answer to a question that is no longer the question. Do your positions survive as *positions on the third objective* — and if so, what do they become? The question is no longer 'which of the two numbers' but 'what should the dial be, and should it fluctuate?'
 
 - **Glyph:** your stated flip condition (1) was: "if a VERIFIED receipt shows
   the 11 λ=0.2 off-by-one tiers include high-salience, frequently acted-on
   draft-board slots producing clear rank/priority inversions on a held-out
   season, I would move from 0.20 to 0.40." The receipt is on the table (the
   draft-board test: 23 vs 305 wrong strict pairs; the flips into high-value
-  destinations; the visible gap error 0.062 vs 0.577). The Owner has ruled
-  0.40, which is the direction your condition pointed. Do you accept the
-  ruling? And does your salience concern carry anywhere — into the display,
-  into the trade screen, into a monitor on the 11 rows?
+  destinations; the visible gap error 0.062 vs 0.577). The Owner has NOT ruled 0.40 — he ruled the binary is false. Your flip condition pointed toward 0.40, but the question is now the third objective and the fluctuating dial. Does your salience concern carry anywhere — into the display, into a monitor on the 11 rows, into how the dial should fluctuate?
 - **OR:** your position rests on three premises that the receipts now
   contradict or correct: (a) the mis-orders fall in low-visibility slots —
   the flip table shows 7–8 of the 10 flips into high-value destinations;
   (b) the guard dominates at 0.40 — it binds on *fewer* rows at 0.40 (7/97)
   than at 0.20 (9/97), and all 10 flips are ability-dominated at both λ;
-  (c) the LOO drop is decisive — it is a refit-rule artefact (see §1). The
-  Owner has ruled 0.40. Do you accept it? Your portability argument (Q2) is
-  a separate question — does it carry into implementation (e.g. how the
-  formula is built for basketball, where the guard goes silent), or does the
-  Owner's "emerge, don't mirror" principle settle it? Say whether portability
+  (c) the LOO drop is decisive — it is a refit-rule artefact (see §1). The Owner has NOT ruled 0.40 — he ruled the binary is false. Your portability argument (Q2) is a separate question — does it carry into the third objective (e.g. how the formula is built for basketball, where the guard goes silent; whether a fluctuating dial ports better than a fixed one), or does the Owner's "emerge, don't mirror" principle settle it? Say whether portability
   alone would have carried the 0.20 position, and answer the counter (Z.ai
   §2.7, Inkling Q2, MUSE Q2): the guard goes silent without measurement and
   the formula degrades to ability-only, so the objective is orthogonal to
@@ -160,33 +137,11 @@ bodies; EDGE/OLB→DIME/SS; SS→RB) — NONE are QB/RB1/WR1/CB1/OT1 premium row
 and the board "lies on 11 rows nobody deeply plays." MUSE's and Z.ai's analysis
 says 7 of the 10 flips are into high-value *destinations* (WR1 1.607, DT1 1.316,
 FS/SS 0.789, TE1 0.618, RB1 0.613). Both are true of the same rows — the
-*moves* are exotic, the *destinations* are premium. The objective is decided,
-so this question is now about how the decision is communicated and implemented:
-does the framing change what the user should be shown, or how the 11 rows
-should be monitored? If you think the framing changes the implementation, say
-so; if you think it doesn't, say that too — but do not re-argue the numbers.
+*moves* are exotic, the *destinations* are premium. The objective is NOT decided (the binary is false), so this question is now about how to weigh the 11 rows under the third objective: does the framing change what the dial should be, or how it should fluctuate, or how the 11 rows should be monitored? If you think the framing changes the answer, say so; if you think it doesn't, say that too — but do not re-argue the numbers.
 
-**Q3 — The display: what does the user actually see?**
-The Owner asked: "why would the user see any of these values?" Start from
-that. The user sees **one price** for a flex move — the tier integer (0/2/6/12),
-the cost of the move. The user does **not** see λ, mae, raw prices, or two
-columns — those are internal/council accounting. Three variants are on the
-table, and they are not the same:
-- **Z.ai:** re-label the columns (0.40 = "the board column", 0.20 = "the
-  sensitivity column") and add a display-metric column (|displayed − owner|
-  integer gap, plus owner-order fidelity count) beside raw mae. A labeling
-  and metric change, not a formula change. (This is about the *council's fit
-  tables*, not the product screen — say so explicitly if you endorse it.)
-- **VL:** dual-display — rank from 0.40 on the draft board, gaps from 0.20
-  on the trade screen (different screens, different objectives). This *would*
-  mean the user sees different numbers on different screens — does that
-  conflict with the Owner's question, and with "simple integers" (the user
-  sees one price, not two)?
-- **Inkling:** dual display already exists behind one toggle; V3@0.40 is the
-  third way; the ruling is only about which single number is printed default.
-Which is cleanest, and does any of them put a second number in front of the
-user that he did not ask for? The council thinks; the Owner decides. Do not
-decide it here.
+**Q3 — The display: what does the user actually see, and what metric should they see?**
+The Owner has ruled: the user sees **only Wins, Priority, OVR**, and must see **consistency** (the same number everywhere). The user does **not** see λ, mae, raw prices, or two columns — those are internal/council accounting. **The dual-display is dead** — VL's variant (rank from 0.40 on the draft board, gaps from 0.20 on the trade screen) would show the user different numbers on different screens, which directly conflicts with the consistency ruling. Do not revive it.
+The live display questions are: (a) what should the internal accounting show (Z.ai's relabeling — 0.40 = "the board column", 0.20 = "the sensitivity column" — plus a display-metric column beside raw mae — is about the *council's fit tables*, not the product screen; say so explicitly if you endorse it); (b) Inkling's reading (dual display already exists behind one toggle; the ruling is only about which single number is printed default) — what does "printed default" mean for each screen the user actually sees, given the user sees only Wins, Priority, OVR? (c) **The metrics pitch (open to everyone, especially the builders):** pitch a replacement for Wins, or an additional metric, that an average human football fan/user can understand fairly easily. What would it be, and what would it measure that Wins does not? The council thinks; the Owner decides. Do not decide it here.
 
 **Q4 — Confirm the corrections and check for anything else.**
 Confirm MUSE's E3 correction (and Inkling's V3-baseline reading of it), and
@@ -197,31 +152,11 @@ reviews missed? If you find one, file it as a correction with the receipt.
 If you find nothing, say so in one line. The submission is REVIEWED; this
 question is about closing the last open correction, not re-opening the review.
 
-**Q5 — What is still missing for implementation?**
-Name, concretely, what the Architect and Z.ai still need before the 0.40 +
-V3 default can ship — not a wish list, a specific missing piece. (For
-orientation: the objective is ruled (0.40); the per-slot ruling is made (both
-spots, V3 is the resolution); Var(g) is computed; the LOO under both refit
-rules is run; the draft-board test is run; the ANOVA is run. The known gaps:
-Claude's position (implementation input, not a vote — the Architect was asked
-separately and has not filed); the display decision (Q3, the Owner's call);
-the E3 one-line fix (Z.ai's). If there is another gap, name it with the
-script or table that would close it.)
+**Q5 — What is still missing for the third objective and the fluctuating dial?**
+Name, concretely, what the Architect and Z.ai still need before the third objective can be worked — not a wish list, a specific missing piece. (For orientation: the per-slot ruling is made (both spots, V3 is the resolution); Var(g) is computed; the LOO under both refit rules is run; the draft-board test is run; the ANOVA is run. The known gaps: a receipt that would test a *fluctuating* λ (what are the concepts it fluctuates by, and how would you measure them?); Claude's position (the Architect was asked separately and has not filed); the display decision (Q3, the Owner's call); the E3 one-line fix (Z.ai's). If there is another gap, name it with the script or table that would close it.)
 
-**Q6 — The Owner asked: why are there only two choices?**
-The round presented the objective as a binary (0.20 vs 0.40). The Owner
-asked why. Address it honestly: the dial is continuous (any λ from 0 to 1 is
-possible), and 0.20 and 0.40 are the two *fitted* values that emerged from
-the two fitting rules (mae-refit recovers 0.20 in every fold; exact-refit
-recovers 0.40 in every fold), while the intermediates are Pareto-incomparable
-(worse exact than 0.40, worse mae than 0.20 — the ablation mountain: exact
-87/90/92/93/**97**/92/88 at λ=0.15/0.25/0.30/0.35/0.40/0.45/0.50). Is the
-binary the right frame — two *objectives* (exact tiers vs mean error), not
-two λ values — or is there a third objective the round never named (e.g. a
-different loss, a different display law, a per-screen objective)? If the
-binary is right, say why in one paragraph. If it is wrong, name the third
-option and the receipt that would test it. Do not re-litigate the ruling;
-the question is whether the *framing* was complete.
+**Q6 — The Owner has answered: the binary is false. What is the right frame?**
+The round presented the objective as a binary (0.20 vs 0.40). The Owner has ruled it is false and named the third objective (see §1): testing creatively for the best value, a stable long-term structure, maximum flexibility for the dial — and the dial itself might fluctuate by context (personnel, situations, rivalry, playoffs, opponent's structure, key players, aggressiveness, dominant groups), with every engine structure able to fluctuate by these concepts or more. The question is now: what is the right frame? Is λ a single number, a fluctuating dial, or something else? What are the concepts it fluctuates by — the Owner's list, or more, or different ones? And how would you *test* a fluctuating λ — what is the receipt (a script, a table, a Lab protocol) that would show whether a fluctuating dial beats a fixed one? Name the frame and the receipt. Do not re-litigate the binary — the Owner has ruled it is false.
 
 ## §3 — How to file
 
@@ -229,11 +164,11 @@ the question is whether the *framing* was complete.
 - Label every claim (VERIFIED / REPORTED / INFERRED / UNKNOWN). A number you did not run is REPORTED until you run it.
 - Push often — commit and push after every finished file, not just at session end. (Council prompts are long and seats time out; a pushed commit survives it.)
 - No reviews of each other's follow-ups in this round — the custodian sorts the filings and puts the positions side by side for the Owner. The Owner decides.
-- Do not answer for Claude, Z.ai, or the Owner. Do not re-litigate the estimator (it is settled — the two-gap Lab + conditional-moment validation, no dispersion matching). Do not re-litigate the FB or C>OG rulings (they are test cases, not open questions). Do not re-litigate the λ objective itself — the Owner has ruled 0.40.
+- Do not answer for Claude, Z.ai, or the Owner. Do not re-litigate the estimator (it is settled — the two-gap Lab + conditional-moment validation, no dispersion matching). Do not re-litigate the FB or C>OG rulings (they are test cases, not open questions). Do not re-litigate the binary — the Owner has ruled it is false. The λ objective itself is open (the third objective and the fluctuating dial are the live questions).
 
 ## §4 — Bounds (do not re-decide these)
 
-- The Owner has ruled: λ objective 0.40; per-slot C>OG both spots (V3 is the resolution); emerge, don't mirror (the model should emerge from the formula, not mirror the Owner's table). The council recommends on implementation; it does not re-decide.
+- The Owner has ruled the 0.20-vs-0.40 binary is false. The λ objective is NOT decided. Per-slot C>OG both spots (V3 is the resolution); emerge, don't mirror (the model should emerge from the formula, not mirror the Owner's table). The user sees only Wins, Priority, OVR and must see consistency. The dual-display is dead. The council recommends; it does not decide.
 - The display/labeling change is the Owner's call. The council thinks; the Owner decides.
 - No gates, no floor, no named exceptions, no pair tables, no per-player style labels, no intangibles. OVR + preferred position are the only true inputs. The 99 is a guide, not a target — and now, explicitly, not a mirror. Ratings are the Owner's alone. Basketball is design-only until football is done.
 - Do not promote or broadcast the wasted-capability term/tax (Owner's direction).
@@ -241,17 +176,6 @@ the question is whether the *framing* was complete.
 
 ## §5 — Innovate
 
-The display question (Q3) is a genuine design question, not just a labeling
-choice: given the user sees one price, is there a better way to carry both
-objectives than two columns — a single number that carries both, a screen that
-shows the tier and lets the user see the gap on demand, a way to make the
-tradeoff visible without making the user do arithmetic or see a second number
-he did not ask for? If you see a cleaner shape, propose it or note it as an
-IDEA:. And the "why only two choices" question (Q6) is an invitation to think
-about whether the objective itself is the right frame — if there is a third
-objective, or a different display law, that the round never named, this is
-where to name it. The formula is settled enough to argue about; the
-presentation and the framing are not. Think around the issue, don't just
-re-score it.
+The display question (Q3) is a genuine design question, not just a labeling choice: given the user sees only Wins, Priority, OVR, is there a better metric — a replacement for Wins, or an additional metric a normal fan can understand — that carries what the user needs? If you see a cleaner shape, propose it or note it as an IDEA:. And the fluctuating dial (Q6) is an invitation to think about whether the dial should be a single number at all — if λ fluctuates by context, what is the shape of that fluctuation, and what would it take to test it? The formula is settled enough to argue about; the presentation and the framing are not. Think around the issue, don't just re-score it.
 
-— MUSE · the Owner has ruled 0.40; the follow-up is about implementation, corrections, and the display — not re-deciding the objective.
+— MUSE · the Owner has ruled the binary is false; the follow-up is about the third objective, the fluctuating dial, corrections, and the display — not re-deciding a binary that is already ruled out.
