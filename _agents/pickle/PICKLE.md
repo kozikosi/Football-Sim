@@ -12,6 +12,34 @@ Queue source: `_agents/QUEUE.md` **live on `origin/council/muse`** (`council/bas
 Council tool v9: `git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs`, run with
 timeout 300000 (it can exceed 120 s), **delete the file before pushing**.
 
+**Session 2026-11-12 — P-346 third review (checksum dispute settled) + P-347 λ variance budget.**
+
+Two jobs from the 11 Nov prompt (`0cc3b518`): the live third review of Z.ai's Phase 2 v3, and
+innovation on the engine rebuild. Both filed and pushed (`b0cceaa5`).
+
+1. **P-346 review** — `inbox/20261112-0405-pickle-P-346-review-v3.md`, VERDICT improved (third
+   seat → review requirement met). Settled the 69/72 vs 72/72 dispute **against the git blobs**
+   (not a checkout): 69/72 on all three pushed copies — OR `a9eda133`, VL `18e2f886`, glyph
+   `f01eee1d` — same three CSVs (C1 `c1_per_team_e_input.csv`, C3 `c3_gravity_fold_per_team_game.csv`,
+   C4 `c4_dime_situation_table.csv`). Mechanism proved byte-exact: the listed hashes ARE the CRLF
+   bytes; listed size − shipped size = LF count (321 / 5,258 / 17). `.gitattributes * text=auto`
+   normalises on commit, so a CRLF manifest can never be true of a pushed copy. VL's evidence line
+   ("`sha256sum -c CHECKSUMS.txt` → 72 OK") is impossible with this 3-field format: literal run gives
+   0 OK / 0 FAILED (filename parsed as `<size>  <path>`, 7 header lines "improperly formatted").
+   Substantive verdict not overturned. Durable fix needs **two** halves: LF writers **and** a
+   shipped verify script (plain `sha256sum -c` cannot parse the manifest at all).
+2. **P-347 innovation** — `inbox/20261112-0410-pickle-P-347-lambda-budget.md` + runnable script +
+   `RUN.txt` in `_agents/pickle/deliveries/p345-lambda-budget-2026-11-12/`. The λ variance budget:
+   ANOVA split of P-344 team-games (5,278 REG, 320 team-season cells) → points sd_between **3.63**
+   (per-season 3.06–4.06, mean 3.58), sd_within 9.31, ICC 0.13; drives **0.48** (ICC 0.08 → do not
+   attach λ to possessions); plays 2.29; yards 30.86. Budget **λ = 3.63 pts/SD** (definition-free
+   per SD of any quality composite; multi-channel form λᵀΣ_gλ = 3.63²); 2025 attribution **β = 2.50
+   ± 0.59** (R² 0.37) → Owner band **[2.50, 3.63]**, ratio 1.46, default 3.6. DS D4 measured on real
+   data: naive team-game dispersion **+175%**, season-mean dispersion **+18%**, ANOVA estimator
+   validated on a synthetic with known components. Phase-1 reading: at λ=0 all four SDs are inside
+   a 10% bar (points −6.8%, drives −4.2%, plays −2.9%, yards −6.8%) → the SD arm is a **baseline**
+   check, not a model check (confirms DS D2 from the data side).
+
 **Session 2026-11-11 (later chat) — P-141 third review: the engine actually re-run.**
 
 Task: MUSE's new-direction prompt → top queue item REVIEW P-141 (Z.ai FB/Punter math, 28-round
@@ -79,12 +107,18 @@ P-013.
 
 ## Open questions
 
+- Architect: does the Phase-2 acceptance use **3.63 pts/SD** (budget) as the between-team target, and
+  does the Phase-1 SD arm get relabelled baseline-only? (P-347 filing §9)
+- Owner: the λ dial — default 3.6 (NFL parity) or lower for more upsets? Band is [2.50, 3.63].
+- Architect: PUNT_PTS comment (2.36 arithmetic) vs constant (1.6) — which rationale is intended (D3)?
 - Architect: adopt the STATIC_SLOTS FB/P fix and decide the WV_TAG_GROUP peer treatment for FB/P?
 - Owner: are punters meant to be valued (and drafted) as kickers under "K<->P free" (D5)?
-- Architect: PUNT_PTS comment (2.36 arithmetic) vs constant (1.6) — which rationale is intended (D3)?
 
 ## Live files
 
+- `inbox/20261112-0405-pickle-P-346-review-v3.md` (P-346 third review, improved; 69/72 on all 3 copies)
+- `inbox/20261112-0410-pickle-P-347-lambda-budget.md` + `_agents/pickle/deliveries/p345-lambda-budget-2026-11-12/`
+  (`lambda-budget.mjs`, `RUN.txt`; λ budget 3.63 pts/SD, band [2.50, 3.63], rerunnable in <1 s)
 - `inbox/20261111-0402-pickle-P-141-review.md` (P-141 third review, improved; P-141 → REVIEWED)
 - `_agents/pickle/deliveries/p141-engine-harness.mjs` (23/23 PASS; rerunnable engine harness)
 - `inbox/20261111-0023-pickle-P-341-play-level-answer.md` + `-zai-answer-review.md` (prior session)
@@ -95,6 +129,9 @@ P-013.
 
 ## Last session
 
+2026-11-12: P-346 third review (checksums verified on the git blobs: 69/72 on all three pushed copies;
+VL's 72/72 evidence line corrected; mechanism = CRLF manifest over LF commits) + P-347 λ variance
+budget (3.63 pts/SD, band [2.50, 3.63], D4 bias +175%/+18% on real data). Pushed `b0cceaa5`.
 2026-11-11: P-141 third review — re-ran the real Z-post-blue engine in node (first seat to do so):
 P math exact, FB/RB1 baseline labels wrong, K 0.45 not reproduced; NEW: playerWar=0 for all FB/P
 (+0.00 board wins, FB graded against P/LS peers). Harness 23/23 PASS. Pushed `ebea4466`.
