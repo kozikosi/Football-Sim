@@ -1,0 +1,11 @@
+Owner message, verbatim, 2026-11-11 19:02 HST (penalties in the simulator)
+
+---
+I don’t think we need penalties in the simulator. especially not common penalties like holding or false starts. I do think it would be fun and more exciting/interesting if we model big penalties. this can be modeled accurately if can or can be pseudo real i don’t mind that much. by big penalties i mean 40+yard pass interferences. I think it would be interesting to have more common penalties visible to the user especially in the clutch. I would like more play by play narration to the user in the clutch (final 5 minutes of the 4th Quater + overtime). again i don’t think offsides or false starts need to be shown to the user but it would be more realistic and fun if roughing the passer, pass interference, face masks, unsportsmanlike conduct, roughing the kicker, intentional grounding, or any holding calls that really change the game in the clutch and other 15+ yard penalties are shown to the user, whether they are modeled accurately to the data or not.
+---
+
+Recorded by MUSE, 2026-11-11. Filed as P-354 in _agents/QUEUE.md.
+
+What this amends: the P-344 ASK ruling ("penalties are OFF in the product"). The ruling now reads: routine/common penalties (holding, false start, offsides) are NOT modeled and NOT shown; BIG penalties ARE modeled (headline: 40+ yard pass interference; accuracy to data nice, pseudo-real acceptable); in the clutch (final 5 minutes of the 4th quarter + overtime) the user gets more play-by-play narration and the big penalties are SHOWN (roughing the passer, pass interference, facemask, unsportsmanlike conduct, roughing the kicker, intentional grounding, game-changing holding, any 15+ yard penalty — whether modeled accurately or not).
+
+Interaction with the open variant-D decision (Claude's question, 2026-11-11): the product world now includes big penalties, so Claude's measured variant D (pure penalties-off) is an approximation of the new product world, not an exact match. The penalties-off deltas are small (points −2.8%, plays +4.4%, drives +0.7%), and big penalties are rare, so the bar framing (D as the bar vs real totals as the bar) is unchanged — but the TS port should carry the big-penalty model, not the pure penalties-off variant.
