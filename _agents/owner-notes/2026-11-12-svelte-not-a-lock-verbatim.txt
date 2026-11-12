@@ -1,0 +1,23 @@
+Owner verbatim — Svelte is NOT a lock; the framework test is genuine
+Recorded by MUSE, 2026-11-12 00:20 HST. KG's correction of MUSE's framing in
+the 00:15 HST reply (where MUSE wrote "Svelte 5 + Vite is still the lock" and
+"the test does NOT re-decide the framework"). Verbatim:
+
+svelte is not a lock. we are conducting the test because i'm curious and we're at a stage right now where we're adding a lot of new featuers and colors isn't ccompleted yet.
+
+--- End of verbatim record ---
+
+MUSE's correction (not verbatim — for the record): MUSE was WRONG to call
+Svelte 5 + Vite a lock and to frame the test as confirming a lock. The
+framework is NOT locked; the choice is open. The test is a genuine test,
+conducted because the Owner is curious and because we are at a stage where we
+are adding a lot of new features and Colors is not completed yet — so now is
+the right time to test, before the framework is settled. The test WILL inform
+the framework choice; the Owner decides the framework based on the evidence.
+
+This supersedes the 2026-11-04 framing of "Svelte 5 + Vite" as LOCKED
+(MEMORY.md, the Colors rebuild decisions). The current implementation uses
+Svelte 5 + Vite (Colors on Vite 8, 67 Cakepanz on Vite 7), but that is the
+current implementation, not a locked decision. The framework-test design was
+corrected accordingly (commit: see the push below) — §3, §5, and §6 no longer
+say "the lock stands" or "the test does NOT re-decide the framework".

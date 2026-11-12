@@ -72,8 +72,8 @@ exactly what the test measures.
   numbers, check the metrics were measured the same way in all three. The
   council's reviews are on the **results filing**, not on the prototypes
   themselves.
-- **The Owner decides:** does the Svelte 5 + Vite lock stand, or does the
-  evidence change it?
+- **The Owner decides the framework** based on the evidence. There is no
+  lock — Svelte is not a lock, and the test will inform the choice.
 
 ## §4 — The metrics (GPT's six, plus two)
 
@@ -101,21 +101,26 @@ table — not adjectives, numbers.
    feature's specifics — the halftime choice, the 4th-quarter automatics, the
    Priority-not-Wins split, the form arrow? A short assessment per prototype.
 
-## §5 — The baseline (what is locked, what the test is for)
+## §5 — The baseline (what is true now, what the test is for)
 
-The current lock is **Svelte 5 + Vite** (Owner, 2026-11-04/05). The two
-tracks are on different Vite majors — Colors (Claude's) on **Vite 8**
-(`^8.3.6`), 67 Cakepanz (Z.ai's) on **Vite 7** (`^7.3.6`) — and React `^19`
-is also a dependency in Colors (UI adapters only). Neither track uses
-Tailwind CSS, Vitest, or IndexedDB (saves use localStorage; tests run with
-Node's built-in test runner). No GitHub Actions CI exists yet.
+**CORRECTION (the Owner, 2026-11-12): Svelte is NOT a lock.** The framework
+is open — the choice is not settled. The current implementation uses Svelte 5
++ Vite (Colors on **Vite 8** (`^8.3.6`), 67 Cakepanz on **Vite 7** (`^7.3.6`)
+— the two tracks are on different Vite majors), and React `^19` is also a
+dependency in Colors (UI adapters only). Neither track uses Tailwind CSS,
+Vitest, or IndexedDB (saves use localStorage; tests run with Node's built-in
+test runner). No GitHub Actions CI exists yet. That is the current
+implementation, not a locked decision.
 
-The test does **NOT** re-decide the framework. It gathers evidence. If
-Svelte wins on the measured criteria, the lock is **confirmed with evidence**.
-If another framework wins decisively, the Owner has evidence to reconsider.
-Either way, the test also produces a working prototype of the offensive focus
-— the best prototype could become the basis for the real feature (the Owner
-decides).
+**Why the test is being run now:** the Owner is curious, and we are at a
+stage where we are adding a lot of new features and Colors is not completed
+yet — so now is the right time to test, before the framework is settled. The
+test **WILL inform the framework choice** — that is its purpose. It gathers
+evidence; the Owner decides the framework based on the evidence. If Svelte
+wins on the measured criteria, Svelte is the choice with evidence behind it.
+If another framework wins decisively, the evidence says so. Either way, the
+test also produces a working prototype of the offensive focus — the best
+prototype could become the basis for the real feature (the Owner decides).
 
 ## §6 — The deliverable
 
