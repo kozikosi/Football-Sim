@@ -1,0 +1,62 @@
+== B: display accounting (in-sample, staged E) ==
+  V2_0.4: {'visible_err_mean': 0.0619, 'visible_err_sum': 6, 'rows_wrong': 1, 'vw_visible_err': 0.0855}
+  V2_0.2: {'visible_err_mean': 0.5773, 'visible_err_sum': 56, 'rows_wrong': 11, 'vw_visible_err': 0.6917}
+  V3min_0.4: {'visible_err_mean': 0.0, 'visible_err_sum': 0, 'rows_wrong': 0, 'vw_visible_err': 0.0}
+  V3min_0.2: {'visible_err_mean': 0.5155, 'visible_err_sum': 50, 'rows_wrong': 10, 'vw_visible_err': 0.6061}
+  raw_mae_V2_0.4: 1.3753
+  raw_mae_V2_0.2: 1.1568
+  raw_mae_V3min_0.4: 1.3006
+  raw_mae_V3min_0.2: 1.0784
+  vw_raw_mae_V2_0.4: 1.6832
+  vw_raw_mae_V2_0.2: 1.4001
+
+== B: mae decomposition ==
+  exact_at_both: {'n': 86, 'sum_abs_raw_0.4': 106.47, 'sum_abs_raw_0.2': 75.39, 'mae_0.4': 1.238, 'mae_0.2': 0.877}
+  exact_only_at_0.4: {'n': 10, 'sum_abs_raw_0.4': 20.44, 'sum_abs_raw_0.2': 30.32, 'mae_0.4': 2.044, 'mae_0.2': 3.032}
+  exact_only_at_0.2: {'n': 0, 'sum_abs_raw_0.4': 0, 'sum_abs_raw_0.2': 0, 'mae_0.4': 0.0, 'mae_0.2': 0.0}
+  exact_at_neither: {'n': 1, 'sum_abs_raw_0.4': 6.5, 'sum_abs_raw_0.2': 6.5, 'mae_0.4': 6.497, 'mae_0.2': 6.497}
+  check_mae_0.4: 1.3753
+  check_mae_0.2: 1.1568
+
+== B: Owner-ruling rows ==
+  FB>RB: owner 2 | V2@0.4 {'raw': 3.3, 'tier': 2} | V2@0.2 {'raw': 2.7, 'tier': 2} | V3min@0.4 {'raw': 3.3, 'tier': 2} | V3min@0.2 {'raw': 2.7, 'tier': 2}
+  FB>TE: owner 6 | V2@0.4 {'raw': 4.74, 'tier': 6} | V2@0.2 {'raw': 3.92, 'tier': 2} | V3min@0.4 {'raw': 4.74, 'tier': 6} | V3min@0.2 {'raw': 3.92, 'tier': 2}
+  C>OG: owner 6 | V2@0.4 {'raw': 12.5, 'tier': 12} | V2@0.2 {'raw': 12.5, 'tier': 12} | V3min@0.4 {'raw': 7.49, 'tier': 6} | V3min@0.2 {'raw': 7.49, 'tier': 6}
+
+== C: draft-board test per scenario ==
+  held_out_2023: strict inversions 0, collapses 516, flips 516 | board-vs-owner errors @0.4 23 @0.2 305 of 3245 strict pairs
+    scoring: {'lam0.4': {'exact': 96, 'raw_mae': 1.305, 'display_mae': 0.062}, 'lam0.2': {'exact': 86, 'raw_mae': 1.072, 'display_mae': 0.577}}
+    flip rows by value bucket: {"low_v<0.4": {"n_distinct_rows": 36, "rows": ["C>FB", "CB>DIME", "CB>NICKEL", "DT>C", "DT>FB", "EDGE>C", "EDGE>FB", "EDGE>NICKEL", "EDGE>OLB", "FS>DIME", "FS>NICKEL", "FS>OLB", "ILB>DIME", "ILB>FB", "ILB>NICKEL", "ILB>OLB", "K>P", "OG>C", "OG>FB", "OLB>DIME", "OLB>FB", "OLB>NICKEL", "OT>C", "OT>FB", "P>K", "RB>FB", "SS>DIME", "SS>NICKEL", "SS>OLB", "TE>C", "TE>DIME", "TE>FB", "TE>NICKEL", "TE>OLB", "WR>DIME", "WR>NICKEL"]}, "mid_v_0.4-1.0": {"n_distinct_rows": 32, "rows": ["CB>FS", "CB>SS", "EDGE>ILB", "EDGE>RB", "EDGE>SS", "EDGE>TE", "FB>RB", "FB>TE", "FS>SS", "ILB>FS", "ILB>SS", "ILB>TE", "OLB>FS", "OLB>ILB", "OLB>SS", "OLB>TE", "QB>FS", "RB>FS", "RB>SS", "RB>TE", "SS>FS", "SS>ILB", "SS>RB", "SS>TE", "TE>FS", "TE>ILB", "TE>RB", "TE>SS", "WR>FS", "WR>RB", "WR>SS", "WR>TE"]}, "high_v>=1.0": {"n_distinct_rows": 29, "rows": ["C>DT", "C>OG", "C>OT", "CB>WR", "DT>EDGE", "DT>OG", "DT>OT", "EDGE>DT", "EDGE>OG", "EDGE>OT", "FS>CB", "FS>WR", "ILB>EDGE", "OG>DT", "OG>EDGE", "OG>OT", "OLB>EDGE", "OT>DT", "OT>EDGE", "OT>OG", "RB>WR", "SS>CB", "SS>WR", "TE>DT", "TE>EDGE", "TE>OG", "TE>OT", "TE>WR", "WR>CB"]}}
+  held_out_2024: strict inversions 0, collapses 516, flips 516 | board-vs-owner errors @0.4 23 @0.2 305 of 3245 strict pairs
+    scoring: {'lam0.4': {'exact': 96, 'raw_mae': 1.316, 'display_mae': 0.062}, 'lam0.2': {'exact': 86, 'raw_mae': 1.079, 'display_mae': 0.577}}
+    flip rows by value bucket: {"low_v<0.4": {"n_distinct_rows": 36, "rows": ["C>FB", "CB>DIME", "CB>NICKEL", "DT>C", "DT>FB", "EDGE>C", "EDGE>FB", "EDGE>NICKEL", "EDGE>OLB", "FS>DIME", "FS>NICKEL", "FS>OLB", "ILB>DIME", "ILB>FB", "ILB>NICKEL", "ILB>OLB", "K>P", "OG>C", "OG>FB", "OLB>DIME", "OLB>FB", "OLB>NICKEL", "OT>C", "OT>FB", "P>K", "RB>FB", "SS>DIME", "SS>NICKEL", "SS>OLB", "TE>C", "TE>DIME", "TE>FB", "TE>NICKEL", "TE>OLB", "WR>DIME", "WR>NICKEL"]}, "mid_v_0.4-1.0": {"n_distinct_rows": 32, "rows": ["CB>FS", "CB>SS", "EDGE>ILB", "EDGE>RB", "EDGE>SS", "EDGE>TE", "FB>RB", "FB>TE", "FS>SS", "ILB>FS", "ILB>SS", "ILB>TE", "OLB>FS", "OLB>ILB", "OLB>SS", "OLB>TE", "QB>FS", "RB>FS", "RB>SS", "RB>TE", "SS>FS", "SS>ILB", "SS>RB", "SS>TE", "TE>FS", "TE>ILB", "TE>RB", "TE>SS", "WR>FS", "WR>RB", "WR>SS", "WR>TE"]}, "high_v>=1.0": {"n_distinct_rows": 29, "rows": ["C>DT", "C>OG", "C>OT", "CB>WR", "DT>EDGE", "DT>OG", "DT>OT", "EDGE>DT", "EDGE>OG", "EDGE>OT", "FS>CB", "FS>WR", "ILB>EDGE", "OG>DT", "OG>EDGE", "OG>OT", "OLB>EDGE", "OT>DT", "OT>EDGE", "OT>OG", "RB>WR", "SS>CB", "SS>WR", "TE>DT", "TE>EDGE", "TE>OG", "TE>OT", "TE>WR", "WR>CB"]}}
+  held_out_2025: strict inversions 0, collapses 572, flips 572 | board-vs-owner errors @0.4 43 @0.2 368 of 3245 strict pairs
+    scoring: {'lam0.4': {'exact': 96, 'raw_mae': 1.325, 'display_mae': 0.062}, 'lam0.2': {'exact': 85, 'raw_mae': 1.1, 'display_mae': 0.639}}
+    flip rows by value bucket: {"high_v>=1.0": {"n_distinct_rows": 29, "rows": ["C>DT", "C>OG", "C>OT", "CB>WR", "DT>EDGE", "DT>OG", "DT>OT", "EDGE>DT", "EDGE>OG", "EDGE>OT", "FS>CB", "FS>WR", "ILB>EDGE", "OG>DT", "OG>EDGE", "OG>OT", "OLB>EDGE", "OT>DT", "OT>EDGE", "OT>OG", "RB>WR", "SS>CB", "SS>WR", "TE>DT", "TE>EDGE", "TE>OG", "TE>OT", "TE>WR", "WR>CB"]}, "low_v<0.4": {"n_distinct_rows": 36, "rows": ["C>FB", "CB>DIME", "CB>NICKEL", "DT>C", "DT>FB", "EDGE>C", "EDGE>FB", "EDGE>NICKEL", "EDGE>OLB", "FS>DIME", "FS>NICKEL", "FS>OLB", "ILB>DIME", "ILB>FB", "ILB>NICKEL", "ILB>OLB", "K>P", "OG>C", "OG>FB", "OLB>DIME", "OLB>FB", "OLB>NICKEL", "OT>C", "OT>FB", "P>K", "RB>FB", "SS>DIME", "SS>NICKEL", "SS>OLB", "TE>C", "TE>DIME", "TE>FB", "TE>NICKEL", "TE>OLB", "WR>DIME", "WR>NICKEL"]}, "mid_v_0.4-1.0": {"n_distinct_rows": 32, "rows": ["CB>FS", "CB>SS", "EDGE>ILB", "EDGE>RB", "EDGE>SS", "EDGE>TE", "FB>RB", "FB>TE", "FS>SS", "ILB>FS", "ILB>SS", "ILB>TE", "OLB>FS", "OLB>ILB", "OLB>SS", "OLB>TE", "QB>FS", "RB>FS", "RB>SS", "RB>TE", "SS>FS", "SS>ILB", "SS>RB", "SS>TE", "TE>FS", "TE>ILB", "TE>RB", "TE>SS", "WR>FS", "WR>RB", "WR>SS", "WR>TE"]}}
+  staged_E: strict inversions 0, collapses 516, flips 516 | board-vs-owner errors @0.4 23 @0.2 305 of 3245 strict pairs
+    scoring: {'lam0.4': {'exact': 96, 'raw_mae': 1.375, 'display_mae': 0.062}, 'lam0.2': {'exact': 86, 'raw_mae': 1.157, 'display_mae': 0.577}}
+    flip rows by value bucket: {"low_v<0.4": {"n_distinct_rows": 36, "rows": ["C>FB", "CB>DIME", "CB>NICKEL", "DT>C", "DT>FB", "EDGE>C", "EDGE>FB", "EDGE>NICKEL", "EDGE>OLB", "FS>DIME", "FS>NICKEL", "FS>OLB", "ILB>DIME", "ILB>FB", "ILB>NICKEL", "ILB>OLB", "K>P", "OG>C", "OG>FB", "OLB>DIME", "OLB>FB", "OLB>NICKEL", "OT>C", "OT>FB", "P>K", "RB>FB", "SS>DIME", "SS>NICKEL", "SS>OLB", "TE>C", "TE>DIME", "TE>FB", "TE>NICKEL", "TE>OLB", "WR>DIME", "WR>NICKEL"]}, "mid_v_0.4-1.0": {"n_distinct_rows": 32, "rows": ["CB>FS", "CB>SS", "EDGE>ILB", "EDGE>RB", "EDGE>SS", "EDGE>TE", "FB>RB", "FB>TE", "FS>SS", "ILB>FS", "ILB>SS", "ILB>TE", "OLB>FS", "OLB>ILB", "OLB>SS", "OLB>TE", "QB>FS", "RB>FS", "RB>SS", "RB>TE", "SS>FS", "SS>ILB", "SS>RB", "SS>TE", "TE>FS", "TE>ILB", "TE>RB", "TE>SS", "WR>FS", "WR>RB", "WR>SS", "WR>TE"]}, "high_v>=1.0": {"n_distinct_rows": 29, "rows": ["C>DT", "C>OG", "C>OT", "CB>WR", "DT>EDGE", "DT>OG", "DT>OT", "EDGE>DT", "EDGE>OG", "EDGE>OT", "FS>CB", "FS>WR", "ILB>EDGE", "OG>DT", "OG>EDGE", "OG>OT", "OLB>EDGE", "OT>DT", "OT>EDGE", "OT>OG", "RB>WR", "SS>CB", "SS>WR", "TE>DT", "TE>EDGE", "TE>OG", "TE>OT", "TE>WR", "WR>CB"]}}
+  decade_mean_E: strict inversions 0, collapses 516, flips 516 | board-vs-owner errors @0.4 23 @0.2 305 of 3245 strict pairs
+    scoring: {'lam0.4': {'exact': 96, 'raw_mae': 1.311, 'display_mae': 0.062}, 'lam0.2': {'exact': 86, 'raw_mae': 1.076, 'display_mae': 0.577}}
+    flip rows by value bucket: {"low_v<0.4": {"n_distinct_rows": 36, "rows": ["C>FB", "CB>DIME", "CB>NICKEL", "DT>C", "DT>FB", "EDGE>C", "EDGE>FB", "EDGE>NICKEL", "EDGE>OLB", "FS>DIME", "FS>NICKEL", "FS>OLB", "ILB>DIME", "ILB>FB", "ILB>NICKEL", "ILB>OLB", "K>P", "OG>C", "OG>FB", "OLB>DIME", "OLB>FB", "OLB>NICKEL", "OT>C", "OT>FB", "P>K", "RB>FB", "SS>DIME", "SS>NICKEL", "SS>OLB", "TE>C", "TE>DIME", "TE>FB", "TE>NICKEL", "TE>OLB", "WR>DIME", "WR>NICKEL"]}, "mid_v_0.4-1.0": {"n_distinct_rows": 32, "rows": ["CB>FS", "CB>SS", "EDGE>ILB", "EDGE>RB", "EDGE>SS", "EDGE>TE", "FB>RB", "FB>TE", "FS>SS", "ILB>FS", "ILB>SS", "ILB>TE", "OLB>FS", "OLB>ILB", "OLB>SS", "OLB>TE", "QB>FS", "RB>FS", "RB>SS", "RB>TE", "SS>FS", "SS>ILB", "SS>RB", "SS>TE", "TE>FS", "TE>ILB", "TE>RB", "TE>SS", "WR>FS", "WR>RB", "WR>SS", "WR>TE"]}, "high_v>=1.0": {"n_distinct_rows": 29, "rows": ["C>DT", "C>OG", "C>OT", "CB>WR", "DT>EDGE", "DT>OG", "DT>OT", "EDGE>DT", "EDGE>OG", "EDGE>OT", "FS>CB", "FS>WR", "ILB>EDGE", "OG>DT", "OG>EDGE", "OG>OT", "OLB>EDGE", "OT>DT", "OT>EDGE", "OT>OG", "RB>WR", "SS>CB", "SS>WR", "TE>DT", "TE>EDGE", "TE>OG", "TE>OT", "TE>WR", "WR>CB"]}}
+
+== D: LOO ==
+  V0_mae_refit: held mae 1.134 over 194, exact 170/194 (87.6%), strict-row 85/97, loose-row 85/97, display err 0.639, lam 0.2-0.25 (mean 0.203)
+  V2_mae_refit: held mae 1.157 over 194, exact 172/194 (88.7%), strict-row 86/97, loose-row 86/97, display err 0.577, lam 0.2-0.2 (mean 0.2)
+  V2_exact_refit: held mae 1.375 over 194, exact 192/194 (99.0%), strict-row 96/97, loose-row 96/97, display err 0.062, lam 0.4-0.4 (mean 0.4)
+  V3min_mae_refit: held mae 1.089 over 194, exact 174/194 (89.7%), strict-row 87/97, loose-row 87/97, display err 0.515, lam 0.2-0.25 (mean 0.203)
+  V3min_exact_refit: held mae 1.301 over 194, exact 194/194 (100.0%), strict-row 97/97, loose-row 97/97, display err 0.0, lam 0.4-0.4 (mean 0.4)
+  FB-fold provenance: {'V0_ability': {'lam': 0.2, 'fb_fold_mae': 0.344}, 'V1_plain_guard': {'lam': 0.2, 'fb_fold_mae': 2.63}, 'V2_exposure_guard': {'lam': 0.2, 'fb_fold_mae': 0.344}}
+
+== E: third way ==
+  E2 ablation (V2): [(0.05, 80, 1.379), (0.1, 81, 1.267), (0.15, 86, 1.178), (0.2, 86, 1.157), (0.25, 89, 1.174), (0.3, 91, 1.212), (0.35, 92, 1.287), (0.4, 96, 1.375), (0.45, 91, 1.486), (0.5, 87, 1.602), (0.55, 85, 1.725), (0.6, 81, 1.851)]
+  E2 ablation (V3min): [(0.05, 81, 1.312), (0.1, 82, 1.19), (0.15, 87, 1.098), (0.2, 87, 1.078), (0.25, 90, 1.097), (0.3, 92, 1.137), (0.35, 93, 1.214), (0.4, 97, 1.301), (0.45, 92, 1.408), (0.5, 88, 1.523), (0.55, 86, 1.644), (0.6, 82, 1.768)]
+  E3 family lambda: best_exact {'lam_OL': 0.15, 'lam_other': 0.4, 'exact': 96, 'mae': 1.359}
+  E3 min_mae at exact>=96: {'lam_OL': 0.15, 'lam_other': 0.4, 'exact': 96, 'mae': 1.359}
+  E3 max_exact at mae<=1.076: None
+  E3 beats both operating points: []
+  E4 blend: best_exact {'lam': 0.4, 't': 0.0, 'exact': 96, 'mae': 1.339}; beats both: []
+  E5 recompression lam0.4: {'lam': 0.4, 'exact_after': 96, 'raw_mae_after': 1.543}  lam0.2: {'lam': 0.2, 'exact_after': 86, 'raw_mae_after': 1.39}
+  E6 guard-dominated rows per lam: [(0.05, 11), (0.1, 9), (0.15, 9), (0.2, 9), (0.25, 8), (0.3, 8), (0.35, 8), (0.4, 7), (0.45, 6), (0.5, 5), (0.55, 5), (0.6, 5)]
+
+wrote results/results_p345_draftboard.json
