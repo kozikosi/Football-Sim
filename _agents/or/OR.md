@@ -11,44 +11,24 @@
   - Technical analysis of feature requirements (like flex table rebuilding)
 
 ## Current work
-- **Claimed / in progress:** P-322 derivation design variants (A: skill profile 55/99, C: with cross-side floor 57/99); P-275 w75 M1–M15 dispositions review (Z.ai non-product answers); P-110 Lineups redesign review
-- **Done this session:** P-141 review (VERDICT: ok; all claims verified, 2 live docs corrected) and P-340 LOO review (VERDICT: ok; lambda trade-off, guard-FB, OLB 2-row findings confirmed)
-- **Blocked / waiting on:** Full M1–M6 verification needs w74 lab calibration docs on council/base (currently only on gh-pages); M14 reproduction requires running Lab harness on 425f72a (out of scope for this session — logged as task); P-323 remains the gate for real build — design variants are analysis-only
+- **Done this session:** Pushed Z.ai's `zai-phase2-v3` delivery folder (79 files, 5.6 MB) to `council/or` at commit a9eda133 so Muse and the Architect could read it; wrote P-346 review `inbox/20261112-0347-or-P-346-review.md` (VERDICT: ok — all four settle criteria C1-C4 met against shipped bytes, Fix 4 landed with root-cause fix, B1/B2/B3 closed with shipped scripts, two innovation filings carry receipts; caveats disclosed: raw P-344 data external to the zip, sandbox paths in scripts).
+- **Blocked / waiting on:** P-346 needs one more ok/improved from a third seat to reach REVIEWED (MUSE gave improved; OR gave ok). Council next-actions still open: ANSWER 20261111-0902-architect-ASK-phase-1-football-baseline-data.md; REVIEW P-156 / P-158 / P-161 / P-162 / P-163.
 
 ## What the next session needs
-- **Read first:** `inbox/20261105-1935-or-w74-offline-verdict.md`, `inbox/20261105-1937-or-w74-n1-exhibit-verdict.md`, `inbox/20261105-1939-or-w74-proposals-verdict.md`, `inbox/20261106-01-or-w74-review-verdict.md`, `inbox/20261106-01-or-w74-viewmodels-verdict.md`, `inbox/20261106-03-or-lab-reproduction-verdict.md`, `_agents/PRIORITIES.md`
-- **Open questions:** M1 "naive best-OVR" strike in CALIBRATION.md/FINDINGS needs verification against w74 docs on council/base; M6 test-count reconciliation (288/286/284) needs confirmation in w74 docs; M14 two-cluster split resolution needs N=1000 baseline run + CI math against slot-handling hypothesis; whether the cross-side floor term (6 threshold) should be adopted in the engine build and how it interacts with the FB discount whitelist
-- **Do not redo:** w67 slot format (already VERIFIED envelope-shaped); council.mjs continuous-trust review changes (not mine to revert); P-069 footer anchors already VERIFIED; Inkling's P-322 formula as published — this session's work is design variants only, not a replacement
+- **Read first:** `_agents/PRIORITIES.md`, `inbox/20261112-0347-or-P-346-review.md`, the Architect's Phase 1 football baseline data ASK (`inbox/20261111-0902-architect-ASK-phase-1-football-baseline-data.md`), the council prompt's §4/§5 convergence ask.
+- **Open questions:** whether the third seat's P-346 review arrives; which of the five pending council P-items to take next; whether Phase 1 support work (protocol note + design-amendment pass) is mine to draft or belongs to another seat.
+- **Do not redo:** P-346 review already filed and committed (VERDICT: ok); the zai-phase2-v3 push already done (commit a9eda133).
 
 ## Files in this lane
-- `inbox/20261104-2351-or-colors-rebuild-response.md` — council response to Kosi's Colors rebuild briefing.
-- `inbox/20261104-2038-or-colors-rebuild-risks.md` — Colors rebuild risk assessment (handoff, w68 debt, portfolio lens, missing questions).
-- `inbox/20261104-2001-or-w67-slot-format.md` — w67 slot format verdict (VERIFIED envelope-shaped).
-- `inbox/20261104-2005-or-w67-slot-format.md` — w67 slot format follow-up verdict.
-- `inbox/20261105-1935-or-w74-offline-verdict.md` — w74 offline verdict.
-- `inbox/20261105-1937-or-w74-n1-exhibit-verdict.md` — w74 N1 exhibit verdict (VERDICT: ok).
-- `inbox/20261105-1939-or-w74-proposals-verdict.md` — w74 proposals verdict (VERDICT: improved).
-- `inbox/20261106-01-or-w74-review-verdict.md` — w74 review verdict (VERDICT: improved).
-- `inbox/20261106-01-or-w74-viewmodels-verdict.md` — w74 viewmodels verdict (VERDICT: REJECTED — source files on gh-pages, not working tree).
-- `inbox/20261106-03-or-lab-reproduction-verdict.md` — Lab reproduction verdict (VERDICT: confirmed).
-- `inbox/20261109-0445-or-P-110-review.md` — P-110 Lineups redesign council review (VERDICT improved).
-- `bulletin/20261109-1530-or.md` — bulletin entry for P-110 review session.
-- `tools/mathlab/absorber-check.mjs` — display-layer absorption gate tool.
-- `tools/mathlab/flex-penalty.mjs` — unified flex penalty calculator.
-- `tools/mathlab/uncertainty-enhanced.mjs` — T12 uncertainty wrapper with effect size, paired delta, practical significance, and multiple-comparison correction.
-- `tools/mathlab/inbox-frontmatter.mjs` — machine-readable frontmatter parser for council inbox files.
-- `inbox/20261110-0602-or-P-322-derivation-design.md` — P-322 design variant A (55 exact, 20 off-by-one, 24 hard).
-- `inbox/20261110-0608-or-P-322-derivation-floor.md` — P-322 design variant C with cross-side floor (57 exact, 32 off-by-one, 10 hard).
-- `inbox/20261110-0614-or-P-322-E5-verification.md` — P-322 E5 verification (97 exact, 2 off-by-one, 0 hard — matches MUSE).
-- `_agents/or/deliveries/or-derive-2026-11-10.mjs` — derivation script variant A.
-- `_agents/or/deliveries/or-derive-floor-2026-11-10.mjs` — derivation script variant C.
-- `_agents/or/deliveries/or-verify-E5-2026-11-10.mjs` — E5 independent verification script (VERIFIED).
-- `inbox/20261111-0340-or-P-141-review.md` — P-141 review of VL's FB/Punter investigation (VERDICT: ok).
-- `inbox/20261111-0340-or-P-340-review.md` — P-340 LOO review of MUSE's ZAI-D1 + merged filing (VERDICT: ok).
-- `_agents/or/deliveries/ledger-phase1-2026-11-11/` — Z.ai's Play Ledger Phase 1 delivery (snap ledger, staging engine, R1–R5 receipts; shipped 2026-11-11). Delivery pushed per Owner instruction; contents verified readable.
-- `_agents/or/deliveries/ledger phase2/` — Z.ai's merge-ledger followups delivery (merge prototype, DIME sensitivity, WR1 trigger, Phase 2 harness prep; `MERGE-DESIGN-2026-11-11.md`, `PHASE2-HARNESS-2026-11-11.md`, `LEDGER-FOLLOWUPS-2026-11-11.md`). Delivery pushed per Owner instruction; contents verified readable.
+- `inbox/20261112-0347-or-P-346-review.md` — P-346 council review of Z.ai's Phase 2 v3 delivery (VERDICT: ok).
+- `_agents/or/deliveries/ledger-phase1-2026-11-11/` — Z.ai's Play Ledger Phase 1 delivery (shipped 2026-11-11).
+- `_agents/or/deliveries/ledger phase2/` — Z.ai's merge-ledger followups delivery.
+- `zai-phase2-v3-copy/` — Z.ai's Phase 2 v3 delivery pushed per Owner instruction (commit a9eda133).
+- `bulletin/20261112-0351-or.md` — this session's bulletin entry.
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
 - **Branch:** `council/or`
 - **Base:** `git merge-base HEAD origin/council/base` = `1b91f50e`
+
+(End of file - total 48 lines)
