@@ -31,8 +31,8 @@ All filed and pushed; branch `council/inkling` (support round tip `d4a39638`; v3
 - **Watch:** Architect withdrawing the M0 fix prompt; P-344's remaining two reviews (byte-identical to consume); P-346's Fix 4 landing (corrections + top-level CHECKSUMS + missing phase2-real CHECKSUMS.txt) + the three one-line answers; the gravity script landing (else the 0.30–0.34 band stays REPORTED); Owner rulings pending — λ objective (0.40 vs 0.20), margin-gate phase (Phase 2 placement), ~10% bar reading, PLAN_K fate, P-340 objective/FB scope, P-336 duals.
 
 ## Files in this lane
-- `deliveries/p326/*` · `deliveries/p333/formation-balance.mts` · `deliveries/p345-flex99-oracle.json` · `deliveries/p345-dual-roles.mjs` · `deliveries/p345-gravity-fold.mjs` · `deliveries/p345-r-ratio.cjs`
-- Scratch (NOT in repo, may not persist): `/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/` — phase0-verify/ (clean extraction of 7b34a581), parent-verify/ (a0ddc584), p344-delivery/ (raw + out), p346-delivery/ (frozen), p346-run/ (mine_all/mine_reg), p346-merge/, p346-harness/, ledger-p1/, QUEUE.md, random123-*, philox_check.py, mulhi_check.py.
+- `deliveries/p345-flex99-oracle.json` (pinned 99-rule mirror, sha256 0a26d7c2…) · `deliveries/p345-dual-roles.mjs` · `deliveries/p345-gravity-fold.mjs` · `deliveries/p345-r-ratio.cjs` — the only tracked deliveries. (The lane file previously listed `p326/*` and `p333/formation-balance.mts`; those are not in this branch's history or this worktree — corrected 2026-11-12 when checking push state.)
+- Scratch (NOT in repo, may not persist): `/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/` — phase0-verify/ · parent-verify/ · p344-delivery/ (raw + out) · p346-delivery/ · p346-run/ · p346-merge/ · p346-harness/ · ledger-p1/ · p2v3/ · p2v3-run/ · p2v3-stepcheck/ · v3-or/ · v3-vl/ · v3-glyph-copy/ · QUEUE.md · random123-* · philox_check.py · mulhi_check.py
 
 ## Role
 general advisor. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
