@@ -1,0 +1,12 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+239aebe4774a8cf300ff1616fecd06c001ccbf4dfd860c6fb0ba0f83aabf5fb9       7853  C3-GRAVITY-FOLD-2026-11-12.md
+be81826b612b007ba26118705452567a882568469ab00f32983a0282d50bf9c3      19406  c3_gravity_fold.py
+98a4601215ba1bc8af640d3d1b10cf933e9d2a57d96c0f50e7f2dd6989002466     232832  c3_gravity_fold_per_team_game.csv
+b75782c05b2f7461e3007c5247e8929c4dacd49e938b8a3d06de597e6bb69088      32072  c3_gravity_results.json
+6ad847f432338ec30ef8b505459b44ce5612aefc109d2f9836bce72c002f85c1       2480  run_log_c3.txt

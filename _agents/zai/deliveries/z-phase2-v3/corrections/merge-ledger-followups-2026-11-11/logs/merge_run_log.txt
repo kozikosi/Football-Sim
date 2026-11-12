@@ -1,0 +1,155 @@
+oracle: live flex.json — 99 rules (97 cross-role + 2 self)
+need<=have violations: ['C PBLK']
+
+== role exposures (Ledger Phase 1 play shares; slot-weight-weighted role mean) ==
+       C: 1.0000
+      CB: 1.0000   (simple 1.0000)
+    DIME: 0.0694
+      DT: 0.8834   (simple 0.8445)
+    EDGE: 1.0000   (simple 1.0000)
+      FB: 0.1265
+      FS: 1.0000
+     ILB: 1.0000
+       K: 1.0000
+  NICKEL: 0.6190
+      OG: 1.0000   (simple 1.0000)
+     OLB: 0.7106   (simple 0.6556)
+      OT: 1.0000   (simple 1.0000)
+       P: 1.0000
+      QB: 1.0000
+      RB: 0.6446   (simple 0.5430)
+      SS: 1.0000
+      TE: 0.6326   (simple 0.4303)
+      WR: 0.8747   (simple 0.6242)
+
+== in-sample fit, 97 cross-role rules ==
+  V0 ability-only lam=0.4: exact 96 off1 1 hard 0 mae 1.34 rho 0.933
+  V0 ability-only lam=0.2: exact 85 off1 12 hard 0 mae 1.12 rho 0.934
+  V1 plain guard (meas w) lam=0.4: exact 92 off1 4 hard 1 mae 1.65 rho 0.896
+  V1 plain guard (input w) lam=0.4: exact 92 off1 4 hard 1 mae 1.67 rho 0.895
+  V1 plain guard (stale w) lam=0.4: exact 94 off1 2 hard 1 mae 1.53 rho 0.901
+  V2 EXPOSURE guard (measured w) lam=0.4: exact 96 off1 1 hard 0 mae 1.38 rho 0.940
+  V2b exposure, simple-mean E_OLB lam=0.4: exact 96 off1 1 hard 0 mae 1.37 rho 0.940
+  V2v per-play-value guard (rejected) lam=0.4: exact 90 off1 2 hard 5 mae 1.85 rho 0.827
+  V3 per-slot dst anchoring, min-collapse lam=0.4: exact 97 off1 0 hard 0 mae 1.30 rho 0.946
+  V3 per-slot dst anchoring, max-collapse lam=0.4: exact 96 off1 1 hard 0 mae 1.38 rho 0.940
+  V1 plain guard (meas w) lam=0.2: exact 86 off1 10 hard 1 mae 1.41 rho 0.885
+  V1 plain guard (input w) lam=0.2: exact 86 off1 10 hard 1 mae 1.43 rho 0.884
+  V1 plain guard (stale w) lam=0.2: exact 88 off1 8 hard 1 mae 1.27 rho 0.895
+  V2 EXPOSURE guard (measured w) lam=0.2: exact 86 off1 11 hard 0 mae 1.16 rho 0.933
+  V2b exposure, simple-mean E_OLB lam=0.2: exact 86 off1 11 hard 0 mae 1.16 rho 0.933
+  V2v per-play-value guard (rejected) lam=0.2: exact 84 off1 8 hard 5 mae 1.59 rho 0.797
+  V3 per-slot dst anchoring, min-collapse lam=0.2: exact 87 off1 10 hard 0 mae 1.08 rho 0.942
+  V3 per-slot dst anchoring, max-collapse lam=0.2: exact 86 off1 11 hard 0 mae 1.16 rho 0.933
+  V2 lam=0.4 on the full 99: exact 98/99
+  V2 lam=0.2 on the full 99: exact 88/99
+
+== the FB family + the acceptance test (V2) ==
+  lam=0.4  RB>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  FB>RB: owner 2  merged 3.30 -> tier 2 (ability)  OK
+  lam=0.4  FB>TE: owner 6  merged 4.74 -> tier 6 (ability)  OK
+  lam=0.4  TE>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  OT>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  OG>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  C>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  DT>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  EDGE>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.4  ILB>FB: owner 0  merged 0.50 -> tier 0 (ability)  OK
+  lam=0.4  OLB>FB: owner 0  merged 0.50 -> tier 0 (ability)  OK
+  lam=0.2  RB>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  FB>RB: owner 2  merged 2.70 -> tier 2 (ability)  OK
+  lam=0.2  FB>TE: owner 6  merged 3.92 -> tier 2 (ability)  MISS
+  lam=0.2  TE>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  OT>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  OG>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  C>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  DT>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  EDGE>FB: owner 0  merged 0.00 -> tier 0 (ability)  OK
+  lam=0.2  ILB>FB: owner 0  merged 0.50 -> tier 0 (ability)  OK
+  lam=0.2  OLB>FB: owner 0  merged 0.50 -> tier 0 (ability)  OK
+  acceptance test: FB>RB lands tier 2 iff E_FB < 4/G = 0.2228  (G=17.96); Ledger measured E_FB = 0.1265 -> INSIDE the band — the straddle RESOLVES to the Owner 2
+
+== centre diagnostic (under-priced rows = the arbitrage class) ==
+  V0 ability-only lam=0.4:
+      under-priced 1: C>OT
+      C-src under-priced: C>OT
+  V0 ability-only lam=0.2:
+      under-priced 12: RB>WR, FB>TE, WR>NICKEL, TE>WR, TE>DT, C>OT, C>DT, EDGE>SS, OLB>NICKEL, OLB>DIME, SS>FS, SS>RB
+      C-src under-priced: C>OT, C>DT
+  V1 plain guard (meas w) lam=0.4:
+      under-priced 0: none
+      C-src under-priced: NONE
+  V1 plain guard (meas w) lam=0.2:
+      under-priced 6: WR>NICKEL, EDGE>SS, OLB>NICKEL, OLB>DIME, SS>FS, SS>RB
+      C-src under-priced: NONE
+  V2 EXPOSURE guard (measured w) lam=0.4:
+      under-priced 0: none
+      C-src under-priced: NONE
+  V2 EXPOSURE guard (measured w) lam=0.2:
+      under-priced 10: RB>WR, FB>TE, WR>NICKEL, TE>WR, TE>DT, EDGE>SS, OLB>NICKEL, OLB>DIME, SS>FS, SS>RB
+      C-src under-priced: NONE
+  V3 per-slot dst anchoring, min-collapse lam=0.2:
+      under-priced 10: RB>WR, FB>TE, WR>NICKEL, TE>WR, TE>DT, EDGE>SS, OLB>NICKEL, OLB>DIME, SS>FS, SS>RB
+      C-src under-priced: NONE
+  V3 per-slot dst anchoring, min-collapse lam=0.4:
+      under-priced 0: none
+      C-src under-priced: NONE
+
+== per-slot C>OG decision (the one residual) ==
+  lam=0.4: C>OG per-slot guards ['OG1 12.50', 'OG2 7.49'] -> min-collapse price 7.49 tier 6 (owner 6)
+  lam=0.2: C>OG per-slot guards ['OG1 12.50', 'OG2 7.49'] -> min-collapse price 7.49 tier 6 (owner 6)
+  per-slot min-collapse re-anchors every multi-slot dst — the rows that move:
+    lam=0.4: C>OG owner 6: role-level 12 -> per-slot 6
+    lam=0.2: C>OG owner 6: role-level 12 -> per-slot 6
+
+== price-vs-Lab gate (T6 pairs, REPORTED; OVR-eq = wins / slope[dst], slope = v_dst/20) ==
+  lam=0.4:
+    TE>WR1: lab 0.63 wins = 7.8 OVR-eq | merged 9.04 (owner 12) | d_formula 1.2 d_owner 4.2
+    CB>WR1: lab 0.67 wins = 8.3 OVR-eq | merged 6.86 (owner 6) | d_formula 1.5 d_owner 2.3
+    CB>FS: lab 0.284 wins = 7.2 OVR-eq | merged 0.80 (owner 0) | d_formula 6.4 d_owner 7.2
+    EDGE>DT1: lab 0.39 wins = 5.9 OVR-eq | merged 0.00 (owner 0) | d_formula 5.9 d_owner 5.9
+    WR>RB1: lab 0.31 wins = 10.1 OVR-eq | merged 4.68 (owner 6) | d_formula 5.4 d_owner 4.1
+    QB>FS: lab 0.975 wins = 24.7 OVR-eq | merged 17.08 (owner 12) | d_formula 7.6 d_owner 12.7   [REPORTED lab OVR-eq @90: 22.8]
+    mean |price - lab|: formula 4.68  owner table 6.07
+  lam=0.2:
+    TE>WR1: lab 0.63 wins = 7.8 OVR-eq | merged 8.42 (owner 12) | d_formula 0.6 d_owner 4.2
+    CB>WR1: lab 0.67 wins = 8.3 OVR-eq | merged 6.86 (owner 6) | d_formula 1.5 d_owner 2.3
+    CB>FS: lab 0.284 wins = 7.2 OVR-eq | merged 0.80 (owner 0) | d_formula 6.4 d_owner 7.2
+    EDGE>DT1: lab 0.39 wins = 5.9 OVR-eq | merged 0.00 (owner 0) | d_formula 5.9 d_owner 5.9
+    WR>RB1: lab 0.31 wins = 10.1 OVR-eq | merged 4.14 (owner 6) | d_formula 6.0 d_owner 4.1
+    QB>FS: lab 0.975 wins = 24.7 OVR-eq | merged 13.04 (owner 12) | d_formula 11.7 d_owner 12.7   [REPORTED lab OVR-eq @90: 22.8]
+    mean |price - lab|: formula 5.34  owner table 6.07
+
+== LOO (MUSE protocol: lambda refit per fold 0.00-1.00 step 0.05, 194 held-out cases) ==
+  V0 ability-only: held-out mae 1.13 over 194, exact 170/194 (87.6%), lam fitted 0.20-0.25 (mean 0.20)
+      worst roles: C 1.61(9) ex=7/9, WR 1.53(12) ex=9/12, OT 1.48(10) ex=9/10, RB 1.42(10) ex=8/10
+  V1 plain guard (measured): held-out mae 1.44 over 194, exact 172/194 (88.7%), lam fitted 0.15-0.20 (mean 0.19)
+      worst roles: RB 2.75(10) ex=8/10, FB 2.63(11) ex=9/11, OLB 1.89(13) ex=9/13, C 1.64(9) ex=8/9
+  V2 EXPOSURE guard (measured): held-out mae 1.16 over 194, exact 172/194 (88.7%), lam fitted 0.20-0.20 (mean 0.20)
+      worst roles: C 1.64(9) ex=8/9, OG 1.52(10) ex=9/10, WR 1.48(12) ex=9/12, RB 1.42(10) ex=8/10
+
+== Q8: new roles — the Owner defines the NEED, the formula prices the moves ==
+  --- SS2 (NEED {'MCOV': 7, 'ZCOV': 5, 'RNG': 8, 'TKL': 7, 'CTH': 4, 'DEEP': 4, 'RDEF': 4, 'RUSH': 1}) ---
+  value: no slot, no measured share yet -> the guard is SILENT (0) until the Ledger
+  stages a big-nickel package and measures E_SS2; ability prices the moves meanwhile.
+  lam=0.2 tiers INTO SS2: QB 12  RB 12  FB 12  WR 6  TE 6  OT 12  OG 12  C 12  DT 12  EDGE 6  ILB 6  OLB 6  SS 0  FS 2  CB 0  K 12  P 12
+  --- DL5 (NEED {'RUSH': 9, 'EREP': 5, 'RDEF': 8, 'TKL': 6, 'RNG': 4}) ---
+  value: E_DL5 MEASURED 0.3111; leverage/play interpolated (DT2 1.146, DE2 0.789) -> mean 0.967
+  v_DL5 = E x leverage = 0.301 wins = 118 weight-units (engine's own DL5 weight: 150) -> guard ON
+  lam=0.2 tiers INTO DL5: QB 12  RB 12  FB 12  WR 12  TE 12  OT 6  OG 6  C 6  DT 2  EDGE 0  ILB 6  OLB 6  SS 12  FS 12  CB 12  K 12  P 12
+
+== lambda ablation for V2 (tiers vs continuous error — the Owner's dial) ==
+  lam=0.05: exact 80 off1 17 hard 0 mae 1.38
+  lam=0.10: exact 81 off1 16 hard 0 mae 1.27
+  lam=0.15: exact 86 off1 11 hard 0 mae 1.18
+  lam=0.20: exact 86 off1 11 hard 0 mae 1.16
+  lam=0.25: exact 89 off1 8 hard 0 mae 1.17
+  lam=0.30: exact 91 off1 6 hard 0 mae 1.21
+  lam=0.35: exact 92 off1 5 hard 0 mae 1.29
+  lam=0.40: exact 96 off1 1 hard 0 mae 1.38
+  lam=0.45: exact 91 off1 6 hard 0 mae 1.49
+  lam=0.50: exact 87 off1 10 hard 0 mae 1.60
+  lam=0.55: exact 85 off1 12 hard 0 mae 1.72
+  lam=0.60: exact 81 off1 16 hard 0 mae 1.85
+
+wrote merge_results.json
