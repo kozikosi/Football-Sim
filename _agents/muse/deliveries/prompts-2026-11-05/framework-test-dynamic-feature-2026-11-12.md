@@ -75,16 +75,34 @@ exactly what the test measures.
 - **The Owner decides the framework** based on the evidence. There is no
   lock — Svelte is not a lock, and the test will inform the choice.
 
-## §4 — The metrics (GPT's six, plus two)
+## §4 — The metrics and the method (GPT's six, plus GPT's improvements A–E)
 
-Measure the same way in all three prototypes, and report the numbers in a
-table — not adjectives, numbers.
+**A. Separate framework performance from engine performance.** The
+evaluation has two categories — do not mix them, or you risk awarding points
+to a framework for an advantage that actually comes from the shared engine.
+
+| Category              | What it measures                                                                                |
+| --------------------- | ----------------------------------------------------------------------------------------------- |
+| Framework-specific    | UI implementation, state handling, component organization, changeability, ecosystem integration |
+| Framework-independent | Engine contract, deterministic behavior, server compatibility, correctness of football rules    |
+
+The **framework-specific** category determines which framework produces the
+best implementation. The **framework-independent** category is a set of
+**shared acceptance tests** (the engine contract tests below) that **all three
+implementations must pass**. A prototype that fails the shared acceptance
+tests does not win on framework merits.
+
+**The raw measurements (GPT's six, plus two).** Measure the same way in all
+three prototypes, and report the numbers in a table — not adjectives, numbers.
 
 1. **How much code the agent produces without assistance** (lines, files —
    measured, not estimated).
 2. **How many existing libraries it can use** (named, with versions).
 3. **How many errors require human intervention** (counted, with the error
-   and the fix named).
+   and the fix named). **Record the number of human interventions separately**
+   — an implementation that takes 30 minutes of agent work and 90 minutes of
+   human debugging is not necessarily faster than one that takes an hour of
+   agent work and no intervention.
 4. **Whether the implementation follows current framework conventions**
    (checked against the framework's current docs — named).
 5. **How much work is required to integrate it with the engine** (steps, and
@@ -100,6 +118,89 @@ table — not adjectives, numbers.
 8. **Dynamic-feature handling:** how well does the prototype handle the
    feature's specifics — the halftime choice, the 4th-quarter automatics, the
    Priority-not-Wins split, the form arrow? A short assessment per prototype.
+
+**The weighted scoring framework (GPT).** Score each prototype on the
+weights below. **Correctness is also a pass/fail gate:** a prototype that
+looks excellent but implements Priority-not-Wins incorrectly should not win
+because it was faster to build. Do not overemphasize raw development speed.
+
+| Metric                            | Weight |
+| --------------------------------- | ------ |
+| Correctness of feature behavior   | 20%    |
+| Ease of second-round modification | 20%    |
+| AI agent implementation quality   | 15%    |
+| Integration with existing engine  | 10%    |
+| Maintainability and clarity       | 10%    |
+| UI quality and responsiveness     | 10%    |
+| Server-ready architecture         | 10%    |
+| Build and tooling friction        | 5%     |
+| Total                             | 100%   |
+
+**Change amplification (the "valuate" metrics).** For the second-round change
+(and the sixth-focus change below), report: how many files needed
+modification? How much unrelated code changed? Did the agent preserve the
+engine/UI boundary? Did it introduce framework dependencies into the engine?
+Could the change be tested independently? How easily could the engine run in
+a server environment? Could another agent understand the implementation
+without extensive explanation? A small feature requiring changes in 15
+unrelated places is a warning sign.
+
+**B. A deliberate edge-case test.** Add one more requirement beyond the
+halftime and fourth-quarter rules: **what happens when two rules compete for
+control of the same decision?** For example: a focus is automatically
+selected by a fourth-quarter rule; the user has already selected a different
+focus; a halftime change is available; the selected focus has a matchup
+advantage but loses under Priority-not-Wins. (Those exact situations are not
+required — the point is to test precedence, invalid combinations, and
+transitions.) AI agents are often good at the happy path but less reliable
+when multiple rules interact. The council reviews not only whether the final
+display is correct, but whether the implementation has **clearly defined
+precedence rather than scattered conditional logic**.
+
+**C. Make the second-round change test data-driven design.** The fifth focus
+is an excellent addition. Look for whether the original implementation
+assumes exactly four choices in places where it should not: is the picker
+generated from a list of available focuses? Are focus-specific rules
+centralized? Are there hard-coded references to four options? Is the halftime
+allowance a configurable rule or an arbitrary conditional? Does the new choice
+appear everywhere it should without modifying unrelated components? The
+important distinction is between a feature that **works** and a feature that
+is **easy to extend**.
+
+**D. Standardize the experimental environment.** Use the **current stable,
+supported versions of each framework's natural tooling**, rather than
+artificially forcing identical infrastructure. (The Vite 8 in Colors vs Vite
+7 in Cakepanz difference is worth addressing here — record the toolchain, do
+not force it identical.) Record for each prototype: framework version, build
+tool version, Node version, TypeScript version, installed libraries, coding
+agent and model, prompt and available documentation, time and token budget,
+number of human interventions. Give each implementation the **same design
+specification, test fixtures, and engine API**. Otherwise you might compare a
+highly polished Svelte implementation against a bare React prototype, or a
+framework's mature library integrations against another framework's hand-built
+equivalent.
+
+**E. A test of agent maintainability.** After the second-round change, the
+same agent does something more difficult: **add a SIXTH focus with a unique
+matchup rule, a different automatic-selection condition, and a different
+halftime eligibility rule — without altering the existing focus behaviors.**
+Then **another agent inspects the implementation and makes a small
+modification**. This tests whether the first agent produced code that another
+agent can understand. For this project that is incredibly important — the
+codebase will be developed by multiple AI agents over time.
+
+**Engine contract tests (shared by every frontend).** Create a **single set
+of test fixtures and expected outcomes for the engine**. All three prototypes
+consume the same contract. That makes it much harder for an agent to
+accidentally change the meaning of the feature while implementing the
+interface. These are the shared acceptance tests in category A above.
+
+**Playwright UI tests.** Test the actual browser interaction consistently
+across all three prototypes — a much more meaningful test than checking
+whether the component renders. The sequence (the same in all three): select a
+focus; advance to halftime; change the selection; advance into the fourth
+quarter; verify automatic behavior; add a fifth focus; change the halftime
+allowance; verify the original rules still work.
 
 ## §5 — The baseline (what is true now, what the test is for)
 
@@ -122,14 +223,36 @@ If another framework wins decisively, the evidence says so. Either way, the
 test also produces a working prototype of the offensive focus — the best
 prototype could become the basis for the real feature (the Owner decides).
 
+**Everything is up in the air (the Owner, standing, 2026-11-12):** css
+libraries, frameworks, bundlers, cdns, compute, databases, deployment are
+all up in the air right now. Anyone can make a strong recommendation for
+something new as the vision of the project grows — assume the project could
+grow beyond a solo, local-first football simulator into a substantial online
+sports-gaming platform. The frameworks on the table are **Svelte, React, Vue,
+and Solid** (and **SvelteKit, Next.js, Nuxt, and SolidStart**). This test
+covers three of them (SvelteKit, React, Vue/Nuxt). **Open question: should
+SolidStart be a fourth prototype?** The Owner's list includes Solid and
+SolidStart; the test as designed does not cover them. Say in the results
+filing whether a fourth prototype would change the comparison, and what it
+would cost to add one.
+
 ## §6 — The deliverable
 
 1. **Three small isolated prototypes** (SvelteKit, React, Vue/Nuxt) + the
-   shared engine they consume.
-2. **A results filing** — the measurements in a table (all eight metrics, the
-   same way in all three), the method, and a **recommendation** (which
-   framework, and why, on the evidence).
-3. **Claude's engine-integration review** (one filing).
+   shared engine they consume + the **single set of engine contract test
+   fixtures** (the shared acceptance tests — §4).
+2. **A results filing** — the measurements in a table (the eight raw metrics
+   + change amplification + the edge-case test + the data-driven-design check
+   + the sixth-focus maintainability test, the same way in all three), the
+   standardized environment record (§4 D), the weighted scores (§4), and a
+   **recommendation** (which framework, and why, on the evidence). Include
+   the Playwright UI test results (the interaction sequence in §4).
+3. **The maintainability step:** after the second-round change, the sixth
+   focus (unique matchup rule, different automatic-selection condition,
+   different halftime eligibility rule, existing behaviors unaltered), then
+   another agent inspects the implementation and makes a small modification —
+   both reported in the results filing.
+4. **Claude's engine-integration review** (one filing).
 4. **The council's three reviews** of the results filing (REVIEWED).
 
 Then the Owner decides.

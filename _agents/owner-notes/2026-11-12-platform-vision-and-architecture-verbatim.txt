@@ -1,0 +1,698 @@
+Owner message + GPT assessment — platform vision, architecture, framework test
+Recorded by MUSE, 2026-11-12 00:46 HST. KG asked MUSE to take the time to read
+and think through these, and to record most of the questions and
+recommendations verbatim for the council to look at and think about. The
+message below is verbatim as received from KG (including GPT's assessment,
+which KG relayed). Typos and formatting are preserved as received.
+
+--- Begin verbatim (KG, 2026-11-12 00:46 HST) ---
+
+Here are a lot of scattered thoughts. i would really like you to take the time to read and think through a lot of these things. most of the questions and recommendations you should record verbatim for the council to look at and think about.
+
+css libraries, frameworks, bundlers, cdns, compute, databases, deployment are all up in the air right now. anyone can make a strong recommendation for something new as the vision of the project grows. let's assume that this could rows beyond a solo, local-first football simulator into a substantial online sports-gaming platform.
+
+Svelte, react vue and solid are on the table along with sveltekit, next.js, nuxt, and solid start
+
+Questions and concepts
+
+Whether the simulation engine is independently testable.
+
+
+
+Whether the game simulation can run independently of the user's browser.
+
+
+
+Whether multiplayer state is authoritative on the server.
+
+
+
+Whether the database can preserve historical franchises and seasons.
+
+
+
+Whether the application can handle many concurrent leagues.
+
+
+
+Whether your architecture can accommodate basketball without duplicating the entire system.
+
+imagine 10,000 users participating in online leagues. The frontend framework doesn't need to simulate all those games or coordinate all those users. Your backend can manage the leagues, store the results, coordinate drafts, and invoke the simulation engine.
+
+design the simulation engine as if it will eventually run on a centralized server, even though it currently runs locally.
+
+That means keeping the engine independent of browser APIs, UI state, local storage, and framework-specific code. It should accept defined inputs and produce defined outputs. Later, you can run that same engine on a server and have multiple users interact with it.
+
+This also supports your eventual basketball expansion.
+
+are we using a consistent linter?
+
+ich framework allows AI agents to build, understand, modify, and maintain this particular simulation product most reliably?
+
+valuate:
+- How many files needed modification?
+- How much unrelated code changed?
+- Did the agent preserve the engine/UI boundary?
+- Did it introduce framework dependencies into the engine?
+- Could the change be tested independently?
+- How easily could the engine run in a server environment?
+- Could another agent understand the implementation without extensive explanation?
+
+establish a required GitHub Actions pipeline with:
+1. Dependency installation using a pinned lockfile.
+2. Formatting and lint checks.
+3. TypeScript type checking.
+4. Svelte-specific diagnostics.
+5. Engine unit tests.
+6. Determinism and regression tests.
+7. Production build.
+8. Browser-level smoke tests.
+Then add a separate nightly simulation lab:
+- Simulate thousands of seasons.
+- Check roster and draft invariants.
+- Check statistical distributions.
+- Compare results against historical baselines.
+- Flag unexpected changes.
+
+
+accounts, multiplayer, or centralized services
+
+Your simulator could eventually become a fairly unusual application. It isn't just a website with a few forms. It could have:
+- Thousands of players and hundreds of attributes.
+- Complex player comparisons and filtering.
+- Draft rooms with real-time updates.
+- Franchise management and historical records.
+- Multiple sports with different rules and simulation engines.
+- Online leagues and user-generated content.
+- Statistical dashboards and analytical tools.
+- Potentially thousands of simultaneous users.
+
+A commercial platform might need authentication, payment processing, analytics, collaborative editing, advanced data visualization, moderation, customer support, and other integrations.
+
+Consider the fact that ai will be writing 100%o of the code. does that change any preferences for css libraries, frameworks, bundlers, cdns, compute, databases, deployment?
+
+Imagine asking an agent to build a sophisticated interactive player database with:
+- Multi-column sorting.
+- Advanced filters.
+- Drag-and-drop columns.
+- Virtual scrolling.
+- Saved views.
+- Complex selection behavior.
+- Thousands of records..
+
+I think this is a genuinely good direction. In fact, some of the architectural decisions you've made are more consequential than the framework choice we were discussing.
+
+My overall assessment is:
+
+- Architecture: You're moving toward the right boundaries.
+- Framework experiment: A very good idea, with a few methodological improvements I'd make.
+- Testing: This is currently one of your biggest weaknesses, particularly the absence of automated CI.
+- Persistence: Fine for the current stage, but I'd make a few safeguards explicit.
+- Long-term opportunity: The server-ready engine principle could become one of the most important design decisions in the entire project.
+
+I'll go through each area, then give you my priorities.
+
+# 1. The framework experiment: good idea, but make sure it measures the right thing
+
+I particularly like your choice of offensive focus instead of a generic player database.
+
+A player database would test a lot of conventional UI functionality. Offensive focus tests something more interesting: the framework has to present and manage a feature whose behavior depends on actual football simulation logic.
+
+That's a better test of your application.
+
+What the experiment is actually testing
+
+1. Domain complexity
+
+   Priority-not-Wins, matchup logic, fourth-quarter automatics, and halftime decisions.
+2. Interactive UI
+
+   Focus picker, form arrow, halftime choice, and dynamic updates.
+3. State management
+
+   Keeping the user's selections consistent with the underlying engine rules.
+4. Changeability
+
+   Adding a fifth focus and changing the halftime rule without rewriting the feature.
+5. Architecture
+
+   Keeping the engine independent of the frontend and capable of eventually running server-side.
+
+I especially like the second-round change. It tests something that matters enormously in AI-assisted development: can the agent modify an existing feature without producing a collection of special cases?
+
+However, I would strengthen the experiment in five ways.
+
+### A. Separate framework performance from engine performance
+
+This is my biggest methodological recommendation.
+
+You say Z.ai builds the same feature in three prototypes with the engine shared as a black box.
+
+That's a good way to isolate the framework. But it creates an important limitation: the experiment cannot meaningfully tell you which framework produces the best simulation engine integration if the engine itself is identical in all three.
+
+I would separate the evaluation into two categories:
+
+| Category              | What it measures                                                                                |
+| --------------------- | ——————————————————————————————————————————————— |
+| Framework-specific    | UI implementation, state handling, component organization, changeability, ecosystem integration |
+| Framework-independent | Engine contract, deterministic behavior, server compatibility, correctness of football rules    |
+
+The first category should determine which framework produces the best implementation.
+
+The second should be a set of shared acceptance tests. All three implementations must pass them.
+
+Otherwise, you risk awarding points to a framework for an advantage that actually comes from the shared engine.
+
+### B. Add a deliberate edge-case test
+
+I like the halftime and fourth-quarter rules, but I'd add one more requirement:
+
+What happens when two rules compete for control of the same decision?
+
+For example:
+
+- A focus is automatically selected by a fourth-quarter rule.
+- The user has already selected a different focus.
+- A halftime change is available.
+- The selected focus has a matchup advantage but loses under Priority-not-Wins.
+
+You don't necessarily need all those exact situations. The point is to test precedence, invalid combinations, and transitions.
+
+This is particularly valuable because AI agents are often good at implementing the happy path but less reliable when multiple rules interact.
+
+I'd ask the council to review not only whether the final display is correct, but whether the implementation has clearly defined precedence rather than scattered conditional logic.
+
+### C. Make the second-round change test data-driven design
+
+The fifth focus is an excellent addition.
+
+I would look for whether the original implementation assumes exactly four choices in places where it shouldn’t.
+
+For example:
+
+- Is the picker generated from a list of available focuses?
+- Are focus-specific rules centralized?
+- Are there hard-coded references to four options?
+- Is the halftime allowance a configurable rule or an arbitrary conditional?
+- Does the new choice appear everywhere it should without modifying unrelated components?
+
+The important distinction is between a feature that works and a feature that is easy to extend.
+
+### D. Standardize the experimental environment
+
+You have Vite 8 in Colors and Vite 7 in Cakepanz. That's worth addressing in the experiment.
+
+I'd use the current stable, supported versions of each framework's natural tooling, rather than artificially forcing identical infrastructure.
+
+But I'd record:
+
+- Framework version.
+- Build tool version.
+- Node version.
+- TypeScript version.
+- Installed libraries.
+- Coding agent and model.
+- Prompt and available documentation.
+- Time and token budget.
+- Number of human interventions.
+
+Also, give each implementation the same design specification, test fixtures, and engine API.
+
+Otherwise, you might accidentally compare a highly polished Svelte implementation against a bare React prototype, or compare a framework's mature library integrations against another framework's hand-built equivalent.
+
+### E. Add a test of agent maintainability
+
+This might be the most important addition of all.
+
+After the second-round change, ask the same agent to do something more difficult:
+
+> Add a sixth focus with a unique matchup rule, a different automatic-selection condition, and a different halftime eligibility rule. Make the changes without altering the existing focus behaviors.
+
+Then ask another agent to inspect the implementation and make a small modification.
+
+This tests whether the first agent produced code that another agent can understand.
+
+For your project, that's incredibly important. You're effectively building a codebase that will be developed by multiple AI agents over time.
+
+# 2. The architecture: I like the server-ready principle very much
+
+This is probably the strongest decision in your update.
+
+Your engine has no runtime dependencies, storage is isolated, and the principle is now included in the agent prompts.
+
+That's exactly the kind of boundary I'd want.
+
+But I'd go a step further: I'd make the engine's independence an enforceable architectural rule rather than just a written instruction.
+
+The boundary I'd protect
+
+Simulation engine
+
+Football rules, player ratings, CPU GMs, draft algorithms, game simulation, player development, statistics, awards.
+
+Pure domain logic
+
+Explicit inputs, outputs, and commands
+
+Application layer
+
+Franchise management, draft workflows, user actions, season orchestration, state transitions.
+
+Platform interfaces
+
+Browser platform
+
+Svelte UI, local storage, browser workers
+
+Server platform
+
+Accounts, database, league coordination, authoritative simulation
+
+The important thing is that the engine shouldn't know whether it's being called by a browser, a worker, a server, or an automated test.
+
+### What I'd add to the server-ready rules
+
+I would explicitly prohibit the following inside the engine:
+
+| Dependency or behavior                 | Why I'd prohibit it                           |
+| -------------------------------------- | —————————————————————— |
+| `window`, `document`, `localStorage`   | Browser-specific                              |
+| UI component imports                   | Couples simulation to presentation            |
+| Framework-specific stores              | Makes migration harder                        |
+| `Math.random()`                        | Makes simulation outcomes harder to reproduce |
+| `Date.now()` and implicit clock access | Introduces hidden environmental inputs        |
+| Network requests                       | Couples engine to infrastructure              |
+| Direct database access                 | Couples domain logic to persistence           |
+
+You already have seeded RNG streams in Colors. That's a particularly good foundation.
+
+I'd add a few more requirements:
+
+1\. Explicit time and randomness. Any time-dependent or random behavior should receive its inputs explicitly.
+
+2\. Versioned rules. A completed franchise should know which simulation rules produced its results.
+
+3\. Versioned data. Historical players should retain their historical ratings, not silently inherit updated player data.
+
+4\. Deterministic replay. Given the same inputs, data, rules, and random seed, the engine should reproduce the same results.
+
+5\. Serialization. Important engine inputs and outputs should be serializable without depending on browser objects or framework-specific classes.
+
+These decisions will become especially valuable when you introduce online leagues.
+
+For instance, a server could receive a draft pick command, validate it, invoke the engine, and return the resulting state. The browser doesn't need to be trusted to determine what happened.
+
+One nuance: server-ready doesn't mean you need to build a server now. It means the engine shouldn't prevent you from building one later.
+
+# 3. localStorage versus IndexedDB
+
+I wouldn't consider the absence of IndexedDB a problem at this stage.
+
+In fact, I think using localStorage behind an isolated storage interface is a sensible decision.
+
+But I'd distinguish three different concerns:
+
+| Concern                          | localStorage     | IndexedDB |
+| -------------------------------- | ---------------- | ———— |
+| Simple save slots                | Excellent        | Excellent |
+| Small settings and preferences   | Excellent        | Good      |
+| Large franchise histories        | More constrained | Better    |
+| Large amounts of structured data | Awkward          | Better    |
+| Asynchronous operations          | No               | Yes       |
+| Complex indexed queries          | No               | Yes       |
+
+Your current project doesn't necessarily need IndexedDB yet.
+
+However, your franchise data could eventually become substantial. Imagine storing:
+
+- Multiple completed seasons.
+- Thousands of player statistical records.
+- Historical rosters.
+- Individual game box scores.
+- Awards and league records.
+- Player development histories.
+
+That is a different storage workload from storing three small save slots.
+
+### What I'd implement now
+
+I would keep the current adapter but require:
+
+1. A version number on every save.
+2. Validation when loading a save.
+3. A safe migration mechanism between save versions.
+4. Error handling when storage is unavailable or full.
+5. A recovery mechanism if a save becomes corrupted.
+6. A deliberate save strategy rather than writing huge objects repeatedly.
+
+I'd also test what happens when a save is interrupted or the user opens two tabs with the same franchise.
+
+My recommendation: Don't migrate to IndexedDB just because it sounds more scalable. Keep the interface replaceable, and migrate when actual data volume or functionality justifies it.
+
+# 4. Node's built-in test runner: I like this more than you might expect
+
+I wouldn't automatically replace it with Vitest.
+
+Your engine is TypeScript and has no runtime dependencies. Node's built-in test runner is perfectly reasonable for testing pure simulation functions.
+
+In fact, keeping the engine tests independent of a frontend testing framework is a positive architectural choice.
+
+But there is one important distinction:
+
+Running TypeScript tests using `--experimental-strip-types` does not mean you've type-checked the project.
+
+The runtime strips TypeScript syntax; it doesn't perform the full TypeScript compiler's semantic checks.
+
+I'd separate your validation into several layers:
+
+| Test type               | Suggested tool      | Purpose                           |
+| ----------------------- | ------------------- | ———————————————— |
+| Engine unit tests       | Node test runner    | Rules, calculations, algorithms   |
+| Type checking           | TypeScript compiler | Catch type errors                 |
+| Svelte component checks | svelte-check        | Catch Svelte and component errors |
+| UI integration tests    | Playwright          | Test real user interactions       |
+| Full application build  | Vite                | Ensure production build succeeds  |
+| Determinism tests       | Node test runner    | Reproduce simulations             |
+| Regression tests        | Node test runner    | Protect existing results          |
+
+For the offensive-focus experiment, Playwright would be particularly useful because it can test the actual browser interaction consistently across all three prototypes.
+
+For example:
+
+- Select a focus.
+- Advance to halftime.
+- Change the selection.
+- Advance into the fourth quarter.
+- Verify automatic behavior.
+- Add a fifth focus.
+- Change the halftime allowance.
+- Verify the original rules still work.
+
+That's a much more meaningful test than checking whether the component renders.
+
+# 5. No GitHub Actions: this is the most obvious immediate weakness
+
+High priority
+
+I would make CI one of your next infrastructure tasks.
+
+You have three development tracks, multiple agents, an increasingly sophisticated engine, and a substantial amount of logic that could be broken by apparently unrelated changes.
+
+Manual nightly testing is not enough to protect that.
+
+I would establish a workflow that runs on every pull request and important push.
+
+Proposed continuous integration pipeline
+
+1. Install dependencies
+
+   Use the committed lockfile and a pinned Node version.
+2. Formatting and linting
+
+   Catch style inconsistencies and common mistakes.
+3. Type checking
+
+   Run the relevant TypeScript and Svelte checks.
+4. Engine tests
+
+   Run the complete Node test suite.
+5. Determinism and regression tests
+
+   Check fixed-seed simulations and known expected outputs.
+6. Production build
+
+   Ensure the application actually builds.
+7. Browser smoke tests
+
+   Test the most important user workflows.
+
+Required before merging
+
+I would also add a scheduled nightly job that runs longer simulation tests.
+
+For example, simulate thousands of seasons and look for:
+
+- Crashes.
+- Invalid scores.
+- Impossible statistics.
+- Broken roster constraints.
+- Draft logic failures.
+- Unintended distribution changes.
+- Nondeterministic results under identical seeds.
+
+This could become a particularly valuable feature of your project: a simulation engine with an automated regression laboratory.
+
+### An idea I'd strongly consider: simulation invariants
+
+Instead of only checking whether a simulation produces a particular score, check whether it obeys rules that must always be true.
+
+Examples:
+
+- A team cannot have more than the permitted number of players at a position.
+- A player cannot simultaneously belong to two teams.
+- A completed game must have a valid final score.
+- Team and player statistics must reconcile where applicable.
+- Draft picks must follow the draft order.
+- A season cannot award a player an award twice.
+- A player's age and development progression must follow valid constraints.
+
+These invariants are particularly useful because they can catch bugs that don't cause a crash.
+
+# 6. The Vite 8 versus Vite 7 difference
+
+This is worth tracking, but I wouldn't treat it as an architectural emergency.
+
+Colors and Cakepanz are separate development tracks. They don't need to use identical dependency versions just because they are both working on the project.
+
+However, it does create a comparison problem.
+
+If one track encounters an incompatibility that the other doesn't, you need to know whether the cause is:
+
+- Vite.
+- Svelte.
+- TypeScript.
+- Node.
+- A plugin.
+- An actual application change.
+
+I'd have the agents record their toolchain versions in their reports and avoid mixing framework conclusions with build-tool conclusions.
+
+### One thing I would investigate: React in the Colors package
+
+You mentioned that React 19 is a dependency in a Svelte project, apparently for UI adapters.
+
+I would ask Claude to explain exactly why it's there.
+
+It isn't automatically wrong, but I'd want to know:
+
+- Which files import React?
+- Is React used at runtime?
+- Is it required by a testing or prototyping tool?
+- Is it part of the production dependency graph?
+- Does it end up in the production bundle?
+
+If it's genuinely needed for an isolated adapter, fine. If it's leftover from experimentation, remove it.
+
+I would prefer the production Svelte application to have a clean dependency graph, especially since you are deliberately testing React separately.
+
+# 7. The bigger architectural opportunity: build a simulation laboratory
+
+This is something I think could become one of the most distinctive parts of your project.
+
+You have a football simulator, but you also have an opportunity to build a framework for testing whether the simulator itself is believable.
+
+I'd separate three types of testing:
+
+A. Software correctness
+
+Does the code obey its rules?
+
+- Determinism
+- Valid data
+- Invariants
+- Regression tests
+- Correct draft mechanics
+
+B. Football realism
+
+Does the simulation behave like real football?
+
+- Scoring distributions
+- Passing and rushing efficiency
+- Sack rates
+- Turnover rates
+- Player production
+- Team strength and win distributions
+
+C. Balance and game design
+
+Does the game produce interesting decisions?
+
+- Positional value
+- Draft strategy
+- Roster construction
+- Player development
+- Coaching decisions
+- Trade-offs between positions
+
+These are three very different questions.
+
+A simulation can be software-correct but produce unrealistic football. It can produce realistic football but have poor strategic balance. It can have good balance but be too predictable to be fun.
+
+I'd eventually build a repeatable benchmarking system that runs thousands of simulated seasons and compares the results to NFL reference distributions.
+
+This would give your AI agents an objective way to evaluate changes to the engine rather than relying on their intuition.
+
+For example, if an agent changes offensive focus logic, the system could report whether that change unexpectedly altered:
+
+- Passing attempts.
+- Completion percentage.
+- Explosive plays.
+- Scoring.
+- Win distributions.
+- Positional production.
+
+You could even require an agent proposing an engine change to attach a benchmark report.
+
+That is a much stronger development process than simply asking an AI agent whether it thinks its code is correct.
+
+# 8. What I'd add to the framework experiment's scoring
+
+Your eight metrics are a good starting point. I'd make sure the council doesn't overemphasize raw development speed.
+
+Here's the scoring framework I'd use:
+
+| Metric                            | Weight |
+| --------------------------------- | ——— |
+| Correctness of feature behavior   | 20%    |
+| Ease of second-round modification | 20%    |
+| AI agent implementation quality   | 15%    |
+| Integration with existing engine  | 10%    |
+| Maintainability and clarity       | 10%    |
+| UI quality and responsiveness     | 10%    |
+| Server-ready architecture         | 10%    |
+| Build and tooling friction        | 5%     |
+| Total                             | 100%   |
+
+I'd make correctness a pass/fail gate too. A prototype that looks excellent but implements Priority-not-Wins incorrectly shouldn't win because it was faster to build.
+
+I would also record the number of human interventions separately. An implementation that requires 30 minutes of agent work and 90 minutes of your debugging is not necessarily faster than one that takes an hour of agent work and requires no intervention.
+
+One additional metric I'd consider: change amplification.
+
+How many files must the agent modify to add one new focus? How many unrelated files does it touch? Does it need to modify the engine, UI, state management, tests, and configuration independently?
+
+A small feature requiring changes in 15 unrelated places is a warning sign.
+
+# 9. My priorities: what I'd do next
+
+Here's how I'd sequence the work. I wouldn't try to do all of this simultaneously.
+
+## Priority roadmap
+
+1\. Complete the framework experiment
+
+Now
+
+Freeze the specification, fixtures, toolchains, and evaluation criteria. Run all three prototypes under equivalent conditions.
+
+2\. Establish automated CI
+
+High priority
+
+Build the GitHub Actions workflow for tests, type checking, linting, and production builds.
+
+3\. Enforce engine boundaries
+
+High priority
+
+Add dependency-boundary checks and tests that prevent browser/framework imports from entering the engine.
+
+4\. Strengthen persistence
+
+Medium priority
+
+Add save versioning, validation, migration tests, and recovery behavior.
+
+5\. Build the simulation laboratory
+
+Medium-term
+
+Add statistical benchmarks, invariants, regression tests, and large-scale season simulations.
+
+6\. Plan multi-sport boundaries
+
+Longer-term
+
+Establish which concepts are shared across sports and which belong to individual sport engines. Avoid premature abstraction.
+
+## 10. Three additional ideas I'd seriously consider
+
+A. Engine contract tests shared by every frontend
+
+Create a single set of test fixtures and expected outcomes for the engine. The Svelte, React, and Vue prototypes all consume the same contract. That makes it much harder for an agent to accidentally change the meaning of the feature while implementing the interface.
+
+B. An AI change-report protocol
+
+Whenever an agent modifies engine logic, require it to report:
+
+- What behavior changed.
+- Which invariants could be affected.
+- Which tests were added.
+- Which benchmarks were run.
+- Whether any historical simulation results might change.
+- Whether the change affects deterministic reproducibility.
+
+This is particularly useful when multiple agents work on different parts of the project.
+
+C. A sport-independent application shell, not a sport-independent simulation engine
+
+I would be careful about trying to make football and basketball share one giant generalized simulation engine.
+
+They have fundamentally different rules, event structures, player attributes, and statistical models.
+
+Instead, consider sharing application infrastructure—save management, franchise navigation, user preferences, history presentation, and common data visualization—while allowing football and basketball to have independent domain engines.
+
+That will make basketball much easier to introduce without compromising the football model.
+
+## My overall verdict
+
+I think you're making good decisions. The most important thing in this update isn't Vite 8, React 19, localStorage, or the framework experiment.
+
+It's that you're beginning to establish enforceable engineering principles around an independently testable simulation engine.
+
+That's exactly the direction I'd want for a portfolio project intended to demonstrate more than just a visually impressive AI-generated interface.
+
+There are two things I would not compromise on:
+
+1. Don't let frontend framework choices dictate the architecture of your simulation engine.
+2. Don't let AI agents modify complex football logic without automated correctness and regression checks.
+
+One last distinction: I couldn't retrieve the linked framework-test Markdown file through the GitHub connection, so my critique of its detailed specification is based on your description rather than a line-by-line review. If you attach the Markdown file here, I can review the actual test protocol and identify ambiguities, missing requirements, and ways an agent might accidentally game the comparison.
+
+--- End verbatim ---
+
+MUSE's note (not verbatim — for the record): KG's message is a mix of his own
+words and a GPT assessment he relayed. The sections from "I think this is a
+genuinely good direction" through "My overall verdict" (including §§1–10) are
+GPT's assessment as relayed by KG; the opening (the up-in-the-air stack, the
+frameworks on the table, the six architecture questions, the 10,000-users
+vision, the linter question, the "which framework" question, the evaluation
+metrics, the GitHub Actions pipeline, the accounts/multiplayer section, the
+AI-writes-100%-of-the-code question, and the player-database example) is KG's
+own framing. MUSE has:
+- answered the linter question (see the council prompt + MEMORY.md): yes,
+  Biome — `tools/lint.mjs` is the entry point (AGENTS.md §9); the product
+  lint uses `tools/biome-product/biome.json`, the tooling uses the root
+  `biome.json`; but there is no CI to enforce it, and 67 Cakepanz has no
+  Biome setup of its own (VERIFIED 2026-11-12).
+- updated the framework-test design with GPT's improvements A–E, the weighted
+  scoring framework, change amplification, the engine contract tests, and
+  Playwright UI tests (commit: see the push below).
+- written a council prompt (`council-platform-vision-2026-11-12.md`) pointing
+  at this file, asking the council to read it and file their thoughts.
+- recorded the standing vision in MEMORY.md: the stack (css libraries,
+  frameworks, bundlers, cdns, compute, databases, deployment) is all up in
+  the air; anyone may make a strong recommendation; assume the project could
+  grow into a substantial online sports-gaming platform; frameworks on the
+  table are Svelte, React, Vue, Solid (SvelteKit, Next.js, Nuxt, SolidStart).
