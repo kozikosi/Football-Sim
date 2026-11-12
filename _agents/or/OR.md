@@ -22,6 +22,7 @@
     - `inbox/20261112-0518-or-Q1-max-vs-single-formula.md` (Q1): max-of-two-layers vs single nested Lp-norm formula; my P-322 variants A/C produce 55/57 exact matches; guard term emerges from gap vector; the max is scaffolding, not the beautiful answer.
     - `inbox/20261112-0522-or-Q5-basketball-portability.md` (Q5): formula does NOT port cleanly to basketball — three structural breaks (position anchoring, duty overlap, exposure → minutes×usage); fix: role archetypes + minutes×usage exposure; duty set reduction to ≤8 non-overlapping duties.
     - `inbox/20261112-0527-or-Q3-lambda-meaning.md` (Q3): λ is a dial not a game property; 0.40 orders slots (97/97) but mis-measures gaps (mae 1.311); 0.20 measures gaps better (mae 1.076) but mis-orders slots (86/97); DS's ANOVA estimator is the analytic bridge (no simulator needed, exactly unbiased for balanced panels); λ is the Owner's call on draft-board vs trade-value dominance.
+    - `inbox/20261112-0556-or-P-345-lambda-objective.md` (NEW): position **0.20** (with display caveat); portability favours ability layer; gap error at 0.40 is systematic mispricing of every flex move, not silent; 11 mis-ordered rows at 0.20 concentrate in low-visibility slots; 0.20 is strictly more portable (ability layer works without Owner's 99-rule table, 0.40 guard layer requires it); matches Owner's 2026-11-11 explicit lean.
 
 - **Blocked / waiting on:**
   - REV 4 build owed to Z.ai: LF writers + `make_checksums.py` re-run + durable `*.csv -text` + format fix + REV 4 note.
@@ -33,7 +34,7 @@
   - Phase 1 protocol note + design-amendment pass convergence.
 
 ## What the next session needs
-- **Read first:** `_agents/PRIORITIES.md`, P-346 review, checksum confirm, ASK response, P-156 review, P-163 review, Q1/Q3/Q5 innovation notes.
+- **Read first:** `_agents/PRIORITIES.md`, P-346 review, checksum confirm, ASK response, P-156 review, P-163 review, Q1/Q3/Q5/Q0 innovation notes.
 - **Open questions:** REV 4 status; P-341/P-345 carry items; Owner/Architect decisions on C.1-C.3; Phase 1 protocol note status.
 - **Do not redo:** P-346 review (ok); zai-phase2-v3 push (commit a9eda133); P-156 review (improved); P-163 review (improved); ASK response (index template); checksum confirm (69/72, format broken); P-345 innovation notes (filed once).
 
@@ -46,16 +47,18 @@
 - `inbox/20261112-0518-or-Q1-max-vs-single-formula.md` (P-345 Q1: max vs single formula)
 - `inbox/20261112-0522-or-Q5-basketball-portability.md` (P-345 Q5: basketball portability)
 - `inbox/20261112-0527-or-Q3-lambda-meaning.md` (P-345 Q3: λ meaning + ANOVA bridge)
+- `inbox/20261112-0556-or-P-345-lambda-objective.md` (P-345 λ objective: 0.20)
 - `_agents/or/deliveries/ledger-phase1-2026-11-11/` (Z.ai Play Ledger Phase 1)
 - `_agents/or/deliveries/ledger phase2/` (Z.ai merge-ledger followups)
 - `zai-phase2-v3-copy/` (Z.ai Phase 2 v3, commit a9eda133)
 - `bulletin/20261112-0418-or.md`
 - `bulletin/20261112-0420-or.md`
 - `bulletin/20261112-0507-or.md`
+- `bulletin/20261112-0540-or.md`
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
 - **Branch:** `council/or`
 - **Base:** `git merge-base HEAD origin/council/base` = `1b91f50e`
 
-(End of file - total 54 lines)
+(End of file - total 58 lines)
