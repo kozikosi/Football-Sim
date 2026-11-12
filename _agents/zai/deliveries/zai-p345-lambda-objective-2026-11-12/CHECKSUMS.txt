@@ -1,0 +1,19 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP: python3 make_checksums.py <folder> — one '<sha256>  <size>  <path>' line per file; CHECKSUMS.txt self-excluded.
+#
+8f28a7f9dfaf8d830b63c4bbc84de731b60bfd6d53a5d306660610d4a52965df       4307  README.md
+9f541086fe40680eb889fb20a0e0e8bfcc86a8261a9e8b64f676efff8f4cf77f      12431  START-OF-CHAT-ZAI.md
+e0c619b584d662035374ff48929f81a35c708f0f7a8a17c58b6679727d18c479       1237  make_checksums.py
+d188cbe5f131efcc90c0ec0ef1ec24975bbe031e8deabef94d282c626fd812e4       3207  run_log_anova.txt
+3d9b2b4d6e37d9e52c39adeb7e3e8090d863d6037a314d0e463263a6a8477702      10899  run_log_draftboard.txt
+8cf60f26b851e15e14b21bd2c4fd0af0dfc04a49dcd33c7df04ff78f7232b8df      12350  zai_p345_anova_bridge.py
+44117e12d9fc01537f0d75879aa330211c2a834cff5337c6701d735277a8c80a      28906  zai_p345_draftboard_and_thirdway.py
+f99120234119def1141a9264cf2faa393f2dee8049643eef79503e5dd8602dce      27655  formula/merge_prototype.py
+a70897159e5372583ff7b5d41845784b07c57f37325900f37d6e596b27886e4f      26809  inbox/20261112-0618-zai-P-345-lambda-objective.md
+c20d85ca6311248ca23d5e7d265f8ae706440ea0bcdc4f36ec17df9b86210fce      18663  inputs/c1_era_e_table.json
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6       2814  inputs/flex-99-live.json
+607183a2f1cbac94252503b38ec8ef37b585e9a38197158ce3587621a9391b23      85008  inputs/madden27-ratings.csv
+4854b2c52e0f3e79e21431824eb59836c6b1e8980322c86b52b9c94da6e8eee0     594339  inputs/team_game_summary_2016-2025.csv
+02b46ab560e11247f638d52483869926c7efb6023dc0df00cc747edee79c32f1       4267  results/results_p345_anova.json
+25baea96dc49347b3dbd1e0c50970abaef8a4b87f205553aa084a61bfea2f687     104301  results/results_p345_draftboard.json

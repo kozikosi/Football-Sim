@@ -1,0 +1,61 @@
+== DS decomposition, all games ==
+  label: all 5522 team-games
+  n_team_games: 5522
+  n_team_seasons: 320
+  nbar: 17.256
+  var_team_means_pop: 16.9017
+  var_team_means_sample: 16.9547
+  mean_within_var: 87.1484
+  between_var_pop: 11.8514
+  between_sd_pop: 3.4426
+  overstate_season_pop: 1.1942
+  overstate_game_pop: 2.905
+  overstate_game_withinbasis_pop: 2.7117
+  between_var_sample: 11.9044
+  between_sd_sample: 3.4503
+  overstate_season_sample: 1.1934
+  overstate_game_sample: 2.8988
+  overstate_game_withinbasis_sample: 2.7057
+  per-season overstatement: {'2016': 1.1601, '2017': 1.2429, '2018': 1.1765, '2019': 1.2126, '2020': 1.2079, '2021': 1.1586, '2022': 1.2095, '2023': 1.1984, '2024': 1.1387, '2025': 1.1986}
+
+== REG-only variant ==
+  n_team_games: 5278
+  n_team_seasons: 320
+  nbar: 16.494
+  var_team_means_pop: 17.6251
+  var_team_means_sample: 17.6803
+  mean_within_var: 86.7505
+  between_var_sample: 12.4207
+  overstate_season_sample: 1.1931
+  overstate_game_sample: 2.8357
+
+== Var(g) rulers ==
+  n_teams: 32
+  league_mean_team_ovr: 73.8428
+  league_sd_player_ovr: 7.9969
+  var_team_mean_ovr_pop: 1.018376
+  var_team_mean_ovr_sample: 1.051227
+  var_z_team_pop: 0.0159244
+  var_z_team_sample: 0.01643809
+  slot_wins_sum_all_32_slots: 21.4317
+  slot_wins_per_ovr: 1.0716
+  var_g_slotwins_pop: 1.169397
+  var_g_slotwins_sample: 1.207119
+
+== lambda-hat ==
+  z_ovr_ruler: {'var_g': 0.0159244, 'lamhat': 27.341, 'points_per_1sd_team_z': 3.4503, 'interval_plus_minus_26pct': [20.232, 34.45]}
+  raw_ovr_ruler: {'var_g': 1.018376, 'lamhat': 3.419, 'points_per_team_ovr_point': 3.419, 'interval_plus_minus_26pct': [2.53, 4.308]}
+  slot_wins_ruler: {'var_g': 1.169397, 'lamhat': 3.191, 'points_per_slotwin_of_team_advantage': 3.191, 'interval_plus_minus_26pct': [2.361, 4.021]}
+
+== price-table checks ==
+  owner_label_mean: 5.7113
+  owner_label_sd: 4.2304
+  owner_label_counts: {'0': 21, '2': 10, '6': 43, '12': 23}
+  mae_floor_at_zero_raws: 5.7113
+  lam0.2_raw_sd: 3.9534
+  lam0.4_raw_sd: 4.5213
+  scale-bias min: {'lam0.4': {'c': 0.9, 'mae_c_times_raw_lam0.4': 1.1874, 'mae_c_times_raw_lam0.2': 1.1973}, 'lam0.2': {'c': 1.0, 'mae_c_times_raw_lam0.4': 1.3753, 'mae_c_times_raw_lam0.2': 1.1568}}
+  scale-bias curve: [{'c': 0.1, 'mae_c_times_raw_lam0.4': 5.0833, 'mae_c_times_raw_lam0.2': 5.1593}, {'c': 0.2, 'mae_c_times_raw_lam0.4': 4.4553, 'mae_c_times_raw_lam0.2': 4.6073}, {'c': 0.3, 'mae_c_times_raw_lam0.4': 3.8272, 'mae_c_times_raw_lam0.2': 4.0553}, {'c': 0.4, 'mae_c_times_raw_lam0.4': 3.1992, 'mae_c_times_raw_lam0.2': 3.5032}, {'c': 0.5, 'mae_c_times_raw_lam0.4': 2.5763, 'mae_c_times_raw_lam0.2': 2.9563}, {'c': 0.6, 'mae_c_times_raw_lam0.4': 1.9822, 'mae_c_times_raw_lam0.2': 2.4382}, {'c': 0.7, 'mae_c_times_raw_lam0.4': 1.4263, 'mae_c_times_raw_lam0.2': 1.9246}, {'c': 0.8, 'mae_c_times_raw_lam0.4': 1.1999, 'mae_c_times_raw_lam0.2': 1.4708}, {'c': 0.9, 'mae_c_times_raw_lam0.4': 1.1874, 'mae_c_times_raw_lam0.2': 1.1973}, {'c': 1.0, 'mae_c_times_raw_lam0.4': 1.3753, 'mae_c_times_raw_lam0.2': 1.1568}]
+  spread test: {'owner_sd': 4.2304, 'raw_sd_lam0.4': 4.5213, 'raw_sd_lam0.2': 3.9534, 'ratio_0.4_over_owner': 1.069, 'ratio_0.2_over_owner': 0.935}
+
+wrote results/results_p345_anova.json
