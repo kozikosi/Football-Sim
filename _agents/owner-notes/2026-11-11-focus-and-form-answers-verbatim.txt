@@ -1,0 +1,34 @@
+Owner verbatim — answers to MUSE's two follow-up questions (offensive focus, form)
+Recorded by MUSE, 2026-11-11 23:46 HST. KG's reply to MUSE's two sincere
+follow-up questions (asked 2026-11-11 23:22 HST). Verbatim:
+
+1. i think the user could get choices at halftime (no more than that for now. I guess by . i also think that the 4th quarter should have a lot of automatic adjustments by the engine based on situation. going for 2 down 14 and going for difficult 4th downs or going for longer passes down big late in the game should be automatic regardless of what the user selected. focus could change priority values but none of the static values including wins or whatever replaces wins.
+
+2. Form is definitely visible. hot and cold marker would be a simple green (but this is however z.ai has defined green or good within each team's color palette) arrow and a simple red arrow or something simple like this. no emojis. no 'HOT' or 'cold'
+
+any more questions?
+
+--- End of verbatim record ---
+
+MUSE's summary of the rulings (not verbatim — for the prompts and MEMORY.md):
+- OFFENSIVE FOCUS: the user gets choices AT HALFTIME (no more than that for
+  now). The 4th quarter should have a LOT of AUTOMATIC adjustments by the
+  engine based on situation — going for 2 down 14, going for difficult 4th
+  downs, going for longer passes down big late in the game should be AUTOMATIC
+  regardless of what the user selected. Focus could change PRIORITY values but
+  NONE of the static values, including Wins (or whatever replaces Wins).
+  (So: Wins = static truth, Priority = contextual/focus-aware. The 4th quarter
+  is engine-driven by situation, overriding the user's focus.)
+- FORM: definitely VISIBLE. Hot/cold marker = a simple GREEN arrow (green as
+  Z.ai has defined "green" or "good" within each team's color palette) and a
+  simple RED arrow, or something simple like this. NO emojis. NO 'HOT' or
+  'cold' text labels.
+- OPEN (MUSE's two new sincere follow-up questions, asked 2026-11-11 23:46 HST,
+  awaiting KG's answers): (1) Focus — pre-game + halftime, or halftime only?
+  Does the user pick a focus before the game and then get one change at
+  halftime, or is the focus only chosen at halftime (first half on default)?
+  (2) Focus + Priority — does the focus affect the DRAFT BOARD (a player's
+  Priority under the current focus, re-ranking the board) or only the GAME
+  (the lineup / which player to start under this focus)? I.e. is the focus a
+  team identity (set once, affects the board) or a per-game choice (affects
+  only the game) — or both?

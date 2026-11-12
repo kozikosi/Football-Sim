@@ -44,7 +44,18 @@ think about them and file a design note. One job, small.
 etc." — so that a player who notices his QB will have no time to throw can
 choose west coast or RPOs or ground & pound instead of deep passing, and the
 QB benefits from that choice. A big new potential feature. Propose it; do not
-assume it ships.
+assume it ships. **The Owner has answered the first questions (2026-11-11
+23:46 HST, verbatim at
+`_agents/owner-notes/2026-11-11-focus-and-form-answers-verbatim.txt`):** the
+user gets focus choices **at halftime** (no more than that for now); the **4th
+quarter** should have a lot of **automatic adjustments by the engine based on
+situation** — going for 2 down 14, going for difficult 4th downs, going for
+longer passes down big late in the game should be **automatic regardless of
+what the user selected**; and the focus may change **Priority values but NONE
+of the static values, including Wins** (or whatever replaces Wins). **Form is
+definitely VISIBLE** — a simple **GREEN arrow** (green as Z.ai has defined
+"green" or "good" within each team's color palette) for hot and a simple **RED
+arrow** for cold. **NO emojis. NO 'HOT' or 'cold' text labels.**
 
 ## Your job (one job, small)
 
@@ -53,10 +64,17 @@ product, be beautiful, and port to basketball later with no Owner-provided
 weights — file a design note on your branch and push it. One short filing, no
 tests, no code, no build. The note should answer, in your own shape:
 
-1. **The offensive focus.** What is it, as an engine object — a per-game
-   choice? changeable mid-game? Does it change the draft board or only the
-   game? How does it interact with form and with matchup (the QB-with-no-time
-   case)? What is the cleanest shape that keeps the engine beautiful?
+1. **The offensive focus.** What is it, as an engine object — given the
+   Owner's answers (choices at halftime, no more than that for now; 4th
+   quarter automatic by situation, overriding the focus; focus changes
+   Priority, never Wins)? Two open questions: **pre-game + halftime, or
+   halftime only?** (Does the user pick a focus before the game and then get
+   one change at halftime, or is the focus only chosen at halftime?) And
+   **does the focus affect the DRAFT BOARD** (a player's Priority under the
+   current focus) **or only the GAME** (the lineup)? Is it a team identity or
+   a per-game choice — or both? How does it interact with form and with
+   matchup (the QB-with-no-time case)? What is the cleanest shape that keeps
+   the engine beautiful?
 2. **What else is static?** The Owner's question, verbatim: "think of what
    else would make the engine dynamic." Name the static assumptions in your
    engine (beyond the 12 above) that should fluctuate — and say what each

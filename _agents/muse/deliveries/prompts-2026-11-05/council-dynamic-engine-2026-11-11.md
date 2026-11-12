@@ -95,19 +95,33 @@ fluctuating machinery stays behind the screen.
 ## §2 — The questions
 
 **Q1 — The offensive focus.** This is the biggest new feature in the round.
-Propose the design: what are the focuses (west coast, deep passing, RPOs,
-ground & pound, and what else — is there a defensive focus too?); is the
-focus chosen **per game** (set before kickoff) or **changeable during the
-game**; does the focus change the **draft board** (a player's Wins under the
-user's current focus) or only the **game**; how does a focus interact with
-**form** (a WR3's OVR in a west coast environment, a RB2's in ground & pound)
-and with **matchup** (a top QB with a weak OL vs a top DL — how steep is the
-drop, and how much does the right focus recover?); what does the user see when
-he picks a focus (what the screen says, in one sentence a normal fan
-understands); and what is the **receipt** — how would you test whether the
-focus makes the game better (more interesting decisions, not just more wins)?
-Name the failure mode: when does a focus choice become a no-brainer, or a
-trap?
+**The Owner has answered the first two questions (2026-11-11 23:46 HST,
+verbatim at `_agents/owner-notes/2026-11-11-focus-and-form-answers-verbatim.txt`):**
+the user gets focus choices **at halftime** (no more than that for now); the
+**4th quarter** should have a lot of **automatic adjustments by the engine
+based on situation** — going for 2 down 14, going for difficult 4th downs,
+going for longer passes down big late in the game should be **automatic
+regardless of what the user selected**; and the focus may change **Priority
+values but NONE of the static values, including Wins** (or whatever replaces
+Wins). So: Wins = static truth, Priority = contextual / focus-aware, and the
+4th quarter is engine-driven by situation, overriding the user's focus.
+Propose the design inside those answers: what are the focuses (west coast,
+deep passing, RPOs, ground & pound, and what else — is there a defensive
+focus too?); **open question — pre-game + halftime, or halftime only?** Does
+the user pick a focus before the game and then get one change at halftime, or
+is the focus only chosen at halftime (first half on default)?; **open question
+— does the focus affect the DRAFT BOARD** (a player's Priority under the
+current focus, re-ranking the board) **or only the GAME** (the lineup / which
+player to start under this focus)? Is the focus a team identity (set once,
+affects the board) or a per-game choice (affects only the game) — or both?;
+how does a focus interact with **form** (a WR3's OVR in a west coast
+environment, a RB2's in ground & pound) and with **matchup** (a top QB with a
+weak OL vs a top DL — how steep is the drop, and how much does the right
+focus recover?); what does the user see when he picks a focus (what the screen
+says, in one sentence a normal fan understands); and what is the **receipt** —
+how would you test whether the focus makes the game better (more interesting
+decisions, not just more wins)? Name the failure mode: when does a focus
+choice become a no-brainer, or a trap?
 
 **Q2 — Matchup-aware slot values, with static truth on the board.** The Owner
 wants both: the draft board shows static truth (Wins are wins; QB generally
@@ -120,15 +134,19 @@ time to throw as a measured stat?); what data would you use to set the size of
 the drop; and what is the receipt (which real games / which nflverse cuts
 would show the drop is real)?
 
-**Q3 — Form.** Propose the mechanism: what is form (a rolling window of
-recent performance? a hidden state? a streak?); how does it move a player's
-OVR by ~5–6 during the season (linear? a step? a curve?); does form **reset
-each season or carry over**; does the user **see a form indicator** (a visible
-hot/cold marker on the player card) or **just see the OVR move**; and what is
-the receipt — how would you test that form makes the season more interesting
-without making the draft board a lottery? (Constraint: no injuries, no
-per-player clutch metrics from the Owner — form must be built from what the
-engine already measures.)
+**Q3 — Form.** **The Owner has answered the display question (2026-11-11
+23:46 HST): form is definitely VISIBLE — a simple GREEN arrow** (green as
+Z.ai has defined "green" or "good" within each team's color palette) **for
+hot and a simple RED arrow for cold, or something simple like this. NO
+emojis. NO 'HOT' or 'cold' text labels.** Propose the mechanism inside that
+answer: what is form (a rolling window of recent performance? a hidden state?
+a streak?); how does it move a player's OVR by ~5–6 during the season
+(linear? a step? a curve?); does form **reset each season or carry over**;
+is the arrow **binary** (hot / cold / neutral) or **graded** (the arrow's
+size or intensity shows how hot); and what is the receipt — how would you
+test that form makes the season more interesting without making the draft
+board a lottery? (Constraint: no injuries, no per-player clutch metrics from
+the Owner — form must be built from what the engine already measures.)
 
 **Q4 — Group synergies.** The engine is additive (slot values sum). A dominant
 *group* (an elite OL, a strong secondary) has synergistic value the engine
