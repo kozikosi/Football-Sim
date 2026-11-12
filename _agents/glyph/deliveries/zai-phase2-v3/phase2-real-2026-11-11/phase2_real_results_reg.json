@@ -1,0 +1,5257 @@
+{
+ "mode": "REAL DATA \u2014 nflverse P-344 release, 30/30 files sha256-verified against the manifest; basis: regular season only (game_type=REG)",
+ "staged_cell": "even80",
+ "tolerance_pts": 3.0,
+ "loader_equivalence_check": {
+  "what": "the real per-label adapter reproduces the shipped map_spots on the shipped SYNTHETIC snaps",
+  "max_abs_share_diff": 0.0,
+  "at": "",
+  "pass": true
+ },
+ "dime_dl5_seat_hours_pooled": {
+  "DIME": 1.2703,
+  "DL5": 1.0755,
+  "note": "seat-hours = leftover snaps (snap_counts) beyond the named seats, per play; can exceed 1.0 with rotations \u2014 the rotation measure, not a seat-occupancy share. The real per-play occupancy comparators are the dl5_play_share / dpkg_share.dime fields."
+ },
+ "spot_comparison_pooled_all_seasons": {
+  "n_team_seasons": 320,
+  "rows": [
+   {
+    "spot": "C",
+    "real": 0.7808,
+    "staged": 1.0,
+    "delta_pts": -21.92,
+    "within_tol": false
+   },
+   {
+    "spot": "CB1",
+    "real": 0.8563,
+    "staged": 1.0,
+    "delta_pts": -14.37,
+    "within_tol": false
+   },
+   {
+    "spot": "CB2",
+    "real": 0.6937,
+    "staged": 1.0,
+    "delta_pts": -30.63,
+    "within_tol": false
+   },
+   {
+    "spot": "CB3",
+    "real": 0.4915,
+    "staged": 0.6194,
+    "delta_pts": -12.79,
+    "within_tol": false
+   },
+   {
+    "spot": "DE1",
+    "real": 0.5756,
+    "staged": 1.0,
+    "delta_pts": -42.44,
+    "within_tol": false
+   },
+   {
+    "spot": "DE2",
+    "real": 0.4026,
+    "staged": 1.0,
+    "delta_pts": -59.74,
+    "within_tol": false
+   },
+   {
+    "spot": "DT1",
+    "real": 0.7596,
+    "staged": 1.0,
+    "delta_pts": -24.04,
+    "within_tol": false
+   },
+   {
+    "spot": "DT2",
+    "real": 0.4154,
+    "staged": 0.6889,
+    "delta_pts": -27.35,
+    "within_tol": false
+   },
+   {
+    "spot": "FB",
+    "real": 0.0922,
+    "staged": 0.1264,
+    "delta_pts": -3.42,
+    "within_tol": false
+   },
+   {
+    "spot": "FS",
+    "real": 0.7744,
+    "staged": 1.0,
+    "delta_pts": -22.56,
+    "within_tol": false
+   },
+   {
+    "spot": "MIKE",
+    "real": 0.8843,
+    "staged": 1.0,
+    "delta_pts": -11.57,
+    "within_tol": false
+   },
+   {
+    "spot": "OG1",
+    "real": 0.831,
+    "staged": 1.0,
+    "delta_pts": -16.9,
+    "within_tol": false
+   },
+   {
+    "spot": "OG2",
+    "real": 0.6226,
+    "staged": 1.0,
+    "delta_pts": -37.74,
+    "within_tol": false
+   },
+   {
+    "spot": "OT1",
+    "real": 0.8814,
+    "staged": 1.0,
+    "delta_pts": -11.86,
+    "within_tol": false
+   },
+   {
+    "spot": "OT2",
+    "real": 0.6613,
+    "staged": 1.0,
+    "delta_pts": -33.87,
+    "within_tol": false
+   },
+   {
+    "spot": "QB",
+    "real": 0.8227,
+    "staged": 1.0,
+    "delta_pts": -17.73,
+    "within_tol": false
+   },
+   {
+    "spot": "RB1",
+    "real": 0.524,
+    "staged": 0.7798,
+    "delta_pts": -25.58,
+    "within_tol": false
+   },
+   {
+    "spot": "RB2",
+    "real": 0.2849,
+    "staged": 0.306,
+    "delta_pts": -2.1,
+    "within_tol": true
+   },
+   {
+    "spot": "SAM",
+    "real": 0.4936,
+    "staged": 0.3806,
+    "delta_pts": 11.3,
+    "within_tol": false
+   },
+   {
+    "spot": "SS",
+    "real": 0.7486,
+    "staged": 1.0,
+    "delta_pts": -25.14,
+    "within_tol": false
+   },
+   {
+    "spot": "TE1",
+    "real": 0.6283,
+    "staged": 1.0,
+    "delta_pts": -37.17,
+    "within_tol": false
+   },
+   {
+    "spot": "TE2",
+    "real": 0.38,
+    "staged": 0.2007,
+    "delta_pts": 17.93,
+    "within_tol": false
+   },
+   {
+    "spot": "TE3",
+    "real": 0.1929,
+    "staged": 0.0897,
+    "delta_pts": 10.31,
+    "within_tol": false
+   },
+   {
+    "spot": "WILL",
+    "real": 0.7089,
+    "staged": 0.9306,
+    "delta_pts": -22.17,
+    "within_tol": false
+   },
+   {
+    "spot": "WR1",
+    "real": 0.6888,
+    "staged": 1.0,
+    "delta_pts": -31.12,
+    "within_tol": false
+   },
+   {
+    "spot": "WR2",
+    "real": 0.6388,
+    "staged": 0.8675,
+    "delta_pts": -22.87,
+    "within_tol": false
+   },
+   {
+    "spot": "WR3",
+    "real": 0.4846,
+    "staged": 0.4272,
+    "delta_pts": 5.75,
+    "within_tol": false
+   },
+   {
+    "spot": "WR4",
+    "real": 0.2979,
+    "staged": 0.2026,
+    "delta_pts": 9.53,
+    "within_tol": false
+   },
+   {
+    "spot": "DIME",
+    "real": 0.1263,
+    "staged": 0.0694,
+    "delta_pts": 5.69,
+    "within_tol": false,
+    "basis": "per-play share of >=6-DB packages (participation personnel_d)"
+   },
+   {
+    "spot": "DL5",
+    "real": 0.023,
+    "staged": 0.3111,
+    "delta_pts": -28.81,
+    "within_tol": false,
+    "basis": "per-play share of >=5-DL packages (mapping-limited: the engine's DL5 is a DT2-substitution seat; see report)"
+   }
+  ]
+ },
+ "spot_comparison_by_season": [
+  {
+   "season": 2016,
+   "spot": "C",
+   "real": 0.7698,
+   "staged": 1.0,
+   "delta_pts": -23.02,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "CB1",
+   "real": 0.8868,
+   "staged": 1.0,
+   "delta_pts": -11.32,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "CB2",
+   "real": 0.7288,
+   "staged": 1.0,
+   "delta_pts": -27.12,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "CB3",
+   "real": 0.5006,
+   "staged": 0.6194,
+   "delta_pts": -11.88,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "DE1",
+   "real": 0.5962,
+   "staged": 1.0,
+   "delta_pts": -40.38,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "DE2",
+   "real": 0.4435,
+   "staged": 1.0,
+   "delta_pts": -55.65,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "DT1",
+   "real": 0.7927,
+   "staged": 1.0,
+   "delta_pts": -20.73,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "DT2",
+   "real": 0.4246,
+   "staged": 0.6889,
+   "delta_pts": -26.43,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "FB",
+   "real": 0.1335,
+   "staged": 0.1264,
+   "delta_pts": 0.7,
+   "within_tol": true
+  },
+  {
+   "season": 2016,
+   "spot": "FS",
+   "real": 0.8231,
+   "staged": 1.0,
+   "delta_pts": -17.69,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "MIKE",
+   "real": 0.8714,
+   "staged": 1.0,
+   "delta_pts": -12.86,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "OG1",
+   "real": 0.8818,
+   "staged": 1.0,
+   "delta_pts": -11.82,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "OG2",
+   "real": 0.6595,
+   "staged": 1.0,
+   "delta_pts": -34.05,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "OT1",
+   "real": 0.9249,
+   "staged": 1.0,
+   "delta_pts": -7.51,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "OT2",
+   "real": 0.7826,
+   "staged": 1.0,
+   "delta_pts": -21.74,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "QB",
+   "real": 0.8746,
+   "staged": 1.0,
+   "delta_pts": -12.54,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "RB1",
+   "real": 0.5077,
+   "staged": 0.7798,
+   "delta_pts": -27.21,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "RB2",
+   "real": 0.2549,
+   "staged": 0.306,
+   "delta_pts": -5.11,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "SAM",
+   "real": 0.4907,
+   "staged": 0.3806,
+   "delta_pts": 11.01,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "SS",
+   "real": 0.7524,
+   "staged": 1.0,
+   "delta_pts": -24.76,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "TE1",
+   "real": 0.6726,
+   "staged": 1.0,
+   "delta_pts": -32.74,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "TE2",
+   "real": 0.342,
+   "staged": 0.2007,
+   "delta_pts": 14.12,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "TE3",
+   "real": 0.1616,
+   "staged": 0.0897,
+   "delta_pts": 7.19,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "WILL",
+   "real": 0.7098,
+   "staged": 0.9306,
+   "delta_pts": -22.09,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "WR1",
+   "real": 0.6071,
+   "staged": 1.0,
+   "delta_pts": -39.29,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "WR2",
+   "real": 0.6972,
+   "staged": 0.8675,
+   "delta_pts": -17.03,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "WR3",
+   "real": 0.5291,
+   "staged": 0.4272,
+   "delta_pts": 10.19,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "WR4",
+   "real": 0.2886,
+   "staged": 0.2026,
+   "delta_pts": 8.6,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "C",
+   "real": 0.8663,
+   "staged": 1.0,
+   "delta_pts": -13.37,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "CB1",
+   "real": 0.8817,
+   "staged": 1.0,
+   "delta_pts": -11.83,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "CB2",
+   "real": 0.715,
+   "staged": 1.0,
+   "delta_pts": -28.5,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "CB3",
+   "real": 0.5298,
+   "staged": 0.6194,
+   "delta_pts": -8.96,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "DE1",
+   "real": 0.6273,
+   "staged": 1.0,
+   "delta_pts": -37.27,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "DE2",
+   "real": 0.4603,
+   "staged": 1.0,
+   "delta_pts": -53.97,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "DT1",
+   "real": 0.7624,
+   "staged": 1.0,
+   "delta_pts": -23.76,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "DT2",
+   "real": 0.4249,
+   "staged": 0.6889,
+   "delta_pts": -26.4,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "FB",
+   "real": 0.1118,
+   "staged": 0.1264,
+   "delta_pts": -1.47,
+   "within_tol": true
+  },
+  {
+   "season": 2017,
+   "spot": "FS",
+   "real": 0.8504,
+   "staged": 1.0,
+   "delta_pts": -14.96,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "MIKE",
+   "real": 0.8398,
+   "staged": 1.0,
+   "delta_pts": -16.02,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "OG1",
+   "real": 0.811,
+   "staged": 1.0,
+   "delta_pts": -18.9,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "OG2",
+   "real": 0.7201,
+   "staged": 1.0,
+   "delta_pts": -27.99,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "OT1",
+   "real": 0.9279,
+   "staged": 1.0,
+   "delta_pts": -7.21,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "OT2",
+   "real": 0.6492,
+   "staged": 1.0,
+   "delta_pts": -35.08,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "QB",
+   "real": 0.8464,
+   "staged": 1.0,
+   "delta_pts": -15.36,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "RB1",
+   "real": 0.5126,
+   "staged": 0.7798,
+   "delta_pts": -26.73,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "RB2",
+   "real": 0.2849,
+   "staged": 0.306,
+   "delta_pts": -2.11,
+   "within_tol": true
+  },
+  {
+   "season": 2017,
+   "spot": "SAM",
+   "real": 0.5168,
+   "staged": 0.3806,
+   "delta_pts": 13.62,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "SS",
+   "real": 0.7561,
+   "staged": 1.0,
+   "delta_pts": -24.39,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "TE1",
+   "real": 0.6283,
+   "staged": 1.0,
+   "delta_pts": -37.17,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "TE2",
+   "real": 0.3973,
+   "staged": 0.2007,
+   "delta_pts": 19.65,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "TE3",
+   "real": 0.1831,
+   "staged": 0.0897,
+   "delta_pts": 9.33,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "WILL",
+   "real": 0.7247,
+   "staged": 0.9306,
+   "delta_pts": -20.6,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "WR1",
+   "real": 0.6628,
+   "staged": 1.0,
+   "delta_pts": -33.72,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "WR2",
+   "real": 0.6485,
+   "staged": 0.8675,
+   "delta_pts": -21.9,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "WR3",
+   "real": 0.5063,
+   "staged": 0.4272,
+   "delta_pts": 7.91,
+   "within_tol": false
+  },
+  {
+   "season": 2017,
+   "spot": "WR4",
+   "real": 0.31,
+   "staged": 0.2026,
+   "delta_pts": 10.73,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "C",
+   "real": 0.8298,
+   "staged": 1.0,
+   "delta_pts": -17.02,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "CB1",
+   "real": 0.8918,
+   "staged": 1.0,
+   "delta_pts": -10.82,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "CB2",
+   "real": 0.7379,
+   "staged": 1.0,
+   "delta_pts": -26.21,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "CB3",
+   "real": 0.5222,
+   "staged": 0.6194,
+   "delta_pts": -9.72,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "DE1",
+   "real": 0.7073,
+   "staged": 1.0,
+   "delta_pts": -29.27,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "DE2",
+   "real": 0.4721,
+   "staged": 1.0,
+   "delta_pts": -52.79,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "DT1",
+   "real": 0.8819,
+   "staged": 1.0,
+   "delta_pts": -11.81,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "DT2",
+   "real": 0.4239,
+   "staged": 0.6889,
+   "delta_pts": -26.5,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "FB",
+   "real": 0.0881,
+   "staged": 0.1264,
+   "delta_pts": -3.84,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "FS",
+   "real": 0.8258,
+   "staged": 1.0,
+   "delta_pts": -17.42,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "MIKE",
+   "real": 0.8844,
+   "staged": 1.0,
+   "delta_pts": -11.56,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "OG1",
+   "real": 0.7431,
+   "staged": 1.0,
+   "delta_pts": -25.69,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "OG2",
+   "real": 0.661,
+   "staged": 1.0,
+   "delta_pts": -33.9,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "OT1",
+   "real": 0.9203,
+   "staged": 1.0,
+   "delta_pts": -7.97,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "OT2",
+   "real": 0.7497,
+   "staged": 1.0,
+   "delta_pts": -25.03,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "QB",
+   "real": 0.8516,
+   "staged": 1.0,
+   "delta_pts": -14.84,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "RB1",
+   "real": 0.5334,
+   "staged": 0.7798,
+   "delta_pts": -24.65,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "RB2",
+   "real": 0.2969,
+   "staged": 0.306,
+   "delta_pts": -0.91,
+   "within_tol": true
+  },
+  {
+   "season": 2018,
+   "spot": "SAM",
+   "real": 0.4981,
+   "staged": 0.3806,
+   "delta_pts": 11.75,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "SS",
+   "real": 0.7394,
+   "staged": 1.0,
+   "delta_pts": -26.06,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "TE1",
+   "real": 0.6202,
+   "staged": 1.0,
+   "delta_pts": -37.98,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "TE2",
+   "real": 0.358,
+   "staged": 0.2007,
+   "delta_pts": 15.73,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "TE3",
+   "real": 0.1878,
+   "staged": 0.0897,
+   "delta_pts": 9.81,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "WILL",
+   "real": 0.6933,
+   "staged": 0.9306,
+   "delta_pts": -23.74,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "WR1",
+   "real": 0.6881,
+   "staged": 1.0,
+   "delta_pts": -31.19,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "WR2",
+   "real": 0.6217,
+   "staged": 0.8675,
+   "delta_pts": -24.58,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "WR3",
+   "real": 0.4752,
+   "staged": 0.4272,
+   "delta_pts": 4.8,
+   "within_tol": false
+  },
+  {
+   "season": 2018,
+   "spot": "WR4",
+   "real": 0.3132,
+   "staged": 0.2026,
+   "delta_pts": 11.06,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "C",
+   "real": 0.8968,
+   "staged": 1.0,
+   "delta_pts": -10.32,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "CB1",
+   "real": 0.8599,
+   "staged": 1.0,
+   "delta_pts": -14.01,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "CB2",
+   "real": 0.7024,
+   "staged": 1.0,
+   "delta_pts": -29.76,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "CB3",
+   "real": 0.5372,
+   "staged": 0.6194,
+   "delta_pts": -8.22,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "DE1",
+   "real": 0.6069,
+   "staged": 1.0,
+   "delta_pts": -39.31,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "DE2",
+   "real": 0.4699,
+   "staged": 1.0,
+   "delta_pts": -53.01,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "DT1",
+   "real": 0.8657,
+   "staged": 1.0,
+   "delta_pts": -13.43,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "DT2",
+   "real": 0.3994,
+   "staged": 0.6889,
+   "delta_pts": -28.95,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "FB",
+   "real": 0.0827,
+   "staged": 0.1264,
+   "delta_pts": -4.38,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "FS",
+   "real": 0.8147,
+   "staged": 1.0,
+   "delta_pts": -18.53,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "MIKE",
+   "real": 0.8722,
+   "staged": 1.0,
+   "delta_pts": -12.78,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "OG1",
+   "real": 0.9198,
+   "staged": 1.0,
+   "delta_pts": -8.02,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "OG2",
+   "real": 0.6899,
+   "staged": 1.0,
+   "delta_pts": -31.01,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "OT1",
+   "real": 0.9083,
+   "staged": 1.0,
+   "delta_pts": -9.17,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "OT2",
+   "real": 0.7088,
+   "staged": 1.0,
+   "delta_pts": -29.12,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "QB",
+   "real": 0.8486,
+   "staged": 1.0,
+   "delta_pts": -15.14,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "RB1",
+   "real": 0.5129,
+   "staged": 0.7798,
+   "delta_pts": -26.7,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "RB2",
+   "real": 0.2783,
+   "staged": 0.306,
+   "delta_pts": -2.77,
+   "within_tol": true
+  },
+  {
+   "season": 2019,
+   "spot": "SAM",
+   "real": 0.5387,
+   "staged": 0.3806,
+   "delta_pts": 15.81,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "SS",
+   "real": 0.7296,
+   "staged": 1.0,
+   "delta_pts": -27.04,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "TE1",
+   "real": 0.5599,
+   "staged": 1.0,
+   "delta_pts": -44.01,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "TE2",
+   "real": 0.3789,
+   "staged": 0.2007,
+   "delta_pts": 17.82,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "TE3",
+   "real": 0.181,
+   "staged": 0.0897,
+   "delta_pts": 9.13,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "WILL",
+   "real": 0.7256,
+   "staged": 0.9306,
+   "delta_pts": -20.5,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "WR1",
+   "real": 0.5945,
+   "staged": 1.0,
+   "delta_pts": -40.55,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "WR2",
+   "real": 0.6115,
+   "staged": 0.8675,
+   "delta_pts": -25.6,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "WR3",
+   "real": 0.4784,
+   "staged": 0.4272,
+   "delta_pts": 5.13,
+   "within_tol": false
+  },
+  {
+   "season": 2019,
+   "spot": "WR4",
+   "real": 0.3013,
+   "staged": 0.2026,
+   "delta_pts": 9.86,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "C",
+   "real": 0.68,
+   "staged": 1.0,
+   "delta_pts": -32.0,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "CB1",
+   "real": 0.8141,
+   "staged": 1.0,
+   "delta_pts": -18.59,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "CB2",
+   "real": 0.6288,
+   "staged": 1.0,
+   "delta_pts": -37.12,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "CB3",
+   "real": 0.4324,
+   "staged": 0.6194,
+   "delta_pts": -18.7,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "DE1",
+   "real": 0.5138,
+   "staged": 1.0,
+   "delta_pts": -48.62,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "DE2",
+   "real": 0.3672,
+   "staged": 1.0,
+   "delta_pts": -63.28,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "DT1",
+   "real": 0.5017,
+   "staged": 1.0,
+   "delta_pts": -49.83,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "DT2",
+   "real": 0.3397,
+   "staged": 0.6889,
+   "delta_pts": -34.92,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "FB",
+   "real": 0.099,
+   "staged": 0.1264,
+   "delta_pts": -2.74,
+   "within_tol": true
+  },
+  {
+   "season": 2020,
+   "spot": "FS",
+   "real": 0.6875,
+   "staged": 1.0,
+   "delta_pts": -31.25,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "MIKE",
+   "real": 1.0472,
+   "staged": 1.0,
+   "delta_pts": 4.72,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "OG1",
+   "real": 0.7409,
+   "staged": 1.0,
+   "delta_pts": -25.91,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "OG2",
+   "real": 0.4736,
+   "staged": 1.0,
+   "delta_pts": -52.64,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "OT1",
+   "real": 0.7392,
+   "staged": 1.0,
+   "delta_pts": -26.08,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "OT2",
+   "real": 0.4517,
+   "staged": 1.0,
+   "delta_pts": -54.83,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "QB",
+   "real": 0.8288,
+   "staged": 1.0,
+   "delta_pts": -17.12,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "RB1",
+   "real": 0.5032,
+   "staged": 0.7798,
+   "delta_pts": -27.66,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "RB2",
+   "real": 0.2867,
+   "staged": 0.306,
+   "delta_pts": -1.93,
+   "within_tol": true
+  },
+  {
+   "season": 2020,
+   "spot": "SAM",
+   "real": 0.4273,
+   "staged": 0.3806,
+   "delta_pts": 4.67,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "SS",
+   "real": 0.8347,
+   "staged": 1.0,
+   "delta_pts": -16.53,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "TE1",
+   "real": 0.591,
+   "staged": 1.0,
+   "delta_pts": -40.9,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "TE2",
+   "real": 0.3875,
+   "staged": 0.2007,
+   "delta_pts": 18.68,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "TE3",
+   "real": 0.1984,
+   "staged": 0.0897,
+   "delta_pts": 10.87,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "WILL",
+   "real": 0.7403,
+   "staged": 0.9306,
+   "delta_pts": -19.03,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "WR1",
+   "real": 0.7374,
+   "staged": 1.0,
+   "delta_pts": -26.26,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "WR2",
+   "real": 0.647,
+   "staged": 0.8675,
+   "delta_pts": -22.05,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "WR3",
+   "real": 0.4877,
+   "staged": 0.4272,
+   "delta_pts": 6.06,
+   "within_tol": false
+  },
+  {
+   "season": 2020,
+   "spot": "WR4",
+   "real": 0.2902,
+   "staged": 0.2026,
+   "delta_pts": 8.76,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "C",
+   "real": 0.7894,
+   "staged": 1.0,
+   "delta_pts": -21.06,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "CB1",
+   "real": 0.844,
+   "staged": 1.0,
+   "delta_pts": -15.6,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "CB2",
+   "real": 0.699,
+   "staged": 1.0,
+   "delta_pts": -30.1,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "CB3",
+   "real": 0.4983,
+   "staged": 0.6194,
+   "delta_pts": -12.11,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "DE1",
+   "real": 0.5995,
+   "staged": 1.0,
+   "delta_pts": -40.05,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "DE2",
+   "real": 0.3837,
+   "staged": 1.0,
+   "delta_pts": -61.63,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "DT1",
+   "real": 0.8408,
+   "staged": 1.0,
+   "delta_pts": -15.92,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "DT2",
+   "real": 0.4656,
+   "staged": 0.6889,
+   "delta_pts": -22.33,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "FB",
+   "real": 0.0882,
+   "staged": 0.1264,
+   "delta_pts": -3.82,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "FS",
+   "real": 0.8132,
+   "staged": 1.0,
+   "delta_pts": -18.68,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "MIKE",
+   "real": 0.8268,
+   "staged": 1.0,
+   "delta_pts": -17.32,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "OG1",
+   "real": 0.8745,
+   "staged": 1.0,
+   "delta_pts": -12.55,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "OG2",
+   "real": 0.6273,
+   "staged": 1.0,
+   "delta_pts": -37.27,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "OT1",
+   "real": 0.9012,
+   "staged": 1.0,
+   "delta_pts": -9.88,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "OT2",
+   "real": 0.6835,
+   "staged": 1.0,
+   "delta_pts": -31.65,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "QB",
+   "real": 0.84,
+   "staged": 1.0,
+   "delta_pts": -16.0,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "RB1",
+   "real": 0.4871,
+   "staged": 0.7798,
+   "delta_pts": -29.28,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "RB2",
+   "real": 0.2968,
+   "staged": 0.306,
+   "delta_pts": -0.92,
+   "within_tol": true
+  },
+  {
+   "season": 2021,
+   "spot": "SAM",
+   "real": 0.4766,
+   "staged": 0.3806,
+   "delta_pts": 9.6,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "SS",
+   "real": 0.7351,
+   "staged": 1.0,
+   "delta_pts": -26.49,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "TE1",
+   "real": 0.65,
+   "staged": 1.0,
+   "delta_pts": -35.0,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "TE2",
+   "real": 0.355,
+   "staged": 0.2007,
+   "delta_pts": 15.42,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "TE3",
+   "real": 0.1984,
+   "staged": 0.0897,
+   "delta_pts": 10.87,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "WILL",
+   "real": 0.686,
+   "staged": 0.9306,
+   "delta_pts": -24.47,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "WR1",
+   "real": 0.7342,
+   "staged": 1.0,
+   "delta_pts": -26.58,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "WR2",
+   "real": 0.6459,
+   "staged": 0.8675,
+   "delta_pts": -22.16,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "WR3",
+   "real": 0.4634,
+   "staged": 0.4272,
+   "delta_pts": 3.62,
+   "within_tol": false
+  },
+  {
+   "season": 2021,
+   "spot": "WR4",
+   "real": 0.3042,
+   "staged": 0.2026,
+   "delta_pts": 10.16,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "C",
+   "real": 0.7841,
+   "staged": 1.0,
+   "delta_pts": -21.59,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "CB1",
+   "real": 0.8661,
+   "staged": 1.0,
+   "delta_pts": -13.39,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "CB2",
+   "real": 0.6972,
+   "staged": 1.0,
+   "delta_pts": -30.28,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "CB3",
+   "real": 0.4512,
+   "staged": 0.6194,
+   "delta_pts": -16.82,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "DE1",
+   "real": 0.5532,
+   "staged": 1.0,
+   "delta_pts": -44.68,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "DE2",
+   "real": 0.3623,
+   "staged": 1.0,
+   "delta_pts": -63.77,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "DT1",
+   "real": 0.8513,
+   "staged": 1.0,
+   "delta_pts": -14.87,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "DT2",
+   "real": 0.5147,
+   "staged": 0.6889,
+   "delta_pts": -17.43,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "FB",
+   "real": 0.0875,
+   "staged": 0.1264,
+   "delta_pts": -3.89,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "FS",
+   "real": 0.7683,
+   "staged": 1.0,
+   "delta_pts": -23.17,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "MIKE",
+   "real": 0.8771,
+   "staged": 1.0,
+   "delta_pts": -12.29,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "OG1",
+   "real": 0.9302,
+   "staged": 1.0,
+   "delta_pts": -6.98,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "OG2",
+   "real": 0.6805,
+   "staged": 1.0,
+   "delta_pts": -31.95,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "OT1",
+   "real": 0.9218,
+   "staged": 1.0,
+   "delta_pts": -7.82,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "OT2",
+   "real": 0.6741,
+   "staged": 1.0,
+   "delta_pts": -32.59,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "QB",
+   "real": 0.7821,
+   "staged": 1.0,
+   "delta_pts": -21.79,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "RB1",
+   "real": 0.5235,
+   "staged": 0.7798,
+   "delta_pts": -25.63,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "RB2",
+   "real": 0.2807,
+   "staged": 0.306,
+   "delta_pts": -2.53,
+   "within_tol": true
+  },
+  {
+   "season": 2022,
+   "spot": "SAM",
+   "real": 0.5179,
+   "staged": 0.3806,
+   "delta_pts": 13.72,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "SS",
+   "real": 0.7377,
+   "staged": 1.0,
+   "delta_pts": -26.23,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "TE1",
+   "real": 0.6296,
+   "staged": 1.0,
+   "delta_pts": -37.04,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "TE2",
+   "real": 0.3945,
+   "staged": 0.2007,
+   "delta_pts": 19.37,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "TE3",
+   "real": 0.1975,
+   "staged": 0.0897,
+   "delta_pts": 10.78,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "WILL",
+   "real": 0.6898,
+   "staged": 0.9306,
+   "delta_pts": -24.08,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "WR1",
+   "real": 0.7039,
+   "staged": 1.0,
+   "delta_pts": -29.61,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "WR2",
+   "real": 0.6693,
+   "staged": 0.8675,
+   "delta_pts": -19.82,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "WR3",
+   "real": 0.4811,
+   "staged": 0.4272,
+   "delta_pts": 5.4,
+   "within_tol": false
+  },
+  {
+   "season": 2022,
+   "spot": "WR4",
+   "real": 0.2683,
+   "staged": 0.2026,
+   "delta_pts": 6.57,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "C",
+   "real": 0.8631,
+   "staged": 1.0,
+   "delta_pts": -13.69,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "CB1",
+   "real": 0.8447,
+   "staged": 1.0,
+   "delta_pts": -15.53,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "CB2",
+   "real": 0.6992,
+   "staged": 1.0,
+   "delta_pts": -30.08,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "CB3",
+   "real": 0.4929,
+   "staged": 0.6194,
+   "delta_pts": -12.65,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "DE1",
+   "real": 0.619,
+   "staged": 1.0,
+   "delta_pts": -38.1,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "DE2",
+   "real": 0.4399,
+   "staged": 1.0,
+   "delta_pts": -56.01,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "DT1",
+   "real": 0.7866,
+   "staged": 1.0,
+   "delta_pts": -21.34,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "DT2",
+   "real": 0.4303,
+   "staged": 0.6889,
+   "delta_pts": -25.87,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "FB",
+   "real": 0.0852,
+   "staged": 0.1264,
+   "delta_pts": -4.12,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "FS",
+   "real": 0.781,
+   "staged": 1.0,
+   "delta_pts": -21.9,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "MIKE",
+   "real": 0.8699,
+   "staged": 1.0,
+   "delta_pts": -13.01,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "OG1",
+   "real": 0.883,
+   "staged": 1.0,
+   "delta_pts": -11.7,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "OG2",
+   "real": 0.6909,
+   "staged": 1.0,
+   "delta_pts": -30.91,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "OT1",
+   "real": 0.8927,
+   "staged": 1.0,
+   "delta_pts": -10.73,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "OT2",
+   "real": 0.7025,
+   "staged": 1.0,
+   "delta_pts": -29.75,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "QB",
+   "real": 0.7754,
+   "staged": 1.0,
+   "delta_pts": -22.46,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "RB1",
+   "real": 0.5528,
+   "staged": 0.7798,
+   "delta_pts": -22.71,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "RB2",
+   "real": 0.3015,
+   "staged": 0.306,
+   "delta_pts": -0.45,
+   "within_tol": true
+  },
+  {
+   "season": 2023,
+   "spot": "SAM",
+   "real": 0.496,
+   "staged": 0.3806,
+   "delta_pts": 11.54,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "SS",
+   "real": 0.7036,
+   "staged": 1.0,
+   "delta_pts": -29.64,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "TE1",
+   "real": 0.6289,
+   "staged": 1.0,
+   "delta_pts": -37.11,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "TE2",
+   "real": 0.3776,
+   "staged": 0.2007,
+   "delta_pts": 17.69,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "TE3",
+   "real": 0.1925,
+   "staged": 0.0897,
+   "delta_pts": 10.28,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "WILL",
+   "real": 0.7308,
+   "staged": 0.9306,
+   "delta_pts": -19.98,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "WR1",
+   "real": 0.7701,
+   "staged": 1.0,
+   "delta_pts": -22.99,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "WR2",
+   "real": 0.6615,
+   "staged": 0.8675,
+   "delta_pts": -20.6,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "WR3",
+   "real": 0.4889,
+   "staged": 0.4272,
+   "delta_pts": 6.18,
+   "within_tol": false
+  },
+  {
+   "season": 2023,
+   "spot": "WR4",
+   "real": 0.3263,
+   "staged": 0.2026,
+   "delta_pts": 12.36,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "C",
+   "real": 0.765,
+   "staged": 1.0,
+   "delta_pts": -23.5,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "CB1",
+   "real": 0.8712,
+   "staged": 1.0,
+   "delta_pts": -12.88,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "CB2",
+   "real": 0.6771,
+   "staged": 1.0,
+   "delta_pts": -32.29,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "CB3",
+   "real": 0.5152,
+   "staged": 0.6194,
+   "delta_pts": -10.42,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "DE1",
+   "real": 0.5578,
+   "staged": 1.0,
+   "delta_pts": -44.22,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "DE2",
+   "real": 0.3975,
+   "staged": 1.0,
+   "delta_pts": -60.25,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "DT1",
+   "real": 0.8285,
+   "staged": 1.0,
+   "delta_pts": -17.15,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "DT2",
+   "real": 0.4306,
+   "staged": 0.6889,
+   "delta_pts": -25.84,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "FB",
+   "real": 0.0752,
+   "staged": 0.1264,
+   "delta_pts": -5.12,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "FS",
+   "real": 0.705,
+   "staged": 1.0,
+   "delta_pts": -29.5,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "MIKE",
+   "real": 0.859,
+   "staged": 1.0,
+   "delta_pts": -14.1,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "OG1",
+   "real": 0.8982,
+   "staged": 1.0,
+   "delta_pts": -10.18,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "OG2",
+   "real": 0.6735,
+   "staged": 1.0,
+   "delta_pts": -32.65,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "OT1",
+   "real": 0.8923,
+   "staged": 1.0,
+   "delta_pts": -10.77,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "OT2",
+   "real": 0.7054,
+   "staged": 1.0,
+   "delta_pts": -29.46,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "QB",
+   "real": 0.7978,
+   "staged": 1.0,
+   "delta_pts": -20.22,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "RB1",
+   "real": 0.5634,
+   "staged": 0.7798,
+   "delta_pts": -21.64,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "RB2",
+   "real": 0.2729,
+   "staged": 0.306,
+   "delta_pts": -3.31,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "SAM",
+   "real": 0.4759,
+   "staged": 0.3806,
+   "delta_pts": 9.53,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "SS",
+   "real": 0.6682,
+   "staged": 1.0,
+   "delta_pts": -33.18,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "TE1",
+   "real": 0.6503,
+   "staged": 1.0,
+   "delta_pts": -34.97,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "TE2",
+   "real": 0.4069,
+   "staged": 0.2007,
+   "delta_pts": 20.61,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "TE3",
+   "real": 0.2061,
+   "staged": 0.0897,
+   "delta_pts": 11.63,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "WILL",
+   "real": 0.6907,
+   "staged": 0.9306,
+   "delta_pts": -24.0,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "WR1",
+   "real": 0.6881,
+   "staged": 1.0,
+   "delta_pts": -31.19,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "WR2",
+   "real": 0.6503,
+   "staged": 0.8675,
+   "delta_pts": -21.72,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "WR3",
+   "real": 0.4961,
+   "staged": 0.4272,
+   "delta_pts": 6.89,
+   "within_tol": false
+  },
+  {
+   "season": 2024,
+   "spot": "WR4",
+   "real": 0.2849,
+   "staged": 0.2026,
+   "delta_pts": 8.23,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "C",
+   "real": 0.5634,
+   "staged": 1.0,
+   "delta_pts": -43.66,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "CB1",
+   "real": 0.8026,
+   "staged": 1.0,
+   "delta_pts": -19.74,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "CB2",
+   "real": 0.6513,
+   "staged": 1.0,
+   "delta_pts": -34.87,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "CB3",
+   "real": 0.4351,
+   "staged": 0.6194,
+   "delta_pts": -18.43,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "DE1",
+   "real": 0.3748,
+   "staged": 1.0,
+   "delta_pts": -62.52,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "DE2",
+   "real": 0.2291,
+   "staged": 1.0,
+   "delta_pts": -77.09,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "DT1",
+   "real": 0.4843,
+   "staged": 1.0,
+   "delta_pts": -51.57,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "DT2",
+   "real": 0.3008,
+   "staged": 0.6889,
+   "delta_pts": -38.82,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "FB",
+   "real": 0.0711,
+   "staged": 0.1264,
+   "delta_pts": -5.54,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "FS",
+   "real": 0.6745,
+   "staged": 1.0,
+   "delta_pts": -32.55,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "MIKE",
+   "real": 0.8949,
+   "staged": 1.0,
+   "delta_pts": -10.51,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "OG1",
+   "real": 0.6275,
+   "staged": 1.0,
+   "delta_pts": -37.25,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "OG2",
+   "real": 0.3493,
+   "staged": 1.0,
+   "delta_pts": -65.07,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "OT1",
+   "real": 0.786,
+   "staged": 1.0,
+   "delta_pts": -21.4,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "OT2",
+   "real": 0.5051,
+   "staged": 1.0,
+   "delta_pts": -49.49,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "QB",
+   "real": 0.7819,
+   "staged": 1.0,
+   "delta_pts": -21.81,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "RB1",
+   "real": 0.5438,
+   "staged": 0.7798,
+   "delta_pts": -23.6,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "RB2",
+   "real": 0.2958,
+   "staged": 0.306,
+   "delta_pts": -1.02,
+   "within_tol": true
+  },
+  {
+   "season": 2025,
+   "spot": "SAM",
+   "real": 0.4977,
+   "staged": 0.3806,
+   "delta_pts": 11.71,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "SS",
+   "real": 0.8293,
+   "staged": 1.0,
+   "delta_pts": -17.07,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "TE1",
+   "real": 0.6519,
+   "staged": 1.0,
+   "delta_pts": -34.81,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "TE2",
+   "real": 0.4025,
+   "staged": 0.2007,
+   "delta_pts": 20.18,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "TE3",
+   "real": 0.2222,
+   "staged": 0.0897,
+   "delta_pts": 13.24,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "WILL",
+   "real": 0.6985,
+   "staged": 0.9306,
+   "delta_pts": -23.21,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "WR1",
+   "real": 0.7014,
+   "staged": 1.0,
+   "delta_pts": -29.86,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "WR2",
+   "real": 0.535,
+   "staged": 0.8675,
+   "delta_pts": -33.25,
+   "within_tol": false
+  },
+  {
+   "season": 2025,
+   "spot": "WR3",
+   "real": 0.44,
+   "staged": 0.4272,
+   "delta_pts": 1.28,
+   "within_tol": true
+  },
+  {
+   "season": 2025,
+   "spot": "WR4",
+   "real": 0.2921,
+   "staged": 0.2026,
+   "delta_pts": 8.95,
+   "within_tol": false
+  },
+  {
+   "season": 2016,
+   "spot": "DIME",
+   "real": 0.1252,
+   "staged": 0.0694,
+   "delta_pts": 5.58,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2016,
+   "spot": "DL5",
+   "real": 0.0151,
+   "staged": 0.3111,
+   "delta_pts": -29.6,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2017,
+   "spot": "DIME",
+   "real": 0.1364,
+   "staged": 0.0694,
+   "delta_pts": 6.7,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2017,
+   "spot": "DL5",
+   "real": 0.0123,
+   "staged": 0.3111,
+   "delta_pts": -29.88,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2018,
+   "spot": "DIME",
+   "real": 0.1406,
+   "staged": 0.0694,
+   "delta_pts": 7.12,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2018,
+   "spot": "DL5",
+   "real": 0.0142,
+   "staged": 0.3111,
+   "delta_pts": -29.69,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2019,
+   "spot": "DIME",
+   "real": 0.1589,
+   "staged": 0.0694,
+   "delta_pts": 8.95,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2019,
+   "spot": "DL5",
+   "real": 0.0194,
+   "staged": 0.3111,
+   "delta_pts": -29.17,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2020,
+   "spot": "DIME",
+   "real": 0.1473,
+   "staged": 0.0694,
+   "delta_pts": 7.79,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2020,
+   "spot": "DL5",
+   "real": 0.0301,
+   "staged": 0.3111,
+   "delta_pts": -28.1,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2021,
+   "spot": "DIME",
+   "real": 0.1378,
+   "staged": 0.0694,
+   "delta_pts": 6.84,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2021,
+   "spot": "DL5",
+   "real": 0.0233,
+   "staged": 0.3111,
+   "delta_pts": -28.78,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2022,
+   "spot": "DIME",
+   "real": 0.1064,
+   "staged": 0.0694,
+   "delta_pts": 3.7,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2022,
+   "spot": "DL5",
+   "real": 0.0247,
+   "staged": 0.3111,
+   "delta_pts": -28.64,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2023,
+   "spot": "DIME",
+   "real": 0.1166,
+   "staged": 0.0694,
+   "delta_pts": 4.72,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2023,
+   "spot": "DL5",
+   "real": 0.0335,
+   "staged": 0.3111,
+   "delta_pts": -27.76,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2024,
+   "spot": "DIME",
+   "real": 0.0998,
+   "staged": 0.0694,
+   "delta_pts": 3.04,
+   "within_tol": false,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2024,
+   "spot": "DL5",
+   "real": 0.0239,
+   "staged": 0.3111,
+   "delta_pts": -28.72,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  },
+  {
+   "season": 2025,
+   "spot": "DIME",
+   "real": 0.0936,
+   "staged": 0.0694,
+   "delta_pts": 2.42,
+   "within_tol": true,
+   "basis": "per-play >=6 DBs"
+  },
+  {
+   "season": 2025,
+   "spot": "DL5",
+   "real": 0.0333,
+   "staged": 0.3111,
+   "delta_pts": -27.78,
+   "within_tol": false,
+   "basis": "per-play >=5 DL (mapping-limited)"
+  }
+ ],
+ "package_comparison_by_season": [
+  {
+   "season": 2016,
+   "n_pass_run": 32391,
+   "missing_participation": 0,
+   "unknown_personnel_o": 13,
+   "unknown_personnel_d": 13,
+   "pkg_share_all_labels": {
+    "000": 0.0001,
+    "005": 0.002,
+    "010": 0.0002,
+    "011": 0.0,
+    "013": 0.0001,
+    "014": 0.0148,
+    "020": 0.0002,
+    "021": 0.0,
+    "023": 0.004,
+    "030": 0.0,
+    "032": 0.001,
+    "033": 0.0,
+    "100": 0.0,
+    "101": 0.0001,
+    "102": 0.0001,
+    "103": 0.0041,
+    "104": 0.0247,
+    "110": 0.0001,
+    "111": 0.0006,
+    "112": 0.0178,
+    "113": 0.5881,
+    "114": 0.0003,
+    "120": 0.0009,
+    "121": 0.0152,
+    "122": 0.1721,
+    "123": 0.0001,
+    "130": 0.0015,
+    "131": 0.0291,
+    "133": 0.0,
+    "140": 0.0001,
+    "202": 0.0021,
+    "203": 0.0132,
+    "210": 0.0003,
+    "211": 0.0085,
+    "212": 0.0704,
+    "213": 0.0001,
+    "220": 0.0067,
+    "221": 0.0182,
+    "222": 0.0002,
+    "225": 0.0,
+    "230": 0.001,
+    "231": 0.0001,
+    "234": 0.0,
+    "302": 0.0002,
+    "304": 0.0,
+    "311": 0.0009
+   },
+   "pkg_share_staged5": {
+    "11": 0.5881,
+    "12": 0.1721,
+    "13": 0.0291,
+    "21": 0.0704,
+    "22": 0.0182
+   },
+   "pkg_run_staged5": {
+    "11": 0.3129,
+    "12": 0.4804,
+    "13": 0.6278,
+    "21": 0.5805,
+    "22": 0.7398
+   },
+   "db_histogram": {
+    "0": 2,
+    "1": 54,
+    "2": 136,
+    "3": 446,
+    "4": 9520,
+    "5": 18164,
+    "6": 3916,
+    "7": 137,
+    "8": 3
+   },
+   "dl_histogram": {
+    "0": 17,
+    "1": 895,
+    "2": 6940,
+    "3": 10210,
+    "4": 13826,
+    "5": 379,
+    "6": 110,
+    "7": 1
+   },
+   "lb_histogram": {
+    "0": 8,
+    "1": 425,
+    "2": 9832,
+    "3": 11429,
+    "4": 10135,
+    "5": 547,
+    "6": 2
+   },
+   "dpkg_share": {
+    "base": 0.2939,
+    "nickel": 0.5608,
+    "dime": 0.1252
+   },
+   "dpkg_strict6": 0.1209,
+   "dl5_play_share": 0.0151,
+   "lb4_front_share": 0.3298
+  },
+  {
+   "season": 2017,
+   "n_pass_run": 32068,
+   "missing_participation": 2,
+   "unknown_personnel_o": 3,
+   "unknown_personnel_d": 3,
+   "pkg_share_all_labels": {
+    "000": 0.0,
+    "002": 0.0,
+    "005": 0.001,
+    "010": 0.0001,
+    "011": 0.0,
+    "012": 0.0001,
+    "013": 0.0001,
+    "014": 0.0077,
+    "020": 0.0001,
+    "022": 0.0,
+    "023": 0.0021,
+    "032": 0.0003,
+    "101": 0.0,
+    "102": 0.0015,
+    "103": 0.0016,
+    "104": 0.0115,
+    "110": 0.0001,
+    "111": 0.0004,
+    "112": 0.0108,
+    "113": 0.5853,
+    "120": 0.001,
+    "121": 0.0147,
+    "122": 0.1898,
+    "123": 0.0001,
+    "130": 0.0023,
+    "131": 0.0399,
+    "140": 0.0001,
+    "201": 0.0003,
+    "202": 0.0016,
+    "203": 0.0087,
+    "210": 0.0002,
+    "211": 0.006,
+    "212": 0.0781,
+    "213": 0.0,
+    "220": 0.0041,
+    "221": 0.0278,
+    "230": 0.0019,
+    "231": 0.0,
+    "232": 0.0,
+    "301": 0.0,
+    "302": 0.0001,
+    "311": 0.0006,
+    "313": 0.0,
+    "320": 0.0001,
+    "333": 0.0
+   },
+   "pkg_share_staged5": {
+    "11": 0.5853,
+    "12": 0.1898,
+    "13": 0.0399,
+    "21": 0.0781,
+    "22": 0.0278
+   },
+   "pkg_run_staged5": {
+    "11": 0.3175,
+    "12": 0.5086,
+    "13": 0.6549,
+    "21": 0.5366,
+    "22": 0.8128
+   },
+   "db_histogram": {
+    "1": 41,
+    "2": 114,
+    "3": 385,
+    "4": 10442,
+    "5": 16708,
+    "6": 4048,
+    "7": 320,
+    "8": 7
+   },
+   "dl_histogram": {
+    "0": 101,
+    "1": 945,
+    "2": 6581,
+    "3": 8508,
+    "4": 15535,
+    "5": 294,
+    "6": 101
+   },
+   "lb_histogram": {
+    "0": 40,
+    "1": 1376,
+    "2": 9194,
+    "3": 10524,
+    "4": 10582,
+    "5": 341,
+    "6": 8
+   },
+   "dpkg_share": {
+    "base": 0.3256,
+    "nickel": 0.521,
+    "dime": 0.1364
+   },
+   "dpkg_strict6": 0.1262,
+   "dl5_play_share": 0.0123,
+   "lb4_front_share": 0.3409
+  },
+  {
+   "season": 2018,
+   "n_pass_run": 31880,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0001,
+    "005": 0.0011,
+    "010": 0.0002,
+    "011": 0.0002,
+    "013": 0.0003,
+    "014": 0.0066,
+    "020": 0.0001,
+    "021": 0.0001,
+    "023": 0.0019,
+    "032": 0.0001,
+    "100": 0.0001,
+    "101": 0.0001,
+    "103": 0.0036,
+    "104": 0.0099,
+    "110": 0.0001,
+    "111": 0.0002,
+    "112": 0.0161,
+    "113": 0.6298,
+    "114": 0.0,
+    "120": 0.0008,
+    "121": 0.0104,
+    "122": 0.1668,
+    "130": 0.0015,
+    "131": 0.0337,
+    "140": 0.0006,
+    "201": 0.0,
+    "202": 0.0009,
+    "203": 0.0073,
+    "210": 0.0004,
+    "211": 0.0052,
+    "212": 0.0737,
+    "220": 0.0036,
+    "221": 0.0212,
+    "230": 0.0012,
+    "301": 0.0,
+    "302": 0.0008,
+    "310": 0.0,
+    "311": 0.0011,
+    "320": 0.0002,
+    "410": 0.0
+   },
+   "pkg_share_staged5": {
+    "11": 0.6298,
+    "12": 0.1668,
+    "13": 0.0337,
+    "21": 0.0737,
+    "22": 0.0212
+   },
+   "pkg_run_staged5": {
+    "11": 0.3252,
+    "12": 0.488,
+    "13": 0.6298,
+    "21": 0.5496,
+    "22": 0.7678
+   },
+   "db_histogram": {
+    "1": 64,
+    "2": 61,
+    "3": 222,
+    "4": 7839,
+    "5": 19212,
+    "6": 4134,
+    "7": 347,
+    "8": 1
+   },
+   "dl_histogram": {
+    "0": 77,
+    "1": 750,
+    "2": 4597,
+    "3": 7941,
+    "4": 18063,
+    "5": 342,
+    "6": 107,
+    "7": 3
+   },
+   "lb_histogram": {
+    "0": 29,
+    "1": 1499,
+    "2": 12373,
+    "3": 11839,
+    "4": 5811,
+    "5": 322,
+    "6": 7
+   },
+   "dpkg_share": {
+    "base": 0.2459,
+    "nickel": 0.6026,
+    "dime": 0.1406
+   },
+   "dpkg_strict6": 0.1297,
+   "dl5_play_share": 0.0142,
+   "lb4_front_share": 0.1926
+  },
+  {
+   "season": 2019,
+   "n_pass_run": 32157,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0001,
+    "001": 0.0,
+    "005": 0.0008,
+    "010": 0.0001,
+    "011": 0.0001,
+    "013": 0.0002,
+    "014": 0.0024,
+    "020": 0.0001,
+    "022": 0.0,
+    "023": 0.0035,
+    "032": 0.0007,
+    "041": 0.0,
+    "101": 0.0,
+    "102": 0.0002,
+    "103": 0.0034,
+    "104": 0.0235,
+    "110": 0.0002,
+    "111": 0.0015,
+    "112": 0.02,
+    "113": 0.5822,
+    "120": 0.0009,
+    "121": 0.014,
+    "122": 0.1934,
+    "130": 0.0013,
+    "131": 0.0285,
+    "201": 0.0001,
+    "202": 0.001,
+    "203": 0.0102,
+    "210": 0.0004,
+    "211": 0.0047,
+    "212": 0.0735,
+    "220": 0.0028,
+    "221": 0.0273,
+    "230": 0.0021,
+    "300": 0.0,
+    "301": 0.0,
+    "302": 0.0003,
+    "311": 0.0003,
+    "320": 0.0001
+   },
+   "pkg_share_staged5": {
+    "11": 0.5822,
+    "12": 0.1934,
+    "13": 0.0285,
+    "21": 0.0735,
+    "22": 0.0273
+   },
+   "pkg_run_staged5": {
+    "11": 0.3155,
+    "12": 0.4974,
+    "13": 0.6031,
+    "21": 0.5324,
+    "22": 0.7366
+   },
+   "db_histogram": {
+    "1": 24,
+    "2": 123,
+    "3": 296,
+    "4": 8615,
+    "5": 17988,
+    "6": 4814,
+    "7": 275,
+    "8": 20,
+    "9": 2
+   },
+   "dl_histogram": {
+    "0": 76,
+    "1": 1379,
+    "2": 7191,
+    "3": 9365,
+    "4": 13523,
+    "5": 562,
+    "6": 61
+   },
+   "lb_histogram": {
+    "0": 12,
+    "1": 1154,
+    "2": 9034,
+    "3": 11629,
+    "4": 9939,
+    "5": 388,
+    "6": 1
+   },
+   "dpkg_share": {
+    "base": 0.2679,
+    "nickel": 0.5594,
+    "dime": 0.1589
+   },
+   "dpkg_strict6": 0.1497,
+   "dl5_play_share": 0.0194,
+   "lb4_front_share": 0.3212
+  },
+  {
+   "season": 2020,
+   "n_pass_run": 32575,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "001": 0.0001,
+    "002": 0.0,
+    "005": 0.0009,
+    "010": 0.0001,
+    "012": 0.0,
+    "013": 0.0002,
+    "014": 0.0103,
+    "020": 0.0001,
+    "022": 0.0003,
+    "023": 0.0076,
+    "031": 0.0,
+    "032": 0.0012,
+    "100": 0.0001,
+    "101": 0.0001,
+    "103": 0.0011,
+    "104": 0.0196,
+    "110": 0.0,
+    "111": 0.0005,
+    "112": 0.0113,
+    "113": 0.5822,
+    "120": 0.0013,
+    "121": 0.0099,
+    "122": 0.1897,
+    "130": 0.0015,
+    "131": 0.0345,
+    "140": 0.0002,
+    "200": 0.0,
+    "201": 0.0001,
+    "202": 0.0014,
+    "203": 0.0071,
+    "210": 0.0003,
+    "211": 0.0043,
+    "212": 0.0782,
+    "213": 0.0003,
+    "220": 0.0029,
+    "221": 0.0289,
+    "222": 0.0003,
+    "230": 0.0021,
+    "231": 0.0,
+    "301": 0.0,
+    "302": 0.0002,
+    "310": 0.0,
+    "311": 0.0011
+   },
+   "pkg_share_staged5": {
+    "11": 0.5822,
+    "12": 0.1897,
+    "13": 0.0345,
+    "21": 0.0782,
+    "22": 0.0289
+   },
+   "pkg_run_staged5": {
+    "11": 0.3228,
+    "12": 0.5135,
+    "13": 0.6027,
+    "21": 0.5628,
+    "22": 0.7021
+   },
+   "db_histogram": {
+    "1": 20,
+    "2": 124,
+    "3": 378,
+    "4": 7763,
+    "5": 19492,
+    "6": 4470,
+    "7": 312,
+    "8": 15,
+    "9": 1
+   },
+   "dl_histogram": {
+    "0": 61,
+    "1": 613,
+    "2": 4973,
+    "3": 8721,
+    "4": 17227,
+    "5": 872,
+    "6": 105,
+    "7": 3
+   },
+   "lb_histogram": {
+    "0": 16,
+    "1": 1923,
+    "2": 12743,
+    "3": 10909,
+    "4": 6628,
+    "5": 314,
+    "6": 42
+   },
+   "dpkg_share": {
+    "base": 0.2383,
+    "nickel": 0.5984,
+    "dime": 0.1473
+   },
+   "dpkg_strict6": 0.1372,
+   "dl5_play_share": 0.0301,
+   "lb4_front_share": 0.2144
+  },
+  {
+   "season": 2021,
+   "n_pass_run": 34139,
+   "missing_participation": 0,
+   "unknown_personnel_o": 1,
+   "unknown_personnel_d": 1,
+   "pkg_share_all_labels": {
+    "005": 0.0006,
+    "010": 0.0,
+    "012": 0.0,
+    "013": 0.0,
+    "014": 0.0086,
+    "020": 0.0001,
+    "021": 0.0001,
+    "022": 0.0001,
+    "023": 0.0027,
+    "032": 0.0005,
+    "041": 0.0,
+    "100": 0.0,
+    "102": 0.0003,
+    "103": 0.0021,
+    "104": 0.0162,
+    "110": 0.0001,
+    "111": 0.0014,
+    "112": 0.0148,
+    "113": 0.5888,
+    "120": 0.0006,
+    "121": 0.0129,
+    "122": 0.2028,
+    "130": 0.0016,
+    "131": 0.0344,
+    "132": 0.0,
+    "140": 0.0004,
+    "201": 0.0002,
+    "202": 0.0022,
+    "203": 0.0079,
+    "204": 0.0,
+    "210": 0.0001,
+    "211": 0.0045,
+    "212": 0.0678,
+    "213": 0.0,
+    "214": 0.0,
+    "220": 0.0025,
+    "221": 0.0225,
+    "222": 0.0,
+    "230": 0.0019,
+    "300": 0.0,
+    "301": 0.0001,
+    "302": 0.0002,
+    "310": 0.0,
+    "311": 0.0005,
+    "320": 0.0
+   },
+   "pkg_share_staged5": {
+    "11": 0.5888,
+    "12": 0.2028,
+    "13": 0.0344,
+    "21": 0.0678,
+    "22": 0.0225
+   },
+   "pkg_run_staged5": {
+    "11": 0.3184,
+    "12": 0.5306,
+    "13": 0.6403,
+    "21": 0.5497,
+    "22": 0.6962
+   },
+   "db_histogram": {
+    "1": 51,
+    "2": 67,
+    "3": 311,
+    "4": 8026,
+    "5": 20979,
+    "6": 4563,
+    "7": 130,
+    "8": 10,
+    "9": 1
+   },
+   "dl_histogram": {
+    "0": 37,
+    "1": 875,
+    "2": 7919,
+    "3": 9349,
+    "4": 15162,
+    "5": 705,
+    "6": 91
+   },
+   "lb_histogram": {
+    "0": 1,
+    "1": 1310,
+    "2": 11507,
+    "3": 10678,
+    "4": 10160,
+    "5": 466,
+    "6": 16
+   },
+   "dpkg_share": {
+    "base": 0.2351,
+    "nickel": 0.6145,
+    "dime": 0.1378
+   },
+   "dpkg_strict6": 0.1337,
+   "dl5_play_share": 0.0233,
+   "lb4_front_share": 0.3117
+  },
+  {
+   "season": 2022,
+   "n_pass_run": 33770,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0,
+    "005": 0.0002,
+    "010": 0.0001,
+    "013": 0.0001,
+    "014": 0.0019,
+    "020": 0.0,
+    "021": 0.0,
+    "022": 0.0001,
+    "023": 0.0023,
+    "024": 0.0,
+    "030": 0.0001,
+    "031": 0.0,
+    "032": 0.0004,
+    "033": 0.0,
+    "040": 0.0001,
+    "100": 0.0001,
+    "101": 0.0002,
+    "102": 0.0001,
+    "103": 0.0016,
+    "104": 0.0056,
+    "110": 0.0001,
+    "111": 0.0003,
+    "112": 0.0105,
+    "113": 0.6176,
+    "120": 0.0004,
+    "121": 0.0134,
+    "122": 0.1859,
+    "123": 0.001,
+    "130": 0.0013,
+    "131": 0.0386,
+    "132": 0.0007,
+    "140": 0.0006,
+    "141": 0.0001,
+    "200": 0.0001,
+    "201": 0.0001,
+    "202": 0.0015,
+    "203": 0.0037,
+    "210": 0.0,
+    "211": 0.0031,
+    "212": 0.0784,
+    "213": 0.0001,
+    "220": 0.0014,
+    "221": 0.0258,
+    "222": 0.0004,
+    "230": 0.0011,
+    "231": 0.0001,
+    "303": 0.0,
+    "311": 0.0003,
+    "320": 0.0001,
+    "401": 0.0001
+   },
+   "pkg_share_staged5": {
+    "11": 0.6176,
+    "12": 0.1859,
+    "13": 0.0386,
+    "21": 0.0784,
+    "22": 0.0258
+   },
+   "pkg_run_staged5": {
+    "11": 0.3339,
+    "12": 0.526,
+    "13": 0.6498,
+    "21": 0.5665,
+    "22": 0.7305
+   },
+   "db_histogram": {
+    "1": 30,
+    "2": 43,
+    "3": 436,
+    "4": 8480,
+    "5": 21189,
+    "6": 3313,
+    "7": 267,
+    "8": 12
+   },
+   "dl_histogram": {
+    "0": 49,
+    "1": 909,
+    "2": 7359,
+    "3": 11301,
+    "4": 13318,
+    "5": 737,
+    "6": 97
+   },
+   "lb_histogram": {
+    "0": 14,
+    "1": 1025,
+    "2": 10525,
+    "3": 10932,
+    "4": 10125,
+    "5": 1100,
+    "6": 49
+   },
+   "dpkg_share": {
+    "base": 0.2511,
+    "nickel": 0.6275,
+    "dime": 0.1064
+   },
+   "dpkg_strict6": 0.0981,
+   "dl5_play_share": 0.0247,
+   "lb4_front_share": 0.3338
+  },
+  {
+   "season": 2023,
+   "n_pass_run": 33957,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0001,
+    "003": 0.0001,
+    "004": 0.0002,
+    "005": 0.0,
+    "010": 0.0001,
+    "011": 0.0,
+    "012": 0.0004,
+    "013": 0.0061,
+    "014": 0.0053,
+    "020": 0.0004,
+    "021": 0.0002,
+    "022": 0.0007,
+    "023": 0.0039,
+    "030": 0.0,
+    "031": 0.0001,
+    "032": 0.0002,
+    "102": 0.0011,
+    "103": 0.0111,
+    "104": 0.0055,
+    "110": 0.0003,
+    "111": 0.0017,
+    "112": 0.0671,
+    "113": 0.6226,
+    "120": 0.0023,
+    "121": 0.0187,
+    "122": 0.1932,
+    "130": 0.0016,
+    "131": 0.0329,
+    "132": 0.0,
+    "140": 0.0001,
+    "202": 0.0004,
+    "203": 0.001,
+    "210": 0.0,
+    "211": 0.0003,
+    "212": 0.0173,
+    "220": 0.0005,
+    "221": 0.0036,
+    "230": 0.0008,
+    "301": 0.0,
+    "311": 0.0001
+   },
+   "pkg_share_staged5": {
+    "11": 0.6226,
+    "12": 0.1932,
+    "13": 0.0329,
+    "21": 0.0173,
+    "22": 0.0036
+   },
+   "pkg_run_staged5": {
+    "11": 0.3447,
+    "12": 0.5204,
+    "13": 0.6252,
+    "21": 0.5495,
+    "22": 0.6475
+   },
+   "db_histogram": {
+    "0": 3,
+    "1": 38,
+    "2": 40,
+    "3": 275,
+    "4": 7067,
+    "5": 22576,
+    "6": 3705,
+    "7": 243,
+    "8": 8,
+    "9": 2
+   },
+   "dl_histogram": {
+    "0": 232,
+    "1": 619,
+    "2": 7745,
+    "3": 11386,
+    "4": 12837,
+    "5": 1012,
+    "6": 123,
+    "7": 3
+   },
+   "lb_histogram": {
+    "0": 8,
+    "1": 1250,
+    "2": 10868,
+    "3": 10932,
+    "4": 10386,
+    "5": 498,
+    "6": 15
+   },
+   "dpkg_share": {
+    "base": 0.2081,
+    "nickel": 0.6648,
+    "dime": 0.1166
+   },
+   "dpkg_strict6": 0.1091,
+   "dl5_play_share": 0.0335,
+   "lb4_front_share": 0.321
+  },
+  {
+   "season": 2024,
+   "n_pass_run": 33470,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0,
+    "004": 0.0003,
+    "005": 0.0002,
+    "010": 0.0001,
+    "011": 0.0001,
+    "013": 0.01,
+    "014": 0.0037,
+    "020": 0.0,
+    "021": 0.0,
+    "022": 0.0005,
+    "023": 0.0036,
+    "030": 0.0,
+    "031": 0.0004,
+    "032": 0.0009,
+    "101": 0.0001,
+    "102": 0.0007,
+    "103": 0.004,
+    "104": 0.0034,
+    "110": 0.0001,
+    "111": 0.0013,
+    "112": 0.054,
+    "113": 0.6075,
+    "120": 0.0028,
+    "121": 0.0269,
+    "122": 0.2203,
+    "130": 0.0031,
+    "131": 0.0343,
+    "140": 0.0004,
+    "200": 0.0,
+    "202": 0.0,
+    "203": 0.0009,
+    "210": 0.0,
+    "211": 0.0008,
+    "212": 0.0164,
+    "220": 0.0001,
+    "221": 0.0023,
+    "230": 0.0004,
+    "311": 0.0001
+   },
+   "pkg_share_staged5": {
+    "11": 0.6075,
+    "12": 0.2203,
+    "13": 0.0343,
+    "21": 0.0164,
+    "22": 0.0023
+   },
+   "pkg_run_staged5": {
+    "11": 0.3446,
+    "12": 0.5237,
+    "13": 0.626,
+    "21": 0.5501,
+    "22": 0.7273
+   },
+   "db_histogram": {
+    "0": 1,
+    "1": 50,
+    "2": 52,
+    "3": 308,
+    "4": 7771,
+    "5": 21949,
+    "6": 3246,
+    "7": 93
+   },
+   "dl_histogram": {
+    "0": 304,
+    "1": 442,
+    "2": 7037,
+    "3": 10057,
+    "4": 14831,
+    "5": 686,
+    "6": 113
+   },
+   "lb_histogram": {
+    "1": 1014,
+    "2": 11115,
+    "3": 11510,
+    "4": 9169,
+    "5": 624,
+    "6": 38
+   },
+   "dpkg_share": {
+    "base": 0.2322,
+    "nickel": 0.6558,
+    "dime": 0.0998
+   },
+   "dpkg_strict6": 0.097,
+   "dl5_play_share": 0.0239,
+   "lb4_front_share": 0.2937
+  },
+  {
+   "season": 2025,
+   "n_pass_run": 32941,
+   "missing_participation": 0,
+   "unknown_personnel_o": 0,
+   "unknown_personnel_d": 0,
+   "pkg_share_all_labels": {
+    "000": 0.0,
+    "003": 0.0,
+    "005": 0.0,
+    "010": 0.0001,
+    "013": 0.0062,
+    "014": 0.0029,
+    "020": 0.0,
+    "021": 0.0001,
+    "022": 0.0009,
+    "023": 0.0021,
+    "030": 0.0,
+    "031": 0.0007,
+    "032": 0.0001,
+    "040": 0.0,
+    "041": 0.0001,
+    "101": 0.0001,
+    "102": 0.0024,
+    "103": 0.0058,
+    "104": 0.0046,
+    "110": 0.0,
+    "111": 0.0068,
+    "112": 0.0642,
+    "113": 0.5603,
+    "120": 0.0026,
+    "121": 0.0431,
+    "122": 0.2195,
+    "130": 0.0025,
+    "131": 0.0491,
+    "140": 0.0002,
+    "201": 0.0,
+    "202": 0.0006,
+    "203": 0.0012,
+    "211": 0.0009,
+    "212": 0.019,
+    "213": 0.0,
+    "220": 0.0003,
+    "221": 0.0031,
+    "230": 0.0001,
+    "234": 0.0001,
+    "311": 0.0,
+    "320": 0.0
+   },
+   "pkg_share_staged5": {
+    "11": 0.5603,
+    "12": 0.2195,
+    "13": 0.0491,
+    "21": 0.019,
+    "22": 0.0031
+   },
+   "pkg_run_staged5": {
+    "11": 0.3307,
+    "12": 0.5024,
+    "13": 0.624,
+    "21": 0.4944,
+    "22": 0.7087
+   },
+   "db_histogram": {
+    "0": 1,
+    "1": 61,
+    "2": 49,
+    "3": 367,
+    "4": 9731,
+    "5": 19649,
+    "6": 2999,
+    "7": 81,
+    "8": 3
+   },
+   "dl_histogram": {
+    "0": 56,
+    "1": 1099,
+    "2": 9711,
+    "3": 8624,
+    "4": 12353,
+    "5": 993,
+    "6": 102,
+    "7": 3
+   },
+   "lb_histogram": {
+    "0": 2,
+    "1": 830,
+    "2": 8607,
+    "3": 9095,
+    "4": 13676,
+    "5": 718,
+    "6": 13
+   },
+   "dpkg_share": {
+    "base": 0.2954,
+    "nickel": 0.5965,
+    "dime": 0.0936
+   },
+   "dpkg_strict6": 0.091,
+   "dl5_play_share": 0.0333,
+   "lb4_front_share": 0.4374
+  }
+ ],
+ "staged_pkg_share": {
+  "11": 0.6298,
+  "12": 0.1237,
+  "13": 0.0343,
+  "21": 0.114,
+  "22": 0.0982
+ },
+ "staged_pkg_run": {
+  "11": 0.2689,
+  "12": 0.5501,
+  "13": 0.6009,
+  "21": 0.6631,
+  "22": 0.6298
+ },
+ "staged_dpkg_share": {
+  "base": 0.3806,
+  "nickel": 0.55,
+  "dime": 0.0694
+ },
+ "snap_rows_skipped_post_by_season": {
+  "2016": 986,
+  "2017": 986,
+  "2018": 982,
+  "2019": 978,
+  "2020": 1209,
+  "2021": 1197,
+  "2022": 1213,
+  "2023": 1211,
+  "2024": 1217,
+  "2025": 1217
+ },
+ "b3_fb_share_by_season": {
+  "2016": {
+   "league_mean_all_teams": 0.1426,
+   "n_teams": 32,
+   "n_teams_with_fb": 21,
+   "median_among_fb_teams": 0.1994,
+   "min_among_fb_teams": 0.0029,
+   "max_among_fb_teams": 0.6957,
+   "per_team": {
+    "BAL": 0.4083,
+    "BUF": 0.3103,
+    "DEN": 0.2186,
+    "CAR": 0.2922,
+    "HOU": 0.1649,
+    "CHI": 0.0752,
+    "NYJ": 0.0029,
+    "CIN": 0.0,
+    "PHI": 0.0,
+    "CLE": 0.0825,
+    "IND": 0.0,
+    "DET": 0.0916,
+    "JAX": 0.0,
+    "GB": 0.2836,
+    "SF": 0.0,
+    "LA": 0.0,
+    "SEA": 0.101,
+    "MIA": 0.0,
+    "TEN": 0.1786,
+    "MIN": 0.1994,
+    "ARI": 0.0,
+    "NE": 0.3131,
+    "DAL": 0.1314,
+    "NYG": 0.0,
+    "NO": 0.2409,
+    "OAK": 0.235,
+    "WAS": 0.0,
+    "PIT": 0.0923,
+    "KC": 0.6957,
+    "SD": 0.1333,
+    "ATL": 0.3118,
+    "TB": 0.0
+   }
+  },
+  "2017": {
+   "league_mean_all_teams": 0.1259,
+   "n_teams": 32,
+   "n_teams_with_fb": 22,
+   "median_among_fb_teams": 0.1736,
+   "min_among_fb_teams": 0.0462,
+   "max_among_fb_teams": 0.4449,
+   "per_team": {
+    "DET": 0.0,
+    "ARI": 0.0,
+    "CHI": 0.1812,
+    "ATL": 0.2188,
+    "CIN": 0.0,
+    "BAL": 0.0,
+    "SF": 0.3582,
+    "CAR": 0.0,
+    "LA": 0.0,
+    "IND": 0.0,
+    "HOU": 0.1351,
+    "JAX": 0.2425,
+    "NE": 0.302,
+    "KC": 0.1753,
+    "DEN": 0.1455,
+    "LAC": 0.1336,
+    "MIN": 0.1828,
+    "NO": 0.1736,
+    "DAL": 0.3371,
+    "NYG": 0.0462,
+    "BUF": 0.4449,
+    "NYJ": 0.1458,
+    "TEN": 0.092,
+    "OAK": 0.0813,
+    "WAS": 0.0,
+    "PHI": 0.0,
+    "CLE": 0.1245,
+    "PIT": 0.1637,
+    "GB": 0.1748,
+    "SEA": 0.0628,
+    "TB": 0.1074,
+    "MIA": 0.0
+   }
+  },
+  "2018": {
+   "league_mean_all_teams": 0.0881,
+   "n_teams": 32,
+   "n_teams_with_fb": 17,
+   "median_among_fb_teams": 0.1323,
+   "min_among_fb_teams": 0.0177,
+   "max_among_fb_teams": 0.6272,
+   "per_team": {
+    "PHI": 0.0,
+    "ATL": 0.1311,
+    "BAL": 0.0,
+    "BUF": 0.1586,
+    "GB": 0.0177,
+    "CHI": 0.0456,
+    "IND": 0.0,
+    "CIN": 0.0,
+    "CAR": 0.0,
+    "DAL": 0.1059,
+    "NE": 0.3557,
+    "HOU": 0.0,
+    "NYG": 0.0,
+    "JAX": 0.1548,
+    "LAC": 0.1467,
+    "KC": 0.0938,
+    "OAK": 0.1545,
+    "LA": 0.0,
+    "DET": 0.0,
+    "NYJ": 0.0,
+    "CLE": 0.0,
+    "PIT": 0.0986,
+    "DEN": 0.2225,
+    "SEA": 0.0804,
+    "MIN": 0.1323,
+    "SF": 0.6272,
+    "NO": 0.215,
+    "TB": 0.0,
+    "MIA": 0.0,
+    "TEN": 0.0,
+    "ARI": 0.0786,
+    "WAS": 0.0
+   }
+  },
+  "2019": {
+   "league_mean_all_teams": 0.0899,
+   "n_teams": 32,
+   "n_teams_with_fb": 19,
+   "median_among_fb_teams": 0.1202,
+   "min_among_fb_teams": 0.0262,
+   "max_among_fb_teams": 0.3657,
+   "per_team": {
+    "MIN": 0.3466,
+    "ATL": 0.1684,
+    "MIA": 0.0772,
+    "BAL": 0.3096,
+    "NYJ": 0.0,
+    "BUF": 0.1556,
+    "SEA": 0.0262,
+    "CIN": 0.0,
+    "OAK": 0.2041,
+    "DEN": 0.1281,
+    "ARI": 0.0,
+    "DET": 0.0,
+    "CHI": 0.0,
+    "GB": 0.1577,
+    "NO": 0.218,
+    "HOU": 0.0,
+    "LAC": 0.1155,
+    "IND": 0.0,
+    "JAX": 0.0,
+    "KC": 0.0924,
+    "CAR": 0.1202,
+    "LA": 0.0,
+    "DAL": 0.1052,
+    "NYG": 0.0,
+    "NE": 0.1121,
+    "PIT": 0.0342,
+    "TB": 0.0,
+    "SF": 0.3657,
+    "CLE": 0.0,
+    "TEN": 0.0686,
+    "PHI": 0.0,
+    "WAS": 0.0726
+   }
+  },
+  "2020": {
+   "league_mean_all_teams": 0.0996,
+   "n_teams": 32,
+   "n_teams_with_fb": 19,
+   "median_among_fb_teams": 0.1404,
+   "min_among_fb_teams": 0.0071,
+   "max_among_fb_teams": 0.4309,
+   "per_team": {
+    "SF": 0.4309,
+    "ARI": 0.0,
+    "DET": 0.0,
+    "CHI": 0.0,
+    "BAL": 0.3919,
+    "CLE": 0.1721,
+    "LA": 0.0,
+    "DAL": 0.0,
+    "MIN": 0.3793,
+    "GB": 0.0,
+    "KC": 0.0572,
+    "HOU": 0.0071,
+    "JAX": 0.0597,
+    "IND": 0.0,
+    "CIN": 0.0,
+    "LAC": 0.1098,
+    "CAR": 0.1404,
+    "LV": 0.2133,
+    "NE": 0.3689,
+    "MIA": 0.0984,
+    "BUF": 0.0,
+    "NYJ": 0.0,
+    "WAS": 0.0,
+    "PHI": 0.0,
+    "NYG": 0.0721,
+    "PIT": 0.0473,
+    "ATL": 0.1977,
+    "SEA": 0.0329,
+    "NO": 0.1931,
+    "TB": 0.0,
+    "DEN": 0.0613,
+    "TEN": 0.1537
+   }
+  },
+  "2021": {
+   "league_mean_all_teams": 0.0898,
+   "n_teams": 32,
+   "n_teams_with_fb": 17,
+   "median_among_fb_teams": 0.1279,
+   "min_among_fb_teams": 0.0008,
+   "max_among_fb_teams": 0.5591,
+   "per_team": {
+    "TEN": 0.0709,
+    "ARI": 0.0,
+    "LV": 0.1579,
+    "BAL": 0.4468,
+    "LA": 0.0,
+    "CHI": 0.0,
+    "KC": 0.0787,
+    "CLE": 0.0958,
+    "TB": 0.0,
+    "DAL": 0.0008,
+    "NYG": 0.0036,
+    "DEN": 0.0,
+    "NO": 0.0972,
+    "GB": 0.0,
+    "HOU": 0.0,
+    "JAX": 0.0,
+    "WAS": 0.0,
+    "LAC": 0.0385,
+    "NE": 0.2803,
+    "MIA": 0.0,
+    "CIN": 0.0,
+    "MIN": 0.3295,
+    "CAR": 0.141,
+    "NYJ": 0.0,
+    "ATL": 0.2443,
+    "PHI": 0.0,
+    "BUF": 0.1294,
+    "PIT": 0.0733,
+    "IND": 0.0,
+    "SEA": 0.0,
+    "DET": 0.1279,
+    "SF": 0.5591
+   }
+  },
+  "2022": {
+   "league_mean_all_teams": 0.0952,
+   "n_teams": 32,
+   "n_teams_with_fb": 14,
+   "median_among_fb_teams": 0.1622,
+   "min_among_fb_teams": 0.0531,
+   "max_among_fb_teams": 0.6369,
+   "per_team": {
+    "NYJ": 0.0,
+    "BAL": 0.6369,
+    "LA": 0.0,
+    "BUF": 0.1622,
+    "CAR": 0.0,
+    "CLE": 0.0,
+    "SEA": 0.0,
+    "DEN": 0.0,
+    "MIN": 0.1447,
+    "GB": 0.0,
+    "HOU": 0.158,
+    "IND": 0.0,
+    "WAS": 0.0,
+    "JAX": 0.0,
+    "ARI": 0.0,
+    "KC": 0.0618,
+    "LAC": 0.0,
+    "LV": 0.2731,
+    "MIA": 0.3954,
+    "NE": 0.0,
+    "ATL": 0.2464,
+    "NO": 0.1141,
+    "TEN": 0.0531,
+    "NYG": 0.0,
+    "DET": 0.0911,
+    "PHI": 0.0,
+    "CIN": 0.0,
+    "PIT": 0.0664,
+    "CHI": 0.1683,
+    "SF": 0.4745,
+    "DAL": 0.0,
+    "TB": 0.0
+   }
+  },
+  "2023": {
+   "league_mean_all_teams": 0.0852,
+   "n_teams": 32,
+   "n_teams_with_fb": 13,
+   "median_among_fb_teams": 0.1763,
+   "min_among_fb_teams": 0.0263,
+   "max_among_fb_teams": 0.4644,
+   "per_team": {
+    "WAS": 0.0,
+    "ARI": 0.0,
+    "NYJ": 0.1153,
+    "BUF": 0.0851,
+    "ATL": 0.1637,
+    "CAR": 0.0,
+    "CLE": 0.0,
+    "CIN": 0.0,
+    "NYG": 0.0,
+    "DAL": 0.0,
+    "KC": 0.0,
+    "DET": 0.0263,
+    "CHI": 0.1634,
+    "GB": 0.0,
+    "BAL": 0.3934,
+    "HOU": 0.284,
+    "IND": 0.0,
+    "JAX": 0.0,
+    "SEA": 0.0,
+    "LA": 0.0,
+    "DEN": 0.1763,
+    "LV": 0.1778,
+    "LAC": 0.0,
+    "MIA": 0.3761,
+    "NE": 0.0,
+    "PHI": 0.0,
+    "PIT": 0.0,
+    "SF": 0.4644,
+    "MIN": 0.1927,
+    "TB": 0.0,
+    "NO": 0.1079,
+    "TEN": 0.0
+   }
+  },
+  "2024": {
+   "league_mean_all_teams": 0.0819,
+   "n_teams": 32,
+   "n_teams_with_fb": 14,
+   "median_among_fb_teams": 0.2346,
+   "min_among_fb_teams": 0.0017,
+   "max_among_fb_teams": 0.4977,
+   "per_team": {
+    "BUF": 0.1277,
+    "ARI": 0.0,
+    "KC": 0.0,
+    "BAL": 0.3919,
+    "NO": 0.25,
+    "CAR": 0.0,
+    "CLE": 0.0,
+    "DAL": 0.2801,
+    "SEA": 0.0,
+    "DEN": 0.1588,
+    "PHI": 0.0017,
+    "GB": 0.0138,
+    "IND": 0.0,
+    "HOU": 0.0108,
+    "MIA": 0.2961,
+    "JAX": 0.0,
+    "DET": 0.0,
+    "LA": 0.0,
+    "LAC": 0.3393,
+    "LV": 0.0,
+    "NYG": 0.0107,
+    "MIN": 0.2346,
+    "CIN": 0.0,
+    "NE": 0.0,
+    "SF": 0.4977,
+    "NYJ": 0.0,
+    "ATL": 0.0,
+    "PIT": 0.0,
+    "CHI": 0.0088,
+    "TEN": 0.0,
+    "TB": 0.0,
+    "WAS": 0.0
+   }
+  },
+  "2025": {
+   "league_mean_all_teams": 0.0814,
+   "n_teams": 32,
+   "n_teams_with_fb": 11,
+   "median_among_fb_teams": 0.2168,
+   "min_among_fb_teams": 0.0741,
+   "max_among_fb_teams": 0.4541,
+   "per_team": {
+    "NO": 0.0,
+    "ARI": 0.0,
+    "BUF": 0.2076,
+    "BAL": 0.2702,
+    "JAX": 0.0,
+    "CAR": 0.0,
+    "CLE": 0.0,
+    "CIN": 0.0,
+    "PHI": 0.0,
+    "DAL": 0.0,
+    "GB": 0.0,
+    "DET": 0.0,
+    "LA": 0.0,
+    "HOU": 0.0741,
+    "LAC": 0.2924,
+    "KC": 0.0,
+    "NE": 0.2168,
+    "LV": 0.0,
+    "IND": 0.0,
+    "MIA": 0.3689,
+    "CHI": 0.0,
+    "MIN": 0.1838,
+    "WAS": 0.0,
+    "NYG": 0.0,
+    "NYJ": 0.105,
+    "PIT": 0.0,
+    "SEA": 0.2453,
+    "SF": 0.4541,
+    "ATL": 0.0,
+    "TB": 0.0,
+    "DEN": 0.1851,
+    "TEN": 0.0
+   }
+  }
+ },
+ "b3_fb_share_league_mean": {
+  "2016": 0.1426,
+  "2017": 0.1259,
+  "2018": 0.0881,
+  "2019": 0.0899,
+  "2020": 0.0996,
+  "2021": 0.0898,
+  "2022": 0.0952,
+  "2023": 0.0852,
+  "2024": 0.0819,
+  "2025": 0.0814
+ },
+ "b2_wr1_deep_targets": {
+  "2016": {
+   "season": 2016,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.621,
+   "deep_per_tg": {
+    "12": 2.851,
+    "15": 2.145,
+    "20": 1.171
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 19,
+    "differ": 11,
+    "rate": 0.633
+   },
+   "abbr_unmatched_passes": 8249,
+   "abbr_collisions": {
+    "ARI": 1
+   },
+   "wr1_by_snaps_names": {
+    "ARI": "Larry Fitzgerald",
+    "ATL": "Mohamed Sanu",
+    "BAL": "Mike Wallace",
+    "BUF": "Marquise Goodwin",
+    "CAR": "Kelvin Benjamin",
+    "CHI": "Cameron Meredith",
+    "CIN": "Brandon LaFell",
+    "CLE": "Terrelle Pryor",
+    "DAL": "Terrance Williams",
+    "DEN": "Demaryius Thomas",
+    "DET": "Marvin Jones",
+    "GB": "Jordy Nelson",
+    "HOU": "DeAndre Hopkins",
+    "IND": "T.Y. Hilton",
+    "JAX": "Allen Robinson",
+    "KC": "Chris Conley",
+    "LA": "Kenny Britt",
+    "MIA": "Jarvis Landry",
+    "MIN": "Adam Thielen",
+    "NE": "Julian Edelman",
+    "NO": "Brandin Cooks",
+    "NYG": "Sterling Shepard",
+    "NYJ": "Brandon Marshall",
+    "OAK": "Amari Cooper",
+    "PHI": "Nelson Agholor",
+    "PIT": "Antonio Brown",
+    "SD": "Dontrelle Inman",
+    "SEA": "Doug Baldwin",
+    "SF": "Jeremy Kerley",
+    "TB": "Mike Evans",
+    "TEN": "Tajae Sharpe",
+    "WAS": "Pierre Garcon"
+   }
+  },
+  "2017": {
+   "season": 2017,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.229,
+   "deep_per_tg": {
+    "12": 2.969,
+    "15": 2.244,
+    "20": 1.318
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 20,
+    "differ": 11,
+    "rate": 0.645
+   },
+   "abbr_unmatched_passes": 9089,
+   "abbr_collisions": {
+    "ARI": 1
+   },
+   "wr1_by_snaps_names": {
+    "ARI": "Larry Fitzgerald",
+    "ATL": "Julio Jones",
+    "BAL": "Mike Wallace",
+    "BUF": "Zay Jones",
+    "CAR": "Devin Funchess",
+    "CHI": "Kendall Wright",
+    "CIN": "Brandon LaFell",
+    "CLE": "Rashard Higgins",
+    "DAL": "Dez Bryant",
+    "DEN": "Demaryius Thomas",
+    "DET": "Marvin Jones",
+    "GB": "Jordy Nelson",
+    "HOU": "DeAndre Hopkins",
+    "IND": "T.Y. Hilton",
+    "JAX": "Keelan Cole",
+    "KC": "Tyreek Hill",
+    "LA": "Sammy Watkins",
+    "LAC": "Keenan Allen",
+    "MIA": "Kenny Stills",
+    "MIN": "Adam Thielen",
+    "NE": "Brandin Cooks",
+    "NO": "Michael Thomas",
+    "NYG": "Roger Lewis",
+    "NYJ": "Jermaine Kearse",
+    "OAK": "Seth Roberts",
+    "PHI": "Alshon Jeffery",
+    "PIT": "Antonio Brown",
+    "SEA": "Doug Baldwin",
+    "SF": "Marquise Goodwin",
+    "TB": "Mike Evans",
+    "TEN": "Rishard Matthews",
+    "WAS": "Josh Doctson"
+   }
+  },
+  "2018": {
+   "season": 2018,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.157,
+   "deep_per_tg": {
+    "12": 2.796,
+    "15": 2.091,
+    "20": 1.232
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 21,
+    "differ": 10,
+    "rate": 0.677
+   },
+   "abbr_unmatched_passes": 9034,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Larry Fitzgerald",
+    "ATL": "Mohamed Sanu",
+    "BAL": "Willie Snead",
+    "BUF": "Zay Jones",
+    "CAR": "D.J. Moore",
+    "CHI": "Taylor Gabriel",
+    "CIN": "Tyler Boyd",
+    "CLE": "Jarvis Landry",
+    "DAL": "Michael Gallup",
+    "DEN": "Courtland Sutton",
+    "DET": "Kenny Golladay",
+    "GB": "Davante Adams",
+    "HOU": "DeAndre Hopkins",
+    "IND": "T.Y. Hilton",
+    "JAX": "Donte Moncrief",
+    "KC": "Tyreek Hill",
+    "LA": "Robert Woods",
+    "LAC": "Keenan Allen",
+    "MIA": "Kenny Stills",
+    "MIN": "Adam Thielen",
+    "NE": "Chris Hogan",
+    "NO": "Michael Thomas",
+    "NYG": "Sterling Shepard",
+    "NYJ": "Robbie Chosen",
+    "OAK": "Jordy Nelson",
+    "PHI": "Nelson Agholor",
+    "PIT": "Antonio Brown",
+    "SEA": "Tyler Lockett",
+    "SF": "Kendrick Bourne",
+    "TB": "Mike Evans",
+    "TEN": "Corey Davis",
+    "WAS": "Josh Doctson"
+   }
+  },
+  "2019": {
+   "season": 2019,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.701,
+   "deep_per_tg": {
+    "12": 3.032,
+    "15": 2.19,
+    "20": 1.319
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 22,
+    "differ": 9,
+    "rate": 0.71
+   },
+   "abbr_unmatched_passes": 9221,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Larry Fitzgerald",
+    "ATL": "Julio Jones",
+    "BAL": "Willie Snead",
+    "BUF": "John Brown",
+    "CAR": "Curtis Samuel",
+    "CHI": "Allen Robinson",
+    "CIN": "Tyler Boyd",
+    "CLE": "Odell Beckham Jr.",
+    "DAL": "Michael Gallup",
+    "DEN": "Courtland Sutton",
+    "DET": "Kenny Golladay",
+    "GB": "Davante Adams",
+    "HOU": "DeAndre Hopkins",
+    "IND": "Zach Pascal",
+    "JAX": "Chris Conley",
+    "KC": "Sammy Watkins",
+    "LA": "Robert Woods",
+    "LAC": "Keenan Allen",
+    "MIA": "DeVante Parker",
+    "MIN": "Stefon Diggs",
+    "NE": "Julian Edelman",
+    "NO": "Michael Thomas",
+    "NYG": "Darius Slayton",
+    "NYJ": "Robbie Chosen",
+    "OAK": "Tyrell Williams",
+    "PHI": "Nelson Agholor",
+    "PIT": "Diontae Johnson",
+    "SEA": "Tyler Lockett",
+    "SF": "Deebo Samuel",
+    "TB": "Chris Godwin",
+    "TEN": "Corey Davis",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2020": {
+   "season": 2020,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.057,
+   "deep_per_tg": {
+    "12": 2.715,
+    "15": 2.027,
+    "20": 1.214
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 21,
+    "differ": 11,
+    "rate": 0.656
+   },
+   "abbr_unmatched_passes": 9339,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "DeAndre Hopkins",
+    "ATL": "Calvin Ridley",
+    "BAL": "Marquise Brown",
+    "BUF": "Stefon Diggs",
+    "CAR": "D.J. Moore",
+    "CHI": "Allen Robinson",
+    "CIN": "A.J. Green",
+    "CLE": "Jarvis Landry",
+    "DAL": "Michael Gallup",
+    "DEN": "Jerry Jeudy",
+    "DET": "Marvin Jones",
+    "GB": "Marquez Valdes-Scantling",
+    "HOU": "Brandin Cooks",
+    "IND": "Zach Pascal",
+    "JAX": "Keelan Cole",
+    "KC": "Tyreek Hill",
+    "LA": "Robert Woods",
+    "LAC": "Jalen Guyton",
+    "LV": "Nelson Agholor",
+    "MIA": "DeVante Parker",
+    "MIN": "Adam Thielen",
+    "NE": "Damiere Byrd",
+    "NO": "Tre'Quan Smith",
+    "NYG": "Darius Slayton",
+    "NYJ": "Breshad Perriman",
+    "PHI": "Greg Ward",
+    "PIT": "JuJu Smith-Schuster",
+    "SEA": "D.K. Metcalf",
+    "SF": "Brandon Aiyuk",
+    "TB": "Mike Evans",
+    "TEN": "A.J. Brown",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2021": {
+   "season": 2021,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.519,
+   "deep_per_tg": {
+    "12": 2.776,
+    "15": 2.091,
+    "20": 1.349
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 24,
+    "differ": 8,
+    "rate": 0.75
+   },
+   "abbr_unmatched_passes": 9749,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Christian Kirk",
+    "ATL": "Russell Gage",
+    "BAL": "Marquise Brown",
+    "BUF": "Stefon Diggs",
+    "CAR": "D.J. Moore",
+    "CHI": "Darnell Mooney",
+    "CIN": "Ja'Marr Chase",
+    "CLE": "Donovan Peoples-Jones",
+    "DAL": "CeeDee Lamb",
+    "DEN": "Courtland Sutton",
+    "DET": "Amon-Ra St. Brown",
+    "GB": "Davante Adams",
+    "HOU": "Brandin Cooks",
+    "IND": "Michael Pittman Jr.",
+    "JAX": "Marvin Jones",
+    "KC": "Tyreek Hill",
+    "LA": "Cooper Kupp",
+    "LAC": "Keenan Allen",
+    "LV": "Bryan Edwards",
+    "MIA": "Jaylen Waddle",
+    "MIN": "Justin Jefferson",
+    "NE": "Jakobi Meyers",
+    "NO": "Marquez Callaway",
+    "NYG": "Kenny Golladay",
+    "NYJ": "Keelan Cole",
+    "PHI": "DeVonta Smith",
+    "PIT": "Diontae Johnson",
+    "SEA": "D.K. Metcalf",
+    "SF": "Brandon Aiyuk",
+    "TB": "Mike Evans",
+    "TEN": "Nick Westbrook-Ikhine",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2022": {
+   "season": 2022,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.292,
+   "deep_per_tg": {
+    "12": 2.82,
+    "15": 2.061,
+    "20": 1.2
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 23,
+    "differ": 9,
+    "rate": 0.719
+   },
+   "abbr_unmatched_passes": 9469,
+   "abbr_collisions": {
+    "HOU": 1
+   },
+   "wr1_by_snaps_names": {
+    "ARI": "Marquise Brown",
+    "ATL": "Drake London",
+    "BAL": "Demarcus Robinson",
+    "BUF": "Gabriel Davis",
+    "CAR": "D.J. Moore",
+    "CHI": "Darnell Mooney",
+    "CIN": "Tyler Boyd",
+    "CLE": "Donovan Peoples-Jones",
+    "DAL": "CeeDee Lamb",
+    "DEN": "Courtland Sutton",
+    "DET": "Amon-Ra St. Brown",
+    "GB": "Allen Lazard",
+    "HOU": "Chris Moore",
+    "IND": "Michael Pittman Jr.",
+    "JAX": "Christian Kirk",
+    "KC": "Marquez Valdes-Scantling",
+    "LA": "Ben Skowronek",
+    "LAC": "Josh Palmer",
+    "LV": "Davante Adams",
+    "MIA": "Tyreek Hill",
+    "MIN": "Justin Jefferson",
+    "NE": "Jakobi Meyers",
+    "NO": "Chris Olave",
+    "NYG": "Darius Slayton",
+    "NYJ": "Garrett Wilson",
+    "PHI": "DeVonta Smith",
+    "PIT": "Diontae Johnson",
+    "SEA": "D.K. Metcalf",
+    "SF": "Brandon Aiyuk",
+    "TB": "Mike Evans",
+    "TEN": "Robert Woods",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2023": {
+   "season": 2023,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.523,
+   "deep_per_tg": {
+    "12": 2.83,
+    "15": 2.172,
+    "20": 1.309
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 25,
+    "differ": 7,
+    "rate": 0.781
+   },
+   "abbr_unmatched_passes": 9694,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Marquise Brown",
+    "ATL": "Drake London",
+    "BAL": "Zay Flowers",
+    "BUF": "Gabriel Davis",
+    "CAR": "Adam Thielen",
+    "CHI": "D.J. Moore",
+    "CIN": "Ja'Marr Chase",
+    "CLE": "Elijah Moore",
+    "DAL": "CeeDee Lamb",
+    "DEN": "Courtland Sutton",
+    "DET": "Amon-Ra St. Brown",
+    "GB": "Romeo Doubs",
+    "HOU": "Nico Collins",
+    "IND": "Alec Pierce",
+    "JAX": "Calvin Ridley",
+    "KC": "Rashee Rice",
+    "LA": "Puka Nacua",
+    "LAC": "Keenan Allen",
+    "LV": "Davante Adams",
+    "MIA": "Tyreek Hill",
+    "MIN": "Jordan Addison",
+    "NE": "DeVante Parker",
+    "NO": "Chris Olave",
+    "NYG": "Darius Slayton",
+    "NYJ": "Garrett Wilson",
+    "PHI": "DeVonta Smith",
+    "PIT": "George Pickens",
+    "SEA": "Tyler Lockett",
+    "SF": "Brandon Aiyuk",
+    "TB": "Chris Godwin",
+    "TEN": "DeAndre Hopkins",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2024": {
+   "season": 2024,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.008,
+   "deep_per_tg": {
+    "12": 2.773,
+    "15": 2.117,
+    "20": 1.209
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 23,
+    "differ": 9,
+    "rate": 0.719
+   },
+   "abbr_unmatched_passes": 9287,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Marvin Harrison Jr.",
+    "ATL": "Drake London",
+    "BAL": "Zay Flowers",
+    "BUF": "Mack Hollins",
+    "CAR": "Xavier Legette",
+    "CHI": "D.J. Moore",
+    "CIN": "Ja'Marr Chase",
+    "CLE": "Jerry Jeudy",
+    "DAL": "Jalen Tolbert",
+    "DEN": "Courtland Sutton",
+    "DET": "Amon-Ra St. Brown",
+    "GB": "Jayden Reed",
+    "HOU": "Tank Dell",
+    "IND": "Michael Pittman Jr.",
+    "JAX": "Brian Thomas",
+    "KC": "Xavier Worthy",
+    "LA": "Demarcus Robinson",
+    "LAC": "Ladd McConkey",
+    "LV": "Tre Tucker",
+    "MIA": "Tyreek Hill",
+    "MIN": "Justin Jefferson",
+    "NE": "Kayshon Boutte",
+    "NO": "Cedrick Wilson Jr.",
+    "NYG": "Malik Nabers",
+    "NYJ": "Garrett Wilson",
+    "PHI": "DeVonta Smith",
+    "PIT": "George Pickens",
+    "SEA": "Jaxon Smith-Njigba",
+    "SF": "Jauan Jennings",
+    "TB": "Mike Evans",
+    "TEN": "Calvin Ridley",
+    "WAS": "Terry McLaurin"
+   }
+  },
+  "2025": {
+   "season": 2025,
+   "n_teams": 32,
+   "wr1_targets_per_tg": 7.016,
+   "deep_per_tg": {
+    "12": 2.693,
+    "15": 2.026,
+    "20": 1.142
+   },
+   "concordance_snapWR1_vs_mosttargeted": {
+    "match": 23,
+    "differ": 9,
+    "rate": 0.719
+   },
+   "abbr_unmatched_passes": 9438,
+   "abbr_collisions": {},
+   "wr1_by_snaps_names": {
+    "ARI": "Michael Wilson",
+    "ATL": "Darnell Mooney",
+    "BAL": "Zay Flowers",
+    "BUF": "Khalil Shakir",
+    "CAR": "Tetairoa McMillan",
+    "CHI": "D.J. Moore",
+    "CIN": "Ja'Marr Chase",
+    "CLE": "Jerry Jeudy",
+    "DAL": "George Pickens",
+    "DEN": "Courtland Sutton",
+    "DET": "Jameson Williams",
+    "GB": "Romeo Doubs",
+    "HOU": "Nico Collins",
+    "IND": "Michael Pittman Jr.",
+    "JAX": "Brian Thomas",
+    "KC": "Xavier Worthy",
+    "LA": "Puka Nacua",
+    "LAC": "Ladd McConkey",
+    "LV": "Tre Tucker",
+    "MIA": "Jaylen Waddle",
+    "MIN": "Justin Jefferson",
+    "NE": "Mack Hollins",
+    "NO": "Chris Olave",
+    "NYG": "Wan'Dale Robinson",
+    "NYJ": "John Metchie",
+    "PHI": "DeVonta Smith",
+    "PIT": "D.K. Metcalf",
+    "SEA": "Jaxon Smith-Njigba",
+    "SF": "Jauan Jennings",
+    "TB": "Emeka Egbuka",
+    "TEN": "Elic Ayomanor",
+    "WAS": "Deebo Samuel"
+   }
+  }
+ },
+ "regime_labels": {
+  "2016": "touchback spot 20->25 (2-yr trial)",
+  "2017": "regular-season OT 15->10 min",
+  "2018": "kickoff overhaul + lowering-the-helmet + TB-25 permanent",
+  "2020": "playoffs 12->14 teams",
+  "2021": "17-game regular season",
+  "2022": "playoff OT both-possess",
+  "2023": "fair-catch inside the 25 (1-yr)",
+  "2024": "dynamic kickoff trial (TB 30)",
+  "2025": "DK permanent + TB 35 + reg-season OT both-possess"
+ },
+ "mapping_spec": {
+  "shipped_spots": {
+   "QB": [
+    [
+     "QB"
+    ],
+    "the only QB"
+   ],
+   "RB1": [
+    [
+     "HB",
+     "RB"
+    ],
+    "most offensive snaps among RBs"
+   ],
+   "RB2": [
+    [
+     "HB",
+     "RB"
+    ],
+    "2nd"
+   ],
+   "FB": [
+    [
+     "FB"
+    ],
+    "FB snaps"
+   ],
+   "WR1": [
+    [
+     "WR"
+    ],
+    "most offensive snaps among WRs"
+   ],
+   "WR2": [
+    [
+     "WR"
+    ],
+    "2nd"
+   ],
+   "WR3": [
+    [
+     "WR"
+    ],
+    "3rd"
+   ],
+   "WR4": [
+    [
+     "WR"
+    ],
+    "4th"
+   ],
+   "TE1": [
+    [
+     "TE"
+    ],
+    "most offensive snaps among TEs"
+   ],
+   "TE2": [
+    [
+     "TE"
+    ],
+    "2nd"
+   ],
+   "TE3": [
+    [
+     "TE"
+    ],
+    "3rd"
+   ],
+   "OT1": [
+    [
+     "LT",
+     "RT"
+    ],
+    "most OT snaps"
+   ],
+   "OT2": [
+    [
+     "LT",
+     "RT"
+    ],
+    "2nd"
+   ],
+   "OG1": [
+    [
+     "LG",
+     "RG"
+    ],
+    "most OG snaps"
+   ],
+   "OG2": [
+    [
+     "LG",
+     "RG"
+    ],
+    "2nd"
+   ],
+   "C": [
+    [
+     "C"
+    ],
+    "center snaps"
+   ],
+   "DE1": [
+    [
+     "LEDG",
+     "REDG"
+    ],
+    "most EDGE snaps"
+   ],
+   "DE2": [
+    [
+     "LEDG",
+     "REDG"
+    ],
+    "2nd"
+   ],
+   "DT1": [
+    [
+     "DT"
+    ],
+    "most DT snaps"
+   ],
+   "DT2": [
+    [
+     "DT"
+    ],
+    "2nd"
+   ],
+   "DL5": [
+    [
+     "DT",
+     "LEDG",
+     "REDG"
+    ],
+    "DL snaps beyond the four LineOf slots (the rotation seat)"
+   ],
+   "MIKE": [
+    [
+     "MIKE"
+    ],
+    "MIKE snaps"
+   ],
+   "WILL": [
+    [
+     "WILL"
+    ],
+    "WILL snaps"
+   ],
+   "SAM": [
+    [
+     "SAM"
+    ],
+    "SAM snaps"
+   ],
+   "CB1": [
+    [
+     "CB"
+    ],
+    "most CB snaps"
+   ],
+   "CB2": [
+    [
+     "CB"
+    ],
+    "2nd"
+   ],
+   "CB3": [
+    [
+     "CB"
+    ],
+    "3rd (the NICKEL slot)"
+   ],
+   "DIME": [
+    [
+     "CB",
+     "SS",
+     "FS"
+    ],
+    "DB snaps beyond the six base/nickel DB seats (the 6th DB)"
+   ],
+   "SS": [
+    [
+     "SS"
+    ],
+    "SS snaps"
+   ],
+   "FS": [
+    [
+     "FS"
+    ],
+    "FS snaps"
+   ],
+   "K": [
+    [
+     "K"
+    ],
+    "K snaps (ST events)"
+   ],
+   "P": [
+    [
+     "P"
+    ],
+    "P snaps (ST events)"
+   ]
+  },
+  "shipped_depth_rule": [
+   [
+    "QB",
+    [
+     "QB"
+    ],
+    1
+   ],
+   [
+    "RB1",
+    [
+     "HB",
+     "RB"
+    ],
+    1
+   ],
+   [
+    "RB2",
+    [
+     "HB",
+     "RB"
+    ],
+    2
+   ],
+   [
+    "FB",
+    [
+     "FB"
+    ],
+    1
+   ],
+   [
+    "WR1",
+    [
+     "WR"
+    ],
+    1
+   ],
+   [
+    "WR2",
+    [
+     "WR"
+    ],
+    2
+   ],
+   [
+    "WR3",
+    [
+     "WR"
+    ],
+    3
+   ],
+   [
+    "WR4",
+    [
+     "WR"
+    ],
+    4
+   ],
+   [
+    "TE1",
+    [
+     "TE"
+    ],
+    1
+   ],
+   [
+    "TE2",
+    [
+     "TE"
+    ],
+    2
+   ],
+   [
+    "TE3",
+    [
+     "TE"
+    ],
+    3
+   ],
+   [
+    "OT1",
+    [
+     "LT",
+     "RT"
+    ],
+    1
+   ],
+   [
+    "OT2",
+    [
+     "LT",
+     "RT"
+    ],
+    2
+   ],
+   [
+    "OG1",
+    [
+     "LG",
+     "RG"
+    ],
+    1
+   ],
+   [
+    "OG2",
+    [
+     "LG",
+     "RG"
+    ],
+    2
+   ],
+   [
+    "C",
+    [
+     "C"
+    ],
+    1
+   ],
+   [
+    "DE1",
+    [
+     "LEDG",
+     "REDG"
+    ],
+    1
+   ],
+   [
+    "DE2",
+    [
+     "LEDG",
+     "REDG"
+    ],
+    2
+   ],
+   [
+    "DT1",
+    [
+     "DT"
+    ],
+    1
+   ],
+   [
+    "DT2",
+    [
+     "DT"
+    ],
+    2
+   ],
+   [
+    "MIKE",
+    [
+     "MIKE"
+    ],
+    1
+   ],
+   [
+    "WILL",
+    [
+     "WILL"
+    ],
+    1
+   ],
+   [
+    "SAM",
+    [
+     "SAM"
+    ],
+    1
+   ],
+   [
+    "CB1",
+    [
+     "CB"
+    ],
+    1
+   ],
+   [
+    "CB2",
+    [
+     "CB"
+    ],
+    2
+   ],
+   [
+    "CB3",
+    [
+     "CB"
+    ],
+    3
+   ],
+   [
+    "SS",
+    [
+     "SS"
+    ],
+    1
+   ],
+   [
+    "FS",
+    [
+     "FS"
+    ],
+    1
+   ],
+   [
+    "K",
+    [
+     "K"
+    ],
+    1
+   ],
+   [
+    "P",
+    [
+     "P"
+    ],
+    1
+   ]
+  ],
+  "real_adaptation": {
+   "group_seats_real": {
+    "QB": [
+     "QB"
+    ],
+    "RB": [
+     "RB1",
+     "RB2"
+    ],
+    "HB": [
+     "RB1",
+     "RB2"
+    ],
+    "FB": [
+     "FB"
+    ],
+    "WR": [
+     "WR1",
+     "WR2",
+     "WR3",
+     "WR4"
+    ],
+    "TE": [
+     "TE1",
+     "TE2",
+     "TE3"
+    ],
+    "T": [
+     "OT1",
+     "OT2"
+    ],
+    "OT": [
+     "OT1",
+     "OT2"
+    ],
+    "G": [
+     "OG1",
+     "OG2"
+    ],
+    "OG": [
+     "OG1",
+     "OG2"
+    ],
+    "C": [
+     "C"
+    ],
+    "DE": [
+     "DE1",
+     "DE2"
+    ],
+    "DT": [
+     "DT1",
+     "DT2"
+    ],
+    "NT": [
+     "DT1",
+     "DT2"
+    ],
+    "LB": [
+     "MIKE",
+     "WILL",
+     "SAM"
+    ],
+    "ILB": [
+     "MIKE",
+     "WILL",
+     "SAM"
+    ],
+    "OLB": [
+     "MIKE",
+     "WILL",
+     "SAM"
+    ],
+    "MLB": [
+     "MIKE",
+     "WILL",
+     "SAM"
+    ],
+    "CB": [
+     "CB1",
+     "CB2",
+     "CB3"
+    ],
+    "SS": [
+     "SS"
+    ],
+    "FS": [
+     "FS"
+    ],
+    "S": [
+     "SS",
+     "FS"
+    ],
+    "LT": [
+     "OT1"
+    ],
+    "RT": [
+     "OT2"
+    ],
+    "LG": [
+     "OG1"
+    ],
+    "RG": [
+     "OG2"
+    ],
+    "LEDG": [
+     "DE1"
+    ],
+    "REDG": [
+     "DE2"
+    ],
+    "MIKE": [
+     "MIKE"
+    ],
+    "WILL": [
+     "WILL"
+    ],
+    "SAM": [
+     "SAM"
+    ]
+   },
+   "generic_routes": {
+    "OL": "OL_EXTRA",
+    "DL": "DL5",
+    "DB": "DIME"
+   },
+   "leftover_to_DL5": [
+    "DE",
+    "DT",
+    "LEDG",
+    "NT",
+    "REDG"
+   ],
+   "leftover_to_DIME": [
+    "CB",
+    "FS",
+    "S",
+    "SS"
+   ],
+   "combo_labels": "first token of X/Y is primary",
+   "st_events_excluded": [
+    "K",
+    "K/P",
+    "LS",
+    "P",
+    "PC",
+    "PR"
+   ],
+   "note": "seats mirror the shipped GROUP_SEATS per specific label; only the genuinely generic real labels are routed (generic OL->OL_EXTRA, DL->DL5, DB->DIME; S covers the SS/FS pair, which the Ledger stages at 1.0/1.0); the adapter is equivalence-checked against the shipped mapper on the synthetic files"
+  }
+ }
+}

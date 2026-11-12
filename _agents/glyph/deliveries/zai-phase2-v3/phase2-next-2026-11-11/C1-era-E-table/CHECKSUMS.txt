@@ -1,0 +1,13 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+fc9c2573e0e16cd03cce666e9a1f3c94be250efdca2795ab6d7a64a1f221d4fb       7766  C1-ERA-E-TABLE-2026-11-12.md
+d950c3ed4c220318e7c4d7b40f79b1301e4653a036f6d47703307541935baf73       9422  b1_fb_2020_diagnose.py
+c20d85ca6311248ca23d5e7d265f8ae706440ea0bcdc4f36ec17df9b86210fce      18663  c1_era_e_table.json
+b3bb5dae13e2cad62ecf567357883f11817db31395f99bb2f9791b33a5b451f0      19195  c1_era_e_table.py
+e82f0cca6fabf55a647736a4d61ab3b5b1b2e2afa699b863e69468dde9c76df4      67903  c1_per_team_e_input.csv
+4d27efe6c72d2ad82c54e29e3f7a063f6ef2387ef4d327c81f254bbbadd68f54       4205  run_log_c1.txt

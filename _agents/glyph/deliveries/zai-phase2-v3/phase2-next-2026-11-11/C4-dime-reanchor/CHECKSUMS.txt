@@ -1,0 +1,12 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+bec7d2249fd09802ab7c498af75cff45ee463614ac294af394ecb4fd537d6ab2       6449  C4-DIME-REANCHOR-2026-11-12.md
+0877f27086648e7aaaf4a94466bd4dd1dd2a3d327884183251309e21438846b8      11152  c4_dime_reanchor.py
+9c92a4b2ce2bdb4daa037d5b85e4fcefcbb08c959677352edd0314596e01b043       1505  c4_dime_situation_table.csv
+ad55cc9bee49ecb2176a9abfe787742ab3498e6e81059a080f1b7773bdec1279      14970  c4_dime_tables.json
+64a450d38211ee530a1c5f8ac26cd569f2388513e0a7f03351c82463399915da       1984  run_log_c4.txt
