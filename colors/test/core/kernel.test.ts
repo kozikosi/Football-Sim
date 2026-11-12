@@ -8,10 +8,52 @@ import type { Fold } from '../../src/core/fold.ts';
 import { makePack, packHash, verifyPack } from '../../src/core/pack.ts';
 
 // ---- keyed RNG ----
+// Source of the vectors: Random123 tests/kat_vectors (github.com/DEShawResearch/random123), the lines `philox2x32 10 <ctr0> <ctr1> <key>`.
+// Source of the constants: Random123 include/Random123/philox.h: PHILOX_M2x32_0 = 0xd256d193 (Philox2x32), PHILOX_W32_0 = 0x9E3779B9.
+// 0xD2511F53 is PHILOX_M4x32_0, the multiplier of Philox4x32 (TensorFlow, cuRAND), NOT of Philox2x32. Checked 11 Nov 2026 against the
+// published files after MUSE reported M0 as wrong; the reference below uses BigInt and shares no code with keyedrng.ts.
 test('philox2x32-10 matches the Random123 known-answer vectors', () => {
   assert.deepEqual(philox2x32(0, 0, 0), [0xff1dae59, 0x6cd10df2]);
   assert.deepEqual(philox2x32(0xffffffff, 0xffffffff, 0xffffffff), [0x2c3f628b, 0xab4fd7ad]);
   assert.deepEqual(philox2x32(0x243f6a88, 0x85a308d3, 0x13198a2e), [0xdd7ce038, 0xf62a4c12]);
+});
+const MASK32 = 0xffffffffn;
+function refPhilox2x32(c0: number, c1: number, k: number, rounds = 10): [number, number] {
+  const M = 0xd256d193n, W = 0x9e3779b9n;
+  let x0 = BigInt(c0), x1 = BigInt(c1), key = BigInt(k);
+  for (let r = 0; r < rounds; r++) {
+    const p = M * x0;
+    x0 = ((p >> 32n) ^ key ^ x1) & MASK32;
+    x1 = p & MASK32;
+    key = (key + W) & MASK32;
+  }
+  return [Number(x0), Number(x1)];
+}
+function refPhilox4x32(ctr: number[], key: number[], rounds = 10): number[] {
+  const MA = 0xd2511f53n, MB = 0xcd9e8d57n, WA = 0x9e3779b9n, WB = 0xbb67ae85n;
+  let [x0, x1, x2, x3] = ctr.map(BigInt) as [bigint, bigint, bigint, bigint];
+  let [k0, k1] = key.map(BigInt) as [bigint, bigint];
+  for (let r = 0; r < rounds; r++) {
+    const pa = MA * x0, pb = MB * x2;
+    [x0, x1, x2, x3] = [((pb >> 32n) ^ x1 ^ k0) & MASK32, pb & MASK32, ((pa >> 32n) ^ x3 ^ k1) & MASK32, pa & MASK32];
+    k0 = (k0 + WA) & MASK32; k1 = (k1 + WB) & MASK32;
+  }
+  return [x0, x1, x2, x3].map(Number);
+}
+test('independent BigInt reference reproduces the published Philox2x32 and Philox4x32 vectors (so the reference itself is trusted)', () => {
+  assert.deepEqual(refPhilox2x32(0, 0, 0), [0xff1dae59, 0x6cd10df2]);
+  assert.deepEqual(refPhilox2x32(0xffffffff, 0xffffffff, 0xffffffff), [0x2c3f628b, 0xab4fd7ad]);
+  assert.deepEqual(refPhilox2x32(0, 0, 0, 7), [0x257a3673, 0xcd26be2a]);
+  assert.deepEqual(refPhilox4x32([0, 0, 0, 0], [0, 0]), [0x6627e8d5, 0xe169c58d, 0xbc57ac4c, 0x9b00dbd8]);
+  assert.deepEqual(refPhilox4x32([0xffffffff, 0xffffffff, 0xffffffff, 0xffffffff], [0xffffffff, 0xffffffff]), [0x408f276d, 0x41c83b0e, 0xa20bc7c6, 0x6d5451fd]);
+  assert.deepEqual(refPhilox4x32([0x243f6a88, 0x85a308d3, 0x13198a2e, 0x03707344], [0xa4093822, 0x299f31d0]), [0xd16cfe09, 0x94fdcceb, 0x5001e420, 0x24126ea1]);
+});
+test('production philox2x32 (16-bit limb multiply) equals the BigInt reference on 20,000 inputs incl. edge words', () => {
+  const edge = [0, 1, 0xffff, 0x10000, 0x7fffffff, 0x80000000, 0xfffffffe, 0xffffffff, 0xd256d193, 0x9e3779b9];
+  for (const a of edge) for (const b of edge) for (const k of [0, 0xffffffff, 0x9e3779b9]) assert.deepEqual(philox2x32(a, b, k), refPhilox2x32(a, b, k));
+  let s = 0x12345678;
+  const nx = () => { s = (Math.imul(s, 1664525) + 1013904223) >>> 0; return s; };
+  for (let i = 0; i < 20000; i++) { const a = nx(), b = nx(), k = nx(); assert.deepEqual(philox2x32(a, b, k), refPhilox2x32(a, b, k)); }
 });
 test('draw is a pure function of (key, event, tag, n) and lies in [0,1)', () => {
   const k = gameKeyOf(12345);
