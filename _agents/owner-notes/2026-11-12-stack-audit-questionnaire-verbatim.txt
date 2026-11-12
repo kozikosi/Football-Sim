@@ -1,0 +1,807 @@
+Owner message — complete technical-stack audit questionnaire
+Recorded by MUSE, 2026-11-12 01:11 HST. KG's full questionnaire, recorded
+verbatim as received (including the 485 questions, the decision board, the
+25 priority questions, and the four deliverables he wants produced). The
+answers are in the companion documents:
+`_agents/muse/deliveries/stack-audit-priority-answers-2026-11-12.md` (the 25
+priority questions, verified) and
+`_agents/muse/deliveries/stack-audit-deliverables-2026-11-12.md` (the four
+deliverables: current-state inventory, target-stack draft, unresolved
+decisions register, agent implementation rules draft).
+
+--- Begin verbatim (KG, 2026-11-12 01:11 HST) ---
+
+I want to approach this as a complete technical-stack audit of Football-Sim, not a discussion about abstract software architecture.
+
+The goal is to establish exactly what you're using, what you've installed but aren't using, what you've committed to, what you're considering, and what remains undecided. I want to cover the entire development and deployment environment—not just the frontend.
+
+I'm deliberately including questions whose answers I already have. Some of those answers may be outdated, partially implemented, or different between Colors, Cakepanz, and the framework experiments. I'd rather establish one accurate inventory than build recommendations on assumptions.
+
+# Football-Sim: Complete architecture and technology questionnaire
+
+How to answer
+
+For each question, give me:
+
+- Current: What is actually implemented?
+- Intended: What do you want to use?
+- Decision: Locked, preferred, undecided, or willing to change?
+
+You don't need to write essays. Short answers are fine. If you don't know, say "don't know." That's useful information too.
+
+Important: When I say current, I mean the actual repository and its dependencies—not merely what an agent recommended or what appears in a planning document.
+
+## Part 1 — Project repositories and source control
+
+First, I want to establish exactly which codebases and branches we're talking about.
+
+1. Is `github.com/kozikosi/Football-Sim` still the primary repository?
+2. Is the original single-file HTML simulator preserved in that repository?
+3. Is the friend's Next.js project (`aled1027/football-sim-nextjs`) still being maintained separately?
+4. Are Colors and Cakepanz both branches or experiments within the same repository, or are they separate working environments?
+5. Which branch is currently considered the authoritative implementation?
+6. Which branch contains the latest working NFL simulator?
+7. Which branch contains the latest architectural decisions?
+8. Are Claude, Z.ai, Muse, and other agents working on separate branches?
+9. Do agents have permission to push directly to shared branches?
+10. Do you use pull requests, or do agents push commits directly?
+11. Is `main` protected?
+12. Do you require code review before merging?
+13. Do you use GitHub Issues, Projects, Discussions, or another task-management system?
+14. Do you maintain architecture decisions in Markdown files?
+15. Is there a single authoritative document explaining the current stack?
+16. Do you use Git tags or releases to identify stable versions?
+17. Do you have a reliable way to recover the last known-good version?
+
+Known information to confirm: The project has used `github.com/kozikosi/Football-Sim`, with a Colors implementation and a Cakepanz experiment. There has also been a separate private Next.js refactor.
+
+## Part 2 — Programming languages and runtimes
+
+18. Is TypeScript the primary language throughout the new application?
+19. Is any JavaScript still used for application logic?
+20. Are any parts of the original simulator still plain JavaScript?
+21. Is TypeScript configured in strict mode?
+22. Do you use `.ts` files for the simulation engine and `.svelte` files for the UI?
+23. Are there any `.tsx` or `.jsx` files?
+24. Is React actually required in the current Svelte implementation?
+25. Is React 19 only installed for framework adapters and experiments?
+26. Are there any Python scripts in the repository?
+27. Are there any other languages involved, such as Rust, Go, or C++?
+28. Which Node.js version do you target?
+29. Do you pin the Node version in `.nvmrc`, `.node-version`, `package.json`, or elsewhere?
+30. Do you use a particular TypeScript compiler version?
+31. Do you use a runtime type-validation library such as Zod, Valibot, or ArkType?
+32. Are types generated automatically from schemas, or maintained manually?
+33. Do you use Web Workers, Shared Workers, or Service Workers?
+34. Do you use WebAssembly anywhere?
+
+Known information to confirm: The current Colors track uses Svelte 5 and Vite 8, while Cakepanz uses Vite 7. The project has adopted a framework-independent TypeScript engine as an architectural direction.
+
+## Part 3 — Frontend framework and application framework
+
+This is the area where your friend's advice and the framework experiment intersect.
+
+35. Is the actual application SvelteKit, or Svelte with Vite?
+36. If SvelteKit, which version?
+37. If not, is SvelteKit still the intended application framework?
+38. Are you using Svelte 5 runes?
+39. Are you using Svelte stores?
+40. Are you using SvelteKit's routing system?
+41. Are you using server-side rendering (SSR)?
+42. Is prerendering enabled for any routes?
+43. Is the application currently a single-page application?
+44. Do you use SvelteKit server load functions?
+45. Do you use SvelteKit form actions?
+46. Do you use API routes or server endpoints?
+47. Does the application currently have any server-side code?
+48. Do you intend to run the simulation in the browser, on the server, or both?
+49. Is the framework experiment comparing SvelteKit, React, and Vue/Nuxt?
+50. Is React being tested with Next.js, Vite, or another framework?
+51. Is Vue being tested with Nuxt?
+52. Are you still willing to reconsider Svelte if another framework performs substantially better?
+53. Is the decision to use Svelte 5 + Vite currently locked pending the experiment?
+54. Are you using any framework-specific component libraries?
+55. Do you use Svelte-specific animation or transition libraries?
+
+## Part 4 — CSS, styling, design systems, and UI components
+
+This is a particularly important section because styling decisions can become difficult to reverse.
+
+56. Are you using plain CSS?
+57. Are you using CSS modules?
+58. Are you using Sass or SCSS?
+59. Are you using Tailwind CSS?
+60. Are you using UnoCSS?
+61. Are you using Bootstrap?
+62. Are you using Bulma?
+63. Are you using another utility-first CSS framework?
+64. Are you using a component library such as Skeleton, shadcn-svelte, DaisyUI, Flowbite, or Bits UI?
+65. Are you using a headless component library?
+66. Are you using a CSS-in-JS library?
+67. Are you using a design-token system?
+68. Are colors, typography, spacing, radii, and other design decisions centrally defined?
+69. Are CSS variables used for themes?
+70. Do you support dark mode?
+71. Do you support light mode?
+72. Is there a single shared design system across the application?
+73. Are buttons, dropdowns, modals, tooltips, tabs, and other controls reusable components?
+74. Are you using Lucide icons, Font Awesome, Heroicons, Material Icons, or another icon library?
+75. Are icons stored as SVG files or imported from a package?
+76. Are you using a charting library such as Chart.js, D3, ECharts, or Recharts?
+77. Are you using a table library such as TanStack Table?
+78. Are you using a drag-and-drop library?
+79. Are you using a virtualized list or table library?
+80. Do you use a dedicated typography or font package?
+81. Are fonts self-hosted or loaded externally?
+82. Are you using CSS animations, a motion library, or both?
+83. Are you using any third-party UI templates or starter kits?
+
+Known information to confirm: The current implementation reportedly does not use Tailwind. I don't yet have a complete inventory of its CSS or component dependencies.
+
+## Part 5 — Build tools, bundlers, and development environment
+
+84. Is Vite the only bundler/build tool?
+85. Is SvelteKit using Vite internally?
+86. Are you using Rollup directly?
+87. Are you using esbuild directly?
+88. Are you using SWC?
+89. Are you using Turbopack anywhere?
+90. Are you using Webpack?
+91. Are you using any custom build scripts?
+92. Do you use Vite plugins beyond the standard Svelte plugin?
+93. Do you use a separate production build configuration?
+94. Do you use source maps in production?
+95. Do you have code splitting configured?
+96. Do you use dynamic imports or lazy loading?
+97. Do you have bundle-size reporting?
+98. Do you use a development server proxy?
+99. Do you have environment-specific configurations?
+100. Do you have separate configurations for local development, testing, and production?
+101. Do you use any custom Node scripts to generate data or assets?
+102. Do you have a standard local development command that every agent uses?
+
+Known information to confirm: Colors uses Vite `^8.3.6`; Cakepanz uses Vite `^7.3.6`. I would like to know whether the version discrepancy is intentional or incidental.
+
+## Part 6 — Package management and dependencies
+
+103. Are you using pnpm?
+104. If not, are you using npm or Yarn?
+105. Is there one authoritative lockfile?
+106. Are dependencies pinned or specified using version ranges?
+107. Do you use `package-lock.json`, `pnpm-lock.yaml`, or `yarn.lock`?
+108. Do you use a monorepo?
+109. Are you using pnpm workspaces?
+110. Do you intend to avoid workspaces?
+111. Are there multiple `package.json` files?
+112. Are frontend and engine dependencies in the same package?
+113. Do you use dependency overrides or resolutions?
+114. Do you use Renovate or Dependabot?
+115. Are dependency updates automated?
+116. Do you have a policy for adding new dependencies?
+117. Do you track dependency licenses?
+118. Do you audit dependencies for known vulnerabilities?
+119. Do you have a way to identify unused dependencies?
+120. Do you have a way to identify unnecessarily large dependencies?
+121. Do you have a rule against paid dependencies or services?
+122. Are there any dependencies that require API keys?
+123. Are there any dependencies that require paid accounts?
+124. Are all agents required to use the same lockfile and package manager?
+
+## Part 7 — Linting, formatting, and static analysis
+
+125. Are you currently using Biome?
+126. Is Biome 2.6.2 still the version in use?
+127. Are you using ESLint?
+128. Are you using Prettier?
+129. Are you using both ESLint and Prettier?
+130. Are you using `eslint-plugin-svelte`?
+131. Do you use `svelte-check`?
+132. Do you use TypeScript's `tsc —noEmit`?
+133. Do you run formatting checks automatically?
+134. Do you run linting automatically?
+135. Do you have rules that prohibit `Math.random()`?
+136. Do you have rules that prohibit `Date.now()` or uncontrolled use of `new Date()` in the engine?
+137. Do you prohibit browser APIs inside the engine?
+138. Do you prohibit framework imports inside the engine?
+139. Are there any custom lint rules?
+140. Do you use pre-commit hooks?
+141. Do you use Husky?
+142. Do you use lint-staged?
+143. Are agents required to run linting and type checking before committing?
+
+Known information to confirm: Biome 2.6.2 has been used successfully. Your friend recommended ESLint and Prettier. I would like to know whether Biome is now the actual standard or whether the project is considering changing.
+
+## Part 8 — Testing frameworks and quality assurance
+
+144. Are you using Node's built-in test runner?
+145. Are you using Vitest?
+146. Are you using Jest?
+147. Are you using Playwright?
+148. Are you using Cypress?
+149. Are you using Testing Library?
+150. Are you using browser-based integration tests?
+151. Are you using visual regression tests?
+152. Do you test individual engine functions?
+153. Do you test complete simulated games?
+154. Do you test complete seasons?
+155. Do you test draft simulations?
+156. Do you test playoff simulations?
+157. Do you have deterministic fixtures?
+158. Do you have golden-file or snapshot regression tests?
+159. Do you test statistical distributions over large simulation samples?
+160. Do you test edge cases such as injuries, empty rosters, ties, and unusual player ratings?
+161. Do you test save/load compatibility?
+162. Do you test browser storage failures?
+163. Do you test UI interactions?
+164. Do you test accessibility?
+165. Do you measure test coverage?
+166. Do you have a minimum coverage requirement?
+167. Do you run tests before every commit?
+168. Do you run a longer simulation test suite nightly?
+169. Are test failures recorded in a centralized location?
+170. Are there tests that must pass before a change can be merged?
+
+Known information to confirm: Both Colors and Cakepanz have used Node's built-in test runner with `node --test --experimental-strip-types`. There is no confirmed Vitest setup.
+
+One particularly important detail: Node's TypeScript stripping is not the same as TypeScript type checking. Do you currently run a separate type-checking step?
+
+## Part 9 — CI/CD, GitHub Actions, and release process
+
+171. Are GitHub Actions currently configured?
+172. Is there a `.github/workflows` directory?
+173. Do you have a CI pipeline on every pull request?
+174. Do you run tests on every push?
+175. Do you run type checking on every push?
+176. Do you run a production build on every pull request?
+177. Do you run formatting and linting in CI?
+178. Do you run browser tests in CI?
+179. Do you have required status checks?
+180. Do you automatically deploy successful builds?
+181. Do you have separate preview deployments?
+182. Do you deploy from `main`?
+183. Do you have a staging environment?
+184. Do you have a production environment?
+185. Do you use GitHub Environments?
+186. Do you store deployment secrets in GitHub?
+187. Do you use Dependabot?
+188. Do you use GitHub Actions caching?
+189. Do you pin GitHub Actions to immutable commit SHAs?
+190. Do you have scheduled nightly or weekly jobs?
+191. Do you have a release process?
+192. Do you have rollback procedures?
+193. Can an agent deploy directly to production?
+194. Should agents be allowed to deploy, or should deployment require human approval?
+
+Known information to confirm: There were no GitHub Actions workflows on the architect branch or main in the November 12 inspection. CI tagging had been approved, but no CI job was implemented at that point.
+
+## Part 10 — Hosting, deployment, and compute
+
+195. Is Cloudflare Pages the intended deployment platform?
+196. Are you using Cloudflare Workers?
+197. Are you using the Cloudflare SvelteKit adapter?
+198. Are you using Cloudflare's static asset hosting?
+199. Are you using another hosting provider?
+200. Have you deployed the current Svelte application?
+201. Is the application publicly accessible?
+202. Do you own a custom domain?
+203. Do you use a separate development domain?
+204. Do you use preview deployments for branches?
+205. Do you use Cloudflare DNS?
+206. Do you use Cloudflare CDN?
+207. Do you use Cloudflare caching rules?
+208. Do you use Cloudflare security features?
+209. Do you use Cloudflare Turnstile?
+210. Do you have server-side execution in Cloudflare Workers?
+211. Does the simulator currently execute entirely in the browser?
+212. Do you want server-side simulation execution eventually?
+213. Do you intend to use Web Workers for CPU-intensive simulation tasks?
+214. Do you use background jobs?
+215. Do you need long-running tasks?
+216. Do you need scheduled jobs?
+217. Do you need real-time connections?
+218. Do you anticipate multiplayer or shared leagues?
+219. Are there execution-time limits that concern you?
+220. Is avoiding all recurring infrastructure costs a hard requirement?
+221. Are you willing to pay for hosting if the product becomes successful?
+222. Are you comfortable with Cloudflare-specific services, or do you prefer portability across providers?
+
+## Part 11 — Databases, storage, and persistence
+
+This is a major section because your original product is local-first.
+
+223. Are you currently using localStorage?
+224. Is all save data stored in localStorage?
+225. Do you use IndexedDB?
+226. Is IndexedDB merely a future possibility?
+227. Do you use the Cache API?
+228. Do you use browser cookies?
+229. Do you use sessionStorage?
+230. Do you have an abstraction layer around browser storage?
+231. Is there a platform storage adapter?
+232. Are there multiple storage adapters?
+233. Are saves stored as JSON?
+234. Do you version save files?
+235. Do you have save migrations?
+236. Do you validate save data when loading?
+237. Do you have multiple save slots?
+238. Are there three save slots as previously planned?
+239. Do global statistics persist independently of save deletion?
+240. Do you support importing saves?
+241. Do you support exporting saves?
+242. Do you support sharing a season through text?
+243. Do you have autosave?
+244. Do you have manual save?
+245. Do you have a recovery mechanism after a failed save?
+246. Do you protect against corrupted save data?
+247. Do you protect against browser storage quota limits?
+248. Do you handle multiple tabs modifying the same save?
+249. Do you have a backup strategy?
+250. Do you want cloud saves eventually?
+251. Do you anticipate a relational database?
+252. Would Cloudflare D1 be your preferred database?
+253. Would you use PostgreSQL?
+254. Would you use SQLite?
+255. Would you use Turso or another SQLite-compatible service?
+256. Would you use Drizzle ORM?
+257. Would you use Prisma?
+258. Would you use a database without an ORM?
+259. Would you use a database only for user accounts and shared leagues?
+260. Would you consider a database unnecessary until multiplayer or cloud saves exist?
+
+Known information to confirm: The current implementation uses localStorage through a platform adapter. IndexedDB appears in comments as a possible future replacement, not as an active implementation.
+
+## Part 12 — Authentication, accounts, and user management
+
+261. Does the application currently have authentication?
+262. Does it have user accounts?
+263. Do you intend to require accounts?
+264. Is the initial release intended to work without accounts?
+265. Would you support Google login?
+266. Would you support Apple login?
+267. Would you support email/password?
+268. Would you use Auth.js?
+269. Would you use another authentication provider?
+270. Would you use Cloudflare's authentication ecosystem?
+271. Do you anticipate multiple users sharing leagues?
+272. Would you need roles such as commissioner, player, and spectator?
+273. Would you need account recovery?
+274. Would you need email verification?
+275. Would you need account deletion?
+276. Would you need data export?
+277. Would you need privacy controls?
+278. Would you want to avoid storing personally identifiable information altogether?
+
+## Part 13 — Networking, APIs, and real-time features
+
+279. Does the current app make any external API calls?
+280. Does it use any third-party APIs?
+281. Does it use any API keys?
+282. Does it fetch player data remotely?
+283. Is the player database bundled with the application?
+284. Do you use REST APIs?
+285. Do you use GraphQL?
+286. Do you use tRPC?
+287. Do you use server actions?
+288. Do you have any custom backend endpoints?
+289. Do you use WebSockets?
+290. Do you use HTTP polling?
+291. Do you use Server-Sent Events?
+292. Do you use a message queue?
+293. Do you anticipate real-time multiplayer?
+294. Do you anticipate live draft rooms?
+295. Do you anticipate shared leagues?
+296. Do you anticipate users exchanging season data?
+297. Do you need a public API for third-party integrations?
+298. Do you need rate limiting?
+299. Do you need API authentication?
+300. Do you want to avoid external dependencies and APIs wherever possible?
+
+## Part 14 — Data architecture and sports data
+
+301. Where is the NFL player database stored?
+302. Is it JSON?
+303. Is it TypeScript?
+304. Is it CSV?
+305. Is it generated from another source?
+306. Is player data imported during the build?
+307. Is player data loaded dynamically?
+308. Are player ratings stored separately from player biographical information?
+309. Are player IDs stable?
+310. Do you have a schema for player data?
+311. Do you validate the player database?
+312. Do you maintain separate historical and current player datasets?
+313. Are historical seasons snapshots?
+314. Are completed seasons independent of the current player database?
+315. Do you have a data version number?
+316. Do you have a source attribution system for player data?
+317. Do you use any third-party data feeds?
+318. Do you have scripts for generating player ratings?
+319. Do you have scripts for importing or transforming data?
+320. Do you have a database of historical NFL statistics?
+321. Do you use any external statistical datasets?
+322. Are player ratings manually curated?
+323. Do you have a separate ratings-calibration process?
+324. Do you anticipate a separate basketball player database?
+325. Do you want NFL and basketball to share a common data format where possible?
+
+## Part 15 — Simulation compute, performance, and concurrency
+
+326. Does the engine currently run synchronously on the main browser thread?
+327. Does it ever freeze or noticeably slow the UI?
+328. Do you use Web Workers?
+329. Do you use `requestIdleCallback`?
+330. Do you use chunked simulation?
+331. Do you use streaming results?
+332. Do you have performance benchmarks?
+333. Do you measure the time required to simulate one game?
+334. Do you measure the time required to simulate one season?
+335. Do you measure the time required to simulate thousands of seasons?
+336. Do you have memory-usage benchmarks?
+337. Do you profile the application in Chrome DevTools?
+338. Do you use a profiling library?
+339. Do you use a performance monitoring service?
+340. Do you use memoization?
+341. Do you use caching?
+342. Do you have a deterministic random-number generator?
+343. Do you have independent random streams for games and draft picks?
+344. Is randomness passed into engine functions explicitly?
+345. Can a simulation be replayed from a saved seed?
+346. Do you have performance targets?
+347. Do you expect the simulator to eventually run large batches of seasons?
+348. Would you prefer to keep compute in the browser as long as possible?
+349. Would you move compute to the server only when necessary?
+
+Known information to confirm: Colors has used seeded random-number generation with `mulberry32` and separate streams for games and draft picks. The earlier architecture rules prohibit uncontrolled `Math.random()` and time-dependent behavior in the engine.
+
+## Part 16 — State management and application data flow
+
+350. Does the application use Svelte stores?
+351. Does it use Svelte 5 runes?
+352. Does it use a separate state-management library?
+353. Do you use Redux?
+354. Do you use Zustand?
+355. Do you use TanStack Query?
+356. Do you use XState?
+357. Do you use a custom state-management system?
+358. Is the engine state separate from UI state?
+359. Is there a centralized application store?
+360. Is there a centralized save-state store?
+361. Are UI components allowed to modify engine state directly?
+362. Does the application use explicit commands and events?
+363. Do you use immutable state updates?
+364. Do you have an undo/redo system?
+365. Do you have a history of user actions?
+366. Do you have a central navigation state?
+367. Do you use URL query parameters to preserve application state?
+368. Do you use browser history for navigation between simulator screens?
+
+## Part 17 — Security, privacy, and reliability
+
+369. Do you have a Content Security Policy?
+370. Do you use security headers?
+371. Do you have dependency vulnerability scanning?
+372. Do you have automated secret scanning?
+373. Do you use GitHub secret scanning?
+374. Do you store any secrets in environment variables?
+375. Are environment variables separated by development and production?
+376. Do you have a process for handling leaked API keys?
+377. Do you have input validation for imported saves?
+378. Do you sanitize user-generated text?
+379. Do you have protections against malicious imported files?
+380. Do you have a privacy policy?
+381. Do you collect any user analytics?
+382. Do you use Google Analytics?
+383. Do you use PostHog?
+384. Do you use Sentry?
+385. Do you use another error-reporting service?
+386. Do you collect crash reports?
+387. Do you log errors locally?
+388. Do you have a mechanism for users to report bugs?
+389. Do you have a policy for collecting no personal data?
+390. Do you want to avoid third-party tracking entirely?
+
+## Part 18 — Accessibility, browser support, and compatibility
+
+391. Which browsers do you officially support?
+392. Do you support Chrome?
+393. Do you support Safari?
+394. Do you support Firefox?
+395. Do you support Edge?
+396. Do you support mobile browsers?
+397. Is the application desktop-first?
+398. Is mobile support a requirement?
+399. Do you use responsive CSS breakpoints?
+400. Do you test on actual mobile devices?
+401. Do you support keyboard-only navigation?
+402. Do you support screen readers?
+403. Do you use semantic HTML?
+404. Do you test WCAG accessibility?
+405. Do you use automated accessibility testing?
+406. Do you support reduced-motion preferences?
+407. Do you support high-contrast modes?
+408. Do you have a minimum supported screen size?
+409. Do you support installation as a Progressive Web App (PWA)?
+410. Do you want offline functionality?
+
+## Part 19 — Developer experience and AI-agent tooling
+
+This section is especially important because your development process relies heavily on coding agents.
+
+411. Which agents are currently authorized to modify the repository?
+412. Do Claude Code, Z.ai, Muse, and other agents all use the same development instructions?
+413. Do you maintain `CLAUDE.md`?
+414. Do you maintain `AGENTS.md`?
+415. Do you maintain agent-specific instruction files?
+416. Do you have a common project instruction file?
+417. Do you have a standard procedure for agents to inspect the repository before making changes?
+418. Do agents have access to the same test commands?
+419. Do agents have access to the same build environment?
+420. Do you use MCP servers?
+421. Do you use GitHub MCP?
+422. Do you use Figma MCP?
+423. Do you use other MCP integrations?
+424. Do you use Claude Code hooks?
+425. Do you use Claude Code skills?
+426. Do you use custom agent scripts?
+427. Do you use a task orchestration system?
+428. Do agents run tests independently?
+429. Do agents have permission to install dependencies?
+430. Do agents have permission to change the framework?
+431. Do agents have permission to change the build system?
+432. Do agents have permission to alter engine contracts?
+433. Do you require agents to report every file changed?
+434. Do you require agents to explain architectural consequences?
+435. Do you require agents to report which tests were run?
+436. Do you require agents to report known limitations?
+437. Do you have a standard code-review checklist?
+438. Do you use automated review agents?
+439. Do you have a process for resolving disagreements between agents?
+440. Do you maintain a central decision log?
+441. Do you maintain a central project memory document?
+442. Do you have a standard reboot procedure when an AI conversation becomes too long?
+443. Do you want every agent to be able to understand the architecture without access to prior conversations?
+
+## Part 20 — Command-line tools and local developer environment
+
+444. Do you use GitHub Desktop?
+445. Do you use the Git command line?
+446. Do you use VS Code?
+447. Do you use Cursor?
+448. Do you use another IDE?
+449. Do you use a terminal such as macOS Terminal, iTerm2, or Warp?
+450. Do you use Homebrew?
+451. Do you use `nvm`, `fnm`, `Volta`, or another Node version manager?
+452. Do you use pnpm globally?
+453. Do you have standard npm scripts for development, testing, linting, formatting, type checking, and building?
+454. Do you use a CLI for Cloudflare deployment, such as Wrangler?
+455. Do you use the GitHub CLI (`gh`)?
+456. Do you use any database CLI?
+457. Do you use Docker?
+458. Do you use Dev Containers?
+459. Do you use a `.devcontainer` configuration?
+460. Can a new developer or AI agent set up the project using a documented sequence of commands?
+461. Can the entire project be built and tested locally without paid services or API keys?
+462. Do you have a one-command setup process?
+463. Do you have a one-command verification process?
+
+## Part 21 — Future product capabilities that affect tooling
+
+These are not questions about the game's rules. They're questions about which technical systems the product may eventually require.
+
+464. Will the application remain a single-user simulator?
+465. Will users eventually have accounts?
+466. Will users eventually share leagues?
+467. Will you eventually support online multiplayer?
+468. Will you eventually support live drafts with multiple participants?
+469. Will you eventually support league commissioners?
+470. Will you eventually support imported/exported leagues?
+471. Will you eventually support community-created player databases?
+472. Will you eventually support modding?
+473. Will you eventually support user-created rules?
+474. Will you eventually support custom sports?
+475. Will you eventually support basketball?
+476. Will basketball be implemented as a separate engine?
+477. Will there be a common application shell for multiple sports?
+478. Will users be able to switch between sports without separate applications?
+479. Will users be able to share simulations publicly?
+480. Will there be leaderboards?
+481. Will there be cloud-based historical statistics?
+482. Will you need a public API?
+483. Will you need an administrative interface?
+484. Will you need a separate data-management application?
+485. Will you eventually need background simulation jobs?
+
+# Part 22 — Specific technology choices: your decision board
+
+This is a condensed list of the most consequential technology choices. It is useful to see them together rather than buried in 485 questions.
+
+For each, we should ultimately identify one of four statuses: current, intended, undecided, or rejected.
+
+| Area                  | Technology / choice to establish            |
+| --------------------- | ————————————————————— |
+| Language              | TypeScript / JavaScript                     |
+| Runtime               | Node.js / browser                           |
+| Frontend framework    | Svelte / React / Vue                        |
+| Application framework | SvelteKit / Next.js / Nuxt / other          |
+| CSS                   | Plain CSS / SCSS / CSS Modules              |
+| CSS framework         | Tailwind / UnoCSS / Bootstrap / none        |
+| UI components         | Bits UI / shadcn-svelte / Skeleton / custom |
+| Icons                 | Lucide / Heroicons / Font Awesome / custom  |
+| Charts                | D3 / Chart.js / ECharts / other             |
+| Bundler               | Vite / Webpack / other                      |
+| Compiler              | TypeScript / SWC / esbuild                  |
+| Package manager       | pnpm / npm / Yarn                           |
+| Monorepo              | Single package / workspaces                 |
+| Linter                | Biome / ESLint                              |
+| Formatter             | Biome / Prettier                            |
+| Type checking         | `tsc` / framework-specific checks           |
+| Unit testing          | Node test runner / Vitest / Jest            |
+| Browser testing       | Playwright / Cypress                        |
+| CI                    | GitHub Actions / other                      |
+| Hosting               | Cloudflare / Vercel / Netlify / other       |
+| Compute               | Browser / Workers / Node server             |
+| Database              | None / D1 / PostgreSQL / SQLite             |
+| ORM                   | Drizzle / Prisma / none                     |
+| Browser storage       | localStorage / IndexedDB                    |
+| Authentication        | None / Auth.js / other                      |
+| API                   | REST / GraphQL / tRPC / none                |
+| Real-time             | None / WebSockets / polling / SSE           |
+| Background jobs       | None / Workers / queue                      |
+| Error monitoring      | None / Sentry / other                       |
+| Analytics             | None / PostHog / other                      |
+| Security              | CSP / secret scanning / dependency auditing |
+| PWA                   | Yes / no                                    |
+| Containers            | Docker / none                               |
+| AI development        | Claude Code / Z.ai / Muse / other           |
+
+# Part 23 — The questions I most need answered first
+
+I know this is a lot. I don't expect you to answer all 485 questions in one sitting.
+
+But there are 25 questions that would let me establish the most important part of your actual stack and identify where the largest decisions remain.
+
+Priority questionnaire
+
+0/25 answered
+
+1\. Application framework
+
+Is the actual app SvelteKit, or Svelte + Vite without SvelteKit?
+
+2\. Svelte version
+
+Is Svelte 5 the current production implementation?
+
+3\. React dependency
+
+Why is React 19 installed in Colors, and is it used in production?
+
+4\. Vue experiment
+
+Is the Vue prototype Nuxt or Vue + Vite?
+
+5\. CSS
+
+What styling system is actually being used?
+
+6\. UI library
+
+Are you using a component library or building components yourself?
+
+7\. Icons
+
+Which icon library is installed?
+
+8\. Charts
+
+Which charting library, if any, is installed?
+
+9\. Package manager
+
+Are you using pnpm, npm, or Yarn?
+
+10\. Workspaces
+
+Is this a single-package project?
+
+11\. Linting
+
+Is Biome the current standard, or are you using ESLint?
+
+12\. Formatting
+
+Is formatting handled by Biome or Prettier?
+
+13\. Type checking
+
+Does CI or your local workflow run tsc --noEmit and svelte-check?
+
+14\. Tests
+
+Is Node's built-in test runner still the only test framework?
+
+15\. Browser tests
+
+Are Playwright or Cypress installed?
+
+16\. CI
+
+Have GitHub Actions workflows been implemented yet?
+
+17\. Hosting
+
+Is Cloudflare Pages the intended deployment target?
+
+18\. Server runtime
+
+Does the app currently use Cloudflare Workers or only static hosting?
+
+19\. Simulation compute
+
+Does the simulation run in the browser, on a server, or both?
+
+20\. Workers
+
+Does the project use Web Workers for simulation?
+
+21\. Persistence
+
+Is localStorage still the only active save system?
+
+22\. Save format
+
+Are saves versioned and migrated?
+
+23\. Database
+
+Is any database currently installed or configured?
+
+24\. Authentication
+
+Are accounts intentionally excluded from the initial release?
+
+25\. Agent tooling
+
+What common instruction files and automated checks are agents required to follow?
+
+Anything else about the stack or repository that I should know?
+
+Submit answers
+
+## What I want to produce from your answers
+
+I don't want to simply collect a list of technologies. I want to turn this into a proper technical baseline with four deliverables:
+
+1. Current-state inventory: Every significant tool and technology actually present, with versions and whether it's actively used.
+2. Target-stack specification: The technologies we agree to use going forward, including which recommendations from your friend we accept, modify, or reject.
+3. Unresolved decisions register: Every important decision that still needs evidence, with alternatives and the cost of changing later.
+4. Agent implementation rules: A concise set of instructions for Claude, Z.ai, Muse, and future agents so they don't independently introduce new frameworks, dependencies, databases, or tooling.
+
+One thing I especially want to preserve: your original requirement that future tools and services should be free, and that the project should remain simple enough for you to operate without becoming a full-time software infrastructure administrator.
+
+The ultimate goal is a stack that is powerful enough to support a serious sports simulation product, but deliberately small enough that AI agents can maintain it reliably.
+
+--- End verbatim ---
+
+MUSE's note (not verbatim — for the record): The 25 priority questions are
+answered (verified) in
+`_agents/muse/deliveries/stack-audit-priority-answers-2026-11-12.md`. The four
+deliverables are in
+`_agents/muse/deliveries/stack-audit-deliverables-2026-11-12.md` (the
+current-state inventory is done; the target-stack specification and the agent
+implementation rules are DRAFTS for KG to decide/approve; the unresolved
+decisions register is done as a register, the decisions themselves are open).
+Two corrections to KG's "known information" in the questionnaire, both
+verified from the repo:
+- Part 15's "Colors has used seeded random-number generation with `mulberry32`"
+  — the Colors engine's keyed RNG is **Philox2x32** (`colors/src/core/keyedrng.ts`,
+  the published Random123 multiplier `0xd256d193`, VERIFIED correct), not
+  mulberry32. (mulberry32 may have been used in an earlier version or in the
+  single-file product — MUSE did not verify that; the current Colors engine
+  is Philox2x32.)
+- Part 1's "friend's Next.js project" — the folder in this repo named
+  `Football-Sim-Z-post-blue-w71/football-sim-next/` is a **Svelte + Vite**
+  app (22 files, Vitest + svelte-check + Testing Library), not a Next.js app,
+  despite the name. Whether the separate repo `aled1027/football-sim-nextjs`
+  is still maintained is don't know (a separate repository, not verifiable
+  from this one).
