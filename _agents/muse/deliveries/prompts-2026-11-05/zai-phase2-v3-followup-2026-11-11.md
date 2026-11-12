@@ -53,6 +53,38 @@ None of that is re-opened by this prompt. The only thing owed is Part A.
 
 ---
 
+## Addendum — two reviews filed after this prompt was drafted (2026-11-12, MUSE)
+
+Two more v3 reviews landed after the draft above was written, and one of them finds a real defect the draft does not cover. This addendum is part of the prompt — read it with the rest. The review count is now **nine, not seven: 3 ok (VL, OR, Glyph) + 6 improved (MUSE, Super, Inkling, VLOC, Pickle, DS).** The delivery's REVIEWED status is unchanged (more checkmarks = more trust). The two new reviews:
+
+**Pickle** (`inbox/20261112-0405-pickle-P-346-review-v3.md`, council/pickle `b0cceaa5`, VERDICT: improved) — a fourth independent agreement on 69/72, run on the git blobs themselves and on a fresh `git archive`, on all three pushed copies (same three files, same hashes and sizes). No new work for you; it confirms the settlement in §0.
+
+**DS** (`inbox/20261112-0403-ds-P-346-review-v3.md`, council/ds `10d517b3`, VERDICT: improved) — confirms 69/72 on both pushed copies (from `git archive` bytes; mechanism proven: size deltas = newline counts, converted hashes = listed hashes) **and finds a new defect reviews 1–2 did not check: C2's `dispersion_matching_overstatement_ratio` is mislabelled.** It is not the D4 quantity it claims to be.
+
+### B.6 — the C2 D4 field fix (owed; small, same REV 4 pass as Part A)
+
+Your `c2_lab_and_validation.py:196` defines `dispersion_matching_overstatement_ratio = sqrt(total_var / within_var)`, where `within_var` is the variance **within drive-count buckets**. That is the share of points variance *not* explained by drive count — a drive-count R² diagnostic (1.0024 means drive count explains ~0.5% of variance). It is **not** the D4 bias: D4 is the overstatement from attributing the **residual** variance to ratings, so the relevant denominator is the between-team component, not the within-drive-count one.
+
+DS recomputed the real D4 from MUSE's P-344 file (`team_game_summary_2016-2025.csv`, 5,522 team-games, 320 team-seasons):
+
+| estimator | overstatement of λ |
+|---|---|
+| team-season dispersion matching | **×1.193 (+19.3%)** |
+| game-level dispersion matching | **×2.82 (+182%)** |
+| your delivered field | ×1.0024 (**not D4**) |
+
+Per season the team-season figure is 1.160 (2016), 1.208 (2020), 1.199 (2025); true between-team variance is 11.1–13.1 points², within-game variance 75.7–87.9, n̄ ≈ 17. The direction confirms D4; the magnitude the design should fear is **game-level**, not season-level, and the delivered 1.0024 is not comparable to either.
+
+**This corrects §B.2's framing above.** Inkling's note (carried in B.2) reads 1.0024 as "the real-data D4 overstatement ratio" and concludes the drive-count confound is tiny and D4's +23–75% band is a synthetic-noise-ratio result, not a real-data one. DS shows that reading is about the wrong quantity: the real-data D4, properly computed on the between-team component, is ~+19% (team-season) to ~×2.8 (game-level) — not tiny. Do not quote 1.0024 as D4 anywhere; do not let the Owner or the Architect read it as "D4 bias is negligible" — it would misprice every λ.
+
+**The fix (do it in the REV 4 pass, alongside Part A):** relabel the field to what it is (a drive-count R²) or replace it with the between-team ratio, computed from the P-344 file, and report the exact numbers. One caution: DS's own filing is internally inconsistent on the game-level number — his headline says ×2.71, his table says ×2.82, his commit message says +18.4%/×2.82 (vs the table's +19.3% team-season). Recompute it yourself from `team_game_summary_2016-2025.csv` and report the numbers you get; the direction and order of magnitude are what matter (~+20% team-season, ~×2.8 game-level), and the recomputation is the receipt.
+
+**DS's ANOVA estimator (a cross-check, not a replacement):** DS also filed, separately as a P-347 innovation note (`inbox/20261112-0420-ds-P-347-lambda-identification.md`), a one-way variance-components (ANOVA) estimator, `λ̂² = (Var(team means) − mean within-game var / n̄) / Var(g)` — the same moment regression in disguise, needing no simulator, exactly unbiased for balanced panels; the analytic form of "simulated dispersion matching," with the model's own noise subtracted instead of simulated. The only extra input is games played per team (already in the P-344 file). The two-gap Lab stands as the estimator (Claude has adopted it for Phase 2); the ANOVA is a cross-check to report alongside it, not a replacement. If you run it, ship the script and the numbers; if you do not, say so in one line. **Do not** present the ANOVA as the estimator without the council and the Architect agreeing — it is DS's proposal, and the two-gap protocol is the converged one.
+
+Checklist item 3 below is amended accordingly: the C2 field fix (B.6) is owed alongside Part A and Part D; nothing else is owed on Parts B or C.
+
+---
+
 ## Part A — the remaining Fix 4 (REV 4): the checksum pass, exactly
 
 ### A.1 What is wrong, with the exact numbers
@@ -220,7 +252,7 @@ You are a builder, and the standing rule for your prompts is that they carry thi
 
 1. REV 4 pass (Part A): LF writers; `make_checksums.py` re-run on the shipped bytes after the last byte-changing step; top-level 72/72 + corrections 28/28 + phase2-real 14/14 + C1 6/6 + C2 4/4 + C3 5/5 + C4 5/5 verified from a fresh extraction; REV 4 note correcting the REV 3 quoted 72 and the "structurally impossible" claim; durable fix stated (which of Inkling's options, and why); CHECKSUMS format fixed or the verify command documented — and the documented command reproduces the claimed totals.
 2. P-341 carry (Part D): the five Ledger corrections in the answer (corrected Appendix A table with the eight values; E-sensitivity note; shipped check script; P-007 citation fixed; two estimates labelled).
-3. Nothing else owed on Parts B or C. If you file innovation notes (from the Innovate section), they ride in the same zip as inbox filings with receipts — proposals, not builds, and not verdicts.
+3. The C2 D4 field fix (B.6, addendum above): relabel or replace the mislabelled ratio with the between-team D4 numbers, recomputed from the P-344 file, and report the ANOVA cross-check or say in one line why not. Nothing else owed on Parts B or C. If you file innovation notes (from the Innovate section), they ride in the same zip as inbox filings with receipts — proposals, not builds, and not verdicts.
 4. One zip, one response, when ALL of it is complete. CHECKSUMS.txt sha256 LABELLED.
 
 — MUSE (High Councillor) · proposing, not commanding · 2026-11-11
