@@ -18,18 +18,24 @@
   - Reviewed and committed P-156 `inbox/20261112-0353-or-P-156-review.md` (VERDICT: improved — all 10 Owner checklist items addressed; product integration is Architect's domain per §5).
   - Reviewed and committed P-163 `inbox/20261112-0354-or-P-163-review.md` (VERDICT: improved — all Owner-requested changes addressed; product integration is Architect's domain per §5).
   - **Verified P-346 checksum (MUSE Part A confirmation): pushed bytes read 69/72 via git archive extraction; three-field CHECKSUMS format (`<sha256>  <size>  <path>`) unparseable by plain `sha256sum -c`.** Committed and pushed `inbox/20261112-0505-or-P-346-checksum-confirm.md` (VERDICT: CONFIRMED).
-  - **Filed MUSE follow-on notes:** Part A checksum confirmation, Part D P-341 carry (5 Ledger corrections not landed anywhere), B.6 C2 D4 field fix (relabel/replace `dispersion_matching_overstatement_ratio`).
+  - **Filed three P-345 open-question innovation notes:**
+    - `inbox/20261112-0518-or-Q1-max-vs-single-formula.md` (Q1): max-of-two-layers vs single nested Lp-norm formula; my P-322 variants A/C produce 55/57 exact matches; guard term emerges from gap vector; the max is scaffolding, not the beautiful answer.
+    - `inbox/20261112-0522-or-Q5-basketball-portability.md` (Q5): formula does NOT port cleanly to basketball — three structural breaks (position anchoring, duty overlap, exposure → minutes×usage); fix: role archetypes + minutes×usage exposure; duty set reduction to ≤8 non-overlapping duties.
+    - `inbox/20261112-0527-or-Q3-lambda-meaning.md` (Q3): λ is a dial not a game property; 0.40 orders slots (97/97) but mis-measures gaps (mae 1.311); 0.20 measures gaps better (mae 1.076) but mis-orders slots (86/97); DS's ANOVA estimator is the analytic bridge (no simulator needed, exactly unbiased for balanced panels); λ is the Owner's call on draft-board vs trade-value dominance.
 
 - **Blocked / waiting on:**
-  - Third seat's P-346 review needed to reach REVIEWED (MUSE improved; VL ok; OR ok; now also Glyph ok + Super improved = 7 reviews filed this round; delivery REVIEWED per tally).
-  - Phase 1 football baseline data integration requires Owner download of nflverse partitions.
-  - Remaining council next-actions: REVIEW P-158, P-161, P-162; Phase 1 protocol note and design-amendment pass convergence.
-  - REV 4 build owed: LF writers + `make_checksums.py` re-run + durable `*.csv -text` + format fix + REV 4 note; P-341 carry (5 corrections); C2 D4 field fix.
+  - REV 4 build owed to Z.ai: LF writers + `make_checksums.py` re-run + durable `*.csv -text` + format fix + REV 4 note.
+  - P-341 carry (5 Ledger corrections: Appendix A re-run, E sensitivity, check script, P-007 citation, estimates labelling).
+  - C2 D4 field fix (relabel/replace `dispersion_matching_overstatement_ratio` with between-team D4 numbers; report ANOVA cross-check or say why not).
+  - Owner decision on era-snapshot staging (C.1: static pricing with snapshot vs per-season staging consuming snapshot vector).
+  - Architect decision on gravity `air_yards` (C.2: how depth reaches staged events so gravity fold can be consumed).
+  - Owner/Architect decisions on DIME landing path (C.3: whether DIME_W moves, whether per-situation blend becomes a table the engine reads).
+  - Phase 1 protocol note + design-amendment pass convergence.
 
 ## What the next session needs
-- **Read first:** `_agents/PRIORITIES.md`, P-346 review, checksum-confirm filing, ASK response, P-156 review, P-163 review.
-- **Open questions:** third seat P-346 status; REV 4 status; Owner decision on C.1 era-snapshot staging; Architect decision on C.2 gravity `air_yards`; Owner/Architect decisions on C.3 DIME landing.
-- **Do not redo:** P-346 review (ok); zai-phase2-v3 push (commit a9eda133); P-156 review (improved); P-163 review (improved); ASK response (index template); checksum confirm (69/72, format broken).
+- **Read first:** `_agents/PRIORITIES.md`, P-346 review, checksum confirm, ASK response, P-156 review, P-163 review, Q1/Q3/Q5 innovation notes.
+- **Open questions:** REV 4 status; P-341/P-345 carry items; Owner/Architect decisions on C.1-C.3; Phase 1 protocol note status.
+- **Do not redo:** P-346 review (ok); zai-phase2-v3 push (commit a9eda133); P-156 review (improved); P-163 review (improved); ASK response (index template); checksum confirm (69/72, format broken); P-345 innovation notes (filed once).
 
 ## Files in this lane
 - `inbox/20261112-0347-or-P-346-review.md` (VERDICT: ok)
@@ -37,15 +43,19 @@
 - `inbox/20261112-0354-or-P-163-review.md` (VERDICT: improved)
 - `inbox/20261112-0352-or-ASK-phase1-football-baseline-data-response.md`
 - `inbox/20261112-0505-or-P-346-checksum-confirm.md` (CONFIRMED: 69/72, format broken)
+- `inbox/20261112-0518-or-Q1-max-vs-single-formula.md` (P-345 Q1: max vs single formula)
+- `inbox/20261112-0522-or-Q5-basketball-portability.md` (P-345 Q5: basketball portability)
+- `inbox/20261112-0527-or-Q3-lambda-meaning.md` (P-345 Q3: λ meaning + ANOVA bridge)
 - `_agents/or/deliveries/ledger-phase1-2026-11-11/` (Z.ai Play Ledger Phase 1)
 - `_agents/or/deliveries/ledger phase2/` (Z.ai merge-ledger followups)
 - `zai-phase2-v3-copy/` (Z.ai Phase 2 v3, commit a9eda133)
 - `bulletin/20261112-0418-or.md`
 - `bulletin/20261112-0420-or.md`
+- `bulletin/20261112-0507-or.md`
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
 - **Branch:** `council/or`
 - **Base:** `git merge-base HEAD origin/council/base` = `1b91f50e`
 
-(End of file - total 49 lines)
+(End of file - total 54 lines)
