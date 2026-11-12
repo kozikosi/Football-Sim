@@ -1,48 +1,31 @@
 # super — council seat lane file
-Identity: seat `super`, worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = 335d92f5 (pushed, ls-remote verified equal).
+Identity: seat `super` (standby), worktree `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super`, branch `council/super`, merge-base with origin/council/base = 1b91f50e. HEAD = 5dadf402 (pushed, ls-remote verified equal).
 
-## Current work and state (this session, 2026-11-10)
-- P-142 (P1) Review OR's crossflex measurement: DONE, VERDICT improved (concur vl). inbox/20261110-0918-super-P-142-review.md committed bccbcbef, pushed council/super, ls-remote verified.
-- P-143 (P0) Review beam's Guide page rebuild: DONE, VERDICT improved. inbox/20261110-1010-super-P-143-review.md committed a93e0008, pushed council/super, ls-remote verified.
-- P-322 (P0) Derivation v5 — Q&A-aligned "Requirement-Value" model (Option A: design my own derivation from the Owner's 2026-11-10 Q&A answers): DONE as design proposal, submitted for review. PLUS work option B — reviewed and verified the four other Q&A-aligned derivations filed this session (MUSE-D2, Inkling-Q1, glyph G-QA-D1, VL v3/v2). Restated for the Q&A: OVR is the only per-player input (Q2); no str/speed/intangibles (Q14); zero named exceptions (Q9); no cross-side floor (Q10); C>OT = 12 via the computed value ladder, not an exit premium (Q11a); no pair tracking (Q12); adjustable ALPHA blend between ability and guard (Q7); dual positions free both ways (Round-2 Q1); gravity as engine stat + optional flex term with defined test (P-335, follow-up 3 — proposal only, engine lacks double-team tracking); positions not in the game priced with no hand rules, demonstrated on SS2 big nickel (P-338); DL5 blitzer emerges from demand alone (Round-2 Q2); late rounds show simple integers only (P-337, Q6); display = round(raw) integer, tier bands TBD (Q4, follow-up 2).
-- Files: inbox/20261110-1142-super-P-322-derivation-v5-qna.md (design doc, FOR: P-322, this session); _agents/super/tools/derive-super-v5.mjs (read-only probe, this session; `tools/` left untouched — Architect-owned). Superseded: inbox/20261110-1800-* formal submission, inbox/20261110-1600-* reconsideration, inbox/20261110-1400-* report, inbox/20261110-1200-* original design, tools/mathlab/derive-super-{merged,overlay}.mjs.
-  - FACT: v5 scores 96/99 vs live 99-rule Owner table at reference OVR 80 (guide only): 58 exact, 38 off-by-one, 3 hard misses (CB>FS 0→6 raw 6.30; CB>SS 0→6 raw 5.10; ILB>OLB 0→6 raw 4.14 — all accepted explained disagreements), mean abs tier error 0.44 tiers, 0 overrides, 0 no-profile. VERIFIED via `node _agents/super/tools/derive-super-v5.mjs`.
-  - FACT: C>OT = 12 at ALPHA 0.3/0.5/0.7 (raw 11.20 — guard carries it, Q11a); QB>FS, TE>FS, RB>WR = 12 at every ALPHA; cross-side min tier 6 except the 4 Owner-rule FB-destination rows = 0 (Q10 holds without a floor). VERIFIED via probe.
-  - FACT: dual-position CB+WR → 0 both ways (P-336); SS2 probe: 13 of 19 roles at cap 12, SS/CB/FS/EDGE/OLB/SAM/NICKEL/DIME → 6, SS2→SS2 = 0, no hand rules (P-338); DL5 emergence: EDGE→DL5 = 2 (raw 1.40), QB/WR → 12 (Round-2 Q2). VERIFIED via probe.
-  - FACT: receipt hash — flex.json + design.json (origin/architect/engine-and-seats) sha256 prefix 0dfd7f3fcb56.
-- P-322 reviews filed (work option B), all VERDICT ok/improved:
-  - MUSE-D2 (inbox/20261110-1222-super-P-322-review-muse.md): VERDICT improved. Ran MUSE-D2's script verbatim against the live 99 table — all fit numbers reproduce (β=0 measured = 93/5/1 → 98/99; C>OT=12 via guard G=14.00; TE>OT=12; floor inert; blend worsens monotonically; measured==input weights). DEFECT found: filing claims EDGE CARRY 4 + TE PBLK 4 are "used" but the published script has EDGE CARRY=2, TE PBLK=5 — score changes claimed but absent from the runnable script (EDGE>RB residual 6→12 is because CARRY=2 in-script).
-  - Inkling-Q1 (inbox/20261110-1223-super-P-322-review-inkling.md): VERDICT ok. Committed qa-output.txt confirms v0 demand×scarcity rejected (rho +0.413, breaks C>OT); G_weights carries C>OT=12; max(A,G_weights) = 98/99 raw with the 3 anti-D residuals (C>OG, FB>RB, FB>TE). Minor: filing says "96/99 raw" but committed output measures 98/99 (table-tip detail).
-  - glyph G-QA-D1 (inbox/20261110-1224-super-P-322-review-glyph.md): VERDICT ok. Design-only synthesis, all numeric claims INFERRED; no runnable verification. Converges with the field on max-combine, guard-for-C>OT, no floor/pins/pairs. Single command-verified anchor: REV 4 flex.json = 107 rules.
-  - VL v3/v2 (inbox/20261110-1225-super-P-322-review-vl.md): VERDICT ok. Design-only; all measurable claims corroborated by MUSE-D2's and Inkling's committed runs (ZAI-D1 98/99, merge 98/99, floor inert, C>OT via guard). VL's own contribution is the field synthesis + "default unset until engine output seen" stance (matches follow-up Q2).
-- Next: wait for two more seats' reviews → REVIEWED per inbox/README.md (need 2 ok/improved from seats other than me per item; I've reviewed 4 distinct authors' files — any 2 of those seats reviewing my v5 would make my item REVIEWED).
-- P-311 (verify Claude's flex D-table rebuild): still BLOCKED — architect tip still 3ed03627; flex.json at architect tip is the older -2/-6/-12 table (4cc3dee), not the Owner's D-table.
-- Shared Z.ai flex derivation z2: DONE. Copied from Owner's desktop at `/Users/kosi/Desktop/Football Sim/flex derivation z2` to `inbox/flex-derivation-z2/` and pushed council/super (26731bbc). 14 files: ZAI-D1 with Owner's score changes (98/99), C>OT hub-exit analysis, basketball multisport sketch, 3 read-only Python tools, run transcripts, full V4 99-rule diff. Nothing touches the product; no re-pin. For Muse and Claude to read.
-- Prior (unchanged): P-314, P-287 (slices 3+4), P-296 reviews all committed & pushed (see bulletin history).
+## Current work and state (this session, 2026-11-11/12)
+- P-344 (P1) nflverse Phase 1 baseline data review: VERDICT ok. Independently recomputed all 11 totals-bar means/SDs and all margin-gate numbers from team_game_summary_2016-2025.csv — every number matches MUSE's delivery exactly. Confirmed field coverage (pbp 0/40 missing, participation 0/12 missing, snap_counts missing season_type in all 10 seasons), participation drop 2023-2025 (7.0-7.4%), rules-regime labels by season. Filed: inbox/20261111-1751-super-P-344-review.md, commit 8cb58932, pushed. (P-344 already REVIEWED by 3 seats; this was an additional review, welcome per inbox/README.md.)
+- P-345 (P2) Phase 1 protocol convergence: filed ONE converged protocol note combining MUSE's two-gap Lab estimator, Z.ai's conditional-moments validation target, MUSE's margin-gate shape check, DS D4 dispersion-matching bias, and the open λ-objective question (0.40 tiers vs 0.20 mean error, council recommends 0.20 as a recommendation not a decision). Independently verified conditional-variance table from P-344 data. CORRECTED M0 reference: MUSE's Philox "defect" was WITHDRAWN (M0 = 0xd256d193 IS the correct Philox2x32 multiplier; 0xD2511F53 is Philox4x32 — confirmed against Random123 philox.h + kat_vectors, and by independent Python re-implementation). Filed: inbox/20261111-1815-super-P-345-phase1-protocol-convergence.md, commit e89314e0, pushed; M0 correction commit 5dadf402, pushed.
+- P-342 (P2) design-amendment pass: filed consolidated amendment pass listing GLM F1-F6, DS D1-D10, Glyph G1-G4, Inkling I1-I2, each with accept/reject + what it changes in design a0ddc584 or Phase 0 kernel 7b34a581, plus recommended order of application. Filed: inbox/20261111-1845-super-P-342-design-amendments.md, commit 202d882b, pushed.
+- P-346 (P1) Z.ai Phase 2 v3 delivery review: VERDICT improved (review 2 of 3). Independently verified Part A Fix 4 checksums (all 3 stale entries now exact vs shipped bytes), Part B1 (2020 FB corrected to 0.0887, two named effects), Part B2 (n=544 with script shipped, bucket ns 117/136 match MUSE, 572 superseded, TD-only points definition identified), Part B3 (gravity 10/10 exact vs b2_gravity_index.json, denominator = ALL deep targets), Part C1 (FB 0.1426→0.0814 exact, DIME mean 0.1263 exact), C2 (Lab and D4 replicated bit-exactly, persistence floor 6.7% ≤ 10% bar), C3 (10/10 gravity exact, staged air_yards gap named honestly), C4 (pooled 0.1263, per-season matches C1 exactly). Filed: inbox/20261112-0349-super-P-346-review.md, commit 6a300283, pushed.
+- Phase 0 kernel (P-342): Independently re-ran kernel tests — 17/17 pass (philox2x32-10 matches all 3 Random123 KATs, draw purity, replay, counterfactual coupling, uniformity, serial independence, normal(), folds, pack hash). Verified M0 = 0xd256d193 is correct Philox2x32 (MUSE's defect finding WITHDRAWN). Full suite failures (versions.test.ts E5 pin, lineup.test.ts DL5 staleness) pre-date Phase 0 — confirmed on parent a0ddc584.
 
 ## What the next session needs
-- Re-check P-311 once Claude's D-table rebuild lands on architect/engine-and-seats.
-- P-142 awaits Owner/Architect naming the authoritative design.json and the reconciled draft-board-order table.
-- P-143 awaits beam's improved resubmission with exact old→new strings + clarified scope + exact HTML for replacements.
-- P-293 (model-first weights): blocked as before (top-level DOM init in Pre-Colors.html; madden27-ratings.csv lacks EPA/AV/volume anchors).
+- P-345: Inkling filed a converged protocol note (inbox/20261111-1742-inkling-P-345-phase1-protocol-converged.md) and MUSE filed a supplement (inbox/20261111-1752-muse-P-345-protocol-supplement-super.md) adding Super's play-level-moments route. My protocol note (inbox/20261111-1815) is additional — may need consolidation with Inkling's.
+- P-346: Needs 1 more seat's review for REVIEWED (I'm review 2; MUSE improved was review 1).
+- P-290: Already reviewed by me (second review, improved) — needs 1 more independent seat.
+- P-325/P-326 (WR3 fidelity + localWins20 recheck): open P1 items blocking w88 table. PreColors slotWins extraction blocked by DOM dependencies — need alternative approach.
 
 ## Open questions
 - None blocking.
 
 ## Live files
-- inbox/20261110-1800-super-P-322-formal-submission.md (this session, pushed — formal submission)
-- tools/mathlab/derive-super-merged.mjs (this session, pushed — Requirement-Value implementation)
-- inbox/flex-derivation-z2/ (pushed 26731bbc — Z.ai's flex derivation z2 package, for Muse and Claude)
-- inbox/20261110-1600-super-P-322-reconsideration.md (superseded by formal submission)
-- inbox/20261110-1400-super-P-322-derivation-report.md (superseded)
-- inbox/20261110-1200-super-P-322-my-derivation-design.md (superseded)
-- inbox/20261110-1010-super-P-143-review.md (pushed a93e0008)
-- inbox/20261110-0918-super-P-142-review.md (pushed bccbcbef)
-- inbox/20261109-1518-super-P-314-slice2-review.md (pushed e35df12a)
-- inbox/20261110-0424-super-P-287-slice3-slice4-review.md (pushed d809b162)
-- inbox/20261110-0450-super-P-296-cutover-checklist.md (pushed 94850a1d)
+- inbox/20261111-1751-super-P-344-review.md (P-344 review, commit 8cb58932)
+- inbox/20261111-1815-super-P-345-phase1-protocol-convergence.md (P-345 protocol note, commit e89314e0)
+- inbox/20261111-1845-super-P-342-design-amendments.md (P-342 amendments, commit 202d882b)
+- inbox/20261112-0349-super-P-346-review.md (P-346 review, commit 6a300283)
+- Prior (unchanged from 11-10 session): P-322 derivation v5 files, P-142/P-143 reviews, flex-derivation-z2 package, cutover checklist
 
 ## Worktree / branch / merge-base
 - worktree: /Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-super
 - branch: council/super
+- HEAD: 5dadf402 (pushed, ls-remote verified equal)
 - merge-base with origin/council/base: 1b91f50e
