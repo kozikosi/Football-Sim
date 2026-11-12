@@ -1,4 +1,4 @@
-# The framework test — one dynamic feature, three prototypes, measured
+# The framework test — one dynamic feature, four prototypes, measured
 
 **From:** MUSE, High Councillor. **Date:** 2026-11-12. **FOR:** the framework test / the dynamic engine.
 
@@ -6,8 +6,9 @@
 
 GPT proposed a practical experiment instead of debating framework popularity:
 take one moderately difficult feature from the simulator and ask the same
-coding agent to implement it in three small, isolated prototypes — SvelteKit,
-React, Vue/Nuxt — then measure. The Owner asked MUSE to design that test for
+coding agent to implement it in four small, isolated prototypes — SvelteKit,
+React, Vue/Nuxt, SolidStart — then measure. The Owner asked MUSE to design
+that test for
 everyone, based on the stage we are in: **adding new dynamic features**. This
 document is the test design. It is a **proposal to gather evidence**, not a
 decision — the Owner decides what to do with the results.
@@ -39,14 +40,16 @@ Each prototype is a **small, isolated app** — one feature, not the whole game.
 The prototype is a test, not a ship: the offensive focus itself is a proposal,
 and the prototype tests how easily the feature is built in each framework.
 
-## §2 — The three prototypes
+## §2 — The four prototypes
 
 The **same agent (Z.ai)** implements the **same feature, to the same spec**,
-in three small, isolated prototypes:
+in four small, isolated prototypes:
 
 1. **SvelteKit.**
 2. **React.**
 3. **Vue/Nuxt.**
+4. **SolidStart.** (Added by the Owner, 2026-11-12 — "add 4th in the test
+   design." Solid and SolidStart are on the table, and the test covers them.)
 
 The **engine is shared, not re-implemented per framework** — the engine is
 framework-independent by the server-ready principle, so each prototype
@@ -56,9 +59,9 @@ exactly what the test measures.
 
 ## §3 — Who does what
 
-- **Z.ai builds** the three prototypes. He is the volume/UI builder, and the
+- **Z.ai builds** the four prototypes. He is the volume/UI builder, and the
   test is about how easily an agent builds UI in each framework. One batch:
-  all three prototypes + the results filing, one zip, CHECKSUMS.txt sha256
+  all four prototypes + the results filing, one zip, CHECKSUMS.txt sha256
   LABELLED, computed on shipped bytes. (The batch rule applies — complete ALL
   the work before responding; respond with work outstanding only if a piece is
   blocked, with the blocker explained.)
@@ -69,7 +72,7 @@ exactly what the test measures.
   most server-ready, and why? Claude does NOT build the prototypes.
 - **The council reviews the results** (three reviews = REVIEWED). Each review
   checks the measurements: re-run the prototypes if feasible, verify the
-  numbers, check the metrics were measured the same way in all three. The
+  numbers, check the metrics were measured the same way in all four. The
   council's reviews are on the **results filing**, not on the prototypes
   themselves.
 - **The Owner decides the framework** based on the evidence. There is no
@@ -88,12 +91,12 @@ to a framework for an advantage that actually comes from the shared engine.
 
 The **framework-specific** category determines which framework produces the
 best implementation. The **framework-independent** category is a set of
-**shared acceptance tests** (the engine contract tests below) that **all three
+**shared acceptance tests** (the engine contract tests below) that **all four
 implementations must pass**. A prototype that fails the shared acceptance
 tests does not win on framework merits.
 
 **The raw measurements (GPT's six, plus two).** Measure the same way in all
-three prototypes, and report the numbers in a table — not adjectives, numbers.
+four prototypes, and report the numbers in a table — not adjectives, numbers.
 
 1. **How much code the agent produces without assistance** (lines, files —
    measured, not estimated).
@@ -108,7 +111,7 @@ three prototypes, and report the numbers in a table — not adjectives, numbers.
 5. **How much work is required to integrate it with the engine** (steps, and
    what had to change in the engine — ideally nothing).
 6. **How easily the agent can make a second round of changes** (a defined
-   second-round change, the same in all three: **add a fifth focus** — e.g. a
+   second-round change, the same in all four: **add a fifth focus** — e.g. a
    "play-action" focus — and **change the halftime rule** so the user gets two
    changes instead of one. Measured in time and steps.)
 7. **Server-readiness** (the Owner's standing principle, 2026-11-12): does the
@@ -190,14 +193,14 @@ agent can understand. For this project that is incredibly important — the
 codebase will be developed by multiple AI agents over time.
 
 **Engine contract tests (shared by every frontend).** Create a **single set
-of test fixtures and expected outcomes for the engine**. All three prototypes
+of test fixtures and expected outcomes for the engine**. All four prototypes
 consume the same contract. That makes it much harder for an agent to
 accidentally change the meaning of the feature while implementing the
 interface. These are the shared acceptance tests in category A above.
 
 **Playwright UI tests.** Test the actual browser interaction consistently
-across all three prototypes — a much more meaningful test than checking
-whether the component renders. The sequence (the same in all three): select a
+across all four prototypes — a much more meaningful test than checking
+whether the component renders. The sequence (the same in all four): select a
 focus; advance to halftime; change the selection; advance into the fourth
 quarter; verify automatic behavior; add a fifth focus; change the halftime
 allowance; verify the original rules still work.
@@ -230,20 +233,20 @@ something new as the vision of the project grows — assume the project could
 grow beyond a solo, local-first football simulator into a substantial online
 sports-gaming platform. The frameworks on the table are **Svelte, React, Vue,
 and Solid** (and **SvelteKit, Next.js, Nuxt, and SolidStart**). This test
-covers three of them (SvelteKit, React, Vue/Nuxt). **Open question: should
-SolidStart be a fourth prototype?** The Owner's list includes Solid and
-SolidStart; the test as designed does not cover them. Say in the results
-filing whether a fourth prototype would change the comparison, and what it
-would cost to add one.
+covers four of them (SvelteKit, React, Vue/Nuxt, **SolidStart** — the fourth
+prototype, added by the Owner 2026-11-12). Next.js is not in the test — it is
+a React meta-framework, and React is already represented; if the council
+thinks Next.js should be tested separately from plain React, say so in the
+results filing.
 
 ## §6 — The deliverable
 
-1. **Three small isolated prototypes** (SvelteKit, React, Vue/Nuxt) + the
+1. **Four small isolated prototypes** (SvelteKit, React, Vue/Nuxt) + the
    shared engine they consume + the **single set of engine contract test
    fixtures** (the shared acceptance tests — §4).
 2. **A results filing** — the measurements in a table (the eight raw metrics
    + change amplification + the edge-case test + the data-driven-design check
-   + the sixth-focus maintainability test, the same way in all three), the
+   + the sixth-focus maintainability test, the same way in all four), the
    standardized environment record (§4 D), the weighted scores (§4), and a
    **recommendation** (which framework, and why, on the evidence). Include
    the Playwright UI test results (the interaction sequence in §4).
@@ -268,7 +271,7 @@ Then the Owner decides.
   independent of browser APIs, UI state, local storage, and framework-specific
   code. It should accept defined inputs and produce defined outputs. Later,
   you can run that same engine on a server and have multiple users interact
-  with it." It binds all three prototypes.
+  with it." It binds all four prototypes.
 - The offensive focus is a **proposal** — the prototype is a test, not a
   ship. The Owner decides what ships; the Architect decides what enters the
   product.
@@ -288,7 +291,7 @@ Then the Owner decides.
 
 This is an experiment design, not a build order. If the test as designed is
 the wrong test — the wrong feature, the wrong prototypes, the wrong metrics —
-say so and say what the right test is. If a fourth prototype (or a different
+say so and say what the right test is. If a fifth prototype (or a different
 second-round change) would settle the question better, propose it. If the
 offensive focus is the wrong test subject (too big? too small? not
 representative?), propose a better one and say why. The point is evidence,

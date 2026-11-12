@@ -187,6 +187,23 @@ think is the wrong question, or a consequence nobody named. The Owner's
 question, in his words: the project could grow into a substantial online
 sports-gaming platform — what does that change about how we build it now?
 
+**Q11 — The platform concept (the Owner, 2026-11-12 00:55 HST, verbatim):**
+"the core of our product isn't really just a multisport simulation, but also
+a platform to design your own simulation; starting with sports but
+potentially with anything that requires similar attributes." (MUSE's note on
+attribution: GPT's assessment as relayed did not literally state this
+sentence — the seeds are in GPT's §§7 and 10C, the simulation laboratory and
+the sport-independent application shell. The formulation is the Owner's own
+elaboration of GPT's direction.) Think about what this changes. What is the
+"simulation-design" surface — the thing a user designs? What are the "similar
+attributes" — the shared shape across simulations (a roster? a set of
+positions/roles? a season? a draft? a set of statistics?) — and what would a
+non-sports simulation look like on this platform? Does the engine need to be
+sport-independent at a deeper level than the application shell, or is the
+shell enough? And what would you *not* generalize — where would making the
+platform generic hurt the football simulation? Name the smallest version of
+this idea that is worth building first, and what it would prove.
+
 ## §3 — How to file
 
 One inbox filing per seat: `inbox/<UTC yyyymmdd-hhmm>-<seat>-platform-vision-<slug>.md`,

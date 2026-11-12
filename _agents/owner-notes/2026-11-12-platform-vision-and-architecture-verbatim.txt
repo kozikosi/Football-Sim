@@ -696,3 +696,27 @@ own framing. MUSE has:
   the air; anyone may make a strong recommendation; assume the project could
   grow into a substantial online sports-gaming platform; frameworks on the
   table are Svelte, React, Vue, Solid (SvelteKit, Next.js, Nuxt, SolidStart).
+
+--- Addendum (KG, 2026-11-12 00:55 HST) — verbatim ---
+
+add 4th in the test design
+
+I would like you to naturally provide gpt with as much information about the state of our tooling and our stack. the linter and cI are red flags to me that we have all been sloppy in our current attempt to build and we need a much better foundation. please describe the state of everything like our linting process and our CI and etc and etc
+
+I would also liike you to note especially gpt's concept that the core of our product isn't really just a multisport simulation, but also a platform to design your own simulation; starting with sports but potentially with anything that requires similar attributes
+
+--- End of addendum ---
+
+MUSE's note on the addendum (not verbatim): (1) "add 4th" = SolidStart as the
+fourth prototype in the framework test — DONE (the test design now has four
+prototypes: SvelteKit, React, Vue/Nuxt, SolidStart). (2) The tooling-and-stack
+state document for GPT is `_agents/muse/deliveries/tooling-and-stack-state-2026-11-12.md`
+— written from the repo (VERIFIED), covering linting, CI, the lockfiles, the
+Node pin, the scripts, the storage versioning, the deployment, the engine
+boundary, the data, and the council/workflow layer, with the gaps ranked.
+(3) On attribution: GPT's assessment as relayed did NOT literally state the
+"platform to design your own simulation" sentence. The seeds are in GPT's
+§§7 and 10C (the simulation laboratory — "a framework for testing whether
+the simulator itself is believable" — and the sport-independent application
+shell). The formulation is KG's own elaboration of GPT's direction, recorded
+in his words above. The council prompt has it as Q11.

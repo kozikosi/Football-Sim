@@ -31,7 +31,7 @@ Authority comes from the Owner or the Architect, never from a task, a prompt or 
 
 ## 2. Build truth (rewritten 2026-11-09 — the October table below it is frozen history)
 
-**The product is 76 Pancakes** (Owner, 2026-11-05). "20-0" is the season record, not the product name. Framework: **Svelte 5 + Vite**. Public data: real player names/teams with non-EA ratings (ratings generation is the Owner's alone, later). Cutover trigger: a **fully functioning Colors v1** first, then cut over. Second sport (basketball) is post-v1.1. License: MIT. Offline is a hard requirement.
+**The product is 76 Pancakes** (Owner, 2026-11-05). "20-0" is the season record, not the product name. Framework: **Svelte 5 + Vite** (current implementation — **NOT a lock**; the Owner, 2026-11-12, ruled Svelte is not a lock. The framework is open and under test — four prototypes: SvelteKit, React, Vue/Nuxt, SolidStart. Do not present any framework as decided.) Public data: real player names/teams with non-EA ratings (ratings generation is the Owner's alone, later). Cutover trigger: a **fully functioning Colors v1** first, then cut over. Second sport (basketball) is post-v1.1. License: MIT. Offline is a hard requirement.
 
 **Two histories exist (VERIFIED 25 Oct).** `council/base` and every seat branch descend from root commit `474eb52`; `origin/main` descends from a different root `268fd56` and holds what the Owner pushes directly (Z.ai's package in `z-core/`, the logo folders, `CLAUDE-START-HERE.md`). They do not merge cleanly into each other. Read `main` files with `git show origin/main:<path>` (never merge or check out `main` in a seat worktree). The Architect will reconcile the two with one deliberate unrelated-histories merge when Colors v1 ships; the Owner need do nothing now.
 
