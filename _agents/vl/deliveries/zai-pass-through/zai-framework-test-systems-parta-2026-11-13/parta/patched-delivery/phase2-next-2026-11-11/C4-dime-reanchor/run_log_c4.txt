@@ -1,0 +1,37 @@
+C4 — DIME re-anchor
+staged (even80) dime share: 0.0695  (base 25005, nickel 36224, dime 4576)
+real per season: {2016: 0.1252, 2017: 0.1364, 2018: 0.1406, 2019: 0.1589, 2020: 0.1473, 2021: 0.1378, 2022: 0.1064, 2023: 0.1166, 2024: 0.0998, 2025: 0.0936}
+league mean 0.1263  strict6 mean 0.1193
+settle: b1 table match = True
+
+staged | real | delta per season:
+  2016: 0.0695 | 0.1252 | +5.57 pts -> re-anchored 0.1263 (-0.11)
+  2017: 0.0695 | 0.1364 | +6.69 pts -> re-anchored 0.1263 (+1.01)
+  2018: 0.0695 | 0.1406 | +7.11 pts -> re-anchored 0.1263 (+1.43)
+  2019: 0.0695 | 0.1589 | +8.94 pts -> re-anchored 0.1263 (+3.26)
+  2020: 0.0695 | 0.1473 | +7.78 pts -> re-anchored 0.1263 (+2.10)
+  2021: 0.0695 | 0.1378 | +6.83 pts -> re-anchored 0.1263 (+1.15)
+  2022: 0.0695 | 0.1064 | +3.69 pts -> re-anchored 0.1263 (-1.99)
+  2023: 0.0695 | 0.1166 | +4.71 pts -> re-anchored 0.1263 (-0.97)
+  2024: 0.0695 | 0.0998 | +3.03 pts -> re-anchored 0.1263 (-2.65)
+  2025: 0.0695 | 0.0936 | +2.41 pts -> re-anchored 0.1263 (-3.27)
+
+DIME share by situation (pooled, n>=500):
+  1st+long(8+)                    : 0.0646  (n=137528)
+  1st+med(4-7)                    : 0.0436  (n=4287)
+  1st+short(1-3)                  : 0.0262  (n=3055)
+  2nd+long(8+)                    : 0.1033  (n=56787)
+  2nd+med(4-7)                    : 0.0543  (n=34969)
+  2nd+short(1-3)                  : 0.0646  (n=17380)
+  3rd+long(8+)                    : 0.4531  (n=26743)
+  3rd+med(4-7)                    : 0.3590  (n=21707)
+  3rd+short(1-3)                  : 0.1100  (n=18963)
+  4th+long(8+)                    : 0.4516  (n=1125)
+  4th+med(4-7)                    : 0.3418  (n=1375)
+  4th+short(1-3)                  : 0.0994  (n=4207)
+  ?+short(1-3)                    : 0.0564  (n=1205)
+  ahead(>8)                       : 0.0869  (n=44034)
+  behind(>8)                      : 0.1782  (n=69494)
+  tied/one-score(|d|<=8)          : 0.1172  (n=215803)
+
+staged cells present: ['even80', 'home_plus8', 'identities']

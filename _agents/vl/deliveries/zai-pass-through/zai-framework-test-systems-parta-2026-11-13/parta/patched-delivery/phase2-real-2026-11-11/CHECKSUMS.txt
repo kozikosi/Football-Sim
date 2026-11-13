@@ -1,0 +1,21 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+d387453d719f673733c1f5391237412d5310489c2ce60df02040504c8056cff6       4005  LEDGER-PHASE1-ADDENDUM-2026-11-11.md
+4957170c11c968923c6dd348881401d8aeee0fc7e6f01866c61392875d3898bc      23811  PHASE2-REAL-REPORT-2026-11-11.md
+07c8e01e1dd6fba3580d779b7824c6940dd6470964f9cb5e63d7f2318582520f        161  b2_gravity_index.json
+c9fc4ac64c5e0241ee0900e51ddecd1d1c5412479c646b71b989485ca470d1d4       1159  b2_most_targeted_wr.json
+817b67c89d8ebb72740b4610cd357d9a43af8d5fa93a509b1741ffcd27b3d720       1880  fetch_log.txt
+d64ad695de03f6bf1a6dc6915e7def0579917b9c4ff87e8fd942dda7cd11c5a7       1081  fetch_progress.log
+ec5871dde4d9b15eaed16058b4147f4e2707f0a764fb56ca0a8a8304d0debc7a        349  p345_lambda_conditioning.json
+dde4a93b07610904aec09b659fc7957a35fc0fbdec5f348fce0a6848687a3a3d      28207  phase2_real.py
+e6e6a056a0daed59f877f17fe0bee1c7edb6e0e8a30b116156c944c94619059e      89693  phase2_real_results_all.json
+18ab82821a9f14b7099c0cd6ee2ed91849b23b9ca2f654390c4e39f88a794881      89675  phase2_real_results_reg.json
+7447b217e91075291b10316eab9983360b44b3b6fbbfce34ae6c47cb49ccd690       5098  report_tables.py
+31e085caaa443f59fb5cda415e8fa460e231560844e2ed0577e988d4e3fa6a25       2885  run_log_all.txt
+a64d238afac70da5aad6bed858ae5bc8bbdf6f35e397ba43e289bf1c307d2123       2890  run_log_reg.txt
+4ea642e07b100804b7b89f81f8824f1e1ecd7e427fa19ab1ebcf39d171070734       4372  spot_table_staged_vs_real.csv

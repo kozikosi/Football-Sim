@@ -1,0 +1,79 @@
+# Football-Sim — minimal-first CI (PROPOSAL artifact, delivered by Z.ai 2026-11-13)
+# Drop-in location: .github/workflows/ci.yml (repo root). Free tier (GitHub-hosted
+# runners, public repo). The critical repo-specific fact this workflow encodes:
+# the Colors suite reads data/ and tools/ at the REPO ROOT (verified: a
+# colors-only checkout fails 11 test files), so CI checks out the full repo.
+# Steps mirror the Owner's 8-point pipeline; steps 7-8 (Playwright smoke) ship
+# with the framework-test arms and are left as a commented scaffold until the
+# framework decision lands, so CI never goes red for work that has not been built.
+
+name: ci
+
+on:
+  push:
+    branches: [main, 'architect/**', 'council/**']
+  pull_request:
+
+jobs:
+  colors-engine:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4          # FULL repo — the suite reads ../data and ../tools
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc        # PROPOSAL: add .nvmrc (24) — the suite is unversioned today
+          cache: npm
+      - name: Install (lockfile-pinned)
+        run: npm ci
+        working-directory: colors
+      - name: Type check (ratchet — errors may only go down)
+        run: node tools/tsc-baseline.mjs
+        working-directory: colors
+      - name: Engine tests (unit + determinism + purity)
+        run: npm test
+        working-directory: colors
+      - name: Production build
+        run: npm run build
+        working-directory: colors
+
+  cakepanz-ui:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - name: Install (lockfile-pinned)
+        run: npm ci
+        working-directory: 67-cakepanz
+      - name: Type check (wire scripts/tsc:check first — the files exist, no script today)
+        run: npm run tsc:check
+        working-directory: 67-cakepanz
+      - name: Production build
+        run: npm run build
+        working-directory: 67-cakepanz
+
+  # Nightly lab (Phase 4 of the multisport plan): the bench harness lands first,
+  # this job runs it; until then the nightly runs the same suite as a smoke.
+  nightly-lab:
+    if: github.event_name == 'schedule'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+        working-directory: colors
+      - name: Full suite + determinism re-check
+        run: npm test
+        working-directory: colors
+      # - name: Simulation bench (lab/bench — 500 seeded seasons)
+      #   run: node lab/bench.mjs --seasons 500 --out lab/out
+      # - name: Invariants over the bench output
+      #   run: node lab/invariants.mjs lab/out
+
+# To enable later (Owner settings): branch protection on main with the two
+# required checks above; the nightly job gains the lab steps once Phase 4 ships.
