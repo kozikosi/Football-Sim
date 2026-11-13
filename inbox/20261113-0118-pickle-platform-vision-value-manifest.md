@@ -310,3 +310,61 @@ Steps 1–2 are hours of agent work and remove the failure mode that has already
 **Asks of the Architect, one line each:** (i) confirm which ref is the intent for the engine;
 (ii) approve the manifest as the single home for the value model, or say what should own it instead;
 (iii) authorise the fixtures move, since it touches test paths.
+
+---
+
+## 11. CORRECTION — appended 2026-11-13 01:40 UTC, after measuring the real head
+
+*Appended, not edited: §1 and §7 stay as the record of what I measured. Every number below is from
+`_agents/pickle/deliveries/platform-vision-2026-11-12/{track-probe.mjs,RUN.txt}`, re-run at the head.*
+
+**The mistake, because it is the same mistake this filing is about.** My probe opened with
+`ref: 'architect/engine-and-seats'` — a **local** branch. It had not been fetched and was eight days
+old (`425f72a8`, 5 Nov). The branch moved to `bebe8e0b` at **13 Nov 01:13 UTC, six minutes before I
+filed**. The probe printed a clean, confident result, and nothing in the output said "you are measuring
+the past". A measurement that does not print the sha it resolved is not a receipt — it is a
+screenshot of a name. Fixed: refs are `origin/*`, every run prints `Colors @ <sha>` / `Fork @ <sha>`,
+and `COLORS_REF` / `CAKE_REF` override.
+
+| § | What I wrote at `425f72a8` | Verified at `bebe8e0b` |
+|---|---|---|
+| 1.1 | 284 tests | **320 tests, 318 pass, 2 fail** (with repo `data/` + `tools/mathlab/`); **211/223 alone, 12 test files cannot load** |
+| 1.1 | no `colors/src/main.ts` | **holds.** Still no `main.ts`, no `ui/`: 57 `.ts`, 0 `.svelte` |
+| 1.2 | 47 shared / 19 differing / 487 lines | **52 shared / 4 differing / 57 lines** (`flex.ts` 43, `value.ts` 9, `slots.ts` 3, `draft.ts` 2) |
+| 1.2 | — | **new, sharper: the vendored copy is the library minus exactly five files** — `core/events.ts`, `core/fold.ts`, `core/keyedrng.ts`, `core/pack.ts`, `sports/nfl/engine/legacyprovider.ts` |
+| 1.3 | Colors `4b84f828`, fork `2e1bac2f`, **31/32 differ** | **identical, `2e1bac2f`, 0/32 differ** |
+| 1.3 | implied the fork was the stale side | **wrong direction.** `2e1bac2f` is the Owner's **6 Nov salary ruling** (`6cccf293`); Colors adopted it later and added the 8 Nov measured display (`7af54c00`, `value.ts`) |
+| 7 row 1 | "no philox anywhere" | **WRONG.** `core/keyedrng.ts` is **Philox-2x32-10**, counter-based: `draw = f(gameKey, eventIndex, tag, n)`. `core/rng.ts` is still mulberry32. Two RNGs — one legacy, one new; *that* is the real content |
+| 7 row 2 | "the suite is 284, not 318/320" | **WRONG at the head.** 320/318 was right |
+
+**What survives, and is stronger.**
+1. **Colors is a library, not an application.** `index.html` points at a `main.ts` that exists on no
+   ref. Holds at the head.
+2. **The suite is not hermetic.** 12 test files cannot load from a bare package archive; the fork is
+   hermetic (284/284 alone). Holds, and now with a bigger count.
+3. **The value-model argument survives in a better form.** It is no longer "the fork has a wrong
+   table". It is: **two copies of a number the Owner changes by ruling, drifting in both directions**
+   — the fork ahead on the 6 Nov ruling, the library ahead on the 8 Nov measured display — with no
+   check on either side, and the library took until 11–13 Nov to receive a 6 Nov ruling. That is a
+   *propagation* finding, not a correctness one, and it is exactly what one manifest plus one hash
+   check fixes.
+4. My §7 corrections to the audit shrink from five to three.
+
+**And a finding nobody in this round has: the suite is red at the head, and both failures are about
+the value table's lineage.**
+
+- `test/nfl/lineup.test.ts` — *"base: totals are not comparable…"*: expected `2400`, actual `2700` —
+  a hard-coded **derived** expectation written against the old table.
+- `test/nfl/versions.test.ts:19` — *"E5 pins: the engine and data stamps are what the last deliberate
+  change left them"*: `AssertionError: rules changed: update PIN_ENGINE on purpose`, actual
+  `nfl1.14a4e9333e888a` vs expected `nfl1.108bcc20a9f253`.
+
+So the pin mechanism I propose in §3 **already exists** ("E5 pins") and is currently **red**: the rules
+stamp moved and the pin was not re-pinned in the same commit. The argument is no longer "build a
+manifest" — it is "the manifest's enforcement exists, is failing, and four filings this round did not
+run it."
+
+**Asks unchanged, one sharpened:** (i) which ref is the intent for the engine — now `bebe8e0b`;
+(ii) the manifest's home — `core/pack.ts` exists, so the ask narrows to *put the slot table in the
+pack*; (iii) the fixtures move; (iv) **new: re-pin `PIN_ENGINE` or revert the rules change in the same
+commit**, because a red change-control test is worse than none.

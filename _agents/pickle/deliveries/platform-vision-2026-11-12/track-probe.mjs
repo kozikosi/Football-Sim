@@ -12,8 +12,8 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 
 const repo = process.argv[2] ?? process.cwd();
-const COLORS = { ref: 'architect/engine-and-seats', pkg: 'colors' };
-const CAKE = { ref: 'origin/gh-pages', pkg: '67-cakepanz' };
+const COLORS = { ref: process.env.COLORS_REF ?? 'origin/architect/engine-and-seats', pkg: 'colors' };
+const CAKE = { ref: process.env.CAKE_REF ?? 'origin/gh-pages', pkg: '67-cakepanz' };
 const git = (...a) => execFileSync('git', ['-C', repo, ...a], { encoding: 'utf8', maxBuffer: 1 << 28 });
 
 function extract({ ref, pkg }, extra = []) {
@@ -49,7 +49,10 @@ function probe(name, target, { solo }) {
 }
 
 console.log(`# track-probe | node ${process.version} | repo ${repo}`);
-console.log(`# Colors = ${COLORS.ref}:${COLORS.pkg}   Fork = ${CAKE.ref}:${CAKE.pkg}\n`);
+const sha = (ref) => git('rev-parse', '--short=8', ref).trim();
+console.log(`# Colors = ${COLORS.ref}:${COLORS.pkg} @ ${sha(COLORS.ref)}`);
+console.log(`# Fork   = ${CAKE.ref}:${CAKE.pkg} @ ${sha(CAKE.ref)}\n`);
+console.log('## 0. resolve every ref to the sha actually measured (a local branch may not be the remote head)\n');
 console.log('## 1. hermeticity — the same suite from a bare archive\n');
 const cSolo = probe('Colors', COLORS, { solo: true });
 const cFull = probe('Colors', COLORS, { solo: false });
@@ -81,12 +84,14 @@ const changedLines = (p) => {
 const rows = diff.map((r) => ({ ...r, changed: changedLines(r.p) })).sort((a, b) => b.changed - a.changed);
 const engineOnly = rows.filter((r) => r.p.startsWith('sports/nfl/engine/'));
 console.log('\n## 2. drift — the two copies of the same engine\n');
-console.log(`shared files: ${shared.length} | identical: ${same.length} | differing: ${rows.length} | fork-only: ${[...B.keys()].filter((p) => !A.has(p)).length}`);
+console.log(`shared files: ${shared.length} | identical: ${same.length} | differing: ${rows.length} | colors-only: ${[...A.keys()].filter((p) => !B.has(p)).length} | fork-only: ${[...B.keys()].filter((p) => !A.has(p)).length}`);
 console.log(`changed lines total: ${rows.reduce((s, r) => s + r.changed, 0)} | in sports/nfl/engine only: ${engineOnly.reduce((s, r) => s + r.changed, 0)}`);
 console.log('\nfile'.padEnd(38) + 'lines'.padStart(6) + 'changed'.padStart(9));
 for (const r of rows) console.log(r.p.padEnd(38) + String(r.lines).padStart(6) + String(r.changed).padStart(9));
 const forkOnly = [...B.keys()].filter((p) => !A.has(p)).sort();
 if (forkOnly.length) console.log('\nfork-only: ' + forkOnly.join(', '));
+const colorsOnly = [...A.keys()].filter((p) => !B.has(p)).sort();
+if (colorsOnly.length) console.log('\ncolors-only: ' + colorsOnly.join(', '));
 
 // ---- value model: the two design.json files, and whether each copy pins its own ----
 import { createHash } from 'node:crypto';
@@ -100,8 +105,10 @@ const moved = slots.filter((k) => DA[k] !== DB[k]);
 console.log(`slots: ${slots.length} | differing: ${moved.length}`);
 console.log('\nslot'.padEnd(8) + 'colors'.padStart(8) + 'fork'.padStart(8) + 'fork/colors'.padStart(13));
 for (const k of moved) console.log(k.padEnd(8) + String(DA[k]).padStart(8) + String(DB[k]).padStart(8) + (DB[k] / DA[k]).toFixed(2).padStart(13));
-console.log(`\n# the pin: each copy's test/nfl(engine)/nfl/lineup.test.ts reads ITS OWN tools/mathlab/design.json,`);
-console.log(`# so both suites are green while the value table differs in ${moved.length} of ${slots.length} slots.`);
+console.log(`\n# the pin: each copy's lineup test reads ITS OWN tools/mathlab/design.json,`);
+console.log(moved.length === 0
+  ? `# so right now the two tables agree in all ${slots.length} slots — and a suite can still be green only while they agree by luck, not by check.`
+  : `# so both suites are green while the value table differs in ${moved.length} of ${slots.length} slots.`);
 
 const verdict = cSolo.ok && kSolo.ok ? 'both copies pass alone' : 'a copy needs the whole repo to pass';
 console.log(`\n# verdict: ${verdict}`);

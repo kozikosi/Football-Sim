@@ -1,79 +1,38 @@
 # track-probe | node v26.13.0 | repo /Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle
-# Colors = architect/engine-and-seats:colors   Fork = origin/gh-pages:67-cakepanz
+# Colors = origin/architect/engine-and-seats:colors @ bebe8e0b
+# Fork   = origin/gh-pages:67-cakepanz @ 3e69567c
+
+## 0. resolve every ref to the sha actually measured (a local branch may not be the remote head)
 
 ## 1. hermeticity — the same suite from a bare archive
 
-Colors     ALONE (package only)       186/196 pass, 10 fail (10 test files could not load)  | Error: ENOENT: no such file or directory, open '/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/probe-hKGEcz/data/nfl/madden27-ratings.csv'
-Colors     with repo data + mathlab    284/284 pass, 0 fail  
+Colors     ALONE (package only)       211/223 pass, 12 fail (12 test files could not load)  | Error: ENOENT: no such file or directory, open '/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/probe-85IyBm/data/nfl/madden27-ratings.csv'
+Colors     with repo data + mathlab    318/320 pass, 2 fail  
 Cake       ALONE (package only)       284/284 pass, 0 fail  
 
 ## 2. drift — the two copies of the same engine
 
-shared files: 47 | identical: 28 | differing: 19 | fork-only: 21
-changed lines total: 487 | in sports/nfl/engine only: 330
+shared files: 52 | identical: 48 | differing: 4 | colors-only: 5 | fork-only: 16
+changed lines total: 57 | in sports/nfl/engine only: 57
 
 file                                  lines  changed
-sports/nfl/engine/slots.ts                97       62
-sports/nfl/app/store.ts                  133       41
-sports/nfl/engine/schedule.ts            124       41
-sports/nfl/engine/drives.ts              307       38
-sports/nfl/engine/specs.ts                86       38
-sports/nfl/engine/boxscore.ts            254       34
-sports/nfl/engine/standings.ts           167       30
-core/app.ts                               22       28
-sports/nfl/engine/draft.ts               157       28
-sports/nfl/engine/seasonrun.ts           113       26
-sports/nfl/app/saves.ts                  116       20
-core/keys.ts                              28       19
-core/saver.ts                             49       18
-sports/nfl/engine/season.ts               78       17
-sports/nfl/engine/recap.ts               165       16
-sports/nfl/app/weekmap.ts                 70       13
-sports/nfl/app/appstate.ts                56       11
-sports/nfl/app/selectors.ts               16        6
-core/envelope.ts                          70        1
+sports/nfl/engine/flex.ts                 62       43
+sports/nfl/engine/value.ts                45        9
+sports/nfl/engine/slots.ts                98        3
+sports/nfl/engine/draft.ts               159        2
 
-fork-only: App.svelte, core/at.ts, data/free-agents-old-ratings.csv, data/madden27-ratings.csv, data/player-ids.csv, lib/components/BoardFooter.svelte, lib/components/BoardHeader.svelte, lib/components/BoardRow.svelte, lib/components/DraftBoard.svelte, lib/components/LineupAdvice.svelte, lib/components/ModeSwitch.svelte, lib/components/SlotPicker.svelte, lib/components/SortControls.svelte, lib/draftStore.ts, lib/screens/TeamSelect.svelte, lib/valuation.ts, main.ts, platform/localstorage.ts, sports/nfl/app/dataset.ts, sports/nfl/app/feed.ts, sports/nfl/app/hydrate.ts
+fork-only: App.svelte, data/free-agents-old-ratings.csv, data/madden27-ratings.csv, data/player-ids.csv, lib/components/BoardFooter.svelte, lib/components/BoardHeader.svelte, lib/components/BoardRow.svelte, lib/components/DraftBoard.svelte, lib/components/LineupAdvice.svelte, lib/components/ModeSwitch.svelte, lib/components/SlotPicker.svelte, lib/components/SortControls.svelte, lib/draftStore.ts, lib/screens/TeamSelect.svelte, lib/valuation.ts, main.ts
+
+colors-only: core/events.ts, core/fold.ts, core/keyedrng.ts, core/pack.ts, sports/nfl/engine/legacyprovider.ts
 
 ## 3. value model — the 32-spot table each copy is pinned to
 
-Colors design.json sha256:4b84f82885adfc69   Fork design.json sha256:2e1bac2f34479062   identical: false
-slots: 32 | differing: 31
+Colors design.json sha256:2e1bac2f34479062   Fork design.json sha256:2e1bac2f34479062   identical: true
+slots: 32 | differing: 0
 
 slot     colors    fork  fork/colors
-C            320     150         0.47
-CB1          430     400         0.93
-CB2          340     250         0.74
-CB3          280     100         0.36
-DE1          520     650         1.25
-DE2          405     300         0.74
-DIME          40      50         1.25
-DL5          145     150         1.03
-DT1          410     500         1.22
-DT2          305     300         0.98
-FB            30      25         0.83
-FS           265     300         1.13
-K            200      50         0.25
-MIKE         265     300         1.13
-OG1          290     400         1.38
-OG2          290     250         0.86
-OT1          430     500         1.16
-OT2          400     300         0.75
-P            100      50         0.50
-RB1          235     250         1.06
-RB2           80     100         1.25
-SAM           35     100         2.86
-SS           265     300         1.13
-TE1          295     250         0.85
-TE2           60     150         2.50
-TE3           10      50         5.00
-WILL         245     150         0.61
-WR1          525     650         1.24
-WR2          295     400         1.36
-WR3          180     100         0.56
-WR4           10      50         5.00
 
-# the pin: each copy's test/nfl(engine)/nfl/lineup.test.ts reads ITS OWN tools/mathlab/design.json,
-# so both suites are green while the value table differs in 31 of 32 slots.
+# the pin: each copy's lineup test reads ITS OWN tools/mathlab/design.json,
+# so right now the two tables agree in all 32 slots — and a suite can still be green only while they agree by luck, not by check.
 
 # verdict: a copy needs the whole repo to pass
