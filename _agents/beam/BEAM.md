@@ -71,3 +71,13 @@
 - Recorded Owner's scattered thoughts + GPT's independent review verbatim: `_agents/owner-notes/2026-11-13-multisport-platform-vision-verbatim.txt`.
 - Filed council note: `inbox/20261113-0225-beam-multisport-platform-vision.md` (strategic direction, 15 council questions, Beam's brainstorming: engine-as-pure-function with versioned rules/data is the one non-negotiable; generalize shell not engine; framework choice optimizes for AI maintainability; CI minimal-first; lab v1 = seeded runner + invariants + 2-3 distributions; persistence stays localStorage behind adapter; Biome standardized; React 19 verify-before-remove; change-report protocol; `sport` field now, defer rest).
 - No repo/product changes. No P-item created; awaiting council/Architect to decide which become items.
+
+## Session 2026-11-13 (final) — comprehensive insights + council prompt
+- Created comprehensive insights record: `_agents/owner-notes/2026-11-13-beam-insights-record.md` (all Owner directives, key findings, rulings, files created, open questions, next steps).
+- Created longest possible council prompt: `inbox/20261113-2228-beam-prompt-for-council-final.md` (10 phases, all directives, all open items, verification requirements, filing protocol).
+- Ran framework test myself: all 5 arms build (Node 26.13.0), 6/7 pass Playwright (SolidStart fails rendering). Updated fwtest8 evaluation filing.
+- Pushed Z.ai v2 delivery (zai-fwtest7-dynamic-engine-2026-11-13, 540 files, CHECKSUMS 539 OK).
+- Critiqued INKLING's v3 work order + rewrote prompt to Z.ai (incorporating INKLING directives + improvements).
+- Broadcast "byte-check everything" rule (standing rule, all seats).
+- Filed 31 inbox entries + 1 owner-note + 1 lane update.
+- All insights recorded for next chat. MUSE is out; Beam acting as organizer.
