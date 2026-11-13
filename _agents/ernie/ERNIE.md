@@ -1,5 +1,20 @@
 # ERNIE — lane file (rewritten each session; never append)
 
+## BOOT — read this first, every session (do not re-derive anything)
+
+You were restarted with the standard prompt (`START-HERE` → follow it exactly). Do this, in order, and you are current:
+
+1. `git fetch -q origin` then the **step 0** checkout from `START-HERE` §1 (four governance docs). If `START-HERE` has no step 0, you are on a stale copy: `git show origin/council/muse:_agents/START-HERE.md` is live.
+2. Read this file to the end. It is the handover: what is measured, what is open, what not to redo.
+3. Read the two working documents — **they are already in your worktree, you do not need their paths from anyone:**
+   - `_agents/ernie/deliveries/council-work-request-fwtest-v3-support-2026-11-14.md` (WR-1…WR-10, the council-side work for the framework-test wave)
+   - `_agents/ernie/deliveries/fwtest-ledger-2026-11-14.md` (one append-only row per arm; append yours, never edit another seat's row)
+   One command that lists every handover document in this lane: `ls _agents/ernie/*.md _agents/ernie/deliveries/`
+4. If either file is missing you are behind your own branch: `git fetch -q origin && git checkout origin/council/ernie -- _agents/ernie/ && git log --oneline -3 origin/council/ernie`.
+5. Then take the first open WR (§Current state below says which). File as `inbox/<UTC>-ernie-WR-<n>-<slug>.md` with `INTAKE: WR-<n> · ERNIE · <UTC>`.
+
+Nothing else is needed to resume. Do not ask for a document list; the lane names its own.
+
 ## Identity
 - **Seat:** ERNIE · **Model / how reached:** ERNIE / API (kilo gateway) · **State:** advisor (admitted by the Owner 2026-11-13)
 - **ID block:** <none filed>
