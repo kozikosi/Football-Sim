@@ -1,0 +1,22 @@
+SPEAKER: VL | ROLE: council advisor | TASK: multisport engine plan proposal | DATE: 2026-11-13T01:18:06Z
+IDEA: new multisport engine build — overarching architecture proposal
+PRIORITY+: propose as a new P-item (P1) for the Architect's digest; VL does not assign owners
+SEE: `_agents/vl/deliveries/multisport-engine-plan-2026-11-13/PLAN.md` (full plan, this lane only)
+
+Summary of the plan:
+
+- Decision: sport-independent application shell + sport-independent domain engines (football now, basketball post-v1.1). NOT one generalized mega-engine — football and basketball have different rules, events, attributes, statistics; premature generalization distorts football today. Matches GPT §10C and MUSE D18 (defer generalization).
+- Engine lives only in `colors/` (`architect/engine-and-seats`, pin `4ca9a071`); Cakepanz consumes the frozen pin; neither builder edits the other's tree.
+- Structure: `engine/core/` (RNG Philox2x32 injectable streams, explicit clock, collections, invariants), `engine/shared/` (snake draft, schedule, standings), `engine/sports/nfl/` (existing), `engine/sports/nba/` (new, post-v1.1), `engine/contract.ts` (simulateGame/simulateSeason/draft/validateInvariants, defined inputs/outputs).
+- Boundary: server-ready principle becomes a mechanical CI/gate check — fail the build if `engine/` imports window/document/localStorage/fetch, UI components, framework stores, Math.random/Date.now, network, or DB. Time and randomness are explicit inputs. Outputs are plain JSON-serializable. (D13 — cost of not doing it is silent erosion.)
+- Data: versioned save envelope `{version, schema, sport, createdAt, data, checksum}`; unversioned legacy = v0 with migration/recovery path (never auto-reject); player ratings versioned per season; completed seasons are snapshots independent of current player DB; global records separate from saves. (D14 — high cost of not doing it.)
+- Determinism: golden-file seed test (5 seeds × 1 season, hashed box scores, committed artifact, one CI step); replay from saved seed reproduces identical results; each franchise records the rules version that produced it.
+- Testing pyramid: Node test runner engine unit tests + tsc baseline + svelte-check (Cakepanz script missing — add it) + Biome lint/format (formatter ON for product) + Playwright UI integration + Vite production build + determinism/regression + nightly simulation lab (thousands of seasons, invariants, distribution comparisons vs baseline).
+- CI: smallest version first — install from pinned lockfile, type check, engine tests, production build, lint. Then determinism/regression, format, browser smoke. Nightly lab job. (D9 — GPT called no CI the most obvious weakness.)
+- Frontend: deferred to the four-prototype framework test (SvelteKit, React, Vue/Nuxt, SolidStart; weighted scoring, change amplification, shared contract tests, Playwright). Svelte is NOT a lock (Owner 2026-11-12). Current app is Svelte 5 + Vite, not SvelteKit. Until the test decides: plain CSS, hand-built components, no component/icon/charting library by default. React 19 in Colors installed but unused — verify with Claude, cleanup candidate.
+- Nothing built now: no database, no auth, no backend, no microservices, no Docker, no paid APIs/services, no Web Workers without profiling evidence, no framework rewrite before the test, no generalized multi-sport engine, no analytics/monitoring until deliberate Owner decision. (Owner §17 anti-overengineering.)
+- 30-day roadmap: days 1–7 stabilize (CI minimal, lint both tracks, formatter on, svelte-check script, fix/quarantine failing tests); days 8–14 protect engine (boundary check, RNG/clock audit, golden-file test); days 15–21 protect persistence (save versioning, load validation, v0 migration, recovery); days 22–30 simulation lab v1 (seeded batches, baseline distributions, invariants, regression).
+- Protected constants (DEFAULT_WEIGHTS, FLEX, NATURAL_SLOT_MAP, MC, PLAN_K, RATING_SPECS) change only with Owner approval + MERGE-MANIFEST.md re-pin.
+- Model-first weights (Owner 2026-11-08): each sport's slot values come from measured engine impact, not salary tables. Calibration targets: skilled drafter 90% playoffs / ~35% SB / 25% title / P(20-0) 1–2%.
+
+VL role note: this is a proposal in VL's lane only. VL never edits the product file, AGENTS.md, CLAUDE.md, QUEUE.md, PROJECT-KNOWLEDGE.md, or protected constants. Three independent ok/improved reviews from three seats carry this to REVIEWED; the Architect decides adoption. Receipt: files written below; commit + push to council/vl.
