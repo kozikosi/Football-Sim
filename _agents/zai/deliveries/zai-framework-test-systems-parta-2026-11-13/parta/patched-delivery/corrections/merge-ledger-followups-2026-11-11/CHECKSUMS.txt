@@ -1,0 +1,35 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+9ca986bba0f5b28ca8aa3b5765b2bc32f659e3c2f92ed95d6d3f2168c0e6d3d9      10509  CORRECTIONS-NOTE-2026-11-11.md
+9026dcaaf9e8287b0e0fcf28c04c7942a987e0edf2b1f8c8b02670c33eced701       6388  CORRECTIONS-NOTE-2026-11-12.md
+868d1b39ecc900e8c2a5789f512325f75cacf08d5bc82d3169ae08c41091a108      13651  LEDGER-FOLLOWUPS-2026-11-11.md
+0da74703412f89840c9e496ff2773ab89bf31ac1050fd25cfbddb2e863135a46      22389  MERGE-DESIGN-2026-11-11.md
+712a705bd279a89b5c57f61d34cf6999274e1a10d2853780c4bcb35ea5277d35       7831  PHASE2-HARNESS-2026-11-11.md
+7f4c9c6a5b426b250edb32fac38f4b66888b48185174bf7434a7fce524e40685       3552  README.md
+7572ed7d8036bd519388ebfcca76427f9046015085cf9a4072d3591305a81d50       7212  dime_sensitivity.py
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6       2814  flex-99-live.json
+ca6c4a542b984e89ef593db68aeec1800b1d6aa3d6944fc85f69f18cfa1a9c9a        886  logs/b2_grid_log.txt
+f79d3d95f266f14c69b7ca8820027935b840f7dd6f437aa0ec17ea3d39a4473d        272  logs/b2_log.txt
+185fcd825e144c03a0194c6597eb88f0cf396e3ed1ce2a5319e30eb695f84f60        104  logs/b3_log.txt
+44d7f041861e9df06328716a3f17ab793982a8ba8db57724c5091e90db65e8db       2963  logs/dime_log.txt
+55daa143d0a7c7a2e48389d5fb08b110b2eff68b41c4e2712ec13f31c1d3bed4      12312  logs/followup_34.json
+ea6d9ca967b2390be934d2b6b9683785b52fd6cad1698016cf23909ac9b12ea0       5873  logs/followup_sit.json
+30ae04ef5f180fad33acb4376ceec58a2bbe61a1dcb38f1cbc733ffd539c3395      18473  logs/followup_wr1.json
+dc21cd09c2d89cbb2765990482b9c71f9fc3ddf5df9edd94a46f2e4a5f613470        888  logs/followup_wr1_grid.json
+cac7479404c913a702367d064c7037d2021179ec86b8660897bf74b4af428693     210721  logs/merge_results.json
+19bfc57c2e4bc02227a8695ca3054efe39fc935c22711fc3136d66197e01cfab       9145  logs/merge_run_log.txt
+e3e5c6067bdd548dda57431e7cf83f18bdca0efb9e61aebc2aa2d70fb2b36e8b       9145  logs/og2_exact_sensitivity.log
+8a1681819f88ac82ee89279fe64579e22a9eccb6b2a983e6978570965e5c21c4     210722  logs/og2_exact_sensitivity_results.json
+495b3923ceac9a25d503103479ff3de45bd95c795f361bd6f5c6cf06fd82d932        187  logs/sit_log.txt
+f99120234119def1141a9264cf2faa393f2dee8049643eef79503e5dd8602dce      27655  merge_prototype.py
+cac7479404c913a702367d064c7037d2021179ec86b8660897bf74b4af428693     210721  merge_results.json
+4a6ed04c14095a614618ce6bd6ff3f01bd114415ab7fba238b28bd55c8a8a9c4      21779  phase2_harness.py
+53a49bd65ec6e63bd8f3fd9aa7761ae2fc2993885bd5f3ff121609a957936fd8       8818  phase2_results.json
+c382148c4219c42dde5d3ed7eb186c19bb38a50f476fd88876abd52bbb662317      24211  stage_followup.py
+bc59cc1c42706676666bcc7e5cb6d19b4c030ba9fcbed3230656a240ef1b4215    3071585  synthetic_pbp.csv
+94ca85d35c59a61661c6f8743f3ebe56f246a7c44c0148ae14f94eb184848847     990279  synthetic_snap_counts.csv

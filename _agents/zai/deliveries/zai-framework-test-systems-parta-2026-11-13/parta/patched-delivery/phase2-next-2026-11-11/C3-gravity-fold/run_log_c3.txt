@@ -1,0 +1,51 @@
+C3 — gravity fold (the recovered definition)
+  yr  shipped  teammeans   gamewt  exact
+2016    0.325      0.325    0.324   True
+2017    0.335      0.335    0.335   True
+2018     0.31       0.31     0.32   True
+2019    0.304      0.304     0.31   True
+2020    0.309      0.309    0.313   True
+2021    0.313      0.313    0.317   True
+2022    0.313      0.313    0.316   True
+2023    0.331      0.331    0.327   True
+2024    0.327      0.327    0.332   True
+2025    0.315      0.315    0.312   True
+
+B3 2016: teams where the deep leader is not the snaps-WR1:
+  ARI: deep leader J.Nelson  snaps-WR1 Larry Fitzgerald
+  ATL: deep leader J.Jones  snaps-WR1 Mohamed Sanu
+  CAR: deep leader G.Olsen  snaps-WR1 Kelvin Benjamin
+  CHI: deep leader A.Jeffery  snaps-WR1 Cameron Meredith
+  CIN: deep leader A.Green  snaps-WR1 Brandon LaFell
+  DAL: deep leader D.Bryant  snaps-WR1 Terrance Williams
+  DEN: deep leader E.Sanders  snaps-WR1 Demaryius Thomas
+  HOU: deep leader W.Fuller  snaps-WR1 DeAndre Hopkins
+  KC: deep leader J.Maclin  snaps-WR1 Chris Conley
+  LAC: deep leader Ty.Williams  snaps-WR1 Dontrelle Inman
+  LV: deep leader M.Crabtree  snaps-WR1 Amari Cooper
+  MIA: deep leader K.Stills  snaps-WR1 Jarvis Landry
+  NYG: deep leader O.Beckham  snaps-WR1 Sterling Shepard
+  PHI: deep leader J.Matthews  snaps-WR1 Nelson Agholor
+  TEN: deep leader R.Matthews  snaps-WR1 Tajae Sharpe
+  WAS: deep leader D.Jackson  snaps-WR1 Pierre Garcon
+  (leader IS the snaps-WR1 on 16 of 32 teams)
+
+second gravity stat — Herfindahl of deep-target concentration:
+  2016: HHI 0.2089 ± 0.0411  WR2 deep share 0.22  TE1 0.107
+  2017: HHI 0.2055 ± 0.0503  WR2 deep share 0.203  TE1 0.119
+  2018: HHI 0.1915 ± 0.0417  WR2 deep share 0.209  TE1 0.113
+  2019: HHI 0.1820 ± 0.0338  WR2 deep share 0.207  TE1 0.103
+  2020: HHI 0.1899 ± 0.0442  WR2 deep share 0.216  TE1 0.12
+  2021: HHI 0.1894 ± 0.0401  WR2 deep share 0.208  TE1 0.115
+  2022: HHI 0.1921 ± 0.0424  WR2 deep share 0.206  TE1 0.108
+  2023: HHI 0.2042 ± 0.0476  WR2 deep share 0.222  TE1 0.1
+  2024: HHI 0.2023 ± 0.0542  WR2 deep share 0.204  TE1 0.098
+  2025: HHI 0.1937 ± 0.0470  WR2 deep share 0.212  TE1 0.103
+
+staged vs real WR1 pass-event share (the both-sides comparator):
+  2016: real 0.2133  staged 0.3287
+  2019: real 0.2043  staged 0.3287
+  2023: real 0.2147  staged 0.3287
+  2025: real 0.2066  staged 0.3287
+
+wrote /home/z/my-project/work/out/c3_gravity_results.json + c3_gravity_fold_per_team_game.csv (5257 fold rows)

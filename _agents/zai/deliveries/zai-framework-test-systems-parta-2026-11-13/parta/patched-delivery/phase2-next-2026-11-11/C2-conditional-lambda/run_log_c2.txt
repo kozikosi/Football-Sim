@@ -1,0 +1,39 @@
+C2 — conditional-lambda validation
+
+== the two-gap Lab (bit-exact port of MUSE's seeds) ==
+MUSE published:  b=0.5 -> 0.496/0.490/0.500, R 1.979 | b=1.0 -> 0.978/0.924/1.000, R 1.890 | b=2.0 -> 1.847/1.523/1.999, R 1.649 | linear control 1.000/1.000, R 2.001
+  beta0.5: {'one_gap_wins10_mean': 0.496, 'one_gap_wins10_bias': -0.004, 'one_gap_wins20_mean': 0.49, 'one_gap_wins20_bias': -0.01, 'two_gap_fit_mean': 0.5, 'two_gap_fit_bias': -0.0, 'two_gap_fit_sd': 0.011, 'R_wins20_wins10': 1.979}
+  beta1.0: {'one_gap_wins10_mean': 0.978, 'one_gap_wins10_bias': -0.022, 'one_gap_wins20_mean': 0.924, 'one_gap_wins20_bias': -0.076, 'two_gap_fit_mean': 1.0, 'two_gap_fit_bias': -0.0, 'two_gap_fit_sd': 0.013, 'R_wins20_wins10': 1.89}
+  beta2.0: {'one_gap_wins10_mean': 1.847, 'one_gap_wins10_bias': -0.153, 'one_gap_wins20_mean': 1.523, 'one_gap_wins20_bias': -0.477, 'two_gap_fit_mean': 1.999, 'two_gap_fit_bias': -0.001, 'two_gap_fit_sd': 0.02, 'R_wins20_wins10': 1.649}
+  linear_world_control_beta1: {'one_gap_wins10_mean': 1.0, 'one_gap_wins20_mean': 1.0, 'R_wins20_wins10': 2.001}
+
+== D4 controlled world (DS's design, seeds ported) ==
+MUSE published: res 0.5 -> +0.232/+0.002 | res 1 -> +0.427/+0.002 | res 2 -> +0.751/+0.003
+  res0.5: {'dispersion_matching_mean': 1.232, 'dispersion_matching_bias': 0.232, 'regression_mean': 1.002, 'regression_bias': 0.002}
+  res1: {'dispersion_matching_mean': 1.427, 'dispersion_matching_bias': 0.427, 'regression_mean': 1.002, 'regression_bias': 0.002}
+  res2: {'dispersion_matching_mean': 1.751, 'dispersion_matching_bias': 0.751, 'regression_mean': 1.003, 'regression_bias': 0.003}
+
+== B2 receipt (2023 REG) ==
+  n team-games 544  drives 11.11±1.74  points 21.74±10.06  corr 0.056
+  conditional SDs: {'9': 9.93, '10': 9.86, '11': 9.3, '13': 11.8}  bucket ns: {'9': 62, '10': 117, '11': 136, '13': 61}
+  offense-attributed: n 544  pts 20.9±9.77  corr 0.071  cond SDs {'9': 9.06, '10': 9.84, '11': 9.23, '13': 10.91}
+  TD-only on CSV drives (the filing's definition, IDENTIFIED): n 544  pts 13.56±8.49  corr 0.078  cond SDs {'9': 8.58, '10': 8.37, '11': 7.67, '13': 9.62}  bucket ns {'9': 62, '10': 117, '11': 136, '13': 61}
+  n=572 enumeration: {'REG games (unique game_ids)': 272, 'REG team-games (unique game_id+posteam)': 544, 'REG pass/run team-games': 544, 'all games (REG+post)': 285, 'all team-games': 570}
+
+== fit/holdout (2016-2022 -> 2023-2025) ==
+  train SDs: N9=9.55 N10=9.56 N11=10.05 N12=10.53 N13=10.09 N14=10.21
+  hold  SDs: N9=9.75 N10=9.76 N11=9.78 N12=10.13 N13=10.76 N14=12.12
+  persistence errors: {'9': 0.2, '10': 0.2, '11': -0.27, '12': -0.4, '13': 0.67, '14': 1.91}  max |err| 1.91
+
+== D4 ratio on real data (per season) ==
+  2016: between-share -0.0084  overstatement x0.9958
+  2017: between-share 0.0123  overstatement x1.0062
+  2018: between-share 0.0213  overstatement x1.0108
+  2019: between-share 0.0167  overstatement x1.0084
+  2020: between-share 0.012  overstatement x1.0061
+  2021: between-share 0.0041  overstatement x1.002
+  2022: between-share 0.0133  overstatement x1.0067
+  2023: between-share -0.0008  overstatement x0.9996
+  2024: between-share -0.0032  overstatement x0.9984
+  2025: between-share 0.0105  overstatement x1.0053
+  pooled: {'total_var': 99.88, 'within_var': 99.4, 'between_var_rounded': 0.47, 'between_share': 0.0047, 'dispersion_matching_overstatement_ratio': 1.0024, 'note': "under the drive-engine-authoritative design (theta frozen), the between-drive-count variance is not lambda's to fit; the ratio is the overstatement an unconditional dispersion-matching lambda carries on this data"}
