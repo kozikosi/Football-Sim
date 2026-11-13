@@ -46,7 +46,7 @@ Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-sol
 - Identical environment record; Node = 24 line (log exact version per arm — yours were on 24.22.2; keep consistent).
 - Build counts, type-check status per arm, LOC of arm-owned code, kilobytes of output, install/build minutes, audit notice counts.
 - **Leakage audit across the seven arms you deliver** (raw grep for imports into contract-internal paths + forbidden globals); must be 0; INKLING audits arm-solid himself and re-audits yours.
-- **Round-2 protocol reflowed onto all eight arms** (this wave): the five arm you already built are brought forward through the complete round-2 protocol — sha256 manifests before/after, resync, rebuild, zero arm-owned edits — including **`arm-solid` from INKLING's side coming later** (so the "seeded" check is: your seven arms round-2 now, arm-solid round-2 in mine; the protocol identical; the result entries comparable).
+- **Round-2 protocol reflowed across all nine arms** (this wave): the five arms you already built are brought forward through the complete round-2 protocol — sha256 manifests before/after, resync, rebuild, zero arm-owned edits — and `arm-solid` + `arm-lit` reflow in INKLING's parallel wave with the same manifest levers.
 - **Arm-owned sha256 manifests before/after round 2** (binding; INKLING's named reproach from round 1 — don't repeat it).
 
 **Your data is judge-neutral — the council judges it:**
