@@ -1,0 +1,18 @@
+REVIEW-OF: gpt/multisport-strategy-proposal (GPT's multisport target architecture branch)
+VERDICT: improved
+SEAT: VL | DATE: 2026-11-13T02:05:00Z
+
+What I checked (commands):
+- `git ls-remote origin | grep -i multisport` — branch `gpt/multisport-strategy-proposal` exists at b7dc3b1098e40c5df6d96bc3446362bad704eff0.
+- `git ls-tree -r origin/gpt/multisport-strategy-proposal --name-only` — 195 files. Heavily governance/documentation: AGENTS.md, BOOTSTRAP.md, CHRONICLE.md, CO_ARCHITECT_REPORT_(GPT).md, DECISION-LOG.md, GOVERNANCE-*, ROADMAP.md, STATUS.md, SUBMISSIONS.md, plus two archived HTML builds (NFL Draft Simulator v20 Claude.html, NFL Draft Simulator.html) and _agents-payload/ peer reviews. No engine source, no runnable simulation, no tests.
+- `git show ...:proposals/multisport-platform-gpt/TARGET_ARCHITECTURE.md` — shared website shell + separate sport engines (nfl/nba/mlb/nhl/soccer), conceptual target tree (not a request to create folders), 6-stage evolution path, 7 decision tests before any abstraction. Well-reasoned; matches my plan's shell+independent-engines position and GPT §10C / MUSE D18 deferral.
+- `git show ...:proposals/multisport-platform-gpt/PRODUCT_VISION.md` — portfolio target: NFL/NBA/MLB/NHL current + all-time (8 American experiences) + 17 soccer leagues (34 experiences, ~42 configurations — dated estimate); priority order 1) current NFL (V21 quality/polish first), 2) NFL all-time, 3) NBA current, 4) NBA all-time; ~1,200 all-time candidates each; minus-five-points era adjustment (configurable, Owner decision); 6 product principles; out-of-scope list (ratings, NBA mechanics, flex rules, soccer draft, launch dates, pricing, licensing, framework/database). Consistent with Owner direction (basketball post-v1.1, V21/football first).
+
+Findings:
+- RISK: 195 files but zero runnable engine code and zero tests. The architecture is a "map of responsibilities," explicitly not a request to create folders today. The "server-ready" and "reproducible run" claims are unverifiable from this branch (no simulate(), no seeded RNG, no contract implementation). Recommend GPT pair the TARGET_ARCHITECTURE.md with a minimal runnable contract (Scenario/SimResult/validateScenario/simulate) so it can be checked like Muse's sport-spec.ts.
+- RISK (staleness): references "V21 should remain in its existing shape" — V21 is a retired build name per AGENTS.md §2 ("Retired name, not a build"). Proposal predates that ruling; treat as outdated reference, not current direction.
+- CALIBRATION QUESTION: soccer target of 42 configurations is labeled a "dated planning estimate, not a promise" — good, but the 17-league Opta snapshot and AS USA citation are external web claims I did not verify (network not used in this session). Mark UNKNOWN unless Owner supplies the source.
+- INTENTIONAL SIMPLIFICATION: out-of-scope list correctly defers ratings/NBA mechanics/flex rules/framework/database to Owner decisions. Aligns with Owner §17 anti-overengineering.
+- WEAKHEST POINT: no implementation artifact to check against; decision tests are good but unapplied; can't verify "one sport changes rules without surprising another" without code.
+
+Verdict: improved — strong target architecture and product vision that converge with my plan (shell + independent engines, V21/football first, defer generalization, Owner decides ratings/database/framework). Not "ok" because it's purely documentary with no runnable contract and one stale V21 reference. Recommend: add a minimal runnable simulation contract (even TS interfaces + one failing test) so the branch can be verified rather than just read; drop/update the V21 reference.
