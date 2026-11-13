@@ -177,3 +177,33 @@ These subjective answers are not evidence by themselves, but they are the signal
 | 9-arm suite incomplete | arm-next, arm-nuxt, arm-solid, arm-lit | Wait for Z.ai's next delivery and INKLING's arms |
 
 EVIDENCE: VERIFIED (commands above, Node 26.13.0, working directory stated). REPORTED where noted (Z.ai's claims, not re-run by me). UNKNOWN where noted.
+---
+
+## §11 — Playwright behavioral evaluation (Beam, 2026-11-13)
+
+Working directory: `/tmp/fwtest7/<arm>/` (extracted from Desktop delivery, built with Node 26.13.0)
+Ref: Desktop delivery `z framework test v2` (CHECKSUMS verified 539/539)
+Spec: `playwright/offensive-focus.spec.ts` (77 lines, Z.ai's acceptance spec)
+Bug found in spec: `boardRows` is declared `async` but returns a `Locator`; calling `.count()` on the returned Promise fails. Fixed by removing `async` (one-line fix, not a framework issue). All results below use the fixed spec.
+
+| Arm | Playwright | Tests passed | Notes |
+|---|---|---|---|
+| arm-svelte | ✓ 5/5 | 5 | Fastest behavioral execution |
+| arm-react | ✓ 5/5 | 5 | Clean |
+| arm-vue | ✓ 5/5 | 5 | Clean |
+| arm-sveltekit | ✓ 5/5 | 5 | Clean |
+| arm-next | ✓ 5/5 | 5 | Clean |
+| arm-nuxt | ✓ 5/5 | 5 | Clean |
+| arm-solidstart | ✗ 0/5 | 0 | Rendering failure: `setup` testid not visible; Nitro server returns "Too Many Requests" under load; rate-limiting prevents Playwright from loading the page reliably |
+
+VERIFIED: 6 of 7 arms pass all 5 Playwright acceptance tests. SolidStart fails on rendering (setup not visible, rate-limiting).
+
+NOTE: The Playwright spec has a bug (`async function boardRows` returning a Locator, then calling `.count()` on the Promise). This is a spec issue, not a framework issue. The fix is one line: remove `async`. The council should note this when scoring.
+
+NOTE: SolidStart's failure is a rendering/hydration issue, not a contract violation. The Nitro server rate-limits under Playwright's rapid navigation. This is a tooling friction finding (tooling 5%) but also a behavioral failure (correctness 20%). The arm fails the correctness gate.
+
+UPDATED EVALUATION: SolidStart is now eliminated on TWO grounds: (1) tooling (transpile-only, no type-check gate, 9.58s build, 445 packages, 1 high audit) and (2) behavioral (0/5 Playwright, rendering failure). The other 6 arms pass both mechanical and behavioral gates.
+
+The ranking remains: Svelte > Vue > React > SvelteKit > Nuxt > Next.js > SolidStart (eliminated). But with Playwright data, the ranking is more confident — all 6 survivors pass the behavioral acceptance spec, so the differences are in tooling/maintainability, not correctness.
+
+EVIDENCE: VERIFIED (commands above, Node 26.13.0, working directory stated, preview servers on ports 4173/3000). APPEND
