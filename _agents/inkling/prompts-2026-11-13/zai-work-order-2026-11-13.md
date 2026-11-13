@@ -62,7 +62,7 @@ Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-sol
 - Any arm passing green ⇒ log the numbers, don't adjudicate.
 - The single-author confound and the fresh-session protocol are D1-issues for the Owner; flag both (round 1 code by you alone, round 2 also by you alone for your seven; build INKLING's with a different model to restore the confound's symmetry). Owner knows.
 
-**Deliverable shape for the test:** one `fwtest-7/` folder with your seven arms; `results/FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` (after the merged nine-arm comparison lands — you post your metrics; INKLING appends his arm-solid; the merged table goes to the council) · `contract/` · `round2/` · per-arm logs · manifests · CHECKSUMS.txt.
+**Deliverable shape for the test:** one `fwtest-7/` folder with your seven arms; `results/FRAMEWORK-TEST-RESULTS-2026-11-13-9arm.md` (after the merged nine-arm comparison lands — you post your metrics; INKLING appends his arm-solid; the merged table goes to the council) · `contract/` · `round2/` · per-arm logs · manifests · CHECKSUMS.txt.
 
 ### §2.2 — D.1–D.9 (the dynamic-engine nine filings; standing)
 *Your move: across D.1–D.9 — which question here is the deepest? Which is the most urgent for the product? Which one could you answer with two hours and refuse to answer without two weeks? If the prompt wants nine cards drawn from a deck of ten, which one would you cut — and would you accept the Owner replacing it or would you argue?*
