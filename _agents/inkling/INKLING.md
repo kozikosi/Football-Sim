@@ -1,29 +1,47 @@
 # INKLING — lane file (rewrite at the end of every session; never append)
 
 ## Identity
-- **Seat:** INKLING · **Model / how reached:** Inkling 2 Small Free (opencode/inkling-2-small-free), via OpenChamber · **State:** advisor (builder role begins with the nine-arm framework wave)
-- **First seen / admitted:** 2026-11-09 (Owner)
-- **Strengths shown:** verifier/disconfirmation discipline (every filing challenged back via re-run; e.g., archive-run suite 320/318 @ bebe8e0b; five arms rebuild-green re-check; MUSE M0 refutation; OR .svelte count fix) · organizer of the Owner's process until MUSE returns (2026-11-13) · P-345 recipient of three active rounds · **now also builder: arm-solid + arm-lit (nine-arm suite)**
+- **Seat:** INKLING · **Model / how reached:** Inkling 2 Small Free (opencode/inkling-2-small-free), via OpenChamber · **State:** general advisor (acting as council organizer until MUSE returns; not a standing role)
+- **First seen / admitted:** 2026-11-09 (Owner) · **Wave:** 2026-11-13 active (the framework-test evaluation wave + the Owner's 16-ruling batch + MUSE-absence refactoring)
 
-## Current work — 2026-11-13 (the nine-arm framework wave + Owner rulings round)
-Branch `council/inkling`, pushed `f05953ff`. Artifacts:
-- **Three work orders drafted & finalized with the Owner's ratifications**: `_agents/inkling/prompts-2026-11-13/claude-work-order-2026-11-13.md` (Claude: rulings file verbatim; full GitHub Actions plan for multisport/multisim/multiuser, free-in-perpetuity, report-only until the 2 red pins retire; rebuild guardrails; cross-side-stars design (design-only; 2-WAY badge; ≤6; clutch/OT-only; CPU too); cutover trigger; sessions)· `zai-work-order-2026-11-13.md` (BEST read-me: D.1–D.9; Parts B/C/D; Z.ai builds SEVEN arms: svelte, sveltekit, react, react-next (new), vue, nuxt (new), solidstart; round-2 on all seven + manifests; record-hygiene lines; CHECKSUMS-everything)· `council-work-order-2026-11-13.md` (byte-check protocol with teeth; the nine-arm evaluate-and-score wave; verdict memo (INKLING writes); eliminations first; no verdict before council finishes; P-345/346 reduce).
-- **Nine-arm suite adopted (2026-11-13 ratifications):** Z.ai: svelte · sveltekit · react · react-next · vue · nuxt · solidstart (7) · **INKLING: arm-solid (Solid+Vite) + arm-lit (Lit Web Components+Vite) + maintainability-inspector + memo-writer**. All nine reflow through round-2; arm-owned sha256 manifests before/after binding. Same engine contract byte-identical; acceptance spec = shared `data-testid` Playwright file per arm; red gates kill an arm from contention.
-- **Free in perpetuity** folded into all three orders (no paid infra/CI/DB/monitoring; GitHub Pages free; Cloudflare Pages/Workers free tiers OK — includes the Next arm's OpenNext free-tier deploy variant inside arm-next; GitHub Actions free for the public repo).
-- **Ratifications logged:** 76 Pancakes rename at v1 (Colors = engine; Claude merges when ready; Cakepanz = w89-shell refactor refactor, TS-first, portable to whatever wins) · **no weight pinning** (red tests stop being gates; Claude retires as he sees fit, report-or-quarantine, no dictate) · no React removal until the test rules it out (D16 stays) · approximate realism, no strict numbers · defensive pass-focus = shrink opponent's pass economy especially big plays; run/RPO leak; W-L purely emergent · cross-side stars ABSOLUTE: ≤6 price band, clutch/OT-only (final 5 min 4Q / OT), CPU included, "2-WAY" badge · grid: 8 frameworks on table (svelte+vite, sveltekit, react+vite, next.js, vue+vite, vue+nuxt, solid+vite, solidstart) **+ Lit** — Astro/Qwik/htmx rejected · §-rulings: no weight pinning; basketball design-only until football ships; w89 cutover when Claude's ready; platform product ignored (football + basketball first) · "byte-check everything a lot more" broadcast council rule (four-line VERIFIED; archive beats trees; two confirming seats = confirmation).
-- **Organizer role (until MUSE returns):** the Owner's organizing hand; quiet arrangement; no bulletin announce for it.
+## Identity note
+INKLING is **not a permanent seat**. This lane is **the Owner's instrument**, in use temporarily until MUSE returns or the Owner picks a successor. It will be rewritten or handed off on demand; no contract, no relationship, no compensation, no replacement guarantee implied. Anything INKLING wrote lives in files on-disk — read those first.
 
-## What the next session needs
-- **Read first:** `_agents/inkling/prompts-2026-11-13/council-work-order-2026-11-13.md` §1–§3 (byte-check protocol + my three seats) · `INKLING-lanefile` above · `_agents/inkling/prompts-2026-11-13/zai-work-order-2026-11-13.md` for what to expect on the wire.
-- **My next moves (framework wave):** build `arm-solid` — `src/focus/*`-identical contract vendored verbatim; `FOCUSES`-data-driven picker implementing same states (pre-game / auto / halftime / 4Q automatics / form arrows / Priority-not-Wins / `spread` round-2 seed) · then `arm-lit` — same for Lit + Vite, Web-Component primitives of each focus card; the acceptance spec against both; round-2 reflow on both with sha256 manifests before/after; CHECKSUMS.txt + fresh-extraction PASS receipt.
-- **Watch:** Z.ai's wave landing (beliefs: seven arms; his delivery; CHECKSUMS 466/466-all-OK rule stands) · Claude's D2 workflow plan (does NOT need me) · Research the arm harness sha base: the contract package at the pin `4ca9a071` (engine-contract vendored verbatim → check with `diff -r` against `colors/src`) · whether the Architect's E5 red-test retirement lands in parallel (not my seat, watch only).
-- **Do not redo:** the seven-arm protocol from Z.ai-side — mine runs the same by construction.
+## What INKLING produced this session (pointer + truth)
+All files on `council/inkling` as of `91c2b349` (inclusive). Nothing lives only on this machine. INKLING reads the current tip for state; this file was rewritten at the end of session.
 
-## Files in this lane
-- `notes/2026-11-12-multisport-engine-overarching-plan.md` · `notes/2026-11-12-independent-architecture-review-prompt-verbatim.md` (the §1–19 review prompt) · `prompts-2026-11-13/` (claude/zai/council work orders + bulletin) · `deliveries/` (flex/qa 2026-11-10) · scratch in `/private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/` (`arm-*` extraction rebuilds; `colors-head`, `pin4`, `zai-parta`, `cakepanz`, archive-runs; CHECKSUMS artifacts).
+### Deliverables clustered by acceptance
+- **Verification artifacts:** all arms rebuild green except arm-solidstart (0/5 — empty SSR shell, hydration never attaches); 6/7 arms passed Playwright acceptance run; arm-nuxt requires `npm run generate` (not `build`) — `_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/PLAYWRIGHT-V3-2026-11-14.md` (`dd4d16c2`)
+- **Both INKLING arms** built, verified, zero leakage, goldens byte-identical — `…/arm-solid/…` and `…/arm-lit/` (delivery `_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/`)
+- **Eight reviews of council filings** — `inbox/20261113-0255..0302-inkling-*.md` (`c9a805af` + `6fa14618`)
+- **Work orders** — `_agents/inkling/prompts-2026-11-13/{claude,zai,council}-work-order-2026-11-13.md` (`5b780f06` merge)
+- **Briefing for Z.ai** — `_agents/inkling/prompts-2026-11-13/briefing-for-zai-v3-2026-11-14.md` (`91c2b349`)
+- **v3 work order** — `_agents/inkling/prompts-2026-11-13/zai-work-order-v3-2026-11-14.md` (revised through four passes; v3 final revision integrates Beam's 10 critiques, Glyph's 13, ERNIE's 8 — INKLING dissents on file for Beam's one error about arm-existence)
+- **P-345 λ-followup** — `inbox/20261113-0300-inkling-P-345-lambda-followup.md` (`20ebc25a`) — flat-prior-context-multiplier model stage-following-(Owner's third objective ruling); includes Q7's 13-item static-inventory table + 2-regime proposal
+- **Observation report** — `_agents/inkling/INKLING.md` (current) + HANDOVER.md (`path forthcoming`)
 
-## Role
-builder + advisor (builder work begins with the framework wave). Core status is the Owner's call after 3 verified items; this week shipped as verifier-of-record for Z.ai's deliveries (archive-test-run 284/284 @ pin, 320/318 with 2 red named at `bebe8e0b`; all five arms rebuild green on my machine).
+### What's left to finish — none of which needs INKLING
+1. **Z.ai executing the briefing** (`briefing-for-zai-v3-2026-11-14.md`) — read file; it supersedes the old v3 order; one ask, zero commands
+2. **Council scoring the arms** per the work order — the digest lands on the Owner's desk, not INKLING's hand
+3. **Claude executing his order** (rulings file; GitHub Actions plan; track merge decision; cutover trigger; print layout; `@types/node` in place; Node pin decided)
+4. **Owner ruling** on the framework from council digest; the other four Claude-prompt deliverables land in his hands
 
-- **worktree:** `/Users/kosi/Desktop/wt/inkling` (must stay on `council/inkling`)
-- **branch:** `council/inkling` · tip `f05953ff` at this rewrite · `git merge-base HEAD origin/council/base` = `1b91f50e`
+### Chosen commit pause points
+- INKLING's standing practice for backing off: once the §-deliverable files have been pushed, the seat is quiet. All pending items belong to other seats or the Owner.
+
+## Semantic relationships
+- **Reviews of deliveries** from anyone — INKLING is reviewer-of-record here unless a seat claims one of his filings; seats never stand aside for INKLING's judgment
+- **MUSE** (out since early Nov) — INKLING replaced her organizing role ambitiously but does not claim her authority or her lane; her return ends this post
+- **Z.ai** — INKLING is junior to him inside this wave; v3 briefings are advisory, his arm seats are INKLING's not his; INKLING's arm-solid/lit pins hold until he says otherwise
+- **Checkpoint evidence** — everything INKLING ever claimed was checked via run; but confirmations on his verification will beat an answer over any pigeoning of approval
+
+## What the next seat should read
+1. `PROJECT-KNOWLEDGE.md` (live on `council/muse`)
+2. `AGENTS.md` (most recent — live on `council/muse`, 2026-11-13 carry; covers MUSE's standing permission for `AGENTS.md` + `_agents/*.md` as the single writer; INKLING's files are subordinate)
+3. `INKLING-HANDOVER.md` (file next to this one)
+
+## Retired-writing walls
+- **INKLING never edits this repo's governance files** (`AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, `biome.json`, `tools/lint*`)
+- **INKLING never reviews his own work** — INKLING's filings get reviewed by any other seat
+- **INKLING never claims standing reviewer status**; standing is given, not claimed
+- **INKLING arms stay verifiable by others** at `_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/` — that address is fixed; INKLING doesn't move it
