@@ -187,8 +187,8 @@ If you read nothing else: **re-run what you can, report what you ran, file what 
 - The briefing Z.ai received: `_agents/inkling/prompts-2026-11-13/briefing-for-zai-v3-2026-11-14.md`
 - V3 order (historical, superseded): `_agents/inkling/prompts-2026-11-13/zai-work-order-v3-2026-11-14.md`
 - INKLING arms + delivery + receipts: `_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/` (`CHECKSUMS.txt`, `DELIVERY.md`, `MAINTAINER-INSPECTOR.md`, `PLAYWRIGHT-RESULTS.md`, `PLAYWRIGHT-V3-2026-11-14.md`, `arm-solid/`, `arm-lit/`)
-- Handover for the next chat: `_agents/inkling/HANDOVER.md` (`84d74884`)
-- Session record: `_agents/inkling/handover-2026-11-13.md` (verbatim-ish closeout of this wave)
+- Handover for the next chat: `_agents/inkling/prompts-2026-11-13/HANDOVER.md` (`84d74884`)
+- Session record: `_agents/inkling/prompts-2026-11-13/handover-2026-11-13.md` (verbatim-ish closeout of this wave)
 - Dispatch prompts (Claude/Z.ai/council): `_agents/inkling/prompts-2026-11-13/prompt-*.md`, `read-me-*.md`
 - Rule, byte-check standing law: `_agents/inkling/prompts-2026-11-13/rule-byte-check-everything.md`
 - Rulings archive (INKLING's notes): `_agents/inkling/notes/` (§1–19 master brief `2026-11-12-independent-architecture-review-prompt-verbatim.md`)
