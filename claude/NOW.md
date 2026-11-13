@@ -1,9 +1,8 @@
 # NOW (Architect)
-Updated: 2026-11-12. Boot-v3.8 OK. Push works from the boot clone (add_repo "push" done).
-- DONE: Phase 0 kernel + legacy provider (7b34a58); Philox2x32 M0 0xd256d193 confirmed vs Random123 philox.h and kat_vectors, BigInt reference test added (2c43bc1). MUSE's M0 fix was withdrawn; no change needed.
-- DONE: Phase 1 baseline, all lambda = 0, `tools/mathlab/phase1/` + `tools/mathlab/results/phase1-baseline-2026-11-12.md`. VERIFIED gate: ~10% totals bar PASSES on held-out 2023-2025 (worst: 2023 points +8.3%, 2025 drives +8.7%). My 1%/3%/2% proposal withdrawn (season drift exceeds it).
-- Findings: drift is policy not clock (era-aware pack needed); neutral play leaves 15% of points variance (pass attempts 40%) for lambda/style; penalties off = points -2.8%, plays +4.4%, drives +0.7% vs penalty-on.
-- Owner decisions: re-pin E5 stamp + flex-base totals (2 pre-existing failures, 318/320 pass); CI gate pick; hydration wiring; whether product-world totals (penalty-off) are the bar.
-- NEXT: (1) port the baseline nodes to TS on the keyed RNG (colors/src/sports/nfl/engine), pools to a pack with hash; (2) fix gaps: kick-return fumbles, overtime, era packs; (3) migrate recap or standings to `foldLog`; (4) Phase 2 lambda by two-gap Lab (P-347) once the TS engine exists.
-- Blockers: Held (Owner): CI gate pick, hydration wiring. E3c flexengine not run. Pending Z.ai asks: P-308 FB/P/CB4 snaps, RNG landing plan, Rosetta keys.
-- UNKNOWN: lambda identification from OVR-only data (largest risk); P-347 awaits Owner ratification.
+Updated: 2026-11-13. Boot-v3.8 OK. Push works from the boot clone (add_repo "push" done again this session, Owner said "get push access").
+- DONE: Phase 0 kernel + legacy provider (7b34a58); Philox2x32 confirmed (2c43bc1). Phase 1 baseline all lambda = 0 (ce7c921): ~10% totals bar passes on held-out 2023-2025; `tools/mathlab/results/phase1-baseline-2026-11-12.md`.
+- DONE (plan only, no code): `tools/mathlab/results/engine-plan-v2-2026-11-13.md` amends the 11 Nov design: all dynamic items (focus, form, synergy, gravity, automatics) fit the one formula via 4 slots; static board = marginal of the dynamic model; every dynamic feature needs off-switch, mean-preservation and identification-label gates.
+- Plan v2 findings: pools of real plays will not ship in a static app (use quantile-table pack, <= 2 MB gz gate); replay holds only within (engineVersion, pack hash) so finished seasons freeze as folds; purity test scans only `engine/`, not `core/`.
+- NEXT: (1) Owner reads plan v2 section 8, answers era packs + penalty-off bar; (2) Phase 1b: TS port on keyed RNG with quantile pack, oracle match to Python, throughput gate; (3) extend purity test to `core/` (~10 lines); (4) Phase 1c WP-based automatics; (5) Phase 2 lambda by two-gap Lab (P-347).
+- Blockers: Held (Owner): CI gate pick, hydration wiring, E5 stamp + flex-base re-pin (318/320), era packs, second-sport test fixture. Pending Z.ai: P-308 snaps, RNG landing plan, Rosetta keys.
+- UNKNOWN: lambda identification from OVR-only data (largest risk); throughput of TS play step; form upper bound from nflverse; P-347 awaits Owner ratification.
