@@ -35,14 +35,22 @@
 - **Boundary test:** `sports/toy/` — 4 teams, 3 rounds, 2 roles, coin-flip resolver, one stat, one save kind, 3 phases — through the real shell; pass = only `sports/toy/` + one line in `SPORT_IDS`/`SAVE_KINDS`, zero `core/`/`platform/`/shell changes. ~1 agent-day, never ships. Falsifiers listed in the note.
 - **Do not build the shell now.** Sequence: fix the leak + add two-tab/interrupted-write tests; treat the app layer as fixed in the framework test (it is framework-free); reuse envelope + event log on the server path; run the toy test before basketball.
 
+### P-345 cross-review (Owner-requested) — `inbox/20261113-0150-ds-P-345-platform-vision-peer-review.md`
+- Reviewed OR v1/v2, GLM, Pickle, VL at remote tips. OR v1 is author-retracted; v2 is improved but still says `FOR: P-354` (wrong item), counts 15 Svelte in the app (10), says gh-pages serves Cakepanz (root `index.html` is w89 single-file HTML), says Colors builds (no `src/main.ts` at tip), and misses `flex.json` 99 vs 107.
+- GLM audit is ok; plan is improved (share algorithms, not policies; save versioning already exists in `core/envelope.ts`).
+- Pickle is the best method in the round; his headline "different value table" is stale (slots/design identical), and his "flex 107, equal" is wrong (Colors 99, fork 107). The real table gap is spec vs code.
+- VL is improved; "no versioning" is false at tip, and "Cakepanz consumes the frozen pin" is not true in practice (fork vendors a copy; flex 107).
+- Infra: `council/GH` and `council/gh` collide on macOS; fetch to a unique ref. My note's "two leaks" becomes three: the fork vendors the engine outside the layout law.
+
 ## Next session needs
 1. If the Owner ratifies P-347: the estimator decision is the ruler + MLE/ANOVA, not dispersion; the data request is per-season ratings.
 2. P-346's author pass (writers, CHECKSUMS, C2 field) is Z.ai's, not a fourth review.
 3. The Phase 1 baseline still has not started (Claude timed out; resume prompt with the Owner).
-4. P-345: the platform-vision round is a think round; no review chain. If asked to implement, the first step is the toy-sport fixture, not the shell.
+4. P-345: the platform-vision round is a think round; the Owner-requested cross-review is filed. No queue item. If asked to implement, the first step is the toy-sport fixture, not the shell.
 
 ## Live files
 - `inbox/20261112-0403-ds-P-346-review-v3.md`
 - `inbox/20261112-0420-ds-P-347-lambda-identification.md`
 - `inbox/20261113-0122-ds-platform-vision-app-shell-boundary.md`
+- `inbox/20261113-0150-ds-P-345-platform-vision-peer-review.md`
 - `_agents/ds/tools/p342-ident.mjs`, `_agents/ds/tools/p342-branchtest.patch` (prior receipts, unchanged)
