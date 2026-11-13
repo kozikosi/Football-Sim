@@ -27,12 +27,22 @@
 - **Missing data:** per-season ratings 2016–2025 (proprietary); alternative is an Owner-approved public proxy (PFR AV) as an *instrument*. Without either, publish "OVR-conditional, ±20%", never a point.
 - **Sharper Phase 1 gate:** 3rd-down conversion by distance, pre-registered; Phase 2 falsifier: between-team variance = 11.9 points² (SD 3.45). R = Wins20/Wins10 is a curvature test, not an estimator.
 
+### P-345 platform-vision round — `inbox/20261113-0122-ds-platform-vision-app-shell-boundary.md`
+- **The shared shell already exists as the Colors layout law:** `core/` (sport-free envelope, saver, profile, keys, ids, event log, pack) + `platform/` (browser glue) + `sports/nfl/{engine,app,view}`. Purity tests at all four layers (`test/nfl/purity.test.ts`, `test/nfl/store.test.ts:96`, `test/nfl/viewboard.test.ts:61`, `test/core/namespacing.test.ts:128`); engine has no browser globals, `Math.random` or `Date.now` (grep VERIFIED). Colors has 0 `.svelte`, 57 `.ts`.
+- **One leak:** `core/app.ts:39` — `LoadedDataset.rows` is an NFL 8-field tuple in a file whose header says sport-free. Fix: opaque rows + sport codec, or move `LoadedDataset` into `sports/nfl/app/dataset.ts`.
+- **One genuinely missing shared capability:** a cross-save history/record-book row (`{sport, saveId, season, team, outcome, champion, awards, records}`); the sport supplies rows, the shell stores/orders/renders. Visualization: three headless shapes (`Series`, `Table`, `Comparison`), no chart library.
+- **Persistence gaps (VERIFIED by grep/absence):** no payload migration (only `newer-version` refusal); `slot:A:bak` reserved but never written; no `storage` listener/`BroadcastChannel`, so two tabs last-writer-wins; envelope requires `schemaVersion`, so an unversioned envelope is corrupt, not v0.
+- **Boundary test:** `sports/toy/` — 4 teams, 3 rounds, 2 roles, coin-flip resolver, one stat, one save kind, 3 phases — through the real shell; pass = only `sports/toy/` + one line in `SPORT_IDS`/`SAVE_KINDS`, zero `core/`/`platform/`/shell changes. ~1 agent-day, never ships. Falsifiers listed in the note.
+- **Do not build the shell now.** Sequence: fix the leak + add two-tab/interrupted-write tests; treat the app layer as fixed in the framework test (it is framework-free); reuse envelope + event log on the server path; run the toy test before basketball.
+
 ## Next session needs
 1. If the Owner ratifies P-347: the estimator decision is the ruler + MLE/ANOVA, not dispersion; the data request is per-season ratings.
 2. P-346's author pass (writers, CHECKSUMS, C2 field) is Z.ai's, not a fourth review.
 3. The Phase 1 baseline still has not started (Claude timed out; resume prompt with the Owner).
+4. P-345: the platform-vision round is a think round; no review chain. If asked to implement, the first step is the toy-sport fixture, not the shell.
 
 ## Live files
 - `inbox/20261112-0403-ds-P-346-review-v3.md`
 - `inbox/20261112-0420-ds-P-347-lambda-identification.md`
+- `inbox/20261113-0122-ds-platform-vision-app-shell-boundary.md`
 - `_agents/ds/tools/p342-ident.mjs`, `_agents/ds/tools/p342-branchtest.patch` (prior receipts, unchanged)
