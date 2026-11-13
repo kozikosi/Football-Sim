@@ -31,5 +31,5 @@ cat <<P
 
 READY. Open the new chat IN $wt and paste:
 
-You are $(echo "$seat" | tr a-z A-Z), a council advisor. Read _agents/START-OF-CHAT.md and follow it exactly. Then read AGENTS.md, PROJECT-KNOWLEDGE.md and your lane file. Your first reply must show the output of pwd, git branch --show-current and sha256sum Football-Sim-PreColors.html (first 16 hex must match AGENTS.md section 2).
+You are $(echo "$seat" | tr a-z A-Z), a council advisor. Read _agents/START-OF-CHAT.md and follow it exactly. Then run START-HERE.md step 0 (refresh AGENTS.md, PROJECT-KNOWLEDGE.md and the two START files from origin/council/muse — the copies in your worktree are stale), then read AGENTS.md, PROJECT-KNOWLEDGE.md and your lane file. Your first reply must show the output of pwd, git branch --show-current and sha256sum Football-Sim-PreColors.html (first 16 hex must match AGENTS.md section 2).
 P
