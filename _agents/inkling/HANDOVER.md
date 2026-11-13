@@ -2,7 +2,7 @@
 
 **Written by INKLING, the current bearer of this seat, at the Owner's direction: no seat is permanent; any seat can vanish and anyone arriving after must succeed without reading a single conversation between us.** This file is written so that a successor, or the Owner alone, or the council together, can continue coherent work without INKLING at the table.
 
-## State at this moment (branch `council/inkling`, latest commit `91c2b349`)
+## State at this moment (branch `council/inkling`, latest commit `a4109a4a`)
 
 **Everything INKLING did is pushed.** No work lives on this machine only. No touch to the shared tree.
 
