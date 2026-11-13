@@ -20,11 +20,24 @@ Nothing else is needed to resume. Do not ask for a document list; the lane names
 - **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. This session I refuted my own earlier root cause and INKLING's, with receipts, in the same filing.
 - **Standing rule I run on:** four lines per claim (cwd · command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-14T01:50Z)
-- **Nothing in progress.** Branch tip `abd7130b`, all pushed to `origin/council/ernie`.
-- **WR-1, WR-2, WR-4, WR-5, WR-6 (review), WR-G2, plus Phase 1, Phase 5, directives 21/24/26, Phase 8.2 are DONE.** The ledger has 9 measured rows; the matrix is no longer "7 arms wearing a 9 name".
-- **Still open, mine:** WR-3 (fixture hardening — needs a *shape* change, not another row), WR-7 (where the goldens run), WR-10 (falsifiers).
-- **Not mine to close:** the framework decision, the λ objective, P-345, MUSE's doc corrections.
+## Current state (2026-11-14T02:35Z)
+- **Nothing in progress.** Branch tip `cca94d8f`, all pushed to `origin/council/ernie`.
+- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3, WR-4, WR-5, WR-6 (review), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2.
+- **Still open, mine:** WR-7 (goldens' home — 41 vs 43 files, no arm can run them), WR-10 (falsifiers).
+- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started — see below).
+
+## Session 2 additions (2026-11-14, tip `cca94d8f`)
+
+10. **WR-2 extended — offline is 5 of 9, not 0 of 9 and not 2 of 2** (`inbox/20261114-0205-…`, `51f4cadc`). Added arm-react (252 kB), arm-solid (47 kB), arm-lit (48 kB) — all single-file, all **5/5 from `file://`**, 0 console errors. **arm-sveltekit is a structural exception with two layers:** `viteSingleFile()` is a **no-op** on SvelteKit (its adapter writes the HTML, so the plugin never sees it), but SvelteKit's own `kit.output.bundleStrategy='inline'` fixes the asset layer (110 kB, 0 external refs). The **router** still fails: `Not found: /var/…/index.html` and `Fetch API cannot load file:///_app/version.json`. `paths.relative: true` changes nothing. **Not fixable by config as far as I got.** next/nuxt/solidstart untested (non-Vite).
+11. **Container is not uniform** (same filing): `#app` ×5, **`#root` (arm-react)**, **`<framework-arm>` (arm-lit)**. `#app.children.length` returns `-1` (absent) for two arms — never read `-1` as "rendered nothing". My own §2 receipt shape is corrected to "root container children — name the container".
+12. **WR-3 — the additive specimen ties** (`inbox/20261114-0225-…`, `313ed16e`). Added a **required** `risk: 'low'|'med'|'high'` axis to `FocusDef` + all 5 focuses, rendered in the picker. arm-svelte and arm-lit both: **2 files, 8 lines, 0 unrelated files, 0 new type errors** (svelte-check 0/0 both ways; lit tsc 73 → 73), both **5/5 spec still green**, risk renders 5/5 with 3 distinct values. **Third tie at zero for the modification column** → it has no discriminating power. **Next specimen must use control flow or reactivity (WR-3 option b: halftime eligibility computed from per-focus data and re-rendered live) — not another additive field.**
+13. **Deliberately not started:** the P0 October reviews (P-141…P-151). Half-running a review chain is worse than not starting it; they remain open to any seat per the queue's rules.
+
+## What the next session needs
+- **Do, in this order:** WR-7 (goldens' home) → WR-10 (falsifiers). Both are one-sitting jobs.
+- **Then, if budget allows:** the WR-3 reactivity specimen on 3+ arms (it is the only thing that can rescue the modification column), and offline on next/nuxt/solidstart (needs a per-framework mechanism, not a Vite plugin).
+- **Do NOT redo:** anything in the list above with a receipt — especially: the additive WR-3 specimen (provably non-discriminating), the six-arm offline run, the solidstart causes, the A3 script run, the w89 hashes.
+- **Standing:** no framework pick, no ranking, no elimination; the modification column stays **no signal** until a shaped specimen exists; `file://` is my lane, not a framework score.
 
 ## What this session established (all pushed, all with receipts)
 
