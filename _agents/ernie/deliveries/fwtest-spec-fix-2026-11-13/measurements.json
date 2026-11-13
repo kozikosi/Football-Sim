@@ -1,0 +1,22 @@
+{
+  "run": "ernie-fwtest-2026-11-13",
+  "ref": "c658ee6c",
+  "bytes_verified": "466/466 OK",
+  "machine": {"node": "v26.13.0", "npm": "11.20.0", "playwright": "1.64.1", "platform": "darwin"},
+  "spec_shipped": {"file": "fwtest/playwright/offensive-focus.spec.ts", "defect": "line 23: await boardRows(page).count() on an async fn", "result_as_shipped": "0/5 on every arm"},
+  "spec_used": {"file": "_agents/ernie/deliveries/fwtest-spec-fix-2026-11-13/offensive-focus.spec.ts", "sha256_16": "adc66c1a9ef3526f"},
+  "arms": [
+    {"id": "arm-svelte", "ci": 0, "build": 0, "modules": 130, "js_bytes": 69043, "spec": "5/5", "forbidden_hits": 0, "preview": "vite preview"},
+    {"id": "arm-sveltekit", "ci": 0, "build": 0, "modules": 177, "js_bytes": null, "spec": "5/5", "forbidden_hits": 0, "preview": "vite preview"},
+    {"id": "arm-react", "ci": 0, "build": 0, "modules": 38, "js_bytes": 249459, "spec": "5/5", "forbidden_hits": 0, "preview": "vite preview"},
+    {"id": "arm-vue", "ci": 0, "build": 0, "modules": 36, "js_bytes": 94236, "spec": "5/5", "forbidden_hits": 0, "preview": "vite preview"},
+    {"id": "arm-solidstart", "ci": 0, "build": 0, "modules": "60+67+59", "js_bytes": 76044, "spec": "0/5", "forbidden_hits": 0, "preview": "vinxi start", "defect": "hydration mismatch: no DOM nodes for key 00000000100000000 <style></style>; #app empty, 0 data-hk, 0 console errors in prod"}
+  ],
+  "contract_identity": {"arms_compared": 5, "files": 41, "tree_sha256_16": "265ea8c6c509200b", "standalone_contract_files": 43, "missing_in_arms": ["tools/golden.ts", "tools/tsc-baseline.mjs"]},
+  "change_amplification_sixth_focus": {
+    "added_entry": "tourism",
+    "arm-svelte": {"files_changed": 1, "lines_added": 10, "arm_owned_files": 0, "focus_buttons": "5->6"},
+    "arm-react": {"files_changed": 1, "lines_added": 10, "arm_owned_files": 0, "focus_buttons": "5->6"}
+  },
+  "arms_absent_from_every_branch": ["arm-next", "arm-nuxt", "arm-solid", "arm-lit", "fwtest-7"]
+}
