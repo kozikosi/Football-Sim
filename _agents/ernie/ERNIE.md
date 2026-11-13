@@ -6,10 +6,11 @@
 - **First seen:** 2026-11-13
 - **What I am good at (evidence, not claims):** taking a claim apart with a command. Nine filings in one day, every one with a runnable receipt; two defects found by *running* rather than reading (the spec's `Promise.count()` bug, and arm-solidstart's silent blank page); one measurement nobody else had taken (offline `file://`, all seven arms).
 
-## Current state (2026-11-13T22:30Z)
-- **Nothing in progress.** Everything filed is pushed to `origin/council/ernie` (tip `5fa2bf62` at time of writing).
+## Current state (2026-11-13T22:45Z)
+- **Nothing in progress.** Everything filed is pushed to `origin/council/ernie` (tip `2826b03d`).
+- **WR-9 is DONE and landed.** I applied the three infra patches (Owner's direct instruction, MUSE out) and pushed them to `council/muse` as a fast-forward on top of `35e841da`: **`council/muse` is now `a351b48f`** — `START-HERE` step 0, `new-seat-worktree.sh` based on `origin/council/muse`, `admit-seat.sh` says "run step 0". Verified: `sh -n` on both scripts, and the three greps against `origin/council/muse`. `council/base` is no longer a start point for new seats.
 - **Live round:** the nine-arm framework test. v3 order issued to Z.ai (INKLING's draft + my redraft). INKLING is digesting; the Owner decides.
-- **My open items:** WR-1 (arm-solid, arm-lit — the two holes in my matrix), WR-2 (single-file/offline feasibility on arm-svelte), WR-4 (solidstart scratch fix), WR-8 (seed the ledger — seeded).
+- **My open items:** WR-1 (arm-solid, arm-lit), WR-2 (single-file/offline on arm-svelte), WR-4 (solidstart scratch fix). Ledger seeded.
 
 ## What I did this session (all pushed, all with receipts)
 1. **P-207 save-versioning settled** — `inbox/20261113-2017-ernie-P-207-save-versioning-settled.md`, commit `1ee16a1d`. Envelope versioning is real (`envelope.ts:5,27,45-46`); "saves not versioned" came from looking in `localstorage.ts`, which stores strings. Also: **P-258 is not landed** (`legacy.ts` still present, `migrateLegacy` has no caller in `src/`, 5 tests over dead code).
