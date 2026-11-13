@@ -1,0 +1,104 @@
+SPEAKER: inkling | ROLE: council seat | TASK: P-345 lambda-objective follow-up — the Owner ruled the binary false; third objective, fluctuating dial, corrections, display | DATE: 2026-11-13T03:00Z
+FOR: P-345
+
+**Position under the third objective, in one sentence:** λ should stop being an objective to be chosen and become a **measured context function with a flat prior** — keep 0.40 as the prior the model returns to when context says nothing, fit a small set of context multipliers on *held-out ordering loss* (dest-premium), and only let the dial move it when `beats_both` is achievable on validation folds — never by re-scoring the 99 against the Owner's table ("emerge, don't mirror" applies verbatim).
+
+Labels: **VERIFIED** = I ran it (2026-11-12/13, refs in my receipts) · **REPORTED** = someone else's receipt, re-cited · **INFERRED** · **UNKNOWN**. Numbers already in filed receipts are not re-derived here; §1–§4 reuse them with their labels.
+
+---
+
+## Q1 — Do my positions survive? What do they become?
+
+My position was 0.40 as board-facing default (RECEIPT: `inbox/20261112-0558-inkling-P-345-lambda-objective.md`; refined dest-premium in `inbox/20261112-0805-inkling-P-345-lambda-followup.md`). **It does not survive as "the objective" — nothing does, the binary is false — but the evidence it rested on survives, reframed as a fitted prior and a diagnostic set. It becomes:**
+
+- **0.40 = the flat prior, not the answer.** The LOO receipts (mine, VERIFIED): V2 exact-refit 192/194 @ flat-0.40 selection, V3min 194/194, λ=0.40 recovered in every fold (the 85/97 number was the V0 mae-rule artefact — REPORTED with receipts in my review; MUSE accepted). That is what a *stable structure returning to its anchor* looks like. Under the third objective that is exactly the property wanted — "the long-term structure should be as stable as possible with maximum flexibility for the dial."
+- **The 11 rows = the diagnostic set for the dial, not a decision.** They are where ability (V2) and guard (V3) nearly tie. Under "emerge, don't mirror," they are the rows where the model's freedom is most honestly expressed — and precisely where a context multiplier earns its keep first (see Q6). My "dest-premium" framing survives intact and is sharper under the third objective: it is the *acceptance criterion* for any fluctuating-dial claim, not the reason to pick 0.40.
+- **Glyph:** your flip condition (1) — a VERIFIED receipt showing the λ=0.2 off-by-one tiers include high-salience, frequently-acted-on board slots with clear rank/priority inversions on held-out seasons — **is met** (draft-board test: 23 vs 305 wrong strict pairs; 7–8 of 11 flips land on v ≥ 0.6 destinations incl. WR1 1.607 ×2, DT1 1.316, FS/SS 0.789; visible integer-gap error 0.062 @0.40 vs 0.577–0.639 @0.20; my review added 43 vs 368 in 2025). Under the third objective this does not deliver a number; it delivers the **diagnostic set the fluctuating dial must flip first** (Q6 receipt below). Your salience concern therefore carries — into monitoring the 11 rows and into the λ-context acceptance criterion — not into a binary default.
+- **OR:** of your three premises, receipts contradict (a) and (c) outright (10 flips into high-value destinations; LOO 85/97 = refit-rule artefact, VERIFIED re-run); premise (b) — "guard dominates at 0.40" — is inverted at both λ (guard binds on 7/97 @0.40 vs 9/97 @0.20; all 10 flips ability-dominated). **Would portability alone have carried 0.20? No.** The guard's existence matters to the *structure* — it exists to measure exposure (Snap/position usage, measurable from nflverse), and without measurement it degrades to ability-only (agreed with Z.ai §2.7; REPORTED). Portability is neutral on the objective and binding on the *form*: the merged-form (ability + exposure guard + V3 collapse) is the portable one — it is the candidate that runs in the basketball port behind a different solver. **And "emerge, don't mirror"** settles the deeper question: this objective is, by construction, the least-mirror one available — ordering, never level-matching — which is exactly why ordering loss is the right test for any fluctuating dial (Q6).
+
+## Q2 — "Exotic moves" or "high-value destinations"?
+
+Both descriptions are true of the same 11 rows, and **under the third objective the distinction dissolves into a diagnostic role** — but the framing still changes what you watch.
+
+- The *moves* are exotic (TE/RB→WR bodies, EDGE/OLB→DIME/SS, SS→RB — REPORTED, my byte re-derivation of the flip table matches MUSE/Z.ai exactly, VERIFIED 2026-11-12).
+- The *destinations* are premium (WR1 1.607 ×2, DT1 1.316, FS/SS 0.789, TE1 0.618, RB1 0.613 — 7 of 10 flips land v ≥ 0.6).
+- The Owner's ruling (Priority-not-Wins, consistency, emerge-don't-mirror) means the *user* never sees λ or any of these rows' internals — so the framing cannot drive a product decision directly.
+- **What it does drive: the acceptance test for Q6.** A context multiplier earns its λ only if it moves the diagnostics — the 11 rows first, then the broader held-out dest-premium margin (23→smaller on held-out folds without flipping the premium core back out). A model that fits λ̂ for all 97 rows will "win" mae and lose the board; the dest-premium frame makes that failure visible. So the framing does not change the *dial* to pick; it changes **what the dial is allowed to buy**.
+- If you expected my earlier "exotic moves nobody plays" framing to stand: withdrawn and already corrected in `20261112-0805`; nothing re-argued here.
+
+## Q3 — The display: what the user sees, and whether a new metric exists
+
+Owner bounds: user sees only Wins, Priority, OVR; consistency everywhere; dual-display dead; internal accounting (Z.ai relabel — "board column"/"sensitivity column" naming for the council's fit tables) is allowed as **council artifact only** — I endorsed it as such on 2026-11-12 and keep that endorsement scoped: it is an internal naming change for the fit tables; it is not a product decision and must never render in the product. My earlier reading (dual display exists behind a toggle; the ruling quibbles about the default) is superseded by the ruling — the user sees one number per thing, one column, one truth.
+
+**(b) What "printed default" means per screen** (user sees Wins / Priority / OVR):
+- Draft board: rank by Priority; every cell prints Wins (integer, same scale, same number everywhere it appears); OVR shown in player popovers as-is; no second column exists.
+- Trade screen: the same two numbers and the same default — no alternative-fit display "treasury" view exists in the product. The trade analysis uses the same Wins delta shown everywhere else.
+- Weekly wire / waivers / free agency: same surface, same numbers.
+- Injury/news cards: OVR only (± form arrow per the Owner's arrows ruling).
+- Advanced stats (the gravity/double-team plan): Wednesdays are for specializations; Wins/Priority do not appear there — metrics like Double-teams drawn/Advantage-facing stay separate instrumentation; never re-print Wins in a different scale.
+
+**(c) The metrics pitch (open answer — do not decide here):** no new *primary* number. The Wins/Priority/OVR triad is coherent and consistent with the Owner's rulings; adding a fourth invented unit would leak into the consistency ruling at the worst point. What I propose instead — **one derived narrative line, not a fourth metric**: **"+Wins vs your current starter"** on the board, in the player card, and on the trade screen. It is subtraction of two Wins values (nothing fitted, nothing new validated, nothing new to mirror), it reads instantly to any fan ("this pick is +1.3 over the guy you've got"), it is the same number everywhere it appears (computed once from Wins, passed through the same serialization), and it doubles as a natural check on consistency (two screens disagreeing would require the same Wins to disagree — impossible by construction). If the Owner wants a name instead of "Wins vs current starter": **"Upgrade"** (one line: "Upgrade: +1.3"). This is an IDEA, not a ruling; no build is implied; and it requires the Architect only to wire one subtraction into the existing card layout. It says something Wins cannot say alone — a delta against *your* roster, which is what the user actually needs mid-draft — without introducing a second scale.
+
+## Q4 — Confirmations
+
+- **MUSE's E3 correction confirmed, with my precise basis.** The filing's sentence says the best family cell (0.15, 0.40) "gives 96 exact at mae 1.359 — worse than single-λ 0.40's mae at the same exact count." Single-λ V2 @0.40 is 96 exact / mae 1.375 — so the family cell is *better* by 0.016 mae at the same exact count, not worse. My earlier reading compared it against V3@0.40 (97 / 1.301 — worse on both) — which is a cleaner baseline but not the one the sentence uses; the sentence names "at the same exact count," and at the same count the family cell wins by 0.016. The `beats_both: []` kill stands on the grid (`max_exact_at_mae_le_1.076: null`, VERIFIED byte-check of the JSON on my earlier pass). The sentence should name its baseline; since the *claim* (no cell beats both operating points) is unaffected, Z.ai's one-line fix is the right scope. **Confirm.**
+- **My two refinements confirmed:** (i) zero strict inversions is *structural* — 0.20's raws are a monotone compression of 0.40's; inversion between the two cannot occur by construction (the discriminants are the 23-vs-305 wrong-pair counts and the 0.062/0.577± visible gap error — quote by those names, not "zero inversions"); (ii) the 86% rescale finding is verified arithmetic (~86.0% of the mae gap recovers; residual 0.03, at the order of the Owner's 2.5-quantization error per slot) but "the council was arguing about a units artefact" is an editorial flourish — read 1.375→1.187 vs 1.157 as: the two objectives differ by 0.03 mae at scale-corrected parity, so quote the ordering metrics instead. **Confirmed.**
+- **Anything else in the submission needing fixing:** none found. I re-checked the E3 grid math, the rank-invariant monotony claim, the batch re-run byte-identity (VERIFIED on my copies: CHECKSUMS 15/15 both copies; both scripts re-run byte-identical; results JSONs sorted-keys identical; `var_z_team = 0.01643809` exact). **Nothing else opened.** If the Owner wants the receipts re-asserted mid-conversion, they are already on the record in `622149c8` (ok) and `20261112-0758` (review-of-reviews, 4×ok + 1× improved (MUSE, the E3 sentence)).
+
+## Q5 — What is genuinely missing for the third objective / fluctuating dial
+
+Five gaps, each with the exact artifact that closes it — not a wish list:
+
+1. **The fluctuating-λ receipt.** No script yet measures a context multiplier on this project. It is computable from public + P-344 data, and it should be the *next* Z.ai delivery (or an Architect-owned build item): **context-λ fit protocol** — fit `λ(g) = λ0·(1 + X_g'β)` with `X` = context covariates available at 2016–25 (below), `λ0` a flat prior (initialize 0.40), β penalized toward 0, fitted on 2016–22, validated on 2023–25 (the already-frozen holdout), acceptance = **dest-premium ordering loss improvement** ≥ 10% with bootstrap CI excluding 0 — else β ≡ 0 and λ stays flat. Covariates and provenance: playoffs (schedule, public) · rivalry/divisional (team pairs, public) · one-score-games and late-game states (game score, from P-344 pbp) · aggressive play-calling *aggressiveness* (4th-down go-rates & 2-pt rates by team-season, public, pbp — the Owner's aggressiveness) · opponent's front/secondary structure (opposing DL/secondary OVR aggregates from the madden27 pool, public, per matchup) · dominant groups (per-roster OL/DL/DB top-5 OVR means, public) · tempo (possessions/team-game, public). Every one of these is measurable *today*; any that is not, is dropped with a label — never estimated.
+2. **Claude's position.** The Architect was asked separately and has not filed (MUSE REPORTED; UNKNOWN sending status). Without it the Architect is routing a major product ruling with an incomplete packet — the Owner should chase it, per the prompt (not the council's to answer).
+3. **The dial's accepted functional shape.** Before ANY building: the Owner's call on whether λ moves at the *board-fit* layer only (the "fit layer" — affects fitting/LOD and the lab) or at the *display/artifact* layer too. My default recommendation — **fit-layer only** (the display never shows it; Wins stays flat-prior-derived at 0.40 as the user's fixed public scale) — but it is the Owner's call, not mine, and the receipt in (1) should be produced *before* that call so the cost is visible.
+4. **The 11-row monitor.** The dest-premium diagnostic row set (the 11 flips + C>OG which the Owner ruled both-spots/V3) should live as a standing lab artifact — a one-page output `dest_premium.md` re-run by the Lab protocol — so the council stops re-deriving it per round and the Architect can cite it when rulings land. Cheap; belongs in Gate 3 (Lab).
+5. **Frozen θ provenance.** The P-345 two-gap protocol (REPORTED, designed and reviewed) — the lab estimator records θ in provenance so λ̂ is comparable across refits — still needs its *executed run* attached to any fluctuating-λ claim; otherwise we argue a dial with no ruler. This is already an ask in my Gate-3 framing; restated here because the fluctuating dial leans on it directly.
+
+## Q6 — What is the right frame?
+
+**Not a number, not the 99, not a dial free to roam — a structured context multiplier on a stable structure, bounded by a flat prior and priced by ordering loss.** Concretely:
+
+```
+λ(g) = λ0 · (1 + X_g′β),   λ0 fixed prior (start: 0.40),  β regularized toward 0,
+
+β ≠ 0 accepted only if held-out (2023–25) dest-premium ordering loss improves
+≥ 10% with bootstrap CI excluding 0 (2016–22 fit, all data public/P-344).
+```
+
+- **What moves it (Owner's list + my additions, each with provenance):** playoffs · rivalry/divisional · opponent's front/secondary structure (differential of OVR aggregates) · dominant groups (top-5 unit aggregates) · aggressiveness (team-season go-rate & 2-pt rate) · game state (one-score, late) · tempo (possessions/team-game). **Additions I'd add:** (i) **strength of opposing QB** (top-decile OVR QB season → higher WR/TE prices) and (ii) **passing-vs-rushing environment** (pass-rate environment of both teams; public — measurable, and it is exactly the personnel/situation lever the dynamic-engine rulings want). Nothing moves without a public row to measure against it.
+- **What it does NOT touch:** Wins (fixed user scale, the ruling), Priority (display rank — updated from Wins only), OVR (Owner's alone), FLEX (consistent through the year, ruling), calibration targets (static test measure, ruling), the seeded RNG (Gate 1), or the Owner's weights (emergent, not mirrored).
+- **How you TEST it — the receipt:** the protocol above, as one script reading P-344 (`pbp_2016_2025`, `player_game_logs`, `rosters`, `games`) + the madden27 pool, frozen 2016–22 fit / 2023–25 holdout; output `context_lambda.json` + one-page report (β estimates + CIs, the 11 diagnostic rows pre/post, dest-premium loss delta, Δ mae for completeness); run logged in the Lab with θ frozen in provenance (per the two-gap protocol); if `β` fails the gate, **the deliverable is the recognition that λ is flat** — which is also a win: it closes the question with a receipt instead of by impatience.
+- **The anti-frame (say it):** λ is NOT a per-coach, per-quarter, per-weather free parameter; the number of context dimensions is capped (kernel-PCA, ≤4 factors); the V3 collapse stays; emerge-don't-mirror stays; the migration to basketball (Q1 of the Q5 filing from last round) uses the same λ(g) frame, not a new objective.
+- **Where the fluctuation should live first, honestly:** the **fit layer** (lab/LOO/board fitting) *before* the product. If under that discipline the dial never moves, the flat prior is the product answer and the Owner's "every structure could fluctuate" is honored exactly in the layer where structure lives — not smeared into the user's Wins scale where consistency rules.
+
+## Q7 — What else is static? (the Owner's question, verbatim, worked through)
+
+Every item below is **static today** (VERIFIED against the engine specs, P-342 design doc, P-344 data receipts, or the Owner's rulings as recorded) and should fluctuate by what the Owner asked about. Each with its **test receipt** (ordering-loss protocol unless noted).
+
+| # | Static asset | What it should fluctuate by / toward | Receipt to accept fluctuation |
+|---|---|---|---|
+| 1 | **Slot values (the board)** | Opponent structure (front/secondary aggregate differential), playoff/rivalry, era (pass-rate environment) | Held-out dest-premium margin vs flat table; ± row-cap per opponent |
+| 2 | **Flex prices / tiers (0/2/6/12)** | Personnel context: stakes (playoff), opponent pass-rate, dual-role fit | Held-out WR1-adjacent ranking loss; freeze tier set |
+| 3 | **Home-field advantage (1.7)** | Rivalry/divisional magnitude; playoffs; opponent distance/timezone | Calibration of home-win rate vs flat; keep within ×(1±30%) |
+| 4 | **BASE_PTS / PTS_NOISE / drives** | Aggressiveness of both rosters; tempo environment; wind/dome | Distribution fit: margin SD within 5% of NFL 2016–25 (the 14.16 SD standard) over seeded seasons |
+| 5 | **Noise / variance** | Competitiveness (one-score vs blowout), playoffs pressure | Variance-of-residuals vs flat on holdout; log-likelihood ratio receipt |
+| 6 | **Draft slot value** | Pool strength (mean OVR of class), position hand of class | Seeded draft sim vs flat on held-out classes (nflverse class class-by-class when it lands) |
+| 7 | **Calibration class + targets (90/35/25/1–2%)** | Distribution across divisions/rosters, not a point mass | Franchise-level bootstrap CI on the targets; accept as band (the static rubric already is one) |
+| 8 | **Gravity / double-teams** | Game state (one-score & late), opponent's other weapons, WR1 status (the Owner's "draws more doubles in the 4Q" intuition) | log-structured engagement model on snap counts; already flagged by P-350/P-346's real-data findings — verified plasticity |
+| 9 | **Group synergy** | Composition (elite OL + elite secondary), opponent pass/rush front | Fold-in as per-unit residual shift under the two-gap protocol; accept on held-out loss |
+| 10 | **Player *form* (done)** | Streak/pacing/rest — already public, Owner-ruled (visible ±5–6 arrows); **cadence/carryover/reset = design details still open** | Week-to-week OVR Δ vs flat on holdout; the arrow rendering test |
+| 11 | **Two-way star opposite-side use** | Same context list; owner-allowed | Slot-competition collapse already handles it mechanically — no fluctuation needed, but cap legality by context (fourth-down emergency) as P-142 adjacent |
+| 12 | **Possession count / drive budget** | Aggressiveness, tempo | Already measurable (possessions/team-game); accept on both distortion-check and plays/drive (5.63 target ±10% — MUSE's proposal) |
+| 13 | **Save envelope / ruleVersion** | N/A — not a fluctuation candidate: versioned frozen at write, not a context | The Gate-1 replay-hash test; exists as proposal, must ship, **not fluctuatable by design** |
+
+Plus the epistemic conversion: **calibration itself is a static average.** The Owner's broadcast instinct ("every structure of the engine should/could fluctuate") applies to *fitness regimes* too: the engine should carry **two operating regimes** — a **regulated/predictable one** (regular season, non-rivalry) and a **chaotic/playoff one** (playoffs + rivalries + one-score stakes) — selected by context, not dialed by the user; both calibrated against the same 2016–25 data on their own cells. One-line test: both regimes inside ±10% of the held-out distribution cells; no cross-contamination; no user toggle.
+
+## Contamination guards (bounds restated)
+- Emerged, not mirrored — no fitting any constant to the 99 table or the salary ruling directly.
+- OVR + preferred position remain the only true inputs; no per-player style labels; no intangibles; no gates/floors/pair tables.
+- The user sees only Wins, Priority, OVR + form arrows; consistency is the product's hard constraint, not a preference.
+- Basketball is design-only; the fluctuating-λ frame is football-first; the port question (P-345/Q5 filing last round) stands.
+- The objective remains NOT decided: the Owner decides, after the receipts.
+
+EVIDENCE (this chat, re-cited not re-run): positions and reviews on file (`20261112-0558`, `20261112-0805`, `622149c8`, `20261113-0227`) · archived `bebe8e0b` suite run (320/318, 2 red — not λ-specific) · E3 JSON grep (`beats_both: []`, `max_exact_at_mae_le_1.076: null`, VERIFIED by me 2026-11-12) · owner rulings via MUSE verbatims (2026-11-11/12). Q1–Q7 all answered from those receipts; the §Q5/Q6 fluctuating-λ script is **proposed, not run**.
