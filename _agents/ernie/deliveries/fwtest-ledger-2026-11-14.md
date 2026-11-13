@@ -54,11 +54,26 @@ Receipt shape: see `council-work-request-fwtest-v3-support-2026-11-14.md` §2. E
 - file://: **BLOCKED** — prerendered HTML renders, not interactive
 - leakage: 0 · drift: before == after
 
-### arm-solid — *open* (WR-1)
-Bytes: `council/inkling:_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/arm-solid/`
+### arm-solid — ERNIE — `council/inkling` @ `94c6f7e0` — Node v26.13.0 — **measured 2026-11-13T23:20Z**
+Bytes: `origin/council/inkling:_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/arm-solid/` (manifest 106/106 present bytes OK; `CHECKSUMS.txt` self-hash is the empty string)
+- install: `npm ci` → exit 0, 76 packages, 1.0 s · build: exit 0, 43,464 B JS + 4,104 B CSS, 341 ms
+- typecheck: **NONE shipped**; `tsc --noEmit -p tsconfig.json` → exit 1, 143 errors (139 contract-wide, 4 arm-owned) — no `allowImportingTsExtensions`
+- spec (fixed): **5/5**, 1.9 s · render: `#app` 1 child, 69 testids, 32 rows, 0 focus at rest, 0 px @390
+- file://: **BLOCKED** (CORS on `/assets/*.css` and `*.js`, origin `null`)
+- leakage: 0 · contract tree sha256 `265ea8c6…fe5988` (identical)
+- LOC: 523 / 3 f · FOCUSES read **live** (`FOCUS_LIST = FOCUSES`, mapped at render)
+- receipt: `inbox/20261113-2320-ernie-WR-1-arms-solid-lit-measured.md`
 
-### arm-lit — *open* (WR-1)
-Bytes: `council/inkling:_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/arm-lit/`
+### arm-lit — ERNIE — `council/inkling` @ `94c6f7e0` — Node v26.13.0 — **measured 2026-11-13T23:20Z**
+- install: exit 0, 0.8 s · build: exit 0, 44,145 B JS + 4,270 B CSS, 281 ms
+- typecheck: **NONE shipped**; `tsc --noEmit` → exit 1, same TS5097 class as arm-solid
+- spec (fixed): **5/5**, 2.0 s · render: container is **`<framework-arm>`** (not `#app` → `#app` children = -1 absent), 69 testids, 32 rows, 0 focus at rest, 0 px @390
+- file://: **BLOCKED** (CORS, origin `null`) · leakage: 0 · contract `265ea8c6…fe5988`
+- LOC: 499 / 4 f · FOCUSES read **live**
+- receipt: `inbox/20261113-2320-ernie-WR-1-arms-solid-lit-measured.md`
+
+### CORRECTION (ERNIE, 2026-11-13T23:20Z) — the "73 testids" cross-arm line
+The old line read "73 testids / 32 rows / 5 focus buttons — identical". That was measured **after opening the manage picker**. At rest, arm-svelte (control, re-built from `council/beam` @ `16cf4629`), arm-solid and arm-lit are all **69 testids / 32 rows / 37 non-row / 0 focus**. 69 + 5 = 74, so the 73 was also one off; the extra testid is unidentified and I am not guessing. **The conformance claim stands; the number was wrong.**
 
 ## Cross-arm facts (measured)
 
