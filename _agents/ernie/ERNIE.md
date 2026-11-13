@@ -1,22 +1,24 @@
-# ERNIE — lane file (copy to `_agents/ernie/ERNIE.md`; rewrite it at the end of every session, never append)
+# ERNIE — lane file (rewritten each session; never append)
 
 ## Identity
-- **Seat:** ERNIE · **Model / how reached:** ERNIE / API · **State:** advisor
-- **ID block:** <S-nnnn–nnnn> (only if the seat files submissions) · **First seen:** <YYYY-MM-DD>
-- **Strengths shown so far (evidence, not claims):** <task ids or commits>
+- **Seat:** ERNIE · **Model / how reached:** ERNIE / API (kilo gateway) · **State:** advisor (admitted by the Owner 2026-11-13)
+- **ID block:** <none filed>
+- **First seen:** 2026-11-13
+- **Strengths shown so far (evidence, not claims):** one verified finding — save-versioning conflict settled at `architect/engine-and-seats:2743103e`, `inbox/20261113-2017-ernie-P-207-save-versioning-settled.md`, commit `1ee16a1d`.
 
 ## Current work
-- **Claimed / in progress:** <task id · branch · base sha · last commit>
-- **Done this session:** <one line each, with the command that proves it>
-- **Blocked / waiting on:** <seat or Owner, and what exactly>
+- **Claimed / in progress:** nothing open. Last item: P-207 save-versioning verification (filed + pushed 2026-11-13T20:20Z).
+- **Done this session:** read live docs from `origin/council/muse` (local worktree's `AGENTS.md`/`PROJECT-KNOWLEDGE.md` are stale — `PRIORITIES.md`→`QUEUE.md` rename, flex table 99 rules, Svelte not a lock); verified `Football-Sim-PreColors.html` = `40233d6be00e987c` (matches AGENTS.md §2); read `colors/src/core/envelope.ts`, `platform/localstorage.ts`, `sports/nfl/app/versions.ts`, `saves.ts`, `legacy.ts`.
+- **Blocked / waiting on:** nothing.
 
 ## What the next session needs
-- **Read first:** <≤3 files, with the reason>
-- **Open questions:** <≤5>
-- **Do not redo:** <things already checked, with where the receipt is>
+- **Read first:** (1) `_agents/START-HERE.md` from `origin/council/muse` (the live procedure — do NOT trust the local `_agents/START-OF-CHAT.md`, which is the October pointer); (2) `claude/assessments/2026-11-13-master-assessment.md` on `architect/engine-and-seats` (the live round); (3) `_agents/QUEUE.md` on `council/muse`.
+- **Open questions:** (a) whether P-258 (delete `legacy.ts`) is still wanted now that the file is proven dead-but-tested; (b) whether the council should treat `localstorage.ts:13`'s "P-258 kills legacy.ts" comment as a doc defect.
+- **Do not redo:** save-versioning verification (receipt in my P-207 filing, 2026-11-13); P-344 nflverse download verification (Inkling re-downloaded all 30 files, `council/inkling:inbox/20261111-1741`); P-345 λ dispersion bias (DS D4, confirmed twice).
 
 ## Files in this lane
-<one line per file that is still live; delete the line when you delete the file>
+- `_agents/ernie/ERNIE.md` — this file.
+- `inbox/20261113-2017-ernie-P-207-save-versioning-settled.md` — live filing.
 
 ## Role
-general advisor. Admitted by the Owner on 2026-11-13. Advisor level: propose, test, dissent, measure. Core status is the Owner's call after 3 verified items.
+General advisor. Propose, test, dissent, measure. I never edit the product file, governance docs or the queue; proposals go to `inbox/`, terminal states are proposed with evidence, not moved.
