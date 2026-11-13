@@ -39,7 +39,7 @@ You have more work in one wave than usual — by decision, not accident. **Work 
 ### §2.1 — The full nine-arm framework test (this is the BIG item; complete it before anything else)
 *Your move: the protocol answers what the arms are supposed to be. Where does it constrain your framework idiom badly? Does Solid+Vite differ from SolidStart in some way the protocol hides? If the test itself is measuring the wrong thing anywhere, name it with a receipt and its cost — not as a complaint, as design feedback for the Owner's next framework decision.*
 
-Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-solid` alongside (your delivery does not wait for mine — but the eight-arm results merge once both waves land; the Owner confirmed this ordering). Same method as your original five, extended:
+Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-solid` alongside (your delivery does not wait for mine — but the nine-arm results merge once both waves land; the Owner confirmed this ordering). Same method as your original five, extended:
 
 **Your two new arms**
 - **Next.js arm** (`arm-next`): React 19 + Next.js (current stable; verify `output: 'export'` static export works — that is the only honest shape for this product; if your current build does `next export` (removed in 15) or App-Router static export, record which; the static-export path is required for parity with the other arms; if you cannot make it static, say so loudly and document the blocker precisely — the Owner decides whether the meta-framework arm survives at all). **React + Vite arm stays** — it is now a different beast than `arm-next`; record honestly both. Next.js's differentiators (file routing, RSC, caching) are deliberately unused by this one-screen prototype; say that in the results.
@@ -62,7 +62,7 @@ Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-sol
 - Any arm passing green ⇒ log the numbers, don't adjudicate.
 - The single-author confound and the fresh-session protocol are D1-issues for the Owner; flag both (round 1 code by you alone, round 2 also by you alone for your seven; build INKLING's with a different model to restore the confound's symmetry). Owner knows.
 
-**Deliverable shape for the test:** one `fwtest-7/` folder with your seven arms; `results/FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` (after the merged eight-arm comparison lands — you post your metrics; INKLING appends his arm-solid; the merged table goes to the council) · `contract/` · `round2/` · per-arm logs · manifests · CHECKSUMS.txt.
+**Deliverable shape for the test:** one `fwtest-7/` folder with your seven arms; `results/FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` (after the merged nine-arm comparison lands — you post your metrics; INKLING appends his arm-solid; the merged table goes to the council) · `contract/` · `round2/` · per-arm logs · manifests · CHECKSUMS.txt.
 
 ### §2.2 — D.1–D.9 (the dynamic-engine nine filings; standing)
 *Your move: across D.1–D.9 — which question here is the deepest? Which is the most urgent for the product? Which one could you answer with two hours and refuse to answer without two weeks? If the prompt wants nine cards drawn from a deck of ten, which one would you cut — and would you accept the Owner replacing it or would you argue?*
@@ -129,8 +129,8 @@ You never edit `colors/src/`, `flex.json`, `flex.ts`, the contract's vendored fi
 ## §4 — Done checklist (INKLING scores the delivery against this)
 *Your move: which item in this checklist would you remove if you scored the work honestly? Which would you add? If your done ≠ my done, that's data about my priorities vs yours — tell me which is right so we both learn; do not let the checklist bury a better deliverable.*
 
-- [ ] Seven arms built to green (`arm-svelte`/`arm-sveltekit`/`arm-react`/`arm-vue`/`arm-solidstart`/`arm-next`/`arm-nuxt`), logs + byte sizes + module counts; round-2 reflow with sha256 manifests for all seven; INKLING's `arm-solid` ships alongside yours, merged into the eight-arm table by the council.
-- [ ] `FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` with metrics, deviations, "no verdicts" section; package.json / Node logs per arm.
+- [ ] Seven arms built to green (`arm-svelte`/`arm-sveltekit`/`arm-react`/`arm-vue`/`arm-solidstart`/`arm-next`/`arm-nuxt`), logs + byte sizes + module counts; round-2 reflow with sha256 manifests for all seven; INKLING's `arm-solid` ships alongside yours, merged into the nine-arm table by the council.
+- [ ] `FRAMEWORK-TEST-RESULTS-2026-11-13-9arm.md` with metrics, deviations, "no verdicts" section; package.json / Node logs per arm.
 - [ ] D.1–D.9 nine filings filed with proposals + receipts + failure modes + Owner-questions.
 - [ ] Part B: testing programme proposed · the dial-as-parameter form shipped as a file · fluctuating-dial concepts named with a test for each · the 11-row "emergence report" table · the display-options page · metrics pitch written up separately as option (v).
 - [ ] Part C: era-snapshot both-options; air_yards consumption spec ("no invented proxy" line); DIME re-anchor proposal via the Architect (number now **0.126** — INKLING's reading of yours, confirm you agree and re-emit if not); four P-347..P-353 paragraphs; README one-liners with as-of-date verification for every one.
