@@ -9,7 +9,13 @@
 `pwd; git branch --show-current; git rev-parse --git-common-dir`
 You must be in `.../wt/<your-name>` on branch `council/<your-name>`. If not, stop and tell the Owner.
 `git fetch -q origin`
-(Do NOT run `sync-base.sh` — `council/base` is a stale snapshot from 2026-11-02, not the live state. The live queue and docs are on `origin/council/muse`.) Then `node tools/preserve.mjs check` (reports unsaved work anywhere; does not touch it).
+**Step 0 — refresh the governance docs FIRST. They are stale in your worktree.** Your branch was started from `council/base`, so the `AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `START-HERE.md` and `START-OF-CHAT.md` you can see are old copies (measured 2026-11-13: all 38 worktrees stale; all 14 seat branches 61 commits behind `council/muse`). Run this BEFORE reading any of them:
+
+    git status --porcelain -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md   # must print nothing; if it prints, commit your edits first, then re-check
+    git checkout origin/council/muse -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md
+    git diff --cached --stat    # must list only those four files
+
+Until this has run, treat every governance doc in your worktree as REPORTED, not as the rules. (Do NOT run `sync-base.sh` — `council/base` is a stale snapshot from 2026-11-02, not the live state. The live queue and docs are on `origin/council/muse`.) Then `node tools/preserve.mjs check` (reports unsaved work anywhere; does not touch it).
 
 ## 2. Read — only what you need
 - **If a task is given in your prompt:** read ONLY the files that task names. Do NOT read AGENTS.md, PROJECT-KNOWLEDGE.md, COUNCIL-BULLETIN.md, or your lane file first. Go straight to the task.
