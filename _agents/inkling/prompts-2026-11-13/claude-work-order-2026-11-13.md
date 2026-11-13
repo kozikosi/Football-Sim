@@ -1,0 +1,63 @@
+# Work order for Claude — Architect (2026-11-13)
+
+**From:** KG (the Owner), relayed by the INKLING seat who is acting as his organizing hand until MUSE returns (MUSE is out; nothing here bypasses your ordinary authority — you remain the Architect; the rulings below are yours to record). **Date:** 2026-11-13T19:05Z. **FOR:** the Architect.
+
+This is efficient on purpose: the load-bearing content is your working context and the Owner's rulings, not persuasion. Read it, then record the rulings verbatim in `claude/rulings/2026-11-13-owner-decisions-multisport-batch.md` (his words, never paraphrased), and update `claude/NOW.md` to say what you did and what is blocked.
+
+## §0 — State that matters (VERIFIED 2026-11-13, by INKLING, `bebe8e0b` unless noted)
+
+- Colors = 320 tests / 318 pass / 2 fail (lineup 2700≠2400; versions PIN_ENGINE `nfl1.14a4e9333e888a` ≠ `nfl1.108bcc20a9f253`). Cakepanz = 284/284 at the pin (`4ca9a071`). `Colors` has no `main.ts` on any ref; Cakepanz (the w89-shell refactor) does build. **The Owner has ruled the pins are NOT gates**: the old weights table is antiquated, illusory even — the "no weights pinning" ruling (his §2 in his answers, 2026-11-13). You choose: quarantine-with-written-reason, or convert the pin test to report-not-fail — just make the 2 red tests stop pretending to be law. (The Owner does not want a final answer from you on *whether the weights matter* — that whole frame is being replaced with something more complicated and dynamic.)
+- **The framework field, verbatim from the Owner:** "everything is built to be as framework neutral as possible. everything is in plain typescript… Svelte + Vite, SvelteKit, React + Vite, next.js, vue + vite, vue + nuxt, solid + vite, and solidstart are all on the table. the council should perform tests for each. z.ai's test will be the definitive data and the council should evaluate his results. other seats can conduct their own tests if they feel like it." Z.ai builds/arms; the council scores; **you do not judge framework quality or execute the arms** — don't score, don't test, don't build arms; you read the verdict when the council files it and own D1/D2 thereafter, with the Owner.
+- React stays **undeleted** until the test rules it out (ruling in his §4/§7).
+- 67 Cakepanz **is** the w89 shell's refactor — candidate source of the 76 Pancakes UI shell, not a final product. The merge is yours to time; he does not pre-empt it.
+- MUSE is out. INKLING holds the Owner's process until she returns: routing of rulings, queue triage, digests. Direct your own questions to INKLING, not to a fan-out across seats; product decisions to the Owner via §8's list.
+
+## §1 — Your deliverables (in this order; nothing else is authorized as new scope)
+
+**D1 — The rulings file.** Create or append `claude/rulings/2026-11-13-owner-decisions-multisport-batch.md` with the Owner's 2026-11-13 answers **verbatim** (the 16 items), and cite it from `claude/NOW.md`. The sixteen rulings (restated for you to reproduce — but read the Owner's exact message; these are my summaries, not verbatim; do not transcribe mine):
+  1. 76 Pancakes rename at v1; Colors is the engine; Cakepanz is the w89-shell refactor; you merge when *you* decide.
+  2. No weight pinning — red tests stop being gates (your call how).
+  3. CI may expand to full ambition (see D2).
+  4. Council evaluates Z.ai's definitive data across all eight frameworks; no React removal until ruled out; framework-neutral plain TS until it is necessary to pick.
+  5. No framework verdict before the test completes.
+  6–7. (React already covered in 4.)
+  8. w89 saves: no special preservation; best, most sustainable way for 76 Pancakes (your call + Z.ai's, trusted).
+  10. No strict realism guideline — approximate, watch what the engine produces, see the plan; don't hard-gate on ~10% or the margin panel.
+  11. Defensive pass-focus semantics: opponent's pass economy drops — especially big plays — with run/short pass/RPO leakage; W-L emerges from simulation, with the math too complicated and random to predict in advance. (So P-222: confirm-as-intentional semantics, never strengthen by correlation-curve — model the leak, measure by season batches, not by metric-fitting the focus.)
+  12. (His question got restated; see §3 below — it's the same as D3's guardrails.)
+  13. **Cross-side stars (his ruling, see §4).**
+  14. The "simulation-design platform" is deferred — football + basketball first.
+  15. Basketball after football ships.
+  16. w89 cutover when you are ready.
+
+**D2 — The full GitHub Actions plan** (his §3: "Yes but i think this could be expanded even"). Present a **build-ready plan**, not an essay — jobs, triggers, matrices, caching, paths, minutes estimate, branch wiring — for the future **multisport · multisimulation · multiuser** platform. He has no users today; optimize for zero drama, not for current-public compatibility, but the shape must scale: anyone the Owner admits, 10k-league ambition kept as a design constraint, not a cost demand now. Include:
+  - The required-now minimalism (`main` + PRs): checkout (full repo), Node pin (`.nvmrc` = 24), `npm ci` per track, `tsc:check` ratchet (Colors; add `@types/node` if approved for Cakepanz), `npm test`, `test:engine`, `vite build` both tracks, boundary/purity check (`test/nfl/purity.test.ts` + the sibling four-layer files — read those four before writing §13 boundary instructions again), contract-quantile verifier (P-268), Biome tooling lint, deliberate-failure canary in a separate job on push.
+  - The nightly tier (optional-run, not PR gates): the Lab tier (`@N=1000` seeded season runs with `tools/mathlab/` as oracle today; the TS Lab when Phase 1b lands) — distribution-compare briefs emitted as job artifacts (not gates).
+  - The release tier: GitHub Pages publish (w89 stayed frozen — w89-freeze note in cutover), protected-constant verifier (sleep unless re-pin governs it — skip until no-pin ruling resolved into tooling), SRI/asset list for the published build.
+  - The multiuser tier (design-only scaffold, gated behind a future workflow file, labeled `experimental`, runs nothing unless manually triggered): command-envelope replay conformance, league-simulation smoke (32-team draft re-derived from seed), saturation smoke with placeholder fixture payload. Explicit cost note: it never touches the public product and never blocks PR CI.
+  - The multisport tier (design-only): basketball pack runs through the same pipeline once `sports/basketball/` exists; pack-contract job; sport selection via matrix include; never enabled today.
+  - Caching (npm per track keyed by lockfile hash), job graph (`install → verify → build → boundary` sequential where it matters), timeouts (fail at 10/15 min), runner OS matrix (ubuntu-latest only; no windows matrix today — the project has none), and **the honest statement about cost**: free for public repos; if repo ever goes private, names the minute budget per month the nightly tier would consume.
+  - Report-only vs required: the two tiers stay report-only until the two red tests above pass de-gating; required-check wiring later.
+  - The workflow files delivered in-repo (you land them), not as proposals — but with the dependency approvals outstanding noted inline (e.g., `@types/node`).
+
+**D3 — The rebuild guardrails, in his terms** (his #12, restated): you proposed these for the play-level rebuild; he asked "i don't understand," so they're your job to re-explain simply in D1/NOW.md language and confirm as the standing rules for the rebuild: (i) flex stays portable — the 99-rule table and its formula ride along unchanged into play-level; basketball slots a different table in; (ii) the old drive engine is the test oracle — whatever changes, the old engine is the reference you compare against, never a source you quietly bend; (iii) side-by-side runs — any engine change must report old-vs-new numbers on the same seeds before it ships; (iv) ledger + census first — the rebuild wires measurement (participation/EPA) before replacing the drive model, because that measurement is what tells you the new math is carrying football weight, not just plausible-looking code. If he objects or adjusts, record the adjusted versions as rulings.
+
+**D4 — Cross-side stars (his ruling) as a design (design-only, on your roadmap, not built this wave).** His words (design consequences, not pseudocode you invent): any player — not just stars — can enter the game report on the opposite side of the ball **if and when his opposite-side price is at or below his rule-tier threshold (confirm the exact threshold with him; see the follow-up in INKLING's chat — pending)**, and **only in clutch (final 5 minutes of 4Q or OT) or overtime**. The user should see a marker indicating the coach made a deliberate decision to play someone on both sides for one play — e.g., a top WR coming in at safety to defend a Hail Mary and winning the interception. The marker is a two-way decision icon inline in the feed/box score event (exact visual TBD — needs your UI judgment; the packet already has the clutch banner precedent). Design notes to file (against the engine spec; no code): the pricing boundary (what price counts as "enough to trust at the other spot"), the substitution mechanics (does the player consume an ST snap, a defensive snap, an eligibility flag), the visual vocabulary, the CPU's decision envelope (does CPU also use it? surely yes), and the interaction with flex-consistency ruling (fixed price, not fluctuating) and with the clutch narration work (P-354). File one design note; no build.
+
+**D5 — w89 cutover plan (timeline your call).** His answer (his §16): "when claude is ready." So the plan is yours. State in `claude/NOW.md` the trigger (your acceptance script, not the Owner's) and the go/no-go checklist you'll use; do not start it in this wave. The best-sustainable-save requirement (§8 above: no w89 preservation; saves in 76 Pancakes to work the best, most sustainable way; you and Z.ai trusted) — reflect it as a standing requirement in your persistence work: export/import file, migration scaffold, quota classification, multi-tab guard, historical-season snapshots; your call how.
+
+## §2 — Saving the project's memory, not just the code
+
+`PROJECT-KNOWLEDGE.md` is yours by default (you rewrite at handover). Fold the fourline state there into one honest paragraph (three lineages → 76 Pancakes direction; GitHub Actions tiering; no-pinning; framework-neutral pending council verdict). Keep it under a page; the Owner's memory survives in rulings files, not prose.
+
+## §3 — Open items to route to INKLING (organizer), not the Owner, until MUSE returns
+
+Your questions, in one message each, batched: (i) anything about the D2 plan's dependency approvals; (ii) D3 adjustments after you try to write the in his language; (iii) D4 semantics (threshold, visual, CPU envelope); (iv) D5 acceptance script sketch — only if you need a check before you trust yourself on cutover. Do not round-robin the council for these; INKLING triages.
+
+## §4 — Bounds (from the Owner, unchanged, do not re-argue)
+
+You never edit `AGENTS.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, or the product file; you own the engine and the build; you push only `architect/engine-and-seats` when the Owner asks you to land things (your normal flow); the two red tests are de-gated per this ruling; React untouched until the test rules it out; no framework decision before the council's verdict; no new tables of constants as gates; no basketball build (design filings only; football first); basketball only when football ships; no new seats admitted; the 99 is a guide, not a target.
+
+## §5 — Definition of done for this order
+
+D1 ✓ rulings file pushed, `claude/NOW.md` updated · D2 ✓ the workflow plan delivered (files + one page how-to + minute budget + trigger matrix) · D3 ✓ reworded rebuild guardrails in the rulings/NOW.md, plus any adjustments you made · D4 ✓ the cross-side-stars design filed as one note, not built · D5 ✓ cutover trigger written down in `claude/NOW.md`, unstarted · memory updated. One push, one reply; stop and ask only for the items in §3.
