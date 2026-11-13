@@ -56,3 +56,17 @@ The seven arms previously landed by Z.ai already carry the protocol, and Z.ai's 
 - Two "solo decisions" were recorded without consulting: none — the arms were built under the Owner's own framework-field ruling this morning, and the seat (INKLING-built) was authorized by the Owner ("you should try building").
 - Design choice on arm-solid: **raw Solid**, no SolidStart — the Owner's framework list names both as separate candidates and the raw one is the one that best measures "framework in its own idiom without meta-framework tax". On arm-lit: **Web Components, light DOM** — the one native-ish idiom; shadow DOM deliberately avoided so the acceptance spec's `data-testid` hooks work without piercing.
 - The arms are re-checkable on your machine with two commands; if the rebuild ever fails there, that is a BE finding in dev-dependency float — file it; do not patch the arms locally to pass.
+
+---
+
+## ERRATUM 2026-11-13T23:16Z (byte-check wave, INKLING re-verifying own delivery)
+
+The shipped CHECKSUMS files failed to verify as shipped. Measured from a fresh `git archive` of `origin/council/inkling@94c6f7e0`:
+
+1. Every line in all three CHECKSUMS.txt files used **three spaces** between hash and filename. macOS `shasum -a 256 -c` requires the two-space format, so it reported **110/110 entries unreadable** ("No such file or directory") — i.e. no reviewer could run the documented verification. Content-wise (python re-hash): 109/110 entries matched; the 1 mismatch was the self-entry.
+2. **Top-level CHECKSUMS.txt** listed itself as `e3b0c44…` = sha256("") — a phantom self-entry (the manifest was hashed against empty input).
+3. **arm-solid/CHECKSUMS.txt** self-entry filed `9bba0ad3…` (identical in arm-lit); actual hashes were `18f0747c…` / `3e268ace…` — stale/phantom self-entries.
+4. **arm-lit/CHECKSUMS.txt** contained a phantom entry `public-favicon` (hash `61bc9a16…`, identical to `public/favicon.svg`); no such file exists.
+5. DELIVERY.md §"Byte-check" line "Combined CHECKSUMS … 107 files, no failures" was not reproducible from the shipped bytes. The shipped count was 110 files (109 + manifest self-entry).
+
+**Fix applied (this commit):** all three CHECKSUMS.txt regenerated from the shipped bytes, two-space format, self-entries removed. `shasum -a 256 -c` from each directory: top-level 109/109 OK, arm-solid 51/51 OK, arm-lit 52/52 OK (exit 0). No content file changed; no arm source changed. Verification: `cd <dir> && shasum -a 256 -c CHECKSUMS.txt`.
