@@ -15,8 +15,14 @@ const META = { saveId: 'test-save', saveRevision: 1, createdAt: '2026-11-03T00:0
 // config) or the data files changed. If that was intended, update the pin in the same commit (and re-pin MERGE-MANIFEST.md for protected constants).
 // PIN_ENGINE moved 9 Nov 2026 on purpose: FLEX is the Owner's D table (97 rules, 7 removed, then his 9 corrections; flex.json), replacing the 8 Nov -2/-6/-12 table (P-294).
 const PIN_ENGINE = 'nfl1.108bcc20a9f253', PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
-test('E5 pins: the engine and data stamps are what the last deliberate change left them', async () => {
-  assert.equal(engineVersion(), PIN_ENGINE, 'rules changed: update PIN_ENGINE on purpose');
+// DE-GATED 13 Nov 2026 (Owner: no weight pinning; the stamp is provenance, not law). The engine stamp is REPORTED on every run with its
+// drift flag, and never fails the build: the rules text legitimately moves with the flex table and the play-level rebuild. PIN_ENGINE
+// is the last stamp a human looked at, kept only so the report can say "moved". The data stamp stays a real assertion: a ratings file
+// that changes silently would change every save's dataVersion.
+test('E5 stamps: the engine stamp is REPORTED (drift flag, not a gate); the data stamp is the one the last deliberate data change left', async (t) => {
+  const eng = engineVersion();
+  t.diagnostic(`REPORT (not a gate): engineVersion=${eng} last-looked-at=${PIN_ENGINE} ${eng === PIN_ENGINE ? 'UNMOVED' : 'MOVED'}`);
+  assert.match(eng, /^nfl1\.[0-9a-f]{14}$/, 'the engine stamp keeps its shape');
   assert.equal(await dataVersion(ROWS), PIN_DATA, 'data changed: update PIN_DATA on purpose');
 });
 test('hash53: stable, 14 hex digits, and sensitive to one character and to order', () => {

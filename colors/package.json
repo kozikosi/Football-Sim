@@ -2,7 +2,7 @@
   "name": "colors",
   "private": true,
   "type": "module",
-  "description": "Colors v1 (20-0): the Architect build. Engine, view-models and UI source are TypeScript; build/build.mjs bundles them with esbuild. The engine and view layers have no runtime dependencies; react, react-dom and svelte are used only by the UI adapters.",
+  "description": "Colors: the 76 Pancakes engine (TypeScript: core, sports/nfl engine/app/view, platform adapters). Engine, app and view code import no framework. npm test needs the WHOLE repo checked out (tests read ../data and ../tools). There is no app entry yet: dev/build/preview run Vite against index.html, which points at src/main.ts, which does not exist, so npm run build fails until the UI shell is merged. react, react-dom, svelte, vite and @sveltejs/vite-plugin-svelte stay installed as framework-test candidates (nothing in src, test or tools imports them); the framework verdict belongs to the council test. The old esbuild bundler (build/build.mjs) was removed on 2026-11-13.",
   "scripts": {
     "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
     "build": "vite build",
@@ -12,8 +12,6 @@
     "tsc:ratchet": "node tools/tsc-baseline.mjs --write"
   },
   "dependencies": {
-    "esbuild": "^0.28.2",
-    "esbuild-svelte": "^0.9.5",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "svelte": "^5.57.3"
