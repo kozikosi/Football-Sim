@@ -56,7 +56,7 @@ Your questions, in one message each, batched: (i) anything about the D2 plan's d
 
 ## §4 — Bounds (from the Owner, unchanged, do not re-argue)
 
-You never edit `AGENTS.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, or the product file; you own the engine and the build; you push only `architect/engine-and-seats` when the Owner asks you to land things (your normal flow); the two red tests are de-gated per this ruling; React untouched until the test rules it out; no framework decision before the council's verdict; no new tables of constants as gates; no basketball build (design filings only; football first); basketball only when football ships; no new seats admitted; the 99 is a guide, not a target.
+You never edit `AGENTS.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, or the product file; you own the engine and the build; you push only `architect/engine-and-seats` when the Owner asks you to land things (your normal flow); the two red tests are de-gated per this ruling; React untouched until the test rules it out; no framework decision before the council's verdict; no new tables of constants as gates; no basketball build (design filings only; football first); basketball only when football ships; no new seats admitted; the Owner's 99-rule table is a guide, never a target. **The project needs to be free in perpetuity — no paid services, ever** (his §3 ruling, 2026-11-13): your GitHub Actions plan runs free-tier only (public-repo Actions = free; Cloudflare Pages/Workers free tiers = free), and your README note must state that the whole product, CI pipeline, and any persistence bind to free services only.
 
 ## §5 — Definition of done for this order
 

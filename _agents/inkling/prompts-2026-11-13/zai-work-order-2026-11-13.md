@@ -24,9 +24,11 @@ You have more work in one wave than usual — by decision, not accident. **Work 
 7. **The platform product:** ignored for now; football + basketball first (if your D.1–D.9 templates sketch the platform, stop at the sketch).
 8. **Saves:** no preservation of w89 saves — the best, most sustainable save architecture for 76 Pancakes is the Owner's trust; that's implementation-quality instruction, implemented by the Architect and them closer to you — it affects no filing you ship.
 9. **"Everything in plain TypeScript" until forced:** framework-neutral across the board; the arms are the exception (they must run in their own framework, identical engine pinned outside).
+10. **Lit arm is IN.** `arm-lit` (Web Components, `lit` package + Vite) gets built this wave — by INKLING, alongside `arm-solid`. Your seven arms are unchanged.
+11. **Free in perpetuity.** The project never pays for anything, ever. That kills paid hosting, paid CI, paid DB/monitoring. GitHub Pages and Cloudflare's free tiers are both viable for static; Next.js must not acquire a paid dependency to pass the arm. "Next.js on Cloudflare (Workers/Pages free tier via OpenNext)" may be measured **as a config-variant of `arm-next`** — same code, same UI — not as a separate arm; record build-success, incompatibility notes, and deploy reality; no new arm, no paid anything, ever. If that's not achievable on free tiers, it fails the protocol loudly.
+12. **Astro/Qwik/htmx are rejected**, not by you, by the Owner — do not build them, do not propose them again in this wave; the verdict memo may name them as considered-and-rejected.
 
 ## §2 — The work, in order; complete everything with receipts
-
 ### §2.1 — The full eight-arm framework test (this is the BIG item; complete it before anything else)
 
 Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-solid` alongside (your delivery does not wait for mine — but the eight-arm results merge once both waves land; the Owner confirmed this ordering). Same method as your original five, extended:
