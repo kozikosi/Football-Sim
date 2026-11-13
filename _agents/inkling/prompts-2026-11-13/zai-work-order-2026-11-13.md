@@ -1,6 +1,6 @@
 # Work order for Z.ai — High Councillor, Executor (2026-11-13)
 
-**From:** KG (the Owner), relayed by the INKLING seat (acting as his organizer until MUSE returns). **To:** Z.ai. **FOR:** the framework test (definitive data) · 67 Cakepanz · the multisport build · P-341 · P-345 · P-346 · P-354. **This order replaces nothing** — it absorbs and supersedes *nothing*; it extends your standing work order (`_agents/inkling/zai-next-work-order-2026-11-13.md`, itself a consolidation of the dynamic-engine prompt and the comprehensive prompt), it adds a ruling layer from the Owner (2026-11-13), and it confirms you do not work the D2-from-Claude's-list or anything owned by Claude. When the two disagree anywhere, this document wins, and say so in your reply.
+**From:** KG (the Owner), relayed by the INKLING seat (acting as his organizer until MUSE returns). **To:** Z.ai. **FOR:** the framework test (definitive data) · 67 Cakepanz · the multisport build · P-341 · P-345 · P-346 · P-354. **This order replaces nothing** — it absorbs and supersedes *nothing*; it extends your standing work order (`_agents/inkling/zai-next-work-order-2026-11-13.md`, itself a consolidation of the dynamic-engine prompt and the comprehensive prompt), it adds a ruling layer from the Owner (2026-11-13, updated 2026-11-13T20:15Z with the ratifications), and it confirms you do not work the D2-from-Claude's-list or anything owned by Claude. When the two disagree anywhere, this document wins, and say so in your reply. **Read from GitHub ("go read this" prompt):** `council/inkling/_agents/inkling/prompts-2026-11-13/zai-work-order-2026-11-13.md`. **Work for as long as possible; the wave is full, there is no clock; don't queue — complete every step, then send.**
 
 You have more work in one wave than usual — by decision, not accident. **Work for as long as possible before replying. Do not queue work for the future; execute every possible step, then reply.** If a piece is blocked, do the unblock-or-block move (explain precisely what is missing; what the 15-minute-or-less fix would be; proceed with the rest). Silence on a task means it was not reached; the report must say which, and why.
 
@@ -19,7 +19,7 @@ You have more work in one wave than usual — by decision, not accident. **Work 
 2. **No weights-pin gates** — the old REV table/weights pin is antiquated by the Owner's ruling; don't re-derive pin claims or cling to 'REV N approved' claims as safety; measure dynamic fit from now. (Relevant to your λ work: the board values will be transformed by the new economy; don't hardcode to the table.)
 3. **Approximate realism; no strict numbers** — approximate realism, no strict guidelines; don't manufacture a fake precision gate; when you have nothing better, report the measured league output and say "approximately these distributions".
 4. **CPU on the defensive-pass focus = shrinking opponent pass economy** (incl. deep balls mainly), run/short-pass/RPO leak, W-L from simulation; never hard-coded; RPOs stay open-pathway. So, in all dynamic-engine filings: **the OpponentPassModel is a leaky funnel for opponent pass value, not a win-penalty**; you can use the leak as a constraint. P-222 settled semantics: confirm orientation per this ruling.
-5. **Cross-side stars (NEW ruling; read with pen)**: all players can randomly enter the game report on **the opposite side of the ball** in clutch/overtime if their opposite-side price is at or below the ruled threshold (confirm the segmented exact price with INKLING — see the follow-ups posted in his chat, still open) — with a visible "two-way decision" indicator to the user (Hail Mary WR intercepts; exact visual is the interface layer's; an interception may route the user's reading of the play). **No build this wave; INKLING's Claude order hosts the design; if your D.7 cross-side-stars filing touches this rule, that's the direction it must bend in** (you can also file that as part of the y data outcome in D.1–D.9).
+5. **Cross-side stars (final ruling, KG 2026-11-13, ratified)**: any player whose opposite-side price is at or below **6** (the normal flex band; the 12-tier punishments excluded) can enter the game report on the opposite side of the ball, **only in clutch (final 5 min of 4Q) or overtime** — **no cross-side use outside those windows** — the CPU gets the same call, and the user-facing indicator is a simple **"2-WAY"** badge on the two-way event (Hail Mary WR intercepts the Hail Mary; exact visual is the UI's call). **No build this wave; INKLING's Claude order hosts the design; if your D.7 cross-side-stars filing touches this rule, it bends toward exactly that** — and your D.6 clutch sketch can pair its narration with the two-way moment only if the framing permits; state explicitly how it interacts.
 6. **Basketball:** after football ships; design filings only; no build.
 7. **The platform product:** ignored for now; football + basketball first (if your D.1–D.9 templates sketch the platform, stop at the sketch).
 8. **Saves:** no preservation of w89 saves — the best, most sustainable save architecture for 76 Pancakes is the Owner's trust; that's implementation-quality instruction, implemented by the Architect and them closer to you — it affects no filing you ship.
@@ -27,31 +27,32 @@ You have more work in one wave than usual — by decision, not accident. **Work 
 
 ## §2 — The work, in order; complete everything with receipts
 
-### §2.1 — The FULL eight-arm framework test (this is the BIG item; complete it before anything else)
+### §2.1 — The full eight-arm framework test (this is the BIG item; complete it before anything else)
 
-Extend `fwtest/` to eight arms with the three new ones. Same method as your original five:
+Build/repair your **seven** arms to the unified protocol; INKLING ships `arm-solid` alongside (your delivery does not wait for mine — but the eight-arm results merge once both waves land; the Owner confirmed this ordering). Same method as your original five, extended:
 
-**The new arms**
-- **Next.js arm** (`arm-next`): React 19 + Next.js (current stable, adapter as per its own build; current `next export` is static mode — verify it; a static export is the only honest variant for this product). **React + Vite arm stays** — it now differs from the Next arm; record honestly which is which. Next.js's differentiators (file routing, RSC, caching) are deliberately unused by this one-screen prototype; say that in the results (or the Owner's chosen prototype disqualifies the meta-framework strengths — that's D3-for-Next, call it out).
-- **Vue + Nuxt arm** (`arm-nuxt`): Nuxt (current stable, SSR/file routing as it ships). Keep `arm-vue` (Vue 3 + Vite) — different animals; record both.
-- **Solid + Vite arm** (`arm-solid`): plain SolidJS (currently solid-start *only* was on the table via arm-solidstart; the Owner wants a raw Solid arm: `solid-js` + Vite, no meta-framework). `arm-solidstart` stays.
+**Your two new arms**
+- **Next.js arm** (`arm-next`): React 19 + Next.js (current stable; verify `output: 'export'` static export works — that is the only honest shape for this product; if your current build does `next export` (removed in 15) or App-Router static export, record which; the static-export path is required for parity with the other arms; if you cannot make it static, say so loudly and document the blocker precisely — the Owner decides whether the meta-framework arm survives at all). **React + Vite arm stays** — it is now a different beast than `arm-next`; record honestly both. Next.js's differentiators (file routing, RSC, caching) are deliberately unused by this one-screen prototype; say that in the results.
+- **Vue + Nuxt arm** (`arm-nuxt`): current stable Nuxt; keep `arm-vue` (Vue 3 + Vite) — different animals; record both.
 
-**Unified protocol** (same as round 1 for all eight):
+**(`arm-solid` is INKLING's**, not your assignment; the Owner gave him that seat.**)*
+
+**Unified protocol** (same as round 1 for all arms, now enforced for eight end-to-end):
 - Identical engine contract (`fwtest/engine-contract/`, byte-identical per arm, vendored inline identically).
-- Identical `FOCUSES` module & goldens for all eight (`v1-5f`).
+- Identical `FOCUSES` module & goldens for all arms (`v1-5f`).
 - Identical `data-testid` names in every component; the acceptance spec must run against all eight with no edits.
-- Identical environment record; Node = 24 line (logs exact version in every README)- or honestly declare current + Deviation Dn.
-- Build counts, type-check status per arm, LOC of arm-owned code, kilobytes of output, install/build minutes, audit notice counts if printed.
-- **Leakage audit across eight arms** (raw grep for imports into contract-internal paths + forbidden globals); must be 0 for all.
-- **Round-2 protocol**: one added focus (`spread`), contract edit + resync, rebuild all eight, mtime-evidence of zero arm-owned edits.
-- **Arm-owned sha256 manifests before/after round 2** (the delivery must carry them — INKLING's complaint that they were absent in the five-arm round is resolved here).
+- Identical environment record; Node = 24 line (log exact version per arm — yours were on 24.22.2; keep consistent).
+- Build counts, type-check status per arm, LOC of arm-owned code, kilobytes of output, install/build minutes, audit notice counts.
+- **Leakage audit across the seven arms you deliver** (raw grep for imports into contract-internal paths + forbidden globals); must be 0; INKLING audits arm-solid himself and re-audits yours.
+- **Round-2 protocol reflowed onto all eight arms** (this wave): the five arm you already built are brought forward through the complete round-2 protocol — sha256 manifests before/after, resync, rebuild, zero arm-owned edits — including **`arm-solid` from INKLING's side coming later** (so the "seeded" check is: your seven arms round-2 now, arm-solid round-2 in mine; the protocol identical; the result entries comparable).
+- **Arm-owned sha256 manifests before/after round 2** (binding; INKLING's named reproach from round 1 — don't repeat it).
 
-**Your data is judge-neutral — the council judges it** — you record numbers for the council to evaluate:
-- Any arm failing to build ⇒ that arm is eliminated; say so loudly.
+**Your data is judge-neutral — the council judges it:**
+- Any arm failing to build ⇒ eliminated; say so loudly.
 - Any arm passing green ⇒ log the numbers, don't adjudicate.
-- The single-author confound and the fresh-session protocol are D1-issues for the Owner; flag them; don't try to fix them by arming your own sandbox differently — the council and the Owner decide whether to rescind and re-run; your job is the delivery, not the authority.
+- The single-author confound and the fresh-session protocol are D1-issues for the Owner; flag both (round 1 code by you alone, round 2 also by you alone for your seven; build INKLING's with a different model to restore the confound's symmetry). Owner knows.
 
-**Deliverable shape for the test:** one `fwtest-8/` folder with 8 arms, `contract/`, `round2/`, `results/FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` (metrics table, deviations D1–Dn, build logs, byte-moved + sha256 manifests; explicit "no verdicts" section).
+**Deliverable shape for the test:** one `fwtest-7/` folder with your seven arms; `results/FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` (after the merged eight-arm comparison lands — you post your metrics; INKLING appends his arm-solid; the merged table goes to the council) · `contract/` · `round2/` · per-arm logs · manifests · CHECKSUMS.txt.
 
 ### §2.2 — D.1–D.9 (the dynamic-engine nine filings; standing)
 
@@ -79,7 +80,7 @@ You never edit `colors/src/`, `flex.json`, `flex.ts`, the contract's vendored fi
 
 ## §4 — Done checklist (INKLING scores the delivery against this)
 
-- [ ] Eight arms built to green (npm ci → build succeeds, logs included), with byte sizes and module counts; round-2 done on all eight with sha256 manifests; Vue/Nuxt and Next/Vite are resolved by testing all eight, not judgment-called.
+- [ ] Seven arms built to green (`arm-svelte`/`arm-sveltekit`/`arm-react`/`arm-vue`/`arm-solidstart`/`arm-next`/`arm-nuxt`), logs + byte sizes + module counts; round-2 reflow with sha256 manifests for all seven; INKLING's `arm-solid` ships alongside yours, merged into the eight-arm table by the council.
 - [ ] `FRAMEWORK-TEST-RESULTS-2026-11-13-8arm.md` with metrics, deviations, "no verdicts" section; package.json / Node logs per arm.
 - [ ] D.1–D.9 nine filings filed with proposals + receipts + failure modes + Owner-questions.
 - [ ] Part B: testing programme proposed · the dial-as-parameter form shipped as a file · fluctuating-dial concepts named with a test for each · the 11-row "emergence report" table · the display-options page · metrics pitch written up separately as option (v).
