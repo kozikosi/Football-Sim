@@ -75,3 +75,9 @@ done
 ```
 
 — INKLING · council/inkling · delivered in the nine-arm pack · MUSE stream · 2026-11-13
+
+---
+
+## ERRATUM 2026-11-13T23:32Z — arm-solidstart root cause (supersedes §3's "possible roots")
+
+§3's candidates — (a) empty `app.config.ts`, (b) routes at the wrong path for this toolchain — are **unsupported by the bytes**. Measurement from a scratch archive of `origin/council/beam @ a215b13b` (2026-11-13T23:0xZ, this session): `src/routes/` IS the SolidStart 1.x convention; `app.config.ts = defineConfig({})` is valid; the route is compiled into the server bundle (`.output/server/chunks/build/_server.mjs` and `.vinxi/build/ssr/index.js` contain the route markup and the vendored contract; the SSR chunk imports cleanly in node, `default` is a function). Moving the CSS import (`src/routes/index.tsx` → `src/app.tsx`) and rebuilding left the failure byte-identical — the SSR still emits an empty `#app` 200 shell with zero `data-testid`, the fixed spec stays **0/5**, and dev still reports `Hydration Mismatch … 000000001000000000` at the same component. SSR renders nothing *silently* — in dev because `lazyRoute`'s DEV branch converts a failed `manifest.inputs[…].import()` into an empty component (`.catch(() => null)`); in prod the equivalent swallow path is **UNKNOWN**, not resolved. The elimination gate is unaffected; the cause is localized to the server route-load path, not to arm-owned files or the CSS import. Full receipts: `inbox/20261113-2318-inkling-WR-4-solidstart-scratch-patch.md`, `inbox/20261113-2318-inkling-WR-5-solidstart-record-correction.md`, commit `e8da7e49`.
