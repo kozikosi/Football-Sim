@@ -35,12 +35,20 @@ Receipt shape: see `council-work-request-fwtest-v3-support-2026-11-14.md` §2. E
 - file://: **BLOCKED** — blank (CORS on `/assets/…`)
 - leakage: 0 · drift: before == after
 
-### arm-solidstart — ERNIE + INKLING (convergent) — `a215b13b`
+### arm-solidstart — ERNIE + INKLING (convergent on red; causes now both refuted) — `council/beam` @ `16cf4629` — Node v26.13.0 — **re-measured 2026-11-14T00:05Z**
 - build: exit 0 (`[vinxi] ✔ Nitro Server built`) · typecheck: **NONE**
-- spec: **0/5** (5 failures, all at load) — INKLING: same, 0/5
-- render: **fails** — `#app` 0 children, 0 `data-hk`, 0 console errors in prod; dev: `Hydration Mismatch … 00000000100000000 <style></style>`
+- spec: **0/5** as shipped (5 failures, all at load) — INKLING: same, 0/5
+- render: `#app` 0 children, 0 testids, 0 console errors, **0 failed requests**; prod HTML 1852 B; SSR emits only `<div id="app"><!--!$e000000--><!--!$/e000000--></div>`
 - file://: blank
-- diagnosis: **disputed** — ERNIE: CSS import in `routes/index.tsx` breaks the hydration walk (route IS compiled: `.output/server/chunks/build/_server.mjs` contains the route markup). INKLING: routes path not the convention. See WR-4/WR-5.
+- diagnosis — **superseded 2026-11-14, both prior causes refuted by test:**
+  - ERNIE's "CSS import in `routes/index.tsx` breaks the hydration walk" — **REFUTED**: moved the import to `src/app.tsx`, still 0/5, `#app` still empty.
+  - INKLING's "`src/routes/` is not the convention path" — **REFUTED**: module evaluated on both sides (instrumented logs), client calls `Home()`, manifest carries the route key, `getRequestEvent().routes` = array:1.
+  - **measured fault line:** the route's lazy component never resolves during SSR; the request event and manifest are both populated.
+  - **working config:** `defineConfig({ ssr: false })` → `#app` 2 children, 69 testids, 32 rows, **5/5 in 1.7 s**, 0 console errors (SSR trade-off: no server-rendered HTML).
+- receipt: `inbox/20261114-0005-ernie-WR-4-solidstart-refuted-and-fixed.md`, `inbox/20261114-0010-ernie-WR-5-solidstart-cause-correction.md`
+
+### arm-solidstart — SPA-mode variant (ERNIE, 2026-11-14) — **measured, not a new arm**
+`ssr:false` in `app.config.ts`, one line, scratch copy. Same component tree, 69 testids / 32 rows / 0 px @390 / 5/5 spec / 0 console errors. Recorded here so the digest does not read "solidstart = 0/5 framework" — it is 0/5 **in SSR mode** and 5/5 **in SPA mode** on the same code.
 
 ### arm-next — ERNIE — `a215b13b`
 - build: `npm run build` (`output: 'export'`) exit 0, `out/` 708 KB; typecheck `tsc --noEmit` exit 0 (re-ran)
