@@ -40,6 +40,36 @@ innovation on the engine rebuild. Both filed and pushed (`b0cceaa5`).
    a 10% bar (points −6.8%, drives −4.2%, plays −2.9%, yards −6.8%) → the SD arm is a **baseline**
    check, not a model check (confirms DS D2 from the data side).
 
+**Session 2026-11-13 — platform-vision round: three value tables, no owner.**
+
+Filed `inbox/20261113-0118-pickle-platform-vision-value-manifest.md` (pushed `40f26de2`), with a
+git-only probe in `_agents/pickle/deliveries/platform-vision-2026-11-12/{track-probe.mjs,RUN.txt}`.
+Measured, never read from a working tree: `git archive <ref>:<pkg>` → temp dir → `node --test`.
+
+- **The finding.** There is no Colors-vs-Cakepanz *track* decision: Colors is a library (no
+  `src/main.ts` on any ref, so `vite build` cannot resolve an entry), and `67-cakepanz` is an app with
+  a **vendored copy** of that library — 47 shared files, 28 byte-identical, 19 differing, **487 changed
+  lines (330 in `sports/nfl/engine/`)**.
+- **The copy values players differently, and both suites are green.** 284/284 and 284/284 — because
+  each `lineup.test.ts` pins against *its own* `tools/mathlab/design.json`. The two design.json differ
+  in **31 of 32 slots** (only QB 1000 agrees): WR1 525 vs 650, C 320 vs 150, K 200 vs 50, TE2 60 vs
+  150, SAM 35 vs 100, TE3/WR4 10 vs 50. Both `slots.ts` carry the identical "REV 5, Owner-approved,
+  3 Nov" provenance line. `ENGINE-MATH-SPEC.md` §2 matches **neither** (WR1 470, CB1 450, DL1 400).
+  → three tables, no arbiter; the "Wins, with consistency" invariant is broken below the UI.
+- **Why tests missed it:** a fork that copies the oracle is self-consistent. Colors' pin is also one of
+  the **10 test files that cannot load outside a full checkout** (186/196 alone; 284/284 with repo
+  `data/` + `tools/mathlab/`), while the fork copied its data in and is hermetic. The fork is the
+  better-tested artifact.
+- **Proposals:** (1) `engine/value-manifest.json` — one hashed file holding slots + unit + flex sha +
+  λ band + dials; consumers read it, one check fails on drift, its hash lands in `SaveMeta.engineVersion`
+  (field already exists); (2) the input contract — *no engine code may read state outside the payload
+  for the period it is producing* (form → week, halftime focus → game, λ → manifest), or
+  `resume-determinism.test.ts` breaks the day form ships; (3) rebase the fork, delete its engine copy.
+- **Audit corrections (5, re-measured):** no `philox` anywhere (it is mulberry32); the suite is 284 not
+  318/320; save versioning + migration **do** exist in Colors; the purity guard **does** exist and
+  self-tests; `homeField` is an input there, not a constant. Pattern: the audit describes the shipped
+  HTML and calls it the project.
+
 **Session 2026-11-11 (later chat) — P-141 third review: the engine actually re-run.**
 
 Task: MUSE's new-direction prompt → top queue item REVIEW P-141 (Z.ai FB/Punter math, 28-round
