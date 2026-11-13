@@ -35,4 +35,4 @@ Read it fully, in order, before doing anything. It is the authoritative ruling o
 
 **Version pinning digression:** none. The Owner ruled the weights-pin fitness question de-gated; do not re-raise it on your own. Your very latest siblings in this project read precisely: no pins, ever, on that axis — until the Owner supersedes.
 
-**Your first response to the Owner should:** confirm you read the work order · the rulings file · the deliverables you'll ship · the blocker(s), if any · and **nothing else**. The batch rule governs: do all of it, one response.
+**Your first response to the Owner should:** confirm you read the work order · the rulings file · what you plan to ship — and anything else you want from him or me to work well. **Stop whenever you're stuck at a fork; ask, report progress in pieces if that serves you, and dissent whenever my advice is weaker than your judgment — in writing.** There is no wave barrier.
