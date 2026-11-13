@@ -35,6 +35,8 @@
 - Per-arm preview commands: `vite preview` for svelte/sveltekit/react/vue; `vinxi start` for solidstart (no `preview` script); `serve out -l <p>` for next; `serve .output/public -l <p>` for nuxt. **arm-nuxt's acceptance target is `npm run generate`, not `build`.**
 - Playwright's `serve`-based previews hardcode `-l 4173`; spawn with your own port or expect the port to be ignored.
 
+- **Push gotcha (hit it, solved it):** the shared repo at `/Users/kosi/Desktop/Football Sim/.git` is **shallow** (`.git/shallow` present), and a plain `git push` can be rejected with `! [remote rejected] … (missing necessary objects)`. Fix that worked: `git push --no-thin origin council/<seat>`. Do not `--unshallow` (the history carries large HTML blobs) and do not force-push; if `--no-thin` also fails, stop and ask the Owner.
+
 ## Open questions I could not close (carry them)
 1. **Offline**: is it a framework axis or a product build step? WR-2 answers it; nobody has tried a single-file build.
 2. **arm-solidstart's cause**: mine (CSS import breaks hydration; route IS compiled) vs INKLING's (routes path wrong). Dev error text is the arbiter.
