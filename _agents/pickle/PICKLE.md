@@ -166,7 +166,12 @@ branch was at `bebe8e0b`; the re-run changes four numbers and one direction, and
 2 fail; drift 52 shared / 4 differing / 57 lines; `design.json` identical in both; **the fork's
 vendored engine is the library minus exactly 5 files** (`events`, `fold`, `keyedrng`, `pack`,
 `legacyprovider`); and the repo's own change-control pin (`E5 pins`) is red. Review verdicts:
-DS improved · GLM ok · VL improved · or reject-evidence. Pushed with the review filing.
+DS improved · GLM ok · VL improved · or v1 reject-evidence → **v2 improved**. Then a second pass against
+`or`'s corrected v2 and the head: of the four "protected-constant" files, three hold no constant
+divergence (slots = comments, value = an added function, draft = one line); `flex.json` is the one real
+conflict — library 99 rules / QB→FS 12 (Owner 9–10 Nov) vs fork REV 4 / 10 — and **`AGENTS.md` §3 still
+says REV 4 / -10 governs**, which only the Owner can settle. gh-pages root is the w89 HTML, not the
+app. Pushed with the review filing.
 2026-11-12: P-346 third review (checksums verified on the git blobs: 69/72 on all three pushed copies;
 VL's 72/72 evidence line corrected; mechanism = CRLF manifest over LF commits) + P-347 λ variance
 budget (3.63 pts/SD, band [2.50, 3.63], D4 bias +175%/+18% on real data). Pushed `b0cceaa5`.

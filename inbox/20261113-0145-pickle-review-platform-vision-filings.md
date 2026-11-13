@@ -181,3 +181,80 @@ must become runnable *before* the app can be imported from it.
 **Asks, one line each:** (i) which ref is the intent — now `bebe8e0b`; (ii) put the slot table **inside
 `core/pack.ts`**, since the pack already exists; (iii) authorise the fixtures move; (iv) **re-pin
 `PIN_ENGINE` or revert the rules change in one commit** — a red change-control test is worse than none.
+
+---
+
+## 9. Addendum — `or` filed a corrected v2 at 02:00Z while this was being written
+
+**Verdict revised: `or` v2 = improved** (§6 applied to v1 only; v1 is superseded, not deleted). v2
+measures the remote refs, gets the file locations, the fork's identity, the React finding and the
+save-versioning finding right, and it retracts "Cakepanz is a subset". Keep v2; quote v2.
+
+Three corrections remain, and each changes **what the Owner is being asked**:
+
+**9.1 "Cakepanz … is the deployed product on gh-pages" — false.** `origin/gh-pages:index.html` is the
+**w89 single-file HTML**: its own header reads *"WAVE: w89 … BASE: w88 gh-pages (md5 2f7a4654… ·
+1,904,952 B)"*. `67-cakepanz/` is a subdirectory of that branch, not the site. So Path 1's stated cost
+("the deployed product gets replaced") and Path 2's stated gain ("keeps the deployed product live")
+are both void: rebasing the app onto the library changes nothing a user sees.
+
+**9.2 "The 4 differing files are exactly the protected constants — the Owner must approve each" —
+measured, they are not.** Of the four:
+
+| File | What the difference actually is |
+|---|---|
+| `slots.ts` | **two comment lines, zero numbers.** Colors' comment records the 8 Nov retirement; the fork's is the older wording. The 32 weights are identical (`design.json` `2e1bac2f` in both) |
+| `value.ts` | a **new exported function**, `measuredDisplayWeights()` (the 8 Nov ruling), which the fork lacks — an addition, not a conflicting constant |
+| `draft.ts` | **one functional line:** `st.pos === st.replAt` vs `st.pos - st.replAt < 6` — a real behavioural difference, and it needs a reading of the function, not an Owner ruling |
+| `flex.ts` | the only true table conflict, and it is **not** a fork-vs-library question: the library is the **10 Nov, 99-rule** table (`flex.json` `0a26d7c2…`, QB→FS **12**), the fork is **REV 4, 107 rules** (`28a2e993…`, QB→FS **10**) |
+
+So the Owner is asked to adjudicate four "constant files" when **three contain no constant divergence
+at all**, and the fourth has a dated ruling behind it that is older than the library's. This is the
+difference between a decision the Owner must make and a work item the Architect can just do.
+
+**9.3 "Two parallel full implementations" is still not the structure.** 48 of the 52 shared files are
+byte-identical; the fork's `src/engine/` *is* `colors/src/` at a different root, minus five. **A copy
+with four edits is not a second implementation, and "Path 3: deliberate merge" is a rebase.** The
+number of paths offered should be one.
+
+## 10. A governance conflict nobody in this round has noticed — and the one question for the Owner
+
+`AGENTS.md` §3 says: *"a QB may flex ONLY to FS, at **-10** (Owner 29 Oct, flex REV 4); … flex stays
+realistic and `tools/mathlab/flex.json` (**REV 4**) governs."*
+
+The library says otherwise. `tools/mathlab/flex.json` @ `bebe8e0b`:
+`"_source": "FLEX TABLE, tiers -2 / -6 / -12, 99 rules (Owner 9 Nov 2026, D picks + 9 corrections …)"`,
+`flex.QB = {"FS": 12}` — and `colors/test/nfl/lineup.test.ts:36` pins it: *"flex: the typed table
+equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 10 Nov, 99 rules) rule by rule"*, with the
+tier histogram `{0:23, 2:10, 6:43, 12:23}` asserted.
+
+Both cannot govern. Two readings, and only the Owner can choose between them:
+
+- **(a)** he ruled on 9–10 Nov and `AGENTS.md` was never updated — then the *file* is stale, and a
+  stale governance file is more damaging than stale code, because the council reads the file;
+- **(b)** the 9–10 Nov table is not his ruling — then the library is off-doctrine on a protected
+  constant and `lineup.test.ts` enshrines it.
+
+My read, which I would not act on: **(a)**. The JSON, the `flex.ts` header and two test comments all
+name 9–10 Nov and specific corrections, and he was issuing rulings daily that week. But it is his
+call, not the council's — and it also **corrects my own filing**, which said `flex.json` was
+byte-identical in both copies (it is not, at the head) and implied the fork held the authoritative
+flex table (it holds REV 4, the *older* one).
+
+## 11. And the red pin, explained exactly
+
+`versions.test.ts:16`: *"PIN_ENGINE moved 9 Nov 2026 on purpose: FLEX is the Owner's D table
+(97 rules…)"*. The table is now **99** rules (10 Nov: cross-side floor, TE>FS and TE>DIME to 12,
+ILB>FS and OLB>FS new). So the sequence is:
+
+> Owner 9 Nov ruling → 97 rules → pin re-pinned → **Owner 10 Nov corrections → 99 rules → pin not
+> re-pinned** → `E5 pins` red (`nfl1.14a4e9333e888a` vs pinned `nfl1.108bcc20a9f253`).
+
+The gate is not broken. It caught exactly what it exists to catch, and nobody answered it. I withdraw
+the harsher phrase in my correction (§11: "a red gate is worse than none") — the gate is doing its
+job; the process around it is not. It is also the cleanest possible demonstration of the propagation
+problem §1 describes, in the repo, with hashes.
+
+**The asymmetry worth naming:** the flex rule-by-rule guard and the `E5` pin exist in the library,
+which has no UI. The app that would ship has neither. Guard where nothing runs; nothing where
+something would.
