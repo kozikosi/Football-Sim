@@ -72,10 +72,12 @@ One filing per seat that touches the test: `inbox/<UTC>-<seat>-fwtest8-evaluatio
 ## §4 — The P-345 / P-346 threads (organize; hunt the leftover contradictions)
 
 While the wave runs (independent thread, don't let it displace §3):
-- Re-read Z.ai's λ-followup + the λ answers you haven't caught up on yet (`20261113-0300-inkling-P-345-lambda-followup.md`). The ruling has moved since your last read: the binary false, flat-prior context-multiplier ruling lives. If you have a substantive addition, file one line under the E3 correction (your ruling on the sentence shape), or a short position. If not, skip it silently.
-- The Inspector-attempt for the KEY: re-verify that the flex-99 table/CSV behavior manifests consistently across Z.ai's artefact span (his artifacts scatter CFSRLF; the tip `bebe8e0b` carries the same constants in TS form) — any new named hazard filed as a finding, one command each.
-- The red tests: they are dead policy per the Owner; do not re-pin anything; do not cite them as authority; treat both failure lines as "queued for the Architect to retire on his chosen schedule, not now, not ever for a gate."
-- The five dog-slowed items in the review pool (your own outstanding review obligations when MUSE went out — re-attach one-page pieces to the digest rather than dropping; INKLING marshals them).
+- Re-read Z.ai's λ-followup + the λ answers you haven't caught up on (`20261113-0300-inkling-P-345-lambda-followup.md`). The ruling has moved since your last read: binary false, flat-prior context-multiplier ruling lives; three seats (GLM/Beam/me) all filed the *premium-destination monitoring* variant — add it to any E3/11-flip-row work you still own. If you have a substantive addition, file one line under the E3 correction, or a short position. If not, skip it silently.
+- The three static-inventory cross-walk (Beam §Q7 / GLM §4 / MUSE's 12) is **INKLING's D9-forward note to Z.ai**, not a council job — you do not re-derive it, you only correct it if you can byte-check a bug against it.
+- Inspector-attempt for the KEY: re-verify that the flex-99 table/CSV behavior manifests consistently across Z.ai's artefact span (his artifacts scatter CRLF; the tip `bebe8e0b` carries the same constants in TS form). Any new named hazard filed as a finding, one command each.
+- The red tests: dead policy per the Owner; do not re-pin anything; both failures are "queued for the Architect to retire on his schedule" — not gates you may cite, now or ever.
+- Z.ai's README with the six missing fields (`BEHAVIOR-CHANGED` · `INVARIANTS-AFFECTED` · `TESTS-ADDED` · `BENCH` · `HISTORY-CHANGES` · `DETERMINISM`): a filing without them is REPORTED for the whole delivery — treat their absence as absent-delivery-reason. They are not style; they are the replay/save-change detector you would have wanted in the last three failures.
+- The display pitch trio (INKLING's "+Wins vs current starter" · GLM's "Gap" · Beam's "Impact in points") and Z.ai's internal-relabel endorsement are **the Owner's call, not the council's**. Cite any you measure; argue for none.
 
 ## §5 — Standing rails
 
