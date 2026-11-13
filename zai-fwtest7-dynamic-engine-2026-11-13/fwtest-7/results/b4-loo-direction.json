@@ -1,0 +1,751 @@
+{
+ "V0_exact_refit": {
+  "exact": 192,
+  "form": "zai",
+  "n_cases": 194,
+  "over_detail": [],
+  "over_priced": 0,
+  "over_rows": [],
+  "rule": "exact",
+  "under_detail": [
+   {
+    "display_gap": -6,
+    "fold": "C",
+    "lam_fold": 0.4,
+    "owner": 12,
+    "raw": 6.68,
+    "row": "C>OT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "OT",
+    "lam_fold": 0.4,
+    "owner": 12,
+    "raw": 6.68,
+    "row": "C>OT",
+    "tier": 6
+   }
+  ],
+  "under_priced": 2,
+  "under_rows": [
+   "C>OT"
+  ]
+ },
+ "V0_mae_refit": {
+  "exact": 170,
+  "form": "zai",
+  "n_cases": 194,
+  "over_detail": [],
+  "over_priced": 0,
+  "over_rows": [],
+  "rule": "mae",
+  "under_detail": [
+   {
+    "display_gap": -6,
+    "fold": "C",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 6.44,
+    "row": "C>OT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "C",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.16,
+    "row": "C>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "DIME",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "DT",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "DT",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.16,
+    "row": "C>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "EDGE",
+    "lam_fold": 0.25,
+    "owner": 12,
+    "raw": 7.8,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "FB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -2,
+    "fold": "FS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "OT",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 6.44,
+    "row": "C>OT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 7.24,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -2,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   }
+  ],
+  "under_priced": 24,
+  "under_rows": [
+   "C>DT",
+   "C>OT",
+   "EDGE>SS",
+   "FB>TE",
+   "OLB>DIME",
+   "OLB>NICKEL",
+   "RB>WR",
+   "SS>FS",
+   "SS>RB",
+   "TE>DT",
+   "TE>WR",
+   "WR>NICKEL"
+  ]
+ },
+ "V2_exact_refit": {
+  "exact": 192,
+  "form": "merged_exp",
+  "n_cases": 194,
+  "over_detail": [
+   {
+    "display_gap": 6,
+    "fold": "C",
+    "lam_fold": 0.4,
+    "owner": 6,
+    "raw": 12.497,
+    "row": "C>OG",
+    "tier": 12
+   },
+   {
+    "display_gap": 6,
+    "fold": "OG",
+    "lam_fold": 0.4,
+    "owner": 6,
+    "raw": 12.497,
+    "row": "C>OG",
+    "tier": 12
+   }
+  ],
+  "over_priced": 2,
+  "over_rows": [
+   "C>OG"
+  ],
+  "rule": "exact",
+  "under_detail": [],
+  "under_priced": 0,
+  "under_rows": []
+ },
+ "V2_mae_refit": {
+  "exact": 172,
+  "form": "merged_exp",
+  "n_cases": 194,
+  "over_detail": [
+   {
+    "display_gap": 6,
+    "fold": "C",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 12.497,
+    "row": "C>OG",
+    "tier": 12
+   },
+   {
+    "display_gap": 6,
+    "fold": "OG",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 12.497,
+    "row": "C>OG",
+    "tier": 12
+   }
+  ],
+  "over_priced": 2,
+  "over_rows": [
+   "C>OG"
+  ],
+  "rule": "mae",
+  "under_detail": [
+   {
+    "display_gap": -6,
+    "fold": "DIME",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "DT",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "EDGE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 7.24,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "FB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -2,
+    "fold": "FS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 7.24,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -2,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   }
+  ],
+  "under_priced": 20,
+  "under_rows": [
+   "EDGE>SS",
+   "FB>TE",
+   "OLB>DIME",
+   "OLB>NICKEL",
+   "RB>WR",
+   "SS>FS",
+   "SS>RB",
+   "TE>DT",
+   "TE>WR",
+   "WR>NICKEL"
+  ]
+ },
+ "V3min_exact_refit": {
+  "exact": 194,
+  "form": "perslot",
+  "n_cases": 194,
+  "over_detail": [],
+  "over_priced": 0,
+  "over_rows": [],
+  "rule": "exact",
+  "under_detail": [],
+  "under_priced": 0,
+  "under_rows": []
+ },
+ "V3min_mae_refit": {
+  "exact": 174,
+  "form": "perslot",
+  "n_cases": 194,
+  "over_detail": [],
+  "over_priced": 0,
+  "over_rows": [],
+  "rule": "mae",
+  "under_detail": [
+   {
+    "display_gap": -6,
+    "fold": "DIME",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "DT",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "EDGE",
+    "lam_fold": 0.25,
+    "owner": 12,
+    "raw": 7.8,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "FB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -2,
+    "fold": "FS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "NICKEL",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -4,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.86,
+    "row": "OLB>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "OLB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.82,
+    "row": "OLB>DIME",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "RB",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 7.24,
+    "row": "EDGE>SS",
+    "tier": 6
+   },
+   {
+    "display_gap": -2,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 2,
+    "raw": 0.94,
+    "row": "SS>FS",
+    "tier": 0
+   },
+   {
+    "display_gap": -6,
+    "fold": "SS",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.2,
+    "row": "SS>RB",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.92,
+    "row": "FB>TE",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "TE",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.52,
+    "row": "TE>DT",
+    "tier": 6
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.54,
+    "row": "RB>WR",
+    "tier": 6
+   },
+   {
+    "display_gap": -4,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 6,
+    "raw": 3.22,
+    "row": "WR>NICKEL",
+    "tier": 2
+   },
+   {
+    "display_gap": -6,
+    "fold": "WR",
+    "lam_fold": 0.2,
+    "owner": 12,
+    "raw": 8.42,
+    "row": "TE>WR",
+    "tier": 6
+   }
+  ],
+  "under_priced": 20,
+  "under_rows": [
+   "EDGE>SS",
+   "FB>TE",
+   "OLB>DIME",
+   "OLB>NICKEL",
+   "RB>WR",
+   "SS>FS",
+   "SS>RB",
+   "TE>DT",
+   "TE>WR",
+   "WR>NICKEL"
+  ]
+ }
+}

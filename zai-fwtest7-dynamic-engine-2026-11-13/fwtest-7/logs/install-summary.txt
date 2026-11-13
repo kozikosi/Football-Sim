@@ -1,0 +1,5 @@
+arm-vue install exit:0
+arm-sveltekit install exit:0
+arm-react install exit:0
+arm-svelte install exit:0
+arm-solidstart install exit:0

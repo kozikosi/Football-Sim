@@ -1,0 +1,10 @@
+LEAKAGE AUDIT — engine-boundary rule
+forbidden in ALL arm-owned code: Math.random / Date.now / new Date / localStorage / sessionStorage / node:fs / require
+DOM globals (window./document.) allowed ONLY in the entry-point bootstrap
+
+findings: 0
+
+entry-point DOM mounts (expected, declared): 3
+arm-svelte/src/main.ts: 'document.' (entry-point mount)
+arm-react/src/main.tsx: 'document.' (entry-point mount)
+arm-solidstart/src/entry-client.tsx: 'document.' (entry-point mount)

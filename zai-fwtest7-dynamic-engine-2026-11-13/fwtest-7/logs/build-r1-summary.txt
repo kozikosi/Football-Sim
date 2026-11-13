@@ -1,0 +1,5 @@
+arm-svelte build exit:0
+arm-react build exit:0
+arm-vue build exit:0
+arm-sveltekit build exit:0
+arm-solidstart build exit:0

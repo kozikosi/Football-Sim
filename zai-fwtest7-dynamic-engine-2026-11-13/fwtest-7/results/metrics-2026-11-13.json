@@ -1,0 +1,155 @@
+{
+  "arms": {
+    "arm-next": {
+      "arm_owned_files": 11,
+      "arm_owned_loc": 456,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "build_script": "next build",
+      "declared_deps": 8,
+      "framework": {
+        "next": "^16.4.6",
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1"
+      },
+      "node_modules_pkgs": 89,
+      "out_bytes": 668007,
+      "out_dir": "out",
+      "out_files": 25
+    },
+    "arm-nuxt": {
+      "arm_owned_files": 6,
+      "arm_owned_loc": 217,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 6,
+        "moderate": 4,
+        "total": 10
+      },
+      "build_script": "nuxt build",
+      "declared_deps": 5,
+      "framework": {
+        "nuxt": "^4.6.4",
+        "vue": "^3.5.45"
+      },
+      "node_modules_pkgs": 508,
+      "out_bytes": 204910,
+      "out_dir": ".output/public",
+      "out_files": 14
+    },
+    "arm-react": {
+      "arm_owned_files": 10,
+      "arm_owned_loc": 448,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "build_script": "tsc -b && vite build",
+      "declared_deps": 9,
+      "framework": {
+        "react": "^19.3.1",
+        "react-dom": "^19.3.1"
+      },
+      "node_modules_pkgs": 31,
+      "out_bytes": 267370,
+      "out_dir": "dist",
+      "out_files": 5
+    },
+    "arm-solidstart": {
+      "arm_owned_files": 6,
+      "arm_owned_loc": 283,
+      "audit": {
+        "critical": 0,
+        "high": 1,
+        "info": 0,
+        "low": 2,
+        "moderate": 10,
+        "total": 13
+      },
+      "build_script": "vinxi build",
+      "declared_deps": 5,
+      "framework": {
+        "@solidjs/router": "^0.15.0",
+        "@solidjs/start": "^1.0.0",
+        "solid-js": "^1.9.0"
+      },
+      "node_modules_pkgs": 445,
+      "out_bytes": 174631,
+      "out_dir": ".vinxi/build",
+      "out_files": 15
+    },
+    "arm-svelte": {
+      "arm_owned_files": 8,
+      "arm_owned_loc": 506,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 2,
+        "moderate": 0,
+        "total": 2
+      },
+      "build_script": "vite build",
+      "declared_deps": 7,
+      "framework": {},
+      "node_modules_pkgs": 50,
+      "out_bytes": 89600,
+      "out_dir": "dist",
+      "out_files": 5
+    },
+    "arm-sveltekit": {
+      "arm_owned_files": 8,
+      "arm_owned_loc": 250,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 7,
+        "moderate": 0,
+        "total": 7
+      },
+      "build_script": "vite build",
+      "declared_deps": 8,
+      "framework": {},
+      "node_modules_pkgs": 57,
+      "out_bytes": 125395,
+      "out_dir": "build",
+      "out_files": 16
+    },
+    "arm-vue": {
+      "arm_owned_files": 9,
+      "arm_owned_loc": 237,
+      "audit": {
+        "critical": 0,
+        "high": 0,
+        "info": 0,
+        "low": 0,
+        "moderate": 0,
+        "total": 0
+      },
+      "build_script": "vue-tsc -b && vite build",
+      "declared_deps": 7,
+      "framework": {
+        "vue": "^3.5.44"
+      },
+      "node_modules_pkgs": 56,
+      "out_bytes": 110606,
+      "out_dir": "dist",
+      "out_files": 5
+    }
+  },
+  "node": "v24.22.3",
+  "npm": "11.19.1"
+}

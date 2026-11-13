@@ -1,0 +1,2 @@
+arm-nuxt install exit:1
+arm-next install exit:0

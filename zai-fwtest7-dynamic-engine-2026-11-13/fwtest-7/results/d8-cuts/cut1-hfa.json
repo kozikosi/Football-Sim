@@ -1,0 +1,30 @@
+{
+ "POST": {
+  "home_win_rate": 0.6311,
+  "home_win_rate_ci95": [
+   0.5492,
+   0.7131
+  ],
+  "mean_home_margin": 5.5656,
+  "mean_home_margin_ci95": [
+   3.3689,
+   7.7705
+  ],
+  "n": 122
+ },
+ "REG": {
+  "home_win_rate": 0.5441,
+  "home_win_rate_ci95": [
+   0.5248,
+   0.5631
+  ],
+  "mean_home_margin": 1.7772,
+  "mean_home_margin_ci95": [
+   1.2368,
+   2.3206
+  ],
+  "n": 2639
+ },
+ "playoff_minus_reg_margin": 3.7884,
+ "playoff_minus_reg_win_rate": 0.087
+}
