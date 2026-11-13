@@ -20,28 +20,28 @@ Nothing else is needed to resume. Do not ask for a document list; the lane names
 - **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. This session I refuted my own earlier root cause and INKLING's, with receipts, in the same filing.
 - **Standing rule I run on:** four lines per claim (cwd · command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-14T00:30Z)
-- **Nothing in progress.** Branch tip `c4294c75`, all pushed to `origin/council/ernie`.
-- **WR-1, WR-2, WR-4, WR-5, WR-G2 are DONE.** The ledger now has 9 measured rows (was 7 + 2 empty) and the matrix is no longer "7 arms wearing a 9 name".
+## Current state (2026-11-14T01:50Z)
+- **Nothing in progress.** Branch tip `abd7130b`, all pushed to `origin/council/ernie`.
+- **WR-1, WR-2, WR-4, WR-5, WR-6 (review), WR-G2, plus Phase 1, Phase 5, directives 21/24/26, Phase 8.2 are DONE.** The ledger has 9 measured rows; the matrix is no longer "7 arms wearing a 9 name".
 - **Still open, mine:** WR-3 (fixture hardening — needs a *shape* change, not another row), WR-7 (where the goldens run), WR-10 (falsifiers).
-- **Not mine to close:** the framework decision, the λ objective, P-345.
+- **Not mine to close:** the framework decision, the λ objective, P-345, MUSE's doc corrections.
 
 ## What this session established (all pushed, all with receipts)
 
-1. **WR-1 — arm-solid and arm-lit measured** (`inbox/20261113-2320-…`, commit `6a84391e`). Both build (341 / 281 ms), both **5/5**, both offline-blocked, both carry the identical 41-file contract (tree sha `265ea8c6…fe5988`), both read `FOCUSES` live. Both ship **no typecheck script** and a tsconfig that makes `tsc` report 143 contract-wide errors.
-   - **Correction to my own earlier record:** the "73 testids / 32 rows / 5 focus buttons" cross-arm figure was measured *after opening the picker*. At rest arm-svelte (control, re-built), arm-solid and arm-lit are all **69 / 32 / 37 / 0 focus**.
-2. **WR-2 — offline is a build step, not a framework axis** (`inbox/20261113-2340-…`, commit `30982ac4`). `vite-plugin-singlefile@2.3.4` + `cssCodeSplit:false` + `assetsInlineLimit:100_000_000` → arm-svelte and arm-vue both emit **one 74 kB / 95 kB index.html**, both render and respond from `file://` with 0 console errors, **5/5 each offline**, and a lone `index.html` in an empty directory works. This supersedes my earlier "0 of 7 offline" as a *framework* claim (it stands as a claim about the arms as shipped).
-3. **WR-4 / WR-5 — SolidStart: both filed causes refuted** (`inbox/20261114-0005-…`, `inbox/20261114-0010-…`, commit `309990ca`).
-   - **Mine, withdrawn:** "the CSS import in `routes/index.tsx` breaks the hydration walk" — moved the import, still 0/5, `#app` still empty.
-   - **INKLING's, withdrawn:** "`src/routes/` is not the convention path" — the module is evaluated on both sides, the client calls `Home()`, the manifest carries the route key, `getRequestEvent().routes` = `array:1`.
-   - **Measured fault line:** the route's **lazy component never resolves during SSR**; the request event and manifest are both populated.
-   - **Working config:** `defineConfig({ ssr: false })` → `#app` 2 children, 69 testids, 32 rows, **5/5 in 1.7 s**, 0 console errors. Costs SSR.
-4. **WR-G2 — 8-stack coverage map** (`inbox/20261114-0025-…`, commit `c4294c75`). All 8 of the Owner's stacks are measured; the 9 arms are 8 stacks **plus arm-lit**, which is not one of the 8 and is the only arm whose root is not `#app`.
+1. **WR-1 — arm-solid and arm-lit measured** (`inbox/20261113-2320-…`, `6a84391e`). Both 5/5, both offline-blocked, identical 41-file contract (`265ea8c6…`), `FOCUSES` read live. Neither ships a typecheck; both `tsc` runs report 143 contract-wide errors from config, not code.
+2. **WR-2 — offline is a build step, not a framework axis** (`inbox/20261113-2340-…`, `30982ac4`). `vite-plugin-singlefile@2.3.4` + `cssCodeSplit:false` + `assetsInlineLimit:100_000_000` → arm-svelte and arm-vue emit **one** HTML file (74 / 95 kB), render from `file://` with 0 console errors, **5/5 each**, and a lone `index.html` in an empty directory works.
+3. **WR-4 / WR-5 — SolidStart: both filed causes refuted** (`inbox/20261114-0005-…`, `-0010-…`, `309990ca`). My CSS-import cause **withdrawn by my own test**; INKLING's routes-path cause refuted (module loads both sides, client calls `Home()`, manifest carries the route, `getRequestEvent().routes` = 1). **Measured: the route's lazy component never resolves during SSR.** `ssr:false` → 5/5, 69 testids, 32 rows (costs SSR).
+4. **WR-G2 — 8-stack coverage map** (`inbox/20261114-0025-…`, `c4294c75`). All 8 Owner stacks measured; the 9 arms are 8 stacks **plus arm-lit**, the only arm whose root is not `#app`.
+5. **Phase 1 — corrections + byte-check** (`inbox/20261114-0110-…`, `6e2a2426`). My 14 filings re-run: no `.svelte` claim, no RNG claim. Measured: `.svelte` = **15 on gh-pages, 0 in `colors/` (111 files, all TS), 6 on council/muse, 10 unreproducible**. RNG: pin `4ca9a071` = mulberry32 in `rng.ts`, **no `keyedrng.ts`**; tip `bebe8e0b` = `keyedrng.ts` with 7 Philox hits. **Tautology `|| true` located at line 75 on three refs**, replacement snippet filed (not applied — `colors/` is the Architect's). F3 quote verified exact.
+6. **A3/A4 notes to everyone** (`inbox/20261114-0115-…`, `6e2a2426`). A3's checker **runs green: exit 0, all 11 rows** (C>OG 5.13→6, OLB>FS 11.74→12, FB>TE 4.74→6). A4's corrected sentence is self-consistent and **the kill survives** (`beats_both: []`). Two questions to the Owner; nothing applied.
+7. **Phase 5 — cross-side design note** (`inbox/20261114-0130-…`, `ed7ebe1a`). Price from `FLEX` (no new constant); **flagged ambiguity: "−6 or less" excludes a QB at −10, contradicting the blessed QB→FS flex**; must use the keyed RNG; must be an **event, not state** (no save migration).
+8. **Directives 21/24/26 audit** (`inbox/20261114-0135-…`, `ed7ebe1a`). Lit is 1 of the Owner's 10 names; 6 frameworks + 3 test runners have **no bytes**; **11 of 12 fluctuation items are bench-side** and cannot be advanced by the framework fixture; **`.nvmrc` absent everywhere and no `engines` block — every run this wave was Node 26, not the Owner's 24**.
+9. **Phase 8.2 — w89 investigation** (`inbox/20261114-0145-…`, `abd7130b`). Live `index.html` md5 `8efa9099…` (1,922,769 B, title `20-0`) **matches no archived build** (w44/49/51/56/57, `w85 (2)`, `pre-w85` all differ) → "live = w85" is not byte-verifiable. **0 localStorage keys on a fresh visit.** **One Draft click = 8,808 `Math.random` calls, 2 `Date.now`** → unseeded; sizes `T-20261022-claude-2` and forbids w89 before/after claims. 0 `data-testid`, no tests.
 
 ## What the next session needs
-- **Do, in this order:** WR-3 (fixture hardening) → WR-7 (goldens' home) → WR-10 (falsifiers). WR-1/2/4/5 need nothing further from me.
-- **Two cheap follow-ups if anyone wants them:** (a) test `ssr:false`-style single-file on the three non-Vite arms (next/nuxt/solidstart) — the only untested offline cases; (b) find the exact line in `@solidjs/start@1.5.1` where the lazy route fails to resolve. I stopped short of patching a dependency.
-- **Do NOT redo:** P-207; P-344 nflverse; P-345 λ; the sixth-focus zero-tie; the five-arm spec/build runs; solidstart's blank page; the CHECKSUMS gap; **and now also**: the CSS-import fix (refuted), the routes-path claim (refuted), and any re-measurement of arm-solid / arm-lit / the single-file build. All have receipts.
+- **Do, in this order:** WR-3 (fixture hardening — a *shape* change: a second axis, a sub-heading, or halftime eligibility computed from data) → WR-7 (goldens' home; 41 vs 43 files) → WR-10 (falsifiers per contender).
+- **Two cheap follow-ups if anyone wants them:** (a) single-file the **six** untested stacks (sveltekit, react, next, nuxt, solidstart, lit) — the only offline cases left; (b) find the exact `@solidjs/start@1.5.1` line where the lazy route fails to resolve (needs a dependency patch in scratch).
+- **Do NOT redo:** P-207; P-344 nflverse; P-345 λ; the sixth-focus zero-tie; the five-arm spec/build runs; solidstart's blank page; the CHECKSUMS gap; the CSS-import fix (refuted); the routes-path claim (refuted); any re-measurement of arm-solid / arm-lit / the single-file build; the A3 script run; the w89 hashes. All have receipts.
 
 ## Environment notes (so the next session does not rediscover them)
 - Worktree `/Users/kosi/Desktop/wt/ernie`, branch `council/ernie`. Never edit the Owner's shared tree; never push anything but `council/ernie`; never force-push; never stash.
