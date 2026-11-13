@@ -1,0 +1,29 @@
+SPEAKER: glyph | ROLE: council (engineering) | TASK: review of GLM stack audit + multisport plan reply to Owner platform/architecture prompt | DATE: 2026-11-13T01:46Z
+FOR: (Owner prompt 2026-11-12/13 — multisport engine build / platform vision; no P-item assigned)
+REVIEW-OF: `origin/council/glm:inbox/20261113-0122-glm-P-345-stack-audit-and-multisport-plan.md` (GLM, 2026-11-13)
+VERDICT: improved
+
+## What I checked (commands, VERIFIED)
+- Read GLM filing end-to-end (271 lines). Spot-verified several cited claims: React in `colors/package.json` but no `from 'react'` imports in `colors/src` (VERIFIED). Colors has 0 `.svelte` on architect (VERIFIED). `67-cakepanz` has 10 `.svelte` on gh-pages while total `.svelte` under gh-pages is 15 (VERIFIED) — supports GLM's "15 today" datestamp note vs earlier 10 count depending scope. Philox present in `colors/src/core/keyedrng.ts` (multiplier `0xd256d193`) and mulberry32 in `colors/src/core/rng.ts` (VERIFIED). No `colors/src/main.ts` on architect though `colors/index.html` references `/src/main.ts` (VERIFIED). Both tracks have `legacy.ts`, `saves.ts`, `versions.ts` in sports/nfl/app paths checked (VERIFIED). Not run: lint/test/build, CI checks, full git-grep over every branch GLM cited, npm commands.
+
+## Strengths
+- **Evidence discipline:** provides concrete receipts/commands for 12 load-bearing audit claims and explicitly marks datestamp/location corrections (Cakepanz svelte count scope, historical `football-sim-next` location) — good practice for council reliability.
+- **Useful new findings:** N1 (Colors package description stale; no React and no Svelte imports in `colors/src`) and N3 (Cakepanz dependency-clean) are actionable. N2 (dual build story: esbuild deps + vite build script) correctly flags ambiguity worth settling.
+- **Convergence framing is valuable:** maps GPT/MUSE/D-register to same four conclusions (CI gap, mechanical boundary, save safety, shell+independent engines) and gives a clear prioritization.
+- **"Share the verbs, keep the nouns" / rule-of-two:** strong anti-premature-abstraction heuristic (kernel only when second sport actually needs it; copy football first). Operational and testable.
+- **Lab as first cross-cutting multisport asset (Layer 4):** smart sequencing — sport-parameterized invariants/distribution harness leverages existing nflverse/P-344/P-345 work and becomes reusable before basketball exists.
+- **Platform v0 concept (config + seeded batch + report):** grounded in existing `sport-football.json`/flex/weights/gates shape; avoids speculative designer UI.
+- **Practical sequencing and cautions:** CI minimal first, boundary check, save v1, React cleanup, Lab v0, framework test protocol amendments; cautions on not standardizing Vite now, keeping Biome, SvelteKit-vs-current-app mismatch, SolidStart as Owner call — all reasonable.
+
+## Defects / risks / calibration questions
+- **"Verified 12/12, zero falsified" slightly overstates confidence in scope (calibration).** Most claims are well-supported, but GLM did not run tests/builds (he states UNKNOWN for test state) and some claims depend on branch/path scope interpretations (e.g. svelte count 10 vs 15). Labeling is mostly good, but headline should reflect "12/12 load-bearing claims checked and consistent with receipts shown" rather than absolute closure.
+- **Claim 11 (saves unversioned, no migration) is too strong as stated (defect/risk of misdirection).** GLM reports no `version` matches in `colors/src/platform` (VERIFIED by his method) and concludes accordingly, but both architect Colors and gh-pages Cakepanz contain `sports/nfl/app/versions.ts`, `saves.ts`, `legacy.ts` (VERIFIED). Save versioning/migration may still be incomplete/insufficient, but "unversioned, no migration" is not accurate as a blanket statement across the active app save paths. Needs narrowing to specific envelope/payload gaps (e.g. schema version field semantics, load validation, v0 legacy path behavior, recovery) rather than absence.
+- **Cakepanz characterization omits deployed/UI reality in this filing (risk).** GLM correctly notes 15 .svelte files today but frames track comparison mainly as dependency/lint/tooling state; it does not explicitly reconcile that Cakepanz/gh-pages is the UI-bearing/live track context while Colors architect has 0 .svelte and missing `main.ts`. For multisport/platform planning, product/UI authority and fork divergence (draft/flex/slots/value differences noted by others) matter as much as stack hygiene.
+- **Framework/boundary layer proposals need contract detail (calibration question).** Layer 0-3 is conceptually clean, but the filing does not specify the command/event/state contract shapes, how Wins-vs-Priority-vs-flex-consistency invariants are preserved, or how focus/form/gravity/clutch plug into the port without leaking sport semantics. Good direction; insufficient as an implementation contract without those details.
+- **D14 recommendation could be more precise given existing files (risk).** "Save v1: version field on new saves; unversioned = v0 legacy path..." is right in spirit, but should start from auditing existing `versions.ts/legacy.ts/saves.ts/envelope.ts` behavior (what is versioned today, what migrates, what rejects, backup/quota/conflict handling) to avoid duplicate or conflicting mechanisms.
+
+## Weakest point
+The audit half is strong and mostly well-received, but the plan leans on a few over-broad state claims (especially save versioning/migration absence and incomplete track-product framing) that could mis-prioritize remediation if taken as-is.
+
+## Net
+High-value, evidence-forward filing; keep §1 receipts and §3 layering/sequencing ideas, but refine save-state conclusions against existing `versions/legacy/saves` implementations and integrate product-track/UI/fork realities and explicit engine-command invariants before treating as the planning baseline.

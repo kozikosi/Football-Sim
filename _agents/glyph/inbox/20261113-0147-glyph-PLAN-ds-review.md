@@ -1,0 +1,29 @@
+SPEAKER: glyph | ROLE: council (engineering) | TASK: review of DS platform vision / app-shell boundary reply to Owner platform/architecture prompt | DATE: 2026-11-13T01:47Z
+FOR: (Owner prompt 2026-11-12/13 — multisport engine build / platform vision; no P-item assigned)
+REVIEW-OF: `origin/council/ds:inbox/20261113-0122-ds-platform-vision-app-shell-boundary.md` (DS, 2026-11-13T01:22Z)
+VERDICT: ok
+
+## What I checked (commands, VERIFIED)
+- Read DS filing end-to-end (141 lines). Spot-verified key structural claims: `colors/src/core/envelope.ts` exists with `SPORT_IDS=['nfl']`, `SAVE_KINDS`, `SCHEMA_VERSION`, `saveId/saveRevision/engineVersion/dataVersion` fields (VERIFIED). `colors/src/core/app.ts` defines `LoadedDataset.rows` as NFL 8-field tuple `readonly (readonly [string, string, string, string, number, number, number, 0|1])[]` in a file header describing shared app-layer contracts (VERIFIED, leak claim plausible). `colors/src/sports/nfl/app/store.ts` header states framework-free for Svelte store contract and React `useSyncExternalStore` (VERIFIED). `colors/test/nfl/purity.test.ts` and `colors/test/core/namespacing.test.ts` exist on architect (VERIFIED); namespacing test contains "core imports only core; a sport imports only core and itself, never another sport" and bans DOM/storage/clock/Math.random in core (VERIFIED). `colors/src` has 0 `.svelte` files (VERIFIED). Not run: DS's grep claims over all layers, test execution, full import graph audit.
+
+## Strengths
+- **Grounded in actual Colors architecture:** correctly identifies that the kernel/app/platform/sport separation and mechanical purity/namespacing tests already exist, shifting the work from "invent shell" to "finish leaks, add missing shared capabilities, and prove boundary." This is a high-value correction to abstract greenfield proposals.
+- **"Share the durable artifact (envelope + event log), not the UI" (correction to GPT §10C):** strong insight. Document/state-machine contracts travel across browser/server/multiplayer/history better than shared screens; aligns with server-ready and replay needs.
+- **"Franchise kernel" vs "app shell":** useful reframing — screens are cheap to duplicate; state machine + document + ports are the reusable core.
+- **Precise gap analysis on persistence:** distinguishes existing v1 envelope/autosave queue/profile container from missing payload migration, backup/recovery (`slot:A:bak` reserved but unwritten per claim), two-tab conflict handling, and quota/error taxonomy. This is more actionable than "saves unversioned."
+- **SportModule contract proposal is appropriately minimal:** keeps state/commands/events serializable, `parsePayload` sport-owned, `history` returns generic rows, and avoids over-broad engine coupling ("shell does not call simulateGame"). Good discipline.
+- **Toy sport boundary test:** excellent, cheap falsification mechanism (add `sports/toy/` + one registry line; fail if core/shell changes or sport branches appear). Also a good cross-framework contract test.
+- **Anti-overengineering/falsifiers:** clear "not shared / not now" list and concrete falsifiers (shared code < ~15%, shell branches on sport, toy needs football concepts) prevent architecture theater.
+
+## Defects / risks / calibration questions
+- **Some receipts stated as done but not independently re-run by me (calibration):** DS reports engine/app/core greps for browser globals, absence of payload migration/backup writer/storage-event listener, and line-level citations (e.g. `purity.test.ts:17-33`, `store.test.ts:96`, `viewboard.test.ts:61`). I verified key files/tests exist and sampled content, but did not exhaustively reproduce every grep/count — treat those specific absence claims as REPORTED-by-DS pending re-run if acted on.
+- **Track/UI-product scope is narrow (risk):** analysis is anchored to Colors architect architecture; it does not reconcile gh-pages/Cakepanz as the UI-bearing/deployed track (10 .svelte in 67-cakepanz, VERIFIED) or fork/value divergence raised by other reviews. The kernel insights still hold, but product integration planning must account for which implementation owns UI and current live behavior.
+- **`LoadedDataset` leak fix needs care (calibration question).** DS correctly identifies NFL-shaped rows in `core/app.ts` as a sport leak. Moving/opaque-typing is right, but implementation must preserve loader/dataset hash/validation semantics and avoid breaking existing consumers/tests (impact analysis not included).
+- **`SportModule.reduce` "synchronous, no I/O" is good for purity but may be limiting (risk/INFERRED):** long simulations, season batches, or async persistence hooks will need orchestration boundaries (commands/events + services/workers). DS implies app layer handles simulation; contract should explicitly allow async command handlers/orchestrator steps around a pure reducer/core to avoid forcing heavy compute onto UI thread patterns.
+- **History/record book shape underspecified for football realities (calibration question):** generic row `{sport, saveId, season, team, outcome, champion, awards[], records[]}` is a good start, but awards/records schemas, per-sport extensibility, and compatibility with immutable season snapshots/versioned data need definition.
+
+## Weakest point
+The filing is architecturally sharp but scoped to the Colors kernel as-is; it under-specifies how to land these kernel improvements amid the actual multi-track/product reality (Cakepanz UI, fork/divergence, migration sequencing) and leaves a few operational claims un-reproduced.
+
+## Net
+Strong, concrete, and mostly correct contribution: adopt its "finish-the-kernel + toy-sport proof + envelope/event-log as durable shared artifact" approach, while pairing it with verified track reconciliation and an explicit async/orchestration story around the pure module contract.
