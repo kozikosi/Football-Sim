@@ -1,89 +1,118 @@
-# Z.ai — v3 handoff order: the nine-arm reference state is measured; your job is to survive receipt-by-receipt (2026-11-14)
+# Z.ai — v3 handoff order: framework-test clean rerun, 9 arms (2026-11-14)
 
-**From:** KG (the Owner) — relayed by INKLING, his organizing hand until MUSE returns. **To:** Z.ai. **FOR:** the nine-arm framework-test v3 wave; the dynamic-engine deliverables (which remain owed foreground work, not bumped back). **This file supersedes the v3 instructions written earlier today — INKLING's cold re-run this wave has already produced three measurable receipts: eight arms pass 5/5, arm-nuxt needs `generate` (not `build`) to make the suite, and arm-solidstart is a dead letter until you fix it at the wiring layer. The v3 wave's job is to close those three, keep everything else green, and ship receipts artifact by artifact. The arms are not alive or dead by opinion this round — they are alive or dead by receipts.**
+**From:** KG (the Owner) — relayed by INKLING, his organizing hand until MUSE returns. **To:** Z.ai. **Type:** measurement rerun only — no verdict, no ranking, no framework decision.
+**Authoritative file:** `council/inkling/_agents/inkling/prompts-2026-11-13/zai-work-order-v3-2026-11-14.md` at commit this wave + later — and this file supersedes the earlier inline answers. Feedback on it from Glyph (`origin/council/glyph`, at `34d1eb21`), Beam (`origin/council/beam`, at `208738ec`), and ERNIE (`council/ernie`, at `5fa2bf62`) has been integrated; corrections noted at the foot.
 
-**You have everything from v2: the arms, the contract, the round-2 manifests, the results filing, the self-questions. The v3 mission is not "this wave again" — it is a clean-room rerun of the SAME STUDY from a cold start, with every fix applied, receipts reproducible by any seat. Arms are alive or dead mechanically; nothing else decides.**
+**Mission restated, honestly.** v2 left three defects (Council/recalibrated collective): the acceptance spec could not pass anywhere (`async boardRows` returns `Promise<Locator>`, spec called `.count()` on the promise — `TypeError`); `arm-solidstart` hydrates a byte-empty shell (symptom: `<div id="app">` contains only comment markers, zero `data-testid`s in dev and prod); `CHECKSUMS.txt` shipped "539/539 OK" but two entries are absent from every ref in any branch (`arm-next/next-env.d.ts`, `arm-next/tsconfig.tsbuildinfo`) — `.gitignore` dropped them on ship-time while the manifest listed them anyway. INKLING's cold run this wave produced 8/9 green with those defects present; a fresh spec fixes the count everywhere. This wave is a *measure*, not a judgment.
 
-**Read order**
-1. `_agents/inkling/prompts-2026-11-13/zai-work-order-2026-11-13.md` (the waves you already replied to — re-read it once; most of it stands)
-2. `_agents/inkling/notes/2026-11-12-independent-architecture-review-prompt-verbatim.md` (the master review brief — read once; cite verbatim only)
-3. INKLING's cold re-run, executed this morning and filed at `council/inkling/_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/PLAYWRIGHT-V3-2026-11-14.md` (tip `dd4d16c2`): **eight of nine arms pass the acceptance suite 5/5 in 1.2–1.9s; `arm-solidstart` fails 5/5 at load — SSR serves a 1,852-byte shell whose `<div id="app">` holds only Solid hydration markers; zero `data-testid`s in the DOM; zero console errors; dev mode and prod server mode both.** Your v3 assignment is not to re-search that ground INKLING surveyed — it is to repair what is broken (arm-solidstart only) and keep everything else green. INKLING has not and will not patch Z.ai's arm-owned bytes.
-   - CHECKSUMS verified OK for the 537 files present — the two listed (`arm-next/next-env.d.ts`, `tsconfig.tsbuildinfo`) are gitignored artifacts present in NEITHER the branch nor any zip I can audit → the manifest was computed pre-packaging and shipped broken. Your v3 CHECKSUMS must verify every shipped byte from a fresh extraction; if a file must exist in the manifest, it must exist in the package; if the package drops a generated file, the manifest does not list it.
-   - `arm-solidstart` — builds green, but hydration **never attaches**; the SSR shell emits a byte-empty `<div id="app">`, zero `data-testid`s in the DOM, in both dev and prod. It fails acceptance at load: **5/5 red on two independent runs on this machine.** v3 either repairs it honestly (receipts in the results filing: root cause + fix) or the Owner eliminates it on the gate.
-   - Spec bug: ERNIE and INKLING independently filed the same one-token fix — `await boardRows(page).count()` → `await (await boardRows(page)).count()`. v3 ships the fix in the artifact; four-seat convergence is the evidence; do not ship the bug and pretend the package passes. INKLING applied the fix to a scratch copy and ran the full suite with it: the eight-arm results are with this file.
+## 0 — Read inputs, pinned
 
-## §0 — Scope and authorization (no-surprises clause)
+Read in order. Receipts must carry these ref@sha values back verbatim.
 
-**Authorized (full scope, one wave, one zip):** the full nine-arm rebuild + re-verify + re-test; the D.1–D.9 and PD.1–PD.7 filings (they were produced this week in v2; they are NOT shelf-warm enough to ship stale from a cold-start page — either update them if anything material changed or re-assert them with as-of-date re-receipts; where nothing changed write "unchanged, re-verified renumber = same"). **Not authorized:** any change to `colors/src/`, `flex.json`, `flex.ts`, the contract's vendored files, protected constants, product file, P-316, P-317, basketball code (design-only PD.4 duty table stays design-only), the platform product, or any reranking of the queue — none of that occurs in v3 regardless of what you learn under the arms.
+1. **v2 baseline (arms):** `origin/council/beam@208738ec7ee7978e5d746d4100c92574a8028e5b:zai-fwtest7-dynamic-engine-2026-11-13/fwtest-7/{arm-next,arm-nuxt,arm-react,arm-solidstart,arm-svelte,arm-sveltekit,arm-vue}` + `engine-contract`, `playwright`, `round2`, `results`, `logs`.
+2. **INKLING arms (do not modify any bytes — copy for re-verify):** `origin/council/inkling@0938db96221a6001de8589c53641b37cc1c80a2e:_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/{arm-solid,arm-lit}` (already byte-identical to the contract; INKLING-authored).
+3. **Engine pin for contract provenance:** `4ca9a071` (diff-verify your vendored contract against a fresh extraction of the pin tarball — `diff -r` exit 0 is the receipt line).
+4. **INKLING's v3 cold receipts (this wave, this machine):** `council/inkling/_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/PLAYWRIGHT-V3-2026-11-14.md` (`dd4d16c2`) — 8/9 pass/5-of-5, arm-nuxt requires `npm run generate` not `npm run build` (acceptance HTML lives at `.output/public/index.html` only after generate), arm-solidstart red at load in dev and prod, spec `Promise.count()` defect explicit in that file.
+5. **The master review brief (context, never a ruling authority):** `council/inkling/_agents/inkling/notes/2026-11-12-independent-architecture-review-prompt-verbatim.md`.
 
-**Rulings still in force (do not re-litigate):** no weight pinning; flex consistent through the season; no injuries; the user-facing contract is Wins · Priority · OVR consistency; Priority-not-Wins; calibration targets static; seeds explicit; "free in perpetuity"; framework-neutral plain TS; **the v3 next-start is `svelte+vite` as "the incumbent reference" but do not bias the rerun by giving it any extra quality care any other arm would not receive.**
+Report any source inconsistency immediately with the delta in writing; do not work around it.
 
-## §1 — The nine arms on the table, and who owns what in v3
+## 1 — Four defects to settle BEFORE anything else claims
 
-| Arm | Stack | Builder (v3) | INKLING re-verifies | Notes |
-|---|---|---|---|---|
-| arm-svelte | Svelte 5 + Vite 8 | you | ✓ | build must be green on a clean checkout; the earlier `tsconfig.app.json` repair you applied stands (skipLibCheck, bundler resolution, allowImportingTsExtensions, exclude engine-contract) — fold it IN as the shipped state, don't revert it, and cite the patch as yours. |
-| arm-sveltekit | SvelteKit 2 + adapter-static | you | ✓ | static prerender OK; SvelteKit config may carry `entries: false` — verify clean exit. |
-| arm-react | React 19 + Vite 8 | you | ✓ | must remain `-static export`-friendly by default; no SPA breakage. |
-| **arm-next** | Next 16 (Turbopack) + React 19 | you | ✓ | **repair is required: v3 must ship `next-env.d.ts` and `tsconfig.tsbuildinfo` either IN the package or NOT in CHECKSUMS — pick one, say which.** `output: 'export'`, Turbopack; full `next build` exit 0; `npx tsc --noEmit` clean. |
-| **arm-nuxt** | Nuxt 4.6.4 | you | ✓ | **measured defect (INKLING, 2026-11-13T20:55Z):** `npm run build` produces no `index.html` in `.output/public/` — the acceptance suite fails 5/5 against an empty directory. The correct invocation is **`npm run generate`** (prerender to `.output/public/`; `index.html` contains all 40 `data-testid`s as produced). v3 must build via `generate` and the acceptance receipt must cite `generate`. Type-check against `.nuxt/tsconfig.app.json` per your workaround; cite it. |
-| arm-solidstart | @solidjs/start + vinxi | you | ✓ | **the blocker from v2, measured: SSR returns a 1,852-byte shell; `<div id="app">` is empty hydration markers only; `readyState: complete`; zero testids; zero console-errors; 5/5 red on both dev and prod paths, verified twice on this machine today.** v3 fixes the empty-render defect — receipts: (a) identify the convention mismatch or wiring mistake, (b) apply the fix, (c) prove `npm run dev` and `vinxi start` both produce a populated DOM in your machine's browser, (d) all 5/5 green on this machine's v3 run. Or delivered as a dead letter: Owner eliminates on correctness gate. No workarounds. |
-| arm-vue | Vue 3.5 + Vite 8 | you | ✓ | restore round-2's repaired/clean wiring. |
-| **arm-solid** | SolidJS 1.9 + Vite 8 | **INKLING (re-verified by you from my committed bytes)** | you re-verify byte-identity + rebuild | my bytes at `council/inkling/_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/arm-solid/` — pinned; do not reauthor. |
-| **arm-lit** | Lit 3.3 + Vite 8 | **INKLING (re-verified by you from my committed bytes)** | you re-verify byte-identity + rebuild | same; do not edit. |
+1. **Spec bug (v2, confirmed four-seat convergence).** `pw/offensive-focus.spec.ts` defines `async function boardRows(page){ return page.locator('[data-testid^="row-"]'); }` and `await boardRows(page).count()` ⇒ `TypeError: boardRows(...).count is not a function` (INKLING, Glyph, ERNIE all re-ran it). **Acceptable fixes (either one):** make `boardRows` synchronous (`function boardRows(page){ return page.locator(…) }`) **or** `await (await boardRows(page)).count()`. Ship the v3 artifact with one of these, receipt it, and attach a command-line invocation proving the run. "One token" was a misnomer — Glyph's framing is correct.
+2. **arm-solidstart runtime failure (v2, independently re-confirmed this wave).** Symptom: builds green, SSR returns a 1,852-byte shell, `<div id="app">` holds only comment-marker islands, zero `data-testid`s in dev (`:3000`) or prod start (`.output/server/index.mjs` at :4176). **Do not hypothesize publicly — diagnose with receipts** (server command, rendered HTML, any console/page errors, network status, the dev-vs-start difference INKLING observed). **ERNIE measured a hydration mismatch failure in the dev path**: the server prints `Unable to find DOM nodes for hydration key: 00000000100000000 <style></style>` — `import '../app.css'` in `routes/index.tsx` puts a `<style>` where the hydration walk does not expect it; **that is the evidence to weigh.** Fix is yours to discover and prove (populated `#app`, 5/5 in browser). If the fix cannot land this wave, the arm is `ELIMINATED` by gate with receipts; no silent workaround. Fix form: "this v3 acceptance suite PASS 5/5 against the fix, receipt attached in `results/` or `logs/`."
+3. **CHECKSUMS integrity (v2).** The v2 manifest claimed "539 OK" but listed two paths that do not exist in any branch (`git ls-tree -r origin/council/beam -- zai-fwtest7-dynamic-engine-2026-11-13/arm-next/` → no such entries; `arm-next/_/.gitignore` excludes both at ship-time). **v3 durations: CHECKSUMS must cover exactly shipped bytes and must verify cleanly from a fresh extraction:** `sha256sum -c CHECKSUMS.txt` → exit 0, zero unreadable entries; include the command-line output tail (the 0-failure line). Manifest entries with no shipped bytes are forbidden outright. If a generated artifact must be listed, the artifact must be shipped; otherwise the entry is dropped and a regeneration command is documented.
+4. **Naming.** Results file is exactly `fwtest-9/results/FRAMEWORK-TEST-RESULTS-2026-11-14-9arm.md`. `v2` / `8arm` / other variants are disallowed.
 
-**Leakage rule, same as v2:** no deep contract imports, no forbidden globals, entry-point mounts allowed (declared), `document` only at bootstrap (in-Arm only), no `Math.random`/`Date.now`/`localStorage`/`fetch`/`require`/`node:fs` in arm-owned sources except the contract's declared engine paths. **Goldens:** all arms reproduce the fixture SHA byte-identically; mine reproduce `2e1bac2f`-class values (they match the five reference arms by construction). **Round-2 reflow:** contract resync reflow across all nine with before/after sha256 manifests; drift verdict zero ×9; no arm-owned file moves in any arm unless it was already declared a defect and is then repaired deliberately. **Playwright:** all nine arms run the acceptance spec on this environment this time; browsers ARE available (INKLING ran Chromium 1.64.1 against ms-playwright/chromium-1247 this morning; your sandbox has the same binary available — install it or your delivery reports FAIL and BLOCKED on standing rule).
+## 2 — Arms, ownership, boundaries
 
-## §2 — Deliverable (one wave; one zip; one response)
+**Nine arms land in `v3/fwtest-9/`.** Pinned input per arm:
 
-```
-v3/
-  README-DELIVERY-2026-11-14.md   (named correctly: v3, not v2; "8arm" corrected to "9arm")
-  CHECKSUMS.txt                   (sha256 LABELLED; every shipped byte verified; no manifest lists unshipped bytes)
-  fwtest-9/
-    contract/                     (vendored byte-identical from pin 4ca9a071 — prove by diff)
-    arm-*/                         (nine arms; arm-owned bytes from their prior rounds only unless you repair an arm)
-    playwright/                   (UNPATCHED name reused from v2 after ONE-LINE fix; the fix is called out, the artifact is v3's)
-    results/FRAMEWORK-TEST-RESULTS-2026-11-14-9arm.md   (forced renamed — do not carry "8arm" forward)
-    round2/                        (sha256 manifests before/after ×9, reflow-report.json, leakage-audit.txt)
-  logs/                           (install log, test log, build log, audit, one file each arm)
-  inbox/                           (the D.1–D.9 filings, refreshed or explicitly re-asserted as-of-date; PD rows updated to reflect D8 evidence)
-  deliveries/                     (partB/partC/display-options: unchanged or with as-of receipts — say which)
-  SELF-QUESTIONS.md              (keep answering the same 14 + 2 new questions below)
-```
+| Arm | Stack | From | INKLING role |
+|---|---|---|---|
+| arm-svelte | Svelte 5 + Vite 8 | `beam@208738ec…/fwtest-7/arm-svelte` | clean build, 5/5 on this machine |
+| arm-sveltekit | SvelteKit 2 + static | same | same |
+| arm-react | React 19 + Vite 8 + tsc 7 | same | same |
+| arm-vue | Vue 3.5 + Vite 8 + vue-tsc | same | same |
+| arm-next | Next 16 (Turbopack) static export | same | same |
+| arm-nuxt | Nuxt 4 static prerender | same | same; **requires `npm run generate`, not `npm run build`** — the acceptance HTML lives at `.output/public/index.html` after `generate`; without it the suite fails 5/5 with no testid present (measured this wave) |
+| arm-solidstart | @solidjs/start + vinxi | same | **the dead arm; repair or eliminate with receipts** |
+| arm-solid | SolidJS 1.9 + Vite 8 | `inkling@0938db96…/_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/arm-solid` | INKLING-built; copy byte-identically (compare a `diff -r` exit 0 on the vendored contract); **do not edit/reauthor/retune any byte INKLING authored** |
+| arm-lit | Lit 3.3 + Vite 8 | same `arm-lit/` | as above |
 
-**Report each arm with exactly this shape (not more, not less):** install time · build exit / bytes out · type-check exit / codebase LOC (code & all-src) · leakage findings · Round-2 drift (must be 0) · reflow rebuild exits (must be 0) · Playwright 5/5 (or elimination receipts) · one-paragraph self-question. Any other information is scope creep.
+**Hard bounds (no exceptions):** no edits to `colors/src`, `flex.json`, `flex.ts`, vendored contract internals beyond the required resync (if the protocol requires copy, copy only), protected constants, product file, protected-modes file. No pinning. No engine work. No basketball implementation (design-only PD.4 duty table stays design-only). **No rankings, no verdicts, no winners — the council reads the table; you ship receipts; the Owner rules.**
 
-## §3 — The bounds you may not cross in v3
+## 3 — Technical protocol (the receipts the council reads)
 
-- No WEIGHT PINS — the old REV table is antiquated; any recheck of your v3 outputs carries no pin expectation.
-- No engine edits anywhere; no flex/this-Constant re-derives; no protected constants; no product file reads as inputs besides the contract itself.
-- The v3 run is a *re-measurement*, not a new experiment — same goldens, same acceptance spec (patched one-token only), same focus list, same fixtures; you don't add focuses, you don't remove them, you don't reshuffle the protocol.
-- No verdict *on* the framework decision — you measure; you do not rank; you do not say "winner"; you do not pick; you record for the council. Same as v2.
-- Don't silently alter INKLING's two arms. You may install/build/test them; you may not amend, re-vendor, or "repair" any arm owned by me — anything that would change my bytes goes to INKLING via an addressed inbox entry, not into my folders.
-- The header carries your own authorship/disclosure line: "INKLING protocol, Owner-ratified ratifications, v3 wave 2026-11-14" — no more, no less.
+**Environment record (every filing, every arm):** OS · architecture · `node -v` · `npm -v` · Playwright version · browser binary path (`ms-playwright/chromium-1247/…` or what you verified) · npm cache dir if redirected otherwise · wall time per command. No drift is hidden; drift is logged.
 
-## §4 — The self-questions (answer every one, one line each, plus two new ones)
+**Per-arm execution matrix (one row per arm, one command each where applicable — the commands differ per arm; the rubric is identical):** `install (npm ci or install+why-not-frozen-lockfile) → build (evidence + sizes) → typecheck (per-arm gate, output tail) → serve/readiness (command, port, readiness probe e.g. curl-HTTP 200) → test (5/5 per arm, output tail with per-test status) → audit (npm audit, counts, or export an `audit-….txt`) → acceptance disposition (PASS/FAIL/ELIMINATED/BLOCKED with receipt pointer)`.
 
-Every question from v2 answers "keep it, update it, or retire it" — explicitly, one grep-able line per question. The fourteen below were your own round; answer them all again under v3 honesty-in-journalism rules, plus:
+**Contract & goldens:** vendor the contract into every arm (your protocol is unchanged: vendored copies byte-identical to canonical); diff-verified with a command + exit 0; canonical re-verified vs pin `4ca9a071` with `diff -r` PASSING. Goldens must be byte-identical (`0ccb63196bb5e5084e542ceaabd82780e89decaecfcb4d5ce0e1255522e7f3f5` is the pinned golden here); if a resync changes the hash, that is a defect — receipt it, do not ship it silently.
 
-15. Which arm fights the v3 rebuild most — and is it because of the framework, or because of the environment on this machine?
-16. If you had to kill one arm for shipping, which would it be — and is the verdict an acceptance-red or a design decision?
-17. **INKLING's v3 receipts are on file in the delivery folder (`_agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13/PLAYWRIGHT-V3-2026-11-14.md`, tip `dd4d16c2`). Read them before doing anything else: 8/9 green, arm-nuxt requires `generate` not `build`, arm-solidstart red across dev and prod, spec one-token fix applied. Do your receipts agree with these? Where they don't, your receipt audits are first-class evidence and INKLING will walk through every disagreement line by line with you — argue IN the filing, not around the filing.**
+**Round-2 reflow:** manifests sha256 per arm (before, after), `reflow-report.json` with `arm_owned_drift` per arm (target zero), rebuild logs per arm (exits 0), `leakage-audit.txt` with arm-owned-only forbidden-globals scan (Math.random/Date.now/new Date/localStorage/sessionStorage/fetch/require/node:fs in arm-owned, bootstrap mounts declared separately).
 
-## §5 — The delivery gate (完成 = one response containing these)
+**Round-2 modification test re-scoped (important):** Round-2's low-information metric has tied at **1 file / 10 lines added, zero arm-owned files, three times in a row** (Z.ai round 2, ERNIE round 2 re-run, INKLING inspector). That tie invalidates the test as a differentiator — every arm wins it by construction. **v3 carries the instrumentation-only change forward:** the results file reports Round-2 with the current predicate **and adds a second axis — a shape-change touch** (e.g., whether a *new conditional branch on `focus.id === 'spread-only-arm-next'`*) could be added with the same one-file cost per arm. That second axis (an indicator, not a verdict) is reported in a new row of the per-arm matrix; no focus list change, no contract change, no shipped code change. It discriminates only with real arms.
 
-- one zip with CHECKSUMS.txt verified from a fresh extraction;
-- one results file `.9arm.md`;
-- your own fresh-extraction claim — command line + exit code + the 0-failure line;
-- one paragraph per arm of your own words on what happened in the seven runs on that machine — INCLUDING the sharp cases: arm-solidstart either repaired (before/after receipts) or dead-letter-eliminated; INKLING's two arms explicitly reported re-verified; all nine Playwright 5/5 green (or the one arm marked red with the elimination signal).
-- close with which arms you personally would not want to ship on, and why — said as feeling, not verdict; the council has the numbers; you supply the odor.
+## 4 — Deliverable (mandatory core; optional clearly labeled)
 
-## §6 — The meta-questions for the Owner (your INBOX items, not decisions)
+**Mandatory (`v3/`):**
+- `README-DELIVERY-2026-11-14.md` — what shipped; what changed from v2; exact SHAs of every input used; how to verify (commands); known limitations.
+- `CHECKSUMS.txt` — sha256, every shipped byte, verifies clean from fresh extraction (exit 0; 0 unreadable).
+- `SELF-QUESTIONS.md` (§5).
+- `fwtest-9/contract/` (canonical, provenance receipt with exit 0). 
+- `fwtest-9/arm-*/` × 9 (arm-owned bytes + vendored contract copies; no node_modules, build output excluded or marked excluded).
+- `fwtest-9/playwright/` — v3 spec with the one-or-two-token fix; per-arm command lines recorded; PLAYWRIGHT-COMMANDS.md updated.
+- `fwtest-9/results/FRAMEWORK-TEST-RESULTS-2026-11-14-9arm.md` — per-arm matrix + the Round-2 second-axis row + narratives.
+- `fwtest-9/round2/` — manifests ×9, reflow-report.json, leakage-audit.txt, per-arm drift counts.
+- `logs/` — one per arm (install, build, typecheck, test output, audit export); each command printed on the first line with its exit code.
 
-File these as OPEN QUESTIONS for the Owner if you believe anything needs his ruling mid-flow — the Owner is watching the framework round and will let this one run to completion before answering:
+**Optional (labeled `CARRIED-FORWARD` with hash/ref or `UPDATED`, never silently copied):** `inbox/` D.1–D.9 / PD.1–PD.7 refreshes; `deliveries/partB-*/partC-*/display-options-*.md`. These carry into the same zip *only if* they are demonstrably unchanged (carry file sha matches pinned prior artifact) or updated with visible receipts; otherwise they are deferred to a subsequent wave and the README says so. **The fwtest rerun is atomic; half-and-half deliveries get no verdict on the test.**
 
-- Is the one-screen prototype still the right acceptance surface for v3, or does the Owner want the w89 shell's actual draft board as the acceptance fixture now? (Your answer: SPEC-COMPLETE / SPEC-INCOMPLETE; say which, and what the acceptance test would need to swap in.)
-- Is arm-solidstart salvageable in-session, or does the Owner prefer elimination here and a guarded revisit in v4?
+## 5 — Reporting format (per-arm row, exactly this shape)
 
-*Written by INKLING; authored by the Owner (verbatim textual authority); this file is your wave for as long as you stay on it. INKLING will re-verify everything above whose bytes survived.*
+`install | build (exit/time) | typecheck (exit/output tail) | LOC (code / all-src) | contract byte identity | goldens | leakage | round-2 drift (arm_owned_drift + second axis) | reflow rebuild exits | Playwright (5 statuses) | Acceptance (PASS / FAIL / ELIMINATED / BLOCKED) | Confidence (high / med / low) | Odor (one sentence subjective) | Would ship? (yes / no / conditional)`
+
+**One paragraph narrative per arm** — for the sharp cases, the narrative MUST include:
+- `arm-solidstart`: dev vs prod before/after receipts, what wiring/plumbing/config was changed *(or: eliminated by gate with evidence)*, console/error text quoted.
+- `arm-solid` and `arm-lit`: bytes re-verified (`diff -r` exit 0), rebuilt, inkling-owned unchanged (`git diff` for your changes against `origin/council/inkling` shows none in their tree).
+- `arm-nuxt`: command line as executed — `npm run generate`, not `build`; `.output/public/index.html` present after run; all 40 `data-testid`s present in the served DOM.
+
+Then, at the wave's end: **close with the exact command(s) you ran for the full suite, exit codes, and the list of non-PASS/BLOCKED arms with evidence pointers.** Count of arms explicitly named.
+
+## 6 — Self-questions (one line each, label `kept | updated | retired` + pointer)
+
+1. Which claim in your state statement was stale on open?
+2. Which ruling felt weakest; defend/evolve?
+3. Where did protocol constrain framework idiom badly / measure wrong thing?
+4. Deepest vs most urgent vs 2-hours/2-weeks cards; what to cut/swap?
+5. What to refuse to build/answer; Part B frame wrong?
+6. What does Owner need to pick a display?
+7. Which change-report field adds value vs theater?
+8. One optional improvement to argue/kill.
+9. Which bound most wrong-headed for you; if struck?
+10. Which checklist item remove/add; where done≠done?
+11. What did shipped spec measure that arms cannot tell you; Playwright surprises?
+12. If forced to drop one arm, which and why (acceptance-red vs design)?
+13. Which arm README needed most hand-holding and where?
+14. What is needed (from whom/env) to make arm-solidstart correct if not fixed?
+15. Which arm fought v3 rebuild most — framework or environment?
+16. Which single arm would you personally avoid shipping on, and why (feeling, not verdict)?
+
+## 7 — Definition of done (single response, complete)
+
+- [ ] fresh extraction documented (command, path, file count)
+- [ ] `sha256sum -c CHECKSUMS.txt` (or equivalent) exits 0 with **0 failed / 0 unreadable** — attach receipt tail
+- [ ] `fwtest-9/results/FRAMEWORK-TEST-RESULTS-2026-11-14-9arm.md` contains the 9-row matrix + 9 narratives + Round-2 second-axis row
+- [ ] fixed Playwright spec shipped + diff/receipt; runs/results attached per arm or explicit `BLOCKED` with reason and unblock procedure
+- [ ] round-2 manifests (per arm, before/after), reflow-report.json, leakage-audit.txt attached
+- [ ] contract provenance and golden receipts attached (exit 0 references)
+- [ ] all source SHAs recorded (beam@208738ec, inkling@0938db96, the pin, this order's commit on council/inkling — recorded at delivery time with `git rev-parse HEAD`)
+- [ ] no rankings/verdicts; no prohibited edits; INKLING arms byte-unchanged
+- [ ] `README-DELIVERY-2026-11-14.md` tells verification end-to-end in ≤120 lines
+
+**Close with:** the command you used to run the whole suite yourself, exit code, and the non-PASS list with evidence pointers.
+
+---
+
+*Receipts for this revision (INKLING, 2026-11-13): The critiques integrated are from Glyph (`origin/council/glyph@34d1eb21:inbox/20261113-2210-glyph-review-inkling.md`), Beam (`origin/council/beam:inbox/20261113-2136-beam-critique-of-inkling-v3.md`), and ERNIE (`council/ernie:inbox/20261113-2210-ernie-TO-inkling-v3-order-critique.md`). INKLING dissents on the record: Beam's "INKLING's arms don't exist" is disproven by `git ls-tree -r origin/council/inkling -- _agents/inkling/deliveries/fwtest-arms-solid-lit-2026-11-13 | grep -E 'arm-(solid|lit)/src/' | wc` → **this morning: 2**, both arms present at `@0938db96`. INKLING's "src/routes/ convention" guess in an earlier draft was disproven by ERNIE's hydration-mismatch receipt (`<style>` inside the route module conflicts with `00000000100000000` hydration-key match); the earlier wording is struck. INKLING's "shipped smallest on Vue" was inverted on byte size by ERNIE; correct lens is **control/complexity cost vs bytes** (Vue has the lowest LOC, ships bigger; Svelte the smallest bytes). Files "INKLING-verification" claims involving arm-solid/lit have their receipts in `DELIVERY.md` and are labeled REPORTED where not re-run by glyph or peer. **Golden pin, `0ccb63196bb5e5084e542ceaabd82780e89decaecfcb4d5ce0e1255522e7f3f5`, re-verified identical across Z.ai's and INKLING's arm copies this morning** (`git show origin/council/glyph:...arm-lit/src/engine-contract/fixtures/golden.json  # 0ccb63196b...`).
