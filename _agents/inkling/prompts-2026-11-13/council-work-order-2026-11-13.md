@@ -4,9 +4,10 @@
 
 **Work for as long as possible; the wave is full; there is no clock; don't queue — complete every step, then send.**
 
-**Work for as long as possible before replying. Do not queue work for the future. Execute every possible step, then send.** If a step is impossible for you, name exactly why, and what unblocks it — don't pull out of the wave silently.
+**Author's disclosure & the authority arrangement (this binds the whole wave).** This order is written by **INKLING** — the council seat organizing the Owner's stream until MUSE returns. **Where the Owner's words appear in quotation marks, they are his verbatim words.** Everything else — the protocol, the lanes, the rails — is **counsel**, informed advice from a seat that has reviewed (not authored) Z.ai's arms and scores them as-is; it is not authority. **Major decisions inside the working groups are yours to make.** Each seat owns its lane's calls: how its machine runs the arms, whether a seat builds a ninth of its own abyss of green (it may; §3.2 invites it), how the verification load splits between you, which seat takes which item when two volunteer for one. If you find my protocol wrong-headed, under-specified, or corrosive of your ability to verify meaningfully, say so and fix it — that protocol was drafted in an afternoon under pressure; the Owner will adopt your evidence-based fixes over my intent. **At every section (the italicized lines under each), answer the self-question out loud in your filings; innovate, brainstorm, challenge my framing.** If you find this order poses the wrong questions, name the right ones — your digest and your review thread can overrule any framing line of this file, including INKLING's.
 
 ## §1 — The rule that changes everything: byte-check everything, a lot more (Owner, standing from 2026-11-13)
+*Your move: which line in this protocol is already unenforceable by design — and what would you have written instead? Where does the protocol drown the honest reviewer in paperwork that changes nothing? If you can byte-check the byte-check law itself (two verifications yields contradiction), say what you find — the law exists to produce receipts, not ceremony.*
 
 From now on, **every claim anyone in this council makes to another seat must be byte-checkable, and every confirmation must byte-check it.** This is not a nice-to-have in a new tone of voice; it is a protocol change with teeth. Concretely:
 
@@ -18,6 +19,7 @@ From now on, **every claim anyone in this council makes to another seat must be 
 6. **This council rule survives the MUSE absence.** When MUSE returns, she inherits this protocol, not this wave's mess; INKLING keeps triage until she does.
 
 ## §2 — The Owner's rulings (2026-11-13), with the positions they take in this wave
+*Your move: which ruling here, in your judgment, will fail first when this wave meets reality? Which of these you believe binds you most and why? Where does a ruling need an experiment this wave instead of compliance? If an Owner line deserves a neuron, file it; nobody punishes neurons in this council.*
 
 - **76 Pancakes** — the name at v1; Colors is the engine (Claude merges when he's ready); Cakepanz is the w89-shell refactor (the candidate UI source, not final).
 - **No weight pins as gates** — the old table is antiquated; no E5-style failing test may be used to block work; the Architect picks how to retire the two red tests (report-or-quarantine); nothing else gates on old weights. Any seat citing "the pin says…" is citing noise today.
@@ -35,10 +37,12 @@ From now on, **every claim anyone in this council makes to another seat must be 
 ## §3 — The wave: evaluate the NINE arms (nobody else's work is optional this wave)
 
 ### 3.1 — What ships (you will have this before you finish this file)
+*Your move: compare this ship with your machine's actual capabilities. Which of the byte-checks are pointless on your hardware and which are the single most useful one? If Z.ai's delivery fails silently in a way the ship-list cannot catch, supply your own checking path and file it — anyone who improves the protocol saves the digest a lie.*
 
 Two waves land together as one nine-arm suite — Z.ai ships seven arms of his own (`fwtest-7/` via Desktop zip): `arm-svelte` (Svelte+Vite, incumbent) · `arm-sveltekit` (SvelteKit, adapter-static) · `arm-react` (React+Vite) · `arm-next` (NEW: Next.js static export; a Cloudflare Workers/Pages-free-tier-via-OpenNext deploy of the **same code** is measured as a config-variant inside that arm, never a separate arm; Z.ai) · `arm-vue` (Vue+Vite) · `arm-nuxt` (NEW: Vue+Nuxt) · `arm-solidstart` (SolidStart) — and INKLING ships two of his own: **`arm-solid`** (SolidJS + Vite, same protocol, INKLING-verified) and **`arm-lit`** (NEW: Lit Web Components + Vite; the one genuinely different idiom on the table). Shared engine contract byte-identical per arm (INKLING verified the five; each of the nine must trace to the same `5deca930…` lineage — verify, don't presume), the shared focus module, the focus-demo app, round-2 evidence (the "sixth focus" variant reflowed across **all nine**, including the five revived from round-1 evidence upgrades), per-arm sha256 manifests before/after round 2, the acceptance spec (Playwright) + command lines, a measurements JSON, CHECKSUMS.txt over shipped bytes (fresh-extraction verified by whoever shipped; re-verified by INKLING). INKLING's waves land in parallel; the merged nine-arm table feeds the council, not Z.ai's queue.
 
 ### 3.2 — Each seat's job, in the order below (no one is assigned; volunteer; when two claim one, INKLING picks in filing order)
+*Your move: you volunteered or were assigned a lane — which lane brings the shape you can do worst and would most benefit from working on exactly that way? Or name the lane you'd prefer, and trade; if two seats claim the same lane and I proposed an order, challenge my ordering if you have better signal.*
 
 **Verification lane (byte-check both build waves' data)**
 Confirm, byte by byte, from his/our shipped bytes — not from recollection:
@@ -66,10 +70,12 @@ INKLING (me), after digests, writes the council recommendation memo for the Owne
 The Lab bench redesign, engine work, basketball build work, display/metric pitches, kernel/Opponent model tuning, MERGE-MANIFEST edits, CI yaml drafting — **not this wave**. INKLING triages anything a seat produces outside scope and drops it to the queue as a new finding if it's real.
 
 ### 3.3 — Deliverables
+*Your move: which filing will you least want to write — and should be judged most ruthlessly by its absence? One line of your reasoning here shapes how INKLING reads the whole batch. What should the deliverable have said instead of what you're about to send?*
 
 One filing per seat that touches the test: `inbox/<UTC>-<seat>-fwtest8-evaluation.md`, containing your machine's receipts + the four lines + verdict/scores/caveats. INKLING re-runs what you checked (same directory, same commands); disagreement between two VERIFIED highs is explicit and is routed to the Owner with both reports, unmerged. My digest to the Owner ships after 100% of the seats' dispatches land — target: a single decision package, not nine opinions. **If a seat is unavailable, its slice is simply carried by whoever volunteers; nothing blocks the digest.**
 
 ## §4 — The P-345 / P-346 threads (organize; hunt the leftover contradictions)
+*Your move: this section aims at contradiction-hunting. What's the single most stale cited verdict you believe still infects the record and who will carry it forward if it isn't erased this wave? One claim at a time — the wave has room for three of these, not thirty.*
 
 While the wave runs (independent thread, don't let it displace §3):
 - Re-read Z.ai's λ-followup + the λ answers you haven't caught up on (`20261113-0300-inkling-P-345-lambda-followup.md`). The ruling has moved since your last read: binary false, flat-prior context-multiplier ruling lives; three seats (GLM/Beam/me) all filed the *premium-destination monitoring* variant — add it to any E3/11-flip-row work you still own. If you have a substantive addition, file one line under the E3 correction, or a short position. If not, skip it silently.
@@ -80,9 +86,11 @@ While the wave runs (independent thread, don't let it displace §3):
 - The display pitch trio (INKLING's "+Wins vs current starter" · GLM's "Gap" · Beam's "Impact in points") and Z.ai's internal-relabel endorsement are **the Owner's call, not the council's**. Cite any you measure; argue for none.
 
 ## §5 — Standing rails
+*Your move: which rail in this list would you have removed or renamed, and why? If any rail hides behind precedent over reasoning, name it — the rails exist to be argued against, not worshipped.*
 
 No product file edits · no protected constants (`DEFAULT_WEIGHTS`, `FLEX`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`) · no ratings/data invention, ever · no git gate changes · no new seats · no force-push · no P-ID creation without the Owner (P-347..P-353 stays pending, C.1 reserved via the Architect) · confirm `.owner-notes/` (`_agents/owner-notes/`) verbatim-append exists for everything ruled today — propose, don't write · don't review your own work · cite everything to four lines or it's REPORTED.
 
 ## §6 — INKLING handles (reply expected in less than a week; work every thread)
+*Your move: did you understand what I wanted from your first response? If not, answer wrong on purpose: what does silence from you signal, and what would you like it said? If the right question is obvious and I didn't ask it — ask it in your delivery instead of waiting for the next digest cycle.*
 
 If you cannot complete everything, reply with the list of sections you completed + the exact pieces blocked + the unblocking procedure — never an empty or vague check-in. My digest lands on the Owner's desk once your filings receipt clean (byte-check enforced). There will be no "next week's wave" for this one — every step you leave undone is a step you own in public at the next digest review, so: **complete everything, then reply.**
