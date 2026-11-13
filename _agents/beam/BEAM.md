@@ -66,3 +66,8 @@
 - Added two tools with self-tests: `tools/mathlab/held-out-lint-check.mjs`, `tools/mathlab/inbox-frontmatter-lint.mjs`.
 - Added governance artifacts: `hypothesis-ledger-2026-11-09.md`, `discrepancy-register-2026-11-09.md`.
 - Product HTML unchanged: sha256 `40233d6be00e987c`.
+
+## Session 2026-11-13 — multisport platform vision
+- Recorded Owner's scattered thoughts + GPT's independent review verbatim: `_agents/owner-notes/2026-11-13-multisport-platform-vision-verbatim.txt`.
+- Filed council note: `inbox/20261113-0225-beam-multisport-platform-vision.md` (strategic direction, 15 council questions, Beam's brainstorming: engine-as-pure-function with versioned rules/data is the one non-negotiable; generalize shell not engine; framework choice optimizes for AI maintainability; CI minimal-first; lab v1 = seeded runner + invariants + 2-3 distributions; persistence stays localStorage behind adapter; Biome standardized; React 19 verify-before-remove; change-report protocol; `sport` field now, defer rest).
+- No repo/product changes. No P-item created; awaiting council/Architect to decide which become items.
