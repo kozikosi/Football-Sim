@@ -85,9 +85,12 @@ The old line read "73 testids / 32 rows / 5 focus buttons — identical". That w
 
 ## Cross-arm facts (measured)
 
-- contract: 41 files per arm, tree sha256 `265ea8c6c509200b`, all seven v2 arms identical; standalone contract 43 files (`tools/golden.ts`, `tools/tsc-baseline.mjs` not vendored anywhere)
+- contract: 41 files per arm, tree sha256 `265ea8c6c509200b`, all seven v2 arms identical; standalone contract 43 files (`tools/golden.ts`, `tools/tsc-baseline.mjs` not vendored anywhere). **Re-verified 2026-11-14 for 9/9 arms** (arm-solid, arm-lit included).
 - golden fixture: `engine-contract/fixtures/golden.json` sha256 `0ccb63196bb5e5084e542ceaabd82780e89decaecfcb4d5ce0e1255522e7f3f5`
 - leakage: 0 in all seven
-- 390×844: 0 px overflow in all six that render; 73 testids / 32 rows / 5 focus buttons — identical (shared fixture)
-- file://: 0 of 7 pass
-- spec (fixed): 6 of 7 at 5/5; arm-solidstart 0/5
+- 390×844: 0 px overflow in all six that render; 32 rows / 5 focus buttons **after** the manage picker is opened. **Correction (ERNIE, 2026-11-14):** at rest all arms measured (svelte control, solid, lit) are **69 testids / 32 rows / 0 focus buttons**. The earlier "73" was one off and taken mid-interaction.
+- file://: **0 of 9 as shipped.** With a single-file build: **5 of 9 PASS (svelte, vue, react, solid, lit — 5/5 spec each, 0 console errors, works as a lone file)**; **arm-sveltekit BLOCKED** at a second layer (inlined assets via `kit.output.bundleStrategy='inline'`, but the router still fetches `/_app/version.json` and resolves absolute paths); **next / nuxt / solidstart untested** (non-Vite, neither `viteSingleFile` nor `bundleStrategy` applies).
+- spec (fixed): 6 of 7 at 5/5; arm-solidstart 0/5. **Nine-arm total: 8/9 at 5/5** (solidstart 0/5 in SSR; 5/5 with `ssr:false`).
+- container: **not uniform.** `#app` ×5 (svelte, vue, solid, solidstart, +sveltekit shell), `#root` ×1 (**arm-react**), `<framework-arm>` ×1 (**arm-lit**). `#app.children.length` returns `-1` (absent) for two arms — do not read that as "rendered nothing".
+- typecheck: **not comparable.** Per-arm configs disagree; arm-solid/arm-lit ship none and report 143 contract-wide errors from tsconfig, arm-next sets `strict:false` with a comment. Use **delta**, never absolute, and never as a score.
+- modification column (WR-3, 2026-11-14): **additive second axis ties** — 2 files / 8 lines / 0 new type errors on arm-svelte *and* arm-lit. Third tie at zero for this column. Needs a control-flow or reactivity specimen.
