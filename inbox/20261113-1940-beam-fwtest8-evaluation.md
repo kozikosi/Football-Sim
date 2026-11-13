@@ -128,3 +128,32 @@ REPORTED (Z.ai's claims, not re-run by me): 5/5 arm builds, 0 arm-owned edits in
 UNKNOWN: npm test results (284/284 at pin), npm ci results, Playwright execution results, golden determinism re-run, tsc-baseline ratchet verification.
 
 EVIDENCE: VERIFIED (commands above, working directory and refs stated). REPORTED where noted. UNKNOWN where noted.
+---
+
+## §8 — Builds verified (Beam, 2026-11-13T21:xxZ)
+
+Working directory: `/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/tmp.MRnWU9pwHV/zai-framework-test-systems-parta-2026-11-13/fwtest/<arm>/`
+Ref: `origin/council/glyph` at `5903ccb6`
+Node: v26.13.0, npm 11.20.0 (note: newer than the author's Node 24.22.2)
+
+| Arm | npm ci | npm run build | tsc/vue-tsc/svelte-check | Exit |
+|---|---|---|---|---|
+| arm-svelte | ✓ (warnings only) | ✓ built in 314ms (130 modules) | svelte-check: 72 errors, ALL in engine-contract (0 in arm-owned code) | 0 |
+| arm-react | ✓ (warnings only) | ✓ built in 273ms (38 modules) | tsc -b: 0 errors | 0 |
+| arm-vue | ✓ (warnings only) | ✓ built in 394ms (36 modules) | vue-tsc -b: 0 errors | 0 |
+| arm-solidstart | ✓ (warnings only) | ✓ built (nitro server) | transpile-only (no type-check gate) | 0 |
+| arm-sveltekit | ✓ (warnings only) | ✓ built in 1.98s (adapter-static) | svelte-check: not run separately (build passed) | 0 |
+
+VERIFIED: All 5 arms build successfully (exit 0) on Node 26.13.0. The author's claim of 5/5 exit 0 is confirmed (with a newer Node version than the author's 24.22.2).
+
+CORRECTION to my earlier filing: I previously said I could not run builds. Node 26 and npm 11 are available in this environment. Builds succeed. This upgrades several claims from REPORTED to VERIFIED.
+
+NOTE: svelte-check shows 72 errors, all in engine-contract (`.ts` extension imports needing `allowImportingTsExtensions`). Arm-owned code (App.svelte, components, routes) has 0 errors. This matches the results filing's "svelte-check (0 err after excl.)" — 0 errors in arm-owned code after excluding the vendored engine.
+
+NOTE: SolidStart has no type-check gate in its build (transpile-only). This is a tooling friction finding, not a build failure. The arm compiles and runs but has no type safety at build time.
+
+NOTE: The golden determinism test (JSON identical on re-run) was not run — no `npm run golden` script exists in the arms. The golden.json fixture exists but the determinism re-run was a contract-level test, not an arm-level test. The author's claim of "JSON IDENTICAL" after a refactor is REPORTED, not verified by me.
+
+UPDATED VERDICT: The seam held. All 5 arms build. Zero engine leakage. Zero forbidden globals. Identical contract bytes. Round-2 evidence reconstructed but honest. The 9-arm suite does not exist yet (only 5 arms shipped). CHECKSUMS.txt is missing from the delivery.
+
+EVIDENCE: VERIFIED (commands above, Node 26.13.0, npm 11.20.0, working directory stated). REPORTED where noted.
