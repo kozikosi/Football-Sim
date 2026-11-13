@@ -1,0 +1,12 @@
+P_deep=0.5 P_short=0.2: {'doubles_per_tg': 3.01, 'per_wr1_target': 0.244}
+P_deep=0.5 P_short=0.3: {'doubles_per_tg': 4.03, 'per_wr1_target': 0.326}
+P_deep=0.5 P_short=0.4: {'doubles_per_tg': 5.03, 'per_wr1_target': 0.407}
+P_deep=0.6 P_short=0.2: {'doubles_per_tg': 3.17, 'per_wr1_target': 0.256}
+P_deep=0.6 P_short=0.3: {'doubles_per_tg': 4.18, 'per_wr1_target': 0.338}
+P_deep=0.6 P_short=0.4: {'doubles_per_tg': 5.19, 'per_wr1_target': 0.42}
+P_deep=0.7 P_short=0.2: {'doubles_per_tg': 3.35, 'per_wr1_target': 0.271}
+P_deep=0.7 P_short=0.3: {'doubles_per_tg': 4.37, 'per_wr1_target': 0.354}
+P_deep=0.7 P_short=0.4: {'doubles_per_tg': 5.37, 'per_wr1_target': 0.434}
+P_deep=0.8 P_short=0.2: {'doubles_per_tg': 3.55, 'per_wr1_target': 0.287}
+P_deep=0.8 P_short=0.3: {'doubles_per_tg': 4.57, 'per_wr1_target': 0.37}
+P_deep=0.8 P_short=0.4: {'doubles_per_tg': 5.57, 'per_wr1_target': 0.451}

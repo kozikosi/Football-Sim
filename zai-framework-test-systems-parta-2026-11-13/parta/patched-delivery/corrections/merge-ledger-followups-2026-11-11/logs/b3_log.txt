@@ -1,0 +1,2 @@
+base43: DL5 share 0.3105  DIME 0.0695  purity_bad 0
+base34: DL5 share 0.3105  DIME 0.0695  purity_bad 0

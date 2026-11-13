@@ -1,0 +1,12 @@
+{
+ "corr_drives_points_2023_REG": 0.074,
+ "drives_mean": 11.11,
+ "drives_sd": 1.74,
+ "points_mean": 13.5,
+ "points_sd": 8.47,
+ "conditional_sd_by_drives": {
+  "10": 8.28,
+  "11": 7.64
+ },
+ "note": "conditioning on observed drive count removes the drives->points feedback channel; the residual dispersion is what a play-level lambda must reproduce"
+}

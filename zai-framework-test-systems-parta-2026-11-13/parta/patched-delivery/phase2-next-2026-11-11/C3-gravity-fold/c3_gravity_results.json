@@ -1,0 +1,1806 @@
+{
+ "gravity_index_recovered": {
+  "2016": {
+   "league_mean_teammeans": 0.325,
+   "league_mean_gameweighted": 0.324,
+   "n_teams": 32,
+   "shipped": 0.325,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "J.Nelson",
+     "deep": 33
+    },
+    "ATL": {
+     "name": "J.Jones",
+     "deep": 51
+    },
+    "BAL": {
+     "name": "M.Wallace",
+     "deep": 37
+    },
+    "BUF": {
+     "name": "M.Goodwin",
+     "deep": 22
+    },
+    "CAR": {
+     "name": "G.Olsen",
+     "deep": 36
+    },
+    "CHI": {
+     "name": "A.Jeffery",
+     "deep": 33
+    },
+    "CIN": {
+     "name": "A.Green",
+     "deep": 29
+    },
+    "CLE": {
+     "name": "T.Pryor Sr.",
+     "deep": 26
+    },
+    "DAL": {
+     "name": "D.Bryant",
+     "deep": 43
+    },
+    "DEN": {
+     "name": "E.Sanders",
+     "deep": 44
+    },
+    "DET": {
+     "name": "M.Jones",
+     "deep": 42
+    },
+    "GB": {
+     "name": "J.Nelson",
+     "deep": 47
+    },
+    "HOU": {
+     "name": "W.Fuller",
+     "deep": 41
+    },
+    "IND": {
+     "name": "T.Hilton",
+     "deep": 53
+    },
+    "JAX": {
+     "name": "A.Robinson",
+     "deep": 60
+    },
+    "KC": {
+     "name": "J.Maclin",
+     "deep": 19
+    },
+    "LA": {
+     "name": "K.Britt",
+     "deep": 28
+    },
+    "LAC": {
+     "name": "Ty.Williams",
+     "deep": 39
+    },
+    "LV": {
+     "name": "M.Crabtree",
+     "deep": 36
+    },
+    "MIA": {
+     "name": "K.Stills",
+     "deep": 28
+    },
+    "MIN": {
+     "name": "A.Thielen",
+     "deep": 30
+    },
+    "NE": {
+     "name": "J.Edelman",
+     "deep": 35
+    },
+    "NO": {
+     "name": "B.Cooks",
+     "deep": 41
+    },
+    "NYG": {
+     "name": "O.Beckham",
+     "deep": 40
+    },
+    "NYJ": {
+     "name": "B.Marshall",
+     "deep": 52
+    },
+    "PHI": {
+     "name": "J.Matthews",
+     "deep": 32
+    },
+    "PIT": {
+     "name": "A.Brown",
+     "deep": 50
+    },
+    "SEA": {
+     "name": "D.Baldwin",
+     "deep": 28
+    },
+    "SF": {
+     "name": "J.Kerley",
+     "deep": 25
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 61
+    },
+    "TEN": {
+     "name": "R.Matthews",
+     "deep": 37
+    },
+    "WAS": {
+     "name": "D.Jackson",
+     "deep": 37
+    }
+   }
+  },
+  "2017": {
+   "league_mean_teammeans": 0.335,
+   "league_mean_gameweighted": 0.335,
+   "n_teams": 32,
+   "shipped": 0.335,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "L.Fitzgerald",
+     "deep": 40
+    },
+    "ATL": {
+     "name": "Ju.Jones",
+     "deep": 59
+    },
+    "BAL": {
+     "name": "M.Wallace",
+     "deep": 32
+    },
+    "BUF": {
+     "name": "Z.Jones",
+     "deep": 23
+    },
+    "CAR": {
+     "name": "D.Funchess",
+     "deep": 42
+    },
+    "CHI": {
+     "name": "K.Wright",
+     "deep": 15
+    },
+    "CIN": {
+     "name": "A.Green",
+     "deep": 50
+    },
+    "CLE": {
+     "name": "C.Coleman",
+     "deep": 28
+    },
+    "DAL": {
+     "name": "D.Bryant",
+     "deep": 40
+    },
+    "DEN": {
+     "name": "D. Thomas",
+     "deep": 30
+    },
+    "DET": {
+     "name": "M.Jones",
+     "deep": 38
+    },
+    "GB": {
+     "name": "D.Adams",
+     "deep": 25
+    },
+    "HOU": {
+     "name": "D.Hopkins",
+     "deep": 66
+    },
+    "IND": {
+     "name": "T.Hilton",
+     "deep": 39
+    },
+    "JAX": {
+     "name": "K.Cole",
+     "deep": 30
+    },
+    "KC": {
+     "name": "T.Kelce",
+     "deep": 37
+    },
+    "LA": {
+     "name": "S.Watkins",
+     "deep": 24
+    },
+    "LAC": {
+     "name": "K.Allen",
+     "deep": 31
+    },
+    "LV": {
+     "name": "M.Crabtree",
+     "deep": 27
+    },
+    "MIA": {
+     "name": "K.Stills",
+     "deep": 45
+    },
+    "MIN": {
+     "name": "A.Thielen",
+     "deep": 41
+    },
+    "NE": {
+     "name": "B.Cooks",
+     "deep": 49
+    },
+    "NO": {
+     "name": "M.Thomas",
+     "deep": 37
+    },
+    "NYG": {
+     "name": "E.Engram",
+     "deep": 25
+    },
+    "NYJ": {
+     "name": "R.Anderson",
+     "deep": 37
+    },
+    "PHI": {
+     "name": "A.Jeffery",
+     "deep": 45
+    },
+    "PIT": {
+     "name": "A.Brown",
+     "deep": 66
+    },
+    "SEA": {
+     "name": "D.Baldwin",
+     "deep": 38
+    },
+    "SF": {
+     "name": "M.Goodwin",
+     "deep": 38
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 51
+    },
+    "TEN": {
+     "name": "R.Matthews",
+     "deep": 32
+    },
+    "WAS": {
+     "name": "J.Doctson",
+     "deep": 24
+    }
+   }
+  },
+  "2018": {
+   "league_mean_teammeans": 0.31,
+   "league_mean_gameweighted": 0.32,
+   "n_teams": 32,
+   "shipped": 0.31,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "L.Fitzgerald",
+     "deep": 26
+    },
+    "ATL": {
+     "name": "J.Jones",
+     "deep": 63
+    },
+    "BAL": {
+     "name": "J.Brown",
+     "deep": 42
+    },
+    "BUF": {
+     "name": "Z.Jones",
+     "deep": 32
+    },
+    "CAR": {
+     "name": "D.Funchess",
+     "deep": 30
+    },
+    "CHI": {
+     "name": "A.Robinson II",
+     "deep": 27
+    },
+    "CIN": {
+     "name": "T.Boyd",
+     "deep": 26
+    },
+    "CLE": {
+     "name": "J.Landry",
+     "deep": 50
+    },
+    "DAL": {
+     "name": "M.Gallup",
+     "deep": 24
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 30
+    },
+    "DET": {
+     "name": "K.Golladay",
+     "deep": 37
+    },
+    "GB": {
+     "name": "D.Adams",
+     "deep": 49
+    },
+    "HOU": {
+     "name": "D.Hopkins",
+     "deep": 42
+    },
+    "IND": {
+     "name": "T.Hilton",
+     "deep": 34
+    },
+    "JAX": {
+     "name": "D.Moncrief",
+     "deep": 34
+    },
+    "KC": {
+     "name": "T.Hill",
+     "deep": 54
+    },
+    "LA": {
+     "name": "B.Cooks",
+     "deep": 44
+    },
+    "LAC": {
+     "name": "K.Allen",
+     "deep": 28
+    },
+    "LV": {
+     "name": "J.Cook",
+     "deep": 19
+    },
+    "MIA": {
+     "name": "K.Stills",
+     "deep": 27
+    },
+    "MIN": {
+     "name": "A.Thielen",
+     "deep": 33
+    },
+    "NE": {
+     "name": "R.Gronkowski",
+     "deep": 26
+    },
+    "NO": {
+     "name": "M.Thomas",
+     "deep": 22
+    },
+    "NYG": {
+     "name": "O.Beckham",
+     "deep": 37
+    },
+    "NYJ": {
+     "name": "R.Anderson",
+     "deep": 35
+    },
+    "PHI": {
+     "name": "A.Jeffery",
+     "deep": 27
+    },
+    "PIT": {
+     "name": "A.Brown",
+     "deep": 54
+    },
+    "SEA": {
+     "name": "T.Lockett",
+     "deep": 26
+    },
+    "SF": {
+     "name": "G.Kittle",
+     "deep": 21
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 63
+    },
+    "TEN": {
+     "name": "C.Davis",
+     "deep": 37
+    },
+    "WAS": {
+     "name": "J.Doctson",
+     "deep": 30
+    }
+   }
+  },
+  "2019": {
+   "league_mean_teammeans": 0.304,
+   "league_mean_gameweighted": 0.31,
+   "n_teams": 32,
+   "shipped": 0.304,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "C.Kirk",
+     "deep": 28
+    },
+    "ATL": {
+     "name": "J.Jones",
+     "deep": 55
+    },
+    "BAL": {
+     "name": "M.Andrews",
+     "deep": 26
+    },
+    "BUF": {
+     "name": "J.Brown",
+     "deep": 46
+    },
+    "CAR": {
+     "name": "C.Samuel",
+     "deep": 45
+    },
+    "CHI": {
+     "name": "A.Robinson",
+     "deep": 43
+    },
+    "CIN": {
+     "name": "A.Tate",
+     "deep": 30
+    },
+    "CLE": {
+     "name": "O.Beckham",
+     "deep": 41
+    },
+    "DAL": {
+     "name": "A.Cooper",
+     "deep": 38
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 35
+    },
+    "DET": {
+     "name": "K.Golladay",
+     "deep": 47
+    },
+    "GB": {
+     "name": "D.Adams",
+     "deep": 31
+    },
+    "HOU": {
+     "name": "D.Hopkins",
+     "deep": 37
+    },
+    "IND": {
+     "name": "Z.Pascal",
+     "deep": 28
+    },
+    "JAX": {
+     "name": "C.Conley",
+     "deep": 32
+    },
+    "KC": {
+     "name": "T.Hill",
+     "deep": 29
+    },
+    "LA": {
+     "name": "R.Woods",
+     "deep": 33
+    },
+    "LAC": {
+     "name": "M.Williams",
+     "deep": 45
+    },
+    "LV": {
+     "name": "T.Williams",
+     "deep": 28
+    },
+    "MIA": {
+     "name": "D.Parker",
+     "deep": 43
+    },
+    "MIN": {
+     "name": "S.Diggs",
+     "deep": 30
+    },
+    "NE": {
+     "name": "J.Edelman",
+     "deep": 30
+    },
+    "NO": {
+     "name": "M.Thomas",
+     "deep": 32
+    },
+    "NYG": {
+     "name": "D.Slayton",
+     "deep": 31
+    },
+    "NYJ": {
+     "name": "Ro.Anderson",
+     "deep": 46
+    },
+    "PHI": {
+     "name": "Z.Ertz",
+     "deep": 23
+    },
+    "PIT": {
+     "name": "J.Washington",
+     "deep": 37
+    },
+    "SEA": {
+     "name": "T.Lockett",
+     "deep": 36
+    },
+    "SF": {
+     "name": "D.Samuel",
+     "deep": 15
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 45
+    },
+    "TEN": {
+     "name": "A.Brown",
+     "deep": 24
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 33
+    }
+   }
+  },
+  "2020": {
+   "league_mean_teammeans": 0.309,
+   "league_mean_gameweighted": 0.313,
+   "n_teams": 32,
+   "shipped": 0.309,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "D.Hopkins",
+     "deep": 32
+    },
+    "ATL": {
+     "name": "C.Ridley",
+     "deep": 64
+    },
+    "BAL": {
+     "name": "M.Brown",
+     "deep": 33
+    },
+    "BUF": {
+     "name": "S.Diggs",
+     "deep": 38
+    },
+    "CAR": {
+     "name": "D.Moore",
+     "deep": 43
+    },
+    "CHI": {
+     "name": "A.Robinson",
+     "deep": 38
+    },
+    "CIN": {
+     "name": "A.Green",
+     "deep": 40
+    },
+    "CLE": {
+     "name": "R.Higgins",
+     "deep": 26
+    },
+    "DAL": {
+     "name": "C.Lamb",
+     "deep": 30
+    },
+    "DEN": {
+     "name": "J.Jeudy",
+     "deep": 39
+    },
+    "DET": {
+     "name": "M.Jones",
+     "deep": 43
+    },
+    "GB": {
+     "name": "D.Adams",
+     "deep": 31
+    },
+    "HOU": {
+     "name": "B.Cooks",
+     "deep": 35
+    },
+    "IND": {
+     "name": "T.Hilton",
+     "deep": 33
+    },
+    "JAX": {
+     "name": "D.Chark Jr.",
+     "deep": 35
+    },
+    "KC": {
+     "name": "T.Hill",
+     "deep": 44
+    },
+    "LA": {
+     "name": "R.Woods",
+     "deep": 24
+    },
+    "LAC": {
+     "name": "M.Williams",
+     "deep": 35
+    },
+    "LV": {
+     "name": "N.Agholor",
+     "deep": 37
+    },
+    "MIA": {
+     "name": "M.Gesicki",
+     "deep": 27
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 40
+    },
+    "NE": {
+     "name": "D.Byrd",
+     "deep": 26
+    },
+    "NO": {
+     "name": "E.Sanders",
+     "deep": 21
+    },
+    "NYG": {
+     "name": "D.Slayton",
+     "deep": 32
+    },
+    "NYJ": {
+     "name": "B.Perriman",
+     "deep": 27
+    },
+    "PHI": {
+     "name": "T.Fulgham",
+     "deep": 24
+    },
+    "PIT": {
+     "name": "C.Claypool",
+     "deep": 37
+    },
+    "SEA": {
+     "name": "D.Metcalf",
+     "deep": 45
+    },
+    "SF": {
+     "name": "B.Aiyuk",
+     "deep": 22
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 35
+    },
+    "TEN": {
+     "name": "C.Davis",
+     "deep": 26
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 29
+    }
+   }
+  },
+  "2021": {
+   "league_mean_teammeans": 0.313,
+   "league_mean_gameweighted": 0.317,
+   "n_teams": 32,
+   "shipped": 0.313,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "C.Kirk",
+     "deep": 30
+    },
+    "ATL": {
+     "name": "K.Pitts",
+     "deep": 28
+    },
+    "BAL": {
+     "name": "M.Brown",
+     "deep": 42
+    },
+    "BUF": {
+     "name": "S.Diggs",
+     "deep": 37
+    },
+    "CAR": {
+     "name": "Dj.Moore",
+     "deep": 40
+    },
+    "CHI": {
+     "name": "D.Mooney",
+     "deep": 41
+    },
+    "CIN": {
+     "name": "J.Chase",
+     "deep": 42
+    },
+    "CLE": {
+     "name": "D.Peoples-Jones",
+     "deep": 29
+    },
+    "DAL": {
+     "name": "C.Lamb",
+     "deep": 34
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 36
+    },
+    "DET": {
+     "name": "K.Raymond",
+     "deep": 21
+    },
+    "GB": {
+     "name": "D.Adams",
+     "deep": 40
+    },
+    "HOU": {
+     "name": "B.Cooks",
+     "deep": 35
+    },
+    "IND": {
+     "name": "M.Pittman",
+     "deep": 31
+    },
+    "JAX": {
+     "name": "M.Jones",
+     "deep": 35
+    },
+    "KC": {
+     "name": "T.Hill",
+     "deep": 37
+    },
+    "LA": {
+     "name": "C.Kupp",
+     "deep": 43
+    },
+    "LAC": {
+     "name": "M.Williams",
+     "deep": 41
+    },
+    "LV": {
+     "name": "B.Edwards",
+     "deep": 27
+    },
+    "MIA": {
+     "name": "M.Gesicki",
+     "deep": 26
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 53
+    },
+    "NE": {
+     "name": "J.Meyers",
+     "deep": 26
+    },
+    "NO": {
+     "name": "M.Callaway",
+     "deep": 29
+    },
+    "NYG": {
+     "name": "K.Golladay",
+     "deep": 28
+    },
+    "NYJ": {
+     "name": "E.Moore",
+     "deep": 26
+    },
+    "PHI": {
+     "name": "D.Smith",
+     "deep": 41
+    },
+    "PIT": {
+     "name": "D.Johnson",
+     "deep": 41
+    },
+    "SEA": {
+     "name": "T.Lockett",
+     "deep": 44
+    },
+    "SF": {
+     "name": "D.Samuel",
+     "deep": 27
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 41
+    },
+    "TEN": {
+     "name": "A.Brown",
+     "deep": 29
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 48
+    }
+   }
+  },
+  "2022": {
+   "league_mean_teammeans": 0.313,
+   "league_mean_gameweighted": 0.316,
+   "n_teams": 32,
+   "shipped": 0.313,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "M.Brown",
+     "deep": 31
+    },
+    "ATL": {
+     "name": "D.London",
+     "deep": 24
+    },
+    "BAL": {
+     "name": "M.Andrews",
+     "deep": 23
+    },
+    "BUF": {
+     "name": "S.Diggs",
+     "deep": 47
+    },
+    "CAR": {
+     "name": "D.Moore",
+     "deep": 46
+    },
+    "CHI": {
+     "name": "D.Mooney",
+     "deep": 25
+    },
+    "CIN": {
+     "name": "J.Chase",
+     "deep": 27
+    },
+    "CLE": {
+     "name": "A.Cooper",
+     "deep": 46
+    },
+    "DAL": {
+     "name": "C.Lamb",
+     "deep": 44
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 38
+    },
+    "DET": {
+     "name": "D.Chark",
+     "deep": 24
+    },
+    "GB": {
+     "name": "A.Lazard",
+     "deep": 35
+    },
+    "HOU": {
+     "name": "B.Cooks",
+     "deep": 27
+    },
+    "IND": {
+     "name": "A.Pierce",
+     "deep": 21
+    },
+    "JAX": {
+     "name": "C.Kirk",
+     "deep": 34
+    },
+    "KC": {
+     "name": "M.Valdes-Scantling",
+     "deep": 29
+    },
+    "LA": {
+     "name": "V.Jefferson",
+     "deep": 24
+    },
+    "LAC": {
+     "name": "M.Williams",
+     "deep": 32
+    },
+    "LV": {
+     "name": "D.Adams",
+     "deep": 59
+    },
+    "MIA": {
+     "name": "T.Hill",
+     "deep": 58
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 50
+    },
+    "NE": {
+     "name": "J.Meyers",
+     "deep": 25
+    },
+    "NO": {
+     "name": "C.Olave",
+     "deep": 44
+    },
+    "NYG": {
+     "name": "D.Slayton",
+     "deep": 23
+    },
+    "NYJ": {
+     "name": "G.Wilson",
+     "deep": 36
+    },
+    "PHI": {
+     "name": "A.Brown",
+     "deep": 42
+    },
+    "PIT": {
+     "name": "G.Pickens",
+     "deep": 35
+    },
+    "SEA": {
+     "name": "D.Metcalf",
+     "deep": 36
+    },
+    "SF": {
+     "name": "B.Aiyuk",
+     "deep": 24
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 45
+    },
+    "TEN": {
+     "name": "N.Westbrook-Ikhine",
+     "deep": 16
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 49
+    }
+   }
+  },
+  "2023": {
+   "league_mean_teammeans": 0.331,
+   "league_mean_gameweighted": 0.327,
+   "n_teams": 32,
+   "shipped": 0.331,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "M.Brown",
+     "deep": 31
+    },
+    "ATL": {
+     "name": "D.London",
+     "deep": 34
+    },
+    "BAL": {
+     "name": "Z.Flowers",
+     "deep": 27
+    },
+    "BUF": {
+     "name": "S.Diggs",
+     "deep": 44
+    },
+    "CAR": {
+     "name": "D.Chark",
+     "deep": 37
+    },
+    "CHI": {
+     "name": "D.Moore",
+     "deep": 34
+    },
+    "CIN": {
+     "name": "J.Chase",
+     "deep": 34
+    },
+    "CLE": {
+     "name": "A.Cooper",
+     "deep": 55
+    },
+    "DAL": {
+     "name": "C.Lamb",
+     "deep": 44
+    },
+    "DEN": {
+     "name": "J.Jeudy",
+     "deep": 31
+    },
+    "DET": {
+     "name": "A.St. Brown",
+     "deep": 27
+    },
+    "GB": {
+     "name": "R.Doubs",
+     "deep": 29
+    },
+    "HOU": {
+     "name": "N.Collins",
+     "deep": 30
+    },
+    "IND": {
+     "name": "M.Pittman",
+     "deep": 27
+    },
+    "JAX": {
+     "name": "C.Ridley",
+     "deep": 48
+    },
+    "KC": {
+     "name": "Ju.Watson",
+     "deep": 27
+    },
+    "LA": {
+     "name": "P.Nacua",
+     "deep": 37
+    },
+    "LAC": {
+     "name": "K.Allen",
+     "deep": 36
+    },
+    "LV": {
+     "name": "D.Adams",
+     "deep": 46
+    },
+    "MIA": {
+     "name": "T.Hill",
+     "deep": 62
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 39
+    },
+    "NE": {
+     "name": "D.Douglas",
+     "deep": 21
+    },
+    "NO": {
+     "name": "C.Olave",
+     "deep": 48
+    },
+    "NYG": {
+     "name": "D.Slayton",
+     "deep": 23
+    },
+    "NYJ": {
+     "name": "G.Wilson",
+     "deep": 40
+    },
+    "PHI": {
+     "name": "A.Brown",
+     "deep": 42
+    },
+    "PIT": {
+     "name": "G.Pickens",
+     "deep": 37
+    },
+    "SEA": {
+     "name": "D.Metcalf",
+     "deep": 37
+    },
+    "SF": {
+     "name": "B.Aiyuk",
+     "deep": 42
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 56
+    },
+    "TEN": {
+     "name": "D.Hopkins",
+     "deep": 54
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 43
+    }
+   }
+  },
+  "2024": {
+   "league_mean_teammeans": 0.327,
+   "league_mean_gameweighted": 0.332,
+   "n_teams": 32,
+   "shipped": 0.327,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "M.Harrison",
+     "deep": 49
+    },
+    "ATL": {
+     "name": "D.London",
+     "deep": 44
+    },
+    "BAL": {
+     "name": "Z.Flowers",
+     "deep": 41
+    },
+    "BUF": {
+     "name": "K.Coleman",
+     "deep": 25
+    },
+    "CAR": {
+     "name": "X.Legette",
+     "deep": 25
+    },
+    "CHI": {
+     "name": "R.Odunze",
+     "deep": 40
+    },
+    "CIN": {
+     "name": "J.Chase",
+     "deep": 37
+    },
+    "CLE": {
+     "name": "J.Jeudy",
+     "deep": 43
+    },
+    "DAL": {
+     "name": "C.Lamb",
+     "deep": 27
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 55
+    },
+    "DET": {
+     "name": "A.St. Brown",
+     "deep": 26
+    },
+    "GB": {
+     "name": "C.Watson",
+     "deep": 27
+    },
+    "HOU": {
+     "name": "N.Collins",
+     "deep": 35
+    },
+    "IND": {
+     "name": "A.Pierce",
+     "deep": 43
+    },
+    "JAX": {
+     "name": "B.Thomas",
+     "deep": 42
+    },
+    "KC": {
+     "name": "X.Worthy",
+     "deep": 25
+    },
+    "LA": {
+     "name": "D.Robinson",
+     "deep": 27
+    },
+    "LAC": {
+     "name": "Q.Johnston",
+     "deep": 30
+    },
+    "LV": {
+     "name": "J.Meyers",
+     "deep": 41
+    },
+    "MIA": {
+     "name": "T.Hill",
+     "deep": 50
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 46
+    },
+    "NE": {
+     "name": "K.Boutte",
+     "deep": 24
+    },
+    "NO": {
+     "name": "R.Shaheed",
+     "deep": 22
+    },
+    "NYG": {
+     "name": "M.Nabers",
+     "deep": 43
+    },
+    "NYJ": {
+     "name": "G.Wilson",
+     "deep": 38
+    },
+    "PHI": {
+     "name": "A.Brown",
+     "deep": 28
+    },
+    "PIT": {
+     "name": "G.Pickens",
+     "deep": 37
+    },
+    "SEA": {
+     "name": "D.Metcalf",
+     "deep": 47
+    },
+    "SF": {
+     "name": "J.Jennings",
+     "deep": 24
+    },
+    "TB": {
+     "name": "M.Evans",
+     "deep": 37
+    },
+    "TEN": {
+     "name": "C.Ridley",
+     "deep": 60
+    },
+    "WAS": {
+     "name": "T.McLaurin",
+     "deep": 40
+    }
+   }
+  },
+  "2025": {
+   "league_mean_teammeans": 0.315,
+   "league_mean_gameweighted": 0.312,
+   "n_teams": 32,
+   "shipped": 0.315,
+   "exact_match": true,
+   "leader_per_team": {
+    "ARI": {
+     "name": "T.McBride",
+     "deep": 30
+    },
+    "ATL": {
+     "name": "D.London",
+     "deep": 33
+    },
+    "BAL": {
+     "name": "Z.Flowers",
+     "deep": 40
+    },
+    "BUF": {
+     "name": "K.Coleman",
+     "deep": 19
+    },
+    "CAR": {
+     "name": "T.McMillan",
+     "deep": 39
+    },
+    "CHI": {
+     "name": "R.Odunze",
+     "deep": 39
+    },
+    "CIN": {
+     "name": "J.Chase",
+     "deep": 38
+    },
+    "CLE": {
+     "name": "J.Jeudy",
+     "deep": 35
+    },
+    "DAL": {
+     "name": "G.Pickens",
+     "deep": 38
+    },
+    "DEN": {
+     "name": "C.Sutton",
+     "deep": 44
+    },
+    "DET": {
+     "name": "A.St. Brown",
+     "deep": 37
+    },
+    "GB": {
+     "name": "R.Doubs",
+     "deep": 28
+    },
+    "HOU": {
+     "name": "N.Collins",
+     "deep": 39
+    },
+    "IND": {
+     "name": "A.Pierce",
+     "deep": 52
+    },
+    "JAX": {
+     "name": "B.Thomas",
+     "deep": 42
+    },
+    "KC": {
+     "name": "T.Thornton",
+     "deep": 28
+    },
+    "LA": {
+     "name": "D.Adams",
+     "deep": 48
+    },
+    "LAC": {
+     "name": "Q.Johnston",
+     "deep": 27
+    },
+    "LV": {
+     "name": "T.Tucker",
+     "deep": 27
+    },
+    "MIA": {
+     "name": "J.Waddle",
+     "deep": 32
+    },
+    "MIN": {
+     "name": "J.Jefferson",
+     "deep": 40
+    },
+    "NE": {
+     "name": "K.Boutte",
+     "deep": 27
+    },
+    "NO": {
+     "name": "C.Olave",
+     "deep": 48
+    },
+    "NYG": {
+     "name": "W.Robinson",
+     "deep": 32
+    },
+    "NYJ": {
+     "name": "A.Mitchell",
+     "deep": 22
+    },
+    "PHI": {
+     "name": "A.Brown",
+     "deep": 36
+    },
+    "PIT": {
+     "name": "D.Metcalf",
+     "deep": 24
+    },
+    "SEA": {
+     "name": "J.Smith-Njigba",
+     "deep": 46
+    },
+    "SF": {
+     "name": "R.Pearsall",
+     "deep": 24
+    },
+    "TB": {
+     "name": "E.Egbuka",
+     "deep": 47
+    },
+    "TEN": {
+     "name": "E.Ayomanor",
+     "deep": 30
+    },
+    "WAS": {
+     "name": "D.Samuel",
+     "deep": 22
+    }
+   }
+  }
+ },
+ "fold_format": {
+  "emission": "gravity_index per team-game (the fold stub output is c3_gravity_fold_per_team_game.csv, 10 seasons x 32 teams x ~16 games)",
+  "event_schema_ask": {
+   "double_team": "bool \u2014 CHARTING-CLASS, not in any public release (PFF/SIS-class charting is paid; NGS tracking frames public only for Big-Data-Bowl week windows); state that in the schema",
+   "coverage_assignment": "nearest-defender id + type; public pbp has defense_man_zone_type/defense_coverage_type for 2023+ only",
+   "usage_share": "per play \u2014 the designed receiver; route is in the 2023+ NGS columns, earlier seasons not public",
+   "air_yards_deep_flag": "the field the staged Ledger is missing (see staged_side)"
+  }
+ },
+ "b3_2016_diagnosis": {
+  "definition_gap": "the shipped index keys on the SEASON DEEP-TARGET LEADER (pure pbp names); MUSE's described method keys on the snaps-WR1 via a name join. Under the snaps-WR1 the 2016 league mean is ~0.26-0.29 (the explore battery), not 0.383 \u2014 his 2016 number is not reproducible from his description either; the recovered definition reproduces the shipped 0.325 EXACTLY.",
+  "leader_is_not_snaps_wr1_teams": [
+   {
+    "team": "ARI",
+    "deep_leader": "J.Nelson",
+    "snap_wr1": "Larry Fitzgerald"
+   },
+   {
+    "team": "ATL",
+    "deep_leader": "J.Jones",
+    "snap_wr1": "Mohamed Sanu"
+   },
+   {
+    "team": "CAR",
+    "deep_leader": "G.Olsen",
+    "snap_wr1": "Kelvin Benjamin"
+   },
+   {
+    "team": "CHI",
+    "deep_leader": "A.Jeffery",
+    "snap_wr1": "Cameron Meredith"
+   },
+   {
+    "team": "CIN",
+    "deep_leader": "A.Green",
+    "snap_wr1": "Brandon LaFell"
+   },
+   {
+    "team": "DAL",
+    "deep_leader": "D.Bryant",
+    "snap_wr1": "Terrance Williams"
+   },
+   {
+    "team": "DEN",
+    "deep_leader": "E.Sanders",
+    "snap_wr1": "Demaryius Thomas"
+   },
+   {
+    "team": "HOU",
+    "deep_leader": "W.Fuller",
+    "snap_wr1": "DeAndre Hopkins"
+   },
+   {
+    "team": "KC",
+    "deep_leader": "J.Maclin",
+    "snap_wr1": "Chris Conley"
+   },
+   {
+    "team": "LAC",
+    "deep_leader": "Ty.Williams",
+    "snap_wr1": "Dontrelle Inman"
+   },
+   {
+    "team": "LV",
+    "deep_leader": "M.Crabtree",
+    "snap_wr1": "Amari Cooper"
+   },
+   {
+    "team": "MIA",
+    "deep_leader": "K.Stills",
+    "snap_wr1": "Jarvis Landry"
+   },
+   {
+    "team": "NYG",
+    "deep_leader": "O.Beckham",
+    "snap_wr1": "Sterling Shepard"
+   },
+   {
+    "team": "PHI",
+    "deep_leader": "J.Matthews",
+    "snap_wr1": "Nelson Agholor"
+   },
+   {
+    "team": "TEN",
+    "deep_leader": "R.Matthews",
+    "snap_wr1": "Tajae Sharpe"
+   },
+   {
+    "team": "WAS",
+    "deep_leader": "D.Jackson",
+    "snap_wr1": "Pierre Garcon"
+   }
+  ],
+  "n_teams_leader_ne_wr1_2016": 16,
+  "n_teams_leader_is_wr1_2016": 16,
+  "note": "the deep leader IS the join-free identification; the snaps-WR1 needs the abbr join whose 2016 unmatched rate is the decade max (9.5%) \u2014 that is the 2016 noise source. The ARI J.Brown collision (John/Jaron) sits in both years.",
+  "per_team_2016": [
+   {
+    "team": "ARI",
+    "deep_leader": "J.Nelson",
+    "leader_deep": 33,
+    "snap_wr1": "Larry Fitzgerald",
+    "same_player": false
+   },
+   {
+    "team": "ATL",
+    "deep_leader": "J.Jones",
+    "leader_deep": 51,
+    "snap_wr1": "Mohamed Sanu",
+    "same_player": false
+   },
+   {
+    "team": "BAL",
+    "deep_leader": "M.Wallace",
+    "leader_deep": 37,
+    "snap_wr1": "Mike Wallace",
+    "same_player": true
+   },
+   {
+    "team": "BUF",
+    "deep_leader": "M.Goodwin",
+    "leader_deep": 22,
+    "snap_wr1": "Marquise Goodwin",
+    "same_player": true
+   },
+   {
+    "team": "CAR",
+    "deep_leader": "G.Olsen",
+    "leader_deep": 36,
+    "snap_wr1": "Kelvin Benjamin",
+    "same_player": false
+   },
+   {
+    "team": "CHI",
+    "deep_leader": "A.Jeffery",
+    "leader_deep": 33,
+    "snap_wr1": "Cameron Meredith",
+    "same_player": false
+   },
+   {
+    "team": "CIN",
+    "deep_leader": "A.Green",
+    "leader_deep": 29,
+    "snap_wr1": "Brandon LaFell",
+    "same_player": false
+   },
+   {
+    "team": "CLE",
+    "deep_leader": "T.Pryor Sr.",
+    "leader_deep": 26,
+    "snap_wr1": "Terrelle Pryor",
+    "same_player": true
+   },
+   {
+    "team": "DAL",
+    "deep_leader": "D.Bryant",
+    "leader_deep": 43,
+    "snap_wr1": "Terrance Williams",
+    "same_player": false
+   },
+   {
+    "team": "DEN",
+    "deep_leader": "E.Sanders",
+    "leader_deep": 44,
+    "snap_wr1": "Demaryius Thomas",
+    "same_player": false
+   },
+   {
+    "team": "DET",
+    "deep_leader": "M.Jones",
+    "leader_deep": 42,
+    "snap_wr1": "Marvin Jones",
+    "same_player": true
+   },
+   {
+    "team": "GB",
+    "deep_leader": "J.Nelson",
+    "leader_deep": 47,
+    "snap_wr1": "Jordy Nelson",
+    "same_player": true
+   },
+   {
+    "team": "HOU",
+    "deep_leader": "W.Fuller",
+    "leader_deep": 41,
+    "snap_wr1": "DeAndre Hopkins",
+    "same_player": false
+   },
+   {
+    "team": "IND",
+    "deep_leader": "T.Hilton",
+    "leader_deep": 53,
+    "snap_wr1": "T.Y. Hilton",
+    "same_player": true
+   },
+   {
+    "team": "JAX",
+    "deep_leader": "A.Robinson",
+    "leader_deep": 60,
+    "snap_wr1": "Allen Robinson",
+    "same_player": true
+   },
+   {
+    "team": "KC",
+    "deep_leader": "J.Maclin",
+    "leader_deep": 19,
+    "snap_wr1": "Chris Conley",
+    "same_player": false
+   },
+   {
+    "team": "LA",
+    "deep_leader": "K.Britt",
+    "leader_deep": 28,
+    "snap_wr1": "Kenny Britt",
+    "same_player": true
+   },
+   {
+    "team": "LAC",
+    "deep_leader": "Ty.Williams",
+    "leader_deep": 39,
+    "snap_wr1": "Dontrelle Inman",
+    "same_player": false
+   },
+   {
+    "team": "LV",
+    "deep_leader": "M.Crabtree",
+    "leader_deep": 36,
+    "snap_wr1": "Amari Cooper",
+    "same_player": false
+   },
+   {
+    "team": "MIA",
+    "deep_leader": "K.Stills",
+    "leader_deep": 28,
+    "snap_wr1": "Jarvis Landry",
+    "same_player": false
+   },
+   {
+    "team": "MIN",
+    "deep_leader": "A.Thielen",
+    "leader_deep": 30,
+    "snap_wr1": "Adam Thielen",
+    "same_player": true
+   },
+   {
+    "team": "NE",
+    "deep_leader": "J.Edelman",
+    "leader_deep": 35,
+    "snap_wr1": "Julian Edelman",
+    "same_player": true
+   },
+   {
+    "team": "NO",
+    "deep_leader": "B.Cooks",
+    "leader_deep": 41,
+    "snap_wr1": "Brandin Cooks",
+    "same_player": true
+   },
+   {
+    "team": "NYG",
+    "deep_leader": "O.Beckham",
+    "leader_deep": 40,
+    "snap_wr1": "Sterling Shepard",
+    "same_player": false
+   },
+   {
+    "team": "NYJ",
+    "deep_leader": "B.Marshall",
+    "leader_deep": 52,
+    "snap_wr1": "Brandon Marshall",
+    "same_player": true
+   },
+   {
+    "team": "PHI",
+    "deep_leader": "J.Matthews",
+    "leader_deep": 32,
+    "snap_wr1": "Nelson Agholor",
+    "same_player": false
+   },
+   {
+    "team": "PIT",
+    "deep_leader": "A.Brown",
+    "leader_deep": 50,
+    "snap_wr1": "Antonio Brown",
+    "same_player": true
+   },
+   {
+    "team": "SEA",
+    "deep_leader": "D.Baldwin",
+    "leader_deep": 28,
+    "snap_wr1": "Doug Baldwin",
+    "same_player": true
+   },
+   {
+    "team": "SF",
+    "deep_leader": "J.Kerley",
+    "leader_deep": 25,
+    "snap_wr1": "Jeremy Kerley",
+    "same_player": true
+   },
+   {
+    "team": "TB",
+    "deep_leader": "M.Evans",
+    "leader_deep": 61,
+    "snap_wr1": "Mike Evans",
+    "same_player": true
+   },
+   {
+    "team": "TEN",
+    "deep_leader": "R.Matthews",
+    "leader_deep": 37,
+    "snap_wr1": "Tajae Sharpe",
+    "same_player": false
+   },
+   {
+    "team": "WAS",
+    "deep_leader": "D.Jackson",
+    "leader_deep": 37,
+    "snap_wr1": "Pierre Garcon",
+    "same_player": false
+   }
+  ]
+ },
+ "second_gravity_stat": {
+  "2016": {
+   "season": 2016,
+   "hhi_league_mean": 0.2089,
+   "hhi_league_sd": 0.0411,
+   "wr2_deep_share_mean": 0.22,
+   "te1_deep_share_mean": 0.107,
+   "n_teams": 32
+  },
+  "2017": {
+   "season": 2017,
+   "hhi_league_mean": 0.2055,
+   "hhi_league_sd": 0.0503,
+   "wr2_deep_share_mean": 0.203,
+   "te1_deep_share_mean": 0.119,
+   "n_teams": 32
+  },
+  "2018": {
+   "season": 2018,
+   "hhi_league_mean": 0.1915,
+   "hhi_league_sd": 0.0417,
+   "wr2_deep_share_mean": 0.209,
+   "te1_deep_share_mean": 0.113,
+   "n_teams": 32
+  },
+  "2019": {
+   "season": 2019,
+   "hhi_league_mean": 0.182,
+   "hhi_league_sd": 0.0338,
+   "wr2_deep_share_mean": 0.207,
+   "te1_deep_share_mean": 0.103,
+   "n_teams": 32
+  },
+  "2020": {
+   "season": 2020,
+   "hhi_league_mean": 0.1899,
+   "hhi_league_sd": 0.0442,
+   "wr2_deep_share_mean": 0.216,
+   "te1_deep_share_mean": 0.12,
+   "n_teams": 32
+  },
+  "2021": {
+   "season": 2021,
+   "hhi_league_mean": 0.1894,
+   "hhi_league_sd": 0.0401,
+   "wr2_deep_share_mean": 0.208,
+   "te1_deep_share_mean": 0.115,
+   "n_teams": 32
+  },
+  "2022": {
+   "season": 2022,
+   "hhi_league_mean": 0.1921,
+   "hhi_league_sd": 0.0424,
+   "wr2_deep_share_mean": 0.206,
+   "te1_deep_share_mean": 0.108,
+   "n_teams": 32
+  },
+  "2023": {
+   "season": 2023,
+   "hhi_league_mean": 0.2042,
+   "hhi_league_sd": 0.0476,
+   "wr2_deep_share_mean": 0.222,
+   "te1_deep_share_mean": 0.1,
+   "n_teams": 32
+  },
+  "2024": {
+   "season": 2024,
+   "hhi_league_mean": 0.2023,
+   "hhi_league_sd": 0.0542,
+   "wr2_deep_share_mean": 0.204,
+   "te1_deep_share_mean": 0.098,
+   "n_teams": 32
+  },
+  "2025": {
+   "season": 2025,
+   "hhi_league_mean": 0.1937,
+   "hhi_league_sd": 0.047,
+   "wr2_deep_share_mean": 0.212,
+   "te1_deep_share_mean": 0.103,
+   "n_teams": 32
+  }
+ },
+ "staged_side": {
+  "staged_WR1_pass_event_share": 0.3287,
+  "n_staged_games": 500,
+  "missing_field": "air_yards (or any deep-target flag) on the staged pass events \u2014 the staged gravity counters classify catch/inc by seat but carry no depth axis, so the staged deep-target share (the gravity index at tau=15) is NOT computable from staged.json; not faked here. The fold emits it the day the play model stages pass depth (the event-schema spec below)."
+ },
+ "wr1_pass_event_share": {
+  "2016": {
+   "real_most_targeted_WR_share_of_attempts": 0.2133,
+   "staged_WR1_share_of_pass_events": 0.3287
+  },
+  "2019": {
+   "real_most_targeted_WR_share_of_attempts": 0.2043,
+   "staged_WR1_share_of_pass_events": 0.3287
+  },
+  "2023": {
+   "real_most_targeted_WR_share_of_attempts": 0.2147,
+   "staged_WR1_share_of_pass_events": 0.3287
+  },
+  "2025": {
+   "real_most_targeted_WR_share_of_attempts": 0.2066,
+   "staged_WR1_share_of_pass_events": 0.3287
+  }
+ },
+ "settle": {
+  "reproduces_b2_gravity_index_json": "10/10 exact",
+  "definition": "per team-season, the season deep-target leader (pure pbp abbreviated name, no snap-count join); his share of ALL team deep attempts (WR+TE+RB+unmatched null-name rows); league mean of team means; REG; pass_attempt==1; air_yards>=15; ties -> name ASC"
+ }
+}

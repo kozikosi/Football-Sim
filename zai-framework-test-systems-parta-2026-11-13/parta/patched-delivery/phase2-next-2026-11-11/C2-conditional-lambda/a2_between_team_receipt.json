@@ -1,0 +1,15 @@
+{
+ "between_team_dispersion": {
+  "source": "P-344 team_game_summary_2016-2025.csv (shipped in inputs/)",
+  "n_team_games": 5522,
+  "n_team_seasons": 320,
+  "nbar": 17.256,
+  "between_var_team_season": 11.9044,
+  "between_sd_team_season": 3.4503,
+  "overstatement_season_ratio": 1.1934,
+  "overstatement_game_totalvariance_basis": 2.8988,
+  "overstatement_game_withinvariance_basis": 2.7057,
+  "basis_note": "season ratio = sqrt(var(team-season means)/between); game total-variance basis = sqrt(var(all team-game points)/between); game within-variance basis = sqrt(mean within-team-season variance/between) \u2014 each basis named, per the A.2 settle criterion",
+  "ds_anova_crosscheck": "same estimator (one-way random effects, season-demeaned points) on the same file; reproduced to three decimals (between 11.904, season 1.193, game 2.8988/2.7057)"
+ }
+}

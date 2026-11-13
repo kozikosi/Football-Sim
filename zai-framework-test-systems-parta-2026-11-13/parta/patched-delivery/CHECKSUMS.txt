@@ -1,0 +1,79 @@
+# CHECKSUMS.txt — computed on the SHIPPED bytes (binary read, no conversion)
+# ALGORITHM: sha256 (labelled per the batch rule)
+# STEP (REV 3, the root-cause fix): python3 make_checksums.py <folder> walks the folder,
+#   hashes each file in binary mode at its shipped path (no newline conversion, no copy,
+#   no re-dump), and writes one '<sha256>  <size>  <path>' line per file.
+#   CHECKSUMS.txt itself is self-excluded by convention.
+#
+ab5e880463d940b13c90ea87e449450b7efe2e573220d0d0d3ccb56cd726a195       9113  README-DELIVERY-2026-11-12.md
+9ca986bba0f5b28ca8aa3b5765b2bc32f659e3c2f92ed95d6d3f2168c0e6d3d9      10509  corrections/merge-ledger-followups-2026-11-11/CORRECTIONS-NOTE-2026-11-11.md
+9026dcaaf9e8287b0e0fcf28c04c7942a987e0edf2b1f8c8b02670c33eced701       6388  corrections/merge-ledger-followups-2026-11-11/CORRECTIONS-NOTE-2026-11-12.md
+868d1b39ecc900e8c2a5789f512325f75cacf08d5bc82d3169ae08c41091a108      13651  corrections/merge-ledger-followups-2026-11-11/LEDGER-FOLLOWUPS-2026-11-11.md
+0da74703412f89840c9e496ff2773ab89bf31ac1050fd25cfbddb2e863135a46      22389  corrections/merge-ledger-followups-2026-11-11/MERGE-DESIGN-2026-11-11.md
+712a705bd279a89b5c57f61d34cf6999274e1a10d2853780c4bcb35ea5277d35       7831  corrections/merge-ledger-followups-2026-11-11/PHASE2-HARNESS-2026-11-11.md
+7f4c9c6a5b426b250edb32fac38f4b66888b48185174bf7434a7fce524e40685       3552  corrections/merge-ledger-followups-2026-11-11/README.md
+7572ed7d8036bd519388ebfcca76427f9046015085cf9a4072d3591305a81d50       7212  corrections/merge-ledger-followups-2026-11-11/dime_sensitivity.py
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6       2814  corrections/merge-ledger-followups-2026-11-11/flex-99-live.json
+ca6c4a542b984e89ef593db68aeec1800b1d6aa3d6944fc85f69f18cfa1a9c9a        886  corrections/merge-ledger-followups-2026-11-11/logs/b2_grid_log.txt
+f79d3d95f266f14c69b7ca8820027935b840f7dd6f437aa0ec17ea3d39a4473d        272  corrections/merge-ledger-followups-2026-11-11/logs/b2_log.txt
+185fcd825e144c03a0194c6597eb88f0cf396e3ed1ce2a5319e30eb695f84f60        104  corrections/merge-ledger-followups-2026-11-11/logs/b3_log.txt
+44d7f041861e9df06328716a3f17ab793982a8ba8db57724c5091e90db65e8db       2963  corrections/merge-ledger-followups-2026-11-11/logs/dime_log.txt
+55daa143d0a7c7a2e48389d5fb08b110b2eff68b41c4e2712ec13f31c1d3bed4      12312  corrections/merge-ledger-followups-2026-11-11/logs/followup_34.json
+ea6d9ca967b2390be934d2b6b9683785b52fd6cad1698016cf23909ac9b12ea0       5873  corrections/merge-ledger-followups-2026-11-11/logs/followup_sit.json
+30ae04ef5f180fad33acb4376ceec58a2bbe61a1dcb38f1cbc733ffd539c3395      18473  corrections/merge-ledger-followups-2026-11-11/logs/followup_wr1.json
+dc21cd09c2d89cbb2765990482b9c71f9fc3ddf5df9edd94a46f2e4a5f613470        888  corrections/merge-ledger-followups-2026-11-11/logs/followup_wr1_grid.json
+cac7479404c913a702367d064c7037d2021179ec86b8660897bf74b4af428693     210721  corrections/merge-ledger-followups-2026-11-11/logs/merge_results.json
+19bfc57c2e4bc02227a8695ca3054efe39fc935c22711fc3136d66197e01cfab       9145  corrections/merge-ledger-followups-2026-11-11/logs/merge_run_log.txt
+e3e5c6067bdd548dda57431e7cf83f18bdca0efb9e61aebc2aa2d70fb2b36e8b       9145  corrections/merge-ledger-followups-2026-11-11/logs/og2_exact_sensitivity.log
+8a1681819f88ac82ee89279fe64579e22a9eccb6b2a983e6978570965e5c21c4     210722  corrections/merge-ledger-followups-2026-11-11/logs/og2_exact_sensitivity_results.json
+495b3923ceac9a25d503103479ff3de45bd95c795f361bd6f5c6cf06fd82d932        187  corrections/merge-ledger-followups-2026-11-11/logs/sit_log.txt
+f99120234119def1141a9264cf2faa393f2dee8049643eef79503e5dd8602dce      27655  corrections/merge-ledger-followups-2026-11-11/merge_prototype.py
+cac7479404c913a702367d064c7037d2021179ec86b8660897bf74b4af428693     210721  corrections/merge-ledger-followups-2026-11-11/merge_results.json
+4a6ed04c14095a614618ce6bd6ff3f01bd114415ab7fba238b28bd55c8a8a9c4      21779  corrections/merge-ledger-followups-2026-11-11/phase2_harness.py
+53a49bd65ec6e63bd8f3fd9aa7761ae2fc2993885bd5f3ff121609a957936fd8       8818  corrections/merge-ledger-followups-2026-11-11/phase2_results.json
+c382148c4219c42dde5d3ed7eb186c19bb38a50f476fd88876abd52bbb662317      24211  corrections/merge-ledger-followups-2026-11-11/stage_followup.py
+bc59cc1c42706676666bcc7e5cb6d19b4c030ba9fcbed3230656a240ef1b4215    3071585  corrections/merge-ledger-followups-2026-11-11/synthetic_pbp.csv
+94ca85d35c59a61661c6f8743f3ebe56f246a7c44c0148ae14f94eb184848847     990279  corrections/merge-ledger-followups-2026-11-11/synthetic_snap_counts.csv
+828bc07d7968ed51dfcf52dd5a4f1c9c703798045d35f3291b938c575c9c821e       5300  inbox/20261111-1621-zai-P-345-gravity-first-measurement.md
+5fe0bd254a09e2d5182348ee5c26957d1779c0eb8c05150f40b6044147bd9682       5455  inbox/20261111-1638-zai-P-345-lambda-identification-by-conditioning.md
+dc2f9363b73d900b951c5286e8cc994af5fa8746e8cbc76f90a4d0f221e34fe6       3731  inbox/20261112-zai-B1-fb-2020-diagnosis.md
+c47625fb02481bb17cb667f5027906692e77cb7ac3350dcda39064e7927e3150       3178  inbox/20261112-zai-B2-lambda-conditioning-n-receipt.md
+33469f9aac9306b79d1bb255f6d6355d8ac3f03b54644e90b44db22d0bcc0f17       3870  inbox/20261112-zai-B3-gravity-2016-diagnosis.md
+f5751b7f273202d57c1b3d06b2463d0b7f11577b9a985b80ddcae80fb60077c1       2642  inbox/20261112-zai-P-346-innovation-deep-target-herfindahl.md
+607e963d579a87f791a8213c75a7de4dfbe26f162596e2e257075bf19d69d3bc       2992  inbox/20261112-zai-P-346-innovation-era-snapshot-guard-and-packages.md
+fc9c2573e0e16cd03cce666e9a1f3c94be250efdca2795ab6d7a64a1f221d4fb       7766  phase2-next-2026-11-11/C1-era-E-table/C1-ERA-E-TABLE-2026-11-12.md
+d950c3ed4c220318e7c4d7b40f79b1301e4653a036f6d47703307541935baf73       9422  phase2-next-2026-11-11/C1-era-E-table/b1_fb_2020_diagnose.py
+c20d85ca6311248ca23d5e7d265f8ae706440ea0bcdc4f36ec17df9b86210fce      18663  phase2-next-2026-11-11/C1-era-E-table/c1_era_e_table.json
+b3bb5dae13e2cad62ecf567357883f11817db31395f99bb2f9791b33a5b451f0      19195  phase2-next-2026-11-11/C1-era-E-table/c1_era_e_table.py
+e82f0cca6fabf55a647736a4d61ab3b5b1b2e2afa699b863e69468dde9c76df4      67903  phase2-next-2026-11-11/C1-era-E-table/c1_per_team_e_input.csv
+4d27efe6c72d2ad82c54e29e3f7a063f6ef2387ef4d327c81f254bbbadd68f54       4205  phase2-next-2026-11-11/C1-era-E-table/run_log_c1.txt
+074c1ec966896bb3d02c7126d6dffc3b2ad1fa81dd42e27f199e670ef2f1b17b       7497  phase2-next-2026-11-11/C2-conditional-lambda/C2-CONDITIONAL-LAMBDA-2026-11-12.md
+0ef95054b6e40116440e20e77aa94df8c20ba88d02cd75ed813cf7d2276239ee      25610  phase2-next-2026-11-11/C2-conditional-lambda/c2_lab_and_validation.py
+e02fe6f8fa733498a0668a30937af258889cdf8c3a82e264d697ec7fb2553629       9267  phase2-next-2026-11-11/C2-conditional-lambda/c2_results.json
+81964fa7dbc1b8335b06930892df65948c0603c921dad85fcd90708b0fe8f448       3592  phase2-next-2026-11-11/C2-conditional-lambda/run_log_c2.txt
+239aebe4774a8cf300ff1616fecd06c001ccbf4dfd860c6fb0ba0f83aabf5fb9       7853  phase2-next-2026-11-11/C3-gravity-fold/C3-GRAVITY-FOLD-2026-11-12.md
+be81826b612b007ba26118705452567a882568469ab00f32983a0282d50bf9c3      19406  phase2-next-2026-11-11/C3-gravity-fold/c3_gravity_fold.py
+98a4601215ba1bc8af640d3d1b10cf933e9d2a57d96c0f50e7f2dd6989002466     232832  phase2-next-2026-11-11/C3-gravity-fold/c3_gravity_fold_per_team_game.csv
+b75782c05b2f7461e3007c5247e8929c4dacd49e938b8a3d06de597e6bb69088      32072  phase2-next-2026-11-11/C3-gravity-fold/c3_gravity_results.json
+6ad847f432338ec30ef8b505459b44ce5612aefc109d2f9836bce72c002f85c1       2480  phase2-next-2026-11-11/C3-gravity-fold/run_log_c3.txt
+bec7d2249fd09802ab7c498af75cff45ee463614ac294af394ecb4fd537d6ab2       6449  phase2-next-2026-11-11/C4-dime-reanchor/C4-DIME-REANCHOR-2026-11-12.md
+0877f27086648e7aaaf4a94466bd4dd1dd2a3d327884183251309e21438846b8      11152  phase2-next-2026-11-11/C4-dime-reanchor/c4_dime_reanchor.py
+9c92a4b2ce2bdb4daa037d5b85e4fcefcbb08c959677352edd0314596e01b043       1505  phase2-next-2026-11-11/C4-dime-reanchor/c4_dime_situation_table.csv
+ad55cc9bee49ecb2176a9abfe787742ab3498e6e81059a080f1b7773bdec1279      14970  phase2-next-2026-11-11/C4-dime-reanchor/c4_dime_tables.json
+64a450d38211ee530a1c5f8ac26cd569f2388513e0a7f03351c82463399915da       1984  phase2-next-2026-11-11/C4-dime-reanchor/run_log_c4.txt
+aa8014d068a12eb0cf0f78387cca65b5485e2a1079c4ecafd5ca18ad86dab156       5772  phase2-next-2026-11-11/P346-INTAKE-LEDGER-2026-11-12.md
+968c1e8381439e78a34245ef1bc16a347193eea2af485fb78293e4a36221ae57       2260  phase2-next-2026-11-11/make_checksums.py
+d387453d719f673733c1f5391237412d5310489c2ce60df02040504c8056cff6       4005  phase2-real-2026-11-11/LEDGER-PHASE1-ADDENDUM-2026-11-11.md
+4957170c11c968923c6dd348881401d8aeee0fc7e6f01866c61392875d3898bc      23811  phase2-real-2026-11-11/PHASE2-REAL-REPORT-2026-11-11.md
+07c8e01e1dd6fba3580d779b7824c6940dd6470964f9cb5e63d7f2318582520f        161  phase2-real-2026-11-11/b2_gravity_index.json
+c9fc4ac64c5e0241ee0900e51ddecd1d1c5412479c646b71b989485ca470d1d4       1159  phase2-real-2026-11-11/b2_most_targeted_wr.json
+817b67c89d8ebb72740b4610cd357d9a43af8d5fa93a509b1741ffcd27b3d720       1880  phase2-real-2026-11-11/fetch_log.txt
+d64ad695de03f6bf1a6dc6915e7def0579917b9c4ff87e8fd942dda7cd11c5a7       1081  phase2-real-2026-11-11/fetch_progress.log
+ec5871dde4d9b15eaed16058b4147f4e2707f0a764fb56ca0a8a8304d0debc7a        349  phase2-real-2026-11-11/p345_lambda_conditioning.json
+dde4a93b07610904aec09b659fc7957a35fc0fbdec5f348fce0a6848687a3a3d      28207  phase2-real-2026-11-11/phase2_real.py
+e6e6a056a0daed59f877f17fe0bee1c7edb6e0e8a30b116156c944c94619059e      89693  phase2-real-2026-11-11/phase2_real_results_all.json
+18ab82821a9f14b7099c0cd6ee2ed91849b23b9ca2f654390c4e39f88a794881      89675  phase2-real-2026-11-11/phase2_real_results_reg.json
+7447b217e91075291b10316eab9983360b44b3b6fbbfce34ae6c47cb49ccd690       5098  phase2-real-2026-11-11/report_tables.py
+31e085caaa443f59fb5cda415e8fa460e231560844e2ed0577e988d4e3fa6a25       2885  phase2-real-2026-11-11/run_log_all.txt
+a64d238afac70da5aad6bed858ae5bc8bbdf6f35e397ba43e289bf1c307d2123       2890  phase2-real-2026-11-11/run_log_reg.txt
+4ea642e07b100804b7b89f81f8824f1e1ecd7e427fa19ab1ebcf39d171070734       4372  phase2-real-2026-11-11/spot_table_staged_vs_real.csv

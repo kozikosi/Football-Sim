@@ -1,0 +1,1399 @@
+{
+  "contractVersion": "1.0.0",
+  "focusVersion": "v1-5f",
+  "teams": {
+    "strongPass": {
+      "QB": 92,
+      "WR1": 91,
+      "WR2": 86,
+      "WR3": 79,
+      "TE1": 84,
+      "TE2": 72,
+      "TE3": 68,
+      "WR4": 70,
+      "RB1": 78,
+      "RB2": 71,
+      "FB": 62,
+      "OT1": 85,
+      "OT2": 82,
+      "OG1": 80,
+      "OG2": 78,
+      "C": 81,
+      "DE1": 76,
+      "DE2": 74,
+      "DT1": 74,
+      "DT2": 71,
+      "DL5": 69,
+      "MIKE": 78,
+      "WILL": 76,
+      "SAM": 74,
+      "CB1": 80,
+      "CB2": 77,
+      "CB3": 72,
+      "DIME": 68,
+      "FS": 79,
+      "SS": 76,
+      "K": 76,
+      "P": 70
+    },
+    "strongFront": {
+      "QB": 80,
+      "WR1": 82,
+      "WR2": 78,
+      "WR3": 70,
+      "TE1": 78,
+      "TE2": 70,
+      "TE3": 65,
+      "WR4": 66,
+      "RB1": 84,
+      "RB2": 76,
+      "FB": 70,
+      "OT1": 78,
+      "OT2": 76,
+      "OG1": 79,
+      "OG2": 77,
+      "C": 80,
+      "DE1": 89,
+      "DE2": 85,
+      "DT1": 87,
+      "DT2": 83,
+      "DL5": 78,
+      "MIKE": 84,
+      "WILL": 82,
+      "SAM": 80,
+      "CB1": 76,
+      "CB2": 73,
+      "CB3": 68,
+      "DIME": 65,
+      "FS": 74,
+      "SS": 72,
+      "K": 72,
+      "P": 68
+    }
+  },
+  "boards": {
+    "west-coast": [
+      {
+        "slot": "QB",
+        "ovr": 92,
+        "wins": 2.54,
+        "priority": 3
+      },
+      {
+        "slot": "WR1",
+        "ovr": 91,
+        "wins": 1.61,
+        "priority": 0
+      },
+      {
+        "slot": "OT1",
+        "ovr": 85,
+        "wins": 1.25,
+        "priority": 1
+      },
+      {
+        "slot": "OT2",
+        "ovr": 82,
+        "wins": 0.75,
+        "priority": 1
+      },
+      {
+        "slot": "WR2",
+        "ovr": 86,
+        "wins": 0.99,
+        "priority": 0
+      },
+      {
+        "slot": "C",
+        "ovr": 81,
+        "wins": 0.38,
+        "priority": 0
+      },
+      {
+        "slot": "OG1",
+        "ovr": 80,
+        "wins": 1,
+        "priority": 1
+      },
+      {
+        "slot": "OG2",
+        "ovr": 78,
+        "wins": 0.63,
+        "priority": 1
+      },
+      {
+        "slot": "TE1",
+        "ovr": 84,
+        "wins": 0.62,
+        "priority": 2
+      },
+      {
+        "slot": "RB1",
+        "ovr": 78,
+        "wins": 0.62,
+        "priority": 1
+      },
+      {
+        "slot": "WR3",
+        "ovr": 79,
+        "wins": 0.25,
+        "priority": 3
+      },
+      {
+        "slot": "RB2",
+        "ovr": 71,
+        "wins": 0.25,
+        "priority": 1
+      },
+      {
+        "slot": "TE2",
+        "ovr": 72,
+        "wins": 0.37,
+        "priority": 2
+      },
+      {
+        "slot": "FB",
+        "ovr": 62,
+        "wins": 0.06,
+        "priority": 0
+      },
+      {
+        "slot": "TE3",
+        "ovr": 68,
+        "wins": 0.12,
+        "priority": 0
+      },
+      {
+        "slot": "WR4",
+        "ovr": 70,
+        "wins": 0.1,
+        "priority": 0
+      },
+      {
+        "slot": "DE1",
+        "ovr": 76,
+        "wins": 1.71,
+        "priority": 2
+      },
+      {
+        "slot": "DT1",
+        "ovr": 74,
+        "wins": 1.32,
+        "priority": 1
+      },
+      {
+        "slot": "DE2",
+        "ovr": 74,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DT2",
+        "ovr": 71,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DL5",
+        "ovr": 69,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "MIKE",
+        "ovr": 78,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "WILL",
+        "ovr": 76,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "SAM",
+        "ovr": 74,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "CB1",
+        "ovr": 80,
+        "wins": 1.06,
+        "priority": 1
+      },
+      {
+        "slot": "CB2",
+        "ovr": 77,
+        "wins": 0.66,
+        "priority": 1
+      },
+      {
+        "slot": "CB3",
+        "ovr": 72,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "DIME",
+        "ovr": 68,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "FS",
+        "ovr": 79,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "SS",
+        "ovr": 76,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "K",
+        "ovr": 76,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "P",
+        "ovr": 70,
+        "wins": 0.13,
+        "priority": 0
+      }
+    ],
+    "deep-passing": [
+      {
+        "slot": "QB",
+        "ovr": 92,
+        "wins": 2.54,
+        "priority": 3
+      },
+      {
+        "slot": "WR1",
+        "ovr": 91,
+        "wins": 1.61,
+        "priority": 5
+      },
+      {
+        "slot": "OT1",
+        "ovr": 85,
+        "wins": 1.25,
+        "priority": 1
+      },
+      {
+        "slot": "OT2",
+        "ovr": 82,
+        "wins": 0.75,
+        "priority": 1
+      },
+      {
+        "slot": "WR2",
+        "ovr": 86,
+        "wins": 0.99,
+        "priority": 3
+      },
+      {
+        "slot": "C",
+        "ovr": 81,
+        "wins": 0.38,
+        "priority": 0
+      },
+      {
+        "slot": "OG1",
+        "ovr": 80,
+        "wins": 1,
+        "priority": 1
+      },
+      {
+        "slot": "OG2",
+        "ovr": 78,
+        "wins": 0.63,
+        "priority": 1
+      },
+      {
+        "slot": "TE1",
+        "ovr": 84,
+        "wins": 0.62,
+        "priority": 0
+      },
+      {
+        "slot": "RB1",
+        "ovr": 78,
+        "wins": 0.62,
+        "priority": 0
+      },
+      {
+        "slot": "WR3",
+        "ovr": 79,
+        "wins": 0.25,
+        "priority": -1
+      },
+      {
+        "slot": "RB2",
+        "ovr": 71,
+        "wins": 0.25,
+        "priority": -1
+      },
+      {
+        "slot": "TE2",
+        "ovr": 72,
+        "wins": 0.37,
+        "priority": 0
+      },
+      {
+        "slot": "FB",
+        "ovr": 62,
+        "wins": 0.06,
+        "priority": 0
+      },
+      {
+        "slot": "TE3",
+        "ovr": 68,
+        "wins": 0.12,
+        "priority": 0
+      },
+      {
+        "slot": "WR4",
+        "ovr": 70,
+        "wins": 0.1,
+        "priority": 0
+      },
+      {
+        "slot": "DE1",
+        "ovr": 76,
+        "wins": 1.71,
+        "priority": 2
+      },
+      {
+        "slot": "DT1",
+        "ovr": 74,
+        "wins": 1.32,
+        "priority": 1
+      },
+      {
+        "slot": "DE2",
+        "ovr": 74,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DT2",
+        "ovr": 71,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DL5",
+        "ovr": 69,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "MIKE",
+        "ovr": 78,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "WILL",
+        "ovr": 76,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "SAM",
+        "ovr": 74,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "CB1",
+        "ovr": 80,
+        "wins": 1.06,
+        "priority": 1
+      },
+      {
+        "slot": "CB2",
+        "ovr": 77,
+        "wins": 0.66,
+        "priority": 1
+      },
+      {
+        "slot": "CB3",
+        "ovr": 72,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "DIME",
+        "ovr": 68,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "FS",
+        "ovr": 79,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "SS",
+        "ovr": 76,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "K",
+        "ovr": 76,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "P",
+        "ovr": 70,
+        "wins": 0.13,
+        "priority": 0
+      }
+    ],
+    "rpo": [
+      {
+        "slot": "QB",
+        "ovr": 92,
+        "wins": 2.54,
+        "priority": 4
+      },
+      {
+        "slot": "WR1",
+        "ovr": 91,
+        "wins": 1.61,
+        "priority": 1
+      },
+      {
+        "slot": "OT1",
+        "ovr": 85,
+        "wins": 1.25,
+        "priority": 1
+      },
+      {
+        "slot": "OT2",
+        "ovr": 82,
+        "wins": 0.75,
+        "priority": 1
+      },
+      {
+        "slot": "WR2",
+        "ovr": 86,
+        "wins": 0.99,
+        "priority": 2
+      },
+      {
+        "slot": "C",
+        "ovr": 81,
+        "wins": 0.38,
+        "priority": 0
+      },
+      {
+        "slot": "OG1",
+        "ovr": 80,
+        "wins": 1,
+        "priority": 1
+      },
+      {
+        "slot": "OG2",
+        "ovr": 78,
+        "wins": 0.63,
+        "priority": 1
+      },
+      {
+        "slot": "TE1",
+        "ovr": 84,
+        "wins": 0.62,
+        "priority": 3
+      },
+      {
+        "slot": "RB1",
+        "ovr": 78,
+        "wins": 0.62,
+        "priority": 2
+      },
+      {
+        "slot": "WR3",
+        "ovr": 79,
+        "wins": 0.25,
+        "priority": 0
+      },
+      {
+        "slot": "RB2",
+        "ovr": 71,
+        "wins": 0.25,
+        "priority": 0
+      },
+      {
+        "slot": "TE2",
+        "ovr": 72,
+        "wins": 0.37,
+        "priority": 0
+      },
+      {
+        "slot": "FB",
+        "ovr": 62,
+        "wins": 0.06,
+        "priority": 0
+      },
+      {
+        "slot": "TE3",
+        "ovr": 68,
+        "wins": 0.12,
+        "priority": 0
+      },
+      {
+        "slot": "WR4",
+        "ovr": 70,
+        "wins": 0.1,
+        "priority": 0
+      },
+      {
+        "slot": "DE1",
+        "ovr": 76,
+        "wins": 1.71,
+        "priority": 2
+      },
+      {
+        "slot": "DT1",
+        "ovr": 74,
+        "wins": 1.32,
+        "priority": 1
+      },
+      {
+        "slot": "DE2",
+        "ovr": 74,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DT2",
+        "ovr": 71,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DL5",
+        "ovr": 69,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "MIKE",
+        "ovr": 78,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "WILL",
+        "ovr": 76,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "SAM",
+        "ovr": 74,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "CB1",
+        "ovr": 80,
+        "wins": 1.06,
+        "priority": 1
+      },
+      {
+        "slot": "CB2",
+        "ovr": 77,
+        "wins": 0.66,
+        "priority": 1
+      },
+      {
+        "slot": "CB3",
+        "ovr": 72,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "DIME",
+        "ovr": 68,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "FS",
+        "ovr": 79,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "SS",
+        "ovr": 76,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "K",
+        "ovr": 76,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "P",
+        "ovr": 70,
+        "wins": 0.13,
+        "priority": 0
+      }
+    ],
+    "ground-pound": [
+      {
+        "slot": "QB",
+        "ovr": 92,
+        "wins": 2.54,
+        "priority": 3
+      },
+      {
+        "slot": "WR1",
+        "ovr": 91,
+        "wins": 1.61,
+        "priority": 0
+      },
+      {
+        "slot": "OT1",
+        "ovr": 85,
+        "wins": 1.25,
+        "priority": 1
+      },
+      {
+        "slot": "OT2",
+        "ovr": 82,
+        "wins": 0.75,
+        "priority": 1
+      },
+      {
+        "slot": "WR2",
+        "ovr": 86,
+        "wins": 0.99,
+        "priority": 1
+      },
+      {
+        "slot": "C",
+        "ovr": 81,
+        "wins": 0.38,
+        "priority": 0
+      },
+      {
+        "slot": "OG1",
+        "ovr": 80,
+        "wins": 1,
+        "priority": 1
+      },
+      {
+        "slot": "OG2",
+        "ovr": 78,
+        "wins": 0.63,
+        "priority": 1
+      },
+      {
+        "slot": "TE1",
+        "ovr": 84,
+        "wins": 0.62,
+        "priority": 2
+      },
+      {
+        "slot": "RB1",
+        "ovr": 78,
+        "wins": 0.62,
+        "priority": 4
+      },
+      {
+        "slot": "WR3",
+        "ovr": 79,
+        "wins": 0.25,
+        "priority": -1
+      },
+      {
+        "slot": "RB2",
+        "ovr": 71,
+        "wins": 0.25,
+        "priority": 2
+      },
+      {
+        "slot": "TE2",
+        "ovr": 72,
+        "wins": 0.37,
+        "priority": 0
+      },
+      {
+        "slot": "FB",
+        "ovr": 62,
+        "wins": 0.06,
+        "priority": 2
+      },
+      {
+        "slot": "TE3",
+        "ovr": 68,
+        "wins": 0.12,
+        "priority": 0
+      },
+      {
+        "slot": "WR4",
+        "ovr": 70,
+        "wins": 0.1,
+        "priority": 0
+      },
+      {
+        "slot": "DE1",
+        "ovr": 76,
+        "wins": 1.71,
+        "priority": 2
+      },
+      {
+        "slot": "DT1",
+        "ovr": 74,
+        "wins": 1.32,
+        "priority": 1
+      },
+      {
+        "slot": "DE2",
+        "ovr": 74,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DT2",
+        "ovr": 71,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DL5",
+        "ovr": 69,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "MIKE",
+        "ovr": 78,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "WILL",
+        "ovr": 76,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "SAM",
+        "ovr": 74,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "CB1",
+        "ovr": 80,
+        "wins": 1.06,
+        "priority": 1
+      },
+      {
+        "slot": "CB2",
+        "ovr": 77,
+        "wins": 0.66,
+        "priority": 1
+      },
+      {
+        "slot": "CB3",
+        "ovr": 72,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "DIME",
+        "ovr": 68,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "FS",
+        "ovr": 79,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "SS",
+        "ovr": 76,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "K",
+        "ovr": 76,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "P",
+        "ovr": 70,
+        "wins": 0.13,
+        "priority": 0
+      }
+    ],
+    "spread": [
+      {
+        "slot": "QB",
+        "ovr": 92,
+        "wins": 2.54,
+        "priority": 3
+      },
+      {
+        "slot": "WR1",
+        "ovr": 91,
+        "wins": 1.61,
+        "priority": 1
+      },
+      {
+        "slot": "OT1",
+        "ovr": 85,
+        "wins": 1.25,
+        "priority": 1
+      },
+      {
+        "slot": "OT2",
+        "ovr": 82,
+        "wins": 0.75,
+        "priority": 1
+      },
+      {
+        "slot": "WR2",
+        "ovr": 86,
+        "wins": 0.99,
+        "priority": 1
+      },
+      {
+        "slot": "C",
+        "ovr": 81,
+        "wins": 0.38,
+        "priority": 0
+      },
+      {
+        "slot": "OG1",
+        "ovr": 80,
+        "wins": 1,
+        "priority": 1
+      },
+      {
+        "slot": "OG2",
+        "ovr": 78,
+        "wins": 0.63,
+        "priority": 1
+      },
+      {
+        "slot": "TE1",
+        "ovr": 84,
+        "wins": 0.62,
+        "priority": 0
+      },
+      {
+        "slot": "RB1",
+        "ovr": 78,
+        "wins": 0.62,
+        "priority": 1
+      },
+      {
+        "slot": "WR3",
+        "ovr": 79,
+        "wins": 0.25,
+        "priority": 2
+      },
+      {
+        "slot": "RB2",
+        "ovr": 71,
+        "wins": 0.25,
+        "priority": 1
+      },
+      {
+        "slot": "TE2",
+        "ovr": 72,
+        "wins": 0.37,
+        "priority": 2
+      },
+      {
+        "slot": "FB",
+        "ovr": 62,
+        "wins": 0.06,
+        "priority": 0
+      },
+      {
+        "slot": "TE3",
+        "ovr": 68,
+        "wins": 0.12,
+        "priority": 0
+      },
+      {
+        "slot": "WR4",
+        "ovr": 70,
+        "wins": 0.1,
+        "priority": 1
+      },
+      {
+        "slot": "DE1",
+        "ovr": 76,
+        "wins": 1.71,
+        "priority": 2
+      },
+      {
+        "slot": "DT1",
+        "ovr": 74,
+        "wins": 1.32,
+        "priority": 1
+      },
+      {
+        "slot": "DE2",
+        "ovr": 74,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DT2",
+        "ovr": 71,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "DL5",
+        "ovr": 69,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "MIKE",
+        "ovr": 78,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "WILL",
+        "ovr": 76,
+        "wins": 0.39,
+        "priority": 0
+      },
+      {
+        "slot": "SAM",
+        "ovr": 74,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "CB1",
+        "ovr": 80,
+        "wins": 1.06,
+        "priority": 1
+      },
+      {
+        "slot": "CB2",
+        "ovr": 77,
+        "wins": 0.66,
+        "priority": 1
+      },
+      {
+        "slot": "CB3",
+        "ovr": 72,
+        "wins": 0.26,
+        "priority": 0
+      },
+      {
+        "slot": "DIME",
+        "ovr": 68,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "FS",
+        "ovr": 79,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "SS",
+        "ovr": 76,
+        "wins": 0.79,
+        "priority": 1
+      },
+      {
+        "slot": "K",
+        "ovr": 76,
+        "wins": 0.13,
+        "priority": 0
+      },
+      {
+        "slot": "P",
+        "ovr": 70,
+        "wins": 0.13,
+        "priority": 0
+      }
+    ]
+  },
+  "games": [
+    {
+      "name": "user-westcoast-vs-cpu-auto",
+      "seed": 20261113,
+      "homeScore": 42,
+      "awayScore": 21,
+      "q4StartDiff": 21,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 56,
+        "pass": 323,
+        "yards": 379,
+        "plays": 74,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 4,
+        "drives": 11,
+        "top": 1809,
+        "fgMade": 2,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 98,
+        "pass": 257,
+        "yards": 355,
+        "plays": 75,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 1,
+        "drives": 11,
+        "top": 1791,
+        "fgMade": 2,
+        "fgMissed": 0
+      }
+    },
+    {
+      "name": "user-westcoast-vs-cpu-auto",
+      "seed": 424242,
+      "homeScore": 30,
+      "awayScore": 26,
+      "q4StartDiff": 4,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 37,
+        "pass": 427,
+        "yards": 464,
+        "plays": 94,
+        "giveaways": 1,
+        "takeaways": 2,
+        "sacksTaken": 4,
+        "drives": 11,
+        "top": 2051,
+        "fgMade": 3,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 151,
+        "pass": 165,
+        "yards": 316,
+        "plays": 67,
+        "giveaways": 2,
+        "takeaways": 1,
+        "sacksTaken": 1,
+        "drives": 11,
+        "top": 1549,
+        "fgMade": 1,
+        "fgMissed": 1
+      }
+    },
+    {
+      "name": "user-westcoast-vs-cpu-auto",
+      "seed": 777001,
+      "homeScore": 9,
+      "awayScore": 21,
+      "q4StartDiff": -12,
+      "focusLog": [
+        {
+          "key": "go-for-2",
+          "label": "Automatic: go for 2",
+          "detail": "Trailing by two scores in the 4th — conversions go for 2 regardless of focus.",
+          "appliedInSim": false
+        },
+        {
+          "key": "fourth-down-aggression",
+          "label": "Automatic: aggressive fourth downs",
+          "detail": "Trailing in the 4th — difficult fourth downs are played, not punted.",
+          "appliedInSim": false
+        },
+        {
+          "key": "strat-override",
+          "label": "Automatic: pass tendency",
+          "detail": "Q4 situation overrides the plan (West Coast trigger) — the sim re-runs with the override.",
+          "appliedInSim": true
+        }
+      ],
+      "homeStats": {
+        "rush": 49,
+        "pass": 130,
+        "yards": 179,
+        "plays": 41,
+        "giveaways": 1,
+        "takeaways": 0,
+        "sacksTaken": 3,
+        "drives": 11,
+        "top": 1645,
+        "fgMade": 1,
+        "fgMissed": 1
+      },
+      "awayStats": {
+        "rush": 137,
+        "pass": 129,
+        "yards": 266,
+        "plays": 51,
+        "giveaways": 0,
+        "takeaways": 1,
+        "sacksTaken": 0,
+        "drives": 11,
+        "top": 1955,
+        "fgMade": 2,
+        "fgMissed": 1
+      }
+    },
+    {
+      "name": "user-groundpound-vs-cpu-deep",
+      "seed": 20261113,
+      "homeScore": 23,
+      "awayScore": 26,
+      "q4StartDiff": -3,
+      "focusLog": [
+        {
+          "key": "fourth-down-aggression",
+          "label": "Automatic: aggressive fourth downs",
+          "detail": "Trailing in the 4th — difficult fourth downs are played, not punted.",
+          "appliedInSim": false
+        }
+      ],
+      "homeStats": {
+        "rush": 74,
+        "pass": 246,
+        "yards": 320,
+        "plays": 65,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 4,
+        "drives": 10,
+        "top": 1762,
+        "fgMade": 0,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 83,
+        "pass": 278,
+        "yards": 361,
+        "plays": 74,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 2,
+        "drives": 10,
+        "top": 1838,
+        "fgMade": 1,
+        "fgMissed": 0
+      }
+    },
+    {
+      "name": "user-groundpound-vs-cpu-deep",
+      "seed": 424242,
+      "homeScore": 23,
+      "awayScore": 22,
+      "q4StartDiff": 1,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 49,
+        "pass": 304,
+        "yards": 353,
+        "plays": 71,
+        "giveaways": 1,
+        "takeaways": 3,
+        "sacksTaken": 3,
+        "drives": 11,
+        "top": 1917,
+        "fgMade": 3,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 131,
+        "pass": 161,
+        "yards": 292,
+        "plays": 59,
+        "giveaways": 3,
+        "takeaways": 1,
+        "sacksTaken": 1,
+        "drives": 11,
+        "top": 1683,
+        "fgMade": 2,
+        "fgMissed": 1
+      }
+    },
+    {
+      "name": "user-groundpound-vs-cpu-deep",
+      "seed": 777001,
+      "homeScore": 12,
+      "awayScore": 20,
+      "q4StartDiff": -8,
+      "focusLog": [
+        {
+          "key": "go-for-2",
+          "label": "Automatic: go for 2",
+          "detail": "Trailing by two scores in the 4th — conversions go for 2 regardless of focus.",
+          "appliedInSim": false
+        },
+        {
+          "key": "fourth-down-aggression",
+          "label": "Automatic: aggressive fourth downs",
+          "detail": "Trailing in the 4th — difficult fourth downs are played, not punted.",
+          "appliedInSim": false
+        }
+      ],
+      "homeStats": {
+        "rush": 64,
+        "pass": 124,
+        "yards": 188,
+        "plays": 47,
+        "giveaways": 1,
+        "takeaways": 0,
+        "sacksTaken": 3,
+        "drives": 13,
+        "top": 1691,
+        "fgMade": 2,
+        "fgMissed": 2
+      },
+      "awayStats": {
+        "rush": 115,
+        "pass": 130,
+        "yards": 245,
+        "plays": 50,
+        "giveaways": 0,
+        "takeaways": 1,
+        "sacksTaken": 0,
+        "drives": 13,
+        "top": 1909,
+        "fgMade": 2,
+        "fgMissed": 0
+      }
+    },
+    {
+      "name": "user-rpo-vs-cpu-auto-noauto",
+      "seed": 20261113,
+      "homeScore": 41,
+      "awayScore": 20,
+      "q4StartDiff": 18,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 61,
+        "pass": 302,
+        "yards": 363,
+        "plays": 70,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 4,
+        "drives": 10,
+        "top": 1978,
+        "fgMade": 2,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 98,
+        "pass": 257,
+        "yards": 355,
+        "plays": 72,
+        "giveaways": 1,
+        "takeaways": 1,
+        "sacksTaken": 1,
+        "drives": 10,
+        "top": 1622,
+        "fgMade": 2,
+        "fgMissed": 0
+      }
+    },
+    {
+      "name": "user-rpo-vs-cpu-auto-noauto",
+      "seed": 424242,
+      "homeScore": 28,
+      "awayScore": 25,
+      "q4StartDiff": -4,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 40,
+        "pass": 388,
+        "yards": 428,
+        "plays": 87,
+        "giveaways": 1,
+        "takeaways": 2,
+        "sacksTaken": 4,
+        "drives": 11,
+        "top": 1952,
+        "fgMade": 2,
+        "fgMissed": 0
+      },
+      "awayStats": {
+        "rush": 151,
+        "pass": 165,
+        "yards": 316,
+        "plays": 63,
+        "giveaways": 2,
+        "takeaways": 1,
+        "sacksTaken": 1,
+        "drives": 11,
+        "top": 1648,
+        "fgMade": 3,
+        "fgMissed": 1
+      }
+    },
+    {
+      "name": "user-rpo-vs-cpu-auto-noauto",
+      "seed": 777001,
+      "homeScore": 11,
+      "awayScore": 21,
+      "q4StartDiff": -10,
+      "focusLog": [],
+      "homeStats": {
+        "rush": 52,
+        "pass": 132,
+        "yards": 184,
+        "plays": 42,
+        "giveaways": 1,
+        "takeaways": 0,
+        "sacksTaken": 3,
+        "drives": 10,
+        "top": 1831,
+        "fgMade": 1,
+        "fgMissed": 1
+      },
+      "awayStats": {
+        "rush": 137,
+        "pass": 129,
+        "yards": 266,
+        "plays": 53,
+        "giveaways": 0,
+        "takeaways": 1,
+        "sacksTaken": 0,
+        "drives": 10,
+        "top": 1769,
+        "fgMade": 0,
+        "fgMissed": 0
+      }
+    }
+  ],
+  "autoExamples": {
+    "leading": "ground-pound",
+    "trailingBig": "deep-passing",
+    "closeStrongFront": "west-coast",
+    "closeStrongCov": "rpo"
+  }
+}
