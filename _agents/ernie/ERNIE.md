@@ -4,86 +4,73 @@
 
 You were restarted with the standard prompt (`START-HERE` → follow it exactly). Do this, in order, and you are current:
 
-1. `git fetch -q origin` then the **step 0** checkout from `START-HERE` §1 (four governance docs). If `START-HERE` has no step 0, you are on a stale copy: `git show origin/council/muse:_agents/START-HERE.md` is live.
+1. `git fetch -q origin` then the **step 0** checkout from `START-HERE` §1 (four governance docs). Verified 2026-11-14T08:26Z: all four were already identical to `origin/council/muse` (blob ids `ab4133bb` / `657db676` / `def229c0` / `743526a8`), so step 0 is a no-op on this branch now — run it anyway.
 2. Read this file to the end. It is the handover: what is measured, what is open, what not to redo.
-3. Read the two working documents — **they are already in your worktree, you do not need their paths from anyone:**
+3. Read the two working documents — they are in your worktree:
    - `_agents/ernie/deliveries/council-work-request-fwtest-v3-support-2026-11-14.md` (WR-1…WR-10)
    - `_agents/ernie/deliveries/fwtest-ledger-2026-11-14.md` (append-only; append your row, never edit another seat's)
-   One command that lists every handover document in this lane: `ls _agents/ernie/*.md _agents/ernie/deliveries/`
 4. If either file is missing you are behind your own branch: `git fetch -q origin && git checkout origin/council/ernie -- _agents/ernie/ && git log --oneline -3 origin/council/ernie`.
-5. Then take the first open WR (§Current state) and file it as `inbox/<UTC>-ernie-WR-<n>-<slug>.md` with `INTAKE: WR-<n> · ERNIE · <UTC>`.
+5. Then take the first open WR and file it as `inbox/<UTC>-ernie-WR-<n>-<slug>.md` with `INTAKE: WR-<n> · ERNIE · <UTC>`.
 
 Nothing else is needed to resume. Do not ask for a document list; the lane names its own.
 
 ## Identity
 - **Seat:** ERNIE · **Model / how reached:** ERNIE / API (kilo gateway) · **State:** advisor (admitted by the Owner 2026-11-13)
-- **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. This session I refuted my own earlier root cause and INKLING's, with receipts, in the same filing.
+- **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. Four sessions running; every WR closed with a receipt, every withdrawal mine.
 - **Standing rule I run on:** four lines per claim (cwd · command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-14T02:58Z)
-- **Nothing in progress.** Branch tip `89031ec5`, all pushed to `origin/council/ernie`.
-- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3, WR-4, WR-5, WR-6 (review), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2, **and the Z.ai v3 review**.
-- **Still open, mine:** WR-7 (goldens' home — 41 vs 43 files, no arm can run them), WR-10 (falsifiers).
-- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started).
+## Current state (2026-11-14T08:40Z)
+- **Nothing in progress.** Branch tip **`9faf9d6e`**, all pushed to `origin/council/ernie`.
+- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3 (twice: additive tie + shape candidates), WR-4, WR-5, WR-6, WR-7 (**closed today**), WR-10 (**closed today**), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2, the Z.ai v3 review, BENCH-1 audit, BENCH-2 work orders (library test + product round).
+- **Still open, mine:** nothing assigned to me by name — the queue is the queue. The *substance* still open: (a) the WR-3 reactivity specimen, (b) offline on next/nuxt/solidstart, (c) the `@solidjs/start` failing line, (d) whether arm-lit belongs in the set.
+- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started), WR-9 (needs an Owner ruling).
+
+## Session 4 — WR-7 + WR-10 closed (2026-11-14, tip `9faf9d6e`)
+
+15. **WR-7 closed — the goldens run inside an arm** (`inbox/20261114-0833-ernie-WR-7-goldens-home.md`, commit `8560e2ff`). The delta is exactly `{tools/golden.ts, tools/tsc-baseline.mjs}` (`comm` on all nine arms; `diff -rq` shows the rest is a byte-identical copy). Vendoring the two at `src/engine-contract/tools/` + three scripts makes the arm run the goldens: **`0ccb6319…f3f5` before == after, twice** — byte-identical to the contract tree. `tsc-baseline.mjs` → `exit 0, "OK: 69 errors (pinned 69)"`.
+    - **The finding that outranks the WR:** the contract's 69-error ratchet is **vendored into all nine arms and executed by none of them**. `tsc-baseline.json` is byte-identical in every arm, `tsc-baseline.mjs` is in none, and the arm tsconfigs either exclude the contract (svelte `tsconfig.app.json:24`, nuxt `app/engine-contract`) or turn `strict` off citing the 69 (next `tsconfig.json:11-15`). arm-solid/arm-lit ship no typecheck script at all. So every arm's typecheck column measures the arm only.
+    - Re-verified from the arm's own bytes with a probe tsconfig: **69 errors, per-file counts identical to the contract tree, 5/5 runs; the two tools add 0 errors**. Arm typecheck and build unchanged by the patch (svelte-check 0/0 both ways, `tsc -p tsconfig.node.json` 0, `npm run build` 0, 68.79 kB JS).
+    - Cost: **2 files, 6,224 B**, 0 new dependencies (`golden.ts` 2,696 B · `tsc-baseline.mjs` 3,528 B).
+    - Recommendation filed: **vendor (Option A)**, not "amend the protocol" — the contract tree ships with no arm, so a consumer holding an arm cannot run the gate at all.
+
+16. **WR-10 closed — falsifiers per contender** (`inbox/20261114-0836-ernie-WR-10-falsifiers.md`, commit `9faf9d6e`). Two senses of "contender" separated (the nine arms vs the two the Owner chooses between). Six falsifiers stated as measurements; **four are unanswerable from the v3 set** (F1 1,000-row board, F2 agent defect rate, F4 shaped reactivity specimen, plus the sveltekit router layer and the solidstart failing line). The two that *are* answerable both come back as **no signal / build step** — offline is 5/9 with one plugin, the modification column has tied at zero three times.
+    - F1 is the Architect's own falsifier (`d3bd81d2`); F2 is his second; F3 (offline as a product gate) and F4 (modification column) are mine. Both missing measurements are **already specified** in my BENCH-2 work orders — they need a builder with the harness, not a new idea.
 
 ## Session 3 — Z.ai fwtest v3 (2026-11-14, tip `89031ec5`)
 
-14. **Vendored + reviewed Z.ai's v3 nine-arm delivery** (`inbox/20261114-0255-…`, vendor commit `85f45f91`). Full copy readable at `_agents/ernie/deliveries/zai-fwtest9-2026-11-14/` (754 files, 5.7 MB).
-    - **Manifest 753/753, 0 missing, 0 mismatch** — first completely-verifying manifest of the wave (v2: 537/2 absent; INKLING solid-lit: self-hash). Fixed structurally by generating from the frozen zip.
-    - **Contract 9/9** (41 files, `diff -rq` 0 lines) · **goldens 9/9** (`0ccb6319…f3f5`, incl. canonical) · **round-2 before/after pairs 9/9 identical** — the manifest-pair protocol I asked for in Part A, shipped as files.
-    - **arm-solidstart 0/5 → 5/5 reproduced by me**: `@solidjs/start ^2.2.2` + `@solidjs/router ^1.0.3` + `vite ^8`, vinxi gone; SSR HTML now 7,646 B / **69 testids** (was 1,852 B / 0); build exit 0; **spec 5/5**.
-    - **My WR-4 cause is subsumed.** Z.ai's bisect: *"`@solidjs/start` 1.x SSR-renders empty for ANY Router app"* — same observation as my instrumentation (`Home()` never called server-side), better diagnosis, and a **fix that keeps SSR**. **I withdraw `ssr:false` as a repair** (still valid as a diagnostic only). They also moved the CSS import to `app.tsx` citing my hydration receipt — my causal story was wrong, the observation was right.
-    - **file:// row is mis-specified, not wrong.** Z.ai: "5 plain-Vite arms BLOCKED (as shipped)". Me: those 5 PASS with a single-file build. Both true — **two halves of one sentence.** Digest line: *as shipped 0/9 · with single-file 5/9 (svelte, vue, react, solid, lit) · sveltekit structural exception (assets inline, router still fetches `/_app/version.json`) · next/nuxt/solidstart untested.*
-    - **Second axis ties at zero — third confirmation.** Z.ai: "9/9 one-file, does not discriminate". Mine (WR-3): 2 files / 8 lines on two arms. Two seats, different specimens, same conclusion.
-    - Notes: their pin `208738ec` "unfetchable" is **machine-specific** — `git cat-file -e 208738ec` exists in this repo (and `9d93e533` too). They ran on **node v24.22.3** (the Owner's pin) vs my v26.13.0 → **v3 is the better basis for digest numbers**; my "Node 26" caveat stays true only for v2/inkling arms. Typecheck is still per-arm flags → **use delta, never absolute.**
-    - I re-ran: manifest, contract, goldens, round-2 pairs, solidstart (build + SSR + 5/5), spec fix, deps, the unfetchable-pin check. I did **not** re-run the other 8 arms' suites, the leakage audit, or the typechecks — said so explicitly.
+13b. **Vendored + reviewed Z.ai's v3 nine-arm delivery** (`inbox/20261114-0255-…`, vendor commit `85f45f91`). Full copy readable at `_agents/ernie/deliveries/zai-fwtest9-2026-11-14/` (754 files, 5.7 MB).
+    - **Manifest 753/753, 0 missing, 0 mismatch** — first completely-verifying manifest of the wave. Fixed structurally by generating from the frozen zip.
+    - **Contract 9/9** (41 files, `diff -rq` 0 lines) · **goldens 9/9** (`0ccb6319…f3f5`, incl. canonical) · **round-2 before/after pairs 9/9 identical**.
+    - **arm-solidstart 0/5 → 5/5 reproduced by me**: `@solidjs/start ^2.2.2` + `@solidjs/router ^1.0.3` + `vite ^8`, vinxi gone; SSR HTML 7,646 B / **69 testids**; build exit 0; **spec 5/5**.
+    - **file:// row is mis-specified, not wrong.** Digest line: *as shipped 0/9 · with single-file 5/9 (svelte, vue, react, solid, lit) · sveltekit structural exception · next/nuxt/solidstart untested.*
+    - Notes: their pin `208738ec` "unfetchable" is **machine-specific** (`git cat-file -e 208738ec` exists here). They ran node v24.22.3 (the Owner's pin) vs my v26.13.0 → **v3 is the better basis for digest numbers**. Typecheck is per-arm flags → **use delta, never absolute.**
 
 ## Session 2 additions (2026-11-14, tip `cca94d8f`)
 
-10. **WR-2 extended — offline is 5 of 9, not 0 of 9 and not 2 of 2** (`inbox/20261114-0205-…`, `51f4cadc`). Added arm-react (252 kB), arm-solid (47 kB), arm-lit (48 kB) — all single-file, all **5/5 from `file://`**, 0 console errors. **arm-sveltekit is a structural exception with two layers:** `viteSingleFile()` is a **no-op** on SvelteKit (its adapter writes the HTML, so the plugin never sees it), but SvelteKit's own `kit.output.bundleStrategy='inline'` fixes the asset layer (110 kB, 0 external refs). The **router** still fails: `Not found: /var/…/index.html` and `Fetch API cannot load file:///_app/version.json`. `paths.relative: true` changes nothing. **Not fixable by config as far as I got.** next/nuxt/solidstart untested (non-Vite).
-11. **Container is not uniform** (same filing): `#app` ×5, **`#root` (arm-react)**, **`<framework-arm>` (arm-lit)**. `#app.children.length` returns `-1` (absent) for two arms — never read `-1` as "rendered nothing". My own §2 receipt shape is corrected to "root container children — name the container".
-12. **WR-3 — the additive specimen ties** (`inbox/20261114-0225-…`, `313ed16e`). Added a **required** `risk: 'low'|'med'|'high'` axis to `FocusDef` + all 5 focuses, rendered in the picker. arm-svelte and arm-lit both: **2 files, 8 lines, 0 unrelated files, 0 new type errors** (svelte-check 0/0 both ways; lit tsc 73 → 73), both **5/5 spec still green**, risk renders 5/5 with 3 distinct values. **Third tie at zero for the modification column** → it has no discriminating power. **Next specimen must use control flow or reactivity (WR-3 option b: halftime eligibility computed from per-focus data and re-rendered live) — not another additive field.**
-13. **Deliberately not started:** the P0 October reviews (P-141…P-151). Half-running a review chain is worse than not starting it; they remain open to any seat per the queue's rules.
+10. **WR-2 extended — offline is 5 of 9.** arm-react (252.09 kB), arm-solid (47.34 kB), arm-lit (47.79 kB) — all single-file, all **5/5 from `file://`**, 0 console errors. arm-sveltekit is a structural exception: `bundleStrategy='inline'` fixes the asset layer (110,299 B, 0 external refs), the router still fetches `/_app/version.json`. next/nuxt/solidstart untested (non-Vite).
+11. **Container is not uniform** — `#app` ×5, **`#root` (arm-react)**, **`<framework-arm>` (arm-lit)**. `#app.children.length` returns `-1` (absent) for two arms.
+12. **WR-3 — the additive specimen ties** — 2 files / 8 lines / 0 unrelated / 0 new type errors on svelte *and* lit. Third tie at zero → the column has no discriminating power. **Next specimen must use control flow or reactivity.**
 
 ## What the next session needs
-- **Do, in this order:** WR-7 (goldens' home) → WR-10 (falsifiers). Both are one-sitting jobs.
-- **Then, if budget allows:** the WR-3 reactivity specimen on 3+ arms (it is the only thing that can rescue the modification column), and offline on next/nuxt/solidstart (needs a per-framework mechanism, not a Vite plugin).
-- **Do NOT redo:** anything in the list above with a receipt — especially: the additive WR-3 specimen (provably non-discriminating), the six-arm offline run, the solidstart causes, the A3 script run, the w89 hashes.
-- **Standing:** no framework pick, no ranking, no elimination; the modification column stays **no signal** until a shaped specimen exists; `file://` is my lane, not a framework score.
-
-## What this session established (all pushed, all with receipts)
-
-1. **WR-1 — arm-solid and arm-lit measured** (`inbox/20261113-2320-…`, `6a84391e`). Both 5/5, both offline-blocked, identical 41-file contract (`265ea8c6…`), `FOCUSES` read live. Neither ships a typecheck; both `tsc` runs report 143 contract-wide errors from config, not code.
-2. **WR-2 — offline is a build step, not a framework axis** (`inbox/20261113-2340-…`, `30982ac4`). `vite-plugin-singlefile@2.3.4` + `cssCodeSplit:false` + `assetsInlineLimit:100_000_000` → arm-svelte and arm-vue emit **one** HTML file (74 / 95 kB), render from `file://` with 0 console errors, **5/5 each**, and a lone `index.html` in an empty directory works.
-3. **WR-4 / WR-5 — SolidStart: both filed causes refuted** (`inbox/20261114-0005-…`, `-0010-…`, `309990ca`). My CSS-import cause **withdrawn by my own test**; INKLING's routes-path cause refuted (module loads both sides, client calls `Home()`, manifest carries the route, `getRequestEvent().routes` = 1). **Measured: the route's lazy component never resolves during SSR.** `ssr:false` → 5/5, 69 testids, 32 rows (costs SSR).
-4. **WR-G2 — 8-stack coverage map** (`inbox/20261114-0025-…`, `c4294c75`). All 8 Owner stacks measured; the 9 arms are 8 stacks **plus arm-lit**, the only arm whose root is not `#app`.
-5. **Phase 1 — corrections + byte-check** (`inbox/20261114-0110-…`, `6e2a2426`). My 14 filings re-run: no `.svelte` claim, no RNG claim. Measured: `.svelte` = **15 on gh-pages, 0 in `colors/` (111 files, all TS), 6 on council/muse, 10 unreproducible**. RNG: pin `4ca9a071` = mulberry32 in `rng.ts`, **no `keyedrng.ts`**; tip `bebe8e0b` = `keyedrng.ts` with 7 Philox hits. **Tautology `|| true` located at line 75 on three refs**, replacement snippet filed (not applied — `colors/` is the Architect's). F3 quote verified exact.
-6. **A3/A4 notes to everyone** (`inbox/20261114-0115-…`, `6e2a2426`). A3's checker **runs green: exit 0, all 11 rows** (C>OG 5.13→6, OLB>FS 11.74→12, FB>TE 4.74→6). A4's corrected sentence is self-consistent and **the kill survives** (`beats_both: []`). Two questions to the Owner; nothing applied.
-7. **Phase 5 — cross-side design note** (`inbox/20261114-0130-…`, `ed7ebe1a`). Price from `FLEX` (no new constant); **flagged ambiguity: "−6 or less" excludes a QB at −10, contradicting the blessed QB→FS flex**; must use the keyed RNG; must be an **event, not state** (no save migration).
-8. **Directives 21/24/26 audit** (`inbox/20261114-0135-…`, `ed7ebe1a`). Lit is 1 of the Owner's 10 names; 6 frameworks + 3 test runners have **no bytes**; **11 of 12 fluctuation items are bench-side** and cannot be advanced by the framework fixture; **`.nvmrc` absent everywhere and no `engines` block — every run this wave was Node 26, not the Owner's 24**.
-9. **Phase 8.2 — w89 investigation** (`inbox/20261114-0145-…`, `abd7130b`). Live `index.html` md5 `8efa9099…` (1,922,769 B, title `20-0`) **matches no archived build** (w44/49/51/56/57, `w85 (2)`, `pre-w85` all differ) → "live = w85" is not byte-verifiable. **0 localStorage keys on a fresh visit.** **One Draft click = 8,808 `Math.random` calls, 2 `Date.now`** → unseeded; sizes `T-20261022-claude-2` and forbids w89 before/after claims. 0 `data-testid`, no tests.
-
-## What the next session needs
-- **Do, in this order:** WR-3 (fixture hardening — a *shape* change: a second axis, a sub-heading, or halftime eligibility computed from data) → WR-7 (goldens' home; 41 vs 43 files) → WR-10 (falsifiers per contender).
-- **Two cheap follow-ups if anyone wants them:** (a) single-file the **six** untested stacks (sveltekit, react, next, nuxt, solidstart, lit) — the only offline cases left; (b) find the exact `@solidjs/start@1.5.1` line where the lazy route fails to resolve (needs a dependency patch in scratch).
-- **Do NOT redo:** P-207; P-344 nflverse; P-345 λ; the sixth-focus zero-tie; the five-arm spec/build runs; solidstart's blank page; the CHECKSUMS gap; the CSS-import fix (refuted); the routes-path claim (refuted); any re-measurement of arm-solid / arm-lit / the single-file build; the A3 script run; the w89 hashes. All have receipts.
+- **Do, in this order:** (1) the WR-3 reactivity specimen on 3+ arms — halftime eligibility computed from per-focus data, re-rendered live. It is the only thing that can rescue the modification column, and WR-10 says the memo cannot rank without it. (2) offline on next/nuxt/solidstart — needs a per-framework mechanism, not a Vite plugin. (3) the `@solidjs/start` lazy-route line, in a dependency patch under scratch.
+- **Do NOT redo:** anything with a receipt — the additive WR-3 specimen (provably non-discriminating), the six-arm offline run, the solidstart causes, the A3 script run, the w89 hashes, **the WR-7 file counts and the WR-10 falsifier page (both closed today)**, INKLING's withdrawn "43 files never vendored" claim.
+- **Standing:** no framework pick, no ranking, no elimination; the modification column stays **no signal**; `file://` is my lane, not a framework score.
 
 ## Environment notes (so the next session does not rediscover them)
 - Worktree `/Users/kosi/Desktop/wt/ernie`, branch `council/ernie`. Never edit the Owner's shared tree; never push anything but `council/ernie`; never force-push; never stash.
-- Scratch: `git archive <ref> -- <path> | tar -x -C /var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/kilo/<name>`. Node **v26.13.0**, npm 11.20.0, Playwright **1.64.1** (cached chromium). `@playwright/test` is not global: `mkdir pwrun && npm i -D @playwright/test@1.64.1`, then `BASE_URL=… npx playwright test`.
-- **Use `background_process start` for servers**, not `nohup … &`. Plain `&` produced an empty log and a server that never listened.
-- **`council/beam` is a moving branch.** It went `04cefbf5` → `16cf4629` mid-session (someone pushed). Always cite the sha you extracted at, and re-check `git rev-parse` before quoting a beam ref.
-- macOS `shasum -c` mis-parses INKLING's `CHECKSUMS.txt` (reports all entries unreadable). Verify manifests with an explicit Python recompute instead.
-- Playwright `serve`-based previews hardcode `-l 4173`; spawn your own port.
-- Push gotcha: the shared repo is shallow — a plain push can be rejected with `missing necessary objects`. Fix: `git push --no-thin origin council/<seat>`. Do not `--unshallow`, do not force-push.
+- Scratch: `git archive <ref> -- <path> | tar -x -C /var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/kilo/<name>`. Node **v26.13.0**, npm 11.20.0, Playwright **1.64.1**.
+- **Use `background_process start` for servers**, not `nohup … &`.
+- **`council/beam` is a moving branch** — always cite the sha you extracted at.
+- macOS `shasum -c` mis-parses INKLING's `CHECKSUMS.txt`; verify manifests with an explicit Python recompute.
+- Push gotcha: the shared repo is shallow — use `git push --no-thin origin council/ernie`. Do not `--unshallow`, do not force-push.
+- `tools/hooks/pre-commit` is not executable here, so git prints "hook was ignored" on every commit. Harmless; do not chmod it.
 
 ## Open questions I could not close (carry them)
-1. **The exact `@solidjs/start` line** where the SSR lazy route fails to resolve. Named as far as the bytes allow; not attributed further.
-2. **Six stacks' offline behaviour** (sveltekit, react, next, nuxt, solidstart, lit) — untested; only the two Vite arms were single-filed.
-3. **Where the goldens run** — 41 vs 43 files; no arm can run them from inside (WR-7).
-4. **The modification column** — still a tie at zero; needs a shape change (WR-3).
-5. **Typecheck comparability** — no standard config exists across the nine arms.
-6. **Whether arm-lit belongs in the set at all.** The Owner named 8 stacks; the wave has 9 arms.
+1. **The exact `@solidjs/start` line** where the SSR lazy route fails to resolve.
+2. **Six stacks' offline behaviour** (sveltekit partially, next, nuxt, solidstart, react/solid/lit done) — non-Vite arms need a per-framework mechanism.
+3. **The modification column** — still a tie at zero; needs a shape change (WR-3 option b).
+4. **Typecheck comparability** — no standard config across the nine arms; and now: the 69-pin is vendored but never run.
+5. **Whether arm-lit belongs in the set at all** (Owner named 8 stacks; the wave has 9 arms).
 
 ## Role
 General advisor. Propose, test, dissent, measure. I never edit the product file, governance docs or the queue; proposals go to `inbox/`, terminal states are proposed with evidence, never moved. I do not review my own work.
