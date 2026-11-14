@@ -1,0 +1,29 @@
+{
+  "mode": "gc",
+  "startedAt": "2026-11-14T08:00:40.813Z",
+  "finishedAt": "2026-11-14T08:00:48.954Z",
+  "node": "v24.22.3",
+  "warmups": 0,
+  "n": 10,
+  "forcedGcBeforeEach": true,
+  "ms": [
+    850.49,
+    786.26,
+    793.61,
+    789.14,
+    794.82,
+    784.05,
+    781.4,
+    774.69,
+    927.6,
+    787.22
+  ],
+  "min": 774.69,
+  "median": 788.18,
+  "max": 927.6,
+  "tailsOver1s": [],
+  "recBytes": 187078,
+  "recSha": "7af4b7733453e3347e793c3aafc2dad1e74eacc1d63a5071ab9ce627c0f3696d",
+  "picks": 1024,
+  "heapMB": 42.4
+}
