@@ -1,0 +1,12 @@
+[2026-11-13T22:33:36Z] $ cd /home/z/my-project/work/v3/fwtest-9/arm-nuxt && npm ci --no-audit --no-fund 
+
+> arm-nuxt@0.0.0 postinstall
+> nuxt prepare
+
+◆ Types generated in .nuxt.
+
+added 597 packages in 6s
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.

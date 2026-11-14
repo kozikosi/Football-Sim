@@ -1,0 +1,42 @@
+{
+ "cells": {
+  "divisional_POST": {
+   "ci95": [
+    0.0,
+    0.4615
+   ],
+   "n": 13,
+   "upset_rate": 0.2308
+  },
+  "divisional_REG": {
+   "ci95": [
+    0.3451,
+    0.4134
+   ],
+   "n": 762,
+   "upset_rate": 0.3793
+  },
+  "non-divisional_POST": {
+   "ci95": [
+    0.2752,
+    0.4587
+   ],
+   "n": 109,
+   "upset_rate": 0.367
+  },
+  "non-divisional_REG": {
+   "ci95": [
+    0.3388,
+    0.389
+   ],
+   "n": 1396,
+   "upset_rate": 0.3639
+  }
+ },
+ "definition": {
+  "favorite": "higher season-to-date net points per game entering the week (>=3 games played each, no leakage)",
+  "rivalry_proxy": "divisional matchup (post-2002 division map, INFERRED \u2014 the staging carries no division flag)",
+  "upset": "the pre-game underdog wins"
+ },
+ "divisional_minus_nondivisional_upset_rate_REG": 0.0154
+}

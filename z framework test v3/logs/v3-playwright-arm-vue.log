@@ -1,0 +1,28 @@
+arm-vue ready (HTTP 200 after 1s, port 4172)
+
+Running 5 tests using 1 worker
+
+(node:6365) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  5 passed (1.9s)
+playwright exit: 0
+arm-vue ready (HTTP 200 after 1s, port 4172)
+
+Running 5 tests using 1 worker
+
+(node:10552) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  5 passed (1.8s)
+playwright exit: 0

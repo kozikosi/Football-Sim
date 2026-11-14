@@ -1,0 +1,175 @@
+{
+  "round": "v3 (third reflow)",
+  "arm_owned_drift": {
+    "arm-react": "ZERO",
+    "arm-vue": "ZERO",
+    "arm-svelte": "ZERO",
+    "arm-sveltekit": "ZERO",
+    "arm-next": "ZERO",
+    "arm-nuxt": "ZERO",
+    "arm-solid": "ZERO",
+    "arm-lit": "ZERO",
+    "arm-solidstart": "ZERO"
+  },
+  "arms": {
+    "arm-react": {
+      "loc_code": 335,
+      "loc_all_src": 914,
+      "files_arm_owned": 19
+    },
+    "arm-vue": {
+      "loc_code": 230,
+      "loc_all_src": 679,
+      "files_arm_owned": 18
+    },
+    "arm-svelte": {
+      "loc_code": 257,
+      "loc_all_src": 993,
+      "files_arm_owned": 17
+    },
+    "arm-sveltekit": {
+      "loc_code": 261,
+      "loc_all_src": 310,
+      "files_arm_owned": 10
+    },
+    "arm-next": {
+      "loc_code": 361,
+      "loc_all_src": 587,
+      "files_arm_owned": 15
+    },
+    "arm-nuxt": {
+      "loc_code": 239,
+      "loc_all_src": 284,
+      "files_arm_owned": 9
+    },
+    "arm-solid": {
+      "loc_code": 233,
+      "loc_all_src": 631,
+      "files_arm_owned": 8
+    },
+    "arm-lit": {
+      "loc_code": 208,
+      "loc_all_src": 606,
+      "files_arm_owned": 9
+    },
+    "arm-solidstart": {
+      "loc_code": 302,
+      "loc_all_src": 363,
+      "files_arm_owned": 8
+    }
+  },
+  "builds": {
+    "arm-react": {
+      "exit": 0,
+      "seconds": 0.77
+    },
+    "arm-vue": {
+      "exit": 0,
+      "seconds": 3.83
+    },
+    "arm-svelte": {
+      "exit": 0,
+      "seconds": 0.73
+    },
+    "arm-sveltekit": {
+      "exit": 0,
+      "seconds": 4.39
+    },
+    "arm-next": {
+      "exit": 0,
+      "seconds": 2.91
+    },
+    "arm-nuxt": {
+      "exit": 0,
+      "seconds": 3.8
+    },
+    "arm-solid": {
+      "exit": 0,
+      "seconds": 0.77
+    },
+    "arm-lit": {
+      "exit": 0,
+      "seconds": 0.38
+    },
+    "arm-solidstart": {
+      "exit": 0,
+      "seconds": 2.97
+    }
+  },
+  "second_axis": {
+    "arm-react": {
+      "host_file": "src/App.tsx",
+      "indicator": "1 file",
+      "note": "focus conditional lives beside the FOCUSES cards; 1 file touched"
+    },
+    "arm-vue": {
+      "host_file": "src/App.vue",
+      "indicator": "1 file",
+      "note": "single SFC: template branch + handler; 1 file touched"
+    },
+    "arm-svelte": {
+      "host_file": "src/App.svelte",
+      "indicator": "1 file",
+      "note": "single component: {#if} branch; 1 file touched"
+    },
+    "arm-sveltekit": {
+      "host_file": "src/routes/+page.svelte",
+      "indicator": "1 file",
+      "note": "page component branch; 1 file touched"
+    },
+    "arm-next": {
+      "host_file": "src/app/page.tsx",
+      "indicator": "1 file",
+      "note": "page component branch; 1 file touched"
+    },
+    "arm-nuxt": {
+      "host_file": "app/app.vue",
+      "indicator": "1 file",
+      "note": "single SFC branch; 1 file touched"
+    },
+    "arm-solid": {
+      "host_file": "src/index.tsx",
+      "indicator": "1 file",
+      "note": "<Show> branch; 1 file touched (INKLING-authored)"
+    },
+    "arm-lit": {
+      "host_file": "src/app-element.ts",
+      "indicator": "1 file",
+      "note": "render-if branch in the element template; 1 file touched (INKLING-authored)"
+    },
+    "arm-solidstart": {
+      "host_file": "src/routes/index.tsx",
+      "indicator": "1 file",
+      "note": "<Show> branch; 1 file touched"
+    }
+  },
+  "contract_resync": {
+    "arm-react": "IDENTICAL-EXIT-0",
+    "arm-vue": "IDENTICAL-EXIT-0",
+    "arm-svelte": "IDENTICAL-EXIT-0",
+    "arm-sveltekit": "IDENTICAL-EXIT-0",
+    "arm-next": "IDENTICAL-EXIT-0",
+    "arm-nuxt": "IDENTICAL-EXIT-0",
+    "arm-solid": "IDENTICAL-EXIT-0",
+    "arm-lit": "IDENTICAL-EXIT-0",
+    "arm-solidstart": "IDENTICAL-EXIT-0"
+  },
+  "leakage": {
+    "arm-react": [],
+    "arm-vue": [],
+    "arm-svelte": [],
+    "arm-sveltekit": [],
+    "arm-next": [],
+    "arm-nuxt": [],
+    "arm-solid": [],
+    "arm-lit": [],
+    "arm-solidstart": []
+  },
+  "mounts": [
+    "arm-react/src/main.tsx: createRoot(document.getElementById('root')!).render(",
+    "arm-svelte/src/main.ts: target: document.getElementById('app')!,",
+    "arm-solid/src/index.tsx: render(() => <App />, document.getElementById('app') as HTMLElement);",
+    "arm-solidstart/src/entry-client.tsx: mount(() => <StartClient />, document.getElementById('app')!);",
+    "arm-solidstart/src/routes/index.tsx: // `pick=$css` (`window.manifest` in the served HTML) and the SSR branch"
+  ]
+}

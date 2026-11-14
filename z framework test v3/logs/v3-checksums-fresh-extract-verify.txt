@@ -1,0 +1,16 @@
+sha256sum -c CHECKSUMS.txt (fresh extraction of z-post-blue-fwtest-v3-2026-11-14.zip)
+exit: 0
+OK: 751
+-arm-lit.log: OK
+logs/v3-typecheck-arm-next.log: OK
+logs/v3-typecheck-arm-nuxt.log: OK
+logs/v3-typecheck-arm-react.log: OK
+logs/v3-typecheck-arm-solid-flags.log: OK
+logs/v3-typecheck-arm-solid.log: OK
+logs/v3-typecheck-arm-solidstart-flags.log: OK
+logs/v3-typecheck-arm-solidstart.log: OK
+logs/v3-typecheck-arm-svelte.log: OK
+logs/v3-typecheck-arm-sveltekit.log: OK
+logs/v3-typecheck-arm-vue.log: OK
+
+

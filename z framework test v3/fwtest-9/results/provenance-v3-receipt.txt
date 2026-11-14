@@ -1,0 +1,31 @@
+# v3 contract provenance receipts (2026-11-14)
+## canonical engine-contract vs pin tarball 4ca9a071 (codeload, sha-verified download below)
+
+-- diff -r pin/colors/src/sports/nfl/engine canonical/src/sports/nfl/engine:
+EXIT 0 — engine byte-identical to pin
+
+-- core files (4 vendored):
+  core/rng.ts IDENTICAL
+  core/at.ts IDENTICAL
+  core/hungarian.ts IDENTICAL
+  core/ids.ts IDENTICAL
+
+-- canonical vs each arm's vendored copy:
+  arm-react *** DIFFERS ***
+  arm-vue *** DIFFERS ***
+  arm-svelte *** DIFFERS ***
+  arm-sveltekit *** DIFFERS ***
+  arm-next *** DIFFERS ***
+  arm-solid *** DIFFERS ***
+  arm-lit *** DIFFERS ***
+  arm-solidstart *** DIFFERS ***
+  arm-nuxt *** DIFFERS ***
+  arm-react EXIT-0-IDENTICAL
+  arm-vue EXIT-0-IDENTICAL
+  arm-svelte EXIT-0-IDENTICAL
+  arm-next EXIT-0-IDENTICAL
+  arm-solid EXIT-0-IDENTICAL
+  arm-lit EXIT-0-IDENTICAL
+  arm-solidstart EXIT-0-IDENTICAL
+  arm-sveltekit EXIT-0-IDENTICAL
+  arm-nuxt EXIT-0-IDENTICAL

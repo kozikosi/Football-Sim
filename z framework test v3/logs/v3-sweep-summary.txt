@@ -1,0 +1,54 @@
+=== v3 sweep start 2026-11-13T22:33:23Z node=v24.22.3 npm=11.19.1 ===
+arm-react install exit:0 wall:2s
+arm-vue install exit:0 wall:1s
+arm-svelte install exit:0 wall:1s
+arm-sveltekit install exit:0 wall:2s
+arm-next install exit:0 wall:7s
+arm-nuxt install exit:0 wall:6s
+arm-solid install exit:0 wall:1s
+arm-lit install exit:0 wall:1s
+arm-solidstart install exit:0 wall:5s
+arm-react build exit:0 wall:1s
+arm-vue build exit:0 wall:3s
+arm-svelte build exit:0 wall:1s
+arm-sveltekit build exit:0 wall:4s
+arm-next build exit:0 wall:6s
+arm-nuxt build exit:0 wall:5s
+arm-solid build exit:0 wall:1s
+arm-lit build exit:0 wall:0s
+arm-solidstart build exit:0 wall:10s
+arm-nuxt generate exit:0 wall:3s
+arm-react typecheck exit:0 wall:0s
+arm-vue typecheck exit:0 wall:1s
+arm-svelte typecheck exit:1 wall:4s
+arm-sveltekit typecheck exit:0 wall:4s
+arm-next typecheck exit:0 wall:1s
+arm-nuxt typecheck exit:0 wall:3s
+arm-solid typecheck exit:2 wall:2s
+arm-lit typecheck exit:2 wall:2s
+arm-solidstart typecheck exit:2 wall:2s
+arm-react audit exit:0
+arm-vue audit exit:0
+arm-svelte audit exit:1
+arm-sveltekit audit exit:1
+arm-next audit exit:0
+arm-nuxt audit exit:1
+arm-solid audit exit:0
+arm-lit audit exit:0
+arm-solidstart audit exit:0
+=== dist sizes (KB) ===
+arm-react dist 280KB
+arm-vue dist 132KB
+arm-svelte dist 108KB
+arm-sveltekit build 192KB
+arm-next out 736KB
+arm-nuxt dist 0KB
+arm-nuxt .output 260KB
+arm-solid dist 76KB
+arm-lit dist 76KB
+arm-solidstart dist 272KB
+arm-solidstart .output 2192KB
+arm-solid typecheck-flags exit:2
+arm-lit typecheck-flags exit:0
+arm-solidstart typecheck-flags exit:0
+=== sweep tail done ===

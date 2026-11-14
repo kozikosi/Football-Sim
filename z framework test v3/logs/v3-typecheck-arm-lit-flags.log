@@ -1,0 +1,1 @@
+[command] cd /home/z/my-project/work/v3/fwtest-9/arm-lit && npx tsc --noEmit --allowImportingTsExtensions --types vite/client

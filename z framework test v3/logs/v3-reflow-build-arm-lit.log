@@ -1,0 +1,17 @@
+[command] cd /home/z/my-project/work/v3/fwtest-9/arm-lit && npm run build
+
+> arm-lit@0.0.0 build
+> vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 30 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.50 kB │ gzip:  0.32 kB
+dist/assets/index-CpJQ-Faf.css   4.27 kB │ gzip:  1.47 kB
+dist/assets/index-cINR6E06.js   44.14 kB │ gzip: 17.43 kB
+
+✓ built in 62ms
+
+

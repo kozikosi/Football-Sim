@@ -1,0 +1,40 @@
+# npm audit report
+
+@sveltejs/kit  *
+Depends on vulnerable versions of @sveltejs/vite-plugin-svelte
+SvelteKit: URL redirection to untrusted site via enhanced form submission - https://github.com/advisories/GHSA-pfhg-q3qv-9q6r
+SvelteKit : XSS via untrusted cache-control header in prerendered page - https://github.com/advisories/GHSA-27mw-82g8-phjj
+Depends on vulnerable versions of cookie
+fix available via `npm audit fix --force`
+Will install @sveltejs/kit@3.2.0, which is a breaking change
+node_modules/@sveltejs/kit
+  @sveltejs/adapter-auto  1.0.0-next.0 - 7.0.1
+  Depends on vulnerable versions of @sveltejs/kit
+  node_modules/@sveltejs/adapter-auto
+  @sveltejs/adapter-static  1.0.0-next.0 - 3.0.11
+  Depends on vulnerable versions of @sveltejs/kit
+  node_modules/@sveltejs/adapter-static
+
+cookie  <0.7.0
+cookie accepts cookie name, path, and domain with out of bounds characters - https://github.com/advisories/GHSA-pxg6-pf52-xh8x
+fix available via `npm audit fix --force`
+Will install @sveltejs/kit@3.2.0, which is a breaking change
+node_modules/cookie
+
+deepmerge  >=4.2.0
+deepmerge mergeObject() allows prototype poisoning of returned objects - https://github.com/advisories/GHSA-gcqx-w48m-w2h4
+fix available via `npm audit fix --force`
+Will install @sveltejs/kit@3.2.0, which is a breaking change
+node_modules/deepmerge
+  @sveltejs/vite-plugin-svelte  *
+  Depends on vulnerable versions of @sveltejs/vite-plugin-svelte-inspector
+  Depends on vulnerable versions of deepmerge
+  node_modules/@sveltejs/vite-plugin-svelte
+    @sveltejs/vite-plugin-svelte-inspector  *
+    Depends on vulnerable versions of @sveltejs/vite-plugin-svelte
+    node_modules/@sveltejs/vite-plugin-svelte-inspector
+
+7 low severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force

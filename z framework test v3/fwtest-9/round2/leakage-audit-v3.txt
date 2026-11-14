@@ -1,0 +1,14 @@
+LEAKAGE AUDIT — engine-boundary rule (v3, nine arms)
+forbidden in ALL arm-owned code: Math.random / Date.now / new Date / localStorage / sessionStorage / node:fs / require / XMLHttpRequest / fetch(
+DOM globals (window./document.) allowed ONLY in the entry-point bootstrap
+
+findings: 0
+
+entry-point DOM mounts (expected, declared):
+  arm-react/src/main.tsx  (entry-point mount)
+  arm-svelte/src/main.ts  (entry-point mount)
+  arm-solid/src/index.tsx  (entry-point mount)
+  arm-solidstart/src/entry-client.tsx  (entry-point mount)
+  arm-solidstart/src/entry-client.tsx  document.getElementById — declared entry mount
+
+per-arm finding counts: {"arm-react": 0, "arm-vue": 0, "arm-svelte": 0, "arm-sveltekit": 0, "arm-next": 0, "arm-nuxt": 0, "arm-solid": 0, "arm-lit": 0, "arm-solidstart": 0}
