@@ -15,8 +15,9 @@ The v3 nine-arm framework test came back a **50/50 split** between Svelte 5 + Vi
 
 **Vue 3 + Vite (create-vue SPA)** — `~/football-sim-vue`
 - verified: `npm run type-check` → **exit 0** (vue-tsc)
-- `.mcp.json` / `.kilocode/mcp.json` wired to `@playwright/mcp` (headless browser); Vue skills (`vue-best-practices` and family) are the mandated pre-review pass per `AGENTS.md` there
+- `.mcp.json` / `.kilocode/mcp.json` wired to two servers: **hosted Vue Docs MCP** (`vue-docs` → `https://mcp.vue-mcp.org/mcp`, official Vue ecosystem docs lookup — `docs_search`, `api_lookup`, `ecosystem_search`, plus structured prompts like `debug_issue`, `compare_apis`) and `@playwright/mcp`. Svelte already had `@sveltejs/mcp`; the Vue side now has a comparable docs surface.
 - `AGENTS.md` (+ `CLAUDE.md` symlink): Composition API + `<script setup lang="ts">` only; state via Pinia setup stores; hand-rolled board stays hand-rolled
+- **Pinned parity with the Svelte scaffold** — both `.nvmrc` = **24** (machine's active Node is v26; `.nvmrc` is consistent across scaffolds)
 
 **Both scaffolds carry `.kilocode/mcp.json`** so Kilo / Claude Code / OpenChamber all see the same MCP surface — treat that as the contract they were built around, not as personal preference.
 
