@@ -1,0 +1,16 @@
+{
+  "name": "engine-contract",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The framework test's shared engine contract: the pinned Colors engine (4ca9a071, verbatim) + the offensive-focus feature module. Defined inputs, defined outputs, zero runtime dependencies.",
+  "scripts": {
+    "golden": "node --experimental-strip-types tools/golden.ts"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@types/node": "^26.6.6"
+  }
+}

@@ -1,0 +1,37 @@
+[probe] mode=dev tag=after port=4198 cmd=npm run dev -- --port 4198 2026-11-13T22:39:24Z
+server pid 3357
+READY: HTTP 200 after 2s
+HTML bytes: 2807
+data-testid occurrences in served HTML: 0
+board rows (row-*): 0
+--- first 40 lines of served HTML ---
+<!DOCTYPE html><html lang="en"><head><title>Framework Test — Offensive Focus (SolidStart)</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>window._$HY||(e=>{let t=e=>e&&e.hasAttribute&&(e.hasAttribute("data-hk")?e:t(e.host&&e.host.nodeType?e.host:e.parentNode));["click", "input"].forEach((o=>document.addEventListener(o,(o=>{if(!e.events)return;let s=t(o.composedPath&&o.composedPath()[0]||o.target);s&&!e.completed.has(s)&&e.events.push([s,o])}))))})(_$HY={events:[],completed:new WeakSet,r:{},fe(){}});</script><!--xs--><script type="module" src="/_build/@fs/home/z/my-project/work/v3/fwtest-9/arm-solidstart/node_modules/vinxi/runtime/client.js" id="plugin-0"> </script><script type="module" src="/_build/@vite/client" id="vite-client"> </script><style type="text/css" data-vite-dev-id="/home/z/my-project/work/v3/fwtest-9/arm-solidstart/src/app.css" data-vite-ref="0" >main { max-width: 860px; margin: 0 auto; font-family: system-ui, sans-serif; padding: 1rem 1.25rem 3rem; color: #16211b; }
+h1 { font-size: 1.35rem; } h2 { font-size: 1.1rem; margin-top: 1.6rem; } h3 { font-size: 1rem; }
+.tag { font-size: 0.75rem; color: #5b6b60; background: #eef2ef; border-radius: 4px; padding: 2px 7px; margin-left: 8px; }
+.cards { display: flex; gap: 8px; flex-wrap: wrap; margin: 0.75rem 0; }
+.card { flex: 1 1 150px; text-align: left; padding: 10px 12px; border: 1px solid #c8d2cb; border-radius: 8px; background: #fff; cursor: pointer; display: flex; flex-direction: column; gap: 4px; }
+.card.selected { border-color: #1f7a3f; outline: 2px solid #1f7a3f33; background: #f2f8f4; }
+.primary { background: #1f7a3f; color: #fff; border: 0; border-radius: 8px; padding: 9px 18px; font-size: 1rem; cursor: pointer; margin-top: 0.5rem; }
+.manage { display: flex; gap: 8px; align-items: center; }
+.law { color: #5b6b60; font-size: 0.85rem; margin-top: 0; }
+table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+th, td { text-align: left; padding: 5px 8px; border-bottom: 1px solid #e4e9e5; }
+td.priority { font-weight: 700; }
+.arrow { display: inline-block; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; }
+.arrow.hot { border-bottom: 9px solid #1f9d55; }
+.arrow.cold { border-top: 9px solid #c0392b; transform: rotate(180deg); }
+.score { font-size: 1.15rem; }
+.note { background: #fdf6e3; border: 1px solid #ecd9a0; padding: 8px 10px; border-radius: 6px; font-size: 0.9rem; }
+ul { padding-left: 1.1rem; } li { margin: 4px 0; }
+</style></head><body><div id="app"><!--!$e0000000--><!--!$/e0000000--></div><!--$--><script>window.manifest = {}</script><script type="module" async src="/_build/@fs/home/z/my-project/work/v3/fwtest-9/arm-solidstart/src/entry-client.tsx"></script><!--/--></body></html>--- server log tail ---
+
+> fwtest-arm-solidstart@1.0.0 dev
+> vinxi dev --port 4198
+
+vinxi v0.5.11
+vinxi starting dev server
+
+  ➜ Local:    http://localhost:4198/
+  ➜ Network:  use --host to expose
+
+[probe] done 2026-11-13T22:39:29Z

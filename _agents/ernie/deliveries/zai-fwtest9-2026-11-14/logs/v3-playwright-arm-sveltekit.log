@@ -1,0 +1,132 @@
+arm-sveltekit ready (HTTP 200 after 1s, port 4174)
+
+Running 5 tests using 1 worker
+
+(node:6756) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  5 passed (2.1s)
+playwright exit: 0
+arm-sveltekit ready (HTTP 200 after 1s, port 4174)
+
+Running 5 tests using 1 worker
+
+(node:10945) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+  1) offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus 
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('focus-west-coast')
+
+
+      29 |       rs.map((r) => [r.getAttribute('data-testid'), r.querySelector('td:nth-child(3)')!.textContent])));
+      30 |   await page.getByTestId('manage-toggle').check();
+    > 31 |   await page.getByTestId(`focus-${FIVE[0]}`).click();
+         |                                              ^
+      32 |   const w1 = await wins();
+      33 |   const p1 = await page.getByTestId('priority-WR3').textContent();
+      34 |   await page.getByTestId(`focus-${FIVE[1]}`).click();
+        at /home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:31:46
+
+    Error Context: ../../../../../../../tmp/pw-results-arm-sveltekit/offensive-focus-board-rend-c1285-and-Priority-from-the-focus/error-context.md
+
+
+(node:11029) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+  2) offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible ────────────
+
+    Test timeout of 30000ms exceeded.
+
+    Error: locator.click: Test timeout of 30000ms exceeded.
+    Call log:
+      - waiting for getByTestId('focus-spread')
+
+
+      42 |   await page.goto('/');
+      43 |   await page.getByTestId('manage-toggle').check();
+    > 44 |   await page.getByTestId('focus-spread').click();
+         |                                          ^
+      45 |   await page.getByTestId('kickoff').click();
+      46 |   // halftime: no offer for spread (halftimeEligible: false)
+      47 |   await expect(page.getByTestId('no-halftime')).toBeVisible();
+        at /home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:44:42
+
+    Error Context: ../../../../../../../tmp/pw-results-arm-sveltekit/offensive-focus-the-fifth--15a70-nd-is-NOT-halftime-eligible/error-context.md
+
+
+(node:11109) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+  3) offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change ──
+
+    Error: expect(locator).toBeVisible() failed
+
+    Locator: getByTestId('no-halftime')
+    Expected: visible
+    Timeout: 5000ms
+    Error: element(s) not found
+
+    Call log:
+      - Expect "toBeVisible" getByTestId('no-halftime') with timeout 5000ms
+      - waiting for getByTestId('no-halftime')
+
+
+      51 |   await page.goto('/');
+      52 |   await page.getByTestId('kickoff').click();                 // auto default
+    > 53 |   await expect(page.getByTestId('no-halftime')).toBeVisible();
+         |                                                 ^
+      54 |   await page.goto('/');
+      55 |   await page.getByTestId('manage-toggle').check();
+      56 |   await page.getByTestId('focus-west-coast').click();
+        at /home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:53:49
+
+    Error Context: ../../../../../../../tmp/pw-results-arm-sveltekit/offensive-focus-auto-mode--24351-pt-manual-offers-one-change/error-context.md
+
+
+(node:11188) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+  4) offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them ────────
+
+    Error: expect(received).toBe(expected) // Object.is equality
+
+    Expected: true
+    Received: false
+
+      64 |   const fired = await page.locator('[data-testid="fired"] li').count();
+      65 |   const none = await page.locator('[data-testid="no-automatics"]').count();
+    > 66 |   expect(fired > 0 || none === 1).toBe(true);   // exactly one of the two states
+         |                                   ^
+      67 | });
+      68 |
+      69 | test('form arrows are binary hot/cold, no emoji, no text labels', async ({ page }) => {
+        at /home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:66:35
+
+    Error Context: ../../../../../../../tmp/pw-results-arm-sveltekit/offensive-focus-Q4-automat-fee84-hen-the-contract-fired-them/error-context.md
+
+
+(node:11267) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  4 failed
+    offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus 
+    offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible ─────────────
+    offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change ───
+    offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them ─────────
+  1 passed (1.1m)
+playwright exit: 1

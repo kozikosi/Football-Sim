@@ -1,0 +1,119 @@
+arm-react ready (HTTP 200 after 1s, port 4171)
+Error: Cannot find module '@playwright/test'
+Require stack:
+- /home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts
+- /home/z/my-project/work/pw-rig/node_modules/playwright/lib/common/index.js
+- /home/z/my-project/work/pw-rig/node_modules/playwright/lib/program.js
+- /home/z/my-project/work/pw-rig/node_modules/@playwright/test/cli.js
+
+   at offensive-focus.spec.ts:9
+
+   7 | // TypeError'd on every arm (four-seat convergence, council wave 2026-11-13).
+   8 | // First fully executed in the v3 wave; per-arm receipts in logs/ and results/.
+>  9 | import { expect, test } from '@playwright/test';
+     | ^
+  10 |
+  11 | const BASE = process.env.BASE_URL ?? 'http://localhost:5173';
+  12 | test.use({ baseURL: BASE });
+    at Object.<anonymous> (/home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:9:1)
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+
+playwright exit: 1
+arm-react ready (HTTP 200 after 1s, port 4171)
+Error: Requiring @playwright/test second time, 
+First:
+Error: 
+
+   at ../../../pw-rig/playwright.config.ts:4
+
+  2 | // runner script (v3_pw_run.sh) — no webServer here; BASE_URL points at the
+  3 | // arm under test. Run from the rig: npx playwright test
+> 4 | import { defineConfig } from '@playwright/test';
+    | ^
+  5 |
+  6 | export default defineConfig({
+  7 | 	testDir: '/home/z/my-project/work/v3/fwtest-9/playwright',
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/index.js:67:33)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.<anonymous> (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/node_modules/playwright/test.js:17:13)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.<anonymous> (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/node_modules/@playwright/test/index.js:17:18)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.<anonymous> (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/playwright.config.ts:4:1)
+    at Module._compile (node:internal/modules/cjs/loader:1929:14)
+    at Object.<anonymous> (node:internal/modules/cjs/loader:2060:10)
+    at Module.load (node:internal/modules/cjs/loader:1651:32)
+    at Module._load (node:internal/modules/cjs/loader:1443:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:261:19)
+    at Module.require (node:internal/modules/cjs/loader:1674:12)
+    at require (node:internal/modules/helpers:157:16)
+    at requireOrImport (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/common/index.js:1157:18)
+    at loadUserConfig (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/common/index.js:1361:52)
+    at loadConfig (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/common/index.js:1368:28)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+    at Object.loadConfigFromFile (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/common/index.js:1586:10)
+    at runTests (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/cli/testActions.js:44:18)
+    at _Command.<anonymous> (/home/z/my-project/work/pw-rig/node_modules/playwright/lib/program.js:55:7)
+
+Second: 
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/node_modules/@playwright/test/index.js:17:18)
+    at Object.<anonymous> (/home/z/my-project/work/pw-rig/playwright.config.ts:4:1)
+    at Object.<anonymous> (/home/z/my-project/work/v3/fwtest-9/playwright/node_modules/playwright/lib/index.js:62:11)
+    at Object.<anonymous> (/home/z/my-project/work/v3/fwtest-9/playwright/node_modules/playwright/test.js:17:13)
+    at Object.<anonymous> (/home/z/my-project/work/v3/fwtest-9/playwright/node_modules/@playwright/test/index.js:17:18)
+    at Object.<anonymous> (/home/z/my-project/work/v3/fwtest-9/playwright/offensive-focus.spec.ts:9:1)
+
+Error: No tests found.
+Make sure that arguments are regular expressions matching test files.
+You may need to escape symbols like "$" or "*" and quote the arguments.
+
+playwright exit: 1
+arm-react ready (HTTP 200 after 1s, port 4171)
+
+Running 5 tests using 1 worker
+
+(node:6167) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  5 passed (1.9s)
+playwright exit: 0
+arm-react ready (HTTP 200 after 1s, port 4171)
+
+Running 5 tests using 1 worker
+
+(node:10355) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+
+[1/5] offensive-focus.spec.ts:20:1 › board renders with Wins as static truth and Priority from the focus
+[2/5] offensive-focus.spec.ts:41:1 › the fifth focus exists and is NOT halftime-eligible
+[3/5] offensive-focus.spec.ts:50:1 › auto mode skips the halftime prompt; manual offers one change
+[4/5] offensive-focus.spec.ts:61:1 › Q4 automatics surface only when the contract fired them
+[5/5] offensive-focus.spec.ts:69:1 › form arrows are binary hot/cold, no emoji, no text labels
+  5 passed (2.0s)
+playwright exit: 0

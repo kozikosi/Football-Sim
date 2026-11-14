@@ -1,0 +1,101 @@
+[command] cd /home/z/my-project/work/v3/fwtest-9/arm-solid && npx tsc --noEmit --allowImportingTsExtensions --types vite/client
+src/engine-contract/src/core/hungarian.ts(23,21): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(23,21): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(23,26): error TS18048: 'i0' is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(23,45): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/core/hungarian.ts(23,51): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(24,19): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(25,13): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(25,32): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/core/hungarian.ts(28,26): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/core/hungarian.ts(28,42): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(28,64): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(32,40): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/core/hungarian.ts(32,45): error TS2322: Type 'number | undefined' is not assignable to type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/core/hungarian.ts(35,36): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/hungarian.ts(35,50): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/ids.ts(15,16): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/core/ids.ts(15,33): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/core/rng.ts(37,19): error TS2322: Type 'T | undefined' is not assignable to type 'T'.
+  'T' could be instantiated with an arbitrary type which could be unrelated to 'T | undefined'.
+src/engine-contract/src/sports/nfl/engine/goneodds.ts(28,31): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/sports/nfl/engine/goneodds.ts(29,20): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/sports/nfl/engine/kicking.ts(15,15): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/kicking.ts(15,35): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/kicking.ts(17,11): error TS2488: Type 'readonly [number, number] | undefined' must have a '[Symbol.iterator]()' method that returns an iterator.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(44,23): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(44,40): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(45,38): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(45,57): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(45,131): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(45,150): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(47,19): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(58,9): error TS18048: 'j' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(58,30): error TS2345: Argument of type 'Player | undefined' is not assignable to parameter of type 'Player'.
+  Type 'undefined' is not assignable to type 'Player'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(59,19): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(59,42): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(60,16): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(60,35): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/sports/nfl/engine/lineup.ts(60,67): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(22,137): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(28,41): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(28,49): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(28,66): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(28,74): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(29,105): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(29,138): error TS2345: Argument of type 'number | undefined' is not assignable to parameter of type 'number'.
+  Type 'undefined' is not assignable to type 'number'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(55,14): error TS18048: 'row' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(55,42): error TS18048: 'row' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/margin.ts(55,42): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/plans.ts(16,12): error TS2322: Type 'T | undefined' is not assignable to type 'T'.
+  'T' could be instantiated with an arbitrary type which could be unrelated to 'T | undefined'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(13,29): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(16,71): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(19,18): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(20,18): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(21,21): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(23,14): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(23,47): error TS2345: Argument of type '{ pid: string | undefined; name: string | undefined; pos: string | undefined; team: string | undefined; }' is not assignable to parameter of type 'IdRow'.
+  Types of property 'pid' are incompatible.
+    Type 'string | undefined' is not assignable to type 'string'.
+      Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(55,44): error TS18048: 'r' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(55,57): error TS18048: 'r' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(55,80): error TS18048: 'r' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/playerids.ts(55,109): error TS2345: Argument of type '{ pid: string; name: string; pos: string; team: string; } | undefined' is not assignable to parameter of type 'IdRow'.
+  Type 'undefined' is not assignable to type 'IdRow'.
+src/engine-contract/src/sports/nfl/engine/players.ts(21,7): error TS2532: Object is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/players.ts(23,64): error TS2345: Argument of type 'string | undefined' is not assignable to parameter of type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/players.ts(26,23): error TS2538: Type 'undefined' cannot be used as an index type.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,46): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,52): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,63): error TS2322: Type 'string | undefined' is not assignable to type 'string'.
+  Type 'undefined' is not assignable to type 'string'.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,75): error TS18048: 'ovr' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,86): error TS18048: 'spd' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/players.ts(28,97): error TS18048: 'str' is possibly 'undefined'.
+src/engine-contract/src/sports/nfl/engine/ratings.ts(64,28): error TS2769: No overload matches this call.
+  Overload 1 of 2, '(o: {}): string[]', gave the following error.
+    Argument of type 'Ratings | undefined' is not assignable to parameter of type '{}'.
+      Type 'undefined' is not assignable to type '{}'.
+  Overload 2 of 2, '(o: object): string[]', gave the following error.
+    Argument of type 'Ratings | undefined' is not assignable to parameter of type 'object'.
+      Type 'undefined' is not assignable to type 'object'.
+src/index.tsx(86,65): error TS2322: Type 'FormArrow' is not assignable to type 'string | undefined'.
+  Type 'null' is not assignable to type 'string | undefined'.

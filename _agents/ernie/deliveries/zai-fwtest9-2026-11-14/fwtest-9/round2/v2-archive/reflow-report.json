@@ -1,0 +1,58 @@
+{
+  "arm_owned_drift": {
+    "arm-next": "ZERO",
+    "arm-nuxt": "ZERO",
+    "arm-react": "ZERO",
+    "arm-solidstart": "ZERO",
+    "arm-svelte": "ZERO",
+    "arm-sveltekit": "ZERO",
+    "arm-vue": "ZERO"
+  },
+  "arms": {},
+  "builds": {
+    "arm-next": {
+      "exit": 0,
+      "seconds": 2.7
+    },
+    "arm-nuxt": {
+      "exit": 0,
+      "seconds": 3.43
+    },
+    "arm-react": {
+      "exit": 0,
+      "seconds": 0.71
+    },
+    "arm-solidstart": {
+      "exit": 0,
+      "seconds": 9.32
+    },
+    "arm-svelte": {
+      "exit": 0,
+      "seconds": 0.69
+    },
+    "arm-sveltekit": {
+      "exit": 0,
+      "seconds": 4.07
+    },
+    "arm-vue": {
+      "exit": 0,
+      "seconds": 3.35
+    }
+  },
+  "contract_byte_identity": {
+    "arm-next": "IDENTICAL",
+    "arm-nuxt": "IDENTICAL",
+    "arm-react": "IDENTICAL",
+    "arm-solidstart": "IDENTICAL",
+    "arm-svelte": "IDENTICAL",
+    "arm-sveltekit": "IDENTICAL",
+    "arm-vue": "IDENTICAL"
+  },
+  "leakage_entry_point_mounts_declared": [
+    "arm-svelte/src/main.ts: 'document.' (entry-point mount)",
+    "arm-react/src/main.tsx: 'document.' (entry-point mount)",
+    "arm-solidstart/src/entry-client.tsx: 'document.' (entry-point mount)"
+  ],
+  "leakage_findings": [],
+  "ts": "2026-11-13T20:52:11Z"
+}

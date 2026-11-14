@@ -1,0 +1,39 @@
+[command] cd /home/z/my-project/work/v3/fwtest-9/arm-nuxt && npm run generate
+_nuxt/CIq9SQL8.js               9.98 kB │ gzip:  4.02 kB
+node_modules/.cache/nuxt/.nuxt/dist/client/_nuxt/B-906rIL.js             167.01 kB │ gzip: 63.61 kB
+
+ℹ ✓ built in 745ms
+✔ Client built in 764ms
+● Bundling server
+ℹ Building server...
+ℹ vite v8.3.8 building ssr environment for production...
+transforming...
+✓ 91 modules transformed.
+rendering chunks...
+ℹ node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-styles.BF-pIkoo.mjs           0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-styles.BipnMLxW.mjs           0.08 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/styles.mjs                                    0.33 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/_plugin-vue_export-helper-DjkACiAr.js   0.24 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-styles-1.mjs-CdLClIq9.js      2.32 kB │ map:   0.09 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-styles-1.mjs-rcIgKBzA.js      3.07 kB │ map:   0.09 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-500-Byddyd6y.js                   3.66 kB │ map:   4.73 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/_nuxt/error-404-rEvY_C8N.js                  18.68 kB │ map:  36.53 kB
+node_modules/.cache/nuxt/.nuxt/dist/server/server.mjs                                   68.71 kB │ map: 188.57 kB
+
+ℹ ✓ built in 326ms
+✔ Server built in 337ms
+● Building Nitro server
+[nitro] ℹ Initializing prerenderer
+[nitro] ℹ Prerendering 3 initial routes with crawler
+[nitro]   ├─ /200.html (55ms)
+[nitro]   ├─ /404.html (56ms)
+[nitro]   ├─ / (66ms)
+[nitro]   ├─ /_payload.json?_b=f599ce5c-d9a9-4134-94a5-9c9e103dd983 (3ms) (skipped)
+[nitro]   ├─ /_payload.json (4ms)
+[nitro] ℹ Prerendered 4 routes in 1.332 seconds
+[nitro] ✔ Generated public .output/public
+[nitro] ✔ You can preview this build using npx serve .output/public
+config 143ms · modules 33ms · app 374ms · types 264ms · client 991ms · server 339ms · nitro 1.41s
+◆ ✨ You can now deploy .output/public to any static hosting! (3.55s)
+
+

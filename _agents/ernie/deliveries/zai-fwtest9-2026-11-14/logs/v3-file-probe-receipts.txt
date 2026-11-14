@@ -1,0 +1,77 @@
+=== file:// probe: arm-react ===
+goto: loaded
+testids: 0  bodyHTML bytes: 31
+body text head: 
+console/page errors: 4
+  [error] Access to CSS stylesheet at 'file:///assets/index-InIpZkpw.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///assets/index-Db7utv4G.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-vue ===
+goto: loaded
+testids: 0  bodyHTML bytes: 30
+body text head: 
+console/page errors: 4
+  [error] Access to CSS stylesheet at 'file:///assets/index-nP9Ylc-p.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///assets/index-CacIlqBE.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-svelte ===
+goto: loaded
+testids: 0  bodyHTML bytes: 30
+body text head: 
+console/page errors: 4
+  [error] Access to CSS stylesheet at 'file:///assets/index-ByBWXECe.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///assets/index-C3E5qFV9.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-solid ===
+goto: loaded
+testids: 0  bodyHTML bytes: 30
+body text head: 
+console/page errors: 4
+  [error] Access to CSS stylesheet at 'file:///assets/index-CsUDhMuy.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///assets/index-D8atgCzO.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-lit ===
+goto: loaded
+testids: 0  bodyHTML bytes: 41
+body text head: 
+console/page errors: 4
+  [error] Access to CSS stylesheet at 'file:///assets/index-CpJQ-Faf.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///assets/index-cINR6E06.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-sveltekit ===
+goto: loaded
+testids: 69  bodyHTML bytes: 10413
+body text head: Framework Test — Offensive Focus SvelteKit · focus v1-5f 1 · Pre-game Manage foc
+console/page errors: 27
+  [error] Access to script at 'file:///home/z/my-project/work/v3/fwtest-9/arm-sveltekit/build/_app/immutable/entry/start.ZZRelfhu.js' from origin 'null' has been blocked 
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to script at 'file:///home/z/my-project/work/v3/fwtest-9/arm-sveltekit/build/_app/immutable/chunks/M3uAt831.js' from origin 'null' has been blocked by CO
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-next ===
+goto: loaded
+testids: 69  bodyHTML bytes: 10090
+body text head: Framework Test — Offensive Focus React · focus v1-5f 1 · Pre-game Manage focus (
+console/page errors: 8
+  [error] Failed to load resource: net::ERR_FILE_NOT_FOUND
+  [error] Failed to load resource: net::ERR_FILE_NOT_FOUND
+  [error] Failed to load resource: net::ERR_FILE_NOT_FOUND
+  [error] Failed to load resource: net::ERR_FILE_NOT_FOUND
+=== file:// probe: arm-nuxt ===
+goto: loaded
+testids: 69  bodyHTML bytes: 6062
+body text head: Framework Test — Offensive Focus Vue · focus v1-5f 1 · Pre-game  Manage focus (o
+console/page errors: 16
+  [error] Access to CSS stylesheet at 'file:///_nuxt/entry.B7m2uCIe.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for 
+  [error] Failed to load resource: net::ERR_FAILED
+  [error] Access to link element resource at 'file:///_payload.json?_b=f599ce5c-d9a9-4134-94a5-9c9e103dd983' from origin 'null' has been blocked by CORS policy: Cross ori
+  [error] Failed to load resource: net::ERR_FAILED
+=== file:// probe: arm-solidstart (no static entry - SSR only, see results §4) ===
+goto: loaded
+testids: 0  bodyHTML bytes: 0
+body text head: 
+console/page errors: 0
