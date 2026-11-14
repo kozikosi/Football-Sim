@@ -1,0 +1,31 @@
+{
+  "protocol": "2 runs × 2 arms, same seed + same 8 user picks + same sort/filter inputs; DOM text captured at 5 checkpoints; full greedy completion",
+  "perArm": [
+    {
+      "arm": "vue",
+      "run1": "6f72716e38ebe824",
+      "run2": "6f72716e38ebe824",
+      "byteIdentical": true,
+      "recordShas": [
+        "e62e79f4471f2e9a",
+        "e62e79f4471f2e9a"
+      ],
+      "recordIdentical": true,
+      "pageErrors": []
+    },
+    {
+      "arm": "svelte",
+      "run1": "26a2ab7f75d2d9d7",
+      "run2": "26a2ab7f75d2d9d7",
+      "byteIdentical": true,
+      "recordShas": [
+        "e62e79f4471f2e9a",
+        "e62e79f4471f2e9a"
+      ],
+      "recordIdentical": true,
+      "pageErrors": []
+    }
+  ],
+  "crossArmDomTextIdentical": false,
+  "crossArmRecordIdentical": true
+}

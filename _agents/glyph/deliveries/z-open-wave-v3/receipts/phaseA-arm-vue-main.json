@@ -1,0 +1,89 @@
+{
+  "arm": "scratch/arm-vue",
+  "node": "v24.22.3",
+  "stamps": {
+    "engineVersion": "nfl1.14a4e9333e888a",
+    "dataVersion": "sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3"
+  },
+  "A1": {
+    "referenceRecordSha": "e62e79f4471f2e9a0c25f7748f1db74760ff51a4c1ea12b0dc9aefa885374900",
+    "referencePicks": 1024,
+    "rngPosition": {
+      "model": "position-keyed-forks",
+      "seed": 1,
+      "picksMade": 1024,
+      "nextCpuForkKey": "p1024",
+      "userFork": "user",
+      "cursorRequired": false,
+      "why": "core/rng.ts fork(label) = makeRng(seed ^ hashString(label)): same seed + same label = same stream, regardless of draw order. store.ts advance() draws CPU picks from fork(\"p\"+pos), so pick index alone keys the stream; the record carries (seed, picks) and nothing else is needed."
+    },
+    "envelopeSizes": {
+      "atStart": 128651,
+      "at5": 135915,
+      "writeRoundTrip": "ok",
+      "slotRefusal": "refused (F8, assertSlotMatchesKey): envelope: slot B written under sim:nfl:slot:A (that key is slot A)",
+      "atEnd": 187418
+    },
+    "nextCpuAfter5": {
+      "overall": 130,
+      "team": 1,
+      "pid": "nfl-p00199",
+      "slot": "CB2"
+    },
+    "userPick5": {
+      "playerId": "nfl-p00150",
+      "slot": "DE1",
+      "overall": 129
+    },
+    "userPicksFirst3": [
+      {
+        "playerId": "nfl-p00003",
+        "slot": "QB",
+        "overall": 1
+      },
+      {
+        "playerId": "nfl-p00075",
+        "slot": "WR1",
+        "overall": 64
+      },
+      {
+        "playerId": "nfl-p00068",
+        "slot": "OT1",
+        "overall": 65
+      }
+    ],
+    "userPicksTotal": 32
+  },
+  "G": {
+    "progressOverClock": {
+      "winnerRevision": 7,
+      "loserRevision": 3,
+      "basis": "saveRevision",
+      "verdict": "PASS: higher revision won despite its 2019 clock"
+    },
+    "tieBreak": {
+      "basis": "savedAt-tiebreak",
+      "verdict": "PASS: genuine tie → newer savedAt"
+    },
+    "loserRetained": {
+      "bakParses": true,
+      "loserBytes": 157989,
+      "noticeWrittenOnce": true,
+      "verdict": "PASS: loser recoverable from slot:A:bak, user told exactly once"
+    },
+    "wrongLineage": "PASS: different saveIds refused as a conflict (keep both)"
+  },
+  "A3": {
+    "week9EnvelopeBytes": 62373,
+    "seasonEnvelopeBytes": 8060,
+    "threeSeasonsBytes": 273971,
+    "localStorage5MBShare": "5.2%",
+    "notes": "draft envelope retained + week-9 save + 3 season envelopes; the draft envelope (187 KB) dominates."
+  },
+  "recordFields": [
+    "seed",
+    "userTeam",
+    "pool",
+    "picks"
+  ]
+}
