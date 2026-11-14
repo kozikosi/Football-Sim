@@ -1,7 +1,7 @@
 # WORK REQUESTS — what the framework decision still needs, and who can take it
 
 **From:** ERNIE (advisor) · **Date:** 2026-11-14T05:22Z · **For:** the queue, any seat
-**Status:** proposals. Nobody is assigned. Take the top line you can do well, file it, and later seats review it. Three confirmations from three different seats = REVIEWED ✓✓✓. A seat may not review its own work.
+**Status:** proposals, now entered in `_agents/QUEUE.md` as **P-355…P-359** at the Owner's direction. Nobody is assigned. Take the top line you can do well, file it, and later seats review it. Three confirmations from three different seats = REVIEWED ✓✓✓. A seat may not review its own work.
 
 **Why these exist:** the nine-arm wave produced a clean tie. Every measured column ties — contract identity, goldens, drift, leakage, 5/5. So the decision will be made on *maintainability, agent experience, and owner comprehensibility*, and **none of those three has been measured by anyone.** These five requests are the missing measurements, written so a seat can execute one in a sitting.
 
@@ -9,7 +9,7 @@
 
 ---
 
-## WR-A · The contradiction and retraction register (P0 — read-only, no machine needed)
+## WR-A · [P2] The contradiction and retraction register (read-only, no machine needed)
 
 **Deliverable:** one file walking every framework-wave claim and marking it: `current` · `superseded` · `contradicted` · `unretracted`.
 **Why it matters:** six cross-seat contradictions are sitting in the record unretracted (see my red-team Q4). Each one is a chance for the digest to cite something false.
@@ -18,7 +18,7 @@
 **Acceptance:** every row traceable to a file and a hash; no row resting on a summary.
 **Do not:** re-measure anything; propose a framework.
 
-## WR-B · The maintainability column (P0 — spec only, no implementation)
+## WR-B · [P2] The maintainability column (spec only, no implementation)
 
 **Deliverable:** a *test design* for "can a maintainer change this safely", not a score.
 **Why:** this is the column the decision turns on and nobody has defined it.
@@ -27,7 +27,7 @@
 **Acceptance:** a stranger could run the scenarios on either shell from your spec alone.
 **Do not:** run them (that is a later wave); score the frameworks.
 
-## WR-C · The agent-defect-rate harness (P0 — spec + one pilot)
+## WR-C · [P2] The agent-defect-rate harness (spec + one pilot)
 
 **Deliverable:** a defect taxonomy and a measurement protocol for "does an agent maintain this shell correctly", plus **one pilot run on one shell** if budget allows.
 **Why:** every agent claim in the record is "a seat ran a script". Nobody has measured defects.
@@ -36,7 +36,7 @@
 **Acceptance:** the taxonomy is specific enough that two seats would classify the same diff identically.
 **Do not:** run both shells and declare a winner (that is not this request).
 
-## WR-D · The conceptual-surface probe (P1 — small, and the one I expect to discriminate)
+## WR-D · [P2] The conceptual-surface probe (small, and the one I expect to discriminate)
 
 **Deliverable:** a count of "concepts a maintainer must hold to make a one-line change" in each shell, with the list spelled out.
 **Why:** this is the only column where I expect a real difference (Svelte 0 app deps + 9-line state vs Vue 4 deps + Pinia + emit contract), and it is measurable by reading.
@@ -45,7 +45,7 @@
 **Acceptance:** a non-specialist could read your two lists and see the difference.
 **Do not:** call the smaller list "better"; call it smaller, and say what that buys.
 
-## WR-E · The owner-comprehensibility probe (P1 — needs the Owner, not a seat)
+## WR-E · [P2] The owner-comprehensibility probe (needs the Owner, not a seat)
 
 **Deliverable:** a protocol the Owner can run in 20 minutes, not a measurement.
 **Why:** the one fact the whole decision may turn on — will he ever edit the shell unaided — is unmeasured, and no seat can measure it for him.
@@ -83,3 +83,9 @@
 - WR-C agent-defect-rate harness | P0 | all agent evidence is "ran a script" | ERNIE this file
 - WR-D conceptual-surface probe | P1 | the likeliest discriminator; readable in one sitting | ERNIE this file
 - WR-E owner-comprehensibility protocol | P1 | needs the Owner, not a seat | ERNIE this file
+
+---
+
+## Correction to my own tiers (2026-11-14T05:35Z)
+
+I first labelled these P0/P1. **That was wrong and I am correcting it.** The queue's own definitions are: *P0 = the Owner's current V23 requests · P1 = Owner-stated, earlier lists · P2 = enablers, checks and improvements (ours and the council's, not yet finalised)*. These five are council-proposed measurement work, so they are **P2**, and the queue rows I entered say P2. Tiers are the Owner's and the Architect's to set, not a proposer's to claim.
