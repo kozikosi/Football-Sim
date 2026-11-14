@@ -29,14 +29,14 @@ Four-seat receipts close the loop. Supersession of any conflicting text in §0 f
 
 **State of record (VERIFIED by three seats this window):** 104/104 gates ×3, hash identity across runs, engine byte-identical vs tip `d3bd81d` in both arms (`diff -rq` empty, 57 paths matched each), arm-fairness holds (≈124 LOC vue vs ≈133 svelte), run-1 vs run-2 wiring gap exactly reproduces (alerk 5,130/7,415/5,078 vue vs 1,235/2,333/1,599 svelte), corrected-wiring parity in run 2 (1.6 s class, both arms, same 11 goneOdds-heavy picks), G5 600/600.
 
-## 1. The phases you run, in Ernie's order (no shuffling)
+## 1. The phases available — order is yours
 
-Ernie's work order already contains the detail for phases A–J. INKLING does not restate instruction; this is a reading map, one line each, so nothing gets skipped out of impatience:
+The Owner ruled 2026-11-14: **no scope guard; Z.ai is licensed to wander.** Ernie's A→J ordering is his suggestion, not your cage — execution order, phase selection, and depth per phase are entirely yours; nothing here or in any brief fences you into a sequence. INKLING's recommendation (errata first, ratification benefits most from clean numbers before anything else) is advice, not law. The reading map, one line each, with INKLING's favourite order noted where it matters:
 
 - **A · Save schema + resume test.** Highest-value lane. Build the save envelope you recommend; prove the save→quit→relaunch→resume identical-next-pick incl RNG position, on both shells; audit the BENCH-1 187,078 B record for the fields achievements/tendencies/best-seasons/favourites/brag-share need; size it after a full season and three.
 - **B · Phone-class measurement** — CPU×4/6 throttle and slow 3G (native flag); the goneOdds cells on both arms; a phone-class number quoted with stated basis (device or stated factor; do not borrow averages).
 - **C · Offline for real.** file:// + no display refreshables + no runtime font fetch (w89's Google fonts are the known risk). Surface every console error in the offline run verbatim.
-- **D · The library test** (WR-BENCH2, Ernie's full spec inside the product round file): virtualized+persisted+filtered board vs both, Vue ecosystem with `@vueuse/motion` vs Svelte=built-ins+TanStack adapter; four columns, never summed; a tie is a success.
+- **D · The library test** (WR-BENCH2, Ernie's full spec inside the product round file): virtualized+persisted+filtered board over the full pool vs both shells. Vue's ecosystem bet is VueUse; Svelte's comparable is TanStack. Which tool each arm uses is the test's content — you invent it and defend it. Report whether the solution was easier in Svelte 5 or Vue 3 (or no different) for this feature with receipts; no comparison-by-narrative allowed.
 - **E · Achievements as data**, tendencies, best seasons, favourites; one real data-file entry added = proof of extensibility.
 - **F · Brag-share end-of-season card** — client-side; w89-idiomatic; a user would actually post; the design problem of the wave.
 - **G · Conflict rule** with deliberately wrong clocks — highest-progress-wins; loser retained and disclosed once.
@@ -44,13 +44,15 @@ Ernie's work order already contains the detail for phases A–J. INKLING does no
 - **I · Shell determinism** — same seed → byte-identical board/log/summary text, not just engine.
 - **J · Agent-defect pilot** — one bounded feature on one shell, counts by class, honest columns.
 
-**Execution order is fixed. Depth per phase is yours to budget.** If any phase is blocked on your machine, log the block verbatim (it is a finding, not a failure), move on, and resume at the next session. Do the receipts BM that match your machine.
+**Owner ruling 2026-11-14 (the one clause that outranks every other rule in this brief): no scope guard. You are licensed to wander.** Skip a phase, merge two, invent one nobody specified, end the wave early if you run out of buildable imagination, or file at 06:00 with six phases unopened — all legal. The record wants honest receipts from where you went, not dutiful coverage of where you didn't.
+
+**Order is yours to choose. Depth per phase is yours to budget.** If any phase is blocked on your machine, log the block verbatim (it is a finding, not a failure), move on, and resume at the next session. Do the receipts BM that match your machine.
 
 ## 2. The extras (INKLING-licensed; imagination rewarded; nobody forced to play)
 
 1. **The W89 essence skin** (`zai-w89-watchlist-run-2026-11-14.md` file at `a5c103d5`): star + filter + count persisted; w89 tokens extracted first (`w89-quirks.md` with byte offsets); `w89-shine` CSS analog for starred 90+ rows; Cinzel/Bodoni stack; espresso ground; champagne-gold body; NO white; OVR gold bubbles (85 vibrant / 90 shimmer); CAN YOU GO 20-0? header jingle; team-colour user-team label; ribbon quick-strip; **one self-invented stretch-N nobody proposed yet** — log it as "Stretch-N", screenshot it, and expect the Owner to ruling on whether it ships.
 2. **Lane C/E/F** — the tooling shootout + perf instrument parity + heap/DOM tax (scripts ready, zero derivation).
-3. **BENCH-1.5 — Pick Reveal** as filed by Glyph (`…-0655-…pick-reveal.md`, at `3e563749`): Owner approved it; **errata INKLING filed so you cite it accurately** — the file map you will find names bytes that do not exist (there is no `receipt.json` or `tests/board.spec.ts` in the published arms; wiring at `src-bench/Board.vue:20`/`Board.svelte:18`); no one cares about line numbers, but your §A paths must reflect the actual arms or your receipts will lie from line one.
+3. **BENCH-1.5 — Pick Reveal** — Owner approved (see Glyph's filing `…-0655-…pick-reveal.md`, at `3e563749`). **Errata INKLING filed so you cite it accurately** — the file map you will find names bytes that do not exist (there is no `receipt.json` or `tests/board.spec.ts` in the published arms; wiring at `src-bench/Board.vue:20`/`Board.svelte:18`). Overarching goal only: **make the user's committed pick feel like a moment in the w89 language**. Which tools you reach for (one library, any bundle, raw CSS, both savings, whatever works and passes your own bar; the conventional suggestion is `@vueuse/motion` for Vue / built-ins for Svelte — but that is a hint, not a constraint) and how far you push it — your call. The deliverable is the receipt: a working reveal, plus your honest answer to one question — was it easier to build in Svelte 5 or Vue 3 for this feature? — answered with repair-log evidence either way (or no different).
 4. **Stretch list — do whichever strikes you; all are optional; all need receipts:** the brag-share card (E/F merged lane with a single cultural criterion: "would I post this?"); the 20-0 card (one shimmer event at season end); the phone-singular thumb run; a second copy of any run as agent-defect pilot ground; whatever you notice in the w89 bytes that nobody noticed.
 5. **Deep-dive bet nobody has made yet:** one genuinely large layout pass — **make the verdict himself on the phone layout**: build the one screen you'd show a non-fan phone, and put w89's spirit inside it flawlessly. This wave's own statement: only more beautiful and more dynamic.
 
