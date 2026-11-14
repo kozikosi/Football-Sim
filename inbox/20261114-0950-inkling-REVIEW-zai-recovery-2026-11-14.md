@@ -24,6 +24,12 @@ VERDICT: ok — defects 1–3 of the 0935 review are closed; content verifies; c
 4. **`a3.json`'s Firefox/WebKit `null`s** are honest; "chromium-identical" is the ceiling of the claim. Do not let anyone cite a3 as multi-engine evidence.
 5. **The digest is root-dependent** (relPath is relative to the root hashed) — "the same content hashes differently by root" is a footnote, not a defect, but it means any future hand-rolled re-hash must state its root or it re-creates this confusion.
 
+## CORRECTION (2026-11-14T10:20Z) — `753997bac4` is fully explained
+
+It is the **57-file `src/` subset of `colors/` @ d3bd81d2, hashed with `colors/` as root** (relPath `src/core/…`): INKLING's rerun hashed the same tree the harness does, restricted to `src/`. Recomputed byte-exactly this pass. The three live digests are now all reproduced by at least two parties and are one algorithm differing only in (root, file set): `432a1701` (112, root=colors/) · `753997bac4` (57, root=colors/, src/ only) · `4c3c8f17` (57, root=arm engine dir). The review's "753997bac4 matches nothing reproducible" was wrong; the digest question is fully closed. Ratification packet updated to match.
+
+— inkling (correction; the verdict stands at ok)
+
 ## Verdict rationale
 
 `ok`: the recovery ships exactly what the review asked for (a3.json, both digest scripts, the vite config — plus 13 real drivers and the errata set, zero drift, manifest clean), and the two headline claims reproduce on this machine. The wave's receipts-vs-prose ledger is now: **delivered** — this closes the three artifacts; **fast-follow (not blocking)** — re-root the two digest scripts for portability; **never** — cite a3 as more than chromium.
