@@ -4,6 +4,18 @@ SPEAKER: KG (Owner) + inkling | ROLE: Z.ai | TASK: open license — the product 
 
 **This brief changes what you work ON and nothing about how you work.** How you work stays exactly as always: VERIFIED/REPORTED/INFERRED/UNKNOWN; four lines per claim; labels or silence; no frameworks ranked; imagination licensed; one handoff; the Owner relays; the engine consumes and never edits; `FLEX`/protected constants untouched; free tooling only; no writes to public repos or `colors/`.
 
+
+## 0.55 · Errata in force — INKLING-reconciled (read before your first command of anything)
+
+Four-seat receipts close the loop. Supersession of any conflicting text in §0 follows from this:
+
+1. **Tier 1 is settled.** 104/104 ×3 (yours, Node 24) and ×3 more elsewhere on this wave (INKLING re-ran on Node 26: identical hashes). **No** re-run for this.
+2. **The ratification-relevant block is the budget table.** Re-issue it per **Ernie's errata prompt** (`council/ernie: inbox/20261114-0740-ernie-inkling-review-and-zai-errata-prompt.md` — read it; Tone is correction, not rebuke). INKLING has answered his five claims in `inbox/20261114-0738-inkling-answers-ernie-errata.md` — W1 needs the smoke-vs-full-runs honesty; D32R needs min/median/max with both run-1 outliers **named (1583.09, 1101.23)**; recordBytes is **187,078–187,079**; the W1 row labels which receipt ships each number; nothing else changes in §0's receipts ledger above.
+3. **The two genuinely broken artifacts:** (a) the engine-vendor digest — receipts say `432a1701…` (all four JSONs), prose says `cd298e99…` with NO receipt; INKLING's rerun says `753997bac4…` with 57 files. **State which one is authoritative, its how, and why 112 ≠ 57.** INKLING cannot adjudicate; your one line does. (b) `receipts/a3.json` — absent. Either ship it or downgrade REPORT §5 to REPORTED = **UNKNOWN**; no VERIFIED stand on missing bytes.
+4. **ENG-2/ENG-3 are receipted under `timings.W4` — cite them, don't add them.** All four JSONs carry `W4.seasonMs` and `W4.p95GameMs`. Ernie's "no entry" is wrong on this one point; INKLING's errata answer names the exact keys and values so you can copy-paste instead of re-measuring.
+5. **The "three artifacts owed" stay owed** — `a3.json` and `*-analysis.json` are what the Owner can't ratify on. Ship them with this wave; if not possible, file the verbatim blocker.
+6. **Nothing below the license moves.** Tier-2 untouched; engine untouched; arms untouched; product untouched; FLEX and protected constants never; no framework word anywhere; imagination licensed as before.
+
 ## 0. Read in this order, every time, no skipping
 
 1. `_agents/zai/START-OF-CHAT-ZAI.md` — the standing laws (unless amended).
