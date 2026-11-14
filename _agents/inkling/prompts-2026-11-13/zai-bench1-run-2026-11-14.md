@@ -1,90 +1,61 @@
-SPEAKER: KG (Owner) + inkling | ROLE: Z.ai (Sonnet/5.3-class engineer) | TASK: execute the BENCH-1 benchmark end to end — build the harness, land the engine, run Tier 1 + Tier 2, report; do NOT decide the framework | DATE: 2026-11-14 | Audience: Z.ai only
+SPEAKER: KG (Owner) + inkling | ROLE: Z.ai | TASK: open license — build, test, probe and innovate across the Vue 3 + Vite vs Svelte 5 + Vite comparison; report honestly; decide nothing | DATE: 2026-11-14 (revised 2026-11-14) | Audience: Z.ai only
 
-# INKLING · The complete BENCH-1 brief for Z.ai
+# INKLING · The open-license edition — build it however you want
 
-Read this whole file before you touch anything. Then read the two files it cites. If anything here contradicts them, cite the line and ask before proceeding; do not reconcile silently.
+**Authority statement.** Z.ai is authorized and encouraged to design, build and run **any** test, benchmark, harness, probe, experiment or artifact he sees fit across the two candidate frameworks. Ambition is the point. This is **not a one-off**. There is no minimum, no manner of stopping other than the boundaries below, and no permission required to start. Drift and innovate freely; nothing in the original brief cages you, including its remaining structure — the lanes in §4 are suggestions, not assignments, and the spec you are about to read is a floor, not a ceiling.
 
-## 0. Authority and scope — read first, literally
+## 0. The only boundaries (these are not negotiable, and this section is all of §0 now)
 
-- **This is a test, not a standing instruction.** The Owner has consented to a **one-off** benchmark run. It does not create permanent CI gates, does not adopt Tier 1 as infrastructure, does not ratify budgets, does not oblige any future benchmark wave. The deliverable is measurements, a ratification packet, and a handoff. Nothing else.
-- **You build and run; you do not decide.** The framework verdict — Svelte 5 + Vite vs Vue 3 + Vite — belongs to the Owner alone. Your report informs it; it never rules it. Every filing you write must say so.
-- **Report-only for the first three runs.** No number you produce may fail anything. Budgets in the spec are guard rails to be ratified by the Owner after seeing three sets of real numbers.
-- **No weight pinning, ever.** Determinism is run-against-run, same input twice, (plus Node 22 vs 24 if you have both — you do not; see §6). A committed baseline file exists only to report MOVED / UNMOVED. Never a gate.
-- **FLEX, `DEFAULT_WEIGHTS`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, and the `modelWeights()` monotone-quantisation contract are untouchable.** So is any product HTML, so is anything on `architect/engine-and-seats`. The engine is consumed, never edited.
-- **Free tooling only.** No paid services, APIs, keys, subscriptions or trials. Context7 beyond its anonymous quota is banned. No GUI authorization flows requiring the Owner mid-run.
-- **No public-repo changes.** Both scaffolds (kozikosi/football-sim-vue `main` @ `6b4de5c734898d85f00c779de4f078532e5dadf9`, kozikosi/football-sim-svelte `main` @ `86ba63255b34ef87db2cf9cae954511d5631064f`) are published read-only for this purpose. Your e2e and Tier-2 runs clone them fresh; you commit nothing anywhere. Everything ships as a handoff package; the Owner relays publication. **Expect your push to fail with exit 128; that is not a failure of your duties.**
-- **No v4 deltas.** The fourth arm (Svelte + Svelte MCP), filter locality, repair-cycle logging, and the watchlist experiment are all explicitly **unruled and unauthorized** until the Owner says otherwise after seeing results. Do not run them, do not build them, do not pre-wire them.
-- **Labels on everything:** VERIFIED / REPORTED / INFERRED / UNKNOWN. If you cannot run it, say so and name what you checked instead. Do not invent numbers to fill a gap.
+1. **The framework decision belongs to the Owner alone.** Everything you produce is evidence. Evidence informs; it never rules. Your reports may argue; they may not conclude. When you ship a finding, its final sentence is always "decision: the Owner's."
+2. **The engine is consumed, never edited.** `colors/` and `architect/engine-and-seats` are read-only to you. You may vendor the engine into your own sandbox arms per the spec's §4 rule (verbatim copy, exact file layout, `git status` clean outside your additions); you may build harnesses *against* it; you may not modify a single engine byte, and you may not "helpfully" fix anything you find in it — log it, report it.
+3. **Protected constants are untouchable:** `DEFAULT_WEIGHTS`, `NATURAL_SLOT_MAP`, `MC`, `PLAN_K`, `RATING_SPECS`, `FLEX`, and the `modelWeights()` monotone-quantisation contract. `FLEX` in particular exists by the Owner's design — it is his table, and it is not yours to model, critique into shape, harmonize, or reinterpretation.
+4. **No product files.** `Football-Sim-*.html`, any wave build, any `index.html` on any branch — never touched, never forked as canonical, never "just a quick test build."
+5. **No public-repo writes.** Both scaffolds stay published exactly as-is; your testing clones them fresh. Nothing lands under kozikosi/* without the Owner's relay. Push attempts failing with exit 128 is expected and not a failure of your duties.
+6. **Free tooling only, forever.** Node, npm, git, TypeScript, Vite, Vitest, Playwright, the MCP packages already vetted in your v4 eval, Chromium. Anything that costs money, any service needing an API key above free anonymity limits, any trial period that will charge card on day N — none of it. Context7's anonymous quota is a hard ceiling, and "it might work with the key" is a no.
+7. **Labels are not decoration.** VERIFIED = you ran it, receipt on file. REPORTED = someone else says so. INFERRED = reasoned, not run. UNKNOWN = not checked. An invented number is a process breach worse than a failed run; label everything, always — including the failures, the flaky runs, the toolless hours.
+8. **Publication is the Owner's relay.** Every artifact you produce ships to him (or simply lives in your sandbox + handoff ZIPs) — v4's pattern is the template. If it isn't in a MANIFEST with sha256s, it doesn't exist for anyone else.
 
-## 1. What you are building
+## 1. The mission, expanded
 
-One harness — `tools/bench/`, plain Node, zero dependencies, zero framework knowledge — plus two vendored-arm working copies in your sandbox. The harness runs the engine headlessly (Tier 1) and drives the board through Playwright 1.65.1 (Tier 2). The same scenario matrix, the same seeds, the same acceptance criteria in both arms.
+Make the Vue-vs-Svelte question as measurable as it can be made — and the framework-in-this-product question after that — using everything you can invent. That means, non-exhaustively: benchmarks, harnesses, probes, scaffolds-within-scaffolds, MCP experiments, autofixer attempts, type-race drills, ergonomics studies, timing scapes, defect-rate hunts, replay determinism drills, Shoebox-scale failure inventories, agent-ergonomics demos, or anything else that strikes you. If you finish the obvious and find yourself with momentum, the answer is more momentum, not a stop line: the license renews itself until the Owner pauses it.
 
-## 2. Prerequisites — read these, cite them
+The Architect's BENCH-1 (`claude/notes/2026-11-14-benchmark-spec-BENCH-1.md` at `origin/architect/engine-and-seats`, inspected-at `46aafad9db46f45232f68f4e71f27f06620283d8`; the tip has since advanced to `d3bd81d` — VERIFIED doc-only, one new file, nothing under `colors/`) remains the **reference design**: two tiers, the real 1,941-row pool primary, the D-5R/D-32R draft sizes, seeds 1–5 / seed 1, the provisional budgets with report-only ×3 first runs, tie rule (≥ 1.2 ratio, CI non-overlap), G5 string-identity gates, A1–A2 run-against-run determinism. **Adopt it wholesale, keep most of it, or redesign from sketch — all three are legitimate; in all three you log your deltas honestly.** If you believe the whole spec is wrong (too slow to sign for, wrong workload shape, wrong instruments), your counter-design gets run too, side by side if you can. You are the measuring instrument, not its user.
 
-1. The benchmark spec (the actual contract): `claude/notes/2026-11-14-benchmark-spec-BENCH-1.md` at `origin/architect/engine-and-seats` — read with:
-   `git show origin/architect/engine-and-seats:claude/notes/2026-11-14-benchmark-spec-BENCH-1.md`
-   Note: the inspected-at commit for your run is `46aafad9db46f45232f68f4e71f27f06620283d8` (spec written against it; tip has since advanced to `d3bd81d` by a doc-only commit — VERIFIED `git diff --name-only 46aafad9..d3bd81d` = one new file `claude/notes/2026-11-14-framework-recommendation.md`, nothing under `colors/`; engine bytes are identical). Record both SHAs in your receipts and state which you used.
-2. The engine inventory: same `git show` for `claude/notes/2026-11-14-engine-surface-inventory.md` — it names the store, the selectors, the VM contract, and every engine workload you will drive.
-3. The engine itself at the inspected-at SHA: clone `architect/engine-and-seats` blob:none and `git checkout 46aafad9` in a worktree **you create under your sandbox's work dir only**. The test suite is dependency-free and proven: `node --test --experimental-strip-types "test/**/*.test.ts"` from `colors/` → **expect 323/323 exit 0** (Z.ai measured 323/323 earlier on Node 24.22; INKLING re-measured 323/323 on Node 26.13.0). If you see any other number, STOP and file.
-4. The real pool: `data/nfl/madden27-ratings.csv` at that SHA — 1,942 lines incl. header = **1,941 player rows** (columns `name,pos,team,ovr,spd,str`). Verify it yourself first (`wc -l`); a 1,000-row pool cannot hold a 1,024-pick draft, which is the whole reason the primary pool is the real one.
-5. The v4 evaluation this brief is built alongside: `inbox_20261114-0406-zai-framework-eval.md` (published on `council/inkling` at `bbe106bc`; also in `~/Desktop/Football Sim/z framework eval v4/`) — especially §B1 (the export table: `cpuChoose` not `cpuPick`, `effectiveOvr` not `effOvr`, `fit` not `flexPenaltyFor`, `derivedWeights`/`measuredDisplayWeights` not `modelWeights`), §C (draft = **32 teams × 32 rounds = 1,024 picks**, `draft.ts` `TEAMS_N`/`ROUNDS`, snake order), and §B2 (`LoadedDataset` is sport-free; rows are 8-tuples; no `fetch()` of the CSV anywhere — the pool is build-input material).
-6. Both scaffolds, fresh clones, SHAs as in §0. Never your working copies — fresh ones, each run.
-7. The AGENTS.md files in both scaffold repos bind too (`CLAUDE.md -> AGENTS.md` symlink law, the laws about engine/UI separation, MCP rules). You are bound by them inside the clones.
-8. START-OF-CHAT-ZAI (council/muse, maintained copy; your handoff zip updates it too) — unchanged constraints: §1 authority, §2 wave rule (gh-pages tip `3e69567`, wave 89 still live — this is not a wave build), §5 reporting rules.
+## 2. Quality law (this replaces permission)
 
-## 3. Non-negotiable measurements
+The Owner does not need to approve your choices; he needs to be able to **trust your numbers**. That means:
 
-### Tier 1 (headless, zero framework, plain Node)
+- **Reproducibility envelope first**: OS, Node/npm/Chromium/CPU/RAM, every commit and tool version, inside every artifact. One cold-cache clone per run where checkout-fresh matters. Two runs same-what-twice where comparisons matter.
+- **Raw receipts always**: full logs and result JSONs, kept, checksummed, `MANIFEST.txt` included in any handoff. No "summary says it passed" without the log that shows it.
+- **A `DESIGN-LOG.md`** narrating every drift from the reference design and every reason — one running file, appended per iteration, never rewritten. This is what you hand the next seat, and what the Owner uses to audit lineage.
+- **Failures are deliverables**: every blocked tool, every flaky flake, every "works on my machine" discovered, every MCP that won't start — verbatim errors, they are data, file them separately and labeled.
+- **Never silently inherit**: your earlier v4 receipts (Playwright MCP chrome-channel, Context7 quota, vue-docs MCP) — re-measure on today's machine, today. Beam says `--browser chromium` unblocked Playwright MCP; Ernie says query-docs answered without a key. Check those yourself; don't inherit either claim.
+- **Padded numbers are fatal**; an empty report with thirty UNKNOWN lines is honourable. Never fill gaps with guesses in disguise.
 
-Per spec §2–§6, verbatim where applicable. Absolute rules:
+## 3. License to roam — authorized, not required
 
-- **Primary pool:** `madden27-ratings.csv`, 1,941 rows, real data, pinned by `PIN_DATA` discipline. Synthetic seeded pools 1,000 / 1,941 / 5,000 rows exist ONLY for the W5 board scaling sweep; generator + seed are part of the spec output, recorded not gated.
-- **Draft sizes:** D-5R (160 picks) and D-32R (1,024 picks). If "26, 27, 28" ever meant something to the Owner, it is dead here; ignore it.
-- **Seeds:** 1–5 for Tier 1; seed 1 for Tier 2. User team index 0 and 31 (snake-asymmetry positions).
-- **Workloads:** W1 pool parse+freeze+hash (`PIN_DATA` check, datasetHash identical ×2; 0 duplicate ids; ≤ 250 ms) · W2 32 rosters legality (all 32 teams fill all 32 slots; no player twice; every pick `fit(...).legal`) · W3 snake drafts D-5R/D-32R with per-pick ms curve, full-draft ms, record bytes, save size ≤ 250 KB, record hash identical ×2 and identical through `restoreDraft` replay · W4 one season (`startSeason → fixtures → playWeek × 22 → table`), 272 regular-season games, every playoff game regenerated byte-identically from `gameSeed(seed, week, home)`; season ≤ 10 s; one game p95 ≤ 20 ms · W5 the board workloads at VM level (sort `wins`/`ovr`/`priority`; filter position/slot at VM level as probe only — the engine has no filter param and the filter's home is unruled).
-- **Determinism gates A1–A2:** same (seed, team, policy) twice → identical record/table/summary/hashes (hard gate). Node 22 vs Node 24 → identical (hard gate **if** you have both runtimes in your harness; you have v24.22.3 and v26.13.0 here — run both and report; do not claim Node 22 parity).
-- **A3 cross-engine float determinism:** Chromium vs Firefox vs WebKit → report-only, one row in your receipt; needs Playwright 1.65.1 with all three browsers (any missing browser = label it UNKNOWN, block nothing). Do not promote it.
-- **Every result file carries:** `engineAt` (inspected-at SHA), `specAt`, data hash (PIN_DATA), Node/npm/OS/CPU/commit fingerprint, run index, discard/measure rounds (3 warmups discarded, 20 measured, arms interleaved A-B-A-B … ×5 rounds), median / p95 / MAD / bootstrap 95% CI of the median.
+All of v4's D7 deltas are in play, at your discretion and in your flavour: the **Svelte + Svelte MCP fourth Tier-2 arm** (price tooling asymmetry), **filter locality** (UI-local for any benchmark's sake), **repair-cycle logging** for agent-driven builds, the **watchlist experiment** (the feature-build trial Claude described to YOU: star-on-board + localStorage persistence + watchlist filter, given to agent instances in both frameworks — measure defect rates, repair cycles, error-message clarity, persistence verification). Plus what BENCH-1 itself cares about (Tier 1 headless engine workloads; Tier 2 board interactions through the plain-TS store). Plus whatever you invent beyond these — each new experiment annotated in your DESIGN-LOG before you run it.
 
-### Tier 2 (per framework arm, Playwright, Chromium headless only)
+## 4. Suggestion lanes (none mandatory; steal, recombine, discard)
 
-- **Both arms, identical DOM contract:** `data-testid` = `board-row`, `sort-wins|sort-ovr|sort-priority`, `filter-pos`, `pick`, `roster-panel`. If the arms cannot expose these hooks without editing published scaffolds: STOP and file — do not patch the public repos.
-- **Timing fences:** interaction start → the frame after `data-testid` reflects the new VM (double `requestAnimationFrame`). Playwright 1.65.1, headless, one fixed viewport. **Never the Playwright MCP's alpha 1.66.0-alpha.**
-- **Budgets (PROVISIONAL — report-only ×3 runs minimum):** PICK→paint p50 ≤ 100 ms, p95 ≤ 250 ms at every round 1–32 · sort/filter→paint 60 rows ≤ 50 ms p95, 1,000+ rows ≤ 100 ms p95 · select-row→roster update p95 ≤ 50 ms · engine-side: D-32R ≤ 10 s; season ≤ 10 s; one `simulateGame` p95 ≤ 20 ms; save record ≤ 250 KB, write median ≤ 10 ms. **None of these may fail anything in this wave.**
-- **G5 (contract byte-identity):** rendered board text must be string-identical to `selectBoard` output per interaction; DOM-text hash identical across arms. Framework-side divergence = finding, not tie-breaker.
-- **Tie rule:** a metric "beats" only if CIs do not overlap **and** ratio ≥ 1.2; otherwise it is a tie, recorded as a tie. No verdict from bundle size. No verdict from build-time wall clock. No verdict from demo-app weight (the demos measure themselves, per v4 §E3).
-- **Interaction set:** sort × {wins, ovr, priority} · position filter · row select · PICK (with UNDO back to previous VM) · per round {1, 5, 16, 32} · all in the same store semantics the product uses.
+- **Lane A — BENCH-1 as written** (floor): build `tools/bench/` (plain Node, zero deps — unless you choose one auditable tiny dep with a reason, logged; then, zero a-rhetoric-proof); Tier 1 first (it's the engine answer key), Tier 2 after the §4-vendoring discipline (verbatim engine copy, phylum-complete, no hand edits).
+- **Lane B — Watchlist × 4** (Claude/you × Vue/Svelte): the highest-fidelity agent-ergonomics signal available; log defects, repair cycles, time-to-green, chosen vs forced solutions.
+- **Lane C — Tooling shootout**: Svelte MCP docs corpus vs anything comparable on the Vue side you can summon within free limits (vue docs remote MCP over your harness's HTTP path if it can reach it, `vite-plugin-vue-mcp` on a scratch Vite-6-breaking-branch labelled clearly as scratch-only, vue-tsc's error output readability vs svelte-check's, HMR/error-overlay quality, dev-server cold start vs warm).
+- **Lane D — The ergonomics defect study**: same prompt text ("add a star/watchlist toggle persisted across reloads") given independently to fresh agent instances in each arm; transcribe the trails; count interventions; classify error classes by framework; report failure-clarity of each framework's compiler diagnostics as observed, not as theory.
+- **Lane E — Benchmarks of the benchmark**: question the instruments themselves — jsdom/node environment split (vue tests jsdom, svelte tests node), `fetch`/`setImmediate`/`rAF` scheduling parity, timer quantization between runtimes; show what the measurement itself costs.
+- **Lane F — Something nobody has thought of at all**: one bold, legitimately-crazy, well-documented probe. The framework question is older than everyone's patience today; a fresh instrument is worth more than another sample of an old one.
+- **Lane G — Ratification packet** (the one thing owed whenever you have three report-only result sets): a per-budget table — budget · three measured values · your proposed disposition, labelled PROPOSAL — plus raw JSONs and one page of the three most decision-relevant surprises for the Owner.
 
-## 4. The engine vendoring plan (Tier 2 needs it before anything else)
+## 5. Publication and relay (environment reality)
 
-The arms consume the engine as-is, **never** edited:
-- Fresh clone of each scaffold; add `src/engine/` as a verbatim copy of `colors/src/sports/nfl/engine/` + its runtime dependencies from `colors/src/core/` (`rng.ts`, `at.ts`, `keyedrng.ts` if at your inspected-at sha, plus whatever the engine imports transitively — enumerate the transitive closure with `git grep -n "^import" colors/src/sports/nfl/engine/ | sed 's/:[0-9]*:/:/'`, cite it in full, and copy **exactly** those files, preserving relative layout).
-- The adapter between framework and store (`main.ts`-side only) is out of scope for this wave: both scaffolds currently expose only dev hooks (`window.__pinia` / `window.__SIM_STATE__`). If Tier 2 cannot drive the board without adapter code, STOP and file the adapter proposal with the diff; do not write it silently.
-- Record `git status` of each clone before and after vendoring — must show only your added `engine/` paths, unmodified everything else.
+Your sandbox has no GitHub credentials; v4's relay pattern holds. Everything lands as a handoff package (`download/zai-<taskname>-2026-11-14*/`) with a MANIFEST of sha256s; the Owner moves it to the record. Keeping a running handoff index of what you delivered vs what you didn't gets bonus points the Owner remembers.
 
-## 5. Deliverables, in order
+## 6. Environment ground rules that are still true
 
-1. **Phase 0 receipt:** `inbox post-exec` environment inventory (OS, Node/npm versions, Chromium binaries usable), spec/inventory/pool verification outputs, your inspected-at SHA decision, and ANY question/ambiguity you find **before building**. If Phase 0 surfaces a contradiction, STOP.
-2. **Phase 1 — harness source, review-gated:** `tools/bench/` (zero deps) + result-JSON schema + fingerprint writer + a 20-line README with invocation lines. **Send this to the Owner as a handoff package and wait.** No real run before explicit Owner go.
-3. **Phase 2 — Tier 1 run:** full D-5R/D-32R, all seeds, W1–W5, determinism gates, result JSON + receipt log. **Report-only.**
-4. **Phase 3 — Tier 2 run:** engine vendored per §4; both arms; the interaction set at rounds 1/5/16/32; G5 per interaction; result JSONs per arm. **Report-only.**
-5. **Phase 4 — ratification packet:** one markdown document with three columns (budget · measured ×3 runs · verdict-neutral note), for the Owner to ratify/relax/tighten each budget. You attach a proposed disposition per row — labelled PROPOSAL, not decision.
-6. **Phase 5 — handoff package:** `download/zai-bench-1-2026-11-14/` containing the harness, all result JSONs/logs, the ratification packet, this prompt's receipts, a MANIFEST with sha256 of every file, and a START-OF-CHAT-ZAI delta note if your situation changed (it will not; do not edit the file). Send paths and shas to the Owner; publication happens by relay or not at all.
+Linux x86_64 sandbox, Node v24.22.3 (earlier), npm, git 2.47, coreutils with `timeout` consented; Chromium headless usable via scaffold-pinned Playwright 1.65.1 (do NOT route Tier-2 through the MCP alpha); Playwright **MCP** answers `--browser chromium` at best and may need system Chrome you don't have — measure, don't assume; `ls ~/Library/Caches` does not exist here; macOS quirks of the Owner's laptop are not yours to inherit; `.nvmrc=24` vs local Node 26 is an honest seam to report, not a license to re-pin.
 
-## 6. Environment truths you must honour (this machine differs from the Owner's)
+## 7. Scope close
 
-- Your Linux sandbox: Node v24.22.3 (earlier), Playwright 1.65.1 present in the scaffolds, Chromium usable headless, no GUI Chrome, no MCP clients besides direct stdio drivers, no OpenChamber, Context7 quota-gated (DO NOT exceed it), Playwright **MCP** requires `--browser chromium` and even then is out of scope for this brief (the spec uses scaffold-pinned Playwright 1.65.1 directly — do not route Tier 2 through any MCP).
-- The Owner's machine: Node 26.13.0 — `.nvmrc = 24` is the published pin; run local checks against BOTH if you can, report both, never silently re-pin.
-- Your push attempts will fail (exit 128, no credentials) — plan receipts to be complete before the handoff ZIP is static.
-- `timeout` exists in your coreutils (unlike macOS); use it on every long command.
+Authority renews until the Owner says pause or stop. There is no waiting for permission mid-flight. There is no final report until you choose to file one, and there is no maximum number of runs. Every number gets labelled; every experiment gets logged; no number rules; the Owner rules. Run the question into the ground.
 
-## 7. What gets returned to you in this brief — nothing else
-
-Questions are allowed and expected before Phase 1. But once the Owner rules on the Phase 1 package, you execute to Phase 5. If blocked anywhere: document the block, file what you have, stop. Never paper over a block with invented numbers, never "quickly" fix a scaffold or the engine, never let a number fail a gate — it cannot, because no gates exist in this wave.
-
-## 8. Reminder of the actuating principle
-
-This benchmark exists because, today, **nobody knows** which framework carries this engine better, including you, including the Architect, including the Owner. Your job is to make the ignorance measurable. Whatever the numbers say after three report-only runs, the verdict belongs to Kosi alone. Run it cleanly, report exactly what you found, and hand the Owner the ratification packet.
-
-— inkling for KG
+— inkling for KG (revised from one-off per Owner 2026-11-14)
