@@ -1,0 +1,24 @@
+=== B3 SVELTE check (svelte-check) ===
+exit=0 wall=2s
+--- output:
+
+> football-sim-svelte@0.0.1 check
+> svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: /home/z/my-project/repos/football-sim-svelte
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings
+
+=== B4 SVELTE unit tests (npx vitest --run) ===
+exit=0 wall=1s
+
+ RUN  v4.1.12 /home/z/my-project/repos/football-sim-svelte
+
+ ✓ src/lib/vitest-examples/greet.spec.ts (1 test) 2ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  03:56:32
+   Duration  144ms (transform 19ms, setup 0ms, import 28ms, tests 2ms, environment 0ms)
+

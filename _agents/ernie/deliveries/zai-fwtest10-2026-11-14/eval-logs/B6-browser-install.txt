@@ -1,0 +1,16 @@
+=== playwright chromium install (shared cache) ===
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 125.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 125.7 MiB
+Chrome Headless Shell 159.0.8154.6 (playwright chromium-headless-shell v1255) downloaded to /home/z/.cache/ms-playwright/chromium_headless_shell-1255
+install-exit=0
+chromium-1200
+chromium-1255
+chromium_headless_shell-1200
+chromium_headless_shell-1255
+ffmpeg-1011
+ffmpeg-1013

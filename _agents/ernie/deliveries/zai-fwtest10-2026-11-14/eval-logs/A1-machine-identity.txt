@@ -1,0 +1,45 @@
+=== A1. MACHINE IDENTITY ===
+--- date (UTC)
+Sat Nov 14 03:55:03 UTC 2026
+--- uname -a
+Linux c-6af7cf98-140d72b5-0a22ff46d5f8 5.10.134-013.15.kangaroo.al8.x86_64 #1 SMP Thu Jul 30 12:54:59 UTC 2026 x86_64 GNU/Linux
+--- os-release
+PRETTY_NAME="Debian GNU/Linux 13 (trixie)"
+NAME="Debian GNU/Linux"
+VERSION_ID="13"
+--- arch
+x86_64
+--- kernel
+5.10.134-013.15.kangaroo.al8.x86_64
+--- shells
+# /etc/shells: valid login shells
+/bin/sh
+/usr/bin/sh
+/bin/bash
+/usr/bin/bash
+/bin/rbash
+/usr/bin/rbash
+/usr/bin/dash
+SHELL=/usr/bin/bash
+/usr/bin/bash
+/usr/bin/sh
+--- node --version
+v24.22.3
+/usr/bin/node
+--- npm --version
+11.19.1
+--- git --version
+git version 2.47.3
+--- timeout
+/usr/bin/timeout
+timeout (GNU coreutils) 9.7
+--- gtimeout
+gtimeout: absent
+--- python3 --version
+Python 3.12.16
+--- sha256sum
+sha256sum (GNU coreutils) 9.7
+--- shasum
+/usr/bin/shasum
+--- gh cli
+gh: absent

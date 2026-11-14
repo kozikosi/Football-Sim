@@ -1,0 +1,28 @@
+=== B2 VUE build-only ===
+exit=0 wall=0s
+> football-sim-vue@0.0.0 build-only
+> vite build
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 34 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.42 kB │ gzip:  0.28 kB
+dist/assets/index-D3VPUIcM.css   1.68 kB │ gzip:  0.57 kB
+dist/assets/index-Dv16q5dL.js   77.20 kB │ gzip: 29.99 kB
+✓ built in 182ms
+--- dist tree
+dist/assets/index-D3VPUIcM.css
+dist/assets/index-Dv16q5dL.js
+dist/favicon.ico
+dist/index.html
+--- raw sizes (bytes)
+1685	dist/assets/index-D3VPUIcM.css
+77202	dist/assets/index-Dv16q5dL.js
+4286	dist/favicon.ico
+428	dist/index.html
+--- gzip sizes
+597	dist/assets/index-D3VPUIcM.css.gz
+29635	dist/assets/index-Dv16q5dL.js.gz
+--- dist total
+83601	dist

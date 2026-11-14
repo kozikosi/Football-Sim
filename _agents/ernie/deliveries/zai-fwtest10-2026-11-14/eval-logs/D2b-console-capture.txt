@@ -1,0 +1,16 @@
+=== console capture via scaffold-pinned playwright 1.65.1 (NOT MCP) ===
+--- SVELTE app on 5174:
+URL http://localhost:5174
+H1 Football Sim — Svelte 5 + Vite
+CONSOLE_COUNT 2
+CONSOLE [debug] [vite] connecting...
+CONSOLE [debug] [vite] connected.
+PAGEERROR_COUNT 0
+
+--- VUE app on 5173:
+URL http://localhost:5173
+H1 You did it!
+CONSOLE_COUNT 2
+CONSOLE [debug] [vite] connecting...
+CONSOLE [debug] [vite] connected.
+PAGEERROR_COUNT 0

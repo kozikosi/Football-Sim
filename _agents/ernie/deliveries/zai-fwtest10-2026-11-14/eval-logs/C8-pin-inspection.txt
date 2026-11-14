@@ -1,0 +1,31 @@
+=== files in engine at pin ===
+colors/src/sports/nfl/engine/awards.ts colors/src/sports/nfl/engine/boxscore.ts colors/src/sports/nfl/engine/display.ts colors/src/sports/nfl/engine/draft.ts colors/src/sports/nfl/engine/drives.ts colors/src/sports/nfl/engine/flex.ts colors/src/sports/nfl/engine/goneodds.ts colors/src/sports/nfl/engine/kicking.ts colors/src/sports/nfl/engine/league.ts colors/src/sports/nfl/engine/lineup.ts colors/src/sports/nfl/engine/margin.ts colors/src/sports/nfl/engine/matchup.ts colors/src/sports/nfl/engine/plans.ts colors/src/sports/nfl/engine/playerids.ts colors/src/sports/nfl/engine/players.ts colors/src/sports/nfl/engine/ratings.ts colors/src/sports/nfl/engine/recap.ts colors/src/sports/nfl/engine/returner.ts colors/src/sports/nfl/engine/schedule.ts colors/src/sports/nfl/engine/season.ts colors/src/sports/nfl/engine/seasonrun.ts colors/src/sports/nfl/engine/slots.ts colors/src/sports/nfl/engine/specs.ts colors/src/sports/nfl/engine/standings.ts colors/src/sports/nfl/engine/value.ts 
+=== keyedrng.ts at pin? ===
+ABSENT at pin
+=== rng.ts header at pin ===
+// Seeded random numbers (mulberry32). Every random draw in the engine goes through an Rng passed in,
+// never Math.random, so a (rosters, plans, seed) triple always gives the same season.
+export interface Rng {
+=== mulberry/philox mentions at pin ===
+4ca9a071c70245fc0c641c1877b320a85fdd89a8:colors/src/core/rng.ts:1:// Seeded random numbers (mulberry32). Every random draw in the engine goes through an Rng passed in,
+=== flex.ts header at pin ===
+// Flex guide REV 4: what a player of one role loses (in OVR points) for playing a spot of another.
+// Source of truth is tools/mathlab/flex.json (Owner's REV 2 guide of 26 Oct, his 28 Oct rulings: edge->OLB 0, TE->RB 4,
+// P->K 4, K->P 0, every extra rule of w33 kept; and REV 4 of 29 Oct: a QB may flex ONLY to FS, at -10). This file is
+// a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
+=== flex table rows at pin (rule count proxy) ===
+19
+=== diff engine pin->tip stat ===
+ colors/src/sports/nfl/engine/draft.ts          |   2 +-
+ colors/src/sports/nfl/engine/flex.ts           |  43 ++++-----
+ colors/src/sports/nfl/engine/legacyprovider.ts | 115 +++++++++++++++++++++++++
+ colors/src/sports/nfl/engine/slots.ts          |   3 +-
+ colors/src/sports/nfl/engine/value.ts          |   9 ++
+ 5 files changed, 149 insertions(+), 23 deletions(-)
+=== engineVersion at pin ===
+1:// E5: the two stamps every save carries (envelope.engineVersion, envelope.dataVersion).
+12:export const ENGINE_LABEL = 'nfl1';          // sport + revision; the envelope's `sport` field says the same, the label keeps a stamp readable on its own
+20:export const engineVersion = (): string => ENGINE_LABEL + '.' + hash53(rulesText());
+25:export async function stamps(rows: readonly FrozenPoolRow[]): Promise<{ engineVersion: string; dataVersion: string }> {
+colors/src/sports/nfl/app/versions.ts
+colors/test/nfl/versions.test.ts

@@ -1,0 +1,6 @@
+=== B5 VUE npx playwright test --list ===
+Listing tests:
+  e2e/vue.spec.ts:5:1 › visits the app root url
+  tests/smoke.spec.ts:3:1 › smoke: app boots and exposes __pinia
+Total: 2 tests in 2 files
+exit=0

@@ -1,0 +1,80 @@
+=== flex.json real rule count (leaves) ===
+leaf rules in flex.json: 101
+  _source -> FLEX TABLE, tiers -2 / -6 / -12, 99 rules (Owner 9 Nov 2026, D picks + 9 corrections; Muse relay claude-flex-rebuild and claude-flex-corrections-2026-11-09). Owner rules supersede theta: 7 removed (FB>EDGE, FB>DT, FB>ILB, FB>OLB, CB>RB, DT>TE, EDGE>FS); 53 Owner overrides (14 at 12, 25 at 6, 14 at 2 by list, see the relay); the other 44 rules are priced by D@90 at theta 1.0 (tools/mathlab/results/thetaprice-2026-11-09.md), rounded to the nearest tier of 0/2/6/12 (cut points 1 / 4 / 9). D is NOT recomputed here (P-321 does that). Corrections 9 Nov (Owner overrides, not D): EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2. Counts: 19 at 12, 40 at 6, 15 at 2, 23 at 0. from-position -> {destination: penalty}. 0 = free. NICKEL = the CB3 slot. DIME = the 6th-DB slot. 10 Nov 2026 (Muse relay claude-flex-floor-2026-11-10): cross-side floor, WR>CB/DIME/FS/NICKEL/SS 2 to 6; item 3, TE>DIME 6 to 12, TE>FS 6 to 12, ILB>FS 12 new, OLB>FS 12 new. Item 7 (SAM rules) NOT applied: SAM is a slot whose dest is OLB, so the OLB column already prices it. Counts: 23 at 12, 43 at 6, 10 at 2, 23 at 0 (99 rules).
+  roles -> ['QB', 'RB', 'FB', 'WR', 'TE', 'OT', 'OG', 'C', 'DT', 'EDGE', 'ILB', 'OLB', 'SS', 'FS', 'CB', 'K', 'P']
+  flex -> [('QB', {'FS': 12}), ('RB', {'FB': 0, 'WR': 12, 'TE': 6, 'SS': 12, 'FS': 12}), ('FB', {'RB': 2, 'TE': 6}), ('WR', {'RB': 6, 'TE': 6, 'CB': 6, 'FS': 6, 'SS': 6, 'NICKEL': 6, 'DIME': 6})]
+
+=== snake draft? (draft.ts order logic) ===
+1:// The draft: 32 teams, a snake order, 32 rounds (one per roster spot), every player available from round 1.
+40:  cfg: DraftConfig; order: number[]; pos: number; pool: Player[];   // pool sorted by OVR, best first (ties by id)
+44:export function snakeOrder(teams = TEAMS_N, rounds = ROUNDS): number[] {
+52:export function newDraft(players: readonly Player[], rng: Rng, cfg: DraftConfig = DEFAULT_CONFIG, order: number[] = snakeOrder()): DraftState {
+62:  return { cfg, order, pos: 0, pool, rosters: Array.from({ length: TEAMS_N }, () => ({})), traits, log: [], repl: {}, replAt: -99 };
+124:  if (st.order[st.pos] !== team) throw new Error(`draft: it is not team ${team}'s pick`);
+
+=== platform read path ===
+colors/src/core/app.ts:35:// a user-supplied CSV is validated and stored under sim:nfl:dataset:user. 'bundled' stays a build-time source tag
+colors/src/core/keys.ts:9:// (sim:nfl:dataset:user, sim:theme) return null — the assertion is only defined where a slot is named.
+colors/src/sports/nfl/app/dataset.ts:32:export const DATASET_USER_KEY = 'sim:nfl:dataset:user';
+
+=== repo root / test runner ===
+ADVISOR-PLAYBOOK.md
+AGENTS.md
+BASELINES.md
+BOOTSTRAP.md
+CHRONICLE.md
+CLAUDE.md
+CLAUDE_DOMINANT_WORKFLOW.md
+COLLECTIVE-PROMPT.md
+CONSENSUS_BLOCK_FORMAT.md
+COUNCIL-BULLETIN.md
+COUNCIL-RELIABILITY-REVIEW-PROMPT.md
+COUNCIL-RELIABILITY-RULE.md
+COUNCIL-SCORECARD.md
+DECISION-LOG.md
+FINAL_CONSOLIDATION.md
+Football-Sim-PreColors.html
+GOVERNANCE-ROUNDTABLE.md
+GOVERNANCE_CHANGE_PROPOSAL.md
+IDENTITY.md
+INDEX.md
+index.html
+package-lock.json
+package.json
+src
+test
+tools
+tsc-baseline.json
+tsconfig.json
+vite.config.js
+no root package.json
+audit-fixes.test.ts
+boxscore.test.ts
+display.test.ts
+draft.test.ts
+drives.test.ts
+envelope.test.ts
+fixture.ts
+focusdial.test.ts
+formation-gap.test.ts
+golden
+kicking.test.ts
+legacyprovider.test.ts
+lineup.test.ts
+margin.test.ts
+matchup.test.ts
+outcome.test.ts
+playerids.test.ts
+players.test.ts
+purity.test.ts
+recap.test.ts
+resume-determinism.test.ts
+returner.test.ts
+rng.test.ts
+schedule.test.ts
+season.test.ts
+seasonrun.test.ts
+standings.test.ts
+store.test.ts
+theme.test.ts
+versions.test.ts

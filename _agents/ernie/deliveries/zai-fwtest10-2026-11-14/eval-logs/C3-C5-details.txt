@@ -1,0 +1,98 @@
+=== C3: dataset physical source ===
+README.md
+free-agents-old-ratings.csv
+madden27-ratings.csv
+madden27-raw-paste.txt
+old-names-absent-in-new.txt
+player-ids.csv
+    13 data/nfl/free-agents-old-ratings.csv
+  1942 data/nfl/madden27-ratings.csv
+  1954 data/nfl/player-ids.csv
+  3909 total
+--- dataset.ts loader head:
+// DatasetLoader rework (w74 item 4f, Z.ai DRAFT — the F11 open decision lives in this header).
+//
+// THE OPEN DECISION (for the Architect + Owner; nothing here rules it):
+//   Kosi's ruling: real player names and real teams with non-EA ratings are the PUBLIC default.
+//   The old contract's no-file fallback — a bundled fictional league — contradicts it (F11): a silent fictional
+//   league looks real, and the Owner's ratings (his own, to be generated later — "DO NOT START" for every seat)
+//   do not exist yet.
+//   Options on the table:
+//     (A) this draft — no-file state is EMPTY with a plain-language message and an Import button; a dev/private
+//         build may still ship rows as a build input (source tag 'bundled'), never shown to the public as real.
+//     (B) fictional-with-warning — ship a fictional league labelled "fictional" until the real ratings exist.
+//   This file implements (A) and keeps (B) a ~10-line change (replace noDataset()'s result with the bundled load
+//   + a forced banner state), so the ruling flips it cheaply. Independently generated real-name ratings remain
+//   Kosi's own later work; nothing here generates ratings.
+//
+// PLACEMENT: this file lives in sports/nfl/app/, NOT core/ — it imports the NFL engine's buildPool, and the
+// layout law is "core imports only core" (the first tsc run caught the violation; the layout test ratified it).
+// The sport-free half of the contract stays in core/app.ts (DatasetLoader<Row>, LoadedDataset<Row>, DatasetSource);
+// the NFL row tuple (DatasetRow, below) lives here, with the one sport that owns it.
+//
+// Contract change vs core/app.ts: the loader's failure union gains 'no-dataset' — the empty state is a RESULT the
+// boot screen renders (message + import path), not a throw and not a fallback.
+
+import { buildPool } from '../engine/players.ts';
+import type { Player } from '../engine/players.ts';
+import { datasetHash } from '../../../core/hash.ts';
+import type { DatasetLoader, DatasetSource, LoadedDataset, Result } from '../../../core/app.ts';
+
+export type DatasetRow = readonly [string, string, string, string, number, number, number, 0 | 1];
+
+--- core/app.ts loader contract:
+  entries(prefix: string): Promise<Result<[string, string][]>>;
+}
+
+// Where player rows come from. NO silent fallback to a bundled fictional league (Kosi's real-names ruling, F11):
+// with no dataset the boot state is EMPTY with a plain-language message and an import path (core/dataset.ts);
+// a user-supplied CSV is validated and stored under sim:nfl:dataset:user. 'bundled' stays a build-time source tag
+// only: a dev/private build may ship real-names rows as a local build input, and the public build must not ship a
+// fictional league pretending to be real. A loader never throws: every failure is a Result the boot screen can show.
+export type DatasetSource = 'bundled' | 'user';
+// Sport-free: the row shape belongs to the sport (NFL's is sports/nfl/app/dataset.ts DatasetRow). `Row` defaults to
+// `unknown` so shared code can carry a dataset and its hash without knowing a sport's columns.
+export interface LoadedDataset<Row = unknown> { source: DatasetSource; rows: readonly Row[]; hash: string }
+export interface DatasetLoader<Row = unknown> { load(): Promise<Result<LoadedDataset<Row>, { code: 'no-dataset' | 'user-invalid' | 'bundled-missing'; message: string }>> }
+
+=== C3: who reads the CSV (fetch? fs?) ===
+
+=== C4: view + app files (UI views) ===
+colors/src/sports/nfl/app/:
+appstate.ts
+dataset.ts
+feed.ts
+hydrate.ts
+legacy.ts
+outcome.ts
+profile.ts
+saves.ts
+selectors.ts
+store.ts
+versions.ts
+weekmap.ts
+
+colors/src/sports/nfl/view/:
+draftBoard.ts
+roster.ts
+teamColors.ts
+theme.ts
+
+=== C5: draft geometry ===
+import { SLOTS, SLOT_IDS, WEIGHT } from './slots.ts';
+import type { Dest, SlotId } from './slots.ts';
+
+export const TEAMS_N = 32;
+export const ROUNDS = SLOT_IDS.length;              // 32 spots, so 32 rounds: every team fills every spot
+const DEST_OF = Object.fromEntries(SLOTS.map((s) => [s.id, s.dest])) as Record<SlotId, Dest>;
+// the role whose supply sets the replacement level for a spot's destination
+
+=== byte-version rule: versions.test.ts ===
+16:// PIN_ENGINE moved 9 Nov 2026 on purpose: FLEX is the Owner's D table (97 rules, 7 removed, then his 9 corrections; flex.json), replacing the 8 Nov -2/-6/-12 table (P-294).
+17:const PIN_ENGINE = 'nfl1.108bcc20a9f253', PIN_DATA = 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3';
+19:// drift flag, and never fails the build: the rules text legitimately moves with the flex table and the play-level rebuild. PIN_ENGINE
+24:  t.diagnostic(`REPORT (not a gate): engineVersion=${eng} last-looked-at=${PIN_ENGINE} ${eng === PIN_ENGINE ? 'UNMOVED' : 'MOVED'}`);
+
+=== flex.json at tip: rule count ===
+dict
+rules: 19

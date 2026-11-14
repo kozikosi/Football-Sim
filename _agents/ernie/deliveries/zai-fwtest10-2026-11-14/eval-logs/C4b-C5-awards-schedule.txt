@@ -1,0 +1,26 @@
+=== awards inventory ===
+2:// MVP: the offensive player with the most production, weighted a little by his team's wins. Offensive Player of the Year: the best
+13:export const newSeasonStats = (): SeasonStats => ({ players: {} });
+15:export function addBox(ss: SeasonStats, box: BoxScore): void {
+23:export const LEADER_KEYS: readonly StatKey[] = ['pyd', 'ptd', 'ryd', 'rtd', 'recYd', 'rec', 'recTd', 'sack', 'intDef', 'tkl', 'ff', 'fgm', 'defTd'];
+24:export function leaders(ss: SeasonStats, key: StatKey, n = 5): SeasonLine[] {
+36:export function seasonAwards(ss: SeasonStats, table: Readonly<Record<string, Rec>>, expectedWins?: Readonly<Record<string, number>>): Awards {
+
+=== season shape (weeks) ===
+1:// The 17-game schedule (NFL formula, council P-207 data, GPT/Groq 30 Oct, checked against NFL Football Operations as REPORTED):
+5:// Home games: 8 or 9; the conference with the extra home game alternates by year (2026: NFC). 18 weeks, one bye each (weeks 5-14),
+60:const BYE_WEEKS = [5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+87:  BYE_WEEKS.forEach((w, i) => { for (let k = 0; k < at(BYE_COUNTS, i); k++) slots.push(w); });
+91:  for (let w = 1; w <= 17; w++) {
+
+=== gameSeed / replay determinism ===
+colors/src/sports/nfl/engine/seasonrun.ts:48:export const gameSeed = (seed: number, week: number, home: string): number => forkSeed(seed, gameLabel(week, roundOfWeek(week), home));
+colors/src/sports/nfl/engine/seasonrun.ts:56:  return pairs.map(([home, away]) => ({ week: w, round, home, away, seed: gameSeed(s.seed, w, home), ...(hf !== undefined ? { homeField: hf } : {}) }));
+colors/src/sports/nfl/app/appstate.ts:6:// Forbidden in state: game results (regenerable from gameSeed, 1.13 MB/season), Date/Math.random, DOM handles, functions.
+
+=== who consumes DatasetLoader (app boot) ===
+colors/src/sports/nfl/app/dataset.ts:1:// DatasetLoader rework (w74 item 4f, Z.ai DRAFT — the F11 open decision lives in this header).
+colors/src/sports/nfl/app/dataset.ts:18:// The sport-free half of the contract stays in core/app.ts (DatasetLoader<Row>, LoadedDataset<Row>, DatasetSource);
+colors/src/sports/nfl/app/dataset.ts:27:import type { DatasetLoader, DatasetSource, LoadedDataset, Result } from '../../../core/app.ts';
+colors/src/sports/nfl/app/dataset.ts:72:export function createDatasetLoader(input: {
+colors/src/sports/nfl/app/dataset.ts:75:}): DatasetLoader<DatasetRow> {

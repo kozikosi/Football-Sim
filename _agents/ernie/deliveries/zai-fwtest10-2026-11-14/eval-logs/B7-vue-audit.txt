@@ -1,0 +1,50 @@
+=== B7 VUE npm audit ===
+# npm audit report
+
+glob  9.0.0 - 14.0.1
+Severity: moderate
+Glob: AbortSignal cancellation bypass allows post-timeout filesystem traversal - https://github.com/advisories/GHSA-3g3m-2fjr-6pw4
+Depends on vulnerable versions of minimatch
+fix available via `npm audit fix --force`
+Will install @vue/test-utils@2.4.11, which is a breaking change
+node_modules/glob
+  js-beautify  >=1.14.9
+  Depends on vulnerable versions of editorconfig
+  Depends on vulnerable versions of glob
+  node_modules/js-beautify
+    @vue/test-utils  >=2.5.0
+    Depends on vulnerable versions of js-beautify
+    node_modules/@vue/test-utils
+
+minimatch  7.0.0 - 11.0.0
+Severity: moderate
+minimatch has potential denial of service via globparts amplification - https://github.com/advisories/GHSA-g3hv-75wg-m249
+fix available via `npm audit fix --force`
+Will install @vue/test-utils@2.4.11, which is a breaking change
+node_modules/minimatch
+  editorconfig  1.0.3 - 3.0.2
+  Depends on vulnerable versions of minimatch
+  node_modules/editorconfig
+
+5 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+audit-exit=1
+--- npm audit --omit=dev
+found 0 vulnerabilities
+audit-prod-exit=0
+--- npm audit fix --dry-run (non-breaking path check)
+minimatch has potential denial of service via globparts amplification - https://github.com/advisories/GHSA-g3hv-75wg-m249
+fix available via `npm audit fix --force`
+Will install @vue/test-utils@2.4.11, which is a breaking change
+node_modules/minimatch
+  editorconfig  1.0.3 - 3.0.2
+  Depends on vulnerable versions of minimatch
+  node_modules/editorconfig
+
+5 moderate severity vulnerabilities
+
+To address all issues (including breaking changes), run:
+  npm audit fix --force
+dryrun-exit=0

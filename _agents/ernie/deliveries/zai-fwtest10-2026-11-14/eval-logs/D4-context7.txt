@@ -1,0 +1,11 @@
+STDERR<<Context7 Documentation MCP Server v4.7.0 running on stdio
+INIT_OK serverInfo={"name":"Context7","title":"Context7","version":"4.7.0","websiteUrl":"https://context7.com","description":"Context7 provides up-to-date documentation and code examples for libraries and frameworks.","icons":[{"src":"https://context7.com/context7-icon-green.svg","mimeType":"image/svg+xml","sizes":["any"]},{"src":"https://context7.com/context7-icon-green.png","mimeType":"image/png","sizes":["512x512"]}]}
+TOOLS_LIST ["resolve-library-id","query-docs"]
+CALL>> resolve-library-id
+STDERR<<Monthly quota exceeded. Create a free API key at https://context7.com/dashboard for more requests.
+RESULT<< {"content":[{"type":"text","text":"Monthly quota exceeded. Create a free API key at https://context7.com/dashboard for more requests."}],"isError":true}
+CALL>> resolve-library-id
+STDERR<<Monthly quota exceeded. Create a free API key at https://context7.com/dashboard for more requests.
+RESULT<< {"content":[{"type":"text","text":"Monthly quota exceeded. Create a free API key at https://context7.com/dashboard for more requests."}],"isError":true}
+DRIVER_DONE
+SERVER_EXIT code=0

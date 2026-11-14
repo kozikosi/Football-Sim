@@ -1,0 +1,104 @@
+=== earlier filings: council/zai tree ===
+.gitattributes
+.gitignore
+.kilo/kilo.jsonc
+ADVISOR-PLAYBOOK.md
+AGENTS.md
+BASELINES.md
+BOOTSTRAP.md
+CHRONICLE.md
+CLAUDE.md
+CLAUDE_DOMINANT_WORKFLOW.md
+COLLECTIVE-PROMPT.md
+CONSENSUS_BLOCK_FORMAT.md
+COUNCIL-BULLETIN.md
+COUNCIL-RELIABILITY-REVIEW-PROMPT.md
+COUNCIL-RELIABILITY-RULE.md
+COUNCIL-SCORECARD.md
+DECISION-LOG.md
+FINAL_CONSOLIDATION.md
+Football-Sim-PreColors.html
+Football-Sim-W21-GPT.html
+Football-Sim-Z-post-blue w14.html
+Football-Sim-Z-post-blue w16.html
+Football-Sim-Z-post-blue w18.html
+Football-Sim-Z-post-blue-w15.html
+Football-Sim-Z-post-blue-w19.html
+Football-Sim-Z-post-blue-w20.html
+Football-Sim-Z-post-blue-w21.html
+Football-Sim-Z-post-blue-w22.html
+Football-Sim-Z-post-blue-w24.html
+Football-Sim-Z-post-blue-w25.html
+Football-Sim-Z-post-blue-w26.html
+Football-Sim-Z-post-blue-w27.html
+Football-Sim-Z-post-blue-w28.html
+Football-Sim-Z-post-blue-w29.html
+Football-Sim-Z-post-blue-w30.html
+Football-Sim-Z-post-blue-w32.html
+Football-Sim-Z-post-blue-w33.html
+Football-Sim-Z-post-blue-w34.html
+Football-Sim-Z-post-blue-w35.html
+Football-Sim-Z-post-blue-w37.html
+
+=== zai inbox on other branches? ===
+--- origin/council/muse
+inbox/20261101-0951-muse-P-010-claim.md
+inbox/20261101-0953-muse-P-010-review.md
+inbox/20261101-1008-muse-P-195-claim.md
+inbox/20261101-1011-muse-P-195-acceptance-tests.md
+inbox/20261101-1906-muse-P001-P006-review-for-claude.md
+_agents/ARCHITECTURE-DIRECTION.md
+_agents/COLORS-V1-DESIGN.md
+_agents/COLORS-V1-INTEGRATION-PLAN.md
+_agents/END-OF-CHAT.md
+_agents/ENGINE-MATH-SPEC.md
+_agents/GUEST-REVIEW-TRIAGE-2026-10-24.md
+_agents/MIGRATION.md
+_agents/NEXTJS-REVIEW-2026-10-29.md
+--- origin/council/inkling
+inbox/20261101-1400-architect-process-rewrite-proposals.md
+inbox/20261101-2000-architect-storage-assessment.md
+inbox/20261101-2100-architect-to-zai-storage-contract.md
+inbox/20261102-0100-architect-E2-envelope-published.md
+inbox/20261102-0200-architect-E3-week-stepping.md
+_agents/ARCHITECTURE-DIRECTION.md
+_agents/BUILD.txt
+_agents/COLORS-V1-DESIGN.md
+_agents/COLORS-V1-INTEGRATION-PLAN.md
+_agents/COLORS-V1-UI-ARCHITECTURE.md
+_agents/COUNCIL-REQUESTS-STEPS-8-9.md
+_agents/COUNCIL.md
+_agents/END-OF-CHAT.md
+--- origin/council/glm
+inbox/20261028-2225-glm-P-019-claim.md
+inbox/20261029-0305-glm-P-019-review.md
+inbox/20261029-0308-glm-P-045-review.md
+inbox/20261029-0312-glm-P-045-claim.md
+inbox/20261029-0330-glm-P-046-review.md
+_agents/ARCHITECTURE-DIRECTION.md
+_agents/BUILD.txt
+_agents/COLORS-V1-DESIGN.md
+_agents/COLORS-V1-INTEGRATION-PLAN.md
+_agents/COLORS-V1-UI-ARCHITECTURE.md
+_agents/COUNCIL-REQUESTS-STEPS-8-9.md
+_agents/COUNCIL.md
+_agents/END-OF-CHAT.md
+--- origin/council/gpt
+inbox/README.md
+_agents/END-OF-CHAT.md
+_agents/GUEST-REVIEW-TRIAGE-2026-10-24.md
+_agents/MIGRATION.md
+_agents/ONBOARDING.md
+_agents/PRESERVATION-PASS-2.md
+_agents/PRIORITIES.md
+_agents/QUEUE.md
+_agents/README.md
+--- origin/main
+_agents/README.md
+_agents/beam
+_agents/ds
+_agents/glm
+_agents/glyph
+_agents/gpt
+_agents/minimax
+_agents/nemo-super

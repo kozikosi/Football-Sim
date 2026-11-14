@@ -1,0 +1,8 @@
+INIT_OK serverInfo={"name":"Playwright","version":"1.66.0-alpha-2026-11-09"}
+TOOLS_LIST ["browser_close","browser_resize","browser_console_messages","browser_handle_dialog","browser_emulate_media","browser_evaluate","browser_file_upload","browser_drop","browser_find","browser_fill_form","browser_press_key","browser_type","browser_navigate","browser_navigate_back","browser_network_requests","browser_network_request","browser_run_code_unsafe","browser_take_screenshot","browser_snapshot","browser_click","browser_drag","browser_hover","browser_select_option","browser_tabs","browser_wait_for"]
+CALL>> browser_navigate
+RESULT<< {"content":[{"type":"text","text":"### Error\nError: async initializeServer: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome\nRun \"npx playwright install chrome\""}],"isError":true}
+CALL>> browser_console_messages
+RESULT<< {"content":[{"type":"text","text":"### Error\nError: async initializeServer: Chromium distribution 'chrome' is not found at /opt/google/chrome/chrome\nRun \"npx playwright install chrome\""}],"isError":true}
+DRIVER_DONE
+SERVER_EXIT code=null

@@ -1,0 +1,92 @@
+=== C4: engine LOC ===
+    45 colors/src/sports/nfl/engine/value.ts
+    36 colors/src/sports/nfl/engine/goneodds.ts
+    68 colors/src/sports/nfl/engine/ratings.ts
+    62 colors/src/sports/nfl/engine/margin.ts
+  2491 total
+total engine .ts files: 26
+
+=== C2: exported symbols (functions/consts) ===
+      1 export type UserPolicy
+      1 export type Unit
+      1 export type Strat
+      1 export type Stats
+      1 export type StatKey
+      1 export type Spec
+      1 export type SlotId
+      1 export type Side
+      1 export type ScoreKind
+      1 export type Round
+      1 export type Roster
+      1 export type Role
+      1 export type RatingKey
+      1 export type Posture
+      1 export type Pkg
+      1 export type Pers
+      1 export type Period
+      1 export type OneDecimalKind
+      1 export type NflEvent
+      1 export type GameKind
+      1 export type Focus
+      1 export type DriveEnd
+      1 export type Div
+      1 export type Dest
+      1 export type CreditKind
+      1 export type Conv
+      1 export type Conf
+      1 export type Base
+      1 export type Assignment
+      1 export interface TurnoverLine
+      1 export interface Traits
+      1 export interface TeamGameStats
+      1 export interface TeamDef
+      1 export interface SyncResult
+      1 export interface Swing
+      1 export interface StarLine
+      1 export interface Spot
+      1 export interface SlotDef
+      1 export interface Seeding
+      1 export interface SeasonStats
+      1 export interface SeasonResult
+      1 export interface SeasonLine
+      1 export interface ScoreEvent
+      1 export interface Score
+      1 export interface RunState
+      1 export interface ReturnerCandidate
+      1 export interface Record3
+      1 export interface RecapLine
+      1 export interface Recap
+      1 export interface Rec
+      1 export interface Ratings
+      1 export interface Projection
+      1 export interface PlayerRef
+      1 export interface PlayerLine
+      1 export interface Player
+      1 export interface Played
+      1 export interface Plan
+      1 export interface Placement
+      1 export interface Pick
+      1 export interface OffPlan
+      1 export interface Move
+      1 export interface Matchup
+      1 export interface Lineup
+      1 export interface LeagueTeam
+      1 export interface Kick
+      1 export interface Identity
+      1 export interface IdRow
+      1 export interface GoneOdds
+      1 export interface GameStartPayload
+      1 export interface GameSide
+      1 export interface GameResult
+      1 export interface GameOptions
+      1 export interface GameLog
+      1 export interface GameEndPayload
+      1 export interface Game
+      1 export interface Fit
+      1 export interface FieldSlot
+      1 export interface DriveCredit
+      1 export interface Drive
+      1 export interface DraftState
+
+=== C7: framework imports in engine + whole colors/src ===
+NONE — engine has zero framework imports

@@ -1,0 +1,6 @@
+=== B1 VUE npm ci ===
+exit=0 wall=4s
+
+added 221 packages in 4s
+node_modules entries: 151
+185M	node_modules
