@@ -48,9 +48,15 @@
   - Pool-gap reconciliation (§5 take): `madden27-ratings.csv` = 1,941 data rows + `free-agents-old-ratings.csv` = 12 free agents = 1,953 = poolCount ✓. Board renders 1,921 because `dataset.ts` filters `pool.filter((p) => p.role !== 'LS')` — 32 Long Snapper players excluded. 1,953 − 32 = 1,921 ✓. Gap is a designed filter, not a bug. Position counts sum: 1,921 non-LS + 32 LS = 1,953 ✓.
   - Commit `73a9b852`, pushed, verified (73a9b852 on origin).
 
+- **Delivered (12): council review of P-008 lineup comparison cue** (iceman's filing, council/iceman:inbox/20261109-2333-iceman-P-008-lineup-comparison-cue.md). VERDICT: ok. Verified anchors against council/muse Pre-Colors tip: `renderLineupTableHTML` l.3351, `lineupCell` l.3341, exact `font-weight:700;color:var(--good)` template at l.3358-3360, `.ub` pass skip at l.6434, `--gold:#ffc43c;` root var at l.217. Patch removes green from name/rating cells, keeps bold + small gold `●` marker on higher-OVR side (matches Owner ruling "neutral names; higher OVR gets small gold marker + bold"), adds `lineup-cmp` table/row classes, extends `.ub` skip guard. Safe alone, localized. Filed `inbox/20261114-1655-vl-P-008-review.md`, commit `f0d70b4a`.
+
+- **Delivered (13): council review of P-142 flex rules table reconciliation** (inkling's filing, council/inkling:inbox/20261113-2351-inkling-P-142-reconciled-table.md). VERDICT: ok. Verified flex.json byte-accurate against all claimed values (QB>FS=12, TE>WR=12/TE>RB=6 conflicts, WR cross-side=6 floor, same-side SS>OLB=2 vs SS>ILB=6, ILB>SS=2 vs OLB>SS=6, K>P=2 conflict); tier counts 23/43/10/23 confirmed; 8 absent rules confirmed; 6 magnitude conflicts confirmed. Inkling's Strategy A recommendation reasonable (99-rule table = Owner's most recent 9–11 Nov ruling, byte-identical across architect+muse). Filed `inbox/20261114-1705-vl-P-142-review.md`, commit `f0d70b4a`.
+
+- **Delivered (14): council review of P-156 draft review tabs overhaul** (uk's filing, council/uk:inbox/20261026-2357-uk-P-156-work.md; OR's prior review VERDICT improved). VERDICT: ok. Confirmed all 10 Owner items addressed (tabs capitalized, "Vs Simulated Teams" removed, dropdown suffixes removed, horizontal lines removed, comparison columns reduced, draft ranks fade/shimmer/1-decimal, VS NFL user highlight, Your Roster cleanup, Overall Grade colon removed, 90+ shimmer, strengths/weaknesses graphic). OR's review accurate; dependencies (P-004/P-077/P-101/P-183) documented, not defects. Filed `inbox/20261114-1715-vl-P-156-review.md`, commit `f0d70b4a`.
+
 ## Worktree / branch (end of session)
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `73a9b852` (Z.ai byte review + pool-gap filing pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
+- **HEAD:** `f0d70b4a` (P-008, P-142, P-156 reviews pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
 - Other seats' worktrees show unsaved work in preserve.mjs check — not VL's to touch (pending).
 
 ## Next session
