@@ -6,23 +6,35 @@
 
 1. `git fetch -q origin; git log --oneline -1; git status --short`
 2. Read this file. Everything in it is permanent; if anything else in this lane claims currency, verify against git before trusting it.
-3. **The live wave** is `_agents/inkling/prompts-2026-11-13/` — everything else in this lane is frozen record or a pointer. Inside it, the newest commit carries the current truth; read its newest file(s) (`git log --format='%cs %h %s' -10 -- _agents/inkling/prompts-2026-11-13/`). Instruction files reference each other by path; follow a pointer only if the current wave requires it.
-4. `node tools/preserve.mjs check` — expect only the standing `gh-pages` local-only commit `7c9694e9`; anything else is yours to reconcile before you work.
-5. If your task came with its own file list (the Owner, a prompt), that list **replaces** steps 2–3 — read only it, as `START-HERE.md` §2 prescribes for seats on task.
+3. **The live wave** is still `_agents/inkling/prompts-2026-11-13/` for the closeout items (handout: `council-closeout-handout-2026-11-14.md` — ERNIE/GLYPH/BEAM items; INKLING already consumed its share). Newest commit carries current truth. Instruction files reference each other by path; follow a pointer only if the current wave requires it.
+4. `node tools/preserve.mjs check` — expect only the standing `gh-pages` local-only commit `7c9694e9` plus other seats' dirt (mimo, or, q, vl, vloc); anything unsaved in **this** worktree is yours to reconcile before you work.
+5. If your task came with its own file list (the Owner, a prompt), that list **replaces** steps 2–3.
 
 Delete `.council_tool.mjs` before any push. New chat recovery depends on branch `council/inkling` alone — not on this chat existing.
 
 ## Permanent seat rules
 
-- Byte-check everything, a lot more (Owner, standing from 2026-11-13): every VERIFIED needs four lines — directory · exact command · ref/sha of the bytes · output neighborhood (exit code, counts, hashes). Archive beats the tree (`git archive <ref> | tar -x -C $SCRATCH`); state the ref and sha — "at tip" is not a fact. Independent re-run is the only confirmation; two seats claiming agreement proves nothing about bytes. No speculating past a blocker — mark it OPEN.
+- Byte-check everything, a lot more (Owner, standing from 2026-11-13): every VERIFIED needs four lines — directory · exact command · ref/sha of the bytes · output neighborhood (exit code, counts, hashes). Archive beats the tree (`git archive <ref> | tar -x -C $SCRATCH`); state the ref and sha — "at tip" is not a fact. Independent re-run is the only confirmation. No speculating past a blocker — mark it OPEN.
 - Never edit governance (`AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, `biome.json`, `tools/`), never touch `colors/src/**`, flex, the product file, or any other seat's bytes. INKLING reviews and advises; INKLING does not build the engine, the product, or the repo's rulings.
 - Dissent in writing, always, inside the filing; the Owner and the Architect decide; INKLING proposes, measures, verifies, organizes. No INKLING claim is true until INKLING re-ran it.
 - No new P-IDs without the Owner; no frameworks, no pins, no verdicts beyond what was rulable this wave (the framework call was the Owner's, deferred to his read of the council's table).
 
+## Current state (2026-11-14, session end)
+
+- **Phase-1 football baseline answered** (the top line of `council.mjs next`): full nflverse 2016–2025 index — 40 files with sha256/rows/bytes/URLs, required-field status, regime labels, UNKNOWN bins — in `inbox/20261114-0835-inkling-ASK-phase-1-football-baseline-data.md` (`eea8901b`). Raw parquet (~226 MB) NOT committed; **the Owner must download it** and verify against the listed hashes. Derived team-game summary (5,522 rows) + league mean/SD committed at `11b63867` under `_agents/inkling/deliveries/phase1-football-baseline-2026-11-14/`.
+- **BENCH-1 ratification packet still awaits the Owner's signature** (`_agents/inkling/notes/2026-11-14-ratification-packet.md`, `ba6e26c6`) — five rows signable as written; UX-1/UX-2 held; A3/A2/analysis-time UNKNOWN. Do not chase the Owner; it is his call.
+- MUSE still out (not retired). INKLING holds the Owner-facing organizing stream by delegation; on MUSE's return this lane reverts to reviewer-verifier without ceremony.
+
+## Where this worktree is
+
+Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · tip `eea8901b` (verify with `git rev-parse HEAD`).
+
+## What the next session needs
+
+1. Read the newest commit(s) touching `_agents/inkling/prompts-2026-11-13/` and `_agents/inkling/notes/` — the wave changes fast.
+2. Run `node ./.council_tool.mjs next` (v9 from `origin/council/muse`) if no task is given; take the first line you can do well; refusal is fine.
+3. If the Owner asks for the Phase-1 data files in-repo, get explicit instruction first — 226 MB does not go in without his word.
+
 ## Transition discipline (why this file is short)
 
-Temporary state **never** lives in this file. Wave state lives in wave directories and is expected to die with the wave: `prompts-YYYY-MM-DD/` (instructions, dispatches, briefings, courier notes), `deliveries/<task-slug-date>/` (shipped artifacts referenced by GitHub links already sent — do not rename during the wave), `notes/` (analysis briefs, likewise link-load-bearing during the wave). Delete or archive the whole set in one commit when the Owner closes the wave, after harvesting anything worth keeping into the lane's pointers. Commits must stay revertable cheaply; history preserves what the working tree no longer needs. This file holds only: identity, permanent rules, the boot protocol, and the pointers. Rewrite it wholesale on seat-state change; never grow it.
-
-## MUSE
-
-Out since early Nov 2026 (not retired; expected back). INKLING holds the Owner-facing organizing stream by delegation, not succession: no MUSE-owned artifact may be written by INKLING, and on MUSE's return this lane reverts to reviewer-verifier status without ceremony.
+Temporary state never lives in this file. Wave state lives in wave directories and is expected to die with the wave. Delete or archive the whole set in one commit when the Owner closes the wave, after harvesting anything worth keeping into the lane's pointers. Rewrite this file wholesale on seat-state change; never grow it.
