@@ -159,6 +159,21 @@ P-013.
 
 ## Last session
 
+2026-11-14: **P-355 second pass (engine/doctrine)** — `inbox/20261114-1631-pickle-P-355-contradiction-register-engine-doctrine.md`.
+Closing the gap the returning note named: I byte-checked a Z.ai delivery instead of reading its summary —
+`git archive` out of the commit, `shasum -a 256 -c MANIFEST.txt`: **255/255 OK** (v3, 256 files, manifest correctly
+unlisted) and **20/20 OK** (recovery) at `council/ernie@b5b6da5b`. No finding; the packaging is the best of the wave.
+Then the register rows nobody had taken: the Architect's 13 Nov assessment has two decision entries later rulings
+contradict (**D16 "remove react"** vs Owner's "do not delete React"; **D1 "drop the four-prototype test"** vs "all eight
+arms") and §11's blocker list is mostly answered and unmarked; §2.1 attributes all four drifted files to "the flex-table
+work" when three are a comment pair, an added function and one comparison. Live `AGENTS.md` contradicts **itself** on
+flex (l.50 retires REV 4 and states 99 rules; l.73 says REV 4 governs and QB is −10; the table says 12) — MUSE's to fix,
+`PRIORITY+` line filed. Verified cheap and exact: entry file missing (`/src/main.ts`, count 0 → build cannot succeed),
+0 react imports, 0 workflows, envelope `SCHEMA_VERSION = 1` + `newer-version`, 45 root `.md`, 57 engine files, 10 `.svelte`.
+Doc-sync numbers re-derived: 7 of 38 worktrees live (not 0), 32 of 33 branches 63 behind (not 14 at 61). λ probe re-run
+with the corrected feasibility: 11/11 disputed raws replicate; `C>OG` is structural (guard 12.50 vs tier 6); the other 96
+admit one λ in **[0.3902, 0.4032)**; 9 rows flip at Δλ<0.05; maximin ±0.05 = 92 vs 91 rows. Conclusion: a fluctuating dial
+must be small or hidden — the hidden version is the one the Owner already ruled.
 2026-11-13: platform-vision filing + **its correction** + review of the round's four filings. The
 correction is the important one: my probe named a *local* ref (`425f72a8`, 8 days stale) while the
 branch was at `bebe8e0b`; the re-run changes four numbers and one direction, and my "no philox" and

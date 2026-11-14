@@ -1,0 +1,81 @@
+# dial-feasibility | the Owner's 99 tiers read as exact constraints on lambda
+# prototype: /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/zai2DA6J/_agents/zai/deliveries/zai-p345-lambda-objective-2026-11-12/formula/merge_prototype.py
+# table:     /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/zai2DA6J/_agents/zai/deliveries/zai-p345-lambda-objective-2026-11-12/inputs/flex-99-live.json  (97 cross-role rows)
+# raw(lam) = max(m + lam*s, E*guard); tier cuts at 1, 4, 9
+
+## 1. replication of the 11 disputed rows (independent re-derivation)
+   row          owner   raw@0.20 -> tier   raw@0.40 -> tier
+   RB>WR           12      8.54 ->  6           9.28 -> 12
+   FB>TE            6      3.92 ->  2           4.74 ->  6
+   WR>NICKEL        6      3.22 ->  2           4.04 ->  6
+   TE>WR           12      8.42 ->  6           9.04 -> 12
+   TE>DT           12      8.52 ->  6           9.84 -> 12
+   C>OG             6     12.50 -> 12          12.50 -> 12
+   EDGE>SS         12      7.24 ->  6           9.48 -> 12
+   OLB>NICKEL       6      3.86 ->  2           4.72 ->  6
+   OLB>DIME        12      8.82 ->  6          10.14 -> 12
+   SS>FS            2      0.94 ->  0           1.08 ->  2
+   SS>RB           12      8.20 ->  6           9.20 -> 12
+
+   mean raw over the 97 rows: 5.630 @0.20, 6.390 @0.40 (11.9% lower at 0.20)
+
+## 2. rows no lambda in [0,1] can satisfy: 1
+   C>OG         owner  6  m   4.65  s  1.20  cap  12.50  (guard-overshoots)
+
+## 3. intersection over the other 96 rows: [0.3902, 0.4032)
+   NON-EMPTY: one lambda reproduces every row it is possible to reproduce.
+
+## 4. minimum dial count (interval stabbing over the 96 rows): 1
+   addresses: 0.403
+
+## 5. tolerance: how far lambda may float before the displayed number changes
+   (ability-dominated rows only; the tolerance is distance-to-cut / s)
+   TE>SS        owner  6  raw@0.40  8.960  nearest cut 0.040 away  ->  d_lam = 0.0032
+   WR>NICKEL    owner  6  raw@0.40  4.040  nearest cut 0.040 away  ->  d_lam = 0.0098
+   TE>WR        owner 12  raw@0.40  9.040  nearest cut 0.040 away  ->  d_lam = 0.0129
+   WR>CB        owner  6  raw@0.40  8.660  nearest cut 0.340 away  ->  d_lam = 0.0327
+   SS>RB        owner 12  raw@0.40  9.200  nearest cut 0.200 away  ->  d_lam = 0.0400
+   OT>EDGE      owner  6  raw@0.40  8.600  nearest cut 0.400 away  ->  d_lam = 0.0421
+   OG>EDGE      owner  6  raw@0.40  8.600  nearest cut 0.400 away  ->  d_lam = 0.0421
+   EDGE>SS      owner 12  raw@0.40  9.480  nearest cut 0.480 away  ->  d_lam = 0.0429
+   EDGE>RB      owner  6  raw@0.40  8.600  nearest cut 0.400 away  ->  d_lam = 0.0500
+   WR>SS        owner  6  raw@0.40  8.640  nearest cut 0.360 away  ->  d_lam = 0.0545
+   TE>C         owner  6  raw@0.40  8.580  nearest cut 0.420 away  ->  d_lam = 0.0706
+   RB>WR        owner 12  raw@0.40  9.280  nearest cut 0.280 away  ->  d_lam = 0.0757
+   ... 65 ability-dominated rows; guard-capped rows are lambda-free (32)
+   d_lam < 0.01:  2 row(s) would change their displayed number
+   d_lam < 0.02:  3 row(s) would change their displayed number
+   d_lam < 0.05:  9 row(s) would change their displayed number
+   d_lam < 0.1 : 14 row(s) would change their displayed number
+
+## 6. the exact-tier surface as lambda moves (V2, role-level)
+   lam   exact/97   rows off by >= 2 tiers
+   0.00      80         16
+   0.05      80         16
+   0.10      81         15
+   0.15      86         10
+   0.20      86         10
+   0.25      89          7
+   0.30      91          6
+   0.35      92          5
+   0.40      96          1
+   0.45      91          6
+   0.50      87         10
+   0.55      85         12
+   0.60      81         16
+   0.65      77         20
+   0.70      73         24
+   0.75      73         24
+   0.80      73         24
+   0.85      72         25
+   0.90      69         28
+   0.95      68         29
+   1.00      66         31
+
+## 7. robust address for a fluctuating dial: maximin over lam0 +/- delta
+   (worst-case exact count inside the band; a dial that floats must be chosen for its floor)
+   band +/-0.025: maximin lam 0.40 floor 94 rows   | lam 0.40 floor 94 rows
+   band +/-0.050: maximin lam 0.39 floor 92 rows   | lam 0.40 floor 91 rows
+   band +/-0.075: maximin lam 0.37 floor 91 rows   | lam 0.40 floor 89 rows
+   band +/-0.100: maximin lam 0.38 floor 89 rows   | lam 0.40 floor 87 rows
+   band +/-0.150: maximin lam 0.37 floor 87 rows   | lam 0.40 floor 85 rows
