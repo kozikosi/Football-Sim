@@ -2,75 +2,132 @@
 
 ## BOOT — read this first, every session (do not re-derive anything)
 
-You were restarted with the standard prompt (`START-HERE` → follow it exactly). Do this, in order, and you are current:
-
-1. `git fetch -q origin` then the **step 0** checkout from `START-HERE` §1 (four governance docs). Verified 2026-11-14T08:26Z: all four were already identical to `origin/council/muse` (blob ids `ab4133bb` / `657db676` / `def229c0` / `743526a8`), so step 0 is a no-op on this branch now — run it anyway.
+1. `git fetch -q origin` then the **step-0** checkout from `START-HERE` §1 (the four governance docs).
 2. Read this file to the end. It is the handover: what is measured, what is open, what not to redo.
-3. Read the two working documents — they are in your worktree:
-   - `_agents/ernie/deliveries/council-work-request-fwtest-v3-support-2026-11-14.md` (WR-1…WR-10)
-   - `_agents/ernie/deliveries/fwtest-ledger-2026-11-14.md` (append-only; append your row, never edit another seat's)
-4. If either file is missing you are behind your own branch: `git fetch -q origin && git checkout origin/council/ernie -- _agents/ernie/ && git log --oneline -3 origin/council/ernie`.
-5. Then take the first open WR and file it as `inbox/<UTC>-ernie-WR-<n>-<slug>.md` with `INTAKE: WR-<n> · ERNIE · <UTC>`.
+3. Read the two working documents — they are in your worktree, no path needed from anyone:
+   `_agents/ernie/deliveries/council-work-request-fwtest-v3-support-2026-11-14.md` (WR-1…WR-10) and
+   `_agents/ernie/deliveries/fwtest-ledger-2026-11-14.md` (append-only; append your row only).
+4. Then take the next item from the live queue (`node tools/council.mjs next`, tool fetched from
+   `origin/council/muse`), or the substance still open in §3 below.
 
-Nothing else is needed to resume. Do not ask for a document list; the lane names its own.
+Nothing else is needed to resume.
 
 ## Identity
 - **Seat:** ERNIE · **Model / how reached:** ERNIE / API (kilo gateway) · **State:** advisor (admitted by the Owner 2026-11-13)
-- **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. Four sessions running; every WR closed with a receipt, every withdrawal mine.
-- **Standing rule I run on:** four lines per claim (cwd · command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
+- **What I am good at:** taking a claim apart with a command, and **reporting my own refutations**. Every session has closed with a receipt and at least one withdrawal of my own error.
+- **Standing rule I run on:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-14T08:40Z)
-- **Nothing in progress.** Branch tip **`9faf9d6e`**, all pushed to `origin/council/ernie`.
-- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3 (twice: additive tie + shape candidates), WR-4, WR-5, WR-6, WR-7 (**closed today**), WR-10 (**closed today**), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2, the Z.ai v3 review, BENCH-1 audit, BENCH-2 work orders (library test + product round).
-- **Still open, mine:** nothing assigned to me by name — the queue is the queue. The *substance* still open: (a) the WR-3 reactivity specimen, (b) offline on next/nuxt/solidstart, (c) the `@solidjs/start` failing line, (d) whether arm-lit belongs in the set.
-- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started), WR-9 (needs an Owner ruling).
+## Current state (2026-11-14T16:26Z)
+- **Nothing in progress.** Branch tip **`218bbafa`**, all pushed to `origin/council/ernie`.
+- **DONE:** WR-1…WR-7, WR-10, WR-G2, WR-4/5/6, Phase 1/5, directives 21/24/26, Phase 8.2, the Z.ai v3 review, the recovery review, the P-355…P-359 queue items, the framework-decision evidence work, the prompt to Claude (v3), the reply-to-Claude, and the two v2 prompts (Z.ai + returning council).
+- **Not mine to close:** the framework decision, λ's shape, P-345, MUSE's doc corrections, the P0 October reviews, WR-9 (needs an Owner ruling).
 
-## Session 4 — WR-7 + WR-10 closed (2026-11-14, tip `9faf9d6e`)
+## 1 · Session 6 — two v2 prompts shipped (2026-11-14, tip `218bbafa`)
 
-15. **WR-7 closed — the goldens run inside an arm** (`inbox/20261114-0833-ernie-WR-7-goldens-home.md`, commit `8560e2ff`). The delta is exactly `{tools/golden.ts, tools/tsc-baseline.mjs}` (`comm` on all nine arms; `diff -rq` shows the rest is a byte-identical copy). Vendoring the two at `src/engine-contract/tools/` + three scripts makes the arm run the goldens: **`0ccb6319…f3f5` before == after, twice** — byte-identical to the contract tree. `tsc-baseline.mjs` → `exit 0, "OK: 69 errors (pinned 69)"`.
-    - **The finding that outranks the WR:** the contract's 69-error ratchet is **vendored into all nine arms and executed by none of them**. `tsc-baseline.json` is byte-identical in every arm, `tsc-baseline.mjs` is in none, and the arm tsconfigs either exclude the contract (svelte `tsconfig.app.json:24`, nuxt `app/engine-contract`) or turn `strict` off citing the 69 (next `tsconfig.json:11-15`). arm-solid/arm-lit ship no typecheck script at all. So every arm's typecheck column measures the arm only.
-    - Re-verified from the arm's own bytes with a probe tsconfig: **69 errors, per-file counts identical to the contract tree, 5/5 runs; the two tools add 0 errors**. Arm typecheck and build unchanged by the patch (svelte-check 0/0 both ways, `tsc -p tsconfig.node.json` 0, `npm run build` 0, 68.79 kB JS).
-    - Cost: **2 files, 6,224 B**, 0 new dependencies (`golden.ts` 2,696 B · `tsc-baseline.mjs` 3,528 B).
-    - Recommendation filed: **vendor (Option A)**, not "amend the protocol" — the contract tree ships with no arm, so a consumer holding an arm cannot run the gate at all.
+Four seats wrote prompts for the same two audiences (Z.ai; absent council). The Owner took mine and asked
+for a merge. Filed as `_agents/ernie/deliveries/prompt-zai-continuation-v2-2026-11-14.md` and
+`prompt-council-returning-v2-2026-11-14.md`.
 
-16. **WR-10 closed — falsifiers per contender** (`inbox/20261114-0836-ernie-WR-10-falsifiers.md`, commit `9faf9d6e`). Two senses of "contender" separated (the nine arms vs the two the Owner chooses between). Six falsifiers stated as measurements; **four are unanswerable from the v3 set** (F1 1,000-row board, F2 agent defect rate, F4 shaped reactivity specimen, plus the sveltekit router layer and the solidstart failing line). The two that *are* answerable both come back as **no signal / build step** — offline is 5/9 with one plugin, the modification column has tied at zero three times.
-    - F1 is the Architect's own falsifier (`d3bd81d2`); F2 is his second; F3 (offline as a product gate) and F4 (modification column) are mine. Both missing measurements are **already specified** in my BENCH-2 work orders — they need a builder with the harness, not a new idea.
+**What I folded in from the other seats (they had these and I did not):**
+- INKLING: the four **closure loose ends** only Z.ai can close — the sveltekit cell's two contradictory
+  run results ("5 passed (2.1s)" vs "4 failed, 1 passed (1.1m)"), `OK: 751` vs 753 listed, the Phase-J
+  log cited as "log in the zip", and Firefox/WebKit ("record verbatim and stop asking root"). Plus
+  **no new P-IDs**, and the **decimal rule** (integers everywhere except Wins and Priority).
+- GLYPH: the **P-315 deep verification** (draft as an early-pick and a late-pick team; confirm on-clock,
+  roster, CPU picks, mode lock — receipt per round), the **w88 ±10 trap** (the ±10 form reproduces the
+  old `slotWins20`), and a **drift check** on what Cakepanz already vendors.
+- INKLING: the **wave honours** as a compact restatement, and the line that the week's real result was
+  **byte-level agreement across four independent seats** — that is the evidence the instrument works.
 
-## Session 3 — Z.ai fwtest v3 (2026-11-14, tip `89031ec5`)
+**What I deliberately excluded, and why:**
+- INKLING's **goneOdds sizing paragraph** (their R2). Claude has already diagnosed the mechanism in code
+  (`goneodds.ts:15-29`: 30 sims × 62 CPU picks × `cpuChoose`, 0.65 ms each). Asking Z.ai for a second
+  measurement would produce a worse answer than the one on the record.
+- GLYPH's full engine-inventory restatement — Z.ai already has it in his own deliveries.
 
-13b. **Vendored + reviewed Z.ai's v3 nine-arm delivery** (`inbox/20261114-0255-…`, vendor commit `85f45f91`). Full copy readable at `_agents/ernie/deliveries/zai-fwtest9-2026-11-14/` (754 files, 5.7 MB).
-    - **Manifest 753/753, 0 missing, 0 mismatch** — first completely-verifying manifest of the wave. Fixed structurally by generating from the frozen zip.
-    - **Contract 9/9** (41 files, `diff -rq` 0 lines) · **goldens 9/9** (`0ccb6319…f3f5`, incl. canonical) · **round-2 before/after pairs 9/9 identical**.
-    - **arm-solidstart 0/5 → 5/5 reproduced by me**: `@solidjs/start ^2.2.2` + `@solidjs/router ^1.0.3` + `vite ^8`, vinxi gone; SSR HTML 7,646 B / **69 testids**; build exit 0; **spec 5/5**.
-    - **file:// row is mis-specified, not wrong.** Digest line: *as shipped 0/9 · with single-file 5/9 (svelte, vue, react, solid, lit) · sveltekit structural exception · next/nuxt/solidstart untested.*
-    - Notes: their pin `208738ec` "unfetchable" is **machine-specific** (`git cat-file -e 208738ec` exists here). They ran node v24.22.3 (the Owner's pin) vs my v26.13.0 → **v3 is the better basis for digest numbers**. Typecheck is per-arm flags → **use delta, never absolute.**
+**One factual correction I made to INKLING's council prompt:** it described Pickle's relevant prior work
+as *"projection/valuation (P-354/P-346-adjacent)"*. Wrong. His two real pieces are the **P-346 checksum
+review** (settled 69/72 vs 72/72 against git blobs, not a checkout) and the **P-347 λ variance budget**
+(ANOVA split of P-344; λ = 3.63 pts/SD; Owner band [2.50, 3.63]). Sending him after work he did not do
+would have wasted his one sitting.
 
-## Session 2 additions (2026-11-14, tip `cca94d8f`)
+## 2 · Session 5 — Claude landed plan v3; four of my claims were wrong (2026-11-14)
 
-10. **WR-2 extended — offline is 5 of 9.** arm-react (252.09 kB), arm-solid (47.34 kB), arm-lit (47.79 kB) — all single-file, all **5/5 from `file://`**, 0 console errors. arm-sveltekit is a structural exception: `bundleStrategy='inline'` fixes the asset layer (110,299 B, 0 external refs), the router still fetches `/_app/version.json`. next/nuxt/solidstart untested (non-Vite).
-11. **Container is not uniform** — `#app` ×5, **`#root` (arm-react)**, **`<framework-arm>` (arm-lit)**. `#app.children.length` returns `-1` (absent) for two arms.
-12. **WR-3 — the additive specimen ties** — 2 files / 8 lines / 0 unrelated / 0 new type errors on svelte *and* lit. Third tie at zero → the column has no discriminating power. **Next specimen must use control flow or reactivity.**
+Claude pushed `0364013` (engine plan v3, docs only). He corrected **four** things I had wrong, each with
+a file and a line. All four verified by me against the bytes:
 
-## What the next session needs
-- **Do, in this order:** (1) the WR-3 reactivity specimen on 3+ arms — halftime eligibility computed from per-focus data, re-rendered live. It is the only thing that can rescue the modification column, and WR-10 says the memo cannot rank without it. (2) offline on next/nuxt/solidstart — needs a per-framework mechanism, not a Vite plugin. (3) the `@solidjs/start` lazy-route line, in a dependency patch under scratch.
-- **Do NOT redo:** anything with a receipt — the additive WR-3 specimen (provably non-discriminating), the six-arm offline run, the solidstart causes, the A3 script run, the w89 hashes, **the WR-7 file counts and the WR-10 falsifier page (both closed today)**, INKLING's withdrawn "43 files never vendored" claim.
-- **Standing:** no framework pick, no ranking, no elimination; the modification column stays **no signal**; `file://` is my lane, not a framework score.
+1. **The playoff home-field signal is confounded.** `d8_data_cuts.py` computes a raw margin by
+   `season_type` with bootstrap CIs — **no team-strength control**. Playoff home teams are the higher
+   seeds. My v3 prompt presented 5.57 vs 1.78 as "outside the noise band". **Withdrawn.**
+2. **`goneOdds` mechanism.** `goneodds.ts:15-29` runs `for (s < 30) for (i < picks-until-your-next-turn)`
+   with a `cpuChoose` each. r1-u0 = 62 picks → 1,860 calls → 1,214.8 ms / 1,860 = **0.65 ms per call**.
+   My "1.2 s" was a symptom with no diagnosis.
+3. **Pool arithmetic.** `madden27-ratings.csv` = 1,942 lines − 1 header = **1,941**; free agents = 13 − 1
+   = **12**; 1,941 + 12 = **1,953** = `poolCount`. My §4.7's three numbers become two: 1,953 explained,
+   **1,921 still unexplained**.
+4. **My re-pin assumption was stale.** `5a3bb75` ("de-gate the two red tests (Owner: no weight
+   pinning)") made the lineup 2400-pin and the engine stamp **REPORTED**; `npm test` is 320 pass / 0 fail.
+   One nuance kept: the *data* stamp is still asserted and **structure still gates**.
 
-## Environment notes (so the next session does not rediscover them)
-- Worktree `/Users/kosi/Desktop/wt/ernie`, branch `council/ernie`. Never edit the Owner's shared tree; never push anything but `council/ernie`; never force-push; never stash.
-- Scratch: `git archive <ref> -- <path> | tar -x -C /var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/kilo/<name>`. Node **v26.13.0**, npm 11.20.0, Playwright **1.64.1**.
+**Also verified in that pass:** `core/rng.ts:33-35` and `core/keyedrng.ts:74` use `Math.log`/`Math.cos`;
+`draft.ts:59` uses `Math.exp`. Claude's portable-math plan targets a real hazard.
+
+**The Owner's answers to Claude (all six yes, no new gates):** TS port hold lifted · league scale approved
+as direction · Title Odds approved **post-cutover** (does not extend the cutover bar) · chunked envelope
+approved · version-honesty check approved as provenance (not a pin) · `@types/node` + **Node 24**.
+**No gates anywhere**; the two red tests stay de-gated; the QB-first check stays a report.
+
+**One question I asked and the Owner ruled against:** I suggested the QB-first check be a *gate* rather
+than a report. He said no gates. I have not re-raised it.
+
+## 3 · What the next session needs
+
+**The substance still open, in the order I would take it:**
+1. **The λ-axis Lab run** — Claude owns it, but it has two named prerequisites nobody has built: the
+   player-game join and the context-aware estimator. Z.ai has been asked for the join (axis (c)). If a
+   third seat can do it, it unblocks the single most-cited gap in the dynamic thread.
+2. **The axis-list comparison** — Claude (8), GLM (6), Z.ai (D.1–D.9 / PD.1–PD.7). Nobody has compared
+   them. Where do they disagree? Which is not measurable with P-344?
+3. **The pool gap: 1,953 → 1,921.** 32 rows, definite answer, no framework, unblocks a report Claude
+   must write. **Best first task for a returning seat.**
+4. **"Fully functioning Colors v1"** — the cutover bar has never been written as a checklist. Someone
+   should draft it.
+5. **The docket for Z.ai's return:** §9 of the Z.ai prompt is the priority order (Slice 3 → player-game
+   join → SAVE-1 write median → the eight closure items → axis comparison → P-317 revision → w88).
+
+**Do NOT redo (receipts exist):** the four digests (`432a1701` / `753997ba` / `4c3c8f17` / `fef700c7`);
+goldens `0ccb6319…f3f5`; the 57-file `cmp`; offline (five arms, `file://`, 0 errors); the 30-vs-40
+sample count; the save-log / no-RNG-cursor mechanism; `cd298e99` (dead).
+
+## 4 · Environment notes (so the next session does not rediscover them)
+
+- Worktree `/Users/kosi/Desktop/wt/ernie`, branch `council/ernie`. Never edit the Owner's shared tree;
+  never push anything but `council/ernie`; never force-push; never stash.
+- Scratch: `git archive <ref> -- <path> | tar -x -C /var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/kilo/<name>`.
+  Node **v26.13.0**, npm 11.20.0, Playwright **1.65.0** (installed in the scratch dir, not the repo).
 - **Use `background_process start` for servers**, not `nohup … &`.
-- **`council/beam` is a moving branch** — always cite the sha you extracted at.
-- macOS `shasum -c` mis-parses INKLING's `CHECKSUMS.txt`; verify manifests with an explicit Python recompute.
-- Push gotcha: the shared repo is shallow — use `git push --no-thin origin council/ernie`. Do not `--unshallow`, do not force-push.
-- `tools/hooks/pre-commit` is not executable here, so git prints "hook was ignored" on every commit. Harmless; do not chmod it.
+- `council/beam` is a moving branch — always cite the sha you extracted at.
+- macOS `shasum -c` mis-parses a 3-field manifest; verify with an explicit Python recompute.
+- Push gotcha: the shared repo is shallow — `git push --no-thin origin council/ernie`. Do not
+  `--unshallow`; do not force-push.
+- `tools/hooks/pre-commit` is not executable here, so git prints "hook was ignored" on every commit.
+  Harmless; do not chmod it.
+- **The local-only `gh-pages` commit `7c9694e9`** ("Publish w89 as live index") shows on
+  `preserve.mjs check`. It is in the shared tree, not mine. Listed as pending; not mine to touch.
 
-## Open questions I could not close (carry them)
-1. **The exact `@solidjs/start` line** where the SSR lazy route fails to resolve.
-2. **Six stacks' offline behaviour** (sveltekit partially, next, nuxt, solidstart, react/solid/lit done) — non-Vite arms need a per-framework mechanism.
-3. **The modification column** — still a tie at zero; needs a shape change (WR-3 option b).
-4. **Typecheck comparability** — no standard config across the nine arms; and now: the 69-pin is vendored but never run.
-5. **Whether arm-lit belongs in the set at all** (Owner named 8 stacks; the wave has 9 arms).
+## 5 · Open questions I could not close (carry them)
 
-## Role
-General advisor. Propose, test, dissent, measure. I never edit the product file, governance docs or the queue; proposals go to `inbox/`, terminal states are proposed with evidence, never moved. I do not review my own work.
+1. **Why 1,953 → 1,921?** 32 rows, unexplained, and Claude's pool ledger must account for them.
+2. **The exact `@solidjs/start` line** where the SSR lazy route fails to resolve (from WR-4, session 3).
+3. **Cross-browser float agreement** of the current engine — Claude lists it as UNKNOWN; `a3.json` is
+   chromium-only by construction.
+4. **Whether `753997ba` is worth keeping** in the record at all, or whether the 57-file arm digest
+   (`4c3c8f17`) is the only one anyone needs.
+5. **Whether arm-lit belongs in the framework set at all** (Owner named 8 stacks; the wave has 9 arms).
+
+## 6 · Role
+
+General advisor. Propose, test, dissent, measure. I never edit the product file, governance docs or the
+queue; proposals go to `inbox/`, terminal states are proposed with evidence, never moved. I do not review
+my own work. **I have been wrong four times this week and each time the correction came from Claude with
+a file and a line — that is the protocol working, and it is why I keep asking him to check me.**
