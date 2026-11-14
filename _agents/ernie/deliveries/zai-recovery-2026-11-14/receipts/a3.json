@@ -1,0 +1,187 @@
+{
+  "startedAt": "2026-11-14T08:04:11.724Z",
+  "env": {
+    "node": "v24.22.3",
+    "cpu": "Intel(R) Xeon(R) Processor",
+    "platform": "linux"
+  },
+  "node": {
+    "poolCount": 1953,
+    "datasetHash": "sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3",
+    "d32rS1U0": {
+      "logSha": "a5ed2348:58798",
+      "pos": 1024,
+      "firstPicks": [
+        [
+          1,
+          0,
+          "nfl-p00003",
+          "QB"
+        ],
+        [
+          2,
+          1,
+          "nfl-p00010",
+          "DE1"
+        ],
+        [
+          3,
+          2,
+          "nfl-p00009",
+          "QB"
+        ],
+        [
+          4,
+          3,
+          "nfl-p00034",
+          "DT2"
+        ],
+        [
+          5,
+          4,
+          "nfl-p00001",
+          "WR1"
+        ]
+      ]
+    },
+    "d5rS1U0": {
+      "logSha": "3bf26537:9131",
+      "pos": 160,
+      "firstPicks": [
+        [
+          1,
+          0,
+          "nfl-p00003",
+          "QB"
+        ],
+        [
+          2,
+          1,
+          "nfl-p00010",
+          "DE1"
+        ],
+        [
+          3,
+          2,
+          "nfl-p00009",
+          "QB"
+        ],
+        [
+          4,
+          3,
+          "nfl-p00034",
+          "DT2"
+        ],
+        [
+          5,
+          4,
+          "nfl-p00001",
+          "WR1"
+        ]
+      ]
+    },
+    "season": {
+      "weeks": 22,
+      "champion": "Denver Broncos",
+      "tableSha": "565e26b0:1855",
+      "summarySha": "0c91c7d9:27654"
+    },
+    "w5r1u0vmSha": "8516ca24:13888",
+    "w5r1u0rows": 60
+  },
+  "bundleBytes": 82060,
+  "chromium": {
+    "poolCount": 1953,
+    "datasetHash": "sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3",
+    "d32rS1U0": {
+      "logSha": "a5ed2348:58798",
+      "pos": 1024,
+      "firstPicks": [
+        [
+          1,
+          0,
+          "nfl-p00003",
+          "QB"
+        ],
+        [
+          2,
+          1,
+          "nfl-p00010",
+          "DE1"
+        ],
+        [
+          3,
+          2,
+          "nfl-p00009",
+          "QB"
+        ],
+        [
+          4,
+          3,
+          "nfl-p00034",
+          "DT2"
+        ],
+        [
+          5,
+          4,
+          "nfl-p00001",
+          "WR1"
+        ]
+      ]
+    },
+    "d5rS1U0": {
+      "logSha": "3bf26537:9131",
+      "pos": 160,
+      "firstPicks": [
+        [
+          1,
+          0,
+          "nfl-p00003",
+          "QB"
+        ],
+        [
+          2,
+          1,
+          "nfl-p00010",
+          "DE1"
+        ],
+        [
+          3,
+          2,
+          "nfl-p00009",
+          "QB"
+        ],
+        [
+          4,
+          3,
+          "nfl-p00034",
+          "DT2"
+        ],
+        [
+          5,
+          4,
+          "nfl-p00001",
+          "WR1"
+        ]
+      ]
+    },
+    "season": {
+      "weeks": 22,
+      "champion": "Denver Broncos",
+      "tableSha": "565e26b0:1855",
+      "summarySha": "0c91c7d9:27654"
+    },
+    "w5r1u0vmSha": "8516ca24:13888",
+    "w5r1u0rows": 60
+  },
+  "chromium-status": "ran",
+  "firefox-status": "FAILED: browserType.launch: Executable doesn't exist at /home/z/.cache/ms-playwright/firefox-1497/firefox/firefox | ╔═════════════════════════════════════════════════════════════════════════╗ | ║ Looks like Playwright Test or Playwright was just installed or updated. ║ | ║ Please run the following command to download new browsers:              ║",
+  "webkit-status": "FAILED: browserType.launch: Executable doesn't exist at /home/z/.cache/ms-playwright/webkit-2227/pw_run.sh | ╔═════════════════════════════════════════════════════════════════════════╗ | ║ Looks like Playwright Test or Playwright was just installed or updated. ║ | ║ Please run the following command to download new browsers:              ║",
+  "comparison": {
+    "chromium": true,
+    "firefox": null,
+    "webkit": null
+  },
+  "verdict": "chromium-identical; other engines: see status",
+  "finishedAt": "2026-11-14T08:04:19.219Z"
+}

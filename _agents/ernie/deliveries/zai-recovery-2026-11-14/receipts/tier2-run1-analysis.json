@@ -1,0 +1,444 @@
+{
+  "runs": [
+    "receipts/tier2-run1.json"
+  ],
+  "cells": {
+    "r1-u0": {
+      "sort": {
+        "vue": {
+          "n": 20,
+          "median": 5129.85,
+          "p95": 5310.13,
+          "mad": 49.85,
+          "ci": [
+            5111.96,
+            5182.29
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 1234.91,
+          "p95": 1759.41,
+          "mad": 33.74,
+          "ci": [
+            1215.42,
+            1367.97
+          ]
+        },
+        "verdict": "svelte faster",
+        "ratio": 4.15
+      },
+      "filter": {
+        "vue": {
+          "n": 20,
+          "median": 30.48,
+          "p95": 36.63,
+          "mad": 4.79,
+          "ci": [
+            25.8,
+            33.78
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 33.74,
+          "p95": 42.91,
+          "mad": 2.16,
+          "ci": [
+            31.91,
+            35.17
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.11
+      },
+      "select": {
+        "vue": {
+          "n": 20,
+          "median": 46.24,
+          "p95": 53.15,
+          "mad": 3.58,
+          "ci": [
+            42.96,
+            48.54
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 51.62,
+          "p95": 56.55,
+          "mad": 4.34,
+          "ci": [
+            44.28,
+            54.03
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.12
+      }
+    },
+    "r5-u0": {
+      "sort": {
+        "vue": {
+          "n": 20,
+          "median": 7415.11,
+          "p95": 7716.1,
+          "mad": 117.56,
+          "ci": [
+            7313.72,
+            7499.51
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 2333.29,
+          "p95": 2411.12,
+          "mad": 11.57,
+          "ci": [
+            2325.67,
+            2343.72
+          ]
+        },
+        "verdict": "svelte faster",
+        "ratio": 3.18
+      },
+      "filter": {
+        "vue": {
+          "n": 20,
+          "median": 34.17,
+          "p95": 36.85,
+          "mad": 1.95,
+          "ci": [
+            32.5,
+            35.52
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 31.24,
+          "p95": 38.01,
+          "mad": 3.69,
+          "ci": [
+            27.26,
+            33.66
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.09
+      },
+      "select": {
+        "vue": {
+          "n": 20,
+          "median": 50.41,
+          "p95": 61.25,
+          "mad": 3.68,
+          "ci": [
+            48.14,
+            54.08
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 46.52,
+          "p95": 55.19,
+          "mad": 3.03,
+          "ci": [
+            44.14,
+            49.64
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.08
+      }
+    },
+    "r16-u0": {
+      "sort": {
+        "vue": {
+          "n": 20,
+          "median": 62.2,
+          "p95": 62.48,
+          "mad": 0.2,
+          "ci": [
+            62.1,
+            62.32
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 62.16,
+          "p95": 62.66,
+          "mad": 0.2,
+          "ci": [
+            62.01,
+            62.36
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1
+      },
+      "filter": {
+        "vue": {
+          "n": 20,
+          "median": 29.45,
+          "p95": 30.11,
+          "mad": 0.28,
+          "ci": [
+            29.24,
+            29.73
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 29.57,
+          "p95": 30.21,
+          "mad": 0.33,
+          "ci": [
+            29.39,
+            29.83
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1
+      },
+      "select": {
+        "vue": {
+          "n": 20,
+          "median": 62.88,
+          "p95": 63.3,
+          "mad": 0.28,
+          "ci": [
+            62.6,
+            63.07
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 63.23,
+          "p95": 63.61,
+          "mad": 0.29,
+          "ci": [
+            62.75,
+            63.48
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.01
+      }
+    },
+    "r32-u0": {
+      "sort": {
+        "vue": {
+          "n": 20,
+          "median": 63.12,
+          "p95": 63.93,
+          "mad": 0.34,
+          "ci": [
+            62.85,
+            63.36
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 63.12,
+          "p95": 63.85,
+          "mad": 0.24,
+          "ci": [
+            62.94,
+            63.28
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1
+      },
+      "filter": {
+        "vue": {
+          "n": 20,
+          "median": 30.41,
+          "p95": 32.47,
+          "mad": 0.35,
+          "ci": [
+            30.22,
+            30.74
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 30.17,
+          "p95": 32.09,
+          "mad": 0.46,
+          "ci": [
+            29.94,
+            30.8
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.01
+      },
+      "select": {
+        "vue": {
+          "n": 20,
+          "median": 63.57,
+          "p95": 64.67,
+          "mad": 0.38,
+          "ci": [
+            63.2,
+            63.85
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 63.76,
+          "p95": 64.19,
+          "mad": 0.2,
+          "ci": [
+            63.62,
+            63.96
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1
+      }
+    },
+    "r16-u31": {
+      "sort": {
+        "vue": {
+          "n": 20,
+          "median": 5077.03,
+          "p95": 5281.72,
+          "mad": 48.54,
+          "ci": [
+            5050.82,
+            5126.17
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 1598.87,
+          "p95": 1626.44,
+          "mad": 14.16,
+          "ci": [
+            1587,
+            1609.52
+          ]
+        },
+        "verdict": "svelte faster",
+        "ratio": 3.18
+      },
+      "filter": {
+        "vue": {
+          "n": 20,
+          "median": 32.61,
+          "p95": 36.77,
+          "mad": 2.79,
+          "ci": [
+            29.37,
+            34.31
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 32.53,
+          "p95": 37.21,
+          "mad": 3.27,
+          "ci": [
+            29.32,
+            34.17
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1
+      },
+      "select": {
+        "vue": {
+          "n": 20,
+          "median": 45.33,
+          "p95": 54.9,
+          "mad": 5.18,
+          "ci": [
+            43.86,
+            51.11
+          ]
+        },
+        "svelte": {
+          "n": 20,
+          "median": 45.05,
+          "p95": 58.02,
+          "mad": 4.76,
+          "ci": [
+            41.29,
+            50.27
+          ]
+        },
+        "verdict": "TIE",
+        "ratio": 1.01
+      }
+    }
+  },
+  "pickCurve": {
+    "vue": {
+      "n": 32,
+      "median": 161.62,
+      "p95": 14912.17,
+      "max": 15828.5,
+      "roundsOver100ms": [
+        "r1=128ms",
+        "r2=10395ms",
+        "r3=128ms",
+        "r4=15829ms",
+        "r5=161ms",
+        "r6=14596ms",
+        "r7=162ms",
+        "r8=14912ms",
+        "r9=161ms",
+        "r10=13211ms",
+        "r11=145ms",
+        "r12=11779ms"
+      ],
+      "errors": []
+    },
+    "svelte": {
+      "n": 32,
+      "median": 145.07,
+      "p95": 2195.51,
+      "max": 2344.6,
+      "roundsOver100ms": [
+        "r1=110ms",
+        "r2=1295ms",
+        "r4=2345ms",
+        "r5=145ms",
+        "r6=2178ms",
+        "r7=129ms",
+        "r8=2196ms",
+        "r9=145ms",
+        "r10=2028ms",
+        "r11=144ms",
+        "r12=1862ms",
+        "r13=129ms"
+      ],
+      "errors": []
+    }
+  },
+  "g5": {
+    "failures": [],
+    "crossArmMismatches": 0,
+    "samples": 600
+  },
+  "bootMs": {
+    "vue": 651,
+    "svelte": 782
+  },
+  "notes": [
+    "vue: board rendered on boot, rows=60",
+    "svelte: board rendered on boot, rows=60",
+    "cell r1-u0 done",
+    "cell r5-u0 done",
+    "cell r16-u0 done",
+    "cell r32-u0 done",
+    "cell r16-u31 done",
+    "pick-curve snapshots vue==svelte: true",
+    "pick curve round 8/32",
+    "pick curve round 16/32",
+    "pick curve round 24/32",
+    "pick curve round 32/32"
+  ]
+}
