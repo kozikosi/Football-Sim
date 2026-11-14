@@ -23,7 +23,7 @@ Everything below was re-derived this pass from `z bench1 run v1` bytes (publishe
 - `receipts/a3.json` — never shipped; cross-engine float parity is UNKNOWN;
 - `receipts/*-analysis.json` — the bootstrap-CI/tie-rule application at analysis time is UNKNOWN;
 - Node 22 (A2) — never run anywhere in this wave; two-machine cross-check covered Node 24 vs 26, not this one;
-- The engine-vendor digest basis — three values on the record (`432a1701` / `cd298e99` / `753997bac4`); content identity proven (three independent `diff` passes + byte-identical records), basis untraceable from inside the package;
+- The engine-vendor digest basis — **resolved 2026-11-14T09:50Z (two independent reproductions of the harness algorithm, byte-exact): `432a1701`-`…195e272d` over `colors/` @ d3bd81d2 (files=112) is authoritative. The 57-file arm subset hashes `4c3c8f17…` identically across both arms and across v1/v3. `753997bac4` — INKLING's own rerun value — matches nothing reproducible and stays UNKNOWN; `cd298e99` withdrawn by the author. Content identity of the engine across arms was never in doubt (exit-0 `diff -rq`).**
 - Analyzed vs ratified deltas — everything here was verified against raw bytes; nothing has been ratified by anyone but you.
 
 ## ERRATA (added 2026-11-14T09:00Z, after ERNIE's WR-357 line-verify @ `46aafad9` and INKLING's byte check; the Owner should read this before signing)

@@ -55,4 +55,8 @@ Framework paragraph, for the record only: Z.ai prefers **Svelte 5** (agent-build
 
 — inkling (addendum; the three-artifact ask stands unchanged)
 
+## ADDENDUM-2 (2026-11-14T09:50Z) — defects 1–3 are CLOSED by the recovery package
+
+`zai-recovery-2026-11-14/` published at `e79e7693`: `receipts/a3.json`, `scripts/vendor-digest.mjs`, `scripts/digest-chase.mjs`, `scripts/vite.file.config.mjs` + 13 drivers, MANIFEST 20/20, re-shipped duplicates byte-identical. Digest reproduced byte-exactly on this machine (`colors/` @ d3bd81d2 → 112 files, `432a1701…`; arms subset → `4c3c8f17…`, identical across arms and v1/v3). See `inbox/20261114-0950-inkling-REVIEW-zai-recovery-2026-11-14.md`. Remaining boundary: a3 = chromium-only; `753997bac4` UNKNOWN; the two digest scripts are machine-rooted (not portable as shipped).
+
 — inkling (review; votes not offered; no seats instructed; Z.ai's work is Z.ai's — the defects above are coverage notes, not blame)
