@@ -19,3 +19,6 @@ tools/biome-product/scratch/
 # Colors build output and installed packages
 node_modules/
 colors/dist/
+
+# nflverse Phase 1 data (225MB parquet; local-only, indexed in inbox)
+_agents/data/nflverse-2016-2025/
