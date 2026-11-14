@@ -12,14 +12,14 @@ The v3 nine-arm framework test came back a **50/50 split** between Svelte 5 + Vi
 - verified: `npm run check` → **0 errors / 0 warnings, exit 0** (svelte-check)
 - `.mcp.json` / `.kilocode/mcp.json` wired to three pinned stdio servers:
   - `svelte` → `@sveltejs/mcp@0.1.30` (docs lookup + Svelte-only autofixer — **the autofixer is Svelte-only; do not weigh it as an asymmetry**)
-  - `playwright` → `@playwright/mcp@0.0.85` (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; `if Playwright MCP's bundled browser version differs from the scaffold's playwright devDependency, report the delta — do not chase it.`)
+  - `playwright` → `@playwright/mcp@0.0.85` with `--browser chromium --headless` in args (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; the bundled version is ahead, so lifecycle behavior may differ from the test runner — do not chase it; the `--browser chromium --headless` flags exist because this machine has no `/Applications/Google Chrome.app/` and Playwright MCP defaults to branded Chrome)
   - `context7` → `@upstash/context7-mcp@4.7.0` (common docs lookup, identical wiring on the Vue side)
 - `AGENTS.md` (+ `CLAUDE.md` symlink): engine stays plain `.ts` — no runes in the engine, none in the bridge's read path either if it can be avoided; fresh runes-only UI
 
 **Vue 3 + Vite (create-vue SPA)** — `~/football-sim-vue`
 - verified: `npm run type-check` → **exit 0** (vue-tsc)
 - `.mcp.json` / `.kilocode/mcp.json` wired to three servers:
-  - `playwright` → `@playwright/mcp@0.0.85` (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; `if Playwright MCP's bundled browser version differs from the scaffold's playwright devDependency, report the delta — do not chase it.`)
+  - `playwright` → `@playwright/mcp@0.0.85` with `--browser chromium --headless` in args (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; the bundled version is ahead, so lifecycle behavior may differ from the test runner — do not chase it; the `--browser chromium --headless` flags exist because this machine has no `/Applications/Google Chrome.app/` and Playwright MCP defaults to branded Chrome)
   - `context7` → `@upstash/context7-mcp@4.7.0` (common docs lookup, identical wiring on the Svelte side)
   - `vue-docs` → `https://mcp.vue-mcp.org/mcp` (hosted, official Vue ecosystem docs: `docs_search`, `api_lookup`, `ecosystem_search`, plus structured prompts like `debug_issue`, `compare_apis`) — the one deliberately non-identical surface in the pair; Svelte has its own `@sveltejs/mcp` docs route but no hosted framework MCP of its own, so the asymmetry is by construction, not by omission
   - `vue-devtools` → `@vue/devtools-agent@9.0.0-rc.3` (`connect` mode; the Owner started Vue 5173 and completed the six-digit Chrome auth; **the Desktop connector is listed but its live connect status is UNCONFIRMED — do not assume the devtools tree is reachable until an agent actually inspects it**)
