@@ -4,6 +4,31 @@ SPEAKER: KG (Owner) + inkling | ROLE: Z.ai | TASK: open-ended work order — the
 
 **Read this twice before the first command. Nothing below is a pace, a queue, or a quota. Everything here is available; nothing here is due.** The Owner said: encourage the stretch of your imagination; there is no scope lock; only make the website more beautiful and dynamic. This brief hands you every proposed test, every prompt INKLING filed for you, INKLING's receipts of the last wave, the whole scoresheet — and leaves the ordering, the slicing, and the courage entirely to you.
 
+
+## 0.5 The work order of record — Ernie's product brief (read first, always)
+
+The authoritative work order for this wave is **`_agents/ernie/deliveries/WR-BENCH2-zai-product-round-2026-11-14.md` at `origin/council/ernie` (commit `8a083ecd`, 257 lines, 17 sections)** — read it end-to-end before the menu below. **This INKLING brief is the license around it** (environment truth, relay rule, boundary laws, INKLING receipts, errata) — the phases to execute are Ernie's A through J, in his order:
+
+| Ernie | what | INKLING lane pointer |
+|---|---|---|
+| A | Save/record schema — resume test (save→quit→relaunch→resume→identical next pick incl RNG position) + derivability audit vs BENCH-1's 187,078 B record | none — your work cut here, first lane; INKLING's G has no equivalent; **it comes before any UI skin work** |
+| B | Phone-class measurement (device or a stated slowdown factor) | C-equivalent (phone-class throttled subset) |
+| C | Offline for real — airplane mode, file://, no runtime font fetch | C-equivalent (offline sentence inside the stretch list) |
+| D | The VueUse library test (virtualized+filtered+persisted board over 1,941 rows) | B-equivalent (bench-essence slice w/ virtual list) |
+| E | Achievements as **data** · all tendencies · best seasons · favourite players | new; spec from round 3/4 answers; INKLING does not duplicate |
+| F | Brag-share end-of-season card (client-side, free) | G stretch item |
+| G | Conflict rule with deliberately wrong clocks (monotonic highest-progress wins; loser retained + told once) | none — highest priority after A |
+| H | Touch targets ≥44 px; embedded type (NO Cinzel requirement); 390 and 360 clean | H-implicit (mobile always) |
+| I | Shell determinism (not just engine) | I-implicit |
+| J | Agent-defect pilot (one shell, one sitting, counts by class) | J-equivalent (watchlist-pilot philosophy) |
+
+INKLING's lanes A–H below remain **available extras, imagination-licensed**: A (Pick Reveal), B (W89 essence), C (laneC/E/F), D (phone-class), E (watchlist ×2), F (BENCH-2 rescoped or skipped), G (self-invented stretch). Neither file is a queue; neither replaces the other. **If you hit a contradiction between this brief and Ernie's, file it; do not reconcile silently.**
+
+**Errata IN FORCE (INKLING, 2026-11-14):** the v1 ratification audit numbers (`9.2/9.5/9.4`, `792–873`, `187,078 B stable`, "no season receipt") are superseded by per-run min/median/max readouts — see `inbox/20261114-0727-inkling-bench1-v1-errata.md`. `timings.W4.seasonMs` **is** receipted (335.3/339.9/349.9 across runs); vendor digest basis `cd298e99` vs `432a1701` (112 files): content is byte-identical (INKLING `diff -rq` + record hashes); the digest basis is INKLING-logged as untraceable, not wrong — one line from you reconciles it.
+
+**Second-seat verification (INKLING, this machine):** the tier1 harness re-ran clean — **104/104, exit 0**, dataset hash identical, D-32R-s1-u0 and D-5R-s1-u31 records byte-identical to yours, `W4.seasonMs 257.3` vs your 335.3 (machine-class delta, not a correctness delta). Your delivery is confirmed; the missing artifacts are still owed in the single handoff (§4).
+
+
 ## 0. The one re-read first (and only it)
 
 `_agents/zai/START-OF-CHAT-ZAI.md` — the standing laws of your lane. It is unchanged. Nothing in this file supersedes it; everything in this file rides beneath it. The w89 file is a READ-ONLY reference (fetched once, never committed). The two published scaffolds stay exactly as they are. The engine is consumed, never edited. No new words about frameworks anywhere — your work informs the Owner's call, never makes it. No paid tooling. License does not extend to memory, guessing, or silence about failure.
