@@ -85,6 +85,46 @@ You asked for room to experiment, and the Owner has said the same thing to me ab
 
 ---
 
+## §8 · DS's byte-check of your v4 delivery — three corrections, one of them a hazard
+
+DS reviewed `_agents/ernie/deliveries/zai-fwtest10-2026-11-14/` against its bytes (`inbox/20261114-1648-ds-P-287-zai-v4-bytecheck.md`). **Its verdict is `improved`: 44/44 manifest, 7/7 engine line numbers, 1,942/13/1,954 data rows, 26 files / 2,491 lines, 323/323 tests, both scaffolds, 99 flex leaves, 57/57 vendor files — all hold.** I re-derived the two things below independently. Three things need fixing, and the third is not cosmetic.
+
+**1 · The `C5b` log's `101` is a counting bug, and I can name the exact mechanism.**
+
+```
+eval-logs/C5b-flex-draft-platform.txt
+  leaf rules in flex.json: 101
+  _source -> … Counts: 23 at 12, 43 at 6, 10 at 2, 23 at 0 (99 rules).
+```
+
+The live table is **99 leaves** (tiers `{0:23, 2:10, 6:43, 12:23}`, sha256 `0a26d7c2…`). **101 is 99 + 2**, and the two are the top-level keys `roles` (a list) and `flex` (a dict) — your script counted them as leaves. The `_source` string in the same log says 99, so the log contradicts itself in adjacent lines. Fix the script or add one line to the log; do not add 101 to any summary.
+
+**2 · `C-engine-suite.txt` does not carry its own count.**
+
+```
+eval-logs/C-engine-suite.txt
+  === engine test suite at tip 46aafad ===
+  exit=0 wall=52s
+```
+
+The filing says "323 tests, 323 pass, 0 fail, exit 0, 52 s wall (VERIFIED)". DS re-ran it at `46aafad9` (Node 26.13.0) and got **323 / 323 / 0, exit 0, 16.4 s** — the claim is true, the shipped log cannot prove it. Log the summary line (`tests 323 / pass 323 / fail 0`) in the raw log, or the next reviewer has to re-run the suite to confirm a number you already have.
+
+**3 · The hazard: `tools/mathlab/flex.json` in your delivery tree is the RETIRED table.**
+
+```
+cmd: git show origin/architect/engine-and-seats:tools/mathlab/flex.json | sha256
+out: 0a26d7c2…   99 leaves   tiers {0:23, 2:10, 6:43, 12:23}
+cmd: git show origin/council/muse:tools/mathlab/flex.json | sha256
+out: 0a26d7c2…   99 leaves   (a true mirror of the live table)
+cmd: git show origin/council/ernie:tools/mathlab/flex.json | sha256
+out: 28a2e993…   107 leaves  tiers {0:16, 2:8, 4:38, 6:44, 10:1}
+     _source: "REV 4, Owner 29 Oct … QB flexes ONLY to FS, at -10"
+```
+
+So the `tools/mathlab/flex.json` that sits in the branch your delivery was committed to is **REV 4 — 107 rules, QB→FS = −10, retired by `AGENTS.md` line 50**. Your run read the live 99 table (the log's `_source` proves it), so **your numbers are right and the file next to them is wrong.** But any seat that reads the flex table from your delivery — which is what a reviewer does — gets the dead table.
+
+**Fix, in order of preference:** (a) ship the live table in the delivery (`0a26d7c2…`, 99 leaves), (b) leave it and add one line to the filing naming which copy the delivery carries and pointing at the live one, or (c) delete it from the delivery and cite the ref. **Do not leave it unlabelled.** This is the same defect as `AGENTS.md` line 73 (which still says "QB may flex ONLY to FS, at −10 … flex.json (REV 4) governs") — a retired table sitting where a reader will find it.
+
 ## §12 · Placeholder — the new axes and the next prompts (to be appended when DS, PICKLE and GLM answer)
 
 *Reserved. Three seats are producing: (a) a three-list axis comparison (Claude's 8, GLM's 6, Z.ai's D.1–D.9), (b) new candidate axes with the four required parts each — data file, null case, held-out rule, display class — and (c) three to five drafted prompts for you in a fixed template. Their output will be appended here, with the receipts, before you are prompted again. Nothing in §12 is required to start on §8 of v2.*
