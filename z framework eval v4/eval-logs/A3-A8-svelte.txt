@@ -1,0 +1,90 @@
+=== A3/A4/A6/A7/A8 — SVELTE repo ===
+--- A3 git status --porcelain (must be empty)
+porcelain-exit=0 (empty output above = clean)
+--- A4 bootstrap files
+no .bootstrap.sh / bootstrap.sh in repo root
+--- A4 AGENTS.md / CLAUDE.md presence
+-rw-r--r-- 1 z z 2482 Nov 14 03:55 AGENTS.md
+lrwxrwxrwx 1 z z    9 Nov 14 03:55 CLAUDE.md -> AGENTS.md
+--- A6 repo reconciliation
+origin	https://github.com/kozikosi/football-sim-svelte (fetch)
+origin	https://github.com/kozikosi/football-sim-svelte (push)
+* main 86ba632 [origin/main] chore: add Svelte 5 Vite comparison scaffold
+86ba632 chore: add Svelte 5 Vite comparison scaffold
+HEAD=86ba63255b34ef87db2cf9cae954511d5631064f
+main
+origin/main
+--- A7 .gitignore content
+node_modules
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+/dist
+/coverage
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Playwright
+test-results
+playwright-report/
+
+# Local AI-tool configuration
+.mcp.json
+.kilocode/
+
+# Backups
+*.backup-*
+--- A7 sensitive-pattern files present?
+no .env*, .mcp.json, .kilocode in worktree
+git ls-files: no .env*/.mcp.json/.kilocode tracked
+--- A8 symlink check
+lrwxrwxrwx 1 z z 9 Nov 14 03:55 CLAUDE.md -> AGENTS.md
+100644 c8079e621b00c216862eb570057ad797d16b0e6c 0	AGENTS.md
+120000 47dc3e3d863cfb5727b87d785d09abf9743c0a72 0	CLAUDE.md
+--- file inventory
+.gitignore
+.npmrc
+.nvmrc
+.vscode/extensions.json
+AGENTS.md
+CLAUDE.md
+README.md
+index.html
+package-lock.json
+package.json
+playwright.config.ts
+scripts/report-tooling.mjs
+src/App.svelte
+src/components/demo/PlaywrightDemo.svelte
+src/lib/assets/favicon.svg
+src/lib/index.ts
+src/lib/state/sim-state.svelte.ts
+src/lib/vitest-examples/greet.spec.ts
+src/lib/vitest-examples/greet.ts
+src/main.ts
+src/vite-env.d.ts
+static/robots.txt
+svelte.config.js
+tests/demo.spec.ts
+tests/smoke.spec.ts
+tsconfig.json
+vite.config.ts
+vitest.config.ts
+total tracked files: 28

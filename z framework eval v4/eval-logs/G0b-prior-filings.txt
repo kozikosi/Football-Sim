@@ -1,0 +1,27 @@
+=== prior framework/scaffold filings across key branches ===
+--- origin/council/muse
+_agents/muse/amused/apps/web/src/lib/SiteFooter.svelte
+_agents/muse/amused/apps/web/src/lib/ThemeToggle.svelte
+_agents/muse/amused/apps/web/src/lib/theme.svelte.ts
+_agents/muse/amused/apps/web/src/routes/+layout.svelte
+_agents/muse/amused/apps/web/src/routes/+page.svelte
+_agents/muse/amused/apps/web/src/routes/draft/+page.svelte
+_agents/muse/amused/apps/web/src/routes/season/+page.svelte
+_agents/muse/amused/apps/web/svelte.config.js
+_agents/muse/deliveries/prompts-2026-11-05/framework-test-dynamic-feature-2026-11-12.md
+_agents/owner-notes/2026-11-12-svelte-not-a-lock-verbatim.txt
+--- origin/council/inkling
+_agents/inkling/deliveries/67-cakepanz-s5/src/App.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/BoardFooter.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/BoardHeader.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/BoardRow.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/DraftBoard.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/LineupAdvice.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/ModeSwitch.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/NeedsRow.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/Saves.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/SlotPicker.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/components/SortControls.svelte
+_agents/inkling/deliveries/67-cakepanz-s5/src/lib/screens/Feed.svelte
+--- origin/main
+_agents/gpt/deliveries/PRODUCT-DRAFT-SCAFFOLD-v3.md

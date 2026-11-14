@@ -1,0 +1,7 @@
+=== Architect surface inventory doc at tip (REPORTED cross-reference) ===
+46aafad9db46f45232f68f4e71f27f06620283d8 Architect: engine surface inventory, BENCH-1 benchmark spec (proposal, not run), status reply with division of work and contradictions
+
+ claude/notes/2026-11-14-benchmark-spec-BENCH-1.md  | 75 ++++++++++++++++++++++
+ .../notes/2026-11-14-engine-surface-inventory.md   | 57 ++++++++++++++++
+ claude/notes/2026-11-14-status-reply.md            | 36 +++++++++++
+ 3 files changed, 168 insertions(+)

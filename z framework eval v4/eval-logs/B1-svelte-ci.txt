@@ -1,0 +1,6 @@
+=== B1 SVELTE npm ci ===
+exit=0 wall=2s
+
+added 77 packages in 1s
+node_modules entries: 58
+98M	node_modules

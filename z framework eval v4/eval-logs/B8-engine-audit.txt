@@ -1,0 +1,30 @@
+=== B8 ENGINE AUDIT — grep for engine symbols across both src/ trees ===
+--- football-sim-vue
+simulateGame: 0
+simulateSeason: 0
+optimalLineup: 0
+cpuPick: 0
+slotWinsPerOvr: 0
+matchupModel: 0
+LoadedDataset: 0
+applyOffPlan: 0
+applyDefPlan: 0
+modelWeights: 0
+teamRatings: 0
+effOvr: 0
+flexPenaltyFor: 0
+--- football-sim-svelte
+simulateGame: 0
+simulateSeason: 0
+optimalLineup: 0
+cpuPick: 0
+slotWinsPerOvr: 0
+matchupModel: 0
+LoadedDataset: 0
+applyOffPlan: 0
+applyDefPlan: 0
+modelWeights: 0
+teamRatings: 0
+effOvr: 0
+flexPenaltyFor: 0
+--- any vue/svelte/react import inside engine-claimed dirs (should be n/a since no engine dirs):

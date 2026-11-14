@@ -1,0 +1,33 @@
+   91fd1f8..46aafad  architect/engine-and-seats -> origin/architect/engine-and-seats
+Updating files:   0% (2/572)Updating files:   1% (6/572)Updating files:   2% (12/572)Updating files:   3% (18/572)Updating files:   4% (23/572)Updating files:   5% (29/572)Updating files:   6% (35/572)Updating files:   7% (41/572)Updating files:   8% (46/572)Updating files:   9% (52/572)Updating files:  10% (58/572)Updating files:  11% (63/572)Updating files:  12% (69/572)Updating files:  13% (75/572)Updating files:  14% (81/572)Updating files:  15% (86/572)Updating files:  16% (92/572)Updating files:  17% (98/572)Updating files:  18% (103/572)Updating files:  19% (109/572)Updating files:  20% (115/572)Updating files:  21% (121/572)Updating files:  22% (126/572)Updating files:  23% (132/572)Updating files:  24% (138/572)Updating files:  25% (143/572)Updating files:  26% (149/572)Updating files:  27% (155/572)Updating files:  28% (161/572)Updating files:  29% (166/572)Updating files:  30% (172/572)Updating files:  31% (178/572)Updating files:  32% (184/572)Updating files:  33% (189/572)Updating files:  34% (195/572)Updating files:  35% (201/572)Updating files:  36% (206/572)Updating files:  37% (212/572)Updating files:  38% (218/572)Updating files:  39% (224/572)Updating files:  40% (229/572)Updating files:  41% (235/572)Updating files:  42% (241/572)Updating files:  43% (246/572)Updating files:  44% (252/572)Updating files:  45% (258/572)Updating files:  46% (264/572)Updating files:  47% (269/572)Updating files:  48% (275/572)Updating files:  49% (281/572)Updating files:  50% (286/572)Updating files:  51% (292/572)Updating files:  52% (298/572)Updating files:  53% (304/572)Updating files:  54% (309/572)Updating files:  55% (315/572)Updating files:  56% (321/572)Updating files:  57% (327/572)Updating files:  58% (332/572)Updating files:  59% (338/572)Updating files:  60% (344/572)Updating files:  61% (349/572)Updating files:  62% (355/572)Updating files:  63% (361/572)Updating files:  64% (367/572)Updating files:  65% (372/572)Updating files:  66% (378/572)Updating files:  67% (384/572)Updating files:  68% (389/572)Updating files:  69% (395/572)Updating files:  70% (401/572)Updating files:  71% (407/572)Updating files:  72% (412/572)Updating files:  73% (418/572)Updating files:  74% (424/572)Updating files:  75% (429/572)Updating files:  76% (435/572)Updating files:  77% (441/572)Updating files:  78% (447/572)Updating files:  79% (452/572)Updating files:  80% (458/572)Updating files:  81% (464/572)Updating files:  82% (470/572)Updating files:  83% (475/572)Updating files:  84% (481/572)Updating files:  85% (487/572)Updating files:  86% (492/572)Updating files:  87% (498/572)Updating files:  88% (504/572)Updating files:  89% (510/572)Updating files:  90% (515/572)Updating files:  91% (521/572)Updating files:  92% (527/572)Updating files:  93% (532/572)Updating files:  94% (538/572)Updating files:  95% (544/572)Updating files:  96% (550/572)Updating files:  97% (555/572)Updating files:  98% (561/572)Updating files:  99% (567/572)Updating files: 100% (572/572)Updating files: 100% (572/572), done.
+HEAD is now at 46aafad Architect: engine surface inventory, BENCH-1 benchmark spec (proposal, not run), status reply with division of work and contradictions
+HEAD=46aafad9db46f45232f68f4e71f27f06620283d8
+46aafad Architect: engine surface inventory, BENCH-1 benchmark spec (proposal, not run), status reply with division of work and contradictions
+91fd1f8 Architect: rulings record, framework-neutrality gate, CI canary; closes a real hole in two boundary tests
+--- engine dir:
+awards.ts
+boxscore.ts
+display.ts
+draft.ts
+drives.ts
+flex.ts
+goneodds.ts
+kicking.ts
+league.ts
+legacyprovider.ts
+lineup.ts
+margin.ts
+matchup.ts
+plans.ts
+playerids.ts
+players.ts
+ratings.ts
+recap.ts
+returner.ts
+schedule.ts
+season.ts
+seasonrun.ts
+slots.ts
+specs.ts
+standings.ts
+value.ts

@@ -1,0 +1,24 @@
+=== where do the C2-named functions actually live? ===
+--- simulateGame
+colors/src/sports/nfl/engine/drives.ts:172:export function simulateGame(mh: Matchup, ma: Matchup, rng: Rng, opts: GameOptions): GameResult {
+--- playGame
+--- simulateWeek
+--- cpuPick
+--- optimalLineup
+colors/src/sports/nfl/engine/lineup.ts:36:export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[], stay?: ReadonlyMap<string, SlotId>, stayBonus = 0): Omit<Lineup, 'base'> {
+--- matchupModel
+colors/src/sports/nfl/engine/matchup.ts:66:export function matchupModel(O0: Ratings, D0: Ratings, lg: Ratings, plan: Plan = DEFAULT_PLAN): Matchup {
+--- applyOffPlan
+colors/src/sports/nfl/engine/matchup.ts:36:export function applyOffPlan(O: Ratings, po: OffPlan): Ratings {
+--- applyDefPlan
+colors/src/sports/nfl/engine/matchup.ts:45:export function applyDefPlan(D: Ratings, pd: DefPlan, isLeague: boolean): Ratings {
+--- modelWeights
+--- slotWinsPerOvr
+--- teamRatings
+colors/src/sports/nfl/engine/ratings.ts:41:export function teamRatings(spots: readonly Spot[], returner: number = RET_NEUTRAL): Ratings {
+--- effOvr
+--- flexPenaltyFor
+--- LoadedDataset
+colors/src/core/app.ts:41:export interface LoadedDataset<Row = unknown> { source: DatasetSource; rows: readonly Row[]; hash: string }
+--- DatasetRow
+colors/src/sports/nfl/app/dataset.ts:29:export type DatasetRow = readonly [string, string, string, string, number, number, number, 0 | 1];

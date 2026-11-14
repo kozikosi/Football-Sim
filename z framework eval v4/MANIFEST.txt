@@ -1,0 +1,49 @@
+# MANIFEST — zai-framework-eval-2026-11-14
+
+Filing: inbox/20261114-0406-zai-framework-eval.md on council/zai (local commit a43621a on 25e3b2f; push failed, exit 128, no credentials)
+
+SHA256:
+a9f5d71fbd24e8715df70437e30d3022af7fed35a591d5652b1308a4b2fe2401  inbox_20261114-0406-zai-framework-eval.md
+27672dffbce1f80350fb11078e51c818550f4b5a8e350222cf962fcdf8609a40  START-OF-CHAT-ZAI-updated-2026-11-14.md
+2550e080b552ef15e1e9fc9b64c2414a68b33a75f12c2959962fe729603de35e  eval-logs/A1-machine-identity.txt
+789962c601a0e1b61382a142a27876e2cc30e793aa38e72f9edb8b9c97e7981a  eval-logs/A2-clones.txt
+1b26776a61af3a31cbbec9b63795ab64b34f3ec03880d1d9e2391a0d57031a83  eval-logs/A3-A8-svelte.txt
+ff5bf82aab05fa8abba6a61af092a5a3c6211a451095a8c9ae18c4a15b7fbfaf  eval-logs/A3-A8-vue.txt
+fcbe8a7cfcda740765a98a20df0d05b1bc0b65b22b49cf5ffd9e2f929209f31f  eval-logs/A3b-secret-sweep.txt
+818cd49ae9dfa5b614225d6966cf60f16b3f00d686728f780fbc1822ac335257  eval-logs/B1-svelte-ci.txt
+8d927f6723f264a2ca5ac5ad533f0ee248211ffd67958080322370dfc712cea5  eval-logs/B1-vue-ci.txt
+d184c7aa7c1eb30264233a8bbe711f8a442c226872cf0916b2ded41f485a3830  eval-logs/B2-svelte-build.txt
+0da41888c250bf92e70741fd7654551431c1634116b0e1eeba8cfba5f16cb026  eval-logs/B2-vue-build.txt
+00b5b5e979433b9fd3986452d556b05a14b85c63e735a4ef2520087fbf341ee1  eval-logs/B2b-vue-fullbuild.txt
+66631049ac4161842e933328afa110e375b943fed55e1ebff8f544759e2bf79e  eval-logs/B3-B4-svelte.txt
+fef70442bd60e50743c6c2f04b3410401c13fbe6bedd503a28c781d88d57143a  eval-logs/B3-B4-vue.txt
+3c4948348d8124fd674c83d634bcb202f6914b6ea12eb5d3f13066d940257699  eval-logs/B5-svelte-list.txt
+adb4b48421e4c38ad28cb08947c3e621e31e11781be02db3f4a4333280f537ec  eval-logs/B5-vue-list.txt
+10d8b12c685f8b64aa3c1b64b3158dd252ee57edf35d6c0efce52a89461d853c  eval-logs/B6-browser-install.txt
+0ebd6c0e8ef76a84dd872b8e3163b7fa744fb5489f1ecf51d7a4f100c6530599  eval-logs/B6-svelte-e2e.txt
+1aeb821ae09404b48bc750a27ccded74a2880679d540bdfdf1153feae979c044  eval-logs/B6-vue-e2e.txt
+451c42f3e778ebb632830d91fed17540004f93e0a59ec65ff59af58c6d1ea40b  eval-logs/B7-svelte-audit.txt
+f8d7f2735dd8a24269df4cedec91349f202d684aba0fedabc93551d6d27a2ac4  eval-logs/B7-vue-audit.txt
+101fbac76b42576349b6c123d91c0ff29041596de1c664ca419652b5e49f1d82  eval-logs/B8-engine-audit.txt
+83e265fa80b3940b4ec436d8215547d49f750e5ced52b934ec706fccf0809bed  eval-logs/B8b-framework-imports.txt
+8f1892617919435cd2c119b79611993d3efe75299ca9e1180eec6475c2e661b0  eval-logs/C-engine-suite.txt
+0c8d36a3df0cb35547952f9362e0a2eaa90f86d8dae3817f99614c3ecfecf065  eval-logs/C1-architect-inventory.txt
+0fbd2cf8dc2d556af483da14863ed73c30d8b16ba6b895ee16aa7751c3c7a1d8  eval-logs/C1-engine-locate.txt
+7803dffa1f0c0ad561c0c73cca0ef38d1fba3fe1ecdcb32309124a635d4a00c2  eval-logs/C1-worktree.txt
+8289b57acddb9b13047b65fb7a9200f3676b724b1e22febd8a3c14a1ab34f2c2  eval-logs/C2-C4-C7-engine-surface.txt
+20b8043cbd81da42a1090fee5477de92bd2ee2445a13cd56b0c4a64937fe3ed7  eval-logs/C2-func-locations.txt
+8c576fd88f2683a2ee9f96278b7b28fd4105fb8ed3caf5bd31408580952d5825  eval-logs/C3-C5-details.txt
+f239850b236fd012fc9c65ebd7de8734122993c30b4203382830c1702e476c11  eval-logs/C4b-C5-awards-schedule.txt
+9eced4b3dc71f81181aeac38df884471e19b996c081887c8812933e3bfc84327  eval-logs/C5b-flex-draft-platform.txt
+21169c60861bbaad63431ca6f2df4d73266d22a23831e71618a8e737f84c388c  eval-logs/C8-pin-inspection.txt
+ab1731f48a2e949d0fc3bbb7b62b474d740901cbca66f9c9cf2faa83d5656698  eval-logs/C8-tip-rng-flex.txt
+83a7e80d422ec54e7909e4d3cf28b504b707d642322557d46818be4f3aba2194  eval-logs/D1-svelte-mcp-2.txt
+124364e01038b3dea871ec3f05268150e757cb4283f44bf6d5e2e7bf67ad88f7  eval-logs/D1-svelte-mcp.txt
+3e29b0743ca9eb76006dad417f4657fd6c3a970ee12418a82681c4b0e7c40da9  eval-logs/D2-pw-mcp-svelte.txt
+b1590705dd194277d4722d95993e64de414b74d3722fea38aa6e5c19c98d3656  eval-logs/D2-pw-mcp-svelte2.txt
+3e29b0743ca9eb76006dad417f4657fd6c3a970ee12418a82681c4b0e7c40da9  eval-logs/D2-pw-mcp-svelte3.txt
+18181395c374f935769f2e632ea5e44a420931d886bbb98835a4c45ce845678a  eval-logs/D2b-console-capture.txt
+5faa617524115ab50c39a09064394297fe921ec9c9e536d47cee52954e44b8cc  eval-logs/D3-registry-checks.txt
+68a1ac8be9e83eee9a006cc9a97f438171f6dcba7b7a57495f716d8e2c1eebd0  eval-logs/D4-context7.txt
+4055fbca524778bcf8720e6964b68d07890c38eba2375e2f6394124768596f1e  eval-logs/G0-earlier-filings.txt
+f298258bc56dfac92fe519e56f25709c0ca0b801769eedcedb4da1b77f975220  eval-logs/G0b-prior-filings.txt

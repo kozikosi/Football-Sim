@@ -1,0 +1,10 @@
+=== B2 addendum: full 'npm run build' (run-p type-check + build-only) ===
+exit=0 wall=4s
+✓ 34 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.42 kB │ gzip:  0.28 kB
+dist/assets/index-D3VPUIcM.css   1.68 kB │ gzip:  0.57 kB
+dist/assets/index-Dv16q5dL.js   77.20 kB │ gzip: 29.99 kB
+
+✓ built in 470ms

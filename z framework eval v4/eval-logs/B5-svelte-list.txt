@@ -1,0 +1,22 @@
+=== B5 SVELTE npx playwright test --list (correct dir) ===
+/home/z/my-project/repos/football-sim-svelte
+Listing tests:
+  tests/demo.spec.ts:3:1 › has expected h1
+  tests/smoke.spec.ts:3:1 › smoke: app boots and exposes __SIM_STATE__
+Total: 2 tests in 2 files
+exit=0
+--- playwright.config.ts
+import { defineConfig } from '@playwright/test';
+
+export default defineConfig({
+  testDir: '.',
+  testMatch: ['tests/**/*.spec.ts'],
+  use: {
+    baseURL: 'http://localhost:5174'
+  },
+  webServer: {
+    command: 'npm run dev -- --port 5174 --strictPort',
+    url: 'http://localhost:5174',
+    reuseExistingServer: false
+  }
+});

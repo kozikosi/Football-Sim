@@ -1,0 +1,44 @@
+=== C1: engine index.ts / CORE ENGINE INTERFACE ===
+ls: cannot access 'colors/src/sports/nfl/engine/index.ts': No such file or directory
+no 'CORE ENGINE INTERFACE' marker in colors/src
+
+=== engine dir full listing (with index?) ===
+total  
+drwxr-xr-x 4096 .
+drwxr-xr-x 4096 ..
+-rw-r--r-- 3397 awards.ts
+-rw-r--r-- 17129 boxscore.ts
+-rw-r--r-- 1670 display.ts
+-rw-r--r-- 9702 draft.ts
+-rw-r--r-- 19456 drives.ts
+-rw-r--r-- 3717 flex.ts
+-rw-r--r-- 2090 goneodds.ts
+-rw-r--r-- 2188 kicking.ts
+-rw-r--r-- 1603 league.ts
+-rw-r--r-- 7584 legacyprovider.ts
+-rw-r--r-- 5944 lineup.ts
+-rw-r--r-- 4333 margin.ts
+-rw-r--r-- 9423 matchup.ts
+-rw-r--r-- 2530 plans.ts
+-rw-r--r-- 4365 playerids.ts
+-rw-r--r-- 2619 players.ts
+-rw-r--r-- 4132 ratings.ts
+-rw-r--r-- 12207 recap.ts
+-rw-r--r-- 1900 returner.ts
+-rw-r--r-- 7239 schedule.ts
+-rw-r--r-- 5914 season.ts
+-rw-r--r-- 8245 seasonrun.ts
+-rw-r--r-- 6299 slots.ts
+-rw-r--r-- 5448 specs.ts
+-rw-r--r-- 11002 standings.ts
+-rw-r--r-- 3543 value.ts
+
+=== colors/src top dirs ===
+colors/src
+colors/src/core
+colors/src/platform
+colors/src/sports
+colors/src/sports/nfl
+colors/src/sports/nfl/engine
+colors/src/sports/nfl/view
+colors/src/sports/nfl/app

@@ -1,0 +1,15 @@
+=== A2. CLONE BOTH SCAFFOLD REPOS (fresh) ===
+--- clone vue
+Cloning into 'football-sim-vue'...
+clone-vue-exit=0
+--- clone svelte
+Cloning into 'football-sim-svelte'...
+clone-svelte-exit=0
+--- vue HEAD
+6b4de5c734898d85f00c779de4f078532e5dadf9
+6b4de5c chore: prepare Vue 3 Vite comparison scaffold
+82e893d chore: baseline Vue scaffold
+--- svelte HEAD
+86ba63255b34ef87db2cf9cae954511d5631064f
+86ba632 chore: add Svelte 5 Vite comparison scaffold
+--- expected: vue=6b4de5c734898d85f00c779de4f078532e5dadf9 svelte=86ba63255b34ef87db2cf9cae954511d5631064f

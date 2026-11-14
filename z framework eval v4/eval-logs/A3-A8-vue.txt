@@ -1,0 +1,113 @@
+=== A3/A4/A6/A7/A8 — VUE repo ===
+--- A3 git status --porcelain (must be empty)
+porcelain-exit=0 (empty output above = clean)
+--- A4 bootstrap files
+no .bootstrap.sh / bootstrap.sh in repo root
+--- A4 AGENTS.md / CLAUDE.md presence
+-rw-r--r-- 1 z z 2384 Nov 14 03:55 AGENTS.md
+lrwxrwxrwx 1 z z    9 Nov 14 03:55 CLAUDE.md -> AGENTS.md
+--- A6 repo reconciliation
+origin	https://github.com/kozikosi/football-sim-vue (fetch)
+origin	https://github.com/kozikosi/football-sim-vue (push)
+* main 6b4de5c [origin/main] chore: prepare Vue 3 Vite comparison scaffold
+82e893d chore: baseline Vue scaffold
+HEAD=6b4de5c734898d85f00c779de4f078532e5dadf9
+main
+origin/main
+--- A7 .gitignore content
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+node_modules
+.DS_Store
+dist
+dist-ssr
+coverage
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+*.tsbuildinfo
+
+.eslintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Vitest
+__screenshots__/
+
+# Vite
+*.timestamp-*-*.mjs
+
+test-results/
+playwright-report/
+
+# Local AI-tool configuration
+.mcp.json
+.kilocode/
+
+# Backups and generated reports
+*.backup-*
+playwright-report/
+--- A7 sensitive-pattern files present?
+no .env*, .mcp.json, .kilocode in worktree
+git ls-files: no .env*/.mcp.json/.kilocode tracked
+--- A8 symlink check
+lrwxrwxrwx 1 z z 9 Nov 14 03:55 CLAUDE.md -> AGENTS.md
+100644 4443a09d5204b6e87b6e598fbc602fde91f89739 0	AGENTS.md
+120000 47dc3e3d863cfb5727b87d785d09abf9743c0a72 0	CLAUDE.md
+--- file inventory
+.gitignore
+.nvmrc
+.vscode/extensions.json
+AGENTS.md
+CLAUDE.md
+README.md
+e2e/tsconfig.json
+e2e/vue.spec.ts
+env.d.ts
+index.html
+package-lock.json
+package.json
+playwright.config.ts
+public/favicon.ico
+scripts/report-tooling.mjs
+src/App.vue
+src/assets/base.css
+src/assets/logo.svg
+src/assets/main.css
+src/components/HelloWorld.vue
+src/components/TheWelcome.vue
+src/components/WelcomeItem.vue
+src/components/__tests__/HelloWorld.spec.ts
+src/components/icons/IconCommunity.vue
+src/components/icons/IconDocumentation.vue
+src/components/icons/IconEcosystem.vue
+src/components/icons/IconSupport.vue
+src/components/icons/IconTooling.vue
+src/main.ts
+src/stores/counter.ts
+tests/smoke.spec.ts
+tsconfig.app.json
+tsconfig.json
+tsconfig.node.json
+tsconfig.vitest.json
+vite.config.ts
+vitest.config.ts
+total tracked files: 37

@@ -1,0 +1,10 @@
+=== D3 registry receipts (existence only — NOT capability claims) ===
+version = '9.0.0-rc.3'
+dist-tags = { latest: '9.0.0-rc.1', rc: '9.0.0-rc.3' }
+---
+  "0.1.28",
+  "0.1.29",
+  "0.1.30"
+]
+---
+0.0.85

@@ -1,0 +1,22 @@
+=== B2 SVELTE build ===
+exit=0 wall=0s
+> football-sim-svelte@0.0.1 build
+> vite build
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 111 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                 0.34 kB │ gzip:  0.25 kB
+dist/assets/index-BCb0bxgV.js  28.96 kB │ gzip: 11.43 kB
+✓ built in 111ms
+--- dist tree
+dist/assets/index-BCb0bxgV.js
+dist/index.html
+--- raw sizes (bytes)
+28969	dist/assets/index-BCb0bxgV.js
+342	dist/index.html
+--- gzip sizes
+11310	dist/assets/index-BCb0bxgV.js.gz
+--- dist total
+29311	dist
