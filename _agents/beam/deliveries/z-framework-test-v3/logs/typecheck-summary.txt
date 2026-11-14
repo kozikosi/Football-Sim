@@ -1,0 +1,6 @@
+sveltekit exit:1
+react exit:1
+vue exit:1
+next exit:1
+nuxt exit:1
+svelte exit:1

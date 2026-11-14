@@ -1,0 +1,38 @@
+# v3 FULL-SUITE RUN — final state — 2026-11-13T23:14:36Z
+# command: for pair in "arm-react 4171" "arm-vue 4172" "arm-svelte 4173" "arm-sveltekit 4174" "arm-next 4175" "arm-nuxt 4176" "arm-solid 4177" "arm-lit 4178" "arm-solidstart 4179"; do set -- $pair; bash scripts/v3_pw_run.sh $1 $2; done
+=== arm-react ===
+arm-react playwright exit: 0
+  5 passed (2.0s)
+playwright exit: 0
+=== arm-vue ===
+arm-vue playwright exit: 0
+  5 passed (1.8s)
+playwright exit: 0
+=== arm-svelte ===
+arm-svelte playwright exit: 0
+  5 passed (1.9s)
+playwright exit: 0
+=== arm-sveltekit ===
+arm-sveltekit playwright exit: 1
+  1 passed (1.1m)
+playwright exit: 1
+=== arm-next ===
+arm-next playwright exit: 0
+  5 passed (2.2s)
+playwright exit: 0
+=== arm-nuxt ===
+arm-nuxt playwright exit: 0
+  5 passed (2.0s)
+playwright exit: 0
+=== arm-solid ===
+arm-solid playwright exit: 0
+  5 passed (1.8s)
+playwright exit: 0
+=== arm-lit ===
+arm-lit playwright exit: 0
+  5 passed (2.0s)
+playwright exit: 0
+=== arm-solidstart ===
+arm-solidstart playwright exit: 0
+  5 passed (1.9s)
+playwright exit: 0

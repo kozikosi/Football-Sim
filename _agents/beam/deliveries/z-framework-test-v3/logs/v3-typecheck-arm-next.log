@@ -1,0 +1,5 @@
+[2026-11-13T22:34:32Z] $ cd /home/z/my-project/work/v3/fwtest-9/arm-next && npm run typecheck 
+
+> arm-next@0.0.0 typecheck
+> tsc --noEmit
+

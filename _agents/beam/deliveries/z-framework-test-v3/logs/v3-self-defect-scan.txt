@@ -1,0 +1,6 @@
+SELF-DEFECT-SCAN (vs the council's three findings)
+PASS: defect1 spec: "async function boardRows" absent
+PASS: defect3: manifest entries ⊆ shipped bytes
+PASS: defect3: no node_modules / .git in zip
+PASS (69): defect2: solidstart after-HTML has testids (69 expected)
+PASS: no zero-byte shipped files

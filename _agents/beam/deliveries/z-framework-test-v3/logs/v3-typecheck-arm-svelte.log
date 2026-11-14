@@ -1,0 +1,25 @@
+[2026-11-13T22:34:24Z] $ cd /home/z/my-project/work/v3/fwtest-9/arm-svelte && npx svelte-check --tsconfig ./tsconfig.json --output human 
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/node_modules/esrap/types/types.d.ts:1:30
+Error: Cannot find module 'esrap' or its corresponding type declarations. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/node_modules/svelte/types/index.d.ts:860:37
+Error: Cannot find module 'esrap/languages/ts' or its corresponding type declarations. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.json:1:1
+Warn: Option 'moduleResolution=node10' is deprecated and will stop functioning in TypeScript 7.0. Specify compilerOption '"ignoreDeprecations": "6.0"' to silence this error.
+  Visit https://aka.ms/ts6 for migration information. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.json:4:5
+Warn: Referenced project '/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.app.json' must have setting "composite": true. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.json:4:5
+Warn: Referenced project '/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.app.json' may not disable emit. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.json:5:5
+Warn: Referenced project '/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.node.json' must have setting "composite": true. 
+
+/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.json:5:5
+Warn: Referenced project '/home/z/my-project/work/v3/fwtest-9/arm-svelte/tsconfig.node.json' may not disable emit. 
+
+====================================
+svelte-check found 2 errors and 5 warnings in 3 files

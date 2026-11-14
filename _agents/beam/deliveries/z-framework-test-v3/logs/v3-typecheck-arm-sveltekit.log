@@ -1,0 +1,2 @@
+[2026-11-13T22:34:28Z] $ cd /home/z/my-project/work/v3/fwtest-9/arm-sveltekit && npx svelte-check --tsconfig ./tsconfig.json --output human 
+svelte-check found 0 errors and 0 warnings

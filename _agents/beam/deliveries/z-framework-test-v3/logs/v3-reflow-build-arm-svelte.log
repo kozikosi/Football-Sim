@@ -1,0 +1,17 @@
+[command] cd /home/z/my-project/work/v3/fwtest-9/arm-svelte && npm run build
+
+> arm-svelte@0.0.0 build
+> vite build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 130 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.45 kB │ gzip:  0.29 kB
+dist/assets/index-ByBWXECe.css   5.79 kB │ gzip:  1.93 kB
+dist/assets/index-C3E5qFV9.js   68.79 kB │ gzip: 27.00 kB
+
+✓ built in 221ms
+
+

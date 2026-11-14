@@ -1,0 +1,19 @@
+[probe] mode=dev tag=before port=4198 cmd=npm run dev -- --port 4198 2026-11-13T22:37:05Z
+server pid 2847
+READY: HTTP 200 after 2s
+HTML bytes: 1069
+data-testid occurrences in served HTML: 0
+board rows (row-*): 0
+--- first 40 lines of served HTML ---
+<!DOCTYPE html><html lang="en"><head><title>Framework Test — Offensive Focus (SolidStart)</title><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><script>window._$HY||(e=>{let t=e=>e&&e.hasAttribute&&(e.hasAttribute("data-hk")?e:t(e.host&&e.host.nodeType?e.host:e.parentNode));["click", "input"].forEach((o=>document.addEventListener(o,(o=>{if(!e.events)return;let s=t(o.composedPath&&o.composedPath()[0]||o.target);s&&!e.completed.has(s)&&e.events.push([s,o])}))))})(_$HY={events:[],completed:new WeakSet,r:{},fe(){}});</script><!--xs--><script type="module" src="/_build/@fs/home/z/my-project/work/v3/fwtest-9/arm-solidstart/node_modules/vinxi/runtime/client.js" id="plugin-0"> </script><script type="module" src="/_build/@vite/client" id="vite-client"> </script></head><body><div id="app"><!--!$e0000000--><!--!$/e0000000--></div><!--$--><script>window.manifest = {}</script><script type="module" async src="/_build/@fs/home/z/my-project/work/v3/fwtest-9/arm-solidstart/src/entry-client.tsx"></script><!--/--></body></html>--- server log tail ---
+
+> fwtest-arm-solidstart@1.0.0 dev
+> vinxi dev --port 4198
+
+vinxi v0.5.11
+vinxi starting dev server
+
+  ➜ Local:    http://localhost:4198/
+  ➜ Network:  use --host to expose
+
+[probe] done 2026-11-13T22:37:10Z
