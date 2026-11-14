@@ -1,93 +1,69 @@
-SPEAKER: KG (Owner) + inkling | ROLE: Z.ai | TASK: open-ended work order — the full wave, your imagination, your call, receipts always | DATE: 2026-11-14 | Audience: Z.ai only
+SPEAKER: KG (Owner) + inkling | ROLE: Z.ai | TASK: open license — the product round; your imagination; receipts always | DATE: 2026-11-14 | Audience: Z.ai only
 
-# INKLING — the Open License, wave edition (2026-11-14)
+# INKLING — the open license, v2 (2026-11-14, incorporating all council reviews)
 
-**Read this twice before the first command. Nothing below is a pace, a queue, or a quota. Everything here is available; nothing here is due.** The Owner said: encourage the stretch of your imagination; there is no scope lock; only make the website more beautiful and dynamic. This brief hands you every proposed test, every prompt INKLING filed for you, INKLING's receipts of the last wave, the whole scoresheet — and leaves the ordering, the slicing, and the courage entirely to you.
+**This brief changes what you work ON and nothing about how you work.** How you work stays exactly as always: VERIFIED/REPORTED/INFERRED/UNKNOWN; four lines per claim; labels or silence; no frameworks ranked; imagination licensed; one handoff; the Owner relays; the engine consumes and never edits; `FLEX`/protected constants untouched; free tooling only; no writes to public repos or `colors/`.
 
+## 0. Read in this order, every time, no skipping
 
-## 0.5 The work order of record — Ernie's product brief (read first, always)
+1. `_agents/zai/START-OF-CHAT-ZAI.md` — the standing laws (unless amended).
+2. **`_agents/ernie/deliveries/WR-BENCH2-zai-product-round-2026-11-14.md` at `origin/council/ernie` (commit `8a083ecd`, 257 lines)** — this is the work order of record. Read it completely. It already carries: the phase list A→J, the constraints, the receipt-law, and the thesis (BENCH-1's output was a data structure, not a framework verdict; this round is the same shape). If anything in this INKLING brief conflicts with Ernie's brief, **Ernie's wins and this brief is where it contradicts itself, not the other way round.**
+3. `inbox/20261114-0727-inkling-bench1-v1-errata.md` (INKLING) — the repaired receipts record. Key facts, so they cannot be missed:
+   - W1 parse+freeze per run: **19.81 / 40.13 / 10.38 / 9.73(smoke)**; inkling-rerun 6.30.
+   - D-32R per run: run1 **772.4–1,583.1** (outlier 1583.09, mean 915.7 — JIT/GC INFERRED, you should warm up before measuring D-32R), run2 771.9–821.7, run3 785.7–840.2.
+   - `W4.seasonMs` **IS receipted** (335.3 / 339.9 / 349.9 / 341.5-smoke; INKLING-rerun 257.3) · `W4.p95GameMs` 0.075–0.079 · `recordBytes` 187,078/187,079 with u31 carrying the extra byte.
+   - `G5 600/600 ×2 runs` VERIFIED by three independent readers (INKLING/Beam/Glyph) + INKLING's own headless re-run of the harness: **104/104 exit 0**.
+   - What is NOT receipted anywhere: `receipts/a3.json`, `receipts/*-analysis.json`, lanes B–F JSON outputs, watchlist repair logs — everything `REPORT.md §5/§8` treated as packed evidence. **Run `tools/driver/a3.mjs` and `analyze.mjs` if you possibly can; the outputs ride inside this handoff.**
 
-The authoritative work order for this wave is **`_agents/ernie/deliveries/WR-BENCH2-zai-product-round-2026-11-14.md` at `origin/council/ernie` (commit `8a083ecd`, 257 lines, 17 sections)** — read it end-to-end before the menu below. **This INKLING brief is the license around it** (environment truth, relay rule, boundary laws, INKLING receipts, errata) — the phases to execute are Ernie's A through J, in his order:
+**State of record (VERIFIED by three seats this window):** 104/104 gates ×3, hash identity across runs, engine byte-identical vs tip `d3bd81d` in both arms (`diff -rq` empty, 57 paths matched each), arm-fairness holds (≈124 LOC vue vs ≈133 svelte), run-1 vs run-2 wiring gap exactly reproduces (alerk 5,130/7,415/5,078 vue vs 1,235/2,333/1,599 svelte), corrected-wiring parity in run 2 (1.6 s class, both arms, same 11 goneOdds-heavy picks), G5 600/600.
 
-| Ernie | what | INKLING lane pointer |
-|---|---|---|
-| A | Save/record schema — resume test (save→quit→relaunch→resume→identical next pick incl RNG position) + derivability audit vs BENCH-1's 187,078 B record | none — your work cut here, first lane; INKLING's G has no equivalent; **it comes before any UI skin work** |
-| B | Phone-class measurement (device or a stated slowdown factor) | C-equivalent (phone-class throttled subset) |
-| C | Offline for real — airplane mode, file://, no runtime font fetch | C-equivalent (offline sentence inside the stretch list) |
-| D | The VueUse library test (virtualized+filtered+persisted board over 1,941 rows) | B-equivalent (bench-essence slice w/ virtual list) |
-| E | Achievements as **data** · all tendencies · best seasons · favourite players | new; spec from round 3/4 answers; INKLING does not duplicate |
-| F | Brag-share end-of-season card (client-side, free) | G stretch item |
-| G | Conflict rule with deliberately wrong clocks (monotonic highest-progress wins; loser retained + told once) | none — highest priority after A |
-| H | Touch targets ≥44 px; embedded type (NO Cinzel requirement); 390 and 360 clean | H-implicit (mobile always) |
-| I | Shell determinism (not just engine) | I-implicit |
-| J | Agent-defect pilot (one shell, one sitting, counts by class) | J-equivalent (watchlist-pilot philosophy) |
+## 1. The phases you run, in Ernie's order (no shuffling)
 
-INKLING's lanes A–H below remain **available extras, imagination-licensed**: A (Pick Reveal), B (W89 essence), C (laneC/E/F), D (phone-class), E (watchlist ×2), F (BENCH-2 rescoped or skipped), G (self-invented stretch). Neither file is a queue; neither replaces the other. **If you hit a contradiction between this brief and Ernie's, file it; do not reconcile silently.**
+Ernie's work order already contains the detail for phases A–J. INKLING does not restate instruction; this is a reading map, one line each, so nothing gets skipped out of impatience:
 
-**Errata IN FORCE (INKLING, 2026-11-14):** the v1 ratification audit numbers (`9.2/9.5/9.4`, `792–873`, `187,078 B stable`, "no season receipt") are superseded by per-run min/median/max readouts — see `inbox/20261114-0727-inkling-bench1-v1-errata.md`. `timings.W4.seasonMs` **is** receipted (335.3/339.9/349.9 across runs); vendor digest basis `cd298e99` vs `432a1701` (112 files): content is byte-identical (INKLING `diff -rq` + record hashes); the digest basis is INKLING-logged as untraceable, not wrong — one line from you reconciles it.
+- **A · Save schema + resume test.** Highest-value lane. Build the save envelope you recommend; prove the save→quit→relaunch→resume identical-next-pick incl RNG position, on both shells; audit the BENCH-1 187,078 B record for the fields achievements/tendencies/best-seasons/favourites/brag-share need; size it after a full season and three.
+- **B · Phone-class measurement** — CPU×4/6 throttle and slow 3G (native flag); the goneOdds cells on both arms; a phone-class number quoted with stated basis (device or stated factor; do not borrow averages).
+- **C · Offline for real.** file:// + no display refreshables + no runtime font fetch (w89's Google fonts are the known risk). Surface every console error in the offline run verbatim.
+- **D · The library test** (WR-BENCH2, Ernie's full spec inside the product round file): virtualized+persisted+filtered board vs both, Vue ecosystem with `@vueuse/motion` vs Svelte=built-ins+TanStack adapter; four columns, never summed; a tie is a success.
+- **E · Achievements as data**, tendencies, best seasons, favourites; one real data-file entry added = proof of extensibility.
+- **F · Brag-share end-of-season card** — client-side; w89-idiomatic; a user would actually post; the design problem of the wave.
+- **G · Conflict rule** with deliberately wrong clocks — highest-progress-wins; loser retained and disclosed once.
+- **H · ≥44 px touch targets; embedded type (not required to be Cinzel); 360/390 clean.**
+- **I · Shell determinism** — same seed → byte-identical board/log/summary text, not just engine.
+- **J · Agent-defect pilot** — one bounded feature on one shell, counts by class, honest columns.
 
-**Second-seat verification (INKLING, this machine):** the tier1 harness re-ran clean — **104/104, exit 0**, dataset hash identical, D-32R-s1-u0 and D-5R-s1-u31 records byte-identical to yours, `W4.seasonMs 257.3` vs your 335.3 (machine-class delta, not a correctness delta). Your delivery is confirmed; the missing artifacts are still owed in the single handoff (§4).
+**Execution order is fixed. Depth per phase is yours to budget.** If any phase is blocked on your machine, log the block verbatim (it is a finding, not a failure), move on, and resume at the next session. Do the receipts BM that match your machine.
 
+## 2. The extras (INKLING-licensed; imagination rewarded; nobody forced to play)
 
-## 0. The one re-read first (and only it)
+1. **The W89 essence skin** (`zai-w89-watchlist-run-2026-11-14.md` file at `a5c103d5`): star + filter + count persisted; w89 tokens extracted first (`w89-quirks.md` with byte offsets); `w89-shine` CSS analog for starred 90+ rows; Cinzel/Bodoni stack; espresso ground; champagne-gold body; NO white; OVR gold bubbles (85 vibrant / 90 shimmer); CAN YOU GO 20-0? header jingle; team-colour user-team label; ribbon quick-strip; **one self-invented stretch-N nobody proposed yet** — log it as "Stretch-N", screenshot it, and expect the Owner to ruling on whether it ships.
+2. **Lane C/E/F** — the tooling shootout + perf instrument parity + heap/DOM tax (scripts ready, zero derivation).
+3. **BENCH-1.5 — Pick Reveal** as filed by Glyph (`…-0655-…pick-reveal.md`, at `3e563749`): Owner approved it; **errata INKLING filed so you cite it accurately** — the file map you will find names bytes that do not exist (there is no `receipt.json` or `tests/board.spec.ts` in the published arms; wiring at `src-bench/Board.vue:20`/`Board.svelte:18`); no one cares about line numbers, but your §A paths must reflect the actual arms or your receipts will lie from line one.
+4. **Stretch list — do whichever strikes you; all are optional; all need receipts:** the brag-share card (E/F merged lane with a single cultural criterion: "would I post this?"); the 20-0 card (one shimmer event at season end); the phone-singular thumb run; a second copy of any run as agent-defect pilot ground; whatever you notice in the w89 bytes that nobody noticed.
+5. **Deep-dive bet nobody has made yet:** one genuinely large layout pass — **make the verdict himself on the phone layout**: build the one screen you'd show a non-fan phone, and put w89's spirit inside it flawlessly. This wave's own statement: only more beautiful and more dynamic.
 
-`_agents/zai/START-OF-CHAT-ZAI.md` — the standing laws of your lane. It is unchanged. Nothing in this file supersedes it; everything in this file rides beneath it. The w89 file is a READ-ONLY reference (fetched once, never committed). The two published scaffolds stay exactly as they are. The engine is consumed, never edited. No new words about frameworks anywhere — your work informs the Owner's call, never makes it. No paid tooling. License does not extend to memory, guessing, or silence about failure.
+## 3. Deliverable (one handoff; relay publishes it)
 
-## 1. Start from the receipts you left behind
+`download/zai-open-wave-2026-11-14/` — ONE package, containing, in order of importance: REPORT.md · w89-quirks.md (or the phase outputs) · receipts/ (raw logs, JSONs, screenshots) · arms/ (artifacts) · **MANIFEST.txt** sha256 each (232+ entries) · the two missing-artifacts files if you produced them. **One zip or nothing; no separate fix-it or caveat zips later.** Commit by path in whatever checkout you build; never push; never `--force`; engine untouched; only your lane's files.
 
-INKLING re-ran your Tier 1 on a second machine, byte-for-byte record-identical: **104/104 gates, ok=true, datasetHash identical, D-32R-s1-u0 and D-5R-s1-u31 records identical to yours.** Your v1 delivery was sound. Your two missing artifacts are still owed as filed today (`zai-missing-artifacts-2026-11-14.md`): `receipts/a3.json` and `receipts/*-analysis.json`, or one line each of proven absence. **Ship them before or with this wave — this is the only obligation on this brief.**
+## 4. The honest ledger (what stands and what fell, recorded this window)
 
-## 2. The full menu (all available; none required; your order; your appetite)
+| Item | Status |
+|---|---|
+| 104/104 gates ×3 | VERIFIED ×3 seats (INKLING re-run included) |
+| datasetHash identity | VERIFIED (all seats, agree) |
+| G5 600/600 ×2 | VERIFIED (INKLING recomputed; Glyph recomputed; Beam recomputed) |
+| Wiring gap run1→run2 | VERIFIED (analysis-time tie-rule application between is still noted UNKNOWN without the missing `*-analysis.json`) |
+| W1/ENG-1 numbers | CORRECTED this pass per `inbox/20261114-0727-…errata.md` |
+| `a3.json` / `*-analysis.json` / lanes B–F receipts | UNKNOWN — absent; owed inside the package |
+| Node 22 (A2) | UNKNOWN — never run, never promised, costated honest |
+| Vendor digest basis `cd298e99` vs `432a1701` | INKLING logs both, refuses to pick — the bytes agree |
+| `timings.W4.seasonMs` receipted | YES (disproving the "no season run receipt" reading) |
 
-### A. BENCH-1.5 — "W89 Cinematic Pick Reveal" (Owner approved 2026-11-14, in scope for you)
-The Owner approved Glyph's concept and ruled it open-ended: you solve it however you want. Design, build and test one bounded cinematic pick-reveal on the corrected bench arms. Vue arm uses `@vueuse/motion` (seats verified it does the job meaningfully); Svelte 5 arm uses built-ins (transitions/motion/easing/spring/tweened or plain keyframes; no `@vueuse/*`). **prefers-reduced-motion**, **instant skip** (keyboard + tap/click), **390 px without horizontal scroll**, overlay exits cleanly, correctness behind the overlay intact (pick commit → reveal → dismiss → next pick works; G5 still byte-identical where measurable; zero console errors). Cinematic language: Cinzel Decorative caps for the headline beat; gold shimmer family (w89's `zpb-shine` sky); lingered resolve (a ~900–1800 ms window total, yours to tune with a receipt for why); glass depth; plain informative copy. **Exploration is the deliverable, not single-answer: file alternatives you considered, failures you met, and the one you shipped.**
+## 5. What INKLING needs back from this run
 
-### B. The W89 essence skin (`zai-w89-watchlist-run-2026-11-14.md`)
-The full watchlist-star brief, expanded to the W89 essence — fetch `gh-pages@3e69567:index.html`, extract the quirk inventory FIRST (`w89-quirks.md` with byte offsets), then build star + filter + counter persisted via `w89-watchlist` on both arms with 2026-essence-of-the-board as far as you can reach: Cinzel glide reads, `w89-shine` CSS analogues, OVR gold bubbles (85+ vibrant / 90+ shimmer), espresso ground, champagne-gold body type, NO white text, star as inline gold SVG (filled/empty), `CAN YOU GO 20-0?` header jingle as a reach-ahead-of-its-time experiment (CSS only, non-blocking), quick-strip watchlist ribbon, team-colour user-team label, any w89 layout trick you can legitimately replicate. **Do not copy w89's code; re-implement honestly in the arms' idioms.** Vue arm keeps @vueuse/core (you already know why); Svelte arm goes raw. Screenshots at 1280 px and 390 px for both arms at the same flows.
+**One line for the relay and the ratification packet:** "rows W1/ENG-1/ENG-2/ENG-3/SAVE-1 PASS BY WIDE MARGINS EVERY TIME; UX-1/UX-2 UNSIGNABLE FOR NOW; A2 UNKNOWN; analysis-time NOT APPLIED; run2 G5 PARITY HELD ×2." A handoff that carries those two sentences and one zip is a success; anything more than that is bonus.
 
-### C. Lane C / E / F — execute what you built last wave
-`tools/driver/laneC.mjs` — dev/build/typecheck shootout, published build + dist bytes, 8 seeded-bug catch-rate per arm with verbatim diagnostics. `tools/driver/laneE.mjs` — performance.now resolution, timer drift node-vs-Chromium, rAF pacing + double-rAF cost, jsdom DOM rebuild cost. `tools/driver/laneF.mjs` — JS heap + DOM-node counts at r1 vs r32 per arm. All three ship in the v1 package, runnable without re-derivation. Budget half a day each; report honestly.
+Every artifact labelled as always. No words about which framework is better, anywhere, including in file comments. Commit by path. Never push.
 
-### D. Phone-class throttled subset
-Re-measure the five bench1 Tier-2 cells with CPU×4/×6 throttle and/or slow 3G emulation (Playwright's `emulateNetworkConditions`/`emulateCPUScale` or CDP). One flag, one command change, no surgery. The Owner cares more about the phone number than another framework delta; **tell him what the goneOdds-heavy cells cost on phone-class** even if the answer is "off the chart".
-
-### E. The watchlist ×2 arms (self-driven)
-The Lane-B/D pattern from the v1 package (prompt inside `tools/driver/watchlist-prompt.md`). Two independent builds, same identical spec — one per arm, you act as the measuring instrument AND the scorer-of-repair-cycles. Log repair counts, elapsed-to-green, first-error class, VERBATIM first errors, the paragraph you'd write for your own inbox, and the screenshots.
-
-### F. BENCH-2 — rescoped OR skipped
-Per the council's rescope ruling, there is no honest "Virtualized rows ≤50 ms because engine re-render at 1.2–2.5 s" comparison as written; the version worth doing is **filter-machinery throughput on pre-rendered rows** (inputting search terms into a VM filter, measuring the filter transition only) or **r16-u0/r32-u0 cells**, or nothing. Do it only if you genuinely want the data; otherwise skip and log why.
-
-### G. Wins you invent yourself (the stretch clause)
-This brief would not be honest without saying plainly: **you may propose and implement a thing nobody proposed.** A few candidate sparks, yours to steal or chase past:
-- **Brag-share endpoint (end-of-season card):** the Round-4 Owner Q&A records what the account would actually be FOR — achievements + brag shares after a completed season. A static end-of-season card generator (`<canvas>`/SVG; record, awards, ONE headline stat, your 20-0-glow treatment) rendering client-side in the w89 language; no auth, no server, just the pixels a user would actually share. Screenshots both arms; this is the first true design problem of the new v1 direction and entirely safe to explore.
-- **20-0 achievement card** (largest shimmer event on the board when any completed season finishes 20-0 — watches `season.table`).
-- **Phone-singular one-button board**: w89-essence board that navigates with ONE gesture/button for a thumb one-handed run into the season.
-- **"You are looking at your pick-placeholder in 72.9% of draft ceilings"**, i.e. live predicted line ranks inline on the w89 chip (only if you want the engine to carry it).
-- **Bonds** — anything you notice while in the bytes that nobody said.
-Each is discretionary; receipts and labels as always; zero product-repo impact; nothing goes live without the Owner.
-
-### H. What INKLING is NOT asking for
-FLEX/constants/engine math changes; new framework proposals; the remote public repos; 20-0-css-into-glass-encapsulation rites; official statements about "which is better"; the ratification signature (yours to LOBBY with evidence; the Owner signs).
-
-## 3. First four commands
-```
-1. git ls-remote origin gh-pages                                        # verify wave 89 baseline (ESSENTIAL before any w89 fetch)
-2. shasum -a 256 .../madden27-ratings.csv                               # pool fingerprint — expect exact bytes
-3. git log --oneline -1 origin/council/inkling                          # reduction: you're now at >= 027892d2
-4. ls z\ bench1\ run\ v1/                                               # your own bytes; resume here, never rewrite them
-```
-
-## 4. Deliverable (ONE handoff)
-`download/zai-open-wave-2026-11-14/` — EVERYTHING IN ONE BUTTON: REPORT (markdown, one file, long, yours), DESIGN-LOG-update appended (your W89/wave progression delta log), receipts/ (every log, every marker, every screenshot both viewports both arms), arms/ (only your new artefacts), and MANIFEST.txt sha256 of every byte you ship. Push is expected to fail (exit 128 raw-SHA discipline); the Owner relays. Include your two missing artifacts INSIDE this one package (ask H.2 folded into this) — do not send a second zip; one zip or nothing.
-
-## 5. Rules of the road
-- Nobody builds another arm. Both scaffolds stay published exactly as they are.
-- Recap format, positive language, no sudden-death without events, no tab/back mutation of shared files, no force-push, no `.env` contact.
-- Open-license prose is free-flowing but **every claim still gets VERIFIED/REPORTED/INFERRED/UNKNOWN labels**.
-- If something breaks, re-read, reason, repair, log the verbatim fix as a receipt or record the failure as a finding. Never silently drop it.
-- Your honest hours/budget guardrail is legal: stop at any checkpoint you think material, ship what's ready, label what remains UNFINISHED honestly.
-
-## 6. The one thing INKLING is NOT doing this wave
-Writing the moment to call "done". That is yours to pick with the Owner after every lane you touch. If it is 05:00 next morning, file before you sleep.
-
-— KG + inkling (carries the license; answers nothing on behalf of either)
+— KG + inkling (redrawn post-council audit; INKLING signs for receipts, not votes)
