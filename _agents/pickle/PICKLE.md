@@ -3,193 +3,110 @@
 SEAT: pickle
 ROLE: Council Adviser
 BRANCH: council/pickle
-WORKTREE: /Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle (OpenChamber-created sibling of `wt/pickle`)
-MERGE-BASE: 1b91f50e161fa10d0607c8e09330115ffa27f1ff (`git merge-base HEAD origin/council/base`, re-verified 11 Nov 2026)
+WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
+(OpenChamber-created sibling of `wt/pickle`)
+MERGE-BASE: `1b91f50e161fa10d0607c8e09330115ffa27f1ff` (`git merge-base HEAD origin/council/base`, re-verified 14 Nov 2026)
 
-## Current work and state
+## Where the truth lives
 
-Queue source: `_agents/QUEUE.md` **live on `origin/council/muse`** (`council/base`'s copy is stale).
+Queue: `_agents/QUEUE.md` **on `origin/council/muse`** (`council/base`'s copy is stale by 63 commits).
 Council tool v9: `git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs`, run with
-timeout 300000 (it can exceed 120 s), **delete the file before pushing**.
+`timeout 300000`, **delete before pushing**. Sync the four governance docs from `council/muse` at chat
+start (START-HERE step 0), commit them separately.
 
-**Session 2026-11-12 — P-346 third review (checksum dispute settled) + P-347 λ variance budget.**
+## Current state (14 Nov 2026)
 
-Two jobs from the 11 Nov prompt (`0cc3b518`): the live third review of Z.ai's Phase 2 v3, and
-innovation on the engine rebuild. Both filed and pushed (`b0cceaa5`).
+**P-355 second pass filed — engine/doctrine contradictions + a Z.ai delivery byte-checked.**
+`inbox/20261114-1631-pickle-P-355-contradiction-register-engine-doctrine.md` (pushed `b406e46b`).
+ERNIE's first pass covered the framework wave; nobody had registered the Architect's own 13 Nov
+assessment. What I added:
 
-1. **P-346 review** — `inbox/20261112-0405-pickle-P-346-review-v3.md`, VERDICT improved (third
-   seat → review requirement met). Settled the 69/72 vs 72/72 dispute **against the git blobs**
-   (not a checkout): 69/72 on all three pushed copies — OR `a9eda133`, VL `18e2f886`, glyph
-   `f01eee1d` — same three CSVs (C1 `c1_per_team_e_input.csv`, C3 `c3_gravity_fold_per_team_game.csv`,
-   C4 `c4_dime_situation_table.csv`). Mechanism proved byte-exact: the listed hashes ARE the CRLF
-   bytes; listed size − shipped size = LF count (321 / 5,258 / 17). `.gitattributes * text=auto`
-   normalises on commit, so a CRLF manifest can never be true of a pushed copy. VL's evidence line
-   ("`sha256sum -c CHECKSUMS.txt` → 72 OK") is impossible with this 3-field format: literal run gives
-   0 OK / 0 FAILED (filename parsed as `<size>  <path>`, 7 header lines "improperly formatted").
-   Substantive verdict not overturned. Durable fix needs **two** halves: LF writers **and** a
-   shipped verify script (plain `sha256sum -c` cannot parse the manifest at all).
-2. **P-347 innovation** — `inbox/20261112-0410-pickle-P-347-lambda-budget.md` + runnable script +
-   `RUN.txt` in `_agents/pickle/deliveries/p345-lambda-budget-2026-11-12/`. The λ variance budget:
-   ANOVA split of P-344 team-games (5,278 REG, 320 team-season cells) → points sd_between **3.63**
-   (per-season 3.06–4.06, mean 3.58), sd_within 9.31, ICC 0.13; drives **0.48** (ICC 0.08 → do not
-   attach λ to possessions); plays 2.29; yards 30.86. Budget **λ = 3.63 pts/SD** (definition-free
-   per SD of any quality composite; multi-channel form λᵀΣ_gλ = 3.63²); 2025 attribution **β = 2.50
-   ± 0.59** (R² 0.37) → Owner band **[2.50, 3.63]**, ratio 1.46, default 3.6. DS D4 measured on real
-   data: naive team-game dispersion **+175%**, season-mean dispersion **+18%**, ANOVA estimator
-   validated on a synthetic with known components. Phase-1 reading: at λ=0 all four SDs are inside
-   a 10% bar (points −6.8%, drives −4.2%, plays −2.9%, yards −6.8%) → the SD arm is a **baseline**
-   check, not a model check (confirms DS D2 from the data side).
+- **Z.ai verified from blobs, not summaries:** `git archive` each delivery out of the commit →
+  `shasum -a 256 -c MANIFEST.txt` → **255/255 OK** (`zai-open-wave-v3`, 256 files, manifest correctly
+  unlisted) and **20/20 OK** (`zai-recovery`) at `council/ernie@b5b6da5b`. No finding. The circulating
+  "753/753" is not that artifact (255 + 20 rows shipped) — per-delivery counts verify, ×3 aggregates don't.
+- **Register rows:** D16 "remove react (implement now)" **CONTRADICTED** by the Owner's hold and by
+  `colors/package.json` (which keeps react as a framework arm — tree obeys, register doesn't); D1 "drop
+  the four-prototype test" **SUPERSEDED in practice, unretracted in text** (his `d3bd81d2` revises the
+  recommendation, not D1); §2.1 calls all four drifted files "the flex-table work" when only `flex.ts`
+  is a table (others: 2 comment lines / `measuredDisplayWeights()` / one comparison); §11's blockers are
+  mostly answered and unmarked.
+- **Live `AGENTS.md` contradicts itself:** l.50 = 99 rules (23/43/10/23), REV 4 RETIRED; l.73 = "QB may
+  flex ONLY to FS, at −10 … `flex.json` (REV 4) governs". Table says QB→FS = **12**. MUSE's to fix;
+  `PRIORITY+` filed. (`PROJECT-KNOWLEDGE.md:24` still 97-rule / 105.)
+- **Doc-sync numbers re-derived:** 7 of 38 worktrees carry the live `AGENTS.md` (prompt says 0), 33 remote
+  `council/*` branches with 32 at 63 behind (prompt says 14 at 61). Direction right, counts stale.
+- **λ probe re-run with corrected feasibility** (`_agents/pickle/deliveries/p345-lambda-followup-2026-11-13/`):
+  the Owner's 99 tiers are 97 inequalities on one λ. `C>OG` is structural (m 4.65, s 1.20, guard cap 12.50
+  vs tier 6) — no λ fixes it, so V3 again by a second route. The other 96 admit one λ in a **0.013-wide**
+  window **[0.3902, 0.4032)**. Tolerance: 2 rows flip at Δλ<0.01, 9 at <0.05. Maximin ±0.05 = 92 rows
+  (λ=0.39) vs 91 (λ=0.40). **A fluctuating dial must be small (<±0.01) or hidden** — and "hidden" is what
+  the Owner already ruled. Corollary: 0.39 vs 0.40 differ by 1 row of 97, so the λ-axis Lab must state its
+  rule as "λ(context) beats the best fixed λ by more than the fold SD", never "λ should be 0.40".
 
-**Session 2026-11-13 — platform-vision round: three value tables, no owner.**
+Verified cheap this session (each has a command + output in the filing): `colors/index.html` boots
+`/src/main.ts` and there is no `src/main.ts` (count 0 → build cannot succeed); 0 react imports in
+`colors/src`; 0 `.github/workflows`; `envelope.ts` `SCHEMA_VERSION = 1` + `newer-version` refusal l.46;
+45 root `.md`; engine surface 57 files (14 core + 1 platform + 42 sports); Cakepanz 10 `.svelte`.
 
-Filed `inbox/20261113-0118-pickle-platform-vision-value-manifest.md` (pushed `40f26de2`), with a
-git-only probe in `_agents/pickle/deliveries/platform-vision-2026-11-12/{track-probe.mjs,RUN.txt}`.
-Measured, never read from a working tree: `git archive <ref>:<pkg>` → temp dir → `node --test`.
+## Earlier sessions (compressed; details in git history)
 
-- **The finding.** There is no Colors-vs-Cakepanz *track* decision: Colors is a library (no
-  `src/main.ts` on any ref, so `vite build` cannot resolve an entry), and `67-cakepanz` is an app with
-  a **vendored copy** of that library — 47 shared files, 28 byte-identical, 19 differing, **487 changed
-  lines (330 in `sports/nfl/engine/`)**.
-- **The copy values players differently, and both suites are green.** 284/284 and 284/284 — because
-  each `lineup.test.ts` pins against *its own* `tools/mathlab/design.json`. The two design.json differ
-  in **31 of 32 slots** (only QB 1000 agrees): WR1 525 vs 650, C 320 vs 150, K 200 vs 50, TE2 60 vs
-  150, SAM 35 vs 100, TE3/WR4 10 vs 50. Both `slots.ts` carry the identical "REV 5, Owner-approved,
-  3 Nov" provenance line. `ENGINE-MATH-SPEC.md` §2 matches **neither** (WR1 470, CB1 450, DL1 400).
-  → three tables, no arbiter; the "Wins, with consistency" invariant is broken below the UI.
-- **Why tests missed it:** a fork that copies the oracle is self-consistent. Colors' pin is also one of
-  the **10 test files that cannot load outside a full checkout** (186/196 alone; 284/284 with repo
-  `data/` + `tools/mathlab/`), while the fork copied its data in and is hermetic. The fork is the
-  better-tested artifact.
-- **Proposals:** (1) `engine/value-manifest.json` — one hashed file holding slots + unit + flex sha +
-  λ band + dials; consumers read it, one check fails on drift, its hash lands in `SaveMeta.engineVersion`
-  (field already exists); (2) the input contract — *no engine code may read state outside the payload
-  for the period it is producing* (form → week, halftime focus → game, λ → manifest), or
-  `resume-determinism.test.ts` breaks the day form ships; (3) rebase the fork, delete its engine copy.
-- **Audit corrections (5, re-measured):** no `philox` anywhere (it is mulberry32); the suite is 284 not
-  318/320; save versioning + migration **do** exist in Colors; the purity guard **does** exist and
-  self-tests; `homeField` is an input there, not a constant. Pattern: the audit describes the shipped
-  HTML and calls it the project.
+- **13 Nov** — platform-vision filing + its correction + review of the round's four filings
+  (`inbox/20261113-0118-…`, `inbox/20261113-0145-pickle-review-platform-vision-filings.md`). My probe had
+  named a local ref 8 days stale; the re-run at `bebe8e0b` changed four numbers (320 tests / 318 pass /
+  2 fail; drift 52 shared / 4 differing; `design.json` identical) and killed two of my own audit
+  "corrections" (no-philox was wrong; "284 not 318/320" was wrong). Verdicts: DS improved · GLM ok ·
+  VL improved · or v2 improved. Fork vendored engine = library minus exactly 5 files (`events`, `fold`,
+  `keyedrng`, `pack`, `legacyprovider`), and the repo's own `E5 pins` test is red.
+- **12 Nov** — P-346 third review (69/72 on all three pushed copies; mechanism = CRLF manifest over LF
+  commits, `.gitattributes` normalises on commit) + P-347 λ variance budget **3.63 pts/SD**, band
+  **[2.50, 3.63]**, D4 dispersion bias +175% naive / +18% season-mean on real data (`b0cceaa5`).
+- **11 Nov** — P-141 third review: re-ran Z-post-blue's engine in node (`deliveries/p141-engine-harness.mjs`,
+  23/23 PASS). P math exact; FB/RB1 baselines mislabelled; K 0.45 does not reproduce; **NEW: `playerWar`
+  = 0 for every FB and P** (Wins column + season grading), `gradeOf` peers pool FB+P+LS (`ebea4466`).
 
-**Session 2026-11-11 (later chat) — P-141 third review: the engine actually re-run.**
+## Standing recipes that work here
 
-Task: MUSE's new-direction prompt → top queue item REVIEW P-141 (Z.ai FB/Punter math, 28-round
-draft). Neither prior review (or, super) had re-run the numbers; both labeled the brief's decimals
-INFERRED. I extracted the real Z-post-blue inline script (`git show origin/main:z-core/01-html/
-Football-Sim-Z-post-blue.html`) into node/vm with DOM stubs and executed the engine's own
-`slotWinsTable/slotWins/playerWar/winsAt/boardEntries/replacementLevels`. Harness:
-`_agents/pickle/deliveries/p141-engine-harness.mjs` — 23/23 PASS, exit 0. Review filed and pushed
-(`ebea4466`): `inbox/20261111-0402-pickle-P-141-review.md`, VERDICT improved (third seat → P-141
-REVIEWED).
-
-Findings (all VERIFIED by execution):
-- P math exact: slotWins('P',90)=+0.2083, P70=−0.1668; analytic form reproduces to 4 decimals
-  (defense-side sign flip: +PUNT_PTS·(e^(10/45)−1)·17/32.5).
-- Brief mislabels baselines: "FB 90 ≈ +0.034 over a 70" is the **over-80** delta (0.0339; over-70
-  is 0.0659); "RB1 90 ≈ +0.40" likewise (0.3982 vs 0.6653 over 70). Ratio ~8% holds (8.5%/9.9%).
-- "K 90 ≈ 0.45" does not reproduce (0.3609 vs 80, 0.7218 vs 70, 0.5053 vs the 76 cpuPick floor);
-  0.45 needs POINTS_PER_WIN≈26 (INFERRED provenance).
-- **NEW defect D1:** `playerWar` → {war:0, slot:null} for every FB/P player — `STATIC_SLOTS` has no
-  FB/P keys — so the draft-board table's Wins column shows +0.00 for all 8 FB + 32 P players
-  (Juszczyk real +0.059, Dickson real +0.541) and Wins-sort sinks them; season "Your Players"
-  grading shows +0.00. Cards view / Priority column / depth chart / cpuPick / slotWinsPerOvr are
-  honest — the §7b "no display-only special case" claim fails exactly there.
-- **NEW defect D2:** `gradeOf` peers for FB/P = FB+P+LS pooled (an 88 FB graded against punters and
-  long snappers).
-- D3 calibration: PUNT_PTS=1.6 comment says "59 yds × 0.04 pts" = 2.36 (that's RET_PTS); constant
-  matches measured P figures — comment wrong, number right.
-- D4 risk (masked): repl.RB = worst HB (96 demand incl FB slots vs 89 supply); masked by cpuPick's
-  max(repl,76); `staticReplacement` is dead code.
-- D5 calibration for Owner: punters list at slot K with kicker value (POS_SLOT_MAP['P']=['K','P'],
-  K-slot wins dominate) — follows "K<->P free" literally; intent-check.
-
-Prior session (2026-11-11 early chat, `494be9fa`): P-341 play-level answer + Z.ai answer review —
-see git history and old bulletins. Earlier: P-317 (`2a7b5f84`), P-008/P-009/P-143 (`ad84560f`),
-P-013.
-
-## Standing recipe that works here
-
-- Council tool fetched fresh each chat (see top); delete before push; timeout 300000.
-- **Engine-in-node recipe (new, reusable):** extract the inline script (`<script>` on its own line
-  ~1840) via git show, run in `vm` with stubs: window=globalThis=sandbox, per-id memoised
-  `getElementById` returning stub elements (`groupSelect.value='OL'` so `initGroupRankings()`
-  survives), MutationObserver/ResizeObserver classes, scrollTo noop. Append test code to the SAME
-  script string (shares top-level const scope). See the harness for the working stub set.
-- Playwright 1.64.1 at `/Users/kosi/node_modules/playwright`, chromium headless shell 1248. Patch a
-  **copy** in `/private/tmp/` (assert anchors unique, abort loudly), never the product.
-- This session cannot display images: verify with computed style/geometry, say so in the file.
-- macOS: `/tmp` is a symlink; absolute `/private/tmp/...` or `/private/var/folders/...` only.
-- Governor: reviews without `FOUND:`/`NEW:` score 100% new (`improved`=1/1); newer README format
-  uses defect/risk/calibration/simplification — check which applies when filing.
+- **Blob-first.** Measure with `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir. Never a
+  working tree, never a summary. Print the sha you resolved; the shared object store moves refs mid-session
+  (`council/ernie` went `218bbafa`→`b5b6da5b` while I worked).
+- **zsh eats `$VAR:c`** — `$A:colors` becomes `engine-and-seatsolors`. Always `${A}:path`.
+- Manifest checks: `git archive` out, then `shasum -a 256 -c MANIFEST.txt`; report rows AND file count,
+  because "manifest excludes itself" is the correct shape and an unlisted manifest is not an error.
+- macOS: `/tmp` is a symlink; use `/private/var/folders/...` absolute. Playwright at
+  `/Users/kosi/node_modules/playwright`; patch a **copy**, never the product.
+- Evidence discipline that this seat keeps getting tested on: a number from a probe is only as good as the
+  ref it was run against. State the ref in the same sentence as the number.
 
 ## What the next session needs
 
-1. `git fetch -q origin`, get `.council_tool.mjs` from `origin/council/muse`, `node ./.council_tool.mjs next`,
-   take the top line, delete the tool before pushing.
-2. The MUSE new-direction prompt lists options A–H (engine-rebuild reviews P-342/P-341, localWins20
-   recheck P-326, LOO on ZAI-D1, Ledger Phase 1 testing, C 200-vs-150, P-339 census) — the queue
-   top may differ from A–H; queue wins.
-3. P-141 follow-through (Architect's wiring): my proposed minimal fix is `STATIC_SLOTS` +=
-   `FB:['FB'], P:['P']` (fixes the +0.00 wins); D2 needs a peer-group decision (WV_TAG_GROUP feeds
-   replacement supply AND the board filter AND gradeOf — one coherent choice). If a new item is
-   filed for it, my harness is the acceptance test.
-4. P-341 leftovers if still live: Claude's answer review, FB>RB E<0.222 acceptance test, C>OG
-   destination-anchor decision (see prior session, git history).
+1. **Check whether MUSE acted** on the `PRIORITY+` (AGENTS.md l.73 REV 4 / −10 vs the live 99 table at 12;
+   `PROJECT-KNOWLEDGE.md:24` 97 → 99). If not, it is a stale doctrine line every seat reads.
+2. **P-355 is open** — ERNIE's register + mine are two passes, not a finished register. Unregistered areas:
+   the nine framework arms' own claims (benchmarks, latency, dist sizes) against their bytes; MUSE's audit
+   corrections; and whether D1/D16 were ever struck. Reading `origin/council/ernie:_agents/QUEUE.md` P-355
+   row first is cheaper than guessing.
+3. **The framework round is where the queue is** (`council/ernie` P-355…P-359). The λ work is a
+   *pre-Lab* constraint now, not a live research thread: hand the numbers to whoever runs the Lab, do not
+   re-derive them.
 
-## Open questions
+## Open questions (all addressed to the Architect or the Owner, not to a seat)
 
-- Architect: does the Phase-2 acceptance use **3.63 pts/SD** (budget) as the between-team target, and
-  does the Phase-1 SD arm get relabelled baseline-only? (P-347 filing §9)
-- Owner: the λ dial — default 3.6 (NFL parity) or lower for more upsets? Band is [2.50, 3.63].
-- Architect: PUNT_PTS comment (2.36 arithmetic) vs constant (1.6) — which rationale is intended (D3)?
-- Architect: adopt the STATIC_SLOTS FB/P fix and decide the WV_TAG_GROUP peer treatment for FB/P?
-- Owner: are punters meant to be valued (and drafted) as kickers under "K<->P free" (D5)?
+- Architect: does the λ-axis Lab decision rule get written down **before** the run (shape vs level, fold SD)?
+  Without it the run cannot settle anything — 0.39 and 0.40 differ by one row.
+- Architect: strike or mark D1 and D16 in the assessment? Both are advice the Owner has since contradicted.
+- MUSE: AGENTS.md l.73 — delete the REV 4 sentence or rewrite it to the 99-rule table (QB→FS 12). Which?
+- Owner (still open from P-347): λ default 3.6 (NFL parity) or lower for upsets? Band [2.50, 3.63].
+- Owner (open from P-141): are punters meant to be valued and drafted as kickers under "K↔P free"? (D5)
 
 ## Live files
 
-- `inbox/20261112-0405-pickle-P-346-review-v3.md` (P-346 third review, improved; 69/72 on all 3 copies)
-- `inbox/20261112-0410-pickle-P-347-lambda-budget.md` + `_agents/pickle/deliveries/p345-lambda-budget-2026-11-12/`
-  (`lambda-budget.mjs`, `RUN.txt`; λ budget 3.63 pts/SD, band [2.50, 3.63], rerunnable in <1 s)
-- `inbox/20261111-0402-pickle-P-141-review.md` (P-141 third review, improved; P-141 → REVIEWED)
-- `_agents/pickle/deliveries/p141-engine-harness.mjs` (23/23 PASS; rerunnable engine harness)
-- `inbox/20261111-0023-pickle-P-341-play-level-answer.md` + `-zai-answer-review.md` (prior session)
-- `tools/mathlab/flexrebuild.mjs`, `flexverify.mjs`, `flex-owner-2026-11-09.json`, results in
-  `tools/mathlab/results/` (mine, on this branch)
-- earlier inbox files (P-317, P-013, P-008/P-009/P-143, Colors-v1, E-211, P-195, P-198) — git history
-- No product HTML edits, ever; everything lands in `inbox/`.
-
-## Last session
-
-2026-11-14: **P-355 second pass (engine/doctrine)** — `inbox/20261114-1631-pickle-P-355-contradiction-register-engine-doctrine.md`.
-Closing the gap the returning note named: I byte-checked a Z.ai delivery instead of reading its summary —
-`git archive` out of the commit, `shasum -a 256 -c MANIFEST.txt`: **255/255 OK** (v3, 256 files, manifest correctly
-unlisted) and **20/20 OK** (recovery) at `council/ernie@b5b6da5b`. No finding; the packaging is the best of the wave.
-Then the register rows nobody had taken: the Architect's 13 Nov assessment has two decision entries later rulings
-contradict (**D16 "remove react"** vs Owner's "do not delete React"; **D1 "drop the four-prototype test"** vs "all eight
-arms") and §11's blocker list is mostly answered and unmarked; §2.1 attributes all four drifted files to "the flex-table
-work" when three are a comment pair, an added function and one comparison. Live `AGENTS.md` contradicts **itself** on
-flex (l.50 retires REV 4 and states 99 rules; l.73 says REV 4 governs and QB is −10; the table says 12) — MUSE's to fix,
-`PRIORITY+` line filed. Verified cheap and exact: entry file missing (`/src/main.ts`, count 0 → build cannot succeed),
-0 react imports, 0 workflows, envelope `SCHEMA_VERSION = 1` + `newer-version`, 45 root `.md`, 57 engine files, 10 `.svelte`.
-Doc-sync numbers re-derived: 7 of 38 worktrees live (not 0), 32 of 33 branches 63 behind (not 14 at 61). λ probe re-run
-with the corrected feasibility: 11/11 disputed raws replicate; `C>OG` is structural (guard 12.50 vs tier 6); the other 96
-admit one λ in **[0.3902, 0.4032)**; 9 rows flip at Δλ<0.05; maximin ±0.05 = 92 vs 91 rows. Conclusion: a fluctuating dial
-must be small or hidden — the hidden version is the one the Owner already ruled.
-2026-11-13: platform-vision filing + **its correction** + review of the round's four filings. The
-correction is the important one: my probe named a *local* ref (`425f72a8`, 8 days stale) while the
-branch was at `bebe8e0b`; the re-run changes four numbers and one direction, and my "no philox" and
-"284 not 318/320" corrections were both wrong. New measurements at the head: 320 tests / 318 pass /
-2 fail; drift 52 shared / 4 differing / 57 lines; `design.json` identical in both; **the fork's
-vendored engine is the library minus exactly 5 files** (`events`, `fold`, `keyedrng`, `pack`,
-`legacyprovider`); and the repo's own change-control pin (`E5 pins`) is red. Review verdicts:
-DS improved · GLM ok · VL improved · or v1 reject-evidence → **v2 improved**. Then a second pass against
-`or`'s corrected v2 and the head: of the four "protected-constant" files, three hold no constant
-divergence (slots = comments, value = an added function, draft = one line); `flex.json` is the one real
-conflict — library 99 rules / QB→FS 12 (Owner 9–10 Nov) vs fork REV 4 / 10 — and **`AGENTS.md` §3 still
-says REV 4 / -10 governs**, which only the Owner can settle. gh-pages root is the w89 HTML, not the
-app. Pushed with the review filing.
-2026-11-12: P-346 third review (checksums verified on the git blobs: 69/72 on all three pushed copies;
-VL's 72/72 evidence line corrected; mechanism = CRLF manifest over LF commits) + P-347 λ variance
-budget (3.63 pts/SD, band [2.50, 3.63], D4 bias +175%/+18% on real data). Pushed `b0cceaa5`.
-2026-11-11: P-141 third review — re-ran the real Z-post-blue engine in node (first seat to do so):
-P math exact, FB/RB1 baseline labels wrong, K 0.45 not reproduced; NEW: playerWar=0 for all FB/P
-(+0.00 board wins, FB graded against P/LS peers). Harness 23/23 PASS. Pushed `ebea4466`.
+- `inbox/20261114-1631-pickle-P-355-contradiction-register-engine-doctrine.md` — this session
+- `_agents/pickle/deliveries/p345-lambda-followup-2026-11-13/{dial-feasibility.py,RUN.txt}` — λ feasibility,
+  tolerance, maximin; rerunnable, needs only Z.ai's `merge_prototype.py` + `flex-99-live.json`
+- `inbox/20261113-0145-pickle-review-platform-vision-filings.md`, `inbox/20261113-0118-…value-manifest.md`
+- `_agents/pickle/deliveries/platform-vision-2026-11-12/{track-probe.mjs,RUN.txt}` — Colors/Cakepanz probe
+- `_agents/pickle/deliveries/p345-lambda-budget-2026-11-12/{lambda-budget.mjs,RUN.txt}` — λ budget 3.63
+- `_agents/pickle/deliveries/p141-engine-harness.mjs` — engine-in-node harness, 23/23
+- `tools/mathlab/flexrebuild.mjs`, `flexverify.mjs`, `flex-owner-2026-11-09.json` (mine, this branch)
+- No product HTML edits, ever. Everything lands in `inbox/`; code in `_agents/pickle/deliveries/`.
