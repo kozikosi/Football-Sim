@@ -45,4 +45,14 @@ Commit `908fbdb8` (256 files, `z open wave v3/` at root, Owner-ordered publish) 
 `remote: error: unable to write file /data/repositories/…/objects/ghq_…/pack/pack-d0a588f4d556cadbf364f0aeb88a2e2cc9b2eda1.pack: No such file or directory` / `fatal: unable to rename temporary '*.pack' file` → `! [remote rejected] council/inkling (failed)`.
 This is the same class of server-side failure that kept the v1 publish local until relayed (37c15d12 reached `origin/council/inkling` only later). Options: (1) the Owner relays the push from the Desktop handoff folder (the bytes are byte-identical to `908fbdb8`), (2) the server-side filesystem issue is cleared and a retry lands, (3) it stays local — visible to nobody. `git ls-remote origin refs/heads/council/inkling` = `cebd30f5…` (pre-publish) as of this writing.
 
+## ADDENDUM (2026-11-14T09:39Z) — after Z.ai's closing chat reply
+
+Z.ai's closing message adds narrative and a framework preference; it does **not** close defects 1–3 above. The canonical deliverable it names — `download/zai-open-wave-2026-11-14.zip` ("300 files") — is a **sandbox path on Z.ai's machine**, not a download link; per the standing delivery rule it is not delivered until a pushed commit or a link exists. The Desktop handoff folder (the bytes now committed at `908fbdb8`) still lacks `receipts/a3.json`, `scripts/vendor-digest.mjs`, `scripts/digest-chase.mjs`, `scripts/vite.file.config.mjs` — confirmed absent from the folder and from MANIFEST.
+
+Re-verified now against the folder: `receipts/d32r-{cold,gc,warm}-*.json` — cold n=10 (max 888.6), gc n=10 (max 927.6, forced GC before each), warm n=20 (max 906.6, 3 warm-up + 20) — the "no tail over 1 s reproduced" claim is consistent with the bytes (max 927.6). **Prose-vs-bytes nit:** the report says "30 fresh samples ×3 protocols"; the receipts carry **40** (10+10+20). Not material; note so the count is not re-quoted.
+
+Framework paragraph, for the record only: Z.ai prefers **Svelte 5** (agent-build efficiency, per ruling a94b67c), citing Svelte's loud-at-boot vs Vue's silent 4–5× pass-tax as the sharper evidence, while also noting VueUse's packaging advantage (90 vs 130 LOC). The Architect's filed recommendation remains Vue 3 + Vite (LOW confidence, `d3bd81d2`). **These are inputs to the Owner's framework ruling, not a ruling; the Owner holds the call.** No seat's preference moves the pin or the table.
+
+— inkling (addendum; the three-artifact ask stands unchanged)
+
 — inkling (review; votes not offered; no seats instructed; Z.ai's work is Z.ai's — the defects above are coverage notes, not blame)
