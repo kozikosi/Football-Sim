@@ -21,8 +21,9 @@ Delete `.council_tool.mjs` before any push. New chat recovery depends on branch 
 
 ## Current state (2026-11-14, session end)
 
-- **Phase-1 football baseline answered** (the top line of `council.mjs next`): full nflverse 2016–2025 index — 40 files with sha256/rows/bytes/URLs, required-field status, regime labels, UNKNOWN bins — in `inbox/20261114-0835-inkling-ASK-phase-1-football-baseline-data.md` (`eea8901b`). Raw parquet (~226 MB) NOT committed; **the Owner must download it** and verify against the listed hashes. Derived team-game summary (5,522 rows) + league mean/SD committed at `11b63867` under `_agents/inkling/deliveries/phase1-football-baseline-2026-11-14/`.
-- **BENCH-1 ratification packet still awaits the Owner's signature** (`_agents/inkling/notes/2026-11-14-ratification-packet.md`, `ba6e26c6`) — five rows signable as written; UX-1/UX-2 held; A3/A2/analysis-time UNKNOWN. Do not chase the Owner; it is his call.
+- **BENCH-1 ratification packet now carries an ERRATA section** (`_agents/inkling/notes/2026-11-14-ratification-packet.md`, `be43d067`): ERNIE's WR-357 found two silent omissions — UX-3 (measured in tier2 receipts, p95 ≈ 64.3–64.7 ms, FAILS the spec's 50 ms budget) and SAVE-1's write-median (unmeasured; REPORTED 0.4 ms only). The Owner signs against the post-errata packet. **The pre-errata packet body is pinned at `ba6e26c6`.**
+- **Phase-1 football baseline answered** (the top line of `council.mjs next`): full nflverse 2016–2025 index — 40 files with sha256/rows/bytes/URLs, required-field status, regime labels, UNKNOWN bins — in `inbox/20261114-0835-inkling-ASK-phase-1-football-baseline-data.md` (`eea8901b`). Raw parquet (~226 MB) NOT committed; **the Owner must download it** and verify against the listed hashes. Derived team-game summary (5,522 rows) + league mean/SD committed at `11b63867` under `_agents/inkling/deliveries/phase1-football-baseline-2026-11-14/`. BEAM filed a second Phase-1 answer (`council/beam @ …0832`) — hashes agree; cross-check notes in `inbox/20261114-0854-…`.
+- **Other seats' closeout filings reviewed** (`inbox/20261114-0854-inkling-review-other-seats-closeout-filings.md`, `be43d067`): beam retractions = improved (Usage point 3 never explicitly withdrawn); glyph WR-358/360B = ok (all receipts re-verified); ernie 0050 = ok-with-errata; ernie 0740 = **rejected** (re-asserts the withdrawn ENG-2/3 accusation; its Z.ai prompt must not be sent; 0050 §4 is the replacement).
 - MUSE still out (not retired). INKLING holds the Owner-facing organizing stream by delegation; on MUSE's return this lane reverts to reviewer-verifier without ceremony.
 
 ## Where this worktree is
@@ -33,7 +34,8 @@ Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base
 
 1. Read the newest commit(s) touching `_agents/inkling/prompts-2026-11-13/` and `_agents/inkling/notes/` — the wave changes fast.
 2. Run `node ./.council_tool.mjs next` (v9 from `origin/council/muse`) if no task is given; take the first line you can do well; refusal is fine.
-3. If the Owner asks for the Phase-1 data files in-repo, get explicit instruction first — 226 MB does not go in without his word.
+3. `inbox/20261114-0854-inkling-review-other-seats-closeout-filings.md` (what was reviewed; read before re-reviewing anything)
+4. If the Owner asks about UX-3/SAVE-1 write-median, the answer is in the packet's ERRATA section — do not re-measure it.
 
 ## Transition discipline (why this file is short)
 
