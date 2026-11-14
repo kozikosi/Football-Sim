@@ -45,3 +45,11 @@ UNKNOWN (unverified, requires in-harness execution or owner action):
 1. The Claude/Z.ai framework-choice prompt on this branch is already updated with the four wiring receipts + pinned versions + the Delta line (`366ef6eb`).
 2. This receipt supersedes "connected" hand-waving with line-item tool enumeration where the harness can actually reach it — from outside Claude Desktop if from within it.
 3. Next genuine step needs an agent harness in the room (Desktop/Kilo/OpenChamber session) to ATTEST live agent-driven calls per server. The out-of-band probe here is capability proof, not in-harness behavior — the Owner should drive one of each during the practice slice and log the exit-code receipts there.
+
+## Addendum (this session, after push)
+
+- **The playwright MCP wiring in both scaffolds is now byte-modified** to include `--browser chromium --headless` (`.mcp.json` and `.kilocode/mcp.json` both, both scaffolds, verified `diff` identical). Reason: Playwright MCP defaults to the **branded `chrome` channel**, which does not exist on this machine (`ls /Applications/` confirms no Google Chrome); navigate on the stock wiring failed with `Chromium distribution 'chrome' is not found at /Applications/Google Chrome.app/Contents/MacOS/Google Chrome`.
+- **Out-of-band browser-drive proof** (post-flag): `@playwright/mcp` stdio client navigated to `http://127.0.0.1:5188/_stub.html` and returned the rendered page (title `stub`, console 1 entry — a *favicon 404 only*). No Chrome install required; no warning remains.
+- Smoke tests re-run clean after the wiring change: both exit 0.
+- **Owner-side action remains required for the Desktop connectors** (Claude Desktop) to load this exact `.mcp.json` shape; server launch flag semantics for Desktop are identical but Desktop was not restarted here.
+- **The scaffold `.mcp.json` in `/Users/kosi/football-sim-svelte` does NOT include vue-devtools** (that's Vue-only) and **neither scaffold carries gemini/codex wiring** — unchanged.
