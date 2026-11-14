@@ -6,8 +6,8 @@
 
 1. `git fetch -q origin; git log --oneline -1; git status --short`
 2. Read this file. Everything in it is permanent; if anything else in this lane claims currency, verify against git before trusting it.
-3. **The live wave** is still `_agents/inkling/prompts-2026-11-13/` for the closeout items (handout: `council-closeout-handout-2026-11-14.md` — ERNIE/GLYPH/BEAM items; INKLING already consumed its share). Newest commit carries current truth. Instruction files reference each other by path; follow a pointer only if the current wave requires it.
-4. `node tools/preserve.mjs check` — expect only the standing `gh-pages` local-only commit `7c9694e9` plus other seats' dirt (mimo, or, q, vl, vloc); anything unsaved in **this** worktree is yours to reconcile before you work.
+3. **The live wave** is `_agents/inkling/prompts-2026-11-13/` for the closeout items — the Owner's "where we go next" direction (Z.ai + absent seats) is being relayed by him; treat this lane as reviewer-verifier unless told otherwise. Newest commit carries current truth.
+4. `node tools/preserve.mjs check` — expect only the standing local-only items (`gh-pages` 7c9694e9; glm local-only `01b73dd8`; dirty vl/vloc); anything unsaved in **this** worktree is yours to reconcile.
 5. If your task came with its own file list (the Owner, a prompt), that list **replaces** steps 2–3.
 
 Delete `.council_tool.mjs` before any push. New chat recovery depends on branch `council/inkling` alone — not on this chat existing.
@@ -21,24 +21,22 @@ Delete `.council_tool.mjs` before any push. New chat recovery depends on branch 
 
 ## Current state (2026-11-14, session end)
 
-- **`zai-recovery-2026-11-14/` published at root @ `e79e7693` (pushed, `f83339af` tip).** Closes the three missing-artifact defects from `z open wave v3/`: `a3.json` (chromium-identical; Node ≡ Chromium logSha match; Firefox/WebKit UNKNOWN verbatim), `vendor-digest.mjs`, `digest-chase.mjs`, `vite.file.config.mjs` + 13 drivers. Review: `inbox/20261114-0950-inkling-REVIEW-zai-recovery-2026-11-14.md` (verdict **ok**) — digest reproduced byte-exactly on this machine (`colors/` @ d3bd81d2 → 112 files = `432a1701…`; arms 57-file subset = `4c3c8f17…`, identical across arms and v1/v3).
-- **The vendor digest mystery is retired** (2026-11-14T09:50Z): different file sets over different roots; `753997bac4` (mine) matches nothing, stays UNKNOWN; `cd298e99` author-withdrawn, dead. Ratification packet UNKNOWN-bin updated accordingly.
-- **`z open wave v3/` is published at repo root @ `908fbdb8`** — PUSHED; remote tip `f83339af` (ls-remote verified 2026-11-14T09:51Z). Review filed `inbox/20261114-0935-inkling-REVIEW-z-open-wave-v3.md` (`8f623a7f`): verdict **improved** — verified core (engine trees byte-identical to `colors/src @ d3bd81d2`, 112-file `colors/` count, G5 600/600 ×2, w89 offsets, errata table matches independent re-derivation); **defects**: `receipts/a3.json`, `scripts/vendor-digest.mjs`, `scripts/digest-chase.mjs`, `scripts/vite.file.config.mjs` are cited but absent (a3.json also absent from MANIFEST) — the "errata all closed" line is NOT signable until the Owner ships-or-annotates those.
-- **BENCH-1 ratification packet now carries an ERRATA section** (`_agents/inkling/notes/2026-11-14-ratification-packet.md`, `be43d067`): ERNIE's WR-357 found two silent omissions — UX-3 (measured in tier2 receipts, p95 ≈ 64.3–64.7 ms, FAILS the spec's 50 ms budget; Z.ai's own analysis JSONs confirm p95 64.67/64.19) and SAVE-1's write-median (unmeasured; REPORTED 0.4 ms only). The Owner signs against the post-errata packet.
-- **Phase-1 football baseline answered** (the top line of `council.mjs next`): full nflverse 2016–2025 index — 40 files with sha256/rows/bytes/URLs, required-field status, regime labels, UNKNOWN bins — in `inbox/20261114-0835-inkling-ASK-phase-1-football-baseline-data.md` (`eea8901b`). Raw parquet (~226 MB) NOT committed; **the Owner must download it** and verify against the listed hashes. Derived team-game summary (5,522 rows) + league mean/SD committed at `11b63867` under `_agents/inkling/deliveries/phase1-football-baseline-2026-11-14/`. BEAM filed a second Phase-1 answer (`council/beam @ …0832`) — hashes agree; cross-check notes in `inbox/20261114-0854-…`.
-- **Other seats' closeout filings reviewed** (`inbox/20261114-0854-inkling-review-other-seats-closeout-filings.md`, `be43d067`): beam retractions = improved (Usage point 3 never explicitly withdrawn); glyph WR-358/360B = ok (all receipts re-verified); ernie 0050 = ok-with-errata; ernie 0740 = **rejected** (re-asserts the withdrawn ENG-2/3 accusation; its Z.ai prompt must not be sent; 0050 §4 is the replacement).
-- MUSE still out (not retired). INKLING holds the Owner-facing organizing stream by delegation; on MUSE's return this lane reverts to reviewer-verifier without ceremony.
+- **Vendor digest question FULLY CLOSED** (`288726df`): `432a1701…` = colors/ @ d3bd81d2 (112 files, root=colors/) · `753997bac4…` = src/ subset, root=colors/ (INKLING's rerun — my earlier "unreproducible" claim was wrong; ERNIE reproduced it first, I re-derived byte-exact) · `4c3c8f17…` = arm subset (root=engine dir, identical v1/v3/both frameworks) · `fef700c7…` = colors @ 4ca9a071 (ERNIE, 103 files, REPORTED not re-run by me) · `cd298e99` author-withdrawn. Ratification packet + review correction recorded (`288726df`).
+- **`zai-recovery-2026-11-14/` published @ `e79e7693`** — closes the three missing-artifact defects from `z open wave v3/` (a3.json, vendor-digest/digest-chase, vite.file.config.mjs); review `inbox/20261114-0950-inkling-REVIEW-zai-recovery-2026-11-14.md`, verdict ok. "Errata all closed" is usable with the a3 boundary (chromium-only).
+- **Claude plan v3 landed @ `0364013`** (engine plan; S1 = P-318 as `ValueProvider` seam, then S2 `core/pmath.ts`, portable math, context snapshot; TS port proceeds; no gates; Owner answered all six §7 asks YES). Claude's boot ran; `claude/NOW.md` rewritten (15 lines, honest).
+- **BENCH-1 ratification packet** (`_agents/inkling/notes/2026-11-14-ratification-packet.md`): post-errata — W1/ENG-1/ENG-2/ENG-3/SAVE-1 record-size signable; UX-1/UX-2/UX-3 held (goneOdds engine-bound; UX-3 p95 ≈ 64.2–64.7 ms vs 50 ms spec); SAVE-1 write-median UNKNOWN; digest line updated post-correction; A3 chromium-only. Signing is the Owner's call.
+- **Phase-1 football baseline answered** (`inbox/20261114-0835-…`, derived table @ `11b63867`); **`z open wave v3/` published @ `908fbdb8`** (review `20261114-0935`, improved); **other seats' closeout reviews** (`20261114-0854`); **four Z.ai/council prompts compared** (beam/ernie/glyph/inkling) — merged send advised; five defects identified pre-relay (glyph a3/digest staleness, ernie push-credentials wording, tip refs, beam unreproducible Q&A quotes, pool-gap framing). Details in the 2026-11-14 chat.
+- MUSE still out. INKLING holds the Owner-facing organizing stream by delegation; on MUSE's return this lane reverts to reviewer-verifier without ceremony.
 
 ## Where this worktree is
 
-Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · tip `eea8901b` (verify with `git rev-parse HEAD`).
+Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · tip `288726df` (verify with `git rev-parse HEAD`).
 
 ## What the next session needs
 
-1. Read the newest commit(s) touching `_agents/inkling/prompts-2026-11-13/` and `_agents/inkling/notes/` — the wave changes fast.
-2. Run `node ./.council_tool.mjs next` (v9 from `origin/council/muse`) if no task is given; take the first line you can do well; refusal is fine.
-3. `inbox/20261114-0935-inkling-REVIEW-z-open-wave-v3.md` and `_agents/inkling/notes/2026-11-14-ratification-packet.md` (read before re-measuring anything); if the push landed, tip must be `8f623a7f` or later.
-4. If the Owner asks about UX-3/SAVE-1 write-median, the answer is in the packet's ERRATA section — do not re-measure it.
+1. Owner may relay a Z.ai prompt and absent-seat prompt (four drafts compared in this session; fix the five defects before relaying). If relayed, verify he sends ONE merged prompt per audience, not four.
+2. Read `_agents/inkling/notes/2026-11-14-ratification-packet.md` before citing any budget row; UX-3 answer lives there — do not re-measure.
+3. If the Owner asks about digests, the answer is the closed table in the lane state above; `git show origin/architect/engine-and-seats:claude/NOW.md` for the Architect's live state.
 
 ## Transition discipline (why this file is short)
 
