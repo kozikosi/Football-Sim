@@ -1,0 +1,198 @@
+{
+ "scope": "team-games 2016-2025, season_type in (REG, POST); source: nflverse pbp parquet extract, sha256 on record in the inbox answer",
+ "all_reg_post": {
+  "points": {
+   "mean": 22.842,
+   "sd": 9.974,
+   "n": 5522
+  },
+  "drives": {
+   "mean": 11.326,
+   "sd": 1.75,
+   "n": 5522
+  },
+  "plays": {
+   "mean": 63.359,
+   "sd": 8.512,
+   "n": 5522
+  },
+  "pass_attempts": {
+   "mean": 36.658,
+   "sd": 8.615,
+   "n": 5522
+  },
+  "rush_attempts": {
+   "mean": 26.702,
+   "sd": 7.571,
+   "n": 5522
+  },
+  "yards": {
+   "mean": 358.377,
+   "sd": 80.862,
+   "n": 5522
+  },
+  "sacks": {
+   "mean": 2.379,
+   "sd": 1.747,
+   "n": 5522
+  },
+  "giveaways": {
+   "mean": 1.302,
+   "sd": 1.189,
+   "n": 5522
+  },
+  "takeaways": {
+   "mean": 1.302,
+   "sd": 1.189,
+   "n": 5522
+  },
+  "toc_seconds": {
+   "mean": 1815.622,
+   "sd": 268.901,
+   "n": 5522
+  }
+ },
+ "reg_only": {
+  "points": {
+   "mean": 22.791,
+   "sd": 9.968,
+   "n": 5278
+  },
+  "drives": {
+   "mean": 11.337,
+   "sd": 1.742,
+   "n": 5278
+  },
+  "plays": {
+   "mean": 63.307,
+   "sd": 8.474,
+   "n": 5278
+  },
+  "pass_attempts": {
+   "mean": 36.589,
+   "sd": 8.56,
+   "n": 5278
+  },
+  "rush_attempts": {
+   "mean": 26.718,
+   "sd": 7.547,
+   "n": 5278
+  },
+  "yards": {
+   "mean": 357.853,
+   "sd": 80.891,
+   "n": 5278
+  },
+  "sacks": {
+   "mean": 2.379,
+   "sd": 1.743,
+   "n": 5278
+  },
+  "giveaways": {
+   "mean": 1.308,
+   "sd": 1.189,
+   "n": 5278
+  },
+  "takeaways": {
+   "mean": 1.308,
+   "sd": 1.189,
+   "n": 5278
+  },
+  "toc_seconds": {
+   "mean": 1815.471,
+   "sd": 268.727,
+   "n": 5278
+  }
+ },
+ "post_only": {
+  "points": {
+   "mean": 23.951,
+   "sd": 10.067,
+   "n": 244
+  },
+  "drives": {
+   "mean": 11.074,
+   "sd": 1.889,
+   "n": 244
+  },
+  "plays": {
+   "mean": 64.496,
+   "sd": 9.255,
+   "n": 244
+  },
+  "pass_attempts": {
+   "mean": 38.139,
+   "sd": 9.63,
+   "n": 244
+  },
+  "rush_attempts": {
+   "mean": 26.357,
+   "sd": 8.094,
+   "n": 244
+  },
+  "yards": {
+   "mean": 369.709,
+   "sd": 79.549,
+   "n": 244
+  },
+  "sacks": {
+   "mean": 2.377,
+   "sd": 1.847,
+   "n": 244
+  },
+  "giveaways": {
+   "mean": 1.176,
+   "sd": 1.189,
+   "n": 244
+  },
+  "takeaways": {
+   "mean": 1.176,
+   "sd": 1.189,
+   "n": 244
+  },
+  "toc_seconds": {
+   "mean": 1818.906,
+   "sd": 273.175,
+   "n": 244
+  }
+ },
+ "penalty_plays_removed": {
+  "plays_nopen": {
+   "mean": 62.391,
+   "sd": 8.421,
+   "n": 5522
+  },
+  "pass_attempts_nopen": {
+   "mean": 36.146,
+   "sd": 8.529,
+   "n": 5522
+  },
+  "rush_attempts_nopen": {
+   "mean": 26.245,
+   "sd": 7.477,
+   "n": 5522
+  },
+  "yards_nopen": {
+   "mean": 351.77,
+   "sd": 79.893,
+   "n": 5522
+  },
+  "sacks_nopen": {
+   "mean": 2.361,
+   "sd": 1.74,
+   "n": 5522
+  },
+  "giveaways_nopen": {
+   "mean": 1.255,
+   "sd": 1.165,
+   "n": 5522
+  },
+  "takeaways_nopen": {
+   "mean": 1.255,
+   "sd": 1.165,
+   "n": 5522
+  }
+ },
+ "team_games": 5522,
+ "unique_games": 2761
+}
