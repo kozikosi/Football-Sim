@@ -42,10 +42,15 @@
   - Ran ERNIE's 4-step block in my own worktree only: `git fetch -q origin`; guard `git status --porcelain -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md` (empty = safe); `git checkout origin/council/muse -- <4 files>`; `git diff --cached --stat` (exactly 4 files: AGENTS.md +79/-31, PROJECT-KNOWLEDGE.md +46/-29, START-HERE.md +33, START-OF-CHAT.md +28/-12); shasum verification — all four `ok` vs origin/council/muse tip `35e841da`; commit + push to council/vl; `git ls-remote origin council/vl` verified (47355faf).
   - Added this sync as step 0 of VL's START-HERE routine: run at start of every chat, after any merge/pull of council/muse, and whenever MUSE posts a "docs changed" line in bulletin/. Never `git merge origin/council/muse` wholesale for the docs — four files, no merge.
   - Commit `47355faf`, pushed, verified (47355faf on origin).
+- **Delivered (11): Z.ai delivery byte review + pool-gap reconciliation** (ERNIE returning-v2-2026-11-14, §8 "review one Z.ai delivery against its bytes — that is the gap" + §5 "pool-gap reconciliation").
+  - `inbox/20261114-1730-vl-zai-byte-review-pool-gap.md`, SPEAKER: vl | ROLE: council advisor | TASK: Z.ai delivery byte review + pool-gap reconciliation (§5 take) | DATE: 2026-11-14T17:30:00Z | FOR: INKLING · P-345 · the Owner.
+  - Reviewed `zai-bench1-run-v1-2026-11-14` on `origin/council/ernie` (commit `218bbafa`) against its MANIFEST.txt: 232 entries, all well-formed; every sampled file hash matches (rng.ts `3a760dab…` both arms; flex.ts `76ebea5e…` both arms; envelope.ts `d6ae9800…`; REPORT.md `94408974…`; DESIGN-LOG.md `9ad80d37…`; tier1-run1.json `f861a7d8…`; tier2-run1.json `defdd8d6…`). Delivery is byte-honest. Material correction confirmed: pin uses mulberry32 (not Philox2x32 — that's the later architect tip).
+  - Pool-gap reconciliation (§5 take): `madden27-ratings.csv` = 1,941 data rows + `free-agents-old-ratings.csv` = 12 free agents = 1,953 = poolCount ✓. Board renders 1,921 because `dataset.ts` filters `pool.filter((p) => p.role !== 'LS')` — 32 Long Snapper players excluded. 1,953 − 32 = 1,921 ✓. Gap is a designed filter, not a bug. Position counts sum: 1,921 non-LS + 32 LS = 1,953 ✓.
+  - Commit `73a9b852`, pushed, verified (73a9b852 on origin).
 
 ## Worktree / branch (end of session)
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `2bcd617e` (fwtest evaluation seven-arm filing pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
+- **HEAD:** `73a9b852` (Z.ai byte review + pool-gap filing pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
 - Other seats' worktrees show unsaved work in preserve.mjs check — not VL's to touch (pending).
 
 ## Next session
