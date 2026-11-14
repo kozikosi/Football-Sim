@@ -1,0 +1,52 @@
+[
+  {
+    "arm": "vue",
+    "reveal": {
+      "appeared": true,
+      "text": "R1.1 | QB99 | Josh Allen | Buffalo Bills | COMMITTED",
+      "unmounted": true,
+      "secondPickClean": false,
+      "picks": 64
+    },
+    "h": {
+      "w360": {
+        "horizontalScrollDelta": 104,
+        "minTapTargetPx": 19,
+        "clipped": false
+      },
+      "w390": {
+        "horizontalScrollDelta": 74,
+        "minTapTargetPx": 19,
+        "clipped": false
+      },
+      "filterVocabFixed": true,
+      "filterToken": "LT"
+    },
+    "pageErrors": []
+  },
+  {
+    "arm": "svelte",
+    "reveal": {
+      "appeared": true,
+      "text": "R1.1 | QB99 | Josh Allen | Buffalo Bills | COMMITTED",
+      "unmounted": true,
+      "secondPickClean": false,
+      "picks": 64
+    },
+    "h": {
+      "w360": {
+        "horizontalScrollDelta": 104,
+        "minTapTargetPx": 19,
+        "clipped": false
+      },
+      "w390": {
+        "horizontalScrollDelta": 74,
+        "minTapTargetPx": 19,
+        "clipped": false
+      },
+      "filterVocabFixed": true,
+      "filterToken": "LT"
+    },
+    "pageErrors": []
+  }
+]
