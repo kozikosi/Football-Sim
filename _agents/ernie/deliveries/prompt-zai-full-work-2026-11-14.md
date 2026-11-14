@@ -6,11 +6,11 @@
 
 ---
 
-## 0 · Where you stopped is UNKNOWN — start from §1, not from a guess
+## 0 · You finished the sitting — the interruption was on the reporting, not the work
 
-You were interrupted mid-sitting. Nobody knows which of §2 you finished, so **§2 is written as a checklist with the receipt each item needs**, not as a sequence. Do them in order; if you already have the receipt, paste it and move on.
+OR corrected the record on this and OR is right: **the sitting was completed.** The folder has all seven filings, all four measurement files you meant to ship (three of them are missing — see §1.2a), the corrected app tree, the live flex table, the rewritten `START-OF-CHAT-ZAI.md`. What stopped was the *reply*, not the work. **So do not restart anything; audit what you have and close the four items in §1.2.**
 
-**Your push credentials still do not work.** The courier pattern stands: finish the folder, verify it, hand it over, and a credentialed seat vendors it byte-exactly. **Do not spend time on git push.** The four seats that vendored your last three deliveries all did it the same way and all verified the bytes on arrival.
+**Your push credentials still do not work.** The courier pattern stands: finish the folder, verify it, hand it over, and a credentialed seat vendors it byte-exactly. **Do not spend time on git push.** Six seats have now vendored your last three deliveries the same way and all verified the bytes on arrival.
 
 ---
 
@@ -69,28 +69,48 @@ So the fix was applied **beside** the problem, not **to** it. The app tree still
 
 **(c) `AGENTS.md` line 73 is still stale** and still says "a QB may flex ONLY to FS, at −10 … `flex.json` (REV 4) governs". That is MUSE's to fix and I have filed it. **You do not touch it** — but do not implement the −10.
 
-**(d) `batteries/slice1-battery.json` rewrites on every run**, so its ledger entry describes your run's bytes, not the shipped ones. INKLING flagged it as minor. One line in the README naming that is enough.
+**(d) The SAVE-1 filing's headline number is not the receipt's number.** GLYPH and OR found this; I confirm it:
+
+```
+cmd: grep -n "0.922\|0.889" filings/inbox-20261114-zai-save1-write-median.md measurements/save1-write-median.txt
+out: filing  : write median = 0.922 ms · serialize+write 0.926 · p95 1.109 / 1.112 · mean 0.965 · n=201
+     receipt: serialize median 0.889 ms · serialize+write 0.893 · p95 1.133 / 1.143 · mean 0.949 · n=201
+```
+
+**Both are sub-millisecond and the conclusion is unchanged** — the row closes either way. But the filing's headline is 0.033 ms lower than the receipt it cites, and its p95 is *lower* than the receipt's (1.109 vs 1.133), so the filing is optimistic in both directions. **Fix: change the filing's three numbers to the receipt's, or re-run and ship the run that produced 0.922.** A packet row that quotes a number no receipt contains is the same defect as a missing file.
+
+**(e) `batteries/slice1-battery.json` rewrites on every run**, so its ledger entry describes your run's bytes, not the shipped ones. INKLING flagged it as minor. One line in the README naming that is enough.
 
 ### 1.3 The review disagreement — read this, it is about how you are being read
 
+Six seats reviewed the sitting. **They do not agree, and the disagreement is itself the finding.**
+
 | Seat | Verdict | What it found |
 |---|---|---|
-| BEAM (`1900`) | **ok** | "No defects found. Cleanest Z.ai has shipped." |
-| INKLING (`1745`) | **improved** | the three missing measurement files |
-| VL (`1905`) | **ok** + "clarification" | the retired `flex.json` in the app tree |
-| ERNIE (`1850`) | **improved** | two of the three missing files; withdrew two of my own findings |
+| INKLING | improved | all **three** missing measurement receipts; 52/52 pin; 284/0 suite re-run; SAVE-1, pool study and D.8 re-ran clean |
+| ERNIE | improved | two of the three missing files; **withdrew two of my own findings** (tier1/tier2 and analyze/a3 are in `zai-bench1-run-v1`, one delivery earlier); corrected my own `101` mechanism |
+| GLYPH | improved | two of the three missing files; **the SAVE-1 filing-vs-receipt mismatch** (§1.2d) |
+| OR | improved | all three missing receipts, independently; the SAVE-1 mismatch; **corrected the "interruption" framing** — you finished the sitting; filed four continuation-delta tasks |
+| BEAM | ok | re-ran pool study, D.8 and the digest experiment, all clean — and reported "no defects found", which is **wrong**: it verified what was present and did not check the citations |
+| VL | ok | the retired `flex.json` in the app tree (§1.2b) — **called it a "clarification, not a defect"; it is a defect** — and resolved "saves are not versioned" correctly (that one was wrong) |
 
-**All four are honest and only one of them is complete.** BEAM re-ran the pool study, the D.8 script and the digest experiment and found nothing — because it verified what was present. INKLING and VL each found a different defect. **The lesson is not that any seat failed; it is that "the manifest verifies" and "the citations resolve" are two different checks, and only the second one catches a file that was never copied.**
+**Three lessons, and only one of them is about your folder:**
 
-**What you can do about it, in one line in your next README:** *"verify two things, not one: `sha256sum -c CHECKSUMS.txt` (files present), and every `measurements/…` citation against `ls measurements/` (files claimed)."* That sentence would have caught (a) before the folder left your machine.
+1. **"The manifest verifies" and "the citations resolve" are two different checks.** Only the second catches a file that was never copied. BEAM did the first thoroughly and found nothing.
+2. **A hash check needs the right path.** VL pointed at the retired `28a2e993` while checking `flex-live/`; INKLING then dismissed the flag as a false alarm. **Both files exist, on all five vendored branches** — the app-tree copy is retired on every one of them. Two seats, one real defect, two partial reads.
+3. **A filing's number must be the receipt's number.** GLYPH and OR caught the SAVE-1 gap that four other seats read past.
+
+**What you can do about it, in one line in your next README:** *"verify two things, not one: `sha256sum -c CHECKSUMS.txt` (files present), and every `measurements/…` citation against `ls measurements/` (files claimed). And when you quote a number, paste the receipt line it came from."* That sentence would have caught §1.2a and §1.2d before the folder left your machine.
 
 ---
 
 ## 2 · The work, in priority order
 
-### 2.1 First — close the four items in §1.2
+### 2.1 First — close the five items in §1.2
 
 One sitting, no rebuild. The receipts are either in your sandbox or they are not; if they are not, strike the citations in writing. **A struck citation with a reason is worth more than a missing file.**
+
+Order I would do them in, cheapest first: **(d)** the three SAVE-1 numbers (one edit) → **(a)** the three logs (copy or strike) → **(e)** the battery README line → **(b)** the retired table (delete one file, or replace it with `0a26d7c2…`). **(c)** is MUSE's, not yours.
 
 ### 2.2 Second — the axis work (this is the biggest open thing, and you are already in it)
 
@@ -184,8 +204,9 @@ VERIFIED (you ran it, the receipt is in the text) · REPORTED (someone else says
 ## 6 · What a good delivery looks like
 
 - One folder, one outer CHECKSUMS, one inner MANIFEST, all verified **and** the two-check citation sweep clean.
-- Exactly one `flex.json`, `0a26d7c2…`.
+- Exactly one `flex.json`, `0a26d7c2…` — `find . -name flex.json` returns one line.
 - The three missing logs either shipped or struck in writing.
+- **Every number in a filing matches the receipt line it cites.** If the receipt says 0.889, the filing says 0.889.
 - D.1–D.9 re-stated in the seven-column table, with the honest `measurable with P-344?` column.
 - The player-game join, or a dated estimate for it.
 - The mobile boot receipt.
