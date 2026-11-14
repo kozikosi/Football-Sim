@@ -20,11 +20,23 @@ Nothing else is needed to resume. Do not ask for a document list; the lane names
 - **What I am good at (evidence):** taking a claim apart with a command, and *reporting my own refutations*. This session I refuted my own earlier root cause and INKLING's, with receipts, in the same filing.
 - **Standing rule I run on:** four lines per claim (cwd · command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-14T02:35Z)
-- **Nothing in progress.** Branch tip `cca94d8f`, all pushed to `origin/council/ernie`.
-- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3, WR-4, WR-5, WR-6 (review), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2.
+## Current state (2026-11-14T02:58Z)
+- **Nothing in progress.** Branch tip `89031ec5`, all pushed to `origin/council/ernie`.
+- **DONE:** WR-1, WR-2 (+ six-arm extension), WR-3, WR-4, WR-5, WR-6 (review), WR-G2, Phase 1, Phase 5, directives 21/24/26, Phase 8.2, **and the Z.ai v3 review**.
 - **Still open, mine:** WR-7 (goldens' home — 41 vs 43 files, no arm can run them), WR-10 (falsifiers).
-- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started — see below).
+- **Not mine to close:** the framework decision, λ, P-345, MUSE's doc corrections, the P0 October reviews (deliberately not started).
+
+## Session 3 — Z.ai fwtest v3 (2026-11-14, tip `89031ec5`)
+
+14. **Vendored + reviewed Z.ai's v3 nine-arm delivery** (`inbox/20261114-0255-…`, vendor commit `85f45f91`). Full copy readable at `_agents/ernie/deliveries/zai-fwtest9-2026-11-14/` (754 files, 5.7 MB).
+    - **Manifest 753/753, 0 missing, 0 mismatch** — first completely-verifying manifest of the wave (v2: 537/2 absent; INKLING solid-lit: self-hash). Fixed structurally by generating from the frozen zip.
+    - **Contract 9/9** (41 files, `diff -rq` 0 lines) · **goldens 9/9** (`0ccb6319…f3f5`, incl. canonical) · **round-2 before/after pairs 9/9 identical** — the manifest-pair protocol I asked for in Part A, shipped as files.
+    - **arm-solidstart 0/5 → 5/5 reproduced by me**: `@solidjs/start ^2.2.2` + `@solidjs/router ^1.0.3` + `vite ^8`, vinxi gone; SSR HTML now 7,646 B / **69 testids** (was 1,852 B / 0); build exit 0; **spec 5/5**.
+    - **My WR-4 cause is subsumed.** Z.ai's bisect: *"`@solidjs/start` 1.x SSR-renders empty for ANY Router app"* — same observation as my instrumentation (`Home()` never called server-side), better diagnosis, and a **fix that keeps SSR**. **I withdraw `ssr:false` as a repair** (still valid as a diagnostic only). They also moved the CSS import to `app.tsx` citing my hydration receipt — my causal story was wrong, the observation was right.
+    - **file:// row is mis-specified, not wrong.** Z.ai: "5 plain-Vite arms BLOCKED (as shipped)". Me: those 5 PASS with a single-file build. Both true — **two halves of one sentence.** Digest line: *as shipped 0/9 · with single-file 5/9 (svelte, vue, react, solid, lit) · sveltekit structural exception (assets inline, router still fetches `/_app/version.json`) · next/nuxt/solidstart untested.*
+    - **Second axis ties at zero — third confirmation.** Z.ai: "9/9 one-file, does not discriminate". Mine (WR-3): 2 files / 8 lines on two arms. Two seats, different specimens, same conclusion.
+    - Notes: their pin `208738ec` "unfetchable" is **machine-specific** — `git cat-file -e 208738ec` exists in this repo (and `9d93e533` too). They ran on **node v24.22.3** (the Owner's pin) vs my v26.13.0 → **v3 is the better basis for digest numbers**; my "Node 26" caveat stays true only for v2/inkling arms. Typecheck is still per-arm flags → **use delta, never absolute.**
+    - I re-ran: manifest, contract, goldens, round-2 pairs, solidstart (build + SSR + 5/5), spec fix, deps, the unfetchable-pin check. I did **not** re-run the other 8 arms' suites, the leakage audit, or the typechecks — said so explicitly.
 
 ## Session 2 additions (2026-11-14, tip `cca94d8f`)
 
