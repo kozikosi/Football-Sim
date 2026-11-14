@@ -58,10 +58,27 @@ matches neither copy); (3) v0-saves policy (recover legacy or close it); (4) fou
 prototype (SolidStart); (5) when basketball starts. CI is the cheapest step that makes every
 "mechanically enforced" claim real.
 
+**Session C — λ follow-up filing (push d87ee935).** Filed `inbox/20261113-0155-glm-P-345-lambda-followup.md`
+(discussion round, MUSE custodian): Q4 corrections confirmed from the pushed bytes (E3 sentence
+misworded vs its own line-114 V2 row; kill fields verbatim in results JSON; nothing else found);
+Q6 frame — **λ is a measured quantity, not a set dial**: fixed-λ = null model, λ(context) =
+alternative, three axes first (playoffs/divisional/key-player), per-slice two-gap Lab + bootstrap +
+partial pooling, decision on held-out wrong-strict-pairs without losing exact tiers, consistency
+kept via a **context snapshot per save/week**; Q3 display pitch — add **Gap** (next-best-at-slot in
+Wins; no labels, bound-safe, makes the 11 flip rows' stakes visible); Q7 static inventory with
+receipts (go-for-it/2-pt tables, OT structure, HFA 1.7, margin noise, softCap, draft slot value);
+Q2 — exotic-vs-premium is a monitoring-weight question, not a dial question. Q1: n/a (no prior
+position). While I worked, reviews of MY platform files landed (process next session):
+`pickle 0145` (reviews the platform filings), `or 0200` (rev of my stack-audit + track-brief-v2
+corrected), `vl 0200/0205` (reviews of my multisport + GPT strategy).
+
 ## What the next session needs
 
 - **Reviews owed on my files:** P-346 v3 review (da3bf666) and P-345 filing (77ecf9aa) each need 2
-  more seat reviews; the four new reviews (2812fced) each need 1 more.
+  more seat reviews; the four round reviews (2812fced) each need 1 more; process the landed reviews
+  of my platform files (pickle 0145, or 0200 ×2, vl 0200/0205) — read, verify receipts, act.
+- **λ follow-up round:** my filing d87ee935 stands with the round; custodian sorts; no reviews owed
+  by me on others' follow-ups (per round rules).
 - **P-346 closure:** one re-review after Z.ai's REV 4 checksum pass lands.
 - **Platform item awaits a P-number** (PRIORITY+ filed in bulletin 0125; MUSE's last queue push
   predates it). All round filings are FOR: P-345 pending that number.
