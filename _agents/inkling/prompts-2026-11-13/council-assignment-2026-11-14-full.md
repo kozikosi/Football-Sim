@@ -30,7 +30,7 @@ Both scaffolds fork a new Track; the engine should not know that. Confirm the bo
 3. Confirm neither scaffold contains `colors/` references or `slotWinsPerOvr` — you don't want engine source in a scaffold before the Owner authorizes.
 4. Run `grep -rni "import.*from ['\"]\.\./" src/` — any directory outside the scaffold's own `src/` tree from which an import reaches? Record such cross-tree refs, if any.
 5. Grep for `"simulateGame" | "optimalLineup" | "cpuPick" | "matchupModel" | "slotWinsPerOvr" | "estimateScore" | "scoringSummaryPaths"` in either scaffold. Expect zero hits. Record your exact hits if any.
-6. Both scaffolds should expose the `node scripts/report-tooling.mjs` receipt. You can see it yourself — run it yourself (`node scripts/report-tooling.mjs` from the root of each fresh clone... and record its full output).
+6. Both scaffolds ship `scripts/report-tooling.mjs`. Run it in each fresh clone — but EXPECT a failure, and file it, do not patch. The script hard-reads gitignored local files (`.mcp.json`, `.kilocode/mcp.json`) at `report-tooling.mjs:47-48`, so on a fresh public clone it exits 1 (`ENOENT`) in BOTH repos (Beam 20261114-0435, Ernie 20261114-0420/0425 — two seats reproduced it; INKLING confirmed the read lines by source inspection, not by making the script pass). (Corrected 2026-11-14: an earlier draft of this line assumed it runs cleanly — wrong on fresh clones; passes only on working copies that hold the local, gitignored files.)
 7. `git ls-files | grep -E "stores/|engine/|lib/|sports/"` — record every file that lives under these paths in each repo so the digest can see exactly what's there.
 
 Deliverable: one file in `inbox/20261114-<UTC>-<seat>-engine-boundary-audit.md` with the six command outputs in full (trimmed) + pass/fail on the seven items.
@@ -89,8 +89,8 @@ Untradable receipts to file before any benchmark:
 1. Verify `github.com/kozikosi/football-sim-vue` exposes **zero** tracked backup, `*.backup-*`, `.kilocode/`, `.mcp.json`, `node_modules`, `dist/`, `test-results/` — through `git ls-files | grep -E "backup\.|\.kilocode|\.mcp|node_modules|dist/|test-results/"` across every tracked path. Same for `football-sim-svelte`. Report exact output.
 2. Verify both repos retain permission to be public — checking `.gitignore`s for any local-but-committed trash that the earlier council sweep missed. Record what you see.
 3. **Sanity check:** `git log --pretty=format:'%h %s' --since "2026-11-01" --reverse` in both — confirms what was actually pushed. This receipt is required because the public repos are the benchmark's starting state; if anything got accidentally-or-not pushed after the agreed publish checkpoint, you'll see it now.
-4. **CLI check parity**: both repos run `node scripts/report-tooling.mjs` cleanly. Run it in both. If one errors, file correction. Do NOT patch.
-5. **`git ls-tree -r --name-only HEAD | wc -l`** — 28 for each. Record both numbers.
+4. **CLI check parity**: both repos ship `node scripts/report-tooling.mjs`, and both FAIL it from a fresh clone (ENOENT on `.mcp.json`; see §A item 6 erratum). Run it anyway, capture exit code + the error line, cite the seat receipts (Beam `…-0435`, Ernie `…-0420/0425`). Do NOT patch.
+5. **`git ls-tree -r --name-only HEAD | wc -l`** — do not assume the count: record what the clone reports. (Corrected 2026-11-14: earlier draft said “28 for each”; Beam/Ernie measured 37 vue / 28 svelte at current tips — vue carries the default welcome-scaffold files.)
 
 Deliverable: `inbox/20261114-<UTC>-<seat>-public-repos-fortification.md`
 
