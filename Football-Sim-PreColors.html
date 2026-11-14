@@ -984,14 +984,48 @@ const POSITION_TIER = {QB:1, REDG:2,LEDG:2,LT:2,RT:2,WR:2,CB:2, DT:3,LG:3,RG:3,C
 const TIER_BONUS = {1:14, 2:8, 3:0, 4:-6, 5:-30};
 const POS_DISPLAY = {HB:'RB', REDG:'EDGE', LEDG:'EDGE', LT:'OT', RT:'OT', LG:'OG', RG:'OG'};
 const TEAM_ABBR = {
- 'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF',
- 'Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE',
- 'Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB',
- 'Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC',
- 'Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LAR','Miami Dolphins':'MIA',
- 'Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','NY Giants':'NYG',
- 'NY Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF',
- 'Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'
+  'Arizona Cardinals':'ARI','Atlanta Falcons':'ATL','Baltimore Ravens':'BAL','Buffalo Bills':'BUF',
+  'Carolina Panthers':'CAR','Chicago Bears':'CHI','Cincinnati Bengals':'CIN','Cleveland Browns':'CLE',
+  'Dallas Cowboys':'DAL','Denver Broncos':'DEN','Detroit Lions':'DET','Green Bay Packers':'GB',
+  'Houston Texans':'HOU','Indianapolis Colts':'IND','Jacksonville Jaguars':'JAX','Kansas City Chiefs':'KC',
+  'Las Vegas Raiders':'LV','Los Angeles Chargers':'LAC','Los Angeles Rams':'LAR','Miami Dolphins':'MIA',
+  'Minnesota Vikings':'MIN','New England Patriots':'NE','New Orleans Saints':'NO','NY Giants':'NYG',
+  'NY Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF',
+  'Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'
+};
+const TEAM_COLORS = {
+  'Arizona Cardinals': ['#97233F','#000000','#FFB612'],
+  'Atlanta Falcons': ['#A71930','#000000','#A5ACAF'],
+  'Baltimore Ravens': ['#241773','#000000','#9E7C0C'],
+  'Buffalo Bills': ['#00338D','#C60C30','#FFFFFF'],
+  'Carolina Panthers': ['#0085CA','#101820','#BFC0BF'],
+  'Chicago Bears': ['#0B162A','#000000','#FFFFFF'],
+  'Cincinnati Bengals': ['#FB4F14','#000000','#FFFFFF'],
+  'Cleveland Browns': ['#311D00','#FF3C00','#FFFFFF'],
+  'Dallas Cowboys': ['#003594','#869397','#FFFFFF'],
+  'Denver Broncos': ['#FB4F14','#002244','#FFFFFF'],
+  'Detroit Lions': ['#0076B6','#B0B7BC','#000000'],
+  'Green Bay Packers': ['#203731','#FFB612','#FFFFFF'],
+  'Houston Texans': ['#03202F','#A71930','#FFFFFF'],
+  'Indianapolis Colts': ['#002C5F','#FFFFFF','#A2AAAD'],
+  'Jacksonville Jaguars': ['#101820','#006778','#D7A22A'],
+  'Kansas City Chiefs': ['#E31837','#FFB81C','#FFFFFF'],
+  'Las Vegas Raiders': ['#000000','#A5ACAF','#FFFFFF'],
+  'Los Angeles Chargers': ['#0080C6','#FFC20E','#FFFFFF'],
+  'Los Angeles Rams': ['#003594','#FFD100','#FFFFFF'],
+  'Miami Dolphins': ['#008E97','#FC4C02','#FFFFFF'],
+  'Minnesota Vikings': ['#4F2683','#FFC62F','#FFFFFF'],
+  'New England Patriots': ['#002244','#C60C30','#BFC0BF'],
+  'New Orleans Saints': ['#D3BC8D','#101820','#FFFFFF'],
+  'NY Giants': ['#0B2265','#A71930','#A5ACAF'],
+  'NY Jets': ['#125740','#FFFFFF','#000000'],
+  'Philadelphia Eagles': ['#004C54','#A5ACAF','#000000'],
+  'Pittsburgh Steelers': ['#FFB612','#101820','#FFFFFF'],
+  'San Francisco 49ers': ['#AA0000','#B3995D','#FFFFFF'],
+  'Seattle Seahawks': ['#002244','#69BE28','#A5ACAF'],
+  'Tampa Bay Buccaneers': ['#D50A0A','#34302B','#FF7900'],
+  'Tennessee Titans': ['#4B92DB','#0C2340','#C8102E'],
+  'Washington Commanders': ['#5A1414','#FFB612','#FFFFFF'],
 };
 const NFL_DIVISIONS = {
  'AFC East': ['Buffalo Bills','Miami Dolphins','New England Patriots','NY Jets'],
@@ -1665,8 +1699,9 @@ function fitNoteHTML(list, g){
 }
 
 function renderDraftBoard2(){
- const S = draftSim, roster = S.rosters[S.userIndex];
- const search = document.getElementById('draftSearch2').value.toLowerCase();
+  const S = draftSim, roster = S.rosters[S.userIndex];
+  const userTeamColor = TEAM_COLORS[roster.teamName]?.[0] || 'var(--accent)';
+  const search = document.getElementById('draftSearch2').value.toLowerCase();
  const posF0 = document.getElementById('draftPosFilter2').value; const needsOnly = posF0==='all'; // all positions: only spots you still need; a chosen position shows everyone at it
  const sortBy = document.getElementById('draftSort2').value, view = document.getElementById('draftView2').value;
  const posF = document.getElementById('draftPosFilter2').value;
@@ -1762,7 +1797,7 @@ function renderDraftBoard2(){
    const opts = canPick && r.slot ? openSlotsFor(roster, r.p) : [];
    const alt = r.slot ? (flexAlt[r.p[0]]||[]).filter(x=>x.slot!==r.slot && x.v>r.v-0.15 && x.g!==r.g).sort((a,b)=>b.v-a.v)[0] : null;
    const altTxt = alt ? `<div class="narr" title="The other spot he could fill, with the value he would have there">also fits: ${LABELS[alt.slot]||alt.slot} ${fmtWar(alt.v)}${alt.flex?' (\u2212'+alt.pen+' flex)':''}</div>` : '';
-   const fills = r.slot ? `${LABELS[r.slot]||r.slot}${flexTxt(r)}${altTxt}${opts.length>1?` <a href="#" class="slotchg" data-chg="${r.p[0].replace(/"/g,'&quot;')}" title="Choose which open spot he fills">change</a>`:''}` : 'Full';
+   const fills = r.slot ? `${LABELS[r.slot]||r.slot}${flexTxt(r)}${altTxt}${opts.length>1?` <a href="#" class="slotchg" data-chg="${r.p[0].replace(/"/g,'&quot;')}" title="Choose which open spot he fills" style="color:${userTeamColor};">change</a>`:''}` : 'Full';
    h += `<tr><td class="dc-name">${topTag(r)}${r.p[0]}</td><td data-label="Pos">${POS_DISPLAY[r.p[1]]||r.p[1]}</td><td data-label="Team">${TEAM_ABBR[r.p[2]]||r.p[2]}</td><td class="score dc-ovr" data-label="OVR">${r.p[3]}</td><td class="score dc-wins" data-label="Wins">${wavg(r.w)}</td><td class="score dc-val" data-label="Value here">${wavg(r.v)}</td><td class="score dc-pri" data-label="Priority">${r.pri!=null&&sim?fmtWar(r.pri):'—'}</td><td class="score dc-gone" data-label="Gone">${pctTxt(r.gone)}</td><td class="narr dc-fills" data-label="Fills">${fills}</td><td class="dc-btn">${btn(r)}</td></tr>`;
   });
   document.getElementById('draftBody2').innerHTML = h || `<tr><td colspan="10" class="narr">No players match.</td></tr>`;
