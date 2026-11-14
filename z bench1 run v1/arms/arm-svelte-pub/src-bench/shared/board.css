@@ -1,0 +1,21 @@
+/* The bench board CSS — IDENTICAL BYTES in both arms. Semantic tones only; the colour choice is not measured. */
+#app { max-width: 980px; margin: 0 auto; font: 13px/1.4 system-ui, sans-serif; color: #111; }
+.bench-header { padding: 8px 4px; border-bottom: 2px solid #222; }
+.bench-header h1 { font-size: 16px; margin: 0 0 4px; }
+.bench-onclock { font-weight: 600; }
+.bench-toolbar { display: flex; gap: 8px; padding: 8px 4px; align-items: center; flex-wrap: wrap; }
+.bench-toolbar button { padding: 4px 10px; cursor: pointer; }
+.bench-toolbar button.active { background: #222; color: #fff; }
+.bench-toolbar select { padding: 4px; }
+.bench-toolbar .pick { margin-left: auto; font-weight: 700; }
+.bench-toolbar .pick:disabled { opacity: 0.4; cursor: default; }
+table.bench-board { width: 100%; border-collapse: collapse; }
+table.bench-board th, table.bench-board td { padding: 3px 6px; border-bottom: 1px solid #ddd; text-align: left; white-space: nowrap; }
+table.bench-board th { background: #f2f2f2; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+tr.bench-row { cursor: pointer; }
+tr.bench-row.selected { background: #ffe9a8; }
+tr.bench-row td.tone-good { color: #0a7d32; }
+tr.bench-row td.tone-bad { color: #b3261e; }
+.bench-roster { padding: 10px 4px; border-top: 2px solid #222; margin-top: 8px; }
+.bench-roster .detail { font-weight: 600; }
+.bench-footer { color: #555; padding: 6px 4px; }
