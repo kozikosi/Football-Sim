@@ -1,0 +1,105 @@
+TIER1 run3 ok=true gates=104/104 errors=0
+GATE PASS W1-duplicate-ids :: pool 1953 ids unique 1953
+GATE PASS W1-datasetHash-identity-inrun :: sha256:e583aec0d21078e88
+GATE PASS W3-loop-equals-runDraft D5R-s1-u0 :: identical
+GATE PASS W3-rosters-fill D5R-s1-u0 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s1-u0 :: byte-identical
+GATE PASS W3-log-shape D5R-s1-u0 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s1-u31 :: identical
+GATE PASS W3-rosters-fill D5R-s1-u31 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s1-u31 :: byte-identical
+GATE PASS W3-log-shape D5R-s1-u31 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s2-u0 :: identical
+GATE PASS W3-rosters-fill D5R-s2-u0 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s2-u0 :: byte-identical
+GATE PASS W3-log-shape D5R-s2-u0 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s2-u31 :: identical
+GATE PASS W3-rosters-fill D5R-s2-u31 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s2-u31 :: byte-identical
+GATE PASS W3-log-shape D5R-s2-u31 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s3-u0 :: identical
+GATE PASS W3-rosters-fill D5R-s3-u0 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s3-u0 :: byte-identical
+GATE PASS W3-log-shape D5R-s3-u0 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s3-u31 :: identical
+GATE PASS W3-rosters-fill D5R-s3-u31 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s3-u31 :: byte-identical
+GATE PASS W3-log-shape D5R-s3-u31 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s4-u0 :: identical
+GATE PASS W3-rosters-fill D5R-s4-u0 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s4-u0 :: byte-identical
+GATE PASS W3-log-shape D5R-s4-u0 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s4-u31 :: identical
+GATE PASS W3-rosters-fill D5R-s4-u31 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s4-u31 :: byte-identical
+GATE PASS W3-log-shape D5R-s4-u31 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s5-u0 :: identical
+GATE PASS W3-rosters-fill D5R-s5-u0 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s5-u0 :: byte-identical
+GATE PASS W3-log-shape D5R-s5-u0 :: picks=160
+GATE PASS W3-loop-equals-runDraft D5R-s5-u31 :: identical
+GATE PASS W3-rosters-fill D5R-s5-u31 :: 160/160 dupOk=true
+GATE PASS W3-replay-identity D5R-s5-u31 :: byte-identical
+GATE PASS W3-log-shape D5R-s5-u31 :: picks=160
+GATE PASS W3-loop-equals-runDraft D32R-s1-u0 :: identical
+GATE PASS W3-rosters-fill D32R-s1-u0 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s1-u0 :: byte-identical
+GATE PASS W3-log-shape D32R-s1-u0 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s1-u31 :: identical
+GATE PASS W3-rosters-fill D32R-s1-u31 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s1-u31 :: byte-identical
+GATE PASS W3-log-shape D32R-s1-u31 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s2-u0 :: identical
+GATE PASS W3-rosters-fill D32R-s2-u0 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s2-u0 :: byte-identical
+GATE PASS W3-log-shape D32R-s2-u0 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s2-u31 :: identical
+GATE PASS W3-rosters-fill D32R-s2-u31 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s2-u31 :: byte-identical
+GATE PASS W3-log-shape D32R-s2-u31 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s3-u0 :: identical
+GATE PASS W3-rosters-fill D32R-s3-u0 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s3-u0 :: byte-identical
+GATE PASS W3-log-shape D32R-s3-u0 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s3-u31 :: identical
+GATE PASS W3-rosters-fill D32R-s3-u31 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s3-u31 :: byte-identical
+GATE PASS W3-log-shape D32R-s3-u31 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s4-u0 :: identical
+GATE PASS W3-rosters-fill D32R-s4-u0 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s4-u0 :: byte-identical
+GATE PASS W3-log-shape D32R-s4-u0 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s4-u31 :: identical
+GATE PASS W3-rosters-fill D32R-s4-u31 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s4-u31 :: byte-identical
+GATE PASS W3-log-shape D32R-s4-u31 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s5-u0 :: identical
+GATE PASS W3-rosters-fill D32R-s5-u0 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s5-u0 :: byte-identical
+GATE PASS W3-log-shape D32R-s5-u0 :: picks=1024
+GATE PASS W3-loop-equals-runDraft D32R-s5-u31 :: identical
+GATE PASS W3-rosters-fill D32R-s5-u31 :: 1024/1024 dupOk=true
+GATE PASS W3-replay-identity D32R-s5-u31 :: byte-identical
+GATE PASS W3-log-shape D32R-s5-u31 :: picks=1024
+GATE PASS W4-gameSeed-regeneration :: all 285 games byte-identical from gameSeed
+GATE PASS W4-17-games-per-team :: every team 17 regular games
+GATE PASS W4-WLT-sums :: W+L+T=17 per team
+GATE PASS W4-points-balance :: pf=12590 pa=12590
+GATE PASS W4-regular-272 :: regular=272
+GATE PASS W4-results-not-in-state :: no GameResult objects retained
+GATE PASS W5-on-clock W5-r1-u0 :: round 1 pos 0
+GATE PASS W5-PICK-UNDO-identity W5-r1-u0 :: VM byte-identical
+GATE PASS W5-on-clock W5-r5-u0 :: round 5 pos 128
+GATE PASS W5-PICK-UNDO-identity W5-r5-u0 :: VM byte-identical
+GATE PASS W5-on-clock W5-r16-u0 :: round 16 pos 511
+GATE PASS W5-PICK-UNDO-identity W5-r16-u0 :: VM byte-identical
+GATE PASS W5-on-clock W5-r32-u0 :: round 32 pos 1023
+GATE PASS W5-PICK-UNDO-identity W5-r32-u0 :: VM byte-identical
+GATE PASS W5-on-clock W5-r1-u31 :: round 1 pos 31
+GATE PASS W5-PICK-UNDO-identity W5-r1-u31 :: VM byte-identical
+GATE PASS W5-on-clock W5-r5-u31 :: round 5 pos 159
+GATE PASS W5-PICK-UNDO-identity W5-r5-u31 :: VM byte-identical
+GATE PASS W5-on-clock W5-r16-u31 :: round 16 pos 480
+GATE PASS W5-PICK-UNDO-identity W5-r16-u31 :: VM byte-identical
+GATE PASS W5-on-clock W5-r32-u31 :: round 32 pos 992
+GATE PASS W5-PICK-UNDO-identity W5-r32-u31 :: VM byte-identical

@@ -1,0 +1,1122 @@
+{
+  "label": "smoke",
+  "startedAt": "2026-11-14T05:14:53.712Z",
+  "gates": [
+    {
+      "name": "W1-duplicate-ids",
+      "pass": true,
+      "detail": "pool 1953 ids unique 1953"
+    },
+    {
+      "name": "W1-datasetHash-identity-inrun",
+      "pass": true,
+      "detail": "sha256:e583aec0d21078e88"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s1-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s1-u0",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s1-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s1-u0",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s1-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s1-u31",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s1-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s1-u31",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s2-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s2-u0",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s2-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s2-u0",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s2-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s2-u31",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s2-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s2-u31",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s3-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s3-u0",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s3-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s3-u0",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s3-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s3-u31",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s3-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s3-u31",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s4-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s4-u0",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s4-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s4-u0",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s4-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s4-u31",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s4-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s4-u31",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s5-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s5-u0",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s5-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s5-u0",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D5R-s5-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D5R-s5-u31",
+      "pass": true,
+      "detail": "160/160 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D5R-s5-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D5R-s5-u31",
+      "pass": true,
+      "detail": "picks=160"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s1-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s1-u0",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s1-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s1-u0",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s1-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s1-u31",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s1-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s1-u31",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s2-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s2-u0",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s2-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s2-u0",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s2-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s2-u31",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s2-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s2-u31",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s3-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s3-u0",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s3-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s3-u0",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s3-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s3-u31",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s3-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s3-u31",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s4-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s4-u0",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s4-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s4-u0",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s4-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s4-u31",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s4-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s4-u31",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s5-u0",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s5-u0",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s5-u0",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s5-u0",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W3-loop-equals-runDraft D32R-s5-u31",
+      "pass": true,
+      "detail": "identical"
+    },
+    {
+      "name": "W3-rosters-fill D32R-s5-u31",
+      "pass": true,
+      "detail": "1024/1024 dupOk=true"
+    },
+    {
+      "name": "W3-replay-identity D32R-s5-u31",
+      "pass": true,
+      "detail": "byte-identical"
+    },
+    {
+      "name": "W3-log-shape D32R-s5-u31",
+      "pass": true,
+      "detail": "picks=1024"
+    },
+    {
+      "name": "W4-gameSeed-regeneration",
+      "pass": true,
+      "detail": "all 285 games byte-identical from gameSeed"
+    },
+    {
+      "name": "W4-17-games-per-team",
+      "pass": true,
+      "detail": "every team 17 regular games"
+    },
+    {
+      "name": "W4-WLT-sums",
+      "pass": true,
+      "detail": "W+L+T=17 per team"
+    },
+    {
+      "name": "W4-points-balance",
+      "pass": true,
+      "detail": "pf=12590 pa=12590"
+    },
+    {
+      "name": "W4-regular-272",
+      "pass": true,
+      "detail": "regular=272"
+    },
+    {
+      "name": "W4-results-not-in-state",
+      "pass": true,
+      "detail": "no GameResult objects retained"
+    },
+    {
+      "name": "W5-on-clock W5-r1-u0",
+      "pass": true,
+      "detail": "round 1 pos 0"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r1-u0",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r5-u0",
+      "pass": true,
+      "detail": "round 5 pos 128"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r5-u0",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r16-u0",
+      "pass": true,
+      "detail": "round 16 pos 511"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r16-u0",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r32-u0",
+      "pass": true,
+      "detail": "round 32 pos 1023"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r32-u0",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r1-u31",
+      "pass": true,
+      "detail": "round 1 pos 31"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r1-u31",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r5-u31",
+      "pass": true,
+      "detail": "round 5 pos 159"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r5-u31",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r16-u31",
+      "pass": true,
+      "detail": "round 16 pos 480"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r16-u31",
+      "pass": true,
+      "detail": "VM byte-identical"
+    },
+    {
+      "name": "W5-on-clock W5-r32-u31",
+      "pass": true,
+      "detail": "round 32 pos 992"
+    },
+    {
+      "name": "W5-PICK-UNDO-identity W5-r32-u31",
+      "pass": true,
+      "detail": "VM byte-identical"
+    }
+  ],
+  "budgets": [],
+  "timings": {
+    "W1": {
+      "parseMs": 9.239263,
+      "freezeMs": 0.492614,
+      "poolCount": 1953,
+      "poolRowCount": 1921,
+      "datasetHash": "sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3",
+      "rowsTextSha": "e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3"
+    },
+    "heapAfterW1": {
+      "heapUsedMB": 11.2,
+      "rssMB": 104.9
+    },
+    "D5R-s1-u0": {
+      "rounds": 5,
+      "seed": 1,
+      "userTeam": 0,
+      "fullDraftMs": 172.56,
+      "meanPickMs": 1.079,
+      "p95PickMs": 2.012,
+      "userPickMeanMs": 1.649,
+      "restoreMs": 2.31,
+      "recordBytes": 137413,
+      "recordSha256": "257e4983b7fe8a4e4042dae09b97975335d6a940bc8023b38ffe7ef0f3118dbd",
+      "pickCurveSha256": "2bde8c06de5e4a3be76e3331c06e88a225318b809a5cd89c1edb61f9177e0556",
+      "summarySha256": "a3c473135d437dd200ac5f79742ccb5c2e26257a48033d11671a2b2735dd43a9"
+    },
+    "D5R-s1-u31": {
+      "rounds": 5,
+      "seed": 1,
+      "userTeam": 31,
+      "fullDraftMs": 143.32,
+      "meanPickMs": 0.896,
+      "p95PickMs": 1.418,
+      "userPickMeanMs": 1.142,
+      "restoreMs": 2.15,
+      "recordBytes": 137411,
+      "recordSha256": "12bc94429405ef16108192093d2e21512638a58066d23bb4bcb1368ff6735952",
+      "pickCurveSha256": "16c40aeba5a910a37f0919dcba29e277f4afbf9aaa56697641be897ef6f44c2d",
+      "summarySha256": "94acb127ff42cdc0a9f8cca325e88dd08f56ba3aeccbf21661a348c11aabe24f"
+    },
+    "D5R-s2-u0": {
+      "rounds": 5,
+      "seed": 2,
+      "userTeam": 0,
+      "fullDraftMs": 127.19,
+      "meanPickMs": 0.795,
+      "p95PickMs": 1.164,
+      "userPickMeanMs": 1.125,
+      "restoreMs": 1.72,
+      "recordBytes": 137417,
+      "recordSha256": "f112a60506baddaf0c18e1c5798113bc038dbed0c9dca19b779abb5aee3e00c1",
+      "pickCurveSha256": "a9d4d26be393326a470cd4226124cd016e82f10f1ebd9efbec3bd6a12f896021",
+      "summarySha256": "97f8e2331be421c2b5bcb3bcb8fd1f4014a15930580ca0d8f7145a96c8127a2a"
+    },
+    "D5R-s2-u31": {
+      "rounds": 5,
+      "seed": 2,
+      "userTeam": 31,
+      "fullDraftMs": 136.23,
+      "meanPickMs": 0.851,
+      "p95PickMs": 1.331,
+      "userPickMeanMs": 1.213,
+      "restoreMs": 1.69,
+      "recordBytes": 137419,
+      "recordSha256": "f60d32443673fbe71f1a478f4053938c4ef91fbacf5c4d4de56a38b6c1432991",
+      "pickCurveSha256": "4987a1a5da369661ffa59df91624e77054265b3975f30fd4794ffcf2686ee9ea",
+      "summarySha256": "aecaca0ba0eb2f929cc150d34ab9bbaba443e2e078a93f9eedc90de4332c2f22"
+    },
+    "D5R-s3-u0": {
+      "rounds": 5,
+      "seed": 3,
+      "userTeam": 0,
+      "fullDraftMs": 134.57,
+      "meanPickMs": 0.841,
+      "p95PickMs": 1.281,
+      "userPickMeanMs": 1.088,
+      "restoreMs": 1.64,
+      "recordBytes": 137410,
+      "recordSha256": "0064ffab5ea9d99df6de8e4681a299ff4cb2ab4e3742d940c7e1c89b6a556726",
+      "pickCurveSha256": "07f1e669318f98e3db9eff4e92d0750bb8bcf65f874634aa1e9114dd87c52359",
+      "summarySha256": "9dc313452f584638c5c8855fe18ba82eb6437baa57958d5fbb25bb0b7aabe454"
+    },
+    "D5R-s3-u31": {
+      "rounds": 5,
+      "seed": 3,
+      "userTeam": 31,
+      "fullDraftMs": 131.42,
+      "meanPickMs": 0.821,
+      "p95PickMs": 1.298,
+      "userPickMeanMs": 1.105,
+      "restoreMs": 1.69,
+      "recordBytes": 137409,
+      "recordSha256": "7c0890f60df747837f07b1c96f729c0ba941c758d83e9113f412f20f4f8320e8",
+      "pickCurveSha256": "06eae8b16df86cd742d025763856b7fc54330fb258dc57dd297dba996c74408b",
+      "summarySha256": "628e3f260471da3b2934f899c151a9fe9bd4888795d896b5fc8da7ed358c8f7e"
+    },
+    "D5R-s4-u0": {
+      "rounds": 5,
+      "seed": 4,
+      "userTeam": 0,
+      "fullDraftMs": 141.94,
+      "meanPickMs": 0.887,
+      "p95PickMs": 1.668,
+      "userPickMeanMs": 1.133,
+      "restoreMs": 1.75,
+      "recordBytes": 137417,
+      "recordSha256": "c9cf571be021f92ab3aca39c97e8218ff66a8bc8cb5ec0ae2755a3bd6035b02c",
+      "pickCurveSha256": "aa851099eb73db124d1278f84b4e546c548e76da83e37e456408c68d0cd867c2",
+      "summarySha256": "39e2178af91ea706764aab3595ea23a862d5ae9cdb21efe1654a81af4480e927"
+    },
+    "D5R-s4-u31": {
+      "rounds": 5,
+      "seed": 4,
+      "userTeam": 31,
+      "fullDraftMs": 131.49,
+      "meanPickMs": 0.822,
+      "p95PickMs": 1.207,
+      "userPickMeanMs": 1.045,
+      "restoreMs": 1.29,
+      "recordBytes": 137415,
+      "recordSha256": "f83fcee3064700ff39d8df454672b08b67f650e97237cb605138f1ba87d1b358",
+      "pickCurveSha256": "577aab1c9746f03bf90b0be92b5f433c8e40472caea585756849b54df7eee8b8",
+      "summarySha256": "ce6e8437cde0e5d2f45f61bfd13e4b08ae11d814421afe0386de9189cbf143ac"
+    },
+    "D5R-s5-u0": {
+      "rounds": 5,
+      "seed": 5,
+      "userTeam": 0,
+      "fullDraftMs": 125.88,
+      "meanPickMs": 0.787,
+      "p95PickMs": 1.183,
+      "userPickMeanMs": 1.078,
+      "restoreMs": 1.33,
+      "recordBytes": 137419,
+      "recordSha256": "c2e9e5dc3cf23be43faf028b50801f450d862210bb04dea64b41f51c2d35dfbd",
+      "pickCurveSha256": "89abfd47a6883c6f4ad7eef6130c38f581bacbd32574d64cfe31184f64bdb52d",
+      "summarySha256": "dcf6326ed7aa4bf031ea8356a4fc892fa6489ad64f973661f0a3b966e4c07c2d"
+    },
+    "D5R-s5-u31": {
+      "rounds": 5,
+      "seed": 5,
+      "userTeam": 31,
+      "fullDraftMs": 141.07,
+      "meanPickMs": 0.882,
+      "p95PickMs": 1.335,
+      "userPickMeanMs": 1.068,
+      "restoreMs": 1.33,
+      "recordBytes": 137412,
+      "recordSha256": "de5dee8548bfafcb2464ceaa8092572eaba47b2bef55b33c4df9fa7934f08b61",
+      "pickCurveSha256": "86db6801a0a68cda82606517b3fd3c920ea9d145e4cec9d26bf14b5316a7eb5c",
+      "summarySha256": "f5b21dcb062925602cacfe1d651b56062fbdca4d04796740b996750490ed00b8"
+    },
+    "D32R-s1-u0": {
+      "rounds": 32,
+      "seed": 1,
+      "userTeam": 0,
+      "fullDraftMs": 799.25,
+      "meanPickMs": 0.781,
+      "p95PickMs": 1.326,
+      "userPickMeanMs": 0.636,
+      "restoreMs": 3.23,
+      "recordBytes": 187078,
+      "recordSha256": "7af4b7733453e3347e793c3aafc2dad1e74eacc1d63a5071ab9ce627c0f3696d",
+      "pickCurveSha256": "861a66546047c98b6c610c00a442827ab9333f1a66cda34efcc863c0a4ddba2a",
+      "summarySha256": "278b6fbabd9cd168c39907b78b190fbf8c272cc73187bf139803e8a969cf1903"
+    },
+    "D32R-s1-u31": {
+      "rounds": 32,
+      "seed": 1,
+      "userTeam": 31,
+      "fullDraftMs": 840.52,
+      "meanPickMs": 0.821,
+      "p95PickMs": 1.4,
+      "userPickMeanMs": 0.654,
+      "restoreMs": 3.3,
+      "recordBytes": 187079,
+      "recordSha256": "9ae4a832d65022b80ac208cf2372415b4082290abed7cbe8faff8a2ac435c5f1",
+      "pickCurveSha256": "6dc2f4da986a22efcade4d97559789858c54d6d5e300915aedd21f5ed99021bd",
+      "summarySha256": "fccddf2e4cf30f4e151b9999e9f440b3f4889758b22645303b7eca1c75c3bb7c"
+    },
+    "D32R-s2-u0": {
+      "rounds": 32,
+      "seed": 2,
+      "userTeam": 0,
+      "fullDraftMs": 785.06,
+      "meanPickMs": 0.767,
+      "p95PickMs": 1.304,
+      "userPickMeanMs": 0.719,
+      "restoreMs": 2.94,
+      "recordBytes": 187078,
+      "recordSha256": "e33a561e356ed00e46836f7929263db96545f5b19b6bba988fae090ebc38c532",
+      "pickCurveSha256": "08e6d2aa7dd9932b2e019e01b719371d12d76b425c80bdd8f11ca4f2de78d47a",
+      "summarySha256": "32011ccc0e8a81e26844ea39ead066826840d8825977fc81c86b62a648aa4dd5"
+    },
+    "D32R-s2-u31": {
+      "rounds": 32,
+      "seed": 2,
+      "userTeam": 31,
+      "fullDraftMs": 820.68,
+      "meanPickMs": 0.801,
+      "p95PickMs": 1.36,
+      "userPickMeanMs": 0.632,
+      "restoreMs": 2.75,
+      "recordBytes": 187079,
+      "recordSha256": "27bfccbc853d3fef7ea097e8a3bf71feeae717cd54e811a82874acc6420ad968",
+      "pickCurveSha256": "ef756022de95e694687c04be528aa33037dc4e2e365ad1dee6d3743935d7d7bd",
+      "summarySha256": "7561c5af6ad54d48acd84550be1910908bc0127fd76c17be235675c74471b0f2"
+    },
+    "D32R-s3-u0": {
+      "rounds": 32,
+      "seed": 3,
+      "userTeam": 0,
+      "fullDraftMs": 796.93,
+      "meanPickMs": 0.778,
+      "p95PickMs": 1.338,
+      "userPickMeanMs": 0.656,
+      "restoreMs": 2.96,
+      "recordBytes": 187078,
+      "recordSha256": "d1f47792964ce6a0d853e758609885d546936b54f77e15d2e7c55ae818f9dd70",
+      "pickCurveSha256": "80e68ac306d23a8a70a187f62b5592422a37b8024b95caa5fd8d53f66b449902",
+      "summarySha256": "7167d2d3fc549b82102c39f4317bc0e2fcf6811e054b00d9297ab3a72d4e7b0f"
+    },
+    "D32R-s3-u31": {
+      "rounds": 32,
+      "seed": 3,
+      "userTeam": 31,
+      "fullDraftMs": 798.96,
+      "meanPickMs": 0.78,
+      "p95PickMs": 1.367,
+      "userPickMeanMs": 0.635,
+      "restoreMs": 3.6,
+      "recordBytes": 187079,
+      "recordSha256": "d0a2b035133fc82c5ab836a17a013d7041bede19f3c069f2d4b8fc4645119c50",
+      "pickCurveSha256": "68e950724325521938cde45a354390bfdd8ba2cd07a8a7d694a2f596b00b275e",
+      "summarySha256": "92fd3f18f1309c5eb89d541ebb4015ea90d7ef5a85a8603f9cb439177a6759f2"
+    },
+    "D32R-s4-u0": {
+      "rounds": 32,
+      "seed": 4,
+      "userTeam": 0,
+      "fullDraftMs": 787.99,
+      "meanPickMs": 0.77,
+      "p95PickMs": 1.28,
+      "userPickMeanMs": 0.695,
+      "restoreMs": 3.14,
+      "recordBytes": 187078,
+      "recordSha256": "8d6179db16865fd4aa311fe9be40549c7ee6aa9ab8068420b14fb746464a6bbe",
+      "pickCurveSha256": "e358a8d9c8a97c73a27c002703419f7257ec6cacb0fc6ced35ab8f6f09f7da4e",
+      "summarySha256": "591b0f04c04309a48e6c2b6d59ae01252d68073adb381494fd58f00bc17603cb"
+    },
+    "D32R-s4-u31": {
+      "rounds": 32,
+      "seed": 4,
+      "userTeam": 31,
+      "fullDraftMs": 814,
+      "meanPickMs": 0.795,
+      "p95PickMs": 1.342,
+      "userPickMeanMs": 0.638,
+      "restoreMs": 3.19,
+      "recordBytes": 187079,
+      "recordSha256": "8a97cdd230492beca5d985298bed67b97c181b3347fc2fe1fd2235e67e6f6f17",
+      "pickCurveSha256": "0aff0ff520ecc6f184498bf1010d4dc089ceca67094f0d0b8e4e769c2f5b4021",
+      "summarySha256": "7f2ad051c5779581948ffc0d7b40a954b33192c78321a380562860e3f68c77eb"
+    },
+    "D32R-s5-u0": {
+      "rounds": 32,
+      "seed": 5,
+      "userTeam": 0,
+      "fullDraftMs": 797.82,
+      "meanPickMs": 0.779,
+      "p95PickMs": 1.295,
+      "userPickMeanMs": 0.65,
+      "restoreMs": 3.14,
+      "recordBytes": 187078,
+      "recordSha256": "8b1159433fa788d92268557ea37d004e61f8b1daf472c20dd4f9da35d25daf94",
+      "pickCurveSha256": "61af5d5447c7003aa6280d9d70e44c8573145ecbfa3a44b9a2568ca51eb77ed8",
+      "summarySha256": "9ef241de49c88927473e700215bc97d5809ec8806edebe3aca681115fce29d87"
+    },
+    "D32R-s5-u31": {
+      "rounds": 32,
+      "seed": 5,
+      "userTeam": 31,
+      "fullDraftMs": 902.82,
+      "meanPickMs": 0.882,
+      "p95PickMs": 1.292,
+      "userPickMeanMs": 0.628,
+      "restoreMs": 3.17,
+      "recordBytes": 187079,
+      "recordSha256": "52f400ff1c1a9078c6b01527dbd1004268046e186f56df29d3169cf2936ee024",
+      "pickCurveSha256": "284015300b810bcfd2bf70e2aa7b22358d17565b594462051e441d48eb26dfe5",
+      "summarySha256": "caf54cbd45322163a94c2f88a46dd7bb45e84c6a433f992f4946c63c407b6912"
+    },
+    "heapAfterW3": {
+      "heapUsedMB": 43.8,
+      "rssMB": 261.9
+    },
+    "W4_leagueBuildMs": 905.6,
+    "W4": {
+      "seasonMs": 341.5,
+      "meanWeekMs": 15.52,
+      "p95GameMs": 0.078,
+      "meanGameMs": 0.059,
+      "regularGames": 272,
+      "playoffGames": 13,
+      "tableSha256": "8f91c698e93760244934fb335750b52ea014161e90ea9b61a4c7b22e68d1f75f",
+      "summarySha256": "22054a200fb05d496e2f7ce8882f9cf945cde6d876c2ee7592e8ba1d73012822",
+      "champion": "Denver Broncos"
+    },
+    "heapAfterW4": {
+      "heapUsedMB": 93.8,
+      "rssMB": 267
+    },
+    "W5-r1-u0": {
+      "round": 1,
+      "pos": 0,
+      "sort-wins-60rows-ms": 1351.558,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "9b40cc43d914bf429e851b7e6a2715ef47e473c7912029d9aaed6c5a6efb15b0",
+      "sort-ovr-60rows-ms": 1304.201,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 1323.358,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.106,
+      "filter-pos-rows": 14,
+      "filter-pos-1000rows-ms": 0.096,
+      "filter-1000rows-rows": 240,
+      "selectRoster-ms": 0.291,
+      "pickMs-restore-apply-advance": 44.843,
+      "undoMs-cut-restore-advance": 0.558
+    },
+    "W5-r5-u0": {
+      "round": 5,
+      "pos": 128,
+      "sort-wins-60rows-ms": 2478.086,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "07fbd860a3b27984cba41302f9bf5f80717a3981d897d84c3ad8eae38700e2e5",
+      "sort-ovr-60rows-ms": 2485.707,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 2479.622,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.009,
+      "filter-pos-rows": 5,
+      "filter-pos-1000rows-ms": 0.011,
+      "filter-1000rows-rows": 240,
+      "selectRoster-ms": 0.104,
+      "pickMs-restore-apply-advance": 82.42,
+      "undoMs-cut-restore-advance": 0.617
+    },
+    "W5-r16-u0": {
+      "round": 16,
+      "pos": 511,
+      "sort-wins-60rows-ms": 1.596,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "4c854d6f75132c99a55afc23b4a0e14caad05c3893b47eb8f8581ab1d43a37ac",
+      "sort-ovr-60rows-ms": 1.229,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 1.183,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.004,
+      "filter-pos-rows": 16,
+      "filter-pos-1000rows-ms": 0.045,
+      "filter-1000rows-rows": 253,
+      "selectRoster-ms": 0.143,
+      "pickMs-restore-apply-advance": 2.273,
+      "undoMs-cut-restore-advance": 1.894
+    },
+    "W5-r32-u0": {
+      "round": 32,
+      "pos": 1023,
+      "sort-wins-60rows-ms": 0.542,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "276b460f50292b55e386d6eee3ecbc4ddef31006948dc3d46565908566a2429b",
+      "sort-ovr-60rows-ms": 0.334,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 0.334,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.003,
+      "filter-pos-rows": 16,
+      "filter-pos-1000rows-ms": 0.002,
+      "filter-1000rows-rows": 122,
+      "selectRoster-ms": 0.122,
+      "pickMs-restore-apply-advance": 2.058,
+      "undoMs-cut-restore-advance": 1.581
+    },
+    "W5-r1-u31": {
+      "round": 1,
+      "pos": 31,
+      "sort-wins-60rows-ms": 1.692,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "a6b4f2eae843f495d7446be0a8f5b2d2fd0aee4d149c680634c69c3fa2177f2d",
+      "sort-ovr-60rows-ms": 1.472,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 2.532,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.004,
+      "filter-pos-rows": 13,
+      "filter-pos-1000rows-ms": 0.003,
+      "filter-1000rows-rows": 240,
+      "selectRoster-ms": 0.042,
+      "pickMs-restore-apply-advance": 0.392,
+      "undoMs-cut-restore-advance": 0.32
+    },
+    "W5-r5-u31": {
+      "round": 5,
+      "pos": 159,
+      "sort-wins-60rows-ms": 1.266,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "9243d49a525290706acd6f9877ab58426a25038a4ad7718b5ca0e6f61962a979",
+      "sort-ovr-60rows-ms": 1.17,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 1.093,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.004,
+      "filter-pos-rows": 3,
+      "filter-pos-1000rows-ms": 0.004,
+      "filter-1000rows-rows": 240,
+      "selectRoster-ms": 0.064,
+      "pickMs-restore-apply-advance": 0.59,
+      "undoMs-cut-restore-advance": 0.412
+    },
+    "W5-r16-u31": {
+      "round": 16,
+      "pos": 480,
+      "sort-wins-60rows-ms": 1653.898,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "1caa373e73742e9489468ee9e6a3bf32d19c3aa8f604f903f7b51df652eb8505",
+      "sort-ovr-60rows-ms": 1650.679,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 1654.739,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.018,
+      "filter-pos-rows": 7,
+      "filter-pos-1000rows-ms": 0.006,
+      "filter-1000rows-rows": 253,
+      "selectRoster-ms": 0.101,
+      "pickMs-restore-apply-advance": 57.888,
+      "undoMs-cut-restore-advance": 1.023
+    },
+    "W5-r32-u31": {
+      "round": 32,
+      "pos": 992,
+      "sort-wins-60rows-ms": 0.295,
+      "sort-wins-rows": 60,
+      "vmTextSha256": "cc4358edc6f19795bd6d77f63d138251827ebdeee9f0b32701c26f2f2820e145",
+      "sort-ovr-60rows-ms": 0.238,
+      "sort-ovr-rows": 60,
+      "sort-priority-60rows-ms": 0.171,
+      "sort-priority-rows": 60,
+      "filter-pos-60rows-ms": 0.004,
+      "filter-pos-rows": 16,
+      "filter-pos-1000rows-ms": 0.002,
+      "filter-1000rows-rows": 123,
+      "selectRoster-ms": 0.069,
+      "pickMs-restore-apply-advance": 5.187,
+      "undoMs-cut-restore-advance": 1.58
+    },
+    "heapAfterW5": {
+      "heapUsedMB": 64.5,
+      "rssMB": 309.9
+    },
+    "PSYN-1000": {
+      "draft512Ms": 500.3,
+      "picks": 512,
+      "poolRows": 983,
+      "selectBoardMs": 1354.359,
+      "vmRows": 246,
+      "filterMs": 0.096,
+      "filteredRows": 16,
+      "synthSha256": "17fa02fd4b1edfd6f5afc1281c42a842ccc00b2a0174ed2052f81de0abe53cfc"
+    },
+    "PSYN-1941": {
+      "draft512Ms": 506.2,
+      "picks": 512,
+      "poolRows": 1909,
+      "selectBoardMs": 1604.459,
+      "vmRows": 253,
+      "filterMs": 0.05,
+      "filteredRows": 16,
+      "synthSha256": "c36c6cabf73d8246a5282b79b2d88dc18d01196a74e72831e1fd92170d33bdef"
+    },
+    "PSYN-5000": {
+      "draft512Ms": 790.6,
+      "picks": 512,
+      "poolRows": 4938,
+      "selectBoardMs": 2058.774,
+      "vmRows": 256,
+      "filterMs": 0.094,
+      "filteredRows": 16,
+      "synthSha256": "cfa5fcd60baafc505ae5a8203eef369ea8bf1b8f6d28bc1ec581eefcfb69b316"
+    }
+  },
+  "hashes": {
+    "datasetHash": "sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3",
+    "D5R-s1-u0": {
+      "record": "257e4983b7fe8a4e4042dae09b97975335d6a940bc8023b38ffe7ef0f3118dbd",
+      "summary": "a3c473135d437dd200ac5f79742ccb5c2e26257a48033d11671a2b2735dd43a9"
+    },
+    "D5R-s1-u31": {
+      "record": "12bc94429405ef16108192093d2e21512638a58066d23bb4bcb1368ff6735952",
+      "summary": "94acb127ff42cdc0a9f8cca325e88dd08f56ba3aeccbf21661a348c11aabe24f"
+    },
+    "D5R-s2-u0": {
+      "record": "f112a60506baddaf0c18e1c5798113bc038dbed0c9dca19b779abb5aee3e00c1",
+      "summary": "97f8e2331be421c2b5bcb3bcb8fd1f4014a15930580ca0d8f7145a96c8127a2a"
+    },
+    "D5R-s2-u31": {
+      "record": "f60d32443673fbe71f1a478f4053938c4ef91fbacf5c4d4de56a38b6c1432991",
+      "summary": "aecaca0ba0eb2f929cc150d34ab9bbaba443e2e078a93f9eedc90de4332c2f22"
+    },
+    "D5R-s3-u0": {
+      "record": "0064ffab5ea9d99df6de8e4681a299ff4cb2ab4e3742d940c7e1c89b6a556726",
+      "summary": "9dc313452f584638c5c8855fe18ba82eb6437baa57958d5fbb25bb0b7aabe454"
+    },
+    "D5R-s3-u31": {
+      "record": "7c0890f60df747837f07b1c96f729c0ba941c758d83e9113f412f20f4f8320e8",
+      "summary": "628e3f260471da3b2934f899c151a9fe9bd4888795d896b5fc8da7ed358c8f7e"
+    },
+    "D5R-s4-u0": {
+      "record": "c9cf571be021f92ab3aca39c97e8218ff66a8bc8cb5ec0ae2755a3bd6035b02c",
+      "summary": "39e2178af91ea706764aab3595ea23a862d5ae9cdb21efe1654a81af4480e927"
+    },
+    "D5R-s4-u31": {
+      "record": "f83fcee3064700ff39d8df454672b08b67f650e97237cb605138f1ba87d1b358",
+      "summary": "ce6e8437cde0e5d2f45f61bfd13e4b08ae11d814421afe0386de9189cbf143ac"
+    },
+    "D5R-s5-u0": {
+      "record": "c2e9e5dc3cf23be43faf028b50801f450d862210bb04dea64b41f51c2d35dfbd",
+      "summary": "dcf6326ed7aa4bf031ea8356a4fc892fa6489ad64f973661f0a3b966e4c07c2d"
+    },
+    "D5R-s5-u31": {
+      "record": "de5dee8548bfafcb2464ceaa8092572eaba47b2bef55b33c4df9fa7934f08b61",
+      "summary": "f5b21dcb062925602cacfe1d651b56062fbdca4d04796740b996750490ed00b8"
+    },
+    "D32R-s1-u0": {
+      "record": "7af4b7733453e3347e793c3aafc2dad1e74eacc1d63a5071ab9ce627c0f3696d",
+      "summary": "278b6fbabd9cd168c39907b78b190fbf8c272cc73187bf139803e8a969cf1903"
+    },
+    "D32R-s1-u31": {
+      "record": "9ae4a832d65022b80ac208cf2372415b4082290abed7cbe8faff8a2ac435c5f1",
+      "summary": "fccddf2e4cf30f4e151b9999e9f440b3f4889758b22645303b7eca1c75c3bb7c"
+    },
+    "D32R-s2-u0": {
+      "record": "e33a561e356ed00e46836f7929263db96545f5b19b6bba988fae090ebc38c532",
+      "summary": "32011ccc0e8a81e26844ea39ead066826840d8825977fc81c86b62a648aa4dd5"
+    },
+    "D32R-s2-u31": {
+      "record": "27bfccbc853d3fef7ea097e8a3bf71feeae717cd54e811a82874acc6420ad968",
+      "summary": "7561c5af6ad54d48acd84550be1910908bc0127fd76c17be235675c74471b0f2"
+    },
+    "D32R-s3-u0": {
+      "record": "d1f47792964ce6a0d853e758609885d546936b54f77e15d2e7c55ae818f9dd70",
+      "summary": "7167d2d3fc549b82102c39f4317bc0e2fcf6811e054b00d9297ab3a72d4e7b0f"
+    },
+    "D32R-s3-u31": {
+      "record": "d0a2b035133fc82c5ab836a17a013d7041bede19f3c069f2d4b8fc4645119c50",
+      "summary": "92fd3f18f1309c5eb89d541ebb4015ea90d7ef5a85a8603f9cb439177a6759f2"
+    },
+    "D32R-s4-u0": {
+      "record": "8d6179db16865fd4aa311fe9be40549c7ee6aa9ab8068420b14fb746464a6bbe",
+      "summary": "591b0f04c04309a48e6c2b6d59ae01252d68073adb381494fd58f00bc17603cb"
+    },
+    "D32R-s4-u31": {
+      "record": "8a97cdd230492beca5d985298bed67b97c181b3347fc2fe1fd2235e67e6f6f17",
+      "summary": "7f2ad051c5779581948ffc0d7b40a954b33192c78321a380562860e3f68c77eb"
+    },
+    "D32R-s5-u0": {
+      "record": "8b1159433fa788d92268557ea37d004e61f8b1daf472c20dd4f9da35d25daf94",
+      "summary": "9ef241de49c88927473e700215bc97d5809ec8806edebe3aca681115fce29d87"
+    },
+    "D32R-s5-u31": {
+      "record": "52f400ff1c1a9078c6b01527dbd1004268046e186f56df29d3169cf2936ee024",
+      "summary": "caf54cbd45322163a94c2f88a46dd7bb45e84c6a433f992f4946c63c407b6912"
+    },
+    "season": "22054a200fb05d496e2f7ce8882f9cf945cde6d876c2ee7592e8ba1d73012822"
+  },
+  "notes": [
+    "W4 playoff count asserted from fixtures() this run: 13 (BENCH-1 INFERRED 13 — measured: 13)"
+  ],
+  "errors": [],
+  "env": {
+    "node": "v24.22.3",
+    "v8": "13.6.233.17-node.63",
+    "platform": "linux 5.10.134-013.15.kangaroo.al8.x86_64 x64",
+    "cpuModel": "Intel(R) Xeon(R) Processor",
+    "cores": 2,
+    "memTotalMB": 4160,
+    "finishedAt": "2026-11-14T05:16:02.453Z"
+  },
+  "engineVendorSha": {
+    "digest": "432a1701744b91fc92f807931d789cf49a8daf0da529298f0013898f195e272d",
+    "files": 112
+  },
+  "finishedAt": "2026-11-14T05:16:02.456Z",
+  "ok": true
+}
