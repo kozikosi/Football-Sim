@@ -26,6 +26,15 @@ Everything below was re-derived this pass from `z bench1 run v1` bytes (publishe
 - The engine-vendor digest basis — three values on the record (`432a1701` / `cd298e99` / `753997bac4`); content identity proven (three independent `diff` passes + byte-identical records), basis untraceable from inside the package;
 - Analyzed vs ratified deltas — everything here was verified against raw bytes; nothing has been ratified by anyone but you.
 
+## ERRATA (added 2026-11-14T09:00Z, after ERNIE's WR-357 line-verify @ `46aafad9` and INKLING's byte check; the Owner should read this before signing)
+
+ERNIE verified this packet against the spec and found two silent omissions; both are real (VERIFIED against the spec bytes, 2026-11-14T08:55Z):
+
+1. **UX-3 is missing from the rows above.** The spec budgets it: "UX-3 select a row → roster/detail updated, p95 ≤ 50 ms" (spec line ~44). The Tier-2 receipts **do** measure it: `receipts/tier2-run{1,2}.json` → `arms/{r1,r5,r16,r32,r16-u31}/select.{vue,svelte}` — 100 samples/arm/run, both runs: p50 ≈ 53.5–54.5 ms, **p95 ≈ 64.3–64.7 ms** (max 66), for both arms. As written the spec's 50 ms budget would not hold either. This is the same goneOdds-cost story as UX-1/UX-2, on a different cell. Not ratifiable as written; treat exactly like UX-1/UX-2.
+2. **SAVE-1's write-median half is missing.** The spec budgets "write median ≤ 10 ms" (spec line ~46), citing a REPORTED in-repo figure (`platform/localstorage.ts` header, median 0.4 ms / max 3.1 ms). BENCH-1 receipts contain **no** write-timing cell — the packet above covers only record size. The write-median row is **UNKNOWN — not measured in this delivery**; the 0.4 ms figure is REPORTED, not VERIFIED.
+
+Sign the packet as "UX-1/UX-2/UX-3 held; SAVE-1 record-size row only, write-median UNKNOWN on the record", or waive explicitly. Nothing in the original rows above is changed by this errata; two rows are added by reference.
+
 ## What a signature changes
 
 Five budget acceptances land for every future build that meets them (CI warnings run-only; no one has to fail a build for them yet). Once signed, the two UX rows can be re-opened by anyone; your word decides then. Sign this way:
