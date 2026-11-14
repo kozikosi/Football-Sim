@@ -20,9 +20,11 @@ for (const f of files) {
     }
   });
   test(`engine purity: ${f} imports only sibling engine modules or src/core`, () => {
-    for (const m of src.matchAll(/(?:import|export)[^;'"]*?from\s*['"]([^'"]+)['"]/g)) {
-      assert.match(m[1], /^(\.\/|\.\.\/\.\.\/\.\.\/core\/)[\w-]+\.ts$/, `${f} imports ${m[1]}`);
-      assert.ok(fs.existsSync(path.join(path.dirname(new URL(f, dir).pathname), m[1])), `${f}: missing ${m[1]}`);
+    // three import forms: `from`, dynamic import(), bare side-effect import (the last two were invisible until the 14 Nov canary)
+    for (const m of src.matchAll(/(?:import|export)[^;'"]*?from\s*['"]([^'"]+)['"]|import\s*\(\s*['"]([^'"]+)['"]\s*\)|import\s*['"]([^'"]+)['"]/g)) {
+      const spec = (m[1] ?? m[2] ?? m[3]) as string;
+      assert.match(spec, /^(\.\/|\.\.\/\.\.\/\.\.\/core\/)[\w-]+\.ts$/, `${f} imports ${spec}`);
+      assert.ok(fs.existsSync(path.join(path.dirname(new URL(f, dir).pathname), spec)), `${f}: missing ${spec}`);
     }
   });
 }

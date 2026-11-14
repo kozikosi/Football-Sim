@@ -109,7 +109,7 @@ test('legacy move: a full or blocked store loses nothing (the old keys stay and 
 // ---- layout rules, enforced ----
 const SRC = new URL('../../src/', import.meta.url).pathname;
 const tsFiles = (d: string): string[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? tsFiles(path.join(d, e.name)) : e.name.endsWith('.ts') ? [path.join(d, e.name)] : []));
-const importsOf = (f: string): string[] => [...fs.readFileSync(f, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1').matchAll(/(?:import|export)[^;'"]*?from\s*['"]([^'"]+)['"]/g)].map((m) => m[1]);
+const importsOf = (f: string): string[] => [...fs.readFileSync(f, 'utf8').replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1').matchAll(/(?:import|export)[^;'"]*?from\s*['"]([^'"]+)['"]|import\s*\(\s*['"]([^'"]+)['"]\s*\)|import\s*['"]([^'"]+)['"]/g)].map((m) => (m[1] ?? m[2] ?? m[3]) as string);  // three forms: `from`, dynamic import(), bare side-effect import (the last two were invisible until the 14 Nov canary planted one in core/)
 test('layout: core imports only core; a sport imports only core and itself, never another sport', () => {
   const sports = fs.readdirSync(path.join(SRC, 'sports'));
   assert.ok(sports.includes('nfl'));
