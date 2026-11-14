@@ -1,0 +1,75 @@
+/* The bench board CSS — IDENTICAL BYTES in both arms. Semantic tones only; the colour choice is not measured. */
+#app { max-width: 980px; margin: 0 auto; font: 13px/1.4 system-ui, sans-serif; color: #111; }
+.bench-header { padding: 8px 4px; border-bottom: 2px solid #222; }
+.bench-header h1 { font-size: 16px; margin: 0 0 4px; }
+.bench-onclock { font-weight: 600; }
+.bench-toolbar { display: flex; gap: 8px; padding: 8px 4px; align-items: center; flex-wrap: wrap; }
+.bench-toolbar button { padding: 4px 10px; cursor: pointer; }
+.bench-toolbar button.active { background: #222; color: #fff; }
+.bench-toolbar select { padding: 4px; }
+.bench-toolbar .pick { margin-left: auto; font-weight: 700; }
+.bench-toolbar .pick:disabled { opacity: 0.4; cursor: default; }
+table.bench-board { width: 100%; border-collapse: collapse; }
+table.bench-board th, table.bench-board td { padding: 3px 6px; border-bottom: 1px solid #ddd; text-align: left; white-space: nowrap; }
+table.bench-board th { background: #f2f2f2; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+tr.bench-row { cursor: pointer; }
+tr.bench-row.selected { background: #ffe9a8; }
+tr.bench-row td.tone-good { color: #0a7d32; }
+tr.bench-row td.tone-bad { color: #b3261e; }
+.bench-roster { padding: 10px 4px; border-top: 2px solid #222; margin-top: 8px; }
+.bench-roster .detail { font-weight: 600; }
+.bench-footer { color: #555; padding: 6px 4px; }
+
+/* ===== BENCH-1.5 Pick Reveal (identical bytes both arms) — w89 language from live bytes:
+   fxpop/fxshine/fxglow keyframes (w89 offsets ~15946/15988), espresso ground, champagne accent,
+   Cinzel EMBEDDED via board2.css @font-face (no network). One overlay; unmounts after the beat. */
+@font-face { font-family: 'Cinzel'; src: url('../assets/cinzel.woff2') format('woff2'); font-weight: 100 1000; font-display: swap; }
+@font-face { font-family: 'Cinzel Decorative'; src: url('../assets/cinzel-decorative-700.woff2') format('woff2'); font-weight: 700; font-display: swap; }
+.reveal-stage {
+  position: fixed; inset: 0; z-index: 60;
+  display: flex; align-items: center; justify-content: center;
+  background: radial-gradient(ellipse at 50% 32%, rgba(28, 19, 7, .78) 0%, rgba(11, 7, 3, .9) 100%);
+  animation: revealstage 1.5s ease forwards;
+}
+@keyframes revealstage { 0% { opacity: 0; } 10%, 82% { opacity: 1; } 100% { opacity: 0; } }
+.reveal-card {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  padding: 22px 30px;
+  background: radial-gradient(ellipse at 50% 32%, color-mix(in srgb, #c9a24b 16%, #1c1307) 0%, #140d06 58%, #0b0703 100%);
+  border: 2px solid #c9a24b; border-radius: 14px;
+  color: #ecd9ad;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .6), 0 0 0 rgba(255, 196, 60, 0);
+  animation: fxpop 1.5s ease forwards;
+}
+@keyframes fxpop { 0% { transform: scale(.3); opacity: 0; } 12% { transform: scale(1.08); opacity: 1; } 20% { transform: scale(1); } 80% { opacity: 1; } 100% { transform: scale(1.02) translateY(-10px); opacity: 0; } }
+.reveal-round { font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: .14em; font-size: 13px; color: #a08b62; }
+.reveal-bub {
+  min-width: 84px; height: 56px; padding: 0 14px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 999px; font-family: 'Cinzel', Georgia, serif; font-weight: 700; font-size: 22px;
+  color: #0b0703;
+  background: linear-gradient(100deg, var(--tc, #c9a24b) 0%, #ffc43c 45%, #fff2c4 50%, #ffc43c 55%, var(--tc, #c9a24b) 100%);
+  background-size: 200% 100%;
+  animation: fxshine 1.2s linear infinite, fxglow 1.5s ease-in-out infinite;
+}
+@keyframes fxshine { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+@keyframes fxglow { 0%, 100% { box-shadow: 0 0 0 rgba(255, 196, 60, 0); } 50% { box-shadow: 0 0 22px rgba(255, 196, 60, .8); } }
+.reveal-name { font-family: 'Cinzel Decorative', 'Cinzel', Georgia, serif; font-weight: 700; font-size: 24px; }
+.reveal-team { font-family: 'Cinzel', Georgia, serif; font-size: 13px; letter-spacing: .08em; text-transform: uppercase; color: #a08b62; }
+.reveal-word { margin-top: 2px; font-family: 'Cinzel', Georgia, serif; font-weight: 700; letter-spacing: .3em; font-size: 12px; color: #ffc43c; }
+
+/* ===== BENCH-2 Phase H — mobile law on the bench board (identical bytes both arms):
+   touch targets ≥ 44 px; no horizontal scroll at 360/390 (secondary columns collapse);
+   no hover-only affordance (rows select on tap; the pick button is always present). */
+.bench-toolbar button, .bench-toolbar select {
+  min-height: 44px; min-width: 44px; padding: 8px 12px;
+  font-size: 14px; border-radius: 8px;
+}
+.bench-toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+@media (max-width: 430px) {
+  table.bench-board th:nth-child(3), table.bench-board td:nth-child(3),
+  table.bench-board th:nth-child(5), table.bench-board td:nth-child(5),
+  table.bench-board th:nth-child(7), table.bench-board td:nth-child(7) { display: none; }
+  tr.bench-row td { min-height: 44px; padding-top: 8px; padding-bottom: 8px; }
+  .bench-toolbar .pick { width: 100%; }
+}

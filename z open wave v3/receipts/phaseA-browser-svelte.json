@@ -1,0 +1,60 @@
+{
+  "arm": "svelte",
+  "origin": "http://127.0.0.1:37419/",
+  "uiPicks": [
+    {
+      "playerId": "nfl-p00003",
+      "via": "board-default"
+    },
+    {
+      "playerId": "nfl-p00075",
+      "via": "board-default"
+    },
+    {
+      "playerId": "nfl-p00068",
+      "via": "board-default"
+    },
+    {
+      "playerId": "nfl-p00144",
+      "via": "board-default"
+    }
+  ],
+  "pickedViaUi": 5,
+  "session1": {
+    "stateBeforeSave": {
+      "status": "drafting",
+      "picks": 128
+    },
+    "save": {
+      "ok": true,
+      "bytes": 135893
+    },
+    "slotBytes": 135893,
+    "savedPicks": 128,
+    "slotRefusal": "refused: envelope: slot B written under sim:nfl:slot:A (that key is slot A)"
+  },
+  "session2": {
+    "load": {
+      "ok": true,
+      "picks": 128,
+      "status": "drafting",
+      "onClock": 0
+    },
+    "fifth": {
+      "playerId": "nfl-p00150",
+      "via": "board-default"
+    },
+    "final": {
+      "status": "done",
+      "picks": 1024,
+      "recordSha": "e62e79f4471f2e9a0c25f7748f1db74760ff51a4c1ea12b0dc9aefa885374900"
+    }
+  },
+  "A1": {
+    "pass": true,
+    "referenceSha": "e62e79f4471f2e9a0c25f7748f1db74760ff51a4c1ea12b0dc9aefa885374900",
+    "resumedSha": "e62e79f4471f2e9a0c25f7748f1db74760ff51a4c1ea12b0dc9aefa885374900",
+    "picks": 1024
+  },
+  "consoleErrors": []
+}

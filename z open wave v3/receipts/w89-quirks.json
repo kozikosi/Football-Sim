@@ -1,0 +1,389 @@
+{
+  "file": "/home/z/my-project/scratch/wave/Football-Sim-Z-post-blue-w89.html",
+  "bytes": 1922769,
+  "tokens": {
+    "fonts.googleapis": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "fonts.googleapis.com",
+          "byte": 40528
+        },
+        {
+          "needle": "fonts.googleapis.com",
+          "byte": 40640
+        }
+      ],
+      "note": "w89 fetches Google fonts at runtime (tent-test risk, confirmed by Phase C)"
+    },
+    "cinzel": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 28931
+        },
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 29016
+        },
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 55982
+        },
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 56134
+        },
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 72409
+        },
+        {
+          "needle": "Cinzel Decorative",
+          "byte": 74510
+        },
+        {
+          "needle": "Cinzel:",
+          "byte": 40732
+        }
+      ],
+      "note": "display faces"
+    },
+    "bodoni": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "Bodoni Moda",
+          "byte": 25967
+        },
+        {
+          "needle": "Bodoni Moda",
+          "byte": 29045
+        },
+        {
+          "needle": "Bodoni Moda",
+          "byte": 51317
+        },
+        {
+          "needle": "Bodoni Moda",
+          "byte": 53297
+        },
+        {
+          "needle": "Bodoni Moda",
+          "byte": 56163
+        },
+        {
+          "needle": "Bodoni Moda",
+          "byte": 60980
+        }
+      ],
+      "note": "serif body face"
+    },
+    "espresso": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "#140d06",
+          "byte": 1690634
+        }
+      ],
+      "note": "espresso ground"
+    },
+    "champagne": {
+      "found": false,
+      "offsets": [],
+      "note": "champagne-gold body"
+    },
+    "no-white": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "#fff;",
+          "byte": 7146
+        },
+        {
+          "needle": "#fff;",
+          "byte": 10122
+        },
+        {
+          "needle": "#fff;",
+          "byte": 11855
+        },
+        {
+          "needle": "#fff;",
+          "byte": 13654
+        },
+        {
+          "needle": "#fff;",
+          "byte": 19130
+        },
+        {
+          "needle": "#fff;",
+          "byte": 23597
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 8376
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 41327
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 42410
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 753624
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 753692
+        },
+        {
+          "needle": "#ffffff",
+          "byte": 753749
+        },
+        {
+          "needle": "white",
+          "byte": 5223
+        },
+        {
+          "needle": "white",
+          "byte": 13049
+        },
+        {
+          "needle": "white",
+          "byte": 14657
+        },
+        {
+          "needle": "white",
+          "byte": 29127
+        },
+        {
+          "needle": "white",
+          "byte": 30168
+        },
+        {
+          "needle": "white",
+          "byte": 31635
+        }
+      ],
+      "note": "white usages (the law says NO white body) "
+    },
+    "jingle": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "CAN YOU GO 20-0",
+          "byte": 1889122
+        }
+      ],
+      "note": "header jingle"
+    },
+    "bubble-classes": {
+      "found": false,
+      "offsets": [],
+      "note": "position bubbles"
+    },
+    "shimmer": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "@keyframes",
+          "byte": 15988
+        },
+        {
+          "needle": "@keyframes",
+          "byte": 16234
+        },
+        {
+          "needle": "@keyframes",
+          "byte": 16318
+        },
+        {
+          "needle": "@keyframes",
+          "byte": 16476
+        },
+        {
+          "needle": "@keyframes",
+          "byte": 26571
+        },
+        {
+          "needle": "@keyframes",
+          "byte": 29864
+        },
+        {
+          "needle": "shimmer",
+          "byte": 788
+        },
+        {
+          "needle": "shimmer",
+          "byte": 5477
+        },
+        {
+          "needle": "shimmer",
+          "byte": 40977
+        },
+        {
+          "needle": "shimmer",
+          "byte": 52625
+        },
+        {
+          "needle": "shimmer",
+          "byte": 56033
+        },
+        {
+          "needle": "shimmer",
+          "byte": 57659
+        }
+      ],
+      "note": "90+ shimmer animation"
+    },
+    "ovr-85-gold": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "85",
+          "byte": 2440
+        },
+        {
+          "needle": "85",
+          "byte": 2891
+        },
+        {
+          "needle": "85",
+          "byte": 3043
+        },
+        {
+          "needle": "85",
+          "byte": 3068
+        },
+        {
+          "needle": "85",
+          "byte": 3103
+        },
+        {
+          "needle": "85",
+          "byte": 3141
+        },
+        {
+          "needle": "90",
+          "byte": 150
+        },
+        {
+          "needle": "90",
+          "byte": 1635
+        },
+        {
+          "needle": "90",
+          "byte": 3896
+        },
+        {
+          "needle": "90",
+          "byte": 5461
+        },
+        {
+          "needle": "90",
+          "byte": 5773
+        },
+        {
+          "needle": "90",
+          "byte": 6177
+        }
+      ],
+      "note": "OVR thresholds (85 vibrant / 90 shimmer)"
+    },
+    "round-labels": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "roundLabel",
+          "byte": 775286
+        },
+        {
+          "needle": "roundLabel",
+          "byte": 775327
+        },
+        {
+          "needle": "roundLabel",
+          "byte": 775376
+        },
+        {
+          "needle": "roundLabel",
+          "byte": 775421
+        },
+        {
+          "needle": "roundLabel",
+          "byte": 786114
+        },
+        {
+          "needle": "roundLabel",
+          "byte": 786201
+        }
+      ],
+      "note": "R<round>.<pick> labels"
+    },
+    "ub-blue": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": ".ub",
+          "byte": 15946
+        },
+        {
+          "needle": ".ub",
+          "byte": 1668386
+        },
+        {
+          "needle": ".ub",
+          "byte": 1668533
+        },
+        {
+          "needle": ".ub",
+          "byte": 1668734
+        }
+      ],
+      "note": "user-team blue"
+    },
+    "team-colour-table": {
+      "found": true,
+      "offsets": [
+        {
+          "needle": "teamColor*",
+          "byte": 373041
+        },
+        {
+          "needle": "teamColor*",
+          "byte": 747234
+        }
+      ]
+    }
+  },
+  "colourTableProbe": {
+    "key": "TEAM_COLORS",
+    "byte": 373041,
+    "head": "FFFF\"], \"Cincinnati Bengals\": [\"#FB4F14\", \"#000000\", \"#FFFFFF\"], \"Cleveland Browns\": [\"#311D00\", \"#FF3C00\", \"#FFFFFF\"], \"Dallas Cowboys\": [\"#003594\", \"#869397\", \"#FFFFFF\"], \"Denver Broncos\": [\"#FB4F14\", \"#002244\", \"#FFFFFF\"], \"Detroit Lions\": [\"#0076B6\", \"#B0B7BC\", \"#000000\"], \"Green Bay Packers\": [\"#203731\", \"#FFB612\", \"#FFFFFF\"], \"Houston Texans\": [\"#03202F\", \"#A71930\", \"#FFFFFF\"], \"Indianapolis Colts\": [\"#002C5F\", \"#FFFFFF\", \"#A2AAAD\"], \"Jacksonville Jaguars\": [\"#101820\", \"#006778\", \"#D7A22A\"], \"Kansas City Chiefs\": [\"#E31837\", \"#FFB81C\", \"#FFFFFF\"], \"Las Vegas Raiders\": [\"#000000\", \"#A5ACAF\", \"#FFFFFF\"], \"Los Angeles Chargers\": [\"#0080C6\", \"#FFC20E\", \"#FFFFFF\"], \"Los Angeles Rams\": [\"#003594\", \"#FFD100\", \"#FFFFFF\"], \"Miami Dolphins\": [\"#008E97\", \"#FC4C02\", \"#FFFFFF\"], \"Minnesota Vikings\": [\"#4F2683\", \"#FFC62F\", \"#FFFFFF\"], \"New England Patriots\": [\"#002244\", \"#C60C30\", \"#BFC0BF\"], \"New Orleans Saints\": [\"#D3BC8D\", \"#101820\", \"#FFFFFF\"], \"NY Giants\": [\"#0B2265\", \"#A71930\", \"#A5ACAF\"], \"NY Jets\": [\"#125740\", \"#FFFFFF\", \"#000000\"], \"Philadelphia Eagles\": [\"#004C54\", \"#A5ACAF\", \"#000000\"], \"Pittsburgh Steelers\": [\"#FFB612\", \"#101820\", \"#FFFFFF\"], \"San Francisco 49ers\": [\"#AA0000\", "
+  },
+  "colourTableBytes": {
+    "from": 373055,
+    "to": 374823,
+    "size": 1769
+  },
+  "colourTableParse": "regex, 24 teams",
+  "teamPalette": {
+    "count": 24,
+    "sample": {
+      "Cleveland Browns": "#311D00",
+      "Dallas Cowboys": "#003594",
+      "Denver Broncos": "#FB4F14",
+      "Detroit Lions": "#0076B6",
+      "Green Bay Packers": "#203731",
+      "Houston Texans": "#03202F",
+      "Indianapolis Colts": "#002C5F",
+      "Jacksonville Jaguars": "#101820"
+    }
+  }
+}

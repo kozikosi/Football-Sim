@@ -1,0 +1,80 @@
+{
+  "generatedAt": "2026-11-14T08:00:25.902Z",
+  "engineVendorShaReceipt": {
+    "digest": "432a1701744b91fc92f807931d789cf49a8daf0da529298f0013898f195e272d",
+    "files": 112
+  },
+  "rows": {
+    "tier1-run1.json": {
+      "W1_sumMs": 19.81,
+      "W1_parseMs": 19.34,
+      "W1_freezeMs": 0.47,
+      "D32R_n": 10,
+      "D32R_min": 772.36,
+      "D32R_median": 812,
+      "D32R_max": 1583.09,
+      "D32R_outliersOver1s": [
+        1583.09,
+        1101.23
+      ],
+      "W4_seasonMs": 335.3,
+      "W4_p95GameMs": 0.075,
+      "recordBytes": 187078,
+      "u31_recordBytes": 187079
+    },
+    "tier1-run2.json": {
+      "W1_sumMs": 40.13,
+      "W1_parseMs": 32.46,
+      "W1_freezeMs": 7.67,
+      "D32R_n": 10,
+      "D32R_min": 771.9,
+      "D32R_median": 789.63,
+      "D32R_max": 821.69,
+      "D32R_outliersOver1s": [],
+      "W4_seasonMs": 339.9,
+      "W4_p95GameMs": 0.076,
+      "recordBytes": 187078,
+      "u31_recordBytes": 187079
+    },
+    "tier1-run3.json": {
+      "W1_sumMs": 10.38,
+      "W1_parseMs": 9.85,
+      "W1_freezeMs": 0.52,
+      "D32R_n": 10,
+      "D32R_min": 785.71,
+      "D32R_median": 807.46,
+      "D32R_max": 840.22,
+      "D32R_outliersOver1s": [],
+      "W4_seasonMs": 349.9,
+      "W4_p95GameMs": 0.079,
+      "recordBytes": 187078,
+      "u31_recordBytes": 187079
+    },
+    "tier1-smoke.json": {
+      "W1_sumMs": 9.73,
+      "W1_parseMs": 9.24,
+      "W1_freezeMs": 0.49,
+      "D32R_n": 10,
+      "D32R_min": 785.06,
+      "D32R_median": 799.11,
+      "D32R_max": 902.82,
+      "D32R_outliersOver1s": [],
+      "W4_seasonMs": 341.5,
+      "W4_p95GameMs": 0.078,
+      "recordBytes": 187078,
+      "u31_recordBytes": 187079
+    }
+  },
+  "recordBytesHistogram": {
+    "137409": 4,
+    "137410": 4,
+    "137411": 4,
+    "137412": 4,
+    "137413": 4,
+    "137415": 4,
+    "137417": 8,
+    "137419": 8,
+    "187078": 20,
+    "187079": 20
+  }
+}

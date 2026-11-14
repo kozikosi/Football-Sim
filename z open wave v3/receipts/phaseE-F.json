@@ -1,0 +1,67 @@
+{
+  "E1": {
+    "checkerReadsDataFile": true,
+    "ownerNamedTwoFirst": [
+      "champion",
+      "perfect-season"
+    ],
+    "firedBeforeDataAdd": [],
+    "thirdAchievementAddedByDataOnly": true,
+    "firedAfterDataAdd": [],
+    "extensibilityProof": "adding \"double-digit-wins\" required ZERO component changes — data file only"
+  },
+  "E2": {
+    "earlyRoundPositionPreference": "LT",
+    "reachRatePct": 3.1,
+    "runPassBalanceOfRosterBuilt": "20 run-planned / 12 pass-planned of 32 picks",
+    "tradeFrequency": 0,
+    "draftVsFreeAgency": "draft 32 picks; FA not part of the draft phase (the FA csv feeds the pool freeze)"
+  },
+  "E3": {
+    "formula": "composite = wins + playoffWins + champion (visible string wins-pC); wins as tiebreak",
+    "seasons": [
+      {
+        "record": "0-0",
+        "wins": 0,
+        "playoffWins": 0,
+        "champion": false,
+        "composite": "0W-0p"
+      }
+    ],
+    "top": {
+      "record": "0-0",
+      "wins": 0,
+      "playoffWins": 0,
+      "champion": false,
+      "composite": "0W-0p"
+    }
+  },
+  "E4": {
+    "mostUsed": [
+      "Laremy Tunsil",
+      "Mike Evans",
+      "Davante Adams"
+    ],
+    "mostDrafted": [
+      "Laremy Tunsil",
+      "Mike Evans",
+      "Davante Adams"
+    ],
+    "userPinned": [],
+    "gap": "the pin is a USER action: the record needs a favourites map (saveId → [pid]); absent in BENCH-1 record"
+  },
+  "F": {
+    "cardBytes": 58087,
+    "card": {
+      "userTeam": "Denver Broncos",
+      "record": "0-0-0",
+      "outcome": "CHAMPIONS",
+      "headline": "Denver Broncos ARE SUPER BOWL CHAMPIONS"
+    }
+  },
+  "data": {
+    "userRecord": "0-0-0",
+    "champion": "Denver Broncos",
+    "userResults": 17
+  }
+}
