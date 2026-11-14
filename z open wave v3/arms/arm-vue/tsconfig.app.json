@@ -1,0 +1,16 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    "types": ["vite/client"],
+    "allowArbitraryExtensions": true,
+
+    /* Linting — noUnused* / erableSyntaxOnly relaxed for the VENDORED ENGINE (read-only contract,
+       never shell code; it predates TS 6 erasable-syntax and carries its own unused imports) */
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "erasableSyntaxOnly": false,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": ["src-bench/**/*.ts", "src-bench/**/*.tsx", "src-bench/**/*.vue"]
+}

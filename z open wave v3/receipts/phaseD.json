@@ -1,0 +1,167 @@
+[
+  {
+    "arm": "vue",
+    "library": "@vueuse/core",
+    "assertions": {
+      "domRowsAtRest": 27,
+      "totalPoolRows": 1921,
+      "virtualized": true,
+      "distinctRowsSeenByScrolling": 1921,
+      "allReachable": true,
+      "sortOvrDescFirst12": [
+        99,
+        99,
+        99,
+        99,
+        99,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+      ],
+      "sortOvrIsDescending": true,
+      "sortNameFirst6": [
+        "A.J. Barner",
+        "A.J. Brown",
+        "A.J. Cole",
+        "A.J. Dillon",
+        "A.J. Epenesa",
+        "A.J. Haulcy"
+      ],
+      "posFilterValue": "WR",
+      "posFilterAllRowsMatch": true,
+      "teamFilterAllRowsMatch": true,
+      "debouncedSearch": {
+        "before": 1921,
+        "during": 1921,
+        "after": 191,
+        "debounced": true
+      },
+      "persistence": {
+        "preReload": {
+          "sort": true,
+          "scrollTop": 3362
+        },
+        "postReload": {
+          "sort": true,
+          "scrollTop": 3362
+        },
+        "sortRestored": true,
+        "scrollRestored": true
+      }
+    },
+    "perf": {
+      "scrollP95ms": 32.4,
+      "scrollMedianMs": 31.6,
+      "longTasksDuringScroll": 0,
+      "heapMB": 9.5,
+      "domNodesAtRest": 286,
+      "mobile390": {
+        "horizontalScrollDelta": 0,
+        "domRows": 25,
+        "minTapTargetPx": 44
+      }
+    },
+    "errors": [],
+    "integration": {
+      "armOwnedFiles": [
+        "Board2.vue",
+        "main2.ts",
+        "library.html",
+        "board2.css",
+        "team-palette.json"
+      ],
+      "armOwnedLoc": 90,
+      "sharedCssLoc": 105,
+      "depsAdded": [
+        "@vueuse/core@^15.0.0",
+        "vue@^3.5.44"
+      ]
+    }
+  },
+  {
+    "arm": "svelte",
+    "library": "@tanstack/svelte-virtual",
+    "assertions": {
+      "domRowsAtRest": 26,
+      "totalPoolRows": 1921,
+      "virtualized": true,
+      "distinctRowsSeenByScrolling": 1921,
+      "allReachable": true,
+      "sortOvrDescFirst12": [
+        99,
+        99,
+        99,
+        99,
+        99,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98,
+        98
+      ],
+      "sortOvrIsDescending": true,
+      "sortNameFirst6": [
+        "A.J. Barner",
+        "A.J. Brown",
+        "A.J. Cole",
+        "A.J. Dillon",
+        "A.J. Epenesa",
+        "A.J. Haulcy"
+      ],
+      "posFilterValue": "WR",
+      "posFilterAllRowsMatch": true,
+      "teamFilterAllRowsMatch": true,
+      "debouncedSearch": {
+        "before": 1921,
+        "during": 1921,
+        "after": 191,
+        "debounced": true
+      },
+      "persistence": {
+        "preReload": {
+          "sort": true,
+          "scrollTop": 3362
+        },
+        "postReload": {
+          "sort": true,
+          "scrollTop": 3362
+        },
+        "sortRestored": true,
+        "scrollRestored": true
+      }
+    },
+    "perf": {
+      "scrollP95ms": 33.6,
+      "scrollMedianMs": 31.7,
+      "longTasksDuringScroll": 0,
+      "heapMB": 9.5,
+      "domNodesAtRest": 286,
+      "mobile390": {
+        "horizontalScrollDelta": 0,
+        "domRows": 24,
+        "minTapTargetPx": 44
+      }
+    },
+    "errors": [],
+    "integration": {
+      "armOwnedFiles": [
+        "Board2.svelte",
+        "main2.ts",
+        "library.html",
+        "board2.css",
+        "team-palette.json"
+      ],
+      "armOwnedLoc": 130,
+      "sharedCssLoc": 105,
+      "depsAdded": [
+        "@tanstack/svelte-virtual@^3.13.52"
+      ]
+    }
+  }
+]

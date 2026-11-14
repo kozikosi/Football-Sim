@@ -1,0 +1,166 @@
+[
+  {
+    "arm": "vue",
+    "basis": "CDP CPU throttle x4/x6 on 2 vCPU Xeon (imposed, stated); slow-3G = CDP Network.emulateNetworkConditions 400ms/50dBW",
+    "cells": {
+      "sort-r1u0-1x": {
+        "samples": [
+          1214.2,
+          1248.3,
+          1214.8
+        ],
+        "median": 1214.8
+      },
+      "pick-r1u0-1x": {
+        "samples": [
+          1204.9,
+          1226.2
+        ],
+        "median": 1215.6,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      },
+      "sort-r1u0-4x": {
+        "samples": [
+          6456.7,
+          6331.2,
+          6193.2
+        ],
+        "median": 6331.2
+      },
+      "pick-r1u0-4x": {
+        "samples": [
+          6264.4,
+          6194.6
+        ],
+        "median": 6229.5,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      },
+      "sort-r1u0-6x": {
+        "samples": [
+          8896.5,
+          8917.3,
+          9109
+        ],
+        "median": 8917.3
+      },
+      "pick-r1u0-6x": {
+        "samples": [
+          8666.1,
+          9481.3
+        ],
+        "median": 9073.7,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      }
+    },
+    "boot": {
+      "throttle1x": {
+        "note": "boot+START to interactive"
+      },
+      "throttle4x": {
+        "note": "boot+START to interactive"
+      },
+      "throttle6x": {
+        "note": "boot+START to interactive"
+      },
+      "slow3G": "ok",
+      "slow3GFirstLoadMs": 7537
+    },
+    "scroll": {
+      "domRows": 60,
+      "viewport": "390x844",
+      "scrollP95ms": 32.5,
+      "horizontalScrollDelta": 66,
+      "samples": [
+        23.1,
+        32,
+        32.3,
+        31.6,
+        32.3,
+        32.3
+      ]
+    },
+    "errors": []
+  },
+  {
+    "arm": "svelte",
+    "basis": "CDP CPU throttle x4/x6 on 2 vCPU Xeon (imposed, stated); slow-3G = CDP Network.emulateNetworkConditions 400ms/50dBW",
+    "cells": {
+      "sort-r1u0-1x": {
+        "samples": [
+          1226.2,
+          1214.8,
+          1198.1
+        ],
+        "median": 1214.8
+      },
+      "pick-r1u0-1x": {
+        "samples": [
+          1189.3,
+          1234.9
+        ],
+        "median": 1212.1,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      },
+      "sort-r1u0-4x": {
+        "samples": [
+          6656.9,
+          6597,
+          6236.7
+        ],
+        "median": 6597
+      },
+      "pick-r1u0-4x": {
+        "samples": [
+          6254.6,
+          6383.9
+        ],
+        "median": 6319.3,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      },
+      "sort-r1u0-6x": {
+        "samples": [
+          8590.3,
+          8877.3,
+          8714.9
+        ],
+        "median": 8714.9
+      },
+      "pick-r1u0-6x": {
+        "samples": [
+          8838.7,
+          9039
+        ],
+        "median": 8938.9,
+        "note": "PICK #1 (goneOdds r1-u0 replay) → paint, double-rAF"
+      }
+    },
+    "boot": {
+      "throttle1x": {
+        "note": "boot+START to interactive"
+      },
+      "throttle4x": {
+        "note": "boot+START to interactive"
+      },
+      "throttle6x": {
+        "note": "boot+START to interactive"
+      },
+      "slow3G": "ok",
+      "slow3GFirstLoadMs": 7020
+    },
+    "scroll": {
+      "domRows": 60,
+      "viewport": "390x844",
+      "scrollP95ms": 32.6,
+      "horizontalScrollDelta": 66,
+      "samples": [
+        32.2,
+        32.4,
+        32.4,
+        32.5,
+        32.5,
+        32.4
+      ]
+    },
+    "errors": []
+  }
+]

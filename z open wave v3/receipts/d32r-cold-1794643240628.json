@@ -1,0 +1,29 @@
+{
+  "mode": "cold",
+  "startedAt": "2026-11-14T08:00:32.530Z",
+  "finishedAt": "2026-11-14T08:00:40.628Z",
+  "node": "v24.22.3",
+  "warmups": 0,
+  "n": 10,
+  "forcedGcBeforeEach": false,
+  "ms": [
+    888.57,
+    809.92,
+    850.39,
+    785.71,
+    792.81,
+    787.7,
+    795.07,
+    786.7,
+    793.76,
+    789.39
+  ],
+  "min": 785.71,
+  "median": 793.28,
+  "max": 888.57,
+  "tailsOver1s": [],
+  "recBytes": 187078,
+  "recSha": "7af4b7733453e3347e793c3aafc2dad1e74eacc1d63a5071ab9ce627c0f3696d",
+  "picks": 1024,
+  "heapMB": 43.7
+}
