@@ -10,14 +10,21 @@ The v3 nine-arm framework test came back a **50/50 split** between Svelte 5 + Vi
 
 **Svelte 5 + Vite (SvelteKit minimal)** — `~/football-sim-svelte`
 - verified: `npm run check` → **0 errors / 0 warnings, exit 0** (svelte-check)
-- `.mcp.json` / `.kilocode/mcp.json` wired to `@sveltejs/mcp` (docs lookup + autofixer) and `@playwright/mcp` (headless browser); the Svelte 5 skills (`svelte-code-writer`, `svelte-core-bestpractices`) are the mandated pre-review pass per `AGENTS.md` there
+- `.mcp.json` / `.kilocode/mcp.json` wired to three pinned stdio servers:
+  - `svelte` → `@sveltejs/mcp@0.1.30` (docs lookup + Svelte-only autofixer — **the autofixer is Svelte-only; do not weigh it as an asymmetry**)
+  - `playwright` → `@playwright/mcp@0.0.85` (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; `if Playwright MCP's bundled browser version differs from the scaffold's playwright devDependency, report the delta — do not chase it.`)
+  - `context7` → `@upstash/context7-mcp@4.7.0` (common docs lookup, identical wiring on the Vue side)
 - `AGENTS.md` (+ `CLAUDE.md` symlink): engine stays plain `.ts` — no runes in the engine, none in the bridge's read path either if it can be avoided; fresh runes-only UI
 
 **Vue 3 + Vite (create-vue SPA)** — `~/football-sim-vue`
 - verified: `npm run type-check` → **exit 0** (vue-tsc)
-- `.mcp.json` / `.kilocode/mcp.json` wired to two servers: **hosted Vue Docs MCP** (`vue-docs` → `https://mcp.vue-mcp.org/mcp`, official Vue ecosystem docs lookup — `docs_search`, `api_lookup`, `ecosystem_search`, plus structured prompts like `debug_issue`, `compare_apis`) and `@playwright/mcp`. Svelte already had `@sveltejs/mcp`; the Vue side now has a comparable docs surface.
+- `.mcp.json` / `.kilocode/mcp.json` wired to three servers:
+  - `playwright` → `@playwright/mcp@0.0.85` (bundles **playwright 1.66.0-alpha-2026-11-09**; scaffold devDependency is **1.65.1**; `if Playwright MCP's bundled browser version differs from the scaffold's playwright devDependency, report the delta — do not chase it.`)
+  - `context7` → `@upstash/context7-mcp@4.7.0` (common docs lookup, identical wiring on the Svelte side)
+  - `vue-docs` → `https://mcp.vue-mcp.org/mcp` (hosted, official Vue ecosystem docs: `docs_search`, `api_lookup`, `ecosystem_search`, plus structured prompts like `debug_issue`, `compare_apis`) — the one deliberately non-identical surface in the pair; Svelte has its own `@sveltejs/mcp` docs route but no hosted framework MCP of its own, so the asymmetry is by construction, not by omission
 - `AGENTS.md` (+ `CLAUDE.md` symlink): Composition API + `<script setup lang="ts">` only; state via Pinia setup stores; hand-rolled board stays hand-rolled
 - **Pinned parity with the Svelte scaffold** — both `.nvmrc` = **24** (machine's active Node is v26; `.nvmrc` is consistent across scaffolds)
+- All three runnable surfaces resolve and answer `--help` cleanly on this machine (as of 2026-11-14): `npx @sveltejs/mcp@0.1.30 --help` exit 0 · `npx @playwright/mcp@0.0.85 --help` exit 0 · `npx @upstash/context7-mcp@4.7.0 --help` exit 0
 
 **Both scaffolds carry `.kilocode/mcp.json`** so Kilo / Claude Code / OpenChamber all see the same MCP surface — treat that as the contract they were built around, not as personal preference.
 
@@ -34,7 +41,7 @@ Rules apply in both (`AGENTS.md` at each root): plain-TS engine purity, no simul
 
 ## If it breaks
 
-You are explicitly authorized to report breakage, not to silently fix it into a ruling: any MCP wiring that errors, any command that exits non-zero, any skill whose instructions contradict what you built — report it as-is. You are not authorized to: adopt a framework, edit the repo's governance files, edit the wall screens or `AGENTS.md`, merge either scaffold into the product tree, or declare a winner on feelings. The ruling is collective with the Owner; this pass only gives you both the feel for it.
+You are explicitly authorized to report breakage, not to silently fix it into a ruling: any MCP wiring that errors, any command that exits non-zero, any skill whose instructions contradict what you built — report it as-is. **If Playwright MCP's bundled browser version differs from the scaffold's playwright devDependency, report the delta — do not chase it.** (Still: the server answers `--help` cleanly; only the browser build is ahead of the lockfile.) You are not authorized to: adopt a framework, edit the repo's governance files, edit the wall screens or `AGENTS.md`, merge either scaffold into the product tree, or declare a winner on feelings. The ruling is collective with the Owner; this pass only gives you both the feel for it.
 
 ## What to send back
 
