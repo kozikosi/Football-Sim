@@ -195,7 +195,6 @@ tr.detailrow .detailwrap{padding:14px 16px;background:var(--panel2);}
 .needslabel{display:flex;gap:6px;align-items:center;}
 .toptag{font-size:.62rem;font-weight:800;background:var(--good);color:#fff;border-radius:4px;padding:0 4px;vertical-align:1px;}
 .slotchg{font-size:.72rem;margin-left:4px;}
-.chip .star{border-radius:999px;padding:0 6px;color:var(--accent2);font-size:0.74rem;}
 .cardgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:10px;}
 .pcard{border:1px solid var(--border);border-radius:10px;background:var(--panel2);padding:8px 10px;}
 .pcard h4{margin:0 0 6px;font-size:0.84rem;display:flex;justify-content:space-between;}
@@ -1159,14 +1158,13 @@ function initDraftSetup(){
  }));
  document.getElementById('draftPosFilter2').addEventListener('change', rer);
  { const pf = document.getElementById('draftPosFilter2'); WV_GROUPS.forEach(g=>{ const o = document.createElement('option'); o.value = g; o.textContent = WV_NAMES[g]; pf.appendChild(o); }); }
- document.getElementById('draftChips').addEventListener('click', e=>{
-  const t = e.target.closest('[data-tog],[data-star],[data-all],[data-none]'); if(!t || !draftSim) return;
+document.getElementById('draftChips').addEventListener('click', e=>{
+  const t = e.target.closest('[data-tog],[data-all],[data-none]'); if(!t || !draftSim) return;
   if(t.dataset.tog){ const g = t.dataset.tog; if(draftUI.groups.has(g)) draftUI.groups.delete(g); else draftUI.groups.add(g); }
-  else if(t.dataset.star){ const g = t.dataset.star, c = prioOf(g); draftUI.prio[g] = c===1 ? 2 : (c===2 ? 0 : 1); }
   else if(t.dataset.all){ WV_GROUPS.forEach(g=>draftUI.groups.add(g)); }
   else if(t.dataset.none){ draftUI.groups.clear(); }
   renderDraftBoard2();
- });
+});
  const pickClick = e=>{
   const b = e.target.closest('button[data-pick]'); if(b){ makeUserPick2(b.dataset.pick, b.dataset.slot); return; }
   const c = e.target.closest('[data-chg]');
@@ -1603,12 +1601,11 @@ function renderDraftLive(){
 // ---- Draft board: position cards/table, priorities, wins value, pick-priority chart ----
 const WV_GROUPS = ['QB','EDGE','OT','CB','WR','DT','OG','C','LB','SS','FS','TE','RB','K'];
 const WV_NAMES = {QB:'Quarterback',EDGE:'Edge rusher',OT:'Offensive tackle',CB:'Cornerback',WR:'Wide receiver',DT:'Defensive tackle',OG:'Guard',C:'Center',LB:'Linebacker',SS:'Strong safety',FS:'Free safety',TE:'Tight end',RB:'Running back',K:'Kicker'};
-const PRIO_MULT = {2:1.5, 1:1, 0:0.5}, PRIO_STAR = {2:'★★', 1:'★', 0:'☆'};
+// Star system removed per P-043
 function newDraftUI(){ return {groups:new Set(WV_GROUPS), prio:{}, rosterView:'depth', sim:null, slotPick:{}}; }
 let draftUI = newDraftUI();
 function posRank(p){ const i = WV_GROUPS.indexOf(WV_TAG_GROUP[p[1]]); return i<0?99:i; }
 function cmpPlayers(a,b){ return (b[3]-a[3]) || (posRank(a)-posRank(b)) || (a[0]<b[0]?-1:1); }
-function prioOf(g){ return draftUI.prio[g]==null ? 1 : draftUI.prio[g]; }
 const SLOT_TOTALS = (()=>{ const t = {}; ROSTER_SLOTS.forEach(s=>{ const g = WV_SLOT_GROUP[s]; t[g] = (t[g]||0)+1; }); return t; })();
 
 // The ways a player could fill your open starting spots: one entry per position group, at the open slot where he is worth the most.
@@ -1669,9 +1666,9 @@ function boardEntries(){
  return {sim, entries: out};
 }
 function mkEntry(p, w, e, sim){
- const later = sim ? (sim.later[e.g]||0) : null;
- const pri = sim ? e.v - later : e.v, m = PRIO_MULT[prioOf(e.g)];
- return {p, w, slot:e.slot, g:e.g, flex:e.flex, pen:e.pen, v:e.v, later, pri, gone: sim ? goneFrac(sim, e) : null, score: pri>0 ? pri*m : pri/m};
+  const later = sim ? (sim.later[e.g]||0) : null;
+  const pri = sim ? e.v - later : e.v;
+  return {p, w, slot:e.slot, g:e.g, flex:e.flex, pen:e.pen, v:e.v, later, pri, gone: sim ? goneFrac(sim, e) : null, score: pri};
 }
 function retarget(r, slot, sim){ // user picked a different open slot for this player in the dropdown
  const p = r.p, v = slotWins(slot, effOvr(p,slot)) - slotWins(slot, WINS_BASE);
@@ -1733,15 +1730,14 @@ function renderDraftBoard2(){
   });
  }
  document.getElementById('draftPriority').innerHTML = ph;
- // ---- chips: filled/total starters, star = how much you care ----
- let ch = `<div class="chipbar">`;
- WV_GROUPS.forEach(g=>{
-  const f = filled[g]||0, t = SLOT_TOTALS[g]||0, on = sel.has(g);
-  ch += `<span class="chip ${on?'on':''} ${f>=t?'full':''}"><span data-tog="${g}" title="Show or hide ${WV_NAMES[g].toLowerCase()}s">${g} ${f}/${t}</span><span class="star" data-star="${g}" title="How much you care about ${WV_NAMES[g].toLowerCase()}: ★★ = must-fill (counts 1.5× in Priority), ★ = normal, ☆ = low (0.5×). Click to change.">${PRIO_STAR[prioOf(g)]}</span></span>`;
- });
- ch += `<span class="chip" data-all="1"><span>all</span></span><span class="chip" data-none="1"><span>none</span></span></div>
-  <div class="narr" style="margin:-4px 0 8px;">Chip numbers are starters drafted / starting spots (0/2 = both open). Stars set how much you care about a position: ★★ must-fill (Priority ×1.5), ★ normal, ☆ low (×0.5). Click a star to change it.</div>`;
- document.getElementById('draftChips').innerHTML = ch;
+// ---- chips: filled/total starters (star system removed per P-043) ----
+  let ch = `<div class="chipbar">`;
+  WV_GROUPS.forEach(g=>{
+   const f = filled[g]||0, t = SLOT_TOTALS[g]||0, on = sel.has(g);
+   ch += `<span class="chip ${on?'on':''} ${f>=t?'full':''}"><span data-tog="${g}" title="Show or hide ${WV_NAMES[g].toLowerCase()}s">${g} ${f}/${t}</span></span>`;
+  });
+  ch += `<span class="chip" data-all="1"><span>all</span></span><span class="chip" data-none="1"><span>none</span></span></div>`;
+  document.getElementById('draftChips').innerHTML = ch;
  // ---- filter into rows ----
  const matchesSearch = p=> !search || p[0].toLowerCase().includes(search);
  const cards = document.getElementById('draftCards'), wrap = document.getElementById('draftTableWrap');
@@ -1759,7 +1755,7 @@ function renderDraftBoard2(){
    list = list.map(r=> draftUI.slotPick[r.p[0]] && WV_SLOT_GROUP[draftUI.slotPick[r.p[0]]]===g && !roster.slots[draftUI.slotPick[r.p[0]]] ? retarget(r, draftUI.slotPick[r.p[0]], sim) : r).sort(cmp);
    { let nf = 0; list = list.filter(r=> !r.flex || (++nf<=25)); }  // natural players all show; only the 25 best flexed options per card
    const mx = Math.max(0.3, ...list.map(r=>Math.max(r.v||0, 0)));
-   h += `<div class="pcard"><h4><span>${WV_NAMES[g]}</span><span class="narr">${filled[g]||0}/${SLOT_TOTALS[g]} · ${PRIO_STAR[prioOf(g)]}</span></h4>${fitNoteHTML(entries.filter(r=>r.g===g), g)}<div class="plist">`;
+   h += `<div class="pcard"><h4><span>${WV_NAMES[g]}</span><span class="narr">${filled[g]||0}/${SLOT_TOTALS[g]}</span></h4>${fitNoteHTML(entries.filter(r=>r.g===g), g)}<div class="plist">`;
    if(!list.length) h += '<div class="narr">No players match.</div>';
    list.forEach(r=>{
     const w = Math.max(r.v,0), gp = sim ? Math.max(0,Math.min(w,r.pri)) : 0;
