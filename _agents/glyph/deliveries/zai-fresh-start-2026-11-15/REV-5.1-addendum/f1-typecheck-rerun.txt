@@ -1,0 +1,12 @@
+== arm-vue vue-tsc --build ==
+vue-tsc exit: 0
+== arm-svelte svelte-check ==
+https://svelte.dev/e/a11y_click_events_have_key_events (svelte)
+
+/home/z/my-project/work/r51/framework-two-arm/arm-svelte/src/lib/screens/Cards.svelte:57:7
+Warn: `<div>` with a click handler must have an ARIA role
+https://svelte.dev/e/a11y_no_static_element_interactions (svelte)
+
+====================================
+svelte-check found 0 errors and 3 warnings in 2 files
+svelte-check exit: 0

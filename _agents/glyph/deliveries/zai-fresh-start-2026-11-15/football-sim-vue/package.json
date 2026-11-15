@@ -1,0 +1,44 @@
+{
+  "name": "football-sim-vue",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "run-p type-check \"build-only {@}\" --",
+    "preview": "vite preview",
+    "test:unit": "vitest",
+    "test:e2e": "playwright test",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --build",
+    "smoke": "node scripts/report-tooling.mjs && playwright test tests/smoke.spec.ts",
+    "test": "npm run type-check && npm run test:unit -- --run && npm run test:e2e",
+    "postbuild": "node scripts/strip-crossorigin.mjs && node scripts/singlefile.mjs"
+  },
+  "dependencies": {
+    "@tanstack/vue-table": "^9.3.1",
+    "@vueuse/core": "^15.0.0",
+    "pinia": "^4.1.0",
+    "vue": "^3.5.42"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.65.1",
+    "@tsconfig/node24": "^24.0.5",
+    "@types/jsdom": "^30.0.0",
+    "@types/node": "^24.13.4",
+    "@vitejs/devtools": "^0.7.6",
+    "@vitejs/plugin-vue": "^6.0.8",
+    "@vue/test-utils": "^2.5.0",
+    "@vue/tsconfig": "^0.9.1",
+    "jsdom": "^30.0.1",
+    "npm-run-all2": "^9.0.3",
+    "typescript": "~6.0.0",
+    "vite": "^8.3.8",
+    "vite-plugin-vue-devtools": "^9.0.0-rc.3",
+    "vitest": "^4.1.11",
+    "vue-tsc": "^3.3.14"
+  },
+  "engines": {
+    "node": "^22.18.0 || >=24.12.0"
+  }
+}

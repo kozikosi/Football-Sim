@@ -1,0 +1,19 @@
+== tooling rows — dev server, keyboard reactivity, HMR (CATEGORY-WINNERS evidence) ==
+run: 2026-11-15 · scripts/hmr-kbd-devserver.mjs + scripts/hmr-only.mjs · vite 7.3.6 dev, playwright chromium
+
+dev server (vite startup -> first 200 on the dev URL):
+  arm=vue:    559 ms
+  arm=svelte: 779 ms
+  read: both sub-second; the delta is noise at this scale (single runs).
+
+keyboard reactivity (Esc -> featured-card DOM mutation, in-page performance.now around the key dispatch,
+MutationObserver-bounded, 10 samples, median):
+  arm=vue:    median 0.60 ms · samples ['0.4', '0.4', '0.5', '0.5', '0.6', '0.6', '0.7', '1.1', '1.2', '1.5']
+  arm=svelte: median 0.30 ms · samples ['0.2', '0.2', '0.3', '0.3', '0.3', '0.3', '0.3', '0.3', '0.8', '0.9']
+  read: the bar was 'all keys <= 20 ms for any action' — BOTH arms are two orders of magnitude under
+  it (synchronous handlers mutate the DOM sub-millisecond). TIE, and the bar is not a differentiator
+  on this codebase.
+
+HMR (one visible word in the root component -> DOM update, dev server, playwright-polled):
+  arm=vue:    60 ms · arm=svelte: 29 ms (single-run samples; both far under any decision-relevant bar)
+  first attempt with a stateful target (the featured overlay's SHARE button) measured nothing: the hot swap re-mounts the stateful component and the overlay closes — the probe's target text node disappears. Lesson recorded: HMR latency probes must target stateless chrome. The revert was verified by re-grepping the sources + rebuilding.
