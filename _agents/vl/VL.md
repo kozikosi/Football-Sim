@@ -61,7 +61,13 @@
 
 ## Worktree / branch (end of session)
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `0e47ac39` (zai-sitting pass-through pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
+- **Delivered (18): council review of Z.ai save-wave receipt-chain closure** (INKLING wave, inbox/20261114-1800-inkling-review-zai-save-wave.md @ commit 580e8978; reviewing ernie's copy @ 90ae7456, byte-identical 227/227 with inkling's 5b1d022e and beam's 69bc883d). VERDICT: improved. Verified via git archive extraction to /tmp/kilo/save-wave-review: MANIFEST.txt exit 0, CHECKSUMS.txt exit 0, engine core byte-identical to pin 4ca9a071 (envelope.ts d6ae9800…, rng.ts 3a760dab…, saver.ts f0ed2c18…), both flex.json hashes (app-tree 28a2e993… = pin's REV 4 107 leaves QB→FS 10; flex-live 0a26d7c2… = LIVE 99 leaves QB→FS 12), flex.ts line 10 QB={FS:10} matches pin, app reads flex.json 0/0/0. D.8 receipt re-computed from deterministic script (seed 20261114): +1.3522 pts, CI [-0.933,+3.682] INCLUDES 0 → RECORDED-DEAD correct. Player-game join: 24 columns, 253107 rows, 241911/11196 REG/POST split, Sam Howell spot check ✓. TWO NEW DEFECTS beyond INKLING's (f): (c) INKLING §2 claims "CI excludes 0" but CI includes 0 — reason is backwards (verdict correct, rationale wrong); (e) axis-table citation "Z.ai's fwtest-7 D-filings @ a215b13b" is misdirected — a215b13b is BEAM's framework evaluation on council/beam, no fwtest-7 commit exists on any branch. Also confirmed (f): README grep command without -h produces 10 false MISSING lines; with -h produces 0. Filed `inbox/20261115-0445-vl-review-zai-save-wave.md`, commit df0a1494, pushed, verified (df0a1494 on origin).
+
+- Save versioning conflict RESOLVED (was open question): envelope.ts byte-identical to pin 4ca9a071 carries SCHEMA_VERSION, schemaVersion, engineVersion, dataVersion SHA-256, saveId, saveRevision, slots A/B/C, refuses newer builds — Claude/ds were right, MUSE audit was wrong on this point. D14 can proceed from the premise that versioning exists.
+
+## Worktree / branch (end of session)
+- **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
+- **HEAD:** `df0a1494` (Z.ai save-wave review pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
 - Other seats' worktrees show unsaved work in preserve.mjs check — not VL's to touch (pending).
 
 ## Next session
@@ -72,7 +78,7 @@
 - design.json divergence: council/or + council/vl = WR1 470 / CB1 450; architect/engine-and-seats = WR1 650 / CB1 400 (Owner's quoted values). Which is authoritative for P-142/P-294 flex work? Owner/Architect call.
 - Theta pricing (P-294): formula known but needs flex pricer + ovrEq data; not available here.
 - Exact P-321 thetaprice rule list (four rules + 12 below-D) not in this tree; obtain from Owner/Architect if exact D-rule re-pricing required.
-- Save versioning conflict: MUSE audit says saves NOT versioned (no version field); Claude says envelope.ts carries SCHEMA_VERSION=1, schemaVersion, engineVersion, dataVersion SHA-256, saveId, saveRevision, slots A/B/C, refuses newer saves; ds agrees with Claude. **Verify `colors/src/core/envelope.ts` before finalizing D14 scoping** (this is the blocking item for D14).
+- Save versioning conflict RESOLVED: envelope.ts byte-identical to pin 4ca9a071 carries SCHEMA_VERSION, schemaVersion, engineVersion, dataVersion SHA-256, saveId, saveRevision, slots A/B/C, refuses newer builds — Claude/ds were right, MUSE audit was wrong on this point. D14 can proceed from the premise that versioning exists.
 - `core/app.ts:39` LoadedDataset NFL 8-field tuple in sport-free file (ds's REPORTED line-level read) — VL has not read it; candidate fix (opaque rows or move to sports/nfl/app/dataset.ts) to adopt once verified.
 
 ## P-287 status
