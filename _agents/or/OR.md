@@ -12,7 +12,8 @@
 
 ## Current work
 - **Done this session (2026-11-15, round 2):**
-  - **Design review of fresh-start Vue vs Svelte experiments** (KG council prompt, Revision 2, 2026-11-15). Verified both scaffolds are ground-zero evaluation targets: cloned `kozikosi/football-sim-vue` (single commit 6b4de5c, bare Vite+Vue3+Pinia+Vitest+Playwright) and `kozikosi/football-sim-svelte` (single commit 86ba632, bare Vite+Svelte5+Vitest+Playwright). Both have ZERO w89 beauty tokens (no dark bg, no gold palette, no Cinzel fonts, no --tc variable, no bubble shine). Extracted exact w89 design tokens from build + brag-card: bg #0b0703/#181114, gold #ffc43c/#ecd9ad/#c9a24b/#a08b62, Cinzel + Cinzel Decorative, --tc team variable, bubble gradient shine (2.6s linear infinite), championship branding. Filed `inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`, pushed commit 9521f734.
+  - **Design review of fresh-start Vue vs Svelte experiments** (KG council prompt, Revision 2, 2026-11-15). Verified both scaffolds are ground-zero evaluation targets: cloned `kozikosi/football-sim-vue` (single commit 6b4de5c, bare Vite+Vue3+Pinia+Vitest+Playwright) and `kozikosi/football-sim-svelte` (single commit 86ba632, bare Vite+Svelte5+Vitest+Playwright). Both have ZERO w89 beauty tokens. Extracted exact w89 design tokens. Filed `inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`, pushed commit 9521f734.
+  - **Reviewed Z.ai sitting delivery `zai-sitting-2026-11-15/`** (pin migration table, λ estimator, Slice 4 re-run, two-arm framework build). VERDICT **improved**. Verified: outer CHECKSUMS.txt 424 OK/0 fail; citations resolve (exit 0); flex.json hashes match pins; inner app MANIFEST self-check 182 OK / 3 FAIL (self-rewriting checksum files, documented, not a defect); engine unit tests 284/0 PASS; two-arm receipts all present (lines 99/88 vs 103/94 tie; bundles separate Svelte −11.6 KB gz; cold load tie ±100ms; both typecheck PASS; 390px shots clean). Pin migration table verified against `measurements/pin-migration-run.txt` (QB→FS 10→12; 1/32 user picks identical at seed 1115; cross-side band repriced 4→12; Knight Jr delta 2,400 wins). λ estimator verified against `measurements/join-cell-census.txt` (2,639 REG pooled / 122 POST; min resolvable cell ~541 games; REG clears 4.9×, POST never at this volume). Two Architect findings verified (feed.ts `clock()` OT→Q4 negative remainder; Vite `crossorigin` breaks vanilla file://, 4 CORS errors → 0 with `--allow-file-access-from-files`). Four-slice falsifier R=0.978 inside ±15% band → no signal. Filed `inbox/20261115-1936-or-zai-sitting-20261115-review.md`.
 
 - **Done previous session (2026-11-15):**
   - Filed P-345 testing+innovation round 2 follow-up: platform smallest-version build order (receipt diff viewer → Sim Lab → DIALS), framework settle rule (fourth rule subsuming Glyph/Ernie/Inkling: ≥15% repair cycles on ≥2/3 slices AND not slower than Vue by >5% wall-clock, tie→Vue). Committed `inbox/20261115-1304-or-testing-innovation-round2.md`, pushed commit 3fd458ad.
@@ -27,15 +28,16 @@
   - Architect decision on P-156/P-163 product integration (reviews filed as improved).
 
 ## What the next session needs
-- **Read first:** `_agents/QUEUE.md` (live on `origin/council/muse`), fresh-start design review (`inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`), P-158 review, P-162 review, P-345 round 2 filing.
-- **Open questions:** REV 4 status; Owner/Architect decisions on C.1-C.3; P-156/P-163 integration timing; whether council should track w89 design-token adoption in the two fresh-start repos.
-- **Do not redo:** fresh-start design review (committed, pushed); P-345 round 2 filing; P-158 review (improved); P-162 review (improved); all committed and pushed.
+- **Read first:** `_agents/QUEUE.md` (live on `origin/council/muse`), fresh-start design review (`inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`), P-158 review, P-162 review, P-345 round 2 filing, Z.ai sitting review (`inbox/20261115-1936-or-zai-sitting-20261115-review.md`).
+- **Open questions:** REV 4 status; Owner/Architect decisions on C.1-C.3; P-156/P-163 integration timing; whether council should track w89 design-token adoption in the two fresh-start repos; whether the two Architect findings (feed.ts OT bug, Vite crossorigin) are already re-pinned.
+- **Do not redo:** fresh-start design review; P-345 round 2 filing; P-158 review; P-162 review; Z.ai sitting review — all committed and pushed.
 
 ## Files in this lane (this session)
 - `inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md` (design review VERIFIED, commit 9521f734)
 - `inbox/20261115-1304-or-testing-innovation-round2.md` (P-345)
 - `inbox/20261115-1310-or-P-158-review.md` (P-158 VERDICT: improved)
 - `inbox/20261115-1320-or-P-162-review.md` (P-162 VERDICT: improved)
+- `inbox/20261115-1936-or-zai-sitting-20261115-review.md` (Z.ai sitting review VERDICT: improved)
 - `bulletin/20261115-1304-or.md` (previous session)
 
 ## Worktree
