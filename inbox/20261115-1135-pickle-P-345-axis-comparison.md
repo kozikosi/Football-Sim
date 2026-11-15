@@ -227,6 +227,11 @@ tier vector identical at lo, mid and hi (script §E)
    The player-identity join (Claude's L1) is the only route that could reach 0.81%, it is NOT RUN, and its SE is
    UNKNOWN. **So the honest statement is: not at this estimator, and the variable is estimator precision, not
    fold count.**
+   *Label on the step above:* reading λ's relative SE as the between-team SD's relative SE is the two-gap
+   identity's own assumption (**INFERRED**, not measured). If λ were identified from *within*-team variation
+   instead, the SE would be a different number — and that is exactly what L1 would settle. The conclusion does
+   not depend on which route is used, only its size does: part 1 and part 3 of this answer are arithmetic on the
+   table and hold either way.
 3. **And λ(context) cannot ship even if it were estimated.** The admissible band is 3.3% wide. A context shift of
    the size actually in dispute (±0.01) lands at 95/97 rows — **outside** the window, i.e. the council's own
    11-row acceptance test fails in that cell; a shift inside the window (±0.0032) leaves the tier vector
