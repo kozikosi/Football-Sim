@@ -1,0 +1,13 @@
+== verification 4 · inner app ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/67-cakepanz-s3-s4-rev2 · cmd: sha256sum -c MANIFEST.txt && diff -rq src/engine <(git archive 4ca9a071 -- colors/src | tar -x -C $SCRATCH)
+run at: 2026-11-15T06:47:31Z
+note: MANIFEST.txt regenerated this sitting over the shipped bytes (186 files incl. the new batteries/probe-fileboot.mjs; it lists every file except itself — 185 entries). The vendor contract check is unchanged: the engine against pin 4ca9a071. Path mapping: src/engine/core ↔ colors/src/core · src/engine/platform ↔ colors/src/platform · src/engine/sports/nfl/{app,engine,view} ↔ colors/src/sports/nfl/{app,engine,view}.
+-- output 1: sha256sum -c MANIFEST.txt --
+tools/tools/tsc-baseline.mjs: OK
+tsconfig.json: OK
+vite.config.js: OK
+185
+-- output 2: the vendor diff (52/52 expected) --
+diff exit: 0 (0 = identical)
+0
+-- end (185 OK lines in output 1; 0 differing files in output 2 = PASS) --
