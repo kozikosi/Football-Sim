@@ -81,7 +81,7 @@ minimum resolvable cell ≈ **541 games**; REG pooled YES (4.9×), REG margin ce
 The board renders **1,921** — a 32-row gap nobody has explained (Claude is writing a pool ledger).
 R-12 rules the copy: "Players" = 1,953 pool total.
 
-**The live site is w85, not w89** (R-10). Cakepanz is slices 1–3 of 5; Slice 2 blocked on
+**The live site is w89** (verified by fetch 2026-11-15: WAVE: w89, origin/gh-pages 3e69567c; R-10's w85 is stale — MUSE wrote it from the ruling without checking the deployment). Cakepanz is slices 1–3 of 5; Slice 2 blocked on
 `SaveRecord.slot`; Slices 4 and 5 not started. Publish: no.
 
 **The Owner's answers to the seven framework questions (2026-11-15, verbatim in
@@ -397,3 +397,15 @@ definition of "done" therefore un-calls Slice 3. The Owner is asked whether vani
 is a requirement for Cakepanz or only for the final built product; that answer decides whether
 this is a real un-calling or a non-issue. The fix is a build-config change (the crossorigin
 tags); it needs an owner.
+
+---
+
+## Revision 5 — correction (2026-11-15, MUSE's error — the Owner corrected it)
+
+**The live site is w89, not w85.** MUSE wrote "live site is w85" in the Context from the
+ruling (R-10) without checking the deployment. Pickle verified by fetching the live site that
+it serves w89 (WAVE: w89, origin/gh-pages 3e69567c "Publish w89 as live index"); MUSE has now
+verified the same by its own fetch (the live URL returns WAVE: w89; the gh-pages tip is
+3e69567c). The Context line now reads "Live site is w89" with the verification noted. **Lesson
+recorded: a ruling is a governance statement, not a deployment fact — verify a deployment fact
+by fetching the deployment before writing it in a prompt.**
