@@ -15,8 +15,11 @@ export type Unit = 'offense' | 'defense' | 'special';
 
 export interface SlotDef { id: SlotId; weight: number; dest: Dest; unit: Unit }
 
-// Weights are the engine's fitted inputs (lineup and draft maths), in one fixed unit (1 point = 0.00254 wins over a 70 -> 90 upgrade).
-// Owner 8 Nov: the salary table they were fitted to is retired (reference only); the DISPLAYED weights are measuredDisplayWeights() in value.ts.
+// RETIRED REFERENCE TABLE (P-318, 14 Nov 2026). Draft, lineup and the board no longer read these weights: they ask a ValueProvider
+// (valueprovider.ts), whose default is MEASURED on the matchup model. The table stays because tests and lab tools compare against it
+// (tableValues() wraps it as a provider), and because tools/mathlab/design.json is checked against it key by key.
+// Unit: 1 point = 0.00254 wins over a 70 -> 90 upgrade. Owner 8 Nov: the salary table they were fitted to is retired; the DISPLAYED
+// weights are measuredDisplayWeights() in value.ts.
 // Source: _agents/ENGINE-MATH-SPEC.md section 2 plus REV 4 (DL5 140) and REV 5 (TE3 10, WR4 10); equal to
 // tools/mathlab/design.json, which a test compares key by key.
 export const SLOTS: readonly SlotDef[] = [
@@ -59,9 +62,10 @@ export const WEIGHT: Readonly<Record<SlotId, number>> = Object.fromEntries(SLOTS
 
 export type Base = '4-3' | '3-4';
 
-// One spot as it plays under a formation. `row` is the spot whose weights and spec rows the math uses for it
+// One spot as it plays under a formation. `row` is the spot whose value and spec rows the math uses for it
 // (Owner 25 Oct: "OLB are treated the same as WILLs, ILB the same as MIKEs"), `label` is the name the user sees.
-export interface FieldSlot { slot: SlotId; dest: Dest; row: SlotId; weight: number; label: string }
+// No weight lives here (P-318): what a spot is worth comes from a ValueProvider, keyed by `row`.
+export interface FieldSlot { slot: SlotId; dest: Dest; row: SlotId; label: string }
 
 const LABEL: Partial<Record<SlotId, string>> = {
   WR1: 'WR1', MIKE: 'MIKE', WILL: 'WILL', SAM: 'SAM', CB3: 'Nickel', DE1: 'DE1', DE2: 'DE2',
@@ -74,13 +78,13 @@ const LABEL: Partial<Record<SlotId, string>> = {
 // is INFERRED to stay a rotational lineman; not measured).
 export function fieldSlots(base: Base): FieldSlot[] {
   return SLOTS.map((s): FieldSlot => {
-    const plain: FieldSlot = { slot: s.id, dest: s.dest, row: s.id, weight: s.weight, label: LABEL[s.id] ?? s.id };
+    const plain: FieldSlot = { slot: s.id, dest: s.dest, row: s.id, label: LABEL[s.id] ?? s.id };
     if (base === '4-3') return plain;
     switch (s.id) {
       case 'DT1': return { ...plain, label: 'NT' };
       case 'MIKE': return { ...plain, label: 'ILB1' };
-      case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', weight: WEIGHT.DT2, label: 'ILB2' };
-      case 'WILL': return { slot: 'WILL', dest: 'OLB', row: 'WILL', weight: WEIGHT.WILL, label: 'OLB1' };
+      case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', label: 'ILB2' };
+      case 'WILL': return { slot: 'WILL', dest: 'OLB', row: 'WILL', label: 'OLB1' };
       case 'SAM': return { ...plain, label: 'OLB2' };
       default: return plain;
     }

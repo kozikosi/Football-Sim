@@ -7,7 +7,6 @@ import type { GoneOdds } from '../engine/goneodds.ts';
 import { goneDisplay, showDecimal, showInt } from '../engine/display.ts';
 import { fit } from '../engine/flex.ts';
 import { TEAMS } from '../engine/league.ts';
-import { WINS_PER_UNIT } from '../engine/lineup.ts';
 import { SLOT_IDS, SLOTS, fieldSlots } from '../engine/slots.ts';
 import type { Dest, SlotId } from '../engine/slots.ts';
 
@@ -40,7 +39,7 @@ export function boardVM(st: DraftState, userTeam: number, odds: GoneOdds, opts: 
     // the primary spot is the best NATURAL open spot (a corner is shown as a corner), else the best flex spot
     const nat = cs.filter((c) => fit(c.player.role, DEST[c.slot]).penalty === 0).sort((a, b) => b.wins - a.wins);
     const main = nat[0] ?? cs.slice().sort((a, b) => b.wins - a.wins)[0];
-    const p = main.player, w = main.wins * WINS_PER_UNIT, g = goneChance(odds, p.id), pr = w * g;
+    const p = main.player, w = main.wins, g = goneChance(odds, p.id), pr = w * g;
     const alsoFits = cs.filter((c) => c.slot !== main.slot && open.has(c.slot))
       .map((c) => ({ c, pen: fit(c.player.role, DEST[c.slot]).penalty })).filter((x) => showFlex(x.pen, round))
       .sort((a, b) => b.c.wins - a.c.wins).map((x) => ({ slotId: x.c.slot, slotLabel: slotLabel(x.c.slot), flex: x.pen === 0 ? '' : `-${x.pen} flex` }));

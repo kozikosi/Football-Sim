@@ -17,6 +17,8 @@ const { buildPool } = await src('sports/nfl/engine/players.ts');
 const { makeRng } = await src('core/rng.ts');
 const { DEFAULT_CONFIG, newDraft, runDraft } = await src('sports/nfl/engine/draft.ts');
 const { lineupFor } = await src('sports/nfl/engine/lineup.ts');
+// P-318 (14 Nov 2026): lineupFor now spends a ValueProvider (MEASURED by default). This tool varies the FITTED weights, so it asks for the retired table explicitly (tableValues reads WEIGHT live, so the in-memory mutations below still take effect).
+const { tableValues } = await src('sports/nfl/engine/valueprovider.ts');
 const { FLEX } = await src('sports/nfl/engine/flex.ts');
 const { SLOTS } = await src('sports/nfl/engine/slots.ts');
 
@@ -33,6 +35,7 @@ const EXEMPT = new Set((arg('exempt', '') || '').split(',').filter(Boolean));   
 const read = (p) => fs.readFileSync(path.join(root, '..', 'data', 'nfl', p), 'utf8');
 const pool = buildPool(read('madden27-ratings.csv'), read('free-agents-old-ratings.csv'), read('player-ids.csv'));
 const bestNat = {};
+const TW = Object.fromEntries(SLOTS.map((s) => [s.id, s.weight]));
 for (const s of SLOTS) { const r = s.dest === 'NICKEL' || s.dest === 'DIME' ? 'CB' : s.dest === 'DL5' ? 'DT' : s.dest; bestNat[r] = Math.max(bestNat[r] ?? 0, s.weight); }
 const range = (s) => { const [a, b] = s.split('-').map(Number); return [a, b ?? a]; };
 
@@ -46,13 +49,13 @@ function scan(seeds) {
       const pl = Object.values(ros);
       for (const base of ['4-3', '3-4']) {
         lineups++;
-        for (const p of lineupFor(pl, base).placements) {
+        for (const p of lineupFor(pl, base, tableValues()).placements) {
           if (!p.player || p.player.ovr < MIN) continue;
           stars++;
           const r = p.player.role;
           if (r === p.slot.dest || p.penalty === 0) continue;
           off++;
-          if (p.slot.weight > (bestNat[r] ?? 0) && !EXEMPT.has(`${r}>${p.slot.dest}`)) {
+          if (TW[p.slot.row] > (bestNat[r] ?? 0) && !EXEMPT.has(`${r}>${p.slot.dest}`)) {
             const key = `${r}>${p.slot.dest}`, e = promo.get(key) ?? { n: 0, emergency: 0, ex: [] };
             e.n++; if (p.emergency) e.emergency++;
             if (e.ex.length < 3) e.ex.push(`${p.player.name} ${p.player.ovr} at ${p.slot.slot} -${p.penalty}`);

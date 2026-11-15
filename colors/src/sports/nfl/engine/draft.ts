@@ -7,8 +7,13 @@ import { fit } from './flex.ts';
 import type { Player, Role } from './players.ts';
 import type { Rng } from '../../../core/rng.ts';
 import { at } from '../../../core/at.ts';
-import { SLOTS, SLOT_IDS, WEIGHT } from './slots.ts';
-import type { Dest, SlotId } from './slots.ts';
+import { SLOTS, SLOT_IDS } from './slots.ts';
+import type { Base, Dest, SlotId } from './slots.ts';
+import { DEFAULT_VALUES, WINS_PER_UNIT } from './valueprovider.ts';
+import type { ValueProvider } from './valueprovider.ts';
+
+// The draft values a spot at its 4-3 row (4-3 and 3-4 carry the same value per position, Owner 2 Nov ruling), through a ValueProvider (P-318).
+const DRAFT_BASE: Base = '4-3';
 
 export const TEAMS_N = 32;
 export const ROUNDS = SLOT_IDS.length;              // 32 spots, so 32 rounds: every team fills every spot
@@ -77,9 +82,9 @@ function replacement(st: DraftState): Partial<Record<Role, number>> {
   return out;
 }
 
-export interface Candidate { player: Player; slot: SlotId; eff: number; wins: number }   // wins: weight x (eff - replacement), the model's value in weight-OVR units
+export interface Candidate { player: Player; slot: SlotId; eff: number; wins: number }   // wins per season: the spot's value per OVR point x (eff - replacement)
 // Every (player, open spot) pair that is natural or a listed flex (no emergency fills), best 16 per role.
-export function candidates(st: DraftState, team: number): Candidate[] {
+export function candidates(st: DraftState, team: number, values: ValueProvider = DEFAULT_VALUES): Candidate[] {
   const open = openSlots(at(st.rosters, team)), repl = replacement(st), seen: Partial<Record<Role, number>> = {}, out: Candidate[] = [];
   const round = roundOf(st);
   for (const p of st.pool) {
@@ -90,7 +95,7 @@ export function candidates(st: DraftState, team: number): Candidate[] {
       const f = fit(p.role, DEST_OF[s]);
       if (!f.legal || f.emergency) continue;
       const eff = p.ovr - f.penalty, rl = Math.max(repl[supplyRole(DEST_OF[s])] ?? 0, st.cfg.replFloor);
-      out.push({ player: p, slot: s, eff, wins: WEIGHT[s] * (eff - rl) });
+      out.push({ player: p, slot: s, eff, wins: Math.round(values.winsPerOvr(s, DRAFT_BASE) * (eff - rl) * 1e9) / 1e9 });   // on the 1e-9 grid: equal values stay EXACTLY equal (300 x 10 vs 150 x 20), so the OVR tiebreaks below still see ties, not float noise
     }
   }
   return out;
@@ -101,12 +106,13 @@ function floorFor(st: DraftState): number {
   return r <= c.topFloorRounds ? top - c.topFloor : r <= c.midFloorRounds ? top - c.midFloor : -Infinity;
 }
 // The CPU's choice for `team`, with its own taste and noise; never below the round's floor.
-export function cpuChoose(st: DraftState, team: number, rng: Rng): { player: Player; slot: SlotId } {
+export function cpuChoose(st: DraftState, team: number, rng: Rng, values: ValueProvider = DEFAULT_VALUES): { player: Player; slot: SlotId } {
   const tr = at(st.traits, team), floor = floorFor(st);
-  let cs = candidates(st, team).filter((c) => c.player.ovr >= floor);
-  if (!cs.length) cs = candidates(st, team);
+  let cs = candidates(st, team, values).filter((c) => c.player.ovr >= floor);
+  if (!cs.length) cs = candidates(st, team, values);
   if (!cs.length) return emergency(st, team);
-  const scored = cs.map((c) => ({ c, v: c.wins * (tr.bias[DEST_OF[c.slot]] ?? 1) * Math.max(0.02, 1 + tr.noise * rng.normal()) + 0.002 * c.player.ovr }));
+  // The 0.002 x OVR term is a tiebreak that was sized when `wins` was in fitted-weight units; WINS_PER_UNIT keeps it the same share of the score now that `wins` is in wins.
+  const scored = cs.map((c) => ({ c, v: c.wins * (tr.bias[DEST_OF[c.slot]] ?? 1) * Math.max(0.02, 1 + tr.noise * rng.normal()) + 0.002 * WINS_PER_UNIT * c.player.ovr }));
   scored.sort((a, b) => b.v - a.v);
   let k = 0;
   if (scored.length > 8 && rng.next() < tr.miss) k = Math.min(scored.length - 1, 3 + Math.min(9, Math.floor(Math.abs(rng.normal()) * 4)));
@@ -136,24 +142,25 @@ export function applyPick(st: DraftState, team: number, player: Player, slot: Sl
 
 // ---- how a user might pick (used by the calibration, and later as board advice) ----
 export type UserPolicy = 'greedy' | 'top30' | 'favorites';
-export function userChoose(st: DraftState, team: number, rng: Rng, policy: UserPolicy): { player: Player; slot: SlotId } {
-  const cs = candidates(st, team);
+export function userChoose(st: DraftState, team: number, rng: Rng, policy: UserPolicy, values: ValueProvider = DEFAULT_VALUES): { player: Player; slot: SlotId } {
+  const cs = candidates(st, team, values);
   if (!cs.length) return emergency(st, team);
   if (policy === 'greedy') { cs.sort((a, b) => b.wins - a.wins || b.player.ovr - a.player.ovr); return at(cs, 0); }
   if (policy === 'top30') { cs.sort((a, b) => b.wins - a.wins); return rng.pick(cs.slice(0, 30)); }
   // favorites: takes the best-rated players with no regard to the spot's worth (any open spot he fits, the cheapest first)
-  cs.sort((a, b) => b.player.ovr - a.player.ovr || WEIGHT[a.slot] - WEIGHT[b.slot]);
+  const w = (s: SlotId): number => values.winsPerOvr(s, DRAFT_BASE);
+  cs.sort((a, b) => b.player.ovr - a.player.ovr || w(a.slot) - w(b.slot));
   const best = at(cs, 0).player.ovr, same = cs.filter((c) => c.player.ovr === best);
-  same.sort((a, b) => WEIGHT[a.slot] - WEIGHT[b.slot]);
+  same.sort((a, b) => w(a.slot) - w(b.slot));
   return at(same, 0);
 }
 
 // Runs the whole draft; `user` (team index) picks by `policy`, everyone else by cpuChoose.
-export function runDraft(st: DraftState, rng: Rng, user?: { team: number; policy: UserPolicy }): void {
+export function runDraft(st: DraftState, rng: Rng, user?: { team: number; policy: UserPolicy }, values: ValueProvider = DEFAULT_VALUES): void {
   const r = rng.fork('picks'), ru = rng.fork('user');
   while (st.pos < st.order.length) {
     const team = at(st.order, st.pos);
-    const c = user && user.team === team ? userChoose(st, team, ru, user.policy) : cpuChoose(st, team, r);
+    const c = user && user.team === team ? userChoose(st, team, ru, user.policy, values) : cpuChoose(st, team, r, values);
     applyPick(st, team, c.player, c.slot);
   }
 }

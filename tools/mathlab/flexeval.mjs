@@ -17,6 +17,8 @@ const { buildPool } = await src('sports/nfl/engine/players.ts');
 const { makeRng } = await src('core/rng.ts');
 const { DEFAULT_CONFIG, newDraft, runDraft } = await src('sports/nfl/engine/draft.ts');
 const { lineupFor } = await src('sports/nfl/engine/lineup.ts');
+// P-318 (14 Nov 2026): lineupFor now spends a ValueProvider (MEASURED by default). This tool varies the FITTED weights, so it asks for the retired table explicitly (tableValues reads WEIGHT live, so the in-memory mutations below still take effect).
+const { tableValues } = await src('sports/nfl/engine/valueprovider.ts');
 const { FLEX } = await src('sports/nfl/engine/flex.ts');
 const { SLOTS, WEIGHT } = await src('sports/nfl/engine/slots.ts');
 const { measuredDisplayWeights } = await src('sports/nfl/engine/value.ts');
@@ -61,7 +63,7 @@ function scan(seeds) {
       for (const role of new Set(pl.map((p) => p.role))) pl.filter((p) => p.role === role).sort((x, y) => y.ovr - x.ovr || String(x.id).localeCompare(String(y.id))).forEach((p, i) => rank.set(p.id, i + 1));
       for (const bs of ['4-3', '3-4']) {
         lineups++;
-        for (const p of lineupFor(pl, bs).placements) {
+        for (const p of lineupFor(pl, bs, tableValues()).placements) {
           if (!p.player) continue;
           slotsFilled++;
           const r = p.player.role;
@@ -71,7 +73,7 @@ function scan(seeds) {
           const k = rank.get(p.player.id) ?? 1, sl = slotsOf(r, w), nat = sl[Math.min(k, sl.length) - 1];
           if (r === p.slot.dest || p.penalty === 0 || NATURAL_ZERO(r, p.slot.dest, p.penalty) || !nat) continue;
           offRole++;
-          if (p.slot.weight <= w[nat.id]) continue;     // not "encouraged": the spot is no heavier than his natural one
+          if (WEIGHT[p.slot.row] <= w[nat.id]) continue;     // not "encouraged": the spot is no heavier than his natural one
           const c = p.emergency ? 'emergency' : k > 1 ? 'second' : p.penalty >= 10 ? 'high' : 'small';
           const key = `${r}>${p.slot.slot}`, e = cls[c].get(key) ?? { n: 0, pen: p.penalty, ex: [] };
           e.n++; if (e.ex.length < 2) e.ex.push(`${p.player.name} ${p.player.ovr} at ${p.slot.slot} -${p.penalty}`);

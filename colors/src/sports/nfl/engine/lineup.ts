@@ -1,18 +1,23 @@
-// Optimal lineup: who plays where. Maximises the sum over spots of (spot weight x effective OVR), where effective OVR
+// Optimal lineup: who plays where. Maximises the sum over spots of (spot value x effective OVR), where effective OVR
 // is the player's OVR minus the flex penalty (Pre-Colors maximised summed slot wins, which is the same thing: wins are
-// linear in OVR with the spot weight as slope). Solved exactly (Hungarian), so a flexed player appears only when the
+// linear in OVR with the spot value as slope). The spot value comes from a ValueProvider (valueprovider.ts; P-318), measured on the
+// matchup model by default; internally it is expressed in fitted-weight units (wins per OVR point / WINS_PER_UNIT, QB about 1000)
+// so the priority constants below keep their meaning. Solved exactly (Hungarian), so a flexed player appears only when the
 // move is worth it.
 //
 // Priorities, strongest first (each is a constant larger than everything below it):
 //  1. a quarterback never plays an unlisted spot (he is benched instead);
 //  2. every rostered player who can play plays, before any empty spot is filled with a replacement;
 //  3. as few emergency (-8) fills as possible;
-//  4. the highest total weight x effective OVR.
+//  4. the highest total value x effective OVR.
 import type { Player } from './players.ts';
 import { fit } from './flex.ts';
 import { hungarian } from '../../../core/hungarian.ts';
+import { at } from '../../../core/at.ts';
 import { fieldSlots } from './slots.ts';
 import type { Base, FieldSlot, SlotId } from './slots.ts';
+import { DEFAULT_VALUES, WINS_PER_UNIT } from './valueprovider.ts';
+import type { ValueProvider } from './valueprovider.ts';
 
 // An empty spot is rated as this (Pre-Colors rated a missing player 70).
 export const EMPTY_OVR = 70;
@@ -24,16 +29,26 @@ export interface Lineup {
   base: Base;
   placements: Placement[];                // one per spot, in spot-table order
   bench: Player[];
-  value: number;                          // sum of weight x effective OVR over all spots (empty spots at EMPTY_OVR)
+  value: number;                          // sum of spot value x effective OVR over all spots (empty spots at EMPTY_OVR), in fitted-weight units (x WINS_PER_UNIT = wins)
   emergencyFills: number;
 }
 
-// 1 weight point = 0.00254 wins over a 70 -> 90 upgrade (spec section 1), so one weight x OVR unit is this many wins.
-export const WINS_PER_UNIT = 0.00254 / 20;
+// One value x OVR unit is this many wins (1 weight point = 0.00254 wins over a 70 -> 90 upgrade, spec section 1). Defined with the provider; re-exported here.
+export { WINS_PER_UNIT };
 
-// `stay` maps a player id to the spot he holds now; keeping him there is worth `stayBonus` units, so a move happens only
-// when it gains more than that (used by adviseLineup; the plain optimum has no stay).
-export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[], stay?: ReadonlyMap<string, SlotId>, stayBonus = 0): Omit<Lineup, 'base'> {
+export interface LineupOpts {
+  /** maps a player id to the spot he holds now; keeping him there is worth `stayBonus` units, so a move happens only when it gains more than that (adviseLineup; the plain optimum has no stay) */
+  stay?: ReadonlyMap<string, SlotId>;
+  stayBonus?: number;
+  values?: ValueProvider;     // what a spot is worth; default MEASURED
+  base?: Base;                // which formation's values to ask for; default '4-3'
+}
+
+// The value of each spot as the solver spends it, in fitted-weight units, keyed by the spot's rating row.
+const unitsOf = (slots: readonly FieldSlot[], values: ValueProvider, base: Base): number[] => slots.map((f) => values.winsPerOvr(f.row, base) / WINS_PER_UNIT);
+
+export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[], opts: LineupOpts = {}): Omit<Lineup, 'base'> {
+  const { stay, stayBonus = 0, values = DEFAULT_VALUES, base = '4-3' } = opts, v = unitsOf(slots, values, base);
   const n = players.length, s = slots.length, k = n + s;
   // rows: n players, then s empty-spot fillers. columns: s spots, then n bench places.
   const cost: number[][] = [];
@@ -42,9 +57,9 @@ export function optimalLineup(players: readonly Player[], slots: readonly FieldS
     for (let j = 0; j < s; j++) {
       if (i < n) {
         const f = fit(players[i].role, slots[j].dest);
-        row[j] = f.legal ? -(PLAYS + slots[j].weight * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) - (stay?.get(players[i].id) === slots[j].slot ? stayBonus : 0) : ILLEGAL;
+        row[j] = f.legal ? -(PLAYS + at(v, j) * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) - (stay?.get(players[i].id) === slots[j].slot ? stayBonus : 0) : ILLEGAL;
       } else {
-        row[j] = -slots[j].weight * EMPTY_OVR;
+        row[j] = -at(v, j) * EMPTY_OVR;
       }
     }
     // bench columns: a player may sit (cost 0), a filler may be unused (cost 0)
@@ -59,12 +74,12 @@ export function optimalLineup(players: readonly Player[], slots: readonly FieldS
     const f = fit(players[i].role, slots[j].dest);
     placements[j] = { slot: slots[j], player: players[i], effOvr: players[i].ovr - f.penalty, penalty: f.penalty, emergency: f.emergency };
   }
-  const value = placements.reduce((t, p) => t + p.slot.weight * p.effOvr, 0);
+  const value = placements.reduce((t, p, j) => t + at(v, j) * p.effOvr, 0);
   return { placements, bench, value, emergencyFills: placements.filter((p) => p.emergency).length };
 }
 
-export function lineupFor(players: readonly Player[], base: Base): Lineup {
-  return { base, ...optimalLineup(players, fieldSlots(base)) };
+export function lineupFor(players: readonly Player[], base: Base, values: ValueProvider = DEFAULT_VALUES): Lineup {
+  return { base, ...optimalLineup(players, fieldSlots(base), { base, values }) };
 }
 
 // NOTE: no "best base" here on purpose. A formation changes who stands in a spot, never what the spot is worth: since the Owner's
@@ -86,20 +101,21 @@ export type Assignment = Partial<Record<SlotId, Player>>;
 export interface Move { slot: SlotId; from: Player | null; to: Player | null; flexPenalty: number }
 export interface Advice { lineup: Lineup; moves: Move[]; currentValue: number; gainWins: number }
 
-export function valueOf(assign: Assignment, slots: readonly FieldSlot[]): number {
-  return slots.reduce((t, sl) => { const p = assign[sl.slot]; return t + sl.weight * (p ? p.ovr - fit(p.role, sl.dest).penalty : EMPTY_OVR); }, 0);
+export function valueOf(assign: Assignment, slots: readonly FieldSlot[], values: ValueProvider = DEFAULT_VALUES, base: Base = '4-3'): number {
+  const v = unitsOf(slots, values, base);
+  return slots.reduce((t, sl, j) => { const p = assign[sl.slot]; return t + at(v, j) * (p ? p.ovr - fit(p.role, sl.dest).penalty : EMPTY_OVR); }, 0);
 }
 
-export function adviseLineup(current: Assignment, roster: readonly Player[], base: Base, minGainWins = 0.02): Advice {
+export function adviseLineup(current: Assignment, roster: readonly Player[], base: Base, minGainWins = 0.02, values: ValueProvider = DEFAULT_VALUES): Advice {
   const slots = fieldSlots(base);
   const stay = new Map<string, SlotId>();
   for (const sl of slots) { const p = current[sl.slot]; if (p) stay.set(p.id, sl.slot); }
-  const lineup: Lineup = { base, ...optimalLineup(roster, slots, stay, minGainWins / WINS_PER_UNIT) };
+  const lineup: Lineup = { base, ...optimalLineup(roster, slots, { stay, stayBonus: minGainWins / WINS_PER_UNIT, base, values }) };
   const moves: Move[] = [];
   for (const pl of lineup.placements) {
     const was = current[pl.slot.slot] ?? null;
     if ((was?.id ?? null) !== (pl.player?.id ?? null)) moves.push({ slot: pl.slot.slot, from: was, to: pl.player, flexPenalty: pl.penalty });
   }
-  const currentValue = valueOf(current, slots);
+  const currentValue = valueOf(current, slots, values, base);
   return { lineup, moves, currentValue, gainWins: (lineup.value - currentValue) * WINS_PER_UNIT };
 }

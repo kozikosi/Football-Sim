@@ -7,7 +7,8 @@
 // Nothing here edits the engine, flex.json or flex.ts, and no test suite is run. Run: node tools/mathlab/flexcensus.mjs
 import fs from 'fs';
 import { parseCsv } from '../../colors/src/sports/nfl/engine/players.ts';
-import { fieldSlots } from '../../colors/src/sports/nfl/engine/slots.ts';
+import { SLOTS, fieldSlots } from '../../colors/src/sports/nfl/engine/slots.ts';
+import { tableValues } from '../../colors/src/sports/nfl/engine/valueprovider.ts';   // P-318: the engine spends a ValueProvider now; this census is about the FITTED table, so it asks for it
 import { FLEX } from '../../colors/src/sports/nfl/engine/flex.ts';
 import { optimalLineup, EMPTY_OVR, WINS_PER_UNIT } from '../../colors/src/sports/nfl/engine/lineup.ts';
 import { hungarian } from '../../colors/src/core/hungarian.ts';
@@ -17,6 +18,7 @@ const pool = parseCsv(fs.readFileSync(new URL('../../data/nfl/madden27-ratings.c
 const teams = [...new Set(pool.map((p) => p.team))].filter((t) => t !== 'Free Agent').sort();
 const rosters = Object.fromEntries(teams.map((t) => [t, pool.filter((p) => p.team === t)]));
 const slots = fieldSlots('4-3');
+const TW = Object.fromEntries(SLOTS.map((s) => [s.id, s.weight]));   // FieldSlot carries no weight (P-318): the table is read by rating row
 
 // ---- pluggable price (same rules as flex.ts fit(), overrides applied on top of the live table) ----
 const mkFit = (ov = {}) => {
@@ -37,15 +39,15 @@ function solve(players, fitFn) {
   for (let i = 0; i < k; i++) {
     const row = new Array(k).fill(0);
     for (let j = 0; j < s; j++) {
-      if (i < n) { const f = fitFn(players[i].role, slots[j].dest); row[j] = f.legal ? -(PLAYS + slots[j].weight * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) : ILLEGAL; }
-      else row[j] = -slots[j].weight * EMPTY_OVR;
+      if (i < n) { const f = fitFn(players[i].role, slots[j].dest); row[j] = f.legal ? -(PLAYS + TW[slots[j].row] * (players[i].ovr - f.penalty)) + (f.emergency ? EMERGENCY : 0) : ILLEGAL; }
+      else row[j] = -TW[slots[j].row] * EMPTY_OVR;
     }
     cost.push(row);
   }
   const asg = hungarian(cost), placed = [];
   let value = 0; const placements = slots.map((sl) => ({ slot: sl, player: null, penalty: 0, emergency: false, eff: EMPTY_OVR }));
   for (let i = 0; i < n; i++) { const j = asg[i]; if (j >= s) continue; const f = fitFn(players[i].role, slots[j].dest); placements[j] = { slot: slots[j], player: players[i], penalty: f.penalty, emergency: f.emergency, eff: players[i].ovr - f.penalty }; }
-  for (const p of placements) { value += p.slot.weight * p.eff; if (p.player) placed.push(p); }
+  for (const p of placements) { value += TW[p.slot.row] * p.eff; if (p.player) placed.push(p); }
   return { placements, value };
 }
 
@@ -53,7 +55,7 @@ function solve(players, fitFn) {
 const live = mkFit();
 let maxDiff = 0;
 for (const t of teams) {
-  const a = solve(rosters[t], live).value, b = optimalLineup(rosters[t], slots).value;
+  const a = solve(rosters[t], live).value, b = optimalLineup(rosters[t], slots, { values: tableValues() }).value;
   maxDiff = Math.max(maxDiff, Math.abs(a - b));
 }
 log('# flexcensus: does the lineup optimizer exploit a flex table? (read-only, 10 Nov 2026)');
@@ -106,7 +108,7 @@ for (const sc of SCEN) {
 }
 // ---- break-even surplus (analytic, same objective): a star src with surplus s over his replacement flexes to dst iff s > p * w_dst / (w_dst - w_src) ----
 log('\n## Break-even surplus s* = p * w_dst / (w_dst - w_src)  (OVR a star must beat his own in-position replacement by before the optimizer flexes him; lower = easier to exploit)');
-const W = Object.fromEntries(slots.map((s) => [s.slot, s.weight]));
+const W = Object.fromEntries(slots.map((s) => [s.slot, TW[s.row]]));
 for (const [src, dst, p, ws, wd] of [['C', 'OT', 6, W.C, W.OT2], ['C', 'OT', 12, W.C, W.OT2], ['C', 'OT', 12, W.C, W.OT1], ['C', 'OG', 6, W.C, W.OG1], ['FB', 'RB', 2, W.FB, W.RB1], ['FB', 'RB', 18, W.FB, W.RB1], ['FB', 'TE', 6, W.FB, W.TE1]]) {
   log(`- ${src}>${dst} at ${p}: w_src ${ws}, w_dst ${wd}: s* = ${(p * wd / (wd - ws)).toFixed(1)} OVR`);
 }

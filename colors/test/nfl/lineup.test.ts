@@ -6,11 +6,14 @@ import type { SlotId, Dest } from '../../src/sports/nfl/engine/slots.ts';
 import { FLEX, fit, EMERGENCY_PENALTY } from '../../src/sports/nfl/engine/flex.ts';
 import { hungarian } from '../../src/core/hungarian.ts';
 import { optimalLineup, lineupFor, placementOf, adviseLineup, valueOf, EMPTY_OVR } from '../../src/sports/nfl/engine/lineup.ts';
+import { DEFAULT_VALUES, WINS_PER_UNIT } from '../../src/sports/nfl/engine/valueprovider.ts';
 import type { Assignment } from '../../src/sports/nfl/engine/lineup.ts';
 import { buildPool } from '../../src/sports/nfl/engine/players.ts';
 import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
 import { makeRng } from '../../src/core/rng.ts';
 
+// What a spot is worth to the solver, in fitted-weight units, under the default (MEASURED) provider (P-318). FieldSlot carries no weight any more.
+const unit = (slot: SlotId | { row: SlotId }): number => DEFAULT_VALUES.winsPerOvr(typeof slot === 'string' ? slot : slot.row, '4-3') / WINS_PER_UNIT;
 const read = (p: string) => fs.readFileSync(new URL(p, import.meta.url), 'utf8');
 const design = JSON.parse(read('../../../tools/mathlab/design.json')) as Record<string, number>;
 const flexJson = JSON.parse(read('../../../tools/mathlab/flex.json')) as { roles: string[]; flex: Record<string, Record<string, number>> };
@@ -111,16 +114,16 @@ test('hungarian: rejects a non-square matrix', () => assert.throws(() => hungari
 
 // ---- formations ----
 test('4-3: every spot plays as itself', () => {
-  for (const f of fieldSlots('4-3')) { assert.equal(f.row, f.slot); assert.equal(f.weight, WEIGHT[f.slot]); }
+  for (const f of fieldSlots('4-3')) { assert.equal(f.row, f.slot); assert.equal('weight' in f, false, 'P-318: a field spot carries no weight, the provider owns value'); }
 });
 test('3-4: DT2 becomes ILB2 (rated DT2, 300); WILL is OLB1 (WILL); SAM is OLB2 and keeps the SAM rating (100); the rest is unchanged (Owner 2 Nov; weights 6 Nov)', () => {
   const f = Object.fromEntries(fieldSlots('3-4').map((x) => [x.slot, x]));
-  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.weight, f.DT2.label], ['ILB', 'DT2', 300, 'ILB2']);
-  assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.weight, f.WILL.label], ['OLB', 'WILL', 150, 'OLB1']);
-  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.weight, f.SAM.label], ['OLB', 'SAM', 100, 'OLB2']);
+  assert.deepEqual([f.DT2.dest, f.DT2.row, f.DT2.label], ['ILB', 'DT2', 'ILB2']);
+  assert.deepEqual([f.WILL.dest, f.WILL.row, f.WILL.label], ['OLB', 'WILL', 'OLB1']);
+  assert.deepEqual([f.SAM.dest, f.SAM.row, f.SAM.label], ['OLB', 'SAM', 'OLB2']);
   assert.equal(f.DT1.label, 'NT'); assert.equal(f.MIKE.label, 'ILB1');
   // the same position carries the same weight and rating row in both bases: only the standing of DT2 (now an ILB spot) differs
-  for (const x of fieldSlots('3-4')) { assert.equal(x.row, x.slot); assert.equal(x.weight, WEIGHT[x.slot]); }
+  for (const x of fieldSlots('3-4')) assert.equal(x.row, x.slot);
   const changed = fieldSlots('3-4').filter((x) => x.dest !== SLOTS.find((s) => s.id === x.slot)!.dest).map((x) => x.slot).sort();
   assert.deepEqual(changed, ['DT2']);                         // WILL and SAM keep their own rows; only their labels change
 });
@@ -136,16 +139,16 @@ test('lineup: a natural roster puts every player in a spot of his own role with 
   const l = lineupFor(natural(), '4-3');
   assert.equal(l.emergencyFills, 0); assert.equal(l.bench.length, 0);
   for (const p of l.placements) { assert.ok(p.player); assert.equal(p.penalty, 0); }
-  assert.equal(l.value, SLOTS.reduce((t, s) => t + s.weight * 70, 0));
+  assert.equal(l.value, fieldSlots('4-3').reduce((t, f) => t + unit(f) * 70, 0));
 });
 test('lineup: the best player takes the most valuable spot of his role, whatever slot he was drafted into', () => {
   const ps = natural(); const cbs = ps.filter((p) => p.role === 'CB');
-  cbs[2].ovr = 90;                                            // drafted as CB3, should play a spot at least as valuable as CB1 (400 > 100)
+  cbs[2].ovr = 90;                                            // drafted as CB3, should play a spot at least as valuable as CB1
   const l = lineupFor(ps, '4-3');
-  // 6 Nov 2026: WR1 (650) now outweighs CB1 (400) and a CB flexes to WR at -4, so the optimum may put him at WR1 (a finding for the Owner:
+  // 6 Nov 2026: WR1 now outweighs CB1 and a CB flexes to WR at -4, so the optimum may put him at WR1 (a finding for the Owner:
   // the flex table was built for the old weights). Either way he never sits at a spot worth less than CB1.
   const at = l.placements.find((p) => p.player === cbs[2])!;
-  assert.ok(at.slot.weight >= WEIGHT.CB1, `${at.slot.slot} ${at.slot.weight}`);
+  assert.ok(unit(at.slot) >= unit('CB1'), `${at.slot.slot} ${unit(at.slot)}`);
 });
 test('lineup: flex happens only when worth it; a 95 OT beats a 70 at a flex-4 price and does not leave his spot', () => {
   const ps = natural(); const ot = ps.filter((p) => p.role === 'OT'); ot[0].ovr = 95;
@@ -193,11 +196,11 @@ test('lineup: exact against brute force on a tiny custom spot list', () => {
     const used = new Array(ps.length).fill(false);
     const go = (i: number, em: number, val: number) => {
       if (i === spots.length) { if (em < best.em || (em === best.em && val > best.val)) best = { em, val }; return; }
-      for (let j = 0; j < ps.length; j++) if (!used[j]) { used[j] = true; const f = fit(ps[j].role, spots[i].dest); go(i + 1, em + (f.emergency ? 1 : 0), val + spots[i].weight * (ps[j].ovr - f.penalty)); used[j] = false; }
+      for (let j = 0; j < ps.length; j++) if (!used[j]) { used[j] = true; const f = fit(ps[j].role, spots[i].dest); go(i + 1, em + (f.emergency ? 1 : 0), val + unit(spots[i]) * (ps[j].ovr - f.penalty)); used[j] = false; }
     };
     go(0, 0, 0);
     assert.equal(got.emergencyFills, best.em, 'emergency count');
-    assert.equal(got.value, best.val, 'value');
+    assert.ok(Math.abs(got.value - best.val) <= 1e-9 * Math.abs(best.val), `value ${got.value} vs ${best.val}`);   // floats now: same terms, summed in a different order only when the optimum differs by a tie
   }
 });
 test('lineup: deterministic, and the value does not depend on the order the players are given', () => {
@@ -227,9 +230,9 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     const l = lineupFor(roster, '4-3');
     let greedy = 0;
     const taken = new Set<string>();
-    for (const s of [...fieldSlots('4-3')].sort((a, b) => b.weight - a.weight)) {
+    for (const s of [...fieldSlots('4-3')].sort((a, b) => unit(b) - unit(a))) {
       const c = roster.filter((p) => !taken.has(p.id) && fit(p.role, s.dest).legal).sort((a, b) => (b.ovr - fit(b.role, s.dest).penalty) - (a.ovr - fit(a.role, s.dest).penalty))[0];
-      if (c) { taken.add(c.id); greedy += s.weight * (c.ovr - fit(c.role, s.dest).penalty); } else greedy += s.weight * EMPTY_OVR;
+      if (c) { taken.add(c.id); greedy += unit(s) * (c.ovr - fit(c.role, s.dest).penalty); } else greedy += unit(s) * EMPTY_OVR;
     }
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
@@ -296,7 +299,7 @@ test('advice: a clear upgrade is suggested, a one-point difference is not', () =
   const ps = natural(70); const i3 = SLOTS.findIndex((s) => s.id === 'CB3');
   ps[i3] = { ...ps[i3], ovr: 95 };                              // a 95 sitting at CB3 beside a 70 at CB1
   const a = adviseLineup(slotMap(ps), ps, '4-3');
-  assert.ok(a.moves.some((m) => m.to?.ovr === 95 && WEIGHT[m.slot] >= WEIGHT.CB1));   // 6 Nov 2026: the 95 may be sent to WR1 (650) as well as CB1 (400)
+  assert.ok(a.moves.some((m) => m.to?.ovr === 95 && unit(m.slot) >= unit('CB1')));   // 6 Nov 2026: the 95 may be sent to WR1 as well as CB1
   assert.ok(a.gainWins >= 0.02);
   const ps2 = natural(70); ps2[i3] = { ...ps2[i3], ovr: 71 };    // 71 at CB3 vs 70 at CB1: worth 0.02 wins in all, under two moves' threshold
   assert.equal(adviseLineup(slotMap(ps2), ps2, '4-3').moves.length, 0);
@@ -317,7 +320,7 @@ test('advice: on 32 real rosters from natural best-per-spot lineups it moves far
   let plainMoves = 0, plainFlex = 0, advMoves = 0, advFlex = 0, plainGain = 0, advGain = 0;
   for (const team of [...new Set(pool.filter((p) => !p.freeAgent).map((p) => p.team))]) {
     const roster = pool.filter((p) => p.team === team), used = new Set<string>(), cur: Assignment = {};
-    for (const s of [...fieldSlots('4-3')].sort((a, b) => b.weight - a.weight)) {
+    for (const s of [...fieldSlots('4-3')].sort((a, b) => unit(b) - unit(a))) {
       const c = roster.filter((p) => !used.has(p.id) && fit(p.role, s.dest).legal && fit(p.role, s.dest).penalty === 0).sort((a, b) => b.ovr - a.ovr)[0];
       if (c) { used.add(c.id); cur[s.slot] = c; }
     }

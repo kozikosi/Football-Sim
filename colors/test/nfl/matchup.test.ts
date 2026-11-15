@@ -1,7 +1,7 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import { SLOTS, SLOT_IDS, fieldSlots } from '../../src/sports/nfl/engine/slots.ts';
+import { SLOTS, SLOT_IDS, WEIGHT, fieldSlots } from '../../src/sports/nfl/engine/slots.ts';
 import type { SlotId } from '../../src/sports/nfl/engine/slots.ts';
 import { teamRatings, spotsFromRecord, spotsOf, leagueBaseline } from '../../src/sports/nfl/engine/ratings.ts';
 import type { Ratings } from '../../src/sports/nfl/engine/ratings.ts';
@@ -96,8 +96,8 @@ test('formation: 3-4 offence and special spots measure the same as in 4-3 (withi
   }
   // the 3-4 defence now reads the table (within 1%): the same position carries the same weight in both bases (Owner 2 Nov)
   const def34 = fieldSlots('3-4').filter((f) => SLOTS.find((s) => s.id === f.slot)!.unit === 'defense');
-  for (const f of def34) assert.ok(Math.abs(b[f.slot] - f.weight) <= 50, `${f.slot}: table ${f.weight}, measured ${b[f.slot].toFixed(1)}`);   // within the Owner's 50 (6 Nov 2026), judged by absolute error
-  const ratios = def34.filter((f) => f.weight >= 200).map((f) => b[f.slot] / f.weight);
+  for (const f of def34) assert.ok(Math.abs(b[f.slot] - WEIGHT[f.row]) <= 50, `${f.slot}: table ${WEIGHT[f.row]}, measured ${b[f.slot].toFixed(1)}`);   // within the Owner's 50 (6 Nov 2026), judged by absolute error
+  const ratios = def34.filter((f) => WEIGHT[f.row] >= 200).map((f) => b[f.slot] / WEIGHT[f.row]);
   assert.ok(Math.max(...ratios) - Math.min(...ratios) < 0.04, ratios.map((r) => r.toFixed(3)).join(' '));
   assert.ok(Math.max(...ratios) < 1.06 && Math.min(...ratios) > 0.97, ratios.map((r) => r.toFixed(3)).join(' '));   // same position, same weight in both bases; since 6 Nov 2026 the defence reads about 4% above the table (each spec's coefficients sum to a fixed total, so the Owner's targets cannot all be met exactly), well inside the 50 room
 });
