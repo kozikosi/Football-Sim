@@ -1,0 +1,50 @@
+== player-game join receipt ==
+crosswalk: nflverse players.parquet, 24869 players with gsis_id, 22704 distinct pfr_ids, 0 duplicate-pfr rows dropped (kept first gsis); 11939 distinct nfl_ids, 0 duplicate-nfl rows dropped
+
+context: P-344 team_game_summary_2016-2025.csv, 5522 team-games, 2761 games
+
+   participation id mode: nfl_id
+2016: rows  23890 · games 267 · gsis mapped 100.0% · play-counts attached 100.0% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2017: rows  23862 · games 267 · gsis mapped 100.0% · play-counts attached 100.0% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2018: rows  23877 · games 267 · gsis mapped 100.0% · play-counts attached 100.0% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2019: rows  23862 · games 267 · gsis mapped  99.9% · play-counts attached  99.9% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2020: rows  24999 · games 269 · gsis mapped  99.9% · play-counts attached  99.9% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2021: rows  26468 · games 285 · gsis mapped  99.9% · play-counts attached  99.9% · season_type conflicts vs summary: 0
+   participation id mode: nfl_id
+2022: rows  26381 · games 284 · gsis mapped 100.0% · play-counts attached 100.0% · season_type conflicts vs summary: 0
+   participation id mode: gsis
+2023: rows  26540 · games 285 · gsis mapped  99.9% · play-counts attached  99.9% · season_type conflicts vs summary: 0
+   participation id mode: gsis
+2024: rows  26615 · games 285 · gsis mapped  99.8% · play-counts attached  99.8% · season_type conflicts vs summary: 0
+   participation id mode: gsis
+2025: rows  26613 · games 285 · gsis mapped  99.8% · play-counts attached  99.8% · season_type conflicts vs summary: 0
+
+TOTAL rows 253107 (P-344 INDEX expects 253,107) · games 2761 (expects 2,761)
+gsis coverage overall: 99.9% · play-count coverage: 99.9%
+season_type conflicts (snaps game_type vs summary season_type), all seasons: 0
+playoff rows (is_playoff=1): 11196 · REG rows: 241911
+position distribution (top 12):
+   LB     36492
+   WR     28065
+   CB     25921
+   DE     17458
+   RB     16967
+   TE     16610
+   T      15906
+   DT     14152
+   G      14053
+   FS      9186
+   SS      8655
+   C       7728
+spot check (2023 W1 WAS QB vs ARI): Sam Howell: snaps 71.0, plays 71.0, margin 4.0, home 1
+
+wrote /home/z/my-project/work/player_game_2016-2025.csv (253107 rows)
+wrote /home/z/my-project/zai-work/_agents/zai/deliveries/zai-sitting-2026-11-14/data/player-game/player_game_2016-2025.csv.gz (6245639 bytes gz)
+wrote sample /home/z/my-project/zai-work/_agents/zai/deliveries/zai-sitting-2026-11-14/data/player-game/sample-2016-head25.csv (first 25 rows)
+
+CLARIFICATION (appended 2026-11-15 sitting; the output above is unchanged): the per-season "play-counts attached N%" figure counts rows with ANY play-count column non-empty. It is NOT the per-column fill rate. Per column, recomputed this sitting from the shipped CSV (receipt: measurements/join-cell-census.txt): offense_pct / defense_pct / st_pct = 253,107/253,107 = 100.0% each; the RAW play-count columns are NOT 100% filled — n_plays_on_field 99.9%, n_off_plays 55,362/253,107 = 21.9%, n_def_plays 47,905/253,107 = 18.9%. Any estimator that conditions on raw play counts must carry that coverage (and the 2016–22 nfl_id / 2023–25 gsis_id bridge through players.parquet is the one place a season could silently drop; per-season row counts 23,862–26,615, uniform — none dropped).
