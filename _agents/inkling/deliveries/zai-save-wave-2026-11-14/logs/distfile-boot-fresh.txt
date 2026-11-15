@@ -1,0 +1,21 @@
+== distfile boot — fresh run (regenerated receipt for inbox-20261114-zai-v3-experiments.md, Experiment 2 / prompt §2.5) ==
+build: open-wave-v3 arm-svelte dist-file (sha256 f18bc4e8…, byte-identical on council/glyph · ernie · beam · inkling)
+NOTE (erratum found this sitting): the filing's "859f99cc… index.html" matches no artifact I can find — sha256 of the dist-file index.html is f18bc4e8… and its git blob sha1 is d805044c…; the four-seat-identical build above is what was measured, both sittings.
+cwd: /home/z/my-project/work/bootrun (script byte-identical copy, sha256 b3c74620…) · cmd: node distfile-boot-experiment.mjs (playwright chromium, file:// URL, page.route ^https?:// abort = network blocked, CDP Emulation.setCPUThrottlingRate)
+env: node v24.22.3 · playwright 1.57.0 · chromium-1200 · linux 5.10.134 x86_64
+result: desktop 1280x800 @1x — domContent 1335 ms, first rows 1367 ms (67 matched nodes), 0 blocked requests, 0 page errors · mobile 390x844 @6x CPU throttle — domContent 10179 ms, first-paint 10276 ms, first rows 10364 ms (67 nodes), 0 blocked, 0 errors
+finding (unchanged class): 6x CPU throttle costs ~7.6x on first paint (1.3 s → 10.2 s), roughly linear with CPU, no I/O cliff — a 390 px low-end phone lands in the seconds-class, not the hundreds-of-ms class; the offline requirement holds (0 blocked requests at file://).
+pick-path: no clickable PICK/DRAFT button in the board-only build (locator waits time out) — same not-measurable-here verdict as the filed run; recorded, not faked.
+JSON receipt: measurements/distfile-boot.json (the script's own output, same run as the stdout below)
+== full stdout (SAME run as the JSON above) ==
+[desktop-1x] viewport 1280x800 cpu=1x · domContent 1335 ms · first rows 1367 ms (67 matched nodes) · paint []
+[desktop-1x] pick attempt: TimeoutError: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('button').filter({ hasText: /PI
+[desktop-1x] blocked network requests: 0 · page errors: 0
+[mobile-6x] viewport 390x844 cpu=6x · domContent 10179 ms · first rows 10364 ms (67 matched nodes) · paint [{"first-paint":10276},{"first-contentful-paint":10276}]
+[mobile-6x] pick attempt: TimeoutError: locator.click: Timeout 30000ms exceeded.
+Call log:
+  - waiting for locator('button').filter({ hasText: /PI
+[mobile-6x] blocked network requests: 0 · page errors: 0
+wrote /home/z/my-project/work/distfile-boot.json

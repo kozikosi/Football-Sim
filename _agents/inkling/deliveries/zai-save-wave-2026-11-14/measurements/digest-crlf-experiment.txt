@@ -1,0 +1,6 @@
+LF   colors/ @ d3bd81d2: 432a1701744b91fc92f807931d789cf49a8daf0da529298f0013898f195e272d · files 112
+CRLF same tree       : 7af5279953be55d74bfcf656bb6c48b08cf44c18661ba72d83e3e6d1e8c29072 · files 112 · (112 files converted)
+expect LF  = 432a1701744b91fc92f807931d789cf49a8daf0da529298f0013898f195e272d
+expect CRLF= 7af5279953be55d74bfcf656bb6c48b08cf44c18661ba72d83e3e6d1e8c29072
+LF match  : true
+CRLF match: true
