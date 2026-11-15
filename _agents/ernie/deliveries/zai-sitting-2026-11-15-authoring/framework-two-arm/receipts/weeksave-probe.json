@@ -1,0 +1,17 @@
+{
+ "vue": {
+  "slotC": "SLOT CWEEK SAVE · year 2027 · next week 5 · 4 scores · 0 playoff gamesseed 2027 · run 0 · hydration only — the week-stepper screen does not exist yet, LOAD stays refusedSAVELOAD",
+  "hydrated": true,
+  "loadRefused": true,
+  "loadMsg": "slot C holds a week save, not a draft",
+  "errorCount": 0
+ },
+ "svelte": {
+  "slotC": "SLOT C WEEK SAVE · year 2027 · next week 5 · 4 scores · 0 playoff games seed 2027 · run 0 · hydration only — the week-stepper screen does not exist yet, LOAD stays refused SAVE LOAD",
+  "hydrated": true,
+  "loadRefused": true,
+  "loadMsg": "slot C holds a week save, not a draft",
+  "errorCount": 0
+ }
+}
+== WEEK-SAVE HYDRATION: PASS on both arms — the week envelope SHOWS its state, LOAD stays refused by kind ==

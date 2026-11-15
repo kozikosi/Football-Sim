@@ -1,0 +1,22 @@
+{
+ "dist": "/home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/index.html",
+ "flagged": {
+  "mounted": true,
+  "blocked": 0,
+  "errorCount": 0,
+  "errors": []
+ },
+ "vanilla": {
+  "mounted": false,
+  "blocked": 0,
+  "errorCount": 4,
+  "errors": [
+   "console: Access to CSS stylesheet at 'file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/assets/index-BfFN2kUF.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-untrusted, data, http, https.",
+   "console: Failed to load resource: net::ERR_FAILED",
+   "console: Access to script at 'file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/assets/index-CDxIy7QQ.js' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-untrusted, data, http, https.",
+   "console: Failed to load resource: net::ERR_FAILED"
+  ]
+ }
+}
+FLAGGED BOOT: PASS (mounted=true, blocked=0, errors=0)
+VANILLA BOOT: FAIL (expected on pin d3bd81d2): mounted=false, errors: console: Access to CSS stylesheet at 'file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/assets/index-BfFN2kUF.css' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: chrome, chrome-untrus
