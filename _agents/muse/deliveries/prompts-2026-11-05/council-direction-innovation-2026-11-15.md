@@ -300,3 +300,69 @@ nfl1.14a4e9333e888a string. Both pass on old pins and fail on new ones. Suite is
 delete, and write the structural assertion if you recommend rewrite. What is the general rule —
 when a test's expected value goes stale on a pin move, is that a test to rewrite, or is the pin
 move the thing that should update the test?
+
+---
+
+## Revision 3 — additions (2026-11-15, after Ernie's comparison/fold-in 3725d2c4 and Inkling's rewrite 02b6115e, plus MUSE's low-end boot result)
+
+The following is incorporated into this prompt as Revision 3. It supersedes any conflicting
+wording above. The short copy-paste version (`council-short-direction-innovation-2026-11-15.md`,
+Revision 3) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R3.1 · The low-end boot has been run — the bundle does not decide (MUSE, 2026-11-15)
+
+Four-slice cold load, 6× CPU throttle, file://, network blocked, 10 trials per arm, median
+reported. Median first-contentful-paint: Vue 2102 ms, Svelte 2192 ms, delta −90 ms (Vue faster)
+— inside the ±100 ms noise floor. Median mounted: Vue 2185 ms, Svelte 2344 ms, delta −159 ms
+(Vue faster) — just beyond the noise floor, in Vue's favour. 390px: both arms pass cleanly.
+**The 10.9 KB bundle gap does NOT move interactive time in Svelte's favour. The bundle is a
+number, not a user-facing advantage for Svelte.** The direction is the opposite of what the
+bundle predicts. Cold-load time is dominated by framework startup and engine work, not by 11 KB
+of JS. **The bundle does not decide; the decision turns on authoring cost and tooling.** Noise
+caveat: per-trial spread is ~330–430 ms, much larger than the ±100 ms noise floor, so the
+medians carry real uncertainty; what is not noisy is the direction (Vue faster in every run and
+on both metrics; Svelte never faster). Z.ai's run of the same measurement is still wanted as an
+independent replication. **Consequence for MUSE's position:** the flip condition 'if the
+low-end boot shows the 11 KB moves interactive time beyond ±100 ms, flip to Svelte' does NOT
+fire. MUSE's lean (Vue, narrowly, on maintainability) is strengthened.
+
+### R3.2 · The platform question (Ernie's — added to Q4)
+
+**Does a platform's design surface change the framework decision, or is it neutral?** The
+platform concept is a platform to design your own simulation — what is the simulation-design
+surface, what are the similar attributes, what is the smallest version worth building first?
+Answer whether that surface changes which framework the project should pick, or whether the
+framework decision is neutral to it.
+
+### R3.3 · The structural assertion requirement (Ernie's — added to Q7)
+
+**If you recommend rewriting the two de-gated tests, write the code, not a description.** The
+lineup test needs the three structural checks in place of the 2400 number; the versions test
+needs MOVED/UNMOVED with the data stamp still asserted.
+
+### R3.4 · The eight candidates for "done" (Inkling's — added to Q5)
+
+Rule on these eight candidates (with pros and cons): (1) the two-arm bench battery passes;
+(2) the bench + a predict.md reading is part of done; (3) the four-line receipt discipline
+(cwd · cmd · ref · output); (4) save refusal works (corrupt and newer both); (5) the Owner has
+looked at it in his own browser; (6) the AGENTS.md style is enforced; (7) the w89 save path
+holds; (8) the bench passes from a fresh clone. Which are necessary? Which sufficient? Which
+are inert checks? What is missing entirely? Does "done" differ across slice mechanism (save,
+sim, feed) — where exactly? Who decides on disagreement — Architect, Owner, either?
+
+### R3.5 · The five candidates for "improvable" (Inkling's — added to Q6)
+
+Rule on these five candidates (or invent the sixth): (1) interactive-tag wins (whatever is more
+clickable/hoverable); (2) measurable wins (paint/bytes/cold-load); (3) replaces a w85 sentence
+with something better; (4) closes toward "broadcast-tier"; (5) strike it as a criterion
+entirely — beauty is a separate design track, not a quality gate.
+
+### R3.6 · The thirty-minutes test (Inkling's — replaces Q8)
+
+The move you would make first if you had the Owner's authority for thirty minutes. One stop,
+one start, one keep. Name the risk that bites.
+
+### R3.7 · Any section may be lawfully blank (Inkling's)
+
+Do not force an answer where there is nothing to say. A section may be lawfully blank.
