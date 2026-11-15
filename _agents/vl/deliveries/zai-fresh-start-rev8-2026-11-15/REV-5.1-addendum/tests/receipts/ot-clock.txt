@@ -1,0 +1,4 @@
+season 2027: NY Jets @ Seattle Seahawks · OT periods 1 · OT drives 2
+OT drive clocks as the ENGINE renders them: p5:Q4 00:00 · p5:Q4 -3:-4
+DEFECT CONFIRMED at pin d3bd81d2 (feed.ts l.59-60): 2/2 overtime drive(s) render a REGULATION clock (expected Q5+/OT) — verbatim: Q4 00:00, Q4 -3:-4
+OT-CLOCK: FAIL (the desired behaviour is not met) — this failure is the defect receipt; verify the fix at the next re-pin.

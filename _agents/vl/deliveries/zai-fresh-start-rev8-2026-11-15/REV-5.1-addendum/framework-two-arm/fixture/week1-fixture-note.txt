@@ -1,0 +1,6 @@
+== the two-arm fixture — re-minted on the CURRENT PIN d3bd81d2 (gates bump, 2026-11-15 authoring sitting) ==
+draft seed: 1000 · user team: Chicago Bears (index 20) · pool: buildPool over this tree's three CSVs (1,953 raw / 1,921 draftable after the LS filter)
+week-1 game: Chicago Bears @ Carolina Panthers — final 29-28 · drives 20 · scoring drives 10 · turnovers 0 (every one named as an INT/FUM chip)
+user drives 10 · lead changes 3 · userWon true
+both arms consume the identical bytes (fixture/week1-picks.json), call the identical feedVM, and render the identical feed — the framework is the only variable.
+prior fixture (old pin 4ca9a071): seed 1000, MIN @ CHI 21-11, 20 drives, 6 scoring, 3 turnovers — superseded by this re-mint if different.

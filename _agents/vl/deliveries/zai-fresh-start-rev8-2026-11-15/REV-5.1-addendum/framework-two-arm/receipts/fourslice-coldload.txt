@@ -1,0 +1,85 @@
+== four-slice low-end boot — independent replication (item 2) ==
+run: 2026-11-15T11:58:27Z · node v24.22.3 · playwright chromium (ms-playwright chromium-1200) · script: scripts/two-arm-coldload-v2.mjs
+protocol: 5 trials/arm · 6× CPU throttle · file:// (--allow-file-access-from-files, the app tree's probe convention) · network blocked (route abort) · median of 5 reported
+PROTOCOL DEFECT FIXED (MUSE's finding): the mounted marker is now the TEAM-SELECT BUTTON ('.cp-teambtn' count>0) — the first UI the app actually renders on a cold load. The old marker ('.cp-feed-line') never appears on a cold boot because the app boots to team-select, not the feed. This timing therefore measures 'app once booted' (see the CORS note below), with the team-select render as its mounted event.
+VANILLA FILE:// CAVEAT (MUSE, verified here again via offline-vanilla-boot.mjs — see receipts/offline-boot.txt): without --allow-file-access-from-files the dist does NOT boot (crossorigin CORS on the module script + stylesheet; blank page). So this run measures the app once booted, not the boot itself.
+
+-- per-trial + medians (ms) --
+{
+ "vue": {
+  "trials": [
+   {
+    "fcp": 2004,
+    "mountedTeamSelect": 2072
+   },
+   {
+    "fcp": 2108,
+    "mountedTeamSelect": 2185
+   },
+   {
+    "fcp": 2036,
+    "mountedTeamSelect": 2067
+   },
+   {
+    "fcp": 1860,
+    "mountedTeamSelect": 1945
+   },
+   {
+    "fcp": 2188,
+    "mountedTeamSelect": 2244
+   }
+  ],
+  "medianFcp": 2036,
+  "fcpSpread": "1860..2188",
+  "medianMounted": 2072,
+  "mountedSpread": "1945..2244",
+  "390px-board": {
+   "sw": 390,
+   "iw": 390,
+   "rows": 60
+  },
+  "390px-clean": true
+ },
+ "svelte": {
+  "trials": [
+   {
+    "fcp": 1916,
+    "mountedTeamSelect": 1991
+   },
+   {
+    "fcp": 2268,
+    "mountedTeamSelect": 2348
+   },
+   {
+    "fcp": 1948,
+    "mountedTeamSelect": 1969
+   },
+   {
+    "fcp": 2064,
+    "mountedTeamSelect": 2134
+   },
+   {
+    "fcp": 2004,
+    "mountedTeamSelect": 2082
+   }
+  ],
+  "medianFcp": 2004,
+  "fcpSpread": "1916..2268",
+  "medianMounted": 2082,
+  "mountedSpread": "1969..2348",
+  "390px-board": {
+   "sw": 390,
+   "iw": 390,
+   "rows": 60
+  },
+  "390px-clean": true
+ }
+}
+COLD LOAD 6x, marker=team-select button, median of 5: vue fcp=2036ms (1860..2188) mounted=2072ms (1945..2244) · svelte fcp=2004ms (1916..2268) mounted=2082ms (1969..2348)
+390px heaviest view (board): vue sw=390/390 rows=60 clean=true · svelte sw=390/390 rows=60 clean=true
+
+-- deltas (vue − svelte, median) --
+fcp: +32 ms (negative = vue faster; positive here = SVELTE faster)
+mounted(team-select): -10 ms (negative = vue faster; a wash)
+per-trial fcp:     vue 2004,2108,2036,1860,2188 · svelte 1916,2268,1948,2064,2004
+per-trial mounted: vue 2072,2185,2067,1945,2244 · svelte 1991,2348,1969,2134,2082

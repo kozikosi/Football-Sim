@@ -1,0 +1,36 @@
+/* cards.css — slice-5 player-card chrome, IDENTICAL BYTES in both arms. The app's own warm
+ * palette (#f5e9dd ink, #c8a48f sub, #e8c87e gold, #3a2c31 lines), the grid, the featured overlay
+ * and the beat-in (reduced-motion off-switch, the feed convention). No emojis, no labels — the
+ * tone edge IS the form (green/red only, style law). */
+.cp-cards-head { display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; justify-content: space-between; }
+.cp-cards-onclock { font-size: 0.85rem; color: #f5e9dd; font-weight: 800; }
+.cp-cards-count { font-size: 0.72rem; color: #c8a48f; }
+.cp-cards-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(168px, 1fr)); gap: 10px; margin-top: 10px; }
+.cp-card { border: 1px solid #3a2c31; border-left: 4px solid #a08b62; border-radius: 12px; background: linear-gradient(180deg, rgba(28, 19, 7, 0.92), rgba(11, 7, 3, 0.92)); padding: 10px 10px 8px; cursor: pointer; font-family: inherit; text-align: left; color: #f5e9dd; min-height: 150px; display: flex; flex-direction: column; gap: 4px; transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease; }
+.cp-card:hover { transform: translateY(-3px); border-color: #8a5f18; box-shadow: 0 6px 18px rgba(232, 200, 126, 0.10); }
+.cp-card:focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+.cp-card.cp-tone-good { border-left-color: #67b06a; }
+.cp-card.cp-tone-bad { border-left-color: #e08573; }
+.cp-card-mono { width: 34px; height: 34px; border-radius: 50%; border: 1px solid #e8c87e; color: #ecd9ad; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.8rem; background: #1c1307; }
+.cp-card-name { font-weight: 800; font-size: 0.86rem; color: #f5e9dd; line-height: 1.15; }
+.cp-card-sub { font-size: 0.64rem; color: #c8a48f; font-weight: 700; letter-spacing: 0.06em; }
+.cp-card-nums { display: flex; gap: 8px; margin-top: auto; align-items: baseline; }
+.cp-card-ovr { font-size: 1.3rem; font-weight: 800; color: #fff2c4; font-variant-numeric: tabular-nums; }
+.cp-card-num { font-size: 0.7rem; color: #c8a48f; font-variant-numeric: tabular-nums; }
+.cp-card-slot { font-size: 0.62rem; color: #e8c87e; font-weight: 800; }
+.cp-cards-feat { position: fixed; inset: 0; background: rgba(7, 4, 2, 0.78); display: flex; align-items: center; justify-content: center; z-index: 30; padding: 18px; }
+.cp-cards-featcard { width: min(560px, 94vw); border: 1px solid #a08b62; border-left: 6px solid #a08b62; border-radius: 16px; background: linear-gradient(180deg, #1c1307, #0b0703); padding: 18px 18px 14px; color: #f5e9dd; animation: cp-beat-in 220ms ease; }
+.cp-cards-featcard.cp-tone-good { border-left-color: #67b06a; }
+.cp-cards-featcard.cp-tone-bad { border-left-color: #e08573; }
+.cp-cards-featclock { font-size: 0.72rem; color: #e8c87e; font-weight: 800; letter-spacing: 0.14em; margin-bottom: 8px; }
+.cp-cards-featnums { display: flex; gap: 18px; align-items: baseline; margin: 10px 0; }
+.cp-cards-featovr { font-size: 2.6rem; font-weight: 800; color: #fff2c4; font-variant-numeric: tabular-nums; }
+.cp-cards-featflex { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }
+.cp-cards-featflex span { border: 1px solid currentColor; border-radius: 6px; padding: 0 6px; font-size: 0.62rem; color: #c8a48f; }
+.cp-cards-featactions { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+.cp-sharebtn { border: 1px solid #8a5f18; background: rgba(217, 169, 76, 0.10); color: #e8c87e; border-radius: 999px; padding: 5px 16px; font-size: 0.72rem; font-weight: 800; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; }
+.cp-sharebtn:hover { background: rgba(217, 169, 76, 0.2); }
+.cp-sharebtn:focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+.cp-sharemsg { font-size: 0.72rem; color: #67b06a; align-self: center; }
+@keyframes cp-beat-in { from { transform: scale(0.94); opacity: 0.4; } to { transform: scale(1); opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .cp-card, .cp-cards-featcard { transition: none; animation: none; } }

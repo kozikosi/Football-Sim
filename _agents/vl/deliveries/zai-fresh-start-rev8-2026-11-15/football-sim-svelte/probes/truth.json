@@ -1,0 +1,926 @@
+{
+ "fixtureSha256": "52ede1d1ba4b87882a905ca98ed34459d3e5d5520a5b1ee18053342c43a91598",
+ "seasonFixtureSha256": "61e55e8ff209e49d8f6a1ec9c41d5cc5b7d302f40ccccfbedff5855102bb5d8c",
+ "engineNote": "pin d3bd81d2 · 57 files",
+ "board": {
+  "rowCount": 60,
+  "header": {
+   "teamName": "Chicago Bears",
+   "round": 1,
+   "roundLabel": "Round 1",
+   "pickInRound": 21,
+   "overall": 21,
+   "totalPicks": 1024,
+   "onClock": "You're on the clock: Round 1, Pick 21 (overall 21 of 1024)"
+  },
+  "row0": {
+   "id": "nfl-p00061",
+   "name": "Brock Purdy",
+   "pos": "QB",
+   "nflTeam": "San Francisco 49ers",
+   "ovr": "92",
+   "wins": "+2.4",
+   "priority": "+0.2",
+   "slotLabel": "QB",
+   "alsoFits": []
+  },
+  "row1": {
+   "id": "nfl-p00071",
+   "name": "Caleb Williams",
+   "pos": "QB",
+   "nflTeam": "Chicago Bears",
+   "ovr": "91",
+   "wins": "+2.3",
+   "priority": "+0.0",
+   "slotLabel": "QB",
+   "alsoFits": []
+  }
+ },
+ "cards": {
+  "count": 60,
+  "teamName": "Chicago Bears",
+  "overall": 21,
+  "totalPicks": 1024,
+  "onClock": "You're on the clock: Round 1, Pick 21 (overall 21 of 1024)",
+  "countText": "0 of 32 starters",
+  "card0": {
+   "id": "nfl-p00061",
+   "name": "Brock Purdy",
+   "pos": "QB",
+   "nflTeam": "San Francisco 49ers",
+   "ovr": "92",
+   "wins": "+2.4",
+   "priority": "+0.2",
+   "slotId": "QB",
+   "slotLabel": "QB",
+   "tone": "good",
+   "alsoFits": [],
+   "monogram": "BP"
+  },
+  "card1": {
+   "id": "nfl-p00071",
+   "name": "Caleb Williams",
+   "pos": "QB",
+   "nflTeam": "Chicago Bears",
+   "ovr": "91",
+   "wins": "+2.3",
+   "priority": "+0.0",
+   "slotId": "QB",
+   "slotLabel": "QB",
+   "tone": "good",
+   "alsoFits": [],
+   "monogram": "CW"
+  },
+  "ids": [
+   "nfl-p00061",
+   "nfl-p00071",
+   "nfl-p00081",
+   "nfl-p00098",
+   "nfl-p00117",
+   "nfl-p00147",
+   "nfl-p00010",
+   "nfl-p00054",
+   "nfl-p00011",
+   "nfl-p00065",
+   "nfl-p00163",
+   "nfl-p00020",
+   "nfl-p00029",
+   "nfl-p00072",
+   "nfl-p00075",
+   "nfl-p00024",
+   "nfl-p00039",
+   "nfl-p00090",
+   "nfl-p00093",
+   "nfl-p00040",
+   "nfl-p00095",
+   "nfl-p00104",
+   "nfl-p00031",
+   "nfl-p00034",
+   "nfl-p00047",
+   "nfl-p00049",
+   "nfl-p00222",
+   "nfl-p00041",
+   "nfl-p00050",
+   "nfl-p00055",
+   "nfl-p00007",
+   "nfl-p00056",
+   "nfl-p00114",
+   "nfl-p00120",
+   "nfl-p00123",
+   "nfl-p00053",
+   "nfl-p00068",
+   "nfl-p00254",
+   "nfl-p00062",
+   "nfl-p00126",
+   "nfl-p00137",
+   "nfl-p00146",
+   "nfl-p00063",
+   "nfl-p00074",
+   "nfl-p00028",
+   "nfl-p00076",
+   "nfl-p00155",
+   "nfl-p00171",
+   "nfl-p00077",
+   "nfl-p00080",
+   "nfl-p00082",
+   "nfl-p00274",
+   "nfl-p00038",
+   "nfl-p00043",
+   "nfl-p00084",
+   "nfl-p00087",
+   "nfl-p00091",
+   "nfl-p00097",
+   "nfl-p00042",
+   "nfl-p00059"
+  ]
+ },
+ "stats": {
+  "rows": [
+   {
+    "id": "nfl-p00061",
+    "name": "Brock Purdy",
+    "pos": "QB",
+    "nflTeam": "San Francisco 49ers",
+    "ovr": "92",
+    "wins": "+2.4",
+    "priority": "+0.2",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00071",
+    "name": "Caleb Williams",
+    "pos": "QB",
+    "nflTeam": "Chicago Bears",
+    "ovr": "91",
+    "wins": "+2.3",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00081",
+    "name": "Dak Prescott",
+    "pos": "QB",
+    "nflTeam": "Dallas Cowboys",
+    "ovr": "90",
+    "wins": "+2.2",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00098",
+    "name": "Drake Maye",
+    "pos": "QB",
+    "nflTeam": "New England Patriots",
+    "ovr": "89",
+    "wins": "+2.0",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00117",
+    "name": "Jared Goff",
+    "pos": "QB",
+    "nflTeam": "Detroit Lions",
+    "ovr": "88",
+    "wins": "+1.9",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00147",
+    "name": "Trevor Lawrence",
+    "pos": "QB",
+    "nflTeam": "Jacksonville Jaguars",
+    "ovr": "87",
+    "wins": "+1.8",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00010",
+    "name": "Micah Parsons",
+    "pos": "REDG",
+    "nflTeam": "Green Bay Packers",
+    "ovr": "98",
+    "wins": "+1.7",
+    "priority": "+1.7",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00054",
+    "name": "Drake London",
+    "pos": "WR",
+    "nflTeam": "Atlanta Falcons",
+    "ovr": "93",
+    "wins": "+1.7",
+    "priority": "+0.6",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00011",
+    "name": "Penei Sewell",
+    "pos": "LT",
+    "nflTeam": "Detroit Lions",
+    "ovr": "98",
+    "wins": "+1.7",
+    "priority": "+1.6",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00065",
+    "name": "DeVonta Smith",
+    "pos": "WR",
+    "nflTeam": "Philadelphia Eagles",
+    "ovr": "92",
+    "wins": "+1.7",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00163",
+    "name": "Jordan Love",
+    "pos": "QB",
+    "nflTeam": "Green Bay Packers",
+    "ovr": "86",
+    "wins": "+1.7",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00020",
+    "name": "Trent Williams",
+    "pos": "LT",
+    "nflTeam": "San Francisco 49ers",
+    "ovr": "97",
+    "wins": "+1.6",
+    "priority": "+1.5",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00029",
+    "name": "T.J. Watt",
+    "pos": "LEDG",
+    "nflTeam": "Pittsburgh Steelers",
+    "ovr": "96",
+    "wins": "+1.6",
+    "priority": "+1.5",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00072",
+    "name": "Davante Adams",
+    "pos": "WR",
+    "nflTeam": "Los Angeles Rams",
+    "ovr": "91",
+    "wins": "+1.6",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00075",
+    "name": "Mike Evans",
+    "pos": "WR",
+    "nflTeam": "San Francisco 49ers",
+    "ovr": "91",
+    "wins": "+1.6",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00024",
+    "name": "Garett Bolles",
+    "pos": "LT",
+    "nflTeam": "Denver Broncos",
+    "ovr": "96",
+    "wins": "+1.5",
+    "priority": "+1.2",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00039",
+    "name": "Will Anderson Jr",
+    "pos": "LEDG",
+    "nflTeam": "Houston Texans",
+    "ovr": "95",
+    "wins": "+1.5",
+    "priority": "+1.3",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00090",
+    "name": "Nico Collins",
+    "pos": "WR",
+    "nflTeam": "Houston Texans",
+    "ovr": "90",
+    "wins": "+1.5",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00093",
+    "name": "Zay Flowers",
+    "pos": "WR",
+    "nflTeam": "Baltimore Ravens",
+    "ovr": "90",
+    "wins": "+1.5",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00040",
+    "name": "Aidan Hutchinson",
+    "pos": "LEDG",
+    "nflTeam": "Detroit Lions",
+    "ovr": "94",
+    "wins": "+1.4",
+    "priority": "+1.2",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00095",
+    "name": "Chris Olave",
+    "pos": "WR",
+    "nflTeam": "New Orleans Saints",
+    "ovr": "89",
+    "wins": "+1.4",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00104",
+    "name": "Terry McLaurin",
+    "pos": "WR",
+    "nflTeam": "Washington Commanders",
+    "ovr": "89",
+    "wins": "+1.4",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00031",
+    "name": "Aaron Donald",
+    "pos": "DT",
+    "nflTeam": "Los Angeles Rams",
+    "ovr": "95",
+    "wins": "+1.4",
+    "priority": "+1.1",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00034",
+    "name": "Cam Heyward",
+    "pos": "DT",
+    "nflTeam": "Pittsburgh Steelers",
+    "ovr": "95",
+    "wins": "+1.4",
+    "priority": "+1.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00047",
+    "name": "Laremy Tunsil",
+    "pos": "LT",
+    "nflTeam": "Washington Commanders",
+    "ovr": "94",
+    "wins": "+1.4",
+    "priority": "+1.1",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00049",
+    "name": "Tristan Wirfs",
+    "pos": "LT",
+    "nflTeam": "Tampa Bay Buccaneers",
+    "ovr": "94",
+    "wins": "+1.4",
+    "priority": "+1.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00222",
+    "name": "Sam Darnold",
+    "pos": "QB",
+    "nflTeam": "Seattle Seahawks",
+    "ovr": "84",
+    "wins": "+1.4",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00041",
+    "name": "Chris Jones",
+    "pos": "DT",
+    "nflTeam": "Kansas City Chiefs",
+    "ovr": "94",
+    "wins": "+1.3",
+    "priority": "+0.8",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00050",
+    "name": "Vita Vea",
+    "pos": "DT",
+    "nflTeam": "Tampa Bay Buccaneers",
+    "ovr": "94",
+    "wins": "+1.3",
+    "priority": "+1.1",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00055",
+    "name": "Kolton Miller",
+    "pos": "LT",
+    "nflTeam": "Las Vegas Raiders",
+    "ovr": "93",
+    "wins": "+1.3",
+    "priority": "+0.7",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00007",
+    "name": "Christian Gonzalez",
+    "pos": "CB",
+    "nflTeam": "New England Patriots",
+    "ovr": "98",
+    "wins": "+1.3",
+    "priority": "+1.2",
+    "slotLabel": "CB1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00056",
+    "name": "Nick Bosa",
+    "pos": "LEDG",
+    "nflTeam": "San Francisco 49ers",
+    "ovr": "93",
+    "wins": "+1.3",
+    "priority": "+0.4",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00114",
+    "name": "George Pickens",
+    "pos": "WR",
+    "nflTeam": "Dallas Cowboys",
+    "ovr": "88",
+    "wins": "+1.3",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00120",
+    "name": "Malik Nabers",
+    "pos": "WR",
+    "nflTeam": "NY Giants",
+    "ovr": "88",
+    "wins": "+1.3",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00123",
+    "name": "Tee Higgins",
+    "pos": "WR",
+    "nflTeam": "Cincinnati Bengals",
+    "ovr": "88",
+    "wins": "+1.3",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00053",
+    "name": "Dexter Lawrence II",
+    "pos": "DT",
+    "nflTeam": "Cincinnati Bengals",
+    "ovr": "93",
+    "wins": "+1.3",
+    "priority": "+0.3",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00068",
+    "name": "Rashawn Slater",
+    "pos": "LT",
+    "nflTeam": "Los Angeles Chargers",
+    "ovr": "92",
+    "wins": "+1.3",
+    "priority": "+0.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00254",
+    "name": "Justin Herbert",
+    "pos": "QB",
+    "nflTeam": "Los Angeles Chargers",
+    "ovr": "83",
+    "wins": "+1.3",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00062",
+    "name": "Danielle Hunter",
+    "pos": "REDG",
+    "nflTeam": "Houston Texans",
+    "ovr": "92",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00126",
+    "name": "A.J. Brown",
+    "pos": "WR",
+    "nflTeam": "New England Patriots",
+    "ovr": "87",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00137",
+    "name": "Garrett Wilson",
+    "pos": "WR",
+    "nflTeam": "NY Jets",
+    "ovr": "87",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00146",
+    "name": "Tetairoa McMillan",
+    "pos": "WR",
+    "nflTeam": "Carolina Panthers",
+    "ovr": "87",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00063",
+    "name": "DeForest Buckner",
+    "pos": "DT",
+    "nflTeam": "San Francisco 49ers",
+    "ovr": "92",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00074",
+    "name": "Jordan Mailata",
+    "pos": "LT",
+    "nflTeam": "Philadelphia Eagles",
+    "ovr": "91",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00028",
+    "name": "Quinn Meinerz",
+    "pos": "RG",
+    "nflTeam": "Denver Broncos",
+    "ovr": "96",
+    "wins": "+1.2",
+    "priority": "+1.2",
+    "slotLabel": "OG1",
+    "alsoFits": [
+     "OT1 (-2 flex)",
+     "OT2 (-2 flex)",
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00076",
+    "name": "Nik Bonitto",
+    "pos": "REDG",
+    "nflTeam": "Denver Broncos",
+    "ovr": "91",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "DE1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00155",
+    "name": "Courtland Sutton",
+    "pos": "WR",
+    "nflTeam": "Denver Broncos",
+    "ovr": "86",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00171",
+    "name": "Stefon Diggs",
+    "pos": "WR",
+    "nflTeam": "Washington Commanders",
+    "ovr": "86",
+    "wins": "+1.2",
+    "priority": "+0.0",
+    "slotLabel": "WR1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00077",
+    "name": "Quinnen Williams",
+    "pos": "DT",
+    "nflTeam": "Dallas Cowboys",
+    "ovr": "91",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00080",
+    "name": "Christian Darrisaw",
+    "pos": "LT",
+    "nflTeam": "Minnesota Vikings",
+    "ovr": "90",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00082",
+    "name": "Darnell Wright",
+    "pos": "RT",
+    "nflTeam": "Chicago Bears",
+    "ovr": "90",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00274",
+    "name": "Bryce Young",
+    "pos": "QB",
+    "nflTeam": "Carolina Panthers",
+    "ovr": "82",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "QB",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00038",
+    "name": "Quenton Nelson",
+    "pos": "LG",
+    "nflTeam": "Seattle Seahawks",
+    "ovr": "95",
+    "wins": "+1.1",
+    "priority": "+0.8",
+    "slotLabel": "OG1",
+    "alsoFits": [
+     "OT1 (-2 flex)",
+     "OT2 (-2 flex)",
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00043",
+    "name": "Denzel Ward",
+    "pos": "CB",
+    "nflTeam": "Cleveland Browns",
+    "ovr": "94",
+    "wins": "+1.1",
+    "priority": "+0.8",
+    "slotLabel": "CB1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00084",
+    "name": "Greg Rousseau",
+    "pos": "LEDG",
+    "nflTeam": "Buffalo Bills",
+    "ovr": "90",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00087",
+    "name": "Leonard Williams",
+    "pos": "DT",
+    "nflTeam": "Seattle Seahawks",
+    "ovr": "90",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00091",
+    "name": "Nnamdi Madubuike",
+    "pos": "DT",
+    "nflTeam": "Baltimore Ravens",
+    "ovr": "90",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "DT1",
+    "alsoFits": []
+   },
+   {
+    "id": "nfl-p00097",
+    "name": "Dion Dawkins",
+    "pos": "LT",
+    "nflTeam": "Buffalo Bills",
+    "ovr": "89",
+    "wins": "+1.1",
+    "priority": "+0.0",
+    "slotLabel": "OT1",
+    "alsoFits": [
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00042",
+    "name": "Chris Lindstrom",
+    "pos": "RG",
+    "nflTeam": "Atlanta Falcons",
+    "ovr": "94",
+    "wins": "+1.1",
+    "priority": "+0.7",
+    "slotLabel": "OG1",
+    "alsoFits": [
+     "OT1 (-2 flex)",
+     "OT2 (-2 flex)",
+     "C (-2 flex)"
+    ]
+   },
+   {
+    "id": "nfl-p00059",
+    "name": "Trey Smith",
+    "pos": "RG",
+    "nflTeam": "Kansas City Chiefs",
+    "ovr": "93",
+    "wins": "+1.0",
+    "priority": "+0.2",
+    "slotLabel": "OG1",
+    "alsoFits": [
+     "OT1 (-2 flex)",
+     "OT2 (-2 flex)",
+     "C (-2 flex)"
+    ]
+   }
+  ]
+ },
+ "feed": {
+  "home": "New Orleans Saints",
+  "away": "Chicago Bears",
+  "homeScore": 24,
+  "awayScore": 0,
+  "driveCount": 20,
+  "leadChanges": 1,
+  "meDrives": 10,
+  "gameSeedLabel": "gameSeed 875040395 · week 1 · Chicago Bears @ New Orleans Saints · played by the pinned engine",
+  "drive0": {
+   "teamAbbr": "CHI",
+   "badges": [
+    "INT"
+   ],
+   "scoreAfter": {
+    "home": 0,
+    "away": 0
+   },
+   "me": true
+  },
+  "driveLast": {
+   "teamAbbr": "CHI",
+   "badges": [
+    "EOH"
+   ],
+   "scoreAfter": {
+    "home": 24,
+    "away": 0
+   }
+  },
+  "lineTexts": [
+   "[ME] CHI · INT",
+   "NO · FG+LEAD Δ",
+   "[ME] CHI · FUM",
+   "NO · TD",
+   "[ME] CHI · PUNT",
+   "NO · FG",
+   "[ME] CHI · PUNT",
+   "NO · EOH",
+   "NO · DOWNS",
+   "[ME] CHI · PUNT",
+   "NO · TD",
+   "[ME] CHI · PUNT",
+   "NO · FG",
+   "[ME] CHI · PUNT",
+   "NO · FUM",
+   "[ME] CHI · PUNT",
+   "NO · PUNT",
+   "[ME] CHI · PUNT",
+   "NO · PUNT",
+   "[ME] CHI · EOH"
+  ]
+ },
+ "week": {
+  "slots": 22,
+  "w1": {
+   "label": "WEEK 1",
+   "gameCount": 16,
+   "game0": {
+    "homeAbbr": "CIN",
+    "awayAbbr": "BAL",
+    "hs": 12,
+    "as": 15
+   }
+  },
+  "wLast": {
+   "label": "SUPER BOWL",
+   "gameCount": 1,
+   "game0": {
+    "homeAbbr": "HOU",
+    "awayAbbr": "ATL",
+    "hs": 30,
+    "as": 22
+   }
+  },
+  "thru10": {
+   "top": {
+    "abbr": "ATL",
+    "w": 8,
+    "l": 1,
+    "pf": 264
+   },
+   "rowCount": 32,
+   "divCount": 8,
+   "firstDivLeader": "MIA"
+  }
+ }
+}
