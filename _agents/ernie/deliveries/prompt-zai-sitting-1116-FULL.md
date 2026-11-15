@@ -22,7 +22,7 @@
 - The five residues (README `-h`, "all eight", verification-1 path, join caveat, flex.ts line).
 - The Owner's twelve rulings of 2026-11-15 (pin `d3bd81d2` · save = one blob + version check · λ accepted · framework narrowed to two · React removed · Title Odds rejected · ratings not yet · fix the two red tests · 1,953 in the copy).
 
-**Not settled — this sitting:** two receipt defects (§1), the four-slice slope test (§2), the written questionnaire (§3).
+**Not settled — this sitting:** the two receipt defects (§1), one packaging nit (§1.3), the four-slice slope test (§2), the written questionnaire (§3).
 
 **Your last verdict:** *"Svelte 5, narrowly — and the narrowness is itself the finding."* You named the falsifier yourself: *"This panel is one screen; the proxy's tie at one screen does not predict four."* **This sitting measures the four.**
 
@@ -59,6 +59,17 @@ Bundle is **the only criterion that separated the arms**, and it is the one numb
 3. the raw and gzip sizes **as the shipped script computes them**, so a reader can check the arithmetic without a build.
 
 **Do not ship `dist/` if the convention forbids it. Ship the hashes and the version line.**
+
+### 1.3 The two stale slice manifests (GLYPH's catch)
+
+```
+cmd: cd 67-cakepanz-s3-s4-rev2 && sha256sum -c CHECKSUMS-slice1.txt 2>&1 | grep -vE ": OK$"
+out: sha256sum: WARNING: 9 lines are improperly formatted
+```
+
+`CHECKSUMS-slice1.txt` and `CHECKSUMS-slice2.txt` **carry a prose header** (`tree: …` / `engine snapshot: …` / `engine tests: …`) that `CHECKSUMS-slice3-slice4.txt` does not. **The hashes all pass — only the format is stale.**
+
+**Fix:** normalize both to the same format as slice3/slice4, **and say in the reply what you found in them.** **Do not guess the format — read what the file actually contains first, then match slice3's shape exactly.**
 
 ---
 
