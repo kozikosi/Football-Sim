@@ -1,0 +1,37 @@
+## A. the feasible window and the rows that set its edges
+   window [lo, hi) = [0.3902, 0.4032)   width 0.0130 (3.3% of lo)
+   lower edge set by  WR>NICKEL    owner  6  m 2.400 s 4.100 cap 0.000  -> lambda >= 0.3902 keeps raw >= lower cut of tier 6
+   upper edge set by  TE>SS        owner  6  m 4.000 s 12.400 cap 2.737  -> lambda <  0.4032 keeps raw <  upper cut of tier 6
+   0.39 sits 0.0002 BELOW the lower edge -> fails WR>NICKEL.
+   0.40 sits inside the window -> passes every reproducible row.
+
+## B. the resolution the acceptance test demands
+   tightest row TE>SS        owner  6  raw@0.40 8.960, nearest cut 0.040 away
+   -> d_lambda = 0.0032; at lambda 0.40 that is 0.81% relative precision
+   raw units: 0.040 on a mean raw of 6.390  (0.63% of the mean)
+   rows whose displayed tier changes for |d_lambda| < 0.01: 2
+
+## C. what each estimator route can deliver
+   R1 between-team dispersion (P-347, the only route with a receipt):
+      SE(SD_between) = 0.438 on SD 3.45  ->  12.7% relative
+      needed                                  ->  0.81% relative
+      shortfall 15.7x  ->  data multiplier 248x the 32 independent team-units
+      = 248 seasons of 32 teams, or 7936 independent team-equivalents
+   the dispute itself (0.40 vs 0.39) is 0.010000000000000009 = 2.5% relative; separating it at 2 sigma needs 1.25% relative SE
+   R1 is 10.2x coarser than that too.
+   R2 player-identity join (Claude L1, participation): NOT RUN, no receipt, SE UNKNOWN. It is the only route that could reach 0.81%.
+
+## D. what a context shift of the disputed size does to the table
+   lambda 0.40 -1 0.0032 = 0.3968: 96/97 rows at the owner's tier (inside window)
+   lambda 0.40 +1 0.0032 = 0.4032: 96/97 rows at the owner's tier (inside window)
+   lambda 0.40 -1 0.01   = 0.3900: 95/97 rows at the owner's tier (OUTSIDE window)
+   lambda 0.40 +1 0.01   = 0.4100: 95/97 rows at the owner's tier (OUTSIDE window)
+   lambda 0.40 -1 0.013  = 0.3870: 94/97 rows at the owner's tier (OUTSIDE window)
+   lambda 0.40 +1 0.013  = 0.4130: 95/97 rows at the owner's tier (OUTSIDE window)
+
+## E. visibility: is a sub-window lambda(context) shift observable?
+   (Wins are static and Priority is snapshot-frozen, so a level shift inside the
+    window cannot reach the user; only the council's own 11-row check can see it)
+   lambda 0.3902: tier vector sha256-like digest = 3d8c54 (identical across the window iff the digest repeats)
+   lambda 0.3967: tier vector sha256-like digest = 3d8c54 (identical across the window iff the digest repeats)
+   lambda 0.4032: tier vector sha256-like digest = 3d8c54 (identical across the window iff the digest repeats)
