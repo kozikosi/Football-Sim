@@ -805,3 +805,53 @@ verified from the repo:
   despite the name. Whether the separate repo `aled1027/football-sim-nextjs`
   is still maintained is don't know (a separate repository, not verifiable
   from this one).
+
+--- Addendum (KG, 2026-11-12 01:18 HST) — verbatim ---
+
+I didn't explicitly ask about Obsidian or competing knowledge-management and documentation tools in that review.
+
+I should have included them, especially because your project relies heavily on AI-agent continuity, architecture documentation, research notes, decision records, and long-term project knowledge.
+
+I'd add a dedicated evaluation covering:
+- Obsidian.
+- Notion.
+- Logseq.
+- Anytype.
+- AFFiNE.
+- Joplin.
+- Plain Markdown files inside the Git repository.
+- GitHub Issues, Discussions, Projects, and Wiki.
+- AI-native documentation and knowledge-base workflows.
+The central question I'd ask: Should Football-Sim's knowledge live in a dedicated personal knowledge-management system, directly in the repository, or in a hybrid arrangement?
+
+I'd lean toward investigating a hybrid: Markdown documentation in Git as the authoritative project record, with Obsidian or a competitor as the research and navigation layer. But I'd want to compare the tools before committing.
+
+can you add this concept to all the documents related to this audit/updating
+
+--- End of addendum ---
+
+MUSE's note on the addendum (not verbatim): the knowledge-management
+evaluation was added to all four audit documents on 2026-11-12/13:
+(1) the answers document
+(`_agents/muse/deliveries/stack-audit-priority-answers-2026-11-12.md`) — a
+new addendum section after Q25, with the current state (VERIFIED), the
+comparison table, and MUSE's recommendation (investigate the hybrid, with
+Obsidian first and Logseq as the fallback; reject Notion, Anytype, AFFiNE,
+and Joplin for this project; do not adopt GitHub Issues/Discussions/Projects/
+Wiki for knowledge; start the Rulings index now);
+(2) the deliverables document
+(`_agents/muse/deliveries/stack-audit-deliverables-2026-11-12.md`) — table 1O
+in the inventory, a Knowledge-management row in the target-stack table, D21
+in the decisions register, and rule 12 in the agent implementation rules
+draft (record knowledge in the repo as the authoritative record; a navigation
+layer is a view, not a second store);
+(3) the tooling-and-stack state document for GPT
+(`_agents/muse/deliveries/tooling-and-stack-state-2026-11-12.md`) — a new
+§14 and a line in §0;
+(4) this verbatim file — this addendum.
+The three Obsidian questions from 2026-11-11 (does KG already have a vault,
+and where? what does he want to see in it? should the Rulings index start
+now?) are still UNANSWERED. The council platform-vision prompt was NOT
+changed (it is a separate prompt, already pushed and possibly sent) — if KG
+wants the council to run the tool comparison, that is a separate round (or a
+Q12), and MUSE will write it on his ask.
