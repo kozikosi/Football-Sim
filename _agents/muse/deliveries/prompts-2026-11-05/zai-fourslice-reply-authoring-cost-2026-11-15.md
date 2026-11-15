@@ -626,8 +626,8 @@ before the questionnaire is written.
 ### R2.9 · The brag-card skeleton (Inkling's suggestion)
 
 You may borrow or adapt the receipts/brag-card.html skeleton from the ERNIE-vendored v3
-delivery; do not mutate it; the frame you actually build is yours. (If the Owner prefers you
-start from scratch, he will say so — build from the skeleton unless told otherwise.)
+delivery; do not mutate it; the frame you actually build is yours. (The Owner has confirmed
+this — the skeleton borrow is approved.)
 
 ### R2.10 · The two de-gated tests, exactly (Inkling — supersedes Part F.3)
 
