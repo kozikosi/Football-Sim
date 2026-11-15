@@ -1,0 +1,53 @@
+== MANIFEST — zai-sitting-2026-11-15-authoring ==
+seat: Z.ai · date: 2026-11-15 · pin: d3bd81d2 (frozen snapshot, untouched) · bounds honoured
+zip: zai-sitting-2026-11-15-authoring.zip · checksums: CHECKSUMS.txt (algorithm: sha256)
+
+TOP LEVEL
+  README.md                         the sitting report (verdict + box contents)
+  MANIFEST.txt                      this file
+  INTAKE-LEDGER-2026-11-15.md       what came in, what was done, what goes out
+  AUTHORING-COST.md                 item 8 — the authoring cost, units + confound
+  CATEGORY-WINNERS.md               item 9 — 24 rows + DECIDES/TIE-BREAKS/NOISE weighting
+  INNOVATION.md                     item 13 — the season book; the flip bench
+  SLICE-DONE-PROPOSAL.md            item 12 owed — the seven gates of "done"
+  CHECKSUMS.txt                     pure "sha256sum -c" lines (algorithm: sha256; covers every file except itself and the zip)
+  zai-sitting-2026-11-15-authoring.zip
+  _agents/zai/START-OF-CHAT-ZAI.md  §2 updated to 2026-11-15
+
+MEASUREMENTS/
+  PROTOCOL-FOR-A-SECOND-AGENT.md    item 3 — the cold-agent bench protocol (written BEFORE building)
+  SEASON-DESIGN.md                  item 6 — the one-page season design
+  season-missing-vms.txt            item 6 — exactly which VMs are missing (none invented)
+  vue-ergonomics-receipt.txt        item 10 — the Vue questionnaire (every answer with evidence)
+  svelte-ergonomics-receipt.txt     item 10 — the Svelte questionnaire
+  AGENTIC-ERGONOMICS-VERDICT.txt    item 11 — the verdict file
+
+FRAMEWORK-TWO-ARM/
+  arm-vue/ arm-svelte/              the two arms at pin d3bd81d2, slice 5 + season + arc + weeksave
+  arm-vue-vapor/                    item 1 — the pure-vapor falsifier build
+  scripts/                          mint-fixture-d3bd81d2, two-arm-coldload-v2, probe-slice5,
+                                    probe-vapor, probe-arc, probe-season, probe-weeksave,
+                                    hmr-kbd-devserver, hmr-only, two-arm-fourslice/measure (prior)
+  receipts/                         every receipt named in the reply table
+  fixture/                          week1-picks.json re-minted at the current pin + the note
+  shots/                            probe screenshots (grids, featured cards, tour, ticker, lineup,
+                                    season, 390px, vapor)
+
+TESTS/
+  ot-clock/ turnovers-named/ banned-phrasings/ offline/ pool-ledger/   five runnable tests
+  save-envelope-REF.txt             item 7(v) cross-reference (not run twice)
+  receipts/                         the five run receipts
+
+FILINGS/
+  OT-clock-fix-PENDING.txt          item 7(i)/12 — pin has NOT moved; the failing test is the receipt
+  degated-tests-note.md             item 12 — the two de-gated tests by name + exact failure reasons
+
+BACKLOG/
+  pin-migration-rerun-as-delivered.txt   the harness, old pin vs current (31/32 differ)
+  pin-migration-rerun-post-bump.txt      the harness, bumped tree vs current (32/32 identical)
+  pin-migration-verdict.txt              the one-line ruling-path answer
+  gates-bump.txt                         all gates at the current pin
+  s7-design-brief.md                     two candidates, three lines each per arm
+  slice2-ordering-recheck.txt            what was re-run, what cannot move, the order effect
+  reproducibility-cmp.txt                byte-identical rebuilds, both arms
+  weeksave-hydration.txt                 the owed week-save hydration receipt
