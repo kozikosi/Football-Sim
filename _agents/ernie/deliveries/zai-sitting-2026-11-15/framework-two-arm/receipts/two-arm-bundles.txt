@@ -1,0 +1,11 @@
+== two-arm bundle sizes ==
+run at: 2026-11-15T06:44:15Z · gzip -9
+-- arm-vue --
+index-BZNqWY9E.js: raw 340358 B · gzip-9 104481 B
+index-BTejQ6u0.css: raw 3695 B · gzip-9 1365 B
+-- arm-svelte --
+index-xPSAQEva.js: raw 312102 B · gzip-9 92912 B
+index-BTejQ6u0.css: raw 3695 B · gzip-9 1365 B
+-- totals --
+arm-vue total: raw 344053 B · gzip-9 105756 B
+arm-svelte total: raw 315797 B · gzip-9 94197 B

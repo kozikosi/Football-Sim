@@ -1,0 +1,33 @@
+== D.8 re-run: playoff HFA with a season-to-date strength control ==
+data: P-344 team_game_summary_2016-2025.csv (council/muse c7540b04) · 2761 games (2639 REG, 122 POST)
+strength control: pre-game season-to-date point differential (both teams), same season
+
+1 · RAW cut (reproduction of the filed cut1-hfa.json)
+   REG: mean home margin 1.7772  (n=2639, sd=14.206)
+   POST: mean home margin 5.5656  (n=122, sd=12.602)
+   playoff minus reg (raw): 3.7884
+
+2 · OLS margin ~ playoff + strength_diff [all weeks]
+   intercept 1.8432 (se 0.260)   strength_diff coef 0.0598 (se 0.003)
+   PLAYOFF EDGE (strength-controlled): +1.3522 pts  (HC1 se 1.155, t=1.17, boot95 [-0.933, +3.682])
+
+2 · OLS margin ~ playoff + strength_diff [drop weeks 1-2]
+   intercept 1.9830 (se 0.276)   strength_diff coef 0.0596 (se 0.003)
+   PLAYOFF EDGE (strength-controlled): +1.2199 pts  (HC1 se 1.159, t=1.05, boot95 [-1.059, +3.478])
+
+3 · LPM home_win ~ playoff + strength_diff/100 [all weeks]
+   playoff edge (win prob): +0.0182  (se 0.0435)   strength coef +0.1689 per 100 pts
+3 · LPM home_win ~ playoff + strength_diff/100 [drop weeks 1-2]
+   playoff edge (win prob): +0.0141  (se 0.0436)   strength coef +0.1686 per 100 pts
+
+4 · Stratified: mean home margin by |strength_diff| bin (REG vs POST)
+   (-inf, -50.0]          REG  -5.126 (n= 539)   POST  -0.353 (n= 17)   diff +4.773
+   (-50.0, -20.0]         REG  -0.003 (n= 393)   POST  +5.500 (n=  8)   diff +5.503
+   (-20.0, -7.0]          REG  -0.350 (n= 226)   POST  -0.600 (n=  5)   diff -0.250
+   (-7.0, 7.0]            REG  +1.133 (n= 413)   POST  +4.750 (n=  8)   diff +3.617
+   (7.0, 20.0]            REG  +2.557 (n= 194)   POST  +3.222 (n=  9)   diff +0.666
+   (20.0, 50.0]           REG  +5.543 (n= 359)   POST  +6.320 (n= 25)   diff +0.777
+   (50.0, inf]            REG  +8.891 (n= 515)   POST  +8.380 (n= 50)   diff -0.511
+
+5 · VERDICT RULE: the controlled playoff edge survives if its 95% CI excludes 0 in both
+   week variants; otherwise it files RECORDED-DEAD (a raw-cut mixing artifact).
