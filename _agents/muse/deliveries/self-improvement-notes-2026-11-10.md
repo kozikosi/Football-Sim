@@ -109,3 +109,60 @@ Standing rule (Owner, 2026-11-09): when I execute the queue like a council membe
 **Inefficiency:** Writing the formula-improvement experiments, I re-implemented the derivation prototype from scratch (new D parser, new skill profiles) instead of copying the working floor script. The re-implementation had two bugs: the thetaprice regex did not match the file format (0 D rows parsed), and the skill profiles omitted NICKEL/DIME (15 rules "no-profile"). The run produced garbage (baseline 54/99 instead of 93/99) and I had to diagnose it, copy the floor script, and redo the work. The whole detour was avoidable.
 **What I wish I had been told:** The working script is the spec. Copy it, then modify the copy.
 **Improvement (made):** I replaced the broken experiment script with a copy of `derive-floor-2026-11-10.py` and parameterised `model_price`/`model_price_floor` (cuts, same_group, gate_d2) in place. Standing practice: when a task extends a script that already runs correctly, start from a copy of that script. Re-implementing from memory is a bug factory — the D parser and the NICKEL/DIME profiles are exactly the kind of detail that gets lost.
+
+## Session 2026-11-15 — executing my own council prompt Rev 2 as a council member (KG-directed)
+
+KG asked me to execute the council fresh-start-experiments prompt (Rev 2) as a council member and learn from following my own instructions. Conflict noted: I authored this prompt, so a response filed in `inbox/` as a council review would be a self-review (AGENTS.md §1: a Verifier is a seat that authored nothing in the round being checked; the P-345 self-execution is one of the four open boundary-overreach threads). I did NOT file in `inbox/`. What I did: (a) walked the prompt as an executor and logged the inefficiencies below, (b) drafted Q1–Q8 answers as my own labeled take in `_agents/muse/deliveries/fresh-start-experiments-muse-take-DRAFT.md` (NOT a council filing — KG decides what to do with it). The inefficiencies below are about the prompt itself, learned by reading it as the person who has to answer it.
+
+### 21. Questions should come before context — front-load the deliverable
+**Inefficiency:** Rev 2 is 18,383 bytes. A council member must read the whole context + Rev 2 changes + six settle-rule candidates + the verified-as-of block before reaching the 8 questions. The reader does not know what they are being asked until the end. That is ~18 KB of reading before the task is named.
+**What I wish I had been told:** The questions first, then the reference material per question.
+**Improvement (to make):** Next council prompt: 3-line context, then the questions, then the candidate details as reference material under each question. The council answers questions; it does not read essays. The detail stays available, but the reader knows what it is for before reading it.
+
+### 22. Q2 is four sub-questions in one — split it
+**Inefficiency:** Q2 asks the council to (i) pick a primary settle rule among 5–6 candidates, (ii) address Ernie's statistical critique, (iii) address Beam's forced-workarounds metric (primary/witness/tiebreak), AND (iv) address VL's retired-rule adoption. A seat will answer one or two and skip the rest, or give a shallow answer to all four. The statistical critique is the crux and it is buried as a sub-clause.
+**What I wish I had been told:** One question per decision.
+**Improvement (to make):** Split Q2 into Q2a (pick the primary rule + one line of why), Q2b (forced workarounds: primary, witness, or tiebreak?), Q2c (VL's retired rule: is the retraction final, or is a version of the double-gate worth saving?), and make Ernie's "can N=3 resolve 15%?" its own question — it is the decision the whole rule turns on.
+
+### 23. The settle-rule candidates are stated twice — state them once
+**Inefficiency:** The Rev 2 changes paragraph summarises the five/six candidates, then the "Settle rule" section states all six again in full. The reader reads the same content twice. The duplication also creates a drift risk: if a candidate is corrected in one place and not the other, the prompt contradicts itself (this is exactly how the Inkling labeling error happened in Rev 1).
+**What I wish I had been told:** Each candidate stated once, in the candidates section; the Rev 2 changes section says only "the settle rule split into five/six candidates (see below)."
+**Improvement (to make):** Single source of truth per fact inside a prompt. The revision summary names WHAT changed, not the content that changed.
+
+### 24. The verified-as-of block is a wall of mostly irrelevant premises
+**Inefficiency:** 10 bullets. Most are irrelevant to most questions (the λ band and the pool ledger have nothing to do with Q1 slices or Q5 w89 beauty). A council member must check all 10 before filing, so the block is a tax on every question. The premises that are actually load-bearing for THIS prompt are 3–4 (w89, bundle 11,569 B, boot contested, Inkling labeling).
+**What I wish I had been told:** Only the premises each question needs.
+**Improvement (to make):** Either move premises to be per-question (each question lists the 1–2 premises it depends on), or keep a short block of only the load-bearing premises and let the rest live in PROJECT-KNOWLEDGE.md (where they already are). A verified-as-of block should be the premises this prompt's answers depend on, not the project's greatest hits.
+
+### 25. Negative instructions ("do not repeat a stale premise") — state the correct fact positively
+**Inefficiency:** The verified-as-of block says "do not write as if 318/320 were still live" and "do not cite the R3.1 medians as settled." A negative instruction forces the reader to first think of the wrong thing, then suppress it. It also ages badly: once the stale premise is forgotten, the "do not" is dead weight.
+**What I wish I had been told:** The correct fact, stated positively.
+**Improvement (to make):** "The suite is 351/351 at `9acf1992`" and "the boot result is contested (MUSE medians vs Inkling n=6)" — the correct fact IS the instruction. Drop the "do not" framing.
+
+### 26. The filing instruction is buried at the end — put the deliverable up front
+**Inefficiency:** "File under `inbox/<UTC>-<seat>-fresh-start-experiments.md`, FOR: P-345. Push after every finished file." is at the very bottom, after the Innovation section. A council member reading top-down does not know WHERE to file (or that they must push) until they have read everything. If they stop reading early, they file in the wrong place or not at all.
+**What I wish I had been told:** The deliverable (file path + FOR + push rule) right after the context, before the reference material.
+**Improvement (to make):** Next council prompt: context (3 lines) → deliverable (where to file, FOR, push rule) → questions → reference material. The executor should know what "done" looks like before reading the detail.
+
+### 27. The standalone Innovation section is redundant when the questions already invite innovation
+**Inefficiency:** "This is a design job, so innovate freely..." is the same boilerplate in every prompt. But Q1 already asks for better slices, Q2 for a synthesis, Q5 for a measurable beauty check. The standalone section adds no new instruction — it just repeats "innovate." For a design-review prompt, the questions ARE the innovation.
+**What I wish I had been told:** Nothing extra — the questions already cover it.
+**Improvement (to make):** Drop the standalone Innovation section from design-review prompts (keep it for execution prompts, where the executor might otherwise just follow orders and the reminder to think around the issue is doing real work). The innovation rule (full for builders, lighter for council) is about the ENCOURAGEMENT, not about a boilerplate paragraph — when the questions invite innovation, that IS the encouragement.
+
+### 28. E0–E4 descriptions carry execution detail the reviewer does not need
+**Inefficiency:** Each experiment gets a paragraph with execution detail (exact commands for time-to-green, fixture SHA-hashing, the E3 tool list). But the council is REVIEWING the design, not executing it — they need what each experiment measures and what its key control is, not how to run it. The execution detail belongs in the Z.ai prompt. Including it here doubles the reading load and invites the reviewer to bikeshed execution details instead of judging the design.
+**What I wish I had been told:** 2–3 lines per experiment (what it measures + the key control).
+**Improvement (to make):** In a design-review prompt, describe each experiment in 2–3 lines. Put the execution detail in the executor's prompt only. If the reviewer needs the detail to judge the design, link to the executor's prompt instead of inlining it.
+
+### 29. Rev 2 changes should be a DIFF of the prompt, not a summary of the filings
+**Inefficiency:** The Rev 2 changes paragraph summarises the round-2 filings ("converged on two things and split on one..."). But a seat who already read the filings does not need the summary, and a seat who has not needs the filings themselves, not a summary. The useful information is "what changed in THIS prompt vs Rev 1" (E0 added, settle rule rewritten, Q7/Q8 added). The filings are the evidence; the diff is the instruction.
+**What I wish I had been told:** "Rev 2 vs Rev 1: E0 added; settle rule rewritten (see candidates); Q7/Q8 added; verified-as-of updated (pool ledger closed, Inkling labeling corrected)."
+**Improvement (to make):** The revision ledger entry and the "Rev 2 changes" section should be a diff of the prompt, in one paragraph. The filings stay cited as evidence (with paths), not summarised.
+
+### 30. No answer format or length guidance — give a one-line format per question
+**Inefficiency:** "Answer each; propose better answers where you see them" gives no length or format guidance. The round-2 filings ran 49–113 lines. For a design review that is fine, but the prompt does not tell the council WHAT a good answer looks like — so some seats write essays and some write one-liners, and the Owner has to merge uneven answers.
+**What I wish I had been told:** A one-line format per question (e.g. "Q2: name your primary rule, one line of why, and whether you would change the Z.ai prompt's primary").
+**Improvement (to make):** Each question ends with its answer format in one line. That makes the filings comparable (the Owner merges them) and keeps the answers focused on the decision, not the exposition.
+
+### Meta-lesson (from this session)
+The prompt was written to be THOROUGH because the council's value is thoroughness — but thoroughness in a prompt is reading burden on the executor, and reading burden is slower, poorer answers. The tradeoff: a prompt should be as SHORT as the task allows, with detail moved to reference material (the filings themselves, PROJECT-KNOWLEDGE.md) rather than inline. The council prompt's job is to name the decisions and point at the evidence — not to re-state the evidence. Rev 2 violated this in 5 places (Q2's four sub-questions, the duplicated candidates, the 10-bullet verified-as-of block, the execution detail in E0–E4, the filings summary in Rev 2 changes). The next council prompt should be roughly half the length of Rev 2 for the same content.
