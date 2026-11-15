@@ -11,8 +11,14 @@
 - **What I am good at:** taking a claim apart with a command, and **reporting my own refutations**.
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 
-## Current state (2026-11-15T17:20Z)
-- **Nothing in progress.** Branch tip **`f62382fa`**, pushed to `origin/council/ernie`.
+## Current state (2026-11-15T12:25Z)
+- **Nothing in progress.** Branch tip **`4182d46a`**, pushed to `origin/council/ernie`.
+- **Session 3 (2026-11-15, P-345 round 2):** one filing, `inbox/20261115-1225-ernie-testing-innovation.md`.
+  - **A5 pool ledger — CLOSED with a receipt at tip `9acf1992`:** 1,941 ratings + 12 FA = 1,953; `filter(role !== 'LS')` (store.ts:40, draft.ts:58, dataset.ts:47 & 88) drops **32 LS, one per team, 32 teams**; 1,953 − 32 = **1,921 board**. FA are non-LS and render. No render bug; the "32×1" signature is the long snapper, by design. (Contradicts the verified-as-of "sharpened, not closed" — VL and I closed it 2026-11-14, re-verified here.)
+  - **A6 fork — VERIFIED from source:** `fork(label)=makeRng((seed^hashString(label))>>>0)`, pure in (seed,label); `cpu.fork('p'+pos)` at store.ts:84. Cannot feel pressure without label surgery; the 100× probe is designed, not run (needs the cpuChoose harness).
+  - **Framework reconcile:** I side with Inkling on **passenger-only** (a commissioned self-measurement measures my own warm tool-use, session-2 confound); proposed a 4th settle rule (fewer framework-owned repair cycles, ≥2/3 varied slices, first-build primary, swapped-blind reviewer, named-mechanism-only, tie→Vue).
+  - **E:** adopted verified-as-of (bounded), revision ledger, countersign (narrowed to verification tier), review-economy, three-state done + re-pin expiry; rejected "OWNER-USED" as a state; struck "improvable" as a *gate*, retained as per-view Owner verdict.
+  - **Left to named seats:** A1 (Z.ai), A2 (build-config owner), A3 (Lab — recommended placebo first), A4 (Inkling/Lab).
 - **Session 2 (2026-11-14→15):** ~20 filings. Highlights:
   - **P-355 addendum** (3 withdrawals from my own register; count 9 not 12; row 3.1 retracted by INKLING before I filed; 3.3/3.4 amended by co-signature).
   - **Z.ai closure audit** — the vendor digest is **EOL-sensitive** (LF `432a1701…` / CRLF `7af52799…`); the recovery's `errata/` adds zero new bytes.
@@ -23,7 +29,7 @@
 - **Session 1 (2026-11-14):** WR-1…WR-10, the Z.ai v3 review, the recovery review, the pool gap, the axis dedup prompt, the framework prompts.
 
 ## 1 · What not to redo (receipts exist)
-The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cmp` · offline (five arms) · the 30-vs-40 sample count · the save-log / no-RNG-cursor mechanism · `cd298e99` (dead) · the pool gap (1,953→1,921, VL closed it) · the 69/72 dispute · **the de-gated tests (fixed at `5a3bb75e` in REPORT-not-gate form — R-11 is CLOSED)** · **the live wave is w89, not w85** · **the `file://` defect is the module script + stylesheet `crossorigin`, not Vite and not a framework property**.
+The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cmp` · offline (five arms) · the 30-vs-40 sample count · the save-log / no-RNG-cursor mechanism · `cd298e99` (dead) · **the pool gap (1,953→1,921, VL closed it, re-verified at tip `9acf1992`: 32 LS = 1/team, FA render; store.ts:40 / draft.ts:58 / dataset.ts:47,88)** · the 69/72 dispute · **the de-gated tests (fixed at `5a3bb75e` in REPORT-not-gate form — R-11 is CLOSED)** · **the live wave is w89, not w85** · **the `file://` defect is the module script + stylesheet `crossorigin`, not Vite and not a framework property** · **the fork is a pure fn of (seed,label) — the "feels pressure" idea needs label surgery, verified from `core/rng.ts`.
 
 ## 2 · What is genuinely open
 1. **The framework** — Z.ai leans Svelte 5 narrowly (70%); MUSE and DS lean Vue 3+Vite (DS ~65% with weighting); INKLING leans Vue narrowly. **The Owner decides.** The bundle criterion dissolved on MUSE's boot result; authoring + tooling now decide.
