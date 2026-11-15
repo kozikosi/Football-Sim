@@ -635,3 +635,81 @@ The lineup.test.ts test asserts exact OVR losses after the P-318 seam landed (lo
 across the flex comparison), and the versions.test.ts stamp-pin test demands the old
 nfl1.14a4e9333e888a string. Both pass on old pins and fail on new ones. R-11: fix them, not
 carry them. Who fixes them is the Architect's call; you are not inside colors/.
+
+---
+
+## Revision 3 — additions (2026-11-15, after Ernie's comparison/fold-in 3725d2c4 and Inkling's rewrite 02b6115e, plus MUSE's low-end boot result)
+
+The following is incorporated into this prompt as Revision 3. It supersedes any conflicting
+wording above. The short copy-paste version (`zai-short-authoring-sitting-2026-11-15.md`,
+Revision 3) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R3.1 · The low-end boot has been run — the bundle does not decide (MUSE, 2026-11-15)
+
+Four-slice cold load, 6× CPU throttle, file://, network blocked, 10 trials per arm, median
+reported. Median first-contentful-paint: Vue 2102 ms, Svelte 2192 ms, delta −90 ms (Vue faster)
+— inside the ±100 ms noise floor. Median mounted: Vue 2185 ms, Svelte 2344 ms, delta −159 ms
+(Vue faster) — just beyond the noise floor, in Vue's favour. 390px: both arms pass cleanly.
+**The 10.9 KB bundle gap does NOT move interactive time in Svelte's favour. The bundle is a
+number, not a user-facing advantage for Svelte.** The direction is the opposite of what the
+bundle predicts. Cold-load time is dominated by framework startup and engine work, not by 11 KB
+of JS. **The flip condition 'if the low-end boot shows the 11 KB moves interactive time beyond
+±100 ms, flip to Svelte' does NOT fire. The bundle does not decide; the decision turns on
+authoring cost and tooling.** Noise caveat: per-trial spread is ~330–430 ms, much larger than
+the ±100 ms noise floor, so the medians carry real uncertainty; what is not noisy is the
+direction (Vue faster in every run and on both metrics; Svelte never faster). Your run of the
+same measurement (Part C.2) is still wanted as an independent replication; if your numbers
+disagree, that disagreement is a finding. **Protocol defect MUSE found:** the script's mounted
+marker (the feed line) never appears on a cold load because the app boots to team-select, not
+the feed — use the team-select button (or whatever the app actually boots to) as the marker,
+and say so in the receipt.
+
+### R3.2 · The measurement protocol — twelve metrics, one line each (Inkling's)
+
+Log per arm in `receipts/slice5-timing.txt`, every line prefixed `arm=vue` or `arm=svelte`.
+Record: frozen (assets cmp clean across arms — one line) · install (exit, elapsed) ·
+first_build (time, exit, one-line output) · typecheck (time, exit, the two worst messages
+verbatim one line each; count of errors) · first_working_iterations (n builds blank→green;
+one-line note per failed build) · time_to_first_green (wall-clock) ·
+agent_context_scratch_checks_count (a running count of everything you looked up mid-build — one
+number per arm) · workaround_lines (split: ts-ignore / any / getter wrappers / else) ·
+framework_owned_lines (entry + root + card + store glue; same convention) · full_build
+(launch→green) · re_build_after_one_word (change one visible word; rebuild; time) ·
+index_bytes (raw + gzip-9 of dist/) · canon_purity (grep for `.weight` / `WEIGHT` in new files
+under src/ — clean) · w85 check (0 console errors on file://, both arms). **Record the arm ORDER
+you picked in the filing's first line.**
+
+### R3.3 · The protocol file (Inkling's — write it before you start building)
+
+`measurements/PROTOCOL-FOR-A-SECOND-AGENT.md`: a short checklist a cold agent can follow
+without prior context — clone (depth 1), read this prompt + the start-of-chat block, the bench
+steps verbatim, the receipts panel style required, two sittings maximum. The Owner has
+authorized any other seat to run the same protocol; good benches are the public good.
+
+### R3.4 · State the confound plainly (Inkling's)
+
+In AUTHORING-COST.md, state which confound remains in your measurement and what would remove
+it. Until another agent runs the same protocol, your answer is subjective-but-measured — say so;
+do not conceal it.
+
+### R3.5 · The weighting — bucket every category (Ernie's, from MUSE's)
+
+In CATEGORY-WINNERS.md, after the one-winner-per-row table, bucket every category as DECIDES /
+TIE-BREAKS / NOISE, state the weighting, apply it, and give your overall pick. A table with 20
+winners and no weighting is a list, not a decision.
+
+### R3.6 · Backlog additions (Inkling's)
+
+**Slice-2-ordering re-check:** re-run the four-slice timing with Svelte first and note any
+order-of-authorship bias shift in the slope result. **Reproducibility pass:** the arm you ship
+can reproducibly rebuild; cmp the dists across two sittings; prove what bytes land.
+
+### R3.7 · What was NOT taken (and why)
+
+- Inkling's "1,000 words per answer" length floor — a length floor produces volume, not value.
+  (Ernie's call; MUSE agrees.)
+- The brag-card skeleton borrow is UNCHANGED in this prompt (the Owner approved it). Ernie
+  and Inkling both now argue Z.ai should build from scratch so the measurement isn't anchored
+  on a pre-existing card. That is a decision for the Owner, not for this prompt — it is flagged
+  to him separately. If he rules build-from-scratch, the prompt will be updated.
