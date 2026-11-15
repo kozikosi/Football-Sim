@@ -15,7 +15,7 @@ Product: **76 Pancakes** (Owner, 2026-11-05). "20-0" is the season record, not t
 - **Z-post-blue waves** (`Football-Sim-Z-post-blue-wNN.html` on `origin/gh-pages`): Z.ai's single-file HTML wave series. Latest published: **w87** (dropdown house + recalculated Wins table, 1,900,033 B, md5 `bffdccac…`). Live `index.html` is w85 — a wave is "live" only when `index.html` is replaced with it (the Owner/Beam make-live step).
 - **67 Cakepanz** (`67-cakepanz/` on `origin/gh-pages`, Svelte app): Z.ai's parallel Colors/UI track. Slices: 1 Draft Board (done), 2 Team Select (done, being revised per P-317 — must add a draft-position picker, slot 1–32), 3 hydration + board chrome (queued, P-316), 4 feed, 5 shareables.
 - **Colors v1 (Claude's)** (`colors/` on `architect/engine-and-seats`): the Architect's tree. Cutover ships it when it is fully functioning.
-- **Engine pin: `4ca9a071`.** The frozen engine snapshot every track consumes. Never edit the engine to match a UI.
+- **Engine pin: `d3bd81d2` (current; R-2, 2026-11-15).** Colors consumes it. Cakepanz's frozen snapshot is still `4ca9a071` (REV 4, 107-rule flex) until it is re-pinned — it does NOT yet consume the current pin. Never edit the engine to match a UI.
 
 ## Model-first (Owner, 2026-11-08)
 Weights come out of the engine's measured impact (slotWins20), not from a table. The measured Engine Value is the default display; the Owner Preset is one click away. The Nov 6 salary weights are dead. The v19 Madden weights are dead as a sim reference — judge the engine by the Owner's doctrine (corner singularity, run-stopping matters) and current engine state.
