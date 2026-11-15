@@ -49,6 +49,16 @@ is not there.** The three biggest gaps, in the Owner's order of concern:
 Everything below is the evidence for those three sentences, plus the rest of
 the stack.
 
+A fourth question, added 2026-11-12 (see §14): where should the project's
+knowledge live — in a dedicated personal knowledge-management system,
+directly in the repository, or in a hybrid? The knowledge already lives in
+Markdown in Git (the queue, the inbox, the owner notes, the prompts,
+`PROJECT-KNOWLEDGE.md`) — that is the authoritative record, and it is the
+system the agents already write to. The question is whether Obsidian (or a
+competitor) should be the research and navigation layer on top of those same
+files. The Owner leans toward investigating the hybrid; the comparison is in
+§14.
+
 ## §1 — The repo and the tracks
 
 - **Repo:** `kozikosi/Football-Sim` (GitHub). MIT license. Public.
@@ -495,3 +505,59 @@ and the branch listings on 2026-11-12. Where a claim could not be verified
 from the repo, it is labelled UNKNOWN. If GPT finds an error in this
 document, the correction belongs in the council prompt (Q10) — the document
 itself is a snapshot, not a decision.
+
+## §14 — Knowledge management and documentation tools (added 2026-11-12)
+
+The Owner's question (2026-11-12 01:18 HST): "I didn't explicitly ask about
+Obsidian or competing knowledge-management and documentation tools in that
+review. I should have included them, especially because your project relies
+heavily on AI-agent continuity, architecture documentation, research notes,
+decision records, and long-term project knowledge." The central question:
+should the knowledge live in a dedicated personal knowledge-management
+system, directly in the repository, or in a hybrid? The Owner's lean:
+"Markdown documentation in Git as the authoritative project record, with
+Obsidian or a competitor as the research and navigation layer. But I'd want
+to compare the tools before committing."
+
+**Current state (VERIFIED).** The knowledge already lives in plain Markdown
+files inside the Git repository (`QUEUE.md`, the inbox filings, the owner
+notes, the prompts, `PROJECT-KNOWLEDGE.md`, `AGENTS.md`, `CLAUDE.md`, the
+bulletin, the archive, the reference docs). That is the authoritative record,
+and it is the system the agents already write to. **Obsidian is not set up**
+— the Owner asked about it 2026-11-11, MUSE explained the setup, and three
+questions are unanswered (does he already have a vault, and where? what does
+he want to see in it? should the Rulings index start now?). **Notion,
+Logseq, Anytype, AFFiNE, and Joplin are not in use** — no config, no files,
+no record of use (the only "notion" match in the repo is the English word in
+a prompt; "affine" appears only as a mathematical term in the flex math).
+**GitHub Issues, Discussions, Projects, and Wiki** — don't know whether they
+are enabled (GitHub settings, not verifiable from the repo); the task
+management is `QUEUE.md`, not GitHub Issues. **AI-native documentation
+workflows** — the project already has one (the council system: inbox filings,
+the queue, the review chain, the verbatim owner notes, `PROJECT-KNOWLEDGE.md`).
+It is a set of conventions, not a named product; it works, but it has no
+search beyond `grep`, no backlinks, no graph, and no maintained index.
+
+**The comparison, in brief.** Obsidian is the strongest candidate for the
+navigation layer: it reads the repo's existing Markdown files without moving,
+duplicating, or splitting them; it is local-first and offline; it is free for
+personal use; and the agents' workflow does not change. Logseq is the
+fallback (local-first, reads Markdown, but its outliner model fits the
+project's long-form filings less well). Notion, Anytype, and AFFiNE should be
+rejected for this project (they would split the knowledge into a second
+store — Notion is cloud-based and not Markdown in Git; Anytype and AFFiNE
+store their own data format). Joplin should be rejected (a note app, not a
+knowledge graph, and it does not read the repo's files natively). GitHub
+Issues/Discussions/Projects/Wiki should not be adopted for knowledge (the
+queue + inbox already serve those roles in the repo). The Rulings index (one
+line per ruling: date, verbatim quote, link to the full note) is a concrete
+first step that works regardless of which tool is chosen, because it is a
+Markdown file in the repo — MUSE recommends starting it now.
+
+**Status:** Undecided. The Owner leans toward investigating the hybrid; the
+comparison has not been run; the three Obsidian questions are unanswered.
+The full evaluation (with the comparison table) is in the addendum to the
+stack-audit answers document
+(`_agents/muse/deliveries/stack-audit-priority-answers-2026-11-12.md`) and
+as D21 in the decisions register
+(`_agents/muse/deliveries/stack-audit-deliverables-2026-11-12.md`).
