@@ -120,6 +120,37 @@ Then fill this table. **Every row gets a winner and a one-line reason with a rec
 
 ---
 
+### 2.5 The weighting — this is the question, and I forgot it
+
+**A winner in every category is not an answer. The Owner needs to know which categories DECIDE.**
+
+For every category you listed, put it in one of three buckets, and say why:
+
+| Bucket | Meaning |
+|---|---|
+| **DECIDES** | a clear win here would settle the framework on its own |
+| **TIE-BREAKS** | only matters when the deciding categories are tied |
+| **NOISE** | real, measurable, and should not move the decision |
+
+**Then state the weighting you are using, apply it, and give an overall pick.** If the bundle outranks authoring, say when. If authoring outranks the bundle, say why. **A table with 20 winners and no weighting is a list, not a decision** — and the Owner explicitly asked for one input among several, which means the several have to be weighted.
+
+### 2.6 The two concrete falsifiers — build them, they are cheap
+
+**These are the two measurements that would dissolve the bundle criterion. Both are one sitting each, and both are cheaper than the question.**
+
+1. **A vapor-mode / composition-only Vue build of the same surface**, same receipt protocol. If the JS-only gz delta closes to **under 5 KB**, the bundle criterion dissolves and tooling decides. **Receipt: `receipts/vapor-mode-bundle.txt`.** If vapor mode cannot be enabled cleanly, **file the attempt with its verbatim errors and move on** — the failure is a result.
+2. **A four-slice low-end boot** on the w89 profile (6× CPU). Does the 10.9 KB move interactive time beyond ±100 ms? **Receipt: `receipts/fourslice-coldload.txt`.** Include the 390 px check.
+
+**If you build only one, build the vapor one** — it attacks the only criterion that has ever separated the arms.
+
+### 2.7 Three questions about you, not the framework
+
+These are the ones nobody has asked, and they are the ones that decide whether an agent can *maintain* this in a year:
+
+1. **Where do you hallucinate in each arm?** Name one caught hallucination per arm — an API that does not exist, a prop that is not there, a pattern you invented. **This is the maintainability question in disguise.**
+2. **Which framework suffers more from stale pretraining data in your context?** If your training data is mostly one framework's idioms, that is a bias in every measurement you take — and you are the instrument.
+3. **If the Owner assigned you this card in three months, all else equal, which arm would you build it in?** Not which you prefer now — which you would be *faster* in after three months away.
+
 ## 3 · Third — the per-view verdict
 
 **One table, six views (plus the flow), two frameworks.** For each cell:
@@ -147,6 +178,12 @@ Then fill this table. **Every row gets a winner and a one-line reason with a rec
 **Build the ones that fit. If you build none, review the designs and say which are wrong and why.**
 
 ---
+
+## 4b · The season — one screen, both arms
+
+**The Owner's framing is "the user's start to end process," and the season is the half nobody has prototyped in either framework.** Design the season in one page — standings, schedule, playoffs, awards — then **build ONE screen in both arms** (standings or a playoff bracket) with the same timing protocol as §2.5.
+
+**Name exactly which view-models are missing** in a file (`season-missing-vms.txt`). **Do not invent engine data** — if the season sim does not exist, say so and design against what the engine can produce. That gap list is itself a deliverable: it tells the Architect what to build next.
 
 ## 5 · Fifth — the carry-overs (minutes)
 

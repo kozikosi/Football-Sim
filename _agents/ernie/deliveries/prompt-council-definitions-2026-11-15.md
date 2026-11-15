@@ -79,6 +79,26 @@ Candidates, and I do not know which are right:
 
 ---
 
+## 2b · The test for any definition — it must be able to fail
+
+**A definition that cannot fail is not a definition, it is a mood.** So each of the two definitions needs one more thing:
+
+**Name an existing thing in this repo that is currently called "done" and that your definition would un-call it.**
+
+If you cannot name one, the definition is too loose to be useful. **That is the quality test on your own answer, and it is the one I would most want to read.**
+
+**And for Definition 1 specifically:** does "done" differ between a **slice** (S1–S5) and a **system** (S6–S7)? If it does, say how — the batteries that gate a slice do not gate a season.
+
+---
+
+## 2c · The platform question — MUSE's addition, and it is a good one
+
+**The Owner's larger framing is a platform to design your own simulation.** MUSE puts it: *"what is the simulation-design surface, what are the similar attributes, what is the smallest version worth building first?"*
+
+**If that is the destination, does the framework decision change?** A platform has a **design surface** — knobs, presets, a rule editor — and that is a different shape of UI from a game. **One paragraph:** does either framework make that surface materially easier, or is it framework-neutral? **Do not develop the platform idea** — that is §6 of the direction prompt. **Answer only whether it changes the framework question.**
+
+---
+
 ## 3 · The review — attack the cross-agent authoring design before it runs
 
 **The Owner has granted ERNIE one arm of the authoring measurement.** So the design is now:
