@@ -1,0 +1,8 @@
+{
+  "compilerOptions": {
+    "target": "esnext", "module": "esnext", "moduleResolution": "bundler",
+    "strict": false, "allowJs": true, "checkJs": false, "noEmit": true,
+    "jsx": "preserve", "skipLibCheck": true
+  },
+  "include": ["src/**/*.js", "src/**/*.vue"]
+}
