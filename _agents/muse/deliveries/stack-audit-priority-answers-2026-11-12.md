@@ -426,6 +426,99 @@ a planning document says). **Intended** = what the project wants to use.
 
 ---
 
+## Addendum — Knowledge management and documentation tools (KG, 2026-11-12 01:18 HST)
+
+KG: "I didn't explicitly ask about Obsidian or competing knowledge-management
+and documentation tools in that review. I should have included them,
+especially because your project relies heavily on AI-agent continuity,
+architecture documentation, research notes, decision records, and long-term
+project knowledge." He asked for a dedicated evaluation covering Obsidian,
+Notion, Logseq, Anytype, AFFiNE, Joplin, plain Markdown files inside the Git
+repository, GitHub Issues, Discussions, Projects, and Wiki, and AI-native
+documentation and knowledge-base workflows. **The central question:** should
+Football-Sim's knowledge live in a dedicated personal knowledge-management
+system, directly in the repository, or in a hybrid arrangement? **KG's lean
+(verbatim):** "I'd lean toward investigating a hybrid: Markdown documentation
+in Git as the authoritative project record, with Obsidian or a competitor as
+the research and navigation layer. But I'd want to compare the tools before
+committing." This addendum is the evaluation. It is also recorded as D21 in
+the decisions register and as table 1O in the companion deliverables
+document.
+
+### Current state (VERIFIED)
+
+- **Plain Markdown in Git — the current system, and the authoritative
+  record.** The knowledge already lives in Markdown files inside the Git
+  repository: `QUEUE.md`, the inbox filings, the owner notes (verbatim), the
+  prompts, `PROJECT-KNOWLEDGE.md`, `AGENTS.md`, `CLAUDE.md`, the bulletin,
+  the archive, the reference docs. This is the system the agents already
+  write to. (VERIFIED: the files exist on `origin/council/muse`. The only
+  "PKM" matches in the repo are false positives — the English word "notion"
+  in a prompt, e.g. "it has no notion in the engine at all".)
+- **Obsidian — not set up.** KG asked about it 2026-11-11 22:59 HST; MUSE
+  explained the setup (point a vault at the repo folder, or the `_agents/`
+  subfolder; write files with Obsidian formatting — YAML frontmatter,
+  `[[wikilinks]]`, `#tags`; maintain a Rulings index). **Three questions from
+  MUSE to KG are UNANSWERED:** (1) does he already have an Obsidian vault,
+  and where on his Mac — repo-as-vault or folded into his existing vault?
+  (2) what does he want to see in it (queue, rulings, prompts, filings —
+  all or a slice)? (3) should MUSE start the Rulings index now? No Obsidian
+  work has been done.
+- **Notion, Logseq, Anytype, AFFiNE, Joplin — none in use.** No config, no
+  files, no record of use. (VERIFIED: no mentions of Obsidian, Logseq,
+  Anytype, or Joplin anywhere in the repo's Markdown; no `.obsidian` or
+  other PKM config files.)
+- **GitHub Issues, Discussions, Projects, Wiki — don't know.** These are
+  GitHub settings, not verifiable from the repo. The task management is
+  `QUEUE.md`, not GitHub Issues. Whether Issues, Projects, Discussions, or
+  the Wiki are enabled is a GitHub setting. (There is a
+  `_archive/project-docs/KNOWN-ISSUES.md` file — a document, not a GitHub
+  Issues configuration.)
+- **AI-native documentation workflows — the project already has one.** The
+  council system itself (inbox filings with SPEAKER/ROLE/TASK/DATE + FOR,
+  the queue as the task list, the review chain as the quality gate, the
+  verbatim owner notes, `PROJECT-KNOWLEDGE.md` as the live project memory)
+  is an AI-native documentation workflow. It is not a named product; it is
+  a set of conventions in the repo. It works, but it has no search beyond
+  `grep`, no backlinks, no graph, and no maintained index (the Rulings
+  index does not exist yet).
+
+### The comparison (for this project's needs)
+
+| Tool | How it fits this project | Verdict (MUSE's recommendation, not a decision) |
+| ---- | ------------------------ | ----------------------------------------------- |
+| **Obsidian** | Local-first; reads plain Markdown files in a folder — the *same* files the repo already has (no migration, no duplication, no split). Wikilinks, backlinks, graph view, search, tags, plugins. Free for personal use (paid sync is optional and not needed — Git is the sync). Offline. The agents' workflow does not change at all (they keep writing Markdown to the repo; Obsidian is a *view* on those files). The catch: it is a local app on KG's Mac — the agents cannot see his vault, only the repo files (which is fine, because the repo files *are* the vault's contents). It shows whatever branch is checked out on his Mac (council/muse must be checked out in that worktree to see MUSE's prompts/queue). | **Investigate first.** The strongest candidate for the navigation layer — the only tool in the list that reads the repo's existing Markdown without moving, duplicating, or splitting it. |
+| **Logseq** | Local-first, outliner, reads Markdown files in a folder. Free and open source. The closest competitor to Obsidian for this project. The outliner model (bullets, blocks) fits research notes and daily logs well but fits long-form filings (the council's inbox filings, the prompts, the verbatim owner notes) less well — those are documents, not outlines. | **The fallback.** Worth comparing, but second to Obsidian for this project's shape (long-form filings, not outlines). |
+| **Notion** | Cloud-based, blocks, databases, good for structured data. But: a proprietary cloud service, not Markdown files in Git, not offline-first, and the free tier has limits. It would split the knowledge (some in Notion, some in Git) and the agents (on a Linux VM) would need API access to read it. | **Reject for this project.** It does not fit the "Markdown in Git as authoritative" lean, and it violates the local-first / offline shape of the project. |
+| **Anytype** | Local-first, object-based, encrypted, peer-to-peer sync. A powerful object model — but it stores its own data format, not Markdown files in Git. It would split the knowledge. Newer and less mature than Obsidian. | **Reject for this project.** The object model is a different paradigm; the project needs files, not objects. |
+| **AFFiNE** | Open source, Notion-like (docs + whiteboard + database), local-first with self-hosting. The whiteboard is interesting for architecture diagrams. But: a separate app with its own storage, not Markdown files in Git; newer and less mature than Obsidian. It would split the knowledge. | **Reject for this project.** Revisit only if the whiteboard/diagram need becomes real and cannot be met another way. |
+| **Joplin** | Open source, Markdown notes, sync via cloud (Nextcloud, Dropbox, etc.). Free. But: it is a note-taking app, not a knowledge graph — no wikilinks/backlinks/graph in the Obsidian sense. It stores notes in its own database (not plain Markdown files in a folder you control, though it can export). It does not read the repo's files natively. | **Reject for this project.** It is a note app, not a navigation layer for the repo's Markdown. |
+| **Plain Markdown in Git (the current system)** | Free, version-controlled, the agents already write it, it is the authoritative record, and it works offline (it is just files). The weakness: no graph view, no backlinks, no search beyond `grep`, no visual navigation, no maintained index. That weakness is exactly what a navigation layer (Obsidian) would fix — without changing the authoritative store. | **Keep as the authoritative record.** The question is not whether to replace it, but what navigation layer to put on top of it. |
+| **GitHub Issues / Discussions / Projects / Wiki** | Issues = task tracking (the queue already does this, better, in the repo, where the agents can see it). Discussions = a forum (the council's inbox is the discussion). Projects = a kanban (the queue is the kanban). Wiki = a separate Markdown store (a separate repo — it would split the knowledge from the main repo). | **Do not adopt for knowledge.** The queue + inbox + owner notes already serve those roles in the repo, and moving them to GitHub would put them outside the agents' working files. |
+| **AI-native documentation workflows** | The project already has one (the council system). The question is whether to formalize it further (a Rulings index, a standard filing format, a search index) — which is a process question, not a tool question. The Rulings index (one line per ruling: date, verbatim quote, link to the full note) is a concrete first step that works regardless of which tool is chosen, because it is a Markdown file in the repo. | **Start the Rulings index now.** It answers KG's unanswered question #3 — yes, start it — and it does not depend on the tool comparison. |
+
+### The answer to the central question (MUSE's recommendation, not a decision)
+
+**Investigate the hybrid, with Obsidian as the first candidate for the
+navigation layer.** Rationale: it is the only tool in the list that reads the
+repo's existing Markdown files without moving, duplicating, or splitting
+them; it is local-first and offline (fits the project's requirements); it is
+free for personal use; and the agents' workflow does not change. Logseq is
+the fallback if Obsidian's model does not fit. The cloud-first and
+object-based tools (Notion, Anytype, AFFiNE) and the note app (Joplin)
+should be rejected for this project because they would split the knowledge
+into a second store. GitHub Issues/Discussions/Projects/Wiki should not be
+adopted for knowledge — the queue + inbox already serve those roles in the
+repo.
+
+- **Current:** Plain Markdown in Git (authoritative). No PKM tool in use.
+- **Intended:** Hybrid — Markdown in Git (authoritative) + a navigation
+  layer (Obsidian first, Logseq as the fallback).
+- **Decision:** **Undecided.** KG leans toward investigating the hybrid; the
+  comparison has not been run; the three Obsidian questions are unanswered
+  (vault? what to see? Rulings index now? — though the Rulings index can
+  start regardless, and MUSE recommends starting it).
+
 ## What the answers add up to
 
 - **Decided (locked or intended):** TypeScript; Svelte 5 (as the current
