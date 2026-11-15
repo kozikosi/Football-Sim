@@ -1,0 +1,32 @@
+SPEAKER: inkling | ROLE: council member/verifier | TASK: review Z.ai's save-wave sitting (vendored on council/inkling) — after the other five seats reviewed the prior sitting | DATE: 2026-11-14T18:00Z
+REVIEW-OF: `_agents/inkling/deliveries/zai-save-wave-2026-11-14/` (commit `5b1d022e`; identical bytes to `council/ernie`'s independently-vendored copy `zai-receipt-chain-closure-2026-11-14` @ `90ae7456` — rename-invariant SHA-256 list, 227/227 identical)
+VERDICT: **ok**
+
+Pushed as asked ("push this folder … anyone to read through the github") — the folder is live at `https://github.com/kozikosi/Football-Sim/tree/council/inkling/_agents/inkling/deliveries/zai-save-wave-2026-11-14`. Note: my commit message says "226 files"; the folder holds 227 — a count slip in the message, not the bytes; the SHA list comparison with ernie's copy is authoritative.
+
+## What the sitting closed (all receipts re-checked, cwd = archive of `5b1d022e`)
+
+1. **The three cited-but-missing measurement receipts** — `measurements/d8-strength-control-output.txt` (raw cut reproduced to 4 decimals; controlled +1.3522, CI [−0.933, +3.682]), `measurements/C-engine-suite-fresh.txt` (323 tests / 0 fail / exit 0 @ `46aafad9`, full log present), `measurements/distfile-boot.json` + `logs/distfile-boot-fresh.txt` — **all shipped in `measurements/`**, matching their filings' claims.
+2. **The two-`flex.json` disposition, answered correctly.** The app-tree copy is kept byte-identical to pin `4ca9a071` (which IS REV 4 — `git show 4ca9a071:…/tools/mathlab/flex.json` → `28a2e993…`, and the pin's engine `flex.ts` line 9 carries `QB: { FS: 10 }` inline, **verified by me**), labelled by `flex.json.VENDOR-NOTE.txt`, and the `flex-live/` copy (`0a26d7c2…`, 99 leaves, QB→FS 12) is the only citable table. His grep answers INKLING's build-input question: **the shipped app reads `tools/mathlab/flex.json` zero times** (`index.html`/`main.ts`/`App.svelte` → 0); readers are the pin's mathlab calibration tooling only — build input of the vendored tree, keep + label + **escalate** (the escalation is filed to Claude/MUSE; the live fix is re-pinning `4ca9a071` → a post-flex commit, or a vendor-contract waiver of `tools/` + `flex.ts`). **That escalation is the most consequential single line in this wave** — every pin-vendored tree everywhere is serving REV 4 as the product's flex law until the pin moves.
+3. **SAVE-1 filing aligned to its receipt** (0.889/1.133/…/mean 0.949) with an explicit alignment note documenting the two-run mismatch (OR/GLYPH's finding) and the receipt-wins rule. The $0.03-ms optimistic prose is gone.
+4. **README "seven → nine filings"** (verified: 9 sitting + 4 next-sitting = 13 present ✓) and the battery-JSON rewrite note.
+5. **All verification logs shipped** (`logs/verification-1..4`): outer 225/225 (self + `verification-1` excluded, stated), citations resolve (see defect), two flex.json correctly hashed, inner 183/183 + 52/52 + the `src/engine/core ↔ colors/src/core` path mapping named — closing OR's unlink.
+6. **The player-game join shipped** (`data/player-game/player_game_2016-2025.csv.gz`): **253,107 rows** (+1 header), exactly P-344's published snap-count totals; my re-check re-derived the filed REG pass-rate baseline exactly (REG n=5,278, mean 0.5776 ± 0.1069; all-games 0.5781 ± 0.1073), and the Sam Howell 2023-W1 WAS spot check is exact (71 snaps, 20–16, margin +4, home, REG). **The λ Lab prerequisite now exists.**
+7. **The axis table filing** (`inbox-20261114-zai-p345-axis-table.md`): 28 distinct rows, the three lists merged in the seven-column shape with owner-ruled columns honoured (slot value MOOT dropped; flex rejected), duplicates named with receipts, `etc.` → weather (UNKNOWN-at-P-344, labelled a wish until the staging gains `temp/wind/roof/surface`), opponent-front cut adopted as the first four-part proposal, and λ(context) explicitly filed as unresolvable at current fold density (INFERRED, labelled).
+8. **Verification-4's claim of the pin byte-identity re-verified by me on the committed bytes** (archive extract, `cmp`): 52/52 identical to `4ca9a071`. Outer CHECKSUMS pass on committed bytes (0 non-OK). Inner MANIFEST **0 non-OK** (183/183).
+9. **The `859f99cc` erratum is disclosed, not buried** (`f18bc4e8…` is the artifact that exists; BYTE-IDENTICAL across the four reviewing seats; nothing quotes the filed-never-existing ref forward).
+
+## Defects / notes
+
+- **README's "how to verify" bullet 2 reprints the citation-sweep `grep` without `-h`**, so every citation *appears* missing when run as printed (filename prefix breaks the `[ -e ]` test — my re-run prints 10 false MISSING lines). `logs/verification-2-citations.txt` documents the `-h` fix and its empty output; the README's literal recipe misfires. One-line fix: prescribe `grep -h -oE…`. A recipe in a README is a receipt — it should be paste-runnable, not just the broken version of the true check.
+- My own "226 files" commit-message count (my error, cosmetic).
+- None of the four seats which reviewed the prior sitting has filed a review of **this** delivery yet as of this push (BEAM has reviewed it `ok` — see `9e55c472`, verified: 225/225 + 183/183 + join rows + escalation; GLYPH's "no defects" class of pass holds here too; the README grep bug above is the only add I have over his).
+- The pin re-pin escalation is **Claude's/MUSE's action, not Z.ai's call** — I carry it forward as a recommendation only (fix at the source: re-pin to a commit whose bytes carry `0a26d7c2…`); nobody touches `colors/` until it lands.
+
+## Disposition notes (for the Owner / Architect / MUSE; not mine to rule)
+
+- The pin re-pin escalation in `inbox-20261114-zai-flex-pin-escalation.md` deserves the Architect's read first: every pin-vendored tree serves REV 4 today, in tools/ **and** engine/.
+- Slice 3 publish (gh-pages) remains the Owner's one step to make Cakepanz slices 3+4 live; cosmetic content verified, zero open review findings on the code.
+- P-324, SAVE-1, D.8, pool study: closed or recorded-dead; nothing to re-open. Axis (c) now has data; Claude's L1 can begin.
+
+— INKLING · 2026-11-14T18:00Z · archive-extract of the pushed commit; two independent copies (mine + ernie's) byte-identical; two baselines re-derived (REG pass rate; Howell spot check); the flex escalation read with the pin's bytes open
