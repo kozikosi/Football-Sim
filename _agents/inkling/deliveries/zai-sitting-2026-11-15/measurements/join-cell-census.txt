@@ -1,0 +1,57 @@
+== join cell census — receipt ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15 · cmd: python3 -I scripts/join-cell-census.py data/player-game/player_game_2016-2025.csv.gz
+run at: 2026-11-15T06:28:16Z · python 3 · input sha256: 458803602da5e132…
+-- output --
+== join cell census — the fold densities the λ(context) estimator rides on ==
+input: data/player-game/player_game_2016-2025.csv.gz · rows: 253107 · distinct games: 2761
+
+-- per-cell: player-games (rows) · distinct games --
+season_type=REG: rows 241911 · games 2639
+season_type=POST: rows 11196 · games 122
+side=home: rows 124802 · games 2721
+side=away: rows 128305 · games 2761
+margin=one-score (|m|<=4): rows 78069 · games 854
+margin=mid (5<=|m|<=14): rows 101771 · games 1113
+margin=blowout (|m|>=15): rows 73267 · games 794
+season_type=REG|margin=one-score (|m|<=4): rows 74758 · games 818
+season_type=REG|margin=mid (5<=|m|<=14): rows 97288 · games 1064
+season_type=REG|margin=blowout (|m|>=15): rows 69865 · games 757
+season_type=POST|margin=one-score (|m|<=4): rows 3311 · games 36
+season_type=POST|margin=mid (5<=|m|<=14): rows 4483 · games 49
+season_type=POST|margin=blowout (|m|>=15): rows 3402 · games 37
+season_type=POST|side=home|margin=one-score (|m|<=4): rows 1658 · games 36
+
+-- per season: player-games --
+season 2016: rows 23890 · games 267
+season 2017: rows 23862 · games 267
+season 2018: rows 23877 · games 267
+season 2019: rows 23862 · games 267
+season 2020: rows 24999 · games 269
+season 2021: rows 26468 · games 285
+season 2022: rows 26381 · games 284
+season 2023: rows 26540 · games 285
+season 2024: rows 26615 · games 285
+season 2025: rows 26613 · games 285
+
+-- column fill rates (the §2.4 caveats, recomputed from the shipped bytes) --
+offense_pct: 253107/253107 = 100.0%
+defense_pct: 253107/253107 = 100.0%
+st_pct: 253107/253107 = 100.0%
+n_plays_on_field: 252870/253107 = 99.9%
+n_off_plays: 55362/253107 = 21.9%
+n_def_plays: 47905/253107 = 18.9%
+
+-- position distribution (top 12 by rows) --
+LB: 36492
+WR: 28065
+CB: 25921
+DE: 17458
+RB: 16967
+TE: 16610
+T: 15906
+DT: 14152
+G: 14053
+FS: 9186
+SS: 8655
+C: 7728
+-- end --

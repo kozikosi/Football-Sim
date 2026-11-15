@@ -1,0 +1,16 @@
+[
+ {
+  "label": "desktop-1x",
+  "tDom": 1335,
+  "tRows": 1367,
+  "blocked": 0,
+  "errors": 0
+ },
+ {
+  "label": "mobile-6x",
+  "tDom": 10179,
+  "tRows": 10364,
+  "blocked": 0,
+  "errors": 0
+ }
+]

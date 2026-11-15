@@ -1,0 +1,7 @@
+# W1 sums re-derived from the bench1 primary sources (v2 §2.1 closure)
+cwd: /home/z/my-project/work/bench1 (git archive extract of origin/council/ernie:_agents/ernie/deliveries/zai-bench1-run-v1-2026-11-14)
+
+tier1-run1: W1 keys -> W1={'parseMs': 19.34476, 'freezeMs': 0.467694, 'poolCount': 1953, 'poolRowCount': 1921, 'datasetHash': 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3', 'rowsTextSha': 'e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3'}
+tier1-run2: W1 keys -> W1={'parseMs': 32.464645, 'freezeMs': 7.666596, 'poolCount': 1953, 'poolRowCount': 1921, 'datasetHash': 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3', 'rowsTextSha': 'e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3'}
+tier1-run3: W1 keys -> W1={'parseMs': 9.852849, 'freezeMs': 0.523762, 'poolCount': 1953, 'poolRowCount': 1921, 'datasetHash': 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3', 'rowsTextSha': 'e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3'}
+tier1-smoke: W1 keys -> W1={'parseMs': 9.239263, 'freezeMs': 0.492614, 'poolCount': 1953, 'poolRowCount': 1921, 'datasetHash': 'sha256:e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3', 'rowsTextSha': 'e583aec0d21078e8827d7a1efdc5c8c1e06ae518ca783ebb4b3cdfd3b2dcf2d3'}
