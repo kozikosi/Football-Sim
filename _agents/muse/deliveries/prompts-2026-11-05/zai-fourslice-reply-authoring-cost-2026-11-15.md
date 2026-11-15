@@ -742,3 +742,39 @@ not move interactive time in Svelte's favour") instead of saying its user impact
 unmeasured — the measurement has been run (see the Revision 3 update: FCP delta −90 ms,
 inside the noise floor; mounted delta −159 ms, in Vue's favour; 390px clean; the flip
 condition does not fire).
+
+---
+
+## Revision 5 — additions (2026-11-15, after Ernie's filing f3551218 — he answered his own definitions prompt, attacked his own cross-agent design, and wrote the structural assertions; MUSE verified the vanilla file:// failure independently)
+
+The following is incorporated into this prompt as Revision 5. It supersedes any conflicting
+wording above. The short copy-paste version (`zai-short-authoring-sitting-2026-11-15.md`,
+Revision 5) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R5.1 · The measurement is within-agent first (Ernie's own correction)
+
+Ernie designed the cross-agent version and now says it is weaker: agent skill variance is
+larger than framework variance (a cross-agent comparison measures the *pair*, not the
+framework), it cannot be replicated (a third agent gives a third number that does not
+generalise), and the unnamed confound is **training-data mix** — if an agent has seen more Vue
+than Svelte in training, its "easier" is a prior, not a measurement, and it is not separable
+from skill or from the framework. **Primary: you build BOTH arms yourself (within-agent). The
+order is randomised PER SLICE, not per sitting — slice 5 is Vue first (you built Svelte first
+in every pair); for later slices, randomise the order and record it. The fidelity is pinned
+NUMERICALLY, not just 'same view, same chrome' — the same DOM node count, the same rows, the
+same states, the same chrome bytes — or the two arms are not comparable. ERNIE's arm is
+SECONDARY (Owner-granted): he builds slice 5 in the other framework, timed and logged with
+the same metrics and the same definitions, reported as 'a second agent found X' — NEVER
+averaged into your number.**
+
+### R5.2 · The vanilla file:// boot FAILS (MUSE, verified independently 2026-11-15)
+
+The four-slice dist does NOT boot from vanilla file:// (no flags). The `crossorigin` tags on
+the module script and stylesheet are CORS-blocked, and the app never mounts (blank page, the
+exact CORS errors, both arms). **The cold-load timing script launches Chromium with
+`--allow-file-access-from-files`, which is why it booted — those numbers measure the app once
+booted, not the boot.** The vanilla boot is a separate check (item 7(iv)), and it currently
+FAILS. The fix is a build-config change (the crossorigin tags); it needs an owner. The Owner
+is asked whether vanilla file:// is a requirement for Cakepanz or only for the final built
+product; that answer decides whether this is a real un-calling of Slice 3 or a non-issue.
