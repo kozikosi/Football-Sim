@@ -40,7 +40,7 @@ A name is bound to one sha256. If the bytes differ, it is not that build.
 | Name | File / location | sha256 / pin | State |
 |---|---|---|---|
 | **Pre-Colors** | `Football-Sim-PreColors.html` | `40233d6be00e987c` (657,486 B) | **Frozen reference build.** Every engine anchor, patch and gate starts here. The engine math reference (POINTS_PER_WIN = 32.5). |
-| **Z-post-blue waves (w-series)** | `Football-Sim-Z-post-blue-wNN.html` on `origin/gh-pages` | w87: md5 `bffdccac…` (1,900,033 B) | **The live wave series.** Z.ai ships one self-contained HTML file per wave. Latest published: **w87** (dropdown house + recalculated Wins table). Live `index.html` is w85 — a wave is "live" only when `index.html` is replaced with it (the Owner/Beam make-live step). |
+| **Z-post-blue waves (w-series)** | `Football-Sim-Z-post-blue-wNN.html` on `origin/gh-pages` | w87: md5 `bffdccac…` (1,900,033 B) | **The live wave series.** Z.ai ships one self-contained HTML file per wave. Latest published: **w89**. Live `index.html` is w89 (verified by fetch 2026-11-15 — WAVE: w89, origin/gh-pages `3e69567c`; the earlier w85 was MUSE's error, written from the ruling without checking the deployment) — a wave is "live" only when `index.html` is replaced with it (the Owner/Beam make-live step). |
 | **67 Cakepanz** | `67-cakepanz/` on `origin/gh-pages` (Svelte app) | Engine snapshot pinned at **`d3bd81d2`** | **Z.ai's parallel Colors/UI track.** Slices: 1 Draft Board (done), 2 Team Select (done, being revised per P-317), 3 hydration + board chrome (queued, P-316), 4 feed, 5 shareables. Consumes Claude's engine as a frozen snapshot; neither builder edits the other's tree. |
 | **Colors v1 (Claude's)** | `colors/` on `architect/engine-and-seats` | Engine pin `d3bd81d2` | **The Architect's tree.** Svelte 5 + Vite. The engine is single-sourced here. Cutover ships this when it is fully functioning. |
 | **Engine pin** | — | **`d3bd81d2`** | The frozen engine snapshot every track consumes. Never edit the engine to match a UI; the engine is the truth. |
@@ -163,7 +163,7 @@ Every change ships with a **receipt**: the command and its output. "I believe it
 
 Mermaid renders in the repository (diagrams in the work order). Figma is available to the Architect: hand him a palette, a state list, the data and what each screen must say.
 
-**Finding code:** `boardEntries`, `renderDraftBoard2` (draft board) · `cpuPick`, `cpuBias` (CPU) · `simulateGame`, `playGame`, `simulateCurrentWeek` (season) · `matchupModel`, `applyOffPlan`, `applyDefPlan` · `optimalLineup`, `effOvr`, `flexPenaltyFor` · `ensureGamePlans`, `teamIdentity`, `planWhy` · `generateGameSummary`, `playByPlay` · `computeRegularSeasonAwards` · `modelWeights`, `slotWinsPerOvr`, `teamRatings`.
+**Finding code:** `boardEntries`, `renderDraftBoard2` (draft board) · `cpuPick`, `cpuBias` (CPU) · `simulateGame`, `playGame`, `simulateCurrentWeek` (season) · `matchupModel`, `applyOffPlan`, `applyDefPlan` · `optimalLineup`, `effOvr`, `fit(role, dest).penalty` · `ensureGamePlans`, `teamIdentity`, `planWhy` · `generateGameSummary`, `playByPlay` · `computeRegularSeasonAwards` · `modelWeights`, `slotWinsPerOvr`, `teamRatings`.
 
 ## 10. Before delivering a build
 
