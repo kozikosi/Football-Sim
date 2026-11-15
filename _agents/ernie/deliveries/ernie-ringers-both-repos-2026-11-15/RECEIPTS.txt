@@ -1,0 +1,122 @@
+### ERNIE — Cardboard Ringers, both repos, 2026-11-15
+### host: Darwin 24.6.0 arm64  node: v26.13.0  npm: 11.20.0
+### run at 2026-11-15T20:06:40Z
+
+=== 0. shared files byte-identical across arms ===
+IDENTICAL cc7458c8c351dbd5e0fb26689e06e016398024d64d35d69573506c13c3eecfc5  /tmp/fs-vue/src/engine/ringers.ts
+IDENTICAL 5872a2b09ee2c8d01434efd6e0569c4f276a4bda02dd7bdc5a646c7a79a85c0b  /tmp/fs-vue/scripts/ringers-probe.mjs
+IDENTICAL c7a6634c99c0be0348f5d988398ff2843d3c0fc6973765fc230a572cbd0d1944  /tmp/fs-vue/scripts/timing.mjs
+IDENTICAL 022f3c764499803c3549bf2528d30edee505ced5a462f6a284296b0a94aa0b48  /tmp/fs-vue/scripts/dt.mjs
+
+=== 1. framework-owned lines (excludes shared core + probe + harness) ===
+-- vue
+      15 /tmp/fs-vue/src/stores/ringers.ts
+      76 /tmp/fs-vue/src/components/CardboardRingers.vue
+      14 /tmp/fs-vue/src/App.vue
+     105 total
+-- svelte
+      17 /tmp/fs-svelte/src/lib/state/ringers.svelte.ts
+      76 /tmp/fs-svelte/src/lib/components/CardboardRingers.svelte
+      34 /tmp/fs-svelte/src/App.svelte
+     127 total
+-- store only
+      15 /tmp/fs-vue/src/stores/ringers.ts
+      17 /tmp/fs-svelte/src/lib/state/ringers.svelte.ts
+      32 total
+
+=== 2. typecheck ===
+vue type-check exit=0
+> football-sim-vue@0.0.0 type-check
+> vue-tsc --build
+
+svelte check   exit=0
+
+svelte-check found 0 errors and 0 warnings
+
+=== 3. build + bytes ===
+vue build exit=0
+dist/index.html                  0.42 kB │ gzip:  0.28 kB
+dist/assets/index-BgS4--gW.css   0.57 kB │ gzip:  0.30 kB
+dist/assets/index-DLzZiwG_.js   73.35 kB │ gzip: 29.06 kB
+svelte build exit=0
+dist/index.html                  0.41 kB │ gzip:  0.28 kB
+dist/assets/index-D4DgP7sw.css   0.50 kB │ gzip:  0.28 kB
+dist/assets/index-DHxotiKC.js   38.69 kB │ gzip: 15.18 kB
+-- gz-9 of concatenated dist js
+vue js_raw=73352 js_gz9=28681
+svelte js_raw=38697 js_gz9=15015
+
+=== 4. probe (6 laws, numeric cross-arm fidelity) ===
+LAW 1 PASS http: rrow count 6 vs engine 6
+LAW 2 PASS http: every cell string-equal to engine VM 
+LAW 3 PASS http: score "10-9" vs engine 10-9
+LAW 4 PASS http: resim byte-identical true
+LAW 5 PASS http: scrollWidth 390 at 390px
+LAW 6 PASS http: 0 console errors 
+PROBE ALL LAWS PASS
+vue probe exit=0
+LAW 1 PASS http: rrow count 6 vs engine 6
+LAW 2 PASS http: every cell string-equal to engine VM 
+LAW 3 PASS http: score "10-9" vs engine 10-9
+LAW 4 PASS http: resim byte-identical true
+LAW 5 PASS http: scrollWidth 390 at 390px
+LAW 6 PASS http: 0 console errors 
+PROBE ALL LAWS PASS
+svelte probe exit=0
+
+=== 5. dev server -> first 200, and HMR (one run each; 3-run spread recorded separately) ===
+arm=vue dev_first_200_ms=652 hmr_ms=54
+arm=svelte dev_first_200_ms=626 hmr_ms=198
+
+=== 6. devtools / QA hooks (dev mode) ===
+vue {"vueHook":"object","vueApp":"undefined","pinia":"object","simState":"undefined","svelteHook":"undefined","customEls":["DEVFRAMES-DOCK-EMBEDDED"]}
+svelte {"vueHook":"undefined","vueApp":"undefined","pinia":"undefined","simState":"object","svelteHook":"undefined","customEls":[]}
+
+=== 7. vanilla file:// boot (offline law) ===
+rows 0 errors 2 [
+  'Failed to load resource: net::ERR_FILE_NOT_FOUND',
+  'Failed to load resource: net::ERR_FILE_NOT_FOUND'
+]
+rows 0 errors 2 [
+  'Failed to load resource: net::ERR_FILE_NOT_FOUND',
+  'Failed to load resource: net::ERR_FILE_NOT_FOUND'
+]
+
+=== 8. bundle decomposition, ONE method throughout (gz-9 of concatenated dist js) ===
+### pristine scaffolds (fresh clones, npm ci, npm run build) vs my arms
+pristine vue    js_raw=77202 js_gz9=29514
+pristine svelte js_raw=28969 js_gz9=11304
+mine     vue    js_raw=73352 js_gz9=28681   (slice delta  -833 B)
+mine     svelte js_raw=38697 js_gz9=15015   (slice delta +3711 B)
+empty-scaffold gap 18210 B  ->  delivered gap 13666 B  (Svelte's favour)
+### store only, as shipped
+15  /tmp/fs-vue/src/stores/ringers.ts
+17  /tmp/fs-svelte/src/lib/state/ringers.svelte.ts
+### module-level $state with exported FUNCTIONS (idiom test, svelte repo, file removed after the run)
+svelte-check found 0 errors and 0 warnings
+
+=== 9. the one Svelte correction, verbatim (reproduced then reverted) ===
+### the draft that svelte-check rejected (component script body):
+  const result = $derived(bridge.result);
+
+  if (!bridge.result) bridge.sim();
+### svelte-check output:
+CardboardRingers.svelte:8:8
+Warn: This reference only captures the initial value of `bridge`. Did you mean to reference it inside a closure instead?
+https://svelte.dev/e/state_referenced_locally (svelte)
+svelte-check found 0 errors and 2 warnings in 1 file
+### the fix (init moved into the bridge constructor), re-run:
+svelte-check found 0 errors and 0 warnings
+
+=== 10. the one Vue correction, verbatim (shared file, stricter tsconfig) ===
+### the shared core, as first written, under the Vue arm's tsconfig:
+src/engine/ringers.ts(110,23): error TS2532: Object is possibly 'undefined'.
+src/engine/ringers.ts(127,13): error TS2532: Object is possibly 'undefined'.
+src/engine/ringers.ts(128,13): error TS2532: Object is possibly 'undefined'.
+### the same bytes under the Svelte arm's tsconfig:
+svelte-check found 0 errors and 0 warnings
+### the fix (named HOME/AWAY exports instead of TEAMS[0], no casts), both arms re-run:
+vue type-check exit=0 ; svelte check exit=0 (0 errors, 0 warnings)
+### the cause, verbatim from each scaffold:
+football-sim-vue/tsconfig.app.json     : "noUncheckedIndexedAccess": true
+football-sim-svelte/tsconfig.json      : (absent)
