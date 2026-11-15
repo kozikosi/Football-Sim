@@ -1,0 +1,11 @@
+== verification 4 · inner app (MANIFEST 183/183 + engine diff 52/52) ==
+cwd: /home/z/my-project/zai-work/_agents/zai/deliveries/zai-sitting-2026-11-14/67-cakepanz-s3-s4-rev2 · cmds: sha256sum -c MANIFEST.txt ; diff -rq src/engine <(git archive 4ca9a071 -- colors/src | tar -x -C SCRATCH)
+run at: 2026-11-14T19:26:18Z · SCRATCH=/home/z/my-project/work/pin-extract (pin colors/src extracted via git archive from the Football-Sim clone)
+-- MANIFEST --
+183
+(first number = OK entries; expect 183; no other lines = PASS)
+-- engine diff --
+DIFF_EXIT=0
+-- path mapping (name it once) --
+src/engine/core ↔ colors/src/core · src/engine/platform ↔ colors/src/platform · src/engine/sports/nfl/{app,engine,view} ↔ colors/src/sports/nfl/{app,engine,view}
+expect: no diff output, DIFF_EXIT=0, 52 files each side, 0 differing.
