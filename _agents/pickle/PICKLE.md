@@ -3,7 +3,7 @@
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 (OpenChamber-created sibling of `wt/pickle`)
-MERGE-BASE: `1b91f50e` (`git merge-base HEAD origin/council/base`, re-verified 15 Nov 2026)
+MERGE-BASE: `1b91f50e` (`git merge-base HEAD origin/council/base`, last verified 15 Nov 2026)
 
 ## Where the truth lives
 
@@ -11,33 +11,36 @@ Queue `_agents/QUEUE.md` on **`origin/council/muse`** (`council/base`'s copy is 
 `git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs`, delete before pushing. START-HERE step 0
 (four governance docs from `council/muse`) first, every chat.
 
-## Current state (15 Nov 2026) — P-345 Part A: the three-list comparison, and the λ dial closed by arithmetic
+## Current state (15 Nov 2026, second task) — P-345 Rev 4: direction + innovation
 
-Prompt taken: `_agents/inkling/deliveries/prompt-ds-pickle-glm-innovate-inkling-2026-11-14.md` v2 @
-`council/inkling` `a231c7e8` (Parts A + H + one stop; B/C/E are other seats').
+Prompt: `_agents/muse/deliveries/prompts-2026-11-05/council-direction-innovation-2026-11-15.md` (Rev 4/4.1 — assess
+ERNIE's `f3551218` rather than redo it). Deliverable: **`inbox/20261115-1147-pickle-direction-innovation.md`** (335 lines,
+Q1–Q8 in order, §0 correction first, labels in §9).
 
-- `inbox/20261115-1135-pickle-P-345-axis-comparison.md` — **the deliverable.** 24-row dedup table (axes only),
-  7 collapses, the same-name/different-axis hazard, a species taxonomy (fluctuation / rule-regime /
-  already-built design / ruled / policy / arithmetic), and the λ answer.
-- `inbox/20261115-1136-pickle-stop-doing.md` — one stop (re-confirming closed facts in full filings; the 69/72
-  is settled five times), one rule, and the honest answer on parallel Owner prompts.
-- `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/{axis-bounds.py,RUN-axis-bounds.txt,inputs/}` —
-  rerunnable: `python3 axis-bounds.py inputs/merge_prototype.py inputs/flex-99-live.json`. Inputs are Z.ai's
-  shipped prototype + the **live** flex table (`0a26d7c2…`, same sha as `architect/engine-and-seats`).
+**The five things in it worth a reviewer's time:**
+- **§0 is wrong: the live site serves w89, not w85** (VERIFIED by fetch, `origin/gh-pages` `3e69567c`, 2026-11-10). Every
+  "w89 vs w85" comparison in the round is against the wrong baseline. AGENTS.md §2 still carries the stale sentence.
+- **Q1.1 — the one-dial design has an untested coupling**: λ is pinned by matchup dispersion, team strength by parity;
+  nobody has shown one kappa lands in both. The falsifying run is a kappa sweep recording (λ̂, win-SD, title rate) — the
+  single most valuable unscheduled Lab run, and cheap.
+- **Q7.4 — the engine stamp has a coverage hole** (VERIFIED): `rulesText()` omits `OT_RATE_PCT`, the four kicking
+  constants, `EMPTY_OVR`, `WINS_PER_UNIT`/`WEIGHT_UNIT_WINS`, `LAST_REGULAR_WEEK`, `TEAMS_N`. Change any and
+  `engineVersion()` does not move. Fix: add them, plus a test that scans `engine/*.ts` for numeric `export const` and
+  requires each to be covered or dated-exempt.
+- **Q7.2 — the de-gated lineup total should be derived, not pinned**: gap = Σ unit(slot)×penalty to 1.21e-10. Ernie's
+  rewrite re-pins four flex numbers the Owner has moved twice; those numbers are already asserted twice by the flex tests.
+- **Q3 — do not run another authoring build.** The four-slice receipts already contain the answer (store gap = 8 lines of
+  Svelte getter workaround − 1 Vue re-export ≈ 0 idiomatic difference); the metric that settles it is *forced workarounds
+  per slice*, countable from the edit record in a morning. Framework: Vue, LOW confidence; weights 40/20/15/15/5/5.
 
-**Findings that matter more than the table:**
-- **λ(context) is dead as a dial by arithmetic, not policy.** Window `[0.3902, 0.4032)`; lower edge `WR>NICKEL`,
-  upper `TE>SS`; `0.39` misses by **0.0002 λ = 0.001 raw**; tier vector identical across the whole window. The
-  acceptance test needs `SE(λ̂) ≤ 0.003` (0.81% rel); the only route with a receipt (P-347 between-team, 32
-  team-units) gives **12.7% rel → 15.7× short ≈ 248 seasons**. Fold count is not the variable.
-- **The three lists are not one kind of object**: Claude's 8 + GLM's 6 = axes; Z.ai D.1–D.7 = features;
-  D.8 = evidence; D.9 = code-read axes. Comparing them as one list is why BEAM's §2.1 went wrong twice.
-- **Focus is a container, not four axes**: D.1's `FOCUSES` table already hosts Claude #3 (tempo), #4 (style),
-  GLM #1 (policy). The reconciliation is Claude's registry slot taxonomy, not a merged list.
-- **Engine walk (at `9acf1992`) reorders four rows:** no 4th-down decision layer exists and the 2-pt choice is a
-  **0.22 coin** (`drives.ts:123`); pace is INFERRED constants (`drives.ts:9`); blowout compression is **built as
-  a design** (`drives.ts:132-135`, margins unchanged by construction); the margin is a **quantile coupling**
-  (`margin.ts`), so "σ 6.0" names neither the margin's parameter nor one site. `EMERGENCY_PENALTY` is `flex.ts:34`.
+## Earlier this session — P-345 Part A: the three-list comparison, and the λ dial closed by arithmetic
+
+- `inbox/20261115-1135-pickle-P-345-axis-comparison.md` — 24-row dedup table, 7 collapses, species taxonomy, λ answer.
+- `inbox/20261115-1136-pickle-stop-doing.md` — one stop, one rule.
+- `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/{axis-bounds.py,RUN-axis-bounds.txt,inputs/}` — rerunnable.
+- **λ(context) is dead as a dial by arithmetic**: window `[0.3902, 0.4032)`; `0.39` misses `WR>NICKEL` by 0.0002 λ;
+  acceptance needs `SE(λ̂) ≤ 0.003`; the only receipted estimator is 15.7× short (~248 seasons).
+- The three lists are not one kind of object (axes / features / evidence / code-read axes); focus is a container.
 
 ## Earlier sessions (compressed; detail in git history)
 
@@ -51,26 +54,28 @@ Prompt taken: `_agents/inkling/deliveries/prompt-ds-pickle-glm-innovate-inkling-
 
 ## What the next session needs
 
-1. **Check whether MUSE acted** on the `PRIORITY+` (AGENTS.md l.73 REV 4 / QB −10 vs live 99-table QB→FS 12;
-   `PROJECT-KNOWLEDGE.md` 97 → 99). Every seat still reads the stale line.
-2. **The λ question needs a second seat.** I cannot close my own number: ask a verifier to re-run
-   `axis-bounds.py` and the 15.7×/248-season arithmetic. Until then §6 of the filing is REPORTED-by-me.
-3. **Part B is still unclaimed** (GLM's). My `[NEW]` rows 22–23 (rivalry as play-calling; opponent's structure)
-   are stated only well enough to be killed — if nobody takes B, they die by default.
-4. **P-355 is still two passes, not a register.** My rows + ERNIE's addendum + INKLING's three. A different seat
-   should merge, not me.
+1. **Read the Rev 4 round's other filings before reviewing mine** — the value is in the disagreements (Ernie on
+   "improvable", MUSE on the boot evidence, Claude on the framework call). A review that agrees adds nothing.
+2. **Re-run my two numeric claims if you doubt them** — the derived-gap identity (§7.2) and the stamp coverage list
+   (§7.4). Both are read-only over `origin/architect/engine-and-seats`; receipts are in the filing's §9.
+3. **The kappa↔λ↔win-SD sweep is still unscheduled** and it is the cheapest thing that can falsify the engine plan.
+4. **P-355 is still two passes, not a register.** A different seat should merge, not me.
+5. **Part B is still unclaimed.** My `[NEW]` rows 22–23 die by default if nobody takes it.
 
 ## Open questions (to the Architect / Owner, never to a seat)
 
 - Architect: is the λ acceptance rule "a context cell may not make a second row unsatisfiable" (a count), rather
   than "λ(context) beats fixed"? The count version is cheap and fold-free.
 - Architect: strike or mark D1/D16 in the 13 Nov assessment? Both are advice the Owner has since contradicted.
-- MUSE: AGENTS.md l.73 — delete the REV 4 sentence or rewrite to 99 rules (QB→FS 12)?
+- Architect: does the `file://` requirement bind Cakepanz's dev dist or only the shipped product? That answer decides
+  whether Slice 3 is really un-called (Ernie's un-calling, verified by MUSE).
+- MUSE: AGENTS.md §2 "Live `index.html` is w85" is false (w89, VERIFIED 15 Nov); l.73 still says REV 4 / QB −10.
 - Owner (from P-347): λ default 3.6 (NFL parity) or lower for upsets? Band [2.50, 3.63].
 - Owner (from P-141): punters valued/drafted as kickers under "K↔P free"?
 
 ## Live files
 
+- `inbox/20261115-1147-pickle-direction-innovation.md` (Rev 4 deliverable)
 - `inbox/20261115-1135-pickle-P-345-axis-comparison.md` · `inbox/20261115-1136-pickle-stop-doing.md`
 - `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/` (axis-bounds, inputs, RUN)
 - `_agents/pickle/deliveries/p345-lambda-followup-2026-11-13/{dial-feasibility.py,RUN.txt}`
@@ -83,6 +88,8 @@ Prompt taken: `_agents/inkling/deliveries/prompt-ds-pickle-glm-innovate-inkling-
 
 - **Blob-first**: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir. Print the sha you resolved;
   refs move mid-session (`council/ernie` moved `218bbafa`→`b5b6da5b` while I worked).
+- **Test the Architect's tree without touching it**: `git archive origin/architect/engine-and-seats colors data/nfl
+  tools/mathlab | tar -x -C $TMP`, then `node --test --experimental-strip-types test/nfl/*.test.ts` from `$TMP/colors`.
 - **zsh eats `$VAR:c`** — `${A}:path`, always.
 - Manifests: report rows **and** file count; an unlisted manifest is correct, not an error.
 - macOS: `/tmp` is a symlink; use `/private/var/folders/...`. Patch a **copy**, never the product.
