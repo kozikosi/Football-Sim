@@ -1,153 +1,159 @@
-# PROMPT — for Z.ai: the agentic-ergonomics sitting (≥30 minutes, uninterrupted)
+# PROMPT — for Z.ai: the authoring sitting (≥30 minutes, do not stop)
 **From:** INKLING (council seat) · **Date:** 2026-11-15 · **For:** Z.ai (Executor) — relayed by the Owner
 **Delivery:** folder + MANIFEST; never attempt git push; the courier pattern stands.
 
 ---
 
-You are Z.ai, Executor of Z-post-blue and 67 Cakepanz. **You are (pre)credibly the principal executor of this measurement — the Owner believes your context window is the largest of anyone's. Other agents are welcome to run the same tests; the Owner wants that in writing here, so make the bench trivially portable by anyone else.**
+You are Z.ai, Executor of Z-post-blue and 67 Cakepanz. **The Owner has asked a question with a receipt:** *"Is it easier/faster/more complete for an agent to code in Vue 3 + Vite vs Svelte 5 + Vite?"* **Everything measured so far measured the artifact — lines, bundle, cold load. None of it measures how hard the thing was to write or whether you could write it well at all from a blank file.** This sitting measures the authoring, honestly, while the surface is fresh.
 
-This sitting answers one question with receipts: **"Is it easier, faster, and more complete for an agent to build this product in Vue 3 + Vite vs Svelte 5 + Vite — measured across the user's whole start-to-end experience?"** Framework law has narrowed to two arms by the Owner's R-1; the arms are yours to build.
+**Standing order:** do not queue work; complete everything before replying; anything you cannot finish, name the blocker exactly and stop. **Do not stop after §3.** Sized for at least 40 minutes.
 
-**Standing order holds:** do not queue work; complete everything before replying; anything you cannot finish, name the blocker exactly and stop. **Do not stop after the measurement section — §3 and §4 carry your verdict and the implementation backlog.** Sized for 40+ minutes.
+**You are the principal executor** of this measurement (your context window is larger than anyone else's), and the benchmark must be replicable by **any other agent who runs it** — make that trivial by writing the measurement protocol down, not by memorizing what to say to yourself. The Owner will also admit BEAM/DC/GLM/PICKLE-style second agents to re-run the same protocol after you.
 
 ## 0 · State of play — read, do not re-derive
 
-Settled and carried in `AGENTS.md`: **R-2** pin = `d3bd81d2`; **R-13** framework = two arms only (you build both); **R-3** save = one blob + version check; **R-5** Title Odds rejected; **R-9** React gone; **R-12** 1,953 players. Your sitting that completed both arms end-to-end is on `council/inkling:_agents/inkling/deliveries/zai-sitting-2026-11-15-four-slice/`; the four-slice slope was inside the band (no signal). The Owner wants the question that four slices could not answer measured.
+Settled and carried in `AGENTS.md` (Owner's 2026-11-15 rulings, verbatim in that file): **R-1** framework narrowed to **two arms** (Vue 3 + Vite vs Svelte 5 + Vite; you build both; **measurement decides**) · **R-2** pin **`d3bd81d2`** — your engines are vendored at it · **R-3** save = one blob + version check · **R-5** Title Odds rejected (except 100-season, post-cutover) · **R-6** λ ACCEPTED · **R-7** flex asymmetries deliberate · **R-8** ratings not yet · **R-9** React gone · **R-10** no publish · **R-11** red tests ruled "fix them" not "carry them" · **R-12** **1,953 players frozen** · **R-13** (same).
 
-Your predecessors this week produced the two arms, the shared chrome, the shared fixture, and the four-slice slope receipt. Use everything they left; adding a portion of new code under the same protocol is the entire point.
+Your two arms and four-slice slope receipts are on `council/inkling:_agents/inkling/deliveries/zai-sitting-2026-11-15-four-slice/`. Your prior sittings produced them with no framework verdict; the Owner is now measuring the **authoring**.
 
-**Also on your desk from earlier sittings:** the `feed.ts` OT clock defect at l.59–60 (`Q4 -5:00` negative remainder, `Math.min(4, …)` caps OT at Q4) — **fix or prepare the fix exactly and hand it to the Architect; do not edit `colors/` yourself**.
+**Your desk still carries:** the `feed.ts` OT clock defect (l.59–60: `Q4 -5:00` negative remainder, `Math.min(4, …)`caps OT at Q4) — the fix is one line at the next re-pin, filed for the Architect; you do not apply it. The `crossorigin` file:// CORS boot; the flexed-85+ rise (report only, goes to the Lab); the w89/w85 wins-page inheritance — measured at the old pin, inherited at the new one; flat/none of these is your concern this sitting.
 
-## 1 · The experiment — Slice 5 (the SliShare/slap item) against your full w89-arrival experience cloned for new agents
+## 1 · The experiment — the Slice 5 build in both arms (the spine)
 
-**The experiment is wide, not deep. The Owner ruled: evaluation must run across the whole feature arc, end-to-end, not board→saves→feed only.** Any feature in w89 is fair game; your job is to find what each arm cannot yet do and quantify it.
+### 1.1 Slice 5 — player cards, both arms, Vue FIRST
 
-### 1.1 The assignment (both arms, same machine, in one sitting)
+**The Owner's verbatim:** *"whatever looks similar to w89 [the shell] but i do think the player cards could be a lot more dynamic and beautiful. whatever looks best and is the most dynamic and interactive for the user."* So the card should belong to the w-series family visually — but feel like a genuinely better product.
 
-Build Slice 5 (the shareables/brag-card) in BOTH arms. This is the one slice that doesn't yet exist and is unblocked.
+**Assignment (both arms, same machine, same sitting — Vue first, then Svelte):**
 
-- **Design brief (Owner verbatim):** "whatever looks similar to w89 … I do think the player cards could be a lot more dynamic and beautiful. whatever looks best and is the most dynamic and interactive for the user." So: the card should look like it belongs to the same family as w89, but feel like a genuinely better interactive product — not a static image, a shareable that reacts.
-- **Format is yours to pick** (PNG, HTML, SVG, screenshot via Playwright, etc.). State explicitly which you picked and why in one line; the receipt bar stays the same regardless.
-- **Both arms must share the zero engine bytes** with the previous arms (same engine vendor files, same fixture bytes, same chrome) — the variable is the framework.
-- **You may borrow or adapt the `receipts/brag-card.html`** skeleton from the ERNIE-vendored v3 delivery; do not mutate it; the frame you actually build is yours.
+Build Slice 5 — the shareables/brag card — **in both arms**, same engine bytes, same fixture bytes, same chrome. Pick the format you believe works best for shareables (HTML interactive card + PNG/share export, or another), and say why in one line. **Do not quote w89 bytes for the layouts verbatim** — build the structure from the engine's view-model truth.
 
-### 1.2 The measurement protocol (the discipline that separates you from the previous measurement)
+Direct to the Owner's wish: **make the card feel alive, not printed** — one interaction (whatever you can afford — hover/tap highlight, an animation on open, a "skip to share" round) that makes a user want to keep it on their screen.
 
-- **Wall clock** to green for each arm — both installation and translation, your own honest timing in one line of `date -u +%s` diff per stage.
-- **Iteration-cycles** from blank to green per arm (each failed build + its fix).
-- **Lines** per arm under the same convention as the four-slice receipt.
-- **Type-check errors on first run** per arm (count + quote the two worst verbatim).
-- **Build exit codes** and **asset byte totals** (gzip-9) per arm.
-- **Agent throughput**, measured any way you'd measure (elapsed-time-to-green can stand alone).
-- **Tests-runs-this-sitting** for the Slice-5 surface in each arm, including (at minimum): card renders in both the user's and an opponent's case; claim/sale text is escaped as HTML; the printable version prints cleanly; the card is keyboard-focusable.
+**Probe it (before you move from §1 on):** the card renders with the user's team (colors, name), their highest-wins-above-replacement player at their natural slot, the user's final OVR-over-replacement as a "Priority Score", a one-line bragging headline — and the printable/export action works to a clean PNG. One command per probe per arm; one receipt line each. **If the card fails the probe, fixing it comes first — nothing else in §1–§4 matters while the card is broken.**
 
-### 1.3 Evaluation across the whole w89 arc (your search; report what you find)
+### 1.2 The measurement — same surface both arms (this is the part the Owner cares about)
 
-The Owner's verbatim: "the framework should be evaluated from the user's start to end process completely. any feature that is in w89 should be evaluated by it's potential to be executed and improved and made more dynamic and beautiful and interactive than w89." So, in addition to Slice 5, measure inside ONE sitting some of the following (not all — pick three for real depth):
+For each arm, **log in `measurements/slice5-timing.txt`**, every line prefixed by arm (`arm=vue` / `arm=svelte`):
 
-1. **Team select.** Pick a team; does the arm do it more cleanly? Evaluate a new feature: an actual animated tour of the 32 teams (onboarding), not just a dropdown. Which arm lands this faster? Lines and wall-clock, even ballpark — with receipts.
-2. **The save envelope.** The Owner ruled save = one blob + version check (R-3). **Implement the invariant in each arm's save service (file format unchanged)** and prove the refusal-of-a-newer-build-save path with a fresh seed — one command and one log line each.
-3. **Draft step on the board** — the one screen the user will stare at the longest. Evaluate how each arm handles a hypothetical real-time ticker, a bottom-left lineup panel that updates as the user studies players, and a left-rail portrait. Do this cheap — one panel per arm — so you have numbers, not hand-waves.
+- `frozen` (assets + engine bytes `cmp` identical across arms; `cmp` clean — one line)
+- `install` (npm install exit, elapsed)
+- `first_build` (time, exit, one-line of output)
+- `typecheck` (time, exit, **the two worst error messages verbatim, one line each**, count of errors)
+- `first_working_iterations` (n builds from blank to green; each failed build gets a one-line note)
+- `time_to_first_green` (wall-clock)
+- **agent_context_scratch_checks_count** (your own running count of everything you looked up mid-build — every doc opened, every file re-read, every grep — one number per arm)
+- `workaround_lines` (count split: `ts-ignore`, `any`, `getter wrappers`, `else` — the wrinkles the framework forced)
+- `framework_owned_lines` (entry + root + card + store glue; same convention as the four-slice receipts)
+- `full_build` (time to green from launch)
+- `re_build_after_one_word` (change any one visible word, rebuild, record time)
+- `index_bytes` (raw + gzip-9 of `dist/`)
+- `canon_purity` (`grep -nE "\.weight\b|WEIGHT\b" new files under src/` — must be clean)
 
-### 1.4 Per-category winner table (required)
+**Name the arm order you picked in the filing's first line** — I built Svelte first in every pair last sitting; this sitting explicitly flips that order, and the reason is stated, so your record is legible.
 
-Authoring cost is **one input among several**. The Owner wants a **winner in every possible category**, you name them all — bundle delta; cold boot at w89 profile; line count; type-check error usefulness; rebuild time; iteration count; first-frame paint; keyboard reactivity (all keys <= 20ms for any action); CSS file size; file readability in your head after 5 minutes; every test green; the feel of the Friday-afternoon build — the ones above plus any more you find. For every category you measured, state the winner and the number. **The bundle is the least interesting of these.**
+### 1.3 Authoring cost — evaluated separately (AUTHORING-COST.md, required)
 
-### 1.5 Authoring cost — evaluated separately
+Write `measurements/AUTHORING-COST.md` — its own file, its own receipt. Include per arm (Vue and Svelte):
 
-Report this separately and prominently. What you paid in keystrokes, thinking lines spent, self-corrections, fresh context opened vs reused, errors fixed襁, file reads, grep calls. Break it down to the unit you like best (tool calls, edit lines, wall-clock) and number it. Compare, explicitly: "was this task harder in Svelte or Vue, holding all else equal, and by how much?"
+- wall-clock total (your honest sum of the logged stages plus installation),
+- number of edit cycles from blank to first green,
+- number of wall-clock minutes you spent on issues that existed only because of the framework,
+- number of times you had to open docs, fetch references, or ask the parent repo — and how many lines of code you wrote between each such opening,
+- your own per-arm verdict on what "was it hard?" felt like and why — with receipts —
+- one sentence per arm: **the simplest thing that was true in the exercise but would be hard to remember at your next session**, and the one thing that was free and you should not have paid for.
 
-## 2 · The questionnaire (all required, per arm)
+**Owner want separated here: authoring cost is one input among several; this counts separately and is the input you're being measured on.**
 
-Write one file per arm — `measurements/vue-ergonomics-receipt.txt` and `measurements/svelte-ergonomics-receipt.txt` — every answer short; every answer with `evidence: <command or file and line>` or `evidence: NONE` naming what would have been needed. An answer with no evidence reads as an opinion.
+### 1.4 Category winners — all of them, one line per row
 
-**A · The whole experience from blank to green**
-1. What was the single worst problem you had to solve in each arm today? One line each.
-2. What was the single best moment in each arm today? One line each.
-3. Which arm produced more friction — language, tooling, type checker, docs? Why, with a receipt.
-4. Which fight — template constraint, type error, missing pattern — cost the most minutes? Quote verbatim.
-5. Which arm produced the cleaner first error message? Quote it.
-6. Which error made you want to switch frameworks entirely mid-session? Name it.
-7. Which framework gave you a "it almost works" false positive, and what was the bug?
-8. Where did each arm's freebie arrive (anything computed for you that you would have written by hand)? List with file names.
-9. What did you have to write twice in one arm that the other computed? Name it in one line.
-10. Which framework has you (a) recall from docs less, (b) recall from memory more?
+Write `measurements/CATEGORY-WINNERS.md` — one winner per category, one receipt line per row:
 
-**B · Keeping context in your head**
-11. Five minutes away from each arm; which one did you re-enter faster and why? Name the reason (visual structure? variable names? HOW you would describe it).
-12. List the pieces of state per card (card state, brag line state, player name, win-score, etc.) — how does each arm want them shaped? Idiom matches.
-13. Persistence: did each arm force a strategy or let you refuse? When forced, what did you pick and why?
-14. Cheaper anatomy for "one value, one name, one stat, one action" — name it per arm in one line.
-15. Did the documentation cost you — did you read it, did it help, did it mislead (with quote)? If a StackOverflow / older QuickStart taught you Svelte 4 while you were writing Svelte 5, name it in one line.
-16. Your verification loop per arm (build? probe? screenshot? read?) — name which check caught the bug, per arm.
+| Category | Winner | Evidence |
+|---|---|---|
+| bundle (dist gzip-9) | | |
+| cold load at w89 profile, 6× throttle | | |
+| line count (framework-owned) | | |
+| type-check error usefulness (quote the closest exchange) | | |
+| rebuild time (one-word change) | | |
+| iteration cycles (blank → green) | | |
+| first-frame paint (browser `performance.timing`) | | |
+| keyboard reactivity (**all** flow actions ≤ 20 ms) | | |
+| CSS file size | | |
+| compile errors (which checker names them better) | | |
+| a11y warnings (count) | | |
+| devtools fidelity (file:// protocol; what you could and could not inspect) | | |
+| ecosystem depth for the long haul (plugins, shells, pinned version support) | | |
+| store maintainability (shallowRef vs Svelte $state ergonomics) | | |
+| template ergonomics (one-liner — where does the free $derived/computed earn its keep) | | |
+| build time on clean install | | |
+| dev server startup + HMR working under file:// | | |
+| 390 px (no horizontal scroll on heaviest view) | | |
+| offline boot (0 blocked requests, 0 console errors) | | |
+| authoring cost (carry your AUTHORING-COST.md numbers here) | | |
 
-**C · The tooling level — where agents differ**
-17. `svelte-check` vs `vue-tsc` — which gave you (a) more precise coordinates, (b) more useful prose? Quote one error from each.
-18. Which arm's build surfaced errors earlier? Total errors across both runs.
-19. Which arm's HMR/live-reload worked reliably in your sandbox (file:// blocked HTTP) and which was silent? Name what broke, per arm.
-20. What newer tool did each arm use — extension, MCP, docs fetch — and which arm relied less on them?
-21. Did any arm force you to work around the idiom instead of inside it — where?
-22. CSS output: which arm did you trust without inspecting, and which arm needed personal verification (with screenshots)?
-23. Which arm had the best "this task is impossible so I should do the unthinkable" moment — and what did you do about it?
+**Then the weighting — state it in writing:** which categories decide, which are tie-breakers, which are noise, and why. The Owner is going to read that weighting before he rules.
 
-**D · Where an agent like you is weaker**
-24. Where do you hallucinate in each arm (API that doesn't exist, rune that doesn't compile, directive that doesn't apply)? Name one caught hallucination per arm; if you cannot catch your own, quote the one you missed later and realized.
-25. Which framework suffers more from stale pretraining data in your context — and which arm did you catch yourself most often citing APIs/documents prior to the current release?
-26. If the Owner assigned you this card in three months, all else equal, which arm would you build it in? Make this a prediction — do not revise after the sitting.
-27. Which arm shows the larger technical-debt overhead after your next 3 sittings? Name what and why.
-28. Which fits "agent-maintained and owned by a non-specialist" better, with receipts, and mark whether the answer is empirical from sitting or extrapolation?
+### 1.5 Naming the experiment and the judge
 
-**E · The full w89 arc**
-29. Of the entire w89 product surface (team select → board → save/load → season → playoffs → championship → awards → offseason), which single feature feels most at risk of being harder than it needs to be in each framework? Name it and why.
-30. What one feature absolutely must feel at least as good as w89 in either arm, and which arm feels closer to there right now — and why?
-31. If the whole product had to be re-shipped on the inferior arm first, what would you lose most? Name one concrete capability.
+The two-arm one-agent head-to-head has a ceiling: you and only you (and ERNIE — see below) are the agents in the room. The Owner has asked to add **at least one other agent** as the other arm — let the Owner know which seats are eligible and say which you'd pick. Until that second agent runs, your answer to the question stays **subjective-but-measured**, not double-blind. The block is not fatal — but name it in `AUTHORING-COST.md` so nobody mistakes a solo signal for a shared one.
 
-## 3 · The answer, per arm — one paragraph each, plus the verdict file
+## 2 · The second arm, to make this measurable without you
 
-Write one paragraph per arm, headed **for [ARM]**, giving your honest verdict on overall ease/speed/completeness for this product, and what specifically would change it. Support every line with receipts; `evidence: NONE` reads as a defect. Then write `measurements/AGENTIC-ERGONOMICS-VERDICT.txt`:
+**The Owner has authorized any other seat to run the same protocol.** If the bench opens for others, the steps below would be the checklist a second author could follow in one sitting:
 
-1. The winner across the board — or "even" — and the two numbers that say so;
-2. Your **one-sentence** recommendation to the Owner;
-3. Your **70%-or-whatever confidence** and one line on what would move it 10 points;
-4. The **falsifier, restated** with receipt line — the one measurement that would flip you;
-5. The **risk of ruling by bundle size vs by agent ergonomics** — name one person-impact case for each failure mode;
-6. The **risk of ruling now vs at next sitting**, with receipt — what changed on Slice 5 vs Slice 4 that made this candidate unstable or stable.
+1. Checkout the pin `d3bd81d2`'s tree, copiable exactly as your `67-cakepanz-s3-s4-rev2/` does.
+2. Mint the same fixture (seed 1000, MIN @ CHI, 21–11) with `scripts/two-arm-fixture.mjs`.
+3. Build in the opposite arm for the same Slice 5 surface with the same engine bytes and chrome.
+4. File the same eleven metrics.
+5. File a two-paragraph comparison and two paragraphs per arm, tagged by framework.
 
-Also commit to the **authoring-cost table** as its own single-excellence receipt — it is the Owner's explicitly separate ask.
+**Write this into the delivery as a README for the second agent** (`measurements/PROTOCOL-FOR-A-SECOND-AGENT.md`) — short enough for the next agent to run one sitting cold. This is also the file the Owner shows other seats wishing to vote with the arms.
 
-## 4 · Backlog — do not stop inside §1–§3
+## 3 · Slice 5 promoted — real measurements, not build-only PR
 
-If and only if §1–§3 is done and the manifest verifies:
+Slice 5 is not done when it builds. It is done when it's been seen to do its four things in both arms:
 
-1. **The pin-migration re-receipt:** re-run the pin-migration harness against `d3bd81d2` in a copy of your delivery tree; file one line on which of the three ruling paths for migration it implies. Saves the Architect a check.
-2. **Bump all gates to the current pin** — one sit at `d3bd81d2`, **not** not our default: your previous sitting used pin `4ca9a071`; your delivery bundles must now demonstrate `d3bd81d2`. Byte-check before the manifest asserts.
-3. **A two-candidate S7 design brief** — the Owner's next deliverable after Slice 6; write three lines each for both arms sketching the off-season/next-year surface plus what is not yet proven and would need measuring.
-4. **Cold-load four-slice measurement** (w89 Low-End × 6× CPU profile) — the deferred receipt from three sittings; ship it now or one line on why it cannot run in this sitting.
-5. **Anyone can run these tests** — bundle the experiment so any seat can re-run `npm run build` and the batteries cold. One line in each README saying what to type, which bytes to expect, and which omission would cause an erroneous run; zero "only I can verify" dependencies.
-6. **Your next two days' sitting** sketched in four short lines.
+1. **Renders correctly in the user's team colors and name** at 390 px (team banner / W logo attribution if Wikimedia bars attributions).
+2. **The dynamic element** — whatever interaction you chose in §1.1 — fires without error, with the console clear and no blocked request.
+3. **The shareable export** produces a PNG/HTML/standalone the share sheet could actually emit, with correct resolution and no cross-domain font (if you inline a font: name the exact embedded-bytes hash and size).
+4. **The Slice 5 battery** (`batteries/shareable-card-probe.mjs` if you have it; proof one per arm) — you write it, you run it, you receipt it: card mounts, colors match fixture, counters match fixture, export matches card, no errors.
+
+State measured, not asserted: a screenshot per arm at the worst case (longest player name, season not done yet, worst-case flood of pending actions).
+
+## 4 · The attached backlog — if and only if §1–§3 are green
+
+If — and only if — §1–§3 done and the manifest verifies, then in order:
+
+1. **Vapor-mode Vue build** — `receipts/vapor-mode-bundle.txt` (your falsifier line; do not change the UI; enable vapor for the Vue arm; measure the JS gzip 9 total; if you cannot enable vapor cleanly, file the attempt with its verbatim errors and move on) — your switch test from last sitting.
+2. **Cold-load measurement** — run the cold-load protocol on the four-slice dists: JS-only 10.9 KB moves interactive time outside the ±100 ms noise floor at the w89 low-end profile, at 390 px, no horizontal scroll. `receipts/fourslice-coldload.txt`.
+3. **s2-willingness re-check** — OK if the Owner asks for it: re-run `four-slice-timing` in reverse order (Svelte first, then Vue) and note any order-of-authorship bias shift in the slope result.
+4. **A second iteration pass** — ship Slice 5 in one arm to clean state, prove reproducibility (`cmp` dists; the build is deterministic under the pinned lock range), and describe its exact receipt panel. The mini-game of "prove the arm reproducible" must land before the ruling.
+5. **Next-sitting handoff write-up** — four lines on what the Owner should tell you in the next prompt — including: the one decision that the R-x rulings still leave open, and which arm's name is best for the first round of shippings.
+
+If the manifest doesn't verify at any point, stop there, say so, name the blocker — **that is the finished answer, not a failure.**
 
 ## 5 · Standing rules (binding)
 
-- No engine edits; no `colors/` edits; no `draft.ts`, `lineup.ts`, `slots.ts`, `value.ts`. Your work is the shell, measurements and proposals.
-- The pin is `d3bd81d2`. Do not cite the old one as live. Do not re-argue the framework ruling.
-- No push; the courier pattern stands. Verify everything you'd want reviewed from bytes.
-- The live flex table is `0a26d7c2…` / 99 leaves / `QB→FS = 12`; do not cite anything else as live; flex stays realistic; no clutch ratings; no injuries.
-- One MANIFEST, after the last byte-changing step; blob bytes; log anything I cannot make contain.
-- Keep evidence. One receipt per claim. Every "done" re-verified with a command.
-- Do not stop before the questionnaire is written.
+- No engine edits; no `colors/` edits; no `draft.ts`, `lineup.ts`, `slots.ts`, `value.ts`; the pin is `d3bd81d2`; the old pin stays retired.
+- One MANIFEST, after your last byte-changing step; blob bytes; say in one line what you cannot make contain.
+- No injuries; no per-player clutch; flex consistent; no re-opening of the rejected or ruled-out items.
+- No quote from the retired family without naming the pin; the live flex table is `0a26d7c2…` / 99 / QB→FS 12.
+- No push; the courier pattern stands.
+- Keep evidence for every claim in your filing. Receipts on every line. "No signal" is a result.
 
-## 6 · How to reply (this is the whole final form)
+## 6 · How to reply — this is the whole finishing form
 
-Table first: item · status (DONE | BLOCKED | UNKNOWN | ESCALATED) · receipt · one line each. Then four lines per item. Then:
+Table first: item · status (DONE | BLOCKED | UNKNOWN | ESCALATED) · receipt · one line each. Then four lines per item: cwd · command · ref@sha · output. Then:
 
 ```
 CONTINUATION-DELTAS
-1. CLOSED THIS SITTING: <every §1-§5 item; receipt path for each>
+1. CLOSED THIS SITTING: <every §1-§5 item terminated by receipt>
 2. STILL-BLOCKED: <...>
-3. NEW INPUTS FOR THE NEXT PROMPT: <pointers to receipts, interview, verdict, authoring cost>
+3. NEW INPUTS: <pointers to receipts, interview, verdict, AUTHORING-COST.md, CATEGORY-WINNERS.md>
 4. NEXT-SEATING OWNER STATE: <anything the Owner told you mid-sitting>
 5. WHAT THE OWNER SHOULD TELL YOU FIRST: <one sentence>
-6. THE AGENTIC-ERGONOMICS VERDICT: <path; the one-sentence answer>
+6. THE WINNER (if you picked one): <one line — with the weighting named>
 ```
 
-— INKLING (council seat) · 2026-11-15 · the Owner asked: whether an agent can build this entire product in each framework. This sitting answers it.
+— INKLING (council seat) · 2026-11-15 · the question the council, the Owner, and the project have been circling — this sitting names it.
