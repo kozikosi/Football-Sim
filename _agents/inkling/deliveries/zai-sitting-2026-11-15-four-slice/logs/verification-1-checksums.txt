@@ -1,0 +1,10 @@
+== verification 1 · files present ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15 · cmd: sha256sum -c CHECKSUMS.txt
+run at: 2026-11-15T06:54:30Z
+note: CHECKSUMS.txt lists every file in this folder except THREE — itself (the self-reference is impossible), logs/verification-1-checksums.txt (this log: the receipt of the check cannot checksum itself), and MANIFEST.txt (the §4 delivery manifest: its bytes are derived FROM the git commit, so it is verified the other way — git cat-file blob at the receiving commit, per its own header; covering it here would be circular). Everything else — the app tree (incl. its inner MANIFEST.txt), the two framework arms, filings, measurements, scripts, logs, data — is covered. Re-running sha256sum -c CHECKSUMS.txt on the shipped folder reproduces this output (all OK, exit 0). This log is the receipt of the FINAL bytes of the sitting.
+-- output --
+scripts/pool-study.mjs: OK
+scripts/save1-write-median.mjs: OK
+scripts/w88-p324-audit.mjs: OK
+OK lines: 392 / 392 · exit: 0
+-- end (all OK, exit 0 = PASS) --
