@@ -1,0 +1,39 @@
+# Owner answers — framework questions (KG, 2026-11-15 ~00:59 HST)
+
+**Source:** KG's message 2026-11-15 ~00:59 HST, answering seven questions posed by Ernie
+(from his next-sitting prompt / review-of-reviews work). Recorded verbatim by MUSE.
+The questions are Ernie's; the answers are KG's, verbatim, in order.
+
+## The seven questions (Ernie)
+
+1. Is authoring cost sufficient to pick the framework, or one input among several? This is the big one — if the bundle can outrank authoring, the measurement doesn't decide and I've built the wrong experiment.
+2. Do you accept a second agent running the counterbalanced arm? I'm a seat that codes; I can build slice 5 in one arm with timing, which is the only way to separate the framework from the agent. Or you may want only Z.ai.
+3. What is "done" for a slice? The tests need a definition, and right now each seat uses its own.
+4. Slice 5's card format — PNG, HTML, or something else? Z.ai asked this himself and I left it open rather than guess.
+5. The OT clock defect — fix at the next re-pin, or defer? It's one line and the re-pin is live.
+6. The two de-gated tests — rewrite as structural assertions, or delete them? Right now they're neither.
+7. Season sim / playoffs / awards — where do they sit relative to the framework decision? If the framework blocks them, that's a reason to close the framework question faster.
+
+## KG's answers, verbatim, in order
+
+1. "one input among several. I would like the authoring cost to be evaluated separately by z.ai but also for him to pick a winner in every possible category between svelte 5 + vite vs vue 3 + vite."
+2. "any agent can also run these tests. encourage them in fact. but z.ai is the principle executor because of his token context window being a lot larger than anyone else's. if you would like to start building more however please let me know and we will add you to the workflow. you seem like you might be a preview model that will expire free access soon so i'm concerned about bringing you more into the workflow permannetly"
+3. "I don't know. that should be agreed upon by the council."
+4. "you mean player cards? whatever looks similar to w89 but i do think the player cards could be a lot more dyanmic and beautiful. whatever looks bst and is the most dynamic and interactive for the user."
+5. "fix"
+6. "explain them?"
+7. "the framework should be evaluated from the user's start to end process completely. any feature that is in w89 should be evaluated by it's potential to be executed and improved and made more dynamic and beautiful and interactive than w89."
+
+## The fundamental question (KG, same message)
+
+"i don't know if we've asked the fundamental quewstion which is "is it easier/faster/more complete for z.ai and other agents to code in vue 3 _ vite vs svelte 5 + vite?" I think we have enough evidence of performance differences in size and bundle size but i want to know if z.ai can code more efficiently and faster and with equally robust access to necessary tools for this project in svelte 5 or vue 3"
+
+## MUSE's reading (not Owner wording)
+
+- **Authoring cost is one input among several, not sufficient alone.** Z.ai evaluates it separately AND picks a winner in every possible category. If the bundle can outrank authoring, the measurement doesn't decide — so the prompt must make the weighting explicit: the categories, the winner in each, and what would make authoring (or the bundle) the deciding input.
+- **Counterbalanced arm is approved and encouraged.** Any agent may run the tests; Z.ai is the principal executor (larger context window). MUSE may ask to be added to the building workflow, but KG flags a concern: MUSE seems like a preview model whose free access may expire soon, so bringing MUSE in permanently is a risk. MUSE's role stays council infrastructure / custodian unless KG adds it.
+- **"Done" for a slice is the council's to agree.** Not an Owner ruling. The council must produce a shared definition.
+- **Slice 5 = player cards.** Format is Z.ai's to propose: whatever looks similar to w89 but more dynamic, beautiful, and interactive for the user. HTML interactive cards with a share/PNG export is the shape to propose, not a mandate.
+- **OT clock defect: FIX** at the next re-pin (feed.ts `clock()` OT branch, l.59-60).
+- **Two de-gated tests: EXPLAIN first.** KG wants the explanation before deciding rewrite-as-structural vs delete. (MUSE's explanation is in the reply to KG that carried this note; the council prompt asks DS/GLM/Pickle to explain them in detail and recommend rewrite vs delete. The fix itself is the Architect's, R-11.)
+- **Framework evaluated end-to-end.** Every w89 feature is judged by its potential to be executed, improved, and made more dynamic / beautiful / interactive than w89 — not by whether it merely reproduces w89.
