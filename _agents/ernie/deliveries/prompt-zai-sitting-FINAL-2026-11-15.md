@@ -22,6 +22,8 @@ Three deliveries shipped; three receipt chains closed:
 
 **The Owner ruled on twelve items on 2026-11-15.** Those rulings are in §1 and they change the work. **Read them before you start.**
 
+**Boot, in this order:** (1) `git fetch -q origin`; (2) the step-0 governance checkout from `origin/council/muse` (four docs); (3) read this file and nothing else; (4) fetch your own previous delivery from `council/inkling:_agents/inkling/deliveries/zai-save-wave-2026-11-14/` (`5b1d022e`, byte-identical to `council/ernie 90ae7456`, 227/227) — **your previous sitting is complete; do not rebuild it.**
+
 **Your push credentials still do not work.** Finish the folder, verify it, hand it over. **Do not spend time on git push.**
 
 ---
@@ -66,6 +68,14 @@ Three deliveries shipped; three receipt chains closed:
 | **R-12** | "Players" copy | **1,953** (the pool total). 1,921 only if labelled with the 32 long snappers named. |
 
 **R-7 changes one of your filings:** the flex asymmetries you escalated are now **ruled deliberate**. Keep the escalation as the record; add one line: *"Owner 2026-11-15: not an inconsistency — the ILB is the more valuable player and so flexes for less. Table stands."*
+
+### 1.3 The product laws — these bind the UI work, not just the copy
+
+- **No complete sentences on the board, the feed, or any card.** English belongs to the Guide. Chips, panels, cards, glyphs. **w88 is the look authority; when in doubt, borrow, not invent.**
+- **No yardages anywhere in the feed.** The v1 union's `yards: null` is a reserved-field law — nothing is faked to fill it.
+- **The Owner's wording is the product.** The feed's visual direction is settled: the badge format and the colours of the current version, preserved line-for-line.
+- **User's team in blue** · every turnover named (a chip, not a sentence) · overtime events only in the overtime block.
+- **No flex values from any delivery tree.** The live table is `flex-live/` (`0a26d7c2…`); the app tree's copy is the pin's and is not citable.
 
 ---
 
@@ -127,17 +137,32 @@ Your own arithmetic: the single-λ window is `[0.3902, 0.4032)` — **0.0130 wid
 
 **Two join caveats to record while you are here:** `offense_pct` / `defense_pct` / `st_pct` are **100%** filled; the raw play-count columns are not (`n_off_plays` 99.9%, `n_def_plays` 21.9%, `n_plays_on_field` 18.9%). And 2016–22 keys on `nfl_id`, 2023–25 on `gsis_id`, bridged through `players.parquet` — the one place a season could silently drop.
 
-### 2.5 Fifth — Slice 4 (the feed): the brief is the deliverable
+### 2.5 Fifth — Slice 4 is ALREADY BUILT. Re-run it, receipt it, do not rebuild it.
 
-**v2 §4.4 settles the brief, verbatim:** *"**Slice 4 (feed):** what the engine already exposes (`FeedEvent` union, drive-level), what you would have to mock, what you would refuse to ship."* **So it is the drive-level `FeedEvent` panel. Do not ask the Owner to re-decide what v2 already decided.**
+**Correction to every prior draft, including mine:** Slice 4 is not a brief to write and a panel to build. **It shipped on 2026-11-10** and it is in your save wave:
 
-**Step A — the brief (this alone is a finished item).** Open `sports/nfl/app/feed.ts` and the `FeedEvent` union. One paragraph: what the engine already exposes · what you would need to mock (**nothing — it must ride the real log**) · what you would refuse to ship (**no live odds, no derived numbers beyond the log, no network**) · the delivery shape (**offline, `file://` boot clean, same chrome as Slice 3**). Save as `deliveries/slice4/README.md`.
+```
+deliveries/slice4/README.md          3,813 B — data path, look, dynamics, files, laws, boundaries
+batteries/probe-slice4.mjs           the end-to-end probe
+batteries/slice1.battery.mjs         18 feed laws inside the 61/0/10/3 battery
+shots/slice4-feed.png  shots/probe-feed.png
+```
 
-**Step B — the build, only if Step A is done and the sitting has room.** One `FeedPanel.svelte`: drive-level feed newest-first, filter by drive on click, keyboard reachable, zero console errors from `file://`. Battery sketch: renders in `Feed.svelte` context · zero runtime errors · navigation · the existing 61/0/10/3 still passes.
+**Do not rebuild it. Do not restyle it. Do not add English to it.** What this sitting does is **re-run it on the tree you ship and produce the receipts:**
 
-**Hard scope:** no Team Select wiring · no publish · no gh-pages push · no changes to the published tree · do not generalize.
+1. **Fresh end-to-end probe** (`batteries/probe-slice4.mjs`): 32 turns through the real store reducer, engine advising each take, `.cp-feed` mounts; print the DOM counts (drive lines, ME lines, FINAL card text) and **re-compute the same game node-side through `feedVM`, matching the DOM exactly.** If any of the four numbers disagree between DOM and VM, **file it as a finding and stop — do not edit `src` to make them agree.**
+2. **Fresh battery run** (`slice1.battery.mjs`): expect **61 ok / 0 fail / 10 loud SKIP / 3 DEFER** plus the 18 feed laws.
+5. **`shots/slice4-feed.png`** — re-take it if it re-renders differently; if it matches the committed shot, say so in one line and name the comparison command (`cmp -s` or `sha256sum`).
+4. **Zero-console-error confirmation** from `file://`, one line.
+5. **Confirm the README's two-check sentence exists** — this is your reply to §2.1 from the product side.
 
-**Owner's language rules, which the feed must obey:** every turnover named · no "expected scoring" · no "before kickoff" · overtime events only in the overtime block, never "sudden death".
+**Append all confirmations as `logs/verification-5-feed-rerun.txt`, generated on the tree you ship, four lines per claim. The deliverable is the log, not a new look and not a new component.**
+
+### 2.5a The feed's own finding — carry it forward, do not lose it
+
+Your slice4 README already records a real defect: **the snapshot's `app/feed.ts` `clock()` maps overtime starts (3600s+) to `Q4` with a NEGATIVE mm:ss remainder** (`Math.min(4, ceil(secs/900))` + `900*q − secs`). The feed renders period ≥ 5 with an honest `OT` stamp and the quarter marks say `OT` — presentation working around a frozen-snapshot quirk.
+
+**Restate it in this sitting's reply, addressed to the Architect, with the file and line.** It is a `feed.ts` defect in the pinned snapshot, so it lands at the next re-pin — and R-2 has just made a re-pin live.
 
 ### 2.5b Slice 5 — one line, not a build
 
@@ -222,6 +247,15 @@ CONTINUATION-DELTAS (for the next prompting of Z.ai)
 **The Owner's workflow depends on these five lines. Without them the next prompt is written blind.**
 
 ---
+
+## 6b · If the sitting runs out (the contingency ladder, in order)
+
+1. §2.1, §2.2 and §2.7 done; §2.5's re-run log shipped.
+2. §2.5c — the two-arm build — **at least one arm built and measured**, with the second named as the blocker if it did not fit.
+3. §2.3's migration table, or §2.4's estimator note.
+4. **If and only if 1–3 are green and there is room:** the one-page λ estimator note (pooled assumption + cost · per-cell SE table from the shipped Lab outputs, UNKNOWN where it cannot be computed · the fold density at which λ(context) is resolvable, or the sentence saying it never is). **No fitting code.**
+
+**If you stop early, say which rung you stopped on and why.** Do not invent work to fill the sitting.
 
 ## 7 · Reply format — table first, four lines per row, five deltas last
 
