@@ -1,0 +1,30 @@
+
+> ernie-arm-svelte-player-cards@0.0.0 build
+> vite build
+
+1:40:09 AM [vite-plugin-svelte] no Svelte config found at /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/kilo/arm-svelte-ernie - using default configuration.
+vite v7.3.8 building client environment for production...
+transforming...
+1:40:09 AM [vite-plugin-svelte] src/App.svelte:26:6 noninteractive element cannot have nonnegative tabIndex value
+https://svelte.dev/e/a11y_no_noninteractive_tabindex
+24:   <div class="grid" role="list">
+25:     {#each POOL as p, i (p.name)}
+26:       <div role="listitem" tabindex={i === 0 ? 0 : -1}
+                ^
+27:            onkeydown={(e) => {
+28:              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); }
+1:40:09 AM [vite-plugin-svelte] src/App.svelte:26:6 Non-interactive element `<div>` should not be assigned mouse or keyboard event listeners
+https://svelte.dev/e/a11y_no_noninteractive_element_interactions
+24:   <div class="grid" role="list">
+25:     {#each POOL as p, i (p.name)}
+26:       <div role="listitem" tabindex={i === 0 ? 0 : -1}
+                ^
+27:            onkeydown={(e) => {
+28:              if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(p); }
+✓ 111 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                  0.36 kB │ gzip:  0.26 kB
+dist/assets/index-Do3gFrSf.css   2.50 kB │ gzip:  0.97 kB
+dist/assets/index-I_Nh2uu2.js   37.75 kB │ gzip: 14.81 kB
+✓ built in 273ms
