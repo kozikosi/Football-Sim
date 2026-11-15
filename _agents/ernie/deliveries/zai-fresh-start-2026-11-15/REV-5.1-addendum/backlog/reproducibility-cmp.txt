@@ -1,0 +1,11 @@
+== reproducibility pass (backlog): the shipped arms rebuild byte-identically ==
+method: sha256 of every dist asset → rebuild → sha256 again → cmp. Run twice per arm this sitting (the week-save-hydration rebuild and this one).
+-- arm-vue --
+cmp CLEAN — byte-identical rebuild
+98049350e4c9bf764510da9cc9b2c55eeb134f67752ca4fb8ac9645bb156eb0a  dist/assets/index-BfFN2kUF.css
+c54cdf6870d781ba8b5727d88c95df23dd9e22c3fd368dee6c7d680b06e966e7  dist/assets/index-DAz_DQv9.js
+-- arm-svelte --
+cmp CLEAN — byte-identical rebuild
+98049350e4c9bf764510da9cc9b2c55eeb134f67752ca4fb8ac9645bb156eb0a  dist/assets/index-BfFN2kUF.css
+e62cd6945a587a1c18a6792f03b856b51ff86fdfc8d3ff2b6b695e7a74d7407e  dist/assets/index-CY5J4t8E.js
+note: vite content-hashes the assets; identical source + lockfile → identical bytes. 'Prove what bytes land': the hashes above are the receipts; the dists are NOT shipped in the zip (they rebuild from the shipped sources — the same rule as the four-slice delivery).

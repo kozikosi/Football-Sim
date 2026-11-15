@@ -1,0 +1,38 @@
+== season standings screen — item-3 timing protocol (item 6) ==
+ARM ORDER: SVELTE FIRST (randomised per-slice rule: shuf; slice 5 was Vue-first, this slice flips)
+VIEW: SEASON standings — 8 real divisions × 4 rows from the engine's own simulateSeason (seed 2027 over the fixture's 1,024-pick league), W-L-T + PF/PA + seed badges 1-7 + champion line
+FIDELITY: tables string-equal across arms (whitespace-stripped — DATA equality); champion engine-true vs node-side re-derivation through the SAME path; 32 rows / 8 divisions / 14 seeds / W+L+T=17 every row (receipts/season-probe.json)
+
+arm=svelte install: no new dependencies · exit n/a (0 packages)
+arm=svelte first_build: exit 1 · 422ms — FAILED ONCE: 'Could not resolve "../cards.css" from src/lib/screens/Season.svelte' (wrong relative path; screens sit one level deeper than Vue's components/). VERBATIM (build log): [vite] Could not resolve import "../cards.css". Fix: '../../cards.css'. Retry green.
+arm=svelte first_build_retry: exit 0 · 1030ms · dist/assets/index-D5EoCPbd.js 358.00 kB │ gzip: 111.29 kB
+arm=svelte typecheck: exit 0 · ~3000ms · svelte-check found 0 errors and 3 warnings in 2 files (the same pre-existing set: 1 FeedPanel tabindex + 2 Cards overlay a11y — the season screen added NONE)
+arm=svelte first_working_iterations: 2 builds (1 failed: the css path), 0 probe failures on the svelte side
+arm=svelte framework_owned_lines: Season.svelte 37 L + store glue 12 L (ensureSeason + Screen union + imports) + nav 1 L ≈ 50 L
+
+arm=vue install: no new dependencies · exit n/a
+arm=vue first_build: exit 0 · 1260ms · dist/assets/index-Bqyid6C-.js 384.34 kB │ gzip: 121.77 kB (CSS byte-identical across arms: index-BfFN2kUF.css)
+arm=vue typecheck: exit 0 · vue-tsc --noEmit 0 errors, first try
+arm=vue first_working_iterations: 1 build, 0 failed builds, 0 failed probe runs on the vue side
+arm=vue framework_owned_lines: Season.vue 38 L + store glue 12 L + nav 1 L ≈ 51 L
+
+shared (identical bytes both arms): seasonVM.ts 74 L (leagueTeams/runSeason/toStandings) + season chrome 11 classes in feed.css (cmp CLEAN)
+
+time_to_green: svelte T-season1→T-season3 ≈ 7 min (incl. the failed build + probe author); vue ≈ 4 min after svelte (glue+screen only; the shared VM + probe already existed)
+scratch checks: svelte 1 (the css-path miss), vue 0 (the path lesson transferred)
+
+-- full_build + re_build_after_one_word --
+arm=svelte re_build_after_one_word: exit 0 · 1589ms
+arm=vue re_build_after_one_word: exit 0 · 1744ms
+arm=svelte index_bytes: JS raw 357999 B · JS gzip-9 109889 B (pre-season-slice svelte was 107.81 kB gz → season code ≈ +3.5 kB gz shared engine modules)
+arm=vue index_bytes: JS raw 384343 B · JS gzip-9 120419 B
+JS-only gz delta: 10530 B toward svelte (four-slice 10,706 → season surface grows the delta: the shared season engine code costs both arms the same; the framework delta tracks its baseline ratio)
+
+-- canon_purity + hygiene --
+canon_purity: CLEAN (0 hits in all 4 new files)
+w85 check: probe hygiene 0 console/page errors · 0 blocked requests, BOTH arms (receipts/season-probe.json)
+390px standings: clean both arms (scrollWidth == 390)
+
+== the within-agent verdict (season slice) ==
+Again a statistical tie on framework-owned code (≈50 vs ≈51 L; both builds green; both typechecks clean). The one FAILED build of the sitting was SVELTE's — a relative-path miss because svelte screens nest one directory deeper than vue components; the lesson transferred and vue built clean first try. The probe authoring was the expensive half again (shared, attributed to the first arm per protocol). svelte-check added no new warnings for the season screen.
+CONFOUND (unchanged): training-data mix is unseparable; a second agent must run PROTOCOL-FOR-A-SECOND-AGENT.md for anything universal.

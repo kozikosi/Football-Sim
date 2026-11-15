@@ -1,0 +1,12 @@
+madden27-ratings.csv rows : 1941
+free-agents-old-ratings.csv rows: 12
+sum                       : 1953
+buildPool count           : 1953
+draftable (draft.ts l.53) : 1921
+LS rows in the pool       : 32 (teams covered: 32 of 32 — one per team: true)
+ok  1,941 + 12 = 1,953 (the verified poolCount)
+ok  buildPool == 1,953
+ok  the gap is exactly the 32 long snappers
+ok  draftable == 1,921 (the board count)
+ok  1,953 − 32 = 1,921 — the gap is fully explained
+POOL-LEDGER: PASS — the 32-row board gap is the LS filter (draft.ts l.53), one long snapper per team; no unexplained rows remain.
