@@ -1,0 +1,8 @@
+ok Buffalo Bills game (Buffalo Bills @ Las Vegas Raiders): 1 turnover(s), all named as INT/FUM chips + drive summaries ("Buffalo Bills throws an interception — 3 plays, 1 min....")
+ok Miami Dolphins game (Miami Dolphins @ Kansas City Chiefs): 2 turnover(s), all named as INT/FUM chips + drive summaries ("Kansas City Chiefs loses a fumble — 4 plays, 2 min....")
+ok New England Patriots game (New England Patriots @ Seattle Seahawks): 1 turnover(s), all named as INT/FUM chips + drive summaries ("Seattle Seahawks throws an interception — 4 plays, 1 min....")
+ok NY Jets game (NY Jets @ Cincinnati Bengals): 3 turnover(s), all named as INT/FUM chips + drive summaries ("Cincinnati Bengals loses a fumble — 3 plays, 1 min....")
+ok Baltimore Ravens game (Dallas Cowboys @ Baltimore Ravens): 6 turnover(s), all named as INT/FUM chips + drive summaries ("Dallas Cowboys throws an interception — 2 plays, 1 min....")
+ok Cincinnati Bengals game (NY Jets @ Cincinnati Bengals): 3 turnover(s), all named as INT/FUM chips + drive summaries ("Cincinnati Bengals loses a fumble — 3 plays, 1 min....")
+TOTAL: 16 turnovers across 6 games · named 16/16
+TURNOVERS-NAMED: PASS — every turnover is named (chip + summary) in the game-level engine output.
