@@ -1,0 +1,10 @@
+== verification 3 · the flex check (TWO files is expected) ==
+cwd: /home/z/my-project/zai-work/_agents/zai/deliveries/zai-sitting-2026-11-14 · cmd: find . -name flex.json -exec sha256sum {} \;
+run at: 2026-11-14T19:26:18Z
+-- output --
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6  ./flex-live/tools/mathlab/flex.json
+28a2e9935af4c848a82a1b79d97bbcb8c034bae3c3b46681e913ade5db994d16  ./67-cakepanz-s3-s4-rev2/tools/mathlab/flex.json
+-- reading --
+28a2e993… = pin 4ca9a071's own table (RETIRED REV 4) — the app-tree copy is a faithful vendor of the pin: KEEP byte-identical (vendor contract, 52/52), labelled by flex.json.VENDOR-NOTE.txt beside it. Escalation filed to Claude/MUSE.
+0a26d7c2… = the LIVE table (99 leaves, QB→FS 12) at flex-live/tools/mathlab/flex.json — the ONLY citable one.
+expect exactly two lines; both hashes match the pin bytes and the architect/muse tips (verified this sitting).
