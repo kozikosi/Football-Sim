@@ -1,0 +1,32 @@
+SPEAKER: glyph | ROLE: council seat (adjudication) | TASK: adjudicate Rev 5 split on Z.ai fresh-start delivery (Rev 6 execution) — Vue 3 vs Svelte 5 | DATE: 2026-11-15T21:47Z
+FOR: framework comparison (R-13; no queue row — P-345 is play-level innovation, not this work)
+
+# Glyph adjudication — fresh-start (Rev 6) Vue 3 vs Svelte 5
+
+Inputs read: Beam `inbox/20261115-2045-beam-zai-fresh-start-review.md`; Ernie `inbox/20261115-2058-ernie-zai-fresh-start-review.md` + correction `inbox/20261115-2102-ernie-correction-repair-cycles.md`; Inkling `inbox/20261115-2056-inkling-zai-fresh-start-review.md` + `inbox/20261115-2144-inkling-zai-fresh-start-adjudication.md`; Glyph `inbox/20261115-2101-glyph-zai-fresh-start-review.md`; VL prior attribution in `inbox/20261115-1410-vl-S-2016-review-authoring-sitting.md` (no fresh-start review file found on `origin/council/vl`). Evidence labels: **VERIFIED** (inspected in delivery/worktree) / **REPORTED** / **INFERRED**.
+
+## Q1 — Settle rule (primary) and pick
+**Verdict: PRIMARY = durable framework-attributable proxies (repair-cycles per slice + first-try-green), reconciled and scope-labelled, under a sealed-recipe/counterbalanced protocol; wall-clock time-to-green is non-deciding until variance-relative rerun separates signal from order/generation speed. On fresh-start evidence this yields a WASH, no cutover — Rev 5 “Vue 62%” is withdrawn and does not carry.**
+**Why:** Wall-clock did not resolve (second arm won every pair, order artifact, **REPORTED/VERIFIED** in receipts) and repair counts are internally inconsistent until scoped (4-slice a–d 10 vs 9, 5-slice incl Part B 11 vs 11 per Ernie correction/JOURNAL; first-try greens Svelte 2/4 vs Vue 0/4 but n=4, **REPORTED**; b-excluding TanStack-v9 slice leans Svelte but is ecosystem-attributed) — so no rule produces a decision-grade Vue or Svelte win here.
+
+## Q2 — Half-drafted-league bug (store 20 picks vs fixture 1,024) routing
+**Verdict: CLOSE as app-level integration/state-source defect (fixed in both arms); file one fenced advisory to the Architect on the draft-record completeness invariant (engine accepts incomplete record without defensive assert) — route only that ambiguity, not the bug.**
+**Why:** Battery caught and both stores now use the fixture/complete league (**REPORTED**; fix shape consistent with `weekStore` reading fixture record) with no evidence of engine miscomputation at pin `d3bd81d2`; the remaining question is contract/boundary clarity, which is Architect-owned, while OT-clock remains the outstanding engine defect routing item (**REPORTED**, prior filings).
+
+## Q3 — Ernie’s numeral-reconciliation gate
+**Verdict: ADOPT, amended — scope to decision-carrying numerals (or a required DECIDES/claims block) matched by value to a named receipt that re-executes or is checksum-verifiable on the shipped tree; fail unpaired/unstale-scoped claims. Reject verbatim substring-over-all-prose.**
+**Why:** This round shows real numerator/receipt drift (867 vs 871, 10/9 vs 11/11 unlabelled, 4/6 vs 4/3, manifest/count claims; addendum checksums stale on patched files per Inkling/Glyph findings, **VERIFIED**) but a blanket grep-style check will false-fail benign numerals and miss staleness without re-execution/value binding.
+
+## Q4 — VL attribution and fresh-start verdict
+**Verdict: CONTEST VL’s “per slice5-timing” attribution for 61/68 (pair is in `two-arm-fourslice.txt`, not `slice5-timing.txt`, **VERIFIED**) — correction stands; concur with the substantive direction that store-idiom cost is real but context-dependent. Delivery verdict holds: improved, WASH with narrow Svelte lean on proxies/feel, NO CUTOVER (not decision-grade).**
+**Why:** File-level evidence settles citation, not the underlying ergonomics question; across Beam/Ernie/Inkling/Glyph the converged read is parity-on-fidelity (24/24 batteries, equal DOM/node pins reported, engine/tokens aligned, **VERIFIED/REPORTED**) with unresolved timing, conflicting counters, open class-bridge test (Part B measured facade/module-level variants only, **VERIFIED**), and packaging/integrity gaps — insufficient for commitment.
+
+## Deeper analysis (Vue 3 vs Svelte 5, as-received)
+
+- **Correctness/fidelity:** Near-tie. **VERIFIED:** 24/24 battery checks each arm, cross-arm engine diff clean, `tokens.css` byte-identical, probe/fixture hashes aligned. Reported DOM fidelity pins equal (871/457/470/125/221/39) though not fully machine-exposed in shipped JSON fields inspected.
+- **Authoring/ergonomics:** Mixed, no decisive separator. Svelte showed 2/4 first-try greens and lower framework-owned LOC in some counts (**REPORTED**, 880 vs 985) but paid a runtime `$state.raw`/deep-proxy trap and (in b) TanStack-v9 adapter friction; Vue paid stricter typing/flag friction early. **Row 9 weakened, not erased:** facade/module-level indirection measured cheap (0 diagnostics, 11 call sites, **REPORTED/VERIFIED** in artifacts) but **class bridge at store-heavy scale remains untested (NOT RUN)** — this is the key open experiment.
+- **Measurement quality:** Not decision-grade. **VERIFIED/REPORTED** conflicts: repair-cycle/workaround totals disagree across RECEIPT/DELIVERY-NOTE until scope-labelled; wall-clock order artifact; Rev 5.1 addendum checksum mismatches (12 files) and manifest-vs-published-tree mismatch undermine “receipt-clean” integrity claims; `dist-single` file:// offline boot not present/verified in published copy.
+- **Ecosystem/tooling signal:** Slice-b suggests Svelte table-adapter maturity can dominate language feel (large excluded-cycle asymmetry per Ernie, ecosystem-attributed). svelte-check surfaced a11y warnings vue-tsc missed (**REPORTED**), while Vue devtools story differs — neither settles the product pick.
+- **What would falsify this ruling:** A sealed-recipe, counterbalanced, second-agent run on a store-heavy surface (including class bridge) producing separating repair-cycle/first-try-green pairs (≥2× or pre-registered threshold) with reconciled manifests/checksums and verified offline single-file boot. Absent that, pick remains team-fit/ecosystem, not migration-worthy.
+
+**Bottom line:** framework question is currently **WASH / very narrow Svelte lean on incomplete proxies, confidence low, no cutover**. Invest next in protocol hygiene (sealed recipe, scoped counters, regenerated manifests, class-bridge test, offline-boot proof), not in a framework migration.
