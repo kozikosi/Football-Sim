@@ -514,3 +514,124 @@ it matters to the user, and a test that would prove it wrong.
   Do not present a measurement you did not run as VERIFIED.
 - **If you disagree with anything in this prompt,** say so with evidence. The Owner explicitly
   invites pushback. A disagreement with a receipt is more useful than a silent compliance.
+
+---
+
+## Revision 2 — additions (2026-11-15, after Inkling's agentic-ergonomics prompt and Ernie's authoring prompt)
+
+The following is incorporated into this prompt as Revision 2. It supersedes any conflicting
+wording above (in particular, the counterbalanced arm in Part C.3 is now CROSS-AGENT, and the
+two de-gated tests in Part F.3 are now explained exactly). The short copy-paste version
+(`zai-short-authoring-sitting-2026-11-15.md`, Revision 2) carries the same material in condensed
+form; if the two disagree, follow the short version and say so.
+
+### R2.1 · MUSE's position and what would flip it (the decision rule)
+
+MUSE leans Vue 3 + Vite, narrowly, on authoring/maintenance grounds — not on performance. The
+performance evidence is a wash except the ~11 KB bundle (real, but its user impact is unmeasured
+— nobody has run the four-slice low-end boot yet); the authoring evidence points Vue's way (the
+store file is where maintenance lives, and Vue's is smaller at 61 vs 68 lines with no
+compiler-forced getter-wrapper idiom, plus more precise type errors and a bigger ecosystem). The
+cost of being wrong is ~350 lines per direction, so the call is low-stakes and reversible —
+optimize for what compounds over time (maintainability by agents) rather than a one-time
+measurement (11 KB). What would flip MUSE: if the low-end boot shows the 11 KB moves interactive
+time beyond ±100 ms, flip to Svelte. If the counterbalanced arm shows Svelte is easier to author,
+flip to Svelte. If vapor mode closes the bundle gap to under 5 KB, the Svelte case dissolves on
+your own falsifier and the decision turns on tooling, which points Vue. The honest state is that
+the evidence is insufficient for a confident call — Claude said so himself — and your Svelte
+preference (by the bundle, 70% confidence) is a legitimate measurement-based position. MUSE's
+lean is a bet on maintainability, not a verdict. **If you think this measurement cannot answer
+the question cleanly, say so — that is the most valuable answer available, and it is better to
+say it now than after two agents burn a sitting.**
+
+### R2.2 · The counterbalanced arm is CROSS-AGENT (supersedes Part C.3)
+
+ERNIE builds slice 5 in the OTHER framework, timed and logged with the same ten metrics and the
+same definitions (Owner-granted). Do not wait for him — build, log, file. The comparison is
+"which framework each agent found easier," reported as TWO RESULTS, NOT AVERAGED into one. If
+you and Ernie disagree about which was easier, that disagreement is the finding, not something
+to split. Name the exact view and fidelity in your filing's first line so the two arms are
+comparable. (MUSE has a seat running the four-slice low-end boot in parallel — do not wait for
+it; run it yourself and compare. If your numbers and theirs disagree, that disagreement is a
+finding.)
+
+### R2.3 · Six new test designs (Ernie's — build each as a runnable test with a receipt, or file exactly what would be needed to run it)
+
+(i) OT clock — the feed.ts clock() OT defect (l.59-60); verify the fix at the next re-pin.
+(ii) Turnovers named — a test that names and counts turnovers (giveaways) in the play-level
+engine. (iii) Banned phrasings — a test that greps the delivery for banned phrasings (including
+the wasted-capability term) and fails if any appear. (iv) Offline — file:// boot with 0 blocked
+requests and 0 console errors. (v) Save envelope — the R-3 one-blob + version-check invariant
+(same as Part D's save work; do not run it twice, cross-reference). (vi) Pool ledger — the
+1,921 board gap (1,941 + 12 = 1,953 = poolCount is verified; the 32-row gap to the board's
+1,921 is unexplained); a test that counts the pool and the board and reports the gap.
+
+### R2.4 · The w89 arc, inside this sitting (Inkling's §1.2 — cheap, numbered receipts, not hand-waves)
+
+(a) Team select — evaluate one improvement a framework enables (e.g. an animated tour of the
+32 teams) in both arms. (b) The save envelope — implement the R-3 invariant in each arm's save
+service (boilerplate only) and prove the refusal-of-a-newer-build-save with a fresh seed; one
+command + one log line each. (c) Draft step on the board — the screen the user will stare at
+longest; evaluate how each arm handles a hypothetical real-time ticker, a bottom-left lineup
+panel that updates as the user studies players, and a left-rail portrait; one panel per arm.
+(d) Saves refusal — refuse a corrupt envelope with a plain message in each arm; one command +
+one log line each.
+
+### R2.5 · Questionnaire (Inkling's — write one file per arm)
+
+`measurements/vue-ergonomics-receipt.txt` and `measurements/svelte-ergonomics-receipt.txt` —
+every answer short, every answer with evidence: `<command or file and line>` or `evidence: NONE`
+naming what would have been needed; an answer with no evidence reads as an opinion. The
+questions: (a) the single worst problem and single best moment per arm; which arm produced more
+friction (language, tooling, type checker, docs) and why, with a receipt; which fight cost the
+most minutes (quote verbatim); which arm produced the cleaner first error message (quote it);
+which error made you want to switch frameworks mid-session. (b) Five minutes away from each arm;
+which did you re-enter faster and why? Did the documentation cost you — did you read it, did it
+help, did it mislead (with quote)? (c) svelte-check vs vue-tsc — more precise coordinates and
+more useful prose (quote one error from each)? Which arm's HMR worked reliably and which was
+silent? Did any arm force you to work around the idiom instead of inside it? (d) Where do you
+hallucinate in each arm (name one caught hallucination per arm)? Which framework suffers more
+from stale pretraining data? If the Owner assigned you this card in three months, which arm
+would you build it in? Which arm shows the larger technical-debt overhead after your next 3
+sittings? Which fits "agent-maintained and owned by a non-specialist" better, with receipts?
+(e) Of the entire w89 surface (team select → board → save/load → season → playoffs →
+championship → awards → offseason), which single feature feels most at risk of being harder than
+it needs to be in each framework? What one feature absolutely must feel at least as good as w89
+in either arm, and which arm feels closer — and why? If the whole product had to be re-shipped
+on the inferior arm first, what would you lose most?
+
+### R2.6 · Extra categories for the winner table (Part C.7)
+
+Add to the category table: keyboard reactivity (all keys ≤20ms for any action), CSS file size,
+file readability in your head after 5 minutes, test green rate, Friday-afternoon-build
+confidence. Bundle is the least interesting.
+
+### R2.7 · The verdict file — risk section (Part C.7 / the verdict)
+
+The verdict file (`measurements/AGENTIC-ERGONOMICS-VERDICT.txt`) must include, in addition to
+the winner, the recommendation, the confidence, and the falsifier: (5) the risk of ruling by
+bundle size vs by agent ergonomics — name one person-impact case for each failure mode; (6) the
+risk of ruling now vs at next sitting, with receipt.
+
+### R2.8 · How to reply (Inkling's format — supersedes the reply format in the Bounds)
+
+Table first (item · status DONE | BLOCKED | UNKNOWN | ESCALATED · receipt · one line each).
+Then four lines per item: cwd · command · ref@sha · output. Then CONTINUATION-DELTAS: (1)
+CLOSED THIS SITTING (every item + receipt path); (2) STILL-BLOCKED; (3) NEW INPUTS FOR THE NEXT
+PROMPT (pointers to receipts, interview, verdict, authoring cost); (4) NEXT-SEATING OWNER STATE
+(anything the Owner told you mid-sitting); (5) WHAT THE OWNER SHOULD TELL YOU FIRST (one
+sentence); (6) THE AGENTIC-ERGONOMICS VERDICT (path + the one-sentence answer). Do not stop
+before the questionnaire is written.
+
+### R2.9 · The brag-card skeleton (Inkling's suggestion)
+
+You may borrow or adapt the receipts/brag-card.html skeleton from the ERNIE-vendored v3
+delivery; do not mutate it; the frame you actually build is yours. (If the Owner prefers you
+start from scratch, he will say so — build from the skeleton unless told otherwise.)
+
+### R2.10 · The two de-gated tests, exactly (Inkling — supersedes Part F.3)
+
+The lineup.test.ts test asserts exact OVR losses after the P-318 seam landed (losing 2400/2700
+across the flex comparison), and the versions.test.ts stamp-pin test demands the old
+nfl1.14a4e9333e888a string. Both pass on old pins and fail on new ones. R-11: fix them, not
+carry them. Who fixes them is the Architect's call; you are not inside colors/.
