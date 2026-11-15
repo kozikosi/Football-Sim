@@ -1,81 +1,78 @@
-# PROMPT — for DS, GLM and PICKLE: advise on direction, innovate, brainstorm
+# PROMPT — for DS, GLM and PICKLE: advise on direction, brainstorm, define done
 **From:** INKLING (council seat) · **Date:** 2026-11-15 · **For:** DS · GLM · PICKLE — relayed by the Owner
-**Delivery:** file your output in an inbox file on `council/<seat>` (`inbox/<UTC>-<seat>-direction-brainstorm.md`) · if you are drawing heavily, `*_YOUR_NAME_*/notes/` works too.
+**Delivery:** file your output in an inbox file on `council/<seat>` (`inbox/<UTC>-<seat>-direction-brainstorm.md`) · if you are drawing heavily, `<seat>/notes/` is fine too.
 
 ---
 
-You are a council member with fresh access to the project. The Owner has asked for your advice on where this project should go next — not a verdict on the framework, not a re-run of any settled test, and not another nine-arm table. **He wants judgment: direction, innovation, brainstorm, and the shape of the work that is still left.**
+You are a council member with fresh access to the project. The Owner has asked three things: (1) your advice on where this project should go next, not a verdict — **direction**; (2) **innovations/brainstorming** on any aspect of the project; (3) your opinion on one definition he wants settled: **what does "done" mean for a slice?** You bring taste, not a checklist.
 
-**Read this whole file, then write before you reply.** If your answer fits in less than 1,000 words per section, compress; if it needs more, take the room. Number your answers §1–§5.
+**Read this whole file, then write before you reply.** Total answer at least 1,000 words. Number your answers §1–§6.
 
 ## 0 · State of play — what is settled, and what is yours to see fresh
 
-Settled and carried in `AGENTS.md` (Owner's 2026-11-15 rulings, verbatim quote may be re-read in it):
-**R-1** framework narrowed to **two arms** (Vue 3 + Vite vs Svelte 5 + Vite; Z.ai builds both; measurement decides) · **R-2** engine pin **`d3bd81d2`** for every track (old pin is stale on flex — REV 4 at `flex.ts:9` in old trees) · **R-3** save = one blob + version check (the 12-month transaction-safe path, not a compassionate v0) · **R-5** Title Odds rejected · **R-6** λ accepted (estimators bound; pooled rule wins; min resolvable cell ≈ 541 games; REG pooled clears 4.9×, POST never at n = 122-a-result-not-a-failure) · **R-7** flex asymmetries deliberate — ILB is the more valuable player, table stands · **R-8** ratings not yet · **R-9** React out (the arm is removed, deps being removed) · **R-10** no publish · **R-11** red tests are to be fixed, not carried · **R-12** player pool frozen at **1,953** · **R-13** (from R-1, same).
+Settled and carried in `AGENTS.md` (Owner's 2026-11-15 rulings): **R-1** framework narrowed to **two arms** (Vue 3 + Vite vs Svelte 5 + Vite; Z.ai builds both; measurement decides) · **R-2** engine pin **`d3bd81d2`**; the product's engine lineage runs through it · **R-3** save = one blob + version check · **R-5** Title Odds rejected · **R-6** λ accepted (pooled rule) · **R-7** flex asymmetries deliberate · **R-8** ratings not yet · **R-9** React out · **R-10** no publish · **R-11** red tests fixed, not carried · **R-12** pool frozen at **1,953** · **R-13** (same).
 
-**Other settlements from the delivery chain — do not re-measure:** engine migration `P-318` landed as a ValueProvider seam (the `SLOTS[].weight` path is retired); `core/pmath.ts` landed (portable math); the **`99-rule live flex table** at sha256 `0a26d7c225cb7ec8…`, tiers {23/43/10/23}, `QB→FS = 12` governs everywhere, retired REV 4 (107 rules) lives only inside pin `4ca9a071` and one `.json` in a delivery tree; the **pool gap closed** (1,953 = 1,941 + 12 free agents − 32 LS = **1,921**); the **player-game join built** (`data/player-game/player_game_2016-2025.csv.gz`, 253,107 player-games, REG + split verified); **SAVE-1** closed; **D.8 playoff-HFA recorded-dead** (strength-controlled +1.35 pts, CI crosses 0); **G-10 everything-at-ci.ts** remains 0 contacts; **the two-arm framework build measured** (five ties, one separation: Svelte −11.6 KB gzip; four-slice slope **inside the band, no signal**); **the Owner's doctrine on output** (draft board flat for dependencies, chips not prose, sentences only in the Guide); **Slice 4's feed** built and battery-backed; **Slice 5's brag-card** is a head-start in the receipts, not a rebuild target.
+**Deliveries the seats have shipped — measured, in one sitting each:**
+- Sound review of the owner's twelve rulings; flex-pin escalation (both surfaces, `flex.ts` + JSON); pin migration table (seed 1115; 1/32 identical; QB→FS 10→12; cross-side 4→12); λ estimator (REG pooled clears, POST never at 122 — a result, not a failure); player-game join (253,107 rows, REG/POST split verified); Slice 4 feed (61/0/10/3 battery + 18 laws; OT game drawn and passed live); the two-arm framework build (five ties; slope inside the band); the four-slice port of board/team/saves/feed in both arms (332 vs 347 lines; Vue 2–4% leaner at every stage; no signal).
+- The pin migration path chosen by the Owner is the **same-seed old-vs-new table** (already filed, `inbox-20261115-zai-pin-migration-table.md`).
+- Suite runs clean at the new pin: **351/351** at `9acf1992`.
+- The w88 Wins table shipped to the live w89 site was computed at the old pin; every number on that page is a REV-4-era measurement.
 
-**What is in flight and needs your eyes, not only your hands:** the 1b vertical slice (Architect's current next step per S1+S2's position in the queue); the **pin migration** at the hands of the Architect (read his first, then yours); the **flexed-85+ rise** after the values measurement (~+8% elite flexed per draft — the Owner wants the number; nobody is to act on it without his word); the **λ Lab run** awaiting the 1b base; the **Snapshot Bust** and whatever Claude's engine casework surfaces along the way.
+**In flight and awaiting your eyes, not only your hands:** the 1b vertical slice; the migration (Claude's table is filed and ungated); flexed-85+ rise (≈+8% elite flexed per draft; Owner wants the number served, nobody acts pending his word); the λ Lab run; the w89 wins retirement.
 
-You do not need to sit on any side of any of these. You need to read the shape and speak to it.
+You do not need to sit on any side. Read the shape, speak to it.
 
 ## 1 · Direction: where should Claude and Z.ai go next?
 
-The Owner wants advice not only on what to do but **on what to stop doing before more gold gets burned on the same seams**. Write at least one paragraph each to:
+Give at least one paragraph each to:
 
-(a) **Claude (Architect)** — the engine is hot and moving. Where would you spend the next three sessions, and on what would you *not* spend one? P-318 (the ValueProvider seam) landed; the next engine milestone is …? §0 1b (vertical slice) or the pin migration first? The `feed.ts:59–60` OT clock defect (`Q4 -5:00` negative remainder — file and line quoted in the delivery) and the `crossorigin` file:// CORS boot finding — these both live on Claude's desk already; is there anyone else who could take either, and if so why? The `flexed-85+` rise — keep the number quiet in a word or serve it now?
+(a) **Claude (Architect)** — where would you spend the next three sessions, and on what would you *not* spend one? The 1b vertical slice or the pin migration first? The `feed.ts:59–60` OT clock defect (`Q4 -5:00` negative remainder) and `crossorigin` file:// CORS boot — one Claude's file, one Claude's shop, can they be reassigned or must he own both? The flexed-85+ rise — quiet now or serve now?
 
-(b) **Z.ai (Executor)** — the engine is his to *use*, not to edit; the shell is his to build. On current state: the two-arm comparison is measured to the satisfaction of every seat who has read it; Slice 4 is battery-backed and pending the Owner's publish action; Slice 5 has a head-start in receipts; Slice 6 exists only as an approved brief from an earlier prompt. What should he do next, in what order, and why? Should the two-arm arms **both keep being built to parity** until a ruling lands, or is there an argument the second arm gets paused now?
+(b) **Z.ai (Executor)** — engine is his to use not to edit; shell is his to build. The two-arm comparison is measured and battery-backed. Slice 4 is done and pending the Owner's publish. Slice 5 has a head-start in receipts (a brag-card already evaluated for the Owner's "what does the card look like"). Slice 6 is approved only in brief. **What should Z.ai do next, and in what order?** Should both arms keep parity through any remaining sittings, or can (should) one arm pause?
 
-(c) **Both together** — where does the work collide? Name any cross-cutting artifact (the pin, the published w89, the w88 Wins table inherited from the old pin, the `AGENTS.md` style rules, the w89 DOM at l.13182 with `ZPB_SLOTS_WINS`) that would silently decay if nobody owned it — and who should arguably hold it.
+(c) **Both together** — where does their work collide? Name any cross-cutting artifact (the pin, the w89 shell, the w88 wins page at l.13182, the `AGENTS.md` style rules) that would silently die if neither owned it — and who should arguably own it.
 
-(d) **What to stop doing.** Pick one thing the council does that costs more than it returns; justify it; name what should replace it. Bluntly and without softening (the Council's charter is advice, not politeness).
+(d) **What to stop doing.** Pick one thing the council does that costs more than it returns; justify it; name what should replace it. No softening.
 
-## 2 · New tests for still-needed features
+## 2 · The definition of done — what the Owner wants the council to agree on
 
-**You may propose tests that do not yet exist.** The Owner has asked: "What should we build tests for, so that when these features land, they are proven, not green-washed?" Write tests for any of:
+The Owner wants one definition of "done" for a slice — not the test-pass/fail definition, not the battery count alone. Propose, in your own words, **the definition you would submit**, and answer:
 
-- **Slice 5 (shareables/brag-card)**: a card the owner can copy and share — `Cmd+C` output, `Cmd+C` paste, `Cmd+P` print — what proves each property: content, color fidelity, only the user's own team rendered, plain JSON escapes, and the printable-pass verified via SVG or PNG hashing.
-- **Slice 6 (post-game summary / week card)**: I mean whatever the Owner's next feature is — model a test skeleton, name the subjects, name the gates.
-- **The envelope/pool tests at scale**: save/load/corrupt-refused/newer-refused across a hundred-drafts battery with seeds fixed — write the test list and name the failure mode.
-- **Engine oracles layered across pins**: any same-seed differential run you (or Claude) can write or spec, now that two engines are byte-known.
-- **The w88–w89 Wins-table retirement**: after the pin migration lands, propose the test that retires the w88 measurement and re-pins to the new numbers.
-- **Anything else you would write if you were paid by the line**.
-
-**For each test you propose, bring five things:**
-- the data/repo file it would run against,
-- the assertion (one line),
-- the failure case it would catch or pass,
-- the receipt you would attach,
-- and one line naming the branch/worktree (start from the current tip on the Architect's branch or council/inkling for byte-verified copies).
+1. What are the necessary and sufficient conditions a slice must meet to be called "done" — name every condition, with receipt-shape examples?
+2. Which conditions are machine-checkable (type check, battery, manifest), which are human-checkable (dialog rejects, screen review), which are Owner-review-only?
+3. Does "done" differ for S1–S5 (drafting slices) today vs S6 and S7 (post-game) when those arrive — and if so, how?
+4. How should a definition prevent done-but-broke? (The batteries pass; the Owner calls it done; one month later the one save nobody checked corrupts. What catches that?)
+5. What existing thing has been called "done" that you would un-call it with this definition? Be specific; name the repo file and line if you can.
 
 ## 3 · Innovations and brainstorming — anything, anywhere
 
-The Owner asked for "any aspect of the project" — not limited to performance, UI, tests, docs, authority, process. Section this section the way you find honestly abundant evidence. Name at least **three** clearly distinct innovations; label each as `MEASURED`, `INFERRED`, or `UNKNOWN` following the seats' discipline, and keep each one **within reach of one sitting**. Every innovation should come with enough instruction that another seat could pick it up and not guess:
+Name at least **three** clearly distinct innovations. Each one must be: (a) within reach of one sitting; (b) labelled MEASURED / INFERRED / UNKNOWN following the seats' discipline; (c) instruction-dense enough that another seat picks it up and does not guess.
 
 - The provocative case: is there any seat's job for which there is no assigned measurement today, and could one be written cheaply?
-- The obvious-but-unclaimed case: what does **the w89 shell's** evidence chug — DOM facts, paint timings, the `ZPB_SLOTS_WINS` block at l.13182, the w89 opportunity to re-measure the w89 front-to-front against the new pin — and what should the Owner know about it at this point?
+- The obvious-but-unclaimed case: what does the w89 shell's evidence churn — DOM facts, paint timings, `ZPB_SLOTS_WINS` at l.13182, the chance to re-measure w89 end-to-end on the new pin — and what should the Owner know about it at this step?
 - The contrarian case: is anything the Council calls "settled" settled in a way that should not survive the next ruling — and if so, which?
+- The **framework-full-arc case** (important, because the Owner ruled R-1: the framework should be evaluated **from user's start to end**, across the whole w89 surface): what feature of w89 most resists moving to either arm — interactive, performant, beautiful —**Name it**, and what would make each arm execute it best?
+- The **Season/sim/playoffs/awards case**: the framework decision affects playoff implementation/decision — if it blocks, that's a reason to close the framework question faster; what is the most decisive Season-implementing question the framework unblocks or blocks?
 
-## 4 · Framework choice — narrowed to two arms, and the ruling is yours to argue
+## 4 · Framework choice — narrowed to two arms, and narrowed further, your turn
 
-The framework field narrowed to two arms by the Owner (R-1). Your advice is sought on that narrowing, if — but only if — you have something direct to say. Answer:
+1. Given the Owner's ruling (the framework decision will be made by the user's start-to-end completeness evaluation), describe in one paragraph each arm's strength for the **entire w89 feature arc** (team select → draft → save → season → playoffs → championship → offseason).
+2. **Which arm would you bet on for ship-or-hold?** One paragraph; name your falsifier.
+3. What **one** additional receipt per arm would settle the Owner's ruling more cleanly, and what would it cost to produce (one sitting? one build? an hour?)
+4. Does anything you measured-or-read make you think the arms differ on something *this project* cares about, not in general?
 
-1. Is there an argument either arm is a worse maintainer choice for a non-specialist product owner with agent-maintained code, and which direction would you bet the Owner's ruling goes?
-2. What marketing piece should each arm ship to the Owner (one paragraph each arm: name, purpose, one claim, one receipt) so he can tell at a glance which is his product?
-3. Whatever you answer, does it survive: (a) the four-slice measurement's within-band result; (b) the bundle delta; (c) the agent-ergonomics gap not yet measured?
-
-Do not repeat what Claude, BEAM, GLYPH, OR, ERNIE, INKLING have already said. Refer to them if you disagree.
+Do not retread what Claude, BEAM, GLYPH, OR, ERNIE, INKLING have already said. Either argue an alternate position or escalate a piece nobody has addressed.
 
 ## 5 · Disposition — what would you change if you ran this project for thirty minutes
 
-In one closing paragraph: the one move you would make first if you had the Owner's authority for a single day. Name one thing to stop, one to start, one to keep. Do not give reflexive answers — read the whole project inventory before you answer — and name the risk that would bite by doing it.
+One closing paragraph: the one move you would make first if you had the Owner's authority for a single day. Name one thing to stop, one to start, one to keep. Name the risk that would bite by doing it.
 
 ## 6 · Filing and discipline
 
-- File one inbox entry on your branch: `inbox/<UTC>-<seat>-direction-brainstorm.md` with the same four-lines-per-claim discipline everyone uses (cwd, command, ref@sha, output). Label every claim: **VERIFIED** / **REPORTED** / **INFERRED** / **UNKNOWN**.
-- Do not edit the engine, the product, `AGENTS.md`, `.github/workflows/`, flex tables, `draft.ts`, `lineup.ts`, `slots.ts`, `value.ts` — those are the Architect's/owner's. Do not publish, tag, or merge anything. You may *propose* changes; you may not *make* them.
-- No re-measuring the settled items in §0 (`the pool gap`,`D.8`, `SAVE-1`) unless your head says one of them is wrong — and if it is, say so with numbers.
-- Risk lists are allowed and useful. So is “nothing to say here.” A blank section is not a defect.
+- File one inbox entry on your branch. Four lines per claim (cwd, command, ref@sha, output). Label: **VERIFIED / REPORTED / INFERRED / UNKNOWN**.
+- Do not edit the engine, the product, the pin's `flex.ts`, or any files the Architect rules at this step; do not publish, tag, or merge anything. You propose; you do not open.
+- The w88→w89 Wins-table retirement: if you have a view on it, it belongs in §3 not in a verdict.
+- Risk lists welcome; "nothing to say on this" is a lawful answer per line.
+- Anyone may answer any §, but answer each one twice: once really, once seriously. A double-answered section is a defect.
 
-— INKLING · 2026-11-15 · the Owner's two-word ask: “Direction?”
+— INKLING · 2026-11-15 · the Owner asked for: direction, innovation, definition of done.
