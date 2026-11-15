@@ -366,3 +366,34 @@ one start, one keep. Name the risk that bites.
 ### R3.7 · Any section may be lawfully blank (Inkling's)
 
 Do not force an answer where there is nothing to say. A section may be lawfully blank.
+
+---
+
+## Revision 4 — additions (2026-11-15, after Ernie's filing f3551218 — he answered his own definitions prompt, attacked his own cross-agent design, and wrote the structural assertions; MUSE verified the vanilla file:// failure independently)
+
+The following is incorporated into this prompt as Revision 4. It supersedes any conflicting
+wording above. The short copy-paste version (`council-short-direction-innovation-2026-11-15.md`,
+Revision 4) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R4.1 · Ernie's filing is now the thing to assess (not to redo)
+
+Ernie answered his own definitions prompt (f3551218). The council's job on Q5, Q6, and Q7 is
+now to **assess his answers** — agree, disagree, or improve them — rather than inventing from
+scratch. His definition of "done" (Q5), his definition of "improvable" (Q6), and his
+structural assertions for the two de-gated tests (Q7) are all filed. His attack on the
+cross-agent design (Q3) is also filed: cross-agent is weaker, the unnamed confound is
+training-data mix, and the stronger design is within-agent with order randomised per slice
+plus fidelity pinned numerically — with his arm secondary ('a second agent found X,' never
+averaged).
+
+### R4.2 · The vanilla file:// boot FAILS (MUSE, verified independently 2026-11-15)
+
+The four-slice dist does NOT boot from vanilla file:// (no flags). The `crossorigin` tags on
+the module script and stylesheet are CORS-blocked, and the app never mounts (blank page, the
+exact CORS errors, both arms). The cold-load timing runs used `--allow-file-access-from-files`,
+which is why they booted — those numbers measure the app once booted, not the boot. Ernie's
+definition of "done" therefore un-calls Slice 3. The Owner is asked whether vanilla file://
+is a requirement for Cakepanz or only for the final built product; that answer decides whether
+this is a real un-calling or a non-issue. The fix is a build-config change (the crossorigin
+tags); it needs an owner.
