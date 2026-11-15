@@ -245,6 +245,30 @@ planning document.
 | MCP servers / Claude Code hooks / skills | Don't know | Not verified in this audit (no MCP config was found in the repo checks MUSE ran; the agents' local tooling is not in the repo). |
 | Standard setup (one-command build/test)? | Partial | `npm test`, `npm run build`, `npm run tsc:check` exist in Colors; `npm test` does not exist as a full-suite script in Cakepanz. There is no one-command setup or one-command verification process. A new agent can build and test locally without paid services or API keys (the product has no paid dependency). |
 
+## 1O. Knowledge management and documentation tools (added 2026-11-12, KG)
+
+The central question (KG, 2026-11-12 01:18 HST): should Football-Sim's
+knowledge live in a dedicated personal knowledge-management system, directly
+in the repository, or in a hybrid arrangement? KG's lean: "I'd lean toward
+investigating a hybrid: Markdown documentation in Git as the authoritative
+project record, with Obsidian or a competitor as the research and navigation
+layer. But I'd want to compare the tools before committing." The full
+evaluation (with the comparison table and MUSE's recommendation) is in the
+addendum to the companion answers document.
+
+| Tool | Version | Where | Actively used? | Notes |
+| ---- | ------- | ----- | -------------- | ----- |
+| Plain Markdown in Git | — | The repo (`QUEUE.md`, inbox, owner notes, prompts, `PROJECT-KNOWLEDGE.md`, `AGENTS.md`, `CLAUDE.md`, bulletin, archive, reference) | **Yes — the authoritative record** | The current system. The agents already write it. Free, version-controlled, offline (just files). Weakness: no graph, no backlinks, no search beyond `grep`, no maintained index. |
+| Obsidian | — | — | No | Not set up. KG asked about it 2026-11-11 22:59 HST; MUSE explained the setup. Three questions UNANSWERED: (1) does KG already have a vault, and where? (2) what does he want to see in it? (3) should MUSE start the Rulings index now? No Obsidian work has been done. No `.obsidian` config in the repo. |
+| Notion | — | — | No | Not in use. No config, no files, no record of use. (The only "notion" match in the repo is the English word in a prompt.) |
+| Logseq | — | — | No | Not in use. No config, no files, no record of use. |
+| Anytype | — | — | No | Not in use. No config, no files, no record of use. |
+| AFFiNE | — | — | No | Not in use. No config, no files, no record of use. (The word "affine" appears in the flex-math context — a mathematical term, not the product.) |
+| Joplin | — | — | No | Not in use. No config, no files, no record of use. |
+| GitHub Issues / Discussions / Projects / Wiki | — | — | Don't know (enabled?) / No (used) | Whether they are enabled is a GitHub setting, not verifiable from the repo. The task management is `QUEUE.md`, not GitHub Issues. The council's inbox is the discussion; the queue is the kanban. A Wiki would be a separate repo (it would split the knowledge). |
+| AI-native documentation workflows | — | The repo (the council system) | **Yes** | The council system itself (inbox filings, the queue, the review chain, the verbatim owner notes, `PROJECT-KNOWLEDGE.md`) is an AI-native documentation workflow. It is a set of conventions, not a named product. It works, but it has no search beyond `grep`, no backlinks, no graph, and no maintained index (the Rulings index does not exist yet). |
+| Rulings index | — | — | No | Does not exist yet. A concrete first step (one line per ruling: date, verbatim quote, link to the full note) that works regardless of which tool is chosen, because it is a Markdown file in the repo. MUSE recommends starting it now. |
+
 ---
 
 # Deliverable 2 — Target-stack specification (DRAFT)
@@ -291,6 +315,7 @@ constraint governs every line.
 | PWA | **Undecided** | Open | — (GPT did not address PWA). MUSE's recommendation: offline is already a hard requirement, which points toward PWA — but no PWA decision has been made, and a PWA is additive to a static site, so it can wait until the app is shippable. |
 | Containers | **None (no Docker)** | Decided | — (no container need; the product is a static site + a local dev environment). |
 | AI development | **Claude Code / Z.ai / Muse / the council (the current setup)** | Decided | — (the Owner's structure; not a tooling decision). |
+| Knowledge management | **Hybrid — Markdown in Git (authoritative) + Obsidian as the navigation layer (first candidate; Logseq as the fallback)** | Recommended (MUSE's recommendation, not a decision) | — (no GPT recommendation on this; the evaluation is the Owner's 2026-11-12 request). MUSE's recommendation: investigate Obsidian first (it reads the repo's existing Markdown without moving, duplicating, or splitting it; local-first and offline; free for personal use; the agents' workflow does not change). Reject Notion, Anytype, AFFiNE, and Joplin for this project (they would split the knowledge into a second store). Do not adopt GitHub Issues/Discussions/Projects/Wiki for knowledge (the queue + inbox already serve those roles in the repo). Start the Rulings index now (a Markdown file in the repo; it does not depend on the tool comparison). The decision is the Owner's — he wants to compare the tools before committing. |
 
 ---
 
@@ -322,6 +347,7 @@ decision is made and built on — not the cost of deciding now.
 | D18 | The platform concept (a simulation-design platform vs a multisport simulator) | A platform to design your own simulation / a multisport simulator / a football simulator only | The council's Q11 filings + the Owner's direction. | **HIGH.** This changes the architecture's ambition — it is a product decision, not just a tooling one. It affects what the engine must be (a general simulation framework vs a football engine) and what the application shell must do. |
 | D19 | PWA / offline | PWA / plain static site | The offline requirement (already a hard requirement). | **LOW-MEDIUM.** A PWA is additive to a static site (a manifest + a service worker). It can wait until the app is shippable. |
 | D20 | Error monitoring / analytics | None / Sentry / PostHog / other | The privacy stance (no tracking, no personal data) + the free-tier constraint + whether the product needs crash reports. | **LOW.** These are additive services. The risk is not the cost of adding them — it is drifting into a third-party service that collects data without a deliberate decision. |
+| D21 | The knowledge-management arrangement (dedicated PKM system vs the repo vs a hybrid) | Dedicated PKM (Obsidian / Logseq / Notion / Anytype / AFFiNE / Joplin) / plain Markdown in Git only / **hybrid (Markdown in Git authoritative + a navigation layer)** / GitHub Issues-Discussions-Projects-Wiki | A comparison of the tools against this project's needs (AI-agent continuity, architecture docs, research notes, decision records, long-term project knowledge) — the evaluation is in the addendum to the answers document. The three unanswered Obsidian questions (does KG already have a vault, and where? what does he want to see in it? should the Rulings index start now?). | **MEDIUM.** The authoritative store (Markdown in Git) does not change under any option — so the cost of changing the *navigation layer* later is low (Obsidian and Logseq both read the same files). The cost is HIGH only if the knowledge is *moved* into a second store (Notion, Anytype, AFFiNE, Joplin, or a GitHub Wiki) and then has to be moved back. That is why the hybrid (with a tool that reads the repo's files) is the low-risk shape: the files never move, only the viewer changes. Recommendation: investigate Obsidian first, Logseq as the fallback; reject the tools that would split the knowledge. Start the Rulings index now (it does not depend on the tool choice). |
 
 ---
 
@@ -394,6 +420,14 @@ approve it.** When approved, it belongs in AGENTS.md (MUSE owns it).
     stay static. Ratings are the Owner's alone. Basketball is design-only
     until football is done. The wasted-capability term is not to be
     promoted. Svelte is NOT a lock.
+12. **Record knowledge in the repo (Markdown in Git) as the authoritative
+    record.** Do not put project knowledge — a decision, a ruling, a finding,
+    a prompt, a review — in a tool only you can see (a personal Obsidian
+    vault, a Notion page, a private note). If it is not in the repo, it does
+    not exist for the council. The Rulings index, the queue, the inbox, the
+    owner notes, and `PROJECT-KNOWLEDGE.md` are the record. A navigation
+    layer (Obsidian or a competitor) is a *view* on those files, not a
+    second store — never let it become one.
 
 ## How these rules are enforced (the honest version)
 
