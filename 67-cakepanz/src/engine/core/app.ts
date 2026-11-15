@@ -36,5 +36,7 @@ export interface StorageModule {
 // only: a dev/private build may ship real-names rows as a local build input, and the public build must not ship a
 // fictional league pretending to be real. A loader never throws: every failure is a Result the boot screen can show.
 export type DatasetSource = 'bundled' | 'user';
-export interface LoadedDataset { source: DatasetSource; rows: readonly (readonly [string, string, string, string, number, number, number, 0 | 1])[]; hash: string }
-export interface DatasetLoader { load(): Promise<Result<LoadedDataset, { code: 'no-dataset' | 'user-invalid' | 'bundled-missing'; message: string }>> }
+// Sport-free: the row shape belongs to the sport (NFL's is sports/nfl/app/dataset.ts DatasetRow). `Row` defaults to
+// `unknown` so shared code can carry a dataset and its hash without knowing a sport's columns.
+export interface LoadedDataset<Row = unknown> { source: DatasetSource; rows: readonly Row[]; hash: string }
+export interface DatasetLoader<Row = unknown> { load(): Promise<Result<LoadedDataset<Row>, { code: 'no-dataset' | 'user-invalid' | 'bundled-missing'; message: string }>> }

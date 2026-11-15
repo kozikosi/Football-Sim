@@ -66,7 +66,7 @@ export const openSlots = (r: Roster): SlotId[] => SLOT_IDS.filter((s) => !r[s]);
 
 // Replacement level per role: the OVR of the Nth best player left, N = how many open spots across the league want that role.
 function replacement(st: DraftState): Partial<Record<Role, number>> {
-  if (st.pos - st.replAt < 6) return st.repl;
+  if (st.pos === st.replAt) return st.repl;
   const demand: Partial<Record<Role, number>> = {};
   for (const r of st.rosters) for (const s of openSlots(r)) { const role = supplyRole(DEST_OF[s]); demand[role] = (demand[role] ?? 0) + 1; }
   const by: Partial<Record<Role, number[]>> = {};

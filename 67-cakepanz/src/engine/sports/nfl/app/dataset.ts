@@ -15,7 +15,8 @@
 //
 // PLACEMENT: this file lives in sports/nfl/app/, NOT core/ — it imports the NFL engine's buildPool, and the
 // layout law is "core imports only core" (the first tsc run caught the violation; the layout test ratified it).
-// The sport-free half of the contract stays in core/app.ts (DatasetLoader, LoadedDataset, DatasetSource).
+// The sport-free half of the contract stays in core/app.ts (DatasetLoader<Row>, LoadedDataset<Row>, DatasetSource);
+// the NFL row tuple (DatasetRow, below) lives here, with the one sport that owns it.
 //
 // Contract change vs core/app.ts: the loader's failure union gains 'no-dataset' — the empty state is a RESULT the
 // boot screen renders (message + import path), not a throw and not a fallback.
@@ -35,8 +36,8 @@ export interface UserCsv { name: string; text: string }
 // CSV shape: the same eight columns the engine's buildPool consumes
 // (id, name, pos, team, ovr, spd, str, freeAgent) — buildPool is the ONLY parser, so the loader cannot drift
 // from the engine's expectations: validation = buildPool succeeds + row-count sanity.
-export async function validateUserCsv(text: string): Promise<Result<LoadedDataset, { code: 'user-invalid'; message: string }>> {
-  const fail = (message: string): Result<LoadedDataset, { code: 'user-invalid'; message: string }> => ({ ok: false, error: { code: 'user-invalid', message } });
+export async function validateUserCsv(text: string): Promise<Result<LoadedDataset<DatasetRow>, { code: 'user-invalid'; message: string }>> {
+  const fail = (message: string): Result<LoadedDataset<DatasetRow>, { code: 'user-invalid'; message: string }> => ({ ok: false, error: { code: 'user-invalid', message } });
   const lines = text.split(/\r?\n/).filter((l) => l.trim() !== '');
   if (lines.length < 200) return fail('that CSV has fewer than 200 player rows — a league roster is about 1,900');
   if (lines.length > 60_000) return fail('that CSV has more than 60,000 rows — it is probably not a player ratings file');
@@ -71,7 +72,7 @@ export function noDataset(): Result<never, { code: 'no-dataset'; message: string
 export function createDatasetLoader(input: {
   stored?: () => Promise<string | null>;         // reads DATASET_USER_KEY via the StorageModule (injected; tests use a Map)
   bundled?: () => { csv: string } | null;        // what the BUILD shipped, if anything (Vite define/import — build-input, not a fallback promise)
-}): DatasetLoader {
+}): DatasetLoader<DatasetRow> {
   return {
     async load() {
       const stored = (await input.stored?.().catch(() => null)) ?? null;
