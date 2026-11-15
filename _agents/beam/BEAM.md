@@ -4,34 +4,31 @@
 - **Seat:** Beam · **Model:** reflection/beam-free (Kilo) · **State:** core (Owner relies on heavily, file access to Owner's machine).
 - **Worktree:** /Users/kosi/Desktop/wt/beam · branch council/beam · merge-base with origin/council/base: 1b91f50e161fa10d0607c8e09330115ffa27f1ff.
 
-## Current work (session 2026-11-15)
-- Pushed and reviewed five Z.ai delivery folders: zai-fwtest7 (ok, 539/539), zai-sitting-2026-11-14 (ok, 209/209+183/183), zai-save-wave (ok, 225/225+183/183), zai-sitting-2026-11-15 (ok, 392/392+185/185), zai-framework-slice4 (ok, 429/429+424/424).
-- Reviewed ds, pickle, glm recent work (inbox/20261114-1655-beam-review-ds-pickle-glm.md, verdict ok for all three).
-- Wrote long innovation/brainstorm prompt for ds/pickle/glm (inbox/_agents/beam/deliveries/prompt-ds-pickle-glm-innovate-2026-11-14.md).
-- Filed new fact: flex-leaf-counter 101 count is walker-dependent (inbox/20261114-2010-beam-flex-leaf-counter-walker-fact.md).
-- Reviewed P-287 (zai v4 byte-check basis), P-310 (flexeval), P-332 (formation balance, Option B not yet landed).
-- All work pushed to council/beam. Tip: 06daec02 (then cd2c3917 after framework-slice4 review, then 58f27b99).
+## Current work (session 2026-11-15 round 2)
+- Filed direction + innovation round 1 (P-345): inbox/20261115-1152-beam-direction-innovation.md (Q1-Q8, assesses Ernie f3551218 + Inkling c85a9e8c). commit eb93e429.
+- Reviewed direction-innovation round (inkling, pickle, ds, glm, ernie): inbox/20261115-1210-beam-review-direction-innovation-round.md. commit 9d519b93.
+- Reviewed P-287 (ernie offline/vite-not-required): inbox/20261115-1230-beam-P-287-offline-vite-review.md. commit b48941e5.
+- Reviewed P-312 (ds flex edge cases): inbox/20261115-1245-beam-P-312-flex-edge-review.md. commit 98fdde2f.
+- Filed testing + innovation round 2 (P-345): inbox/20261115-1250-beam-testing-innovation.md (A5 pool ledger CLOSED — LS exclusion by design; A1-A4/A6 left with reasons; B/C/D/E/F answered). commit c8a434e9.
+- Filed round 2 splits (P-345): inbox/20261115-1301-beam-testing-innovation-round2.md (platform: Ernie's receipt diff viewer first; framework settle: Inkling's AND + forced-workarounds-per-slice). commit d686373b.
 
 ## What next session needs
-- Run `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next`.
-- Check if zai-sitting-2026-11-16 or newer deliveries need pushing/reviewing.
-- Open items: P-287 (67 Cakepanz slices, needs 67-cakepanz tree on gh-pages), P-312 (flex edge-case playtest, needs colors engine).
-- The flex-leaf-counter walker fact (974c30b5) is filed but not yet acted on — recommend adding one line to the measurement file.
+- Run `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next` then delete .council_tool.mjs.
+- A1 (boot replication) and A2 (file:// fix verification) still need a seat with the arm build — Z.ai is principal executor. Beam cannot run them from this worktree.
+- A3 (λ estimator validation) and A4 (replay-determinism conformance sweep) belong to the Lab seat.
+- A6 (static-RNG feels-pressure probe) needs core/rng.ts fork-semantics check first (grep + 10-line test), then the 100× probe.
+- Open Owner questions (F1-F5) carried, not answered.
 
 ## Open questions
-- None blocking. The courier gap (Z.ai push credentials) remains open — ERNIE Q4.
+- None blocking. Courier gap (Z.ai push credentials) remains open (ERNIE Q4).
 
 ## Live files (this session)
-- inbox/20261114-1633-beam-review-zai-fwtest7.md
-- inbox/20261114-1645-beam-review-P-332.md
-- inbox/20261114-1648-beam-review-P-310.md
-- inbox/20261114-1655-beam-review-ds-pickle-glm.md
-- inbox/20261114-1900-beam-review-zai-sitting-2026-11-14.md
-- inbox/20261114-1940-beam-review-zai-save-wave.md
-- inbox/20261114-2010-beam-flex-leaf-counter-walker-fact.md
-- inbox/20261115-0800-beam-review-zai-sitting-2026-11-15.md
-- inbox/20261115-1100-beam-review-zai-framework-slice4.md
-- _agents/beam/deliveries/prompt-ds-pickle-glm-innovate-2026-11-14.md
+- inbox/20261115-1152-beam-direction-innovation.md
+- inbox/20261115-1210-beam-review-direction-innovation-round.md
+- inbox/20261115-1230-beam-P-287-offline-vite-review.md
+- inbox/20261115-1245-beam-P-312-flex-edge-review.md
+- inbox/20261115-1250-beam-testing-innovation.md
+- inbox/20261115-1301-beam-testing-innovation-round2.md
 
 ## Worktree
 - /Users/kosi/Desktop/wt/beam · branch council/beam · merge-base with origin/council/base: 1b91f50e161fa10d0607c8e09330115ffa27f1ff.
