@@ -237,15 +237,26 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth less in 3-4 (one inside spot goes to a stand-in at -6, the spare DT plays FB free, the natural FB covers TE3 at -6 and a TE covers one more cheap slot at -6); the size of the gap and the last stand-in are REPORTED, not gated', (t) => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth less in 3-4 (one inside spot goes to a stand-in at -6, the spare DT plays FB free, the natural FB covers TE3 at -6 and a TE covers one more cheap slot at -6); the gap is GATED as an identity over whatever the values are, not as a number', (t) => {
   const flat = natural(70);                                   // one ILB only
   assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
   assert.equal(WEIGHT.TE3, 50); assert.equal(WEIGHT.DIME, 50);
-  // DE-GATED 13 Nov 2026 (Owner: the weights table is antiquated and no weight is pinned; red tests stop being law). The gap used to be
-  // asserted at 2400 (pinned 9 Nov 2026); it is 2700 today. The number is REPORTED on every run; the mechanism below (which slots
-  // flex, at what price, who stands in) still gates, because that is structure, not a weight.
-  const gap = lineupFor(flat, '4-3').value - lineupFor(flat, '3-4').value;
-  t.diagnostic(`REPORT (not a gate): 4-3 minus 3-4 value for a natural-4-3 roster = ${gap} (last pin 2400, 9 Nov 2026)`);
+  // FIXED 15 Nov 2026 (Owner: no weight pinning; the 13 Nov de-gate was a carry, the ruling was fix). The old test asserted the gap as a hard-coded
+  // 2400 (pinned 9 Nov), then REPORTED it. A total is the wrong thing to pin: it moves whenever the value provider, the flex table or the third stand-in
+  // moves (it is 2700 today). What must hold for ANY values is the accounting: every spot is filled by a 70, so
+  //     V(4-3) - V(3-4) = 70 * (sum of 4-3 spot values - sum of 3-4 spot values) + sum over flexed spots of (spot value * flex price).
+  // That ties the reported gap to the provider's spot values and the flex prices, fails if the solver mis-accounts (an empty spot, a price not charged,
+  // a stand-in counted twice), and pins no weight. The mechanism below (which spots flex, at what price, who stands in) is structure and also gates.
+  const l43 = lineupFor(flat, '4-3'), l34 = lineupFor(flat, '3-4');
+  const unitsOf = (base: '4-3' | '3-4') => fieldSlots(base).map((f) => DEFAULT_VALUES.winsPerOvr(f.row, base) / WINS_PER_UNIT);
+  const u43 = unitsOf('4-3'), u34 = unitsOf('3-4'), sum = (xs: number[]) => xs.reduce((a, b) => a + b, 0);
+  assert.ok(l43.placements.every((p) => p.player && p.penalty === 0), 'the natural 4-3 roster fills every 4-3 spot with no flex');
+  assert.ok(l34.placements.every((p) => p.player), 'no 3-4 spot is left empty (the identity below assumes every spot holds a player)');
+  const gap = l43.value - l34.value;
+  const flexCost = sum(l34.placements.map((p, j) => u34[j]! * p.penalty));
+  t.diagnostic(`REPORT: 4-3 minus 3-4 value for a natural-4-3 roster = ${gap} (flex cost ${flexCost}, spot-value difference ${70 * (sum(u43) - sum(u34))}); an information line, the gate is the identity`);
+  assert.ok(Math.abs(gap - (70 * (sum(u43) - sum(u34)) + flexCost)) < 1e-6, `gap ${gap} must equal 70 x (spot-value difference) + flex cost ${flexCost}`);
+  assert.ok(flexCost > 0 && Math.abs(gap - 70 * (sum(u43) - sum(u34))) > 1e-6, 'the identity can fail: dropping the flex cost changes the answer');
   assert.ok(gap > 0, 'a natural 4-3 roster must be worth more in the 4-3 than in the 3-4');
   const placed = lineupFor(flat, '3-4').placements;
   const flexed = placed.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);

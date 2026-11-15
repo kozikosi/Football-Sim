@@ -8,7 +8,7 @@ import path from 'node:path';
 // only when a file gets MORE of them (or a new file has any). Moving a file to pmath lowers its count; then lower the pin:  PMATH_RATCHET=write npm test
 // (A migration changes that file's numbers in the last digits, once, on purpose: do it file by file, with the golden files re-recorded in the same commit.)
 const root = new URL('../../src/', import.meta.url).pathname;
-const dirs = ['core', 'sports/nfl/engine'];
+const dirs = ['core', 'sports/nfl/engine', 'sports/nfl/sim'];
 const BAD = /\bMath\.(exp|expm1|log|log1p|log2|log10|tanh|sinh|cosh|pow|sin|cos|tan|atan|atan2|asin|acos|sqrt|cbrt|hypot)\b|\*\*/g;
 const strip = (s: string) => s.replace(/\/\*[\s\S]*?\*\//g, '').replace(/(^|[^:])\/\/.*$/gm, '$1').replace(/'(?:[^'\\\n]|\\.)*'|"(?:[^"\\\n]|\\.)*"|`(?:[^`\\]|\\.)*`/g, '""');
 const pinFile = new URL('./pmath-inventory.json', import.meta.url);
