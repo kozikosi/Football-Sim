@@ -1,0 +1,4 @@
+== pin-migration harness RE-RUN (backlog) — two runs, one line each ==
+RUN 1 (as-delivered tree, old pin 4ca9a071 vendored) vs current pin d3bd81d2: 31/32 user picks DIFFER · FLEX.QB.FS 10→12 — the migration is a REAL behaviour change, not a formality. (backlog/pin-migration-rerun-as-delivered.txt)
+RUN 2 (this sitting's tree, d3bd81d2 vendored — post-bump) vs current pin: 32/32 IDENTICAL · FLEX 12=12 — CONVERGED. (backlog/pin-migration-rerun-post-bump.txt)
+ONE LINE on the ruling path: this sitting EXECUTED the migrate-now path (re-vendor + fixture re-mint + all gates re-run green at the current pin) — of the three ruling paths (stay-on-old-pin / migrate-now / wait-for-architect), the receipts imply MIGRATE-NOW and it is already DONE; the next pin is the Architect's move. (The three paths' canonical naming lives in MUSE's backlog text; if the canonical labels differ, the substance is: the delivery now demonstrates the current pin, verified 32/32.)

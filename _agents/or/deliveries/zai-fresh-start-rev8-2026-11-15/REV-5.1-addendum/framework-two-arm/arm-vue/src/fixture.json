@@ -1,0 +1,6150 @@
+{
+ "seed": 1000,
+ "userTeam": 20,
+ "picks": [
+  {
+   "overall": 1,
+   "team": 0,
+   "pid": "nfl-p00037",
+   "slot": "QB"
+  },
+  {
+   "overall": 2,
+   "team": 1,
+   "pid": "nfl-p00003",
+   "slot": "QB"
+  },
+  {
+   "overall": 3,
+   "team": 2,
+   "pid": "nfl-p00048",
+   "slot": "QB"
+  },
+  {
+   "overall": 4,
+   "team": 3,
+   "pid": "nfl-p00001",
+   "slot": "WR1"
+  },
+  {
+   "overall": 5,
+   "team": 4,
+   "pid": "nfl-p00025",
+   "slot": "DT1"
+  },
+  {
+   "overall": 6,
+   "team": 5,
+   "pid": "nfl-p00004",
+   "slot": "DT1"
+  },
+  {
+   "overall": 7,
+   "team": 6,
+   "pid": "nfl-p00030",
+   "slot": "CB1"
+  },
+  {
+   "overall": 8,
+   "team": 7,
+   "pid": "nfl-p00009",
+   "slot": "QB"
+  },
+  {
+   "overall": 9,
+   "team": 8,
+   "pid": "nfl-p00018",
+   "slot": "DE1"
+  },
+  {
+   "overall": 10,
+   "team": 9,
+   "pid": "nfl-p00016",
+   "slot": "QB"
+  },
+  {
+   "overall": 11,
+   "team": 10,
+   "pid": "nfl-p00012",
+   "slot": "WR1"
+  },
+  {
+   "overall": 12,
+   "team": 11,
+   "pid": "nfl-p00023",
+   "slot": "DT1"
+  },
+  {
+   "overall": 13,
+   "team": 12,
+   "pid": "nfl-p00019",
+   "slot": "WR1"
+  },
+  {
+   "overall": 14,
+   "team": 13,
+   "pid": "nfl-p00032",
+   "slot": "OG1"
+  },
+  {
+   "overall": 15,
+   "team": 14,
+   "pid": "nfl-p00035",
+   "slot": "WR1"
+  },
+  {
+   "overall": 16,
+   "team": 15,
+   "pid": "nfl-p00021",
+   "slot": "WR1"
+  },
+  {
+   "overall": 17,
+   "team": 16,
+   "pid": "nfl-p00026",
+   "slot": "OG1"
+  },
+  {
+   "overall": 18,
+   "team": 17,
+   "pid": "nfl-p00014",
+   "slot": "TE1"
+  },
+  {
+   "overall": 19,
+   "team": 18,
+   "pid": "nfl-p00002",
+   "slot": "WR1"
+  },
+  {
+   "overall": 20,
+   "team": 19,
+   "pid": "nfl-p00017",
+   "slot": "WR1"
+  },
+  {
+   "overall": 21,
+   "team": 20,
+   "pid": "nfl-p00005",
+   "slot": "WR1"
+  },
+  {
+   "overall": 22,
+   "team": 21,
+   "pid": "nfl-p00038",
+   "slot": "OT1"
+  },
+  {
+   "overall": 23,
+   "team": 22,
+   "pid": "nfl-p00029",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 24,
+   "team": 23,
+   "pid": "nfl-p00042",
+   "slot": "DT1"
+  },
+  {
+   "overall": 25,
+   "team": 24,
+   "pid": "nfl-p00039",
+   "slot": "DT1"
+  },
+  {
+   "overall": 26,
+   "team": 25,
+   "pid": "nfl-p00054",
+   "slot": "WR1"
+  },
+  {
+   "overall": 27,
+   "team": 26,
+   "pid": "nfl-p00010",
+   "slot": "OT1"
+  },
+  {
+   "overall": 28,
+   "team": 27,
+   "pid": "nfl-p00040",
+   "slot": "DE1"
+  },
+  {
+   "overall": 29,
+   "team": 28,
+   "pid": "nfl-p00050",
+   "slot": "DE1"
+  },
+  {
+   "overall": 30,
+   "team": 29,
+   "pid": "nfl-p00020",
+   "slot": "OT1"
+  },
+  {
+   "overall": 31,
+   "team": 30,
+   "pid": "nfl-p00041",
+   "slot": "DT1"
+  },
+  {
+   "overall": 32,
+   "team": 31,
+   "pid": "nfl-p00011",
+   "slot": "DT1"
+  },
+  {
+   "overall": 33,
+   "team": 31,
+   "pid": "nfl-p00047",
+   "slot": "OT1"
+  },
+  {
+   "overall": 34,
+   "team": 30,
+   "pid": "nfl-p00007",
+   "slot": "WR1"
+  },
+  {
+   "overall": 35,
+   "team": 29,
+   "pid": "nfl-p00024",
+   "slot": "OT2"
+  },
+  {
+   "overall": 36,
+   "team": 28,
+   "pid": "nfl-p00027",
+   "slot": "RB1"
+  },
+  {
+   "overall": 37,
+   "team": 27,
+   "pid": "nfl-p00028",
+   "slot": "OT1"
+  },
+  {
+   "overall": 38,
+   "team": 26,
+   "pid": "nfl-p00015",
+   "slot": "TE1"
+  },
+  {
+   "overall": 39,
+   "team": 25,
+   "pid": "nfl-p00049",
+   "slot": "OT1"
+  },
+  {
+   "overall": 40,
+   "team": 24,
+   "pid": "nfl-p00034",
+   "slot": "OT1"
+  },
+  {
+   "overall": 41,
+   "team": 23,
+   "pid": "nfl-p00043",
+   "slot": "WR1"
+  },
+  {
+   "overall": 42,
+   "team": 22,
+   "pid": "nfl-p00006",
+   "slot": "RB1"
+  },
+  {
+   "overall": 43,
+   "team": 21,
+   "pid": "nfl-p00051",
+   "slot": "CB1"
+  },
+  {
+   "overall": 44,
+   "team": 20,
+   "pid": "nfl-p00008",
+   "slot": "TE1"
+  },
+  {
+   "overall": 45,
+   "team": 19,
+   "pid": "nfl-p00045",
+   "slot": "FS"
+  },
+  {
+   "overall": 46,
+   "team": 18,
+   "pid": "nfl-p00063",
+   "slot": "DT2"
+  },
+  {
+   "overall": 47,
+   "team": 17,
+   "pid": "nfl-p00059",
+   "slot": "OG1"
+  },
+  {
+   "overall": 48,
+   "team": 16,
+   "pid": "nfl-p00065",
+   "slot": "CB1"
+  },
+  {
+   "overall": 49,
+   "team": 15,
+   "pid": "nfl-p00036",
+   "slot": "WR2"
+  },
+  {
+   "overall": 50,
+   "team": 14,
+   "pid": "nfl-p00033",
+   "slot": "TE1"
+  },
+  {
+   "overall": 51,
+   "team": 13,
+   "pid": "nfl-p00055",
+   "slot": "OG2"
+  },
+  {
+   "overall": 52,
+   "team": 12,
+   "pid": "nfl-p00057",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 53,
+   "team": 11,
+   "pid": "nfl-p00067",
+   "slot": "RB1"
+  },
+  {
+   "overall": 54,
+   "team": 10,
+   "pid": "nfl-p00022",
+   "slot": "C"
+  },
+  {
+   "overall": 55,
+   "team": 9,
+   "pid": "nfl-p00046",
+   "slot": "TE1"
+  },
+  {
+   "overall": 56,
+   "team": 8,
+   "pid": "nfl-p00061",
+   "slot": "QB"
+  },
+  {
+   "overall": 57,
+   "team": 7,
+   "pid": "nfl-p00052",
+   "slot": "SS"
+  },
+  {
+   "overall": 58,
+   "team": 6,
+   "pid": "nfl-p00064",
+   "slot": "SS"
+  },
+  {
+   "overall": 59,
+   "team": 5,
+   "pid": "nfl-p00031",
+   "slot": "DT2"
+  },
+  {
+   "overall": 60,
+   "team": 4,
+   "pid": "nfl-p00056",
+   "slot": "OT1"
+  },
+  {
+   "overall": 61,
+   "team": 3,
+   "pid": "nfl-p00068",
+   "slot": "OT1"
+  },
+  {
+   "overall": 62,
+   "team": 2,
+   "pid": "nfl-p00069",
+   "slot": "FS"
+  },
+  {
+   "overall": 63,
+   "team": 1,
+   "pid": "nfl-p00053",
+   "slot": "DT1"
+  },
+  {
+   "overall": 64,
+   "team": 0,
+   "pid": "nfl-p00058",
+   "slot": "OG1"
+  },
+  {
+   "overall": 65,
+   "team": 0,
+   "pid": "nfl-p00062",
+   "slot": "OT1"
+  },
+  {
+   "overall": 66,
+   "team": 1,
+   "pid": "nfl-p00066",
+   "slot": "SS"
+  },
+  {
+   "overall": 67,
+   "team": 2,
+   "pid": "nfl-p00013",
+   "slot": "WR1"
+  },
+  {
+   "overall": 68,
+   "team": 3,
+   "pid": "nfl-p00071",
+   "slot": "QB"
+  },
+  {
+   "overall": 69,
+   "team": 4,
+   "pid": "nfl-p00081",
+   "slot": "QB"
+  },
+  {
+   "overall": 70,
+   "team": 5,
+   "pid": "nfl-p00094",
+   "slot": "DE1"
+  },
+  {
+   "overall": 71,
+   "team": 6,
+   "pid": "nfl-p00073",
+   "slot": "CB2"
+  },
+  {
+   "overall": 72,
+   "team": 7,
+   "pid": "nfl-p00080",
+   "slot": "OT1"
+  },
+  {
+   "overall": 73,
+   "team": 8,
+   "pid": "nfl-p00076",
+   "slot": "DE2"
+  },
+  {
+   "overall": 74,
+   "team": 9,
+   "pid": "nfl-p00074",
+   "slot": "OT1"
+  },
+  {
+   "overall": 75,
+   "team": 10,
+   "pid": "nfl-p00082",
+   "slot": "DT1"
+  },
+  {
+   "overall": 76,
+   "team": 11,
+   "pid": "nfl-p00100",
+   "slot": "DE1"
+  },
+  {
+   "overall": 77,
+   "team": 12,
+   "pid": "nfl-p00091",
+   "slot": "DT2"
+  },
+  {
+   "overall": 78,
+   "team": 13,
+   "pid": "nfl-p00084",
+   "slot": "OT1"
+  },
+  {
+   "overall": 79,
+   "team": 14,
+   "pid": "nfl-p00092",
+   "slot": "CB1"
+  },
+  {
+   "overall": 80,
+   "team": 15,
+   "pid": "nfl-p00077",
+   "slot": "DT1"
+  },
+  {
+   "overall": 81,
+   "team": 16,
+   "pid": "nfl-p00085",
+   "slot": "OG2"
+  },
+  {
+   "overall": 82,
+   "team": 17,
+   "pid": "nfl-p00086",
+   "slot": "RB1"
+  },
+  {
+   "overall": 83,
+   "team": 18,
+   "pid": "nfl-p00105",
+   "slot": "C"
+  },
+  {
+   "overall": 84,
+   "team": 19,
+   "pid": "nfl-p00098",
+   "slot": "QB"
+  },
+  {
+   "overall": 85,
+   "team": 20,
+   "pid": "nfl-p00044",
+   "slot": "WR2"
+  },
+  {
+   "overall": 86,
+   "team": 21,
+   "pid": "nfl-p00110",
+   "slot": "CB2"
+  },
+  {
+   "overall": 87,
+   "team": 22,
+   "pid": "nfl-p00115",
+   "slot": "C"
+  },
+  {
+   "overall": 88,
+   "team": 23,
+   "pid": "nfl-p00124",
+   "slot": "DT2"
+  },
+  {
+   "overall": 89,
+   "team": 24,
+   "pid": "nfl-p00117",
+   "slot": "QB"
+  },
+  {
+   "overall": 90,
+   "team": 25,
+   "pid": "nfl-p00116",
+   "slot": "DT1"
+  },
+  {
+   "overall": 91,
+   "team": 26,
+   "pid": "nfl-p00083",
+   "slot": "SS"
+  },
+  {
+   "overall": 92,
+   "team": 27,
+   "pid": "nfl-p00072",
+   "slot": "WR1"
+  },
+  {
+   "overall": 93,
+   "team": 28,
+   "pid": "nfl-p00104",
+   "slot": "WR1"
+  },
+  {
+   "overall": 94,
+   "team": 29,
+   "pid": "nfl-p00093",
+   "slot": "WR1"
+  },
+  {
+   "overall": 95,
+   "team": 30,
+   "pid": "nfl-p00111",
+   "slot": "WR2"
+  },
+  {
+   "overall": 96,
+   "team": 31,
+   "pid": "nfl-p00097",
+   "slot": "OT2"
+  },
+  {
+   "overall": 97,
+   "team": 31,
+   "pid": "nfl-p00078",
+   "slot": "RB1"
+  },
+  {
+   "overall": 98,
+   "team": 30,
+   "pid": "nfl-p00087",
+   "slot": "DT2"
+  },
+  {
+   "overall": 99,
+   "team": 29,
+   "pid": "nfl-p00102",
+   "slot": "CB1"
+  },
+  {
+   "overall": 100,
+   "team": 28,
+   "pid": "nfl-p00070",
+   "slot": "CB1"
+  },
+  {
+   "overall": 101,
+   "team": 27,
+   "pid": "nfl-p00088",
+   "slot": "TE1"
+  },
+  {
+   "overall": 102,
+   "team": 26,
+   "pid": "nfl-p00099",
+   "slot": "TE2"
+  },
+  {
+   "overall": 103,
+   "team": 25,
+   "pid": "nfl-p00096",
+   "slot": "OG1"
+  },
+  {
+   "overall": 104,
+   "team": 24,
+   "pid": "nfl-p00075",
+   "slot": "WR1"
+  },
+  {
+   "overall": 105,
+   "team": 23,
+   "pid": "nfl-p00095",
+   "slot": "WR2"
+  },
+  {
+   "overall": 106,
+   "team": 22,
+   "pid": "nfl-p00079",
+   "slot": "OG1"
+  },
+  {
+   "overall": 107,
+   "team": 21,
+   "pid": "nfl-p00109",
+   "slot": "SS"
+  },
+  {
+   "overall": 108,
+   "team": 20,
+   "pid": "nfl-p00060",
+   "slot": "TE2"
+  },
+  {
+   "overall": 109,
+   "team": 19,
+   "pid": "nfl-p00167",
+   "slot": "DT1"
+  },
+  {
+   "overall": 110,
+   "team": 18,
+   "pid": "nfl-p00140",
+   "slot": "OG1"
+  },
+  {
+   "overall": 111,
+   "team": 17,
+   "pid": "nfl-p00126",
+   "slot": "WR1"
+  },
+  {
+   "overall": 112,
+   "team": 16,
+   "pid": "nfl-p00161",
+   "slot": "OT1"
+  },
+  {
+   "overall": 113,
+   "team": 15,
+   "pid": "nfl-p00159",
+   "slot": "FS"
+  },
+  {
+   "overall": 114,
+   "team": 14,
+   "pid": "nfl-p00090",
+   "slot": "WR2"
+  },
+  {
+   "overall": 115,
+   "team": 13,
+   "pid": "nfl-p00163",
+   "slot": "QB"
+  },
+  {
+   "overall": 116,
+   "team": 12,
+   "pid": "nfl-p00175",
+   "slot": "DE1"
+  },
+  {
+   "overall": 117,
+   "team": 11,
+   "pid": "nfl-p00107",
+   "slot": "DT2"
+  },
+  {
+   "overall": 118,
+   "team": 10,
+   "pid": "nfl-p00129",
+   "slot": "DE1"
+  },
+  {
+   "overall": 119,
+   "team": 9,
+   "pid": "nfl-p00158",
+   "slot": "CB1"
+  },
+  {
+   "overall": 120,
+   "team": 8,
+   "pid": "nfl-p00128",
+   "slot": "OT1"
+  },
+  {
+   "overall": 121,
+   "team": 7,
+   "pid": "nfl-p00120",
+   "slot": "WR1"
+  },
+  {
+   "overall": 122,
+   "team": 6,
+   "pid": "nfl-p00123",
+   "slot": "WR1"
+  },
+  {
+   "overall": 123,
+   "team": 5,
+   "pid": "nfl-p00171",
+   "slot": "WR1"
+  },
+  {
+   "overall": 124,
+   "team": 4,
+   "pid": "nfl-p00162",
+   "slot": "CB1"
+  },
+  {
+   "overall": 125,
+   "team": 3,
+   "pid": "nfl-p00196",
+   "slot": "WR2"
+  },
+  {
+   "overall": 126,
+   "team": 2,
+   "pid": "nfl-p00188",
+   "slot": "DT1"
+  },
+  {
+   "overall": 127,
+   "team": 1,
+   "pid": "nfl-p00108",
+   "slot": "CB1"
+  },
+  {
+   "overall": 128,
+   "team": 0,
+   "pid": "nfl-p00144",
+   "slot": "DT1"
+  },
+  {
+   "overall": 129,
+   "team": 0,
+   "pid": "nfl-p00114",
+   "slot": "WR1"
+  },
+  {
+   "overall": 130,
+   "team": 1,
+   "pid": "nfl-p00169",
+   "slot": "OG1"
+  },
+  {
+   "overall": 131,
+   "team": 2,
+   "pid": "nfl-p00184",
+   "slot": "WR2"
+  },
+  {
+   "overall": 132,
+   "team": 3,
+   "pid": "nfl-p00150",
+   "slot": "DT1"
+  },
+  {
+   "overall": 133,
+   "team": 4,
+   "pid": "nfl-p00180",
+   "slot": "WR1"
+  },
+  {
+   "overall": 134,
+   "team": 5,
+   "pid": "nfl-p00357",
+   "slot": "QB"
+  },
+  {
+   "overall": 135,
+   "team": 6,
+   "pid": "nfl-p00137",
+   "slot": "WR2"
+  },
+  {
+   "overall": 136,
+   "team": 7,
+   "pid": "nfl-p00198",
+   "slot": "OT2"
+  },
+  {
+   "overall": 137,
+   "team": 8,
+   "pid": "nfl-p00242",
+   "slot": "WR1"
+  },
+  {
+   "overall": 138,
+   "team": 9,
+   "pid": "nfl-p00298",
+   "slot": "DT1"
+  },
+  {
+   "overall": 139,
+   "team": 10,
+   "pid": "nfl-p00147",
+   "slot": "QB"
+  },
+  {
+   "overall": 140,
+   "team": 11,
+   "pid": "nfl-p00134",
+   "slot": "DE2"
+  },
+  {
+   "overall": 141,
+   "team": 12,
+   "pid": "nfl-p00312",
+   "slot": "WR2"
+  },
+  {
+   "overall": 142,
+   "team": 13,
+   "pid": "nfl-p00186",
+   "slot": "WR1"
+  },
+  {
+   "overall": 143,
+   "team": 14,
+   "pid": "nfl-p00213",
+   "slot": "DT1"
+  },
+  {
+   "overall": 144,
+   "team": 15,
+   "pid": "nfl-p00178",
+   "slot": "OT1"
+  },
+  {
+   "overall": 145,
+   "team": 16,
+   "pid": "nfl-p00230",
+   "slot": "TE1"
+  },
+  {
+   "overall": 146,
+   "team": 17,
+   "pid": "nfl-p00189",
+   "slot": "DT2"
+  },
+  {
+   "overall": 147,
+   "team": 18,
+   "pid": "nfl-p00130",
+   "slot": "CB1"
+  },
+  {
+   "overall": 148,
+   "team": 19,
+   "pid": "nfl-p00218",
+   "slot": "WR2"
+  },
+  {
+   "overall": 149,
+   "team": 20,
+   "pid": "nfl-p00089",
+   "slot": "RB1"
+  },
+  {
+   "overall": 150,
+   "team": 21,
+   "pid": "nfl-p00174",
+   "slot": "DT1"
+  },
+  {
+   "overall": 151,
+   "team": 22,
+   "pid": "nfl-p00254",
+   "slot": "QB"
+  },
+  {
+   "overall": 152,
+   "team": 23,
+   "pid": "nfl-p00274",
+   "slot": "QB"
+  },
+  {
+   "overall": 153,
+   "team": 24,
+   "pid": "nfl-p00143",
+   "slot": "CB1"
+  },
+  {
+   "overall": 154,
+   "team": 25,
+   "pid": "nfl-p00146",
+   "slot": "WR2"
+  },
+  {
+   "overall": 155,
+   "team": 26,
+   "pid": "nfl-p00148",
+   "slot": "OG1"
+  },
+  {
+   "overall": 156,
+   "team": 27,
+   "pid": "nfl-p00222",
+   "slot": "QB"
+  },
+  {
+   "overall": 157,
+   "team": 28,
+   "pid": "nfl-p00365",
+   "slot": "QB"
+  },
+  {
+   "overall": 158,
+   "team": 29,
+   "pid": "nfl-p00141",
+   "slot": "CB2"
+  },
+  {
+   "overall": 159,
+   "team": 30,
+   "pid": "nfl-p00139",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 160,
+   "team": 31,
+   "pid": "nfl-p00155",
+   "slot": "WR1"
+  },
+  {
+   "overall": 161,
+   "team": 31,
+   "pid": "nfl-p00165",
+   "slot": "DE1"
+  },
+  {
+   "overall": 162,
+   "team": 30,
+   "pid": "nfl-p00364",
+   "slot": "QB"
+  },
+  {
+   "overall": 163,
+   "team": 29,
+   "pid": "nfl-p00166",
+   "slot": "OG1"
+  },
+  {
+   "overall": 164,
+   "team": 28,
+   "pid": "nfl-p00121",
+   "slot": "OT2"
+  },
+  {
+   "overall": 165,
+   "team": 27,
+   "pid": "nfl-p00192",
+   "slot": "OG1"
+  },
+  {
+   "overall": 166,
+   "team": 26,
+   "pid": "nfl-p00209",
+   "slot": "WR1"
+  },
+  {
+   "overall": 167,
+   "team": 25,
+   "pid": "nfl-p00220",
+   "slot": "OG2"
+  },
+  {
+   "overall": 168,
+   "team": 24,
+   "pid": "nfl-p00244",
+   "slot": "CB2"
+  },
+  {
+   "overall": 169,
+   "team": 23,
+   "pid": "nfl-p00210",
+   "slot": "CB3"
+  },
+  {
+   "overall": 170,
+   "team": 22,
+   "pid": "nfl-p00199",
+   "slot": "CB1"
+  },
+  {
+   "overall": 171,
+   "team": 21,
+   "pid": "nfl-p00265",
+   "slot": "DIME"
+  },
+  {
+   "overall": 172,
+   "team": 20,
+   "pid": "nfl-p00101",
+   "slot": "WR3"
+  },
+  {
+   "overall": 173,
+   "team": 19,
+   "pid": "nfl-p00183",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 174,
+   "team": 18,
+   "pid": "nfl-p00326",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 175,
+   "team": 17,
+   "pid": "nfl-p00316",
+   "slot": "QB"
+  },
+  {
+   "overall": 176,
+   "team": 16,
+   "pid": "nfl-p00142",
+   "slot": "CB2"
+  },
+  {
+   "overall": 177,
+   "team": 15,
+   "pid": "nfl-p00444",
+   "slot": "QB"
+  },
+  {
+   "overall": 178,
+   "team": 14,
+   "pid": "nfl-p00193",
+   "slot": "DT2"
+  },
+  {
+   "overall": 179,
+   "team": 13,
+   "pid": "nfl-p00103",
+   "slot": "SS"
+  },
+  {
+   "overall": 180,
+   "team": 12,
+   "pid": "nfl-p00151",
+   "slot": "DT1"
+  },
+  {
+   "overall": 181,
+   "team": 11,
+   "pid": "nfl-p00132",
+   "slot": "OT1"
+  },
+  {
+   "overall": 182,
+   "team": 10,
+   "pid": "nfl-p00177",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 183,
+   "team": 9,
+   "pid": "nfl-p00122",
+   "slot": "TE2"
+  },
+  {
+   "overall": 184,
+   "team": 8,
+   "pid": "nfl-p00170",
+   "slot": "OG1"
+  },
+  {
+   "overall": 185,
+   "team": 7,
+   "pid": "nfl-p00156",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 186,
+   "team": 6,
+   "pid": "nfl-p00118",
+   "slot": "FS"
+  },
+  {
+   "overall": 187,
+   "team": 5,
+   "pid": "nfl-p00206",
+   "slot": "OT1"
+  },
+  {
+   "overall": 188,
+   "team": 4,
+   "pid": "nfl-p00281",
+   "slot": "DT2"
+  },
+  {
+   "overall": 189,
+   "team": 3,
+   "pid": "nfl-p00215",
+   "slot": "OT2"
+  },
+  {
+   "overall": 190,
+   "team": 2,
+   "pid": "nfl-p00149",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 191,
+   "team": 1,
+   "pid": "nfl-p00286",
+   "slot": "DE1"
+  },
+  {
+   "overall": 192,
+   "team": 0,
+   "pid": "nfl-p00202",
+   "slot": "DT2"
+  },
+  {
+   "overall": 193,
+   "team": 0,
+   "pid": "nfl-p00221",
+   "slot": "FS"
+  },
+  {
+   "overall": 194,
+   "team": 1,
+   "pid": "nfl-p00136",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 195,
+   "team": 2,
+   "pid": "nfl-p00190",
+   "slot": "CB1"
+  },
+  {
+   "overall": 196,
+   "team": 3,
+   "pid": "nfl-p00106",
+   "slot": "C"
+  },
+  {
+   "overall": 197,
+   "team": 4,
+   "pid": "nfl-p00119",
+   "slot": "TE1"
+  },
+  {
+   "overall": 198,
+   "team": 5,
+   "pid": "nfl-p00194",
+   "slot": "SS"
+  },
+  {
+   "overall": 199,
+   "team": 6,
+   "pid": "nfl-p00226",
+   "slot": "OT1"
+  },
+  {
+   "overall": 200,
+   "team": 7,
+   "pid": "nfl-p00258",
+   "slot": "CB1"
+  },
+  {
+   "overall": 201,
+   "team": 8,
+   "pid": "nfl-p00214",
+   "slot": "WR2"
+  },
+  {
+   "overall": 202,
+   "team": 9,
+   "pid": "nfl-p00305",
+   "slot": "OT2"
+  },
+  {
+   "overall": 203,
+   "team": 10,
+   "pid": "nfl-p00207",
+   "slot": "DT2"
+  },
+  {
+   "overall": 204,
+   "team": 11,
+   "pid": "nfl-p00127",
+   "slot": "RB2"
+  },
+  {
+   "overall": 205,
+   "team": 12,
+   "pid": "nfl-p00241",
+   "slot": "CB1"
+  },
+  {
+   "overall": 206,
+   "team": 13,
+   "pid": "nfl-p00463",
+   "slot": "OT2"
+  },
+  {
+   "overall": 207,
+   "team": 14,
+   "pid": "nfl-p00266",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 208,
+   "team": 15,
+   "pid": "nfl-p00231",
+   "slot": "OG1"
+  },
+  {
+   "overall": 209,
+   "team": 16,
+   "pid": "nfl-p00176",
+   "slot": "SS"
+  },
+  {
+   "overall": 210,
+   "team": 17,
+   "pid": "nfl-p00211",
+   "slot": "DT1"
+  },
+  {
+   "overall": 211,
+   "team": 18,
+   "pid": "nfl-p00336",
+   "slot": "OG2"
+  },
+  {
+   "overall": 212,
+   "team": 19,
+   "pid": "nfl-p00113",
+   "slot": "WILL"
+  },
+  {
+   "overall": 213,
+   "team": 20,
+   "pid": "nfl-p00112",
+   "slot": "RB2"
+  },
+  {
+   "overall": 214,
+   "team": 21,
+   "pid": "nfl-p00353",
+   "slot": "OT2"
+  },
+  {
+   "overall": 215,
+   "team": 22,
+   "pid": "nfl-p00235",
+   "slot": "OG2"
+  },
+  {
+   "overall": 216,
+   "team": 23,
+   "pid": "nfl-p00160",
+   "slot": "RB1"
+  },
+  {
+   "overall": 217,
+   "team": 24,
+   "pid": "nfl-p00325",
+   "slot": "DT2"
+  },
+  {
+   "overall": 218,
+   "team": 25,
+   "pid": "nfl-p00131",
+   "slot": "TE1"
+  },
+  {
+   "overall": 219,
+   "team": 26,
+   "pid": "nfl-p00320",
+   "slot": "CB1"
+  },
+  {
+   "overall": 220,
+   "team": 27,
+   "pid": "nfl-p00345",
+   "slot": "DE2"
+  },
+  {
+   "overall": 221,
+   "team": 28,
+   "pid": "nfl-p00262",
+   "slot": "DT1"
+  },
+  {
+   "overall": 222,
+   "team": 29,
+   "pid": "nfl-p00508",
+   "slot": "QB"
+  },
+  {
+   "overall": 223,
+   "team": 30,
+   "pid": "nfl-p00278",
+   "slot": "DE1"
+  },
+  {
+   "overall": 224,
+   "team": 31,
+   "pid": "nfl-p00328",
+   "slot": "DT2"
+  },
+  {
+   "overall": 225,
+   "team": 31,
+   "pid": "nfl-p00225",
+   "slot": "CB1"
+  },
+  {
+   "overall": 226,
+   "team": 30,
+   "pid": "nfl-p00261",
+   "slot": "DE2"
+  },
+  {
+   "overall": 227,
+   "team": 29,
+   "pid": "nfl-p00152",
+   "slot": "OG2"
+  },
+  {
+   "overall": 228,
+   "team": 28,
+   "pid": "nfl-p00168",
+   "slot": "SS"
+  },
+  {
+   "overall": 229,
+   "team": 27,
+   "pid": "nfl-p00273",
+   "slot": "OT2"
+  },
+  {
+   "overall": 230,
+   "team": 26,
+   "pid": "nfl-p00154",
+   "slot": "RB1"
+  },
+  {
+   "overall": 231,
+   "team": 25,
+   "pid": "nfl-p00310",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 232,
+   "team": 24,
+   "pid": "nfl-p00234",
+   "slot": "OT2"
+  },
+  {
+   "overall": 233,
+   "team": 23,
+   "pid": "nfl-p00227",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 234,
+   "team": 22,
+   "pid": "nfl-p00287",
+   "slot": "WR1"
+  },
+  {
+   "overall": 235,
+   "team": 21,
+   "pid": "nfl-p00239",
+   "slot": "FS"
+  },
+  {
+   "overall": 236,
+   "team": 20,
+   "pid": "nfl-p00125",
+   "slot": "OT1"
+  },
+  {
+   "overall": 237,
+   "team": 19,
+   "pid": "nfl-p00172",
+   "slot": "OG1"
+  },
+  {
+   "overall": 238,
+   "team": 18,
+   "pid": "nfl-p00303",
+   "slot": "OT1"
+  },
+  {
+   "overall": 239,
+   "team": 17,
+   "pid": "nfl-p00246",
+   "slot": "OT1"
+  },
+  {
+   "overall": 240,
+   "team": 16,
+   "pid": "nfl-p00307",
+   "slot": "WR1"
+  },
+  {
+   "overall": 241,
+   "team": 15,
+   "pid": "nfl-p00332",
+   "slot": "DT2"
+  },
+  {
+   "overall": 242,
+   "team": 14,
+   "pid": "nfl-p00145",
+   "slot": "TE2"
+  },
+  {
+   "overall": 243,
+   "team": 13,
+   "pid": "nfl-p00164",
+   "slot": "FS"
+  },
+  {
+   "overall": 244,
+   "team": 12,
+   "pid": "nfl-p00157",
+   "slot": "TE1"
+  },
+  {
+   "overall": 245,
+   "team": 11,
+   "pid": "nfl-p00245",
+   "slot": "WR1"
+  },
+  {
+   "overall": 246,
+   "team": 10,
+   "pid": "nfl-p00343",
+   "slot": "WR2"
+  },
+  {
+   "overall": 247,
+   "team": 9,
+   "pid": "nfl-p00252",
+   "slot": "OG1"
+  },
+  {
+   "overall": 248,
+   "team": 8,
+   "pid": "nfl-p00203",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 249,
+   "team": 7,
+   "pid": "nfl-p00216",
+   "slot": "FS"
+  },
+  {
+   "overall": 250,
+   "team": 6,
+   "pid": "nfl-p00217",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 251,
+   "team": 5,
+   "pid": "nfl-p00294",
+   "slot": "DL5"
+  },
+  {
+   "overall": 252,
+   "team": 4,
+   "pid": "nfl-p00324",
+   "slot": "TE2"
+  },
+  {
+   "overall": 253,
+   "team": 3,
+   "pid": "nfl-p00208",
+   "slot": "DL5"
+  },
+  {
+   "overall": 254,
+   "team": 2,
+   "pid": "nfl-p00229",
+   "slot": "RB1"
+  },
+  {
+   "overall": 255,
+   "team": 1,
+   "pid": "nfl-p00200",
+   "slot": "TE1"
+  },
+  {
+   "overall": 256,
+   "team": 0,
+   "pid": "nfl-p00410",
+   "slot": "WR2"
+  },
+  {
+   "overall": 257,
+   "team": 0,
+   "pid": "nfl-p00323",
+   "slot": "WILL"
+  },
+  {
+   "overall": 258,
+   "team": 1,
+   "pid": "nfl-p00201",
+   "slot": "WR1"
+  },
+  {
+   "overall": 259,
+   "team": 2,
+   "pid": "nfl-p00243",
+   "slot": "TE1"
+  },
+  {
+   "overall": 260,
+   "team": 3,
+   "pid": "nfl-p00271",
+   "slot": "DT2"
+  },
+  {
+   "overall": 261,
+   "team": 4,
+   "pid": "nfl-p00293",
+   "slot": "OT2"
+  },
+  {
+   "overall": 262,
+   "team": 5,
+   "pid": "nfl-p00295",
+   "slot": "CB1"
+  },
+  {
+   "overall": 263,
+   "team": 6,
+   "pid": "nfl-p00181",
+   "slot": "RB1"
+  },
+  {
+   "overall": 264,
+   "team": 7,
+   "pid": "nfl-p00407",
+   "slot": "WR2"
+  },
+  {
+   "overall": 265,
+   "team": 8,
+   "pid": "nfl-p00251",
+   "slot": "OT2"
+  },
+  {
+   "overall": 266,
+   "team": 9,
+   "pid": "nfl-p00191",
+   "slot": "CB2"
+  },
+  {
+   "overall": 267,
+   "team": 10,
+   "pid": "nfl-p00228",
+   "slot": "RB1"
+  },
+  {
+   "overall": 268,
+   "team": 11,
+   "pid": "nfl-p00138",
+   "slot": "FS"
+  },
+  {
+   "overall": 269,
+   "team": 12,
+   "pid": "nfl-p00382",
+   "slot": "OT1"
+  },
+  {
+   "overall": 270,
+   "team": 13,
+   "pid": "nfl-p00355",
+   "slot": "CB3"
+  },
+  {
+   "overall": 271,
+   "team": 14,
+   "pid": "nfl-p00317",
+   "slot": "CB3"
+  },
+  {
+   "overall": 272,
+   "team": 15,
+   "pid": "nfl-p00236",
+   "slot": "OT2"
+  },
+  {
+   "overall": 273,
+   "team": 16,
+   "pid": "nfl-p00301",
+   "slot": "WR2"
+  },
+  {
+   "overall": 274,
+   "team": 17,
+   "pid": "nfl-p00290",
+   "slot": "RB2"
+  },
+  {
+   "overall": 275,
+   "team": 18,
+   "pid": "nfl-p00269",
+   "slot": "DT1"
+  },
+  {
+   "overall": 276,
+   "team": 19,
+   "pid": "nfl-p00296",
+   "slot": "OT1"
+  },
+  {
+   "overall": 277,
+   "team": 20,
+   "pid": "nfl-p00133",
+   "slot": "FB"
+  },
+  {
+   "overall": 278,
+   "team": 21,
+   "pid": "nfl-p00185",
+   "slot": "RB1"
+  },
+  {
+   "overall": 279,
+   "team": 22,
+   "pid": "nfl-p00443",
+   "slot": "CB2"
+  },
+  {
+   "overall": 280,
+   "team": 23,
+   "pid": "nfl-p00299",
+   "slot": "CB1"
+  },
+  {
+   "overall": 281,
+   "team": 24,
+   "pid": "nfl-p00276",
+   "slot": "WR2"
+  },
+  {
+   "overall": 282,
+   "team": 25,
+   "pid": "nfl-p00219",
+   "slot": "RB1"
+  },
+  {
+   "overall": 283,
+   "team": 26,
+   "pid": "nfl-p00309",
+   "slot": "FS"
+  },
+  {
+   "overall": 284,
+   "team": 27,
+   "pid": "nfl-p00302",
+   "slot": "OG2"
+  },
+  {
+   "overall": 285,
+   "team": 28,
+   "pid": "nfl-p00248",
+   "slot": "DE2"
+  },
+  {
+   "overall": 286,
+   "team": 29,
+   "pid": "nfl-p00330",
+   "slot": "DE1"
+  },
+  {
+   "overall": 287,
+   "team": 30,
+   "pid": "nfl-p00197",
+   "slot": "C"
+  },
+  {
+   "overall": 288,
+   "team": 31,
+   "pid": "nfl-p00358",
+   "slot": "OG1"
+  },
+  {
+   "overall": 289,
+   "team": 31,
+   "pid": "nfl-p00257",
+   "slot": "WR2"
+  },
+  {
+   "overall": 290,
+   "team": 30,
+   "pid": "nfl-p00381",
+   "slot": "OT1"
+  },
+  {
+   "overall": 291,
+   "team": 29,
+   "pid": "nfl-p00259",
+   "slot": "WR2"
+  },
+  {
+   "overall": 292,
+   "team": 28,
+   "pid": "nfl-p00360",
+   "slot": "CB2"
+  },
+  {
+   "overall": 293,
+   "team": 27,
+   "pid": "nfl-p00267",
+   "slot": "TE2"
+  },
+  {
+   "overall": 294,
+   "team": 26,
+   "pid": "nfl-p00337",
+   "slot": "WR2"
+  },
+  {
+   "overall": 295,
+   "team": 25,
+   "pid": "nfl-p00249",
+   "slot": "DL5"
+  },
+  {
+   "overall": 296,
+   "team": 24,
+   "pid": "nfl-p00391",
+   "slot": "OG1"
+  },
+  {
+   "overall": 297,
+   "team": 23,
+   "pid": "nfl-p00350",
+   "slot": "OT1"
+  },
+  {
+   "overall": 298,
+   "team": 22,
+   "pid": "nfl-p00275",
+   "slot": "DT1"
+  },
+  {
+   "overall": 299,
+   "team": 21,
+   "pid": "nfl-p00477",
+   "slot": "QB"
+  },
+  {
+   "overall": 300,
+   "team": 20,
+   "pid": "nfl-p00135",
+   "slot": "OT2"
+  },
+  {
+   "overall": 301,
+   "team": 19,
+   "pid": "nfl-p00352",
+   "slot": "SAM"
+  },
+  {
+   "overall": 302,
+   "team": 18,
+   "pid": "nfl-p00187",
+   "slot": "FS"
+  },
+  {
+   "overall": 303,
+   "team": 17,
+   "pid": "nfl-p00455",
+   "slot": "TE2"
+  },
+  {
+   "overall": 304,
+   "team": 16,
+   "pid": "nfl-p00285",
+   "slot": "TE2"
+  },
+  {
+   "overall": 305,
+   "team": 15,
+   "pid": "nfl-p00233",
+   "slot": "RB1"
+  },
+  {
+   "overall": 306,
+   "team": 14,
+   "pid": "nfl-p00282",
+   "slot": "C"
+  },
+  {
+   "overall": 307,
+   "team": 13,
+   "pid": "nfl-p00459",
+   "slot": "WILL"
+  },
+  {
+   "overall": 308,
+   "team": 12,
+   "pid": "nfl-p00195",
+   "slot": "P"
+  },
+  {
+   "overall": 309,
+   "team": 11,
+   "pid": "nfl-p00588",
+   "slot": "QB"
+  },
+  {
+   "overall": 310,
+   "team": 10,
+   "pid": "nfl-p00370",
+   "slot": "CB1"
+  },
+  {
+   "overall": 311,
+   "team": 9,
+   "pid": "nfl-p00400",
+   "slot": "WR1"
+  },
+  {
+   "overall": 312,
+   "team": 8,
+   "pid": "nfl-p00545",
+   "slot": "OG2"
+  },
+  {
+   "overall": 313,
+   "team": 7,
+   "pid": "nfl-p00300",
+   "slot": "CB2"
+  },
+  {
+   "overall": 314,
+   "team": 6,
+   "pid": "nfl-p00342",
+   "slot": "DT1"
+  },
+  {
+   "overall": 315,
+   "team": 5,
+   "pid": "nfl-p00255",
+   "slot": "WILL"
+  },
+  {
+   "overall": 316,
+   "team": 4,
+   "pid": "nfl-p00495",
+   "slot": "WR2"
+  },
+  {
+   "overall": 317,
+   "team": 3,
+   "pid": "nfl-p00280",
+   "slot": "CB1"
+  },
+  {
+   "overall": 318,
+   "team": 2,
+   "pid": "nfl-p00538",
+   "slot": "OG1"
+  },
+  {
+   "overall": 319,
+   "team": 1,
+   "pid": "nfl-p00435",
+   "slot": "OG2"
+  },
+  {
+   "overall": 320,
+   "team": 0,
+   "pid": "nfl-p00348",
+   "slot": "OG2"
+  },
+  {
+   "overall": 321,
+   "team": 0,
+   "pid": "nfl-p00240",
+   "slot": "RB1"
+  },
+  {
+   "overall": 322,
+   "team": 1,
+   "pid": "nfl-p00289",
+   "slot": "WILL"
+  },
+  {
+   "overall": 323,
+   "team": 2,
+   "pid": "nfl-p00329",
+   "slot": "DT2"
+  },
+  {
+   "overall": 324,
+   "team": 3,
+   "pid": "nfl-p00212",
+   "slot": "SS"
+  },
+  {
+   "overall": 325,
+   "team": 4,
+   "pid": "nfl-p00204",
+   "slot": "FS"
+  },
+  {
+   "overall": 326,
+   "team": 5,
+   "pid": "nfl-p00279",
+   "slot": "RB1"
+  },
+  {
+   "overall": 327,
+   "team": 6,
+   "pid": "nfl-p00589",
+   "slot": "QB"
+  },
+  {
+   "overall": 328,
+   "team": 7,
+   "pid": "nfl-p00173",
+   "slot": "RB1"
+  },
+  {
+   "overall": 329,
+   "team": 8,
+   "pid": "nfl-p00347",
+   "slot": "RB1"
+  },
+  {
+   "overall": 330,
+   "team": 9,
+   "pid": "nfl-p00398",
+   "slot": "DT2"
+  },
+  {
+   "overall": 331,
+   "team": 10,
+   "pid": "nfl-p00389",
+   "slot": "CB2"
+  },
+  {
+   "overall": 332,
+   "team": 11,
+   "pid": "nfl-p00417",
+   "slot": "OG1"
+  },
+  {
+   "overall": 333,
+   "team": 12,
+   "pid": "nfl-p00673",
+   "slot": "QB"
+  },
+  {
+   "overall": 334,
+   "team": 13,
+   "pid": "nfl-p00449",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 335,
+   "team": 14,
+   "pid": "nfl-p00390",
+   "slot": "OG1"
+  },
+  {
+   "overall": 336,
+   "team": 15,
+   "pid": "nfl-p00333",
+   "slot": "WR3"
+  },
+  {
+   "overall": 337,
+   "team": 16,
+   "pid": "nfl-p00237",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 338,
+   "team": 17,
+   "pid": "nfl-p00224",
+   "slot": "C"
+  },
+  {
+   "overall": 339,
+   "team": 18,
+   "pid": "nfl-p00327",
+   "slot": "WR2"
+  },
+  {
+   "overall": 340,
+   "team": 19,
+   "pid": "nfl-p00399",
+   "slot": "DE1"
+  },
+  {
+   "overall": 341,
+   "team": 20,
+   "pid": "nfl-p00153",
+   "slot": "K"
+  },
+  {
+   "overall": 342,
+   "team": 21,
+   "pid": "nfl-p00304",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 343,
+   "team": 22,
+   "pid": "nfl-p00379",
+   "slot": "TE1"
+  },
+  {
+   "overall": 344,
+   "team": 23,
+   "pid": "nfl-p00182",
+   "slot": "WILL"
+  },
+  {
+   "overall": 345,
+   "team": 24,
+   "pid": "nfl-p00277",
+   "slot": "TE1"
+  },
+  {
+   "overall": 346,
+   "team": 25,
+   "pid": "nfl-p00247",
+   "slot": "FS"
+  },
+  {
+   "overall": 347,
+   "team": 26,
+   "pid": "nfl-p00464",
+   "slot": "DT1"
+  },
+  {
+   "overall": 348,
+   "team": 27,
+   "pid": "nfl-p00256",
+   "slot": "SS"
+  },
+  {
+   "overall": 349,
+   "team": 28,
+   "pid": "nfl-p00263",
+   "slot": "TE1"
+  },
+  {
+   "overall": 350,
+   "team": 29,
+   "pid": "nfl-p00284",
+   "slot": "SS"
+  },
+  {
+   "overall": 351,
+   "team": 30,
+   "pid": "nfl-p00413",
+   "slot": "OG1"
+  },
+  {
+   "overall": 352,
+   "team": 31,
+   "pid": "nfl-p00318",
+   "slot": "CB2"
+  },
+  {
+   "overall": 353,
+   "team": 31,
+   "pid": "nfl-p00344",
+   "slot": "SS"
+  },
+  {
+   "overall": 354,
+   "team": 30,
+   "pid": "nfl-p00311",
+   "slot": "RB1"
+  },
+  {
+   "overall": 355,
+   "team": 29,
+   "pid": "nfl-p00401",
+   "slot": "WILL"
+  },
+  {
+   "overall": 356,
+   "team": 28,
+   "pid": "nfl-p00205",
+   "slot": "RB2"
+  },
+  {
+   "overall": 357,
+   "team": 27,
+   "pid": "nfl-p00462",
+   "slot": "WR2"
+  },
+  {
+   "overall": 358,
+   "team": 26,
+   "pid": "nfl-p00371",
+   "slot": "DL5"
+  },
+  {
+   "overall": 359,
+   "team": 25,
+   "pid": "nfl-p00421",
+   "slot": "DT2"
+  },
+  {
+   "overall": 360,
+   "team": 24,
+   "pid": "nfl-p00405",
+   "slot": "DL5"
+  },
+  {
+   "overall": 361,
+   "team": 23,
+   "pid": "nfl-p00431",
+   "slot": "OG1"
+  },
+  {
+   "overall": 362,
+   "team": 22,
+   "pid": "nfl-p00395",
+   "slot": "WR2"
+  },
+  {
+   "overall": 363,
+   "team": 21,
+   "pid": "nfl-p00291",
+   "slot": "TE1"
+  },
+  {
+   "overall": 364,
+   "team": 20,
+   "pid": "nfl-p00179",
+   "slot": "P"
+  },
+  {
+   "overall": 365,
+   "team": 19,
+   "pid": "nfl-p00308",
+   "slot": "CB3"
+  },
+  {
+   "overall": 366,
+   "team": 18,
+   "pid": "nfl-p00433",
+   "slot": "DE1"
+  },
+  {
+   "overall": 367,
+   "team": 17,
+   "pid": "nfl-p00388",
+   "slot": "WR2"
+  },
+  {
+   "overall": 368,
+   "team": 16,
+   "pid": "nfl-p00411",
+   "slot": "DT1"
+  },
+  {
+   "overall": 369,
+   "team": 15,
+   "pid": "nfl-p00498",
+   "slot": "CB1"
+  },
+  {
+   "overall": 370,
+   "team": 14,
+   "pid": "nfl-p00416",
+   "slot": "CB2"
+  },
+  {
+   "overall": 371,
+   "team": 13,
+   "pid": "nfl-p00427",
+   "slot": "DE1"
+  },
+  {
+   "overall": 372,
+   "team": 12,
+   "pid": "nfl-p00253",
+   "slot": "SS"
+  },
+  {
+   "overall": 373,
+   "team": 11,
+   "pid": "nfl-p00392",
+   "slot": "DL5"
+  },
+  {
+   "overall": 374,
+   "team": 10,
+   "pid": "nfl-p00313",
+   "slot": "SS"
+  },
+  {
+   "overall": 375,
+   "team": 9,
+   "pid": "nfl-p00238",
+   "slot": "WILL"
+  },
+  {
+   "overall": 376,
+   "team": 8,
+   "pid": "nfl-p00340",
+   "slot": "WR3"
+  },
+  {
+   "overall": 377,
+   "team": 7,
+   "pid": "nfl-p00270",
+   "slot": "P"
+  },
+  {
+   "overall": 378,
+   "team": 6,
+   "pid": "nfl-p00402",
+   "slot": "OT2"
+  },
+  {
+   "overall": 379,
+   "team": 5,
+   "pid": "nfl-p00334",
+   "slot": "P"
+  },
+  {
+   "overall": 380,
+   "team": 4,
+   "pid": "nfl-p00374",
+   "slot": "CB2"
+  },
+  {
+   "overall": 381,
+   "team": 3,
+   "pid": "nfl-p00297",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 382,
+   "team": 2,
+   "pid": "nfl-p00338",
+   "slot": "SS"
+  },
+  {
+   "overall": 383,
+   "team": 1,
+   "pid": "nfl-p00361",
+   "slot": "DT2"
+  },
+  {
+   "overall": 384,
+   "team": 0,
+   "pid": "nfl-p00469",
+   "slot": "DE1"
+  },
+  {
+   "overall": 385,
+   "team": 0,
+   "pid": "nfl-p00529",
+   "slot": "OT2"
+  },
+  {
+   "overall": 386,
+   "team": 1,
+   "pid": "nfl-p00359",
+   "slot": "RB1"
+  },
+  {
+   "overall": 387,
+   "team": 2,
+   "pid": "nfl-p00349",
+   "slot": "WILL"
+  },
+  {
+   "overall": 388,
+   "team": 3,
+   "pid": "nfl-p00272",
+   "slot": "WILL"
+  },
+  {
+   "overall": 389,
+   "team": 4,
+   "pid": "nfl-p00315",
+   "slot": "RB1"
+  },
+  {
+   "overall": 390,
+   "team": 5,
+   "pid": "nfl-p00268",
+   "slot": "RB2"
+  },
+  {
+   "overall": 391,
+   "team": 6,
+   "pid": "nfl-p00387",
+   "slot": "DT2"
+  },
+  {
+   "overall": 392,
+   "team": 7,
+   "pid": "nfl-p00458",
+   "slot": "TE1"
+  },
+  {
+   "overall": 393,
+   "team": 8,
+   "pid": "nfl-p00452",
+   "slot": "CB1"
+  },
+  {
+   "overall": 394,
+   "team": 9,
+   "pid": "nfl-p00445",
+   "slot": "DE1"
+  },
+  {
+   "overall": 395,
+   "team": 10,
+   "pid": "nfl-p00409",
+   "slot": "RB2"
+  },
+  {
+   "overall": 396,
+   "team": 11,
+   "pid": "nfl-p00232",
+   "slot": "P"
+  },
+  {
+   "overall": 397,
+   "team": 12,
+   "pid": "nfl-p00396",
+   "slot": "CB2"
+  },
+  {
+   "overall": 398,
+   "team": 13,
+   "pid": "nfl-p00351",
+   "slot": "DL5"
+  },
+  {
+   "overall": 399,
+   "team": 14,
+   "pid": "nfl-p00530",
+   "slot": "DE1"
+  },
+  {
+   "overall": 400,
+   "team": 15,
+   "pid": "nfl-p00372",
+   "slot": "CB2"
+  },
+  {
+   "overall": 401,
+   "team": 16,
+   "pid": "nfl-p00378",
+   "slot": "OT2"
+  },
+  {
+   "overall": 402,
+   "team": 17,
+   "pid": "nfl-p00633",
+   "slot": "OG2"
+  },
+  {
+   "overall": 403,
+   "team": 18,
+   "pid": "nfl-p00440",
+   "slot": "CB2"
+  },
+  {
+   "overall": 404,
+   "team": 19,
+   "pid": "nfl-p00386",
+   "slot": "SS"
+  },
+  {
+   "overall": 405,
+   "team": 20,
+   "pid": "nfl-p00250",
+   "slot": "C"
+  },
+  {
+   "overall": 406,
+   "team": 21,
+   "pid": "nfl-p00522",
+   "slot": "DE1"
+  },
+  {
+   "overall": 407,
+   "team": 22,
+   "pid": "nfl-p00341",
+   "slot": "TE2"
+  },
+  {
+   "overall": 408,
+   "team": 23,
+   "pid": "nfl-p00513",
+   "slot": "OT2"
+  },
+  {
+   "overall": 409,
+   "team": 24,
+   "pid": "nfl-p00426",
+   "slot": "DE1"
+  },
+  {
+   "overall": 410,
+   "team": 25,
+   "pid": "nfl-p00408",
+   "slot": "RB2"
+  },
+  {
+   "overall": 411,
+   "team": 26,
+   "pid": "nfl-p00260",
+   "slot": "K"
+  },
+  {
+   "overall": 412,
+   "team": 27,
+   "pid": "nfl-p00527",
+   "slot": "CB1"
+  },
+  {
+   "overall": 413,
+   "team": 28,
+   "pid": "nfl-p00454",
+   "slot": "OG1"
+  },
+  {
+   "overall": 414,
+   "team": 29,
+   "pid": "nfl-p00404",
+   "slot": "TE1"
+  },
+  {
+   "overall": 415,
+   "team": 30,
+   "pid": "nfl-p00484",
+   "slot": "WR3"
+  },
+  {
+   "overall": 416,
+   "team": 31,
+   "pid": "nfl-p00306",
+   "slot": "RB2"
+  },
+  {
+   "overall": 417,
+   "team": 31,
+   "pid": "nfl-p00467",
+   "slot": "OG2"
+  },
+  {
+   "overall": 418,
+   "team": 30,
+   "pid": "nfl-p00434",
+   "slot": "CB1"
+  },
+  {
+   "overall": 419,
+   "team": 29,
+   "pid": "nfl-p00321",
+   "slot": "C"
+  },
+  {
+   "overall": 420,
+   "team": 28,
+   "pid": "nfl-p00540",
+   "slot": "OT1"
+  },
+  {
+   "overall": 421,
+   "team": 27,
+   "pid": "nfl-p00376",
+   "slot": "WILL"
+  },
+  {
+   "overall": 422,
+   "team": 26,
+   "pid": "nfl-p00535",
+   "slot": "CB2"
+  },
+  {
+   "overall": 423,
+   "team": 25,
+   "pid": "nfl-p00618",
+   "slot": "OT2"
+  },
+  {
+   "overall": 424,
+   "team": 24,
+   "pid": "nfl-p00223",
+   "slot": "P"
+  },
+  {
+   "overall": 425,
+   "team": 23,
+   "pid": "nfl-p00419",
+   "slot": "DE1"
+  },
+  {
+   "overall": 426,
+   "team": 22,
+   "pid": "nfl-p00346",
+   "slot": "CB3"
+  },
+  {
+   "overall": 427,
+   "team": 21,
+   "pid": "nfl-p00515",
+   "slot": "WILL"
+  },
+  {
+   "overall": 428,
+   "team": 20,
+   "pid": "nfl-p00314",
+   "slot": "TE3"
+  },
+  {
+   "overall": 429,
+   "team": 19,
+   "pid": "nfl-p00424",
+   "slot": "RB1"
+  },
+  {
+   "overall": 430,
+   "team": 18,
+   "pid": "nfl-p00394",
+   "slot": "TE1"
+  },
+  {
+   "overall": 431,
+   "team": 17,
+   "pid": "nfl-p00474",
+   "slot": "DE1"
+  },
+  {
+   "overall": 432,
+   "team": 16,
+   "pid": "nfl-p00785",
+   "slot": "QB"
+  },
+  {
+   "overall": 433,
+   "team": 15,
+   "pid": "nfl-p00569",
+   "slot": "DE1"
+  },
+  {
+   "overall": 434,
+   "team": 14,
+   "pid": "nfl-p00356",
+   "slot": "RB1"
+  },
+  {
+   "overall": 435,
+   "team": 13,
+   "pid": "nfl-p00448",
+   "slot": "WR2"
+  },
+  {
+   "overall": 436,
+   "team": 12,
+   "pid": "nfl-p00456",
+   "slot": "WILL"
+  },
+  {
+   "overall": 437,
+   "team": 11,
+   "pid": "nfl-p00423",
+   "slot": "WR2"
+  },
+  {
+   "overall": 438,
+   "team": 10,
+   "pid": "nfl-p00422",
+   "slot": "TE1"
+  },
+  {
+   "overall": 439,
+   "team": 9,
+   "pid": "nfl-p00362",
+   "slot": "CB3"
+  },
+  {
+   "overall": 440,
+   "team": 8,
+   "pid": "nfl-p00506",
+   "slot": "DT1"
+  },
+  {
+   "overall": 441,
+   "team": 7,
+   "pid": "nfl-p00451",
+   "slot": "DT1"
+  },
+  {
+   "overall": 442,
+   "team": 6,
+   "pid": "nfl-p00446",
+   "slot": "DE1"
+  },
+  {
+   "overall": 443,
+   "team": 5,
+   "pid": "nfl-p00542",
+   "slot": "DE2"
+  },
+  {
+   "overall": 444,
+   "team": 4,
+   "pid": "nfl-p00383",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 445,
+   "team": 3,
+   "pid": "nfl-p00438",
+   "slot": "OG1"
+  },
+  {
+   "overall": 446,
+   "team": 2,
+   "pid": "nfl-p00510",
+   "slot": "DE1"
+  },
+  {
+   "overall": 447,
+   "team": 1,
+   "pid": "nfl-p00526",
+   "slot": "WR2"
+  },
+  {
+   "overall": 448,
+   "team": 0,
+   "pid": "nfl-p00468",
+   "slot": "SAM"
+  },
+  {
+   "overall": 449,
+   "team": 0,
+   "pid": "nfl-p00604",
+   "slot": "DE2"
+  },
+  {
+   "overall": 450,
+   "team": 1,
+   "pid": "nfl-p00457",
+   "slot": "CB2"
+  },
+  {
+   "overall": 451,
+   "team": 2,
+   "pid": "nfl-p00578",
+   "slot": "CB2"
+  },
+  {
+   "overall": 452,
+   "team": 3,
+   "pid": "nfl-p00322",
+   "slot": "CB3"
+  },
+  {
+   "overall": 453,
+   "team": 4,
+   "pid": "nfl-p00505",
+   "slot": "WR3"
+  },
+  {
+   "overall": 454,
+   "team": 5,
+   "pid": "nfl-p00473",
+   "slot": "WR2"
+  },
+  {
+   "overall": 455,
+   "team": 6,
+   "pid": "nfl-p00531",
+   "slot": "DL5"
+  },
+  {
+   "overall": 456,
+   "team": 7,
+   "pid": "nfl-p00518",
+   "slot": "DE1"
+  },
+  {
+   "overall": 457,
+   "team": 8,
+   "pid": "nfl-p00430",
+   "slot": "DT2"
+  },
+  {
+   "overall": 458,
+   "team": 9,
+   "pid": "nfl-p00536",
+   "slot": "WR2"
+  },
+  {
+   "overall": 459,
+   "team": 10,
+   "pid": "nfl-p00403",
+   "slot": "WR3"
+  },
+  {
+   "overall": 460,
+   "team": 11,
+   "pid": "nfl-p00503",
+   "slot": "TE1"
+  },
+  {
+   "overall": 461,
+   "team": 12,
+   "pid": "nfl-p00436",
+   "slot": "FS"
+  },
+  {
+   "overall": 462,
+   "team": 13,
+   "pid": "nfl-p00331",
+   "slot": "RB1"
+  },
+  {
+   "overall": 463,
+   "team": 14,
+   "pid": "nfl-p00497",
+   "slot": "TE3"
+  },
+  {
+   "overall": 464,
+   "team": 15,
+   "pid": "nfl-p00429",
+   "slot": "C"
+  },
+  {
+   "overall": 465,
+   "team": 16,
+   "pid": "nfl-p00354",
+   "slot": "WILL"
+  },
+  {
+   "overall": 466,
+   "team": 17,
+   "pid": "nfl-p00441",
+   "slot": "SS"
+  },
+  {
+   "overall": 467,
+   "team": 18,
+   "pid": "nfl-p00488",
+   "slot": "WILL"
+  },
+  {
+   "overall": 468,
+   "team": 19,
+   "pid": "nfl-p00375",
+   "slot": "DIME"
+  },
+  {
+   "overall": 469,
+   "team": 20,
+   "pid": "nfl-p00366",
+   "slot": "WR4"
+  },
+  {
+   "overall": 470,
+   "team": 21,
+   "pid": "nfl-p00432",
+   "slot": "WR1"
+  },
+  {
+   "overall": 471,
+   "team": 22,
+   "pid": "nfl-p00288",
+   "slot": "K"
+  },
+  {
+   "overall": 472,
+   "team": 23,
+   "pid": "nfl-p00384",
+   "slot": "RB2"
+  },
+  {
+   "overall": 473,
+   "team": 24,
+   "pid": "nfl-p00414",
+   "slot": "WILL"
+  },
+  {
+   "overall": 474,
+   "team": 25,
+   "pid": "nfl-p00685",
+   "slot": "TE2"
+  },
+  {
+   "overall": 475,
+   "team": 26,
+   "pid": "nfl-p00521",
+   "slot": "OG2"
+  },
+  {
+   "overall": 476,
+   "team": 27,
+   "pid": "nfl-p00393",
+   "slot": "RB1"
+  },
+  {
+   "overall": 477,
+   "team": 28,
+   "pid": "nfl-p00466",
+   "slot": "DT2"
+  },
+  {
+   "overall": 478,
+   "team": 29,
+   "pid": "nfl-p00525",
+   "slot": "DE2"
+  },
+  {
+   "overall": 479,
+   "team": 30,
+   "pid": "nfl-p00608",
+   "slot": "DL5"
+  },
+  {
+   "overall": 480,
+   "team": 31,
+   "pid": "nfl-p00544",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 481,
+   "team": 31,
+   "pid": "nfl-p00367",
+   "slot": "FS"
+  },
+  {
+   "overall": 482,
+   "team": 30,
+   "pid": "nfl-p00439",
+   "slot": "SAM"
+  },
+  {
+   "overall": 483,
+   "team": 29,
+   "pid": "nfl-p00406",
+   "slot": "SAM"
+  },
+  {
+   "overall": 484,
+   "team": 28,
+   "pid": "nfl-p00612",
+   "slot": "TE2"
+  },
+  {
+   "overall": 485,
+   "team": 27,
+   "pid": "nfl-p00594",
+   "slot": "CB2"
+  },
+  {
+   "overall": 486,
+   "team": 26,
+   "pid": "nfl-p00637",
+   "slot": "OT2"
+  },
+  {
+   "overall": 487,
+   "team": 25,
+   "pid": "nfl-p00512",
+   "slot": "WILL"
+  },
+  {
+   "overall": 488,
+   "team": 24,
+   "pid": "nfl-p00472",
+   "slot": "FS"
+  },
+  {
+   "overall": 489,
+   "team": 23,
+   "pid": "nfl-p01942",
+   "slot": "WR3"
+  },
+  {
+   "overall": 490,
+   "team": 22,
+   "pid": "nfl-p00565",
+   "slot": "DL5"
+  },
+  {
+   "overall": 491,
+   "team": 21,
+   "pid": "nfl-p00496",
+   "slot": "C"
+  },
+  {
+   "overall": 492,
+   "team": 20,
+   "pid": "nfl-p00397",
+   "slot": "FS"
+  },
+  {
+   "overall": 493,
+   "team": 19,
+   "pid": "nfl-p00519",
+   "slot": "DT2"
+  },
+  {
+   "overall": 494,
+   "team": 18,
+   "pid": "nfl-p00528",
+   "slot": "SS"
+  },
+  {
+   "overall": 495,
+   "team": 17,
+   "pid": "nfl-p00653",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 496,
+   "team": 16,
+   "pid": "nfl-p00415",
+   "slot": "RB1"
+  },
+  {
+   "overall": 497,
+   "team": 15,
+   "pid": "nfl-p00489",
+   "slot": "TE1"
+  },
+  {
+   "overall": 498,
+   "team": 14,
+   "pid": "nfl-p00483",
+   "slot": "WR3"
+  },
+  {
+   "overall": 499,
+   "team": 13,
+   "pid": "nfl-p00709",
+   "slot": "C"
+  },
+  {
+   "overall": 500,
+   "team": 12,
+   "pid": "nfl-p00516",
+   "slot": "SAM"
+  },
+  {
+   "overall": 501,
+   "team": 11,
+   "pid": "nfl-p00492",
+   "slot": "CB1"
+  },
+  {
+   "overall": 502,
+   "team": 10,
+   "pid": "nfl-p00437",
+   "slot": "WILL"
+  },
+  {
+   "overall": 503,
+   "team": 9,
+   "pid": "nfl-p00563",
+   "slot": "TE3"
+  },
+  {
+   "overall": 504,
+   "team": 8,
+   "pid": "nfl-p00412",
+   "slot": "C"
+  },
+  {
+   "overall": 505,
+   "team": 7,
+   "pid": "nfl-p00613",
+   "slot": "WILL"
+  },
+  {
+   "overall": 506,
+   "team": 6,
+   "pid": "nfl-p00501",
+   "slot": "OG1"
+  },
+  {
+   "overall": 507,
+   "team": 5,
+   "pid": "nfl-p00487",
+   "slot": "CB3"
+  },
+  {
+   "overall": 508,
+   "team": 4,
+   "pid": "nfl-p00543",
+   "slot": "SS"
+  },
+  {
+   "overall": 509,
+   "team": 3,
+   "pid": "nfl-p00552",
+   "slot": "CB2"
+  },
+  {
+   "overall": 510,
+   "team": 2,
+   "pid": "nfl-p00620",
+   "slot": "OG2"
+  },
+  {
+   "overall": 511,
+   "team": 1,
+   "pid": "nfl-p00470",
+   "slot": "CB3"
+  },
+  {
+   "overall": 512,
+   "team": 0,
+   "pid": "nfl-p00264",
+   "slot": "P"
+  },
+  {
+   "overall": 513,
+   "team": 0,
+   "pid": "nfl-p00453",
+   "slot": "CB1"
+  },
+  {
+   "overall": 514,
+   "team": 1,
+   "pid": "nfl-p00480",
+   "slot": "DE2"
+  },
+  {
+   "overall": 515,
+   "team": 2,
+   "pid": "nfl-p00631",
+   "slot": "OT1"
+  },
+  {
+   "overall": 516,
+   "team": 3,
+   "pid": "nfl-p00418",
+   "slot": "RB1"
+  },
+  {
+   "overall": 517,
+   "team": 4,
+   "pid": "nfl-p00600",
+   "slot": "DE1"
+  },
+  {
+   "overall": 518,
+   "team": 5,
+   "pid": "nfl-p00584",
+   "slot": "OG1"
+  },
+  {
+   "overall": 519,
+   "team": 6,
+   "pid": "nfl-p00686",
+   "slot": "OG2"
+  },
+  {
+   "overall": 520,
+   "team": 7,
+   "pid": "nfl-p00517",
+   "slot": "CB3"
+  },
+  {
+   "overall": 521,
+   "team": 8,
+   "pid": "nfl-p00478",
+   "slot": "FS"
+  },
+  {
+   "overall": 522,
+   "team": 9,
+   "pid": "nfl-p00460",
+   "slot": "SS"
+  },
+  {
+   "overall": 523,
+   "team": 10,
+   "pid": "nfl-p00520",
+   "slot": "CB3"
+  },
+  {
+   "overall": 524,
+   "team": 11,
+   "pid": "nfl-p00708",
+   "slot": "OT2"
+  },
+  {
+   "overall": 525,
+   "team": 12,
+   "pid": "nfl-p00380",
+   "slot": "K"
+  },
+  {
+   "overall": 526,
+   "team": 13,
+   "pid": "nfl-p00576",
+   "slot": "CB1"
+  },
+  {
+   "overall": 527,
+   "team": 14,
+   "pid": "nfl-p00509",
+   "slot": "DIME"
+  },
+  {
+   "overall": 528,
+   "team": 15,
+   "pid": "nfl-p00465",
+   "slot": "WR4"
+  },
+  {
+   "overall": 529,
+   "team": 16,
+   "pid": "nfl-p00494",
+   "slot": "DT2"
+  },
+  {
+   "overall": 530,
+   "team": 17,
+   "pid": "nfl-p00621",
+   "slot": "CB1"
+  },
+  {
+   "overall": 531,
+   "team": 18,
+   "pid": "nfl-p00566",
+   "slot": "SAM"
+  },
+  {
+   "overall": 532,
+   "team": 19,
+   "pid": "nfl-p00798",
+   "slot": "OG2"
+  },
+  {
+   "overall": 533,
+   "team": 20,
+   "pid": "nfl-p00428",
+   "slot": "WILL"
+  },
+  {
+   "overall": 534,
+   "team": 21,
+   "pid": "nfl-p00558",
+   "slot": "OG2"
+  },
+  {
+   "overall": 535,
+   "team": 22,
+   "pid": "nfl-p00511",
+   "slot": "FS"
+  },
+  {
+   "overall": 536,
+   "team": 23,
+   "pid": "nfl-p00655",
+   "slot": "OG2"
+  },
+  {
+   "overall": 537,
+   "team": 24,
+   "pid": "nfl-p00502",
+   "slot": "C"
+  },
+  {
+   "overall": 538,
+   "team": 25,
+   "pid": "nfl-p00591",
+   "slot": "C"
+  },
+  {
+   "overall": 539,
+   "team": 26,
+   "pid": "nfl-p00793",
+   "slot": "QB"
+  },
+  {
+   "overall": 540,
+   "team": 27,
+   "pid": "nfl-p00450",
+   "slot": "CB3"
+  },
+  {
+   "overall": 541,
+   "team": 28,
+   "pid": "nfl-p00500",
+   "slot": "SAM"
+  },
+  {
+   "overall": 542,
+   "team": 29,
+   "pid": "nfl-p00476",
+   "slot": "DT1"
+  },
+  {
+   "overall": 543,
+   "team": 30,
+   "pid": "nfl-p00567",
+   "slot": "WILL"
+  },
+  {
+   "overall": 544,
+   "team": 31,
+   "pid": "nfl-p00482",
+   "slot": "K"
+  },
+  {
+   "overall": 545,
+   "team": 31,
+   "pid": "nfl-p00556",
+   "slot": "CB3"
+  },
+  {
+   "overall": 546,
+   "team": 30,
+   "pid": "nfl-p00561",
+   "slot": "CB2"
+  },
+  {
+   "overall": 547,
+   "team": 29,
+   "pid": "nfl-p00461",
+   "slot": "RB1"
+  },
+  {
+   "overall": 548,
+   "team": 28,
+   "pid": "nfl-p00442",
+   "slot": "K"
+  },
+  {
+   "overall": 549,
+   "team": 27,
+   "pid": "nfl-p00523",
+   "slot": "SAM"
+  },
+  {
+   "overall": 550,
+   "team": 26,
+   "pid": "nfl-p00670",
+   "slot": "WILL"
+  },
+  {
+   "overall": 551,
+   "team": 25,
+   "pid": "nfl-p00601",
+   "slot": "WR3"
+  },
+  {
+   "overall": 552,
+   "team": 24,
+   "pid": "nfl-p00630",
+   "slot": "OG2"
+  },
+  {
+   "overall": 553,
+   "team": 23,
+   "pid": "nfl-p00607",
+   "slot": "CB2"
+  },
+  {
+   "overall": 554,
+   "team": 22,
+   "pid": "nfl-p00491",
+   "slot": "SS"
+  },
+  {
+   "overall": 555,
+   "team": 21,
+   "pid": "nfl-p00767",
+   "slot": "OG1"
+  },
+  {
+   "overall": 556,
+   "team": 20,
+   "pid": "nfl-p00447",
+   "slot": "SS"
+  },
+  {
+   "overall": 557,
+   "team": 19,
+   "pid": "nfl-p00698",
+   "slot": "OT2"
+  },
+  {
+   "overall": 558,
+   "team": 18,
+   "pid": "nfl-p00800",
+   "slot": "OT2"
+  },
+  {
+   "overall": 559,
+   "team": 17,
+   "pid": "nfl-p00581",
+   "slot": "DE2"
+  },
+  {
+   "overall": 560,
+   "team": 16,
+   "pid": "nfl-p00623",
+   "slot": "DE1"
+  },
+  {
+   "overall": 561,
+   "team": 15,
+   "pid": "nfl-p00617",
+   "slot": "DL5"
+  },
+  {
+   "overall": 562,
+   "team": 14,
+   "pid": "nfl-p00610",
+   "slot": "OG2"
+  },
+  {
+   "overall": 563,
+   "team": 13,
+   "pid": "nfl-p00537",
+   "slot": "DT1"
+  },
+  {
+   "overall": 564,
+   "team": 12,
+   "pid": "nfl-p00622",
+   "slot": "DE2"
+  },
+  {
+   "overall": 565,
+   "team": 11,
+   "pid": "nfl-p00663",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 566,
+   "team": 10,
+   "pid": "nfl-p00598",
+   "slot": "DE2"
+  },
+  {
+   "overall": 567,
+   "team": 9,
+   "pid": "nfl-p00634",
+   "slot": "OG2"
+  },
+  {
+   "overall": 568,
+   "team": 8,
+   "pid": "nfl-p00699",
+   "slot": "CB2"
+  },
+  {
+   "overall": 569,
+   "team": 7,
+   "pid": "nfl-p00570",
+   "slot": "DE2"
+  },
+  {
+   "overall": 570,
+   "team": 6,
+   "pid": "nfl-p00533",
+   "slot": "WR3"
+  },
+  {
+   "overall": 571,
+   "team": 5,
+   "pid": "nfl-p00597",
+   "slot": "CB2"
+  },
+  {
+   "overall": 572,
+   "team": 4,
+   "pid": "nfl-p00493",
+   "slot": "DL5"
+  },
+  {
+   "overall": 573,
+   "team": 3,
+   "pid": "nfl-p00485",
+   "slot": "SAM"
+  },
+  {
+   "overall": 574,
+   "team": 2,
+   "pid": "nfl-p00606",
+   "slot": "CB3"
+  },
+  {
+   "overall": 575,
+   "team": 1,
+   "pid": "nfl-p01943",
+   "slot": "FS"
+  },
+  {
+   "overall": 576,
+   "team": 0,
+   "pid": "nfl-p00646",
+   "slot": "TE2"
+  },
+  {
+   "overall": 577,
+   "team": 0,
+   "pid": "nfl-p00697",
+   "slot": "CB2"
+  },
+  {
+   "overall": 578,
+   "team": 1,
+   "pid": "nfl-p00555",
+   "slot": "SAM"
+  },
+  {
+   "overall": 579,
+   "team": 2,
+   "pid": "nfl-p00377",
+   "slot": "P"
+  },
+  {
+   "overall": 580,
+   "team": 3,
+   "pid": "nfl-p00486",
+   "slot": "WR3"
+  },
+  {
+   "overall": 581,
+   "team": 4,
+   "pid": "nfl-p00625",
+   "slot": "OG2"
+  },
+  {
+   "overall": 582,
+   "team": 5,
+   "pid": "nfl-p00490",
+   "slot": "FS"
+  },
+  {
+   "overall": 583,
+   "team": 6,
+   "pid": "nfl-p00658",
+   "slot": "DE2"
+  },
+  {
+   "overall": 584,
+   "team": 7,
+   "pid": "nfl-p00575",
+   "slot": "WR3"
+  },
+  {
+   "overall": 585,
+   "team": 8,
+   "pid": "nfl-p00471",
+   "slot": "K"
+  },
+  {
+   "overall": 586,
+   "team": 9,
+   "pid": "nfl-p00553",
+   "slot": "DL5"
+  },
+  {
+   "overall": 587,
+   "team": 10,
+   "pid": "nfl-p00648",
+   "slot": "TE2"
+  },
+  {
+   "overall": 588,
+   "team": 11,
+   "pid": "nfl-p00550",
+   "slot": "CB2"
+  },
+  {
+   "overall": 589,
+   "team": 12,
+   "pid": "nfl-p00579",
+   "slot": "WR3"
+  },
+  {
+   "overall": 590,
+   "team": 13,
+   "pid": "nfl-p00582",
+   "slot": "CB2"
+  },
+  {
+   "overall": 591,
+   "team": 14,
+   "pid": "nfl-p00861",
+   "slot": "QB"
+  },
+  {
+   "overall": 592,
+   "team": 15,
+   "pid": "nfl-p00425",
+   "slot": "P"
+  },
+  {
+   "overall": 593,
+   "team": 16,
+   "pid": "nfl-p00592",
+   "slot": "WR3"
+  },
+  {
+   "overall": 594,
+   "team": 17,
+   "pid": "nfl-p00696",
+   "slot": "OT2"
+  },
+  {
+   "overall": 595,
+   "team": 18,
+   "pid": "nfl-p00688",
+   "slot": "CB3"
+  },
+  {
+   "overall": 596,
+   "team": 19,
+   "pid": "nfl-p00626",
+   "slot": "DE2"
+  },
+  {
+   "overall": 597,
+   "team": 20,
+   "pid": "nfl-p00479",
+   "slot": "SAM"
+  },
+  {
+   "overall": 598,
+   "team": 21,
+   "pid": "nfl-p00616",
+   "slot": "SAM"
+  },
+  {
+   "overall": 599,
+   "team": 22,
+   "pid": "nfl-p00602",
+   "slot": "DT2"
+  },
+  {
+   "overall": 600,
+   "team": 23,
+   "pid": "nfl-p00718",
+   "slot": "DE2"
+  },
+  {
+   "overall": 601,
+   "team": 24,
+   "pid": "nfl-p00524",
+   "slot": "RB1"
+  },
+  {
+   "overall": 602,
+   "team": 25,
+   "pid": "nfl-p00700",
+   "slot": "SAM"
+  },
+  {
+   "overall": 603,
+   "team": 26,
+   "pid": "nfl-p00680",
+   "slot": "WR3"
+  },
+  {
+   "overall": 604,
+   "team": 27,
+   "pid": "nfl-p00572",
+   "slot": "WR3"
+  },
+  {
+   "overall": 605,
+   "team": 28,
+   "pid": "nfl-p00605",
+   "slot": "WR2"
+  },
+  {
+   "overall": 606,
+   "team": 29,
+   "pid": "nfl-p00593",
+   "slot": "CB3"
+  },
+  {
+   "overall": 607,
+   "team": 30,
+   "pid": "nfl-p00547",
+   "slot": "CB3"
+  },
+  {
+   "overall": 608,
+   "team": 31,
+   "pid": "nfl-p00546",
+   "slot": "WR3"
+  },
+  {
+   "overall": 609,
+   "team": 31,
+   "pid": "nfl-p00693",
+   "slot": "DIME"
+  },
+  {
+   "overall": 610,
+   "team": 30,
+   "pid": "nfl-p00554",
+   "slot": "FS"
+  },
+  {
+   "overall": 611,
+   "team": 29,
+   "pid": "nfl-p00715",
+   "slot": "TE2"
+  },
+  {
+   "overall": 612,
+   "team": 28,
+   "pid": "nfl-p00778",
+   "slot": "WILL"
+  },
+  {
+   "overall": 613,
+   "team": 27,
+   "pid": "nfl-p00659",
+   "slot": "C"
+  },
+  {
+   "overall": 614,
+   "team": 26,
+   "pid": "nfl-p00656",
+   "slot": "SAM"
+  },
+  {
+   "overall": 615,
+   "team": 25,
+   "pid": "nfl-p00726",
+   "slot": "CB1"
+  },
+  {
+   "overall": 616,
+   "team": 24,
+   "pid": "nfl-p00339",
+   "slot": "K"
+  },
+  {
+   "overall": 617,
+   "team": 23,
+   "pid": "nfl-p00507",
+   "slot": "SS"
+  },
+  {
+   "overall": 618,
+   "team": 22,
+   "pid": "nfl-p00749",
+   "slot": "WILL"
+  },
+  {
+   "overall": 619,
+   "team": 21,
+   "pid": "nfl-p00647",
+   "slot": "DL5"
+  },
+  {
+   "overall": 620,
+   "team": 20,
+   "pid": "nfl-p00549",
+   "slot": "CB1"
+  },
+  {
+   "overall": 621,
+   "team": 19,
+   "pid": "nfl-p00774",
+   "slot": "TE1"
+  },
+  {
+   "overall": 622,
+   "team": 18,
+   "pid": "nfl-p00748",
+   "slot": "QB"
+  },
+  {
+   "overall": 623,
+   "team": 17,
+   "pid": "nfl-p00573",
+   "slot": "CB2"
+  },
+  {
+   "overall": 624,
+   "team": 16,
+   "pid": "nfl-p00641",
+   "slot": "C"
+  },
+  {
+   "overall": 625,
+   "team": 15,
+   "pid": "nfl-p00283",
+   "slot": "K"
+  },
+  {
+   "overall": 626,
+   "team": 14,
+   "pid": "nfl-p00629",
+   "slot": "DE2"
+  },
+  {
+   "overall": 627,
+   "team": 13,
+   "pid": "nfl-p00792",
+   "slot": "SAM"
+  },
+  {
+   "overall": 628,
+   "team": 12,
+   "pid": "nfl-p00870",
+   "slot": "OT2"
+  },
+  {
+   "overall": 629,
+   "team": 11,
+   "pid": "nfl-p00577",
+   "slot": "WILL"
+  },
+  {
+   "overall": 630,
+   "team": 10,
+   "pid": "nfl-p00813",
+   "slot": "OT1"
+  },
+  {
+   "overall": 631,
+   "team": 9,
+   "pid": "nfl-p00373",
+   "slot": "P"
+  },
+  {
+   "overall": 632,
+   "team": 8,
+   "pid": "nfl-p00615",
+   "slot": "RB2"
+  },
+  {
+   "overall": 633,
+   "team": 7,
+   "pid": "nfl-p00624",
+   "slot": "SAM"
+  },
+  {
+   "overall": 634,
+   "team": 6,
+   "pid": "nfl-p00539",
+   "slot": "RB2"
+  },
+  {
+   "overall": 635,
+   "team": 5,
+   "pid": "nfl-p00753",
+   "slot": "SAM"
+  },
+  {
+   "overall": 636,
+   "team": 4,
+   "pid": "nfl-p01946",
+   "slot": "CB3"
+  },
+  {
+   "overall": 637,
+   "team": 3,
+   "pid": "nfl-p00717",
+   "slot": "DE1"
+  },
+  {
+   "overall": 638,
+   "team": 2,
+   "pid": "nfl-p00790",
+   "slot": "OT2"
+  },
+  {
+   "overall": 639,
+   "team": 1,
+   "pid": "nfl-p00651",
+   "slot": "WR3"
+  },
+  {
+   "overall": 640,
+   "team": 0,
+   "pid": "nfl-p00791",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 641,
+   "team": 0,
+   "pid": "nfl-p00595",
+   "slot": "WR3"
+  },
+  {
+   "overall": 642,
+   "team": 1,
+   "pid": "nfl-p00801",
+   "slot": "TE2"
+  },
+  {
+   "overall": 643,
+   "team": 2,
+   "pid": "nfl-p00574",
+   "slot": "DL5"
+  },
+  {
+   "overall": 644,
+   "team": 3,
+   "pid": "nfl-p00603",
+   "slot": "FS"
+  },
+  {
+   "overall": 645,
+   "team": 4,
+   "pid": "nfl-p00841",
+   "slot": "TE3"
+  },
+  {
+   "overall": 646,
+   "team": 5,
+   "pid": "nfl-p00829",
+   "slot": "TE1"
+  },
+  {
+   "overall": 647,
+   "team": 6,
+   "pid": "nfl-p00596",
+   "slot": "WR4"
+  },
+  {
+   "overall": 648,
+   "team": 7,
+   "pid": "nfl-p00720",
+   "slot": "TE2"
+  },
+  {
+   "overall": 649,
+   "team": 8,
+   "pid": "nfl-p00568",
+   "slot": "SS"
+  },
+  {
+   "overall": 650,
+   "team": 9,
+   "pid": "nfl-p00694",
+   "slot": "DE2"
+  },
+  {
+   "overall": 651,
+   "team": 10,
+   "pid": "nfl-p00385",
+   "slot": "P"
+  },
+  {
+   "overall": 652,
+   "team": 11,
+   "pid": "nfl-p00319",
+   "slot": "K"
+  },
+  {
+   "overall": 653,
+   "team": 12,
+   "pid": "nfl-p01014",
+   "slot": "TE2"
+  },
+  {
+   "overall": 654,
+   "team": 13,
+   "pid": "nfl-p00702",
+   "slot": "DT2"
+  },
+  {
+   "overall": 655,
+   "team": 14,
+   "pid": "nfl-p00580",
+   "slot": "FS"
+  },
+  {
+   "overall": 656,
+   "team": 15,
+   "pid": "nfl-p00719",
+   "slot": "DE2"
+  },
+  {
+   "overall": 657,
+   "team": 16,
+   "pid": "nfl-p01945",
+   "slot": "FS"
+  },
+  {
+   "overall": 658,
+   "team": 17,
+   "pid": "nfl-p00557",
+   "slot": "FS"
+  },
+  {
+   "overall": 659,
+   "team": 18,
+   "pid": "nfl-p00643",
+   "slot": "DE2"
+  },
+  {
+   "overall": 660,
+   "team": 19,
+   "pid": "nfl-p00652",
+   "slot": "WR3"
+  },
+  {
+   "overall": 661,
+   "team": 20,
+   "pid": "nfl-p00562",
+   "slot": "OG1"
+  },
+  {
+   "overall": 662,
+   "team": 21,
+   "pid": "nfl-p00735",
+   "slot": "TE2"
+  },
+  {
+   "overall": 663,
+   "team": 22,
+   "pid": "nfl-p00679",
+   "slot": "SAM"
+  },
+  {
+   "overall": 664,
+   "team": 23,
+   "pid": "nfl-p00650",
+   "slot": "DIME"
+  },
+  {
+   "overall": 665,
+   "team": 24,
+   "pid": "nfl-p00665",
+   "slot": "SAM"
+  },
+  {
+   "overall": 666,
+   "team": 25,
+   "pid": "nfl-p00586",
+   "slot": "WR4"
+  },
+  {
+   "overall": 667,
+   "team": 26,
+   "pid": "nfl-p00660",
+   "slot": "C"
+  },
+  {
+   "overall": 668,
+   "team": 27,
+   "pid": "nfl-p00292",
+   "slot": "P"
+  },
+  {
+   "overall": 669,
+   "team": 28,
+   "pid": "nfl-p00585",
+   "slot": "DL5"
+  },
+  {
+   "overall": 670,
+   "team": 29,
+   "pid": "nfl-p00619",
+   "slot": "DL5"
+  },
+  {
+   "overall": 671,
+   "team": 30,
+   "pid": "nfl-p00682",
+   "slot": "WR4"
+  },
+  {
+   "overall": 672,
+   "team": 31,
+   "pid": "nfl-p00644",
+   "slot": "C"
+  },
+  {
+   "overall": 673,
+   "team": 31,
+   "pid": "nfl-p00707",
+   "slot": "DE2"
+  },
+  {
+   "overall": 674,
+   "team": 30,
+   "pid": "nfl-p00583",
+   "slot": "RB2"
+  },
+  {
+   "overall": 675,
+   "team": 29,
+   "pid": "nfl-p00564",
+   "slot": "WR3"
+  },
+  {
+   "overall": 676,
+   "team": 28,
+   "pid": "nfl-p00703",
+   "slot": "FS"
+  },
+  {
+   "overall": 677,
+   "team": 27,
+   "pid": "nfl-p00657",
+   "slot": "FS"
+  },
+  {
+   "overall": 678,
+   "team": 26,
+   "pid": "nfl-p00514",
+   "slot": "RB2"
+  },
+  {
+   "overall": 679,
+   "team": 25,
+   "pid": "nfl-p00687",
+   "slot": "CB2"
+  },
+  {
+   "overall": 680,
+   "team": 24,
+   "pid": "nfl-p00752",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 681,
+   "team": 23,
+   "pid": "nfl-p00907",
+   "slot": "SAM"
+  },
+  {
+   "overall": 682,
+   "team": 22,
+   "pid": "nfl-p00677",
+   "slot": "WR3"
+  },
+  {
+   "overall": 683,
+   "team": 21,
+   "pid": "nfl-p00704",
+   "slot": "WR2"
+  },
+  {
+   "overall": 684,
+   "team": 20,
+   "pid": "nfl-p00599",
+   "slot": "OG2"
+  },
+  {
+   "overall": 685,
+   "team": 19,
+   "pid": "nfl-p00368",
+   "slot": "K"
+  },
+  {
+   "overall": 686,
+   "team": 18,
+   "pid": "nfl-p00541",
+   "slot": "K"
+  },
+  {
+   "overall": 687,
+   "team": 17,
+   "pid": "nfl-p00816",
+   "slot": "CB3"
+  },
+  {
+   "overall": 688,
+   "team": 16,
+   "pid": "nfl-p00678",
+   "slot": "SAM"
+  },
+  {
+   "overall": 689,
+   "team": 15,
+   "pid": "nfl-p00692",
+   "slot": "DIME"
+  },
+  {
+   "overall": 690,
+   "team": 14,
+   "pid": "nfl-p00691",
+   "slot": "DL5"
+  },
+  {
+   "overall": 691,
+   "team": 13,
+   "pid": "nfl-p00645",
+   "slot": "WR3"
+  },
+  {
+   "overall": 692,
+   "team": 12,
+   "pid": "nfl-p00661",
+   "slot": "C"
+  },
+  {
+   "overall": 693,
+   "team": 11,
+   "pid": "nfl-p00638",
+   "slot": "OG2"
+  },
+  {
+   "overall": 694,
+   "team": 10,
+   "pid": "nfl-p00775",
+   "slot": "WR4"
+  },
+  {
+   "overall": 695,
+   "team": 9,
+   "pid": "nfl-p00783",
+   "slot": "SAM"
+  },
+  {
+   "overall": 696,
+   "team": 8,
+   "pid": "nfl-p00786",
+   "slot": "DIME"
+  },
+  {
+   "overall": 697,
+   "team": 7,
+   "pid": "nfl-p00587",
+   "slot": "RB2"
+  },
+  {
+   "overall": 698,
+   "team": 6,
+   "pid": "nfl-p00837",
+   "slot": "C"
+  },
+  {
+   "overall": 699,
+   "team": 5,
+   "pid": "nfl-p00369",
+   "slot": "K"
+  },
+  {
+   "overall": 700,
+   "team": 4,
+   "pid": "nfl-p00420",
+   "slot": "P"
+  },
+  {
+   "overall": 701,
+   "team": 3,
+   "pid": "nfl-p01944",
+   "slot": "RB2"
+  },
+  {
+   "overall": 702,
+   "team": 2,
+   "pid": "nfl-p00772",
+   "slot": "DE2"
+  },
+  {
+   "overall": 703,
+   "team": 1,
+   "pid": "nfl-p00737",
+   "slot": "C"
+  },
+  {
+   "overall": 704,
+   "team": 0,
+   "pid": "nfl-p00889",
+   "slot": "TE1"
+  },
+  {
+   "overall": 705,
+   "team": 0,
+   "pid": "nfl-p00710",
+   "slot": "CB3"
+  },
+  {
+   "overall": 706,
+   "team": 1,
+   "pid": "nfl-p00836",
+   "slot": "OT1"
+  },
+  {
+   "overall": 707,
+   "team": 2,
+   "pid": "nfl-p00721",
+   "slot": "SAM"
+  },
+  {
+   "overall": 708,
+   "team": 3,
+   "pid": "nfl-p00654",
+   "slot": "WR4"
+  },
+  {
+   "overall": 709,
+   "team": 4,
+   "pid": "nfl-p00739",
+   "slot": "OG1"
+  },
+  {
+   "overall": 710,
+   "team": 5,
+   "pid": "nfl-p00764",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 711,
+   "team": 6,
+   "pid": "nfl-p00611",
+   "slot": "FB"
+  },
+  {
+   "overall": 712,
+   "team": 7,
+   "pid": "nfl-p00635",
+   "slot": "DT2"
+  },
+  {
+   "overall": 713,
+   "team": 8,
+   "pid": "nfl-p00627",
+   "slot": "WR4"
+  },
+  {
+   "overall": 714,
+   "team": 9,
+   "pid": "nfl-p00826",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 715,
+   "team": 10,
+   "pid": "nfl-p00706",
+   "slot": "FB"
+  },
+  {
+   "overall": 716,
+   "team": 11,
+   "pid": "nfl-p00681",
+   "slot": "WR3"
+  },
+  {
+   "overall": 717,
+   "team": 12,
+   "pid": "nfl-p00714",
+   "slot": "RB1"
+  },
+  {
+   "overall": 718,
+   "team": 13,
+   "pid": "nfl-p00684",
+   "slot": "RB2"
+  },
+  {
+   "overall": 719,
+   "team": 14,
+   "pid": "nfl-p00690",
+   "slot": "WR4"
+  },
+  {
+   "overall": 720,
+   "team": 15,
+   "pid": "nfl-p00671",
+   "slot": "SS"
+  },
+  {
+   "overall": 721,
+   "team": 16,
+   "pid": "nfl-p00796",
+   "slot": "DE2"
+  },
+  {
+   "overall": 722,
+   "team": 17,
+   "pid": "nfl-p00551",
+   "slot": "P"
+  },
+  {
+   "overall": 723,
+   "team": 18,
+   "pid": "nfl-p00799",
+   "slot": "RB1"
+  },
+  {
+   "overall": 724,
+   "team": 19,
+   "pid": "nfl-p00662",
+   "slot": "RB2"
+  },
+  {
+   "overall": 725,
+   "team": 20,
+   "pid": "nfl-p00628",
+   "slot": "DE1"
+  },
+  {
+   "overall": 726,
+   "team": 21,
+   "pid": "nfl-p00504",
+   "slot": "P"
+  },
+  {
+   "overall": 727,
+   "team": 22,
+   "pid": "nfl-p00758",
+   "slot": "RB2"
+  },
+  {
+   "overall": 728,
+   "team": 23,
+   "pid": "nfl-p00814",
+   "slot": "WR4"
+  },
+  {
+   "overall": 729,
+   "team": 24,
+   "pid": "nfl-p00731",
+   "slot": "WR3"
+  },
+  {
+   "overall": 730,
+   "team": 25,
+   "pid": "nfl-p00865",
+   "slot": "QB"
+  },
+  {
+   "overall": 731,
+   "team": 26,
+   "pid": "nfl-p00674",
+   "slot": "DT2"
+  },
+  {
+   "overall": 732,
+   "team": 27,
+   "pid": "nfl-p00754",
+   "slot": "RB2"
+  },
+  {
+   "overall": 733,
+   "team": 28,
+   "pid": "nfl-p00722",
+   "slot": "OG2"
+  },
+  {
+   "overall": 734,
+   "team": 29,
+   "pid": "nfl-p00802",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 735,
+   "team": 30,
+   "pid": "nfl-p01001",
+   "slot": "OT2"
+  },
+  {
+   "overall": 736,
+   "team": 31,
+   "pid": "nfl-p00711",
+   "slot": "DL5"
+  },
+  {
+   "overall": 737,
+   "team": 31,
+   "pid": "nfl-p00777",
+   "slot": "WILL"
+  },
+  {
+   "overall": 738,
+   "team": 30,
+   "pid": "nfl-p00689",
+   "slot": "P"
+  },
+  {
+   "overall": 739,
+   "team": 29,
+   "pid": "nfl-p00642",
+   "slot": "DT2"
+  },
+  {
+   "overall": 740,
+   "team": 28,
+   "pid": "nfl-p00784",
+   "slot": "C"
+  },
+  {
+   "overall": 741,
+   "team": 27,
+   "pid": "nfl-p00632",
+   "slot": "DL5"
+  },
+  {
+   "overall": 742,
+   "team": 26,
+   "pid": "nfl-p00795",
+   "slot": "CB3"
+  },
+  {
+   "overall": 743,
+   "team": 25,
+   "pid": "nfl-p00609",
+   "slot": "FB"
+  },
+  {
+   "overall": 744,
+   "team": 24,
+   "pid": "nfl-p00667",
+   "slot": "SS"
+  },
+  {
+   "overall": 745,
+   "team": 23,
+   "pid": "nfl-p00897",
+   "slot": "TE2"
+  },
+  {
+   "overall": 746,
+   "team": 22,
+   "pid": "nfl-p00723",
+   "slot": "DE1"
+  },
+  {
+   "overall": 747,
+   "team": 21,
+   "pid": "nfl-p00804",
+   "slot": "RB2"
+  },
+  {
+   "overall": 748,
+   "team": 20,
+   "pid": "nfl-p00636",
+   "slot": "DT1"
+  },
+  {
+   "overall": 749,
+   "team": 19,
+   "pid": "nfl-p00640",
+   "slot": "DL5"
+  },
+  {
+   "overall": 750,
+   "team": 18,
+   "pid": "nfl-p00649",
+   "slot": "WR4"
+  },
+  {
+   "overall": 751,
+   "team": 17,
+   "pid": "nfl-p00560",
+   "slot": "K"
+  },
+  {
+   "overall": 752,
+   "team": 16,
+   "pid": "nfl-p00773",
+   "slot": "RB2"
+  },
+  {
+   "overall": 753,
+   "team": 15,
+   "pid": "nfl-p00683",
+   "slot": "RB2"
+  },
+  {
+   "overall": 754,
+   "team": 14,
+   "pid": "nfl-p00903",
+   "slot": "OT1"
+  },
+  {
+   "overall": 755,
+   "team": 13,
+   "pid": "nfl-p00740",
+   "slot": "DE2"
+  },
+  {
+   "overall": 756,
+   "team": 12,
+   "pid": "nfl-p00768",
+   "slot": "WR4"
+  },
+  {
+   "overall": 757,
+   "team": 11,
+   "pid": "nfl-p00675",
+   "slot": "SS"
+  },
+  {
+   "overall": 758,
+   "team": 10,
+   "pid": "nfl-p00808",
+   "slot": "SAM"
+  },
+  {
+   "overall": 759,
+   "team": 9,
+   "pid": "nfl-p00571",
+   "slot": "K"
+  },
+  {
+   "overall": 760,
+   "team": 8,
+   "pid": "nfl-p00664",
+   "slot": "CB3"
+  },
+  {
+   "overall": 761,
+   "team": 7,
+   "pid": "nfl-p00716",
+   "slot": "WR4"
+  },
+  {
+   "overall": 762,
+   "team": 6,
+   "pid": "nfl-p00481",
+   "slot": "P"
+  },
+  {
+   "overall": 763,
+   "team": 5,
+   "pid": "nfl-p00919",
+   "slot": "OT2"
+  },
+  {
+   "overall": 764,
+   "team": 4,
+   "pid": "nfl-p00666",
+   "slot": "RB2"
+  },
+  {
+   "overall": 765,
+   "team": 3,
+   "pid": "nfl-p00809",
+   "slot": "OG2"
+  },
+  {
+   "overall": 766,
+   "team": 2,
+   "pid": "nfl-p00672",
+   "slot": "K"
+  },
+  {
+   "overall": 767,
+   "team": 1,
+   "pid": "nfl-p00756",
+   "slot": "RB2"
+  },
+  {
+   "overall": 768,
+   "team": 0,
+   "pid": "nfl-p00751",
+   "slot": "FB"
+  },
+  {
+   "overall": 769,
+   "team": 0,
+   "pid": "nfl-p00548",
+   "slot": "K"
+  },
+  {
+   "overall": 770,
+   "team": 1,
+   "pid": "nfl-p01947",
+   "slot": "K"
+  },
+  {
+   "overall": 771,
+   "team": 2,
+   "pid": "nfl-p00728",
+   "slot": "RB2"
+  },
+  {
+   "overall": 772,
+   "team": 3,
+   "pid": "nfl-p00532",
+   "slot": "P"
+  },
+  {
+   "overall": 773,
+   "team": 4,
+   "pid": "nfl-p00817",
+   "slot": "WILL"
+  },
+  {
+   "overall": 774,
+   "team": 5,
+   "pid": "nfl-p00733",
+   "slot": "DIME"
+  },
+  {
+   "overall": 775,
+   "team": 6,
+   "pid": "nfl-p00614",
+   "slot": "K"
+  },
+  {
+   "overall": 776,
+   "team": 7,
+   "pid": "nfl-p00747",
+   "slot": "DL5"
+  },
+  {
+   "overall": 777,
+   "team": 8,
+   "pid": "nfl-p00744",
+   "slot": "FB"
+  },
+  {
+   "overall": 778,
+   "team": 9,
+   "pid": "nfl-p00759",
+   "slot": "FS"
+  },
+  {
+   "overall": 779,
+   "team": 10,
+   "pid": "nfl-p00803",
+   "slot": "DL5"
+  },
+  {
+   "overall": 780,
+   "team": 11,
+   "pid": "nfl-p00899",
+   "slot": "C"
+  },
+  {
+   "overall": 781,
+   "team": 12,
+   "pid": "nfl-p00668",
+   "slot": "DIME"
+  },
+  {
+   "overall": 782,
+   "team": 13,
+   "pid": "nfl-p00713",
+   "slot": "DIME"
+  },
+  {
+   "overall": 783,
+   "team": 14,
+   "pid": "nfl-p00669",
+   "slot": "K"
+  },
+  {
+   "overall": 784,
+   "team": 15,
+   "pid": "nfl-p00742",
+   "slot": "WILL"
+  },
+  {
+   "overall": 785,
+   "team": 16,
+   "pid": "nfl-p00639",
+   "slot": "CB3"
+  },
+  {
+   "overall": 786,
+   "team": 17,
+   "pid": "nfl-p00763",
+   "slot": "WR3"
+  },
+  {
+   "overall": 787,
+   "team": 18,
+   "pid": "nfl-p00812",
+   "slot": "WR3"
+  },
+  {
+   "overall": 788,
+   "team": 19,
+   "pid": "nfl-p00980",
+   "slot": "TE2"
+  },
+  {
+   "overall": 789,
+   "team": 20,
+   "pid": "nfl-p00725",
+   "slot": "CB2"
+  },
+  {
+   "overall": 790,
+   "team": 21,
+   "pid": "nfl-p00819",
+   "slot": "CB3"
+  },
+  {
+   "overall": 791,
+   "team": 22,
+   "pid": "nfl-p00771",
+   "slot": "OT2"
+  },
+  {
+   "overall": 792,
+   "team": 23,
+   "pid": "nfl-p00757",
+   "slot": "FB"
+  },
+  {
+   "overall": 793,
+   "team": 24,
+   "pid": "nfl-p00810",
+   "slot": "CB3"
+  },
+  {
+   "overall": 794,
+   "team": 25,
+   "pid": "nfl-p00729",
+   "slot": "SS"
+  },
+  {
+   "overall": 795,
+   "team": 26,
+   "pid": "nfl-p00559",
+   "slot": "P"
+  },
+  {
+   "overall": 796,
+   "team": 27,
+   "pid": "nfl-p00746",
+   "slot": "DIME"
+  },
+  {
+   "overall": 797,
+   "team": 28,
+   "pid": "nfl-p00815",
+   "slot": "CB3"
+  },
+  {
+   "overall": 798,
+   "team": 29,
+   "pid": "nfl-p00727",
+   "slot": "FS"
+  },
+  {
+   "overall": 799,
+   "team": 30,
+   "pid": "nfl-p00761",
+   "slot": "OG2"
+  },
+  {
+   "overall": 800,
+   "team": 31,
+   "pid": "nfl-p00732",
+   "slot": "FB"
+  },
+  {
+   "overall": 801,
+   "team": 31,
+   "pid": "nfl-p00695",
+   "slot": "P"
+  },
+  {
+   "overall": 802,
+   "team": 30,
+   "pid": "nfl-p00734",
+   "slot": "DIME"
+  },
+  {
+   "overall": 803,
+   "team": 29,
+   "pid": "nfl-p00818",
+   "slot": "DIME"
+  },
+  {
+   "overall": 804,
+   "team": 28,
+   "pid": "nfl-p00914",
+   "slot": "FB"
+  },
+  {
+   "overall": 805,
+   "team": 27,
+   "pid": "nfl-p00942",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 806,
+   "team": 26,
+   "pid": "nfl-p00787",
+   "slot": "WR4"
+  },
+  {
+   "overall": 807,
+   "team": 25,
+   "pid": "nfl-p00712",
+   "slot": "P"
+  },
+  {
+   "overall": 808,
+   "team": 24,
+   "pid": "nfl-p00943",
+   "slot": "TE2"
+  },
+  {
+   "overall": 809,
+   "team": 23,
+   "pid": "nfl-p00788",
+   "slot": "K"
+  },
+  {
+   "overall": 810,
+   "team": 22,
+   "pid": "nfl-p00925",
+   "slot": "OT1"
+  },
+  {
+   "overall": 811,
+   "team": 21,
+   "pid": "nfl-p00781",
+   "slot": "DT2"
+  },
+  {
+   "overall": 812,
+   "team": 20,
+   "pid": "nfl-p00736",
+   "slot": "CB3"
+  },
+  {
+   "overall": 813,
+   "team": 19,
+   "pid": "nfl-p00770",
+   "slot": "FB"
+  },
+  {
+   "overall": 814,
+   "team": 18,
+   "pid": "nfl-p00676",
+   "slot": "P"
+  },
+  {
+   "overall": 815,
+   "team": 17,
+   "pid": "nfl-p00782",
+   "slot": "DIME"
+  },
+  {
+   "overall": 816,
+   "team": 16,
+   "pid": "nfl-p00755",
+   "slot": "K"
+  },
+  {
+   "overall": 817,
+   "team": 15,
+   "pid": "nfl-p00830",
+   "slot": "OG2"
+  },
+  {
+   "overall": 818,
+   "team": 14,
+   "pid": "nfl-p00859",
+   "slot": "WILL"
+  },
+  {
+   "overall": 819,
+   "team": 13,
+   "pid": "nfl-p00998",
+   "slot": "TE1"
+  },
+  {
+   "overall": 820,
+   "team": 12,
+   "pid": "nfl-p00794",
+   "slot": "CB3"
+  },
+  {
+   "overall": 821,
+   "team": 11,
+   "pid": "nfl-p00762",
+   "slot": "SAM"
+  },
+  {
+   "overall": 822,
+   "team": 10,
+   "pid": "nfl-p00910",
+   "slot": "OG1"
+  },
+  {
+   "overall": 823,
+   "team": 9,
+   "pid": "nfl-p00750",
+   "slot": "FB"
+  },
+  {
+   "overall": 824,
+   "team": 8,
+   "pid": "nfl-p00779",
+   "slot": "DL5"
+  },
+  {
+   "overall": 825,
+   "team": 7,
+   "pid": "nfl-p00797",
+   "slot": "DIME"
+  },
+  {
+   "overall": 826,
+   "team": 6,
+   "pid": "nfl-p00874",
+   "slot": "WILL"
+  },
+  {
+   "overall": 827,
+   "team": 5,
+   "pid": "nfl-p00760",
+   "slot": "WR3"
+  },
+  {
+   "overall": 828,
+   "team": 4,
+   "pid": "nfl-p00902",
+   "slot": "DE2"
+  },
+  {
+   "overall": 829,
+   "team": 3,
+   "pid": "nfl-p00705",
+   "slot": "K"
+  },
+  {
+   "overall": 830,
+   "team": 2,
+   "pid": "nfl-p00877",
+   "slot": "FB"
+  },
+  {
+   "overall": 831,
+   "team": 1,
+   "pid": "nfl-p01020",
+   "slot": "OT2"
+  },
+  {
+   "overall": 832,
+   "team": 0,
+   "pid": "nfl-p00780",
+   "slot": "WR4"
+  },
+  {
+   "overall": 833,
+   "team": 0,
+   "pid": "nfl-p00743",
+   "slot": "DIME"
+  },
+  {
+   "overall": 834,
+   "team": 1,
+   "pid": "nfl-p00805",
+   "slot": "DIME"
+  },
+  {
+   "overall": 835,
+   "team": 2,
+   "pid": "nfl-p00915",
+   "slot": "WR3"
+  },
+  {
+   "overall": 836,
+   "team": 3,
+   "pid": "nfl-p00741",
+   "slot": "FB"
+  },
+  {
+   "overall": 837,
+   "team": 4,
+   "pid": "nfl-p00893",
+   "slot": "DIME"
+  },
+  {
+   "overall": 838,
+   "team": 5,
+   "pid": "nfl-p00857",
+   "slot": "OG2"
+  },
+  {
+   "overall": 839,
+   "team": 6,
+   "pid": "nfl-p00888",
+   "slot": "SAM"
+  },
+  {
+   "overall": 840,
+   "team": 7,
+   "pid": "nfl-p00852",
+   "slot": "FB"
+  },
+  {
+   "overall": 841,
+   "team": 8,
+   "pid": "nfl-p00867",
+   "slot": "WILL"
+  },
+  {
+   "overall": 842,
+   "team": 9,
+   "pid": "nfl-p00842",
+   "slot": "WR3"
+  },
+  {
+   "overall": 843,
+   "team": 10,
+   "pid": "nfl-p00850",
+   "slot": "DIME"
+  },
+  {
+   "overall": 844,
+   "team": 11,
+   "pid": "nfl-p00875",
+   "slot": "FB"
+  },
+  {
+   "overall": 845,
+   "team": 12,
+   "pid": "nfl-p00835",
+   "slot": "RB2"
+  },
+  {
+   "overall": 846,
+   "team": 13,
+   "pid": "nfl-p00895",
+   "slot": "FB"
+  },
+  {
+   "overall": 847,
+   "team": 14,
+   "pid": "nfl-p00844",
+   "slot": "FB"
+  },
+  {
+   "overall": 848,
+   "team": 15,
+   "pid": "nfl-p00766",
+   "slot": "CB3"
+  },
+  {
+   "overall": 849,
+   "team": 16,
+   "pid": "nfl-p00901",
+   "slot": "DL5"
+  },
+  {
+   "overall": 850,
+   "team": 17,
+   "pid": "nfl-p00949",
+   "slot": "WILL"
+  },
+  {
+   "overall": 851,
+   "team": 18,
+   "pid": "nfl-p00873",
+   "slot": "DIME"
+  },
+  {
+   "overall": 852,
+   "team": 19,
+   "pid": "nfl-p00701",
+   "slot": "P"
+  },
+  {
+   "overall": 853,
+   "team": 20,
+   "pid": "nfl-p00745",
+   "slot": "DIME"
+  },
+  {
+   "overall": 854,
+   "team": 21,
+   "pid": "nfl-p00894",
+   "slot": "DE2"
+  },
+  {
+   "overall": 855,
+   "team": 22,
+   "pid": "nfl-p00880",
+   "slot": "DIME"
+  },
+  {
+   "overall": 856,
+   "team": 23,
+   "pid": "nfl-p00911",
+   "slot": "DL5"
+  },
+  {
+   "overall": 857,
+   "team": 24,
+   "pid": "nfl-p00776",
+   "slot": "DIME"
+  },
+  {
+   "overall": 858,
+   "team": 25,
+   "pid": "nfl-p00871",
+   "slot": "DIME"
+  },
+  {
+   "overall": 859,
+   "team": 26,
+   "pid": "nfl-p00822",
+   "slot": "FB"
+  },
+  {
+   "overall": 860,
+   "team": 27,
+   "pid": "nfl-p00855",
+   "slot": "K"
+  },
+  {
+   "overall": 861,
+   "team": 28,
+   "pid": "nfl-p00909",
+   "slot": "WR3"
+  },
+  {
+   "overall": 862,
+   "team": 29,
+   "pid": "nfl-p00738",
+   "slot": "K"
+  },
+  {
+   "overall": 863,
+   "team": 30,
+   "pid": "nfl-p00769",
+   "slot": "K"
+  },
+  {
+   "overall": 864,
+   "team": 31,
+   "pid": "nfl-p00856",
+   "slot": "SAM"
+  },
+  {
+   "overall": 865,
+   "team": 31,
+   "pid": "nfl-p00869",
+   "slot": "WR4"
+  },
+  {
+   "overall": 866,
+   "team": 30,
+   "pid": "nfl-p00825",
+   "slot": "FB"
+  },
+  {
+   "overall": 867,
+   "team": 29,
+   "pid": "nfl-p00913",
+   "slot": "RB2"
+  },
+  {
+   "overall": 868,
+   "team": 28,
+   "pid": "nfl-p00821",
+   "slot": "DIME"
+  },
+  {
+   "overall": 869,
+   "team": 27,
+   "pid": "nfl-p00882",
+   "slot": "FB"
+  },
+  {
+   "overall": 870,
+   "team": 26,
+   "pid": "nfl-p00992",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 871,
+   "team": 25,
+   "pid": "nfl-p00876",
+   "slot": "DE2"
+  },
+  {
+   "overall": 872,
+   "team": 24,
+   "pid": "nfl-p00879",
+   "slot": "FB"
+  },
+  {
+   "overall": 873,
+   "team": 23,
+   "pid": "nfl-p00806",
+   "slot": "P"
+  },
+  {
+   "overall": 874,
+   "team": 22,
+   "pid": "nfl-p00860",
+   "slot": "FB"
+  },
+  {
+   "overall": 875,
+   "team": 21,
+   "pid": "nfl-p00962",
+   "slot": "FB"
+  },
+  {
+   "overall": 876,
+   "team": 20,
+   "pid": "nfl-p00831",
+   "slot": "DE2"
+  },
+  {
+   "overall": 877,
+   "team": 19,
+   "pid": "nfl-p00896",
+   "slot": "CB1"
+  },
+  {
+   "overall": 878,
+   "team": 18,
+   "pid": "nfl-p00884",
+   "slot": "DL5"
+  },
+  {
+   "overall": 879,
+   "team": 17,
+   "pid": "nfl-p00840",
+   "slot": "DL5"
+  },
+  {
+   "overall": 880,
+   "team": 16,
+   "pid": "nfl-p00883",
+   "slot": "FB"
+  },
+  {
+   "overall": 881,
+   "team": 15,
+   "pid": "nfl-p00866",
+   "slot": "FB"
+  },
+  {
+   "overall": 882,
+   "team": 14,
+   "pid": "nfl-p00932",
+   "slot": "SAM"
+  },
+  {
+   "overall": 883,
+   "team": 13,
+   "pid": "nfl-p00905",
+   "slot": "WR4"
+  },
+  {
+   "overall": 884,
+   "team": 12,
+   "pid": "nfl-p00833",
+   "slot": "DL5"
+  },
+  {
+   "overall": 885,
+   "team": 11,
+   "pid": "nfl-p00853",
+   "slot": "WR4"
+  },
+  {
+   "overall": 886,
+   "team": 10,
+   "pid": "nfl-p00823",
+   "slot": "K"
+  },
+  {
+   "overall": 887,
+   "team": 9,
+   "pid": "nfl-p00845",
+   "slot": "RB1"
+  },
+  {
+   "overall": 888,
+   "team": 8,
+   "pid": "nfl-p00807",
+   "slot": "P"
+  },
+  {
+   "overall": 889,
+   "team": 7,
+   "pid": "nfl-p00730",
+   "slot": "K"
+  },
+  {
+   "overall": 890,
+   "team": 6,
+   "pid": "nfl-p00892",
+   "slot": "DIME"
+  },
+  {
+   "overall": 891,
+   "team": 5,
+   "pid": "nfl-p00885",
+   "slot": "FB"
+  },
+  {
+   "overall": 892,
+   "team": 4,
+   "pid": "nfl-p00887",
+   "slot": "FB"
+  },
+  {
+   "overall": 893,
+   "team": 3,
+   "pid": "nfl-p00846",
+   "slot": "DE2"
+  },
+  {
+   "overall": 894,
+   "team": 2,
+   "pid": "nfl-p00834",
+   "slot": "WR4"
+  },
+  {
+   "overall": 895,
+   "team": 1,
+   "pid": "nfl-p00886",
+   "slot": "DL5"
+  },
+  {
+   "overall": 896,
+   "team": 0,
+   "pid": "nfl-p00828",
+   "slot": "RB2"
+  },
+  {
+   "overall": 897,
+   "team": 0,
+   "pid": "nfl-p00904",
+   "slot": "DL5"
+  },
+  {
+   "overall": 898,
+   "team": 1,
+   "pid": "nfl-p00811",
+   "slot": "P"
+  },
+  {
+   "overall": 899,
+   "team": 2,
+   "pid": "nfl-p00848",
+   "slot": "DIME"
+  },
+  {
+   "overall": 900,
+   "team": 3,
+   "pid": "nfl-p00843",
+   "slot": "DIME"
+  },
+  {
+   "overall": 901,
+   "team": 4,
+   "pid": "nfl-p00789",
+   "slot": "K"
+  },
+  {
+   "overall": 902,
+   "team": 5,
+   "pid": "nfl-p00868",
+   "slot": "WR4"
+  },
+  {
+   "overall": 903,
+   "team": 6,
+   "pid": "nfl-p00839",
+   "slot": "CB3"
+  },
+  {
+   "overall": 904,
+   "team": 7,
+   "pid": "nfl-p00881",
+   "slot": "OG1"
+  },
+  {
+   "overall": 905,
+   "team": 8,
+   "pid": "nfl-p00851",
+   "slot": "SAM"
+  },
+  {
+   "overall": 906,
+   "team": 9,
+   "pid": "nfl-p00872",
+   "slot": "DIME"
+  },
+  {
+   "overall": 907,
+   "team": 10,
+   "pid": "nfl-p00979",
+   "slot": "OT2"
+  },
+  {
+   "overall": 908,
+   "team": 11,
+   "pid": "nfl-p00891",
+   "slot": "CB3"
+  },
+  {
+   "overall": 909,
+   "team": 12,
+   "pid": "nfl-p00854",
+   "slot": "FB"
+  },
+  {
+   "overall": 910,
+   "team": 13,
+   "pid": "nfl-p00912",
+   "slot": "K"
+  },
+  {
+   "overall": 911,
+   "team": 14,
+   "pid": "nfl-p00838",
+   "slot": "SS"
+  },
+  {
+   "overall": 912,
+   "team": 15,
+   "pid": "nfl-p01004",
+   "slot": "SAM"
+  },
+  {
+   "overall": 913,
+   "team": 16,
+   "pid": "nfl-p00724",
+   "slot": "P"
+  },
+  {
+   "overall": 914,
+   "team": 17,
+   "pid": "nfl-p00820",
+   "slot": "FB"
+  },
+  {
+   "overall": 915,
+   "team": 18,
+   "pid": "nfl-p01000",
+   "slot": "FB"
+  },
+  {
+   "overall": 916,
+   "team": 19,
+   "pid": "nfl-p00863",
+   "slot": "WR4"
+  },
+  {
+   "overall": 917,
+   "team": 20,
+   "pid": "nfl-p00862",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 918,
+   "team": 21,
+   "pid": "nfl-p00929",
+   "slot": "K"
+  },
+  {
+   "overall": 919,
+   "team": 22,
+   "pid": "nfl-p00832",
+   "slot": "P"
+  },
+  {
+   "overall": 920,
+   "team": 23,
+   "pid": "nfl-p00824",
+   "slot": "FS"
+  },
+  {
+   "overall": 921,
+   "team": 24,
+   "pid": "nfl-p00947",
+   "slot": "DE2"
+  },
+  {
+   "overall": 922,
+   "team": 25,
+   "pid": "nfl-p00908",
+   "slot": "CB3"
+  },
+  {
+   "overall": 923,
+   "team": 26,
+   "pid": "nfl-p00890",
+   "slot": "DIME"
+  },
+  {
+   "overall": 924,
+   "team": 27,
+   "pid": "nfl-p00918",
+   "slot": "DT1"
+  },
+  {
+   "overall": 925,
+   "team": 28,
+   "pid": "nfl-p00959",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 926,
+   "team": 29,
+   "pid": "nfl-p00847",
+   "slot": "P"
+  },
+  {
+   "overall": 927,
+   "team": 30,
+   "pid": "nfl-p00827",
+   "slot": "SS"
+  },
+  {
+   "overall": 928,
+   "team": 31,
+   "pid": "nfl-p01060",
+   "slot": "TE1"
+  },
+  {
+   "overall": 929,
+   "team": 31,
+   "pid": "nfl-p01071",
+   "slot": "TE2"
+  },
+  {
+   "overall": 930,
+   "team": 30,
+   "pid": "nfl-p01056",
+   "slot": "TE1"
+  },
+  {
+   "overall": 931,
+   "team": 29,
+   "pid": "nfl-p00917",
+   "slot": "FB"
+  },
+  {
+   "overall": 932,
+   "team": 28,
+   "pid": "nfl-p00960",
+   "slot": "WR4"
+  },
+  {
+   "overall": 933,
+   "team": 27,
+   "pid": "nfl-p00920",
+   "slot": "DT2"
+  },
+  {
+   "overall": 934,
+   "team": 26,
+   "pid": "nfl-p00926",
+   "slot": "DE1"
+  },
+  {
+   "overall": 935,
+   "team": 25,
+   "pid": "nfl-p00988",
+   "slot": "DE1"
+  },
+  {
+   "overall": 936,
+   "team": 24,
+   "pid": "nfl-p00921",
+   "slot": "RB2"
+  },
+  {
+   "overall": 937,
+   "team": 23,
+   "pid": "nfl-p01058",
+   "slot": "C"
+  },
+  {
+   "overall": 938,
+   "team": 22,
+   "pid": "nfl-p00948",
+   "slot": "DE2"
+  },
+  {
+   "overall": 939,
+   "team": 21,
+   "pid": "nfl-p00954",
+   "slot": "WR3"
+  },
+  {
+   "overall": 940,
+   "team": 20,
+   "pid": "nfl-p00923",
+   "slot": "DT2"
+  },
+  {
+   "overall": 941,
+   "team": 19,
+   "pid": "nfl-p00956",
+   "slot": "CB2"
+  },
+  {
+   "overall": 942,
+   "team": 18,
+   "pid": "nfl-p00939",
+   "slot": "RB2"
+  },
+  {
+   "overall": 943,
+   "team": 17,
+   "pid": "nfl-p00922",
+   "slot": "WR4"
+  },
+  {
+   "overall": 944,
+   "team": 16,
+   "pid": "nfl-p00849",
+   "slot": "DIME"
+  },
+  {
+   "overall": 945,
+   "team": 15,
+   "pid": "nfl-p01102",
+   "slot": "MIKE"
+  },
+  {
+   "overall": 946,
+   "team": 14,
+   "pid": "nfl-p00878",
+   "slot": "P"
+  },
+  {
+   "overall": 947,
+   "team": 13,
+   "pid": "nfl-p01115",
+   "slot": "TE2"
+  },
+  {
+   "overall": 948,
+   "team": 12,
+   "pid": "nfl-p00940",
+   "slot": "OG2"
+  },
+  {
+   "overall": 949,
+   "team": 11,
+   "pid": "nfl-p00858",
+   "slot": "DIME"
+  },
+  {
+   "overall": 950,
+   "team": 10,
+   "pid": "nfl-p00898",
+   "slot": "FS"
+  },
+  {
+   "overall": 951,
+   "team": 9,
+   "pid": "nfl-p00946",
+   "slot": "WR4"
+  },
+  {
+   "overall": 952,
+   "team": 8,
+   "pid": "nfl-p01112",
+   "slot": "TE1"
+  },
+  {
+   "overall": 953,
+   "team": 7,
+   "pid": "nfl-p00938",
+   "slot": "OG2"
+  },
+  {
+   "overall": 954,
+   "team": 6,
+   "pid": "nfl-p01251",
+   "slot": "TE3"
+  },
+  {
+   "overall": 955,
+   "team": 5,
+   "pid": "nfl-p01079",
+   "slot": "C"
+  },
+  {
+   "overall": 956,
+   "team": 4,
+   "pid": "nfl-p00966",
+   "slot": "WR4"
+  },
+  {
+   "overall": 957,
+   "team": 3,
+   "pid": "nfl-p01301",
+   "slot": "TE3"
+  },
+  {
+   "overall": 958,
+   "team": 2,
+   "pid": "nfl-p01126",
+   "slot": "TE3"
+  },
+  {
+   "overall": 959,
+   "team": 1,
+   "pid": "nfl-p00927",
+   "slot": "FB"
+  },
+  {
+   "overall": 960,
+   "team": 0,
+   "pid": "nfl-p00928",
+   "slot": "SS"
+  },
+  {
+   "overall": 961,
+   "team": 0,
+   "pid": "nfl-p01268",
+   "slot": "C"
+  },
+  {
+   "overall": 962,
+   "team": 1,
+   "pid": "nfl-p00951",
+   "slot": "WR4"
+  },
+  {
+   "overall": 963,
+   "team": 2,
+   "pid": "nfl-p01258",
+   "slot": "C"
+  },
+  {
+   "overall": 964,
+   "team": 3,
+   "pid": "nfl-p01146",
+   "slot": "TE2"
+  },
+  {
+   "overall": 965,
+   "team": 4,
+   "pid": "nfl-p01021",
+   "slot": "SAM"
+  },
+  {
+   "overall": 966,
+   "team": 5,
+   "pid": "nfl-p01141",
+   "slot": "TE3"
+  },
+  {
+   "overall": 967,
+   "team": 6,
+   "pid": "nfl-p00944",
+   "slot": "TE2"
+  },
+  {
+   "overall": 968,
+   "team": 7,
+   "pid": "nfl-p01083",
+   "slot": "C"
+  },
+  {
+   "overall": 969,
+   "team": 8,
+   "pid": "nfl-p01199",
+   "slot": "TE2"
+  },
+  {
+   "overall": 970,
+   "team": 9,
+   "pid": "nfl-p00983",
+   "slot": "RB2"
+  },
+  {
+   "overall": 971,
+   "team": 10,
+   "pid": "nfl-p00976",
+   "slot": "OG2"
+  },
+  {
+   "overall": 972,
+   "team": 11,
+   "pid": "nfl-p01188",
+   "slot": "TE3"
+  },
+  {
+   "overall": 973,
+   "team": 12,
+   "pid": "nfl-p01003",
+   "slot": "OG1"
+  },
+  {
+   "overall": 974,
+   "team": 13,
+   "pid": "nfl-p00991",
+   "slot": "TE3"
+  },
+  {
+   "overall": 975,
+   "team": 14,
+   "pid": "nfl-p01045",
+   "slot": "OT2"
+  },
+  {
+   "overall": 976,
+   "team": 15,
+   "pid": "nfl-p00952",
+   "slot": "TE3"
+  },
+  {
+   "overall": 977,
+   "team": 16,
+   "pid": "nfl-p00972",
+   "slot": "WR4"
+  },
+  {
+   "overall": 978,
+   "team": 17,
+   "pid": "nfl-p00941",
+   "slot": "SAM"
+  },
+  {
+   "overall": 979,
+   "team": 18,
+   "pid": "nfl-p01243",
+   "slot": "TE3"
+  },
+  {
+   "overall": 980,
+   "team": 19,
+   "pid": "nfl-p01166",
+   "slot": "C"
+  },
+  {
+   "overall": 981,
+   "team": 20,
+   "pid": "nfl-p00934",
+   "slot": "QB"
+  },
+  {
+   "overall": 982,
+   "team": 21,
+   "pid": "nfl-p01033",
+   "slot": "WR4"
+  },
+  {
+   "overall": 983,
+   "team": 22,
+   "pid": "nfl-p00990",
+   "slot": "WR4"
+  },
+  {
+   "overall": 984,
+   "team": 23,
+   "pid": "nfl-p01314",
+   "slot": "TE3"
+  },
+  {
+   "overall": 985,
+   "team": 24,
+   "pid": "nfl-p00994",
+   "slot": "WR4"
+  },
+  {
+   "overall": 986,
+   "team": 25,
+   "pid": "nfl-p00916",
+   "slot": "K"
+  },
+  {
+   "overall": 987,
+   "team": 26,
+   "pid": "nfl-p00957",
+   "slot": "DE2"
+  },
+  {
+   "overall": 988,
+   "team": 27,
+   "pid": "nfl-p00999",
+   "slot": "WR4"
+  },
+  {
+   "overall": 989,
+   "team": 28,
+   "pid": "nfl-p00968",
+   "slot": "TE3"
+  },
+  {
+   "overall": 990,
+   "team": 29,
+   "pid": "nfl-p01002",
+   "slot": "WR4"
+  },
+  {
+   "overall": 991,
+   "team": 30,
+   "pid": "nfl-p01352",
+   "slot": "TE3"
+  },
+  {
+   "overall": 992,
+   "team": 31,
+   "pid": "nfl-p00953",
+   "slot": "QB"
+  },
+  {
+   "overall": 993,
+   "team": 31,
+   "pid": "nfl-p01096",
+   "slot": "TE3"
+  },
+  {
+   "overall": 994,
+   "team": 30,
+   "pid": "nfl-p01024",
+   "slot": "TE2"
+  },
+  {
+   "overall": 995,
+   "team": 29,
+   "pid": "nfl-p01284",
+   "slot": "TE3"
+  },
+  {
+   "overall": 996,
+   "team": 28,
+   "pid": "nfl-p00900",
+   "slot": "P"
+  },
+  {
+   "overall": 997,
+   "team": 27,
+   "pid": "nfl-p01345",
+   "slot": "TE3"
+  },
+  {
+   "overall": 998,
+   "team": 26,
+   "pid": "nfl-p01341",
+   "slot": "TE3"
+  },
+  {
+   "overall": 999,
+   "team": 25,
+   "pid": "nfl-p01342",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1000,
+   "team": 24,
+   "pid": "nfl-p01281",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1001,
+   "team": 23,
+   "pid": "nfl-p01338",
+   "slot": "TE1"
+  },
+  {
+   "overall": 1002,
+   "team": 22,
+   "pid": "nfl-p01026",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1003,
+   "team": 21,
+   "pid": "nfl-p01453",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1004,
+   "team": 20,
+   "pid": "nfl-p00937",
+   "slot": "DL5"
+  },
+  {
+   "overall": 1005,
+   "team": 19,
+   "pid": "nfl-p01416",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1006,
+   "team": 18,
+   "pid": "nfl-p00973",
+   "slot": "TE2"
+  },
+  {
+   "overall": 1007,
+   "team": 17,
+   "pid": "nfl-p01511",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1008,
+   "team": 16,
+   "pid": "nfl-p01500",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1009,
+   "team": 15,
+   "pid": "nfl-p01448",
+   "slot": "TE2"
+  },
+  {
+   "overall": 1010,
+   "team": 14,
+   "pid": "nfl-p00965",
+   "slot": "RB2"
+  },
+  {
+   "overall": 1011,
+   "team": 13,
+   "pid": "nfl-p00906",
+   "slot": "P"
+  },
+  {
+   "overall": 1012,
+   "team": 12,
+   "pid": "nfl-p01378",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1013,
+   "team": 11,
+   "pid": "nfl-p01383",
+   "slot": "TE2"
+  },
+  {
+   "overall": 1014,
+   "team": 10,
+   "pid": "nfl-p01948",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1015,
+   "team": 9,
+   "pid": "nfl-p01151",
+   "slot": "C"
+  },
+  {
+   "overall": 1016,
+   "team": 8,
+   "pid": "nfl-p00978",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1017,
+   "team": 7,
+   "pid": "nfl-p01111",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1018,
+   "team": 6,
+   "pid": "nfl-p01327",
+   "slot": "TE1"
+  },
+  {
+   "overall": 1019,
+   "team": 5,
+   "pid": "nfl-p00984",
+   "slot": "TE2"
+  },
+  {
+   "overall": 1020,
+   "team": 4,
+   "pid": "nfl-p01295",
+   "slot": "C"
+  },
+  {
+   "overall": 1021,
+   "team": 3,
+   "pid": "nfl-p01370",
+   "slot": "TE1"
+  },
+  {
+   "overall": 1022,
+   "team": 2,
+   "pid": "nfl-p01075",
+   "slot": "TE2"
+  },
+  {
+   "overall": 1023,
+   "team": 1,
+   "pid": "nfl-p01109",
+   "slot": "TE3"
+  },
+  {
+   "overall": 1024,
+   "team": 0,
+   "pid": "nfl-p01373",
+   "slot": "TE3"
+  }
+ ]
+}

@@ -1,0 +1,63 @@
+{
+ "vue": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "season.structure": {
+    "rows": 32,
+    "divs": 8,
+    "seeds": 14,
+    "games17": true
+   },
+   "season.championEngineTrue": {
+    "line": "SUPER BOWL: Houston Texans over Atlanta Falcons",
+    "champion": "Houston Texans",
+    "match": true
+   },
+   "season.tableText": {
+    "text": "AFCEast3NYJets10-7455/4007MiamiDolphins9-8399/366NewEnglandPatriots8-9400/371BuffaloBills5-12335/455§AFCNorth1BaltimoreRavens11-6364/3456CincinnatiBengals10-7332/3205PittsburghSteelers10-7451/415ClevelandBrowns8-8-1373/351§AFCSouth4HoustonTexans10-7429/344TennesseeTitans9-8382/372IndianapolisColts8-9370/381JacksonvilleJaguars7-10381/416§AFCWest2LosAngelesChargers10-7475/408KansasCityChiefs8-9383/386LasVegasRaiders7-9-1407/413DenverBroncos5-11-1345/433§NFCEast3PhiladelphiaEagles11-6435/359WashingtonCommanders8-9425/394NYGiants6-11356/477DallasCowboys5-12359/405§NFCNorth2MinnesotaVikings11-6403/3936DetroitLions9-8347/361ChicagoBears7-10322/350GreenBayPackers7-10340/363§NFCSouth1AtlantaFalcons12-5420/3777CarolinaPanthers9-8370/356NewOrleansSaints8-9326/369TampaBayBuccaneers8-9399/410§NFCWest4SeattleSeahawks10-6-1353/3335ArizonaCardinals10-7366/368LosAngelesRams8-9428/391SanFrancisco49ers6-11279/327"
+   }
+  },
+  "screenshots": [],
+  "390px": {
+   "sw": 390,
+   "iw": 390,
+   "rows": 32
+  },
+  "390px-clean": true,
+  "errorCount": 0
+ },
+ "svelte": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-svelte/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "season.structure": {
+    "rows": 32,
+    "divs": 8,
+    "seeds": 14,
+    "games17": true
+   },
+   "season.championEngineTrue": {
+    "line": "SUPER BOWL: Houston Texans over Atlanta Falcons",
+    "champion": "Houston Texans",
+    "match": true
+   },
+   "season.tableText": {
+    "text": "AFCEast3NYJets10-7455/4007MiamiDolphins9-8399/366NewEnglandPatriots8-9400/371BuffaloBills5-12335/455§AFCNorth1BaltimoreRavens11-6364/3456CincinnatiBengals10-7332/3205PittsburghSteelers10-7451/415ClevelandBrowns8-8-1373/351§AFCSouth4HoustonTexans10-7429/344TennesseeTitans9-8382/372IndianapolisColts8-9370/381JacksonvilleJaguars7-10381/416§AFCWest2LosAngelesChargers10-7475/408KansasCityChiefs8-9383/386LasVegasRaiders7-9-1407/413DenverBroncos5-11-1345/433§NFCEast3PhiladelphiaEagles11-6435/359WashingtonCommanders8-9425/394NYGiants6-11356/477DallasCowboys5-12359/405§NFCNorth2MinnesotaVikings11-6403/3936DetroitLions9-8347/361ChicagoBears7-10322/350GreenBayPackers7-10340/363§NFCSouth1AtlantaFalcons12-5420/3777CarolinaPanthers9-8370/356NewOrleansSaints8-9326/369TampaBayBuccaneers8-9399/410§NFCWest4SeattleSeahawks10-6-1353/3335ArizonaCardinals10-7366/368LosAngelesRams8-9428/391SanFrancisco49ers6-11279/327"
+   }
+  },
+  "screenshots": [],
+  "390px": {
+   "sw": 390,
+   "iw": 390,
+   "rows": 32
+  },
+  "390px-clean": true,
+  "errorCount": 0
+ }
+}
+
+== SEASON VERDICT ==
+SEASON LAWS PASS on both arms — 32 rows / 8 divisions / 14 seeds / 17 games each, champion engine-true, tables string-equal across arms
