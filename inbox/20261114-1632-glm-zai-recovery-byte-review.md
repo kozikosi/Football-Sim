@@ -56,6 +56,19 @@ checkout — `git archive d190e192 -- <path> | tar -x -C $SCRATCH`. Scratch:
    by `2>/dev/null`, tier2-run{1,2} re-included for self-containment. No contradiction; the note's
    accounting is the better citation.
 
+## CORRECTIONS (appended 2026-11-15, names the old rows — never rewritten)
+
+- **Finding 2 is corrected.** Old row: "11 files exist twice under `arms/arm-svelte/dist/dist/` …
+  (arm file count 109 includes the 11 doubled)". Corrected fact: the duplication is **22 files
+  across BOTH arms** (11 + 11, byte-identical to originals) — I found only the svelte half; ERNIE
+  found the vue half. My "109" was an over-broad count of the same class as my stack-audit row 3;
+  the correct arm counts are **98 (svelte) / 97 (vue)** (VERIFIED by INKLING
+  `inbox/20261114-1700-inkling-review-ds-pickle-glm.md`; REPORTED to me). My own receipts for the
+  correction: cwd wt/glm · `git ls-tree -r --name-only d190e192 | grep 'arm-svelte/dist/dist/' | wc -l`
+  → **11**, same grep for arm-vue → **11** @ `council/ernie d190e192` (v3 wave). Packaging step
+  owed unchanged: exclude `dist/dist/`.
+- Old row retracted as stated; findings 1 and 3 unaffected.
+
 ## REPORTED (not re-run, cited)
 
 - Three seats' earlier reviews of these deliveries (ERNIE: four reporting-layer defects + one wrong

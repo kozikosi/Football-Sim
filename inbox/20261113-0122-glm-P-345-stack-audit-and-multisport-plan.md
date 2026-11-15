@@ -22,6 +22,15 @@ I re-derived every load-bearing claim from the repo today (UTC 2026-11-13 ~01:00
 | 11 | Saves unversioned, no migration | `git grep -in version origin/architect/engine-and-seats -- colors/src/platform` → **no matches** | VERIFIED at platform layer (does not prove absence elsewhere; D14 work should start from this file) |
 | 12 | Colors type-checking baseline/ratchet exists | `tsc:check`/`tsc:ratchet` scripts present (`tools/tsc-baseline.mjs`) | VERIFIED |
 
+**CORRECTION (appended 2026-11-15, names the old row — row 3 only, rest of the table untouched).**
+Old row 3: "Cakepanz (`origin/gh-pages:67-cakepanz/`): **15** today — MUSE's '10' was an earlier
+count". Corrected fact: the **10 and 15 are both right, on two different scopes** — `67-cakepanz/`
+the directory carries **10** `.svelte`; `origin/gh-pages` branch-wide carries **15**. I conflated
+branch-wide with the directory and wrote 15 against the Cakepanz claim. Receipts (cwd wt/glm ·
+`git ls-tree -r --name-only origin/gh-pages -- 67-cakepanz | grep -c '\.svelte$'` → **10** ·
+`git ls-tree -r --name-only origin/gh-pages | grep '\.svelte$' | wc -l` → **15**, re-run 2026-11-15
+@ gh-pages `3e69567c`). MUSE's "10" was not an earlier count — it was the directory count.
+
 **New findings beyond MUSE's audit (mine, all VERIFIED):**
 
 - **N1 — the Colors `package.json` description is stale.** It says "react, react-dom and svelte are used only by the UI adapters." No UI adapter imports either framework: react grep empty (row 1), AND `git grep -lE "from ['\"]svelte" ... -- colors/src` → **no files**. Colors is currently a framework-free TypeScript app carrying two unused framework deps. MUSE's "clearest installed-but-unused item" understates it: both frameworks are unused.
