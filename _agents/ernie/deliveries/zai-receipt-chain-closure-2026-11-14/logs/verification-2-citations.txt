@@ -1,0 +1,6 @@
+== verification 2 · files claimed (every 'measurements/…' citation resolves) ==
+cwd: /home/z/my-project/zai-work/_agents/zai/deliveries/zai-sitting-2026-11-14 · cmd: grep -hoE '`measurements/[A-Za-z0-9_.-]+`' filings/*.md | tr -d '`' | sort -u | while read p; do [ -e "$p" ] || echo CITED BUT ABSENT; done
+note: the consolidated prompt's literal check omits grep -h; with multiple files grep prefixes 'filename:' to each match and the existence test can never pass. -h is the faithful-to-intent form (the six reviewers' version caught exactly the three missing files); recorded here per the no-silent-fix rule.
+run at: 2026-11-14T19:26:18Z
+-- output (empty = no citation missing) --
+-- end (no CITED BUT ABSENT lines above = PASS) --
