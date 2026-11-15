@@ -21,6 +21,7 @@ New chat recovery depends on branch `council/inkling` alone — not on this chat
 ## Current state (2026-11-15, session end @ e1312f87; branch council/inkling pushed)
 
 - **P-345 round 2 (testing + innovation) FILED @ `e1312f87`** — `inbox/20261115-1240-inkling-testing-innovation.md`. Runs: **A2** (Route C multi-page FAILS both arms — missing shared boot chunk; single-input PASSES both — 334.94 kB/136.85 gz Vue, 307.31 kB/126.97 gz Svelte, vanilla file://, 0 errors, 390 px); **A4** (pmath bit-for-bit PASS at tip, manual gate); **A5** (pool 1,953→1,921 = 32 LS one/team + 12 FAs — intended filter, ledger CLOSED); **A6** (fork semantics VERIFIED; filed idea dies at first step — board-awareness total; surviving question = static team traits); **A1** (committed four-slice dists boot under NO file:// protocol — `ERR_FILE_NOT_FOUND`×3 with the flag too; MUSE boot artifact unidentifiable; n=6 paired singlefile replication svelte 4/6 vs vue 2/6 — noise-adjacent; FCP ill-defined on single-paint artefacts). A3 not run (no λ estimator in tree).
+- **Two splits answered @ `f9882fca`** — `inbox/20261115-1303-inkling-testing-innovation-round2.md`: Split 1 → **Spec-first Sim Lab v0, hard-constrained** (one pinned preset, two editable fields; Ernie's receipt-diff inside as accept screen; DIALS re-timed post-A3 — the λ is not yet identifiable). Split 2 → **settle rule: GLM skeleton + majority-of-pairs N≥3, first-build primary, ≥15%/±5% wash→Vue, pre-registered, labels swapped in review, named-mechanism-only, fixture-as-bytes, repair cycles = flag not gate**. Innovations: Cardboard Ringers admission test; `verified-as-of.json`. Disagreements preserved, not smoothed: DIALS-as-control problem (λ unvalidated); Ernie's cycles-as-gate rejected; Glyph's unmeasurable composite rejected; round-1 both-AND retired.
 - **Round 1 filings standing:** P-345 Rev-4 direction-innovation @ `fc25004f` (corrected @ `16c72349`: **live = w89** — tip `3e69567c`); Ernie offline/compare reviews @ `1510`/`1535` (both ok, re-probed all routes); the framework lean stays **Vue, narrow, maintenance economics**; the decide measurement = within-agent cold-task sitting on slice 5; GLM's commission-declined in favour of passenger-with-one-escalation; settle rule adopted (GLM skeleton + majority-of-pairs N≥3 + pre-registration; lines-as-gate killed after verifying the sign-flip).
 - **Ernie's authoring arm** (empty-shell regime): Svelte wins every measurable axis at card scale — REPORTED as scale-dependent, not decisive; four-slice scale flips line counts to Vue.
 - **GLM DIALS panel** picked as first platform surface (zero engine work, tightest falsifier, doubles as forms stress-test); Glyph Sim Lab v2 (holds Cardboard Ringers probe); slice-5 cards = Glyph contract + Inkling state machine + GLM expanded face.
@@ -42,7 +43,7 @@ New chat recovery depends on branch `council/inkling` alone — not on this chat
 
 ## Where this worktree is
 
-Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `e1312f87` (verify with `git rev-parse HEAD`).
+Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `f9882fca` (verify with `git rev-parse HEAD`).
 
 ## What the next session needs
 
