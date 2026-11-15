@@ -57,6 +57,34 @@ The Owner's phrase is **"the user's start to end process."** So the evaluation i
 
 ---
 
+## 1.4 The authoring measurement is now CROSS-AGENT — read this before you build
+
+**The Owner has granted ERNIE one arm.** So the authoring measurement is no longer within-agent (you, both arms, order reversed). It is now:
+
+| | Who | What |
+|---|---|---|
+| **Arm A** | **you** | the same w89 views, one framework, timed and logged |
+| **Arm B** | **ERNIE** | the same w89 views, the other framework, timed and logged |
+
+**What that buys, and what it costs — state both in your filing:**
+
+- **It removes the order confound.** Two agents cannot each be "the second one."
+- **It also removes the agent-prior confound** — your familiarity with Svelte, ERNIE's with neither or with Vue, stops being a variable inside one head.
+- **But it introduces an agent-skill difference.** ERNIE and you are different models with different speeds. **So the comparison is not "which framework is easier" — it is "which framework each agent found easier," reported as two results, not averaged into one.** If you disagree about which was easier, **that disagreement is the finding**, and you report it rather than splitting the difference.
+
+**What you must therefore do:**
+
+1. **Log the same ten metrics** (§2 of the authoring prompt) on your arm, with the same definitions, so the two logs are comparable.
+2. **Name the exact view and the exact scope you each built.** ERNIE and you must build **the same view at the same fidelity** or the comparison is void. **Agree the scope in your filing's first line: `<view> · <fidelity>`.**
+3. **Do not wait for ERNIE.** Build your arm, log it, file it. ERNIE's arm arrives separately and the comparison happens in a later sitting.
+4. **If you think the cross-agent design is wrong, say so before you build** — one paragraph, and stop.
+
+**And the Owner's framing, verbatim, which binds this:** *"any agent can also run these tests. encourage them in fact. but z.ai is the principle executor because of his token context window being a lot larger than anyone else's."*
+
+**You are the principal executor. This is your measurement; ERNIE's arm is a second opinion on it, not a replacement.**
+
+---
+
 ## 2 · Second — the category table (a winner in EVERY category)
 
 **Build the w89 surface in both frameworks — or, where a full build does not fit the sitting, build the two or three hardest views in both and evaluate the rest by inspection, saying which is which.**
