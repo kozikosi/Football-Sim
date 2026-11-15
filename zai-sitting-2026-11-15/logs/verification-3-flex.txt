@@ -1,0 +1,11 @@
+== verification 3 · the flex check (two files is EXPECTED; the app-tree one must equal the pin) ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15 · cmd: find . -name flex.json -exec sha256sum {} \;
+run at: 2026-11-15T06:49:29Z
+note: unchanged convention — `28a2e993…` = the pin `4ca9a071` vendor copy (KEEP, see the VENDOR-NOTE beside it); `0a26d7c2…` = the live table (USE THIS one; `flex-live/`). The pin's engine-level flex table is the addendum's subject this sitting (`filings/inbox-20261115-zai-flex-pin-addendum.md`): `git show 4ca9a071:colors/src/sports/nfl/engine/flex.ts` carries `QB: { FS: 10 }` (REV 4), `d3bd81d2` carries `QB: { FS: 12 }` (99 rules).
+-- output --
+0a26d7c225cb7ec8ffa816938987168e1f0481a19fec9f51e1ceb2eee623a0b6  ./flex-live/tools/mathlab/flex.json
+28a2e9935af4c848a82a1b79d97bbcb8c034bae3c3b46681e913ade5db994d16  ./67-cakepanz-s3-s4-rev2/tools/mathlab/flex.json
+-- pin receipts (this sitting) --
+4ca9a071:tools/mathlab/flex.json -> 28a2e9935af4c848
+d3bd81d2:tools/mathlab/flex.json -> 0a26d7c225cb7ec8
+-- end --
