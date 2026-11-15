@@ -75,9 +75,19 @@
   - Flex-pin escalation carry: pin serves REV 4 in ENGINE CODE too (`4ca9a071:flex.ts` = `QB: { FS: 10 }`, `d3bd81d2:flex.ts` = `QB: { FS: 12 }`); 11 files changed between pins (draft/slots/value/flex + 5 new core files events/fold/keyedrng/pack/legacyprovider); pin move is a PAIR move (flex.ts + its companion rules-test; 99-vs-107 count and tier-set splits are hard assertions in lineup.test.ts); R-7 ruling carried (ILB flex asymmetries deliberate — "the ILB is the more valuable player and so flexes for less").
   - Commit `17de09cf`, pushed, verified (17de09cf on origin).
 
+- **Delivered (23): council review of MUSE's low-end boot receipt (R3.1)** (VERDICT: improved — conclusion correct, receipt not self-supporting).
+  - `inbox/20261115-1150-vl-review-muse-lowend-boot.md`, SPEAKER: vl | ROLE: council advisor · review | DATE: 2026-11-15T11:50:00Z | FOR: INKLING wave · MUSE · the Owner.
+  - Verified via git show of `origin/council/muse:_agents/muse/deliveries/prompts-2026-11-05/council-direction-innovation-2026-11-15.md` at commit `399ba0a9`: R3.1 reads "Four-slice cold load, 6× CPU throttle, file://, network blocked, 10 trials per arm, median reported. Median FCP: Vue 2102 ms, Svelte 2192 ms, delta −90 ms (inside ±100 ms noise floor). Median mounted: Vue 2185 ms, Svelte 2344 ms, delta −159 ms (just beyond noise floor, Vue's favour). 390px: both arms pass cleanly. The 10.9 KB bundle gap does NOT move interactive time in Svelte's favour." Arithmetic re-derived: 2192−2102=90 ✓, 2344−2185=159 ✓, 2185−2102=83 ✓, 2344−2192=152 ✓, 152−83=69 ✓.
+  - R4.2 (same file) discloses: "The four-slice dist does NOT boot from vanilla file:// (no flags)... The cold-load timing runs used `--allow-file-access-from-files`."
+  - MUSE's short Z.ai prompt (same file) discloses protocol defect: "the script's mounted marker (the feed line) never appears on a cold load because the app boots to team-select, not the feed" and trial count "5 trials per arm" (vs R3.1's "10 trials per arm").
+  - Two NEW DEFECTS beyond Ernie's review (inbox/20261114-1935-ernie-REVIEW-muse-lowend-boot.md): (1) R3.1 understates measurement conditions — says "file://, network blocked" but omits `--allow-file-access-from-files`, which R4.2 discloses as required for the app to boot at all; without it vanilla file:// does not boot, so FCP/mounted/390px are all flag-dependent times, not vanilla file:// cold-load times; (2) R3.1 and R4.2 are internally inconsistent — if vanilla file:// doesn't boot (R4.2), the "mounted" time and "390px pass" cannot be real cold-load measurements either.
+  - Confirmed Ernie's defects: trial count 10 vs 5; mounted marker unnamed (feed line never fires on cold load); "Vue faster in every run" unverifiable without paired differences; no artefact exists (repo-wide grep finds the four numbers only in the prompt appendix).
+  - Conclusion survives: bundle does not decide (FCP 90 ms apart, inside noise floor; cold-load dominated by framework startup + engine work shared byte-for-byte); converges with Z.ai's falsifier; decision turns on authoring cost and tooling.
+  - Commit `786334ea`, pushed, verified (786334ea on origin).
+
 ## Worktree / branch (end of session)
 - **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl`
-- **HEAD:** `17de09cf` (framework slice4 pass-through + review pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
+- **HEAD:** `786334ea` (MUSE low-end boot review pushed; working tree has untracked build artifacts only — `.vinxi/`, `.svelte-kit/`, `dist/`, `build/` — intentionally not committed per §4.5 "add by path". Filed work is committed.)
 - Other seats' worktrees show unsaved work in preserve.mjs check — not VL's to touch (pending).
 
 ## Next session
