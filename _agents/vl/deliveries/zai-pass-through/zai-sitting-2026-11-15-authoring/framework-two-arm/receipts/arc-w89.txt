@@ -1,0 +1,44 @@
+== the w89 arc inside the sitting (item 5) — receipts (values from receipts/arc-probe.json, the probe's own output) ==
+
+(a) TEAM SELECT — the animated tour of the 32, BOTH ARMS (framework-owned: ~13 L each; shared chrome: 1 class in feed.css, cmp CLEAN)
+  the improvement a framework enables: an interval-driven highlight stepping through the engine's real
+  alignment with a live caption (TOUR n/32 · Team · Conf Div) — pure reactive state + one setInterval.
+  arm=vue   tour moves: Buffalo Bills -> Miami Dolphins -> New England Patriots · caption "TOUR 3/32 · New England Patriots · AFC East" · moved=True · STOP clears and freezes (arc.tour.stops: highlightCleared=True)
+  arm=svelte tour moves: Buffalo Bills -> Miami Dolphins -> New England Patriots · caption "TOUR 3/32 · New England Patriots · AFC East" · moved=True · STOP clears and freezes (highlightCleared=True)
+
+(b) SAVE ENVELOPE — the one-blob + version-check invariant, implemented in each arm's save service
+  (savesService.ts is shared identical bytes — the invariant lives in BOTH arms' trees, cmp CLEAN):
+  oneBlob() refuses any slot whose text is not a single JSON object BEFORE parse (never repaired,
+  never defaulted); the version check stays the engine's restore() (schemaVersion above this build's
+  = refused as newer-version). Proof of refusal-of-a-newer-build-save with a FRESH SEED: the planted
+  newer envelope carries payload {"seed":4242,"userTeam":30,"pool":{},"picks":[]} — seed 4242 is
+  FRESH (never used this sitting) — the refusal fires by VERSION, not payload.
+  ONE COMMAND: node scripts/two-arm-fourslice.mjs — rerun post-invariant AND post-arc (0 console errors vue / 0 svelte, 0/0 blocked): ALL FOUR-SLICE LAWS PASS on both arms
+  arm=vue   log line: SLOT C REFUSED (newer-version): envelope: written by a newer build (schema 9)
+  arm=svelte log line: SLOT C REFUSED (newer-version): envelope: written by a newer build (schema 9)
+
+(c) DRAFT STEP PANELS — one panel per arm, RANDOMISED (journal: arm=vue -> the real-time ticker; arm=svelte -> the bottom-left lineup panel)
+  arm=vue   ticker (Ticker.vue, ~36 L + 1 wiring line): an interval-driven bottom bar walking the REAL
+            draft log (player objects straight off the store state) as if picks were landing live;
+            PAUSE/RESUME; waiting line until the first pick lands (the store's log is empty at boot —
+            the tape feeds only from real picks). probe-arc arc.vue.ticker.live: grew=True changed=True pauseWorks=True
+  arm=svelte lineup (LineupPanel.svelte, 12 L + studied-state getter idiom 4 L + 2 wiring lines): the
+            user's REAL filled slots from the store's draft log, bottom-left, highlighting the incumbent
+            of the studied player's POSITION (studying a WR highlights the WR row — who he competes with).
+            probe-arc arc.svelte.lineup.updatesAsUserStudies: "MY LINEUP · 0 picks" -> pick via PICK HIM -> "MY LINEUP · 1 pick" · highlight row "WR1 · Ja'Marr Chase" (data-pos WR) · highlightsStudied=True · clearedOnClose=True
+            ENGINE FINDING made while probing: after a QB pick the engine's own top-60 contains ZERO QB
+            cards (node-side check: pos counts {WR:16, LT:9, REDG:7, DT:8, RT:5, LEDG:3, CB:9, RG:2, LG:1}) —
+            filled positions drop out of best-available entirely, which is why the panel highlights by
+            position (incumbent), not by slot id (a same-slot study target usually does not exist).
+  NOTE: the panels are deliberately ASYMMETRIC (the sitting's assignment). Post-arc re-run of the
+  slice-5 probe: every law still passes EXCEPT the DOM-equality pin, which now reads vue 566/583 vs
+  svelte 570/587 — exactly +4 nodes = the LineupPanel (aside + h4 + rows div + waiting line). The
+  numeric fidelity pin applies to the slice-5 surface AS FILED (receipts/slice5-probe.json: 566/583
+  both arms, pre-panels); the +4 delta is the assigned panel's DOM cost, recorded, not a defect.
+
+(d) SAVES REFUSAL — refuse a corrupt envelope with a plain message, each arm, same ONE command as (b):
+  arm=vue   card: SLOT C REFUSED (corrupt): payload: bad seed · load banner: payload: bad seed (verbatim, the engine's own message)
+  arm=svelte card: SLOT C REFUSED (corrupt): payload: bad seed · load banner: payload: bad seed (verbatim)
+  Cross-reference: item 7(v) is THE SAME invariant — not run twice; the post-arc gates rerun is its receipt too.
+
+Hygiene: probe-arc collected 0 console/page errors and 0 blocked requests on vue, 0/0 on svelte.
