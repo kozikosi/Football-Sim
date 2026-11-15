@@ -1,0 +1,7 @@
+== SAVE-1 write median (the held row) ==
+env: node v24.22.3 · engine pin 4ca9a071 · save path savesApp.saveDraftSlot composition
+record: seed 424242 · userTeam 6 · picks in log 6 (CPU advanced to the user's first turn by START)
+serialize median 0.889 ms · p95 1.133 ms · mean 0.949 ms · n=201
+serialize+write(Map) median 0.893 ms · p95 1.143 ms · mean 0.954 ms · n=201
+envelope size: 128937 chars ( 128937 bytes UTF-8 )
+label: node-side Map storage — no browser localStorage/DOM in the loop (stated, not hidden)

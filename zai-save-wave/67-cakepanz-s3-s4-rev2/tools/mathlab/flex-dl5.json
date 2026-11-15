@@ -1,0 +1,27 @@
+{
+ "_source": "Derived by flexdl5.mjs from flex.json (Owner guide REV 2). DL5 = cheaper of role->DT and role->EDGE; DT and EDGE are natural. PROPOSAL until the Owner approves.",
+ "flex": {
+  "TE": {
+   "DL5": 6
+  },
+  "OT": {
+   "DL5": 4
+  },
+  "OG": {
+   "DL5": 4
+  },
+  "C": {
+   "DL5": 4
+  },
+  "ILB": {
+   "DL5": 4
+  },
+  "OLB": {
+   "DL5": 4
+  }
+ },
+ "natural": [
+  "DT",
+  "EDGE"
+ ]
+}
