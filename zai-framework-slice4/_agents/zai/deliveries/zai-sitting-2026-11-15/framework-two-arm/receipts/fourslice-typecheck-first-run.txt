@@ -1,0 +1,61 @@
+
+> twoarm-svelte-feed@0.1.0-twoarm typecheck
+> svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: /home/z/my-project/sitting/_agents/glyph/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte
+Getting Svelte diagnostics...
+
+/home/z/my-project/sitting/_agents/glyph/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte/src/lib/screens/FeedPanel.svelte:49:7
+Warn: noninteractive element cannot have nonnegative tabIndex value
+https://svelte.dev/e/a11y_no_noninteractive_tabindex (svelte)
+      {/if}
+      <article class="cp-feed-line" class:cp-me={d.me} style="--beat:{i}" data-period={d.period} tabindex="0">
+        <span class="zrl-t">{d.period >= 5 ? `OT${d.period - 4}` : clockOf(d.clock)}</span>
+        <span class="zrl-team" style="color:{teamChipColor(d)}">{d.teamAbbr}</span>
+        <span class="zrl-play">
+          <span class="cp-feed-summary">{d.summary}</span>
+          <span class="cp-feed-badges">
+            {#each d.badges as b (b.label)}
+              <span class="zrl-badge" style="color:{toneColor(b.tone)}">{b.label}</span>
+            {/each}
+            {#each d.convBadges as c (c.label)}
+              <span class="zrl-badge" style="color:{toneColor(c.tone)}">{c.label}</span>
+            {/each}
+          </span>
+        </span>
+        <span class="zrl-sc">
+          <b style="color:{feed.awayInk.pale}">{d.scoreAfter.away}</b>
+          <span class="cp-feed-dot">·</span>
+          <b style="color:{feed.homeInk.pale}">{d.scoreAfter.home}</b>
+        </span>
+      </article>
+    {/each}
+
+/home/z/my-project/sitting/_agents/glyph/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte/src/lib/bootData.ts:29:22
+Error: Module '"../engine/sports/nfl/app/store.ts"' declares 'FrozenPoolRow' locally, but it is not exported. 
+import { createStore } from '../engine/sports/nfl/app/store.ts';
+import type { Store, FrozenPoolRow } from '../engine/sports/nfl/app/store.ts';
+import { stamps } from '../engine/sports/nfl/app/versions.ts';
+
+/home/z/my-project/sitting/_agents/glyph/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte/src/lib/screens/Board.svelte:6:17
+Error: Module '"../appStore.svelte.ts"' declares 'BoardSort' locally, but it is not exported. (ts)
+  import { board, ui, draftSnap, pick, undo, setSort } from '../appStore.svelte.ts';
+  import type { BoardSort } from '../appStore.svelte.ts';
+  import { slotLabel } from '../../engine/sports/nfl/view/draftBoard.ts';
+
+/home/z/my-project/sitting/_agents/glyph/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte/src/lib/screens/Board.svelte:13:56
+Error: Object is possibly 'null'. (ts)
+  const mine = $derived((draftSnap().draft?.log ?? []).filter((k) => k.team === draftSnap().record?.userTeam));
+  const teamName = $derived(draftSnap().record ? TEAMS[draftSnap().record.userTeam].name : '');
+  const toneColor = (t: 'good' | 'neutral' | 'bad'): string =>
+
+====================================
+svelte-check found 3 errors and 1 warning in 3 files
+
+
+> twoarm-vue-feed@0.1.0-twoarm typecheck
+> vue-tsc --noEmit
+
+src/App.vue(28,35): error TS2339: Property 'value' does not exist on type 'FeedVM'.
+src/components/Board.vue(7,17): error TS2459: Module '"../lib/appStore.ts"' declares 'BoardSort' locally, but it is not exported.
+src/lib/bootData.ts(29,22): error TS2459: Module '"../engine/sports/nfl/app/store.ts"' declares 'FrozenPoolRow' locally, but it is not exported.

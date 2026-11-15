@@ -1,0 +1,44 @@
+== verification 5 · the Slice 4 re-run — every claim below generated on the tree this folder ships ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/67-cakepanz-s3-s4-rev2 · built: npm run build (vite 7, BUILD_OK) · server: npx vite preview --port 4179 (probe/battery) · file:// probe: no server, network blocked
+run at: 2026-11-15 (this sitting) · node v24.22.3 · playwright 1.57.0 (chromium) · engine: the vendored pin 4ca9a071 src/engine, untouched (52/52 vendor contract holds — see verification-4)
+note: the app mints its draft seed at boot (1000 + floor(random*9000)), so every fresh run draws a different draft and game. The LAWS are the contract (the DOM must equal the node-side recompute of the SAME game), never the per-run numbers. Per-run numbers below describe the run that produced this log.
+
+CLAIM 1 · the fresh end-to-end probe (batteries/probe-slice4.mjs): 32 turns through the real store reducer, engine advising each take, .cp-feed mounts, DOM counts printed, and the SAME game recomputed node-side through feedVM matching the DOM exactly.
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: node batteries/probe-slice4.mjs
+ref: the tree this folder ships · output: play btn while drafting: 0 → draft filled in ~4s through 32 engine-advised PICK dispatches → store status: done → play btn when done: 1 → feed mounted: 1
+out: feed DOM {"lines":22,"me":11,"final":"PHI 17 at CHI 25 FINAL gameSeed 3875098378 · week 1 · Philadelphia Eagles @ Chicago Bears","badges":24,"foot":"22 drives · 11 mine · 2 lead changes"} · node VM: drives 22 · me 11 · leadΔ 2 · score 17-25 · MATCH drives: true · MATCH me: true · newest-first flips (Q1 15·00 → Q4 first) · pageerrors: none
+verdict: DOM == VM on the four numbers (drives, me-drives, lead changes, final score). No disagreement to file — §2.5's stop-rule was not triggered.
+
+CLAIM 1b · the probe re-run (a second fresh seed, captured for this log — the laws hold on both runs):
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: node batteries/probe-slice4.mjs (second run)
+out: node VM: drives 22 · me 11 · leadΔ 4 · score 18-22 · MATCH drives: true · MATCH me: true · pageerrors: none
+verdict: the match is seed-independent (2/2 fresh runs).
+
+CLAIM 2 · the fresh battery run (batteries/slice1.battery.mjs): expect 61 ok / 0 fail / 10 loud SKIP / 3 DEFER plus the 18 feed laws.
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: node batteries/slice1.battery.mjs
+ref: the tree this folder ships · output: "== SLICE 1 BATTERY · 61 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover" — exactly the expected shape
+out: 74 laws total (batteries/slice1-battery.json: PASS 61 · FAIL 0 · SKIP 10 · DEFER 3); the slice-4 section carries the 18 feed laws, ALL PASS — gate absent→present, the UI game IS the engine game (this run drew GB 24 @ CHI 24 TIE with an OT drive, rendered with the honest OT stamp; drive count 26 = 26, ME glow 13 = 13, lead changes 4, every line carries clock·chip·badges·running score, quarter marks ride the log, provenance stamp "gameSeed 3875104820 · week 1 · Green Bay Packers @ Chicago Bears · played by the pinned engine", running scores END at the final, no yards faked, NEWEST FIRST flips, MY DRIVES filters, zero page errors, prefers-reduced-motion OFF)
+verdict: 61/0/10/3 reproduced on the shipped tree; the battery JSON re-wrote itself as its per-run caveat says (its checksums describe this run's bytes — see CHECKSUMS.txt).
+
+CLAIM 3 · shots/slice4-feed.png — re-taken on the shipped tree.
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: cmp -s shots/slice4-feed.png <committed copy @ council/inkling 5b1d022e>; sha256sum both
+out: the shots DIFFER (new sha256 e66ee393… vs the committed bytes) — re-taken by the battery (slice1.battery.mjs line 295 writes it on every run), because the app mints a fresh seed each boot; the committed shot is the 2026-11-10 run's game, this shot is this run's game
+verdict: re-taken, per §2.5.5's own rule ("re-take it if it re-renders differently"). The LOOK is the law (the w88 anatomy), not the per-seed content; the w88 anatomy laws all passed in CLAIM 2.
+
+CLAIM 4 · zero-console-error confirmation from file:// — with a finding.
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: node batteries/probe-fileboot.mjs (FB_MODE=vanilla, then FB_MODE=allow); network blocked (every http/https request aborts — file:// must be self-sufficient)
+out (vanilla file://, no flags): the app does NOT mount — 4 console errors: CORS on the dist's own `crossorigin` tags ("Access to CSS stylesheet at 'file://…/dist/assets/index-B-EJ2wAX.css' from origin 'null' has been blocked…", same for the JS module). 0 blocked network requests — the dist IS self-sufficient; the failure is the `crossorigin` attribute vite stamps on the script/link tags, which is server-shaped.
+out (--allow-file-access-from-files): app mounted at TEAM SELECT: true · blocked network requests: 0 · console errors + page errors: none — zero
+verdict: zero console errors from file:// CONFIRMED under the file-access flag; **FINDING (filed for the Architect): the shipped vite dist is server-shaped — the `crossorigin` attrs break vanilla file:// boot. A file://-ready artifact needs them stripped post-build (the distfile-boot experiment's single-arm build did exactly that in the v3 bench).** The finding is recorded in this log and in the sitting filing, not patched (dist/ is a build artifact, not a shipped source file).
+
+CLAIM 5 · the README's two-check sentence exists (the reply to §2.1 from the product side).
+cwd: the folder root · cmd: sed -n '23,24p' README.md
+ref: README.md "How to verify" steps 1–2 · output: step 1 "**files present:** `sha256sum -c CHECKSUMS.txt` … expect all OK, exit 0 → logs/verification-1-checksums.txt"; step 2 "**files claimed** … `grep -hoE '`measurements/…`' filings/*.md | …` (expect no output) → logs/verification-2-citations.txt. **The `-h` is load-bearing:** without it grep prefixes `filename:` to every match, so the existence test can never pass…"
+verdict: both checks are stated in the README (files present + files claimed), and step 2 now prints the faithful `-h` form — the §2.1 fix is in the README the folder ships.
+
+CLAIM 6 · the engine suite in this tree (the tree's own functional floor, re-run this sitting):
+cwd: 67-cakepanz-s3-s4-rev2 · cmd: npm run test:engine
+out: "ℹ pass 284 · ℹ fail 0 · ℹ cancelled 0 · ℹ skipped 0" (42s)
+verdict: 284/0 — the vendored pin's tests pass on the tree this folder ships, unmodified.
+
+-- end of verification 5 --

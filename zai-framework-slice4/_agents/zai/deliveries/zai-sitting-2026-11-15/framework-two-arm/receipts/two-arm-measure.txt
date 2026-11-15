@@ -1,0 +1,76 @@
+== two-arm measurement — full probe JSON ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/framework-two-arm · cmd: node two-arm-measure.mjs (both dists built: vite 7.3.6; chromium via playwright 1.57.0, flags --no-sandbox --allow-file-access-from-files; network blocked; 6x CPU throttle via CDP)
+run at: 2026-11-15T06:43:47Z
+-- output --
+{
+ "vue": {
+  "url": "file:///home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-vue/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "fcpMs": 1172,
+  "mountedMs": 1201,
+  "scroll390": {
+   "sw": 390,
+   "iw": 390,
+   "doc": 390
+  },
+  "keyboard": {
+   "firstFocus": {
+    "tag": "BUTTON",
+    "cls": "cp-feedtool",
+    "text": "NEWEST FIRST"
+   },
+   "lineFocusable": true
+  },
+  "live": {
+   "lines": 20,
+   "me": 10,
+   "final": "MIN 21",
+   "prov": "gameSeed 3875097256 · week 1 · Minnesota Vikings @ Chicago Bears · played by the pinned engine",
+   "before": 20,
+   "mineOnly": 10,
+   "mineMatchesMe": true,
+   "firstAfterNewest": "Q4 04·27",
+   "linesAfterNewest": 20
+  }
+ },
+ "svelte": {
+  "url": "file:///home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/framework-two-arm/arm-svelte/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "fcpMs": 1104,
+  "mountedMs": 1174,
+  "scroll390": {
+   "sw": 390,
+   "iw": 390,
+   "doc": 390
+  },
+  "keyboard": {
+   "firstFocus": {
+    "tag": "BUTTON",
+    "cls": "cp-feedtool",
+    "text": "NEWEST FIRST"
+   },
+   "lineFocusable": true
+  },
+  "live": {
+   "lines": 20,
+   "me": 10,
+   "final": "MIN 21",
+   "prov": "gameSeed 3875097256 · week 1 · Minnesota Vikings @ Chicago Bears · played by the pinned engine",
+   "before": 20,
+   "mineOnly": 10,
+   "mineMatchesMe": true,
+   "firstAfterNewest": "Q4 04·27",
+   "linesAfterNewest": 20
+  }
+ }
+}
+
+== the six criteria, same protocol, same fixture ==
+offline file:// : vue blocked=0 errors=0 · svelte blocked=0 errors=0
+cold load 6x    : vue fcp=1172ms mounted=1201ms · svelte fcp=1104ms mounted=1174ms
+390 px scroll   : vue scrollWidth=390 doc=390 · svelte scrollWidth=390 doc=390 (viewport 390)
+keyboard        : vue firstFocus={"tag":"BUTTON","cls":"cp-feedtool","text":"NEWEST FIRST"} lineFocusable=true · svelte firstFocus={"tag":"BUTTON","cls":"cp-feedtool","text":"NEWEST FIRST"} lineFocusable=true
+live semantics  : vue lines=20 me=10 mineFilter=10 flip->Q4 04·27 · svelte lines=20 me=10 mineFilter=10 flip->Q4 04·27
+-- end --

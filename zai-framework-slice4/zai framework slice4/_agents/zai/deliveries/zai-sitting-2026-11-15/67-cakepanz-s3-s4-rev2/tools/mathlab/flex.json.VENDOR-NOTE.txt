@@ -1,0 +1,1 @@
+Vendored from pin 4ca9a071; that pin predates the 99-rule flex table. The live table is flex-live/tools/mathlab/flex.json (0a26d7c2…, 99 leaves, QB→FS 12).

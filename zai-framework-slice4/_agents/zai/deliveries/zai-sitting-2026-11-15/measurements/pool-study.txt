@@ -1,0 +1,42 @@
+== 1,921 pool study — position groups per draft (engine pin 4ca9a071) ==
+pool: buildPool(madden27-ratings.csv, free-agents-old-ratings.csv, player-ids.csv) = 1953 players
+raw counts by role (incl LS): {"WR":212,"QB":92,"EDGE":186,"TE":139,"RB":126,"CB":201,"ILB":79,"OT":134,"C":68,"DT":199,"OG":140,"FS":84,"SS":83,"OLB":94,"FB":16,"K":35,"P":33,"LS":32}
+draftable (role !== LS, newDraft filter): 1921 · LS removed: 32
+supply by role (the 1,921): {"WR":212,"QB":92,"EDGE":186,"TE":139,"RB":126,"CB":201,"ILB":79,"OT":134,"C":68,"DT":199,"OG":140,"FS":84,"SS":83,"OLB":94,"FB":16,"K":35,"P":33}
+
+draft format (confirmed from the app code): newDraft(players, rng, DEFAULT_CONFIG, snakeOrder())
+  TEAMS_N=32 teams · ROUNDS=32 rounds (SLOT_IDS.length) · snake order · 1024 picks total · every team fills all 32 slots
+
+demand per destination (slots per team x 32) vs supply of roles that can legally fill it:
+  WR      demand 128  natural supply 212  flexible supply 1829
+  TE      demand  96  natural supply 139  flexible supply 1829
+  OT      demand  64  natural supply 134  flexible supply 1829
+  OG      demand  64  natural supply 140  flexible supply 1829
+  RB      demand  64  natural supply 126  flexible supply 1829
+  EDGE    demand  64  natural supply 186  flexible supply 1829
+  DT      demand  64  natural supply 199  flexible supply 1829
+  OLB     demand  64  natural supply  94  flexible supply 1829
+  CB      demand  64  natural supply 201  flexible supply 1829
+  QB      demand  32  natural supply  92  flexible supply 1921
+  C       demand  32  natural supply  68  flexible supply 1829
+  FB      demand  32  natural supply  16  flexible supply 1829  <- needs flex, flex supply covers it
+  DL5     demand  32  natural supply   0  flexible supply 1829  <- needs flex, flex supply covers it
+  ILB     demand  32  natural supply  79  flexible supply 1829
+  NICKEL  demand  32  natural supply   0  flexible supply 1829  <- needs flex, flex supply covers it
+  DIME    demand  32  natural supply   0  flexible supply 1829  <- needs flex, flex supply covers it
+  FS      demand  32  natural supply  84  flexible supply 1921
+  SS      demand  32  natural supply  83  flexible supply 1829
+  K       demand  32  natural supply  35  flexible supply 1829
+  P       demand  32  natural supply  33  flexible supply 1829
+
+seed 1101: completed 1024/1024 picks (DONE) · flex/covered-dest uses 261
+   picks by role: QB:32 RB:85 FB:8 WR:132 TE:71 OT:74 OG:67 C:23 DT:85 EDGE:106 ILB:41 OLB:38 CB:107 FS:41 SS:50 K:34 P:30
+   unpicked left by role: {"OLB":56,"DT":114,"CB":94,"P":3,"FS":43,"EDGE":80,"QB":60,"SS":33,"WR":80,"OG":73,"C":45,"ILB":38,"RB":41,"K":1,"OT":60,"FB":8,"TE":68}
+seed 20261114: completed 1024/1024 picks (DONE) · flex/covered-dest uses 256
+   picks by role: QB:32 RB:87 FB:7 WR:128 TE:74 OT:71 OG:67 C:24 DT:89 EDGE:105 ILB:40 OLB:38 CB:108 FS:42 SS:48 K:35 P:29
+   unpicked left by role: {"OLB":56,"DT":110,"CB":93,"P":4,"FS":42,"EDGE":81,"SS":35,"QB":60,"ILB":39,"WR":84,"OG":73,"C":44,"RB":39,"OT":63,"FB":9,"TE":65}
+seed 777: completed 1024/1024 picks (DONE) · flex/covered-dest uses 246
+   picks by role: QB:32 RB:83 FB:8 WR:131 TE:71 OT:71 OG:68 C:23 DT:86 EDGE:105 ILB:40 OLB:40 CB:111 FS:41 SS:50 K:35 P:29
+   unpicked left by role: {"DT":113,"P":4,"FS":43,"EDGE":81,"CB":90,"OLB":54,"QB":60,"SS":33,"WR":81,"OG":72,"C":45,"RB":43,"ILB":39,"OT":63,"TE":68,"FB":8}
+
+dry-run rule: a position runs dry only if demand at a destination exceeds the supply of every role that can legally fill it — checked per destination above; three seeded full-CPU drafts all completed 1,024/1,024 picks.

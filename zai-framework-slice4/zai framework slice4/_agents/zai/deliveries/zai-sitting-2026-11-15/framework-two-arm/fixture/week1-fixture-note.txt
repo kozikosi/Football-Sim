@@ -1,0 +1,5 @@
+== the two-arm fixture — the heaviest view both arms render (chosen before either arm was built) ==
+draft seed: 1000 · user team: Chicago Bears (index 20) · pool: buildPool over this tree's three CSVs (1,953 raw / 1,921 draftable after the LS filter)
+week-1 game: Minnesota Vikings @ Chicago Bears — final 21-11 · drives 20 · scoring drives 6 · turnovers 3 (every one named as an INT/FUM chip)
+user drives 10 · lead changes 1 · userWon false
+both arms restore the identical record (fixture/week1-picks.json), call the identical feedVM, and render the identical feed — the framework is the only variable.
