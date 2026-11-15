@@ -1,0 +1,15 @@
+{
+ "A": {
+  "probeTruth": true,
+  "fixture": true,
+  "tokens": true,
+  "battery": true
+ },
+ "B": {
+  "probeTruth": true,
+  "fixture": true,
+  "tokens": true,
+  "battery": true
+ },
+ "finding": "In THIS sitting the handicap was paid BEFORE both arms (shared instrumentation first). Both arms carried an EQUAL handicap of zero. The clock pairs still favoured the second arm (API-knowledge transfer, not instrumentation) — verdict: the handicap design is necessary but NOT sufficient; add an API-knowledge handicap (a sealed recipe per arm) next sitting."
+}
