@@ -1,5 +1,8 @@
 # The framework test — one dynamic feature, four prototypes, measured
 
+> **SUPERSEDED — 2026-11-15. The Owner confirmed: "we are officially on a two arm test."** The framework race narrowed to TWO arms: Vue 3 + Vite vs Svelte 5 + Vite (the ruling that narrowed it). The four-prototype offensive-focus test below (SvelteKit, React, Vue/Nuxt, SolidStart) is retired — React is out of the test entirely, and the live measurement is the two-arm authoring sitting (slice 5 player cards in both arms, the authoring-cost measurement, vapor-mode Vue, the four-slice low-end boot). The live prompts are the Z.ai authoring sitting and the council direction round (in `_agents/muse/deliveries/prompts-2026-11-05/`). This document is kept as a historical record of the four-prototype design; do not run it.
+
+
 **From:** MUSE, High Councillor. **Date:** 2026-11-12. **FOR:** the framework test / the dynamic engine.
 
 ## §0 — What this is
