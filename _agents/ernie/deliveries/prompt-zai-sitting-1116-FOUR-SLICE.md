@@ -95,38 +95,66 @@ The single panel told us nothing about slope. This measures it:
 
 ---
 
-## 3 · Third — the preference interview (answer every question; "don't know" is an answer)
+## 3 · Third — the written questionnaire (answers are a FILE, not a reply)
 
-**These are not rhetorical. Each one forces a trade-off into the open, and the Owner reads them.** Answer in the order asked. One short paragraph each. **Do not write a verdict until §4.**
+**This is not an interview.** You run in a sandbox with no memory between sessions, so nothing here asks you to recall how a session felt. **Every answer must be re-derived from the bytes in front of you**, and the whole thing is written to one file:
 
-### About the code you actually wrote
+**`framework-two-arm/PREFERENCE-INTERVIEW.md`** — in the delivery, under the same MANIFEST.
 
-1. **Which one did you enjoy writing more — and be honest about whether that is the same as which one you'd rather maintain?**
-2. **What did you write in one that you were surprised you didn't have to write in the other?**
-3. **Where did each framework fight you?** Name the specific thing — a template restriction, a type error you couldn't silence, a state pattern that didn't fit.
-4. **What did you have to write twice because the framework couldn't share it?**
-5. **Which file would you least like to open in six months, and why?**
+**Rules for that file:** one section per question, in order. Each answer is **one short paragraph plus a required evidence line** (`evidence: <command or file and line>`). **If you cannot produce the evidence, write `evidence: NONE` and say what you would have needed.** An answer with no evidence is an opinion and will be read as one.
+
+### About the code that exists
+
+1. **Which file in each arm carries the most logic?** Name the single file, its line count, and the command that counted it.
+   *evidence: `wc -l` on the named file in each arm.*
+
+2. **What did you have to write twice?** List every place the same logic exists in both arms because the framework could not share it — and **give the line count of each copy.**
+   *evidence: `grep -c` or `wc -l` per copy.*
+
+3. **Where did each framework fight you?** Name the specific thing — a template restriction, a type error you could not silence, a state pattern that did not fit. **Quote the error text verbatim** where there is one.
+   *evidence: the build/typecheck log line, quoted.*
+
+4. **Which file would you least like to open in six months, and why?** Judge by size, by how much state it holds, or by how many files depend on it — **say which, and give the number.**
+   *evidence: line count + import count (`grep -c "from './X'"`).*
+
+5. **What did the framework give you free?** List every place the framework removed code you expected to write — a store, a subscription, a binding, a re-render.
+   *evidence: name the file where the code is absent, and the equivalent in the other arm if there is one.*
 
 ### About the failure modes
 
-6. **Which one gave you a better error message when you broke it?** Quote the two worst messages you hit, one from each.
-7. **Which one would fail more quietly in production** — and what would you add to catch it?
-8. **If a junior developer joined tomorrow, which codebase would they break first?**
+6. **Which gave you the better error message?** **Run both type checkers from clean** and quote the two worst messages, one from each, verbatim.
+   *evidence: the two command outputs, pasted.*
+
+7. **Which would fail more quietly in production?** Answer by pointing at the **absence of a check**: name the runtime error that neither checker would catch, and what you would add.
+   *evidence: the unchecked path, by file and line.*
+
+8. **What does each framework's dev build tell you that the other's does not?** Turn the dev server on for each and list what appears in the console that is not in the other's.
+   *evidence: the two console outputs.*
 
 ### About the decision, not the code
 
-9. **What is the cost of being wrong?** If you pick Svelte and it's wrong at slice 8, what does the migration cost — and is that cost different from the reverse?
-10. **Which one has the better answer to "the Owner wants a native shell in two years"?** (Both compile to web; say what actually changes.)
-11. **What did you NOT measure that you should have?** Name it, and say whether it could change the answer.
-12. **Where does your confidence come from — the measurement, or the familiarity of the tree you already build in?** Be honest: if it is the second, say so.
+9. **What is the cost of being wrong?** Answer by **counting the framework-owned lines** in each arm (from §2's measurement). If you pick wrong at slice 8, the migration cost is that many lines — **state the number for each direction.**
+   *evidence: the line counts from §2.*
+
+10. **Which has the better answer to "the Owner wants a native shell in two years"?** Both compile to web. **Say what actually changes** — the renderer, the build target, the state layer — and **do not assert without a source you can name.**
+    *evidence: name the source, or write `INFERRED`.*
+
+11. **What did you NOT measure that you should have?** Name it, and say **whether it could change the answer** — and if it could, **measure it now if it is cheap.**
+    *evidence: the measurement, or the reason it is expensive.*
+
+12. **Where does your confidence come from — a measurement, or the fact that the tree you already build in is Svelte?** Answer by **removing the familiarity from the question:** if the four-slice numbers were identical and the tree were greenfield, which would you pick? **That is the answer to record.**
+    *evidence: the four-slice numbers, restated.*
 
 ### About the band
 
-13. **Is 15% the right threshold for the slope?** If not, what is, and why? (You set it; you may revise it, but say so before you see the answer.)
-14. **What single measurement would make you switch tomorrow?**
-15. **If the Owner forced you to ship both forever, which would you rather maintain — and does that change your answer to §2?**
+13. **Is 15% the right threshold for the slope?** You set it last sitting. **You may revise it — but state the revision before you read §2.3's answer**, so the threshold cannot be chosen after the result.
+    *evidence: the threshold, stated in the file before the slope result.*
 
----
+14. **What single measurement would make you switch tomorrow?** One, named, and **cheap enough that the Owner could order it next sitting.**
+    *evidence: the command that would run it.*
+
+15. **If the Owner forced you to ship both forever, which would you rather maintain?** Answer from the four-slice line counts and the store/state counts, **not from preference.**
+    *evidence: the two numbers that decide it.*
 
 ## 4 · The verdict, last
 
@@ -137,6 +165,8 @@ The single panel told us nothing about slope. This measures it:
 3. **The strongest argument against your own preference** — steelmanned, not dismissed.
 4. **Your confidence as a percentage**, and what would move it by ten points.
 5. **The falsifier, restated**: the one measurement that flips you.
+
+**§4 goes in the same file**, after §3's fifteen answers — not in the chat reply. **The reply points at the file.**
 
 **The measurement decides, not the seat.** If the slope says Vue and you prefer Svelte, **say both** — the Owner reads the disagreement, not a verdict dressed as one.
 
@@ -149,7 +179,8 @@ The single panel told us nothing about slope. This measures it:
 - Do not ship `dist/` if the convention forbids it — ship the hashes and the version line instead (§1.2).
 - Do not rebuild Slice 4 — it is done; it is slice 4 of this test's surface.
 - Do not spend the sitting on git push.
-- Do not answer §3 with a verdict — §3 is questions about the code, §4 is the verdict.
+- Do not answer §3 from memory — every answer needs an evidence line or `evidence: NONE`.
+- Do not answer §3 with a verdict — §3 is questions about the code, §4 is the verdict, and both live in the file.
 
 ---
 
@@ -157,8 +188,7 @@ The single panel told us nothing about slope. This measures it:
 
 Table first: item · status (`DONE` | `BLOCKED` | `UNKNOWN`) · receipt · one line each.
 Then four lines per item: `cwd · command · ref@sha · output`.
-Then §3's fifteen answers, in order, numbered.
-Then §4's five-part verdict.
+Then one line: `PREFERENCE-INTERVIEW.md` written at `<path>`, with §3's fifteen answers and §4's five-part verdict inside it.
 Then:
 
 ```
