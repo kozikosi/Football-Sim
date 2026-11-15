@@ -623,11 +623,14 @@ PROMPT (pointers to receipts, interview, verdict, authoring cost); (4) NEXT-SEAT
 sentence); (6) THE AGENTIC-ERGONOMICS VERDICT (path + the one-sentence answer). Do not stop
 before the questionnaire is written.
 
-### R2.9 · The brag-card skeleton (Inkling's suggestion)
+### R2.9 · The brag-card skeleton — BUILD FROM SCRATCH (Owner's ruling, 2026-11-15; supersedes the borrow wording below)
 
-You may borrow or adapt the receipts/brag-card.html skeleton from the ERNIE-vendored v3
-delivery; do not mutate it; the frame you actually build is yours. (The Owner has confirmed
-this — the skeleton borrow is approved.)
+Build the card from scratch. You may READ the receipts/brag-card.html skeleton from the
+ERNIE-vendored v3 delivery as a design reference (the gold palette, the team-color variable,
+the layout) — do not copy, adapt, or reproduce its code verbatim. The frame you build is
+yours, written from blank, so the authoring measurement measures blank-to-green, not
+adapt-an-existing-card. (This supersedes the earlier "borrow approved" wording, which the
+Owner reversed on 2026-11-15.)
 
 ### R2.10 · The two de-gated tests, exactly (Inkling — supersedes Part F.3)
 
@@ -709,7 +712,33 @@ can reproducibly rebuild; cmp the dists across two sittings; prove what bytes la
 
 - Inkling's "1,000 words per answer" length floor — a length floor produces volume, not value.
   (Ernie's call; MUSE agrees.)
-- The brag-card skeleton borrow is UNCHANGED in this prompt (the Owner approved it). Ernie
-  and Inkling both now argue Z.ai should build from scratch so the measurement isn't anchored
-  on a pre-existing card. That is a decision for the Owner, not for this prompt — it is flagged
-  to him separately. If he rules build-from-scratch, the prompt will be updated.
+- The brag-card skeleton: SUPERSEDED by the Owner's ruling (2026-11-15) — build from scratch
+  (see R2.9 above, updated). Ernie and Inkling both argued for build-from-scratch so the
+  measurement isn't anchored on a pre-existing card; the Owner ruled for it. The skeleton is
+  now a read-only design reference only.
+
+---
+
+## Revision 4 — additions (2026-11-15, the Owner's build-from-scratch ruling + a consistency fix)
+
+The following is incorporated into this prompt as Revision 4. It supersedes any conflicting
+wording above. The short copy-paste version (`zai-short-authoring-sitting-2026-11-15.md`,
+Revision 4) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R4.1 · Build the brag card from scratch (Owner's ruling, 2026-11-15)
+
+The Owner has ruled: **build the card from scratch.** You may READ the
+receipts/brag-card.html skeleton from the ERNIE-vendored v3 delivery as a design reference
+(the gold palette, the team-color variable, the layout) — do not copy, adapt, or reproduce its
+code verbatim. The frame you build is yours, written from blank, so the authoring measurement
+measures blank-to-green, not adapt-an-existing-card. This supersedes the earlier "borrow
+approved" wording (R2.9, now updated above; R3.7, now corrected above).
+
+### R4.2 · Consistency fix (MUSE, final review)
+
+The flip-conditions paragraph now states the low-end boot result directly (the bundle "does
+not move interactive time in Svelte's favour") instead of saying its user impact was
+unmeasured — the measurement has been run (see the Revision 3 update: FCP delta −90 ms,
+inside the noise floor; mounted delta −159 ms, in Vue's favour; 390px clean; the flip
+condition does not fire).
