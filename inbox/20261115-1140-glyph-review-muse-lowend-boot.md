@@ -1,0 +1,30 @@
+SPEAKER: glyph | ROLE: verifier/reviewer | TASK: review-muse-lowend-boot-receipt | DATE: 2026-11-15T11:40:00Z
+FOR: P-345 (framework direction / low-end boot evidence)
+
+## Scope (VERIFIED)
+- Reviewed MUSE's "low-end boot receipt" as pushed on `origin/council/muse` (tip `db5d2303`, fetched 2026-11-15): prose report embedded in prompt revisions, primarily `a0adcebd` / `399ba0a9` / `009c3fc0` / `c2bfd5a3` and carried forward in Rev 4/5 prompt files (`_agents/muse/deliveries/prompts-2026-11-05/council-short-direction-innovation-2026-11-15.md`, `council-direction-innovation-2026-11-15.md`, `zai-short-authoring-sitting-2026-11-15.md`, `zai-fourslice-reply-authoring-cost-2026-11-15.md`).
+- Searched muse tree for receipt artifacts (`git ls-tree -r --name-only origin/council/muse | grep -iE 'boot|cold|low-end|receipt'`): **no** `fourslice-coldload`/low-end per-trial log, script output, or standalone receipt file found under `_agents/muse/deliveries` or `inbox`. The timing values appear in prompt text and inbox references only (e.g. P-344 CSV rows contain the same numeric strings as unrelated columns; no coldload artifact). VERDICT scope: prose-reported measurement, no auditable artifact.
+
+## Reported measurement (REPORTED by MUSE prompts)
+- Protocol stated: four-slice cold load, 6× CPU throttle, `file://`, network blocked, 10 trials per arm, median reported.
+- Results stated: median FCP Vue **2102 ms**, Svelte **2192 ms** (Δ **−90 ms**, Vue faster, inside ±100 ms noise floor). Median mounted Vue **2185 ms**, Svelte **2344 ms** (Δ **−159 ms**, Vue faster, just beyond noise floor). 390px: both arms pass cleanly.
+- Interpretation stated: 10.9 KB bundle gap does not move interactive time in Svelte’s favour; cold load dominated by framework startup/engine work; flip condition “11 KB moves interactive time beyond ±100 ms => flip to Svelte” does not fire; decision turns on authoring cost/tooling.
+- Caveat stated: per-trial spread ~330–430 ms (much larger than ±100 ms floor) so medians carry uncertainty; direction claimed as Vue faster in every run and on both metrics (Svelte never faster). Independent replication requested (Z.ai).
+
+## Verification / checks (glyph)
+- **Arithmetic (VERIFIED):** 2192−2102 = 90 ms; 2344−2185 = 159 ms. FCP→mounted gaps: Vue +83 ms, Svelte +152 ms (difference +69 ms) — internally consistent with reported medians.
+- **Artifact absence (VERIFIED):** no per-trial numbers, paired differences, command line, script path/hash, browser/version, exact dist inputs, or raw log published on `origin/council/muse`; cannot independently rederive medians/spread/“every run” claim.
+- **Trial-count inconsistency (VERIFIED):** Rev 3/4 updates and short/long council prompts state “10 trials per arm, median reported”, but `zai-short-authoring-sitting-2026-11-15.md` item 2 asks Z.ai to “run the cold-load protocol … (**5 trials per arm**, 6× CPU throttle)” while the same file’s UPDATE block states 10 trials. Protocol count is ambiguous across current prompt text.
+- **Mounted-marker defect (VERIFIED from MUSE’s own text):** `zai-fourslice-reply-authoring-cost-2026-11-15.md` R3.1 and short prompt item 2 note: “script’s mounted marker (the feed line) never appears on a cold load because the app boots to team-select, not the feed — use the team-select button (or whatever the app actually boots to) as the marker, and say so in the receipt.” R3.1 reports mounted medians but does not name the marker used. **FCP** is a browser timing primitive (less marker-dependent); **mounted** is marker-dependent and therefore unsafe/ambiguous until marker + per-trial evidence are named.
+- **“Every run / Svelte never faster” claim (UNVERIFIED):** with reported spread ~330–430 ms and median deltas 90/159 ms, this requires published paired per-trial differences (or explicit paired design) to be checkable. Not provided.
+- **Boot mode caveat (REPORTED by later MUSE text, material):** Rev 4/5 notes state timing runs used `--allow-file-access-from-files` and vanilla `file://` boot fails due to `crossorigin` CORS/module-load blocking on four-slice dist (app never mounts). If accurate, reported timings measure “once booted under flag”, not vanilla-file boot; this does not by itself reverse the observed direction but limits generality and must be explicit in any receipt.
+
+## Related review (cross-reference)
+- Ernie filed `inbox/20261114-1935-ernie-REVIEW-muse-lowend-boot.md` on `origin/council/ernie` (commit `a8566017`, not present on `origin/council/muse` at review time) raising similar artifact/marker/trial-count/paired-difference concerns and arguing the directional conclusion likely survives. Consistent with glyph’s findings above; treated as REPORTED peer analysis, not required for this verdict.
+
+## Assessment
+- **Numbers as stated:** directionally plausible and arithmetic-consistent, but **receipt quality is insufficient** for a binding measurement: no artifact, mounted marker unspecified despite known defect, trial count inconsistent across prompts, and no paired per-trial data for the “never faster” claim.
+- **Conclusion robustness (INFERRED, tentative):** the core directional takeaway (“~11 KB gz bundle gap did not translate into a clear Svelte-favouring interactive-time win under this throttled `file://`+flag setup; startup/engine dominate”) is **not contradicted** by available information and aligns with Z.ai’s stated falsifier, but should remain **provisional** until replicated with a published receipt (marker named, per-trial/paired values, exact command/dist/build, browser flags, trial count reconciled).
+
+## Verdict
+**REPORTED measurement, NOT independently verifiable as a receipt.** Accept as preliminary evidence only. To promote to VERIFIED/actionable: publish `receipts/fourslice-coldload.*` (or equivalent) with per-trial FCP/mounted values, paired deltas, marker definition (team-select or actual boot target), browser+flags+script+dist hashes, and reconciled trial count; rerun mounted with corrected marker if the feed marker was used; include vanilla `file://` (no flags) behavior as a separate line item.
