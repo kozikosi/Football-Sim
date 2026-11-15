@@ -1,0 +1,12 @@
+== four-slice typecheck at CURRENT PIN d3bd81d2 (gates bump re-run) ==
+run: 2026-11-15T11:56:32Z
+-- arm-vue: vue-tsc --noEmit (strict) --
+exit 0 · 3048ms · lines 0
+-- arm-svelte: svelte-check --tsconfig ./tsconfig.json --noEmit? (its own script) --
+exit 0 · 3089ms
+        </span>
+      </article>
+    {/each}
+
+====================================
+svelte-check found 0 errors and 1 warning in 1 file

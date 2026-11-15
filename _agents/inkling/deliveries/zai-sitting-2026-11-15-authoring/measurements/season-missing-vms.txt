@@ -1,0 +1,31 @@
+== season-missing-vms.txt — exactly which view-models the season surface is missing (item 6) ==
+pin d3bd81d2 · 2026-11-15 · nothing below is invented; each entry names the engine module that
+already exists and the app-layer VM that does NOT.
+
+MISSING (named, not built):
+1. seasonBracketVM — engine/season.ts already returns `playoffs` (13 GameLogs with `Round` names) and
+   `seeding`; NO app-layer VM shapes them into a bracket screen (WC→Div→Conf→SB, weeks 19–22).
+2. seasonAwardsVM — engine/awards.ts already has `SeasonStats` + `leaders(ss, key, n)` (13 keys) and
+   the `Awards` shape; NO app-layer VM wires boxes → season stats → award lines. NOTE: the season
+   sim itself does not record player stats (seasonrun's comment: per-week plan choices "not ported
+   yet"), so awards need the week-stepper to record boxes first — an engine-side seam, filed, not ours.
+3. seasonWeekVM — engine/seasonrun.ts has the step-a-week RunState (plain JSON, save-able as a week
+   payload; weekmap.ts round-trips it); the app has NO VM/screen that steps the schedule week by week
+   or renders a week's games. The four-slice saves panel loads DRAFTS only ("this panel loads drafts").
+4. week-save hydration — the saves panel has no week payload path at all: no save-as-week, no
+   LoadWeek into a season screen. This is the owed "week-save hydration" item (filed separately).
+5. seasonSaveVM — a season save (one blob + version check, the Owner's invariant) has no payload
+   shape on the app side; the envelope's `kind` already supports 'season' (saves.ts refuses it with
+   its kind named), so the envelope side EXISTS and the producer is missing.
+
+BUILT THIS SITTING (the one screen's seam, shared identical bytes both arms):
+- lib/seasonVM.ts — leagueTeams(pool, picks) (fixture's 1,024-pick log → optimalLineup → teamRatings;
+  ratings are ENGINE-DERIVED, no user ratings generated), runSeason (simulateSeason, seed 2027),
+  toStandings (table + seeding → 8 divisions × rows {team, W-L-T, pf, pa, seed 1–7, champ}).
+- The standings screens (Season.vue / Season.svelte) + store glue `ensureSeason()` (lazy, cached).
+
+ENGINE DATA USED (all engine's own, none invented): fixture week1-picks.json (the re-minted 1,024-pick
+league log, seed 1000, current pin), buildPool over the three CSVs (1,953 raw / 1,921 draftable),
+simulateSeason seed 2027 → 272 regular games, 13 playoff games, champion + seeding + table.
+Verification: receipts/season-probe.json (champion engine-true vs a node-side re-derivation through
+the SAME path; tables string-equal across arms; 32 rows / 8 divisions / 14 seeds / 17 games each).

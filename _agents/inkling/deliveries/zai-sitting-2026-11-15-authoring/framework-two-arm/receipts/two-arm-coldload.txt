@@ -1,0 +1,60 @@
+== two-arm cold load — 5 trials per arm, median ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/framework-two-arm · cmd: node two-arm-coldload.mjs (6x CPU throttle, file://, network blocked)
+run at: 2026-11-15T06:44:02Z
+-- output --
+{
+ "vue": {
+  "trials": [
+   {
+    "fcp": 1092,
+    "mounted": 1120
+   },
+   {
+    "fcp": 1108,
+    "mounted": 1135
+   },
+   {
+    "fcp": 1088,
+    "mounted": 1130
+   },
+   {
+    "fcp": -1,
+    "mounted": 1091
+   },
+   {
+    "fcp": 1004,
+    "mounted": 1076
+   }
+  ],
+  "medianFcp": 1088,
+  "medianMounted": 1120
+ },
+ "svelte": {
+  "trials": [
+   {
+    "fcp": 1224,
+    "mounted": 1247
+   },
+   {
+    "fcp": 1180,
+    "mounted": 1197
+   },
+   {
+    "fcp": 1052,
+    "mounted": 1108
+   },
+   {
+    "fcp": 1188,
+    "mounted": 1250
+   },
+   {
+    "fcp": 1456,
+    "mounted": 1482
+   }
+  ],
+  "medianFcp": 1188,
+  "medianMounted": 1247
+ }
+}
+COLD LOAD 6x median: vue fcp=1088ms mounted=1120ms · svelte fcp=1188ms mounted=1247ms
+-- end --

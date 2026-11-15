@@ -1,0 +1,31 @@
+== vue-ergonomics-receipt.txt — the Vue arm questionnaire (item 10; every answer carries evidence or evidence: NONE) ==
+arm: Vue 3.5.45 + Vite 7.3.6 + vue-tsc 3.1 · sitting 2026-11-15 · pin d3bd81d2
+
+(a)
+- Single worst problem: the SILENTLY-IGNORED plugin option. `vue({ vapor: true })` (top-level) compiled a valid bundle with the option ignored — no error, no warning; the falsifier's first build measured a fiction. Evidence: receipts/vapor-mode-bundle.txt, enablement history item (1): dist hash index-CPfydr1d at 117.25 kB gz was NOT a vapor build; the option lives at features.vapor (plugin .d.mts). An agent can burn a sitting believing a measurement that never happened.
+- Single best moment: the pure-vapor entry swap — `createVaporApp(App)` from 'vue' dropped the entire vdom renderer with ZERO component changes and all four-slice laws still passed. Evidence: receipts/vapor-mode-bundle.txt item (3): 0 'vnode'/'dynamicChildren' markers in dist, probe ALL LAWS PASS.
+- More friction: tooling, not language. The language never bit (0 typecheck errors across two slices); the plugin API bit once (above) and the vapor docs-hunt was a package dump. Evidence: receipts/vapor-mode-bundle.txt + the 0-error typecheck receipts.
+- The fight that cost the most minutes: vapor enablement — three builds to find (a) the option is features.vapor, (b) the vdom createApp pulls the interop double-runtime (+11.5 kB gz), (c) createVaporApp is the real entry. Quote (the moment I knew build 2 was wrong): "the bundle GREW to 400.15 kB raw / 127.32 kB gz: the vdom createApp pulls the interop layer". Evidence: receipts/vapor-mode-bundle.txt.
+- Cleaner first error message: not comparable — vue-tsc emitted ZERO errors all sitting (nothing to quote). The only Vue-side build error was Vite's "Could not resolve "../cards.css" from src/lib/screens/Season.svelte" — file + specifier, actionable, no code frame. Evidence: season-timing.txt.
+- Which error made me want to switch mid-session: none. Evidence: NONE — no Vue error in this sitting produced a moment of "this would be easier in Svelte"; the honest note is that nothing in Vue fought hard enough to test that reflex.
+
+(b)
+- Five minutes away, which arm re-enters faster: Vue — because the app re-derives from module-scope state with plain functions; there is no idiom to re-load into your head before editing. Evidence: the season slice — vue needed 0 scratch checks and 1 build to green (season-timing.txt) after time away.
+- Did the documentation cost me: I did not read docs in either arm. Evidence: NONE (no docs reads this sitting); what I actually used: node_modules/@vitejs/plugin-vue/dist/index.d.mts lines 55-80 (the features block) — which HELPED more than docs would have (the types are the truth at build time).
+
+(c)
+- svelte-check vs vue-tsc coordinates/prose: N/A for vue-tsc this sitting — it produced zero diagnostics, so there is no Vue error to quote against Svelte's. Evidence: typecheck receipts (0 errors, 3.0-3.1 s).
+- HMR reliability: worked reliably, and it is fast — 60 ms word→DOM on a stateless target (tooling-rows.txt). One trap recorded: hot swaps re-mount stateful components, closing the featured overlay mid-probe (tooling-rows.txt HMR note). Never observed silent-stale.
+- Did any arm force a workaround instead of the idiom: no — 0 ts-ignore/any/as-never in all new Vue files; the one candidate (featured slotLabel → PICK HIM) was caught pre-build and fixed by carrying slotId: SlotId on the CardVM. Evidence: slice5-build-journal.txt ("CATCH: CardVM initially dropped slotId...") + the workaround audit in slice5-timing.txt.
+
+(d)
+- One caught hallucination: I initially "knew" the two-arm bench's team-select probe chose Buffalo Bills at team index 30 — the engine's real order is AFC-East-first and Buffalo is index 0. The probe compared a team-dependent priority value against the wrong team's and failed. Evidence: slice5-build-journal.txt ("probe-side hardcoded team index (30 vs engine AFC-East-first index 0)").
+- Which framework suffers more from stale pretraining data: Vue's vapor story. My pretraining-flavoured instinct (top-level option, createApp entry) was wrong on BOTH counts; Svelte 5's runes were the opposite — the runes I wrote from memory compiled first-try, which says the training mix ALREADY covers them well. Evidence: vapor-mode-bundle.txt (three builds) vs slice5 journal (svelte builds green first try).
+- This card in three months: Vue. The store-file law (no getter-wrapper idiom) compounds; nothing measured this sitting taxes Vue's path more.
+- Technical-debt overhead after 3 more sittings: Vue's risk is the vapor/plugin surface moving under a 3.6 RC (pin the versions); Svelte's is the getter-wrapper idiom multiplying per store module. Evidence: receipts/vapor-mode-bundle.txt (RC used) vs appStore.svelte.ts idiom count.
+- "Agent-maintained, owned by a non-specialist": Vue fits better on the evidence present — plain composition functions, the smallest store file, and the silent-option trap is the kind of thing a specialist catches and a non-specialist does not (it caught ME). Evidence: CATEGORY-WINNERS.md rows 9/24; vapor receipt item (1).
+
+(e)
+- Most at-risk feature in Vue: the season/off-season week-stepper — it is a save-state-shaped module (RunState round-trips), and the saves panel + week hydration seam is where the store and the envelope invariant meet; if the store glue grows per-week derived state the file stops being 61 L. Evidence: measurements/season-missing-vms.txt items 3-5.
+- The one feature that must feel at least as good as w89 in either arm: the FEED — it is the screen the user reads longest and it already carries the w88 anatomy (chips, blue ink, beat-in). The feed re-render is engine-true and byte-stable in both arms today (four-slice gates), and neither arm has paid any tax to keep it. Evidence: receipts/fourslice-probe-pin-d3bd81d2.json (feed steps green both arms).
+- If the whole product had to be re-shipped on the inferior arm first: the bundle. Not the 10.5 KB itself — the HABIT: shipping the heavier arm first makes every future slice's bundle argument a retro-fight instead of a default. Evidence: receipts/bundles-pin-d3bd81d2.txt + vapor-mode-bundle.txt (the gap survives vapor).
