@@ -85,17 +85,19 @@ out: // FLEX table, tiers -2 / -6 / -12, 99 rules … REV 4 (29 Oct) live in git
 
 Label the addendum **VERIFIED** for the pin bytes and **INFERRED** for (1)–(3), and note that both references still exist in the repo for Claude to fast-check.
 
-### 2.3 Third — the pin recommendation (this is yours to make, Claude's to confirm)
+### 2.3 Third — the pin is RULED: `d3bd81d2`. Produce the migration table.
 
-INKLING's draft calls the pin "a Claude question". **It is not only that.** The engine is Claude's; **the vendored copy in Cakepanz is yours**, and you are the seat who knows what the slices need. So:
+**The Owner ruled on 2026-11-15: *"whatever claude built last."*** Verified — `colors/src` at the branch tip `03640133` is **byte-identical** to `d3bd81d2` (57 files, empty diff). **So the pin is `d3bd81d2`, and Cakepanz's engine moves from 52 to 57 files.** The nine arms were already on it, so the benchmark does not move — only the product does, which is the good outcome.
 
-**(a) State which pin Cakepanz should vendor, and why.** Three options: stay on `4ca9a071` (matches `AGENTS.md`, 11 files behind) · move to `d3bd81d2` (matches the arms, changes 11 files) · **land the move as its own change with a same-seed old-vs-new table**, which is the shape Claude proposed for P-318 and which I think is right.
+**What is left for you, and it is the same table I asked for before:**
 
-**(b) If you recommend moving, produce the table.** For each of the four protected files, a same-seed old-vs-new comparison on a fixed draft, showing what changed in the output. **A pin move without that table is a guess, and Claude cannot act on a guess.**
+**(a) A same-seed old-vs-new table for the four protected files** — `draft.ts`, `slots.ts`, `value.ts`, `flex.ts`. One fixed draft, run on `4ca9a071` and on `d3bd81d2`, showing what changed in the output. **A pin move without that table is a guess, and the Architect cannot act on a guess.**
 
-**(c) If you recommend staying, name the cost.** What does Cakepanz compute differently from the arms because it is 11 files behind, and which of the slices' numbers would move if the pin moved?
+**(b) A one-line statement of what the product gains and loses.** Gains: the 99-rule flex table (QB→FS 12, your Owner-ruled table). Loses: comparability with any Cakepanz measurement taken before the move — say which numbers those are.
 
-**This is the single most valuable thing in this sitting.** It is also the one where you would be reporting that the tree you have been shipping is stale — which is worth more than a clean manifest.
+**(c) Do not edit the engine.** The migration is the Architect's. Yours is the table and the impact statement.
+
+**Three numbers, kept straight:** **12** = live and now the pin · **10** = the old pin `4ca9a071` (retired by this ruling) · **−10** = stale prose in `AGENTS.md` l.73 (MUSE's to fix).
 
 ### 2.4 Fourth — the estimator (restored; INKLING's draft dropped it)
 
@@ -127,11 +129,37 @@ Your own arithmetic, which the council has not attacked: the single-λ window is
 
 v2 §4.4 also settles this: *"your `receipts/brag-card.html` is already a working, self-contained, offline-openable card … **That is a strong head start on Slice 5 and you should say so in the slice README.**"* **So the deliverable is the sentence, not a card.** If you build one anyway, it must render at 390 px with no horizontal scroll and be self-contained (no CDN, no external fonts — inline or system fonts), measured with a worst-case screenshot (longest team name, longest player name, a three-score game) and the file size of one card. **"It fits" is not a receipt.**
 
-### 2.6 Sixth — the publish check, if the Owner publishes
+### 2.5c Sixth — the two-arm framework build (the Owner's instruction, 2026-11-15)
+
+**The Owner has narrowed the field to two: Vue 3 + Vite vs Svelte 5 + Vite.** The other seven arms are retired from the contest (they stay in the record as measurements; nothing is deleted). **You build the same small thing twice — once in each — and report.**
+
+**The feature, identical in both:** the Slice 4 feed panel from §2.5 — drive-level events, newest-first, filter by drive, keyboard reachable, user's team in blue, every turnover named. **Same feature, same chrome, two frameworks.**
+
+**Measure both on these criteria — fixed before you build, so the scores cannot be chosen after:**
+
+| Criterion | How |
+|---|---|
+| Offline | boots from `file://`, **0 blocked requests, 0 console errors** |
+| Cold load | to first paint at **6× CPU throttle**, in ms |
+| Bundle | KB, gzipped |
+| 390 px | no horizontal scroll on the heaviest view (longest names, a three-score game) |
+| Type check | each framework's own checker passes |
+| **Maintainability proxy** | **lines of app code to render the same view** |
+
+**Then two things, both required:**
+
+1. **Your preference, with reasons.** Which would you rather build in for the next two years, and why.
+2. **What measurement would change your mind.** A preference with no falsifier is an opinion.
+
+**The measurement decides, not the seat.** Your preference is *input*, not the verdict — that is the same rule the council adopted for λ. If the two arms tie on every criterion, say so: **it costs nothing, because the engine is behind the `ValueProvider` seam and the framework is a view choice that can be swapped.**
+
+**Do not** re-run the seven retired arms · do not edit `colors/` · do not pick silently. **Build both, measure both, say which you prefer and what would change your mind.**
+
+### 2.6 Seventh — the publish check, if the Owner publishes
 
 `curl -sI` against the live domain, one `git ls-remote origin gh-pages`, then `sha256sum index.html` against your vendored bytes. File the result. **If the Owner has not published, say so in one line and leave it — publishing is his step.**
 
-### 2.7 Seventh — the five residues
+### 2.8 Eighth — the five residues
 
 1. **README says "all seven receipts now present" and lists eight.** `ls measurements/` → 8. One word.
 2. **The README's citation sweep needs `-h`** — §2.1.
