@@ -11,7 +11,10 @@
   - Technical analysis of feature requirements (like flex table rebuilding)
 
 ## Current work
-- **Done this session (2026-11-15):**
+- **Done this session (2026-11-15, round 2):**
+  - **Design review of fresh-start Vue vs Svelte experiments** (KG council prompt, Revision 2, 2026-11-15). Verified both scaffolds are ground-zero evaluation targets: cloned `kozikosi/football-sim-vue` (single commit 6b4de5c, bare Vite+Vue3+Pinia+Vitest+Playwright) and `kozikosi/football-sim-svelte` (single commit 86ba632, bare Vite+Svelte5+Vitest+Playwright). Both have ZERO w89 beauty tokens (no dark bg, no gold palette, no Cinzel fonts, no --tc variable, no bubble shine). Extracted exact w89 design tokens from build + brag-card: bg #0b0703/#181114, gold #ffc43c/#ecd9ad/#c9a24b/#a08b62, Cinzel + Cinzel Decorative, --tc team variable, bubble gradient shine (2.6s linear infinite), championship branding. Filed `inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`, pushed commit 9521f734.
+
+- **Done previous session (2026-11-15):**
   - Filed P-345 testing+innovation round 2 follow-up: platform smallest-version build order (receipt diff viewer → Sim Lab → DIALS), framework settle rule (fourth rule subsuming Glyph/Ernie/Inkling: ≥15% repair cycles on ≥2/3 slices AND not slower than Vue by >5% wall-clock, tie→Vue). Committed `inbox/20261115-1304-or-testing-innovation-round2.md`, pushed commit 3fd458ad.
   - Reviewed P-158 (Draft Pick Analysis): VERDICT **improved** — aligned label/prose bars at 0.25, Owner's 0.10 as "Left value" floor, fixed 75→70-rated prose error, noted seeded-draft distribution unavailable (INFERRED). Committed `inbox/20261115-1310-or-P-158-review.md`, pushed commit 54c418d6.
   - Reviewed P-162 (Player cards everywhere): VERDICT **improved** — verified four table sites + located draft board bubbles at `boardEntries` (1627) → `mkEntry` (1656) → `retarget` (1673); added honorLineHTML reuse requirement and glossary path note. Committed `inbox/20261115-1320-or-P-162-review.md`, pushed commit 147986c9.
@@ -24,19 +27,20 @@
   - Architect decision on P-156/P-163 product integration (reviews filed as improved).
 
 ## What the next session needs
-- **Read first:** `_agents/QUEUE.md` (live on `origin/council/muse`), P-158 review, P-162 review, P-345 round 2 filing.
-- **Open questions:** REV 4 status; Owner/Architect decisions on C.1-C.3; P-156/P-163 integration timing.
-- **Do not redo:** P-345 round 2 filing; P-158 review (improved); P-162 review (improved); all committed and pushed.
+- **Read first:** `_agents/QUEUE.md` (live on `origin/council/muse`), fresh-start design review (`inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md`), P-158 review, P-162 review, P-345 round 2 filing.
+- **Open questions:** REV 4 status; Owner/Architect decisions on C.1-C.3; P-156/P-163 integration timing; whether council should track w89 design-token adoption in the two fresh-start repos.
+- **Do not redo:** fresh-start design review (committed, pushed); P-345 round 2 filing; P-158 review (improved); P-162 review (improved); all committed and pushed.
 
 ## Files in this lane (this session)
+- `inbox/20261115-1335-or-design-review-freshstart-vue-svelte.md` (design review VERIFIED, commit 9521f734)
 - `inbox/20261115-1304-or-testing-innovation-round2.md` (P-345)
 - `inbox/20261115-1310-or-P-158-review.md` (P-158 VERDICT: improved)
 - `inbox/20261115-1320-or-P-162-review.md` (P-162 VERDICT: improved)
-- `bulletin/20261115-1304-or.md` (this session)
+- `bulletin/20261115-1304-or.md` (previous session)
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
 - **Branch:** `council/or`
 - **Base:** `git merge-base HEAD origin/council/base` = `1b91f50e`
 
-— or · council · 2026-11-15T13:25Z
+— or · council · 2026-11-15T13:40Z
