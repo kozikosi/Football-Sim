@@ -1,11 +1,50 @@
 == two-arm bundle sizes ==
-run at: 2026-11-15T06:44:15Z · gzip -9
+first run: 2026-11-15T06:44:15Z · re-run and verified byte-identical 2026-11-15 (this sitting) · gzip -9
+METHOD — labelled (this is the §1.1 receipt fix; previously unlabelled, which invited a false defect):
+  per-file figures = gzip -9 of each dist asset compressed SEPARATELY. The gzip stream of a named
+                     file carries the asset's filename in its own header: +18 B for a .js name
+                     (17 chars + flag), +19 B for the .css name.
+  totals          = gzip -9 of the CONCATENATED js+css, piped via stdin (no filename header, one
+                     stream, one dictionary). Per-file gzips therefore DO NOT SUM to the total and
+                     must not be added: adding the columns gives 105,846 (vue) / 94,277 (svelte),
+                     90 B / 80 B above the stated totals — 37 B of that is the two per-file name
+                     headers, the rest is real compression gain from concatenating.
+  Recompute either number byte-exactly:
+    per-file:  gzip -9 -c <asset> | wc -c
+    total:     cat <dist>/assets/*.js <dist>/assets/*.css | gzip -9 -c | wc -c
 -- arm-vue --
 index-BZNqWY9E.js: raw 340358 B · gzip-9 104481 B
 index-BTejQ6u0.css: raw 3695 B · gzip-9 1365 B
 -- arm-svelte --
 index-xPSAQEva.js: raw 312102 B · gzip-9 92912 B
-index-BTejQ6u0.css: raw 3695 B · gzip-9 1365 B
--- totals --
-arm-vue total: raw 344053 B · gzip-9 105756 B
-arm-svelte total: raw 315797 B · gzip-9 94197 B
+index-BTejQ6u0.css: raw 3695 B · gzip-9 1365 B   (byte-identical css in both arms — same chrome)
+-- totals (concatenated js+css, stdin; the per-file sum is shown beside each) --
+arm-vue total: raw 344053 B · gzip-9 105756 B  (per-file sum 105846 B — not equal by method, see METHOD)
+arm-svelte total: raw 315797 B · gzip-9 94197 B  (per-file sum 94277 B — not equal by method, see METHOD)
+-- the delta the conclusion is built on (§1.1, stated explicitly) --
+JS-only gzip delta: 104481 − 92912 = 11569 B (11.6 KB) — the −11.6 KB bundle conclusion is built on
+THIS number (the JS-only per-file gzip delta), not on the concatenated totals.
+JS-only raw delta: 340358 − 312102 = 28256 B (28.3 KB). The css is byte-identical in both arms and
+drops out of every delta.
+
+== reproducibility block (§1.2 — added this sitting; dist/ is NOT shipped, these hashes are its receipt) ==
+commands (run inside framework-two-arm/, in order, one arm at a time):
+  cd arm-vue     && npm install --no-audit --no-fund && npm run build
+  cd arm-svelte  && npm install --no-audit --no-fund && npm run build
+  (package-lock.json pins the tree; npm ci is equivalent. First environment recorded "vite 7.3.6"
+  in the measure/coldload receipt headers; this re-run resolved ^7.3.6 → 7.3.8 from the same lock
+  range — output verified byte-identical: same content-hashed filenames, same per-file gzip sizes,
+  so the hashes below are the shipped assets' hashes.)
+versions (this re-run): node v24.22.3 · npm 11.19.1 · vite 7.3.8 · typescript 5.9.3
+  arm-vue:    vue 3.5.45 · vue-tsc 3.3.14 · @vitejs/plugin-vue 6.0.11
+  arm-svelte: svelte 5.57.3 · svelte-check 4.7.8 · @sveltejs/vite-plugin-svelte 6.2.4
+sha256 of each shipped asset (dist/assets; sha256sum):
+  d34544bf3126188ebdf587ed6dedba3f63e51bb4b3ad96aeb0acbc48ab63b80d  index-BTejQ6u0.css  (both arms)
+  439a5c761613e18cc5e9e1faf2efbbadd604e4439f69ac6d287973e5f647a285  index-BZNqWY9E.js   (arm-vue)
+  2b6068c13036079b2c71338363600a676925971c23f50fa1e18d5dcf1c5256ff  index-xPSAQEva.js   (arm-svelte)
+sizes as the shipped script computes them (raw bytes; gzip-9 bytes):
+  arm-vue:    index-BZNqWY9E.js 340358 / 104481 · index-BTejQ6u0.css 3695 / 1365
+  arm-svelte: index-xPSAQEva.js 312102 / 92912 · index-BTejQ6u0.css 3695 / 1365
+build-log note: the svelte build prints one a11y WARNING (a11y_no_noninteractive_tabindex,
+FeedPanel.svelte:49 — tabindex="0" on the drive <article>); the vue build prints none. Warning, not
+error; exit 0 both arms; recorded here because a reviewer re-running the build will see it.

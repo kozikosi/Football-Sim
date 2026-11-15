@@ -63,3 +63,44 @@ body { margin: 0; }
 .cp-feed-empty { color: var(--cp-sub); text-align: center; font-size: 0.85rem; padding: 18px 0; }
 
 .cp-feed-foot { border-top: 1px solid #3a2c31; padding-top: 8px; display: flex; gap: 12px; flex-wrap: wrap; color: var(--cp-sub); font-size: 0.72rem; justify-content: space-between; }
+
+/* ---- four-slice chrome (2026-11-15): the board, team select and saves panels — identical bytes in
+   both arms, same exclusion rule as the feed chrome above. The cp-feedtool pill and the ink tokens
+   are reused; nothing here is framework code. ---- */
+.cp-nav { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.cp-screen { margin-top: 14px; }
+.cp-title { font-size: 1.05rem; letter-spacing: 0.06em; color: #e8c87e; margin: 6px 0 4px; }
+.cp-screen-note { color: #c8a48f; font-size: 0.78rem; margin-bottom: 10px; }
+.cp-msg { border: 1px solid #8a5f18; border-radius: 8px; background: rgba(217, 169, 76, 0.08); color: #f5e9dd; font-size: 0.8rem; padding: 8px 10px; margin: 8px 0; }
+.cp-msg-refused { border-color: #b0503f; background: rgba(224, 133, 115, 0.1); }
+.cp-team-groups { display: flex; flex-wrap: wrap; gap: 14px 28px; }
+.cp-team-div { min-width: 300px; flex: 1; }
+.cp-team-divname { font-size: 0.66rem; letter-spacing: 0.22em; color: #c8a48f; font-weight: 800; margin: 4px 0 6px; }
+.cp-team-grid { display: flex; flex-wrap: wrap; gap: 6px; }
+.cp-teambtn { border: 1px solid #3a2c31; background: transparent; color: #f5e9dd; border-radius: 8px; padding: 5px 10px; font-size: 0.82rem; cursor: pointer; font-family: inherit; }
+.cp-teambtn:hover { border-color: #8a5f18; }
+.cp-teambtn:focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+.cp-teambtn.cp-on { border-color: #7aa7ff; color: #7aa7ff; font-weight: 800; }
+.cp-board-head { display: flex; gap: 12px; flex-wrap: wrap; align-items: baseline; justify-content: space-between; }
+.cp-board-onclock { font-size: 0.85rem; color: #f5e9dd; font-weight: 800; }
+.cp-board-count { font-size: 0.72rem; color: #c8a48f; }
+.cp-board-table { margin-top: 8px; }
+.cp-board-row { display: flex; gap: 8px; align-items: center; padding: 6px 8px; margin: 4px 0; border: 1px solid #3a2c31; border-radius: 10px; background: rgba(245, 233, 221, 0.04); flex-wrap: wrap; }
+.cp-board-name { font-weight: 800; color: #f5e9dd; min-width: 150px; }
+.cp-board-pos { border: 1px solid currentColor; border-radius: 6px; padding: 0 5px; font-size: 0.62rem; font-weight: 800; letter-spacing: 0.08em; min-width: 38px; text-align: center; }
+.cp-board-num { font-variant-numeric: tabular-nums; font-size: 0.8rem; color: #c8a48f; min-width: 52px; }
+.cp-board-slot { font-size: 0.72rem; color: #e8c87e; min-width: 44px; font-weight: 800; }
+.cp-board-flex { font-size: 0.62rem; color: #c8a48f; border: 1px solid currentColor; border-radius: 6px; padding: 0 4px; }
+.cp-board-gone { min-width: 46px; text-align: right; }
+.cp-pickbtn { border: 1px solid #8a5f18; background: transparent; color: #e8c87e; border-radius: 999px; padding: 3px 12px; font-size: 0.66rem; font-weight: 800; letter-spacing: 0.08em; cursor: pointer; font-family: inherit; margin-left: auto; }
+.cp-pickbtn:hover { background: rgba(217, 169, 76, 0.12); }
+.cp-pickbtn:focus-visible { outline: 2px solid #7aa7ff; outline-offset: 1px; }
+.cp-toolrow { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; align-items: center; }
+.cp-mine { margin-top: 10px; }
+.cp-mine-line { font-size: 0.78rem; color: #c8a48f; padding: 2px 0; }
+.cp-saves-grid { display: flex; gap: 10px; flex-wrap: wrap; }
+.cp-save-slot { border: 1px solid #3a2c31; border-radius: 10px; background: rgba(245, 233, 221, 0.04); padding: 10px 12px; min-width: 260px; flex: 1; }
+.cp-save-slotname { font-size: 0.68rem; letter-spacing: 0.22em; color: #e8c87e; font-weight: 800; }
+.cp-save-meta { font-size: 0.74rem; color: #c8a48f; margin: 6px 0; }
+.cp-save-refused { color: #e08573; font-size: 0.76rem; margin: 6px 0; }
+.cp-save-actions { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 6px; }

@@ -1,15 +1,8 @@
-tree: 67-cakepanz (slice 2 = REV 3 — Team Select, 9 Nov 2026; slice 1 REV 2 fixes included)
-engine snapshot: 4ca9a071 on architect/engine-and-seats (colors/src verbatim, 52 files, still unedited — cmp clean)
-engine tests: 284/284 pass — reproducible AS DELIVERED (npm run test:engine)
-slice battery: 26 pass / 0 fail / 10 loud skips / 3 deferred to cutover (8 new Team Select laws: opens at Team Select, 32 teams, real alignment, mode default + free pre-draft, details + rivals engine-derived, the choice flows into the board by name; the two tightened slice-1 assertions ride)
-build: vite build OK (dist 241 kB, gzip 79 kB)
-
-slice-2 files (md5):
-bfc7c653d977bafd244477bd19caf93c  src/lib/screens/TeamSelect.svelte
-803eca281b7c27e74a5c91fda356ed72  src/App.svelte
-4fb70d1cfba3452630f2c9bc0ab1fedc  index.html
-40daf708b34b41c952184de3622366d8  README.md
-02ca2c6a055e7c809abf80e994e05791  batteries/slice1.battery.mjs
-762199c0768e9d94e4b4ae45926ac007  batteries/slice1-battery.json
-0e63de0a88abd2e740c18eab747d9402  package.json
-1d300108f2de8faf28316505139e5172  package-lock.json
+c3a0ef03ba157f3caeb79eab009ab577585fc0e9e971d8930fffec14cc65c93b  README.md
+62d3ebb2bc1db477a60d60a4d61af7ea7d25cd55e3ac1f9058fc2613d5731586  batteries/slice1-battery.json
+0ed2018ad6d75c66bb441708b77d2860ec12a008228d39614fca5fe26710c5f1  batteries/slice1.battery.mjs
+973b639c56a01ef0c8b91727f64c6c35a9910ae24de3cf0f0eb088e2002e6635  index.html
+80b3669b14dce5ca944a56816e80f6affd3c37535b7ff4671ace7200c0314798  package-lock.json
+716f32c572ad47146c74f03dbdc318749893df42f2cf1497e6046c8ddb23cf89  package.json
+01160965c90c72331ed123c2c2560ecf0a81aa77db4cd2b34a6104a9442cca24  src/App.svelte
+1de5c7efe6311ca40be44921a55f542bbe22d898c3d67f6e7ed410d1cc247f06  src/lib/screens/TeamSelect.svelte
