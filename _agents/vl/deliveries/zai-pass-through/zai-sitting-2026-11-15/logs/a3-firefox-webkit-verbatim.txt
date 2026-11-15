@@ -1,0 +1,18 @@
+=== firefox verbatim failure:
+browserType.launch: Executable doesn't exist at /home/z/.cache/ms-playwright/firefox-1497/firefox/firefox
+╔═════════════════════════════════════════════════════════════════════════╗
+║ Looks like Playwright Test or Playwright was just installed or updated. ║
+║ Please run the following command to download new browsers:              ║
+║                                                                         ║
+║     npx playwright install                                              ║
+║                                                                         ║
+║ <3 Playwright Team                                                      ║
+=== webkit verbatim failure:
+browserType.launch: Executable doesn't exist at /home/z/.cache/ms-playwright/webkit-2227/pw_run.sh
+╔═════════════════════════════════════════════════════════════════════════╗
+║ Looks like Playwright Test or Playwright was just installed or updated. ║
+║ Please run the following command to download new browsers:              ║
+║                                                                         ║
+║     npx playwright install                                              ║
+║                                                                         ║
+║ <3 Playwright Team                                                      ║

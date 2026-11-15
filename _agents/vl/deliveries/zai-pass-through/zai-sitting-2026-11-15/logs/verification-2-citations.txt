@@ -1,0 +1,7 @@
+== verification 2 · files claimed (every 'measurements/…' citation resolves) ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15 · cmd: grep -hoE '`measurements/[A-Za-z0-9_.-]+`' filings/*.md | tr -d '`' | sort -u | while read p; do [ -e "$p" ] || echo CITED BUT ABSENT; done
+run at: 2026-11-15T06:49:20Z
+note: the README's printed sweep carries the -h fix this sitting (§2.1); this log runs the faithful form on the thirteen filings.
+-- output (empty = no citation missing) --
+-- end (no CITED BUT ABSENT lines above = PASS) --
+citations checked: 10
