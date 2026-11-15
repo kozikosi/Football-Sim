@@ -101,7 +101,7 @@ INKLING's draft calls the pin "a Claude question". **It is not only that.** The 
 
 **The join is half the λ Lab. The other half is the estimator, and it is not built.**
 
-Your own arithmetic, which the council has not attacked: the single-λ window is `[0.3902, 0.4032)` — **0.012 wide** — so 80% power on a context shift needs per-cell SE ≈ 0.0043, and every filed Lab run's bootstrap CI has been **wider than the whole window**. Labelled INFERRED, with exact per-cell SEs UNKNOWN.
+Your own arithmetic, which the council has not attacked: the single-λ window is `[0.3902, 0.4032)` — **0.0130 wide** (0.4032 − 0.3902) — so 80% power on a context shift needs per-cell SE ≈ **0.0046** (0.0130 / 2.8), and every filed Lab run's bootstrap CI has been **wider than the whole window**. Labelled INFERRED, with exact per-cell SEs UNKNOWN. *(Correction: I first wrote 0.012 / 0.0043; the subtraction is 0.0130 and the division 0.0046. The conclusion is unchanged — the required SE is smaller than any CI filed to date — but the arithmetic is now right.)*
 
 **If that is right, the estimator decides whether the Owner's "maximum flexibility" is deliverable at all.** Three deliverables, one page total:
 
@@ -111,15 +111,21 @@ Your own arithmetic, which the council has not attacked: the single-λ window is
 
 **If this does not fit in the sitting, say so and stop.** Do not ship a partial estimator without saying it is partial.
 
-### 2.5 Fifth — Slice 4 (the feed): brief first, build second
+### 2.5 Fifth — Slice 4 (the feed): the brief is the deliverable, the build is optional
+
+**The brief is settled by the v2 prompt §4.4, verbatim:** *"**Slice 4 (feed):** what the engine already exposes (`FeedEvent` union, drive-level), what you would have to mock, what you would refuse to ship."* **So the ambiguity is closed: it is the drive-level `FeedEvent` panel, not a season timeline.** Do not ask the Owner to re-decide what v2 already decided — cite §4.4.
 
 **Step A — the brief (this alone is a finished item).** Open `sports/nfl/app/feed.ts` in your rev2 tree and the `FeedEvent` union. Write one paragraph covering: what the engine already exposes · what you would need to mock (**nothing — it must ride the real log**) · what you would refuse to ship (**no live odds, no derived numbers beyond the log, no network**) · the delivery shape (**offline, `file://` boot clean, same chrome as Slice 3**). Save as `deliveries/slice4/README.md` in the rev2 tree.
 
 **Step B — the build, only if Step A is done and the sitting has room.** One `FeedPanel.svelte`, same chrome as Slice 3: the drive-level feed newest-first, filter by drive on click, keyboard reachable, zero console errors from `file://`. Extend the boundary battery sketch: the panel renders in `Feed.svelte` context · zero runtime errors · navigation · the existing 61/0/10/3 battery still passes.
 
-**Hard scope lines:** no wiring into Team Select · no publish · no gh-pages push · **no Slice 5** · no changes to the published tree · do not generalize — one panel, drive-level events, same chrome, done.
+**Hard scope lines:** no wiring into Team Select · no publish · no gh-pages push · no changes to the published tree · do not generalize — one panel, drive-level events, same chrome, done.
 
 **Owner's language rules, which the feed must obey:** every turnover named · no "expected scoring" · no "before kickoff" · overtime events only in the overtime block, never "sudden death".
+
+### 2.5b Slice 5 — one line, not a build
+
+v2 §4.4 also settles this: *"your `receipts/brag-card.html` is already a working, self-contained, offline-openable card … **That is a strong head start on Slice 5 and you should say so in the slice README.**"* **So the deliverable is the sentence, not a card.** If you build one anyway, it must render at 390 px with no horizontal scroll and be self-contained (no CDN, no external fonts — inline or system fonts), measured with a worst-case screenshot (longest team name, longest player name, a three-score game) and the file size of one card. **"It fits" is not a receipt.**
 
 ### 2.6 Sixth — the publish check, if the Owner publishes
 
