@@ -1,0 +1,65 @@
+== slice-5 build journal (kept DURING the build, per protocol §3) ==
+protocol: measurements/PROTOCOL-FOR-A-SECOND-AGENT.md (written BEFORE any slice-5 code)
+ARM ORDER: VUE FIRST (Owner's cancel-the-bias rule) · then svelte
+T0 (vue arm authoring clock starts): 2026-11-15T12:06:02Z epoch_ms=1794744362460
+frozen: bootData.ts cmp CLEAN
+frozen: savesService.ts cmp CLEAN
+frozen: feed.css cmp DIRTY — STOP
+frozen: feedVM.ts cmp CLEAN
+frozen: abbr.ts cmp CLEAN
+frozen: ink.ts cmp CLEAN
+frozen: src/engine diff -rq CLEAN (57 files)
+frozen: fixture.json cmp CLEAN
+ERRATA: the 'feed.css DIRTY' line above was a CHECKER PATH BUG (src/lib/ vs src/) — cmp on the real path src/feed.css: CLEAN (8482 B, byte-identical). Frozen check: ALL CLEAN.
+scratch tally: 1 (the bad-path check itself) — journal note
+scratch: [1] frozen-check path bug (src/lib vs src)
+scratch: [2] read Board.vue conventions
+scratch: [3] read feed.css tail
+scratch: [4] read Board.vue wrapper
+T0+00:00 shared files (cardVM.ts 46L, cardDraw.ts 64L, cards.css 34L) — framework-free, will cmp both arms; shared cost counts to BOTH arms' clock
+scratch: [5] read draftBoard.ts types via earlier engine read (BoardRowVM fields)
+CATCH: CardVM initially dropped slotId -> PICK HIM would have needed slotLabel 'as never' cast; fixed PROPERLY (slotId: SlotId typed) BEFORE first build — 0 workaround lines paid
+scratch: [6] re-read appStore.ts of this sitting's copy (Edit-tool requirement)
+vue framework-owned: Cards.vue (~75L) + appStore glue (5L) + App.vue (3L)
+T1 (first vue build attempt): 12:09:40Z epoch_ms=1794744580611
+arm=vue first_build: exit 0 · 1558ms · dist/assets/index-LeGt7RAp.js   373.77 kB │ gzip: 117.88 kB
+arm=vue typecheck(slice5): exit 0 · 2955ms · errors=0
+T2 vue GREEN: 12:14:23Z — probe ALL LAWS PASS vue-only (DOM grid=566 featured=583)
+arm=vue first_working_iterations: 1 build, 0 failed builds; 1 failed PROBE run = probe-side hardcoded team index (30 vs engine AFC-East-first index 0 — Buffalo); fixed by name lookup. App code never failed.
+arm=vue time_to_first_green: T0 12:06:02Z -> T2 12:40:00Z ≈ 34 min wall (includes shared-file authoring + probe authoring)
+scratch: [7] node-side league.ts read (team index); [8] probe parse-inspect of failures
+T3 (svelte arm authoring clock starts): 12:14:23Z epoch_ms=1794744863634
+arm=vue frozen: shared slice-5 files cmp CLEAN (cardVM.ts cardDraw.ts cards.css)
+arm=svelte first_build: exit 0 · 1491ms · dist/assets/index-DB6sob1L.js   347.17 kB │ gzip: 107.17 kB
+arm=svelte typecheck(slice5): exit 0 · 3070ms · svelte-check found 0 errors and 3 warnings in 2 files
+T4 svelte GREEN: 12:16:54Z — full probe ALL LAWS PASS both arms, DOM vue 566/583 == svelte 566/583
+arm=svelte first_working_iterations: 1 build, 0 failed builds, 0 failed probe runs (probe bugs were paid in the vue arm, before svelte was measured — an honest order-of-authorship advantage, recorded)
+arm=svelte time_to_first_green: T3 -> T4 ≈ 9 min wall (shared files + probe already existed)
+scratch: [9] read App.svelte + Board.svelte conventions; [10] read appStore.svelte.ts tail
+arm=svelte typecheck note: svelte-check 0 errors, 3 warnings — 1 pre-existing (FeedPanel tabindex), 2 new (a11y on the featured overlay's backdrop-click; keyboard path exists via Esc + CLOSE; NO suppression lines added — recorded as a checker-precision finding: svelte-check audits a11y, vue-tsc does not)
+arm=vue re_build_after_one_word: exit 0 · 1794745016016ms
+arm=svelte re_build_after_one_word: exit 0 · 1479ms
+arm=vue re_build_after_one_word: exit 0 · 1568ms (retry after a sed-escaping slip in the shell, not an app failure)
+shared slice-5 lines (cardVM+cardDraw+cards.css, identical bytes): 128
+arm=vue framework_owned: card_screen=81L + glue/nav ~6L added (component file lines; glue counted by slice-5 lines added)
+arm=svelte framework_owned: card_screen=82L + glue/nav ~7L added (component file lines; glue counted by slice-5 lines added)
+== canon_purity + workaround audit (slice-5 new files) ==
+canon_purity: CLEAN (0 hits of .weight/WEIGHT in all 8 new files)
+workarounds: 0 ts-ignore / 0 any / 0 as-never / 0 getter wrappers (the getter-wrapper idiom in appStore.svelte.ts predates slice 5 — it is the compiler's state_invalid_export remedy, counted in the four-slice receipt)
+== index_bytes (post-slice-5 dist) ==
+-- arm-vue -- dist total raw 383998 B · JS raw 373770 B · JS gzip-9 116514 B (method: concatenated stream, no per-file headers)
+-- arm-svelte -- dist total raw 357402 B · JS raw 347171 B · JS gzip-9 105808 B (method: concatenated stream, no per-file headers)
+ERRATA: the first 'arm=vue re_build_after_one_word ... 1794745016016ms' line is INVALID (the sed-slip attempt left a stale timer value in the variable) — the valid vue measurement is the retry line: 1568 ms
+item5 panel assignment (randomised): arm=svelte -> lineup · arm=vue -> ticker
+T5 arc clock: 12:19:15Z
+arc build vue: exit 0 · typecheck exit 0 (2902ms, errors 0)
+arc build svelte: exit 0 · svelte-check exit 0 (3142ms, svelte-check found 0 errors and 3 warnings in 2 files)
+T-season0: 13:01:19Z · order: svelte first (randomised per-slice rule)
+T-season1 (svelte-first season authoring starts): 13:02:08Z
+arm=svelte season first_build: exit 1 · 908ms ·     at ModuleLoader.handleInvalidResolvedId (file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-svelte/node_modules/rollup/dist/es/shared/node-entry.js:23514:24)
+arm=svelte season first_build (retry after a wrong relative css path — one-line output): exit 0 · 1508ms · dist/assets/index-D5EoCPbd.js   358.00 kB │ gzip: 111.29 kB
+arm=svelte season typecheck: exit 0 · 3070ms · svelte-check found 0 errors and 3 warnings in 2 files
+T-season2 (vue season authoring starts): 13:02:59Z
+arm=vue season first_build: exit 0 · 1659ms · dist/assets/index-Bqyid6C-.js   384.34 kB │ gzip: 121.77 kB
+arm=vue season typecheck: exit 0 · 2907ms · errors 0
+T-season3 green: 13:04:22Z

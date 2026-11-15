@@ -1,0 +1,4 @@
+== gates bump receipt (backlog) — ALL GATES NOW AT THE CURRENT PIN d3bd81d2 ==
+the four-slice arms VENDOR 57 files of colors/src @ d3bd81d (vendor digest 425d6a7f…2c34, identical across arms — receipts/bundles-pin-d3bd81d2.txt)
+the fixture was RE-MINTED on the current pin (seed 1000, CHI @ CAR 29-28, 10 scoring drives — scripts/mint-fixture-d3bd81d2.mjs, fixture/week1-fixture-note.txt)
+gates re-run green at the pin: four-slice ALL LAWS PASS both arms (receipts/fourslice-probe-pin-d3bd81d2.json + the post-arc rerun in receipts/arc-w89.txt) · slice-5 probe ALL LAWS PASS (receipts/slice5-probe.json) · season probe PASS (receipts/season-probe.json) · typechecks 0 errors (receipts/typecheck-pin-d3bd81d2.txt + the timing filings)
