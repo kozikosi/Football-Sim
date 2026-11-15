@@ -1,0 +1,35 @@
+# Minimal CI for colors/ (Architect, 14 Nov 2026). REPORT-ONLY: every step has continue-on-error, so a red step shows in the log and the run summary but
+# never blocks a push or a merge (Owner via Ernie, 14 Nov: no new gates). Action versions and node-version 24 follow the repo's own earlier workflow
+# (checkout@v4, setup-node@v4, Node 24; commits c7ab335b, 19e28c13, df8a752e). Do not run this on gh-pages (a publishing branch).
+name: ci
+on:
+  push:
+    branches: ['architect/**']
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  colors:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: colors
+    steps:
+      - uses: actions/checkout@v4        # the WHOLE repo: the tests read ../data and ../tools
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: colors/package-lock.json
+      - name: Install (clean)
+        run: npm ci
+      - name: Type check (ratchet, pinned in tsc-baseline.json)
+        run: npm run tsc:check
+        continue-on-error: true
+      - name: Tests
+        run: npm test
+        continue-on-error: true
+      - name: "Production build (known to fail: colors/index.html points at a src/main.ts that does not exist yet)"
+        run: npm run build
+        continue-on-error: true
