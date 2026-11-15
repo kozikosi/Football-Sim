@@ -234,3 +234,69 @@ in plain language, then recommend.
   version), or re-derive the settled items (the 69/72 vs 72/72 checksum dispute, the pin
   `d3bd81d2`, the pool 1,953, the λ window [0.3902, 0.4032)). If your idea depends on one of
   those being wrong, say so explicitly and show the receipt.
+
+---
+
+## Revision 2 — additions (2026-11-15, after Inkling's direction-brainstorm prompt and Ernie's definitions prompt)
+
+The following is incorporated into this prompt as Revision 2. It supersedes any conflicting
+wording above. The short copy-paste version (`council-short-direction-innovation-2026-11-15.md`,
+Revision 2) carries the same material in condensed form; if the two disagree, follow the short
+version and say so.
+
+### R2.1 · MUSE's position and what would flip it (argue with this)
+
+MUSE leans Vue 3 + Vite, narrowly, on authoring/maintenance grounds — not on performance. The
+performance evidence is a wash except the ~11 KB bundle (real, but its user impact is unmeasured
+— nobody has run the four-slice low-end boot yet); the authoring evidence points Vue's way (the
+store file is where maintenance lives, and Vue's is smaller at 61 vs 68 lines with no
+compiler-forced getter-wrapper idiom, plus more precise type errors and a bigger ecosystem). The
+cost of being wrong is ~350 lines per direction, so the call is low-stakes and reversible —
+optimize for what compounds over time (maintainability by agents) rather than a one-time
+measurement (11 KB). What would flip MUSE: if the low-end boot shows the 11 KB moves interactive
+time beyond ±100 ms, flip to Svelte. If the counterbalanced arm shows Svelte is easier to author,
+flip to Svelte. If vapor mode closes the bundle gap to under 5 KB, the Svelte case dissolves on
+Z.ai's own falsifier and the decision turns on tooling, which points Vue. The honest state is
+that the evidence is insufficient for a confident call — Claude said so himself — and Z.ai's
+Svelte preference (by the bundle, 70% confidence) is a legitimate measurement-based position.
+MUSE's lean is a bet on maintainability, not a verdict.
+
+### R2.2 · The counterbalanced arm is CROSS-AGENT (context for Q3)
+
+ERNIE takes one counterbalanced arm himself (Owner-granted): Z.ai builds slice 5 in one
+framework, Ernie builds it in the other, both timed and logged with the same ten metrics and
+the same definitions. The comparison is "which framework each agent found easier," reported as
+TWO RESULTS, NOT AVERAGED into one. If they disagree about which was easier, that disagreement
+is the finding, not something to split. **Attack this design before it runs (Q3):** is
+cross-agent right, or is within-agent-with-counterbalancing better? What confound has not been
+named? What is the minimum scope for comparability? **If you think the whole authoring
+measurement is not worth running, say so — that is the most valuable answer available.**
+
+### R2.3 · Define "improvable" (new question — Ernie's Definition 2)
+
+The Owner's rule is that a w89 feature is judged by its potential to be executed, improved, and
+made more dynamic / beautiful / interactive than w89 — but "improvable" as currently used is
+unfalsifiable: any seat can claim any framework "improves" a view. Propose a checkable
+definition of "improvable" (or say explicitly that it should not be a criterion at all — that
+beauty is a separate design track). What would make a feature NOT improvable?
+
+### R2.4 · Sharp questions added to the direction round (Inkling's)
+
+- **To Q1/Q2:** Name the cross-cutting artifacts at risk of silent decay — the pin, w89's
+  ZPB_SLOTS_WINS, your own lane-handoff protocols — and who arguably should own each one.
+- **To Q5 ("done"):** Name an existing thing called "done" that this definition would un-call
+  it.
+- **To Q8 (disposition):** One thing the council does that costs more than it returns — no
+  softening.
+- **To Q4 (innovation):** Name at least one contrarian case — anything the council has called
+  "settled" that should not survive the next ruling — which one?
+
+### R2.5 · The two de-gated tests, exactly (Inkling — supersedes Q6)
+
+The lineup.test.ts test asserts exact OVR losses after the P-318 seam landed (losing 2400/2700
+across the flex comparison), and the versions.test.ts stamp-pin test demands the old
+nfl1.14a4e9333e888a string. Both pass on old pins and fail on new ones. Suite is 318/320 with
+2 de-gated; R-11 rules FIX THEM, Architect's. Recommend rewrite-as-structural-assertions vs
+delete, and write the structural assertion if you recommend rewrite. What is the general rule —
+when a test's expected value goes stale on a pin move, is that a test to rewrite, or is the pin
+move the thing that should update the test?
