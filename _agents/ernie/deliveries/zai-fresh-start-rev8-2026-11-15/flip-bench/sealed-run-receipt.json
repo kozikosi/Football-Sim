@@ -1,0 +1,21 @@
+{
+ "recipe": {
+  "path": "SEALED-RECIPE.md",
+  "sha256": "7fcc3fc0432e29fae4c0d0d384f813da67cd05a0f591f5bb6746f85458e14f07"
+ },
+ "A": {
+  "repo": "football-sim-vue",
+  "instrumentation": true,
+  "sealedReceipt": null
+ },
+ "B": {
+  "repo": "football-sim-svelte",
+  "instrumentation": true,
+  "sealedReceipt": null
+ },
+ "handicap": {
+  "instrumentation": "PAID BEFORE BOTH ARMS (equal handicap of zero, Rev 6 finding)",
+  "apiKnowledge": "OPEN — sealed recipe exists but no arm receipt carries its sha256 yet; the next sitting runs the bench before any cross-arm timing claim is decision-grade"
+ },
+ "finding": "Rev 6 verdict: ADOPT WITH CHANGES (add sealed-recipe per arm). This extension implements that change; until both arms' receipts carry the recipe sha, the ~55% Svelte lean stays an OPINION with the recipe attached, not a measurement."
+}

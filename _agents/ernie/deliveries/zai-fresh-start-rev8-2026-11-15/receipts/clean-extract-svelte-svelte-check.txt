@@ -1,0 +1,8 @@
+
+> football-sim-svelte@0.0.1 check
+> svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: /tmp/clean-x/football-sim-svelte
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings

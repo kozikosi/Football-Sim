@@ -1,0 +1,5 @@
+gate-numerals (legacy): 9 raw hit(s), 4 distinct
+  R1 DELIVERY-NOTE.md: cards count quoted 867 but battery JSONs say 871
+  R1 RECEIPT.md: cards count quoted 867 but battery JSONs say 871
+  R1 verified-as-of.json: cards count quoted 867 but battery JSONs say 871
+  R2 DELIVERY-NOTE.md: workarounds quoted 4 vs 6 but RECEIPT.md itemises 4 vs 3

@@ -1,0 +1,4 @@
+
+> football-sim-vue@0.0.0 type-check
+> vue-tsc --build
+
