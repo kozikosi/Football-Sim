@@ -508,7 +508,7 @@ it matters to the user, and a test that would prove it wrong.
 - **The 1,921 board gap is UNKNOWN.** 1,941 + 12 = 1,953 = poolCount is verified; the 32-row gap
   to the board's 1,921 is unexplained (Claude is writing a pool ledger). Do not assert an
   explanation for it.
-- **Live site is w85, not w89.** A wave is only "live" when index.html is replaced with it.
+- **Live site is w89.** A wave is only "live" when index.html is replaced with it (verified by fetch 2026-11-15: WAVE: w89, origin/gh-pages 3e69567c; the earlier w85 was wrong — MUSE wrote it from the ruling without checking the deployment).
 - **Labels:** VERIFIED (you ran it, the receipt is in the text) · REPORTED (someone else says
   so) · INFERRED (reasoned, not run) · UNKNOWN. Do not present a recommendation as a decision.
   Do not present a measurement you did not run as VERIFIED.
@@ -778,3 +778,15 @@ booted, not the boot.** The vanilla boot is a separate check (item 7(iv)), and i
 FAILS. The fix is a build-config change (the crossorigin tags); it needs an owner. The Owner
 is asked whether vanilla file:// is a requirement for Cakepanz or only for the final built
 product; that answer decides whether this is a real un-calling of Slice 3 or a non-issue.
+
+---
+
+## Revision 6 — correction (2026-11-15, MUSE's error — the Owner corrected it)
+
+**The live site is w89, not w85.** MUSE wrote "live site is w85" in the Bounds from the
+ruling (R-10) without checking the deployment. Pickle verified by fetching the live site that
+it serves w89 (WAVE: w89, origin/gh-pages 3e69567c "Publish w89 as live index"); MUSE has now
+verified the same by its own fetch (the live URL returns WAVE: w89; the gh-pages tip is
+3e69567c). The Bounds line now reads "Live site is w89" with the verification noted. **Lesson
+recorded: a ruling is a governance statement, not a deployment fact — verify a deployment fact
+by fetching the deployment before writing it in a prompt.**
