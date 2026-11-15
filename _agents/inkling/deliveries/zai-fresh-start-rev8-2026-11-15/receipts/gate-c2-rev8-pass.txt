@@ -1,0 +1,6 @@
+gate-manifest: 4 manifest file(s) found under .
+manifest CHECKSUMS.txt: 4 entries, 4 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest MANIFEST.txt: 659 entries, 659 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/CHECKSUMS.txt: 360 entries, 360 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/MANIFEST.txt: 0 entries, 0 OK, 0 MISMATCH, 0 MISSING → PASS
+GATE RESULT: PASS — 1023 entries verified across 4 manifest(s)
