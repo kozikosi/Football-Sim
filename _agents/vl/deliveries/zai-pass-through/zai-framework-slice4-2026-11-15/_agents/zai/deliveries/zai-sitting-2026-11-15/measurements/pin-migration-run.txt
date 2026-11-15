@@ -1,0 +1,1176 @@
+== pin migration run — one fixed draft on both engine pins ==
+cwd: /home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15 · cmd: CP_APP=<app tree> CP_REPO=<checkout> node --experimental-strip-types scripts/pin-migration-harness.mjs
+run at: 2026-11-15T06:23:53Z · node v24.22.3 · old pin 4ca9a071 (app tree src/engine, vendored 52/52) · new pin d3bd81d2 (git archive colors/src → mkdtemp scratch, 57 files)
+-- output --
+== pin migration harness — one fixed draft on both pins ==
+seed: 1115 · user team: Chicago Bears (index 20 ) · pool: the delivery tree CSVs (buildPool, same bytes for both pins)
+pool raw rows: 1953 · old-pin draftable: 1921 · new-pin draftable: 1921
+FLEX.QB.FS  old: 10 · new: 12
+draft length: old 1024 picks · new 1024 picks (32 rounds x 32 teams)
+user picks identical (player+slot): 1/32 · differing: 31
+  ov 21: OLD Jaxon Smith-Njigba (WR) → WR1 eff 99 wins 17550.000  |  NEW Josh Allen (QB) → QB eff 99 wins 26000.000
+  ov 44: OLD Fred Warner (ILB) → TE1 eff 92 wins 5000.000  |  NEW Jahmyr Gibbs (RB) → WR1 eff 85 wins 8450.000
+  ov 85: OLD Derrick Henry (RB) → WR2 eff 90 wins 6800.000  |  NEW Kenneth Walker (RB) → WR2 eff 83 wins 4000.000
+  ov 108: OLD Demario Davis (ILB) → TE2 eff 84 wins 1800.000  |  NEW Saquon Barkley (RB) → TE1 eff 85 wins 3250.000
+  ov 149: OLD Talanoa Hufanga (SS) → RB1 eff 83 wins 2500.000  |  NEW Aaron Brewer (C) → OT1 eff 78 wins 3000.000
+  ov 172: OLD Zach Frazier (C) → OT1 eff 85 wins 6500.000  |  NEW Kyren Williams (RB) → RB1 eff 90 wins 4000.000
+  ov 213: OLD Breece Hall (RB) → WR3 eff 83 wins 1000.000  |  NEW Dallas Goedert (TE) → OT2 eff 77 wins 1500.000
+  ov 236: OLD Brandon Aubrey (K) → K eff 86 wins 600.000  |  NEW D'Andre Swift (RB) → WR3 eff 76 wins 300.000
+  ov 277: OLD Jaylen Warren (RB) → RB2 eff 86 wins 1300.000  |  NEW Breece Hall (RB) → RB2 eff 87 wins 1300.000
+  ov 300: OLD Chris Boswell (K) → P eff 85 wins 600.000  |  NEW Erik McCoy (C) → C eff 87 wins 2250.000
+  ov 341: OLD Chase Brown (RB) → FB eff 82 wins 250.000  |  NEW Brandon Aubrey (K) → K eff 86 wins 600.000
+  ov 364: OLD Aaron Jones Sr (RB) → TE3 eff 77 wins 250.000  |  NEW Ashton Jeanty (RB) → TE2 eff 79 wins 1050.000
+  ov 405: OLD Antonio Johnson (SS) → WR4 eff 75 wins 100.000  |  NEW Chris Boswell (K) → P eff 83 wins 500.000
+  ov 428: OLD Jauan Jennings (WR) → CB1 eff 75 wins 1200.000  |  NEW Aaron Jones Sr (RB) → FB eff 83 wins 275.000
+  ov 469: OLD Alohi Gilman (FS) → MIKE eff 76 wins 900.000  |  NEW Bhayshul Tuten (RB) → TE3 eff 75 wins 150.000
+  ov 492: OLD Luther Burden III (WR) → CB2 eff 74 wins 500.000  |  NEW Omarion Hampton (RB) → WR4 eff 69 wins -200.000
+  ov 533: OLD Brian Thomas Jr (WR) → CB3 eff 75 wins 200.000  |  NEW Jacory Croskey-Merritt (RB) → FS eff 68 wins -2400.000
+  ov 556: OLD Ar'Darius Washington (FS) → WILL eff 74 wins 300.000  |  NEW Alvin Kamara (RB) → SS eff 67 wins -2400.000
+  ov 597: OLD Dontayvion Wicks (WR) → DIME eff 74 wins 50.000  |  NEW Cedric Gray (OLB) → DE1 eff 66 wins -5850.000
+  ov 620: OLD Riley Moss (CB) → SAM eff 74 wins 200.000  |  NEW Dane Belton (FS) → WILL eff 72 wins 0.000
+  ov 661: OLD Benjamin St-Juste (CB) → FS eff 77 wins 600.000  |  NEW Andre Cisco (SS) → MIKE eff 71 wins -600.000
+  ov 684: OLD Brandon Stephens (CB) → SS eff 75 wins 0.000  |  NEW Jalen Nailor (WR) → CB1 eff 71 wins -400.000
+  ov 725: OLD Arik Armstead (DT) → OT2 eff 70 wins -600.000  |  NEW Antonio Williams (WR) → CB2 eff 70 wins -750.000
+  ov 748: OLD Caleb Banks (DT) → C eff 72 wins 0.000  |  NEW Caleb Banks (DT) → OG1 eff 70 wins -1200.000
+  ov 789: OLD Bryan Bresee (DT) → OG1 eff 71 wins -400.000  |  NEW Azareye'h Thomas (CB) → CB3 eff 75 wins 200.000
+  ov 812: OLD Christen Miller (DT) → OG2 eff 71 wins -250.000  |  NEW Benjamin Morrison (CB) → DIME eff 75 wins 100.000
+  ov 853: OLD Derrick Barnes (OLB) → DE1 eff 71 wins -1950.000  |  NEW Bud Clark (FS) → SAM eff 69 wins -400.000
+  ov 876: OLD Bobby Brown III (DT) → DT1 eff 74 wins 0.000  |  NEW Ben Powers (OG) → OG2 eff 74 wins 250.000
+  ov 940: OLD Jake Golday (OLB) → DT2 eff 68 wins -1800.000  |  NEW Andrew Billings (DT) → DT1 eff 73 wins 0.000
+  ov 981: OLD Landon Jackson (DT) → DL5 eff 74 wins 0.000  |  NEW Christian Mahogany (OG) → DT2 eff 67 wins -1800.000
+  ov 1004: OLD Cam Ward (QB) → QB eff 73 wins 0.000  |  NEW Derek Barnett (EDGE) → DL5 eff 73 wins 0.000
+flexed user picks: old 24 · new 21
+  OLD ov 44: Fred Warner ILB→TE1 (dest TE) effOvr 92 = ovr − 6
+  OLD ov 85: Derrick Henry RB→WR2 (dest WR) effOvr 90 = ovr − 4
+  OLD ov 108: Demario Davis ILB→TE2 (dest TE) effOvr 84 = ovr − 6
+  OLD ov 149: Talanoa Hufanga SS→RB1 (dest RB) effOvr 83 = ovr − 6
+  OLD ov 172: Zach Frazier C→OT1 (dest OT) effOvr 85 = ovr − 4
+  OLD ov 213: Breece Hall RB→WR3 (dest WR) effOvr 83 = ovr − 4
+  OLD ov 341: Chase Brown RB→FB (dest FB) effOvr 82 = ovr − 2
+  OLD ov 364: Aaron Jones Sr RB→TE3 (dest TE) effOvr 77 = ovr − 6
+  OLD ov 405: Antonio Johnson SS→WR4 (dest WR) effOvr 75 = ovr − 6
+  OLD ov 428: Jauan Jennings WR→CB1 (dest CB) effOvr 75 = ovr − 6
+  OLD ov 469: Alohi Gilman FS→MIKE (dest ILB) effOvr 76 = ovr − 4
+  OLD ov 492: Luther Burden III WR→CB2 (dest CB) effOvr 74 = ovr − 6
+  OLD ov 533: Brian Thomas Jr WR→CB3 (dest NICKEL) effOvr 75 = ovr − 4
+  OLD ov 556: Ar'Darius Washington FS→WILL (dest OLB) effOvr 74 = ovr − 4
+  OLD ov 597: Dontayvion Wicks WR→DIME (dest DIME) effOvr 74 = ovr − 4
+  OLD ov 620: Riley Moss CB→SAM (dest OLB) effOvr 74 = ovr − 4
+  OLD ov 684: Brandon Stephens CB→SS (dest SS) effOvr 75 = ovr − 2
+  OLD ov 725: Arik Armstead DT→OT2 (dest OT) effOvr 70 = ovr − 6
+  OLD ov 748: Caleb Banks DT→C (dest C) effOvr 72 = ovr − 4
+  OLD ov 789: Bryan Bresee DT→OG1 (dest OG) effOvr 71 = ovr − 4
+  OLD ov 812: Christen Miller DT→OG2 (dest OG) effOvr 71 = ovr − 4
+  OLD ov 853: Derrick Barnes OLB→DE1 (dest EDGE) effOvr 71 = ovr − 4
+  OLD ov 917: Demetrius Knight Jr OLB→DE2 (dest EDGE) effOvr 70 = ovr − 4
+  OLD ov 940: Jake Golday OLB→DT2 (dest DT) effOvr 68 = ovr − 6
+  NEW ov 44: Jahmyr Gibbs RB→WR1 (dest WR) effOvr 85 = ovr − 12
+  NEW ov 85: Kenneth Walker RB→WR2 (dest WR) effOvr 83 = ovr − 12
+  NEW ov 108: Saquon Barkley RB→TE1 (dest TE) effOvr 85 = ovr − 6
+  NEW ov 149: Aaron Brewer C→OT1 (dest OT) effOvr 78 = ovr − 12
+  NEW ov 213: Dallas Goedert TE→OT2 (dest OT) effOvr 77 = ovr − 12
+  NEW ov 236: D'Andre Swift RB→WR3 (dest WR) effOvr 76 = ovr − 12
+  NEW ov 364: Ashton Jeanty RB→TE2 (dest TE) effOvr 79 = ovr − 6
+  NEW ov 405: Chris Boswell K→P (dest P) effOvr 83 = ovr − 2
+  NEW ov 469: Bhayshul Tuten RB→TE3 (dest TE) effOvr 75 = ovr − 6
+  NEW ov 492: Omarion Hampton RB→WR4 (dest WR) effOvr 69 = ovr − 12
+  NEW ov 533: Jacory Croskey-Merritt RB→FS (dest FS) effOvr 68 = ovr − 12
+  NEW ov 556: Alvin Kamara RB→SS (dest SS) effOvr 67 = ovr − 12
+  NEW ov 597: Cedric Gray OLB→DE1 (dest EDGE) effOvr 66 = ovr − 12
+  NEW ov 620: Dane Belton FS→WILL (dest OLB) effOvr 72 = ovr − 6
+  NEW ov 661: Andre Cisco SS→MIKE (dest ILB) effOvr 71 = ovr − 6
+  NEW ov 684: Jalen Nailor WR→CB1 (dest CB) effOvr 71 = ovr − 6
+  NEW ov 725: Antonio Williams WR→CB2 (dest CB) effOvr 70 = ovr − 6
+  NEW ov 748: Caleb Banks DT→OG1 (dest OG) effOvr 70 = ovr − 6
+  NEW ov 853: Bud Clark FS→SAM (dest OLB) effOvr 69 = ovr − 6
+  NEW ov 917: Demetrius Knight Jr OLB→DE2 (dest EDGE) effOvr 62 = ovr − 12
+  NEW ov 981: Christian Mahogany OG→DT2 (dest DT) effOvr 67 = ovr − 6
+user picks same player AND same slot on both pins: 3
+  Brandon Aubrey @ K: OLD eff 86 wins 600.000 | NEW eff 86 wins 600.000 (same)
+  Chris Boswell @ P: OLD eff 85 wins 600.000 | NEW eff 83 wins 500.000 (DIFFERS)
+  Demetrius Knight Jr @ DE2: OLD eff 70 wins -900.000 | NEW eff 62 wins -3300.000 (DIFFERS)
+
+JSON
+{
+ "seed": 1115,
+ "userTeam": "Chicago Bears",
+ "old": {
+  "label": "old 4ca9a071",
+  "root": "/home/z/my-project/Football-Sim/wt/zai/_agents/zai/deliveries/zai-sitting-2026-11-15/67-cakepanz-s3-s4-rev2/src/engine",
+  "poolRaw": 1953,
+  "poolDraftable": 897,
+  "qbFsPenalty": 10,
+  "userTeam": 20,
+  "userPicks": [
+   {
+    "overall": 21,
+    "round": 1,
+    "pid": "nfl-p00002",
+    "name": "Jaxon Smith-Njigba",
+    "role": "WR",
+    "slot": "WR1",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 99,
+    "wins": 17550,
+    "flexed": false,
+    "poolLeft": 1901
+   },
+   {
+    "overall": 44,
+    "round": 2,
+    "pid": "nfl-p00008",
+    "name": "Fred Warner",
+    "role": "ILB",
+    "slot": "TE1",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 92,
+    "wins": 5000,
+    "flexed": true,
+    "poolLeft": 1878
+   },
+   {
+    "overall": 85,
+    "round": 3,
+    "pid": "nfl-p00044",
+    "name": "Derrick Henry",
+    "role": "RB",
+    "slot": "WR2",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 90,
+    "wins": 6800,
+    "flexed": true,
+    "poolLeft": 1837
+   },
+   {
+    "overall": 108,
+    "round": 4,
+    "pid": "nfl-p00083",
+    "name": "Demario Davis",
+    "role": "ILB",
+    "slot": "TE2",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 84,
+    "wins": 1800,
+    "flexed": true,
+    "poolLeft": 1814
+   },
+   {
+    "overall": 149,
+    "round": 5,
+    "pid": "nfl-p00103",
+    "name": "Talanoa Hufanga",
+    "role": "SS",
+    "slot": "RB1",
+    "dest": "RB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 83,
+    "wins": 2500,
+    "flexed": true,
+    "poolLeft": 1773
+   },
+   {
+    "overall": 172,
+    "round": 6,
+    "pid": "nfl-p00106",
+    "name": "Zach Frazier",
+    "role": "C",
+    "slot": "OT1",
+    "dest": "OT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 85,
+    "wins": 6500,
+    "flexed": true,
+    "poolLeft": 1750
+   },
+   {
+    "overall": 213,
+    "round": 7,
+    "pid": "nfl-p00127",
+    "name": "Breece Hall",
+    "role": "RB",
+    "slot": "WR3",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 83,
+    "wins": 1000,
+    "flexed": true,
+    "poolLeft": 1709
+   },
+   {
+    "overall": 236,
+    "round": 8,
+    "pid": "nfl-p00153",
+    "name": "Brandon Aubrey",
+    "role": "K",
+    "slot": "K",
+    "dest": "K",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 86,
+    "wins": 600,
+    "flexed": false,
+    "poolLeft": 1686
+   },
+   {
+    "overall": 277,
+    "round": 9,
+    "pid": "nfl-p00160",
+    "name": "Jaylen Warren",
+    "role": "RB",
+    "slot": "RB2",
+    "dest": "RB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 86,
+    "wins": 1300,
+    "flexed": false,
+    "poolLeft": 1645
+   },
+   {
+    "overall": 300,
+    "round": 10,
+    "pid": "nfl-p00179",
+    "name": "Chris Boswell",
+    "role": "K",
+    "slot": "P",
+    "dest": "P",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 85,
+    "wins": 600,
+    "flexed": false,
+    "poolLeft": 1622
+   },
+   {
+    "overall": 341,
+    "round": 11,
+    "pid": "nfl-p00205",
+    "name": "Chase Brown",
+    "role": "RB",
+    "slot": "FB",
+    "dest": "FB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 2,
+    "eff": 82,
+    "wins": 250,
+    "flexed": true,
+    "poolLeft": 1581
+   },
+   {
+    "overall": 364,
+    "round": 12,
+    "pid": "nfl-p00233",
+    "name": "Aaron Jones Sr",
+    "role": "RB",
+    "slot": "TE3",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 77,
+    "wins": 250,
+    "flexed": true,
+    "poolLeft": 1558
+   },
+   {
+    "overall": 405,
+    "round": 13,
+    "pid": "nfl-p00314",
+    "name": "Antonio Johnson",
+    "role": "SS",
+    "slot": "WR4",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 75,
+    "wins": 100,
+    "flexed": true,
+    "poolLeft": 1517
+   },
+   {
+    "overall": 428,
+    "round": 14,
+    "pid": "nfl-p00333",
+    "name": "Jauan Jennings",
+    "role": "WR",
+    "slot": "CB1",
+    "dest": "CB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 75,
+    "wins": 1200,
+    "flexed": true,
+    "poolLeft": 1494
+   },
+   {
+    "overall": 469,
+    "round": 15,
+    "pid": "nfl-p00362",
+    "name": "Alohi Gilman",
+    "role": "FS",
+    "slot": "MIKE",
+    "dest": "ILB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 76,
+    "wins": 900,
+    "flexed": true,
+    "poolLeft": 1453
+   },
+   {
+    "overall": 492,
+    "round": 16,
+    "pid": "nfl-p00400",
+    "name": "Luther Burden III",
+    "role": "WR",
+    "slot": "CB2",
+    "dest": "CB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 74,
+    "wins": 500,
+    "flexed": true,
+    "poolLeft": 1430
+   },
+   {
+    "overall": 533,
+    "round": 17,
+    "pid": "nfl-p00423",
+    "name": "Brian Thomas Jr",
+    "role": "WR",
+    "slot": "CB3",
+    "dest": "NICKEL",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 75,
+    "wins": 200,
+    "flexed": true,
+    "poolLeft": 1389
+   },
+   {
+    "overall": 556,
+    "round": 18,
+    "pid": "nfl-p00479",
+    "name": "Ar'Darius Washington",
+    "role": "FS",
+    "slot": "WILL",
+    "dest": "OLB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 74,
+    "wins": 300,
+    "flexed": true,
+    "poolLeft": 1366
+   },
+   {
+    "overall": 597,
+    "round": 19,
+    "pid": "nfl-p00495",
+    "name": "Dontayvion Wicks",
+    "role": "WR",
+    "slot": "DIME",
+    "dest": "DIME",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 74,
+    "wins": 50,
+    "flexed": true,
+    "poolLeft": 1325
+   },
+   {
+    "overall": 620,
+    "round": 20,
+    "pid": "nfl-p00528",
+    "name": "Riley Moss",
+    "role": "CB",
+    "slot": "SAM",
+    "dest": "OLB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 74,
+    "wins": 200,
+    "flexed": true,
+    "poolLeft": 1302
+   },
+   {
+    "overall": 661,
+    "round": 21,
+    "pid": "nfl-p00550",
+    "name": "Benjamin St-Juste",
+    "role": "CB",
+    "slot": "FS",
+    "dest": "FS",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 77,
+    "wins": 600,
+    "flexed": false,
+    "poolLeft": 1261
+   },
+   {
+    "overall": 684,
+    "round": 22,
+    "pid": "nfl-p00552",
+    "name": "Brandon Stephens",
+    "role": "CB",
+    "slot": "SS",
+    "dest": "SS",
+    "legal": true,
+    "emergency": false,
+    "penalty": 2,
+    "eff": 75,
+    "wins": 0,
+    "flexed": true,
+    "poolLeft": 1238
+   },
+   {
+    "overall": 725,
+    "round": 23,
+    "pid": "nfl-p00628",
+    "name": "Arik Armstead",
+    "role": "DT",
+    "slot": "OT2",
+    "dest": "OT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 70,
+    "wins": -600,
+    "flexed": true,
+    "poolLeft": 1197
+   },
+   {
+    "overall": 748,
+    "round": 24,
+    "pid": "nfl-p00636",
+    "name": "Caleb Banks",
+    "role": "DT",
+    "slot": "C",
+    "dest": "C",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 72,
+    "wins": 0,
+    "flexed": true,
+    "poolLeft": 1174
+   },
+   {
+    "overall": 789,
+    "round": 25,
+    "pid": "nfl-p00732",
+    "name": "Bryan Bresee",
+    "role": "DT",
+    "slot": "OG1",
+    "dest": "OG",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 71,
+    "wins": -400,
+    "flexed": true,
+    "poolLeft": 1133
+   },
+   {
+    "overall": 812,
+    "round": 26,
+    "pid": "nfl-p00741",
+    "name": "Christen Miller",
+    "role": "DT",
+    "slot": "OG2",
+    "dest": "OG",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 71,
+    "wins": -250,
+    "flexed": true,
+    "poolLeft": 1110
+   },
+   {
+    "overall": 853,
+    "round": 27,
+    "pid": "nfl-p00753",
+    "name": "Derrick Barnes",
+    "role": "OLB",
+    "slot": "DE1",
+    "dest": "EDGE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 71,
+    "wins": -1950,
+    "flexed": true,
+    "poolLeft": 1069
+   },
+   {
+    "overall": 876,
+    "round": 28,
+    "pid": "nfl-p00833",
+    "name": "Bobby Brown III",
+    "role": "DT",
+    "slot": "DT1",
+    "dest": "DT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 74,
+    "wins": 0,
+    "flexed": false,
+    "poolLeft": 1046
+   },
+   {
+    "overall": 917,
+    "round": 29,
+    "pid": "nfl-p00851",
+    "name": "Demetrius Knight Jr",
+    "role": "OLB",
+    "slot": "DE2",
+    "dest": "EDGE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 4,
+    "eff": 70,
+    "wins": -900,
+    "flexed": true,
+    "poolLeft": 1005
+   },
+   {
+    "overall": 940,
+    "round": 30,
+    "pid": "nfl-p00867",
+    "name": "Jake Golday",
+    "role": "OLB",
+    "slot": "DT2",
+    "dest": "DT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 68,
+    "wins": -1800,
+    "flexed": true,
+    "poolLeft": 982
+   },
+   {
+    "overall": 981,
+    "round": 31,
+    "pid": "nfl-p00884",
+    "name": "Landon Jackson",
+    "role": "DT",
+    "slot": "DL5",
+    "dest": "DL5",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 74,
+    "wins": 0,
+    "flexed": false,
+    "poolLeft": 941
+   },
+   {
+    "overall": 1004,
+    "round": 32,
+    "pid": "nfl-p00934",
+    "name": "Cam Ward",
+    "role": "QB",
+    "slot": "QB",
+    "dest": "QB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 73,
+    "wins": 0,
+    "flexed": false,
+    "poolLeft": 918
+   }
+  ],
+  "picksTotal": 1024,
+  "firstAdvice": {
+   "overall": 21,
+   "round": 1,
+   "pid": "nfl-p00002",
+   "name": "Jaxon Smith-Njigba",
+   "role": "WR",
+   "slot": "WR1",
+   "dest": "WR",
+   "legal": true,
+   "emergency": false,
+   "penalty": 0,
+   "eff": 99,
+   "wins": 17550,
+   "flexed": false,
+   "poolLeft": 1901
+  }
+ },
+ "new": {
+  "label": "new d3bd81d2",
+  "root": "/tmp/pin-d3bd81d2-qiLPCu/colors/src",
+  "poolRaw": 1953,
+  "poolDraftable": 897,
+  "qbFsPenalty": 12,
+  "userTeam": 20,
+  "userPicks": [
+   {
+    "overall": 21,
+    "round": 1,
+    "pid": "nfl-p00003",
+    "name": "Josh Allen",
+    "role": "QB",
+    "slot": "QB",
+    "dest": "QB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 99,
+    "wins": 26000,
+    "flexed": false,
+    "poolLeft": 1901
+   },
+   {
+    "overall": 44,
+    "round": 2,
+    "pid": "nfl-p00015",
+    "name": "Jahmyr Gibbs",
+    "role": "RB",
+    "slot": "WR1",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 85,
+    "wins": 8450,
+    "flexed": true,
+    "poolLeft": 1878
+   },
+   {
+    "overall": 85,
+    "round": 3,
+    "pid": "nfl-p00036",
+    "name": "Kenneth Walker",
+    "role": "RB",
+    "slot": "WR2",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 83,
+    "wins": 4000,
+    "flexed": true,
+    "poolLeft": 1837
+   },
+   {
+    "overall": 108,
+    "round": 4,
+    "pid": "nfl-p00078",
+    "name": "Saquon Barkley",
+    "role": "RB",
+    "slot": "TE1",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 85,
+    "wins": 3250,
+    "flexed": true,
+    "poolLeft": 1814
+   },
+   {
+    "overall": 149,
+    "round": 5,
+    "pid": "nfl-p00079",
+    "name": "Aaron Brewer",
+    "role": "C",
+    "slot": "OT1",
+    "dest": "OT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 78,
+    "wins": 3000,
+    "flexed": true,
+    "poolLeft": 1773
+   },
+   {
+    "overall": 172,
+    "round": 6,
+    "pid": "nfl-p00086",
+    "name": "Kyren Williams",
+    "role": "RB",
+    "slot": "RB1",
+    "dest": "RB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 90,
+    "wins": 4000,
+    "flexed": false,
+    "poolLeft": 1750
+   },
+   {
+    "overall": 213,
+    "round": 7,
+    "pid": "nfl-p00096",
+    "name": "Dallas Goedert",
+    "role": "TE",
+    "slot": "OT2",
+    "dest": "OT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 77,
+    "wins": 1500,
+    "flexed": true,
+    "poolLeft": 1709
+   },
+   {
+    "overall": 236,
+    "round": 8,
+    "pid": "nfl-p00112",
+    "name": "D'Andre Swift",
+    "role": "RB",
+    "slot": "WR3",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 76,
+    "wins": 300,
+    "flexed": true,
+    "poolLeft": 1686
+   },
+   {
+    "overall": 277,
+    "round": 9,
+    "pid": "nfl-p00127",
+    "name": "Breece Hall",
+    "role": "RB",
+    "slot": "RB2",
+    "dest": "RB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 87,
+    "wins": 1300,
+    "flexed": false,
+    "poolLeft": 1645
+   },
+   {
+    "overall": 300,
+    "round": 10,
+    "pid": "nfl-p00135",
+    "name": "Erik McCoy",
+    "role": "C",
+    "slot": "C",
+    "dest": "C",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 87,
+    "wins": 2250,
+    "flexed": false,
+    "poolLeft": 1622
+   },
+   {
+    "overall": 341,
+    "round": 11,
+    "pid": "nfl-p00153",
+    "name": "Brandon Aubrey",
+    "role": "K",
+    "slot": "K",
+    "dest": "K",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 86,
+    "wins": 600,
+    "flexed": false,
+    "poolLeft": 1581
+   },
+   {
+    "overall": 364,
+    "round": 12,
+    "pid": "nfl-p00173",
+    "name": "Ashton Jeanty",
+    "role": "RB",
+    "slot": "TE2",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 79,
+    "wins": 1050,
+    "flexed": true,
+    "poolLeft": 1558
+   },
+   {
+    "overall": 405,
+    "round": 13,
+    "pid": "nfl-p00179",
+    "name": "Chris Boswell",
+    "role": "K",
+    "slot": "P",
+    "dest": "P",
+    "legal": true,
+    "emergency": false,
+    "penalty": 2,
+    "eff": 83,
+    "wins": 500,
+    "flexed": true,
+    "poolLeft": 1517
+   },
+   {
+    "overall": 428,
+    "round": 14,
+    "pid": "nfl-p00233",
+    "name": "Aaron Jones Sr",
+    "role": "RB",
+    "slot": "FB",
+    "dest": "FB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 83,
+    "wins": 275,
+    "flexed": false,
+    "poolLeft": 1494
+   },
+   {
+    "overall": 469,
+    "round": 15,
+    "pid": "nfl-p00315",
+    "name": "Bhayshul Tuten",
+    "role": "RB",
+    "slot": "TE3",
+    "dest": "TE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 75,
+    "wins": 150,
+    "flexed": true,
+    "poolLeft": 1453
+   },
+   {
+    "overall": 492,
+    "round": 16,
+    "pid": "nfl-p00347",
+    "name": "Omarion Hampton",
+    "role": "RB",
+    "slot": "WR4",
+    "dest": "WR",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 69,
+    "wins": -200,
+    "flexed": true,
+    "poolLeft": 1430
+   },
+   {
+    "overall": 533,
+    "round": 17,
+    "pid": "nfl-p00384",
+    "name": "Jacory Croskey-Merritt",
+    "role": "RB",
+    "slot": "FS",
+    "dest": "FS",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 68,
+    "wins": -2400,
+    "flexed": true,
+    "poolLeft": 1389
+   },
+   {
+    "overall": 556,
+    "round": 18,
+    "pid": "nfl-p00415",
+    "name": "Alvin Kamara",
+    "role": "RB",
+    "slot": "SS",
+    "dest": "SS",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 67,
+    "wins": -2400,
+    "flexed": true,
+    "poolLeft": 1366
+   },
+   {
+    "overall": 597,
+    "round": 19,
+    "pid": "nfl-p00485",
+    "name": "Cedric Gray",
+    "role": "OLB",
+    "slot": "DE1",
+    "dest": "EDGE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 66,
+    "wins": -5850,
+    "flexed": true,
+    "poolLeft": 1325
+   },
+   {
+    "overall": 620,
+    "round": 20,
+    "pid": "nfl-p00490",
+    "name": "Dane Belton",
+    "role": "FS",
+    "slot": "WILL",
+    "dest": "OLB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 72,
+    "wins": 0,
+    "flexed": true,
+    "poolLeft": 1302
+   },
+   {
+    "overall": 661,
+    "round": 21,
+    "pid": "nfl-p00547",
+    "name": "Andre Cisco",
+    "role": "SS",
+    "slot": "MIKE",
+    "dest": "ILB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 71,
+    "wins": -600,
+    "flexed": true,
+    "poolLeft": 1261
+   },
+   {
+    "overall": 684,
+    "round": 22,
+    "pid": "nfl-p00575",
+    "name": "Jalen Nailor",
+    "role": "WR",
+    "slot": "CB1",
+    "dest": "CB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 71,
+    "wins": -400,
+    "flexed": true,
+    "poolLeft": 1238
+   },
+   {
+    "overall": 725,
+    "round": 23,
+    "pid": "nfl-p00627",
+    "name": "Antonio Williams",
+    "role": "WR",
+    "slot": "CB2",
+    "dest": "CB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 70,
+    "wins": -750,
+    "flexed": true,
+    "poolLeft": 1197
+   },
+   {
+    "overall": 748,
+    "round": 24,
+    "pid": "nfl-p00636",
+    "name": "Caleb Banks",
+    "role": "DT",
+    "slot": "OG1",
+    "dest": "OG",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 70,
+    "wins": -1200,
+    "flexed": true,
+    "poolLeft": 1174
+   },
+   {
+    "overall": 789,
+    "round": 25,
+    "pid": "nfl-p00726",
+    "name": "Azareye'h Thomas",
+    "role": "CB",
+    "slot": "CB3",
+    "dest": "NICKEL",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 75,
+    "wins": 200,
+    "flexed": false,
+    "poolLeft": 1133
+   },
+   {
+    "overall": 812,
+    "round": 26,
+    "pid": "nfl-p00727",
+    "name": "Benjamin Morrison",
+    "role": "CB",
+    "slot": "DIME",
+    "dest": "DIME",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 75,
+    "wins": 100,
+    "flexed": false,
+    "poolLeft": 1110
+   },
+   {
+    "overall": 853,
+    "round": 27,
+    "pid": "nfl-p00733",
+    "name": "Bud Clark",
+    "role": "FS",
+    "slot": "SAM",
+    "dest": "OLB",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 69,
+    "wins": -400,
+    "flexed": true,
+    "poolLeft": 1069
+   },
+   {
+    "overall": 876,
+    "round": 28,
+    "pid": "nfl-p00831",
+    "name": "Ben Powers",
+    "role": "OG",
+    "slot": "OG2",
+    "dest": "OG",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 74,
+    "wins": 250,
+    "flexed": false,
+    "poolLeft": 1046
+   },
+   {
+    "overall": 917,
+    "round": 29,
+    "pid": "nfl-p00851",
+    "name": "Demetrius Knight Jr",
+    "role": "OLB",
+    "slot": "DE2",
+    "dest": "EDGE",
+    "legal": true,
+    "emergency": false,
+    "penalty": 12,
+    "eff": 62,
+    "wins": -3300,
+    "flexed": true,
+    "poolLeft": 1005
+   },
+   {
+    "overall": 940,
+    "round": 30,
+    "pid": "nfl-p00923",
+    "name": "Andrew Billings",
+    "role": "DT",
+    "slot": "DT1",
+    "dest": "DT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 73,
+    "wins": 0,
+    "flexed": false,
+    "poolLeft": 982
+   },
+   {
+    "overall": 981,
+    "round": 31,
+    "pid": "nfl-p00940",
+    "name": "Christian Mahogany",
+    "role": "OG",
+    "slot": "DT2",
+    "dest": "DT",
+    "legal": true,
+    "emergency": false,
+    "penalty": 6,
+    "eff": 67,
+    "wins": -1800,
+    "flexed": true,
+    "poolLeft": 941
+   },
+   {
+    "overall": 1004,
+    "round": 32,
+    "pid": "nfl-p00948",
+    "name": "Derek Barnett",
+    "role": "EDGE",
+    "slot": "DL5",
+    "dest": "DL5",
+    "legal": true,
+    "emergency": false,
+    "penalty": 0,
+    "eff": 73,
+    "wins": 0,
+    "flexed": false,
+    "poolLeft": 918
+   }
+  ],
+  "picksTotal": 1024,
+  "firstAdvice": {
+   "overall": 21,
+   "round": 1,
+   "pid": "nfl-p00003",
+   "name": "Josh Allen",
+   "role": "QB",
+   "slot": "QB",
+   "dest": "QB",
+   "legal": true,
+   "emergency": false,
+   "penalty": 0,
+   "eff": 99,
+   "wins": 26000,
+   "flexed": false,
+   "poolLeft": 1901
+  }
+ }
+}
+-- end --
