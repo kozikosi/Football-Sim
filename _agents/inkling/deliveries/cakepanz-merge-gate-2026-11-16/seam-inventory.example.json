@@ -1,0 +1,56 @@
+{
+  "generatedFrom": "d3bd81d2 (git archive)",
+  "engine": "d3bd81d25f01c519bad8688ffbdc4a57130f9d11",
+  "entries": [
+    {
+      "vm": "boardVM (board rows/sorts)",
+      "file": "sports/nfl/view/draftBoard.ts",
+      "sha256": "cb7b12434f3ae757a03a4bac47ac10fec6efe2cf41d72bcb83a85ce86bae39d8"
+    },
+    {
+      "vm": "goneOdds (the gone% computation)",
+      "file": "sports/nfl/engine/goneodds.ts",
+      "sha256": "90c8f44ce4766ce109faa98f488d5dbce8282adcc928a0e538843c492bde3b23"
+    },
+    {
+      "vm": "selectors (boardVM wiring for the app)",
+      "file": "sports/nfl/app/selectors.ts",
+      "sha256": "800ec99cfcd393f88364fb1ff993deeb57895724d041a4368481c2e663d6a129"
+    },
+    {
+      "vm": "makeDraftOrder target: draft engine",
+      "file": "sports/nfl/engine/draft.ts",
+      "sha256": "30750394dd24689f6c81e3303193db630fc140d1294925e54268ff38eedcb64b"
+    },
+    {
+      "vm": "flexion table (flex costs)",
+      "file": "sports/nfl/engine/flex.ts",
+      "sha256": "76ebea5e2b6ffb4495866c5ec281d8cc21de8d346f7aa5691dab1a447484f3e2"
+    },
+    {
+      "vm": "slot defs + SLOTS",
+      "file": "sports/nfl/engine/slots.ts",
+      "sha256": "0d5479a109a94df57b85b3b6e20215cfcd4b1512c5dc228208d292ef05d3d22a"
+    },
+    {
+      "vm": "league alignment (teams/divisions)",
+      "file": "sports/nfl/engine/league.ts",
+      "sha256": "3e29c57676981041215f65920855b9734f1af474556319bc5852d9317743ccb3"
+    },
+    {
+      "vm": "store reducer (PICK/UNDO)",
+      "file": "sports/nfl/app/store.ts",
+      "sha256": "5ca2525ab571952d6737a8963d75430d30416725b0b5038cc264d3cf8feed9ba"
+    },
+    {
+      "vm": "save envelopes (serialize/restore)",
+      "file": "sports/nfl/app/saves.ts",
+      "sha256": "212e213c9c57d45fb4c91fa6725227e3a984ccfc901fe30f91dea35c8f0fe6f8"
+    },
+    {
+      "vm": "season run (startSeason/playWeek/table)",
+      "file": "sports/nfl/engine/seasonrun.ts",
+      "sha256": "fd33950186a8db6bcc0f7aec01709b9f66ee35e99c4b32386dada5318f1f072a"
+    }
+  ]
+}
