@@ -1,0 +1,13 @@
+import { pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
+const _req = createRequire(import.meta.url);
+const pw = _req('playwright');
+const browser = await pw.chromium.launch({ args: ['--no-sandbox'] });
+const page = await browser.newPage();
+page.on('console', (m) => console.log('CONSOLE', m.type(), m.text().slice(0, 200)));
+page.on('pageerror', (e) => console.log('PAGEERROR', String(e).slice(0, 300)));
+page.on('requestfailed', (r) => console.log('REQFAIL', r.url().slice(-60), r.failure()?.errorText));
+await page.goto(pathToFileURL(process.argv[2]).href);
+await page.waitForTimeout(2500);
+console.log('html has app-shell:', (await page.content()).includes('app-shell'));
+await browser.close();

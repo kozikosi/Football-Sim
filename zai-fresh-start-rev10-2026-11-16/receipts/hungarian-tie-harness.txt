@@ -1,0 +1,14 @@
+seed=20261116 · 300 matrices (4x4/5x5 alternating, integer costs 0-9)
+cost equal to brute force on 300/300 (both tie-rule variants)
+assignment differs between the tie rules on 25/300
+
+first differing 4x4 case (trial 12) — the §5 proposal's pinned permutation:
+  [ 2, 2, 3, 0 ]
+  [ 9, 5, 5, 3 ]
+  [ 0, 9, 0, 7 ]
+  [ 3, 9, 3, 4 ]
+  variant A (<)  returns: r0->c1 r1->c3 r2->c0 r3->c2  (cost 8)
+  variant B (<=) returns: r0->c3 r1->c1 r2->c2 r3->c0  (cost 8)
+  optimal permutations (brute force, 4): r0->c1 r1->c3 r2->c0 r3->c2 | r0->c1 r1->c3 r2->c2 r3->c0 | r0->c3 r1->c1 r2->c0 r3->c2 | r0->c3 r1->c1 r2->c2 r3->c0
+  saved: /tmp/hungarian-tie/first-diff-4x4.json
+done — the cost guarantee holds for BOTH tie rules; only the assignment differs

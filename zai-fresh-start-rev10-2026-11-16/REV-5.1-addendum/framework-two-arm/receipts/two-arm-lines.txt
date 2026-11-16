@@ -1,0 +1,14 @@
+== two-arm line counts — the maintainability proxy ==
+MEASURED AT (F4 date-stamp, added Rev 5.1): the two-slice tree of 2026-11-15 BEFORE slice 5 / arc / season —
+the "engine (52 files)" line below reflects THAT tree. Shipped tree: engine is 57 files at pin d3bd81d2
+(diff -rq clean, verified by Inkling and Ernie). Read the shipped counts from CATEGORY-WINNERS.md row 9.
+framework-owned app code (the view): entry + root + panel. Excluded as shared identical bytes: engine (52 files, diff -rq clean across arms), feedVM/abbr/ink/bootData.ts, feed.css (the chrome).
+arm-vue/src/main.ts: 5 lines (4 non-blank)
+arm-vue/src/App.vue: 20 lines (18 non-blank)
+arm-vue/src/components/FeedPanel.vue: 74 lines (66 non-blank)
+arm-svelte/src/main.ts: 6 lines (5 non-blank)
+arm-svelte/src/App.svelte: 18 lines (16 non-blank)
+arm-svelte/src/lib/screens/FeedPanel.svelte: 79 lines (73 non-blank)
+shared bytes check:
+vue totals: 99 lines (88 non-blank) · svelte totals: 103 lines (94 non-blank)
+engine: identical 52/52 across arms

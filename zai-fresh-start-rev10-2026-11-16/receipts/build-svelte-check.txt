@@ -1,0 +1,17 @@
+# receipt — Rev 10 (A1/B): every §2 line carries a receipt
+# command: npm run check
+# cwd (in-tree, relative): football-sim-svelte
+# node = v24.22.3
+# captured by scripts/make-build-receipts.mjs
+
+--- output (stdout + stderr, verbatim) ---
+
+> football-sim-svelte@0.0.1 check
+> svelte-check --tsconfig ./tsconfig.json
+
+Loading svelte-check in workspace: /tmp/work/rev10/football-sim-svelte
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings
+
+--- exit code: 0 (wall 3.8s) ---

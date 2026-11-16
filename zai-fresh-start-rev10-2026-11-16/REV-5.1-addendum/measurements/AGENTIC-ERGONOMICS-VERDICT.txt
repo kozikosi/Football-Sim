@@ -1,0 +1,83 @@
+== AGENTIC-ERGONOMICS-VERDICT.txt — the verdict file (item 11) ==
+Seat: Z.ai · 2026-11-15 · pin d3bd81d2 · within-agent protocol (measurements/PROTOCOL-FOR-A-SECOND-AGENT.md)
+
+== HEADLINE (D7, amended to carry the confound caveat — the headline is what gets quoted) ==
+**Vue 3 + Vite, narrow, 62% — authoring-cost row confounded by probe inheritance; second agent required to harden.**
+
+== The Vue arm — honest verdict ==
+Vue 3 + Vite authored everything this sitting asked of it with zero build failures on its own side, zero
+type errors across two slices (vue-tsc, strict), zero workaround lines, and the smallest store file —
+and its one real fight (vapor mode) was fought entirely in BUILD CONFIGURATION, not app code: three
+builds to find features.vapor + the createVaporApp entry, after which the whole four-slice surface ran
+pure-vapor with the vdom renderer gone and every law still green (receipts/vapor-mode-bundle.txt — the
+falsifier ran and did NOT fire: 10.7 kB gz gap, statistically unchanged from 10.9 kB). The two numbers
+that say "easy": 0 errors / 0 failed app builds across ~140 framework-owned lines (slice5-timing.txt,
+season-timing.txt), and 0 scratch checks to re-enter for the season slice. What would change it: if the
+season/offseason work turns the store into many module-level reactive caches, Vue's edge (row 9) shrinks
+by attrition rather than defeat — watch the store-file line counts next sittings.
+
+== The Svelte arm — honest verdict ==
+Svelte 5 + Vite was FASTER on the measure-mostly-everything rows that moved at all (HMR 29 ms vs 60 ms;
+its first-arm season authoring green in ~7 min including the probe) and its checker is the sitting's
+genuine maintenance win — svelte-check caught two real a11y gaps on markup vue-tsc waved through, with
+file:line coordinates, prose, and rule URLs (slice5-timing.txt). Its costs were the compiler's state
+model: the module-reassigned-$state getter-wrapper idiom is real, permanent, and was re-paid during the
+arc work (appStore.svelte.ts), and the one authoring-order advantage (0 probe-failure cost as the second
+slice-5 arm) is recorded as exactly that, not as framework speed (slice5-timing.txt, first_working_iterations).
+What would change it: a store-light product (no new module-level reactive exports) removes most of row 9's
+tax; a second sitting where svelte-check's warnings start being false positives would flip row 4/6.
+
+== (1) The winner across the board ==
+**Vue 3 + Vite — by a margin the record itself calls narrow; the two numbers that say so:**
+  • the store file + the compiler-forced module-boundary idiom — BOTH NUMBERS LABELLED (D1/F2):
+    shipped store totals appStore.ts **83 L** vs appStore.svelte.ts **98 L** (wc -l, delivered tree);
+    the four-slice receipt's 61 L vs 68 L (two-arm-fourslice.txt, whole store file). Delta 7 → 15 as
+    shipped. Surface fact (F3): the delivered surface is an exact tie, 1,249 = 1,249 framework-owned
+    lines, so the shipped tax is 1.2% of the surface — the row decides on STRUCTURE, not volume.
+    Cost restated per F5: the boundary forces ONE facade, paid once — not one wrapper per export;
+    the wrapper-per-export form was this arm's choice, and the facade's migration cost is the
+    week-stepper's measurement,
+  • and the scoreline of DECIDES rows in CATEGORY-WINNERS.md: Vue 3 narrow rows (9, 8, 24) vs Svelte 2
+    narrow rows (4+6 as one property, 5) — with 18/17/19 (authoring cost, lines, cost-of-being-wrong)
+    measured TIES on ~140 framework-owned lines per arm.
+The honest label: a narrow Vue win on maintainability grounds, NOT a performance verdict — the bundle
+(Svelte's one real number) is demonstrated not to move interactive time (receipts/fourslice-coldload.txt:
+this sitting's independent replication FLIPPED MUSE's direction and stayed inside the noise).
+
+== (2) One-sentence recommendation to the Owner ==
+Ship the next slices on Vue 3 + Vite, keep the Svelte arm's receipts as the standing falsifier, and
+re-run measurements/PROTOCOL-FOR-A-SECOND-AGENT.md with a second agent before signing anything permanent.
+
+== (3) Confidence ==
+**62%.** What moves it 10 points either way: a second agent's within-agent protocol run (up if they
+agree Vue's authoring cost is not worse, down if their numbers show Svelte authoring faster on
+store-heavy work) — plus one store-heavy sitting (week-stepper/saves hydration) actually measured.
+
+== (4) The falsifier, restated with receipt line ==
+"If vapor mode closes the bundle gap to under 5 KB, the bundle criterion dissolves and tooling decides."
+Receipt line (receipts/vapor-mode-bundle.txt): "measured: gap = 10,706 B gz (canonical vdom arm: 10,969 B)
+— the gap did NOT close; it is statistically unchanged". The falsifier was run cleanly (pure-vapor entry,
+probe ALL LAWS PASS) and did NOT fire: the decision stays on authoring cost and tooling.
+
+== (5) Ruling by bundle size vs by agent ergonomics — one person-impact case each ==
+- Ruling by bundle (the failure mode): Svelte wins the bundle by ~10 KB gz; interactive time does not
+  follow it (both coldload runs agree on THAT). Person-impact: every future agent maintainer inherits
+  the getter-wrapper store idiom as the codebase's founding pattern — a permanent comprehension tax paid
+  by the least-resourced maintainer (the non-specialist Owner's own future agent sessions), to buy
+  nothing a user can feel (receipts/fourslice-coldload.txt).
+- Ruling by agent ergonomics alone (the failure mode): the checker row (4/6) is real — Svelte's a11y
+  audit caught what Vue's checker waved through; ruling on ergonomics without a second agent risks
+  baking THIS agent's training-mix fluency into a product decision. Person-impact: a different agent
+  (Ernie's seat) with the opposite corpus fluency re-does the same sitting, gets the opposite narrow
+  verdict, and the project flip-flops ~350 lines per direction per sitting — the Owner's time goes to
+  migrations, not product (the "two agents burn a sitting" outcome MUSE explicitly warned about).
+
+== (6) The risk of ruling now vs at next sitting ==
+Ruling NOW on the authoring evidence: the authoring rows are ties on two slices; the store row is the
+only DECIDES row that separated, and it separated on STRUCTURE (the idiom's existence), not on a
+measured failure — 62% confidence is the honest ceiling. Receipt for waiting: the season slice's
+season-missing-vms.txt names the week-stepper/saves-hydration surface as the NEXT store-heavy build —
+the sitting that actually tests row 9 under load has not run yet. The cost of waiting one sitting is
+one slice built on the still-undecided arm (~350 lines, reversible per MUSE's own accounting); the cost
+of ruling now is a 62% decision carrying a multi-sitting framework commitment. File the verdict, build
+the week-stepper as the tie-breaker sitting, and let the Owner sign after that number exists.

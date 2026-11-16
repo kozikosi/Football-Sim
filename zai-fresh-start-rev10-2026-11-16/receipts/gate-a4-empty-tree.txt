@@ -1,0 +1,4 @@
+# receipt — Rev 10 A4 falsifier: an EMPTY tree must FAIL
+gate-manifest: 0 manifest file(s) found under /tmp/fz-empty
+GATE RESULT: FAIL — no manifest found (a tree with no CHECKSUMS.txt/MANIFEST.txt has nothing to verify; 0 manifest(s) must NOT pass)
+exit=1

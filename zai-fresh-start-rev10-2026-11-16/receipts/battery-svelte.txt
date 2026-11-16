@@ -1,0 +1,3 @@
+# receipt — Rev 10: node probes/probe-battery.mjs svelte (from football-sim-svelte/)
+BATTERY svelte: PASS · checks 24/24 · console errors 0 · blocked 0
+BATTERY-SVELTE EXIT: 0

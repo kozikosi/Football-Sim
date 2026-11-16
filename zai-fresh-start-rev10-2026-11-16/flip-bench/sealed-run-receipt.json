@@ -1,0 +1,43 @@
+{
+ "recipe": {
+  "path": "SEALED-RECIPE.md",
+  "sha256": "7fcc3fc0432e29fae4c0d0d384f813da67cd05a0f591f5bb6746f85458e14f07"
+ },
+ "A": {
+  "repo": "football-sim-vue",
+  "instrumentation": true,
+  "sealedReceipt": {
+   "path": "receipts/sealed-recipe-timing.txt",
+   "recipeSha": "7fcc3fc0432e29fae4c0d0d384f813da67cd05a0f591f5bb6746f85458e14f07",
+   "repairs": 2,
+   "firstTryGreen": false,
+   "battery": "24/24",
+   "sealedProbe": "12/12"
+  }
+ },
+ "B": {
+  "repo": "football-sim-svelte",
+  "instrumentation": true,
+  "sealedReceipt": {
+   "path": "receipts/sealed-recipe-timing.txt",
+   "recipeSha": "7fcc3fc0432e29fae4c0d0d384f813da67cd05a0f591f5bb6746f85458e14f07",
+   "repairs": 1,
+   "firstTryGreen": false,
+   "battery": "24/24",
+   "sealedProbe": "12/12"
+  }
+ },
+ "status": "closed",
+ "closedBy": "Z.ai's own run (Owner-authorized 2026-11-15/16): NOT blind \u2014 the author wrote the recipe, so this is one data point among the council's, not the falsifier on its own",
+ "result": {
+  "repairs": "vue 2 vs svelte 1 (0.5x \u2014 inside CONFIRM territory by the mechanical rule, BUT)",
+  "caveats": [
+   "author-run (not blind)",
+   "one slice, one sitting",
+   "the svelte 'repair' was the shared probe's clamp check, not the arm",
+   "first-try greens 0 vs 0"
+  ],
+  "verdict": "WASH stands \u2014 no number, no cutover; the blind second-agent bench remains the falsifier"
+ },
+ "piniaDelta": "see receipts/pinia-vs-reactive-delta.txt"
+}

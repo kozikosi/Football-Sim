@@ -1,0 +1,9 @@
+# receipt — Rev 10 (A1/B): every §2 line carries a receipt
+# command: npx vue-tsc --build
+# cwd (in-tree, relative): REV-5.1-addendum/framework-two-arm/arm-vue
+# node = v24.22.3
+# captured by scripts/make-build-receipts.mjs
+
+--- output (stdout + stderr, verbatim) ---
+
+--- exit code: 0 (wall 3.0s) ---

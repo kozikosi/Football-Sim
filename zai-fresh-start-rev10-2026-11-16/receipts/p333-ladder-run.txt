@@ -1,0 +1,20 @@
+real pool: 1953 players (premise: 1,953)
+teams: 32
+pairs: 99 · max raw athletic distance: 22.6 (normalized to 1)
+fitted: ALPHA = 5.5 (athletic), BETA = 12.5 (weight x 1000) — price_raw = ALPHA*dHat + BETA*wHat
+measured floor0-C1(0.5,4,9): gapT=-650 gapM=-689.3 flexed=413 emerg=0 rules=99 fit=42/50/7
+measured floor6-C1(0.5,4,9): gapT=-250 gapM=-275.2 flexed=386 emerg=0 rules=99 fit=48/38/13
+measured floor0-C2(1,4,9): gapT=-650 gapM=-689.3 flexed=334 emerg=0 rules=97 fit=44/48/7
+measured floor6-C2(1,4,9): gapT=-250 gapM=-275.2 flexed=360 emerg=0 rules=98 fit=49/37/13
+measured floor0-C3(0.5,3,9): gapT=450 gapM=444.7 flexed=347 emerg=0 rules=99 fit=44/45/10
+measured floor6-C3(0.5,3,9): gapT=450 gapM=444.7 flexed=339 emerg=0 rules=99 fit=47/36/16
+measured floor0-C4(1,3,8): gapT=450 gapM=444.7 flexed=245 emerg=0 rules=97 fit=48/41/10
+measured floor6-C4(1,3,8): gapT=450 gapM=444.7 flexed=296 emerg=0 rules=98 fit=50/33/16
+measured floor6-C1(0.5,4,9)+FBTE2: gapT=-450 gapM=-469.6 flexed=402 emerg=0 rules=99 fit=47/39/13
+measured ability-only-floor6-C1: gapT=-50 gapM=-63.0 flexed=404 emerg=0 rules=93 fit=42/42/15
+measured LIVE+FBTE2 (Owner-approved): gapT=700 gapM=720.1 flexed=147 emerg=0 rules=76 fit=98/1/0
+{
+ "alpha": 5.482587391368904,
+ "beta": 12.457247723193557
+}
+done: ladder.json + ladder.md

@@ -1,0 +1,30 @@
+== vapor-mode Vue build — the bundle falsifier (item 1) ==
+run: 2026-11-15T12:04:13Z · vue 3.6.0-rc.15 · @vitejs/plugin-vue 6.0.11 · vite 7.3.6 · arm: arm-vue-vapor (copy of arm-vue, SAME source + chrome; ONLY the build config + the app entry's mount call differ)
+
+== enablement history (3 builds, verbatim findings) ==
+1) vue({ vapor: true }) top-level → compiled, but IGNORED SILENTLY: option lives at features.vapor (plugin-vue 6.0.11 index.d.mts 'features.vapor?: boolean'; utils/vapor.ts reads options.features?.vapor). Lesson filed: a silently-ignored unknown plugin option produced a valid bundle at 372.50 kB raw / 117.25 kB gz — no error, no warning. dist hash index-CPfydr1d.
+2) vue({ features: { vapor: true, optionsAPI: false } }) with the vdom entry (createApp) → SFCs compiled vapor but the bundle GREW to 400.15 kB raw / 127.32 kB gz: the vdom createApp pulls the interop layer (vaporInteropPlugin) and BOTH runtimes. dist hash index-A5SeFXtU.
+3) pure-vapor entry (createVaporApp from 'vue', @vue/runtime-vapor re-export) → 367.09 kB raw / 113133 B gz. vdom renderer CONFIRMED dropped: 0 'vnode'/'dynamicChildren' markers in dist (canonical arm: 1/1), '__vapor: true' marker present ×1. UI unchanged: probe runs clean.
+
+== probe (scripts/probe-vapor.mjs — the SAME four-slice probe, arms array pointed at the vapor dist; checks untouched) ==
+
+FAIL strings in probe output: 0
+console/page errors: 0 · blocked requests: 0 (network blocked) · 390px: clean · screenshots: shots/fourslice-vue-vapor-*.png
+
+== bundle receipt (per-file gzip -9; JS-only delta is the criterion) ==
+-- arm-vue-vapor (vue 3.6 rc, pure vapor, optionsAPI: false) --
+index-C2yuGo8n.js: raw 367086 B · gzip-9 113151 B
+index-vWDXWt8A.css: raw 6598 B · gzip-9 1912 B
+js sha256: 9dbd2216afd92d69c3ed3ab4c486adb5e33ed1c271594f626d91bd9948feed82
+-- JS-only delta vs svelte --
+concat JS gzip-9: vapor 113133 B · svelte 103614 B · delta 9519 B (svelte lighter)
+
+== FALSIFIER VERDICT ==
+criterion (registered BEFORE this sitting): 'If vapor mode closes the bundle gap to under 5 KB, the bundle criterion dissolves.'
+measured: gap = 9519 B gz (canonical vdom arm: 10,969 B) — the gap did NOT close; it is statistically unchanged (−~200 B)
+WHY: the vapor runtime itself (template helpers, event/directive machinery, reactivity) carries the weight the vdom renderer dropped — dropping the vdom renderer (−12 kB class) bought almost nothing net because the vapor runtime takes its place at this four-slice surface
+therefore: the falsifier does NOT fire; the bundle stays a Svelte number, and it stays 'a number' — the coldload receipts (MUSE's + this sitting's replication) already show it does not move interactive time
+
+== incidental findings for the next prompt ==
+vapor mode is CLEAN at 3.6.0-rc.15 for this surface (script-setup SFCs only) — all four-slice laws pass with zero source changes beyond the entry's mount call
+the silently-ignored-option trap (1) and the interop double-runtime trap (2) are the two authoring costs; finding the pure-vapor entry (createVaporApp) took a package-dump, not docs

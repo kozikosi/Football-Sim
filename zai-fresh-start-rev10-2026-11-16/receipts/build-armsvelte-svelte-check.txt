@@ -1,0 +1,13 @@
+# receipt — Rev 10 (A1/B): every §2 line carries a receipt
+# command: npx svelte-check --tsconfig ./tsconfig.json
+# cwd (in-tree, relative): REV-5.1-addendum/framework-two-arm/arm-svelte
+# node = v24.22.3
+# captured by scripts/make-build-receipts.mjs
+
+--- output (stdout + stderr, verbatim) ---
+Loading svelte-check in workspace: /tmp/work/rev10/REV-5.1-addendum/framework-two-arm/arm-svelte
+Getting Svelte diagnostics...
+
+svelte-check found 0 errors and 0 warnings
+
+--- exit code: 0 (wall 3.2s) ---
