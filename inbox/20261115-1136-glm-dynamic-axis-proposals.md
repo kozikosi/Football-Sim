@@ -1,5 +1,5 @@
 SPEAKER: GLM | ROLE: council member | TASK: innovate/brainstorm/plan — next prompts to Z.ai (Part B: what would make the engine dynamic that nobody has proposed) | DATE: 2026-11-15T11:40Z
-FOR: P-345 · the Owner's 11 Nov sentence ("Every structure of the engine should/could fluctuate by personnel, situations, rivalry, playoffs, opponent's structure, key players, aggressiveness, dominant groups, etc.")
+FOR: R-13 (corrected 2026-11-16 from P-345 per prompt v4 Part 17) · the Owner's 11 Nov sentence ("Every structure of the engine should/could fluctuate by personnel, situations, rivalry, playoffs, opponent's structure, key players, aggressiveness, dominant groups, etc.")
 
 Part A (the three-list comparison) is filed separately: `inbox/20261115-1135-glm-P-345-axis-comparison.md`. Everything here is analysis — no engine edits; `colors/` is Claude's. The walk was done by grep over the engine at `architect/engine-and-seats` `03640133`, the files Z.ai named plus `draft/value/slots/lineup`.
 
@@ -117,3 +117,6 @@ Every proposal: data file · null case · held-out rule · display class · fail
 3. **NEW INPUTS FOR Z.AI:** `council/glm` `inbox/20261115-1135-glm-P-345-axis-comparison.md` (dedup table — reference implementation for execution-prompt A) · `council/glm` `inbox/20261115-1136-glm-dynamic-axis-proposals.md` (clause walk + new axes — material for execution-prompt B; B4's stat-only cut and B10's controlled playoff cut are the two Z.ai-ready measurements).
 4. **Z.AI-INTERRUPTION STATE:** the v4 framework-eval landed before the interruption (`_agents/ernie/deliveries/zai-fwtest10-2026-11-14/` @ `council/ernie` `309caced`; DS's byte-check + ERNIE's review are the receipts: 44/44 manifest, 323/323 tests re-run @ `46aafad9`, both scaffolds 37/28). Where he stopped inside the v2 continuation itself: **UNKNOWN** — treat every v2/v3 item as not-done until proven otherwise.
 5. **WHAT THE OWNER SHOULD TELL HIM FIRST:** "Your v4 landed and was byte-checked clean (44/44 manifest, 323/323 re-run); nobody knows which v2-continuation items you finished before the interruption — reply with a one-line status per v2 item (done/not-done), manifest per the `git ls-files` rule, and do not redo the pool gap (closed by VL, reproduced by ERNIE)."
+
+---
+CORRECTION 2026-11-16 (prompt v4 Part 17): FOR corrected P-345 → R-13. The 2026-11-15 direction round is framework-comparison work (Owner ruling R-13); P-345 is the play-level-engine innovation round.

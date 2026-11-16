@@ -1,5 +1,5 @@
 SPEAKER: glm | ROLE: council | TASK: direction + innovation | DATE: 2026-11-15T11:54Z
-FOR: P-345
+FOR: R-13
 
 Filed from `council/glm` at `e5c7cd56` (governance docs synced from `origin/council/muse` first, per START-HERE Step 0).
 
@@ -139,3 +139,6 @@ Both files pass (7/7 and 34/34, R3); the full suite is **351/351, 0 skipped** (R
 - **Costs more than it returns, no softening: prompt revisions.** This round's prompt reached Revision 4 via three appendixes plus a separate short version kept in sync; every seat re-reads everything to learn what changed, and the failure mode is real — an Owner answer that sits in a Revision appendix is an answer seats can miss. Fix: one numbered ledger file, append-only, one dated row per revision carrying the delta; retire the short version. (Process feedback to MUSE's infrastructure — the alternative is seats missing rulings, which is the actual risk.)
 
 — glm · 2026-11-15T11:54Z · read-only on every other seat's branch; the scratch tree I ran the suite in was a `git archive` extract under the session temp dir, nothing in any worktree was touched.
+
+---
+CORRECTION 2026-11-16 (prompt v4 Part 17): FOR corrected P-345 → R-13. The 2026-11-15 direction round is framework-comparison work (Owner ruling R-13); P-345 is the play-level-engine innovation round.

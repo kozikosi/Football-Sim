@@ -1,30 +1,27 @@
-# GLM — lane file (rewritten 2026-11-15, end of session)
+# GLM — lane file (rewritten 2026-11-16, end of CAKEPANZ-SHELL assist session)
 
 ## Identity
 - **Seat:** GLM · branch `council/glm` · worktree `/Users/kosi/Desktop/wt/glm` (verify with `pwd; git branch --show-current` on entry).
-- **Merge-base HEAD vs origin/council/base:** `474eb52` (the shared root — every seat branch descends from it; the live docs/queue are on `origin/council/muse`, not base).
-- Governance docs synced from `origin/council/muse` at session start (commit `e5c7cd56` carries AGENTS.md R-2/R-9/R-13/R-12 + engine pin `d3bd81d2`).
+- **Merge-base HEAD vs origin/council/base:** `474eb52` (shared root). Live docs/queue always on `origin/council/muse` — refresh the four governance docs at session start (START-HERE Step 0).
+- Governance docs synced from `origin/council/muse` at `e5c7cd56` (2026-11-15); AGENTS.md's Cakepanz row found STALE (says pin `d3bd81d2`, snapshot actually `4ca9a071` — correction proposed in the pin-report filing; MUSE integrates).
 
-## Current work and state
-- **DONE this session:** the P-345 direction+innovation filing, pushed at `033566dd`:
-  `inbox/20261115-1154-glm-direction-innovation.md` — assesses Ernie's f3551218 answers (done / improvable / design attack / structural assertions), answers Q1–Q8.
-- **Key verified receipts filed (others may rely on them):**
-  - Both de-gated tests are ALREADY the structural rewrite on `architect/engine-and-seats` (FETCH_HEAD 2026-11-15): `versions.test.ts` 7/7 (engine stamp REPORTed MOVED/UNMOVED, shape `^nfl1\.[0-9a-f]{14}$` gated, data stamp gates), `lineup.test.ts` 34/34 (mechanism gates: 3 flexes all at 6, TE3←FB 6, DT>FB free, gap>0; ties REPORTed). REPORTed gap is now 2773.04 (comment says 2700 — stale comment, REPORT working as designed).
-  - Full engine suite on a `git archive FETCH_HEAD` scratch extract: **351/351 pass, 0 fail, 0 skipped** (node v26.13.0, `node --test --experimental-strip-types`, zero installed deps). R-11 done and exceeded.
-  - Flex table re-check: WR>CB 6, WR>FS 6, WR>SS 6, DT>FB 0; 99 rules {0:23, 2:10, 6:43, 12:23}.
-  - Colors `colors/src`: 0 `.svelte` files.
-  - Pool files: 1,941 ratings + 12 free agents (team `Free Agent`) = 1,953 VERIFIED; 32 teams hold 55–68 rows each — NO team has 32 rows, so the board's 32-row render gap is not one whole team; strongest surviving signature is exactly one row per team (32 × 1). Free agents render-status UNKNOWN.
-  - My lane raw pack re-verified: all four hashes in `_agents/glm/anchors/raw-hashes.txt` match the local `.gz` files.
+## Sessions this run
+1. **2026-11-15 — P-345 direction+innovation filing** (`033566dd`): assessed Ernie f3551218; verified both de-gated tests already landed (structural rewrites stronger than the snippet); full suite green; falsifier status; weighting proposal. FOR corrected to R-13 on 2026-11-16.
+2. **2026-11-16 — CAKEPANZ-SHELL assist round (prompt v4, Parts 6/10/17):**
+   - `inbox/20261116-2100-glm-CAKEPANZ-SHELL-boxscore-mutation-scope.md` — Part 6 + open question SETTLED: `box.ts` absent at vendored pin `d3bd81d2` (Inkling's scope position correct by construction); three survivors REAL at `86f22d10` (mutation: ×2 on firstDowns/touchdowns/puntYards → 363/363 PASS; control interceptions ×2 → 362/1 FAIL, killed by "every screen agrees"); int spot not a TeamLine field. Recommendation to Architect filed (scoring-row count law free; DriveRow +2 fields for firstDowns/puntYards; int-spot range check, no pinned values).
+   - `inbox/20261116-2105-glm-CAKEPANZ-SHELL-pin-report.md` — Part 10: snapshot = `4ca9a071` byte-identical (0 diff lines; 11 vs `d3bd81d2`); READMEs right, AGENTS.md Cakepanz row stale; re-pin gap = 11 named files (flex/slots/draft/value/dataset/app differ + events/fold/keyedrng/pack/legacyprovider new); snapshot's flex predates the 99-rule table and QB→FS −12.
+   - Part 17: my three 2026-11-15 direction filings FOR-corrected P-345 → R-13 (in-file notes); counts verified (Inkling 4 / Ernie 3 — mostly pass-through copies; neither seat has an inbox/ dir).
+   - Parts 1–5, 7–9, 11–16 NOT done by me (need shell-tree review / seam deep-dive / harness build).
 
 ## What the next session needs
-- Read START-HERE from `origin/council/muse` first (worktree docs go stale).
-- The next P-345 review chain step: two more seats reviewing my filing (or reviews of other seats' filings — no seat reviews the same item twice).
-- If taking the boot replication: MUSE's harness exists; run the probe WITHOUT `--allow-file-access-from-files` (the vanilla file:// failure is real, both arms, MUSE-verified), and use paired interleaved trials (my Q4 contrarian: the protocol resolves signs, not 100 ms magnitudes).
+- Read START-HERE from `origin/council/muse` first.
+- If continuing CAKEPANZ-SHELL: Parts 1–3 need the s5 tree (`git archive origin/council/inkling:_agents/inkling/deliveries/67-cakepanz-s5`) and gh-pages `67-cakepanz/`; the seam/neutrality audits and Part 2's seam-checker are the highest-value open items.
+- Scratch extracts from this session live in `/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/` (arch-scratch, arch-86f2, pinA, pinB, s5) — throwaway, recreate via `git archive` as the filings document.
 
 ## Open questions
-- Owner: is vanilla `file://` required for Cakepanz, or only the final built product? (My recommendation, filed: required for everything shipped.)
-- The 32-row pool render gap — Claude's pool ledger; my two first checks are in the filing (per-team drop-of-one; do the 12 Free Agent rows render?).
+- Owner: vanilla `file://` required for Cakepanz? (my standing recommendation: yes, everything shipped).
+- The 32-row pool render gap (Claude's ledger) — my signatures stand: not one whole team (teams 55–68 rows); strongest = one row per team (32×1); do the 12 `Free Agent` rows render?
 
 ## Files in this lane (live)
-- `GLM.md` (this file) · `_agents/glm/anchors/` (2024 anchor pack: hashes + derived JSONs committed; raw `.gz` untracked by design, hashes pinned) · `_agents/glm/deliveries/` (older: discrepancy register, flexrebuild report) · `_agents/glm/P-152-card-mockup.html` (the collapsed card state cited as Slice 5's collapsed state).
+- `GLM.md` (this file) · `_agents/glm/anchors/` (2024 anchor pack; raw `.gz` untracked by design, hashes pinned in `raw-hashes.txt` — re-verified 2026-11-15) · `_agents/glm/deliveries/` (older: discrepancy register, flexrebuild report) · `_agents/glm/P-152-card-mockup.html` (collapsed card state, cited as Slice 5's collapsed state).
 - Lane rule honored: no build copies, no images; keep under 300 KB.
