@@ -2,10 +2,9 @@
 // is the player's OVR minus the flex penalty (Pre-Colors maximised summed slot wins, which is the same thing: wins are
 // linear in OVR with the spot value as slope). The spot value comes from a ValueProvider (valueprovider.ts; P-318), measured on the
 // matchup model by default; internally it is expressed in fitted-weight units (wins per OVR point / WINS_PER_UNIT, QB about 1000)
-// so the priority constants below keep their meaning. Solved exactly (Hungarian), so a flexed player appears only when the
-// move is worth it.
+// (QB about 1000). Solved exactly (Hungarian), so a flexed player appears only when the move is worth it.
 //
-// Priorities, strongest first (each is a constant larger than everything below it):
+// Priorities, strongest first (each is a constant larger than everything below it, DERIVED from the spot values in `priorities()` below, not typed in):
 //  1. a quarterback never plays an unlisted spot (he is benched instead);
 //  2. every rostered player who can play plays, before any empty spot is filled with a replacement;
 //  3. as few emergency (-8) fills as possible;
@@ -22,7 +21,18 @@ import type { ValueProvider } from './valueprovider.ts';
 // An empty spot is rated as this (Pre-Colors rated a missing player 70).
 export const EMPTY_OVR = 70;
 
-const ILLEGAL = 1e12, PLAYS = 1e7, EMERGENCY = 1e5;
+// The three priority weights are derived from the value scale of the call, so the order of priorities holds for ANY values (a re-measured provider, another sport's
+// slot table). They were literals (1e12 / 1e7 / 1e5) that silently assumed QB about 1000: 15 Nov 2026, with every spot value scaled 200x the solver took 3 emergency
+// fills where 0 were needed (checked against the exact minimum, a bipartite matching, on 2,700 random rosters); at today's scale the literals held on all of them.
+// Effective OVR of any placed player lies in [-20, 100] (OVR 0..99, flex price at most 12, emergency 8), so two whole assignments differ in value by less than
+// VALUE_SPAN x (sum of spot values); each priority is that bound plus the room for the ones below it.
+const VALUE_SPAN = 120;
+export function priorities(spotValues: readonly number[], players: number, spots: number): { emergency: number; plays: number; illegal: number } {
+  const bound = VALUE_SPAN * spotValues.reduce((t, x) => t + Math.abs(x), 0) + 1;
+  const emergency = bound;                                   // one emergency fill outweighs any total value difference
+  const plays = (spots + 1) * emergency + bound;             // one more rostered player on the field outweighs every emergency fill and any value difference
+  return { emergency, plays, illegal: (players + spots + 1) * plays * 2 };   // an illegal pairing outweighs any whole legal assignment
+}
 
 export interface Placement { slot: FieldSlot; player: Player | null; effOvr: number; penalty: number; emergency: boolean }
 export interface Lineup {
@@ -50,6 +60,7 @@ const unitsOf = (slots: readonly FieldSlot[], values: ValueProvider, base: Base)
 export function optimalLineup(players: readonly Player[], slots: readonly FieldSlot[], opts: LineupOpts = {}): Omit<Lineup, 'base'> {
   const { stay, stayBonus = 0, values = DEFAULT_VALUES, base = '4-3' } = opts, v = unitsOf(slots, values, base);
   const n = players.length, s = slots.length, k = n + s;
+  const { emergency: EMERGENCY, plays: PLAYS, illegal: ILLEGAL } = priorities(v, n, s);
   // rows: n players, then s empty-spot fillers. columns: s spots, then n bench places.
   const cost: number[][] = [];
   for (let i = 0; i < k; i++) {
