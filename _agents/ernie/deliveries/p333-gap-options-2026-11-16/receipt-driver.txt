@@ -1,0 +1,28 @@
+
+== 4-3: 62 stand-ins / 1024 spots, 0 emergency fills
+   4x RB>TE3(dest TE,row TE3)
+   4x OT>C(dest C,row C)
+   4x OG>OT1(dest OT,row OT1)
+   4x OG>C(dest C,row C)
+   3x SS>TE3(dest TE,row TE3)
+   3x OLB>TE3(dest TE,row TE3)
+   3x OG>OT2(dest OT,row OT2)
+   3x FB>TE3(dest TE,row TE3)
+   3x WR>TE2(dest TE,row TE2)
+   3x C>OG1(dest OG,row OG1)
+   3x FB>TE2(dest TE,row TE2)
+   2x OLB>TE2(dest TE,row TE2)
+
+== 3-4: 85 stand-ins / 1024 spots, 0 emergency fills
+   8x SS>MIKE(dest ILB,row MIKE)
+   6x OLB>MIKE(dest ILB,row MIKE)
+   5x OT>C(dest C,row C)
+   5x OLB>DT2(dest ILB,row DT2)
+   4x OG>OT1(dest OT,row OT1)
+   4x FB>TE2(dest TE,row TE2)
+   3x RB>TE2(dest TE,row TE2)
+   3x SS>TE3(dest TE,row TE3)
+   3x EDGE>TE3(dest TE,row TE3)
+   3x OG>OT2(dest OT,row OT2)
+   3x RB>TE3(dest TE,row TE3)
+   3x WR>TE2(dest TE,row TE2)

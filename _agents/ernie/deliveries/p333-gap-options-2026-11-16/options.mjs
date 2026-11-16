@@ -11,21 +11,36 @@ const WINS_PER_UNIT = 0.00254 / 20;
 
 const VARIANTS = {
   base: { patch: (s) => s },
-  A: { // lower the three 4-3 -> 3-4 stand-ins: SS>ILB 6->4, TE>NICKEL 6->4, FB>TE 2->0
+  A: { file: 'flex.ts', // lower the three 4-3 -> 3-4 stand-ins: SS>ILB 6->4, TE>NICKEL 6->4, FB>TE 2->0
     patch: (s) => s
       .replace('SS: { NICKEL: 0, DIME: 0, FS: 2, CB: 6, WR: 12, ILB: 6,', 'SS: { NICKEL: 0, DIME: 0, FS: 2, CB: 6, WR: 12, ILB: 4,')
       .replace('OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 6, DIME: 12 }', 'OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 4, DIME: 12 }')
       .replace('FB: { RB: 2, TE: 2 }', 'FB: { RB: 2, TE: 0 }'),
   },
-  A2: { // single rule: SS>ILB 6 -> 4
+  A2: { file: 'flex.ts', // single rule: SS>ILB 6 -> 4
     patch: (s) => s.replace('WR: 12, ILB: 6,', 'WR: 12, ILB: 4,'),
   },
-  A3: { // two rules: SS>ILB 6->4 and TE>NICKEL 6->4 (FB exception untouched)
+  A3: { file: 'flex.ts', // two rules: SS>ILB 6->4 and TE>NICKEL 6->4 (FB exception untouched)
     patch: (s) => s
       .replace('WR: 12, ILB: 6,', 'WR: 12, ILB: 4,')
       .replace('OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 6, DIME: 12 }', 'OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 4, DIME: 12 }'),
   },
-  B: { // raise the DL5 price for ILB/OLB: dl5Penalty uses EDGE x 1.5
+  B1: { file: 'slots.ts', // Part B: 3-4 ILB2 rated off ILB instead of DT2 (spot table, not the flex table)
+    patch: (s) => s.replace(
+      "case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', label: 'ILB2' };",
+      "case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'ILB', label: 'ILB2' };"),
+  },
+  B2: { file: 'slots.ts', // Part B: 3-4 ILB2 rated off MIKE (the other ILB row)
+    patch: (s) => s.replace(
+      "case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', label: 'ILB2' };",
+      "case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'MIKE', label: 'ILB2' };"),
+  },
+  B3: { file: 'slots.ts', // Part B: 3-4 ILB2 demands an OLB body (dest ILB -> OLB), matching the bodies real rosters carry
+    patch: (s) => s.replace(
+      "case 'DT2': return { slot: 'DT2', dest: 'ILB', row: 'DT2', label: 'ILB2' };",
+      "case 'DT2': return { slot: 'DT2', dest: 'OLB', row: 'DT2', label: 'ILB2' };"),
+  },
+  B: { file: 'flex.ts', // raise the DL5 price for ILB/OLB: dl5Penalty uses EDGE x 1.5
     patch: (s) => s.replace(
       '  const a = FLEX[role].DT, b = FLEX[role].EDGE;\n  if (a === undefined) return b;\n  if (b === undefined) return a;\n  return Math.min(a, b);',
       '  const a = FLEX[role].DT, b = FLEX[role].EDGE;\n  const bump = (x) => (x === undefined ? x : Math.round(x * 1.5));\n  if (a === undefined) return bump(b);\n  if (b === undefined) return a;\n  return Math.min(a, bump(b));'),
@@ -38,7 +53,7 @@ for (const [name, v] of Object.entries(VARIANTS)) {
   fs.rmSync(dir, { recursive: true, force: true });
   fs.cpSync(SRC, dir, { recursive: true });
   if (name !== 'base') {
-    const f = path.join(dir, 'sports/nfl/engine/flex.ts');
+    const f = path.join(dir, 'sports/nfl/engine/' + (v.file || 'flex.ts'));
     const before = fs.readFileSync(f, 'utf8');
     const after = v.patch(before);
     if (before === after) { console.error('PATCH DID NOT APPLY:', name); process.exit(1); }
