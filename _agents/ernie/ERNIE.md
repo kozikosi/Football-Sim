@@ -23,7 +23,8 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 
 **Cakepanz, measured this session (2026-11-16, receipts in my lane):**
 - **Battery reproduces: 61 pass · 0 fail · 10 SKIP · 3 DEFER** on the app tree (slices 1-4). The s5 README's 75 = this + Slice 5's 14 laws (a *different* tree, `council/inkling`).
-- **The seam is not one door:** 14 files import `src/engine/**`; 63 import lines; 76 lines of app code touch engine types. No `SNAPSHOT.md`, no `MERGE-*.md`, no swap receipt. M1-M5 all unmet.
+- **The seam is not one door:** 14 files import `src/engine/**`; 63 import lines; 76 lines of app code touch engine types. No `SNAPSHOT.md`, no `MERGE-*.md`. M1/M4/M5 unmet.
+- **The M3 swap test PASSES (the important one):** `src/engine` → `d3bd81d2`, zero edits outside it → build exit 0, battery 61/0/10/3. Only `test/` + `tools/mathlab/flex.json` go stale (`npm run test:engine` 9 fails on the old REV 4 flex table). **A re-pin is three directories, not one.**
 - **Neutrality is ~95% clean:** the only framework import in the TS core is `src/lib/draftStore.ts:3` (`svelte/store`, 20 lines). No runes in any `.ts`.
 - **390 px: the board overflows 54 px** (`scrollW 444`); Team Select is clean. Cause `BoardRow.svelte:38` + no `@media` in the tree.
 - **The feed prints "touchdown"** (5 of 22 rendered lines) from the snapshot's `app/feed.ts:88`.
@@ -43,7 +44,7 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 ## 2 · What is genuinely open
 1. **The framework pick.** Owner's plan (2026-11-16): **TypeScript/framework-neutral until the last second**, then decide at the cutover. My input: the only asymmetric number (repairs 2:1) is a **first-arm learning artefact** — both Vue repairs were order-of-authorship. The Rev 10 store 2×2 kills the "Pinia buys speed" premise: wrapper tax 36 L (Vue) / 32 L (Svelte), **framework delta 7 L inside ±11 L noise**, and the leanest store in the record is a **Vue `reactive` module at 45 L**.
 2. **The blind bench is superseded as the instrument.** Better: the *same builder* runs the sealed slice **twice with the order reversed** (v→s, s→v). Counterbalanced, no stranger, one sitting.
-3. **The Cakepanz merge cone — council verdict filed (2026-11-16):** it is **not** a one-directory engine swap today. 14 files import `src/engine/**`, no `SNAPSHOT.md`, no seam module; the merge is a **port** (the pin migration table already proves the app runs on `d3bd81d2`). The two cheap fixes that would make it a swap: one `enginePort.ts` + a `SNAPSHOT.md`. Also open: the app tree and gh-pages have diverged (slices 3-4 + old pin vs slices 1-2 + new pin).
+3. **The Cakepanz merge cone — council verdict filed and then partly overturned by my own swap test (2026-11-16).** M1 one-door still fails (14 files import `src/engine/**`); M4 `SNAPSHOT.md` still missing; 76 lines touch engine types. **But the M3 swap test PASSES**: with `src/engine` replaced by `d3bd81d2` and **zero edits outside it**, `npm run build` exits 0 and the battery is 61/0/10/3. What does *not* travel is the verification apparatus — `test/` (35 files) and `tools/mathlab/flex.json` (`28a2e993…` old vs `0a26d7c2…` live) — so `npm run test:engine` fails 9 tests on a stale flex table. **Correction on the record: the app half is a directory swap; the re-pin procedure is three directories, not one.**
 4. **P-333 is unanswered by the Owner** (small gap without hand-lowering DIME). My finding: a small gap and few moves are opposite goals.
 5. **The Architect's ladder patch** — Z.ai's `1e6` derivation + the permanent `EMERGENCY < PLAYS` assertion. Cosmetic but the contract should be true.
 6. **The four sim-layer survivors** — unfixed, unasserted.
