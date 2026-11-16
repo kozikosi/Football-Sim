@@ -1,0 +1,40 @@
+status      : done
+game        : Houston Texans 37 @ Chicago Bears 9 | drives 22
+lines       :
+    1 Q1 15:00 | Chicago Bears | Chicago Bears kicks a field goal — 7 plays, 4 min.
+    1 Q1 10:35 | Houston Texans | Houston Texans ends in a touchdown — 9 plays, 3 min.
+    1 Q1 07:53 | Chicago Bears | Chicago Bears throws an interception — 2 plays, 1 min.
+    1 Q1 07:00 | Houston Texans | Houston Texans ends in a touchdown — 13 plays, 5 min.
+    1 Q1 01:52 | Chicago Bears | Chicago Bears throws an interception — 5 plays, 3 min.
+    2 Q2 13:48 | Houston Texans | Houston Texans ends in a touchdown — 5 plays, 1 min.
+    2 Q2 12:24 | Chicago Bears | Chicago Bears ends in a touchdown — 9 plays, 3 min.
+    2 Q2 08:55 | Houston Texans | Houston Texans turns it over on downs — 4 plays, 2 min.
+    2 Q2 07:15 | Chicago Bears | Chicago Bears punts — 3 plays, 1 min.
+    2 Q2 06:19 | Houston Texans | Houston Texans loses a fumble — 3 plays, 1 min.
+    2 Q2 05:37 | Chicago Bears | Chicago Bears punts — 3 plays, 1 min.
+    2 Q2 04:17 | Houston Texans | Houston Texans kicks a field goal — 10 plays, 4 min.
+    3 Q2 00:00 | Houston Texans | Houston Texans ends in a touchdown — 8 plays, 6 min.
+    3 Q3 09:16 | Chicago Bears | Chicago Bears punts — 3 plays, 2 min.
+    3 Q3 07:09 | Houston Texans | Houston Texans kicks a field goal — 3 plays, 2 min.
+    3 Q3 05:16 | Chicago Bears | Chicago Bears punts — 6 plays, 3 min.
+    3 Q3 02:10 | Houston Texans | Houston Texans punts — 3 plays, 3 min.
+    4 Q4 13:41 | Chicago Bears | Chicago Bears punts — 4 plays, 4 min.
+    4 Q4 10:04 | Houston Texans | Houston Texans punts — 3 plays, 2 min.
+    4 Q4 08:24 | Chicago Bears | Chicago Bears punts — 4 plays, 2 min.
+    4 Q4 06:14 | Houston Texans | Houston Texans punts — 3 plays, 3 min.
+    4 Q4 03:39 | Chicago Bears | Chicago Bears punts — 5 plays, 4 min.
+
+--- style-law audit over the rendered feed strings ---
+lines printing "touchdown"      : 5
+lines printing "Turnover(s)"    : 0
+lines printing "expected scoring": 0
+lines printing "before kickoff" : 0
+badge labels used               : FG, LEAD Δ, TD, INT, DOWNS, PUNT, FUM
+sample TD summaries             : [
+  'Houston Texans ends in a touchdown — 9 plays, 3 min.',
+  'Houston Texans ends in a touchdown — 13 plays, 5 min.',
+  'Houston Texans ends in a touchdown — 5 plays, 1 min.'
+]
+
+--- drive VM keys ---
+awayAbbr, badges, clock, convBadges, defTD, end, homeAbbr, kind, leadChange, me, n, oppPts, period, plays, pts, scoreAfter, scores, summary, team, teamAbbr, teamInk, teamPale, yards

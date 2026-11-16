@@ -1,0 +1,45 @@
+{
+  "teamSelect": 78,
+  "teamSelectChosen": 83,
+  "board": 832,
+  "boardPickerOpen": 832,
+  "panelAfterLoad": 40,
+  "pageErrorsDesktop": [],
+  "draftCompletion": "status drafting picks 0",
+  "playMissing": true,
+  "feed": 832,
+  "feedText": {
+    "lines": 0,
+    "first": null,
+    "touchdownLines": 0,
+    "turnoverLines": 0
+  },
+  "pageErrorsFeed": [],
+  "mobile": {
+    "teamSelect": {
+      "nodes": 78,
+      "scrollW": 390,
+      "clientW": 390,
+      "overflow": 0
+    },
+    "board": {
+      "nodes": 832,
+      "scrollW": 444,
+      "clientW": 390,
+      "overflow": 54
+    }
+  },
+  "pageErrorsMobile": [],
+  "theme": {
+    "bodyBg": "rgba(0, 0, 0, 0)",
+    "bodyColor": "rgb(255, 255, 255)",
+    "bodyFont": "Times",
+    "appBg": "rgb(24, 17, 20)",
+    "dataZpbteam": null,
+    "ubCount": 0,
+    "prefersLight": true,
+    "colorScheme": "dark",
+    "cinzel": [],
+    "fontFaces": []
+  }
+}

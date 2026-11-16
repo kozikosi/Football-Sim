@@ -1,0 +1,91 @@
+{
+  "vw": 390,
+  "scrollW": 444,
+  "offenders": [
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 439,
+      "text": "99% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 439,
+      "text": "99%"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 443,
+      "text": "99% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 443,
+      "text": "99%"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 441,
+      "text": "99% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 441,
+      "text": "99%"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 443,
+      "text": "99% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 443,
+      "text": "99%"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 443,
+      "text": "99% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 443,
+      "text": "99%"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-gone-wrap svelte-q412k",
+      "w": 56,
+      "right": 439,
+      "text": "63% GONE% — how often the CPU took him b"
+    },
+    {
+      "tag": "span",
+      "cls": "cp-num cp-gone svelte-q412k",
+      "w": 26,
+      "right": 439,
+      "text": "63%"
+    }
+  ],
+  "total": 120
+}

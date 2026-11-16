@@ -1,0 +1,81 @@
+== slice 2: the Team Select flow (the draft starts from the user's choice) ==
+   PASS  the dev build opens at TEAM SELECT, not on a board with a random team
+   PASS  the Team Select lists all 32 teams — 32 team buttons
+   PASS  the 32 teams sit in the real alignment (AFC + NFC, 4 divisions each)
+   PASS  the measured mode is the DEFAULT on Team Select too ("Model Value" on, pre-draft)
+   PASS  the mode switch is NOT disabled before the draft (the Owner preset is one click away pre-draft)
+   PASS  selecting a team shows its details (name + the real division)
+   PASS  the details are engine-derived (the division rivals read the real alignment)
+   PASS  the choice flows into the Draft Board — the board drafts as the CHOSEN team
+== the laws the Draft Board carries (APPLY — run for real) ==
+   PASS  the board renders from the view model (engine state in, plain JSON out) — 60 rows
+   PASS  the default sort is wins/priority, never raw OVR
+   PASS  the on-clock indicator names the round, the pick and the overall
+   PASS  every row reads name · pos · team · OVR · wins · priority · gone% (EVERY row, EVERY field) — 60 rows, 0 bad
+   PASS  the gone-odds display is present on every row
+   PASS  the sort controls offer wins / OVR / priority
+   PASS  the OVR sort actually sorts — first 99
+   PASS  the flex chips read the flex cost (the "-N" form, no "flex tax" wording) — OBSERVED open — 14 pickers probed · 35 flex chips · sample ["-4 flex","-4 flex","-4 flex"]
+   PASS  the slot picker offers the natural slot first — Draft at QB
+   PASS  the pick confirms before it lands — Draft Joe Burrow at QB? Confirm the pick Cancel
+   PASS  the pick lands and the footer counts it
+   PASS  the CPU teams pick on after the user's pick (the clock advances)
+   PASS  undo cuts the log back and the count returns
+   PASS  the measured mode is the DEFAULT ("Model Value" on)
+   PASS  the Owner preset is one click away
+   PASS  the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)
+   PASS  the mode label travels with the numbers (the subtitle carries it)
+   PASS  zero page errors across the whole battery
+== slice 3: the gone-odds method tooltip (the engine already computed it; the UI now says how) ==
+   PASS  the gone% cell explains its METHOD on hover (real CPU logic · sims · picks between) — GONE% — how often the CPU took him before your next pick: the 22 picks between now and your turn wer
+   PASS  the tooltip names the engine's OWN picksBetween and sims (not a UI-invented story) — engine: between=22 sims=30
+== slice 3: the my-needs sticky row (which of my 32 slots are open, clickable to filter) ==
+   PASS  the needs row lists all 32 OPEN slots at the draft's start — 32 chips
+   PASS  the needs row is STICKY (position: sticky, a real sticky row)
+   PASS  clicking a need filters the board to rows that FILL it (primary or flex) — 60 -> 18 rows
+   PASS  every filtered row provably fills the selected slot (primary label or a flex chip — pickers opened) — 18 rows opened, 0 bad
+   PASS  ALL clears the filter (the full board returns)
+== slice 3: the saves panel — envelope in, corrupt-never-repair out ==
+   PASS  the Saves panel lists the three slots (A · B · C)
+   PASS  the slots read empty before anything is saved
+   PASS  saving the draft lands an ENVELOPE in slot A (kind · revision · picks · team) — Slot A DRAFT · rev 21 20 picks · Chicago Bears saved 2026-11-16 21:02 Load draft
+   PASS  slot A is loadable
+   PASS  the envelope SURVIVES a reload (same kind · rev · picks) — Slot A DRAFT · rev 21 20 picks · Chicago Bears saved 2026-11-16 21:02 Load draft
+   PASS  loading the draft restores the board (team + store state)
+   PASS  a CORRUPT week save is REFUSED verbatim (never repaired, never defaulted) — Slot B REFUSED (corrupt) — corrupt-never-repair week: roster must be 32 frozen players Save draft here
+   PASS  a NEWER-VERSION envelope is refused as newer (never overwritten) — Slot C REFUSED (newer-version) — corrupt-never-repair envelope: written by a newer build (
+   PASS  a REAL week save (engine-built) HYDRATES: WEEK · next week · the user's fixture — Slot C WEEK · rev 1 Buffalo Bills · next: week 3 Seattle Seahawks @ Buffalo Bills · 32 games played saved 2026-11-10 00:00 Load we
+   PASS  the hydrated card renders the engine's LoadedWeek (trusted vs re-derived, named) — Hydrated — week save, slot C Buffalo Bills · next week 3 · Seattle Seahawks @ Buffalo Bills 32 games played · the table,
+== slice 4: the drive-level feed (the w88 badge format and colors, engine-true) ==
+   PASS  PLAY WEEK 1 is ABSENT while the draft runs
+   PASS  the draft completes through the store (status done — 32 real PICK actions) — status done
+   PASS  PLAY WEEK 1 appears when the draft is done
+   PASS  the feed renders from the finished rosters
+   PASS  the UI game IS the engine game: the final score matches the node recompute EXACTLY — UI CHI 3 at GB 12 FINAL gameSeed 1836172283 · engine CHI 3 @ GB 12
+   PASS  the drive count matches the engine recompute — 20 = 20
+   PASS  the ME glow marks exactly the user team's drives — 10 = 10
+   PASS  the lead-change count matches the engine recompute — 20 drives · 10 mine · 2 lead changes
+   PASS  every drive line carries clock · team chip · badges · running score (EVERY line; OT drives carry the OT stamp) — 20 lines · 22 badges · clocks+scores all in form
+   PASS  the quarter marks ride the log (the w88 replay look) — Q1
+   PASS  the provenance stamp names the seed and the fixture (a number is never shown without its provenance) — gameSeed 1836172283 · week 1 · Chicago Bears @ Green Bay Packers · played by the pinned engine
+   PASS  the running scores END at the final (the drives add up) — last 3·12
+   PASS  no yards are faked (the v1 feed shows plays and time, never an invented yard figure)
+   PASS  NEWEST FIRST flips the reading (the last drive leads; every drive still present) — Q1 15·00 -> Q4 03·15
+   PASS  MY DRIVES filters to the user's drives only — 10 = 10
+   PASS  zero page errors across the feed laws
+   PASS  prefers-reduced-motion: the beat-in animation is OFF (the lines land at once) — animation-name: none
+   PASS  zero page errors across the whole battery (slices 1-4)
+== the laws that live on later slices or shell surfaces (SKIP — loudly) ==
+   SKIP  V0 the median trio (the drafted-pool median, superseded 76, cached once) — the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests
+   SKIP  V2/V3 the chip law (all off = the full board) — the position-chip BAR in shell form is not the law — slice 3 built the board chrome (the needs sticky row + the gone-odds tooltip, verified above); the shell chip bar itself arrives with the shell-form pass
+   SKIP  V5 the phone laws at 390 (the footer nav, the pan laws) — the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements
+   SKIP  V6 the playoff round cinematics — playoffs are a later slice
+   SKIP  V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder — shell pages outside slices 1-3 (team select landed in slice 2, the saves panel in slice 3; the season surfaces and the guide arrive in later slices)
+   SKIP  V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks — season-surface laws — later slices
+   SKIP  V15 the fills column and V17 the picker chips in shell form — slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)
+   SKIP  V7 the display scale centers on the median — the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)
+   SKIP  V4 the command center / cutdown day — the season review screen — a later slice
+   SKIP  V1 the dropdown order + the OG casing — the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)
+== DEFER to the cutover battery (needs both trees; the Architect runs it) ==
+
+== SLICE 1 BATTERY · 61 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
