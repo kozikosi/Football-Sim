@@ -1742,7 +1742,7 @@ function renderDraftBoard2(){
  const matchesSearch = p=> !search || p[0].toLowerCase().includes(search);
  const cards = document.getElementById('draftCards'), wrap = document.getElementById('draftTableWrap');
  const bestNat = {}; entries.forEach(r=>{ if(!r.flex && r.v!=null && (bestNat[r.g]==null || r.v>bestNat[r.g])) bestNat[r.g] = r.v; });
- const flexTxt = r=> r.flex ? ` <span class="narr">(flex → ${LABELS[r.slot]||r.slot}, −${r.pen})</span>${r.v!=null && bestNat[r.g]!=null && r.v>bestNat[r.g]+1e-9 ? ' <span class="toptag" style="background:var(--good);" title="Even after the flex penalty he adds more wins here than any natural player still available.">FLEX VALUE</span>' : ''}` : '';
+ const flexTxt = r=> r.flex ? ` <span class="narr" style="font-size:0.62rem;">(flex → ${LABELS[r.slot]||r.slot}, −${r.pen})</span>${r.v!=null && bestNat[r.g]!=null && r.v>bestNat[r.g]+1e-9 ? ' <span class="toptag" style="background:var(--good);font-size:0.55rem;padding:0 3px;" title="Even after the flex penalty he adds more wins here than any natural player still available.">FLEX VALUE</span>' : ''}` : '';
  const btn = r=> (canPick && r.slot) ? `<button class="resetbtn" style="width:auto;margin:0;padding:3px 9px;font-size:0.75rem;" data-pick="${r.p[0].replace(/"/g,'&quot;')}" data-slot="${r.slot}">Draft</button>` : '';
  const top3 = new Set(pri.slice(0,3).map(r=>r.p[0]));
  const topTag = r=> top3.has(r.p[0]) ? '<span class="toptag" title="One of your top three priorities right now">TOP</span> ' : '';
