@@ -7,11 +7,15 @@
 
 ## Sessions this run
 1. **2026-11-15 — P-345 direction+innovation filing** (`033566dd`): assessed Ernie f3551218; verified both de-gated tests already landed (structural rewrites stronger than the snippet); full suite green; falsifier status; weighting proposal. FOR corrected to R-13 on 2026-11-16.
-2. **2026-11-16 — CAKEPANZ-SHELL assist round (prompt v4, Parts 6/10/17):**
+2. **2026-11-16 — CAKEPANZ-SHELL assist round (prompt v4, Parts 6/10/17), commit `7a81cd28`:**
    - `inbox/20261116-2100-glm-CAKEPANZ-SHELL-boxscore-mutation-scope.md` — Part 6 + open question SETTLED: `box.ts` absent at vendored pin `d3bd81d2` (Inkling's scope position correct by construction); three survivors REAL at `86f22d10` (mutation: ×2 on firstDowns/touchdowns/puntYards → 363/363 PASS; control interceptions ×2 → 362/1 FAIL, killed by "every screen agrees"); int spot not a TeamLine field. Recommendation to Architect filed (scoring-row count law free; DriveRow +2 fields for firstDowns/puntYards; int-spot range check, no pinned values).
    - `inbox/20261116-2105-glm-CAKEPANZ-SHELL-pin-report.md` — Part 10: snapshot = `4ca9a071` byte-identical (0 diff lines; 11 vs `d3bd81d2`); READMEs right, AGENTS.md Cakepanz row stale; re-pin gap = 11 named files (flex/slots/draft/value/dataset/app differ + events/fold/keyedrng/pack/legacyprovider new); snapshot's flex predates the 99-rule table and QB→FS −12.
    - Part 17: my three 2026-11-15 direction filings FOR-corrected P-345 → R-13 (in-file notes); counts verified (Inkling 4 / Ernie 3 — mostly pass-through copies; neither seat has an inbox/ dir).
    - Parts 1–5, 7–9, 11–16 NOT done by me (need shell-tree review / seam deep-dive / harness build).
+3. **2026-11-16 (cont.) — CAKEPANZ-SHELL continuation (Parts 9, 11, 2/15), this commit:**
+   - `inbox/20261116-2115-glm-CAKEPANZ-SHELL-data-integrity.md` — Part 9 clean bills (no flex math, no ratings, engine-formatted strings, pure mode state) + findings F-9a ("Model Value" vs "Engine Value" label) and F-9b (`.ub` absent shell-wide).
+   - `inbox/20261116-2120-glm-CAKEPANZ-SHELL-style-laws.md` — Part 11 clean (forbidden phrases, heading periods) + finding F-11a (`2PT`/`2PT FAIL` vs "2-Pt Conv").
+   - `inbox/20261116-2125-glm-CAKEPANZ-SHELL-seam-checker.md` — Parts 2/15: merge-day gate shipped at `_agents/glm/deliveries/cakepanz-seam-checker/` (seam-check.mjs + example inventory), proven PASS/falsifier/zip (exit 0/1/1); seam-width baseline 14 files · 55 sites · 24 modules, no adapter door yet.
 
 ## What the next session needs
 - Read START-HERE from `origin/council/muse` first.
