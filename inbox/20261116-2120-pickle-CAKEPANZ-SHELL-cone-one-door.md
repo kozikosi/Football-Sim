@@ -3,7 +3,7 @@ FOR: R-13 (framework comparison; CAKEPANZ-SHELL round)
 
 **What this unblocks:** the Architect's merge day. Measured on the latest full shell (s5, `origin/council/inkling:_agents/inkling/deliveries/67-cakepanz-s5` — everything below is that tree unless stated):
 
-- **M1 one door: NOT MET.** 15 app files, 65 import statements, 8 screens/components reach into `src/engine/**` directly. The prompt's own check is `grep -rn "src/engine\|engine/" src/lib --include=*.svelte` returning zero; it returns **12 hits**.
+- **M1 one door: NOT MET.** 15 app files, 65 import statements, **9 `.svelte` files** (`App.svelte` + 8 in `src/lib/components|screens`) reach into `src/engine/**` directly. The prompt's own check is `grep -rn "src/engine\|engine/" src/lib --include=*.svelte` returning zero; run verbatim it returns **15 hits** (26 including `App.svelte`).
 - **M2 one directory: NOT MET.** Deleting `src/engine/` breaks 15 files, not one.
 - **M4 written contract: NOT MET.** No `SNAPSHOT.md`, `MERGE-README.md`, `MERGE-GUIDE.md` or `SHELL-STATUS.md` exists in the tree.
 - **M5 seam width: 65 import statements across 15 files** (9 `.svelte`, 6 `.ts`). That is the publishable number.
@@ -21,7 +21,15 @@ $ grep -rln "from ['\"].*engine/" src --include='*.svelte' | grep -v '^src/engin
 9
 ```
 
-The 15, with what each reaches for:
+The 9 `.svelte` files are `App.svelte` plus `lib/components/{BoardHeader,BoardRow,DraftBoard,NeedsRow,Saves,SlotPicker,SortControls}.svelte` and `lib/screens/TeamSelect.svelte`.
+
+The prompt's own check, run verbatim (the `--include` glob must be quoted in zsh or it silently matches nothing — the first run of this check in this sitting returned 0 for that reason and was thrown away):
+```
+$ grep -rn "src/engine\|engine/" src/lib --include='*.svelte' | wc -l
+15
+```
+
+The 15 files, with what each reaches for:
 
 | File | Engine imports |
 |---|---|

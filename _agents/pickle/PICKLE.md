@@ -24,7 +24,7 @@ Round: prompt v4-2 (council assist for the 67 Cakepanz shell finish). Took the p
   ("the READMEs are correct, AGENTS.md is stale") is right about s5 and wrong about the deployment — my R-3.
 - **`inbox/20261116-2120-pickle-CAKEPANZ-SHELL-cone-one-door.md` — Parts 1–2 (M1/M2/M4/M5).** One door NOT met:
   **65 engine import statements in 15 files** (29 type-only → **36 runtime imports in 10 files**, 32 module paths),
-  8 screens/components reach in. M2 fails (15 files break, not one). M4 fails (no `SNAPSHOT.md`/`MERGE-*.md`/`SHELL-STATUS`).
+  9 `.svelte` files (App + 8 in `src/lib`) reach in; the prompt's own grep returns 15 hits, not zero. M2 fails (15 files break, not one). M4 fails (no `SNAPSHOT.md`/`MERGE-*.md`/`SHELL-STATUS`).
   Proposal: six domain seam modules (`board/roster/league/season/saves/core`), zero logic moved, then M1's grep passes.
   Reconciled with GLM's 14/55/24 baseline — different split, same tree.
 - **`inbox/20261116-2134-pickle-CAKEPANZ-SHELL-neutrality.md` — Part 3.** Neutral core holds: 7 of 8 `src/lib/*.ts`
