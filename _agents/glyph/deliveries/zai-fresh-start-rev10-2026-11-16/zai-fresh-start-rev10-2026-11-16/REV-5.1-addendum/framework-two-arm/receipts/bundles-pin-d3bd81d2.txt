@@ -1,0 +1,25 @@
+== four-slice bundle sizes at CURRENT PIN d3bd81d2 (gates bump re-run) ==
+MEASURED AT (F4 date-stamp, added Rev 5.1): the FOUR-SLICE tree at pin d3bd81d2, 2026-11-15T11:56:23Z. The
+css 6,598 B raw below is THAT tree's chrome — the SHIPPED (arc+season) chrome is 11,473 B raw; the JS delta
+below (10,969 B concat) is the four-slice figure; Ernie's independent rebuild of the SHIPPED tree measured
+10,588 B by the same method. Do not read the numbers below as the shipped tree's.
+run: 2026-11-15T11:56:23Z · node v24.22.3 · vite 7.3.6 · method: per-file gzip -9; JS-only delta is the criterion (§1.1 labelling rule)
+-- arm-vue --
+index-tLDO7f90.js: raw 367518 B · gzip-9 114601 B
+-- arm-vue --
+index-vWDXWt8A.css: raw 6598 B · gzip-9 1912 B
+-- arm-svelte --
+index-B24Lw5rr.js: raw 340329 B · gzip-9 103632 B
+-- arm-svelte --
+index-vWDXWt8A.css: raw 6598 B · gzip-9 1912 B
+-- JS-only delta --
+concat JS gzip-9: vue 114583 B · svelte 103614 B · delta 10969 B toward svelte
+raw JS: vue 367518 B · svelte 340329 B · delta 27189 B
+-- per-asset sha256 --
+826886b6f07d6ada27be2740a825a5c840b326bca73e97fb9740e8f3100dd76f  arm-vue/dist/assets/index-tLDO7f90.js
+8c6997bb743e62695b52588e6180b4f0ff9a51de97155ece4db67ecd9be0791d  arm-vue/dist/assets/index-vWDXWt8A.css
+0192f2df105b6f05010306f59da025830808a819f17cb9cd8d336fecb743e1e7  arm-svelte/dist/assets/index-B24Lw5rr.js
+8c6997bb743e62695b52588e6180b4f0ff9a51de97155ece4db67ecd9be0791d  arm-svelte/dist/assets/index-vWDXWt8A.css
+-- engine vendor digest (LF-normalised src/engine, 57 files, pin d3bd81d2) --
+425d6a7f2c04e0795884abcf88dc166c6fb964fe8fdf7c869b0d65a16e32bc34  arm-vue/src/engine (57 files)
+425d6a7f2c04e0795884abcf88dc166c6fb964fe8fdf7c869b0d65a16e32bc34  arm-svelte/src/engine (57 files)

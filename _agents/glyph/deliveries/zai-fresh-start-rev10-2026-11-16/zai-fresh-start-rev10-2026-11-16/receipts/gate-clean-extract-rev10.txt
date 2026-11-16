@@ -1,0 +1,27 @@
+# clean-extract (the packaging tree itself — fresh, no node_modules/dist), 2026-11-16:
+$ node scripts/gate-manifest.mjs .
+gate-manifest: 6 manifest file(s) found under .
+manifest CHECKSUMS.txt: 4 entries, 4 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest MANIFEST.txt: 785 entries, 785 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/CHECKSUMS.txt: 360 entries, 360 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/MANIFEST.txt: 359 entries, 359 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-svelte/CHECKSUMS.txt: 144 entries, 144 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-vue/CHECKSUMS.txt: 141 entries, 141 OK, 0 MISMATCH, 0 MISSING → PASS
+GATE RESULT: PASS — 1793 entries verified across 6 manifest(s), no unlisted files
+$ node scripts/gate-numerals.mjs . --legacy-scan
+gate-numerals (legacy): CLEAN — 0 hits
+  exit=0
+$ node scripts/gate-numerals.mjs . --claims
+gate-numerals (claims): CLEAN — 0 hits
+  exit=0
+$ (cd REV-5.1-addendum && shasum -a 256 -c CHECKSUMS.txt | tail -1)
+tests/turnovers-named/turnovers-named.test.mjs: OK
+  exit=0
+$ shasum -a 256 -c CHECKSUMS.txt
+MANIFEST.txt: OK
+RECEIPT.md: OK
+DELIVERY-NOTE.md: OK
+verified-as-of.json: OK
+  exit=0
+$ shasum -a 256 SETTLE-RULE-PREREGISTERED.md
+afbf249f4c05fc7c93a1b069db11e676d22e6f8a0b67eff0bfe84a1ddb432268  SETTLE-RULE-PREREGISTERED.md

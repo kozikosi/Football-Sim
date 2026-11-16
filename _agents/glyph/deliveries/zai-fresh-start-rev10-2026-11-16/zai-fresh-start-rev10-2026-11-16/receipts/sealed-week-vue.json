@@ -1,0 +1,74 @@
+{
+ "arm": "vue",
+ "surface": "sealed-week",
+ "checks": [
+  {
+   "name": "sealed-hook-mounts",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "sealed-week-label-w1",
+   "ok": true,
+   "detail": "WEEK 1"
+  },
+  {
+   "name": "sealed-week-next",
+   "ok": true,
+   "detail": "WEEK 2"
+  },
+  {
+   "name": "sealed-week-prev",
+   "ok": true,
+   "detail": "WEEK 1"
+  },
+  {
+   "name": "sealed-week-jump-sb",
+   "ok": true,
+   "detail": "SUPER BOWL"
+  },
+  {
+   "name": "sealed-week-sb-game",
+   "ok": true,
+   "detail": "HOU 30 @ 22 ATL"
+  },
+  {
+   "name": "sealed-week-sb-game-count",
+   "ok": true,
+   "detail": ""
+  },
+  {
+   "name": "sealed-standings-row-0-has-abbr-w-l",
+   "ok": true,
+   "detail": "ATL125"
+  },
+  {
+   "name": "sealed-standings-32-rows",
+   "ok": true,
+   "detail": "32"
+  },
+  {
+   "name": "sealed-week-16-games-at-w1-or-1-at-sb",
+   "ok": true,
+   "detail": "1"
+  },
+  {
+   "name": "sealed-week-clamp-at-top",
+   "ok": true,
+   "detail": "true SUPER BOWL"
+  },
+  {
+   "name": "sealed-week-keyboard",
+   "ok": true,
+   "detail": "CONFERENCE"
+  },
+  {
+   "name": "sealed-week-390px-clean",
+   "ok": true,
+   "detail": ""
+  }
+ ],
+ "pass": true,
+ "consoleErrors": [],
+ "pageErrors": []
+}

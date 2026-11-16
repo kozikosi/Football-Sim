@@ -1,0 +1,23 @@
+STUB SMOKE TEST — this verifies the MECHANISM of the sealed bench, never the verdict.
+{
+ "mechanism": "VERIFIED",
+ "honest": [
+  {
+   "arm": "vue",
+   "status": "OPEN",
+   "why": "receipt present, gates not run (honest stub)"
+  },
+  {
+   "arm": "svelte",
+   "status": "OPEN",
+   "why": "receipt present, gates not run (honest stub)"
+  }
+ ],
+ "lying": {
+  "arm": "vue",
+  "status": "FAIL",
+  "why": "receipt claims battery battery=24/24 but no passing battery evidence exists on disk"
+ },
+ "elapsedMs": 1
+}
+honest stubs -> OPEN (the bench waits for real gates); lying stub -> FAIL (no pass it did not see); wall time 1 ms (no hang).

@@ -1,0 +1,135 @@
+== the four-slice slope test — receipt (§2, the falsifier's measurement) ==
+MEASURED AT (F4 date-stamp, added Rev 5.1): the FOUR-SLICE tree of 2026-11-15; its engine pin was 4ca9a071 —
+the SHIPPED tree is re-pinned to d3bd81d2 (57 files) and its store files are 83/98 lines, not the 61/68 below.
+The 61/68 pair below is the four-slice store-file count (cited by CATEGORY-WINNERS.md row 9 as the
+framework-owned store count of THAT tree — labelled there since Rev 5.1).
+run at: 2026-11-15 (this sitting) · cwd framework-two-arm/ · the threshold was REGISTERED BEFORE
+any four-slice code existed (see sitting-notes.md, copied verbatim into PREFERENCE-INTERVIEW.md
+q13): R < 0.85 fires (switch to Vue) · R > 1.18 Svelte-better · else "inside the band, no signal".
+
+-- the arms --
+Same surface, same fixture, same engine bytes, same chrome: the slice-1 feed panel is REUSED
+untouched; slices 2–4 (board, team select, saves) are new files; bootData.ts (extended) +
+savesService.ts + feed.css (extended) are NEW SHARED identical bytes (cmp clean across arms), so
+the engine (52 files, diff clean), the view-models and the chrome stay the framework's variables'
+opposite: the framework is the only variable. The engine stays the vendored pin 4ca9a071; the
+view-model stays the plain-JSON law (boardVM, feedVM, the envelope service).
+
+-- lines per feature (wc -l; framework-owned: entry + root + screen + store glue) --
+FINAL counts (what a maintainer owns):
+  svelte: main.ts 6 · App.svelte 26 · appStore.svelte.ts 68 · Board.svelte 61 · TeamSelect.svelte 35
+          · Saves.svelte 72 · FeedPanel.svelte 79  = 347 total
+  vue   : main.ts 5 · App.vue 30 · appStore.ts 61 · Board.vue 57 · TeamSelect.vue 34 · Saves.vue 71
+          · FeedPanel.vue 74  = 332 total
+  shared identical bytes (excluded, cmp clean): bootData.ts 74 · savesService.ts 71 · feedVM.ts 160
+  · abbr.ts 20 · ink.ts 35 · feed.css 106 · engine 52 files · fixture.json
+Slice-1 known (filed receipt): vue 99 · svelte 103 (entry + root + FeedPanel).
+
+-- cumulative (the slope question: widening, flat, or closing?) --
+  after slice 1 : svelte 103 · vue 99      (vue −3.9%)
+  after slice 2 : svelte 202 · vue 198     (vue −2.0%)
+  after slice 3 : svelte 248 · vue 244     (vue −1.6%)
+  after slice 4 : svelte 347 · vue 332     (vue −4.3%)
+  VERDICT ON THE CURVE: FLAT — Vue sits 2–4% ahead at every stage; no widening, no closing.
+
+-- marginals per slice (screen + store glue; root growth listed beside) --
+  slice 2 board      : svelte 60 + 38 glue = 98 · vue 57 + 40 glue = 97   (root: +1 / +2)
+  slice 3 team select: svelte 35 + 8 glue  = 43 · vue 34 + 8 glue  = 42   (root: +3 / +4)
+  slice 4 saves      : svelte 72 + 12 glue = 84 · vue 71 + 10 glue = 81   (root: +4 / +4)
+  store-glue block sizes from the sitting's edit record; the svelte store file also carries 8 lines
+  of compile-fix overhead (state_invalid_export getter wrappers + the derived wrapper — debugging
+  cost, listed in the debug journal, counted in the 68 final); vue's store carries 1 (the BoardSort
+  re-export; its other two first-run errors were line-neutral fixes).
+
+-- the registered bands, applied (the arithmetic is in scripts/slope-arithmetic.py) --
+  R (primary, mean marginal vue/svelte)      = 0.9778
+  R_total (cumulative vue/svelte at slice 4) = 0.9568
+  0.85 <= R <= 1.18 and 0.85 <= R_total <= 1.18  →  **INSIDE THE BAND — NO SIGNAL.**
+  The falsifier does NOT fire. No winner is manufactured; the bundle remains the only separating
+  criterion. (Read the other way: svelte's marginal advantage 1/R = 1.023 — also inside the band.)
+
+-- store/state code (composables vs runes, same state both arms) --
+  vue appStore.ts 61 lines: shallowRef snapshot + computed board + ref ui — the external-store wrap
+  needed no idiom beyond shallowRef; template ref-unwrap is typed by vue-tsc.
+  svelte appStore.svelte.ts 68 lines: the same shape in runes, but $state.raw/$derived CANNOT be
+  exported reassigned (state_invalid_export / derived_invalid_export) — the compiler's remedy is
+  getter functions, and narrowing across getter calls fails TS ("Object is possibly 'null'"),
+  costing one extra derived and 8 fix lines. The engine-store wrap is the ONE place runes fought.
+
+-- type-check effort (first full run of the complete four-slice build, BEFORE any fix) --
+  svelte-check: 3 errors + 1 warning, exit 1 · vue-tsc: 3 errors, exit 2. Both fixed in one pass.
+  Verbatim outputs: receipts/fourslice-typecheck-first-run.txt. The two worst, verbatim:
+  1. svelte-check (Board.svelte 13:56): "Error: Object is possibly 'null'. (ts)" — on
+     `const teamName = $derived(draftSnap().record ? TEAMS[draftSnap().record.userTeam].name : '')`
+     — narrowing cannot cross two calls of the getter the compiler itself forced.
+  2. vue-tsc (App.vue 28,35): "error TS2339: Property 'value' does not exist on type 'FeedVM'."
+     — vue-tsc TYPED the template's ref auto-unwrap and caught my explicit .value as the error;
+     the checker knows the template better than the author did.
+  (Shared: both checkers caught the same FrozenPoolRow/BoardSort re-export slips.)
+
+-- what was written twice (the duplicated logic, with line counts of each copy) --
+  1. The store glue, whole file: svelte 68 / vue 61 — same state, same actions, two idioms.
+  2. chooseTeam: svelte 5 lines / vue 5 lines — identical except ui.screen vs ui.value.screen.
+  3. loadIntoStore: svelte 9 / vue 9 — same, plus the same one-line nav decision.
+  4. The screens' read-side derivations: board rows/header/mine/toneColor: svelte ~14 lines
+     ($derived each) / vue ~11 lines (computed each) — same shape, different keywords.
+  5. Saves screen logic: refresh/doSave/doLoad/doInject: svelte ~30 / vue ~30 — near-verbatim
+     except ref access (.value) and $effect vs onMounted.
+  6. feedVM/boardVM/envelope/team persistence/slot keys: ZERO duplication — shared identical
+     bytes (the architecture moved everything stateful-but-framework-free into shared files).
+
+-- what the framework gave free --
+  svelte: class:cp-on={cond} directive shorthand; {#each} keyed blocks; $derived in-markup
+  readability; svelte-check flagged an a11y issue vue-tsc could not see (the feed line's tabindex
+  on a noninteractive <article> — pre-existing, Warn-level).
+  vue: shallowRef as the external-store idiom (no compiler fight); template ref-unwrap TYPED by
+  the checker (it caught the author's explicit .value); v-for/:key terser for wide row templates;
+  vue-tsc's error lines are one-line-precise (file(line,col)) — easier to key a jump to.
+
+-- debugging (the real bugs, verbatim messages in the debug journal) --
+  svelte arm: 3 build-time compile errors, all the compiler naming the exact line and remedy:
+    "Cannot export state from a module if it is reassigned. Either export a function returning
+    the state value or only mutate the state value's properties" (state_invalid_export)
+    "Cannot export derived state from a module. To expose the current derived value, export a
+    function returning its value" (derived_invalid_export)
+    "Could not resolve \"../engine/sports/nfl/view/draftBoard.ts\" from \"src/lib/screens/Board.svelte\"" (my path bug)
+  vue arm: 1 first-run type error (the .value unwrap above) + one author typo caught by vue-tsc
+  pre-build. The one BEHAVIORAL bug of the sitting was framework-neutral (LOAD did not navigate to
+  the board) and the PROBE caught it identically on both arms.
+
+-- rebuild after a one-line copy change (measured, tree reverted byte-identical after) --
+  svelte: wallclock 1,399 ms (vite reports 918 ms) · vue: wallclock 1,496 ms (vite reports 1.10 s)
+  → a tie inside run-to-run noise.
+
+-- the verification battery (two-arm-fourslice.mjs, ONE protocol, both arms, one process) --
+  ALL FOUR-SLICE LAWS PASS on both arms · 0 console errors · 0 blocked requests · per arm:
+  team select: opens at team select · 32 teams · 8 real divisions · fixture team highlighted ·
+    picking Buffalo Bills → board for Buffalo · localStorage sim:nfl:team = "0" · survives reload
+    (the choice persists) · the pool re-renders (board count line and feed both re-derive).
+  board: 60 rows (the engine's boardVM) · PICK through the REAL reducer (YOUR PICKS (1), the
+    on-clock advances to Round 2 pick 32 = overall 64 of 1024 — the reducer auto-advances the CPU
+    to the user's next turn, the engine's own law, identical on both arms) · UNDO cuts back ·
+    OVR sort puts the 99s first · zero yard figures anywhere.
+  saves: 3 slots, empty first · SAVE writes an envelope (rev = 1 + picks: slot A rev 1 · 0 picks;
+    slot B rev 64 · 63 picks after the CPU advance) · envelopes survive a reload · LOAD restores
+    through the store's LOAD (board re-renders for the saved team, 0 picks, Buffalo highlighted) ·
+    PLANT CORRUPT → "REFUSED (corrupt): payload: bad seed" verbatim (banner AND slot card) ·
+    PLANT NEWER-VERSION → "REFUSED (newer-version): envelope: written by a newer build (schema 9)"
+    verbatim · corrupt-never-repair throughout.
+  feed: the REUSED panel re-renders for the chosen team — Buffalo's real week-1 game (BUF @ NE,
+    gameSeed 3630089740, 25 lines, 13 mine) · MY DRIVES filters to 13 = 13 · NEWEST FIRST flips
+    to the OT drive · provenance stamp carries the gameSeed.
+  390 px: scrollWidth 390 = viewport on all four screens, both arms · keyboard: Tab reaches the
+  nav (first focus = the active nav pill).
+  Screenshots: shots/fourslice-{vue,svelte}-{team-board,saves-loaded,saves-refused,feed,390}.png
+
+-- bundle, four-slice build (per-file, gzip -9 of each file, name header included) --
+  vue js raw 367559 · gz 114553 · svelte js raw 340370 · gz 103607 · css identical 6598 raw both
+  JS-only gz delta toward svelte: 114553 − 103607 = 10946 B (10.9 KB) — the slice-1 number was
+  11569 B; the four slices did NOT close it (the framework runtime scales with the surface).
+
+-- the one-sentence slope answer (§2.3) --
+  Inside the band, no signal: Vue's per-slice line cost is 2.2% lower than Svelte's (R = 0.978
+  against a ±15% band), the cumulative gap is 4.3% and flat across all four slices, so the
+  maintainability slope does not flip the decision and the bundle (−10.9 KB gz JS-only, still
+  separating at −9.5%) stays the only criterion that ever separated the arms.

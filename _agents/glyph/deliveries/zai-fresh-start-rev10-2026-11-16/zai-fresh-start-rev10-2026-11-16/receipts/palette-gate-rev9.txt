@@ -1,0 +1,4 @@
+palette gate (Rev 9 Part B), 2026-11-16T02:23:20Z:
+  football-sim-vue: 0 hex outside the token layer (tokens.css + tokens-dark-tc.css + tokens-w89.css + tokens.ts + tokens-w89.ts + zpb-team-colors.json + font-faces.css; engine excluded)
+  football-sim-svelte: 0 hex outside the token layer (tokens.css + tokens-dark-tc.css + tokens-w89.css + tokens.ts + tokens-w89.ts + zpb-team-colors.json + font-faces.css; engine excluded)
+  exit 0 (0 hex = gate holds)

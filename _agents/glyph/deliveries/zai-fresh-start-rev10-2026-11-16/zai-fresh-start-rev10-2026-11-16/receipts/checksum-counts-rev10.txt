@@ -1,0 +1,6 @@
+CHECKSUMS.txt: 4 entries
+MANIFEST.txt: 722 entries
+REV-5.1-addendum/CHECKSUMS.txt: 360 entries
+REV-5.1-addendum/MANIFEST.txt: 359 entries
+football-sim-svelte/CHECKSUMS.txt: 144 entries
+football-sim-vue/CHECKSUMS.txt: 141 entries

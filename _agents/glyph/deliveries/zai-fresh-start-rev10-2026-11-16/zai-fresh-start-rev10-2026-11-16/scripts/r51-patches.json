@@ -1,0 +1,141 @@
+{
+ "what": "Rev 5.1 patch \u2014 every asserted replacement that turned the authoring sitting into the patched addendum tree",
+ "pre_side": "council/inkling _agents/inkling/deliveries/zai-sitting-2026-11-15-authoring (vendored at 85a54b66) \u2014 the unpatched tree",
+ "post_side": "this delivery REV-5.1-addendum/ (byte-identical to the Rev 6 published addendum except SLICE-DONE-PROPOSAL.md, which Rev 8 later amended \u2014 see the D4 hunk note)",
+ "count_note": "the Rev 5.1 receipt said \"applied 17/17\" at fix-row granularity; the byte diff atomizes to these 19 hunks over the same 12 files \u2014 asserting all 19 subsumes 17/17",
+ "replacements": [
+  {
+   "file": "framework-two-arm/arm-vue/src/lib/savesService.ts",
+   "item": "F1",
+   "label": "F1",
+   "old": "    const p = (env as { payload: Record<string, unknown> }).payload;\n",
+   "new": "    const p = (env as unknown as { payload: Record<string, unknown> }).payload;\n"
+  },
+  {
+   "file": "framework-two-arm/arm-svelte/src/lib/savesService.ts",
+   "item": "F1",
+   "label": "F1",
+   "old": "    const p = (env as { payload: Record<string, unknown> }).payload;\n",
+   "new": "    const p = (env as unknown as { payload: Record<string, unknown> }).payload;\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "D2 \u2014 row 1 relabelled (one number per claim, each with method)",
+   "old": "| 1 | bundle (JS gz) | **Svelte** | 10,530 B gz delta at the season surface (receipts/season-timing.txt); 10,969 B at four-slice (bundles-pin-d3bd81d2.txt); vapor did NOT close it (10.7 kB, receipts/vapor-mode-bundle.txt) |\n",
+   "new": "| 1 | bundle (JS gz) | **Svelte** | LABELLED (one number per claim, each with its method): 10,969 B = four-slice concat JS gzip-9 delta (bundles-pin-d3bd81d2.txt) \u00b7 11,569 B = four-slice JS-only per-file delta, the canonical labelled figure (two-arm-bundles.txt \u00a71.1) \u00b7 10,530 B = season-surface concat (season-timing.txt) \u00b7 10,706 B = slice-5 JS per-file (vapor-mode-bundle.txt) \u00b7 9,519 B = vapor arm concat (vapor-mode-bundle.txt). Ernie's independent rebuild: 10,588 B, same method \u2014 direction and magnitude hold. NOISE-weighted: does not move interactive time (row 2) |\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "D1+F2+F3+F5 \u2014 row 9: both numbers labelled, surface fact, facade restated",
+   "old": "| 9 | store maintainability | **Vue (narrow)** | appStore.ts 61 L vs appStore.svelte.ts 68 L + the compiler-forced getter-wrapper idiom for module-level `$state.raw` (MUSE's own receipt; confirmed in arc work: setStudied needed the same idiom) |\n",
+   "new": "| 9 | store maintainability | **Vue (narrow)** | BOTH NUMBERS, LABELLED \u2014 (a) SHIPPED store totals: appStore.ts **83 L** vs appStore.svelte.ts **98 L** (`wc -l`, framework-two-arm/arm-vue/src/lib/appStore.ts \u00b7 arm-svelte/src/lib/appStore.svelte.ts, the delivered tree); (b) the FOUR-SLICE tree's store files: 61 L vs 68 L (receipts/two-arm-fourslice.txt \u2014 whole store file, which is framework-owned by construction; NOT from slice5-timing.txt, which quotes the card screen 86/88). Delta 7 \u2192 **15 lines as shipped**. Surface fact (F3): the delivered surface is an exact tie **1,249 = 1,249 framework-owned lines** \u2014 row 9's tax is 15/1,249 = **1.2%** of it. Plus the compiler-forced getter-wrapper idiom for module-level `$state.raw` (arc work: setStudied re-paid it) \u2014 cost restated as ONE facade, paid once (F5), not per-export |\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "D3 \u2014 row 18 carries the standing qualifier",
+   "old": "| 18 | authoring cost | **tie** | both slices green, 0 vs 1 failed builds (the svelte path miss), rebuilds 1568 vs 1479 ms (AUTHORING-COST.md) |\n",
+   "new": "| 18 | authoring cost | **tie** | both slices green, 0 vs 1 failed builds (the svelte path miss), rebuilds 1568 vs 1479 ms (AUTHORING-COST.md). QUALIFIER (D3, carried everywhere 34/9 min appears): **after the shared instrumentation exists, the second arm of this pair is ~9 min in either direction** \u2014 most of the 34-vs-9 gap is the first arm paying the probe cost, an order-of-authorship artifact, not framework speed |\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "F5 \u2014 DECIDES paragraph: \"taxes ... forever\" struck, one facade paid once",
+   "old": "- **store maintainability (9)** \u2014 the store file is where every future sitting lives; the getter-wrapper idiom taxes every module-level reactive export forever.\n",
+   "new": "- **store maintainability (9)** \u2014 the store file is where every future sitting lives; the compiler forces ONE indirection at the module boundary (\"Either export a function returning the state value OR only mutate the state value's properties\") \u2014 restated per Ernie F5 as **one facade, paid once**, not one wrapper per export; the tax compounds only if every future module-level reactive export repeats the wrapper-per-export choice. Whether the facade's MIGRATION cost is trivial or painful is exactly what the week-stepper (store-heavy tie-breaker) measures.\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "D1+F3+F5 \u2014 DECIDES context: tie surface, migration cost to be measured",
+   "old": "row is the store idiom (9) \u2014 and it is also the row with the clearest permanent cost (every future\nmodule-level reactive export pays it).\n",
+   "new": "row is the store idiom (9) \u2014 its cost restated: one facade at the module boundary, paid once (F5),\nits migration cost to be measured by the week-stepper. Magnitude context (F3): the delivered surface\nis an exact tie (1,249 = 1,249 lines) and row 9's shipped tax is 1.2% of it \u2014 the call rests on\nSTRUCTURE (the compiler-forced boundary), not on volume.\n"
+  },
+  {
+   "file": "CATEGORY-WINNERS.md",
+   "item": "D1+F2+F3 / D2 / D3 / F5 / D7 (per hunk)",
+   "label": "D7 \u2014 overall pick headline carries the confound caveat",
+   "old": "**Vue 3 + Vite, by the narrowest margin the record supports \u2014 and honestly close to \"even\".** The pick\nrests on row 9 (the store file, compiler-forced idiom, permanent tax) plus the tie-breaks (8, 24),\n",
+   "new": "**Vue 3 + Vite, narrow, 62% \u2014 authoring-cost row confounded by probe inheritance; second agent required to harden.** (D7: this headline carries the caveat because the headline is what gets quoted.) The pick\nrests on row 9 (the store file, compiler-forced idiom \u2014 one facade, paid once, its migration cost unmeasured until the week-stepper runs) plus the tie-breaks (8, 24),\n"
+  },
+  {
+   "file": "measurements/AGENTIC-ERGONOMICS-VERDICT.txt",
+   "item": "D7 / D1+F2+F3+F5",
+   "label": "D7 \u2014 HEADLINE block amended",
+   "old": "Seat: Z.ai \u00b7 2026-11-15 \u00b7 pin d3bd81d2 \u00b7 within-agent protocol (measurements/PROTOCOL-FOR-A-SECOND-AGENT.md)\n",
+   "new": "Seat: Z.ai \u00b7 2026-11-15 \u00b7 pin d3bd81d2 \u00b7 within-agent protocol (measurements/PROTOCOL-FOR-A-SECOND-AGENT.md)\n\n== HEADLINE (D7, amended to carry the confound caveat \u2014 the headline is what gets quoted) ==\n**Vue 3 + Vite, narrow, 62% \u2014 authoring-cost row confounded by probe inheritance; second agent required to harden.**\n"
+  },
+  {
+   "file": "measurements/AGENTIC-ERGONOMICS-VERDICT.txt",
+   "item": "D7 / D1+F2+F3+F5",
+   "label": "D1+F2+F3+F5 \u2014 store bullet: both numbers labelled",
+   "old": "  \u2022 the store file + its permanent idiom tax: appStore.ts 61 L with no compiler-forced wrappers vs\n    appStore.svelte.ts 68 L with the idiom re-paid in every module-level reactive export (four-slice\n    receipts + the arc diff),\n",
+   "new": "  \u2022 the store file + the compiler-forced module-boundary idiom \u2014 BOTH NUMBERS LABELLED (D1/F2):\n    shipped store totals appStore.ts **83 L** vs appStore.svelte.ts **98 L** (wc -l, delivered tree);\n    the four-slice receipt's 61 L vs 68 L (two-arm-fourslice.txt, whole store file). Delta 7 \u2192 15 as\n    shipped. Surface fact (F3): the delivered surface is an exact tie, 1,249 = 1,249 framework-owned\n    lines, so the shipped tax is 1.2% of the surface \u2014 the row decides on STRUCTURE, not volume.\n    Cost restated per F5: the boundary forces ONE facade, paid once \u2014 not one wrapper per export;\n    the wrapper-per-export form was this arm's choice, and the facade's migration cost is the\n    week-stepper's measurement,\n"
+  },
+  {
+   "file": "AUTHORING-COST.md",
+   "item": "D3 / F1-note",
+   "label": "D3 \u2014 STANDING QUALIFIER at the top of the table",
+   "old": "## The units, best available\n\n",
+   "new": "## The units, best available\n\nSTANDING QUALIFIER (D3 \u2014 carried everywhere the 34/9 min appears): after the shared instrumentation\nexists, the second arm of this pair is ~9 min in EITHER direction; the 34-vs-9 gap is dominated by the\nfirst arm paying the probe-authoring cost, an order-of-authorship artifact recorded as exactly that.\n\n"
+  },
+  {
+   "file": "AUTHORING-COST.md",
+   "item": "D3 / F1-note",
+   "label": "F1 \u2014 typecheck row states the real error and the re-run",
+   "old": "| typecheck errors | 0 (vue-tsc, both slices, first try) | 0 (svelte-check, both slices; 3 warnings total: 1 pre-existing, 2 a11y on the same markup vue-tsc stays silent about) | typecheck receipts |\n",
+   "new": "| typecheck errors | **1 (F1, FIXED)** then 0 \u2014 the ORIGINAL receipts read 0, but the shipped tree had ONE error in BOTH arms (`src/lib/savesService.ts(58,16): error TS2352`, byte-identical shared file, introduced by the week-save-hydration work AFTER the type-check receipts were taken). Fix: cast via `unknown`; both checkers RE-RUN on the shipped tree \u2014 see f1-typecheck-rerun.txt for the exit codes (the receipts were stale; Ernie F1/F4) | same fix in the same byte-identical file, re-run attached | f1-typecheck-rerun.txt (Rev 5.1) |\n"
+  },
+  {
+   "file": "README.md",
+   "item": "D4",
+   "label": "D4",
+   "old": "- Live site per the Owner: w85 (gh-pages' newest publish is w89 \u2014 verify per START-OF-CHAT \u00a73).\n",
+   "new": "- Live site: **w89** (verified 2026-11-15 \u2014 `origin/gh-pages` tip `3e69567c`, \"Publish w89 as live index\"; verify per START-OF-CHAT \u00a73 each chat). The w85 frame is STRUCK (D4 \u2014 do not re-ship it).\n"
+  },
+  {
+   "file": "SLICE-DONE-PROPOSAL.md",
+   "item": "D4",
+   "label": "D4 \u2014 the w85 bar corrected to w89 (later file also carries Rev 8 gate-5 edits)",
+   "old": "3. **Zero console errors on file:// (flagged), zero blocked requests, the whole session.** The w85 bar.\n",
+   "new": "3. **Zero console errors on file:// (flagged), zero blocked requests, the whole session.** The w89 bar (D4: wave number corrected \u2014 live is w89, gh-pages tip 3e69567c; the bar itself is unchanged).\n"
+  },
+  {
+   "file": "INNOVATION.md",
+   "item": "D4",
+   "label": "D4",
+   "old": "card grid + the standings table. One button: \"SEASON BOOK\" \u2014 a single self-contained HTML (the w85\n",
+   "new": "card grid + the standings table. One button: \"SEASON BOOK\" \u2014 a single self-contained HTML (the w89\n"
+  },
+  {
+   "file": "framework-two-arm/receipts/two-arm-lines.txt",
+   "item": "F4",
+   "label": "F4",
+   "old": "== two-arm line counts \u2014 the maintainability proxy ==\n",
+   "new": "== two-arm line counts \u2014 the maintainability proxy ==\nMEASURED AT (F4 date-stamp, added Rev 5.1): the two-slice tree of 2026-11-15 BEFORE slice 5 / arc / season \u2014\nthe \"engine (52 files)\" line below reflects THAT tree. Shipped tree: engine is 57 files at pin d3bd81d2\n(diff -rq clean, verified by Inkling and Ernie). Read the shipped counts from CATEGORY-WINNERS.md row 9.\n"
+  },
+  {
+   "file": "framework-two-arm/receipts/two-arm-fourslice.txt",
+   "item": "F4",
+   "label": "F4",
+   "old": "== the four-slice slope test \u2014 receipt (\u00a72, the falsifier's measurement) ==\n",
+   "new": "== the four-slice slope test \u2014 receipt (\u00a72, the falsifier's measurement) ==\nMEASURED AT (F4 date-stamp, added Rev 5.1): the FOUR-SLICE tree of 2026-11-15; its engine pin was 4ca9a071 \u2014\nthe SHIPPED tree is re-pinned to d3bd81d2 (57 files) and its store files are 83/98 lines, not the 61/68 below.\nThe 61/68 pair below is the four-slice store-file count (cited by CATEGORY-WINNERS.md row 9 as the\nframework-owned store count of THAT tree \u2014 labelled there since Rev 5.1).\n"
+  },
+  {
+   "file": "framework-two-arm/receipts/bundles-pin-d3bd81d2.txt",
+   "item": "F4",
+   "label": "F4",
+   "old": "== four-slice bundle sizes at CURRENT PIN d3bd81d2 (gates bump re-run) ==\n",
+   "new": "== four-slice bundle sizes at CURRENT PIN d3bd81d2 (gates bump re-run) ==\nMEASURED AT (F4 date-stamp, added Rev 5.1): the FOUR-SLICE tree at pin d3bd81d2, 2026-11-15T11:56:23Z. The\ncss 6,598 B raw below is THAT tree's chrome \u2014 the SHIPPED (arc+season) chrome is 11,473 B raw; the JS delta\nbelow (10,969 B concat) is the four-slice figure; Ernie's independent rebuild of the SHIPPED tree measured\n10,588 B by the same method. Do not read the numbers below as the shipped tree's.\n"
+  },
+  {
+   "file": "filings/OT-clock-fix-PENDING.txt",
+   "item": "F7b",
+   "label": "F7b",
+   "old": "is frozen; you are not inside colors/).\n",
+   "new": "is frozen; you are not inside colors/).\n\nREV 5.1 NOTE (Ernie F7b, verbatim receipt): the defect renders a NEGATIVE clock, not just the wrong\nperiod \u2014 tests/receipts/ot-clock.txt shows \"p5:Q4 -3:-4\". A fix that corrects the period label but\nleaves \"-3:-4\" has NOT fixed the defect: the Architect's fix must correct BOTH (the clamp at feed.ts\nl.59-60 AND the negative remainder).\n"
+  }
+ ]
+}

@@ -1,0 +1,11 @@
+{
+  // D2 payload (Rev 10, Z.ai): the test-scope the main tsconfig excludes. Extends tsconfig.json
+  // (same strictness flags) and includes test/**/* so the ratchet/CI can see test-file type
+  // errors. Requires @types/node (the main tsconfig's own comment names this dependency).
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  },
+  "include": ["src/**/*.ts", "test/**/*.ts"],
+  "exclude": ["node_modules", "tools"]
+}

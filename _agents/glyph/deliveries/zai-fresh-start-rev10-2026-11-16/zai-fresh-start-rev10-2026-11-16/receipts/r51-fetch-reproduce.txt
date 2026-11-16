@@ -1,0 +1,14 @@
+# receipt — Rev 10: node scripts/fetch-r51-inputs.mjs (END-TO-END, this sandbox)
+fetching pre-patch-tree (85a54b66) — the 12 patch-target files …
+  12/12 files fetched and hash-verified → /tmp/r51-fetched/pre-patch-tree
+fetching rev6-addendum (council/glyph (tip)) — the 12 patch-target files …
+  12/12 files fetched and hash-verified → /tmp/r51-fetched/rev6-addendum
+
+now run, from the delivery root:
+  python3 scripts/r51_patch.py --reproduce /tmp/r51-fetched/pre-patch-tree /tmp/r51-fetched/rev6-addendum   # expect 12/12 IDENTICAL, exit 0
+  python3 scripts/r51_patch.py --reproduce /tmp/r51-fetched/pre-patch-tree REV-5.1-addendum       # expect 11/12, exit 1 (SLICE-DONE-PROPOSAL.md)
+
+# then, END-TO-END:
+IDENTICAL measurements/AGENTIC-ERGONOMICS-VERDICT.txt
+reproduce: 12/12 files byte-identical to /tmp/r51-fetched/rev6-addendum
+--- exit code: 0 ---

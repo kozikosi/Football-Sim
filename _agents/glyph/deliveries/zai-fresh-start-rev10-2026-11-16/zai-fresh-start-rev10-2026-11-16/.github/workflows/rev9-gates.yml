@@ -1,0 +1,23 @@
+# Delivery-tree CI — Rev 9 Part 0. Both gates ENFORCING on the whole delivery:
+# the manifest gate verifies every CHECKSUMS.txt/MANIFEST.txt in the tree (unparseable = FAIL);
+# the numerals gate runs BOTH modes against DELIVERY-NOTE.md/RECEIPT.md/verified-as-of.json and
+# the battery JSONs. This tree is a zip handed to the Owner (KG/MUSE place it); the workflow
+# ships so the re-cut branches can run it as-is. No expiry: these checks can fail.
+name: rev9-gates
+on:
+  push:
+  pull_request:
+jobs:
+  gates:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: manifest gate (enforcing)
+        run: node scripts/gate-manifest.mjs .
+      - name: numerals gate legacy-scan (enforcing)
+        run: node scripts/gate-numerals.mjs . --legacy-scan
+      - name: numerals gate claims (enforcing)
+        run: node scripts/gate-numerals.mjs . --claims

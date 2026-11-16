@@ -1,0 +1,8 @@
+D1: FAILS-AS-REQUIRED — node scripts/gate-manifest.mjs . → exit 1
+E1: FAILS-AS-REQUIRED — python3 scripts/r51_patch.py --verify-shipped REV-5.1-addendum → exit 1
+F1: FAILS-AS-REQUIRED — node scripts/gate-numerals.mjs . --legacy-scan → exit 1
+G1: FAILS-AS-REQUIRED — node scripts/store-cost-2x2.mjs --assert → exit 1
+A1: FAILS-AS-REQUIRED — npx vitest run src/stores/WeekStepperSealed.test.ts → exit 1
+B1: FAILS-AS-REQUIRED — npm run check → exit 1
+
+6/6 receipt classes falsifiable (all inputs restored — the scratch copy is deleted on the next run)

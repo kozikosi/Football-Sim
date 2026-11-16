@@ -1,0 +1,22 @@
+# receipt — Rev 10 EXT F: self-lint over Z.ai's own files (advisory corrections in the inbox bulletin filing)
+
+$ grep -rn "358/358|658 entries" --include="*.md" . (excluding node_modules):
+  ./RECEIPT.md:146:- **Part 0:** nested `shasum -a 256 -c CHECKSUMS.txt` from inside REV-5.1-addendum/ → **360/360 OK, exit 0**; root manifest regenerated over the final tree (count = VERIFY §1, gate PASS); `r51_patch.py --verify-shipped` → **19/19 exit 0**, `--reproduce` → **12/12 byte-identical exit 0 AGAINST THE NAMED REFERENCE: the Rev 6 PUBLISHED addendum (council/glyph `_agents/glyph/deliveries/zai-fresh-start-2026-11-15/REV-5.1-addendum`), pre-patch side = council/inkling 85a54b66 — the SAME command against the SHIPPED addendum prints 11/12, exit 1 BY DESIGN (SLICE-DONE-PROPOSAL.md's deliberate Rev 8 build-green clause; r51-patches.json post_side discloses it)**; C2 gate fix probe → **exit 1** on a prose manifest (receipts/gate-c2-rev9-unparseable-probe.txt) and the fixed gate CAUGHT the live prose manifest on the Rev 8 tree (converted: 359-entry sha-list); repos' gates re-run (vue 11/11 + tc 0 + build 0 + battery 24/24; svelte check 0/0 + build 0 + battery 24/24, counts 871/457/470/125/221/39 unchanged); CI workflows + repo CHECKSUMS added; grep "358/358|658 entries" → zero live CLAIMS (reworded Rev 10 erratum §4 — the correction lines themselves grep; the live-claim count is 0).
+  ./REV-9-ERRATA.md:42:## 0.11 — "358/358|658 entries" grep
+
+$ live-CLAIM count (lines presenting 358/358 or 658 as a CURRENT number, i.e. excluding lines containing the correction markers "old → new|OLD|NEW|Rev 9 correction|reworded"):
+4
+
+$ w89 palette self-check (w89 dark-background or --tc claims in MY files):
+1
+
+$ gh-pages tip hash self-check (any 3e69567c presented as TIP):
+  ./REV-5.1-addendum/SLICE-DONE-PROPOSAL.md:16:3. **Zero console errors on file:// (flagged), zero blocked requests, the whole session.** The w89 bar (D4: wave number corrected — live is w89, gh-pages tip 3e69567c; the bar itself is unchanged).
+  ./REV-5.1-addendum/REV-5.1-ADDENDUM.md:16:| **D4 (w85 frame)** | struck in README.md ("Live site: **w89**, verified 2026-11-15, gh-pages tip `3e69567c`"), SLICE-DONE-PROPOSAL.md ("The w89 bar") and INNOVATION.md ("the w89 single-file discipline") | patched files, greps below |
+  ./REV-5.1-addendum/_agents/zai/START-OF-CHAT-ZAI.md:23:- **Wave: the Owner's Bounds say the live site is w85; gh-pages' newest publish is w89** (`origin/gh-pages` tip `3e69567c` — "Publish w89 as live index"; w88 `aa7cf626`, w87 `ec63439d`). The Owner's sitting prompt (2026-11-15, Rev 5) states "Live site is w85" — the Owner's message is law; verify against §3 and ask nothing.
+  ./REV-5.1-addendum/README.md:46:- Live site: **w89** (verified 2026-11-15 — `origin/gh-pages` tip `3e69567c`, "Publish w89 as live index"; verify per START-OF-CHAT §3 each chat). The w85 frame is STRUCK (D4 — do not re-ship it).
+
+$ REPORTED-as-verified check: every Ernie figure in this tree is labelled REPORTED:
+3
+
+$ prose-vs-receipt numeral disagreement scan: VERIFY §3 counts (12 tests/16 tests/13 checks) match receipts/units-*.txt + receipts/sealed-week-*.txt: yes (measured 2026-11-16)

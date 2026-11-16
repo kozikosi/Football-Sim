@@ -1,0 +1,6 @@
+# receipt — Rev 10 A5 companion: --allow-extra downgrades unlisted to WARN (other checks unchanged)
+manifest football-sim-vue/CHECKSUMS.txt: 141 entries, 141 OK, 0 MISMATCH, 0 MISSING → PASS
+WARN: 1 file(s) in the tree are named by NO manifest (the manifests verify the files they list; these are not listed):
+  UNLISTED EXTRA-INJECTED.txt
+GATE RESULT: PASS — 1781 entries verified across 6 manifest(s), no unlisted files
+exit=0

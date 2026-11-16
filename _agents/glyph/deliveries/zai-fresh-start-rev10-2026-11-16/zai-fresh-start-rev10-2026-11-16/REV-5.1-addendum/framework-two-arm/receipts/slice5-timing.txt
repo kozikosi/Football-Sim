@@ -1,0 +1,77 @@
+== slice-5 filing — player cards, the within-agent authoring measurement ==
+LINE 1 (the sitting's order): ARM ORDER VUE FIRST (Owner's cancel-the-bias rule — the same agent built Svelte first in every prior pair) · THE VIEW: the CARDS screen — a 60-card grid re-rendered from the engine's OWN boardVM rows (face: name / pos / NFL team / slot; numbers: OVR · Wins · Priority ONLY, Owner law), featured overlay + live clock line + SHARE PNG canvas export + PICK HIM through the real reducer · FIDELITY PINNED NUMERICALLY: same DOM node counts (grid 566 / featured 583, both arms), same rows (60 = the engine's own board limit), same states (grid→featured→closed→picked), same chrome bytes (cards.css + cardVM.ts + cardDraw.ts cmp CLEAN across arms), even the exported PNG is byte-identical (129,005 B, both arms).
+
+-- frozen (protocol §2) --
+arm=vue   frozen: bootData.ts savesService.ts feedVM.ts abbr.ts ink.ts fixture.json src/feed.css cmp CLEAN · src/engine diff -rq CLEAN (57 files, pin d3bd81d2)
+arm=svelte frozen: (same check, same result — one shared line, the cmp covers both arms)
+
+-- install --
+arm=vue   install: no new dependencies (canvas + <a download> are platform APIs; the slice adds 0 packages) · exit n/a
+arm=svelte install: no new dependencies · exit n/a
+
+-- first_build --
+arm=vue   first_build: exit 0 · 1166ms · "dist/assets/index-LeGt7RAp.js 373.77 kB │ gzip: 117.88 kB" (vite 7.3.6)
+arm=svelte first_build: exit 0 · 1009ms · "dist/assets/index-DB6sob1L.js 347.17 kB │ gzip: 107.17 kB"
+
+-- typecheck (each framework's own checker, strict) --
+arm=vue   typecheck: exit 0 · 3048ms (pre-slice-5 pin re-check) and 0 errors at slice-5 (vue-tsc --noEmit, first try) · worst messages: (none — zero errors, nothing to quote)
+arm=svelte typecheck: exit 0 · 3070ms · 0 errors · 3 warnings (1 pre-existing FeedPanel tabindex; 2 new: a11y_click_events_have_key_events + a11y_no_static_element_interactions on the featured overlay's backdrop-click — keyboard path exists via Esc + CLOSE; NO suppression lines added). worst messages verbatim:
+  "Warn: Visible, non-interactive element `<div>` with a click event must be accompanied by a keyboard event handler. Consider whether an interactive element such as `<button type='button'>` or `<a>` might be more appropriate" (Cards.svelte:55)
+  "Warn: noninteractive element cannot have nonnegative tabIndex value" (FeedPanel.svelte:49, pre-existing)
+  CHECKER-PRECISION FINDING: svelte-check audits a11y; vue-tsc audits none. Same markup pattern: vue silent, svelte warns twice.
+
+-- first_working_iterations --
+arm=vue   first_working_iterations: 1 build, 0 failed builds. 1 failed PROBE run — probe-side defect (hardcoded team index 30 vs the engine's AFC-East-first index 0 for Buffalo; name matched, team-dependent priority did not). Fixed by looking the index up by name. 1 pre-build CATCH: CardVM initially dropped slotId, which would have forced a slotLabel 'as never' cast in PICK HIM — fixed properly (slotId: SlotId) before the first build, so the workaround never landed.
+arm=svelte first_working_iterations: 1 build, 0 failed builds, 0 failed probe runs — the probe bugs were paid in the vue arm first. AN ORDER-OF-AUTHORSHIP ADVANTAGE, RECORDED AS SUCH (it does not repeat in reverse; see the sitting's slice-2-ordering note).
+
+-- time_to_first_green (wall-clock, agent included) --
+arm=vue   time_to_first_green: ≈34 min from first shared-file line to vue-only ALL-LAWS-PASS (includes authoring the SHARED files 128 L + the probe 190 L + node-side fidelity harness — the slice's one-time instrumentation cost, attributed to the first arm per the protocol)
+arm=svelte time_to_first_green: ≈9 min from svelte clock start to both-arms ALL-LAWS-PASS (shared files + probe already existed)
+
+-- agent_context_scratch_checks_count --
+arm=vue   agent_context_scratch_checks_count: 8 (journal tally: frozen-check path bug; Board.vue conventions; feed.css tail; draftBoard.ts types; appStore.ts re-read; league.ts team-index lookup; probe parse-inspect ×2)
+arm=svelte agent_context_scratch_checks_count: 2 (App.svelte + Board.svelte conventions; appStore.svelte.ts tail)
+
+-- workaround_lines --
+arm=vue   workaround_lines: 0 (ts-ignore 0 · any 0 · getter wrappers 0 · else 0 — the pre-build slotId catch removed the one candidate)
+arm=svelte workaround_lines: 0 (ts-ignore 0 · any 0 · getter wrappers 0 · else 0 — the getter-wrapper idiom in appStore.svelte.ts PREDATES slice 5: it is the compiler's state_invalid_export remedy for module-reassigned $state.raw, counted in the four-slice receipt; slice 5 merely reads the existing getter)
+
+-- framework_owned_lines (entry + root + card screen + store glue) --
+arm=vue   framework_owned_lines: card screen Cards.vue 81 L + store glue 3 L (cards computed + Screen union) + nav 2 L (import + template + nav entry) ≈ 86 L
+arm=svelte framework_owned_lines: card screen Cards.svelte 82 L + store glue 4 L (cards getter + Screen union) + nav 2 L ≈ 88 L
+shared (identical bytes, both arms): cardVM.ts 46 L + cardDraw.ts 64 L + cards.css 34 L = 144 L — framework-free, excluded from the framework-owned count
+
+-- full_build (launch→green, final state) --
+arm=vue   full_build: vite build 1568ms (one-word rebuild) + probe run ≈25s = green
+arm=svelte full_build: vite build 1479ms + probe run ≈25s = green
+
+-- re_build_after_one_word --
+arm=vue   re_build_after_one_word: 1568ms (FITS→SLOTS on the featured card; first attempt aborted by a shell sed-escaping slip — NOT an app failure, the retry is the measurement)
+arm=svelte re_build_after_one_word: 1479ms (same word, same semantics)
+
+-- index_bytes (post-slice-5 dist; method: concatenated-stream gzip -9, no per-file headers) --
+arm=vue   index_bytes: dist total raw 383,998 B · JS raw 373,770 B · JS gzip-9 116,514 B
+arm=svelte index_bytes: dist total raw 357,402 B · JS raw 347,171 B · JS gzip-9 105,808 B
+JS-only gz delta: 10,706 B toward svelte (four-slice baseline 10,969 B — slice 5 moved it by −263 B; the shared code costs both arms the same and the framework delta is unchanged)
+
+-- canon_purity --
+arm=vue   canon_purity: CLEAN — 0 hits of .weight / WEIGHT in all 8 new files under src/
+arm=svelte canon_purity: CLEAN — same grep, same files, 0 hits
+
+-- w85 check (0 console errors on file://, both arms) --
+arm=vue   w85 check: probe hygiene vue = 0 console/page errors · 0 blocked requests (network blocked) · quote: "ALL SLICE-5 LAWS PASS on both arms — numerically pinned (same node counts, same engine-true fields)"
+arm=svelte w85 check: same — svelte = 0 console/page errors · 0 blocked requests
+
+-- the probe's own numbers (receipts/slice5-probe.json, full) --
+sameCountAsBoardRows: TRUE both arms (60 cards == 60 board rows == the engine's own row count for the state)
+fieldsEngineTrue: TRUE both arms — card #1 name/pos/team/ovr/W/P string-equal to the node-side re-derivation through the SAME store flow (createPool → createStore → START → boardVM → toCardGrid)
+featuredOpensDynamicClock: TRUE both arms (expanded state class appears; clock line carries the current overall)
+pickThroughRealReducer: TRUE both arms (64 of 1024 after the pick, CPU auto-advanced — identical numbers)
+escCloses: TRUE both arms
+sharePngExport: TRUE both arms — real download event, PNG magic bytes verified, 129,005 B, byte-identical across arms, "PNG saved"
+390px-cards: clean both arms (scrollWidth 390 = viewport)
+DOM nodes: vue grid 566 / featured 583 · svelte grid 566 / featured 583 — EQUAL
+
+-- the within-agent verdict --
+Was this task harder in Svelte or Vue, holding all else equal? MEASURED: a statistical tie with one asymmetry that is NOT framework work. The framework-owned code cost 86 L (vue) vs 88 L (svelte) — inside the same ±5% band the four-slice slope measured; both first builds were green on the first try; both typechecks clean; the rebuilds are 90 ms apart; the probe's fidelity pin passes identically. The measured asymmetries live elsewhere: (1) CHECKER PRECISION — svelte-check audited my a11y twice where vue-tsc said nothing (a finding in Svelte's FAVOUR for maintenance, a 2-warning cost at authoring time); (2) ORDER-OF-AUTHORSHIP — the second arm (svelte) paid 0 probe-iteration cost because the probe was written and debugged in the vue arm first: 34 min vs 9 min is mostly that, not framework speed. The honest headline: AFTER the instrumentation exists, the second arm of this pair is ~9 min in EITHER direction — the authoring cost is dominated by the shared, framework-free engineering, which is exactly the seam this tree already builds behind.
+CONFOUND (protocol §0): the training-data mix is unseparable — this agent's fluency in both frameworks makes the tie partially a statement about the agent, not the frameworks. What would remove it: a second agent running measurements/PROTOCOL-FOR-A-SECOND-AGENT.md cold.

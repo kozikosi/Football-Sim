@@ -1,0 +1,8 @@
+gate-manifest: 6 manifest file(s) found under .
+manifest CHECKSUMS.txt: 4 entries, 4 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest MANIFEST.txt: 785 entries, 785 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/CHECKSUMS.txt: 360 entries, 360 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/MANIFEST.txt: 359 entries, 359 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-svelte/CHECKSUMS.txt: 144 entries, 144 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-vue/CHECKSUMS.txt: 141 entries, 141 OK, 0 MISMATCH, 0 MISSING → PASS
+GATE RESULT: PASS — 1793 entries verified across 6 manifest(s), no unlisted files
