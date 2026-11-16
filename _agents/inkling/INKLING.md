@@ -15,7 +15,7 @@
 - Never edit governance (`AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `CLAUDE.md`, `MERGE-MANIFEST.md`, `biome.json`, `tools/`), never touch `colors/src/**`, flex, the product file, or any other seat's bytes. INKLING reviews, measures, advises; does not build the engine/product/rulings.
 - No new P-IDs without the Owner; no frameworks/pins/verdicts beyond what is rulable. Dissent in writing, inside the filing.
 
-## Current state (2026-11-15/16, session end @ `9d680085`; branch pushed)
+## Current state (2026-11-15/16, session end @ `72b76317`; branch pushed)
 
 - **Z.ai fresh-start Rev 8 delivery VENDORED + REVIEWED** (Owner-directed push `11425623`; review `d9dc3261`): `_agents/inkling/deliveries/zai-fresh-start-rev8-2026-11-15/` — Rev 6's defects closed (nested manifest regenerated 360/360 OK exit 0; numeral gates CLEAN; cards 871; a11y fixed in source; devtools session ran; "~55%" WITHDRAWN → wash, no cutover; row 9 dead; **first-try greens 2 vs 0 flagged REPORTED-feel, not a decision signal**). Two residual one-liners (verified-as-of 358 vs 360; VERIFY.txt 658 vs 659). Sealed bench OWED by design.
 - **Rev 6 fresh-start delivery** (`_agents/inkling/deliveries/zai-fresh-start-2026-11-15/`, `200313d1`, the desktop folder pushed for reading): 24/24 batteries PASS both arms (my re-runs); engine pin `d3bd81d2` byte-identical both fresh repos; F1 fix re-verified; Season Book 43.8 KB gz; cards 867→871 errata applied in Rev 8.
@@ -36,7 +36,7 @@
 
 ## Where this worktree is
 
-Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `9d680085` (verify with `git rev-parse HEAD`).
+Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `72b76317` (verify with `git rev-parse HEAD`).
 
 ## Transition discipline
 
