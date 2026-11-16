@@ -3803,7 +3803,7 @@ function matchupMathInner(homeTeam, awayTeam, g){
   const a=ma.channels[k], h=mh.channels[k];
   return `<tr><td style="${a>h?grn:''}">${sgn(a)}</td><td class="narr" style="text-align:center;">${lab}</td><td style="text-align:right;${h>a?grn:''}">${sgn(h)}</td></tr>`;
  }).join('');
- return `<p class="narr" style="margin-top:0;">Model projection: <b>${nick(awayTeam)} ${projA.toFixed(1)}</b> – <b>${nick(homeTeam)} ${projH.toFixed(1)}</b> <span class="narr">(home field adds ${HOME_FIELD.toFixed(1)})</span></p>
+ return `<p class="narr" style="margin-top:0;">Model projection: <b>${nick(awayTeam)} ${projA.toFixed(1)}</b> – <b>${nick(homeTeam)} ${projH.toFixed(1)}</b> <span class="narr">(home field adds ${HOME_FIELD.toFixed(1)} — see Guide)</span></p>
   <table><thead><tr><th>${nick(awayTeam)}</th><th style="text-align:center;">Unit grade · league rank</th><th style="text-align:right;">${nick(homeTeam)}</th></tr></thead><tbody>${gradeRows}</tbody></table>
   <h5 style="margin:14px 0 4px;" class="narr">Expected points each unit matchup adds or costs (vs. an average team)</h5>
   <table><tbody>${chanRows}</tbody></table>`;
@@ -5061,9 +5061,10 @@ function termsHTML(){
   <li><b>Secondary</b> — the defensive backs: cornerbacks (CB) cover receivers on the outside and safeties (SS, FS) play deeper and help against both pass and run. <b>Backfield</b> means only the area behind the offensive line where the quarterback and running backs line up.</li>
   <li><b>Nickel</b> — a defense with five defensive backs instead of four; the third cornerback comes in for a linebacker.</li>
   <li><b>Pressure, sack, TFL</b> — a pressure is a hurry or hit on the quarterback, a sack is a tackle of the quarterback, and a TFL is a tackle for loss (behind the line of scrimmage).</li>
-  <li><b>Replacement level</b> — the rating of the player you could still pick up late at a position. CPU teams value players above it.</li>
+<li><b>Replacement level</b> — the rating of the player you could still pick up late at a position. CPU teams value players above it.</li>
+  <li><b>Home-field advantage</b> — the home team gets +1.7 points added to its expected score. This reflects the real NFL advantage of playing at home (crowd noise, familiarity, travel fatigue). The value is a constant (+1.7) applied to the home team's expected points in every game. It shows up in the model projection as "home field adds 1.7".</li>
   <li><b>Coaching philosophy / Auto / Custom</b> — your philosophy is the style you default to; <b>Auto</b> lets the math choose the best plan every week; <b>Custom</b> locks in your own choices. See the Preseason page for details.</li>
- </ul>`;
+</ul>`;
 }
 // Terms used on the 100-season report (moved here from the Guide).
 function readingStatsHTML(){
