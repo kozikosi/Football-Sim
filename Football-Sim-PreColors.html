@@ -103,12 +103,13 @@ input:checked + .slider-tog:before{transform:translateX(16px);}
 .shimmer-text.gold{background:linear-gradient(100deg,#ffd75e 0%,#fff6c4 30%,#ffc43c 50%,#fff6c4 70%,#ffd75e 100%);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:fxshine 1.6s linear infinite;font-weight:700;}
 @keyframes fxtoast{0%{transform:translate(-50%,20px);opacity:0}12%,85%{transform:translate(-50%,0);opacity:1}100%{transform:translate(-50%,-10px);opacity:0}}
 @keyframes fxglow{0%,100%{box-shadow:0 0 0 rgba(255,196,60,0)}50%{box-shadow:0 0 28px rgba(255,196,60,.65)}}
+@keyframes starGlow{0%,100%{text-shadow:0 0 4px rgba(212,175,55,0.4);}50%{text-shadow:0 0 12px rgba(212,175,55,0.8);}}
 #fxCanvas{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:9998;}
 .fxbanner{position:fixed;left:50%;top:38%;z-index:9999;pointer-events:none;text-align:center;padding:18px 26px;border-radius:16px;font-weight:900;font-size:1.7rem;letter-spacing:.04em;color:#3a2600;background:linear-gradient(100deg,#ffd75e 0%,#fff6c4 30%,#ffc43c 50%,#fff6c4 70%,#ffd75e 100%);background-size:200% 100%;animation:fxpop 4.2s ease forwards,fxshine 1.6s linear infinite;box-shadow:0 10px 40px rgba(0,0,0,.45);max-width:90vw;}
 .fxbanner small{display:block;font-size:.55em;font-weight:700;letter-spacing:.08em;margin-top:4px;}
 .fxtoast{position:fixed;left:50%;bottom:26px;z-index:9999;pointer-events:none;background:var(--panel2);border:2px solid var(--accent);color:var(--text);padding:10px 18px;border-radius:999px;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.35);animation:fxtoast 3.6s ease forwards;max-width:92vw;text-align:center;}
 .champion-banner.fxwon{animation:fxglow 2.2s ease-in-out infinite;border-color:#ffc43c;}
-@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none !important;opacity:1;}}
+@media (prefers-reduced-motion: reduce){.fxbanner,.fxtoast,.champion-banner.fxwon{animation:none !important;opacity:1;}.sfstar{animation:none;}}
 
 .sfrow{display:flex;justify-content:space-between;gap:8px;font-size:0.85rem;padding:1px 4px;color:var(--sub);}
 .sfrow.sf90{background:linear-gradient(90deg,rgba(255,196,60,.22),rgba(255,196,60,.04));border-left:3px solid #ffc43c;color:var(--text);font-weight:700;border-radius:4px;margin:2px 0;}
@@ -5425,12 +5426,28 @@ function playoffPreview(g){
 }
 function generatePreviewHTML(g, mode){ return mode==='playoff' ? playoffPreview(g) : regularPreview(g); }
 function starsFaceoffHTML(g){
- const col = team=>{
-  const sm = seasonState.teams[team].slotmap;
-  const st = ROSTER_SLOTS.map(sl=>{ const e = effEntry(sm, sl); return e ? {slot:sl, name:e.name, ovr:e.ovr} : null; }).filter(x=>x && x.ovr>=85).sort((x,y)=>y.ovr-x.ovr).slice(0,9);
-  return `<div><div class="${team===seasonUserTeam()?'ub':''}" style="font-weight:700;margin-bottom:3px;">${nick(team)}</div>${st.length ? st.map(x=>`<div class="sfrow ${x.ovr>=90?'sf90':''}"><span>${x.ovr>=90?'<span class="sfstar">★</span> ':''}<span class="${team===seasonUserTeam()?'ub':''}">${x.name}</span> <span style="opacity:.7;">${LABELS[x.slot]||x.slot}</span></span><b>${x.ovr}</b></div>`).join('') : '<div class="narr">No 85+ starters</div>'}</div>`;
- };
- return `<div class="draft-columns" style="grid-template-columns:1fr 1fr;gap:18px;margin:0 0 12px;padding:8px 10px;border:1px solid var(--border);border-radius:8px;"><div style="grid-column:1/-1;" class="narr"><b>Stars (85+ OVR)</b></div>${col(g.away)}${col(g.home)}</div>`;
+  const col = team=>{
+   const sm = seasonState.teams[team].slotmap;
+   const st = ROSTER_SLOTS.map(sl=>{ const e = effEntry(sm, sl); return e ? {slot:sl, name:e.name, ovr:e.ovr} : null; }).filter(x=>x && x.ovr>=85).sort((x,y)=>y.ovr-x.ovr).slice(0,9);
+   return `<div><div style="font-weight:700;margin-bottom:3px;color:${team===seasonUserTeam()?'var(--team-primary)':'var(--text)'};">${nick(team)}</div>${st.length ? st.map(x=>`<div class="sfrow ${x.ovr>=90?'sf90':''}" style="display:flex; justify-content:space-between; align-items:center; padding:6px 8px; border-radius:8px; margin:2px 0; background:rgba(255,255,255,0.02); border:1px solid var(--border); transition:transform 150ms ease, border-color 150ms ease;">
+     <div style="display:flex; align-items:center; gap:6px;">
+       ${x.ovr>=90?'<span style="color:var(--gold); text-shadow:0 0 8px rgba(212,175,55,0.6); animation:starGlow 2s ease-in-out infinite;">★</span> ':''}
+       <span style="font-weight:700; color:${team===seasonUserTeam()?'var(--team-primary)':'var(--text)'};">${x.name}</span>
+       <span style="opacity:.6; font-size:0.7rem;">${LABELS[x.slot]||x.slot}</span>
+     </div>
+     <b style="color:var(--accent);">${x.ovr}</b>
+   </div>`).join('') : '<div class="narr">No 85+ starters</div>'}</div>`;
+  };
+  return `<div style="margin:0 0 12px;">
+    <div style="text-align:center; margin-bottom:8px;">
+      <span class="shimmer-text gold" style="font-size:0.85rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em;">Stars (85+ OVR)</span>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr auto 1fr; gap:12px; align-items:start;">
+      <div>${col(g.away)}</div>
+      <div style="text-align:center; font-size:0.7rem; color:var(--sub); padding-top:8px;">vs</div>
+      <div>${col(g.home)}</div>
+    </div>
+  </div>`;
 }
 function renderPreviewPanel(g, mode){
  if(!g.preview) g.preview = generatePreviewHTML(g, mode);
