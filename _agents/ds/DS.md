@@ -3,53 +3,48 @@
 ## Identity
 - **Seat:** DS · **Model:** deepseek-v4.1-flash-free via OpenChamber · **State:** advisor
 - **First seen:** 2026-10-25 · **ID block:** none used
-- **Strengths shown (evidence):** byte-checks that hold or break a delivery — Z.ai framework-eval v4 (14 Nov: manifest 44/44, suite 323/323, flex 99; found the `C5b` log 101-vs-99); P-342 engine-design review (four defects with numbers); P-347 λ identification; P-346 v3 review; flex rebuild 9–10 Nov.
-- **Pattern to keep:** I take the verification half of a delivery and the mechanism half of a spec. I do not write lists that already exist, and when a peer has filed the same round I file the *delta*, not a restatement.
+- **Strengths shown (evidence):** byte-checks that hold or break a delivery — Z.ai framework-eval v4 (14 Nov: manifest 44/44, suite 323/323, flex 99; found the `C5b` log 101-vs-99); P-342 engine-design review; P-347 λ identification; P-346 v3 review; flex rebuild 9–10 Nov.
+- **Pattern to keep:** I take the verification half of a delivery and the mechanism half of a spec. I file the *delta*, not a restatement.
 
 ## Where
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds`
 - **Branch:** `council/ds`
-- **merge-base HEAD origin/council/base:** `1b91f50e161f`
+- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff`
 - **Last session end:** 2026-11-16
 
-## Current state (16 Nov 2026)
+## Current state (16 Nov 2026, Cakepanz v4 council round)
 
-### P-345 direction + innovation round — filed, pushed
-- `inbox/20261115-1149-ds-direction-innovation.md`, commit `d449a464` on `council/ds`.
-- **Four receipts that change the round's answers:**
-  1. **`file://` root cause.** An external `<script type="module">` fails from `file://` in Chromium **with or without `crossorigin`** — module fetches are always CORS and a `file://` document has origin `null`. Inline module and classic external scripts mount. `crossorigin` blocks only the **stylesheet**. Six probe pages, Chromium 1255, no flags. So "remove the crossorigin tags" fixes CSS and not the app; the fix is a single-file inline build (the product's own hard requirement). Control: `w89` (1,922,769 B, 0 module tags) boots from `file://` with no flags.
-  2. **Q7 was already fixed** at `5a3bb75e` (13 Nov): 2400 → `t.diagnostic` REPORT + four structural assertions; engine stamp → REPORT MOVED/UNMOVED with the data stamp still asserted. Round's "318/320" stale (323 at `46aafad9`, 351 reported at `9acf199`).
-  3. **The pin lost its machine enforcement** as the cost of that de-gate: `git grep -ln d3bd81d2 -- tools/` returns no files. Proposed a ~20-line `tools/pin-check.mjs` (Architect writes, any seat runs).
-  4. **Bundle delta in circulation is wrong**: 11,569 B gz JS-only, not 10,946 B.
-- **Framework call: Vue 3 + Vite, ~65%**, on maintenance + platform fit, not performance. Weighting proposed (maintenance 30 / authoring 25 / platform 15 / detection 10 / output 10 / reversibility 10). Blunt answer: the authoring measurement as designed is **not worth running**; run a **cold re-entry test** instead.
-- **Ernie's within-agent attack: accepted**, his per-slice randomisation: **corrected** — the second arm is systematically cheaper, so randomisation converts a signed bias into noise. Report second-arm cost as the primary statistic.
-- **Done:** corrected three of Ernie's conditions (the `file://` mechanism; "zero blocked requests" un-calls `w89` itself, which fetches Google Fonts; SKIP justification needs a named reader), added the red-case, scope line, rollback line, determinism and the 2-minute rule. Ruled all eight candidates.
-- **Innovation:** the κ console as the platform's smallest version (one dial, one button, one consequence view + pack diff); the `FLIP:` line (pre-register the default action for "inside the band"); contrarian case — "offline is tested" should not survive, because no boot has ever been measured in product shape.
-- **Q8:** stop re-replicating bundle/cold-load; start the single-file build; keep four-line receipts; the pin is the risk; the council's costliest habit is earning VERIFIED by re-running a command whose receipt already names a git ref (re-point instead, except for timing/browser receipts).
+### Filed and pushed — three CAKEPANZ-SHELL filings
+- `inbox/20261116-2102-ds-CAKEPANZ-SHELL-pin.md` (FOR: R-13), commit `202b1128`.
+  - gh-pages `67-cakepanz/src/engine` = **d3bd81d2** 57/57 byte-identical (`diff -rq` exit 0); its README still says `4ca9a071`/52 files — stale doc. `AGENTS.md` is right.
+  - `67-cakepanz-s5` on `council/inkling` (`b07f5578`) = **4ca9a071** 52/52; s5→d3 delta = 6 changed (`core/app.ts`, `app/dataset.ts`, `engine/{draft,flex,slots,value}.ts`) + 5 added (`core/{events,fold,keyedrng,pack}.ts`, `engine/legacyprovider.ts`). Re-pin is an engine update, not a doc edit.
+  - gh-pages is the slice-1/2 tree (Board + TeamSelect, no Feed/Share/Saves); s5 is slices 1–5. No tree is both latest and current-pin.
+- `inbox/20261116-2102-ds-CAKEPANZ-SHELL-neutrality.md` (FOR: R-13), `202b1128`.
+  - The shell is **Svelte 5**, not plain TypeScript: `svelte ^5.57.3`, 14 `.svelte` files, `src/main.ts` mounts `App.svelte`. Colors is the only tree with 0 `.svelte` files and no app entry (`colors/package.json`: `src/main.ts` does not exist; build fails until the UI shell is merged).
+  - One core leak: `src/lib/draftStore.ts:3` imports `svelte/store`. The other `src/lib/*.ts` VMs are framework-free.
+  - The prompt's "nothing in the actual product is Svelte" is true of Colors, false of the shell; the Z.ai prompt's later "keep Svelte 5 as the render layer" is the accurate rule.
+- `inbox/20261116-2102-ds-CAKEPANZ-SHELL-seam.md` (FOR: R-13), `202b1128`.
+  - One-door claim fails: **15 app files** import the engine directly, **65 import lines** (8 `.svelte` + `App.svelte` + 6 TS); **0** adapter/seam files. The prompt's M1 grep returns 15 hits, not zero.
+  - No `SNAPSHOT.md` / seam table exists in s5 → the seam-inventory audit waits on Z.ai's M4 artifact. M2/M3 not run (battery remains REPORTED at 4c).
 
 ### Still open from the previous session
-- `inbox/20261115-1132-ds-delivery-fix-relay.md` — the relay spec (`tools/relay-zai.mjs`, ~40 lines) plus `_agents/ds/deliveries/prompt-zai-delivery-bundle-2026-11-15.md`. **Not built, not implemented** (the tool is MUSE's). T2 (poisoned folder) is the decisive test.
-- Load-bearing design decisions there: verify **blob bytes** (`git cat-file blob HEAD:<p>`), never working-tree bytes; re-derive the manifest at the commit.
-
-### Re-measured 15 Nov (do not re-derive)
-- Flex three-way: `architect/engine-and-seats` `0a26d7c2…` = `council/muse` `0a26d7c2…`; `council/ernie` `28a2e993…` (still at its tip `309caced`).
-- `P-345` is live in `QUEUE.md`; `P-355`–`P-359` are not.
-- No `.github/` at repo root.
-- `prompt-zai-continuation-v3` has `## §12 · Placeholder` at line 128 → Part H is an append.
+- `inbox/20261115-1132-ds-delivery-fix-relay.md` — relay spec (`tools/relay-zai.mjs`, ~40 lines) + `_agents/ds/deliveries/prompt-zai-delivery-bundle-2026-11-15.md`. Not built (the tool is MUSE's). T2 (poisoned folder) is the decisive test.
+- `inbox/20261115-1149-ds-direction-innovation.md` — the `file://` root cause, bundle delta **11,569 B gz JS-only** (not 10,946), Vue 3 + Vite ~65%, the cold re-entry test; the pin lost machine enforcement (`git grep d3bd81d2 -- tools/` empty).
+- Verify **blob bytes** (`git cat-file blob HEAD:<p>`), never working-tree bytes.
 
 ## What the next session needs
-1. Read `inbox/20261115-1149-ds-direction-innovation.md` §0 first (the four receipts), then §3 (the weighting) — do not re-derive them.
-2. If anyone has built a single-file build for either arm: run the no-flag `file://` boot on the built file and post the receipt. That is the one measurement the project still lacks.
-3. If MUSE built `tools/relay-zai.mjs`: run **T2 first**; a tool that lets a poisoned bundle through is decoration.
-4. If Z.ai's next bundle lands: byte-check with blob hashes; report `C5b` / `C-engine-suite` as acknowledged or owed.
+1. Read the three CAKEPANZ-SHELL files first (pin → neutrality → seam); do not re-derive the diffs.
+2. If s5 is re-pinned to d3: run the battery at d3 and the M3 swap test; the exact 6+5 delta is in the pin file.
+3. If `SNAPSHOT.md` lands: run the seam-inventory audit (VM → engine file → sha256 → callers) against d3.
+4. Unclaimed by me: Part 1 full screen inventory; Part 9 data integrity; Part 6 mutation scope at `86f22d10`; Parts 4/16; Part 17 (my grep finds 24 Inkling + 4 Ernie root-inbox files with `FOR: P-345`; the prompt's 8+4 subset is not enumerated, so I did not relabel another seat's files).
 
 ## Open questions (mine, not the council's)
-- Is vanilla `file://` required of the Cakepanz bench or only of the built product? Owner's answer; decides whether the un-callings are blocking or advisory.
-- Does Firefox allow external module scripts from `file://`? **UNKNOWN** — no Firefox binary in the Playwright cache on this machine.
-- SAVE-1 (v2 §5, line 210) — status UNKNOWN; not mine to take over.
+- Is a Svelte render layer acceptable under the TS-neutral ruling? The Z.ai prompt says yes; the council prompt's "The shell is built in plain TypeScript" says no. A wording ruling, not a framework pick.
+- Does "one adapter" mean one facade over the six VMs, or a new interface layer? The seam file proposes the facade (INFERRED, not built).
+- Does vanilla `file://` apply to the Cakepanz bench or only the built product? Owner's answer; decides whether the un-callings are blocking or advisory.
 
 ## Live files
-`inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md` · `_agents/ds/deliveries/prompt-zai-delivery-bundle-2026-11-15.md` · `inbox/20261114-1648-ds-P-287-zai-v4-bytecheck.md` · `inbox/20261113-0150-ds-P-345-platform-vision-peer-review.md` · `inbox/20261112-0420-ds-P-347-lambda-identification.md`
+`inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md` · `inbox/20261114-1648-ds-P-287-zai-v4-bytecheck.md` · `inbox/20261113-0150-ds-P-345-platform-vision-peer-review.md`
 
 ## Method note
-zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail), so `origin/$r:tools/mathlab/flex.json` silently asked for a path that does not exist and three branches hashed the empty string (`e3b0c442…`). Quote the whole ref. Print the ref and the byte count next to every hash.
+zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail), so `origin/$r:tools/mathlab/flex.json` quietly asks for a path that does not exist and hashes the empty string (`e3b0c442…`). Quote the whole ref; print the ref and byte count next to every hash.
