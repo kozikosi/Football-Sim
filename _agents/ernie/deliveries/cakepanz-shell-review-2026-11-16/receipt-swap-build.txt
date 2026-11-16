@@ -1,0 +1,22 @@
+
+> cakepanz-67@0.4.0-slice4 build
+> vite build
+
+11:23:19 AM [vite-plugin-svelte] no Svelte config found at /private/tmp/cp-swap - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+11:23:19 AM [vite-plugin-svelte] src/App.svelte:44:6 `userTeam` is updated, but is not declared with `$state(...)`. Changing its value will not correctly trigger updates
+https://svelte.dev/e/non_reactive_update
+42:   const openNow = writable<SlotId[]>([]);            // the real open slots (recomputed every refresh)
+43:   const needsSel = writable<SlotId[]>([]);           // the user's filter selection (ephemeral UI state)
+44:   let userTeam = 0;
+                  ^
+45:   let seed = 777;
+46:   let screen = $state<Screen>('team');   // the draft flow starts at Team Select; the board follows the choice
+✓ 179 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.44 kB │ gzip:   0.31 kB
+dist/assets/index-B-EJ2wAX.css   14.94 kB │ gzip:   3.23 kB
+dist/assets/index-DWxapvW0.js   300.95 kB │ gzip: 102.73 kB
+✓ built in 517ms
