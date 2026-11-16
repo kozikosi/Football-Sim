@@ -62,3 +62,10 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **Three-variant A/B/C:** copy `src` to `/tmp/t{A,B,C}/colors/src`, patch only the ladder line, import all three in one script. This is how the EMERGENCY result was made unarguable.
 - **`npm ci` inside a hosted delivery leaves `node_modules`.** Remove it, re-run the manifest gate, then push.
 - **Quoting hazard:** `node script.mjs A>B` in zsh creates a file named `B`. Always quote.
+## 5 · P-333 formation gap (2026-11-16, measured)
+- **Reproduced:** synthetic ideal rosters, 4-3→3-4 loses 2500 table units, 3-4→4-3 loses 1800, **gap 700 = 0.089 wins** (720.1 measured). Stand-ins priced: FB>TE3 2×50, SS>DT2 6×300, TE>CB3 6×100 vs ILB>DL5 12×150.
+- **The reframing finding:** on the 32 real rosters the gap is one-sided — **28 teams better in 4-3, 3 better in 3-4; mean signed +1144.5 units (0.145 wins)**; 147/2048 spots flexed; **0 emergency fills**. Re-pricing moves the real bias only to ~946.
+- **Options measured:** (1) `SS>ILB` 6→4 → gap **100** (0.013 wins), 1 rule, flexed 148, DIME/FB/floor kept; (2) + `TE>NICKEL` 6→4 → gap **−100**; (3) derived `dl5Penalty` ×1.5 → gap **600, does not close** (the optimiser re-routes to TE>DL5) — negative result, do not adopt.
+- **Base-par normalisation is a no-op** (par 4-3 = par 3-4 = 690,284 @80) because the same position carries the same weight in both bases — the asymmetry is in legal assignments, not par.
+- Harness: `_agents/ernie/deliveries/p333-gap-options-2026-11-16/` (`gap.mjs`, `options.mjs`, `real.mjs`, `standins.mjs`, `receipt-options.txt`). Filing `inbox/20261116-2305-ernie-P-333-formation-gap-options.md`, commit `39f08db1`.
+- **Not done:** no OVR sweep; no alternative 3-4 slot table (the real lever the bias points at).
