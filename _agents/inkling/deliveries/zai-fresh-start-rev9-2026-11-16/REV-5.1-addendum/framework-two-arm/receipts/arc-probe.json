@@ -1,0 +1,68 @@
+{
+ "vue": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "arc.tour.moves": {
+    "a1": "Buffalo Bills",
+    "a2": "Miami Dolphins",
+    "a3": "New England Patriots",
+    "caption": "TOUR 3/32 · New England Patriots · AFC East",
+    "moved": true
+   },
+   "arc.tour.stops": {
+    "highlightCleared": true,
+    "stillCleared": true
+   },
+   "arc.vue.ticker.live": {
+    "n1": 1,
+    "t1": "the board is open — the ticker follows your picks",
+    "n2": 3,
+    "t2": "ov 3 · New England Patriots selected Patrick Mahomes (QB)",
+    "grew": true,
+    "changed": true,
+    "pauseWorks": true
+   }
+  },
+  "screenshots": [
+   "../shots/arc-vue-tour.png",
+   "../shots/arc-vue-ticker.png"
+  ],
+  "errorCount": 0
+ },
+ "svelte": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-svelte/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "arc.tour.moves": {
+    "a1": "Buffalo Bills",
+    "a2": "Miami Dolphins",
+    "a3": "New England Patriots",
+    "caption": "TOUR 3/32 · New England Patriots · AFC East",
+    "moved": true
+   },
+   "arc.tour.stops": {
+    "highlightCleared": true,
+    "stillCleared": true
+   },
+   "arc.svelte.lineup.updatesAsUserStudies": {
+    "before": "MY LINEUP · 0 picks",
+    "after": "MY LINEUP · 1 pick",
+    "highlight": "WR1 · Ja'Marr Chase",
+    "hlPos": "WR",
+    "highlightsStudied": true,
+    "clearedOnClose": true
+   }
+  },
+  "screenshots": [
+   "../shots/arc-svelte-tour.png",
+   "../shots/arc-svelte-lineup.png"
+  ],
+  "errorCount": 0
+ }
+}
+
+== ARC VERDICT ==
+ARC LAWS PASS: tour moves+stops on both arms; vue ticker live+pausable; svelte lineup highlights the studied player

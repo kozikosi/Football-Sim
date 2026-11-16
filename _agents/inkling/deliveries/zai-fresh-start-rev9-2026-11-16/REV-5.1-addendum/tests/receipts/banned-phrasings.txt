@@ -1,0 +1,9 @@
+scanned 129 files under /home/z/my-project/download/zai-sitting-2026-11-15-authoring
+BANNED-PHRASINGS: PASS — 0 hits across the delivery.
+== ENGINE-SIDE FINDINGS (frozen pin d3bd81d2 — the Architect's, named here, NOT ours to fix) ==
+1. engine/sports/nfl/engine/recap.ts:165 — the recap's star-of-the-game line uses a literal '★' glyph + 'Game ball!' — if a future season/awards surface renders engine recaps verbatim, the no-emoji/no-labels style law collides. Flag for the Architect.
+2. engine/sports/nfl/engine/drives.ts:12 + recap.ts:7 — engine COMMENTS quote the OT rules ('goes to sudden death') and the recap style law; comments only, no user-visible output — but the wording is the pre-Owner-ruling style, worth a sweep at the next re-pin.
+
+== test scoping (recorded) ==
+scanned: everything under the delivery EXCEPT node_modules/dist/shots, the frozen src/engine/ snapshot (both arms + vapor), and this test's own file + receipt (a ban list quoting the bans would self-hit forever).
+receipts/quoting files elsewhere: none contained banned literals (the prior full-tree run's only other hits were these scoping artifacts).

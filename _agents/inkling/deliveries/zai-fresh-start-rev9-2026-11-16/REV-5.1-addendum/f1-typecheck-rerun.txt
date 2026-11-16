@@ -1,0 +1,24 @@
+== F1 typecheck rerun — RE-ISSUED Rev 8 (2026-11-15), in-tree relative paths only (erratum 0.12) ==
+The Rev 6 issue of this receipt cited absolute sandbox paths and the pre-0.13 state (0 errors, 3
+a11y warnings). Both fixed. Re-run from a CLEAN EXTRACT of the shipped arms (fresh cp -R, no
+node_modules, fresh npm install from the committed lockfiles; do not trust a working tree):
+
+== REV-5.1-addendum/framework-two-arm/arm-vue ==
+$ npx vue-tsc --build      → exit 0
+$ npx vue-tsc --noEmit     → exit 0
+(full outputs: receipts/clean-extract-arm-vue-vue-tsc.txt)
+
+== REV-5.1-addendum/framework-two-arm/arm-svelte ==
+$ npx svelte-check --tsconfig ./tsconfig.json
+svelte-check found 0 errors and 0 warnings   → exit 0
+(erratum 0.13: the 3 a11y warnings are FIXED, not waived — Cards.svelte backdrop got
+role="button" + aria-label + an Escape onkeydown; FeedPanel.svelte's noninteractive feed
+lines lost tabindex="0". Full output: receipts/clean-extract-arm-svelte-svelte-check.txt)
+
+== fresh-start arms (same clean-extract protocol) ==
+football-sim-vue:    npm run type-check → exit 0  (receipts/clean-extract-vue-vue-tsc.txt)
+football-sim-svelte: npm run check      → exit 0, 0 errors and 0 warnings
+                                                  (receipts/clean-extract-svelte-svelte-check.txt)
+
+Gate 5 (as amended, Rev 8 Part C1) now reads: both typecheckers clean AND the production build
+green — both arms' production builds exit 0 this sitting (PART-A-CLASS-BRIDGE.md §Axis 3).

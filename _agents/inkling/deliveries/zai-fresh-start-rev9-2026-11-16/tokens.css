@@ -1,0 +1,76 @@
+/* tokens.css — the w89 design tokens, ONE file, byte-identical in both fresh-start repos (C1).
+   Sources: the Owner's C1 spec (Rev 6 prompt) cross-checked against the LIVE w89 layer
+   (gh-pages index.html — the values live deep in the file; the superseded palette near the
+   top was NOT read, per Ernie F6). Gold: w89 live --gold #ffc43c / --goldm #c39a4a / --gold3 #9a6b1f.
+   Dark stack + parchment + team color: the w89 championship language (bg #0b0703 is the brag-card
+   family's page ink; --tc defaults to Broncos #FB4F14 and is remapped per team by the UI).
+   Fonts: inline-woff2 pattern (~41 KB raw, base64-ref'd files shipped beside this sheet) — NO CDN
+   link (w89's own Google-Fonts link violates the offline requirement).
+   Semantic and minimal: echo the feel (dark + gold + team color), not w89's variable soup. */
+
+@import url('./fonts/font-faces.css');
+
+:root {
+  /* gold palette (w89 live layer) */
+  --gold-bright: #ffc43c;
+  --gold: #c9a24b;
+  --gold-mid: #ad7f2e;
+  --gold-deep: #9a6b1f;
+  --on-gold: #3a2a14;
+
+  /* text (parchment on dark) */
+  --text: #ecd9ad;
+  --sub: #a08b62;
+
+  /* dark background stack (warm darks) */
+  --bg-0: #0b0703;
+  --bg-1: #1c1307;
+  --bg-2: #241a10;
+  --panel: #1c1307;
+  --panel-2: #241a10;
+  --hairline: rgba(201, 162, 75, 0.28);
+  --border: #4a3a20;
+
+  /* the team color variable (remapped per team by the UI; default = Broncos) */
+  --tc: #fb4f14;
+  --tc-deep: rgba(251, 79, 20, 0.22);
+
+  /* semantic tones */
+  --good: #4c9a67;
+  --bad: #c25b4e;
+  --glow: rgba(201, 162, 75, 0.32);
+
+  /* type stacks: display/champion vs readable UI/body */
+  --font-display: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  --font-ui: 'Cinzel', Georgia, serif;
+
+  /* radius + spacing scale */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+}
+
+/* page base every slice inherits */
+html, body { margin: 0; padding: 0; }
+body {
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+  color: var(--text);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+}
+h1, h2, h3, .champ {
+  font-family: var(--font-display);
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+.gold-rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }

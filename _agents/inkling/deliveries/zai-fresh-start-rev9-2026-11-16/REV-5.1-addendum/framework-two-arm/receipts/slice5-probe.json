@@ -1,0 +1,128 @@
+{
+ "vue": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "cards.sameCountAsBoardRows": {
+    "boardRows": 60,
+    "cards": 60,
+    "equal": true
+   },
+   "cards.fieldsEngineTrue": {
+    "name": "Josh Allen",
+    "sub": "QB · Buffalo Bills",
+    "ovr": "99",
+    "nums": "99W +3.3P +3.3",
+    "match": true,
+    "engineRow": {
+     "name": "Josh Allen",
+     "pos": "QB",
+     "nflTeam": "Buffalo Bills",
+     "ovr": "99",
+     "wins": "+3.3",
+     "priority": "+3.3"
+    }
+   },
+   "cards.featuredOpensDynamicClock": {
+    "opened": true,
+    "clock": "OVERALL 1 OF 1024 · You're on the clock: Round 1, Pick 1 (overall 1 of 1024)",
+    "featName": "Josh Allen",
+    "overallMatchesState": true,
+    "featNameMatch": true
+   },
+   "cards.pickThroughRealReducer": {
+    "countAfterPick": "Buffalo Bills · 64 of 1024 overall · 1 of 32 starters",
+    "cardsAfterPick": 60,
+    "advanced": true
+   },
+   "cards.escCloses": {
+    "featGone": true
+   },
+   "cards.sharePngExport": {
+    "filename": "player-card-nfl-p00072.png",
+    "bytes": 129005,
+    "isPng": true,
+    "msg": "PNG saved"
+   }
+  },
+  "screenshots": [
+   "../shots/slice5-vue-grid.png",
+   "../shots/slice5-vue-featured.png"
+  ],
+  "390px-cards": {
+   "sw": 390,
+   "iw": 390,
+   "cards": 60
+  },
+  "390px-clean": true,
+  "domNodesGrid": 566,
+  "domNodesFeatured": 583,
+  "errorCount": 0
+ },
+ "svelte": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-svelte/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "cards.sameCountAsBoardRows": {
+    "boardRows": 60,
+    "cards": 60,
+    "equal": true
+   },
+   "cards.fieldsEngineTrue": {
+    "name": "Josh Allen",
+    "sub": "QB · Buffalo Bills",
+    "ovr": "99",
+    "nums": "99 W +3.3 P +3.3",
+    "match": true,
+    "engineRow": {
+     "name": "Josh Allen",
+     "pos": "QB",
+     "nflTeam": "Buffalo Bills",
+     "ovr": "99",
+     "wins": "+3.3",
+     "priority": "+3.3"
+    }
+   },
+   "cards.featuredOpensDynamicClock": {
+    "opened": true,
+    "clock": "OVERALL 1 OF 1024 · You're on the clock: Round 1, Pick 1 (overall 1 of 1024)",
+    "featName": "Josh Allen",
+    "overallMatchesState": true,
+    "featNameMatch": true
+   },
+   "cards.pickThroughRealReducer": {
+    "countAfterPick": "Buffalo Bills · 64 of 1024 overall · 1 of 32 starters",
+    "cardsAfterPick": 60,
+    "advanced": true
+   },
+   "cards.escCloses": {
+    "featGone": true
+   },
+   "cards.sharePngExport": {
+    "filename": "player-card-nfl-p00072.png",
+    "bytes": 129005,
+    "isPng": true,
+    "msg": "PNG saved"
+   }
+  },
+  "screenshots": [
+   "../shots/slice5-svelte-grid.png",
+   "../shots/slice5-svelte-featured.png"
+  ],
+  "390px-cards": {
+   "sw": 390,
+   "iw": 390,
+   "cards": 60
+  },
+  "390px-clean": true,
+  "domNodesGrid": 566,
+  "domNodesFeatured": 583,
+  "errorCount": 0
+ }
+}
+
+== SLICE-5 VERDICT ==
+DOM nodes: vue grid=566 featured=583 · svelte grid=566 featured=583
+ALL SLICE-5 LAWS PASS on both arms — numerically pinned (same node counts, same engine-true fields)

@@ -1,0 +1,58 @@
+[
+ {
+  "file": "receipts/screens-rev9/variantL-vue-430x780-light.png",
+  "sha256": "d6ff410ea27721d41819eea280526f408f5e906d35930188b80301d59bd5c2fb",
+  "bytes": 25532,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-vue-430x780-dark.png",
+  "sha256": "cf752992142361d66509675e7a77f12e0b1ecbf777346b83d9b9c35ab384191b",
+  "bytes": 25963,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-vue-1280x800-light.png",
+  "sha256": "29584bcdd3a1ef75be44d1b4aa98f0a5e5d9cb969ee13d986500b06c566928e8",
+  "bytes": 30004,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-vue-1280x800-dark.png",
+  "sha256": "f97962992f01e59d94a9070ef0a6e35e8f878b019333354463ae937cb195d2a1",
+  "bytes": 31017,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-svelte-430x780-light.png",
+  "sha256": "d6ff410ea27721d41819eea280526f408f5e906d35930188b80301d59bd5c2fb",
+  "bytes": 25532,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-svelte-430x780-dark.png",
+  "sha256": "cf752992142361d66509675e7a77f12e0b1ecbf777346b83d9b9c35ab384191b",
+  "bytes": 25963,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-svelte-1280x800-light.png",
+  "sha256": "29584bcdd3a1ef75be44d1b4aa98f0a5e5d9cb969ee13d986500b06c566928e8",
+  "bytes": 30004,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ },
+ {
+  "file": "receipts/screens-rev9/variantL-svelte-1280x800-dark.png",
+  "sha256": "f97962992f01e59d94a9070ef0a6e35e8f878b019333354463ae937cb195d2a1",
+  "bytes": 31017,
+  "fontLoadedInline": true,
+  "consoleErrors": []
+ }
+]

@@ -1,0 +1,22 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "exclude": ["src/**/__tests__/*", "src/engine/**"],
+  "compilerOptions": {
+    // Extra safety for array and object lookups, but may have false positives.
+    // RELIEVED (2026-11-15, disclosed in RECEIPT.md): the vendored engine snapshot (pin d3bd81d2)
+    // predates this flag and is FROZEN — its bytes cannot be edited, and exclude cannot stop
+    // dependency checking of imported files. Relief is repo-wide; every other strict flag remains.
+    "noUncheckedIndexedAccess": false,
+
+    // Path mapping for cleaner imports.
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+
+    // `vue-tsc --build` produces a .tsbuildinfo file for incremental type-checking.
+    // Specified here to keep it out of the root directory.
+    "types": ["vite/client", "node"],
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo"
+  }
+}

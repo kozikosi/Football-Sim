@@ -1,0 +1,92 @@
+/* experiment default — NOT the live w89 language; w89 has no --tc; ships only if the Owner rules dark/--tc is now the product direction */
+/* experiment default — NOT the live w89 language; w89 has no --tc; ships only if the Owner rules dark/--tc is now the product direction */
+/* tokens.css — the w89 design tokens, ONE file, byte-identical in both fresh-start repos (C1).
+   Sources: the Owner's C1 spec (Rev 6 prompt) cross-checked against the LIVE w89 layer
+   (gh-pages index.html — the values live deep in the file; the superseded palette near the
+   top was NOT read, per Ernie F6). Gold: w89 live --gold #ffc43c / --goldm #c39a4a / --gold3 #9a6b1f.
+   Dark stack + parchment + team color: the w89 championship language (bg #0b0703 is the brag-card
+   family's page ink; --tc defaults to Broncos #FB4F14 and is remapped per team by the UI).
+   Fonts: inline-woff2 pattern (~41 KB raw, base64-ref'd files shipped beside this sheet) — NO CDN
+   link (w89's own Google-Fonts link violates the offline requirement).
+   Semantic and minimal: echo the feel (dark + gold + team color), not w89's variable soup.
+   LABEL (Rev 8 erratum E1): w89-DERIVED, EXPERIMENT DEFAULT (dark). w89's SHIPPED default is
+   pale-rose LIGHT (--bg #fdf2f6, w89.html:13616/13621); dark is its data-theme="dark" VARIANT
+   (163 references), not the default. This sheet's dark default is an unowned product decision
+   made for the fresh-start experiment — it silently prejudges dark-vs-light, which the Owner's
+   beauty-mode ruling (pending) owns. Inkling/Beam's rebuild-to-live-w89 proposal is QUEUED
+   behind that ruling, not part of this sitting (Ernie: label, don't redo — adopted).
+   LABEL (Rev 8 erratum E2): --tc is NOT a w89 token. w89 has 0 occurrences of --tc and never
+   uses var(--tc…); its team colour runs through ZPB_TEAM_COLORS (2 refs) remapped by
+   [data-zpbteam] (22 refs). --tc is THIS experiment's own mechanism: the UI sets it inline
+   per row (style="--tc: …" — PlayerCards/BoardRow/LiveFeed, both arms) and screens.css
+   consumes it (var(--tc), 7 refs); the :root value below is a FALLBACK default (Broncos
+   #FB4F14). It is kept, not removed, because the shipped screens consume it — removing it
+   would change rendering. The w89 remap is NOT the model this sheet follows; the per-row
+   inline remap is. */
+
+@import url('./fonts/font-faces.css');
+
+:root {
+  /* gold palette (w89 live layer) */
+  --gold-bright: #ffc43c;
+  --gold: #c9a24b;
+  --gold-mid: #ad7f2e;
+  --gold-deep: #9a6b1f;
+  --on-gold: #3a2a14;
+
+  /* text (parchment on dark) */
+  --text: #ecd9ad;
+  --sub: #a08b62;
+
+  /* dark background stack (warm darks) */
+  --bg-0: #0b0703;
+  --bg-1: #1c1307;
+  --bg-2: #241a10;
+  --panel: #1c1307;
+  --panel-2: #241a10;
+  --hairline: rgba(201, 162, 75, 0.28);
+  --border: #4a3a20;
+
+  /* the team color variable (remapped per team by the UI; default = Broncos) */
+  --tc: #fb4f14;
+  --tc-deep: rgba(251, 79, 20, 0.22);
+
+  /* semantic tones */
+  --good: #4c9a67;
+  --bad: #c25b4e;
+  --glow: rgba(201, 162, 75, 0.32);
+
+  /* type stacks: display/champion vs readable UI/body */
+  --font-display: 'Cinzel Decorative', 'Cinzel', Georgia, serif;
+  --font-ui: 'Cinzel', Georgia, serif;
+
+  /* radius + spacing scale */
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-lg: 14px;
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+}
+
+/* page base every slice inherits */
+html, body { margin: 0; padding: 0; }
+body {
+  background: linear-gradient(180deg, var(--bg-1) 0%, var(--bg-0) 100%);
+  color: var(--text);
+  font-family: var(--font-ui);
+  min-height: 100vh;
+}
+h1, h2, h3, .champ {
+  font-family: var(--font-display);
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--hairline);
+  border-radius: var(--r-md);
+}
+.gold-rule { height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }

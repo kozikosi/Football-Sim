@@ -1,0 +1,74 @@
+# VERIFY.txt — the Rev 9 delivery, verifiable top to bottom by a stranger
+
+Tree: this folder (the Rev 9 fresh-start delivery). Engine pin d3bd81d2 (vendored byte-identical in
+football-sim-vue/src/engine and football-sim-svelte/src/lib/engine — do not edit; verify:
+`diff -rq football-sim-vue/src/engine football-sim-svelte/src/lib/engine` → clean).
+
+## 1. Integrity (no build needed)
+```
+node scripts/gate-manifest.mjs .
+#   expect: 5 manifest(s); root MANIFEST.txt 722 entries all OK; REV-5.1-addendum/CHECKSUMS.txt
+#   360 entries all OK; football-sim-vue/CHECKSUMS.txt + football-sim-svelte/CHECKSUMS.txt all OK
+#   (the bench-critical pins added in Rev 9 Part 0); GATE RESULT: PASS, exit 0
+shasum -a 256 -c CHECKSUMS.txt                      # root: pins MANIFEST.txt, RECEIPT.md,
+#   DELIVERY-NOTE.md, verified-as-of.json — 4/4 OK
+cd REV-5.1-addendum && shasum -a 256 -c CHECKSUMS.txt && cd ..
+#   360/360 OK, exit 0 — NOTE THE CWD: run from INSIDE the addendum (shasum -c resolves the listed
+#   paths against the CURRENT DIRECTORY; from the delivery root it exits 1 with 360 bogus failures)
+```
+Root MANIFEST.txt is regenerated over THIS tree (722 entries) and covers every delivered file except
+its own pin. Stated exclusion rules: `node_modules/`, `.git/`, `dist/` are build/clone state,
+excluded; `CHECKSUMS.txt` is excluded because it pins MANIFEST.txt (a manifest cannot pin its own
+pin); `receipts/gate-*` are gate stdout captured after the freeze — reproducible by re-running the
+gate, so pinning them would be self-referential. If any covered file changes, regenerate
+MANIFEST.txt then CHECKSUMS.txt (in that order) before re-running the gate.
+
+## 2. Type-checkers and builds (per arm, needs node ≥ 22 + npm i)
+```
+cd football-sim-vue    && npm install --no-audit --no-fund && npm run type-check && npm run build   # exit 0 both
+cd football-sim-svelte && npm install --no-audit --no-fund && npm run check      && npm run build   # exit 0 both; 0 errors AND 0 warnings
+cd REV-5.1-addendum/framework-two-arm/arm-vue    && npm install --no-audit --no-fund && npx vue-tsc --build    # exit 0
+cd REV-5.1-addendum/framework-two-arm/arm-svelte && npm install --no-audit --no-fund && npx svelte-check --tsconfig ./tsconfig.json   # 0 errors, 0 warnings
+```
+
+## 3. Units, battery, live stores (all re-run this sitting, exit 0 each)
+```
+cd football-sim-vue    && npx vitest run && node probes/probe-battery.mjs vue       # 11 tests, 24/24 PASS
+cd football-sim-svelte && npx vitest run && node probes/probe-battery.mjs svelte    # 24/24 PASS
+#   screens in both battery JSONs: cards 871, stats 457, board 470, feed 125, week 221, settings 39 — ALL EQUAL
+node probes/probe-sealed-week.mjs vue     # the SEALED surface: 12/12, exit 0 (DEV server, process-group kill)
+node probes/probe-sealed-week.mjs svelte  # same, exit 0
+node scripts/e3-extra-part-a-probe.mjs football-sim-vue vue        # needs the DEV server; exit 0
+node scripts/e3-extra-part-a-probe.mjs football-sim-svelte svelte
+```
+
+## 4. The two gates + Rev 9's new receipts
+```
+node scripts/gate-manifest.mjs .                      # PASS (receipts/gate-c2-rev9-pass.txt)
+node scripts/gate-manifest.mjs /tmp/prose-manifest-tree   # FAIL exit 1 "UNPARSEABLE" — the C2 fix
+#   (receipts/gate-c2-rev9-unparseable-probe.txt; the probe tree ships in the receipt's text)
+node scripts/gate-numerals.mjs . --legacy-scan        # CLEAN
+node scripts/gate-numerals.mjs . --claims             # CLEAN
+python3 scripts/r51_patch.py --verify-shipped REV-5.1-addendum            # 19/19, exit 0
+python3 scripts/r51_patch.py --reproduce <pre-patch-tree> <ref-addendum>  # 12/12 byte-identical, exit 0
+#   pre-patch tree: council/inkling _agents/inkling/deliveries/zai-sitting-2026-11-15-authoring (85a54b66)
+#   reference: the Rev 6 published addendum tree (council/glyph zai-fresh-start-2026-11-15)
+node scripts/emergency-scale.mjs                      # FAIL exit 1 on the SHIPPED constants (scale proof)
+node scripts/emergency-scale.mjs --fix                # PASS exit 0 with the DERIVED constant (1e6)
+node scripts/p333-validate.mjs                        # exit 0 — every pinned premise reproduced
+node scripts/p333-ladder.mjs                          # exit 0 — the 12-row ladder on the REAL pool
+node flip-bench/flip-bench-stub.mjs                   # exit 0 — the stub smoke test (mechanism, not verdict)
+node scripts/screenshots-rev9.mjs                     # exit 0 — the 8-shot Variant L set (hashes in receipts)
+```
+
+## 5. Read in this order
+DELIVERY-NOTE.md (Rev 9 section) → REV-9-ERRATA.md → P333-CANDIDATE-LADDER.md → CONTRAST-TABLE.md →
+VERDICT-REV-9.md → SECOND-AGENT-HANDOFF.md (now with preflight/stall/falsifier) →
+flip-bench/sealed-run-receipt.json (status closed) → receipts/ (everything quoted above) →
+NOTES-week-sb-game.md → REGEN-MANIFEST.md.
+
+## 6. The four pass-through copies
+Four directories in the zip — `_agents/<lane>/deliveries/zai-fresh-start-rev9-2026-11-16/` for lanes
+`muse`, `kg`, `ernie`, `inkling` — each byte-identical by construction (one tree, four copies; cmp
+any two → identical). KG/MUSE re-cut the branch NAMES on GitHub from the zip per REGEN-MANIFEST.md
+(nothing is pushed from the sandbox).

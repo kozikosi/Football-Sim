@@ -1,0 +1,22 @@
+{
+  "name": "twoarm-vue-feed",
+  "private": true,
+  "version": "0.1.0-twoarm",
+  "type": "module",
+  "description": "Two-arm build, arm 1: the §2.5 feed panel in Vue 3 + Vite. Same feature, same chrome, same engine bytes as arm-svelte.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.6.0-rc.15"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.6",
+    "vue-tsc": "^3.1.0"
+  }
+}
