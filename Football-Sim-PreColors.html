@@ -994,6 +994,16 @@ const TEAM_ABBR = {
   'NY Jets':'NYJ','Philadelphia Eagles':'PHI','Pittsburgh Steelers':'PIT','San Francisco 49ers':'SF',
   'Seattle Seahawks':'SEA','Tampa Bay Buccaneers':'TB','Tennessee Titans':'TEN','Washington Commanders':'WAS'
 };
+const TEAM_SHORT = {
+  'Arizona Cardinals':'ARI Cardinals','Atlanta Falcons':'ATL Falcons','Baltimore Ravens':'BAL Ravens','Buffalo Bills':'BUF Bills',
+  'Carolina Panthers':'CAR Panthers','Chicago Bears':'CHI Bears','Cincinnati Bengals':'CIN Bengals','Cleveland Browns':'CLE Browns',
+  'Dallas Cowboys':'DAL Cowboys','Denver Broncos':'DEN Broncos','Detroit Lions':'DET Lions','Green Bay Packers':'GB Packers',
+  'Houston Texans':'HOU Texans','Indianapolis Colts':'IND Colts','Jacksonville Jaguars':'JAX Jaguars','Kansas City Chiefs':'KC Chiefs',
+  'Las Vegas Raiders':'LV Raiders','Los Angeles Chargers':'LA Chargers','Los Angeles Rams':'LA Rams','Miami Dolphins':'MIA Dolphins',
+  'Minnesota Vikings':'MIN Vikings','New England Patriots':'NE Patriots','New Orleans Saints':'NO Saints','NY Giants':'NY Giants',
+  'NY Jets':'NY Jets','Philadelphia Eagles':'PHI Eagles','Pittsburgh Steelers':'PIT Steelers','San Francisco 49ers':'SF 49ers',
+  'Seattle Seahawks':'SEA Seahawks','Tampa Bay Buccaneers':'TB Buccaneers','Tennessee Titans':'TEN Titans','Washington Commanders':'WAS Commanders'
+};
 const TEAM_COLORS = {
   'Arizona Cardinals': ['#97233F','#000000','#FFB612'],
   'Atlanta Falcons': ['#A71930','#000000','#A5ACAF'],
@@ -3835,23 +3845,36 @@ function renderLineupComparisonHTML(homeTeam, awayTeam){
  return `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Lineups <span class="narr" style="font-weight:400;">(${awayTeam} left · ${homeTeam} right)</span></h4>${renderLineupTableHTML(awaySlotmap, homeSlotmap)}</div>`;
 }
 function renderStandingsHTML(){
- const standings = computeStandings(seasonState.schedule, teamNames());
- const user = seasonUserTeam();
- let html = `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Standings</h4><div class="draft-columns" style="grid-template-columns:1fr 1fr;">`;
- Object.keys(CONFERENCES).forEach(conf=>{
-  html += `<div><h3 style="margin:0 0 8px;">${conf}</h3>`;
-  CONFERENCES[conf].forEach(div=>{
-   const rows = divisionStandings(div, standings, seasonState.schedule);
-   html += `<div class="divtable"><h5>${div}</h5><table><thead><tr><th></th><th>W-L</th><th>PF/G</th><th>PA/G</th><th>Diff</th></tr></thead><tbody>`;
-   rows.forEach(r=>{
-    const gp = r.wins+r.losses+r.ties;
-    html += `<tr class="${r.team===user?'user-row':''}"><td>${r.team}</td><td class="score">${r.wins}-${r.losses}${r.ties?'-'+r.ties:''}</td><td class="narr">${gp?(r.pf/gp).toFixed(1):'—'}</td><td class="narr">${gp?(r.pa/gp).toFixed(1):'—'}</td><td class="narr">${r.diff>=0?'+':''}${r.diff}</td></tr>`;
-   });
-   html += `</tbody></table></div>`;
+  const standings = computeStandings(seasonState.schedule, teamNames());
+  const user = seasonUserTeam();
+  const userDiv = divisionOfTeam(user);
+  let html = `<div class="panel" style="margin-bottom:14px;"><h4 style="margin-top:0;">Standings</h4>`;
+  // User's division first (full size)
+  const userDivRows = divisionStandings(userDiv, standings, seasonState.schedule);
+  html += `<div class="divtable" style="margin-bottom:16px;"><h5>${userDiv} (Your Division)</h5><table><thead><tr><th></th><th>W-L</th><th>PF/G</th><th>PA/G</th><th>Diff</th></tr></thead><tbody>`;
+  userDivRows.forEach(r=>{
+   const gp = r.wins+r.losses+r.ties;
+   const displayName = TEAM_SHORT[r.team] || r.team;
+   html += `<tr class="${r.team===user?'user-row':''}"><td>${displayName}</td><td class="score">${r.wins}-${r.losses}${r.ties?'-'+r.ties:''}</td><td class="narr">${gp?(r.pf/gp).toFixed(1):'—'}</td><td class="narr">${gp?(r.pa/gp).toFixed(1):'—'}</td><td class="narr">${r.diff>=0?'+':''}${r.diff}</td></tr>`;
   });
-  html += `</div>`;
- });
- return html + `</div></div>`;
+  html += `</tbody></table></div>`;
+  // Other divisions (smaller)
+  Object.keys(CONFERENCES).forEach(conf=>{
+   html += `<div style="font-size:0.75rem;color:var(--sub);"><h5 style="color:var(--sub);">${conf}</h5>`;
+   CONFERENCES[conf].forEach(div=>{
+    if(div===userDiv) return;
+    const rows = divisionStandings(div, standings, seasonState.schedule);
+    html += `<div class="divtable" style="margin-bottom:8px;padding:0 8px;"><h5>${div}</h5><table><thead><tr><th></th><th>W-L</th><th>PF/G</th><th>PA/G</th><th>Diff</th></tr></thead><tbody>`;
+    rows.forEach(r=>{
+     const gp = r.wins+r.losses+r.ties;
+     const displayName = TEAM_SHORT[r.team] || r.team;
+     html += `<tr class="${r.team===user?'user-row':''}"><td>${displayName}</td><td class="score">${r.wins}-${r.losses}${r.ties?'-'+r.ties:''}</td><td class="narr">${gp?(r.pf/gp).toFixed(1):'—'}</td><td class="narr">${gp?(r.pa/gp).toFixed(1):'—'}</td><td class="narr">${r.diff>=0?'+':''}${r.diff}</td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+   });
+   html += `</div>`;
+  });
+  return html + `</div>`;
 }
 function seedLabel(g, sideKey){
  const seed = g[sideKey+'Seed'], conf = g[sideKey+'Conf'];
