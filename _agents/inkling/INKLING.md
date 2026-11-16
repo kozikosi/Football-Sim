@@ -28,6 +28,7 @@
   - **Integrity follow-through owed by MUSE/KG:** regenerate the addendum manifest on the patched tree (12 files), re-cut the four pass-throughs or land an erratum before zip reissue.
 - **Z.ai Rev 8 delivery VENDORED + REVIEWED** (Owner-directed push, @ `11425623`; review `d9dc3261`): `_agents/inkling/deliveries/zai-fresh-start-rev8-2026-11-15/` — **the Rev 6 defects are closed**: nested manifest regenerated, 360/360 OK exit 0 (was 346/358 with 12 patched-file mismatches); both numeral gates now exit 0; 867→871 fixed at source 3 sites; workarounds struck (4 vs 3 favours Vue); **"~55%" WITHDRAWN — wash, no number, no cutover**; gate 5 amended to typecheck AND build green; 3 a11y warnings fixed in source (not waived); E3 devtools session ran both arms after the process-group-kill root cause; **row 9 dead** (Part A: class/facade/Pinia all 0 diagnostics at 2 and 11 fields; Ernie's −11 did NOT reproduce, ratio 1.020). Two residual one-liners: verified-as-of.json says "358/358" vs shipped 360; VERIFY.txt says 658 vs actual 659. Sealed bench OWED by design. **My one caution filed: the "first-try greens 2 vs 0" is order-confounded REPORTED-feel, not a decision signal.**
 - **Council Rev 6 (P-342) pin/lineup/gap adjudication filed** — `inbox/20261115-2214-inkling-pin-lineup-gap-review.md` @ `6d510cd4`: **pin FIXED at d3bd81d2** (floating reading exists only in Architect's NOW.md; nothing in owner-notes/bulletin/rulings supports it; consequences enumerated); **lineup table test → option (b)** keep structure, drop design.json equality (live flex.json equality untouched); **gap 2773.0387 VERIFIED independently at 6dcf13b** (spotDiff 0; stand-ins TE3←FB, DT2←SS, CB3←TE all at −6; identity holds) — Claude's numbers check out; 2700/SAM←TE is the reference-table value (formation-gap.test.ts).
+- **P-333 derivation round (Owner-picked direction) filed** — `inbox/20261116-0013-inkling-P-333-derivation.md` @ `8ef1d8cb`: formula proposal `snap(d_Z·8 − w/500)` (d_Z = pool-centred athletic distance, pins held as law) — **the DIME trio reproduces at 12 on distance alone**; FB→TE=2 falls out of the math; QB→FS/ILB→FS/OLB→FS/TE→FS stay pins where d_Z lands ≤6 (flagged); Q2 hungarian exactness read+run-verified (binary suspects named); **Q3 measured: gap 2,773.04 → 1,014.15 (−63%) with sketch derivation + pins** (probe receipts in filing; reverse-direction NOT measured; γ to be L1-fitted with pins held before the Owner is asked to approve).
 - Prior verified facts (this series): live = **w89** (`3e69567c`) · pin `d3bd81d2` (99 flex, QB→FS 12) · two-arm bundles 11,569 B JS/per-file gz · pool 1,953/1,921 · suite 351/351 @ `9acf1992` = REPORTED · λ band [0.3902, 0.4032) · λ estimator absent.
 
 ## What the next session needs
@@ -40,7 +41,7 @@
 
 ## Where this worktree is
 
-Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `d9dc3261` (verify with `git rev-parse HEAD`).
+Path: `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base with base `1b91f50e161fa10d0607c8e09330115ffa27f1ff` · HEAD `8ef1d8cb` (verify with `git rev-parse HEAD`).
 
 ## Transition discipline
 
