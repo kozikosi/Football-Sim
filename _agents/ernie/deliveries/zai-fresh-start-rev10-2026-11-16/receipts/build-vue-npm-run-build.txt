@@ -1,0 +1,39 @@
+# receipt — Rev 10 (A1/B): every §2 line carries a receipt
+# command: npm run build
+# cwd (in-tree, relative): football-sim-vue
+# node = v24.22.3
+# captured by scripts/make-build-receipts.mjs
+
+--- output (stdout + stderr, verbatim) ---
+
+> football-sim-vue@0.0.0 build
+> run-p type-check "build-only {@}" --
+
+
+> football-sim-vue@0.0.0 build-only
+> vite build
+
+
+> football-sim-vue@0.0.0 type-check
+> vue-tsc --build
+
+vite v8.3.8 building client environment for production...
+transforming...
+✓ 176 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                          0.43 kB │ gzip:   0.28 kB
+dist/assets/CinzelDecorative-700normal-CnX1aK6s.woff2   15.48 kB
+dist/assets/Cinzel-100normal-DMUuCU8H.woff2             25.90 kB
+dist/assets/index-BvZxIApU.css                           8.79 kB │ gzip:   2.10 kB
+dist/assets/index-DTlnhydQ.js                          402.87 kB │ gzip: 130.31 kB
+
+✓ built in 428ms
+
+> football-sim-vue@0.0.0 postbuild
+> node scripts/strip-crossorigin.mjs && node scripts/singlefile.mjs
+
+strip-crossorigin: removed 2 attribute(s) from dist/index.html
+singlefile: inlined · remaining external refs: 0  · bytes: 467106
+
+--- exit code: 0 (wall 4.5s) ---

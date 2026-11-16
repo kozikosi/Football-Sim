@@ -1,0 +1,6 @@
+cmp receipts (Rev 9 Part B), 2026-11-16T02:23:33Z:
+  tokens-w89.css: identical, exit 0
+  tokens-w89.ts: identical, exit 0
+  zpb-team-colors.json: identical, exit 0
+  tokens-dark-tc.css: identical, exit 0
+  tokens.css: identical, exit 0

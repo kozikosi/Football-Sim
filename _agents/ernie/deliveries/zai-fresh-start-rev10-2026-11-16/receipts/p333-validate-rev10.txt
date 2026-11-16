@@ -1,0 +1,14 @@
+PASS  own-base value (table, DL5=DT): got 600250 want 600250
+PASS  4-3 roster loses in 3-4 (table, DL5=DT): got 2700 want 2700
+PASS  3-4 roster loses in 4-3 (table, DL5=DT): got 1800 want 1800
+PASS  GAP (table, DL5=DT): got 900 want 900
+PASS  GAP (table, DL5=EDGE): got 0 want 0
+measured (DL5=DT): 4-3 roster loses 2773.0, 3-4 roster loses 1858.5, gap 914.5
+PASS  GAP (measured, DL5=DT) vs premise: got 914.504358134931 (tol 1) want 914.5
+measured (DL5=EDGE): gap 5.3 — the Architect's test REPORTS this (not pinned); allowance < 32 (one unit per spot)
+PASS  GAP (measured, DL5=EDGE) within the base-to-base noise allowance: got 5.281694134697318 (tol 32) want 0
+value scale — table: single-spot max 99000, whole-lineup max 848925
+value scale — measured: single-spot max 98932, whole-lineup max 854227
+PASS  single-spot swing (measured): got 98931.56229501723 (tol 1) want 98932
+PASS  whole-lineup max (measured): got 854226.6619415168 (tol 1) want 854227
+EMERGENCY shipped = 100000 — strictly above the whole-lineup max? NO — mis-scaled (this is the Part A finding)

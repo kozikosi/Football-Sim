@@ -1,0 +1,20 @@
+TE>DIME    live                         12  formula 4.76
+ILB>DIME   live                         12  formula 4.17
+OLB>DIME   live                         12  formula 4.09
+TE>NICKEL  live                          6  formula 5.38
+TE>FS      live                         12  formula 6.70
+ILB>FS     live                         12  formula 6.12
+OLB>FS     live                         12  formula 6.05
+FB>TE      live                          6  formula 4.02
+WR>CB      live                          6  formula 6.02
+WR>DIME    live                          6  formula 1.66
+WR>FS      live                          6  formula 4.20
+WR>NICKEL  live                          6  formula 2.28
+WR>SS      live                          6  formula 4.19
+DT>ILB     live     UNLISTED (emergency 8)  formula NaN
+DT>DIME    live     UNLISTED (emergency 8)  formula NaN
+RB>TE      live                          6  formula 4.67
+SS>OLB     live                          2  formula 4.04
+OT>FB      live                          0  formula 4.22
+DT>FB      live                          0  formula 3.50
+QB>FS      live                         12  formula 5.24

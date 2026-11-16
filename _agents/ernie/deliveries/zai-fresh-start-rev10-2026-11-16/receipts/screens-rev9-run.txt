@@ -1,0 +1,14 @@
+# receipt — Rev 10: scripts/screenshots-rev9.mjs re-run in a fresh sandbox (chromium 159-class build, node v24.22.3)
+# the script was PORTABILITY-FIXED first (hard-coded author path /home/z/work/rev9 -> script-relative; harness pages -> temp dir, never the tree)
+# the cross-arm identity property reproduces: vue/svelte hashes IDENTICAL per shot, fonts inline, 0 console errors
+
+receipts/screens-rev9/variantL-vue-430x780-light.png  1c93162481111af6…  25538B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-vue-430x780-dark.png  301cacb4e1d7bb60…  25970B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-vue-1280x800-light.png  19ab55af1c1f1711…  30011B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-vue-1280x800-dark.png  45663aff56565943…  31024B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-svelte-430x780-light.png  1c93162481111af6…  25538B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-svelte-430x780-dark.png  301cacb4e1d7bb60…  25970B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-svelte-1280x800-light.png  19ab55af1c1f1711…  30011B  fonts-inline=true  errors=0
+receipts/screens-rev9/variantL-svelte-1280x800-dark.png  45663aff56565943…  31024B  fonts-inline=true  errors=0
+8 shots, exit 0
+--- exit code: 0 ---

@@ -1,0 +1,5 @@
+clean-extract (fresh cp -R, no node_modules), 2026-11-16:
+$ node scripts/gate-manifest.mjs .  exit=0
+  GATE RESULT: PASS — 1728 entries verified across 6 manifest(s)
+$ node scripts/gate-numerals.mjs . --legacy-scan  exit=0  gate-numerals (legacy): CLEAN — 0 hits
+$ node scripts/gate-numerals.mjs . --claims  exit=0  gate-numerals (claims): CLEAN — 0 hits

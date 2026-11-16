@@ -1,0 +1,3 @@
+# receipt — Rev 10: NODE_PATH=<repo>/node_modules node scripts/e3-extra-part-a-probe.mjs <repo> <arm> (the script resolves playwright from the importing repo; NODE_PATH documented)
+{"arm":"vue","partA":"ok","fields":true,"total":22,"champion":"Houston Texans","label":"SUPER BOWL","pageErrors":[]}
+{"arm":"svelte","partA":"ok","classFields":true,"facadeFields":true,"classTotal":22,"classChampion":"Houston Texans","classLabel":"SUPER BOWL","facadeSlotAfterNext":2,"wrapperSlotAfterGo":2,"wrapperViewLabel":"WEEK 2","pageErrors":[]}

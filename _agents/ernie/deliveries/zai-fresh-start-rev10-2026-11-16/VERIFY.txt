@@ -1,0 +1,115 @@
+# VERIFY.txt — the Rev 10 delivery, verifiable top to bottom by a stranger
+
+Tree: this folder (the Rev 10 delivery = Rev 9 tree + the Rev 10 sitting's fixes; full list in
+REV-10-ERRATA.md). Engine pin d3bd81d2 (vendored byte-identical in football-sim-vue/src/engine and
+football-sim-svelte/src/lib/engine — do not edit; verify:
+`diff -rq football-sim-vue/src/engine football-sim-svelte/src/lib/engine` → clean).
+
+## 1. Integrity (no build needed)
+```
+node scripts/gate-manifest.mjs .
+#   measured on the FINAL Rev 10 tree at packaging (paste, not typed):
+#   GATE RESULT: PASS — 1793 entries verified across 6 manifest(s), no unlisted files   (exit 0)
+#   the 6 manifests: CHECKSUMS.txt · MANIFEST.txt · REV-5.1-addendum/CHECKSUMS.txt ·
+#   REV-5.1-addendum/MANIFEST.txt · football-sim-vue/CHECKSUMS.txt · football-sim-svelte/CHECKSUMS.txt
+#   (Rev 9's VERIFY said "expect: 5 manifest(s)" — wrong on this tree; see REV-10-ERRATA §1.)
+#   Rev 10 gate semantics: PASS requires ≥1 manifest AND ≥1 entry (an empty tree FAILS with
+#   "no manifest found") AND no unlisted files — any file in the tree that no manifest names is a
+#   FAIL naming it (--allow-extra downgrades that one check to a WARN for post-freeze captures).
+#   Falsifiers: receipts/gate-a4-empty-tree.txt (empty dir → FAIL exit 1),
+#   receipts/gate-a5-injected-file.txt (one injected file → FAIL exit 1, named).
+shasum -a 256 -c CHECKSUMS.txt                      # root: pins MANIFEST.txt, RECEIPT.md,
+#   DELIVERY-NOTE.md, verified-as-of.json — 4/4 OK
+shasum -a 256 SETTLE-RULE-PREREGISTERED.md          # must equal the hash pinned in this file and
+#   in SETTLE-RULE-PREREGISTERED.md: afbf249f4c05fc7c93a1b069db11e676d22e6f8a0b67eff0bfe84a1ddb432268
+#   (the pre-registered settle rule, hashed BEFORE any blind run — receipts/settle-rule-hash.txt)
+cd REV-5.1-addendum && shasum -a 256 -c CHECKSUMS.txt && cd ..
+#   360/360 OK, exit 0 — NOTE THE CWD: run from INSIDE the addendum (shasum -c resolves the listed
+#   paths against the CURRENT DIRECTORY; from the delivery root it exits 1 with 360 bogus failures)
+```
+Root MANIFEST.txt is regenerated over THIS tree (count = the gate's PASS line above) and covers every
+delivered file except its own pin. Stated exclusion rules: `node_modules/`, `.git/`, `dist/` are
+build/clone state, excluded; every `CHECKSUMS.txt`/`MANIFEST.txt` is excluded from the ROOT manifest
+(each is pinned by its own directory's CHECKSUMS or pins itself — a manifest cannot pin its own
+pin); `.github/` is excluded (CI carries the workflows; the repo CHECKSUMS declared scope excludes
+it too); `receipts/gate-*` are gate stdout captured after the freeze — reproducible by re-running
+the gate, so pinning them would be self-referential. (Rev 9 shipped one file that broke the
+converse rule — receipts/clean-extract-rev9.txt, captured post-freeze and listed by NO manifest;
+the Rev 10 gate's unlisted-file check caught it on the Rev 9 tree and the regenerated MANIFEST now
+covers it. See REV-10-ERRATA §5.) If any covered file changes, regenerate MANIFEST.txt then
+CHECKSUMS.txt (in that order; `node scripts/regen-manifest.mjs root` then `root-checksums`) before
+re-running the gate.
+
+## 2. Type-checkers and builds (per arm, needs node ≥ 22 + npm i)
+```
+cd football-sim-vue    && npm install --no-audit --no-fund && npm run type-check && npm run build
+cd football-sim-svelte && npm install --no-audit --no-fund && npm run check      && npm run build   # 0 errors AND 0 warnings
+cd REV-5.1-addendum/framework-two-arm/arm-vue    && npm install --no-audit --no-fund && npx vue-tsc --build    # exit 0
+cd REV-5.1-addendum/framework-two-arm/arm-svelte && npm install --no-audit --no-fund && npx svelte-check --tsconfig ./tsconfig.json   # 0 errors, 0 warnings
+```
+Every line above has a receipt in `receipts/` (run on node v24.22.3, the repo .nvmrc pin): the four
+arm-level builds → `build-vue-typecheck-build.txt`, `build-vue-npm-run-build.txt`,
+`build-svelte-check.txt`, `build-svelte-npm-run-build.txt`; the two addendum arms →
+`build-armvue-vue-tsc-build.txt`, `build-armsvelte-svelte-check.txt`. Receipt headers carry
+`node = v24.22.3`. (Rev 9's §2 promised "exit 0 both" with NO receipt — the defect is the missing
+receipt, fixed by shipping these; see REV-10-ERRATA §6. On the pinned node both repos' builds are
+GREEN — the node-26 Vue failure Ernie REPORTED does not reproduce here.)
+
+## 3. Units, battery, live stores (receipts for every line, receipts/*.txt)
+```
+cd football-sim-vue    && npx vitest run && node probes/probe-battery.mjs vue       # 12 tests, 12 pass; battery 24/24 PASS
+cd football-sim-svelte && npx vitest run && node probes/probe-battery.mjs svelte    # 16 tests pass (the 2x2 cell's test is new this sitting); battery 24/24 PASS
+#   screens in both battery JSONs: cards 871, stats 457, board 470, feed 125, week 221, settings 39 — ALL EQUAL
+node probes/probe-sealed-week.mjs vue     # the SEALED surface: 13 checks, all green, exit 0 (DEV server, process-group kill)
+node probes/probe-sealed-week.mjs svelte  # same, exit 0
+#   (Rev 9's docs said "12/12" — the probe has THIRTEEN checks and Rev 9's own receipted JSON
+#   already listed 13 ok; the count was typed, not measured. See REV-10-ERRATA §8.)
+node scripts/e3-extra-part-a-probe.mjs football-sim-vue vue        # needs the DEV server; exit 0
+node scripts/e3-extra-part-a-probe.mjs football-sim-svelte svelte
+```
+
+## 4. The two gates + the receipts that prove them
+```
+node scripts/gate-manifest.mjs .                      # PASS (receipts/gate-rev10-pass.txt)
+node scripts/gate-manifest.mjs /tmp/prose-manifest-tree   # FAIL exit 1 "UNPARSEABLE" — the C2 fix
+#   (receipts/gate-c2-rev9-unparseable-probe.txt; the probe tree ships in the receipt's text)
+node scripts/gate-manifest.mjs /tmp/empty-tree        # FAIL exit 1 "no manifest found" — the A4 fix
+node scripts/gate-manifest.mjs . --allow-extra        # unlisted files → WARN, named; other checks unchanged
+node scripts/gate-numerals.mjs . --legacy-scan        # CLEAN
+node scripts/gate-numerals.mjs . --claims             # CLEAN
+python3 scripts/r51_patch.py --verify-shipped REV-5.1-addendum            # 19/19, exit 0
+python3 scripts/r51_patch.py --reproduce <85a54b66 tree> <rev6 addendum>  # 12/12 IDENTICAL, exit 0
+#   pre-patch tree: council/inkling _agents/inkling/deliveries/zai-sitting-2026-11-15-authoring
+#   VENDORED AT COMMIT 85a54b66 ("vendor Z.ai authoring sitting delivery (2026-11-15, Rev 5)")
+#   reference addendum: council/glyph _agents/glyph/deliveries/zai-fresh-start-2026-11-15/REV-5.1-addendum
+#   (the REV 6 PUBLISHED addendum). Turnkey: `node scripts/fetch-r51-inputs.mjs <workdir>` fetches
+#   both inputs from GitHub raw and asserts their tree hashes (receipts/r51-inputs-hashes.txt).
+#   AGAINST THE SHIPPED addendum the same command prints 11/12 and EXITS 1 BY DESIGN —
+#   SLICE-DONE-PROPOSAL.md carries the deliberate Rev 8 build-green clause, so the shipped tree
+#   differs from the Rev 6 reference in exactly that file; r51-patches.json post_side discloses
+#   this. Expect BOTH outcomes:
+python3 scripts/r51_patch.py --reproduce <85a54b66 tree> REV-5.1-addendum   # 11/12, exit 1, DIFF names SLICE-DONE-PROPOSAL.md
+node scripts/emergency-scale.mjs                      # FAIL exit 1 on the SHIPPED constants (scale proof)
+node scripts/emergency-scale.mjs --fix                # PASS exit 0 with the DERIVED constant (1e6)
+node scripts/p333-validate.mjs                        # exit 0 — every pinned premise reproduced
+node scripts/p333-ladder.mjs                          # exit 0 — the 12-row ladder on the REAL pool
+#   Rev 10: the ladder writes ONLY to --out (default a temp dir) — the tree's manifest hash is
+#   unchanged by a run (falsifier: receipts/p333-ladder-no-dirty.txt; the old script wrote
+#   ladder.json into the delivery root and even claimed a ladder.md it never wrote).
+node flip-bench/flip-bench-stub.mjs                   # exit 0 — the stub smoke test (mechanism, not verdict)
+node scripts/screenshots-rev9.mjs                     # exit 0 — the 8-shot Variant L set (hashes in receipts)
+```
+
+## 5. Read in this order
+DELIVERY-NOTE.md (Rev 9 + Rev 10 sections) → REV-9-ERRATA.md → REV-10-ERRATA.md →
+P333-CANDIDATE-LADDER.md → STORE-COST-2x2.md → CONTRAST-TABLE.md → VERDICT-REV-9.md →
+VERDICT-REV-10-ADDENDUM.md (the evidence restructure + the pre-registered settle rule) →
+SECOND-AGENT-HANDOFF.md (now with preflight/stall/falsifier) → SETTLE-RULE-PREREGISTERED.md →
+flip-bench/sealed-run-receipt.json (status closed) → receipts/ (everything quoted above) →
+NOTES-week-sb-game.md → REGEN-MANIFEST.md.
+
+## 6. The four pass-through copies
+Four directories in the zip — `_agents/<lane>/deliveries/zai-fresh-start-rev10-2026-11-16/` for
+lanes `muse`, `kg`, `ernie`, `inkling` — each byte-identical by construction (one tree, four copies;
+cmp any two → identical). KG/MUSE re-cut the branch NAMES on GitHub from the zip per REGEN-MANIFEST.md
+(nothing is pushed from the sandbox).

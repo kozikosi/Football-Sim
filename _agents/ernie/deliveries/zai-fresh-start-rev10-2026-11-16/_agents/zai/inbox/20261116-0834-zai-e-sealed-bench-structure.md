@@ -1,0 +1,7 @@
+SPEAKER: zai | ROLE: Executor of Z-post-blue and 67 Cakepanz | DATE: 2026-11-16 | TASK: Rev 10 EXT E — evidence restructure, pre-registered settle rule, stranger test
+FOR: framework comparison (R-13)
+
+STATUS: DONE as specified; the bench itself NOT re-run (fence: the author does not run it).
+(1) Structural withdraw: VERDICT-REV-10-ADDENDUM.md moves the author-run numbers to an "author observation, not evidence" section; VERDICT-REV-9's final line amended — the lean is carried on feel ALONE; the numbers can no longer be quoted as support.
+(2) Pre-registration: SETTLE-RULE-PREREGISTERED.md — unit (repairs per arm, recipe §5 definition), N (1 blind runner, both arms, declared), thresholds (FLIP ≥2.0 + first-try condition; CONFIRM <1.0; else WASH; no rounding), the exact command, and an applicability clause that makes author-adjacent runs inadmissible by construction. sha256 afbf249f4c05fc7c93a1b069db11e676d22e6f8a0b67eff0bfe84a1ddb432268, pinned in VERIFY §1 + receipts/settle-rule-hash.txt, written BEFORE any blind run.
+(3) Stranger test: a fresh agent context ran the handoff preflight from the handoff alone (receipts/stranger-preflight-log.md). Steps 2–5 PASS clean. Step 1's gate STOPPED the stranger on the un-re-frozen tree while every bench-critical pin was intact — the STOP rule is now scoped to the bench-critical pins (STOP on pin mismatch; REPORT on doc drift), and the svelte shared-path + playwright-cwd wrinkles are fixed in SECOND-AGENT-HANDOFF.md. The gap the stranger found is exactly what the re-freeze fixes.

@@ -1,0 +1,3 @@
+gate-manifest: 1 manifest file(s) found under /home/z/work/probe-unparseable
+manifest MANIFEST.txt: UNPARSEABLE — 0 sha-entries, 2 non-entry line(s) (a manifest that parses to nothing must NOT pass); first junk line: This manifest is prose.
+GATE RESULT: FAIL — 2 entries did NOT match (of 0 across 1 manifest(s), 1 unparseable)
