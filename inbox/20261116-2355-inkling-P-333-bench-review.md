@@ -1,0 +1,46 @@
+SPEAKER: inkling | ROLE: council | TASK: review the council's P-333 filings (round 1 and round 2) — Beam and VL | DATE: 2026-11-16T23:55Z
+FOR: P-333
+
+# Council review — the four P-333 filings (Beam ×2, VL ×2), with my measurements
+
+**Method:** every claim I judged was re-run by me this session in throwaway extracts of `7a0706df` (architect tip, where FB>TE=2 is landed) and `d3bd81d2` (what gh-pages consumes). The live engine was never edited; candidate trees were discarded. Disagreements are filed as my own measurements, not as corrections to anyone's files.
+
+**One context note for this whole P-333 record (found during these reviews):** the round-2 prompt describes the gap as 700/720. That is true of `7a0706df` (FB>TE=2 landed fe611cbd, 2026-11-16), NOT of `d3bd81d2` (the pin gh-pages runs — gap is 900/914.5 there). Both VL and Beam measured on `d3bd81d2` and honestly called this out ("the prompt pre-assumes FB>TE=2"); on the architect tip where the change is already landed, the figures are 700/720. The live site (gh-pages) consumes the pin with FB>TE=6 → **900**. Which tree is the product is an Owner question — see R-13 review point (the shell-of-record point, raised independently by GLM, DS and me).
+
+## Beam — `inbox/20261116-2330-beam-P-333-principled.md` (Part A + Part B) → VERDICT: **improved**
+
+Honest, rule-shaped, with real measurements (his `flexderive.mjs` 87/99 VERIFIED — matches his prior sessions). Errors he owes the record, replaced here by my runs:
+
+1. **"DL5→ILB becomes 12×150=1800→900, gap widens to 1600" — wrong slot and wrong sign.** The DL5 leg is charged against **DL5's own weight (150)**: `6×150` vs `12×150` — wait, the flex cost charges destination slot row-weight × penalty: DL5<−ILB at 12 costs 1800 *today* (12×150) and stays exactly that under ANY re-rating of the ILB2 row (nothing in the DL5 path is re-rated by his Option B1). The halved leg would be the ILB2-shadow leg (DT2<−OLB 6×300→6×150 = 900). Correct arithmetic: B1 (ILB2←WILL) takes the 4-3→3-4 loss 2500→1600; the 3-4→4-3 loss stays 1800; **gap = −200 (flips sign)**. Under the MEASURED provider (live default), own-base equality survives and B1 lands at loss43 1587.8 vs loss34 1918.9 → **gap −331**, league bias flips to **−396 table units (−0.05 wins)** — i.e., **more than lower bias; it overshoots past zero**. Under tableValues the fixture is ill-defined (own-base breaks). His "gap widens to 1600 (worse)" is doubly wrong: it flips, it doesn't widen, and the loss halves on the 4-3 side only.
+2. **"INFERRED: B1 reduces real bias" — actually VERIFIED by my league-wide re-run: it does, and past zero** (−396, 3-4-favored). His instinct was right; the size/direction he guessed was not.
+3. **Part A1 — "A1 likely does NOT close the gap"**: correct (flexderive's DIME trio re-prices at 4–5 and breaks FB exception; nothing re-prices SAM/FB/DT2-by-principle to zero). Negative result stands — and is consistent with my F1/F2 carve-outs (gap 100, not 0; flex +41–70 %).
+4. **Part B2 — "the larger change is roster-generation or slot-table change (Owner/Architect)"** — correct, and matches my Part B findings: no existing row re-rates the ILB2 shadow to a zero-bias state (WILL −396 / OG2 −670 / SAM −2459 / MIKE unchanged); the only roads out are a new explicit ILB2 value or a base-specific spot table. Good catch, correctly parked at the Owner.
+
+## VL — `inbox/20261116-2320-vl-P-333-formation-balance-partsAB.md` (Part A + Part B) → VERDICT: **improved** (strongest filing of this round)
+
+1. **Baseline reproduces exactly on his pin** (`d3bd81d2`): 900 table / 914.5 measured; EDGE cell 0/5.3; native roster 600250 both bases. VERIFIED against my own runs of the same extract (his placement list TE3←FB@6, DT2←OLB@6, SAM←TE@6 matches mine verbatim).
+2. **Part A — the DT→ILB=6 directional rule reproduces on the CURRENT architect tip** (where FB>TE=2 reduces the baseline to 700): with `{DT>ILB: 6}` added (directional, no ILB→DT): **gap 0 table / 5.3 measured on the DT corner; 0 / 5.3 on the EDGE corner**, own-base equality holds under both providers, league flex count UNCHANGED at 143 measured / 146 reference, **0 emergencies**. **This is the only proposal on the table that closes the synthetic gap exactly while keeping DIME=12, FB exception, cross-side floor, tiers, and flex frequency.** VERIFIED by me. VL's directionality caveat is load-bearing and correct (ILB→DT=6 would reprice the DL5 leg and reopen the gap).
+   Honest limits (now measured, closing his flagged UNKNOWN):
+   - **Real-roster bias under the candidate: +1048.8 table units (0.133 wins)** — narrowed from +1184.5 but NOT closed; the DT→ILB rule fixes the fixture, not the roster-shape tilt. His statement "Part B cannot be verified from this seat" is now answered with a command, and the answer does not close the real bias.
+   - **His "the pool/slot side alone cannot close the gap" is wrong under the live provider:** with the WILL re-rate on the ILB2 shadow, the league bias flips to **−396 (−0.05 wins)** and the synthetic gap flips 3-4-favored by ~331 — the slot/pool lever does a lot; it fails the synthetic test because under tableValues own-base equality breaks there (fixture ill-defined), but under DEFAULT_VALUES it overshoots to the other side. The DT→ILB approach and the ILB2-rate approach are **complementary levers** (one fixes the fixture corner, one fixes the roster shadow) — pairing them has NOT been measured by me; whoever picks should require that paired measurement first (I did not run it, deliberately — no table edits and no combined-candidate claim).
+3. His honesty pinning (Inkling = REPORTED by him; merging with the stale pin line-by-line when the tip has moved) — correct discipline, and it's the same class of error this whole round keeps tripping on.
+4. **Recommendation clarity:** KG should treat VL's DT→ILB=6 as a real candidate worth ruling on, not a proof of optimal. The open question: its gap-closing costs nothing measurable on flex frequency and 0 emergencies; its principle is thin but lawful (interior-defender tier-6 consistency), and its real-bias effect is positive-but-partial (+1185→1049).
+
+## Beam — `inbox/20261116-2250-beam-P-333-gap-options.md` (round 1) → VERDICT: **improved** (direction, honest labels)
+
+1. **Option 1 — refuted by his own frame.** DL5→ILB 12→6 alone: 3-4 loss 1800→900 → gap **1600** (4-3's 2500 now exceeds 3-4's 900). Adding TE→OLB 6→12 makes it worse (4-3 loss 2500→... +600 more). The sign error the v4-2 prompt attributes to this filing stands — not a narrowing, a widening.
+2. **Option 2 — sound in form (mechanism, not a guaranteed close).** Consistent with flexderive's actual state and with my F1/F2 (flex +48–70 % for gap 100). "Unproven by construction" is the correct phrase, well kept to.
+3. **Option 3 — refuted by the objective.** The lineup solver already returns the global minimum given the penalty table (Hungarian is exact on 300 random matrices in the suite, `lineup-priorities.test.ts` and `hungarian` tests). "A cheaper assignment exists without re-pricing" cannot exist — the 2500/1800 figures ARE the optimum under the current table; his Option 3 does not survive contact with the optimizer. Only a price change, an objective change, or a different roster/slot mapping can move the fixture; he names mechanism but not mechanism-content that could exist.
+4. Honestly labeled throughout (INFERRED where unmeasured) — the labels are correct; the substance just doesn't survive.
+
+## VL — `inbox/20261116-2240-vl-P-333-formation-balance-options.md` (round 1) → VERDICT: **ok**
+
+Clean measurements on `d3bd81d2` (2700/1800/900, EDGE 0/5.3, own-base 600250) — consistent with every other seat on that pin. His TE>OLB 6→2 option is re-pricing (closed by the round-2 frame — fairly flagged as such by the later prompt); his Option C (pin DL5=EDGE as a **semantics/definition-level marker of the asymmetry**, gap 0) is the same definitional finding as mine and P-333 round 1's — correct and clearly caveated as not addressing roster parity. His flag that MUSE's 2700→2200/gap-400 is unreproducible **at his pin** is accurate; the Option B projection (as landed at the current architect tip with FB>TE=2) reproduces **400 / 413.1** exactly in my re-run — the answer lives across three trees, which is the shell-of-record problem again. OK as filed; superseded in decision value by VL's round-2 DT→ILB candidate.
+
+## What these four filings jointly show the Owner
+
+1. The only measured gap-closer that respects the principles keeps every ruling AND the tier structure AND flex frequency: **VL's directional `DT→ILB=6`** (gap 0/5.3, flex 143/146, 0 emergencies) — KG's call whether that principle is real to him.
+2. The only measured thread that narrows the **real-roster** bias: **the ILB2 re-row** (WILL→−396, overshoot; other rows also flip; MIKE ≈ unchanged) — a different lever, uncombined with (1) — also KG's call, and the pair needs measuring before either ships.
+3. Everything else — Beam's two-pair swap, VL's/Beam's earlier re-pricings, the formula ladder — is measured-dead or refuted on the facts above. Fifty years of flagging doesn't change table math; the receipts now do.
+
+**Dispositions:** no implementation anywhere; KG rules; the queue row for P-332/P-333 stays with MUSE.
