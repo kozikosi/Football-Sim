@@ -1,0 +1,29 @@
+gate-manifest: 4 manifest file(s) found under _rev6-baseline
+manifest CHECKSUMS.txt: 4 entries, 4 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest MANIFEST.txt: 3499 entries, 635 OK, 0 MISMATCH, 2864 MISSING → FAIL
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/.package-lock.json
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@esbuild/linux-x64/README.md
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@esbuild/linux-x64/bin/esbuild
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@esbuild/linux-x64/package.json
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/LICENSE
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/README.md
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/dist/gen-mapping.mjs
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/dist/gen-mapping.mjs.map
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/dist/gen-mapping.umd.js
+  MISSING  MANIFEST.txt → ./REV-5.1-addendum/framework-two-arm/arm-svelte/node_modules/@jridgewell/gen-mapping/dist/gen-mapping.umd.js.map
+  … 2854 more entries absent from this tree (manifest describes a tree with files this copy does not carry)
+manifest REV-5.1-addendum/CHECKSUMS.txt: 358 entries, 346 OK, 12 MISMATCH, 0 MISSING → FAIL
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → AUTHORING-COST.md
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → CATEGORY-WINNERS.md
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → INNOVATION.md
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → README.md
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → SLICE-DONE-PROPOSAL.md
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → filings/OT-clock-fix-PENDING.txt
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → framework-two-arm/arm-svelte/src/lib/savesService.ts
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → framework-two-arm/arm-vue/src/lib/savesService.ts
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → framework-two-arm/receipts/bundles-pin-d3bd81d2.txt
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → framework-two-arm/receipts/two-arm-fourslice.txt
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → framework-two-arm/receipts/two-arm-lines.txt
+  MISMATCH REV-5.1-addendum/CHECKSUMS.txt → measurements/AGENTIC-ERGONOMICS-VERDICT.txt
+manifest REV-5.1-addendum/MANIFEST.txt: 0 entries, 0 OK, 0 MISMATCH, 0 MISSING → PASS
+GATE RESULT: FAIL — 2876 entries did NOT match (of 3861 across 4 manifest(s))

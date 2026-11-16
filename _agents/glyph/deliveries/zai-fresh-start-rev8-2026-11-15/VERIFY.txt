@@ -1,0 +1,69 @@
+# VERIFY.txt — the Rev 8 delivery, verifiable top to bottom by a stranger
+
+Tree: this folder (the Rev 8 fresh-start delivery). Engine pin d3bd81d2 (vendored byte-identical in
+football-sim-vue/src/engine and football-sim-svelte/src/lib/engine — do not edit; verify:
+`diff -rq football-sim-vue/src/engine football-sim-svelte/src/lib/engine` → clean).
+
+## 1. Integrity (no build needed)
+```
+node scripts/gate-manifest.mjs .            # verifies EVERY CHECKSUMS.txt/MANIFEST.txt in the tree
+#   expect: 4 manifest(s); root MANIFEST.txt 658 entries all OK; REV-5.1-addendum/CHECKSUMS.txt
+#   360 entries all OK (Rev 6's was stale: 346 OK / 12 FAILED — see REV-8-ERRATA.md 0.1);
+#   GATE RESULT: PASS, exit 0
+shasum -a 256 -c CHECKSUMS.txt              # root: pins MANIFEST.txt, RECEIPT.md, DELIVERY-NOTE.md,
+#   verified-as-of.json — 4/4 OK
+```
+Root MANIFEST.txt is regenerated over THIS tree (658 entries) and covers every delivered file,
+including the two CLAUDE.md files the Rev 6 manifest missed. Stated exclusion rules (0.4's
+"or state the rule" branch): `node_modules/`, `.git/`, `dist/` are build/clone state, excluded;
+`CHECKSUMS.txt` is excluded because it pins MANIFEST.txt (a manifest cannot pin its own pin);
+`receipts/gate-*` are gate stdout captured after the freeze — their content is reproducible by
+re-running the gate, so pinning them would be self-referential. If any covered file changes,
+regenerate MANIFEST.txt then CHECKSUMS.txt (in that order) before re-running the gate.
+
+## 2. Type-checkers and builds (per arm, needs node ≥ 22 + npm i)
+```
+cd football-sim-vue    && npm install --no-audit --no-fund && npm run type-check && npm run build   # exit 0 both
+cd football-sim-svelte && npm install --no-audit --no-fund && npm run check      && npm run build   # exit 0 both; 0 errors AND 0 warnings
+cd REV-5.1-addendum/framework-two-arm/arm-vue    && npm install --no-audit --no-fund && npx vue-tsc --build    # exit 0
+cd REV-5.1-addendum/framework-two-arm/arm-svelte && npm install --no-audit --no-fund && npx svelte-check --tsconfig ./tsconfig.json   # 0 errors, 0 warnings
+```
+Clean-extract receipts (fresh cp -R, fresh install, run this sitting): receipts/clean-extract-*.txt.
+
+## 3. Units, battery, live stores
+```
+cd football-sim-vue    && npx vitest run && node probes/probe-battery.mjs vue      # 14 tests…, 24/24 PASS, exit 0
+cd football-sim-svelte && npx vitest run && node probes/probe-battery.mjs svelte   # 24/24 PASS, exit 0
+# screens in both battery JSONs: cards 871, stats 457, board 470, feed 125, week 221, settings 39 — ALL EQUAL
+node scripts/e3-extra-part-a-probe.mjs football-sim-vue vue        # Part A stores LIVE through the app entry (needs the DEV server; exits 0)
+node scripts/e3-extra-part-a-probe.mjs football-sim-svelte svelte
+```
+## 4. The two gates (before/after receipts included)
+```
+node scripts/gate-manifest.mjs _on-the-Rev-6-tree_   # receipts/gate-c2-rev6-fail.txt: nested 346/12 + root 2,864 absent → FAIL
+node scripts/gate-numerals.mjs _Rev-6-tree_ --legacy-scan   # receipts/gate-c3-rev6-hits.txt: 867 ×3 sites + workarounds 4-vs-6 → hits
+node scripts/gate-manifest.mjs .                     # receipts/gate-c2-rev8-pass.txt: PASS
+node scripts/gate-numerals.mjs . --legacy-scan       # receipts/gate-c3-rev8-clean.txt: CLEAN
+node scripts/gate-numerals.mjs . --claims            # the adopted claims-block form over verified-as-of.json
+```
+(The Rev 6 tree is the published copy on origin/council/glyph at
+_agents/glyph/deliveries/zai-fresh-start-2026-11-15 — extract it anywhere and point the gate at it.)
+
+## 5. Read in this order
+RECEIPT.md (gate table + Rev 8 section) → REV-8-ERRATA.md (every change, old → new, command,
+output) → PART-A-CLASS-BRIDGE.md (the 5-row table + falsification probes) → VERDICT-REV-8.md
+(the restated verdict) → SEALED-RECIPE.md + SECOND-AGENT-HANDOFF.md (the owed bench) →
+flip-bench/sealed-run-receipt.json (OPEN status) → receipts/ (everything quoted above).
+
+## 6. The four pass-through branches (Rev 8 protocol)
+The delivery root IS a git repo. Four branches — `rev8-pass-a`, `rev8-pass-b`, `rev8-pass-c`,
+`rev8-pass-d` — each carry THE SAME tree, byte-identical by construction:
+```
+git rev-parse rev8-pass-a^{tree} rev8-pass-b^{tree} rev8-pass-c^{tree} rev8-pass-d^{tree}
+#   → four IDENTICAL tree hashes
+for b in a b c d; do git archive rev8-pass-$b | shasum -a 256; done   # → four IDENTICAL archive hashes
+```
+KG/MUSE re-cut these branch names on GitHub from the zip (nothing is pushed from the sandbox).
+The committed tree excludes node_modules (stated rule, same as the manifest). Rev 6's four
+pass-throughs could not be re-verified byte-identical from the published copy (its .git was
+stripped) — see REV-8-ERRATA.md 0.1; Rev 8 ships the branches so this claim is checkable.
