@@ -6,7 +6,7 @@ import type { SlotId, Dest } from '../../src/sports/nfl/engine/slots.ts';
 import { FLEX, fit, EMERGENCY_PENALTY } from '../../src/sports/nfl/engine/flex.ts';
 import { hungarian } from '../../src/core/hungarian.ts';
 import { optimalLineup, lineupFor, placementOf, adviseLineup, valueOf, EMPTY_OVR } from '../../src/sports/nfl/engine/lineup.ts';
-import { DEFAULT_VALUES, WINS_PER_UNIT } from '../../src/sports/nfl/engine/valueprovider.ts';
+import { DEFAULT_VALUES, WINS_PER_UNIT, tableValues } from '../../src/sports/nfl/engine/valueprovider.ts';
 import type { Assignment } from '../../src/sports/nfl/engine/lineup.ts';
 import { buildPool } from '../../src/sports/nfl/engine/players.ts';
 import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
@@ -15,7 +15,6 @@ import { makeRng } from '../../src/core/rng.ts';
 // What a spot is worth to the solver, in fitted-weight units, under the default (MEASURED) provider (P-318). FieldSlot carries no weight any more.
 const unit = (slot: SlotId | { row: SlotId }): number => DEFAULT_VALUES.winsPerOvr(typeof slot === 'string' ? slot : slot.row, '4-3') / WINS_PER_UNIT;
 const read = (p: string) => fs.readFileSync(new URL(p, import.meta.url), 'utf8');
-const design = JSON.parse(read('../../../tools/mathlab/design.json')) as Record<string, number>;
 const flexJson = JSON.parse(read('../../../tools/mathlab/flex.json')) as { roles: string[]; flex: Record<string, Record<string, number>> };
 const pool = buildPool(read('../../../data/nfl/madden27-ratings.csv'), read('../../../data/nfl/free-agents-old-ratings.csv'), read('../../../data/nfl/player-ids.csv'));
 
@@ -23,12 +22,28 @@ let uid = 0;
 const mk = (role: Role, ovr: number): Player => ({ id: `t${uid++}|${role}|T`, name: `t${uid}`, pos: role, role, team: 'T', ovr, spd: 70, str: 70, freeAgent: false });
 
 // ---- table ----
-test('table: 32 spots, QB 1000, every weight a multiple of 5, equal to tools/mathlab/design.json key by key', () => {
+// 15 Nov 2026 (Owner: nothing pins to a weight; the fitted table is RETIRED as a reference). What is left here is STRUCTURE: the spot list and its accounting.
+// The old test compared SLOTS[].weight with tools/mathlab/design.json key by key and pinned QB at 1000; that made the retired numbers a contract. It is gone.
+test('table: 32 spots, unique ids, every weight a positive multiple of 5, the QB spot is the most valuable one', () => {
   assert.equal(SLOTS.length, 32);
-  assert.equal(WEIGHT.QB, 1000);
-  for (const s of SLOTS) assert.equal(s.weight % 5, 0, s.id);
-  assert.deepEqual(Object.keys(design).sort(), [...SLOT_IDS].sort());
-  for (const id of SLOT_IDS) assert.equal(WEIGHT[id], design[id], id);
+  assert.equal(new Set(SLOT_IDS).size, 32);
+  for (const s of SLOTS) assert.ok(s.weight > 0 && s.weight % 5 === 0, s.id);
+  assert.ok(SLOT_IDS.every((id) => id === 'QB' || WEIGHT[id] < WEIGHT.QB), 'QB outweighs every other spot (a relation, not a number)');
+});
+test('retired table guard: the solver, the draft and the app spend the MEASURED provider; nothing reads design.json or wires WEIGHT / tableValues back in', () => {
+  const ps = natural(); ps[0] = { ...ps[0]!, ovr: 90 };
+  const roster = pool.filter((p) => p.team === 'Kansas City Chiefs');
+  assert.equal(lineupFor(roster, '4-3').value, lineupFor(roster, '4-3', DEFAULT_VALUES).value, 'the default provider is the measured one');
+  assert.notEqual(lineupFor(roster, '4-3').value, lineupFor(roster, '4-3', tableValues()).value, 'the default is not the retired table');
+  assert.ok(SLOT_IDS.some((id) => Math.abs(DEFAULT_VALUES.winsPerOvr(id, '4-3') / WINS_PER_UNIT - WEIGHT[id]) > 1e-6), 'the default values are not the retired weights');
+  const root = new URL('../../src/', import.meta.url);
+  const walk = (d: URL): URL[] => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(new URL(e.name + '/', d)) : e.name.endsWith('.ts') ? [new URL(e.name, d)] : []));
+  const allowed = new Set(['sports/nfl/engine/slots.ts', 'sports/nfl/engine/valueprovider.ts']);                // the table lives in slots.ts; tableValues() is its only wrapper
+  for (const f of walk(root)) {
+    const rel = f.pathname.slice(root.pathname.length), text = fs.readFileSync(f, 'utf8').replace(/\/\/.*$/gm, '');
+    assert.ok(!/design\.json/.test(text), `${rel} reads the retired design.json`);
+    if (!allowed.has(rel)) assert.ok(!/\bWEIGHT\b|\btableValues\b/.test(text), `${rel} uses the retired weight table`);
+  }
 });
 test('table: unit counts are 16 offense, 14 defense, 2 special', () => {
   const c = (u: string) => SLOTS.filter((s) => s.unit === u).length;
@@ -42,7 +57,7 @@ test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12,
   assert.equal(n, 99);
   const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
   for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
-  assert.deepEqual(tiers, { 0: 23, 2: 10, 6: 43, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12: 23 at 12, 43 at 6, 10 at 2, 23 at 0
+  assert.deepEqual(tiers, { 0: 23, 2: 11, 6: 42, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12; 15 Nov: FB>TE 6 to 2 (approved): 23 at 12, 42 at 6, 11 at 2, 23 at 0
   for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
 });
 test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
@@ -59,6 +74,8 @@ test('flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 th
   assert.equal(fit('QB', 'FS').penalty, 12);                  // 29 Oct: a QB may flex ONLY to FS; priced -12 since 8 Nov
   assert.equal(fit('RB', 'WR').penalty, 12);
   assert.equal(fit('C', 'OG').penalty, 6);
+  assert.equal(fit('FB', 'TE').penalty, 2);                   // Owner 15 Nov: FB to TE 6 to 2
+  assert.equal(fit('TE', 'DIME').penalty, 12); assert.equal(fit('ILB', 'DIME').penalty, 12); assert.equal(fit('OLB', 'DIME').penalty, 12);   // the DIME rules stay at 12
   assert.equal(fit('OT', 'OG').penalty, 0);
   assert.equal(fit('OT', 'RB').emergency, true);              // not in the model table: the -8 fallback
 });
@@ -89,8 +106,9 @@ test('flex: no arbitrage; going A -> B -> C through two spots is never cheaper t
     for (const [c, p2] of Object.entries(via)) { const direct = (FLEX[a as Role] as Record<string, number>)[c]; if (direct !== undefined && a !== c && p1 + p2 < direct) bad.push(`${a}>${b}>${c} ${p1 + p2} < ${direct}`); }
   }
   // Known by construction of the -2 / -6 / -12 tiers (a -2 hop plus a -2 hop undercuts a -12 rule); a player takes one spot, so a two-hop route is never played.
-  // The count is pinned (16 on 8 Nov 2026) so a new rule that opens a loophole is noticed.
-  assert.ok(bad.length <= 16, `unexpected arbitrage: ${bad.length}: ${bad.join('; ')}`);
+  // The count is pinned so a new rule that opens a loophole is noticed. 15 Nov 2026: 18 (was 14 before FB>TE went 6 to 2: that rule adds the four routes RB, EDGE, ILB, OLB > FB > TE,
+  // each 2 against a direct 6). The Owner approved the price; a player takes one spot, so a route through FB is never played.
+  assert.ok(bad.length <= 18, `unexpected arbitrage: ${bad.length}: ${bad.join('; ')}`);
 });
 
 // ---- hungarian ----
@@ -237,13 +255,13 @@ test('lineup: the optimum is never below the natural-order assignment (best play
     assert.ok(l.value >= greedy - 1e-9, `${team}: ${l.value} < greedy ${greedy}`);
   }
 });
-test('base: totals are not comparable. A roster of 4-3 natives is worth less in 3-4 (one inside spot goes to a stand-in at -6, the spare DT plays FB free, the natural FB covers TE3 at -6 and a TE covers one more cheap slot at -6); the gap is GATED as an identity over whatever the values are, not as a number', (t) => {
+test('base: totals are not comparable. A roster of 4-3 natives is worth less in 3-4 (one inside spot goes to a stand-in at -6, the spare DT plays FB free, the natural FB covers TE3 at -2 and a TE covers one more cheap slot at -6); the gap is GATED as an identity over whatever the values are, not as a number', (t) => {
   const flat = natural(70);                                   // one ILB only
   assert.equal(WEIGHT.MIKE, WEIGHT.DT2);                      // 6 Nov 2026: both inside spots are 300, so which of the two the natural ILB takes is a tie
   assert.equal(WEIGHT.TE3, 50); assert.equal(WEIGHT.DIME, 50);
   // FIXED 15 Nov 2026 (Owner: no weight pinning; the 13 Nov de-gate was a carry, the ruling was fix). The old test asserted the gap as a hard-coded
   // 2400 (pinned 9 Nov), then REPORTED it. A total is the wrong thing to pin: it moves whenever the value provider, the flex table or the third stand-in
-  // moves (it is 2700 today). What must hold for ANY values is the accounting: every spot is filled by a 70, so
+  // moves. What must hold for ANY values is the accounting: every spot is filled by a 70, so
   //     V(4-3) - V(3-4) = 70 * (sum of 4-3 spot values - sum of 3-4 spot values) + sum over flexed spots of (spot value * flex price).
   // That ties the reported gap to the provider's spot values and the flex prices, fails if the solver mis-accounts (an empty spot, a price not charged,
   // a stand-in counted twice), and pins no weight. The mechanism below (which spots flex, at what price, who stands in) is structure and also gates.
@@ -261,10 +279,10 @@ test('base: totals are not comparable. A roster of 4-3 natives is worth less in 
   const placed = lineupFor(flat, '3-4').placements;
   const flexed = placed.filter((p) => p.penalty > 0).map((p) => [p.slot.slot, p.player?.role, p.penalty] as const);
   assert.equal(flexed.length, 3);
-  assert.ok(flexed.every((f) => f[2] === 6));
+  assert.ok(flexed.every((f) => (f[0] === 'TE3' ? f[2] === 2 : f[2] === 6)), 'TE3 <- FB costs 2 (Owner 15 Nov: FB>TE 6 to 2); the other stand-ins cost 6');
   const inside = flexed.find((f) => f[0] === 'MIKE' || f[0] === 'DT2')!;   // which role stands in inside (SS, EDGE or OLB all cost 6) is a tie; the price is not
   assert.ok(inside);
-  assert.deepEqual(flexed.find((f) => f[0] === 'TE3'), ['TE3', 'FB', 6]);
+  assert.deepEqual(flexed.find((f) => f[0] === 'TE3'), ['TE3', 'FB', 2]);
   // The third stand-in is REPORTED, not gated: the 9 Nov pin had DIME<-TE (50 x 6); after the later flex-table work the optimum is SAM<-TE (100 x 6),
   // the same price band, a different slot. Which cheap slot takes the last flex is the optimizer's tie-and-table business, not a law.
   const rest = flexed.filter((f) => f[0] !== 'TE3' && f[0] !== 'MIKE' && f[0] !== 'DT2');

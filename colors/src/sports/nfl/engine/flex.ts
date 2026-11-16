@@ -1,7 +1,7 @@
 // FLEX table, tiers -2 / -6 / -12, 99 rules (Owner 9-10 Nov 2026, D picks + 9 Owner corrections + cross-side floor + FS/DIME items): what a player of one role loses (in OVR points) for playing a spot of another.
 // Source of truth is tools/mathlab/flex.json: 7 rules removed, 53 Owner overrides, the other 44 priced by D@90 at theta 1.0 (thetaprice, P-309), rounded to the nearest tier of 0 / 2 / 6 / 12; then 9 Owner overrides (EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2).
 // 10 Nov: cross-side floor (WR>CB/FS/SS/NICKEL/DIME 2 to 6), TE>FS and TE>DIME to 12, ILB>FS and OLB>FS new at 12. SAM is a slot with dest OLB, so it takes the OLB column; no SAM rules.
-// Counts: 23 at 12, 43 at 6, 10 at 2, 23 at 0. The 8 Nov table (104 rules) and REV 4 (29 Oct) live in git history only.
+// 15 Nov: FB>TE 6 to 2 (Owner). Counts: 23 at 12, 42 at 6, 11 at 2, 23 at 0. The 8 Nov table (104 rules) and REV 4 (29 Oct) live in git history only.
 // This file is a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
 import type { Role } from './players.ts';
 import type { Dest } from './slots.ts';
@@ -10,7 +10,7 @@ type Row = Partial<Record<Dest, number>>;
 export const FLEX: Readonly<Record<Role, Row>> = {
   QB: { FS: 12 },
   RB: { FB: 0, WR: 12, TE: 6, SS: 12, FS: 12 },
-  FB: { RB: 2, TE: 6 },
+  FB: { RB: 2, TE: 2 },   // 15 Nov 2026 (Owner, approved): FB to TE 6 to 2. The one flex-rule change in this pass; the DIME rules stay at 12.
   WR: { RB: 6, TE: 6, CB: 6, FS: 6, SS: 6, NICKEL: 6, DIME: 6 },
   TE: { FB: 0, WR: 12, RB: 6, C: 6, OG: 6, OT: 12, EDGE: 12, DT: 12, OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 6, DIME: 12 },
   OT: { OG: 0, C: 2, DT: 6, EDGE: 6, FB: 0 },

@@ -9,9 +9,9 @@ import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
 // The 3-4 / 4-3 gap, measured with the fifth lineman (DL5) PINNED. DL5 is the lineman who comes on for blitzes and heavy defensive sets (Owner 10 Nov): a starter
 // who does not play every snap, natural for DT and for EDGE (flex.ts). The fixture must say which one it is, because the gap depends on it: the earlier
 // measurement and lineup.test.ts `natural()` filled DL5 with a DT without saying so. All four cells are pinned, so neither can drift unseen.
-// These values follow the flex table (the 99-rule table at a722681). A flex change (Option B, a derived table) moves them on purpose: re-pin them in the same commit.
+// These values follow the flex table (the 99-rule table at a722681). A flex change (Option B, a derived table) moves them on purpose: re-pin them in the same commit. 15 Nov 2026: FB>TE 6 to 2 moved 2700 to 2500 (TE3 weight 50 x 4).
 //
-// P-318 (14 Nov 2026): the solver now spends a ValueProvider, MEASURED by default. The exact numbers below (600250, 2700, 1800) are arithmetic on the
+// P-318 (14 Nov 2026): the solver now spends a ValueProvider, MEASURED by default. The exact numbers below (600250, 2500, 1800) are arithmetic on the
 // RETIRED fitted table, so those tests run under tableValues(): they prove the solver logic is untouched by the seam. The MEASURED provider gets its own test
 // that asserts structure and REPORTS the numbers (Owner: no weight is pinned).
 
@@ -27,10 +27,10 @@ const loss = (base: '4-3' | '3-4', dl5: 'DT' | 'EDGE', v: ValueProvider = tableV
 test('formation gap (reference table): a roster built for its own base is worth the same in either (600250 at 70 OVR), whichever role plays DL5', () => {
   for (const dl5 of ['DT', 'EDGE'] as const) for (const base of ['4-3', '3-4'] as const) assert.equal(lineupFor(native(base, dl5), base, tableValues()).value, 600250, `${base} ${dl5}`);
 });
-test('formation gap (reference table), DL5 = DT: a 4-3 roster loses 2700 in 3-4, a 3-4 roster loses 1800 in 4-3, a gap of 900', () => {
-  assert.equal(loss('4-3', 'DT'), 2700);
+test('formation gap (reference table), DL5 = DT: a 4-3 roster loses 2500 in 3-4, a 3-4 roster loses 1800 in 4-3, a gap of 700', () => {
+  assert.equal(loss('4-3', 'DT'), 2500);
   assert.equal(loss('3-4', 'DT'), 1800);
-  assert.equal(loss('4-3', 'DT') - loss('3-4', 'DT'), 900);
+  assert.equal(loss('4-3', 'DT') - loss('3-4', 'DT'), 700);
 });
 test('formation gap (reference table), DL5 = EDGE: both lose 1800, a gap of 0 (the asymmetry is the DT-at-DL5 corner, not a property of the formations)', () => {
   assert.equal(loss('4-3', 'EDGE'), 1800);
@@ -52,7 +52,7 @@ test('formation gap (MEASURED values): own-base rosters agree across bases, a mi
   assert.ok(Math.max(...own) - Math.min(...own) < 32, 'own-base rosters differ by less than one unit per spot on average');
   for (const dl5 of ['DT', 'EDGE'] as const) {
     const a = loss('4-3', dl5, DEFAULT_VALUES), b = loss('3-4', dl5, DEFAULT_VALUES);
-    t.diagnostic(`REPORT (not a gate): DL5=${dl5}: 4-3 roster loses ${a.toFixed(1)} in 3-4, 3-4 roster loses ${b.toFixed(1)} in 4-3, gap ${(a - b).toFixed(1)} (reference table: ${dl5 === 'DT' ? '2700 / 1800 / 900' : '1800 / 1800 / 0'})`);
+    t.diagnostic(`REPORT (not a gate): DL5=${dl5}: 4-3 roster loses ${a.toFixed(1)} in 3-4, 3-4 roster loses ${b.toFixed(1)} in 4-3, gap ${(a - b).toFixed(1)} (reference table: ${dl5 === 'DT' ? '2500 / 1800 / 700' : '1800 / 1800 / 0'})`);
     assert.ok(a > 0 && b > 0, `${dl5}: a roster built for the other base is worth less`);
   }
 });

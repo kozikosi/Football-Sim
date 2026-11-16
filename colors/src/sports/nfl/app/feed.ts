@@ -56,16 +56,21 @@ export interface GameFeed {
  */
 export function gameFeed(r: GameResult, homeTeam: string, awayTeam: string): GameFeed {
   const nameOf = (s: 'home' | 'away'): string => (s === 'home' ? homeTeam : awayTeam);
-  const clock = (secs: number): string => {
-    const q = Math.min(4, Math.max(1, Math.ceil(secs / 900))), left = 900 * q - secs;
-    return `Q${q} ${String(Math.floor(left / 60)).padStart(2, '0')}:${String(left % 60).padStart(2, '0')}`;
+  const mmss = (s: number): string => `${String(Math.floor(s / 60)).padStart(2, '0')}:${String(s % 60).padStart(2, '0')}`;
+  // Regulation: "Q2 08:31", time LEFT in the quarter. Overtime (period 5+): "OT 02:10", time INTO overtime (as recap.ts), so the first overtime
+  // drive starts at "OT 00:00" and a long overtime never goes past Q4 or shows a negative remainder. The period decides, not the seconds, because
+  // a drive that starts at exactly 3600 is the first overtime drive, not the end of the fourth quarter.
+  const clock = (secs: number, period: number): string => {
+    if (period >= 5) return `OT ${mmss(Math.max(0, secs - 3600))}`;
+    const q = Math.min(4, Math.max(1, Math.ceil(secs / 900)));
+    return `Q${q} ${mmss(Math.max(0, 900 * q - secs))}`;
   };
   const drives = r.drives.map((d: Drive, i: number): DriveEvent => ({
     kind: 'drive' as const,
     n: i + 1,
     team: nameOf(d.side),
     period: d.period,
-    clock: clock(d.start),
+    clock: clock(d.start, d.period),
     plays: d.plays,
     yards: null,                            // flagged guess (see field comment): engine Drive has no per-drive yards yet
     end: d.end,
