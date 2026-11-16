@@ -11,7 +11,7 @@ The Owner wants the 67 Cakepanz UI/UX shell to finish — so that when the Archi
 
 Second law: **the TS-neutral ruling binds you too.** Cakepanz is built framework-neutral until the Owner rules the final framework (undecided: vue vs svelte). Any proposal, snippet or review of new framework-specific code in the shell is out of scope until that ruling lands, regardless of authorship.
 
-Third law: **results ship as inbox files or as assistant artifacts via the Owner's zips.** No stray pushes to any branch you do not own; reviews and measurements attach to the releved delivery; no light copying of other seats' trees.
+Third law: **results ship as inbox files or as assistant artifacts via the Owner's zips.** No stray pushes to any branch you do not own; reviews and measurements attach to the relevant delivery; no light copying of other seats' trees.
 
 ## Where things stand (snapshot, VERIFIED where marked, corrected as the work moves)
 
