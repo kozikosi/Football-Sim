@@ -2,7 +2,7 @@
   "name": "colors",
   "private": true,
   "type": "module",
-  "description": "Colors: the 76 Pancakes engine (TypeScript: core, sports/nfl engine/app/view, platform adapters). Engine, app and view code import no framework. npm test needs the WHOLE repo checked out (tests read ../data and ../tools). There is no app entry yet: dev/build/preview run Vite against index.html, which points at src/main.ts, which does not exist, so npm run build fails until the UI shell is merged. react, react-dom, svelte, vite and @sveltejs/vite-plugin-svelte stay installed as framework-test candidates (nothing in src, test or tools imports them); the framework verdict belongs to the council test. The old esbuild bundler (build/build.mjs) was removed on 2026-11-13.",
+  "description": "Colors: the 76 Pancakes engine (TypeScript: core, sports/nfl engine/app/view, platform adapters). Engine, app and view code import no framework. npm test needs the WHOLE repo checked out (tests read ../data and ../tools). The only app entry is src/main.ts, a framework-free dev page that plays one game on the baked pools pack (data/packs) and shows its box score; it is not the product UI, which waits on the framework verdict. dev/build/preview run Vite against index.html. react, react-dom, svelte, vite and @sveltejs/vite-plugin-svelte stay installed as framework-test candidates (nothing in src, test or tools imports them); the framework verdict belongs to the council test. The old esbuild bundler (build/build.mjs) was removed on 2026-11-13.",
   "scripts": {
     "test": "node --test --experimental-strip-types \"test/**/*.test.ts\"",
     "build": "vite build",

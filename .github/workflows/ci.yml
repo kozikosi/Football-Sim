@@ -30,6 +30,6 @@ jobs:
       - name: Tests
         run: npm test
         continue-on-error: true
-      - name: "Production build (known to fail: colors/index.html points at a src/main.ts that does not exist yet)"
+      - name: "Production build (src/main.ts, the engine dev page, exists since 15 Nov 2026; still advisory, flip continue-on-error to make it a gate)"
         run: npm run build
         continue-on-error: true
