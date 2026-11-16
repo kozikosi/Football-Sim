@@ -5097,14 +5097,14 @@ function renderGuideHTML(){
 function styleTablesHTML(team){
  const S = seasonState, R = S.unitRatings[team], lg = S.league, id = S.identity[team], exp = {off:NEUTRAL_OFF, def:DEFAULT_DEF};
  const auto = teamIdentity(R, lg);
- const offRows = Object.keys(OFF_STYLE_INFO).map(k=>{ const o = resolveOffStyle(team, k); return {k, o, u:offUtil(R, lg, lg, o, exp, id.def, 0)}; }).sort((a,b)=>b.u-a.u);
- const defRows = Object.keys(DEF_STYLE_INFO).map(k=>{ const d = {pkg:DEF_STYLE_INFO[k].pkg, focus:DEF_STYLE_INFO[k].focus}; return {k, d, u:defUtil(R, lg, lg, d, exp, id.off, 0)}; }).sort((a,b)=>b.u-a.u);
+const offRows = Object.keys(OFF_STYLE_INFO).map(k=>{ const o = resolveOffStyle(team, k); return {k, o, u:offUtil(R, lg, lg, o, exp, id.def, 0)}; }).sort((a,b)=>a.k.localeCompare(b.k));
+  const defRows = Object.keys(DEF_STYLE_INFO).map(k=>{ const d = {pkg:DEF_STYLE_INFO[k].pkg, focus:DEF_STYLE_INFO[k].focus}; return {k, d, u:defUtil(R, lg, lg, d, exp, id.off, 0)}; }).sort((a,b)=>a.k.localeCompare(b.k));
  const bo = offRows[0].u, bd = defRows[0].u;
  const row = (name, setup, u, best, chosen, desc)=>`<tr style="${chosen?'background:var(--panel2);':''}"><td><b>${capFirst(name)}</b>${best===u?' <span class="badge badge-passfail" style="margin-left:4px;">math\'s pick</span>':''}${chosen?' <span class="narr">(your choice)</span>':''}<div class="narr">${desc}</div></td><td class="narr">${setup}</td><td class="score">${(u*100).toFixed(1)}%</td><td class="score">${u===best?'—':'−'+((best-u)*100).toFixed(1)+' pts'}</td></tr>`;
  const o = offRows.map(r=>row(r.k, planText(r.o), r.u, bo, id.offChoice===r.k, OFF_STYLE_INFO[r.k].desc)).join('');
  const d = defRows.map(r=>row(r.k, defPlanText(r.d), r.u, bd, id.defChoice===r.k, DEF_STYLE_INFO[r.k].desc)).join('');
- const head = '<thead><tr><th>Style</th><th>Setup used</th><th title="Chance of beating an average team at a neutral site with this style">Win chance vs. an average team</th><th>Cost vs. the best</th></tr></thead>';
- return {off:`<table>${head}<tbody>${o}</tbody></table>`, def:`<table>${head}<tbody>${d}</tbody></table>`, auto};
+ const head = '<thead><tr><th>Style</th><th>Personnel</th><th title="Chance of beating an average team at a neutral site with this style">Win chance vs. an average team</th><th>Cost vs. the best</th></tr></thead>';
+ return {off:`<table style="font-size:0.8rem;">${head}<tbody>${o}</tbody></table>`, def:`<table style="font-size:0.8rem;">${head}<tbody>${d}</tbody></table>`, auto};
 }
 function aggrControlHTML(user){
  const S = seasonState; S.aggr = S.aggr||{}; const cur = S.aggr[user]||'balanced';
