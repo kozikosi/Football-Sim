@@ -1,0 +1,95 @@
+===== variant base =====
+{
+ "loss43": 2500,
+ "loss34": 1800,
+ "gap": 700,
+ "gapWins": 0.0889,
+ "standIns43": "FB>TE3@2, SS>DT2@6, TE>CB3@6",
+ "standIns34": "ILB>DL5@12",
+ "realMeanSigned": 1144.53125,
+ "realMeanSignedWins": 0.14535546875,
+ "built43": 28,
+ "built34": 3,
+ "meanLoss43": 1342.857142857143,
+ "meanLoss34": 325,
+ "flexedSpots": 147,
+ "spots": 2048,
+ "emergencyFills": 0
+}
+
+===== variant A =====
+{
+ "loss43": 1600,
+ "loss34": 1800,
+ "gap": -200,
+ "gapWins": -0.0254,
+ "standIns43": "SS>DT2@4, TE>CB3@4",
+ "standIns34": "ILB>DL5@12",
+ "realMeanSigned": 941.40625,
+ "realMeanSignedWins": 0.11955859375,
+ "built43": 28,
+ "built34": 3,
+ "meanLoss43": 1110.7142857142858,
+ "meanLoss34": 325,
+ "flexedSpots": 132,
+ "spots": 2048,
+ "emergencyFills": 0
+}
+
+===== variant A2 =====
+{
+ "loss43": 1900,
+ "loss34": 1800,
+ "gap": 100,
+ "gapWins": 0.0127,
+ "standIns43": "FB>TE3@2, SS>DT2@4, TE>CB3@6",
+ "standIns34": "ILB>DL5@12",
+ "realMeanSigned": 946.875,
+ "realMeanSignedWins": 0.120253125,
+ "built43": 28,
+ "built34": 3,
+ "meanLoss43": 1116.9642857142858,
+ "meanLoss34": 325,
+ "flexedSpots": 148,
+ "spots": 2048,
+ "emergencyFills": 0
+}
+
+===== variant A3 =====
+{
+ "loss43": 1700,
+ "loss34": 1800,
+ "gap": -100,
+ "gapWins": -0.0127,
+ "standIns43": "FB>TE3@2, SS>DT2@4, TE>CB3@4",
+ "standIns34": "ILB>DL5@12",
+ "realMeanSigned": 946.875,
+ "realMeanSignedWins": 0.120253125,
+ "built43": 28,
+ "built34": 3,
+ "meanLoss43": 1116.9642857142858,
+ "meanLoss34": 325,
+ "flexedSpots": 148,
+ "spots": 2048,
+ "emergencyFills": 0
+}
+
+===== variant B =====
+{
+ "loss43": 2500,
+ "loss34": 1900,
+ "gap": 600,
+ "gapWins": 0.0762,
+ "standIns43": "FB>TE3@2, SS>DT2@6, TE>CB3@6",
+ "standIns34": "FB>TE3@2, TE>DL5@12",
+ "realMeanSigned": 1144.53125,
+ "realMeanSignedWins": 0.14535546875,
+ "built43": 28,
+ "built34": 3,
+ "meanLoss43": 1342.857142857143,
+ "meanLoss34": 325,
+ "flexedSpots": 147,
+ "spots": 2048,
+ "emergencyFills": 0
+}
+
