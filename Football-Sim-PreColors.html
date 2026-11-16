@@ -5211,14 +5211,13 @@ function identityParagraphs(team, isUser){
 
  const stars = topStarters(team, 3).map(x=>`${x.name} (${LABELS[x.slot]||x.slot}, ${x.ovr})`);
  const p5 = `${pick(['Players to watch:','The names that bend a game plan:','Star power:'])} ${joinList(stars)}.`;
- const out = [p1,styleParagraph(team),p2,p3,p4,p5];
- if(isUser){
-  const B = buildGrades()[team];
-  const arr = [['trenches',B.trenchZ,B.trenchRank],['skill positions',B.skillZ,B.skillRank],['back seven',B.back7Z,B.back7Rank]].sort((a,b)=>b[1]-a[1]);
-  const flex = flexReport(team);
-  out.push(`On the roster-building side, the strength is concentrated in the ${arr[0][0]} (#${arr[0][2]} in the league), with the ${arr[2][0]} (#${arr[2][2]}) the least developed. ${flex.list.length ? `${flex.list.length} starter${flex.list.length===1?' is':'s are'} playing out of position (${flex.list.join('; ')}), a combined ${flex.total}-point rating hit already built into every grade above.` : 'Every starter is playing at his natural position, so there is no hidden flex penalty in the numbers.'}`);
- }
- return out;
+const out = [p1,styleParagraph(team),p2,p3,p4,p5];
+  if(isUser){
+    const B = buildGrades()[team];
+    const arr = [['trenches',B.trenchZ,B.trenchRank],['skill positions',B.skillZ,B.skillRank],['back seven',B.back7Z,B.back7Rank]].sort((a,b)=>b[1]-a[1]);
+    const flex = flexReport(team);
+  }
+  return out;
 }
 function renderIdentityPanel(team, title, open, isUser){
  const S = seasonState, rt = S.unitRatings[team], rk = S.unitRanks[team];
