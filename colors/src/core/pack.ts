@@ -6,7 +6,8 @@ import { canonicalText } from './events.ts';
 import { hash53 } from './hash.ts';
 
 export type Scalar = number | string | boolean;
-export type ParamValue = Scalar | readonly Scalar[] | { readonly [key: string]: Scalar | readonly Scalar[] };
+// Plain JSON data of any depth (the pools pack holds tables of rows). `null` is a legal cell (an unknown value); the kernel's canonical text prints it.
+export type ParamValue = Scalar | null | readonly ParamValue[] | { readonly [key: string]: ParamValue };
 
 export interface Provenance {
   readonly source: string;                                  // where the numbers came from (data set, prior, legacy constant)
