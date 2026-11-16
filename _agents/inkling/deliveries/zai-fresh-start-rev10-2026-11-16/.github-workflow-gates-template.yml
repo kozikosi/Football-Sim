@@ -1,0 +1,48 @@
+# CI gates — Rev 9 Part 0. Both gates wired into CI:
+#   gate-manifest  ENFORCING (exit 1 on any manifest mismatch or unparseable manifest).
+#   gate-numerals  on the DELIVERY tree: enforcing (--legacy-scan and --claims both gate).
+#                  inside a single repo: REPORT-ONLY — the repo carries no DELIVERY-NOTE.md /
+#                  RECEIPT.md / verified-as-of.json, so the drift rules have nothing to compare
+#                  and the check can only print CLEAN. A report-only check that never fails must
+#                  not run forever: it carries a named expiry, REPORT_ONLY_UNTIL = 2027-11-15
+#                  (one year). After that date the job turns red and tells the maintainer to
+#                  promote it to enforcing or remove it.
+# Byte-identical in football-sim-vue and football-sim-svelte (no arm-specific bytes).
+name: gates
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: '0 6 * * 1'   # weekly, Mondays 06:00 UTC
+jobs:
+  gate-manifest:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: manifest gate (enforcing)
+        run: node scripts/gate-manifest.mjs .
+  gate-numerals:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: numerals gate (report-only inside a repo; enforcing on the delivery tree)
+        run: |
+          node scripts/gate-numerals.mjs . --legacy-scan
+          node scripts/gate-numerals.mjs . --claims
+        continue-on-error: true
+      - name: report-only expiry
+        env:
+          REPORT_ONLY_UNTIL: '2027-11-15'
+        run: |
+          today="$(date -u +%Y-%m-%d)"
+          if [[ "$today" > "$REPORT_ONLY_UNTIL" ]]; then
+            echo "EXPIRED ($REPORT_ONLY_UNTIL): this report-only check was to be promoted to enforcing or removed. Failing so it cannot run silently forever."
+            exit 1
+          fi
+          echo "report-only window valid until $REPORT_ONLY_UNTIL (today $today)"

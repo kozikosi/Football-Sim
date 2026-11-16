@@ -1,0 +1,12 @@
+# receipt — Rev 10 A5 falsifier: one INJECTED file must FAIL naming it
+gate-manifest: 6 manifest file(s) found under .
+manifest CHECKSUMS.txt: 4 entries, 4 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest MANIFEST.txt: 773 entries, 773 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/CHECKSUMS.txt: 360 entries, 360 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest REV-5.1-addendum/MANIFEST.txt: 359 entries, 359 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-svelte/CHECKSUMS.txt: 144 entries, 144 OK, 0 MISMATCH, 0 MISSING → PASS
+manifest football-sim-vue/CHECKSUMS.txt: 141 entries, 141 OK, 0 MISMATCH, 0 MISSING → PASS
+FAIL: 1 file(s) in the tree are named by NO manifest (the manifests verify the files they list; these are not listed):
+  UNLISTED EXTRA-INJECTED.txt
+GATE RESULT: FAIL — 1 problem(s) (of 1781 entries across 6 manifest(s), 1 unlisted file(s))
+exit=1

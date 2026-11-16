@@ -1,0 +1,10 @@
+# receipt — Rev 10 CORE 2 falsifier: the entry count is COMPUTED, not typed
+$ cp -R football-sim-svelte /tmp/count-falsify   (scratch; the real repo untouched)
+$ node scripts/regen-manifest.mjs repo /tmp/count-falsify
+/tmp/count-falsify/CHECKSUMS.txt regenerated: 142 entries
+$ echo "falsifier probe file" > FALSIFIER-PROBE.txt
+$ node scripts/regen-manifest.mjs repo /tmp/count-falsify
+/tmp/count-falsify/CHECKSUMS.txt regenerated: 143 entries          ← the printed number MOVED
+# and on the real tree the same physics: the svelte repo grew by weekStore-sealed-reactive.svelte.ts
+# + WeekStepperSealedReactive.test.ts → shipped count 142 → 144 (receipts/checksum-counts-rev10.txt).
+# A typed number would not move; this one does.

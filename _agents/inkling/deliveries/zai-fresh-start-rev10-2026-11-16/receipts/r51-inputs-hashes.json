@@ -1,0 +1,33 @@
+{
+ "files": {
+  "pre-patch-tree": {
+   "AUTHORING-COST.md": "552f72b2599b8da9622d4370a4291fc1083fc3181ddfa7588158bde7e5351aa3",
+   "CATEGORY-WINNERS.md": "aac87f920af39861683416b7ea4d258fdcde2ef36372e15dbfca9a70e9e652c7",
+   "INNOVATION.md": "0c6220699ad88cdd14f676295af6deb22792b49d25f44a8226de0299aee7c092",
+   "README.md": "170e66d1d4b536d12047d4f37abb222c87ad032d48268042678db01b5cc3ed3f",
+   "SLICE-DONE-PROPOSAL.md": "14e63b1b4360ae51b76b42190ba93c9a0bf76d6a315c1f4b7f07dc4b0dffa699",
+   "filings/OT-clock-fix-PENDING.txt": "54629b9fcc71a676866b18aeb77f6fce9109b8a1b9ad718c51112f91cbe36636",
+   "framework-two-arm/arm-svelte/src/lib/savesService.ts": "b0508c47009cf4e44c8afcd237eaac618dc3952103ba23e330f3c077f2e8ea1b",
+   "framework-two-arm/arm-vue/src/lib/savesService.ts": "b0508c47009cf4e44c8afcd237eaac618dc3952103ba23e330f3c077f2e8ea1b",
+   "framework-two-arm/receipts/bundles-pin-d3bd81d2.txt": "edff6be414cd5397c9b291c33f90a4e7b2ce259a5f5b78d98cb0e72fc2808a90",
+   "framework-two-arm/receipts/two-arm-fourslice.txt": "c6abf349f9d32f25b85569d82fa4921c02bfa03082a4a6b1999f5fc4288e6bf6",
+   "framework-two-arm/receipts/two-arm-lines.txt": "8ca9fec5ee42581a559f6040b5979280612f0b39f1ac753678c4f777793c446b",
+   "measurements/AGENTIC-ERGONOMICS-VERDICT.txt": "f8a37d15325c13189078fc22d6adaf809abfa4734c6be009a62b0f54a4a53077"
+  },
+  "rev6-addendum": {
+   "AUTHORING-COST.md": "c3e3878265e8ab476389d27ebd230765c00316749e363a7efeef345b1d309970",
+   "CATEGORY-WINNERS.md": "b78ef691752c99ffa903ef45af15cf4c80a44575d73b032ef19411ec8613334e",
+   "INNOVATION.md": "60da14abce0e625310c3a43f695e24e30e31e59ab8e5ccfb28217e5b1076ae54",
+   "README.md": "65fece41c5b306b7c9bfb62e91ea1cd51a113b0dcb8a846523354205a165a1a1",
+   "SLICE-DONE-PROPOSAL.md": "862aeb50cf7560b9043b7e11da0b6bf6ddb4d3ced508dc3ca778ece51d4c8dbb",
+   "filings/OT-clock-fix-PENDING.txt": "9623822376482eefa8081c4c72b5905a0e6361174d920cfbe1eb63c2a3ac8a4b",
+   "framework-two-arm/arm-svelte/src/lib/savesService.ts": "2c027c8b2f52c1121bd809c71708a80020af17f3fddbd6a5a1f7df9906b7ecdc",
+   "framework-two-arm/arm-vue/src/lib/savesService.ts": "2c027c8b2f52c1121bd809c71708a80020af17f3fddbd6a5a1f7df9906b7ecdc",
+   "framework-two-arm/receipts/bundles-pin-d3bd81d2.txt": "1192bd6678fa376b4b2d1775dc7054254369988df8684dbd50dd4b229d460237",
+   "framework-two-arm/receipts/two-arm-fourslice.txt": "827965f28263a7f4e1a55a4eaccbc7b6f5c436bf23bea9ab67487c2fe06f1737",
+   "framework-two-arm/receipts/two-arm-lines.txt": "11ce809feb14069a89af97aa396e9a15bfe1566db5e069a451e41d586df2ee4d",
+   "measurements/AGENTIC-ERGONOMICS-VERDICT.txt": "3442f13b7f4cc7ec92de48adbe7a27a343e4eacaabb331aa258936d7f2e1041a"
+  }
+ },
+ "note": "sha256 of the 12 patch-target files on each --reproduce input, extracted from the published branches (pre-patch: council/inkling 85a54b66; reference: council/glyph tip _agents/glyph/deliveries/zai-fresh-start-2026-11-15/REV-5.1-addendum). fetch-r51-inputs.mjs asserts these before the reproduce run."
+}

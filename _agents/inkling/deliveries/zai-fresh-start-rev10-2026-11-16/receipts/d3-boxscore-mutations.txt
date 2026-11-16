@@ -1,0 +1,20 @@
+CONTROL (unmutated copy, four test files): GREEN — the harness layout is sound
+
+M1-puntYd-never-accumulated: SURVIVES — all four related test files stay green
+M2-recTd-never-counted: CAUGHT — every team stat equals the sum of its players, over 120 games including overtime and playoffs | a touchdown scorer has the touchdown on his line, and the named passer threw it
+M3-int-spotted-at-the-20: SURVIVES — all four related test files stay green
+M4-firstDowns-never-counted: ABSENT-AT-PIN — NO ANCHOR AT PIN d3bd81d2: there is no firstDowns/first_down symbol anywhere in src/ (grep-verified) and no firstDown stat in STAT_KEYS — the field does not exist in the engine, so nothing can be mutated; recorded as a finding, not a probe
+
+summary:
+  M1-puntYd-never-accumulated: SURVIVES
+  M2-recTd-never-counted: CAUGHT
+  M3-int-spotted-at-the-20: SURVIVES
+  M4-firstDowns-never-counted: ABSENT-AT-PIN
+
+M4 note: "firstDowns" does not exist at pin d3bd81d2 (no symbol in src/, no STAT_KEY) —
+Ernie's survivor list cannot be replicated verbatim on this engine; the proposal covers it.
+ffe8027b46d9e55004b881c882cc3923da01222f35a9525b402f9d6f9cf1769d  probes/d3-tests/nfl/boxscore.test.ts
+5f470316658a4a4dc7f1f896a2c1eff03c492004dbd0c33c7cfb899545f523c7  probes/d3-tests/nfl/drives.test.ts
+10b640f385e93f2ffdd000618aeaca69f8e5551bd69f3d02148e6ba4ad2821cf  probes/d3-tests/nfl/fixture.ts
+c56bc1d4e12e0afefd3fda4f0fef4f9c19d7acfe6a58be89af9f7051654df35d  probes/d3-tests/nfl/outcome.test.ts
+1a0bc970bf58a62b33d5cefd09b4b257395530ba30b95e50ebcba8385ce924b0  probes/d3-tests/nfl/recap.test.ts

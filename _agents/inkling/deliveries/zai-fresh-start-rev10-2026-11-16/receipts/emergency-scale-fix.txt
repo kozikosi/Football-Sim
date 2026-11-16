@@ -1,0 +1,12 @@
+value scale (derived from the measured provider, max OVR 99):
+  single-spot max   = 98932
+  whole-lineup max  = 854227
+  shipped EMERGENCY = 100000  -> strictly above the value scale? NO (mis-scaled)
+  derived EMERGENCY = 1000000 (next decade above the whole-lineup max; < PLAYS 10000000: true; ILLEGAL 1000000000000 above PLAYS*s + EMERGENCY*k: true)
+rosters: 1014 (32 drafted-league + 32 real 53-man + 576 injury scenarios + 8 greedy + 400 random), both bases = 2028 solves x2 (optimum + min-emergency)
+
+results (EMERGENCY = 1000000, derived):
+  rosters with avoidable emergency fills: 0 of 2028 solves
+  total avoidable fills: 0 (avg 0.00 per solve)
+
+VERDICT: PASS — with EMERGENCY = 1000000 (derived from the provider) zero rosters take an avoidable emergency fill. Exit 0.

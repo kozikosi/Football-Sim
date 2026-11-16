@@ -1,0 +1,1283 @@
+{
+ "alpha": 5.482587391368904,
+ "beta": 12.457247723193557,
+ "dmax": 22.567042276645846,
+ "destw": {
+  "QB": 1000,
+  "WR": 650,
+  "OT": 500,
+  "C": 150,
+  "OG": 400,
+  "TE": 250,
+  "RB": 250,
+  "FB": 25,
+  "EDGE": 650,
+  "DT": 500,
+  "DL5": 150,
+  "ILB": 300,
+  "OLB": 150,
+  "CB": 400,
+  "NICKEL": 100,
+  "DIME": 50,
+  "FS": 300,
+  "SS": 300,
+  "K": 50,
+  "P": 50
+ },
+ "results": [
+  {
+   "tag": "LIVE (99 rules, shipped)",
+   "gapTable": {
+    "l4": 2700,
+    "l3": 1800,
+    "gap": 900
+   },
+   "gapMeasured": {
+    "gap": 914.504358134931,
+    "l4": 2773.03860822937,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 145,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 3,
+    "cross34": 1,
+    "own": 0
+   },
+   "worstAbsurd": {
+    "pair": "SS>OLB",
+    "dHat": 0.39521557289395814,
+    "penalty": 2,
+    "n": 6,
+    "abs": 0.19760778644697907
+   },
+   "absurdRunnerUp": {
+    "pair": "P>K",
+    "dHat": 0.3115710289789097,
+    "penalty": 2,
+    "n": 1,
+    "abs": 0.15578551448945485
+   },
+   "fit": {
+    "exact": 99,
+    "off1": 0,
+    "hard": 0,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "SS>OLB",
+     "dHat": 0.39521557289395814,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.19760778644697907
+    },
+    {
+     "pair": "P>K",
+     "dHat": 0.3115710289789097,
+     "penalty": 2,
+     "n": 1,
+     "abs": 0.15578551448945485
+    },
+    {
+     "pair": "TE>OG",
+     "dHat": 0.9216819797675725,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.15361366329459542
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>EDGE",
+     "dHat": 0.758940090702743,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.12649001511712385
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "SS>TE",
+     "dHat": 0.5164660177856878,
+     "penalty": 6,
+     "n": 7,
+     "abs": 0.08607766963094797
+    },
+    {
+     "pair": "SS>ILB",
+     "dHat": 0.40794157952721605,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.06799026325453601
+    }
+   ]
+  },
+  {
+   "tag": "floor0-C1(0.5,4,9)",
+   "gapTable": {
+    "l4": 1150,
+    "l3": 1800,
+    "gap": -650,
+    "edge": -2000
+   },
+   "gapMeasured": {
+    "gap": -689.3158275820315,
+    "l4": 1169.2184225124074,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 413,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 6,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "DT>FB",
+    "dHat": 0.5815849986359546,
+    "penalty": 2,
+    "n": 31,
+    "abs": 0.2907924993179773
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 19,
+    "abs": 0.2007923342536954
+   },
+   "tableWorstAbsurd": {
+    "pair": "DT>FB",
+    "abs": 0.2907924993179773,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 42,
+    "off1": 50,
+    "hard": 7,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 2,
+     "n": 31,
+     "abs": 0.2907924993179773
+    },
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 19,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>OLB",
+     "dHat": 0.3673735235441968,
+     "penalty": 2,
+     "n": 74,
+     "abs": 0.1836867617720984
+    },
+    {
+     "pair": "SS>NICKEL",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 10,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "SS>DIME",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 8,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "OT>FB",
+     "dHat": 0.7120339069305227,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.11867231782175379
+    },
+    {
+     "pair": "DT>C",
+     "dHat": 0.23151186420673014,
+     "penalty": 2,
+     "n": 27,
+     "abs": 0.11575593210336507
+    },
+    {
+     "pair": "FS>DIME",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 12,
+     "abs": 0.1067091979438135
+    }
+   ]
+  },
+  {
+   "tag": "floor6-C1(0.5,4,9)",
+   "gapTable": {
+    "l4": 1550,
+    "l3": 1800,
+    "gap": -250,
+    "edge": -2200
+   },
+   "gapMeasured": {
+    "gap": -275.17436646460555,
+    "l4": 1583.3598836298333,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 386,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 6,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "DT>FB",
+    "dHat": 0.5815849986359546,
+    "penalty": 2,
+    "n": 39,
+    "abs": 0.2907924993179773
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 9,
+    "abs": 0.2007923342536954
+   },
+   "tableWorstAbsurd": {
+    "pair": "DT>FB",
+    "abs": 0.2907924993179773,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 48,
+    "off1": 38,
+    "hard": 13,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 2,
+     "n": 39,
+     "abs": 0.2907924993179773
+    },
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 9,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>OLB",
+     "dHat": 0.3673735235441968,
+     "penalty": 2,
+     "n": 56,
+     "abs": 0.1836867617720984
+    },
+    {
+     "pair": "EDGE>NICKEL",
+     "dHat": 1,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.16666666666666666
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>FB",
+     "dHat": 0.7701603830135784,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.1283600638355964
+    },
+    {
+     "pair": "ILB>DIME",
+     "dHat": 0.6462882895140561,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.10771471491900936
+    },
+    {
+     "pair": "OLB>DIME",
+     "dHat": 0.633293052043577,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10554884200726283
+    }
+   ]
+  },
+  {
+   "tag": "floor0-C2(1,4,9)",
+   "gapTable": {
+    "l4": 1150,
+    "l3": 1800,
+    "gap": -650,
+    "edge": -2000
+   },
+   "gapMeasured": {
+    "gap": -689.3158275820315,
+    "l4": 1169.2184225124074,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 334,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 5,
+    "cross34": 2,
+    "own": 1
+   },
+   "worstAbsurd": {
+    "pair": "DT>FB",
+    "dHat": 0.5815849986359546,
+    "penalty": 2,
+    "n": 22,
+    "abs": 0.2907924993179773
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 11,
+    "abs": 0.2007923342536954
+   },
+   "tableWorstAbsurd": {
+    "pair": "DT>FB",
+    "abs": 0.2907924993179773,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 44,
+    "off1": 48,
+    "hard": 7,
+    "extra": 0
+   },
+   "rules": 97,
+   "usedPairs": [
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 2,
+     "n": 22,
+     "abs": 0.2907924993179773
+    },
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 11,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>OLB",
+     "dHat": 0.3673735235441968,
+     "penalty": 2,
+     "n": 70,
+     "abs": 0.1836867617720984
+    },
+    {
+     "pair": "SS>NICKEL",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 10,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "SS>DIME",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 2,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "OT>FB",
+     "dHat": 0.7120339069305227,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.11867231782175379
+    },
+    {
+     "pair": "DT>C",
+     "dHat": 0.23151186420673014,
+     "penalty": 2,
+     "n": 28,
+     "abs": 0.11575593210336507
+    },
+    {
+     "pair": "FS>DIME",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 4,
+     "abs": 0.1067091979438135
+    }
+   ]
+  },
+  {
+   "tag": "floor6-C2(1,4,9)",
+   "gapTable": {
+    "l4": 1550,
+    "l3": 1800,
+    "gap": -250,
+    "edge": -2200
+   },
+   "gapMeasured": {
+    "gap": -275.17436646460555,
+    "l4": 1583.3598836298333,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 360,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 6,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "DT>FB",
+    "dHat": 0.5815849986359546,
+    "penalty": 2,
+    "n": 26,
+    "abs": 0.2907924993179773
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 5,
+    "abs": 0.2007923342536954
+   },
+   "tableWorstAbsurd": {
+    "pair": "DT>FB",
+    "abs": 0.2907924993179773,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 49,
+    "off1": 37,
+    "hard": 13,
+    "extra": 0
+   },
+   "rules": 98,
+   "usedPairs": [
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 2,
+     "n": 26,
+     "abs": 0.2907924993179773
+    },
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 5,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>OLB",
+     "dHat": 0.3673735235441968,
+     "penalty": 2,
+     "n": 55,
+     "abs": 0.1836867617720984
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "ILB>DIME",
+     "dHat": 0.6462882895140561,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10771471491900936
+    },
+    {
+     "pair": "OLB>DIME",
+     "dHat": 0.633293052043577,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10554884200726283
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 8,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "SS>TE",
+     "dHat": 0.5164660177856878,
+     "penalty": 6,
+     "n": 10,
+     "abs": 0.08607766963094797
+    }
+   ]
+  },
+  {
+   "tag": "floor0-C3(0.5,3,9)",
+   "gapTable": {
+    "l4": 2250,
+    "l3": 1800,
+    "gap": 450,
+    "edge": -1200
+   },
+   "gapMeasured": {
+    "gap": 444.7186037003994,
+    "l4": 2303.2528537948383,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 347,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 5,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 9,
+    "abs": 0.2007923342536954
+   },
+   "absurdRunnerUp": {
+    "pair": "OLB>FB",
+    "dHat": 0.30118537492950503,
+    "penalty": 2,
+    "n": 1,
+    "abs": 0.15059268746475252
+   },
+   "tableWorstAbsurd": {
+    "pair": "RB>FB",
+    "abs": 0.2007923342536954,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 44,
+    "off1": 45,
+    "hard": 10,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 9,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "OLB>FB",
+     "dHat": 0.30118537492950503,
+     "penalty": 2,
+     "n": 1,
+     "abs": 0.15059268746475252
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>FB",
+     "dHat": 0.7701603830135784,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.1283600638355964
+    },
+    {
+     "pair": "SS>NICKEL",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "SS>DIME",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 8,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "FS>DIME",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 14,
+     "abs": 0.1067091979438135
+    },
+    {
+     "pair": "FS>NICKEL",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 4,
+     "abs": 0.1067091979438135
+    }
+   ]
+  },
+  {
+   "tag": "floor6-C3(0.5,3,9)",
+   "gapTable": {
+    "l4": 2250,
+    "l3": 1800,
+    "gap": 450,
+    "edge": -1200
+   },
+   "gapMeasured": {
+    "gap": 444.7186037003994,
+    "l4": 2303.2528537948383,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 339,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 5,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 11,
+    "abs": 0.2007923342536954
+   },
+   "absurdRunnerUp": {
+    "pair": "EDGE>NICKEL",
+    "dHat": 1,
+    "penalty": 6,
+    "n": 11,
+    "abs": 0.16666666666666666
+   },
+   "tableWorstAbsurd": {
+    "pair": "RB>FB",
+    "abs": 0.2007923342536954,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 47,
+    "off1": 36,
+    "hard": 16,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 11,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>NICKEL",
+     "dHat": 1,
+     "penalty": 6,
+     "n": 11,
+     "abs": 0.16666666666666666
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>FB",
+     "dHat": 0.7701603830135784,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.1283600638355964
+    },
+    {
+     "pair": "OLB>DIME",
+     "dHat": 0.633293052043577,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10554884200726283
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 8,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 6,
+     "n": 11,
+     "abs": 0.09693083310599243
+    },
+    {
+     "pair": "SS>TE",
+     "dHat": 0.5164660177856878,
+     "penalty": 6,
+     "n": 8,
+     "abs": 0.08607766963094797
+    }
+   ]
+  },
+  {
+   "tag": "floor0-C4(1,3,8)",
+   "gapTable": {
+    "l4": 2250,
+    "l3": 1800,
+    "gap": 450,
+    "edge": -1200
+   },
+   "gapMeasured": {
+    "gap": 444.7186037003994,
+    "l4": 2303.2528537948383,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 245,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 4,
+    "cross34": 2,
+    "own": 1
+   },
+   "worstAbsurd": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 5,
+    "abs": 0.2007923342536954
+   },
+   "absurdRunnerUp": {
+    "pair": "TE>C",
+    "dHat": 0.8547055657240747,
+    "penalty": 6,
+    "n": 1,
+    "abs": 0.14245092762067912
+   },
+   "tableWorstAbsurd": {
+    "pair": "RB>FB",
+    "abs": 0.2007923342536954,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 48,
+    "off1": 41,
+    "hard": 10,
+    "extra": 0
+   },
+   "rules": 97,
+   "usedPairs": [
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 5,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "SS>NICKEL",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 10,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "SS>DIME",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 2,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "FS>DIME",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 4,
+     "abs": 0.1067091979438135
+    },
+    {
+     "pair": "FS>NICKEL",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 9,
+     "abs": 0.1067091979438135
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 6,
+     "n": 5,
+     "abs": 0.09693083310599243
+    }
+   ]
+  },
+  {
+   "tag": "floor6-C4(1,3,8)",
+   "gapTable": {
+    "l4": 2250,
+    "l3": 1800,
+    "gap": 450,
+    "edge": -1200
+   },
+   "gapMeasured": {
+    "gap": 444.7186037003994,
+    "l4": 2303.2528537948383,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 296,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 5,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 6,
+    "abs": 0.2007923342536954
+   },
+   "absurdRunnerUp": {
+    "pair": "EDGE>NICKEL",
+    "dHat": 1,
+    "penalty": 6,
+    "n": 10,
+    "abs": 0.16666666666666666
+   },
+   "tableWorstAbsurd": {
+    "pair": "RB>FB",
+    "abs": 0.2007923342536954,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 50,
+    "off1": 33,
+    "hard": 16,
+    "extra": 0
+   },
+   "rules": 98,
+   "usedPairs": [
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>NICKEL",
+     "dHat": 1,
+     "penalty": 6,
+     "n": 10,
+     "abs": 0.16666666666666666
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OLB>DIME",
+     "dHat": 0.633293052043577,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10554884200726283
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 6,
+     "n": 6,
+     "abs": 0.09693083310599243
+    },
+    {
+     "pair": "SS>TE",
+     "dHat": 0.5164660177856878,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.08607766963094797
+    },
+    {
+     "pair": "FS>OLB",
+     "dHat": 0.42262341423032534,
+     "penalty": 6,
+     "n": 3,
+     "abs": 0.07043723570505422
+    }
+   ]
+  },
+  {
+   "tag": "floor6-C1(0.5,4,9)+FBTE2",
+   "gapTable": {
+    "l4": 1350,
+    "l3": 1800,
+    "gap": -450,
+    "edge": -2050
+   },
+   "gapMeasured": {
+    "gap": -469.5711071533151,
+    "l4": 1388.9631429411238,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 402,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 6,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "DT>FB",
+    "dHat": 0.5815849986359546,
+    "penalty": 2,
+    "n": 43,
+    "abs": 0.2907924993179773
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>FB",
+    "dHat": 0.4015846685073908,
+    "penalty": 2,
+    "n": 11,
+    "abs": 0.2007923342536954
+   },
+   "tableWorstAbsurd": {
+    "pair": "DT>FB",
+    "abs": 0.2907924993179773,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 47,
+    "off1": 39,
+    "hard": 13,
+    "extra": 0
+   },
+   "rules": 99,
+   "usedPairs": [
+    {
+     "pair": "DT>FB",
+     "dHat": 0.5815849986359546,
+     "penalty": 2,
+     "n": 43,
+     "abs": 0.2907924993179773
+    },
+    {
+     "pair": "RB>FB",
+     "dHat": 0.4015846685073908,
+     "penalty": 2,
+     "n": 11,
+     "abs": 0.2007923342536954
+    },
+    {
+     "pair": "EDGE>OLB",
+     "dHat": 0.3673735235441968,
+     "penalty": 2,
+     "n": 56,
+     "abs": 0.1836867617720984
+    },
+    {
+     "pair": "EDGE>NICKEL",
+     "dHat": 1,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.16666666666666666
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>FB",
+     "dHat": 0.7701603830135784,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.1283600638355964
+    },
+    {
+     "pair": "ILB>DIME",
+     "dHat": 0.6462882895140561,
+     "penalty": 6,
+     "n": 3,
+     "abs": 0.10771471491900936
+    },
+    {
+     "pair": "OLB>DIME",
+     "dHat": 0.633293052043577,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.10554884200726283
+    }
+   ]
+  },
+  {
+   "tag": "ability-only-floor6-C1",
+   "gapTable": {
+    "l4": 850,
+    "l3": 900,
+    "gap": -50,
+    "edge": -2100
+   },
+   "gapMeasured": {
+    "gap": -63.014764494029805,
+    "l4": 866.2523605531314,
+    "l3": 929.2671250471612
+   },
+   "flexedSpotsReal": 404,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 5,
+    "cross34": 3,
+    "own": 2
+   },
+   "worstAbsurd": {
+    "pair": "OLB>FB",
+    "dHat": 0.30118537492950503,
+    "penalty": 2,
+    "n": 1,
+    "abs": 0.15059268746475252
+   },
+   "absurdRunnerUp": {
+    "pair": "RB>TE",
+    "dHat": 0.28397635100087104,
+    "penalty": 2,
+    "n": 53,
+    "abs": 0.14198817550043552
+   },
+   "tableWorstAbsurd": {
+    "pair": "K>P",
+    "abs": 0.15578551448945485,
+    "penalty": 2
+   },
+   "fit": {
+    "exact": 42,
+    "off1": 42,
+    "hard": 15,
+    "extra": 0
+   },
+   "rules": 93,
+   "usedPairs": [
+    {
+     "pair": "OLB>FB",
+     "dHat": 0.30118537492950503,
+     "penalty": 2,
+     "n": 1,
+     "abs": 0.15059268746475252
+    },
+    {
+     "pair": "RB>TE",
+     "dHat": 0.28397635100087104,
+     "penalty": 2,
+     "n": 53,
+     "abs": 0.14198817550043552
+    },
+    {
+     "pair": "ILB>FB",
+     "dHat": 0.279684484802023,
+     "penalty": 2,
+     "n": 1,
+     "abs": 0.1398422424010115
+    },
+    {
+     "pair": "CB>SS",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "SS>CB",
+     "dHat": 0.2383535969653873,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.11917679848269365
+    },
+    {
+     "pair": "OT>FB",
+     "dHat": 0.7120339069305227,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.11867231782175379
+    },
+    {
+     "pair": "EDGE>C",
+     "dHat": 0.7056293882323612,
+     "penalty": 6,
+     "n": 1,
+     "abs": 0.11760489803872687
+    },
+    {
+     "pair": "CB>FS",
+     "dHat": 0.213418395887627,
+     "penalty": 2,
+     "n": 8,
+     "abs": 0.1067091979438135
+    }
+   ]
+  },
+  {
+   "tag": "LIVE+FBTE2 (Owner-approved)",
+   "gapTable": {
+    "l4": 2500,
+    "l3": 1800,
+    "gap": 700,
+    "edge": 0
+   },
+   "gapMeasured": {
+    "gap": 720.1076174462214,
+    "l4": 2578.6418675406603,
+    "l3": 1858.534250094439
+   },
+   "flexedSpotsReal": 147,
+   "emergenciesReal": 0,
+   "oopNative": {
+    "cross43": 3,
+    "cross34": 1,
+    "own": 0
+   },
+   "worstAbsurd": {
+    "pair": "SS>OLB",
+    "dHat": 0.39521557289395814,
+    "penalty": 2,
+    "n": 6,
+    "abs": 0.19760778644697907
+   },
+   "absurdRunnerUp": {
+    "pair": "P>K",
+    "dHat": 0.3115710289789097,
+    "penalty": 2,
+    "n": 1,
+    "abs": 0.15578551448945485
+   },
+   "tableWorstAbsurd": {
+    "pair": "OG>FB",
+    "abs": 0.7701603830135784,
+    "penalty": 0
+   },
+   "fit": {
+    "exact": 98,
+    "off1": 1,
+    "hard": 0,
+    "extra": 0
+   },
+   "rules": 76,
+   "usedPairs": [
+    {
+     "pair": "SS>OLB",
+     "dHat": 0.39521557289395814,
+     "penalty": 2,
+     "n": 6,
+     "abs": 0.19760778644697907
+    },
+    {
+     "pair": "P>K",
+     "dHat": 0.3115710289789097,
+     "penalty": 2,
+     "n": 1,
+     "abs": 0.15578551448945485
+    },
+    {
+     "pair": "TE>OG",
+     "dHat": 0.9216819797675725,
+     "penalty": 6,
+     "n": 4,
+     "abs": 0.15361366329459542
+    },
+    {
+     "pair": "TE>C",
+     "dHat": 0.8547055657240747,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.14245092762067912
+    },
+    {
+     "pair": "OG>EDGE",
+     "dHat": 0.758940090702743,
+     "penalty": 6,
+     "n": 2,
+     "abs": 0.12649001511712385
+    },
+    {
+     "pair": "WR>TE",
+     "dHat": 0.5837718653998487,
+     "penalty": 6,
+     "n": 9,
+     "abs": 0.09729531089997479
+    },
+    {
+     "pair": "SS>TE",
+     "dHat": 0.5164660177856878,
+     "penalty": 6,
+     "n": 7,
+     "abs": 0.08607766963094797
+    },
+    {
+     "pair": "FB>TE",
+     "dHat": 0.16519732052141034,
+     "penalty": 2,
+     "n": 16,
+     "abs": 0.08259866026070517
+    }
+   ]
+  }
+ ]
+}

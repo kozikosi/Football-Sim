@@ -1,0 +1,8 @@
+vue · wrapper store (Pinia setup) · football-sim-vue/src/stores/weekStore-sealed.ts: 81 lines (STORE-COST-2x2.md publishes 81) ok
+vue · reactive module · football-sim-vue/src/stores/weekStore-sealed-reactive.ts: 45 lines (STORE-COST-2x2.md publishes 45) ok
+svelte · class bridge ($state class) · football-sim-svelte/src/lib/state/weekStore-sealed.svelte.ts: 84 lines (STORE-COST-2x2.md publishes 84) ok
+svelte · reactive module (facade) · football-sim-svelte/src/lib/state/weekStore-sealed-reactive.svelte.ts: 52 lines (STORE-COST-2x2.md publishes 52) ok
+vue wrapper-minus-module delta: 36 (published 36) ok
+svelte wrapper-minus-module delta: 32 (published 32) ok
+2x2 baseline: wrapper tax present on BOTH frameworks (vue 36 L, svelte 32 L) — the Rev 9 36 L is a WRAPPER cost, not a framework cost
+no drift

@@ -1,0 +1,28 @@
+# receipt — Rev 10 EXT D2: the test-scope gap in the type-check ratchet (demo on the PINNED tree)
+# colors/ extracted from the engine pin d3bd81d2 into a scratch dir (git archive) — colors/ itself
+# untouched. node = v24.22.3. typescript 5.9.3 (colors' own devDep via npm ci of its lockfile).
+#
+# (1) The shipped ratchet is BLIND to test/:
+$ node tools/tsc-baseline.mjs                      (clean tree)
+tsc baseline OK: 91 errors (pinned 91).            exit 0
+$ printf '\nconst x: number = "planted type error for the D2 demo";\n' >> test/nfl/lineup.test.ts
+$ node tools/tsc-baseline.mjs                      (planted)
+tsc baseline OK: 91 errors (pinned 91).            exit 0   ← the planted error is invisible
+# (tsc-baseline.json covers src/ files only; tsconfig.json excludes test/ — its own comment says
+#  why: "the tests import node:test, which needs @types/node".)
+#
+# (2) The payload tsconfig.tests.json (extends tsconfig.json, includes test/**/*.ts, types
+#     ["node","vite/client"] — @types/node added as a devDep, the exact one-line dep the main
+#     tsconfig's comment said this needs). Ernie proved the ratchet sound (REPORTED: plant → check
+#     exits 1 on src/); this sitting re-proves the gap is SCOPE, not the ratchet, and MEASURES
+#     what the payload sees (VERIFIED):
+$ ./node_modules/.bin/tsc -p tsconfig.tests.json --noEmit      (TRUE-clean tree)
+total errors: 384   = 91 in src/ (exactly the ratchet's pinned 91 — the payload is
+                      config-consistent with the shipped baseline)
+                    + 293 in test/ (the invisible scope: 37 test files)
+$ (planted error re-applied) tsc -p tsconfig.tests.json --noEmit
+total errors: 385   = 91 + 294 — the plant IS caught: test/nfl/lineup.test.ts(339,7): error TS2322
+#
+# Conclusion: a "clean" ratchet over src/ leaves 293 test-scope type errors unpinned; the payload
+# makes them visible. Adding them to the ratchet MUST be ratchet-form (baseline 293, lower-only),
+# not zero-tolerance — see PROPOSAL-PATCH-testscope-tsconfig.md.
