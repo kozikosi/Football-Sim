@@ -1273,10 +1273,8 @@ function lineupAdvice(roster){
 }
 // A readable explanation of one recommended move set, from the slot values (wins per +1 OVR) and flex penalties.
 function lineupAdviceHTML(roster, hostId){
- const adv = lineupAdvice(roster), wpo = slotWinsPerOvr();
- const nOff = ROSTER_SLOTS.filter(sl=>roster.slots[sl] && isOutOfPosition(roster.slots[sl][1], sl)).length;
- const base70 = ROSTER_SLOTS.reduce((t,sl)=>t+slotWins(sl,70),0);
- let h = `<p class="narr" style="margin:4px 0;">Current lineup: <b>${fmtWar(adv.curWins - base70)}</b> wins vs. a lineup of 70s${nOff?`, with ${nOff} flexed starter${nOff===1?'':'s'}`:''}.</p>`;
+  const adv = lineupAdvice(roster), wpo = slotWinsPerOvr();
+  let h = '';
  if(adv.gain<0.02){ h += `<p class="narr" style="margin:4px 0;">The math sees no better arrangement of these players: this lineup is within ${Math.max(0,adv.gain).toFixed(2)} wins of the best possible one.</p>`; return h; }
  const rows = adv.moves.map(m=>{
   const effA = effOvr(m.to, m.slot), effB = effOvr(m.from, m.slot);
