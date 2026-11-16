@@ -13,8 +13,9 @@
 - **Folder separation:** my own review work lives under `inbox/`; Z.ai pass-through deliveries pushed at the Owner's direction live under `deliveries/zai-pass-through/<item>/`, visually separate from VL's own work.
 
 ## Current session (2026-11-16, council/muse)
-- Followed START-HERE from origin/council/muse exactly: `git fetch origin`, orient checks, Step 0 governance-doc refresh from origin/council/muse (AGENTS.md, PROJECT-KNOWLEDGE.md, START-HERE.md, START-OF-CHAT.md checked out; no diffs), `node tools/preserve.mjs check`, `.council_tool.mjs copied into worktree and will be deleted before push.
-- **Delivered: CAKEPANZ-SHELL council assistance (v4-2 prompt), 7 inbox entries + 1 bulletin entry, all committed and pushed this session:**
+- Followed START-HERE from origin/council/muse exactly: `git fetch origin`, orient checks, Step 0 governance-doc refresh from origin/council/muse (AGENTS.md, PROJECT-KNOWLEDGE.md, START-HERE.md, START-OF-CHAT.md checked out; no diffs), `node tools/preserve.mjs check`.
+- **Delivered: CAKEPANZ-SHELL council assistance (v4-2 prompt), 7 inbox entries + 1 bulletin entry (committed/pushed 085cd5fb), PLUS P-333 formation-balance filing:**
+  - `inbox/20261116-2240-vl-P-333-formation-balance-options.md` (FOR: P-333) — VERIFIED by running the d3bd81d2 formation-gap measurement: baseline gap 900 (2700/1800, DL5=DT; 0 DL5=EDGE); Option A TE>OLB 6→2 → gap 500, +FB>TE 6→2 → gap 300 (closest without over-correcting); Option B FB>TE 6→2 → gap 700 (matches prompt's "as measured", partial); Option C pin DL5=EDGE → gap 0, zero table change. Cannot reproduce MUSE's P-332 2700→2200/gap 400 (97d7e9d not in history); REPORTED by Muse only. Prompt's 2500/1800/gap 700 equals Option B but is not the current-table baseline (900).
   - `inbox/20261116-2106-vl-R-13-CAKEPANZ-SHELL-pin.md` (Part 10 — VERIFIED: the shell's src/engine/ is byte-identical to engine commit 4ca9a071, 52/52 files; 6 files + 5 new files differ vs d3bd81d2; README correct, AGENTS.md's "Cakepanz consumes d3bd81d2" claim stale — only gh-pages consumes d3bd81d2; engine tests re-run 284/0 VERIFIED by me)
   - `inbox/20261116-2106-vl-R-13-CAKEPANZ-SHELL-review.md` (Part 1 — shell inventory VERIFIED: slices 1-5 built in code at pin 4ca9a071, battery 75/0/10/3 from slice1-battery.json; gh-pages deploys slices 1-2 at d3bd81d2; missing: season hub, week views, standings, bracket, awards, review, guide, settings, player cards screen; no light mode — pale-rose is an Owner AA question, flagged not fixed; feed.ts OT quirk REPORTED from slice 4 README)
   - `inbox/20261116-2106-vl-R-13-CAKEPANZ-SHELL-seam.md` (Part 2 — VERIFIED: one-door claim FAILS as built; 16 files / 66 import lines reach into src/engine directly, incl. SlotPicker.svelte importing `fit` from flex.ts; proposed enginePort.ts seam contract; M3 swap test procedure specified, not run)
@@ -26,12 +27,14 @@
 
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse) and take the next top item VL can do; skip P-042/P-043 (stale).
+- P-333: KG picks an option (A / B / C); no implementation until he does. If another seat files a P-333 rebuttal, review it (three seats confirming = REVIEWED).
 - Continue CAKEPANZ-SHELL parts left undone: v4-2 Parts 7-9, 11-17 (battery gap-find, non-functional laws measured, data integrity, style laws, shell weight, a11y/keyboard/benchmarks/docs, cutover checklist, TS drop-in assets, slice specs P-316/P-317, label-hygiene corrections P-345→R-13).
 - Review inbox files from other seats when they land; three seats confirming = REVIEWED.
 
 ## Open questions (updated)
 - R-13 (framework comparison) does not appear in the live QUEUE.md table — UNKNOWN whether the ID exists or was retired; used FOR: R-13 per the v4-2 filing instruction, flagged to the queue custodian.
 - The s5 README's "snapshot bug" claim (DESTain corruption in draftBoard.ts at 4ca9a071) does not hold at 4ca9a071 (file is clean; no stand-in boardVM.ts) — README claim stale or predates the pin; correction is Z.ai's.
+- P-333: Owner's open question — "does the slot define the player?" (_agents/owner-notes/2026-11-10-dl5-slot-defines-player-verbatim.txt). Option C (pin DL5=EDGE) closes the gap to 0 with zero table change but hinges on this ruling.
 
 ## Live files / receipts
 - All 7 inbox files + 1 bulletin entry above — committed and pushed on origin/council/vl this session (hash given at push time).
