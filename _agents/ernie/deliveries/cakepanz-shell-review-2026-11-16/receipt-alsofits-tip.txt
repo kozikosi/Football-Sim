@@ -1,0 +1,18 @@
+rows 60 | rows with alsoFits 12 | total chips 18
+sample [
+ {
+  "n": "Patrick Mahomes",
+  "slot": "QB",
+  "also": []
+ },
+ {
+  "n": "Brock Purdy",
+  "slot": "QB",
+  "also": []
+ },
+ {
+  "n": "Caleb Williams",
+  "slot": "QB",
+  "also": []
+ }
+]

@@ -1,0 +1,17 @@
+import { buildPool } from './src/engine/sports/nfl/engine/players.ts';
+import { createStore } from './src/engine/sports/nfl/app/store.ts';
+import { boardVM } from './src/engine/sports/nfl/view/draftBoard.ts';
+import { goneOdds } from './src/engine/sports/nfl/engine/goneodds.ts';
+import { makeRng } from './src/engine/core/rng.ts';
+import fs from 'node:fs';
+const rd = (p) => fs.readFileSync(p, 'utf8');
+const players = buildPool(rd('./src/data/madden27-ratings.csv'), rd('./src/data/free-agents-old-ratings.csv'), rd('./src/data/player-ids.csv'));
+const store = createStore(players);
+store.dispatch({ type: 'START', seed: 1115, userTeam: 20 });
+const st = store.getState();
+const odds = goneOdds(st.draft, 20, makeRng(1115 * 7 + 13), 30);
+const vm = boardVM(st.draft, 20, odds, { sort: 'wins' });
+const rows = vm.rows || [];
+const withFits = rows.filter((r) => (r.alsoFits || []).length);
+console.log('rows', rows.length, '| rows with alsoFits', withFits.length, '| total chips', rows.reduce((t, r) => t + (r.alsoFits || []).length, 0));
+console.log('sample', JSON.stringify(rows.slice(0, 3).map((r) => ({ n: r.name, slot: r.slotLabel, also: r.alsoFits })), null, 1));

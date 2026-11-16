@@ -1,0 +1,64 @@
+rows 60 | rows with alsoFits 50 | total chips 347
+sample [
+ {
+  "n": "Brock Purdy",
+  "slot": "QB",
+  "also": []
+ },
+ {
+  "n": "Caleb Williams",
+  "slot": "QB",
+  "also": []
+ },
+ {
+  "n": "Jaxon Smith-Njigba",
+  "slot": "WR1",
+  "also": [
+   {
+    "slotId": "TE1",
+    "slotLabel": "TE1",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "FS",
+    "slotLabel": "FS",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "SS",
+    "slotLabel": "SS",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "RB1",
+    "slotLabel": "RB1",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "TE2",
+    "slotLabel": "TE2",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "CB3",
+    "slotLabel": "Nickel",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "RB2",
+    "slotLabel": "RB2",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "TE3",
+    "slotLabel": "TE3",
+    "flex": "-4 flex"
+   },
+   {
+    "slotId": "DIME",
+    "slotLabel": "DIME",
+    "flex": "-4 flex"
+   }
+  ]
+ }
+]
