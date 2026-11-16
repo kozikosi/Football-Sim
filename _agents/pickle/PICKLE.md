@@ -11,7 +11,41 @@ Queue `_agents/QUEUE.md` on **`origin/council/muse`** (`council/base`'s copy is 
 `git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs`, delete before pushing. START-HERE step 0
 (four governance docs from `council/muse`) first, every chat.
 
-## Current state (15 Nov 2026, second task) — P-345 Rev 4: direction + innovation
+## Current state (16 Nov 2026) — CAKEPANZ-SHELL / R-13: five filings, four of them measurable
+
+Round: prompt v4-2 (council assist for the 67 Cakepanz shell finish). Took the parts that settle with a command.
+
+- **`inbox/20261116-2109-pickle-CAKEPANZ-SHELL-pin-and-suite.md` — Part 10 + M3.** There are **two trees at two pins**:
+  `origin/gh-pages:67-cakepanz/` (`66096fb1`) carries `d3bd81d2` 57/57 by blob hash (README still says `4ca9a071`,
+  "52 TypeScript files"); s5 (`council/inkling` delivery) carries `4ca9a071` 52/52 with a correct README. **The deployed
+  tree fails 9 of its own 286 engine laws** (`node --test --experimental-strip-types test/engine.test.ts` → 277/9);
+  s5 is 284/284. The nine are the Owner's flex/formation rulings (tests still assert REV 4) + the E5 stamp. Cause: a
+  re-pin that moved `src/engine/` and `tools/mathlab/flex.json` but not the carried expectations. GLM's Part 10
+  ("the READMEs are correct, AGENTS.md is stale") is right about s5 and wrong about the deployment — my R-3.
+- **`inbox/20261116-2120-pickle-CAKEPANZ-SHELL-cone-one-door.md` — Parts 1–2 (M1/M2/M4/M5).** One door NOT met:
+  **65 engine import statements in 15 files** (29 type-only → **36 runtime imports in 10 files**, 32 module paths),
+  8 screens/components reach in. M2 fails (15 files break, not one). M4 fails (no `SNAPSHOT.md`/`MERGE-*.md`/`SHELL-STATUS`).
+  Proposal: six domain seam modules (`board/roster/league/season/saves/core`), zero logic moved, then M1's grep passes.
+  Reconciled with GLM's 14/55/24 baseline — different split, same tree.
+- **`inbox/20261116-2134-pickle-CAKEPANZ-SHELL-neutrality.md` — Part 3.** Neutral core holds: 7 of 8 `src/lib/*.ts`
+  framework-free, runes only in `.svelte` (14 files; `$state` 8/21, `$derived` 4/7, `$effect` 2/2, `$props` 12/12;
+  `{#snippet}` 0, transitions 0). Two defects: `draftStore.ts` (20 lines, deliberate adapter — belongs in `bindings/`);
+  `bragCard.ts:155` `document.createElement('canvas')` breaks the node-side render claim for shareables.
+- **`inbox/20261116-2147-pickle-CAKEPANZ-SHELL-boxscore-mutations.md` — Part 6, settled by command.** `86f22d10` is a
+  **descendant** of the pin and `colors/src/sports/nfl/sim/` **does not exist at either pin commit** → Z.ai's harness
+  could not have caught the survivors (Inkling's scoping position, now a command). But the four survivors are **live at
+  today's tip `a062597f`**: four one-line mutations (firstDowns, puntYards, touchdowns, turnover spot) leave the suite
+  **378/378 green**. New fifth: the turnover spot *is* computed (`drive.ts:136` `next.ydl`) and unasserted — refines
+  GLM's "not even computed". Four assertions proposed to the Architect, written as identities over the event log.
+- Part 17 (label hygiene) went to the bulletin per the round's own rule: **zero** `FOR: P-345` filings on 16 Nov
+  (101 files: 58 R-13, 43 other queue IDs, 0 unlabelled); the claimed "8 Inkling + 4 Ernie" mislabels do not exist —
+  Inkling self-corrected at 20:05 on 15 Nov. Only real nit: glyph's two prompt files carry `FOR: CAKEPANZ-SHELL`
+  (a round name) instead of a queue ID, with P-316/P-317 in parentheses.
+
+Not done (open to any seat): Parts 4 (blockers — beam and vl filed), 5 (ideas — vl), 7 (battery gap-find), 8
+(non-functional laws — needs a build+browser), 12 (node counts — needs a build), 13–16.
+
+## Earlier (15 Nov 2026) — P-345 Rev 4: direction + innovation
 
 Prompt: `_agents/muse/deliveries/prompts-2026-11-05/council-direction-innovation-2026-11-15.md` (Rev 4/4.1 — assess
 ERNIE's `f3551218` rather than redo it). Deliverable: **`inbox/20261115-1147-pickle-direction-innovation.md`** (335 lines,
@@ -54,6 +88,10 @@ Q1–Q8 in order, §0 correction first, labels in §9).
 
 ## What the next session needs
 
+0. **The red deployment is the most actionable thing on the board** (`inbox/20261116-2109-…-pin-and-suite.md`): 9/286
+   engine laws fail in the tree that is actually deployed, and 8 of them are the Owner's flex rulings not yet reflected
+   in the carried tests. Whoever owns the re-pin fixes that in one commit; nobody should merge into either tree until
+   one of them is (latest shell · current pin · green) at once.
 1. **Read the Rev 4 round's other filings before reviewing mine** — the value is in the disagreements (Ernie on
    "improvable", MUSE on the boot evidence, Claude on the framework call). A review that agrees adds nothing.
 2. **Re-run my two numeric claims if you doubt them** — the derived-gap identity (§7.2) and the stamp coverage list
@@ -75,6 +113,8 @@ Q1–Q8 in order, §0 correction first, labels in §9).
 
 ## Live files
 
+- `inbox/20261116-2109-pickle-CAKEPANZ-SHELL-pin-and-suite.md` · `-2120-…-cone-one-door.md` ·
+  `-2134-…-neutrality.md` · `-2147-…-boxscore-mutations.md` (this round)
 - `inbox/20261115-1147-pickle-direction-innovation.md` (Rev 4 deliverable)
 - `inbox/20261115-1135-pickle-P-345-axis-comparison.md` · `inbox/20261115-1136-pickle-stop-doing.md`
 - `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/` (axis-bounds, inputs, RUN)
@@ -90,6 +130,12 @@ Q1–Q8 in order, §0 correction first, labels in §9).
   refs move mid-session (`council/ernie` moved `218bbafa`→`b5b6da5b` while I worked).
 - **Test the Architect's tree without touching it**: `git archive origin/architect/engine-and-seats colors data/nfl
   tools/mathlab | tar -x -C $TMP`, then `node --test --experimental-strip-types test/nfl/*.test.ts` from `$TMP/colors`.
+  **Extract `data` AND `tools/mathlab` too** — without them the suite shows a false red (16 Nov: 13 test files failed on
+  `ENOENT .../tools/mathlab/design.json` and `../../../data/nfl/*.csv`; with them, 363/363 green). A red baseline is not
+  a finding until the harness is proven able to be green.
+- **Prove a survivor with a mutation, not a grep**: `cp -R` the extract, one `perl -pi -e` substitution, `diff` to prove
+  exactly one line changed (`grep -c '^>'` = 1), then the whole `test/` tree. `mutated-lines=0` means the substitution
+  never applied and the run proves nothing — that happened first on 16 Nov and the result was thrown away.
 - **zsh eats `$VAR:c`** — `${A}:path`, always.
 - Manifests: report rows **and** file count; an unlisted manifest is correct, not an error.
 - macOS: `/tmp` is a symlink; use `/private/var/folders/...`. Patch a **copy**, never the product.
