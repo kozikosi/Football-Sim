@@ -1,0 +1,129 @@
+{
+ "sitting": "zai-fresh-start-rev9-2026-11-16 (Rev 9, merged)",
+ "enginePin": {
+  "claim": "engine vendored at d3bd81d2, 57 files, byte-identical across both repos",
+  "command": "diff -rq src/engine src/lib/engine && diff -rq vs git archive d3bd81d2 colors/src",
+  "result": "PIN-IDENTICAL both"
+ },
+ "fixture": {
+  "claim": "fixture.json sha256",
+  "value": "52ede1d1ba4b87882a905ca98ed34459d3e5d5520a5b1ee18053342c43a91598"
+ },
+ "seasonFixture": {
+  "claim": "season seed-2027 minted byte-identical across repos",
+  "file": "probes/season-seed-2027.json"
+ },
+ "truthProbe": {
+  "claim": "probe truth node-side, written before any slice code, identical across arms",
+  "file": "probes/truth.json",
+  "note": "gate 1"
+ },
+ "batteries": {
+  "claim": "full battery PASS both arms, vanilla file://, 0 console errors, 0 blocked \u2014 re-run 2026-11-15 (Rev 8 regression insurance after all edits; JSONs in-tree are these fresh runs)",
+  "command": "node probes/probe-battery.mjs vue && node probes/probe-battery.mjs svelte  (from each repo)",
+  "result": "exit 0 both; 24/24 both",
+  "files": [
+   "football-sim-vue/probes/battery-vue.json",
+   "football-sim-svelte/probes/battery-svelte.json"
+  ]
+ },
+ "fidelityPin": {
+  "claim": "DOM node counts equal per screen across arms (cards corrected 867\u2192871 per Rev 8 erratum 0.6)",
+  "values": {
+   "cards": 871,
+   "stats": 457,
+   "board": 470,
+   "feed": 125,
+   "week": 221,
+   "settings": 39
+  },
+  "command": "node -e \"for (const a of ['vue','svelte']) { const d=require('./football-sim-'+a+'/probes/battery-'+a+'.json'); console.log(a, JSON.stringify(Object.fromEntries(Object.entries(d.screens).map(([k,v])=>[k,v.nodeCount])))) }\"",
+  "result": "vue {cards:871,...} svelte {cards:871,...} \u2014 ALL EQUAL"
+ },
+ "rev51": {
+  "claim": "F1 type fix + both checkers exit 0 on the shipped trees; the applier now SHIPS: r51_patch.py --verify-shipped 19/19 exit 0, --reproduce 12/12 byte-identical exit 0 (supersedes Rev 8 erratum 0.5)",
+  "file": "REV-5.1-addendum/f1-typecheck-rerun.txt",
+  "command": "from REV-5.1-addendum/framework-two-arm/arm-vue: npx vue-tsc --build  \u00b7  from arm-svelte: npx svelte-check --tsconfig ./tsconfig.json",
+  "result": "vue-tsc exit 0; svelte-check 0 errors and 0 warnings, exit 0"
+ },
+ "partB": {
+  "claim": "week battery 11/11 both; facade 0 diagnostics; wrapper variant 0 diagnostics AND build-verified (falsification probe, erratum 0.7); 11 call-site migration; facade-vs-wrappers restated as a wash (erratum 0.9)",
+  "files": [
+   "football-sim-vue/src/stores/weekStore.ts",
+   "football-sim-svelte/src/lib/state/weekStore.svelte.ts",
+   "football-sim-svelte/src/lib/state/weekStore-wrappers.svelte.ts"
+  ]
+ },
+ "seasonBook": {
+  "claim": "43.8 KB gz, under the 400 KB falsifier",
+  "file": "season-book/SEASON-BOOK-2027.html"
+ },
+ "flipBench": {
+  "claim": "equal handicap of zero this sitting; adopt with sealed-recipe change \u2014 extended and run in Rev 8 (status OPEN: recipe shipped, bench owed)",
+  "file": "flip-bench/sealed-run-receipt.json",
+  "command": "node flip-bench/flip-bench-sealed.mjs football-sim-vue football-sim-svelte --recipe SEALED-RECIPE.md"
+ },
+ "receiptDiff": {
+  "claim": "26 leaf fields, 23 same across arms",
+  "file": "receipt-diff/diff-batteries.txt"
+ },
+ "staticAudit": {
+  "claim": "framework-owned lines (Rev 8 method, stated): Rev 8 tree 991 (vue) vs 1079 (svelte); Rev 6 baseline 878 vs 883 \u2014 the receipted 985 vs 880 was NOT reproducible (erratum 0.8). shared 623 identical; hex outside the token layer (tokens.css + shared/tokens.ts), framework-owned files, engine excluded: 0; .weight refs: 0",
+  "command": "cd football-sim-vue && find src -type f \\( -name '*.ts' -o -name '*.vue' -o -name '*.css' \\) ! -path '*engine*' ! -path '*shared*' | xargs wc -l | tail -1   (svelte mirror with '*.svelte' and lib/engine); hex: grep -rEo '#[0-9a-fA-F]{3,8}' src --include='*.css' --include='*.vue' --include='*.svelte' --include='*.ts' | grep -v tokens.css | grep -v engine",
+  "result": "991/1079 (878/883 on Rev 6 baseline); hex: 7 hits, all in shared/tokens.ts (the token layer's TS twin); .weight: 0"
+ },
+ "manifest": {
+  "claim": "root MANIFEST.txt regenerated over the FINAL Rev 9 tree; nested REV-5.1-addendum CHECKSUMS 360/360 OK exit 0 (cwd trap documented); addendum MANIFEST converted from prose to a 359-entry sha-list (the C2 gate now rejects prose manifests)",
+  "file": "MANIFEST.txt",
+  "command": "(from REV-5.1-addendum/) shasum -a 256 -c CHECKSUMS.txt \u00b7 node scripts/gate-manifest.mjs .",
+  "result": "360/360 OK exit 0; gate PASS (receipts/gate-c2-rev9-pass.txt)"
+ },
+ "e3": {
+  "claim": "interactive devtools session RAN in BOTH arms (state inspected, value changed, UI updated, 0 page errors); Rev 6 blocker root-caused (npm killed, vite child survived) and fixed with a process-group kill",
+  "interpretation": "countBeforeSort '0 of 32 starters' / ovrTopAfterSort '99' are identical across arms BY CONSTRUCTION and need this reading: cards-count renders the DRAFT BOARD's footer view-model (engine draftBoard.ts:63 \u2014 filled of 32 starters, filled = picks made in the draft state), so at boot with 0 picks it reads '0 of 32 starters' \u2014 a draft-state counter, not a cards count; '99' is the top row's OVR text after setSort('ovr') (the pool's top card, 99). Both arms consume the same engine VM, so identical values are the EXPECTED result; the session's evidence is that the QA hook drove a store change and the rendered top row changed to 99 (UI update), not that two frameworks independently computed equal numbers",
+  "files": [
+   "receipts/e3-devtools-vue.json",
+   "receipts/e3-devtools-svelte.json",
+   "receipts/e3-part-a-live-vue.json",
+   "receipts/e3-part-a-live-svelte.json"
+  ]
+ },
+ "notCompleted": {
+  "item": "the BLIND second-agent sealed bench",
+  "reason": "the author-run bench is DONE (Owner-authorized) and reported as ONE DATA POINT; the falsifier still needs a BLIND runner \u2014 the handoff is now turnkey (preflight, stall list, mechanical falsifier, the league-construction step)"
+ },
+ "partA": {
+  "claim": "P-333 ladder: 12 rows (LIVE + 4 cuts x 2 floors + FBTE2-derived + ability-only + LIVE+FBTE2), six axes each on the REAL 1,953-player pool; premises reproduced (gap 900/914.5, scale 98,932/854,227); NEGATIVE result for the derivation; FB->TE 6->2 quantified: gap 900->700 table / 914.5->720.1 measured, +2 flexed",
+  "file": "P333-CANDIDATE-LADDER.md",
+  "command": "node scripts/p333-validate.mjs (exit 0) && node scripts/p333-ladder.mjs (exit 0)",
+  "result": "harness validated exit 0 (own-base 600250; 4-3 roster loses 2700, 3-4 loses 1800, gap 900 table; measured 2773.0 - 1858.5 = 914.5; scale 98,932/854,227); ladder 12 rows exit 0"
+ },
+ "emergencyScale": {
+  "claim": "EMERGENCY 1e5 not strictly above the whole-lineup max 854,227 (single-spot 98,932) \u2014 FAIL exit 1 on the shipped tree; derived 1e6 (--fix) PASS exit 0; MANIFESTATION NOT REPRODUCED: 0 of 2,028 real-pool solves (premise correction)",
+  "file": "scripts/emergency-scale.mjs",
+  "command": "node scripts/emergency-scale.mjs (exit 1) / node scripts/emergency-scale.mjs --fix (exit 0)",
+  "result": "FAIL=1, FIX=0; receipts receipts/emergency-scale-{fail,fix}.txt; the fix ships as a \u00a75 patch proposal (PROPOSAL-PATCH-lineup-emergency.md)"
+ },
+ "partBRev9": {
+  "claim": "Variant L (live-w89 two-mode, the direction) + Variant D (labelled experiment): five files byte-identical across repos (cmp 5x exit 0); palette gate 0 hex outside the token layer both repos; 8 screenshots (430x780 + 1280x800, light+dark, both repos) with IDENTICAL vue/svelte hashes; Cinzel inline base64 53.9 KB; contrast table 36 cells, 14 AA failures flagged (dark --text 2.61-3.17 = w89's own live behavior)",
+  "files": [
+   "football-sim-vue/src/assets/tokens-w89.css",
+   "football-sim-vue/src/shared/tokens-w89.ts",
+   "football-sim-vue/src/assets/zpb-team-colors.json",
+   "CONTRAST-TABLE.md",
+   "receipts/screens-rev9/screens-sha256.json"
+  ],
+  "command": "node scripts/screenshots-rev9.mjs (exit 0); python3 contrast-table.py; cmp receipts receipts/cmp-variants-rev9.txt"
+ },
+ "partCRev9": {
+  "claim": "sealed bench RUN by the author (Owner-authorized, not blind \u2014 one data point): repairs vue 2 vs svelte 1 (ratio 0.5, mechanically CONFIRM band but author-run + one-slice = data point, not the falsifier), first-try greens 0 vs 0, batteries 24/24 both, sealed probes 12/12 both, sealed-run-receipt status CLOSED; stub smoke: mechanism VERIFIED exit 0 (honest stubs OPEN, lying stub FAIL, 2 ms); Pinia-vs-reactive delta: Pinia setup store 81 L vs reactive({...}) module 45 L, same contract 1/1 \u2014 part of the store delta is a PINIA artifact",
+  "files": [
+   "receipts/sealed-recipe-timing.txt",
+   "flip-bench/sealed-run-receipt.json",
+   "receipts/flip-bench-stub-run.txt",
+   "football-sim-vue/src/stores/weekStore-sealed.ts",
+   "football-sim-svelte/src/lib/state/weekStore-sealed.svelte.ts"
+  ],
+  "command": "node probes/probe-sealed-week.mjs vue (exit 0) / svelte (exit 0); node flip-bench/flip-bench-stub.mjs (exit 0)"
+ }
+}

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="./src/lib/assets/tokens-w89.css">
+<style>
+  .wrap { max-width: 720px; margin: 0 auto; padding: var(--sp-4); display: grid; gap: var(--sp-3); }
+  .row { display: flex; gap: var(--sp-2); align-items: baseline; flex-wrap: wrap; }
+  .btn { border: 1px solid var(--hairline); background: var(--panel2); color: var(--text);
+         border-radius: var(--r-sm); padding: var(--sp-1) var(--sp-3); font-family: var(--font-ui); }
+  .btn-gold { background: var(--goldm); color: var(--on-gold); border-color: var(--gold3); }
+  .zcream { color: var(--zcream); }
+  .card { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--r-md);
+          padding: var(--sp-3); }
+  .sub { color: var(--sub); }
+</style>
+</head>
+<body>
+  <div class="wrap" data-testid="app-shell">
+    <h1 class="champ" data-testid="week-label">WEEK 12</h1>
+    <div class="gold-rule"></div>
+    <div class="card">
+      <div class="row"><strong>J'MARR CHASE</strong> <span class="sub">WR · Cincinnati Bengals · 99 OVR</span></div>
+      <div class="row sub">The halfway ink rides the selection; the neutral cream never takes the team's tint.</div>
+      <div class="row"><span class="zcream zcream-demo">NEUTRAL WORDS STAY ZCREAM</span></div>
+      <div class="row">
+        <button class="btn">STEP BACK</button>
+        <button class="btn btn-gold">STEP FORWARD</button>
+        <span class="sub sub-demo">STANDINGS THROUGH WEEK 12</span>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

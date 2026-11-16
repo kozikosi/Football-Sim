@@ -1,0 +1,24 @@
+== OT-clock-fix-PENDING — the pin has NOT moved, the fix is NOT in (item 7i / item 12) ==
+Pin checked: d3bd81d (architect/engine-and-seats, "Architect: framework recommendation (Vue 3 + Vite, LOW confidence)"), vendored into both arms 2026-11-15. The defect is PRESENT at this pin.
+
+The defect (engine/sports/nfl/app/feed.ts l.59-60):
+  const clock = (secs: number): string => {
+    const q = Math.min(4, Math.max(1, Math.ceil(secs / 900))), left = 900 * q - secs;
+    return `Q${q} ${...}`;
+  };
+Overtime seconds clamp to Q4 — and the remainder goes NEGATIVE in OT (a real playoff OT game,
+season 2027 NY Jets @ Seattle Seahawks, renders its two OT drives as "Q4 00:00" and "Q4 -3:-4").
+
+The app layer already routes around it for drive lines (FeedPanel: `d.period >= 5 ? OT${d.period-4} : clock`),
+but gameFeed's OWN DriveEvent.clock claims Q4 — any consumer of the engine's feed output inherits it.
+
+Test: tests/ot-clock/ot-clock.test.mjs — asserts the DESIRED behaviour (OT clocks name overtime);
+EXPECTEDLY FAILS on this pin. Receipt: tests/receipts/ot-clock.txt (verbatim: "DEFECT CONFIRMED at
+pin d3bd81d2 ... 2/2 overtime drive(s) render a REGULATION clock"). Verify the fix at the next re-pin
+by rerunning the same test — a PASS clears this PENDING file. Owner of the fix: the Architect (engine
+is frozen; you are not inside colors/).
+
+REV 5.1 NOTE (Ernie F7b, verbatim receipt): the defect renders a NEGATIVE clock, not just the wrong
+period — tests/receipts/ot-clock.txt shows "p5:Q4 -3:-4". A fix that corrects the period label but
+leaves "-3:-4" has NOT fixed the defect: the Architect's fix must correct BOTH (the clamp at feed.ts
+l.59-60 AND the negative remainder).

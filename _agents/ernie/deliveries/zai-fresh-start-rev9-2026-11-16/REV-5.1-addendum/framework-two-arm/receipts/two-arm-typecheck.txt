@@ -1,0 +1,16 @@
+== two-arm type check ==
+run at: 2026-11-15T06:44:28Z
+-- arm-vue: npm run typecheck (vue-tsc --noEmit) --
+
+> twoarm-vue-feed@0.1.0-twoarm typecheck
+> vue-tsc --noEmit
+
+exit 0 — PASS
+-- arm-svelte: npm run typecheck (svelte-check --tsconfig ./tsconfig.json) --
+        </span>
+      </article>
+    {/each}
+
+====================================
+svelte-check found 0 errors and 1 warning in 1 file
+exit 0 — PASS

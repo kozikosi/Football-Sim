@@ -1,0 +1,257 @@
+{
+ "vue": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-vue/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "team.opensAtTeamSelect": true,
+   "team.realAlignment8Divisions": true,
+   "team.defaultHighlightIsFixtureTeam": "highlighted=Chicago Bears",
+   "team.pickBuffaloNavigatesToBoard": {
+    "countHasTeam": true,
+    "localStorageTeam": "0",
+    "rows": 60,
+    "count": "Buffalo Bills · Round 1 · pick 1 of 32 · 1 of 1024 overall"
+   },
+   "board.pickThroughRealReducer": {
+    "before": "Buffalo Bills · Round 1 · pick 1 of 32 · 1 of 1024 overall",
+    "mine": "YOUR PICKS (1)",
+    "after": "Buffalo Bills · Round 2 · pick 32 of 32 · 64 of 1024 overall",
+    "firstMineLine": "#1 · Josh Allen → QB"
+   },
+   "board.undoCutsBack": {
+    "mineAfterUndo": "YOUR PICKS (0)"
+   },
+   "board.sortByOvrPutsMaxFirst": {
+    "first10": [
+     99,
+     99,
+     99,
+     99,
+     99,
+     98,
+     98,
+     98,
+     98,
+     98
+    ],
+    "sorted": true,
+    "onButtons": 2
+   },
+   "board.zeroYardFigures": {
+    "noYards": true
+   },
+   "saves.threeSlotsEmptyFirst": {
+    "slots": 3,
+    "empty": 3
+   },
+   "saves.saveSlotA": {
+    "banner": "saved to slot A · rev 1 · 0 picks",
+    "cardHasDraft": true,
+    "card": "SLOT ADRAFT · rev 1 · 0 picks · Buffalo Billssaved 2026-11-15 11:55SAVELOAD"
+   },
+   "saves.pickThenSaveSlotB": {
+    "mine": "YOUR PICKS (1)",
+    "count": "Buffalo Bills · Round 2 · pick 32 of 32 · 64 of 1024 overall",
+    "rev": "64",
+    "picks": "63",
+    "envelopeOk": true
+   },
+   "saves.surviveReload": {
+    "aOk": true,
+    "bOk": true
+   },
+   "saves.loadRestoresThroughStore": {
+    "boardMine": "YOUR PICKS (0)",
+    "boardCountHasTeam": true,
+    "teamHighlighted": "Buffalo Bills"
+   },
+   "saves.corruptRefusedVerbatim": {
+    "cardRefused": "SLOT CREFUSED (corrupt): payload: bad seedSAVELOAD",
+    "loadBanner": "payload: bad seed",
+    "verbatim": true
+   },
+   "saves.newerVersionRefused": {
+    "cardRefused": "SLOT CREFUSED (newer-version): envelope: written by a newer build (schema 9)SAVELOAD",
+    "verbatim": true
+   },
+   "feed.rendersForChosenTeam": {
+    "vs": "BUF @ LV",
+    "lines": 20,
+    "me": 10,
+    "prov": "gameSeed 2700941729 · week 1 · Buffalo Bills @ Las Vegas Raiders · played by the pinned en",
+    "hasBUF": true
+   },
+   "feed.myDrivesFilter": {
+    "me": 10,
+    "shownAfterFilter": 10,
+    "match": true
+   },
+   "feed.newestFirstFlip": {
+    "firstPeriodNewest": "4"
+   }
+  },
+  "screenshots": [
+   "../shots/fourslice-vue-team-board.png",
+   "../shots/fourslice-vue-saves-loaded.png",
+   "../shots/fourslice-vue-saves-refused.png",
+   "../shots/fourslice-vue-feed.png",
+   "../shots/fourslice-vue-390.png"
+  ],
+  "scroll390": {
+   "TEAM": {
+    "sw": 390,
+    "iw": 390
+   },
+   "BOARD": {
+    "sw": 390,
+    "iw": 390
+   },
+   "SAVES": {
+    "sw": 390,
+    "iw": 390
+   },
+   "FEED": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  "keyboard": {
+   "firstFocus": {
+    "tag": "BUTTON",
+    "cls": "cp-feedtool cp-feedtool-on",
+    "text": "TEAM"
+   }
+  },
+  "errorCount": 0
+ },
+ "svelte": {
+  "url": "file:///home/z/my-project/download/zai-sitting-2026-11-15-authoring/framework-two-arm/arm-svelte/dist/index.html",
+  "blocked": 0,
+  "errors": [],
+  "steps": {
+   "team.opensAtTeamSelect": true,
+   "team.realAlignment8Divisions": true,
+   "team.defaultHighlightIsFixtureTeam": "highlighted=Chicago Bears",
+   "team.pickBuffaloNavigatesToBoard": {
+    "countHasTeam": true,
+    "localStorageTeam": "0",
+    "rows": 60,
+    "count": "Buffalo Bills · Round 1 · pick 1 of 32 · 1 of 1024 overall"
+   },
+   "board.pickThroughRealReducer": {
+    "before": "Buffalo Bills · Round 1 · pick 1 of 32 · 1 of 1024 overall",
+    "mine": "YOUR PICKS (1)",
+    "after": "Buffalo Bills · Round 2 · pick 32 of 32 · 64 of 1024 overall",
+    "firstMineLine": "#1 · Josh Allen → QB"
+   },
+   "board.undoCutsBack": {
+    "mineAfterUndo": "YOUR PICKS (0)"
+   },
+   "board.sortByOvrPutsMaxFirst": {
+    "first10": [
+     99,
+     99,
+     99,
+     99,
+     99,
+     98,
+     98,
+     98,
+     98,
+     98
+    ],
+    "sorted": true,
+    "onButtons": 2
+   },
+   "board.zeroYardFigures": {
+    "noYards": true
+   },
+   "saves.threeSlotsEmptyFirst": {
+    "slots": 3,
+    "empty": 3
+   },
+   "saves.saveSlotA": {
+    "banner": "saved to slot A · rev 1 · 0 picks",
+    "cardHasDraft": true,
+    "card": "SLOT A DRAFT · rev 1 · 0 picks · Buffalo Bills saved 2026-11-15 11:55 SAVE LOAD"
+   },
+   "saves.pickThenSaveSlotB": {
+    "mine": "YOUR PICKS (1)",
+    "count": "Buffalo Bills · Round 2 · pick 32 of 32 · 64 of 1024 overall",
+    "rev": "64",
+    "picks": "63",
+    "envelopeOk": true
+   },
+   "saves.surviveReload": {
+    "aOk": true,
+    "bOk": true
+   },
+   "saves.loadRestoresThroughStore": {
+    "boardMine": "YOUR PICKS (0)",
+    "boardCountHasTeam": true,
+    "teamHighlighted": "Buffalo Bills"
+   },
+   "saves.corruptRefusedVerbatim": {
+    "cardRefused": "SLOT C REFUSED (corrupt): payload: bad seed SAVE LOAD",
+    "loadBanner": "payload: bad seed",
+    "verbatim": true
+   },
+   "saves.newerVersionRefused": {
+    "cardRefused": "SLOT C REFUSED (newer-version): envelope: written by a newer build (schema 9) SAVE LOAD",
+    "verbatim": true
+   },
+   "feed.rendersForChosenTeam": {
+    "vs": "BUF @ LV",
+    "lines": 20,
+    "me": 10,
+    "prov": "gameSeed 2700941729 · week 1 · Buffalo Bills @ Las Vegas Raiders · played by the pinned en",
+    "hasBUF": true
+   },
+   "feed.myDrivesFilter": {
+    "me": 10,
+    "shownAfterFilter": 10,
+    "match": true
+   },
+   "feed.newestFirstFlip": {
+    "firstPeriodNewest": "4"
+   }
+  },
+  "screenshots": [
+   "../shots/fourslice-svelte-team-board.png",
+   "../shots/fourslice-svelte-saves-loaded.png",
+   "../shots/fourslice-svelte-saves-refused.png",
+   "../shots/fourslice-svelte-feed.png",
+   "../shots/fourslice-svelte-390.png"
+  ],
+  "scroll390": {
+   "TEAM": {
+    "sw": 390,
+    "iw": 390
+   },
+   "BOARD": {
+    "sw": 390,
+    "iw": 390
+   },
+   "SAVES": {
+    "sw": 390,
+    "iw": 390
+   },
+   "FEED": {
+    "sw": 390,
+    "iw": 390
+   }
+  },
+  "keyboard": {
+   "firstFocus": {
+    "tag": "BUTTON",
+    "cls": "cp-feedtool cp-feedtool-on",
+    "text": "TEAM"
+   }
+  },
+  "errorCount": 0
+ }
+}
+
+== FOUR-SLICE VERDICT ==
+ALL FOUR-SLICE LAWS PASS on both arms
