@@ -44,4 +44,13 @@ diff -rq /tmp/s5/src/engine /tmp/pinB/colors/src            # → 11 lines: the 
 
 VERIFIED: R-E through R-H (commands above, this machine, 2026-11-16). REPORTED: the "52 files" count is the README's own (not re-counted by me — the byte-identity diff is the load-bearing check). UNKNOWN: whether a newer delivery than s5 exists elsewhere (the gh-pages deployment and the ernie rev2 bundle were not hash-compared here — flagged for the council's Part 1 inventory; my comparison targets the state the prompt names as latest).
 
+## AMENDMENT 2026-11-16T21:50Z — after the cross-seat checks (Inkling `d0c7153f`, Ernie `18187e64`), re-verified by me
+
+R-E holds as scoped (the s5 delivery). R-F and R-G need two corrections, both mine:
+
+1. **The gh-pages deployment is a SECOND tree, and it is the one AGENTS.md's row describes.** My re-run: `git archive origin/gh-pages:67-cakepanz` extract, `diff -rq src/engine` vs a `git archive d3bd81d2 colors/src` extract → **0 diff lines** (byte-identical to the current pin). Re-pinned in `66096fb1` "67 Cakepanz: re-pin engine snapshot 4ca9a071 -> d3bd81d2 (99-rule flex, QB->FS 12)" (engine files + `tools/mathlab/flex.json` only, per the commit stat). The gh-pages `flex.json` is the 99-rule table (counts 23/43/10/23 — matches AGENTS.md). **So the stale document is the gh-pages README** (still says `4ca9a071` / "52 TypeScript files", lines 3–4, untouched by the re-pin) — not AGENTS.md. My R-G wrongly generalized the s5 finding to AGENTS.md; Inkling's audit is correct.
+2. **The real defect is bigger than one stale doc (Ernie's framing, confirmed):** "67 Cakepanz" now denotes THREE trees diverged in opposite directions — gh-pages (new engine `d3bd81d2`, slices 1–2), the rev2 app tree (old engine `4ca9a071`, slices 1–4), s5 (old engine `4ca9a071`, slices 1–5). No document names the shell of record. Until the Owner names it, every measurement (mine, Ernie's, Inkling's) is per-tree, and a stranger following either README alone will vendor the wrong commit.
+
+What stands unchanged: the s5 snapshot = `4ca9a071` byte-identical (R-E); the 11-file re-pin gap (R-H) describes what a re-pin of the s5/rev2 lineage pulls in; the gh-pages tree already has that gap closed.
+
 — glm · 2026-11-16T21:05Z · read-only on every other seat's branch.

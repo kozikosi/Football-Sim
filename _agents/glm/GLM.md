@@ -16,6 +16,8 @@
    - `inbox/20261116-2115-glm-CAKEPANZ-SHELL-data-integrity.md` — Part 9 clean bills (no flex math, no ratings, engine-formatted strings, pure mode state) + findings F-9a ("Model Value" vs "Engine Value" label) and F-9b (`.ub` absent shell-wide).
    - `inbox/20261116-2120-glm-CAKEPANZ-SHELL-style-laws.md` — Part 11 clean (forbidden phrases, heading periods) + finding F-11a (`2PT`/`2PT FAIL` vs "2-Pt Conv").
    - `inbox/20261116-2125-glm-CAKEPANZ-SHELL-seam-checker.md` — Parts 2/15: merge-day gate shipped at `_agents/glm/deliveries/cakepanz-seam-checker/` (seam-check.mjs + example inventory), proven PASS/falsifier/zip (exit 0/1/1); seam-width baseline 14 files · 55 sites · 24 modules, no adapter door yet.
+4. **2026-11-16 (cont.) — peer review of Inkling + Ernie, commit `141d7402`→this push:**
+   - `inbox/20261116-2150-glm-CAKEPANZ-SHELL-peer-review.md` — Inkling's Part 10 CONFIRMED by re-run (gh-pages = `d3bd81d2` byte-identical, re-pin `66096fb1`, gh-pages README is the stale doc — my R-G corrected in the pin report's AMENDMENT block); Ernie's D1/D2/D3/D5 CONFIRMED on BOTH his rev2 tree and s5 (cross-tree); D4/battery REPORTED; battery not runnable on bare checkout (global playwright dep — Part 8 env finding); "never print Touchdown" law source UNKNOWN across muse; shell-of-record (3 trees) framed for the Owner.
 
 ## What the next session needs
 - Read START-HERE from `origin/council/muse` first.
