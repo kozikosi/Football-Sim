@@ -1,0 +1,34 @@
+SPEAKER: inkling | TASK: Engine test round — C. Review the retired-table asserts in colors/test/nfl/formation-gap.test.ts (report only; do not change) | DATE: 2026-11-16T02:45Z
+FOR: P-342
+REVIEW-OF: colors/test/nfl/formation-gap.test.ts @ 86f22d10 (architect/engine-and-seats; identical in 6dcf13b2 for this file — VERIFIED: `git diff --stat 6dcf13b2 86f22d10 -- colors/` empty)
+VERDICT: ok — keep the retired-table asserts; one comment tightening recommended; the MEASURED-section separation is correct as written. The Owner decides whether the file keeps any number-pins at all; my recommendation below is "keep, with tightening", not "delete".
+
+## What the file actually asserts (line refs @ 86f22d10)
+1. L27 — `600250 at 70 OVR` for a roster built for its own base, both DL5 choices, both bases (8 cells), under `tableValues()`.
+2. L30 — DL5 = DT: 4-3 roster loses 2700 in 3-4; 3-4 roster loses 1800 in 4-3; gap 900.
+3. L35 — DL5 = EDGE: both lose 1800; gap 0.
+4. L40 — the 3-4 roster always pays a single stand-in (`DL5<-ILB@12`), both DL5 choices — and note this test does NOT pass a provider; it silently runs under `DEFAULT_VALUES` (MEASURED) while its neighbors pin the retired table. L41's helper default is `tableValues()`; the `flexed()` closure calls `lineupFor(...)` without a values argument, so it spends the default.
+5. L49 — MEASURED section: own-base rosters agree to < 32 units; mismatched rosters lose value; all numbers t.diagnostic REPORTed, never asserted. L42/L43 assert the DL5←ILB@12 placement under MEASURED.
+6. L14–16 (header comment) — the file itself says: the 600250/2700/1800 values are "arithmetic on the RETIRED fitted table, so those tests run under tableValues(): they prove the solver logic is untouched by the seam. The MEASURED provider gets its own test that asserts structure and REPORTS the numbers". And L12: "A flex change (Option B, a derived table) moves them on purpose: re-pin them in the same commit."
+
+Receipts I ran this session (fresh, not remembered):
+- `node --test --experimental-strip-types test/nfl/formation-gap.test.ts` → all 5 tests ✔; `ℹ pass 5`, `ℹ fail 0`. REPORT lines printed: own-base `603998.6` (MEASURED, report only); DL5=DT `2773.0 / 1858.5 / gap 914.5`; DL5=EDGE `1863.8 / 1858.5 / gap 5.3`. VERIFIED.
+- Retired-table arithmetic: `600250 / 70 = 8575`, and `8575` is exactly the sum of the 32 `SLOTS[].weight` values (verified by summing the literal: 8575). So the own-base cell is a PURE SUM — no flex, no solver judgement; it cannot be anything else when the solver behaves. VERIFIED.
+- The 4-3→3-4 loss of 2700 = 70 × 0 (spot-value difference: the same position carries the same weight in both bases, Owner 2 Nov) + flex cost (three flexed placements at −6 each, priced on the retired table) — i.e., the 2700 is flex cost only, on a frozen table. Same decomposition as the MEASURED 2773.0387 (item G filing: gap 2773.0387, flex cost 2773.0387, spot-value difference 0). VERIFIED (the arithmetic for the table case; the measured numbers re-verified in item G).
+
+## Are these asserts "arithmetic on a frozen retired table" or "a number-pin on the gap"?
+Mechanism decides it: a number-pin is an assertion whose truth depends on a MEASURED quantity that drifts with the model (e.g., asserting `gap === 2773.0387`). These are not that. They assert equalities that hold for ANY instance of the frozen retired table plus a correct solver — they are a tripwire on (a) the contents of the retired table file (it cannot change silently) and (b) the solver's placement/accounting path (a flex price not charged, a mis-ordered hungarian, an emergency fallback misapplied move them). The file itself documents that a deliberate flex/spec change moves them and instructs re-pinning in the same commit. That is how a regression net on a frozen reference SHOULD behave.
+Caveats, honestly stated:
+- They cannot distinguish "solver broke" from "someone deliberately changed the retired table" — a failure there needs a human to read the diff, not an automatic re-pin. Acceptable; standard for reference-table tests.
+- They are NOT evidence about real football formations and NOT evidence about the MEASURED gap; the MEASURED gap already has its own gate (the accounting identity in lineup.test.ts, de-gated 15 Nov) and its own REPORT line here. The Owner's "nothing is pinned to 2773.04" ruling is fully honoured by this file as written: no MEASURED number is pinned anywhere in it.
+- One inconsistency to name: test 4 above spends DEFAULT_VALUES (MEASURED) without saying so, while the header says the exact numbers below are table-arithmetic. The `DL5<-ILB@12` assert is a STRUCTURE pin (which stand-in, at which price) under a provider that is legitimately re-measurable; if the measured curve ever moves an "obvious" ILB placement to a tie the wrong way, this cell flicks for a legitimate reason and reads like a table regression. Low risk today (deterministic tie order; the penalty comes from the flex table, not the provider), but the file should say which provider that test spends.
+- Line 12 says "at a722681" for the 99-rule flex table — a stale commit hash reference (the table has since been re-pinned/landed; AGENTS.md records the 99-rule table as landed at 97d7e9d / pin d3bd81d2). Comment-only; flagging, not editing (report only).
+
+## Recommendation
+KEEP the retired-table asserts exactly as they are (600250/2700/1800/900 and the gap-0 EDGE cell), for two reasons: (i) they are the only fast, deterministic end-to-end check of the solver path that needs no measurement pass — they run in milliseconds with no matchup model involved; (ii) the MEASURED section already carries the "numbers emerge, structure gates" doctrine, so the two philosophies are separated inside the file and the Owner's 2773 ruling is untouched. Dropping them would trade a real change-detector for nothing.
+Two optional tightenings (comment-only, Owner's call): (a) one line in test 4's comment naming DEFAULT_VALUES as its provider; (b) refresh or delete the stale `a722681` reference at L12. If the Owner instead rules that NO number-pins survive in the reference suite, the consistent action is to re-pin 600250/2700/1800/900 on the next deliberate flex/spec change — not to scatter-report them, because then the tripwire is lost and a silent solver regression ships green. That is the cost the Owner should weigh; I do not make that call.
+
+## What I did not do
+No file changed (per the brief). No MEASURED number endorsed as "the" gap. No claim that the retired-table numbers describe reality — they describe the frozen reference artifact.
+
+Evidence: VERIFIED (test run, sums, file reads this session). The claim that both philosophies are separated in-file is VERIFIED (L14–16, L46–58). The claim about tie determinism under MEASURED is INFERRED (not stress-tested against a re-measured provider; the assert passed in my run).
