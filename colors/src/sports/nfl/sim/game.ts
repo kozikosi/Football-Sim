@@ -1,7 +1,7 @@
 // 1c: one whole game on the real pools pack, as an event log. Neutral teams (lambda = 0): every node is the pack's own distribution.
 // This is the Python lab's simulator (tools/mathlab/phase1/sim.py) ported node for node, with one change in the plumbing: every random choice is a
 // KEYED draw, a pure function of (game key, index of the event being made, tag). No stream, no hidden state: one play replays alone, and a
-// counterfactual shares its randomness with the original wherever (event, tag) match. Tags: toss, kick, call, rec, clock, go2, make, ottoss.
+// counterfactual shares its randomness with the original wherever (event, tag) match. Tags: toss, kick, call, passClass (GLM pass node only), rec, clock, go2, make, ottoss.
 // The lab's own quirks are kept on purpose so the port is checkable against it (kneel and spike are crude, overtime is crude, a hole in a table falls to the
 // largest pool and is COUNTED, not hidden). The product-world switches (computed transitions, penalty-removed clock) are pack rules, not code.
 // Pure: no clock, no ambient randomness, no Math.exp/log/pow.
@@ -12,6 +12,9 @@ import type { GameEvent } from '../../../core/events.ts';
 import { at } from '../../../core/at.ts';
 import { CALL, OC, callKeys, recKeys, clockLateKeys, clockNonKeys, pick, sample, tmb } from './pools.ts';
 import type { Pools } from './pools.ts';
+import { passClassProbs, passFeatures, pickClass, pickClassTuple } from './passclass.ts';
+import type { PassClass } from './passclass.ts';
+import { tilt } from './drive.ts';
 
 export type DriveResult = 'td' | 'fg' | 'fgmiss' | 'punt' | 'to' | 'downs' | 'safety' | 'deftd' | 'clock';
 export interface KickoffP { kicker: string; receiver: string; poss: string; ydl: number; dt: number }
@@ -32,9 +35,11 @@ const nm = (k: number): string => at(TEAMS, k);
 type Ended = Exclude<DriveResult, 'clock'>;
 interface Step { ended: Ended | null; ndy: number; nds: boolean }
 
-export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean } = {}): GameOut {
+// opts.passClass: the pass-class GLM node (2a). Absent = the pools' own record node, bit for bit as before. With it, a pass play draws its CLASS from the GLM (tag 'passClass', after the
+// optional tilt by lambda * theta * opts.passGap) and then its outcome tuple from the pool restricted to that class (tag 'rec', the same tag as before).
+export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean; readonly passClass?: PassClass; readonly passGap?: number } = {}): GameOut {
   const lb = logBuilder<GameEv>();
-  const holes = [0, 0, 0, 0, 0];                       // lookups that fell to the largest pool: call, record, clock-late, clock-non, spare
+  const holes = [0, 0, 0, 0, 0];                       // lookups that fell to the largest pool: call, record, clock-late, clock-non, pass-class tuple
   const B = P.bins, T = P.tuples;
   const pts = [0, 0];
   let t = 0, drive = 0;                                // t = game seconds elapsed
@@ -71,7 +76,13 @@ export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean } 
     const cpool = pick(P.call, callKeys(B, down, ytg, ydl, ot ? 0 : sd, ot ? 2 : qtr, ot ? 600 : hs), P.minPool, holes, 0);
     let call = sample(cpool, draw(key, i, 'call'));
     if (ot && (call === CALL.kneel || call === CALL.spike)) call = CALL.pass;
-    const j = sample(pick(P.rec, recKeys(B, call, down, ytg, ydl), P.minPool, holes, 1), draw(key, i, 'rec'));
+    let j: number;
+    if (call === CALL.pass && opts.passClass !== undefined) {
+      const pc = opts.passClass;
+      const p = tilt(passClassProbs(pc, passFeatures(down, ytg, ydl, ot ? 0 : sd, ot ? 2 : qtr, ot ? 600 : hs)), pc.theta, pc.lambda, opts.passGap ?? 0);
+      const cls = pickClass(p, draw(key, i, 'passClass'));
+      j = sample(pickClassTuple(P.rec, recKeys(B, call, down, ytg, ydl), P, cls, pc.minClassPool, holes, 4), draw(key, i, 'rec'));
+    } else j = sample(pick(P.rec, recKeys(B, call, down, ytg, ydl), P.minPool, holes, 1), draw(key, i, 'rec'));
     const oc = at(T.oc, j);
     let y = at(T.yards, j);
     const cu = draw(key, i, 'clock');
