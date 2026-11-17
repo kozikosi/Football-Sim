@@ -1,0 +1,84 @@
+pools nfl-pools-fit2023-2025 + passclass nfl-passclass-fit2023-2025: 120000 paired games, buckets down(4) x dist(7) x ydlC(5) = 140, class-pool holes 0
+overall pass snaps: pool 8206539  glm 8176773  (att/game 34.194 vs 34.070)
+overall realized rates  pool c/i/sk/in 60.23/30.73/7.05/2.00   glm 60.12/30.88/7.01/1.99
+overall implied rates   pool 60.16/30.87/6.99/1.98   glm 60.13/30.87/7.00/1.99
+(B) model-implied minus realized, all buckets pooled:  pool states sack -0.0536pp (SE 0.0089, z -6.0)   glm states sack -0.0041pp (SE 0.0089, z -0.5)
+
+== by down ==
+down 1     n 2952k/2930k  sack pool 5.35 glm 5.36 diff 0.009pp z(A) -1.6  imp pool 5.37 glm 5.37  (B) 0.013pp z(B) 1.0
+down 2     n 2812k/2801k  sack pool 6.09 glm 6.03 diff -0.053pp z(A) -3.7  imp pool 6.01 glm 6.02  (B) -0.074pp z(B) -5.2
+down 3     n 2249k/2237k  sack pool 10.38 glm 10.35 diff -0.033pp z(A) -3.0  imp pool 10.32 glm 10.34  (B) -0.064pp z(B) -3.1
+down 4     n 194k/209k  sack pool 8.01 glm 7.39 diff -0.613pp z(A) -0.5  imp pool 7.35 glm 7.44  (B) -0.657pp z(B) -10.7
+
+== by dist bin (yards to go) ==
+ytg 1-2    n 211k/212k  sack pool 6.42 glm 5.48 diff -0.936pp z(A) -12.2  imp pool 5.52 glm 5.50  (B) -0.905pp z(B) -17.0
+ytg 3      n 255k/257k  sack pool 7.01 glm 7.04 diff 0.023pp z(A) 1.1  imp pool 6.95 glm 6.93  (B) -0.061pp z(B) -1.2
+ytg 4-5    n 748k/745k  sack pool 7.90 glm 8.01 diff 0.101pp z(A) 1.5  imp pool 8.05 glm 8.05  (B) 0.141pp z(B) 4.5
+ytg 6-8    n 1424k/1419k  sack pool 8.17 glm 8.21 diff 0.034pp z(A) 0.1  imp pool 8.19 glm 8.20  (B) 0.015pp z(B) 0.7
+ytg 9-11   n 4709k/4693k  sack pool 6.38 glm 6.34 diff -0.043pp z(A) -3.9  imp pool 6.33 glm 6.35  (B) -0.057pp z(B) -5.1
+ytg 12-16  n 595k/592k  sack pool 8.95 glm 8.32 diff -0.631pp z(A) -12.5  imp pool 8.27 glm 8.27  (B) -0.688pp z(B) -18.7
+ytg 17-99  n 265k/259k  sack pool 6.54 glm 7.86 diff 1.316pp z(A) 15.5  imp pool 7.73 glm 7.77  (B) 1.193pp z(B) 24.8
+
+== by ydlC bin (field position, yards to goal) ==
+ydl 1-6    n 221k/220k  sack pool 6.68 glm 6.22 diff -0.455pp z(A) -6.7  imp pool 6.27 glm 6.23  (B) -0.404pp z(B) -7.7
+ydl 7-21   n 905k/899k  sack pool 6.81 glm 6.60 diff -0.205pp z(A) -6.5  imp pool 6.61 glm 6.59  (B) -0.201pp z(B) -7.6
+ydl 22-51  n 2647k/2639k  sack pool 6.78 glm 6.85 diff 0.067pp z(A) 2.1  imp pool 6.86 glm 6.86  (B) 0.073pp z(B) 4.7
+ydl 52-81  n 3885k/3875k  sack pool 7.42 glm 7.32 diff -0.104pp z(A) -6.4  imp pool 7.28 glm 7.31  (B) -0.144pp z(B) -10.9
+ydl 82-99  n 548k/544k  sack pool 6.15 glm 6.53 diff 0.374pp z(A) 6.8  imp pool 6.51 glm 6.53  (B) 0.361pp z(B) 11.2
+
+== (A) paired per-bucket sack diffs with |z| >= 2 (n >= 3000) ==
+d1 ytg 9-11  ydl 7-21   n 242.7k  pool 4.36 glm 4.79  diff 0.432pp  z 6.4  (B) 0.573pp z(B) 13.8
+d1 ytg 9-11  ydl 22-51  n 934.5k  pool 5.62 glm 5.27  diff -0.349pp  z -11.2  (B) -0.362pp z(B) -15.2
+d1 ytg 9-11  ydl 52-81  n 1509.7k  pool 5.52 glm 5.64  diff 0.119pp  z 2.8  (B) 0.105pp z(B) 5.6
+d1 ytg 9-11  ydl 82-99  n 192.2k  pool 4.14 glm 4.81  diff 0.665pp  z 9.2  (B) 0.719pp z(B) 15.8
+d2 ytg 1-2   ydl 52-81  n 30.5k  pool 6.50 glm 4.83  diff -1.678pp  z -9.4  (B) -1.700pp z(B) -12.0
+d2 ytg 3     ydl 22-51  n 23.7k  pool 8.11 glm 5.34  diff -2.770pp  z -11.9  (B) -2.849pp z(B) -16.1
+d2 ytg 3     ydl 52-81  n 26.4k  pool 7.15 glm 5.58  diff -1.572pp  z -7.4  (B) -1.564pp z(B) -9.9
+d2 ytg 4-5   ydl 22-51  n 83.0k  pool 7.06 glm 5.93  diff -1.130pp  z -9.3  (B) -1.214pp z(B) -13.7
+d2 ytg 4-5   ydl 52-81  n 109.7k  pool 6.95 glm 6.10  diff -0.851pp  z -8.5  (B) -0.731pp z(B) -9.5
+d2 ytg 6-8   ydl 7-21   n 109.9k  pool 4.97 glm 5.69  diff 0.722pp  z 6.7  (B) 0.684pp z(B) 10.4
+d2 ytg 6-8   ydl 22-51  n 220.9k  pool 5.44 glm 6.05  diff 0.606pp  z 8.1  (B) 0.608pp z(B) 12.6
+d2 ytg 6-8   ydl 52-81  n 328.3k  pool 5.98 glm 6.49  diff 0.513pp  z 7.7  (B) 0.506pp z(B) 12.2
+d2 ytg 9-11  ydl 7-21   n 145.3k  pool 7.02 glm 5.77  diff -1.253pp  z -13.1  (B) -1.340pp z(B) -20.0
+d2 ytg 9-11  ydl 22-51  n 399.2k  pool 6.59 glm 6.06  diff -0.530pp  z -10.1  (B) -0.514pp z(B) -13.1
+d2 ytg 9-11  ydl 52-81  n 605.4k  pool 6.23 glm 6.54  diff 0.301pp  z 6.5  (B) 0.287pp z(B) 9.2
+d2 ytg 9-11  ydl 82-99  n 88.3k  pool 4.58 glm 5.46  diff 0.880pp  z 8.4  (B) 0.827pp z(B) 11.8
+d2 ytg 12-16 ydl 7-21   n 31.0k  pool 6.74 glm 5.38  diff -1.358pp  z -7.7  (B) -1.354pp z(B) -9.5
+d2 ytg 12-16 ydl 52-81  n 140.7k  pool 6.44 glm 6.24  diff -0.200pp  z -2.0  (B) -0.324pp z(B) -4.9
+d2 ytg 17-99 ydl 22-51  n 37.5k  pool 6.46 glm 5.20  diff -1.255pp  z -7.9  (B) -1.477pp z(B) -11.6
+d3 ytg 1-2   ydl 52-81  n 37.0k  pool 6.35 glm 6.85  diff 0.498pp  z 2.3  (B) 0.634pp z(B) 5.0
+d3 ytg 3     ydl 22-51  n 39.4k  pool 5.79 glm 8.11  diff 2.316pp  z 12.4  (B) 2.317pp z(B) 19.7
+d3 ytg 3     ydl 52-81  n 60.3k  pool 8.29 glm 8.73  diff 0.437pp  z 2.3  (B) 0.335pp z(B) 3.0
+d3 ytg 4-5   ydl 1-6    n 34.6k  pool 11.86 glm 9.05  diff -2.818pp  z -12.8  (B) -2.823pp z(B) -16.2
+d3 ytg 4-5   ydl 7-21   n 51.3k  pool 7.14 glm 8.78  diff 1.637pp  z 9.3  (B) 1.608pp z(B) 14.1
+d3 ytg 4-5   ydl 22-51  n 118.5k  pool 8.44 glm 9.29  diff 0.848pp  z 6.5  (B) 1.004pp z(B) 12.4
+d3 ytg 6-8   ydl 1-6    n 15.4k  pool 13.60 glm 10.28  diff -3.317pp  z -10.8  (B) -3.803pp z(B) -13.8
+d3 ytg 6-8   ydl 7-21   n 96.7k  pool 9.30 glm 9.72  diff 0.423pp  z 3.6  (B) 0.363pp z(B) 3.9
+d3 ytg 6-8   ydl 22-51  n 207.5k  pool 9.55 glm 10.44  diff 0.888pp  z 6.8  (B) 0.892pp z(B) 13.8
+d3 ytg 6-8   ydl 52-81  n 281.9k  pool 12.62 glm 11.20  diff -1.421pp  z -14.0  (B) -1.400pp z(B) -22.4
+d3 ytg 6-8   ydl 82-99  n 34.8k  pool 11.14 glm 10.16  diff -0.982pp  z -4.5  (B) -0.936pp z(B) -5.5
+d3 ytg 9-11  ydl 7-21   n 78.7k  pool 11.43 glm 10.11  diff -1.319pp  z -8.2  (B) -1.290pp z(B) -11.4
+d3 ytg 9-11  ydl 22-51  n 182.8k  pool 9.65 glm 10.83  diff 1.184pp  z 12.6  (B) 1.312pp z(B) 19.0
+d3 ytg 9-11  ydl 52-81  n 269.2k  pool 13.03 glm 11.96  diff -1.068pp  z -11.4  (B) -1.229pp z(B) -18.9
+d3 ytg 12-16 ydl 7-21   n 28.3k  pool 11.04 glm 9.87  diff -1.164pp  z -5.8  (B) -0.965pp z(B) -5.2
+d3 ytg 12-16 ydl 22-51  n 89.8k  pool 10.47 glm 10.79  diff 0.320pp  z 3.1  (B) 0.289pp z(B) 2.8
+d3 ytg 12-16 ydl 52-81  n 128.5k  pool 13.48 glm 11.69  diff -1.790pp  z -14.2  (B) -1.867pp z(B) -19.6
+d3 ytg 12-16 ydl 82-99  n 29.8k  pool 12.31 glm 10.34  diff -1.969pp  z -9.0  (B) -2.036pp z(B) -10.7
+d3 ytg 17-99 ydl 22-51  n 43.9k  pool 6.00 glm 10.03  diff 4.035pp  z 17.6  (B) 3.837pp z(B) 33.8
+d3 ytg 17-99 ydl 52-81  n 64.1k  pool 8.37 glm 10.71  diff 2.345pp  z 12.8  (B) 2.269pp z(B) 20.7
+d3 ytg 17-99 ydl 82-99  n 21.1k  pool 8.57 glm 9.76  diff 1.182pp  z 4.4  (B) 0.875pp z(B) 4.5
+d4 ytg 4-5   ydl 22-51  n 30.8k  pool 6.56 glm 7.20  diff 0.641pp  z 5.0  (B) 0.967pp z(B) 6.9
+d4 ytg 6-8   ydl 22-51  n 19.9k  pool 9.48 glm 8.26  diff -1.222pp  z -3.3  (B) -1.054pp z(B) -5.1
+
+== top 8 buckets by |z(B)| on pool states (sack; n >= 3000) ==
+d3 ytg 17-99 ydl 22-51  n 43.9k  pool 6.00 glm 10.03  (B) sack 3.837pp z 33.8  comp -7.907pp z -34.6
+d3 ytg 17-99 ydl 7-21   n 5.3k  pool 2.56 glm 10.37  (B) sack 7.068pp z 32.4  comp -2.921pp z -4.3
+d3 ytg 4-5   ydl 82-99  n 20.1k  pool 5.18 glm 9.97  (B) sack 4.468pp z 28.4  comp -4.467pp z -13.0
+d3 ytg 3     ydl 1-6    n 13.6k  pool 3.52 glm 7.86  (B) sack 4.264pp z 27.0  comp 2.921pp z 6.9
+d3 ytg 6-8   ydl 52-81  n 281.9k  pool 12.62 glm 11.20  (B) sack -1.400pp z -22.4  comp 2.171pp z 23.0
+d2 ytg 4-5   ydl 7-21   n 23.3k  pool 3.03 glm 5.29  (B) sack 2.424pp z 21.6  comp 1.969pp z 6.0
+d3 ytg 17-99 ydl 52-81  n 64.1k  pool 8.37 glm 10.71  (B) sack 2.269pp z 20.7  comp -9.500pp z -51.2
+d2 ytg 9-11  ydl 7-21   n 145.3k  pool 7.02 glm 5.77  (B) sack -1.340pp z -20.0  comp 1.567pp z 12.0
+
+== sampler check: GLM realized vs model-implied on GLM states (should be ~0; realized class IS the drawn class when holes 0) ==
+sack -0.0041pp (SE 0.0089, z -0.5)   comp 0.0121pp (SE 0.0170, z 0.7)

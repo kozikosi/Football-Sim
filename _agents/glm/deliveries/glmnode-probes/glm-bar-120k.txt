@@ -1,0 +1,13 @@
+pools nfl-pools-fit2023-2025 + passclass nfl-passclass-fit2023-2025: 120000 paired games (per team-game means), class-pool holes 0
+metric        pools     GLM    diff   diff%   SE(diff)  z
+points        23.296  23.340   0.043    0.19    0.024   1.8
+drives        11.042  10.926  -0.116   -1.05    0.006 -19.9
+plays         75.045  74.910  -0.135   -0.18    0.017  -8.0
+off_plays     61.057  60.882  -0.176   -0.29    0.013 -13.5
+pass_att      34.229  34.078  -0.151   -0.44    0.014 -11.1
+rush_att      26.583  26.560  -0.023   -0.09    0.009  -2.5
+completions   20.610  20.493  -0.117   -0.57    0.010 -12.2
+yards        328.826 327.496  -1.330   -0.40    0.177  -7.5
+sacks          2.411   2.385  -0.026   -1.07    0.004  -5.9
+giveaways      1.107   1.097  -0.011   -0.97    0.003  -3.6
+top_dt      1790.5571789.447  -1.110   -0.06    0.210  -5.3

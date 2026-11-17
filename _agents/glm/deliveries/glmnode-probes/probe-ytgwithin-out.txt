@@ -1,0 +1,13 @@
+pool-node pass snaps in d3/ytg>=17/ydl22-51, 20000 games (ytg capped at 60):
+ytg     n     realized%  implied%
+ 17   1261     5.87    10.18
+ 18   1109     4.96    10.06
+ 19    760     4.34     9.97
+ 20    793     4.79     9.71
+ 21    424     6.60     9.43
+ 22    374     6.15     9.27
+ 23    314     6.69     9.01
+ 24    245     5.31     8.85
+ 25    143     4.20     8.69
+ 26    127     5.51     8.55
+total n 5847, realized 5.44%, implied 9.64%, share of snaps with ytg>=23: 19.3%
