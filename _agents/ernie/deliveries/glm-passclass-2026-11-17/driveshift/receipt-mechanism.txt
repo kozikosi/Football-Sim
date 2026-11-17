@@ -1,0 +1,43 @@
+mechanism pass | architect tip 65673a00 | node v26.13.0 | 12000 paired games
+
+per game                              pools       glm      diff
+drives                                22.076    21.841    -0.236
+drives that reach 3rd+4th down        12.693    12.480    -0.213
+drives with >=1 sack                   4.472     4.392    -0.080
+sacks per game                         4.837     4.754    -0.083
+drives ending "downs"                  2.049     1.764    -0.285
+
+sacks by down (count, all plays)
+1st        15879     15585      -294
+2nd        17157     16734      -423
+3rd        23492     23223      -269
+4th         1520      1506       -14
+5th            0         0         0
+
+pass / run attempts by down (all plays)
+1st    pass   294764   293384 | run   343473   342615
+2nd    pass   281651   280345 | run   206026   206035
+3rd    pass   225175   223573 | run    74303    74315
+4th    pass    19191    20886 | run    13496    14043
+5th    pass        0        0 | run        0        0
+
+4th down: what happens there
+4th-down snaps per game               13.617    13.826     0.210
+  4th-down calls  pass               11.745%   12.588%
+  4th-down calls  run                 8.259%    8.464%
+  4th-down calls  punt               51.735%   50.583%
+  4th-down calls  fg                 28.207%   28.325%
+  went for it (pass|run) per game      2.724     2.911     0.187
+  convert | went (ydl reached/TD)    55.732%   54.539%
+  FAIL  | went  = "downs"           44.268%   45.461%
+  downs-ending drives per game         2.049     1.764
+
+for drives that END in "downs": sacks in the drive
+  downs drives with >=1 sack         23.166%   23.872%
+  mean sacks in a downs drive         0.2477    0.2552
+
+chain
+  Δdowns per game                   -0.2848
+  Δsacks per game                   -0.0833
+  ratio (sacks per downs-drive lost) 3.417
+  mean sacks in a pools downs drive  0.2477

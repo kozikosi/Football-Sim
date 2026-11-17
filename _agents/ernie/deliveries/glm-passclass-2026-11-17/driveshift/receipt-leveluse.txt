@@ -1,0 +1,5 @@
+4th-down pass plays, which pool level each node uses | 65673a00 | 12000 games
+pools node (minPool 25 any class)  L0 share 65.51%  levels {"0":13683,"1":6879,"2":324}
+GLM   node (minClassPool 25 per class) L0 share 8.06%  levels {"0":6736,"1":50007,"2":22259,"3":4542}
+
+this is the asymmetry: on 4th down a cell clears minPool on total plays but not minClassPool on a single class.

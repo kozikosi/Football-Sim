@@ -1,0 +1,12 @@
+every 4th-down pass play, and whether the drive ended on it | 65673a00 | 12000 games
+4th-down pass plays/game   pools 1.5993  glm 1.7405
+...that ended the drive    pools 0.5842  glm 0.2757
+
+oclass : drive-result          pools%    glm%     n_pools  n_glm
+  comp:continue      49.26%    50.28%     9453    10501
+  comp:downs          4.14%     2.08%      795      434
+  inc:continue       11.20%    27.54%     2150     5751
+  inc:downs          24.12%     8.83%     4629     1844
+  int:to              3.09%     3.66%      593      764
+  sack:continue       2.80%     6.07%      538     1268
+  sack:downs          4.62%     0.82%      887      172

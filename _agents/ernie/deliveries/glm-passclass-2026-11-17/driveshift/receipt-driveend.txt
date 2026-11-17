@@ -1,0 +1,37 @@
+drive-ending mix test  |  architect tip 65673a00  |  node v26.13.0
+paired keys "glm-bar:0..11999"  (12000 games, 2 nodes)
+
+metric                    pools       glm      diff     diff%
+drives                   22.076     21.841    -0.236    -1.07%
+offensive snaps          121.507     121.266    -0.240    -0.20%
+snaps per drive          5.5039    5.5523   0.0484
+sacks                    4.837     4.754    -0.083    -1.72%
+points                   46.500     46.781    0.281
+
+drive-ending result mix (share of all drives that end that way)
+result        pools      glm     diff(pp)   n_pools   n_glm
+td            22.429%   22.803%     0.375      59417    59765
+fg            15.845%   16.256%     0.411      41977    42605
+fgmiss         2.679%    2.798%     0.119       7097     7333
+punt          31.722%   31.828%     0.106      84038    83418
+to             9.219%    9.359%     0.139      24424    24528
+downs          9.281%    8.078%    -1.204      24588    21171
+safety         0.250%    0.258%     0.008        663      676
+deftd          0.949%    0.919%    -0.029       2513     2409
+clock          7.625%    7.701%     0.076      20200    20184
+
+per-snap drive-ending hazard by result (ends per 1000 offensive snaps)
+result        pools     glm      diff
+td             40.7502   41.0701    0.3199
+fg             28.7892   29.2778    0.4886
+fgmiss          4.8674    5.0392    0.1718
+punt           57.6361   57.3242   -0.3119
+to             16.7508   16.8555    0.1047
+downs          16.8633   14.5486   -2.3147
+safety          0.4547    0.4645    0.0098
+deftd           1.7235    1.6554   -0.0681
+clock          13.8538   13.8703    0.0165
+TOTAL hazard  181.6891  180.1056   -1.5834
+
+counterfactual drives if GLM used the POOLS hazard: 22.033  (glm actual 21.841 , pools 22.076)
+=> share of the drives gap explained by the hazard difference: 18.5%

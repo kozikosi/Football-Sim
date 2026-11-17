@@ -1,0 +1,7 @@
+$ node --version
+v26.13.0
+
+$ npm test   (clean extract of origin/architect/engine-and-seats at 65673a00)
+ℹ tests 406
+ℹ pass 406
+ℹ fail 0

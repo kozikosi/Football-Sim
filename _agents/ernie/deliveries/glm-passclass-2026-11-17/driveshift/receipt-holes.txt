@@ -1,0 +1,12 @@
+pack: trans = empirical | clock = dt_f | minPool = 25 | minClassPool = 25
+
+holes, summed over 12000 games
+  call                        0          0    glm/pools 0.00
+  record                      0          0    glm/pools 0.00
+  clock-late                  0          0    glm/pools 0.00
+  clock-non                   0          0    glm/pools 0.00
+  pass-class tuple            0          0    glm/pools 0.00
+
+games with >=1 pass-class fallback (hole[4]): 0 = 0.00%
+drives  pools 22.0764  glm 21.8407
+downs   pools 2.0490  glm 1.7643

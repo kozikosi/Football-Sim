@@ -1,0 +1,6 @@
+4th-down pass plays (10449 sampled, 6000 games): among the INCOMPLETE sub-pool at each level, share whose (ndown,delta) is NaN (=> drive ENDS)
+level  share-NaN      (a defined ndown here means the drive CONTINUES on a 4th-down incompletion)
+  L0    99.72% (68235/68428)
+  L1    23.45% (153633/655171)
+  L2    8.25% (286536/3474672)
+  L3    8.59% (1128492/13144842)
