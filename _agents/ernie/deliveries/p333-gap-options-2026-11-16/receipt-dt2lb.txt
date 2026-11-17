@@ -1,0 +1,18 @@
+=== teams better in 3-4 (diff < 0) ===
+  Washington Commanders diff   -575 | DT2 76 (best 84, n=7) | LB top 82,81,79 (ILB 2, OLB 3)
+  Kansas City Chiefs diff   -300 | DT2 75 (best 94, n=5) | LB top 89,82,67 (ILB 2, OLB 3)
+  Carolina Panthers diff   -100 | DT2 74 (best 96, n=7) | LB top 88,83,77 (ILB 2, OLB 3)
+
+median DT2 77 | median top-2 LB 80.5
+weak DT2 (n=19): mean diff 722 | 3-4-favouring 3
+strong LB (n=16): mean diff 991 | 3-4-favouring 3
+BOTH weak DT2 + strong LB (n=9): mean diff 344 | 3-4-favouring 3
+   Washington Commanders diff   -575 | DT2 76 | LB 82,81
+   Kansas City Chiefs diff   -300 | DT2 75 | LB 89,82
+   Carolina Panthers diff   -100 | DT2 74 | LB 88,83
+   Jacksonville Jaguars diff    400 | DT2 75 | LB 87,75
+   Giants         diff    600 | DT2 77 | LB 82,82
+   San Francisco 49ers diff    600 | DT2 77 | LB 98,85
+   Minnesota Vikings diff    750 | DT2 76 | LB 84,79
+   Miami Dolphins diff    800 | DT2 75 | LB 87,80
+   Jets           diff    925 | DT2 77 | LB 90,77

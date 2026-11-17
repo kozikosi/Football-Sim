@@ -1,0 +1,4 @@
+as-is                                          mean diff   1145 | teams better in 3-4: 3/32
+DT class capped at 70 (bad DT2 on the board)   mean diff    -95 | teams better in 3-4: 17/32
+LB class raised to 85 (many good linebackers)  mean diff  -1566 | teams better in 3-4: 32/32
+BOTH: DT<=70 and LB=85                         mean diff  -2773 | teams better in 3-4: 32/32
