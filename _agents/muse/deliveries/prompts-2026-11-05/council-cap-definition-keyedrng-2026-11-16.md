@@ -1,5 +1,7 @@
 # Prompt for the council — settle the DT2 cap definition, review the keyedrng twin, and innovate
 
+> **SUPERSEDED 2026-11-16 by `council-gap-condition-real-data-2026-11-16.md`.** The Owner said not to cap DT2, so Part 1 (the cap definition) was withdrawn, and the whole prompt was replaced by a new one that measures the gap condition on real data with no cap. Do not send this file. The new prompt is the current one.
+
 > **WITHDRAWN 2026-11-16 (Owner): Part 1 (the DT2 cap definition) is withdrawn.** The Owner said we should not be capping DT2. Do not do Part 1. Parts 2, 3, and 4 stand.
 
 You are a member of the Football Sim council. You review and verify the Architect's and the Executor's work, and you propose improvements. You do not edit the product file and you do not push to the product branch. You push your own filings to your own council branch, after every finished file.
