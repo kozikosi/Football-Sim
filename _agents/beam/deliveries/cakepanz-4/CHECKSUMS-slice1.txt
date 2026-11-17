@@ -1,0 +1,9 @@
+tree: 67-cakepanz (slice 1, REV 2 — the P-286 review fixes, 9 Nov 2026)
+engine snapshot: 4ca9a071 on architect/engine-and-seats (colors/src verbatim, 52 files, still unedited — cmp clean)
+engine tests: 284/284 pass — reproducible AS DELIVERED (npm run test:engine; no symlink, no --legacy-peer-deps)
+slice battery: 18 pass / 0 fail / 10 loud skips / 3 deferred to cutover (two assertions tightened per the review: every row's every field; flex chips OBSERVED open — 14 pickers, 39 chips)
+build: vite build OK (dist 238 kB, gzip 78 kB)
+
+key files (md5):
+0e63de0a88abd2e740c18eab747d9402  package.json
+1d300108f2de8faf28316505139e5172  package-lock.json

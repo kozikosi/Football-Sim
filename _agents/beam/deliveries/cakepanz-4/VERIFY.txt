@@ -1,0 +1,241 @@
+# VERIFY.txt — every receipt in one place · Z.ai · 2026-11-17 (the re-pin sitting)
+# Labels: VERIFIED (ran it, receipt below or in ACCEPTANCE-RECEIPTS.txt) / REPORTED (someone else
+# measured; named) / INFERRED (reasoned, not run) / UNKNOWN (no evidence).
+
+§0 THE TREE (VERIFIED)
+- Baseline: the Cakepanz-3 delivery (290 files) read from `origin/council/glyph` at `cakepanz-3/`
+  (glyph tip 873f448b) — the merged prompt calls it 67-cakepanz-3; VERIFY §0 of the previous
+  sitting called the folder 67-cakepanz-2 (236 files = the pre-fix delivery; both live on glyph).
+  The four Cakepanz-3 review filings were read from their seats' branches: Beam
+  (7a906452), Inkling (0fff9cb9), VL (956f4489), Ernie (6f87c441).
+- Work tree: the baseline + this sitting's changes; every change inside the shell's lane
+  (src/lib, test carry, batteries, scripts, docs) — the engine snapshot is byte-verbatim.
+
+§1 THE PIN (VERIFIED)
+- OLD pin: d3bd81d2 (byte-identity re-proven at baseline: `npm run test:engine` → 323/323 on the
+  delivered bytes, reproduced before anything moved).
+- NEW pin: **5c808472** on architect/engine-and-seats ("Pooled-node conformance: the lab's own
+  Pack is the oracle for the baked pack and the TS loader").
+- src/engine byte-identity to 5c808472: `diff -rq <worktree 5c808472>/colors/src src/engine` →
+  exit 0, **67 files** (the merged prompt said "57 engine files" at this tip — 57 was the OLD
+  pin's count; the tip carries 67: core/pmath.ts, main.ts, sports/nfl/sim/, valueprovider.ts,
+  gameView.ts added. NAMED CORRECTION).
+- flex.json byte-identity: `diff -rq` → exit 0. Rule counts measured: **99 rules — 17 at 0, 17 at
+  2, 42 at 6, 23 at 12** (script: node /home/z/my-project/scripts/flex-counts.mjs
+  tools/mathlab/flex.json → `total rules: 99 {"0":17,"2":17,"6":42,"12":23}`); the six Owner rules
+  all at 2 (EDGE>DT, ILB>OLB, CB>FS, EDGE>OLB, OT>OG, CB>SS); **SS>NICKEL = 0** (never approved).
+  The OLD table measured 23/10/43/23 with the six at 0 — the table moved WITH the pin (three-path
+  rule demonstrated).
+- Carried suite: test/engine = the tip's colors/test verbatim (54 files, 45 suites) + the re-point
+  by scripts/sync_engine_tests.py (imports AND `new URL('../../src/…')` references → the file's
+  own relative path to src/engine/; NO expectation edited by hand). `diff -rq test/engine
+  <worktree>/colors/test` before sync → byte-verbatim; the only diffs after sync are the re-pointed
+  specifiers.
+- Suite fixture data: data/packs/nfl-pools-fit2016-2022.json + nfl-pools-fit2023-2025.json carried
+  byte-identical (`cmp` exit 0 ×2) — the FOURTH re-pin path (the carried suite reads them; the old
+  tree carried neither).
+- Engine self-stamp at this pin: `nfl1.1ac56c28928eff` — invocation: `node
+  --experimental-strip-types --input-type=module -e "import { engineVersion } from
+  './src/engine/sports/nfl/app/versions.ts'; console.log(engineVersion())"` (Node v24.22.3).
+  (The old pin's stamp nfl1.14a4e9333e888a is retired.)
+- Baked-pack hash: `pack53:0b60973944ae13` — invocation: the carried
+  test/engine/nfl/pools-game.test.ts load path (loadPools(makePack(JSON.parse
+  (data/packs/nfl-pools-fit2016-2022.json)))), asserted green inside the 394/394. The
+  loader-hash caveat stands: cite the invocation beside the hash; the old pin's override-variant
+  hashes are NOT carried forward (their invocations lived in the prior sitting's receipts) — UNKNOWN
+  at this pin without re-measuring under those invocations.
+
+§2 ENGINE TESTS (VERIFIED)
+- `npm run test:engine` (node --test --experimental-strip-types test/engine.test.ts) →
+  **tests 394 · pass 394 · fail 0**, exit 0 (54.6 s) at 5c808472. The suite is the tip's own;
+  323→394 is the tip's growth (10 new suites: keyedrng-vectors, pmath, pmath-lint, feed-clock,
+  gameview, lineup-priorities, poolnode-vectors, pools-game, sim-slice, valueprovider).
+
+§3 NODE BATTERY (VERIFIED — route 1)
+- `npm run battery:node` (node --experimental-transform-types batteries/node.battery.mjs) →
+  **24/24 pass, exit 0** on **Node v24.22.3** — 23 carried (incl. N14b, N19) + **N20 (F8)** new
+  this sitting: the save service refuses a slot/key mismatch (`assertSlotMatchesKey('B',
+  slotKey('A'))` → refusal message; `savesApp` composes `slotCheck: assertSlotMatchesKey`).
+- The flag is REQUIRED (unchanged at the tip): platform/localstorage.ts:31 still carries the
+  parameter property — checked at 5c808472 this sitting; the docs (SNAPSHOT.md) stay accurate; the
+  §5 filing is re-filed. Receipt of the failure mode: probe-motion-shots.mjs ran WITHOUT the flag
+  in the first acceptance attempt and died `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX` (receipt in the
+  first ACCEPTANCE-RECEIPTS.txt attempt, kept in the zip as deliveries/receipts/);
+  the runner now passes the flag (its own lesson, applied).
+
+§4 SLICE BATTERY (VERIFIED)
+- `npm run battery` (node batteries/slice1.battery.mjs against the preview on 4179) →
+  **29 pass · 0 fail · 10 SKIP (loud, each with its reason) · 3 DEFER (cutover)**, exit 0.
+  26 carried + **3 NEW Slice-3 laws** (the features were built and receipted at the old pin;
+  they had no laws of their own): (a) the gone% METHOD tooltip exists and reveals on hover;
+  (b) the "my needs" row exists, lists my open slots, and a need filters the board
+  (`data-count` before/after); (c) clearing the filter restores the whole board.
+
+§5 SHELL RENDER BATTERY (VERIFIED)
+- `node --experimental-transform-types batteries/shell.battery.mjs` → **46 pass · 0 fail · exit 0**,
+  S1a–S30 in ONE uninterrupted run (run TWICE this sitting: after the re-pin, and again after the
+  tokens split + new laws). Highlights: S5 (the full 1,024-pick record + provenance stamp), S7 (22
+  CTA steps through the real UI), S8/S9 (8 division tables, the champion banner), S10–S14, S15/S16
+  (zero page errors / zero blocked requests), S17–S24, S25 ×14 + S25b (390px board), S25c, S26–S28
+  (vanilla file:// boot of dist/single.html — zero console errors, zero blocked requests), S29/S30
+  (a saved week RESTORES through the real UI).
+
+§6 GATES (VERIFIED)
+- `node scripts/regen-manifest.mjs` → 300 entries (was 269 at the old pin: +10 engine files, +2
+  packs, + the new shell files, + dist/).
+- `node scripts/gate-manifest.mjs` → **PASS (300 entries verified, dist/ covered, converse clean)**
+  — boot target asserted (2 referenced assets checked against the manifest).
+- `node scripts/gate-numerals.mjs` → **CLEAN ×2** (run twice).
+
+§7 FALSIFIERS (VERIFIED — every law died; zero tautologies; ALL FRESH THIS SITTING)
+- `node scripts/receipt-falsifier.mjs` (F0 clean baseline green, then one mutation per fresh copy):
+  F1 M1 grep-law (engine import planted in a screen) → DIED.
+  F2 N14 no-CDN (CDN url planted in the card CSS) → DIED (N14 ✖).
+  F3 N12a roundtrip (fixture roster 32 → 31) → DIED (N12a ✖).
+  F4 N19 gone%-values (goneodds.ts zeroed) → DIED (N19 ✖).
+  F5 N14b season-brag truth (champion line swapped to the user team) → DIED (N14b ✖).
+  F6 N20 slot/key law (NEW this sitting; the composition's slotCheck dropped) → DIED (N20 ✖).
+- `node scripts/shell-falsifier.mjs`:
+  FA D2 ({recordTyped} shorthand reintroduced) → DIED (S5 FAIL + flow Timeout).
+  FB D1 (restoreSeason definition deleted) → DIED — S6/S7/S9/S10/S13 FAIL, S15 FAIL
+     "ReferenceError: restoreSeason is not defined", S25c FAIL. TOOL BUG FIXED THIS SITTING: the
+     previous tool truncated a crash-mid-flow receipt before the ReferenceError line and reported a
+     FALSE TAUTOLOGY; the tool now returns the full log (and takes CP_FALSIFY_CASE for single-case
+     diagnosis). Beam's "F2/F3 unfalsified" and Inkling's "all laws die" are RECONCILED: the
+     delivered wording was stale, the re-anchored targets die — both claims were true halves.
+  FC 390 (the phone-grid media query removed) → DIED (S25b FAIL — scrollWidth 428 vs 390).
+- The Beam↔Inkling disagreement is settled with fresh runs, not with citations.
+
+§8 M3 — THE SWAP TEST, BOTH DIRECTIONS (VERIFIED)
+- The rehearsal BEFORE the re-pin: `CP_ENGINE_SRC=<wt-tip>/colors/src node scripts/swap-test.mjs
+  5c808472` → snapshot swapped (67 files vs the pin's 57), diff -rq outside src/engine → CLEAN,
+  node battery 23/23, build green, slice battery 26/0/10/3 — and the carried ENGINE goldens fail:
+  formation gap ×4, flex-table equality vs tools/mathlab/flex.json, Owner D pins. VERDICT: FAIL
+  (exit 2) BY DESIGN — the law was NOT edited; the snapshot was NOT edited; the re-pin is the
+  multi-path move. (log: swap-rehearsal-5c808472.log)
+- The reverse AFTER the re-pin: `CP_ENGINE_SRC=<wt-old>/colors/src node scripts/swap-test.mjs
+  d3bd81d2` → 57 files swapped in, diff outside src/engine → CLEAN, node battery 23/23, build
+  green, slice battery green — and the tip-asserting suite fails (it imports tip-only modules —
+  valueprovider.ts et al. — so the reverse swap kills the suite's LOAD; the carried expectations
+  went red from the other side). VERDICT: FAIL BY DESIGN. (log: swap-m3-oldpin.log)
+- M2 (one directory) holds in BOTH receipts: nothing outside src/engine needed to change.
+
+§9 M1 + M5 — THE SEAM AT THE NEW PIN (VERIFIED)
+- M1 ONE DOOR: `grep -rln "from '.*engine/" src --include='*.ts' --include='*.svelte' | grep -v
+  "^src/engine/" | grep -v "^src/lib/port/"` → EMPTY (exit 1). M1b rides the node battery.
+- M5 THIN SEAM: src/lib/port/seam.ts — 160 lines, **68 engine-import lines**, 38 distinct engine
+  module paths; 20 port modules beside it. UNCHANGED at the new pin (the engine grew behind the
+  seam). Measured this sitting.
+
+§10 BUILD + DIST (VERIFIED)
+- `npm run build` → green (dist/assets/index-*.js 377.95–377.97 KB / 128.64–128.65 gz + the css);
+  **ZERO build warnings** (the a11y fix receipt: `npm run build 2>&1 | grep -ciE 'warn|a11y'` → 0).
+- `npm run distfile` → dist/single.html 450.8 KB, "no external refs: true".
+
+§11 P-369 — NODE COUNTS, MEASURED THIS SITTING (VERIFIED)
+- `node --experimental-transform-types scripts/probe-node-counts.mjs`, live DOM counts, preview
+  build, this sitting (run after the tokens split; layout unchanged by it):
+    screen        1180px   390px
+    TeamSelect       95       95
+    DraftBoard     847      816
+    Feed            327      280   (the tip's feed.ts moved the feed's DOM: was 307/302 at d3bd81d2)
+    Share            48       48
+    Saves            55       55
+
+§12 REDUCED MOTION + CONTRAST (VERIFIED / flagged)
+- probe-motion-shots.mjs (with the transform flag — see §3's lesson): 20 screenshots, normal vs
+  reduced × both modes; receipt in ACCEPTANCE-RECEIPTS.txt §11 (the one uninterrupted run).
+- probe-contrast.mjs — the Owner's two flagged questions, MEASURED again this sitting (audit only,
+  NOT fixed): light gold2 #e6c67d on pale rose #fdf2f6 = **1.51:1 — FAIL** (AA 4.5); on white
+  1.65:1 — FAIL. dark --text #8e5566 on #1e1119 = **3.17:1 — FAIL** at AA normal (large passes).
+  dark zcream 14.94:1 PASS; dark gold2 11.30:1 PASS; light text 5.27:1 PASS.
+
+§13 THE REVIEW FIXES (Part D — each item, fixed or named)
+- a11y_no_noninteractive_tabindex (Ernie): FIXED — BoardRow.svelte:20 `tabindex="0"` removed from
+  the span nested in the row button; the tooltip reveals on `.cp-main:focus` (keyboard users keep
+  it; the nested tab stop is gone). Receipt: zero warnings in the build log.
+- Node 26 docs: CONFIRMED accurate at the tip — the parameter property is still at
+  platform/localstorage.ts:31 (checked at 5c808472); SNAPSHOT.md keeps the pinned Node
+  (v24.22.3), the affected file+line, and the §5 cross-reference. Nothing switched silently.
+- F2/F3 falsifiers: re-run fresh with the (already re-anchored) targets — BOTH DIE (§7). Beam's
+  open item is closed with a receipt, not with an assertion.
+- sync_engine_tests.py: MISSING from the tree though SNAPSHOT.md/MERGE-GUIDE referenced it —
+  WRITTEN this sitting (depth-aware re-point: quoted imports + URL forms; explicit .ts extensions).
+- The strict-tsc nits: tsc --noEmit is now FULLY CLEAN (exit 0). awardsVM.ts(68) typed
+  (`as keyof SeasonLine['stats']`); weekVM.ts(70) — the `{...} as Game` fabrication replaced by a
+  `kind` parameter (toGameVM takes week/home/away + kind; the playoff call passes 'playoff'
+  honestly); @types/node added as a devDependency; tsconfig scope stated: the shell (src/**) —
+  the carried suite is the Architect's bytes exercised by node --test, and tsc does not re-type
+  the Architect's files (their internal strict nits ride with the pin, filed, not hidden).
+- $app/tsconfig (Ernie): not touched — his own retraction stands (it is the Owner's home file).
+
+§14 P-260 F5–F10 — THE SMALL CONTRACT FIXES (receipt each)
+- F5: the sentence is in MERGE-GUIDE.md §4: "resume determinism holds within the build that wrote
+  the save; across builds, logged picks hold and un-made picks may differ." (The engine's
+  SaveMeta comment carried it; the docs now do too.)
+- F6: save-service failures are SLOT-TAGGED — `readSlot` returns `{slot, state:'refused', ...}` on
+  every refusal (no global-on-purpose channel); the one-line documentation added to MERGE-GUIDE §4.
+- F7: ALREADY TRUE at the tip — engine saves.ts:44 `plan: PlanState | null` (verified by reading;
+  the carried envelope tests assert it). Nothing for the shell to change.
+- F8: the composition wires the assertion (savesApp.ts:24 `slotCheck: assertSlotMatchesKey` —
+  the tip's LocalStorageOptions.slotCheck) AND a LAW now asserts it: node battery N20 + falsifier
+  F6. VERIFIED.
+- F9: ALREADY TRUE at the tip — saver.ts:43 `retriable: true` with the quota-class reservation
+  annotated (saver.ts:10–14). Documented in MERGE-GUIDE §4.
+- F10: ALREADY TRUE — `BoardSort = 'wins' | 'ovr' | 'priority'` (engine draftBoard.ts:17, exported
+  through the seam; App.svelte declares `let sort: BoardSort = 'wins'`). Verified.
+
+§15 P-254 + P-360 + P-363 + P-364/365/368 (VERIFIED / named)
+- P-254: ENVELOPE-FREEZE.md written (one page, dated, reviewer-ready): the frozen field list (11
+  rows) WITH the conflict rule in the same list (per-slot last-write-wins on the WHOLE save, never
+  a field merge), the rung-back, keep-both, and the reserved additive `deviceId?: string`. The
+  field itself is NOT added — it is the engine's bytes (filed to the Architect as §5 item 6).
+- P-360: deliveries/gh-pages-fix/README.md — the pin line corrected to 5c808472 + 67 files + the
+  394-test line; the file ships in the zip; the Owner places it (this tree cannot push).
+- P-363: file:// + S26–S30 re-proven FRESH — inside this sitting's shell-battery runs (twice) and
+  inside the uninterrupted acceptance run; no receipt carried forward.
+- P-364: the queue row's "board grid collapse under 560px" — the 560 figure exists NOWHERE in the
+  tree; the built + falsified law is the board's phone-grid collapse at **430px** (S25b; the FC
+  falsifier kills it). Named in MERGE-README as a wording discrepancy — NOT silently changed
+  (moving a visual threshold is an Owner ruling).
+- P-365: N14b + N19 still in the battery; the TOKEN law reads case-insensitively (line 243); both
+  falsified fresh this sitting (F5, F4).
+- P-368: made TRUE this sitting — the delivered §10 receipt was inaccurate (port/tokens.ts carried
+  two `document.` hits; guarded, but the LAW said src/lib is document-free). The DOM half moved to
+  src/lib/bindings/tokensApply.ts (behaviour byte-for-byte; the port is pure). Receipt:
+  `grep -rn "document\." src/lib --include='*.ts' | grep -v bindings` → EMPTY (exit 1);
+  `grep -rn "from 'svelte" src/lib --include='*.ts' | grep -v bindings` → EMPTY. Bindings are now
+  THREE modules (stores, shareDownload, tokensApply) — the framework map in MERGE-GUIDE §6 is
+  corrected with the tree.
+
+§16 INNOVATION (Part H)
+- scripts/acceptance-run.sh modernized: the ONE-COMMAND staged acceptance run at this pin's receipt
+  set — npm ci → engine suite → node battery → build → distfile → served-hash preview check →
+  slice battery → shell battery → probes (contrast, node counts, motion shots) → BOTH falsifier
+  suites → the four gate runs → optional `CP_SWAP_SHA` swap test. Every step exit-coded into
+  ACCEPTANCE-RECEIPTS.txt; any failure stops the run. Across this sitting's attempts the runner
+  caught TWO of its own defects and stopped hard each time: the motion-shots transform-flag gap
+  (receipt: deliveries/receipts/acceptance-first-attempt-motion-shots-lesson.txt) and the manifest
+  self-reference — step 14 hashed the receipt file the runner itself keeps appending to, so step
+  15's re-hash always drifted (receipt: deliveries/receipts/acceptance-run-manifest-selfref-lesson.txt;
+  fix: the receipt file is outside manifest scope in BOTH regen-manifest.mjs and gate-manifest.mjs,
+  the same self-reference class the gate already skips for MANIFEST.txt/CHECKSUMS.txt). The
+  delivery's receipt is the final uninterrupted ACCEPTANCE-RECEIPTS.txt: every step EXIT_CODE=0,
+  ending "ACCEPTANCE RUN COMPLETE".
+- The runner, the falsifier tool fix (§7 FB), and sync_engine_tests.py are tooling the next
+  re-pin sits on top of; nothing here touches the engine or the Owner's blocked list.
+
+§17 THE PART-I BLOCKED LIST (unchanged — flagged, not touched)
+- Rows 1–14 of the merged prompt's Part I: untouched, each with a one-line recommendation in
+  DELIVERY-DECISIONS.md. Nothing in this sitting pre-built, almost-did, or routed around any of
+  them. P-317's store piece remains the Architect's; the ratings remain the Owner's; cutover is
+  the Owner's step.
+
+§18 WHAT I DO NOT KNOW (UNKNOWN / REPORTED / INFERRED)
+- UNKNOWN: award grades ≥90 occurrence in a receipted season (the shimmer is wired; none observed).
+- UNKNOWN: the w89 "90+ shimmer" source law (no source on disk).
+- UNKNOWN: the old pin's override-variant pack hashes at the new tip (their invocations lived in
+  the prior receipts; not re-measured here — the baked-pack hash IS cited with its invocation).
+- INFERRED: the P-364 wording discrepancy (430 built vs 560 queued) — grounded in a tree-wide grep.
+- INFERRED: the Vue-arm reuse paragraph in MERGE-README (structural, not a port run).
+- REPORTED: Inkling's machine caveats (Node 26 needs npx node@24; Playwright version deltas).
