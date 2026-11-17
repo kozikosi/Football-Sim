@@ -1,0 +1,47 @@
+SPEAKER: inkling | ROLE: council | TASK: review — cakepanz-4 (the re-pin sitting per MUSE's prompt, executed); pushed for read access by the Owner from the Desktop; verified independently on this machine | DATE: 2026-11-17T07:47Z
+FOR: R-13
+
+# Review — cakepanz-4 (execution of MUSE's `7e9e915d` prompt: re-pin to `5c808472` + Parts 2–4)
+
+**Pushed for read access: `council/inkling` @ `c2c23834bd67954ac5409eef0df76f494aab2be5`** — 327 files, 41,121 insertions; source `Desktop/Football Sim/cakepanz-4` (delivered 2026-11-16 20:38 PST); my copy verified byte-identical to the Desktop original before commit (`diff -qr` exit 0) and to the committed object (`git diff --stat HEAD` empty; `git status` empty after my read-only re-run). **Verdict: ok (with two named runner-portability defects, D-1/D-2; one docs nit D-3). Technically merge-ready behind P-317 and the Owner's rulings. Every load-bearing receipt I could re-run reproduces fresh, byte-for-byte where deterministic.**
+
+## What I ran, my machine, my outputs (Node v26.13.0 default; Node v24.22.3 via npx for the TS-parameter-property paths; macOS)
+
+| Claim (from the delivery) | My re-run |
+|---|---|
+| src/engine byte-identical to tip `5c808472`, 67 files | `git archive 5c808472 colors/src | tar -x` → `diff -qr` → **exit 0**, 67 files both sides. VERIFIED. |
+| flex.json at the pin, 99 rules, 17/17/42/23, six Owner rules at 2, SS→NICKEL 0 | `diff` byte-identical + my own rule-count → **`{"0":17,"2":17,"6":42,"12":23}` / 99 total**. VERIFIED. |
+| Both pool packs carried byte-identical | `cmp` 2016–2022 and 2023–2025 → identical. VERIFIED. |
+| Engine suite **394/394** | `npm run test:engine` in a fresh scratch copy (`npm ci`): `ℹ pass 394 / ℹ fail 0`, exit 0 (~46 s). Also ran it in the repo delivery before cleaning my install mess — same result. VERIFIED. |
+| Node battery **24/24** on Node 24 | `npx node@24 --experimental-transform-types batteries/node.battery.mjs` → **`pass 24 / fail 0`**, exit 0. (N20 slot/key law present.) VERIFIED. |
+| Slice battery **29/0/10/3** | In scratch (fresh `npm ci` + `playwright@1.65.0`), against the delivered dist via preview on 4179: **"29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover"**. VERIFIED (fresh clone of 2026-11-16 delivery). |
+| Shell battery **46/0**, all S-laws S1a–S30 | Same scratch, after `distfile`, preview on 4179: **`SHELL BATTERY · 46 pass · 0 fail`** — incl. the 390px walk (14 screens clean, S25b fits, S25c zero page errors), **S29/S30 restore flow PASS**, S5/S7/S8/S9 with the season walked in the real UI, **S26–S28 file:// boots (zero console errors, zero blocked requests, P-317 picker = 32 teams + 32 slots)**. VERIFIED. |
+| Vanilla file:// boot of `dist/single.html` | openchamber/browser S26 + fresh `npm run distfile` in scratch → **`dist/single.html (450.8 KB) — no external refs: true` and BYTE-IDENTICAL to the delivered file (461,584 bytes; `cmp` clean)**. The whole dist rebuilds deterministically (asset hashes `index-DLZAsTIz.js` / `index-9YnNW8Gi.css` identical). VERIFIED. |
+| Gates | Pristine copy (no node_modules): `gate-manifest` → **PASS (305 entries verified, dist/ covered, converse clean)**, exit 0; `gate-numerals` → **CLEAN ×2**, exit 0. (Their receipt said 300; I report what my machine prints — the gate's job is coverage, both ways.) VERIFIED. |
+| `tsc --noEmit` fully clean | `npx tsc --noEmit` → **exit 0**. The four named type-only nits are gone. VERIFIED. |
+| Build green, **zero warnings** | `rm -rf dist && npm run build` → built in 873 ms, 224 modules, zero a11y/warn lines. Deterministic output bytes match the delivered dist. VERIFIED. |
+| M1 empty (no engine import outside `src/lib/port/`) | grep both ways → EMPTY (exit 1). P-368 made TRUE on my read too: **all four `document.` hits live under `src/lib/bindings/`; all `svelte` imports outside it → EMPTY.** VERIFIED. |
+| Engine stamp | `nfl1.1ac56c28928eff` (their exact invocation, node 26 strip-types). VERIFIED. |
+| Blocked-rulings untouched | "Model Value" present verbatim (`valuation.ts:11`, `Guide.svelte:22`); **no new shell-authored "touchdown" copy** (all hits live in the frozen engine copy); engine read-only ✓. VERIFIED. |
+| The three shell falsifiers die | Under a Node-24-on-PATH shim (see D-2): **FA → DIED** (S5 TimeoutError FAIL), **FB → DIED** (`S15 zero page errors… ReferenceError: restoreSeason is not defined`; also S25c), **FC → DIED** (S25b FAIL — scrollWidth 428 vs 390). VERIFIED. Beam's vs inkling's disagreement is correctly reconciled — the delivered `fb-battery.log` shows the full log carrying both fails. REPORTED their M3 both-directions swap test (logs present in `deliveries/receipts/`, not re-run — the four-path move is separately proven by the suite passing 394 = the tip's own expectations). |
+| Envelope freeze P-254, README P-360, P-369 node counts, a11y warning (Ernie), Node-24 docs | ENVELOPE-FREEZE.md present with the per-slot last-write-wins-whole-save rule + rung-back + keep-both + reserved `deviceId?: string` (field NOT added — correctly filed to the Architect); `deliveries/gh-pages-fix/README.md` present (Owner places it on gh-pages); node counts: **TeamSelect 95 · Board 847 · Feed 327 · Share 48 · Saves 55** (not the old "221" figure; VERIFY table in §11, not re-probed here); a11y fix shipped (BoardRow.svelte nested tabindex removed; build log zero warnings); SNAPSHOT.md states Node 24 pinned + parameter property at `platform/localstorage.ts:31`. VERIFIED present; the Node-26 caveat shape documented but the runner path is D-2. |
+
+## The defects
+
+**D-1 — The delivery's declared dependencies cannot run its own batteries.** `package.json` has `svelte` only (dependencies) and `vite`, `vite-plugin-svelte`, `typescript`, `@types/node` (devDependencies). No `playwright` anywhere. `batteries/slice1.battery.mjs` and `shell.battery.mjs` resolve Playwright via `createRequire` and fall back to **`process.env.HOME/.npm-global/lib/node_modules/playwright`** — an absolute path in the author's machine. **On any fresh clone, `npm ci && npm run battery` dies with MODULE_NOT_FOUND** (reproduced on me). Every receipt in ACCEPTANCE-RECEIPTS.txt stands on an undeclared global install. Fix: add `playwright` (pinned, e.g. `^1.65.0`) to devDependencies, or one line in SNAPSHOT.md stating the required `npm i -g playwright` + version. Severity: receipt reproducibility — the whole delivery's verification chain, not engine or shell logic.
+
+**D-2 — `shell-falsifier.mjs` is not portable off Node 24, and fails SILENTLY on Node ≥ 26.** The child battery is spawned as `node --experimental-transform-types batteries/shell.battery.mjs`. On Node 26 the flag was removed (the delivery's SNAPSHOT documents exactly this for the batteries) — so the child prints `node: bad option: --experimental-transform-types`, the marker regex (`/SHELL BATTERY ·/`) never matches, and every case reports **TAUTOLOGY** — an affirmative-looking green-light verdict meaning "not tested", the exact opposite of fail-loud. On Node 24.22.3 all three cases die (see above; VERIFIED). Fix: have the runner resolve a Node-24 binary explicitly, or preflight the spawn and `exit 1` with a named error when the child cannot produce a verdict. Severity: the falsifier class the delivery used to close Beam's and Inkling's disagreement — silently unfalsifiable on any Node ≥ 26 host, which includes CI and most current laptops.
+
+**D-3 (nits)** — `README.md:15` still says "26 pass · 10 SKIP" (now 29/0; VERIFY/MERGE-README carry the new counts). `gate-numerals`/gmanifest receipt counts moved 300→305 (cosmetic; PASS either way). The `package-delivery.sh` — not read. None block merge decisions.
+
+## What remains open (unchanged — Owner / Architect, not this sitting)
+
+- Owner rulings (DELIVERY-DECISIONS.md, one page, filled in with his one-line recommendations — correct posture, nothing pre-built): shell of record; gold2; `--text`; Engine/Model Value; FEED_YEAR 2027; shimmer/touchdown sources; `.ub` scope; 2PT chips; Option B DIME legs.
+- P-317 (slot picker): UI done + node law green; the **store piece is the Architect's** — untouched here, correctly.
+- P-316 Slice 3: the two carried laws S/the needs-row + gone%-tooltip have tests now (attached to already-built features); no behaviour scope added beyond the MUSE prompt's asks.
+- Engine re-pin is `5c808472` and stops there — nothing moved past the named tip. ✓
+
+## Verdict
+**ok** — the re-pin landed with fresh receipts on my machine, the engine boundary is honoured 67/67 byte-exact, tsc/build/dist are deterministic on a clean box, the falsifiers all die, the blocked rulings are all threaded to the Owner as flag-lists. Not accepted for merge and not authorized for cutover — those are the Owner's. D-1/D-2 should be folded into the next delivery; D-2 in particular is a one-line class the next runner round should close before relying on falsifier logs from any machine other than Node 24.
+
+**VERIFIED** (this filing, this session): every command and output quoted above was run by me on this machine against `Desktop/Football Sim/cakepanz-4` (source of truth), a byte-identical repo copy (`council/inkling`), and three scratch copies. **REPORTED** (read, not run): M3 both-directions swap logs, the full acceptance-run.sh chain (run step-wise by me instead), the §11 probe counts. **No part of the delivered engine was edited, and the delivered tree was not modified** — my repo copy is `git status`-clean; all scratch runs happened in temp copies.
