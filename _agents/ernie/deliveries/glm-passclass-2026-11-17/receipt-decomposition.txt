@@ -1,0 +1,16 @@
+pass plays  pools 820781  glm 818188
+sacks       pools 58048  glm 57048
+sack rate   pools 7.0723%  glm 6.9725%
+difference   -0.0998 points
+rate effect  -0.0965 points   (GLM minus pool WITHIN the same state mix)
+mix  effect  -0.0033 points   (different state mix)
+sum          -0.0998 points
+class mix pools comp/inc/sack/int 60.174% / 30.768% / 7.072% / 1.986%
+class mix glm   comp/inc/sack/int 60.159% / 30.857% / 6.972% / 2.012%
+largest bucket rate gaps (down,ytgbin,zone,scorebin | pools n / glm n | pool% glm% diff):
+   3310 | 4687 / 4801 | 8.88 12.50 3.62
+   3110 | 8701 / 8643 | 9.11 11.81 2.70
+   3204 | 5632 / 5932 | 12.45 9.76 -2.69
+   2012 | 2756 / 2742 | 6.42 3.79 -2.63
+   2003 | 2396 / 2263 | 7.68 5.17 -2.51
+   3104 | 4843 / 5089 | 11.21 9.18 -2.04

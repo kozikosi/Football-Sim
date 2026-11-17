@@ -1,0 +1,18 @@
+metric        pools     glm     diff
+points         23.250   23.391    0.141
+drives         11.038   10.920   -0.118
+plays          74.972   74.915   -0.058
+off_plays      60.999   60.885   -0.114
+pass_att       34.199   34.091   -0.108
+rush_att       26.554   26.542   -0.012
+completions    20.579   20.509   -0.070
+yards         328.604  327.827   -0.777
+sacks           2.419    2.377   -0.042
+giveaways       1.102    1.101   -0.000
+
+corr(Δdrives, Δsacks)  = 0.224
+corr(Δdrives, Δplays)  = 0.614
+corr(Δdrives, Δyards)  = -0.057
+mean Δdrives -0.1178 | mean Δsacks -0.0417
+
+seconds per drive: pools 163.1  glm 164.8

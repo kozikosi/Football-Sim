@@ -1,0 +1,4 @@
+Random123 known-answer vectors: ok
+checked: philox 323, hash 13, gamekey 90, draw 240, rng 120, throws 6
+normal(): 120/120 compared bit for bit
+RESULT: Python twin reproduces every vector exactly, normal() included
