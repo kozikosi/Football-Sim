@@ -1,0 +1,22 @@
+== slice battery (batteries/slice1.battery.mjs) · node v26.13.0 · real Chromium (playwright 1.57.0) · vite preview :4401 ==
+== transcribed verbatim from the run; the last 3 lines are the battery's own summary ==
+
+   PASS  the Owner preset is one click away
+   PASS  the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)
+   PASS  the mode label travels with the numbers (the subtitle carries it)
+   PASS  zero page errors across the whole battery
+== the laws that live on later slices or shell surfaces (SKIP — loudly) ==
+   SKIP  V0 the median trio ... — the scale explainer lives on the season screen
+   SKIP  V2/V3 the chip law ... — the position chips belong to the shell board chrome
+   SKIP  V5 the phone laws at 390 ... — the footer nav is shell chrome
+   SKIP  V6 the playoff round cinematics — playoffs are a later slice
+   SKIP  V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder
+   SKIP  V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks
+   SKIP  V15 the fills column and V17 the picker chips in shell form
+   SKIP  V7 the display scale centers on the median
+   SKIP  V4 the command center / cutdown day
+   SKIP  V1 the dropdown order + the OG casing
+== DEFER to the cutover battery (needs both trees; the Architect runs it) ==
+
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+exit 0

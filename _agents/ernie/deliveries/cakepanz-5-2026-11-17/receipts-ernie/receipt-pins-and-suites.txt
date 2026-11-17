@@ -1,0 +1,27 @@
+HOST MACHINE: v26.13.0  macOS arm64
+
+== shipped snapshot vs origin/architect/engine-and-seats 5c808472 ==
+IDENTICAL (67 files)
+
+== prepared snapshot vs 65673a00 ==
+IDENTICAL (68 files)
+
+== flex.json ==
+shipped==prepared
+shipped==pin5c808472
+pin==pin
+
+== engine suite SHIPPED node 26 ==
+ℹ tests 394
+ℹ pass 394
+ℹ fail 0
+
+== engine suite PREPARED node 26 ==
+ℹ tests 406
+ℹ pass 406
+ℹ fail 0
+
+== node battery SHIPPED node 26 ==
+ℹ tests 26
+ℹ pass 26
+ℹ fail 0

@@ -1,0 +1,19 @@
+== receipt-falsifier, SHIPPED tree, node 26 (F0..F8) ==
+F0 clean baseline · unmutated node battery exit 0 · baseline OK
+F1 M1 grep-law            · mutation: engine import planted in a screen  · DIED (the law's grep catches the plant)
+F2 offline-no-CDN law     · mutation: CDN url planted in the card CSS  · DIED — ✖ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance ins
+F3 saves-roundtrip        · mutation: roster 32 → 31                 · DIED — ✖ N12a: the week payload round-trips (serialize → restore → hydrate) (1.736833ms)
+F4 gone%-values law       · mutation: every gone% zeroed in goneodds.ts · DIED — ✖ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envel
+F5 season-brag truth law  · mutation: champion line swapped to the user team · DIED — ✖ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (
+F6 save-service slot law  · mutation: the composition drops the slot check    · DIED — ✖ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, th
+F7 older-build note law  · mutation: the panel stops rendering the note           · DIED — ✖ N21: the older-build note names another build on the slot card, and is silent for the ru
+F8 packs law             · mutation: the 2023-2025 pack removed from data/packs     · DIED — ✖ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes 
+every falsified law DIED — the battery is falsifiable
+
+EXIT: 0
+
+== the moved-anchor guard (D-2 falsifier of the falsifier) ==
+a scratch copy with the F2 anchor changed to .card { max-width:999px :
+  if (!before.includes(anchor)) throw new Error(`FALSIFIER TARGET MOVED in ${path.relative(TREE, p)} — anchor not found:\n  ${anchor.slice(0, 120)}\nFix the target strings from the current bytes (Part C, the F2/F3 lesson); do not ship an unapplied mutation.`);
+Error: FALSIFIER TARGET MOVED in ../../../tmp/cp-falsify-KsY8kO/src/lib/port/shareable.ts — anchor not found:
+exit code: 1 (captured separately)

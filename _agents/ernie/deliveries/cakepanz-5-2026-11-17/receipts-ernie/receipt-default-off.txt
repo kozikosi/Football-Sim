@@ -1,0 +1,14 @@
+== default-off fixture, SHIPPED tree, node 26 ==
+pass-class node absent (the old pin) — only the neutral 60-game log is written
+wrote /tmp/gl-shipped.json: 60 games
+
+== default-off fixture, PREPARED tree, node 26 ==
+pass-class node present (lambda: 0, minClassPool: 25) — the gap-replay and absent-vs-present checks run
+wrote /tmp/gl-prepared.json: 60 games
+gap-replay: ALL 60 IDENTICAL (lambda-0 tilt is a no-op — bit for bit)
+absent-vs-present control: 60/60 logs differ with the node ON
+
+== deep-compare of the two defaultOff logs ==
+shipped keys: games,pack,defaultOff
+prepared keys: games,pack,defaultOff,gapReplay,absentVsPresent
+defaultOff identical: true

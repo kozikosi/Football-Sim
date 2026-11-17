@@ -1,0 +1,21 @@
+== shell render battery (batteries/shell.battery.mjs) · node v26.13.0 · real Chromium · vite preview :4401 ==
+== transcribed verbatim from the run; the last lines are the battery's own summary ==
+
+   PASS  S25 390px clean on settings (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on saves (no horizontal scroll) — 390/390
+   390px walk table: team 390/390 · cards 390/390 · hub 390/390 · week 390/390 · standings 390/390 · bracket 390/390 · awards 390/390 · review 390/390 · stats 390/390 · book 390/390 · share 390/390 · guide 390/390 · settings 390/390 · saves 390/390
+   PASS  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 390/390
+   PASS  S25c zero page errors across the 390px walk
+   PASS  S29 a saved week RESTORES through the real UI (the D1 fix — the hub renders the restored season) — hub re-mounted from the week save
+   PASS  S30 zero page errors across the restore flow
+   PASS  S26 the single-file dist boots from vanilla file:// at Team Select (P-317 picker present) — {"teams":32,"slots":32}
+   PASS  S27 file:// zero console errors
+   PASS  S28 file:// zero blocked requests
+
+== SHELL BATTERY · 46 pass · 0 fail ==
+exit 0
+
+== note ==
+S26-S28 require dist/single.html, which `npm run distfile` produced first (462,071 bytes).
+The run was repeated after the distfile build; the first attempt died at S30 with
+net::ERR_FILE_NOT_FOUND on dist/single.html — the battery assumes the distfile step ran.

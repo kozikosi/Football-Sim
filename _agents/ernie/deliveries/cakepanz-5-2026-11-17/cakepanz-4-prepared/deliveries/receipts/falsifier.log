@@ -1,0 +1,8 @@
+F0 clean baseline · unmutated node battery exit 0 · baseline OK
+F1 M1 grep-law            · mutation: engine import planted in a screen  · DIED (the law's grep catches the plant)
+F2 offline-no-CDN law     · mutation: CDN url planted in the card CSS  · DIED — ✖ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance ins
+F3 saves-roundtrip        · mutation: roster 32 → 31                 · DIED — ✖ N12a: the week payload round-trips (serialize → restore → hydrate) (2.928405ms)
+F4 gone%-values law       · mutation: every gone% zeroed in goneodds.ts · DIED — ✖ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envel
+F5 season-brag truth law  · mutation: champion line swapped to the user team · DIED — ✖ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (
+every falsified law DIED — the battery is falsifiable
+FALSIFIER_EXIT=0

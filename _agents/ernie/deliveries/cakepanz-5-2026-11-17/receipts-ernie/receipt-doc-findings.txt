@@ -1,0 +1,30 @@
+== the four document findings, with the commands ==
+
+F-1  README.md:3 says `npm run battery:node` (24 laws); the battery has 26.
+     $ grep -n "24 laws" README.md          -> README.md:3 ... `npm run battery:node` (24 laws, framework-blind)
+     $ node --import ./scripts/node-port-register.mjs batteries/node.battery.mjs   -> tests 26 / pass 26
+     SHELL-STATUS.md:19 and MERGE-README.md:33,55 both say 26/26.
+
+F-2  VERIFY.txt §6 says the manifest gate prints 310 entries; it prints 316.
+     $ node scripts/gate-manifest.mjs
+       boot target: 2 referenced asset(s) checked against the manifest
+       gate-manifest: PASS (316 entries verified, dist/ covered, converse clean)
+     $ wc -l MANIFEST.txt CHECKSUMS.txt     -> 316 / 316
+
+F-3  VERIFY.txt §11 says the empty grep covers "(src/lib, src/App.svelte, batteries, scripts) - exit 1".
+     $ grep -rn "passClass\|passGap" src/lib src/App.svelte batteries | wc -l   -> 0        (claim holds)
+     $ grep -rln "passClass\|passGap" scripts                                  -> scripts/gamelog-fixture.mjs  (5 hits)
+     The proof script passes the option deliberately; "scripts" must not be in the empty set.
+
+F-4  The prepared copy differs from the shipped tree outside the five paths.
+     $ diff batteries/node.battery.mjs cakepanz-4/batteries/node.battery.mjs
+       379c379
+       <   const { makePack, packHash } = await import(P('src/engine/core/pack.ts'));
+       ---
+       >   const { makePack } = await import(P('src/engine/core/pack.ts'));
+     $ grep -c packHash (shipped)  -> 1 hit, and it is the import only (never used)
+     $ grep -c packHash (prepared) -> 0 hits
+     Harmless dead import, but SNAPSHOT.md says the prepared copy is the shipped tree + the five paths.
+
+F-5  SHELL-STATUS.md:28 reads `s4 feed | DONE (OT workaround stands)` — the only row that is not a plain
+     DONE, and it does not say what the workaround is or where its receipt lives.
