@@ -1,0 +1,11 @@
+=== checker ===
+Random123 known-answer vectors: ok
+checked: philox 323, hash 13, gamekey 90, draw 240, rng 120, throws 6
+normal(): 104/120 bit-identical, worst relative difference 2.08e-16 (reported, not required)
+RESULT: Python twin reproduces every vector exactly (normal() reported)
+exit:0
+
+=== suite ===
+ℹ tests 379
+ℹ pass 379
+ℹ fail 0
