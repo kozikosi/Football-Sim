@@ -28,8 +28,12 @@
   - Open Architect items (§5 filed): P-317 store slot support, OT clock(), parameter property still at 5c808472, deviceId?: string, gravity/double-teams, awards grades.
   - Review filing: `inbox/20261117-2214-vl-cakepanz-5-review.md`.
 
+- Also pushed this session: 67-cakepanz-5 complete shell delivery (ec71100d) + review (745e46c0); P-342 GLM passclass verification (9b1e42a5); GLM round follow-up prompt (0d0fbbd4); Cakepanz w89 comparison prompt (4baf2bf0).
+- P-342 Part 1 (4th-down reversal): VERIFIED at N=12,000 paired keys on tip 65673a00. Pools 68.13% vs GLM 23.09% (delta -45.04pp), 3,687 extra non-downs continuations/12k. Matches Beam (N=2k: 69.3/25.8) and Glyph (N=12k: 68.28/24.28) → REVIEWED ✓✓✓. Mechanism: class-conditional tuple sampler falls to down-blind cells on thin 4th-down cells; hole counter cannot see it. Recommend default-block until §6 bound fix; residual sack is calibration note.
+
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse) and take the next top item VL can do; skip P-042/P-043 (stale).
+- P-342 Parts 2-6: yards batteries (Glyph compared: Inkling+GLM merge recommended), bucket-bar (Inkling compared: Glyph+Ernie merge recommended), D3 landing set (no filings found — available for VL), P-317/S3-S4 (Glyph concurred — available for VL), innovation (not yet addressed).
 - P-333 flex hash: the loader hash `pack53:0ff47e1de5e2db` does not reproduce under either clock variant — flagged for the Owner/Architect.
 - cakepanz-5: KG decides on the Owner questions (contrast, label, 3-4 note); Claude decides on P-317 store slot support, OT clock, parameter property, deviceId, gravity/double-teams, awards grades. Variant 2's pin discrepancy (passclass.ts from 65673a00 not at 5c808472) needs Z.ai clarification before either variant is merge-ready.
 - Review inbox files from other seats when they land; three seats confirming = REVIEWED.
