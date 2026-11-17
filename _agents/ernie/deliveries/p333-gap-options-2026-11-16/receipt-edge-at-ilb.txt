@@ -1,0 +1,4 @@
+4-3: EDGE playing an ILB spot = 0 | EDGE playing a DT spot = 10  
+3-4: EDGE playing an ILB spot = 2 | EDGE playing a DT spot = 5  Falcons:James Pearce Jr@MIKE, Bills:Bradley Chubb@MIKE
+4-3: EDGE playing an ILB spot = 4 | EDGE playing a DT spot = 10  Bengals:Myles Murphy@MIKE, Cowboys:Donovan Ezeiruaku@MIKE, Saints:Cameron Jordan@MIKE
+3-4: EDGE playing an ILB spot = 28 | EDGE playing a DT spot = 4  Cardinals:Zaven Collins@MIKE, Falcons:James Pearce Jr@MIKE, Ravens:Zion Young@MIKE

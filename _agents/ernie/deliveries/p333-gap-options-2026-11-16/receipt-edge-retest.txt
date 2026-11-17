@@ -1,0 +1,7 @@
+EDGE->ILB 6 (today) => PATCH FAILED
+EDGE->ILB 4
+  {"loss43":2500,"loss34":1800,"gap":700,"standIns43":"FB>TE3@2, SS>DT2@6, TE>CB3@6","standIns34":"ILB>DL5@12","realMean":1067.96875,"built34":3,"flexed":148,"spots":2048,"em":0,"dtBadMean":-110.9375,"dtBadFav":17,"lbGoodMean":-1566.40625,"lbGoodFav":32,"bothMean":-2772.65625,"bothFav":32}
+EDGE->ILB 2
+  {"loss43":2400,"loss34":1800,"gap":600,"standIns43":"DT>DE2@6, EDGE>DT2@2","standIns34":"ILB>DL5@12","realMean":864.84375,"built34":3,"flexed":150,"spots":2048,"em":0,"dtBadMean":-194.53125,"dtBadFav":17,"lbGoodMean":-1566.40625,"lbGoodFav":32,"bothMean":-2772.65625,"bothFav":32}
+EDGE->ILB 0
+  {"loss43":1800,"loss34":1800,"gap":0,"standIns43":"DT>DE2@6","standIns34":"ILB>DL5@12","realMean":468.75,"built34":3,"flexed":127,"spots":2048,"em":0,"dtBadMean":-368.75,"dtBadFav":17,"lbGoodMean":-1566.40625,"lbGoodFav":32,"bothMean":-2772.65625,"bothFav":32}
