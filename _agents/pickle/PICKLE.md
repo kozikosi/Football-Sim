@@ -11,7 +11,31 @@ Queue `_agents/QUEUE.md` on **`origin/council/muse`** (`council/base`'s copy is 
 `git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs`, delete before pushing. START-HERE step 0
 (four governance docs from `council/muse`) first, every chat.
 
-## Current state (16 Nov 2026) — CAKEPANZ-SHELL / R-13: five filings, four of them measurable
+## Current state (17 Nov 2026) — P-333 macro: three judgements, one tool proposed
+
+Session was one prompt: the Owner's macro question (what matters most next), answered
+without reading DS's or GLM's filings. **`inbox/20261117-2050-pickle-P-333-macro-what-matters.md`**,
+pushed `ee75775d`. Anchors:
+
+- **The problem is the missing join, not the next node.** No tree is newest-shell · current-pin ·
+  green at once (deployed 277/286, `s5` at the wrong pin, seam unbuilt). One read-only
+  `tools/merge-gate.mjs <tree> --pin <sha>` makes "mergeable" countable: pin integrity by blob
+  hash · flex equal to the pin's copy (multiset read from the pin, never hardcoded) · suite green
+  with a test count · the tree's own pin line honest · zero engine imports outside the seam.
+  Today it fails the deployed tree on 2 checks and `s5` on 1. **Not built — proposed.**
+- **Direction (A) on the 4-3/3-4 gap is a target its own principles forbid.** Zeroing the table
+  gap (~700 units ≈ 0.09 wins/season) leaves ~947 of measured real-roster bias — more than the
+  ~720 measured today — so closing the real gap requires making 3-4 cheaper than 4-3 by ~950
+  units. Stated as INFERRED from KG's four numbers; if they are wrong, that correction is the finding.
+- **Wins has never been calibrated.** The user is told Wins = wins added. Nobody has measured
+  whether drafting by Wins wins more, by the predicted margin, or printed the 20-0 rate. One
+  afternoon at 3,900 games/s; it decides whether the three numbers in the UI mean anything.
+- Prompt defects reported to MUSE before its push: the CI-gate contradiction (preamble
+  "still advisory" vs Part 5 "REAL"), and `FOR: P-342` on the GLM review when P-342 is the
+  1b-mutation/formation label. Also: the 99-rule multiset is stated two ways (prompt 17/17/42/23;
+  AGENTS.md §2 23/43/10/23) — UNKNOWN which is in the file; read it from the pin.
+
+## Earlier (16 Nov 2026) — CAKEPANZ-SHELL / R-13: five filings, four of them measurable
 
 Round: prompt v4-2 (council assist for the 67 Cakepanz shell finish). Took the parts that settle with a command.
 
@@ -88,10 +112,11 @@ Q1–Q8 in order, §0 correction first, labels in §9).
 
 ## What the next session needs
 
-0. **The red deployment is the most actionable thing on the board** (`inbox/20261116-2109-…-pin-and-suite.md`): 9/286
-   engine laws fail in the tree that is actually deployed, and 8 of them are the Owner's flex rulings not yet reflected
-   in the carried tests. Whoever owns the re-pin fixes that in one commit; nobody should merge into either tree until
-   one of them is (latest shell · current pin · green) at once.
+0. **`tools/merge-gate.mjs` is the thing to build** (17 Nov filing §Q2): five checks over
+   commands already proven by hand this week, read-only, council-owned. It is what turns
+   "is this tree mergeable?" from a judgement per seat into an exit code — and the deployed
+   tree being 277/286 while nothing refused it is the defect it closes
+   (`inbox/20261116-2109-…-pin-and-suite.md` for the red tree itself).
 1. **Read the Rev 4 round's other filings before reviewing mine** — the value is in the disagreements (Ernie on
    "improvable", MUSE on the boot evidence, Claude on the framework call). A review that agrees adds nothing.
 2. **Re-run my two numeric claims if you doubt them** — the derived-gap identity (§7.2) and the stamp coverage list
@@ -113,8 +138,10 @@ Q1–Q8 in order, §0 correction first, labels in §9).
 
 ## Live files
 
+- `inbox/20261117-2050-pickle-P-333-macro-what-matters.md` (17 Nov — macro answer) ·
+  `bulletin/20261117-2350-pickle.md`
 - `inbox/20261116-2109-pickle-CAKEPANZ-SHELL-pin-and-suite.md` · `-2120-…-cone-one-door.md` ·
-  `-2134-…-neutrality.md` · `-2147-…-boxscore-mutations.md` (this round)
+  `-2134-…-neutrality.md` · `-2147-…-boxscore-mutations.md` (16 Nov round)
 - `inbox/20261115-1147-pickle-direction-innovation.md` (Rev 4 deliverable)
 - `inbox/20261115-1135-pickle-P-345-axis-comparison.md` · `inbox/20261115-1136-pickle-stop-doing.md`
 - `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/` (axis-bounds, inputs, RUN)
