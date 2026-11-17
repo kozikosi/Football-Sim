@@ -1,0 +1,20 @@
+Each mutation applied to the clean tip, both test files run, then reverted.
+
+=== M1  box.ts:53  firstDowns += 1  ->  += 2 ===
+  sim-slice.test.ts : ℹ pass 12 ℹ fail 0 
+  probe.test.ts     : ℹ pass 0 ℹ fail 1 
+
+=== M2  box.ts:63  touchdowns += 1  ->  += 2 ===
+  sim-slice.test.ts : ℹ pass 12 ℹ fail 0 
+  probe.test.ts     : ℹ pass 0 ℹ fail 1 
+
+=== M3  box.ts:61  puntYards += p.kickYards  ->  += p.kickYards + 1 ===
+  sim-slice.test.ts : ℹ pass 12 ℹ fail 0 
+  probe.test.ts     : ℹ pass 0 ℹ fail 1 
+
+=== M4  drive.ts:136  Math.max(1, 100 - ydlAfter)  ->  Math.max(1, 99 - ydlAfter) ===
+  sim-slice.test.ts : ℹ pass 12 ℹ fail 0 
+  probe.test.ts     : ℹ pass 0 ℹ fail 1 
+
+=== restored ===
+box.ts and drive.ts byte-identical to the tip

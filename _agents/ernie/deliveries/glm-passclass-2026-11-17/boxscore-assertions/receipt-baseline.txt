@@ -1,0 +1,13 @@
+$ node --version
+v26.13.0
+
+$ node --experimental-strip-types --test colors/test/nfl/sim-slice.test.ts   (baseline, clean tree)
+ℹ tests 12
+ℹ pass 12
+ℹ fail 0
+
+$ node --experimental-strip-types --test colors/test/nfl/zzprobe.test.ts   (my probe, clean tree)
+coverage: firstDowns>0 2068, touchdowns>0 1022, punts>0 746, result "to" 241
+ℹ tests 1
+ℹ pass 1
+ℹ fail 0
