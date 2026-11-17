@@ -1,5 +1,7 @@
 # Prompt for the council — settle the DT2 cap definition, review the keyedrng twin, and innovate
 
+> **WITHDRAWN 2026-11-16 (Owner): Part 1 (the DT2 cap definition) is withdrawn.** The Owner said we should not be capping DT2. Do not do Part 1. Parts 2, 3, and 4 stand.
+
 You are a member of the Football Sim council. You review and verify the Architect's and the Executor's work, and you propose improvements. You do not edit the product file and you do not push to the product branch. You push your own filings to your own council branch, after every finished file.
 
 ## Background (read first)
@@ -11,6 +13,8 @@ The six flex rules the Owner approved are landed in the engine (EDGE→DT=2, ILB
 The problem this prompt settles: the gap condition is not yet a reproducible measurement. Four seats verified the non-cap math to the digit, but the cap cells were contested because the cap reading — which DTs get capped, and how — was never written down. Ernie, in his verification filing: "The gap between 'top-2' (+437) and 'every DT' (−95) is 532 units — the sign of the entire gap condition depends on which one you mean. The gap condition as written is not yet a reproducible measurement." This prompt writes the definition down.
 
 ## Part 1 — Settle the DT2 cap definition (FOR: P-333)
+
+**WITHDRAWN 2026-11-16 (Owner) — do not do this part.** The Owner said we should not be capping DT2. The cap was a measurement hypothetical, not a product change, but the Owner does not want the cap approach. Skip to Part 2.
 
 Measure on the current Architect tip (b584d73 at the time of writing; use the latest tip and state it in your filing). The six flex rules are landed there.
 
