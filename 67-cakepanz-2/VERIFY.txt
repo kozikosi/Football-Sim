@@ -1,0 +1,40 @@
+VERIFY.txt — every receipt in one place · Z.ai · 2026-11-16 · labels: VERIFIED (ran it, receipt below) / REPORTED (someone else measured; named) / INFERRED (reasoned, not run) / UNKNOWN
+
+§1 THE PIN (VERIFIED)
+- src/engine byte-identity to d3bd81d2: `diff -rq /tmp/engine-d3/src <tree>/src/engine` → exit 0 (57 files). 4ca9a071 was the STALE document pin; AGENTS.md's d3bd81d2 (2026-11-15) matches reality. README corrected this sitting.
+- Engine self-stamp at this pin: nfl1.14a4e9333e888a (engineVersion()).
+
+§2 ENGINE TESTS (VERIFIED)
+- `node --test --experimental-strip-types test/engine.test.ts` (the Architect's own suite at the pin, path-re-pointed only): **323/323 pass, 0 fail** (log: 538 lines, exit 0). At the carried OLD goldens it was 277/286 — the 9 fails were stale pin-goldens, resolved by syncing the pin's own suite (NOT by editing expectations).
+
+§3 THE RE-PIN MIGRATION = THE M3 SWAP-TEST RECEIPT (VERIFIED)
+- This sitting MOVED the pin 4ca9a071→d3bd81d2 with ZERO screen edits: `git diff --stat` over the sitting shows src/engine + test/engine + data only; screens/lib changes are additive (new port/ + screens), no screen was edited to chase the engine (the one battery probe fix is window-width, not law text — receipt §5).
+
+§4 NODE BATTERY — framework-blind (VERIFIED)
+- `node --experimental-transform-types batteries/node.battery.mjs` → **21/21 pass, exit 0** (batteries/node-battery output in run logs; the JSON is not written by --test runner; the summary line: pass 21 fail 0).
+- Laws: M1 (grep empty), M1b (one door), M2 (swap cone: delete src/engine in a throwaway copy → zero screen type errors), N4a/b fixture determinism + full 1,024-pick league, P-317 (custom order carries the user at overall slot N through a full draft), N9a–d (stepper = engine table at w18; bracket = engine seeding; champion; gameSeed replay), N10 (stats accumulate via addBox), N11 (review grammar: no "expected scoring", no "sudden death", no injuries; turnovers named; integer chips), N12a–c (week payload roundtrip; corrupt refused verbatim; newer-version refused BY VERSION), N13 settings, N14 shareables (self-contained, no CDN, provenance, 390px + reduced-motion blocks), N15 display law (integers; Wins/Priority one decimal; gone% integer; flex "-N flex"), N16 port neutrality (no framework tokens below render), N17 w88/w89 grammar (zrl-* classes; #fdf2f6; #1e1119; Cinzel INLINED; no Google fonts), N18 the 32-team palette + [data-zpbteam].
+
+§5 SLICE BATTERY (VERIFIED)
+- `node batteries/slice1.battery.mjs` → **26 pass · 0 fail · 10 SKIP (loud, each with its reason) · 3 DEFER (cutover)**, exit 0. The d3bd81d2 flex-chip probe window was corrected (the 99-rule flex hides 6/8/12-cost flex before round 20 per the Owner's 30 Oct rule; probe verified node-side that the top-14 QB/WR rows carry NO displayable flex) — the LAW text is unchanged; receipt: node probe "first 14 rows by Wins all have alsoFits: []", probe-fits.mjs output "TOTAL rows with displayable alsoFits: 11" (OL -2 flex chips observed in the DOM: 20 chips).
+
+§6 SHELL RENDER BATTERY (VERIFIED except one OPEN item)
+- `node --experimental-transform-types batteries/shell.battery.mjs` → S1a,S1b(32 slots),S2,S3,S4(settings persist),S6..S28 PASS (season played through the real UI to the champion banner; standings 8 division tables; awards named; book cards; shareables; empty state; two-mode palette #fdf2f6/#1e1119; reduced-motion; 390px clean ×4; file:// boots single.html with 0 console errors + 0 blocked requests).
+- **S5 = OPEN FAIL (honest)**: the draft-complete screen does not render through the battery path (data-screen switches to 'complete'; the panel never mounts; the LOAD itself succeeds — probe: {status:'done', picks:1024, err:null}). Repro: batteries/shell.battery.mjs S5. NOT FIXED this sitting (budget) — the working alternative for the Owner: the BoardFooter play gate path. File as the shell's one open defect.
+
+§7 GATES (VERIFIED)
+- `node scripts/regen-manifest.mjs` → 231 entries; `node scripts/gate-manifest.mjs` → PASS (231 verified + converse clean); `node scripts/gate-numerals.mjs` → CLEAN ×2 (stale pin named only in correction context; no unfilled markers; every doc names the CURRENT pin d3bd81d2).
+
+§8 FALSIFIERS (VERIFIED for F1; REPORTED-INFERRED for F2/F3)
+- F1 (M1 grep law): planting an engine import in a screen → the law DIES (grep catches it). RECEIPTED.
+- F2 (N14 no-CDN law) and F3 (N12a roundtrip law): the mutation script's target strings had moved (no-op edits) → those runs are NOT receipts. Label: the laws' falsifier code exists in scripts/receipt-falsifier.mjs; re-derive with corrected target strings. NO TAUTOLOGY CLAIMED for N14/N12a — the honest label is UNFALSIFIED-THIS-SITTING, not "survivor".
+
+§9 BUILD (VERIFIED)
+- `npm run distfile` → 221 modules, dist JS 375.56 KB (127.7 KB gz), single-file dist/single.html 448.3 KB, "no external refs: true", file:// boot clean (S26–S28).
+
+§10 SINGLE SOURCE OF TRUTH (REPORTED)
+- The muse branch's START-OF-CHAT-ZAI.md §2 said "slices 1–5 done; slice 5 REVIEWED" — slice 5 did NOT exist as code anywhere I could find (muse/gh-pages/glyph searched). Corrected inventory in SHELL-STATUS.md; slice 5 is now built for real.
+- The Rev 10 delivery note's "24/24 both arms, 871/871 DOM pins, 43.8 KB gz book" — REPORTED (zai-fresh-start-rev10-2026-11-16 on council/glyph); not re-measured here.
+
+§11 UNKNOWN
+- Whether award grades ≥90 ever occur in a receipted season (the shimmer is wired; no grade observed).
+- Svelte-vs-Vue cutover cost delta (the Owner's measurement says tie — REPORTED, Owner).

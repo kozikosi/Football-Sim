@@ -1,0 +1,134 @@
+/* shell.css — the 67 Cakepanz shell chrome: tokenized (assets/tokens-w89.css is the palette law),
+   two-mode, team-remap aware, 390px clean. The cp-* classes are the battery's hooks. */
+@import './tokens-w89.css';
+
+:root { color-scheme: light dark; }
+body.cp-body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  margin: 0;
+  min-height: 100vh;
+  -webkit-text-size-adjust: 100%;
+}
+@media (prefers-reduced-motion: reduce) {
+  body.cp-body *, body.cp-body *::before, body.cp-body *::after {
+    animation-duration: 0.001s !important; animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important; scroll-behavior: auto !important;
+  }
+}
+body.cp-reduced *, body.cp-reduced *::before, body.cp-reduced *::after {
+  animation: none !important; transition: none !important;
+}
+
+.cp-root { max-width: 1060px; margin: 0 auto; padding: 18px 16px 72px; }
+.cp-topbar { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; margin-bottom: 14px; }
+.cp-brand { font-family: var(--font-display); font-size: 1.4rem; font-weight: 800; letter-spacing: 0.08em; color: var(--gold2); }
+.cp-shine { color: var(--goldm); }
+.cp-track { font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sub); }
+.cp-topbtns { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+.cp-topbar-btn, .cp-navbtn {
+  border: 1px solid var(--gold3); background: transparent; color: var(--gold2);
+  border-radius: 999px; padding: 5px 14px; cursor: pointer; font-family: inherit;
+  font-size: 0.8rem; font-weight: 700; letter-spacing: 0.04em;
+}
+.cp-topbar-btn:hover, .cp-navbtn:hover { background: color-mix(in srgb, var(--goldm) 12%, transparent); }
+.cp-topbar-btn[aria-pressed='true'], .cp-navbtn[aria-current='true'] { border-color: var(--gold2); background: color-mix(in srgb, var(--goldm) 18%, transparent); }
+.cp-nav { display: flex; gap: 6px; flex-wrap: wrap; margin: 0 0 16px; }
+.cp-prov { font-size: 0.78rem; color: var(--sub); letter-spacing: 0.04em; margin: 0 0 10px; }
+.cp-prov b { color: var(--gold2); }
+.cp-note { color: var(--sub); font-size: 0.9rem; }
+.cp-error { color: var(--bad); font-size: 0.85rem; }
+.cp-empty { border: 1px solid var(--hairline); border-radius: 12px; padding: 22px; background: var(--panel); }
+.cp-empty h1 { margin-top: 0; color: var(--gold2); letter-spacing: 0.1em; }
+.cp-devlink { color: var(--goldm); }
+h2.cp-h2 { font-family: var(--font-display); color: var(--gold2); letter-spacing: 0.06em; margin: 8px 0 10px; }
+.cp-panel { background: var(--panel); border: 1px solid var(--hairline); border-radius: var(--r-md); padding: 14px; margin: 0 0 14px; }
+.cp-sub { color: var(--sub); font-size: 0.82rem; }
+.cp-chipline { display: flex; gap: 8px; flex-wrap: wrap; margin: 10px 0; }
+.cp-chipstat { border: 1px solid var(--hairline); border-radius: 8px; padding: 6px 12px; background: var(--panel2); }
+.cp-chipstat b { color: var(--gold2); font-size: 1.1rem; display: block; }
+.cp-chipstat span { color: var(--sub); font-size: 0.62rem; letter-spacing: 0.12em; }
+
+/* tables (standings, stats, leaders) */
+.cp-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.cp-table th { color: var(--sub); text-align: left; font-size: 0.66rem; letter-spacing: 0.12em; border-bottom: 1px solid var(--hairline); padding: 5px 8px; }
+.cp-table td { border-bottom: 1px solid var(--hairline); padding: 5px 8px; color: var(--text); }
+.cp-table td.num, .cp-table th.num { text-align: right; font-variant-numeric: tabular-nums; }
+.cp-table tr.cp-me td { color: var(--gold2); font-weight: 800; }
+.cp-table tr:hover td { background: color-mix(in srgb, var(--goldm) 6%, transparent); }
+
+/* week / game cards */
+.cp-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+.cp-gamecard { border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--panel); padding: 10px 12px; min-width: 200px; flex: 1 1 220px; }
+.cp-gamecard.cp-megame { border-color: var(--gold2); box-shadow: 0 0 0 1px var(--gold3); }
+.cp-matchup { display: flex; align-items: baseline; gap: 8px; font-size: 1rem; }
+.cp-abbr { font-weight: 800; letter-spacing: 0.06em; }
+.cp-score { font-weight: 800; font-variant-numeric: tabular-nums; color: var(--gold2); }
+.cp-pending { color: var(--sub); font-size: 0.72rem; letter-spacing: 0.1em; }
+.cp-final { color: var(--sub); font-size: 0.62rem; letter-spacing: 0.14em; }
+
+/* the stepper */
+.cp-stepper { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin: 12px 0; }
+.cp-stepbtn { border: 1px solid var(--gold3); background: transparent; color: var(--gold2); border-radius: 999px; padding: 6px 16px; cursor: pointer; font-family: inherit; font-weight: 700; }
+.cp-stepbtn:disabled { opacity: 0.45; cursor: default; }
+.cp-stepbtn.cp-cta { background: color-mix(in srgb, var(--goldm) 22%, transparent); border-color: var(--gold2); }
+.cp-weeklabel { font-family: var(--font-display); color: var(--gold2); letter-spacing: 0.08em; font-size: 1.05rem; }
+
+/* cards (player cards, book roster) */
+.cp-cardgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 10px; }
+.cp-pcard { border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--panel); padding: 12px; position: relative; }
+.cp-pcard .mono { width: 34px; height: 34px; border-radius: 999px; background: color-mix(in srgb, var(--goldm) 26%, transparent); color: var(--gold2); display: flex; align-items: center; justify-content: center; font-weight: 800; border: 1px solid var(--gold3); }
+.cp-pcard .pname { color: var(--zcream); font-size: 0.9rem; font-weight: 700; margin-top: 6px; }
+.cp-pcard .pmeta { color: var(--sub); font-size: 0.68rem; letter-spacing: 0.08em; }
+.cp-pcard .pnum { display: flex; gap: 10px; margin-top: 8px; font-variant-numeric: tabular-nums; }
+.cp-pcard .pnum div b { color: var(--gold2); display: block; font-size: 1.02rem; }
+.cp-pcard .pnum div span { color: var(--sub); font-size: 0.58rem; letter-spacing: 0.14em; }
+.cp-arrow { position: absolute; top: 10px; right: 10px; font-size: 0.9rem; }
+.cp-arrow.up { color: var(--good); }
+.cp-arrow.down { color: var(--bad); }
+.cp-arrow.flat { color: var(--sub); }
+
+/* bracket */
+.cp-bracket { display: flex; flex-direction: column; gap: 12px; }
+.cp-brackround { border: 1px solid var(--hairline); border-radius: var(--r-md); padding: 12px; background: var(--panel); }
+.cp-brackround h3 { margin: 0 0 8px; color: var(--gold2); font-family: var(--font-display); letter-spacing: 0.06em; font-size: 0.95rem; }
+.cp-seedrow { display: flex; gap: 10px; align-items: baseline; font-size: 0.85rem; }
+.cp-champbanner { border: 1px solid var(--gold2); border-radius: var(--r-md); padding: 18px; text-align: center; background: color-mix(in srgb, var(--goldm) 14%, var(--panel)); margin: 12px 0; }
+.cp-champbanner .champ { font-family: var(--font-display); font-size: 1.6rem; color: var(--gold2); letter-spacing: 0.1em; }
+
+/* awards */
+.cp-award { border: 1px solid var(--hairline); border-radius: var(--r-md); background: var(--panel); padding: 12px; flex: 1 1 240px; }
+.cp-award .aname { color: var(--sub); font-size: 0.62rem; letter-spacing: 0.16em; }
+.cp-award .awinner { color: var(--gold2); font-size: 1.05rem; font-weight: 800; margin: 4px 0; }
+.cp-shimmer90 { animation: cpshimmer 2.6s linear infinite; background: linear-gradient(100deg, var(--gold2) 40%, #fff2d0 50%, var(--gold2) 60%); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; color: transparent; }
+@keyframes cpshimmer { to { background-position: 200% center; } }
+
+/* review */
+.cp-revline { display: flex; gap: 10px; align-items: baseline; padding: 4px 0; border-bottom: 1px dashed var(--hairline); font-size: 0.88rem; }
+.cp-revline .per { color: var(--sub); font-size: 0.66rem; min-width: 74px; letter-spacing: 0.06em; }
+.cp-revline.good { color: var(--gold2); }
+.cp-revline.bad { color: var(--bad); }
+
+/* settings */
+.cp-setrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 8px 0; border-bottom: 1px dashed var(--hairline); flex-wrap: wrap; }
+.cp-setrow label { color: var(--text); font-size: 0.9rem; }
+.cp-setrow select, .cp-setrow input[type='number'] { background: var(--panel2); color: var(--text); border: 1px solid var(--hairline); border-radius: 6px; padding: 4px 8px; font-family: inherit; }
+
+/* guide */
+.cp-guide p { max-width: 68ch; }
+.cp-guide dt { color: var(--gold2); font-weight: 800; margin-top: 10px; }
+.cp-guide dd { margin: 2px 0 0 0; color: var(--text); font-size: 0.9rem; max-width: 68ch; }
+
+/* shareable */
+.cp-shareprev { border: 1px solid var(--gold3); border-radius: var(--r-md); background: var(--panel); padding: 16px; max-width: 420px; }
+.cp-shareprev .s-title { font-family: var(--font-display); color: var(--gold2); letter-spacing: 0.08em; font-size: 1.2rem; }
+.cp-shareprev .s-line { color: var(--zcream); font-size: 0.95rem; margin: 6px 0; }
+.cp-shareprev .s-prov { color: var(--sub); font-size: 0.66rem; letter-spacing: 0.08em; margin-top: 10px; }
+
+@media (max-width: 390px) {
+  .cp-root { padding: 12px 10px 60px; }
+  .cp-cardgrid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+  .cp-topbar { gap: 8px; }
+  .cp-table { font-size: 0.76rem; }
+}
