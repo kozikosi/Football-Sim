@@ -1,4 +1,4 @@
-# Minimal CI for colors/ (Architect, 14 Nov 2026). REPORT-ONLY: every step has continue-on-error, so a red step shows in the log and the run summary but
+# Minimal CI for colors/ (Architect, 14 Nov 2026). The production build is a GATE since 17 Nov 2026 (Owner: flip it when green; it passed on Node 24 in the last three runs). The type check and the tests stay REPORT-ONLY: they have continue-on-error, so a red step shows in the log and the run summary but
 # never blocks a push or a merge (Owner via Ernie, 14 Nov: no new gates). Action versions and node-version 24 follow the repo's own earlier workflow
 # (checkout@v4, setup-node@v4, Node 24; commits c7ab335b, 19e28c13, df8a752e). Do not run this on gh-pages (a publishing branch).
 name: ci
@@ -30,6 +30,5 @@ jobs:
       - name: Tests
         run: npm test
         continue-on-error: true
-      - name: "Production build (src/main.ts, the engine dev page, exists since 15 Nov 2026; still advisory, flip continue-on-error to make it a gate)"
+      - name: "Production build (GATE since 17 Nov 2026: a failing build fails the run)"
         run: npm run build
-        continue-on-error: true
