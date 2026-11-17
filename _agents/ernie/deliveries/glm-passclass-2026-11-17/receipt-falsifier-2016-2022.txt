@@ -1,0 +1,48 @@
+bucket-bar: pools nfl-pools-fit2016-2022 + passclass nfl-passclass-fit2016-2022, 6000 paired games
+node v26.13.0; every pass play is re-derived from the snap event, so no engine edit is involved
+
+LAYER 1 — aggregate
+  pass plays  pools 430572   glm 430124
+  sacks       pools 27552   glm 27513
+  sack rate   pools 6.3989%   glm 6.3965%   difference -0.0024 points   SE 0.0373 / 0.0373
+
+LAYER 2 — Kitagawa-Oaxaca, coarse to fine (rate = different class rates in the same state; mix = different state distribution)
+  total difference -0.0024 points
+  down only                                      cells     4   rate   -0.0065 pp ( 271.2%)   mix   0.0041 pp (-171.2%)
+  down x score-bin                               cells    20   rate   -0.0067 pp ( 277.7%)   mix   0.0043 pp (-177.7%)
+  down x ytg-bin x side x score-bin              cells   140   rate   -0.0127 pp ( 530.5%)   mix   0.0103 pp (-430.5%)
+  the engine own rec cell (call, down, dist, ydl) cells   320   rate   -0.0141 pp ( 585.7%)   mix   0.0117 pp (-485.7%)
+  engine rec cell x ytg-bin                      cells   404   rate   -0.0151 pp ( 627.7%)   mix   0.0127 pp (-527.7%)
+  engine rec cell x score-bin  <- the decisive one cells  1563   rate   -0.0139 pp ( 577.5%)   mix   0.0115 pp (-477.5%)
+
+LAYER 3 — score-bucket redistribution (the pattern that gets mistaken for the cause)
+  bucket        n_pools   n_glm   share_pools  share_glm   rate_pools  rate_glm   diff(pp)
+  trail-big     100210   105294      23.274     24.480      6.286%    6.800%     0.514
+  trail         113283   108181      26.310     25.151      6.335%    6.463%     0.128
+  tied           92970    88513      21.592     20.578      6.499%    6.478%    -0.021
+  lead           76909    76656      17.862     17.822      6.465%    6.080%    -0.384
+  lead-big       47200    51480      10.962     11.969      6.487%    5.761%    -0.726
+
+LAYER 4 — sack rate per pass attempt by down
+  down   n_pools  n_glm   rate_pools  rate_glm   diff(pp)      rel%
+  1      159381  158459     4.949%    5.029%     0.080    1.61
+  2      145570  145339     5.323%    5.286%    -0.037   -0.69
+  3      117458  117315     9.615%    9.592%    -0.022   -0.23
+  4        8163    9011     7.632%    6.758%    -0.874  -11.45
+
+LAYER 5 — GLM only: sack rate by the level the class sampler landed on
+  L0 = it stayed in the down-aware cell; L>0 = it fell back to a coarser, down-blind cell
+  L0       414211   96.30     5.687%
+  L1        11208    2.61    21.163%
+  L2         4192    0.97    30.725%
+  L3          513    0.12    57.895%
+  L0 vs L>0 relative rate 337.25%
+
+LAYER 6 — who carries the aggregate rate effect (contribution = share of plays x rate difference)
+  down 1: share of GLM plays  36.84%   contribution    0.0294 pp
+  down 2: share of GLM plays  33.79%   contribution   -0.0125 pp
+  down 3: share of GLM plays  27.27%   contribution   -0.0061 pp
+  down 4: share of GLM plays   2.09%   contribution   -0.0183 pp
+
+VERDICT RULE: if the rate column stays near 100% as the bucketing gets finer — especially at the engine cell x score-bin —
+the shift is a per-state rate effect and the score redistribution in LAYER 3 is its consequence, not its cause.

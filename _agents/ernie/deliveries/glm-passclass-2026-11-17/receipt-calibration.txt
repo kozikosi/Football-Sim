@@ -1,0 +1,12 @@
+$ node --experimental-strip-types calib.mjs 12000
+GLM class-model calibration on the sacks class | 65673a00 | 12000 paired games
+  GLM predicted sack probability (mean over the pass plays it faced): 6.9419%
+  GLM realised sack rate:                                          6.9725%
+  pools realised sack rate:                                        7.0723%
+  calibration gap (predicted - realised):                         -0.0305 points
+  model vs pools (predicted - pools):                             -0.1304 points  <-- the whole shift
+
+per-game sign of (glm rate - pools rate):
+  games where GLM > pools: 5143   equal: 1537   GLM < pools: 5320
+  share of games with the GLM below the pools node: 44.3%
+  mean per-game difference: -0.0975 points, max |diff| 20.54
