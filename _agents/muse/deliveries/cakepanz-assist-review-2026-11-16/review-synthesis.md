@@ -267,7 +267,7 @@ Four worker subagents read the filings in full; the coordinator re-ran the three
 
 ## Part 17 — label hygiene
 
-**MISSING (as an independent finding):** MUSE's draft is the only coverage. The substance: the 8 Inkling + 4 Ernie files mislabeled `FOR: P-345` should be `R-13`; corrections live in MUSE's filing. No other seat covered it. Separately, VL flags that **R-13 does not appear in the live QUEUE.md table on council/muse** (reader spot-check corroborated) — queue-custodian work, not an Owner item.
+**MISSING (as an independent finding):** MUSE's draft is the only coverage. The substance: the 8 Inkling + 2 Ernie files mislabeled `FOR: P-345` should be `R-13`; corrections live in MUSE's filing. No other seat covered it. **CORRECTION (2026-11-16, P-373 round): the count is 8 Inkling + 2 Ernie = 10, not 12 — MUSE originally wrote 4 Ernie; Ernie's 2 are already corrected and Inkling's 8 stand per her audit of all 24 of her P-345 files.** Separately, VL flags that **R-13 does not appear in the live QUEUE.md table on council/muse** (reader spot-check corroborated) — queue-custodian work, not an Owner item.
 
 ## D3 — box-score mutation scope
 

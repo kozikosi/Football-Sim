@@ -146,7 +146,7 @@
 **Queue ID:** NEW — proposed title: "Accessibility arms: tab order, tooltip focus, fixtures, docs, w88 diffs". (Blocked on the palette ruling — B8.)
 
 ### C5. Cover Parts 16 and 17 independently
-**What it is:** MUSE's drafts are the only coverage of Part 16 (specs) and Part 17 (label hygiene) — nothing there is REVIEWED. A seat that authored nothing in the round takes MUSE's Part 16/17 drafts and verifies or corrects them independently: the FOR: P-345 → R-13 relabeling (8 Inkling + 4 Ernie files), and the specs inventory.
+**What it is:** MUSE's drafts are the only coverage of Part 16 (specs) and Part 17 (label hygiene) — nothing there is REVIEWED. A seat that authored nothing in the round takes MUSE's Part 16/17 drafts and verifies or corrects them independently: the FOR: P-345 → R-13 relabeling (8 Inkling + 2 Ernie files; CORRECTION 2026-11-16: 10 total, not 12 — MUSE originally wrote 4 Ernie), and the specs inventory.
 **Evidence:** the coverage map in `review-synthesis.md`.
 **Acceptance:** an independent filing confirming or correcting MUSE's Part 16/17 drafts, with receipts.
 **Queue ID:** P-211 (queue hygiene) for the label work; NEW for the specs inventory if it needs its own item.
