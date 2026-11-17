@@ -19,11 +19,12 @@
   - `inbox/20261117-0403-vl-P-375-cosine-bit-identical.md` (FOR: P-375, Part 2) — VERIFIED at b584d73 (re-confirmed at 5c808472). Python checker exit 0: keyedrng philox 323, hash 13, gamekey 90, draw 240, rng 120, throws 6 all match; normal() 120/120 bit for bit (this Node 26/macOS machine, where old code got 106/120). pmath_check.py exit 0: all pmath vectors bit for bit, worst error 1.87e-15. Full TS suite: 394/394 pass. tsc ratchet: 89 errors (pinned 89), unchanged. Machine: Darwin/macOS, Node v26.13.0, Python 3.15.
   - `inbox/20261117-0403-vl-CI-GATE-ci-gate.md` (FOR: CI-GATE, Part 3) — VERIFIED. Workflow `.github/workflows/ci.yml` at 5c808472: build step has NO continue-on-error (gate); type check and tests have continue-on-error: true (report-only). Last 3 CI runs (44010235789 @ 5c808472, 44006643913 @ db33bfa0, 44002436907 @ 7828d914): all success, build step success, statuses match. Gate mechanism confirmed real; failure path not observed live (no failing build run in last 3).
   - `inbox/20261117-0403-vl-P-333-recent-engine-work.md` (FOR: P-333, Part 4) — VERIFIED at 5c808472. Flex rules: 6 rules at 2 (EDGE→DT, ILB→OLB, CB→FS, EDGE→OLB, OT→OG, CB→SS), SS→NICKEL at 0, counts 23@12/42@6/17@2/17@0 = 99. Pack: 2,990,032 bytes VERIFIED, zero table holes in 6,000 games VERIFIED, loader hash CONTESTED (0e78e4db382f9f dt_f / 1fe065713f326b dt_pf vs expected 0ff47e1de5e2db — hash is config-dependent, another seat reported same non-reproduction). Derived priorities VERIFIED (computed from spot values, not literals). OT clock "OT mm:ss" VERIFIED. FB→TE = 2 VERIFIED. DIME trio at 12 VERIFIED. Full suite 394/394.
-- Also pushed earlier (previous sessions): 67-cakepanz-2 + cakepanz-3 deliveries (de204d6d), cakepanz-3 review (956f4489), gap-condition real-data, P-375 keyedrng twin (earlier tip), P-373/P-374, innovation ideas.
+- Also pushed this session: 67-cakepanz-4 complete shell delivery (087018ba) + council review (1ba18b02); pin VERIFIED at 5c808472 (67/67 byte-match), single-door seam VERIFIED, engine tests 394/394, shell render battery 46/0, acceptance run green end-to-end. Also pushed earlier (previous sessions): 67-cakepanz-2 + cakepanz-3 deliveries, cakepanz-3 review, gap-condition real-data, P-375 keyedrng twin (earlier tip), P-373/P-374, innovation ideas.
 
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse) and take the next top item VL can do; skip P-042/P-043 (stale).
 - P-333 flex hash: the loader hash `pack53:0ff47e1de5e2db` does not reproduce under either clock variant — flagged for the Owner/Architect.
+- cakepanz-4: KG decides on the Owner questions (contrast, label, 3-4 note); Claude decides on P-317 store slot support, OT clock, parameter property, deviceId, gravity/double-teams, awards grades. VL's review filing stands (`inbox/20261117-0737-vl-cakepanz-4-review.md`).
 - Review inbox files from other seats when they land; three seats confirming = REVIEWED.
 
 ## Open questions (updated)
@@ -33,7 +34,7 @@
 
 ## Live files / receipts
 - All inbox filings above — committed and pushed on origin/council/vl this session (hash given at push time).
-- `_agents/vl/deliveries/zai-pass-through/67-cakepanz-3/` — Z.ai's cakepanz 3 complete shell (286 files, dist excluded), pushed de204d6d, reviewed 956f4489.
+- `_agents/vl/deliveries/zai-pass-through/67-cakepanz-4/` — Z.ai's cakepanz 4 complete shell (323 files, dist excluded), pushed this session (087018ba) and reviewed (1ba18b02); pin VERIFIED at 5c808472 (67/67 engine files byte-match); single-door seam VERIFIED (no engine imports outside src/engine + src/lib/port); engine tests 394/394, node battery 24/24, slice battery 29/0/10/3, shell render battery 46/0 (S1a-S30 whole season through the UI), gates PASS, falsifiers all died (Z.ai's receipts, read in full). Open Owner questions flagged (light gold2 1.51:1 FAIL, dark --text 3.17:1 FAIL normal, awards content, Model Value vs Engine Value label, 3-4 one-liner, P-364 wording); open Architect items (P-317 store slot support, OT clock(), parameter property still at 5c808472, deviceId?: string, gravity/double-teams, awards grades). Review filing: `inbox/20261117-0737-vl-cakepanz-4-review.md`.
 - `_agents/vl/deliveries/zai-pass-through/67-cakepanz-2/` — Z.ai's cakepanz 2 complete shell (234 files, dist excluded), pushed a2c5a5a6.
 
 ## Pending
