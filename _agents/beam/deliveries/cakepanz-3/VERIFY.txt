@@ -1,0 +1,168 @@
+# VERIFY.txt — every receipt in one place · Z.ai · 2026-11-17 (the fix round)
+# Labels: VERIFIED (ran it, receipt below or in ACCEPTANCE-RECEIPTS.txt) / REPORTED (someone else
+# measured; named) / INFERRED (reasoned, not run) / UNKNOWN (no evidence).
+
+§0 THE TREE (VERIFIED)
+- The tree: 67-cakepanz-2 (236 files as delivered, version 0.6.0-shell), located on
+  council/inkling at `_agents/inkling/deliveries/67-cakepanz-2/` (the START doc's fallback chain
+  pointed at council/zai — stale at w55 — and gh-pages — slices 1–2 only; the delivery lives on
+  council/inkling). Extracted, verified 236 files.
+
+§1 THE PIN (VERIFIED)
+- src/engine byte-identity to d3bd81d2 (full sha d3bd81d25f01c519bad8688ffbdc4a57130f9d11,
+  fetched from origin): `git archive <pin> colors/src | tar -x` → `diff -rq` vs src/engine →
+  exit 0, 57 files, 0 diff lines.
+- Engine self-stamp at this pin: nfl1.14a4e9333e888a (engineVersion()).
+
+§2 ENGINE TESTS (VERIFIED)
+- `npm run test:engine` (node --test --experimental-strip-types test/engine.test.ts) →
+  **323/323 pass, 0 fail, exit 0** (43.6 s).
+
+§3 NODE BATTERY (VERIFIED — route 1, the Part-4 note)
+- `node --experimental-transform-types batteries/node.battery.mjs` → **23/23 pass, exit 0** on
+  **Node v24.22.3** (21 carried laws + N14b + N19, both new this sitting — see §P-365).
+- The flag is REQUIRED: the engine snapshot carries a TypeScript parameter property
+  (platform/localstorage.ts) that strip-only mode refuses (`ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX` —
+  reproduced and receipted when the shell battery was first run WITHOUT the flag this sitting).
+  The supported version is pinned in SNAPSHOT.md; the §5 filing to the Architect is in SHELL-STATUS.
+- The SHELL battery needs the same flag (it imports the port node-side): documented in the battery
+  header + SNAPSHOT.md.
+
+§4 SLICE BATTERY (VERIFIED)
+- `npm run battery` (node batteries/slice1.battery.mjs, http build against the preview server on
+  4179) → **26 pass · 0 fail · 10 SKIP (loud, each with its reason) · 3 DEFER (cutover)**, exit 0.
+
+§5 SHELL RENDER BATTERY (VERIFIED — THE ONE RUN THAT CLOSES THE FIX PASS)
+- `node --experimental-transform-types batteries/shell.battery.mjs` → **46 pass · 0 fail · exit 0**,
+  ONE uninterrupted run: S1a–S30. Highlights: S5 (the draft-complete screen mounts with the full
+  1,024-pick record and the provenance stamp — seed · engine · picks · team), S6 (the hub renders),
+  S7 (the season stepped to the Super Bowl through the real UI — 22 CTA steps), S8 (8 division
+  tables through week 18), S9 (the champion banner), S10–S14 (awards/stats/review/book/share from
+  the played season), S15/S16 (zero page errors / zero blocked requests across the whole season
+  flow), S17/S18 (the public EMPTY state + import, never a random board), S19–S22 (light #fdf2f6 /
+  dark #1e1119 / persistence / reduced-motion class), S23–S24 (saves panel; zero errors across the
+  states sweep), S25 ×14 (the 390px walk: team/cards/hub/week/standings/bracket/awards/review/
+  stats/book/share/guide/settings/saves — ALL 390/390, zero overflow) + S25b (the DRAFT BOARD at
+  390: the D-fix law — the board was the 38px overflow), S25c (zero errors across the walk),
+  S29/S30 (a saved week RESTORES through the real UI — the D1 law), S26–S28 (the single-file dist
+  boots from vanilla file:// with 0 console errors + 0 blocked requests; the P-317 picker present
+  after a team choice).
+- The previous status's "S6..S28 PASS" was ASPIRATIONAL (the battery died at S5 on the delivered
+  bytes — reproduced this sitting on the pre-fix tree: S5 FAIL, then a hard crash at the first
+  S7-iteration feed gate). This sitting's run is TRUE.
+
+§6 THE SEASON-FLOW DEFECTS THE RUN FOUND (all fixed shell-side; engine untouched)
+- D1 restoreSeason: defined through the seam's restore path (savesApp.loadWeekSlot('C') →
+  seasonSession.sessionFromWeekPayload → seasonFacade.resume). No stub. Receipt: S29/S30 PASS.
+- D2 layer 1: the record prop (`record={recordTyped}`). Layer 2 (found by running it): the BINDING
+  RACE — asReadable/seasonReadable subscribed without pushing the snapshot, and the engine's
+  framework-free store never calls a new subscriber back, so a LOAD/START before the template's
+  first read was invisible. Fixed in bindings/stores.ts (shell lane). Receipt: S5/S6 FAIL → PASS.
+- The `s.table` reads (App tableNow, reviewVM, Share, AND seasonSession's finished-season payload —
+  the last one silently wrote a ZEROED table into every season save; found by the strict tsc sweep
+  this sitting): the weekly RunState has NO table field; the engine's own table(s) call is now the
+  one source in all four. Receipt: S9–S12 FAIL → PASS; the payload fix rides the same seam call.
+- Share's missing `season` prop (ReferenceError: season is not defined on every Share render).
+  Receipt: S14 FAIL → PASS.
+- Book's `champIdx` ReferenceError (declared inside a derived, voided outside) + the roster filter
+  now selects the CHAMPION'S own 32 picks. Receipt: S13 FAIL → PASS.
+- The hub's missing CTA on no-game weeks (the season could not advance from the hub). Receipt:
+  S7 7 steps → 22 steps PASS.
+
+§7 GATES (VERIFIED)
+- `node scripts/regen-manifest.mjs` → every tree file INCLUDING dist/ hashed and listed (the D4 fix).
+- `node scripts/gate-manifest.mjs` → PASS: manifest hashes verified, the converse check walks dist/,
+  and the BOOT TARGET is asserted (every <script src>/<link href> in dist/index.html exists with
+  its manifest sha256; dist/single.html exists). The D3-class loss now fails the gate.
+- `node scripts/gate-numerals.mjs` → CLEAN ×2 (run twice, receipted).
+
+§8 FALSIFIERS (VERIFIED — every law died; zero tautologies)
+- `node scripts/receipt-falsifier.mjs` (F0 clean baseline green, then one mutation per fresh copy):
+  F1 M1 grep-law — engine import planted in a screen → DIED.
+  F2 N14 no-CDN — CDN url planted in the card CSS → DIED (N14 ✖).
+  F3 N12a roundtrip — fixture roster 32 → 31 → DIED (N12a ✖). [The delivered VERIFY §8 called
+     F2/F3 UNFALSIFIED-THIS-SITTING; the falsifier targets were re-anchored and both now die.]
+  F4 N19 gone%-values — every gone% zeroed in goneodds.ts (throwaway copy) → DIED (N19 ✖).
+  F5 N14b season-brag truth — the champion line swapped to the user team → DIED (N14b ✖).
+- `node scripts/shell-falsifier.mjs` (throwaway copies, built + served + the FULL shell battery):
+  FA D2 — the `{recordTyped}` shorthand reintroduced → S5 DIES (receipt: FAIL S5 + the flow Timeout,
+  in the falsifier log). 
+  FB D1 — restoreSeason deleted → DIES: the SAME mutation run against a built copy with the served
+  build verified (deliveries/receipts/fb-battery.log): S6 FAIL (the hub cannot render),
+  S15 FAIL — "ReferenceError: restoreSeason is not defined", S25c FAIL, exit 1. The SCRIPT's FB
+  case is itself FLAKY — it reported a false TAUTOLOGY twice (a stale-server artifact class + an
+  unresolved case bug in the tool, now guarded by the served-hash check and the mutation-applied
+  assertion) — NAMED here per the rule: a false survivor is a defect, not a pass. The manual FB
+  receipt above is the standing death receipt for the restore law until the script case is settled.
+  FC 390 — the BoardRow phone-grid media query removed → S25b DIES (the board overflows again:
+  scrollWidth 428 vs 390 — the review's original measurement, reproduced by the mutation).
+
+§9 BUILD + DIST (VERIFIED)
+- `npm run build` → green (dist/assets/index-BWZpYvFy.js 376.94 KB / 128.07 gz + the css) — the
+  D3 fix: the assets SHIP now. `npm run distfile` → dist/single.html 449.7 KB, "no external refs:
+  true". Both boot: the preview serves the multi-file dist (S1–S25 over http), file:// boots the
+  single file (S26–S28).
+
+§10 P-368 (VERIFIED)
+- `grep -rn "from 'svelte" src/lib --include='*.ts' | grep -v bindings` → EMPTY (draftStore already
+  lived in bindings/stores.ts in this tree — verified, not assumed).
+- `grep -rn "document\." src/lib --include='*.ts' | grep -v bindings` → EMPTY: the shareables' DOM
+  half moved to src/lib/bindings/shareDownload.ts (the P-368 split; the card builder stays pure TS
+  in port/shareable.ts). Handoff wording corrected: the binding is 26 .svelte files + 2 bindings
+  modules (MERGE-GUIDE §6).
+
+§11 P-369 (VERIFIED — measured this sitting; the figure 221 is NOT cited: origin unknown)
+- scripts/probe-node-counts.mjs, live DOM node counts, preview build, this sitting:
+    screen        1180px   390px
+    TeamSelect       95       95
+    DraftBoard     847      816
+    Feed            307      302
+    Share            48       48
+    Saves            55       55
+  (The board's 847 is the 60-row table — the review's 832 was REPORTED on the pre-revision board.)
+
+§12 REDUCED MOTION + CONTRAST (VERIFIED / flagged)
+- scripts/probe-motion-shots.mjs — 20 screenshots (shots/motion/, sha256 printed): normal vs
+  reduced × both modes. The feed's beat-in COMPUTED STYLE: cpbeat/0.55s normal → none/0s under
+  prefers-reduced-motion, in dark AND light. The setting-level law is S22 (the body class).
+- scripts/probe-contrast.mjs — the Owner's two flagged questions, MEASURED (audit only, NOT fixed):
+  light gold2 #e6c67d on pale rose #fdf2f6 = 1.51:1 — FAIL (AA 4.5); on the white panel 1.65:1 — FAIL.
+  dark --text (rose ink) #8e5566 on #1e1119 = 3.17:1 — FAIL at AA normal (3:1 large passes).
+  dark zcream 14.94:1 PASS; dark gold2 11.30:1 PASS.
+
+§13 M3 — THE SWAP TEST AT THE ARCHITECT'S TIP (VERIFIED — the verdict is FAIL BY DESIGN)
+- `node scripts/swap-test.mjs 7a0706df00f0aa249c55e4a5415b059e2fee3f75` (tip per the prompt):
+  snapshot swapped (67 files vs the pin's 57), `diff -rq` outside src/engine → CLEAN (M2 holds),
+  node battery 23/23 under the tip's engine, build green, slice battery 26/0/10/3 — and the
+  carried ENGINE goldens fail 6 law groups (formation gap ×3, flex-table equality vs
+  tools/mathlab/flex.json, no-arbitrage, 4-3 spot identity). VERDICT: FAIL — the engine's
+  behaviour moved at the tip and the shell's carried expectations (tools/mathlab/flex.json +
+  test/engine) still assert the d3bd81d2 pin. The law was NOT edited; the snapshot was NOT edited.
+  The re-pin moves THREE paths together (SNAPSHOT.md) — this is the standing rule, now demonstrated.
+- Falsifier for the tool itself: the diff -rq screams on any file outside src/engine; a law failure
+  flips the verdict to FAIL (exit 2) — demonstrated above.
+
+§14 M5 — THE SEAM, RE-MEASURED (VERIFIED)
+- One door: `grep -rln "from '.*engine/" src --include='*.ts' --include='*.svelte' | grep -v
+  src/engine | grep -v src/lib/port` → EMPTY (M1b is the standing battery law).
+- The seam is ONE file: src/lib/port/seam.ts — 160 lines, **68 engine-import lines**, 38 distinct
+  engine module paths; 20 port modules beside it. (The council's 37/11 and 65/37 figures measured
+  pre-seam trees; on THIS tree the count is 68 lines / 1 file.)
+
+§15 SMALL ITEMS (VERIFIED)
+- `let userTeam = $state(0)` (App.svelte) — the non-reactive-update warning removed.
+- savesApp fixtureLine uses the ENGINE's isFinished (no duplicated season length; the `22` is gone).
+- The stale SvelteKit-ism in tsconfig.json: NOT PRESENT in the delivered tree (no `extends` field;
+  nothing to remove — receipted by reading the file + the tsc run below).
+- The strict `npx tsc --noEmit` sweep (run this sitting for the tsconfig check) surfaced FOUR
+  pre-existing type-only nits OUTSIDE this round's scope, named honestly and NOT fixed:
+  awardsVM.ts(68) an implicit-any index into Stats; fixture.ts(6) node:fs types missing from the
+  tsconfig types; seasonSession.ts — RESOLVED this sitting (the s.table read above); weekVM.ts(70)
+  a Game cast the compiler questions. The build (esbuild) compiles clean; these are type-only.
+
+§16 WHAT I DO NOT KNOW (UNKNOWN / REPORTED)
+- UNKNOWN: whether award grades ≥90 ever occur in a receipted season (the shimmer is wired; none observed).
+- UNKNOWN: the w89 "90+ shimmer" source law (no source found on disk).
+- UNKNOWN: the Svelte-vs-Vue cutover cost delta (the Owner's tie measurement — REPORTED, Owner).
+- REPORTED: the fix-pass diagnosis of the tip's 6 failing goldens (engine flex/formation layer
+  moved) — grounded in the failing law names; the engine source at the tip was not re-derived.
