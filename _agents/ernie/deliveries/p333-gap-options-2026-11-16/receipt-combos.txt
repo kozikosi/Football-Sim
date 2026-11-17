@@ -1,0 +1,4 @@
+C1 EDGE>DT+ILB>OLB+SS>NICKEL all 2   {"gap":700,"bias":996,"fav34":7,"flex":166}
+C2 EDGE>ILB 0 + EDGE>DT 2            {"gap":0,"bias":334,"fav34":11,"flex":130}
+C3 all six bias-improvers at 2       {"gap":700,"bias":972,"fav34":7,"flex":186}
+C4 EDGE>ILB 0 alone (reference)      {"gap":0,"bias":469,"fav34":3,"flex":127}
