@@ -1,0 +1,40 @@
+team                     DT2   LBq    adv(3-4 minus 4-3)  nDT nLB
+Indianapolis Colts        72    74        225    4    6
+Tennessee Titans          72    78        425    4    6
+Arizona Cardinals         73  76.5          0    8    4
+Las Vegas Raiders         73  79.5      -1325    6    5
+Carolina Panthers         74  85.5          0    7    5
+Jacksonville Jaguars      75    81          0    5    7
+Kansas City Chiefs        75  85.5        175    5    5
+Los Angeles Chargers      75  78.5       -500    6    5
+Miami Dolphins            75  83.5       -875    4    6
+New Orleans Saints        75    79      -1100    8    5
+Atlanta Falcons           76    75      -1650    7    7
+Denver Broncos            76    80      -2025    8    4
+Houston Texans            76    79      -2325    6    6
+Minnesota Vikings         76  81.5          0    5    5
+Washington Commanders     76  81.5        575    7    5
+Buffalo Bills             77    79      -1800    7    4
+NY Giants                 77    82       -300    7    6
+NY Jets                   77  83.5       -825    6    5
+San Francisco 49ers       77  91.5       -900    7    7
+Cleveland Browns          78  83.5      -1000    5    6
+Detroit Lions             78    81      -1650    5    8
+Green Bay Packers         78    79      -1425    8    6
+Pittsburgh Steelers       78  77.5      -1725    8    4
+Tampa Bay Buccaneers      78    77      -1525    7    4
+Dallas Cowboys            79  74.5      -1650    6    5
+New England Patriots      80    79      -2550    6    6
+Chicago Bears             81  83.5      -1775    7    8
+Baltimore Ravens          82    86      -2850    6    4
+Philadelphia Eagles       82    86       -275    5    4
+Los Angeles Rams          85    81      -2375    7    4
+Seattle Seahawks          85  80.5      -3175    6    5
+Cincinnati Bengals        87  71.5      -2000    6    6
+
+mean 3-4 minus 4-3: -1131.25 | fav 3-4: 24 | fav 4-3: 4 | tie: 4
+corr(DT2 OVR, advantage) = -0.667
+corr(LB quality, advantage) = 0.142
+best DT2 split (max separation): {"t":76,"ml":-560,"mh":-1635.2941176470588,"score":1075.2941176470588,"nlo":15,"nhi":17}
+
+known check: Carolina Panthers DT2 74 LBq 85.5 adv 0 | Kansas City Chiefs DT2 75 LBq 85.5 adv 175 | Washington Commanders DT2 76 LBq 81.5 adv 575
