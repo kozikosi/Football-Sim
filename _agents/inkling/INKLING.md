@@ -13,7 +13,14 @@
 - Never edit governance, never touch `colors/src/**`, flex, the product file, or any other seat's bytes. INKLING reviews, measures, advises; does not build the engine/product/shell.
 - No new P-IDs without the Owner; dissent in writing, inside the filing.
 
-## Current state (2026-11-17 session end — M3 verification round complete; branch pushed)
+## Current state (2026-11-17 — cakepanz-3 round complete; branch pushed)
+
+This session also ran Cakepanz 3 (Owner Desktop → pushed for reading; reviewed and verified on my machine):
+- **Pushed verbatim:** `_agents/inkling/deliveries/cakepanz-3/` (commit `5b3d5120`), 290 files; integrity re-checked — CHECKSUMS 267/269 (the 2 self-ref entries), gate-manifest PASS (269, dist/ covered, boot target asserted), gate-numerals CLEAN×2.
+- **Independent receipts re-run on my machine (fresh `npm ci`):** engine 323/323; `node battery` 23/23 **under `npx node@24 --experimental-transform-types`** (the default Node on this box is v26.13.0 which cannot parse the snapshot's TS parameter property); slice battery 26/0/10/3 PASS end-to-end; shell battery **46/0/exit 0** — entire season flows end-to-end in the real UI; file:// single.html boots clean (0 console errors, 0 blocked requests); S25b confirms the D-fix; S29/S30 confirm D1 restore.
+- **Both cakepanz-2 blockers fixed:** D1 `restoreSeason` defined via the seam's restore path (no stub); D2 was actually TWO layers — a record-prop shorthand bug AND a bindings race (readables never pushed the post-LOAD snapshot; the engine's framework-free store never calls back a new subscriber) — fixed in `bindings/stores.ts`, engine untouched. Z.ai additionally found and fixed an illegitimate `s.table` read across four surfaces (engine's `table(s)` is the one source now); Share missing `season` prop; Book `champIdx` ReferenceError + champion's own roster; the hub CTA missing on no-game weeks; titles + README pins corrected.
+- **Falsifiers re-verified:** F1-F5 all die with a planted violation; the FB falsifier crash is NAMED FLAKY in Z.ai's receipts instead of being kept silent.
+- **The verdict is 'improved' — first cakepanz-3 boots to a full season end-to-end.** Verdicts blocked on the Owner: gold2 AA (1.51:1), dark --text (3.17:1 normal), Model Value vs Engine Value, 2027 product-year default, `.ub` blue-law scope, which tree is the shell of record now (gh-pages slices 1–4 + Cakepanz 2 vs cakepanz-3, or both ready).
 
 This session (new task from the Owner, a full M3 verification round, on the current architect tip `7828d914`):
 
