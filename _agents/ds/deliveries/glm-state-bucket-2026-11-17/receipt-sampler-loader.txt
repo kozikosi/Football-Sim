@@ -1,0 +1,2 @@
+4th & 40 @ ydl 1: int pool total 1199, members 133, non-int 0, holes 0
+REFUSED: passclass: lambda must be a finite number >= 0

@@ -1,0 +1,64 @@
+# state-bucket test — 12000 paired games, keys glm-bar:0..11999
+# packs: nfl-pools-fit2023-2025 + nfl-passclass-fit2023-2025; pass snaps: pools 820781, GLM 818188
+# GLM: theta [0.3, -0.2, -1, -0.6], lambda 0, minClassPool 25; bootstrap 200 (seeded)
+
+## 1. overall pass-class rates (per pass snap)
+class      pools      GLM     diff    diff%       z    within      z    mix        z
+comp      60.17%   60.16%   -0.02%   -0.03    -0.2    -0.01%   -0.1   -0.01%   -1.2
+inc       30.77%   30.86%    0.09%    0.29     1.3     0.08%    1.2    0.01%    1.0
+sack       7.07%    6.97%   -0.10%   -1.41    -2.3    -0.10%   -2.2   -0.00%   -0.8
+int        1.99%    2.01%    0.03%    1.30     1.1     0.02%    0.9    0.00%    5.7
+
+## 2. within-bucket sack split — top 10 by contribution (w_pool * rate diff)
+3rd & 7-10 @ 21-40           n  15717/ 15878  sack   8.70%/ 10.64%  diff    1.93%  z   5.5  contrib    0.04%
+2nd & 7-10 @ 61-100 own      n  61291/ 61763  sack   5.99%/  6.37%  diff    0.38%  z   2.6  contrib    0.03%
+3rd & 7-10 @ 61-100 own      n  30429/ 30096  sack  12.28%/ 11.56%  diff   -0.72%  z  -2.8  contrib   -0.03%
+2nd & 7-10 @ 1-20 RZ         n  18675/ 18434  sack   6.89%/  5.73%  diff   -1.16%  z  -4.5  contrib   -0.03%
+3rd & 11+ @ 21-40            n   8056/  8222  sack   8.12%/ 10.57%  diff    2.45%  z   5.6  contrib    0.02%
+3rd & 3-6 @ 21-40            n  16466/ 16102  sack   8.53%/  9.69%  diff    1.16%  z   3.4  contrib    0.02%
+3rd & 3-6 @ 61-100 own       n  29979/ 29945  sack  11.22%/ 10.61%  diff   -0.61%  z  -2.4  contrib   -0.02%
+1st & 7-10 @ 41-60           n  80499/ 80178  sack   5.55%/  5.33%  diff   -0.21%  z  -1.9  contrib   -0.02%
+3rd & 11+ @ 61-100 own       n  18621/ 18343  sack  12.25%/ 11.33%  diff   -0.92%  z  -2.8  contrib   -0.02%
+1st & 7-10 @ 21-40           n  56741/ 56529  sack   5.49%/  5.20%  diff   -0.30%  z  -2.2  contrib   -0.02%
+# within-sack total -0.10%; top-5 buckets carry -37%; buckets with both n>=30: 54
+
+## 3. model vs pool at the pools node's own states (P_GLM(class|state) - pool cell mix)
+class      mean diff      z
+comp       -0.06%   -13.3
+inc         0.13%    31.2
+sack       -0.05%   -29.3
+int        -0.01%   -12.9
+
+## 4. model sack difference by bucket — top 10 by |mean diff|
+4th & 7-10 @ 21-40           n   1070  model sack diff    -3.68%  z -32.2
+4th & 11+ @ 61-100 own       n    238  model sack diff    -3.12%  z -38.3
+2nd & 1-2 @ 41-60            n   3936  model sack diff    -2.47%  z -65.5
+4th & 1-2 @ 61-100 own       n    618  model sack diff    -2.43%  z -50.6
+4th & 11+ @ 41-60            n    336  model sack diff    -2.33%  z -29.1
+4th & 1-2 @ 1-20 RZ          n   2517  model sack diff    -2.19%  z -38.0
+4th & 7-10 @ 1-20 RZ         n    341  model sack diff    -2.00%  z -14.8
+2nd & 1-2 @ 61-100 own       n   4237  model sack diff    -1.93%  z -28.6
+3rd & 11+ @ 21-40            n   8056  model sack diff     1.87%  z  55.4
+4th & 11+ @ 1-20 RZ          n    144  model sack diff    -1.83%  z -16.8
+
+## 5. score state at the snap (offense view)
+score       n(pool/GLM)   comp p/G        sack p/G        sack diff    z
+trail 8+  190714/198487   60.42%/ 58.72%    6.88%/  7.80%      0.92%   9.9
+trail 1-7 223812/213789   60.34%/ 59.87%    7.04%/  7.03%     -0.01%  -0.1
+tied      141454/137670   60.05%/ 61.11%    7.11%/  6.81%     -0.30%  -3.0
+lead 1-7  164480/159145   60.15%/ 60.67%    7.23%/  6.66%     -0.57%  -6.1
+lead 8+   100321/109097   59.55%/ 61.39%    7.20%/  6.02%     -1.18% -10.3
+
+## 6. drive / play context (per team-game; paired differences)
+drives             pools   11.038  GLM   10.920  diff  -0.118  z  -6.4
+scrimmage snaps    pools   67.013  GLM   66.909  diff  -0.104  z  -2.1
+pass snaps         pools   34.199  GLM   34.091  diff  -0.108  z  -2.5
+scrimmage snaps/drive  pools   6.153  GLM   6.211  diff   0.059  z   6.8
+
+## 7. mechanism read (numbers above, not a vote)
+- sack rate: pools 7.07% -> GLM 6.97%, diff -0.10% (z -2.3)
+- within-bucket -0.10% (z -2.2) vs state-mix -0.00% (z -0.8)
+- 9 bucket(s) with |z|>=3 at n>=30; top-5 share of the within term -37%
+- model-at-pool-states sack mean -0.05% (z -29.3)
+- verdict: within-bucket bias, spread
+- drift note: a uniform level shift across all high-count buckets is consistent with a data-side drift; this test cannot attribute drift without the raw nflverse data. It can separate within-bucket bias from state mix, which is what the default decision needs.

@@ -1,0 +1,7 @@
+Fault planted in a scratch copy of 65673a00 (repo untouched): game.ts:83
+  old: const cls = pickClass(p, draw(key, i, 'passClass'));
+  new: const cls = pickClass(p, draw(key, i, 'rec'));
+Test: node --test --experimental-strip-types test/nfl/passclass.test.ts
+Result: fail 1 (the shared-tag catcher)
+  AssertionError [ERR_ASSERTION]: GLM 5.83 vs pool 11.28 yards per completion
+  test/nfl/passclass.test.ts:125 "class-then-tuple keeps the within-class outcome distribution..."
