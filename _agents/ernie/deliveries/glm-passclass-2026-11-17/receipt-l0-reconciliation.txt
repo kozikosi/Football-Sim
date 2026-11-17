@@ -1,0 +1,10 @@
+4th-down pass plays: 20886  (N=12000 paired games)
+
+PER PLAY (the realised class — the quantity my headline claim needs):
+  L0 share = 16.38%   (3422/20886)
+
+PER (PLAY x CLASS) over all four classes (what leveluse2.mjs computed):
+  L0 share = 8.06%   (6736/83544)
+
+My 20261117-2101 filing quoted 8.06% — that is the PER-CLASS number.
+Beam (N=2000) reported 16.31% — that is the PER-PLAY number, and it is the right one for the claim.
