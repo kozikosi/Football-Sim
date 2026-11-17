@@ -1,6 +1,6 @@
 # Current-era product pack (Architect, 16 Nov 2026)
 
-Pack: `data/packs/nfl-pools-fit2023-2025.json`, id `nfl-pools-fit2023-2025`, loader hash `pack53:0ff47e1de5e2db`. Same baker as 1c (`tools/mathlab/phase1/bake.py`), no code change.
+Pack: `data/packs/nfl-pools-fit2023-2025.json`, id `nfl-pools-fit2023-2025`, loader hash `pack53:0e78e4db382f9f` (of the file as baked). Corrected 17 Nov: this line first said `pack53:0ff47e1de5e2db`, which is the hash of the same pack with the product-world overrides (`clock=dt_pf`, `trans=computed`) that the totals-bar run applies; I copied the run's printed hash, not the file's. Found by Ernie, confirmed by MUSE and by me (`makePack` on the file gives `0e78e4db382f9f`; with the two overrides it gives `0ff47e1de5e2db`). The file is unchanged, md5 `d80c312b...`. Same baker as 1c (`tools/mathlab/phase1/bake.py`), no code change.
 
 Command (VERIFIED, run this session): `python3 -I tools/mathlab/phase1/bake.py --train 2023-2025 --kick 2024-2025 --id nfl-pools-fit2023-2025 --date 2026-11-16 --out data/packs/nfl-pools-fit2023-2025.json`. Data: nflverse play_by_play 2023, 2024, 2025 (`fetch.sh` URLs; not committed, `phase1/data/` is git-ignored).
 
