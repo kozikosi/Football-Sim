@@ -9,7 +9,7 @@ import type { Player, Role } from '../../src/sports/nfl/engine/players.ts';
 // The 3-4 / 4-3 gap, measured with the fifth lineman (DL5) PINNED. DL5 is the lineman who comes on for blitzes and heavy defensive sets (Owner 10 Nov): a starter
 // who does not play every snap, natural for DT and for EDGE (flex.ts). The fixture must say which one it is, because the gap depends on it: the earlier
 // measurement and lineup.test.ts `natural()` filled DL5 with a DT without saying so. All four cells are pinned, so neither can drift unseen.
-// These values follow the flex table (the 99-rule table at a722681). A flex change (Option B, a derived table) moves them on purpose: re-pin them in the same commit. 15 Nov 2026: FB>TE 6 to 2 moved 2700 to 2500 (TE3 weight 50 x 4).
+// These values follow the flex table (the 99-rule table at a722681). A flex change (Option B, a derived table) moves them on purpose: re-pin them in the same commit. 15 Nov 2026: FB>TE 6 to 2 moved 2700 to 2500 (TE3 weight 50 x 4). 16 Nov 2026: EDGE>DT 0 to 2 (Owner) moved the 3-4 roster with EDGE at DL5 from 1800 to 2400, so that gap went from 0 to -600; the 4-3 EDGE and both DT cells are unchanged.
 //
 // P-318 (14 Nov 2026): the solver now spends a ValueProvider, MEASURED by default. The exact numbers below (600250, 2500, 1800) are arithmetic on the
 // RETIRED fitted table, so those tests run under tableValues(): they prove the solver logic is untouched by the seam. The MEASURED provider gets its own test
@@ -32,15 +32,15 @@ test('formation gap (reference table), DL5 = DT: a 4-3 roster loses 2500 in 3-4,
   assert.equal(loss('3-4', 'DT'), 1800);
   assert.equal(loss('4-3', 'DT') - loss('3-4', 'DT'), 700);
 });
-test('formation gap (reference table), DL5 = EDGE: both lose 1800, a gap of 0 (the asymmetry is the DT-at-DL5 corner, not a property of the formations)', () => {
+test('formation gap (reference table), DL5 = EDGE: a 4-3 roster loses 1800, a 3-4 roster loses 2400 (EDGE to DT is 2 since 16 Nov), a gap of -600', () => {
   assert.equal(loss('4-3', 'EDGE'), 1800);
-  assert.equal(loss('3-4', 'EDGE'), 1800);
-  assert.equal(loss('4-3', 'EDGE') - loss('3-4', 'EDGE'), 0);
+  assert.equal(loss('3-4', 'EDGE'), 2400);
+  assert.equal(loss('4-3', 'EDGE') - loss('3-4', 'EDGE'), -600);
 });
-test('formation gap: the 3-4 roster always pays the same single price (an ILB at DL5, 12 x 150); only the 4-3 roster depends on who plays DL5', () => {
+test('formation gap: the 3-4 roster always pays the ILB at DL5 (12 x 150); with an EDGE at DL5 it also pays EDGE at DT2 (2, since 16 Nov)', () => {
   const flexed = (dl5: 'DT' | 'EDGE') => lineupFor(native('3-4', dl5), '4-3', DEFAULT_VALUES).placements.filter((p) => p.penalty > 0).map((p) => `${p.slot.slot}<-${p.player?.role}@${p.penalty}`);
   assert.deepEqual(flexed('DT'), ['DL5<-ILB@12']);
-  assert.deepEqual(flexed('EDGE'), ['DL5<-ILB@12']);
+  assert.deepEqual(flexed('EDGE'), ['DT2<-EDGE@2', 'DL5<-ILB@12']);
 });
 
 // MEASURED (the default provider): structure gates, numbers are REPORTED. The same position carries the same value in both bases (Owner 2 Nov), so a roster built

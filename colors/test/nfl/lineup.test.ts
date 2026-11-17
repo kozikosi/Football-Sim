@@ -57,7 +57,7 @@ test('flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12,
   assert.equal(n, 99);
   const tiers: Record<number, number> = { 0: 0, 2: 0, 6: 0, 12: 0 };
   for (const row of Object.values(FLEX)) for (const v of Object.values(row)) tiers[v]++;
-  assert.deepEqual(tiers, { 0: 23, 2: 11, 6: 42, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12; 15 Nov: FB>TE 6 to 2 (approved): 23 at 12, 42 at 6, 11 at 2, 23 at 0
+  assert.deepEqual(tiers, { 0: 17, 2: 17, 6: 42, 12: 23 });       // Owner 10 Nov: cross-side floor (5 WR>DB 2 to 6) + TE>FS, TE>DIME to 12 + ILB>FS, OLB>FS new at 12; 15 Nov: FB>TE 6 to 2 (approved): 23 at 12, 42 at 6, 11 at 2, 23 at 0; 16 Nov: six rules 0 to 2 (EDGE>DT, EDGE>OLB, ILB>OLB, OT>OG, CB>FS, CB>SS; Owner): 17 at 2, 17 at 0
   for (const gone of [['FB', 'EDGE'], ['FB', 'DT'], ['FB', 'ILB'], ['FB', 'OLB'], ['CB', 'RB'], ['DT', 'TE'], ['EDGE', 'FS']] as [Role, Dest][]) assert.equal(FLEX[gone[0]][gone[1]], undefined, gone.join('>'));
 });
 test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row', () => {
@@ -65,7 +65,7 @@ test('flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every rol
   for (const [role, row] of Object.entries(FLEX)) for (const [d, v] of Object.entries(row)) assert.ok([0, 2, 6, 12].includes(v), `${role}->${d} ${v}`);
 });
 test('flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 theta 1.0 rounded to the nearest of 0/2/6/12)', () => {
-  assert.equal(fit('EDGE', 'OLB').penalty, 0);                // priced by D (0)
+  assert.equal(fit('EDGE', 'OLB').penalty, 2);                // priced by D (0), Owner 16 Nov: 2
   assert.equal(fit('EDGE', 'TE').penalty, 6);                 // Owner: kept at -6, not removed
   assert.equal(fit('TE', 'RB').penalty, 6);
   assert.equal(fit('P', 'K').penalty, 2);                     // Owner override
@@ -76,7 +76,7 @@ test('flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 th
   assert.equal(fit('C', 'OG').penalty, 6);
   assert.equal(fit('FB', 'TE').penalty, 2);                   // Owner 15 Nov: FB to TE 6 to 2
   assert.equal(fit('TE', 'DIME').penalty, 12); assert.equal(fit('ILB', 'DIME').penalty, 12); assert.equal(fit('OLB', 'DIME').penalty, 12);   // the DIME rules stay at 12
-  assert.equal(fit('OT', 'OG').penalty, 0);
+  assert.equal(fit('OT', 'OG').penalty, 2);                   // Owner 16 Nov: OT to OG 0 to 2
   assert.equal(fit('OT', 'RB').emergency, true);              // not in the model table: the -8 fallback
 });
 test('flex: a quarterback plays only QB or FS (-12); no RB, no WR, no SS, no emergency fallback; anyone else has -8', () => {

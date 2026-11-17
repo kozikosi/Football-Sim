@@ -2,6 +2,7 @@
 // Source of truth is tools/mathlab/flex.json: 7 rules removed, 53 Owner overrides, the other 44 priced by D@90 at theta 1.0 (thetaprice, P-309), rounded to the nearest tier of 0 / 2 / 6 / 12; then 9 Owner overrides (EDGE>ILB/OG/OT/RB/NICKEL, DT>C, DT>OG, EDGE>C to 6; OG>C to 2).
 // 10 Nov: cross-side floor (WR>CB/FS/SS/NICKEL/DIME 2 to 6), TE>FS and TE>DIME to 12, ILB>FS and OLB>FS new at 12. SAM is a slot with dest OLB, so it takes the OLB column; no SAM rules.
 // 15 Nov: FB>TE 6 to 2 (Owner). Counts: 23 at 12, 42 at 6, 11 at 2, 23 at 0. The 8 Nov table (104 rules) and REV 4 (29 Oct) live in git history only.
+// 16 Nov 2026 (Owner): six rules 0 to 2 (EDGE>DT, ILB>OLB, CB>FS, EDGE>OLB, OT>OG, CB>SS). The table is a guideline: the engine's measured values are the source of truth, not these numbers. Counts now 23 at 12, 42 at 6, 17 at 2, 17 at 0.
 // This file is a typed copy; a test compares it with flex.json rule by rule, so the two cannot drift apart silently.
 import type { Role } from './players.ts';
 import type { Dest } from './slots.ts';
@@ -13,16 +14,16 @@ export const FLEX: Readonly<Record<Role, Row>> = {
   FB: { RB: 2, TE: 2 },   // 15 Nov 2026 (Owner, approved): FB to TE 6 to 2. The one flex-rule change in this pass; the DIME rules stay at 12.
   WR: { RB: 6, TE: 6, CB: 6, FS: 6, SS: 6, NICKEL: 6, DIME: 6 },
   TE: { FB: 0, WR: 12, RB: 6, C: 6, OG: 6, OT: 12, EDGE: 12, DT: 12, OLB: 6, ILB: 12, SS: 6, FS: 12, NICKEL: 6, DIME: 12 },
-  OT: { OG: 0, C: 2, DT: 6, EDGE: 6, FB: 0 },
+  OT: { OG: 2, C: 2, DT: 6, EDGE: 6, FB: 0 },
   OG: { OT: 2, C: 2, DT: 6, EDGE: 6, FB: 0 },
   C: { OG: 6, OT: 12, DT: 12, FB: 0 },
   DT: { EDGE: 6, C: 6, OG: 6, OT: 6, FB: 0 },
-  EDGE: { DT: 0, OLB: 0, ILB: 6, C: 6, OG: 6, OT: 6, SS: 12, RB: 6, FB: 0, TE: 6, NICKEL: 6 },
-  ILB: { ILB: 0, OLB: 0, EDGE: 12, FS: 12, SS: 2, FB: 0, TE: 6, NICKEL: 6, DIME: 12 },
+  EDGE: { DT: 2, OLB: 2, ILB: 6, C: 6, OG: 6, OT: 6, SS: 12, RB: 6, FB: 0, TE: 6, NICKEL: 6 },
+  ILB: { ILB: 0, OLB: 2, EDGE: 12, FS: 12, SS: 2, FB: 0, TE: 6, NICKEL: 6, DIME: 12 },
   OLB: { OLB: 0, ILB: 6, EDGE: 12, FS: 12, SS: 6, FB: 0, TE: 6, NICKEL: 6, DIME: 12 },
   SS: { NICKEL: 0, DIME: 0, FS: 2, CB: 6, WR: 12, ILB: 6, OLB: 2, RB: 12, TE: 6 },
   FS: { NICKEL: 0, DIME: 0, SS: 2, CB: 6, WR: 12, OLB: 6 },
-  CB: { FS: 0, NICKEL: 0, DIME: 0, SS: 0, WR: 6 },
+  CB: { FS: 2, NICKEL: 0, DIME: 0, SS: 2, WR: 6 },
   K: { P: 2 },
   P: { K: 2 },
   // LS has no spot (12 long snappers in the data). Anyone not in the guide still takes the emergency fallback.
