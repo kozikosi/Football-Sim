@@ -38,6 +38,7 @@
 - The s5 README's "snapshot bug" claim (DESTain corruption in draftBoard.ts at 4ca9a071) does not hold at 4ca9a071 (file is clean; no stand-in boardVM.ts) — README claim stale or predates the pin; correction is Z.ai's.
 - P-333: Owner's open question — "does the slot define the player?" (_agents/owner-notes/2026-11-10-dl5-slot-defines-player-verbatim.txt). Option C (pin DL5=EDGE) closes the gap to 0 with zero table change but hinges on this ruling.
 - P-333 Part B: real-roster bias (28 teams better in 4-3, mean +1144) is Ernie's REPORTED finding; not reproducible here (no roster dataset). Re-measurement needs Ernie's data or the Architect's roster fixture.
+- **P-333 MUSE flex-math verification (THIS session):** filed `inbox/20261117-0029-vl-P-333-verify-muse-flex-math.md` (FOR: P-333). Baseline synthetic gap reproduces exactly (700 table / 720.1 measured, DL5=DT; 0 / 5.3 DL5=EDGE). EDGE→DT=2 synthetic cell reproduces exactly (gap 700 unchanged, DL5=EDGE flips to −600). Free-flex sweep reproduces exactly (only DT→FB 0→2 moves gap, to 750). Real-roster baseline reproduces exactly (1144.53 table / 1184.54 measured, split 28/3/1). Gap-condition cap tests (70/75/65) and 7-rule condition CONTESTED — cannot reproduce MUSE's DT2 cap methodology (my all-DT-capped approach gives systematically more negative results; sign flips at cap 65). No arithmetic error in the flex table identified.
 
 ## Live files / receipts
 - All 7 inbox files + 1 bulletin entry above — committed and pushed on origin/council/vl this session (hash given at push time).
