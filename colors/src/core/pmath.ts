@@ -88,6 +88,45 @@ export function psqrt(x: number): number {
   return scale2(y, e);
 }
 
+const HALF_PI = 1.5707963267948966;
+// sin x and cos x for 0 <= x <= pi/4, nested Taylor to x^19 / x^18 with INTEGER divisors only (no rounded literals, so both languages build the same bits).
+// Truncation below 1e-18 on this range.
+function sinCosSmall(x: number): [number, number] {
+  const z = x * x;
+  let s = 1, c = 1;
+  for (let k = 19; k >= 3; k -= 2) s = 1 - (z * s) / ((k - 1) * k);
+  for (let k = 18; k >= 2; k -= 2) c = 1 - (z * c) / ((k - 1) * k);
+  return [x * s, c];
+}
+// sin and cos of (r * pi/2) for r in [0, 1]: past r = 1/2 use the complement (1 - r is exact), so the angle never exceeds pi/4 and a small result keeps its relative accuracy.
+function sinCosQuarter(r: number): [number, number] {
+  if (r <= 0.5) return sinCosSmall(r * HALF_PI);
+  const [s, c] = sinCosSmall((1 - r) * HALF_PI);
+  return [c, s];
+}
+// Quarter-turn reduction of an angle given in TURNS (t = 1 is a full circle): every step (floor, subtract, multiply by 4) is exact, so there is no argument-reduction
+// error however large t is, and the quadrant boundaries (t = 1/4, 1/2, ...) give exact 0 and +-1.
+function turnParts(t: number): [number, number] {
+  let f = t - floor(t);
+  if (f >= 1) f = 0;                          // t = -1e-20: t - floor(t) rounds to 1; the true value is 1 - 1e-20, whose cos and sin are 1 and 0 to 1e-19
+  const f4 = f * 4, q = floor(f4);
+  return [q, f4 - q];
+}
+
+/** cos(2 pi t), t in turns. Absolute error about 1e-16 (NOT relative near a zero: cos(0.25) is exactly 0, cos of nearby t is accurate to its own size). NaN for non-finite t. */
+export function pcos2pi(t: number): number {
+  if (!(t - t === 0)) return NaN;
+  const [q, r] = turnParts(t), [s, c] = sinCosQuarter(r);
+  return q === 0 ? c : q === 1 ? 0 - s : q === 2 ? 0 - c : s;   // 0 - x, not -x: an exact zero stays +0
+}
+
+/** sin(2 pi t), t in turns. Same accuracy as pcos2pi. */
+export function psin2pi(t: number): number {
+  if (!(t - t === 0)) return NaN;
+  const [q, r] = turnParts(t), [s, c] = sinCosQuarter(r);
+  return q === 0 ? s : q === 1 ? c : q === 2 ? 0 - s : 0 - c;
+}
+
 // Upper-tail probability Q(y) = P(Z > y) for y >= 0. A power series below 2, a continued fraction (Mills ratio) from 2 up.
 function qUpper(y: number): number {
   const phi = INV_SQRT_2PI * pexp(-0.5 * y * y);

@@ -106,6 +106,49 @@ def psqrt(x):
     return _scale2(y, e)
 
 
+HALF_PI = 1.5707963267948966
+
+
+def _sincos_small(x):
+    z = x * x
+    s = 1.0
+    c = 1.0
+    for k in range(19, 2, -2):
+        s = 1 - (z * s) / ((k - 1) * k)
+    for k in range(18, 1, -2):
+        c = 1 - (z * c) / ((k - 1) * k)
+    return x * s, c
+
+
+def _sincos_quarter(r):
+    if r <= 0.5:
+        return _sincos_small(r * HALF_PI)
+    s, c = _sincos_small((1 - r) * HALF_PI)
+    return c, s
+
+
+def _turn_parts(t):
+    f = t - _floor(t)
+    if f >= 1: f = 0.0
+    f4 = f * 4
+    q = _floor(f4)
+    return q, f4 - q
+
+
+def pcos2pi(t):
+    if not (t - t == 0): return NAN
+    q, r = _turn_parts(t)
+    s, c = _sincos_quarter(r)
+    return c if q == 0 else 0 - s if q == 1 else 0 - c if q == 2 else s
+
+
+def psin2pi(t):
+    if not (t - t == 0): return NAN
+    q, r = _turn_parts(t)
+    s, c = _sincos_quarter(r)
+    return s if q == 0 else c if q == 1 else 0 - s if q == 2 else 0 - c
+
+
 def _q_upper(y):
     phi = INV_SQRT_2PI * pexp(-0.5 * y * y)
     if y < 2:

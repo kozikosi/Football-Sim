@@ -4,11 +4,12 @@
 Independent on purpose: the TypeScript multiplies with 16-bit limbs because JS has no 64-bit integers; here Python's native ints do the
 64-bit product directly, so a mistake in one multiply cannot hide in both. Run `python3 -I tools/mathlab/keyedrng_check.py` for the check.
 
-Bit-identical to TS: philox2x32, hash_string, game_key_of, draw, KeyedRng.next/int/pick/fork.
-NOT bit-identical: KeyedRng.normal (Box-Muller uses cos and log; JS Math.cos and libm cos may differ in the last bit). Do not use normal() where a
-vector must match to the bit; core/pmath.ts has no cosine yet. The check reports how close it is.
+Bit-identical to TS: philox2x32, hash_string, game_key_of, draw, KeyedRng.next/int/pick/fork/normal. normal() goes through pmath (plog, psqrt, pcos2pi:
+only + - * / and floor), so it matches too. Python's own math.cos and math.log are NOT used here on purpose.
 """
 import math
+
+from pmath import plog, psqrt, pcos2pi
 
 M0 = 0xd256d193
 W0 = 0x9e3779b9
@@ -93,7 +94,7 @@ class KeyedRng:
         while u == 0:
             u = self.next()
         v = self.next()
-        return math.sqrt(-2 * math.log(u)) * math.cos(2 * math.pi * v)
+        return psqrt(-2 * plog(u)) * pcos2pi(v)
 
     def fork(self, label):
         return KeyedRng(self.key, self.event_index, self.tag + '/' + label)

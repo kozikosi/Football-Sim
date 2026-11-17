@@ -12,6 +12,7 @@
 // Pure: no clock, no ambient randomness (test/core/keyedrng.test.ts checks the generator against the published test vectors).
 import { hashString } from './rng.ts';
 import { at } from './at.ts';
+import { plog, psqrt, pcos2pi } from './pmath.ts';
 import type { Rng } from './rng.ts';
 
 const M0 = 0xd256d193, W0 = 0x9e3779b9;
@@ -67,11 +68,11 @@ export function keyedRng(key: GameKey, eventIndex: number, tag = ''): Rng {
   return {
     next,
     int: (lo, hi) => lo + Math.floor(next() * (hi - lo + 1)),
-    normal: () => {                       // Box-Muller, cosine branch only: no cached spare, so no hidden state
+    normal: () => {                       // Box-Muller, cosine branch only: no cached spare, so no hidden state. Portable (pmath), so it replays bit for bit in Python (tools/mathlab/keyedrng.py)
       let u = next();
       while (u === 0) u = next();
       const v = next();
-      return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+      return psqrt(-2 * plog(u)) * pcos2pi(v);
     },
     pick: (xs) => at(xs, Math.floor(next() * xs.length)),
     fork: (label) => keyedRng(key, eventIndex, tag + '/' + label),
