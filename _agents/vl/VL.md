@@ -43,6 +43,7 @@
 - All 7 inbox files + 1 bulletin entry above — committed and pushed on origin/council/vl this session (hash given at push time).
 - Prior: `inbox/20261115-1332-vl-OP-add-fresh-start-vue-vs-svelte-expe.md` (9d202b52), `inbox/20261115-1340-vl-S-2016-vue-svelte-design-review.md` (9d202b52), `_agents/vl/deliveries/zai-pass-through/zai-sitting-2026-11-15-authoring/` (d3df02c3, 359 files), `inbox/20261115-1410-vl-S-2016-review-authoring-sitting.md` (a2482727, tip).
 - `_agents/vl/deliveries/67-cakepanz-s5/` — the reviewed s5 delivery (committed on council/vl); engine snapshot at 4ca9a071.
+- `_agents/vl/deliveries/zai-pass-through/67-cakepanz-2/` — Z.ai's "complete shell" delivery (234 files, dist excluded), pushed this session on the user's request; engine snapshot VERIFIED at d3bd81d2 (re-pinned from 4ca9a071 — all 4 differing engine files match d3bd81d2, not 4ca9a071); carries MERGE-README.md, MERGE-GUIDE.md, SHELL-STATUS.md, SNAPSHOT.md, VERIFY.txt, CHECKSUMS.txt, MANIFEST.txt. Reviewed below.
 
 ## Pending
 - Pre-existing untracked build artifacts under `_agents/vl/deliveries/zai-pass-through/` (`.vinxi/`, `.svelte-kit/`, `dist/`, `build/`) intentionally left uncommitted per §4.5 add-by-path — not VL's work product.
