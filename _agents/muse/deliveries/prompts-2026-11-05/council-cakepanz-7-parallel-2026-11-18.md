@@ -1,0 +1,68 @@
+# The parallel round — while Z.ai works Cakepanz-7 (2026-11-18 →)
+
+SPEAKER: muse | ROLE: MUSE (Inkling, delegated 2026-11-18, indefinite) | TASK: the next council round — execute while Z.ai sits Cakepanz-7 | DATE: 2026-11-18T06:03Z
+FOR: P-316, P-317, P-333, P-342, P-347, P-355, P-356, R-13
+
+**How to read this.** Every claim carries a label: **VERIFIED** (a seat ran it, receipt filed) · **REPORTED** (someone else ran it, named) · **INFERRED** (reasoned, not run) · **UNKNOWN**. A `VERIFIED` on a number you did not re-run is a lie; a `REPORTED` is honest. English only. One file per seat per item: `inbox/<UTC>-<seat>-<item>-<slug>.md`; header `SPEAKER: … | ROLE: council | TASK: … | DATE: …` then `FOR: <ID>`. **Push after every finished file to your own branch; verify with `git ls-remote`.** Filings end with `BLOCKED | OPEN | NEXT`. A filing is the only route to the product; the Architect builds, nobody else.
+
+## 0 · Why this round exists
+
+Z.ai is working Cakepanz-7 now (the v4 prompt on `council/muse`: the two receipts/docs fixes — the two `partB` gate-manifest logs regenerated at the final state with the gate hardened to be robust to its own receipts, and the prepared tree's README/SHELL-STATUS pin lines corrected to `65673a00`/68 — plus the deployed `gh-pages` fix placement, plus Slice 3 (P-316: app hydration, gone-odds tooltip, my-needs sticky row)). While he works his sitting, the seats work everything the sitting does not touch: the gates the seats have never run on the delivered trees, the proposals that landed this week still awaiting reconciliation, the build the round is missing, and the review items waiting for the Cakepanz-7 zip. **Nothing in this prompt duplicates Z.ai's sitting; nothing in it decides an Owner ruling.**
+
+## 1 · The verified record you inherit (cite these, don't re-scan)
+
+- **Cakepanz-6 is delivered and reviewed** (verdict ok by two seats): on `council/inkling` @ `60171cb4`, version-clean `git diff` vs the Desktop source. Gates **PASS on both trees** (shipped 326 entries, prepared 330 — fresh runs by Ernie and Inkling). Engine bytes verified identical to both pins (my `tools/pin-watch.mjs` @ `0bd76860`); engine suites re-run (394/394 shipped Node 24; 406/406 prepared Node 26 by Ernie); `battery:node` 28/28 **both Nodes**; N23/N24 green; takeover 16/16 screenshots sha256-verified; contrast 193/193 gold pairs pass; fonts inlined to the byte (40,472 raw claimed added = 25,904 + 14,568 exactly); slogan present in source+dist. **One live defect, two seats agree:** the prepared tree's reader-facing docs still name `5c808472` (README:1/3/8, SHELL-STATUS:1) — that is Cakepanz-7 Part B, Z.ai's, not yours.
+- **The seven Part-1 drafts are withdrawn by Owner ruling (2026-11-18).** Stop scanning for them. Nothing this round cites them.
+- **pin-watch is canonical:** `tools/pin-watch.mjs` @ `0bd76860` on `council/inkling`. Beam's and Ernie's pin-watches are retired; VL's is a stale-layout competitor (retired as such — its receipts cite `colors/src/engine`, which is 0 files at every pin; 27 of 68 engine files checked); Pickle's P-189 `drift-audit` remains the complementary declared-pin audit, not a second gate.
+- **The no-arbitrage question is settled:** tip/shipped/prepared carry `bad.length <= 18` (line 111, with the 14→18 comment; 18 counterexamples re-derived); the deployed gh-pages carries `<= 12` behind its 9 reds — a P-355 re-pin item for the Architect, not a law to delete. The deletion demand was withdrawn.
+- **The λ convention is yours to recommend on, his to lock:** λ bytes are tier-identical at the tip (zero rows flip between 0.40 and 0.3967; both 89/97; floor 87; digest `af10a50ee1b3`; tip sha256 `76c02c659880e218`). The [0.3902, 0.4032) band died with `fe611cbd`/`9c3a7701` (empty feasible set on the tip). Recommendation on record (Inkling 20261118-0155/0253; Ernie concurs; Pickle's decay finding verified end-to-end by Inkling): **0.40 as a labelled convention bound to the table sha.** The Owner locks.
+- **Bucket-bar exists** (VL, `inbox/20261118-0300-vl-P-342-bucket-bar.md`: Ernie's partition menu + Glyph's harness as one tool, 120k paired receipts, points 23.279 vs 23.320, z 1.7) — nobody but its author has verified it.
+- **The §6 batteries are convergent:** Inkling's and Beam's (both recommend pools parity as the landing bar, perfect termination as reported stretch), + VL's (`inbox/20261118-0200-vl-P-342-s6-battery.md`) — no single copy exists for the Architect yet.
+
+## 2 · The parts (take the top one you can do; file yours as you go)
+
+**A · The prepared tree on Node 24 — run it.** `git archive` of `67-cakepanz-6-2026-11-18/cakepanz-4-prepared` (it is on `council/inkling`), then on a Node 24 binary: `node --test --experimental-strip-types test/engine.test.ts` (expect **406/406**), `npm run battery:node` (expect **28/28**), `node scripts/gate-manifest.mjs` (expect **PASS 330**). Nobody has run the prepared suite on Node 24. Receipt or it didn't happen. (FOR: R-13)
+
+**B · The gh-pages fix — prove, don't trust.** Extract `deliveries/gh-pages-fix/`, apply its two corrected files onto a fresh `git archive origin/gh-pages:67-cakepanz` extract (never mutate `gh-pages`), run the engine suite (expect **286/0**), and print the flex histogram after (expect `{0:17, 2:17, 6:42, 12:23}`). File receipts; the Owner places the fix his side; seats only prove it works in a sandbox. (FOR: P-355)
+
+**C · Bucket-bar — verify VL's tool.** From a clean extract of `65673a00` (`colors/` + `data/packs/`): run `node tools/bucket-bar.ts 120000`; confirm the 120k paired numbers reproduce GLM's A3 reference set; run its falsifier and confirm exit ≠ 0 naming the file+anchor (it must be possible to see it fail). Or say explicitly you cannot run it and why. (FOR: P-342)
+
+**D · Build `tools/merge-gate.mjs` — the missing arm.** The spec is settled (Inkling `20261118-0005` + Pickle `20261118-0020`, both corrected their own errors). Per Ernie's Part 6 rule — runnable from a clean `git archive` extract, zero repo state beyond committed packs — build the five checks, each exiting non-zero with its own name and printing the number it grades:
+1. pin integrity by **count + sha256-of-content** of every shared engine file (reference `tools/pin-watch.mjs @ 0bd76860` — do not duplicate its logic; wire it);
+2. `flex.json` identical to the pin, counts **taken from the pin** (print the multiset; the two circulated partitions both sum to 99);
+3. suite green via `node --test --experimental-strip-types` **under Node 24** (it prints `node --version`; anything else refuses to grade), and the test-count printed; **the no-arbitrage law is the tip's `<= 18` bound at the tip** (it re-pins with each flex ruling, per P-355 discipline — it is a carried expectation);
+4. honest pin line with **SNAPSHOT.md precedence** (SNAPSHOT.md → SHELL-STATUS.md → README.md; CHECKSUMS/MANIFEST informational only, never a pass condition); keep-for-record historical citations documented in the pattern the trees already use;
+5. zero engine imports outside `src/engine/**` and the seam `src/lib/port/seam.ts` (zero in the correct tree — VERIFIED by two seats).
+The tool prints one line per check with the number it grades; end with `0 (all five hold)` or `1 (named check, named number)`. **Falsifier:** a fixture with a moved anchor must exit 1 naming the file; a clean fixture passes; a fixture with an unlisted file fails the converse check; the tool never prints a green it did not measure. Show it **failing before it passes**. (FOR: P-333)
+
+**E · The P-317/S3-S4 acceptance sets — finally consolidate into one.** Inkling's nine checks + Ernie's three (UNDO semantics, every `toRecord` call site scanned, size budget) + the two gaps found since (**#8 needs the "same now" qualifier; `appstate.ts` START is an unnamed edit site**), plus the `orderWith` split: orderWith does not exist in that tree — #6 divides into an **engine-side property check** (Architect's) and a **shell-side mirror** (Z.ai's tree), one line saying which and why. One filing, every check with its command and its bar, exact anchors. **One seat reconciles; a different seat checks the reconciliation.** (FOR: P-317)
+
+**F · The §6 merged landing battery — one file for the Architect.** Collate Inkling's (items 1–10, commands, Node-24 precondition, sequencing), Beam's (bars + the L0–L3 content-by-level table L0 99.72 % / L1 23.45 % / L2 8.25 % / L3 8.59 %) and VL's battery filing into **one**. Bars stand: per-4th-down-pass-play ≈24 %, per-incompletion ≥60 % (both denominators named, per this round's §0 rule), drives ±0.3 %, sacks ±0.5 %, suite 406+N green. **Pools parity is the bar; perfect termination is the reported stretch.** File it as the landing spec the Architect can build from with zero questions. (FOR: P-342)
+
+**G · The review-of-reviews (D-3 pass).** Four seats republished the macro three questions (Inkling `20261118-0220`, OR `20261118-or-…` with Inkling's text, Ernie `20261118-0041`, Glyph `20261118-0145`) and four seats hashed λ (Pickle `0000`, Inkling `0012`/`0155`/`0253`, VL `0500`, Glyph `0252`). Read all seven; state concordance or name the difference with receipts; specifically confirm the **tip flex sha256 `76c02c659880e218`** appears next to every band claim and **0.40** is the recommendation everywhere it matters. If they do not agree, file the disagreement. (FOR: P-333 / P-347)
+
+**H · Cakepanz-7 — sign up now.** The zip lands mid-round. When it does, each of these names a check it owns for the first hour: (i) pin-watch both trees, count+content (Inkling); (ii) prepared-manifest gate PASS must hold (Ernie); (iii) the takeover screenshots — two teams × 1180/390 × light/dark × before/after, 16/16 sha256 check (Beam); (iv) 900 weights inlined and declared, no-CDN law (Inkling); (v) slogan + shimmer + title + meta (Beam); (vi) M3 logs under the cited names (Ernie); (vii) F0–F10 on **both Node majors** (Inkling); (viii) D-1 fresh clone (Beam); (ix) shipped≠prepared divergence = exactly five paths (Inkling); (x) Slice 3's three laws (HYDRATE / gone-odds tooltip / sticky row) (Ernie); (xi) the prepared re-pin **not activated** (everyone). A review that does not re-run is a read. Name your item in your filing's `TASK:` line. (FOR: R-13)
+
+**I · The cutover gap analysis for the Owner.** No seat has read the cutover runbook (`MERGE-GUIDE §5`, `SHELL-STATUS.md`, the verification record) as a checklist against reality. Produce the one-page answer: what stands between today and the Owner's cutover decision, what each blocker costs, who owns each (Architect / Owner / Z.ai / nobody). **Nothing activates here.** (FOR: R-13)
+
+**J · Workflow adoptions — the council can adopt these itself.** (i) W1: every round prompt from now on carries an artifact pre-flight list (refs+shas that must resolve) — the council practices this on this very round; (ii) W3: **every `VERIFIED` line must carry the command on the same line**; the denominator rule (`per-4th-down-pass-play` vs `per-incompletion`) is now mechanical — a filing violating either is rejected at the door; (iii) W4: every session-end message carries `git ls-remote` of the seat's branch. Adopt as a one-line decision each, filed as one note. (FOR: P-347)
+
+**K · GLM's and DS's macro answers — fold them in when they land.** They owe this round an answer; nobody waits for them; if one lands, fold it into the record. (FOR: P-333)
+
+**L · Innovate while you verify.** Every seat files one innovation proposal per round, however small — the strongest one-line improvement to the workflow found on the way counts. (FOR: P-345)
+
+**M · Bulletin merges into `council/muse` are MUSE's (currently Inkling, delegated).** Propose sweeps with evidence; do not move a terminal row yourself. (FOR: P-333)
+
+## 3 · What NOT to do
+
+Do not edit the engine, the product file, the flex table, any protected constant, any test the Architect owns. Do not touch Z.ai's sitting or his zip. **Do not activate the prepared re-pin — that is the Owner's word.** Do not settle what is the Owner's: the λ value IS the Owner's (you recommend, he locks), the label, Bodoni Moda, the 2PT chip, dark `--text`, the light-gold2 DEFAULT, the gh-pages fix placement, the GLM default. Do not re-review what is reviewed (the Cakepanz-6 review stands; the merge gate spec is settled — build it, don't relitigate it). Do not verify your own work — a verifier authored nothing in the thing being checked, or it does not count.
+
+## 4 · How to file
+
+Already stated at the top: one file per item, header, label everything, push after every file, verify with `git ls-remote`, end with `BLOCKED | OPEN | NEXT`. Every filer signs for one verifier who did not author what they checked. English.
+
+## 5 · This round is done when
+
+the prepared tree is suite-green on Node 24 with pasted receipts · the gh-pages fix proves 286/0 in a sandbox · VL's bucket-bar reproduces the 120k or is rejected on evidence · `tools/merge-gate.mjs` exists, fails on a moved anchor, and passes on both trees · one P-317 acceptance set exists for the Architect · one §6 landing battery exists · the four λ filings are concordant or the disagreement is filed · Cakepanz-7's sign-up sheet has names against every item · the cutover gap analysis is One Page · W1/W3/W4 are adopted · every seat filed one innovation.
+
+**Label check on this prompt itself:** every absence receipt I cite (the seven drafts; the missing merge-gate; the two re-pin activations; the gh-pages red suite) was re-run or read this sitting; the seats' reviews it names are their own filings, linked by branch. Cite this prompt exactly as it is — if a line of it is stale, file the correction instead of working around it.
