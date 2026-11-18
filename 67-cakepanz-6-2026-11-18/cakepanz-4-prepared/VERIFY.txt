@@ -1,0 +1,464 @@
+# VERIFY.txt — every receipt in one place · Z.ai · 2026-11-17 (the portability + prepared-re-pin sitting)
+# Labels: VERIFIED (ran it, receipt below or in ACCEPTANCE-RECEIPTS.txt) / REPORTED (someone else
+# measured; named) / INFERRED (reasoned, not run) / UNKNOWN (no evidence).
+# Environment: Node v24.22.3 (system) + Node v26.13.1 (nodejs.org dist binary, downloaded to a
+# sandbox dir) · npm 11.19.1 · linux x64 · the baseline read from `origin/council/glyph:cakepanz-4`
+# (327 files; the four seat copies byte-identical on spot-checked blobs — Beam/Inkling/VL/glyph).
+
+§0 THE TREES (VERIFIED)
+- SHIPPED tree: the Cakepanz-4 baseline (327 files) + this sitting's shell-side changes. Pin:
+  5c808472 — `diff -rq <worktree 5c808472>/colors/src src/engine` → exit 0, 67 files (worktree
+  checkouts of BOTH pins made from the cloned repo, deepened history: 65673a0 ← f999142 ← 5c808472).
+- PREPARED copy: the shipped tree + the five-path move to 65673a00, clearly named
+  `cakepanz-4-prepared/`. Its SNAPSHOT.md is its contract; nothing in it is "activated".
+
+§1 THE PINS (VERIFIED)
+- Shipped pin 5c808472 byte-identity: diff -rq exit 0, 67 files. Prepared pin 65673a00 byte-identity:
+  diff -rq exit 0, 68 files; the ONLY snapshot diff between the pins is `sports/nfl/sim/passclass.ts`
+  (new) + `sports/nfl/sim/game.ts` (modified) — diff -rq old vs tip named exactly those two.
+- flex.json: `cmp` tip vs old pin → exit 0 (byte-identical across the pins). Rule counts measured:
+  **99 rules — 17 at 0, 17 at 2, 42 at 6, 23 at 12**; the six Owner rules all at 2 (EDGE>DT, ILB>OLB,
+  CB>FS, EDGE>OLB, OT>OG, CB>SS); **SS>NICKEL = 0** (never approved).
+- Packs: all four at the tip byte-identical (`cmp` ×4): nfl-pools-fit2016-2022.json (4,620,150 B),
+  nfl-pools-fit2023-2025.json (2,990,032 B) — both ALSO byte-identical to the OLD pin (carried, not
+  re-baked) — plus nfl-passclass-fit2016-2022.json (1,957 B) and nfl-passclass-fit2023-2025.json
+  (1,942 B), the two test-only GLM packs (nothing in src/ reads them at runtime; grep EMPTY).
+- Pack-hash citations, each WITH its invocation (`node --experimental-strip-types
+  scripts/pack-hash-cite.mjs data/packs/<pack>.json`; the pack stamps its own hash via makePack):
+  - 2023–2025 as baked: **pack53:0e78e4db382f9f** (M1's missing citation — named with its invocation)
+  - 2023–2025 product world (rules.values clock=dt_pf, trans=computed): **pack53:0ff47e1de5e2db**
+  - 2023–2025 clock only (clock=dt_pf): **pack53:1fe065713f326b**
+  - 2016–2022 as baked: **pack53:0b60973944ae13**
+  All three 2023–2025 values match the prompt's claims exactly. The 2016–2022 override variants are
+  NOT re-measured here — UNKNOWN without running them (M2 stays honestly UNKNOWN).
+- Engine self-stamp: `nfl1.1ac56c28928eff` at BOTH pins — invocation: node --experimental-strip-types
+  --input-type=module -e "import { engineVersion } from './src/engine/sports/nfl/app/versions.ts';
+  console.log(engineVersion())" (Node v24.22.3).
+
+§2 ENGINE TESTS (VERIFIED — both trees, both Nodes)
+- Shipped tree: `npm run test:engine` → **394 · pass 394 · fail 0**, exit 0 (54.9 s), Node 24.
+  Node 26 (`node --test test/engine.test.ts`): **394 · pass 394 · fail 0**, exit 0 (51.2 s).
+- Prepared copy: **406 · pass 406 · fail 0**, exit 0 (54.6 s), Node 24; Node 26: **406/406**, exit 0.
+  The 12 new tests are the pass-class suite; **NO carried expectation changed** — the green 406 is
+  the receipt (the pools-node expectations pass at the tip unchanged).
+- Fresh clone (D-1 proof, /tmp scratch, no node_modules inherited): `npm ci` exit 0 (playwright
+  1.57.0 installed from devDependencies and resolving from the clone's own node_modules); `npm run
+  test:engine` → 394/394 exit 0.
+
+§3 NODE BATTERY (VERIFIED — the Part-D register, no transform flag)
+- `npm run battery:node` → shipped tree: **26/26, exit 0** (24 carried + N21 the older-build note
+  law + N22 the packs law); prepared copy: **26/26, exit 0**. Node 24 AND Node 26, both trees —
+  four green runs this sitting. N20 (the F8 slot/key law) still green inside the 26.
+
+§4 SLICE BATTERY (VERIFIED)
+- `npm run battery` (preview 4179 shipped / 4187 prepared) → **29 pass · 0 fail · 10 SKIP (loud) ·
+  3 DEFER**, exit 0 — on the shipped tree, the prepared copy, AND the fresh clone.
+
+§5 SHELL RENDER BATTERY (VERIFIED)
+- `node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs` → **46 pass · 0 fail ·
+  exit 0** — shipped tree (Node 24 AND Node 26), prepared copy (Node 24 AND Node 26). S1a–S30 in one
+  uninterrupted run: the full season through the real UI, the restore law, the 390px walk (14
+  screens, 390/390 each + S25b board), S26–S28 vanilla file:// boot of dist/single.html.
+
+§6 GATES (VERIFIED)
+- `node scripts/regen-manifest.mjs` → **310 entries** at the cakepanz-5 sitting (shipped; 305 at the
+  delivered baseline + the five new Part-D/F files), prepared copy: **317** (68-file snapshot + 4
+  packs + the new tools).
+- cakepanz-6 (this sitting, the Part-B fix: the doc names the number the gate PRINTS, pasted, not a
+  hand-written one): shipped tree after Part A/D/E — `node scripts/regen-manifest.mjs` prints
+  **regen: 319 entries** and `node scripts/gate-manifest.mjs` prints
+  **`gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)`** (exit 0; the
+  gate also asserts the file:// boot target — 2 referenced assets checked). The growth 310→319 is
+  the sitting's own new receipted files (2 probes, 21 shots, the contrast table, the dist
+  refresh). `node scripts/gate-numerals.mjs` → **CLEAN ×2**. The prepared copy's gate line is
+  pasted in the cakepanz-6 §19 block below.
+  (D-3, twice now: the delivered VERIFY §6 said 300, then said 310 by hand — the number the gate
+  prints is the receipt; corrected.)
+
+§7 FALSIFIERS (VERIFIED — every law dies; zero tautologies; zero could-not-run; ALL FRESH)
+- `node scripts/receipt-falsifier.mjs` → exit 0: F0 clean baseline OK; F1 M1 grep-law DIED;
+  F2 N14 no-CDN DIED (✖ N14); F3 N12a roundtrip DIED (✖ N12a); F4 N19 gone%-values DIED (✖ N19);
+  F5 N14b season-brag truth DIED (✖ N14b); F6 N20 slot/key DIED (✖ N20); **F7 N21 older-build note
+  DIED (✖ N21)**; **F8 N22 packs law DIED (✖ N22 — the 2023–2025 pack removed from data/packs)**.
+  The mutations are APPLY-ASSERTED: a moved anchor throws with the file and the string (the F2/F3
+  re-derivation is closed structurally, not just re-run).
+- `node scripts/shell-falsifier.mjs` → exit 0: **FA DIED** (S5 FAIL, TimeoutError), **FB DIED**
+  (the ReferenceError path), **FC DIED** (S25b FAIL, 428/390). Falsifier ports are per-process
+  (PID-derived) after the concurrency hardening.
+
+§8 D-1 — THE FRESH-CLONE PROOF (VERIFIED; the exact scenario Inkling reproduced as the defect)
+- Scratch copy of the shipped tree, node_modules/dist/engine-node deleted: `npm ci` → exit 0
+  (playwright 1.57.0 from devDependencies; `require('playwright')` resolves from the clone's own
+  node_modules — version printed: 1.57.0). `npm run build` → exit 0. `CP_PORT=4390 npm run battery`
+  → **29/0/10/3, exit 0**. `npm run battery:node` → **26/26, exit 0**. `npm run test:engine` →
+  **394/394, exit 0**. NO MODULE_NOT_FOUND anywhere; the HOME-global fallback is gone from all
+  seven entry points (grep: zero `npm-global` references outside node_modules). A battery whose
+  dependency is undeclared cannot happen again without failing loud.
+
+§9 D-2 — THE FALSIFIER FAILS LOUD (VERIFIED, both ways)
+- The defect demonstrated BEFORE the fix: the PRE-FIX tool (original bytes from
+  `origin/council/glyph:cakepanz-4/scripts/shell-falsifier.mjs`) run under **Node v26.13.1**
+  printed: `FA … TAUTOLOGY (S5 still green)` / `FB … TAUTOLOGY (S29 still green…)` / `FC …
+  TAUTOLOGY (S25b still green)` / `TAUTOLOGIES: FA, FB, FC` — **and exited 0**. The children had
+  died with `node: bad option: --experimental-transform-types`; the old code called that "not
+  tested" with an affirmative-looking verdict. (Captured output preserved in the sitting's log.)
+- After the fix: on Node 24 all three cases DIE (exit 0, receipts above); under Node 26 the child
+  runs via the Part-D register and the cases run correctly — the falsifier either runs or fails
+  loud; it can no longer manufacture a green. TAUTOLOGY itself is exit 1. COULD-NOT-RUN is named.
+- The receipt falsifier got the same law: a child that cannot run is COULD-NOT-RUN (red), never a
+  false DIED.
+
+§10 PART D — THE NODE 24 / NODE 26 TABLE (VERIFIED — the deliverable table)
+| suite                       | Node v24.22.3            | Node v26.13.1            |
+|-----------------------------|--------------------------|--------------------------|
+| npm run test:engine         | 394/394 shipped · 406/406 prepared · exit 0 | 394/394 shipped · 406/406 prepared · exit 0 |
+| npm run battery:node        | 26/26 both trees · exit 0 | 26/26 both trees · exit 0 |
+| shell battery (46 laws)     | 46/0 both trees · exit 0  | 46/0 both trees · exit 0  |
+| npm run battery (slice)     | 29/0/10/3 · exit 0        | (browser battery — Node-independent; chromium under system Node 24) |
+- `git status` equivalence: src/engine is byte-identical to its pin on BOTH trees (diff -rq exit 0);
+  the generated `src/engine-node/` differs from the snapshot in EXACTLY one file
+  (`platform/localstorage.ts`), proved inside the generator and re-proven by `diff -rq`.
+- The one-command table behind it: every entry ran via `node --import
+  ./scripts/node-port-register.mjs` (or npm scripts wrapping it). The freshness gate regenerates
+  the copy once after any snapshot byte change and fails loud if it still mismatches.
+
+§11 THE PREPARED RE-PIN (Part B — VERIFIED, NOT ACTIVATED)
+- The five paths moved together in `cakepanz-4-prepared/`: src/engine (68 files, byte-identical to
+  the tip), tools/mathlab/flex.json (byte-identical to BOTH pins), test/engine + test/engine.test.ts
+  (the tip's suite re-pointed by sync_engine_tests.py — the only diffs are the re-pointed
+  specifiers), data/packs (four files byte-identical to the tip).
+- The default-off proof (the one that matters most): `node --experimental-strip-types
+  scripts/gamelog-fixture.mjs --out <file>` in the old-pin tree AND the prepared tree →
+  60 games each; the `defaultOff` sections (key, logHash, points, ot, FULL event JSON) are EQUAL
+  (Python deep-compare: True). Lambda-0 tilt no-op: 60/60 `{passClass}` vs
+  `{passClass, passGap: 7}` identical. Control: 60/60 node-ON logs differ from node-OFF.
+- The empty grep (NARROWED this sitting — the Part-B fix, F-2 item 3): passClass/passGap appear
+  NOWHERE in the prepared copy's SHELL code (src/lib, src/App.svelte, batteries) — exit 1. The
+  sentence previously claimed scripts/ was covered too; it is NOT: scripts/gamelog-fixture.mjs
+  holds 5 hits BY DESIGN — it IS the default-off proof script above and passes the option
+  deliberately. The substantive claim stands: the shell itself passes opts.passClass nowhere.
+- Prepared-copy batteries: engine 406/406, node 26/26, slice 29/0/10/3, shell 46/0, gates 317 PASS,
+  numerals CLEAN ×2 — all exit 0, Node 24 AND Node 26.
+- **Activation is one step, on the Owner's word** (copy the five paths from the prepared copy —
+  or re-run SNAPSHOT.md's procedure against 65673a00 — then re-run the five checks and re-pin the
+  documents). Until he says so, the shipped tree stays at 5c808472.
+
+§12 PART E — THE MERGE CONE (VERIFIED at the held pin AND on the prepared copy)
+- M1 ONE DOOR: grep (excluding src/engine, the generated src/engine-node, src/lib/port) → EMPTY
+  (exit 1) on BOTH trees; the .svelte-only variant → EMPTY. Known non-hit: src/vite-env.d.ts (a
+  comment — the Vite ?url shim for the snapshot's main.ts; not a code importer; it goes with the
+  snapshot if main.ts ever drops).
+- M2 ONE DIRECTORY: both swap receipts' diff -rq outside src/engine → CLEAN (only the batteries'
+  result JSONs may differ on a fresh run; engine-node is regenerated inside the swapped copy and
+  excluded).
+- M3 SWAP TEST, BOTH DIRECTIONS (CP_REPO=<clone> CP_ENGINE_SRC=<worktree>/colors/src):
+  - Tip 65673a00 (68 files) → SHIPPED tree: engine suite **394/394 exit 0** (the old expectations
+    pass against the new engine — the pools node did not change; last sitting's red-goldens
+    outcome does NOT repeat because THIS tip is additive-default-off and the flex table is
+    identical — a measured fact, not a relaxation), node battery exit 0, build exit 0, slice
+    29/0/10/3 → **VERDICT: PASS, exit 0**.
+  - Old pin 5c808472 (67 files) → PREPARED tree: engine suite **exit 1 — FAILS AT LOAD** (the
+    tip-asserting entry imports passclass.test.ts → passclass.ts is not in the old engine; dead in
+    228 ms — exactly "the tip-asserting goldens go red at load"), node battery 26/26 exit 0, build
+    exit 0, slice 29/0/10/3 → **VERDICT: FAIL BY DESIGN, exit 2**. The shell survives everywhere.
+  - The snapshot was never edited; the laws were never edited.
+- M4 CONTRACT: SNAPSHOT.md rewritten on both trees (the pin, byte-identity, pack-hash citations
+  WITH invocations, the five-path procedure, the register hook, the D-1/D-2 behaviour, the swap
+  habit, the Node table pointer). A stranger can re-pin from it alone.
+- M5 THIN SEAM: src/lib/port/seam.ts — **160 lines, 68 engine-import lines, 38 distinct engine
+  modules**, 20 port modules beside it — IDENTICAL on both trees (measured). Engine imports
+  OUTSIDE the port: **0 files, 0 lines** (measured). Ernie's app-code-touching-engine-types count:
+  my method (engine-import lines outside src/lib/port) = 0 — the seam absorbs them all; his exact
+  historical figures (76 / 37 / 27) were measured with his script, which this tree does not carry —
+  REPORTED, not re-measured; my equivalent is the 0 above.
+
+§13 PART C — THE DEFECTS (each, what changed, the evidence)
+- D-1: playwright 1.57.0 exact-pinned in devDependencies; the `try/_req('playwright')/catch
+  HOME+/.npm-global` fallback REMOVED from batteries/slice1.battery.mjs, batteries/shell.battery.mjs,
+  scripts/probe-a11y.mjs, probe-complete.mjs, probe-motion-shots.mjs, probe-node-counts.mjs,
+  probe-season-loop.mjs — each now throws a NAMED error ("playwright is not installed — it is a
+  devDependency: run npm ci …"). Evidence: §8's fresh-clone run.
+- D-2: scripts/shell-falsifier.mjs rewritten (classify + fail-loud + per-process ports + the
+  register-form child); scripts/receipt-falsifier.mjs got the same law + mustReplace
+  (apply-asserted) mutations + copies scripts/ into its scratch copies (the register needs it).
+  Evidence: §9's both-ways runs.
+- D-3: README.md — the slice-battery line corrected to 29/0/10/3 + the 3 Slice-3 laws named; the
+  323-test line annotated as the PREVIOUS pin's count. VERIFY §6's 300 → the gate's true number
+  (310 shipped / 317 prepared). CHECKSUMS.txt + MANIFEST.txt regenerated at the end of the sitting.
+  package-delivery.sh READ: it does what it claims (zip + unzip -t + sha256 roundtrip + gate
+  re-runs inside a temp extract) but carried stale paths (an old sandbox tree, an old zip name,
+  a lane-commit step for a tree with no .git) — refreshed as this sitting's packaging tool
+  (parameterised TREE/ZIP, excludes node_modules/.git/src/engine-node).
+- M1 (doc): the 2023–2025 pack's loader hash is cited with its invocation in SNAPSHOT.md §pack-hash
+  and MERGE-README (§1 above) — pack53:0e78e4db382f9f, invocation: makePack(JSON.parse(
+  data/packs/nfl-pools-fit2023-2025.json)) — the pack stamps its own hash; the packs law N22
+  asserts it in the battery.
+- M2: the old pin's override-variant hashes stay UNKNOWN (§1) — honestly labeled, not invented.
+- F2/F3: re-derived fresh this sitting — both DIE (§7), and the apply-assert guard makes the
+  "targets moved" failure mode (Beam's concern) impossible to miss again: a moved anchor throws
+  with the file and the string instead of silently writing unchanged bytes.
+
+§14 PART F — THE SAVE-SYSTEM LANE (VERIFIED / landed)
+- F5–F10 audited at file:line — ALL SIX were already done; nothing redone:
+  F5: MERGE-GUIDE.md:40 (the resume-determinism sentence). F6: savesApp.ts:76/80 (readSlot returns
+  {slot, state:'refused'} on every refusal). F7: engine saves.ts:44 `plan: PlanState | null`.
+  F8: savesApp.ts:24 (`slotCheck: assertSlotMatchesKey`) + the N20 law + the F6 falsifier.
+  F9: engine core/saver.ts:10–13 (the retriable annotation). F10: engine view/draftBoard.ts:17
+  (the BoardSort union) + App.svelte:57 (`let sort: BoardSort = 'wins'`).
+- BUILT (the one visible gap): the **older-build note** — savesApp.ts `olderBuildNote(sum,
+  runningVersion)` (pure, node-tested) + Saves.svelte renders it on the slot card: "this save came
+  from build X (running: Y) — logged picks hold; un-made picks may differ" (the F5 sentence, where
+  the user needs it). Law **N21** + falsifier **F7**. The panel change rides the S23/S25-walk runs
+  (46/0 includes it; the 390px saves walk still 390/390).
+- The states gap CLOSED: scripts/probe-saves-states.mjs — **5/5 PASS** — plants corrupt /
+  newer-version / older-build saves through the page's own localStorage, re-reads through the
+  engine's parse path, and receipts: P-S1 the corrupt refusal VERBATIM in the browser ("payload:
+  bad seed") · P-S2 the newer-version refusal by VERSION ("written by a newer build (schema 9)") ·
+  P-S3 the older-build save LOADS and the panel NAMES the other build · P-S4 the older card still
+  renders as a normal loadable save · P-S5 zero page errors. Screenshots: shots/saves-states-
+  {corrupt-A,newer-B,older-C}.png. (The probe needed the real UI: the saves screen exists only
+  once a draft record exists — the router redirects a fresh boot to Team Select; the probe starts
+  a draft first. A page reload would DROP the in-memory draft — the probe navigates away and back.)
+- The packs law (Ernie §6.5): **N22** — the sim boots on a non-empty pool (67 pools, non-zero
+  weighted plays) and the current-era pack stamps pack53:0e78e4db382f9f; falsifier **F8** removes
+  the pack → the law dies.
+- Shareables: the five brags ALREADY exist (draftBrag/weekBrag/seasonBrag/bracketBrag/awardsBrag —
+  shareable.ts:64–119; N14/N14b green) — done in earlier sittings; not redone.
+- Slice-3 audit: the two carried innovations (the gone% METHOD tooltip with method-on-hover; the
+  "my needs" sticky row with filter-by-click) + the three slice laws are DONE and receipted in the
+  slice battery (29/0/10/3). The hydration flow walks: settings hydrate (S4, N13), the dataset
+  import path (F11 empty state), the week/season restore (S29/S30), the corrupt/newer/older
+  refusals (N12b/N12c + the new probe). No new slice invented.
+- P-317 §5: filed with exact anchors (MERGE-GUIDE §7 + the inbox file) — START `order?: number[]`,
+  the payload slot stamp, `restoreDraft` `rec.order ?? snakeOrder()`; SAFE ALONE + HOW TO CHECK per
+  change; NOT applied (the store is the Architect's).
+
+§15 PART H — SATELLITES (VERIFIED / refreshed)
+- P-360: deliveries/gh-pages-fix/README.md — names this sitting's pin line AND the prepared pin
+  (65673a00, 68 files, 406 tests); the stale 26-pass line corrected to 29. The Owner places it.
+- P-363: S26–S28 re-proven FRESH inside this sitting's shell-battery runs (twice: shipped Node 24
+  and Node 26) — not carried forward.
+- P-364: the law stays at **430px**; the queue's 560 figure exists nowhere (tree-wide grep, again);
+  flagged, not moved (the Owner's call).
+- P-365: N14b + N19 green; the TOKEN law case-insensitive; falsified fresh (F5, F4).
+- P-368: the bindings split stands — `grep -rn "document\." src/lib --include='*.ts' | grep -v
+  bindings` → EMPTY; `grep -rn "from 'svelte" src/lib --include='*.ts' | grep -v bindings` → EMPTY.
+- P-254: ENVELOPE-FREEZE.md stands unchanged (deviceId reserved at line 42); nothing in the
+  prepared pin contradicts the freeze.
+- P-369: node counts re-measured THIS sitting (probe-node-counts, live DOM, preview build):
+  TeamSelect 95/95 · DraftBoard 847/816 · Feed 305/280 · Share 48/48 · Saves 55/55 (1180px/390px).
+  (Last sitting's Feed figure was 327/280 — the feed's DOM moved with the engine's feed.ts; my own
+  measurement is the receipt, not the carried number.)
+
+§16 INNOVATION (Part I)
+- The pretest snapshot guard (the council's idea (a), built): the register hook's freshness gate —
+  before ANY node suite runs, the src/engine-node stamp is checked against the CURRENT snapshot
+  tree hash; a mismatch regenerates once, then fails loud with the pin. "Is this the right engine?"
+  is a gate, not a question.
+- The fail-loud falsifier contract + port isolation (D-2's generalization) — the verification chain
+  is now trustworthy on any machine and under concurrency.
+- The older-build note (Part F) — the save system says what it knows instead of hiding it.
+- The pack-hash citation script (pack-hash-cite.mjs) — a bare hash claim is now mechanically
+  accompanied by its invocation.
+
+§17 THE PART-J BLOCKED LIST (untouched — flagged, not touched)
+- Rows 1–19 of this sitting's Part J: untouched, each with a one-line recommendation in
+  DELIVERY-DECISIONS.md. The GLM node stays OFF (no passClass anywhere); theta/lambda untouched;
+  the yards node not built; the pin beyond 65673a00 not moved; cutover is the Owner's step.
+
+§18 WHAT I DO NOT KNOW (UNKNOWN / REPORTED / INFERRED)
+- UNKNOWN: award grades ≥90 occurrence in a receipted season (the shimmer is wired; none observed).
+- UNKNOWN: the w89 "90+ shimmer" source law (no source on disk).
+- UNKNOWN: the 2016–2022 pack's override-variant hashes at the prepared pin (the as-baked value IS
+  cited; the override variants need their own invocations run).
+- UNKNOWN: whether the GLM node ever becomes the default (the sacks/drives shift explanation is the
+  Architect's + the Owner's ruling; the state-bucket test Beam named has NOT been run by me).
+- REPORTED: the Architect's 406-test count at the tip (my own run: 406/406 VERIFIED — the count now
+  has my own receipt); Inkling's machine caveats (Node 26 needs a modern binary; Playwright version
+  deltas — my table answers the Node half directly).
+- INFERRED: the FB anomaly in the first fixed-falsifier background run (FA/FC reported TAUTOLOGY
+  while the sequential foreground runs show all DIED) — documented in the feel journal; the
+  port-isolation hardening exists because of it; the sequential receipts are the ones I stand behind.
+
+§19 CAKEPANZ-6 — THIS SITTING (2026-11-18 · the takeover + strays + receipts sitting · pin 5c808472)
+Labels: VERIFIED (ran it, output pasted here or in the receipt files) / REPORTED (someone else
+measured; named) / INFERRED / UNKNOWN. Every gate below is the tool's own stdout.
+
+§19.1 PART A — THE TEAM TAKEOVER IS WIRED (VERIFIED; F-1 closed)
+- The three empty [data-zpbteam] blocks in tokens-w89.css are FILLED: each remaps --gold2 ← the
+  team's mode-solved primary stop, --goldm ← the secondary, --gold3 ← the tertiary, --rosehair/
+  --hairline ← a mix of the accent toward the mode's own bg (the live product's 0.42/0.40 hairline
+  recipe), --panel2 ← a 3% whisper of the true team chip into the panel. --zcream, --bg, --panel,
+  --text are NEVER remapped (the Owner's laws stand; N23 asserts all of it).
+- The stops themselves are the LIVE PRODUCT'S OWN recipe (w89.html:2988-3032, ported verbatim into
+  src/lib/port/tokens.ts teamAccents()): chroma-fallback for non-chromatic primaries (LV warms),
+  the w27 blue lift (Bills/Rams), the w19 metal blend, flo/goldTone, then zpbReadable at the live
+  targets (4.6/4.2) against THIS sheet's two bgs. Six mode stops ride inline (t1L..t3L, t1D..t3D);
+  a mode flip needs NO re-derivation — the cascade picks the block, exactly like the live product.
+- FINDING (fixed + lawed): the inherited skeleton had the system-dark takeover block sitting BARE
+  (w89 wraps it in @media (prefers-color-scheme: dark)). Bare, :not([data-theme="light"]) matches
+  light mode too and its higher specificity painted the DARK accents into light mode — caught by
+  this sitting's screenshot probe (light Ravens brand resolved to the dark-solved #8575e3), fixed,
+  and N23 now scans the sheet brace-aware: the selector must ride the media query exactly once,
+  bare = 0. The falsifier's F0 baseline guard independently earned its keep this sitting (it
+  caught the falsifier harness itself missing index.html after N24 started reading it — fixed).
+- THE LAW: N23 — "picking a team changes at least three accent tokens, and --zcream is unchanged".
+  npm run battery:node → **28/28, exit 0** (26 carried + N23 + N24); Node v24.22.3 AND v26.13.1.
+- THE FALSIFIER: F9 plants the wrong-team read (the solver always returns Baltimore's stops) →
+  **F9 DIED (✖ N23)**; full run F0–F10 all DIED, exit 0, Node 24 AND Node 26, zero tautologies,
+  zero could-not-run (outputs: /tmp/falsifier-run2.log, /tmp/falsifier-node26.log, and the same
+  green on the prepared copy: /tmp/falsifier-prepared.log).
+- THE PIXELS: scripts/probe-team-takeover.mjs (NEW, receipted) — 38 laws, ALL PASS, real
+  Chromium, both modes × 1180/390 × {before, Ravens (the near-black sentinel), 49ers (the bright
+  sentinel)}: --zcream byte-stable in the browser (light rgb(83,56,43) / dark rgb(242,231,213)),
+  body bg/ink untouched, the gold2 token + brand ramp + nav borders + hairline + panel2 all
+  change PER TEAM, data-zpbteam carries the team name, and the near-black primary LIFTS in dark
+  (t1L=#241773 vs t1D=#8575e3 — the three-block structure visibly earns its keep). 16 screenshots
+  at shots/takeover/ + takeover-receipt.json (sha256s inside).
+- THE CONTRAST RECEIPT: deliveries/partA/contrast-table.txt — 32 teams × 2 modes × 6 pairs.
+  **The takeover creates NO failing text pair**: every solved gold reads ≥3:1 on its surface
+  (the solver targets the live product's own 4.6/4.2). The hairline rows (decorative 1px rules)
+  sit below the informational 3:1 bar exactly like the DEFAULT hairline pair already does
+  (1.60 light / 1.41 dark) — REPORTED with that baseline named, not "fixed".
+
+§19.2 PART B — THE FIVE DOCUMENT FIXES (VERIFIED, both trees)
+1. README.md battery line: 24 → **28 laws** (the count N23/N24 add this sitting; the number the
+   battery prints — 28/28 — is the receipt).
+2. VERIFY §6: rewritten to name ONLY numbers the gate prints, with the gate's own lines pasted
+   (shipped: regen 319 / gate PASS 319; prepared: regen 324 / gate PASS 324 — see §19.4).
+3. VERIFY §11: the empty-grep claim NARROWED to src/lib, src/App.svelte, batteries — and it now
+   says explicitly that scripts/gamelog-fixture.mjs holds the 5 hits BY DESIGN (it IS the
+   default-off proof script and passes the option deliberately).
+4. batteries/node.battery.mjs — the unused packHash dropped from the N22 import (the prepared
+   copy is once again exactly "the shipped tree + the five paths").
+5. SHELL-STATUS.md s4 row: the OT workaround is now NAMED (the engine's clock() still maps OT
+   drives to Q4 with negative mm:ss — the Architect's open item; the shell prints the honest
+   "FINAL/TIE — OT ×N (both teams possessed)" stamp off gf.ot instead) and its receipts are
+   cited (Feed.svelte:37, feedVM.ts:145, the shell battery's S7 loop).
+- The 26/26 references in MERGE-README.md (:3/:33/:55/:75/:91) are DATED cakepanz-5 receipts and
+  stand as history; this sitting's verdict line (§ below) carries the new numbers.
+
+§19.3 PART D + E — THE STRAYS + THE LABEL MECHANICS (VERIFIED)
+- D-1 body font: --font-body = w89's own stack (-apple-system, BlinkMacSystemFont, "Segoe UI",
+  Roboto, sans-serif); body copy uses it in the sheet AND shell.css; Cinzel stays in the chrome
+  (headings, brand, buttons — where w89 puts it). Law N24 + falsifier F10 (plants Cinzel back →
+  DIED). Probe: 32 laws ALL PASS (body-is-system-sans on every mode/viewport, computed).
+- D-2 slogan: w89's own line — `<span class="cp-cygt">Can you go </span><b class="cp-shine">20-0</b>
+  <b class="cp-shine" style="font-size:1.1em">?</b>` — on Team Select (home) and Guide, the
+  .cp-cygline/.cp-cygt/.cp-shine classes verbatim-shaped from zpb-cygline/zpb-shine, the gold
+  shimmer = the animated background-clip:text ramp (cpshine, 5.5s; the brand ramp 9s), flat-color
+  fallback under @supports-not. index.html title = "76 Pancakes — Can you go 20-0?" + the meta
+  description carries w89's framing. Reduced-motion kills the animation (the shell's global law).
+- D-3 fonts: Cinzel 700+900 INLINED as ONE variable face (font-weight: 700 900 — Google serves
+  both weights as a single file; declaring the range covers both weights explicitly, no
+  synthesis) + Cinzel Decorative 900 inlined. ADDED BYTES: **40,472 B raw / 53,964 base64 chars**
+  (Cinzel 25,904 + Decorative-900 14,568). The existing Cinzel 100 + Decorative 700 faces stay.
+  document.fonts.check proves all three LOADED in the probe (700/900 Cinzel + 900 Decorative).
+  No CDN anywhere (N24 asserts; N17's no-Google law still green).
+- D-4 wordmark: .cp-brand now leads with w89's exact family stack ('Bodoni Moda', Didot,
+  'Bodoni MT', 'Playfair Display', then the INLINED Cinzel Decorative, Georgia, ui-serif, serif),
+  w89's weight (600 — a REAL face now that 700 is inlined; the stray 800 retired), w89's size
+  (1.5rem) and letter-spacing (.22em), and w89's shimmering gold ramp (fxshine 9s equivalent).
+  NAMED DIFFERENCE (not silently left): Bodoni Moda itself stays OUT of the bundle (the Owner
+  ruling owed) — on machines without it the brand renders in the inlined Cinzel Decorative
+  instead of w89's Georgia fallback; everything else is w89-verbatim. Full report:
+  deliveries/partE-label-questions.md.
+- E: "Value" (w89) vs "Model Value" (shell) REPORTED, both live, none chosen; "Engine Value"
+  asserted absent from every rendered surface + label value (N24). The 2PT chip ("2PT"/"2PT FAIL"
+  at feedVM.ts:100-101 vs w89's "2-Pt Conv" ×11) UNTOUCHED. Mechanical: MEASURED_LABEL single
+  constant + the Guide reads MODE_LABEL.
+
+§19.4 GATES, THIS SITTING'S OWN OUTPUT (VERIFIED — pasted, the D-3 discipline)
+- SHIPPED tree (after Parts A/D/E): `node scripts/regen-manifest.mjs` → **regen: 326 entries** (FINAL);
+  `node scripts/gate-manifest.mjs` → **gate-manifest: PASS (326 entries verified, dist/ covered,
+  converse clean)**, exit 0 (the file:// boot target asserted: 2 referenced assets). Numerals
+  gate: **CLEAN ×2**. (The count walked 319 → 327 as this sitting's receipt files landed, then 327 → 325 when
+  regen-manifest.mjs was FIXED this sitting: CHECKSUMS.txt/MANIFEST.txt had been listing
+  THEMSELVES, which makes a sha256 roundtrip impossible to converge — the packaging tool caught
+  it; the two files are now excluded as the gate always assumed ("self-referential by design"),
+  the roundtrip passes, and the manifest was re-run after EACH change, never hand-written.
+  FINAL: 325 + this sitting's own two gate-receipt files → **326** (the gate log's content names
+  325 — it was printed before its own bytes joined the manifest; both numbers are real prints,
+  the difference is exactly the receipt file).)
+- PREPARED copy (F-5 FIXED): regen → **regen: 330 entries** (FINAL, after the synced sitting docs + the regen fix + its
+  own gate-receipt file); gate → **gate-manifest: PASS (330 entries verified, dist/ covered,
+  converse clean)**, exit 0.
+  Numerals: **CLEAN ×2**. (324 → 331 → 330 for the same reasons — receipts landing + the self-reference fix; every
+  number is the tool's own print, pasted.) The F-5
+  hash-mismatch list (batteries, scripts, SNAPSHOT.md, the unlisted pack-hash-cite.mjs) is
+  resolved by regen-manifest over the synced tree — the manifest is regenerated IN THE SAME
+  change as the prepared files, never by hand.
+- Prepared-copy suites at the synced state: engine **406/406 exit 0**, node **28/28 exit 0**,
+  slice **29/0/10/3 exit 0**, shell **46/0 exit 0**, falsifier F0–F10 **all DIED, exit 0**.
+- Shipped suites at the final state: engine **394/394 exit 0**, node **28/28 exit 0** (Node 24
+  AND Node 26), slice **29/0/10/3 exit 0**, shell **46/0 exit 0** (the 390px walk and the file://
+  boot S26–S28 green WITH the new fonts + slogan — no overflow at 390, zero console errors),
+  shell falsifier FA/FB/FC (see §19.6).
+- Precompile invariant: `npm run precompile` → "engine-node: generated 67 files (1 transformed:
+  platform/localstorage.ts) — snapshot untouched"; diff src/engine-node vs src/engine = exactly
+  the stamp + that one file. Gitignored. KEPT AS-IS.
+
+§19.5 PART F — THE RE-RUNS (VERIFIED)
+- F2/F3 with the settled targets: F2's CDN plant dies on the N14 /https?:\/\// assertion; F3's
+  mutant is the EMPTY roster (the falsifier's label now says "roster → empty (0 players)", not
+  "roster 32 → 31"). Both DIE loudly on Node v24.22.3 AND Node v26.13.1 — never TAUTOLOGY, never
+  could-not-run (the full falsifier ran on both Nodes + on the prepared copy).
+- D-1 fresh clone: bash scripts (persisted at the sitting's tools) — scratch copy, node_modules/
+  dist/engine-node deleted → `npm ci` exit 0, **playwright resolves from the clone's own
+  node_modules** (/tmp/fresh-clone-c6/node_modules/playwright/index.js, version 1.57.0), build
+  exit 0, slice 29/0/10/3, node 28/28, engine 394/394 — **all exit 0**. Full log shipped:
+  deliveries/receipts/d1-fresh-clone.log.
+- M3 (F-6 FIXED — the logs exist under the cited names now, and VERIFY cites them):
+  - deliveries/receipts/swap-rehearsal-5c808472.log — tip 65673a00 → SHIPPED tree: **VERDICT:
+    PASS, exit 0** (engine suite green, node battery exit 0, build exit 0, slice 29/0/10/3,
+    diff outside src/engine CLEAN).
+  - deliveries/receipts/swap-m3-oldpin.log — old pin 5c808472 → PREPARED tree: **VERDICT: FAIL
+    BY DESIGN, exit 2** — the engine suite dies AT LOAD (test/engine.test.ts, 232 ms — the
+    tip-asserting entry needs passclass.ts), node battery exit 0, build exit 0, slice
+    29/0/10/3, diff CLEAN. The shell survives everywhere; the laws were never edited.
+- Fresh-machine note (the council's §2 ask, now IN the delivery docs): a clean machine needs
+  `npx playwright install chromium` once before the browser batteries run — machine setup, not a
+  tree defect. It lives in README.md's Run-it line's neighborhood and in the delivery README.
+
+§19.6 THE SHELL FALSIFIER (VERIFIED — output shipped: deliveries/receipts/shell-falsifier-c6.log)
+- `node scripts/shell-falsifier.mjs` → exit 0, per-process ports:
+  FA DIED — mutation: {recordTyped} shorthand reintroduced → S5 TimeoutError (the draft-complete
+  provenance stamp never renders);
+  FB DIED — mutation: restoreSeason definition removed → the flow crashed on ReferenceError:
+  restoreSeason is not defined;
+  FC DIED — mutation: the phone grid media query removed → S25b FAIL 427/390.
+  every shell falsifier DIED — the shell laws can fail.
+
+§19.7 PART C — THE PIN LINE + THE PREPARED TREE (VERIFIED / STAGED)
+- The shipped tree STAYS at 5c808472. The prepared re-pin is NOT activated (the Owner's word).
+- The prepared SNAPSHOT.md contract stands (68 files, byte-identical, both suites green) — the
+  packHash import fix (Part B #4) removes the one undeclared sixth difference.
+- F-3 (the gh-pages 67-cakepanz/ pin line): MEASURED this sitting — the deployed src/engine is
+  byte-identical to d3bd81d2's colors/src (diff -rq exit 0, 57 .ts files both sides), flex.json
+  cmp exit 0, while README.md/CHECKSUMS-slice2.txt still name the OLD pin 4ca9a071/52 files (stale lines, correct bytes). NEW FINDING,
+  measured: the deployed tree run AS DELIVERED is **277/286 — 9 FAIL** — every red a flex-table
+  expectation from the PRE-re-pin carried suite (the 2026-11-15 re-pin moved the table; the
+  expectations did not travel). REPORTED, not fixed (not my lane). The FIX is staged for the
+  Owner: deliveries/gh-pages-fix/ (the two corrected files + FIX-RECEIPT.md +
+  67-cakepanz-gh-pages-fix-c6.zip — the exact lines, the file-count receipt, the sha256s).
+
+§19.8 INNOVATION THIS SITTING
+- The takeover's mode architecture: BOTH modes' solved stops ride inline; the cascade picks —
+  a mode flip costs zero JS, exactly like the live product's own --tA/--tAd pattern.
+- The brace-aware N23 scan: a CSS structural law (the media-query wrapper) that failed on the
+  REAL defect this sitting — the vacuous-gate failure mode answered with a law that can fail.
+- The F0 baseline guard proved itself twice (the harness's own missing file; the bare-block
+  light-mode paint) — the "a receipt that cannot fail" lesson compounding.
+- The wordmark gradient via background-clip:text with a @supports-not fallback, and the probe
+  reading the takeover through token probes (computed-style receipts that survive D-4's
+  transparent-ink design).
+
+§19.9 OPEN (Owner decisions, UNTOUCHED — same posture as before)
+1. Dark --text 3.17:1 (carried; the takeover leaves --text alone).
+2. The light gold2 1.65:1 DEFAULT pair (carried; the takeover's solved accents all pass).
+3. "Value" vs "Model Value" (REPORTED — deliveries/partE-label-questions.md).
+4. The 2PT chip vs "2-Pt Conv" (REPORTED, same file).
+5. Bodoni Moda inlining (owed; the stack leads with it, the bundle does not carry it).
+6. The prepared re-pin activation (the Owner's word; silence = 5c808472 stands).
+7. NEW: the deployed 67-cakepanz tree's 9 red flex expectations (the re-point decision).
+8. NEW: the framework pick at cutover (the Architect's d3bd81d2 recommendation — not mine).

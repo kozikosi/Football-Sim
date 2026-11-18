@@ -1,0 +1,27 @@
+== SWAP TEST · engine → 5c808472 ==
+engine source repo: /home/z/my-project/Football-Sim
+engine snapshot at 5c808472: 67 files (the pin carried 57)
+diff outside src/engine: CLEAN (engine-node is the generated Part-D copy, regenerated inside the swapped tree; only batteries/*.json result files may differ from a fresh run)
+
+-- engine suite (the carried expectations at the OLD pin) -- exit 1
+
+test at test/engine.test.ts:1:1
+✖ test/engine.test.ts (231.942307ms)
+  'test failed'
+DIAGNOSIS: the suite failed its LOAD — a tip-only import is missing from the swapped engine (the reverse-swap red, not a law death).
+
+-- node battery (framework-blind laws) -- exit 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9395.080381
+
+-- build -- exit 0 · dist/assets/index-CIfS3bLh.js   381.28 kB │ gzip: 130.01 kB · ✓ built in 1.64s
+
+-- slice battery -- exit 0
+
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+
+== SWAP TEST VERDICT: FAIL ==
+A failing law names a moved thing: say whether it is the ENGINE's behaviour or the SHELL's expectation. Do not edit the law; do not edit the snapshot; file it.
+EXIT=2
