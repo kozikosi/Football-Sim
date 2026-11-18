@@ -1,0 +1,332 @@
+# Part A contrast receipt — the pairs the team takeover creates (cakepanz-6)
+# measured 2026-11-17T23:43:20.195Z · targets: the live product's own 4.6/4.2 solver floors
+# light surfaces: bg #fdf2f6 panel #ffffff · dark surfaces: bg #1e1119 panel #291a24
+# gold2/goldm/gold3 carry TEXT and borders → the 3:1 AA-large bar applies (gold2/3 also sit
+#   as text in headings, scores, the me-row); the DEFAULT light gold2 pair is 1.65:1 (the
+#   Owner-known aesthetic failure) and the takeover must not create MORE such text pairs.
+# hairline is a DECORATIVE 1px rule — its DEFAULT pairs are 1.60:1 light / 1.41:1 dark; those
+#   are the honest baselines for it, not AA. hairline rows are REPORTED against the default.
+
+Arizona Cardinals  (raw: #97233F #000000 #FFB612)
+  gold2/L #97233f on #ffffff = 7.99
+  goldm/L #50202c on #ffffff = 13.26
+  gold3/L #956c10 on #ffffff = 4.74
+  hairline/L #c27a8c on #ffffff = 3.25
+  gold2/D #d85575 on #291a24 = 4.32
+  goldm/D #bc5c73 on #291a24 = 3.88
+  gold3/D #e7aa22 on #291a24 = 8.02
+  hairline/D #8e3a50 on #291a24 = 2.27 ** NEW-FAIL (below AA-large) **
+
+Atlanta Falcons  (raw: #A71930 #000000 #A5ACAF)
+  gold2/L #a71930 on #ffffff = 7.43
+  goldm/L #502028 on #ffffff = 13.31
+  gold3/L #b85060 on #ffffff = 4.82
+  hairline/L #cb7483 on #ffffff = 3.30
+  gold2/D #e44861 on #291a24 = 4.26
+  goldm/D #bc5c6b on #291a24 = 3.85
+  gold3/D #ce8691 on #291a24 = 5.87
+  hairline/D #953244 on #291a24 = 2.22 ** NEW-FAIL (below AA-large) **
+
+Baltimore Ravens  (raw: #241773 #000000 #9E7C0C)
+  gold2/L #241773 on #ffffff = 14.53
+  goldm/L #272050 on #ffffff = 14.91
+  gold3/L #90710b on #ffffff = 4.61
+  hairline/L #7f73aa on #ffffff = 4.26
+  gold2/D #8575e3 on #291a24 = 4.46
+  goldm/D #7d72c5 on #291a24 = 4.01
+  gold3/D #9e7c0c on #291a24 = 4.21
+  hairline/D #5c4d92 on #291a24 = 2.31 ** NEW-FAIL (below AA-large) **
+
+Buffalo Bills  (raw: #00338D #C60C30 #FFFFFF)
+  gold2/L #0759e9 on #ffffff = 5.81
+  goldm/L #003799 on #ffffff = 10.47
+  gold3/L #c60c30 on #ffffff = 6.01
+  hairline/L #6e99ee on #ffffff = 2.82 ** NEW-FAIL (below AA-large) **
+  gold2/D #347cf9 on #291a24 = 4.26
+  goldm/D #2473ff on #291a24 = 3.92
+  gold3/D #f00f3b on #291a24 = 3.82
+  hairline/D #2b519f on #291a24 = 2.19 ** NEW-FAIL (below AA-large) **
+
+Carolina Panthers  (raw: #0085CA #101820 #BFC0BF)
+  gold2/L #0071ab on #ffffff = 5.32
+  goldm/L #203f50 on #ffffff = 11.12
+  gold3/L #3e7998 on #ffffff = 4.78
+  hairline/L #6aa7cb on #ffffff = 2.62 ** NEW-FAIL (below AA-large) **
+  gold2/D #008ad2 on #291a24 = 4.39
+  goldm/D #4280a1 on #291a24 = 3.81
+  gold3/D #99c1d6 on #291a24 = 8.64
+  hairline/D #0c5a88 on #291a24 = 2.24 ** NEW-FAIL (below AA-large) **
+
+Chicago Bears  (raw: #0B162A #000000 #FFFFFF)
+  gold2/L #496eb2 on #ffffff = 5.05
+  goldm/L #203150 on #ffffff = 12.99
+  gold3/L #203150 on #ffffff = 12.99
+  hairline/L #95a5cf on #ffffff = 2.45 ** NEW-FAIL (below AA-large) **
+  gold2/D #6383bf on #291a24 = 4.36
+  goldm/D #567aba on #291a24 = 3.86
+  gold3/D #567aba on #291a24 = 3.86
+  hairline/D #47557d on #291a24 = 2.26 ** NEW-FAIL (below AA-large) **
+
+Cincinnati Bengals  (raw: #FB4F14 #000000 #FFFFFF)
+  gold2/L #ce3704 on #ffffff = 5.03
+  goldm/L #502d20 on #ffffff = 12.09
+  gold3/L #a85f45 on #ffffff = 4.79
+  hairline/L #e2866a on #ffffff = 2.67 ** NEW-FAIL (below AA-large) **
+  gold2/D #fb4f14 on #291a24 = 4.92
+  goldm/D #b6684c on #291a24 = 4.00
+  gold3/D #d6a999 on #291a24 = 7.89
+  hairline/D #a33616 on #291a24 = 2.44 ** NEW-FAIL (below AA-large) **
+
+Cleveland Browns  (raw: #311D00 #FF3C00 #FFFFFF)
+  gold2/L #866537 on #ffffff = 5.34
+  goldm/L #503b20 on #ffffff = 10.57
+  gold3/L #d93300 on #ffffff = 4.75
+  hairline/L #b8a087 on #ffffff = 2.50 ** NEW-FAIL (below AA-large) **
+  gold2/D #b68a4b on #291a24 = 5.31
+  goldm/D #9c7440 on #291a24 = 3.93
+  gold3/D #ff3c00 on #291a24 = 4.65
+  hairline/D #795a37 on #291a24 = 2.63 ** NEW-FAIL (below AA-large) **
+
+Dallas Cowboys  (raw: #003594 #869397 #FFFFFF)
+  gold2/L #003594 on #ffffff = 10.84
+  goldm/L #4f75b7 on #ffffff = 4.60
+  gold3/L #4d74b6 on #ffffff = 4.68
+  hairline/L #6a84bd on #ffffff = 3.72
+  gold2/D #2e79ff on #291a24 = 4.18
+  goldm/D #5f82be on #291a24 = 4.28
+  gold3/D #99b0d6 on #291a24 = 7.52
+  hairline/D #284fa3 on #291a24 = 2.16 ** NEW-FAIL (below AA-large) **
+
+Denver Broncos  (raw: #FB4F14 #002244 #FFFFFF)
+  gold2/L #ce3704 on #ffffff = 5.03
+  goldm/L #502d20 on #ffffff = 12.09
+  gold3/L #a85f45 on #ffffff = 4.79
+  hairline/L #e2866a on #ffffff = 2.67 ** NEW-FAIL (below AA-large) **
+  gold2/D #fb4f14 on #291a24 = 4.92
+  goldm/D #b6684c on #291a24 = 4.00
+  gold3/D #d6a999 on #291a24 = 7.89
+  hairline/D #a33616 on #291a24 = 2.44 ** NEW-FAIL (below AA-large) **
+
+Detroit Lions  (raw: #0076B6 #B0B7BC #000000)
+  gold2/L #0071ae on #ffffff = 5.29
+  goldm/L #3f7a9b on #ffffff = 4.70
+  gold3/L #203f50 on #ffffff = 11.12
+  hairline/L #6aa7cc on #ffffff = 2.62 ** NEW-FAIL (below AA-large) **
+  gold2/D #008ad5 on #291a24 = 4.42
+  goldm/D #97bfd5 on #291a24 = 8.46
+  gold3/D #4280a1 on #291a24 = 3.81
+  hairline/D #0c5a8a on #291a24 = 2.24 ** NEW-FAIL (below AA-large) **
+
+Green Bay Packers  (raw: #203731 #FFB612 #FFFFFF)
+  gold2/L #317968 on #ffffff = 5.17
+  goldm/L #205045 on #ffffff = 9.15
+  gold3/L #956c10 on #ffffff = 4.74
+  hairline/L #87aca4 on #ffffff = 2.48 ** NEW-FAIL (below AA-large) **
+  gold2/D #5abba5 on #291a24 = 7.17
+  goldm/D #378675 on #291a24 = 3.81
+  gold3/D #e7aa22 on #291a24 = 8.02
+  hairline/D #42776d on #291a24 = 3.23
+
+Houston Texans  (raw: #03202F #A71930 #FFFFFF)
+  gold2/L #3b7290 on #ffffff = 5.26
+  goldm/L #203f50 on #ffffff = 11.12
+  gold3/L #a71930 on #ffffff = 7.43
+  hairline/L #8ca8bb on #ffffff = 2.49 ** NEW-FAIL (below AA-large) **
+  gold2/D #4b8fb6 on #291a24 = 4.66
+  goldm/D #4483a6 on #291a24 = 3.98
+  gold3/D #e23a55 on #291a24 = 3.92
+  hairline/D #395d77 on #291a24 = 2.37 ** NEW-FAIL (below AA-large) **
+
+Indianapolis Colts  (raw: #002C5F #FFFFFF #A2AAAD)
+  gold2/L #3b6590 on #ffffff = 6.09
+  goldm/L #004799 on #ffffff = 8.89
+  gold3/L #4778ae on #ffffff = 4.60
+  hairline/L #8ca0bb on #ffffff = 2.67 ** NEW-FAIL (below AA-large) **
+  gold2/D #5687ba on #291a24 = 4.39
+  goldm/D #0075fc on #291a24 = 3.91
+  gold3/D #9ab7d6 on #291a24 = 7.98
+  hairline/D #40587a on #291a24 = 2.28 ** NEW-FAIL (below AA-large) **
+
+Jacksonville Jaguars  (raw: #101820 #006778 #D7A22A)
+  gold2/L #0e1822 on #ffffff = 17.91
+  goldm/L #007c91 on #ffffff = 4.89
+  gold3/L #936f22 on #ffffff = 4.63
+  hairline/L #72747b on #ffffff = 4.67
+  gold2/D #5487b9 on #291a24 = 4.37
+  goldm/D #008aa1 on #291a24 = 4.06
+  gold3/D #d1a138 on #291a24 = 6.99
+  hairline/D #3e5879 on #291a24 = 2.27 ** NEW-FAIL (below AA-large) **
+
+Kansas City Chiefs  (raw: #E31837 #FFB81C #FFFFFF)
+  gold2/L #d51734 on #ffffff = 5.25
+  goldm/L #956b10 on #ffffff = 4.79
+  gold3/L #b95363 on #ffffff = 4.69
+  hairline/L #e67385 on #ffffff = 2.93 ** NEW-FAIL (below AA-large) **
+  gold2/D #eb3e59 on #291a24 = 4.23
+  goldm/D #e7a922 on #291a24 = 7.97
+  gold3/D #d699a3 on #291a24 = 7.06
+  hairline/D #992c3f on #291a24 = 2.20 ** NEW-FAIL (below AA-large) **
+
+Las Vegas Raiders  (raw: #000000 #A5ACAF #FFFFFF)
+  gold2/L #806d34 on #ffffff = 5.05
+  goldm/L #504420 on #ffffff = 9.59
+  gold3/L #8b7129 on #ffffff = 4.68
+  hairline/L #b5a585 on #ffffff = 2.42 ** NEW-FAIL (below AA-large) **
+  gold2/D #c5b072 on #291a24 = 7.75
+  goldm/D #917b3b on #291a24 = 4.02
+  gold3/D #c7a341 on #291a24 = 6.90
+  hairline/D #82704e on #291a24 = 3.45
+
+Los Angeles Chargers  (raw: #0080C6 #FFC20E #FFFFFF)
+  gold2/L #0071af on #ffffff = 5.27
+  goldm/L #8e6c0f on #ffffff = 4.88
+  gold3/L #3e7998 on #ffffff = 4.78
+  hairline/L #6aa7cd on #ffffff = 2.62 ** NEW-FAIL (below AA-large) **
+  gold2/D #008ad5 on #291a24 = 4.42
+  goldm/D #e7b122 on #291a24 = 8.45
+  gold3/D #99c1d6 on #291a24 = 8.64
+  hairline/D #0c5a8a on #291a24 = 2.24 ** NEW-FAIL (below AA-large) **
+
+Los Angeles Rams  (raw: #003594 #FFD100 #FFFFFF)
+  gold2/L #0758e9 on #ffffff = 5.86
+  goldm/L #003799 on #ffffff = 10.47
+  gold3/L #886d0f on #ffffff = 4.95
+  hairline/L #6e99ee on #ffffff = 2.82 ** NEW-FAIL (below AA-large) **
+  gold2/D #347bf9 on #291a24 = 4.22
+  goldm/D #2473ff on #291a24 = 3.92
+  gold3/D #e7bc22 on #291a24 = 9.16
+  hairline/D #2b519f on #291a24 = 2.19 ** NEW-FAIL (below AA-large) **
+
+Miami Dolphins  (raw: #008E97 #FC4C02 #FFFFFF)
+  gold2/L #007880 on #ffffff = 5.25
+  goldm/L #ce3e02 on #ffffff = 4.87
+  gold3/L #357d82 on #ffffff = 4.76
+  hairline/L #6aabb2 on #ffffff = 2.60 ** NEW-FAIL (below AA-large) **
+  gold2/D #008e97 on #291a24 = 4.19
+  goldm/D #fc4c02 on #291a24 = 4.87
+  gold3/D #99d2d6 on #291a24 = 9.90
+  hairline/D #0c5c65 on #291a24 = 2.16 ** NEW-FAIL (below AA-large) **
+
+Minnesota Vikings  (raw: #4F2683 #FFC62F #FFFFFF)
+  gold2/L #4f2683 on #ffffff = 10.84
+  goldm/L #956f10 on #ffffff = 4.61
+  gold3/L #895ebd on #ffffff = 4.77
+  hairline/L #987cb3 on #ffffff = 3.58
+  gold2/D #9b6dd5 on #291a24 = 4.37
+  goldm/D #e7af22 on #291a24 = 8.33
+  gold3/D #b499d6 on #291a24 = 6.68
+  hairline/D #69488a on #291a24 = 2.28 ** NEW-FAIL (below AA-large) **
+
+New England Patriots  (raw: #002244 #C60C30 #BFC0BF)
+  gold2/L #3d6a94 on #ffffff = 5.69
+  goldm/L #203850 on #ffffff = 12.05
+  gold3/L #c60c30 on #ffffff = 6.01
+  hairline/L #8ea3bd on #ffffff = 2.58 ** NEW-FAIL (below AA-large) **
+  gold2/D #4f85b7 on #291a24 = 4.24
+  goldm/D #487db1 on #291a24 = 3.82
+  gold3/D #f00f3b on #291a24 = 3.82
+  hairline/D #3b5778 on #291a24 = 2.23 ** NEW-FAIL (below AA-large) **
+
+New Orleans Saints  (raw: #D3BC8D #101820 #FFFFFF)
+  gold2/L #856a33 on #ffffff = 5.11
+  goldm/L #504120 on #ffffff = 9.91
+  gold3/L #8b6c29 on #ffffff = 4.91
+  hairline/L #b7a385 on #ffffff = 2.44 ** NEW-FAIL (below AA-large) **
+  gold2/D #d3bc8d on #291a24 = 8.95
+  goldm/D #91763b on #291a24 = 3.83
+  gold3/D #c79d41 on #291a24 = 6.57
+  hairline/D #8b785f on #291a24 = 3.90
+
+NY Giants  (raw: #0B2265 #A71930 #A5ACAF)
+  gold2/L #3e5998 on #ffffff = 6.80
+  goldm/L #0f2e8a on #ffffff = 11.81
+  gold3/L #a71930 on #ffffff = 7.43
+  hairline/L #8e99bf on #ffffff = 2.82 ** NEW-FAIL (below AA-large) **
+  gold2/D #6983c2 on #291a24 = 4.44
+  goldm/D #4e76ec on #291a24 = 4.04
+  gold3/D #e23a55 on #291a24 = 3.92
+  hairline/D #4b557e on #291a24 = 2.29 ** NEW-FAIL (below AA-large) **
+
+NY Jets  (raw: #125740 #FFFFFF #000000)
+  gold2/L #327b62 on #ffffff = 5.07
+  goldm/L #1a7f5d on #ffffff = 4.96
+  gold3/L #358266 on #ffffff = 4.63
+  hairline/L #87ada0 on #ffffff = 2.47 ** NEW-FAIL (below AA-large) **
+  gold2/D #61bf9f on #291a24 = 7.46
+  goldm/D #1d8c66 on #291a24 = 3.94
+  gold3/D #99d6c0 on #291a24 = 10.05
+  hairline/D #467969 on #291a24 = 3.31
+
+Philadelphia Eagles  (raw: #004C54 #A5ACAF #000000)
+  gold2/L #33747d on #ffffff = 5.34
+  goldm/L #204a50 on #ffffff = 9.74
+  gold3/L #367c85 on #ffffff = 4.80
+  hairline/L #88a9b0 on #ffffff = 2.52 ** NEW-FAIL (below AA-large) **
+  gold2/D #3e8e98 on #291a24 = 4.36
+  goldm/D #3b8891 on #291a24 = 4.04
+  gold3/D #86c6ce on #291a24 = 8.66
+  hairline/D #315c65 on #291a24 = 2.25 ** NEW-FAIL (below AA-large) **
+
+Pittsburgh Steelers  (raw: #FFB612 #101820 #FFFFFF)
+  gold2/L #8f6300 on #ffffff = 5.31
+  goldm/L #504120 on #ffffff = 9.91
+  gold3/L #8b6d29 on #ffffff = 4.86
+  hairline/L #bd9f67 on #ffffff = 2.52 ** NEW-FAIL (below AA-large) **
+  gold2/D #ffb612 on #291a24 = 9.43
+  goldm/D #91763b on #291a24 = 3.83
+  gold3/D #c79e41 on #291a24 = 6.62
+  hairline/D #a57415 on #291a24 = 4.03
+
+San Francisco 49ers  (raw: #AA0000 #B3995D #FFFFFF)
+  gold2/L #aa0000 on #ffffff = 7.75
+  goldm/L #8b6e29 on #ffffff = 4.82
+  gold3/L #b95353 on #ffffff = 4.75
+  hairline/L #cd6667 on #ffffff = 3.69
+  gold2/D #ff0e0e on #291a24 = 4.20
+  goldm/D #c79f41 on #291a24 = 6.68
+  gold3/D #d69999 on #291a24 = 7.00
+  hairline/D #a50f12 on #291a24 = 2.11 ** NEW-FAIL (below AA-large) **
+
+Seattle Seahawks  (raw: #002244 #69BE28 #A5ACAF)
+  gold2/L #376187 on #ffffff = 6.52
+  goldm/L #213950 on #ffffff = 11.89
+  gold3/L #467f1b on #ffffff = 4.87
+  hairline/L #8a9eb6 on #ffffff = 2.75 ** NEW-FAIL (below AA-large) **
+  gold2/D #4d84b6 on #291a24 = 4.17
+  goldm/D #497fb2 on #291a24 = 3.91
+  gold3/D #69be28 on #291a24 = 7.10
+  hairline/D #3a5677 on #291a24 = 2.19 ** NEW-FAIL (below AA-large) **
+
+Tampa Bay Buccaneers  (raw: #D50A0A #34302B #FF7900)
+  gold2/L #d50a0a on #ffffff = 5.42
+  goldm/L #6d2c2c on #ffffff = 10.26
+  gold3/L #ba5800 on #ffffff = 4.68
+  hairline/L #e66b6d on #ffffff = 3.14
+  gold2/D #f52f2f on #291a24 = 4.21
+  goldm/D #bd5e5e on #291a24 = 3.89
+  gold3/D #ff7900 on #291a24 = 6.30
+  hairline/D #9f2326 on #291a24 = 2.16 ** NEW-FAIL (below AA-large) **
+
+Tennessee Titans  (raw: #4B92DB #0C2340 #C8102E)
+  gold2/L #2670bc on #ffffff = 5.09
+  goldm/L #203850 on #ffffff = 12.05
+  gold3/L #c8102e on #ffffff = 5.88
+  hairline/L #80a7d4 on #ffffff = 2.50 ** NEW-FAIL (below AA-large) **
+  gold2/D #4b92db on #291a24 = 5.08
+  goldm/D #487db1 on #291a24 = 3.82
+  gold3/D #ed2042 on #291a24 = 3.85
+  hairline/D #395e8d on #291a24 = 2.49 ** NEW-FAIL (below AA-large) **
+
+Washington Commanders  (raw: #5A1414 #FFB612 #FFFFFF)
+  gold2/L #b64d4d on #ffffff = 5.05
+  goldm/L #7d1c1c on #ffffff = 10.22
+  gold3/L #956c10 on #ffffff = 4.74
+  hairline/L #d49294 on #ffffff = 2.52 ** NEW-FAIL (below AA-large) **
+  gold2/D #c16868 on #291a24 = 4.30
+  goldm/D #d74c4c on #291a24 = 3.97
+  gold3/D #e7aa22 on #291a24 = 8.02
+  hairline/D #804548 on #291a24 = 2.26 ** NEW-FAIL (below AA-large) **
+
+SUMMARY: 51 TEXT pair(s) below 3:1 across 32 teams x 2 modes x 3 golds x 2 surfaces…
+   (the counted bar applies to the six gold pairs per team; hairlines are decorative rules
+   measured for the receipt, with the default hairline pair named above them).
