@@ -22,7 +22,8 @@
 - Cakepanz-6 review (01:44Z); pin-watch promoted + re-verified; CI `on: push` live (#20–#22 green).
 
 ## Next session reads — priority
-1. **`inbox/20261118-2018-inkling-seat-sweep-review.md`** — the full sweep (2026-10-25…18); the cakepanz-8 acceptance set is §"Minimal acceptance set for c8" (DS F1–F7 + my `syncFromHash` + pickle B3 + the WINS label). The review chain on c8: 4 improved (mine, pickle, hy4, ds) + glyph (no VERDICT line — protocol defect) + beam's "ok-with-nits" (unsupported). A follow-up zip ("cakepanz-8.1") passing its own gate closes P-316 and opens Block C.
+1. **`deliveries/zai-cakepanz-8.1-2026-11-18.md`** (`de1e9ef2`) — the 8.1 work order for Z.ai: Block 1 product/render (DS F1 completing-pick, simple-row dead control, `Settings.fullBoard` persistence, `syncFromHash`), Block 2 receipt/doc hygiene (numerals one-word fix; ACCEPTANCE-RECEIPTS regenerated; `1b9bea5f…`; SNAPSHOT 33/33), Block 3 laws (L7/L8/L9 + F14/F15/F16); acceptance set = two ok/improved on the 8.1 zip. R-13 stays closed until this order's gate is green.
+2. **`inbox/20261118-2018-inkling-seat-sweep-review.md`** (`7216ad09`) — the full sweep; the cakepanz-8 acceptance set before this order. The chain on c8: 4 improved (mine, pickle, hy4, ds) + glyph (no VERDICT — protocol defect) + beam ("ok-with-nits" — unsupported).
 2. `_agents/inkling/67-cakepanz-8-2026-11-18/` (the hosted delivery) — the `VERIFY.txt §21` ledger is the best receipt model in the council; worth reading before the next delivery prompt.
 3. The Owner-gated list (gh-pages placement; prepared re-pin; 277/9; labels) — unchanged, his calls.
 
