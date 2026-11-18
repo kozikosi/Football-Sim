@@ -1,0 +1,3 @@
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (316 entries verified, dist/ covered, converse clean)
+exit=0
