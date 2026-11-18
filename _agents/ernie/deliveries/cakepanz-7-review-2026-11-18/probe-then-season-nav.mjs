@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import { createRequire } from 'node:module';
+const _req = createRequire(import.meta.url);
+const { chromium } = _req('playwright');
+const ENV = JSON.parse(fs.readFileSync(process.argv[3], 'utf8'));
+const browser = await chromium.launch();
+const page = await browser.newPage({ viewport: { width: 1180, height: 950 } });
+await page.goto(process.argv[2], { waitUntil: 'load' });
+await page.evaluate(([dk, wk, dv, wv]) => { localStorage.clear(); if (dv) localStorage.setItem(dk, dv); if (wv) localStorage.setItem(wk, wv); }, [ENV.draftKey, ENV.weekKey, ENV.draft, ENV.week]);
+await page.reload({ waitUntil: 'load' });
+await page.waitForTimeout(2500);
+const atBoot = await page.evaluate(() => ({ screen: document.querySelector('main')?.getAttribute('data-screen'), rows: document.querySelectorAll('.cp-main').length, hub: document.querySelectorAll('.cp-hub').length }));
+await page.locator('.cp-navbtn', { hasText: 'SEASON' }).click();
+await page.waitForTimeout(900);
+const afterSeasonNav = await page.evaluate(() => ({ screen: document.querySelector('main')?.getAttribute('data-screen'), hub: document.querySelectorAll('.cp-hub').length, phase: document.querySelector('.cp-hub')?.getAttribute('data-phase') ?? null, text: (document.querySelector('.cp-hub')?.textContent ?? '').replace(/\s+/g,' ').slice(0, 110) }));
+console.log(JSON.stringify({ atBoot, afterSeasonNav }, null, 1));
+await browser.close();
