@@ -1,0 +1,9 @@
+{
+  "generatedAt": "2026-11-18T22:34:24.160Z",
+  "sourceSha256": "b4d6a7c96d37fd2d9963c73932acc931278bb88ee2b56e13fa4c7359ef87628b",
+  "snapshotTreeSha256": "d4f64d63a640b3d633f413e8fa0cf6b9cc33245ccf3ac8d287a6b8139889b42c",
+  "snapshotFiles": 67,
+  "transformed": [
+    "platform/localstorage.ts"
+  ]
+}
