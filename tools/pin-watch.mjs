@@ -14,12 +14,18 @@
 // not resolve in it), the tool exits 1 naming the missing anchor. It never prints a green it did
 // not measure.
 //
-// Exit codes:
+// Exit codes (precedence: 1 > 3 > 2 > 4):
 //   0  count + content hash agree with --pin (pin-line notes may still print; see --strict)
 //   1  precondition failure — the file or anchor it needs is missing (named)
-//   2  count mismatch — the file SET differs from the pin's (missing/extra files named)
-//   3  content mismatch — a shared file differs (files named)
+//   3  content mismatch — a shared file differs (files named); wins over a count mismatch
+//   2  count mismatch only — the file SET differs (missing/extra named), shared files clean
 //   4  --strict only: a pin-like token in the tree's docs resolves to a different commit
+//
+// Amended 2026-11-18 (peer receipt: Pickle `inbox/20261118-0006-pickle-P-189-pin-watch-drift-gate.md`):
+// the pre-fix tool exited at the count check and never hashed the shared set — the deployed
+// gh-pages tree (57 files vs 4ca9a071's 52, five extras) reported "count MISMATCH" and NEVER
+// named the six drifted shared files. Count is now a report; the hash check always runs; exit 3
+// wins over exit 2.
 //
 // Usage:
 //   node tools/pin-watch.mjs <tree-dir> --pin <commit-ish> [--pin-prefix colors/src]
@@ -131,16 +137,18 @@ async function check(args) {
   const missing = [...pinSet].filter((f) => !treeSet.has(f)).sort();
   const extra = [...treeSet].filter((f) => !pinSet.has(f)).sort();
   note(`count: tree ${treeFiles.length} engine file(s) vs pin ${pinSet.size} -> ${missing.length === 0 && extra.length === 0 ? 'MATCH' : 'MISMATCH'}`);
-  if (missing.length || extra.length) {
+  const countFailed = missing.length > 0 || extra.length > 0;
+  if (countFailed) {
     for (const f of missing.slice(0, full ? 1e9 : 10)) stderr.write(`pin-watch: MISSING from tree (in pin): ${f}\n`);
     for (const f of extra.slice(0, full ? 1e9 : 10)) stderr.write(`pin-watch: EXTRA in tree (not in pin): ${f}\n`);
-    stderr.write(`pin-watch: FAIL (count): ${missing.length} missing, ${extra.length} extra vs ${pinSha}\n`);
-    return 2;
+    stderr.write(`pin-watch: count ${missing.length} missing, ${extra.length} extra vs ${pinSha} (named; hash check follows — extras are not accepted as a mismatch of the shared set)\n`);
   }
 
-  // ---- 2. HASH -----------------------------------------------------------------
+  // ---- 2. HASH (always runs — a count mismatch never hides drift in the shared set) ----
   const mismatches = [];
-  for (const rel of treeFiles) {
+  // hash only files present on BOTH sides; missing files were named by the count check
+  const hashSet = treeFiles.filter((f) => pinSet.has(f));
+  for (const rel of hashSet) {
     const treeBuf = readFileSync(join(engineDir, rel));
     let pinBuf;
     try {
@@ -167,7 +175,7 @@ async function check(args) {
     stderr.write(`pin-watch: FAIL (content): ${mismatches.length} file(s) differ from ${pinSha}\n`);
     return 3;
   }
-  note(`content: ${treeFiles.length} engine file(s) + flex table byte-identical to ${pinSha}`);
+  note(`content: ${hashSet.length} shared engine file(s) + flex table byte-identical to ${pinSha}`);
 
   // ---- 3. PIN-LINE (reported, never alone; --strict makes it fatal) -----------
   const pins = scanPinLines(treeDir);
@@ -181,13 +189,16 @@ async function check(args) {
       stdout.write(`pin-watch: pin-line ${okTok ? 'OK  ' : 'WARN'} ${p.file}:${p.line} names ${p.token} -> ${p.sha.slice(0, 12)}${okTok ? '' : ' (DIFFERS from --pin)'}\n`);
     }
   }
-  if (bad && has(args, 'strict')) {
-    stderr.write(`pin-watch: FAIL (--strict): ${bad} doc line(s) name a different commit than --pin\n`);
-    return 4;
-  }
+  const strictFail = bad > 0 && has(args, 'strict');
+  if (strictFail) stderr.write(`pin-watch: FAIL (--strict): ${bad} doc line(s) name a different commit than --pin\n`);
 
   // ---- 4. MANIFEST (informational; never a pass condition) ---------------------
   note('manifest: CHECKSUMS/MANIFEST reported only — never used as a pass condition (the manifest is the thing that goes stale)');
+  if (strictFail) return 4;
+  if (countFailed) {
+    note(`RESULT: tree carries ${pinSha} on the shared set, but the file SET differs (count) — exit 2`);
+    return 2;
+  }
   note(`RESULT: tree carries ${pinSha} (count + content verified)${bad ? ` — BUT ${bad} doc line(s) name a different pin (see WARN above)` : ''}`);
   return 0;
 }
@@ -230,6 +241,18 @@ function selfTest(args) {
     if (!existsSync(victim)) throw new Error(`fixture victim missing at pin: ${victim}`);
     writeFileSync(victim, readFileSync(victim) + '\n// tampered\n');
     expect('one tampered engine file is caught (exit 3)', runTool([corrupt, '--pin', pinSha]), 3);
+    // fixture 2b: tampered shared file AND an extra file (the deployed-tree shape) -> exit 3, not 2
+    const drift = join(tmp, 'drift');
+    cpSync(corrupt, drift, { recursive: true });
+    mkdirSync(join(drift, 'src', 'engine', 'core'), { recursive: true });
+    writeFileSync(join(drift, 'src', 'engine', 'core', 'extra-unpinned.ts'), 'export const x = 1;\n');
+    expect('extras do not mask drift (exit 3)', runTool([drift, '--pin', pinSha]), 3);
+    // fixture 2c: extras only, shared set clean (a legitimate port-seam shape) -> exit 2
+    const extrasOnly = join(tmp, 'extras-only');
+    cpSync(clean, extrasOnly, { recursive: true });
+    mkdirSync(join(extrasOnly, 'src', 'engine', 'core'), { recursive: true });
+    writeFileSync(join(extrasOnly, 'src', 'engine', 'core', 'extra-unpinned.ts'), 'export const x = 1;\n');
+    expect('extras alone are exit 2 (content clean)', runTool([extrasOnly, '--pin', pinSha]), 2);
     // fixture 3: an engine file deleted -> exit 2 (count) or 3
     const missingFx = join(tmp, 'missing');
     cpSync(clean, missingFx, { recursive: true });
