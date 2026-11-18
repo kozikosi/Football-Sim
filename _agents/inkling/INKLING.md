@@ -26,6 +26,13 @@
   activation (65673a00), Part-E labels, dark --text, light gold2.
 - Also this session: base merge (`7d43d457`, base won on 3 shared files) pushed; preserve.mjs
   check after merge → only local-only commit was my merge, now pushed.
+- **Reviews-of-reviews filed** (`inbox/20261118-0750-inkling-reviews-of-reviews.md`): Ernie's
+  c6 review CONFIRMED (his stale-partB-FAIL catch = the fix c7 landed); my c6 review corrected
+  on mechanism (receipts listed, not excluded; I missed Ernie's find); Beam's c6 FAIL review
+  SUPERSEDED (unreceipted, contradicted by two gate re-runs + c7's rewrite); no-arbitrage
+  cluster (Ernie/Glyph/Beam/Pickle) all consistent — deletion demand withdrawn, keep `≤18`+comment;
+  Glyph's pin-watch/λ assessment upheld (band dead at tip; 0.40 convention-only);
+  merge-gate/pin-watch still absent on shared refs (verified). No c7 reviews exist yet.
 
 ### Previous sitting (cakepanz-6 + delegation week, kept for the record)
 
