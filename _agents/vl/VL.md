@@ -3,50 +3,52 @@
 ## Identity
 - **Seat:** VL · **Role:** Council Advisor · **State:** active (roster in `_agents/README.md` is the truth)
 - **ID block:** S-2000–2099 · **First seen:** 2026-10-24
-- **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff`
+- **Worktree:** `/Users/kosi/Desktop/wt/vl` · **Branch:** `council/vl` · **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
+- **Session:** 2026-11-18 (the parallel council round; Z.ai working Cakepanz-6 in parallel)
 
 ## How this seat works
 - Follow the council protocol (START-HERE, AGENTS.md, QUEUE.md via `node tools/council.mjs next`, fetched per START-OF-CHAT).
-- Work comes from the ranked live queue on `origin/council/muse`; I take the top line I can do and skip stale items (e.g. P-042/P-043, not in the live table).
-- I do **not** edit the product file, AGENTS.md, CLAUDE.md, QUEUE.md, STATUS.md, CHRONICLE.md, PROJECT-KNOWLEDGE.md, or protected constants, and I never force-push or `git stash` (WIP commit instead). I do not build another seat's shell/engine bytes (v4-2: "You assist; you do not build").
-- **Owner direction:** if the Owner asks me to pass through a delivery so Muse/Claude can read it, I copy it into my lane, commit, push to `council/vl`, and give the hash.
-- **Folder separation:** my own review work lives under `inbox/`; Z.ai pass-through deliveries pushed at the Owner's direction live under `deliveries/zai-pass-through/<item>/`, visually separate from VL's own work.
+- Work comes from the ranked live queue on `origin/council/muse`; I take the top line I can do and skip stale items.
+- I do **not** edit the product file, AGENTS.md, CLAUDE.md, QUEUE.md, STATUS.md, CHRONICLE.md, PROJECT-KNOWLEDGE.md, or protected constants, and I never force-push or `git stash` (WIP commit instead). I do not build another seat's shell/engine bytes.
+- **Folder separation:** my own review work lives under `inbox/`; Z.ai pass-through deliveries pushed at the Owner's direction live under `deliveries/zai-pass-through/<item>/`.
 
-## Current session (2026-11-17, council/muse)
-- Followed START-HERE from origin/council/muse exactly: `git fetch origin`, governance-doc refresh, `node tools/preserve.mjs check`.
-- **Delivered all four parts of the new council prompt (P-333 ×2, P-375, CI-GATE), committed and pushed:**
-  - `inbox/20261117-0403-vl-P-333-poolnode-check-can-fail.md` (FOR: P-333, Part 1) — VERIFIED at engine tip 5c808472. Baseline 394/394 pass. Planted two of Claude's five pools.ts faults, one at a time, restoring after each: Fault 1 (`>=`→`>` in min pool size): 6/10 poolnode tests fail; Fault 2 (40s→41s bucket): 4/10 poolnode tests fail. Both faults caught — the check can fail. "Pool nodes: the check can fail" test passes on clean tree. Table-hole divergence: NOT SAFE, needs a rule (428 hole states skipped across both packs; lab takes arbitrary pool at holes, product takes largest — no test coverage).
-  - `inbox/20261117-0403-vl-P-375-cosine-bit-identical.md` (FOR: P-375, Part 2) — VERIFIED at b584d73 (re-confirmed at 5c808472). Python checker exit 0: keyedrng philox 323, hash 13, gamekey 90, draw 240, rng 120, throws 6 all match; normal() 120/120 bit for bit (this Node 26/macOS machine, where old code got 106/120). pmath_check.py exit 0: all pmath vectors bit for bit, worst error 1.87e-15. Full TS suite: 394/394 pass. tsc ratchet: 89 errors (pinned 89), unchanged. Machine: Darwin/macOS, Node v26.13.0, Python 3.15.
-  - `inbox/20261117-0403-vl-CI-GATE-ci-gate.md` (FOR: CI-GATE, Part 3) — VERIFIED. Workflow `.github/workflows/ci.yml` at 5c808472: build step has NO continue-on-error (gate); type check and tests have continue-on-error: true (report-only). Last 3 CI runs (44010235789 @ 5c808472, 44006643913 @ db33bfa0, 44002436907 @ 7828d914): all success, build step success, statuses match. Gate mechanism confirmed real; failure path not observed live (no failing build run in last 3).
-  - `inbox/20261117-0403-vl-P-333-recent-engine-work.md` (FOR: P-333, Part 4) — VERIFIED at 5c808472. Flex rules: 6 rules at 2 (EDGE→DT, ILB→OLB, CB→FS, EDGE→OLB, OT→OG, CB→SS), SS→NICKEL at 0, counts 23@12/42@6/17@2/17@0 = 99. Pack: 2,990,032 bytes VERIFIED, zero table holes in 6,000 games VERIFIED, loader hash CONTESTED (0e78e4db382f9f dt_f / 1fe065713f326b dt_pf vs expected 0ff47e1de5e2db — hash is config-dependent, another seat reported same non-reproduction). Derived priorities VERIFIED (computed from spot values, not literals). OT clock "OT mm:ss" VERIFIED. FB→TE = 2 VERIFIED. DIME trio at 12 VERIFIED. Full suite 394/394.
-- Also pushed this session: P-342 GLM passclass verification (ba071892) — second seat verification at engine tip 65673a00. Full suite 406/406 pass; tsc baseline 89/89; passclass test 12/12 (bit-for-bit Python lab conformance, loader guards, default-off guarantee, lambda seam, mutation tests all caught); glm-bar paired comparison reproduces exactly (sacks -1.7% z-3.0, drives -1.1% z-6.4, points +0.6% z1.9, class-pool holes 0); state-bucket decomposition (my own test): state-mix effect +0.0156 pts (negligible), per-state effect -0.1272 pts (ALL of the -0.1173 pts diff) — Architect's state-mix hypothesis REFUTED; held-out log loss and calibration REPORTED from Architect's report (cannot re-run Python lab — needs external parquet data). Verdict: GLM node verified as built; shift does NOT block making it the default.
+## Current session (2026-11-18, council round — Part 1 headline: verify MUSE's seven drafts)
+Part 1 (verify MUSE's seven drafts, inbox 2257–2303 on council/muse) is **BLOCKED**: the seven drafts were never pushed anywhere (searched all refs; only `20261117-2230-muse-CAKEPANZ-5-review.md` exists). Cannot verify drafts that aren't in the tree. Flagged to MUSE/queue.
 
-- Also pushed this session: 67-cakepanz-5 complete shell delivery (ec71100d, two variants) + council review (745e46c0).
-  - Variant 1 (`67-cakepanz-5/`): pin VERIFIED at 5c808472 (67/67 engine files byte-match); single-door seam VERIFIED; engine tests 394/394, node battery 24/24, slice battery 29/0/10/3, shell render battery 46/0, gates PASS, falsifiers all died (Z.ai's receipts, read in full). Part D built (precompile-engine.mjs, node-port-register.mjs), D-1/D-2/D-3 fixed, Part F built (N21, N22), F2/F3 re-derived, M3 swap ran both directions, acceptance-run.sh modernized.
-  - Variant 2 (`67-cakepanz-5-prepared/`): README claims pin 5c808472 with 'diff -rq exit 0, 67 files' byte-verified — INDEPENDENT MEASUREMENT CONTRADICTS: 68 engine files, 66 match 5c808472, passclass.ts from GLM tip 65673a00 (NOT at 5c808472), game.ts modified. Single door holds (VERIFIED). Pin claim needs clarification from Z.ai.
-  - Open Owner questions flagged (not fixed): light gold2 contrast 1.51:1 FAIL, dark --text 3.17:1 FAIL normal, awards content, Model Value vs Engine Value label, 3-4 one-liner, P-364 wording (430px built vs 560px queued).
-  - Open Architect items (§5 filed): P-317 store slot support, OT clock(), parameter property still at 5c808472, deviceId?: string, gravity/double-teams, awards grades.
-  - Review filing: `inbox/20261117-2214-vl-cakepanz-5-review.md`.
-
-- Also pushed this session: 67-cakepanz-5 complete shell delivery (ec71100d) + review (745e46c0); P-342 GLM passclass verification (9b1e42a5); GLM round follow-up prompt (0d0fbbd4); Cakepanz w89 comparison prompt (4baf2bf0).
-- P-342 Part 1 (4th-down reversal): VERIFIED at N=12,000 paired keys on tip 65673a00. Pools 68.13% vs GLM 23.09% (delta -45.04pp), 3,687 extra non-downs continuations/12k. Matches Beam (N=2k: 69.3/25.8) and Glyph (N=12k: 68.28/24.28) → REVIEWED ✓✓✓. Mechanism: class-conditional tuple sampler falls to down-blind cells on thin 4th-down cells; hole counter cannot see it. Recommend default-block until §6 bound fix; residual sack is calibration note.
+Completed this session (all committed + pushed on origin/council/vl):
+- **Part 6 tool #1 — pin-watch (`tools/pin-watch.mjs`) + falsifier (`tools/pin-watch-falsifier.mjs`) — FOR: P-355.** Tripwire: count first, spot-hash every engine file second, manifest never alone; resolves both engine layouts (`colors/src/engine` vs `colors/src/sports/nfl/engine`). Receipts: clean baseline @HEAD exit 0 (worktree + archive extract); stale pin @4ca9a071 exit 1 naming `boxscore.ts` + its anchor (the live catch — engine moved dir + count 26→25). Falsifier all PASS: tampered tree exits 1 naming file+anchor, restored exits 0. Filed `inbox/20261118-0100-vl-P-355-pin-watch-tool.md`; commit `3f669e1c`.
+- **Part 5 — §6 outcome-first acceptance battery + grading target + two one-liners — FOR: P-342.** Battery: inc:downs per-4th-down-pass-play ≈24% (from ~8.8%) and per-incompletion ≥60% (from ~24%), both denominators named (§0); drives ±0.3%; sacks ±0.5%; suite 406/406; Ernie's fault plant; missing sampler-level test; Inkling's sharpenings (class-absent-within-bound, holes[5]); N=120,000 paired keys. Grading target recommended: **pools parity as the bar, perfect termination as the reported stretch**. One-liners: −0.1173 = DRIVES diff (11.038→10.920; per-state −0.1272 dominates, state-mix +0.0156, NOT the sack rate — VERIFIED by VL); pin-watch path = `tools/pin-watch.mjs` (exists, pushed). Filed `inbox/20261118-0200-vl-P-342-s6-battery.md`; commit `12a70f8b`.
+- **Part 6 tool #2 — bucket-bar (`tools/bucket-bar.ts`) + falsifier — FOR: P-342.** Reproduces GLM's A3 120,000-paired numbers (drives −0.121, sacks −0.023, anchors match glm-bar) plus a level (L0-L3) × score-state/context (sd/qtr/hs) partition menu. Beam's rejected proposal not used. Falsifier all PASS: clean extract exit 0, drives signature reproduced, pack args change output. Receipts from a clean `git archive 65673a00` extract. Filed `inbox/20261118-0300-vl-P-342-bucket-bar.md`; commit `a9182249`.
+- **Part 4 — P-317 save contract + S3/S4 consolidation — FOR: P-317.** Defect reproduced: `toRecord` writes only seed/userTeam/picks/pool (no order, no slot stamp); `restoreDraft` calls `newDraft` without order → snake order, custom order from `orderWith` lost. `orderWith` exists only in the shell (`TeamSelect.svelte`), so check #6 splits engine-side (Architect) + shell-side (Z.ai). S3-1: `canonicalHash` only in a comment (envelope.ts:19) → recommend naming SHA-256. S4: rewrite framing against existing async `StorageModule`/`createSaver`; S4-2: pin `Result`/`ParseResult` error channel (agree). Filed `inbox/20261118-0400-vl-P-317-save-contract.md`; commit `866ad823`.
+- **Part 2 — yards acceptance battery ratify — FOR: P-342.** Ratified merged set: GLM's A1 in-repo landing gate (council-runnable via glm-bar at 65673a00; anchored yards ratio ≈0.996, |z|=7.7 — **flagged: |z|=7.7 vs stated ≤2, needs Architect resolution**), Inkling's held-out ≥2 SE outer gate (Architect-only, raw data git-ignored; council verifies method+filed numbers), body Inkling §2/§3 + GLM A4/A6/A7 + Ernie's two items (no second thin-cell fallback covers passclass.ts:79–82; half-threaded plant). Graded against GLM's A3 = 120,000 paired keys; mixed-N citations (Beam #4, Inkling §4) struck. **Awaiting check by one different seat.** Filed `inbox/20261118-0600-vl-P-342-yards-battery-ratify.md`; commit `8262f969`.
+- **Part 8 — λ ratification — FOR: P-347–P-353.** Recommend **ratify with changes**: dial as designed; ship in-band convention 0.3967 (midpoint of [0.3902,0.4032)), labelled convention-not-measurement; dial stays runtime-flexible; λ estimator NOT built this round (SE 0.438 ~15.7× too coarse; not worth a round before yards node). Owner locks the value. Filed `inbox/20261118-0500-vl-P-347-lambda-ratification.md`; commit `8262f969`.
+- **Part 9 — innovation — 5 proposals** (push-after-every-file + preserve gate; denominator discipline; no citing unverified drafts; convention-not-measurement for protected constants; post-Cakepanz measurement agenda + multisport platform implications). Filed `inbox/20261118-0530-vl-P-9-innovation.md`; commit `8262f969`.
+- **Part 10 — Cakepanz-6 sign-up — FOR: R-13.** VL takes review items 1 (gates incl. prepared manifest must PASS), 3 (900 weights inlined+declared), 4 (slogan+shimmer), 5 (M3 logs under cited names), 6 (F2/F3 falsifiers on both Node majors). Not taking 2 (screenshots) or 7 (D-1 fresh clone). Filed `inbox/20261118-0430-vl-R-13-cakepanz6-signup.md`; commit `8262f969`.
 
 ## Next session
-- `node tools/council.mjs next` (live queue on origin/council/muse) and take the next top item VL can do; skip P-042/P-043 (stale).
-- P-342 Parts 2-6: yards batteries (Glyph compared: Inkling+GLM merge recommended), bucket-bar (Inkling compared: Glyph+Ernie merge recommended), D3 landing set (no filings found — available for VL), P-317/S3-S4 (Glyph concurred — available for VL), innovation (not yet addressed).
-- P-333 flex hash: the loader hash `pack53:0ff47e1de5e2db` does not reproduce under either clock variant — flagged for the Owner/Architect.
-- cakepanz-5: KG decides on the Owner questions (contrast, label, 3-4 note); Claude decides on P-317 store slot support, OT clock, parameter property, deviceId, gravity/double-teams, awards grades. Variant 2's pin discrepancy (passclass.ts from 65673a00 not at 5c808472) needs Z.ai clarification before either variant is merge-ready.
-- Review inbox files from other seats when they land; three seats confirming = REVIEWED.
+- `node tools/council.mjs next` (live queue on origin/council/muse).
+- Part 1 unblocking: MUSE pushes the seven drafts (2257–2303) so VL (or another seat) can verify them.
+- Part 2: await one different seat's check of the yards battery reconciliation; Architect resolves A1 |z| tension.
+- Part 3 D3 landing: Ernie's 2114 not on council/ernie; Inkling's 2140 uses a sim/ layout not present here — partially blocked on cross-tree reconciliation.
+- After §6 lands: re-run Part 5 checks 1–4 at N=120,000 paired and paste receipts.
 
-## Open questions (updated)
-- R-13 (framework comparison) does not appear in the live QUEUE.md table — UNKNOWN whether the ID exists or was retired; used FOR: R-13 per the v4-2 filing instruction, flagged to the queue custodian.
-- The shell of record is unnamed: three trees diverge (gh-pages d3bd81d2 slices 1-2; rev2 4ca9a071 slices 1-4; s5 4ca9a071 slices 1-5). Owner/Architect decision needed.
-- Pack loader hash `pack53:0ff47e1de5e2db` does not reproduce under dt_f or dt_pf — config-dependent; needs Owner/Architect clarification.
+## Open questions
+- Part 1 drafts not pushed (MUSE/queue).
+- Part 2 A1 |z| = 7.7 vs stated ≤2 (Architect).
+- Part 3 cross-tree D3 reconciliation (Ernie 2114 not found; Inkling 2140 layout mismatch).
+- Owner rulings not for VL: value label (Value vs Model Value), dark --text, Bodoni Moda, 2PT chip, prepared re-pin activation, GLM default, λ value, 4-3/3-4 target, stop/continue.
 
 ## Live files / receipts
-- All inbox filings above — committed and pushed on origin/council/vl this session (hash given at push time).
-- `_agents/vl/deliveries/zai-pass-through/67-cakepanz-5/` — Z.ai's cakepanz 5 complete shell (two variants, dist excluded), pushed this session (ec71100d) and reviewed (745e46c0); variant 1 pin VERIFIED at 5c808472 (67/67 byte-match), variant 2 pin DISCREPANCY (passclass.ts from 65673a00 not at 5c808472); single-door seam VERIFIED in both; engine tests 394/394, shell render battery 46/0, gates PASS, falsifiers all died (Z.ai's receipts). Open Owner questions flagged; open Architect items (§5 filed). Variant 2 pin discrepancy needs Z.ai clarification. Review filing: `inbox/20261117-2214-vl-cakepanz-5-review.md`.
+- All inbox filings this session — committed and pushed on origin/council/vl:
+  - `inbox/20261118-0100-vl-P-355-pin-watch-tool.md` (3f669e1c)
+  - `inbox/20261118-0200-vl-P-342-s6-battery.md` (12a70f8b)
+  - `inbox/20261118-0300-vl-P-342-bucket-bar.md` (a9182249)
+  - `inbox/20261118-0400-vl-P-317-save-contract.md` (866ad823)
+  - `inbox/20261118-0430-vl-R-13-cakepanz6-signup.md` (8262f969)
+  - `inbox/20261118-0500-vl-P-347-lambda-ratification.md` (8262f969)
+  - `inbox/20261118-0530-vl-P-9-innovation.md` (8262f969)
+  - `inbox/20261118-0600-vl-P-342-yards-battery-ratify.md` (8262f969)
+- Tools built and pushed: `tools/pin-watch.mjs`, `tools/pin-watch-falsifier.mjs`, `tools/bucket-bar.ts`, `tools/bucket-bar-falsifier.mjs`.
 
 ## Pending
-- Pre-existing untracked build artifacts under `_agents/vl/deliveries/zai-pass-through/` (`.vinxi/`, `.svelte-kit/`, `dist/`, `build/`) intentionally left uncommitted per §4.5 add-by-path — not VL's work product.
-- Other seats' unsaved work shown by `preserve.mjs check` (ds, boc, dsd, flint, GH, glm, or, q, vloc) — not VL's to touch.
+- Other seats' unsaved work shown by `preserve.mjs check` (ds, pickle, flint, boc, dsd, GH, glm, q, vloc, and the shared `gh-pages` tree) — not VL's to touch. VL's own worktree `council/vl` is clean and pushed (OK per preserve.mjs).
