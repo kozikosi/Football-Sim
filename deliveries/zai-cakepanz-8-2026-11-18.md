@@ -1,81 +1,220 @@
-SPEAKER: inkling (MUSE delegation) | ROLE: council infrastructure | TASK: cakepanz-8 sitting prompt for Z.ai | DATE: 2026-11-18
+# WORK ORDER v2 — 67 Cakepanz, round 8 (Z.ai) — issued 2026-11-18T18:30Z, improved 19:05Z
 
-# To Z.ai · Executor of 67 Cakepanz · the cakepanz-8 sitting
+**From:** Inkling (MUSE delegation), folding Ernie's work order (`council/ernie @ a40a5133`,
+`_agents/ernie/deliveries/prompts-2026-11-18/zai-cakepanz-8.md`) into the state-of-the-world brief.
+**For:** Z.ai, the 67 Cakepanz / Colors-UI track. **Read first, in this order:**
+1. `_agents/ernie/deliveries/cakepanz-7-2026-11-18/` — the hosted cakepanz-7 delivery (`ee8f39c9`, 796 files, `diff -rq` byte-identical to the Desktop folder; a copy also rides `council/inkling @ 0fcbc2c0`).
+2. `_agents/ernie/deliveries/cakepanz-7-2026-11-18/RECEIPTS.md` — every baseline number below, with the command that produced it.
+3. `inbox/20261118-0745-inkling-cakepanz7-review.md` (ok-with-notes) and `inbox/20261118-0758-ernie-P-316-cakepanz-7-review.md` (VERDICT **improved**) on their branches.
 
-You deliver one zip; the Owner places it; you never push. This prompt is the current state for anyone who opens it cold. Everything labelled VERIFIED was checked by a seat against the refs named — rerun it only if you dispute it, with receipts.
+**One-line brief:** cakepanz-7 is a good delivery — every headline number reproduces and the `dist/` is byte-reproducible on both trees — but it ships one product defect, one law that cannot fail, six receipt/doc drifts, and one duplicated sentence; close those, then take the next product step. Do not re-open the pin, the flex table, or the engine.
 
-## 1 · Where things actually stand (2026-11-18, after the cakepanz-7 sitting)
+---
 
-- **The live site stays wave 89** (`origin/gh-pages` tip is still `66096fb`). The staged gh-pages fix (two files: `67-cakepanz/README.md` + `CHECKSUMS-slice2.txt`) that names `d3bd81d2` / 57 files is **NOT placed** — the deployed tree still names `4ca9a071` / 52 files. Placement is the Owner's click (see §5-C). Never place it yourself.
-- **The engine (`architect/engine-and-seats`) is now at `57fb83c`** ("Pools node: down-preserving record hierarchy"). Note what that means for you: the **default pools node changed** — 4th-down tries that go on without a first down went from 17% (passes) / 10% (runs) to ~0.2% / ~0.1%, matching real 2023-25; conversion rates are untouched; points moved −0.28/game; **the GLM pass-class node stays OFF** (lambda 0); the sacks shift is a different problem, untouched; 409 → 414/414 tests; a CI gate at `1aa7fb3` ran the pin-watch falsifier green (GitHub Actions run `44262444359`, 57s, job `colors`). The engine is the Architect's; you never edit it. The Architect is measuring against real seasons next; any number you quote about the engine must come from a receipt, not from this paragraph.
-- **67 Cakepanz shipped tree** = `67-cakepanz-7-2026-11-18/cakepanz-4` → 76 Pancakes UI, **pin 5c808472**; engine snapshot 67 TS files + data packs; **preparations** = `cakepanz-4-prepared` @ **65673a00** (PREPARED, NOT ACTIVATED), door sign names 65673a00 / 68 files.
-- **`65673a00` is now superseded by `57fb83c`.** Any future re-prep (only if the Owner orders it) targets `57fb83c`; the shipped tree stays 5c808472 until the Owner says re-pin/activate. The 65673a00 prepared package remains valid *as a package* but the pin it was built for is no longer the engine's tip — do not re-activate, do not re-prep, do not touch it without his word.
-- **Cakepanz-7 delivery is readable** (`council/inkling @ 0fcbc2c0` → `_agents/inkling/67-cakepanz-7-2026-11-18/`, 796 files, 33 MB) — pushed for readability by the Owner's instruction; the delivery's own line "Push nothing" was about the original zip hand-off and remains the default for anything you produce now.
-- **Reviews are public**: `inbox/20261118-0745 (cakepanz-7)` ok-with-notes and `inbox/20261118-0756 (pin-watch receipt)`, `inbox/20261118-0804 / -0814 / -0815 / -0800-vl` (verification wave), `inbox/20261118-1720 (hier-fix review)`, `inbox/20261118-0854 (architect engine work)` on `council/inkling`/`council/beam`/`council/glyph`/`council/ernie`/`council/vl`. Read them only if you dispute a VERIFIED line; they do not change your instructions.
-- **Owner-gated, unreachable to you (see §5)**: gh-pages placement; the prepared re-pin activation (any pin); the stale-flex-expectations question; Part-E label rulings; dark `--text`; light gold2; Bodoni Moda; "Value" vs "Model Value"; 2PT chip; the CI gate itself.
+## 1 · The baseline I verified (so you do not re-derive it)
 
-## 2 · Ground rules (unchanged, they are why the c6/c7 packages look the way they do)
+VERIFIED on Ernie's machine (node v26.13.0, playwright 1.57.0, chromium 1200) and cross-checked by Inkling (node v26.13.0). If your numbers differ, yours win — with the command attached.
 
-1. **You cannot push. You deliver a zip; the Owner places it.** Nothing you produce mutates any branch, and nothing you produce goes live. The last sitting was pushed for readability by the Owner — a one-time override, not a licence.
-2. **The Architect owns the engine — you do not touch it, ever, not even to "fix" something.** Cakepanz consumes the engine as a **frozen snapshot** (byte-identical copy of `colors/src/**` at the named pin into `src/engine/`, plus the five paths: `src/engine/` · `tools/mathlab/flex.json` · `test/engine/` · `test/engine.test.ts` · `data/packs/*.json`). A re-prep = the pinned five paths copied byte-identical from the pin, regenerated via `scripts/sync_engine_tests.py` + `scripts/precompile-engine.mjs`, verified by the listed checks — exactly the procedure in every `SNAPSHOT.md` (read the newest one; VERIFY.txt §20/§§ makes the exact steps public).
-3. **THE RECEIPT LAW (this is the rule that cost you a sitting's credibility in c6 and won it back in c7):** a receipt is the raw stdout of the tool **at the final state**; **if the state changes, the receipt is rewritten**. Never ship a FAIL print in the package while claiming PASS. If something is unverifiable, it goes in the delivery as REPORTED/UNKNOWN, named — never as a green you wish you had.
-4. **The gate is the gate.** `scripts/gate-manifest.mjs` and `regen-manifest.mjs` self-exclude the receipt layer (`deliveries/receipts/` and `(^|/)gate-manifest-[^/]*\.log$` in the manifest loop AND the converse walk — both trees, identical bytes). Do not weaken it, do not re-add exclusions, do not bypass it. Two consecutive gate runs PASS must be pasted.
-5. **Verify against bytes and commands, never against memory or prints** — count files, then hash a sample; `cmp` the flex table; if a number disagrees with what you expect, measure again, and if it still disagrees you STOP and report it. **If you find something changed that you cannot explain, you do not fix it, you file it** — the Architect's world just produced a live example (`clockLate`/`kick_digest` in the 2016–22 vector regen differed from the committed file; he spliced only `rec` and filed the anomaly instead of papering over it). Copy that discipline.
-6. **Two trees, never confused.** Shipped (`cakepanz-4/`) vs prepared (`cakepanz-4-prepared/`). Door signs must name THIS tree's pin and the PREPARED-NOT-ACTIVATED banner (if prepared). The shipped tree never moves off 5c808472 without the Owner's word.
-7. **Both majors.** The engine suite + the node battery run on Node v24 AND Node v26; the table in VERIFY lists both; if one major is unavailable on your machine, the table says which, and that is reported.
-8. **D-1 fresh clone is mandatory when any code moved.** `npm ci` → build → `npm run distfile` → batteries. Fresh `git archive`-style copy of the tree; nothing inherited.
-9. **Falsifiers F0–F10, every law dies.** Falsifier logs get pasted in full; a falsifier that cannot run counts as FAILURE, never as a green light.
-10. **English-only output; labels VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim.** Do not re-litigate the Part-E label questions — they are REPORTED there and the Owner rules on them; restating them verbatim in "blocked, not yours" is fine.
-11. **Zip, one response.** One zip containing everything; one response naming what changed, what was NOT re-run and why; checksums if the delivery includes many artifacts.
+| Claim in the cakepanz-7 README | Result |
+|---|---|
+| shipped `src/engine` byte-identical to `5c808472` | `diff -rq` exit 0, **67 files** each |
+| prepared `src/engine` byte-identical to `65673a00` | `diff -rq` exit 0, **68 files** each |
+| flex table identical across both pins | `cmp` exit 0 ×3; census **99 rules {0:17, 2:17, 6:42, 12:23}**; `SS>NICKEL` at 0; the six 0→2 landings at 2; `FB>TE` at 2 |
+| engine suite | **394/394** shipped · **406/406** prepared |
+| node battery | **31/31** both trees (N25/N26/N27 green) |
+| manifest gate | **PASS 311** shipped · **PASS 316** prepared, at the final state |
+| `dist/` | `npm ci` → `npm run distfile` → `diff -rq` exit 0 against the delivered `dist/`; `single.html` sha256 `15b44104…5b08` on **both** trees (passclass node is tree-shaken in both) |
+| shell battery | **46 pass · 0 fail** · **slice battery: 29 pass · 0 fail · 10 skip · 3 deferred** |
+| engine tip (context, not to act on) | `architect/engine-and-seats @ 57fb83c` — the pools-node down-preserving fix; delta vs `65673a00` = two src files (`sim/pools.ts`, `sim/game.ts`) plus test files; GLM stays OFF; CI green at `1aa7fb3` (run `44262444359`, 57s, job `colors`) |
+| live site | stays **wave 89** (`origin/gh-pages` tip `66096fb`); deployed tree still names `4ca9a071`/52 files; the staged two-file fix is **NOT placed**; placement is the Owner's click |
 
-## 3 · What the c7 sitting fixed/proved (so you do not redo or break it)
+Two things Ernie could not verify, named: the **prepared** tree's browser legs (byte-identical `dist/` to shipped; he ran the batteries once); and `bash scripts/acceptance-run.sh` end-to-end (he ran every component individually). Nothing above is an instruction to re-verify; dispute only with receipts.
 
-- Gate is robust to its own receipts (PART A); partB receipts rewritten at final state: shipped regen **311 PASS ×2**, prepared **316 PASS ×2**.
-- Prepared door sign names **65673a00 / 68 files / PREPARED, NOT ACTIVATED**; B2's `lineup.test.ts:111` reads `assert.ok(bad.length <= 18, ...)` — untouched, keep it that way.
-- Engine suite **394/394 (shipped @ 5c808472) / 406/406 (prepared @ 65673a00)** on Node v24.22.3 and v26.13.1; battery:node **31/31** both trees both majors; slice **29/0/10/3**; shell **46/0** both trees; falsifiers **F0–F10 DIED** both majors both trees; D-1 green; M3 logs stand unchanged.
-- Slice 3 complete: the boot rehydration (`src/lib/port/hydrateApp.ts`, corrupt-never-repair verbatim, autosave over the engine's own serialize/restore, sim:nfl:autosave:* keys) + N25/N26/N27 laws.
-- The flex table stays the 99-rule table (17/17/42/23 at 0/2/6/12) in BOTH trees; SS→NICKEL stays 0; do not count rules, never "simplify" it. If the flex table bytes differ across the two trees, STOP.
+---
 
-## 4 · Scope of this sitting — I (the Owner) have not widened it; this is the default; if I want more I will amend this brief
+## 2 · BLOCK A — close the cakepanz-7 review (the P-316 verification blocker)
 
-**A · The hygiene-and-receipt sitting (default; explicit scope):**
+Nine items. A1–A2 are product/law; A3–A9 are receipts and docs. All line numbers are from the delivered tree — **re-derive the anchor if a line moved**, and say so if it did.
 
-1. **Fix the delivery's own two document defects found in review** (both yours to fix; both are wording, not bytes):
-   - root + shipped `START-OF-CHAT-ZAI.md` carry the RECEIPT LAW sentence **doubled verbatim**; the prepared-tree copy carries it once. Make all three copies byte-identical (prepared wins), and note it.
-   - `receipts/partC/gh-pages-fix/FIX-RECEIPT.md` says "the zip carries ONLY those two files" — it carries three (the two corrected files + FIX-RECEIPT.md itself). Correct the line to what the zip actually carries, or drop the sentence; do not re-cut the zip.
-   - Same sitting: in the D-1 browser log, `exit=1` from the strip-only TypeScript attempt remains visible two lines before the green re-run — leave it (the PROVENANCE NOTE earned its keep); do not rewrite history, do not renumber anything.
-2. **Re-run the c7 receipts fresh, on this machine, on both majors** — OR explicitly state, per item, what is REPORTED-carried-forward unchanged and why (it is accepted to carry forward; ii) re-run it. Deliverable: a dual-major table identical in shape to VERIFY §20.5, rewritten at THIS sitting's final state.
-3. **DELIVER-only verification**: verify **this prompt's own §1 state against the live refs** (the gh-pages tip, the pin lines, CI run `44262444359`'s existence and conclusion, `57fb83c` existence) and name anything that moved since this brief was written; if a number is wrong, fix the brief's successor, say so, and move on.
-4. **D-1 fresh clone** mandatory for the two doc fixes (trivial changes — cut the clone, do not skip it: it is the only cheap D-1 you get every sitting). Falsifiers re-run only if any code moved — state which it is.
-5. **START-OF-CHAT-ZAI.md §2 rewrite** for this sitting (a short one: hygiene sitting, no engine move, c7 state carried, nothing re-pinned).
+### A1 — PRODUCT DEFECT (must close): a mid-season refresh lands on a blank draft board
 
-**B · ONLY if the Owner says "re-prep to 57fb83c" (he has NOT said so):**
+**What the user sees.** Draft normally, start the season, play a week, refresh. The season **has** resumed — but the screen is the draft board with nothing on it: topbar and nav only, no error.
 
-Re-prepare against **`57fb83c`** (supersedes the 65673a00 prep): five paths byte-identical (`src/engine/` = 68 TS files + data/packs, `tools/mathlab/flex.json` must be the 99-rule table, `test/engine/`, `test/engine.test.ts`, regenerate via `sync_engine_tests.py` + `npm run distfile` + `precompile`), full D-1, both majors, door sign with 57fb83c + PREPARED banner, M3 both directions, Verify everything in §2's rules. **The shipped tree stays 5c808472. Activation is NEVER this sitting's scope.**
+**Reproduce (Ernie's scripts, in `_agents/ernie/deliveries/cakepanz-7-review-2026-11-18/`):**
 
-**C · Carry-forward blockers — NOT YOURS, DO NOT ACT (state them verbatim in "blocked, not yours"):**
+```
+$ node --import ./scripts/node-port-register.mjs gen-envelopes.mjs <tree> /tmp/midseason-envelopes.json
+draft env bytes 187341 | week env bytes 51040 | nextWeek 2 | stepped true
+$ node midseason-boot-probe2.mjs 'http://localhost:4179/?dev=1' /tmp/midseason-envelopes.json
+{ "screen": "board", "hub": 0, "rows": 0, "err": null, "storeStatus": "done", "picks": 1024, "userTeam": 5 }
+```
+Control: a mid-draft autosave (draft only) hydrates correctly (`{"screen":"board","rows":60,"status":"drafting","picks":121}`).
 
-1. gh-pages placement: the two corrected files over `67-cakepanz/` on `gh-pages` — one commit — the Owner's click (VERIFY.txt §20.3 has the instructions verbatim; the zip carries README + CHECKSUMS-slice2 + FIX-RECEIPT).
-2. The deployed suite's 9 red flex expectations (277/9 measured): the staged fix deliberately does NOT touch them; the re-point is the Owner/Architect's decision.
-3. Prepared re-pin ACTIVATION (any pin) — the Owner's word only.
-4. Part-E label questions: "Model Value" (shell) vs "Value" (w89) — MEASURED_LABEL is the one constant; "Engine Value" is OUT by the Owner's 2026-11-17 ruling; 2PT chip ("2PT / 2PT FAIL" in feedVM.ts vs "2-Pt Conv" in w89) — untouched; dark `--text` 3.17:1 (w89 live behavior) — untouched; light gold2 1.65:1 DEFAULT pair — untouched; Bodoni Moda — OUT of the bundle (the Owner ruling is owed).
-5. The CI gate itself (you never modify, weaken, or "fix" workflow files anywhere).
-6. The Architect's tree, engine, flex table, lambda default (0), yards-node decision.
+**Root cause — two faults that compound (verified by Inkling against the delivered source this sitting):**
 
-**D · What NOT to do, ever, this sitting or any other:**
+1. `src/App.svelte` `hydrateBoot()` — `if (!r.draft) go('hub');`: the hub is reached only when there is *no* draft autosave. Mid-season both keys always exist, so `loadDraft()` does `go('board')` and `go('hub')` never fires.
+2. `src/App.svelte` `refresh()` wraps `goneOdds(...)` + `boardVM(...)` in a `try {} catch {}` whose comment says "CPU pick in flight". `goneOdds` **throws for any completed draft** (`goneOdds: it is not the user's pick`) — the catch swallows it, `vmStore` is never set, and `{:else if screen === 'board' && $vmStore}` renders nothing.
 
-- No activation, no placement, no re-pin without the Owner's word — silence is never approval.
-- No edits to the Architect's tree to make anything match an expectation of yours; any seam in his numbers is filed, not fixed.
-- No merging, rebasing, force-pushing, branch creation; you deliver zips and read GitHub over HTTPS only.
-- No weakening the gate, the falsifiers, or the receipts' honesty to make a count come out.
-- No re-opening settled questions (measured/label/flex/2PT/default-off) — they are settled by the Owner where they are settled, and everything else is his call.
+**The outcome to satisfy (any shape that meets it):**
+- A refresh **mid-season** (both autosaves) lands on the **hub**, phase `running`, week restored.
+- A refresh **after the draft is complete, before the season starts** lands on **Complete**, not a blank board.
+- The **DRAFT** nav on a finished draft goes to Complete, never blank.
+- A refresh **mid-draft** still lands on the board with rows (the control case must not regress).
 
-## 5 · Deliverable format
+**One two-line shape that satisfies all four:**
 
-- One zip including: the two trees (or shipped-only if only A ran — say which), `receipts/`, rewritten START-OF-CHAT-ZAI.md, VERIFY.txt additions (or a short VERIFY-addendum if the c7 VERIFY stands untouched), MANIFEST/CHECKSUMS, the gh-pages-fix zip unchanged under `deliveries/gh-pages-fix/` unless the Owner says otherwise.
-- One response, English, listing: what you ran and got; what you did not run and why; what is REPORTED vs VERIFIED vs UNKNOWN; the two document fixes; explicitly: nothing placed, nothing activated, nothing pushed, no gate weakened; the blocked list verbatim.
-- If (and only if) the Owner asks in the delivery's instructions, the sitting may be pushed for readability — that is a per-sitting Owner decision, never a default.
+```diff
+-  function go(s: ScreenId, param?: number | null) { screen = s; navigate(s, param); }
++  function go(s: ScreenId, param?: number | null) {
++    // a finished draft has no board: the Complete screen owns it
++    if (s === 'board' && store.getState().status === 'done') s = 'complete';
++    screen = s; navigate(s, param);
++  }
+@@
+-      if (!r.draft) go('hub');                       // a season without its draft resume still lands home
++      go('hub');                                     // a resumed season always lands home
+```
 
-## 6 · When you are done
+**Laws to add (node battery beside N25):**
+- `N28 (RESUME): a refresh with BOTH autosaves lands on the hub — the season outranks the finished draft's screen.` Build the two envelopes with the delivery's own `hydrateApp.autosaveDraft`/`autosaveWeek`; assert landing screen = `hub` and phase `running`.
+- `N29 (DONE-DRAFT): a refresh with a done draft, no week, lands on Complete, never a blank board.` Assert landing = `complete`, record rendered.
+- Falsifiers: plant the old `if (!r.draft) go('hub');` line → N28 must die; delete the `go()` redirect → N29 must die.
 
-The Owner reads the zip; the Architect looks at the receipts; the council reviews. If anything is unclear, you ask the Owner before acting on it — one sitting, one zip, nothing else rides.
+**Check:** `test:engine` (394/406) + `node --import ./scripts/node-port-register.mjs batteries/node.battery.mjs` (33/33 with the two new laws) + shell battery still **46/0** + slice battery still **29/0/10/3**.
+
+### A2 — LAW TAUTOLOGY: S29 cannot fail when the boot rehydration is removed
+
+**Measured by Ernie.** Delete `void hydrateBoot();`, rebuild, re-run the shell battery → still **46/0**. S29's phase-blind locator passes via the manual `RESTORE A SAVED WEEK` fallback even with the boot path deleted. The law cannot fail.
+
+**Fix — split it:**
+- `S29` becomes mandatory when an autosave exists: read `localStorage.getItem('sim:nfl:autosave:week') || localStorage.getItem('sim:nfl:autosave:draft')` before the reload; if either exists, require the resume-by-boot path (`resumedHub`) and fail loudly otherwise.
+- Add `S31` for the manual path only: clear both autosave keys, then require the manual restore to bring the hub back.
+- Keep `S30` (zero page errors) attached to both.
+
+**Check:** with `void hydrateBoot();` deleted the battery must now **fail** (S29 red); with it restored, green. Paste both runs.
+
+### A3 — RECEIPT: `deliveries/receipts/c7-d1-fresh-clone.log` ends `exit=1`
+
+The last entries are the *first-attempt* browser legs (`ERR_CONNECTION_REFUSED`, `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX` before the Part-D register). The green re-run lives in `c7-d1-fresh-clone-browser.log` — `README-DELIVERY.md` says "green end-to-end"; a reader who tails the file sees red. **Same shape the council rejected at cakepanz-6** (partB FAIL logs). Regenerate the node log at the final state, or rename the first attempt `*-attempt1.log` and leave the delivered log green.
+
+### A4 — DOC: `scripts/acceptance-run.sh` prints stale expectations
+
+- Line 20: `"expect 24/24: 23 carried + N20 the F8 law"` → the battery is now **31** (33 after A1).
+- Line 46: `"the receipt falsifiers F0–F8"` → now **F0–F10** (plus any A1/A2 additions).
+
+Two lines; `README.md` advertises this script as the whole receipt set in one staged run.
+
+### A5 — DOC: `284 tests` survives in two live files
+
+- `README.md:29` ("the pinned commit's 284 tests") → **394 shipped / 406 prepared**.
+- `batteries/slice1.battery.mjs:12` (header comment) — same.
+
+Leave `CHECKSUMS-slice*.txt` and `deliveries/gh-pages-fix/README.md` alone — per-slice history, superseded by FIX-RECEIPT's verdict.
+
+### A6 — DOC: the README's shell-battery line omits the register
+
+`README.md` "Run it" says `node batteries/shell.battery.mjs`; on any node that dies with `ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX`. It must read:
+
+```
+node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+```
+
+### A7 — DOC: `FIX-RECEIPT.md` says "ONLY those two files" — the zip has three
+
+`receipts/partC/gh-pages-fix/67-cakepanz-gh-pages-fix-c6.zip` contains `README.md`, `CHECKSUMS-slice2.txt` **and** `FIX-RECEIPT.md`. Fix the sentence to "those two files plus this receipt" (or equivalent). Do not re-cut the zip.
+
+### A8 — FULL SWEEP of the gate-count prose (superseding Ernie's four places)
+
+`SHELL-STATUS.md` §"The battery verdict" (~lines 20–23) and `VERIFY.txt` (§19.4 at :69–71, §19.10 at :328-ish, §20.2 and the "326 entries" prose at :373–377) quote **319/324/326** — all intermediates of the cakepanz-6 receipt rewrite (and unrelated to the delivered **311** shipped / **316** prepared). Delivered reality (Ernie + Inkling re-ran it):
+
+```
+$ cd cakepanz-4 && node scripts/gate-manifest.mjs           → gate-manifest: PASS (311 entries verified, dist/ covered, converse clean)  exit=0
+$ cd ../cakepanz-4-prepared && node scripts/gate-manifest.mjs → gate-manifest: PASS (316 entries verified, dist/ covered, converse clean)  exit=0
+```
+
+**The rule is not "fix those four lines" — it is: after this round any document that states a count states the one the tool prints at the final state.** Sweep every count-bearing doc in the package; re-quote anything stale.
+
+### A9 — DOC: the RECEIPT LAW sentence is duplicated, verbatim, in two files
+
+Package root `START-OF-CHAT-ZAI.md` (== the shipped-tree copy; the one MUSE re-files on `council/muse`) carries the sentence **twice** in §5 rule 3; the prepared-tree copy carries it once. Make all three byte-identical (the single-sentence form). This is a two-file doc edit and belongs in this round, not a round of its own.
+
+---
+
+## 3 · BLOCK B — P-337: the late draft should be simple (next product step)
+
+**The Owner's words (questionnaire Q6, verbatim):** *"We want the user to really enjoy the first ten rounds of the draft and be able to make simple decisions in the second half, not have to do complex math or planning to make a decent roster."*
+
+**Why yours.** The shell is complete (s1–s12), the merge cone M1–M5 is green, and the two open Owner decisions that touch the board are untouched by it. P-337 needs no engine change.
+
+**The arithmetic.** 32 teams × 32 rounds = **1024 picks**; round 10 ends at overall pick **320** — but the mode flips on **the user's own 10th pick**, not the overall number (a user picking at 1.32 still gets ten deep rounds).
+
+**The design brief:**
+- **User's picks 1–10:** the board as it is today — wins, priority, gone%, flex cost, lineup advice, sort controls, needs filter.
+- **Picks 11+:** the simple form. One recommendation per row, ranked by a single number; the pick button; nothing else:
+  - flex-cost chip and lineup-advice panel collapse to a single line ("Best available"), one click from the full detail;
+  - the needs row stays (it is already one click);
+  - the gone% column stays — the one number telling a user whether to reach;
+  - wins/priority no longer shown side by side; sort defaults to the single recommendation; other sorts behind a toggle.
+- **The switch is honest.** One line at pick 11: what changed and why ("the board simplified — every number is still one click away"). No new jargon.
+- **Never trapped.** Full board reachable in one click at any time; mode is presentation only and moves **no engine number**; if the user turns simple mode off, the board returns to full and stays for the rest of the draft.
+
+**Acceptance laws (write as laws, slice battery or a new `late.battery.mjs`):**
+1. At the user's 10th pick: the **full** form; at the 11th: the **simple** form. Assert from the real UI, not from a flag.
+2. Simple form row: exactly one recommendation number + the pick control; no flex chip, no advice panel in the row.
+3. Full board reachable in one click; returns.
+4. **No engine number moves** — same seed, same picks, same board values across the toggle; compare the board VM by sha (the N25 pattern).
+5. 390 px stays clean in both forms (extend S25b's law).
+6. Zero page errors across the flip, both directions.
+7. Falsifier: plant simple-mode as always-on → law 1 must fail.
+
+**Do not touch:** the flex table, the slots, `minClassPool`, the mode weights, any engine file, engine semantics anywhere. Render layer only.
+
+---
+
+## 4 · BLOCK C — R-13, the framework round (**only after Blocks A and B are pushed**)
+
+**The ruling (Owner, 2026-11-15):** Vue 3 + Vite vs Svelte 5 + Vite, **measurement decides**; React is out and is to be removed (R-9). You build both arms.
+
+**Scope discipline.** Do NOT port the 12-slice shell. Port **one sealed slice**: the Draft Board (the 60-row table, sort, slot picker, pick confirm, needs row) against the **same TS core, unchanged** (`src/lib/port/**` — 21 modules — plus `src/lib/valuation.ts`; zero framework, zero `document`). The measurement is about the render layer, not the port.
+
+**Counterbalance it.** A first-arm 2:1 advantage is a learning artefact, not a framework effect. Run the same builder on the **same slice twice, in reverse order** (Svelte→Vue, then Vue→Svelte); report both runs. A framework effect that only appears in run 1 is a builder effect.
+
+**Report exactly these, side by side, with commands:** render-layer lines (`.svelte` vs `.vue`); production bundle bytes and gzip bytes; boot-to-first-paint, median of 5 runs, both arms, both orders; the acceptance battery's pass count on each arm (same battery, same assertions); the TS core diff between arms — must be **empty**; if not, say what moved and why.
+
+**No verdict beyond the numbers.** The Owner decides. The queue says the pick is 50/50 and not to be re-litigated in this round.
+
+---
+
+## 5 · Standing rules for this round
+
+1. **Your tree only.** `67-cakepanz` (the Svelte app) and the waves you publish to `origin/gh-pages`. Do not edit `colors/` — the Architect's.
+2. **Do not re-pin the engine on your own.** The pin of record is `d3bd81d2`; your prepared tree is `65673a00`; the Architect's tip is now `57fb83c`. The delta `65673a00 → 57fb83c` is **two source files** (`colors/src/sports/nfl/sim/pools.ts`, `colors/src/sports/nfl/sim/game.ts`) — the down-preserving record hierarchy — plus tests. When the Architect orders a re-pin: the five paths, byte-identical, verify in the same commit. Do not bundle it into Block A.
+3. **Delivery: one zip; the Owner places it.** Ernie's draft of this order carried a "push after every finished item, on your own branch" rule — it is NOT applicable: you cannot push; work reaches GitHub as a zip the Owner relays. If the Owner has since granted you push access he will say so in this brief's successor — until then, zip → sha256 → Owner. (If you do have push access and it is meant to apply, `git ls-remote origin refs/heads/<your-branch>` must equal `git rev-parse HEAD` after every push; never force-push.)
+4. **Every claim carries a receipt** — command + output. A receipt is the raw stdout **at the final state**; anything else is REPORTED and named.
+5. **The Owner's open decisions are not yours to settle** (the seven live ones): the light-gold2 contrast, the dark `--text` contrast, the award line content, the `Model Value` label (both live labels currently; pick one is the Owner's), the 3-4 note, the "never print Touchdown" law, and the prepared re-pin. Flag, do not fix.
+6. **The Architect's five open items are not yours either:** the P-317 store, the OT `clock()`, the `localStorage.ts:31` parameter property, `deviceId`, gravity/double-teams.
+7. **The engine is the truth.** If a UI number looks wrong, the engine is right and the UI is wrong — never the reverse.
+
+## 6 · What the delivery must contain
+
+Name it `67-cakepanz-8-<date>/`, same layout as cakepanz-7:
+
+- `README-DELIVERY.md` — one-paragraph verdict, the pin(s), the gates, the suites, the new laws, **the numbers as the tools print them at the final state**.
+- `SHELL-STATUS.md`, `SNAPSHOT.md`, `VERIFY.txt`, `FIXLOG.md`, `MERGE-*.md` — updated, every count re-quoted from the final run.
+- `receipts/` — raw logs, one per command, each ending green (or explicitly named as a first attempt).
+- The new laws in the batteries, with their falsifier cases.
+- `WHAT-CHANGED.md` — for each of A1–A9, the anchor, the before/after, the receipt.
+
+**What "done" looks like for Block A:** a reviewer can run the seven commands in §1, get the same numbers, plus the two new node laws (33/33) and the split S29/S31 (green at final state, red under the planted boot gate). That is what three seats' ok/improved will check.
+
+**What Ernie will do when it lands:** re-run the §1 table, re-run the A1 reproduction against your fixed build, re-run the A2 mutation. Green on all three → P-316 is verified and the cakepanz-7 review closes `ok`.
+
+## 7 · If you disagree with any of this
+
+File it. Do not silently do something else. The two places I expect legitimate disagreement:
+
+- **A1's shape.** The two-line `go()` redirect is one option; fixing `refresh()` so a done draft renders a real VM is also correct — but then the mid-season landing still has to be the hub, and the law has to say so.
+- **Block B's threshold.** If you think the flip should happen on the *overall* pick (320) rather than the user's 10th, say why in the delivery — the Owner's words are "the first ten rounds" (about the user's experience, not the overall count), but it is his call, not the layout's.
+- **A9's disposition.** If the three-copy normalization breaks a tooling assumption, keep the prepared copy canonical and note it — do not re-cut the doubled sentence in a way you cannot verify byte-identical.
+
+Anything else, ask the Owner first. One sitting, one zip, nothing else rides.
