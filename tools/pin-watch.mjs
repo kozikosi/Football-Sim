@@ -140,7 +140,9 @@ async function check(args) {
   const countFailed = missing.length > 0 || extra.length > 0;
   if (countFailed) {
     for (const f of missing.slice(0, full ? 1e9 : 10)) stderr.write(`pin-watch: MISSING from tree (in pin): ${f}\n`);
+    if (!full && missing.length > 10) stderr.write(`pin-watch: … and ${missing.length - 10} more MISSING (use --full)\n`);
     for (const f of extra.slice(0, full ? 1e9 : 10)) stderr.write(`pin-watch: EXTRA in tree (not in pin): ${f}\n`);
+    if (!full && extra.length > 10) stderr.write(`pin-watch: … and ${extra.length - 10} more EXTRA (use --full)\n`);
     stderr.write(`pin-watch: count ${missing.length} missing, ${extra.length} extra vs ${pinSha} (named; hash check follows — extras are not accepted as a mismatch of the shared set)\n`);
   }
 
@@ -172,6 +174,7 @@ async function check(args) {
   }
   if (mismatches.length) {
     for (const f of mismatches.slice(0, full ? 1e9 : 10)) stderr.write(`pin-watch: CONTENT DIFFERS: ${f}\n`);
+    if (!full && mismatches.length > 10) stderr.write(`pin-watch: … and ${mismatches.length - 10} more CONTENT DIFFERS (use --full)\n`);
     stderr.write(`pin-watch: FAIL (content): ${mismatches.length} file(s) differ from ${pinSha}\n`);
     return 3;
   }
