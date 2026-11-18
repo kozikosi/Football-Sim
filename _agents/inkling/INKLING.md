@@ -3,71 +3,33 @@
 **Seat:** INKLING · Inkling 2 Small Free (opencode) · admitted 2026-11-09 · transient. **Since 2026-11-18 this seat ALSO holds MUSE's full permissions indefinitely** (Owner, verbatim in `_agents/owner-notes/2026-11-18-muse-out-inkling-delegate-verbatim.txt` on `council/muse`): the MUSE infrastructure seat is mine — gates, queue custodianship, bulletins, docs on `council/muse`. AGENTS.md §1 unchanged: Owner rules, Architect builds; deleting my authority = Owner's word only.
 
 ## Authority now, precisely
-- I may edit council infrastructure on `council/muse` (queue, bulletins, templates, governance docs) with the delegation; everything Owner-gated stays Owner's: product direction, protected constants, seat admissions, **prepared re-pin activation**, λ/labels/Bodoni/2PT/dark-text/light-gold2, publishing, the gh-pages fix placement.
+- May edit council infrastructure on `council/muse` with the delegation; everything Owner-gated stays Owner's (product direction, protected constants, seat admissions, prepared re-pin activation, λ/labels/Bodoni/2PT/dark-text/light-gold2, publishing, gh-pages fix placement, framework verdict).
 - Never edit the Architect's product/engine/flex table, never force-push, never touch Z.ai's sitting, never "PASS" a gate I did not run (D-3).
-- The Oct-6 staged snapshot is preserved at `preserve/muse-oct6-snapshot-2026-11-18` (`1aec8b9e`); both are historic October state, not live council.
+- The Oct-6 staged snapshot is preserved at `preserve/muse-oct6-snapshot-2026-11-18` (`1aec8b9e`); historic October state, not live council.
 
-## Current state (2026-11-18, cakepanz-7 review session — all pushed)
+## Current state (2026-11-18 end of sitting — all pushed; `council/inkling @ 0358680a`)
 
-- **Cakepanz-7 delivery pushed and reviewed.** The Owner had the `67-cakepanz-7-2026-11-18`
-  folder pushed verbatim to `council/inkling` @ `0fcbc2c0` (`_agents/inkling/67-cakepanz-7-2026-11-18/`,
-  796 files, 33 MB, 88 PNGs, two full trees; byte-identical to Desktop copy via `diff -qr`).
-  Owner ruling overrode the delivery README's "Push nothing". Lane rule (no build copies/images)
-  overridden by the Owner for this drop — flagged for the record; moves on his word.
-- **My review:** `inbox/20261118-0745-inkling-cakepanz7-review.md` — **VERDICT ok-with-notes**.
-  Re-ran: CHECKSUMS 311/311 + 316/316 (python3), partB logs PASS at printed counts, engine
-  394/394 + 406/406 and battery:node 31/31 ×2 trees on my Node v26.13.0; flex 99 (17/17/42/23);
-  isReceipt hardening present in both trees; gh-pages finding verified live (tip 66096fb, no
-  later commits, deployed 4ca9a071 lines stale). Nits: doubled RECEIPT LAW sentence in root
-  START-OF-CHAT-ZAI.md (prepared copy is clean); D-1 browser leg failed once then re-ran green
-  (S29 phase-blind edit AFTER clone was cut); FIX-RECEIPT "zip carries ONLY those two files" is
-  false (3 files); "falsifiers ×2 majors" wording loose. Open items all Owner/Architect-gated:
-  gh-pages placement (his click), 277/9 vs 286/0 (9 stale flex expectations), prepared re-pin
-  activation (65673a00), Part-E labels, dark --text, light gold2.
-- Also this session: base merge (`7d43d457`, base won on 3 shared files) pushed; preserve.mjs
-  check after merge → only local-only commit was my merge, now pushed.
-- **Reviews-of-reviews filed** (`inbox/20261118-0750-inkling-reviews-of-reviews.md`): Ernie's
-  c6 review CONFIRMED (his stale-partB-FAIL catch = the fix c7 landed); my c6 review corrected
-  on mechanism (receipts listed, not excluded; I missed Ernie's find); Beam's c6 FAIL review
-  SUPERSEDED (unreceipted, contradicted by two gate re-runs + c7's rewrite); no-arbitrage
-  cluster (Ernie/Glyph/Beam/Pickle) all consistent — deletion demand withdrawn, keep `≤18`+comment;
-  Glyph's pin-watch/λ assessment upheld (band dead at tip; 0.40 convention-only);
-  merge-gate/pin-watch still absent on `council/muse` (verified); `tools/pin-watch.mjs` IS on
-  `architect/engine-and-seats @ 1aa7fb3` + CI-gated (run #20, then #21 at 3363eb0, #22 at 57fb83c —
-  all green; CI runs on every architect push). No c7 reviews exist yet.
-- **Parallel-round items executed personally** (`inbox/20261118-1735-inkling-parallel-round-execution.md`):
-  A3 sweep (12 sites + A9), B1 totals bar (points within ±1.5% of 2024/2025, −0.6% in-sample;
-  yards hot ~3–7%), B2 (286 tests/277 pass/9 named reds file:line; re-point left to Owner/Architect),
-  B5 hosted-copies identical, A4 CI green. **P-344 reviewer 1 filed** (`inbox/20261118-1735-inkling-p344-review.md`):
-  ok with two named discrepancies; NOT cluster-admissible for consumption until 2 more reviews land.
-  **Superseded same hour:** pin-watch IS promoted — `architect/engine-and-seats @ 1aa7fb3`
-  (byte-identical to 0bd76860, cmp by me), self-test wired as a CI gate (no continue-on-error),
-  passes on my Node v26.13.0; live catch re-verified against fresh `origin/gh-pages` extract
-  (4ca9a071 → exit 3, six drifted .ts + flex.json; d3bd81d2 → content identical, --strict exit 4
-  with the exact 5 doc lines; 65673a00 → exit 3, **11** missing files, not 9 — the deployed tree
-  has NO sim/ directory at all). Still absent on council/muse. See
-  `inbox/20261118-0756-inkling-pinwatch-promotion-receipt.md`.
+- **Cakepanz-7 pushed & reviewed** (`0fcbc2c0`; my review `inbox/20261118-0745-inkling-cakepanz7-review.md` — VERDICT ok-with-notes, gh-pages fix verified unplaced at tip `66096fb`; my mechanism error in the c6 review corrected on record). Reviews-of-reviews filed (`0750`): Ernie CONFIRMED best-of-wave; Beam SUPERSEDED; OR REJECTED as evidence; 5-seat confirmation settles the three Architect-report errors (six drifted files / eleven missing / no `sim/` dir at all); pin-watch promoted to `architect/engine-and-seats @ 1aa7fb3` + CI gate — re-verified byte-identical by me; CI now `on: push` (runs #20–#22 all green; CI guards every architect push).
+- **Verification prompt self-executed fresh** (`0804`, all three errors reproduce twice, held claims verified). **Parallel-round prompt written** (`ed72c629`) **then retired in favour of Ernie's** (`3dbb67fb`) after his review-folded improvements won (A4 answered with run IDs; A6 pre-confirmed by my sweep; B2 stopgap framing; B4 margins.ts is the old engine path).
+- **Parallel-round items executed personally** (`1735`): **B1 totals bar, 12,000 games** (points 22.76 in product world; 2024 −0.7%, 2025 −1.1%, in-sample −0.6%; yards ~3–7% hot; OT 4.8%). **B2** — re-ran the deployed suite: 286/277/9, each red named `file:line` with the one-file re-point shape marked as Owner/Architect call (NOT touched). **A3** — exhaustive stale-numeral sweep both trees (12 sites + the A9 doubled RECEIPT-LAW sentence). **B5** hosted copies identical (modulo Ernie's `RECEIPTS.md`). **A4** all green (#21/#22). **B3** — P-344 reviewer 1 of 3: ok with two named discrepancies (phase1-reference 2023 says 21.77 vs P-344 21.7426; REG vs all-games SD for points); raw parquet untested (reviewers 2/3 needed before the Architect consumes P-344).
+- **Ernie's parallel round adopted verbatim** (`inbox/20261118-1810-inkling-review-ernie-parallel-round.md`). **Two open questions flagged for the Owner, his ruling needed:** (1) the two cakepanz-8 work orders disagree on scope — my v2 (`ae303ded`, this branch) keeps **P-337** (Block B, late-draft simple board) and **R-13** (Block C, Vue/Svelte); Ernie's v2 (`4a59895`) defers both ("a later brief"); which is operative for Z.ai is the Owner's call. (2) B-world discrepancy in the totals bar — my product-world 12,000 g vs Ernie's default-world 300 g differ ~1.2 pts/game; cite pack + clock/trans every time.
+- **Corrections to my own record**: c6 "receipts excluded" → listed (fixed); my λ band recommendation dead at tip; my engine review 409/409 was run at c7-era tip; the Architect's pin-watch report had three errors (all confirmed 5×).
+- **Owner-gated, untouched, as required**: gh-pages placement (tip `66096fb`, two-file zip staged with sha256s recorded; fix zip carries three files — note corrected), prepared 65673a00 activation (superseded by tip 57fb83c), 277/9 re-point, Part-E labels, dark `--text`, light gold2, Bodoni Moda, 2PT, λ convention (recommend 0.40 as labelled convention, not anchored).
 
-### Previous sitting (cakepanz-6 + delegation week, kept for the record)
-
-- **Council-6 + delegation week closed.** Cakepanz-6 (Z.ai) reviewed by seats: gates PASS on both trees (Ernie re-ran; me); takeover wired; shipped=5c808472, prepared=65673a00, bytes verified both. One live defect found in the prepared docs (README/SHELL-STATUS pin 5c808472) → fixed in the next sitting's prompt. Pushed to `council/inkling` @ `60171cb4`; my review (VERDICT ok) at `inbox/20261118-0144-…R-13-review-cakepanz6.md`.
-- **Review wave delivered:** Beam §6 battery improved (concordant; his L0 counts verified); Ernie ok (his 946/947 self-correction verified; my macro filing amended); Glyph improved (sync-base.sh violation — restore muse docs); Pickle gate ok with one pin-watch adjustment; VL's pin-watch retired as stale-layout competitor — **canonical = my amended `tools/pin-watch.mjs` @ `0bd76860`** (count report + hash always; live catch: gh-pages README says 4ca9a071, bytes are d3bd81d2, flex pre-landings).
-- **λ convention ruled on record (my recommendation): ship 0.40 as labelled convention** bound to table sha `76c02c659880e218`; the [0.3902, 0.4032) band is dead at the tip (empty feasible set; 89/97 @ 0.40; floor 87) — 0.3967 is tier-identical to 0.40, so it's admissible, not anchored. Owner locks.
-- **Cakepanz-7 prompt written and pushed** to `council/muse` @ `5b63a7ff` (`_agents/muse/deliveries/prompts-2026-11-05/zai-cakepanz-7-2026-11-18.md`) — two fixes owed (partB stale FAIL receipts; prepared-tree README/SHELL-STATUS pin line), gh-pages fix placement is the Owner's, no rulings.
-- **MUSE delegation live:** council/muse @ `5b63a7ff` (delegation verbatim + announcement); oct-6 snapshot on `preserve/muse-oct6-snapshot-2026-11-18`.
-- **Seven Part-1 drafts: withdrawn by Owner ruling** — stop scanning for them; call them withdrawn in future prompts.
+## Previous sittings (compressed for the record)
+- Cakepanz-6 review (01:44Z 2026-11-18, `60171cb4`): gates PASS by re-run; 16/16 takeover receipts; pin-watch caught gh-pages README lying (named 4ca9a071 while bytes are d3bd81d2); one doc defect fixed via the cakepanz-7 prompt.
+- MUSE delegation live 2026-11-18; cakepanz-7 sitting (P-316 rehydration) completed by Z.ai and reviewed; cakepanz-8 sitting prompt handed to Z.ai (my v2 `ae303ded`, Ernie's v2 `f4a59895` — ruling pending).
 
 ## Next session reads — priority
-1. `_agents/owner-notes/2026-11-18-muse-out-inkling-delegate-verbatim.txt` (council/muse) — the delegation, verbatim; then this file.
-2. My lane/bulletin and `inbox/20261118-0745-inkling-cakepanz7-review.md` (the cakepanz-7 review receipts; supersedes the cakepanz-6 review for c7).
-3. The `67-cakepanz-7-2026-11-18/` copy in this lane — the delivery as pushed, for anyone who wants it.
+1. **`inbox/20261118-1810-inkling-review-ernie-parallel-round.md`** (the scope disagreement + B-world note) and this file's Owner-gated list — then `_agents/owner-notes/2026-11-18-muse-out-inkling-delegate-verbatim.txt` (council/muse) if the delegation needs refresh.
+2. `_agents/ernie/deliveries/prompts-2026-11-18/zai-cakepanz-8-v2.md` + `council-parallel-round-cakepanz-8.md` on `council/ernie` (`3dbb67fb`) — the operative sitting, unless the Owner rules otherwise.
+3. `inbox/20261118-1735-*` (my parallel-round execution + P-344 review) and `bulletin/20261118-1812-inkling.md`.
 
 ## Open questions (all Owner-gated)
-
-Prepared 65673a00 activation (shipped stays 5c808472) · gh-pages fix placement (two files, one commit — his click; verified unplaced at tip 66096fb) · the 277/9 vs 286/0 question (9 stale flex expectations in the deployed tree) · Bodoni Moda · "Model Value" vs w89 label · 2PT chip · dark --text · light-gold2 · λ convention (0.40 recommended) · Part-E label questions (partE-label-questions.md).
+Prepared 65673a00/57fb83c activation (his word; 57fb83c is tip and 65673a00 is superseded) · gh-pages placement · the 277/9 re-point + P-355 · P-337/R-13 scope of this cakepanz-8 sitting · the 2026-11-16 λ/dialect λ decision · Bodoni Moda · labels · dark `--text` · gold2 · 2PT.
 
 ## Worktree
-`/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base `git merge-base HEAD origin/council/base` (compute) · **delegate home: `/Users/kosi/Desktop/wt/muse` (council/muse)**.
+`/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · delegate home `/Users/kosi/Desktop/wt/muse`.
 
 ## Safety
-Other worktrees are not mine to touch (gh-pages shared tree 12,484 dirty; ds 2; pickle 2; q 1831). preserve.mjs check every sitting. Self-test never points at my worktree. No `git stash`. Add by path only; never `git add -A`.
+Other worktrees are not mine to touch (shared tree 13k dirty; ds 4 local-only commits; q 1831; vloc 2). `preserve.mjs check` every sitting. Self-test never points at my worktree. No `git stash`. Add by path only; never `git add -A`.
