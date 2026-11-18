@@ -24,6 +24,10 @@ export interface Pools {
   readonly trans: 'empirical' | 'computed'; readonly clock: 'dt_f' | 'dt_pf';
   readonly tuples: Tuples;
   readonly rec: readonly Map<number, Pool>[];           // 4 levels, finest first; keyed by packed (call, down, distBin, ydlBin)
+  // The same record rows under a DOWN-PRESERVING hierarchy, for the class-then-tuple sampler (2a): (call, down, distBin, ydlBin), (call, down, distC, ydlBin), (call, down, ydlBin), (call, down),
+  // then (call). A tuple's next down (ndown) is absolute, so a tuple read across downs moves the chain to the wrong down: a 3rd-down incompletion (next: 4th) standing in for a failed 4th-down try
+  // keeps the drive alive. Only the last level, (call), merges downs, and only when a class has fewer than minClassPool plays at its own down.
+  readonly recDown: readonly Map<number, Pool>[];
   readonly call: readonly Map<number, Pool>[];          // 5 levels; the member id is the call (0..5)
   readonly clockLate: readonly Map<number, Pool>[];     // 4 levels; the member id is the seconds
   readonly clockNon: readonly Map<number, Pool>[];      // 2 levels
@@ -66,6 +70,11 @@ export function callKeys(B: Bins, down: number, ytg: number, ydl: number, sd: nu
 export function recKeys(B: Bins, call: number, down: number, ytg: number, ydl: number): number[] {
   const y = binOf(B.ydl, ydl);
   return [k4(call, down, binOf(B.dist, ytg), y), k4(call, Math.min(down, 3), binOf(B.distC, ytg), y), k2(call, y), call];
+}
+// The keys of `recDown`, finest first. The down is never merged before the last level.
+export function recDownKeys(B: Bins, call: number, down: number, ytg: number, ydl: number): number[] {
+  const y = binOf(B.ydl, ydl);
+  return [k4(call, down, binOf(B.dist, ytg), y), k4(call, down, binOf(B.distC, ytg), y), k3(call, down, y), k2(call, down), call];
 }
 export function clockLateKeys(B: Bins, oc: number, qtr: number, hs: number, sd: number): number[] {
   const h = qtr >= 3 ? 1 : 0, t = tmb(qtr, hs);
@@ -164,6 +173,7 @@ export function loadPools(pack: ModelPack): Pools {
     if (a !== c) throw new Error('pools: distC edges are not a subset of dist edges');
     distCOfBin.push(a);
   }
+  const D0 = new Map<number, Map<number, number>>(), D1 = new Map<number, Map<number, number>>(), D2 = new Map<number, Map<number, number>>(), D3 = new Map<number, Map<number, number>>();
   let records = 0;
   for (let i = 0; i < nR; i++) {
     const call = at(rc, i), down = at(rd, i), db = at(rdb, i), yb = at(ryb, i), tid = at(rt, i), n = at(rn, i);
@@ -174,6 +184,10 @@ export function loadPools(pack: ModelPack): Pools {
     addTo(L1, k4(call, Math.min(down, 3), at(distCOfBin, db), yb), tid, n);
     addTo(L2, k2(call, yb), tid, n);
     addTo(L3, call, tid, n);
+    addTo(D0, k4(call, down, db, yb), tid, n);
+    addTo(D1, k4(call, down, at(distCOfBin, db), yb), tid, n);
+    addTo(D2, k3(call, down, yb), tid, n);
+    addTo(D3, k2(call, down), tid, n);
   }
   const counts = rec(p['counts'], 'counts');
   if (counts['records'] !== records) throw new Error(`pools: rec rows hold ${records} plays, counts.records says ${String(counts['records'])}`);
@@ -219,11 +233,12 @@ export function loadPools(pack: ModelPack): Pools {
   const kcum = new Float64Array(kn.length); let kt = 0;
   for (let i = 0; i < kn.length; i++) { kt += at(kn, i); kcum[i] = kt; }
   const X = rec(p['xp'], 'xp');
+  const recLevels = [finish(L0), finish(L1), finish(L2), finish(L3)];
   const xpv = (k: string): number => { const x = X[k]; if (typeof x !== 'number' || !(x >= 0 && x <= 1)) throw new Error(`pools: xp.${k} must be a probability`); return x; };
 
   return {
     id: pack.id, bins, minPool: num('minPool'), minClock: num('minClock'), trans, clock, tuples,
-    rec: [finish(L0), finish(L1), finish(L2), finish(L3)], call: callLevels,
+    rec: recLevels, recDown: [finish(D0), finish(D1), finish(D2), finish(D3), recLevels[3]!], call: callLevels,
     clockLate: clockLevels('late', 4), clockNon: clockLevels('nonlate', 2),
     kick: { pool: { ids: Int32Array.from(kn.map((_, i) => i)), cum: kcum, total: kt }, nd: Float64Array.from(knd, (v) => (v === null ? NaN : v)), same: Int8Array.from(ksame), dt: Float64Array.from(kdt) },
     xp: { pGo2: xpv('pGo2'), pMake2: xpv('pMake2'), pMake1: xpv('pMake1') },

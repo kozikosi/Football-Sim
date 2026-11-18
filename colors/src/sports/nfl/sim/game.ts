@@ -10,7 +10,7 @@ import type { GameKey } from '../../../core/keyedrng.ts';
 import { logBuilder } from '../../../core/events.ts';
 import type { GameEvent } from '../../../core/events.ts';
 import { at } from '../../../core/at.ts';
-import { CALL, OC, callKeys, recKeys, clockLateKeys, clockNonKeys, pick, sample, tmb } from './pools.ts';
+import { CALL, OC, callKeys, recKeys, recDownKeys, clockLateKeys, clockNonKeys, pick, sample, tmb } from './pools.ts';
 import type { Pools } from './pools.ts';
 import { passClassProbs, passFeatures, pickClass, pickClassTuple } from './passclass.ts';
 import type { PassClass } from './passclass.ts';
@@ -37,7 +37,10 @@ interface Step { ended: Ended | null; ndy: number; nds: boolean }
 
 // opts.passClass: the pass-class GLM node (2a). Absent = the pools' own record node, bit for bit as before. With it, a pass play draws its CLASS from the GLM (tag 'passClass', after the
 // optional tilt by lambda * theta * opts.passGap) and then its outcome tuple from the pool restricted to that class (tag 'rec', the same tag as before).
-export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean; readonly passClass?: PassClass; readonly passGap?: number } = {}): GameOut {
+// opts.classMix: a LAB hook (tools/glm-shift.ts). It replaces the GLM's class probabilities with the caller's, so the class-then-tuple SAMPLER can be run with the pool's own class mix
+// as a control (sampler effect = control - pools node; GLM effect = GLM - control). Absent = the GLM's softmax. Needs opts.passClass for minClassPool, theta and lambda.
+export type ClassMix = (down: number, ytg: number, ydl: number, sd: number, qtr: number, hs: number) => readonly number[];
+export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean; readonly passClass?: PassClass; readonly passGap?: number; readonly classMix?: ClassMix } = {}): GameOut {
   const lb = logBuilder<GameEv>();
   const holes = [0, 0, 0, 0, 0];                       // lookups that fell to the largest pool: call, record, clock-late, clock-non, pass-class tuple
   const B = P.bins, T = P.tuples;
@@ -79,9 +82,11 @@ export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean; r
     let j: number;
     if (call === CALL.pass && opts.passClass !== undefined) {
       const pc = opts.passClass;
-      const p = tilt(passClassProbs(pc, passFeatures(down, ytg, ydl, ot ? 0 : sd, ot ? 2 : qtr, ot ? 600 : hs)), pc.theta, pc.lambda, opts.passGap ?? 0);
+      const sdN = ot ? 0 : sd, qN = ot ? 2 : qtr, hN = ot ? 600 : hs;
+      const base = opts.classMix !== undefined ? opts.classMix(down, ytg, ydl, sdN, qN, hN) : passClassProbs(pc, passFeatures(down, ytg, ydl, sdN, qN, hN));
+      const p = tilt(base, pc.theta, pc.lambda, opts.passGap ?? 0);
       const cls = pickClass(p, draw(key, i, 'passClass'));
-      j = sample(pickClassTuple(P.rec, recKeys(B, call, down, ytg, ydl), P, cls, pc.minClassPool, holes, 4), draw(key, i, 'rec'));
+      j = sample(pickClassTuple(P.recDown, recDownKeys(B, call, down, ytg, ydl), P, cls, pc.minClassPool, holes, 4), draw(key, i, 'rec'));   // the DOWN-PRESERVING hierarchy (see pools.ts)
     } else j = sample(pick(P.rec, recKeys(B, call, down, ytg, ydl), P.minPool, holes, 1), draw(key, i, 'rec'));
     const oc = at(T.oc, j);
     let y = at(T.yards, j);

@@ -5,7 +5,8 @@ import { draw, gameKeyOf } from '../../src/core/keyedrng.ts';
 import { logHash, validateLog } from '../../src/core/events.ts';
 import { makePack } from '../../src/core/pack.ts';
 import type { PackBody } from '../../src/core/pack.ts';
-import { CALL, loadPools, recKeys, sample } from '../../src/sports/nfl/sim/pools.ts';
+import { CALL, loadPools, pick, recKeys, recDownKeys, k2, k3, k4, sample } from '../../src/sports/nfl/sim/pools.ts';
+import type { Pool } from '../../src/sports/nfl/sim/pools.ts';
 import { PASS_FEATURES, classPool, loadPassClass, passClassProbs, passFeatures, pickClass, pickClassTuple } from '../../src/sports/nfl/sim/passclass.ts';
 import { tilt } from '../../src/sports/nfl/sim/drive.ts';
 import { runGame } from '../../src/sports/nfl/sim/game.ts';
@@ -67,11 +68,62 @@ test('class-then-tuple: a rare class in a thin cell reads from a coarser cell (>
   const B = P.bins;
   // 4th and 40 at the goal line: a nearly empty cell. An interception must still come from a pool with >= 25 interceptions, never from three.
   const stat: number[] = [];
-  const keys = recKeys(B, CALL.pass, 4, 40, 99);
-  const pool = pickClassTuple(P.rec, keys, P, 3, M.minClassPool, stat, 0);
+  const keys = recDownKeys(B, CALL.pass, 4, 40, 99);
+  const pool = pickClassTuple(P.recDown, keys, P, 3, M.minClassPool, stat, 0);
   assert.ok(pool.total >= M.minClassPool); assert.equal(stat[0] ?? 0, 0);
   for (let i = 0; i < 100; i++) assert.equal(P.tuples.oc[sample(pool, i / 100)], 3);
-  for (const c of [0, 1, 2, 3]) for (const id of pickClassTuple(P.rec, keys, P, c, 25, [], 0).ids) assert.equal(P.tuples.oc[id], c);
+  for (const c of [0, 1, 2, 3]) for (const id of pickClassTuple(P.recDown, keys, P, c, 25, [], 0).ids) assert.equal(P.tuples.oc[id], c);
+});
+
+// A tuple's next down is ABSOLUTE, so a tuple read across downs moves the drive to the wrong down: a 3rd-down incompletion (next: 4th) standing in for a failed 4th-down try kept the drive alive,
+// and on 4th-and-1 at the 3 (every outcome ends the drive) the first sampler ended it 54% of the time. The class sampler therefore uses a down-preserving hierarchy (pools.ts recDown).
+test('recDown: levels 0-3 hold exactly the real records of their own down (nothing merges downs until the last level)', () => {
+  const R = (body('nfl-pools-fit2016-2022').params as { rec: Record<string, number[]> }).rec, n = R['n']!.length;
+  const want: Map<number, number>[] = [new Map(), new Map(), new Map(), new Map()], perDown = new Map<number, number>();
+  const edgeLo = (db: number): number => (db === 0 ? -1e9 : P.bins.dist[db - 1]!), binOfDist = (db: number): number => P.bins.distC.filter((e) => e <= edgeLo(db)).length;
+  const add = (m: Map<number, number>, k: number, w: number): void => { m.set(k, (m.get(k) ?? 0) + w); };
+  for (let i = 0; i < n; i++) {
+    const c = R['call']![i]!, d = R['down']![i]!, db = R['db']![i]!, yb = R['yb']![i]!, w = R['n']![i]!;
+    add(want[0]!, k4(c, d, db, yb), w); add(want[1]!, k4(c, d, binOfDist(db), yb), w); add(want[2]!, k3(c, d, yb), w); add(want[3]!, k2(c, d), w); add(perDown, c * 100 + d, w);
+  }
+  assert.equal(P.recDown.length, 5); assert.equal(P.recDown[4], P.rec[3]);
+  for (const L of [0, 2, 3]) {
+    const got = new Map([...P.recDown[L]!].map(([k, pool]: [number, Pool]) => [k, pool.total] as const));
+    assert.deepEqual([...got].sort((a, b) => a[0] - b[0]), [...want[L]!].sort((a, b) => a[0] - b[0]), 'level ' + L);
+  }
+  let t1 = 0; for (const pool of P.recDown[1]!.values()) t1 += pool.total;
+  let t3 = 0; for (const w of want[3]!.values()) t3 += w;
+  assert.equal(t1, t3);                                    // level 1 is a re-partition of the same records
+});
+
+test('class-then-tuple: a failed 4th-down try ends the drive (4th-and-1 on the 3: every outcome ends it; 4th-and-5 at midfield: close to the real cell)', () => {
+  const T = P.tuples;
+  const ends = (j: number, ydl: number): boolean => { const y = T.yards[j]!; return T.oc[j] === 3 || T.fum[j] === 1 || T.safety[j] === 1 || T.td[j] === 1 || y >= ydl || ydl - y >= 100 || Number.isNaN(T.ndown[j]!) || Number.isNaN(T.delta[j]!); };
+  const pEnd = (pool: Pool, ydl: number): number => { let prev = 0, e = 0; for (let i = 0; i < pool.ids.length; i++) { const w = pool.cum[i]! - prev; prev = pool.cum[i]!; if (ends(pool.ids[i]!, ydl)) e += w; } return e / pool.total; };
+  const at = (down: number, ytg: number, ydl: number, levels: readonly Map<number, Pool>[], keys: number[]): number => {
+    const cell = pick(P.rec, recKeys(P.bins, CALL.pass, down, ytg, ydl), P.minPool, [0, 0, 0, 0, 0], 1);   // the class mix is the pools node's own, so only the tuple source differs
+    return [0, 1, 2, 3].reduce((a, k) => a + ((classPool(cell, T.oc, k)?.total ?? 0) / cell.total) * pEnd(pickClassTuple(levels, keys, P, k, M.minClassPool, [], 0), ydl), 0);
+  };
+  const B = P.bins;
+  assert.ok(at(4, 1, 3, P.recDown, recDownKeys(B, CALL.pass, 4, 1, 3)) >= 0.95);
+  assert.ok(at(4, 5, 50, P.recDown, recDownKeys(B, CALL.pass, 4, 5, 50)) >= 0.3);
+  // the check can fail: the same computation on the old, down-merging hierarchy sees the bug
+  assert.ok(at(4, 5, 50, P.rec, recKeys(B, CALL.pass, 4, 5, 50)) < 0.2);
+});
+
+test('class-then-tuple: whole games with the sampler end 4th-down passes like football (a failed one ends the drive), and never read the hole path', () => {
+  let fourth = 0, ended = 0;
+  for (let g = 0; g < 400; g++) {
+    const o = play('recdown-' + g, { passClass: M });
+    assert.equal(o.holes[4] ?? 0, 0);
+    const ev = o.events;
+    for (let i = 0; i < ev.length; i++) {
+      const e = ev[i]!; if (e.kind !== 'snap' || e.payload.call !== CALL.pass || e.payload.down !== 4 || e.payload.oc !== 1) continue;   // an incompletion on 4th down
+      fourth++; const nx = ev[i + 1]; if (nx !== undefined && nx.kind !== 'snap') ended++;
+    }
+  }
+  assert.ok(fourth >= 40, 'incompletions on 4th down ' + fourth);
+  assert.ok(ended / fourth >= 0.9, `${ended} of ${fourth} failed 4th-down passes were followed by a drive end`);
 });
 
 test('class-then-tuple: over keyed draws the sampled class frequencies equal the GLM probabilities (chi-square, 3 df)', () => {
