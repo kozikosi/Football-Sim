@@ -1,0 +1,36 @@
+$ node .c8-review/midseason-boot-probe.mjs "http://localhost:4179/?dev=1" /tmp/midseason-envelopes.json
+{
+ "landed": {
+  "screen": "board",
+  "hub": 0,
+  "hubPhase": null,
+  "rows": 0,
+  "err": null,
+  "storeStatus": "done",
+  "picks": 1024,
+  "userTeam": 5,
+  "storeErr": null
+ },
+ "pageErrors": [],
+ "console": []
+}
+exit=0
+$ node -e (middraft control: week=null)
+middraft envelopes written
+$ node .c8-review/midseason-boot-probe.mjs "http://localhost:4179/?dev=1" /tmp/middraft-envelopes.json  (CONTROL)
+{
+ "landed": {
+  "screen": "board",
+  "hub": 0,
+  "hubPhase": null,
+  "rows": 0,
+  "err": null,
+  "storeStatus": "done",
+  "picks": 1024,
+  "userTeam": 5,
+  "storeErr": null
+ },
+ "pageErrors": [],
+ "console": []
+}
+exit=0

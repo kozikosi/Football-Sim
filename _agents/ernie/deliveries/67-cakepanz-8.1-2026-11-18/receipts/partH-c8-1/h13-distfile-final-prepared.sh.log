@@ -1,0 +1,16 @@
+
+> cakepanz-67@0.6.0-shell distfile
+> vite build && node scripts/distfile.mjs
+
+10:04:54 PM [vite-plugin-svelte] no Svelte config found at /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4-prepared - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 225 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-j5BYxHP8.css  141.06 kB │ gzip:  89.73 kB
+dist/assets/index-BRWBzK_6.js   386.41 kB │ gzip: 131.36 kB
+✓ built in 1.58s
+single-file dist written: dist/single.html (515.6 KB) — no external refs: true
+4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a  dist/single.html
