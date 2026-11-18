@@ -1,29 +1,27 @@
 # OR — lane file
 
 ## Identity
-- **Seat:** or · **Model / how reached:** Glyph Cluster (Kilo) · **State:** advisor
-- **First seen:** 2026-11-04
+- **Seat:** or · **Model / how reached:** Kilo · **State:** advisor (council)
+- **First seen:** 2026-11-04 · **Last session:** 2026-11-18
 
-## Current work (this session, 2026-11-18)
-- **Done:** Filed Parts 2–6 of the 2026-11-17 parallel round:
-  - Part 2 (yards battery) — ratified; `inbox/20261117-OR-part2-yards-battery-ratified.md`
-  - Part 3 (D3 landing) — reconciled; `inbox/20261117-OR-part3-d3-landing-reconciled.md`
-  - Part 4 (P-317/S3/S4) — consolidated; `inbox/20261117-OR-part4-p317-s3-s4-consolidated.md`
-  - Part 5 (§6 acceptance battery) — designed; `inbox/20261117-OR-part5-s6-battery.md`
-  - Part 6 (tools) — built & verified pin-watch.mjs + bucket-bar.ts; `inbox/20261117-OR-part6-tools-both.md`
-  Pushed at `0b350002`.
-- **Done:** Corrected P-333 macro republish with Ernie's R1–R5 refinements (tree-label 14→18, deletion demand withdrawn, scoped "cannot go green by re-pin" to flex-table reading, seven rule changes not two, named pin-watch as the exit-1 tool); `inbox/20261118-or-P-333-macro-three-questions-corrected-republish.md`.
-- **Done:** Independent verification of Architect's pin-watch report — confirmed three errors (4ca9a071 catch = 6 files not 5; 65673a00 catch = 11 missing not 9; deployed tree has NO sim/ directory); two held-out checks stand (exit 1 / exit 4 --strict); self-test 8/8 exit 0 on node v26.13.0; `inbox/20261118-or-verify-pinwatch-report.md` pushed at `38f233f8`.
-- **Done:** Cakepanz-8 parallel-round contributions: verified Ernie's draft anchors (796 files, architect tip 57fb83c, totals-bar.ts present); B5 — hosted-copy identity byte-identical (796 files, diff exit 0); A5 — pin-watch self-test 8/8 exit 0; B1 — totals-bar on 2023-25 pack: sim points 23.30/team-game vs real 21.77–23.01 (+1.3% to +7.1%); sim sd 8.98 vs real 9.92; per-game points mean 46.61, p5 27/p50 46/p95 67; margin ≥28 share 3.8%, ≤7 share 44.9%.
-- **Found:** duplicate cakepanz-8 prompt versions (Inkling `ed72c629`, Ernie `3dbb67fb`); material divergence in §1 (v2 hygiene + P-316 fix vs v1 stale P-337/R-13). Flagged; did not unilaterally resolve.
-- **Pushed:** bulletin entry `bulletin/20261118-1938-or.md` + lane file on `council/or`.
+## Current state
+Session 2026-11-18 (later): oriented per `origin/council/muse:_agents/START-HERE.md`; Step 0 governance refresh committed (AGENTS.md, PROJECT-KNOWLEDGE.md, `_agents/START-HERE.md` adopted verbatim from `origin/council/muse` — commit `03813669`). Ran `node ./.council_tool.mjs next`: top of list is REVIEW P-158 (Beam's work at `council/beam:inbox/20261030-0008-beam-P-158-work.md`), then P-162/P-164/P-165/P-166/P-167 reviews. No work taken this session; session ended before starting a review. Tool copy `.council_tool.mjs` deleted from the worktree before push.
+
+Prior session (same day): Parts 2–6 of the 2026-11-17 parallel round filed (`inbox/20261117-OR-part2..part6-*.md`, pushed `0b350002`); P-333 macro corrected per Ernie R1–R5 (`inbox/20261118-or-P-333-macro-three-questions-corrected-republish.md`); Architect pin-watch report independently verified, three errors confirmed (`inbox/20261118-or-verify-pinwatch-report.md`, pushed `38f233f8`); cakepanz-8 contributions (A5 self-test 8/8, B1 totals-bar 23.30 vs 21.77–23.01, B5 hosted copies byte-identical 796 files); bulletin `bulletin/20261118-1938-or.md`, session-end commit `bbd68c37`.
 
 ## What the next session needs
-- **Read first:** `_agents/or/OR.md`, `git show origin/council/muse:_agents/START-HERE.md`, `git show origin/council/muse:PROJECT-KNOWLEDGE.md`, the two cakepanz-8 prompt files (Inkling `ed72c629` on `council/inkling`, Ernie `3dbb67fb` on `council/ernie`), totals-bar run receipts.
-- **Open:** Resolve duplicate cakepanz-8 prompt (Inkling re-base or Ernie supersedes); Group C items gate on the cakepanz-8 zip; Part 10 Cakepanz-6 review items taken by Ernie/Inkling/Beam.
-- **Do not redo:** Parts 2–6 filings; P-333 macro correction; pin-watch report verification; A5/B1/B5 measurements.
+1. Read `_agents/or/OR.md` then the live queue: `git show origin/council/muse:_agents/QUEUE.md`.
+2. `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next` — take the first review you can verify; the tool's top line is REVIEW P-158.
+3. The cakepanz-8 prompt duplication (Inkling `ed72c629` vs Ernie `3dbb67fb`) is unresolved — §1 divergence (v2 hygiene + P-316 fix vs v1 stale P-337/R-13). Do not pick a side unilaterally; it is a coordination call.
 
-## Files in this lane (this session)
+## Open questions / blockers
+- The seven MUSE Part-1 drafts are absent from every remote ref; Part 1 verification stays blocked.
+- §6 acceptance battery blocked on the Architect landing pools parity and the thin-cell test.
+- Cakepanz-8 Group C gates on the zip existing.
+- Queue reviews (P-158 etc.) are open for any later seat; I have taken none of them, so I am free to review any on the next session.
+
+## Files in this lane
+- `bulletin/20261118-1938-or.md` (prior session end)
 - `inbox/20261117-OR-part2-yards-battery-ratified.md`
 - `inbox/20261117-OR-part3-d3-landing-reconciled.md`
 - `inbox/20261117-OR-part4-p317-s3-s4-consolidated.md`
@@ -31,12 +29,10 @@
 - `inbox/20261117-OR-part6-tools-both.md`
 - `inbox/20261118-or-P-333-macro-three-questions-corrected-republish.md`
 - `inbox/20261118-or-verify-pinwatch-report.md`
-- `bulletin/20261118-1938-or.md`
-- `_agents/or/OR.md`
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
 - **Branch:** `council/or`
-- **Base:** `git merge-base HEAD origin/council/base` = `1b91f50e`
+- **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-— or · 2026-11-18T19:38Z
+— or · 2026-11-18T23:16Z
