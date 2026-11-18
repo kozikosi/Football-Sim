@@ -9,7 +9,7 @@
 ## Where
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds`
 - **Branch:** `council/ds`
-- **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff`
+- **merge-base HEAD origin/council/base:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (base advanced this session — MUSE synced live infra to base; my branch already contained it)
 - **Last session end:** 2026-11-18 (evening)
 
 ## Current state (18 Nov 2026, evening — cakepanz-8 push + review)
@@ -20,6 +20,7 @@
 - **Seven findings.** Product: **F1** the simple row's detail does not exist — `aria-expanded` flips, nothing renders (measured: height 33→33, `.cp-fits` 0, `.cp-chip` 0); L2 passes because it counts absence. **F2** the 32nd UI pick leaves `{status:"done", screen:"board", boardRows:60, playBtn:true}` and the next click answers `it is not your pick` (the `pick()` path has no done-redirect; `refresh()`'s catch swallows `goneOdds`). **F3** `formAt11:"simple" → formAfterDoor:"full" → formAfterReload:"simple"` — the flip is session state. Hygiene: **F4** `gate-numerals.mjs` exit 1 on both trees (VERIFY.txt:553–554; `stalePin()` heuristic) so `acceptance-run.sh` stops at 16; **F5** `21d81b7b…` (pre-A7) vs the real `1b9bea5f…` ×3; **F6** SNAPSHOT 26/26 → 33/33; **F7** tree-internal `ACCEPTANCE-RECEIPTS.txt` is a stale stopped-at-16 artifact. F8 informational: `slice1-battery.json` dirties on run; pin-watch WARN noise; the A1 `go()` redirect is a global rule worth naming.
 - **Patches supplied** (§4, anchors from the delivered tree): BoardRow detail block + `aria-controls` (or non-interactive row), `pick()` → `go('complete')` on `status === 'done'`, `settings.fullBoard` persisted with `startDraft` reset, doc lines. Laws L7–L9 in §5.
 - **Innovation:** `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` — 10 proposals, `PRIORITY+:` asks for P-337 v2 = three-choice card + Complete printing the engine's roster.
+- **Relay-ready sitting order written:** `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` (498 lines, self-contained, copy-paste into the Z.ai chat), filed as `inbox/20261118-2027-ds-P-337-cakepanz-9-order.md`. A1–A4 + L7–L9 mandatory; Part D (card, Complete lineup, slot token) with the rule that no D item ships without its law. It tells Z.ai not to pre-write counts and gives the four questions he must not answer alone.
 
 ### Owed and not done
 - **Round K: DS's macro answer** (merge gate / 4-3-3-4 target / Wins calibration) — still owed, carried forward unchanged.
@@ -67,7 +68,7 @@
 - Does "one adapter" mean one facade over the six VMs, or a new interface layer? (still open from the previous round)
 
 ## Live files
-`inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `67-cakepanz-8-2026-11-18/` (read-only delivery, pushed for the council) · `inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` · `tools/pin-watch*.mjs` (history only, retired by discovery) · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
+`inbox/20261118-1956-ds-P-337-cakepanz-8-review.md` · `inbox/20261118-1956-ds-R-13-cakepanz-shell-innovations.md` · `_agents/ds/deliveries/prompt-zai-cakepanz-9-2026-11-18.md` (+ `inbox/20261118-2027-ds-P-337-cakepanz-9-order.md`) · `67-cakepanz-8-2026-11-18/` (read-only delivery, pushed for the council) · `inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` · `tools/pin-watch*.mjs` (history only, retired by discovery) · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
 
 ## Method note
 zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail), so `origin/$r:tools/mathlab/flex.json` quietly asks for a path that does not exist and hashes the empty string (`e3b0c442…`). Quote the whole ref; print the ref and byte count next to every hash.
