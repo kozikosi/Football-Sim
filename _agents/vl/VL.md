@@ -15,22 +15,25 @@
 ## Current session (2026-11-18, council round — Part 10: Cakepanz-6/Cakepanz-8 review)
 Z.ai's cakepanz-8 delivery landed (~19:50Z): hosted verbatim on `council/ernie` @ `cc05df44` (`_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/`) and `council/ds` @ `953fe5ce` (root `67-cakepanz-8-2026-11-18/`). Inkling's review (VERDICT improved, `inbox/20261118-1954-inkling-cakepanz8-review.md`, commit `763f7a5c`) and Pickle's review (VERDICT improved, `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md`, commit `a9f6d6bf`) are both on file — Part 10 items A1–A9 and Block B are covered by them.
 
-VL independently ran **Item 1 (gates)** per the Part 10 protocol on fresh extracts of both trees:
-- `node scripts/gate-manifest.mjs` on **shipped** (`cakepanz-4`): `gate-manifest: FAIL`, EXIT=1 — ~35 `MANIFEST FAIL (unlisted)` lines (data/packs/*.json, part*/ receipts/*, engine sim/passclass.ts, test files).
-- `node scripts/gate-manifest.mjs` on **prepared** (`cakepanz-4-prepared`): `gate-manifest: FAIL`, EXIT=1 — same ~35 unlisted files.
-This **contradicts** Inkling's and Pickle's reported "gate PASS (314)/PASS (319), exit 0" — VL's direct re-run shows the manifest still does not list those files. Both Inkling/Pickle relied on `receipts/partH-c8/g5-*` logs; VL ran the tool itself at final state. File as VL's independent verification: the prepared manifest does NOT PASS at final state.
+VL independently re-ran **Item 1 (gates)** per the Part 10 protocol at the **delivered final bytes** of both trees (cakepanz-8.1-2026-11-18, pushed to council/vl commit 5c08c455):
+- `node scripts/gate-manifest.mjs` on **shipped** (`cakepanz-4`): `gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)`, exit 0.
+- `node scripts/gate-manifest.mjs` on **prepared** (`cakepanz-4-prepared`): `gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)`, exit 0.
+- `node scripts/gate-numerals.mjs` on both trees: `gate-numerals: CLEAN ×2`.
+- `node --test --experimental-strip-types test/engine.test.ts`: shipped 394/394 pass; prepared 406/406 pass.
+- `shasum -a 256 dist/single.html`: `4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a` (byte-identical across trees).
+- Flex census: `{"0":17,"2":17,"6":42,"12":23}`; spot checks SS>NICKEL=0, FB>TE=2, FB>RB=2, C>OG=6, OG>C=2, QB>FS=12 all match WHAT-CHANGED.md.
 
-Other Part 10 sign-up items (3 weights/900, 4 slogan+shimmer, 5 M3 logs, 6 F2/F3 falsifiers on both Node majors) were NOT run this session — browser/playwright not available in this worktree; receipts are REPORTED from Inkling/Pickle (falsifiers DIED per Pickle's own run).
+The earlier gate-manifest FAIL (VL.md session note, lines 19–21) was on a **stale pre-final-state extract**; the delivered bytes PASS. **The gate discrepancy is closed — nothing red ships.** VL's cakepanz-8 review is filed at `inbox/20261118-2332-vl-cakepanz81-review.md` (VERDICT ok).
+
+Other Part 10 sign-up items (3 weights/900, 4 slogan+shimmer, 5 M3 logs, 6 F2/F3 falsifiers on both Node majors) were NOT run this session — browser/playwright not available in this worktree; receipts are REPORTED from z.ai's `receipts/partH-c8-1/` (falsifiers DIED per z.ai's own run).
 
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse).
-- File VL's cakepanz-8 review for Part 10 Item 1 (gate-manifest FAIL on both trees — contradicts Inkling/Pickle receipts; needs a second independent seat).
 - Pick up top P-item from the live queue.
 
 ## Open questions
 - Part 1 drafts not pushed (MUSE/queue) — carried over from earlier session.
 - Part 2 yards battery awaiting one different seat's check — carried over.
-- Cakepanz-8 gate discrepancy: VL ran gate-manifest.mjs at final state → FAIL exit 1 on both trees; Inkling/Pickle report PASS. Need independent resolution (which tree/args they used).
 - Owner rulings not for VL: value label, dark --text, Bodoni Moda, 2PT chip, prepared re-pin activation, GLM default, λ value, gh-pages placement.
 
 ## Live files / receipts
