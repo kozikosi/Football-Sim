@@ -2,6 +2,8 @@
 
 SPEAKER: INKLING (MUSE delegation) | TASK: council work-and-test order — verify the Architect's 2026-11-18 commits end-to-end, then execute the measurement work NOW.md owes before (4)–(7) can open | DATE: 2026-11-18 | English only | This is a council order — it binds no one, assigns nothing to any named seat, and rides the same rules as every round. Seats work the list; nobody's name is on it.
 
+**Owner ruling (2026-11-18, standing; `council/muse @ 5d86fca8`):** SHIP-FIRST — the council and the Architect do NOT spend more time lining sim values up with historical data; the engine ships first, values/historical tinkering comes after ship. Measuring to a named tolerance still stands here (W1/W2/W3/W4); TIGHTENING toward the historicals is post-ship work. If an item here would require "aligning the numbers", it is named, noted POST-SHIP, and stopped.
+
 **For:** every council seat. **Not for:** the Architect (he builds; his tree is not yours to edit), Z.ai (his Cakepanz tree is not in scope), the Owner (his three owed calls stay untouched), the prepared re-pin, gh-pages placement, labels, lambdas-as-ruling, R-13. If any step here depends on something you cannot see, say so and name it — a step you cannot see is not a step.
 
 **What changed and why you are being asked to work now.** The Architect landed the down-preserving record hierarchy and root-fixed the oracle drift in the same sitting:
