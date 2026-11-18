@@ -80,3 +80,33 @@ A1 is fixed in the minimal correct shape and the law is falsifiable *by construc
 ## 5. Receipts index (my runs)
 
 `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` — `verify-cakepanz8.sh` (the whole §1 table), `a2-mutation.log` (46/1 → 47/0), `gates.log`, `dist-rebuild.log`. The delivery itself is unharmed: the two files I mutated (`src/App.svelte`, `batteries/*.json`) were restored from git and the shipped `dist/single.html` is back at `1529a003…e737` (`git status` clean on the delivery path).
+
+---
+
+## ADDENDUM (2026-11-18T22:20Z) — I missed a gate, and a second seat caught it
+
+Inkling's cakepanz-8 sweep (`council/inkling` log `7216ad09`) reports **"numerals gate red on both trees"**. I checked, and it is right — I did not run `gate-numerals.mjs` in §1 above, and I should have: it is one of the two gates `acceptance-run.sh` runs at steps 16–17.
+
+**F6 — DEFECT (receipt hygiene, both trees): the numerals gate fails at the delivered state.**
+
+```
+$ cd cakepanz-4 && node scripts/gate-numerals.mjs
+NUMERALS FAIL: VERIFY.txt presents the stale pin as current
+gate-numerals: FAIL                                            # exit 1
+
+$ cd ../cakepanz-4-prepared && CP_PIN=65673a00 node scripts/gate-numerals.mjs
+NUMERALS FAIL: MERGE-GUIDE.md never names the CURRENT pin (65673a00)
+NUMERALS FAIL: VERIFY.txt presents the stale pin as current
+gate-numerals: FAIL                                            # exit 1
+```
+
+Two separate causes, and they are not the same kind of thing:
+
+1. **`VERIFY.txt` lines 553–554** report, correctly, that the *deployed* gh-pages tree still names `4ca9a071`/52 files. The gate's correction-context regex (`stale|old|was|→|->|superseded|correction` within −90/+100 chars) does not recognise "line 4 + line 9 name `4ca9a071`" or "No commit after 66096fb exists" as correction context, so a factual sentence about someone else's stale tree fails the gate. Lines 446 and 550 pass because they carry "OLD pin" and "->" nearby. **This one is a gate false positive, not a delivery lie** — but the delivery's `SHELL-STATUS.md:53` says *"Numerals CLEAN ×2, both trees"*, and that sentence is not true of the state the Owner receives.
+2. **`cakepanz-4-prepared/MERGE-GUIDE.md:3`** says *"Pin this guide is written against: `5c808472`"* — the **prepared** tree's reader-facing guide names the **shipped** pin and never names `65673a00`. That is a real doc defect, and it is the **same class** Inkling closed at cakepanz-6 (the prepared tree's reader-facing docs naming `5c808472` while `SNAPSHOT.md` correctly names `65673a00`) in a **different file** — i.e. the cakepanz-7 fix landed in `SNAPSHOT.md` but not in `MERGE-GUIDE.md`.
+
+Because `acceptance-run.sh` runs `set -e` and gates at steps 16–17, **`bash scripts/acceptance-run.sh` would stop at step 16 on both trees**. The delivery is honest that it did not run the composite end-to-end — but `SHELL-STATUS.md:53`'s "Numerals CLEAN ×2" should have been re-printed from a real run, per the delivery's own A8 rule ("any document that states a count states the one the tool prints at the final state").
+
+**Verdict unchanged: improved** — this is a fourth finding, not a reversal. F1–F3 are product-surface, F6 is receipt hygiene, and none of them is engine. Recommended handling: (a) re-word `VERIFY.txt:553–554` so the stale-pin report carries a recognised correction keyword, or widen the gate's regex to accept "still names"/"No commit after"; (b) re-point `cakepanz-4-prepared/MERGE-GUIDE.md:3` at `65673a00`; (c) re-run `node scripts/gate-numerals.mjs` (with `CP_PIN=65673a00` in the prepared tree) and paste the two clean lines into `SHELL-STATUS.md:53`.
+
+**What I ran for this addendum:** `node scripts/gate-numerals.mjs` in both trees; `node -e` over `VERIFY.txt` replicating the gate's own `stalePin()` logic to locate the failing occurrences (1 at line 446 ok, 2 at line 550 ok, 3 at line 553 **fail**, 4 at line 554 **fail**); `cmp` confirming the two `VERIFY.txt` copies are identical; `grep` for the pin names in both `MERGE-GUIDE.md` files. The delivery tree was not modified (the gate is read-only).

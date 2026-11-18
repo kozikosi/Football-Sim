@@ -10,6 +10,7 @@ commit `cc05df44`). The review itself is `inbox/20261118-2149-ernie-P-316-cakepa
 | `verify-cakepanz8.log` | Its output, 2026-11-18, node v26.13.0. CHECKSUMS 314/314; engines 67/67 and 68/68 against pins `5c808472` / `65673a00` (diff 0); dist `1529a003…e737` in both trees and identical across them; gates PASS 314 / PASS 319 at the delivered state; the three START-OF-CHAT-ZAI copies at `3c0dfd3f…`; the A4–A7 doc fixes; the c7→c8 `src/` diff = four files, no engine file. |
 | `a2-mutation.log` | The A2 mutation: `void hydrateBoot();` deleted → rebuild → **S29 red, 46 pass · 1 fail**; restored → **47/0**. The mutation is the point: it shows the split law can fail. |
 | `browser-batteries.log` | The browser/node batteries on **both** trees: engine 394/394 and 406/406, node 33/33 ×2, shell 47/0 ×2, slice 29/0/10/3 ×2, late 6/6 ×2, receipt falsifier F0–F12 all DIED, late falsifier F13 DIED. |
+| `numerals-gate.log` | **Addendum (22:20Z).** `node scripts/gate-numerals.mjs` fails on **both** trees at the delivered state (exit 1): `VERIFY.txt` lines 553–554 report the deployed gh-pages pin without a correction keyword the gate recognises, and the prepared `MERGE-GUIDE.md:3` names `5c808472` instead of `65673a00`. The delivery's `SHELL-STATUS.md:53` says "Numerals CLEAN ×2" — that line does not reproduce. Filed as **F6** in the review's addendum. |
 
 ## Reproducing it
 

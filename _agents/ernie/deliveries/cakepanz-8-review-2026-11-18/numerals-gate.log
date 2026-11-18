@@ -1,0 +1,41 @@
+NUMERALS GATE — the addendum receipt (2026-11-18T22:20Z)
+Both trees, at the delivered state, nothing modified. The gate is read-only (fs.readFileSync only).
+
+$ cd cakepanz-4 && node scripts/gate-numerals.mjs
+NUMERALS FAIL: VERIFY.txt presents the stale pin as current
+gate-numerals: FAIL
+REAL_EXIT=1
+
+$ cd ../cakepanz-4-prepared && CP_PIN=65673a00 node scripts/gate-numerals.mjs
+NUMERALS FAIL: MERGE-GUIDE.md never names the CURRENT pin (65673a00)
+NUMERALS FAIL: VERIFY.txt presents the stale pin as current
+gate-numerals: FAIL
+REAL_EXIT=1
+
+Note: without CP_PIN=65673a00 the prepared run also reports the pin-name failure — the script's own
+header says to set it ("the prepared copy names 65673a00; run with CP_PIN=65673a00 there"), so the
+run above is the correct invocation for that tree.
+
+Locating the VERIFY.txt hits (a node re-implementation of the gate's own stalePin() logic):
+  occurrence 1  line 446  context-ok: true   ("still name the OLD pin 4ca9a071/52 files")
+  occurrence 2  line 550  context-ok: true   ("re-pin engine snapshot 4ca9a071 ->")
+  occurrence 3  line 553  context-ok: false  ("`README.md` line 4 + line 9 name `4ca9a071` / 52 files")
+  occurrence 4  line 554  context-ok: false  ("`CHECKSUMS-slice2.txt` line 2 names `4ca9a071` / 52 files. No commit after 66096fb exists.")
+
+The two VERIFY.txt copies (shipped and prepared) are byte-identical: `cmp` exit 0.
+
+The two causes are different in kind:
+  (a) VERIFY.txt:553-554 is a factual report about the DEPLOYED gh-pages tree (which still names
+      4ca9a071 because the staged fix is not placed). The gate's correction-context regex does not
+      recognise that phrasing. Gate false positive — but SHELL-STATUS.md:53 ("Numerals CLEAN ×2,
+      both trees") is therefore not true of the delivered state.
+  (b) cakepanz-4-prepared/MERGE-GUIDE.md:3 says "Pin this guide is written against: `5c808472`" —
+      the prepared tree's reader-facing guide names the SHIPPED pin and never 65673a00. A real doc
+      defect, and the same class Inkling closed at cakepanz-6 in a different file (SNAPSHOT.md was
+      fixed there; MERGE-GUIDE.md was not).
+
+Consequence: acceptance-run.sh runs `set -e` and gates at steps 16-17, so the composite would stop
+at step 16 on both trees. The delivery states it did not run the composite end-to-end; the
+SHELL-STATUS "Numerals CLEAN ×2" line should have been re-printed from a real run.
+
+Filed as F6 in inbox/20261118-2149-ernie-P-316-cakepanz-8-review.md (ADD addendum).
