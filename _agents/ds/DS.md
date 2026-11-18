@@ -10,9 +10,22 @@
 - **Worktree:** `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-ds`
 - **Branch:** `council/ds`
 - **merge-base HEAD origin/council/base:** `1b91f50e161fa10d0607c8e09330115ffa27f1ff`
-- **Last session end:** 2026-11-17
+- **Last session end:** 2026-11-18
 
-## Current state (17 Nov 2026, GLM pass-class round)
+## Current state (18 Nov 2026 — session end)
+
+### What this session produced
+- **Governance repaired, not edited:** the START-OF-CHAT I was pointed at still says run `sync-base.sh`; the live `_agents/START-HERE.md` on `council/muse` says **do not** (base is the 2026-11-02 ghost). I ran sync-base first, it reverted `AGENTS.md`/`PROJECT-KNOWLEDGE.md` to the stale `4ca9a071`/97-rule state, and I then followed live Step 0 (`git checkout origin/council/muse -- …`) and committed it as `a1757beb`. Net: no content authored by me; the worktree now matches muse.
+- **`tools/pin-watch.mjs` + `tools/pin-watch-selftest.mjs` built, then retired by discovery:** commit `364ddc84`, 16/16 selftest assertions, live catch exit 1 (57 present vs 52 at `4ca9a071`; five tree-only files), control PASS (prepared Cakepanz-5 tree 68/68 at `65673a00`). Then I read the live 2026-11-18 prompt: pin-watch is canonical at `council/inkling` @ `0bd76860`, Beam's and Ernie's variants retired, VL's retired as a stale-layout competitor. **My variant is therefore history only — do not reconcile it.**
+- `inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` — the independent reproduction (counts, five extras, control), explicitly framed as corroboration of the canonical tool, not a delivery. Commit with this session's end.
+- **Round state moved under me:** my prompt was the 2026-11-17T23:20Z parallel round; `origin/council/muse` advanced to the 2026-11-18 Cakepanz-7 round (`d1150b90`), whose §1 says the seven Part-1 drafts were **withdrawn by Owner ruling**. I did not file the Part-1 blocker I had drafted — it would have been stale on arrival.
+
+### Owed and not done
+- **Round K: DS's macro answer** (merge gate / 4-3-3-4 target / Wins calibration). Named in the corroboration filing's OPEN line; still owed. This is the first item next session.
+- **Round L: one innovation per round** — not filed this session.
+- **Round J (W1/W3/W4 adoptions)** — not filed; W3 was applied inside my own filings (command on every VERIFIED line).
+
+## Previous state (17 Nov 2026, GLM pass-class round)
 
 ### Filed and pushed — the state-bucket headline
 - `inbox/20261117-2056-ds-GLM-state-bucket.md` (FOR: P-342), commit `0365a632`.
@@ -35,11 +48,11 @@
 - Verify **blob bytes** (`git cat-file blob HEAD:<p>`), never working-tree bytes.
 
 ## What the next session needs
-1. Read `inbox/20261117-2056-ds-GLM-state-bucket.md` first; the state-bucket result and the 1c verdict are the headline. Do not re-run 1a as a ritual.
-2. **Part 2** (yards-node acceptance battery) is the next filing — §5 form, no build/fit. Minimum: conformance to the frozen spec, within-class fidelity, no new holes, paired comparison inside ~10%, default-off, fault plants, must-nots.
-3. **Part 3d** (F2/F3) can be done now; 3a–3c/3e wait for Cakepanz-5. Do not re-review Cakepanz-4; do not edit Z.ai's tree.
-4. **Part 4a** (four box-score assertions: punt yards, touchdowns, first downs, interception spot), **4b** (gh-pages 9 fails), **4c** (Team Select slot checks), **4d** (save contract), **4e** (D6 if a fourth seat).
-5. If MUSE's two files are pushed: read the prompt from `council/muse`; my filing's `FOR: P-342` stands.
+1. Read the live round prompt first: `git show origin/council/muse:_agents/muse/deliveries/prompts-2026-11-05/council-cakepanz-7-parallel-2026-11-18.md` (or the newer one if the queue moved again). **Check the tip before working** — the 17 Nov prompt was superseded inside 24 h.
+2. **Round K — file DS's macro answer.** Three questions, evidence-first, no recommendation dressed as the Owner's call: (a) merge gate — the five checks, four fixes already documented; (b) 4-3/3-4 — the ~947 floor appears in no council filing, Ernie's EDGE→ILB=0 + EDGE→DT=2 combo gives gap 0 / bias +334, and "947 worse than 720" is a category error (720 = synthetic-fixture gap; real-roster bias ~1144/1185); (c) Wins calibration — policy→outcome exists since 5 Nov (greedy N=1000: 89.5% playoffs, 11.43 mean wins), the slope and the 20-0 rate do not.
+3. **Round L — one innovation.** Strongest candidate from this session: *a round prompt should carry a ref-preflight list and a "documented answer" check* — my whole Part 1 was unanswerable because the named drafts were withdrawn; one `git ls-tree` line in the prompt header would have saved the read.
+4. Do not rebuild pin-watch or bucket-bar variants. Canonical pin-watch `0bd76860`; bucket-bar is VL's `inbox/20261118-0300-…`, unverified by anyone but its author (round C).
+5. The 17 Nov lane content below stays as history — the state-bucket result and the 1c verdict are still the headline of my engine work.
 
 ## Open questions (mine, not the council's)
 - The source of the GLM sack bias: league drift vs model form. The score-state sign flip points to model form (INFERRED); the raw data + fit-window comparison is needed. Claude's source analysis is the open input.
@@ -47,7 +60,9 @@
 - Does "one adapter" mean one facade over the six VMs, or a new interface layer? (still open from the previous round)
 
 ## Live files
-`inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
+`inbox/20261118-1950-ds-P-355-pin-watch-corroboration.md` · `tools/pin-watch*.mjs` (history only, retired by discovery) · `inbox/20261117-2056-ds-GLM-state-bucket.md` · `_agents/ds/deliveries/glm-state-bucket-2026-11-17/` · `inbox/20261116-2102-ds-CAKEPANZ-SHELL-{pin,neutrality,seam}.md` · `inbox/20261115-1149-ds-direction-innovation.md` · `inbox/20261115-1132-ds-delivery-fix-relay.md`
 
 ## Method note
 zsh: `$r:tools/...` is a **parameter modifier** (`:t` = tail), so `origin/$r:tools/mathlab/flex.json` quietly asks for a path that does not exist and hashes the empty string (`e3b0c442…`). Quote the whole ref; print the ref and byte count next to every hash.
+
+**`sync-base.sh` is a trap on a worktree whose governance docs are newer than base.** It says "base wins on files you do not own", and `council/base` is the 2026-11-02 ghost, so running it silently rewrites `AGENTS.md`, `PROJECT-KNOWLEDGE.md` and `_agents/START-HERE.md` back to the `4ca9a071`/97-rule state. The live `START-HERE.md` §1 says **do not run it** and gives the Step-0 `git checkout origin/council/muse -- <four files>` instead. If a prompt still says "run sync-base", trust the live doc, and repair with Step 0 before reading anything.
