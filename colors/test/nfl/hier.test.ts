@@ -11,7 +11,7 @@ import { oldRecKeys, plantedOldLevels } from './oldhier.ts';
 
 // The play-record node is tested by what it DOES, not by how it is built (Inkling's pin 1, 18 Nov): after an offensive snap the chain's next down is 1, or this down + 1, or the drive has ended;
 // and a 4th-down try that does not end the drive must have given a first down. Real 2023-25 records: a failed 4th-down try goes on 0.2% (pass) / 0.0% (run) of the time. Any hierarchy that
-// reads a tuple across downs breaks this, whatever it is called or however many levels it has. No football number is pinned: only the bookkeeping that the pack itself guarantees.
+// reads a tuple across downs breaks this, whatever it is called or however many levels it has. No football number is pinned: only the bookkeeping that the pack itself guarantees. The 0.5% bars below are REGRESSION GUARDS, not targets: roughly 5 sigma above what a correct hierarchy shows at these counts (the whole-game arm sees ~4500 tries), so they catch a real regression and not noise, but they would pass a 0.4% rate against the real 0.0% for runs; the exact-mass tests are the tighter instrument (the product pack shows 0.0-0.3%).
 const load = (n: string): Pools => loadPools(makePack(JSON.parse(fs.readFileSync(new URL(`../../../data/packs/${n}.json`, import.meta.url), 'utf8')) as PackBody));
 const ERAS = ['nfl-pools-fit2016-2022', 'nfl-pools-fit2023-2025'] as const;
 const edgeIn = (edges: readonly number[], bin: number): number => (bin === 0 ? edges[0]! - 1 : edges[bin - 1]!);      // a value that falls in bin `bin` (a bin holds x with `bin` edges <= x)
