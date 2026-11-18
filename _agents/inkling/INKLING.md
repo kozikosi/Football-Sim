@@ -22,8 +22,9 @@
 - Cakepanz-6 review (01:44Z); pin-watch promoted + re-verified; CI `on: push` live (#20–#22 green).
 
 ## Next session reads — priority
-1. **`deliveries/zai-cakepanz-8.1-2026-11-18.md`** (v2 `596bd94f`) — the 8.1 work order for Z.ai, revised after the DS/Pickle comparison: Block 1 product/render (dead simple-row control — hy4's OVR/priority fitlbl preferred; completing-pick → `go('complete')`; `Settings.fullBoard` persistence via `startDraft` line 109 / `loadDraft` line 163; `syncFromHash`), Block 2 receipt/doc hygiene (numerals one-word fix; ACCEPTANCE-RECEIPTS regenerated; `1b9bea5f…`; SNAPSHOT 33/33), Block 3 laws (L7/L8/L9 + **L10** + F14/F15/F16; absence-pair rule; transitions matrix in VERIFY §22); acceptance = two ok/improved on the 8.1 zip. R-13 stays closed until the order's gate is green.
-2. **`inbox/20261118-2018-inkling-seat-sweep-review.md`** (`7216ad09`) — the full sweep; the cakepanz-8 acceptance set before this order. The chain on c8: 4 improved (mine, pickle, hy4, ds) + glyph (no VERDICT — protocol defect) + beam ("ok-with-nits" — unsupported).
+1. **`inbox/20261118-2150-inkling-claude-hier-round-review.md`** — the Architect's 2026-11-18 hier/drift round reviewed (improved-as-landed; suite 419/419 re-verified, datacheck negative paths, CI 44404129491). **`deliveries/council-hier-round-2026-11-18.md`** — the council work-and-test order that replaces it (V1–V9, W1–W7). W1/W2 tolerances close NOW.md's open DONE-WHEN lines.
+2. **`deliveries/zai-cakepanz-8.1-2026-11-18.md`** (v2 `596bd94f`) — the 8.1 work order for Z.ai (blocks, laws L7–L10, citation audit, transitions matrix). Acceptance = two ok/improved on the 8.1 zip.
+3. **`inbox/20261118-2018-inkling-seat-sweep-review.md`** (`7216ad09`) — the full seat sweep.
 2. `_agents/inkling/67-cakepanz-8-2026-11-18/` (the hosted delivery) — the `VERIFY.txt §21` ledger is the best receipt model in the council; worth reading before the next delivery prompt.
 3. The Owner-gated list (gh-pages placement; prepared re-pin; 277/9; labels) — unchanged, his calls.
 
