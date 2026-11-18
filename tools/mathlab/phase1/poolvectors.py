@@ -9,6 +9,7 @@ from collections import Counter
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np
 import sim as S
+import datacheck
 from pack import prep, build_records, build_kicks
 
 def fmt(x):
@@ -23,8 +24,9 @@ def span(s):
     a, b = s.split('-'); return list(range(int(a), int(b) + 1))
 
 def main():
-    ap = argparse.ArgumentParser(); ap.add_argument('--train', required=True); ap.add_argument('--kick', required=True); ap.add_argument('--out', required=True); ap.add_argument('--states', type=int, default=700)
+    ap = argparse.ArgumentParser(); ap.add_argument('--train', required=True); ap.add_argument('--kick', required=True); ap.add_argument('--out', required=True); ap.add_argument('--states', type=int, default=700); ap.add_argument('--allow-data-drift', action='store_true')
     a = ap.parse_args()
+    datacheck.require(sorted(set(span(a.train) + span(a.kick))), a.allow_data_drift)
     tr = prep(span(a.train)); R = build_records(tr)
     K = build_kicks(tr); K = K[K.season.isin(span(a.kick))]
     P = S.Pack(R, K, dict(p_go2=0, p_make2=0, p_make1=0), minn=25, minn_clock=20, clock='dt_f')

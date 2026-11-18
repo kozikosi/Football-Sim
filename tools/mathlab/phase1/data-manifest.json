@@ -1,0 +1,46 @@
+{
+ "note": "Source-data identity for the packs and conformance vectors. nflverse REPUBLISHES these release files in place: on 12 Nov the 2023 file was 20,534,088 B (matched MUSE P-344); on 18 Nov it was 21,818,016 B, and one 2016-22 play had a different clock delta (7 s -> 3 s) and one more 2018-22 kickoff row, which is why the oracle stopped reproducing the committed 2016-22 vectors (hier-fix follow-up, 18 Nov). Packs and vectors are valid only for the data revision recorded here; bake.py and poolvectors.py refuse to run on different data unless --allow-data-drift is passed. When nflverse changes the files, re-fetch, re-bake EVERY pack, regenerate EVERY vector file in one commit, and update this manifest in that commit.",
+ "revision": "2026-11-18 (the files fetched by fetch.sh on that day)",
+ "files": {
+  "play_by_play_2016.parquet": {
+   "bytes": 20586714,
+   "sha256": "093913c52f49f4e7d23080f2d7462d24d0cd952b8e3f9c936323ee51e1cd659f"
+  },
+  "play_by_play_2017.parquet": {
+   "bytes": 20268931,
+   "sha256": "21ff41abc6043cce68829bad2f2cbae100cb41aa106ca6cf9c93b35856e51ab6"
+  },
+  "play_by_play_2018.parquet": {
+   "bytes": 20269122,
+   "sha256": "f04d65f5993a0a982de4de5fbafd2fbf7c1649470f59de128fd17d924d38c5d3"
+  },
+  "play_by_play_2019.parquet": {
+   "bytes": 20363228,
+   "sha256": "54396ede038f0b2c43f17be2ac550ac06ba21e4317f0da64c99e1e3bd4117681"
+  },
+  "play_by_play_2020.parquet": {
+   "bytes": 20511734,
+   "sha256": "13704b508fcef4a127e363c7f280b04ea7b41efe2002e238d0a0de1ce1b7ef76"
+  },
+  "play_by_play_2021.parquet": {
+   "bytes": 21543859,
+   "sha256": "0d0222bdfc56af39e43f82cff0d02f47e2b5311776daf59a89254dd12e5e9f20"
+  },
+  "play_by_play_2022.parquet": {
+   "bytes": 21678701,
+   "sha256": "167dff9290b11a47822157443af586877b38de1b6a90e41f95ac52e524cf4bb3"
+  },
+  "play_by_play_2023.parquet": {
+   "bytes": 21818016,
+   "sha256": "e8200fde627d460975cfe5d91c355702fcf931b747671d4e5eb972270265ec88"
+  },
+  "play_by_play_2024.parquet": {
+   "bytes": 21665399,
+   "sha256": "6e6996601f9c29dd10c8d6a15eca255b836ba1dd4718f12bfb69137da1e07c1e"
+  },
+  "play_by_play_2025.parquet": {
+   "bytes": 21583710,
+   "sha256": "6b7f629136def21702592bf7d70876d746aafe3207c675d9920632e9d7fd6d2d"
+  }
+ }
+}

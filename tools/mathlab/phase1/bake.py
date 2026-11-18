@@ -1,5 +1,5 @@
 # Phase 1 pack baker (1c): turns the stratified pools of REAL penalty-free plays (pack.py) into a JSON-plain pack the TypeScript engine loads.
-# usage: sh fetch.sh && python3 -I bake.py --train 2016-2022 --kick 2018-2022 --id nfl-pools-fit2016-2022 --date 2026-11-15 --out ../../../data/packs/nfl-pools-fit2016-2022.json
+# usage: sh fetch.sh && python3 -I datacheck.py && python3 -I bake.py --train 2016-2022 --kick 2018-2022 --id nfl-pools-fit2016-2022 --date 2026-11-15 --out ../../../data/packs/nfl-pools-fit2016-2022.json
 # The pools are stored as (cell, outcome-tuple, count) rows, not as 258k raw plays: sampling a cell uniformly over plays is the same distribution as
 # sampling a unique tuple by count, so the baked pack is EXACTLY the Python pools (checked by test/nfl/pools-pack.test.ts against the pack's own counts).
 # Everything the TS loader needs to cut a state into a cell (the bin edges) is pack DATA here, so Python and TS cannot disagree on a threshold.
@@ -8,6 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import numpy as np, pandas as pd
 from pack import prep, build_records, build_kicks
 import sim as S
+import datacheck
 
 def tmb_v(qtr, hs):
     t = np.where(hs <= 40, 0, np.where(hs <= 120, 1, np.where(hs <= 300, 2, np.where(hs <= 600, 3, np.where(hs <= 900, 4, 5)))))
@@ -108,7 +109,9 @@ def span(s):
     a, b = s.split('-'); return list(range(int(a), int(b) + 1))
 if __name__ == '__main__':
     ap = argparse.ArgumentParser(); ap.add_argument('--train', default='2016-2022'); ap.add_argument('--kick', default='2018-2022'); ap.add_argument('--id', default='nfl-pools-fit2016-2022'); ap.add_argument('--out', required=True); ap.add_argument('--date', default=datetime.date.today().isoformat())
+    ap.add_argument('--allow-data-drift', action='store_true')
     a = ap.parse_args()
+    datacheck.require(sorted(set(span(a.train) + span(a.kick))), a.allow_data_drift)
     body = bake(span(a.train), span(a.kick), a.id, a.date)
     os.makedirs(os.path.dirname(os.path.abspath(a.out)), exist_ok=True)
     with open(a.out, 'w') as f: json.dump(body, f, separators=(',', ':'), sort_keys=True)
