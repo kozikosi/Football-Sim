@@ -1,0 +1,336 @@
+{
+  "shots": [
+    [
+      "light-1180-before-team",
+      "eb82e412090f01fff25b1ad9e300fd8eb4dc6e6ecfbf5f836bdade9725984384"
+    ],
+    [
+      "light-1180-ravens-board",
+      "3e1f46c5ba3078649f34b1e31c199d2c91992b574006a4879e151ee10e812cdf"
+    ],
+    [
+      "light-1180-ravens-team",
+      "2992f439c3224dd6edf722ec945e3e0f585add68fbab7c2e87f0f1a33a9d50e7"
+    ],
+    [
+      "light-1180-niners-team",
+      "866ba4befeae73dfb4fc937792bbcce8a19529905ba78b6c31a0513b3e21dcd8"
+    ],
+    [
+      "light-390-before-team",
+      "2ccd1ab4f5633cba9026a308f0611647fd2dbaaccaff70b18d6db3dd99b7e834"
+    ],
+    [
+      "light-390-ravens-board",
+      "79b26f33b52608ca86a1f1c025ed0625a65568d3b9eed3e873c3688045a6e971"
+    ],
+    [
+      "light-390-ravens-team",
+      "e9142f1e09c9885873d91444b1a1d612f24839e3514c20e2fc7820f5242aa0d5"
+    ],
+    [
+      "light-390-niners-team",
+      "653ec266e1e5a31db592cf9eb3ff22086e9f3f73b008fbf9fbceb8b3a65eba7c"
+    ],
+    [
+      "dark-1180-before-team",
+      "3ae55bdaeac8d3fb8924d8edcbbb7ea79a22ffc6cb92c3a92a926a046b9961aa"
+    ],
+    [
+      "dark-1180-ravens-board",
+      "652e7df5f94d7342031d77bd924c46fa3b3c60ce288d328a273f72d1153680ff"
+    ],
+    [
+      "dark-1180-ravens-team",
+      "86ab2f37f335c523ec610ab30f86b4bf833577984753625fbe6b9a183e4f0d45"
+    ],
+    [
+      "dark-1180-niners-team",
+      "a2a12db1eaf2408849e2742c7fd5fe8ac38348950e9a79d036bfec56b178f6ac"
+    ],
+    [
+      "dark-390-before-team",
+      "e14ce9d961f950aab41cdddc5d3274a4c0cd1313e1c7213476a4a94f4849e399"
+    ],
+    [
+      "dark-390-ravens-board",
+      "2c7f070465bc7e649264895c98f6b49f22c6875e1e92e411f944d8d2466aeee3"
+    ],
+    [
+      "dark-390-ravens-team",
+      "844889aaa7e895e38dfd3144ed944ee4d514ac2cd724a215d3bad84b3f905835"
+    ],
+    [
+      "dark-390-niners-team",
+      "d6ce549c90e19d6467bc83271e757e6d6a84713aba930e100f1f43ef2e564254"
+    ]
+  ],
+  "laws": [
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "zcream-never-recolored",
+      "ok": true,
+      "detail": "before=rgb(83, 56, 43) ravens=rgb(83, 56, 43) niners=rgb(83, 56, 43)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "body-base-untinted",
+      "ok": true,
+      "detail": "bg rgb(253, 242, 246) stays; ink rgb(142, 85, 102) stays"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "brand-ink-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(230, 198, 125) ravens=rgb(36, 23, 115) niners=rgb(170, 0, 0)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "nav-border-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(230, 198, 125) ravens=rgb(36, 23, 115) niners=rgb(185, 83, 83)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "panel2-whisper-changed",
+      "ok": true,
+      "detail": "before=rgb(249, 233, 240) ravens=color(srgb 0.974235 0.972706 0.983529) niners=color(srgb 0.99 0.97 0.97)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "hairline-changed",
+      "ok": true,
+      "detail": "before=rgb(230, 195, 210) ravens=color(srgb 0.498588 0.450902 0.666745)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "brand-gradient-carries-team",
+      "ok": true,
+      "detail": "the resolved ramp holds the team accent (linear-gradient(92deg, rgb(144, 113, 11), rgb(39, 32, 80) 24%, rgb(36, 2…)"
+    },
+    {
+      "mode": "light",
+      "vp": "1180",
+      "name": "attribute-carries-team",
+      "ok": true,
+      "detail": "ravens=Baltimore Ravens niners=San Francisco 49ers"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "zcream-never-recolored",
+      "ok": true,
+      "detail": "before=rgb(83, 56, 43) ravens=rgb(83, 56, 43) niners=rgb(83, 56, 43)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "body-base-untinted",
+      "ok": true,
+      "detail": "bg rgb(253, 242, 246) stays; ink rgb(142, 85, 102) stays"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "brand-ink-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(230, 198, 125) ravens=rgb(36, 23, 115) niners=rgb(170, 0, 0)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "nav-border-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(230, 198, 125) ravens=rgb(36, 23, 115) niners=rgb(185, 83, 83)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "panel2-whisper-changed",
+      "ok": true,
+      "detail": "before=rgb(249, 233, 240) ravens=color(srgb 0.974235 0.972706 0.983529) niners=color(srgb 0.99 0.97 0.97)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "hairline-changed",
+      "ok": true,
+      "detail": "before=rgb(230, 195, 210) ravens=color(srgb 0.498588 0.450902 0.666745)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "brand-gradient-carries-team",
+      "ok": true,
+      "detail": "the resolved ramp holds the team accent (linear-gradient(92deg, rgb(144, 113, 11), rgb(39, 32, 80) 24%, rgb(36, 2…)"
+    },
+    {
+      "mode": "light",
+      "vp": "390",
+      "name": "attribute-carries-team",
+      "ok": true,
+      "detail": "ravens=Baltimore Ravens niners=San Francisco 49ers"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "zcream-never-recolored",
+      "ok": true,
+      "detail": "before=rgb(242, 231, 213) ravens=rgb(242, 231, 213) niners=rgb(242, 231, 213)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "body-base-untinted",
+      "ok": true,
+      "detail": "bg rgb(30, 17, 25) stays; ink rgb(142, 85, 102) stays"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "brand-ink-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(232, 200, 126) ravens=rgb(133, 117, 227) niners=rgb(255, 14, 14)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "nav-border-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(232, 200, 126) ravens=rgb(133, 117, 227) niners=rgb(214, 153, 153)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "panel2-whisper-changed",
+      "ok": true,
+      "detail": "before=rgb(53, 32, 45) ravens=color(srgb 0.171608 0.112667 0.163647) niners=color(srgb 0.185961 0.100549 0.138588)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "hairline-changed",
+      "ok": true,
+      "detail": "before=rgb(74, 48, 64) ravens=color(srgb 0.36 0.301961 0.573333)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "brand-gradient-carries-team",
+      "ok": true,
+      "detail": "the resolved ramp holds the team accent (linear-gradient(92deg, rgb(158, 124, 12), rgb(125, 114, 197) 24%, rgb(13…)"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "attribute-carries-team",
+      "ok": true,
+      "detail": "ravens=Baltimore Ravens niners=San Francisco 49ers"
+    },
+    {
+      "mode": "dark",
+      "vp": "1180",
+      "name": "near-black-primary-lifts-in-dark",
+      "ok": true,
+      "detail": "t1L=#241773 t1D=#8575e3 (both ride inline; the dark block picks t1D)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "zcream-never-recolored",
+      "ok": true,
+      "detail": "before=rgb(242, 231, 213) ravens=rgb(242, 231, 213) niners=rgb(242, 231, 213)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "body-base-untinted",
+      "ok": true,
+      "detail": "bg rgb(30, 17, 25) stays; ink rgb(142, 85, 102) stays"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "brand-ink-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(232, 200, 126) ravens=rgb(133, 117, 227) niners=rgb(255, 14, 14)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "nav-border-changed-per-team",
+      "ok": true,
+      "detail": "before=rgb(232, 200, 126) ravens=rgb(133, 117, 227) niners=rgb(214, 153, 153)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "panel2-whisper-changed",
+      "ok": true,
+      "detail": "before=rgb(53, 32, 45) ravens=color(srgb 0.171608 0.112667 0.163647) niners=color(srgb 0.185961 0.100549 0.138588)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "hairline-changed",
+      "ok": true,
+      "detail": "before=rgb(74, 48, 64) ravens=color(srgb 0.36 0.301961 0.573333)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "brand-gradient-carries-team",
+      "ok": true,
+      "detail": "the resolved ramp holds the team accent (linear-gradient(92deg, rgb(158, 124, 12), rgb(125, 114, 197) 24%, rgb(13…)"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "attribute-carries-team",
+      "ok": true,
+      "detail": "ravens=Baltimore Ravens niners=San Francisco 49ers"
+    },
+    {
+      "mode": "dark",
+      "vp": "390",
+      "name": "near-black-primary-lifts-in-dark",
+      "ok": true,
+      "detail": "t1L=#241773 t1D=#8575e3 (both ride inline; the dark block picks t1D)"
+    },
+    {
+      "mode": "cross",
+      "vp": "1180",
+      "name": "ravens-accent-differs-by-mode",
+      "ok": true,
+      "detail": "light=rgb(36, 23, 115) dark=rgb(133, 117, 227) (the --gold2 token)"
+    },
+    {
+      "mode": "cross",
+      "vp": "390",
+      "name": "ravens-accent-differs-by-mode",
+      "ok": true,
+      "detail": "light=rgb(36, 23, 115) dark=rgb(133, 117, 227) (the --gold2 token)"
+    },
+    {
+      "mode": "cross",
+      "vp": "1180",
+      "name": "niners-accent-differs-by-mode",
+      "ok": true,
+      "detail": "light=rgb(170, 0, 0) dark=rgb(255, 14, 14) (the --gold2 token)"
+    },
+    {
+      "mode": "cross",
+      "vp": "390",
+      "name": "niners-accent-differs-by-mode",
+      "ok": true,
+      "detail": "light=rgb(170, 0, 0) dark=rgb(255, 14, 14) (the --gold2 token)"
+    }
+  ]
+}
