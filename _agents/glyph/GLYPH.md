@@ -3,8 +3,8 @@
 **Path:** `/Users/kosi/Desktop/wt/glyph`  
 **Branch:** `council/glyph`  
 **Role:** verifier/reviewer/organizer (advisory). No product-file, governance, queue, protected-constant, or other-seat edits. Never force-push; never stash.  
-**Identity:** glyph (not retired; `_agents/RETIRED.txt` checked this session).  
-**merge-base (HEAD, origin/council/base):** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (VERIFIED 2026-11-18T19:38Z).
+**Identity:** glyph (not retired; `_agents/RETIRED.txt` checked 2026-11-18).  
+**merge-base (HEAD, origin/council/base):** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (VERIFIED 2026-11-18T23:18Z).
 
 ## BOOT — read this first, every session
 1. `git fetch -q origin` then START-HERE §1 Step 0 (refresh governance docs from `origin/council/muse`): `git status --porcelain -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md` must be clean, then `git checkout origin/council/muse -- AGENTS.md PROJECT-KNOWLEDGE.md _agents/START-HERE.md _agents/START-OF-CHAT.md`; confirm staged diff lists only those four. Until run, treat governance docs as REPORTED. Do not run `sync-base.sh`.
@@ -12,26 +12,29 @@
 3. Live queue/tool/docs on `origin/council/muse`: `git fetch -q origin && git show origin/council/muse:tools/council.mjs > ./.council_tool.mjs && node ./.council_tool.mjs next` (delete temp tool before push).
 4. `node tools/preserve.mjs check`.
 
-## Current state (session end 2026-11-18T19:38Z, glyph)
+## Current state (session end 2026-11-18T23:18Z, glyph)
 - **Worktree:** `/Users/kosi/Desktop/wt/glyph`, branch `council/glyph`, git common dir `/Users/kosi/Desktop/Football Sim/.git`.
-- **Orient (VERIFIED):** start-of-chat flow followed (`origin/architect/engine-and-seats:_agents/START-OF-CHAT.md`), `sync-base.sh` up to date with `council/base` (`864a6aa1`), glyph worktree clean in preserve check; read AGENTS/PROJECT-KNOWLEDGE (tail)/COUNCIL-BULLETIN (CURRENT ROUND)/V23-OWNER-REQUESTS/lane. `council.mjs` fetched from architect branch (236 lines); `node /tmp/council.mjs next` returned no actions (REPORTED).
-- **Tip before this end-of-chat commit:** `origin/council/glyph@1f97d4569e8dd07e1007eb7b0711dc6141f9e4b0` (VERIFIED by local+ls-remote match at session end pre-commit).
+- **Tip (VERIFIED this session end):** `origin/council/glyph@64ebb926f4c63f9dfee358b0e34ac0906b4950e4` (HEAD == ls-remote before this end-of-chat commit).
 - **Published this session (VERIFIED, pushed):**
-  - `8c469c73e07564e0eaa0a2710ccb4ec27a49d1c4` — copied `/Users/kosi/Desktop/Football Sim/67-cakepanz-7-2026-11-18` (796 files, ~33M, no `node_modules`) to `_agents/glyph/deliveries/67-cakepanz-7-2026-11-18` and pushed `council/glyph`.
-  - `1f97d4569e8dd07e1007eb7b0711dc6141f9e4b0` — `inbox/20261118-0804-glyph-verify-pinwatch-math-review.md` (MUSE-delegation verification of Architect pin-watch report; see below).
-- **Reviews/verifications performed (read-only; claims labeled in filings/messages):**
-  - Reviewed `67-cakepanz-7-2026-11-18` delivery (REPORTED by bundled receipts, inspected): Slice 3 hydration/N25-N26-N27, shipped pin `5c808472` + prepared `65673a00` (not activated), gates 311/316, shell 46/0, slice 29/0/10/3, falsifiers F0–F10 died, gh-pages fix staged/unplaced. Caveats: mixed `receipts/partF-c7/d1-fresh-clone-c7.log` vs “green end-to-end” claim, deployed 277/9 flex-expectation gap remains owner/architect-gated.
-  - Reviewed other seats’ cakepanz-7 activity (VERIFIED via remote refs/trees): **Inkling** filed explicit review `origin/council/inkling@3d267765` `inbox/20261118-0745-inkling-cakepanz7-review.md` (`VERDICT ok — with nits`; live gh-pages still `66096fb` naming `4ca9a071`/52). **Beam** `3e74652b` and **Ernie** `ee8f39c9` hosted full copies (no cakepanz-7 verdict files found in searched paths); **Muse** posted cakepanz-7 prompts/planning only. No other cakepanz-7 verdict reviews found in fetched seat-tip scan.
-  - Pin-watch promotion/live-catch checked locally: `origin/architect/engine-and-seats@1aa7fb3a` promotes `tools/pin-watch.mjs` byte-identical to `0bd76860`; CI self-test gate wired in `.github/workflows/ci.yml` (no continue-on-error, fetches `65673a00…`, runs `--self-test --pin 65673a00…`), GitHub run outcome UNKNOWN. Live `origin/gh-pages@66096fb1:67-cakepanz` (57 engine files): `--pin 4ca9a071` exit 3 (5 extra, 6 shared engine diffs + flex table differ), `--pin d3bd81d2` exit 0 / `--strict` exit 4 (README:4,9,11 + CHECKSUMS-slice1.txt:2,slice2.txt:2 name `4ca9a071`), `--pin 65673a00` exit 3 (11 missing, 9 content diffs; no `sports/nfl/sim/` in deployed tree). Self-test `ALL FIXTURES BEHAVE` (node v26.13.0). Filed `inbox/20261118-0804-glyph-verify-pinwatch-math-review.md` confirming Inkling corrections on Items 1–3 and Architect claims 4a/4b.
-  - Architect pools-node update reviewed read-only: `origin/architect/engine-and-seats@57fb83c2` (down-preserving record hierarchy, oracle+TS+vectors/tests/report/NOW updated; `Pools.rec`/`recKeys`, no `recDown`; outcome-shaped `hier.test.ts` + planted `oldhier.ts`; replay pin moved; GLM default/sacks untouched; totals-vs-real and 2016–22 `clockLate`/`kick_digest` cause noted UNKNOWN). Tests/build not rerun.
-  - Parallel-round prompts: Inkling `ed72c629` (`deliveries/council-parallel-round-cakepanz-8-2026-11-18.md`, §1 reflects v1/P-337+R-13) on `council/inkling`; Ernie `3dbb67fb` (`_agents/ernie/deliveries/prompts-2026-11-18/council-parallel-round-cakepanz-8.md`, v2 hygiene+P-316 fix scope, A1–A7/B1–B5/C corrections). CI runs `44266214860`/`44351214198`/`44262444359` all success (VERIFIED via `gh run view`). Recommendation (INFERRED): do not circulate both; treat Ernie `3dbb67fb` as canonical/carry supersession pointer (Inkling/MUSE/Owner action) — no posting action taken.
-  - A5 datapoint: `node pin-watch.mjs --self-test --pin 65673a009b29035e8dc993279be656f12aa40a13` pass (node v26.13.0, scratch tool).
+  - `e27df3d99952f35b6fa661b15f5d0fb39c953759` — published `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/` (copy of `/Users/kosi/Desktop/Football Sim/67-cakepanz-8-2026-11-18`; 1006 files, no `node_modules`/.git inside). Pins reported/held: shipped `5c808472` (67 files), prepared `65673a00` (68 files, NOT ACTIVATED); GLM off; gh-pages fix not placed; Block C (R-13) not started.
+  - `a0a127baeae2af398ca65db9c86db3953eec8813` — `inbox/20261118-2005-glyph-cakepanz-8-review-and-ideas.md` (thorough cakepanz-8 review + UI/UX ideas).
+  - `bf437466172df051df63c954307575e480febc33` — `inbox/20261118-2205-glyph-cakepanz8-seats-synthesis.md` (cross-seat synthesis, consolidated findings, prioritized fixes/brainstorm).
+  - `5a419203f0625fe82a0368b2e0e58bab868f5d5b` — `inbox/20261118-2235-glyph-inkling-hier-round-review.md` (Inkling hier/drift round review).
+  - `64ebb926f4c63f9dfee358b0e34ac0906b4950e4` — `bulletin/20261118-2232-glyph.md` (Owner directive broadcast); board `INFO` to `ALL` posted (id `board_4e78811f-4218-433d-bf52-6c3374d87c22`, stored; no delivery/read/action guarantee).
+- **Key findings (REPORTED unless noted):** cakepanz-8 A1/A2/Block B anchors and spot-checked receipts as in synthesis inbox (b1 engine diff clean; A2 red 46/1 S29, green 47/0; F0–F12/F0-late/F13-late died; gates PASS 314/319; fresh-clone ends green). Convergent nits: `simpleOff` not persisted/restored, simple-row detail affordance/copy, `syncFromHash()` bypasses router normalization, sort vs displayed rec number in simple mode, receipt tail-green/attempt gate, `Hub.svelte` week-class precedence. Cross-seat reviews seen: Inkling/Beam/Pickle verdict inboxes; Ernie/DS hosted copies without verdicts found. Inkling hier/drift (`ab5c3085`) vs Architect `5d018f52`,`ea48005c`: glyph verdict ok, nothing blocking (name-only diff empty, golden 2023-25 unchanged, datacheck 0/3/3 reproduced, CI run 44404129491 success).
+- **Owner directive (FACT, 2026-11-18):** prioritize finishing engine and shipping over super-aligned sim-vs-historical tuning; defer deep historical-alignment/value-tuning to post-ship unless required for correctness/acceptance.
 
-## Open gaps / next useful actions
-- If needed, confirm remote tip for `1f97d456`/this session-end commit via `git fetch origin && git ls-remote --heads origin council/glyph`.
-- Continue queue-driven reviews from `origin/council/muse` (`node ./.council_tool.mjs next`); no actions surfaced this session.
-- Optional follow-ups (read-only/receipt-backed): A6 prepared-tree doc staleness, A7 hosted-copy true diff, P-344 reviewer work, totals-bar rerun with both packs at higher N, B2 277/9 list/snippet staging as inbox patch (owner/architect decision only). Do not place gh-pages fix, activate prepared re-pin, or touch engine/product/protected constants.
-- Carry-forward unknowns: GitHub Actions gate execution, cakepanz-7 D-1 log reconciliation, deployed 277/9 re-point decision, prepared activation decision, totals/margins after pools fix, 2016–22 oracle `clockLate`/`kick_digest` cause.
+## Open gaps / next session needs
+1. **Priority lens:** take queue-driven work from `origin/council/muse` (`node ./.council_tool.mjs next`) biased toward engine-completion/shipping; defer non-blocking historical-accuracy tuning (margins/sacks/lambda/GLM-vs-pool fine-tuning) unless required for correctness/acceptance.
+2. **If continuing cakepanz-8 polish (render/receipt-layer only, no engine/pin moves):** persist/restore `simpleOff` with reload-covering law, fix simple-row detail affordance/copy, route `syncFromHash()` through `go()`/router normalization, align simple-mode sort vs displayed rec number, add receipt tail-green/attempt gate and parenthesize `Hub.svelte` week-class condition. Keep engine tree/pins untouched.
+3. **Not rerun by glyph (REPORTED/data-gated, secondary per directive):** full cakepanz-8 browser/acceptance/fresh-clone suites; Inkling hier/drift full `npm ci && npm test` 419/419, tsc 89, build, totals-bar reruns, classpath execution, nflverse-dependent proofs. Deployment/policy (gh-pages fix, prepared activation, Block C R-13, late-mode threshold, etc.) remain Owner/Architect decisions.
+
+## Live/relevant files
+- `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/` — published cakepanz-8 copy + receipts.
+- `_agents/glyph/inbox/20261118-2005-glyph-cakepanz-8-review-and-ideas.md`, `_agents/glyph/inbox/20261118-2205-glyph-cakepanz8-seats-synthesis.md`, `_agents/glyph/inbox/20261118-2235-glyph-inkling-hier-round-review.md` — this session’s reviews/synthesis.
+- `bulletin/20261118-2232-glyph.md` — Owner directive broadcast (session bulletin).
+- `_agents/glyph/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/App.svelte`, `src/lib/components/{BoardRow.svelte,DraftBoard.svelte,BoardFooter.svelte}`, `src/lib/screens/Hub.svelte`, `src/lib/port/hydrateApp.ts` — key cakepanz-8 UI/hydration anchors.
+- `origin/council/inkling` (`ab5c3085`) and `origin/architect/engine-and-seats` (`5d018f52`, `ea48005c`) — hier/drift round refs reviewed.
 
 ## Standing rules
 - Byte-check everything: VERIFIED = `ref@sha + path + command + hash/output`.
