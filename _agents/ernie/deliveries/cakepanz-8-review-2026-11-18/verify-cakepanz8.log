@@ -1,0 +1,68 @@
+
+== node: v26.13.0  npm: 11.20.0
+
+== 1. CHECKSUMS (shipped tree, 314 expected)
+files OK: 314
+
+== 2. engine byte-identity vs the pins (git hash-object of every file vs git ls-tree of colors/src)
+pin 5c808472: pin files 67 · tree files 67 · diff lines 0
+pin 65673a00: pin files 68 · tree files 68 · diff lines 0
+
+== 3. dist/single.html sha256 (expect 1529a003...e737 in both trees)
+1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/dist/single.html
+1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4-prepared/dist/single.html
+dist cross-tree: identical
+
+== 4. flex.json identical across the trees
+flex.json: identical
+
+== 5. A1 fix present (App.svelte: the go() redirect + the unconditional go('hub'))
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/App.svelte:95:    if (s === 'board' && store.getState().status === 'done') s = 'complete';
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4-prepared/src/App.svelte:95:    if (s === 'board' && store.getState().status === 'done') s = 'complete';
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/App.svelte:200:      go('hub');                                                               // a resumed season always lands home (A1, cakepanz-8: the season outranks the finished draft's screen)
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4-prepared/src/App.svelte:200:      go('hub');                                                               // a resumed season always lands home (A1, cakepanz-8: the season outranks the finished draft's screen)
+
+== 6. manifest gate at the delivered state (regen NOT run first — this is the state the Owner receives)
+shipped:  gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+prepared: gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+
+== 7. A9 — the three START-OF-CHAT-ZAI.md copies
+3c0dfd3f4d505ba4e24ead0fec07ee01097faff6ebd16edf5d4c1afc15656bde  /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/../67-cakepanz-8-2026-11-18/START-OF-CHAT-ZAI.md
+3c0dfd3f4d505ba4e24ead0fec07ee01097faff6ebd16edf5d4c1afc15656bde  /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/START-OF-CHAT-ZAI.md
+3c0dfd3f4d505ba4e24ead0fec07ee01097faff6ebd16edf5d4c1afc15656bde  /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4-prepared/START-OF-CHAT-ZAI.md
+
+== 8. doc fixes A4-A7
+20:step "3. the node battery via the Part-D register (expect 33/33: 31 carried + N28 the RESUME law + N29 the DONE-DRAFT law — the cakepanz-8 A1 laws; runs on Node 24 AND 26)" npm run battery:node
+47:step "12. the receipt falsifiers F0–F12 (every law must DIE — zero tautologies, zero could-not-run; F11/F12 the cakepanz-8 A1 falsifiers)" node scripts/receipt-falsifier.mjs
+README.md lines containing 284 (expect 1, the correction): 1
+3:**Slice:** THE COMPLETE SHELL (slices 1–5 + the season shell, s6–s12, + Slice 3 receipted: the board chrome AND the boot rehydration — the autosave that returns a refresh mid-draft to the same board). This README supersedes the slice-1/2 text below (kept for the record). **Pinned engine commit:** `5c808472` on `architect/engine-and-seats` (byte-verified this sitting, 67 files; the d3bd81d2 line below was the previous pin). **Run it:** `npm ci && npm run distfile` → `dist/single.html` boots from vanilla file://, or `npx vite preview` + `/?dev=1`. **Fresh machine:** `npx playwright install chromium` ONCE before the browser batteries (machine setup, not a tree defect). **Batteries:** `npm run battery` (29 laws), `npm run battery:node` (33 laws — N23/N24 the cakepanz-6 sitting, N25–N27 the cakepanz-7 sitting, N28/N29 the cakepanz-8 sitting: the RESUME law (both autosaves → the running hub) and the DONE-DRAFT law (a done draft, no week → Complete); framework-blind), `node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs` (render, needs the preview server; the register is REQUIRED — without it any Node dies with ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX at the engine's parameter property, cakepanz-8 A6), `npm run battery:late` (6 laws — the P-337 late-draft simple board), `bash scripts/acceptance-run.sh` (the whole receipt set in one staged run).
+28:on `gh-pages` (one commit). Nothing else moves — the zip carries those two files plus this receipt
+
+== 9. Block B render-layer scope — the c7 -> c8 src diff (expect App.svelte + 3 components, no engine)
+Files /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/../cakepanz-7-2026-11-18/cakepanz-4/src/App.svelte and /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/App.svelte differ
+Files /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/../cakepanz-7-2026-11-18/cakepanz-4/src/lib/components/BoardFooter.svelte and /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/BoardFooter.svelte differ
+Files /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/../cakepanz-7-2026-11-18/cakepanz-4/src/lib/components/BoardRow.svelte and /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/BoardRow.svelte differ
+Files /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/../cakepanz-7-2026-11-18/cakepanz-4/src/lib/components/DraftBoard.svelte and /Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/DraftBoard.svelte differ
+
+== 10. Block B findings F1/F2/F3 — the anchors
+F1 (dead control): the simple row's main button and its missing panel
+14:  <button class="cp-main cp-mainsimple" onclick={() => (open = !open)} aria-expanded={open}>
+40:    <div class="cp-fits">
+79:  .cp-mainsimple { flex: 1; display: grid; grid-template-columns: 1fr 44px 72px 56px; gap: 8px; }
+84:    .cp-mainsimple { grid-template-columns: 1fr 36px 58px 48px; gap: 5px; }
+86:  .cp-fits { display: flex; gap: 8px; flex-wrap: wrap; padding: 4px 6px 10px 12px; align-items: center; }
+F2 (basis): the simple row's number vs the sort options
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/BoardRow.svelte:17:    <span class="cp-num cp-rec">{r.wins}</span>
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/BoardRow.svelte:80:  .cp-rec { font-weight: 800; color: #e8c87e; }
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/SortControls.svelte:6:    { k: 'wins', lbl: 'Wins' },
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/SortControls.svelte:7:    { k: 'priority', lbl: 'Priority' },
+/Users/kosi/Desktop/wt/ernie/_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/cakepanz-4/src/lib/components/SortControls.svelte:8:    { k: 'ovr', lbl: 'OVR' },
+F3 (tokens): the new hard-coded golds vs the theme's tokens
+3:80:  .cp-rec { font-weight: 800; color: #e8c87e; }
+4:81:  .cp-pickbtn { border: 1px solid #8a5f18; background: rgba(217, 169, 76, 0.16); color: #e8c87e; border-radius: 999px; padding: 6px 14px; cursor: pointer; font-family: inherit; font-weight: 700; white-space: nowrap; }
+5:82:  .cp-pickbtn:hover { background: rgba(217, 169, 76, 0.28); }
+45:  --gold2: #e6c67d;
+46:  --goldm: #ad7f2e;
+47:  --gold3: #9a6b1f;
+
+done.

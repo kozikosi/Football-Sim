@@ -1,0 +1,63 @@
+BROWSER BATTERIES — Ernie's runs (2026-11-18, node v26.13.0, playwright 1.57.0, chromium 1200)
+Trees: cakepanz-4 (shipped, pin 5c808472) and cakepanz-4-prepared (prepared, pin 65673a00).
+Each tree got: npm ci -> npm run distfile -> vite preview --port 4179 -> the batteries -> preview killed.
+These are the RAW STDOUT LINES (grep-filtered to the verdict lines) captured in the session; the
+commands are the ones acceptance-run.sh uses.
+
+== SHIPPED TREE ==
+$ npm run test:engine
+  ℹ pass 394   ℹ fail 0
+$ npm run battery:node
+  ℹ tests 33   ℹ pass 33   ℹ fail 0
+$ node --import ./scripts/node-port-register.mjs batteries/late.battery.mjs
+   PASS  L1 the flip: at the user's 10th pick the FULL form ...; at the 11th the SIMPLE form with the
+         honest switch line (P-337 law 1) — 10th: full ✓ · 11th: simple ✓
+         note="the board simplified — every number is still one click away"
+   PASS  L2 simple row anatomy: one recommendation number + the pick control per row; no flex chip,
+         no advice panel; gone% stays — rows=60 rec=60 pickbtn=60 chips=0 advice=0 gone=60
+   PASS  L5 390px stays clean in both forms — simple 390/390 · full (via the door) 390/390
+   PASS  L3 the full board is reachable in one click and STAYS full for the rest of the draft
+   PASS  L4 no engine number moves: at the same frozen draft state the board VM sha is identical in
+         the simple form and the full form — simple=081658b2d558 full=081658b2d558
+   PASS  L6 zero page errors across the flip, both directions, and the 390px walk
+  == LATE BATTERY (P-337) · 6 pass · 0 fail ==
+$ node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+  == SHELL BATTERY · 47 pass · 0 fail ==
+$ npm run battery
+  == SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+$ node --import ./scripts/node-port-register.mjs scripts/receipt-falsifier.mjs
+  F0 clean baseline ... F11 resume law (N28) DIED ... F12 done-draft law (N29) DIED
+  every falsified law DIED — the battery is falsifiable            (F0-F12 all DIED, exit 0)
+$ node --import ./scripts/node-port-register.mjs scripts/falsify-late.mjs
+  F0-late clean baseline · unmutated late battery green · 6 pass · 0 fail
+  F13-late 10th-pick flip law · mutation: simple-mode planted ALWAYS-ON · DIED
+  the late battery is falsifiable — L1 dies under the always-on plant
+
+== PREPARED TREE ==
+$ npm run test:engine
+  ℹ tests 406   ℹ pass 406   ℹ fail 0
+$ npm run battery:node
+  ℹ tests 33    ℹ pass 33    ℹ fail 0
+$ npm run distfile -> dist/single.html
+  1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737   (byte-identical to shipped)
+$ node --import ./scripts/node-port-register.mjs batteries/late.battery.mjs
+   PASS  L1 ... PASS L2 ... PASS L5 ... PASS L3 ... PASS L4 (simple=cb9da1def266 full=cb9da1def266) ... PASS L6
+  == LATE BATTERY (P-337) · 6 pass · 0 fail ==
+$ node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+  == SHELL BATTERY · 47 pass · 0 fail ==
+$ npm run battery
+  == SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+
+Note on L4: the frozen-state VM sha differs BETWEEN the trees (081658b2… shipped vs cb9da1de…
+prepared). That is expected — the two trees carry different engine pins (the prepared tree has the
+passclass node) — and L4 is a WITHIN-tree law (simple vs full at the same state), which holds in both.
+
+NOT RUN by this seat: the receipt falsifier and the late falsifier on the PREPARED tree (shipped
+only); the A2 mutation on the prepared tree (shipped only); acceptance-run.sh end-to-end; the
+gh-pages placement (the Owner's click); Block C (R-13, gated).
+
+Side effect to know about: `npm run battery` rewrites batteries/slice1-battery.json, which is in
+MANIFEST.txt. After running it, `node scripts/gate-manifest.mjs` reports
+`MANIFEST FAIL (hash): batteries/slice1-battery.json` until `node scripts/regen-manifest.mjs` is
+re-run (acceptance-run.sh does this at step 14, before the gate at 15). The delivered state is
+unaffected; see finding F5 in the review.

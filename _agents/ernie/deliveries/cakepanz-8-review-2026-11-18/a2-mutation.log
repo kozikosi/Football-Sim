@@ -1,0 +1,43 @@
+A2 MUTATION — Ernie's independent re-run (2026-11-18, node v26.13.0, chromium 1200)
+Target: cakepanz-4 (shipped tree), App.svelte line 106 `void hydrateBoot();`
+Purpose: prove S29 (the A2 split) can FAIL — the cakepanz-7 defect was that it could not.
+
+Pre-state
+  $ shasum -a 256 src/App.svelte
+  2830608051fc041eea598b27803f19266773886a4c3e796ebd2339904f27bbd5  src/App.svelte
+  $ shasum -a 256 dist/single.html
+  1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  dist/single.html
+
+Mutation (the c7 shape: the boot rehydration deleted)
+  $ sed -i '' '106s|.*|    // MUTATION A2: void hydrateBoot(); deleted|' src/App.svelte
+  $ sed -n '106p' src/App.svelte
+      // MUTATION A2: void hydrateBoot(); deleted
+  $ npm run distfile            # rebuild so the preview serves the mutated app
+  MUT_DIST_EXIT=0
+  $ shasum -a 256 dist/single.html
+  896a145801ea7a6e1f1d9c88a99a9a3732d0b7ec932c6cc637c0b6230dd779ce  dist/single.html   (mutated build)
+
+RED RUN — the law must fail
+  $ npx vite preview --port 4179 --strictPort   (served assets/index-D1Ck5Xhs.js)
+  $ node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+     FAIL  S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path
+           is mandatory; no manual fallback in this law) — the boot did NOT resume the hub — S29 red
+     PASS  S31 the MANUAL restore (RESTORE A SAVED WEEK) brings the hub back when no autosave exists
+           — hub re-mounted from the week save (slot C)
+     == SHELL BATTERY · 46 pass · 1 fail ==
+
+Restore
+  $ cp /tmp/App.svelte.orig src/App.svelte
+  $ shasum -a 256 src/App.svelte
+  2830608051fc041eea598b27803f19266773886a4c3e796ebd2339904f27bbd5  src/App.svelte   (back to the delivered bytes)
+  $ npm run distfile
+  $ shasum -a 256 dist/single.html
+  1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  dist/single.html   (back to the delivered build)
+
+VERDICT: the A2 split is genuine. With the boot rehydration deleted S29 goes red for the right
+reason (the boot did not resume) while S31 stays green (the manual path still works) — exactly the
+discriminating pair the order asked for. The delivery's own receipt (46/1 red, 47/0 green) is
+confirmed by an independent mutation, rebuild and re-run. The delivery tree was left byte-identical
+(git status clean on the delivery path).
+
+Note: GREEN baseline (47 pass · 0 fail) on the restored build is in browser-batteries.log.
