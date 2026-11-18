@@ -18,7 +18,12 @@ import type { PassClass } from '../src/sports/nfl/sim/passclass.ts';
 import { runGame } from '../src/sports/nfl/sim/game.ts';
 
 const N = Number(process.argv[2] ?? 12000), poolsName = process.argv[3] ?? 'nfl-pools-fit2023-2025', pcName = process.argv[4] ?? 'nfl-passclass-fit2023-2025';
-const load = (n: string): PackBody => JSON.parse(fs.readFileSync(new URL(`../../data/packs/${n}.json`, import.meta.url), 'utf8')) as PackBody;
+// A missing pack is a FAIL, not a green: name the anchor (the pack) and exit non-zero, never print a rate.
+const load = (n: string): PackBody => {
+  const url = new URL(`../../data/packs/${n}.json`, import.meta.url);
+  if (!fs.existsSync(url)) { process.stderr.write(`bucket-bar: pack "${n}" not found at ${url.pathname} — anchor missing\n`); process.exit(1); }
+  return JSON.parse(fs.readFileSync(url, 'utf8')) as PackBody;
+};
 const P = loadPools(makePack(load(poolsName))), M = loadPassClass(makePack(load(pcName)));
 
 // ---- the class-restricted sampler's level, recomputed here so the probe can see which cell a play came from ----
