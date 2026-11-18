@@ -32,7 +32,14 @@
   SUPERSEDED (unreceipted, contradicted by two gate re-runs + c7's rewrite); no-arbitrage
   cluster (Ernie/Glyph/Beam/Pickle) all consistent — deletion demand withdrawn, keep `≤18`+comment;
   Glyph's pin-watch/λ assessment upheld (band dead at tip; 0.40 convention-only);
-  merge-gate/pin-watch still absent on shared refs (verified). No c7 reviews exist yet.
+  merge-gate/pin-watch still absent on `council/muse` (verified); `tools/pin-watch.mjs` IS on
+  `architect/engine-and-seats @ 1aa7fb3` + CI-gated (run #20, then #21 at 3363eb0, #22 at 57fb83c —
+  all green; CI runs on every architect push). No c7 reviews exist yet.
+- **Parallel-round items executed personally** (`inbox/20261118-1735-inkling-parallel-round-execution.md`):
+  A3 sweep (12 sites + A9), B1 totals bar (points within ±1.5% of 2024/2025, −0.6% in-sample;
+  yards hot ~3–7%), B2 (286 tests/277 pass/9 named reds file:line; re-point left to Owner/Architect),
+  B5 hosted-copies identical, A4 CI green. **P-344 reviewer 1 filed** (`inbox/20261118-1735-inkling-p344-review.md`):
+  ok with two named discrepancies; NOT cluster-admissible for consumption until 2 more reviews land.
   **Superseded same hour:** pin-watch IS promoted — `architect/engine-and-seats @ 1aa7fb3`
   (byte-identical to 0bd76860, cmp by me), self-test wired as a CI gate (no continue-on-error),
   passes on my Node v26.13.0; live catch re-verified against fresh `origin/gh-pages` extract
