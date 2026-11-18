@@ -7,7 +7,27 @@
 - Never edit the Architect's product/engine/flex table, never force-push, never touch Z.ai's sitting, never "PASS" a gate I did not run (D-3).
 - The Oct-6 staged snapshot is preserved at `preserve/muse-oct6-snapshot-2026-11-18` (`1aec8b9e`); both are historic October state, not live council.
 
-## Current state (2026-11-18 end of session — all pushed)
+## Current state (2026-11-18, cakepanz-7 review session — all pushed)
+
+- **Cakepanz-7 delivery pushed and reviewed.** The Owner had the `67-cakepanz-7-2026-11-18`
+  folder pushed verbatim to `council/inkling` @ `0fcbc2c0` (`_agents/inkling/67-cakepanz-7-2026-11-18/`,
+  796 files, 33 MB, 88 PNGs, two full trees; byte-identical to Desktop copy via `diff -qr`).
+  Owner ruling overrode the delivery README's "Push nothing". Lane rule (no build copies/images)
+  overridden by the Owner for this drop — flagged for the record; moves on his word.
+- **My review:** `inbox/20261118-0745-inkling-cakepanz7-review.md` — **VERDICT ok-with-notes**.
+  Re-ran: CHECKSUMS 311/311 + 316/316 (python3), partB logs PASS at printed counts, engine
+  394/394 + 406/406 and battery:node 31/31 ×2 trees on my Node v26.13.0; flex 99 (17/17/42/23);
+  isReceipt hardening present in both trees; gh-pages finding verified live (tip 66096fb, no
+  later commits, deployed 4ca9a071 lines stale). Nits: doubled RECEIPT LAW sentence in root
+  START-OF-CHAT-ZAI.md (prepared copy is clean); D-1 browser leg failed once then re-ran green
+  (S29 phase-blind edit AFTER clone was cut); FIX-RECEIPT "zip carries ONLY those two files" is
+  false (3 files); "falsifiers ×2 majors" wording loose. Open items all Owner/Architect-gated:
+  gh-pages placement (his click), 277/9 vs 286/0 (9 stale flex expectations), prepared re-pin
+  activation (65673a00), Part-E labels, dark --text, light gold2.
+- Also this session: base merge (`7d43d457`, base won on 3 shared files) pushed; preserve.mjs
+  check after merge → only local-only commit was my merge, now pushed.
+
+### Previous sitting (cakepanz-6 + delegation week, kept for the record)
 
 - **Council-6 + delegation week closed.** Cakepanz-6 (Z.ai) reviewed by seats: gates PASS on both trees (Ernie re-ran; me); takeover wired; shipped=5c808472, prepared=65673a00, bytes verified both. One live defect found in the prepared docs (README/SHELL-STATUS pin 5c808472) → fixed in the next sitting's prompt. Pushed to `council/inkling` @ `60171cb4`; my review (VERDICT ok) at `inbox/20261118-0144-…R-13-review-cakepanz6.md`.
 - **Review wave delivered:** Beam §6 battery improved (concordant; his L0 counts verified); Ernie ok (his 946/947 self-correction verified; my macro filing amended); Glyph improved (sync-base.sh violation — restore muse docs); Pickle gate ok with one pin-watch adjustment; VL's pin-watch retired as stale-layout competitor — **canonical = my amended `tools/pin-watch.mjs` @ `0bd76860`** (count report + hash always; live catch: gh-pages README says 4ca9a071, bytes are d3bd81d2, flex pre-landings).
@@ -18,11 +38,12 @@
 
 ## Next session reads — priority
 1. `_agents/owner-notes/2026-11-18-muse-out-inkling-delegate-verbatim.txt` (council/muse) — the delegation, verbatim; then this file.
-2. My lane/bulletin and `inbox/20261118-0144-inkling-R-13-review-cakepanz6.md` (the review receipts).
-3. `_agents/muse/deliveries/prompts-2026-11-05/zai-cakepanz-7-2026-11-18.md` — Cakepanz-7, awaiting the Owner's send to Z.ai.
+2. My lane/bulletin and `inbox/20261118-0745-inkling-cakepanz7-review.md` (the cakepanz-7 review receipts; supersedes the cakepanz-6 review for c7).
+3. The `67-cakepanz-7-2026-11-18/` copy in this lane — the delivery as pushed, for anyone who wants it.
 
-## Open questions (all Owner-gated, unchanged)
-Prepared 65673a00 activation · gh-pages 9-red-expectation fix placement · Bodoni Moda · "Model Value" vs w89 label · 2PT chip · dark --text · light-gold2 · λ convention (0.40 recommended) · Cakepanz-7 send.
+## Open questions (all Owner-gated)
+
+Prepared 65673a00 activation (shipped stays 5c808472) · gh-pages fix placement (two files, one commit — his click; verified unplaced at tip 66096fb) · the 277/9 vs 286/0 question (9 stale flex expectations in the deployed tree) · Bodoni Moda · "Model Value" vs w89 label · 2PT chip · dark --text · light-gold2 · λ convention (0.40 recommended) · Part-E label questions (partE-label-questions.md).
 
 ## Worktree
 `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base `git merge-base HEAD origin/council/base` (compute) · **delegate home: `/Users/kosi/Desktop/wt/muse` (council/muse)**.
