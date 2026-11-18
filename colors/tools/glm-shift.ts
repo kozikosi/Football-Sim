@@ -11,7 +11,7 @@ import fs from 'node:fs';
 import { makePack } from '../src/core/pack.ts';
 import type { PackBody } from '../src/core/pack.ts';
 import { gameKeyOf } from '../src/core/keyedrng.ts';
-import { loadPools, pick, recKeys, recDownKeys, CALL } from '../src/sports/nfl/sim/pools.ts';
+import { loadPools, pick, recKeys, CALL } from '../src/sports/nfl/sim/pools.ts';
 import type { Pool } from '../src/sports/nfl/sim/pools.ts';
 import { loadPassClass, passClassProbs, passFeatures, pickClassTuple, classPool, PASS_CLASSES } from '../src/sports/nfl/sim/passclass.ts';
 import { runGame, TEAMS } from '../src/sports/nfl/sim/game.ts';
@@ -204,10 +204,10 @@ if (realPath !== '') {
   const byDown = [0, 1, 2, 3, 4].map(() => ({ n: 0, eA: 0, eC: 0, eG: 0 }));
   const perClass = [0, 1, 2, 3].map(() => ({ n: 0, p: 0, moved: 0, dEnd: 0, dEndNoBack: 0 }));
   for (let g = 0; g < ng; g++) passSnaps(runGame(P, gameKeyOf('glm-shift:' + g)), (s) => {
-    const keys = recKeys(B, CALL.pass, s.down, s.ytg, s.ydl), dkeys = recDownKeys(B, CALL.pass, s.down, s.ytg, s.ydl), pa = pick(P.rec, keys, P.minPool, sink, 1), pm = poolMix(s.down, s.ytg, s.ydl), gm = glmMix(s.down, s.ytg, s.ydl, s.sd, s.qtr, s.hs);
+    const keys = recKeys(B, CALL.pass, s.down, s.ytg, s.ydl), dkeys = keys, pa = pick(P.rec, keys, P.minPool, sink, 1), pm = poolMix(s.down, s.ytg, s.ydl), gm = glmMix(s.down, s.ytg, s.ydl, s.sd, s.qtr, s.hs);
     let eC = 0, eG = 0;
     for (let k = 0; k < 4; k++) {
-      const ck = pickClassTuple(P.recDown, dkeys, P, k, M.minClassPool, sink, 4), own = classPool(pa, T.oc, k), eK = endProb(ck, s.ydl);
+      const ck = pickClassTuple(P.rec, dkeys, P, k, M.minClassPool, sink, 4), own = classPool(pa, T.oc, k), eK = endProb(ck, s.ydl);
       eC += pm[k]! * eK; eG += gm[k]! * eK;
       const pcx = perClass[k]!; pcx.n++; pcx.p += pm[k]!;
       if (own === undefined || own.total === 0) continue;
@@ -222,8 +222,8 @@ if (realPath !== '') {
   if (realPath !== '') {
     const rr = fs.readFileSync(realPath, 'utf8').trim().split('\n').slice(1).map((l) => l.split(',').map(Number)), acc = [0, 1, 2, 3, 4].map(() => ({ n: 0, a: 0, c: 0 }));
     for (const r of rr) {
-      const st = { down: r[0]!, ytg: r[1]!, ydl: r[2]! }, ks = recKeys(B, CALL.pass, st.down, st.ytg, st.ydl), dk = recDownKeys(B, CALL.pass, st.down, st.ytg, st.ydl), pa = pick(P.rec, ks, P.minPool, sink, 1), pm = poolMix(st.down, st.ytg, st.ydl);
-      let eC = 0; for (let k = 0; k < 4; k++) eC += pm[k]! * endProb(pickClassTuple(P.recDown, dk, P, k, M.minClassPool, sink, 4), st.ydl);
+      const st = { down: r[0]!, ytg: r[1]!, ydl: r[2]! }, ks = recKeys(B, CALL.pass, st.down, st.ytg, st.ydl), dk = ks, pa = pick(P.rec, ks, P.minPool, sink, 1), pm = poolMix(st.down, st.ytg, st.ydl);
+      let eC = 0; for (let k = 0; k < 4; k++) eC += pm[k]! * endProb(pickClassTuple(P.rec, dk, P, k, M.minClassPool, sink, 4), st.ydl);
       const d = acc[Math.min(st.down, 4)]!; d.n++; d.a += endProb(pa, st.ydl); d.c += eC;
     }
     console.log(`\n## 5a. REAL pass states, P(drive ends on the snap): pools node vs the down-preserving sampler (the pack's own records give the empirical rate: python3 snippet in the write-up)`);

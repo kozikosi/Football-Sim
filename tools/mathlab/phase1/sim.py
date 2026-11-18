@@ -15,9 +15,12 @@ def keys_call(down,ytg,ydl,sd,qtr,hs):
             (down,bisect.bisect_right(DISTC,ytg),bisect.bisect_right(YDLC,ydl)),
             (down,bisect.bisect_right(YDLC,ydl))]
 def keys_rec(call,down,ytg,ydl):
-    return [(call,down,bisect.bisect_right(DIST,ytg),bisect.bisect_right(YDL,ydl)),
-            (call,min(down,3),bisect.bisect_right(DISTC,ytg),bisect.bisect_right(YDL,ydl)),
-            (call,bisect.bisect_right(YDL,ydl)),(call,)]
+    # DOWN-PRESERVING (fixed 18 Nov; the TypeScript node is colors/src/sports/nfl/sim/pools.ts recKeys). A tuple's next down is absolute, so a tuple read at another down moves the chain to the
+    # wrong down: the old levels merged 3rd and 4th (min(down,3)) and then dropped the down, and about a quarter of failed 4th-down passes and runs (26% and 25%) kept the drive alive. The down is merged only at (call,).
+    y=bisect.bisect_right(YDL,ydl)
+    return [(call,down,bisect.bisect_right(DIST,ytg),y),
+            (call,down,bisect.bisect_right(DISTC,ytg),y),
+            (call,down,y),(call,down),(call,)]
 YB=[0,1,4,7,11,21]
 def keys_nl(oc,y): return [(oc,bisect.bisect_right(YB,y)),(oc,)]
 def keys_clock(oc,qtr,hs,sd):
@@ -35,7 +38,7 @@ class Pack:
         s.dt=R[clock].values; s.passatt=R.pass_attempt.fillna(0).values; s.rushatt=R.rush_attempt.fillna(0).values
         s.comp=R.complete_pass.fillna(0).values; s.sackf=(R.sack==1).values
         n=len(R); down=R.down.values.astype(int); ytg=R.ydstogo.values; ydl=R.yardline_100.values; sd=R.sd.values; q=R.qtr.values.astype(int); hs=R.hs.values
-        s.call_pool=[defaultdict(list) for _ in range(5)]; s.rec_pool=[defaultdict(list) for _ in range(4)]
+        s.call_pool=[defaultdict(list) for _ in range(5)]; s.rec_pool=[defaultdict(list) for _ in range(5)]
         s.clk_pool=[defaultdict(list) for _ in range(4)]; s.nl_pool=[defaultdict(list) for _ in range(2)]
         for i in range(n):
             for L,k in enumerate(keys_call(down[i],ytg[i],ydl[i],sd[i],q[i],hs[i])): s.call_pool[L][k].append(i)

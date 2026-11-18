@@ -10,7 +10,7 @@ import type { GameKey } from '../../../core/keyedrng.ts';
 import { logBuilder } from '../../../core/events.ts';
 import type { GameEvent } from '../../../core/events.ts';
 import { at } from '../../../core/at.ts';
-import { CALL, OC, callKeys, recKeys, recDownKeys, clockLateKeys, clockNonKeys, pick, sample, tmb } from './pools.ts';
+import { CALL, OC, callKeys, recKeys, clockLateKeys, clockNonKeys, pick, sample, tmb } from './pools.ts';
 import type { Pools } from './pools.ts';
 import { passClassProbs, passFeatures, pickClass, pickClassTuple } from './passclass.ts';
 import type { PassClass } from './passclass.ts';
@@ -86,7 +86,7 @@ export function runGame(P: Pools, key: GameKey, opts: { readonly ot?: boolean; r
       const base = opts.classMix !== undefined ? opts.classMix(down, ytg, ydl, sdN, qN, hN) : passClassProbs(pc, passFeatures(down, ytg, ydl, sdN, qN, hN));
       const p = tilt(base, pc.theta, pc.lambda, opts.passGap ?? 0);
       const cls = pickClass(p, draw(key, i, 'passClass'));
-      j = sample(pickClassTuple(P.recDown, recDownKeys(B, call, down, ytg, ydl), P, cls, pc.minClassPool, holes, 4), draw(key, i, 'rec'));   // the DOWN-PRESERVING hierarchy (see pools.ts)
+      j = sample(pickClassTuple(P.rec, recKeys(B, call, down, ytg, ydl), P, cls, pc.minClassPool, holes, 4), draw(key, i, 'rec'));   // the same down-preserving hierarchy as the record node (see pools.ts)
     } else j = sample(pick(P.rec, recKeys(B, call, down, ytg, ydl), P.minPool, holes, 1), draw(key, i, 'rec'));
     const oc = at(T.oc, j);
     let y = at(T.yards, j);

@@ -68,7 +68,7 @@ def probs_pmath(intercept, coef, x):
 def pool_class_probs(trn, tst):
     """the CURRENT node's class mix: the rec pool picked by the hierarchy (first level with >= 25 plays) for (call=pass, down, distBin, ydlBin)"""
     down = trn.down.values.astype(int); ytg = trn.ydstogo.values; ydl = trn.yardline_100.values; oc = trn.oc.values.astype(int)
-    pools = [dict() for _ in range(4)]
+    pools = [dict() for _ in range(5)]
     for i in range(len(trn)):
         for L, k in enumerate(S.keys_rec(0, down[i], ytg[i], ydl[i])): pools[L].setdefault(k, np.zeros(4))[oc[i]] += 1
     out = np.zeros((len(tst), 4)); d2 = tst.down.values.astype(int); y2 = tst.ydstogo.values; l2 = tst.yardline_100.values
@@ -77,7 +77,7 @@ def pool_class_probs(trn, tst):
         for L, k in enumerate(ks):
             c = pools[L].get(k)
             if c is not None and c.sum() >= 25: ch = c; break
-        if ch is None: ch = pools[3][ks[3]]
+        if ch is None: ch = pools[-1][ks[-1]]
         out[i] = ch / ch.sum()
     return out
 

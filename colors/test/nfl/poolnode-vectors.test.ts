@@ -89,7 +89,7 @@ test('sample(): the binary search equals the linear definition on real pools, at
   const P = load('nfl-pools-fit2023-2025', 'dt_f');
   let seed = 7; const rnd = (): number => (seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0) / 4294967296;
   const linear = (p: Pool, u: number): number => { const t = u * p.total; for (let k = 0; k < p.cum.length; k++) if (t < (p.cum[k] as number)) return p.ids[k] as number; return p.ids[p.ids.length - 1] as number; };
-  const pools = [...P.call[0]!.values()].slice(0, 20).concat([...P.rec[3]!.values()], [P.kick.pool]);
+  const pools = [...P.call[0]!.values()].slice(0, 20).concat([...P.rec[4]!.values()], [P.kick.pool]);
   for (const p of pools) {
     for (let i = 0; i < 200; i++) { const u = rnd(); assert.equal(sample(p, u), linear(p, u)); }
     for (let k = 0; k < Math.min(p.cum.length, 60); k++) for (const t of [p.cum[k] as number, (p.cum[k] as number) - 1e-9]) { const u = t / p.total; if (u >= 0 && u < 1) assert.equal(sample(p, u), linear(p, u)); }

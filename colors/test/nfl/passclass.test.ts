@@ -5,11 +5,12 @@ import { draw, gameKeyOf } from '../../src/core/keyedrng.ts';
 import { logHash, validateLog } from '../../src/core/events.ts';
 import { makePack } from '../../src/core/pack.ts';
 import type { PackBody } from '../../src/core/pack.ts';
-import { CALL, loadPools, pick, recKeys, recDownKeys, k2, k3, k4, sample } from '../../src/sports/nfl/sim/pools.ts';
+import { CALL, loadPools, pick, recKeys, k2, k3, k4, sample } from '../../src/sports/nfl/sim/pools.ts';
 import type { Pool } from '../../src/sports/nfl/sim/pools.ts';
 import { PASS_FEATURES, classPool, loadPassClass, passClassProbs, passFeatures, pickClass, pickClassTuple } from '../../src/sports/nfl/sim/passclass.ts';
 import { tilt } from '../../src/sports/nfl/sim/drive.ts';
 import { runGame } from '../../src/sports/nfl/sim/game.ts';
+import { oldRecKeys, plantedOldLevels } from './oldhier.ts';
 import type { GameEv } from '../../src/sports/nfl/sim/game.ts';
 
 // 2a: the pass-class GLM node. Value oracle: scikit-learn's predict_proba on the same coefficients. Bit oracle: the Python lab's pmath evaluator (passclass.py probs_pmath),
@@ -52,7 +53,7 @@ test('pass-class: the loader refuses a pack whose features, classes, shapes, num
 });
 
 test('class pools: the four class-restricted pools of any pool partition it exactly (same ids, same weights, only that class)', () => {
-  const pools = [...P.rec[0]!.values()].slice(0, 40).concat([...P.rec[3]!.values()]);
+  const pools = [...P.rec[0]!.values()].slice(0, 40).concat([...P.rec[4]!.values()]);
   for (const pool of pools) {
     let tot = 0, members = 0;
     for (let c = 0; c < 9; c++) {
@@ -68,16 +69,16 @@ test('class-then-tuple: a rare class in a thin cell reads from a coarser cell (>
   const B = P.bins;
   // 4th and 40 at the goal line: a nearly empty cell. An interception must still come from a pool with >= 25 interceptions, never from three.
   const stat: number[] = [];
-  const keys = recDownKeys(B, CALL.pass, 4, 40, 99);
-  const pool = pickClassTuple(P.recDown, keys, P, 3, M.minClassPool, stat, 0);
+  const keys = recKeys(B, CALL.pass, 4, 40, 99);
+  const pool = pickClassTuple(P.rec, keys, P, 3, M.minClassPool, stat, 0);
   assert.ok(pool.total >= M.minClassPool); assert.equal(stat[0] ?? 0, 0);
   for (let i = 0; i < 100; i++) assert.equal(P.tuples.oc[sample(pool, i / 100)], 3);
-  for (const c of [0, 1, 2, 3]) for (const id of pickClassTuple(P.recDown, keys, P, c, 25, [], 0).ids) assert.equal(P.tuples.oc[id], c);
+  for (const c of [0, 1, 2, 3]) for (const id of pickClassTuple(P.rec, keys, P, c, 25, [], 0).ids) assert.equal(P.tuples.oc[id], c);
 });
 
 // A tuple's next down is ABSOLUTE, so a tuple read across downs moves the drive to the wrong down: a 3rd-down incompletion (next: 4th) standing in for a failed 4th-down try kept the drive alive,
-// and on 4th-and-1 at the 3 (every outcome ends the drive) the first sampler ended it 54% of the time. The class sampler therefore uses a down-preserving hierarchy (pools.ts recDown).
-test('recDown: levels 0-3 hold exactly the real records of their own down (nothing merges downs until the last level)', () => {
+// and on 4th-and-1 at the 3 (every outcome ends the drive) the first sampler ended it 54% of the time. Since 18 Nov the record node AND the class sampler share one down-preserving hierarchy (pools.ts rec).
+test('rec: levels 0-3 hold exactly the real records of their own down (nothing merges downs until the last level)', () => {
   const R = (body('nfl-pools-fit2016-2022').params as { rec: Record<string, number[]> }).rec, n = R['n']!.length;
   const want: Map<number, number>[] = [new Map(), new Map(), new Map(), new Map()], perDown = new Map<number, number>();
   const edgeLo = (db: number): number => (db === 0 ? -1e9 : P.bins.dist[db - 1]!), binOfDist = (db: number): number => P.bins.distC.filter((e) => e <= edgeLo(db)).length;
@@ -86,12 +87,12 @@ test('recDown: levels 0-3 hold exactly the real records of their own down (nothi
     const c = R['call']![i]!, d = R['down']![i]!, db = R['db']![i]!, yb = R['yb']![i]!, w = R['n']![i]!;
     add(want[0]!, k4(c, d, db, yb), w); add(want[1]!, k4(c, d, binOfDist(db), yb), w); add(want[2]!, k3(c, d, yb), w); add(want[3]!, k2(c, d), w); add(perDown, c * 100 + d, w);
   }
-  assert.equal(P.recDown.length, 5); assert.equal(P.recDown[4], P.rec[3]);
+  assert.equal(P.rec.length, 5);
   for (const L of [0, 2, 3]) {
-    const got = new Map([...P.recDown[L]!].map(([k, pool]: [number, Pool]) => [k, pool.total] as const));
+    const got = new Map([...P.rec[L]!].map(([k, pool]: [number, Pool]) => [k, pool.total] as const));
     assert.deepEqual([...got].sort((a, b) => a[0] - b[0]), [...want[L]!].sort((a, b) => a[0] - b[0]), 'level ' + L);
   }
-  let t1 = 0; for (const pool of P.recDown[1]!.values()) t1 += pool.total;
+  let t1 = 0; for (const pool of P.rec[1]!.values()) t1 += pool.total;
   let t3 = 0; for (const w of want[3]!.values()) t3 += w;
   assert.equal(t1, t3);                                    // level 1 is a re-partition of the same records
 });
@@ -105,10 +106,10 @@ test('class-then-tuple: a failed 4th-down try ends the drive (4th-and-1 on the 3
     return [0, 1, 2, 3].reduce((a, k) => a + ((classPool(cell, T.oc, k)?.total ?? 0) / cell.total) * pEnd(pickClassTuple(levels, keys, P, k, M.minClassPool, [], 0), ydl), 0);
   };
   const B = P.bins;
-  assert.ok(at(4, 1, 3, P.recDown, recDownKeys(B, CALL.pass, 4, 1, 3)) >= 0.95);
-  assert.ok(at(4, 5, 50, P.recDown, recDownKeys(B, CALL.pass, 4, 5, 50)) >= 0.3);
-  // the check can fail: the same computation on the old, down-merging hierarchy sees the bug
-  assert.ok(at(4, 5, 50, P.rec, recKeys(B, CALL.pass, 4, 5, 50)) < 0.2);
+  assert.ok(at(4, 1, 3, P.rec, recKeys(B, CALL.pass, 4, 1, 3)) >= 0.95);
+  assert.ok(at(4, 5, 50, P.rec, recKeys(B, CALL.pass, 4, 5, 50)) >= 0.3);
+  // the check can fail: the same computation on the old, down-merging hierarchy (planted from the level-0 cells, test/nfl/oldhier.ts) sees the bug
+  assert.ok(at(4, 5, 50, plantedOldLevels(P), oldRecKeys(B, CALL.pass, 4, 5, 50)) < 0.2);
 });
 
 test('class-then-tuple: whole games with the sampler end 4th-down passes like football (a failed one ends the drive), and never read the hole path', () => {

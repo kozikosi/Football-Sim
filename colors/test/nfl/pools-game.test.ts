@@ -100,4 +100,4 @@ test('regression pin: pack hash, log hash and score for one key (a replay pin fr
   console.log(`# golden pack=${pack.hash} log=${logHash(g.events)} points=${g.points.join('-')} events=${g.events.length}`);
   assert.equal(pack.hash, GOLDEN.pack); assert.equal(logHash(g.events), GOLDEN.log); assert.deepEqual([...g.points], GOLDEN.points); assert.equal(g.events.length, GOLDEN.events);
 });
-const GOLDEN = { pack: 'pack53:0b60973944ae13', log: 'log53:16f7dd18895323', points: [26, 17], events: 195 };
+const GOLDEN = { pack: 'pack53:0b60973944ae13', log: 'log53:03a2e03a885c91', points: [24, 31], events: 216 };   // re-pinned 18 Nov with the down-preserving record hierarchy (pack unchanged, so only the log moved)
