@@ -1,0 +1,8 @@
+# Owner notes — no more sim-value alignment work before ship (2026-11-18)
+
+Saved verbatim per the standing rule (every long Owner message is saved verbatim here).
+The directive, in the Owner's own words:
+
+---
+
+> I don't want you or claude or the council  to spend too much  more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped.
