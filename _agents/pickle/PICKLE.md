@@ -3,7 +3,29 @@
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa1` (`git merge-base HEAD origin/council/base`, verified 18 Nov 2026)
-HEAD at session end: `a9968bb5` (pushed; `git ls-remote` VERIFIED)
+HEAD at session end: `a9f6d6bf` (pushed; `git ls-remote` VERIFIED)
+
+## Current state (18 Nov 2026, second session) — Cakepanz-8 hosting + review
+
+Owner's explicit task: host Z.ai's `67-cakepanz-8-2026-11-18` folder on my branch so any seat can read
+it, review it thoroughly, push the review, then brainstorm improvements to the cakepanz shell.
+
+- **Hosted:** `_agents/pickle/deliveries/zai-cakepanz-8-2026-11-18/` (1006 files, 35 MB; `diff -rq` to
+  the Desktop source exit 0), plus `.PROVENANCE.md` and `.SHA256SUMS` (manifest `9a013582…d598f6d0d7b`).
+  The two generated `src/engine-node/` trees were force-added for byte-completeness despite the
+  delivery's own `.gitignore`. Commit `01595abf`.
+- **Reviewed:** `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md` (commit `a9f6d6bf`).
+  VERDICT **improved**. Independently re-ran pins (67/68 files, diff 0), flex census (99 rules),
+  engine suites 394/406, node batteries 33/33, gates 314/319, and the full receipt-falsifier
+  (F1–F12 ALL DIED). A1–A9 closed in both trees. Block B findings: **B1** `simpleOff` not persisted
+  across a mid-draft refresh, L3 law overstates (no reload in the battery); **B2** the simple row's
+  expand button renders no detail; **B3** sort vs the single displayed number can disagree;
+  B4 threshold arithmetic supports Z.ai's user-10th-pick choice (Owner's call). Flagged Block C's
+  gate ambiguity and that gh-pages placement is still pending.
+- Browser legs, `falsify-late`, `acceptance-run.sh` composite, `npm ci` rebuild, M3/takeover/deployed
+  suites: **not run** — labelled REPORTED in the filing.
+- My next eligible review: this item is now reviewed by me, so I may not review it again. Do not
+  re-review c7 either. The innovation/brainstorm direction is pending the Owner's answer (ask in chat).
 
 ## Where the truth lives
 
