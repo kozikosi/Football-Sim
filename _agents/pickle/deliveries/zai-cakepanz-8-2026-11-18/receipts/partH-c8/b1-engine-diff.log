@@ -1,0 +1,10 @@
+$ diff -rq /tmp/wt-5c8/colors/src cakepanz-4/src/engine
+exit=0 (shipped)
+files shipped engine: 67  pin: 67
+$ diff -rq /tmp/wt-656/colors/src cakepanz-4-prepared/src/engine
+exit=0 (prepared)
+files prepared engine: 68  pin: 68
+$ cmp flex.json shipped vs pin 5c8 / prepared vs pin 656 / pin vs pin
+exit=0
+exit=0
+exit=0
