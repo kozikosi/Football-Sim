@@ -1,0 +1,32 @@
+== SWAP TEST · engine → 7a0706df00f0aa249c55e4a5415b059e2fee3f75 ==
+engine source repo: /home/z/my-project/boot
+engine snapshot at 7a0706df: 67 files (the pin carried 57)
+diff outside src/engine: CLEAN (only batteries/*.json result files may differ from a fresh run)
+
+-- engine suite (the carried expectations at the OLD pin) -- exit 1
+    expected: true,
+    operator: '==',
+    diff: 'simple'
+  }
+failing laws: ✖ formation gap: a roster built for its own base is worth the same in either (600250 at 70 OVR), whichever rol
+  ✖ formation gap, DL5 = DT: a 4-3 roster loses 2700 in 3-4, a 3-4 roster loses 1800 in 4-3, a gap of 900 (5.351
+  ✖ formation gap, DL5 = EDGE: both lose 1800, a gap of 0 (the asymmetry is the DT-at-DL5 corner, not a property
+  ✖ flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 10 Nov, 99 rules) rule by r
+  ✖ flex: no arbitrage; going A -> B -> C through two spots is never cheaper than the listed A -> C (0.528894ms)
+  ✖ 4-3: every spot plays as itself (0.226286ms)
+
+-- node battery (framework-blind laws) -- exit 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9264.807722
+
+-- build -- exit 0 · dist/assets/index-TEtaZMX1.js   377.94 kB │ gzip: 128.64 kB · ✓ built in 1.53s
+
+-- slice battery -- exit 0
+
+== SLICE 1 BATTERY · 26 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+
+== SWAP TEST VERDICT: FAIL ==
+A failing law names a moved thing: say whether it is the ENGINE's behaviour or the SHELL's expectation. Do not edit the law; do not edit the snapshot; file it.
+SWAP_EXIT=2

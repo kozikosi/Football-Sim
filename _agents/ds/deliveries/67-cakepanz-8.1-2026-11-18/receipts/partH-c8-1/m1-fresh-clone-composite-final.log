@@ -1,0 +1,679 @@
+FRESH-CLONE COMPOSITE (cakepanz-8.1 final bytes) — scratch: /tmp/c81-fresh-clone
+node v24.22.3
+
+== 1 npm ci (clean lock; playwright 1.57.0 from devDependencies)
+$ npm ci
+
+added 41 packages, and audited 42 packages in 1s
+
+6 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+npm warn install-scripts 1 package has install scripts not yet covered by allowScripts:
+npm warn install-scripts   esbuild@0.28.2 (postinstall: node install.js)
+npm warn install-scripts
+npm warn install-scripts Run `npm install-scripts ls` to review, or `npm install-scripts approve <pkg>` to allow.
+exit=0 (1 npm ci (clean lock; playwright 1.57.0 from devDependencies))
+
+== 2 npm run precompile (the Part-D generated copy, explicit)
+$ npm run precompile
+
+> cakepanz-67@0.6.0-shell precompile
+> node scripts/precompile-engine.mjs
+
+engine-node: generated 67 files (1 transformed: platform/localstorage.ts) — snapshot untouched
+exit=0 (2 npm run precompile (the Part-D generated copy, explicit))
+
+== 3 npm run battery:node (33/33 incl. N28/N29)
+$ npm run battery:node
+
+> cakepanz-67@0.6.0-shell battery:node
+> node --import ./scripts/node-port-register.mjs batteries/node.battery.mjs
+
+
+== NODE BATTERY complete — framework-blind, browser-free ==
+✔ M1: no svelte file imports the snapshot (the grep is the law; empty outside the port is the PASS) (5.963397ms)
+✔ M1b: only port/seam.ts imports src/engine (the ONE door) (3.93872ms)
+✔ M2: the swap cone — deleting src/engine roots every missing module at the adapter (throwaway copy) (1306.132643ms)
+✔ N4a: the fixture marshal is deterministic (same bytes twice) (970.938242ms)
+✔ N4b: the fixture draft is a FULL 1,024-pick league (32 x 32) (0.27428ms)
+✔ P-317: newDraft honours a custom order (the user picks FIRST at their chosen slot) (859.412296ms)
+✔ N9a: the stepper plays week 1 and the week view is done (18.25347ms)
+✔ N9b: standings through week 18 equal the engine's own table (286.534777ms)
+✔ N9c: the bracket derives from the engine seeding and plays out to a champion (61.305225ms)
+✔ N9d: the season's playoff games replay identically from their stored gameSeed (0.235344ms)
+✔ N10: the stats accumulator folds every played week into the engine SeasonStats (185.559002ms)
+✔ N11: the review re-renders the engine recap — no "expected scoring", no "sudden death", turnovers named (8.581157ms)
+✔ N12a: the week payload round-trips (serialize → restore → hydrate) (4.029936ms)
+✔ N12b: a corrupt blob is REFUSED verbatim (never repaired) (0.164538ms)
+✔ N12c: a NEWER-build save is refused by VERSION (never silently accepted) (0.126228ms)
+✔ N13: settings persist and a corrupt blob falls back to defaults (0.122433ms)
+✔ N14: every shareable card is ONE self-contained blob (no CDN, no network, provenance inside) (0.575735ms)
+✔ N15: the board rows print integers except Wins/Priority (one decimal) (1377.642013ms)
+✔ N14b: the season brag names the REAL champion and the honest record (case-insensitive) (0.336825ms)
+✔ N19: gone% values are TRUE — a direct engine replay agrees with the board, and the envelopes hold (3120.452202ms)
+✔ N16: port/ is framework-blind (no svelte/vue/react imports, no runes anywhere below the render layer) (1.27131ms)
+✔ N17: the w88 feed anatomy rides the shell (zrl-* classes + the me glow + reduced-motion off) (0.720756ms)
+✔ N18: the team remap is the 32-team palette (zpb json) + the .ub law lives in the shell law set (0.185118ms)
+✔ N20 (F8): the save service refuses a slot/key mismatch — the engine asserts the pair, the composition wires it (0.253046ms)
+✔ N21: the older-build note names another build on the slot card, and is silent for the running one (Part F) (0.824055ms)
+✔ N22 (the packs law): the sim boots on a non-empty pool, and the current-era pack hashes to the pin value (433.716408ms)
+✔ N23 (Part A): picking a team changes at least three accent tokens, and --zcream is unchanged (6.330661ms)
+✔ N24 (Part D): the body copy is a system sans, the slogan rides home + Guide, the 900 faces are inlined, and the label is one constant (7.065401ms)
+✔ N25 (HYDRATE, Slice 3): a refresh mid-draft lands back on the same board — the full AppState rehydrates from the saver (2006.759344ms)
+✔ N26 (Slice 3): the gone-odds tooltip surfaces the engine's own number and states its method on hover (1067.610492ms)
+✔ N27 (Slice 3): the "my needs" sticky row shows exactly the roster's empty slots, is clickable, and the count moves (50.86163ms)
+✔ N28 (RESUME, cakepanz-8 A1): a refresh with BOTH autosaves lands on the hub — the season outranks the finished draft's screen (1027.412751ms)
+✔ N29 (DONE-DRAFT, cakepanz-8 A1): a refresh with a done draft and no week lands on Complete — never a blank board (920.024046ms)
+ℹ tests 33
+ℹ suites 0
+ℹ pass 33
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14848.993701
+exit=0 (3 npm run battery:node (33/33 incl. N28/N29))
+
+== 4 npm run test:engine (394/394)
+$ npm run test:engine
+
+> cakepanz-67@0.6.0-shell test:engine
+> node --test --experimental-strip-types test/engine.test.ts
+
+# info: 25/600 games reached overtime, 4 ended tied
+# golden pack=pack53:0b60973944ae13 log=log53:16f7dd18895323 points=26-17 events=195
+REPORT (toy pack, information only): {"clock":218,"downs":25,"fg":628,"fgmiss":111,"punt":745,"safety":13,"td":1009,"to":251}
+✔ philox2x32-10 matches the Random123 known-answer vectors (3.764955ms)
+✔ independent BigInt reference reproduces the published Philox2x32 and Philox4x32 vectors (so the reference itself is trusted) (10.727017ms)
+✔ production philox2x32 (16-bit limb multiply) equals the BigInt reference on 20,000 inputs incl. edge words (26.822148ms)
+✔ draw is a pure function of (key, event, tag, n) and lies in [0,1) (0.522529ms)
+✔ different event, tag, n, game each change the draw (0.147257ms)
+✔ replay one event alone: the cell gives the same numbers no matter what was drawn before it (0.225342ms)
+✔ counterfactual coupling: extra draws in one event never shift the next event (the sequential stream cannot do this) (0.093562ms)
+✔ adding a tag never changes what another tag draws; fork extends the tag (0.090448ms)
+✔ uniformity: mean, variance and decile counts are sane over 100k draws (12.539337ms)
+✔ serial independence: lag-1 correlation of consecutive events is near zero (4.191358ms)
+✔ normal() has mean 0 and sd 1; int() stays in range and hits both ends (20.652576ms)
+✔ bad inputs are rejected (0.340742ms)
+✔ logBuilder numbers events 0..n-1 and the log validates (0.220278ms)
+✔ validateLog rejects a gap, time going backwards and an empty kind (the check can fail) (0.298931ms)
+✔ canonical text ignores key order and undefined, rejects NaN; logHash changes with any change (0.289056ms)
+✔ foldLog: replay determinism (same log, same state, fresh state each time) and upTo gives the game after play N (0.249228ms)
+✔ foldAll equals running each fold alone (0.206961ms)
+✔ pack hash is stable, key-order independent, and changes when any parameter or rule changes (0.235948ms)
+✔ a hand-edited pack fails verification; a pack with no origin cannot be made (0.12473ms)
+✔ keyedrng conformance vectors: the committed file still equals what keyedrng.ts produces (2.316008ms)
+✔ ids: a player id names its sport; each sport counts from 1; bad input is refused (0.248324ms)
+✔ keys: sim:<name> is shared, sim:<sport>:<name> belongs to one sport, nothing else is accepted (0.226412ms)
+✔ profile container: a sport patch leaves every other sport (even one this build does not know) untouched (0.228128ms)
+✔ profile migration: the shell's flat profile moves under sports.nfl, once, losing nothing (0.210463ms)
+✔ envelope: every save names its sport and the sport's kinds are checked; another sport's save is refused by the NFL reader (0.951537ms)
+✔ legacy move: every old key lands under sim:, old keys are gone, unrelated keys are untouched (0.712605ms)
+✔ legacy move: player names are keyed by player id; a name shared by two players or matching nobody is NOT guessed (0.177114ms)
+✔ legacy move: running twice moves nothing the second time; an existing different new key is never overwritten (0.207156ms)
+✔ legacy move: a full or blocked store loses nothing (the old keys stay and are reported); a corrupt profile is kept, not replaced (0.14864ms)
+✔ layout: core imports only core; a sport imports only core and itself, never another sport (4.036692ms)
+✔ layout: the files storage may copy (envelope, keys) import nothing (2.288386ms)
+✔ layout: core has no DOM, storage, clock or Math.random (0.996334ms)
+✔ neutrality: there are source files to check (0.086331ms)
+✔ neutrality: no file under src/ (outside a ui/ folder) imports a framework or bundler; every import is relative (3.005456ms)
+✔ neutrality: the check itself can fail (planted framework imports are caught) (0.183531ms)
+✔ pmath lint: no file has more non-portable math calls than its pin; a new file has none (0.317401ms)
+ℹ REPORT: 39 non-portable math calls in 6 files (pinned 39): rng.ts 4, boxscore.ts 6, draft.ts 1, drives.ts 12, matchup.ts 15, plans.ts 1
+✔ pmath lint: the check itself can fail (planted violations are counted, comments and strings are not) (0.078486ms)
+✔ pmath pexp: reproduces its 417 stored vectors bit for bit (these bits are what the Python port also produces) (0.786448ms)
+✔ pmath pexp: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (0.346577ms)
+ℹ worst relative error 2.10e-16 over 417 vectors
+✔ pmath pexpm1: reproduces its 412 stored vectors bit for bit (these bits are what the Python port also produces) (0.39989ms)
+✔ pmath pexpm1: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (0.11471ms)
+ℹ worst relative error 2.65e-16 over 412 vectors
+✔ pmath plog: reproduces its 412 stored vectors bit for bit (these bits are what the Python port also produces) (0.631821ms)
+✔ pmath plog: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (0.122652ms)
+ℹ worst relative error 2.03e-16 over 412 vectors
+✔ pmath ptanh: reproduces its 415 stored vectors bit for bit (these bits are what the Python port also produces) (0.403696ms)
+✔ pmath ptanh: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (0.121937ms)
+ℹ worst relative error 3.20e-16 over 415 vectors
+✔ pmath psqrt: reproduces its 409 stored vectors bit for bit (these bits are what the Python port also produces) (0.455089ms)
+✔ pmath psqrt: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (0.301506ms)
+ℹ worst relative error 2.21e-16 over 409 vectors
+✔ pmath pnorminv: reproduces its 418 stored vectors bit for bit (these bits are what the Python port also produces) (2.481379ms)
+✔ pmath pnorminv: within 1e-12 relative of the reference (REPORT of the worst case in the diagnostics) (1.955391ms)
+ℹ worst relative error 1.93e-15 over 418 vectors
+✔ pmath pcos2pi: reproduces its 625 stored vectors bit for bit (these bits are what the Python port also produces) (0.43354ms)
+✔ pmath pcos2pi: within 1e-15 absolute of the reference (REPORT of the worst case in the diagnostics) (0.230729ms)
+ℹ worst absolute error 1.11e-16 over 625 vectors
+✔ pmath psin2pi: reproduces its 625 stored vectors bit for bit (these bits are what the Python port also produces) (0.689735ms)
+✔ pmath psin2pi: within 1e-15 absolute of the reference (REPORT of the worst case in the diagnostics) (0.240219ms)
+ℹ worst absolute error 1.11e-16 over 625 vectors
+✔ pmath: special values (NaN, infinities, zero, the clamps) (0.162417ms)
+✔ pmath: pcos2pi / psin2pi are exact at the quadrant boundaries, even, periodic and satisfy cos^2 + sin^2 = 1 (identities, no reference) (2.696703ms)
+✔ pmath: pnorminv is odd and monotone, and exp/log invert each other (identities that do not use any reference) (4.921778ms)
+✔ pmath: the check can fail (a one-bit change to an output is caught by the bit comparison) (0.110107ms)
+✔ writes land in revision order and the newest wins (0.386617ms)
+✔ while one write is in flight, queued writes collapse to the newest; a stale revision is dropped (0.119181ms)
+✔ slots are independent (0.123196ms)
+✔ a transient failure is retried and ends idle (0.138561ms)
+✔ a persistent failure surfaces as failed with the revision, and the next write recovers (0.08973ms)
+✔ subscribers see saving then idle (0.09181ms)
+✔ audit 3: a better punter lowers the opponent score in REGULATION, not only in overtime (334.419124ms)
+✔ audit 3: regulation and overtime read the same structural model (extraPts is part of structPts) (0.329239ms)
+✔ audit 2: a run defender saves yards against every offense, average to elite (run side) (1.360732ms)
+✔ audit 2: a pass rusher and a corner keep their value against an elite passing offense (pass side) (0.481797ms)
+✔ audit 2: the average-offense case is unchanged (the linear zone equals the old formula) (0.226809ms)
+✔ audit 4: lateGameK is 1 before the fourth quarter and monotone in the score in it (0.125684ms)
+✔ audit 4: in the last quarter of the game a trailing team runs less and a leading team runs more, totals unchanged (46.851005ms)
+✔ every team stat equals the sum of its players, over 120 games including overtime and playoffs (266.443702ms)
+✔ a touchdown scorer has the touchdown on his line, and the named passer threw it (82.237498ms)
+✔ SPD and STR decide who gets credit: equal-rated edges, the faster one gets more sacks; the team result does not change (1174.615285ms)
+✔ a faster runner averages more yards a carry, and team rushing yards never change (739.962074ms)
+✔ a scoring play gains at least a yard whenever the drive gained more than one on that kind of play (600 games) (794.92745ms)
+✔ Gone% is never shown as 100 (Owner 29 Oct): certain, near-certain and rounded-up values show 99 (0.262893ms)
+✔ Gone% below that is the plain rounded percentage, and 0 stays 0 (0.050934ms)
+✔ Gone% rejects NaN instead of showing a number (0.07003ms)
+✔ integers: every ordinary number is shown whole, half away from zero, never "-0" (0.100523ms)
+✔ one decimal: only QBR, wins and priority, always with exactly one decimal place, never "-0.0" (0.105587ms)
+✔ snake order: 32 rounds, each team once per round, direction flips (0.755894ms)
+✔ a full CPU draft: every team fills every spot, no player twice, all fits legal, deterministic (1879.54428ms)
+✔ early rounds: every CPU pick is within 5 OVR of the best player on the board (rounds 1-4); K and P wait for round 6 (5606.276954ms)
+✔ applyPick refuses a pick out of turn, a taken player, a filled spot (3.545628ms)
+✔ a spot can be filled once: a second pick into it is refused (0.69991ms)
+✔ candidates are natural fits or listed flexes, never emergency fills, late in the draft too (778.156691ms)
+✔ identities hold over 600 seeded games (regular season and playoffs, level and lopsided teams) (44.310796ms)
+✔ same seed gives the same game; a different seed does not (0.550642ms)
+✔ decompose: every reachable score splits into touchdowns, conversions and field goals that add up (1.516262ms)
+✔ allocate adds up exactly (0.937414ms)
+✔ league-average games match the council targets (PFR 2020-2025 per team-game, inbox P-204/205/206) (196.395ms)
+✔ a stronger team wins more often, and by points the model predicts (86.69315ms)
+✔ overtime clock: a playoff game rolls into new periods until someone wins; a regular-season game can end tied (49.811545ms)
+✔ envelope: week and season round-trip byte for byte through serialize and restore (0.836195ms)
+✔ envelope: a draft payload with a compact pool round-trips (0.175715ms)
+✔ envelope: outer shape errors are reported as corrupt, and a newer schema is its own verdict (1.012929ms)
+✔ envelope: inner shape errors are caught (roster size, scores, outcome, flags) (0.84215ms)
+✔ envelope: serialize refuses what JSON would silently change (0.511367ms)
+✔ envelope: the file imports nothing, so storage can copy it (0.307196ms)
+✔ every drive clock label is well formed; regulation reads Q1-Q4 with time left, overtime reads OT with time in (regular season and playoff) (297.967283ms)
+✔ focus dial: matching the offence pays (at least 0.25 points a game) (0.327196ms)
+✔ focus dial: guessing wrong costs (at least 0.3 points a game) (0.129559ms)
+✔ focus dial: against a balanced offence neutral is the safe choice (neither lean saves more than 0.1) (0.071491ms)
+✔ receiving spec: WR2 is worth about 77% of WR1 and WR3 under a fifth (6 Nov, Owner salary weights) (0.094313ms)
+✔ formation gap (reference table): a roster built for its own base is worth the same in either (600250 at 70 OVR), whichever role plays DL5 (20.367902ms)
+✔ formation gap (reference table), DL5 = DT: a 4-3 roster loses 2500 in 3-4, a 3-4 roster loses 1800 in 4-3, a gap of 700 (47.328114ms)
+✔ formation gap (reference table), DL5 = EDGE: a 4-3 roster loses 1800, a 3-4 roster loses 2400 (EDGE to DT is 2 since 16 Nov), a gap of -600 (10.212285ms)
+✔ formation gap: the 3-4 roster always pays the ILB at DL5 (12 x 150); with an EDGE at DL5 it also pays EDGE at DT2 (2, since 16 Nov) (1.741922ms)
+✔ formation gap (MEASURED values): own-base rosters agree across bases, a mismatched roster loses value; the numbers are REPORTED, not pinned (9.247568ms)
+ℹ REPORT (not a gate): own-base value at 70 OVR = 603998.6 / 603998.6 / 603998.6 / 603998.6 (reference table: 600250)
+ℹ REPORT (not a gate): DL5=DT: 4-3 roster loses 2582.2 in 3-4, 3-4 roster loses 1858.5 in 4-3, gap 723.7 (reference table: 2500 / 1800 / 700)
+ℹ REPORT (not a gate): DL5=EDGE: 4-3 roster loses 1863.8 in 3-4, 3-4 roster loses 2479.8 in 4-3, gap -616.0 (reference table: 1800 / 1800 / 0)
+✔ clock labels: regulation counts DOWN in the quarter, overtime counts UP into overtime, never a quarter past Q4 (0.20079ms)
+✔ the box score agrees with itself over 300 games: final = totals = last scoring line; drives and plays add up (432.366307ms)
+✔ no kicks: the preseason rating stands (0.226105ms)
+✔ Owner case: an 82 who goes 2/4 in week 1 is not a key player (0.214403ms)
+✔ Owner case: a 78 who makes everything, including two from 55+, earns key-player status (0.104392ms)
+✔ a long make is worth more than a short make (0.055664ms)
+✔ monotone: turning a miss into a make never lowers the rating (0.064531ms)
+✔ bounded movement (0.157901ms)
+✔ league curve falls with distance (0.066654ms)
+✔ gate: fold(log) deep-equals the original GameResult and BoxScore on 60 seeded games (regular season and playoff) (116.281072ms)
+✔ legacyGameLog runs the old engine unchanged: same numbers as the fixture path, and the log is deterministic (8.070944ms)
+✔ the game after play N: folding a prefix of the log gives the partial game, and the last drive adds exactly its own points (1.741919ms)
+✔ the gate can fail: a log with one drive changed no longer folds to the original result (1.837225ms)
+✔ the legacy pack verifies and names its provenance; the log carries its hash (1.837506ms)
+✔ the emergency-fill count equals the exact minimum on 240 skewed rosters, at spot-value scales 1, 200 and 0.001 (and the placements do not change with scale) (1416.422913ms)
+✔ priorities(): each weight outweighs everything below it, and the order scales with the values (0.278532ms)
+✔ table: 32 spots, unique ids, every weight a positive multiple of 5, the QB spot is the most valuable one (0.128021ms)
+✔ retired table guard: the solver, the draft and the app spend the MEASURED provider; nothing reads design.json or wires WEIGHT / tableValues back in (14.27303ms)
+✔ table: unit counts are 16 offense, 14 defense, 2 special (0.206425ms)
+✔ flex: the typed table equals tools/mathlab/flex.json (tiers -2 / -6 / -12, Owner 10 Nov, 99 rules) rule by rule (0.295448ms)
+✔ flex: every penalty is 0, 2, 6 or 12 (the model-first tiers) and every role in the data has a row (0.301753ms)
+✔ flex: Owner D pins (9 Nov: 7 removed, 53 Owner overrides, the rest D@90 theta 1.0 rounded to the nearest of 0/2/6/12) (0.080408ms)
+✔ flex: a quarterback plays only QB or FS (-12); no RB, no WR, no SS, no emergency fallback; anyone else has -8 (0.070639ms)
+✔ flex: NICKEL and DIME are free for CB, SS and FS; WR pays 6 (Owner 10 Nov cross-side floor) (0.061595ms)
+✔ flex: DL5 is natural for DT and EDGE and costs the cheaper of role->DT, role->EDGE for the rest (0.118379ms)
+✔ flex: no arbitrage; going A -> B -> C through two spots is never cheaper than the listed A -> C (0.378244ms)
+✔ hungarian: equals brute force on 300 random matrices of size 1..7 (with ties and negatives) (19.076798ms)
+✔ hungarian: rejects a non-square matrix (0.150972ms)
+✔ 4-3: every spot plays as itself (0.089318ms)
+✔ 3-4: DT2 becomes ILB2 (rated DT2, 300); WILL is OLB1 (WILL); SAM is OLB2 and keeps the SAM rating (100); the rest is unchanged (Owner 2 Nov; weights 6 Nov) (0.231946ms)
+✔ DL5: balanced share is the measured 0.33, cautious is no lower, aggressive is higher (Owner 29 Oct) (0.087736ms)
+✔ lineup: a natural roster puts every player in a spot of his own role with no flex and no emergency (2.606864ms)
+✔ lineup: the best player takes the most valuable spot of his role, whatever slot he was drafted into (1.204697ms)
+✔ lineup: flex happens only when worth it; a 95 OT beats a 70 at a flex-4 price and does not leave his spot (1.249726ms)
+✔ lineup: a spare running back fills the empty FB spot at -2 rather than leaving it to an emergency fill (0.911287ms)
+✔ lineup: with nobody legal left the emergency fill (-8) is used, and a QB is never forced into a spot (1.105487ms)
+✔ lineup: a short roster leaves spots empty (rated 70) and every rostered player still plays (0.692013ms)
+✔ lineup: a long roster benches the weakest fits and every spot is filled (2.747117ms)
+✔ lineup: exact against brute force on a tiny custom spot list (15.747725ms)
+✔ lineup: deterministic, and the value does not depend on the order the players are given (9.926156ms)
+✔ lineup: all 32 real rosters give a valid assignment (each player once, no QB out of place, no forced emergency count above 3) (213.089676ms)
+✔ lineup: the optimum is never below the natural-order assignment (best player of each role to the highest spot) (12.485793ms)
+✔ base: totals are not comparable. A roster of 4-3 natives is worth less in 3-4 (one inside spot goes to a stand-in at -6, the spare DT plays FB free, the natural FB covers TE3 at -2 and a TE covers one more cheap slot at -6); the gap is GATED as an identity over whatever the values are, not as a number (4.284618ms)
+ℹ REPORT: 4-3 minus 3-4 value for a natural-4-3 roster = 2582.2265039370395 (flex cost 2582.2265039370077, spot-value difference 0); an information line, the gate is the identity
+ℹ REPORT (not a gate): third stand-in = [["SAM","TE",6]]
+✔ base: with a second natural ILB the 3-4 lineup has no flex at all, the DT2 spot is his, a DT sits, and the two bases are worth the same (2.573608ms)
+✔ base: two elite inside linebackers add more to a 3-4 lineup than to a 4-3 one (7.927157ms)
+✔ advice: players rated within a few points of each other are never flexed (nothing is worth 0.02 wins per player) (1.570621ms)
+✔ advice: every suggestion pays for itself, total gain >= 0.02 wins x the players it displaces (random 60-90 ratings) (16.308501ms)
+✔ advice: a clear upgrade is suggested, a one-point difference is not (1.982694ms)
+✔ advice: never worse than the current lineup, and advising the advice changes nothing (46.30252ms)
+✔ advice: on 32 real rosters from natural best-per-spot lineups it moves far fewer players than the plain optimum and keeps most of the gain (223.677994ms)
+✔ advice: valueOf agrees with the solver on its own output (0.950557ms)
+✔ coupling rows are probabilities that sum to 1, and push mass to the target pmf (0.313322ms)
+✔ regulation ties are 5.88% of games and 3 and 7 are the big margins (0.068896ms)
+✔ reshapeScores keeps the winner, keeps scores reachable, mostly keeps the total, and hits the margin pmf (19.81734ms)
+✔ a level game stays level (overtime decides it), and a one-point game can become a tie but never flips (1.351405ms)
+✔ golden: oracle was built from Pre-Colors 40233d6be00e987c and covers 32 spots, 8 teams, dozens of plan cases (0.125024ms)
+✔ golden: every unit rating equals the original engine (all teams, all keys the port has) (0.541353ms)
+✔ golden: matchupModel equals the original engine on turnovers, sacks, spread and plan cost; yards and points stay within the audit bounds (3.99061ms)
+✔ table: all 32 spots measured on the model land within 50 of the Owner-approved weight (Owner 6 Nov 2026) (10.834545ms)
+✔ table: measured order has no inversion against the table (a heavier table spot is never measured lighter) (9.878129ms)
+✔ table: every spot is worth more as its player improves, on its own side of the ball (40.816219ms)
+✔ formation: an all-80 team rates exactly 80 in every unit, in either base (0.277083ms)
+✔ formation: 3-4 offence and special spots measure the same as in 4-3 (within 1), defence spots keep the table proportions (18.718305ms)
+✔ formation: in a 3-4 each position measures what it does in a 4-3: ILB1 = MIKE, ILB2 = DT2, OLB1 = WILL, OLB2 = SAM (Owner 2 Nov) (24.871533ms)
+✔ model: raising any single spot never lowers its own side's value (offence and kicker up, defence and punter up) (5.075916ms)
+✔ model: points scale as the table says (weight x 0.00254 wins per 20 OVR, 32.5 points a win): QB +10 and punter +10 (QB 1000, P 50) (0.248557ms)
+✔ model: softCap is the identity inside 60% of the cap and never exceeds the cap (0.073787ms)
+✔ model: normCdf is a CDF (0.5 at 0, symmetric, monotone) (0.044066ms)
+✔ plans: 15 offensive and 6 defensive options; identity is deterministic and picks a plan from the lists (3.465342ms)
+✔ plans: a team with a great line and backs and a poor QB leans run, the reverse leans pass (1.167809ms)
+✔ game: a stronger team is projected to win more often, home field helps, and the two sides' probabilities mirror (3.593694ms)
+✔ specs: every spec row names a real spot (0.174541ms)
+✔ formation: a real 3-4 lineup is graded by spec row (spotsOf follows the formation, not the spot names) (2.983972ms)
+✔ formation: a better ILB2 (the DT2 spot) adds to the pass rush in a 3-4 as DT2 does in a 4-3, and OLB2 (SAM) adds none in either base (0.32946ms)
+✔ outcome: treating each of the 32 teams as the user gives exactly 18 missed, 6 wild-card, 4 divisional, 2 conference, 1 super-bowl loss, 1 champion (1087.183479ms)
+✔ outcome: null until the user is out, then fixed forever; a bye week is not an elimination; missed-playoffs appears right after week 18 (365.440099ms)
+✔ statsDue: fires once, in the week the user goes out, and never again once recorded; abandoned (never eliminated) records nothing (486.263451ms)
+✔ the committed crosswalk covers the data exactly: sync would change nothing (4.707612ms)
+✔ pool ids are pids, unique, in file order (5.668251ms)
+✔ a player with no crosswalk row fails loudly (3.487791ms)
+✔ a duplicate pid or key in the crosswalk is rejected (0.207651ms)
+✔ sync: a team change keeps the pid; a new player gets the next pid; a departed player keeps his row and his pid is never reused (0.362148ms)
+✔ sync: two new players with the same name and position are never guessed to be an old one (0.102105ms)
+✔ pool size: 1,941 rated + 12 free agents, all ids unique (0.355561ms)
+✔ Lane Johnson is not in the project (retired); Joey Porter Jr is (0.143232ms)
+✔ repeated names stay distinct players (0.122186ms)
+✔ every rating is a plausible integer and every player has a role (0.40429ms)
+✔ draft supply: enough of each role for 32 teams x the 32-spot table (0.80585ms)
+✔ a bad line fails loudly (0.148506ms)
+✔ pool nodes vs the lab (nfl-pools-fit2023-2025 (700 call states, 4200 record, 1400 late clock, 1264 non-late clock)): the call node picks the lab's pool, level by level (6.145466ms)
+✔ pool nodes vs the lab (nfl-pools-fit2023-2025 (700 call states, 4200 record, 1400 late clock, 1264 non-late clock)): the play-record node picks the lab's pool (622.512359ms)
+✔ pool nodes vs the lab (nfl-pools-fit2023-2025 (700 call states, 4200 record, 1400 late clock, 1264 non-late clock)): both clock nodes, both clock variants (30.286716ms)
+✔ pool nodes vs the lab (nfl-pools-fit2023-2025 (700 call states, 4200 record, 1400 late clock, 1264 non-late clock)): the kickoff pool equals the lab's kickoffs under both clocks (0.935151ms)
+✔ pool nodes vs the lab (nfl-pools-fit2016-2022 (700 call states, 4200 record, 1400 late clock, 1108 non-late clock)): the call node picks the lab's pool, level by level (3.613958ms)
+✔ pool nodes vs the lab (nfl-pools-fit2016-2022 (700 call states, 4200 record, 1400 late clock, 1108 non-late clock)): the play-record node picks the lab's pool (755.631135ms)
+✔ pool nodes vs the lab (nfl-pools-fit2016-2022 (700 call states, 4200 record, 1400 late clock, 1108 non-late clock)): both clock nodes, both clock variants (36.572534ms)
+✔ pool nodes vs the lab (nfl-pools-fit2016-2022 (700 call states, 4200 record, 1400 late clock, 1108 non-late clock)): the kickoff pool equals the lab's kickoffs under both clocks (1.174053ms)
+✔ sample(): the binary search equals the linear definition on real pools, at random u and exactly on every boundary (236.218733ms)
+✔ pool nodes: the check can fail (a perturbed pool changes its digest; a wrong bin edge picks a different pool) (229.419592ms)
+✔ the baked pack is self-consistent: hash verifies, counts add up, tuples are well formed (181.984211ms)
+✔ the loader rejects a corrupted pack (the check can fail) (1000.071805ms)
+✔ bins: binOf matches the lab (number of edges <= x), tmb matches the lab (0.195849ms)
+✔ a game is deterministic in its key and differs across keys (6.981837ms)
+✔ accounting identities over 400 games (any pack must satisfy them) (144.778491ms)
+✔ the identity check can fail (a tampered log is caught) (2.87349ms)
+✔ the same fold gives the same totals from the log alone (replay needs no sim state) (0.788917ms)
+✔ overtime exists and settles most ties (information, not a gate) (166.518532ms)
+✔ regression pin: pack hash, log hash and score for one key (a replay pin from this code, not an independent check) (2.605669ms)
+✔ engine purity: there are engine files to check (0.106198ms)
+✔ engine purity: awards.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.313238ms)
+✔ engine purity: awards.ts imports only sibling engine modules or src/core (0.400101ms)
+✔ engine purity: boxscore.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.141647ms)
+✔ engine purity: boxscore.ts imports only sibling engine modules or src/core (0.109274ms)
+✔ engine purity: display.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.053273ms)
+✔ engine purity: display.ts imports only sibling engine modules or src/core (0.027199ms)
+✔ engine purity: draft.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.071323ms)
+✔ engine purity: draft.ts imports only sibling engine modules or src/core (0.114487ms)
+✔ engine purity: drives.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.097211ms)
+✔ engine purity: drives.ts imports only sibling engine modules or src/core (0.059035ms)
+✔ engine purity: flex.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.03229ms)
+✔ engine purity: flex.ts imports only sibling engine modules or src/core (0.028127ms)
+✔ engine purity: goneodds.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.028832ms)
+✔ engine purity: goneodds.ts imports only sibling engine modules or src/core (0.034682ms)
+✔ engine purity: kicking.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.025322ms)
+✔ engine purity: kicking.ts imports only sibling engine modules or src/core (0.016275ms)
+✔ engine purity: league.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.029231ms)
+✔ engine purity: league.ts imports only sibling engine modules or src/core (0.016892ms)
+✔ engine purity: legacyprovider.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.047957ms)
+✔ engine purity: legacyprovider.ts imports only sibling engine modules or src/core (0.070922ms)
+✔ engine purity: lineup.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.045397ms)
+✔ engine purity: lineup.ts imports only sibling engine modules or src/core (0.050293ms)
+✔ engine purity: margin.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.03322ms)
+✔ engine purity: margin.ts imports only sibling engine modules or src/core (0.021326ms)
+✔ engine purity: matchup.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.059392ms)
+✔ engine purity: matchup.ts imports only sibling engine modules or src/core (0.033752ms)
+✔ engine purity: plans.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.038244ms)
+✔ engine purity: plans.ts imports only sibling engine modules or src/core (0.054715ms)
+✔ engine purity: playerids.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.043619ms)
+✔ engine purity: playerids.ts imports only sibling engine modules or src/core (0.045582ms)
+✔ engine purity: players.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.034386ms)
+✔ engine purity: players.ts imports only sibling engine modules or src/core (0.027888ms)
+✔ engine purity: ratings.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.0432ms)
+✔ engine purity: ratings.ts imports only sibling engine modules or src/core (0.044763ms)
+✔ engine purity: recap.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.210743ms)
+✔ engine purity: recap.ts imports only sibling engine modules or src/core (0.181055ms)
+✔ engine purity: returner.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.053124ms)
+✔ engine purity: returner.ts imports only sibling engine modules or src/core (0.097562ms)
+✔ engine purity: schedule.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.075031ms)
+✔ engine purity: schedule.ts imports only sibling engine modules or src/core (0.060182ms)
+✔ engine purity: season.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.066304ms)
+✔ engine purity: season.ts imports only sibling engine modules or src/core (0.159275ms)
+✔ engine purity: seasonrun.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.06039ms)
+✔ engine purity: seasonrun.ts imports only sibling engine modules or src/core (0.089158ms)
+✔ engine purity: slots.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.034965ms)
+✔ engine purity: slots.ts imports only sibling engine modules or src/core (0.023353ms)
+✔ engine purity: specs.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.032446ms)
+✔ engine purity: specs.ts imports only sibling engine modules or src/core (0.026032ms)
+✔ engine purity: standings.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.063337ms)
+✔ engine purity: standings.ts imports only sibling engine modules or src/core (0.042758ms)
+✔ engine purity: value.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.049264ms)
+✔ engine purity: value.ts imports only sibling engine modules or src/core (0.057227ms)
+✔ engine purity: valueprovider.ts has no DOM, Math.random, Date.now, storage, process or Node imports (0.028013ms)
+✔ engine purity: valueprovider.ts imports only sibling engine modules or src/core (0.03177ms)
+✔ engine purity: the check itself can fail (a planted violation is caught) (0.088609ms)
+✔ the last running score of every recap is the final score, and the points add up per team (1.583917ms)
+✔ scoring is in time order, regulation before overtime, and overtime lines only in overtime (1.256227ms)
+✔ every line names the team that gained and the players; every defensive touchdown in the recap is in the events (4.501686ms)
+✔ every turnover is named (who gave it, who took it) and the count equals the team stats (1.505673ms)
+✔ the game ball is on the winning team, is always among the stars, and an offensive star has 60 or more yards (1.793996ms)
+✔ banned words never appear, and the same inputs give the same recap (6.1198ms)
+✔ the text starts with the score, lists quarters as 1st-4th, and uses the box-score line style (0.466538ms)
+✔ season stats add up from the games, leaders are ordered, and the awards pick sensible winners (33.081867ms)
+✔ quarters and the clock follow the time of the score: 1st ends at 900 seconds, the clock counts down, overtime counts up (2.258695ms)
+✔ two-point conversions are narrated: good, failed, and extra points missed each appear exactly as often as they happened (2.411489ms)
+✔ a team with six monster games still gets at most three stars, the game ball included (synthetic box) (2.466615ms)
+✔ A. season: save through JSON after week k (every k, regular and playoff), resume, finish: identical to the uninterrupted run (5232.781941ms)
+✔ B. a game depends only on (seed, week, home): shuffling the week's schedule rows changes neither game seeds nor results (99.841328ms)
+✔ B2. run counter: the same frozen league with run 0 and run 1 plays a different schedule; run is stored in the state, not derived from play (11.601504ms)
+✔ C. draft: cut at several points, save to JSON, LOAD into a fresh store, keep drafting: same final record as the uninterrupted draft (4166.066509ms)
+✔ C2. draft crash recovery: a log cut at ANY pick (mid-CPU-run included) is finished to the same draft, because each CPU pick has its own stream (7511.229878ms)
+✔ Owner formula: SPD 0.80, OVR 0.10, STR 0.10, capped at 99 (0.244027ms)
+✔ candidates are non-linemen starters; the fastest wins unless the user picks someone else (0.589798ms)
+✔ no eligible returner gives the neutral 82 (0.377887ms)
+✔ a better returner is worth points, a worse one costs them, and neutral is exactly zero against a neutral league (0.434041ms)
+✔ same seed, same stream (0.187524ms)
+✔ different seeds differ; fork is stable and independent (0.053533ms)
+✔ uniform mean and normal moments are sane (13.14393ms)
+✔ league: 32 teams, 8 divisions of 4 (0.232605ms)
+✔ schedule formula: 17 games a team, 272 games, the 6/4/4/2/1 structure, 8 or 9 home games, extra home game by year (7.003007ms)
+✔ weeks: 18 weeks, one bye each in weeks 5-14, nobody plays twice in a week, week 18 is all division games (18.64048ms)
+✔ schedule is repeatable for a seed and different for another (12.747301ms)
+✔ ranks must be 1-4 once per division (0.193531ms)
+✔ same-conference division pairings rotate on a three-year cycle: three different opponents, then the first again (0.696181ms)
+✔ a whole season: 272 games, table = games, 14-team playoff with byes and reseeding, a champion (30 seeded seasons) (1111.029556ms)
+✔ same seed, same season; the next season can use this season's division finish (112.108341ms)
+✔ stronger teams win more: team strength vs wins, spread of wins, and the stronger team takes the title more often (1574.753937ms)
+✔ a bad team list is refused (0.693485ms)
+✔ the Super Bowl is on a neutral field; every other playoff game keeps the home edge (40.091268ms)
+✔ stepping week by week (through JSON each week) gives the same table, playoffs and champion as simulateSeason (1306.70343ms)
+✔ the state is plain JSON and small (no logs): a full season under 150 K chars (367.336546ms)
+✔ a refresh at a preview replays the SAME game: stored game seed gives the identical result, play-by-play included (99.791327ms)
+✔ weeks: 18 regular weeks, then 6 + 4 + 2 + 1 playoff games in weeks 19 to 22; playoff weeks refuse to start early (364.476826ms)
+✔ run-it-back: the same league with a new seed and run counter gives a different schedule (opponents, not just week order) (23.564106ms)
+✔ a bad team list is refused (0.941942ms)
+✔ one drive, all the way: pack -> keyed draws -> events -> fold -> box score view (1.637811ms)
+✔ every screen agrees: drive table, team lines and scoring summary are sums of the same events (500 drives) (9.405265ms)
+✔ invariants on every play of 3,000 drives: field, down, clock, result all consistent (30.847551ms)
+✔ replay: same key and pack give the same log; another key or another pack gives another (0.698483ms)
+✔ keyed coupling: changing ONE node (pass-yards pmf) leaves every earlier play identical and changes the first completion (4.986896ms)
+✔ lambda seam: with lambda 0 (or gap 0) the matchup is inert; with lambda > 0 a bigger pass gap lifts completions and cuts sacks, monotonically (62.962432ms)
+✔ tilt: a probability vector in, a probability vector out; zero scale returns the baseline exactly (0.310597ms)
+✔ field-goal curve is built on pmath: decreasing in distance, inside (0,1), and equals the closed form to 1e-12 (0.200831ms)
+✔ pickPmf is an inverse CDF: u in [0,1) maps monotonically to the support and hits both ends (0.083816ms)
+✔ a broken pack fails at load, not three plays in (0.459095ms)
+✔ the sim folder uses no ambient time, randomness or non-portable math (the portability lint covers it too) (0.732538ms)
+✔ golden: the fixed-key drive replays to the recorded log hash for the recorded pack hash (re-record both together when the pack changes) (0.218413ms)
+✔ pct: ties count half; no games is 0 (0.048612ms)
+✔ division, two clubs: head-to-head first (0.124501ms)
+✔ division, two clubs: split head-to-head goes to division record (0.05987ms)
+✔ division, three clubs: head-to-head among the three, then the procedure restarts for the two left (0.067945ms)
+✔ division, three clubs in a cycle: head-to-head is level, division record separates (0.086919ms)
+✔ wild card, two clubs from different divisions who never met: conference record, then (common games under four are skipped) strength of victory (0.14779ms)
+✔ wild card, three clubs: a club that beat both others advances on the sweep; one that lost to both leaves the tie (0.0672ms)
+✔ wild card: of several clubs from one division only the best is in the running for the next spot, then the rest re-enter (0.066994ms)
+✔ coin toss is seeded by the clubs, not by the order they were passed in (1.922675ms)
+✔ net points decides when records, strength and rankings are level (0.190608ms)
+✔ seeding: 7 a conference, division winners are seeds 1-4, wild cards 5-7, by record, no club twice (43.928158ms)
+✔ seeding is repeatable for a seed (0.502715ms)
+✔ wild card: strength of victory is applied before strength of schedule (0.181798ms)
+✔ wild card: common games count only when there are at least four of them (0.118344ms)
+✔ net touchdowns: more is better, and it decides only when everything before it is level (0.466812ms)
+✔ division: strength of victory is applied before strength of schedule (0.152191ms)
+✔ store: START puts the user on the clock; PICK advances to the next user turn; roster shows the pick (300.281541ms)
+✔ save and restore: a saved log rebuilds exactly the same draft, through JSON and storage (810.448885ms)
+✔ E4: a resume never reads the live data: a store built on a different, damaged pool restores the same draft (815.876505ms)
+✔ E4: logged picks are applied as logged, not re-decided: a log whose CPU picks differ from what the engine would choose still restores (13.16849ms)
+✔ E4: a log that does not fit is rejected, not repaired: out of order, taken twice, unknown player, illegal spot (206.773276ms)
+✔ freeze and thaw: the pool round-trips every field (long snappers are not drafted) (4.276766ms)
+✔ undo: drops only the last user pick, and picking the same player again gives the same draft as before (428.776773ms)
+✔ bad input is rejected with a message, never a crash: unknown player, bad record, undo with nothing (1.858245ms)
+✔ roster VM: roster order, offense / defense / special, flex tag only where a flex is used (572.503031ms)
+✔ app layer purity: no DOM, storage globals, clock or Math.random in src/app (1.227422ms)
+✔ theme: the colour table covers exactly the 32 engine franchises, 3 valid hexes each (0.318685ms)
+✔ theme: the true brand hexes equal the shell table (chips stay true) (0.119545ms)
+✔ theme: every pack reproduces the shell token for token (32 teams x 82 tokens) (7.438194ms)
+✔ theme: an unknown team has no pack and no opponent tokens (0.142427ms)
+✔ theme: opponent tokens are the same pack under --o, and never touch --t (0.263631ms)
+✔ theme: text-bearing tokens clear their contrast floors for 32 teams x 2 themes (any miss is named) (0.53513ms)
+✔ theme: on-colour ink is always the more readable of the two inks on the accent mix (0.091122ms)
+✔ theme: the check can fail (a planted bad pairing is caught by contrast()) (0.068855ms)
+✔ theme: the module has no DOM, storage, randomness or clock (0.411804ms)
+✔ provider: WINS_PER_UNIT is a literal (value.ts is in an import cycle with it) and must equal value.ts WEIGHT_UNIT_WINS / 20; lineup re-exports the same number (0.06284ms)
+✔ provider: the default is MEASURED, equals slotWins20 / 20 to the 1e-9 rounding, in every spot and both bases (25.704515ms)
+✔ provider: values are rounded to a 1e-9 grid (a last-bit difference between engines cannot move them), and a fresh provider repeats the default exactly (11.2896ms)
+✔ provider: the same position carries the same value in both bases (Owner 2 Nov), to within one fitted-weight unit (0.176859ms)
+✔ provider: tableValues() round-trips the retired table EXACTLY through the solver unit (value / WINS_PER_UNIT === weight), so it reproduces the old arithmetic bit for bit (0.08062ms)
+✔ QB-first: QB has the largest measured value of any spot (REPORTED, not a gate; Owner: "a qb generally still needs to be the most important player") (0.138806ms)
+ℹ REPORT (not a gate): QB-first HOLDS: largest = QB (999.3 units, QB = 1000 scale), next = DE1 (673.3); QB / next = 1.484x
+✔ seam: draft candidates ask the provider (wins = value per OVR x (eff - replacement)); the table provider reproduces weight x WINS_PER_UNIT x (eff - replacement) (4.087191ms)
+✔ seam: the provider drives placement (rearrangement): the best receiver plays the most valuable WR spot, whichever spot the provider prizes (7.282105ms)
+✔ E5 stamps: the engine stamp is a pure, change-sensitive function of the rules text (no value pinned); the data stamp is the one the last deliberate data change left (147.027062ms)
+ℹ REPORT: engineVersion=nfl1.1ac56c28928eff (information only; it moves with the rules and is never pinned)
+✔ hash53: stable, 14 hex digits, and sensitive to one character and to order (0.271836ms)
+✔ dataVersion: canonical SHA-256 of the player rows. A changed rating changes it; row order, CSV whitespace, line endings and Unicode composition do not (113.336417ms)
+✔ canonical form: the exact text and the SHA-256 of a tiny dataset are pinned (two devices must agree byte for byte) (0.763856ms)
+✔ the rules text covers the tables that move results (not just a label) (0.335697ms)
+✔ drift: reports which stamp differs, and never throws (2.572035ms)
+✔ stamps ride in the envelope: written on save, read back on restore, and an older save still restores (2.394732ms)
+✔ board VM: JSON-stable, deterministic, and every printed number is a string (1212.275507ms)
+✔ board VM: display rules (one-decimal wins and priority, signed; integer OVR; Gone% never 100) (118.055689ms)
+✔ board VM: header round follows the draft and the text has no retired words (2468.182243ms)
+✔ board VM: a natural spot is the primary spot whenever one is open (the Cooper DeJean rule); flex options follow the 2/4 rule (118.736917ms)
+✔ gone odds: a deep-board player is rarely taken, the best players often are, and probabilities are in range (1581.324095ms)
+✔ view layer purity: src/view has no DOM, storage, clock or Math.random (1.134885ms)
+✔ board VM: a tight end is listed at TE1 even though the flex spot WR1 is worth more (found by search: seed 2, first pick; seed 1 moved when the audit reordered the DB weights and a CPU took him) (202.913402ms)
+✔ board VM: a certain Gone% prints as 99%, never 100% (5.637519ms)
+✔ E3b: at every week (incl. playoffs and the finished season) RunState -> envelope text -> RunState is identical, seeding and champion included (775.228998ms)
+✔ E3b: a refresh at any preview replays the SAME game and continues to the same champion (835.443287ms)
+✔ E3b: the stored gameSeed is the user game of that week, and a tampered one is refused (6.436675ms)
+✔ E3b: refuses missing team ratings, a non-numeric rating, and a save without prevRank (5.448696ms)
+✔ E3b: run-it-back: the next run built from the saved prevRank has different opponents (372.221643ms)
+✔ the default display equals the fit table on every slot (nothing in it is a measurement) (0.177805ms)
+✔ display == fit table and the refitted engine tracks it within the Owner limit -> FITTED (a fit, not independent evidence) (0.235463ms)
+✔ the same display is never MEASURED: only a display that differs from the table and tracks the engine earns that label (0.130178ms)
+✔ a stale fit is caught: display == table but the engine no longer tracks it (legacy coefficients) -> ECHO (10.151064ms)
+✔ the Pre-Colors default tolerance (5) is too tight for a fitted engine: the verdict flips FITTED -> ECHO without the stated 50 (0.164634ms)
+✔ the default display (measuredDisplayWeights) is MEASURED: QB 1000, nearest 5, not the table, tracks the raw curve (9.180253ms)
+ℹ tests 394
+ℹ suites 0
+ℹ pass 394
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 58478.329792
+exit=0 (4 npm run test:engine (394/394))
+
+== 5 npm run distfile (single-file dist; the sha is asserted below)
+$ npm run distfile
+
+> cakepanz-67@0.6.0-shell distfile
+> vite build && node scripts/distfile.mjs
+
+10:30:54 PM [vite-plugin-svelte] no Svelte config found at /tmp/c81-fresh-clone - using default configuration.
+vite v7.3.7 building client environment for production...
+transforming...
+✓ 225 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.65 kB │ gzip:   0.41 kB
+dist/assets/index-j5BYxHP8.css  141.06 kB │ gzip:  89.73 kB
+dist/assets/index-BRWBzK_6.js   386.41 kB │ gzip: 131.36 kB
+✓ built in 1.63s
+single-file dist written: dist/single.html (515.6 KB) — no external refs: true
+exit=0 (5 npm run distfile (single-file dist; the sha is asserted below))
+4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a  dist/single.html
+preview 4493 -> HTTP 200
+
+== 6 npm run battery (slice 29/0/10/3; the per-run JSON lands in deliveries/receipts/ now)
+$ env CP_PORT=4493 npm run battery
+
+> cakepanz-67@0.6.0-shell battery
+> node batteries/slice1.battery.mjs
+
+== slice 2: the Team Select flow (the draft starts from the user's choice) ==
+   PASS  the dev build opens at TEAM SELECT, not on a board with a random team
+   PASS  the Team Select lists all 32 teams — 32 team buttons
+   PASS  the 32 teams sit in the real alignment (AFC + NFC, 4 divisions each)
+   PASS  the measured mode is the DEFAULT on Team Select too ("Model Value" on, pre-draft)
+   PASS  the mode switch is NOT disabled before the draft (the Owner preset is one click away pre-draft)
+   PASS  selecting a team shows its details (name + the real division)
+   PASS  the details are engine-derived (the division rivals read the real alignment)
+   PASS  the choice flows into the Draft Board — the board drafts as the CHOSEN team
+== the laws the Draft Board carries (APPLY — run for real) ==
+   PASS  the board renders from the view model (engine state in, plain JSON out) — 60 rows
+   PASS  the default sort is wins/priority, never raw OVR
+   PASS  the on-clock indicator names the round, the pick and the overall
+   PASS  every row reads name · pos · team · OVR · wins · priority · gone% (EVERY row, EVERY field) — 60 rows, 0 bad
+   PASS  the gone-odds display is present on every row
+   PASS  the gone% method tooltip exists and reveals the method on hover (Slice 3) — GONE% — how often the CPU took him before your next pick: the 22 picks between n
+   PASS  the "my needs" row exists, lists my open slots, and a need filters the board (Slice 3) — QB: 60 rows -> 10 filtered
+   PASS  clearing the needs filter restores the whole board (Slice 3) — 60 rows (was 60)
+   PASS  the sort controls offer wins / OVR / priority
+   PASS  the OVR sort actually sorts — first 99
+   PASS  the flex chips read the flex cost (the "-N" form, no "flex tax" wording) — OBSERVED open — 60 pickers probed · 75 flex chips · sample ["-2 flex","-2 flex","-2 flex"]
+   PASS  the slot picker offers the natural slot first — Draft at QB
+   PASS  the pick confirms before it lands — Draft Brock Purdy at QB? Confirm the pick Cancel
+   PASS  the pick lands and the footer counts it
+   PASS  the CPU teams pick on after the user's pick (the clock advances)
+   PASS  undo cuts the log back and the count returns
+   PASS  the measured mode is the DEFAULT ("Model Value" on)
+   PASS  the Owner preset is one click away
+   PASS  the mode switch is DISABLED mid-draft (it was free on Team Select — the lock fires at START)
+   PASS  the mode label travels with the numbers (the subtitle carries it)
+   PASS  zero page errors across the whole battery
+== the laws that live on later slices or shell surfaces (SKIP — loudly) ==
+   SKIP  V0 the median trio (the drafted-pool median, superseded 76, cached once) — the scale explainer lives on the season screen (a later slice); the engine median itself is verified by the engine tests
+   SKIP  V2/V3 the chip law (all off = the full board) — the position chips belong to the shell board chrome — slice 1 renders the full board; the chip bar arrives with the board chrome slice
+   SKIP  V5 the phone laws at 390 (the footer nav, the pan laws) — the footer nav is shell chrome; the slice screens are mobile-flexible but the shell laws name shell elements
+   SKIP  V6 the playoff round cinematics — playoffs are a later slice
+   SKIP  V8a/V8b/V8c/V13/V14/V16 the stage bars, the preseason page, the guide ladder — shell pages outside slice 1 (team select, season, standings, guide arrive in slices 2-3)
+   SKIP  V9/V10/V11/V12 the SIM SEASON ghost, the pregame cards, the linescore frame, the award inks — season-surface laws — later slices
+   SKIP  V15 the fills column and V17 the picker chips in shell form — slice 1 renders the same data as the also-fits chips + the slot picker; the shell FORM is not the law, the DATA is (verified above)
+   SKIP  V7 the display scale centers on the median — the display scale drives the season surfaces; the draft numbers ride the same display.ts strings (verified by the engine tests)
+   SKIP  V4 the command center / cutdown day — the season review screen — a later slice
+   SKIP  V1 the dropdown order + the OG casing — the shell dropdown is a filter on the board chrome; the depth-chart order lives in the engine slots (verified by the engine tests)
+== DEFER to the cutover battery (needs both trees; the Architect runs it) ==
+
+== SLICE 1 BATTERY · 29 pass · 0 fail · 10 skip (loud, with reasons) · 3 deferred to cutover ==
+exit=0 (6 npm run battery (slice 29/0/10/3; the per-run JSON lands in deliveries/receipts/ now))
+
+== 7 the late battery (9/9: L1–L6 + L7/L8/L9, incl. the hash-door leg)
+$ env CP_PORT=4493 node --import ./scripts/node-port-register.mjs batteries/late.battery.mjs
+   PASS  L1 the flip: at the user's 10th pick the FULL form (advice + sorts, no switch line); at the 11th the SIMPLE form with the honest switch line (P-337 law 1) — 10th: full ✓ · 11th: simple ✓ note="the board simplified — every number is still one click away"
+   PASS  L2 simple row anatomy: one recommendation number + the pick control per row; no flex chip, no advice panel; gone% stays; AND the shown number tracks the active sort (4.5(i)) (P-337 law 2) — rows=60 rec=60 pickbtn=60 chips=0 advice=0 gone=60 · priority: rec=+0.4 vm=+0.4 cap=PRIO · wins: rec=+0.5 vm=+0.5 cap=WINS
+   PASS  L7 the detail is one click away: the simple row expands to exactly one visible detail region with chips and the OVR/priority fitlbl (aria-expanded true); collapse hides it with 0 chips (cakepanz-8.1 §6) — open: regions=1 visible=true chips=3 expanded=true lbl="OVR 82 · priority +0.3 · fills CB1" · closed: regions=0 chips=0 expanded=false
+   PASS  L5 390px stays clean in both forms (scrollWidth <= clientWidth, simple AND full — the S25b extension) — simple 390/390 · full (via the door) 390/390
+   PASS  L3 the full board is reachable in one click and STAYS full for the rest of the draft (mode is presentation only) — after the door: form=full sorts=1 advice=1; after a further pick: form=full
+   PASS  L4 no engine number moves: at the same frozen draft state the board VM sha is identical in the simple form and the full form (the N25 pattern; the mode is presentation only) — simple=965fe289f97a full=965fe289f97a — same store state, same picks, same rows
+   PASS  L9 the mode choice survives a reload: after the FULL BOARD door a reload restores the draft (its picks AND the persisted FULL form), and a NEW draft offers the simple flip again at the 11th user pick (cakepanz-8.1 §6) — after reload: form=full restoredPicks=12 status=drafting · new draft at the 10th pick: full, at the 11th: simple (note=1)
+   PASS  L8 the last pick lands on Complete: the user's 32nd pick, taken through the real UI, hands the screen to Complete — the record renders and "it is not your pick" never appears (cakepanz-8.1 §6) — screen=complete status=done record=true h1="Your draft is complete" err="" pageErrors=0 · hash door: #/board → screen=complete hash=#/complete record=true
+   PASS  L6 zero page errors across the flip, both directions, the 390px walk, the reload, and the UI walk to the last pick
+
+== LATE BATTERY (P-337) · 9 pass · 0 fail ==
+exit=0 (7 the late battery (9/9: L1–L6 + L7/L8/L9, incl. the hash-door leg))
+
+== 8 the shell battery (47/0: S1a–S31)
+$ env CP_PORT=4493 node --import ./scripts/node-port-register.mjs batteries/shell.battery.mjs
+== the season flow, played through the real UI (the record is engine-built node-side) ==
+   PASS  S1a the dev build opens at TEAM SELECT
+   PASS  S1b the SLOT PICKER is on the same screen as the team pick (P-317) — 32 slot buttons
+   PASS  S2 choosing a slot arms the CTA with it
+   PASS  S3 the board is the chosen team (Chicago)
+   PASS  S4 the team+slot choice persists across reload (settings blob) — {"mode":"system","reducedMotion":false,"newestFirst":true,"teamName":"Chicago Be
+   PASS  S5 the draft-complete state renders with the provenance stamp — seed 2026 · engine nfl1.1ac56c28928eff · 1024 picks · Cincinnati Bengals  · every number r
+   PASS  S6 the season hub renders (not-started → running)
+   PASS  S7 the season stepped to the Super Bowl through the real UI (weeks played) — 22 CTA steps taken
+   PASS  S8 the standings render 8 division tables through week 18 — 8 division tables
+   PASS  S9 the bracket shows the champion banner after the Super Bowl
+   PASS  S10 the awards screen names winners from the played season
+   PASS  S11 the stats screen shows the leaders AND the 32-team ratings table
+   PASS  S12 the season review states the honest outcome with integer chips
+   PASS  S13 the season book renders the champion roster cards — 32 cards
+   PASS  S14 the shareables render per stage and the export arms
+   PASS  S15 zero page errors across the whole season flow
+   PASS  S16 zero blocked requests across the season flow
+   PASS  S17 the public default is the EMPTY state + import (the F11 ruling), never a random board
+   PASS  S18 the empty state offers the dev build link
+   PASS  S19 the LIGHT mode is the pale-rose law (#fdf2f6) — #fdf2f6
+   PASS  S20 the DARK mode is the plum law (#1e1119) — #1e1119
+   PASS  S21 the mode choice persists in the settings blob
+   PASS  S22 reduced-motion applies (body carries the class)
+   PASS  S23 the saves panel lists slots A · B · C
+   PASS  S24 zero page errors across the states sweep
+   PASS  S25 390px clean on team (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on cards (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on hub (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on week (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on standings (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on bracket (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on awards (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on review (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on stats (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on book (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on share (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on guide (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on settings (no horizontal scroll) — 390/390
+   PASS  S25 390px clean on saves (no horizontal scroll) — 390/390
+   390px walk table: team 390/390 · cards 390/390 · hub 390/390 · week 390/390 · standings 390/390 · bracket 390/390 · awards 390/390 · review 390/390 · stats 390/390 · book 390/390 · share 390/390 · guide 390/390 · settings 390/390 · saves 390/390
+   PASS  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 390/390
+   PASS  S25c zero page errors across the 390px walk
+   PASS  S29 a saved week comes back through the BOOT REHYDRATION (autosaves exist — the boot path is mandatory; no manual fallback in this law) — the hub resumed from the autosave on boot
+   PASS  S31 the MANUAL restore (RESTORE A SAVED WEEK) brings the hub back when no autosave exists — hub re-mounted from the week save (slot C)
+   PASS  S30 zero page errors across the restore flow (boot + manual)
+   PASS  S26 the single-file dist boots from vanilla file:// at Team Select (P-317 picker present) — {"teams":32,"slots":32}
+   PASS  S27 file:// zero console errors
+   PASS  S28 file:// zero blocked requests
+
+== SHELL BATTERY · 47 pass · 0 fail ==
+exit=0 (8 the shell battery (47/0: S1a–S31))
+
+== 9 node scripts/regen-manifest.mjs (dist/ covered)
+$ node scripts/regen-manifest.mjs
+regen: 314 entries
+exit=0 (9 node scripts/regen-manifest.mjs (dist/ covered))
+
+== 10 node scripts/gate-manifest.mjs — PASS (1st)
+$ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+exit=0 (10 node scripts/gate-manifest.mjs — PASS (1st))
+
+== 11 node scripts/gate-manifest.mjs — PASS (2nd)
+$ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+exit=0 (11 node scripts/gate-manifest.mjs — PASS (2nd))
+
+== 12 node scripts/gate-numerals.mjs — CLEAN (1st)
+$ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0 (12 node scripts/gate-numerals.mjs — CLEAN (1st))
+
+== 13 node scripts/gate-numerals.mjs — CLEAN (2nd)
+$ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0 (13 node scripts/gate-numerals.mjs — CLEAN (2nd))
+
+FRESH-CLONE COMPOSITE COMPLETE — every leg exit 0, ends green (the numerals steps ride inside)
