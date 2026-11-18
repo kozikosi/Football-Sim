@@ -22,6 +22,11 @@ jobs:
           node-version: 24
           cache: npm
           cache-dependency-path: colors/package-lock.json
+      - name: "pin-watch falsifier (GATE since 18 Nov 2026: the tool must still fail on its own fixtures; exit codes 0/1/2/3/4 unchanged)"
+        working-directory: .
+        run: |
+          git fetch --no-tags --depth=1 origin 65673a009b29035e8dc993279be656f12aa40a13
+          node tools/pin-watch.mjs --self-test --pin 65673a009b29035e8dc993279be656f12aa40a13
       - name: Install (clean)
         run: npm ci
       - name: Type check (ratchet, pinned in tsc-baseline.json)

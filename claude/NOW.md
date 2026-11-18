@@ -4,6 +4,7 @@ Updated: 2026-11-18. Boot OK; push works (add_repo push once per session). Rulin
 - FOUND, not fixed: the POOLS node under-ends 4th-down drives (46% vs 65.5% real; level 1 merges 3rd/4th; 4th-and-1 on the 3: 0.57 vs ~0.99). Runs use the same hierarchy (unmeasured). Python oracle shares it.
 - DONE 17 Nov: 2a GLM node (`passclass.ts`, `65673a0`; NOT default; lambda 0); 1d pooled-node conformance; keyedrng Python twin + portable normal(); CI build is a gate (tests/tsc report-only).
 - DONE 15-16 Nov: product pack `data/packs/nfl-pools-fit2023-2025.json`, flex six rules 0 to 2, 1c pack builder, dev page. `colors` `npm run build` passes.
+- DONE 18 Nov: `tools/pin-watch.mjs` (Inkling `0bd76860`, unchanged) promoted; its `--self-test` is a CI gate step; live catch on gh-pages 67-cakepanz (exit 3, five drifted files).
 - DONE 18 Nov: yards-given-completion measured, NOT built: GLM loses to the pool (-0.012 nats, z -7); only a 75/25 blend gains (+0.0065/completion). `tools/mathlab/results/yards-given-class-2026-11-18.md`.
 - NEXT: (1) pools-node down-preserving hierarchy, Python oracle + TS + vectors together, report before/after; then switch the GLM default in one commit; (2) sim margin-distribution check vs real (score mix gap); (3) pooled lambda-axis Lab; (4) S3 snapshot, S4 async store.
 - Not acting: pmath lint report-only; CI tests/tsc report-only; flex table stays; Title Odds only in 100-season context.
