@@ -1,0 +1,8 @@
+# The generated Part-D precompiled engine copy — a build artifact, never committed
+# (regen-manifest.mjs also excludes it from CHECKSUMS/MANIFEST; scripts/precompile-engine.mjs or
+# the node-port register hook regenerates it from src/engine/ on demand).
+/src/engine-node/
+node_modules/
+.svelte-kit/
+# the per-run slice-battery last-run JSON (seed-dependent) — receipt-excluded from CHECKSUMS/MANIFEST (cakepanz-8.1 §5.6)
+/deliveries/receipts/slice1-battery.json
