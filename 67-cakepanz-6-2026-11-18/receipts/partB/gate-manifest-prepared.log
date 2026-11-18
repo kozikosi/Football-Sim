@@ -1,0 +1,4 @@
+boot target: 2 referenced asset(s) checked against the manifest
+MANIFEST FAIL (unlisted): deliveries/receipts/gate-manifest-prepared-PASS-329.log
+gate-manifest: FAIL
+exit=1

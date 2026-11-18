@@ -1,0 +1,182 @@
+{
+  "shots": [
+    [
+      "light-1180-guide",
+      "d205e8e15726bdd64aa8d3a4c8420a74bf2d3c2d483500062e402567f3b4f0e6"
+    ],
+    [
+      "light-390-team",
+      "e6427456d0134ceb0da374dbf0e1701d9fd3f6d36b3cf9901767103c76c9178a"
+    ],
+    [
+      "dark-1180-guide",
+      "d40bf48af4108ff5cb3b19034b649709e502179a156ea6f88d6192def16fdfff"
+    ],
+    [
+      "dark-390-team",
+      "284ae60705c20b8751f4322e444b417dea60c0455ac620f5470452e5bbbb2cd7"
+    ]
+  ],
+  "laws": [
+    {
+      "name": "body-is-system-sans light/1180",
+      "ok": true,
+      "detail": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-"
+    },
+    {
+      "name": "brand-aligned light/1180",
+      "ok": true,
+      "detail": "family=\"Bodoni Moda\" weight=600 spacing=5.28px (0.22em at 1.5rem)"
+    },
+    {
+      "name": "brand-shimmer light/1180",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "slogan-present light/1180",
+      "ok": true,
+      "detail": "visible=true font=\"Cinzel Decorative\""
+    },
+    {
+      "name": "shine-animates light/1180",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "faces-load light/1180",
+      "ok": true,
+      "detail": "cinzel700=true cinzel900=true dec900=true"
+    },
+    {
+      "name": "title-slogan light/1180",
+      "ok": true,
+      "detail": "title=\"76 Pancakes — Can you go 20-0?\""
+    },
+    {
+      "name": "no-overflow light/1180",
+      "ok": true,
+      "detail": "scrollWidth<=clientWidth: true"
+    },
+    {
+      "name": "body-is-system-sans light/390",
+      "ok": true,
+      "detail": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-"
+    },
+    {
+      "name": "brand-aligned light/390",
+      "ok": true,
+      "detail": "family=\"Bodoni Moda\" weight=600 spacing=5.28px (0.22em at 1.5rem)"
+    },
+    {
+      "name": "brand-shimmer light/390",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "slogan-present light/390",
+      "ok": true,
+      "detail": "visible=true font=\"Cinzel Decorative\""
+    },
+    {
+      "name": "shine-animates light/390",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "faces-load light/390",
+      "ok": true,
+      "detail": "cinzel700=true cinzel900=true dec900=true"
+    },
+    {
+      "name": "title-slogan light/390",
+      "ok": true,
+      "detail": "title=\"76 Pancakes — Can you go 20-0?\""
+    },
+    {
+      "name": "no-overflow light/390",
+      "ok": true,
+      "detail": "scrollWidth<=clientWidth: true"
+    },
+    {
+      "name": "body-is-system-sans dark/1180",
+      "ok": true,
+      "detail": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-"
+    },
+    {
+      "name": "brand-aligned dark/1180",
+      "ok": true,
+      "detail": "family=\"Bodoni Moda\" weight=600 spacing=5.28px (0.22em at 1.5rem)"
+    },
+    {
+      "name": "brand-shimmer dark/1180",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "slogan-present dark/1180",
+      "ok": true,
+      "detail": "visible=true font=\"Cinzel Decorative\""
+    },
+    {
+      "name": "shine-animates dark/1180",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "faces-load dark/1180",
+      "ok": true,
+      "detail": "cinzel700=true cinzel900=true dec900=true"
+    },
+    {
+      "name": "title-slogan dark/1180",
+      "ok": true,
+      "detail": "title=\"76 Pancakes — Can you go 20-0?\""
+    },
+    {
+      "name": "no-overflow dark/1180",
+      "ok": true,
+      "detail": "scrollWidth<=clientWidth: true"
+    },
+    {
+      "name": "body-is-system-sans dark/390",
+      "ok": true,
+      "detail": "-apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, sans-"
+    },
+    {
+      "name": "brand-aligned dark/390",
+      "ok": true,
+      "detail": "family=\"Bodoni Moda\" weight=600 spacing=5.28px (0.22em at 1.5rem)"
+    },
+    {
+      "name": "brand-shimmer dark/390",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "slogan-present dark/390",
+      "ok": true,
+      "detail": "visible=true font=\"Cinzel Decorative\""
+    },
+    {
+      "name": "shine-animates dark/390",
+      "ok": true,
+      "detail": "cpshine"
+    },
+    {
+      "name": "faces-load dark/390",
+      "ok": true,
+      "detail": "cinzel700=true cinzel900=true dec900=true"
+    },
+    {
+      "name": "title-slogan dark/390",
+      "ok": true,
+      "detail": "title=\"76 Pancakes — Can you go 20-0?\""
+    },
+    {
+      "name": "no-overflow dark/390",
+      "ok": true,
+      "detail": "scrollWidth<=clientWidth: true"
+    }
+  ]
+}

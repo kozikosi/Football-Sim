@@ -1,0 +1,137 @@
+# SHELL-STATUS.md — slice-by-slice truth, verified this sitting (2026-11-18 · the cakepanz-6 sitting: the team takeover + the aesthetic strays · pin 5c808472)
+
+Every line below ran THIS sitting. Full outputs: VERIFY.txt (§19 is this sitting's block, with
+the gates' own pasted stdout) + ACCEPTANCE-RECEIPTS.txt (the cakepanz-5 staged run, history) +
+deliveries/receipts/. The numbers below are the numbers the runs printed this sitting.
+
+## The battery verdict (cakepanz-6, 2026-11-18)
+
+- **Shell battery: 46 pass · 0 fail · exit 0** — S1a–S30 in ONE uninterrupted run, the WHOLE
+  season played through the real UI to the champion banner (22 CTA steps), the restore law, the
+  390px walk (390/390 with the new slogan + wordmark — no overflow), the file:// boot. Shipped
+  tree AND prepared copy, on the final build.
+- Slice battery: 29/0/10/3, exit 0 (both trees). Node battery: **28/28**
+  (24 carried + N21 older-build + N22 packs + **N23** the team-takeover law + **N24** the
+  body-font/slogan/faces/label law), exit 0, on **Node v24.22.3 AND Node v26.13.1**.
+  Engine suite: 394/394 at the shipped pin, 406/406 at the prepared pin.
+- Gates (the gates' own lines, pasted in VERIFY §19.4): shipped regen **319 entries** →
+  **gate-manifest: PASS (319 entries verified)**; prepared regen **324 entries** → **PASS (324)** —
+  the F-5 prepared-manifest FAIL is fixed. Numerals CLEAN ×2, both trees. All from a FRESH CLONE
+  too (deliveries/receipts/d1-fresh-clone.log: npm ci → build → slice 29/0/10/3 → node 28/28 →
+  engine 394/394, Playwright resolving from the clone's own node_modules).
+- Falsifiers: receipt falsifier **F0–F10 ALL DIED** (F9 the takeover law, F10 the body-font law —
+  both new this sitting), zero tautologies, Node 24 AND Node 26 AND the prepared copy; shell
+  falsifier FA/FB/FC (VERIFY §19.6).
+- NEW this sitting, the takeover in pixels: probe-team-takeover **38/38 laws** (two teams × two
+  modes × two viewports, --zcream byte-stable, 16 screenshots) + probe-shell-aesthetics **32/32**
+  (system-sans body, the slogan visible + animating, the inlined 700/900 faces loaded, no
+  overflow). Shots: shots/takeover/, shots/aesthetics/.
+
+## Slice-by-slice
+
+| Slice | Status | THIS sitting's receipt |
+|---|---|---|
+| s1 Draft Board | DONE | slice battery 18 board laws green + 3 Slice-3 laws; S3; S25b (390px board); N15/N19/N22 |
+| s2 Team Select | DONE | 8 team laws; S1a/S1b/S2; 390 walk team |
+| s3 hydration + board chrome | DONE | S4 (settings persist); N12a roundtrip; N13 settings; the tooltip/filter/clear laws |
+| s4 feed | DONE (the OT-stamp workaround stands) | the engine's clock() still maps OT drives to Q4 with negative mm:ss (the Architect's open item — the §5 filing, MERGE-GUIDE §7 item 2); the shell's workaround: the feed does NOT print that clock — Feed.svelte:37 renders the honest OT stamp off the engine's own `gf.ot` payload (feedVM.ts:145): `FINAL/TIE — OT ×N (both teams possessed)`; receipts: the feed gates inside the shell battery's S7 season loop + probe-motion-shots |
+| s5 shareables | DONE | S14; N14 + N14b (champion truth, case-insensitive); all five brags exist (draft/week/season/bracket/awards) |
+| s6 Team Select + P-317 | UI DONE; store = Architect's | S1b (32 slots same screen), S2, S26; the §5 filed with exact anchors (MERGE-GUIDE §7) |
+| s7 season hub + week views | DONE | S6, S7 (22 steps through the real UI), S29/S30 (restore through the UI) |
+| s8 standings/bracket/Super Bowl | DONE | S8 (8 division tables), S9 (champion banner), N9b/N9c/N9d |
+| s9 awards | DONE | S10 (winners from the played season) |
+| s10 season review | DONE | S12 (integer chips); N11 grammar |
+| s11 guide | DONE, verified not rebuilt | 390 walk guide; numerals gate CLEAN ×2 |
+| s12 merge rehearsal + cutover note | DONE + M3 both directions | swap tests at THIS sitting's pins (VERIFY §M3); gates PASS |
+
+## The state-coverage matrix (screen × state → receipt)
+
+States: LOADING (the boot's first paint) · EMPTY (no dataset) · NO-SAVE · CORRUPT-SAVE (refused,
+never repaired) · NEWER-BUILD (refused by VERSION) · OLDER-BUILD (loads, and SAYS so — NEW this
+sitting) · REDUCED-MOTION · OFFLINE (vanilla file://) · 390PX · LIGHT/DARK modes.
+
+| Screen | LOADING | EMPTY | NO-SAVE | CORRUPT | NEWER | OLDER | REDUCED | OFFLINE | 390 | MODES |
+|---|---|---|---|---|---|---|---|---|---|---|
+| TeamSelect | boot path (every run) | S17/S18 | S23 | N12b | N12c | — | S22+probe | S26–S28 | S25 walk team | S19/S20 |
+| DraftBoard | boot | S17 (empty ≠ board) | S23 | N12b | N12c | — | S22 | S26–S28 | S25b | S19/S20 |
+| Complete | boot | — | — | N12b | N12c | — | — | single.html | — | S19/S20 |
+| Hub | boot | — | S29 pre-state | N12b | N12c | — | S22 | — | S25 walk hub | S19/S20 |
+| WeekView | boot | — | — | N12b | N12c | — | S22 | — | S25 walk week | S19/S20 |
+| Standings | boot | — | — | N12b | N12c | — | S22 | — | S25 walk standings | S19/S20 |
+| Bracket | boot | — | — | N12b | N12c | — | S22 | — | S25 walk bracket | S19/S20 |
+| Book | boot | — | — | N12b | N12c | — | S22 | — | S25 walk book | S19/S20 |
+| Awards | boot | — | — | N12b | N12c | — | S22 | — | S25 walk awards | S19/S20 |
+| Review | boot | — | — | N12b | N12c | — | S22 | — | S25 walk review | S19/S20 |
+| Stats | boot | — | — | N12b | N12c | — | S22 | — | S25 walk stats | S19/S20 |
+| Cards | boot | — | — | — | — | — | S22 | — | S25 walk cards | S19/S20 |
+| Guide | boot | S17 reachable | — | — | — | — | S22 | single.html | S25 walk guide | S19/S20 |
+| Settings | boot | — | — | N13 (corrupt → defaults) | — | — | S22 (the control) | — | S25 walk settings | S19/S20/S21 |
+| Share | boot | card-null state | — | — | — | — | S22 | offline cards (N14) | S25 walk share | S19/S20 |
+| Saves | boot | S23 (empty slots) | S23 | **N12b + probe P-S1 (browser, screenshot)** | **N12c + probe P-S2 (browser, screenshot)** | **N21 + probe P-S3/P-S4 (browser, screenshot)** | S22 | — | S25 walk saves | S19/S20 |
+| Feed | boot | — | — | — | — | — | probe (cpbeat) | — | S25 walk feed | S19/S20 |
+
+The matrix's named gap from last sitting is CLOSED: the corrupt/newer refusals now have
+BROWSER-level receipts with screenshots (`scripts/probe-saves-states.mjs`, 5/5 PASS — the
+verbatim engine messages, `payload: bad seed` and `written by a newer build (schema 9)`, plus the
+older-build note rendering on a loadable card). LOADING is still a transient paint receipted by
+the boot path, not a dedicated law — named, not hidden.
+
+## Framework-coupled seams (the full list, P-368 wording)
+
+- `src/lib/bindings/stores.ts`, `src/lib/bindings/shareDownload.ts`, `src/lib/bindings/tokensApply.ts`
+  — the three bindings modules (framework touch); NOTHING below the render layer imports a
+  framework (N16 green).
+- The render layer: **26 `.svelte` files** (1 App + 15 screens + 10 components).
+- TS core: `src/lib/port/**` (20 modules) + `src/lib/valuation.ts` — zero `document`, zero
+  framework tokens.
+- NEW this sitting: the node-side TS execution rides `scripts/node-port-register.mjs` (the
+  Part-D precompile) — a framework-free, engine-faithful copy of the snapshot for Node; the
+  browser build never sees it.
+
+## The merge cone (M1–M5), measured this sitting
+
+- **M1 ONE DOOR**: `grep -rln "from '.*engine/" src --include='*.ts' --include='*.svelte' |
+  grep -v src/engine | grep -v src/engine-node | grep -v src/lib/port` → EMPTY (exit 1), on BOTH
+  trees. The known non-hit is `src/vite-env.d.ts` (a comment; the Vite ?url shim for the
+  snapshot's `main.ts` — not a code importer; it goes with the snapshot if `main.ts` ever drops).
+- **M2 ONE DIRECTORY**: both swap receipts' `diff -rq` outside src/engine → CLEAN.
+- **M3 SWAP TEST**: ran BOTH directions this sitting — tip→shipped: EVERYTHING green (this tip is
+  additive-default-off; the flex table identical); old-pin→prepared: the shell SURVIVES and the
+  tip-asserting suite fails its LOAD (passclass.ts missing, 228 ms). Both diffs CLEAN. VERIFY §M3.
+- **M4 CONTRACT**: SNAPSHOT.md rewritten this sitting (the pin, 67 files, byte-identity, the
+  pack-hash citations with invocations, the five-path procedure, the register hook, the D-1/D-2
+  behaviour, the swap-test habit). The prepared copy carries its own (68 files, 406 tests).
+- **M5 THIN SEAM**: src/lib/port/seam.ts — 160 lines, **68 engine-import lines**, 38 distinct
+  engine modules, 20 port modules beside it — UNCHANGED on both trees (measured this sitting;
+  the engine grew BEHIND the seam). Zero engine imports outside the port (measured: 0 files,
+  0 lines).
+
+## Open Owner decisions (flagged, NOT fixed — the ruling is the Owner's)
+
+1. Light gold2 contrast 1.51:1 / 1.65:1 — FAIL (measured; unchanged bytes).
+2. Dark --text 3.17:1 — FAIL at AA normal (large passes).
+3. The award line content (MVP only as implemented).
+4. The "Engine Value" vs "Model Value" label (ships "Model Value"; UNTOUCHED).
+5. The 3-4 note (proposed in MERGE-README; not shipped).
+6. The "never print Touchdown" law (no source on disk; UNTOUCHED).
+7. **The prepared re-pin: activate or hold** (the Owner's word; silence = this pin stands).
+
+## Open Architect items (§5 filings)
+
+1. **P-317 store** — filed with exact anchors this sitting (MERGE-GUIDE §7).
+2. OT clock() (unchanged).
+3. The parameter property in `src/engine/platform/localstorage.ts:31` — still present at both
+   pins; after Part D it costs the node suites NOTHING (the precompile handles it); route 3
+   would turn the precompile into a no-op that can be deleted.
+4. `deviceId?: string` — reserved (P-254, ENVELOPE-FREEZE.md unchanged).
+5. Gravity/double-teams (unchanged).
+
+## Assumptions labeled
+
+- UNKNOWN: award grades ≥90 in a receipted season (the shimmer is wired; none observed).
+- UNKNOWN: the w89 "90+ shimmer" source law (no source on disk).
+- UNKNOWN: the 2016–2022 pack's override-variant hashes at the prepared pin (the 2023–2025 pack's
+  three invocations ARE cited; the 2016–2022 as-baked hash IS cited).
+- FACT: the 2026-11-17 shell-falsifier background run that first ran the FIXED tool reported
+  FA/FC as TAUTOLOGY; the sequential re-runs (isolated ports, foreground) show FA/FB/FC all DIE.
+  The anomaly is documented in the feel journal; the port-isolation hardening exists because of it.
