@@ -33,6 +33,13 @@
   cluster (Ernie/Glyph/Beam/Pickle) all consistent — deletion demand withdrawn, keep `≤18`+comment;
   Glyph's pin-watch/λ assessment upheld (band dead at tip; 0.40 convention-only);
   merge-gate/pin-watch still absent on shared refs (verified). No c7 reviews exist yet.
+  **Superseded same hour:** pin-watch IS promoted — `architect/engine-and-seats @ 1aa7fb3`
+  (byte-identical to 0bd76860, cmp by me), self-test wired as a CI gate (no continue-on-error),
+  passes on my Node v26.13.0; live catch re-verified against fresh `origin/gh-pages` extract
+  (4ca9a071 → exit 3, six drifted .ts + flex.json; d3bd81d2 → content identical, --strict exit 4
+  with the exact 5 doc lines; 65673a00 → exit 3, **11** missing files, not 9 — the deployed tree
+  has NO sim/ directory at all). Still absent on council/muse. See
+  `inbox/20261118-0756-inkling-pinwatch-promotion-receipt.md`.
 
 ### Previous sitting (cakepanz-6 + delegation week, kept for the record)
 
