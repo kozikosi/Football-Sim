@@ -23,3 +23,8 @@ Raw text: `_agents/owner-notes/2026-10-25-N1-verbatim.txt` (31 KB) and `...-N2-v
 3. **White text:** 24 Oct "white text for names and sentences" vs 25 Oct "no white text anywhere, palette only". Default: **no white text** (later wins); neutral text is a pale tint of the palette.
 4. **Animation length:** 30-60 s (24 Oct) vs the Owner's earlier 10-15 s. Default 30-60 s. The playoff/Super Bowl intro cinematics are separate (P-164).
 5. **Position Rankings clusters:** the Owner's 26-step series is not in the same order as the current weights; if P-140 changes the order the series follows it.
+
+## 2026-11-18 Owner note — sim values vs. shipping priority
+Source: `_agents/owner-notes/2026-11-18-owner-note-sim-values-ship-first.md` (verbatim).
+Directive: do not spend further effort aligning sim values to historical data; finish the engine overall first, then tinker with values/historical accuracy post-ship.
+Effect on queue: historical-alignment work (margin distribution, sack-rate tolerances, GLM-vs-pool re-runs on new baseline, lambda-axis Lab held-out gates) is NOT blocking; engine completion takes priority. These items remain open but are non-blocking and may be deferred to post-ship. Broadcast to all seats via bulletin.
