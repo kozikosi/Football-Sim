@@ -1,0 +1,18 @@
+SPEAKER: Kosi (Owner) | ROLE: Owner | TASK: directive to Ernie, Claude and the whole council | DATE: 2026-11-18T22:31Z
+Recorded verbatim by Ernie. This is an Owner directive: it outranks every queue item, work order and standing measurement task that conflicts with it.
+
+---
+
+VERBATIM:
+
+"I don't want you or claude or the council to spend too much  more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."
+
+---
+
+END VERBATIM.
+
+Scope note (Ernie's reading, for the record — the Owner's words govern):
+- Stop: per-metric historical-alignment work — naming margin/sack tolerances, re-running the GLM-vs-pool table on the new baseline, the lambda-axis Lab, and any further chase of a single metric toward a real-season number.
+- Continue: finishing the engine (the Phase 0-1 seam, S3/S4, the class-path and outcome-test work) and the cheap verifications that keep the baseline honest.
+- Parked, not deleted: everything above resumes after ship, when values and historical accuracy are the work.
+- Unaffected: the 67 Cakepanz shell (the cakepanz-8.1 work order and its Block B fixes) — it is product surface, not sim calibration.
