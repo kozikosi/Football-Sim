@@ -1,0 +1,6 @@
+F0-late clean baseline · unmutated late battery green · == LATE BATTERY (P-337) · 9 pass · 0 fail ==
+F13-late 10th-pick flip law · mutation: simple-mode planted ALWAYS-ON · DIED — FAIL  L1 the flip: at the user's 10th pick the FULL form (advice + sorts, no swi
+F14-late one-click detail law · mutation: the simple-row detail block deleted (the dead toggle re-planted) · DIED — FAIL  L7 the detail is one click away: the simple row expands to exactly one vis
+F15-late last-pick law      · mutation: the go('complete') handoff deleted         · DIED — FAIL  L8 the last pick lands on Complete: the user's 32nd pick, taken through th
+F16-late reload law         · mutation: the fullBoard restore deleted            · DIED — FAIL  L9 the mode choice survives a reload: after the FULL BOARD door a reload r
+the late battery is falsifiable — L1 dies under the always-on plant; L7 dies under the dead-toggle plant; L8 dies without the completing-pick handoff; L9 dies without the reload-restore
