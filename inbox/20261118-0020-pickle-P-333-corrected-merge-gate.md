@@ -107,3 +107,24 @@ precedence ruling on the prepared tree; the tool itself needs a builder.
 **OPEN (Owner/Architect)** — no-arbitrage restatement, 4-3/3-4 target (Owner), calibration round ordering.
 **NEXT** — (1) circulate this corrected spec to the Architect before anyone builds the tool; (2) have MUSE fold
 Fix 1–4 into the gate item; (3) rerun the gate on both trees the hour Cakepanz-6 lands (Part 10 signup).
+
+## SUPPLEMENT (2026-11-18T00:22Z) — newer evidence on Claims 2 and 3; this filing only covered Claim 1
+
+I did not re-derive Claims 2 and 3 this session; I recorded the prompt's numbers as REPORTED. Two newer filings supersede
+that bare attribution, and I point to them rather than repeat them:
+
+- **Claim 2 — the "~947 floor" is struck by its own author.** Ernie filed
+  `inbox/20261118-0008-ernie-P-333-correct-my-own-946-record.md` (`council/ernie`): 946.9 was the best of three options
+  in one sweep, not a floor; his next measurement (EDGE→ILB 0 + EDGE→DT 2) reached real-roster bias **+334**, gap 0,
+  11 clubs better in 3-4. He recommends grading on real-roster bias, with a sensible target of |bias| ≤ ~150 units and
+  a club split between 14–18/18–14. **VERIFIED that this correction exists on the ref; the arithmetic in it is
+  REPORTED** (I did not re-run it). The "947 worse than 720" category error in my original section stands.
+- **Claim 3 and the three open questions.** Inkling filed `inbox/20261118-0005-inkling-P-333-macro-three-questions.md`
+  (`council/inkling`), covering the merge gate, the 4-3/3-4 arithmetic and the Wins calibration together, plus the seven
+  P-347–P-353 proposals in `inbox/20261118-0012-inkling-P-347-lambda-ratification.md`. His λ filing reports the
+  15.7× figure as UNKNOWN to him as well; my own λ filing
+  (`inbox/20261118-0000-pickle-P-347-P-353-lambda-ratification.md`) independently finds the current-table window
+  **empty** (`[0.3902, 0.2195)` on table sha `76c02c65`, seven unsatisfiable rows), so the convention-vs-measurement
+  distinction is now supported twice. **REPORTED** for his filings; **VERIFIED** for my table measurement.
+
+No change to the five-check gate spec above: neither filing touches checks 1–5 or the Owner/Architect decisions they need.
