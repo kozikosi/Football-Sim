@@ -3,7 +3,30 @@
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa1` (`git merge-base HEAD origin/council/base`, verified 18 Nov 2026)
-HEAD at session end: `a9f6d6bf` (pushed; `git ls-remote` VERIFIED)
+HEAD at session end: `9466e821` (pushed; `git ls-remote` VERIFIED)
+
+## Current state (18 Nov 2026, third session) — Cakepanz-8 continuation prompt
+
+Owner asked me to write a long, thorough prompt for Z.ai to continue work. Filed and pushed:
+`_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md` (279 lines, commit `9466e821`).
+Framed as a **proposed** work order (Pickle is advisory; MUSE/Owner relays), an addendum to Inkling's
+round-8 order — not a supersession. One sitting, one c9 zip:
+
+- §0 reading order (round-8 order @ inkling `ae303ded` blob `58a82690`; my hosted delivery + review on
+  `council/pickle`; Ernie's and Inkling's prior reviews).
+- §1 verified state-of-the-world table (pins 5c808472/65673a00 67/68 files, flex 99 rules, engine
+  394/406, node 33/33, gates 314/319, dist sha `1529a003…`, F1–F12 DIED; browser legs labelled REPORTED).
+- §3 exact B1/B2/B3 fixes with anchors, new laws L7/L8, falsifiers F14/F15-late, receipt names.
+  B1 recommended shape: shell-owned localStorage key `sim:nfl:ui:fullBoard:<saveId>`, initialised
+  synchronously at component setup — **not** an `AutosaveLineage` field (envelope is frozen).
+- §4 one zip `67-cakepanz-9-<date>/`, sha256, Owner places it, push nothing unless granted.
+- §5 Block C held **gated** on an Owner/MUSE ruling that the `council/pickle` push opens round-8 §4.
+- §6 standing rules; §7 five flag-don't-decide questions (B4 threshold, Block C gate, gh-pages
+  placement, prepared re-pin, c9 reviewers — Pickle NOT eligible, I authored the c8 review + this prompt).
+- §8 exact report-back shape.
+
+In-chat I told the Owner: the prompt holds Block C gated (say the word to un-gate), and the c8 zip sha
+`ced094f1…5fae` is REPORTED because I never held the zip itself.
 
 ## Current state (18 Nov 2026, second session) — Cakepanz-8 hosting + review
 
@@ -24,8 +47,8 @@ it, review it thoroughly, push the review, then brainstorm improvements to the c
   gate ambiguity and that gh-pages placement is still pending.
 - Browser legs, `falsify-late`, `acceptance-run.sh` composite, `npm ci` rebuild, M3/takeover/deployed
   suites: **not run** — labelled REPORTED in the filing.
-- My next eligible review: this item is now reviewed by me, so I may not review it again. Do not
-  re-review c7 either. The innovation/brainstorm direction is pending the Owner's answer (ask in chat).
+- The brainstorm direction was delivered as the round-9 prompt above, not left open. Do **not**
+  re-review c8/c7, and Pickle is not eligible to review c9 (authored its prompt and the c8 review).
 
 ## Where the truth lives
 
@@ -94,22 +117,26 @@ same sentence as the number); 12 Nov P-346 third review and λ budget; 11 Nov P-
    pin-watch with `--strict` on both trees; do not activate the re-pin.
 3. **`tools/merge-gate.mjs` is still unbuilt** on any ref. Corrected spec is filed; it is council tooling
    (MUSE/Architect to promote).
-4. **Do not re-review Cakepanz-5.** It is reviewed.
-5. **A new round prompt (Cakepanz-8) was prepared by Ernie** (`3dbb67fb`, on his branch) with Inkling's
-   `ed72c629` still live with a stale §1. Which one supersedes is MUSE/Owner's call, not a seat's.
+4. **Do not re-review Cakepanz-5, -8, or -9.** -8 is reviewed; -9's prompt is mine.
+5. **Cakepanz-9 prompt is filed** at `_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md`.
+   Awaiting the Owner's word on (a) whether to un-gate Block C and (b) the exact c8 zip sha if he has it.
 
 ## Open questions (Owner / Architect / MUSE — never a seat)
 
-- Owner: λ convention value (0.40 recommended), P-347–P-353 ratification, prepared re-pin activation.
+- Owner: λ convention value (0.40 recommended), P-347–P-353 ratification, prepared re-pin activation;
+  un-gate Block C?; supply c8 zip sha.
 - Architect: no-arbitrage restatement for merge-gate check 3; Node-24 runner; which pin-watch implementation
   enters `tools/`; the lab estimator round's scope.
-- MUSE: push or restate the seven drafts; resolve the two competing Cakepanz-8 prompt files.
+- MUSE: push or restate the seven drafts; relay the round-9 prompt; pin three eligible c9 reviewers.
 
 ## Live files
 
 - `inbox/20261118-*` — seven filings this round (table above).
 - `_agents/pickle/deliveries/p345-pin-watch-2026-11-18/` — tool + falsifier.
-- `bulletin/20261118-1932-pickle.md` — this session.
+- `_agents/pickle/deliveries/zai-cakepanz-8-2026-11-18/` + `.PROVENANCE.md` + `.SHA256SUMS` — hosted delivery.
+- `_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md` — the round-9 continuation prompt.
+- `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md` — c8 review (VERDICT improved).
+- `bulletin/20261118-2342-pickle.md` — this session.
 - Earlier filings and deliveries: `inbox/20261117-2050-…`, `inbox/20261116-21*` (four), `inbox/20261115-11*`,
   `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/`, `p345-lambda-followup-2026-11-13/`,
   `p345-lambda-budget-2026-11-12/`, `platform-vision-2026-11-12/`, `p141-engine-harness.mjs`.
