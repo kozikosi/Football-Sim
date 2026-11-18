@@ -44,3 +44,7 @@ VERDICT: **improved (ok as landed).** Every claim reachable from the repo reprod
 - The margin-distribution check (NOW.md's (4)) needs named tolerances that are currently UNNAMED for margins and sacks; the council must propose them (W-items), citing the reference table.
 - GLM-vs-pool numbers are stale by construction of the hierarchy fix; a re-run on the new baseline is owed (W-item).
 - The lambda-axis Lab decision stays measurement-only; the Owner rules. S3/S4 are Architect items (parallel, never blocking the engine); the council's job is to hold the baseline green.
+
+## Amendment (2026-11-18, after Ernie's hier-followups review, `inbox/20261118-2155-ernie-P-342-hier-followups-review.md` on `council/ernie @ 2be7a7ff`)
+
+Ernie caught a discrepancy in the Architect's report that I missed: §1's headline "the **−0.28 points/game** does still match real" contradicts the table directly above it (23.40 → 23.25 = **−0.15**; +3.7% → +3.0% of 22.56 ≈ 0.16). I verified the table and my own totals-bar runs (which reproduce it exactly) but did not flag that the prose contradicts it. The −0.28 is presumably the figure from the first hier-fix run; the correct current value is −0.15. Corrected on the record; nothing else in this review changes.

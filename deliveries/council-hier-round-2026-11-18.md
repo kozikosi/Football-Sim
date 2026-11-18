@@ -11,7 +11,7 @@ SPEAKER: INKLING (MUSE delegation) | TASK: council work-and-test order — verif
 | `5d018f52` | `colors/test/nfl/classpath.test.ts` (NEW) + the two-line hier.test.ts relabel (0.5% bars = REGRESSION GUARDS) | landed, CI green at the tip |
 | `ea48005c` | oracle drift root-caused (**nflverse republished its release files in place**); 2016-22 pack re-baked + its vectors regenerated in full; `tools/mathlab/phase1/data-manifest.json` + `datacheck.py` guard; `claude/NOW.md` updated (CI line closed, next order, DONE-WHEN) | landed, CI green |
 
-My review of both is on the record: `inbox/20261118-2150-inkling-claude-hier-round-review.md` (on `council/inkling @ e0bcde8c`; VERDICT improved-as-landed, every repo-reachable claim reproduced; two named residual debts). This order asks the seats to (a) re-verify independently — different machine, different eyes — and (b) execute the measurement items NOW.md owes: **named tolerances for margins and sacks, the GLM-vs-pool re-run on the new baseline, and the lambda-axis Lab (measurement only).**
+My review of both is on the record: `inbox/20261118-2150-inkling-claude-hier-round-review.md` (on `council/inkling @ ab5c3085`; VERDICT improved-as-landed, every repo-reachable claim reproduced; two named residual debts). This order asks the seats to (a) re-verify independently — different machine, different eyes — and (b) execute the measurement items NOW.md owes: **named tolerances for margins and sacks, the GLM-vs-pool re-run on the new baseline, and the lambda-axis Lab (measurement only).**
 
 ## 0 · Rules (the ones that are never negotiable)
 
@@ -21,7 +21,7 @@ My review of both is on the record: `inbox/20261118-2150-inkling-claude-hier-rou
 4. **Labels: VERIFIED / REPORTED / INFERRED / UNKNOWN — always.** If a check needs a tool you lack (e.g., the 200 MB nflverse data, which is gitignored), say so and what you skipped — do **not** fake it.
 5. **Branch discipline:** your own `council/<seat>` only; add by path; never force-push; no stashes; commit+push at the end of the sitting; `node tools/preserve.mjs check --fetch` before idling.
 6. **English only.** The Owner's standing rules apply to everything you write.
-7. **This is a list, not an assignment.** Take the items you can do well, in any order; later seats review; two different seats' ok/improved on the same item = REVIEWED. Nobody waits for anyone.
+7. **This is a list, not an assignment.** Take the items you can do well, in any order; later seats review; three confirmations by three different seats = REVIEWED (AGENTS.md §5; inbox/README.md). Nobody waits for anyone.
 8. Token budget: end the sitting at ~80–100k tokens by trimming your lane (`_agents/<seat>/<SEAT>.md`) and posting one bulletin entry.
 9. **The Owner's three gated calls stay gated** — nothing in this order decides a constant, a label, a pin, a placement, a lambda, or a verdict. The Owner rules; the council measures.
 
@@ -32,18 +32,26 @@ My review of both is on the record: `inbox/20261118-2150-inkling-claude-hier-rou
 3. `tools/mathlab/results/hier-followups-2026-11-18.md` @ `ea48005c` — the follow-up report (totals bar §1, class path §2, drift §3).
 4. `colors/test/nfl/classpath.test.ts` and `hier.test.ts` @ `ea48005c` — the two test files under review.
 5. `tools/mathlab/phase1/datacheck.py` + `data-manifest.json` @ `ea48005c` — the new guard (read the note at the top of the manifest — it is the whole policy in one paragraph).
-6. `inbox/20261118-2150-inkling-claude-hier-round-review.md` @ `council/inkling e0bcde8c` — my review of all of the above, incl. exactly what reproduces and what cannot.
+6. `inbox/20261118-2150-inkling-claude-hier-round-review.md` @ `council/inkling ab5c3085` (and session-end `0630a3f3`) — my review of all of the above, incl. exactly what reproduces and what cannot.
 7. `git show ea48005c --stat` — the change set (11 paths; nothing under `colors/src`).
 
 ## 2 · V — verification items (re-run, different machine, different eyes)
 
 **V1 — the suite, from scratch.** `git archive ea48005c colors tools data | tar -x -C <scratch>` → `cd colors && npm ci && npm test` → expect **419/419** (five new class-path tests included). Then `npm run tsc:check` → **`tsc baseline OK: 89 errors (pinned 89).`** and `npm run build` → exit 0. File: `inbox/<UTC>-<seat>-V1-suite-rereun.md`.
-**V2 — the totals bar, both packs, both pins, same keys.** `node --experimental-strip-types tools/totals-bar.ts 20000 ../data/packs/nfl-pools-fit2023-2025.json` on **both** `65673a00` (the pinned "before") and `ea48005c`: expect **points 23.40 → 23.25** (+3.7% → +3.0% vs real 23-25 mean 22.56), drives **11.05 → 11.10**; in-sample 23-25 unchanged; vsPy% unchanged at −1.4%/−2.4%. Quote the full table, both runs.
+**V2 — the totals bar, both packs, both pins, same keys.** Four runs, one table:
+```
+for T in 65673a00 ea48005c; do for P in nfl-pools-fit2016-2022 nfl-pools-fit2023-2025; do
+  git archive $T colors tools data | tar -x -C /tmp/t-$T; (cd /tmp/t-$T/colors && npm ci --no-audit --no-fund >/dev/null 2>&1 && node --experimental-strip-types tools/totals-bar.ts 20000 ../data/packs/$P.json); done; done
+```
+expect points **23.40 → 23.25** on the 2023-25 pack (+3.7% → +3.0% vs real 23-25 mean 22.56) and drives **11.05 → 11.10**; quote all four tables verbatim.
 **V3 — the class path, from the test's own printout.** `node --experimental-strip-types --test classpath.test.ts` — expect (product pack): downs 1–3 pass cells wrong-down ≤ 0.34%, 4th-down **0.21 / 0.08 / 0.00 / 0.00**% (comp/inc/sack/int), whole games print **`4th-down passes 4678, resumed without a first down 0.19%; runs 3207, 0.22%`**; `(call)-level use % 0` at every row; and the planted-old-hierarchy falsifier caught at 4th down on both eras (`worst > 0.05`). Any `level use %` non-zero at level index 4 = the tripwire fires — STOP and report, do not fix.
-**V4 — the drift guard, negative tests.** `python3 -I datacheck.py` against a synthetic `NFLVERSE_DIR` you build in scratch: (a) a parquet whose sha256 does not match the manifest → expect **exit 3** + the byte-size line; (b) a missing file → expect **exit 3**; (c) confirm `bake.py` and `poolvectors.py` both call `datacheck.require(...)` before any data is touched (grep is enough); (d) confirm the `--allow-data-drift` path is loud and opt-in only.
+**V4 — the drift guard, negative tests.** `python3 -I datacheck.py` against a synthetic `NFLVERSE_DIR` you build in scratch: (a) a parquet whose sha256 does not match the manifest → expect **exit 3** + the byte-size line — the fixture must be `NFLVERSE_DIR/play_by_play_<year>.parquet` (2016–2025); the check ignores anything else (this was nearly a false receipt this sitting); (b) a missing file → expect **exit 3**; (c) confirm `bake.py` and `poolvectors.py` both call `datacheck.require(...)` before any data is touched (grep is enough); (d) confirm the `--allow-data-drift` path is loud and opt-in only.
 **V5 — the vectors moved with the re-bake.** `poolnode-vectors.test.ts` must pass at `ea48005c` (it re-derives the digests); confirm the golden pin in `pools-game.test.ts` moved `0b60973944ae13 → 1465418807480a` with **log hash, score `[24, 31]`, and event count 216 unchanged**. Then confirm `git diff 57fb83c2..ea48005c -- colors/src` is **empty** (no engine movement in the drift commit) and that the cakepanz trees are untouched. Re-census the flex table if you touched it (you should not have).
 **V6 — CI on the tip.** `gh run list --branch architect/engine-and-seats --limit 3` → expect `44404129491` **success** on `ea48005c`; note for the record that `5d01852` and `ea48005c` were pushed in one push (a single run covers both). If any run is red, that is BLOCKED — file it, do not "fix" it.
-**V7 — the one data-bearing item, ONLY for seats with the 200 MB.** From a machine with `tools/mathlab/phase1/data/` populated (i.e., you ran `sh tools/mathlab/phase1/fetch.sh` recently): run `python3 -I datacheck.py` → expect exit 0; re-run `bake.py` (or a scratch re-bake into `/tmp`) → compare `pack53:1465418807480a` to the committed `nfl-pools-fit2016-2022.json` — expect **byte-identity**; regenerate `poolnode-vectors-fit2016-2022.json` and confirm **the same digests**; confirm the 2023-25 pack re-bakes **byte-identically**. If any fails: STOP and report with the command — that is the oracle's regression and it outranks everything else.
+**V7 — the one data-bearing item, ONLY for seats with the 200 MB.** From a machine with `tools/mathlab/phase1/data/` populated (i.e., you ran `sh tools/mathlab/phase1/fetch.sh` recently):
+1. `python3 -I datacheck.py` — **if this does not exit 0, the data moved again upstream (expected behaviour, not a failure of the commit)**: STOP, record the manifest's expected sha vs the fetched sha, and re-bake THAT revision in a scratch dir; report it as a new drift event, not as a regression in `ea48005c`.
+2. Only when datacheck is clean: re-run `bake.py` (or a scratch re-bake into `/tmp`) → compare `pack53:1465418807480a` to the committed `nfl-pools-fit2016-2022.json` — expect **byte-identity**; regenerate `poolnode-vectors-fit2016-2022.json` and confirm **the same digests**; confirm the 2023-25 pack re-bakes **byte-identically**.
+If any step fails on a CLEAN datacheck: STOP and report with the command — that is the oracle's regression and it outranks everything else.
 **V8 — the ten untraced revised clock cells.** Byte-diff the committed 2016-22 pack before (`ea48005c^`) and after the re-bake (`ea48005c`). Both are one minified line; the diff is in the four late-clock tables (the clockLate dt_f region around the four re-cut bins) + one kickoff row. Locate every byte that moved, map them back to (down/distance/distance-to-go/clock bin/state) cells if you can, and **list the ten revised cells by their offsets and their class**. Goal: turn "handful of revised timestamps, ten untraced" into an enumerated census — or prove we cannot (which is also an answer, honestly labelled).
 **V9 — pins and standing order.** Confirm: flex census 99 {0:17, 2:17, 6:42, 12:23} unchanged; no engine files older than `57fb83c` touched by the drift commit; `data-manifest.json` revision dated 2026-11-18; the cakepanz trees unaffected.
 
@@ -71,7 +79,7 @@ Product/engine edits; the flex table; `colors/` anything; the cakepanz tree; gh-
 6. **W6/W7** — filed or explicitly declined with a one-line why.
 7. NOW.md's DONE-WHEN engine lines move closer: margins + sacks tolerated-and-measured, GLM default decided or kept at 0 with the measurement behind it, S3/S4 unblocked.
 
-Two different seats' ok/improved on the same item = REVIEWED. Rejected re-opens. The Architect collects with `node tools/council-sync.mjs --inbox`. The Owner relays nothing.
+Three different seats' ok/improved on the same item = REVIEWED (AGENTS.md §5). Rejected re-opens. The Architect collects with `node tools/council-sync.mjs --inbox`. The Owner relays nothing.
 
 ## 6 · If you cannot run it
 
