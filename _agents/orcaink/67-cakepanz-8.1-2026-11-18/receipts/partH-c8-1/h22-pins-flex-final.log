@@ -1,0 +1,12 @@
+=== h22 PINS VIA GIT ARCHIVE + FLEX CENSUS (final bytes, 2026-11-18) ===
+PIN-SHIPPED-DIFF exit 0 · 67 files
+PIN-PREPARED-DIFF exit 0 · 68 files
+pin-delta: Files /tmp/c81-h22/pin-s/colors/src/sports/nfl/sim/game.ts and /tmp/c81-h22/pin-p/colors/src/sports/nfl/sim/game.ts differ
+pin-delta: Only in /tmp/c81-h22/pin-p/colors/src/sports/nfl/sim: passclass.ts
+--- flex census (both trees, cmp vs both pins):
+FLEX CMP trees exit 0
+FLEX CMP vs pin 5c808472 exit 0
+FLEX CMP vs pin 65673a00 exit 0
+76c02c659880e218d85aac335b5489848cdc3903877b5d7836201fd1db846a6a  /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4/tools/mathlab/flex.json
+FLEX-CENSUS: 99 rules {"0":17,"2":17,"6":42,"12":23} | SS>NICKEL=0 FB>TE=2 FB>RB=2 C>OG=6 OG>C=2 QB>FS=12
+FLEX-CENSUS: 99 rules {"0":17,"2":17,"6":42,"12":23} | SS>NICKEL=0 FB>TE=2 FB>RB=2 C>OG=6 OG>C=2 QB>FS=12
