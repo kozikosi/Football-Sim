@@ -125,8 +125,21 @@ engine. All three done and pushed.
   plan v4 line 8 "+15-60%" corrected to +3%–~29% like-for-like (60% is cross-metric 3.6/2.2);
   80eb432 reproduced 421/421 and tsc 89 pin; `?seed=` open; `(drive, play)` re-key queued for
   cutover re-pin; engine-first / no historical-data tuning before ship; Svelte-primary distribution.
-- **Still open (Z.ai Cakepanz, not engine):** Part 0 disposition, C′1 ring fix, exact tab-label
-  capitalisation (Owner prefers w89 words capitalised; ALL CAPS vs Title Case unresolved).
+- ~~**Still open (Z.ai Cakepanz, not engine):** Part 0 disposition, C′1 ring fix, exact tab-label
+  capitalisation.~~ **CLOSED 2026-11-19 21:30 UTC** — see the three-rulings filing below.
+
+## Three Z.ai rulings CLOSED (2026-11-19 21:30 UTC)
+
+- Owner answered all three; verbatim in `_agents/owner-notes/2026-11-19-three-rulings-verbatim.txt`.
+  Closure filing: `inbox/20261119-2130-pickle-R-13-three-rulings-closed.md`; bulletin 2130.
+- **Part 0:** posed to Z.ai, not struck/blessed by me — "let him fix it himself with his own intuition."
+- **C′1:** get as close to w89 as possible; ring looks worse than w89's glowing button. Mechanism
+  (Q-H5 raw export vs display-round) NOT assumed — engine change routes to Architect with re-pin.
+- **Tabs: settled** — w89 titles in ALL CAPS: `SEASON STATS / PLAYOFF STATS / YOUR PLAYERS /
+  LEAGUE LEADERS` (w89 strings VERIFIED in live index.html).
+- Drafted the Z.ai continuation prompt the Owner flagged:
+  `_agents/pickle/deliveries/prompts-2026-11-19/zai-cakepanz-closeout-rulings.md` — for Owner relay
+  (KG sends), NOT sent, no branch pushed. No product/engine/governance/queue/other-seat edits.
 
 ## Vue Vapor benchmark (2026-11-19 21:13 UTC)
 
