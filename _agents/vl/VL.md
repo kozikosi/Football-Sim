@@ -12,20 +12,39 @@
 - I do **not** edit the product file, AGENTS.md, CLAUDE.md, QUEUE.md, STATUS.md, CHRONICLE.md, PROJECT-KNOWLEDGE.md, or protected constants, and I never force-push or `git stash` (WIP commit instead). I do not build another seat's shell/engine bytes.
 - **Folder separation:** my own review work lives under `inbox/`; Z.ai pass-through deliveries pushed at the Owner's direction live under `deliveries/zai-pass-through/<item>/`.
 
-## Current session (2026-11-18, council round — Part 10: Cakepanz-6/Cakepanz-8 review)
-Z.ai's cakepanz-8 delivery landed (~19:50Z): hosted verbatim on `council/ernie` @ `cc05df44` (`_agents/ernie/deliveries/67-cakepanz-8-2026-11-18/`) and `council/ds` @ `953fe5ce` (root `67-cakepanz-8-2026-11-18/`). Inkling's review (VERDICT improved, `inbox/20261118-1954-inkling-cakepanz8-review.md`, commit `763f7a5c`) and Pickle's review (VERDICT improved, `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md`, commit `a9f6d6bf`) are both on file — Part 10 items A1–A9 and Block B are covered by them.
+## Current session (2026-11-18→19, council round — Part 10: Cakepanz-6/Cakepanz-8 review; then queue work)
 
-VL independently re-ran **Item 1 (gates)** per the Part 10 protocol at the **delivered final bytes** of both trees (cakepanz-8.1-2026-11-18, pushed to council/vl commit 5c08c455):
-- `node scripts/gate-manifest.mjs` on **shipped** (`cakepanz-4`): `gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)`, exit 0.
-- `node scripts/gate-manifest.mjs` on **prepared** (`cakepanz-4-prepared`): `gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)`, exit 0.
-- `node scripts/gate-numerals.mjs` on both trees: `gate-numerals: CLEAN ×2`.
-- `node --test --experimental-strip-types test/engine.test.ts`: shipped 394/394 pass; prepared 406/406 pass.
-- `shasum -a 256 dist/single.html`: `4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a` (byte-identical across trees).
-- Flex census: `{"0":17,"2":17,"6":42,"12":23}`; spot checks SS>NICKEL=0, FB>TE=2, FB>RB=2, C>OG=6, OG>C=2, QB>FS=12 all match WHAT-CHANGED.md.
+Z.ai's cakepanz-8.1-2026-11-18 delivery pushed to `council/vl` (commit 5c08c455 → f3511ba9 → 0535ed05) at
+`_agents/vl/deliveries/zai-pass-through/67-cakepanz-8.1-2026-11-18/` (both trees: cakepanz-4 shipped pin 5c808472,
+cakepanz-4-prepared pin 65673a00, NOT ACTIVATED).
 
-The earlier gate-manifest FAIL (VL.md session note, lines 19–21) was on a **stale pre-final-state extract**; the delivered bytes PASS. **The gate discrepancy is closed — nothing red ships.** VL's cakepanz-8 review is filed at `inbox/20261118-2332-vl-cakepanz81-review.md` (VERDICT ok).
+VL independently verified at the delivered final bytes:
+- `node scripts/gate-manifest.mjs` → shipped PASS (314), prepared PASS (319), exit 0
+- `node scripts/gate-numerals.mjs` → CLEAN ×2 both trees
+- `node --test --experimental-strip-types test/engine.test.ts` → shipped 394/394, prepared 406/406
+- `shasum -a 256 dist/single.html` → 4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a (byte-identical)
+- Flex census `{"0":17,"2":17,"6":42,"12":23}`; spot checks SS>NICKEL=0, FB>TE=2, FB>RB=2, C>OG=6, OG>C=2, QB>FS=12
 
-Other Part 10 sign-up items (3 weights/900, 4 slogan+shimmer, 5 M3 logs, 6 F2/F3 falsifiers on both Node majors) were NOT run this session — browser/playwright not available in this worktree; receipts are REPORTED from z.ai's `receipts/partH-c8-1/` (falsifiers DIED per z.ai's own run).
+**VL's cakepanz-8.1 review** (VERDICT ok): `inbox/20261118-2332-vl-cakepanz81-review.md`. The earlier gate-manifest
+FAIL was on a stale pre-final-state extract; the discrepancy is closed — nothing red ships.
+
+**Reviews of other seats' work** (all VERDICT ok/improved):
+- ernie CAKEPANZ-5 hosting/review (R-13): pin byte-identity confirmed (67/68 files, flex identical); F-1/F-2
+  doc-count findings still apply; team-takeover "empty blocks" already fixed in cakepanz-8.1
+  → `inbox/20261119-0010-vl-ernie-cakepanz5-review.md`
+- ernie Part 5 slot/save contract (P-317 + S3/S4): all defect claims VERIFIED true at tip; P-317-A UNDO hazard
+  confirmed; predicate tightenings correct → `inbox/20261119-0020-vl-ernie-part5-review.md`
+- ernie w89 team takeover (P-366): "empty blocks" finding fixed in cakepanz-8.1 (blocks filled at
+  tokens-w89.css:136-167); valid for cakepanz-5/deployed w89 → `inbox/20261119-0030-vl-ernie-w89-takeover-review.md`
+- inkling P-333 flex math: census 99 rules confirmed; provider sign disagreement at cap-70 is a real Owner
+  decision blocking flex production → `inbox/20261119-0040-vl-inkling-p333-review.md`
+
+**Queue work taken:** P-144 (Guide graphic) — three static HTML/SVG designs (<=15 KB each, standalone):
+- `_agents/vl/p144-design-a-flex-tree.html` (11.7 KB)
+- `_agents/vl/p144-design-b-position-wheel.html` (12.5 KB)
+- `_agents/vl/p144-design-c-ranked-list.html` (9.8 KB)
+Proposal: `inbox/20261119-0055-vl-P-144-guide-graphic.md`. Dependency: P-142 (flex rules table) not yet landed;
+designs use P-142's stated rules as the candidate table.
 
 ## Next session
 - `node tools/council.mjs next` (live queue on origin/council/muse).
@@ -38,7 +57,4 @@ Other Part 10 sign-up items (3 weights/900, 4 slogan+shimmer, 5 M3 logs, 6 F2/F3
 
 ## Live files / receipts
 - All prior inbox filings committed and pushed on origin/council/vl (see lane file history).
-- No new inbox filing this session yet (gate-manifest finding to be filed next session as `inbox/20261118-<vl>-cakepanz8-gate-fail.md`).
-
-## Pending
-- Other seats' unsaved work shown by `preserve.mjs check` — not VL's to touch. VL's own worktree `council/vl` is clean and pushed (OK per preserve.mjs).
+- VL's own worktree `council/vl` is clean and pushed (OK per preserve.mjs).
