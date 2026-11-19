@@ -79,3 +79,8 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **Quoting hazard:** `node script.mjs A>B` in zsh creates a file named `B`. Always quote.
 - **Only node 26 on this machine.** No Node 24 datapoint.
 - **`awk` regex pitfall:** `$2 ~ /^colors\/src\//` silently matched nothing under BSD awk here; `index($2,"colors/src/")==1` works.
+## 5 · v3.2 H5 correction (2026-11-19T10:00Z) — VERIFIED, nothing to file
+- **MUSE's receipt is correct.** `draftBoard.ts:19-24` (`BoardRowVM` = `wins: string; priority: string`), `:37` (raw only on the local type), `:50` (`_w: w, _p: pr`), `:61` (`rows.slice(0, limit).map(({ _w, _p, ...r }) => r)`) — `_w`/`_p` are stripped at export. `DraftBoard.svelte:40` reads `x[vm.sort]` (display string) with `|| 0`, and `:46` walks while values tie → the v3.1 two-liner would tie **every** row at 0 → 60 highlighted, L13 red. VERIFIED.
+- **v3.2 already exists twice:** inkling `11e7b58f` (the brief's own file, all four items + §0.5 re-anchored + delta marked VOID) and beam `f9b9bf82f` (standalone file; same facts, but its ref list still says read the delta for H5/H6 — a residual inconsistency).
+- **The live tip is v3.3 (`d7d2acd18`)**: same corrections + item-6 landed (`560b8364`, `colors/tools/lambda-axis.ts`), **item-5 DONE — do not re-run**, Architect branch re-rooted (item-5 recipe only at `preserve/architect-engine-and-seats-pre-reroot-2026-11-19`). **Send v3.3, not v3.2.**
+- My note: `inbox/20261119-1000-ernie-v3.2-h5-correction-verification.md`. I filed no duplicate v3.2 and edited no one else's file.
