@@ -26,6 +26,7 @@ export interface DraftPick { overall: number; team: number; pid: string; slot: s
 // draft: mid-draft. Replays nothing: the picks are a log, the pool is frozen.
 export interface DraftPayload {
   seed: number; userTeam: number;
+  pickSlot?: number;             // 1-32: the user's round-1 pick number. Absent = the team's own index + 1 (every save written before this field existed)
   picks: DraftPick[];            // every pick made so far, CPU and user, in order
   pool: FrozenPoolRow[];         // the whole board as it was when the draft began (about 90 K chars as tuples)
 }
@@ -76,6 +77,7 @@ const scoresOk = (a: unknown): boolean => Array.isArray(a) && a.every((g) => isO
 export function draftPayloadProblem(p: Record<string, unknown>): string | null {
   if (!isInt(p.seed)) return 'payload: bad seed';
   if (!isInt(p.userTeam) || p.userTeam < 0 || p.userTeam > 31) return 'draft: bad userTeam';
+  if (p.pickSlot !== undefined && !(isInt(p.pickSlot) && p.pickSlot >= 1 && p.pickSlot <= 32)) return 'draft: bad pickSlot';
   if (!Array.isArray(p.picks) || !p.picks.every((k) => isObj(k) && isInt(k.overall) && isInt(k.team) && isStr(k.pid) && isStr(k.slot))) return 'draft: bad picks';
   if (!Array.isArray(p.pool) || !p.pool.every((r) => Array.isArray(r) && r.length === 8 && isStr(r[0]) && isStr(r[1]) && isStr(r[2]) && isStr(r[3]) && isInt(r[4]) && isInt(r[5]) && isInt(r[6]) && (r[7] === 0 || r[7] === 1))) return 'draft: bad pool';
   return null;

@@ -14,7 +14,7 @@
 import { sportKey } from '../../../core/keys.ts';
 import { draftPayloadProblem } from './saves.ts';
 import type { DraftPayload, FrozenPoolRow } from './saves.ts';
-import { applyPick, cpuChoose, newDraft } from '../engine/draft.ts';
+import { TEAMS_N, applyPick, cpuChoose, newDraft, snakeOrder, DEFAULT_CONFIG } from '../engine/draft.ts';
 import type { DraftState } from '../engine/draft.ts';
 import { fit } from '../engine/flex.ts';
 import { roleOf } from '../engine/players.ts';
@@ -27,7 +27,7 @@ export type SaveRecord = DraftPayload;
 export type Status = 'idle' | 'drafting' | 'done';
 export interface DraftStoreState { record: SaveRecord | null; draft: DraftState | null; status: Status; error: string | null }
 export type DraftStoreAction =
-  | { type: 'START'; seed: number; userTeam: number }
+  | { type: 'START'; seed: number; userTeam: number; pickSlot?: number }
   | { type: 'PICK'; playerId: string; slot: SlotId }
   | { type: 'UNDO' }
   | { type: 'LOAD'; record: unknown };
@@ -55,15 +55,23 @@ export function parseRecord(x: unknown): SaveRecord {
   const o = x as SaveRecord;
   if (o.picks.length > 32 * 32) throw new Error('save: too many picks');
   if (!o.picks.every((k) => SLOT_SET.has(k.slot))) throw new Error('save: bad pick slot');
-  return { seed: o.seed, userTeam: o.userTeam, picks: o.picks.map((k) => ({ overall: k.overall, team: k.team, pid: k.pid, slot: k.slot })), pool: o.pool.map((r) => [...r] as FrozenPoolRow) };
+  return { seed: o.seed, userTeam: o.userTeam, ...(o.pickSlot === undefined ? {} : { pickSlot: o.pickSlot }), picks: o.picks.map((k) => ({ overall: k.overall, team: k.team, pid: k.pid, slot: k.slot })), pool: o.pool.map((r) => [...r] as FrozenPoolRow) };
 }
 
-const toRecord = (st: DraftState, seed: number, userTeam: number, pool: FrozenPoolRow[]): SaveRecord =>
-  ({ seed, userTeam, pool, picks: st.log.map((k) => ({ overall: k.overall, team: k.team, pid: k.player.id, slot: k.slot })) });
+const toRecord = (st: DraftState, base: Pick<SaveRecord, 'seed' | 'userTeam' | 'pickSlot'>, pool: FrozenPoolRow[]): SaveRecord =>
+  ({ seed: base.seed, userTeam: base.userTeam, ...(base.pickSlot === undefined ? {} : { pickSlot: base.pickSlot }), pool, picks: st.log.map((k) => ({ overall: k.overall, team: k.team, pid: k.player.id, slot: k.slot })) });
+
+// P-317. The user's team picks at round-1 slot `pickSlot` (1-32): the team that would have held that slot trades places with the user's
+// team, and the snake runs over the result. Absent or equal to the team's own slot = the plain snake (so every older save restores as before).
+export function draftOrder(userTeam: number, pickSlot?: number): number[] {
+  const perm = Array.from({ length: TEAMS_N }, (_, i) => i);
+  if (pickSlot !== undefined && pickSlot - 1 !== userTeam) { const at = pickSlot - 1; [perm[userTeam], perm[at]] = [perm[at]!, perm[userTeam]!]; }
+  return snakeOrder().map((i) => perm[i]!);
+}
 
 // Applies the logged picks to a fresh draft over the frozen pool. Nothing is drawn: a log that does not fit throws.
 export function restoreDraft(rec: SaveRecord): DraftState {
-  const st = newDraft(thawPool(rec.pool), makeRng(rec.seed).fork('draft'));
+  const st = newDraft(thawPool(rec.pool), makeRng(rec.seed).fork('draft'), DEFAULT_CONFIG, draftOrder(rec.userTeam, rec.pickSlot));
   for (const k of rec.picks) {
     if (st.pos >= st.order.length) throw new Error('save: more picks than the draft has');
     if (k.overall !== st.pos + 1 || k.team !== st.order[st.pos]) throw new Error('save: pick ' + k.overall + ' is out of order');
@@ -98,13 +106,15 @@ export function createStore(players: readonly Player[]) {
     try {
       if (a.type === 'START') {
         if (!Number.isInteger(a.seed) || !Number.isInteger(a.userTeam) || a.userTeam < 0 || a.userTeam > 31) throw new Error('start: bad seed or team');
-        const pool = freezePool(players), st = restoreDraft({ seed: a.seed, userTeam: a.userTeam, picks: [], pool });
+        if (a.pickSlot !== undefined && !(Number.isInteger(a.pickSlot) && a.pickSlot >= 1 && a.pickSlot <= 32)) throw new Error('start: bad pick slot');
+        const base = { seed: a.seed, userTeam: a.userTeam, ...(a.pickSlot === undefined || a.pickSlot - 1 === a.userTeam ? {} : { pickSlot: a.pickSlot }) };
+        const pool = freezePool(players), st = restoreDraft({ ...base, picks: [], pool });
         advance(st, a.seed, a.userTeam);
-        set(settle(st, toRecord(st, a.seed, a.userTeam, pool)));
+        set(settle(st, toRecord(st, base, pool)));
       } else if (a.type === 'LOAD') {
         const rec = parseRecord(a.record), st = restoreDraft(rec);
         advance(st, rec.seed, rec.userTeam);   // a log saved while the user was on the clock needs nothing; one cut short by a crash is finished here
-        set(settle(st, toRecord(st, rec.seed, rec.userTeam, rec.pool)));
+        set(settle(st, toRecord(st, rec, rec.pool)));
       } else if (!state.record || !state.draft) throw new Error('no draft in progress');
       else if (a.type === 'PICK') {
         const { record: rec, draft: st0 } = state;
@@ -116,12 +126,12 @@ export function createStore(players: readonly Player[]) {
         if (!dest || !fit(player.role, dest).legal) throw new Error('illegal fit');
         applyPick(st, rec.userTeam, player, a.slot);
         advance(st, rec.seed, rec.userTeam);
-        set(settle(st, toRecord(st, rec.seed, rec.userTeam, rec.pool)));
+        set(settle(st, toRecord(st, rec, rec.pool)));
       } else if (a.type === 'UNDO') {
         const rec = state.record, i = rec.picks.map((k) => k.team).lastIndexOf(rec.userTeam);
         if (i < 0) throw new Error('nothing to undo');
         const cut = { ...rec, picks: rec.picks.slice(0, i) }, st = restoreDraft(cut);
-        set(settle(st, toRecord(st, rec.seed, rec.userTeam, rec.pool)));
+        set(settle(st, toRecord(st, rec, rec.pool)));
       }
     } catch (e) {
       console.warn('store: action rejected:', a.type, (e as Error).message);

@@ -48,7 +48,7 @@ export type Action =
   | { type: 'LOAD_FAILED'; slot: SlotName; kind: 'corrupt' | 'newer-version' | 'storage-unavailable' }
   | { type: 'SAVE_STATUS'; status: SaveStatus }
   // draft
-  | { type: 'START'; seed: number; userTeam: number; saveId: string; now: string }
+  | { type: 'START'; seed: number; userTeam: number; pickSlot?: number; saveId: string; now: string }
   | { type: 'PICK'; playerId: string; slot: SlotId }
   | { type: 'UNDO' }                                                      // draft only; cuts the pick log
   // season flow

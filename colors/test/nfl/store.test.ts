@@ -100,3 +100,25 @@ test('app layer purity: no DOM, storage globals, clock or Math.random in src/app
     for (const bad of [/\bdocument\b/, /\bwindow\b/, /\blocalStorage\b/, /\bsessionStorage\b/, /\bMath\.random\b/, /\bDate\.now\b/, /\bnew Date\b/]) assert.ok(!bad.test(src), f + ' ' + bad);
   }
 });
+
+// P-317: the user's chosen draft slot reaches the engine's order, survives a save, and leaves slot-less saves untouched.
+test('store: START with a pickSlot puts the user at that round-1 slot (and the snake mirrors it); the choice survives JSON and picks', () => {
+  const st = createStore(pool); st.dispatch({ type: 'START', seed: 5, userTeam: 3, pickSlot: 20 });
+  const d = st.getState().draft!, o = d.order;
+  assert.equal(st.getState().error, null);
+  assert.equal(o.length, 32 * 32); assert.equal(o[19], 3); assert.equal(o[32 + 12], 3);          // round 1 slot 20; round 2 reverses: 32-20 = position 12
+  assert.equal(new Set(o.slice(0, 32)).size, 32);                                                  // still a permutation of the 32 teams
+  assert.equal(d.pos, 19);                                                                         // the 19 CPU teams ahead of the user have picked
+  assert.equal(st.getState().record!.pickSlot, 20);
+  play(st, 1);
+  const back = createStore(pool); back.dispatch({ type: 'LOAD', record: JSON.parse(JSON.stringify(st.getState().record)) });
+  assert.deepEqual(back.getState().draft!.order, o); assert.equal(back.getState().record!.picks.length, st.getState().record!.picks.length);
+});
+test('store: a slot equal to the team\'s own index, or no slot, writes no pickSlot and keeps the plain snake; bad slots are refused', () => {
+  const a = createStore(pool); a.dispatch({ type: 'START', seed: 5, userTeam: 3 });
+  const b = createStore(pool); b.dispatch({ type: 'START', seed: 5, userTeam: 3, pickSlot: 4 });
+  assert.equal('pickSlot' in a.getState().record!, false); assert.equal('pickSlot' in b.getState().record!, false);
+  assert.deepEqual(a.getState().record, b.getState().record);
+  for (const bad of [0, 33, 1.5, -1]) { const c = createStore(pool); c.dispatch({ type: 'START', seed: 5, userTeam: 3, pickSlot: bad }); assert.notEqual(c.getState().error, null); assert.equal(c.getState().status, 'idle'); }
+  assert.throws(() => parseRecord({ ...a.getState().record, pickSlot: 99 }), /pickSlot/);
+});
