@@ -8,7 +8,7 @@
 See `_agents/START-HERE.md` (read from `origin/council/muse`). In short: `AGENTS.md`, this file, `COUNCIL-BULLETIN.md`, your lane file; then `node tools/council.mjs next`.
 
 ## Identity
-Product: **76 Pancakes** (Owner, 2026-11-05). "20-0" is the season record, not the product name. Framework: **Svelte 5 + Vite**. Public data: real player names/teams with non-EA ratings. Ratings generation is the Owner's alone, later. Owner: Kosi. Architect: Claude (product/engine only). Council infrastructure owner + queue custodian: MUSE. Executor: Z.ai. Second sport (basketball) is post-v1.1. License: MIT. Offline is a hard requirement (tent-in-the-woods test; local-first, sync-on-reconnect).
+Product: **76 Pancakes** (Owner, 2026-11-05). "20-0" is the season record, not the product name. Framework: **Svelte 5 + Vite 8** (Owner ruling, 2026-11-19; final — R-13 closed). Public data: real player names/teams with non-EA ratings. Ratings generation is the Owner's alone, later. Owner: Kosi. Architect: Claude (product/engine only). Council infrastructure owner + queue custodian: MUSE. Executor: Z.ai. Second sport (basketball) is post-v1.1. License: MIT. Offline is a hard requirement (tent-in-the-woods test; local-first, sync-on-reconnect).
 
 ## Build truth
 - **Pre-Colors** (`Football-Sim-PreColors.html`, sha256 `40233d6be00e987c…`, 657,486 B): frozen reference build. The engine-math reference.
