@@ -7,18 +7,17 @@
 
 ## Current work
 - **Claimed / in progress:** none
-- **Done this session:** thorough cakepanz-9 review (inbox/20261119-0925-or-cakepanz-9-review-71.md, VERDICT: improved); innovation/brainstorm (inbox/20261119-0925-or-cakepanz-brainstorm-71.md); delivered package pushed to council/or (commit 72dd53fe5); consolidated review and innovation both pushed; preserve.mjs check clean.
-- **Blocked / waiting on:** innovation P0 (seed determinism, PWA) pending Owner directive; next session will evaluate P2–P3 items based on Owner feedback.
+- **Done this session:** completed INKLING re-root audit sections A+B (both VERIFIED; preserve ref confirmed whole, bytes survived); filed partial audit inbox/20261119-1845-or-arch-reroot-audit.md; sections C/D/E NOT done (reported as REPORTED/UNKNOWN).
+- **Blocked / waiting on:** Owner ruling on re-root recovery (a)/(b); full citation-rot audit (C); mechanism forensics (D); recovery drill (E).
 
 ## What the next session needs
-- **Read first:** inbox/20261119-0925-or-cakepanz-9-review-71.md (thorough review), inbox/20261119-0925-or-cakepanz-brainstorm-71.md (innovation list, P0–P3 ranked), bulletin/20261119-0925-or.md (this session's end-of-chat summary)
-- **Open questions:** whether Owner green-lights innovation P0 (?seed=, PWA) or directs different priority; whether A6 (dead .cp-sorttoggle) is worth fixing in next sitting.
-- **Do not redo:** cakepanz-9 review + brainstorm (pushed this session); four-review verification (pushed prior session, receipts intact).
+- **Read first:** inbox/20261119-1845-or-arch-reroot-audit.md (latest), inbox/20261119-0925-or-cakepanz-9-review-71.md, inbox/20261119-0925-or-cakepanz-brainstorm-71.md, bulletin/20261119-1809-or.md
+- **Open questions:** Owner's ruling on re-root recovery; whether to run full sections C/D/E of the audit.
+- **Do not redo:** INKLING audit sections A+B (verified this pass); do NOT fabricate C/D/E results.
 
 ## Files in this lane
-inbox/20261119---cakepanz-9-review.md
-inbox/20261119-0430-or-cakepanz-9-review.md
-inbox/20261119-0236-or-inkling-tools-and-w89-opportunities.md
-inbox/20261119-0330-or-inkling-zai-absorb-claude-work.md
+inbox/20261119-1845-or-arch-reroot-audit.md
+inbox/20261119-0925-or-cakepanz-9-review-71.md
+inbox/20261119-0925-or-cakepanz-brainstorm-71.md
 inbox/20261119-0106-or-P-162-review.md
 inbox/20261119-0115-or-P-164-review.md
