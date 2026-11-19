@@ -122,3 +122,22 @@ test('store: a slot equal to the team\'s own index, or no slot, writes no pickSl
   for (const bad of [0, 33, 1.5, -1]) { const c = createStore(pool); c.dispatch({ type: 'START', seed: 5, userTeam: 3, pickSlot: bad }); assert.notEqual(c.getState().error, null); assert.equal(c.getState().status, 'idle'); }
   assert.throws(() => parseRecord({ ...a.getState().record, pickSlot: 99 }), /pickSlot/);
 });
+
+test('S4: dispatchAsync matches sync dispatch, in call order, and never rejects', async () => {
+  const a = createStore(pool), b = createStore(pool);
+  a.dispatch({ type: 'START', seed: 5, userTeam: 3 });
+  const p1 = b.dispatchAsync({ type: 'START', seed: 5, userTeam: 3 });
+  const p2 = b.dispatchAsync({ type: 'UNDO' });   // queued behind START; rejected inside dispatch (nothing to undo) -> state.error
+  const s1 = await p1; const s2 = await p2;
+  assert.deepEqual(s1.record, a.getState().record);
+  assert.equal(s2.error, 'nothing to undo');
+  assert.deepEqual(b.getState().record, a.getState().record);
+});
+
+test('S4: selectBoardAsync equals selectBoard', async () => {
+  const { selectBoardAsync } = await import('../../src/sports/nfl/app/selectors.ts');
+  const st = createStore(pool); st.dispatch({ type: 'START', seed: 5, userTeam: 3 });
+  const r = await selectBoardAsync(st.getState(), { limit: 5 });
+  assert.equal(r.pending, false);
+  assert.deepEqual(r.pending ? null : r.vm, selectBoard(st.getState(), { limit: 5 }));
+});

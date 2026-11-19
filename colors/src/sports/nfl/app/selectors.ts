@@ -14,3 +14,11 @@ export function selectBoard(s: DraftStoreState, opts: { sort?: BoardSort; limit?
   return boardVM(s.draft, s.record.userTeam, odds, opts);
 }
 export function selectRoster(s: DraftStoreState): RosterVM | null { return s.record && s.draft ? rosterVM(s.draft, s.record.userTeam) : null; }
+
+// S4: the async twin of selectBoard. `{ pending: true }` is what a Worker/server-backed implementation returns while it works; this in-process
+// one yields a macrotask (so the caller can paint) and then answers `{ pending: false, vm }`. Same inputs give the same vm as selectBoard.
+export type BoardResult = { pending: true } | { pending: false; vm: BoardVM | null };
+export async function selectBoardAsync(s: DraftStoreState, opts: { sort?: BoardSort; limit?: number; sims?: number } = {}): Promise<BoardResult> {
+  await new Promise<void>((r) => setTimeout(r, 0));
+  return { pending: false, vm: selectBoard(s, opts) };
+}

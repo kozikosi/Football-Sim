@@ -138,7 +138,18 @@ export function createStore(players: readonly Player[]) {
       set({ ...state, error: (e as Error).message });
     }
   };
-  return { getState: () => state, dispatch, subscribe: (f: (s: DraftStoreState) => void) => { subs.add(f); return () => subs.delete(f); } };
+  // S4 (plan v3 3.6): the promise-returning twin. Additive: the sync `dispatch` is untouched and stays until the arms stop mounting it.
+  // Calls are serialised in call order (a second dispatchAsync never starts before the first has settled) and each one yields a macrotask
+  // first, so the caller can paint "working" before the engine runs. It never rejects: `dispatch` already turns every failure into
+  // state.error, and the resolved value is the state after this action. The engine still runs on the calling thread today; the point is
+  // the CONTRACT, so a Worker or a server can later sit behind it without touching a caller.
+  let chain: Promise<unknown> = Promise.resolve();
+  const dispatchAsync = (a: DraftStoreAction): Promise<DraftStoreState> => {
+    const run = chain.then(() => new Promise<void>((r) => setTimeout(r, 0))).then(() => { dispatch(a); return state; });
+    chain = run;
+    return run;
+  };
+  return { getState: () => state, dispatch, dispatchAsync, subscribe: (f: (s: DraftStoreState) => void) => { subs.add(f); return () => subs.delete(f); } };
 }
 export type Store = ReturnType<typeof createStore>;
 
