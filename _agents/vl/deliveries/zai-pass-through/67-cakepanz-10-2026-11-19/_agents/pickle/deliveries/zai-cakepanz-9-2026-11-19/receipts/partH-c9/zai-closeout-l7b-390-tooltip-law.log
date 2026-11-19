@@ -1,0 +1,197 @@
+{
+ "rows": [
+  {
+   "name": "Matthew Stafford",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 460,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at QB",
+     "box": {
+      "x": 89,
+      "y": 464,
+      "w": 94,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  },
+  {
+   "name": "Lamar Jackson",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 635,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at QB",
+     "box": {
+      "x": 89,
+      "y": 639,
+      "w": 94,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  },
+  {
+   "name": "Patrick Mahomes",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 826,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at QB",
+     "box": {
+      "x": 89,
+      "y": 830,
+      "w": 94,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  },
+  {
+   "name": "Brock Purdy",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 452,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at QB",
+     "box": {
+      "x": 89,
+      "y": 456,
+      "w": 94,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  },
+  {
+   "name": "Caleb Williams",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 628,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at QB",
+     "box": {
+      "x": 89,
+      "y": 632,
+      "w": 94,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  },
+  {
+   "name": "Jaxon Smith-Njigba",
+   "fitsOpen": true,
+   "tipVisible": false,
+   "tip": {
+    "x": 0,
+    "y": 0,
+    "w": 0,
+    "h": 0
+   },
+   "fits": {
+    "x": 25,
+    "y": 803,
+    "w": 340,
+    "h": 113
+   },
+   "chips": [
+    {
+     "text": "Draft at WR1",
+     "box": {
+      "x": 98,
+      "y": 807,
+      "w": 103,
+      "h": 25
+     },
+     "hitCentre": "chip",
+     "hitRight": "chip"
+    }
+   ],
+   "scrollW": 390,
+   "clientW": 390
+  }
+ ],
+ "errors": []
+}
