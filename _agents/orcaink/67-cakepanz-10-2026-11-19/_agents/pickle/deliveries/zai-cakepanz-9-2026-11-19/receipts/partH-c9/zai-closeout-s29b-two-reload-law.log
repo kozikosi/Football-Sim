@@ -1,0 +1,4 @@
+{"label":"boot1 (the A1 law: both autosaves -> hub)","hub":1,"hubPhase":"running","complete":0,"team":0,"h1":"","keys":["sim:nfl:autosave:draft","sim:nfl:autosave:week"],"hash":"#/hub"}
+{"label":"boot2 (a second reload, nothing changed: the season must still be there)","hub":1,"hubPhase":"running","complete":0,"team":0,"h1":"","keys":["sim:nfl:autosave:draft","sim:nfl:autosave:week"],"hash":"#/hub"}
+{"label":"boot3 (third reload, belt and braces)","hub":1,"hubPhase":"running","complete":0,"team":0,"h1":"","keys":["sim:nfl:autosave:draft","sim:nfl:autosave:week"],"hash":"#/hub"}
+{"verdict":{"leg1_hub":true,"week_key_after_boot1":true,"leg2_still_hub":true,"leg2_complete":false,"leg3_still_hub":true,"pageErrors":[]}}

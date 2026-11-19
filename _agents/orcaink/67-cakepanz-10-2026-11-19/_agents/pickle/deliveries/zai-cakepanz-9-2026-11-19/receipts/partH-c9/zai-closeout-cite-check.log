@@ -1,0 +1,12 @@
+hex tokens checked: 25
+  receipt/tree-backed or superseded-marked: 25
+  UNRESOLVED: 0
+  by status (unique line+token): {'RECEIPT': 23, 'SUPERSEDED-MARKED': 2}
+  COUNT k1 18 x EXIT_CODE=0: 18
+  COUNT k1 ends COMPLETE: True
+  COUNT gate shipped PASS 314: True
+  COUNT gate prepared PASS 319: True
+  COUNT numerals shipped CLEAN x2x2: 2
+  COUNT numerals prepared CLEAN x4 (both invocations): 4
+  COUNT S29b verdict true: True
+  COUNT L7b all chips hit chip: 0
