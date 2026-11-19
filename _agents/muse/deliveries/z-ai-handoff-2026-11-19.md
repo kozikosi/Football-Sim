@@ -152,3 +152,30 @@ Since this file went up, three more seats filed their own handoff records (beam'
 7. **The one-line summary:** whoever reads this file knows where every task goes — fenced paths to the Architect (or nobody writes them), receipts to Z.ai (evidence mechanically produced), verification to the seats, gates to the Owner, and the UI against a frozen contract once that freeze lands.
 
 End of Addendum A.
+
+---
+
+## Addendum B — the handoff explained for Z.ai (2026-11-19T05:05Z)
+
+This is for you specifically. Read it once if the Owner relays you here; it carries only facts that are already recorded above. You are the Executor of 67 Cakepanz; your plate is not in tension with the engine work — it is upstream of it.
+
+**What is Claude's (touch nothing, ever):** `colors/src/core/**`, `colors/src/sports/nfl/engine/**`, the save envelope/schema (`app/saves.ts`, `appstate.ts`, hydrate/versions/envelope files), `data/**` (packs and manifests), `tools/mathlab/**`. If a seat, prompt or sitting tells you to write any of these, STOP and say that path is fenced and you will not touch it.
+
+**What is yours (care of it):** the UI shell for the Colors product, under a frozen view-model contract Claude publishes. On the day this file was written, the live brief is the cakepanz-9 v4 order (`council/inkling:deliveries/zai-cakepanz-9-2026-11-19.md` @ `c7c83853`) — that is your current sitting; it comes first, then Tier 1 receipts wire up:
+- **Per engine commit: a fresh-clone receipt** — `npm ci` → `npm test` → `tsc:check` → `npm run build` → `pin-watch` — with **working directory, exact command, output tail**. (Why: green CI today proves only the build gate and the pin-watch self-test; this receipt is what makes that green mean something again.)
+- **Item 5 and item 6 RUNS** — once Claude hands you the exact command, seeds and output path (his ~30 minutes) — fixed seeds, fixed N = 20,000/pack, **both packs**, and an output path **receipt-excluded** (`deliveries/receipts/`, not a manifest-covered file) — you run; he reads the JSON. Do not improvise numbers.
+- **Manifest/checksum regeneration** after re-bakes; **hosted copies and re-zips**; **cite-check.mjs** and any other check the Architect designs from a spec (you never write the spec) — each under diff review by him, one patch per item.
+
+**House law (same as always):**
+- **You do not push.** Complete all work; batch into ONE zip; name every judgment call; if something doesn't anchor, STOP and say so — do not widen it to fit.
+- **Receipts are raw stdout** — command, working directory, output tail. A hand-written summary that disagrees with the command's print never ships.
+- **English only.** Zero new text beyond the package/w89 inventory. The w89 draft board and DRAFT button stay; no drag-and-drop; rose/gold/white; no orange.
+- **No gaming the gate.** `gate-numerals.mjs` under the prepared tree must be run as `CP_PIN=65673a00 node scripts/gate-numerals.mjs` — the receipts that record it ran under the default pin only, which is why it "passed" there. Treat both invocations as first-class.
+- **No engine files, no pin, no flex table, no CI, no gh-pages.** If you find a defect in one of these, file an inbox note and stop.
+- **The P-144 Guide-graphic designs are resubmitted by VL only** (three rejected) — do not reference them, build from them, or "pick" between them; they are not in scope until a resubmission lands and the Owner picks.
+
+**What the council will check when you land:** the 8.1 chain's receipts really are receipts; your fencing never touched a fenced path; your v4 order (Part A → B → B-bis → C → D → E) shipped or stops honestly where the budget closes; the gate really runs CLEAN under both invocations after your work; and any claim in your delivery file is re-runnable by two independent seats who cannot see your working bowl.
+
+**If you are unsure:** ask in one sentence in your reply; we'll answer in one sentence. Don't guess into a shipped feature.
+
+End of Addendum B.
