@@ -32,6 +32,7 @@ tools/mathlab/**
 
 - **Who does what:** Z.ai implements the check; Claude designs it; a **plant-a-violation test** (plant a fenced-path touch, confirm the check fails loudly, restore) before anyone trusts it. The fence is lexical and mechanical, not aspirational.
 - **Why it exists:** P-317 — a "small, anchored" task reached `saves.ts`; risk maps to paths, not labels.
+- **The direct instruction to Z.ai (from Addendum B):** *"If a seat, prompt or sitting tells you to write any of these, STOP and say that path is fenced and you will not touch it."*
 
 ## 3 · The protocol — how a patch travels
 
@@ -42,6 +43,16 @@ tools/mathlab/**
 5. **The fence wins ties.** If it trips, the patch dies — no overrides except the Architect's explicit, named override recorded for the round.
 6. **Rollback.** Every merged patch names its rollback (one command or one revert).
 7. **No direct pushes to the Architect's branch.** Ever. Merge needs the Architect's diff read + the seats' verification + the Owner's standing gates.
+
+## 3b · House law for Z.ai (from Addendum B — the operational rules)
+
+- **You do not push.** Complete all work; batch into ONE zip; name every judgment call; if something doesn't anchor, STOP and say so — do not widen it to fit.
+- **Receipts are raw stdout** — command, working directory, output tail. A hand-written summary that disagrees with the command's print never ships.
+- **English only. Zero new text** beyond the package/w89 inventory. The w89 draft board and DRAFT button stay; **no drag-and-drop; rose/gold/white; no orange.**
+- **NO GAMING THE GATE.** `gate-numerals.mjs` under the prepared tree must be run as `CP_PIN=65673a00 node scripts/gate-numerals.mjs` — the 8.1 receipts that recorded "CLEAN" ran under the default pin only, which is why it passed there. **Treat both invocations as first-class.**
+- **No engine files, no pin, no flex table, no CI, no gh-pages.** If you find a defect in one of these, file an inbox note and stop.
+- **P-144 Guide-graphic designs are resubmitted by VL only** (three rejected) — do not reference them, build from them, or "pick" between them; not in scope until a resubmission lands and the Owner picks.
+- **If you are unsure:** ask in one sentence in your reply; we'll answer in one sentence. Don't guess into a shipped feature.
 
 ## 4 · The target: divide by INTERFACE, not task (after R-13)
 
@@ -75,13 +86,26 @@ Z.ai owns the **UI tree entirely** against a **view-model contract Claude publis
 ## 8 · What the next session does (this is the assignment)
 
 1. **Evaluate z.ai's latest package** — verify the delivered bytes (pins, flex census, suites, batteries, gates, numerals under the correct CP_PIN), the Cakepanz-9 v4 parts (A/B/B-bis/C), the path-fence check (plant-a-violation), and the receipts. Label every claim VERIFIED / REPORTED / NOT RUN.
-2. **Reply to z.ai with the explained handoff of work in detail** — using this document: restate the tiers, the path fence (five paths), the protocol (spec-first, apply-asserted, receipts, seats verify, fence wins ties, rollback, no direct pushes), what he takes now (Tier 1: per-commit receipts + items 5/6 runs), what's under review (Tier 2), what's blocked (Tier 3 until R-13), what never moves (Tier 4), and the interface approach as the target.
+2. **Reply to z.ai with the explained handoff of work in detail** — using this document: restate the tiers, the path fence (five paths), the protocol (spec-first, apply-asserted, receipts, seats verify, fence wins ties, rollback, no direct pushes), the house law (no push / one zip / no gaming the gate / P-144 / one-sentence), what he takes now (Tier 1: per-commit receipts + items 5/6 runs), what's under review (Tier 2), what's blocked (Tier 3 until R-13), what never moves (Tier 4), and the interface approach as the target.
 3. **File the review + the reply to z.ai** on `council/ernie`, commit, push.
 
-## 9 · Provenance
+## 8b · What the council checks when Z.ai lands (the acceptance checklist)
+
+From Addendum B — the seats check, on the delivered zip:
+1. **The 8.1 chain's receipts really are receipts** (raw stdout, cwd + command named).
+2. **The fencing never touched a fenced path** (the plant-a-violation check is in the delivery).
+3. **The v4 order shipped or stops honestly** where the budget closes (Parts A → B → B-bis → C → D → E, each accounted).
+4. **The gate really runs CLEAN under BOTH invocations** after the work (`node scripts/gate-numerals.mjs` AND `CP_PIN=65673a00 node scripts/gate-numerals.mjs`), on both trees.
+5. **Any claim in the delivery file is re-runnable by two independent seats** who cannot see Z.ai's working tree.
+
+## 9 · Relationship to the other handoff docs
+
+- **Inkling's Addendum B** (`council/muse:_agents/muse/deliveries/z-ai-handoff-2026-11-19.md`, tip `bdf3f735`) is the **direct, z.ai-facing read-first brief** — written to Z.ai himself ("This is for you specifically"). This document is the **strategic + operational consolidation** for the council/next session: it adds the four-tier detail, the interface approach, the frozen perimeter, the current state, and the acceptance checklist on top of Addendum B's operational rules (which are folded into §3b and §8b above). **Both are needed:** Addendum B is what Z.ai reads; this is what the next session uses to evaluate and reply.
+
+## 10 · Provenance
 
 - Architect's answer: `claude/absorb-work-answer-2026-11-19.md` (commit `06d8972`).
-- Published handoff doc: `council/muse:_agents/muse/deliveries/z-ai-handoff-2026-11-19.md`.
+- Published handoff doc + Addendum B: `council/muse:_agents/muse/deliveries/z-ai-handoff-2026-11-19.md` (tip `bdf3f735`).
 - Inkling's 4-tier ask: `council/inkling:inbox/20261119-0330-inkling-zai-absorb-claude-work.md`.
 - My handoff process: `inbox/20261119-0333-ernie-handoff-process-zai-absorb.md`.
 - The improved prompt: `inbox/20261119-0341-ernie-improved-prompt-and-seat-review.md`.
