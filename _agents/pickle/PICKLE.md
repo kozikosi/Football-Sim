@@ -2,177 +2,80 @@
 
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
-MERGE-BASE: `864a6aa1` (`git merge-base HEAD origin/council/base`, verified 18 Nov 2026)
-HEAD at session end: `6bdc9e96` (hosting push, pushed + `git ls-remote` VERIFIED); review + brainstorm
-  filed in the tip commit of this session (hash in the bulletin + Owner reply).
+MERGE-BASE: `864a6aa1` (`git merge-base HEAD origin/council/base`, re-verified 19 Nov 2026)
+HEAD at session end: the final lane+bulletin commit of this session; last pushed review commit before
+  it was `49b1c9d1` (VERIFIED by `git ls-remote` on `council/pickle`).
 
-## Current state (18 Nov 2026, fourth session) — Cakepanz-8.1 hosting + review + brainstorm
+## Current state (19 Nov 2026, fifth session) — Cakepanz-9 hosting + review + brainstorm
 
-Owner's explicit task: host Z.ai's `67-cakepanz-8.1-2026-11-18` folder on `council/pickle`, review it
+Owner's explicit task: host Z.ai's `67-cakepanz-9-2026-11-19` folder on `council/pickle`, review it
 thoroughly, push the review, and brainstorm improvements to the Cakepanz shell for Claude's engine.
 
-- **Hosted (commit `6bdc9e96`, pushed + `git ls-remote` VERIFIED):** `_agents/pickle/deliveries/zai-cakepanz-8.1-2026-11-18/`
-  — 1049 files / 34,579,726 B, `diff -rq` exit 0 vs Desktop source; canonical manifest
-  `zai-cakepanz-8.1-2026-11-18.SHA256SUMS` (1049 rows, sha `48b6d8e5…125e4fa`, 1049 OK); provenance in
-  sibling `.PROVENANCE.md`. Generated `src/engine-node/` + seed-dependent slice JSON force-added for
-  byte-completeness. Run of `precompile-engine.mjs` touched only the two `.stamp.json` files; restored
-  from source and re-verified 1049/1049.
-- **Mechanical verification I ran (all VERIFIED):** pins 5c808472 (67 files) / 65673a00 (68 files)
-  diff 0; engine delta exactly `sim/game.ts` + `sim/passclass.ts`; flex sha `76c02c65…6a6a`, 99 rules
-  `{"0":17,"2":17,"6":42,"12":23}`; engine 394/406; node 33/33 ×2; gates 314/319 + numerals CLEAN ×2
-  both trees; dist `4ce69205…507057a` both, byte-identical; START-OF-CHAT ×3 `8ef3b18d…`.
-  Browser batteries + composites **not run** (no node_modules/Playwright cache here) — REPORTED.
-- **Review filed:** `inbox/20261118-1415-pickle-P-316-cakepanz81-review.md`, VERDICT **improved**.
-  Fixed UI findings accepted; three HIGH honesty defects: shipped `ACCEPTANCE-RECEIPTS.txt` header
-  says c7-history/incomplete while its own body is a complete green 8.1 run (`ACCEPTANCE RUN COMPLETE`
-  at :361); k1 log is 52 bytes and k2 empty while "both could not complete" is stated universally;
-  START-OF-CHAT-ZAI.md §5.2 contradicts itself in one bullet. Plus M1–M5 (dangling L10 row, unmarked
-  stale hashes at WHAT-CHANGED:93/:116, c8 README:39, L10 misapplied, RECEIPTS.md misattribution)
-  and L1 malformed `## 2` heading. Work-order basis: §5.2 pointer allowed only if the file is
-  *replaced*; §5.7/§6 L10 require a completed run.
-- **Brainstorm filed:** `inbox/20261118-1400-pickle-P-345-cakepanz81-shell-innovation.md` — seven
-  ranked ideas led by receipt-generated status (kills the contradiction class), one board view model,
-  a typed transition machine, one persistence path, seam badge + `shell:health`, keyboard battery,
-  seed/replay. Three questions flagged for Owner/Architect; nothing built.
-- **Do not re-review c8 or c9.** c8.1 is now reviewed. I am not eligible for c9 (I authored its prompt).
-- **Next:** MUSE must re-file `START-OF-CHAT-ZAI.md` (`8ef3b18d…`) on `council/muse` if it wants seats
-  to follow it; Z.ai must correct H1–H3 and finish the prepared acceptance-run before cutover.
+- **Hosted (commit `bcc89ca1`, pushed + `git ls-remote` VERIFIED):**
+  `_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/` — 5,104 files / 208,428,690 B, byte-identical
+  to the published zip `/Users/kosi/Downloads/67-cakepanz-9-2026-11-19.zip` (sha `0d362203…`) and to
+  the Desktop source. Manifest `zai-cakepanz-9-2026-11-19.SHA256SUMS` (5,104 rows, 5,104 OK / 0 FAILED,
+  sha `056af57d…`), provenance in the sibling `.PROVENANCE.md`. Lane `.gitattributes` prevents the
+  repo's `text=auto` from CRLF-normalising 14 dependency files; node_modules included because the zip
+  contains them. Reading the hosted copy is preferred over re-reading the Desktop source.
+- **Brainstorm (commit `e6bd44cb`, pushed + VERIFIED):**
+  `inbox/20261119-0420-pickle-P-345-cakepanz9-shell-innovation.md` — ten ranked shell ideas led by a
+  cite-check gate, law registry, receipt freshness stamps, staged composite aggregator, one draft view
+  model, seam conformance, offline tent test, VM goldens + axe-core, cutover shell-behaviour contract,
+  reviewer-in-a-box. Includes a reply to Z.ai's Part E. All INFERRED; no product bytes edited.
+- **Review (commit `49b1c9d1`, pushed + VERIFIED):**
+  `inbox/20261119-0435-pickle-P-316-cakepanz9-review.md` — VERDICT **improved**, six of seven product
+  claims hold, H1–H6:
+  - H1 (HIGH): shipped k1 composite unrun (52 B log) while nine sites claim both composites done.
+  - H2 (HIGH): `START-OF-CHAT-ZAI.md` true hash `15f088c7…`; docs name `8ef3b18d…` and `f31bdf51…`;
+    MUSE's live copy still `8ef3b18d…`.
+  - H3 (MED): intake ledger rows 5/7/8/23 mark the unmet §9 items done.
+  - H4 (MED): delivered `gate-manifest.mjs` exits 1 (`MANIFEST FAIL (missing): .gitignore`); regen
+    yields 313/318, not the claimed 314/319.
+  - H5 (MED): C′1 tie extension parses rounded display text (`DraftBoard.svelte:40`), not the engine's
+    raw `_w`/`_p`; the battery repeats the same parse, so L13 is self-referential on ties.
+  - H6 (MED): the ring is on the row toggle `.cp-main` (`BoardRow.svelte:82`), not the draft chip.
+  - PASS with anchors: B1, B2, B-bis, C′2, C′3, C′4, engine byte-invariance, real falsifiability.
+  - Mechanical re-runs (Node v26.13.0): pins 5c808472/65673a00 67/68 files diff 0; flex 99 rules
+    `76c02c65…`; engine 394/406; node 33/33 ×2; numerals CLEAN ×2; dist `670d4c08…` both trees.
+- **Not run:** the ~40-min shipped k1 composite (honest open item in `VERIFY §23.7`); Playwright/browser
+  legs. Falsifier logs read as files and quoted, not re-executed. All such claims labelled REPORTED.
+- **Disclosure filed:** I wrote the c9 prompt and the c8.1 review, so this is a spec-conformance and
+  evidence review against work-order v4, not a blind independent design review.
+- **Preservation gate at session end:** `council/pickle` 0 dirty / 0 local-only commits OK. Other seats'
+  worktrees `mimo`, `q`, `vloc` reported UNSAVED — not mine to touch; listed as pending.
 
-## Current state (18 Nov 2026, third session) — Cakepanz-8 continuation prompt
+## Next session needs
 
-Owner asked me to write a long, thorough prompt for Z.ai to continue work. Filed and pushed:
-`_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md` (279 lines, commit `9466e821`).
-Framed as a **proposed** work order (Pickle is advisory; MUSE/Owner relays), an addendum to Inkling's
-round-8 order — not a supersession. One sitting, one c9 zip:
-
-- §0 reading order (round-8 order @ inkling `ae303ded` blob `58a82690`; my hosted delivery + review on
-  `council/pickle`; Ernie's and Inkling's prior reviews).
-- §1 verified state-of-the-world table (pins 5c808472/65673a00 67/68 files, flex 99 rules, engine
-  394/406, node 33/33, gates 314/319, dist sha `1529a003…`, F1–F12 DIED; browser legs labelled REPORTED).
-- §3 exact B1/B2/B3 fixes with anchors, new laws L7/L8, falsifiers F14/F15-late, receipt names.
-  B1 recommended shape: shell-owned localStorage key `sim:nfl:ui:fullBoard:<saveId>`, initialised
-  synchronously at component setup — **not** an `AutosaveLineage` field (envelope is frozen).
-- §4 one zip `67-cakepanz-9-<date>/`, sha256, Owner places it, push nothing unless granted.
-- §5 Block C held **gated** on an Owner/MUSE ruling that the `council/pickle` push opens round-8 §4.
-- §6 standing rules; §7 five flag-don't-decide questions (B4 threshold, Block C gate, gh-pages
-  placement, prepared re-pin, c9 reviewers — Pickle NOT eligible, I authored the c8 review + this prompt).
-- §8 exact report-back shape.
-
-In-chat I told the Owner: the prompt holds Block C gated (say the word to un-gate), and the c8 zip sha
-`ced094f1…5fae` is REPORTED because I never held the zip itself.
-
-## Current state (18 Nov 2026, second session) — Cakepanz-8 hosting + review
-
-Owner's explicit task: host Z.ai's `67-cakepanz-8-2026-11-18` folder on my branch so any seat can read
-it, review it thoroughly, push the review, then brainstorm improvements to the cakepanz shell.
-
-- **Hosted:** `_agents/pickle/deliveries/zai-cakepanz-8-2026-11-18/` (1006 files, 35 MB; `diff -rq` to
-  the Desktop source exit 0), plus `.PROVENANCE.md` and `.SHA256SUMS` (manifest `9a013582…d598f6d0d7b`).
-  The two generated `src/engine-node/` trees were force-added for byte-completeness despite the
-  delivery's own `.gitignore`. Commit `01595abf`.
-- **Reviewed:** `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md` (commit `a9f6d6bf`).
-  VERDICT **improved**. Independently re-ran pins (67/68 files, diff 0), flex census (99 rules),
-  engine suites 394/406, node batteries 33/33, gates 314/319, and the full receipt-falsifier
-  (F1–F12 ALL DIED). A1–A9 closed in both trees. Block B findings: **B1** `simpleOff` not persisted
-  across a mid-draft refresh, L3 law overstates (no reload in the battery); **B2** the simple row's
-  expand button renders no detail; **B3** sort vs the single displayed number can disagree;
-  B4 threshold arithmetic supports Z.ai's user-10th-pick choice (Owner's call). Flagged Block C's
-  gate ambiguity and that gh-pages placement is still pending.
-- Browser legs, `falsify-late`, `acceptance-run.sh` composite, `npm ci` rebuild, M3/takeover/deployed
-  suites: **not run** — labelled REPORTED in the filing.
-- The brainstorm direction was delivered as the round-9 prompt above, not left open. Do **not**
-  re-review c8/c7, and Pickle is not eligible to review c9 (authored its prompt and the c8 review).
-
-## Where the truth lives
-
-Queue `_agents/PRIORITIES.md` on **`origin/council/muse`** (`council/base`'s copy is stale). Tool:
-`git show origin/council/muse:tools/council.mjs > /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/pickle-round/council.mjs`,
-then run it with cwd = this worktree and an absolute tool path. Running it from `/tmp` silently no-ops
-(`import.meta.url` guard); `/tmp` is a symlink here — use `/private/var/folders/...`.
-
-## Current state (18 Nov 2026) — the Cakepanz-6 parallel round
-
-Filed and pushed, one file per item, all on `council/pickle`:
-
-| Filing | Part | Verdict / contribution |
-|---|---|---|
-| `inbox/20261118-0000-pickle-P-347-P-353-lambda-ratification.md` | 8 | RATIFY WITH CHANGES. Current-table sha `76c02c65` (vs cached `0a26d7c2`) has an **EMPTY** λ band `[0.3902, 0.2195)`, 7 unsatisfiable rows, min dial count 2, exact/97 at λ=0.40 is 89. Ship 0.40 as labelled convention, not measurement. Re-scope P-347 to the discrete unsatisfiable-row count. |
-| `inbox/20261118-0005-pickle-P-342-seven-drafts-not-pushed.md` | 1 | BLOCKED: the seven named MUSE drafts (`20261117-2257…2303-muse-*.md`) are absent from **all** fetched refs; `origin/council/muse` tip `11ca6fde`. Cannot verify or substitute. |
-| `inbox/20261118-0010-pickle-P-345-P-333-innovation-workflow-future.md` | 9 | Six workflow/platform proposals + a measurable acceptance test for the 99-rule "guide, not target" direction. |
-| `inbox/20261118-0015-pickle-R-13-cakepanz6-signup.md` | 10 | Signed up for the prepared-manifest + pin-honesty gate on both trees when the zip lands. |
-| `inbox/20261118-0020-pickle-P-333-corrected-merge-gate.md` | 7 | Claim 1 only: corrected five-check gate spec (all four MUSE fixes accepted). **Must say:** "no Owner decision, no engine edit" is true for *writing* the tool, false for *passing 5/5*. Supplement added: Ernie struck his own 947 "floor" (+334 measured); Inkling filed the other two questions. |
-| `inbox/20261118-0006-pickle-P-189-pin-watch-drift-gate.md` | 6 (mis-addressed ID) | Built a third pin-watch implementation + falsifier. **The `FOR: P-189` address is a mistake** — the round's item is P-355. Keep as history; use the next filing. |
-| `inbox/20261118-0015-pickle-P-355-pin-watch-peer-check.md` | 6 + Part 5 one-liner | Correct filing. Independently ran Inkling's `tools/pin-watch.mjs` (`council/inkling` @ `fab6969f`): self-test 6/6 PASS; live tree 57 vs 52 count FAIL; with `--pin d3bd81d2` count+content MATCH but 5 doc WARNs; `--strict` FAIL. **Correction:** deployed bytes are d3bd81d2; the docs are stale, not the engine tampered. The Part 5 one-liner is answered: the path is written. |
-
-Lane code: `_agents/pickle/deliveries/p345-pin-watch-2026-11-18/{pin-watch.mjs,falsify.sh}` — a full-file
-comparison tool whose clean 52-file fixture PASSes and three injected defects FAIL with the check named.
-
-**Round status:** Parts 1–4 (verify seven MUSE drafts; ratify yards battery; D3 landing; P-317/S3/S4
-consolidation) were BLOCKED on the missing drafts. Other seats filed Parts 5, 6, 7, 8, 9 and 10
-(Inkling's §6 battery, Beam's §6 battery, Ernie's and Inkling's pin-watch, Inkling's three macro answers,
-Inkling's seven-proposal λ filing). Verify their work rather than redo it.
-
-## Earlier (17 Nov 2026) — P-333 macro answer
-
-`inbox/20261117-2050-pickle-P-333-macro-what-matters.md` (pushed `ee75775d`). Core claim: the problem is the
-**missing join** — no tree is newest-shell · current-pin · green at once (deployed 277/286, `s5` at the wrong pin,
-seam unbuilt). A read-only `tools/merge-gate.mjs <tree> --pin <sha>` makes "mergeable" countable. **Not built —
-proposed**; the corrected spec is now in the 18 Nov filing above.
-
-## Earlier (16 Nov 2026) — CAKEPANZ-SHELL / R-13
-
-- `inbox/20261116-2109-…-pin-and-suite.md` — two trees at two pins: deployed `66096fb1` carries `d3bd81d2`
-  57/57 while README says `4ca9a071`; fails 9 of its own 286 engine laws (277/9). s5 carries `4ca9a071` 52/52,
-  284/284. **Superseded detail:** the deployed bytes are the d3bd81d2 re-pin (see 18 Nov correction).
-- `inbox/20261116-2120-…-cone-one-door.md` — one door NOT met: 65 engine imports in 15 files (36 runtime in 10).
-- `inbox/20261116-2134-…-neutrality.md` — neutral core mostly holds; `draftStore.ts` and `bragCard.ts:155` defects.
-- `inbox/20261116-2147-…-boxscore-mutations.md` — four one-line box-score mutations leave the suite green;
-  the harness at `86f22d10` predates `colors/src/sports/nfl/sim/`, which does not exist at either pin.
-
-## Earlier (15 Nov 2026) — P-345 Rev 4 and axis comparison
-
-- `inbox/20261115-1147-pickle-direction-innovation.md` — live site is **w89**, not w85 (VERIFIED 10 Nov);
-  stamp coverage hole; derived-gap identity; κ↔λ↔win-SD sweep still unscheduled.
-- `inbox/20261115-1135-pickle-P-345-axis-comparison.md` — 24-row dedup table, 7 collapses, λ window.
-- `inbox/20261115-1136-pickle-stop-doing.md` — one stop, one rule.
-
-Compressed history: 14 Nov P-355 doctrine; 13 Nov platform probe + self-correction (lesson: state the ref in the
-same sentence as the number); 12 Nov P-346 third review and λ budget; 11 Nov P-141 third review
-(`playerWar` = 0 for every FB and P).
-
-## What the next session needs
-
-1. **The seven MUSE drafts.** Check `origin/council/muse` again; if they still do not exist, do not verify from
-   prose. If they land, I am eligible for drafts 1, 2, 3, 5, 7 (I filed no yards battery, P-317 set, GLM
-   verification, mechanism adjudication or Cakepanz-5 review). I am **not** eligible for draft 4 (D3) or 6
-   (my own claims).
-2. **Cakepanz-6 zip:** take the prepared-manifest + pin-honesty gate (Part 10 signup). Re-run Inkling's
-   pin-watch with `--strict` on both trees; do not activate the re-pin.
-3. **`tools/merge-gate.mjs` is still unbuilt** on any ref. Corrected spec is filed; it is council tooling
-   (MUSE/Architect to promote).
-4. **Do not re-review Cakepanz-5, -8, or -9.** -8 is reviewed; -9's prompt is mine.
-5. **Cakepanz-9 prompt is filed** at `_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md`.
-   Awaiting the Owner's word on (a) whether to un-gate Block C and (b) the exact c8 zip sha if he has it.
+1. **Do not re-review c9** (review filed, prompt authored here). Take a new top item from the live queue
+   via `node tools/council.mjs next` on `origin/council/muse`, or a fresh review by another seat.
+2. **MUSE:** re-file `START-OF-CHAT-ZAI.md` at measured `15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec`
+   on `council/muse`; correct the quoted hashes (H2); finish or delete the shipped k1/k2 logs (H1).
+3. **Z.ai / Architect:** resolve H1 (finish one 40-min composite), H4 (manifest on final bytes), and
+   H5/H6 (ring on the draft chip, ties from engine raw keys); do not cite this package for cutover yet.
+4. **Keep the hosted c9 copy as the read source** for any later check; it is byte-identical to the zip.
+5. Run `node tools/preserve.mjs check` on any clean-up; do not touch the other seats' unsaved work.
 
 ## Open questions (Owner / Architect / MUSE — never a seat)
 
-- Owner: λ convention value (0.40 recommended), P-347–P-353 ratification, prepared re-pin activation;
-  un-gate Block C?; supply c8 zip sha.
-- Architect: no-arbitrage restatement for merge-gate check 3; Node-24 runner; which pin-watch implementation
-  enters `tools/`; the lab estimator round's scope.
-- MUSE: push or restate the seven drafts; relay the round-9 prompt; pin three eligible c9 reviewers.
+- Owner: cutover timing once c9's H1/H4/H5/H6 are resolved; λ convention (0.40 recommended); whether to
+  un-gate Block C from the round-9 prompt.
+- Architect: whether to promote the cite-check gate / seam conformance ideas into `tools/`; whether the
+  C′1 fix needs an engine VM change (raw `rank` exposed) rather than a shell-only patch.
+- MUSE: re-file the bootstrap hash, relay the c9 review to Z.ai, pin eligible c9 reviewers (Pickle is
+  not one), and note the other seats' unsaved worktrees.
 
 ## Live files
 
-- `inbox/20261118-*` — seven filings this round (table above).
-- `_agents/pickle/deliveries/p345-pin-watch-2026-11-18/` — tool + falsifier.
-- `_agents/pickle/deliveries/zai-cakepanz-8-2026-11-18/` + `.PROVENANCE.md` + `.SHA256SUMS` — hosted delivery.
-- `_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md` — the round-9 continuation prompt.
-- `inbox/20261118-1953-pickle-P-316-cakepanz8-review.md` — c8 review (VERDICT improved).
-- `bulletin/20261118-2342-pickle.md` — this session.
-- Earlier filings and deliveries: `inbox/20261117-2050-…`, `inbox/20261116-21*` (four), `inbox/20261115-11*`,
-  `_agents/pickle/deliveries/p345-axis-comparison-2026-11-14/`, `p345-lambda-followup-2026-11-13/`,
-  `p345-lambda-budget-2026-11-12/`, `platform-vision-2026-11-12/`, `p141-engine-harness.mjs`.
+- `_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/` + `.PROVENANCE.md` + `.SHA256SUMS` + lane
+  `.gitattributes` — hosted c9 delivery.
+- `inbox/20261119-0435-pickle-P-316-cakepanz9-review.md` — c9 review (H1–H6).
+- `inbox/20261119-0420-pickle-P-345-cakepanz9-shell-innovation.md` — c9 brainstorm.
+- `bulletin/20261119-0426-pickle.md` — this session.
+- Earlier: `inbox/20261118-1415-pickle-P-316-cakepanz81-review.md` (c8.1 review),
+  `inbox/20261118-1400-pickle-P-345-cakepanz81-shell-innovation.md`,
+  `_agents/pickle/deliveries/zai-cakepanz-8.1-2026-11-18/`,
+  `_agents/pickle/deliveries/prompts-2026-11-18/zai-cakepanz-9.md` (my c9 prompt).
 - `tools/mathlab/flexrebuild.mjs`, `flexverify.mjs`, `flex-owner-2026-11-09.json` (mine, this branch).
 - **No product HTML edits, ever.** Work → `inbox/`; code → `_agents/pickle/deliveries/`.
 
