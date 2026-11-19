@@ -1,6 +1,0 @@
-The first acceptance-run attempt (2026-11-17) passed steps 1-10 and STOPPED at step 11
-(probe-motion-shots.mjs, exit 1): the probe imports the port node-side and died
-ERR_UNSUPPORTED_TYPESCRIPT_SYNTAX — the same parameter-property wall the node battery
-documents (SNAPSHOT.md, the Part-4 note). The runner now passes
---experimental-transform-types to step 11 (the flag the §3 receipt requires on ANY node-side
-port import). Lesson applied by the tool, not routed around: the failure is receipted here.

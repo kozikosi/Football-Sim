@@ -1,6 +1,0 @@
-# The generated Part-D precompiled engine copy — a build artifact, never committed
-# (regen-manifest.mjs also excludes it from CHECKSUMS/MANIFEST; scripts/precompile-engine.mjs or
-# the node-port register hook regenerates it from src/engine/ on demand).
-/src/engine-node/
-node_modules/
-.svelte-kit/
