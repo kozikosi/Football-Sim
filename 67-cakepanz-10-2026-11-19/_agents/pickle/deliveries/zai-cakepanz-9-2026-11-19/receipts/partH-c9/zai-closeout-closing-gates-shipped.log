@@ -1,0 +1,14 @@
+=== CLOSING GATES — shipped tree (final bytes, 2026-11-19 close-out sitting)
+$ node scripts/regen-manifest.mjs
+regen: 314 entries
+regen exit=0
+$ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+gate exit=0
+$ node scripts/gate-numerals.mjs (1st)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+$ node scripts/gate-numerals.mjs (2nd)
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0

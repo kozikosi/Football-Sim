@@ -1,0 +1,11 @@
+ITEM-5 RECEIPT — preflight-2016-2022
+working directory: /home/z/my-project/item5-clone/colors
+git rev-parse HEAD: 2dff30b57405cb852c2e05fca3ecf0eada492220
+node --version: v24.22.3
+$ node --experimental-strip-types tools/glm-bar.ts 300 nfl-pools-fit2016-2022 nfl-passclass-fit2016-2022 ../deliveries/receipts/preflight-2016-2022.json > /dev/null
+--- output tail ---
+(stdout redirected to /dev/null; the JSON artifact + its sha256 are the output)
+artifact: c3c00b464f2b817c3cc0dacf90b3e4085c7795b64ad288ecd96f05034bd7dd43  preflight-2016-2022.json
+--- expected pre-flight shas (architect recipe) ---
+2023-2025: 05a751ed56b01f97a9bcbb94d238be9bb96fa909bce87834bf103c453cacb28b
+2016-2022: c3c00b464f2b817c3cc0dacf90b3e4085c7795b64ad288ecd96f05034bd7dd43

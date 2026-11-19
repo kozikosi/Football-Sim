@@ -1,0 +1,18 @@
+ITEM-5 RECEIPT — item5-fit2023-2025
+working directory: /home/z/my-project/item5-clone/colors
+git rev-parse HEAD: 2dff30b57405cb852c2e05fca3ecf0eada492220
+node --version: v24.22.3
+$ node --experimental-strip-types tools/glm-bar.ts 20000 nfl-pools-fit2023-2025 nfl-passclass-fit2023-2025 ../deliveries/receipts/item5-fit2023-2025.json > ../deliveries/receipts/item5-fit2023-2025.txt
+--- output tail ---
+off_plays     61.039  60.898  -0.141   -0.23    0.032  -4.5
+pass_att      34.214  34.059  -0.154   -0.45    0.033  -4.7
+rush_att      26.581  26.588   0.008    0.03    0.023   0.3
+completions   20.603  20.492  -0.111   -0.54    0.024  -4.7
+yards        328.932 328.101  -0.832   -0.25    0.436  -1.9
+sacks          2.416   2.379  -0.037   -1.53    0.011  -3.4
+giveaways      1.114   1.104  -0.009   -0.84    0.007  -1.3
+top_dt      1790.6071789.246  -1.362   -0.08    0.510  -2.7
+artifact: 45ee0f4af594b4c730ddf4df8df4473e6414eaad01b5c1b02c5643f39fb1bee8  item5-fit2023-2025.json
+--- expected pre-flight shas (architect recipe) ---
+2023-2025: 05a751ed56b01f97a9bcbb94d238be9bb96fa909bce87834bf103c453cacb28b
+2016-2022: c3c00b464f2b817c3cc0dacf90b3e4085c7795b64ad288ecd96f05034bd7dd43
