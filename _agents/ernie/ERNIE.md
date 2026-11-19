@@ -10,105 +10,107 @@
 - **Seat:** ERNIE · **Model / how reached:** ERNIE / API (kilo gateway) · **State:** advisor (admitted by the Owner 2026-11-13); **MUSE co-delegate** (Owner grant 2026-11-18 03:35Z, with Inkling).
 - **Good at:** taking a claim apart with a command, and reporting my own refutations.
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
-- **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **pushed tip this session:** `bcbe8faa2`
+- **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` · **pushed tip this session:** see §6.
 
-## Current state (2026-11-19T22:45Z, session end)
+## Current state (2026-11-19T23:15Z, session end)
 - **Nothing in progress.** Worktree clean; everything committed and pushed; ending per START-OF-CHAT §3.
 
-### What I did this session (6 sittings)
-1. **Hosted + reviewed Z.ai's item-6 sitting relay** → `inbox/20261119-2039-ernie-item6-sitting-review.md`. Verdict **improved**. Hosted at `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/` (`34d68061b`, 14 files, md5 13/13).
-2. **Reviewed the other seats' reviews** (Beam/Pickle/Orcaink/VL/OR + Beam's test results + Beam's review of me) → `inbox/20261119-2105-ernie-review-of-seat-reviews.md`. Nine findings G1–G9.
-3. **Innovation notes v2** → `inbox/20261119-2055-ernie-cakepanz-shell-innovation-v2.md`.
-4. **Replied to Claude on Plan v4** (`80eb432`) → `inbox/20261119-2115-ernie-TO-ARCHITECT-plan-v4-review.md`.
-5. **Wrote the next sitting order v3.0 for Z.ai** → `deliveries/zai-next-sitting-prompt-2026-11-19.md` (290 lines).
-6. **Ran the vapor-mode experiment** → `_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt`.
-7. **Verified Claude's `deb6275`** → `inbox/20261119-2152-ernie-TO-ARCHITECT-deb6275-verification.md`. All four claims VERIFIED, nothing to correct.
+### What I did this session (this chat)
+1. **Hosted Z.ai's v3 sitting relay verbatim** → `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/` (23 files, 213,471 B; CHECKSUMS 22/22 OK by my own `md5 -q` loop).
+2. **Reviewed it against the artifacts** → `inbox/20261119-2258-ernie-zai-v3-sitting-review.md`. Verdict **improved**; findings F1–F8; every byte-level claim reproduced.
+3. **Shell innovation v3** → `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
+4. Bulletin `20261119-2315-ernie.md`; this lane rewritten.
 
-### The facts that matter most going forward
+### What I did in the earlier sittings today (still relevant)
+- Reviewed Z.ai's **item-6** relay (`inbox/20261119-2039-…-item6-sitting-review.md`, improved, F1–F6) and the other seats' reviews of it (G1–G9).
+- **Innovation v2** (`inbox/20261119-2055-…-cakepanz-shell-innovation-v2.md`) — the spine the v3 note extends.
+- Replied to Claude on Plan v4 `80eb432`; **verified Claude's `deb6275`** (all four claims VERIFIED).
+- Wrote **Z.ai's v3.0 sitting order** (`deliveries/zai-next-sitting-prompt-2026-11-19.md`, 290 lines) — the order this sitting's relay answers.
+- Ran the **vapor-mode experiment** (`_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt`).
 
-**D1 is CLOSED — three independent derivations agreed.** The canonical c10 package is intact: `…/zai-cakepanz-10-2026-11-19/_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/deliveries/receipts/slice1-battery.json`, **6,418 B, md5 `0a2869538a706e7e6ea864664b7e5c9f`** (= CHECKSUMS.txt:18). `council/inkling` and `council/orcaink` are 51 files / **48 OK**; `council/pickle` is 52 files / **49 OK**. **Fix = add that one file at the manifest's own path. Do NOT re-cut the zip, do NOT regenerate the manifests.**
+## The facts that matter most going forward
 
-**ORCAINK'S F1 — I reproduced it, the best engineering finding of the round.** The c10 package is a **zero-deletion delta**; a naive unzip-over the c9 tree leaves 4 dist assets where the c10 MANIFEST names 2 → `gate-manifest` FAIL (unlisted ×2). Second consecutive round with this class (c9: missing `.gitignore`; c10: stale dist assets). **Law: `package-delivery.sh` must apply its own delta to a scratch copy of the PREVIOUS artifact and run both gates there.**
+**Z.ai's v3 sitting is BYTE-CLEAN (VERIFIED by me, 2026-11-19T23:00Z).** Everything I could reach from this worktree reproduced: the c10 repair (path, 6,418 B, `0a286953…`, sha256 `3e6476de…`, == CHECKSUMS.txt:18 on all three hosts; inkling/orcaink have no `deliveries/` dir there; the c9 decoy is 6,423 B / `333c588a…`), all six doc before/after md5s (**both diffs apply with `patch -p1` and reproduce the delivered files byte-for-byte**), both dist hashes and sizes, all five Part-0 differences, D5.3, `App.svelte:54/109`, `aria-describedby` 0, and the w89 top-3 construction. **No invented number found.**
 
-**VAPOR MODE IS FALSIFIED — do not re-open.** Same surface: Svelte 5.58 **13,154 B gz** · Vue 3.6.0-rc.15 vdom **26,294** · Vue **VAPOR 31,498** (+19.8% vs vdom, **2.39× Svelte**). The 5 KB falsifier registered 2026-11-15 is exceeded by 17 KB. Vapor engaged genuinely (`__vapor:!0`, `gc()`, `ss()`, zero `createVNode`/`createBlock`) but 99.3% of the bundle is the vapor runtime. **The trap: plugin-level `vapor: true` silently does nothing (byte-identical output); only the per-file `<script setup vapor>` marker engages.** Vapor's real value was always runtime DOM elimination, not bundle size — a per-page lever for a *measured* perf problem, post-v1.1, not a framework argument.
+**THE RING MECHANISM, AT THE BYTES (VERIFIED — my extract from `cakepanz-4/dist/single.html`):**
+`const T = y => Number(String(y[e.vm.sort]).replace(/[^0-9.\-]/g,"")) || 0;` then ring = first 3 ids, extended `for(F=3; F<C.length && T(C[F])===y; F++)` where `y=T(C[2])`. So the ring extends while the **parsed display string** equals row 3's. If every row prints `+0.0`, `T()` returns 0 for all → the whole board rings. **The `|| 0` also means any non-numeric sort parses to 0 for every row** → deterministic collapse, not just a rounding tie. Fix shape: one generic raw sort key, or the engine returns `suggest: string[]`. **Not `raw:{wins,priority}`** (my F2).
 
-**MY CORRECTED F2 — the complete diagnostic (see G1).** `fee5c2fd8` is a **dangling commit** (parent `77501b15` on no ref) carrying a tree-identical c10 package (`0d046220…`). Ancestry fails *because* of that, and always would. **Presence → `git ls-tree`; provenance → ancestry; a dangling commit's ancestry proves nothing about a ref.** Pickle's shallow-history hypothesis was false (no `.git/shallow`; `17d602720` = complete 11-commit history rooted `9dda473be`).
+**F1 — the citation is wrong, the finding is right.** The ring code is cited to `DraftBoard.svelte`'s `suggestIds`; that symbol exists on **no branch** (c10 `cakepanz-4/src/` = 3 files: `App.svelte`, `lib/assets/shell.css`, `lib/components/BoardRow.svelte`; gh-pages' `DraftBoard.svelte` is 40 lines, no `suggest`; `git grep suggestIds origin/gh-pages` → 0). Cite the dist, or say the source lives in Z.ai's build tree.
 
-**CLAUDE'S `deb6275` — VERIFIED, nothing to correct.** Pairing range is **+3% to +26%** (his four like-for-like ratios: +16/+26/+3/+13%; I withdrew my earlier +29%). Throughput header now factually accurate (pack `params.lambda = 0.0`; `throughput.ts` does not override it, unlike `crn-efficiency.ts` which sets `lambda: 1`). 421/421 tests + tsc 89/89 hold (I re-ran; he didn't). Scope: 3 files, all his, no `src/`, no pins.
+**ONE-CLICK DRAFTING NEEDS NO ENGINE EXPORT (F3 — the cheapest product win).** `BoardRow.svelte` already takes `onpick(id, slot)`; `canUndo` already exists; w89 attaches a `Draft` button to exactly its three `top3` rows (`zpb-ctabig`). Z.ai's next-five orders this behind the C′1 export; it should be **ahead** of it. ~32 picks × 2 saved clicks ≈ 64 interactions per draft.
 
-**THE VITE RECONCILIATION IS ONE TREE, not three.** Laggard: `67-cakepanz/package.json` (gh-pages) + c10's `cakepanz-4/package.json` = `vite ^7.3.6` / `plugin-svelte ^6.2.1`. **ALREADY on the decided pair:** rev10 arms `^8.3.0`/`^7.2.0`; Architect `colors/` `^8.3.6`/`^7.3.1`. Move vite + plugin **together** (Node ≥ 22.12 is the floor).
+**D1 is CLOSED — three independent derivations agreed.** Canonical c10 package intact: 6,418 B / md5 `0a2869538a706e7e6ea864664b7e5c9f` (= CHECKSUMS.txt:18). `council/inkling` and `council/orcaink` are 51 files / 48 OK; `council/pickle` is 52 / 49 OK. **Fix = add that one file at the manifest's own path. Do NOT re-cut the zip, do NOT regenerate the manifests.**
 
-**HIS λ PREMISE IS CORRECT.** `game.ts:87` = `tilt(base, pc.theta, pc.lambda, opts.passGap ?? 0)` — one scalar `passGap` per game, both offenses alike. So item-6 measures *tilt strength*, not λ; the per-offense gap ratings track is the only path to λ. All three sources agree (recipe line 48, tool header, Z.ai's refusal to interpret).
+**ORCAINK'S F1 + THIS SITTING = the delivery law, third instance.** The c10 package is a zero-deletion delta; a naive unzip-over the c9 tree leaves 4 dist assets where the MANIFEST names 2; and the nested `slice1-battery.json` was dropped by the import. Law: `package-delivery.sh` applies its own delta to a scratch copy of the PREVIOUS artifact, runs both gates, compares entry counts, refuses on mismatch. **Three rounds, three manual catches — make it a script.**
 
-**ITEM-6 HAS LANDED and is platform-independent.** My re-run of both 20k arms matched Z.ai's Linux/Node-24 bytes on macOS/Node-26 — all four hashes + both stdout tables `diff`-identical. Files: `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/deliveries/item6/` (`6e9168ec…`, `513b9130…`). The `edd56bf1` wording fix is provably output-neutral.
+**THE THREE STALE DOC LINES ARE FIXED AS FILES, not applied.** Z.ai delivered both byte-states (c10 packages `fd04f140…`/`1ac601c4…`/`8be4d21b…` → `5d877d57…`/`e8137dc3…`/`75c69dbd…`; pickle's hosted c9 `222372b8…`/`29cecad3…`/`4d723c41…` → `08f30249…`/`aba2f58a…`/`ad1e0a96…`) plus two diffs and three replacement md5 lines in `FIX-NOTES.md` §6. Whoever applies them must update the three CHECKSUMS md5 lines in the same action. Inkling's and orcaink's own c9 copies carry the same sentence **true at their own bytes** — reported, not edited.
 
-**THE C′1 RING IS A LIVE BUG, unfixed.** 60/60 rows ringed at pick 27 (measured twice: mine + Beam endorsed); L13 passes because it rebuilds its expectation with the component's own rounded parse (`board.battery.mjs:90-98`), while the engine sorts on raw 1e-9 (`draft.ts:98`) and the VM strips it at export (`draftBoard.ts:61`). **One-line fix (rank on the raw key) — but product changes are the Architect's.**
+**VAPOR MODE IS FALSIFIED — do not re-open.** Svelte 5.58 **13,154 B gz** · Vue vdom **26,294** · Vue vapor **31,498** (+19.8% vs vdom, **2.39× Svelte**). Plugin-level `vapor: true` silently does nothing; only `<script setup vapor>` engages.
 
-**PART 0 IS ACCEPTED (Owner, 2026-11-19).** Working bytes `76de5658…` (527,162 B) are the release candidate; the two GitHub folders stand as artifact paths; **no re-cut zip**. Measured diff (delivered `670d4c08…` 527,177 B vs working): `keepWeek` 0→2 · `cp-gonehow` 0→2 · `aria-hidden` 0→1 · `:focus` 1→0 · `.cp-gonetip` `width:200px` + a `.cp-main:focus` leg → `width:min(240px,calc(100vw - 32px))` with no focus leg.
+**CLAUDE'S `deb6275` — VERIFIED, nothing to correct.** Pairing **+3% to +26%**; throughput header now accurate (`pack params.lambda = 0.0`; `throughput.ts` does not override, `crn-efficiency.ts` does); 421/421 tests + tsc 89/89 hold.
 
-**THE FRAMEWORK IS DECIDED: Svelte 5 + Vite 8** (Owner, 2026-11-19, final; R-13 closed; live on `council/muse`). React out, dependency removal queued for cutover. Do not re-litigate; a doc saying "50/50" is history.
+**THE FRAMEWORK IS DECIDED: Svelte 5 + Vite 8** (Owner, 2026-11-19, final; R-13 closed). React out. The vite reconciliation is **ONE tree**: `67-cakepanz/package.json` (gh-pages) + c10's `cakepanz-4/package.json` = `vite ^7.3.6` / `plugin-svelte ^6.2.1`; rev10 arms and `colors/` are already on the decided pair (`vite ^8` + `plugin-svelte ^7`; Node ≥ 22.12).
 
-**THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship.**
+**PART 0 IS ACCEPTED (Owner, 2026-11-19).** Working bytes `76de5658…` (527,162 B) are the release candidate; the delivered `670d4c08…` (527,177 B) is pre-Part-0 history; **no re-cut zip**. Measured diff: keepWeek 0→2 · cp-gonehow 0→2 · tooltip `width:200px` + `:focus` leg → `width:min(240px,calc(100vw - 32px))`, no focus leg · aria-hidden 0→1 · `:focus` 1→0 · D5.3 `cp-track` span gone.
 
-**THE OWNER'S RULINGS THIS SESSION (2026-11-19 evening):** Part 0 **accept** · distribution = **folders, no re-cut** · **"guide z.ai to fix the solution himself with his own intuition"** (so the doc-line wording is Z.ai's, not mine) · **w89's layout is better than the current cakepanz shell** (a product signal not yet in the queue — I could not measure it; §7.2 of Z.ai's order asks him to, structure only) · **Vue arm: retire** (archive, not delete — it holds a full engine copy, the M1–M5 portability evidence) · **"consider adding vapor mode to individual pages in the future if it would help"** (recorded as post-v1.1).
+**THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z):** per-metric historical alignment is **PARKED until after ship**. Don't spend the council's time tuning sim values to history now.
+
+**THE OWNER'S RULINGS (2026-11-19 evening):** Part 0 **accept** · distribution = **folders, no re-cut** · "guide z.ai to fix it himself with his own intuition" · **w89's layout is better than the current cakepanz shell** (now measured structurally by Z.ai: 9 cells vs 7, 1 click vs 3, 6 tabs vs 14-button rail, 151 rows vs 60; cakepanz is 3.6× smaller) · Vue arm **retire** (archive, not delete — it holds a full engine copy) · vapor **per-page, post-v1.1**.
 
 ## What the next session needs
-1. **Read `deliveries/zai-next-sitting-prompt-2026-11-19.md` first** — it is the live order for Z.ai and it carries the Owner's two rulings. If Z.ai's zip comes back, review it against §9/§10 of that order.
-2. **The w89-vs-cakepanz layout comparison is the highest-value open question.** The Owner prefers w89's layout; I cannot measure it (no browser). If a seat with a browser reports it, that may redirect the shell more than any single law.
-3. **The C′1 ring fix is one line and still unfixed** — but it is the Architect's to make, not mine.
-4. **B1 (`?seed=`) is the highest-leverage shell item** — precondition for deterministic battery runs *and* for Pickle's L1 (paired what-if, the best product idea in the round).
+1. **The ring fix is the Architect's, and the cheapest product win is NOT it.** Order: `?seed=` → one-click drafting on ringed rows → C′1 raw key. All three are in `inbox/20261119-2305-…-innovation-v3.md`.
+2. **The C′1 law must be non-tautological** (I29): assert the ring against the engine's own raw-key sort, never against the DOM's printed strings. L13 currently rebuilds its expectation with the same rounded parse.
+3. **SHELL-STATUS as a build output** (I22) is the structural fix for the stale-doc class; it also resolves the manifest/hash tension (F5).
+4. **File the lane-trio hosting proposal with MUSE** (I24): `origin/council/muse:_agents/zai/` holds only START-OF-CHAT, so "END-OF-CHAT unchanged" is unverifiable from GitHub.
+5. **The delivery law needs to be a script** (three instances now).
 
 ## 1 · What not to redo
-- **Do not re-run item-5 or item-6.** Both done, receipted, platform-independent. Item-5: GLM stays OFF, λ 0 (within 1.6% of the pools node on every metric, both packs). Item-6: hashes in §0 above.
-- **Do not re-cut the c10 zip** and **do not regenerate the c10 manifests.** The package is intact; two hosts need one file added.
-- **Do not re-run the vapor experiment.** Settled; receipts in the lane.
-- **Do not re-derive the pairing arithmetic.** +3% to +26%; `crn-efficiency.ts` is deterministic (1.98 at s=1 yards, every N).
-- **Do not measure the C′1 ring a fourth time.** Two measurements exist (mine + Beam's endorsement). It is a product fix, not a measurement gap.
+- **Do not re-run item-5 or item-6.** Both done, receipted, platform-independent.
+- **Do not re-cut the c10 zip** and **do not regenerate the c10 manifests.**
+- **Do not re-run the vapor experiment.** Settled.
+- **Do not re-derive the pairing arithmetic.** +3% to +26%.
+- **Do not measure the C′1 ring a fourth time.** Three measurements exist (mine, Beam's, Z.ai's live 27-pick run). It is a product fix, not a measurement gap.
 - **Do not edit `src/`, `dist/`, pins, the engine, or the framework decision.** My lane edits docs and inbox only.
 - **Do not touch other seats' lanes** — report the finding instead.
 
 ## 2 · What is genuinely open
-1. **The w89-vs-cakepanz layout question** — Owner signal, unmeasured, potentially redirects the shell.
-2. **The C′1 ring one-line fix** — Architect's product change.
-3. **The L13 tautology (generalizable)** — a law that recomputes its expectation with the code under test inherits its bugs. Same class as P-365's gone% law. Fix: derive expectations from the engine, not the DOM.
-4. **Orcaink's delivery law (now a class)** — `package-delivery.sh` applies its own delta to a scratch copy of the previous artifact and runs both gates there.
-5. **The packaging gap** — the c10 `cakepanz-4/` ships no `package.json` and no `src/lib/port/`, so its own battery cannot run from the package. UPDATE-README should name the overlay tree.
-6. **The vite reconciliation is ONE tree** — `67-cakepanz/package.json` (gh-pages) + c10's `cakepanz-4/package.json`. Architect's cutover task.
-7. **B1 (`?seed=`)** — the shell's `App.svelte:109` is `seed = 1000 + Math.floor(Math.random() * 9000)`, session-local. Precondition for L1 and for deterministic batteries.
+1. The **C′1 raw-key export** (Architect) — one generic raw sort key, or `suggest: string[]`.
+2. **One-click drafting** on the ringed rows — needs no export.
+3. **`?seed=` as a visible shareable code** — precondition for deterministic batteries and paired what-if.
+4. **The L13 tautology (generalizable)** — a law that recomputes its expectation with the code under test inherits its bugs.
+5. **Orcaink's delivery law** — now three instances; should be a script.
+6. **The packaging gap** — c10 `cakepanz-4/` ships 3 src files and no `package.json`, so its battery cannot run from the package.
+7. **The vite reconciliation** — ONE tree, Architect's cutover task.
 8. **The four sim-layer survivors** — PARKED by the 22:31Z directive.
-9. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration, harness live.
-10. **PROJECT-KNOWLEDGE.md antiquation** — still deferred; coordinate with Inkling (co-custodian).
+9. **P-333** — VL's `DT→ILB = 6` is the only surviving lever; PARKED for calibration.
+10. **PROJECT-KNOWLEDGE.md antiquation** — deferred; coordinate with Inkling (co-custodian).
 
 ## 3 · Live files (mine)
-- **THIS SESSION'S SITTING ORDER (read first):** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
-- **THIS SESSION'S VERIFICATION OF CLAUDE:** `inbox/20261119-2152-ernie-TO-ARCHITECT-deb6275-verification.md` (all four claims VERIFIED).
-- **THIS SESSION'S SITTING-ORDER PREDECESSOR:** `inbox/20261119-2115-ernie-TO-ARCHITECT-plan-v4-review.md` (the `80eb432` review that produced the `deb6275` corrections).
-- **THIS SESSION'S SEAT-REVIEW REVIEW:** `inbox/20261119-2105-ernie-review-of-seat-reviews.md` (G1–G9; **G1 is the corrected, complete F2**).
-- **THIS SESSION'S ITEM-6 REVIEW:** `inbox/20261119-2039-ernie-item6-sitting-review.md` (F1–F6).
-- **THIS SESSION'S INNOVATION NOTES:** `inbox/20261119-2055-ernie-cakepanz-shell-innovation-v2.md`.
-- **VAPOR RECEIPTS:** `_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt` (with reproduction steps and the plugin-vs-per-file trap).
-- **HOSTED DELIVERY:** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-item6-sitting/` (`34d68061b`, 14 files, md5-verified).
-- **Bulletins this session:** `20261119-2100`, `20261119-2110`, `20261119-2120`, `20261119-2145`, `20261119-2155`.
-- **Prior handoff plan (still relevant):** `inbox/20261119-0351-ernie-handoff-plan-definitive.md`.
+- **THIS SESSION'S REVIEW:** `inbox/20261119-2258-ernie-zai-v3-sitting-review.md` (F1–F8, verdict improved).
+- **THIS SESSION'S INNOVATION v3:** `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
+- **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
+- **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
+- **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
+- **VAPOR RECEIPTS:** `_agents/ernie/deliveries/vapor-mode-experiment-2026-11-19/RESULTS.txt`.
 
 ## 4 · Method notes worth keeping
-- **Prove package presence with the TREE, not ancestry.** `git merge-base --is-ancestor` answers "was this commit pushed", not "is this path there". For a relay-imported package the pushing commit may be nowhere on any ref while the tree is on several. Use `git ls-tree <ref>:<dir>/`.
-- **A dangling commit's ancestry proves nothing about a ref.** Check `git cat-file -p <sha>` for the parent and test whether the parent is on any ref. `fee5c2fd8`'s parent `77501b15` is on none — that is *why* ancestry failed.
-- **To find a file across every ref and hash each distinct blob:** `for r in $(git for-each-ref --format='%(refname)' refs/remotes/origin | grep council/); do git ls-tree -r "$r" | grep '<path>'; done` then `git cat-file -p <blob> | md5 -q`. Distinct blobs with identical outcomes = the unseeded seam.
-- **`md5 -c` is silent on macOS** (`/sbin/md5` prints nothing and exits 0 even on failure). Use `while read -r h p; do [ "$(md5 -q "$p")" = "$h" ] || echo "FAIL $p"; done < CHECKSUMS.txt`. Z.ai's "48 OK / 1 FAILED" came from `md5sum`, which behaves correctly.
-- **A battery that recomputes its expectation with the code under test cannot catch a bug in it.** L13 and P-365's gone% law are both this shape.
-- **A gate count is a checksum of the tree** (re-confirmed): cakepanz-10 shipped `313` → `314` the moment `.gitignore` was restored. Off-by-one ⇒ look for a missing dotfile first.
-- **"Neutral" is ambiguous: always check whether the pass-class node is active.** `loadPassClass(pack)` carries the pack's own `lambda` (0 in both shipped packs), so "λ = 0" does NOT mean "no GLM" — the class marginal is replaced before the tilt. Prove it: run 200 paired games with and without `passClass`; if every game differs, the GLM is active.
-- **Same-metric ratios only, when quoting a "X% more" claim.** Dividing one metric's factor by another's manufactures a number (yards 3.6 ÷ points 2.2 = "+64%"). That is exactly how the plan's "+15–60%" arose.
-- **The Architect's tools are outside tsc scope** (`colors/tsconfig.json:29` excludes `tools`), so "tsc 89/89" is not a check on `tools/*.ts`.
-- **Tests need the WHOLE repo.** `tools/mathlab/flex.json` and `tools/mathlab/witness.mjs` are read by two suites; a partial extract gives 382 tests / 2 fail. Full extract = 421/0.
-- **Vapor's trap:** plugin-level `vapor: true` silently does nothing (byte-identical output hash). Only `<script setup vapor>` engages. Check for `__vapor:!0` in the emitted chunk before trusting a number.
-- **The Vue arm holds a full engine copy** (6,157 lines, `src/engine/sports/nfl/…`) — that is its only value beyond the bake-off, and why it should be archived rather than deleted.
+- **Prove package presence with the TREE, not ancestry.** `git merge-base --is-ancestor` answers "was this pushed", not "is this path there". Use `git ls-tree <ref>:<dir>/`.
+- **A dangling commit's ancestry proves nothing about a ref** (`fee5c2fd8`, parent on no ref).
+- **`md5 -c` is silent on macOS** — use `while read -r h p; do [ "$(md5 -q "$p")" = "$h" ] || echo "FAIL $p"; done < CHECKSUMS.txt`.
+- **A battery that recomputes its expectation with the code under test cannot catch a bug in it** (L13, P-365).
+- **A gate count is a checksum of the tree** (cakepanz-10: 313 → 314 when `.gitignore` was restored). Off-by-one ⇒ look for a missing dotfile.
+- **"Neutral" is ambiguous: check whether the pass-class node is active** (`loadPassClass` carries the pack's `lambda`, 0 in both shipped packs).
+- **Same-metric ratios only** when quoting "X% more".
+- **The Architect's tools are outside tsc scope** (`colors/tsconfig.json:29` excludes `tools`).
+- **Tests need the WHOLE repo** — a partial extract gives 382/2 fail; full = 421/0.
+- **Vapor's trap:** plugin-level `vapor:true` is a no-op; check for `__vapor:!0` before trusting a number.
+- **A cited source path must exist on a ref.** Z.ai's `DraftBoard.svelte`/`suggestIds` citation does not; the dist does. When a report cites a file, `git ls-tree` it before repeating the claim.
+- **The relay leaves no git history for "unchanged" claims.** Host the trio on muse if you want them checkable.
 
 ## 5 · Pending (not mine)
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
-- Unsaved work in other seats' worktrees (flint 452 dirty, ds 15, dsd 2, beam 1, boc 1, architect-colors 1 detached) — report only.
+- Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-19T22:45Z)
-- Worktree clean; `council/ernie` pushed; tip `bcbe8faa2` (VERIFIED by `git ls-remote`).
-- **Re-rook audit (inkling's A–G): partially executed, unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
+## 6 · Session end state (2026-11-19T23:15Z)
+- Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
+- **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
