@@ -1,0 +1,43 @@
+=== Z.ai item-6 command receipt log ===
+session start (date -u): 2026-11-19 10:35:25 UTC
+working directory (recipe cwd): /home/z/my-project/item6/fsim/colors
+git rev-parse HEAD: 560b8364f51fa07335b84649c8203ae06500c955
+node --version: v24.22.3
+--- git status --porcelain (before; expected empty) ---
+?? deliveries/
+(end of before-status)
+
+=== STEP: mkdir -p ../deliveries/receipts ===
+EXIT: 0
+
+=== STEP: preflight 2023-2025 (N=300, stdout to /dev/null per recipe) ===
+EXIT: 0
+
+=== STEP: preflight 2016-2022 (N=300, stdout to /dev/null per recipe) ===
+EXIT: 0
+
+=== STEP: sha256sum ../deliveries/receipts/item6-preflight-*.json ===
+ad3f1a2a2719cb8dc18e046e611b599e3046b5cade6e1b4c39fdc213e49efc66  ../deliveries/receipts/item6-preflight-2016-2022.json
+e793aacbb8c2bfaaf830b25d7c2eca59d94e82bfb8b89b3052b16756a0fcd45b  ../deliveries/receipts/item6-preflight-2023-2025.json
+EXIT: 0
+
+=== STEP: run 20000 — 2023-2025 packs ===
+EXIT: 0
+
+=== STEP: run 20000 — 2016-2022 packs ===
+EXIT: 0
+
+=== HEEL-CHECK: re-run preflight 2023-2025 (exact same command, unchanged args) ===
+EXIT: 0
+
+=== STEP: sha256sum ../deliveries/receipts/item6-preflight-*.json (after heel-check) ===
+ad3f1a2a2719cb8dc18e046e611b599e3046b5cade6e1b4c39fdc213e49efc66  ../deliveries/receipts/item6-preflight-2016-2022.json
+e793aacbb8c2bfaaf830b25d7c2eca59d94e82bfb8b89b3052b16756a0fcd45b  ../deliveries/receipts/item6-preflight-2023-2025.json
+EXIT: 0
+
+=== STEP: git status --porcelain (after; expected: only untracked deliveries/) ===
+?? deliveries/
+(end of after-status)
+
+=== receipt: session end (date -u): 2026-11-19 10:37:15 UTC ===
+=== END OF ITEM-6 RUN LOG ===
