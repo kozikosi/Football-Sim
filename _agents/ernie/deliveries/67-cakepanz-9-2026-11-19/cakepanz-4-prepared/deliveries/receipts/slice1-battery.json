@@ -77,7 +77,7 @@
   {
    "law": "the \"my needs\" row exists, lists my open slots, and a need filters the board (Slice 3)",
    "verdict": "PASS",
-   "detail": "QB: 60 rows -> 10 filtered"
+   "detail": "QB: 60 rows -> 11 filtered"
   },
   {
    "law": "clearing the needs filter restores the whole board (Slice 3)",
@@ -97,7 +97,7 @@
   {
    "law": "the flex chips read the flex cost (the \"-N\" form, no \"flex tax\" wording) — OBSERVED open",
    "verdict": "PASS",
-   "detail": "60 pickers probed · 73 flex chips · sample [\"-2 flex\",\"-2 flex\",\"-2 flex\"]"
+   "detail": "60 pickers probed · 75 flex chips · sample [\"-2 flex\",\"-2 flex\",\"-2 flex\"]"
   },
   {
    "law": "the slot picker offers the natural slot first",
@@ -107,7 +107,7 @@
   {
    "law": "the pick confirms before it lands",
    "verdict": "PASS",
-   "detail": "Draft Brock Purdy at QB? Confirm the pick Cancel"
+   "detail": "Draft Patrick Mahomes at QB? Confirm the pick Cancel"
   },
   {
    "law": "the pick lands and the footer counts it",
