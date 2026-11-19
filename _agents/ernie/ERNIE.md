@@ -12,9 +12,11 @@
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 - **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current state (2026-11-19T02:40Z)
-- **Nothing in progress.** Worktree clean; branch pushed (`97f49a6d`); ending the session per START-OF-CHAT §3.
-- **This session (the cakepanz arc):** hosted z.ai's **cakepanz-8.1** (MUSE has since pruned my hosting copy — byte-identical copies remain on `council/inkling`/`council/pickle`); reviewed 8.1 (**improved**; F6-prepared + F3 still open) → `inbox/20261118-2345-…8.1-review.md`; compiled **all seven seats' cakepanz ideas** → `inbox/20261119-0105-…all-seats-ideas-compiled.md`; recorded **GPT's Vue-vs-Svelte comment verbatim + my evaluation** → `inbox/20261119-0152-…GPT-framework-comment-and-evaluation.md` (preference **corrected 60/40 → ~50/50**: the AI-tooling "tax" was scaffold-only, not intrinsic); filed the **w89 improvement opportunity brief** → `inbox/20261119-0213-…w89-improvement-opportunity-brief.md`; drafted the **Cakepanz-9 prompt for Z.ai** → `inbox/20261119-0218-…cakepanz-9-prompt-for-zai.md`; posted the **council prompt** → `bulletin/20261119-0230-ernie.md`; executed MUSE's **cakepanz-9 sitting brief** myself → `inbox/20261119-0238-…cakepanz-9-sitting-notes.md` (11 verifications, tools top-5, Vue/Svelte **55% Svelte**).
+## Current state (2026-11-19T03:51Z)
+- **Nothing in progress.** Worktree clean; branch pushed; ending the session per START-OF-CHAT §3.
+- **THE DEFINITIVE HANDOFF PLAN (for the next session): `inbox/20261119-0351-ernie-handoff-plan-definitive.md`** — self-contained: the four tiers, the five-path fence, the protocol, the interface approach, the frozen perimeter, the current state, and **what the next session does: evaluate z.ai's latest package, then reply to z.ai with the explained handoff of work in detail.** Read this first next session.
+- **This session (the cakepanz + handoff arc):** hosted + reviewed **cakepanz-8.1** (improved; F6-prepared/F3/F7) · compiled all seven seats' cakepanz ideas · recorded GPT's Vue/Svelte comment verbatim + evaluation (preference corrected 60/40 → ~50/50) · filed the w89 improvement brief · drafted the Cakepanz-9 prompt · executed MUSE's cakepanz-9 sitting brief (11 verifications, tools top-5, 55% Svelte) · recorded the Architect's margin/sack + absorb-work + P-317 + boot/plan reports · executed the second opinion on GPT's §22 (fold to v4 Part A, no v5) · answered the six stats/awards rulings + the three w89 disagreements · recorded MUSE's relays · produced the improved prompt to Claude and the definitive handoff plan.
+- **KEY STATE:** Architect head `06d89724` (P-317; tests 421/421 REPORTED) · Cakepanz-9 v4 (`c7c83853`) is the sendable sitting order (A→B→B-bis→C→D→E) · the path fence (five paths) is the immediate build · Tier 1 (per-commit receipts + items 5/6 runs) is the immediate handoff · framework leans Svelte (7-8 seats), the Owner rules at cutover · P-144 rejected (resubmission, not redesign) · GPT §22 confirmed 4-for-4, fold to v4 Part A.
 - **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship.** Engine completion and product surface continue. Read this before proposing any calibration work.
 
 ## 1 · What not to redo (receipts exist)
@@ -50,14 +52,22 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 6. **gh-pages placement** — still not placed (Owner's click); deployed tree names `4ca9a071`/52 files.
 
 ## 3 · Live files (mine)
-- **This session's filings (the cakepanz arc):**
+- **THE DEFINITIVE HANDOFF PLAN (read first next session):** `inbox/20261119-0351-ernie-handoff-plan-definitive.md` — the four tiers, the five-path fence, the protocol, the interface approach, the frozen perimeter, the current state, and the next-session assignment (evaluate z.ai's package, reply with the handoff).
+- **This session's filings (the cakepanz + handoff arc):**
   - `inbox/20261118-2345-…P-316-cakepanz-8.1-review.md` — 8.1 review (improved; F6-prepared/F3/F7 open).
   - `inbox/20261119-0105-…cakepanz-all-seats-ideas-compiled.md` — all seven seats' cakepanz ideas, ~65 deduped.
-  - `inbox/20261119-0152-…GPT-framework-comment-and-evaluation.md` — GPT's Vue/Svelte comment verbatim + my evaluation (preference corrected 60/40 → ~50/50).
+  - `inbox/20261119-0152-…GPT-framework-comment-and-evaluation.md` — GPT's Vue/Svelte comment verbatim + evaluation (60/40 → ~50/50).
   - `inbox/20261119-0213-…w89-improvement-opportunity-brief.md` — use-case-framed tool/w89 upgrade brief.
-  - `inbox/20261119-0218-…cakepanz-9-prompt-for-zai.md` — the thorough Cakepanz-9 sitting prompt for Z.ai (Parts A/B/B-bis/C + D absorb-work + E w89 brainstorm).
-  - `inbox/20261119-0238-…cakepanz-9-sitting-notes.md` — my execution of MUSE's sitting brief (11 verifications, tools top-5, Vue/Svelte 55% Svelte).
-  - `bulletin/20261119-0230-ernie.md` — the council prompt (work the queue; w89 tool use-case + Vue/Svelte asks).
+  - `inbox/20261119-0218-…cakepanz-9-prompt-for-zai.md` — the thorough Cakepanz-9 sitting prompt for Z.ai.
+  - `inbox/20261119-0238-…cakepanz-9-sitting-notes.md` — my execution of MUSE's sitting brief (11 verifications, tools top-5, 55% Svelte).
+  - `inbox/20261119-0312-…architect-margin-report-and-ot-tie-answer.md` — the Architect's margin/sack report + my ties/OT answer (0.38% ties, ~6% OT).
+  - `inbox/20261119-0327-…gpt-cakepanz-9-position-verbatim-and-thoughts.md` — GPT's expanded position verbatim + my thoughts (concede TanStack; own the root-vs-branch-tip correction).
+  - `inbox/20261119-0332-…architect-p317-and-absorb-work-thoughts.md` — P-317 + the absorb-work answer + my thoughts (path fence first).
+  - `inbox/20261119-0333-…handoff-process-zai-absorb.md` — the handoff process (tiers, fence, interface, protocol).
+  - `inbox/20261119-0336-…muse-relay-second-opinion-and-answers.md` — MUSE's relay + my second opinion on GPT's §22 + the six stats/awards rulings + the w89 weigh-in.
+  - `inbox/20261119-0341-…improved-prompt-and-seat-review.md` — the improved prompt to Claude + review of the seats' recent work.
+  - `inbox/20261119-0347-…architect-boot-plan-thoughts.md` — the Architect's boot/plan + my thoughts (full 5-path fence, per-module purity test, item-5 recipe exactness).
+- **Bulletins this session:** `20261119-0230`, `-0327`, `-0333`, `-0336`, `-0341` (all on `council/ernie`).
 - **Receipts:** `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` (cakepanz-8 review logs). My cakepanz-8.1 hosting copy was pruned by MUSE (byte-identical copies on `council/inkling`/`council/pickle`).
 - Earlier: `67-cakepanz-8-2026-11-18/`, `cakepanz-7-…`, `cakepanz-6-…`, `cakepanz-5-…`, `prompts-2026-11-18/`, `pin-watch-2026-11-17/`, `p333-*`, `ernie-ringers-*`.
 
