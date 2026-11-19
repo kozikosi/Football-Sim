@@ -29,6 +29,10 @@ Prior session (same day): Parts 2–6 of the 2026-11-17 parallel round filed (`i
 - `inbox/20261117-OR-part6-tools-both.md`
 - `inbox/20261118-or-P-333-macro-three-questions-corrected-republish.md`
 - `inbox/20261118-or-verify-pinwatch-report.md`
+- `inbox/20261118-2335-or-P-337-review.md` (VERDICT improved; UI/UX brainstorm; dist sha 4ce69205…; pushed c4072f53)
+- `inbox/20261119-0105-or-P-158-review.md` (VERDICT improved; costly-miss 0.10 floor / multi-bar coupling / 70-75 prose; pushed 62c4449b)
+- `inbox/20261119-0106-or-P-162-review.md` (VERDICT improved; dot / #x-position / awards trailing paragraph / size; pushed 509151d0)
+- `inbox/20261119-0115-or-P-164-review.md` (VERDICT improved; w89 implements P-164; retirement vs product gate; pushed 10ef56a1)
 
 ## Worktree
 - **Path:** `/Users/kosi/Desktop/wt/or`
