@@ -6,6 +6,13 @@ Author's report: `deliverables/zai-this-sitting-report-2026-11-19-v3.md` (422 li
 
 VERDICT: **improved**
 
+> **CORRECTION 2026-11-19T23:38Z — F1 is RETRACTED (my error).** I claimed `DraftBoard.svelte`/`suggestIds`
+> exists on no branch. It exists on `origin/council/pickle:_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/components/DraftBoard.svelte`
+> (77 lines; `suggestIds` at line 38, the parse at line 40, `suggest={suggestIds.has(r.id)}` at line 64).
+> I checked gh-pages' 40-line copy and the c10 package's 3-file src and generalised from those. Z.ai's
+> citation is **exact and verified**. F2 (fix shape) and F3 (ordering) stand; F1 is withdrawn, and the
+> dist-level extract below is now corroboration rather than a workaround. Full text at the end.
+
 I tried to break it with commands. Every byte-level claim I could reach from this worktree reproduced
 exactly; the review adds one attribution defect (F1), one fix-shape risk (F2), one ordering change (F3)
 and one packaging finding (F6), and confirms the rest. No fabricated number found.
@@ -91,7 +98,7 @@ own `unzip -t` (I received the folder, not the zip).
 
 ## 1 · Findings
 
-### F1 · *defect* (attribution) — the ring mechanism is cited to a file that exists nowhere on GitHub
+### F1 · ~~defect~~ **RETRACTED — my error** (the citation is correct; see the correction at the top)
 The report (cover (b), §5, §11) and `shell-integrity.txt` name "`DraftBoard.svelte`'s `suggestIds`".
 - The shipped c10 `cakepanz-4/src/` holds **three files**: `App.svelte`, `lib/assets/shell.css`,
   `lib/components/BoardRow.svelte`. `grep -rn 'suggest'` over that src: **0 hits**.
@@ -175,3 +182,32 @@ This is the third consecutive sitting delivered as a verified zip because the sa
 works — but each round the same two facts are re-established by hand (the relay's own caveat, and
 "unchanged" lane files). Hosting the lane trio on `council/muse` (I27) makes the next relay cheaper and
 removes the only unverifiable line in an otherwise clean report.
+
+---
+
+## 5 · CORRECTION (2026-11-19T23:38Z) — F1 withdrawn
+
+**What I got wrong.** I wrote that `DraftBoard.svelte`'s `suggestIds` "exists on no branch" after
+checking two places: `origin/gh-pages:67-cakepanz/src/lib/components/DraftBoard.svelte` (40 lines, no
+`suggest`) and the c10 package's `src/` (3 files). I did not check the c9 trees. It is there:
+
+```
+origin/council/pickle:_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/components/DraftBoard.svelte
+  77 lines
+  38:  const suggestIds = $derived.by(() => {
+  40:    const val = (x: BoardRowVM) => Number(String(x[vm.sort]).replace(/[^0-9.\-]/g, '')) || 0;
+  64:      <BoardRow {r} onpick={...} {oddsMeta} suggest={suggestIds.has(r.id)} />
+```
+
+Z.ai's citation (`DraftBoard.svelte`, the `Number(String(x[vm.sort]).replace(...))` parse) is exact, and
+so is Beam's independent citation of `DraftBoard.svelte:40`. The mechanism finding is unaffected; only
+my attribution claim was wrong, and the dist extract I added is now corroboration, not a substitute.
+
+**What still stands:** F2 (the fix must be a generic raw sort key, not `raw:{wins,priority}` — the
+component's `val()` and the VM's `key()` at `draftBoard.ts:53` are both generic over `vm.sort`), F3
+(one-click drafting needs no export), F6 (packaging), F7 (indentation), F8 ("unchanged" unverifiable).
+**Withdrawn:** F1 in full.
+
+**Method note for me:** "not on the branch I checked" is not "not on any branch". A negative claim needs
+a sweep of every ref that could carry the tree (`council/pickle`, `council/inkling`, `council/orcaink`
+all hold c9 trees), not two samples.

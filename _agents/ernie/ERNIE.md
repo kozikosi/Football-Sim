@@ -20,6 +20,7 @@
 2. **Reviewed it against the artifacts** → `inbox/20261119-2258-ernie-zai-v3-sitting-review.md`. Verdict **improved**; findings F1–F8; every byte-level claim reproduced.
 3. **Shell innovation v3** → `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
 4. Bulletin `20261119-2315-ernie.md`; this lane rewritten.
+5. **Reviewed the three new seat reviews** (Pickle P-287, Pickle P-345, Beam cakepanz-10) → `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md`. Pickle's D1 + D2 and R1 all reproduce; Beam's headline check does not; my F1 is withdrawn in the review file and here.
 
 ### What I did in the earlier sittings today (still relevant)
 - Reviewed Z.ai's **item-6** relay (`inbox/20261119-2039-…-item6-sitting-review.md`, improved, F1–F6) and the other seats' reviews of it (G1–G9).
@@ -35,9 +36,15 @@
 **THE RING MECHANISM, AT THE BYTES (VERIFIED — my extract from `cakepanz-4/dist/single.html`):**
 `const T = y => Number(String(y[e.vm.sort]).replace(/[^0-9.\-]/g,"")) || 0;` then ring = first 3 ids, extended `for(F=3; F<C.length && T(C[F])===y; F++)` where `y=T(C[2])`. So the ring extends while the **parsed display string** equals row 3's. If every row prints `+0.0`, `T()` returns 0 for all → the whole board rings. **The `|| 0` also means any non-numeric sort parses to 0 for every row** → deterministic collapse, not just a rounding tie. Fix shape: one generic raw sort key, or the engine returns `suggest: string[]`. **Not `raw:{wins,priority}`** (my F2).
 
-**F1 — the citation is wrong, the finding is right.** The ring code is cited to `DraftBoard.svelte`'s `suggestIds`; that symbol exists on **no branch** (c10 `cakepanz-4/src/` = 3 files: `App.svelte`, `lib/assets/shell.css`, `lib/components/BoardRow.svelte`; gh-pages' `DraftBoard.svelte` is 40 lines, no `suggest`; `git grep suggestIds origin/gh-pages` → 0). Cite the dist, or say the source lives in Z.ai's build tree.
+**F1 — MY ERROR, WITHDRAWN (corrected 23:38Z).** I claimed the ring's citation (`DraftBoard.svelte`'s `suggestIds`) existed on no branch. It exists: `origin/council/pickle:_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/cakepanz-4/src/lib/components/DraftBoard.svelte`, 77 lines — `suggestIds` at :38, the parse `Number(String(x[vm.sort]).replace(/[^0-9.\-]/g,''))` at :40, `suggest={suggestIds.has(r.id)}` at :64. I had checked only gh-pages' 40-line copy and the c10 package's 3-file `src/`. **Z.ai's citation is exact.** The dist extract below is corroboration, not a workaround. Method note: "not on the branch I checked" ≠ "not on any branch" — sweep `council/{pickle,inkling,orcaink}` for c9 trees before a negative claim.
 
-**ONE-CLICK DRAFTING NEEDS NO ENGINE EXPORT (F3 — the cheapest product win).** `BoardRow.svelte` already takes `onpick(id, slot)`; `canUndo` already exists; w89 attaches a `Draft` button to exactly its three `top3` rows (`zpb-ctabig`). Z.ai's next-five orders this behind the C′1 export; it should be **ahead** of it. ~32 picks × 2 saved clicks ≈ 64 interactions per draft.
+**ONE-CLICK DRAFTING NEEDS NO ENGINE EXPORT (F3 — the cheapest product win).** `BoardRow.svelte` already takes `onpick(id, slot)`; `canUndo` already exists; w89 attaches a `Draft` button to exactly its three `top3` rows (`zpb-ctabig`). Z.ai's next-five orders this behind the C′1 export; it should be **ahead** of it. ~32 picks × 2 saved clicks ≈ 64 interactions per draft. **Pickle's P-345 S4 improves my shape:** a player can fit several slots (flex chips), so put the slot on the button — "Draft <name> at QB1" — and keep `undo()` (`App.svelte:151`, already dispatches UNDO + autosaves) visible.
+
+**PICKLE P-287 (two real defects, both reproduced by me).** **D1:** `FIX-NOTES.md` §5's `patch -p1` shortcut is wrong — from the c9 subtree root it fails (`No file found`, exit 1); `patch -p5` works, or run `-p1` from the c10 package root. **D2:** Z.ai's §10.2 misclassifies pickle's hosted c9 — I measured **both** its trees at `670d4c08…` / 527,177 B, so the sentence is **true there**; the `76de5658…` belongs to the c10 package's *nested* copy, which additionally has **no prepared dist at all**. So three byte-true copies exist; Z.ai fixed one and reported two — a policy inconsistency, not a byte error. **R1:** the precise root cause is `draftBoard.ts:61` — `rows.slice(0,limit).map(({_w,_p,...r}) => r)` strips the raw values before the VM ships; `:53` sorts on them (`sort==='ovr'?Number(r.ovr):sort==='priority'?r._p:r._w`), i.e. **generic over the sort key** — which is why the fix must be a generic raw key (or Pickle's `suggestions` contract), not `raw:{wins,priority}`.
+
+**PICKLE P-345 S1 (the best statement of the fix in the round).** Return `suggestions: { ids, rankedBy, cutoffRaw, reason }` from the engine view (`view/draftBoard.ts`) through `port/seam.ts` (`:15` re-exports `boardVM`, `:160` `EnginePort`), so the component renders a fact instead of re-deriving a ranking. It closes the class (reach/value/awards/why-hints), not the instance. His S2 (`suggestions.length===3 || all within ε of the third`, derived from raw values) and Beam's I1 (StatRow `{raw,key,render}`) are the same law as my I29.
+
+**BEAM's headline check does not reproduce.** At his cited commit `9ba6156ac`, `67-cakepanz-10-2026-11-19/` holds **51 files / 49 CHECKSUMS entries / 48 OK / 1 FAILED** — the failure is `slice1-battery.json`, the very file D1 is about. His "52 files, 52/52 OK" is Pickle's c10 count (52 files), not his tree. His k1 receipt (18 × EXIT_CODE=0), gate-manifest (314), gate-numerals (CLEAN ×2 both invocations) and cite-check all **verify**. His I4 is wrong: `shell.battery.mjs:129` asserts S22 (`body.classList.contains('cp-reduced')`) and `board.battery.mjs:185–193` samples `animationName`. His F4 over-reads: w89 does carry "Season stats"/"Playoff stats"/"Your Players"/"League Leaders" — only the ALL-CAPS casing is new.
 
 **D1 is CLOSED — three independent derivations agreed.** Canonical c10 package intact: 6,418 B / md5 `0a2869538a706e7e6ea864664b7e5c9f` (= CHECKSUMS.txt:18). `council/inkling` and `council/orcaink` are 51 files / 48 OK; `council/pickle` is 52 / 49 OK. **Fix = add that one file at the manifest's own path. Do NOT re-cut the zip, do NOT regenerate the manifests.**
 
@@ -58,7 +65,7 @@
 **THE OWNER'S RULINGS (2026-11-19 evening):** Part 0 **accept** · distribution = **folders, no re-cut** · "guide z.ai to fix it himself with his own intuition" · **w89's layout is better than the current cakepanz shell** (now measured structurally by Z.ai: 9 cells vs 7, 1 click vs 3, 6 tabs vs 14-button rail, 151 rows vs 60; cakepanz is 3.6× smaller) · Vue arm **retire** (archive, not delete — it holds a full engine copy) · vapor **per-page, post-v1.1**.
 
 ## What the next session needs
-1. **The ring fix is the Architect's, and the cheapest product win is NOT it.** Order: `?seed=` → one-click drafting on ringed rows → C′1 raw key. All three are in `inbox/20261119-2305-…-innovation-v3.md`.
+1. **The ring fix is the Architect's, and the cheapest product win is NOT it.** Order: `?seed=` → one-click drafting on ringed rows (with the slot on the button, Pickle S4) → C′1. The fix shape to adopt is **Pickle P-345 S1** (`suggestions` contract from the engine view), not `raw:{wins,priority}`. All in `inbox/20261119-2305-…-innovation-v3.md` and `inbox/20261119-2342-…-review-of-seat-reviews-v3.md`.
 2. **The C′1 law must be non-tautological** (I29): assert the ring against the engine's own raw-key sort, never against the DOM's printed strings. L13 currently rebuilds its expectation with the same rounded parse.
 3. **SHELL-STATUS as a build output** (I22) is the structural fix for the stale-doc class; it also resolves the manifest/hash tension (F5).
 4. **File the lane-trio hosting proposal with MUSE** (I24): `origin/council/muse:_agents/zai/` holds only START-OF-CHAT, so "END-OF-CHAT unchanged" is unverifiable from GitHub.
@@ -88,6 +95,7 @@
 ## 3 · Live files (mine)
 - **THIS SESSION'S REVIEW:** `inbox/20261119-2258-ernie-zai-v3-sitting-review.md` (F1–F8, verdict improved).
 - **THIS SESSION'S INNOVATION v3:** `inbox/20261119-2305-ernie-cakepanz-shell-innovation-v3.md` (I17–I29).
+- **THIS SESSION'S REVIEW-OF-REVIEWS:** `inbox/20261119-2342-ernie-review-of-seat-reviews-v3.md` (Pickle P-287/P-345, Beam; my F1 correction is in `20261119-2258-…-review.md` §5).
 - **HOSTED RELAY (verbatim):** `_agents/ernie/deliveries/z-post-blue-docs-update-2026-11-19-v3-sitting/`.
 - **THE ORDER Z.ai ANSWERED:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v3.0, 290 lines).
 - **Prior:** `inbox/20261119-2152-…-deb6275-verification.md` · `inbox/20261119-2105-…-review-of-seat-reviews.md` (G1–G9) · `inbox/20261119-2055-…-innovation-v2.md` · `inbox/20261119-2039-…-item6-sitting-review.md`.
@@ -111,6 +119,6 @@
 - `/Users/kosi/Desktop/Football Sim` (gh-pages, 20,251 dirty) — Owner's tree, not mine to touch.
 - Unsaved work in other seats' worktrees (flint 452, q 1831, glyph 276, collective/hallowed-shell/slime-galley snapshots) — report only, never touch.
 
-## 6 · Session end state (2026-11-19T23:15Z)
+## 6 · Session end state (2026-11-19T23:45Z)
 - Worktree clean after this session's commit; `council/ernie` pushed (tip recorded in the commit).
 - **Re-rook audit (inkling's A–G): unchanged from prior sessions.** A verified · B verified · C incomplete (2,416 unique hex tokens collected; classification not finished) · D/E not run.
