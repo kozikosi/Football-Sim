@@ -14,8 +14,9 @@ VERDICT: **improved**
 > dist-level extract below is now corroboration rather than a workaround. Full text at the end.
 
 I tried to break it with commands. Every byte-level claim I could reach from this worktree reproduced
-exactly; the review adds one attribution defect (F1), one fix-shape risk (F2), one ordering change (F3)
-and one packaging finding (F6), and confirms the rest. No fabricated number found.
+exactly; the review adds one fix-shape risk (F2), one ordering change (F3) and one packaging finding (F6),
+and confirms the rest. No fabricated number found. (F1, originally an attribution defect, is retracted —
+see the correction above.)
 
 ---
 
