@@ -41,11 +41,11 @@ SPEAKER: GPT | ROLE: Independent council seat / technical reviewer | TASK: Cakep
 
 10. **gh-pages vs fix — CONTENT VERIFIED; cmp NOT RUN.** The live `gh-pages:67-cakepanz/README.md` names `4ca9a071` / 52 files. The delivered `gh-pages-fix/README.md` names `d3bd81d2` / 57 files. I did not unzip or `cmp` the two-file fix, and I make no placement recommendation.
 
-11. **Root-history divergence — NOT RUN.** GitHub's compare endpoint reports “No common ancestor” between `474eb52` and `268fd56`. I could not obtain the requested `git rev-list --left-right --count` from a local clone. Do not infer ahead/behind numbers from the failed compare response.
+11. **Root-history divergence — ROOT COMMITS VERIFIED; BRANCH-TIP COUNTS NOT RUN.** GitHub commit objects show both `474eb52c24204cb66895a435be9ec447c7f05dd4` and `268fd5642254792963f2005de2cbe496a0609502` have empty parent arrays; the compare endpoint reports no common ancestor. For the two root commits themselves, the symmetric difference is exactly **1 / 1** (one root commit reachable only from each side). This is NOT a branch-tip ahead/behind count. The requested local `git rev-list --left-right --count` was not run because the clone failed DNS resolution. If the Architect needs full branch divergence, run it against the two branch tips, not the root commits.
 
 ## TOOLS — RANKED, USE-CASE FIRST
 
-1. **`@tanstack/svelte-table` — conditional YES for the heavy Stats/Awards tables, never the draft board.** Use case: one shared table primitive for 44 stat keys, column visibility, facets, sorting and pagination across Awards, YOUR STATS, ALL TEAMS and PLAYOFF STATS. Cost: one bundled MIT dependency, roughly 15 KB min per the brief; zero engine touches; Svelte manifest currently lacks it despite the architecture spec naming it. It beats hand-rolling if the full 44-key visibility/facet requirement ships; for simple standings/small tables, the shared hand-rolled StatTable is cheaper. Law: L15–L17 + F23–F25; add column-visibility/facet parity assertions before adoption. Owner decision Q3 still governs.
+1. **`@tanstack/svelte-table` — conditional YES for the heavy Stats/Awards tables, never the draft board.** Use case: one shared table primitive for 44 stat keys, column visibility, facets, sorting and pagination across Awards, YOUR STATS, ALL TEAMS and PLAYOFF STATS. Cost: one direct MIT dependency plus `@tanstack/table-core` transitively; actual min/gzip delta NOT measured in this scaffold and must be measured in the production one-file build; zero engine touches. The Svelte manifest currently lacks it despite the architecture spec naming it. It beats hand-rolling if the full 44-key visibility/facet requirement ships; for simple standings/small tables, the shared hand-rolled StatTable is cheaper. Law: L15–L17 + F23–F25; add column-visibility/facet parity assertions before adoption. Owner decision Q3 still governs.
 
 2. **Seeded Playwright screenshot goldens — YES, zero new dependencies.** Use case: detect 4-pixel/token/palette drift after every visual pass, at fixed seeds, viewport and browser. Cost: 8–10 fixtures; 0 runtime bytes, 0 engine touches, no new dependency. Law: screenshots are stable across two clean runs; unapproved pixel diff fails; approved intentional change updates the golden with a named reason. This is the best low-cost insurance for the repeated palette work.
 
@@ -57,29 +57,27 @@ SPEAKER: GPT | ROLE: Independent council seat / technical reviewer | TASK: Cakep
 
 **Chart decision and mock comparison.** Charts can be built from data that exists today (e.g. `leaders('pyd')` / `LEADER_KEYS`, award leaders, and PF/PA). Do not invent a weekly probability/momentum series.
 
-Hand-built SVG mock for an Awards “Top passing yards” panel:
-```svg
-<svg viewBox="0 0 320 150" role="img" aria-label="Top five passing yards">
-  <text x="8" y="14">TOP PASSING YARDS</text>
-  <text x="8" y="42">QB A</text><rect x="76" y="31" width="190" height="12" rx="3"/>
-  <text x="8" y="66">QB B</text><rect x="76" y="55" width="162" height="12" rx="3"/>
-  <text x="8" y="90">QB C</text><rect x="76" y="79" width="139" height="12" rx="3"/>
-  <text x="8" y="114">QB D</text><rect x="76" y="103" width="116" height="12" rx="3"/>
-  <text x="8" y="138">QB E</text><rect x="76" y="127" width="94" height="12" rx="3"/>
-</svg>
+Hand-built SVG mock for a PF-vs-PA screen (32 engine `Book` rows; existing labels only):
+```text
+PF ↑   •  • •    •                 PF ↑   • • •  •
+     • •    • •                         •   • •
+   •   • •      •                     • •     •
+   └────────────→ PA                  └────────→ PA
+          inline SVG                    ECharts / Unovis
 ```
 
-Dependency-backed mock (ECharts) for the same screen:
+Dependency-backed mock (ECharts) for the same data:
 ```ts
+const points = book.map(team => [team.PA, team.PF]);
 const option = {
-  xAxis: { type: 'value' },
-  yAxis: { type: 'category', data: topFive.map(x => x.name) },
-  series: [{ type: 'bar', data: topFive.map(x => x.stats.pyd) }]
+  xAxis: { type: 'value', name: 'PA' },
+  yAxis: { type: 'value', name: 'PF' },
+  series: [{ type: 'scatter', data: points }]
 };
 chart.setOption(option);
 ```
 
-Judgment: the data exists, so a small chart is legitimate; this is not a “no data” rejection. But a five-row leaderboard is a fixed, branded component. Inline SVG gives exact typography, tokens, accessible labelling and no runtime dependency; ECharts/Unovis adds roughly 50–100 KB plus a wrapper and default visual conventions. Hand SVG wins today. Revisit a chart library only if the product gains several genuinely interactive charts with axes, zoom, legends and tooltips. No chart library now.
+Judgment: the data exists, so a PF-vs-PA scatter is legitimate; this is not a “no data” rejection. But 32 dots and two axes are a fixed, branded component. Inline SVG gives exact typography, tokens, accessible labelling and no runtime dependency. The ECharts/Unovis production gzip delta is NOT measured here; do not repeat a byte estimate until the exact version is installed, built and measured. Either library also adds a wrapper and default axis/tooltip conventions. Hand SVG wins today. Revisit a chart library only if several genuinely interactive charts need axes, zoom, legends and tooltips. No chart library now.
 
 **Other candidates challenged / disposition.**
 - **`@lucide/svelte`: DEFER.** Award icons are attractive, but a few trophy/medal/shield glyphs do not justify a package when inline SVG is tiny and tree-shaken icons still need a11y labels. Revisit if icon count grows materially.
