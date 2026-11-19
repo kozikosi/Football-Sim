@@ -1,0 +1,16 @@
+=== SHIPPED TREE (cakepanz-4) — final-state receipts ===
+preview 4491: 200
+
+=== PREPARED TREE (cakepanz-4-prepared) — final-state receipts ===
+preview 4492: 200
+
+=== CROSS-TREE dist parity + sha (the 8.1 code edits change dist — quoted everywhere) ===
+h17 dist diff exit 0 (byte-identical)
+4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a  /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4/dist/single.html
+4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a  /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4-prepared/dist/single.html
+
+=== A2 MUTATION (shipped tree, throwaway copy — S29 red for the right reason) ===
+h18 exit=0
+
+=== FINAL-STATE GATES (regen + gate-manifest ×2 + gate-numerals ×2, both trees — provisional; re-run after the doc sweep) ===
+############ FINAL-STATE RUNS COMPLETE ############

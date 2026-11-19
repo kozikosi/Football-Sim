@@ -1,0 +1,65 @@
+############ 1. PINS VIA GIT ARCHIVE ############
+-- pin tree layout (shipped):
+/tmp/c81-baseline/pin-shipped/colors/src/main.ts
+/tmp/c81-baseline/pin-shipped/colors/src/core/keys.ts
+/tmp/c81-baseline/pin-shipped/colors/src/core/hash.ts
+67
+68
+-- diff pin-shipped vs cakepanz-4/src/engine:
+PIN-SHIPPED DIFF exit 0
+-- diff pin-prepared vs cakepanz-4-prepared/src/engine:
+PIN-PREPARED DIFF exit 0
+-- engine delta between the two pins (expect sim/game.ts + sim/passclass.ts):
+Files /tmp/c81-baseline/pin-shipped/colors/src/sports/nfl/sim/game.ts and /tmp/c81-baseline/pin-prepared/colors/src/sports/nfl/sim/game.ts differ
+Only in /tmp/c81-baseline/pin-prepared/colors/src/sports/nfl/sim: passclass.ts
+############ 2. FLEX CENSUS (both trees + vs pins) ############
+FLEX CMP trees exit 0
+pin flex path: 
+cmp: : No such file or directory
+cakepanz-4 flex rules: 99 penalty census: {"0":17,"2":17,"6":42,"12":23}
+  SS>NICKEL = 0 | FB>TE = 2 | FB>RB = 2 | C>OG = 6 | OG>C = 2 | QB>FS = 12
+  six 0-to-2 landings: CB>FS=2, CB>SS=2, EDGE>DT=2, EDGE>OLB=2, ILB>OLB=2, OT>OG=2
+cakepanz-4-prepared flex rules: 99 penalty census: {"0":17,"2":17,"6":42,"12":23}
+  SS>NICKEL = 0 | FB>TE = 2 | FB>RB = 2 | C>OG = 6 | OG>C = 2 | QB>FS = 12
+  six 0-to-2 landings: CB>FS=2, CB>SS=2, EDGE>DT=2, EDGE>OLB=2, ILB>OLB=2, OT>OG=2
+############ 3. ENGINE SUITES ############
+--- cakepanz-4 npm run test:engine
+exit=0 tail:
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 59879.836412
+--- cakepanz-4-prepared npm run test:engine
+exit=0 tail:
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 56075.758487
+############ 4. NODE BATTERY (both trees) ############
+--- cakepanz-4 npm run battery:node
+exit=0 tail:
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 15201.403097
+--- cakepanz-4-prepared npm run battery:node
+exit=0 tail:
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 14803.084254
+############ 5. DISTFILE + CROSS-TREE DIST ############
+--- cakepanz-4 distfile exit=0
+1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4/dist/single.html
+--- cakepanz-4-prepared distfile exit=0
+1529a003763459aa78ab7ef92917a136f9cc9f0d841afe1915218bde2742e737  /home/z/my-project/work/67-cakepanz-8.1-2026-11-18/cakepanz-4-prepared/dist/single.html
+DIST DIFF exit 0
+############ 6. GATE-MANIFEST ×2 PER TREE ############
+cakepanz-4 pass1 exit=0 : gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+cakepanz-4 pass2 exit=0 : gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+cakepanz-4-prepared pass1 exit=0 : gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+cakepanz-4-prepared pass2 exit=0 : gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+############ 7. GATE-NUMERALS ×2 PER TREE (expect FAIL exit 1 — the defect) ############
+cakepanz-4 pass1 exit=1 : NUMERALS FAIL: VERIFY.txt presents the stale pin as current gate-numerals: FAIL 
+cakepanz-4 pass2 exit=1 : NUMERALS FAIL: VERIFY.txt presents the stale pin as current gate-numerals: FAIL 
+cakepanz-4-prepared pass1 exit=1 : NUMERALS FAIL: VERIFY.txt presents the stale pin as current gate-numerals: FAIL 
+cakepanz-4-prepared pass2 exit=1 : NUMERALS FAIL: VERIFY.txt presents the stale pin as current gate-numerals: FAIL 
+############ BASELINE COMPLETE ############

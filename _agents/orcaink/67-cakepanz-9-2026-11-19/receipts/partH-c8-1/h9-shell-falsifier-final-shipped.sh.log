@@ -1,0 +1,8 @@
+[serveAndRun 4233] bytes=1147 verdict=CRASH-MID-FLOW
+FA D2 Complete-prop law   · mutation: {recordTyped} shorthand reintroduced · DIED — FAIL  S5 the draft-complete state renders with the provenance stamp — TimeoutError: page.waitForSelector: Timeout 20000m
+FB mutation applied · restoreSeason definition removed (the template reference stays)
+[serveAndRun 4234] bytes=3909 verdict=CRASH-MID-FLOW
+FB D1 restore law         · mutation: restoreSeason deleted (ReferenceError path) · DIED — the flow crashed on ReferenceError: restoreSeason is not defined (receipted in S15/battery death)
+[serveAndRun 4235] bytes=4187 verdict=VERDICT
+FC board-at-390 law       · mutation: the phone grid media query removed · DIED — FAIL  S25b the DRAFT BOARD fits 390px (scrollWidth <= clientWidth — the board-at-390 law) — 427/390
+every shell falsifier DIED — the shell laws can fail

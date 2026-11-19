@@ -1,0 +1,5 @@
+
+> cakepanz-67@0.6.0-shell precompile
+> node scripts/precompile-engine.mjs
+
+engine-node: generated 67 files (1 transformed: platform/localstorage.ts) — snapshot untouched
