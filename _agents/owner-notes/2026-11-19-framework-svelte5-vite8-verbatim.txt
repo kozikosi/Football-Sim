@@ -1,0 +1,10 @@
+Owner message to the council, 19 Nov 2026 ~19:29 UTC, saved verbatim:
+
+"ok i officially am deciding svelte 5 + vite 8. I authorize you pickle to do whatever necessary in our files to ensure everyone understands this"
+
+Pickle's reading (advisory, not the Owner's words): the framework question R-13 was a 50/50 standing verdict with the pick forced at cutover. The Owner has now made that pick: Svelte 5 + Vite 8, final. This supersedes:
+- AGENTS.md:34 live line "Framework: **Svelte 5 + Vite** (current implementation — **NOT a lock**; ... Do not present any framework as decided.)" on origin/council/muse — the "NOT a lock / do not present as decided" clause is now void.
+- The R-13 row "Verdict so far: 50/50 ... the pick is forced only at cutover" — resolved, no wait for cutover.
+- All seat advisory leans (Pickle 70/30 then 78/22; Z.ai 85/15) — these were input to a decision now made; they are not the decision.
+
+Note on "vite 8": the Owner wrote "vite 8" explicitly. The three governing lines currently say only "Vite" (unversioned) and the DS harness package.json uses vite ^8.3.6. I have not "corrected" the version to any other number — the exact word is "8". Paste-ready patches are in inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md; MUSE/Architect apply them to the one-writer files.

@@ -6,7 +6,20 @@ MERGE-BASE: `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e` (`git merge-base HEAD ori
 HEAD at session end: the final lane+bulletin commit of this session. Last pushed report commit before
   it: `e69e707bd` (the P-345 brainstorm filing).
 
-## Current state (19 Nov 2026, eighth session) — item-6 relay hosting, review, brainstorm
+## Current state (19 Nov 2026, ninth session) — Owner's final framework ruling (R-13)
+
+Owner's task: record that he has officially decided **Svelte 5 + Vite 8**, final, and that I was
+authorized to ensure everyone understands. Done: verbatim note (`_agents/owner-notes/2026-11-19-framework-svelte5-vite8-verbatim.txt`),
+R-13 filing with three paste-ready patches (`inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md`),
+bulletin (`bulletin/20261119-1929-pickle.md`). All pushed on council/pickle.
+- The 50/50 standing verdict and "forced only at cutover" line are superseded. R-13 is RESOLVED.
+  Live `AGENTS.md:34` still says "NOT a lock / do not present as decided" — the patch in the filing voids it.
+- I did NOT edit MUSE's one-writer files on my branch (seats read governance from `origin/council/muse`);
+  MUSE applies the three patches to `AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `_agents/QUEUE.md` on muse.
+- "vite 8" is the Owner's exact major (not corrected). c9 pins 7.3.7 / rev10 ^7.3.6 / DS harness ^8.3.6 —
+  Architect reconciles build-tree pins at cutover. F1 bake-off moot. My 70/30 and 78/22 are historical input.
+
+### Prior session (eighth) — item-6 relay hosting, review, brainstorm
 
 Owner's task: host Z.ai's `z-post-blue-docs-update-2026-11-19-item6-sitting` folder from the desktop
 Football Sim folder on `council/pickle` so any seat can read it; review it thoroughly and push the
@@ -60,6 +73,9 @@ engine. All three done and pushed.
 
 ## Next session needs
 
+0. MUSE: apply the three R-13 patches in `inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md`
+   to the live governance files on `council/muse` and move R-13 to RETIRED. Architect: vite-major (8)
+   reconciliation in build trees. Neither is my file to edit — no seat action owed on R-13.
 1. Take a NEW top item from `_agents/QUEUE.md` on `origin/council/muse` with the v9 tool
    `node /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/council.mjs next` (a real
    path — never `/tmp`, macOS symlink makes older tools no-op). Do not re-review c9/c10/item-6 or
