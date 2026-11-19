@@ -3,7 +3,40 @@
 SEAT: pickle · ROLE: Council Adviser · BRANCH: `council/pickle`
 WORKTREE: `/Users/kosi/.local/share/opencode/worktree/268fd5642254792963f2005de2cbe496a0609502/council-pickle`
 MERGE-BASE: `864a6aa1` (`git merge-base HEAD origin/council/base`, verified 18 Nov 2026)
-HEAD at session end: `9466e821` (pushed; `git ls-remote` VERIFIED)
+HEAD at session end: `6bdc9e96` (hosting push, pushed + `git ls-remote` VERIFIED); review + brainstorm
+  filed in the tip commit of this session (hash in the bulletin + Owner reply).
+
+## Current state (18 Nov 2026, fourth session) — Cakepanz-8.1 hosting + review + brainstorm
+
+Owner's explicit task: host Z.ai's `67-cakepanz-8.1-2026-11-18` folder on `council/pickle`, review it
+thoroughly, push the review, and brainstorm improvements to the Cakepanz shell for Claude's engine.
+
+- **Hosted (commit `6bdc9e96`, pushed + `git ls-remote` VERIFIED):** `_agents/pickle/deliveries/zai-cakepanz-8.1-2026-11-18/`
+  — 1049 files / 34,579,726 B, `diff -rq` exit 0 vs Desktop source; canonical manifest
+  `zai-cakepanz-8.1-2026-11-18.SHA256SUMS` (1049 rows, sha `48b6d8e5…125e4fa`, 1049 OK); provenance in
+  sibling `.PROVENANCE.md`. Generated `src/engine-node/` + seed-dependent slice JSON force-added for
+  byte-completeness. Run of `precompile-engine.mjs` touched only the two `.stamp.json` files; restored
+  from source and re-verified 1049/1049.
+- **Mechanical verification I ran (all VERIFIED):** pins 5c808472 (67 files) / 65673a00 (68 files)
+  diff 0; engine delta exactly `sim/game.ts` + `sim/passclass.ts`; flex sha `76c02c65…6a6a`, 99 rules
+  `{"0":17,"2":17,"6":42,"12":23}`; engine 394/406; node 33/33 ×2; gates 314/319 + numerals CLEAN ×2
+  both trees; dist `4ce69205…507057a` both, byte-identical; START-OF-CHAT ×3 `8ef3b18d…`.
+  Browser batteries + composites **not run** (no node_modules/Playwright cache here) — REPORTED.
+- **Review filed:** `inbox/20261118-1415-pickle-P-316-cakepanz81-review.md`, VERDICT **improved**.
+  Fixed UI findings accepted; three HIGH honesty defects: shipped `ACCEPTANCE-RECEIPTS.txt` header
+  says c7-history/incomplete while its own body is a complete green 8.1 run (`ACCEPTANCE RUN COMPLETE`
+  at :361); k1 log is 52 bytes and k2 empty while "both could not complete" is stated universally;
+  START-OF-CHAT-ZAI.md §5.2 contradicts itself in one bullet. Plus M1–M5 (dangling L10 row, unmarked
+  stale hashes at WHAT-CHANGED:93/:116, c8 README:39, L10 misapplied, RECEIPTS.md misattribution)
+  and L1 malformed `## 2` heading. Work-order basis: §5.2 pointer allowed only if the file is
+  *replaced*; §5.7/§6 L10 require a completed run.
+- **Brainstorm filed:** `inbox/20261118-1400-pickle-P-345-cakepanz81-shell-innovation.md` — seven
+  ranked ideas led by receipt-generated status (kills the contradiction class), one board view model,
+  a typed transition machine, one persistence path, seam badge + `shell:health`, keyboard battery,
+  seed/replay. Three questions flagged for Owner/Architect; nothing built.
+- **Do not re-review c8 or c9.** c8.1 is now reviewed. I am not eligible for c9 (I authored its prompt).
+- **Next:** MUSE must re-file `START-OF-CHAT-ZAI.md` (`8ef3b18d…`) on `council/muse` if it wants seats
+  to follow it; Z.ai must correct H1–H3 and finish the prepared acceptance-run before cutover.
 
 ## Current state (18 Nov 2026, third session) — Cakepanz-8 continuation prompt
 
