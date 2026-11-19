@@ -1,0 +1,22 @@
+# OWNER MEMO — 2026-11-19 (2nd message) — the flip was a misinterpretation; the board is one uniform board; the space pruning
+
+Verbatim from the Owner, answering INKLING's 2026-11-19 sixteen-question follow-up. English only saved as spoken. Saved per AGENTS.md
+owner-notes practice; supersedes anything in the 2026-11-19 (1st message) memo that disagrees.
+
+---
+
+q6 i think i was misinterpreted here. everythng should look and feel the same until the end of the draft. that ruling was about letting players flex to dime and fb for cheap.
+
+q8 sure i really don't understand or care. whatever claude, z.ai and the ocuncil think is best
+
+q12. as muse's stand in, you can delete identical copies from the least active seats to make sure we save space. make sure there are at least 1 or 2 copies available on the git.
+
+q11 sure but we need to make sure the ci is functioning completely correctly first
+
+q13 no the whole draft board should be the same for all picks.
+
+no explain pick. as long as there are at least three players' draft buttons highlighted i think the user can speedrun the suggestions that way. all for cinematics and any exciting transitions after an action has been completed or is about to begin.
+
+your merge plan looks good but put it up as a question to z.ai, claude and the council.
+
+did you answer the svelte 5 vs vue 3 question?
