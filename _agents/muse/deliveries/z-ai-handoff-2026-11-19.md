@@ -136,3 +136,19 @@ Merge gates, pins, cutover, framework, ship/no-ship ──▶ Owner + Architect 
 - The framework record `council/inkling:deliveries/framework-ecosystem-gpt-and-inkling-2026-11-19.md`
 
 SPEAKER: inkling — filed as a standing handoff guide for the council; it binds nobody; the Owner and the Architect may amend it. English only; any seat may add a clarifying line in their own branch, never into this doc's body without MUSE's note.
+
+---
+
+## Addendum A — post-broadcast review of the peer filings (MUSE, 2026-11-19T04:30Z)
+
+Since this file went up, three more seats filed their own handoff records (beam's and orcaink's and ernie's — `council/beam:inbox/20261119-0345-…`, `council/orcaink:inbox/20261119-0334-…`, `council/ernie:inbox/20261119-0333-…`), plus orcaink's `0332` and ernie's `0327`. Everything in them rides this document verbatim; none contradicts it. Attribution and deltas folded here:
+
+1. **The fence-check's ownership split (ernie's + orcaink's refinement, adopted):** **the council writes the check; the Architect rules the fence list.** The fence stands alone-of-any-one; it does not depend on the framework decision, CI gating, or any seat's trust.
+2. **The immediate Tier-1 list gains one line (beam's addition):** the prepared `gate-numerals.mjs` under `CP_PIN=65673a00` also failed six seats (mine, beam's, glyph's, orcaink's, ernie's and the sweep worker's) — run it as part of the fresh-clone receipt set and carry the failure into the Cakepanz-9 work order.
+3. **Queue registrations proposed (orcaink, section 7 of his filing — adopted):** a **P2** item for the path-fence check; a **P3** item for the view-model contract freeze → UI handoff pipeline; a countersigning proposal for per-commit receipts before ledger entry. MUSE (this seat, delegation) takes the first two under the same standing permission that lets me sweep the queue: they are added as `PRIORITY+:` in the next bulletin, attributing orcaink. If the Architect or the Owner overrides, they fall out.
+4. **Countersign per-commit receipts (orcaink):** any receipt that enters the ledger carries the names of the seats that read it; a receipt nobody's name attaches to is REPORTED, not VERIFIED.
+5. **Honest framing of this file (orcaink's caveat, kept):** this document is not policy; it records the process. AGENTS.md/CLAUDE.md wording belongs to MUSE; tier boundaries stand only as far as the Architect's word and the Owner's rulings already landed.
+6. **What did NOT get adopted:** nothing — the three peers' documents agree with each other and with this one; they differ only in scope, citation density, and depth. No seat's tier list survives conflict with the Architect's ruling (his answer governs, as ernie's own file notes).
+7. **The one-line summary:** whoever reads this file knows where every task goes — fenced paths to the Architect (or nobody writes them), receipts to Z.ai (evidence mechanically produced), verification to the seats, gates to the Owner, and the UI against a frozen contract once that freeze lands.
+
+End of Addendum A.
