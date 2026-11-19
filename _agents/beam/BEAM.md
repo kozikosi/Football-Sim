@@ -1,35 +1,20 @@
-# Beam — lane file
+# BEAM lane file
 
-## Identity
-- **Seat:** Beam · **Model:** reflection/beam-free (Kilo) · **State:** core (Owner relies on heavily, file access to Owner's machine).
-- **Worktree:** /Users/kosi/Desktop/wt/beam · branch council/beam · merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
+Identity: Beam, council seat, branch council/beam, worktree /Users/kosi/Desktop/wt/beam.
+merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 
-## Current work (session 2026-11-18)
-- Pushed folder 67-cakepanz-7-2026-11-18 to council/beam (3e74652b); verified shipped 394/394 + prepared 406/406 engine, node battery 31/31.
-- Inkling review of cakepanz-7 summarised (ok with nits).
-- Ernie falsify-slice3 confirmed N25/N26/N27 falsifiable (exit 0).
-- Verified Architect's pin-watch report vs Inkling's claims: filed inbox/20261118-0804-beam-verify-pinwatch-math-review.md (31ccece9). All four claims hold; self-test 8/8.
-
-## What next session needs
-- Check council-sync / queue (node tools/council.mjs next from origin/council/muse).
-- Top queue at session end unknown; run next.
-- Note: architect/engine-and-seats moved to 57fb83c (pools-node fix) and ed72c629 (parallel-round prompt). council/ernie has refined prompt 3dbb67fb.
+## Current work / state (2026-11-19)
+- Pushed 67-cakepanz-8.1-2026-11-18 folder to council/beam (b0405e0b) so anyone can read it.
+- Filed reviews: 67-cakepanz-8.1 review (8e2c120d), compiled ideas report (ce3f977f), cakepanz-9 sitting notes (56875c28), handoff-to-Z.ai record (7eb000f5), MUSE relay (288f491a), w89 opportunities answer (447101ad), GPT expanded position relay (d985deb0).
+- Key findings this session: prepared numerals gate FAILS under CP_PIN=65673a00 (verified); cross-draft fullBoard inheritance risk; sighted-user caption gap; team takeover no-op in cakepanz (beauty audit); GPT's expanded position relayed verbatim with beam's thoughts.
+- No product/engine files touched. Work is inbox-only.
 
 ## Open questions
-- None blocking.
+- Owner rulings owed (from beauty audit): dark --text, Bodoni Moda, value label (Model/Engine/Value), 2-Pt chip wording, team takeover scope.
+- P-144 Guide graphic: VL's designs rejected by ORCAINK; resubmission pending. Do not pick a design yet.
+- P-158 threshold: Beam keeps 0.45 Costly floor (Owner+Architect call).
 
-## Live files (this session)
-- inbox/20261118-0804-beam-verify-pinwatch-math-review.md
-- 67-cakepanz-7-2026-11-18/ (796 files)
-- _agents/beam/BEAM.md
-
-## Session 2026-11-18 (cakepanz-8)
-- Pushed folder 67-cakepanz-8-2026-11-18 to council/beam (53215802) so anyone can read it.
-- Reviewed delivery thoroughly: VERIFIED engine 394/394 + 406/406, gates 314/319, flex pin 76c02c65 identical, non-engine src identical across trees; A1 redirect + hydrateBoot unconditional present; P-337 render-layer-only confirmed.
-- Filed inbox/20261118-1948-beam-P-337-review.md (ok-with-nits) with 5-item innovation brainstorm (one-click fill, summary card, persist simpleOff, why-this-pick line, flex hint). Pushed 3fa2ecb4.
-
-## Session end 2026-11-18
-- Owner directive broadcast (sim values vs. shipping): saved verbatim, ledger + bulletin + board post, pushed aec531d7.
-- Reviews filed this session: P-337/cakepanz-8 (ok-with-nits), P-134 (ok, 15/15), read glyph/DS/Inkling reviews.
-- Folder 67-cakepanz-8-2026-11-18 pushed (53215802) so anyone can read it.
-- Token budget low — start a new conversation. Lane file updated and pushed; read it first.
+## Next session reads
+1. _agents/START-OF-CHAT.md (from origin/architect/engine-and-seats)
+2. _agents/QUEUE.md (live on origin/council/muse)
+3. inbox/ newest (sync with council-sync.mjs --inbox)
