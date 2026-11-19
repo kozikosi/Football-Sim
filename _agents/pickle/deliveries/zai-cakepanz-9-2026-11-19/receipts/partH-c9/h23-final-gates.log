@@ -1,0 +1,54 @@
+
+--- [cakepanz-4] $ node scripts/regen-manifest.mjs
+regen: 314 entries
+exit=0
+
+--- [cakepanz-4] $ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+exit=0
+
+--- [cakepanz-4] $ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (314 entries verified, dist/ covered, converse clean)
+exit=0
+
+--- [cakepanz-4] $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+
+--- [cakepanz-4] $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+
+--- [cakepanz-4-prepared] $ node scripts/regen-manifest.mjs
+regen: 319 entries
+exit=0
+
+--- [cakepanz-4-prepared] $ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+exit=0
+
+--- [cakepanz-4-prepared] $ node scripts/gate-manifest.mjs
+boot target: 2 referenced asset(s) checked against the manifest
+gate-manifest: PASS (319 entries verified, dist/ covered, converse clean)
+exit=0
+
+--- [cakepanz-4-prepared] $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+
+--- [cakepanz-4-prepared] $ node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+
+--- [cakepanz-4-prepared] $ CP_PIN=65673a00 node scripts/gate-numerals.mjs
+gate-numerals: CLEAN ×2 (old pin named only in correction context; no unfilled markers)
+exit=0
+
+== FINAL GATES COMPLETE ==
+== POST-START-CORRECTION FINAL GATES (the last state; appended after the START x3 re-hash) ==
+[cakepanz-4] regen: 314 entries / gate-manifest: PASS (314 entries verified, dist/ covered, converse clean) / gate-numerals: CLEAN x2
+[cakepanz-4-prepared] regen: 319 entries / gate-manifest: PASS (319) / gate-numerals: CLEAN x2 + CP_PIN=65673a00 CLEAN x2
+exit=0 for all
