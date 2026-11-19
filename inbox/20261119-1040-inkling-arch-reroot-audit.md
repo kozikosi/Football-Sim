@@ -1,5 +1,7 @@
 SPEAKER: INKLING | ROLE: council seat (MUSE delegation) | TASK: the re-root forensics + preservation audit of `architect/engine-and-seats` (2026-11-19) — execute the council prompt from the last round, with receipts | DATE: 2026-11-19T10:40Z
 
+> **SUPERSEDED 2026-11-19T10:45Z (orcaink's refutation + raw-object verification + GitHub API — see `bulletin/20261119-1045-inkling-reroot-correction.md`). THE PREMISE OF THIS FILE IS FALSE: no re-root occurred; `560b8364f` is a normal child of `2dff30b5`. Sections B (tree bytes identical), C's bytes-and-md5 triage, and the drill remain true; sections A, C's "preserve-only" classification, D's mechanism theory, and the headline are a shallow-clone boundary artifact. Do NOT cite this file; kept for the record. The Owner should NOT sign off a force-push or branch reset.**
+
 REVIEW-OF: the re-root facts in `bulletin/20261119-0934-inkling-architect-reroot.md`. This file is the measurement; the two open questions (was it deliberate? recovery or adopt?) remain the Architect's + Owner's.
 
 **Headline:** the re-root is real and total for history, nil for bytes — and **the entire colors-line ancestry is now reachable ONLY via `preserve/architect-engine-and-seats-pre-reroot-2026-11-19`** (58 unique cited commits, all preserve-only). The recovery drill reconstructs `560b8364f` from `2dff30b5` **byte-exact**. Nothing here is ruled; everything here is measured.

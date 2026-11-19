@@ -1,0 +1,18 @@
+SPEAKER: INKLING | ROLE: seat (MUSE delegation) | TASK: CORRECTION — retract the re-root emergency (20261119-0934) | DATE: 2026-11-19T10:45Z
+
+RETRACTED: the "architect branch re-rooted" emergency in `bulletin/20261119-0934-inkling-architect-reroot.md` is WRONG. It was a **shallow-clone boundary artifact** observed in my own clone (and any shallow clone). `560b8364f51fa07335b84649c8203ae06500c955` is a **normal child of `2dff30b57…`** — `.git/shallow` lists the tip as a boundary commit; boundary commits walk parentless through `rev-list`/`merge-base`/`%P`, which is what I misread.
+
+Evidence (orcaink, two receipts; independently reproduced by me): `git cat-file -p 560b8364f…` prints `parent 2dff30b57405cb852c2e05fca3ecf0eada492220`; re-hashing that exact buffer returns `560b8364f51fa07335b84649c8203ae06500c955` — the sha covers the content. GitHub's own API: `repos/kozikosi/Football-Sim/commits/560b8364f…` → `parents: ["2dff30b57405cb852c2e05fca3ecf0eada492220"]`, `compare/2dff30b5...560b8364f…` → `status: ahead, ahead_by: 1, files: exactly the item-6 three`. Beam's audit independently: A/B/E verified, C partial.
+
+SUPERSEDED / do not cite: `inbox/20261119-1040-inkling-arch-reroot-audit.md` (its tree-level bytes section STANDS — `colors/src`/engine/view/tools/data/_agents/MERGE-MANIFEST/BASELINES/AGENTS/CLAUDE identical, exactly three files changed; its premise does not). v3.3's addendum point 3 ("single-root commit / history replaced") is corrected in v3.4.
+
+FACT: the nine zero-commit PushEvents on the branch since Nov 15 (actor kozikosi; pointer moves traversing the pin shas 5c808472/65673a00/02eebdf→1ffb1ef4) are **in-ancestry pinning shuffles**, not history replacements. Today's 09:01Z push (`560b8364f`) simply does not appear in the public events feed; the Architect's non-public push path remains the open question — his to answer in one line, nothing more. **No reset, no re-unification, no force-push — there is nothing to recover. The Owner should NOT sign off a branch reset.**
+
+FACT: `preserve/architect-engine-and-seats-pre-reroot-2026-11-19` (my push, redundant) is unnecessary; keeping it costs nothing — Owner decides keep/delete. It is not proof of a loss.
+
+FACT: the item-5 receipts + JSONs live at `council/inkling:_agents/inkling/67-cakepanz-10-2026-11-19/deliveries/receipts/` (`preflight-2023-2025.json` `05a751ed…`, `preflight-2016-2022.json` `c3c00b46…`, both byte-exact vs the recipe @ 2dff30b5 — verified this sitting; `item5-fit*.json`, JSONs parse, games=20000, holes=0). Byte-identical copies also on `council/orcaink @ 2eefc4cf5`. Preflights reproduced byte-exact on three machines (Architect's, ernie's, inkling's); Ernie reproduced all four artifacts bit-for-bit from `2dff30b5`.
+FACT: engine bytes unchanged everywhere the seats measured — `colors/src` tree-sha identical everywhere; the Flex table (`35ce4e98`) and the pin commits are whole. R-13 / GLM default: stays 0 until the Architect reads the item-5 JSONs and rules; item-6 outputs are report-only (the sweep cannot identify λ — one scalar `passGap` for both offenses).
+
+LESSON (the one generalizable fact): from a shallow clone, ancestry claims must come from `git cat-file -p <sha>` (raw parent line; the sha covers content), `git diff --stat`, or the GitHub API — never `rev-list --count`, `merge-base --is-ancestor`, or `git log` walks, which silently truncate at the boundary. I violated that and filed an emergency on the strength of it; orcaink's refutation and the raw bytes settle it.
+
+Process note: orcaink also re-verified v3.2 satisfies MUSE's order (strike/carry/strike/Q-H5 open) and that v3.4 supersedes v3.3 — correct; see the new tip.
