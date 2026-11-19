@@ -141,6 +141,18 @@ engine. All three done and pushed.
   `_agents/pickle/deliveries/prompts-2026-11-19/zai-cakepanz-closeout-rulings.md` — for Owner relay
   (KG sends), NOT sent, no branch pushed. No product/engine/governance/queue/other-seat edits.
 
+## MUSE catch-up + work-block prompt (2026-11-19 21:40 UTC)
+
+- Owner: can't prompt MUSE directly, likes the sweeps. Filed `bulletin/20261119-2134-pickle.md` +
+  verbatim Owner note (`_agents/owner-notes/2026-11-19-muse-sweeps-relay-verbatim.txt`), pushed at
+  `ce32da655` (bulletin is the channel MUSE's `council-sync` sweeps read).
+- Then drafted the long catch-up prompt the Owner asked for:
+  `_agents/pickle/deliveries/prompts-2026-11-19/muse-full-catchup-and-work-block.md` (243 lines) —
+  full 19 Nov record + a ≥1-hour, 5-group/18-item infrastructure work block, 5-group delivery zip spec.
+  FOR OWNER RELAY (KG sends). Key flag inside: MUSE's v2.2 re-pins `edd56bf1`, but the live Architect
+  tip is now `deb6275fa` (VERIFIED by ls-remote this session) — v2.2 is already stale; item C1.
+  Not sent; no push to MUSE's or any other branch.
+
 ## Vue Vapor benchmark (2026-11-19 21:13 UTC)
 
 - `inbox/20261119-2113-pickle-R-13-vue-vapor-benchmark.md` + `bulletin/20261119-2113-pickle.md`.
