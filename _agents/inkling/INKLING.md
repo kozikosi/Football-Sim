@@ -1,39 +1,30 @@
 # INKLING — lane file (rewrite in place when seat state changes; never append)
 
-**Seat:** INKLING · Inkling 2 Small Free (opencode) · admitted 2026-11-09 · transient. **Since 2026-11-18 this seat ALSO holds MUSE's full permissions indefinitely** (Owner, verbatim): council infrastructure is mine — gates, queue custodianship, bulletins, docs on `council/muse`. AGENTS.md §1 unchanged: Owner rules, Architect builds.
+**Seat:** INKLING · Inkling 2 Small Free (OpenChamber) · admitted 2026-11-09. **Since 2026-11-18 this seat ALSO holds MUSE's full permissions indefinitely** (Owner, verbatim): council infrastructure is mine — gates, queue custodianship, bulletins, docs on `council/muse`. AGENTS.md §1 unchanged: Owner rules, Architect builds.
 
 ## Authority now, precisely
 - May edit council infrastructure on `council/muse`; everything Owner-gated stays Owner's (product direction, protected constants, pinned activation, λ/labels/Bodoni/2PT, the framework ruling, gh-pages placement).
-- Never edit the Architect's product/engine/flex; never force-push; never "PASS" a gate I did not run (D-3).
+- Never edit the Architect's product/engine/flex; never force-push; never "PASS" a gate I did not run.
 - The Oct-6 staged snapshot is at `preserve/muse-oct6-snapshot-2026-11-18` (`1aec8b9e`).
 
-## Current state (2026-11-19 LATE — v2 order corrected; MUSE prompt reviewed; annexes ruled)
+## Current state (2026-11-19 late morning — the 67-cakepanz-10 / z.ai close-out package pushed + reviewed)
 
-Since the last update: (a) the v2 council order's SHA line corrected — the Architect's recipe (`claude/zai-item5-recipe-2026-11-19.md:30-31` @ `2dff30b`) anchors `05a751ed…`/`c3c00b46…`; the strike stands (d81b792e). (b) MUSE's "Cakepanz-9 review round" prompt reviewed: improved-with-replacements (inbox/20261119-0740) — E1 blocking (DS's D1/D2 missing), wrong counts, stale re-run asks; full replacement text inlined in the review. (c) Nine annexes ruled (deliveries/council-order-v2-annex-rulings-2026-11-19.md): B7 artifact-gate hook spec (blocking-class), C5/C6/C7/C8/C9 fold, E4 one-line-to-MUSE, B3/B4 refused. (d) z.ai's next-round delta filed (deliveries/muse-vs-inkling-delta-2026-11-19.md). (e) A1 erratum filed (RECEIPTS.md banner overstated k1). (f) VL's mid-season claim was VM-probed this window: rows=0, overall=1025, `goneChance` never reached → inert, no blocker. (g) Beam's second verification + Glyph's v2 review read: consistent with the correction; Beam's hosted copy is the only host with .gitignore (f27658cc…); the delivered Desktop copies remain broken at their bytes.
+Session work, all pushed @ `council/inkling` (+ muse commit `d6095d4b5`):
+1. **The package is public in-repo.** The Owner's Desktop folder `67-cakepanz-10-2026-11-19` (z.ai's 2026-11-19 close-out sitting: k1 green, Part 0 = DS's D1/D2/D3/D5.3 patched at working bytes, the w89→Colors tools verdict, the ~85/15 Svelte 5 framework word; 52 files, 1.8 MB) pushed byte-identical under `_agents/inkling/67-cakepanz-10-2026-11-19/` @ `fee5c2fd8`; 49/49 md5 verified at both ends. READ IT if you touch the cakepanz chain.
+2. **MUSE re-file done by me:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` → `5e5ed7c9…` (package bytes; was `15f088c7…`) @ `d6095d4b5` — the package's own tell ("MUSE re-files from these bytes").
+3. **Review filed:** `inbox/20261119-0901-inkling-67cakepanz10-review.md` — VERDICT improved. Verified myself: START ×3, .gitignore ×2 vs 8.1 hosting, working dist `76de5658…` + its D1/D2/D3/D5.3 markers, src patch + battery re-anchors (N26/N28), item-5 preflight byte-exact vs the architect recipe @ `2dff30b5`, k1 log 18×EXIT_CODE=0, gh-pages still w89. Findings to absorb pre-cutover: (1) delivery = evidence bundle, un-rerunnable elsewhere — get a permanent in-repo home; (2) cite-check prints `COUNT L7b …: 0` while claiming L7b verified — a check that can't fail is not a check; (3) dotfile-drop at the zip step — make import-zip refuse a MANIFEST-named-missing-file package.
+4. **Innovation pass filed:** `deliveries/cakepanz-shell-innovation-2026-11-19.md` — twelve proposals for the cakepanz / UI-UX shell (A1 provenance drawer generalized → everything rendered carries how-it-was-computed; A2 byte budget for dist/single.html; A3 touch-target floor L-touch (L7b receipt shows chips 94×25/103×25 @390 px); A4 `?debug=1` overlay; A5 `?seed=` at the seam; A6 engine-true shareables; A7 seeded goldens + axe; B1 engine-hashed tokens + pin-watch; B2 halftime-gate animation grammar; B3 heat matrix behind the stats order; B4 cutover rehearsal page; B5 keyboard/focus) + named refusals. Order of ops in the doc.
+5. **Owner words still owed (not mine):** Part 0 accept/strike; the four stats labels; the re-zip (new sha, recorded where the package names it); then the stats sitting keys off them. The Architect owes the item-5 JSON reads (numbers deliberately unread by both z.ai and me) and the `?seed=` seam word (`App.svelte:109` = `Math.random()`).
+6. The framework word stands as reported (~85/15 Svelte 5; F1–F3 reopening conditions; F1 = an F1 same-spec build-time win is the only untested arm — UNKNOWN, not "no").
 
-All session pushes: council/inkling @ `29cbffee`. The relays stand: z.ai v3 @ `3a62c632` + pointer v3 @ `8372c939`; the council order v2 (`f445a3ba`, corrected @ `d81b792e`); the annex rulings are ride-along artifacts pending adoption.
-
-## Current state (2026-11-19 late — the c9 relay is AIRTIGHT on paper; v3.1 shipped; session ending)
-
-This session (Nov 18 eve → Nov 19) returned the entire cakepanz-9 chain to receipts, filed the sitting order, merged ernie's streams, corrected my own SHA error, reviewed MUSE's relay prompts, and released v3.1. Key facts:
-- **The relay that ships:** z.ai v3.1 @ `3d0ac76f` (scope-clarity §0.5: H5 = two-line `x._w` shell fix; H6 = ring stays on expand toggle; VL inert). Pointer v3.1 @ `a6edde9f`. v3.1 @ `3d0ac76f` supersedes v3 @ `3a62c632`.
-- **The council order v2 @ `f445a3ba`** (three tiers; ernie's eight streams merged in) — corrected @ `d81b792e` (SHA anchored; the parallel-run strike stands); annex rulings @ `0b0358cd` (B7 artifact-gate hook fold = the blocking-class one; C5/C6/C7/C8/C9 fold; E4 ink to MUSE; B3/B4 refused).
-- **MUSE's "Cakepanz-9 review round" prompt reviewed:** improved (`inbox/20261119-0740-…`) — E1 blocking (DS's D1/D2 missing); replacement text inlined in the review.
-- **The A-tier was executed by me** (A1/A2/A3/A4/A6/A7/A8/A9/A11 all filed; A1-erratum `inbox/20261119-0745-…`).
-- Beam executed the round + re-verified: he fixed his hosted copy (.gitignore, START shas) — the DELIVERED copies still need the same fix via the relay.
-- The review round closed per the relay: Beam, VL, Ernie, Glyph — all improved; OR's ok + the ok/improved split recorded in the v3 §0 note.
-
-**Open items for the next sittings (owners named):** (1) the relay to z.ai: v3.1; Part 0 code patches are the riskiest item — D1 first (mid-season shipping blocked without it); (2) the four Owner rulings owed: C′1 exact-three (display-round vs _w), D5.3 double-header, light-gold2/dark-rose-ink contrast sign-off, the stats-tab labels; (3) artifact-gate hook (B7) adoption — Owner/Architect; (4) the k1 composite — ~40 min; (5) gh-pages frozen; pins frozen; λ dynamic.
+## Standing cautions
+- The cakepanz-4 tree lineage is STILL outside git except my pushed copy — the Architect/Owner should freeze a `delivery/` branch or wire `tools/import-zip.sh` to commit on relay; until then my lane is the only in-repo copy.
+- Two "good" cakepanz dists exist (`670d4c08…` delivered / `76de5658…` working) — any re-zip re-keys everything (MERGE-MANIFEST/package named sha in one commit).
+- The two AA contrast holes (light gold2 1.51/1.65; dark rose-ink 3.17) block the golden/axe track; Owner-gated.
+- Preserve gate before anything destructive; add by path; never force-push; `council/muse` is mine under delegation.
 
 ## Next session reads — priority
-
-1. `inbox/20261119-0740-inkling-muse-review-round-review.md` (MUSE's relay prompt scored + replacement text).
-2. `deliveries/muse-vs-inkling-delta-2026-11-19.md` (z.ai next-round increments).
-3. `deliveries/council-order-v2-annex-rulings-2026-11-19.md` (the nine).
-4. INKLING c9 review r1 + A1 erratum (`inbox/20261119-0745-…`).
-
-## Worktree
-`/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · base `864a6aa1…` (diverged). All session work pushed @ `0b0358cd`.
-
-## Safety
-Never another seat's bytes; never the Architect's product tree; never harvest pin/flex; `preserve.mjs check`; no `git stash`; add by path; `council/muse` is mine under delegation (pushed `@ 3f521834`).
+1. `inbox/20261119-0901-inkling-67cakepanz10-review.md` (this sitting's review).
+2. `deliveries/cakepanz-shell-innovation-2026-11-19.md`.
+3. The package: `_agents/inkling/67-cakepanz-10-2026-11-19/deliveries/zai-w89-colors-tools-framework-report-2026-11-19.md` (z.ai's w89→Colors verdict + framework word) — the strongest current technical input to the framework ruling.
+4. `_agents/inkling/67-cakepanz-10-2026-11-19/_agents/pickle/deliveries/zai-cakepanz-9-2026-11-19/README-DELIVERY.md` (the c9/close-out ledger).
