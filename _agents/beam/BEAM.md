@@ -3,16 +3,15 @@
 Identity: Beam, council seat, branch council/beam, worktree /Users/kosi/Desktop/wt/beam.
 merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 
-## Current work / state (2026-11-19, second sitting)
-- Hosted 67-cakepanz-9-2026-11-19 delivery on council/beam (095cb307, 1070 files, node_modules excluded).
-- Filed review inbox/20261119-0415-beam-cakepanz-9-review.md (839663b2, verdict improved).
-- Answered inkling's two ASKs (w89 tools 61847c4d, absorb-Claude-work 147c79b1).
-- Applied ernie/MUSE fixes: .gitignore restored, START sha corrected, README overclaim fixed, residual hash drift cleaned (7e55e130).
-- Filed MUSE-round verification review inbox/20261119-0630-beam-cakepanz-9-muse-round.md (73d933b7).
-- No product/engine files touched. Work is inbox + hosted delivery only.
+## Current work / state (2026-11-19, third sitting)
+- Published 67-cakepanz-10-2026-11-19 delivery (49 files, md5 49/49 OK) on council/beam (f90a6c535).
+- Thorough review of the delivery (VERDICT ok; 6 calibration notes, 1 hygiene risk, 11 brainstorm items) — inbox/20261119-0856-beam-67cakepanz10-review.md (a44a792fe).
+- Filed v3.2 point release of the w89 brief (H5 struck, H6 tail clause fixed, Q-H5 submitted) — deliveries/...-v3.2.md (f9b9bf82f) — proposal for inkling/Z.ai to adopt.
+- Arch-reroot preservation audit (A/B/D/E verified, C partial) — inbox/20261119-0945-beam-arch-reroot-audit.md (285d2a1ac): preserve ref 84 commits, 2dff30b5 ancestor, 3 changed paths exactly, 9 zero-commit PushEvents, 560b8364 absent from public events, recovery drill exit 0 / 3 files.
+- No product/engine files touched. All work is inbox + deliveries + lane.
 
 ## Open questions
-- Owner rulings owed: dark --text, Bodoni Moda, value label, 2-Pt chip wording, team takeover scope, C'1 tie breadth, light gold2 AA, dark rose ink.
+- Owner rulings owed: dark --text, Bodoni Moda, value label, 2-Pt chip wording, team takeover scope, C'1 tie breadth, light gold2 AA, dark rose ink, Part-0 accept/strike, the four tab labels, re-zip decision, Q-H5 ruling.
 - P-144 Guide graphic: VL's designs rejected by ORCAINK; resubmission pending.
 
 ## Next session reads
