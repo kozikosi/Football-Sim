@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-144 Design C — Ranked List + Flex Paths</title>
+<style>
+  :root {
+    --bg: #fdf2f6;
+    --panel: #ffffff;
+    --panel2: #f9e9f0;
+    --text: #8e5566;
+    --sub: #885261;
+    --gold2: #e6c67d;
+    --goldm: #ad7f2e;
+    --gold3: #9a6b1f;
+    --hairline: #c8a48f;
+    --ink: #3a2a14;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; height: 100%; }
+  body { padding: 16px; line-height: 1.5; }
+  header { text-align: center; margin-bottom: 20px; }
+  h1 { font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; font-weight: 600; letter-spacing: 0.22em; color: var(--gold2); font-size: 1.75rem; background: linear-gradient(92deg, var(--gold3), var(--goldm) 24%, var(--gold2) 42%, var(--goldm) 58%, var(--gold2) 72%, var(--goldm) 88%, var(--gold3)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: cpshine 9s linear infinite; }
+  @keyframes cpshine { to { background-position: 260% 0; } }
+  .subtitle { color: var(--sub); font-size: 0.9rem; margin-top: 6px; }
+
+  /* Ranked list with flex-path annotations on the right */
+  .list-wrap { max-width: 700px; margin: 0 auto; }
+  .list-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--sub); text-transform: uppercase; margin-bottom: 12px; font-weight: 700; text-align: center; }
+  .list { display: flex; flex-direction: column; gap: 10px; }
+  .row { display: flex; align-items: center; gap: 12px; background: var(--panel); border: 1px solid var(--hairline); border-radius: 10px; padding: 9px 14px; transition: all 0.15s; }
+  .row.rank1 { border-color: var(--goldm); background: linear-gradient(135deg, #fff7f0, #ffffff); box-shadow: 0 4px 14px rgba(166,127,46,0.12); }
+  .row:hover { transform: translateY(-1px); box-shadow: 0 6px 18px rgba(0,0,0,0.08); }
+  .rank { width: 26px; height: 26px; border-radius: 50%; background: var(--goldm); color: #2c1e0c; font-size: 0.75rem; font-weight: 800; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid var(--panel); }
+  .pos-name { font-weight: 700; font-size: 0.9rem; color: var(--ink); min-width: 48px; flex-shrink: 0; }
+  .group { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--sub); margin-left: 6px; flex-shrink: 0; }
+  .value { font-variant-numeric: tabular-nums; font-weight: 700; color: var(--sub); margin-left: auto; flex-shrink: 0; }
+  .flex-chip { font-size: 0.68rem; padding: 2px 8px; border-radius: 999px; background: rgba(166,127,46,0.1); color: var(--goldm); border: 1px solid rgba(166,127,46,0.25); margin-left: 10px; white-space: nowrap; flex-shrink: 0; }
+  .flex-chip.free { background: rgba(136,82,97,0.1); color: var(--sub); border-color: rgba(136,82,97,0.25); }
+  .flex-chip .to { font-weight: 800; }
+  .flex-chip.none { opacity: 0.5; }
+
+  .flex-legend { margin-top: 18px; display: flex; gap: 18px; justify-content: center; font-size: 0.75rem; color: var(--sub); flex-wrap: wrap; }
+  .leg-item { display: flex; align-items: center; gap: 6px; }
+
+  /* Star-Wars style fading explanations */
+  .crawl { margin-top: 34px; max-width: 700px; margin-left: auto; margin-right: auto; perspective: 400px; }
+  .crawl-inner { position: relative; font-size: 1.05rem; color: var(--gold2); font-weight: 600; transform-origin: 50% 100%; animation: crawl 16s linear infinite; }
+  .crawl > p { text-align: justify; margin-bottom: 22px; line-height: 1.6; text-shadow: 0 0 6px rgba(166,127,46,0.35); }
+  .crawl-q { color: var(--goldm); font-size: 1.1rem; margin-bottom: 10px; text-align: center; font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; }
+  @keyframes crawl { 0% { transform: rotateX(28deg) translateY(0); opacity: 1; } 100% { transform: rotateX(28deg) translateY(-130vh); opacity: 0; } }
+
+  .hint { margin-top: 14px; text-align: center; font-size: 0.75rem; color: var(--sub); }
+
+  @media (max-width: 430px) {
+    body { padding: 10px; }
+    .row { gap: 8px; padding: 8px 12px; }
+    .flex-chip { margin-left: 6px; font-size: 0.62rem; padding: 1px 6px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Where the wins come from</h1>
+  <div class="subtitle">All 28 positions ranked by measured impact — flex options on every row</div>
+</header>
+
+<div class="list-wrap">
+  <div class="list-label">Draft-board depth order (top = most valuable) &nbsp;·&nbsp; chips show where each position can flex, at what win cost</div>
+  <div class="list" id="position-list"></div>
+  <div class="flex-legend">
+    <div class="leg-item"><span class="flex-chip paid">-6 paid</span></div>
+    <div class="leg-item"><span class="flex-chip free">free</span></div>
+    <div class="leg-item"><span style="font-weight:800;color:#ad7f2e">#1</span> top of skilled class</div>
+  </div>
+</div>
+
+<div class="crawl">
+  <div class="crawl-inner">
+    <p class="crawl-q">What is a flex?</p>
+    <p>A flex lets a player line up out of position &mdash; an edge rusher at DT, a safety at nickel, a tight end at receiver. Every flex has a cost in wins: the worse the fit, the bigger the penalty. Free flexes cost nothing; paid flexes show the wins you give up.</p>
+    <p class="crawl-q">Who decides? You do.</p>
+    <p>The board never forces a flex. You see the penalty on every chip, and you choose whether to take it or keep looking. The engine never re-lineups your team on its own &mdash; advice only.</p>
+    <p class="crawl-q">Where the wins come from</p>
+    <p>Wins come from picking the best available player at every slot, not from chasing raw OVR. A QB flexing to FS at -12 only makes sense when no better safety is on the board. The rankings you see are measured impact, not a salary table.</p>
+  </div>
+</div>
+
+<svg height="0" style="position:absolute;width:0;height:0;overflow:hidden;">
+  <defs>
+    <marker id="flhead" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#ad7f2e"/>
+    </marker>
+    <marker id="flhead2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#885261" opacity="0.6"/>
+    </marker>
+  </defs>
+</svg>
+
+<script>
+// Positions: rank, name, group, measured value, flex targets {to, pen}
+const positions = [
+  { rank: 1, name: 'QB', group: 'Offense', val: 1000, flex: [{to:'FS', pen: 12}, {to:'WR', pen: 6}] },
+  { rank: 2, name: 'CB1', group: 'Defense', val: 550, flex: [{to:'OLB', pen: 4}, {to:'MIKE', pen: 6}] },
+  { rank: 3, name: 'DE1', group: 'Defense', val: 500, flex: [{to:'OLB', pen: 0}, {to:'WILL', pen: 0}, {to:'SAM', pen: 0}] },
+  { rank: 4, name: 'WR1', group: 'Offense', val: 450, flex: [{to:'CB', pen: 6}, {to:'FS', pen: 6}, {to:'NICKEL', pen: 6}, {to:'DIME', pen: 6}] },
+  { rank: 5, name: 'CB2', group: 'Defense', val: 450, flex: [{to:'OLB', pen: 4}, {to:'MIKE', pen: 6}] },
+  { rank: 6, name: 'DE2', group: 'Defense', val: 450, flex: [{to:'DT', pen: 6}] },
+  { rank: 7, name: 'OT1', group: 'Offense', val: 400, flex: [{to:'OG', pen: 6}, {to:'RB', pen: 6}] },
+  { rank: 8, name: 'OG1', group: 'Offense', val: 350, flex: [{to:'C', pen: 6}, {to:'RB', pen: 6}] },
+  { rank: 9, name: 'DT1', group: 'Defense', val: 350, flex: [{to:'C', pen: 6}] },
+  { rank: 10, name: 'TE1', group: 'Offense', val: 300, flex: [{to:'WR', pen: 2}, {to:'RB', pen: 4}, {to:'C', pen: 6}] },
+  { rank: 11, name: 'MIKE', group: 'Defense', val: 350, flex: [{to:'DT', pen: 4}, {to:'SS', pen: 2}] },
+  { rank: 12, name: 'RB1', group: 'Offense', val: 250, flex: [{to:'FB', pen: 0}] },
+  { rank: 13, name: 'FB', group: 'Offense', val: 300, flex: [{to:'RB', pen: 2}, {to:'TE', pen: 2}] },
+  { rank: 14, name: 'C', group: 'Offense', val: 350, flex: [{to:'OG', pen: 2}] },
+  { rank: 15, name: 'SS', group: 'Defense', val: 350, flex: [{to:'NICKEL', pen: 0}, {to:'FS', pen: 2}, {to:'OLB', pen: 2}, {to:'WILL', pen: 2}, {to:'SAM', pen: 2}] },
+  { rank: 16, name: 'OT2', group: 'Offense', val: 400, flex: [{to:'OG', pen: 6}, {to:'RB', pen: 6}] },
+  { rank: 17, name: 'OG2', group: 'Offense', val: 350, flex: [{to:'C', pen: 6}, {to:'RB', pen: 6}] },
+  { rank: 18, name: 'DT2', group: 'Defense', val: 300, flex: [] },
+  { rank: 19, name: 'TE2', group: 'Offense', val: 50, flex: [] },
+  { rank: 20, name: 'WILL', group: 'Defense', val: 300, flex: [{to:'FS', pen: 6}, {to:'SS', pen: 2}] },
+  { rank: 21, name: 'K', group: 'Special', val: 300, flex: [{to:'P', pen: 0}] },
+  { rank: 22, name: 'WR2', group: 'Offense', val: 250, flex: [] },
+  { rank: 23, name: 'DT3', group: 'Defense', val: 300, flex: [] },
+  { rank: 24, name: 'CB3', group: 'Defense', val: 350, flex: [] },
+  { rank: 25, name: 'FS', group: 'Defense', val: 350, flex: [] },
+  { rank: 26, name: 'TE3', group: 'Offense', val: 50, flex: [] },
+  { rank: 27, name: 'RB2', group: 'Offense', val: 100, flex: [] },
+  { rank: 28, name: 'P', group: 'Special', val: 300, flex: [{to:'K', pen: 0}] }
+];
+
+const list = document.getElementById('position-list');
+positions.forEach(p => {
+  const row = document.createElement('div');
+  row.className = `row${p.rank === 1 ? ' rank1' : ''}`;
+  const flexHtml = p.flex.length > 0
+    ? p.flex.map(f => `<span class="flex-chip${f.pen === 0 ? ' free' : ' paid'}"><span class="to">${f.to}</span> ${f.pen === 0 ? 'free' : '-' + f.pen}</span>`).join('')
+    : '<span class="flex-chip none">none</span>';
+  row.innerHTML = `
+    <div class="rank">#${p.rank}</div>
+    <div class="pos-name">${p.name}</div>
+    <div class="group">${p.group}</div>
+    <div class="value">${p.val}</div>
+    ${flexHtml}
+  `;
+  list.appendChild(row);
+});
+</script>
+</body>
+</html>

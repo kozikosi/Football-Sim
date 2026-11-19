@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-144 Design A — The Flex Tree</title>
+<style>
+  :root {
+    --bg: #fdf2f6;
+    --panel: #ffffff;
+    --panel2: #f9e9f0;
+    --text: #8e5566;
+    --sub: #885261;
+    --gold2: #e6c67d;
+    --goldm: #ad7f2e;
+    --gold3: #9a6b1f;
+    --hairline: #c8a48f;
+    --ink: #3a2a14;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; height: 100%; }
+  body { padding: 16px; line-height: 1.5; }
+  header { text-align: center; margin-bottom: 24px; }
+  h1 { font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; font-weight: 600; letter-spacing: 0.22em; color: var(--gold2); font-size: 1.75rem; background: linear-gradient(92deg, var(--gold3), var(--goldm) 24%, var(--gold2) 42%, var(--goldm) 58%, var(--gold2) 72%, var(--goldm) 88%, var(--gold3)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: cpshine 9s linear infinite; }
+  @keyframes cpshine { to { background-position: 260% 0; } }
+  .subtitle { color: var(--sub); font-size: 0.9rem; margin-top: 6px; }
+
+  /* The Flex Tree — vertical depth-chart tree with flex-path connectors */
+  .tree-wrap { max-width: 900px; margin: 0 auto; position: relative; }
+  .tree-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--sub); text-transform: uppercase; margin-bottom: 8px; font-weight: 700; }
+  .tree { display: flex; flex-direction: column; gap: 34px; }
+  .level { position: relative; display: flex; justify-content: center; gap: 22px; flex-wrap: wrap; }
+  .level::before { content: ''; position: absolute; left: 0; right: 0; top: 34px; height: 2px; background: var(--hairline); z-index: 0; }
+  .pos { position: relative; z-index: 1; background: var(--panel); border: 1px solid var(--hairline); border-radius: 10px; padding: 8px 12px; min-width: 90px; text-align: center; color: var(--ink); font-weight: 700; font-size: 0.88rem; box-shadow: 0 4px 12px rgba(0,0,0,0.06); }
+  .pos.rank1 { border-color: var(--goldm); background: linear-gradient(135deg, #fff7f0, #ffffff); }
+  .pos.rank2 { border-color: var(--gold2); }
+  .rank { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); width: 18px; height: 18px; border-radius: 50%; background: var(--goldm); color: #2c1e0c; font-size: 0.7rem; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 2px solid var(--panel); }
+  .penalty { position: absolute; top: -6px; right: -6px; width: 14px; height: 14px; border-radius: 50%; background: var(--gold2); color: #2c1e0c; font-size: 0.6rem; font-weight: 800; display: flex; align-items: center; justify-content: center; border: 1.5px solid var(--panel); }
+  .flex-arrow { position: absolute; z-index: 0; stroke: var(--hairline); stroke-width: 2; fill: none; marker-end: url(#flexhead); stroke-dasharray: 6; }
+  .flex-arrow.paid { stroke: var(--goldm); stroke-dasharray: 0; }
+  .flex-arrow.free { stroke: var(--sub); stroke-dasharray: 4 3; opacity: 0.7; }
+
+  .flex-legend { margin-top: 20px; display: flex; gap: 18px; justify-content: center; font-size: 0.75rem; color: var(--sub); flex-wrap: wrap; }
+  .leg-item { display: flex; align-items: center; gap: 6px; }
+
+  /* Star-Wars style fading explanations */
+  .crawl { margin-top: 40px; max-width: 700px; margin-left: auto; margin-right: auto; perspective: 400px; }
+  .crawl-inner { position: relative; font-size: 1.05rem; color: var(--gold2); font-weight: 600; transform-origin: 50% 100%; animation: crawl 16s linear infinite; }
+  .crawl > p { text-align: justify; margin-bottom: 24px; line-height: 1.6; text-shadow: 0 0 6px rgba(166,127,46,0.35); }
+  .crawl-q { color: var(--goldm); font-size: 1.1rem; margin-bottom: 10px; text-align: center; font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; }
+  @keyframes crawl { 0% { transform: rotateX(28deg) translateY(0); opacity: 1; } 100% { transform: rotateX(28deg) translateY(-130vh); opacity: 0; } }
+
+  .hint { margin-top: 16px; text-align: center; font-size: 0.75rem; color: var(--sub); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Where the wins come from</h1>
+  <div class="subtitle">Every position ranked — with the flex paths that turn depth into value</div>
+</header>
+
+<div class="tree-wrap">
+  <div class="tree-label">Draft-board depth order &rarr; flex paths (penalty in wins)</div>
+  <svg id="tree-svg" class="tree-svg" width="900" height="520" style="display:block; margin: 0 auto;"></svg>
+  <div class="flex-legend">
+    <div class="leg-item"><svg width="12" height="12"><line x1="0" y1="6" x2="10" y2="6" stroke="#ad7f2e" stroke-width="2" marker-end="url(#fh)"/></svg> paid flex &nbsp;</div>
+    <div class="leg-item"><svg width="12" height="12"><line x1="0" y1="6" x2="10" y2="6" stroke="#885261" stroke-width="2" stroke-dasharray="4 3" marker-end="url(#fh2)"/></svg> free flex &nbsp;</div>
+    <div class="leg-item"><span class="rank">1</span> top of skilled class</div>
+  </div>
+</div>
+
+<div class="crawl">
+  <div class="crawl-inner">
+    <p class="crawl-q">What is a flex?</p>
+    <p>A flex lets a player line up out of position &mdash; an edge rusher at DT, a safety at nickel, a tight end at receiver. Every flex has a cost in wins: the worse the fit, the bigger the penalty. Free flexes cost nothing; paid flexes show the wins you give up.</p>
+    <p class="crawl-q">Who decides? You do.</p>
+    <p>The board never forces a flex. You see the penalty on every chip, and you choose whether to take it or keep looking. The engine never re-lineups your team on its own &mdash; advice only.</p>
+    <p class="crawl-q">Where the wins come from</p>
+    <p>Wins come from picking the best available player at every slot, not from chasing raw OVR. A QB flexing to FS at -12 only makes sense when no better safety is on the board. The rankings you see are measured impact, not a salary table.</p>
+  </div>
+</div>
+
+<svg height="0" style="position:absolute;width:0;height:0;overflow:hidden;">
+  <defs>
+    <marker id="flexhead" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#ad7f2e"/>
+    </marker>
+    <marker id="fh2" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <polygon points="0,0 6,3 0,6" fill="#885261" opacity="0.7"/>
+    </marker>
+  </defs>
+</svg>
+
+<script>
+// Positions in draft-board depth order with measured rank and flex penalties
+const positions = [
+  { id: 'qb', name: 'QB', rank: 1, group: 'offense', flexTo: [{ to: 'fs', pen: 12 }, { to: 'wr', pen: 6 }] },
+  { id: 'cb1', name: 'CB1', rank: 2, group: 'defense', flexTo: [{ to: 'olb', pen: 4 }, { to: 'mike', pen: 6 }] },
+  { id: 'de1', name: 'DE1', rank: 3, group: 'defense', flexTo: [{ to: 'olb', pen: 0 }, { to: 'will', pen: 0 }, { to: 'sam', pen: 0 }] },
+  { id: 'wr1', name: 'WR1', rank: 4, group: 'offense', flexTo: [{ to: 'cb', pen: 6 }, { to: 'fs', pen: 6 }, { to: 'nickel', pen: 6 }, { to: 'dime', pen: 6 }] },
+  { id: 'cb2', name: 'CB2', rank: 5, group: 'defense', flexTo: [{ to: 'olb', pen: 4 }, { to: 'mike', pen: 6 }] },
+  { id: 'de2', name: 'DE2', rank: 6, group: 'defense', flexTo: [{ to: 'dt', pen: 6 }] },
+  { id: 'ot1', name: 'OT1', rank: 7, group: 'offense', flexTo: [{ to: 'og', pen: 6 }, { to: 'rb', pen: 6 }] },
+  { id: 'og1', name: 'OG1', rank: 8, group: 'offense', flexTo: [{ to: 'c', pen: 6 }, { to: 'rb', pen: 6 }] },
+  { id: 'dt1', name: 'DT1', rank: 9, group: 'defense', flexTo: [{ to: 'c', pen: 6 }] },
+  { id: 'te1', name: 'TE1', rank: 10, group: 'offense', flexTo: [{ to: 'wr', pen: 2 }, { to: 'rb', pen: 4 }, { to: 'c', pen: 6 }] },
+  { id: 'mike', name: 'MIKE', rank: 11, group: 'defense', flexTo: [{ to: 'dt', pen: 4 }, { to: 'ss', pen: 2 }] },
+  { id: 'rb1', name: 'RB1', rank: 12, group: 'offense', flexTo: [{ to: 'fb', pen: 0 }] },
+  { id: 'fb', name: 'FB', rank: 13, group: 'offense', flexTo: [{ to: 'rb', pen: 2 }, { to: 'te', pen: 2 }] },
+  { id: 'c', name: 'C', rank: 14, group: 'offense', flexTo: [{ to: 'og', pen: 2 }] },
+  { id: 'ss', name: 'SS', rank: 15, group: 'defense', flexTo: [{ to: 'nickel', pen: 0 }, { to: 'fs', pen: 2 }, { to: 'olb', pen: 2 }, { to: 'will', pen: 2 }, { to: 'sam', pen: 2 }] },
+  { id: 'ot2', name: 'OT2', rank: 16, group: 'offense', flexTo: [{ to: 'og', pen: 6 }, { to: 'rb', pen: 6 }] },
+  { id: 'og2', name: 'OG2', rank: 17, group: 'offense', flexTo: [{ to: 'c', pen: 6 }, { to: 'rb', pen: 6 }] },
+  { id: 'dt2', name: 'DT2', rank: 18, group: 'defense', flexTo: [] },
+  { id: 'te2', name: 'TE2', rank: 19, group: 'offense', flexTo: [] },
+  { id: 'will', name: 'WILL', rank: 20, group: 'defense', flexTo: [{ to: 'fs', pen: 6 }, { to: 'ss', pen: 2 }] },
+  { id: 'k', name: 'K', rank: 21, group: 'special', flexTo: [{ to: 'p', pen: 0 }] },
+  { id: 'wr2', name: 'WR2', rank: 22, group: 'offense', flexTo: [] },
+  { id: 'dt3', name: 'DT3', rank: 23, group: 'defense', flexTo: [] },
+  { id: 'cb3', name: 'CB3', rank: 24, group: 'defense', flexTo: [] },
+  { id: 'fs', name: 'FS', rank: 25, group: 'defense', flexTo: [] },
+  { id: 'te3', name: 'TE3', rank: 26, group: 'offense', flexTo: [] },
+  { id: 'rb2', name: 'RB2', rank: 27, group: 'offense', flexTo: [] },
+  { id: 'p', name: 'P', rank: 28, group: 'special', flexTo: [{ to: 'k', pen: 0 }] }
+];
+
+const svg = document.getElementById('tree-svg');
+const levelY = [80, 150, 220, 290, 360, 430, 500];
+const perLevel = 4;
+
+positions.forEach((p, i) => {
+  const level = Math.min(i / perLevel | 0, levelY.length - 1);
+  const idxInLevel = i % perLevel;
+  const x = 80 + idxInLevel * 210;
+  const y = levelY[level];
+  const rankBox = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+  rankBox.setAttribute('x', x - 50);
+  rankBox.setAttribute('y', y - 24);
+  rankBox.setAttribute('width', 100);
+  rankBox.setAttribute('height', 48);
+  rankBox.innerHTML = `
+    <div style="font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.82rem; color: #3a2a14;">
+      <div style="font-weight: 800; ${p.rank <= 3 ? 'color: #ad7f2e;' : ''}">${p.name}</div>
+      <div style="font-size: 0.62rem; color: #885261;">rank ${p.rank}</div>
+    </div>
+  `;
+  svg.appendChild(rankBox);
+
+  // flex arrows to targets below
+  p.flexTo.forEach(f => {
+    const target = positions.find(t => t.id === f.to);
+    if (!target) return;
+    const tLevel = Math.min(positions.indexOf(target) / perLevel | 0, levelY.length - 1);
+    if (tLevel <= level) return; // only draw downward
+    const tIdx = positions.indexOf(target) % perLevel;
+    const tx = 80 + tIdx * 210 + 50;
+    const ty = levelY[tLevel] - 24;
+    const line = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const d = `M ${x + 50} ${y + 24} Q ${x + 50} ${y + 40} ${tx} ${ty}`;
+    line.setAttribute('d', d);
+    line.setAttribute('class', `flex-arrow ${f.pen === 0 ? 'free' : 'paid'}`);
+    svg.insertBefore(line, svg.firstChild);
+    if (f.pen > 0) {
+      const lab = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject');
+      lab.setAttribute('x', (x + tx) / 2 - 20);
+      lab.setAttribute('y', (y + ty) / 2 - 10);
+      lab.setAttribute('width', 40);
+      lab.setAttribute('height', 20);
+      lab.innerHTML = `<div style="font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.58rem; font-weight: 800; color: #ad7f2e; text-align: center; background: rgba(255,255,255,0.85); border-radius: 3px; padding: 1px 2px;">-${f.pen}</div>`;
+      svg.appendChild(lab);
+    }
+  });
+});
+</script>
+</body>
+</html>

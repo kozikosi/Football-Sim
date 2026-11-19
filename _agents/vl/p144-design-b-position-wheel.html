@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>P-144 Design B — Position Wheel</title>
+<style>
+  :root {
+    --bg: #fdf2f6;
+    --panel: #ffffff;
+    --panel2: #f9e9f0;
+    --text: #8e5566;
+    --sub: #885261;
+    --gold2: #e6c67d;
+    --goldm: #ad7f2e;
+    --gold3: #9a6b1f;
+    --hairline: #c8a48f;
+    --ink: #3a2a14;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: ui-sans-serif, system-ui, -apple-system, sans-serif; height: 100%; }
+  body { padding: 16px; line-height: 1.5; }
+  header { text-align: center; margin-bottom: 20px; }
+  h1 { font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; font-weight: 600; letter-spacing: 0.22em; color: var(--gold2); font-size: 1.75rem; background: linear-gradient(92deg, var(--gold3), var(--goldm) 24%, var(--gold2) 42%, var(--goldm) 58%, var(--gold2) 72%, var(--goldm) 88%, var(--gold3)); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; animation: cpshine 9s linear infinite; }
+  @keyframes cpshine { to { background-position: 260% 0; } }
+  .subtitle { color: var(--sub); font-size: 0.9rem; margin-top: 6px; }
+
+  /* Position Wheel — radial layout, groups as rings, flex arrows as chords */
+  .wheel-wrap { max-width: 860px; margin: 0 auto; position: relative; }
+  .wheel-label { font-size: 0.75rem; letter-spacing: 0.1em; color: var(--sub); text-transform: uppercase; margin-bottom: 10px; font-weight: 700; }
+  .wheel { width: 620px; height: 620px; margin: 0 auto; position: relative; }
+  .wheel-svg { width: 100%; height: 100%; display: block; }
+  .node { cursor: default; }
+  .node circle { stroke: var(--hairline); stroke-width: 1.5; fill: var(--panel); transition: fill 0.2s; }
+  .node.rank1 circle { stroke: var(--goldm); stroke-width: 2.5; fill: #fff7f0; }
+  .node text { font-family: ui-sans-serif, system-ui, sans-serif; font-size: 0.62rem; font-weight: 800; fill: var(--ink); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+  .node .rank { font-size: 0.5rem; fill: var(--sub); }
+  .flex-path { fill: none; stroke-width: 1.5; marker-end: url(#fwhead); transition: stroke 0.2s; }
+  .flex-path.paid { stroke: var(--goldm); }
+  .flex-path.free { stroke: var(--sub); stroke-dasharray: 4 3; opacity: 0.6; }
+  .flex-path:hover { stroke: var(--gold3); stroke-width: 2.5; opacity: 1; }
+
+  .wheel-legend { margin-top: 16px; display: flex; gap: 18px; justify-content: center; font-size: 0.75rem; color: var(--sub); flex-wrap: wrap; }
+  .leg-item { display: flex; align-items: center; gap: 6px; }
+
+  /* Star-Wars style fading explanations */
+  .crawl { margin-top: 34px; max-width: 700px; margin-left: auto; margin-right: auto; perspective: 400px; }
+  .crawl-inner { position: relative; font-size: 1.05rem; color: var(--gold2); font-weight: 600; transform-origin: 50% 100%; animation: crawl 16s linear infinite; }
+  .crawl > p { text-align: justify; margin-bottom: 22px; line-height: 1.6; text-shadow: 0 0 6px rgba(166,127,46,0.35); }
+  .crawl-q { color: var(--goldm); font-size: 1.1rem; margin-bottom: 10px; text-align: center; font-family: 'Bodoni Moda', Didot, 'Bodoni MT', Playfair Display, Georgia, serif; }
+  @keyframes crawl { 0% { transform: rotateX(28deg) translateY(0); opacity: 1; } 100% { transform: rotateX(28deg) translateY(-130vh); opacity: 0; } }
+
+  .hint { margin-top: 14px; text-align: center; font-size: 0.75rem; color: var(--sub); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Who decides? You do</h1>
+  <div class="subtitle">Every position on one wheel — chords show where each can flex, at what cost</div>
+</header>
+
+<div class="wheel-wrap">
+  <div class="wheel-label">Rank &rarr; distance from center &nbsp;·&nbsp; group &rarr; ring color &nbsp;·&nbsp; chord &rarr; flex path (penalty in wins)</div>
+  <svg class="wheel-svg" viewBox="0 0 620 620">
+    <defs>
+      <marker id="fwhead" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0,0 6,3.5 0,7" fill="#ad7f2e"/>
+      </marker>
+      <marker id="fwhead2" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+        <polygon points="0,0 6,3.5 0,7" fill="#885261" opacity="0.6"/>
+      </marker>
+    </defs>
+    <g class="wheel-group"></g>
+  </svg>
+  <div class="wheel-legend">
+    <div class="leg-item"><circle r="4" fill="#ffffff" stroke="#ad7f2e" stroke-width="1.5"/> paid flex</div>
+    <div class="leg-item"><circle r="4" fill="none" stroke="#885261" stroke-width="1.5" stroke-dasharray="4 3"/> free flex</div>
+    <div class="leg-item"><span style="font-weight:800;color:#ad7f2e">rank 1</span> = top of skilled class</div>
+  </div>
+</div>
+
+<div class="crawl">
+  <div class="crawl-inner">
+    <p class="crawl-q">What is a flex?</p>
+    <p>A flex lets a player line up out of position &mdash; an edge rusher at DT, a safety at nickel, a tight end at receiver. Every flex has a cost in wins: the worse the fit, the bigger the penalty. Free flexes cost nothing; paid flexes show the wins you give up.</p>
+    <p class="crawl-q">Who decides? You do.</p>
+    <p>The board never forces a flex. You see the penalty on every chip, and you choose whether to take it or keep looking. The engine never re-lineups your team on its own &mdash; advice only.</p>
+    <p class="crawl-q">Where the wins come from</p>
+    <p>Wins come from picking the best available player at every slot, not from chasing raw OVR. A QB flexing to FS at -12 only makes sense when no better safety is on the board. The rankings you see are measured impact, not a salary table.</p>
+  </div>
+</div>
+
+<script>
+// Positions: rank (1-28), name, group, measured value, flex targets {to, pen}
+const positions = [
+  { rank: 1, id: 'qb', name: 'QB', group: 'offense', val: 1000, flex: [{to:'fs',pen:12},{to:'wr',pen:6}] },
+  { rank: 2, id: 'cb1', name: 'CB1', group: 'defense', val: 550, flex: [{to:'olb',pen:4},{to:'mike',pen:6}] },
+  { rank: 3, id: 'de1', name: 'DE1', group: 'defense', val: 500, flex: [{to:'olb',pen:0},{to:'will',pen:0},{to:'sam',pen:0}] },
+  { rank: 4, id: 'wr1', name: 'WR1', group: 'offense', val: 450, flex: [{to:'cb',pen:6},{to:'fs',pen:6},{to:'nickel',pen:6},{to:'dime',pen:6}] },
+  { rank: 5, id: 'cb2', name: 'CB2', group: 'defense', val: 450, flex: [{to:'olb',pen:4},{to:'mike',pen:6}] },
+  { rank: 6, id: 'de2', name: 'DE2', group: 'defense', val: 450, flex: [{to:'dt',pen:6}] },
+  { rank: 7, id: 'ot1', name: 'OT1', group: 'offense', val: 400, flex: [{to:'og',pen:6},{to:'rb',pen:6}] },
+  { rank: 8, id: 'og1', name: 'OG1', group: 'offense', val: 350, flex: [{to:'c',pen:6},{to:'rb',pen:6}] },
+  { rank: 9, id: 'dt1', name: 'DT1', group: 'defense', val: 350, flex: [{to:'c',pen:6}] },
+  { rank: 10, id: 'te1', name: 'TE1', group: 'offense', val: 300, flex: [{to:'wr',pen:2},{to:'rb',pen:4},{to:'c',pen:6}] },
+  { rank: 11, id: 'mike', name: 'MIKE', group: 'defense', val: 350, flex: [{to:'dt',pen:4},{to:'ss',pen:2}] },
+  { rank: 12, id: 'rb1', name: 'RB1', group: 'offense', val: 250, flex: [{to:'fb',pen:0}] },
+  { rank: 13, id: 'fb', name: 'FB', group: 'offense', val: 300, flex: [{to:'rb',pen:2},{to:'te',pen:2}] },
+  { rank: 14, id: 'c', name: 'C', group: 'offense', val: 350, flex: [{to:'og',pen:2}] },
+  { rank: 15, id: 'ss', name: 'SS', group: 'defense', val: 350, flex: [{to:'nickel',pen:0},{to:'fs',pen:2},{to:'olb',pen:2},{to:'will',pen:2},{to:'sam',pen:2}] },
+  { rank: 16, id: 'ot2', name: 'OT2', group: 'offense', val: 400, flex: [{to:'og',pen:6},{to:'rb',pen:6}] },
+  { rank: 17, id: 'og2', name: 'OG2', group: 'offense', val: 350, flex: [{to:'c',pen:6},{to:'rb',pen:6}] },
+  { rank: 18, id: 'dt2', name: 'DT2', group: 'defense', val: 300, flex: [] },
+  { rank: 19, id: 'te2', name: 'TE2', group: 'offense', val: 50, flex: [] },
+  { rank: 20, id: 'will', name: 'WILL', group: 'defense', val: 300, flex: [{to:'fs',pen:6},{to:'ss',pen:2}] },
+  { rank: 21, id: 'k', name: 'K', group: 'special', val: 300, flex: [{to:'p',pen:0}] },
+  { rank: 22, id: 'wr2', name: 'WR2', group: 'offense', val: 250, flex: [] },
+  { rank: 23, id: 'dt3', name: 'DT3', group: 'defense', val: 300, flex: [] },
+  { rank: 24, id: 'cb3', name: 'CB3', group: 'defense', val: 350, flex: [] },
+  { rank: 25, id: 'fs', name: 'FS', group: 'defense', val: 350, flex: [] },
+  { rank: 26, id: 'te3', name: 'TE3', group: 'offense', val: 50, flex: [] },
+  { rank: 27, id: 'rb2', name: 'RB2', group: 'offense', val: 100, flex: [] },
+  { rank: 28, id: 'p', name: 'P', group: 'special', val: 300, flex: [{to:'k',pen:0}] }
+];
+
+const groupColors = { offense: '#e6c67d', defense: '#ad7f2e', special: '#885261' };
+const cx = 310, cy = 310, outerR = 230;
+const byId = {}; positions.forEach(p => byId[p.id] = p);
+
+const svg = document.querySelector('.wheel-group');
+
+// Draw group rings
+const groups = ['offense', 'defense', 'special'];
+groups.forEach((g, gi) => {
+  const r = outerR - gi * 60;
+  const ring = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  ring.setAttribute('cx', cx); ring.setAttribute('cy', cy); ring.setAttribute('r', r);
+  ring.setAttribute('fill', 'none'); ring.setAttribute('stroke', groupColors[g]);
+  ring.setAttribute('stroke-width', '1'); ring.setAttribute('opacity', '0.15');
+  svg.appendChild(ring);
+  // group label
+  const gl = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  gl.setAttribute('x', cx); gl.setAttribute('y', cy - r - 8);
+  gl.setAttribute('text-anchor', 'middle'); gl.setAttribute('font-family', 'ui-sans-serif, system-ui, sans-serif');
+  gl.setAttribute('font-size', '0.68rem'); gl.setAttribute('font-weight', '800'); gl.setAttribute('fill', groupColors[g]);
+  gl.textContent = g.charAt(0).toUpperCase() + g.slice(1);
+  svg.appendChild(gl);
+});
+
+// Draw nodes
+positions.forEach(p => {
+  const frac = (p.rank - 1) / (positions.length - 1);
+  const r = 90 + frac * (outerR - 90);
+  const angle = (p.rank - 1) * (2 * Math.PI / positions.length) - Math.PI / 2;
+  const x = cx + r * Math.cos(angle);
+  const y = cy + r * Math.sin(angle);
+
+  const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+  g.setAttribute('class', `node ${p.rank === 1 ? 'rank1' : ''}`);
+  g.setAttribute('transform', `translate(${x},${y})`);
+  const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+  circle.setAttribute('r', 16);
+  circle.setAttribute('fill', p.rank === 1 ? '#fff7f0' : 'var(--panel)');
+  circle.setAttribute('stroke', p.rank === 1 ? 'var(--goldm)' : 'var(--hairline)');
+  circle.setAttribute('stroke-width', p.rank === 1 ? '2.5' : '1.5');
+  g.appendChild(circle);
+  const t = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  t.textContent = p.name;
+  g.appendChild(t);
+  const rt = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+  rt.setAttribute('class', 'rank'); rt.textContent = '#' + p.rank;
+  g.appendChild(rt);
+  svg.appendChild(g);
+
+  // Store position for chord drawing
+  p.x = x; p.y = y;
+});
+
+// Draw flex chords (each source -> target, only once)
+positions.forEach(p => {
+  p.flex.forEach(f => {
+    const target = byId[f.to];
+    if (!target || target.x === undefined) return;
+    // avoid duplicate: only draw if source rank < target rank
+    if (p.rank >= target.rank) return;
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    const midX = (p.x + target.x) / 2;
+    const midY = (p.y + target.y) / 2;
+    const dist = Math.hypot(target.x - p.x, target.y - p.y);
+    const cp = dist * 0.35;
+    const d = `M ${p.x} ${p.y} Q ${midX + (p.y - target.y) * 0.25} ${midY + (target.x - p.x) * 0.25} ${target.x} ${target.y}`;
+    path.setAttribute('d', d);
+    path.setAttribute('class', `flex-path ${f.pen === 0 ? 'free' : 'paid'}`);
+    svg.insertBefore(path, svg.firstChild);
+    // penalty label
+    if (f.pen > 0) {
+      const lab = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+      lab.setAttribute('x', midX); lab.setAttribute('y', midY - 4);
+      lab.setAttribute('text-anchor', 'middle'); lab.setAttribute('font-family', 'ui-sans-serif, system-ui, sans-serif');
+      lab.setAttribute('font-size', '0.5rem'); lab.setAttribute('font-weight', '800');
+      lab.setAttribute('fill', 'var(--goldm)');
+      lab.setAttribute('background', 'rgba(255,255,255,0.8)');
+      lab.textContent = '-' + f.pen;
+      svg.appendChild(lab);
+    }
+  });
+});
+</script>
+</body>
+</html>
