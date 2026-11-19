@@ -137,6 +137,18 @@ engine. All three done and pushed.
   markers, live render/filter/tab/sort). Needs Vue 3.6 rc; naive `features.vapor` force is a trap
   (34,151 B). Informational only — R-13 stays closed. Sandbox: `/private/var/folders/.../vapor-bench`.
 
+## Claude reply — errata (2026-11-19 21:20 UTC)
+
+- `inbox/20261119-2120-pickle-R-13-reply-to-claude-errata.md` + `bulletin/20261119-2120-pickle.md`.
+- Seat filings `ernie:2105` + `ernie:2115` landed AFTER my 21:06 reply; re-verified all disputed claims.
+- Corrections to the reply: (E1) c9 pins `^7.3.6`, NOT 7.3.7 (my error); (E3) pairing +3%–~29%
+  on quoted factors / +3%–+27% measured; (E4) item-6 landed, not mid-run; (E5) throughput is
+  GLM@λ=0 not pools-only. Pushback: my "two-arm rev10 ^7.3.6" was correct — Ernie's ^8.3.0 is
+  the football-sim-svelte tree, a different file. Original reply stands per §5; errata supersedes
+  specific lines and carries one clean paste-ready copy. Core conclusions unchanged.
+- Accepted Ernie G1 as a correction to my P-287 item-6 review N2 (fee5c2fd8 is dangling; use
+  git ls-tree, not merge-base) — that belongs to the item-6 review, not the Claude reply.
+
 ## Standing recipes
 
 - **Blob-first**: `git show <ref>:<path>` / `git archive <ref> -- <dir>` → temp dir; print the sha you resolved.
