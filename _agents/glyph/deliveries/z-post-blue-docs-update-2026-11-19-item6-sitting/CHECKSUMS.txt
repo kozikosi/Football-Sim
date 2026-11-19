@@ -1,0 +1,13 @@
+3ba1e07e521a30d8f6dced041d331f4e  UPDATE-README.md
+e52c0ddb9c31a4e6e05d7fb6a7c433a3  _agents/zai/END-OF-CHAT-ZAI.md
+452e2e6bf784651007feebd46184de23  _agents/zai/START-OF-CHAT-ZAI.md
+abd6203b779c2cca48ed100a0bd9430c  _agents/zai/ZAI.md
+780777214416a2c34c8734f4de8de2bf  deliveries/OWNER-INTAKE-2026-11-19-item6-sitting.md
+4cd81d86da44b3751219134d13a48b12  deliveries/item6/item6-fit2016-2022.json
+4ce2b8e1be1c05049a32574201ebf98e  deliveries/item6/item6-fit2016-2022.txt
+ed6df88ab155a7307a4e1cb431f3ed19  deliveries/item6/item6-fit2023-2025.json
+d6acadec5b672d63817007d47e249eea  deliveries/item6/item6-fit2023-2025.txt
+5419bc50eb41a2d946c5ed596fced54b  deliveries/item6/item6-preflight-2016-2022.json
+dc4b6a53f078366394649b2df7600cde  deliveries/item6/item6-preflight-2023-2025.json
+c1db1fbdb3640a4dd43d0a27acda4c7a  deliveries/item6/zai-item6-command-receipts.log
+dafc05c73c918a88e2690b48e98f9fa4  deliveries/zai-this-sitting-report-2026-11-19.md
