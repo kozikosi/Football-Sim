@@ -113,7 +113,7 @@ this zip: it opens after Blocks A and B are pushed (the Owner relays this zip).
   sentence twice in §5 rule 3 plus a stray blank line; the prepared copy carried it once; the
   three copies differed.
 - **After:** all three copies are byte-identical — sha256
-  `3c0dfd3f4d505ba4e24ead0fec07ee01097faff6ebd16edf5d4c1afc15656bde` — **SUPERSEDED; the measured three-copy sha is 8ef3b18df08f098957e925e184f2abae0ea06d2d369e4f3d09d663ffae381b48 (the cakepanz-9 order's A8b)** — the sentence rides §5
+  `3c0dfd3f4d505ba4e24ead0fec07ee01097faff6ebd16edf5d4c1afc15656bde` — **SUPERSEDED; the measured three-copy sha is 15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec (the cakepanz-9 order's A8b)** — the sentence rides §5
   rule 3 ONCE, and §2 is rewritten for this sitting (MUSE re-files it on `council/muse`).
 
 ## BLOCK B — P-337: the late draft should be simple — BUILT (render layer only)
@@ -296,7 +296,7 @@ whose promise is not either paired or scoped in this table.
   never crash, when its subject is missing) — fixed. Both fixes ride in `batteries/late.battery.mjs`
   (byte-identical ×2 trees) and are covered by the h7b/h16b/h10b receipts.
 - **The MUSE note (the order's §7):** START-OF-CHAT-ZAI.md changed this round — the §2 rewrite the file's
-  own §6 rule orders at the end of every chat; the three copies are byte-identical ×3 (sha 8ef3b18df08f098957e925e184f2abae0ea06d2d369e4f3d09d663ffae381b48);
+  own §6 rule orders at the end of every chat; the three copies are byte-identical ×3 (sha 15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec);
   **MUSE re-files it on `council/muse`** — this paragraph is the explicit tell.
 - The delivered bytes were assembled from the six-branch byte-verified copy of the c8 package (the Owner's
   Desktop folder is not reachable from this sandbox) — the canary set (dist/VERIFY/START-OF-CHAT/flex
@@ -341,7 +341,7 @@ stdout of the tool at the final state, mirrored in `receipts/partH-c9/` and the 
 - **A6 (START §2).** The §5.2 bullet now carries ONE consistent per-tree line (shipped complete /
   prepared open → closed at cakepanz-9), and §2 is rewritten for this sitting (the file's own §6
   rule). **The three copies are byte-identical ×3 — sha256
-  f31bdf51129a009b1656927c03c0fe7e6b55d5778195d3fa7677b9143142e720 — and MUSE IS TOLD EXPLICITLY
+  15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec — and MUSE IS TOLD EXPLICITLY
   HERE: MUSE re-files the updated file on `council/muse`.**
 - **A7 (the citation-audit edges).** (a) the L10 row rides §22.2 (above); (b) `WHAT-CHANGED.md:93`
   stale `21d81b7b…` marked SUPERSEDED with the measured `1b9bea5f…`; (c) `README-DELIVERY-c8.md:39`
@@ -351,7 +351,7 @@ stdout of the tool at the final state, mirrored in `receipts/partH-c9/` and the 
   (e) the RECEIPTS banner names its history line range (the lines above `## partH-c8-1/`).
 - **A8 (the lows).** (a) the malformed `…Basketball is deferred.## 2 ·…` heading is split in all
   three START copies (§2 is a header again); (b) `WHAT-CHANGED.md:116` stale `3c0dfd3f…` marked
-  SUPERSEDED with the measured `8ef3b18d…`; (c) the raw `sha256sum` stdout of the START/FIX hashes
+  SUPERSEDED with the measured `15f088c7…`; (c) the raw `sha256sum` stdout of the START/FIX hashes
   rides `receipts/partH-c9/a8c-raw-shas.log` (START ×3 byte-identical, FIX-RECEIPT ×3
   byte-identical, cmp exit 0); (d) `VERIFY.txt`'s BLOCK B design prose is marked SUPERSEDED and the
   post-B-bis reality (the uniform board; the order §5 cited) rides beside it; (e) the BoardRow
@@ -469,5 +469,5 @@ stdout of the tool at the final state, mirrored in `receipts/partH-c9/` and the 
   completed 8.1 on-disk record + the per-tool re-runs of every composite step at the final bytes)**;
   `dist/single.html` **670d4c08f2ab9293ba7b7823eea2ea6b22388d07000fdb638ba35645fb3452d1**
   byte-identical across the trees (the 8.1 sha 4ce69205…057a superseded); re-zip + sha256 in the
-  reply; `git status` clean; START-OF-CHAT byte-identical ×3 (f31bdf51…); no gh-pages push; no pin
+  reply; `git status` clean; START-OF-CHAT byte-identical ×3 (15f088c7…); no gh-pages push; no pin
   movement (the pins re-verified via `git archive` diff ×2, exit 0); zero engine files.

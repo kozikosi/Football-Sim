@@ -235,7 +235,7 @@ redirected (the delivered copy kept as history; counts hold 314/319), 5.7 the ci
 matrix (VERIFY §22). Laws: L7/L8/L9 (late battery 9/9/9/9) + L10; falsifiers F14–F16 (all DIED;
 F13's anchor updated for the 4.3 drift, noted). Final-state prints: engine 394/406 · node
 33/33 · shell 47/0/47/0 · slice 29/0/10/3/29/0/10/3 · gates PASS
-314/319 ×2 · numerals CLEAN ×2 ×2 · dist 4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a · A2 mutation 46/1 S29 → 47/0 ·
+314/319 ×2 · numerals CLEAN ×2 ×2 · dist 670d4c08f2ab9293ba7b7823eea2ea6b22388d07000fdb638ba35645fb3452d1 · A2 mutation 46/1 S29 → 47/0 ·
 fresh-clone composite green (m1) · the acceptance-run composite STARTED but not completed inside this
 sitting's budget — the ONE open item (5.2's pointer fallback applied; the next sitting finishes k1/k2).
 Receipts: receipts/partH-c8-1/.

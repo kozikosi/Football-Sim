@@ -1,7 +1,7 @@
 # INTAKE LEDGER — Z.ai · cakepanz-9 sitting · 2026-11-19
 
 **Source of law (the ONE working order):** `council/inkling @ c7c83853` (tip `13f1e7de`) — `deliveries/zai-cakepanz-9-2026-11-19.md` (v4). Read in full from git. Supersedes v3/v2/both MUSE 8.2 drafts/Ernie's draft (absorbed).
-**Standing directive:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `8ef3b18d` — read in full; §2/§3 verified (wave 89 live: gh-pages tip `66096fb1`, newest publish `3e69567c` = w89, index.html serves w89).
+**Standing directive:** `council/muse:_agents/zai/START-OF-CHAT-ZAI.md` @ `15f088c7` — read in full; §2/§3 verified (wave 89 live: gh-pages tip `66096fb1`, newest publish `3e69567c` = w89, index.html serves w89).
 **Read-first list (order §1):** the 8.1 delivery @ `5fb4989a` (trees extracted byte-identical), the compiled seats report (`deliveries/cakepanz-seats-reviews-compiled-2026-11-18.md`), the Owner's two 2026-11-19 memos (verbatim, muse), the tools ASK (`inbox/20261119-0236`), the absorb ASK (`inbox/20261119-0330`). Ernie's absorbed draft read for reference.
 
 ## A · Every ask, mapped (brief § = where it lands)
@@ -12,9 +12,9 @@
 | 2 | A2 L10 claims scoped per tree (README-DELIVERY, WHAT-CHANGED §5.2/Block 3, VERIFY §22.2 row) | Part A, both trees | done |
 | 3 | A3 prepared MERGE-GUIDE line 3 + gate-numerals ×4 runs (both invocations) pasted in VERIFY §22 | Part A | done |
 | 4 | A4 RECEIPTS.md top banner (c7/c8-era record; final state = partH-c8-1 + VERIFY §22) | Part A, package root | done |
-| 5 | A5 k1/k2 regenerated from real runs (never hand-written) | Part A → the composites | done |
+| 5 | A5 k2 real (the prepared composite ran END-TO-END); k1 never run — the named open item | Part A → the composites | open (k1) |
 | 6 | A6 START §2 5.2 bullet per-tree consistent ×3 byte-identical; MUSE told explicitly | Part A + end-of-chat rewrite | done |
-| 7 | A7(a-e): VERIFY §22.2 L10 row; WHAT-CHANGED:93 + :116 marks; c8 README :39 mark; VERIFY:1001 row-11 label; banner names line range | Part A | done |
+| 7 | A7(a-e): VERIFY §22.2 L10 row; WHAT-CHANGED:93 + :116 marks; c8 README :39 mark; VERIFY:1001 row-11 label; banner names line range | Part A | open (k1) |
 | 8 | A8(a-e): START heading split ×3; raw sha256 receipts; VERIFY :823/:832 post-B-bis reality; BoardRow aria-controls always-resolves | Part A + code | done |
 | 9 | A9 prepared MERGE-README line 16 dated marker | Part A | done |
 | 10 | A10 re-verify + re-zip + sha256 + git-clean | Acceptance | done |
@@ -30,7 +30,7 @@
 | 20 | Part E: ranked w89 tool ideas (seeds only, nothing ships) | reply + ledger | done |
 | 21 | Snake check: confirm snakeOrder() output, never change it | verification | done (both trees) |
 | 22 | §0 charter: zero engine files; port returns to pre-8.1; pins stay put; no gh-pages; one zip; receipts raw stdout; apply-asserted patching; English only | whole sitting | respected |
-| 23 | §9 acceptance set (engine/node/shell/slice/gates/falsifiers/composites/zip/sha/START ×3) | Acceptance | done |
+| 23 | §9 acceptance set (engine/node/shell/slice/gates/falsifiers/composites/zip/sha/START ×3) | Acceptance | open (k1) |
 
 ## B · Interpretation calls (named per order §11)
 

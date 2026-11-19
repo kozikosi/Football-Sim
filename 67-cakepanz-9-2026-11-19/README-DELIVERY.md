@@ -49,7 +49,7 @@ README-DELIVERY-c8.md.
   This is the receipt that was FALSE at the cakepanz-8 bytes (the delivery contradicted itself at its own
   final bytes); §5.1's one-word fix is pasted in VERIFY §22.1.
 - **dist/:** rebuilt in both trees at the 8.1 code state; the two dists are byte-identical to each other
-  (`diff -rq` exit 0, h17); `dist/single.html` sha256 **4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a** — the c8 sha 1529a003…e737 is
+  (`diff -rq` exit 0, h17); `dist/single.html` sha256 **670d4c08f2ab9293ba7b7823eea2ea6b22388d07000fdb638ba35645fb3452d1** — the c8 sha 1529a003…e737 is
   superseded by this round's code edits (marked in place in MERGE-README and the c8 README below).
 - **The composite contract (L10) — scoped per tree (the cakepanz-9 order's A2), and CLOSED this round:**
   at the 8.1 bytes, SHIPPED was closed by its own on-disk record (the file IS the completed final-state
@@ -66,7 +66,7 @@ README-DELIVERY-c8.md.
   round per §5.9), §22.4 the absence-law audit pointer. `WHAT-CHANGED.md` at the package root carries one
   entry per ordered item (4.1–4.8, 5.1–5.9, Block 3) with anchors, before/after, receipt names, and the
   drift notes (F13's anchor, the 5.4 shell-count re-quote, the 5.6 option taken, the caption set).
-- **START-OF-CHAT-ZAI.md** (package root + both trees) — byte-identical ×3 (sha256 8ef3b18df08f098957e925e184f2abae0ea06d2d369e4f3d09d663ffae381b48), §2
+- **START-OF-CHAT-ZAI.md** (package root + both trees) — byte-identical ×3 (sha256 15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec), §2
   rewritten for this sitting (the file's own §6 rule). **The three copies CHANGED this round — MUSE is
   told explicitly here, per the order's §7: MUSE re-files the updated file on `council/muse`.**
 - Push nothing: this zip is the delivery; the Owner places it. The zip's sha256 is reported to the Owner

@@ -48,7 +48,7 @@ below them is the c6–c8.1 sittings' history, kept for the record):
   (S29 red)**; restored, 47/0 (h18 + h5). Gates: regen **314** shipped / **319** prepared →
   gate-manifest **PASS (314)** ×2 / **PASS (319)** ×2; **gate-numerals CLEAN ×2 in both trees**
   (the receipt that was FALSE at the c8 bytes — fixed by the one-word §5.1 edit, pasted in VERIFY §22.1).
-  `dist/single.html` **4ce69205b72a8f33bdb6015ec95c3abf317748730c22000eb1bdd592e507057a**, byte-identical across both trees (the c8 sha 1529a003…e737 is
+  `dist/single.html` **670d4c08f2ab9293ba7b7823eea2ea6b22388d07000fdb638ba35645fb3452d1**, byte-identical across both trees (the c8 sha 1529a003…e737 is
   superseded by the 8.1 code edits). The fresh-clone composite + acceptance-run.sh completed END-TO-END,
   exit 0 (m1, k1, k2). Raw receipts: receipts/partH-c8-1/ (h* k* m1) + VERIFY §22.
 
