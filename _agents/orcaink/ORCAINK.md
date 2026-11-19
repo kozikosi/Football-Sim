@@ -3,27 +3,28 @@
 ## Identity
 - **Seat:** ORCAINK · **Model / how reached:** ORCAINK / OpenCode (Orca harness) · **State:** advisor
 - **ID block:** (none yet — files as orcaink) · **First seen:** 2026-11-18
-- **Strengths shown so far (evidence, not claims):** re-running 8.1 verification grids at the delivered bytes (cakepanz-8.1, P-143, P-144); cite-check prototest of VERIFY.txt §22 — found the empty `h17-dist-diff.log` and the two unreceipted shas; first independent read against P-293/pinned flex.json in two reviews.
+- **Strengths shown so far (evidence, not claims):** re-running verification at delivered bytes (8.1 grid, P-143/P-144); cite-check prototests (found 0-byte `h17`, unreceipted shas); reviews with byte-level receipts.
 
 ## Current work
-- **Done 2026-11-18/19 (session 2, cakepanz-9 sitting):** executed the Owner-broadcast sitting (prompt `council/muse:_agents/muse/deliveries/prompts-2026-11-05/council-cakepanz-9-sitting-2026-11-19.md` @ `297391c3`). Note filed: `inbox/20261119-0240-orcaink-cakepanz-9-sitting-notes.md` (commit `1d604378`). Headline receipts (VERIFIED): hosting integrity vs inkling copy — only documented .gitignore exclusions, content identity; pins 5c808472 (67 files) / 65673a00 (68 files) via git archive, cross-delta exactly `game.ts`+`passclass.ts`; flex sha `76c02c65…` 99 {0:17,2:17,6:42,12:23}; suites 394/406 pass; battery 33/33 both trees (with `--import ./scripts/node-port-register.mjs`); gate-numerals under `CP_PIN=65673a00` → exit 1, stdout `NUMERALS FAIL: MERGE-GUIDE.md never names the CURRENT pin (65673a00)` (default invocation CLEAN, `MERGE-GUIDE.md` names `5c808472` only); gate-manifest fresh extracts of inkling's cakepanz-8 → PASS 314/319, VL's FAIL does not reproduce; cite-check findings: `h17-dist-diff.log` is 0 bytes; `1b9bea5f…`(×3) and `8ef3b18d…`(×3) shas TRUE but unreceipted in partH-c8-1; `exit 0` for falsifiers INFERRED not receipted; `47/0`-style pair-tokens only resolve in `m1` composite; snake probe: R1 fwd / R2 rev, 1024 picks, all odd rounds reversed (ruling = Architect's); gh-pages vs fix README `cmp` → differ at line 4 only (`4ca9a071`/52 files → `d3bd81d2`/57 files); divergence: no merge-base, 13 vs 45 tip-side commits (main vs base).
-- **Framework vote filed:** Svelte 5 + Vite, 65/35 (grounded on GPT's evaluation + Inkling reweight; no arm benched by this seat; none of the 3 sitting notes' authors benched an arm either). MUSE consolidates all notes within 48 h; the Owner rules or defers to cutover.
-- **Tools ranked:** (1) TanStack Svelte Table post-ruling, hand-roll ALL TEAMS, pair with TanStack Vue Table if Vue lands; (2) Rosetta chips on done screens; (3) "run so far" share card as plain canvas (0 deps, beats html-to-image); (4) keyboard D-path; (5) seeded screenshot goldens with a prune rule. PWA/DnD/Storybook/analytics/virtual scroll/Zod/chart libs — each rejected with its 30 seconds.
-- **P-158 still at cap** (8 reviews: vl, uk×2, boc, glyph, ernie, inkling, or — filed 2026-11-19T01:05Z). Threshold ambiguity (Owner-suggests 0.10 costly-floor vs 0.45 rare-costly) is the Owner's/Architect's call.
+- **Done 2026-11-19 (three pushes this sitting):** sitting notes (`inbox/20261119-0240-…`, `1d604378`); session-end lane+bulletin (`8c84423f`); GPT-review (`inbox/20261119-0333-orcaink-gpt-cakepanz-9-expanded-review.md`) + verbatim lane copy `_agents/orcaink/2026-11-19-gpt-cakepanz-9-expanded-notes.md` (32,854 B) + fresh-extract receipt `_agents/orcaink/receipts/g8-manifest-fresh-extract-receipt-2026-11-19.txt` (`d0a1791e`).
+- **GPT review verdicts:** pins/cite-check/numerals-override (exit 1 under `CP_PIN=65673a00`) — endorse all his findings plus mine (h17 0 B, unreceipted shas, `§21.8:869` 1529a003 unsuperseded). gate-manifest verified URL-rooted (`import.meta.url`), fresh extracts PASS 314/319 — VL's FAIL does not reproduce and wrong-cwd was never the cause. Divergence tip counts **13 main-side / 45 base-side** (no merge-base) — the merge plan must use these, not root-1/1. Framework 65/35 vs GPT 70/30 — same direction; GPT's uniform-board A/B experiment is the right decider (and cheaper on the Svelte side because of the ruling). Tools: GPT's order endorsed modulo one confession (I dropped axe-core — he's right on both goldens #1 and axe #2); chart libs stay out until a per-week series exists; canvas share card preferred over html-to-image (ordering only).
+- **Sitting status:** sitting notes from all seats are due-to-consolidate by MUSE; the Architect owns the A·D/A·E fix sitting (one commit, both trees, gate-numerals exit 0 → then sign-off).
 
 ## Blocked / waiting on
-- Owner — P-158 threshold ruling; P-144 design pick (nothing pickable until VL resubmits per `inbox/20261119-0225-orcaink-P-144-review.md`); gh-pages two-file fix placement (cmp receipt filed, 2026-11-19); re-pin 65673a00 activation (MERGE-GUIDE pin gap filed); F1 for cakepanz-8.1; R-13 sequencing; hy4 league-size flag.
-- Architect — P-143 integrate or reject; P-158 three-bar thresholds move; snake-order ruling; cutover merge plan (divergence 13/45 measured).
-- MUSE — consolidation of the sitting notes into the attributed report (within 48 h of submissions, per the prompt).
+- Owner — P-158 threshold; P-144 pick (nothing pickable until VL resubmits); gh-pages fix placement; re-pin 65673a00 activation + MERGE-GUIDE pin fix (this sitting: the gate override FAIL is the blocker for "clean"); R-13 sequencing; hy4 flag.
+- Architect — A·D/A·E fix sitting (numerals override + receipt hygiene + §21.8 superseded marker); snake ruling; P-143; cutover merge plan seeded by 13/45; tag transition-row #11 historical.
+- MUSE — sitting consolidation within 48 h.
 
 ## What the next session needs
-- **Read first:** this file; `inbox/20261119-0240-orcaink-cakepanz-9-sitting-notes.md`; then `inbox/20261119-0144-orcaink-P-143-review.md` and `inbox/20261119-0225-orcaink-P-144-review.md`.
-- **Do not redo:** the 8.1 verification grid (this sitting re-ran it); the cite-check (findings listed, receipts for `h17` empty and two re-filed shas owed by whoever owns the package); the snake probe.
-- **Open questions:** VL's P-144 resubmission; P-158 threshold; whether `h17-dist-diff.log` (0 B) and the two unreceipted shas get re-filed with receipts by the package owner.
+- **Read first:** `inbox/20261119-0333-orcaink-gpt-cakepanz-9-expanded-review.md`; the sitting notes; the lane receipts.
+- **Do not redo:** the 8.1 grid (this sitting re-ran all CLI legs); the gate-manifest tie-break (receipt filed); the snake probe; GPT's expanded note (lane copy is byte-matched).
+- **Open:** fix-then-verify the numerals override; h17 + two shas re-filed; transition-row #11 historical-only marker; the framework A/B decision (defer-or-run).
 
 ## Files in this lane
-- `67-cakepanz-8.1-2026-11-18/` — delivered package as landed 2026-11-18 (byte-identical to Desktop source).
-- `ORCAINK.md` — this file. `BOOT.md` — opening check.
+- `67-cakepanz-8.1-2026-11-18/` — the delivered package as landed (byte-identical to Desktop source).
+- `2026-11-19-gpt-cakepanz-9-expanded-notes.md` — verbatim copy of GPT's expanded position (Owner's paste, byte-matched).
+- `receipts/g8-manifest-fresh-extract-receipt-2026-11-19.txt` — fresh-extract provenance.
+- `ORCAINK.md` — this file. `BOOT.md` — the opening check.
 
 ## Role
 general advisor. Advisor level: propose, test, dissent, measure.
