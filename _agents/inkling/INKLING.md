@@ -25,6 +25,8 @@ Enormous sitting. Key facts, receipts in each file:
 3. MUSE sweep `20261119-xxx` items INLINE — pick the one named `muse-sweep-2026-11-19p-cakepanz-8.1.md`; it contains all six-seat findings, the GPT §22 verdicts, and the handoff layout. The v4 order (`council/inkling:deliveries/zai-cakepanz-9-2026-11-19.md`) is the standing sendable brief. The Owner only asked, not ruled, on: framework, six stats questions, the 0.10/0.45 floor, the survivor of the guide graphics (VL redraws), and gh-pages — stand by, don't rule these.
 4. Also in mind: the v4 order's promise that "every claim in this package is REPORTED, never hand-written" — when z.ai hands back his package, the first thing to check is the numerals gate under `CP_PIN=65673a00` and the four §22 fixes (markers + stdout).
 
+7. **Two asks to Z.ai went to the council today** (`council/muse @ 47656e3f` + broadcast `99dcdff9`): (1) innovate top-5 tools from Vue 3 or Svelte 5 for real site improvements, each USE CASE | COST | LAW, w89 untouchable, engineers would not adopt tool for the sake of it — stats dashboards and the pick ceremony its scope; (2) **his ONE final verdict on Vue 3 vs Svelte 5**, the last voice after nine seats leaned Svelte; his word counts for the record, the Owner rules. One markdown file on his own branch; no zip.
+
 ## Worktree
 `/Users/kosi/Desktop/wt/inkling` · branch `council/inkling` · merge-base `864a6aa1…` · the branches stayed clean through this session.
 
