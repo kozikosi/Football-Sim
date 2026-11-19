@@ -1,0 +1,8 @@
+15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec  START-OF-CHAT-ZAI.md
+15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec  cakepanz-4/START-OF-CHAT-ZAI.md
+15f088c71918b1a8a3f46c33d3056bffcb3b155d8cfab97b30fbbc34fd806aec  cakepanz-4-prepared/START-OF-CHAT-ZAI.md
+$ cmp x2: BYTE_IDENTICAL_X3
+1b9bea5fd1b87851397ec6395541e8b47bf6bf04cb65912547d12d36153a5047  receipts/partC/gh-pages-fix/FIX-RECEIPT.md
+1b9bea5fd1b87851397ec6395541e8b47bf6bf04cb65912547d12d36153a5047  cakepanz-4/deliveries/gh-pages-fix/FIX-RECEIPT.md
+1b9bea5fd1b87851397ec6395541e8b47bf6bf04cb65912547d12d36153a5047  cakepanz-4-prepared/deliveries/gh-pages-fix/FIX-RECEIPT.md
+exit=0
