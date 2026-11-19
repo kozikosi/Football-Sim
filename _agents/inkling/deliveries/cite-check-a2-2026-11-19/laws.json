@@ -1,0 +1,23 @@
+{
+  "$schema": "laws.schema.json",
+  "version": 1,
+  "comment": "The one-id-one-statement law registry. A law is ACTIVE for the build that introduced it until superseded; superseded laws stay in history, never deleted. An id reused for a different statement is a BUILD ERROR. The cakepanz 8/8.1/9 resident set seeded here; the Architect owns this file once adopted.",
+  "laws": [
+    {"id": "L1", "statement": "the simple-board laws (late mode) — SUPERSEDED by the Owner's uniform-board ruling", "battery": "late.battery.mjs", "falsifier": null, "introduced": "cakepanz-8", "superseded_on": "cakepanz-9", "state": "superseded"},
+    {"id": "L2", "statement": "detail visible one click away", "battery": "delivery tests", "falsifier": null, "introduced": "cakepanz-8.1", "state": "active"},
+    {"id": "L4", "statement": "VM-sha equality across a mode flip (grid dedup class) — SUPERSEDED with the flip", "battery": "late.battery.mjs", "falsifier": null, "introduced": "cakepanz-8.1", "superseded_on": "cakepanz-9", "state": "superseded"},
+    {"id": "L7", "statement": "detail visible when closed is hidden — SUPERSEDED with the flip", "battery": "late.battery.mjs", "falsifier": null, "introduced": "cakepanz-8.1", "superseded_on": "cakepanz-9", "state": "superseded"},
+    {"id": "L8", "statement": "the completing pick lands on Complete (real-UI walk) — law survives the flip; battery re-quoted", "battery": "board.battery.mjs", "falsifier": "F15-board", "introduced": "cakepanz-8.1", "state": "active"},
+    {"id": "L9", "statement": "done-draft refresh resolves to Complete — SUPERSEDED with the flip", "battery": "late.battery.mjs", "falsifier": "F16-late", "introduced": "cakepanz-8.1", "superseded_on": "cakepanz-9", "state": "superseded"},
+    {"id": "L10", "statement": "acceptance-run COMPLETE means the run finished — the process law (also re-used by the Owner's Part B1 as the new-draft-after-done id in c9; flagged: name collision)", "battery": "acceptance-run.sh", "falsifier": null, "introduced": "cakepanz-8.1", "state": "active"},
+    {"id": "L10-b1", "statement": "a NEW draft after a finished draft lands on the board (c9 Part B1 re-uses the L10 name)", "battery": "board.battery.mjs", "falsifier": "F17", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "L11", "statement": "the partial-Complete screen does not lie (h1 only in the complete branch; PLAY THE SEASON disabled)", "battery": "board.battery.mjs", "falsifier": "F18", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "L12", "statement": "the uniform board — one anatomy for picks 1–32 (the Owner's ruling)", "battery": "shell.battery.mjs", "falsifier": "F19", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "L13", "statement": "the top-three suggestions highlighted (ties extend — display-rounded ties today; _w exposed)", "battery": "board.battery.mjs", "falsifier": "F20", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "L14", "statement": "Complete prints the roster the engine would field (lineupFor sha-exact; three weakest; data-lineup attr)", "battery": "board.battery.mjs", "falsifier": "F21", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "L15", "statement": "the wall-slip reveal cascade (≤2 s, reduced-motion instant)", "battery": "board.battery.mjs", "falsifier": "F22", "introduced": "cakepanz-9", "state": "active"},
+    {"id": "S1a-S31", "statement": "the shell-battery laws S1a–S31 (team select, slot picker, boot persistence, restore, file:// boot, 390px discipline…)", "battery": "shell.battery.mjs", "falsifier": null, "introduced": "cakepanz-8", "state": "active"},
+    {"id": "N25-N29", "statement": "the node-battery resume/done laws (N25–N29)", "battery": "node.battery.mjs", "falsifier": null, "introduced": "cakepanz-8", "state": "active"},
+    {"id": "F23-F25", "statement": "the dashboards falsifiers (sort-swap / rank-blank / round-leak plants) — SEEDS ONLY, unbuilt", "battery": "future dashboards battery", "falsifier": "F23-F25", "introduced": "planned", "state": "proposed"}
+  ]
+}
