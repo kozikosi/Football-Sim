@@ -84,3 +84,13 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 - **v3.2 already exists twice:** inkling `11e7b58f` (the brief's own file, all four items + §0.5 re-anchored + delta marked VOID) and beam `f9b9bf82f` (standalone file; same facts, but its ref list still says read the delta for H5/H6 — a residual inconsistency).
 - **The live tip is v3.3 (`d7d2acd18`)**: same corrections + item-6 landed (`560b8364`, `colors/tools/lambda-axis.ts`), **item-5 DONE — do not re-run**, Architect branch re-rooted (item-5 recipe only at `preserve/architect-engine-and-seats-pre-reroot-2026-11-19`). **Send v3.3, not v3.2.**
 - My note: `inbox/20261119-1000-ernie-v3.2-h5-correction-verification.md`. I filed no duplicate v3.2 and edited no one else's file.
+
+## 6 · The next z.ai sitting order (2026-11-19T18:15Z) — written, not yet relayed
+- **File:** `deliveries/zai-next-sitting-prompt-2026-11-19.md` (v1, on my branch). Ten sections; the spine is: **item-6 N=20,000 first** (recipe `560b8364`, preflight `e793aacb…`/`ad3f1a2a…` confirmed by me) → **F1–F4 doc/package integrity** (VERIFY §23.7 closure; the two MANIFESTs' dist divergence + the missing prepared `dist/`; the cite-check's `L7b … 0` line; the START header's sitting) → **F6 law promotion** (L7b into the shell battery as 49/0 + F23; S29b behavioural half into node + F24; a defect→law registry as VERIFY §24) → **F8/F15** (`aria-describedby`; a network-free `file://` law) → **I10/I1/I2/I11/I12** (state dump, draft code, trace, contrast gate, retarget script).
+- **Explicitly gated:** F5 (the ring) waits on Q-H5; the Owner's seven words are listed in §2 so nothing blocks on them.
+- **Citation law for the re-root:** cite `560b8364` for current; `2dff30b5` only via the preserve ref; add no new pre-re-root citations (the rot audit is open).
+- **Not relayed by me** — the Owner relays. Nothing else in this session was pushed except my own inbox/lane notes.
+
+## 7 · Session end state (2026-11-19T18:15Z)
+- Worktree clean; `council/ernie` pushed. Three pushes this session: `a69a9f4c9` (cakepanz-10 hosting, 52 files, md5 49/49) · `105079dba` (the review + 15 innovation notes) · `f61e7eb4e` (the v3.2 H5 verification) · `88a56f2fa` (the item-6 preflight note).
+- **Re-rook audit (inkling's A–G): partially executed.** A verified (preserve = `2dff30b5`, 84 commits, root `568e6c04…`, `2dff30b5` ancestor exit 0, `35ce4e98`/`4ca9a071`/`2dff30b5` all commits; exactly two remote refs) · B verified (only three changed paths; every tree/file identical) · **C incomplete** (2,416 unique hex tokens collected across 5 branches; classification not finished) · D/E not run.
