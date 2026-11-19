@@ -3,15 +3,16 @@
 Identity: Beam, council seat, branch council/beam, worktree /Users/kosi/Desktop/wt/beam.
 merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 
-## Current work / state (2026-11-19, third sitting)
-- Published 67-cakepanz-10-2026-11-19 delivery (49 files, md5 49/49 OK) on council/beam (f90a6c535).
-- Thorough review of the delivery (VERDICT ok; 6 calibration notes, 1 hygiene risk, 11 brainstorm items) — inbox/20261119-0856-beam-67cakepanz10-review.md (a44a792fe).
-- Filed v3.2 point release of the w89 brief (H5 struck, H6 tail clause fixed, Q-H5 submitted) — deliveries/...-v3.2.md (f9b9bf82f) — proposal for inkling/Z.ai to adopt.
-- Arch-reroot preservation audit (A/B/D/E verified, C partial) — inbox/20261119-0945-beam-arch-reroot-audit.md (285d2a1ac): preserve ref 84 commits, 2dff30b5 ancestor, 3 changed paths exactly, 9 zero-commit PushEvents, 560b8364 absent from public events, recovery drill exit 0 / 3 files.
-- No product/engine files touched. All work is inbox + deliveries + lane.
+## Current work / state (2026-11-19, fifth sitting)
+- Pushed Z.ai's relay folder `z-post-blue-docs-update-2026-11-19-item6-sitting` (14 files, 144K) to council/beam @ a886e239a (CHECKSUMS 13/13 OK).
+- Thorough review of that package: inbox/20261119-1814-beam-zpostblue-docs-update-item6-review.md (VERDICT ok; D1 reported; 8 brainstorm items A–H) @ 7271f1979.
+- Results for Pickle's R-13 test requests: inbox/20261119-1900-beam-pickle-test-requests-results.md (421/421, tsc 89, scope 4 files, throughput, crn pushback, w89 live, ?seed= not reproducible) @ ef1698af1.
+- Review of Ernie's item-6 review + innovation v2: inbox/20261119-2100-beam-ernie-item6-and-innovation-review.md (corrected my D1/ancestry claims; endorsed F1/F2/F5) @ b5db0aa2d.
+- Vapor mode experiment (Vue 3.6.0-rc.15): inbox/20261119-2130-beam-vapor-mode-experiment.md (builds, ~7.7KB saved, typecheck fails) @ 0dafabfe7.
+- No product/engine bytes touched in any sitting.
 
 ## Open questions
-- Owner rulings owed: dark --text, Bodoni Moda, value label, 2-Pt chip wording, team takeover scope, C'1 tie breadth, light gold2 AA, dark rose ink, Part-0 accept/strike, the four tab labels, re-zip decision, Q-H5 ruling.
+- Owner rulings owed: Part-0 accept/strike, distribution word, D1 re-import, four tab labels, Q-H5/H6, AA contrast holes, gh-pages two-file fix.
 - P-144 Guide graphic: VL's designs rejected by ORCAINK; resubmission pending.
 
 ## Next session reads
@@ -19,7 +20,9 @@ merge-base with origin/council/base: 864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e.
 2. _agents/PRIORITIES.md (live on origin/council/muse)
 3. inbox/ newest (sync with council-sync.mjs --inbox)
 
-## 2026-11-19 (fourth sitting) — relay + review of z-post-blue-docs-update-2026-11-19-item6-sitting
-- Pushed the Z.ai relay folder (14 files, 144K) to council/beam @ a886e239a so anyone can read it (CHECKSUMS 13/13 OK).
-- Thorough review filed: inbox/20261119-1814-beam-zpostblue-docs-update-item6-review.md (VERDICT ok; D1 reported-not-fixed; 8 brainstorm items A–H on cakepanz/UI shell).
-- No product/engine bytes touched. Pushed @ 7271f1979.
+## Live files
+- inbox/20261119-1814-beam-zpostblue-docs-update-item6-review.md
+- inbox/20261119-1900-beam-pickle-test-requests-results.md
+- inbox/20261119-2100-beam-ernie-item6-and-innovation-review.md
+- inbox/20261119-2130-beam-vapor-mode-experiment.md
+- z-post-blue-docs-update-2026-11-19-item6-sitting/ (relay folder)
