@@ -12,8 +12,9 @@
 - **Standing rule:** four lines per claim (cwd · exact command · ref+sha · output). VERIFIED / REPORTED / INFERRED / UNKNOWN on every claim. "No signal" is a result.
 - **Worktree:** `/Users/kosi/Desktop/wt/ernie` · **branch:** `council/ernie` · **merge-base with `origin/council/base`:** `864a6aa12689a9ef579fb1a2fb6c07a1c6bd2c0e`
 
-## Current state (2026-11-19T01:05Z)
-- **Nothing in progress.** Worktree clean; branch pushed (commit pending below). This session: hosted z.ai's **cakepanz-8.1** (869-file package, `5f7e9525`), reviewed it (8.1 review, **improved** — 8.1 closes P-316's five user-facing findings but leaves F6-prepared + F3), filed the **P-345 follow-through #2** (cakepanz-8.1 implications + next leaps), and **compiled a report of all seven seats' cakepanz reviews + everyone's ideas**.
+## Current state (2026-11-19T02:40Z)
+- **Nothing in progress.** Worktree clean; branch pushed (`97f49a6d`); ending the session per START-OF-CHAT §3.
+- **This session (the cakepanz arc):** hosted z.ai's **cakepanz-8.1** (MUSE has since pruned my hosting copy — byte-identical copies remain on `council/inkling`/`council/pickle`); reviewed 8.1 (**improved**; F6-prepared + F3 still open) → `inbox/20261118-2345-…8.1-review.md`; compiled **all seven seats' cakepanz ideas** → `inbox/20261119-0105-…all-seats-ideas-compiled.md`; recorded **GPT's Vue-vs-Svelte comment verbatim + my evaluation** → `inbox/20261119-0152-…GPT-framework-comment-and-evaluation.md` (preference **corrected 60/40 → ~50/50**: the AI-tooling "tax" was scaffold-only, not intrinsic); filed the **w89 improvement opportunity brief** → `inbox/20261119-0213-…w89-improvement-opportunity-brief.md`; drafted the **Cakepanz-9 prompt for Z.ai** → `inbox/20261119-0218-…cakepanz-9-prompt-for-zai.md`; posted the **council prompt** → `bulletin/20261119-0230-ernie.md`; executed MUSE's **cakepanz-9 sitting brief** myself → `inbox/20261119-0238-…cakepanz-9-sitting-notes.md` (11 verifications, tools top-5, Vue/Svelte **55% Svelte**).
 - **THE LIVE DIRECTIVE (Owner, 2026-11-18T22:31Z, verbatim in `_agents/owner-notes/2026-11-18-owner-note-sim-values-after-ship.txt`):** *"I don't want you or claude or the council to spend too much more time trying to get the sim values to line up super aligned with the historical data. i would rather we get the engine overall finished and then you can tinker with values and historical accuracy after we have shipped."* → **per-metric historical alignment is PARKED until after ship.** Engine completion and product surface continue. Read this before proposing any calibration work.
 
 ## 1 · What not to redo (receipts exist)
@@ -49,9 +50,15 @@ The four digests and their roots · goldens `0ccb6319…f3f5` · the 57-file `cm
 6. **gh-pages placement** — still not placed (Owner's click); deployed tree names `4ca9a071`/52 files.
 
 ## 3 · Live files (mine)
-- `_agents/ernie/deliveries/67-cakepanz-8.1-2026-11-18/` — **the hosted cakepanz-8.1 delivery** (`5f7e9525`), 910 files, two trees + receipts.
-- `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` — cakepanz-8 review receipts (verify script + logs).
-- This session's filings: `inbox/20261118-2345-…P-316-cakepanz-8.1-review.md` (improved; F6-prepared/F3/F7), `-2350-…P-345-cakepanz-8.1-implications-and-next-leaps.md` (P-345 follow-through #2), `-0105-…cakepanz-all-seats-ideas-compiled.md` (7-seat synthesis).
+- **This session's filings (the cakepanz arc):**
+  - `inbox/20261118-2345-…P-316-cakepanz-8.1-review.md` — 8.1 review (improved; F6-prepared/F3/F7 open).
+  - `inbox/20261119-0105-…cakepanz-all-seats-ideas-compiled.md` — all seven seats' cakepanz ideas, ~65 deduped.
+  - `inbox/20261119-0152-…GPT-framework-comment-and-evaluation.md` — GPT's Vue/Svelte comment verbatim + my evaluation (preference corrected 60/40 → ~50/50).
+  - `inbox/20261119-0213-…w89-improvement-opportunity-brief.md` — use-case-framed tool/w89 upgrade brief.
+  - `inbox/20261119-0218-…cakepanz-9-prompt-for-zai.md` — the thorough Cakepanz-9 sitting prompt for Z.ai (Parts A/B/B-bis/C + D absorb-work + E w89 brainstorm).
+  - `inbox/20261119-0238-…cakepanz-9-sitting-notes.md` — my execution of MUSE's sitting brief (11 verifications, tools top-5, Vue/Svelte 55% Svelte).
+  - `bulletin/20261119-0230-ernie.md` — the council prompt (work the queue; w89 tool use-case + Vue/Svelte asks).
+- **Receipts:** `_agents/ernie/deliveries/cakepanz-8-review-2026-11-18/` (cakepanz-8 review logs). My cakepanz-8.1 hosting copy was pruned by MUSE (byte-identical copies on `council/inkling`/`council/pickle`).
 - Earlier: `67-cakepanz-8-2026-11-18/`, `cakepanz-7-…`, `cakepanz-6-…`, `cakepanz-5-…`, `prompts-2026-11-18/`, `pin-watch-2026-11-17/`, `p333-*`, `ernie-ringers-*`.
 
 ## 4 · Method notes worth keeping
