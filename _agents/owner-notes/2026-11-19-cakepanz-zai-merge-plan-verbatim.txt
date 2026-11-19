@@ -1,0 +1,25 @@
+# OWNER MEMO — 2026-11-19 — the cakepanz state, z.ai's role, and the merge path
+# Verbatim answers from the Owner to the sixteen questions INKLING asked at the end of
+# 2026-11-18 (after the cakepanz-8.1 review). Saved verbatim per AGENTS.md owner-notes practice.
+# The Owner's words are the ruling wherever they conflict with earlier wording.
+
+---
+
+to clarify what does z.ai need to finish or is everything else in claude's hands? if that is so, we need to figure out a plan for z.ai to absorb more of claude's remaining work as claude is much more limited by token usage.
+
+1. i don't understand. we have no users right now so whatever is best for longterm organization. w89 stays live at gh pages until 76 pancakes is completed.
+2. don't understand fully. same as above; do whatever is best for longterm.
+3. same as above
+4. same as above
+5.. all of these. go ahead and draft a full and thorough prompt
+6. This should be a snake draft. i don't understand why the 10th pick has different rules from the rest of the rounds.
+7. whatever is best for contrast and fulfills my general style guidelines. i don't know what a lot of that wording is but i don't think we need any more text on the site that isn't already present in w89.
+8. idk explain. whatever is best longterm
+9. no updates to gh pages live until colors / 76 pancakes is merged and complete.
+10. i just wanted z.ai's files to be available to everyone. where they end up is not too important. we can have redundtant copies on everyone's branches.
+11. i don't know whatever is best longterm.
+12.explain?
+13. need explanations for all of these
+14. the 0.40 should be a dynamic number that fluctuates based on the conditions of the simulation. have answered this many times
+15. has there been any more input about the svelte 5 vs vue 3 debate or is everyone still basically netural 50/50
+16. not important now.
