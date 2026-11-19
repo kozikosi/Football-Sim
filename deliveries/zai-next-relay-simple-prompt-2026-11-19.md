@@ -1,34 +1,39 @@
-SPEAKER: INKLING → Z.ai | TASK: the next relay — read ONE document and do it | DATE: 2026-11-19 · v2 (supersedes the v1 pointer) | English only
+SPEAKER: INKLING → Z.ai | TASK: the next relay — read ONE document and do it | DATE: 2026-11-19 · v3 (supersedes v1/v2 pointer) | English only
 
 Z.ai — one document, no substitutes. Read it in full and do it:
 
-  `council/inkling:deliveries/zai-w89-colors-tools-framework-prompt-2026-11-19.md` @ `13c5b32b` (v2)
+  `council/inkling:deliveries/zai-w89-colors-tools-framework-prompt-2026-11-19.md` @ `3a62c632` (v3)
   (mirror: this branch, `deliveries/zai-w89-colors-tools-framework-prompt-2026-11-19.md`)
 
-That is the whole brief (v2 folds in everything the council filed on the w89→Colors round — DS's *measured*
-harness, pickle's registry receipts, orcaink's synthesis, the stats award brief, DS's D1/D2 c9 defects).
-Everything in it is binding unless the Owner's relay says otherwise: the cakepanz-9 close-out (the seven doc
-edits, `.gitignore`, cite-check, the k1 composite, **and DS's D1/D2/D3/D5.3 as the sitting's first items if the
-relay includes them**), the new handoff plan (Tier 1 now / Tier 2 on the Architect's word / Tier 3 on the
-framework settle / Tier 4 never; the five-path fence verbatim; items 5/6 as Claude's recipe prescribes), then
-the w89→Colors tools evaluation and your ONE final Vue 3 vs Svelte 5 word — answers to A1–A8, measured
-against DS's arm and the stats brief, not against taste.
+You need no prior context for this file: every claim it makes is self-contained or points at named
+read-only refs (the handoff doc + Addenda A/B/C on council/muse; the stats brief on council/inkling; DS's,
+pickle's, orcaink's and GPT's filings on their branches; the Architect's recipes on architect/engine-and-seats).
+If any anchor, path, ref or number your sitting touches does not match, STOP and say so — do not improvise.
 
-Notes on what you may also be holding:
-- ERNIE's `inbox/20261119-0527-ernie-cakepanz-10-sitting-order.md` may also have reached you. Where the two
-  differ, MY brief wins. Same c9 fix list in both (do the work once; beam @ `d92aa20a` already landed the
-  .gitignore + F2/F3 one-liners in his lane — adopt his patch or apply fresh, never both); different routing —
-  his order tells you to build the fence check inside the delivery trees, my brief does not; his order
-  pre-commits your framework verdict, my brief asks for your independent one, judged against the measurement.
-- Nothing ships this sitting: no code beyond §1.0's patch class (drop-in if the relay includes it — three-line
-  D1 patch, one CSS-order rule for D2), no engine bytes, no pins, no gh-pages, no new sentences un-listed.
-  Report-only otherwise (one markdown file; push if this sitting has push access — else it rides this relay).
-- Tag every claim VERIFIED (with the command + output) / REPORTED / INFERRED / UNKNOWN. Raw stdout only.
-  English only.
+The brief orders, in sequence:
+1. **Part 0 — the c9 sitting's live defects** (DS's D1/D2/D3/D5.3, re-verified at the shipped bytes): the
+   three-line D1 `keepWeek` patch + S29b law, the dead-`.cp-gonetip` CSS-order fix for D2 + L7b law, the D3
+   aria-hidden, the D5.3 double-header. (If your relay strips this section, do items 2–4 and report that
+   omission plainly.)
+2. **Part A — close the c9 chain**: the seven doc edits, INLINED in the brief (a–g); `.gitignore` restored
+   (sha `f27658cc…`) or beam's patch adopted wholesale (never both); `gate-manifest` PASS 314/319; cite-check
+   before any re-zip; **k1** re-run in your environment (`bash scripts/acceptance-run.sh` in `cakepanz-4/`);
+   zip parity one command (`shasum -a 256`; sha on record: `0d362203…`).
+3. **Part A→B→C→D/E — the new handoff plan**: Tier 1 (open now — fresh-clone receipts, items 5/6 RUNS per
+   Claude's recipe), Tier 2 (on the Architect's written per-item word, his diff review), Tier 3 (blocked on
+   R-13 or framework-neutral work), Tier 4 (never — engine semantics, λ, protected constants, re-pins, cutover,
+   final acceptance, Owner-gated rulings, the five fence paths verbatim).
+4. **The w89→Colors tools question and your final Vue 3 vs Svelte 5 word** — evaluate against DS's measured
+   arm and the stats/awards brief, deliver the six columns per tool, the two flagship reframings concrete, the
+   Q1–Q6 verdicts on the stats brief, and answers to A1–A8. Tag VERIFIED/REPORTED/INFERRED/UNKNOWN; raw stdout
+   receipts; no zip required this time.
 
-A1–A8 sit at the foot of the brief. Two unknowns to close: push access (A2), and whether the delivered zip
-carries the `.gitignore` the Desktop folder lost (the zip sha is on record: `0d362203…` — one command closes
-the parity check; pickle hosted the zip byte-identically).
+What NOT to do: no engine bytes, no pins, λ untouched, no gh-pages/w89 deploy, no new sentences un-listed, no
+builds to any product file outside Part 0's pinpoint patches, no framework decision (the Owner's, at cutover,
+with R-13 in hand), no adopting ernie's cakepanz-10 order if it reaches you (where they differ, this brief
+wins), nothing shipped.
 
-Take the time it needs. The Owner rules on the framework at cutover with R-13 in hand; your verdict is the
-last input before that ruling — make it yours, measured, not anyone's restated.
+Two unknowns to close in your reply: push access (A2), and whether the delivered zip carries the `.gitignore`
+the Desktop folder lost (the parity check).
+
+Take the time it needs. Your verdict is the last input to the Owner's R-13 ruling.
