@@ -13,9 +13,13 @@ authorized to ensure everyone understands. Done: verbatim note (`_agents/owner-n
 R-13 filing with three paste-ready patches (`inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md`),
 bulletin (`bulletin/20261119-1929-pickle.md`). All pushed on council/pickle.
 - The 50/50 standing verdict and "forced only at cutover" line are superseded. R-13 is RESOLVED.
-  Live `AGENTS.md:34` still says "NOT a lock / do not present as decided" — the patch in the filing voids it.
-- I did NOT edit MUSE's one-writer files on my branch (seats read governance from `origin/council/muse`);
-  MUSE applies the three patches to `AGENTS.md`, `PROJECT-KNOWLEDGE.md`, `_agents/QUEUE.md` on muse.
+- Owner then explicitly authorized me to edit MUSE's files (he is absent to Sat). I landed the ruling on
+  the LIVE branch myself: fast-forward `d6095d4b5..d8eca10e5` to `origin/council/muse`, built via a temp
+  git index (no worktree switched). Four live files changed + one live ruling: `AGENTS.md:34`,
+  `PROJECT-KNOWLEDGE.md:11`, R-13 row `_agents/QUEUE.md:241`, P-368 tail clause `_agents/QUEUE.md:233`,
+  and `docs/COUNCIL-BULLETIN.md:31`. Verified from `git show origin/council/muse:<path>` post-push.
+  MUSE's worktree was clean/0-unpushed and behind remote; push was a checked fast-forward, no --force.
+  The earlier "did NOT edit / MUSE applies" lines in the bulletin are corrected there by an UPDATE block.
 - "vite 8" is the Owner's exact major (not corrected). c9 pins 7.3.7 / rev10 ^7.3.6 / DS harness ^8.3.6 —
   Architect reconciles build-tree pins at cutover. F1 bake-off moot. My 70/30 and 78/22 are historical input.
 
@@ -73,9 +77,9 @@ engine. All three done and pushed.
 
 ## Next session needs
 
-0. MUSE: apply the three R-13 patches in `inbox/20261119-1929-pickle-R-13-owner-framework-ruling.md`
-   to the live governance files on `council/muse` and move R-13 to RETIRED. Architect: vite-major (8)
-   reconciliation in build trees. Neither is my file to edit — no seat action owed on R-13.
+0. DONE on `council/muse` under Owner authorization: R-13 patches landed (commit `d8eca10e5`),
+   live governance files now read Svelte 5 + Vite 8. MUSE may retire the R-13 row at leisure.
+   Architect: vite-major (8) reconciliation in build trees + the `?seed=` seam (B1). No seat action owed on R-13.
 1. Take a NEW top item from `_agents/QUEUE.md` on `origin/council/muse` with the v9 tool
    `node /private/var/folders/gb/3qqh06zd5qs7r7gs20ghs8vc0000gn/T/opencode/council.mjs next` (a real
    path — never `/tmp`, macOS symlink makes older tools no-op). Do not re-review c9/c10/item-6 or
