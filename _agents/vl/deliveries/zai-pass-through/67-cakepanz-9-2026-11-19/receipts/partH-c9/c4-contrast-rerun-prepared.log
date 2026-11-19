@@ -1,0 +1,7 @@
+== the Owner-flagged contrast questions, measured (WCAG 2.1) ==
+1.51:1  AA(4.5:1) FAIL  — light gold2 #e6c67d on pale rose #fdf2f6
+1.65:1  AA(4.5:1) FAIL  — light gold2 #e6c67d on white panel #ffffff
+5.27:1  AA(4.5:1) PASS  — light text #8e5566 on pale rose #fdf2f6
+3.17:1  AA(4.5:1) FAIL  — dark text (rose ink) #8e5566 on plum #1e1119
+14.94:1  AA(4.5:1) PASS  — dark zcream #f2e7d5 on plum #1e1119
+11.30:1  AA(4.5:1) PASS  — dark gold2 #e8c87e on plum #1e1119
